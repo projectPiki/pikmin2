@@ -730,7 +730,7 @@ void ItemGate::changeMaterial()
 {
 	int jointIdx = (mIsElectric) ? 0 : mModel->getJoint("move")->mJointIndex;
 
-	bool showJoint = mCentrePlatInstance->mFlags & 1 && mLod.mFlags & 4;
+	bool showJoint = mCentrePlatInstance->isFlag(PLATFLAG_CollisionActive) && mLod.isFlag(AILOD_IsVisible);
 	mModel->jointVisible(showJoint, (u16)jointIdx);
 	if (mIsElectric) {
 		mMatAnimator->animate(30.0f);
@@ -753,7 +753,7 @@ void ItemGate::getLifeGaugeParam(Game::LifeGaugeParam& param)
 	param.mPosition.y += 120.0f;
 	param.mRadius              = 10.0f;
 	param.mCurHealthPercentage = getGateHealth() / (mMaxSegmentHealth * mMaxSegments);
-	param.mIsGaugeShown        = mLod.mFlags & 4;
+	param.mIsGaugeShown        = mLod.isFlag(AILOD_IsVisible);
 }
 
 /**

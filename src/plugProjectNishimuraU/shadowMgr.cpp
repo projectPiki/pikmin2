@@ -666,7 +666,7 @@ u32 ShadowMgr::getShadowType(int p1, int p2)
  */
 bool ShadowMgr::isDrawNormalShadow(ShadowNode* node, int vpNum)
 {
-	if (node->getGameObject()->needShadow() && (node->mFlags & 0xF0000000 || node->getGameObject()->mLod.isFlag(AILOD_IsVisVP0 << vpNum))) {
+	if (node->getGameObject()->needShadow() && (node->mFlags & 0xF0000000 || node->getGameObject()->mLod.isVPVisible(vpNum))) {
 		return true;
 	}
 
@@ -679,7 +679,7 @@ bool ShadowMgr::isDrawNormalShadow(ShadowNode* node, int vpNum)
  */
 bool ShadowMgr::isDrawJointShadow(JointShadowRootNode* node, int vpNum)
 {
-	if (node->mCreature->needShadow() && (node->mIsVisible || node->mCreature->mLod.isFlag(AILOD_IsVisVP0 << vpNum))) {
+	if (node->mCreature->needShadow() && (node->mIsVisible || node->mCreature->mLod.isVPVisible(vpNum))) {
 		return true;
 	}
 

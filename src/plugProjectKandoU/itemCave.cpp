@@ -353,7 +353,7 @@ void Item::do_setLODParm(AILODParm& parm)
  */
 void Item::doAI()
 {
-	mEfxWarpZone->setRateLOD(mLod.mFlags & 3, false);
+	mEfxWarpZone->setRateLOD(mLod.isFlag(AILOD_IsMid | AILOD_IsFar), false);
 	mFsm->exec(this);
 	if (mBarrel && !mBarrel->isAlive()) {
 		mBarrel = nullptr;

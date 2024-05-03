@@ -170,12 +170,7 @@ void checkNextFrameSe()
 
 					// not this square root, but more extensive one with __float_nans in it - possibly a static method taking a Vec?
 					soundObj->mDistance
-					    = dolsqrtf(SQUARE(soundObj->mPosition.x) + SQUARE(soundObj->mPosition.y) + SQUARE(soundObj->mPosition.z));
-
-					// this is just placeholding this double 0.0 for sdata2 until the correct sqrtf gets put in - remove later - HP
-					if (soundObj->mDistance != 0.0) {
-						soundObj->mDistance = soundObj->mDistance;
-					}
+					    = dolsqrtfull(SQUARE(soundObj->mPosition.x) + SQUARE(soundObj->mPosition.y) + SQUARE(soundObj->mPosition.z));
 				}
 
 				s16 prio = sound->getInfoPriority();

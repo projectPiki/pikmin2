@@ -41,32 +41,32 @@ struct VsGameSection : public BaseGameSection {
 
 	VsGameSection(JKRHeap*, bool);
 
-	virtual ~VsGameSection();                                          // _08
-	virtual bool doUpdate();                                           // _3C
-	virtual void doDraw(Graphics& gfx);                                // _40
-	virtual bool sendMessage(GameMessage&);                            // _50
-	virtual void pre2dDraw(Graphics&);                                 // _54
-	virtual int getCurrFloor();                                        // _58
-	virtual void addChallengeScore(int);                               // _60
-	virtual void startMainBgm();                                       // _64
-	virtual void section_fadeout();                                    // _68
-	virtual void goNextFloor(ItemHole::Item*);                         // _6C
-	virtual bool challengeDisablePelplant() { return false; }          // _80 (weak)
-	virtual bool player2enabled() { return true; }                     // _134 (weak)
-	virtual char* getCaveFilename() { return mCaveInfoFilename; }      // _84 (weak)
-	virtual char* getEditorFilename() { return mEditFilename; }        // _88 (weak)
-	virtual int getVsEditNumber() { return mEditNumber; }              // _8C (weak)
-	virtual void onMovieStart(MovieConfig*, u32, u32);                 // _B0
-	virtual void onMovieDone(MovieConfig*, u32, u32);                  // _B4
-	virtual void gmOrimaDown(int);                                     // _D0
-	virtual void gmPikminZero();                                       // _D4
-	virtual void openCaveMoreMenu(ItemHole::Item*, Controller*);       // _DC
-	virtual void openKanketuMenu(ItemBigFountain::Item*, Controller*); // _E0
-	virtual void onInit();                                             // _F0
-	virtual void onSetupFloatMemory();                                 // _120
-	virtual void postSetupFloatMemory();                               // _124
-	virtual void onSetSoundScene();                                    // _128
-	virtual void onClearHeap();                                        // _130
+	virtual ~VsGameSection();                                              // _08
+	virtual bool doUpdate();                                               // _3C
+	virtual void doDraw(Graphics& gfx);                                    // _40
+	virtual bool sendMessage(GameMessage&);                                // _50
+	virtual void pre2dDraw(Graphics&);                                     // _54
+	virtual int getCurrFloor();                                            // _58
+	virtual void addChallengeScore(int);                                   // _60
+	virtual void startMainBgm();                                           // _64
+	virtual void section_fadeout();                                        // _68
+	virtual void goNextFloor(ItemHole::Item*);                             // _6C
+	virtual bool challengeDisablePelplant() { return false; }              // _80 (weak)
+	virtual bool player2enabled() { return true; }                         // _134 (weak)
+	virtual char* getCaveFilename() { return mCaveInfoFilename; }          // _84 (weak)
+	virtual char* getEditorFilename() { return mEditFilename; }            // _88 (weak)
+	virtual int getVsEditNumber() { return mEditNumber; }                  // _8C (weak)
+	virtual void onMovieStart(MovieConfig* movie, u32 unused, u32 naviID); // _B0
+	virtual void onMovieDone(MovieConfig*, u32, u32);                      // _B4
+	virtual void gmOrimaDown(int);                                         // _D0
+	virtual void gmPikminZero();                                           // _D4
+	virtual void openCaveMoreMenu(ItemHole::Item*, Controller*);           // _DC
+	virtual void openKanketuMenu(ItemBigFountain::Item*, Controller*);     // _E0
+	virtual void onInit();                                                 // _F0
+	virtual void onSetupFloatMemory();                                     // _120
+	virtual void postSetupFloatMemory();                                   // _124
+	virtual void onSetSoundScene();                                        // _128
+	virtual void onClearHeap();                                            // _130
 
 	void calcVsScores();
 	void clearCaveMenus();

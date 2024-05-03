@@ -27,7 +27,7 @@ AILODParm::AILODParm()
  */
 AILOD::AILOD()
     : mFlags(AILOD_NULL)
-    , mSndVpId(0)
+    , mSoundVPID(0)
 {
 	mFlags = AILOD_IsVisVP0;
 }
@@ -62,12 +62,12 @@ void Creature::updateLOD(Game::AILODParm& parm)
 			if (parm.mIsCylinder) {
 				if (camera->isCylinderVisible(lodCylinder)) {
 					shouldCull = false;
-					mLod.mFlags |= (AILOD_IsVisVP0 << i);
+					mLod.setVPVisible(i);
 				}
 			} else {
 				if (camera->isVisible(lodSphere)) {
 					shouldCull = false;
-					mLod.mFlags |= (AILOD_IsVisVP0 << i);
+					mLod.setVPVisible(i);
 				}
 			}
 			f32 screenSize = camera->calcScreenSize(lodSphere);
@@ -88,15 +88,15 @@ void Creature::updateLOD(Game::AILODParm& parm)
 	}
 
 	if (!(gameSystem->isMultiplayerMode() && (2 <= viewportCount))) {
-		mLod.mSndVpId = 0;
+		mLod.mSoundVPID = 0;
 	} else {
 		Viewport* vp0 = gfx->getViewport(0);
 		Viewport* vp1 = gfx->getViewport(1);
 		if (!vp0->viewable()) {
-			mLod.mSndVpId = 0;
+			mLod.mSoundVPID = 0;
 		} else {
 			if (!vp1->viewable()) {
-				mLod.mSndVpId = 0;
+				mLod.mSoundVPID = 0;
 			} else {
 				P2ASSERTLINE(175, vp0->mCamera);
 				P2ASSERTLINE(176, vp1->mCamera);
@@ -108,9 +108,9 @@ void Creature::updateLOD(Game::AILODParm& parm)
 				f32 dist1 = pos1.sqrDistance(lodSphere.mPosition);
 
 				if (dist0 < dist1) {
-					mLod.mSndVpId = 0;
+					mLod.mSoundVPID = 0;
 				} else {
-					mLod.mSndVpId = 1;
+					mLod.mSoundVPID = 1;
 				}
 			}
 		}
@@ -428,7 +428,7 @@ void Creature::drawLODInfo(Graphics& gfx, Vector3f& position)
 		gfx.initPerspPrintf(gfx.mCurrentViewport);
 		const char* nearnessLabels[] = { "near", "mid", "far" };
 
-		int nearness = mLod.mFlags & (AILOD_IsMid | AILOD_IsFar);
+		int nearness = mLod.isFlag(AILOD_IsMid | AILOD_IsFar);
 		switch (nearness) {
 		case AILOD_NULL:
 			info.mColorA.set(0, 10, 255, 255);

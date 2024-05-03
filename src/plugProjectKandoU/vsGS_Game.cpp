@@ -624,18 +624,18 @@ void GameState::checkPikminZero(VsGameSection* section)
  * @note Address: 0x8022AB3C
  * @note Size: 0x474
  */
-void GameState::onMovieStart(VsGameSection* section, MovieConfig* config, u32 p1, u32 p2)
+void GameState::onMovieStart(VsGameSection* section, MovieConfig* movie, u32 p1, u32 p2)
 {
-	if (config->is("g2F_appear_hole") || config->is("g30_appear_fountain")) {
+	if (movie->is("g2F_appear_hole") || movie->is("g30_appear_fountain")) {
 		Screen::gGame2DMgr->setToumeiBG();
 	}
 
-	if (config->is("s0B_cv_coursein")) {
+	if (movie->is("s0B_cv_coursein")) {
 		section->createFallPikminSound();
 	}
 
 	Screen::gGame2DMgr->startFadeBG_Floor();
-	if (config->is("s03_orimadown")) {
+	if (movie->is("s03_orimadown")) {
 		Screen::Game2DMgr::GameOverTitle gameOverTitle;
 		if (p2 == 0) {
 			gameOverTitle = Screen::Game2DMgr::GOTITLE_OlimarDown;
@@ -651,7 +651,7 @@ void GameState::onMovieStart(VsGameSection* section, MovieConfig* config, u32 p1
 		Screen::gGame2DMgr->open_GameOver(gameOverTitle);
 	}
 
-	if (config->is("s12_cv_giveup")) {
+	if (movie->is("s12_cv_giveup")) {
 		Screen::gGame2DMgr->mScreenMgr->reset();
 		Iterator<Piki> pikiIterator(pikiMgr);
 		CI_LOOP(pikiIterator)
@@ -665,7 +665,7 @@ void GameState::onMovieStart(VsGameSection* section, MovieConfig* config, u32 p1
 		}
 	}
 
-	if (config->is("s09_holein")) {
+	if (movie->is("s09_holein")) {
 		Vector3f holePos = section->mHole->getPosition();
 		section->prepareHoleIn(holePos, true);
 		pikiMgr->saveAllPikmins(section->mContainer1);
@@ -678,7 +678,7 @@ void GameState::onMovieStart(VsGameSection* section, MovieConfig* config, u32 p1
 		section->mHole = nullptr;
 	}
 
-	if (config->is("s0C_cv_escape")) {
+	if (movie->is("s0C_cv_escape")) {
 		Vector3f fountainPos = section->mFountain->getPosition();
 		section->prepareFountainOn(fountainPos);
 	}

@@ -369,7 +369,7 @@ void Creature::doSetView(int viewportNumber)
 
 	mModel->setCurrentViewNo((u16)viewportNumber);
 	if (Creature::usePacketCulling) {
-		if (mLod.mFlags & (16 << viewportNumber)) { // ??? more BitFlag<u8>, perhaps?
+		if (mLod.isVPVisible(viewportNumber)) {
 			mModel->showPackets();
 			return;
 		}

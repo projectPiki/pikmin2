@@ -300,8 +300,8 @@ void PikiMgr::doSimpleDraw(Viewport* vp)
 			for (int j = 0; j < mMax; j++) {
 				if (!mOpenIds[j]) {
 					Piki* piki = &mArray[j];
-					if (piki->mLod.mFlags & 4) {
-						if (!piki->doped() && piki->mLod.mFlags & 0x10 << vpid) {
+					if (piki->mLod.isFlag(AILOD_IsVisible)) {
+						if (!piki->doped() && piki->mLod.isVPVisible(vpid)) {
 							int id = piki->getHappa();
 							// make purple and white pikmin use the red flower/bud
 							if ((piki->getKind() == White || piki->getKind() == Purple) && id >= 1) {
@@ -393,6 +393,7 @@ void PikiMgr::doEntry()
 		for (int i = 0; i < mMax; i++) {
 			if (!mOpenIds[i]) {
 				if (flag && !mArray[i].isMovieActor()) {
+					// this should probably reset AILOD_IsMid | AILOD_IsVisibleBoth, idk what it ACTUALLY does
 					mArray[i].mLod.mFlags &= -0x35; // typo? should be ~0x35 not -0x35
 				} else {
 					mArray[i].isMovieActor();
@@ -401,9 +402,9 @@ void PikiMgr::doEntry()
 				// Hide blue or red pikmin if the ghost power is active
 				Piki* piki = &mArray[i];
 				if (piki->getKind() == Blue && mFlags[0] & 1) {
-					piki->mLod.mFlags &= ~0x10;
+					piki->mLod.resetFlag(AILOD_IsVisVP0);
 				} else if (piki->getKind() == Red && mFlags[0] & 2) {
-					piki->mLod.mFlags &= ~0x20;
+					piki->mLod.resetFlag(AILOD_IsVisVP1);
 				}
 				mArray[i].doEntry();
 			}

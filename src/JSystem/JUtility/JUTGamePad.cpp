@@ -1081,31 +1081,28 @@ u32 JUTGamePad::CStick::update(s8 r4, s8 r5, JUTGamePad::EStickMode r6, JUTGameP
 {
 	s32 v1;
 
-	switch (sClampMode)
-	{
-		case 1:
-			v1 = (stick == STICK_Main) ? 0x36 : 0x2a;
-			break;
-		case 2:
-			v1 = (stick == STICK_Main) ? 0x26 : 0x1d;
-			break;
-		default:
-			v1 = (stick == STICK_Main) ? 0x45 : 0x39;
-			break;
+	switch (sClampMode) {
+	case 1:
+		v1 = (stick == STICK_Main) ? 0x36 : 0x2a;
+		break;
+	case 2:
+		v1 = (stick == STICK_Main) ? 0x26 : 0x1d;
+		break;
+	default:
+		v1 = (stick == STICK_Main) ? 0x45 : 0x39;
+		break;
 	}
 
-	this->_0E = r4;
-	this->_0F = r5;
+	this->_0E   = r4;
+	this->_0F   = r5;
 	this->mXPos = (f32)r4 / v1;
-	this->mYPos =  (f32)r5 / v1;
+	this->mYPos = (f32)r5 / v1;
 
 	f32 sq_dist = SQUARE(mXPos) + SQUARE(mYPos);
 
-	f32 d = dolsqrtf(sq_dist);
+	f32 d = dolsqrtfull(sq_dist);
 
-
-	mAngle = atan2(d , sq_dist) * (32768 / PI);
-
+	mAngle = atan2(d, sq_dist) * (32768 / PI);
 
 	return getButton(r8 >> ((stick == STICK_Main) ? 0x18 : 0x10));
 	/*

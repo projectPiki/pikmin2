@@ -1283,7 +1283,7 @@ void Navi::doEntry()
 {
 	FakePiki::doEntry();
 	if (!isAlive() && mIsAlive) {
-		RESET_FLAG(mLod.mFlags, 0x34);
+		mLod.resetFlag(AILOD_IsVisibleBoth);
 	}
 
 	if (mController1 == nullptr) {
@@ -1806,7 +1806,7 @@ void Navi::doSetView(int viewportNumber)
 	mMarkerModel->setCurrentViewNo(viewportNumber);
 	mCursorModel->setCurrentViewNo(viewportNumber);
 
-	if (mLod.mFlags & (16 << viewportNumber)) {
+	if (mLod.isVPVisible(viewportNumber)) {
 		mMarkerModel->showPackets();
 		mCursorModel->showPackets();
 	} else {

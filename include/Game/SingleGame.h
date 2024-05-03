@@ -83,16 +83,16 @@ struct State : public FSMState<SingleGameSection> {
 	{
 	}
 
-	virtual void draw(SingleGameSection*, Graphics&) { }                          // _20 (weak)
-	virtual void onOrimaDown(SingleGameSection*, int) { }                         // _24 (weak)
-	virtual void onMovieStart(SingleGameSection*, MovieConfig*, u32, u32) { }     // _28 (weak)
-	virtual void onMovieDone(SingleGameSection*, MovieConfig*, u32, u32) { }      // _2C (weak)
-	virtual void onMovieCommand(SingleGameSection*, int) { }                      // _30 (weak)
-	virtual void onHoleIn(SingleGameSection*, ItemCave::Item*) { }                // _34 (weak)
-	virtual void onNextFloor(SingleGameSection*, ItemHole::Item*) { }             // _38 (weak)
-	virtual void onFountainReturn(SingleGameSection*, ItemBigFountain::Item*) { } // _3C (weak)
-	virtual void on_section_fadeout(SingleGameSection*) { }                       // _40 (weak)
-	virtual void on_demo_timer(SingleGameSection*, u32) { }                       // _44 (weak)
+	virtual void draw(SingleGameSection*, Graphics&) { }                                               // _20 (weak)
+	virtual void onOrimaDown(SingleGameSection*, int) { }                                              // _24 (weak)
+	virtual void onMovieStart(SingleGameSection* game, MovieConfig* movie, u32 unused, u32 naviID) { } // _28 (weak)
+	virtual void onMovieDone(SingleGameSection*, MovieConfig*, u32, u32) { }                           // _2C (weak)
+	virtual void onMovieCommand(SingleGameSection*, int) { }                                           // _30 (weak)
+	virtual void onHoleIn(SingleGameSection*, ItemCave::Item*) { }                                     // _34 (weak)
+	virtual void onNextFloor(SingleGameSection*, ItemHole::Item*) { }                                  // _38 (weak)
+	virtual void onFountainReturn(SingleGameSection*, ItemBigFountain::Item*) { }                      // _3C (weak)
+	virtual void on_section_fadeout(SingleGameSection*) { }                                            // _40 (weak)
+	virtual void on_demo_timer(SingleGameSection*, u32) { }                                            // _44 (weak)
 
 	void accountEarnings(SingleGameSection*, PelletCropMemory*, bool);
 
@@ -172,17 +172,17 @@ struct CaveState : public State {
 	{
 	}
 
-	virtual void init(SingleGameSection*, StateArg*);                          // _08
-	virtual void exec(SingleGameSection*);                                     // _0C
-	virtual void cleanup(SingleGameSection*);                                  // _10
-	virtual void draw(SingleGameSection*, Graphics&);                          // _20
-	virtual void onOrimaDown(SingleGameSection*, int);                         // _24
-	virtual void onMovieStart(SingleGameSection*, MovieConfig*, u32, u32);     // _28
-	virtual void onMovieDone(SingleGameSection*, MovieConfig*, u32, u32);      // _2C
-	virtual void onMovieCommand(SingleGameSection*, int);                      // _30
-	virtual void onNextFloor(SingleGameSection*, ItemHole::Item*);             // _38
-	virtual void onFountainReturn(SingleGameSection*, ItemBigFountain::Item*); // _3C
-	virtual void on_section_fadeout(SingleGameSection*);                       // _40
+	virtual void init(SingleGameSection*, StateArg*);                                               // _08
+	virtual void exec(SingleGameSection*);                                                          // _0C
+	virtual void cleanup(SingleGameSection*);                                                       // _10
+	virtual void draw(SingleGameSection*, Graphics&);                                               // _20
+	virtual void onOrimaDown(SingleGameSection*, int);                                              // _24
+	virtual void onMovieStart(SingleGameSection* game, MovieConfig* movie, u32 unused, u32 naviID); // _28
+	virtual void onMovieDone(SingleGameSection*, MovieConfig*, u32, u32);                           // _2C
+	virtual void onMovieCommand(SingleGameSection*, int);                                           // _30
+	virtual void onNextFloor(SingleGameSection*, ItemHole::Item*);                                  // _38
+	virtual void onFountainReturn(SingleGameSection*, ItemBigFountain::Item*);                      // _3C
+	virtual void on_section_fadeout(SingleGameSection*);                                            // _40
 
 	void check_SMenu(SingleGameSection*);
 
@@ -226,13 +226,13 @@ struct DayEndState : public State {
 	{
 	}
 
-	virtual void init(SingleGameSection*, StateArg*);                      // _08
-	virtual void exec(SingleGameSection*);                                 // _0C
-	virtual void cleanup(SingleGameSection*);                              // _10
-	virtual void draw(SingleGameSection*, Graphics&);                      // _20
-	virtual void onMovieStart(SingleGameSection*, MovieConfig*, u32, u32); // _28
-	virtual void onMovieDone(SingleGameSection*, MovieConfig*, u32, u32);  // _2C
-	virtual void onMovieCommand(SingleGameSection*, int);                  // _30
+	virtual void init(SingleGameSection*, StateArg*);                                               // _08
+	virtual void exec(SingleGameSection*);                                                          // _0C
+	virtual void cleanup(SingleGameSection*);                                                       // _10
+	virtual void draw(SingleGameSection*, Graphics&);                                               // _20
+	virtual void onMovieStart(SingleGameSection* game, MovieConfig* movie, u32 unused, u32 naviID); // _28
+	virtual void onMovieDone(SingleGameSection*, MovieConfig*, u32, u32);                           // _2C
+	virtual void onMovieCommand(SingleGameSection*, int);                                           // _30
 
 	// _00     = VTBL
 	// _00-_10 = State
@@ -359,17 +359,17 @@ struct GameState : public State {
 	{
 	}
 
-	virtual void init(SingleGameSection*, StateArg*);                      // _08
-	virtual void exec(SingleGameSection*);                                 // _0C
-	virtual void cleanup(SingleGameSection*);                              // _10
-	virtual void draw(SingleGameSection*, Graphics&);                      // _20
-	virtual void onOrimaDown(SingleGameSection*, int);                     // _24
-	virtual void onMovieStart(SingleGameSection*, MovieConfig*, u32, u32); // _28
-	virtual void onMovieDone(SingleGameSection*, MovieConfig*, u32, u32);  // _2C
-	virtual void onMovieCommand(SingleGameSection*, int);                  // _30
-	virtual void onHoleIn(SingleGameSection*, ItemCave::Item*);            // _34
-	virtual void on_section_fadeout(SingleGameSection*);                   // _40
-	virtual void on_demo_timer(SingleGameSection*, u32);                   // _44
+	virtual void init(SingleGameSection*, StateArg*);                                               // _08
+	virtual void exec(SingleGameSection*);                                                          // _0C
+	virtual void cleanup(SingleGameSection*);                                                       // _10
+	virtual void draw(SingleGameSection*, Graphics&);                                               // _20
+	virtual void onOrimaDown(SingleGameSection*, int);                                              // _24
+	virtual void onMovieStart(SingleGameSection* game, MovieConfig* movie, u32 unused, u32 naviID); // _28
+	virtual void onMovieDone(SingleGameSection*, MovieConfig*, u32, u32);                           // _2C
+	virtual void onMovieCommand(SingleGameSection*, int);                                           // _30
+	virtual void onHoleIn(SingleGameSection*, ItemCave::Item*);                                     // _34
+	virtual void on_section_fadeout(SingleGameSection*);                                            // _40
+	virtual void on_demo_timer(SingleGameSection*, u32);                                            // _44
 
 	bool check_DemoInout(SingleGameSection*);
 	bool needRepayDemo();

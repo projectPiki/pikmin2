@@ -866,7 +866,7 @@ void Onyon::do_updateLOD()
 	}
 	updateLOD(lod);
 	if (isMovieActor()) {
-		mLod.setFlag(AILOD_IsVisible | AILOD_IsVisVP0 | AILOD_IsVisVP1);
+		mLod.setFlag(AILOD_IsVisibleBoth);
 	}
 }
 
@@ -1458,7 +1458,7 @@ void Onyon::efxPafuPafu()
 		char* jntnames[3]      = { "kasi1jnt1", "kass2jnt1", "kasi3jnt1" };
 		int id                 = randInt(3);
 		SysShape::Joint* joint = mModel->getJoint(jntnames[id]);
-		if (joint && mLod.mFlags & 4) {
+		if (joint && mLod.isFlag(AILOD_IsVisible)) {
 			efx::TOnyonPuffPuff puffFX(joint->getWorldMatrix());
 			puffFX.create(nullptr);
 

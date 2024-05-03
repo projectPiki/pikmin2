@@ -293,17 +293,17 @@ struct State : public FSMState<VsGameSection> {
 	{
 	}
 
-	virtual void draw(VsGameSection*, Graphics&) { }                      // _20 (weak)
-	virtual void pre2dDraw(Graphics&, VsGameSection*) { }                 // _24 (weak)
-	virtual void onOrimaDown(VsGameSection*, int) { }                     // _28 (weak)
-	virtual void onMovieStart(VsGameSection*, MovieConfig*, u32, u32) { } // _2C (weak)
-	virtual void onMovieDone(VsGameSection*, MovieConfig*, u32, u32) { }  // _30 (weak)
-	virtual void onNextFloor(VsGameSection*, ItemHole::Item*) { }         // _34 (weak)
-	virtual void on_section_fadeout(VsGameSection*) { }                   // _38 (weak)
-	virtual bool goingToCave(VsGameSection*) { return false; }            // _3C (weak)
-	virtual void onBattleFinished(VsGameSection*, int, bool) { }          // _40 (weak)
-	virtual void onRedOrBlueSuckStart(VsGameSection*, int, bool) { }      // _44 (weak)
-	virtual bool isCardUsable(VsGameSection*) { return false; }           // _48 (weak)
+	virtual void draw(VsGameSection*, Graphics&) { }                                               // _20 (weak)
+	virtual void pre2dDraw(Graphics&, VsGameSection*) { }                                          // _24 (weak)
+	virtual void onOrimaDown(VsGameSection*, int) { }                                              // _28 (weak)
+	virtual void onMovieStart(VsGameSection* game, MovieConfig* movie, u32 unused, u32 naviID) { } // _2C (weak)
+	virtual void onMovieDone(VsGameSection*, MovieConfig*, u32, u32) { }                           // _30 (weak)
+	virtual void onNextFloor(VsGameSection*, ItemHole::Item*) { }                                  // _34 (weak)
+	virtual void on_section_fadeout(VsGameSection*) { }                                            // _38 (weak)
+	virtual bool goingToCave(VsGameSection*) { return false; }                                     // _3C (weak)
+	virtual void onBattleFinished(VsGameSection*, int, bool) { }                                   // _40 (weak)
+	virtual void onRedOrBlueSuckStart(VsGameSection*, int, bool) { }                               // _44 (weak)
+	virtual bool isCardUsable(VsGameSection*) { return false; }                                    // _48 (weak)
 
 	// _00     = VTBL
 	// _00-_0C = FSMState
@@ -312,16 +312,16 @@ struct State : public FSMState<VsGameSection> {
 struct GameState : public State {
 	GameState();
 
-	virtual void init(VsGameSection*, StateArg*);                      // _08
-	virtual void exec(VsGameSection*);                                 // _0C
-	virtual void cleanup(VsGameSection*);                              // _10
-	virtual void draw(VsGameSection*, Graphics&);                      // _20
-	virtual void pre2dDraw(Graphics&, VsGameSection*);                 // _24
-	virtual void onOrimaDown(VsGameSection*, int);                     // _28
-	virtual void onMovieStart(VsGameSection*, MovieConfig*, u32, u32); // _2C
-	virtual void onMovieDone(VsGameSection*, MovieConfig*, u32, u32);  // _30
-	virtual void onNextFloor(VsGameSection*, ItemHole::Item*);         // _34
-	virtual void on_section_fadeout(VsGameSection*)                    // _38 (weak)
+	virtual void init(VsGameSection*, StateArg*);                                               // _08
+	virtual void exec(VsGameSection*);                                                          // _0C
+	virtual void cleanup(VsGameSection*);                                                       // _10
+	virtual void draw(VsGameSection*, Graphics&);                                               // _20
+	virtual void pre2dDraw(Graphics&, VsGameSection*);                                          // _24
+	virtual void onOrimaDown(VsGameSection*, int);                                              // _28
+	virtual void onMovieStart(VsGameSection* game, MovieConfig* movie, u32 unused, u32 naviID); // _2C
+	virtual void onMovieDone(VsGameSection*, MovieConfig*, u32, u32);                           // _30
+	virtual void onNextFloor(VsGameSection*, ItemHole::Item*);                                  // _34
+	virtual void on_section_fadeout(VsGameSection*)                                             // _38 (weak)
 	{
 		setFlag(VSGS_Unk16);
 	}

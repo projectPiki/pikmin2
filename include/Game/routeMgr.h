@@ -114,14 +114,13 @@ struct WayPoint : public JKRDisposer {
 	s16 mNumToLinks;    // _5C
 	s16 mToLinks[8];    // _5E
 	u8 mDoFloorSnap;    // _6E
-	u32 : 0;
-	u8 _70[4];      // _70
-	u8 _74;         // _74
-	s16 mDoorIndex; // _76
+	u32 mUnused0;       // _70
+	u8 mUnused1;        // _74
+	s16 mDoorIndex;     // _76
 };
 
 struct WayPointIterator {
-	WayPointIterator(WayPoint*, bool);
+	WayPointIterator(WayPoint* wp, bool isFrom);
 
 	s16 operator*();
 
@@ -132,7 +131,7 @@ struct WayPointIterator {
 
 	int mIndex;          // _00
 	WayPoint* mWayPoint; // _04
-	bool mMaxIndexType;  // _08, true = 16, false = 8
+	bool mUseToLinks;    // _08, true = use mToLinks, false = use mFromLinks
 };
 
 struct WPCondition : public Condition<WayPoint> {
@@ -181,19 +180,19 @@ struct RouteMgr : public Container<WayPoint> {
 
 	RouteMgr();
 
-	virtual ~RouteMgr();                    // _08
-	virtual WayPoint* getWayPoint(s16) = 0; // _2C
-	virtual void read(Stream&)         = 0; // _30
-	virtual void write(Stream&);            // _34
+	virtual ~RouteMgr();                          // _08
+	virtual WayPoint* getWayPoint(s16 wpIdx) = 0; // _2C
+	virtual void read(Stream&)               = 0; // _30
+	virtual void write(Stream&);                  // _34
 
 	void makeInvertLinks();
-	bool linkable(WayPoint*, WayPoint*);
+	bool linkable(WayPoint* wpA, WayPoint* wpB);
 	void refreshWater();
-	WayPoint* getNearestWayPoint(WPSearchArg&);
-	bool getNearestEdge(WPEdgeSearchArg&);
+	WayPoint* getNearestWayPoint(WPSearchArg& searchArg);
+	bool getNearestEdge(WPEdgeSearchArg& searchArg);
 	void setCloseAll();
-	void openRoom(s16);
-	void directDraw(Graphics&, WayPoint*, WayPoint*);
+	void openRoom(s16 roomIdx);
+	void directDraw(Graphics& gfx, WayPoint* wpA, WayPoint* wpB);
 
 	// Unused/inlined:
 	void sonarCheck(SonarArg&);
@@ -220,16 +219,16 @@ struct EditorRouteMgr : public RouteMgr {
 
 	EditorRouteMgr();
 
-	virtual ~EditorRouteMgr() { }       // _08 (weak)
-	virtual void* getNext(void*);       // _14
-	virtual void* getStart();           // _18
-	virtual void* getEnd();             // _1C
-	virtual WayPoint* get(void*);       // _20
-	virtual WayPoint* getWayPoint(s16); // _2C
-	virtual void read(Stream&);         // _30
+	virtual ~EditorRouteMgr() { }             // _08 (weak)
+	virtual void* getNext(void* index);       // _14
+	virtual void* getStart();                 // _18
+	virtual void* getEnd();                   // _1C
+	virtual WayPoint* get(void* index);       // _20
+	virtual WayPoint* getWayPoint(s16 wpIdx); // _2C
+	virtual void read(Stream& input);         // _30
 
-	void addWayPoint(WayPoint*);
-	void delWayPoint(WayPoint*);
+	void addWayPoint(WayPoint* wp);
+	void delWayPoint(WayPoint* wp);
 
 	// _00     = VTBL
 	// _00-_20 = RouteMgr
@@ -239,13 +238,13 @@ struct EditorRouteMgr : public RouteMgr {
 struct GameRouteMgr : public RouteMgr {
 	GameRouteMgr();
 
-	virtual ~GameRouteMgr();            // _08
-	virtual void* getNext(void*);       // _14
-	virtual void* getStart();           // _18
-	virtual void* getEnd();             // _1C
-	virtual WayPoint* get(void*);       // _20
-	virtual WayPoint* getWayPoint(s16); // _2C
-	virtual void read(Stream&);         // _30
+	virtual ~GameRouteMgr();                  // _08
+	virtual void* getNext(void* index);       // _14
+	virtual void* getStart();                 // _18
+	virtual void* getEnd();                   // _1C
+	virtual WayPoint* get(void* index);       // _20
+	virtual WayPoint* getWayPoint(s16 wpIdx); // _2C
+	virtual void read(Stream& input);         // _30
 
 	// _00     = VTBL
 	// _00-_20 = RouteMgr

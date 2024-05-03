@@ -175,7 +175,7 @@ void BaseItem::do_updateLOD()
 	do_setLODParm(parm);
 	updateLOD(parm);
 	if (isMovieActor()) {
-		mLod.setFlag(AILOD_IsVisible | AILOD_IsVisVP0 | AILOD_IsVisVP1);
+		mLod.setFlag(AILOD_IsVisibleBoth);
 	}
 }
 

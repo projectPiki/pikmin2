@@ -182,12 +182,12 @@ void DayEndState::exec(SingleGameSection* game)
  * @note Address: 0x8023AAFC
  * @note Size: 0x5B8
  */
-void DayEndState::onMovieStart(SingleGameSection* game, MovieConfig* config, u32 p3, u32 p4)
+void DayEndState::onMovieStart(SingleGameSection* game, MovieConfig* movie, u32, u32 p4)
 {
 	Screen::gGame2DMgr->startFadeBG_CourseName();
 	Screen::gGame2DMgr->startCount_CourseName();
 	gameSystem->mTimeMgr->setEndTime();
-	if (config->is("s01_dayend")) {
+	if (movie->is("s01_dayend")) {
 		P2ASSERTLINE(335, Screen::gGame2DMgr->mScreenMgr->reset() == true);
 		Vector3f origin(156.0f, 0.0f, 166.0f);
 		if (mapMgr->getDemoMatrix()) {
@@ -223,7 +223,7 @@ void DayEndState::onMovieStart(SingleGameSection* game, MovieConfig* config, u32
 			}
 		}
 	} else {
-		if (config->is("s21_dayend_takeoff")) {
+		if (movie->is("s21_dayend_takeoff")) {
 			cellMgr->clear();
 			generalEnemyMgr->prepareDayendEnemies();
 		}

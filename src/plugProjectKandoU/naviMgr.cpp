@@ -410,9 +410,9 @@ void NaviMgr::doEntry()
 			continue;
 		}
 		if (flag && !mArray[i].isMovieActor()) {
-			mArray[i].mLod.resetFlag(AILOD_Visible01);
+			mArray[i].mLod.resetFlag(AILOD_IsVisibleBoth);
 		} else if (mArray[i].isMovieActor()) {
-			mArray[i].mLod.setFlag(AILOD_Visible01);
+			mArray[i].mLod.setFlag(AILOD_IsVisibleBoth);
 		}
 
 		if (vs) {

@@ -120,7 +120,7 @@ void CloseState::init(Game::CFSMItem* item, Game::StateArg* arg)
  * @note Size: 0x14
  * exec__Q34Game8ItemHole10CloseStateFPQ24Game8CFSMItem
  */
-void CloseState::exec(Game::CFSMItem* item) { item->mLod.resetFlag(AILOD_IsVisible | AILOD_IsVisVP0 | AILOD_IsVisVP1); }
+void CloseState::exec(Game::CFSMItem* item) { item->mLod.resetFlag(AILOD_IsVisibleBoth); }
 
 /**
  * @note Address: 0x801D1AA8

@@ -498,10 +498,10 @@ void SingleGameSection::disableTimer(u32 id)
  * @note Address: 0x80153508
  * @note Size: 0x54
  */
-void SingleGameSection::onMovieStart(Game::MovieConfig* config, u32 p2, u32 p3)
+void SingleGameSection::onMovieStart(Game::MovieConfig* config, u32 unused, u32 naviID)
 {
 	if (mCurrentState) {
-		mCurrentState->onMovieStart(this, config, p2, p3);
+		mCurrentState->onMovieStart(this, config, unused, naviID);
 	}
 }
 

@@ -1413,7 +1413,7 @@ void FakePiki::doAnimation()
 		SysShape::Animator::verbose = false;
 		mAnimator.mBoundAnimator.animate(animRate);
 	}
-	if (isPiki() && (mLod.mFlags & 3) >= 1) { // why
+	if (isPiki() && mLod.isFlag(AILOD_IsMid | AILOD_IsFar) >= 1) { // why
 		if (!mModel) {
 			P2DEBUG(getCreatureID());
 			JUT_PANICLINE(1694, "zama--------n\n");

@@ -81,7 +81,7 @@ void CloseState::init(Item* item, StateArg* arg)
  * @note Address: 0x801EC498
  * @note Size: 0x14
  */
-void CloseState::exec(Item* item) { item->mLod.resetFlag(AILOD_IsVisible | AILOD_IsVisVP0 | AILOD_IsVisVP1); }
+void CloseState::exec(Item* item) { item->mLod.resetFlag(AILOD_IsVisibleBoth); }
 
 /**
  * @note Address: 0x801EC4AC

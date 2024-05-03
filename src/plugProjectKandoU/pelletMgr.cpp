@@ -215,7 +215,7 @@ Pellet* PelletView::becomePellet(PelletViewArg* viewArg)
 		newPellet->mIsBounced = true;
 		newPellet->setOrientation(*viewArg->mMatrix);
 		newPellet->mScale = viewArg->mScale;
-		newPellet->mLod.setFlag(AILOD_IsVisible | AILOD_IsVisVP0 | AILOD_IsVisVP1);
+		newPellet->mLod.setFlag(AILOD_IsVisibleBoth);
 
 		viewStartPreCarryMotion();
 
@@ -2047,7 +2047,7 @@ void Pellet::update()
 		AILODParm parm2;
 		updateLOD(parm2);
 		if (isMovieActor()) {
-			mLod.setFlag(AILOD_IsVisible | AILOD_IsVisVP0 | AILOD_IsVisVP1);
+			mLod.setFlag(AILOD_IsVisibleBoth);
 		}
 		return;
 	}
@@ -2061,7 +2061,7 @@ void Pellet::update()
 	AILODParm parm4;
 	updateLOD(parm4);
 	if (isMovieActor()) {
-		mLod.setFlag(AILOD_IsVisible | AILOD_IsVisVP0 | AILOD_IsVisVP1);
+		mLod.setFlag(AILOD_IsVisibleBoth);
 	}
 	bool check;
 	int type = 2;

@@ -9,8 +9,10 @@
 namespace Game {
 struct AIConstants : public TagParameters {
 	AIConstants();
-	virtual ~AIConstants() {};
+	virtual ~AIConstants() { } // _08 (weak)
 
+	// _00     = VTBL
+	// _00-_1C = TagParameters
 	PrimTagParm<f32> mGravity;     // _1C
 	PrimTagParm<int> mDopeCount;   // _2C
 	PrimTagParm<int> mDebt;        // _3C

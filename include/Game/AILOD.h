@@ -14,7 +14,7 @@ enum AILODFlags {
 	AILOD_IsVisVP2   = 0x40, // is visible in viewport 2
 	AILOD_IsVisVP3   = 0x80, // is visible in viewport 3
 
-	AILOD_Visible01 = AILOD_IsVisible | AILOD_IsVisVP0 | AILOD_IsVisVP1, // set visible for both main viewports
+	AILOD_IsVisibleBoth = AILOD_IsVisible | AILOD_IsVisVP0 | AILOD_IsVisVP1, // set visible for both main viewports
 };
 
 namespace Game {
@@ -32,11 +32,13 @@ struct AILOD {
 	inline int isFlag(u32 flag) const { return mFlags & flag; }
 	inline void setFlag(u32 flag) { mFlags |= flag; }
 	inline void resetFlag(u32 flag) { mFlags &= ~flag; }
-
-	u8 mFlags;   // _00
-	s8 mSndVpId; // _01, sound viewport ID
+	inline int isVPVisible(u32 vpNum) const { return mFlags & (0x10 << vpNum); }
+	inline void setVPVisible(u32 vpNum) { mFlags |= (0x10 << vpNum); }
 
 	static bool drawInfo;
+
+	u8 mFlags;     // _00
+	s8 mSoundVPID; // _01, sound viewport ID
 };
 } // namespace Game
 

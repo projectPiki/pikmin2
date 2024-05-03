@@ -626,20 +626,20 @@ bool VsGameSection::updateCaveMenus()
  * @note Address: 0x801C22F0
  * @note Size: 0xDC
  */
-void VsGameSection::onMovieStart(MovieConfig* movie, u32 param_2, u32 playerMode)
+void VsGameSection::onMovieStart(MovieConfig* movie, u32 unused, u32 naviID)
 {
 	movie->is("s03_orimadown");
 	if (gameSystem->isMultiplayerMode()) {
-		if (playerMode == 1) {
-			BaseGameSection::setPlayerMode(1);
+		if (naviID == NAVIID_Louie) {
+			BaseGameSection::setPlayerMode(NAVIID_Louie);
 		} else {
-			BaseGameSection::setPlayerMode(0);
+			BaseGameSection::setPlayerMode(NAVIID_Olimar);
 		}
 	}
 
 	BaseGameSection::setCamController();
 	if (mCurrentState) {
-		mCurrentState->onMovieStart(this, movie, param_2, playerMode);
+		mCurrentState->onMovieStart(this, movie, unused, naviID);
 	}
 }
 

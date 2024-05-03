@@ -21,17 +21,6 @@ struct GameState;
 struct State;
 } // namespace SingleGame
 
-enum DemoTimers {
-	DEMOTIMER_None                   = 0,
-	DEMOTIMER_Piki_Seed_In_Ground    = 1, // plays if you dont pluck the first red pikmin in 10 seconds
-	DEMOTIMER_Camera_Tutorial        = 2, // Entirely unused, the camera tutorial was meant to use it, but nothing starts its timer
-	DEMOTIMER_Unlock_Switch_To_Louie = 3,
-	DEMOTIMER_Meet_Red_Pikmin        = 4, // 1 second timer after whistling the first red on day 1
-	DEMOTIMER_Reds_Purples_Tutorial  = 5, // 10 seconds after you first have reds and purples in your party
-	DEMOTIMER_Unk6                   = 6,
-	DEMOTIMER_YouAppearLost          = 7, // When you wait 3 minutes on day 1 after growing 15 reds before crushing the first bag
-};
-
 /**
  * @Size{0x278}
  */
@@ -47,17 +36,17 @@ struct SingleGameSection : public BaseGameSection {
 	virtual bool isDevelopSection() { return false; }                         // _5C (weak)
 	virtual void startMainBgm();                                              // _64
 	virtual void section_fadeout();                                           // _68
-	virtual void goNextFloor(ItemHole::Item*);                                // _6C
-	virtual void goCave(ItemCave::Item*);                                     // _70
-	virtual void goMainMap(ItemBigFountain::Item*);                           // _74
+	virtual void goNextFloor(ItemHole::Item* hole);                           // _6C
+	virtual void goCave(ItemCave::Item* cave);                                // _70
+	virtual void goMainMap(ItemBigFountain::Item* geyser);                    // _74
 	virtual u32 getCaveID() { return mCaveID.getID(); }                       // _78 (weak)
 	virtual CourseInfo* getCurrentCourseInfo() { return mCurrentCourseInfo; } // _7C (weak)
 	virtual void playMovie_firstexperience(int, Creature*);                   // _98
-	virtual void playMovie_bootup(Onyon*);                                    // _9C
-	virtual void playMovie_helloPikmin(Piki*);                                // _A0
-	virtual void enableTimer(f32, u32);                                       // _A4
-	virtual void disableTimer(u32);                                           // _A8
-	virtual void onMovieStart(MovieConfig*, u32, u32);                        // _B0
+	virtual void playMovie_bootup(Onyon* onyon);                              // _9C
+	virtual void playMovie_helloPikmin(Piki* piki);                           // _A0
+	virtual void enableTimer(f32 value, u32 type);                            // _A4
+	virtual void disableTimer(u32 type);                                      // _A8
+	virtual void onMovieStart(MovieConfig* movie, u32 unused, u32 naviID);    // _B0
 	virtual void onMovieDone(MovieConfig*, u32, u32);                         // _B4
 	virtual void onMovieCommand(int);                                         // _B8
 	virtual void gmOrimaDown(int);                                            // _D0

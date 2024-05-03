@@ -139,6 +139,25 @@ static inline f32 dolsqrtf(f32 x)
 	return x;
 }
 
+static inline f64 sqrt_step(f64 tmpd, f32 mag) { return tmpd * 0.5 * (3.0 - mag * (tmpd * tmpd)); }
+
+static inline f32 dolsqrtfull(f32 mag)
+{
+	if (mag > 0.0f) {
+		f64 tmpd = __frsqrte(mag);
+		tmpd     = sqrt_step(tmpd, mag);
+		tmpd     = sqrt_step(tmpd, mag);
+		tmpd     = sqrt_step(tmpd, mag);
+		return mag * tmpd;
+	} else if (mag < 0.0) {
+		return NAN;
+	} else if (fpclassify(mag) == 1) {
+		return NAN;
+	} else {
+		return mag;
+	}
+}
+
 static inline f32 scaleValue(f32 scale, f32 value) { return scale * value; }
 
 #endif
