@@ -15,7 +15,6 @@ u8 MapMgr::mTraceMoveOptLevel = 1;
  *
  * @note Address: 0x8020508C
  * @note Size: 0x114
- * TODO: 57%
  */
 Sys::TriIndexList* ShapeMapMgr::traceMove(Game::MoveInfo& info, f32 stepLength)
 {
