@@ -383,8 +383,34 @@ lbl_800B4030:
  * @note Address: 0x800B4038
  * @note Size: 0x270
  */
-f32 JAISound::setPositionDopplarCommon(u32)
+f32 JAISound::setPositionDopplarCommon(u32 p1)
 {
+	JAISound_0x34* soundObj = getSoundObj();
+	f32 soundX              = soundObj->mPosition.x;
+	f32 soundY              = soundObj->mPosition.y;
+	f32 soundZ              = soundObj->mPosition.z;
+	f32 x                   = soundX - soundObj->_0C.x;
+	f32 y                   = soundY - soundObj->_0C.y;
+	f32 z                   = soundZ - soundObj->_0C.z;
+	f32 dist1               = dolsqrtfull(SQUARE(soundX) + SQUARE(soundY) + SQUARE(soundZ));
+	f32 x2                  = soundX + x;
+	f32 y2                  = soundY + y;
+	f32 z2                  = soundZ + z;
+
+	f32 dist2 = dolsqrtfull(SQUARE(x2) + SQUARE(y2) + SQUARE(z2));
+
+	f32 sqVal = SQUARE(p1 >> 8);
+
+	dist1 -= dist2;
+	f32 posDopplar = 1.0f / (1.0f - (dist1 / (JAIGlobalParameter::dopplarParameter / sqVal)));
+
+	if (posDopplar < 0.1f) {
+		posDopplar = 0.1f;
+	} else if (posDopplar > 2.0f) {
+		posDopplar = 2.0f;
+	}
+
+	return posDopplar;
 	/*
 	stwu     r1, -0x20(r1)
 	lfs      f0, lbl_80516FE4@sda21(r2)
@@ -863,7 +889,17 @@ void JAISe::setSeInterRandomPara(f32*, u32, f32, f32)
 void JAISe::setSeInterVolume(u8 type, f32 value, u32 moveTime, u8 p4)
 {
 	if (p4) {
-		value = JAInter::Const::random.nextFloat(value, p4);
+		// these need tweaking a bit
+		f32 val  = (u32)(4.2949673E9f * JAInter::Const::random.nextFloat_0_1()) + value;
+		f32 val2 = (1.0f + val) / 1000.0f;
+
+		if (val + val2 > 1.0f) {
+			value = 1.0f;
+		} else if (value < (0.0f - val2)) {
+			value = 0.0f;
+		} else {
+			value += val2;
+		}
 	}
 	mSeParam.mVolumes[type].set(value, moveTime);
 	/*
@@ -969,7 +1005,17 @@ lbl_800B4774:
 void JAISe::setSeInterPan(u8 type, f32 value, u32 moveTime, u8 p4)
 {
 	if (p4) {
-		value = JAInter::Const::random.nextFloat(value, p4);
+		// these need tweaking a bit
+		f32 val  = (u32)(4.2949673E9f * JAInter::Const::random.nextFloat_0_1()) + value;
+		f32 val2 = (1.0f + val) / 1000.0f;
+
+		if (val + val2 > 1.0f) {
+			value = 1.0f;
+		} else if (value < (0.0f - val2)) {
+			value = 0.0f;
+		} else {
+			value += val2;
+		}
 	}
 	mSeParam.mPans[type].set(value, moveTime);
 	/*
@@ -1102,7 +1148,17 @@ void JAISe::setSeInterFir(u8, u8, u32, u8)
 void JAISe::setSeInterDolby(u8 type, f32 value, u32 moveTime, u8 p4)
 {
 	if (p4) {
-		value = JAInter::Const::random.nextFloat(value, p4);
+		// these need tweaking a bit
+		f32 val  = (u32)(4.2949673E9f * JAInter::Const::random.nextFloat_0_1()) + value;
+		f32 val2 = (1.0f + val) / 1000.0f;
+
+		if (val + val2 > 1.0f) {
+			value = 1.0f;
+		} else if (value < (0.0f - val2)) {
+			value = 0.0f;
+		} else {
+			value += val2;
+		}
 	}
 	mSeParam.mDolbys[type].set(value, moveTime);
 	/*
@@ -1431,7 +1487,7 @@ void JAISe::setSeDistanceFir(u8) { }
  */
 void JAISe::setSeDistanceDolby(u8 moveTime)
 {
-	f32 dolby = 0.5f;
+	f32 dolby = 0.0f;
 	if (!_1A) {
 		dolby = setDistanceDolbyCommon();
 	} else if (mCreatureObj) {
