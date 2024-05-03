@@ -910,9 +910,7 @@ void JUTGamePad::CButton::update(PADStatus const* status, u32 buttonStatus)
 				mRepeatCount = 0;
 			} else if (mRepeatStart == buttonPressed) {
 				mRepeatCount++;
-				if (mRepeatCount == mRepeatDelay || 
-					(mRepeatCount > mRepeatDelay && 
-					(mRepeatCount - mRepeatDelay) % mRepeatRate == 0)) {
+				if (mRepeatCount == mRepeatDelay || (mRepeatCount > mRepeatDelay && (mRepeatCount - mRepeatDelay) % mRepeatRate == 0)) {
 					mRepeat = buttonPressed;
 				}
 			} else {

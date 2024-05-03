@@ -114,10 +114,10 @@ size_t JUTConsole::getLineFromObjectSize(u32 objectSize, uint bufferSize) { retu
  */
 void JUTConsole::clear()
 {
-	mCurrentLineIndex = 0;
-	mStartLineIndex   = 0;
+	mCurrentLineIndex  = 0;
+	mStartLineIndex    = 0;
 	mCurrentLineIndex_ = 0;
-	mLineOffset       = 0;
+	mLineOffset        = 0;
 
 	for (int i = 0; i < (u32)mMaxLines; i++) {
 		setLineAttr(i, 0);
@@ -288,9 +288,9 @@ void JUTConsole::print(const char* str)
 				continue;
 			}
 
-			*lineChar         = 0;
+			*lineChar          = 0;
 			mCurrentLineIndex_ = nextIndex(mCurrentLineIndex_);
-			mLineOffset       = 0;
+			mLineOffset        = 0;
 			setLineAttr(mCurrentLineIndex_, 0xff);
 			lineChar  = getLinePtr(mCurrentLineIndex_);
 			*lineChar = 0;

@@ -118,7 +118,7 @@ struct JUTConsole : public JKRDisposer {
 	bool mUnusedFlag;                       // _2C
 	int mCurrentLineIndex;                  // _30
 	int mStartLineIndex;                    // _34
-	int mCurrentLineIndex_;                  // _38
+	int mCurrentLineIndex_;                 // _38
 	int mLineOffset;                        // _3C
 	int mPositionX;                         // _40
 	int mPositionY;                         // _44

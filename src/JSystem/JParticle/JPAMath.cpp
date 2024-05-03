@@ -2,28 +2,6 @@
 #include "JSystem/JParticle/JPAMath.h"
 #include "JSystem/JMath.h"
 
-/*
-    Generated from dpostproc
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80516C18
-    lbl_80516C18:
-        .float 1.0
-    .global lbl_80516C1C
-    lbl_80516C1C:
-        .4byte 0x00000000
-    .global lbl_80516C20
-    lbl_80516C20:
-        .float 0.5
-    .global lbl_80516C24
-    lbl_80516C24:
-        .4byte 0x40400000
-    .global lbl_80516C28
-    lbl_80516C28:
-        .4byte 0x42000000
-        .4byte 0x00000000
-*/
-
 /**
  * @note Address: N/A
  * @note Size: 0xB0
@@ -427,17 +405,17 @@ f32 JPACalcKeyAnmValue(f32 currentFrame, u16 keyFrameCount, const f32* keyFrameD
 		return keyFrameData[lastKeyFrameIndex * 4 + 1];
 	}
 
-	int currentFrame = keyFrameCount;
-	while (currentFrame > 1) {
-		u32 halfIndex = currentFrame / 2;
-		if (currentFrame >= keyFrameData[halfIndex * 4]) {
+	int frame = keyFrameCount;
+	while (frame > 1) {
+		u32 halfIndex = frame / 2;
+		if (frame >= keyFrameData[halfIndex * 4]) {
 			keyFrameData += halfIndex * 4;
-			currentFrame -= halfIndex;
+			frame -= halfIndex;
 		} else {
-			currentFrame = halfIndex;
+			frame = halfIndex;
 		}
 	}
 
-	return JMAHermiteInterpolation(currentFrame, keyFrameData[0], keyFrameData[1], keyFrameData[3], keyFrameData[4], keyFrameData[5],
+	return JMAHermiteInterpolation(frame, keyFrameData[0], keyFrameData[1], keyFrameData[3], keyFrameData[4], keyFrameData[5],
 	                               keyFrameData[6]);
 }

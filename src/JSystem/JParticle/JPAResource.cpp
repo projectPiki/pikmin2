@@ -67,6 +67,564 @@ JPAResource::JPAResource()
  */
 void JPAResource::init(JKRHeap* heap)
 {
+	JPAExtraShape* exShape          = mExtraShape;
+	const JPABaseShapeData* shpData = mBaseShape->mData;
+
+	u32 shpFlags    = shpData->mFlags;
+	u8 clrFlag      = shpData->mClrFlg;
+	u8 texFlag      = shpData->mTexFlg;
+	u8 isGlblClrAnm = shpFlags & 0x1000;
+	u8 isGlblTexAnm = shpFlags & 0x4000;
+	u8 isTexCrdAnm  = shpFlags & 0x1000000;
+	u8 isPrjTex     = shpFlags & 0x100000;
+
+	bool exShapeSet1 = false;
+	if (exShape && exShape->mData->mFlags & 1) {
+		exShapeSet1 = true;
+	}
+
+	bool exShapeSet2 = false;
+	if (exShape && exShape->mData->mFlags & 0x10000) {
+		exShapeSet2 = true;
+	}
+
+	bool exShapeSet3 = false;
+	if (exShape && (exShape->mData->mFlags & 0x10000) && (exShape->mData->mFlags & 0x20000)) {
+		exShapeSet3 = true;
+	}
+
+	bool exShapeSet4 = false;
+	if (exShape && exShape->mData->mFlags & 0x1000000) {
+		exShapeSet4 = true;
+	}
+
+	bool exShapeSet5 = false;
+	if (exShapeSet4 || (mChildShape && mChildShape->mData->mFlags & 0x1000000)) {
+		exShapeSet5 = true;
+	}
+
+	u8 shpType = shpFlags & 0xf;
+	bool test  = true;
+	if (shpType != 5 && shpType != 6) {
+		test = false;
+	}
+	// skipping some dumb stuff for now
+
+	if (isGlblTexAnm && (texFlag & 1)) {
+		mCalcEmitterFuncListNum++;
+	}
+	if (isGlblClrAnm) {
+		if (clrFlag & 2) {
+			mCalcEmitterFuncListNum++;
+		}
+		if (clrFlag & 8) {
+			mCalcEmitterFuncListNum++;
+		}
+		if ((clrFlag & 2) || (clrFlag & 8)) {
+			mCalcEmitterFuncListNum++;
+		}
+	}
+	if (mCalcParticleFuncListNum) {
+		mCalcEmitterFuncList = (JPAFunctionA**)heap->alloc(mCalcParticleChildFuncListNum * 4, 4);
+	}
+
+	int idx = 0;
+	if (isGlblTexAnm && (texFlag & 1)) {
+		switch (mBaseShape->getTexAnmType()) {
+		case 0:
+			mCalcEmitterFuncList[0] = JPACalcTexIdxNormal;
+			break;
+		case 1:
+			mCalcEmitterFuncList[0] = JPACalcTexIdxRepeat;
+			break;
+		case 2:
+			mCalcEmitterFuncList[0] = JPACalcTexIdxReverse;
+			break;
+		case 3:
+			mCalcEmitterFuncList[0] = JPACalcTexIdxMerge;
+			break;
+		case 4:
+			mCalcEmitterFuncList[0] = JPACalcTexIdxRandom;
+			break;
+		}
+		idx = 1;
+	}
+
+	if (isGlblClrAnm) {
+		int i = idx;
+		if (clrFlag & 2) {
+			i                               = idx + 1;
+			mCalcParticleChildFuncList[idx] = JPACalcPrm;
+		}
+		idx = i;
+		if (clrFlag & 8) {
+			idx                             = i + 1;
+			mCalcParticleChildFuncList[idx] = JPACalcEnv;
+		}
+		if ((clrFlag & 2) || (clrFlag & 8)) {
+			switch (mBaseShape->getTexAnmType()) {
+			case 0:
+				mCalcEmitterFuncList[idx] = JPACalcTexIdxNormal;
+				break;
+			case 1:
+				mCalcEmitterFuncList[idx] = JPACalcTexIdxRepeat;
+				break;
+			case 2:
+				mCalcEmitterFuncList[idx] = JPACalcTexIdxReverse;
+				break;
+			case 3:
+				mCalcEmitterFuncList[idx] = JPACalcTexIdxMerge;
+				break;
+			case 4:
+				mCalcEmitterFuncList[idx] = JPACalcTexIdxRandom;
+				break;
+			}
+		}
+	}
+
+	// determin number of particle callbacks
+	if (!isGlblTexAnm && (texFlag & 1)) {
+		mCalcParticleFuncListNum++;
+	}
+	if ((!test) && (exShapeSet2 || exShapeSet3)) {
+		mCalcParticleFuncListNum++;
+	}
+	if (isGlblClrAnm) {
+		if (clrFlag & 2) {
+			mCalcParticleFuncListNum++;
+		}
+		if (clrFlag & 8) {
+			mCalcParticleFuncListNum++;
+		}
+		if (clrFlag & 2 || clrFlag & 8) {
+			mCalcParticleFuncListNum++;
+		}
+	} else {
+		mCalcParticleFuncListNum++;
+	}
+	if (exShapeSet1) {
+		if (mBaseShape->getType() != 0) {
+			u32 type = mBaseShape->getType();
+			if (!(type & 2)) {
+				mCalcParticleFuncListNum++;
+			} else if (!(type >> 8 & 3) && !(type >> 10 & 3)) {
+				mCalcParticleFuncListNum++;
+			} else {
+				mCalcParticleFuncListNum++;
+				mCalcParticleFuncListNum++;
+			}
+		}
+		mCalcParticleFuncListNum++;
+		mCalcParticleFuncListNum++;
+	}
+	// allocate particle callbacks
+	if (mCalcParticleChildFuncListNum != 0) {
+		mCalcParticleFuncList = (JPAFunctionB**)heap->alloc(mCalcParticleFuncListNum * 4, 4);
+	}
+
+	// set particle callback functions
+	idx = 0;
+	if (!isGlblTexAnm && (texFlag & 1)) {
+		switch (mBaseShape->getTexAnmType()) {
+		case 0:
+			mCalcParticleFuncList[0] = JPACalcTexIdxNormal;
+			break;
+		case 1:
+			mCalcParticleFuncList[0] = JPACalcTexIdxRepeat;
+			break;
+		case 2:
+			mCalcParticleFuncList[0] = JPACalcTexIdxReverse;
+			break;
+		case 3:
+			mCalcParticleFuncList[0] = JPACalcTexIdxMerge;
+			break;
+		case 4:
+			mCalcParticleFuncList[0] = JPACalcTexIdxRandom;
+			break;
+		}
+		idx = 1;
+	}
+
+	{
+		int i = idx;
+		if (!test && (exShapeSet2 || exShapeSet3)) {
+			if (exShapeSet3) {
+				i                          = idx + 1;
+				mCalcParticleFuncList[idx] = JPACalcAlphaFlickAnm;
+			} else {
+				idx                        = i + 1;
+				mCalcParticleFuncList[idx] = JPACalcAlphaAnm;
+			}
+		}
+
+		if (!isGlblClrAnm) {
+			int i = idx;
+			if (clrFlag & 2) {
+				i                          = idx + 1;
+				mCalcParticleFuncList[idx] = JPACalcPrm;
+			}
+			idx = i;
+			if (clrFlag & 8) {
+				idx                        = i + 1;
+				mCalcParticleFuncList[idx] = JPACalcEnv;
+			}
+			if ((clrFlag & 2) || (clrFlag & 8)) {
+				switch (mBaseShape->getTexAnmType()) {
+				case 0:
+					mCalcParticleFuncList[idx] = JPACalcClrIdxNormal;
+					break;
+				case 1:
+					mCalcParticleFuncList[idx] = JPACalcClrIdxRepeat;
+					break;
+				case 2:
+					mCalcParticleFuncList[idx] = JPACalcClrIdxReverse;
+					break;
+				case 3:
+					mCalcParticleFuncList[idx] = JPACalcClrIdxMerge;
+					break;
+				case 4:
+					mCalcParticleFuncList[idx] = JPACalcClrIdxRandom;
+					break;
+				}
+			}
+		} else {
+			mCalcParticleFuncList[idx] = JPACalcColorCopy;
+		}
+	}
+
+	if (exShapeSet1) {
+		if (mBaseShape->getType()) {
+			if (mBaseShape->mData->mFlags & 2) {
+				mCalcParticleFuncList[idx] = JPACalcScaleY;
+				switch (mBaseShape->getTexAnmType()) {
+				case 0:
+					mCalcParticleFuncList[idx] = JPACalcScaleAnmNormal;
+					break;
+				case 1:
+					mCalcParticleFuncList[idx] = JPACalcScaleAnmRepeatY;
+					break;
+				case 2:
+					mCalcParticleFuncList[idx] = JPACalcScaleAnmReverseY;
+					break;
+				}
+			} else {
+				mCalcParticleFuncList[idx] = JPACalcScaleCopy;
+			}
+			idx += 2;
+		}
+		mCalcParticleFuncList[idx] = JPACalcScaleX;
+		switch (mBaseShape->getTexAnmType()) {
+		case 0:
+			mCalcParticleFuncList[idx] = JPACalcScaleAnmNormal;
+			break;
+		case 1:
+			mCalcParticleFuncList[idx] = JPACalcScaleAnmRepeatX;
+			break;
+		case 2:
+			mCalcParticleFuncList[idx] = JPACalcScaleAnmReverseX;
+			break;
+		}
+	}
+
+	if (mChildShape && mChildShape->mData->mFlags & 0x40000) {
+		mCalcParticleChildFuncListNum++;
+	}
+	if (mChildShape && mChildShape->mData->mFlags & 0x80000) {
+		mCalcParticleChildFuncListNum++;
+	}
+	if (mCalcParticleChildFuncListNum) {
+		mCalcParticleChildFuncList = (JPAFunctionB**)heap->alloc(mCalcParticleChildFuncListNum * 4, 4);
+	}
+	idx = 0;
+	if (mChildShape && mChildShape->mData->mFlags & 0x40000) {
+		idx                           = 1;
+		mCalcParticleChildFuncList[0] = JPACalcChildScaleOut;
+	}
+	if (mChildShape && mChildShape->mData->mFlags & 0x80000) {
+		idx                           = 1;
+		mCalcParticleChildFuncList[0] = JPACalcChildAlphaOut;
+	}
+
+	if (test) {
+		mDrawEmitterFuncListNum++;
+	}
+	mDrawEmitterFuncListNum++;
+	if (mExTexShape) {
+		mDrawEmitterFuncListNum++;
+	}
+	if (isGlblTexAnm || !(texFlag & 1)) {
+		mDrawEmitterFuncListNum++;
+	}
+	mDrawEmitterFuncListNum++;
+	if (!test) {
+		mDrawEmitterFuncListNum++;
+		if (!exShapeSet1) {
+			mDrawEmitterFuncListNum++;
+		}
+	}
+	if (isGlblClrAnm || (!(clrFlag & 2) && !exShapeSet2) || !(clrFlag & 8)) {
+		mDrawEmitterFuncListNum++;
+	}
+	if (mDrawEmitterFuncListNum) {
+		mDrawEmitterFuncList = (JPAFunctionA**)heap->alloc(mDrawEmitterFuncListNum * 4, 4);
+	}
+
+	if (test) {
+		if (mBaseShape->getType() == 5) {
+			idx                     = 1;
+			mDrawEmitterFuncList[0] = JPADrawStripe;
+		} else {
+			idx                     = 1;
+			mDrawEmitterFuncList[0] = JPADrawStripeX;
+		}
+	}
+	mDrawEmitterFuncList[0] = JPADrawEmitterCallBackB;
+	if (mExTexShape) {
+		mDrawEmitterFuncList[idx + 1] = JPALoadExTex;
+	}
+	if (!(texFlag & 1)) {
+		mDrawEmitterFuncList[idx + 1] = JPALoadTex;
+	} else if (isGlblTexAnm) {
+		mDrawEmitterFuncList[idx + 1] = JPALoadTexAnm;
+	}
+
+	if (!test) {
+		mDrawEmitterFuncList[idx] = JPAGenTexCrdMtxIdt;
+	} else if (isPrjTex) {
+		mDrawEmitterFuncList[idx] = JPAGenTexCrdMtxPrj;
+	} else if (test) {
+		mDrawEmitterFuncList[idx] = JPAGenCalcTexCrdMtxAnm;
+	} else if (isTexCrdAnm) {
+		mDrawEmitterFuncList[idx] = JPAGenTexCrdMtxAnm;
+	} else {
+		mDrawEmitterFuncList[idx] = JPAGenTexCrdMtxIdt;
+	}
+
+	if (!test) {
+		mDrawEmitterFuncList[idx + 1] = JPALoadPosMtxCam;
+		if (!exShapeSet1) {
+			if (exShapeSet2) {
+				mDrawEmitterFuncList[idx] = JPASetPointSize;
+			} else {
+				mDrawEmitterFuncList[idx] = JPASetLineWidth;
+			}
+		}
+	}
+
+	if (!test) {
+		mDrawEmitterFuncList[idx + 1] = JPALoadPosMtxCam;
+		if (!exShapeSet1) {
+			if (exShapeSet2) {
+				mDrawEmitterFuncList[idx] = JPASetPointSize;
+			} else {
+				mDrawEmitterFuncList[idx] = JPASetLineWidth;
+			}
+		}
+	}
+
+	if (isGlblClrAnm == 0) {
+		if ((clrFlag & 2) || exShapeSet2) {
+			if (!(clrFlag & 8)) {
+				mDrawEmitterFuncList[idx] = JPARegistEnv;
+			}
+		} else if (!(clrFlag & 8)) {
+			mDrawEmitterFuncList[idx] = JPARegistPrmEnv;
+		} else {
+			mDrawEmitterFuncList[idx] = JPARegistPrm;
+		}
+	} else if (test || !exShapeSet2) {
+		mDrawEmitterFuncList[idx] = JPARegistPrmEnv;
+	} else if (exShapeSet2) {
+		mDrawEmitterFuncList[idx] = JPARegistEnv;
+	}
+
+	if (shpFlags && test) {
+		mDrawEmitterChildFuncListNum++;
+	}
+	mDrawEmitterChildFuncListNum++;
+	if (test) {
+		mDrawEmitterChildFuncListNum++;
+	}
+	if (mChildShape && !(mChildShape->mData->mFlags & 0x80000) && !(mChildShape->mData->mFlags & 0x20000)
+	    && !(mChildShape->mData->mFlags & 0x40000)) {
+		mDrawEmitterChildFuncListNum++;
+	}
+	if (mDrawEmitterChildFuncListNum) {
+		mDrawEmitterChildFuncList = (JPAFunctionA**)heap->alloc(mDrawEmitterChildFuncListNum * 4, 4);
+	}
+	idx = 0;
+	if (shpFlags && test) {
+		if ((mChildShape->mData->mFlags & 0xf) == 5) {
+			idx                          = 1;
+			mDrawEmitterChildFuncList[0] = JPADrawStripe;
+		} else {
+			idx                          = 1;
+			mDrawEmitterChildFuncList[0] = JPADrawStripeX;
+		}
+	}
+	mDrawEmitterChildFuncList[idx] = JPADrawEmitterCallBackB;
+	if (test) {
+		mDrawEmitterChildFuncList[idx] = JPALoadPosMtxCam;
+	}
+	if (mChildShape && !(mChildShape->mData->mFlags & 0x800000) && !(mChildShape->mData->mFlags & 0x200000)
+	    && !(mChildShape->mData->mFlags & 0x400000)) {
+		mDrawEmitterChildFuncList[idx] = JPARegistChildPrmEnv;
+	}
+
+	if (test) {
+		mDrawParticleFuncListNum++;
+	}
+	mDrawParticleFuncListNum++;
+	if (!isGlblTexAnm && (texFlag & 1)) {
+		mDrawParticleFuncListNum++;
+	}
+	if ((!test && exShapeSet1) || (isTexCrdAnm && !isPrjTex)) {
+		mDrawParticleFuncListNum++;
+	}
+	if (!isGlblClrAnm && (clrFlag & 2) || (clrFlag & 8) || exShapeSet2 || (isGlblClrAnm && exShapeSet2) && !test) {
+		mDrawParticleFuncListNum++;
+	}
+	if (mDrawParticleFuncListNum) {
+		mDrawParticleFuncList = (JPAFunctionB**)heap->alloc(mDrawParticleFuncListNum * 4, 4);
+	}
+	if (test) {
+		switch (mBaseShape->getType()) {
+		case 0:
+			mDrawParticleFuncList[0] = JPADrawPoint;
+			break;
+		case 1:
+			mDrawParticleFuncList[0] = JPADrawLine;
+			break;
+		case 2:
+			if (exShapeSet4)
+				mDrawParticleFuncList[0] = JPADrawRotBillboard;
+			else
+				mDrawParticleFuncList[0] = JPADrawBillboard;
+			break;
+		case 3:
+		case 4:
+			if (exShapeSet4) {
+				mDrawParticleFuncList[0] = JPADrawRotDirection;
+			} else {
+				mDrawParticleFuncList[0] = JPADrawDirection;
+			}
+			break;
+		case 7:
+		case 8:
+			mDrawParticleFuncList[0] = JPADrawRotation;
+			break;
+		case 9:
+			mDrawParticleFuncList[0] = JPADrawDBillboard;
+			break;
+		case 10:
+			if (exShapeSet4) {
+				mDrawParticleFuncList[0] = JPADrawRotYBillboard;
+			} else {
+				mDrawParticleFuncList[0] = JPADrawYBillboard;
+			}
+			break;
+		}
+	}
+	mDrawParticleFuncList[idx] = JPADrawParticleCallBack;
+	if (!isGlblTexAnm && (texFlag & 1)) {
+		mDrawParticleFuncList[idx] = JPALoadTexAnm;
+	}
+	if ((test) || (!exShapeSet1)) {
+		if ((isTexCrdAnm != 0) && (isPrjTex == 0)) {
+			mDrawParticleFuncList[idx] = JPALoadCalcTexCrdMtxAnm;
+		}
+	} else if (test == 0) {
+		mDrawParticleFuncList[idx] = JPASetLineWidth;
+	} else {
+		mDrawParticleFuncList[idx] = JPASetPointSize;
+	}
+
+	if (!isGlblClrAnm) {
+		if (!(clrFlag & 2)) {
+			if (exShapeSet2) {
+				if (!(clrFlag & 8)) {
+					mDrawParticleFuncList[idx] = JPARegistAlpha;
+				} else {
+					mDrawParticleFuncList[idx] = JPARegistAlphaEnv;
+				}
+			} else if (clrFlag & 8) {
+				mDrawParticleFuncList[idx] = JPARegistEnv;
+			}
+		} else if (!(clrFlag & 8)) {
+			mDrawParticleFuncList[idx] = JPARegistPrmAlpha;
+		} else {
+			mDrawParticleFuncList[idx] = JPARegistPrmAlphaEnv;
+		}
+	} else if (exShapeSet2 && !test) {
+		mDrawParticleFuncList[idx] = JPARegistAlpha;
+	}
+
+	if (shpFlags && mChildShape && !test) {
+		mDrawParticleChildFuncListNum++;
+	}
+	mDrawParticleChildFuncListNum++;
+	if (test) {
+		mDrawParticleChildFuncListNum++;
+	}
+	if (mChildShape && !(mChildShape->mData->mFlags & 0x800000) && !(mChildShape->mData->mFlags & 0x200000)
+	    && !(mChildShape->mData->mFlags & 0x400000)) {
+		mDrawParticleChildFuncListNum++;
+	}
+	if (mDrawParticleChildFuncListNum) {
+		mDrawParticleChildFuncList = (JPAFunctionB**)heap->alloc(mDrawParticleChildFuncListNum * 4, 4);
+	}
+	// my sanity is all gone by this point
+	if (shpFlags && mChildShape && !test) {
+		switch (mBaseShape->getType()) {
+		case 0:
+			mDrawParticleChildFuncList[0] = JPADrawPoint;
+			break;
+		case 1:
+			mDrawParticleChildFuncList[0] = JPADrawLine;
+			break;
+		case 2:
+			if (exShapeSet4)
+				mDrawParticleChildFuncList[0] = JPADrawRotBillboard;
+			else
+				mDrawParticleChildFuncList[0] = JPADrawBillboard;
+			break;
+		case 3:
+		case 4:
+			if (exShapeSet4) {
+				mDrawParticleChildFuncList[0] = JPADrawRotDirection;
+			} else {
+				mDrawParticleChildFuncList[0] = JPADrawDirection;
+			}
+			break;
+		case 7:
+		case 8:
+			mDrawParticleChildFuncList[0] = JPADrawRotation;
+			break;
+		case 9:
+			mDrawParticleChildFuncList[0] = JPADrawDBillboard;
+			break;
+		case 10:
+			if (exShapeSet4) {
+				mDrawParticleChildFuncList[0] = JPADrawRotYBillboard;
+			} else {
+				mDrawParticleChildFuncList[0] = JPADrawYBillboard;
+			}
+			break;
+		}
+		idx = 1;
+	}
+
+	mDrawParticleChildFuncList[idx] = JPADrawParticleCallBack;
+	if (test) {
+		mDrawParticleChildFuncList[idx] = JPASetPointSize;
+	} else {
+		mDrawParticleChildFuncList[idx] = JPASetLineWidth;
+	}
+	if (mChildShape && !(mChildShape->mData->mFlags & 0x800000) && !(mChildShape->mData->mFlags & 0x200000)
+	    && (mChildShape->mData->mFlags & 0x400000)) {
+		mDrawParticleChildFuncList[idx] = JPARegistPrmAlphaEnv;
+	}
+
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0

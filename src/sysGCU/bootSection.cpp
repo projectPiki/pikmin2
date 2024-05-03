@@ -34,14 +34,14 @@ J2DPicture* TinyPikminMgr::sPikminTex[6];
  */
 TinyPikmin::TinyPikmin()
 {
-	mState        = 0;
-	mColor        = 0;
-	mVelocityX    = 0.0f;
-	mVelocityY    = 0.0f;
-	mPositionY    = 0.0f;
-	mScaleAnimTimer   = 1.0f;
-	mWaitTimer        = 0.0f;
-	mWaitDuration = 1.0f;
+	mState          = 0;
+	mColor          = 0;
+	mVelocityX      = 0.0f;
+	mVelocityY      = 0.0f;
+	mPositionY      = 0.0f;
+	mScaleAnimTimer = 1.0f;
+	mWaitTimer      = 0.0f;
+	mWaitDuration   = 1.0f;
 }
 
 /**
@@ -50,18 +50,18 @@ TinyPikmin::TinyPikmin()
  */
 void TinyPikmin::init(int color, f32 delay, f32 u2, f32 x)
 {
-	mState        = INACTIVE;
-	mColor        = color;
-	mVelocityX    = delay + u2;
-	mVelocityY    = 166.0f;
-	mPositionX    = 0.0f;
-	mPositionY    = 70.0f;
-	mScaleAnimTimer   = randFloat();
-	mWaitTimer        = 0.0f;
-	mWaitDuration = x;
-	mVelocityX    = 0.0f;
-	mVelocityY    = 0.0f;
-	mAngle        = 0.0f;
+	mState          = INACTIVE;
+	mColor          = color;
+	mVelocityX      = delay + u2;
+	mVelocityY      = 166.0f;
+	mPositionX      = 0.0f;
+	mPositionY      = 70.0f;
+	mScaleAnimTimer = randFloat();
+	mWaitTimer      = 0.0f;
+	mWaitDuration   = x;
+	mVelocityX      = 0.0f;
+	mVelocityY      = 0.0f;
+	mAngle          = 0.0f;
 
 	switch (mColor) {
 	case White:
@@ -103,7 +103,7 @@ void TinyPikmin::appear()
 {
 	if (mState != WAIT) {
 		mWaitTimer = 0.0f;
-		mState = WAIT;
+		mState     = WAIT;
 	}
 }
 
@@ -125,7 +125,7 @@ void TinyPikmin::update()
 	switch (mState) {
 	case WAIT:
 		if (mWaitTimer > mWaitDuration) {
-			mWaitTimer     = 0.0f;
+			mWaitTimer = 0.0f;
 			mState     = LANDED;
 			mVelocityY = -(randFloat() * 7.0f + 8.5f);
 		} else {
