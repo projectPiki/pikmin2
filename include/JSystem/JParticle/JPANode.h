@@ -3,6 +3,8 @@
 
 #include "types.h"
 
+struct JPABaseParticle;
+
 template <typename T>
 struct JPANode {
 	JPANode()
@@ -21,6 +23,8 @@ struct JPANode {
 	JPANode<T>* mNext; // _04
 	T mData;           // _08
 };
+
+typedef JPANode<JPABaseParticle>* (*getNodeFunc)(JPANode<JPABaseParticle>*);
 
 template <typename T>
 struct JPAList {

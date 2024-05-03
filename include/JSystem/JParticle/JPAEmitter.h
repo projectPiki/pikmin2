@@ -399,7 +399,7 @@ struct JPAEmitterWorkData {
 	Mtx mYBBCamMtx;                        // _154
 	Mtx mPosCamMtx;                        // _184
 	Mtx mPrjMtx;                           // _1B4
-	JPANode<JPABaseParticle>* mpAlivePtcl; // _1E4
+	JPAList<JPABaseParticle>* mpAlivePtcl; // _1E4
 	JPANode<JPABaseParticle>* mpCurNode;   // _1E8
 	int mVolumeAngleNum;                   // _1EC
 	int mVolumeAngleMax;                   // _1F0

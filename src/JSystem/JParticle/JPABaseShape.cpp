@@ -1614,7 +1614,7 @@ void JPADrawLine(JPAEmitterWorkData* work, JPABaseParticle* particle)
 			GXTexCoord2f32(zero, zero);
 			GXPosition3f32(direction.x, direction.y, direction.z);
 			GXTexCoord2f32(zero, one);
-			GXEnd();
+
 			GXSetVtxDesc(GX_VA_POS, GX_INDEX8);
 			GXSetVtxDesc(GX_VA_TEX0, GX_INDEX8);
 		}
@@ -1757,8 +1757,95 @@ static JPANode<JPABaseParticle>* getPrev(JPANode<JPABaseParticle>* node) { retur
  * @note Address: 0x8008D9B4
  * @note Size: 0x588
  */
-void JPADrawStripe(JPAEmitterWorkData*)
+void JPADrawStripe(JPAEmitterWorkData* work)
 {
+	JPABaseShape* shape = work->mResource->getBsp();
+	u32 ptcl_num        = work->mpAlivePtcl->getNum();
+	if (ptcl_num < 2) {
+		return;
+	}
+
+	f32 coord  = 0.0f;
+	f32 step   = 1.0f / (ptcl_num - 1.0f);
+	f32 dVar14 = (1.0f + work->mPivot.x) * (25.0f * work->mGlobalPtclScl.x);
+	f32 dVar13 = (1.0f - work->mPivot.x) * (25.0f * work->mGlobalPtclScl.x);
+	Mtx matrix;
+	f32 sin;
+	f32 cos;
+	JGeometry::TVec3f local_ec;
+	JGeometry::TVec3f local_e0[2];
+	JGeometry::TVec3f direction;
+	JGeometry::TVec3f local_104;
+	getNodeFunc node_func;
+	JPANode<JPABaseParticle>* startNode;
+	if (shape->isDrawFwdAhead()) {
+		startNode = work->mpAlivePtcl->getLast();
+		node_func = getPrev;
+		coord     = 1.0f;
+		step      = -step;
+	} else {
+		startNode = work->mpAlivePtcl->getFirst();
+		node_func = getNext;
+	}
+
+	GXLoadPosMtxImm(work->mPosCamMtx, 0);
+	p_prj[work->mProjectionType](work, work->mPosCamMtx);
+	GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
+	GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
+	GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT1, ptcl_num << 1);
+
+	for (JPANode<JPABaseParticle>* node = startNode; node != work->mpAlivePtcl->getEnd(); node = node_func(node), coord += step) {
+		work->mpCurNode           = node;
+		JPABaseParticle* particle = node->getObject();
+		local_ec.set(particle->mPosition);
+		sin = JMASSin(particle->mRotateAngle);
+		cos = JMASCos(particle->mRotateAngle);
+		local_e0[0].set(-particle->mParticleScaleX * dVar14, 0.0f, 0.0f);
+		local_e0[0].set(local_e0[0].x * cos, 0.0f, local_e0[0].x * sin);
+		local_e0[1].set(particle->mParticleScaleX * dVar13, 0.0f, 0.0f);
+		local_e0[1].set(local_e0[1].x * cos, 0.0f, local_e0[1].x * sin);
+		p_direction[work->mDirType](work, particle, &direction);
+		if (direction.isZero()) {
+			direction.set(0.0f, 1.0f, 0.0f);
+		} else {
+			direction.normalize();
+		}
+		local_104.cross(particle->mBaseAxis, direction);
+		if (local_104.isZero()) {
+			local_104.set(1.0f, 0.0f, 0.0f);
+		} else {
+			local_104.normalize();
+		}
+		particle->mBaseAxis.cross(direction, local_104);
+		particle->mBaseAxis.normalize();
+
+		matrix[0][0] = local_104.x;
+		matrix[0][1] = direction.x;
+		matrix[0][2] = particle->mBaseAxis.x;
+		matrix[0][3] = 0.0f;
+
+		matrix[1][0] = local_104.y;
+		matrix[1][1] = direction.y;
+		matrix[1][2] = particle->mBaseAxis.y;
+		matrix[1][3] = 0.0f;
+
+		matrix[2][0] = local_104.z;
+		matrix[2][1] = direction.z;
+		matrix[2][2] = particle->mBaseAxis.z;
+		matrix[2][3] = 0.0f;
+
+		PSMTXMultVecArraySR(matrix, (f32*)local_e0, (f32*)local_e0, (f32*)2); // ???
+		GXPosition3f32(local_e0[0].x + local_ec.x, local_e0[0].y + local_ec.y, local_e0[0].z + local_ec.z);
+
+		f32 zero = 0.0f; // regswaps are mostly because of these needing to exist (they dont in TP)
+		f32 one  = 1.0f;
+		GXTexCoord2f32(zero, coord);
+		GXPosition3f32(local_e0[1].x + local_ec.x, local_e0[1].y + local_ec.y, local_e0[1].z + local_ec.z);
+		GXTexCoord2f32(one, coord);
+	}
+	GXSetVtxDesc(GX_VA_POS, GX_INDEX8);
+	GXSetVtxDesc(GX_VA_TEX0, GX_INDEX8);
+
 	/*
 	stwu     r1, -0x130(r1)
 	mflr     r0
@@ -2153,8 +2240,147 @@ lbl_8008DED8:
  * @note Address: 0x8008DF3C
  * @note Size: 0x9AC
  */
-void JPADrawStripeX(JPAEmitterWorkData*)
+void JPADrawStripeX(JPAEmitterWorkData* work)
 {
+	JPABaseShape* shape = work->mResource->getBsp();
+	u32 ptcl_num        = work->mpAlivePtcl->getNum();
+	if (ptcl_num < 2) {
+		return;
+	}
+
+	f32 start_coord = 0.0f;
+	f32 coord       = 0.0f;
+	f32 step        = 1.0f / (ptcl_num - 1.0f);
+	f32 local_154   = (1.0f + work->mPivot.x) * (25.0f * work->mGlobalPtclScl.x);
+	f32 local_158   = (1.0f - work->mPivot.x) * (25.0f * work->mGlobalPtclScl.x);
+	f32 local_15c   = (1.0f + work->mPivot.y) * (25.0f * work->mGlobalPtclScl.y);
+	f32 local_160   = (1.0f - work->mPivot.y) * (25.0f * work->mGlobalPtclScl.y);
+	Mtx matrix;
+	f32 sin;
+	f32 cos;
+	JGeometry::TVec3f position;
+	JGeometry::TVec3f local_a8[2];
+	JGeometry::TVec3f direction;
+	JGeometry::TVec3f local_cc;
+	JPANode<JPABaseParticle>* startNode;
+	getNodeFunc node_func;
+	if (shape->isDrawFwdAhead()) {
+		startNode   = work->mpAlivePtcl->getLast();
+		node_func   = getPrev;
+		start_coord = coord = 1.0f;
+		step                = -step;
+	} else {
+		startNode = work->mpAlivePtcl->getFirst();
+		node_func = getNext;
+	}
+
+	GXLoadPosMtxImm(work->mPosCamMtx, 0);
+	p_prj[work->mProjectionType](work, work->mPosCamMtx);
+	GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
+	GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
+	GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT1, ptcl_num << 1);
+	for (JPANode<JPABaseParticle>* node = startNode; node != work->mpAlivePtcl->getEnd(); node = node_func(node), coord += step) {
+		work->mpCurNode           = node;
+		JPABaseParticle* particle = node->getObject();
+		position.set(particle->mPosition);
+		sin = JMASSin(particle->mRotateAngle);
+		cos = JMASCos(particle->mRotateAngle);
+		local_a8[0].set(-particle->mParticleScaleX * local_154, 0.0f, 0.0f);
+		local_a8[0].set(local_a8[0].x * cos, 0.0f, local_a8[0].x * sin);
+		local_a8[1].set(particle->mParticleScaleX * local_158, 0.0f, 0.0f);
+		local_a8[1].set(local_a8[1].x * cos, 0.0f, local_a8[1].x * sin);
+		p_direction[work->mDirType](work, particle, &direction);
+		if (direction.isZero()) {
+			direction.set(0.0f, 1.0f, 0.0f);
+		} else {
+			direction.normalize();
+		}
+		local_cc.cross(particle->mBaseAxis, direction);
+		if (local_cc.isZero()) {
+			local_cc.set(1.0f, 0.0f, 0.0f);
+		} else {
+			local_cc.normalize();
+		}
+		particle->mBaseAxis.cross(direction, local_cc);
+		particle->mBaseAxis.normalize();
+
+		matrix[0][0] = local_cc.x;
+		matrix[0][1] = direction.x;
+		matrix[0][2] = particle->mBaseAxis.x;
+		matrix[0][3] = 0.0f;
+
+		matrix[1][0] = local_cc.y;
+		matrix[1][1] = direction.y;
+		matrix[1][2] = particle->mBaseAxis.y;
+		matrix[1][3] = 0.0f;
+
+		matrix[2][0] = local_cc.z;
+		matrix[2][1] = direction.z;
+		matrix[2][2] = particle->mBaseAxis.z;
+		matrix[2][3] = 0.0f;
+		PSMTXMultVecArraySR(matrix, (f32*)local_a8, (f32*)local_a8, (f32*)2); // ???
+		GXPosition3f32(local_a8[0].x + position.x, local_a8[0].y + position.y, local_a8[0].z + position.z);
+		f32 zero = 0.0f;
+		f32 one  = 1.0f;
+		GXTexCoord2f32(zero, coord);
+		GXPosition3f32(local_a8[1].x + position.x, local_a8[1].y + position.y, local_a8[1].z + position.z);
+		GXTexCoord2f32(one, coord);
+	}
+
+	coord = start_coord;
+	GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT1, ptcl_num << 1);
+	for (JPANode<JPABaseParticle>* node = startNode; node != work->mpAlivePtcl->getEnd(); node = node_func(node), coord += step) {
+		work->mpCurNode           = node;
+		JPABaseParticle* particle = node->getObject();
+		position.set(particle->mPosition);
+		cos = JMASCos(particle->mRotateAngle);
+		sin = -JMASSin(particle->mRotateAngle);
+
+		local_a8[0].set(-particle->mParticleScaleY * local_15c, 0.0f, 0.0f);
+		local_a8[0].set(local_a8[0].x * cos, 0.0f, local_a8[0].x * sin);
+		local_a8[1].set(particle->mParticleScaleY * local_160, 0.0f, 0.0f);
+		local_a8[1].set(local_a8[1].x * cos, 0.0f, local_a8[1].x * sin);
+
+		p_direction[work->mDirType](work, particle, &direction);
+		if (direction.isZero()) {
+			direction.set(0.0f, 1.0f, 0.0f);
+		} else {
+			direction.normalize();
+		}
+		local_cc.cross(particle->mBaseAxis, direction);
+		if (local_cc.isZero()) {
+			local_cc.set(1.0f, 0.0f, 0.0f);
+		} else {
+			local_cc.normalize();
+		}
+		particle->mBaseAxis.cross(direction, local_cc);
+		particle->mBaseAxis.normalize();
+
+		matrix[0][0] = local_cc.x;
+		matrix[0][1] = direction.x;
+		matrix[0][2] = particle->mBaseAxis.x;
+		matrix[0][3] = 0.0f;
+
+		matrix[1][0] = local_cc.y;
+		matrix[1][1] = direction.y;
+		matrix[1][2] = particle->mBaseAxis.y;
+		matrix[1][3] = 0.0f;
+
+		matrix[2][0] = local_cc.z;
+		matrix[2][1] = direction.z;
+		matrix[2][2] = particle->mBaseAxis.z;
+		matrix[2][3] = 0.0f;
+		PSMTXMultVecArraySR(matrix, (f32*)local_a8, (f32*)local_a8, (f32*)2); // ???
+		GXPosition3f32(local_a8[0].x + position.x, local_a8[0].y + position.y, local_a8[0].z + position.z);
+
+		f32 zero = 0.0f;
+		f32 one  = 1.0f;
+		GXTexCoord2f32(zero, coord);
+		GXPosition3f32(local_a8[1].x + position.x, local_a8[1].y + position.y, local_a8[1].z + position.z);
+		GXTexCoord2f32(one, coord);
+	}
+	GXSetVtxDesc(GX_VA_POS, GX_INDEX8);
+	GXSetVtxDesc(GX_VA_TEX0, GX_INDEX8);
 	/*
 	stwu     r1, -0x160(r1)
 	mflr     r0
@@ -2868,8 +3094,50 @@ void JPAParticleCallBack::draw(JPABaseEmitter*, JPABaseParticle* particle) { }
  * @note Address: 0x8008E96C
  * @note Size: 0x284
  */
-void makeColorTable(GXColor**, const JPAClrAnmKeyData*, u8, s16, JKRHeap*)
+void makeColorTable(GXColor** colorTable, const JPAClrAnmKeyData* data, u8 a2, s16 size, JKRHeap* heap)
 {
+	GXColor* color_table = (GXColor*)JKRAllocFromHeap(heap, (size + 1) * 4, 4);
+
+	f32 r_step, g_step, b_step, a_step;
+	r_step = g_step = b_step = a_step = 0.0f;
+
+	f32 r = data[0].color.r;
+	f32 g = data[0].color.g;
+	f32 b = data[0].color.b;
+	f32 a = data[0].color.a;
+	int j = 0;
+
+	for (s16 i = 0; i < size + 1; i++) {
+		if (i == data[j].index) {
+			color_table[i] = data[j].color;
+
+			r = data[j].color.r;
+			g = data[j].color.g;
+			b = data[j].color.b;
+			a = data[j].color.a;
+			j++;
+			if (j < a2) {
+				f32 base_step = 1.0f / (data[j].index - data[j - 1].index);
+
+				r_step = base_step * ((f32)data[j].color.r - r);
+				g_step = base_step * ((f32)data[j].color.g - g);
+				b_step = base_step * ((f32)data[j].color.b - b);
+				a_step = base_step * ((f32)data[j].color.a - a);
+			} else {
+				r_step = g_step = b_step = a_step = 0.0f;
+			}
+		} else {
+			r += r_step;
+			color_table[i].r = r;
+			g += g_step;
+			color_table[i].g = g;
+			b += b_step;
+			color_table[i].b = b;
+			a += a_step;
+			color_table[i].a = a;
+		}
+	}
+	*colorTable = color_table;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x40(r1)
@@ -3082,95 +3350,6 @@ JPABaseShape::JPABaseShape(const u8* data, JKRHeap* heap)
 	} else {
 		mEnvClrAnmTbl = nullptr;
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r5
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	stw      r30, 0(r3)
-	lwz      r3, 0(r3)
-	lwz      r0, 8(r3)
-	rlwinm.  r0, r0, 0, 7, 7
-	beq      lbl_8008EC34
-	addi     r0, r30, 0x34
-	stw      r0, 4(r29)
-	b        lbl_8008EC3C
-
-lbl_8008EC34:
-	li       r0, 0
-	stw      r0, 4(r29)
-
-lbl_8008EC3C:
-	lwz      r3, 0(r29)
-	lbz      r0, 0x1e(r3)
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_8008EC6C
-	lwz      r0, 8(r3)
-	li       r3, 0x34
-	rlwinm.  r0, r0, 0, 7, 7
-	beq      lbl_8008EC60
-	li       r3, 0x5c
-
-lbl_8008EC60:
-	add      r0, r30, r3
-	stw      r0, 8(r29)
-	b        lbl_8008EC74
-
-lbl_8008EC6C:
-	li       r0, 0
-	stw      r0, 8(r29)
-
-lbl_8008EC74:
-	lwz      r4, 0(r29)
-	lbz      r0, 0x21(r4)
-	rlwinm.  r0, r0, 0, 0x1e, 0x1e
-	beq      lbl_8008ECA4
-	lha      r0, 0xc(r4)
-	mr       r7, r31
-	lbz      r5, 0x22(r4)
-	addi     r3, r29, 0xc
-	lha      r6, 0x24(r4)
-	add      r4, r30, r0
-	bl       makeColorTable__FPP8_GXColorPC16JPAClrAnmKeyDataUcsP7JKRHeap
-	b        lbl_8008ECAC
-
-lbl_8008ECA4:
-	li       r0, 0
-	stw      r0, 0xc(r29)
-
-lbl_8008ECAC:
-	lwz      r4, 0(r29)
-	lbz      r0, 0x21(r4)
-	rlwinm.  r0, r0, 0, 0x1c, 0x1c
-	beq      lbl_8008ECDC
-	lha      r0, 0xe(r4)
-	mr       r7, r31
-	lbz      r5, 0x23(r4)
-	addi     r3, r29, 0x10
-	lha      r6, 0x24(r4)
-	add      r4, r30, r0
-	bl       makeColorTable__FPP8_GXColorPC16JPAClrAnmKeyDataUcsP7JKRHeap
-	b        lbl_8008ECE4
-
-lbl_8008ECDC:
-	li       r0, 0
-	stw      r0, 0x10(r29)
-
-lbl_8008ECE4:
-	lwz      r0, 0x24(r1)
-	mr       r3, r29
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**

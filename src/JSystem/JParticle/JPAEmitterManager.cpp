@@ -14,7 +14,7 @@ JPAEmitterManager::JPAEmitterManager(u32 ptclNum, u32 emtrNum, JKRHeap* heap, u8
 	mGrpMax  = groups;
 	mResMax  = resnum;
 
-	JPABaseEmitter* emitters = new (heap, 0) JPABaseEmitter[mEmtrMax]; // JPABaseEmitter ctor needs GXColor instead of TColor to match
+	JPABaseEmitter* emitters = new (heap, 0) JPABaseEmitter[mEmtrMax];
 	for (int i = 0; i < mEmtrMax; i++) {
 		mFreeEmtrList.prepend(&emitters[i].mLink);
 	}
