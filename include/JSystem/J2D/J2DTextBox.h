@@ -115,8 +115,8 @@ struct J2DTextBox : public J2DPane {
 	JUTResFont* mFont;               // _100
 	JUtility::TColor mCharColor;     // _104
 	JUtility::TColor mGradientColor; // _108
-	f32 _10C;                        // _10C
-	f32 _110;                        // _110
+	f32 mOffsetX;                    // _10C
+	f32 mOffsetY;                    // _110
 	f32 mCharSpacing;                // _114
 	f32 mLineSpacing;                // _118
 	JGeometry::TVec2f mFontSize;     // _11C

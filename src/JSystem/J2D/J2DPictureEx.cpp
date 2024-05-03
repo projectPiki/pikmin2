@@ -64,11 +64,11 @@ void J2DPictureEx::initiate(const ResTIMG* img, const ResTLUT* lut)
  */
 void J2DPictureEx::initialize(u32 matFlag)
 {
-	mBloBlockType = 'PIC2';
-	mMaterial     = new J2DMaterial(matFlag);
-	_198          = true;
-	mMaterialNum  = 0xFFFF;
-	mMaterialID   = 0xFFFF;
+	mBloBlockType   = 'PIC2';
+	mMaterial       = new J2DMaterial(matFlag);
+	mWasInitialized = true;
+	mMaterialNum    = 0xFFFF;
+	mMaterialID     = 0xFFFF;
 	for (int i = 0; i < 4; i++) {
 		_170[i] = 0xFFFF;
 	}
@@ -120,8 +120,8 @@ J2DPictureEx::J2DPictureEx(J2DPane* parent, JSURandomInputStream* input, u32 fla
 		mMaterial                    = &(materials[mMaterialID]);
 		materials[mMaterialID].mPane = this;
 	}
-	_198   = false;
-	mAlpha = 255;
+	mWasInitialized = false;
+	mAlpha          = 255;
 	rewriteAlpha();
 	for (int i = 0; i < 4; i++) {
 		mBlendColorRatio[i] = 1.0f;
@@ -340,7 +340,7 @@ J2DPictureEx::J2DPictureEx(u64 id, const JGeometry::TBox2f& bounds, const char* 
  */
 J2DPictureEx::~J2DPictureEx()
 {
-	if (_198) {
+	if (mWasInitialized) {
 		delete mMaterial;
 	}
 }

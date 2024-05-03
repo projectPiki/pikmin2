@@ -14,14 +14,14 @@
  */
 J2DWindow::J2DWindow()
     : J2DPane()
-    , _100(nullptr)
-    , _104(nullptr)
-    , _108(nullptr)
-    , _10C(nullptr)
+    , mFrameTextureA(nullptr)
+    , mFrameTextureB(nullptr)
+    , mFrameTextureC(nullptr)
+    , mFrameTextureD(nullptr)
     , mContentsTexture(nullptr)
     , mPalette(nullptr)
 {
-	_144 = 0;
+	mWrapFlags = 0;
 	setContentsColor(TCOLOR_WHITE_U32);
 	mBlack = TCOLOR_BLACK_U32;
 	mWhite = TCOLOR_WHITE_U32;
@@ -33,10 +33,10 @@ J2DWindow::J2DWindow()
  */
 J2DWindow::J2DWindow(J2DPane* parent, JSURandomInputStream* input, JKRArchive* archive)
     : J2DPane()
-    , _100(nullptr)
-    , _104(nullptr)
-    , _108(nullptr)
-    , _10C(nullptr)
+    , mFrameTextureA(nullptr)
+    , mFrameTextureB(nullptr)
+    , mFrameTextureC(nullptr)
+    , mFrameTextureD(nullptr)
     , mContentsTexture(nullptr)
     , mPalette(nullptr)
 {
@@ -48,10 +48,10 @@ J2DWindow::J2DWindow(J2DPane* parent, JSURandomInputStream* input, JKRArchive* a
  * @note Size: 0x560
  */
 J2DWindow::J2DWindow(J2DPane* parent, JSURandomInputStream* input, J2DMaterial* materialList)
-    : _100(nullptr)
-    , _104(nullptr)
-    , _108(nullptr)
-    , _10C(nullptr)
+    : mFrameTextureA(nullptr)
+    , mFrameTextureB(nullptr)
+    , mFrameTextureC(nullptr)
+    , mFrameTextureD(nullptr)
     , mContentsTexture(nullptr)
     , mPalette(nullptr)
 {
@@ -88,10 +88,10 @@ J2DWindow::J2DWindow(J2DPane* parent, JSURandomInputStream* input, J2DMaterial* 
 		*colors[i] = JUtility::TColor(data.mContentColors[i]);
 	}
 
-	_144 = data._18;
-	_114.set(data.mMinX, data.mMinY, data.mMinX + data.mOffsetX, data.mMinY + data.mOffsetY);
+	mWrapFlags = data._18;
+	mWindowArea.set(data.mMinX, data.mMinY, data.mMinX + data.mOffsetX, data.mMinY + data.mOffsetY);
 
-	u16 parentID           = data._24;
+	u16 parentID           = data.mParentId;
 	J2DMaterial* parentMat = nullptr;
 	if (parentID != 0xFFFF) {
 		parentMat = &materialList[parentID];
@@ -123,10 +123,10 @@ J2DWindow::J2DWindow(J2DPane* parent, JSURandomInputStream* input, J2DMaterial* 
 	}
 
 	JUTTexture** textures[4] = {
-		&_100,
-		&_104,
-		&_108,
-		&_10C,
+		&mFrameTextureA,
+		&mFrameTextureB,
+		&mFrameTextureC,
+		&mFrameTextureD,
 	};
 
 	J2DMaterial* mat;
@@ -168,28 +168,28 @@ void J2DWindow::private_readStream(J2DPane* parent, JSURandomInputStream* input,
 	f32 y0     = input->readU16();
 	f32 x1     = x0 + input->readU16();
 	f32 y1     = y0 + input->readU16();
-	_114.set(x0, y0, x1, y1);
+	mWindowArea.set(x0, y0, x1, y1);
 	ResTIMG* timg = (ResTIMG*)getPointer(input, 'TIMG', arc);
 	if (timg) {
-		_100 = new JUTTexture(timg, 0);
+		mFrameTextureA = new JUTTexture(timg, 0);
 	}
 	timg = (ResTIMG*)getPointer(input, 'TIMG', arc);
 	if (timg) {
-		_104 = new JUTTexture(timg, 0);
+		mFrameTextureB = new JUTTexture(timg, 0);
 	}
 	timg = (ResTIMG*)getPointer(input, 'TIMG', arc);
 	if (timg) {
-		_108 = new JUTTexture(timg, 0);
+		mFrameTextureC = new JUTTexture(timg, 0);
 	}
 	timg = (ResTIMG*)getPointer(input, 'TIMG', arc);
 	if (timg) {
-		_10C = new JUTTexture(timg, 0);
+		mFrameTextureD = new JUTTexture(timg, 0);
 	}
 	ResTLUT* tlut = (ResTLUT*)getPointer(input, 'TLUT', arc);
 	if (tlut) {
 		mPalette = new JUTPalette(GX_TLUT0, tlut);
 	}
-	_144 = input->readByte();
+	mWrapFlags = input->readByte();
 	mContentsColorA.set(input->readU32());
 	mContentsColorB.set(input->readU32());
 	mContentsColorC.set(input->readU32());
@@ -222,9 +222,9 @@ void J2DWindow::private_readStream(J2DPane* parent, JSURandomInputStream* input,
  */
 void J2DWindow::initinfo2()
 {
-	if (_100 && _104 && _108 && _10C) {
-		mMinWidth  = _100->getSizeX() + _104->getSizeX();
-		mMinHeight = _100->getSizeY() + _108->getSizeY();
+	if (mFrameTextureA && mFrameTextureB && mFrameTextureC && mFrameTextureD) {
+		mMinWidth  = mFrameTextureA->getSizeX() + mFrameTextureB->getSizeX();
+		mMinHeight = mFrameTextureA->getSizeY() + mFrameTextureC->getSizeY();
 
 	} else {
 		mMinWidth  = 1;
@@ -233,16 +233,16 @@ void J2DWindow::initinfo2()
 	}
 
 	_145            = 0;
-	JUTTexture* tex = _100;
-	if (*_104 != *tex) {
+	JUTTexture* tex = mFrameTextureA;
+	if (*mFrameTextureB != *tex) {
 		_145 |= 1;
-		tex = _104;
+		tex = mFrameTextureB;
 	}
-	if (*_10C != *tex) {
+	if (*mFrameTextureD != *tex) {
 		_145 |= 2;
-		tex = _10C;
+		tex = mFrameTextureD;
 	}
-	if (*_108 != *tex) {
+	if (*mFrameTextureC != *tex) {
 		_145 |= 4;
 	}
 }
@@ -253,10 +253,10 @@ void J2DWindow::initinfo2()
  */
 J2DWindow::~J2DWindow()
 {
-	delete _100;
-	delete _104;
-	delete _108;
-	delete _10C;
+	delete mFrameTextureA;
+	delete mFrameTextureB;
+	delete mFrameTextureC;
+	delete mFrameTextureD;
 	delete mPalette;
 	delete mContentsTexture;
 }
@@ -268,8 +268,9 @@ J2DWindow::~J2DWindow()
 void J2DWindow::draw(const JGeometry::TBox2f& inBox)
 {
 	JGeometry::TBox2f newBox;
-	if (_100 && _104 && _108 && _10C) {
-		newBox.set(_100->getSizeX(), _100->getSizeY(), inBox.getWidth() - _104->getSizeX(), inBox.getHeight() - _108->getSizeY());
+	if (mFrameTextureA && mFrameTextureB && mFrameTextureC && mFrameTextureD) {
+		newBox.set(mFrameTextureA->getSizeX(), mFrameTextureA->getSizeY(), inBox.getWidth() - mFrameTextureB->getSizeX(),
+		           inBox.getHeight() - mFrameTextureC->getSizeY());
 	} else {
 		newBox.set(0.0f, 0.0f, inBox.getWidth(), inBox.getHeight());
 	}
@@ -292,87 +293,87 @@ void J2DWindow::draw_private(const JGeometry::TBox2f& box0, const JGeometry::TBo
 	GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
 	GXSetNumTexGens(1);
 
-	if (_100 && _104 && _108 && _10C) {
+	if (mFrameTextureA && mFrameTextureB && mFrameTextureC && mFrameTextureD) {
 		f32 startX = box0.i.x;
 		f32 startY = box0.i.y;
 
-		f32 x1 = box0.f.x - _10C->getSizeX();
-		f32 y1 = box0.f.y - _10C->getSizeY();
+		f32 x1 = box0.f.x - mFrameTextureD->getSizeX();
+		f32 y1 = box0.f.y - mFrameTextureD->getSizeY();
 
-		f32 x2 = startX + _100->getSizeX();
-		f32 y2 = startY + _100->getSizeY();
+		f32 x2 = startX + mFrameTextureA->getSizeX();
+		f32 y2 = startY + mFrameTextureA->getSizeY();
 
-		drawFrameTexture(_100, startX, startY, _144 & 0x80, _144 & 0x40, true);
+		drawFrameTexture(mFrameTextureA, startX, startY, mWrapFlags & 0x80, mWrapFlags & 0x40, true);
 
 		bool flag1 = isFlag2(1);
-		drawFrameTexture(_104, x1, startY, _144 & 0x20, _144 & 0x10, flag1);
+		drawFrameTexture(mFrameTextureB, x1, startY, mWrapFlags & 0x20, mWrapFlags & 0x10, flag1);
 
 		u16 u0;
-		if (_144 & 0x20) {
+		if (mWrapFlags & 0x20) {
 			u0 = 0x8000;
 		} else {
 			u0 = 0;
 		}
 		u16 v0;
-		if (_144 & 0x10) {
+		if (mWrapFlags & 0x10) {
 			v0 = 0;
 		} else {
 			v0 = 0x8000;
 		}
 		u16 v1 = v0 ^ 0x8000;
 
-		drawFrameTexture(_104, x2, startY, x1 - x2, _104->getSizeY(), u0, v0, u0, v1, false);
+		drawFrameTexture(mFrameTextureB, x2, startY, x1 - x2, mFrameTextureB->getSizeY(), u0, v0, u0, v1, false);
 
 		bool isset2 = isFlag2(2);
-		drawFrameTexture(_10C, x1, y1, _144 & 2, _144 & 1, isset2);
+		drawFrameTexture(mFrameTextureD, x1, y1, mWrapFlags & 2, mWrapFlags & 1, isset2);
 
 		u16 u1;
-		if (_144 & 2) {
+		if (mWrapFlags & 2) {
 			u1 = 0x8000;
 		} else {
 			u1 = 0;
 		}
 		u16 v2;
-		if (_144 & 1) {
+		if (mWrapFlags & 1) {
 			v2 = 0;
 		} else {
 			v2 = 0x8000;
 		}
 		v1 = v2 ^ 0x8000;
-		drawFrameTexture(_10C, x2, y1, x1 - x2, _10C->getSizeY(), u1, v2, u1, v1, false);
+		drawFrameTexture(mFrameTextureD, x2, y1, x1 - x2, mFrameTextureD->getSizeY(), u1, v2, u1, v1, false);
 
 		u16 u2;
-		if (_144 & 2) {
+		if (mWrapFlags & 2) {
 			u2 = 0;
 		} else {
 			u2 = 0x8000;
 		}
 		u16 u3 = u2 ^ 0x8000;
 		u16 v3;
-		if (_144 & 1) {
+		if (mWrapFlags & 1) {
 			v3 = 0x8000;
 		} else {
 			v3 = 0;
 		}
-		drawFrameTexture(_10C, x1, y2, _10C->getSizeX(), y1 - y2, u2, v3, u3, v3, false);
+		drawFrameTexture(mFrameTextureD, x1, y2, mFrameTextureD->getSizeX(), y1 - y2, u2, v3, u3, v3, false);
 
 		bool isset4 = isFlag2(4);
-		drawFrameTexture(_108, startX, y1, _144 & 8, _144 & 4, isset4);
+		drawFrameTexture(mFrameTextureC, startX, y1, mWrapFlags & 8, mWrapFlags & 4, isset4);
 
 		u16 u4;
-		if (_144 & 8) {
+		if (mWrapFlags & 8) {
 			u4 = 0;
 		} else {
 			u4 = 0x8000;
 		}
 		u16 u5 = u4 ^ 0x8000;
 		u16 v4;
-		if (_144 & 4) {
+		if (mWrapFlags & 4) {
 			v4 = 0x8000;
 		} else {
 			v4 = 0;
 		}
-		drawFrameTexture(_108, startX, y2, _108->getSizeX(), y1 - y2, u4, v4, u5, v4, false);
+		drawFrameTexture(mFrameTextureC, startX, y2, mFrameTextureC->getSizeX(), y1 - y2, u4, v4, u5, v4, false);
 	}
 	GXSetTevOp(GX_TEVSTAGE0, GX_PASSCLR);
 	GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR0A0);
@@ -408,8 +409,8 @@ void J2DWindow::resize(f32 maxX, f32 maxY)
 	f32 width  = getWidth();
 	f32 height = getHeight();
 	J2DPane::resize(maxX, maxY);
-	_114.f.x += maxX - width;
-	_114.f.y += maxY - height;
+	mWindowArea.f.x += maxX - width;
+	mWindowArea.f.y += maxY - height;
 	for (JSUTreeIterator<J2DPane> it(getFirstChild()); it != getEndChild(); it++) {
 		if (it->getTypeID() == PANETYPE_TextBox && it->isConnectParent()) {
 			f32 newX = maxX - width + it->getWidth();
@@ -454,9 +455,9 @@ void J2DWindow::drawSelf(f32 offsetX, f32 offsetY, Mtx* mtx)
 		Mtx posMtx;
 		PSMTXConcat(*mtx, mGlobalMtx, posMtx);
 		GXLoadPosMtxImm(posMtx, 0);
-		draw_private(box, _114);
+		draw_private(box, mWindowArea);
 	}
-	clip(_114);
+	clip(mWindowArea);
 }
 
 /**
@@ -812,7 +813,7 @@ void J2DWindow::setTevMode(JUTTexture* texture, JUtility::TColor color1, JUtilit
  */
 JUTTexture* J2DWindow::getFrameTexture(u8 frameMaterialIndex, u8 textureIndex) const
 {
-	JUTTexture* textures[4] = { _100, _104, _108, _10C };
+	JUTTexture* textures[4] = { mFrameTextureA, mFrameTextureB, mFrameTextureC, mFrameTextureD };
 	if (frameMaterialIndex >= 4 || textureIndex != 0) {
 		return nullptr;
 	}
@@ -825,7 +826,7 @@ JUTTexture* J2DWindow::getFrameTexture(u8 frameMaterialIndex, u8 textureIndex) c
  */
 bool J2DWindow::isUsed(const ResTIMG* resource)
 {
-	JUTTexture* textures[5] = { _100, _104, _108, _10C, mContentsTexture };
+	JUTTexture* textures[5] = { mFrameTextureA, mFrameTextureB, mFrameTextureC, mFrameTextureD, mContentsTexture };
 	for (u8 i = 0; i < 5; i++) {
 		if (textures[i] != nullptr && textures[i]->mTexInfo == resource) {
 			return true;

@@ -14,7 +14,7 @@ struct J2DWindowData {
 	u16 mOffsetX;          // _1E
 	u16 mOffsetY;          // _20
 	u16 _22;               // _22
-	u16 _24;               // _24
+	u16 mParentId;         // _24
 	u16 _26;               // _26
 	u16 _28[4];            // _28
 	u32 mContentColors[4]; // _30
@@ -115,12 +115,12 @@ struct J2DWindow : public J2DPane {
 
 	// _000      = VTBL
 	// _000-_100 = J2DPane
-	JUTTexture* _100;                 // _100
-	JUTTexture* _104;                 // _104
-	JUTTexture* _108;                 // _108
-	JUTTexture* _10C;                 // _10C
+	JUTTexture* mFrameTextureA;       // _100
+	JUTTexture* mFrameTextureB;       // _104
+	JUTTexture* mFrameTextureC;       // _108
+	JUTTexture* mFrameTextureD;       // _10C
 	JUTTexture* mContentsTexture;     // _110
-	JGeometry::TBox2f _114;           // _114
+	JGeometry::TBox2f mWindowArea;    // _114
 	JUTPalette* mPalette;             // _124
 	JUtility::TColor mContentsColorA; // _128
 	JUtility::TColor mContentsColorB; // _12C
@@ -130,7 +130,7 @@ struct J2DWindow : public J2DPane {
 	JUtility::TColor mBlack;          // _13C
 	s16 mMinWidth;                    // _140
 	s16 mMinHeight;                   // _142
-	u8 _144;                          // _144
+	u8 mWrapFlags;                    // _144
 	u8 _145;                          // _145
 };
 

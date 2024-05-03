@@ -1297,7 +1297,7 @@ lbl_80054504:
  */
 u8 J2DMaterialFactory::newIndTexStageNum(int idx) const
 {
-	if (mIndInitData && mIndInitData[idx]._00 == 1) {
+	if (mIndInitData && mIndInitData[idx].mUseData == 1) {
 		return mIndInitData[idx].mIndTexStageNum;
 	}
 	return 0;
@@ -1310,7 +1310,7 @@ u8 J2DMaterialFactory::newIndTexStageNum(int idx) const
 J2DIndTexOrder J2DMaterialFactory::newIndTexOrder(int idx, int p2) const
 {
 	J2DIndTexOrder texOrder;
-	if (mIndInitData && mIndInitData[idx]._00 == 1) {
+	if (mIndInitData && mIndInitData[idx].mUseData == 1) {
 		return J2DIndTexOrder(mIndInitData[idx].mIndTexOrderInfo[p2]);
 	}
 	return texOrder;
@@ -1323,7 +1323,7 @@ J2DIndTexOrder J2DMaterialFactory::newIndTexOrder(int idx, int p2) const
 J2DIndTexMtx J2DMaterialFactory::newIndTexMtx(int idx, int p2) const
 {
 	J2DIndTexMtx mtx;
-	if (mIndInitData && mIndInitData[idx]._00 == 1) {
+	if (mIndInitData && mIndInitData[idx].mUseData == 1) {
 		return J2DIndTexMtx(mIndInitData[idx].mIndTexMtxInfo[p2]);
 	}
 	return mtx;
@@ -1401,7 +1401,7 @@ lbl_800546B4:
 J2DIndTevStage J2DMaterialFactory::newIndTevStage(int idx, int p2) const
 {
 	J2DIndTevStage tevStage;
-	if (mIndInitData && mIndInitData[idx]._00 == 1) {
+	if (mIndInitData && mIndInitData[idx].mUseData == 1) {
 		return J2DIndTevStage(mIndInitData[idx].mIndTevStageInfo[p2]);
 	}
 	return tevStage;
@@ -1503,7 +1503,7 @@ lbl_800547FC:
 J2DIndTexCoordScale J2DMaterialFactory::newIndTexCoordScale(int idx, int p2) const
 {
 	J2DIndTexCoordScale coordScale;
-	if (mIndInitData && mIndInitData[idx]._00 == 1) {
+	if (mIndInitData && mIndInitData[idx].mUseData == 1) {
 		return J2DIndTexCoordScale(mIndInitData[idx].mIndTexCoordScaleInfo[p2]);
 	}
 	return coordScale;

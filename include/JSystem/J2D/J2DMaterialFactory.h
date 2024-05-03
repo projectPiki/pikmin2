@@ -7,7 +7,7 @@
 #include "types.h"
 
 struct J2DIndInitData {
-	u8 _00;                                           // _00
+	u8 mUseData;                                      // _00
 	u8 mIndTexStageNum;                               // _01
 	u8 _02[2];                                        // _02
 	J2DIndTexOrderInfo mIndTexOrderInfo[4];           // _04

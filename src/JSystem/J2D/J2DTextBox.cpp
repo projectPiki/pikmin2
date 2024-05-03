@@ -102,9 +102,9 @@ J2DTextBox::J2DTextBox(J2DPane* parent, JSURandomInputStream* input, u32 flags, 
 
 	u16 strLength = 0;
 	if (!(flags & 0x2000000)) {
-		strLength = info._1C;
-		if ((s16)info._1C == -1) {
-			strLength = info._1E + 1;
+		strLength = info.mTextBoxLength;
+		if ((s16)info.mTextBoxLength == -1) {
+			strLength = info.mMaxReadLength + 1;
 		}
 	}
 
@@ -118,7 +118,7 @@ J2DTextBox::J2DTextBox(J2DPane* parent, JSURandomInputStream* input, u32 flags, 
 	if (mStringPtr) {
 		mStringLength = strLength;
 		int temp_r0   = (u16)strLength - 1;
-		u16 var_r26_2 = info._1E;
+		u16 var_r26_2 = info.mMaxReadLength;
 
 		if (temp_r0 < var_r26_2) {
 			var_r26_2 = (u16)temp_r0;
@@ -128,7 +128,7 @@ J2DTextBox::J2DTextBox(J2DPane* parent, JSURandomInputStream* input, u32 flags, 
 		mStringPtr[var_r26_2] = 0;
 	}
 
-	input->skip(info._1E);
+	input->skip(info.mMaxReadLength);
 	input->seek(startPos + header.mBlockLength, SEEK_SET);
 	mBlack = JUtility::TColor(0);
 	mWhite = JUtility::TColor(0xFFFFFFFF);
@@ -154,8 +154,8 @@ J2DTextBox::J2DTextBox(J2DPane* parent, JSURandomInputStream* input, u32 flags, 
 		}
 	}
 
-	_10C             = 0.0f;
-	_110             = 0.0f;
+	mOffsetX         = 0.0f;
+	mOffsetY         = 0.0f;
 	mIsTextFontOwned = true;
 }
 
@@ -199,8 +199,8 @@ void J2DTextBox::initiate(const ResFONT* resFont, const char* str, s16 strLength
 		copyString(str, strLength);
 	}
 
-	_10C         = 0.0f;
-	_110         = 0.0f;
+	mOffsetX     = 0.0f;
+	mOffsetY     = 0.0f;
 	mCharSpacing = 0.0f;
 
 	if (!mFont) {
@@ -278,8 +278,8 @@ void J2DTextBox::private_readStream(J2DPane* parent, JSURandomInputStream* input
 		bytesRemaining--;
 	}
 
-	_10C = 0.0f;
-	_110 = 0.0f;
+	mOffsetX = 0.0f;
+	mOffsetY = 0.0f;
 	input->seek(initialPosition + header.mBlockLength, SEEK_SET);
 	mIsTextFontOwned = true;
 }
@@ -468,7 +468,7 @@ void J2DTextBox::drawSelf(f32 x, f32 y, Mtx* mtx)
 
 	if (mStringPtr) {
 		printer.printReturn(mStringPtr, mBounds.getWidth() + 0.0001f, mBounds.getHeight(), (J2DTextBoxHBinding)(mFlags >> 2 & 3),
-		                    (J2DTextBoxVBinding)(mFlags & 3), _10C, _110, mColorAlpha);
+		                    (J2DTextBoxVBinding)(mFlags & 3), mOffsetX, mOffsetY, mColorAlpha);
 	}
 }
 

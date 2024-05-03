@@ -84,8 +84,8 @@ struct J2DTextBoxBlock {
 	u32 mGradientColor;  // _14
 	u8 mDoConnectParent; // _18
 	u8 _19[3];           // _19, padding?
-	u16 _1C;             // _1C
-	u16 _1E;             // _1E
+	u16 mTextBoxLength;  // _1C
+	u16 mMaxReadLength;  // _1E
 };
 
 // Representation of "PAN2" entry in a scrnblo2 file

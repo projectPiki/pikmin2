@@ -332,7 +332,7 @@ struct J2DPictureEx : public J2DPicture {
 	u16 _170[4];                          // _170
 	f32 mExBlendColorRatio[4];            // _178
 	f32 mExBlendAlphaRatio[4];            // _188
-	bool _198;                            // _198
+	bool mWasInitialized;                 // _198
 	J2DAnmVisibilityFull* mAnmVisibility; // _19C
 	J2DAnmVtxColor* mAnmVtxColor;         // _1A0
 	u8 _1A4;                              // _1A4

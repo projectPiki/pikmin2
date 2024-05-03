@@ -28,8 +28,8 @@ J2DWindowEx::J2DWindowEx(J2DPane* parent, JSURandomInputStream* input, u32 flags
 	input->peek(auStack_90, 8);
 	makePaneExStream(parent, input);
 	input->seek(iVar2 + auStack_90[1], SEEK_SET);
-	J2DWindowData auStack_70;
-	input->read(&auStack_70, sizeof(J2DWindowData));
+	J2DWindowData windowData;
+	input->read(&windowData, sizeof(J2DWindowData));
 
 	JUtility::TColor* colors[4] = { nullptr };
 	colors[0]                   = &mContentsColorA;
@@ -38,20 +38,20 @@ J2DWindowEx::J2DWindowEx(J2DPane* parent, JSURandomInputStream* input, u32 flags
 	colors[3]                   = &mContentsColorD;
 
 	for (int i = 0; i < 4; i++) {
-		_15C[i]            = auStack_70.mContentIds[i];
+		_15C[i]            = windowData.mContentIds[i];
 		mFrameMaterials[i] = nullptr;
 		if (_15C[i] != 0xffff) {
 			mFrameMaterials[i]           = materials + _15C[i];
 			(materials + _15C[i])->mPane = this;
 		}
-		_168[i]      = auStack_70._28[i];
-		*(colors[i]) = JUtility::TColor(auStack_70.mContentColors[i]);
+		_168[i]      = windowData._28[i];
+		*(colors[i]) = JUtility::TColor(windowData.mContentColors[i]);
 	}
 
-	_144 = auStack_70._18;
-	_114.set(auStack_70.mMinX, auStack_70.mMinY, auStack_70.mMinX + auStack_70.mOffsetX, auStack_70.mMinY + auStack_70.mOffsetY);
-	_166              = auStack_70._22;
-	mMaterialID       = auStack_70._24;
+	mWrapFlags = windowData._18;
+	mWindowArea.set(windowData.mMinX, windowData.mMinY, windowData.mMinX + windowData.mOffsetX, windowData.mMinY + windowData.mOffsetY);
+	_166              = windowData._22;
+	mMaterialID       = windowData.mParentId;
 	mContentsMaterial = nullptr;
 
 	if (mMaterialID != 0xffff) {
@@ -61,10 +61,10 @@ J2DWindowEx::J2DWindowEx(J2DPane* parent, JSURandomInputStream* input, u32 flags
 
 	input->seek(position + uStack_88[1], SEEK_SET);
 	rewriteAlpha();
-	_100             = nullptr;
-	_104             = nullptr;
-	_108             = nullptr;
-	_10C             = nullptr;
+	mFrameTextureA   = nullptr;
+	mFrameTextureB   = nullptr;
+	mFrameTextureC   = nullptr;
+	mFrameTextureD   = nullptr;
 	mPalette         = nullptr;
 	mContentsTexture = nullptr;
 	mMaterialFlags   = 0;
@@ -280,7 +280,7 @@ void J2DWindowEx::initialize(u32, const ResTIMG**, const JGeometry::TBox2f* box)
 	J2DTevOrder order;
 	mFrameMaterials[0]->getTevBlock()->setTevOrder(0, order);
 	mFrameMaterials[0]->getTevBlock()->getTevStage(0);
-	_114.i.x = 0.0f; // something has to use 0.0f around here
+	mWindowArea.i.x = 0.0f; // something has to use 0.0f around here
 }
 
 /**
@@ -328,8 +328,8 @@ void J2DWindowEx::drawSelf(f32 x, f32 y, Mtx* texMtx)
 	Mtx v1;
 	PSMTXConcat(*texMtx, mGlobalMtx, v1);
 	GXLoadPosMtxImm(v1, 0);
-	draw_private(box, _114);
-	clip(_114);
+	draw_private(box, mWindowArea);
+	clip(mWindowArea);
 }
 
 /**
@@ -372,13 +372,13 @@ void J2DWindowEx::draw_private(const JGeometry::TBox2<f32>& p1, const JGeometry:
 			f32 dVar14 = dVar16 + textures[0]->getSizeX();
 			f32 dVar12 = dVar15 + textures[0]->getSizeY();
 			u16 local_c4;
-			if (_144 & 0x80) {
+			if (mWrapFlags & 0x80) {
 				local_c4 = 0;
 			} else {
 				local_c4 = 0x8000;
 			}
 			u16 local_c6;
-			if (_144 & 0x40) {
+			if (mWrapFlags & 0x40) {
 				local_c6 = 0;
 			} else {
 				local_c6 = 0x8000;
@@ -388,13 +388,13 @@ void J2DWindowEx::draw_private(const JGeometry::TBox2<f32>& p1, const JGeometry:
 			                 0x8000 - local_c6, mFrameMaterials[0], true);
 			bool r9 = mFrameMaterials[1] != mFrameMaterials[0];
 			u16 local_c8;
-			if (_144 & 0x20) {
+			if (mWrapFlags & 0x20) {
 				local_c8 = 0;
 			} else {
 				local_c8 = 0x8000;
 			}
 			u16 local_ca;
-			if (_144 & 0x10) {
+			if (mWrapFlags & 0x10) {
 				local_ca = 0;
 			} else {
 				local_ca = 0x8000;
@@ -403,14 +403,14 @@ void J2DWindowEx::draw_private(const JGeometry::TBox2<f32>& p1, const JGeometry:
 			                 0x8000 - local_ca, mFrameMaterials[1], r9);
 
 			u16 local_cc;
-			if (_144 & 0x20) {
+			if (mWrapFlags & 0x20) {
 				local_cc = 0x8000;
 			} else {
 				local_cc = 0;
 			}
 
 			u16 local_ce;
-			if (_144 & 0x10) {
+			if (mWrapFlags & 0x10) {
 				local_ce = 0;
 			} else {
 				local_ce = 0x8000;
@@ -420,13 +420,13 @@ void J2DWindowEx::draw_private(const JGeometry::TBox2<f32>& p1, const JGeometry:
 
 			r9 = mFrameMaterials[3] != mFrameMaterials[1];
 			u16 local_d0;
-			if (_144 & 2) {
+			if (mWrapFlags & 2) {
 				local_d0 = 0;
 			} else {
 				local_d0 = 0x8000;
 			}
 			u16 local_d2;
-			if (_144 & 1) {
+			if (mWrapFlags & 1) {
 				local_d2 = 0;
 			} else {
 				local_d2 = 0x8000;
@@ -436,14 +436,14 @@ void J2DWindowEx::draw_private(const JGeometry::TBox2<f32>& p1, const JGeometry:
 			                 0x8000 - local_d2, mFrameMaterials[3], r9);
 
 			u16 local_d4;
-			if (_144 & 2) {
+			if (mWrapFlags & 2) {
 				local_d4 = 0x8000;
 			} else {
 				local_d4 = 0;
 			}
 
 			u16 local_d6;
-			if (_144 & 1) {
+			if (mWrapFlags & 1) {
 				local_d6 = 0;
 			} else {
 				local_d6 = 0x8000;
@@ -452,14 +452,14 @@ void J2DWindowEx::draw_private(const JGeometry::TBox2<f32>& p1, const JGeometry:
 			                 mFrameMaterials[3], false);
 
 			u16 local_d8;
-			if (_144 & 2) {
+			if (mWrapFlags & 2) {
 				local_d8 = 0;
 			} else {
 				local_d8 = 0x8000;
 			}
 
 			u16 local_da;
-			if (_144 & 1) {
+			if (mWrapFlags & 1) {
 				local_da = 0x8000;
 			} else {
 				local_da = 0;
@@ -469,14 +469,14 @@ void J2DWindowEx::draw_private(const JGeometry::TBox2<f32>& p1, const JGeometry:
 
 			r9 = mFrameMaterials[2] != mFrameMaterials[3];
 			u16 local_dc;
-			if (_144 & 8) {
+			if (mWrapFlags & 8) {
 				local_dc = 0;
 			} else {
 				local_dc = 0x8000;
 			}
 
 			u16 local_de;
-			if (_144 & 4) {
+			if (mWrapFlags & 4) {
 				local_de = 0;
 			} else {
 				local_de = 0x8000;
@@ -485,14 +485,14 @@ void J2DWindowEx::draw_private(const JGeometry::TBox2<f32>& p1, const JGeometry:
 			                 0x8000 - local_de, mFrameMaterials[2], r9);
 
 			u16 local_e0;
-			if (_144 & 8) {
+			if (mWrapFlags & 8) {
 				local_e0 = 0;
 			} else {
 				local_e0 = 0x8000;
 			}
 
 			u16 local_e2;
-			if (_144 & 4) {
+			if (mWrapFlags & 4) {
 				local_e2 = 0x8000;
 			} else {
 				local_e2 = 0;

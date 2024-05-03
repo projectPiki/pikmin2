@@ -544,11 +544,11 @@ struct J2DTexCoord {
 };
 
 struct J2DTextureSRTInfo {
-	f32 _00; // _00
-	f32 _04; // _04
-	f32 _08; // _08
-	f32 _0C; // _0C
-	f32 _10; // _10
+	f32 mScaleX;       // _00
+	f32 mScaleY;       // _04
+	f32 mRotationDeg;  // _08, rotation in degrees
+	f32 mTranslationX; // _0C
+	f32 mTranslationY; // _10
 };
 
 extern const J2DTevStageInfo j2dDefaultTevStageInfo;

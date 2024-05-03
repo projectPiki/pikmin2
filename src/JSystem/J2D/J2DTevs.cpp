@@ -106,18 +106,18 @@ void J2DTexMtx::calc()
  * @note Address: 0x800592B4
  * @note Size: 0x190
  */
-void J2DTexMtx::getTextureMtx(const J2DTextureSRTInfo& info, Vec p2, Mtx mtx)
+void J2DTexMtx::getTextureMtx(const J2DTextureSRTInfo& info, Vec pos, Mtx mtx)
 {
-	f32 theta = (info._08 * PI) / 180.0f;
-	mtx[0][0] = info._00 * cosf_kludge(theta);
-	mtx[0][1] = -info._00 * sinf_kludge(theta);
+	f32 theta = (info.mRotationDeg * PI) / 180.0f;
+	mtx[0][0] = info.mScaleX * cosf_kludge(theta);
+	mtx[0][1] = -info.mScaleX * sinf_kludge(theta);
 	mtx[0][2] = 0.0f;
-	mtx[0][3] = -info._00 * cosf_kludge(theta) * p2.x + p2.y * (info._00 * sinf_kludge(theta)) + p2.x + info._0C;
+	mtx[0][3] = -info.mScaleX * cosf_kludge(theta) * pos.x + pos.y * (info.mScaleX * sinf_kludge(theta)) + pos.x + info.mTranslationX;
 
-	mtx[1][0] = info._04 * sinf_kludge(theta);
-	mtx[1][1] = info._04 * cosf_kludge(theta);
+	mtx[1][0] = info.mScaleY * sinf_kludge(theta);
+	mtx[1][1] = info.mScaleY * cosf_kludge(theta);
 	mtx[1][2] = 0.0f;
-	mtx[1][3] = -info._04 * sinf_kludge(theta) * p2.x - p2.y * (info._04 * cosf_kludge(theta)) + p2.y + info._10;
+	mtx[1][3] = -info.mScaleY * sinf_kludge(theta) * pos.x - pos.y * (info.mScaleY * cosf_kludge(theta)) + pos.y + info.mTranslationY;
 
 	mtx[2][0] = 0.0f;
 	mtx[2][1] = 0.0f;
@@ -131,16 +131,16 @@ void J2DTexMtx::getTextureMtx(const J2DTextureSRTInfo& info, Vec p2, Mtx mtx)
  */
 void J2DTexMtx::getTextureMtxMaya(const J2DTextureSRTInfo& info, Mtx mtx)
 {
-	f32 theta = (info._08 * PI) / 180.0f;
-	mtx[0][0] = info._00 * cosf_kludge(theta);
-	mtx[0][1] = info._04 * sinf_kludge(theta);
+	f32 theta = (info.mRotationDeg * PI) / 180.0f;
+	mtx[0][0] = info.mScaleX * cosf_kludge(theta);
+	mtx[0][1] = info.mScaleY * sinf_kludge(theta);
 	mtx[0][2] = 0.0f;
-	mtx[0][3] = (info._0C - 0.5f) * cosf_kludge(theta) - (info._10 - 0.5f + info._04) * sinf_kludge(theta) + 0.5f;
+	mtx[0][3] = (info.mTranslationX - 0.5f) * cosf_kludge(theta) - (info.mTranslationY - 0.5f + info.mScaleY) * sinf_kludge(theta) + 0.5f;
 
-	mtx[1][0] = -info._00 * sinf_kludge(theta);
-	mtx[1][1] = info._04 * cosf_kludge(theta);
+	mtx[1][0] = -info.mScaleX * sinf_kludge(theta);
+	mtx[1][1] = info.mScaleY * cosf_kludge(theta);
 	mtx[1][2] = 0.0f;
-	mtx[1][3] = -(info._0C - 0.5f) * sinf_kludge(theta) - (info._10 - 0.5f + info._04) * cosf_kludge(theta) + 0.5f;
+	mtx[1][3] = -(info.mTranslationX - 0.5f) * sinf_kludge(theta) - (info.mTranslationY - 0.5f + info.mScaleY) * cosf_kludge(theta) + 0.5f;
 
 	mtx[2][0] = 0.0f;
 	mtx[2][1] = 0.0f;

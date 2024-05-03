@@ -51,9 +51,9 @@ J2DTextBoxEx::J2DTextBoxEx(J2DPane* parent, JSURandomInputStream* input, u32 fla
 
 	u16 strLength = 0;
 	if (!(flags & 0x2000000)) {
-		strLength = info._1C;
-		if ((s16)info._1C == -1) {
-			strLength = info._1E + 1;
+		strLength = info.mTextBoxLength;
+		if ((s16)info.mTextBoxLength == -1) {
+			strLength = info.mMaxReadLength + 1;
 		}
 	}
 
@@ -65,23 +65,23 @@ J2DTextBoxEx::J2DTextBoxEx(J2DPane* parent, JSURandomInputStream* input, u32 fla
 	}
 
 	if (mStringPtr) {
-		mStringLength = strLength;
-		int temp_r0   = (u16)strLength - 1;
-		u16 var_r26_2 = info._1E;
+		mStringLength       = strLength;
+		int trueStrLength   = (u16)strLength - 1;
+		u16 bufferMaxLength = info.mMaxReadLength;
 
-		if (temp_r0 < var_r26_2) {
-			var_r26_2 = (u16)temp_r0;
+		if (trueStrLength < bufferMaxLength) {
+			bufferMaxLength = (u16)trueStrLength;
 		}
 
-		input->peek(mStringPtr, var_r26_2);
-		mStringPtr[var_r26_2] = 0;
+		input->peek(mStringPtr, bufferMaxLength);
+		mStringPtr[bufferMaxLength] = 0;
 	}
 
-	input->skip(info._1E);
+	input->skip(info.mMaxReadLength);
 	input->seek(startPos + header.mBlockLength, SEEK_SET);
 
-	_10C             = 0.0f;
-	_110             = 0.0f;
+	mOffsetX         = 0.0f;
+	mOffsetY         = 0.0f;
 	mIsTextFontOwned = false;
 	_140             = 0;
 }
@@ -136,8 +136,8 @@ void J2DTextBoxEx::drawSelf(f32 x, f32 y, Mtx* mtx)
 				GXSetChanMatColor(GX_ALPHA0, JUtility::TColor(mColorAlpha));
 			}
 
-			print.printReturn(mStringPtr, (int)(mBounds.getWidth() + 0.0001f), (int)mBounds.getHeight(), getHBinding(), getVBinding(), _10C,
-			                  _110, alpha);
+			print.printReturn(mStringPtr, (int)(mBounds.getWidth() + 0.0001f), (int)mBounds.getHeight(), getHBinding(), getVBinding(),
+			                  mOffsetX, mOffsetY, alpha);
 		}
 	}
 }
