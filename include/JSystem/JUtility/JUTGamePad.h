@@ -141,8 +141,9 @@ struct JUTGamePad : public JKRDisposer {
 		CStick() { clear(); }
 
 		void clear();
-		u32 getButton(u32);
-		u32 update(s8, s8, EStickMode, EWhichStick, u32);
+		u32 getButton(u32 buttons);
+		u32 update(s8 x_val, s8 y_val, JUTGamePad::EStickMode mode,
+                               JUTGamePad::EWhichStick stick, u32 buttons);
 
 		static f32 sPressPoint;
 		static f32 sReleasePoint;

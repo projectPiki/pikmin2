@@ -899,46 +899,59 @@ void JUTGamePad::CButton::clear()
  * @note Size: 0x190
  * update__Q210JUTGamePad7CButtonFPC9PADStatusUl
  */
-void JUTGamePad::CButton::update(PADStatus const* status, u32 buttonStatus)
+void JUTGamePad::CButton::update(PADStatus const* padStatus, u32 stickStatus)
 {
-	buttonStatus |= ((status != nullptr) ? status->button : 0);
-	mRepeat = 0;
-	if (mRepeatDelay != 0) {
-		if (mRepeatMask != 0) {
-			u32 buttonPressed = buttonStatus & mRepeatMask;
-			mRepeat           = 0;
-			if (buttonPressed == 0) {
-				mRepeatStart = 0;
-				mRepeatCount = 0;
-			} else if (mRepeatStart == buttonPressed) {
-				mRepeatCount++;
-				if (mRepeatCount == mRepeatDelay || (mRepeatCount > mRepeatDelay && (mRepeatCount - mRepeatDelay) % mRepeatRate == 0)) {
-					mRepeat = buttonPressed;
-				}
-			} else {
-				mRepeat      = buttonPressed & (mRepeatStart ^ ~0);
-				mRepeatStart = buttonPressed;
-				mRepeatCount = 0;
-			}
-		}
-	}
-	mButtonDown = buttonStatus & (buttonStatus ^ mButton);
-	mButtonUp   = mButton & (buttonStatus ^ mButton);
-	mButton     = buttonStatus;
-	mRepeat     = mRepeat | (mRepeatMask ^ ~0) & mButtonDown;
-	if (status != nullptr) {
-		mAnalogA      = status->analogA;
-		mAnalogB      = status->analogB;
-		mTriggerLeft  = status->triggerLeft;
-		mTriggerRight = status->triggerRight;
-	} else {
-		mAnalogA      = 0;
-		mAnalogB      = 0;
-		mTriggerLeft  = 0;
-		mTriggerRight = 0;
-	}
-	mAnalogL = (s32)mTriggerLeft / 150.0f;
-	mAnalogR = (s32)mTriggerRight / 150.0f;
+	u32 buttons;
+    if (padStatus != NULL) {
+        buttons = padStatus->button;
+    } else {
+        buttons = 0;
+    }
+
+    buttons = stickStatus | buttons;
+    mRepeat = 0;
+
+    if (mRepeatDelay != 0 && mRepeatMask != 0) {
+        u32 repeatButton = buttons & mRepeatMask;
+        mRepeat = 0;
+
+        if (repeatButton == 0) {
+            mRepeatStart = 0;
+            mRepeatCount = 0;
+        } else if (mRepeatStart == repeatButton) {
+            mRepeatCount++;
+
+            if (mRepeatCount == mRepeatDelay ||
+                (mRepeatCount > mRepeatDelay && (mRepeatCount - mRepeatDelay) % mRepeatRate == 0))
+            {
+                mRepeat = repeatButton;
+            }
+        } else {
+            mRepeat = repeatButton & (mRepeatStart ^ ~0);
+            mRepeatStart = repeatButton;
+            mRepeatCount = 0;
+        }
+    }
+
+    mButtonDown = buttons & (buttons ^ mButton);
+    mButtonUp = mButton & (buttons ^ mButton);
+    mButton = buttons;
+    mRepeat |= (mRepeatMask ^ ~0) & mButtonDown;
+
+    if (padStatus != NULL) {
+        mAnalogA = padStatus->analogA;
+        mAnalogB = padStatus->analogB;
+        mTriggerLeft = padStatus->triggerLeft;
+        mTriggerRight = padStatus->triggerRight;
+    } else {
+        mAnalogA = 0;
+        mAnalogB = 0;
+        mTriggerLeft = 0;
+        mTriggerRight = 0;
+    }
+
+    mAnalogL = (s32)mTriggerLeft / 150.0f;
+    mAnalogR = (s32)mTriggerRight / 150.0f;
 	/*
 	cmplwi   r4, 0
 	stwu     r1, -0x20(r1)
@@ -1077,34 +1090,50 @@ void JUTGamePad::CStick::clear()
  * @note Size: 0x2B8
  * update__Q210JUTGamePad6CStickFScScQ210JUTGamePad10EStickModeQ210JUTGamePad11EWhichStickUl
  */
-u32 JUTGamePad::CStick::update(s8 r4, s8 r5, JUTGamePad::EStickMode r6, JUTGamePad::EWhichStick stick, u32 r8)
-{
-	s32 v1;
+u32 JUTGamePad::CStick::update(s8 x_val, s8 y_val, JUTGamePad::EStickMode mode,
+                               JUTGamePad::EWhichStick stick, u32 buttons) {
+    s32 clamp;
+    switch (sClampMode) {
+    case 1:
+        clamp = stick == STICK_Main ? 54 : 42;
+        break;
+    case 2:
+        clamp = stick == STICK_Main ? 38 : 29;
+        break;
+    default:
+        clamp = stick == STICK_Main ? 69 : 57;
+        break;
+    }
+	
+    _0E = x_val;
+    _0F = y_val;
+    mXPos = x_val / (f32)clamp;
+    mYPos = y_val / (f32)clamp;
+    mStickMag = dolsqrtfull((mXPos * mXPos) + (mYPos * mYPos));
 
-	switch (sClampMode) {
-	case 1:
-		v1 = (stick == STICK_Main) ? 0x36 : 0x2a;
-		break;
-	case 2:
-		v1 = (stick == STICK_Main) ? 0x26 : 0x1d;
-		break;
-	default:
-		v1 = (stick == STICK_Main) ? 0x45 : 0x39;
-		break;
-	}
+    if (mStickMag > 1.0f) {
+        if (mode == 1) {
+            mXPos /= mStickMag;
+            mYPos /= mStickMag;
+        }
+        mStickMag = 1.0f;
+    }
 
-	this->_0E   = r4;
-	this->_0F   = r5;
-	this->mXPos = (f32)r4 / v1;
-	this->mYPos = (f32)r5 / v1;
+    if (mStickMag > 0.0f) {
+        if (mYPos == 0.0f) {
+            if (mXPos > 0.0f) {
+                mAngle = 0x4000;
+            } else {
+                mAngle = -0x4000;
+            }
+        } else {
+			// doesn't match with our PI constant, ...6 vs ...7
+            mAngle = (0x8000 / 3.1415926f) * (f32)atan2(mXPos, -mYPos);
+        }
+    }
 
-	f32 sq_dist = SQUARE(mXPos) + SQUARE(mYPos);
-
-	f32 d = dolsqrtfull(sq_dist);
-
-	mAngle = atan2(d, sq_dist) * (32768 / PI);
-
-	return getButton(r8 >> ((stick == STICK_Main) ? 0x18 : 0x10));
+    u32 buttonType = stick == STICK_Main ? 0x18 : 0x10;
+    return getButton(buttons >> buttonType);
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x40(r1)
@@ -1329,27 +1358,27 @@ u32 JUTGamePad::CStick::update(s8 r4, s8 r5, JUTGamePad::EStickMode r6, JUTGameP
  * @note Size: 0xB4
  * getButton__Q210JUTGamePad6CStickFUl
  */
-u32 JUTGamePad::CStick::getButton(u32 p1)
+u32 JUTGamePad::CStick::getButton(u32 buttons)
 {
-	p1 &= 0xF;
+	buttons &= 0xF;
 
 	if (-sReleasePoint < mXPos && mXPos < sReleasePoint) {
-		p1 = p1 & ~3;
+		buttons = buttons & ~3;
 	} else if (mXPos <= -sPressPoint) {
-		p1 = p1 & ~2 | 1;
+		buttons = buttons & ~2 | 1;
 	} else if (mXPos >= sPressPoint) {
-		p1 = p1 & ~1 | 2;
+		buttons = buttons & ~1 | 2;
 	}
 
 	if (-sReleasePoint < mYPos && mYPos < sReleasePoint) {
-		p1 = p1 & ~0xC;
+		buttons = buttons & ~0xC;
 	} else if (mYPos <= -sPressPoint) {
-		p1 = p1 & ~8 | 4;
+		buttons = buttons & ~8 | 4;
 	} else if (mYPos >= sPressPoint) {
-		p1 = p1 & ~4 | 8;
+		buttons = buttons & ~4 | 8;
 	}
 
-	return p1;
+	return buttons;
 	/*
 	lfs      f1, sReleasePoint__Q210JUTGamePad6CStick@sda21(r13)
 	clrlwi   r0, r4, 0x1c
