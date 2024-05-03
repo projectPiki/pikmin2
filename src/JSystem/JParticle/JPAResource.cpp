@@ -2903,10 +2903,17 @@ void JPAResource::drawP(JPAEmitterWorkData* data)
 	if (flag != 4 && flag != 8) {
 		test = false;
 	}
-	data->mDLType         = test;
-	data->mPlaneType      = ((u32)data->mDLType) ? 2 : mBaseShape->mData->mFlags >> 10 & 1;
-	data->mProjectionType = ((u32)data->mDLType) ? 0 : (u32)data->mDLType >> 0x18 & 1 + 1;
-	data->mpAlivePtcl     = data->mEmitter->mAlivePtclChld.getFirst();
+	data->mDLType    = test;
+	data->mPlaneType = ((u32)data->mDLType) ? 2 : mBaseShape->getBasePlaneType();
+	// int projType;
+	// if (mBaseShape->isPrjTex()) {
+	// 	projType = mBaseShape->getProjType() + 1;
+	// } else {
+	// 	projType = 0;
+	// }
+	// data->mProjectionType = projType;
+	data->mProjectionType = (!mBaseShape->isPrjTex()) ? 0 : mBaseShape->getProjType(); // need this to not optimise
+	data->mpAlivePtcl     = &data->mEmitter->mAlivePtclBase;
 	setPTev();
 
 	for (int i = mDrawEmitterFuncListNum - 1; 0 <= i; i--) {
@@ -2914,8 +2921,7 @@ void JPAResource::drawP(JPAEmitterWorkData* data)
 	}
 
 	if (mBaseShape->mData->mFlags & 0x200000) {
-		FOREACH_NODE(JPANode<JPABaseParticle>, data->mEmitter->mAlivePtclBase.getLast(), node)
-		{
+		for (JPANode<JPABaseParticle>* node = data->mEmitter->mAlivePtclBase.getLast(); node; node = node->getPrev()) {
 			data->mpCurNode = node;
 			if (mDrawParticleFuncList) {
 				for (int i = mDrawParticleFuncListNum - 1; 0 <= i; i--) {
@@ -3231,7 +3237,7 @@ void JPAResource::drawC(JPAEmitterWorkData* data)
 	data->mDLType         = test;
 	data->mPlaneType      = ((u32)data->mDLType) ? 2 : mChildShape->mData->mFlags >> 10 & 1;
 	data->mProjectionType = 0;
-	data->mpAlivePtcl     = data->mEmitter->mAlivePtclChld.getFirst();
+	data->mpAlivePtcl     = &data->mEmitter->mAlivePtclChld;
 	setCTev(data);
 
 	for (int i = mDrawEmitterChildFuncListNum - 1; 0 <= i; i--) {
@@ -3239,8 +3245,7 @@ void JPAResource::drawC(JPAEmitterWorkData* data)
 	}
 
 	if (mBaseShape->mData->mFlags & 0x200000) {
-		FOREACH_NODE(JPANode<JPABaseParticle>, data->mEmitter->mAlivePtclChld.getLast(), node)
-		{
+		for (JPANode<JPABaseParticle>* node = data->mEmitter->mAlivePtclChld.getLast(); node; node = node->getPrev()) {
 			data->mpCurNode = node;
 			if (mDrawParticleChildFuncList) {
 				for (int i = mDrawParticleChildFuncListNum - 1; 0 <= i; i--) {

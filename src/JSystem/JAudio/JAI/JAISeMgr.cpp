@@ -120,6 +120,20 @@ void checkNextFrameSe()
 	if (!seHandle) {
 		return;
 	}
+
+	if (seHandle->mState < SOUNDSTATE_Playing) {
+		return;
+	}
+
+	f32 distMax = JAIGlobalParameter::getParamDistanceMax();           // f31
+	f32 dist    = JAIGlobalParameter::getParamDistanceMax() / 1000.0f; // f30
+	if (dist == 0.0f) {
+		dist = 1.0f;
+	}
+
+	for (u32 i = 0; i < JAIGlobalParameter::getParamSeCategoryMax(); i++) {
+		for (u8 j = 0; j < categoryInfoTable[seScene][i]; j++) { }
+	}
 	/*
 	stwu     r1, -0x140(r1)
 	mflr     r0

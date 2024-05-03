@@ -77,7 +77,8 @@ struct JPABaseShape {
 	u32 getType() const { return (mData->mFlags >> 0) & 0x0F; }
 	u32 getDirType() const { return (mData->mFlags >> 4) & 0x07; }
 	u32 getRotType() const { return (mData->mFlags >> 7) & 0x07; }
-	u32 getBasePlaneType() const { return (mData->mFlags >> 10) & 0x07; }
+	u32 getBasePlaneType() const { return (mData->mFlags >> 10) & 0x01; }
+	u32 getProjType() const { return ((mData->mFlags >> 24) & 0x01); }
 	u32 getTilingS() const { return (mData->mFlags >> 25) & 0x01; }
 	u32 getTilingT() const { return (mData->mFlags >> 26) & 0x01; }
 	bool isGlblClrAnm() const { return !!(mData->mFlags & 0x00001000); }

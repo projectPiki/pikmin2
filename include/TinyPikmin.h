@@ -29,8 +29,8 @@ struct TinyPikmin {
 
 	int mState;          // _00
 	s32 mColor;          // _04
-	f32 mVelocityX;      // _08
-	f32 mVelocityY;      // _0C
+	f32 _08;             // _08
+	f32 _0C;             // _0C
 	f32 mPositionX;      // _10
 	f32 mPositionY;      // _14
 	f32 mScaleAnimTimer; // _18
