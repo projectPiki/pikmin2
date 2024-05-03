@@ -11,7 +11,7 @@ struct JUTGamePadRecordBase {
 
 	virtual ~JUTGamePadRecordBase();            // _08
 	virtual void getStatus(PADStatus* pad) = 0; // _0C
-	virtual void virtual_10()              = 0; // _10
+	virtual void virtual_10(PADStatus* pad)= 0; // _10
 
 	// _00 = VTBL
 	bool mIsActive; // _04
@@ -125,15 +125,16 @@ struct JUTGamePad : public JKRDisposer {
 
 		static bool isEnabled(u32 mask) { return mEnabled & mask; }
 		static bool isEnabledPort(int port) { return isEnabled(sChannelMask[port]); }
+		static bool isEnabledPort(int port, u32 mask) { return (sChannelMask[port] & mask) != 0; }
 
 		static u8 mStatus[4];
 		static u32 mEnabled;
 		static u32 sChannelMask[4];
 
-		u32 _00; // _00
-		u32 _04; // _04
-		u8* _08; // _08
-		u32 _0C; // _0C
+		u32 mFrame; // _00
+		u32 mLength; // _04
+		u8* mData; // _08
+		u32 mFrameCount; // _0C
 		u8* _10; // _10
 	};
 
@@ -204,7 +205,7 @@ struct JUTGamePad : public JKRDisposer {
 	void removeButtonRepeat(u32);
 	void clearButtonRepeat(bool);
 
-	static JUTGamePad* getGamePad(int);
+	static JUTGamePad* getGamePad(s32);
 
 	inline bool isConnected() const { return (mPortNum >= 0 && mPortNum < 4); }
 	inline bool isButtonDown(u32 buttons) { return mButton.mButtonDown & buttons; }
@@ -338,8 +339,8 @@ struct JUTGamePadLongPress {
 	u32 getMaskPattern() const { return mMaskPattern; }
 	u32 getPattern() const { return mPattern; }
 
-	static JSUPtrList sPatternList;
-
+	static JSUList<JUTGamePadLongPress> sPatternList;
+	
 	u8 _00[0x10];           // _00, unknown
 	bool mIsValid;          // _10
 	bool _11;               // _11
