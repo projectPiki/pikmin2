@@ -665,7 +665,7 @@ void DynCreature::simulate(f32 rate)
 	mCanBounce = _311;
 	_311       = 0;
 
-	Delegate2<DynCreature, Vector3f&, Vector3f&> delegate(this, &DynCreature::tracemoveCallback);
+	RigidBodyCallback delegate(this, &DynCreature::tracemoveCallback);
 
 	_300 = mBaseTrMatrix.mtxMult(mRotation);
 	mRigid.integrate(rate, 0);
