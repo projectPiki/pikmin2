@@ -408,13 +408,13 @@ bool BigTreasureElecAttack::update()
 		pos.y += 20.0f;
 		Sys::Sphere moveSphere(pos, 20.0f);
 		MoveInfo info(&moveSphere, &mVelocity, mAttackData->mElecBounceFactor);
-		info.mInfoOrigin = mOwner;
+		info.mMovingCreature = mOwner;
 		mapMgr->traceMove(info, sys->mDeltaTime);
 
 		mPosition = moveSphere.mPosition;
 		mPosition.y -= 20.0f;
 
-		if (info.mBounceTriangle) {
+		if (info.mFloorTriangle) {
 			mVelocity.x *= mAttackData->mElecFrictionFactor;
 			mVelocity.z *= mAttackData->mElecFrictionFactor;
 
@@ -422,7 +422,7 @@ bool BigTreasureElecAttack::update()
 				PSStartSoundVec(PSSE_EN_BIGTAKARA_EP_BOUND, (Vec*)&mPosition);
 			}
 
-			mFloorTri = info.mBounceTriangle;
+			mFloorTri = info.mFloorTriangle;
 		} else {
 			mFloorTri = nullptr;
 		}

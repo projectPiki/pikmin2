@@ -201,7 +201,7 @@ void Obj::collisionCallback(CollEvent& event)
 		bool notRock     = true;
 		if (other->isNavi() || other->isPiki()) {
 			notFakePiki = false;
-			if (other->mBounceTriangle) {
+			if (other->mFloorTriangle) {
 				EnemyBase* target = this;
 				if (mSourceEnemy) {
 					target = mSourceEnemy;

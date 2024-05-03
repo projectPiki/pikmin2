@@ -132,7 +132,7 @@ struct PlatMgr : public NodeObjectMgr<PlatInstance> {
 
 struct PlatEvent {
 	PlatInstance* mInstance; // _00
-	Vector3f mPosition;      // _04
+	Vector3f mNormal;        // _04
 	Creature* mObj;          // _10
 };
 

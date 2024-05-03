@@ -93,12 +93,12 @@ bool HoudaiShotGunNode::update()
 	Sys::Sphere moveSphere(startPos, 10.0f); // 0x78
 
 	MoveInfo moveInfo(&moveSphere, &mVelocity, 0.0f); // 0x1B0
-	moveInfo.mInfoOrigin = mOwner;
+	moveInfo.mMovingCreature = mOwner;
 	mapMgr->traceMove(moveInfo, sys->mDeltaTime);
 
 	setPosition(moveSphere.mPosition);
 
-	if (moveInfo.mBounceTriangle || moveInfo.mWallTriangle) {
+	if (moveInfo.mFloorTriangle || moveInfo.mWallTriangle) {
 		Vector3f groundPos = mPosition;
 		groundPos.y        = mapMgr->getMinY(groundPos);
 
@@ -117,7 +117,7 @@ bool HoudaiShotGunNode::update()
 			efx::THdamaHit3 hitFX;
 			hitFX.create(&fxArg);
 
-		} else if (moveInfo.mBounceTriangle) {
+		} else if (moveInfo.mFloorTriangle) {
 			if (moveInfo.mMapCode.getAttribute() == (MapCode::Code::Attribute2 + MapCode::Code::Attribute3)) {
 				efx::Arg fxArg(effectPos);
 				efx::THdamaHit2 hitFX;
@@ -130,7 +130,7 @@ bool HoudaiShotGunNode::update()
 
 		} else if (moveInfo.mWallTriangle) {
 			efx::ArgDir fxArg(effectPos);
-			fxArg.mAngle = moveInfo.mReflectPosition;
+			fxArg.mAngle = moveInfo.mWallNormal;
 			efx::THdamaHit2W hitFX;
 			hitFX.create(&fxArg);
 		}

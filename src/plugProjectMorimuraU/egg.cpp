@@ -72,7 +72,7 @@ Obj::Obj()
  */
 void Obj::doUpdate()
 {
-	if (mBounceTriangle) {
+	if (mFloorTriangle) {
 		mTargetVelocity = Vector3f(0.0f);
 	} else {
 		mTargetVelocity = mCurrentVelocity;

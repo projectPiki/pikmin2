@@ -734,7 +734,7 @@ void MapMgr::checkBeamCollision(BeamCollisionArg& arg)
 			platMgr->traceMove(moveInfo, 1.0f);
 		}
 
-		if (moveInfo.mWallTriangle || moveInfo.mBounceTriangle || moveInfo.mOtherTriangle) {
+		if (moveInfo.mWallTriangle || moveInfo.mFloorTriangle || moveInfo.mOtherTriangle) {
 			arg.mHitSuccess = true;
 			break;
 		}

@@ -84,8 +84,8 @@ void Creature::init(CreatureInitArg* arg)
 	mAcceleration = Vector3f(0.0f);
 	clearCapture();
 
-	mBounceTriangle    = nullptr;
-	mCollisionPosition = Vector3f(0.0f, 1.0f, 0.0f);
+	mFloorTriangle = nullptr;
+	mFloorNormal   = Vector3f(0.0f, 1.0f, 0.0f);
 	clearCapture();
 
 	if (getMabiki()) {

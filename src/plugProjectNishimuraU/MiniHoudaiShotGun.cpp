@@ -84,14 +84,14 @@ bool MiniHoudaiShotGunNode::update()
 	Sys::Sphere moveSphere(startPos, 10.0f); // 0x78
 
 	MoveInfo moveInfo(&moveSphere, &mVelocity, 0.0f); // 0x1B0
-	moveInfo.mInfoOrigin = mOwner;
+	moveInfo.mMovingCreature = mOwner;
 	mapMgr->traceMove(moveInfo, sys->mDeltaTime);
 
 	setPosition(moveSphere.mPosition);
 
 	mVelocity.y -= 20.0f;
 
-	if (moveInfo.mBounceTriangle || moveInfo.mWallTriangle) {
+	if (moveInfo.mFloorTriangle || moveInfo.mWallTriangle) {
 		Vector3f groundPos = mPosition;
 		groundPos.y        = mapMgr->getMinY(groundPos);
 

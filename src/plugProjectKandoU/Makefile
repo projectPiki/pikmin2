@@ -80,7 +80,7 @@ KANDO_FILES:=\
 	$(BUILD_DIR)/src/plugProjectKandoU/pelletOtakara.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/genPellet.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/pelletItem.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/mapMgrTraceMove.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/mapMgrTraceMove.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/efxModelObjects.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/itemUjamushi.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/aiWeed.o\

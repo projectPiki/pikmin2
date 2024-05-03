@@ -323,11 +323,11 @@ f32 Obj::emitCollideRatio(Vector3f& dir, Vector3f& pos, f32 range)
 		vec *= (2.0f * C_GENERALPARMS.mMaxAttackRange.mValue);
 
 		MoveInfo moveInfo(&sphere, &vec, C_PARMS->mCreatureProps.mProps.mWallReflection.mValue);
-		moveInfo.mInfoOrigin = static_cast<Creature*>(this);
+		moveInfo.mMovingCreature = this;
 
 		mapMgr->traceMove(moveInfo, sys->mDeltaTime);
 
-		if (moveInfo.mBounceTriangle || moveInfo.mWallTriangle) {
+		if (moveInfo.mFloorTriangle || moveInfo.mWallTriangle) {
 			mAttackMaxGrowth = mAttackTimer;
 		} else {
 			mAttackTimer += 2.0f * sys->mDeltaTime;

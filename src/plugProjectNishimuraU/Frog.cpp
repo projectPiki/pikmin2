@@ -138,7 +138,7 @@ void Obj::getShadowParam(ShadowParam& param)
 	param.mPosition.z = boundingSphere.mPosition.z;
 
 	if (isAlive()) {
-		if (mBounceTriangle) {
+		if (mFloorTriangle) {
 			if (isEvent(1, EB2_Earthquake)) {
 				param.mBoundingSphere.mRadius = 75.0f;
 			} else {
@@ -169,7 +169,7 @@ void Obj::collisionCallback(CollEvent& event)
 		if (!isEvent(0, EB_Bittered)) {
 
 			if (mIsFalling) {
-				if (creature->mBounceTriangle) {
+				if (creature->mFloorTriangle) {
 					if (creature->isNavi() || creature->isPiki()) {
 						InteractPress press(this, C_GENERALPARMS.mAttackDamage.mValue, nullptr);
 						event.mCollidingCreature->stimulate(press);

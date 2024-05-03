@@ -64,7 +64,7 @@ void StateWalk::exec(EnemyBase* enemy)
 {
 	Obj* mitite = OBJ(enemy);
 	mWalkTimer++;
-	if (mitite->mBounceTriangle) {
+	if (mitite->mFloorTriangle) {
 		mitite->walkFunc();
 	} else {
 		mitite->ballMove();

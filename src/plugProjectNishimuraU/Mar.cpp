@@ -136,7 +136,7 @@ void Obj::getShadowParam(ShadowParam& shadow)
 	shadow.mPosition                 = baseMatrix->getTranslation();
 	shadow.mPosition.y               = mPosition.y + mShadowOffset;
 	shadow.mBoundingSphere.mPosition = Vector3f(0.0f, 1.0f, 0.0f);
-	if (isFlying() || !mBounceTriangle) {
+	if (isFlying() || !mFloorTriangle) {
 		shadow.mBoundingSphere.mRadius = C_PROPERPARMS.mStandardFlightHeight.mValue + 100.0f;
 	} else {
 		shadow.mBoundingSphere.mRadius = 50.0f;
@@ -408,7 +408,7 @@ Piki* Obj::getSearchedPikmin()
 	CI_LOOP(iPiki)
 	{
 		Piki* piki = *iPiki;
-		if (piki->isAlive() && piki->isPikmin() && piki->mBounceTriangle && !piki->isStickToMouth() && piki->mSticker != this) {
+		if (piki->isAlive() && piki->isPikmin() && piki->mFloorTriangle && !piki->isStickToMouth() && piki->mSticker != this) {
 			f32 sightDiff = getCreatureViewAngle(piki);
 			if (FABS(sightDiff) <= FOV) {
 				Vector3f pikiPos2 = piki->getPosition();

@@ -208,7 +208,7 @@ void Obj::collisionCallback(CollEvent& event)
 {
 	if (!isEvent(0, EB_Bittered)) {
 		Creature* creature = event.mCollidingCreature;
-		if (creature && event.mCollisionObj && creature->isAlive() && creature->mBounceTriangle) {
+		if (creature && event.mCollisionObj && creature->isAlive() && creature->mFloorTriangle) {
 			if (creature->isNavi() || creature->isPiki()) {
 				if (isCollisionCheck(event.mHitPart)) {
 					InteractPress press(this, C_GENERALPARMS.mAttackDamage.mValue, nullptr);

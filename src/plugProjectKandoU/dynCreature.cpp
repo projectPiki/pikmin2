@@ -695,9 +695,9 @@ void DynCreature::simulate(f32 rate)
 		mCurrentChildPtcl->mIsTouching = 0;
 
 		MoveInfo info(&moveSphere, &velocity, 1.0f, &delegate);
-		info.mUseIntersectionAlgo = true;
+		info.mDoHardIntersect = true;
 		mapMgr->traceMove(info, rate);
-		info.mUseIntersectionAlgo = false;
+		info.mDoHardIntersect = false;
 		if (platMgr) {
 			platMgr->traceMove(info, rate);
 		}

@@ -72,7 +72,7 @@ void Obj::doUpdate()
 {
 	mFsm->exec(this);
 	mMouthSlots.update();
-	if (isEvent(0, EB_DamageAnimEnabled) && mBounceTriangle) {
+	if (isEvent(0, EB_DamageAnimEnabled) && mFloorTriangle) {
 		if (isEvent(0, EB_HardConstrained)) {
 			enableEvent(0, EB_Invulnerable);
 			disableEvent(0, EB_DamageAnimEnabled);

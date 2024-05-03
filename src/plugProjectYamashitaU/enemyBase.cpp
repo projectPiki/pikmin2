@@ -642,12 +642,12 @@ void EarthquakeState::cleanup(EnemyBase* enemy)
  */
 void EarthquakeState::updateCullingOff(EnemyBase* enemy)
 {
-	if (enemy->isDead() && enemy->mBounceTriangle) {
+	if (enemy->isDead() && enemy->mFloorTriangle) {
 		transit(enemy, EBS_Living, nullptr);
 		return;
 	}
 
-	if (++mEarthquakeStepTimer > 3 && enemy->mBounceTriangle) {
+	if (++mEarthquakeStepTimer > 3 && enemy->mFloorTriangle) {
 		f32 randChance = randFloat();
 		if (enemy->mStunAnimTimer > 0.0f
 		    || (randChance < enemy->getParms().mPurplePikiStunChance.mValue && !enemy->isEvent(0, EB_BitterQueued)
@@ -694,7 +694,7 @@ void StoneState::init(EnemyBase* enemy, StateArg* arg)
 	enemy->stopMotion();
 	enemy->mCurrentVelocity = 0.0f;
 
-	if (enemy->mBounceTriangle) {
+	if (enemy->mFloorTriangle) {
 		enemy->enableEvent(0, EB_Constrained);
 	} else {
 		enemy->enableEvent(0, EB_Constrained);
@@ -739,7 +739,7 @@ void StoneState::updateAlways(EnemyBase* enemy)
 	enemy->mBitterTimer += sys->mDeltaTime;
 
 	if (enemy->mEnemyStoneObj->isFlag(EnemyStone::STONE_HasViewedDemo)) {
-		if (!enemy->mBounceTriangle) {
+		if (!enemy->mFloorTriangle) {
 			enemy->constraintOff();
 			enemy->disableEvent(0, EB_Untargetable);
 		}
@@ -862,7 +862,7 @@ EnemyBase::EnemyBase()
 	mCurAnim         = new EnemyAnimKeyEvent;
 	mDamageAnimTimer = 0.0f;
 	mTargetCreature  = nullptr;
-	mBounceTriangle  = nullptr;
+	mFloorTriangle   = nullptr;
 	mLifecycleFSM    = new EnemyBaseFSM::StateMachine();
 	mLifecycleFSM->init(this);
 	clearStick();
@@ -1442,7 +1442,7 @@ void EnemyBase::birth(Vector3f& pos, f32 faceDir)
 	mFaceDir    = faceDir;
 	mRotation.y = mFaceDir;
 
-	mBounceTriangle   = nullptr;
+	mFloorTriangle    = nullptr;
 	mStuckPikminCount = 0;
 	mHeldPellet       = nullptr;
 
@@ -2013,14 +2013,14 @@ void EnemyBase::collisionMapAndPlat(f32 frameRate)
 
 		mAcceleration.y = 0.0f;
 
-		Vector3f totalVel = mCurrentVelocity + mAcceleration;
+		Vector3f newVelocity = mCurrentVelocity + mAcceleration;
 
 		// Check where our wanted movement will reach us
-		MoveInfo moveInfo(&collSphere, &totalVel, bounceAmount);
-		moveInfo.mInfoOrigin = (BaseItem*)this;
+		MoveInfo moveInfo(&collSphere, &newVelocity, bounceAmount);
+		moveInfo.mMovingCreature = this;
 		mapMgr->traceMove(moveInfo, frameRate);
 
-		mCurrentVelocity = totalVel;
+		mCurrentVelocity = newVelocity;
 
 		// Apply acceleration by converting the velocity to a direction,
 		// clamping it, and then setting the velocity again
@@ -2040,12 +2040,12 @@ void EnemyBase::collisionMapAndPlat(f32 frameRate)
 		}
 
 		// Apply bounce triangle logic
-		if (!mBounceTriangle && moveInfo.mBounceTriangle) {
-			bounceProcedure(moveInfo.mBounceTriangle);
+		if (!mFloorTriangle && moveInfo.mFloorTriangle) {
+			bounceProcedure(moveInfo.mFloorTriangle);
 		}
 
-		mBounceTriangle    = moveInfo.mBounceTriangle;
-		mCollisionPosition = moveInfo.mPosition;
+		mFloorTriangle = moveInfo.mFloorTriangle;
+		mFloorNormal   = moveInfo.mFloorNormal;
 
 		// Apply wall triangle logic
 		if (!mWallTriangle && moveInfo.mWallTriangle) {
@@ -2059,13 +2059,13 @@ void EnemyBase::collisionMapAndPlat(f32 frameRate)
 			moveInfo.mVelocity = &mCurrentVelocity;
 			platMgr->traceMove(moveInfo, frameRate);
 
-			if (!mBounceTriangle) {
-				if (moveInfo.mBounceTriangle) {
-					bounceProcedure(moveInfo.mBounceTriangle);
+			if (!mFloorTriangle) {
+				if (moveInfo.mFloorTriangle) {
+					bounceProcedure(moveInfo.mFloorTriangle);
 				}
 
-				mBounceTriangle    = moveInfo.mBounceTriangle;
-				mCollisionPosition = moveInfo.mPosition;
+				mFloorTriangle = moveInfo.mFloorTriangle;
+				mFloorNormal   = moveInfo.mFloorNormal;
 			}
 
 			if (!mWallTriangle && moveInfo.mWallTriangle) {
@@ -2122,7 +2122,7 @@ void EnemyBase::doSimulationConstraint(f32 frameRate)
 		// If we're moving somewhere, enable checking collision
 		if (mAcceleration.x != 0.0f || mAcceleration.z != 0.0f) {
 			enableEvent(0, EB_CollisionActive);
-		} else if (mBounceTriangle) {
+		} else if (mFloorTriangle) {
 			// If we've just bounce off a triangle, disable collision
 			disableEvent(0, EB_CollisionActive);
 		}
@@ -2800,7 +2800,7 @@ bool EnemyBase::hipdropCallBack(Creature* sourceCreature, f32 damage, CollPart* 
 
 	enableEvent(0, EB_SquashOnDamageAnim);
 
-	if (mBounceTriangle) {
+	if (mFloorTriangle) {
 		createBounceEffect(mPosition, getDownSmokeScale());
 	}
 
@@ -2841,7 +2841,7 @@ bool EnemyBase::checkBirthTypeDropEarthquake()
  */
 bool EnemyBase::earthquakeCallBack(Creature* creature, f32 bounceFactor)
 {
-	if (mBounceTriangle && !isDead() && !isFlying() && isAlive() && !isEvent(0, EB_HardConstrained) && !isEvent(0, EB_Bittered)) {
+	if (mFloorTriangle && !isDead() && !isFlying() && isAlive() && !isEvent(0, EB_HardConstrained) && !isEvent(0, EB_Bittered)) {
 		if (((isEvent(0, EB_NoInterrupt)) || (isEvent(0, EB_BitterImmune))) == false) {
 			EarthquakeStateArg eqArg;
 			eqArg.mBounceFactor = bounceFactor;

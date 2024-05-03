@@ -201,17 +201,17 @@ void BaseItem::move(f32 step)
 	Sys::Sphere moveSphere(pos, collRad);
 
 	MoveInfo info(&moveSphere, &mVelocity, 1.0f);
-	info.mInfoOrigin = this;
+	info.mMovingCreature = this;
 
 	mapMgr->traceMove(info, step);
-	Sys::Triangle* mapTri = info.mBounceTriangle;
+	Sys::Triangle* mapTri = info.mFloorTriangle;
 	platMgr->traceMove(info, step);
 
 	if (!mCollTriangle) {
 		if (!mapTri) {
-			if (info.mBounceTriangle) {
-				bounceCallback(info.mBounceTriangle);
-				mCollTriangle = info.mBounceTriangle;
+			if (info.mFloorTriangle) {
+				bounceCallback(info.mFloorTriangle);
+				mCollTriangle = info.mFloorTriangle;
 			} else {
 				mCollTriangle = nullptr;
 			}

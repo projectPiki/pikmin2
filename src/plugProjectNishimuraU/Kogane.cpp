@@ -136,7 +136,7 @@ bool Kogane::Obj::pressCallBack(Creature* obj, f32 dmg, CollPart*)
  */
 void Kogane::Obj::wallCallback(const MoveInfo& info)
 {
-	Vector3f pos = info.mReflectPosition;
+	Vector3f pos = info.mWallNormal;
 	setTargetPosition(&pos);
 }
 

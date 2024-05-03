@@ -794,7 +794,7 @@ bool Piki::invokeAI(Game::PlatEvent* event)
 		break;
 
 	case OBJTYPE_Bridge:
-		if (FABS(event->mPosition.y) < 0.2f) {
+		if (FABS(event->mNormal.y) < 0.2f) {
 			ItemBridge::Item* bridge = static_cast<ItemBridge::Item*>(item);
 			if (bridge->isAlive() && bridge->workable(mPosition)) {
 				PikiAI::ActBridgeArg bridgeArg;

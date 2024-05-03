@@ -231,7 +231,7 @@ void Obj::collisionCallback(CollEvent& evt)
 	if (!isEvent(0, EB_Bittered) && evt.mCollidingCreature) {
 
 		// if rolling and we hit a piki, crush it.
-		if (mIsRolling && evt.mCollidingCreature->mBounceTriangle) {
+		if (mIsRolling && evt.mCollidingCreature->mFloorTriangle) {
 			InteractPress press(this, C_GENERALPARMS.mAttackDamage(), nullptr);
 			evt.mCollidingCreature->stimulate(press);
 
@@ -257,8 +257,8 @@ void Obj::wallCallback(const MoveInfo& mvInfo)
 		f32 speed         = velocity.normalise();
 
 		// if we're rolling fast enough and hit the wall at a 30 degree angle or more (90 degree = head-on), crash
-		if (speed > 100.0f && dot(velocity, mvInfo.mReflectPosition) < -0.5f) {
-			createBodyWallCrashEffect(mvInfo.mReflectPosition);
+		if (speed > 100.0f && dot(velocity, mvInfo.mWallNormal) < -0.5f) {
+			createBodyWallCrashEffect(mvInfo.mWallNormal);
 			mFsm->transit(this, DANGOMUSHI_Turn, nullptr);
 		}
 	}

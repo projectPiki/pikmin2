@@ -447,30 +447,30 @@ struct Creature : public CellObject {
 	static bool usePacketCulling;
 	static Creature* currOp;
 
-	Matrixf* mCaptureMatrix;        // _0B8
-	BitFlag<u32> mFlags;            // _0BC
-	void* mParms;                   // _0C0
-	Generator* mGenerator;          // _0C4
-	Sys::Triangle* mBounceTriangle; // _0C8
-	Vector3f mCollisionPosition;    // _0CC
-	AILOD mLod;                     // _0D8
-	int mCellLayerIndex;            // _0DC
-	Recti mCellRect;                // _0E0
-	Creature* mSticked;             // _0F0
-	Creature* mSticker;             // _0F4
-	CollPart* mStuckCollPart;       // _0F8
-	Creature* mCaptured;            // _0FC
-	Creature* mCapture;             // _100
-	Vector3f mClimbingPosition;     // _104
-	s16 mStickSlot;                 // _110
-	CollTree* mCollTree;            // _114
-	f32 mMass;                      // _118
-	Vector3f mAcceleration;         // _11C
-	u16 mObjectTypeID;              // _128
-	UpdateContext mUpdateContext;   // _12C
-	Matrixf mBaseTrMatrix;          // _138
-	Vector3f mScale;                // _168 /* Not sure if just model scale. */
-	SysShape::Model* mModel;        // _174
+	Matrixf* mCaptureMatrix;       // _0B8
+	BitFlag<u32> mFlags;           // _0BC
+	void* mParms;                  // _0C0
+	Generator* mGenerator;         // _0C4
+	Sys::Triangle* mFloorTriangle; // _0C8, triangle below creature (if on ground, nullptr if in air)
+	Vector3f mFloorNormal;         // _0CC, normal vector from floor triangle; is (0.0f, 1.0f, 0.0f) if flat ground
+	AILOD mLod;                    // _0D8
+	int mCellLayerIndex;           // _0DC
+	Recti mCellRect;               // _0E0
+	Creature* mSticked;            // _0F0
+	Creature* mSticker;            // _0F4
+	CollPart* mStuckCollPart;      // _0F8
+	Creature* mCaptured;           // _0FC
+	Creature* mCapture;            // _100
+	Vector3f mClimbingPosition;    // _104
+	s16 mStickSlot;                // _110
+	CollTree* mCollTree;           // _114
+	f32 mMass;                     // _118
+	Vector3f mAcceleration;        // _11C
+	u16 mObjectTypeID;             // _128
+	UpdateContext mUpdateContext;  // _12C
+	Matrixf mBaseTrMatrix;         // _138
+	Vector3f mScale;               // _168 /* Not sure if just model scale. */
+	SysShape::Model* mModel;       // _174
 };
 
 extern Creature* currOp;

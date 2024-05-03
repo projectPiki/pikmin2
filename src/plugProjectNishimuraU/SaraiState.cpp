@@ -416,7 +416,7 @@ void StateAttack::exec(EnemyBase* enemy)
 			sarai->setHeightVelocity();
 			sarai->changeFaceDir2(target);
 		} else if (frame <= 30.0f) {
-			if (sarai->mBounceTriangle) {
+			if (sarai->mFloorTriangle) {
 				sarai->mGeneralTimer = 30.0f;
 			}
 

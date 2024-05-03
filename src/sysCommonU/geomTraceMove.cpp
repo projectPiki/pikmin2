@@ -77,7 +77,7 @@ void OBB::traceMoveTriList_new(Game::MoveInfo& moveInfo, Sys::VertexTable& verte
 		Triangle::SphereSweep sweep;
 		sweep.mStartPos = moveSphere->mPosition;
 		sweep.mSphere   = *moveSphere;
-		if (moveInfo.mUseIntersectionAlgo) {
+		if (moveInfo.mDoHardIntersect) {
 			sweep.mSweepType = Triangle::SphereSweep::ST_SphereIntersectPlane;
 		}
 		if (!tri->intersect(vertexTable, sweep)) {
@@ -86,7 +86,7 @@ void OBB::traceMoveTriList_new(Game::MoveInfo& moveInfo, Sys::VertexTable& verte
 
 		sphere0.mPosition = startMatrix.mtxMult(sphere0Ptr->mPosition);
 
-		Vector3f pos      = sphere1.mPosition;
+		Vector3f normal   = sphere1.mPosition;
 		sphere1.mPosition = endMatrix.multTranspose(sphere1.mPosition);
 
 		if (moveInfo.mIntersectCallback) {
@@ -98,24 +98,24 @@ void OBB::traceMoveTriList_new(Game::MoveInfo& moveInfo, Sys::VertexTable& verte
 			moveInfo.mTriangleArray->store(startMatrix, *tri, vertexTable, index);
 		}
 
-		if (sphere1.mPosition.y >= moveInfo.mBounceThreshold) {
-			moveInfo.mBounceTriangle = tri;
-			moveInfo.mPosition       = sphere1.mPosition;
+		if (sphere1.mPosition.y >= moveInfo.mFloorThreshold) {
+			moveInfo.mFloorTriangle = tri;
+			moveInfo.mFloorNormal   = sphere1.mPosition;
 		} else if (FABS(sphere1.mPosition.y) <= moveInfo.mWallThreshold) {
-			moveInfo.mWallTriangle    = tri;
-			moveInfo.mReflectPosition = sphere1.mPosition;
+			moveInfo.mWallTriangle = tri;
+			moveInfo.mWallNormal   = sphere1.mPosition;
 		} else {
 			moveInfo.mOtherTriangle = tri;
-			moveInfo.mOtherPosition = sphere1.mPosition;
+			moveInfo.mOtherNormal   = sphere1.mPosition;
 		}
 
-		Vector3f vel  = *moveVelocity;
-		f32 dotProd   = dot(sphere1.mPosition, vel);
-		f32 rad       = 1.0f + moveInfo.mTraceRadius;
-		f32 factor    = rad * dotProd;
-		*moveVelocity = vel - sphere1.mPosition * factor;
+		Vector3f vel      = *moveVelocity;
+		f32 impactAmt     = sphere1.mPosition.dot(vel);
+		f32 elasticFactor = 1.0f + moveInfo.mRestitution;
+		f32 impactFactor  = elasticFactor * impactAmt;
+		*moveVelocity     = vel - sphere1.mPosition * impactFactor;
 
-		moveSphere->mPosition = moveSphere->mPosition + pos * sphere1.mRadius;
+		moveSphere->mPosition = moveSphere->mPosition + normal * sphere1.mRadius;
 	}
 	/*
 	.loc_0x0:
@@ -416,7 +416,7 @@ void OBB::traceMoveTriList_new_global(Game::MoveInfo& moveInfo, Sys::VertexTable
 		Triangle::SphereSweep sweep;
 		sweep.mStartPos = moveSphere->mPosition;
 		sweep.mSphere   = *moveSphere;
-		if (moveInfo.mUseIntersectionAlgo) {
+		if (moveInfo.mDoHardIntersect) {
 			sweep.mSweepType = Triangle::SphereSweep::ST_SphereIntersectPlane;
 		}
 		if (!tri->intersect(vertexTable, sweep)) {
@@ -429,20 +429,20 @@ void OBB::traceMoveTriList_new_global(Game::MoveInfo& moveInfo, Sys::VertexTable
 			moveInfo.mIntersectCallback->invoke(sphere0Ptr->mPosition, sphere1Ptr->mPosition);
 		}
 
-		if (sphere1.mPosition.y >= moveInfo.mBounceThreshold) {
-			moveInfo.mBounceTriangle = tri;
-			moveInfo.mPosition       = sphere1.mPosition;
+		if (sphere1.mPosition.y >= moveInfo.mFloorThreshold) {
+			moveInfo.mFloorTriangle = tri;
+			moveInfo.mFloorNormal   = sphere1.mPosition;
 		} else if (FABS(sphere1.mPosition.y) <= moveInfo.mWallThreshold) {
-			moveInfo.mWallTriangle    = tri;
-			moveInfo.mReflectPosition = sphere1.mPosition;
+			moveInfo.mWallTriangle = tri;
+			moveInfo.mWallNormal   = sphere1.mPosition;
 		} else {
 			moveInfo.mOtherTriangle = tri;
-			moveInfo.mOtherPosition = sphere1.mPosition;
+			moveInfo.mOtherNormal   = sphere1.mPosition;
 		}
 
 		Vector3f vel  = *moveVelocity;
 		f32 dotProd   = dot(sphere1.mPosition, vel);
-		f32 rad       = 1.0f + moveInfo.mTraceRadius;
+		f32 rad       = 1.0f + moveInfo.mRestitution;
 		f32 factor    = rad * dotProd;
 		*moveVelocity = vel - sphere1.mPosition * factor;
 

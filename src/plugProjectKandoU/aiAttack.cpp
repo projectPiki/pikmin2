@@ -242,7 +242,7 @@ int ActAttack::exec()
 	} break;
 
 	case ATTACK_Jump:
-		if (mParent->mBounceTriangle) {
+		if (mParent->mFloorTriangle) {
 			initAdjust();
 		}
 		break;

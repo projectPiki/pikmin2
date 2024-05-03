@@ -603,7 +603,7 @@ void Piki::outWaterCallback()
  */
 bool Piki::might_bury()
 {
-	if (mBounceTriangle && mBounceTriangle->mCode.isBald()) {
+	if (mFloorTriangle && mFloorTriangle->mCode.isBald()) {
 		return false;
 	}
 

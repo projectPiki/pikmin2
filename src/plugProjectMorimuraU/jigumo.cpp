@@ -1387,8 +1387,8 @@ void Obj::calcBaseTrMatrix()
 	mapMgr->traceMove(info, frameLen);
 
 	if (getStateID() != JIGUMO_Attack && !mWalkBounceTimer && (mClimbingTimer > 0 || info.mWallTriangle)) {
-		if (info.mWallTriangle && (info.mReflectPosition.x != 0.0f || info.mReflectPosition.y != 0.0f || info.mReflectPosition.z != 0.0f)) {
-			mWantedFaceNormal = info.mReflectPosition;
+		if (info.mWallTriangle && (info.mWallNormal.x != 0.0f || info.mWallNormal.y != 0.0f || info.mWallNormal.z != 0.0f)) {
+			mWantedFaceNormal = info.mWallNormal;
 			mClimbingTimer    = C_PARMS->_910;
 		}
 
@@ -1411,8 +1411,8 @@ void Obj::calcBaseTrMatrix()
 		mPosition.y += mClimbingAccel * (isMoving * C_PARMS->_91C);
 
 	} else {
-		if (info.mBounceTriangle) {
-			mWantedFaceNormal = info.mPosition;
+		if (info.mFloorTriangle) {
+			mWantedFaceNormal = info.mFloorNormal;
 		}
 
 		if (isConstrained()) {

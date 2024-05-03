@@ -166,7 +166,7 @@ void StateAttack::exec(EnemyBase* enemy)
 	MoveInfo moveInfo(&sphere, &tongueVel, CG_PARMS(enemy)->mCreatureProps.mProps.mWallReflection.mValue);
 	mapMgr->traceMove(moveInfo, sys->mDeltaTime);
 
-	if (moveInfo.mBounceTriangle || moveInfo.mWallTriangle) {
+	if (moveInfo.mFloorTriangle || moveInfo.mWallTriangle) {
 		OBJ(enemy)->mAllowAnimBlending = true;
 		OBJ(enemy)->fadeEffect(Obj::KingEfx_AttackDrool);
 		if (mEatenBombs > 0) {

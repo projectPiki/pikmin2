@@ -514,7 +514,7 @@ void ActBreakGate::emotion_success()
  */
 void ActBreakGate::platCallback(Game::Piki* p, Game::PlatEvent& platEvent)
 {
-	if (platEvent.mPosition.y > 0.7f) {
+	if (platEvent.mNormal.y > 0.7f) {
 		mResetStateAfter = 1;
 	} else {
 		mResetStateAfter = 0;

@@ -178,7 +178,7 @@ void StateFall::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateFall::exec(EnemyBase* enemy)
 {
-	if (enemy->mBounceTriangle) {
+	if (enemy->mFloorTriangle) {
 		transit(enemy, ROCK_Dead, nullptr);
 	} else if (enemy->isEvent(0, EB_Colliding)) {
 		transit(enemy, ROCK_Dead, nullptr);

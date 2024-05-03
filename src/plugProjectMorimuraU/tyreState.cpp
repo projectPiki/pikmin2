@@ -102,7 +102,7 @@ void Tyre::StateLand::init(EnemyBase* enemy, StateArg* stateArg)
 void Tyre::StateLand::exec(EnemyBase* enemy)
 {
 	Obj* tyre = OBJ(enemy);
-	if (tyre->mBounceTriangle) {
+	if (tyre->mFloorTriangle) {
 		tyre->flick();
 		Vector3f position = tyre->getPosition();
 		tyre->landEffect(position);

@@ -86,7 +86,7 @@ void ActBridge::initStickAttack()
 	StickAttackActionArg stickAttackArg(attackDamage, mBridge, Game::IPikiAnims::NULLANIM, STICKATK_Bridge);
 
 	bool check = false;
-	if ((mCollPartType & 1) && mParent->mCollisionPosition.y > 0.5f) {
+	if ((mCollPartType & 1) && mParent->mFloorNormal.y > 0.5f) {
 		check = true;
 	}
 

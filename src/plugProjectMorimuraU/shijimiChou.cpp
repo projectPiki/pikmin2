@@ -299,7 +299,7 @@ void Obj::doSimulation(f32 simSpeed)
 	}
 
 	EnemyBase::doSimulation(simSpeed);
-	if (isEvent(0, EB_Bittered) && (mPosition.y < mMapMinY + 2.0f || mBounceTriangle)) {
+	if (isEvent(0, EB_Bittered) && (mPosition.y < mMapMinY + 2.0f || mFloorTriangle)) {
 		if (gameSystem && gameSystem->isZukanMode()) {
 			mGoalPosition.y = mZukanGoalHeight;
 		} else {
@@ -376,9 +376,9 @@ void Obj::wallCallback(const MoveInfo& moveInfo)
 		if (getStateID() == SHIJIMICHOU_Fall) {
 			mIsFallVertical = true;
 		} else {
-			mGoalPosition.x = 100.0f * moveInfo.mReflectPosition.x + mPosition.x;
+			mGoalPosition.x = 100.0f * moveInfo.mWallNormal.x + mPosition.x;
 			mGoalPosition.y = mPosition.y;
-			mGoalPosition.z = 100.0f * moveInfo.mReflectPosition.z + mPosition.z;
+			mGoalPosition.z = 100.0f * moveInfo.mWallNormal.z + mPosition.z;
 		}
 	}
 	/*
@@ -1732,7 +1732,7 @@ lbl_8038BEDC:
  */
 bool Obj::isFallEnd()
 {
-	if (mPosition.y < 10.0f + mMapMinY || mBounceTriangle) {
+	if (mPosition.y < 10.0f + mMapMinY || mFloorTriangle) {
 		mEfxDown->fade();
 		return true;
 	}

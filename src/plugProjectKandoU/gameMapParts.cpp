@@ -2354,19 +2354,25 @@ Sys::TriIndexList* RoomMapMgr::traceMove(MoveInfo& moveInfo, f32 rate)
 		list = traceMove_new(moveInfo, rate);
 	}
 
-	if (mFloorInfo->hasHiddenCollision() && !moveInfo.mBounceTriangle
+	if (mFloorInfo->hasHiddenCollision() && !moveInfo.mFloorTriangle
 	    && (moveInfo.mMoveSphere->mPosition.y - moveInfo.mMoveSphere->mRadius) < 0.0f) {
+
+		// pop to "floor" (center of move sphere at least one radius above 0)
 		moveInfo.mMoveSphere->mPosition.y = moveInfo.mMoveSphere->mRadius;
 		if (moveInfo.mVelocity->y < 0.0f) {
-			moveInfo.mVelocity->y = -moveInfo.mVelocity->y * (moveInfo.mTraceRadius - 1.0f);
+			// slow fall based on how elastic we are
+			// - perfectly elastic, stop falling
+			// - inelastic, reduce by some amount
+			// - perfectly inelastic, keep falling at same speed
+			moveInfo.mVelocity->y = -moveInfo.mVelocity->y * (moveInfo.mRestitution - 1.0f);
 		}
 
 		Vector3f bottomSpherePos = moveInfo.mMoveSphere->mPosition;
 		bottomSpherePos.y -= moveInfo.mMoveSphere->mRadius;
 
-		moveInfo.mBounceTriangle = &mTriangle;
-		moveInfo.mPosition       = Vector3f(0.0f, 1.0f, 0.0f);
-		moveInfo.mUpDirection    = Vector3f(0.0f, 1.0f, 0.0f);
+		moveInfo.mFloorTriangle = &mTriangle;
+		moveInfo.mFloorNormal   = Vector3f(0.0f, 1.0f, 0.0f);
+		moveInfo.mUnusedNormal  = Vector3f(0.0f, 1.0f, 0.0f);
 
 		moveInfo.mBaseSpherePos = bottomSpherePos;
 
@@ -3446,7 +3452,7 @@ Sys::TriIndexList* RoomMapMgr::traceMove_new(MoveInfo& info, f32 step)
 			Sys::Triangle::SphereSweep sweep;
 			sweep.mStartPos = startPos;
 			sweep.mSphere   = *moveSphere;
-			if (info.mUseIntersectionAlgo) {
+			if (info.mDoHardIntersect) {
 				sweep.mSweepType = Sys::Triangle::SphereSweep::ST_SphereIntersectPlane;
 			}
 
@@ -3458,17 +3464,17 @@ Sys::TriIndexList* RoomMapMgr::traceMove_new(MoveInfo& info, f32 step)
 					info.mIntersectCallback->invoke(sphere44.mPosition, sphere34.mPosition);
 				}
 
-				if (sphere34.mPosition.y >= info.mBounceThreshold) {
-					info.mBounceTriangle = tri;
-					info.mPosition       = sphere34.mPosition;
+				if (sphere34.mPosition.y >= info.mFloorThreshold) {
+					info.mFloorTriangle = tri;
+					info.mFloorNormal   = sphere34.mPosition;
 				} else if (absF(sphere34.mPosition.y) <= info.mWallThreshold) {
-					info.mWallTriangle    = tri;
-					info.mReflectPosition = sphere34.mPosition;
+					info.mWallTriangle = tri;
+					info.mWallNormal   = sphere34.mPosition;
 				}
 
-				f32 dotProd           = sphere34.mPosition.dot(*velocity);
-				dotProd               = (1.0f + info.mTraceRadius) * dotProd;
-				*velocity             = *velocity - sphere34.mPosition * dotProd;
+				f32 impactAmt         = sphere34.mPosition.dot(*velocity);
+				impactAmt             = (1.0f + info.mRestitution) * impactAmt;
+				*velocity             = *velocity - sphere34.mPosition * impactAmt;
 				moveSphere->mPosition = moveSphere->mPosition + old34 * sphere34.mRadius;
 			}
 
@@ -3736,8 +3742,8 @@ Sys::TriIndexList* RoomMapMgr::traceMove_original(MoveInfo& info, f32 step)
 			for (int i = 0; i < triList->getNum(); i++) {
 				Sys::Triangle* tri = unit->mCollision.mDivider->mTriangleTable->getTriangle(triList->getIndex(i));
 
-				if ((info.mUseIntersectionAlgo) ? tri->intersectHard(*vertTable, *moveSphere, info.mBaseSpherePos)
-				                                : tri->intersect(*vertTable, *moveSphere, info.mBaseSpherePos)) {
+				if ((info.mDoHardIntersect) ? tri->intersectHard(*vertTable, *moveSphere, info.mBaseSpherePos)
+				                            : tri->intersect(*vertTable, *moveSphere, info.mBaseSpherePos)) {
 					info.mBaseSpherePos = room->mRoomSpaceMtx.mtxMult(info.mBaseSpherePos);
 
 					Vector3f triNorm = tri->mTrianglePlane.mNormal;
@@ -3752,8 +3758,8 @@ Sys::TriIndexList* RoomMapMgr::traceMove_original(MoveInfo& info, f32 step)
 						vecArray[count] = triNorm;
 						floatArray[count]
 						    = moveSphere->mRadius - (moveSphere->mPosition.dot(tri->mTrianglePlane.mNormal) - tri->mTrianglePlane.mOffset);
-						info.mUnused3     = true;
-						info.mUpDirection = triNorm;
+						info.mUnused3      = true;
+						info.mUnusedNormal = triNorm;
 						count++;
 					}
 				}
@@ -3780,8 +3786,8 @@ Sys::TriIndexList* RoomMapMgr::traceMove_original(MoveInfo& info, f32 step)
 		Vector3f currVec = vecArray[i];
 		sumVec += currVec;
 		if (currVec.y > 0.6f) {
-			info.mBounceTriangle = triArray[i];
-			info.mPosition       = currVec;
+			info.mFloorTriangle = triArray[i];
+			info.mFloorNormal   = currVec;
 		}
 	}
 
@@ -3789,16 +3795,16 @@ Sys::TriIndexList* RoomMapMgr::traceMove_original(MoveInfo& info, f32 step)
 		return nullptr;
 	}
 
-	f32 norm             = 1.0f / (f32)count2;
-	Vector3f weightedVec = sumVec * norm;
-	weightedVec.normalise();
+	f32 norm              = 1.0f / (f32)count2;
+	Vector3f lineOfImpact = sumVec * norm;
+	lineOfImpact.normalise();
 
 	floatSum /= (f32)count2;
 
-	f32 dotProd           = weightedVec.dot(*velocity);
-	f32 maxRad            = 1.0f + info.mTraceRadius;
-	*velocity             = *velocity - weightedVec * (maxRad * dotProd);
-	moveSphere->mPosition = moveSphere->mPosition + (weightedVec * floatSum);
+	f32 impactAmt         = lineOfImpact.dot(*velocity);
+	f32 elasticFactor     = 1.0f + info.mRestitution;
+	*velocity             = *velocity - lineOfImpact * (elasticFactor * impactAmt);
+	moveSphere->mPosition = moveSphere->mPosition + (lineOfImpact * floatSum);
 	/*
 	stwu     r1, -0x150(r1)
 	mflr     r0

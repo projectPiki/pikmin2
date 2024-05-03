@@ -9,8 +9,8 @@ struct Triangle;
 
 struct Cylinder {
 	inline Cylinder() { }
-	Cylinder(const Vector3f&, const Vector3f&, f32);
-	Cylinder(const Vector3f&, const Vector3f&, f32, f32);
+	Cylinder(const Vector3f& startPos, const Vector3f& endPos, f32 radius);
+	Cylinder(const Vector3f& center, const Vector3f& axis, f32 length, f32 radius);
 
 	bool culled(const Plane&);
 	void draw(Graphics&);

@@ -858,15 +858,15 @@ void Pellet::onInit(CreatureInitArg* initArg)
 
 	clearDiscoverDisable();
 
-	mClaim          = 0;
-	mAngleOffset    = 0.0f;
-	mBounceTriangle = nullptr;
-	_311            = 0;
-	mFaceDir        = 0.0f;
-	mAnimSpeed      = 0.0f;
-	mIsCaptured     = 0;
-	mPickFlags      = 0;
-	mCarryInfoList  = nullptr;
+	mClaim         = 0;
+	mAngleOffset   = 0.0f;
+	mFloorTriangle = nullptr;
+	_311           = 0;
+	mFaceDir       = 0.0f;
+	mAnimSpeed     = 0.0f;
+	mIsCaptured    = 0;
+	mPickFlags     = 0;
+	mCarryInfoList = nullptr;
 
 	clearCapture();
 
@@ -2082,34 +2082,34 @@ void Pellet::update()
 
 	if ((PelletMgr::disableDynamics != 0) || (!mIsDynamic)) {
 		f32 frametime = sys->mDeltaTime;
-		Sys::Sphere ball2;
-		ball2.mPosition = mPelletPosition;
+		Sys::Sphere moveSphere;
+		moveSphere.mPosition = mPelletPosition;
 		if (mPickFlags & 1) {
-			ball2.mPosition.y -= 4.0f;
+			moveSphere.mPosition.y -= 4.0f;
 		}
 		Vector3f* velocityPtr  = &mRigid.mConfigs[0].mVelocity;
-		ball2.mRadius          = 0.5f * mConfig->mParams.mHeight.mData;
+		moveSphere.mRadius     = 0.5f * mConfig->mParams.mHeight.mData;
 		mRigid.mConfigs[0]._30 = Vector3f(0.0f);
 		mRigid.mConfigs[0]._24 = Vector3f(0.0f);
 
-		if (((mIsAlwaysCarried == 0) && !(mPickFlags & 1)) || (mBounceTriangle == nullptr)) {
+		if (((mIsAlwaysCarried == 0) && !(mPickFlags & 1)) || (mFloorTriangle == nullptr)) {
 			velocityPtr->y = -((frametime * _aiConstants->mGravity.mData) - velocityPtr->y);
 		}
-		mAcceleration.y = 0.0f;
-		Vector3f vec    = *velocityPtr;
+		mAcceleration.y  = 0.0f;
+		Vector3f moveVel = *velocityPtr;
 		if (isCollisionFlick() && (mPelletFlag != 1) && !(mPickFlags & 1) && (mIsAlwaysCarried == 0)) {
-			vec += mAcceleration;
+			moveVel += mAcceleration;
 		}
 
 		mAcceleration = Vector3f(0.0f);
 
-		MoveInfo info(&ball2, &vec, 0.5f);
-		info.mInfoOrigin = this;
+		MoveInfo info(&moveSphere, &moveVel, 0.5f);
+		info.mMovingCreature = this;
 		mapMgr->traceMove(info, frametime);
 
 		if (mPickFlags & 1) {
 			bool check = (info.mWallTriangle != nullptr);
-			if (check && (dot(vec, info.mReflectPosition) > 0.5f)) {
+			if (check && (dot(moveVel, info.mWallNormal) > 0.5f)) {
 				check = false;
 			}
 			if (check) {
@@ -2124,33 +2124,33 @@ void Pellet::update()
 		} else {
 			mWallTimer = 0;
 		}
-		*velocityPtr              = vec;
-		info.mVelocity            = velocityPtr;
-		info.mUseIntersectionAlgo = 0;
+		*velocityPtr          = moveVel;
+		info.mVelocity        = velocityPtr;
+		info.mDoHardIntersect = false;
 		if (platMgr) {
 			platMgr->traceMove(info, frametime);
 		}
 
-		if (info.mBounceTriangle) {
-			if (mBounceTriangle == nullptr) {
-				bounceCallback(info.mBounceTriangle);
+		if (info.mFloorTriangle) {
+			if (mFloorTriangle == nullptr) {
+				bounceCallback(info.mFloorTriangle);
 			}
 
-			mBounceTriangle = info.mBounceTriangle;
+			mFloorTriangle = info.mFloorTriangle;
 
 			if (!(mPickFlags & 1) && (mIsAlwaysCarried == 0)) {
 				/////// this bit is full of regswaps
 				Vector3f currVel = *velocityPtr;
-				f32 dotVelocity  = dot(currVel, info.mPosition);
+				f32 dotVelocity  = dot(currVel, info.mFloorNormal);
 				Vector3f impulse(0.0f, -(_aiConstants->mGravity.mData * sys->mDeltaTime), 0.0f);
-				f32 dotImpulse = dot(impulse, info.mPosition);
+				f32 dotImpulse = dot(impulse, info.mFloorNormal);
 
-				Vector3f res = info.mPosition * dotVelocity;
+				Vector3f res = info.mFloorNormal * dotVelocity;
 				res          = currVel - res;
 				res          = res * frametime * 10.0f;
 				*velocityPtr = currVel - res;
 
-				Vector3f res2 = info.mPosition * dotImpulse;
+				Vector3f res2 = info.mFloorNormal * dotImpulse;
 				res2          = impulse - res2;
 				res2.x        = -res2.x;
 				res2.y        = -res2.y;
@@ -2161,14 +2161,14 @@ void Pellet::update()
 				velocityPtr->z += res2.z;
 			}
 		} else {
-			mBounceTriangle = nullptr;
+			mFloorTriangle = nullptr;
 		}
 
 		if (mPickFlags & 1) {
-			ball2.mPosition.y += 4.0f;
+			moveSphere.mPosition.y += 4.0f;
 		}
 
-		mPelletPosition              = ball2.mPosition;
+		mPelletPosition              = moveSphere.mPosition;
 		mRigid.mConfigs[0].mPosition = mPelletPosition;
 	} else if (type > 0) {
 		mRigid.computeForces(0);
@@ -2200,13 +2200,13 @@ void Pellet::update()
 
 					MoveInfo info2(&ball3, &anotherImpulse, 0.0f);
 					mapMgr->traceMove(info2, time);
-					if (info2.mBounceTriangle == nullptr) {
+					if (info2.mFloorTriangle == nullptr) {
 						if (platMgr) {
 							platMgr->traceMove(info2, time);
 						}
 					}
 
-					if (info2.mBounceTriangle) {
+					if (info2.mFloorTriangle) {
 						someCheck = false;
 					}
 				}
@@ -2244,7 +2244,7 @@ void Pellet::update()
 
 		if (mPickFlags & 1) {
 			bool check = (info3.mWallTriangle != nullptr);
-			if (check && (dot(anotherMoveVec, info3.mReflectPosition) > 0.5f)) {
+			if (check && (dot(anotherMoveVec, info3.mWallNormal) > 0.5f)) {
 				check = false;
 			}
 			if (check) {

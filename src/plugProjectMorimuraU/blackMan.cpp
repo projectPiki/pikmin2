@@ -1129,7 +1129,7 @@ bool BlackMan::Obj::damageCallBack(Game::Creature* creature, f32 damage, CollPar
 	if (stateID == WRAITH_Tired && creature->isPiki()) {
 		Piki* piki = static_cast<Piki*>(creature);
 
-		if (piki->getKind() == Purple && !piki->mBounceTriangle) {
+		if (piki->getKind() == Purple && !piki->mFloorTriangle) {
 			mFreezeTimer = 0;
 			mFSM->transit(this, WRAITH_Freeze, nullptr);
 			return EnemyBase::damageCallBack(creature, damage, part);
@@ -4728,7 +4728,7 @@ bool BlackMan::Obj::isTyreDead()
 bool BlackMan::Obj::isFallEnd()
 {
 	bool result = false;
-	if (mBounceTriangle) {
+	if (mFloorTriangle) {
 		result = true;
 	}
 

@@ -969,7 +969,7 @@ LIBS = [
             ["plugProjectKandoU/pelletOtakara", True],
             ["plugProjectKandoU/genPellet", True],
             ["plugProjectKandoU/pelletItem", True],
-            ["plugProjectKandoU/mapMgrTraceMove", False],
+            ["plugProjectKandoU/mapMgrTraceMove", True],
             ["plugProjectKandoU/efxModelObjects", True],
             ["plugProjectKandoU/itemUjamushi", False],
             ["plugProjectKandoU/aiWeed", True],

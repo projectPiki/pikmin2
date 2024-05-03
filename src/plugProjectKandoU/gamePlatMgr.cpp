@@ -120,12 +120,12 @@ void PlatInstance::traceMove(MoveInfo& info, f32 step)
 		PSMTXInverse(mtx.mMatrix.mtxView, invMtx.mMatrix.mtxView);
 	}
 
-	Sys::Triangle* bounceTri = info.mBounceTriangle;
+	Sys::Triangle* bounceTri = info.mFloorTriangle;
 	Sys::Triangle* wallTri   = info.mWallTriangle;
 
-	info.mBounceTriangle = nullptr;
-	info.mWallTriangle   = nullptr;
-	info.mOtherTriangle  = nullptr;
+	info.mFloorTriangle = nullptr;
+	info.mWallTriangle  = nullptr;
+	info.mOtherTriangle = nullptr;
 
 	sys->mTimers->_start("plat-obb", true);
 
@@ -140,30 +140,30 @@ void PlatInstance::traceMove(MoveInfo& info, f32 step)
 
 	sys->mTimers->_stop("plat-obb");
 
-	if (info.mInfoOrigin) {
-		if (info.mBounceTriangle) {
+	if (info.mMovingCreature) {
+		if (info.mFloorTriangle) {
 			PlatEvent event;
 			event.mInstance = this;
-			event.mPosition = info.mPosition;
+			event.mNormal   = info.mFloorNormal;
 			event.mObj      = mItem;
 
-			info.mInfoOrigin->platCallback(event);
+			info.mMovingCreature->platCallback(event);
 			mOnCount++;
 
 			if (mItem) {
-				event.mObj = info.mInfoOrigin;
+				event.mObj = info.mMovingCreature;
 				mItem->platCallback(event);
 			}
 		} else {
-			info.mBounceTriangle = bounceTri;
+			info.mFloorTriangle = bounceTri;
 		}
 
 		if (info.mWallTriangle) {
 			PlatEvent event;
 			event.mInstance = this;
-			event.mPosition = info.mReflectPosition;
+			event.mNormal   = info.mWallNormal;
 			event.mObj      = mItem;
-			info.mInfoOrigin->platCallback(event);
+			info.mMovingCreature->platCallback(event);
 		} else {
 			info.mWallTriangle = wallTri;
 		}
@@ -171,9 +171,9 @@ void PlatInstance::traceMove(MoveInfo& info, f32 step)
 		if (info.mOtherTriangle) {
 			PlatEvent event;
 			event.mInstance = this;
-			event.mPosition = info.mOtherPosition;
+			event.mNormal   = info.mOtherNormal;
 			event.mObj      = mItem;
-			info.mInfoOrigin->platCallback(event);
+			info.mMovingCreature->platCallback(event);
 		}
 	}
 

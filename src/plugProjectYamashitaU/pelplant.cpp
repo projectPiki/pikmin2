@@ -231,8 +231,8 @@ void Obj::getShadowParam(ShadowParam& param)
 	param.mPosition = mPosition;
 	param.mPosition.y += 2.0f;
 
-	if (mBounceTriangle) {
-		Plane* plane                      = &mBounceTriangle->mTrianglePlane;
+	if (mFloorTriangle) {
+		Plane* plane                      = &mFloorTriangle->mTrianglePlane;
 		param.mBoundingSphere.mPosition.x = plane->mNormal.x;
 		param.mBoundingSphere.mPosition.y = plane->mNormal.y;
 		param.mBoundingSphere.mPosition.z = plane->mNormal.z;

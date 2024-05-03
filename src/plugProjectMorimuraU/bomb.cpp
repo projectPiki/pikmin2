@@ -128,7 +128,7 @@ void Obj::doUpdate()
 		mCurrentVelocity.z *= 0.9f;
 	}
 
-	if (mBounceTriangle) {
+	if (mFloorTriangle) {
 		mTargetVelocity = Vector3f(0.0f);
 	} else {
 		mTargetVelocity = mCurrentVelocity;
@@ -306,7 +306,7 @@ void Obj::doEndMovie() { mEfxLight->endDemoDrawOn(); }
  */
 bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* collpart)
 {
-	if (!mHasEscapedCapture || mBounceTriangle) {
+	if (!mHasEscapedCapture || mFloorTriangle) {
 		if (isEvent(0, EB_Bittered)) {
 			// after taking specifically 5 hits while bittered, kill the bomb. sure.
 			mBitterHitCount++;
@@ -433,7 +433,7 @@ bool Obj::isAnimStart()
 {
 	bool check;
 	if (isBirthTypeDropGroup() || !(mFlickTimer >= C_PROPERPARMS.mDamageLimit.mValue)) {
-		if (!mHasEscapedCapture || !mBounceTriangle) {
+		if (!mHasEscapedCapture || !mFloorTriangle) {
 			if (!mAnimStartDelayTimer) {
 				check = false;
 			} else {

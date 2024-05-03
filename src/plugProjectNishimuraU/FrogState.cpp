@@ -886,7 +886,7 @@ void StateFall::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateFall::exec(EnemyBase* enemy)
 {
-	if (enemy->mBounceTriangle) {
+	if (enemy->mFloorTriangle) {
 		transit(enemy, FROG_Attack, nullptr);
 	}
 }

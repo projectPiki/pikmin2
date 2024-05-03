@@ -258,7 +258,7 @@ void Obj::collisionCallback(CollEvent& event)
 		if (!isEvent(0, EB_Bittered) && hitobj) {
 
 			// for pikmin and captains touching the tires, use InteractPress on them
-			if ((hitobj->isPiki() || hitobj->isNavi()) && (hitobj->mBounceTriangle || hitobj->isStickTo())) {
+			if ((hitobj->isPiki() || hitobj->isNavi()) && (hitobj->mFloorTriangle || hitobj->isStickTo())) {
 				InteractPress act(this, C_GENERALPARMS.mAttackDamage, nullptr);
 				hitobj->stimulate(act);
 			} else {
@@ -494,7 +494,7 @@ void Obj::rearRollMtxCalc()
 			mToTriggerLandEffect = 0;
 		}
 
-		if (mBounceTriangle) {
+		if (mFloorTriangle) {
 			mEfxPosition = fxPos;
 			if (!mWaterBoxTyre) {
 				Sys::Sphere sphere(mEfxPosition, 80.0f);
@@ -598,7 +598,7 @@ void Obj::flick()
 	CI_LOOP(iterPiki)
 	{
 		Piki* obj = *iterPiki;
-		if (obj->isAlive() && obj->mBounceTriangle) {
+		if (obj->isAlive() && obj->mFloorTriangle) {
 			Vector3f pos    = Vector3f(mPosition.x, mPosition.y, mPosition.z);
 			Vector3f objPos = Vector3f(obj->getPosition().x, 0.0f, obj->getPosition().z);
 			if (sqrDistanceXZ(objPos, pos) < 900.0f) {

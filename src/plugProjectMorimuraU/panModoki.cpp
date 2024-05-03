@@ -1131,8 +1131,8 @@ void Obj::walkFunc()
 		rotAccel = C_PROPERPARMS.mFastTurnSpeed.mValue;
 	}
 	EnemyFunc::walkToTarget(this, mNextWayPointPosition, moveSpeed, rotAccel, rotSpeed);
-	if (mBounceTriangle) {
-		f32 collPos = mCollisionPosition.x;
+	if (mFloorTriangle) {
+		f32 collPos = mFloorNormal.x;
 		f32 ten     = 10.0f;
 		if (collPos > 0.1f) {
 			mPelletCarryVelocity.x = -ten;
@@ -1142,7 +1142,7 @@ void Obj::walkFunc()
 			mPelletCarryVelocity.x *= 0.9f;
 		}
 		mCurrentVelocity.x += mPelletCarryVelocity.x;
-		f32 collPosZ = mCollisionPosition.z;
+		f32 collPosZ = mFloorNormal.z;
 		if (collPosZ > 0.1f) {
 			mPelletCarryVelocity.z = -ten;
 		} else if (collPosZ < -0.1f) {
@@ -1522,7 +1522,7 @@ bool Obj::carryTarget(f32 param)
 				}
 			}
 			if (!mIsCarryStuck) {
-				f32 collPos = mCollisionPosition.x;
+				f32 collPos = mFloorNormal.x;
 				f32 ten     = 10.0f;
 				if (collPos > 0.1f) {
 					mPelletCarryVelocity.x = -ten;
@@ -1533,7 +1533,7 @@ bool Obj::carryTarget(f32 param)
 						mPelletCarryVelocity.x *= 0.99f;
 					}
 				}
-				f32 collPosZ = mCollisionPosition.z;
+				f32 collPosZ = mFloorNormal.z;
 				if (collPosZ > 0.1f) {
 					mPelletCarryVelocity.z = -ten;
 				} else {

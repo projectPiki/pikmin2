@@ -102,7 +102,7 @@ void StateBorn::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateBorn::exec(EnemyBase* enemy)
 {
-	if (enemy->mBounceTriangle) {
+	if (enemy->mFloorTriangle) {
 
 		Vector3f vec = enemy->mTargetVelocity;
 		weightVecXZ(vec, 0.95f);

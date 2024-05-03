@@ -4792,7 +4792,7 @@ void NaviSaraiExitState::init(Navi* navi, StateArg* stateArg)
  */
 void NaviSaraiExitState::exec(Navi* navi)
 {
-	if (navi->mFakePikiBounceTriangle != nullptr || navi->mBounceTriangle != nullptr) {
+	if (navi->mFakePikiBounceTriangle != nullptr || navi->mFloorTriangle != nullptr) {
 		transit(navi, NSID_Walk, nullptr);
 	}
 }

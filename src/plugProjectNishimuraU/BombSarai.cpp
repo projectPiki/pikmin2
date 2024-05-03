@@ -119,7 +119,7 @@ void BombSarai::Obj::getShadowParam(ShadowParam& shadowParam)
  */
 bool BombSarai::Obj::bombCallBack(Creature* creature, Vector3f& vec, f32 damage)
 {
-	if (mBounceTriangle) {
+	if (mFloorTriangle) {
 		addDamage(damage, 1.0f);
 		return true;
 	}

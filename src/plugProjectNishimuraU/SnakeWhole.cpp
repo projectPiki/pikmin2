@@ -283,9 +283,9 @@ void Obj::updateFace()
  */
 void Obj::updateConstraint()
 {
-	if (getStateID() >= SNAKEWHOLE_Wait && !mIsJumping && mBounceTriangle) {
+	if (getStateID() >= SNAKEWHOLE_Wait && !mIsJumping && mFloorTriangle) {
 		// i.e. snagret is fully above ground + is ON ground
-		if (mCollisionPosition.y > 0.5f) {
+		if (mFloorNormal.y > 0.5f) {
 			enableEvent(0, EB_Constrained);
 		} else {
 			constraintOff();

@@ -90,7 +90,7 @@ void Obj::getShadowParam(ShadowParam& shadowParam)
 		if (stateId == SARAI_Fall || stateId == SARAI_Damage || stateId == SARAI_TakeOff) {
 			shadowParam.mPosition.y -= 5.0f;
 			shadowParam.mBoundingSphere.mRadius = 100.0f + C_PROPERPARMS.mNormalFlightHeight.mValue;
-		} else if (mBounceTriangle) {
+		} else if (mFloorTriangle) {
 			shadowParam.mPosition.y -= 5.0f;
 			shadowParam.mBoundingSphere.mRadius = 50.0f;
 		} else {
@@ -343,7 +343,7 @@ FakePiki* Obj::getAttackableTarget()
 		while (!iterator.isDone()) {
 			Piki* c = iterator.mContainer->get(iterator.mIndex);
 
-			if (c->isAlive() && c->isPikmin() && !c->isStickToMouth() && c->mSticker != this && c->mBounceTriangle) {
+			if (c->isAlive() && c->isPikmin() && !c->isStickToMouth() && c->mSticker != this && c->mFloorTriangle) {
 				f32 ang = getAngDist(c);
 				if (FABS(ang) <= maxAngle) {
 					Vector3f pos = c->getPosition();

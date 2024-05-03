@@ -1122,14 +1122,14 @@ void FakePiki::turnTo(Vector3f& targetPos)
 void FakePiki::moveVelocity()
 {
 	// update simulation (next/target) velocity based on the triangle we're standing on
-	Sys::Triangle* tri   = mBounceTriangle; // triangle we're currently on
+	Sys::Triangle* tri   = mFloorTriangle; // triangle we're currently on
 	Vector3f newVelocity = Vector3f(0.0f);
 	Vector3f oldVelocity = Vector3f(mTargetVelocity); // our current velocity
 
 	if (tri) {
 		// update our direction based on collision, but keep speed the same
 		f32 oldSpeed    = oldVelocity.length();
-		Vector3f newDir = mCollisionPosition * oldVelocity.dot(mCollisionPosition);
+		Vector3f newDir = mFloorNormal * oldVelocity.dot(mFloorNormal);
 		newDir          = oldVelocity - newDir;
 		newDir.normalise();
 
@@ -1142,7 +1142,7 @@ void FakePiki::moveVelocity()
 			if (oldSpeed < 0.1f) {
 				// going below speed threshold, slow to a stop
 				Vector3f fallVelocity = Vector3f(0.0f, -(_aiConstants->mGravity.mData * sys->mDeltaTime), 0.0f);
-				Vector3f newDir       = mCollisionPosition * fallVelocity.dot(mCollisionPosition);
+				Vector3f newDir       = mFloorNormal * fallVelocity.dot(mFloorNormal);
 				newDir                = fallVelocity - newDir;
 				// decelerate to a stop
 				newDir      = Vector3f(-newDir.x, -newDir.y, -newDir.z);
@@ -1152,7 +1152,7 @@ void FakePiki::moveVelocity()
 		} else {
 			// some form of slipping happening
 			Vector3f fallVelocity = Vector3f(0.0f, -(_aiConstants->mGravity.mData * sys->mDeltaTime), 0.0f);
-			Vector3f moveDir      = mCollisionPosition * fallVelocity.dot(mCollisionPosition);
+			Vector3f moveDir      = mFloorNormal * fallVelocity.dot(mFloorNormal);
 			moveDir               = fallVelocity - moveDir;
 			moveDir.normalise();
 
@@ -1227,7 +1227,7 @@ void FakePiki::move(f32 rate)
 	velocity = mVelocity + mAcceleration;
 
 	MoveInfo info(&moveSphere, &velocity, traceRadius);
-	info.mInfoOrigin        = this;
+	info.mMovingCreature    = this;
 	mFakePikiBounceTriangle = nullptr;
 
 	if (useMapCollision()) {
@@ -1263,21 +1263,21 @@ void FakePiki::move(f32 rate)
 	} else {
 		// we're not using map collision, do the simplest movement calculation possible
 		info.mMoveSphere->mPosition = info.mMoveSphere->mPosition + mVelocity * rate;
-		info.mBounceTriangle        = nullptr;
+		info.mFloorTriangle         = nullptr;
 	}
 
-	if (!mBounceTriangle && info.mBounceTriangle) {
+	if (!mFloorTriangle && info.mFloorTriangle) {
 		// we were falling and next frame we hit something - bounce
-		bounceCallback(info.mBounceTriangle);
+		bounceCallback(info.mFloorTriangle);
 	}
 
 	// update tri we're on and its position
-	mBounceTriangle    = info.mBounceTriangle;
-	mCollisionPosition = info.mPosition;
+	mFloorTriangle = info.mFloorTriangle;
+	mFloorNormal   = info.mFloorNormal;
 
 	// we're gonna run into a wall
 	if (!mDontUseWallCallback && info.mWallTriangle) {
-		wallCallback(info.mReflectPosition);
+		wallCallback(info.mWallNormal);
 	}
 
 	// we're on a platform, change position accordingly since it might move us
@@ -1286,20 +1286,20 @@ void FakePiki::move(f32 rate)
 	}
 
 	// if platform made it so we're on a triangle, bounce and re-update tri position
-	if (!mBounceTriangle && info.mBounceTriangle) {
-		bounceCallback(info.mBounceTriangle);
-		mBounceTriangle    = info.mBounceTriangle;
-		mCollisionPosition = info.mPosition;
+	if (!mFloorTriangle && info.mFloorTriangle) {
+		bounceCallback(info.mFloorTriangle);
+		mFloorTriangle = info.mFloorTriangle;
+		mFloorNormal   = info.mFloorNormal;
 	}
 
 	// platform made us hit a wall
 	if (!mDontUseWallCallback && info.mWallTriangle) {
-		wallCallback(info.mReflectPosition);
+		wallCallback(info.mWallNormal);
 	}
 
 	// we're on sufficiently flat ground, update fakepiki-specific triangle (for knockbacks and burying from mamuta hit, etc)
-	if (mBounceTriangle && mBounceTriangle->mTrianglePlane.mNormal.y > 0.6f) {
-		mFakePikiBounceTriangle = mBounceTriangle;
+	if (mFloorTriangle && mFloorTriangle->mTrianglePlane.mNormal.y > 0.6f) {
+		mFakePikiBounceTriangle = mFloorTriangle;
 	}
 
 	if (isFPFlag(FPFLAGS_PikiBeingPlucked)) {
@@ -1328,7 +1328,7 @@ void FakePiki::move(f32 rate)
 	mBoundingSphere = moveSphere;
 
 	// if we're not on actual ground, don't worry about effects
-	if (!mBounceTriangle) {
+	if (!mFloorTriangle) {
 		return;
 	}
 
@@ -1354,7 +1354,7 @@ void FakePiki::move(f32 rate)
 
 		if (randFloat() <= efxChance) {
 			// make walk effect based on terrain
-			if (mBounceTriangle->mCode.mContents == 8) { // Attribute4, no slip, not bald?
+			if (mFloorTriangle->mCode.mContents == 8) { // Attribute4, no slip, not bald?
 				efx::createSimpleWalkwater(mPosition);
 			} else {
 				efx::createSimpleWalksmoke(mPosition);
@@ -1432,7 +1432,7 @@ void FakePiki::doAnimation()
 	mPreviousPosition = mPosition;
 
 	if ((isMovieExtra() || !isMovieActor()) && mFakePikiBounceTriangle) {
-		if (useMoveVelocity() || !mBounceTriangle) {
+		if (useMoveVelocity() || !mFloorTriangle) {
 			moveVelocity();
 		}
 		if (useMoveRotation()) {
