@@ -152,8 +152,8 @@ struct JUTGamePad : public JKRDisposer {
 		f32 mYPos;     // _04
 		f32 mStickMag; // _08
 		s16 mAngle;    // _0C
-		u8 _0E;        // _0E
-		u8 _0F;        // _0F
+		s8 _0E;        // _0E
+		s8 _0F;        // _0F
 	};
 
 	struct C3ButtonReset {

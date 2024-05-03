@@ -1109,10 +1109,10 @@ u32 JUTGamePad::CStick::update(s8 x_val, s8 y_val, JUTGamePad::EStickMode mode,
     _0F = y_val;
     mXPos = x_val / (f32)clamp;
     mYPos = y_val / (f32)clamp;
-    mStickMag = dolsqrtfull((mXPos * mXPos) + (mYPos * mYPos));
+    mStickMag = dolsqrtfull(SQUARE(mXPos) + SQUARE(mYPos));
 
     if (mStickMag > 1.0f) {
-        if (mode == 1) {
+        if (mode == MODE_1) {
             mXPos /= mStickMag;
             mYPos /= mStickMag;
         }
