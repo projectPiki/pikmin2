@@ -19,6 +19,8 @@ struct TList {
 };
 
 struct TList_object {
+	TList_object(u32) { }
+
 	TList_object* mNext; // _00
 	TList_object* mPrev; // _04
 };

@@ -34,26 +34,35 @@ namespace binary {
  * @note Address: 0x80027128
  * @note Size: 0x68
  */
-const void* parseVariableUInt_16_32_following(void const* buffer, u32* p1, u32* p2, JGadget::binary::TEBit* bit)
+const void* parseVariableUInt_16_32_following(void const* inputBuffer, u32* output1, u32* output2, JGadget::binary::TEBit* bitPointer)
 {
-	JGadget::binary::TEBit temp;
-	if (bit == NULL) {
-		bit = &temp;
+	// Temporary bit object
+	JGadget::binary::TEBit tempBit;
+
+	// If bitPointer is NULL, assign the address of tempBit to it
+	if (bitPointer == NULL) {
+		bitPointer = &tempBit;
 	}
-	u32 uVar1 = *(u16*)buffer;
-	if ((uVar1 & 0x8000) == 0) {
-		bit->mValue = 0x10;
-		*p1         = uVar1;
-		*p2         = *(u16*)((u8*)buffer + 2);
-		return (u8*)buffer + 4;
+
+	// Read the first 16 bits from the buffer
+	u32 bufferValue = *(u16*)inputBuffer;
+
+	// If the most significant bit is 0
+	if ((bufferValue & 0x8000) == 0) {
+		bitPointer->mValue = 0x10;                          // Set bit value to 16
+		*output1           = bufferValue;                   // Assign the 16-bit value to output1
+		*output2           = *(u16*)((u8*)inputBuffer + 2); // Assign the next 16 bits to output2
+		return (u8*)inputBuffer + 4;                        // Return the buffer pointer moved by 4 bytes
 	}
-	bit->mValue = 0x20;
-	uVar1 <<= 16;
-	uVar1 &= 0x7fff0000;
-	uVar1 |= *(u16*)((u8*)buffer + 2);
-	*p1 = uVar1;
-	*p2 = *(u32*)((u8*)buffer + 4);
-	return (u8*)buffer + 8;
+
+	// If the most significant bit is 1
+	bitPointer->mValue = 0x20;                    // Set bit value to 32
+	bufferValue <<= 16;                           // Shift the 16-bit value to the left by 16 bits
+	bufferValue &= 0x7fff0000;                    // Mask the value to keep only the 15 bits following the most significant bit
+	bufferValue |= *(u16*)((u8*)inputBuffer + 2); // OR the value with the next 16 bits from the buffer
+	*output1 = bufferValue;                       // Assign the 32-bit value to output1
+	*output2 = *(u32*)((u8*)inputBuffer + 4);     // Assign the next 32 bits to output2
+	return (u8*)inputBuffer + 8;                  // Return the buffer pointer moved by 8 bytes
 }
 
 /**
