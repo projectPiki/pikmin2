@@ -739,14 +739,14 @@ void FakePiki::finishLook()
  */
 void FakePiki::updateLook()
 {
-	f32 angle1;
-	f32 angle2;
-	f32 angle3;
+	f32 horizontalAngle;
+	f32 verticalAngle;
+	f32 adjustedHorizontalAngle;
 	if (mLookAtPosition) {
-		Vector3f pos = getPosition();
-		Vector3f sep = *mLookAtPosition - pos;
-		angle1       = JMAAtan2Radian(sep.x, sep.z);
-		angle2       = JMAAtan2Radian(sep.y, _lengthXZ(sep));
+		Vector3f pos    = getPosition();
+		Vector3f sep    = *mLookAtPosition - pos;
+		horizontalAngle = JMAAtan2Radian(sep.x, sep.z);
+		verticalAngle   = JMAAtan2Radian(sep.y, _lengthXZ(sep));
 
 	} else {
 		mNeckTheta = roundAng(0.2f * angDist(0.0f, mNeckTheta) + mNeckTheta);
@@ -761,61 +761,61 @@ void FakePiki::updateLook()
 		return;
 	}
 
-	f32 angX = roundAng(mNeckTheta + mFaceDir);
-	angle3   = angX;
-	f32 angY = roundAng(angle1 - mFaceDir);
-	f32 val;
+	f32 angX                = roundAng(mNeckTheta + mFaceDir);
+	adjustedHorizontalAngle = angX;
+	f32 angY                = roundAng(horizontalAngle - mFaceDir);
+	f32 adjustAngle;
 
 	if (angY < PI) {
 		if (mNeckTheta > PI) {
-			val = TAU - (mNeckTheta - angY);
+			adjustAngle = TAU - (mNeckTheta - angY);
 		} else {
-			val = angDist(angle1, angle3);
+			adjustAngle = angDist(horizontalAngle, adjustedHorizontalAngle);
 		}
 	} else if (mNeckTheta <= PI) {
-		val = TAU - (mNeckTheta - angY);
-		val *= -1.0f;
+		adjustAngle = TAU - (mNeckTheta - angY);
+		adjustAngle *= -1.0f;
 	} else {
-		val = angDist(angle1, angle3);
+		adjustAngle = angDist(horizontalAngle, adjustedHorizontalAngle);
 	}
 
-	if (FABS(val) < PI / 20.0f) {
-		val = 0.0f;
+	if (FABS(adjustAngle) < PI / 20.0f) {
+		adjustAngle = 0.0f;
 	}
 
-	val *= 0.05f;
+	adjustAngle *= 0.05f;
 
-	if (FABS(val) > PI / 10.0f) {
-		if (val > 0.0f) {
-			val = PI / 10.0f;
+	if (FABS(adjustAngle) > PI / 10.0f) {
+		if (adjustAngle > 0.0f) {
+			adjustAngle = PI / 10.0f;
 		} else {
-			val = -PI / 10.0f;
+			adjustAngle = -PI / 10.0f;
 		}
 	}
 
-	mNeckTheta = roundAng(mNeckTheta + val);
+	mNeckTheta = roundAng(mNeckTheta + adjustAngle);
 	if (mNeckTheta > 2.0f * PI / 3.0f && mNeckTheta < PI) {
 		mNeckTheta = 2.0f * PI / 3.0f;
 	} else if (mNeckTheta < (4.0f * PI / 3.0f) && mNeckTheta >= PI) {
 		mNeckTheta = 4.0f * PI / 3.0f;
 	}
 
-	f32 val2 = angDist(angle2, mNeckPhi);
-	if (FABS(val2) < PI / 20.0f) {
-		val2 = 0.0f;
+	f32 verticalAdjustAngle = angDist(verticalAngle, mNeckPhi);
+	if (FABS(verticalAdjustAngle) < PI / 20.0f) {
+		verticalAdjustAngle = 0.0f;
 	}
 
-	val2 *= 0.05f;
+	verticalAdjustAngle *= 0.05f;
 
-	if (FABS(val2) > PI / 10.0f) {
-		if (val2 > 0.0f) {
-			val2 = PI / 10.0f;
+	if (FABS(verticalAdjustAngle) > PI / 10.0f) {
+		if (verticalAdjustAngle > 0.0f) {
+			verticalAdjustAngle = PI / 10.0f;
 		} else {
-			val2 = -PI / 10.0f;
+			verticalAdjustAngle = -PI / 10.0f;
 		}
 	}
 
-	mNeckPhi = roundAng(mNeckPhi + val2);
+	mNeckPhi = roundAng(mNeckPhi + verticalAdjustAngle);
 	if (mNeckPhi > PI / 3.0f && mNeckPhi < PI) {
 		mNeckPhi = PI / 3.0f;
 	} else if (mNeckPhi < (5.2359877f) && mNeckPhi >= PI) {
