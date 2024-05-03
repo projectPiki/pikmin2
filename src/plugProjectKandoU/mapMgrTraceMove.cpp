@@ -9,6 +9,10 @@ namespace Game {
 u8 MapMgr::mTraceMoveOptLevel = 1;
 
 /**
+ * @brief This function traces the movement of an object in the game world.
+ * It divides the movement into smaller steps if the movement length is greater than the object's radius.
+ * It returns a list of triangles that the object would collide with during its movement.
+ *
  * @note Address: 0x8020508C
  * @note Size: 0x114
  * TODO: 57%

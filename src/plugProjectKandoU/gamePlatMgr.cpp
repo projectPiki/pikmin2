@@ -125,7 +125,7 @@ void PlatInstance::traceMove(MoveInfo& info, f32 step)
 
 	info.mBounceTriangle = nullptr;
 	info.mWallTriangle   = nullptr;
-	info._4C             = nullptr;
+	info.mOtherTriangle  = nullptr;
 
 	sys->mTimers->_start("plat-obb", true);
 
@@ -168,10 +168,10 @@ void PlatInstance::traceMove(MoveInfo& info, f32 step)
 			info.mWallTriangle = wallTri;
 		}
 
-		if (info._4C) {
+		if (info.mOtherTriangle) {
 			PlatEvent event;
 			event.mInstance = this;
-			event.mPosition = info._68;
+			event.mPosition = info.mOtherPosition;
 			event.mObj      = mItem;
 			info.mInfoOrigin->platCallback(event);
 		}

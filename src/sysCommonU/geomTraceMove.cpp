@@ -105,8 +105,8 @@ void OBB::traceMoveTriList_new(Game::MoveInfo& moveInfo, Sys::VertexTable& verte
 			moveInfo.mWallTriangle    = tri;
 			moveInfo.mReflectPosition = sphere1.mPosition;
 		} else {
-			moveInfo._4C = tri;
-			moveInfo._68 = sphere1.mPosition;
+			moveInfo.mOtherTriangle = tri;
+			moveInfo.mOtherPosition = sphere1.mPosition;
 		}
 
 		Vector3f vel  = *moveVelocity;
@@ -436,8 +436,8 @@ void OBB::traceMoveTriList_new_global(Game::MoveInfo& moveInfo, Sys::VertexTable
 			moveInfo.mWallTriangle    = tri;
 			moveInfo.mReflectPosition = sphere1.mPosition;
 		} else {
-			moveInfo._4C = tri;
-			moveInfo._68 = sphere1.mPosition;
+			moveInfo.mOtherTriangle = tri;
+			moveInfo.mOtherPosition = sphere1.mPosition;
 		}
 
 		Vector3f vel  = *moveVelocity;

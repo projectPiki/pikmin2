@@ -26,9 +26,9 @@ struct MoveInfo {
 		mUnused0             = 0.0f;
 		mIntersectCallback   = nullptr;
 		mBounceTriangle      = nullptr;
-		_74                  = 0;
+		mUnused3             = 0;
 		mUseIntersectionAlgo = 0;
-		_18                  = 0;
+		mUnused1             = 0;
 		mWallTriangle        = nullptr;
 		mInfoOrigin          = nullptr;
 		mMapCode.mContents   = 0;
@@ -36,7 +36,7 @@ struct MoveInfo {
 		mWallThreshold       = JMath::sincosTable_.mTable[256].first; // pi/2
 		mBounceThreshold     = 0.6f;
 		mRoomIndex           = -1;
-		_4C                  = nullptr;
+		mOtherTriangle       = nullptr;
 		mIntersectType       = IT_Triangle;
 	}
 
@@ -48,9 +48,9 @@ struct MoveInfo {
 		mUnused0             = 0.0f;
 		mIntersectCallback   = delegate;
 		mBounceTriangle      = nullptr;
-		_74                  = 0;
+		mUnused3             = 0;
 		mUseIntersectionAlgo = 0;
-		_18                  = 0;
+		mUnused1             = 0;
 		mWallTriangle        = nullptr;
 		mInfoOrigin          = nullptr;
 		mMapCode.mContents   = 0;
@@ -58,7 +58,7 @@ struct MoveInfo {
 		mWallThreshold       = JMath::sincosTable_.mTable[256].first; // pi/2
 		mBounceThreshold     = 0.6f;
 		mRoomIndex           = -1;
-		_4C                  = nullptr;
+		mOtherTriangle       = nullptr;
 		mIntersectType       = IT_Triangle;
 	}
 
@@ -70,21 +70,21 @@ struct MoveInfo {
 	f32 mUnused0;                                                     // _0C
 	Delegate2<DynCreature, Vector3f&, Vector3f&>* mIntersectCallback; // _10
 	Creature* mInfoOrigin;                                            // _14
-	u8 _18;                                                           // _18
+	u8 mUnused1;                                                      // _18
 	u8 mUseIntersectionAlgo;                                          // _19
 	u8 mIntersectType;                                                // _1A (IntersectType)
 	Vector3f mDirection;                                              // _1C
 	f32 mDistance;                                                    // _28
 	f32 mWallThreshold;                                               // _2C
 	f32 mBounceThreshold;                                             // _30
-	u8 _34[16];                                                       // _34
+	u8 mUnused2[16];                                                  // _34
 	Sys::Triangle* mBounceTriangle;                                   // _44
 	Sys::Triangle* mWallTriangle;                                     // _48
-	Sys::Triangle* _4C;                                               // _4C, water triangle?
+	Sys::Triangle* mOtherTriangle;                                    // _4C, water triangle?
 	Vector3f mPosition;                                               // _50
 	Vector3f mReflectPosition;                                        // _5C
-	Vector3f _68;                                                     // _68, related to tri at _4C
-	u8 _74;                                                           // _74
+	Vector3f mOtherPosition;                                          // _68
+	u8 mUnused3;                                                      // _74
 	Vector3f mUpDirection;                                            // _78
 	Vector3f mBaseSpherePos;                                          // _84, the bottom of the move sphere
 	MapCode::Code mMapCode;                                           // _90

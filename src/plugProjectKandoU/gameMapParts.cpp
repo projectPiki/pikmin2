@@ -3752,7 +3752,7 @@ Sys::TriIndexList* RoomMapMgr::traceMove_original(MoveInfo& info, f32 step)
 						vecArray[count] = triNorm;
 						floatArray[count]
 						    = moveSphere->mRadius - (moveSphere->mPosition.dot(tri->mTrianglePlane.mNormal) - tri->mTrianglePlane.mOffset);
-						info._74          = true;
+						info.mUnused3     = true;
 						info.mUpDirection = triNorm;
 						count++;
 					}

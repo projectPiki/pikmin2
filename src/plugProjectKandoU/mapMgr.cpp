@@ -734,7 +734,7 @@ void MapMgr::checkBeamCollision(BeamCollisionArg& arg)
 			platMgr->traceMove(moveInfo, 1.0f);
 		}
 
-		if (moveInfo.mWallTriangle || moveInfo.mBounceTriangle || moveInfo._4C) {
+		if (moveInfo.mWallTriangle || moveInfo.mBounceTriangle || moveInfo.mOtherTriangle) {
 			arg.mHitSuccess = true;
 			break;
 		}
@@ -1564,7 +1564,7 @@ void ShapeMapMgr::drawCollision(Graphics& gfx, ::Sys::Sphere& boundingSphere)
 {
 	gfx.initPrimDraw(nullptr);
 	gfx.mDrawColor = Color4(50, 255, 10, 255);
-	GXSetLineWidth(' ', GX_TO_ZERO);
+	GXSetLineWidth(32, GX_TO_ZERO);
 	Sys::TriIndexList* triLists  = mMapCollision.mDivider->findTriLists(boundingSphere);
 	Sys::VertexTable& vertTable  = *mMapCollision.mDivider->mVertexTable;
 	Sys::TriangleTable& triTable = *mMapCollision.mDivider->mTriangleTable;
