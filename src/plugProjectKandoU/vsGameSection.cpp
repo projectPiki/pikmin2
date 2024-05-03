@@ -970,11 +970,11 @@ bool GameMessageVsPikminDead::actVs(VsGameSection* section)
  */
 bool GameMessageVsGotCard::actVs(VsGameSection* section)
 {
-	VsGame::CardMgr::SlotMachine* slot = &section->mCardMgr->mSlotMachines[_04];
+	VsGame::CardMgr::SlotMachine* slot = &section->mCardMgr->mSlotMachines[mUserIndex];
 	if (!slot->_18 && slot->mSlotID != VsGame::UNRESOLVED) {
 		section->useCard();
 	}
-	section->mCardMgr->gotPlayerCard(_04);
+	section->mCardMgr->gotPlayerCard(mUserIndex);
 	return true;
 }
 
@@ -990,11 +990,11 @@ bool GameMessageVsUseCard::actVs(VsGameSection* section)
 		}
 	}
 	if (gGameConfig.mParms.mVsY.mData == 0) {
-		if (section->mCardMgr->usePlayerCard(_04, section->mTekiMgr)) {
+		if (section->mCardMgr->usePlayerCard(mSlotIndex, section->mTekiMgr)) {
 			section->useCard();
 		}
 	} else {
-		section->mCardMgr->stopSlot(_04);
+		section->mCardMgr->stopSlot(mSlotIndex);
 	}
 	return true;
 }

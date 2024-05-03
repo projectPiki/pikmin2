@@ -102,15 +102,15 @@ struct GameMessageVsGetOtakara : public GameMessage {
 };
 
 struct GameMessageVsGotCard : public GameMessage {
-	inline GameMessageVsGotCard(u32 onyonType)
-	    : _04(onyonType)
+	inline GameMessageVsGotCard(u32 userIndex)
+	    : mUserIndex(userIndex)
 	{
 	}
 
 	virtual bool actVs(VsGameSection*); // _10
 
 	// _00 = VTBL
-	u32 _04; // _04, onyon type according to ghidra, but that enum is meant to be a short
+	u32 mUserIndex; // _04
 };
 
 struct GameMessageVsPikminDead : public GameMessage {
@@ -127,11 +127,11 @@ struct GameMessageVsRedOrSuckStart : public GameMessage {
 };
 
 struct GameMessageVsUseCard : public GameMessage {
-	GameMessageVsUseCard(int id) { _04 = id; }
+	GameMessageVsUseCard(int id) { mSlotIndex = id; }
 	virtual bool actVs(VsGameSection*); // _10
 
 	// _00 = VTBL
-	int _04; // _04
+	int mSlotIndex; // _04
 };
 
 } // namespace Game
