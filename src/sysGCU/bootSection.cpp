@@ -36,8 +36,8 @@ TinyPikmin::TinyPikmin()
 {
 	mState          = 0;
 	mColor          = 0;
-	_08             = 0.0f;
-	_0C             = 0.0f;
+	mUnused0        = 0.0f;
+	mUnused1        = 0.0f;
 	mPositionY      = 0.0f;
 	mScaleAnimTimer = 1.0f;
 	mWaitTimer      = 0.0f;
@@ -52,8 +52,8 @@ void TinyPikmin::init(int color, f32 delay, f32 u2, f32 x)
 {
 	mState          = INACTIVE;
 	mColor          = color;
-	_08             = delay + u2;
-	_0C             = 166.0f;
+	mUnused0        = delay + u2;
+	mUnused1        = 166.0f;
 	mPositionX      = 0.0f;
 	mPositionY      = 70.0f;
 	mScaleAnimTimer = randFloat();
