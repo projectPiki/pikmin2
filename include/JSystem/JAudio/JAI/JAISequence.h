@@ -174,6 +174,8 @@ struct JAISequence : public JAISound {
 	void getTrackParameterF32(u8, char);
 	void getTrackPortData(u8, u8);
 
+	inline JASTrack* getTrack() { return &mSeqParameter.mTrack; }
+
 	JAInter::SeqParameter mSeqParameter; // _48
 };
 

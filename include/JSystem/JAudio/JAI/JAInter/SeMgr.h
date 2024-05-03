@@ -25,6 +25,20 @@ struct TrackUpdate {
 	f32 _14; // _14
 };
 
+// fabricated name
+struct SeHelper {
+	void operator=(const SeHelper& other)
+	{
+		_04    = other._04;
+		mSound = other.mSound;
+		mState = other.mState;
+	}
+
+	u8 mState;     // _00
+	u32 _04;       // _04
+	JAISe* mSound; // _08
+};
+
 typedef void (*StartCallback)();
 void init();
 void startSeSequence();

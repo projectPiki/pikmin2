@@ -55,13 +55,11 @@ struct JAISound_0x34 {
 	inline void setVec(Vec& vec, f32 p1)
 	{
 		mPosition = vec;
-		_0C       = p1;
+		_0C.x     = p1;
 	}
 
 	Vec mPosition; // _00
-	f32 _0C;       // _0C
-	f32 _10;       // _10
-	f32 _14;       // _14
+	Vec _0C;       // _0C
 	f32 mDistance; // _18
 };
 
@@ -149,7 +147,7 @@ struct JAISound : public JSULink<JAISound> {
 	u8 _1B;                         // _1B
 	s16 mAdjustPriority;            // _1C
 	u32 mSoundID;                   // _20
-	u8 _24[4];                      // _24
+	u32 _24;                        // _24
 	u32 mFadeCounter;               // _28
 	u32 _2C;                        // _2C
 	u32 _30;                        // _30

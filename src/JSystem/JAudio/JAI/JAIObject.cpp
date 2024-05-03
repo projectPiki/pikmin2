@@ -348,7 +348,7 @@ void JAInter::Object::loop()
 
 		JAISound_0x34* v1 = mSounds[i]->mSoundObj;
 		v1->mPosition     = _28;
-		v1->_0C           = mDistance;
+		v1->_0C.x         = mDistance;
 
 		if (!check) {
 			if (_24) {

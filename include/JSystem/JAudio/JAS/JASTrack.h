@@ -207,7 +207,7 @@ struct JASTrack : JSUList<JASChannel> {
 	void writeSelfPort(int portNumber, u16 value);
 	bool writePortAppDirect(u32, u16);
 	bool readPortAppDirect(u32, u16*);
-	void writePortApp(u32, u16);
+	bool writePortApp(u32, u16);
 	void readPortApp(u32, u16*);
 	void pause(bool, bool);
 	int getTranspose() const;
@@ -239,7 +239,7 @@ struct JASTrack : JSUList<JASChannel> {
 	void updateOscParam(int, f32);
 	void muteChildTracks(u16);
 	void loadTbl(u32, u32, u32);
-	void routeTrack(u32);
+	JASTrack* routeTrack(u32 count);
 	void routeTrack(u32) const;
 	void checkExportApp(u32) const;
 	void checkImportApp(u32) const;

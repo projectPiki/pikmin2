@@ -3560,8 +3560,19 @@ bool JASTrack::readPortAppDirect(u32 p1, u16* value)
  * @note Address: N/A
  * @note Size: 0x38
  */
-void JASTrack::routeTrack(u32)
+JASTrack* JASTrack::routeTrack(u32 p1)
 {
+	JASTrack* outTrack;
+	u32 idx = p1;
+	for (u32 i = 0; i < (p1 >> 28); i++) {
+		outTrack = mChildList[idx & 0xF];
+		if (!outTrack) {
+			return nullptr;
+		}
+		idx >>= 4;
+	}
+
+	return outTrack;
 	// UNUSED FUNCTION
 }
 
@@ -3578,8 +3589,20 @@ void JASTrack::routeTrack(u32) const
  * @note Address: 0x800A218C
  * @note Size: 0xB4
  */
-void JASTrack::writePortApp(u32, u16)
+bool JASTrack::writePortApp(u32 p1, u16 p2)
 {
+	JASTrack* track = routeTrack(p1);
+	if (!track) {
+		return false;
+	}
+
+	u32 val = p1 >> 16 & 0xFF;
+	track->mTrackPort.writeImport(val, p2);
+	if (val == 0 || val == 1) {
+		track->mIntrMgr.request((val) ? (int)4 : (int)3);
+	}
+
+	return true;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0

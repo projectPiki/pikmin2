@@ -47,6 +47,11 @@ struct MoveParaSetInitHalf : public MoveParaSet {
 	    : MoveParaSet(0.5f)
 	{
 	}
+
+	MoveParaSetInitHalf(f32 value)
+	    : MoveParaSet(value)
+	{
+	}
 };
 
 /**
@@ -55,6 +60,11 @@ struct MoveParaSetInitHalf : public MoveParaSet {
 struct MoveParaSetInitZero : public MoveParaSet {
 	MoveParaSetInitZero()
 	    : MoveParaSet(0.0f)
+	{
+	}
+
+	MoveParaSetInitZero(f32 value)
+	    : MoveParaSet(value)
 	{
 	}
 };

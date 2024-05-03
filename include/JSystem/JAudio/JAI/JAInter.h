@@ -50,6 +50,20 @@ struct StreamUpdateData;
 struct Actor;
 struct DummyVec;
 struct SeqUpdateData;
+
+enum SoundInfoFlags {
+	SOUNDFLAG_Unk0  = 1 << 0,  // 0x1
+	SOUNDFLAG_Unk1  = 1 << 1,  // 0x2
+	SOUNDFLAG_Unk2  = 1 << 2,  // 0x4
+	SOUNDFLAG_Unk3  = 1 << 3,  // 0x8
+	SOUNDFLAG_Unk4  = 1 << 4,  // 0x10
+	SOUNDFLAG_Unk5  = 1 << 5,  // 0x20
+	SOUNDFLAG_Unk6  = 1 << 6,  // 0x40
+	SOUNDFLAG_Unk7  = 1 << 7,  // 0x80
+	SOUNDFLAG_Unk8  = 1 << 8,  // 0x100
+	SOUNDFLAG_Unk19 = 1 << 19, // 0x80000
+};
+
 struct SoundInfo {
 	u32 mFlag;     // _00
 	u8 mPriority;  // _04
@@ -312,6 +326,8 @@ struct SeqParameter : public MoveParaSet {
 	~SeqParameter();
 
 	void init();
+
+	inline JASTrack* getTrack() { return &mTrack; }
 
 	// _00-_10 = MoveParaSet
 	MoveParaSet _10[16];                // _10
