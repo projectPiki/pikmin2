@@ -193,13 +193,13 @@ struct FakePiki : public Creature, public SysShape::MotionListener {
 		mPosition = dest;
 		onSetPosition();
 	}
-	virtual f32 getFaceDir() { return mFaceDir; }                                    // _64 (weak)
-	virtual Vector3f getVelocity() { return mSimVelocity; }                          // _6C (weak)
-	virtual void setVelocity(Vector3f& vel) { mSimVelocity = vel; }                  // _68 (weak)
-	virtual void getVelocityAt(Vector3f& vec, Vector3f& vel) { vel = mSimVelocity; } // _184 (weak)
-	virtual Vector3f* getSound_PosPtr() { return &mPosition; }                       // _100 (weak)
-	virtual void onSetPosition() { }                                                 // _218 (weak)
-	virtual bool isWalking() { return false; }                                       // _21C (weak)
+	virtual f32 getFaceDir() { return mFaceDir; }                                 // _64 (weak)
+	virtual Vector3f getVelocity() { return mVelocity; }                          // _6C (weak)
+	virtual void setVelocity(Vector3f& vel) { mVelocity = vel; }                  // _68 (weak)
+	virtual void getVelocityAt(Vector3f& vec, Vector3f& vel) { vel = mVelocity; } // _184 (weak)
+	virtual Vector3f* getSound_PosPtr() { return &mPosition; }                    // _100 (weak)
+	virtual void onSetPosition() { }                                              // _218 (weak)
+	virtual bool isWalking() { return false; }                                    // _21C (weak)
 
 	bool assertMotion(int);
 
@@ -232,7 +232,7 @@ struct FakePiki : public Creature, public SysShape::MotionListener {
 
 	bool debugShapeDL(char*);
 
-	inline void setCurrVelocity(Vector3f& vel) { mVelocity = vel; }
+	inline void setCurrVelocity(Vector3f& vel) { mTargetVelocity = vel; }
 
 	// _000      = VTBL
 	// _000-_178 = Creature
@@ -250,10 +250,10 @@ struct FakePiki : public Creature, public SysShape::MotionListener {
 	u8 mLookAtTimer;                        // _1A4
 	Creature* mLookAtTargetCreature;        // _1A8
 	PikiAnimator mAnimator;                 // _1AC
-	Vector3f mVelocity;                     // _1E4
+	Vector3f mTargetVelocity;               // _1E4
 	Vector3f mSimPosition;                  // _1F0, unused
 	f32 mFaceDir;                           // _1FC
-	Vector3f mSimVelocity;                  // _200
+	Vector3f mVelocity;                     // _200
 	Vector3f mPosition;                     // _20C
 	Sys::Sphere mBoundingSphere;            // _218, was mShadowParam.mBoundingSphere
 	int mBoundAnimIdx;                      // _228, current animIdx for held/bound object

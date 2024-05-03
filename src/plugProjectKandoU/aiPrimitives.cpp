@@ -4719,11 +4719,11 @@ void ActStickAttack::init(ActionArg* settings)
 		}
 	}
 
-	mIsAttackReady      = false;
-	mIsAnimFinished     = false;
-	mHasAttacked        = false;
-	mIsAttackSuccessful = false;
-	mParent->mVelocity  = Vector3f(0.0f);
+	mIsAttackReady           = false;
+	mIsAnimFinished          = false;
+	mHasAttacked             = false;
+	mIsAttackSuccessful      = false;
+	mParent->mTargetVelocity = Vector3f(0.0f);
 	if (mParent->doped()) {
 		mParent->startSound(mCreature, PSSE_PK_VC_DOPE_ATTACK, true);
 	} else {
@@ -4975,9 +4975,9 @@ void ActClimb::init(ActionArg* settings)
  */
 int ActClimb::exec()
 {
-	mParent->mSimVelocity = mVelocity;
+	mParent->mVelocity = mVelocity;
 	if (!mIsClimbTowards) {
-		mParent->mSimVelocity *= -1.0f;
+		mParent->mVelocity *= -1.0f;
 	}
 
 	mParent->move(sys->getDeltaTime());
@@ -5039,7 +5039,7 @@ int ActGather::exec()
 	mTimer -= sys->mDeltaTime;
 
 	if (dist < mRadius || mTimer <= 0.0f) {
-		mParent->mVelocity = Vector3f(0.0f);
+		mParent->mTargetVelocity = Vector3f(0.0f);
 		return ACTEXEC_Success;
 	}
 

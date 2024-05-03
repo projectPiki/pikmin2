@@ -23,7 +23,7 @@ struct MoveInfo {
 	    , mVelocity(velocity)
 	    , mTraceRadius(radius)
 	{
-		_0C                  = 0.0f;
+		mUnused0             = 0.0f;
 		mIntersectCallback   = nullptr;
 		mBounceTriangle      = nullptr;
 		_74                  = 0;
@@ -45,7 +45,7 @@ struct MoveInfo {
 	    , mVelocity(velocity)
 	    , mTraceRadius(radius)
 	{
-		_0C                  = 0.0f;
+		mUnused0             = 0.0f;
 		mIntersectCallback   = delegate;
 		mBounceTriangle      = nullptr;
 		_74                  = 0;
@@ -67,7 +67,7 @@ struct MoveInfo {
 	Sys::Sphere* mMoveSphere;                                         // _00
 	Vector3f* mVelocity;                                              // _04
 	f32 mTraceRadius;                                                 // _08
-	f32 _0C;                                                          // _0C
+	f32 mUnused0;                                                     // _0C
 	Delegate2<DynCreature, Vector3f&, Vector3f&>* mIntersectCallback; // _10
 	Creature* mInfoOrigin;                                            // _14
 	u8 _18;                                                           // _18

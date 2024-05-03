@@ -113,7 +113,7 @@ struct Navi : public FakePiki, virtual public PelletView {
 	virtual void doViewCalc();                                          // _48
 	virtual void doSimulation(f32);                                     // _4C
 	virtual void doDirectDraw(Graphics& gfx);                           // _50
-	virtual void setVelocity(Vector3f& vel) { mVelocity = vel; }        // _68 (weak)
+	virtual void setVelocity(Vector3f& vel) { mTargetVelocity = vel; }  // _68 (weak)
 	virtual void onSetPosition(Vector3f& dest);                         // _70
 	virtual void inWaterCallback(WaterBox* wb);                         // _84
 	virtual void outWaterCallback();                                    // _88

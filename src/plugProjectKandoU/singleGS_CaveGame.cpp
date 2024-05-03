@@ -1028,8 +1028,8 @@ void CaveState::onMovieDone(Game::SingleGameSection* game, Game::MovieConfig* co
 			Vector3f temp = piki->getPosition();
 			temp.y        = mapMgr->getMinY(temp);
 			piki->setPosition(temp, false);
-			piki->mSimVelocity = 0.0f;
-			piki->mVelocity    = 0.0f;
+			piki->mVelocity       = 0.0f;
+			piki->mTargetVelocity = 0.0f;
 		}
 
 		if (!playData->isDemoFlag(DEMO_First_Cave_Enter)) {

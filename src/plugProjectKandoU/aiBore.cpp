@@ -191,7 +191,7 @@ int ActRest::exec()
 		return ACTEXEC_Success;
 	}
 
-	mParent->mVelocity = Vector3f(0.0f);
+	mParent->mTargetVelocity = Vector3f(0.0f);
 
 	if (mParent->getAnimSpeed() == 0.0f) {
 		mParent->mAnimSpeed = 30.0f;

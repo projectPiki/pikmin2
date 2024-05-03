@@ -54,7 +54,7 @@ void ActFree::init(ActionArg* settings)
 
 	default:
 		mParent->startMotion(Game::IPikiAnims::WAIT, Game::IPikiAnims::WAIT, nullptr, nullptr);
-		mParent->mVelocity = Vector3f(0.0f);
+		mParent->mTargetVelocity = Vector3f(0.0f);
 		break;
 	}
 
@@ -104,7 +104,7 @@ int ActFree::exec()
 
 	default: {
 		// We aren't moving anywhere anymore
-		mParent->mVelocity = Vector3f(0.0f);
+		mParent->mTargetVelocity = Vector3f(0.0f);
 
 		Game::Piki::InvokeAIFreeArg settings;
 		// this will start the next available action (if there is one, and if piki is updateable)

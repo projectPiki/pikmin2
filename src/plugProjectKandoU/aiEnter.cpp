@@ -35,8 +35,8 @@ void ActEnter::init(ActionArg* arg)
 	P2ASSERTLINE(119, isOnyonCheck);
 
 	mParent->startMotion(Game::IPikiAnims::WALK, Game::IPikiAnims::WALK, nullptr, nullptr);
-	mParent->mVelocity = Vector3f(0.0f);
-	mOnyon             = static_cast<Game::Onyon*>(cropArg->mCreature);
+	mParent->mTargetVelocity = Vector3f(0.0f);
+	mOnyon                   = static_cast<Game::Onyon*>(cropArg->mCreature);
 
 	// pikis entering the ship
 	if (mOnyon->mOnyonType == ONYON_TYPE_SHIP) {
@@ -163,7 +163,7 @@ void ActEnter::initStay()
 int ActEnter::execStay()
 {
 	mTimer -= sys->getDeltaTime();
-	mParent->mVelocity = 0.0f;
+	mParent->mTargetVelocity = 0.0f;
 	if (mTimer <= 0.0f) {
 		mState = ENTER_ShipSuck;
 		initSuck();
@@ -368,10 +368,10 @@ void ActExit::init(ActionArg* arg)
 	P2ASSERTLINE(517, cropArg->mCreature->mObjectTypeID == OBJTYPE_Onyon);
 
 	mParent->startMotion(Game::IPikiAnims::WALK, Game::IPikiAnims::WALK, nullptr, nullptr);
-	mParent->mVelocity = Vector3f(0.0f);
-	int randFoot       = 3.0f * randFloat();
-	mCreature          = cropArg->mCreature;
-	mOnyonLeg          = static_cast<Game::Onyon*>(cropArg->mCreature)->getLegPart(randFoot);
+	mParent->mTargetVelocity = Vector3f(0.0f);
+	int randFoot             = 3.0f * randFloat();
+	mCreature                = cropArg->mCreature;
+	mOnyonLeg                = static_cast<Game::Onyon*>(cropArg->mCreature)->getLegPart(randFoot);
 
 	ClimbActionArg climbArg(mOnyonLeg, PIKI_EXITONYON_SPEED, false);
 	mParent->setPosition(mOnyonLeg->mPosition, false);
@@ -426,7 +426,7 @@ void ActExit::cleanup()
 	mParent->setMoveRotation(true);
 	f32 y = 240.0f + 60.0f * randFloat();
 	y *= climbY;
-	mParent->mSimVelocity = Vector3f(0.0f, y, 0.0f);
+	mParent->mVelocity = Vector3f(0.0f, y, 0.0f);
 }
 
 } // namespace PikiAI

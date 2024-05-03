@@ -744,8 +744,8 @@ void GameState::onMovieDone(VsGameSection* section, MovieConfig* config, u32 p1,
 			pikiPos.y        = mapMgr->getMinY(pikiPos);
 
 			piki->setPosition(pikiPos, false);
-			piki->mSimVelocity = Vector3f(0.0f);
-			piki->mVelocity    = Vector3f(0.0f);
+			piki->mVelocity       = Vector3f(0.0f);
+			piki->mTargetVelocity = Vector3f(0.0f);
 		}
 
 		Screen::gGame2DMgr->close_Floor();

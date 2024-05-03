@@ -87,7 +87,7 @@ void ActCrop::prepareClimb()
 int ActCrop::execClimb()
 {
 	// climb up at 25 unit speed
-	mParent->mSimVelocity = mClimbDirection * 25.0f;
+	mParent->mVelocity = mClimbDirection * 25.0f;
 	mParent->move(sys->mDeltaTime);
 
 	if (mParent->mClimbingPosition.y > 1.0f - (2.0f * mPlantHeightRatio)) {
@@ -152,8 +152,8 @@ int ActCrop::exec()
 	case CROP_Attack:
 		// if no berries to attack, fall off plant in some random direction
 		if (!static_cast<Game::ItemPlant::Plant*>(mCreature)->hasFruits()) {
-			f32 randAngle         = TAU * randFloat();
-			mParent->mSimVelocity = Vector3f(sinf(randAngle) * 40.0f, 200.0f, cosf(randAngle) * 40.0f);
+			f32 randAngle      = TAU * randFloat();
+			mParent->mVelocity = Vector3f(sinf(randAngle) * 40.0f, 200.0f, cosf(randAngle) * 40.0f);
 			return ACTEXEC_Fail;
 		}
 
@@ -180,10 +180,10 @@ int ActCrop::exec()
 		}
 
 		// weird weighting but sure
-		Vector3f horizVel     = unitXZVel * negYComp;
-		Vector3f vertVel      = unitYVel * horizComp;
-		mParent->mSimVelocity = horizVel + vertVel;
-		mParent->mSimVelocity = mParent->mSimVelocity * 10.0f;
+		Vector3f horizVel  = unitXZVel * negYComp;
+		Vector3f vertVel   = unitYVel * horizComp;
+		mParent->mVelocity = horizVel + vertVel;
+		mParent->mVelocity = mParent->mVelocity * 10.0f;
 		mParent->move(sys->mDeltaTime);
 
 		mParent->startStick(mCreature, part);

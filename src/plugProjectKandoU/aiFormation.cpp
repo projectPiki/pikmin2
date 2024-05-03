@@ -208,8 +208,8 @@ void ActFormation::onKeyEvent(SysShape::KeyEvent const& keyEvent)
 	switch (keyEvent.mType) {
 	case KEYEVENT_2:
 		if (mIsAnimating) {
-			mParent->mSimVelocity = Vector3f(0.0f);
-			mParent->mVelocity    = Vector3f(0.0f);
+			mParent->mVelocity       = Vector3f(0.0f);
+			mParent->mTargetVelocity = Vector3f(0.0f);
 		}
 		break;
 
@@ -300,7 +300,7 @@ int PikiAI::ActFormation::exec()
 			mParent->startMotion(Game::IPikiAnims::WALK, Game::IPikiAnims::WALK, nullptr, nullptr);
 		}
 
-		mParent->mVelocity = mParent->mVelocity * 0.955f;
+		mParent->mTargetVelocity = mParent->mTargetVelocity * 0.955f;
 		return ACTEXEC_Continue;
 	}
 
@@ -347,7 +347,7 @@ int PikiAI::ActFormation::exec()
 	Vector3f moveSep = mParent->mPreviousPosition - mParent->getPosition();
 	mTripCheckMoveDist += moveSep.length();
 
-	if (mParent->getKind() != Game::Bulbmin && mTripCheckMoveDist >= 100.0f && mParent->mSimVelocity.length() > 110.0f) {
+	if (mParent->getKind() != Game::Bulbmin && mTripCheckMoveDist >= 100.0f && mParent->mVelocity.length() > 110.0f) {
 		if (randFloat() >= 0.99f && randFloat() > 0.7f) {
 			if (mParent->getStateID() == Game::PIKISTATE_Walk) {
 				mParent->mFsm->transit(mParent, Game::PIKISTATE_Koke, nullptr);
@@ -401,10 +401,10 @@ int PikiAI::ActFormation::exec()
 			return ACTEXEC_Continue;
 		}
 
-		mDistanceType        = 1;
-		mParent->mVelocity   = Vector3f(0.0f);
-		Vector3f naviPikiSep = mParent->mNavi->getPosition() - mParent->getPosition();
-		f32 angle            = JMAAtan2Radian(naviPikiSep.x, naviPikiSep.z); // f26
+		mDistanceType            = 1;
+		mParent->mTargetVelocity = Vector3f(0.0f);
+		Vector3f naviPikiSep     = mParent->mNavi->getPosition() - mParent->getPosition();
+		f32 angle                = JMAAtan2Radian(naviPikiSep.x, naviPikiSep.z); // f26
 		mParent->setMoveRotation(false);
 		mParent->mFaceDir += 0.3f * angDist(angle, mParent->mFaceDir);
 		return ACTEXEC_Continue;
@@ -426,8 +426,8 @@ int PikiAI::ActFormation::exec()
 	}
 
 	if (dist <= 7.0f || (mDistanceCounter < 6 && dist <= 15.0f)) {
-		mDistanceType      = 2;
-		mParent->mVelocity = Vector3f(0.0f);
+		mDistanceType            = 2;
+		mParent->mTargetVelocity = Vector3f(0.0f);
 
 		sep = mParent->mNavi->getPosition() - mParent->getPosition(); // 0x114
 
@@ -450,19 +450,19 @@ int PikiAI::ActFormation::exec()
 		f32 speed   = mParent->getSpeed(1.0f);                                                                     // f1
 		f32 factor2 = (0.5f * (speed / factor)) * speed;                                                           // f7
 
-		f32 simSpeed = mParent->mSimVelocity.length(); // f3
+		f32 simSpeed = mParent->mVelocity.length(); // f3
 		f32 factor3  = (0.5f * (simSpeed / factor)) * simSpeed;
 
 		if (dist < factor3) {
-			mParent->mVelocity = Vector3f(0.0f);
-			sep                = mParent->mNavi->getPosition() - mParent->getPosition();   // 0x114
-			f32 angle          = angDist(JMAAtan2Radian(sep.x, sep.z), mParent->mFaceDir); // f26
+			mParent->mTargetVelocity = Vector3f(0.0f);
+			sep                      = mParent->mNavi->getPosition() - mParent->getPosition();   // 0x114
+			f32 angle                = angDist(JMAAtan2Radian(sep.x, sep.z), mParent->mFaceDir); // f26
 			mParent->setMoveRotation(false);
 			mParent->mFaceDir += 0.3f * angle;
 		} else if (dist < factor2) {
-			f32 val            = SQUARE(simSpeed) + (8.0f * factor) * dist;
-			f32 val2           = 0.5f * _sqrtf2(val) + simSpeed;
-			mParent->mVelocity = sep * val2;
+			f32 val                  = SQUARE(simSpeed) + (8.0f * factor) * dist;
+			f32 val2                 = 0.5f * _sqrtf2(val) + simSpeed;
+			mParent->mTargetVelocity = sep * val2;
 		} else {
 			mParent->setSpeed(1.0f, sep);
 		}
@@ -483,11 +483,11 @@ int PikiAI::ActFormation::exec()
 				impulse = Vector3f(0.0f);
 			}
 
-			f32 currSpeed = mParent->mVelocity.length(); // f28
+			f32 currSpeed = mParent->mTargetVelocity.length(); // f28
 
-			mParent->mVelocity += impulse * mParent->getSpeed(1.0f);
-			mParent->mVelocity.normalise();
-			mParent->mVelocity *= currSpeed;
+			mParent->mTargetVelocity += impulse * mParent->getSpeed(1.0f);
+			mParent->mTargetVelocity.normalise();
+			mParent->mTargetVelocity *= currSpeed;
 		}
 	} else {
 		mDistanceType = 4;
@@ -509,11 +509,11 @@ int PikiAI::ActFormation::exec()
 				impulse = Vector3f(0.0f);
 			}
 
-			f32 currSpeed = mParent->mVelocity.length(); // f28
+			f32 currSpeed = mParent->mTargetVelocity.length(); // f28
 
-			mParent->mVelocity += impulse * mParent->getSpeed(1.0f);
-			mParent->mVelocity.normalise();
-			mParent->mVelocity *= currSpeed;
+			mParent->mTargetVelocity += impulse * mParent->getSpeed(1.0f);
+			mParent->mTargetVelocity.normalise();
+			mParent->mTargetVelocity *= currSpeed;
 		}
 	}
 

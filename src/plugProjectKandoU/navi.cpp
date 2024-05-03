@@ -1788,9 +1788,9 @@ void Navi::updateCursor()
 void Navi::doSimulation(f32 timeStep)
 {
 	if (moviePlayer->isFlag(MVP_IsActive)) {
-		mSimVelocity  = Vector3f(0.0f);
-		mVelocity     = Vector3f(0.0f);
-		mAcceleration = Vector3f(0.0f);
+		mVelocity       = Vector3f(0.0f);
+		mTargetVelocity = Vector3f(0.0f);
+		mAcceleration   = Vector3f(0.0f);
 	}
 
 	FakePiki::doSimulation(timeStep);
@@ -2304,8 +2304,8 @@ void Navi::movieStartDemoAnimation(SysShape::AnimInfo* info)
  */
 void Navi::movieSetTranslation(Vector3f& newpos, f32 dir)
 {
-	mSimVelocity      = 0.0f;
 	mVelocity         = 0.0f;
+	mTargetVelocity   = 0.0f;
 	mAcceleration     = 0.0f;
 	mPreviousPosition = mPosition;
 	setPosition(newpos, false);
@@ -2323,12 +2323,12 @@ bool Navi::movieGotoPosition(Vector3f& pos)
 	sep.qNormalise();
 
 	if (xz < 400.0f) {
-		mVelocity    = 0.0f;
-		mSimVelocity = 0.0f;
+		mTargetVelocity = 0.0f;
+		mVelocity       = 0.0f;
 		return true;
 	}
 
-	mVelocity = (sep * naviMgr->mNaviParms->mNaviParms.mMoveSpeed()) * 0.5f;
+	mTargetVelocity = (sep * naviMgr->mNaviParms->mNaviParms.mMoveSpeed()) * 0.5f;
 	return false;
 
 	/*
@@ -2446,7 +2446,7 @@ void Navi::set_movie_draw(bool on)
  * @note Address: 0x80142CD4
  * @note Size: 0x50
  */
-bool Navi::isWalking() { return mVelocity.qLength() > 10.0f; }
+bool Navi::isWalking() { return mTargetVelocity.qLength() > 10.0f; }
 
 /**
  * @note Address: 0x80142D24
@@ -2875,8 +2875,8 @@ void Navi::makeVelocity()
 		mSceneAnimationTimer = 0.0f;
 	}
 
-	f32 mod   = 1.0f;
-	mVelocity = result * speed * mod;
+	f32 mod         = 1.0f;
+	mTargetVelocity = result * speed * mod;
 
 	if (mController1) {
 		NaviParms* parms  = naviMgr->mNaviParms;
@@ -2886,10 +2886,10 @@ void Navi::makeVelocity()
 		}
 		if ((turnToCursor || (!turnToCursor && dist > parms->mNaviParms.mNeutralStickThreshold()))
 		    && (dist <= parms->mNaviParms.mCursorMovementStick())) {
-			mVelocity = 0.0f;
-			f32 rad   = pikmin2_atan2f(mWhistle->mNaviOffsetVec.x, mWhistle->mNaviOffsetVec.z);
-			rad       = roundAng(rad);
-			rad       = angDist(rad, mFaceDir);
+			mTargetVelocity = 0.0f;
+			f32 rad         = pikmin2_atan2f(mWhistle->mNaviOffsetVec.x, mWhistle->mNaviOffsetVec.z);
+			rad             = roundAng(rad);
+			rad             = angDist(rad, mFaceDir);
 			mFaceDir += rad * 0.2f;
 			mFaceDir = roundAng(mFaceDir);
 			setMoveRotation(false);
@@ -4014,7 +4014,7 @@ bool Navi::formationable() { return mDisbandTimer == 0; }
  */
 void Navi::updateKaisanDisable()
 {
-	if (mDisbandTimer > 0 && mVelocity.qLength() > 20.0f) {
+	if (mDisbandTimer > 0 && mTargetVelocity.qLength() > 20.0f) {
 		mDisbandTimer--;
 	}
 }
@@ -5011,7 +5011,7 @@ void Navi::makeCStick(bool disable)
 			scale = 1.0f;
 		}
 
-		mCPlateMgr->setPos(position, stickAngle, mSimVelocity, scale);
+		mCPlateMgr->setPos(position, stickAngle, mVelocity, scale);
 		_2FC        = 0;
 		mCommandOn1 = false;
 
@@ -5023,12 +5023,12 @@ void Navi::makeCStick(bool disable)
 		}
 
 		f32 dir = mFaceDir + PI;
-		if ((!_2FC && mVelocity.qLength() < 50.0f) && getStateID() != NSID_ThrowWait) {
+		if ((!_2FC && mTargetVelocity.qLength() < 50.0f) && getStateID() != NSID_ThrowWait) {
 			f32 angle    = mCStickAngle;
 			Vector3f pos = getPosition();
 
 			// this angle + dir thing is really stupid I don't know how to make dir compile in here
-			mCPlateMgr->setPos(pos, angle, mSimVelocity, 1.0f);
+			mCPlateMgr->setPos(pos, angle, mVelocity, 1.0f);
 		} else {
 			_2FC = true;
 		}
@@ -5080,16 +5080,16 @@ void Navi::makeCStick(bool disable)
 			diff.qNormalise();
 			dir           = pikmin2_atan2f(diff.x, diff.z);
 			Vector3f pos2 = getPosition();
-			mCPlateMgr->setPosGray(pos2, dir, mSimVelocity, 1.0f);
+			mCPlateMgr->setPosGray(pos2, dir, mVelocity, 1.0f);
 		} else if (mCStickState == 2) {
 			mCommandOn1 = false;
 			if (_2FD) {
 				Vector3f pos = getPosition();
-				mCPlateMgr->rearrangeSlot(pos, dir, mSimVelocity);
+				mCPlateMgr->rearrangeSlot(pos, dir, mVelocity);
 				_2FD = 0;
 			}
 			Vector3f pos = getPosition();
-			mCPlateMgr->setPos(pos, dir, mSimVelocity, 1.0f);
+			mCPlateMgr->setPos(pos, dir, mVelocity, 1.0f);
 		}
 	}
 
@@ -6035,13 +6035,13 @@ void Navi::throwPiki(Piki* piki, Vector3f& cursorPos)
 	f32 xSpeed = dist2D / (2.0f * newTimeToPeak);
 
 	// Velocity to use in movement calcs needs to be in 3D, not 2D, so adjust XZ components.
-	piki->mSimVelocity = Vector3f(xSpeed * pikmin2_sinf(angDist), ySpeed, xSpeed * pikmin2_cosf(angDist));
+	piki->mVelocity = Vector3f(xSpeed * pikmin2_sinf(angDist), ySpeed, xSpeed * pikmin2_cosf(angDist));
 
 	// Add navi 'momentum' to piki (XZ) velocity - ignore y.
 	Vector3f momentum;
 	// Momentum is navi simulation velocity components, scaled by 1.0f.
 	//  -- I suspect devs toyed around with this value in development.
-	getScaledXZVec(momentum, mSimVelocity.x, mSimVelocity.z, 1.0f);
+	getScaledXZVec(momentum, mVelocity.x, mVelocity.z, 1.0f);
 	momentum.y = 0.0f;
 
 	// Normalise vector into just a 'direction' and grab the 'length' - this is just navi ground speed.
@@ -6053,8 +6053,8 @@ void Navi::throwPiki(Piki* piki, Vector3f& cursorPos)
 	}
 
 	// Adjust piki sim and real velocities.
-	piki->mSimVelocity += momentum * magnitude;
-	piki->mVelocity = piki->mSimVelocity;
+	piki->mVelocity += momentum * magnitude;
+	piki->mTargetVelocity = piki->mVelocity;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x80(r1)

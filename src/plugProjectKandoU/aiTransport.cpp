@@ -59,8 +59,8 @@ void ActTransport::init(ActionArg* settings)
 	_28     = arg->mUnusedSlotVal;
 
 	mParent->startMotion(Game::IPikiAnims::WAIT, Game::IPikiAnims::WAIT, nullptr, nullptr);
-	mParent->mVelocity = Vector3f(0.0f);
-	mState             = TRANSPORT_Slot;
+	mParent->mTargetVelocity = Vector3f(0.0f);
+	mState                   = TRANSPORT_Slot;
 
 	GotoSlotArg gotoSlotArg(mPellet, SLOTSEARCH_Nearest);
 	mGotoSlot->init(&gotoSlotArg);

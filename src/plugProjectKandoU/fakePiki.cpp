@@ -39,8 +39,8 @@ FakePiki::FakePiki()
 	mBoundingSphere.mRadius = 8.5f;
 	mFaceDir                = 0.0f;
 	mPosition               = Vector3f(0.0f);
-	mSimVelocity            = Vector3f(0.0f);
 	mVelocity               = Vector3f(0.0f);
+	mTargetVelocity         = Vector3f(0.0f);
 	mSimPosition            = Vector3f(0.0f);
 	mBoundAnimIdx           = IPikiAnims::NULLANIM;
 	mAnimSpeed              = 30.0f;
@@ -63,9 +63,9 @@ void FakePiki::initFakePiki()
 	mWaterBox               = nullptr;
 	mFaceDir                = 0.0f;
 	mPosition               = Vector3f(0.0f);
-	mVelocity               = Vector3f(0.0f);
+	mTargetVelocity         = Vector3f(0.0f);
 	mSimPosition            = Vector3f(0.0f);
-	mSimVelocity            = Vector3f(0.0f);
+	mVelocity               = Vector3f(0.0f);
 	mFakePikiBounceTriangle = nullptr;
 
 	if (shadowMgr) {
@@ -1124,7 +1124,7 @@ void FakePiki::moveVelocity()
 	// update simulation (next/target) velocity based on the triangle we're standing on
 	Sys::Triangle* tri   = mBounceTriangle; // triangle we're currently on
 	Vector3f newVelocity = Vector3f(0.0f);
-	Vector3f oldVelocity = Vector3f(mVelocity); // our current velocity
+	Vector3f oldVelocity = Vector3f(mTargetVelocity); // our current velocity
 
 	if (tri) {
 		// update our direction based on collision, but keep speed the same
@@ -1175,11 +1175,11 @@ void FakePiki::moveVelocity()
 		}
 	}
 
-	Vector3f accel = (oldVelocity + mSimPosition) - mSimVelocity;
+	Vector3f accel = (oldVelocity + mSimPosition) - mVelocity;
 	accel.length(); // remnant from some commented out code block with a comparison, probably, or debug info
 
-	mSimVelocity = mSimVelocity + accel * (sys->mDeltaTime / 0.1f);
-	mSimVelocity = mSimVelocity + newVelocity;
+	mVelocity = mVelocity + accel * (sys->mDeltaTime / 0.1f);
+	mVelocity = mVelocity + newVelocity;
 }
 
 /**
@@ -1190,10 +1190,10 @@ void FakePiki::moveRotation()
 {
 	if (useMoveRotation()) {
 		f32 delta = sys->mDeltaTime;
-		f32 X     = mVelocity.x * mVelocity.x;
-		f32 Z     = mVelocity.z * mVelocity.z;
+		f32 X     = mTargetVelocity.x * mTargetVelocity.x;
+		f32 Z     = mTargetVelocity.z * mTargetVelocity.z;
 		if (X + Z > 1.0f) {
-			f32 dist = angDist(JMath::atanTable_.atan2_(mVelocity.x, mVelocity.z), mFaceDir);
+			f32 dist = angDist(JMath::atanTable_.atan2_(mTargetVelocity.x, mTargetVelocity.z), mFaceDir);
 			mFaceDir += 10.0f * (delta * (0.8f * dist));
 			mFaceDir = roundAng(mFaceDir);
 		}
@@ -1224,7 +1224,7 @@ void FakePiki::move(f32 rate)
 	mAcceleration.y = 0.0f;
 	// calculate simple next-frame velocity
 	Vector3f velocity;
-	velocity = mSimVelocity + mAcceleration;
+	velocity = mVelocity + mAcceleration;
 
 	MoveInfo info(&moveSphere, &velocity, traceRadius);
 	info.mInfoOrigin        = this;
@@ -1234,8 +1234,8 @@ void FakePiki::move(f32 rate)
 		// simulate movement (for one frame, usually)
 		mTriList = mapMgr->traceMove(info, rate);
 		// set next frame velocity as calculated by traceMove
-		mSimVelocity   = velocity;
-		info.mVelocity = &mSimVelocity;
+		mVelocity      = velocity;
+		info.mVelocity = &mVelocity;
 
 		// if we're in a cave room, mark it as visited + mark us as in that room
 		if (info.mRoomIndex != -1 && mapMgr->mRouteMgr) {
@@ -1262,7 +1262,7 @@ void FakePiki::move(f32 rate)
 
 	} else {
 		// we're not using map collision, do the simplest movement calculation possible
-		info.mMoveSphere->mPosition = info.mMoveSphere->mPosition + mSimVelocity * rate;
+		info.mMoveSphere->mPosition = info.mMoveSphere->mPosition + mVelocity * rate;
 		info.mBounceTriangle        = nullptr;
 	}
 
@@ -1437,8 +1437,8 @@ void FakePiki::doAnimation()
 		}
 		if (useMoveRotation()) {
 			f32 frameLen = sys->mDeltaTime;
-			if (mVelocity.sqrMagnitude2D() > 1.0f) {
-				mFaceDir = (frameLen * (angDist(JMAAtan2Radian(mVelocity.x, mVelocity.z), mFaceDir) * 0.8f)) * 10.0f + mFaceDir;
+			if (mTargetVelocity.sqrMagnitude2D() > 1.0f) {
+				mFaceDir = (frameLen * (angDist(JMAAtan2Radian(mTargetVelocity.x, mTargetVelocity.z), mFaceDir) * 0.8f)) * 10.0f + mFaceDir;
 				mFaceDir = roundAng(mFaceDir);
 			}
 		}
@@ -1447,7 +1447,7 @@ void FakePiki::doAnimation()
 	getBoundingSphere(boundingSphere);
 	mWaterBox = checkWater(mWaterBox, boundingSphere);
 	if (mapMgr) {
-		mSimVelocity.y = -(frameLen * _aiConstants->mGravity.mData - mSimVelocity.y);
+		mVelocity.y = -(frameLen * _aiConstants->mGravity.mData - mVelocity.y);
 	}
 	updateTrMatrix();
 	if (isNavi() && static_cast<Navi*>(this)->mPellet) {
@@ -1809,14 +1809,14 @@ void FakePiki::doSimulation(f32 rate)
 	if (!isMovieExtra()) {
 		if (isPiki()) {
 			if (pikiMgr->mFlags[1] & 1) {
-				mSimVelocity              = Vector3f(0.0f);
+				mVelocity                 = Vector3f(0.0f);
 				mAcceleration             = Vector3f(0.0f);
 				mBoundingSphere.mPosition = mPosition;
 				return;
 			}
 		} else if (isNavi()) {
 			if (naviMgr->mFlags.isSet(1)) {
-				mSimVelocity              = Vector3f(0.0f);
+				mVelocity                 = Vector3f(0.0f);
 				mAcceleration             = Vector3f(0.0f);
 				mBoundingSphere.mPosition = mPosition;
 				return;
@@ -1824,14 +1824,14 @@ void FakePiki::doSimulation(f32 rate)
 		}
 
 		if (isMovieActor()) {
-			mSimVelocity  = Vector3f(0.0f);
+			mVelocity     = Vector3f(0.0f);
 			mAcceleration = Vector3f(0.0f);
 		}
 	}
 
 	// if we're attaching to somewhere or in something, do simple calculation
 	if (mTargetCollObj) {
-		mPosition = mPosition + mSimVelocity * rate;
+		mPosition = mPosition + mVelocity * rate;
 		updateStomach();
 		updateCell();
 		mBoundingSphere.mPosition = mPosition;
@@ -1855,18 +1855,18 @@ void FakePiki::doSimulation(f32 rate)
 		}
 	}
 
-	f32 speed = mSimVelocity.normalise();
+	f32 speed = mVelocity.normalise();
 	f32 accel = mAcceleration.length();
 
 	if (speed > accel) {
 		// add friction?
 		speed -= accel;
-		mSimVelocity  = mSimVelocity * speed;
+		mVelocity     = mVelocity * speed;
 		mAcceleration = Vector3f(0.0f);
 
 	} else {
 		// accel not high enough, reset it
-		mSimVelocity  = mSimVelocity * speed;
+		mVelocity     = mVelocity * speed;
 		mAcceleration = Vector3f(0.0f);
 	}
 
@@ -1945,8 +1945,8 @@ void FakePiki::updateStomach()
 	f32 rad = stomach->mRadius - 8.5f;
 
 	if (dist > rad) {
-		mPosition    = stomach->mPosition + sep * rad;
-		mSimVelocity = mSimVelocity - sep * (1.1f * mSimVelocity.dot(sep));
+		mPosition = stomach->mPosition + sep * rad;
+		mVelocity = mVelocity - sep * (1.1f * mVelocity.dot(sep));
 
 		// this is some leftover debug thing
 		Vector3f sep2 = Vector3f(mPosition.y - mTargetCollObj->mPosition.y, mPosition.z - mTargetCollObj->mPosition.z,

@@ -226,7 +226,7 @@ void ActFlockAttack::init(ActionArg* arg)
 	}
 	mParent->startMotion(mAnimIdx, mAnimIdx, this, nullptr);
 	mFlags.clear();
-	mParent->mVelocity = Vector3f(0.0f);
+	mParent->mTargetVelocity = Vector3f(0.0f);
 }
 
 /**

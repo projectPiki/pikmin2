@@ -1203,7 +1203,7 @@ lbl_8017FF50:
  * @note Address: 0x8017FF80
  * @note Size: 0x34
  */
-void NaviWalkState::blendVelocity(Navi* navi, Vector3f& targetVel) { navi->mVelocity += targetVel; }
+void NaviWalkState::blendVelocity(Navi* navi, Vector3f& targetVel) { navi->mTargetVelocity += targetVel; }
 
 /**
  * @note Address: 0x8017FFB4
@@ -1240,7 +1240,7 @@ void NaviChangeState::exec(Navi* navi)
 	if (navi->isMovieActor()) {
 		transit(navi, NSID_Walk, nullptr);
 	}
-	navi->mVelocity = Vector3f(0.0f);
+	navi->mTargetVelocity = Vector3f(0.0f);
 
 	if (mIsFinished == true) {
 		transit(navi, NSID_Walk, nullptr);
@@ -1349,7 +1349,7 @@ void NaviFollowState::exec(Navi* navi)
 			_14 = true;
 			navi->startMotion(IPikiAnims::WALK, IPikiAnims::WALK, nullptr, nullptr);
 		}
-		navi->mVelocity = 0.0f;
+		navi->mTargetVelocity = 0.0f;
 		return;
 	}
 
@@ -1383,15 +1383,15 @@ void NaviFollowState::exec(Navi* navi)
 					mRunEnemy = nullptr;
 				} else {
 					navi->control();
-					f32 rate        = naviMgr->mNaviParms->mNaviParms.mMoveSpeed() * 0.5f;
-					navi->mVelocity = diff * rate;
+					f32 rate              = naviMgr->mNaviParms->mNaviParms.mMoveSpeed() * 0.5f;
+					navi->mTargetVelocity = diff * rate;
 				}
 			}
 		}
 		return;
 	}
 
-	f32 dist    = mTargetNavi->mSimVelocity.length();
+	f32 dist    = mTargetNavi->mVelocity.length();
 	bool isNear = false;
 	if (dist > 20.0f) {
 		isNear = true;
@@ -1401,7 +1401,7 @@ void NaviFollowState::exec(Navi* navi)
 			navi->startMotion(IPikiAnims::KIZUKU, IPikiAnims::KIZUKU, navi, nullptr);
 			_14 = 0;
 		} else {
-			navi->mVelocity = Vector3f(0.0f);
+			navi->mTargetVelocity = Vector3f(0.0f);
 			if (!navi->assertMotion(mAnimID)) {
 				_14 = 1;
 				navi->startMotion(IPikiAnims::WALK, IPikiAnims::WALK, nullptr, nullptr);
@@ -1458,7 +1458,7 @@ void NaviFollowState::exec(Navi* navi)
 		vel += dir;
 	}
 
-	Vector3f targetVel = mTargetNavi->mVelocity; // f28, f27, f26
+	Vector3f targetVel = mTargetNavi->mTargetVelocity; // f28, f27, f26
 	Vector3f naviPos   = navi->getPosition();
 
 	Vector3f newVel = vel - naviPos;
@@ -1487,7 +1487,7 @@ void NaviFollowState::exec(Navi* navi)
 	}
 
 	navi->control();
-	navi->mVelocity = newVel;
+	navi->mTargetVelocity = newVel;
 
 	/*
 	stwu     r1, -0x110(r1)
@@ -2779,7 +2779,7 @@ int NaviPathMoveState::execMove(Navi* navi)
 		}
 	}
 	navi->control();
-	navi->mVelocity = diff * 150.0f;
+	navi->mTargetVelocity = diff * 150.0f;
 	return 0;
 }
 
@@ -2839,8 +2839,8 @@ void NaviNukuState::exec(Navi* navi)
 		transit(navi, NSID_Walk, nullptr);
 		return;
 	}
-	navi->mSimVelocity = 0.0f;
-	navi->mVelocity    = 0.0f;
+	navi->mVelocity       = 0.0f;
+	navi->mTargetVelocity = 0.0f;
 	if (!navi->assertMotion(mAnimID)) {
 		if (mIsFollower != 0) {
 			NaviFollowArg followArg(false); // not new to party
@@ -3219,10 +3219,10 @@ void NaviNukuAdjustState::exec(Navi* navi)
 			speed = 0.5f / sys->mDeltaTime;
 		}
 
-		Vector3f vel       = targetToNavi * speed;
-		navi->mSimVelocity = vel;
-		navi->mVelocity    = Vector3f(0.0f);
-		navi->mVelocity    = vel;
+		Vector3f vel          = targetToNavi * speed;
+		navi->mVelocity       = vel;
+		navi->mTargetVelocity = Vector3f(0.0f);
+		navi->mTargetVelocity = vel;
 	}
 
 	if (mWallHitCounter > 10) {
@@ -3239,7 +3239,7 @@ void NaviNukuAdjustState::exec(Navi* navi)
 		return;
 	}
 
-	Vector3f currentVel = navi->mSimVelocity; // f31, f30, f29
+	Vector3f currentVel = navi->mVelocity; // f31, f30, f29
 	mIsMoving--;
 	Vector3f naviPos = navi->getPosition();
 
@@ -3266,9 +3266,9 @@ void NaviNukuAdjustState::exec(Navi* navi)
 
 	f32 speed = blendedVel.normalise();
 	if (speed != 0.0f) {
-		Vector3f finalVel  = blendedVel * simSpeed;
-		navi->mSimVelocity = finalVel;
-		navi->mVelocity    = finalVel;
+		Vector3f finalVel     = blendedVel * simSpeed;
+		navi->mVelocity       = finalVel;
+		navi->mTargetVelocity = finalVel;
 	}
 
 	/*
@@ -4388,7 +4388,7 @@ void NaviClimbState::prepare(Navi* navi)
  */
 void NaviClimbState::exec(Navi* navi)
 {
-	navi->mSimVelocity = _10 * 100.0f * navi->mController1->mMStick.mYPos;
+	navi->mVelocity = _10 * 100.0f * navi->mController1->mMStick.mYPos;
 	navi->move(sys->mDeltaTime);
 	if (navi->mController1->getButton() & Controller::PRESS_B) {
 		transit(navi, NSID_Walk, nullptr);
@@ -4457,11 +4457,11 @@ void NaviFallMeckState::init(Navi* navi, StateArg* stateArg)
 	navi->endStick();
 	_14 = 0;
 	if (_10 > 0.0f) {
-		navi->mSimVelocity.y = -400.0f;
-		navi->mVelocity.y    = navi->mSimVelocity.y;
+		navi->mVelocity.y       = -400.0f;
+		navi->mTargetVelocity.y = navi->mVelocity.y;
 	} else {
-		navi->mSimVelocity.y = -100.0f;
-		navi->mVelocity.y    = navi->mSimVelocity.y;
+		navi->mVelocity.y       = -100.0f;
+		navi->mTargetVelocity.y = navi->mVelocity.y;
 	}
 }
 
@@ -4472,8 +4472,8 @@ void NaviFallMeckState::init(Navi* navi, StateArg* stateArg)
 void NaviFallMeckState::exec(Navi* navi)
 {
 	if (_14 != 0) {
-		navi->mVelocity    = 0.0f;
-		navi->mSimVelocity = 0.0f;
+		navi->mTargetVelocity = 0.0f;
+		navi->mVelocity       = 0.0f;
 	}
 	if (_14 == 0 && !navi->assertMotion(IPikiAnims::FALL)) {
 		transit(navi, NSID_Walk, nullptr);
@@ -4553,9 +4553,9 @@ void NaviFlickState::init(Navi* navi, StateArg* stateArg)
 		mFlicker   = flickArg->mCreature;
 	}
 	navi->startMotion(IPikiAnims::JHIT, IPikiAnims::JHIT, navi, nullptr);
-	_10                  = 0;
-	navi->mSimVelocity.y = 0.0f;
-	navi->mFaceDir       = roundAng(JMath::atanTable_.atan2_(mDirection.x, mDirection.z) + PI);
+	_10               = 0;
+	navi->mVelocity.y = 0.0f;
+	navi->mFaceDir    = roundAng(JMath::atanTable_.atan2_(mDirection.x, mDirection.z) + PI);
 	navi->mSoundObj->startSound(PSSE_PL_ORIMA_DAMAGE, 0);
 	navi->mEffectsObj->createOrimadamage_(navi->mEffectsObj->mHeadMtx->mMatrix.mtxView);
 	PSM::DamageDirector* director = PSMGetDamageD();
@@ -4572,16 +4572,16 @@ void NaviFlickState::exec(Navi* navi)
 {
 	switch (_10) {
 	case 0:
-		navi->mSimVelocity.x = mDirection.x;
-		navi->mSimVelocity.z = mDirection.z;
+		navi->mVelocity.x = mDirection.x;
+		navi->mVelocity.z = mDirection.z;
 		if (!navi->assertMotion(IPikiAnims::JHIT)) {
 			NaviKokeDamageInitArg kokeDamageArg(1.0f, 0, mFlicker, mDamage);
 			transit(navi, NSID_KokeDamage, &kokeDamageArg);
 		}
 		break;
 	case 1:
-		navi->mSimVelocity.x *= 0.9f;
-		navi->mSimVelocity.z *= 0.9f;
+		navi->mVelocity.x *= 0.9f;
+		navi->mVelocity.z *= 0.9f;
 		if (navi->mFakePikiBounceTriangle != nullptr) {
 			NaviKokeDamageInitArg kokeDamageArg(1.0f, 0, mFlicker, mDamage);
 			transit(navi, NSID_KokeDamage, &kokeDamageArg);
@@ -4655,8 +4655,8 @@ void NaviKokeDamageState::exec(Navi* navi)
 	} else if (gameSystem && !gameSystem->isFlag(GAMESYS_IsGameWorldActive)) {
 		transit(navi, NSID_Walk, nullptr);
 	} else {
-		navi->mVelocity    = 0.0f;
-		navi->mSimVelocity = 0.0f;
+		navi->mTargetVelocity = 0.0f;
+		navi->mVelocity       = 0.0f;
 		if (mState == 1) {
 			mTimer -= sys->mDeltaTime;
 			if (mTimer <= 0.0f) {
@@ -4930,8 +4930,8 @@ void NaviContainerState::exec(Navi* navi)
 			transit(navi, NSID_Walk, nullptr);
 			break;
 		default:
-			navi->mSimVelocity = 0.0f;
-			navi->mVelocity    = 0.0f;
+			navi->mVelocity       = 0.0f;
+			navi->mTargetVelocity = 0.0f;
 		}
 	} else {
 		switch (Screen::gGame2DMgr->check_Contena()) {
@@ -4953,8 +4953,8 @@ void NaviContainerState::exec(Navi* navi)
 			transit(navi, NSID_Walk, nullptr);
 			break;
 		default:
-			navi->mSimVelocity = 0.0f;
-			navi->mVelocity    = 0.0f;
+			navi->mVelocity       = 0.0f;
+			navi->mTargetVelocity = 0.0f;
 		}
 	}
 }
@@ -5032,9 +5032,9 @@ void NaviAbsorbState::init(Navi* navi, StateArg* stateArg)
  */
 void NaviAbsorbState::exec(Navi* navi)
 {
-	navi->mSimVelocity.z = 0.0f;
-	navi->mSimVelocity.x = 0.0f;
-	navi->mVelocity      = 0.0f;
+	navi->mVelocity.z     = 0.0f;
+	navi->mVelocity.x     = 0.0f;
+	navi->mTargetVelocity = 0.0f;
 	if (_10 == 1) {
 		if (mDrop->isAlive() && !_18) {
 			InteractAbsorb act(navi);
@@ -5151,8 +5151,8 @@ void NaviDeadState::init(Navi* navi, StateArg* stateArg)
  */
 void NaviDeadState::exec(Navi* navi)
 {
-	navi->mVelocity    = 0.0f;
-	navi->mSimVelocity = 0.0f;
+	navi->mTargetVelocity = 0.0f;
+	navi->mVelocity       = 0.0f;
 }
 
 /**
@@ -6638,7 +6638,7 @@ void NaviThrowWaitState::sortPikis(Navi* navi)
 
 	Vector3f naviPos = navi->getPosition();
 
-	navi->mCPlateMgr->setPos(naviPos, navi->mFaceDir + PI, navi->mSimVelocity, 1.0f);
+	navi->mCPlateMgr->setPos(naviPos, navi->mFaceDir + PI, navi->mVelocity, 1.0f);
 
 	Iterator<Creature> iterator(navi->mCPlateMgr);
 	CI_LOOP(iterator)
@@ -6892,7 +6892,7 @@ void NaviPelletState::exec(Navi* navi)
 			transit(navi, NSID_Walk, nullptr);
 		} else {
 			pelt->getPosition();
-			navi->mSimVelocity = 0.0f;
+			navi->mVelocity = 0.0f;
 		}
 	}
 }
@@ -7040,9 +7040,9 @@ void NaviPelletState::cleanup(Navi* navi)
 		navi->mPellet->kill(nullptr);
 	}
 	navi->setAtari(true);
-	navi->mAcceleration = 0.0f;
-	navi->mSimVelocity  = 0.0f;
-	navi->mVelocity     = 0.0f;
+	navi->mAcceleration   = 0.0f;
+	navi->mVelocity       = 0.0f;
+	navi->mTargetVelocity = 0.0f;
 }
 
 /**
@@ -7094,13 +7094,13 @@ bool NaviDemo_UfoState::execGoto(Navi* navi)
 	Vector3f naviPos = navi->getPosition();
 	Vector3f diff    = shipPos - naviPos;
 	if ((diff.x * diff.x) + (diff.z * diff.z) < 900.0f) {
-		navi->mSimVelocity = 0.0f;
-		navi->mVelocity    = 0.0f;
+		navi->mVelocity       = 0.0f;
+		navi->mTargetVelocity = 0.0f;
 		return true;
 	}
 
 	diff.normalise();
-	navi->mVelocity = diff * naviMgr->mNaviParms->mNaviParms.mMoveSpeed.mValue * 0.5f;
+	navi->mTargetVelocity = diff * naviMgr->mNaviParms->mNaviParms.mMoveSpeed.mValue * 0.5f;
 	return false;
 }
 
@@ -7114,13 +7114,13 @@ void NaviDemo_UfoState::initSuck(Navi* navi)
 	Vector3f diff = ship->getSuckPos() - navi->getPosition();
 	f32 dist      = diff.length();
 
-	_18                  = dist;
-	_14                  = 0.0f;
-	navi->mSimVelocity.y = 0.0f;
-	_1C                  = 1.0f;
-	_24                  = navi->getPosition();
-	_20                  = 0.0f;
-	_30                  = 0.0f;
+	_18               = dist;
+	_14               = 0.0f;
+	navi->mVelocity.y = 0.0f;
+	_1C               = 1.0f;
+	_24               = navi->getPosition();
+	_20               = 0.0f;
+	_30               = 0.0f;
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -7376,13 +7376,13 @@ bool NaviDemo_HoleInState::execGoto(Navi* navi)
 	Vector3f naviPos = navi->getPosition();
 	Vector3f diff    = holePos - naviPos;
 	if ((diff.x * diff.x) + (diff.z * diff.z) < 2500.0f) {
-		navi->mSimVelocity = 0.0f;
-		navi->mVelocity    = 0.0f;
+		navi->mVelocity       = 0.0f;
+		navi->mTargetVelocity = 0.0f;
 		return true;
 	}
 
 	diff.normalise();
-	navi->mVelocity = diff * naviMgr->mNaviParms->mNaviParms.mMoveSpeed.mValue * 0.5f;
+	navi->mTargetVelocity = diff * naviMgr->mNaviParms->mNaviParms.mMoveSpeed.mValue * 0.5f;
 	return false;
 }
 
@@ -7408,14 +7408,14 @@ bool NaviDemo_HoleInState::execHesitate(Navi* navi)
 		diff.normalise();
 
 		Vector3f velocity(diff.x * 2.0f, 240.0f, diff.z * 2.0f);
-		navi->mSimVelocity = velocity;
-		navi->mVelocity    = velocity;
+		navi->mVelocity       = velocity;
+		navi->mTargetVelocity = velocity;
 		navi->setMapCollision(false);
 		return true;
 	}
 
-	navi->mSimVelocity = 0.0f;
-	navi->mVelocity    = 0.0f;
+	navi->mVelocity       = 0.0f;
+	navi->mTargetVelocity = 0.0f;
 	return false;
 
 	/*
@@ -7604,8 +7604,8 @@ void NaviPressedState::exec(Navi* navi)
 		break;
 	}
 
-	navi->mSimVelocity = 0.0f;
-	navi->mVelocity    = 0.0f;
+	navi->mVelocity       = 0.0f;
+	navi->mTargetVelocity = 0.0f;
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0

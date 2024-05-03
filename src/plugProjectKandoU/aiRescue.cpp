@@ -217,8 +217,8 @@ int ActRescue::execThrow()
 
 		f32 throwDist = dist / (2.0f * factor);
 
-		mTargetPiki->mSimVelocity = Vector3f(sinf(angleDist) * throwDist, yVel, cosf(angleDist) * throwDist);
-		mTargetPiki->mVelocity    = mTargetPiki->mSimVelocity;
+		mTargetPiki->mVelocity       = Vector3f(sinf(angleDist) * throwDist, yVel, cosf(angleDist) * throwDist);
+		mTargetPiki->mTargetVelocity = mTargetPiki->mVelocity;
 
 	} else if (mThrowFlag & THROW_Stop) {
 		return ACTEXEC_Success;

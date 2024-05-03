@@ -71,7 +71,7 @@ bool Piki::isWalking()
 {
 	if (getCurrActionID() == PikiAI::ACT_Formation) {
 		PikiAI::ActFormation* action = static_cast<PikiAI::ActFormation*>(getCurrAction());
-		if (action && action->mSortState == FORMATION_SORT_FORMED && mVelocity.length() > 20.0f) {
+		if (action && action->mSortState == FORMATION_SORT_FORMED && mTargetVelocity.length() > 20.0f) {
 			return true;
 		}
 	}
@@ -274,7 +274,7 @@ void Piki::update()
 			int stateID  = getStateID();
 			int pikiType = getKind();
 			if (stateID != PIKISTATE_WaterHanged && stateID != PIKISTATE_Drown && !mCurrentState->dead() && pikiType != Blue
-			    && pikiType != Bulbmin && moviePlayer->mDemoState == DEMOSTATE_Inactive && mSimVelocity.y <= 0.1f) {
+			    && pikiType != Bulbmin && moviePlayer->mDemoState == DEMOSTATE_Inactive && mVelocity.y <= 0.1f) {
 				mFsm->transit(this, PIKISTATE_Drown, nullptr);
 				mEffectsObj->mHeight = mWaterBox->getSeaHeightPtr();
 			}
@@ -342,8 +342,8 @@ void Piki::movieStartDemoAnimation(SysShape::AnimInfo* animInfo)
  */
 void Piki::movieSetTranslation(Vector3f& position, f32 faceDir)
 {
-	mSimVelocity      = Vector3f(0.0f);
 	mVelocity         = Vector3f(0.0f);
+	mTargetVelocity   = Vector3f(0.0f);
 	mAcceleration     = Vector3f(0.0f);
 	mPreviousPosition = mPosition;
 	setPosition(position, false);
@@ -479,7 +479,7 @@ void Piki::inWaterCallback(WaterBox* wbox)
 	int pikiType = getKind();
 	if (stateID != PIKISTATE_WaterHanged && stateID != PIKISTATE_Drown && !mCurrentState->dead() && pikiType != Blue
 	    && pikiType != Bulbmin) {
-		if (moviePlayer->mDemoState == DEMOSTATE_Inactive && mSimVelocity.y <= 0.1f) {
+		if (moviePlayer->mDemoState == DEMOSTATE_Inactive && mVelocity.y <= 0.1f) {
 			mFsm->transit(this, PIKISTATE_Drown, nullptr);
 		} else {
 			return;
@@ -757,9 +757,9 @@ lbl_80148FFC:
 void Piki::setSpeed(f32 multiplier, Vector3f& direction)
 {
 	if (multiplier < 0.0f) {
-		mVelocity = direction * -getSpeed(-multiplier);
+		mTargetVelocity = direction * -getSpeed(-multiplier);
 	} else {
-		mVelocity = direction * getSpeed(multiplier);
+		mTargetVelocity = direction * getSpeed(multiplier);
 	}
 }
 
@@ -784,9 +784,9 @@ f32 Piki::getSpeed(f32 multiplier, f32 max)
 void Piki::setSpeed(f32 multiplier, Vector3f& vec, f32 max)
 {
 	if (multiplier < 0.0f) {
-		mVelocity = vec * -getSpeed(-multiplier, max);
+		mTargetVelocity = vec * -getSpeed(-multiplier, max);
 	} else {
-		mVelocity = vec * getSpeed(multiplier, max);
+		mTargetVelocity = vec * getSpeed(multiplier, max);
 	}
 }
 

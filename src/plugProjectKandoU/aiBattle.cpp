@@ -315,7 +315,7 @@ int ActBattle::execBattle()
 		initApproach();
 	}
 
-	mParent->mVelocity = Vector3f(0.0f);
+	mParent->mTargetVelocity = Vector3f(0.0f);
 
 	return ACTEXEC_Continue;
 }
@@ -330,7 +330,7 @@ int ActBattle::execDamage()
 		initApproach();
 	}
 
-	mParent->mVelocity = Vector3f(0.0f);
+	mParent->mTargetVelocity = Vector3f(0.0f);
 
 	return ACTEXEC_Continue;
 }
