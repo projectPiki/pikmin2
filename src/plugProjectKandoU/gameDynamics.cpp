@@ -295,14 +295,14 @@ void Game::Rigid::integrate(f32 timeStep, int configIdx)
 
 	otherConfig->mPosition        = thisConfig->mPosition;
 	otherConfig->mPrimaryRotation = thisConfig->mPrimaryRotation;
-	Matrixf matQ; // 0x1d0
-	Matrixf matC; // 0x1a0
-	Matrixf matT; // 0x170
+	Matrixf rotationMtx;  // 0x1d0
+	Matrixf concatMtx;    // 0x1a0
+	Matrixf transposeMtx; // 0x170
 
-	matQ.makeQ(thisConfig->mPrimaryRotation);
-	PSMTXTranspose(matQ.mMatrix.mtxView, matT.mMatrix.mtxView);
-	PSMTXConcat(matQ.mMatrix.mtxView, _144.mMatrix.mtxView, matC.mMatrix.mtxView);
-	PSMTXConcat(matC.mMatrix.mtxView, matT.mMatrix.mtxView, thisConfig->_58.mMatrix.mtxView);
+	rotationMtx.makeQ(thisConfig->mPrimaryRotation);
+	PSMTXTranspose(rotationMtx.mMatrix.mtxView, transposeMtx.mMatrix.mtxView);
+	PSMTXConcat(rotationMtx.mMatrix.mtxView, _144.mMatrix.mtxView, concatMtx.mMatrix.mtxView);
+	PSMTXConcat(concatMtx.mMatrix.mtxView, transposeMtx.mMatrix.mtxView, thisConfig->_58.mMatrix.mtxView);
 
 	thisConfig->mPosition = thisConfig->mPosition + thisConfig->mVelocity * timeStep;
 	thisConfig->mMomentum = thisConfig->mMomentum + thisConfig->mTorque * timeStep;
