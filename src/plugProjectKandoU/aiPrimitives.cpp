@@ -1525,8 +1525,8 @@ void ActPathMove::init(ActionArg* settings)
 	if (mPellet->isPellet()) {
 		Game::Pellet* pellet = mPellet;
 		mPellet->setVelocity(Vector3f::zero);
-		pellet->mRigid.mConfigs[0]._18 = Vector3f(0.0f);
-		s16 slot                       = pellet->getSpeicalSlot();
+		pellet->mRigid.mConfigs[0].mForce = Vector3f(0.0f);
+		s16 slot                          = pellet->getSpeicalSlot();
 		if (slot == -1) {
 			pellet->mPelletCarry->reset();
 		}
@@ -1667,8 +1667,8 @@ void ActPathMove::initPathfinding(bool resetLinkCount)
 	if (mPellet->isPellet()) {
 		Game::Pellet* pellet = mPellet;
 		mPellet->setVelocity(Vector3f::zero);
-		pellet->mRigid.mConfigs[0]._18 = Vector3f(0.0f);
-		s16 slot                       = pellet->getSpeicalSlot();
+		pellet->mRigid.mConfigs[0].mForce = Vector3f(0.0f);
+		s16 slot                          = pellet->getSpeicalSlot();
 		if (slot == -1) {
 			pellet->mPelletCarry->reset();
 		}
@@ -1841,7 +1841,7 @@ int ActPathMove::execPathfinding()
 		// if we've been picked up, don't move while we pathfind
 		if (pellet->isPicked()) {
 			mPellet->setVelocity(Vector3f::zero);
-			pellet->mRigid.mConfigs->_18 = Vector3f(0.0f);
+			pellet->mRigid.mConfigs->mForce = Vector3f(0.0f);
 			if ((s16)pellet->getSpeicalSlot() == -1) {
 				pellet->mPelletCarry->reset();
 			}

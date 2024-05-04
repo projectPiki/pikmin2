@@ -145,24 +145,24 @@ void DynCreature::computeForces(f32 friction)
 				continue;
 			}
 			Vector3f sep      = particle->mPosition - _300;
-			Vector3f crossVec = mRigid.mConfigs[0]._24.cross(sep) + mRigid.mConfigs[0].mVelocity;
+			Vector3f crossVec = mRigid.mConfigs[0].mRotatedMomentum.cross(sep) + mRigid.mConfigs[0].mVelocity;
 
 			f32 dotProd  = crossVec.dot(particle->_20); // f13
-			f32 dotProd2 = mRigid.mConfigs[0]._18.dot(particle->_20);
+			f32 dotProd2 = mRigid.mConfigs[0].mForce.dot(particle->_20);
 
 			Vector3f sep2 = crossVec - particle->_20 * dotProd;
 			sep2.normalise();
 
-			mRigid.mConfigs[0]._18 += particle->_20 * dotProd2;
+			mRigid.mConfigs[0].mForce += particle->_20 * dotProd2;
 
 			// f32 dotProd3 = sep2.dot(crossVec);
 			if (absF(sep2.dot(crossVec)) < DynamicsParms::mInstance->mStatic()) {
 				sep2.normalise();
-				mRigid.mConfigs[0]._18 -= sep2 * DynamicsParms::mInstance->mStaParm();
+				mRigid.mConfigs[0].mForce -= sep2 * DynamicsParms::mInstance->mStaParm();
 			} else {
 				Vector3f sep3 = crossVec - particle->_20 * crossVec.dot(particle->_20);
 				sep3.normalise();
-				mRigid.mConfigs[0]._18 += sep3 * -DynamicsParms::mInstance->mFixedFrictionValue();
+				mRigid.mConfigs[0].mForce += sep3 * -DynamicsParms::mInstance->mFixedFrictionValue();
 			}
 		}
 		return;
@@ -197,20 +197,20 @@ void DynCreature::computeForces(f32 friction)
 			continue;
 		}
 		Vector3f sep      = particle->mPosition - _300;
-		Vector3f crossVec = mRigid.mConfigs[0]._24.cross(sep) + mRigid.mConfigs[0].mVelocity;
+		Vector3f crossVec = mRigid.mConfigs[0].mRotatedMomentum.cross(sep) + mRigid.mConfigs[0].mVelocity;
 		Vector3f vec      = particle->_20 * crossVec.dot(particle->_20);
 		vec               = crossVec - vec;
 		if (DynamicsParms::mInstance->mFrictionTangentVelocity()) {
 			vec.normalise();
 		}
 
-		Vector3f coeffVec      = vec * coeff;
-		Vector3f vec2          = mRigid.mConfigs[0]._18 + coeffVec;
-		mRigid.mConfigs[0]._18 = vec2;
+		Vector3f coeffVec         = vec * coeff;
+		Vector3f vec2             = mRigid.mConfigs[0].mForce + coeffVec;
+		mRigid.mConfigs[0].mForce = vec2;
 
 		if (!DynamicsParms::mInstance->mNoRotationEffect()) {
-			Vector3f vec3          = mRigid.mConfigs[0]._3C;
-			mRigid.mConfigs[0]._3C = vec3 + sep.cross(coeffVec);
+			Vector3f vec3              = mRigid.mConfigs[0].mTorque;
+			mRigid.mConfigs[0].mTorque = vec3 + sep.cross(coeffVec);
 		}
 	}
 
@@ -675,7 +675,7 @@ void DynCreature::simulate(f32 rate)
 	for (DynParticle* particle = mDynParticle; particle; particle = particle->mNext) {
 		particle->mPosition = mBaseTrMatrix.mtxMult(particle->mRotation);
 
-		velocity     = mRigid.mConfigs[0]._24;
+		velocity     = mRigid.mConfigs[0].mRotatedMomentum;
 		Vector3f sep = particle->mPosition - _300;
 		velocity.cross(velocity, sep);
 		velocity = velocity + mRigid.mConfigs[0].mVelocity;
@@ -1090,7 +1090,7 @@ void DynCreature::getVelocityAt(Vector3f& position, Vector3f& outVelocity)
 {
 	outVelocity       = mRigid.mConfigs[0].mVelocity;
 	Vector3f diff     = position - mRigid.mConfigs[0].mPosition;
-	Vector3f otherVec = mRigid.mConfigs[0]._24;
+	Vector3f otherVec = mRigid.mConfigs[0].mRotatedMomentum;
 	outVelocity       = outVelocity + cross(otherVec, diff);
 }
 

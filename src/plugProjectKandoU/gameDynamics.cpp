@@ -70,13 +70,13 @@ void Game::Rigid::initPosition(Vector3f& posVec, Vector3f& quatVec)
  */
 void Game::Rigid::initPositionIndex(Vector3f& posVec, int configIdx, Vector3f& quatVec)
 {
-	RigidConfig* config = &mConfigs[configIdx];
-	config->mPosition   = posVec;
-	config->_18         = Vector3f(0.0f);
-	config->mVelocity   = Vector3f(0.0f);
-	config->_24         = Vector3f(0.0f);
-	config->_30         = Vector3f(0.0f);
-	config->_3C         = Vector3f(0.0f);
+	RigidConfig* config      = &mConfigs[configIdx];
+	config->mPosition        = posVec;
+	config->mForce           = Vector3f(0.0f);
+	config->mVelocity        = Vector3f(0.0f);
+	config->mRotatedMomentum = Vector3f(0.0f);
+	config->mMomentum        = Vector3f(0.0f);
+	config->mTorque          = Vector3f(0.0f);
 	config->mPrimaryRotation.set(quatVec);
 }
 
@@ -97,12 +97,12 @@ void Game::Rigid::updateMatrix(int configIdx)
 void Game::Rigid::computeForces(int configIdx)
 {
 	RigidConfig* config = &mConfigs[configIdx];
-	config->_18         = Vector3f(0.0f);
-	config->_3C         = Vector3f(0.0f);
+	config->mForce      = Vector3f(0.0f);
+	config->mTorque     = Vector3f(0.0f);
 
 	f32 dampVal = DynamicsParms::mInstance->mRotatingMomentDamp.mValue;
 	if (dampVal > 0.0f) {
-		config->_30 = config->_30 - config->_30 * dampVal;
+		config->mMomentum = config->mMomentum - config->mMomentum * dampVal;
 	}
 }
 
@@ -305,13 +305,13 @@ void Game::Rigid::integrate(f32 timeStep, int configIdx)
 	PSMTXConcat(matC.mMatrix.mtxView, matT.mMatrix.mtxView, thisConfig->_58.mMatrix.mtxView);
 
 	thisConfig->mPosition = thisConfig->mPosition + thisConfig->mVelocity * timeStep;
-	thisConfig->_30       = thisConfig->_30 + thisConfig->_3C * timeStep;
-	thisConfig->mVelocity = thisConfig->mVelocity + thisConfig->_18 * (timeStep * mTimeStep);
+	thisConfig->mMomentum = thisConfig->mMomentum + thisConfig->mTorque * timeStep;
+	thisConfig->mVelocity = thisConfig->mVelocity + thisConfig->mForce * (timeStep * mTimeStep);
 
-	thisConfig->_24 = thisConfig->_58.mtxMult(thisConfig->_30);
+	thisConfig->mRotatedMomentum = thisConfig->_58.mtxMult(thisConfig->mMomentum);
 
-	Quat q1;                        // 0x160
-	Quat q2(0.0f, thisConfig->_24); // 0x150
+	Quat q1;                                     // 0x160
+	Quat q2(0.0f, thisConfig->mRotatedMomentum); // 0x150
 
 	q1 = thisConfig->mPrimaryRotation * q2;
 
@@ -328,8 +328,8 @@ void Game::Rigid::integrate(f32 timeStep, int configIdx)
 		if (yDeg48 < JMASSin(10912)) {
 			if (yDeg4 < yDeg48) {
 				Vector3f yAxis(0.0f, 1.0f, 0.0);
-				thisConfig->_30 = thisConfig->_30 + vec1.cross(yAxis) * 1000.0f;
-				thisConfig->_24 = thisConfig->_58.mtxMult(thisConfig->_30);
+				thisConfig->mMomentum        = thisConfig->mMomentum + vec1.cross(yAxis) * 1000.0f;
+				thisConfig->mRotatedMomentum = thisConfig->_58.mtxMult(thisConfig->mMomentum);
 				if (!(yDeg4 < f29)) {
 					thisConfig->mPrimaryRotation = q4;
 				}
@@ -777,39 +777,39 @@ lbl_8013AB2C:
  * @note Address: 0x8013AB74
  * @note Size: 0x300
  */
-bool Game::Rigid::resolveCollision(int index, Vector3f& p2, Vector3f& p3, f32 p4)
+bool Game::Rigid::resolveCollision(int configIndex, Vector3f& collisionPoint, Vector3f& collisionNormal, f32 restitutionCoefficient)
 {
 	if (DynamicsParms::mInstance->mMicroCollision.mValue == 1120.0f) {
 		;
 	}
-	RigidConfig& config = mConfigs[index];
-	Vector3f v1         = p2 - config.mPosition;
-	Vector3f v2         = (config.mVelocity + v1.cross(config._24));
-	v2.negate();
-	f32 dotProd = v2.dot(p3);
-	if (dotProd < -0.0f) {
+	RigidConfig& config       = mConfigs[configIndex];
+	Vector3f relativePosition = collisionPoint - config.mPosition;
+	Vector3f relativeVelocity = (config.mVelocity + relativePosition.cross(config.mRotatedMomentum));
+	relativeVelocity.negate();
+	f32 velocityDotNormal = relativeVelocity.dot(collisionNormal);
+	if (velocityDotNormal < -0.0f) {
 		return false;
 	}
-	if (absF(dotProd) <= -0.0f) {
-		p4      = 1.0f;
-		dotProd = -0.0f;
+	if (absF(velocityDotNormal) <= -0.0f) {
+		restitutionCoefficient = 1.0f;
+		velocityDotNormal      = -0.0f;
 	}
-	f32 timeStep = mTimeStep;
-	f32 f28      = -(1.0f + p4) * dotProd;
+	f32 timeStep         = mTimeStep;
+	f32 impulseMagnitude = -(1.0f + restitutionCoefficient) * velocityDotNormal;
 
-	Vector3f vec = v1;
-	vec          = vec.cross(p3);
+	Vector3f vec = relativePosition;
+	vec          = vec.cross(collisionNormal);
 	vec          = config._58.mtxMult(vec);
-	vec          = vec.cross(p3);
+	vec          = vec.cross(collisionNormal);
 
-	timeStep += p3.dot(vec);
-	Vector3f vec2 = p3;
-	vec2 *= -(f28 / timeStep);
-	config.mVelocity = config.mVelocity + vec2 * mTimeStep;
-	vec              = v1;
-	vec              = vec.cross(vec2);
-	config._30       = config._30 + vec;
-	config._24       = config._58.mtxMult(config._30);
+	timeStep += collisionNormal.dot(vec);
+	Vector3f impulse = collisionNormal;
+	impulse *= -(impulseMagnitude / timeStep);
+	config.mVelocity        = config.mVelocity + impulse * mTimeStep;
+	vec                     = relativePosition;
+	vec                     = vec.cross(impulse);
+	config.mMomentum        = config.mMomentum + vec;
+	config.mRotatedMomentum = config._58.mtxMult(config.mMomentum);
 	return true;
 	/*
 	stwu     r1, -0x90(r1)

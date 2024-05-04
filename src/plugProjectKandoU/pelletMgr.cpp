@@ -2087,10 +2087,10 @@ void Pellet::update()
 		if (mPickFlags & 1) {
 			moveSphere.mPosition.y -= 4.0f;
 		}
-		Vector3f* velocityPtr  = &mRigid.mConfigs[0].mVelocity;
-		moveSphere.mRadius     = 0.5f * mConfig->mParams.mHeight.mData;
-		mRigid.mConfigs[0]._30 = Vector3f(0.0f);
-		mRigid.mConfigs[0]._24 = Vector3f(0.0f);
+		Vector3f* velocityPtr               = &mRigid.mConfigs[0].mVelocity;
+		moveSphere.mRadius                  = 0.5f * mConfig->mParams.mHeight.mData;
+		mRigid.mConfigs[0].mMomentum        = Vector3f(0.0f);
+		mRigid.mConfigs[0].mRotatedMomentum = Vector3f(0.0f);
 
 		if (((mIsAlwaysCarried == 0) && !(mPickFlags & 1)) || (mFloorTriangle == nullptr)) {
 			velocityPtr->y = -((frametime * _aiConstants->mGravity.mData) - velocityPtr->y);
@@ -2177,14 +2177,14 @@ void Pellet::update()
 			computeForces(mConfig->mParams.mFriction.mData);
 		}
 
-		bool someCheck           = true;
-		mRigid.mConfigs[0]._18.y = -_aiConstants->mGravity.mData;
+		bool someCheck              = true;
+		mRigid.mConfigs[0].mForce.y = -_aiConstants->mGravity.mData;
 		if ((mPelletSM->getCurrID(this) == 0) && (_311 != 0) && !isPicked()) {
 			Vector3f rigidVelocity = mRigid.mConfigs[0].mVelocity;
 			f32 mag                = rigidVelocity.length();
 
 			if (mag < 10.0f) {
-				Vector3f anotherVec = mRigid.mConfigs[0]._30;
+				Vector3f anotherVec = mRigid.mConfigs[0].mMomentum;
 				f32 anotherMag      = anotherVec.length();
 
 				if ((anotherMag < 100.0f) && (mIsAlwaysCarried == 0)) {
