@@ -79,8 +79,8 @@ struct TChannel {
 	u16 mMixerInitDelayMax;  // _0E
 	TMixer mMixer[4];        // _10
 	u8 _30[0x20];            // _30
-	u16 _50;                 // _50
-	u16 _52;                 // _52
+	u16 mVolumeAndPan;       // _50
+	u16 mFxMixAndDolby;      // _52
 	u16 mCurrentMixerValue;  // _54
 	u16 mMixerLevel;         // _56
 	u16 mIsMixerInitialized; // _58
@@ -176,12 +176,12 @@ struct JASDSPChannel {
 	void getNumBreak();
 
 	s32 _00;
-	s16 _04;
-	u32 _08; // some kind of bitflag?
+	s16 mPriority;
+	u32 mFlags; // some kind of bitflag?
 	u32 _0C;
-	Callback _10;
-	void* _14;
-	JASDsp::TChannel* _18;
+	Callback mCallback;
+	void* mCallbackArgs;
+	JASDsp::TChannel* mChannel;
 
 	static JASDSPChannel* sDspChannels;
 };

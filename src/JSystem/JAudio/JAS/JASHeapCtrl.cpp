@@ -17,7 +17,7 @@ JASHeap::JASHeap(JASDisposer* disposer)
     , mDisposer(disposer)
     , mBase(nullptr)
     , mSize(0)
-    , _40(0)
+    , mLastChild(0)
 {
 	OSInitMutex(&mMutex);
 }
@@ -178,19 +178,19 @@ bool JASHeap::free()
 	JSUTree<JASHeap>* parentTree = mTree.getParent();
 	if (parentTree) {
 		JASHeap* parentHeap = parentTree->getObject();
-		if (parentHeap->_40 == this) {
+		if (parentHeap->mLastChild == this) {
 			JSUTreeIterator<JASHeap> stack_28(mTree.getPrevChild());
 			if (stack_28 != mTree.getEndChild()) {
-				parentHeap->_40 = stack_28.getObject();
+				parentHeap->mLastChild = stack_28.getObject();
 			} else {
-				parentHeap->_40 = nullptr;
+				parentHeap->mLastChild = nullptr;
 			}
 		}
 		parentTree->removeChild(&mTree);
 	}
-	mBase = nullptr;
-	_40   = nullptr;
-	mSize = 0;
+	mBase      = nullptr;
+	mLastChild = nullptr;
+	mSize      = 0;
 	if (mDisposer) {
 		mDisposer->onDispose();
 	}
@@ -357,13 +357,13 @@ void JASHeap::insertChild(JASHeap* heap, JASHeap* next, void* base, u32 size, bo
 			it = next->mTree.getPrevChild();
 		}
 		JASHeap* r24 = it != mTree.getEndChild() ? it.getObject() : nullptr;
-		if (_40 == r24) {
-			_40 = heap;
+		if (mLastChild == r24) {
+			mLastChild = heap;
 		}
 	}
-	heap->mBase = (u8*)base;
-	heap->mSize = size;
-	heap->_40   = nullptr;
+	heap->mBase      = (u8*)base;
+	heap->mSize      = size;
+	heap->mLastChild = nullptr;
 	mTree.insertChild(&next->mTree, &heap->mTree);
 }
 
@@ -375,10 +375,10 @@ JASHeap* JASHeap::getTailHeap()
 {
 	JSUTreeIterator<JASHeap> it;
 	JASMutexLock lock(&mMutex);
-	if (!_40) {
+	if (!mLastChild) {
 		it = mTree.getFirstChild();
 	} else {
-		it = _40->mTree.getNextChild();
+		it = mLastChild->mTree.getNextChild();
 	}
 
 	if (it == mTree.getEndChild()) {
@@ -408,7 +408,7 @@ u32 JASHeap::getTailOffset()
 u32 JASHeap::getCurOffset()
 {
 	JASMutexLock lock(&mMutex);
-	u32 offset = !_40 ? 0 : _40->mBase + _40->mSize - mBase;
+	u32 offset = !mLastChild ? 0 : mLastChild->mBase + mLastChild->mSize - mBase;
 	return offset;
 }
 
@@ -481,9 +481,9 @@ void JASSolidHeap::getRemain()
  */
 JASGenericMemPool::JASGenericMemPool()
 {
-	_00           = nullptr;
-	_04           = nullptr;
-	mFreeMemCount = 0;
+	mNextFreeBlock  = nullptr;
+	mFirstFreeBlock = nullptr;
+	mFreeMemCount   = 0;
 }
 
 /**
@@ -505,11 +505,11 @@ void JASGenericMemPool::newMemPool(u32 size, int memCount)
 		u8* mems = new (JASDram, 0) u8[size];
 		// some nonsense here, but it works, the data type of _00/_04 is probably wrong
 		// judging by the following 2 functions, everything seems off with all the casting
-		((u32*)mems)[0] = (u32)_00;
-		_00             = (void**)mems;
+		((u32*)mems)[0] = (u32)mNextFreeBlock;
+		mNextFreeBlock  = (void**)mems;
 
-		if (_04 == nullptr) {
-			_04 = (void**)mems;
+		if (mFirstFreeBlock == nullptr) {
+			mFirstFreeBlock = (void**)mems;
 		}
 	}
 	mFreeMemCount += memCount;
@@ -521,15 +521,15 @@ void JASGenericMemPool::newMemPool(u32 size, int memCount)
  */
 void* JASGenericMemPool::alloc(u32)
 {
-	void** mem = _00;
+	void** mem = mNextFreeBlock;
 	if (mem == nullptr) {
 		return nullptr;
 	}
 
-	_00 = (void**)mem[0];
+	mNextFreeBlock = (void**)mem[0];
 	mFreeMemCount--;
-	if (_00 == nullptr) {
-		_04 = nullptr;
+	if (mNextFreeBlock == nullptr) {
+		mFirstFreeBlock = nullptr;
 	}
 
 	return mem;
@@ -542,13 +542,13 @@ void* JASGenericMemPool::alloc(u32)
 void JASGenericMemPool::free(void* mem, u32)
 {
 	((void**)mem)[0] = nullptr;
-	if (_04) {
-		_04[0] = mem;
+	if (mFirstFreeBlock) {
+		mFirstFreeBlock[0] = mem;
 	} else {
-		_00 = (void**)mem;
+		mNextFreeBlock = (void**)mem;
 	}
 
-	_04 = (void**)mem;
+	mFirstFreeBlock = (void**)mem;
 	mFreeMemCount++;
 }
 
@@ -599,9 +599,9 @@ void setupAramHeap(u32 aramBase, u32 aramSize)
 {
 	sAramBase = aramBase;
 	JASMutexLock lock(&audioAramHeap.mMutex);
-	audioAramHeap.mBase = (u8*)(aramBase + 31 & ~31);
-	audioAramHeap._40   = 0;
-	audioAramHeap.mSize = aramSize - ((u32)audioAramHeap.mBase - aramBase);
+	audioAramHeap.mBase      = (u8*)(aramBase + 31 & ~31);
+	audioAramHeap.mLastChild = 0;
+	audioAramHeap.mSize      = aramSize - ((u32)audioAramHeap.mBase - aramBase);
 }
 
 /**

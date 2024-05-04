@@ -43,8 +43,8 @@ bool JASPortCmd::setPortCmd(void (*command)(JASPortArgs*), JASPortArgs* args)
 	if (mList != nullptr) {
 		return false;
 	}
-	_10 = command;
-	_14 = args;
+	mCommand     = command;
+	mCommandArgs = args;
 	return true;
 }
 
@@ -68,7 +68,7 @@ void JASPortCmd::TPortHead::execCommandOnce()
 	JSULink<JASPortCmd>* next;
 	for (JSULink<JASPortCmd>* link = getFirst(); link != nullptr; link = next) {
 		next = link->getNext();
-		link->getObject()->_10(link->getObject()->_14);
+		link->getObject()->mCommand(link->getObject()->mCommandArgs);
 		remove(link);
 	}
 	OSRestoreInterrupts(interrupts);
@@ -82,7 +82,7 @@ void JASPortCmd::TPortHead::execCommandStay()
 {
 	int interrupts = OSDisableInterrupts();
 	for (JSULink<JASPortCmd>* link = getFirst(); link != nullptr; link = link->getNext()) {
-		link->getObject()->_10(link->getObject()->_14);
+		link->getObject()->mCommand(link->getObject()->mCommandArgs);
 	}
 	OSRestoreInterrupts(interrupts);
 }

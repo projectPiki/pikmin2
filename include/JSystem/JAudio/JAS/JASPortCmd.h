@@ -22,8 +22,8 @@ struct JASPortCmd : JSULink<JASPortCmd> {
 
 	JASPortCmd()
 	    : JSULink<JASPortCmd>(this)
-	    , _10(0)
-	    , _14(0)
+	    , mCommand(0)
+	    , mCommandArgs(0)
 	{
 	}
 
@@ -38,8 +38,8 @@ struct JASPortCmd : JSULink<JASPortCmd> {
 	u32 addPortCmdStay();
 	u32 cancelPortCmdStay();
 
-	Command _10;
-	JASPortArgs* _14;
+	Command mCommand;
+	JASPortArgs* mCommandArgs;
 
 	static TPortHead sCommandListOnce;
 	static TPortHead sCommandListStay;

@@ -646,9 +646,10 @@ f32 JASChannel::calcPan(const JASChannel::PanVector* params, const JASChannel::P
  * @note Address: 0x800A4278
  * @note Size: 0x120
  */
-void JASChannel::updateAutoMixer(JASDsp::TChannel* dspChan, f32 p2, f32 p3, f32 p4, f32 p5)
+void JASChannel::updateAutoMixer(JASDsp::TChannel* dspChan, f32 volume, f32 pan, f32 fxMix, f32 dolby)
 {
-	dspChan->setAutoMixer(JASCalc::clamp01(p2) * JASDriver::getAutoLevel(), p3 * 127.5f, p5 * 127.5f, p4 * 127.5f, mMixConfigs[1].mWhole);
+	dspChan->setAutoMixer(JASCalc::clamp01(volume) * JASDriver::getAutoLevel(), pan * 127.5f, dolby * 127.5f, fxMix * 127.5f,
+	                      mMixConfigs[1].mWhole);
 }
 
 /**

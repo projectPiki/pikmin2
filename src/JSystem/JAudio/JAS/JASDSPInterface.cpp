@@ -431,10 +431,10 @@ void TChannel::initAutoMixer()
  * @note Address: 0x800A58E4
  * @note Size: 0x2C
  */
-void TChannel::setAutoMixer(u16 level, u8 p2, u8 p3, u8 p4, u8 p5)
+void TChannel::setAutoMixer(u16 level, u8 volume, u8 pan, u8 fxMix, u8 dolby)
 {
-	_50                 = (p2 << 8) | p3;
-	_52                 = (p4 << 8) | (p4 << 1);
+	mVolumeAndPan       = (volume << 8) | pan;
+	mFxMixAndDolby      = (fxMix << 8) | (fxMix << 1);
 	mMixerLevel         = level;
 	mIsMixerInitialized = 1;
 }
@@ -542,7 +542,7 @@ void TChannel::setPauseFlag(u8 pauseFlag) { mPauseFlag = pauseFlag; }
  * TODO: Sizeof?
  * flush__Q26JASDsp8TChannelFv
  */
-void TChannel::flush() { DCFlushRange(this, 0x180); }
+void TChannel::flush() { DCFlushRange(this, sizeof(TChannel)); }
 
 /**
  * @note Address: 0x800A59E8

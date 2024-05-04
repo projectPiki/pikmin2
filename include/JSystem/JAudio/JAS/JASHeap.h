@@ -37,7 +37,7 @@ struct JASHeap {
 	JASDisposer* mDisposer; // _34
 	u8* mBase;              // _38
 	u32 mSize;              // _3C
-	JASHeap* _40;           // _40
+	JASHeap* mLastChild;    // _40
 };
 
 struct JASSolidHeap : public JASHeap {

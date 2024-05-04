@@ -63,7 +63,7 @@ JASAramStream::JASAramStream()
     , _1FC(0)
     , _200(0)
     , _204(0)
-    , _208(0)
+    , mLoadedCount(0)
     , _21C(0)
     , _238(0)
     , _23C(0)
@@ -82,13 +82,13 @@ JASAramStream::JASAramStream()
     , _2D8(0)
 {
 	for (int i = 0; i < 6; i++) {
-		_180[i]    = nullptr;
-		_220[0][i] = 0;
-		_220[1][i] = 0;
-		_26C[0][i] = 1.0f;
-		_26C[1][i] = 0.5f;
-		_26C[2][i] = 0.0f;
-		_26C[3][i] = 0.0f;
+		mChannels[i] = nullptr;
+		_220[0][i]   = 0;
+		_220[1][i]   = 0;
+		_26C[0][i]   = 1.0f;
+		_26C[1][i]   = 0.5f;
+		_26C[2][i]   = 0.0f;
+		_26C[3][i]   = 0.0f;
 	}
 	for (int i = 0; i < 6; i++) {
 		_2CC[i] = 0;
@@ -402,7 +402,7 @@ void JASAramStream::firstLoadTask(void* args)
 		sFatalErrorFlag = true;
 	}
 	JASCriticalSection criticalSection;
-	stream->_208++;
+	stream->mLoadedCount++;
 }
 
 /**
@@ -454,19 +454,19 @@ bool JASAramStream::headerLoad(u32 p1, int p2)
 		sFatalErrorFlag = true;
 		return false;
 	}
-	u8* buffer = sReadBuffer;
-	_248       = buffer[9];
-	_24A       = *(u16*)(buffer + 0x0C);
-	_254       = *(u32*)(buffer + 0x10);
-	_258       = (*(u16*)(buffer + 0x0E) != FALSE);
-	_25C       = *(u32*)(buffer + 0x18);
-	_260       = *(u32*)(buffer + 0x1C);
-	_264       = buffer[0x28] / 127.0f;
-	_208       = 0;
-	_200       = 0;
-	_1FC       = 0;
-	_250       = p1 / sBlockSize / *(u16*)(buffer + 0x0C);
-	_24C       = _250;
+	u8* buffer   = sReadBuffer;
+	_248         = buffer[9];
+	_24A         = *(u16*)(buffer + 0x0C);
+	_254         = *(u32*)(buffer + 0x10);
+	_258         = (*(u16*)(buffer + 0x0E) != FALSE);
+	_25C         = *(u32*)(buffer + 0x18);
+	_260         = *(u32*)(buffer + 0x1C);
+	_264         = buffer[0x28] / 127.0f;
+	mLoadedCount = 0;
+	_200         = 0;
+	_1FC         = 0;
+	_250         = p1 / sBlockSize / *(u16*)(buffer + 0x0C);
+	_24C         = _250;
 	_24C--;
 	_1F8 = _24C;
 	if (p2 < 0 || p2 > _1F8) {
@@ -484,7 +484,7 @@ bool JASAramStream::headerLoad(u32 p1, int p2)
 		return false;
 	}
 	JASCriticalSection criticalSection;
-	_208++;
+	mLoadedCount++;
 	return true;
 }
 
@@ -496,7 +496,7 @@ bool JASAramStream::load()
 {
 	{
 		JASCriticalSection cs;
-		_208--;
+		mLoadedCount--;
 	}
 
 	if (sFatalErrorFlag) {
@@ -1775,8 +1775,8 @@ lbl_800AA69C:
 void JASAramStream::channelStop(u16 p1)
 {
 	for (int i = 0; i < _24A; i++) {
-		if (_180[i] != nullptr) {
-			_180[i]->release(p1);
+		if (mChannels[i] != nullptr) {
+			mChannels[i]->release(p1);
 		}
 	}
 	/*

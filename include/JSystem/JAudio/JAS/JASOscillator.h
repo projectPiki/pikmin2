@@ -61,16 +61,16 @@ struct JASOscillator {
 	static const f32 relTableSquare[17];
 	static const s16 oscTableForceStop[6];
 
-	const Data* mData;   // _00
-	f32 _04;             // _04
-	f32 mPhase;          // _08
-	f32 mTargetPhase;    // _0C
-	f32 _10;             // _10
-	f32 _14;             // _14
-	u16 mCurrEnvelopeID; // _18
-	u16 mRelease;        // _1A
-	u8 mState;           // _1C
-	u8 mEnvelopeMode;    // _1D
+	const Data* mData;       // _00
+	f32 mReleaseRate;        // _04
+	f32 mPhase;              // _08
+	f32 mTargetPhase;        // _0C
+	f32 mPhaseChangeRate;    // _10
+	f32 mInitialReleaseRate; // _14
+	u16 mCurrEnvelopeID;     // _18
+	u16 mRelease;            // _1A
+	u8 mState;               // _1C
+	u8 mEnvelopeMode;        // _1D
 };
 
 #endif

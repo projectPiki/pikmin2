@@ -24,13 +24,13 @@ struct DataMgrBase : public JKRDisposer {
 	virtual ~DataMgrBase(); // _08
 	virtual void init()
 	{
-		JKRHeap::free(_18, nullptr);
-		_18 = nullptr;
+		JKRHeap::free(mExternalFlags, nullptr);
+		mExternalFlags = nullptr;
 	} // _0C (weak)
 
 	// _00      = VTABLE
 	// _04-_18  = JKRDisposer
-	void* _18; // _18
+	void* mExternalFlags; // _18
 };
 
 /**
@@ -45,7 +45,7 @@ struct DataLoadMgrNode : virtual public DataMgrBase {
 	virtual bool isTempBuffaMode() { return false; } // _0C (weak)
 	virtual void init()
 	{
-		_08 = 0;
+		mFlagState = 0;
 		DataMgrBase::init();
 	} // _10 (weak)
 
@@ -79,7 +79,7 @@ struct DataLoadMgrNode : virtual public DataMgrBase {
 
 	// _00 = DataMgrBase*
 	// _04 = VTABLE
-	int _08;               // _08
+	int mFlagState;        // _08
 	char mPath[0x100];     // _0C
 	char mLoadPath[0x100]; // _10C, best guess as to name
 	u32 _20C;              // _20C

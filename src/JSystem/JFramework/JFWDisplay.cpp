@@ -36,10 +36,10 @@ void JFWDisplay::ctor_subroutine(bool doEnableAlpha)
 	mFrameRate        = 1;
 	mTickRate         = 0;
 	mCombinationRatio = 0.0f;
-	_30               = 0;
-	_2C               = OSGetTick();
-	_34               = 0;
-	_38               = 0;
+	mFrameDuration    = 0;
+	mCurrentTick      = OSGetTick();
+	mTickDifference   = 0;
+	mCurrentXfbIndex  = 0;
 	_3A               = 0;
 	mDrawDoneMethod   = JFWDRAW_Unk0;
 	clearEfb_init();
@@ -351,10 +351,10 @@ void JFWDisplay::beginRender()
 	waitForTick(mTickRate, mFrameRate);
 	JUTVideo::getManager()->waitRetraceIfNeed();
 
-	u32 tick = OSGetTick();
-	_30      = tick - _2C; // duration of frame in ticks?
-	_2C      = tick;
-	_34      = _2C - JUTVideo::getVideoLastTick();
+	u32 tick        = OSGetTick();
+	mFrameDuration  = tick - mCurrentTick; // duration of frame in ticks?
+	mCurrentTick    = tick;
+	mTickDifference = mCurrentTick - JUTVideo::getVideoLastTick();
 
 	JUTProcBar::getManager()->idleEnd();
 
@@ -368,7 +368,7 @@ void JFWDisplay::beginRender()
 		} else {
 			xfbMgr->setSDrawingFlag(1);
 		}
-		xfbMgr->setDrawingXfbIndex(_38);
+		xfbMgr->setDrawingXfbIndex(mCurrentXfbIndex);
 		break;
 	case JUTXfb::DoubleBuffer:
 		exchangeXfb_double();
@@ -692,17 +692,17 @@ void JFWDisplay::clearAllXfb()
  */
 void JFWDisplay::calcCombinationRatio()
 {
-	u32 vidInterval = JUTVideo::getVideoInterval();
-	s32 unk30       = _30 * 2;
+	u32 vidInterval          = JUTVideo::getVideoInterval();
+	s32 doubledFrameDuration = mFrameDuration * 2;
 
 	s32 i = vidInterval;
-	for (; i < unk30; i += vidInterval) { }
+	for (; i < doubledFrameDuration; i += vidInterval) { }
 
-	s32 tmp = (i - unk30) - _34;
+	s32 tmp = (i - doubledFrameDuration) - mTickDifference;
 	if (tmp < 0) {
 		tmp += vidInterval;
 	}
-	mCombinationRatio = (f32)tmp / (f32)_30;
+	mCombinationRatio = (f32)tmp / (f32)mFrameDuration;
 	if (mCombinationRatio > 1.0f) {
 		mCombinationRatio = 1.0f;
 	}
@@ -729,7 +729,7 @@ void JFWDrawDoneAlarm()
 	alarm.createAlarm();
 	alarm.appendLink();
 	OSRestoreInterrupts(status);
-	OSSetAlarm(&alarm, (OS_TIMER_CLOCK)*0.5, JFWGXAbortAlarmHandler);
+	OSSetAlarm(&alarm, (OS_TIMER_CLOCK) * 0.5, JFWGXAbortAlarmHandler);
 	GXDrawDone();
 	status = OSDisableInterrupts();
 	alarm.cancelAlarm();

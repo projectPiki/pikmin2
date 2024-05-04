@@ -9,7 +9,7 @@
  */
 JADUtility::DataMgrBase::DataMgrBase()
     : JKRDisposer()
-    , _18(nullptr)
+    , mExternalFlags(nullptr)
 {
 }
 
@@ -19,8 +19,8 @@ JADUtility::DataMgrBase::DataMgrBase()
  */
 JADUtility::DataMgrBase::~DataMgrBase()
 {
-	if (_18) {
-		JKRFreeToHeap(nullptr, _18);
+	if (mExternalFlags) {
+		JKRFreeToHeap(nullptr, mExternalFlags);
 	}
 }
 
@@ -30,7 +30,7 @@ JADUtility::DataMgrBase::~DataMgrBase()
  */
 JADUtility::DataLoadMgrNode::DataLoadMgrNode()
     : DataMgrBase()
-    , _08(0)
+    , mFlagState(0)
     , _20C(0)
     , _210(0)
 {
@@ -44,8 +44,8 @@ JADUtility::DataLoadMgrNode::DataLoadMgrNode()
  */
 JADUtility::DataLoadMgrNode::~DataLoadMgrNode()
 {
-	if (_08 == 3) {
-		_18 = nullptr;
+	if (mFlagState == 3) {
+		mExternalFlags = nullptr;
 	}
 }
 
@@ -81,8 +81,8 @@ bool JADUtility::DataLoadMgrNode::initInstanceExt(void* buffer, s32 bufferLength
 	}
 
 	if (!success) {
-		_08 = 0;
-		_18 = nullptr;
+		mFlagState     = 0;
+		mExternalFlags = nullptr;
 		return false;
 	}
 
@@ -96,8 +96,8 @@ bool JADUtility::DataLoadMgrNode::initInstanceExt(void* buffer, s32 bufferLength
  */
 void JADUtility::DataLoadMgrNode::setFlagsAsExternal(void* p1)
 {
-	_18 = p1;
-	_08 = 3;
+	mExternalFlags = p1;
+	mFlagState     = 3;
 }
 
 /**

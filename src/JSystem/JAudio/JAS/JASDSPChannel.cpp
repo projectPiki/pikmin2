@@ -9,13 +9,13 @@ JASDSPChannel* JASDSPChannel::sDspChannels;
  */
 JASDSPChannel::JASDSPChannel()
 {
-	_00 = 1;
-	_04 = -1;
-	_08 = 0;
-	_0C = 0;
-	_10 = nullptr;
-	_14 = nullptr;
-	_18 = nullptr;
+	_00           = 1;
+	mPriority     = -1;
+	mFlags        = 0;
+	_0C           = 0;
+	mCallback     = nullptr;
+	mCallbackArgs = nullptr;
+	mChannel      = nullptr;
 }
 
 /**
@@ -24,15 +24,15 @@ JASDSPChannel::JASDSPChannel()
  */
 void JASDSPChannel::free()
 {
-	_10 = nullptr;
-	_14 = nullptr;
+	mCallback     = nullptr;
+	mCallbackArgs = nullptr;
 }
 
 /**
  * @note Address: 0x800A4B84
  * @note Size: 0x10
  */
-void JASDSPChannel::start() { SET_FLAG(_08, 1); }
+void JASDSPChannel::start() { SET_FLAG(mFlags, 1); }
 
 /**
  * @note Address: 0x800A4B94
@@ -40,14 +40,14 @@ void JASDSPChannel::start() { SET_FLAG(_08, 1); }
  */
 void JASDSPChannel::drop()
 {
-	if (_10) {
-		_10(3, 0, _14);
+	if (mCallback) {
+		mCallback(3, 0, mCallbackArgs);
 	}
 	free();
-	_04 = -1;
-	RESET_FLAG(_08, 1);
+	mPriority = -1;
+	RESET_FLAG(mFlags, 1);
 	if (_00 == 0) {
-		SET_FLAG(_08, 2);
+		SET_FLAG(mFlags, 2);
 		;
 		_00 = 2;
 	}
@@ -61,7 +61,7 @@ void JASDSPChannel::initAll()
 {
 	sDspChannels = new (JASDram, 0x20) JASDSPChannel[0x40];
 	for (int i = 0; i < 0x40; i++) {
-		sDspChannels[i]._18 = JASDsp::getDSPHandle(i);
+		sDspChannels[i].mChannel = JASDsp::getDSPHandle(i);
 	}
 }
 
@@ -76,10 +76,10 @@ JASDSPChannel* JASDSPChannel::alloc(u8 index, s32 (*cb)(u32, JASDsp::TChannel*, 
 		return nullptr;
 	}
 	channel->drop();
-	channel->_04 = index;
-	channel->_0C = 0;
-	channel->_10 = cb;
-	channel->_14 = p3;
+	channel->mPriority     = index;
+	channel->_0C           = 0;
+	channel->mCallback     = cb;
+	channel->mCallbackArgs = p3;
 	return channel;
 }
 
@@ -95,10 +95,10 @@ JASDSPChannel* JASDSPChannel::allocForce(u8 index, s32 (*cb)(u32, JASDsp::TChann
 	}
 	channel->_00 = 1;
 	channel->drop();
-	channel->_04 = index;
-	channel->_0C = 0;
-	channel->_10 = cb;
-	channel->_14 = p3;
+	channel->mPriority     = index;
+	channel->_0C           = 0;
+	channel->mCallback     = cb;
+	channel->mCallbackArgs = p3;
 	return channel;
 }
 
@@ -106,7 +106,7 @@ JASDSPChannel* JASDSPChannel::allocForce(u8 index, s32 (*cb)(u32, JASDsp::TChann
  * @note Address: 0x800A4E60
  * @note Size: 0xC
  */
-void JASDSPChannel::setPriority(u8 priority) { _04 = priority; }
+void JASDSPChannel::setPriority(u8 priority) { mPriority = priority; }
 
 /**
  * @note Address: 0x800A4E6C
@@ -119,17 +119,17 @@ JASDSPChannel* JASDSPChannel::getLowestChannel(int threshold)
 	int lowestIndex    = -1;
 	u32 v1             = 0;
 	for (int i = 0; i < 0x40; i++) {
-		if (sDspChannels[i]._04 < 0) {
+		if (sDspChannels[i].mPriority < 0) {
 			return &sDspChannels[i];
 		}
-		if (sDspChannels[i]._04 <= threshold && sDspChannels[i]._04 <= lowestPriority
-		    && (sDspChannels[i]._04 != lowestPriority || sDspChannels[i]._0C > v1)) {
+		if (sDspChannels[i].mPriority <= threshold && sDspChannels[i].mPriority <= lowestPriority
+		    && (sDspChannels[i].mPriority != lowestPriority || sDspChannels[i]._0C > v1)) {
 			// && !(sDspChannels[i]._04 == lowestPriority && sDspChannels[i]._0C <= v1)) {
 			// if (lowestPriority == sDspChannels[i]._04 && sDspChannels[i]._0C <= v1) {
 			// 	continue;
 			// }
 			v1             = sDspChannels[i]._0C;
-			lowestPriority = sDspChannels[i]._04;
+			lowestPriority = sDspChannels[i].mPriority;
 			lowestIndex    = i;
 		}
 	}
@@ -224,64 +224,64 @@ JASDSPChannel* JASDSPChannel::getLowestActiveChannel()
  */
 void JASDSPChannel::updateProc()
 {
-	if (_18->isFinish()) {
-		RESET_FLAG(_08, 3);
+	if (mChannel->isFinish()) {
+		RESET_FLAG(mFlags, 3);
 		if (_00 == 0) {
 			int v1;
-			if (_10 != nullptr) {
-				v1 = _10(2, nullptr, _14);
+			if (mCallback != nullptr) {
+				v1 = mCallback(2, nullptr, mCallbackArgs);
 			} else {
 				v1 = -1;
 			}
 			if (v1 < 0) {
-				_04 = -1;
+				mPriority = -1;
 			}
 		}
 		_00 = 1;
-		_18->replyFinishRequest();
-		_18->flush();
+		mChannel->replyFinishRequest();
+		mChannel->flush();
 		return;
 	}
-	if (IS_FLAG(_08, 2)) {
-		RESET_FLAG(_08, 3);
-		_18->forceStop();
-		_18->flush();
+	if (IS_FLAG(mFlags, 2)) {
+		RESET_FLAG(mFlags, 3);
+		mChannel->forceStop();
+		mChannel->flush();
 		return;
 	}
 	if (_00 == 2) {
 		return;
 	}
-	if (IS_FLAG(_08, 1) != 0 && (_00 == 1)) {
-		RESET_FLAG(_08, 2);
+	if (IS_FLAG(mFlags, 1) != 0 && (_00 == 1)) {
+		RESET_FLAG(mFlags, 2);
 		_00 = 0;
-		_18->init();
-		if (_10 != nullptr) {
-			_10(1, _18, _14);
+		mChannel->init();
+		if (mCallback != nullptr) {
+			mCallback(1, mChannel, mCallbackArgs);
 		}
-		_18->playStart();
-		_18->flush();
+		mChannel->playStart();
+		mChannel->flush();
 	}
 	if (_00 == 1) {
 		return;
 	}
 	int v1;
-	if (_10 != nullptr) {
-		v1 = _10(0, _18, _14);
+	if (mCallback != nullptr) {
+		v1 = mCallback(0, mChannel, mCallbackArgs);
 	} else {
 		v1 = 0;
 	}
 	if (v1 < 0) {
 		_00 = 1;
-		if ((_10 != nullptr ? _10(2, nullptr, _14) : -1) < 0) {
-			_04 = -1;
+		if ((mCallback != nullptr ? mCallback(2, nullptr, mCallbackArgs) : -1) < 0) {
+			mPriority = -1;
 		}
-		_18->playStop();
-		_18->flush();
+		mChannel->playStop();
+		mChannel->flush();
 		return;
 	}
 	_0C++;
-	if (_10 != nullptr) {
-		_18->flush();
+	if (mCallback != nullptr) {
+		mChannel->flush();
 	}
 	/*
 	stwu     r1, -0x10(r1)

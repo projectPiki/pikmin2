@@ -64,7 +64,7 @@ struct JASAramStream {
 	void* mMsgSlotsA[16];            // _40
 	void* mMsgSlotsB[4];             // _80
 	u8 _90[0xF0];                    // _90 - unknown
-	JASChannel* _180[6];             // _180
+	JASChannel* mChannels[6];        // _180
 	JASChannel* _198;                // _198
 	u8 _19C;                         // _19C
 	u8 _19D;                         // _19D
@@ -81,7 +81,7 @@ struct JASAramStream {
 	int _1FC;                        // _1FC
 	int _200;                        // _200
 	u8 _204;                         // _204
-	int _208;                        // _208
+	int mLoadedCount;                // _208
 	u8 _20C[0xC];                    // _20C - unknown
 	s16 _218;                        // _218
 	u32 _21C;                        // _21C

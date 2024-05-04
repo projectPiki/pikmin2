@@ -100,10 +100,10 @@ struct JFWDisplay {
 	bool mIsAlphaEnabled;         // _24
 	u16 mClamp;                   // _26
 	f32 mCombinationRatio;        // _28
-	u32 _2C;                      // _2C
-	u32 _30;                      // _30
-	u32 _34;                      // _34
-	s16 _38;                      // _38, NB: TP has more members here.
+	u32 mCurrentTick;             // _2C
+	u32 mFrameDuration;           // _30
+	u32 mTickDifference;          // _34
+	s16 mCurrentXfbIndex;         // _38, NB: TP has more members here.
 	u8 _3A;                       // _3A
 };
 

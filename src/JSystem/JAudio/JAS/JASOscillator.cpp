@@ -29,16 +29,16 @@ const s16 JASOscillator::oscTableForceStop[6] = { 0, 15, 0, 15, 0, 0 };
  */
 void JASOscillator::init()
 {
-	mData           = nullptr;
-	mState          = STATE_Stop;
-	mEnvelopeMode   = ENVMODE_Linear;
-	mCurrEnvelopeID = 0;
-	_04             = 0.0f;
-	mPhase          = 0.0f;
-	mTargetPhase    = 0.0f;
-	_10             = 0.0f;
-	mRelease        = 0;
-	_14             = 0.0f;
+	mData               = nullptr;
+	mState              = STATE_Stop;
+	mEnvelopeMode       = ENVMODE_Linear;
+	mCurrEnvelopeID     = 0;
+	mReleaseRate        = 0.0f;
+	mPhase              = 0.0f;
+	mTargetPhase        = 0.0f;
+	mPhaseChangeRate    = 0.0f;
+	mRelease            = 0;
+	mInitialReleaseRate = 0.0f;
 }
 
 /**
@@ -59,9 +59,9 @@ void JASOscillator::initStart(const Data* data)
 			mPhase = 0.0f;
 		} else {
 			mCurrEnvelopeID = 0;
-			_04             = 0.0f;
+			mReleaseRate    = 0.0f;
 			mTargetPhase    = 0.0f;
-			_04 -= mData->mRate;
+			mReleaseRate -= mData->mRate;
 			incCounter();
 		}
 	}
@@ -99,10 +99,10 @@ void JASOscillator::incCounter()
 	}
 
 	if (mState == STATE_ForceStop) {
-		_04 -= 1.0f;
+		mReleaseRate -= 1.0f;
 
 	} else {
-		_04 -= mData->mRate;
+		mReleaseRate -= mData->mRate;
 	}
 
 	calc(envelopes);
@@ -142,7 +142,7 @@ bool JASOscillator::release()
 
 	if (mData->mAttack != mData->mRelease) {
 		mCurrEnvelopeID = 0;
-		_04             = 0.0f;
+		mReleaseRate    = 0.0f;
 		mTargetPhase    = mPhase;
 	}
 
@@ -155,19 +155,19 @@ bool JASOscillator::release()
 		mEnvelopeMode = (mRelease >> 0xE) & 3;
 		f32 temp_f31  = (f32)(mRelease & 0x3FFF);
 		temp_f31 *= ((JASDriver::getDacRate() / 80.0f) / 600.0f);
-		_04 = temp_f31;
-		if (_04 < 1.0f) {
-			_04 = 1.0f;
+		mReleaseRate = temp_f31;
+		if (mReleaseRate < 1.0f) {
+			mReleaseRate = 1.0f;
 		}
 
-		_14          = _04;
-		mTargetPhase = 0.0f;
+		mInitialReleaseRate = mReleaseRate;
+		mTargetPhase        = 0.0f;
 
 		if (mEnvelopeMode == ENVMODE_Linear) {
-			_10 = (f32)((mTargetPhase - mPhase) / _04);
+			mPhaseChangeRate = (f32)((mTargetPhase - mPhase) / mReleaseRate);
 
 		} else {
-			_10 = (f32)(mTargetPhase - mPhase);
+			mPhaseChangeRate = (f32)(mTargetPhase - mPhase);
 		}
 	} else {
 		mState = STATE_Release;
@@ -182,7 +182,7 @@ bool JASOscillator::release()
 f32 JASOscillator::calc(const s16* envelopes)
 {
 	f32 val31 = 0.0f;
-	while (_04 <= 0.0f) {
+	while (mReleaseRate <= 0.0f) {
 		int idx = mCurrEnvelopeID * 3;
 		mPhase  = mTargetPhase;
 		if (mState == STATE_Unk5) {
@@ -218,15 +218,15 @@ f32 JASOscillator::calc(const s16* envelopes)
 			continue;
 		}
 
-		_04          = (f32)envTime * ((JASDriver::getDacRate() / 80.0f) / 600.0f);
-		_14          = _04;
-		mTargetPhase = envValue / SHORT_FLOAT_MAX;
+		mReleaseRate        = (f32)envTime * ((JASDriver::getDacRate() / 80.0f) / 600.0f);
+		mInitialReleaseRate = mReleaseRate;
+		mTargetPhase        = envValue / SHORT_FLOAT_MAX;
 
 		if (mEnvelopeMode == ENVMODE_Linear) {
-			_10 = (mTargetPhase - mPhase) / _04;
+			mPhaseChangeRate = (mTargetPhase - mPhase) / mReleaseRate;
 
 		} else {
-			_10 = mTargetPhase - mPhase;
+			mPhaseChangeRate = mTargetPhase - mPhase;
 		}
 
 		mCurrEnvelopeID++;
@@ -237,13 +237,13 @@ f32 JASOscillator::calc(const s16* envelopes)
 	}
 
 	f32 newPhase;
-	if (_14 == 0.0) { // yes this is a double. someone forgot an f
+	if (mInitialReleaseRate == 0.0) { // yes this is a double. someone forgot an f
 		newPhase = mTargetPhase;
 		mPhase   = mTargetPhase;
 
 	} else {
-		if (mEnvelopeMode == ENVMODE_Linear || (val31 = _10) == 0.0f) {
-			newPhase = mTargetPhase - (_10 * _04);
+		if (mEnvelopeMode == ENVMODE_Linear || (val31 = mPhaseChangeRate) == 0.0f) {
+			newPhase = mTargetPhase - (mPhaseChangeRate * mReleaseRate);
 			mPhase   = newPhase;
 
 		} else if (mEnvelopeMode == ENVMODE_SampleCell || mEnvelopeMode == ENVMODE_Square || mEnvelopeMode == ENVMODE_SqRoot) {
@@ -263,9 +263,9 @@ f32 JASOscillator::calc(const s16* envelopes)
 			f32 fIdx;
 
 			if (val31 < 0.0f) {
-				fIdx = 16.0f * (1.0f - (_04 / _14));
+				fIdx = 16.0f * (1.0f - (mReleaseRate / mInitialReleaseRate));
 			} else {
-				fIdx = 16.0f * (_04 / _14);
+				fIdx = 16.0f * (mReleaseRate / mInitialReleaseRate);
 			}
 
 			u32 idx  = fIdx;
@@ -277,16 +277,16 @@ f32 JASOscillator::calc(const s16* envelopes)
 
 			f32 valAbs = JMAAbs(val31 * (prop * (table[idx + 1] - table[idx]) + table[idx]));
 
-			if (_10 < 0.0f) {
+			if (mPhaseChangeRate < 0.0f) {
 				newPhase = mTargetPhase + valAbs;
 			} else {
-				newPhase = mTargetPhase - (_10 - valAbs);
+				newPhase = mTargetPhase - (mPhaseChangeRate - valAbs);
 			}
 
 			mPhase = newPhase;
 
 		} else {
-			newPhase = mTargetPhase - val31 * _04;
+			newPhase = mTargetPhase - val31 * mReleaseRate;
 			mPhase   = newPhase;
 		}
 	}
