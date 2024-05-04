@@ -105,8 +105,7 @@ enum DropGroup {
 };
 
 // Interface for specific overrides (e.g. PelplantInitialParams)
-struct EnemyInitialParamBase {
-};
+struct EnemyInitialParamBase { };
 
 struct EnemyKillArg : public CreatureKillArg {
 	inline EnemyKillArg(int flag)
@@ -769,7 +768,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	BitFlagArray<u32, 2> mEventBuffer;          // _1E8
 	u8 mSfxEmotion;                             // _1F0, the 'emotion' used for bg music
 	u8 mCreatureID;                             // _1F1
-	u8 _1F2;                                    // _1F2, set to 0xFF by ctor/birth function, never used
+	u8 mUnused1F2;                              // _1F2, set to 0xFF by ctor/birth function, never used
 	bool mInPiklopedia;                         // _1F3
 	int mStuckPikminCount;                      // _1F4
 	f32 mScaleModifier;                         // _1F8

@@ -35,31 +35,31 @@ void Obj::setParameters()
 {
 	EnemyBase::setParameters();
 
-	// scale = randomly between min and max, but in 5 equal steps, so 5 options
-	// this is a dumb way to do this but sure
+	// Gets a random value from mMinScale to mMaxScale
+	// And forces it to be 5 possible values between them
 	f32 scale     = C_PROPERPARMS.mMinScale();
-	f32 scaleDiff = C_PROPERPARMS.mMaxScale();
-	scaleDiff -= scale;
-	int randNum = (int)(5.0f * randFloat());
-	scaleDiff /= 5.0f;
-	scale = scaleDiff * randNum + scale;
+	f32 maxScale  = C_PROPERPARMS.mMaxScale();
+	maxScale      = maxScale - scale;
+	int randomNum = (int)(5.0f * randFloat());
+	maxScale /= 5.0f;
+	scale = maxScale * randomNum + scale;
 	setScale(scale);
 
-	// nest/house scales with size of crawmad
+	// Nest (house) scales with the size of the Crawmad
 	if (mHouse) {
 		mHouse->setScale(scale);
 		mHouse->mCollTree->mPart->setScale(scale);
 	}
 
-	// mouth collision also scales with size of crawmad (but has a minimum size)
-	// there's only one mouth slot so this loop is kinda pointless
+	// Scale mouth collision and ensure minimum size
+	// There is one mouth slot though, so this is a bit overkill
 	for (int i = 0; i < mMouthSlots.getMax(); i++) {
-		f32 rad = C_PARMS->mMouthSlotSizeModifier * mScaleModifier;
-		if (rad < 25.0f) {
-			rad = 25.0f;
+		f32 radius = C_PARMS->mMouthSlotSizeModifier * mScaleModifier;
+		if (radius < 25.0f) {
+			radius = 25.0f;
 		}
 
-		mMouthSlots.getSlot(i)->mRadius = rad;
+		mMouthSlots.getSlot(i)->mRadius = radius;
 	}
 
 	mCurLodSphere.mRadius = mScaleModifier * C_GENERALPARMS.mOffCameraRadius();
@@ -70,37 +70,41 @@ void Obj::setParameters()
  * @note Address: 0x80369044
  * @note Size: 0x17C
  */
-void Obj::birth(Vector3f& pos, f32 faceDir)
+void Obj::birth(Vector3f& position, f32 faceDir)
 {
-	EnemyBase::birth(pos, faceDir);
-	Nest::Mgr* nestMgr = static_cast<Nest::Mgr*>(generalEnemyMgr->getEnemyMgr(EnemyTypeID::EnemyID_PanHouse));
+	EnemyBase::birth(position, faceDir);
 
+	// Get the nest manager to create it
+	Nest::Mgr* nestMgr = static_cast<Nest::Mgr*>(generalEnemyMgr->getEnemyMgr(EnemyTypeID::EnemyID_PanHouse));
 	if (nestMgr) {
+		// Create that damn nest (wasp lore)
 		EnemyBirthArg birthArg;
 		birthArg.mPosition = mPosition;
 		birthArg.mFaceDir  = getFaceDir();
-
-		Nest::Obj* nest = static_cast<Nest::Obj*>(nestMgr->birth(birthArg));
+		Nest::Obj* nest    = static_cast<Nest::Obj*>(nestMgr->birth(birthArg));
 
 		P2ASSERTLINE(86, nest);
 
+		// Initialise (this is probably an inline because it nulls the pointer before initialising it)
 		nest->init(nullptr);
 		mHouse = nullptr;
 		mHouse = nest;
 		mHouse->setHouseType(getEnemyTypeID());
 
+		// Update the scale now we're in a house
 		f32 scale = mScaleModifier;
 		nest->setScale(scale);
 		nest->mCollTree->mPart->setScale(scale);
 	}
 
+	// Set the mouth slot's radius to the proper size, ensure 25.0f minimum
 	for (int i = 0; i < mMouthSlots.getMax(); i++) {
-		f32 rad = C_PARMS->mMouthSlotSizeModifier * mScaleModifier;
-		if (rad < 25.0f) {
-			rad = 25.0f;
+		f32 radius = C_PARMS->mMouthSlotSizeModifier * mScaleModifier;
+		if (radius < 25.0f) {
+			radius = 25.0f;
 		}
 
-		mMouthSlots.getSlot(i)->mRadius = rad;
+		mMouthSlots.getSlot(i)->mRadius = radius;
 	}
 }
 
@@ -124,7 +128,7 @@ void Obj::onInit(CreatureInitArg* initArg)
 	mDestRotation            = mCurrRotation;
 	mSlerpTime               = 0.0f;
 	mHideAnimPosition        = Vector3f(0.0f);
-	mCarryAngleModifier      = 0.0f;
+	mCarryAngleSpeed         = 0.0f;
 	mDoScaleDownMouth        = false;
 	mIsOutsideHouse          = false;
 	mPrevReturnCheckPosition = mHomePosition;
@@ -134,14 +138,14 @@ void Obj::onInit(CreatureInitArg* initArg)
 	mWalkBounceTimer         = 0;
 
 	mBodyJoint = mModel->getJoint("body_joint1");
-	P2ASSERTLINE(151, mBodyJoint); // okay.
+	P2ASSERTLINE(151, mBodyJoint);
 
-	mFsm->start(this, JIGUMO_Appear, nullptr); // we already did this morimura.
+	mFsm->start(this, JIGUMO_Appear, nullptr);
 
-	P2ASSERTLINE(158, mModel); // WHY? WE JUST USED THIS. I AM NOT EVEN THIS ANXIOUS AND I HAVE AN ANXIETY DISORDER.
+	P2ASSERTLINE(158, mModel);
 	J3DModelData* data = mModel->mJ3dModel->getModelData();
 	mKamuJointIdx      = mModel->getJointIndex("kamu_joint1");
-	P2ASSERTLINE(163, mKamuJointIdx); // S I R.
+	P2ASSERTLINE(163, mKamuJointIdx);
 
 	data->mJointTree.mJoints[mKamuJointIdx]->mFunction = &mouthScaleCallBack;
 	mBodyRadius                                        = mScaleModifier * C_GENERALPARMS.mPikminDamageRadius();
@@ -160,16 +164,16 @@ Obj::Obj()
 	setFSM(new FSM);
 
 	mEfxAttack = new efx::TJgmAttack(&mPosition);
-	P2ASSERTLINE(188, mEfxAttack); // this is ridiculous
+	P2ASSERTLINE(188, mEfxAttack);
 
 	mEfxAttackW = new efx::TJgmAttackW(&mEffectPosition, &mFaceDir);
-	P2ASSERTLINE(191, mEfxAttackW); // r i d i c u l o u s
+	P2ASSERTLINE(191, mEfxAttackW);
 
 	mEfxBack = new efx::TJgmBack(&mPosition);
-	P2ASSERTLINE(194, mEfxBack); // genuinely
+	P2ASSERTLINE(194, mEfxBack);
 
 	mEfxBackW = new efx::TJgmBackW(&mEffectPosition, &mFaceDir);
-	P2ASSERTLINE(197, mEfxBackW); // insane
+	P2ASSERTLINE(197, mEfxBackW);
 
 	mEfxSmoke = new efx::TImoSmoke(&mEffectPosition);
 	P2ASSERTLINE(200, mEfxBack); // MORIMURA THIS IS EVEN THE WRONG VARIABLE
@@ -226,6 +230,7 @@ void Obj::doAnimationCullingOff()
 
 	mModel->mJ3dModel->calc();
 
+	// Update the bounding sphere and collision tree even when culling is off
 	Sys::Sphere collSphere;
 	mCollTree->mPart->getSphere(collSphere);
 	collSphere.mRadius *= mScaleModifier;
@@ -249,14 +254,13 @@ void Obj::initMouthSlots()
 	mMouthSlots.alloc(1);
 	mMouthSlots.setup(0, mModel, "kamu_joint1");
 
-	// kinda dumb to do this for one mouth slot but go off
 	for (int i = 0; i < mMouthSlots.getMax(); i++) {
-		f32 rad = C_PARMS->mMouthSlotSizeModifier * mScaleModifier;
-		if (rad < 25.0f) {
-			rad = 25.0f;
+		f32 radius = C_PARMS->mMouthSlotSizeModifier * mScaleModifier;
+		if (radius < 25.0f) {
+			radius = 25.0f;
 		}
 
-		mMouthSlots.getSlot(i)->mRadius = rad;
+		mMouthSlots.getSlot(i)->mRadius = radius;
 	}
 }
 
@@ -317,15 +321,22 @@ bool Obj::damageCallBack(Creature* source, f32 damage, CollPart* part)
 		return true;
 	}
 
+	// If out of nest when hit
 	if (getStateID() == JIGUMO_Carry || getStateID() == JIGUMO_Return) {
 		Sys::Sphere sphere;
+
+		// Get the head position
 		mCollTree->getCollPart('head')->getSphere(sphere);
 		Vector3f headPos = sphere.mPosition;
 
+		// Get the body position
 		mCollTree->getCollPart('body')->getSphere(sphere);
 		Vector3f bodyPos = sphere.mPosition;
 
+		// Get the pikmin position
 		Vector3f pikiPos = source->getPosition();
+
+		// If the pikmin is closer to the head than the body, don't damage (head is invulnerable)
 		if (headPos.sqrDistance(pikiPos) < bodyPos.sqrDistance(pikiPos)) {
 			return false;
 		}
@@ -343,6 +354,7 @@ bool Obj::damageCallBack(Creature* source, f32 damage, CollPart* part)
  */
 void Obj::collisionCallback(CollEvent& event)
 {
+	// If we've hit the house, stop moving
 	if (event.mCollidingCreature->isTeki()
 	    && static_cast<EnemyBase*>(event.mCollidingCreature)->getEnemyTypeID() == EnemyTypeID::EnemyID_PanHouse) {
 		mAcceleration = Vector3f(0.0f);
@@ -350,6 +362,7 @@ void Obj::collisionCallback(CollEvent& event)
 
 	EnemyBase::collisionCallback(event);
 
+	// Damage if bittered
 	if (isEvent(0, EB_Bittered) && event.mCollidingCreature->isPiki()) {
 		damageCallBack(event.mCollidingCreature, 1.0f, nullptr);
 	}
@@ -457,38 +470,43 @@ bool Obj::needShadow()
  */
 void Obj::doSimulationGround(f32 step)
 {
+	// If we're climbing, then climb simulation!
 	if (mClimbingTimer > 0 && !isEvent(1, EB2_Stunned) && !isEvent(1, EB2_Earthquake)) {
 		doSimulationFlying(step);
 		return;
 	}
 
+	// Set target velocity, keeping the y velocity the same (accounting for gravity)
 	Vector3f targetVel = mTargetVelocity;
 	targetVel.y        = mCurrentVelocity.y;
-	Vector3f currVel   = mCurrentVelocity;
 
-	Vector3f change  = targetVel - currVel;
-	mCurrentVelocity = mCurrentVelocity + (change) * (step / C_PARMS->mCreatureProps.mProps.mAccel());
+	Vector3f currentVelocity = mCurrentVelocity;
+	Vector3f velocityChange  = targetVel - currentVelocity;
 
-	f32 dropMass    = 1.0f;
-	f32 horizFactor = C_PARMS->mTiltDrag;
+	// Calculate the change in velocity and apply it, including acceleration
+	mCurrentVelocity = mCurrentVelocity + (velocityChange) * (step / C_PARMS->mCreatureProps.mProps.mAccel());
 
+	// If attacking, mass goes up and take away drag (we wanna shoot straight for the enemy)
+	f32 massFactor = 1.0f;
+	f32 dragFactor = C_PARMS->mTiltDrag;
 	if (getStateID() == JIGUMO_Attack) {
-		horizFactor = 0.0f;
-		dropMass    = 2.5f;
+		dragFactor = 0.0f;
+		massFactor = 2.5f;
 	}
 
+	// If the object is not perfectly upright, apply horizontal drag based on the face normal
 	if (mCurrentFaceNormal.y != 1.0f) {
-		mCurrentVelocity.x -= mCurrentFaceNormal.x * horizFactor;
-		mCurrentVelocity.z -= mCurrentFaceNormal.z * horizFactor;
+		mCurrentVelocity.x -= mCurrentFaceNormal.x * dragFactor;
+		mCurrentVelocity.z -= mCurrentFaceNormal.z * dragFactor;
 	}
 
 	bool isAirborne = (isEvent(1, EB2_Earthquake) || isEvent(1, EB2_Dropping));
-
 	if (isAirborne) {
-		dropMass = 3.0f;
+		massFactor = 3.0f;
 	}
 
-	mCurrentVelocity.y -= dropMass * (step * _aiConstants->mGravity.mData);
+	// Apply gravity to the vertical velocity, and apply mass factor
+	mCurrentVelocity.y -= massFactor * (step * _aiConstants->mGravity.mData);
 }
 
 /**
@@ -586,47 +604,49 @@ f32 Obj::getGoalDist() { return mPosition.sqrDistance(mGoalPosition); }
  */
 void Obj::walkFunc()
 {
-	// update position to use for effects
+	// UpI date position to use for effects
 	mEffectPosition = mPosition;
 	if (mWaterBox) {
 		mEffectPosition.y = *mWaterBox->getSeaHeightPtr();
 	}
 
-	f32 angleWeight, terrRad;
-	f32 walkSpeed = getWalkSpeed();                    // f29
-	terrRad       = C_GENERALPARMS.mTerritoryRadius(); // f30
-	angleWeight   = C_PARMS->mTurnWeight;              // f31, 20.0f by default
-	f32 rotRate   = C_GENERALPARMS.mTurnSpeed();       // f28
-	f32 rotSpeed  = C_GENERALPARMS.mMaxTurnAngle();    // f27
+	f32 turningFactor, territoryRadius;
+	f32 walkSpeed    = getWalkSpeed();                    // f29
+	territoryRadius  = C_GENERALPARMS.mTerritoryRadius(); // f30
+	turningFactor    = C_PARMS->mTurnWeight;              // f31, 20.0f by default
+	f32 turningSpeed = C_GENERALPARMS.mTurnSpeed();       // f28
+	f32 maxTurnAngle = C_GENERALPARMS.mMaxTurnAngle();    // f27
 
 	int stateID = getStateID();
 
-	// if we're outside and not attacking (assuming a flag is not set, which is the default)
+	// if we're carrying and not attacking (assuming a flag is not set, which is the default)
 	if (stateID == JIGUMO_Carry || (!C_PARMS->_8FC && (stateID == JIGUMO_Return || stateID == JIGUMO_Miss))) {
-		Vector3f sep = mGoalPosition;
-		sep -= mPosition;
+		Vector3f seperation = mGoalPosition;
+		seperation -= mPosition;
 
-		f32 dist = sep.length();
+		f32 distance = seperation.length();
 		// f32 dist = mGoalPosition.distance(mPosition);
-		if (dist < 0.0f) {
-			dist = 0.0f;
+		if (distance < 0.0f) {
+			distance = 0.0f;
 		}
 
-		f32 preAngle = (C_PARMS->mTurnModifier * (dist * (360.0f * (1.0f / terrRad)))); // mTurnModifier is 0.05f by default
-		f32 degAngle = angleWeight * (f32)sin(180.0f + preAngle);                       // f2
+		// Calculate the pre-turn angle based on the distance and territory radius
+		// mTurnModifier is 0.05f by default (5% every frame)
+		f32 preTurnAngle = (C_PARMS->mTurnModifier * (distance * (360.0f * (1.0f / territoryRadius))));
+		f32 degreeAngle  = turningFactor * (f32)sin(180.0f + preTurnAngle); // f2
 
 		if (!C_PARMS->mIsGradualTurnActive) { // does not run by default, but forces angle to 0
-			degAngle = 0.0f;
+			degreeAngle = 0.0f;
 		}
 
-		degAngle *= mCarryAngleModifier;     // angle goes from 0 to whatever the degAngle factor is over time
-		f32 turnAngle = TORADIANS(degAngle); // f30
+		degreeAngle *= mCarryAngleSpeed;        // angle goes from 0 to whatever the degAngle factor is over time
+		f32 turnAngle = TORADIANS(degreeAngle); // f30
 
-		mCarryAngleModifier += 0.1f;
+		mCarryAngleSpeed += 0.1f;
 
 		// cap out weighting at 1
-		if (mCarryAngleModifier > 1.0f) {
-			mCarryAngleModifier = 1.0f;
+		if (mCarryAngleSpeed > 1.0f) {
+			mCarryAngleSpeed = 1.0f;
 		}
 
 		// do this just if we're transporting a piki
@@ -693,7 +713,7 @@ void Obj::walkFunc()
 
 				} else {
 					mClimbingAccel = 1.0f;
-					mClimbingTimer = C_PARMS->_910;
+					mClimbingTimer = C_PARMS->mClimbingTime;
 				}
 			}
 
@@ -701,27 +721,33 @@ void Obj::walkFunc()
 			mReturnTimer             = 0;
 		}
 
-		turnToTarget2(mGoalPosition, rotRate, rotSpeed);
+		turnToTarget2(mGoalPosition, turningSpeed, maxTurnAngle);
 
 		f32 prevFaceDir = mFaceDir;
 
 		// adjust target velocity
-		f32 theta    = prevFaceDir + turnAngle;
-		f32 x        = walkSpeed * sinf(theta);
-		f32 y        = getTargetVelocity().y;
-		f32 z        = walkSpeed * cosf(theta);
+		f32 theta     = prevFaceDir + turnAngle;
+		f32 velocityX = walkSpeed * sinf(theta);
+		f32 velocityY = getTargetVelocity().y;
+		f32 velocityZ = walkSpeed * cosf(theta);
+
 		mNextFaceDir = prevFaceDir;
-		if (absF(turnAngle) > rotSpeed) {
-			turnAngle = (turnAngle > 0.0f) ? rotSpeed : -rotSpeed;
+
+		// Limit the angle to the maximum allowed
+		if (absF(turnAngle) > maxTurnAngle) {
+			turnAngle = (turnAngle > 0.0f) ? maxTurnAngle : -maxTurnAngle;
 		}
+
+		// If we're returning or have missed, flip the face direction (turn)
 		f32 flipFaceDir = 1.0f;
 		if (stateID == JIGUMO_Return || stateID == JIGUMO_Miss) {
 			flipFaceDir = 0.0f;
 		}
 
+		// Update the face direction and target velocity
 		mFaceDir += roundAng(PI * flipFaceDir + turnAngle);
 		mRotation.y     = mFaceDir;
-		mTargetVelocity = Vector3f(x, y, z);
+		mTargetVelocity = Vector3f(velocityX, velocityY, velocityZ);
 
 		// mPauseSpeedModifier is 0.15f by default, so this doesn't run
 		// but if modifier is meant to make speed 0... make speed HARD 0.
@@ -729,6 +755,7 @@ void Obj::walkFunc()
 			mTargetVelocity  = Vector3f(0.0f);
 			mCurrentVelocity = Vector3f(0.0f);
 		}
+
 		return;
 	}
 
@@ -742,7 +769,7 @@ void Obj::walkFunc()
 		return;
 	}
 
-	EnemyFunc::walkToTarget(this, mGoalPosition, walkSpeed, rotRate, rotSpeed);
+	EnemyFunc::walkToTarget(this, mGoalPosition, walkSpeed, turningSpeed, maxTurnAngle);
 
 	/*
 	stwu     r1, -0xb0(r1)
@@ -1389,7 +1416,7 @@ void Obj::calcBaseTrMatrix()
 	if (getStateID() != JIGUMO_Attack && !mWalkBounceTimer && (mClimbingTimer > 0 || info.mWallTriangle)) {
 		if (info.mWallTriangle && (info.mWallNormal.x != 0.0f || info.mWallNormal.y != 0.0f || info.mWallNormal.z != 0.0f)) {
 			mWantedFaceNormal = info.mWallNormal;
-			mClimbingTimer    = C_PARMS->_910;
+			mClimbingTimer    = C_PARMS->mClimbingTime;
 		}
 
 		if (mCurrentFaceNormal.x != mWantedFaceNormal.x || mCurrentFaceNormal.y != mWantedFaceNormal.y
@@ -1584,7 +1611,7 @@ void Obj::effectStart()
 	}
 
 	if (stateID == JIGUMO_Carry) {
-		mCarryAngleModifier = 0.0f;
+		mCarryAngleSpeed = 0.0f;
 		if (mWaterBox) {
 			if (mEfxBackW) {
 				mEfxBackW->create(&fxArg);

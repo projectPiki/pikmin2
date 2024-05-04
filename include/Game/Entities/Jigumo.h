@@ -125,7 +125,7 @@ struct Parms : public EnemyParmsBase {
 		mTurnWeight            = 20.0f;
 		mTurnModifier          = 0.05f;
 		mTiltDrag              = 30.0f;
-		_910                   = 8;
+		mClimbingTime          = 8;
 		mMaxPauseTime          = 35.0f;
 		mPauseSpeedModifier    = 0.15f;
 		_91C                   = 1.0f;
@@ -156,7 +156,7 @@ struct Parms : public EnemyParmsBase {
 	f32 mTurnWeight;             // _904
 	f32 mTurnModifier;           // _908
 	f32 mTiltDrag;               // _90C, modify XZ speed if not perfectly horizontal (going up or down ledges)
-	u8 _910;                     // _910
+	u8 mClimbingTime;            // _910
 	f32 mMaxPauseTime;           // _914, max time to pause (in frames) when carrying back piki
 	f32 mPauseSpeedModifier;     // _918, alters walk speed when 'pausing' while carrying piki
 	f32 _91C;                    // _91C
@@ -267,7 +267,7 @@ struct Obj : public EnemyBase {
 	f32 mPauseTimer;                   // _338, timer for pausing when carrying back piki
 	f32 mPauseTriggerTime;             // _33C, time to pause when carrying back piki (random between 0 and 35 frames)
 	bool mDoPauseAnim;                 // _340, alternates pausing and moving when carrying back piki
-	f32 mCarryAngleModifier;           // _344
+	f32 mCarryAngleSpeed;              // _344
 	u8 _348[0x4];                      // _348, unknown
 	int mWalkBounceTimer;              // _34C
 	Vector3f mPrevReturnCheckPosition; // _350, stores every 60 frames to help check if we're stuck

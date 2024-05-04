@@ -831,7 +831,7 @@ EnemyBase::EnemyBase()
     , mEventBuffer()
     , mSfxEmotion(EMOTE_Caution)
     , mCreatureID(0xFF)
-    , _1F2(0xFF)
+    , mUnused1F2(0xFF)
     , mStuckPikminCount(0)
     , mStunAnimTimer(0.0f)
     , mFriction(0.0f)
@@ -1451,7 +1451,7 @@ void EnemyBase::birth(Vector3f& pos, f32 faceDir)
 	updateSpheres();
 	resetCollEvent();
 
-	_1F2 = 0xFF;
+	mUnused1F2 = 0xFF;
 	setParameters();
 
 	shadowMgr->addShadow(this);
