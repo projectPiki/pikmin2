@@ -18,8 +18,8 @@ enum cCarryInfoState {
 };
 
 enum cCarryInfoUseType {
-	CINFOTYPE_Table = 0,
-	CINFOTYPE_Scale = 1,
+	CINFOTYPE_Table = 0, // used for normal carry numbers
+	CINFOTYPE_Scale = 1, // used for poko collection
 };
 
 enum cCarryInfoColors {
@@ -53,13 +53,27 @@ struct CarryInfo {
 };
 
 struct CarryInfoParam {
+	CarryInfoParam()
+	    : mUseType(CINFOTYPE_Table)
+	    , mPosition(Vector3f::zero)
+	    , mYOffsetMax(50.0f)
+	    , mUnused(0)
+	    , mColor(CINFOCOLOR_DownFloor)
+	    , mCurrentWeight(0)
+	    , mMaxWeight(0)
+	    , mIsTopFirst(0)
+	    , mValue(0)
+	    , mCarryInfo()
+	{
+	}
+
 	u32 mUseType;         // _00, 1 means color by scale, 0 means color by coded table
 	Vector3f mPosition;   // _04
 	f32 mYOffsetMax;      // _10
 	u8 mUnused;           // _14
 	u8 mColor;            // _15
-	s16 mCurrentWeight;   // _16
-	s16 mMaxWeight;       // _18
+	u16 mCurrentWeight;   // _16
+	u16 mMaxWeight;       // _18
 	BOOL mIsTopFirst;     // _1C, 0 means value1 on bottom, 1 means value2 on bottom
 	int mValue;           // _20
 	CarryInfo mCarryInfo; // _24
@@ -102,6 +116,7 @@ struct PokoInfoOwner : public CarryInfoOwner, public CNode {
  * @size(0x58)
  */
 struct CarryInfoList : public InfoListBase<CarryInfoOwner, CarryInfoList> {
+
 	virtual ~CarryInfoList() { }                                                   // _08 (weak)
 	virtual void init();                                                           // _0C
 	virtual void update();                                                         // _10

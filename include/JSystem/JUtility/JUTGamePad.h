@@ -9,9 +9,9 @@
 struct JUTGamePadRecordBase {
 	JUTGamePadRecordBase();
 
-	virtual ~JUTGamePadRecordBase();            // _08
-	virtual void getStatus(PADStatus* pad) = 0; // _0C
-	virtual void virtual_10(PADStatus* pad)= 0; // _10
+	virtual ~JUTGamePadRecordBase();             // _08
+	virtual void getStatus(PADStatus* pad)  = 0; // _0C
+	virtual void virtual_10(PADStatus* pad) = 0; // _10
 
 	// _00 = VTBL
 	bool mIsActive; // _04
@@ -131,11 +131,11 @@ struct JUTGamePad : public JKRDisposer {
 		static u32 mEnabled;
 		static u32 sChannelMask[4];
 
-		u32 mFrame; // _00
-		u32 mLength; // _04
-		u8* mData; // _08
+		u32 mFrame;      // _00
+		u32 mLength;     // _04
+		u8* mData;       // _08
 		u32 mFrameCount; // _0C
-		u8* _10; // _10
+		u8* _10;         // _10
 	};
 
 	struct CStick {
@@ -143,8 +143,7 @@ struct JUTGamePad : public JKRDisposer {
 
 		void clear();
 		u32 getButton(u32 buttons);
-		u32 update(s8 x_val, s8 y_val, JUTGamePad::EStickMode mode,
-                               JUTGamePad::EWhichStick stick, u32 buttons);
+		u32 update(s8 x_val, s8 y_val, JUTGamePad::EStickMode mode, JUTGamePad::EWhichStick stick, u32 buttons);
 
 		static f32 sPressPoint;
 		static f32 sReleasePoint;
@@ -340,7 +339,7 @@ struct JUTGamePadLongPress {
 	u32 getPattern() const { return mPattern; }
 
 	static JSUList<JUTGamePadLongPress> sPatternList;
-	
+
 	u8 _00[0x10];           // _00, unknown
 	bool mIsValid;          // _10
 	bool _11;               // _11

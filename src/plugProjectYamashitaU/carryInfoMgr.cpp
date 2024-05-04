@@ -6,7 +6,7 @@
 #include "nans.h"
 
 namespace {
-static GXColor sColorTableNumerator[CINFOCOLOR_ColorCount] = {
+GXColor sColorTableNumerator[CINFOCOLOR_ColorCount] = {
 	{ 30, 30, 255, 255 },   // blue
 	{ 255, 0, 0, 255 },     // red
 	{ 234, 234, 0, 255 },   // yellow
@@ -16,7 +16,7 @@ static GXColor sColorTableNumerator[CINFOCOLOR_ColorCount] = {
 	{ 102, 211, 211, 255 }, // gray  (used in scale blocks?)
 };
 
-static GXColor sColorTableDenominator[CINFOCOLOR_ColorCount] = {
+GXColor sColorTableDenominator[CINFOCOLOR_ColorCount] = {
 	{ 30, 30, 255, 255 },   // blue
 	{ 255, 0, 0, 255 },     // red
 	{ 234, 234, 0, 255 },   // yellow
@@ -38,8 +38,8 @@ CarryInfo::CarryInfo()
 	// guess, but something like this
 	mGrowRate = 0.0f;
 	mYOffset  = 0.0f;
-	mScale    = 0.0f;
 	mState    = CINFO_Hidden;
+	mAlpha    = 0;
 	mCounter  = 0;
 }
 
@@ -162,83 +162,67 @@ void CarryInfo::update(const CarryInfoParam& param)
 void CarryInfo::draw(Graphics& gfx, CarryInfoParam& param)
 {
 	if (mState != CINFO_Hidden) {
+		Matrixf mtx;
 		Viewport* vp = gfx.mCurrentViewport;
-		Matrixf* mtx = vp->getMatrix(1);
-		Matrixf newmtx;
+		mtx.set(mScale, vp->getMatrix(true));
+		Vector3f pos(param.mPosition.x, param.mPosition.y + mYOffset, param.mPosition.z);
+		mtx.setTranslation(pos);
 
-		Vector3f temp = mtx->getColumn(0);
-		temp *= mScale;
-		newmtx.setColumn(0, temp);
-		temp = mtx->getColumn(1);
-		temp *= mScale;
-		newmtx.setColumn(1, temp);
-		temp = mtx->getColumn(2);
-		temp *= mScale;
-		newmtx.setColumn(2, temp);
-		temp = mtx->getColumn(3);
-		temp *= mScale;
-		newmtx.setColumn(3, temp);
+		Mtx storemtx;
+		PSMTXConcat(vp->getMatrix(true)->mMatrix.mtxView, mtx.mMatrix.mtxView, storemtx);
+		GXLoadPosMtxImm(storemtx, 0);
 
-		Matrixf storemtx;
-		PSMTXConcat(vp->getMatrix(1)->mMatrix.mtxView, newmtx.mMatrix.mtxView, storemtx.mMatrix.mtxView);
-		GXLoadPosMtxImm(storemtx.mMatrix.mtxView, 0);
-
-		if (param.mUseType == 1) {
-			switch (param.mUseType) {
-			case 0:
-				f32 scale1, scale2, offs1, offs2;
-				if (param.mIsTopFirst) {
-					scale1 = 1.1f;
-					scale2 = 0.75f;
-					offs1  = 10.15f;
-					offs2  = -7.7f;
-				} else {
-					scale1 = 0.75f;
-					scale2 = 1.1;
-					offs1  = 7.7f;
-					offs2  = -10.15f;
-				}
-				Color4 colortop, colorbottom;
-				colortop.r = sColorTableNumerator[param.mColor].r;
-				colortop.g = sColorTableNumerator[param.mColor].g;
-				colortop.b = sColorTableNumerator[param.mColor].b;
-				colortop.a = mAlpha;
-
-				colorbottom.r = sColorTableDenominator[param.mColor].r;
-				colorbottom.g = sColorTableDenominator[param.mColor].g;
-				colorbottom.b = sColorTableDenominator[param.mColor].b;
-				colorbottom.a = colortop.a;
-
-				drawNumberPrim(gfx, 0.0f, 0.0f, 10, colortop, 1.0f);
-				drawNumber(gfx, 0.0f, offs1, param.mCurrentWeight, colortop, scale1);
-				drawNumber(gfx, 0.0f, offs2, param.mMaxWeight, colorbottom, scale2);
-				break;
-			case 1:
-				f32 x    = 7.0f;
-				f32 temp = (f32)mCounter * TAU * 0.03125;
-				temp     = sinf(temp);
-				temp     = (temp + 1.0f) * 0.5f;
-				Color4 color2, color;
-				color2.a = mAlpha;
-
-				color.r = temp * (255.0f);
-				color.g = temp * (155.0f);
-				color.b = temp * (59.0f);
-				color.a = temp * (color2.a);
-
-				color2.r = 0xff;
-				color2.g = 0x8a;
-				color2.b = 0x15;
-
-				drawNumber(gfx, 7.0f, 0.0f, param.mCarryInfo.mGrowRate, color2, 1.0f);
-				drawNumberPrim(gfx, (-x * 0.5f - 3.0f), 0.0f, 11, color, 1.0f);
-				break;
-			default:
-				JUT_PANICLINE(403, "Illegal useType %d\n", param.mUseType);
-				break;
+		switch (param.mUseType) {
+		case CINFOTYPE_Table:
+			f32 scale1, scale2, offs1, offs2;
+			if (!param.mIsTopFirst) {
+				scale1 = 0.75f;
+				scale2 = 1.1;
+				offs1  = 7.7f;
+				offs2  = -10.15f;
+			} else {
+				scale1 = 1.1f;
+				scale2 = 0.75f;
+				offs1  = 10.15f;
+				offs2  = -7.7f;
 			}
+
+			Color4 colortop, colorbottom;
+			colortop.set(sColorTableNumerator[param.mColor].r, sColorTableNumerator[param.mColor].g, sColorTableNumerator[param.mColor].b,
+			             mAlpha);
+			colorbottom.set(sColorTableDenominator[param.mColor].r, sColorTableDenominator[param.mColor].g,
+			                sColorTableDenominator[param.mColor].b, mAlpha);
+
+			drawNumberPrim(gfx, 0.0f, 0.0f, 10, colortop, 1.0f);
+			drawNumber(gfx, 0.0f, offs1, param.mCurrentWeight, colortop, scale1);
+			drawNumber(gfx, 0.0f, offs2, param.mMaxWeight, colorbottom, scale2);
+			break;
+		case CINFOTYPE_Scale:
+			f32 x    = 7.0f;
+			f32 temp = (f32)mCounter * TAU * 0.03125;
+			temp     = sinf(temp);
+			temp     = (temp + 1.0f) * 0.5f;
+			Color4 color2, color;
+			color2.a = mAlpha;
+
+			color.r = temp * (255.0f);
+			color.g = temp * (155.0f);
+			color.b = temp * (59.0f);
+			color.a = temp * mAlpha;
+
+			color2.r = 0xff;
+			color2.g = 0x8a;
+			color2.b = 0x15;
+
+			drawNumber(gfx, 7.0f, 0.0f, param.mValue, color2, 1.0f);
+			drawNumberPrim(gfx, (-x * 0.5f - 3.0f), 0.0f, 11, color, 1.0f);
+			break;
+		default:
+			JUT_PANICLINE(403, "Illegal useType %d\n", param.mUseType);
+			break;
 		}
 	}
+
 	/*
 	stwu     r1, -0x150(r1)
 	mflr     r0
@@ -614,24 +598,26 @@ void CarryInfo::drawNumberPrim(Graphics& gfx, f32 x, f32 y, int arg3, Color4& co
 	f32 yMax         = y + scaledOffset;
 	f32 x0           = factor * arg3;
 	f32 x1           = x0 + factor;
+	f32 zero         = 0.0f;
+	f32 one          = 1.0f;
 
 	GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 4);
 
-	GXPosition3f32(xMin, yMin, 0.0f);
+	GXPosition3f32(xMin, yMin, zero);
 	GXColor4u8(color.r, color.g, color.b, color.a);
-	GXPosition2f32(x0, 1.0f);
+	GXPosition2f32(x0, one);
 
-	GXPosition3f32(xMax, yMin, 0.0f);
+	GXPosition3f32(xMax, yMin, zero);
 	GXColor4u8(color.r, color.g, color.b, color.a);
-	GXPosition2f32(x1, 1.0f);
+	GXPosition2f32(x1, one);
 
-	GXPosition3f32(xMin, yMax, 0.0f);
+	GXPosition3f32(xMin, yMax, zero);
 	GXColor4u8(color.r, color.g, color.b, color.a);
-	GXPosition2f32(x0, 0.0f);
+	GXPosition2f32(x0, zero);
 
-	GXPosition3f32(xMax, yMax, 0.0f);
+	GXPosition3f32(xMax, yMax, zero);
 	GXColor4u8(color.r, color.g, color.b, color.a);
-	GXPosition2f32(x1, 0.0f);
+	GXPosition2f32(x1, zero);
 }
 
 /**
@@ -783,22 +769,6 @@ void CarryInfoMgr::update()
 {
 	updatePokoInfoOwners();
 	InfoMgr<CarryInfoOwner, CarryInfoList>::update();
-
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       updatePokoInfoOwners__12CarryInfoMgrFv
-	mr       r3, r31
-	bl       "update__41InfoMgr<14CarryInfoOwner,13CarryInfoList>Fv"
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /**
@@ -807,11 +777,19 @@ void CarryInfoMgr::update()
  */
 void CarryInfoMgr::updatePokoInfoOwners()
 {
-	FOREACH_NODE(PokoInfoOwner, mNode1.mChild, obj)
-	{
-		bool del = false;
+	bool doDelete;
+	PokoInfoOwner* obj;
+	PokoInfoOwner* current;
+
+	current = (PokoInfoOwner*)(mNode1.mChild);
+	obj     = current;
+
+	for (obj; obj != 0;) {
+		current = (PokoInfoOwner*)(obj->mNext);
+
+		doDelete = false;
 		if (obj->mList->isFinish() || obj->mList->mOwner != obj) {
-			del = true;
+			doDelete = true;
 		} else {
 			obj->mTimer += sys->mDeltaTime;
 			if (obj->mTimer > 1.5f) {
@@ -819,95 +797,10 @@ void CarryInfoMgr::updatePokoInfoOwners()
 			}
 		}
 
-		if (del) {
+		if (doDelete) {
 			obj->del();
 			mPoko_node.add(obj);
 		}
+		obj = current;
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	lwz      r3, 0xcc(r3)
-	cmplwi   r3, 0
-	beq      lbl_8011C4AC
-	addi     r3, r3, -4
-
-lbl_8011C4AC:
-	mr       r30, r3
-	b        lbl_8011C55C
-
-lbl_8011C4B4:
-	lwz      r4, 8(r30)
-	cmplwi   r4, 0
-	beq      lbl_8011C4C4
-	addi     r4, r4, -4
-
-lbl_8011C4C4:
-	lwz      r3, 0x20(r30)
-	mr       r29, r4
-	li       r31, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8011C4F8
-	lwz      r3, 0x20(r30)
-	lwz      r0, 0x20(r3)
-	cmplw    r0, r30
-	beq      lbl_8011C500
-
-lbl_8011C4F8:
-	li       r31, 1
-	b        lbl_8011C530
-
-lbl_8011C500:
-	lwz      r3, sys@sda21(r13)
-	lfs      f2, 0x1c(r30)
-	lfs      f1, 0x54(r3)
-	lfs      f0, lbl_80517BE0@sda21(r2)
-	fadds    f1, f2, f1
-	stfs     f1, 0x1c(r30)
-	lfs      f1, 0x1c(r30)
-	fcmpo    cr0, f1, f0
-	ble      lbl_8011C530
-	lwz      r3, 0x20(r30)
-	li       r0, 1
-	stb      r0, 0x54(r3)
-
-lbl_8011C530:
-	clrlwi.  r0, r31, 0x18
-	beq      lbl_8011C558
-	addi     r3, r30, 4
-	bl       del__5CNodeFv
-	cmplwi   r30, 0
-	mr       r4, r30
-	beq      lbl_8011C550
-	addi     r4, r30, 4
-
-lbl_8011C550:
-	addi     r3, r28, 0xd4
-	bl       add__5CNodeFP5CNode
-
-lbl_8011C558:
-	mr       r30, r29
-
-lbl_8011C55C:
-	cmplwi   r30, 0
-	bne      lbl_8011C4B4
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }

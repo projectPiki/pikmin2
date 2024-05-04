@@ -450,7 +450,7 @@ void Item::platCallback(PlatEvent& event)
  */
 void Item::getCarryInfoParam(CarryInfoParam& param)
 {
-	param.mUseType  = 0;
+	param.mUseType  = CINFOTYPE_Table;
 	param.mPosition = mPosition;
 	param.mPosition.y += 50.0f;
 	param.mYOffsetMax    = 50.0f;

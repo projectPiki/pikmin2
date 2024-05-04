@@ -1729,7 +1729,7 @@ void Pellet::finishDisplayCarryInfo()
  */
 void Pellet::getCarryInfoParam(CarryInfoParam& infoParam)
 {
-	infoParam.mUseType    = 0;
+	infoParam.mUseType    = CINFOTYPE_Table;
 	infoParam.mPosition   = mRigid.mConfigs[0].mPosition;
 	infoParam.mYOffsetMax = 30.0f + mConfig->mParams.mHeight.mData;
 	infoParam.mUnused     = 1;
