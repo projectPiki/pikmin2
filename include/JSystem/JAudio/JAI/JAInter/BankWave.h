@@ -7,9 +7,9 @@ namespace JAInter {
 namespace BankWave {
 
 struct TCodeBnk {
-	int* _00; // _00
-	u32 _04;  // _04
-	int _08;  // _08
+	int* mBankData;  // _00
+	u32 _04;         // _04
+	int mWaveBankId; // _08
 };
 
 struct TCodeWS {
@@ -23,17 +23,17 @@ extern TCodeWS* initOnCodeWs;
 
 inline void registWaveBanks()
 {
-	for (s32 i = 0; initOnCodeBnk[i]._00; i++) {
-		if (initOnCodeBnk[i]._00) {
-			JASBankMgr::registBankBNK(i, initOnCodeBnk[i]._00);
+	for (s32 i = 0; initOnCodeBnk[i].mBankData; i++) {
+		if (initOnCodeBnk[i].mBankData) {
+			JASBankMgr::registBankBNK(i, initOnCodeBnk[i].mBankData);
 		}
 	}
 }
 
 inline void assignWaveBanks()
 {
-	for (int i = 0; initOnCodeBnk[i]._00; i++) {
-		JASBankMgr::assignWaveBank(i, initOnCodeBnk[i]._08);
+	for (int i = 0; initOnCodeBnk[i].mBankData; i++) {
+		JASBankMgr::assignWaveBank(i, initOnCodeBnk[i].mWaveBankId);
 	}
 }
 

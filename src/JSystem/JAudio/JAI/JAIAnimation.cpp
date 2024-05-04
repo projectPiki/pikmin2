@@ -7,8 +7,8 @@
  */
 void JAIAnimeSound::handleStop(u8 handleNo, u32 p2)
 {
-	_40[handleNo]         = 0;
-	mBasEntries[handleNo] = nullptr;
+	mSoundStatus[handleNo] = 0;
+	mBasEntries[handleNo]  = nullptr;
 	ObjectBase::handleStop(handleNo, p2);
 }
 
@@ -29,11 +29,11 @@ JAIAnimeSound::JAIAnimeSound(Vec* p1, JKRHeap* heap, u8 p3)
 		_58 = false;
 	}
 
-	mAnimID     = 0;
-	mCounter    = 0;
-	mSoundData  = nullptr;
-	_40         = new (heap, 0) u8[p3];
-	mBasEntries = new (heap, 0) JAIAnimeFrameSoundData*[p3];
+	mAnimID      = 0;
+	mFrameTimer  = 0;
+	mSoundData   = nullptr;
+	mSoundStatus = new (heap, 0) u8[p3];
+	mBasEntries  = new (heap, 0) JAIAnimeFrameSoundData*[p3];
 
 	for (u8 i = 0; i < p3; i++) {
 		mBasEntries[i] = nullptr;
@@ -58,19 +58,19 @@ void JAIAnimeSound::initActorAnimSound(JAIAnimeSoundData* sndData, u32 flag, f32
 	mSoundData = sndData;
 	if (mSoundData) {
 		mAnimID      = 0;
-		_5C          = flag;
+		mSoundFlags  = flag;
 		int entries  = mSoundData->mEntryNum;
 		mLoopStartID = checkLoopStartCount(loopStart);
 		mLoopEndID   = checkLoopEndCount(loopEnd);
 
 		if (flag == 1) {
-			mAnimID  = 0;
-			mTimer   = 0.0f;
-			mCounter = 0;
+			mAnimID            = 0;
+			mCurrentFrameTimer = 0.0f;
+			mFrameTimer        = 0;
 		} else {
-			mAnimID  = entries - 1;
-			mTimer   = -1.0f;
-			mCounter = -1;
+			mAnimID            = entries - 1;
+			mCurrentFrameTimer = -1.0f;
+			mFrameTimer        = -1;
 		}
 	}
 
@@ -78,14 +78,14 @@ void JAIAnimeSound::initActorAnimSound(JAIAnimeSoundData* sndData, u32 flag, f32
 		JAISound* sound               = mSounds[i];
 		JAIAnimeFrameSoundData* entry = mBasEntries[i];
 		if (!sound) {
-			_40[i]         = 0;
-			mBasEntries[i] = nullptr;
-		} else if (entry && entry->_10 & 4) {
+			mSoundStatus[i] = 0;
+			mBasEntries[i]  = nullptr;
+		} else if (entry && entry->mPlayFlags & 4) {
 			handleStop(i, 0);
-		} else if (!(sound->mSoundID & 0xc00) && _40[i]) {
+		} else if (!(sound->mSoundID & 0xc00) && mSoundStatus[i]) {
 			handleStop(i, 0);
 		} else {
-			_40[i] = 2;
+			mSoundStatus[i] = 2;
 		}
 	}
 }
@@ -244,108 +244,112 @@ void JAIAnimeSound::setAnimSoundVec(JAIBasic*, Vec*, f32, f32, u32, u8)
  * @note Address: 0x800AB4CC
  * @note Size: 0x504
  */
-void JAIAnimeSound::setAnimSoundActor(JAInter::Actor* actor, f32 time, f32 time2, u8 players)
+void JAIAnimeSound::setAnimSoundActor(JAInter::Actor* actor, f32 currentFrame, f32 speed, u8 ownerID)
 {
 	if (!mSoundData) {
 		return;
 	}
 
-	if (mTimer < 0.0f) {
-		mTimer = time;
+	if (mCurrentFrameTimer < 0.0f) {
+		mCurrentFrameTimer = currentFrame;
 	}
 
-	_74         = time2;
+	mAnimSpeed  = speed;
 	int entries = mSoundData->mEntryNum;
 
-	if (_5C == 1) {
-		if (mTimer > time) {
+	if (mSoundFlags == 1) {
+		if (mCurrentFrameTimer > currentFrame) {
 			while (mAnimID < mLoopEndID) {
-				playActorAnimSound(actor, time2, players);
+				playActorAnimSound(actor, speed, ownerID);
 			}
-			mAnimID = mLoopStartID;
-			mTimer  = time;
-			if (mCounter < 256) {
-				mCounter++;
+			mAnimID            = mLoopStartID;
+			mCurrentFrameTimer = currentFrame;
+			if (mFrameTimer < 256) {
+				mFrameTimer++;
 			}
 		}
 
 		// this loop here is probably an unused function from above
 		for (u8 i = 0; i < mHandleCount; i++) {
 			JAISound** se = &mSounds[i];
-			if (_40[i] == 1) {
+			if (mSoundStatus[i] == 1) {
 				JAIAnimeFrameSoundData* entry = mBasEntries[i];
 				if (!(entry->mSoundID & 0xc00)) {
-					if (time2 != 0.0f && entry->_10 & 0x20) {
-						if (entry->mStartTime == entry->_08
-						    || (entry->mStartTime > entry->_08 && entry->mStartTime < time && entry->_08 >= time)
-						    || (entry->mStartTime < entry->_08 && !(entry->mStartTime < time) && entry->_08 > time)) {
-							startAnimSound(entry->mSoundID, &mSounds[i], actor, players);
+					if (speed != 0.0f && entry->mPlayFlags & 0x20) {
+						if (entry->mStartTime == entry->mPlaybackTimer
+						    || (entry->mStartTime > entry->mPlaybackTimer && entry->mStartTime < currentFrame
+						        && entry->mPlaybackTimer >= currentFrame)
+						    || (entry->mStartTime < entry->mPlaybackTimer && !(entry->mStartTime < currentFrame)
+						        && entry->mPlaybackTimer > currentFrame)) {
+							startAnimSound(entry->mSoundID, &mSounds[i], actor, ownerID);
 						} else {
 							handleStop(i, 0);
 						}
 					}
 				} else if (!*se) {
-					_40[i]         = 0;
-					mBasEntries[i] = nullptr;
+					mSoundStatus[i] = 0;
+					mBasEntries[i]  = nullptr;
 				}
 
 				if (*se) {
-					setSpeedModifySound(*se, entry, time);
-					if (entry->_10 & 4 && entry->_08 >= time) {
+					setSpeedModifySound(*se, entry, currentFrame);
+					if (entry->mPlayFlags & 4 && entry->mPlaybackTimer >= currentFrame) {
 						handleStop(i, 0);
 					}
 				}
 			}
 		}
 
-		while (mAnimID < entries && (mSoundData->mSndEntries[mAnimID].mTime) >= time) {
-			playActorAnimSound(actor, time, players);
+		while (mAnimID < entries && (mSoundData->mSndEntries[mAnimID].mTime) >= currentFrame) {
+			playActorAnimSound(actor, currentFrame, ownerID);
 		}
 	} else {
-		if (mTimer > time) {
-			while (mAnimID < mLoopStartID || mAnimID == -1 || mSoundData->mSndEntries[mAnimID].mTime != mTimer) {
-				playActorAnimSound(actor, time, players);
+		if (mCurrentFrameTimer > currentFrame) {
+			while (mAnimID < mLoopStartID || mAnimID == -1 || mSoundData->mSndEntries[mAnimID].mTime != mCurrentFrameTimer) {
+				playActorAnimSound(actor, currentFrame, ownerID);
 			}
-			mAnimID = mLoopEndID - 1;
-			mTimer  = time;
-			if (mCounter == -1 || mCounter < 256) {
-				mCounter++;
+			mAnimID            = mLoopEndID - 1;
+			mCurrentFrameTimer = currentFrame;
+			if (mFrameTimer == -1 || mFrameTimer < 256) {
+				mFrameTimer++;
 			}
 
 			for (u8 i = 0; i < mHandleCount; i++) {
 				JAISound** se = &mSounds[i];
-				if (_40[i] == 1) {
+				if (mSoundStatus[i] == 1) {
 					JAIAnimeFrameSoundData* entry = mBasEntries[i];
 					if (!(entry->mSoundID & 0xc00)) {
-						if (time2 != 0.0f && entry->_10 & 0x20) {
-							if (entry->mStartTime == entry->_08
-							    || (entry->mStartTime > entry->_08 && entry->mStartTime < time && entry->_08 >= time)
-							    || (entry->mStartTime < entry->_08 && !(entry->mStartTime < time) && entry->_08 > time)) {
-								startAnimSound(entry->mSoundID, &mSounds[i], actor, players);
+						if (speed != 0.0f && entry->mPlayFlags & 0x20) {
+							if (entry->mStartTime == entry->mPlaybackTimer
+							    || (entry->mStartTime > entry->mPlaybackTimer && entry->mStartTime < currentFrame
+							        && entry->mPlaybackTimer >= currentFrame)
+							    || (entry->mStartTime < entry->mPlaybackTimer && !(entry->mStartTime < currentFrame)
+							        && entry->mPlaybackTimer > currentFrame)) {
+								startAnimSound(entry->mSoundID, &mSounds[i], actor, ownerID);
 							} else {
 								handleStop(i, 0);
 							}
 						}
 					} else if (!*se) {
-						_40[i]         = 0;
-						mBasEntries[i] = nullptr;
+						mSoundStatus[i] = 0;
+						mBasEntries[i]  = nullptr;
 					}
 
 					if (*se) {
-						setSpeedModifySound(*se, entry, time);
-						if (entry->_10 & 4 && entry->_08 >= time) {
+						setSpeedModifySound(*se, entry, currentFrame);
+						if (entry->mPlayFlags & 4 && entry->mPlaybackTimer >= currentFrame) {
 							handleStop(i, 0);
 						}
 					}
 				}
 			}
 
-			while (mAnimID < entries && (mSoundData->mSndEntries[mAnimID].mTime) >= time) {
-				playActorAnimSound(actor, time, players);
+			while (mAnimID < entries && (mSoundData->mSndEntries[mAnimID].mTime) >= currentFrame) {
+				playActorAnimSound(actor, currentFrame, ownerID);
 			}
 		}
 	}
-	mTimer = time;
+	mCurrentFrameTimer = currentFrame;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x50(r1)
@@ -750,14 +754,14 @@ void JAIAnimeSound::playActorAnimSound(JAInter::Actor* actor, f32 pitch, u8 a)
 
 	u8 i = 0;
 	for (; i < mHandleCount; i++) {
-		if (_40[i] == 0) {
+		if (mSoundStatus[i] == 0) {
 			// if (mUseHandleFlag & 1 << i) {
 			//	continue;
 			//}
 		}
 		if (mSounds[i]) {
-			_40[i]         = 0;
-			mBasEntries[i] = nullptr;
+			mSoundStatus[i] = 0;
+			mBasEntries[i]  = nullptr;
 		}
 		if (entry->mSoundID == mSounds[i]->mSoundID) {
 			if (!(entry->mSoundID & 0xc00)) {
@@ -766,19 +770,20 @@ void JAIAnimeSound::playActorAnimSound(JAInter::Actor* actor, f32 pitch, u8 a)
 		}
 	}
 
-	if ((entry->_10 & 8 && entry->_16 == mCounter) || (_54 == 1 && entry->_10 & 2) && (_54 == -1 && entry->_10 & 1)) {
+	if ((entry->mPlayFlags & 8 && entry->mActivationFrame == mFrameTimer)
+	    || (_54 == 1 && entry->mPlayFlags & 2) && (_54 == -1 && entry->mPlayFlags & 1)) {
 		JAISound** se = &mSounds[i];
 		startAnimSound(entry->mSoundID, se, actor, a);
 		if (*se) {
-			mBasEntries[i] = entry;
-			_40[i]         = 1;
+			mBasEntries[i]  = entry;
+			mSoundStatus[i] = 1;
 			(*se)->setVolume(entry->mPanning / 127.0f, 0, SOUNDPARAM_Unk5);
-			(*se)->setPitch((entry->_15 * (pitch - 1.0f)) / 32 + entry->mPitch, 0, SOUNDPARAM_Unk5);
+			(*se)->setPitch((entry->mPitchScale * (pitch - 1.0f)) / 32 + entry->mPitch, 0, SOUNDPARAM_Unk5);
 			(*se)->setPan(entry->mVelocity / 127.0f, 0, SOUNDPARAM_Unk5);
 		}
 	}
 
-	mAnimID += _5C;
+	mAnimID += mSoundFlags;
 
 	/*
 	stwu     r1, -0x50(r1)
@@ -982,24 +987,27 @@ void JAIAnimeSound::startAnimSound(u32 id, JAISound** handlePtr, JAInter::Actor*
  * @note Address: 0x800ABC9C
  * @note Size: 0x13C
  */
-void JAIAnimeSound::setSpeedModifySound(JAISound* sound, JAIAnimeFrameSoundData* data, f32 speed)
+void JAIAnimeSound::setSpeedModifySound(JAISound* sound, JAIAnimeFrameSoundData* soundData, f32 speed)
 {
-	f32 pitch = data->mPitch;
-	if (data->_15) {
-		f32 val = speed - 1.0f;
-		pitch += ((f32)data->_15 * val) / 32;
+	f32 adjustedPitch = soundData->mPitch;
+	if (soundData->mPitchScale) {
+		f32 speedOffset = speed - 1.0f;
+		adjustedPitch += ((f32)soundData->mPitchScale * speedOffset) / 32;
 	}
-	sound->setPitch(pitch, 0, SOUNDPARAM_Unk5);
+	sound->setPitch(adjustedPitch, 0, SOUNDPARAM_Unk5);
 
-	s16 pan = data->mPanning;
-	if (data->_18) {
-		s16 test = (f32)data->_18 * 2 * (speed - 1.0f);
-		pan += test;
-		if (pan > 127) {
-			pan = 127;
-		} else if (pan < 0) {
-			pan = 0;
+	// The faster the animation, the more the sound is panned to the right, and the slower the animation, the more the sound is panned to
+	// the left
+	s16 adjustedPan = soundData->mPanning;
+	if (soundData->mPanOffsetScale) {
+		s16 panOffset = (f32)soundData->mPanOffsetScale * 2 * (speed - 1.0f);
+		adjustedPan += panOffset;
+		if (adjustedPan > 127) {
+			adjustedPan = 127;
+		} else if (adjustedPan < 0) {
+			adjustedPan = 0;
 		}
 	}
-	sound->setVolumeU7(pan, 0, SOUNDPARAM_Unk5);
+
+	sound->setVolumeU7(adjustedPan, 0, SOUNDPARAM_Unk5);
 }

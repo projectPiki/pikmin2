@@ -26,16 +26,16 @@ struct JAIAnimeSoundData {
 };
 
 struct JAIAnimeFrameSoundData {
-	u32 mSoundID;   // _00 none of the values here make senese
-	f32 mStartTime; // _04 Im pretty sure its just an entry
-	f32 _08;        // _08 from a .bas file, the first few
-	f32 mPitch;     // _0C members line up, but the later stuff
-	u32 _10;        // _10 doesnt
-	u8 mPanning;    // _14
-	s8 _15;         // _15
-	u8 _16;         // _16
-	u8 mVelocity;   // _17
-	s8 _18;         // _18
+	u32 mSoundID;        // _00 none of the values here make senese
+	f32 mStartTime;      // _04 Im pretty sure its just an entry
+	f32 mPlaybackTimer;  // _08 from a .bas file, the first few
+	f32 mPitch;          // _0C members line up, but the later stuff
+	u32 mPlayFlags;      // _10 doesnt
+	u8 mPanning;         // _14
+	s8 mPitchScale;      // _15
+	u8 mActivationFrame; // _16
+	u8 mVelocity;        // _17
+	s8 mPanOffsetScale;  // _18
 };
 
 struct JAIAnimeSound : public JAInter::Object {
@@ -64,20 +64,20 @@ struct JAIAnimeSound : public JAInter::Object {
 	void setAnimSoundVec(JAIBasic*, Vec*, f32, f32, u32, u8);
 
 	// _00 VTBL
-	u8* _40;                              // _40
+	u8* mSoundStatus;                     // _40
 	JAIAnimeFrameSoundData** mBasEntries; // _44
 	u32 _48;                              // _48
 	u32 _4C;                              // _4C
 	u32 _50;                              // _50
 	u32 _54;                              // _54
 	u8 _58;                               // _58
-	u32 _5C;                              // _5C
+	u32 mSoundFlags;                      // _5C
 	u32 mLoopStartID;                     // _60
 	u32 mLoopEndID;                       // _64
 	u32 mAnimID;                          // _68
-	u32 mCounter;                         // _6C
-	f32 mTimer;                           // _70
-	f32 _74;                              // _74
+	u32 mFrameTimer;                      // _6C
+	f32 mCurrentFrameTimer;               // _70
+	f32 mAnimSpeed;                       // _74
 	JAIAnimeSoundData* mSoundData;        // _78
 };
 

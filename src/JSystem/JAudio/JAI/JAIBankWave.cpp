@@ -101,13 +101,13 @@ void JAInter::BankWave::init()
 	JASBankMgr::init(256);
 	if (initOnCodeBnk) {
 		int i;
-		for (i = 0; initOnCodeBnk[i]._00; i++) {
-			if (initOnCodeBnk[i]._00) {
-				JASBankMgr::registBankBNK(i, initOnCodeBnk[i]._00);
+		for (i = 0; initOnCodeBnk[i].mBankData; i++) {
+			if (initOnCodeBnk[i].mBankData) {
+				JASBankMgr::registBankBNK(i, initOnCodeBnk[i].mBankData);
 			}
 		}
-		for (i = 0; initOnCodeBnk[i]._00; i++) {
-			JASBankMgr::assignWaveBank(i, initOnCodeBnk[i]._08);
+		for (i = 0; initOnCodeBnk[i].mBankData; i++) {
+			JASBankMgr::assignWaveBank(i, initOnCodeBnk[i].mWaveBankId);
 		}
 	}
 }

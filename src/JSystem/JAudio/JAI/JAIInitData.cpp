@@ -356,7 +356,8 @@ void JAInter::InitData::initBnkList(u32* p1)
 	for (; aafPointer[offset + count] != 0; count += 3) { }
 	BankWave::initOnCodeBnk = (BankWave::TCodeBnk*)transInitDataFile(start, (count / 3) * 0xC + 4);
 	while ((aafPointer)[*p1] != 0) {
-		BankWave::initOnCodeBnk[val31]._00 = (int*)((u32) reinterpret_cast<int*>(aafPointer) + (u32)BankWave::initOnCodeBnk[val31]._00);
+		BankWave::initOnCodeBnk[val31].mBankData
+		    = (int*)((u32) reinterpret_cast<int*>(aafPointer) + (u32)BankWave::initOnCodeBnk[val31].mBankData);
 		*p1 += 3;
 		val31++;
 	}
@@ -367,19 +368,24 @@ void JAInter::InitData::initBnkList(u32* p1)
  * @note Address: 0x800ADFC8
  * @note Size: 0xD8
  */
-void JAInter::InitData::initWsList(u32* p1)
+void JAInter::InitData::initWsList(u32* data)
 {
-	u32 count  = 0;
-	u8 val31   = 0;
-	int offset = *p1;
-	u8* start  = (u8*)&(aafPointer[offset]);
-	for (; aafPointer[offset + count] != 0; count += 3) { }
-	BankWave::initOnCodeWs = (BankWave::TCodeWS*)transInitDataFile(start, (count / 3) * 0xC + 4);
-	while ((aafPointer)[*p1] != 0) {
-		BankWave::initOnCodeWs[val31]._00 = (int*)((u32) reinterpret_cast<int*>(aafPointer) + (u32)BankWave::initOnCodeWs[val31]._00);
+	u32 waveformCount = 0;
+	u8 waveformIndex  = 0;
+	int offset        = *data;
+	u8* start         = (u8*)&(aafPointer[offset]);
+
+	for (; aafPointer[offset + waveformCount] != 0; waveformCount += 3) { }
+
+	BankWave::initOnCodeWs = (BankWave::TCodeWS*)transInitDataFile(start, (waveformCount / 3) * 0xC + 4);
+
+	while ((aafPointer)[*data] != 0) {
+		BankWave::initOnCodeWs[waveformIndex]._00
+		    = (int*)((u32) reinterpret_cast<int*>(aafPointer) + (u32)BankWave::initOnCodeWs[waveformIndex]._00);
 		BankWave::wsMax++;
-		*p1 += 3;
-		val31++;
+		*data += 3;
+		waveformIndex++;
 	}
-	*p1 += 1;
+
+	*data += 1;
 }
