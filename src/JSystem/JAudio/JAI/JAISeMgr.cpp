@@ -168,7 +168,6 @@ void checkNextFrameSe()
 					}
 					PSMTXMultVec(*JAIBasic::getInterface()->mCameras[val3].mMtx, sound->_3C, &soundObj->mPosition);
 
-					// not this square root, but more extensive one with __float_nans in it - possibly a static method taking a Vec?
 					soundObj->mDistance
 					    = dolsqrtfull(SQUARE(soundObj->mPosition.x) + SQUARE(soundObj->mPosition.y) + SQUARE(soundObj->mPosition.z));
 				}

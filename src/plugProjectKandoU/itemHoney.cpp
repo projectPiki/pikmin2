@@ -432,7 +432,7 @@ bool Item::absorbable()
 void Item::onKeyEvent(const SysShape::KeyEvent& keyEvent)
 {
 	if (getCurrState()) {
-		static_cast<State*>(getCurrState())->onKeyEvent(this, keyEvent);
+		static_cast<CItemState*>(getCurrState())->onKeyEvent(this, keyEvent);
 	}
 }
 
@@ -562,7 +562,7 @@ void Mgr::onLoadResources()
  * @note Address: 0x801D41E4
  * @note Size: 0x2C
  */
-Item* Mgr::birth() { return mMonoObjectMgr.birth(); }
+Item* Mgr::birth() { return FixedSizeItemMgr<Item>::birth(); }
 
 /**
  * @note Address: 0x801D4210

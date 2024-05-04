@@ -89,10 +89,6 @@ struct Mgr : public FixedSizeItemMgr<Item> {
 	virtual Item* generatorBirth(Vector3f& pos, Vector3f& rot, GenItemParm* genParm); // _5C
 	virtual void onCreateModel(SysShape::Model* model);                               // _A0
 	virtual Item* birth();                                                            // _A4
-	virtual Item* get(void*);                                                         // _AC (weak, thunk at _94)
-	virtual void* getNext(void*);                                                     // _B0 (weak, thunk at _88)
-	virtual void* getStart();                                                         // _B4 (weak, thunk at _8C)
-	virtual void* getEnd();                                                           // _B8 (weak, thunk at _90)
 };
 
 struct FSM : public CItemFSM {
