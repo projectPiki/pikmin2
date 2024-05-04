@@ -59,7 +59,7 @@ void Game::Rigid::initPosition(Vector3f& posVec, Vector3f& quatVec)
 	initPositionIndex(posVec, 1, quatVec);
 	PSMTXIdentity(mConfigs[0]._58.mMatrix.mtxView);
 	PSMTXIdentity(mConfigs[1]._58.mMatrix.mtxView);
-	PSMTXIdentity(_144.mMatrix.mtxView);
+	PSMTXIdentity(mTransformationMtx.mMatrix.mtxView);
 	mTimeStep = 1.0f;
 	updateMatrix(0);
 }
@@ -301,7 +301,7 @@ void Game::Rigid::integrate(f32 timeStep, int configIdx)
 
 	rotationMtx.makeQ(thisConfig->mPrimaryRotation);
 	PSMTXTranspose(rotationMtx.mMatrix.mtxView, transposeMtx.mMatrix.mtxView);
-	PSMTXConcat(rotationMtx.mMatrix.mtxView, _144.mMatrix.mtxView, concatMtx.mMatrix.mtxView);
+	PSMTXConcat(rotationMtx.mMatrix.mtxView, mTransformationMtx.mMatrix.mtxView, concatMtx.mMatrix.mtxView);
 	PSMTXConcat(concatMtx.mMatrix.mtxView, transposeMtx.mMatrix.mtxView, thisConfig->_58.mMatrix.mtxView);
 
 	thisConfig->mPosition = thisConfig->mPosition + thisConfig->mVelocity * timeStep;

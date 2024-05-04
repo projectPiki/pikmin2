@@ -32,12 +32,12 @@ struct Rigid {
 	void integrate(f32, int);
 	bool resolveCollision(int, Vector3f&, Vector3f&, f32);
 
-	f32 mTimeStep;           // _000
-	Matrixf mPrimaryMatrix;  // _004
-	RigidConfig mConfigs[2]; // _034, [1] at _0BC
-	Matrixf _144;            // _144
-	u8 _174;                 // _174
-	BitFlag<u8> mFlags;      // _175
+	f32 mTimeStep;              // _000
+	Matrixf mPrimaryMatrix;     // _004
+	RigidConfig mConfigs[2];    // _034, [1] at _0BC
+	Matrixf mTransformationMtx; // _144
+	u8 _174;                    // _174
+	BitFlag<u8> mFlags;         // _175
 };
 } // namespace Game
 

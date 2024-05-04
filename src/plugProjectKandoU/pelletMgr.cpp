@@ -1837,15 +1837,15 @@ void Pellet::onSetPosition()
 	f32 horizontal = ((radSquared / 4) + (SQUARE(heightScaling) / 12.0f)) * z;
 	f32 vertical   = z * (radSquared / 2);
 
-	mRigid._144(0, 0) *= horizontal;
-	mRigid._144(0, 1) *= horizontal;
-	mRigid._144(0, 2) *= horizontal;
-	mRigid._144(1, 0) *= vertical;
-	mRigid._144(1, 1) *= vertical;
-	mRigid._144(1, 2) *= vertical;
-	mRigid._144(2, 0) *= horizontal;
-	mRigid._144(2, 1) *= horizontal;
-	mRigid._144(2, 2) *= horizontal;
+	mRigid.mTransformationMtx(0, 0) *= horizontal;
+	mRigid.mTransformationMtx(0, 1) *= horizontal;
+	mRigid.mTransformationMtx(0, 2) *= horizontal;
+	mRigid.mTransformationMtx(1, 0) *= vertical;
+	mRigid.mTransformationMtx(1, 1) *= vertical;
+	mRigid.mTransformationMtx(1, 2) *= vertical;
+	mRigid.mTransformationMtx(2, 0) *= horizontal;
+	mRigid.mTransformationMtx(2, 1) *= horizontal;
+	mRigid.mTransformationMtx(2, 2) *= horizontal;
 	mLodSphere.mPosition = mPelletPosition;
 	mRigid.mFlags.set(1);
 }
