@@ -467,14 +467,12 @@ void Quat::setAxisRotation(Vector3f& axis, f32 angle)
     f32 radianAngle = angle * (PI / 180.0f);
 
     // Calculate the sin and cos of half the angle
-    f32 sinHalfAngle = sin(radianAngle / 2.0f);
-    f32 cosHalfAngle = cos(radianAngle / 2.0f);
+    f32 cosHalfAngle = pikmin2_cosf(radianAngle / 2.0f);
+    f32 sinHalfAngle = pikmin2_sinf(radianAngle / 2.0f);
 
     // Set the quaternion to represent the rotation
-    v.x = axis.x * sinHalfAngle;
-    v.y = axis.y * sinHalfAngle;
-    v.z = axis.z * sinHalfAngle;
     w = cosHalfAngle;
+    v = axis * sinHalfAngle;
 #endif
 }
 
