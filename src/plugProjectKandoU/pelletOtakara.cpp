@@ -73,21 +73,21 @@ void Object::sound_otakaraEventStart()
 	if (gameSystem->isVersusMode()) {
 		int color = mCarryColor;
 		int id    = -1;
-		if (color == Blue) {
-			id = 0;
-		} else if (color == Red) {
-			id = 1;
+		if (color == CINFOCOLOR_Blue) {
+			id = ONYON_TYPE_BLUE;
+		} else if (color == CINFOCOLOR_Red) {
+			id = ONYON_TYPE_RED;
 		}
 
 		if (id != -1) {
 			Onyon* goal = ItemOnyon::mgr->getOnyon(id);
 
 			if (mPelletFlag == FLAG_VS_BEDAMA_RED) {
-				if (id != Blue) {
+				if (id != ONYON_TYPE_BLUE) {
 					goal = nullptr;
 				}
 			} else if (mPelletFlag == FLAG_VS_BEDAMA_BLUE) {
-				if (id != Red) {
+				if (id != ONYON_TYPE_RED) {
 					goal = nullptr;
 				}
 			} else if (mPelletFlag != FLAG_VS_CHERRY && mPelletFlag != FLAG_VS_BEDAMA_YELLOW) {
@@ -116,10 +116,10 @@ void Object::sound_otakaraEventRestart()
 	if (gameSystem->isVersusMode()) {
 		int color = mCarryColor;
 		int id    = -1;
-		if (color == Blue) {
-			id = 0;
-		} else if (color == Red) {
-			id = 1;
+		if (color == CINFOCOLOR_Blue) {
+			id = ONYON_TYPE_BLUE;
+		} else if (color == CINFOCOLOR_Red) {
+			id = ONYON_TYPE_RED;
 		}
 
 		if (id != -1) {

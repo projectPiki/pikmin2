@@ -457,7 +457,7 @@ void Item::getCarryInfoParam(CarryInfoParam& param)
 	param.mUnused        = 1;
 	param.mCurrentWeight = mCurrentWeight;
 	param.mMaxWeight     = mBagMaxWeight;
-	param.mColor         = 6;
+	param.mColor         = CINFOCOLOR_DownFloor;
 	param.mIsTopFirst    = FALSE;
 }
 

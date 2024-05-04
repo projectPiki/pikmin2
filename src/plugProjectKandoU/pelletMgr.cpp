@@ -1762,7 +1762,7 @@ void Pellet::setCarryColor(int color)
  * @note Address: 0x80167F34
  * @note Size: 0xC
  */
-void Pellet::clearCarryColor() { mCarryColor = 5; }
+void Pellet::clearCarryColor() { mCarryColor = CINFOCOLOR_Struggle; }
 
 /**
  * @note Address: 0x80167F40
@@ -4114,7 +4114,7 @@ void Pellet::onSlotStickStart(Creature* creature, s16 slot)
 
 	int max = mMaxCarriers > 0 ? mMaxCarriers : mConfig->mParams.mMax.mData;
 	if (max != 1) {
-		mCarryColor    = 5;
+		mCarryColor    = CINFOCOLOR_Struggle;
 		mCarryInfoList = carryInfoMgr->appear(this);
 	}
 }
@@ -4439,7 +4439,7 @@ void Pellet::endPick(bool b)
 {
 	if (mPickFlags & 1) {
 		mPelletCarry->reset();
-		mCarryColor = 5;
+		mCarryColor = CINFOCOLOR_Struggle;
 		sound_otakaraEventStop();
 
 		if (!b) {

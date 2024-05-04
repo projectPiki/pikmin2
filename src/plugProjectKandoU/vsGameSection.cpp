@@ -1290,10 +1290,10 @@ void VsGameSection::calcVsScores()
 			int marbleCarryFactor = -1;
 			if (marble->isCarried()) {
 				switch (marble->mCarryColor) {
-				case Red:
+				case CINFOCOLOR_Red:
 					marbleCarryFactor = 0;
 					break;
-				case Blue:
+				case CINFOCOLOR_Blue:
 					marbleCarryFactor = 1;
 					break;
 				}

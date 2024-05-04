@@ -12,8 +12,8 @@ GXColor sColorTableNumerator[CINFOCOLOR_ColorCount] = {
 	{ 234, 234, 0, 255 },   // yellow
 	{ 255, 255, 255, 255 }, // white (used for treasures to pod)
 	{ 255, 255, 255, 255 }, // white (used for treasures to ship)
-	{ 102, 153, 153, 255 }, // gray  (used when not enough to lift?)
-	{ 102, 211, 211, 255 }, // gray  (used in scale blocks?)
+	{ 102, 153, 153, 255 }, // gray  (used when strugging to lift)
+	{ 102, 211, 211, 255 }, // gray  (used for scale blocks)
 };
 
 GXColor sColorTableDenominator[CINFOCOLOR_ColorCount] = {
@@ -161,68 +161,73 @@ void CarryInfo::update(const CarryInfoParam& param)
 void CarryInfo::draw(Graphics& gfx, CarryInfoParam& param)
 {
 	if (mState != CINFO_Hidden) {
-		Mtx storemtx;
-		Matrixf mtx;
+		Mtx gxPosMtx;
+		Matrixf transScaledMtx;
 		Viewport* vp     = gfx.mCurrentViewport;
 		Matrixf* viewMtx = vp->getMatrix(true);
 
-		mtx(0, 0) = viewMtx->mMatrix.mtxView[0][0] * mScale;
-		mtx(1, 0) = viewMtx->mMatrix.mtxView[0][1] * mScale;
-		mtx(2, 0) = viewMtx->mMatrix.mtxView[0][2] * mScale;
-		mtx(0, 1) = viewMtx->mMatrix.mtxView[1][0] * mScale;
-		mtx(1, 1) = viewMtx->mMatrix.mtxView[1][1] * mScale;
-		mtx(2, 1) = viewMtx->mMatrix.mtxView[1][2] * mScale;
-		mtx(0, 2) = viewMtx->mMatrix.mtxView[2][0] * mScale;
-		mtx(1, 2) = viewMtx->mMatrix.mtxView[2][1] * mScale;
-		mtx(2, 2) = viewMtx->mMatrix.mtxView[2][2] * mScale;
-		mtx(0, 3) = param.mPosition.x;
-		mtx(1, 3) = param.mPosition.y + mYOffset;
-		mtx(2, 3) = param.mPosition.z;
+		transScaledMtx(0, 0) = viewMtx->mMatrix.mtxView[0][0] * mScale;
+		transScaledMtx(1, 0) = viewMtx->mMatrix.mtxView[0][1] * mScale;
+		transScaledMtx(2, 0) = viewMtx->mMatrix.mtxView[0][2] * mScale;
+		transScaledMtx(0, 1) = viewMtx->mMatrix.mtxView[1][0] * mScale;
+		transScaledMtx(1, 1) = viewMtx->mMatrix.mtxView[1][1] * mScale;
+		transScaledMtx(2, 1) = viewMtx->mMatrix.mtxView[1][2] * mScale;
+		transScaledMtx(0, 2) = viewMtx->mMatrix.mtxView[2][0] * mScale;
+		transScaledMtx(1, 2) = viewMtx->mMatrix.mtxView[2][1] * mScale;
+		transScaledMtx(2, 2) = viewMtx->mMatrix.mtxView[2][2] * mScale;
 
-		PSMTXConcat(vp->getMatrix(true)->mMatrix.mtxView, mtx.mMatrix.mtxView, storemtx);
-		GXLoadPosMtxImm(storemtx, 0);
+		transScaledMtx(0, 3) = param.mPosition.x;
+		transScaledMtx(1, 3) = param.mPosition.y + mYOffset;
+		transScaledMtx(2, 3) = param.mPosition.z;
+
+		PSMTXConcat(vp->getMatrix(true)->mMatrix.mtxView, transScaledMtx.mMatrix.mtxView, gxPosMtx);
+		GXLoadPosMtxImm(gxPosMtx, GX_PNMTX0);
 
 		switch (param.mUseType) {
 		case CINFOTYPE_Table:
-			f32 offs1, offs2;
-			f32 scale1, scale2;
+			// take colors from color table based on stored carry color/type
+			f32 yOffsetTop, yOffsetBottom;
+			f32 scaleTop, scaleBottom;
 			if (!param.mIsTopFirst) {
-				scale1 = 0.75f;
-				scale2 = 1.1f;
-				offs1  = 7.7000003f;
-				offs2  = -10.150001f;
+				scaleTop      = 0.75f;
+				scaleBottom   = 1.1f;
+				yOffsetTop    = 7.7000003f;
+				yOffsetBottom = -10.150001f;
 			} else {
-				scale1 = 1.1f;
-				scale2 = 0.75f;
-				offs1  = 10.150001f;
-				offs2  = -7.7000003f;
+				scaleTop      = 1.1f;
+				scaleBottom   = 0.75f;
+				yOffsetTop    = 10.150001f;
+				yOffsetBottom = -7.7000003f;
 			}
+
 			GXColor* top = &sColorTableNumerator[param.mColor];
 			Color4 colortop(top->r, top->g, top->b, mAlpha);
 
 			GXColor* bottom = &sColorTableDenominator[param.mColor];
 			Color4 colorbottom(bottom->r, bottom->g, bottom->b, mAlpha);
 
+			// initialise the number drawing
 			drawNumberPrim(gfx, 0.0f, 0.0f, 10, colortop, 1.0f);
-			drawNumber(gfx, 0.0f, offs1, param.mCurrentWeight, colortop, scale1);
-			drawNumber(gfx, 0.0f, offs2, param.mMaxWeight, colorbottom, scale2);
+
+			// draw top and bottom numbers
+			drawNumber(gfx, 0.0f, yOffsetTop, param.mCurrentWeight, colortop, scaleTop);
+			drawNumber(gfx, 0.0f, yOffsetBottom, param.mMaxWeight, colorbottom, scaleBottom);
 			break;
 
 		case CINFOTYPE_Scale:
-			f32 angle  = (TAU * (f32)(mCounter % 32)) / 32;
-			f32 offset = 1.0f;
-			f32 temp   = (offset + sinf(angle)) * 0.5f;
-			f32 x      = 7.0f;
-			Color4 color2(255, 138, 21, mAlpha);
-			Color4 color(127, 11, 0, mAlpha);
+			// calculate color based on stored counter (for pokos)
+			f32 angle       = (TAU * (f32)(mCounter % 32)) / 32;
+			f32 colorFactor = (1.0f + sinf(angle)) * 0.5f; // sin function between 0 and 1 centered at 0.5
+			Color4 baseColor(255, 138, 21, mAlpha);
+			Color4 oscColor(127, 11, 0, mAlpha);
 
-			color.r = temp * (255.0f - (f32)color.r) + (f32)(color.r);
-			color.g = temp * (155.0f - (f32)color.g) + (f32)(color.g);
-			color.b = temp * (59.0f - (f32)color.b) + (f32)(color.b);
-			color.a = temp * (mAlpha - (f32)color.a) + (f32)(color.a);
+			oscColor.r = colorFactor * (255.0f - (f32)oscColor.r) + (f32)(oscColor.r); // between 127 and 255
+			oscColor.g = colorFactor * (155.0f - (f32)oscColor.g) + (f32)(oscColor.g); // between 11 and 155
+			oscColor.b = colorFactor * (59.0f - (f32)oscColor.b) + (f32)(oscColor.b);  // between 0 and 59
+			oscColor.a = colorFactor * (mAlpha - (f32)oscColor.a) + (f32)(oscColor.a); // between mAlpha and... slightly rounded mAlpha
 
-			f32 num = drawNumber(gfx, 7.0f, 0.0f, param.mValue, color2, 1.0f);
-			drawNumberPrim(gfx, -num * 0.5f - 3.0f, 0.0f, 11, color, 1.0f);
+			f32 num = drawNumber(gfx, 7.0f, 0.0f, param.mValue, baseColor, 1.0f);
+			drawNumberPrim(gfx, -num * 0.5f - 3.0f, 0.0f, 11, oscColor, 1.0f);
 			break;
 
 		default:
@@ -236,78 +241,90 @@ void CarryInfo::draw(Graphics& gfx, CarryInfoParam& param)
  * @note Address: 0x8011B6EC
  * @note Size: 0x328
  */
-f32 CarryInfo::drawNumber(Graphics& gfx, f32 xpos, f32 ypos, int dispNum, Color4& color, f32 scale)
+f32 CarryInfo::drawNumber(Graphics& gfx, f32 x, f32 y, int dispNum, Color4& color, f32 scale)
 {
 	if (dispNum < 10) {
-		drawNumberPrim(gfx, xpos, ypos, dispNum, color, scale);
+		// draw single digit
+		drawNumberPrim(gfx, x, y, dispNum, color, scale);
 
 		return 7.0f * scale;
-
-	} else if (dispNum < 100) {
-		f32 temp = 5.6f * scale;
-
-		drawNumberPrim(gfx, xpos - temp, ypos, dispNum / 10, color, scale);
-		drawNumberPrim(gfx, xpos + temp, ypos, dispNum % 10, color, scale);
-
-		return 2.0f * temp + 7.0f * scale;
-
-	} else if (dispNum < 1000) {
-		f32 temp = 12.599999f * scale;
-
-		drawNumberPrim(gfx, xpos - temp, ypos, dispNum / 100, color, scale);
-		drawNumberPrim(gfx, xpos, ypos, (dispNum / 10) % 10, color, scale);
-		drawNumberPrim(gfx, xpos + temp, ypos, dispNum % 10, color, scale);
-
-		return 2.0f * temp + 7.0f * scale;
-
-	} else {
-		f32 temp_2;
-		f32 temp_1 = 5.6f * scale;
-		temp_2     = 3.0f * temp_1;
-
-		drawNumberPrim(gfx, xpos - temp_2, ypos, dispNum / 1000, color, scale);
-		drawNumberPrim(gfx, xpos - temp_1, ypos, (dispNum / 100) % 10, color, scale);
-		drawNumberPrim(gfx, xpos + temp_1, ypos, (dispNum / 10) % 10, color, scale);
-		drawNumberPrim(gfx, xpos + temp_2, ypos, dispNum % 10, color, scale);
-
-		return 6.0f * temp_1 + 7.0f * scale;
 	}
+
+	if (dispNum < 100) {
+		// draw two digits
+		// need to offset digits from center so they're not on top of each other
+		f32 xOffset = 5.6f * scale;
+
+		drawNumberPrim(gfx, x - xOffset, y, dispNum / 10, color, scale);
+		drawNumberPrim(gfx, x + xOffset, y, dispNum % 10, color, scale);
+
+		return 2.0f * xOffset + 7.0f * scale;
+	}
+
+	if (dispNum < 1000) {
+		// draw three digits
+		// need to offset end digits from center so they're not on top of each other
+		f32 xOffset = 12.599999f * scale;
+
+		drawNumberPrim(gfx, x - xOffset, y, dispNum / 100, color, scale);
+		drawNumberPrim(gfx, x, y, (dispNum / 10) % 10, color, scale);
+		drawNumberPrim(gfx, x + xOffset, y, dispNum % 10, color, scale);
+
+		return 2.0f * xOffset + 7.0f * scale;
+	}
+
+	// draw four digits
+	// need start and end digits equal from center, and middle two equal from center in between
+	f32 xOffsetEnd;
+	f32 xOffsetMiddle = 5.6f * scale;
+	xOffsetEnd        = 3.0f * xOffsetMiddle;
+
+	drawNumberPrim(gfx, x - xOffsetEnd, y, dispNum / 1000, color, scale);
+	drawNumberPrim(gfx, x - xOffsetMiddle, y, (dispNum / 100) % 10, color, scale);
+	drawNumberPrim(gfx, x + xOffsetMiddle, y, (dispNum / 10) % 10, color, scale);
+	drawNumberPrim(gfx, x + xOffsetEnd, y, dispNum % 10, color, scale);
+
+	return 6.0f * xOffsetMiddle + 7.0f * scale;
 }
 
 /**
  * @note Address: 0x8011BA14
  * @note Size: 0x1B4
  */
-void CarryInfo::drawNumberPrim(Graphics& gfx, f32 x, f32 y, int arg3, Color4& color, f32 offset)
+void CarryInfo::drawNumberPrim(Graphics& gfx, f32 x, f32 y, int digit, Color4& color, f32 scale)
 {
-	f32 scaledOffset = 7.0f * offset;
+	f32 scaledOffset = 7.0f * scale;
 	f32 factor       = (1.0f / 12.0f);
 	f32 xMin         = x - scaledOffset;
 	f32 xMax         = x + scaledOffset;
 	f32 yMin         = y - scaledOffset;
 	f32 yMax         = y + scaledOffset;
-	f32 x0           = factor * arg3;
-	f32 x1           = x0 + factor;
+	f32 digitStart   = factor * digit;
+	f32 digitEnd     = digitStart + factor;
 	f32 zero         = 0.0f;
 	f32 one          = 1.0f;
 
 	GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 4);
 
+	// bottom left
 	GXPosition3f32(xMin, yMin, zero);
 	GXColor4u8(color.r, color.g, color.b, color.a);
-	GXPosition2f32(x0, one);
+	GXPosition2f32(digitStart, one);
 
+	// bottom right
 	GXPosition3f32(xMax, yMin, zero);
 	GXColor4u8(color.r, color.g, color.b, color.a);
-	GXPosition2f32(x1, one);
+	GXPosition2f32(digitEnd, one);
 
+	// top left
 	GXPosition3f32(xMin, yMax, zero);
 	GXColor4u8(color.r, color.g, color.b, color.a);
-	GXPosition2f32(x0, zero);
+	GXPosition2f32(digitStart, zero);
 
+	// top right
 	GXPosition3f32(xMax, yMax, zero);
 	GXColor4u8(color.r, color.g, color.b, color.a);
-	GXPosition2f32(x1, zero);
+	GXPosition2f32(digitEnd, zero);
 }
 
 /**
@@ -341,7 +358,7 @@ void PokoInfoOwner::getCarryInfoParam(CarryInfoParam& param)
 	param.mUseType    = CINFOTYPE_Scale;
 	param.mPosition   = mPosition;
 	param.mYOffsetMax = 25.0f;
-	param.mColor      = 4;
+	param.mColor      = CINFOCOLOR_Pod;
 	param.mValue      = mValue;
 }
 
