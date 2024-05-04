@@ -459,7 +459,7 @@ void Quat::setAxisRotation(Vector3f& axis, f32 angle)
 
 	// NOTE: This is NOT TO MATCH ANYTHING, this is a LOGICAL EQUIVALENT to what it SHOULD BE!
 	// FOR MODDERS ONLY!
-	#ifdef FOR_MODDING
+#if FOR_MODDING
     // Normalize the axis
     axis.normalise();
 
@@ -475,7 +475,7 @@ void Quat::setAxisRotation(Vector3f& axis, f32 angle)
     v.y = axis.y * sinHalfAngle;
     v.z = axis.z * sinHalfAngle;
     w = cosHalfAngle;
-	#endif
+#endif
 }
 
 /**
@@ -598,6 +598,12 @@ f32 Quat::norm()
 void Quat::conjugate()
 {
 	// UNUSED FUNCTION
+
+	#ifdef FOR_MODDING
+	v.x = -v.x;
+	v.y = -v.y;
+	v.z = -v.z;	
+	#endif
 }
 
 /**
@@ -624,7 +630,7 @@ Quat Quat::inverse()
  * @note Address: N/A
  * @note Size: 0x128
  */
-void rotate(Quat&, Vector3f&)
+void rotate(Quat& q, Vector3f& v)
 {
 	// UNUSED FUNCTION
 }
@@ -967,9 +973,33 @@ void Quat::slerp(Quat& q1, f32 t, Quat& qout)
  * @note Address: N/A
  * @note Size: 0x150
  */
-void Quat::toMatrix(Matrix3f&)
+void Quat::toMatrix(Matrix3f& m)
 {
 	// UNUSED FUNCTION
+
+#if FOR_MODDING
+	f32 two_xx = 2.0f * v.x * v.x;
+	f32 two_yy = 2.0f * v.y * v.y;
+	f32 two_zz = 2.0f * v.z * v.z;
+	f32 two_xy = 2.0f * v.x * v.y;
+	f32 two_xz = 2.0f * v.x * v.z;
+	f32 two_yz = 2.0f * v.y * v.z;
+	f32 two_wx = 2.0f * w * v.x;
+	f32 two_wy = 2.0f * w * v.y;
+	f32 two_wz = 2.0f * w * v.z;
+
+	m.mMatrix[0][0] = 1.0f - (two_yy + two_zz);
+	m.mMatrix[0][1] = two_xy - two_wz;
+	m.mMatrix[0][2] = two_xz + two_wy;
+
+	m.mMatrix[1][0] = two_xy + two_wz;
+	m.mMatrix[1][1] = 1.0f - (two_xx + two_zz);
+	m.mMatrix[1][2] = two_yz - two_wx;
+
+	m.mMatrix[2][0] = two_xz - two_wy;
+	m.mMatrix[2][1] = two_yz + two_wx;
+	m.mMatrix[2][2] = 1.0f - (two_xx + two_yy);
+#endif
 }
 
 /**
