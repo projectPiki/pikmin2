@@ -20,7 +20,7 @@
 #include "System.h"
 #include "SoundID.h"
 #include "Radar.h"
-// #include "nans.h"
+#include "nans.h"
 
 namespace Game {
 
@@ -33,8 +33,6 @@ Color4 Piki::pikiColorsCursor[PikiColorCount + 1]
 
 static const int unusedPikiArray[] = { 0, 0, 0 };
 } // namespace Game
-
-#include "nans.h"
 
 namespace Game {
 
