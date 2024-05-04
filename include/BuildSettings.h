@@ -3,9 +3,10 @@
 
 // TODO: These should probably go into a precompiled header or build flags or
 // something.
-#define LOCALIZED true
-#define MATCHING  true
-#define BUGFIX    false
+#define LOCALIZED   true
+#define MATCHING    true
+#define BUGFIX      false
+#define FOR_MODDING false
 
 #define USADEMO1 1
 #define USAFINAL 2

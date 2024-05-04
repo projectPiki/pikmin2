@@ -109,8 +109,8 @@ struct Quat {
 	/**
 	 * @brief Sets the quaternion to represent a rotation around an axis.
 	 * @param axis The axis of rotation.
-	 * @param angle The angle of rotation.
-	 * @note Inline, and is currently a stub.
+	 * @param angle The angle of rotation, in degrees
+	 * @note Inline, and is currently a stub for match (not for modding).
 	 */
 	void setAxisRotation(Vector3f& axis, f32 angle);
 

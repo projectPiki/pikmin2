@@ -453,9 +453,29 @@ Quat::Quat()
  * @note Address: N/A
  * @note Size: 0xC4
  */
-void Quat::setAxisRotation(Vector3f&, f32)
+void Quat::setAxisRotation(Vector3f& axis, f32 angle)
 {
 	// UNUSED/INLINED
+
+	// NOTE: This is NOT TO MATCH ANYTHING, this is a LOGICAL EQUIVALENT to what it SHOULD BE!
+	// FOR MODDERS ONLY!
+	#ifdef FOR_MODDING
+    // Normalize the axis
+    axis.normalise();
+
+    // Convert the angle from degrees to radians
+    f32 radianAngle = angle * (PI / 180.0f);
+
+    // Calculate the sin and cos of half the angle
+    f32 sinHalfAngle = sin(radianAngle / 2.0f);
+    f32 cosHalfAngle = cos(radianAngle / 2.0f);
+
+    // Set the quaternion to represent the rotation
+    v.x = axis.x * sinHalfAngle;
+    v.y = axis.y * sinHalfAngle;
+    v.z = axis.z * sinHalfAngle;
+    w = cosHalfAngle;
+	#endif
 }
 
 /**
