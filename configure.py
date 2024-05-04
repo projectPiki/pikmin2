@@ -843,7 +843,7 @@ LIBS = [
             ["plugProjectYamashitaU/chappyAnimator", True],
             ["plugProjectYamashitaU/chappyMgr", True],
             ["plugProjectYamashitaU/lifeGaugeMgr", False],
-            ["plugProjectYamashitaU/carryInfoMgr", False],
+            ["plugProjectYamashitaU/carryInfoMgr", True],
             ["plugProjectYamashitaU/gameLightMgr", False],
             ["plugProjectYamashitaU/vtxAnm", False],
             ["plugProjectYamashitaU/enemyInfo", True],

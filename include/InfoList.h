@@ -27,6 +27,7 @@ struct InfoListBase : public JKRDisposer {
 
 	virtual ~InfoListBase() // _08
 	{
+		// this LOOKS like it should use pop() but IT DOES NOT, doing so destroys carryInfoMgr weak ordering
 		if (mPrev) {
 			mPrev->mNext = mNext;
 		}
@@ -41,6 +42,30 @@ struct InfoListBase : public JKRDisposer {
 	virtual void draw(Graphics&) { } // _14
 	virtual bool isFinish() = 0;     // _18
 
+	inline void pop()
+	{
+		if (mPrev) {
+			mPrev->mNext = mNext;
+		}
+		if (mNext) {
+			mNext->mPrev = mPrev;
+		}
+		mNext = nullptr;
+		mPrev = nullptr;
+	}
+
+	inline List* find(Owner* owner)
+	{
+		FOREACH_NODE(List, mNext, cList)
+		{
+			if (cList->mOwner == owner) {
+				return cList;
+			}
+		}
+
+		return nullptr;
+	}
+
 	// _00     = VTBL
 	// _00-_18 = JKRDisposer
 	List* mPrev;   // _18
@@ -52,12 +77,11 @@ template <typename Owner, typename List>
 struct InfoMgr : public InfoMgrBase {
 	InfoMgr(int);
 
-	virtual ~InfoMgr() { }              // _08
+	virtual List* regist(Owner* owner); // _18
+	virtual void scratch(Owner* owner); // _1C
 	virtual void loadResource() = 0;    // _0C
 	virtual void update();              // _10
 	virtual void draw(Graphics& gfx);   // _14
-	virtual List* regist(Owner* owner); // _18
-	virtual void scratch(Owner* owner); // _1C
 
 	List* search(List* list, Owner* owner);
 	void addActiveList(List* list);
@@ -114,15 +138,7 @@ template <typename Owner, typename List>
 List* InfoMgr<Owner, List>::regist(Owner* owner)
 {
 	// SHOULD be using search, but wont inline (it needs to not inline in scratch so idk)
-	List* list;
-	FOREACH_NODE(List, list, cList)
-	{
-		if (cList->mOwner == owner) {
-			list = cList;
-			break;
-		}
-	}
-	// list = nullptr;
+	List* list = mActiveList.find(owner);
 
 	if (list == nullptr) {
 		list = (mInactiveList).mNext;
@@ -146,16 +162,7 @@ void InfoMgr<Owner, List>::scratch(Owner* owner)
 template <typename Owner, typename List>
 void InfoMgr<Owner, List>::addActiveList(List* list)
 {
-	if (list->mPrev) {
-		list->mPrev->mNext = list->mNext;
-	}
-
-	if (list->mNext) {
-		list->mNext->mPrev = list->mPrev;
-	}
-
-	list->mNext = nullptr;
-	list->mPrev = nullptr;
+	list->pop();
 
 	list->mPrev = &mActiveList;
 	list->mNext = mActiveList.mNext;
@@ -170,16 +177,7 @@ template <typename Owner, typename List>
 void InfoMgr<Owner, List>::addInactiveList(List* list)
 {
 	list->mOwner = nullptr;
-	if (list->mPrev) {
-		list->mPrev->mNext = list->mNext;
-	}
-
-	if (list->mNext) {
-		list->mNext->mPrev = list->mPrev;
-	}
-
-	list->mNext = nullptr;
-	list->mPrev = nullptr;
+	list->pop();
 
 	list->mPrev = &mInactiveList;
 	list->mNext = mInactiveList.mNext;

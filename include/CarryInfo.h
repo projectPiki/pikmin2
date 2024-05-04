@@ -103,6 +103,10 @@ struct PokoInfoOwner : public CarryInfoOwner, public CNode {
 	// vtable 2 (CNode)
 	virtual ~PokoInfoOwner() { } // _1C (thunked at _14) (weak)
 
+	// unused/inlined:
+	bool update();
+	void start(CarryInfoList*, const Vector3f&, int);
+
 	// _00     = VTBL 1
 	// _04     = VTBL 2
 	// _04-_1C = CNode

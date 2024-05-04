@@ -440,21 +440,6 @@ struct Matrixf {
 		(*this)(2, 3) = pos.z;
 	}
 
-	inline void set(f32 scale, Matrixf* viewMtx)
-	{
-		(*this)(0, 0) = viewMtx->mMatrix.mtxView[0][0] * scale;
-		(*this)(1, 0) = viewMtx->mMatrix.mtxView[0][1] * scale;
-		(*this)(2, 0) = viewMtx->mMatrix.mtxView[0][2] * scale;
-
-		(*this)(0, 1) = viewMtx->mMatrix.mtxView[1][0] * scale;
-		(*this)(1, 1) = viewMtx->mMatrix.mtxView[1][1] * scale;
-		(*this)(2, 1) = viewMtx->mMatrix.mtxView[1][2] * scale;
-
-		(*this)(0, 2) = viewMtx->mMatrix.mtxView[2][0] * scale;
-		(*this)(1, 2) = viewMtx->mMatrix.mtxView[2][1] * scale;
-		(*this)(2, 2) = viewMtx->mMatrix.mtxView[2][2] * scale;
-	}
-
 	/**
 	 * @brief Calculates the scaled translation of a 2D vector using the current matrix.
 	 *

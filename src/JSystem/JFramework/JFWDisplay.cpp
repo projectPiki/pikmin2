@@ -729,7 +729,7 @@ void JFWDrawDoneAlarm()
 	alarm.createAlarm();
 	alarm.appendLink();
 	OSRestoreInterrupts(status);
-	OSSetAlarm(&alarm, (OS_TIMER_CLOCK) * 0.5, JFWGXAbortAlarmHandler);
+	OSSetAlarm(&alarm, (OS_TIMER_CLOCK)*0.5, JFWGXAbortAlarmHandler);
 	GXDrawDone();
 	status = OSDisableInterrupts();
 	alarm.cancelAlarm();

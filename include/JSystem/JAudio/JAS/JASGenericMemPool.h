@@ -7,7 +7,8 @@
 #include "types.h"
 
 // fabricated
-struct JASGenericMem { };
+struct JASGenericMem {
+};
 
 struct JASGenericMemPool {
 	JASGenericMemPool();
@@ -25,21 +26,26 @@ struct JASGenericMemPool {
 };
 
 namespace JASCreationPolicy {
-struct NewFromRootHeap { };
+struct NewFromRootHeap {
+};
 
 /** @fabricated */
-struct NewFromSystemHeap { };
+struct NewFromSystemHeap {
+};
 } // namespace JASCreationPolicy
 
 namespace JASThreadingModel {
-struct SingleThreaded { };
+struct SingleThreaded {
+};
 
 /** @fabricated */
-struct MultiThreaded { };
+struct MultiThreaded {
+};
 }; // namespace JASThreadingModel
 
 template <typename T, typename ThreadingModel>
-struct JASMemPool : public JASGenericMemPool { };
+struct JASMemPool : public JASGenericMemPool {
+};
 
 template <typename T, typename CreationPolicy>
 struct JASSingletonHolder {
