@@ -165,7 +165,7 @@ struct JUTGamePad : public JKRDisposer {
 		static u32 sResetMaskPattern;
 		static Callback sCallback;
 		static u32 sCallbackArg;
-		static s64 sThreshold;
+		static OSTime sThreshold;
 		static bool sResetSwitchPushing;
 		static bool sResetOccurred;
 		static EPadPort sResetOccurredPort;

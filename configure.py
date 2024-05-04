@@ -159,7 +159,7 @@ LIBS = [
             ["JSystem/JUtility/JUTException", True],
             ["JSystem/JUtility/JUTFader", True],
             ["JSystem/JUtility/JUTFont", True],
-            ["JSystem/JUtility/JUTGamePad", False],
+            ["JSystem/JUtility/JUTGamePad", True],
             ["JSystem/JUtility/JUTGraphFifo", True],
             ["JSystem/JUtility/JUTNameTab", True],
             ["JSystem/JUtility/JUTPalette", True],
