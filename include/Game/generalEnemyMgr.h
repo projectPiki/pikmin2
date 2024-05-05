@@ -12,80 +12,6 @@
 namespace Game {
 struct CreatureKillArg;
 
-struct EnemyNumInfo {
-	inline EnemyNumInfo()
-	    : mEnemyNumList(nullptr)
-	{
-	}
-
-	int getOriginalEnemyID();
-	inline void init()
-	{
-		mEnemyNumList = new EnemyTypeID[gEnemyInfoNum];
-
-		// setEnemyIDs();
-		for (int i = 0; i < gEnemyInfoNum; i++) {
-			mEnemyNumList[i].mEnemyID = (EnemyTypeID::EEnemyTypeID)gEnemyInfo[i].mId;
-		}
-
-		resetEnemyNum();
-	}
-	inline void resetEnemyNum()
-	{
-		if (mEnemyNumList == nullptr) {
-			return;
-		}
-
-		// setEnemyNums(0);
-		for (int i = 0; i < gEnemyInfoNum; i++) {
-			mEnemyNumList[i].mCount = 0;
-		}
-	}
-	inline void addEnemyNum(int enemyID, u8 num)
-	{
-		EnemyTypeID* enemyNumList = mEnemyNumList;
-		if (enemyNumList) {
-			for (int i = 0; i < gEnemyInfoNum; i++) {
-				if (enemyID == mEnemyNumList[i].mEnemyID) {
-					mEnemyNumList[i].mCount += num;
-					return;
-				}
-			}
-		}
-	}
-	inline u8 getEnemyNum(int enemyID, bool doFullCount)
-	{
-		if (doFullCount) {
-			u8 num = 0;
-			if (mEnemyNumList) {
-				int mgrID = getEnemyMgrID(enemyID);
-
-				for (int i = 0; i < gEnemyInfoNum; i++) {
-					EnemyTypeID* typeID = &mEnemyNumList[i];
-					int id              = ((u8)(enemyID == mgrID) != 0) ? getEnemyMgrID(typeID->mEnemyID) : typeID->mEnemyID;
-					if (id == enemyID) {
-						num += typeID->mCount;
-					}
-				}
-			}
-			return num;
-		}
-		// return getEnemyNumData(enemyID)->mCount;
-	}
-	inline u8 getEnemyNumData(int enemyID)
-	{
-		// mr vs li issue here
-		for (int i = 0; i < gEnemyInfoNum; i++) {
-			if (mEnemyNumList[i].mEnemyID == enemyID) {
-				return mEnemyNumList[i].mCount;
-			}
-		}
-	}
-
-	u8 _44[4];                  // _00
-	EnemyTypeID* mEnemyNumList; // _04
-};
-
 struct EnemyMgrNode : public CNode, GenericObjectMgr {
 	inline EnemyMgrNode()
 	    : CNode("マネージャノード")
@@ -196,8 +122,8 @@ struct GeneralEnemyMgr : public GenericObjectMgr, public CNode {
 	IEnemyMgrBase* getIEnemyMgrBase(int);
 	void allocateEnemys(u8, int);
 	void resetEnemyNum();
-	void addEnemyNum(int, u8, GenObjectEnemy*);
-	u8 getEnemyNum(int, bool);
+	void addEnemyNum(int enemyID, u8 count, GenObjectEnemy* genEnemy);
+	u8 getEnemyNum(int enemyID, bool doCheckOriginal);
 	JKRHeap* useHeap();
 	EnemyMgrBase* getEnemyMgr(int);
 	void setMovieDraw(bool);

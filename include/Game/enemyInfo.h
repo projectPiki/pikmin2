@@ -5,6 +5,8 @@
 
 namespace Game {
 
+extern int gEnemyInfoNum;
+
 struct EnemyInfo {
 	char* mName;        // _00
 	char mId;           // _04
@@ -150,7 +152,23 @@ u8 mCount;             // _04
 
 extern EnemyInfo gEnemyInfo[];
 
-extern int gEnemyInfoNum;
+struct EnemyNumInfo {
+	EnemyNumInfo()
+	    : mEnemyNumList(nullptr)
+	{
+	}
+
+	static int getOriginalEnemyID(int enemyID);
+
+	void init();
+	void resetEnemyNum();
+	void addEnemyNum(int enemyID, u8 num);
+	u8 getEnemyNum(int enemyID, bool doCheckOriginal);
+	u8 getEnemyNumData(int enemyID);
+
+	u8 _00[4];                  // _00
+	EnemyTypeID* mEnemyNumList; // _04
+};
 
 namespace EnemyInfoFunc {
 EnemyInfo* getEnemyInfo(int id, int flags);

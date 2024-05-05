@@ -83,12 +83,129 @@ int GeneralEnemyMgr::mCullCount;
 int GeneralEnemyMgr::mTotalCount;
 
 /**
+ * @note Address: N/A
+ * @note Size: 0x54
+ */
+int EnemyNumInfo::getOriginalEnemyID(int enemyID)
+{
+	int origID = -1;
+
+	for (int i = 0; i < gEnemyInfoNum; i++) {
+		char id = gEnemyInfo[i].mId;
+
+		if (id == enemyID) {
+			if (gEnemyInfo[i].mFlags & 1) {
+				origID = enemyID;
+			} else {
+				origID = gEnemyInfo[i].mParentID;
+			}
+		}
+	}
+
+	return origID;
+}
+
+/**
+ * @note Address: N/A
+ * @note Size: 0x7C
+ */
+void EnemyNumInfo::init()
+{
+	mEnemyNumList = new EnemyTypeID[gEnemyInfoNum];
+
+	for (int i = 0; i < gEnemyInfoNum; i++) {
+		mEnemyNumList[i].mEnemyID = (EnemyTypeID::EEnemyTypeID)gEnemyInfo[i].mId;
+	}
+
+	resetEnemyNum();
+}
+
+/**
+ * @note Address: N/A
+ * @note Size: 0x40
+ */
+void EnemyNumInfo::resetEnemyNum()
+{
+	if (mEnemyNumList == nullptr) {
+		return;
+	}
+
+	for (int i = 0; i < gEnemyInfoNum; i++) {
+		mEnemyNumList[i].mCount = 0;
+	}
+}
+
+/**
+ * @note Address: N/A
+ * @note Size: 0x58
+ */
+void EnemyNumInfo::addEnemyNum(int enemyID, u8 num)
+{
+	EnemyTypeID* enemyNumList = mEnemyNumList;
+	if (enemyNumList) {
+		for (int i = 0; i < gEnemyInfoNum; i++) {
+			if (enemyID == mEnemyNumList[i].mEnemyID) {
+				mEnemyNumList[i].mCount += num;
+				return;
+			}
+		}
+	}
+}
+
+/**
+ * @note Address: N/A
+ * @note Size: 0x174
+ */
+u8 EnemyNumInfo::getEnemyNum(int enemyID, bool doCheckOriginal)
+{
+	u8 count = 0;
+
+	if (doCheckOriginal) {
+		if (mEnemyNumList) {
+			int origID = getOriginalEnemyID(enemyID);
+			for (int i = 0; i < gEnemyInfoNum; i++) {
+				EnemyTypeID* typeID = &mEnemyNumList[i];
+
+				bool isOriginal = (u8)(enemyID == origID);
+				int id          = isOriginal ? getOriginalEnemyID(typeID->mEnemyID) : typeID->mEnemyID;
+
+				if (id == enemyID) {
+					count += typeID->mCount;
+				}
+			}
+		}
+	} else {
+		for (int i = 0; i < gEnemyInfoNum; i++) {
+			if (mEnemyNumList[i].mEnemyID == enemyID) {
+				count = mEnemyNumList[i].mCount;
+				break;
+			}
+		}
+	}
+
+	return count;
+}
+
+/**
+ * @note Address: N/A
+ * @note Size: 0x1C
+ */
+u8 EnemyNumInfo::getEnemyNumData(int enemyID)
+{
+	for (int i = 0; i < gEnemyInfoNum; i++) {
+		if (mEnemyNumList[i].mEnemyID == enemyID) {
+			return mEnemyNumList[i].mCount;
+		}
+	}
+	return 0;
+}
+
+/**
  * @note Address: 0x8010BD3C
  * @note Size: 0xFAC
  */
 void GeneralEnemyMgr::createEnemyMgr(u8 type, int enemyID, int limit)
 {
-	// int limit = objLimit;
 	EnemyInfoFunc::getEnemyInfo(enemyID, 0xFFFF);
 	char* name = getEnemyName(enemyID, 0xFFFF);
 	sys->heapStatusStart(name, nullptr);
@@ -560,7 +677,7 @@ J3DModelData* GeneralEnemyMgr::getJ3DModelData(int idx)
 EnemyBase* GeneralEnemyMgr::birth(int enemyID, EnemyBirthArg& birthArg)
 {
 	EnemyBase* enemy = nullptr;
-	int idx          = getEnemyMgrID(enemyID);
+	int idx          = EnemyNumInfo::getOriginalEnemyID(enemyID);
 
 	IEnemyMgrBase* base = getIEnemyMgrBase(idx);
 	if (base) {
@@ -711,26 +828,14 @@ void GeneralEnemyMgr::addEnemyNum(int enemyID, u8 max, GenObjectEnemy* genObj)
 	}
 }
 #pragma dont_inline reset
+
 /**
  * @note Address: 0x8010DA80
  * @note Size: 0x170
  */
 u8 GeneralEnemyMgr::getEnemyNum(int enemyID, bool doFullCount)
 {
-	u8 count = 0;
-
-	if (doFullCount) {
-		if (mEnemyNumInfo.mEnemyNumList) {
-			// ISSUE IN HERE
-			count = getEnemyCount(enemyID, getEnemyMgrID(enemyID));
-		}
-	} else {
-		// ISSUE IN HERE
-		count = mEnemyNumInfo.getEnemyNumData(enemyID);
-	}
-
-	return count;
-
+	return mEnemyNumInfo.getEnemyNum(enemyID, doFullCount);
 	/*
 	stwu     r1, -0x10(r1)
 	clrlwi.  r0, r5, 0x18
@@ -975,7 +1080,7 @@ void GeneralEnemyMgr::createDayendEnemies(Sys::Sphere& sphere)
 
 				if ((randomInfo->mFlags & 0x10) && (tekiInfo->mState.isSet(1))) {
 					EnemyBirthArg birthArg;
-					birthArg.mIsInPiklopedia = 0;
+					birthArg.mIsInPiklopedia = false;
 
 					u16 infoFlags = randomInfo->mFlags;
 
@@ -984,9 +1089,8 @@ void GeneralEnemyMgr::createDayendEnemies(Sys::Sphere& sphere)
 
 						birthArg.mFaceDir = TAU * randFloat();
 
-						int searchID = randomNode->mEnemyID;
-						enemy        = nullptr;
-						int mgrID    = getEnemyMgrID(searchID);
+						enemy     = nullptr;
+						int mgrID = EnemyNumInfo::getOriginalEnemyID(randomNode->mEnemyID);
 
 						EnemyMgrNode* anotherNode = static_cast<EnemyMgrNode*>(mEnemyMgrNode.mChild);
 						EnemyMgrBase* anotherMgr  = nullptr;
@@ -997,7 +1101,7 @@ void GeneralEnemyMgr::createDayendEnemies(Sys::Sphere& sphere)
 						}
 
 						if (anotherMgr) {
-							birthArg.mTypeID = (EnemyTypeID::EEnemyTypeID)searchID;
+							birthArg.mTypeID = (EnemyTypeID::EEnemyTypeID)randomNode->mEnemyID;
 							enemy            = anotherMgr->birth(birthArg);
 						}
 
@@ -1018,7 +1122,7 @@ void GeneralEnemyMgr::createDayendEnemies(Sys::Sphere& sphere)
 						// From here
 						int searchID = randomNode->mEnemyID;
 						enemy        = nullptr;
-						int mgrID    = getEnemyMgrID(searchID);
+						int mgrID    = EnemyNumInfo::getOriginalEnemyID(searchID);
 
 						EnemyMgrNode* anotherNode = static_cast<EnemyMgrNode*>(mEnemyMgrNode.mChild);
 						EnemyMgrBase* anotherMgr  = nullptr;
@@ -1058,7 +1162,7 @@ void GeneralEnemyMgr::createDayendEnemies(Sys::Sphere& sphere)
 						goto noadd;
 					} else if (infoFlags & 0x80) {
 						int maxObj    = mgr->getMaxObjects();
-						int randLimit = randInt(7) + 2;
+						int randLimit = randInt(3) + 2;
 
 						if (maxObj > randLimit) {
 							maxObj = randLimit;
@@ -1070,9 +1174,8 @@ void GeneralEnemyMgr::createDayendEnemies(Sys::Sphere& sphere)
 
 							rand();
 							birthArg.mFaceDir = _angXZ(sphere.mPosition.x, sphere.mPosition.z, birthArg.mPosition.x, birthArg.mPosition.z);
-							int searchID      = randomNode->mEnemyID;
 							enemy             = nullptr;
-							int mgrID         = getEnemyMgrID(searchID);
+							int mgrID         = EnemyNumInfo::getOriginalEnemyID(randomNode->mEnemyID);
 
 							EnemyMgrNode* anotherNode = static_cast<EnemyMgrNode*>(mEnemyMgrNode.mChild);
 							EnemyMgrBase* anotherMgr  = nullptr;
@@ -1083,7 +1186,7 @@ void GeneralEnemyMgr::createDayendEnemies(Sys::Sphere& sphere)
 							}
 
 							if (anotherMgr) {
-								birthArg.mTypeID = (EnemyTypeID::EEnemyTypeID)searchID;
+								birthArg.mTypeID = (EnemyTypeID::EEnemyTypeID)randomNode->mEnemyID;
 								enemy            = anotherMgr->birth(birthArg);
 							}
 
@@ -1129,9 +1232,9 @@ void GeneralEnemyMgr::createDayendEnemies(Sys::Sphere& sphere)
 
 							birthArg.mFaceDir = _angXZ(sphere.mPosition.x, sphere.mPosition.z, birthArg.mPosition.x, birthArg.mPosition.z);
 
-							int searchID = randomNode->mEnemyID;
-							enemy        = nullptr;
-							int mgrID    = getEnemyMgrID(searchID);
+							// int searchID = randomNode->mEnemyID;
+							EnemyBase* enemy = nullptr;
+							int mgrID        = EnemyNumInfo::getOriginalEnemyID(randomNode->mEnemyID);
 
 							EnemyMgrNode* anotherNode = static_cast<EnemyMgrNode*>(mEnemyMgrNode.mChild);
 							EnemyMgrBase* anotherMgr  = nullptr;
@@ -1142,7 +1245,7 @@ void GeneralEnemyMgr::createDayendEnemies(Sys::Sphere& sphere)
 							}
 
 							if (anotherMgr) {
-								birthArg.mTypeID = (EnemyTypeID::EEnemyTypeID)searchID;
+								birthArg.mTypeID = (EnemyTypeID::EEnemyTypeID)randomNode->mEnemyID;
 								enemy            = anotherMgr->birth(birthArg);
 							}
 

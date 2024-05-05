@@ -35,11 +35,11 @@ struct StreamUpdateData {
 	u8 _00;               // _00
 	u8 _01;               // _01
 	u8 mPrepareFlag;      // _02
-	f32 _04;              // _04
-	f32 _08;              // _08
-	f32 _0C;              // _0C
-	f32 _10;              // _10
-	f32 _14;              // _14
+	f32 _04;              // _04, volume
+	f32 _08;              // _08, pitch
+	f32 _0C;              // _0C, pan
+	f32 _10;              // _10, fxmix
+	f32 _14;              // _14, dolby
 	u32 mActiveTrackFlag; // _18, see JAISoundTrackActiveFlags enum
 	JAIStream* mStream;   // _1C
 };

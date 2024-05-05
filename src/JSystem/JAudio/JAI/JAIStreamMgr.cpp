@@ -713,8 +713,8 @@ void PlayingStream()
 		return;
 	}
 
-	u32 trackFlags[6] = { 0, 0, 0, 0, 0, 0 };
-	bool check        = false; // r27
+	u32 trackFlags[6]   = { 0, 0, 0, 0, 0, 0 };
+	bool isPitchUpdated = false; // r27
 
 	StreamParameter* param = &streamSound->mStreamParameter;
 	if (data->mActiveTrackFlag & SOUNDACTIVE_Volume) {
@@ -837,7 +837,7 @@ void PlayingStream()
 		}
 
 		if (streamUpdate->_08 != pitchFactor) {
-			check             = true;
+			isPitchUpdated    = true;
 			streamUpdate->_08 = pitchFactor;
 		}
 
@@ -943,7 +943,7 @@ void PlayingStream()
 		}
 	}
 
-	if (trackFlags[0] || trackFlags[1] || trackFlags[2] || trackFlags[3] || trackFlags[4] || trackFlags[5] || check) {
+	if (trackFlags[0] || trackFlags[1] || trackFlags[2] || trackFlags[3] || trackFlags[4] || trackFlags[5] || isPitchUpdated) {
 		BOOL interrupts = OSDisableInterrupts();
 		for (int i = 0; i < getChannelMax(); i++) {
 			if (trackFlags[i] & SOUNDACTIVE_Volume) {
@@ -962,7 +962,7 @@ void PlayingStream()
 			}
 		}
 
-		if (check) {
+		if (isPitchUpdated) {
 			streamSystem->_268 = streamUpdate->_08;
 		}
 		OSRestoreInterrupts(interrupts);
