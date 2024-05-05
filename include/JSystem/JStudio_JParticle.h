@@ -48,7 +48,7 @@ struct TAdaptor_particle : JStudio::TAdaptor_particle {
 	JPAEmitterManager* mEmitterManager; // _174
 	JPABaseEmitter* mEmitter;           // _178
 	TJPACallback_ mCallback;            // _17C
-	int _188;                           // _188
+	u32 _188;                           // _188
 	u32 _18C;                           // _18C
 	u32 _190;                           // _190
 	u32 _194;                           // _194

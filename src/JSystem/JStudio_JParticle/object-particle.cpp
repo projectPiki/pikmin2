@@ -554,9 +554,13 @@ void JStudio_JParticle::TAdaptor_particle::beginParticle_fadeIn_(u32 p1)
 		mEmitterManager->forceDeleteEmitter(mEmitter);
 	}
 
-	JGeometry::TVec3f vec = (JGeometry::TVec3f) { 0.0f, 0.0f, 0.0f };
+	// maybe JGeometry::TVec3f::Zero() inline?
 
-	mEmitter = mEmitterManager->createSimpleEmitterID(vec, _188, (_188 >> 24) & 0xff, (_188 >> 16) & 0xff, &mCallback,
+	JGeometry::TVec3f vec2;
+	JGeometry::TVec3f vec = { 0.0f, 0.0f, 0.0f };
+	vec2 = vec;
+	
+	mEmitter = mEmitterManager->createSimpleEmitterID(vec2, _188, _188 >> 24, _188 >> 16, &mCallback,
 	                                                  nullptr); // instruction order swap
 
 	if (mEmitter) {
