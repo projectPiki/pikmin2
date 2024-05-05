@@ -2,12 +2,9 @@
 
 #include "DvdStatus.h"
 
-#ifndef _DVDERRORMESSAGE_DEFINES
-#define _DVDERRORMESSAGE_DEFINES
 #define DEM_REMOVE_CONST_CHAR(arr) const_cast<char*>(arr)
 #define DEM_REMOVE_CONST_U32(arr)  const_cast<u32*>(arr)
 #define DEM_U32_TO_CHAR(arr)       reinterpret_cast<char*>(DEM_REMOVE_CONST_U32(arr))
-#endif
 
 // Japanese
 

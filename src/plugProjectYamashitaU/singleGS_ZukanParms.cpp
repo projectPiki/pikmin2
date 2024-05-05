@@ -11,8 +11,6 @@ Camera* Parms::sCamera;
 
 static const int unusedIllustratedBookArray[] = { 0, 0, 0 };
 
-#define COMPLEMENT(src, dest, proportion) (proportion) * ((f32)(dest) - (f32)(src)) + (f32)(src)
-
 /**
  * @note Address: 0x80130B9C
  * @note Size: 0x1D0
@@ -99,37 +97,37 @@ void ColorSetting::update()
 
 	if (ratio < 0.5f) {
 		ratio *= 2.0f;
-		mActiveColorA.r = COMPLEMENT(startColor18[0].r, middleColor18[0].r, ratio);
-		mActiveColorA.g = COMPLEMENT(startColor18[0].g, middleColor18[0].g, ratio);
-		mActiveColorA.b = COMPLEMENT(startColor18[0].b, middleColor18[0].b, ratio);
-		mActiveColorA.a = COMPLEMENT(startColor18[0].a, middleColor18[0].a, ratio);
+		mActiveColorA.r = INTERPOLATE_BETWEEN(startColor18[0].r, middleColor18[0].r, ratio);
+		mActiveColorA.g = INTERPOLATE_BETWEEN(startColor18[0].g, middleColor18[0].g, ratio);
+		mActiveColorA.b = INTERPOLATE_BETWEEN(startColor18[0].b, middleColor18[0].b, ratio);
+		mActiveColorA.a = INTERPOLATE_BETWEEN(startColor18[0].a, middleColor18[0].a, ratio);
 
-		mActiveColorB.r = COMPLEMENT(startColor18[1].r, middleColor18[1].r, ratio);
-		mActiveColorB.g = COMPLEMENT(startColor18[1].g, middleColor18[1].g, ratio);
-		mActiveColorB.b = COMPLEMENT(startColor18[1].b, middleColor18[1].b, ratio);
-		mActiveColorB.a = COMPLEMENT(startColor18[1].a, middleColor18[1].a, ratio);
+		mActiveColorB.r = INTERPOLATE_BETWEEN(startColor18[1].r, middleColor18[1].r, ratio);
+		mActiveColorB.g = INTERPOLATE_BETWEEN(startColor18[1].g, middleColor18[1].g, ratio);
+		mActiveColorB.b = INTERPOLATE_BETWEEN(startColor18[1].b, middleColor18[1].b, ratio);
+		mActiveColorB.a = INTERPOLATE_BETWEEN(startColor18[1].a, middleColor18[1].a, ratio);
 
-		mActiveColorC.r = COMPLEMENT(startColor40->r, middleColor40->r, ratio);
-		mActiveColorC.g = COMPLEMENT(startColor40->g, middleColor40->g, ratio);
-		mActiveColorC.b = COMPLEMENT(startColor40->b, middleColor40->b, ratio);
-		mActiveColorC.a = COMPLEMENT(startColor40->a, middleColor40->a, ratio);
+		mActiveColorC.r = INTERPOLATE_BETWEEN(startColor40->r, middleColor40->r, ratio);
+		mActiveColorC.g = INTERPOLATE_BETWEEN(startColor40->g, middleColor40->g, ratio);
+		mActiveColorC.b = INTERPOLATE_BETWEEN(startColor40->b, middleColor40->b, ratio);
+		mActiveColorC.a = INTERPOLATE_BETWEEN(startColor40->a, middleColor40->a, ratio);
 
 	} else {
 		ratio           = 2.0f * (ratio - 0.5f);
-		mActiveColorA.r = COMPLEMENT(middleColor18[0].r, stopColor18[0].r, ratio);
-		mActiveColorA.g = COMPLEMENT(middleColor18[0].g, stopColor18[0].g, ratio);
-		mActiveColorA.b = COMPLEMENT(middleColor18[0].b, stopColor18[0].b, ratio);
-		mActiveColorA.a = COMPLEMENT(middleColor18[0].a, stopColor18[0].a, ratio);
+		mActiveColorA.r = INTERPOLATE_BETWEEN(middleColor18[0].r, stopColor18[0].r, ratio);
+		mActiveColorA.g = INTERPOLATE_BETWEEN(middleColor18[0].g, stopColor18[0].g, ratio);
+		mActiveColorA.b = INTERPOLATE_BETWEEN(middleColor18[0].b, stopColor18[0].b, ratio);
+		mActiveColorA.a = INTERPOLATE_BETWEEN(middleColor18[0].a, stopColor18[0].a, ratio);
 
-		mActiveColorB.r = COMPLEMENT(middleColor18[1].r, stopColor18[1].r, ratio);
-		mActiveColorB.g = COMPLEMENT(middleColor18[1].g, stopColor18[1].g, ratio);
-		mActiveColorB.b = COMPLEMENT(middleColor18[1].b, stopColor18[1].b, ratio);
-		mActiveColorB.a = COMPLEMENT(middleColor18[1].a, stopColor18[1].a, ratio);
+		mActiveColorB.r = INTERPOLATE_BETWEEN(middleColor18[1].r, stopColor18[1].r, ratio);
+		mActiveColorB.g = INTERPOLATE_BETWEEN(middleColor18[1].g, stopColor18[1].g, ratio);
+		mActiveColorB.b = INTERPOLATE_BETWEEN(middleColor18[1].b, stopColor18[1].b, ratio);
+		mActiveColorB.a = INTERPOLATE_BETWEEN(middleColor18[1].a, stopColor18[1].a, ratio);
 
-		mActiveColorC.r = COMPLEMENT(middleColor40->r, stopColor40->r, ratio);
-		mActiveColorC.g = COMPLEMENT(middleColor40->g, stopColor40->g, ratio);
-		mActiveColorC.b = COMPLEMENT(middleColor40->b, stopColor40->b, ratio);
-		mActiveColorC.a = COMPLEMENT(middleColor40->a, stopColor40->a, ratio);
+		mActiveColorC.r = INTERPOLATE_BETWEEN(middleColor40->r, stopColor40->r, ratio);
+		mActiveColorC.g = INTERPOLATE_BETWEEN(middleColor40->g, stopColor40->g, ratio);
+		mActiveColorC.b = INTERPOLATE_BETWEEN(middleColor40->b, stopColor40->b, ratio);
+		mActiveColorC.a = INTERPOLATE_BETWEEN(middleColor40->a, stopColor40->a, ratio);
 	}
 	/*
 	stwu     r1, -0x1a0(r1)

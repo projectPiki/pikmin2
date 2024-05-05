@@ -16,25 +16,19 @@ T complement(T start, T end, T ratio);
 static const int unusedGameLightArray[] = { 0, 0, 0 };
 static const char unusedGameLightName[] = "gameLightMgr";
 
-#define COMPLEMENT(src, dest, proportion) (proportion) * ((f32)(dest) - (f32)(src)) + (f32)(src)
-
-#define ADJUST_BY_HALF(val) ((val) >= 0.0f) ? (val) + 0.5f : (val)-0.5f
-
-#define CAP_AT(val, limit) ((val) > (limit)) ? (limit) : (val)
-
 /**
  * @note Address: N/A
  * @note Size: 0x1FC
  */
 void calcLightColor(Color4* lightColor, Color4& destColor, Color4& srcColor, f32 ratio)
 {
-	lightColor->r = ADJUST_BY_HALF(COMPLEMENT(srcColor.r, destColor.r, ratio));
+	lightColor->r = ROUND_F32_TO_U8(INTERPOLATE_BETWEEN(srcColor.r, destColor.r, ratio));
 
-	lightColor->g = ADJUST_BY_HALF(COMPLEMENT(srcColor.g, destColor.g, ratio));
+	lightColor->g = ROUND_F32_TO_U8(INTERPOLATE_BETWEEN(srcColor.g, destColor.g, ratio));
 
-	lightColor->b = ADJUST_BY_HALF(COMPLEMENT(srcColor.b, destColor.b, ratio));
+	lightColor->b = ROUND_F32_TO_U8(INTERPOLATE_BETWEEN(srcColor.b, destColor.b, ratio));
 
-	lightColor->a = ADJUST_BY_HALF(COMPLEMENT(srcColor.a, destColor.a, ratio));
+	lightColor->a = ROUND_F32_TO_U8(INTERPOLATE_BETWEEN(srcColor.a, destColor.a, ratio));
 }
 
 namespace {
@@ -372,14 +366,14 @@ void GameLightEventNode::calcColor(Color4* color)
 		f32 greenF = mGreenScale * color->g;
 		f32 blueF  = mBlueScale * color->b;
 
-		tempColor.r = (int)(ADJUST_BY_HALF(CAP_AT(redF, 255.0f)));
-		tempColor.g = (int)(ADJUST_BY_HALF(CAP_AT(greenF, 255.0f)));
-		tempColor.b = (int)(ADJUST_BY_HALF(CAP_AT(blueF, 255.0f)));
+		tempColor.r = (int)(ROUND_F32_TO_U8(CLAMP_VALUE_ABOVE(redF, 255.0f)));
+		tempColor.g = (int)(ROUND_F32_TO_U8(CLAMP_VALUE_ABOVE(greenF, 255.0f)));
+		tempColor.b = (int)(ROUND_F32_TO_U8(CLAMP_VALUE_ABOVE(blueF, 255.0f)));
 
 	} else {
-		tempColor.r = (int)(ADJUST_BY_HALF(mRedScale));
-		tempColor.g = (int)(ADJUST_BY_HALF(mGreenScale));
-		tempColor.b = (int)(ADJUST_BY_HALF(mBlueScale));
+		tempColor.r = (int)(ROUND_F32_TO_U8(mRedScale));
+		tempColor.g = (int)(ROUND_F32_TO_U8(mGreenScale));
+		tempColor.b = (int)(ROUND_F32_TO_U8(mBlueScale));
 	}
 
 	calcLightColor(color, tempColor, *color, mColorRatio);
@@ -414,7 +408,7 @@ GameLightMgr::GameLightMgr(char* name)
 	registLightObj(mSubLight);
 
 	// setup specular light
-	mSpecLight          = new LightObj("スペキュラ-ライト", GX_LIGHT7, TYPE_Spec, JUtility::TColor(255, 255, 255, 255)); // 'specular light'
+	mSpecLight = new LightObj("スペキュラ-ライト", GX_LIGHT7, TYPE_Spec, JUtility::TColor(255, 255, 255, 255)); // 'specular light'
 	mSpecLight->mKScale = 40.0f;
 	registLightObj(mSpecLight);
 
@@ -545,8 +539,8 @@ void GameLightMgr::calcSetting(GameLightTimeSetting* time1, GameLightTimeSetting
 
 		mFogMgr->setColor(lightColor);
 
-		mFogMgr->mNearZ = COMPLEMENT(time1->mFog.mFogParms.mStartZ.mValue, time2->mFog.mFogParms.mStartZ.mValue, mSunColorRatio);
-		mFogMgr->mFarZ  = COMPLEMENT(time1->mFog.mFogParms.mEndZ.mValue, time2->mFog.mFogParms.mEndZ.mValue, mSunColorRatio);
+		mFogMgr->mNearZ = INTERPOLATE_BETWEEN(time1->mFog.mFogParms.mStartZ.mValue, time2->mFog.mFogParms.mStartZ.mValue, mSunColorRatio);
+		mFogMgr->mFarZ  = INTERPOLATE_BETWEEN(time1->mFog.mFogParms.mEndZ.mValue, time2->mFog.mFogParms.mEndZ.mValue, mSunColorRatio);
 
 		// Shadow
 		Color4 color1shadow;
@@ -612,8 +606,8 @@ void GameLightMgr::calcSetting(GameLightTimeSetting* time1, GameLightTimeSetting
 
 		mFogMgr->setColor(lightColor);
 
-		mFogMgr->mNearZ = COMPLEMENT(time2->mFog.mFogParms.mStartZ.mValue, time3->mFog.mFogParms.mStartZ.mValue, mSunColorRatio);
-		mFogMgr->mFarZ  = COMPLEMENT(time2->mFog.mFogParms.mEndZ.mValue, time3->mFog.mFogParms.mEndZ.mValue, mSunColorRatio);
+		mFogMgr->mNearZ = INTERPOLATE_BETWEEN(time2->mFog.mFogParms.mStartZ.mValue, time3->mFog.mFogParms.mStartZ.mValue, mSunColorRatio);
+		mFogMgr->mFarZ  = INTERPOLATE_BETWEEN(time2->mFog.mFogParms.mEndZ.mValue, time3->mFog.mFogParms.mEndZ.mValue, mSunColorRatio);
 
 		// Shadow
 		Color4 color1shadow;

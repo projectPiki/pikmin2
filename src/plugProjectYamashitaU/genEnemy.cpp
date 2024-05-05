@@ -463,7 +463,6 @@ void GenObjectEnemy::doReadOldVersion(Stream& stream)
 /**
  * @note Address: 0x8012592C
  * @note Size: 0xE38
- * TODO: The EnemyGeneratorBase ctor shouldn't be inlined
  */
 EnemyGeneratorBase* GenObjectEnemy::createEnemyGenerator()
 {

@@ -96,6 +96,8 @@ struct CourseInfo : public CNode {
 	Matrixf mDemoMatrix;              // _D0
 };
 
+#define MAX_LEVELS (4)
+
 struct Stages {
 	Stages();
 

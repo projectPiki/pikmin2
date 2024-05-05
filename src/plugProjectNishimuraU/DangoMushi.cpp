@@ -11,9 +11,6 @@
 #include "Dolphin/rand.h"
 #include "PSSystem/PSMainSide_ObjSound.h"
 
-#define DANGO_FALLING_ROCK_COUNT (10)
-#define DANGO_FALLING_EGG_COUNT  (1)
-
 namespace Game {
 namespace DangoMushi {
 
@@ -621,6 +618,9 @@ lbl_802FD358:
 	blr
 	*/
 }
+
+#define DANGO_FALLING_ROCK_COUNT (10)
+#define DANGO_FALLING_EGG_COUNT  (1)
 
 /**
  * @note Address: 0x802FD38C

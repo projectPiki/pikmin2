@@ -47,7 +47,7 @@ void Footmarks::add(Footmark& mark)
 {
 	mPosition = mark.mPosition;
 	if (mCapacity >= 2) {
-		int adjIndex       = ((mCurrentIndex + mCount) - 1) % mCount; // (_04 + (mCount - 1) % mCount);
+		int adjIndex       = ((mCurrentIndex + mCount) - 1) % mCount;
 		Footmark* currMark = &mMarks[adjIndex];
 
 		f32 dist = Vector3f::distance(currMark->mPosition, mark.mPosition);

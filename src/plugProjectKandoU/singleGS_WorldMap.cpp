@@ -12,9 +12,6 @@
 #include "JSystem/J2D/J2DPrint.h"
 #include "nans.h"
 
-// probably have this somewhere easy to find
-#define MAX_LEVELS 4
-
 static const u32 padding[]    = { 0, 0, 0 };
 static const char className[] = "SingleGS_Game";
 
