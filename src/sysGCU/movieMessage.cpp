@@ -190,20 +190,20 @@ void AbtnPane::update()
  * @note Size: 0xCC
  */
 PodIconScreen::PodIconScreen()
+    : mState(-1)
+    , mAnmColor(nullptr)
+    , mAnmColorTimer(0.0f)
+    , mAnmTrans(nullptr)
+    , mAnmTransTimer(0.0f)
+    , mAnmTexPattern(nullptr)
+    , mAnmTexPatternTimer(0.0f)
 {
-	mState              = -1;
-	mAnmColor           = nullptr;
-	mAnmColorTimer      = 0.0f;
-	mAnmTrans           = nullptr;
-	mAnmTransTimer      = 0.0f;
-	mAnmTexPattern      = nullptr;
-	mAnmTexPatternTimer = 0.0f;
-	mMomentum.normalise();
+	u16 y = sys->getRenderModeHeight();
+	u16 x = sys->getRenderModeWidth();
+	mInitialPos.set(x * 0.75f, y, 100.0f);
 	reset();
-	mMomentum = Vector3f(1.0f, randFloat(), 0.0f);
-	//mMomentum.normalise(); -- Needs to be here, but we are reaching limits of inline complexity
-	mPosition = Vector3f(0.0f);
-	disappear();
+
+	mIsVisible = false;
 }
 
 /**
@@ -225,9 +225,10 @@ void PodIconScreen::setTrans()
  */
 void PodIconScreen::reset()
 {
-	u16 y       = sys->getRenderModeObj()->efbHeight;
-	u16 x       = sys->getRenderModeObj()->fbWidth;
-	mInitialPos = Vector3f(x * 0.75f, y, 100.0f);
+	mMomentum.set(1.0f, randFloat(), 0.0f);
+	mMomentum.normalise(); // Needs to be here, but we are reaching limits of inline complexity
+	mPosition.set(0.0f, 0.0f, 0.0f);
+	setTrans();
 }
 
 /**
