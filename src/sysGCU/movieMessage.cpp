@@ -200,6 +200,9 @@ PodIconScreen::PodIconScreen()
 	mAnmTexPatternTimer = 0.0f;
 	mMomentum.normalise();
 	reset();
+	mMomentum = Vector3f(1.0f, randFloat(), 0.0f);
+	//mMomentum.normalise(); -- Needs to be here, but we are reaching limits of inline complexity
+	mPosition = Vector3f(0.0f);
 	disappear();
 }
 
