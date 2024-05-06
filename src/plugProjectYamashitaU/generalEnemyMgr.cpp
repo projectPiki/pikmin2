@@ -942,7 +942,7 @@ void GeneralEnemyMgr::prepareDayendEnemies()
  */
 void GeneralEnemyMgr::createDayendEnemies(Sys::Sphere& birthSphere)
 {
-	// need to makes sure we have enemies to spawn
+	// need to make sure we have enemies to spawn
 	if (mEnemyMgrNode.getChildCount() != 0) {
 		// max "amount" of enemies to spawn - different types of enemies carry different weights though
 		int i = 0;

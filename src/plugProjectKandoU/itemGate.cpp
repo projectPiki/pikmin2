@@ -751,9 +751,9 @@ void ItemGate::getLifeGaugeParam(Game::LifeGaugeParam& param)
 {
 	param.mPosition = mPosition;
 	param.mPosition.y += 120.0f;
-	param.mRadius              = 10.0f;
-	param.mCurHealthPercentage = getGateHealth() / (mMaxSegmentHealth * mMaxSegments);
-	param.mIsGaugeShown        = mLod.isFlag(AILOD_IsVisible);
+	param.mRadius          = 10.0f;
+	param.mCurrHealthRatio = getGateHealth() / (mMaxSegmentHealth * mMaxSegments);
+	param.mIsGaugeShown    = mLod.isFlag(AILOD_IsVisible);
 }
 
 /**

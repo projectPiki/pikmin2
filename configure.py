@@ -842,7 +842,7 @@ LIBS = [
             ["plugProjectYamashitaU/chappyState", False],
             ["plugProjectYamashitaU/chappyAnimator", True],
             ["plugProjectYamashitaU/chappyMgr", True],
-            ["plugProjectYamashitaU/lifeGaugeMgr", False],
+            ["plugProjectYamashitaU/lifeGaugeMgr", True],
             ["plugProjectYamashitaU/carryInfoMgr", True],
             ["plugProjectYamashitaU/gameLightMgr", False],
             ["plugProjectYamashitaU/vtxAnm", False],

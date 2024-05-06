@@ -67,10 +67,10 @@ struct WaterBox;
 struct LifeGaugeParam {
 	LifeGaugeParam() { mIsGaugeShown = false; }
 
-	Vector3f mPosition;       // _00
-	f32 mCurHealthPercentage; // _0C
-	f32 mRadius;              // _10
-	bool mIsGaugeShown;       // _14
+	Vector3f mPosition;   // _00
+	f32 mCurrHealthRatio; // _0C, between 0 and 1
+	f32 mRadius;          // _10
+	bool mIsGaugeShown;   // _14
 };
 
 enum CreatureFlags {

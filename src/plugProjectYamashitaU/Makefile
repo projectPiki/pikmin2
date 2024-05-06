@@ -13,7 +13,7 @@ YAMASHITA_FILES:=\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/chappyState.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/chappyAnimator.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/chappyMgr.o\
-	$(BUILD_DIR)/asm/plugProjectYamashitaU/lifeGaugeMgr.o\
+	$(BUILD_DIR)/src/plugProjectYamashitaU/lifeGaugeMgr.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/carryInfoMgr.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/gameLightMgr.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/vtxAnm.o\

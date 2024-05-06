@@ -274,8 +274,8 @@ void Obj::doGetLifeGaugeParam(LifeGaugeParam& param)
 
 	param.mPosition = Vector3f(mPosition.x, C_PARMS->mLifeGaugeOffset * mScaleModifier + (C_GENERALPARMS.mLifeMeterHeight() + mPosition.y),
 	                           mPosition.z);
-	param.mCurHealthPercentage = (mHealth / mMaxHealth);
-	param.mRadius              = 10.0f;
+	param.mCurrHealthRatio = (mHealth / mMaxHealth);
+	param.mRadius          = 10.0f;
 
 	if (isEvent(0, EB_LifegaugeVisible) && isCullingOff()) {
 		isVisible = true;

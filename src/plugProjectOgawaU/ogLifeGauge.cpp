@@ -64,8 +64,8 @@ void CallBack_LifeGauge::init(P2DScreen::Mgr* mgr, DataNavi* data, LifeGaugeType
 		mData          = data;
 		mNaviLifeRatio = data->mNaviLifeRatio;
 		mLifeGauge->init(128);
-		mLifeGauge->mSegmentCount = 128.0f * mNaviLifeRatio;
-		mScreenOwner              = mgr;
+		mLifeGauge->mCurrentSegmentNum = 128.0f * mNaviLifeRatio;
+		mScreenOwner                   = mgr;
 
 		mPin1 = TagSearch(mgr, 'pin1');
 		mPin2 = static_cast<J2DPicture*>(TagSearch(mgr, 'pin2'));

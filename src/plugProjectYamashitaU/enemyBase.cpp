@@ -2681,9 +2681,9 @@ void EnemyBase::doGetLifeGaugeParam(LifeGaugeParam& param)
 	f32 z            = mPosition.z;
 	f32 x            = mPosition.x;
 
-	param.mPosition            = Vector3f(x, heightOffset, z);
-	param.mCurHealthPercentage = mHealth / mMaxHealth;
-	param.mRadius              = 10.0f;
+	param.mPosition        = Vector3f(x, heightOffset, z);
+	param.mCurrHealthRatio = mHealth / mMaxHealth;
+	param.mRadius          = 10.0f;
 }
 
 /**

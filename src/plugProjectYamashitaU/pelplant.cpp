@@ -640,8 +640,8 @@ void Obj::doGetLifeGaugeParam(LifeGaugeParam& param)
 {
 	mRootJointMtx->getTranslation(param.mPosition);
 	param.mPosition.y += 60.0f;
-	param.mCurHealthPercentage = mHealth / mMaxHealth;
-	param.mRadius              = 10.0f;
+	param.mCurrHealthRatio = mHealth / mMaxHealth;
+	param.mRadius          = 10.0f;
 }
 
 } // namespace Pelplant

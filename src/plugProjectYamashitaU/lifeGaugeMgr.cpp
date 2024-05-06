@@ -5,68 +5,67 @@
 #include "Viewport.h"
 #include "nans.h"
 
+// i'd put this in Vector3f but i really dont wanna include all of GX in that - HP.
+inline void GXDrawVector3f(Vector3f& vec) { GXPosition3f32(vec.x, vec.y, vec.z); }
+
+LifeGaugeMgr* lifeGaugeMgr;
+
 /**
  * @note Address: 0x80119BFC
  * @note Size: 0x34
  */
-LifeGauge::LifeGauge() { init(LIFEGAUGE_SEGMENTS); }
+LifeGauge::LifeGauge() { init(MAX_LIFEGAUGE_SEGMENTS); }
 
 /**
  * @note Address: 0x80119C30
  * @note Size: 0x14
  */
-void LifeGauge::init(u8 c)
+void LifeGauge::init(u8 maxSegmentNum)
 {
-	mTimer            = 0.0f;
-	mCircleResolution = c;
-	mSegmentCount     = c;
+	mTimer             = 0.0f;
+	mMaxSegmentNum     = maxSegmentNum;
+	mCurrentSegmentNum = maxSegmentNum;
 }
 
 /**
  * @note Address: 0x80119C44
  * @note Size: 0x1CC
  */
-void LifeGauge::update(f32 newFullness)
+void LifeGauge::update(f32 healthRatio)
 {
-	f32 adjustedFullness = mCircleResolution * newFullness;
+	u32 newSegmentNum = (u8)(f32)(ROUND_F32_TO_U8(mMaxSegmentNum * healthRatio));
 
-	if (adjustedFullness >= 0.0f) {
-		adjustedFullness = adjustedFullness + 0.5f;
-	} else {
-		adjustedFullness = adjustedFullness - 0.5f;
-	}
+	// need to update segment count
+	if (mCurrentSegmentNum != (u8)newSegmentNum) {
+		f32 delta = absF(((u8)newSegmentNum - mCurrentSegmentNum) / ((f32)mMaxSegmentNum)) * (sys->mDeltaTime * 150.0f);
 
-	u8 newAdjustedValue = static_cast<u8>(adjustedFullness);
-
-	if (mSegmentCount != newAdjustedValue) {
-		f32 fb = fabs((newAdjustedValue - mSegmentCount) / static_cast<f32>(mCircleResolution));
-
-		f32 delta          = fb * (sys->mDeltaTime * 150.0f);
-		const f32 minDelta = 0.4f;
-
-		if (delta < minDelta) {
-			delta = minDelta;
+		// health will update at least every 3 changes, no matter how small said changes are
+		if (delta < 0.4f) {
+			delta = 0.4f;
 		}
 
 		mTimer += delta;
 
+		// only update segment count when we've changed by at least a segment
 		if (mTimer > 1.0f) {
-			int time = mTimer;
-			mSegmentCount += ((u8)time > mSegmentCount) ? time : -time;
+			u8 time = mTimer;
+			mCurrentSegmentNum += ((u8)newSegmentNum > mCurrentSegmentNum) ? time : -time;
 			mTimer -= (u8)time;
 		}
 
-		if (mSegmentCount == 0 && newFullness > 0.0f) {
-			mSegmentCount = 1;
+		// if we don't have 0 health, always visibly show at least one segment
+		if (mCurrentSegmentNum == 0 && healthRatio > 0.0f) {
+			mCurrentSegmentNum = 1;
 		}
 	}
 
-	if (newFullness < 0.2f) { // lifegauge red
-		mLifeGaugeColor = Color4(255, 0, 0, 255);
-	} else if (newFullness < 0.5f) { // lifegauge yellow
-		mLifeGaugeColor = Color4(255, 255, 0, 255);
+	// update colors
+	if (healthRatio < RED_LIFEGAUGE_RATIO) { // lifegauge red
+		mLifeGaugeColor = RED_LIFEGAUGE_COLOR;
+	} else if (healthRatio < YELLOW_LIFEGAUGE_RATIO) { // lifegauge yellow
+		mLifeGaugeColor = YELLOW_LIFEGAUGE_COLOR;
 	} else { // lifegauge green
-		mLifeGaugeColor = Color4(0, 255, 0, 255);
+		mLifeGaugeColor = GREEN_LIFEGAUGE_COLOR;
 	}
 }
 
@@ -74,29 +73,30 @@ void LifeGauge::update(f32 newFullness)
  * @note Address: 0x80119E10
  * @note Size: 0x1BC
  */
-void LifeGauge::draw(f32 size, f32 x, f32 y)
+void LifeGauge::draw(f32 radius, f32 centerX, f32 centerY)
 {
-	Vector3f position[3];
+	Vector3f vertices[3];
 
-	// first vertex
-	position[0] = Vector3f(x, y, 0.0f);
+	// first vertex - we're in 2D drawing mode so z is always 0.0f
+	vertices[0] = Vector3f(centerX, centerY, 0.0f);
 
-	for (int i = 0; i < this->mSegmentCount; i++) {
+	// draw segments
+	for (int i = 0; i < this->mCurrentSegmentNum; i++) {
 
-		// second vertex
-		f32 angle     = -(TAU * ((f32)i / static_cast<f32>(this->mCircleResolution)) - HALF_PI);
-		position[1].x = (size * (f32)cos(angle)) + position[0].x;
-		position[1].y = (size * (f32)sin(angle)) + position[0].y;
-		position[1].z = position[0].z;
+		// second vertex is on outside of circle at "start" of segment
+		f32 angle     = -HALF_PI - (TAU * ((f32)i / static_cast<f32>(this->mMaxSegmentNum)));
+		vertices[1].x = (radius * (f32)cos(angle)) + vertices[0].x;
+		vertices[1].y = (radius * (f32)sin(angle)) + vertices[0].y;
+		vertices[1].z = vertices[0].z;
 
-		// 3rd vertex
-		angle         = -(TAU * ((f32)(i + 1) / static_cast<f32>(this->mCircleResolution)) - HALF_PI);
-		position[2].x = (size * (f32)cos(angle)) + position[0].x;
-		position[2].y = (size * (f32)sin(angle)) + position[0].y;
-		position[2].z = position[0].z;
+		// third vertex is on outside of circle at "end" of segment
+		angle         = -HALF_PI - (TAU * ((f32)(i + 1) / static_cast<f32>(this->mMaxSegmentNum)));
+		vertices[2].x = (radius * (f32)cos(angle)) + vertices[0].x;
+		vertices[2].y = (radius * (f32)sin(angle)) + vertices[0].y;
+		vertices[2].z = vertices[0].z;
 
 		// Draw the triangle
-		drawOneTri(position, mLifeGaugeColor);
+		drawOneTri(vertices, mLifeGaugeColor);
 	}
 }
 
@@ -120,11 +120,11 @@ void LifeGauge::initLifeGaugeDraw()
 	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_CLR0, GX_CLR_RGBA, GX_RGBA8, 0);
 	GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_SET);
 	GXSetZMode(FALSE, GX_LESS, FALSE);
-	GXSetCurrentMtx(0);
+	GXSetCurrentMtx(GX_PNMTX0);
 
-	Mtx mtx;
-	PSMTXIdentity(mtx);
-	GXLoadTexMtxImm(mtx, GX_TEXMTX0, GX_MTX2x4);
+	Mtx texMtx;
+	PSMTXIdentity(texMtx);
+	GXLoadTexMtxImm(texMtx, GX_TEXMTX0, GX_MTX2x4);
 }
 
 /**
@@ -140,8 +140,9 @@ void LifeGauge::drawOneTri(Vector3f* vertices, Color4& color)
 {
 	GXBegin(GX_TRIANGLEFAN, GX_VTXFMT0, 3);
 
+	// draw each vertex (center, start of segment on outside, end of segment on outside)
 	for (int i = 0; i < 3; i++) {
-		GXPosition3f32(vertices[i].x, vertices[i].y, vertices[i].z);
+		GXDrawVector3f(vertices[i]);
 		GXColor4u8(color.r, color.g, color.b, color.a);
 	}
 
@@ -151,22 +152,40 @@ void LifeGauge::drawOneTri(Vector3f* vertices, Color4& color)
 /**
  * @note Address: 0x8011A1CC
  * @note Size: 0x604
- * TODO
  */
 void LifeGaugeList::draw(Graphics& gfx)
 {
+	// if gauge isn't visible, don't bother drawing it, duh
 	if (!mParam.mIsGaugeShown) {
 		return;
 	}
 
-	f32 x         = (1.25f * mParam.mRadius);
+	// half the width of the box the gauge is going to be drawn in - bit bigger than the gauge itself
+	// this is so the center of the box is at (0,0) which makes segment vertices easy
+	f32 halfWidth = (1.25f * mParam.mRadius);
+
 	Viewport* cVp = gfx.mCurrentViewport;
-	cVp->getMatrix(true);
-	Matrixf* mtx = cVp->getMatrix(true);
-	Matrixf calcmtx;
-	Mtx mtx0;
-	PSMTXConcat(mtx->mMatrix.mtxView, calcmtx.mMatrix.mtxView, mtx0);
-	GXLoadPosMtxImm(mtx->mMatrix.mtxView, GX_MTX3x4);
+
+	Matrixf* viewMtx = cVp->getMatrix(true);
+	Matrixf transScaledMtx;
+	transScaledMtx(0, 0) = viewMtx->mMatrix.mtxView[0][0];
+	transScaledMtx(1, 0) = viewMtx->mMatrix.mtxView[0][1];
+	transScaledMtx(2, 0) = viewMtx->mMatrix.mtxView[0][2];
+	transScaledMtx(0, 1) = -viewMtx->mMatrix.mtxView[1][0];
+	transScaledMtx(1, 1) = -viewMtx->mMatrix.mtxView[1][1];
+	transScaledMtx(2, 1) = -viewMtx->mMatrix.mtxView[1][2];
+	transScaledMtx(0, 2) = viewMtx->mMatrix.mtxView[2][0];
+	transScaledMtx(1, 2) = viewMtx->mMatrix.mtxView[2][1];
+	transScaledMtx(2, 2) = viewMtx->mMatrix.mtxView[2][2];
+
+	transScaledMtx(0, 3) = mParam.mPosition.x;
+	transScaledMtx(1, 3) = mParam.mPosition.y;
+	transScaledMtx(2, 3) = mParam.mPosition.z;
+
+	Mtx posMtx;
+	PSMTXConcat(cVp->getMatrix(true)->mMatrix.mtxView, transScaledMtx.mMatrix.mtxView, posMtx);
+
+	GXLoadPosMtxImm(posMtx, GX_MTX3x4);
 	GXSetNumChans(1);
 	GXSetTevDirect(GX_TEVSTAGE0);
 	GXSetNumTevStages(1);
@@ -182,47 +201,46 @@ void LifeGaugeList::draw(Graphics& gfx)
 	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_POS_XYZ, GX_U8, 0);
 	GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_SET);
 	GXSetZMode(GX_FALSE, GX_LESS, GX_FALSE);
-	GXSetCurrentMtx(0);
+	GXSetCurrentMtx(GX_PNMTX0);
 	GXSetNumTexGens(1);
-	GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX3X4, GX_TG_TEXCOORD0, 60, 0, 125);
-	Mtx mtx2;
-	PSMTXIdentity(mtx2);
-	GXLoadTexMtxImm(mtx2, 30, GX_MTX2x4);
+	GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX3X4, GX_TG_TEXCOORD0, GX_IDENTITY, 0, GX_PTIDENTITY);
+	Mtx texMtx;
+	PSMTXIdentity(texMtx);
+	GXLoadTexMtxImm(texMtx, GX_TEXMTX0, GX_MTX2x4);
 
+	// draw box for gauge
 	GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 4);
-	f32 y = -x;
 	f32 z = 0.0f;
 
 	// Draw Top Left
-	GXPosition3f32(x, y, z);
-	GXColor4u8(255, 255, 255, 255);
+	GXPosition3f32(-halfWidth, halfWidth, z);
+	GXColor4u8(255, 255, 255, 255); // white
 	GXTexCoord2s8(0, 0);
 
 	// Draw Top Right
-	GXPosition3f32(x, x, z);
-	GXColor4u8(255, 255, 255, 255);
+	GXPosition3f32(halfWidth, halfWidth, z);
+	GXColor4u8(255, 255, 255, 255); // white
 	GXTexCoord2s8(1, 0);
 
 	// Draw Bottom Left
-	GXPosition3f32(y, y, z);
-	GXColor4u8(255, 255, 255, 255);
+	GXPosition3f32(-halfWidth, -halfWidth, z);
+	GXColor4u8(255, 255, 255, 255); // white
 	GXTexCoord2s8(0, 1);
 
 	// Draw Bottom Right
-	GXPosition3f32(x, y, z);
-	GXColor4u8(255, 255, 255, 255);
+	GXPosition3f32(halfWidth, -halfWidth, z);
+	GXColor4u8(255, 255, 255, 255); // white
 	GXTexCoord2s8(1, 1);
 
+	// draw gauge
 	LifeGauge::initLifeGaugeDraw();
-
-	// idk what values go here
-	mLifeGauge.draw(mParam.mRadius, y, x);
+	// put gauge in center of box
+	mLifeGauge.draw(mParam.mRadius, 0.0f, 0.0f);
 }
 
 /**
  * @note Address: 0x8011A7D0
  * @note Size: 0xDC
- * TODO
  */
 LifeGaugeMgr::LifeGaugeMgr() { }
 
@@ -232,10 +250,13 @@ LifeGaugeMgr::LifeGaugeMgr() { }
  */
 LifeGaugeList* LifeGaugeMgr::createLifeGauge(Game::Creature* obj)
 {
+	// find if the creature has a list in the active list
 	LifeGaugeList* list = mListActive.search(obj);
 	if (!list) {
+		// if no active list, search for an inactive one
 		list = mListInactive.search(obj);
 		if (!list) {
+			// if no active OR inactive list, make a new one and add it to the inactive list
 			list = new LifeGaugeList(obj);
 			list->clearRelations();
 			list->mPrev = &mListInactive;
@@ -254,13 +275,15 @@ LifeGaugeList* LifeGaugeMgr::createLifeGauge(Game::Creature* obj)
  * @note Address: 0x8011AA94
  * @note Size: 0xE4
  */
-void LifeGaugeMgr::activeLifeGauge(Game::Creature* obj, f32 lifeRatio)
+void LifeGaugeMgr::activeLifeGauge(Game::Creature* obj, f32 healthRatio)
 {
 	LifeGaugeList* list = mListInactive.search(obj);
 	if (list) {
-		f32 segments                   = list->mLifeGauge.mCircleResolution * lifeRatio;
-		list->mLifeGauge.mSegmentCount = segments >= 1.0f ? (segments + 0.5f) : (segments - 0.5f);
+		// calculate segment count based on ratio
+		f32 segments                        = list->mLifeGauge.mMaxSegmentNum * healthRatio;
+		list->mLifeGauge.mCurrentSegmentNum = segments >= 0.0f ? (segments + 0.5f) : (segments - 0.5f);
 
+		// add to active list
 		list->clearRelations();
 		list->mPrev = &mListActive;
 		list->mNext = mListActive.mNext;
@@ -279,11 +302,13 @@ void LifeGaugeMgr::inactiveLifeGauge(Game::Creature* obj)
 {
 	LifeGaugeList* list = mListActive.search(obj);
 	if (list) {
-		list->mParam.mIsGaugeShown         = false;
-		list->mLifeGauge.mTimer            = 0.0f;
-		list->mLifeGauge.mCircleResolution = LIFEGAUGE_SEGMENTS;
-		list->mLifeGauge.mSegmentCount     = LIFEGAUGE_SEGMENTS;
+		// make life gauge inactive + set back to max health
+		list->mParam.mIsGaugeShown          = false;
+		list->mLifeGauge.mTimer             = 0.0f;
+		list->mLifeGauge.mMaxSegmentNum     = MAX_LIFEGAUGE_SEGMENTS;
+		list->mLifeGauge.mCurrentSegmentNum = MAX_LIFEGAUGE_SEGMENTS;
 
+		// add to inactive list
 		list->clearRelations();
 		list->mPrev = &mListInactive;
 		list->mNext = mListInactive.mNext;
@@ -302,206 +327,23 @@ void LifeGaugeMgr::update()
 {
 	for (LifeGaugeList* list = mListActive.mNext; list; list = list->mNext) {
 		list->mGameObject->getLifeGaugeParam(list->mParam);
-		if (list->mParam.mIsGaugeShown) {
 
-			if (list->mParam.mCurHealthPercentage > 1.0f) {
-				list->mParam.mCurHealthPercentage = 1.0f;
-			} else if (list->mParam.mCurHealthPercentage < 0.0f) {
-				list->mParam.mCurHealthPercentage = 0.0f;
+		// only update if gauge is shown
+		if (list->mParam.mIsGaugeShown) {
+			// make sure health is between 0 and 1
+			if (list->mParam.mCurrHealthRatio > 1.0f) {
+				list->mParam.mCurrHealthRatio = 1.0f;
+			} else if (list->mParam.mCurrHealthRatio < 0.0f) {
+				list->mParam.mCurrHealthRatio = 0.0f;
 			}
 
-			list->mLifeGauge.update(list->mParam.mCurHealthPercentage);
+			list->mLifeGauge.update(list->mParam.mCurrHealthRatio);
 		}
-		if (1.0f == list->mParam.mCurHealthPercentage) {
+		if (list->mParam.mCurrHealthRatio == 1.0f) {
+			// hide gauge when it's back to max health
 			list->mParam.mIsGaugeShown = false;
 		}
 	}
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stfd     f31, 0x20(r1)
-	psq_st   f31, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	lwz      r31, 0x1c(r3)
-	lfs      f31, lbl_80517B38@sda21(r2)
-	b        lbl_8011AE6C
-
-lbl_8011AC44:
-	lwz      r3, 0x20(r31)
-	addi     r4, r31, 0x24
-	lwz      r12, 0(r3)
-	lwz      r12, 0x13c(r12)
-	mtctr    r12
-	bctrl
-	lbz      r0, 0x38(r31)
-	cmplwi   r0, 0
-	beq      lbl_8011AE54
-	lfs      f1, 0x30(r31)
-	lfs      f0, lbl_80517B38@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_8011AC80
-	stfs     f0, 0x30(r31)
-	b        lbl_8011AC90
-
-lbl_8011AC80:
-	lfs      f0, lbl_80517B28@sda21(r2)
-	fcmpo    cr0, f1, f0
-	bge      lbl_8011AC90
-	stfs     f0, 0x30(r31)
-
-lbl_8011AC90:
-	lbz      r6, 0x45(r31)
-	lis      r0, 0x4330
-	stw      r0, 8(r1)
-	lfd      f3, lbl_80517B40@sda21(r2)
-	stw      r6, 0xc(r1)
-	lfs      f0, 0x30(r31)
-	lfd      f2, 8(r1)
-	lfs      f1, lbl_80517B28@sda21(r2)
-	fsubs    f2, f2, f3
-	fmuls    f2, f2, f0
-	fcmpo    cr0, f2, f1
-	cror     2, 1, 2
-	bne      lbl_8011ACD0
-	lfs      f1, lbl_80517B2C@sda21(r2)
-	fadds    f1, f1, f2
-	b        lbl_8011ACD8
-
-lbl_8011ACD0:
-	lfs      f1, lbl_80517B2C@sda21(r2)
-	fsubs    f1, f2, f1
-
-lbl_8011ACD8:
-	fctiwz   f1, f1
-	lbz      r3, 0x44(r31)
-	stfd     f1, 0x10(r1)
-	lwz      r0, 0x14(r1)
-	clrlwi   r5, r0, 0x18
-	cmplw    r3, r5
-	beq      lbl_8011ADEC
-	subf     r3, r3, r5
-	lis      r0, 0x4330
-	xoris    r4, r3, 0x8000
-	lwz      r3, sys@sda21(r13)
-	stw      r4, 0x14(r1)
-	lfd      f2, lbl_80517B48@sda21(r2)
-	stw      r0, 0x10(r1)
-	lfd      f5, lbl_80517B40@sda21(r2)
-	lfd      f1, 0x10(r1)
-	stw      r6, 0xc(r1)
-	fsubs    f6, f1, f2
-	lfs      f2, lbl_80517B30@sda21(r2)
-	stw      r0, 8(r1)
-	lfs      f1, 0x54(r3)
-	lfd      f4, 8(r1)
-	fmuls    f3, f2, f1
-	lfs      f1, lbl_80517B34@sda21(r2)
-	fsubs    f2, f4, f5
-	fdivs    f2, f6, f2
-	fabs     f2, f2
-	frsp     f2, f2
-	fmuls    f3, f3, f2
-	fcmpo    cr0, f3, f1
-	bge      lbl_8011AD58
-	fmr      f3, f1
-
-lbl_8011AD58:
-	lfs      f2, 0x3c(r31)
-	lfs      f1, lbl_80517B38@sda21(r2)
-	fadds    f2, f2, f3
-	stfs     f2, 0x3c(r31)
-	lfs      f2, 0x3c(r31)
-	fcmpo    cr0, f2, f1
-	ble      lbl_8011ADCC
-	fctiwz   f1, f2
-	lbz      r0, 0x44(r31)
-	cmplw    r5, r0
-	stfd     f1, 0x10(r1)
-	lwz      r3, 0x14(r1)
-	clrlwi   r0, r3, 0x18
-	neg      r5, r0
-	ble      lbl_8011AD98
-	mr       r5, r0
-
-lbl_8011AD98:
-	clrlwi   r3, r3, 0x18
-	lis      r0, 0x4330
-	lbz      r4, 0x44(r31)
-	stw      r3, 0xc(r1)
-	add      r3, r4, r5
-	lfd      f2, lbl_80517B40@sda21(r2)
-	stw      r0, 8(r1)
-	lfd      f1, 8(r1)
-	stb      r3, 0x44(r31)
-	fsubs    f1, f1, f2
-	lfs      f2, 0x3c(r31)
-	fsubs    f1, f2, f1
-	stfs     f1, 0x3c(r31)
-
-lbl_8011ADCC:
-	lbz      r0, 0x44(r31)
-	cmplwi   r0, 0
-	bne      lbl_8011ADEC
-	lfs      f1, lbl_80517B28@sda21(r2)
-	fcmpo    cr0, f0, f1
-	ble      lbl_8011ADEC
-	li       r0, 1
-	stb      r0, 0x44(r31)
-
-lbl_8011ADEC:
-	lfs      f1, lbl_80517B3C@sda21(r2)
-	fcmpo    cr0, f0, f1
-	bge      lbl_8011AE14
-	li       r3, 0xff
-	li       r0, 0
-	stb      r3, 0x40(r31)
-	stb      r0, 0x41(r31)
-	stb      r0, 0x42(r31)
-	stb      r3, 0x43(r31)
-	b        lbl_8011AE54
-
-lbl_8011AE14:
-	lfs      f1, lbl_80517B2C@sda21(r2)
-	fcmpo    cr0, f0, f1
-	bge      lbl_8011AE3C
-	li       r3, 0xff
-	li       r0, 0
-	stb      r3, 0x40(r31)
-	stb      r3, 0x41(r31)
-	stb      r0, 0x42(r31)
-	stb      r3, 0x43(r31)
-	b        lbl_8011AE54
-
-lbl_8011AE3C:
-	li       r3, 0
-	li       r0, 0xff
-	stb      r3, 0x40(r31)
-	stb      r0, 0x41(r31)
-	stb      r3, 0x42(r31)
-	stb      r0, 0x43(r31)
-
-lbl_8011AE54:
-	lfs      f0, 0x30(r31)
-	fcmpu    cr0, f31, f0
-	bne      lbl_8011AE68
-	li       r0, 0
-	stb      r0, 0x38(r31)
-
-lbl_8011AE68:
-	lwz      r31, 0x1c(r31)
-
-lbl_8011AE6C:
-	cmplwi   r31, 0
-	bne      lbl_8011AC44
-	psq_l    f31, 40(r1), 0, qr0
-	lwz      r0, 0x34(r1)
-	lfd      f31, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /**
@@ -510,7 +352,8 @@ lbl_8011AE6C:
  */
 void LifeGaugeMgr::draw(Graphics& gfx)
 {
-	if (!Game::moviePlayer || !Game::moviePlayer->isFlag(1)) {
+	// don't draw lifegauges in cutscenes
+	if (!Game::moviePlayer || !Game::moviePlayer->isFlag(Game::MVP_IsActive)) {
 		LifeGaugeList* list;
 		if (mListActive.mNext) {
 			list = mListActive.mNext;
