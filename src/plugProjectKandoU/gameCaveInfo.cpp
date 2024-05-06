@@ -120,7 +120,7 @@ void TekiInfo::read(Stream& stream)
 		inputPtr++;
 	}
 	parsedString[parsedVarIndex] = '\0';
-	mEnemyID                     = static_cast<EnemyTypeID::EEnemyTypeID>(generalEnemyMgr->getEnemyID(parsedBuffer, 4));
+	mEnemyID                     = static_cast<EnemyTypeID::EEnemyTypeID>(generalEnemyMgr->getEnemyID(parsedBuffer, EFlag_CanBeSpawned));
 
 	if (parsedBuffer[0] != '\0') {
 		pelletMgr->makeOtakaraItemCode(parsedBuffer, mOtakaraItemCode);
@@ -129,7 +129,7 @@ void TekiInfo::read(Stream& stream)
 	parsedIntValue = stream.readInt();
 	mWeight        = parsedIntValue;
 	mType          = static_cast<BaseGen::CaveGenType>(stream.readInt());
-	inputPtr       = generalEnemyMgr->getEnemyName(mEnemyID, 4);
+	inputPtr       = generalEnemyMgr->getEnemyName(mEnemyID, EFlag_CanBeSpawned);
 	mName          = inputPtr;
 	return;
 

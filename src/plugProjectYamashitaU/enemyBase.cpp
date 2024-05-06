@@ -1395,7 +1395,7 @@ void EnemyBase::setZukanVisible(bool updateStats)
 
 	if ((gameSystem->isFlag(GAMESYS_DisableDeathCounter)) == FALSE) {
 		EnemyInfo* enemyInfo = EnemyInfoFunc::getEnemyInfo(getEnemyTypeID(), 0xFFFF);
-		if ((enemyInfo->mFlags & 0x200) == FALSE) {
+		if ((enemyInfo->mFlags & EFlag_HasNoInfo) == FALSE) {
 			TekiStat::Info* tekiInfo = playData->mTekiStatMgr.getTekiInfo(getEnemyTypeID());
 			P2ASSERTLINE(1859, tekiInfo);
 

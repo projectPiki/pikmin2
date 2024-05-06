@@ -25,6 +25,21 @@ struct EnemyInfo {
 	char mBitterDrops;  // _30
 };
 
+enum EnemyInfoFlags {
+	// Note: 2 is enabled anywhere EFlag_CanBeSpawned is, but doesnt seem to do anything
+
+	// 0x100 is also used for a few (dwarf bulborbs and sheargrubs), but doesnt seem to have a purpose
+	// It may have originally been another day end take off max count flag, but max 7 is just the default instead
+
+	EFlag_UseOwnID        = 1,     // Should this enemy use its own ID instead of the parent ID
+	EFlag_CanBeSpawned    = 4,     // Can be spawned at all, should be true unless youre UmiMushiBase or Pom (seems to only apply to caves)
+	EFlag_CanAppearDayEnd = 0x10,  // Can this enemy appear in the day end takeoff at all
+	EFlag_DayEndMax1      = 0x20,  // Max 1 of these enemies in day end takeoff
+	EFlag_DayEndMax2      = 0x40,  // Max 2 of these enemies in day end takeoff (no enemy seems to use this one in particular)
+	EFlag_DayEndMax4      = 0x80,  // Max 4 of these enemies (If none of the max count flags are set, 7 is the max)
+	EFlag_HasNoInfo       = 0x200, // Don't track pikmin lost/creatures defeated/piklopedia entered
+};
+
 enum EBitterDropType { // ID
 	BDT_Weak      = 0,
 	BDT_Normal    = 1,
@@ -186,7 +201,7 @@ inline int getEnemyMgrID(int enemyID)
 		char id = gEnemyInfo[i].mId;
 
 		if (id == enemyID) {
-			idx = (gEnemyInfo[i].mFlags & 1) ? enemyID : gEnemyInfo[i].mParentID;
+			idx = (gEnemyInfo[i].mFlags & EFlag_UseOwnID) ? enemyID : gEnemyInfo[i].mParentID;
 		}
 	}
 

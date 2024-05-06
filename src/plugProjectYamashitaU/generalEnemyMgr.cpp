@@ -94,7 +94,7 @@ int EnemyNumInfo::getOriginalEnemyID(int enemyID)
 		char id = gEnemyInfo[i].mId;
 
 		if (id == enemyID) {
-			if (gEnemyInfo[i].mFlags & 1) {
+			if (gEnemyInfo[i].mFlags & EFlag_UseOwnID) {
 				origID = enemyID;
 			} else {
 				origID = gEnemyInfo[i].mParentID;
@@ -775,7 +775,7 @@ void GeneralEnemyMgr::allocateEnemys(u8 type, int heapSize)
 
 	for (int i = 0; i < gEnemyInfoNum; i++) {
 		int enemyNum = getEnemyNum(gEnemyInfo[i].mId, true);
-		if ((gEnemyInfo[i].mFlags & 0x1) && (enemyNum > 0)) {
+		if ((gEnemyInfo[i].mFlags & EFlag_UseOwnID) && (enemyNum > 0)) {
 			createEnemyMgr(type, gEnemyInfo[i].mId, enemyNum);
 		}
 	}
@@ -918,7 +918,7 @@ void GeneralEnemyMgr::prepareDayendEnemies()
 		EnemyMgrNode* otherNode = static_cast<EnemyMgrNode*>(mEnemyMgrNode.mChild);
 		for (otherNode; otherNode != nullptr; otherNode = static_cast<EnemyMgrNode*>(otherNode->mNext)) { }
 
-		if (info->mFlags & 0x10) {
+		if (info->mFlags & EFlag_CanAppearDayEnd) {
 			EnemyKillArg killArg(CKILL_NULL);
 			killArg.setFlag(CKILL_DisableDeathEffects | CKILL_LeaveNoCarcass | CKILL_NotKilledByPlayer);
 			childNode->killAll(&killArg);
@@ -962,12 +962,12 @@ void GeneralEnemyMgr::createDayendEnemies(Sys::Sphere& birthSphere)
 				TekiStat::Info* tekiInfo = playData->mTekiStatMgr.getTekiInfo(randomNode->mEnemyID);
 				P2ASSERTLINE(2203, tekiInfo);
 
-				if ((randomInfo->mFlags & 0x10) && (tekiInfo->mState.isSet(1))) {
+				if ((randomInfo->mFlags & EFlag_CanAppearDayEnd) && (tekiInfo->mState.isSet(1))) {
 					// appearing at the end of the day doesn't trigger an entry in the piklopedia, obvs
 					EnemyBirthArg birthArg;
 					birthArg.mIsInPiklopedia = false;
 
-					if (randomInfo->mFlags & 0x20) {
+					if (randomInfo->mFlags & EFlag_DayEndMax1) {
 						// maximum 1 of these - if this is spawned first, ONLY get this
 						birthArg.mPosition = birthSphere.mPosition;
 						birthArg.mFaceDir  = TAU * randFloat();
@@ -983,7 +983,7 @@ void GeneralEnemyMgr::createDayendEnemies(Sys::Sphere& birthSphere)
 						i += 10;
 						goto noadd;
 
-					} else if (randomInfo->mFlags & 0x40) {
+					} else if (randomInfo->mFlags & EFlag_DayEndMax2) {
 						// maximum 2 of these
 						f32 randAngle = TAU * randFloat();
 						birthArg.mFaceDir
@@ -1013,7 +1013,7 @@ void GeneralEnemyMgr::createDayendEnemies(Sys::Sphere& birthSphere)
 						i += 5;
 						goto noadd;
 
-					} else if (randomInfo->mFlags & 0x80) {
+					} else if (randomInfo->mFlags & EFlag_DayEndMax4) {
 						// maximum 4 of these groups
 
 						// each group has a max of up to 5
