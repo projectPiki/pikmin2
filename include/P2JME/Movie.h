@@ -11,7 +11,13 @@
 namespace P2JME {
 namespace Movie {
 struct WindowPane : public P2DScreen::CallBackNode {
-	enum WindowPaneState { WINDOWPANE_Inactive = 0, WINDOWPANE_Appear = 1, WINDOWPANE_2 = 2, WINDOWPANE_Finish = 3, WINDOWPANE_4 };
+	enum WindowPaneState {
+		WINDOWPANE_Inactive = 0,
+		WINDOWPANE_Appear   = 1,
+		WINDOWPANE_2        = 2,
+		WINDOWPANE_Finish   = 3,
+		WINDOWPANE_4,
+	};
 
 	WindowPane();
 

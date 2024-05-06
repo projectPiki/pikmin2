@@ -49,12 +49,12 @@ void WindowPane::update()
 		if (mTimer > mMaxTime) {
 			mTimer = mMaxTime;
 			if (mCurrPosition.length() < 10.0f) {
-				mState = 2;
+				mState = WINDOWPANE_2;
 			}
 		}
 		mCurrAngle = (mTimer / mMaxTime) * 180.0f + 90.0f;
 		break;
-	case 3:
+	case WINDOWPANE_Finish:
 		mTimer += sys->mDeltaTime;
 		if (mTimer > mMaxTime) {
 			mState = WINDOWPANE_4;
@@ -69,17 +69,16 @@ void WindowPane::update()
 /**
  * @note Address: 0x804350E0
  * @note Size: 0x278
+ * TODO: match!!!
  */
 void WindowPane::moveWindow(bool flag)
 {
-	f32 angle = DEG2RAD;
-	angle *= mCurrAngle;
-	// f32 radAngle = mCurrAngle * DEG2RAD;
-	angle        = PI * angle;
-	Vector3f vec = mInitialPosition;
-	vec.x += 500.0f;
+	f32 angleRadians = mCurrAngle * DEG2RAD * PI;
 
-	Vector3f offset = Vector3f(sinf(angle) * 500.0f + vec.x, cosf(angle) * 500.0f + vec.y, 0.0f);
+	Vector2f startPosition(mInitialPosition.x + 500.0f, mInitialPosition.y);
+
+	Vector3f offset = Vector3f(sinf(angleRadians) * 500.0f + startPosition.x, cosf(angleRadians) * 500.0f + startPosition.y, 0.0f);
+
 	if (flag) {
 		mNewPosition  = offset;
 		mCurrPosition = Vector3f(0.0f);
@@ -90,183 +89,15 @@ void WindowPane::moveWindow(bool flag)
 		mCurrPosition *= 0.72f;
 		mNewPosition += mCurrPosition;
 	}
+
 	mPane->setOffset(mNewPosition.x, mNewPosition.y);
-	f32 newangle = JMath::atanTable_.atan2_(mNewPosition.x - vec.x, mNewPosition.y - vec.y);
+
+	f32 newangle = JMath::atanTable_.atan2_(mNewPosition.x - startPosition.x, mNewPosition.y - startPosition.y);
 	f32 scale    = roundAng(mCurrAngle);
 	f64 newScale = fabs((scale - 270.0f) / 180.f);
 	scale        = (f32)newScale + 1.0f;
-	mPane->setAngle(newangle * 57.295776f + 90.0f);
+	mPane->setAngle(newangle * RAD2DEG + 90.0f);
 	mPane->updateScale(scale);
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stfd     f31, 0x40(r1)
-	psq_st   f31, 72(r1), 0, qr0
-	stfd     f30, 0x30(r1)
-	psq_st   f30, 56(r1), 0, qr0
-	stw      r31, 0x2c(r1)
-	mr       r31, r3
-	lfs      f1, lbl_805207D4@sda21(r2)
-	lfs      f0, 0x34(r3)
-	lfs      f2, lbl_805207D0@sda21(r2)
-	fmuls    f1, f1, f0
-	lfs      f4, 0x28(r3)
-	lfs      f3, lbl_805207CC@sda21(r2)
-	lfs      f0, lbl_805207B8@sda21(r2)
-	fmuls    f5, f2, f1
-	lfs      f30, 0x2c(r3)
-	fadds    f31, f4, f3
-	fmr      f1, f5
-	fcmpo    cr0, f5, f0
-	bge      lbl_8043513C
-	fneg     f1, f5
-
-lbl_8043513C:
-	lfs      f2, lbl_805207D8@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	lfs      f0, lbl_805207B8@sda21(r2)
-	addi     r5, r3, sincosTable___5JMath@l
-	fmuls    f1, f1, f2
-	lfs      f3, lbl_805207CC@sda21(r2)
-	fcmpo    cr0, f5, f0
-	fctiwz   f0, f1
-	stfd     f0, 8(r1)
-	lwz      r0, 0xc(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	add      r3, r5, r0
-	lfs      f0, 4(r3)
-	fmadds   f4, f3, f0, f30
-	bge      lbl_8043519C
-	lfs      f0, lbl_805207DC@sda21(r2)
-	fmuls    f0, f5, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x10(r1)
-	lwz      r0, 0x14(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r5, r0
-	fneg     f0, f0
-	b        lbl_804351B4
-
-lbl_8043519C:
-	fmuls    f0, f5, f2
-	fctiwz   f0, f0
-	stfd     f0, 0x18(r1)
-	lwz      r0, 0x1c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r5, r0
-
-lbl_804351B4:
-	clrlwi.  r0, r4, 0x18
-	fmadds   f2, f3, f0, f31
-	beq      lbl_804351E0
-	stfs     f2, 0x38(r31)
-	lfs      f0, lbl_805207B8@sda21(r2)
-	stfs     f4, 0x3c(r31)
-	stfs     f0, 0x40(r31)
-	stfs     f0, 0x44(r31)
-	stfs     f0, 0x48(r31)
-	stfs     f0, 0x4c(r31)
-	b        lbl_80435288
-
-lbl_804351E0:
-	lfs      f1, 0x38(r31)
-	lfs      f0, 0x3c(r31)
-	fsubs    f5, f2, f1
-	lfs      f2, lbl_805207E0@sda21(r2)
-	fsubs    f6, f4, f0
-	lfs      f0, 0x44(r31)
-	lfs      f3, 0x40(r31)
-	fmuls    f5, f5, f2
-	lfs      f4, lbl_805207B8@sda21(r2)
-	fmuls    f6, f6, f2
-	lfs      f1, lbl_805207E4@sda21(r2)
-	fadds    f0, f0, f5
-	fsubs    f3, f4, f3
-	stfs     f0, 0x44(r31)
-	fmuls    f3, f3, f2
-	lfs      f0, 0x48(r31)
-	fadds    f0, f0, f6
-	stfs     f0, 0x48(r31)
-	lfs      f0, 0x4c(r31)
-	fadds    f0, f0, f3
-	stfs     f0, 0x4c(r31)
-	lfs      f0, 0x44(r31)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x44(r31)
-	lfs      f0, 0x48(r31)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x48(r31)
-	lfs      f0, 0x4c(r31)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x4c(r31)
-	lfs      f1, 0x38(r31)
-	lfs      f0, 0x44(r31)
-	fadds    f0, f1, f0
-	stfs     f0, 0x38(r31)
-	lfs      f1, 0x3c(r31)
-	lfs      f0, 0x48(r31)
-	fadds    f0, f1, f0
-	stfs     f0, 0x3c(r31)
-	lfs      f1, 0x40(r31)
-	lfs      f0, 0x4c(r31)
-	fadds    f0, f1, f0
-	stfs     f0, 0x40(r31)
-
-lbl_80435288:
-	lwz      r3, 0x18(r31)
-	lfs      f1, 0x3c(r31)
-	lfs      f0, 0x38(r31)
-	stfs     f0, 0xd4(r3)
-	stfs     f1, 0xd8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	lfs      f1, 0x38(r31)
-	lis      r3, atanTable___5JMath@ha
-	lfs      f0, 0x3c(r31)
-	addi     r3, r3, atanTable___5JMath@l
-	fsubs    f1, f1, f31
-	fsubs    f2, f0, f30
-	bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
-	fmr      f30, f1
-	lfs      f1, 0x34(r31)
-	bl       roundAng__Ff
-	lfs      f0, lbl_805207E8@sda21(r2)
-	lfs      f2, lbl_805207C4@sda21(r2)
-	fsubs    f3, f1, f0
-	lfs      f1, lbl_805207EC@sda21(r2)
-	lfs      f0, lbl_805207C0@sda21(r2)
-	lwz      r3, 0x18(r31)
-	fdivs    f3, f3, f2
-	lfs      f2, lbl_805207C8@sda21(r2)
-	fmadds   f0, f1, f30, f0
-	fabs     f1, f3
-	stfs     f0, 0xc0(r3)
-	frsp     f0, f1
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	fadds    f30, f2, f0
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x18(r31)
-	stfs     f30, 0xcc(r3)
-	stfs     f30, 0xd0(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	psq_l    f31, 72(r1), 0, qr0
-	lfd      f31, 0x40(r1)
-	psq_l    f30, 56(r1), 0, qr0
-	lfd      f30, 0x30(r1)
-	lwz      r0, 0x54(r1)
-	lwz      r31, 0x2c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
 }
 
 /**
