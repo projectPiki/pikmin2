@@ -1552,7 +1552,7 @@ LIBS = [
             ["sysCommonU/geomIntersection", False],
             ["sysCommonU/geomOBBTree", False],
             ["sysCommonU/geomTraceMove", False],
-            ["sysCommonU/geomCylinder", False],
+            ["sysCommonU/geomCylinder", True],
             ["sysCommonU/geomClone", True],
         ],
     },

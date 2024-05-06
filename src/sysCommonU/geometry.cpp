@@ -745,9 +745,9 @@ f32 Sys::Triangle::calcDist(Plane& plane, Sys::VertexTable& vertTable)
 	Vector3f vert_3 = vertTable.mObjects[mVertices[2]];
 
 	// calculate distance from plane to each vertex (can be negative)
-	f32 vertDist_1 = planeDist(vert_1, plane);
-	f32 vertDist_2 = planeDist(vert_2, plane);
-	f32 vertDist_3 = planeDist(vert_3, plane);
+	f32 vertDist_1 = plane.calcDist(vert_1);
+	f32 vertDist_2 = plane.calcDist(vert_2);
+	f32 vertDist_3 = plane.calcDist(vert_3);
 
 	f32 minDist;
 
@@ -821,7 +821,7 @@ bool Triangle::intersect(Edge& edge, f32 cutoff, Vector3f& intersectionPoint)
 	// if edge is (close to) perpendicular to triangle, need more checks
 	if (FABS(scalarProj) < 0.01f) {
 		// if plane cuts edge below (or at) cutoff
-		if (FABS(planeDist(edge.mStartPos, mTrianglePlane)) <= cutoff) {
+		if (FABS(mTrianglePlane.calcDist(edge.mStartPos)) <= cutoff) {
 			// check each edge plane of triangle
 			for (int i = 0; i < 3; i++) {
 				// project normal onto edge
@@ -838,7 +838,7 @@ bool Triangle::intersect(Edge& edge, f32 cutoff, Vector3f& intersectionPoint)
 						intersectionPoint = edge.mStartPos + projVec;
 
 						// check intersection point is within cutoff dist on edge
-						if (FABS(planeDist(intersectionPoint, mTrianglePlane)) < cutoff) {
+						if (FABS(mTrianglePlane.calcDist(intersectionPoint)) < cutoff) {
 							return true;
 						}
 					}
@@ -865,7 +865,7 @@ bool Triangle::intersect(Edge& edge, f32 cutoff, Vector3f& intersectionPoint)
 
 	// double check point isn't outside the triangle
 	for (int i = 0; i < 3; i++) {
-		if (planeDist(intersectionPoint, mEdgePlanes[i]) > cutoff) {
+		if (mEdgePlanes[i].calcDist(intersectionPoint) > cutoff) {
 			return false;
 		}
 	}
@@ -902,7 +902,7 @@ bool Sys::Triangle::intersect(Sys::Edge& edge, f32 cutoff, Vector3f& intersectio
 	// if edge is (close to) perpendicular to triangle, need more checks
 	if (FABS(scalarProj) < 0.01f) {
 		// if plane cuts edge below (or at) cutoff
-		if (FABS(planeDist(edge.mStartPos, mTrianglePlane)) <= cutoff) {
+		if (FABS(mTrianglePlane.calcDist(edge.mStartPos)) <= cutoff) {
 			// check each edge plane of triangle
 			for (int i = 0; i < 3; i++) {
 				// project normal onto edge
@@ -919,7 +919,7 @@ bool Sys::Triangle::intersect(Sys::Edge& edge, f32 cutoff, Vector3f& intersectio
 						intersectionPoint = edge.mStartPos + projVec;
 
 						// check intersection point is within cutoff dist on edge
-						f32 intersectDist = planeDist(intersectionPoint, mTrianglePlane);
+						f32 intersectDist = mTrianglePlane.calcDist(intersectionPoint);
 						if (FABS(intersectDist) < cutoff) {
 							distFromCutoff = cutoff - intersectDist;
 							return true;
@@ -948,12 +948,12 @@ bool Sys::Triangle::intersect(Sys::Edge& edge, f32 cutoff, Vector3f& intersectio
 
 	// double check point isn't outside the triangle
 	for (int i = 0; i < 3; i++) {
-		if (planeDist(intersectionPoint, mEdgePlanes[i]) > cutoff) {
+		if (mEdgePlanes[i].calcDist(intersectionPoint) > cutoff) {
 			return false;
 		}
 	}
 	// intersection point and is inside triangle
-	distFromCutoff = cutoff - planeDist(intersectionPoint, mTrianglePlane);
+	distFromCutoff = cutoff - mTrianglePlane.calcDist(intersectionPoint);
 	return true;
 }
 
@@ -971,14 +971,14 @@ bool Triangle::intersect(Sys::VertexTable& vertTable, Sys::Sphere& ball)
 	f32 t;            // dummy variable for intersection check
 
 	// check we're not too high or low from plane of triangle
-	if (FABS(planeDist(ball.mPosition, mTrianglePlane)) > ball.mRadius) {
+	if (FABS(mTrianglePlane.calcDist(ball.mPosition)) > ball.mRadius) {
 		return false;
 	}
 
 	// check center of sphere isn't more than its radius away from the edge planes
 	for (int i = 0; i < 3; i++) {
 		// get distance from center of ball to plane
-		f32 edgePlaneDist = planeDist(ball.mPosition, mEdgePlanes[i]);
+		f32 edgePlaneDist = mEdgePlanes[i].calcDist(ball.mPosition);
 		if (edgePlaneDist > ball.mRadius) { // too far away, can't possibly intersect
 			return false;
 		}
@@ -1236,7 +1236,7 @@ bool Triangle::intersect(Sys::VertexTable& vertTable, Sys::Sphere& ball, Vector3
 	f32 t;            // dummy variable for intersection check
 
 	// check we're not too high or low from plane of triangle
-	if (FABS(planeDist(ball.mPosition, mTrianglePlane)) > ball.mRadius) {
+	if (FABS(mTrianglePlane.calcDist(ball.mPosition)) > ball.mRadius) {
 		return false;
 	}
 
@@ -1524,14 +1524,14 @@ bool Triangle::intersectHard(Sys::VertexTable& vertTable, Sys::Sphere& ball, Vec
 
 	// check we're not too high from plane of triangle
 	// (if we're below, we're potentially inside the object, so it's fine
-	if (planeDist(ball.mPosition, mTrianglePlane) > ball.mRadius) {
+	if (mTrianglePlane.calcDist(ball.mPosition) > ball.mRadius) {
 		return false;
 	}
 
 	// check center of sphere isn't more than its radius away from the edge planes
 	for (int i = 0; i < 3; i++) {
 		// get distance from center of ball to plane
-		f32 edgePlaneDist = planeDist(ball.mPosition, mEdgePlanes[i]);
+		f32 edgePlaneDist = mEdgePlanes[i].calcDist(ball.mPosition);
 		if (edgePlaneDist > ball.mRadius) { // too far away, can't possibly intersect
 			return false;
 		}
@@ -1832,7 +1832,7 @@ bool Triangle::insideXZ(Vector3f& point)
 
 	// check if point is 'inside' triangle (negative side of each tangent plane), or on an edge
 	for (int i = 0; i < 3; ++i) {
-		if (planeDist(point, mEdgePlanes[i]) > 0.0f) { // wrong side of edge, not inside
+		if (mEdgePlanes[i].calcDist(point) > 0.0f) { // wrong side of edge, not inside
 			return false;
 		}
 	}

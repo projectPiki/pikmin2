@@ -13,7 +13,7 @@ COMMON_FILES:=\
 	$(BUILD_DIR)/asm/sysCommonU/geomIntersection.o\
 	$(BUILD_DIR)/asm/sysCommonU/geomOBBTree.o\
 	$(BUILD_DIR)/asm/sysCommonU/geomTraceMove.o\
-	$(BUILD_DIR)/asm/sysCommonU/geomCylinder.o\
+	$(BUILD_DIR)/src/sysCommonU/geomCylinder.o\
 	$(BUILD_DIR)/src/sysCommonU/geomClone.o\
 
 DEPENDS += $(COMMON_FILES:.o=.d)

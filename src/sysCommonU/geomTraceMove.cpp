@@ -66,17 +66,18 @@ void OBB::traceMoveTriList_new(Game::MoveInfo& moveInfo, Sys::VertexTable& verte
 	Sphere* moveSphere     = moveInfo.mMoveSphere; // r27
 	Vector3f* moveVelocity = moveInfo.mVelocity;   // r26
 
-	Sphere sphere0; // 0x44
-	Sphere sphere1; // 0x34
+	// Sphere sphere0; // 0x44
+	// Sphere sphere1; // 0x34
 
-	Sphere* sphere0Ptr = &sphere0; // r29
-	Sphere* sphere1Ptr = &sphere1; // r28
+	// Sphere* sphere0Ptr = &sphere0; // r29
+	// Sphere* sphere1Ptr = &sphere1; // r28
 
 	for (int i = 0; i < mTriIndexList.getNum(); i++) {
-		Triangle* tri = triangleTable.getTriangle(mTriIndexList.mObjects[i]); // r31
+		Triangle* tri = triangleTable.getTriangle(mTriIndexList.getIndex(i)); // r31
 		Triangle::SphereSweep sweep;
-		sweep.mStartPos = moveSphere->mPosition;
-		sweep.mSphere   = *moveSphere;
+		sweep.mStartPos         = moveSphere->mPosition;
+		sweep.mSphere.mPosition = moveSphere->mPosition;
+		sweep.mSphere.mRadius   = moveSphere->mRadius;
 		if (moveInfo.mDoHardIntersect) {
 			sweep.mSweepType = Triangle::SphereSweep::ST_SphereIntersectPlane;
 		}
@@ -84,38 +85,36 @@ void OBB::traceMoveTriList_new(Game::MoveInfo& moveInfo, Sys::VertexTable& verte
 			continue;
 		}
 
-		sphere0.mPosition = startMatrix.mtxMult(sphere0Ptr->mPosition);
+		sweep.mIntersectionPoint = startMatrix.mtxMult(sweep.mIntersectionPoint);
 
-		Vector3f normal   = sphere1.mPosition;
-		sphere1.mPosition = endMatrix.multTranspose(sphere1.mPosition);
+		Vector3f normal = sweep.mNormal;
+		sweep.mNormal   = endMatrix.multTranspose(sweep.mNormal);
 
 		if (moveInfo.mIntersectCallback) {
-			moveInfo.mIntersectCallback->invoke(sphere0Ptr->mPosition, sphere1Ptr->mPosition);
+			moveInfo.mIntersectCallback->invoke(sweep.mIntersectionPoint, sweep.mNormal);
 		}
 
-		int index = mTriIndexList.mObjects[i]; // r7
+		int index = mTriIndexList.getIndex(i);
 		if (moveInfo.mTriangleArray) {
 			moveInfo.mTriangleArray->store(startMatrix, *tri, vertexTable, index);
 		}
 
-		if (sphere1.mPosition.y >= moveInfo.mFloorThreshold) {
+		if (sweep.mNormal.y >= moveInfo.mFloorThreshold) {
 			moveInfo.mFloorTriangle = tri;
-			moveInfo.mFloorNormal   = sphere1.mPosition;
-		} else if (FABS(sphere1.mPosition.y) <= moveInfo.mWallThreshold) {
+			moveInfo.mFloorNormal   = sweep.mNormal;
+		} else if (FABS(sweep.mNormal.y) <= moveInfo.mWallThreshold) {
 			moveInfo.mWallTriangle = tri;
-			moveInfo.mWallNormal   = sphere1.mPosition;
+			moveInfo.mWallNormal   = sweep.mNormal;
 		} else {
 			moveInfo.mOtherTriangle = tri;
-			moveInfo.mOtherNormal   = sphere1.mPosition;
+			moveInfo.mOtherNormal   = sweep.mNormal;
 		}
 
-		Vector3f vel      = *moveVelocity;
-		f32 impactAmt     = sphere1.mPosition.dot(vel);
+		f32 impactAmt     = sweep.mNormal.dot(*moveVelocity);
 		f32 elasticFactor = 1.0f + moveInfo.mRestitution;
-		f32 impactFactor  = elasticFactor * impactAmt;
-		*moveVelocity     = vel - sphere1.mPosition * impactFactor;
+		*moveVelocity     = *moveVelocity - sweep.mNormal * (elasticFactor * impactAmt);
 
-		moveSphere->mPosition = moveSphere->mPosition + normal * sphere1.mRadius;
+		moveSphere->mPosition = moveSphere->mPosition + normal * sweep.mDistanceFromRadius;
 	}
 	/*
 	.loc_0x0:
@@ -405,17 +404,12 @@ void OBB::traceMoveTriList_new_global(Game::MoveInfo& moveInfo, Sys::VertexTable
 	Sphere* moveSphere     = moveInfo.mMoveSphere; // r28
 	Vector3f* moveVelocity = moveInfo.mVelocity;   // r27
 
-	Sphere sphere1; // 0x28
-	Sphere sphere0; // 0x38
-
-	Sphere* sphere0Ptr = &sphere0; // r30
-	Sphere* sphere1Ptr = &sphere1; // r29
-
 	for (int i = 0; i < mTriIndexList.getNum(); i++) {
 		Triangle* tri = triangleTable.getTriangle(mTriIndexList.mObjects[i]); // r31
 		Triangle::SphereSweep sweep;
-		sweep.mStartPos = moveSphere->mPosition;
-		sweep.mSphere   = *moveSphere;
+		sweep.mStartPos         = moveSphere->mPosition;
+		sweep.mSphere.mPosition = moveSphere->mPosition;
+		sweep.mSphere.mRadius   = moveSphere->mRadius;
 		if (moveInfo.mDoHardIntersect) {
 			sweep.mSweepType = Triangle::SphereSweep::ST_SphereIntersectPlane;
 		}
@@ -423,197 +417,29 @@ void OBB::traceMoveTriList_new_global(Game::MoveInfo& moveInfo, Sys::VertexTable
 			continue;
 		}
 
-		Vector3f pos = sphere1.mPosition;
+		Vector3f normal = sweep.mNormal;
 
 		if (moveInfo.mIntersectCallback) {
-			moveInfo.mIntersectCallback->invoke(sphere0Ptr->mPosition, sphere1Ptr->mPosition);
+			moveInfo.mIntersectCallback->invoke(sweep.mIntersectionPoint, sweep.mNormal);
 		}
 
-		if (sphere1.mPosition.y >= moveInfo.mFloorThreshold) {
+		if (sweep.mNormal.y >= moveInfo.mFloorThreshold) {
 			moveInfo.mFloorTriangle = tri;
-			moveInfo.mFloorNormal   = sphere1.mPosition;
-		} else if (FABS(sphere1.mPosition.y) <= moveInfo.mWallThreshold) {
+			moveInfo.mFloorNormal   = sweep.mNormal;
+		} else if (FABS(sweep.mNormal.y) <= moveInfo.mWallThreshold) {
 			moveInfo.mWallTriangle = tri;
-			moveInfo.mWallNormal   = sphere1.mPosition;
+			moveInfo.mWallNormal   = sweep.mNormal;
 		} else {
 			moveInfo.mOtherTriangle = tri;
-			moveInfo.mOtherNormal   = sphere1.mPosition;
+			moveInfo.mOtherNormal   = sweep.mNormal;
 		}
 
-		Vector3f vel  = *moveVelocity;
-		f32 dotProd   = dot(sphere1.mPosition, vel);
-		f32 rad       = 1.0f + moveInfo.mRestitution;
-		f32 factor    = rad * dotProd;
-		*moveVelocity = vel - sphere1.mPosition * factor;
+		f32 impactAmt     = sweep.mNormal.dot(*moveVelocity);
+		f32 elasticFactor = 1.0f + moveInfo.mRestitution;
+		*moveVelocity     = *moveVelocity - sweep.mNormal * (elasticFactor * impactAmt);
 
-		moveSphere->mPosition = moveSphere->mPosition + pos * sphere1.mRadius;
+		moveSphere->mPosition = moveSphere->mPosition + normal * sweep.mDistanceFromRadius;
 	}
-	/*
-	.loc_0x0:
-	  stwu      r1, -0xB0(r1)
-	  mflr      r0
-	  stw       r0, 0xB4(r1)
-	  stfd      f31, 0xA0(r1)
-	  psq_st    f31,0xA8(r1),0,0
-	  stfd      f30, 0x90(r1)
-	  psq_st    f30,0x98(r1),0,0
-	  stfd      f29, 0x80(r1)
-	  psq_st    f29,0x88(r1),0,0
-	  stmw      r21, 0x54(r1)
-	  mr        r23, r4
-	  mr        r22, r3
-	  lwz       r28, 0x0(r4)
-	  mr        r24, r5
-	  lwz       r27, 0x4(r4)
-	  mr        r25, r6
-	  addi      r30, r1, 0x28
-	  addi      r29, r1, 0x38
-	  li        r26, 0
-	  li        r31, 0
-	  b         .loc_0x214
-
-	.loc_0x54:
-	  lwz       r3, 0xFC(r22)
-	  li        r0, 0
-	  lwz       r4, 0x24(r25)
-	  lwzx      r3, r3, r31
-	  stb       r0, 0x24(r1)
-	  mulli     r0, r3, 0x60
-	  lfs       f2, 0x0(r28)
-	  add       r21, r4, r0
-	  stfs      f2, 0x8(r1)
-	  lfs       f1, 0x4(r28)
-	  stfs      f1, 0xC(r1)
-	  lfs       f0, 0x8(r28)
-	  stfs      f0, 0x10(r1)
-	  stfs      f2, 0x14(r1)
-	  stfs      f1, 0x18(r1)
-	  stfs      f0, 0x1C(r1)
-	  lfs       f0, 0xC(r28)
-	  stfs      f0, 0x20(r1)
-	  lbz       r0, 0x19(r23)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xB0
-	  li        r0, 0x1
-	  stb       r0, 0x24(r1)
-
-	.loc_0xB0:
-	  mr        r3, r21
-	  mr        r4, r24
-	  addi      r5, r1, 0x8
-	  bl        -0x43DC
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x20C
-	  lwz       r3, 0x10(r23)
-	  lfs       f31, 0x28(r1)
-	  cmplwi    r3, 0
-	  lfs       f30, 0x2C(r1)
-	  lfs       f29, 0x30(r1)
-	  beq-      .loc_0xF8
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r29
-	  mr        r5, r30
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-
-	.loc_0xF8:
-	  lfs       f1, 0x2C(r1)
-	  lfs       f0, 0x30(r23)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0x1, 0x2
-	  bne-      .loc_0x12C
-	  stw       r21, 0x44(r23)
-	  lfs       f0, 0x28(r1)
-	  stfs      f0, 0x50(r23)
-	  lfs       f0, 0x2C(r1)
-	  stfs      f0, 0x54(r23)
-	  lfs       f0, 0x30(r1)
-	  stfs      f0, 0x58(r23)
-	  b         .loc_0x180
-
-	.loc_0x12C:
-	  fabs      f1, f1
-	  lfs       f0, 0x2C(r23)
-	  frsp      f1, f1
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x164
-	  stw       r21, 0x48(r23)
-	  lfs       f0, 0x28(r1)
-	  stfs      f0, 0x5C(r23)
-	  lfs       f0, 0x2C(r1)
-	  stfs      f0, 0x60(r23)
-	  lfs       f0, 0x30(r1)
-	  stfs      f0, 0x64(r23)
-	  b         .loc_0x180
-
-	.loc_0x164:
-	  stw       r21, 0x4C(r23)
-	  lfs       f0, 0x28(r1)
-	  stfs      f0, 0x68(r23)
-	  lfs       f0, 0x2C(r1)
-	  stfs      f0, 0x6C(r23)
-	  lfs       f0, 0x30(r1)
-	  stfs      f0, 0x70(r23)
-
-	.loc_0x180:
-	  lfs       f4, 0x2C(r1)
-	  lfs       f7, 0x4(r27)
-	  lfs       f5, 0x28(r1)
-	  fmuls     f0, f4, f7
-	  lfs       f8, 0x0(r27)
-	  lfs       f3, 0x30(r1)
-	  lfs       f6, 0x8(r27)
-	  fmadds    f2, f5, f8, f0
-	  lfs       f1, 0x2080(r2)
-	  lfs       f0, 0x8(r23)
-	  fmadds    f2, f3, f6, f2
-	  fadds     f0, f1, f0
-	  fmuls     f2, f0, f2
-	  fmuls     f1, f5, f2
-	  fmuls     f0, f4, f2
-	  fmuls     f3, f3, f2
-	  fsubs     f2, f8, f1
-	  fsubs     f1, f7, f0
-	  fsubs     f0, f6, f3
-	  stfs      f2, 0x0(r27)
-	  stfs      f1, 0x4(r27)
-	  stfs      f0, 0x8(r27)
-	  lfs       f4, 0x34(r1)
-	  lfs       f1, 0x0(r28)
-	  fmuls     f0, f31, f4
-	  lfs       f3, 0x4(r28)
-	  fmuls     f2, f30, f4
-	  lfs       f5, 0x8(r28)
-	  fmuls     f4, f29, f4
-	  fadds     f0, f1, f0
-	  fadds     f1, f3, f2
-	  fadds     f2, f5, f4
-	  stfs      f0, 0x0(r28)
-	  stfs      f1, 0x4(r28)
-	  stfs      f2, 0x8(r28)
-
-	.loc_0x20C:
-	  addi      r31, r31, 0x4
-	  addi      r26, r26, 0x1
-
-	.loc_0x214:
-	  lwz       r0, 0xF4(r22)
-	  cmpw      r26, r0
-	  blt+      .loc_0x54
-	  psq_l     f31,0xA8(r1),0,0
-	  lfd       f31, 0xA0(r1)
-	  psq_l     f30,0x98(r1),0,0
-	  lfd       f30, 0x90(r1)
-	  psq_l     f29,0x88(r1),0,0
-	  lfd       f29, 0x80(r1)
-	  lmw       r21, 0x54(r1)
-	  lwz       r0, 0xB4(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0xB0
-	  blr
-	*/
 }
 
 /**
