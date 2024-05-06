@@ -171,10 +171,10 @@ struct EnemyNumInfo {
 };
 
 namespace EnemyInfoFunc {
-EnemyInfo* getEnemyInfo(int id, int flags);
-char* getEnemyName(int id, int flags);
-char* getEnemyResName(int id, int flags);
-char getEnemyMember(int id, int flags);
+EnemyInfo* getEnemyInfo(int enemyID, int flags);
+char* getEnemyName(int enemyID, int flags);
+char* getEnemyResName(int enemyID, int flags);
+char getEnemyMember(int enemyID, int flags);
 int getEnemyID(char* name, int flags);
 } // namespace EnemyInfoFunc
 

@@ -9,6 +9,15 @@
 #include "JSystem/JKernel/JKRHeap.h"
 #include "Sys/Sphere.h"
 
+// enemy heap sizes for various modes
+// linked, changeable
+#define ENEMY_HEAP_SIZE_STORY (0x200800)
+#define ENEMY_HEAP_SIZE_CM    (0x177000)
+#define ENEMY_HEAP_SIZE_VS    (0x1C2000)
+
+// not linked yet
+#define ENEMY_HEAP_SIZE_ZUKAN (0xFA000)
+
 namespace Game {
 struct CreatureKillArg;
 
@@ -116,41 +125,24 @@ struct GeneralEnemyMgr : public GenericObjectMgr, public CNode {
 	void killAll();
 	void setupSoundViewerAndBas();
 	J3DModelData* getJ3DModelData(int);
-	EnemyBase* birth(int, EnemyBirthArg&);
-	char* getEnemyName(int, int);
-	int getEnemyID(char*, int);
-	IEnemyMgrBase* getIEnemyMgrBase(int);
-	void allocateEnemys(u8, int);
+	EnemyBase* birth(int enemyID, EnemyBirthArg& birthArg);
+	char* getEnemyName(int enemyID, int flags);
+	int getEnemyID(char* name, int flags);
+	EnemyMgrBase* getIEnemyMgrBase(int enemyID);
+	void allocateEnemys(u8 count, int enemyID);
 	void resetEnemyNum();
 	void addEnemyNum(int enemyID, u8 count, GenObjectEnemy* genEnemy);
 	u8 getEnemyNum(int enemyID, bool doCheckOriginal);
 	JKRHeap* useHeap();
-	EnemyMgrBase* getEnemyMgr(int);
-	void setMovieDraw(bool);
+	EnemyMgrBase* getEnemyMgr(int enemyID);
+	void setMovieDraw(bool isEndMovie);
 	void prepareDayendEnemies();
 	void createDayendEnemies(Sys::Sphere&);
 
 	// unused/inlined:
-	void birth(char*, EnemyBirthArg&);
-	inline char getEnemyMember(int id, int flags) { return EnemyInfoFunc::getEnemyMember(id, flags); }
-	inline u8 getEnemyCount(int enemyID, int mgrID)
-	{
-		// clrlwi issue here
-		u8 num = enemyID;
+	EnemyBase* birth(char*, EnemyBirthArg&);
+	char getEnemyMember(int enemyID, int flags);
 
-		for (int i = 0; i < gEnemyInfoNum; i++) {
-			EnemyTypeID& typeID = mEnemyNumInfo.mEnemyNumList[i];
-
-			bool eq = (u8)(enemyID == mgrID);
-			int id  = eq ? getEnemyMgrID(typeID.mEnemyID) : typeID.mEnemyID;
-
-			if (id == enemyID) {
-				num += typeID.mCount;
-			}
-		}
-
-		return num;
-	}
 	void setParmsDebugNameAndID();
 	void resetParmsDebugNameAndID();
 	void setParmsDebugSoundInfo();

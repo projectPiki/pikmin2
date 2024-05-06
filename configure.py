@@ -832,7 +832,7 @@ LIBS = [
             ["plugProjectYamashitaU/pelplant", True],
             ["plugProjectYamashitaU/pelplantState", True],
             ["plugProjectYamashitaU/enemyInteractBattle", True],
-            ["plugProjectYamashitaU/generalEnemyMgr", False],
+            ["plugProjectYamashitaU/generalEnemyMgr", True],
             ["plugProjectYamashitaU/kochappyAnimator", True],
             ["plugProjectYamashitaU/kochappy", True],
             ["plugProjectYamashitaU/kochappyState", False],

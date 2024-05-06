@@ -4858,7 +4858,7 @@ void ZukanState::dvdloadB_teki()
 		}
 
 		generalEnemyMgr->addEnemyNum(mCurrentEnemyIndex, count, nullptr);
-		generalEnemyMgr->allocateEnemys(1, 0xFA000);
+		generalEnemyMgr->allocateEnemys(1, ENEMY_HEAP_SIZE_ZUKAN);
 		generalEnemyMgr->setupSoundViewerAndBas();
 
 		f32 size = 35.0f; // f27

@@ -3,7 +3,7 @@ YAMASHITA_FILES:=\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/pelplant.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/pelplantState.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/enemyInteractBattle.o\
-	$(BUILD_DIR)/asm/plugProjectYamashitaU/generalEnemyMgr.o\
+	$(BUILD_DIR)/src/plugProjectYamashitaU/generalEnemyMgr.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/kochappyAnimator.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/kochappy.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/kochappyState.o\
