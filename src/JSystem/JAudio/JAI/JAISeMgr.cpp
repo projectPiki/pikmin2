@@ -57,13 +57,13 @@ void init()
 	}
 	seTrackUpdate = new (JAIBasic::getCurrentJAIHeap(), 0x20) TrackUpdate[JAIGlobalParameter::getParamSeTrackMax()];
 	for (u32 i = 0; i < JAIGlobalParameter::getParamSeTrackMax(); i++) {
-		TrackUpdate* trackUpdate = seTrackUpdate + i;
-		trackUpdate->_04         = 1.0f;
-		trackUpdate->_08         = 1.0f;
-		trackUpdate->_0C         = 0.0f;
-		trackUpdate->_10         = 0.5f;
-		trackUpdate->_00         = 0xFF;
-		trackUpdate->_14         = 0.0f;
+		TrackUpdate* trackUpdate    = &seTrackUpdate[i];
+		trackUpdate->mPlayingVolume = 1.0f;
+		trackUpdate->mPlayingPitch  = 1.0f;
+		trackUpdate->mPlayingFxmix  = 0.0f;
+		trackUpdate->mPlayingPan    = 0.5f;
+		trackUpdate->_00            = 0xFF;
+		trackUpdate->mPlayingDolby  = 0.0f;
 	}
 	// TODO: ???
 	new (JAIBasic::getCurrentJAIHeap(), 0x20)
@@ -73,7 +73,6 @@ void init()
 		categoryInfoTable = v1;
 	} else {
 		categoryInfoTable = new (JAIBasic::getCurrentJAIHeap(), 0x20) u8*[JAIGlobalParameter::getParamSoundSceneMax()];
-		v1                = categoryInfoTable;
 		for (u32 i = 0; i < JAIGlobalParameter::getParamSoundSceneMax(); i++) {
 			categoryInfoTable[i] = (u8*)JAInter::Const::sCInfos_0;
 		}
@@ -1479,11 +1478,11 @@ void sendSeAllParameter(JAISe* se)
 	JAInter::SeqUpdateData* seqData = JAInter::SequenceMgr::getPlayTrackInfo(seHandle->_14);
 
 	checkPlayingSeUpdateMultiplication(se, seqData, se->mSeParam._424, se->mSeParam.mVolumes, seCategoryVolume[se->getSeCategoryNumber()],
-	                                   3, &trackData->_04);
-	checkPlayingSeUpdateAddition(se, seqData, se->mSeParam._428, se->mSeParam.mPans, 5, &trackData->_10, 0.5f);
-	checkPlayingSeUpdateMultiplication(se, seqData, se->mSeParam._42C, se->mSeParam.mPitches, 1.0f, 4, &trackData->_08);
-	checkPlayingSeUpdateAddition(se, seqData, se->mSeParam._430, se->mSeParam.mFxmixes, 6, &trackData->_0C, 0.0f);
-	checkPlayingSeUpdateAddition(se, seqData, se->mSeParam._438, se->mSeParam.mDolbys, 7, &trackData->_14,
+	                                   3, &trackData->mPlayingVolume);
+	checkPlayingSeUpdateAddition(se, seqData, se->mSeParam._428, se->mSeParam.mPans, 5, &trackData->mPlayingPan, 0.5f);
+	checkPlayingSeUpdateMultiplication(se, seqData, se->mSeParam._42C, se->mSeParam.mPitches, 1.0f, 4, &trackData->mPlayingPitch);
+	checkPlayingSeUpdateAddition(se, seqData, se->mSeParam._430, se->mSeParam.mFxmixes, 6, &trackData->mPlayingFxmix, 0.0f);
+	checkPlayingSeUpdateAddition(se, seqData, se->mSeParam._438, se->mSeParam.mDolbys, 7, &trackData->mPlayingDolby,
 	                             JAIGlobalParameter::getParamSeDolbyCenterValue() / 127.0f);
 
 	if (seqData->_44[se->_14]) {

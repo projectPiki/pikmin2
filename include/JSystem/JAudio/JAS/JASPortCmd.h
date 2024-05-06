@@ -27,7 +27,7 @@ struct JASPortCmd : JSULink<JASPortCmd> {
 	{
 	}
 
-	~JASPortCmd();
+	~JASPortCmd() { }
 
 	bool addPortCmdOnce();
 	bool setPortCmd(Command, JASPortArgs*);

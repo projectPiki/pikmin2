@@ -11,6 +11,15 @@
 
 struct JASTrack;
 
+enum JASOuterParamFlag {
+	OUTERPARAM_Volume = 0x1,
+	OUTERPARAM_Pitch  = 0x2,
+	OUTERPARAM_Fxmix  = 0x4,
+	OUTERPARAM_Pan    = 0x8,
+	OUTERPARAM_Dolby  = 0x10,
+	OUTERPARAM_Tempo  = 0x40,
+};
+
 /**
  * @size = 0xC
  */
@@ -65,6 +74,7 @@ struct JASTrackPort {
  * @size = 0x2C
  */
 struct JASOuterParam {
+
 	JASOuterParam();
 
 	void initExtBuffer();
@@ -85,11 +95,11 @@ struct JASOuterParam {
 
 	u16 mOuterSwitch;  // _00 - outerSwitch?
 	u16 mOuterUpdate;  // _02 - outerUpdate?
-	f32 _04;           // _04
-	f32 _08;           // _08
-	f32 _0C;           // _0C
-	f32 _10;           // _10
-	f32 _14;           // _14
+	f32 mVolume;       // _04
+	f32 mPitch;        // _08
+	f32 mFxmix;        // _0C
+	f32 mDolby;        // _10
+	f32 mPan;          // _14
 	f32 mTempo;        // _18
 	s16 mFirFilter[8]; // _1C - firFilter?
 };

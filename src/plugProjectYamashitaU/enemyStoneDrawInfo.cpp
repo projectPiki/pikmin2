@@ -106,12 +106,12 @@ void boundAngle(f32& angle)
 	}
 }
 
-f32 pikmin2_sinf(f32 x)
+f32 sinfc(const f32 x)
 {
 	if (x < 0.0f) {
-		return -JMath::sincosTable_.mTable[((int)(x *= -325.9493f) & 0x7ffU)].first;
+		return -JMath::sincosTable_.mTable[(GetTableIdxNeg(x) & 0x7ffU)].first;
 	}
-	return JMath::sincosTable_.mTable[((int)(x *= 325.9493f) & 0x7ffU)].first;
+	return JMath::sincosTable_.mTable[(GetTableIdxPos(x) & 0x7ffU)].first;
 }
 
 /**
@@ -123,7 +123,7 @@ void FSMStateExpansion::makeMatrix(DrawInfo* drawInfo, Matrixf* mtx)
 	f32 theta = drawInfo->mDrawTimer / drawInfo->mDrawTimeLimit;
 	boundAngle(theta);
 
-	f32 sinTheta = pikmin2_sinf(theta * HALF_PI);
+	f32 sinTheta = sinfc(theta * HALF_PI);
 
 	PSMTXIdentity(mtx->mMatrix.mtxView);
 	mtx->scale(sinTheta);
@@ -278,7 +278,7 @@ void FSMStateShake::makeMatrix(DrawInfo* drawInfo, Matrixf* mtx)
 		p3 = p1 * 30.0f;
 		break;
 	case 2:
-		p1 = pikmin2_sinf(theta * TAU * 1.5f) * 0.1f;
+		p1 = sinf(theta * TAU * 1.5f) * 0.1f;
 		p2 = 125.6637115478516f;
 		p3 = p1 * 30.0f;
 		break;
@@ -295,10 +295,12 @@ void FSMStateShake::makeMatrix(DrawInfo* drawInfo, Matrixf* mtx)
 		break;
 	}
 
-	Vector3f translation(p1 * pikmin2_sinf(p2 * theta), 0.0f, p1 * cosf(p2 * theta));
-	f32 sinTheta = (f32)sin(p2 * theta);
-	Vector3f rotation(PI * (DEG2RAD * (p3 * sinTheta)), 0.0f, 0.0f);
+	// f32 theta2            = p2 * theta;
+	Vector3f translation = Vector3f(p1 * sinf(p2 * theta), 0.0f, p1 * cosf(p2 * theta));
+	f32 sinTheta         = (f32)sin(p2 * theta);
+	Vector3f rotation    = Vector3f(PI * (DEG2RAD * (p3 * sinTheta)), 0.0f, 0.0f);
 	mtx->makeTR(translation, rotation);
+
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x50(r1)
@@ -528,7 +530,7 @@ void FSMStateShake::makeMatrix(DrawInfo* drawInfo, Matrixf* mtx)
 void FSMStateBreakable::makeMatrix(DrawInfo* drawInfo, Matrixf* mtx)
 {
 	f32 theta            = drawInfo->mDrawTimer * 15.2f * TAU;
-	Vector3f translation = Vector3f(0.2f * pikmin2_sinf(theta), 0.0f, 0.2f * cosf(theta));
+	Vector3f translation = Vector3f(0.2f * sinf(theta), 0.0f, 0.2f * cosf(theta));
 	f32 sinTheta         = (f32)sin(theta);
 	Vector3f rotation    = Vector3f(PI * (DEG2RAD * (4.0f * sinTheta)), 0.0f, 0.0f);
 	mtx->makeTR(translation, rotation);

@@ -2053,11 +2053,11 @@ lbl_800A0E74:
  * @note Address: 0x800A0E7C
  * @note Size: 0x64
  */
-bool JASTrack::setSeqData(u8* p1, s32 p2)
+bool JASTrack::setSeqData(u8* file, s32 size)
 {
 	init();
 	_357 = 3;
-	mSeqCtrl.start(p1, 0);
+	mSeqCtrl.start(file, 0);
 	updateTrackAll();
 	_35B = 2;
 	return true;

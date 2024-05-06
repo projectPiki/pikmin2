@@ -73,9 +73,9 @@ void WindowPane::update()
  */
 void WindowPane::moveWindow(bool flag)
 {
-	f32 angleRadians = mCurrAngle * DEG2RAD * PI;
-
-	Vector2f startPosition(mInitialPosition.x + 500.0f, mInitialPosition.y);
+	f32 xoff = 500.0f;
+	Vector2f startPosition(mInitialPosition.x + xoff, mInitialPosition.y);
+	f32 angleRadians = TORADIANS(mCurrAngle);
 
 	Vector3f offset = Vector3f(sinf(angleRadians) * 500.0f + startPosition.x, cosf(angleRadians) * 500.0f + startPosition.y, 0.0f);
 

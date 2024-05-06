@@ -7,11 +7,11 @@
 JASOuterParam::JASOuterParam()
     : mOuterSwitch(0)
     , mOuterUpdate(0)
-    , _04(0.0f)
-    , _08(0.0f)
-    , _0C(0.0f)
-    , _10(0.0f)
-    , _14(0.0f)
+    , mVolume(0.0f)
+    , mPitch(0.0f)
+    , mFxmix(0.0f)
+    , mDolby(0.0f)
+    , mPan(0.0f)
     , mTempo(0.0f)
 {
 	for (int i = 0; i < 8; i++) {
@@ -83,43 +83,43 @@ s16 JASOuterParam::getIntFirFilter(u8 index) { return mFirFilter[index]; }
  * @note Address: 0x8009C4A0
  * @note Size: 0x9C
  */
-void JASOuterParam::setParam(u8 p1, f32 p2)
+void JASOuterParam::setParam(u8 paramFlag, f32 value)
 {
-	f32* v1;
-	switch (p1) {
-	case 1:
-		v1 = &_04;
+	f32* param;
+	switch (paramFlag) {
+	case OUTERPARAM_Volume:
+		param = &mVolume;
 		break;
-	case 2:
-		v1 = &_08;
+	case OUTERPARAM_Pitch:
+		param = &mPitch;
 		break;
-	case 4:
-		v1 = &_0C;
+	case OUTERPARAM_Fxmix:
+		param = &mFxmix;
 		break;
-	case 16:
-		v1 = &_10;
+	case OUTERPARAM_Dolby:
+		param = &mDolby;
 		break;
-	case 8:
-		v1 = &_14;
+	case OUTERPARAM_Pan:
+		param = &mPan;
 		break;
-	case 64:
-		v1 = &mTempo;
+	case OUTERPARAM_Tempo:
+		param = &mTempo;
 		break;
 	default:
 		return;
 	}
-	*v1 = p2;
-	mOuterUpdate |= p1;
+	*param = value;
+	mOuterUpdate |= paramFlag;
 }
 
 /**
  * @note Address: 0x8009C53C
  * @note Size: 0x1C
  */
-void JASOuterParam::onSwitch(u16 p1)
+void JASOuterParam::onSwitch(u16 paramFlag)
 {
-	mOuterSwitch |= p1;
-	mOuterUpdate |= p1;
+	mOuterSwitch |= paramFlag;
+	mOuterUpdate |= paramFlag;
 }
 
 /**

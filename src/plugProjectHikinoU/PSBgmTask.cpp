@@ -78,17 +78,17 @@ int PitchModTask::tableTask(JASTrack& track, f32 param)
 f32 OuterParamTask::getPreParam(JASTrack& track)
 {
 	switch (mTaskType) {
-	case 0x1:
-		return track.mExtBuffer->_04;
-	case 0x2:
-		return track.mExtBuffer->_08;
-	case 0x4:
-		return track.mExtBuffer->_0C;
-	case 0x10:
-		return track.mExtBuffer->_10;
-	case 0x8:
-		return track.mExtBuffer->_14;
-	case 0x40:
+	case OUTERPARAM_Volume:
+		return track.mExtBuffer->mVolume;
+	case OUTERPARAM_Pitch:
+		return track.mExtBuffer->mPitch;
+	case OUTERPARAM_Fxmix:
+		return track.mExtBuffer->mFxmix;
+	case OUTERPARAM_Dolby:
+		return track.mExtBuffer->mDolby;
+	case OUTERPARAM_Pan:
+		return track.mExtBuffer->mPan;
+	case OUTERPARAM_Tempo:
 		return track.mExtBuffer->mTempo;
 	default:
 		JUT_PANICLINE(135, "P2Assert");

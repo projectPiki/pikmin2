@@ -127,7 +127,7 @@ JAIBasic::JAIBasic()
 	mCameras      = nullptr;
 	_10           = 0;
 	_0C           = 2;
-	_1C           = 0;
+	_1C           = nullptr;
 	mHeap         = nullptr;
 	_18           = 0;
 	msCurrentHeap = JASDram;
@@ -873,11 +873,11 @@ u16 JAIBasic::setParameterSeqSync(JASTrack* p1, u16 p2)
 		JASOuterParam* param                     = p1->mExtBuffer;
 		u8 index                                 = p1->_348;
 		JAInter::SeMgr::TrackUpdate* trackUpdate = JAInter::SeMgr::seTrackUpdate;
-		param->setParam(1, trackUpdate[index]._04);
-		param->setParam(8, trackUpdate[index]._10);
-		param->setParam(2, trackUpdate[index]._08);
-		param->setParam(4, trackUpdate[index]._0C);
-		param->setParam(16, (msBasic->mParamSoundOutputMode != 2) ? 0.0f : trackUpdate[index]._14);
+		param->setParam(1, trackUpdate[index].mPlayingVolume);
+		param->setParam(8, trackUpdate[index].mPlayingPan);
+		param->setParam(2, trackUpdate[index].mPlayingPitch);
+		param->setParam(4, trackUpdate[index].mPlayingFxmix);
+		param->setParam(16, (msBasic->mParamSoundOutputMode != JASOUTPUT_Surround) ? 0.0f : trackUpdate[index].mPlayingDolby);
 		break;
 	}
 	case 0x7F:

@@ -28,7 +28,7 @@ void init()
 	FixSeqBufPointer = new (JAIGetCurrentHeap(), 0x20) JAISequence*[JAIGlobalParameter::getParamSeqPlayTrackMax()];
 
 	for (u32 i = 0; i < JAIGlobalParameter::getParamSeqControlBufferMax(); i++) {
-		JAISequence* sequence = JAIBasic::msBasic->makeSequence();
+		JAISequence* sequence = JAIBasic::getInterface()->makeSequence();
 		seqControl.mFreeList->append(sequence);
 	}
 
@@ -365,203 +365,19 @@ JAInter::MuteBit::MuteBit()
  */
 JAInter::SeqUpdateData::SeqUpdateData()
     : mPauseMode(SOUNDPAUSE_Unk0)
-    , _01(0)
+    , mPauseVolume(0)
     , mPrepareFlag(0)
     , _03(0)
     , mActiveTrackFlag(0)
     , mSequence(nullptr)
-    , _4C(new (JAIBasic::msCurrentHeap, 0x20) PlayerParameter[33])
+    , _4C(new (JAIBasic::getCurrentJAIHeap(), 0x20) PlayerParameter[33])
 {
-	_24 = new (JAIBasic::msCurrentHeap, 0x20) f32[JAIGlobalParameter::getParamSeqTrackMax()];
-	_30 = new (JAIBasic::msCurrentHeap, 0x20) f32[JAIGlobalParameter::getParamSeqTrackMax()];
-	_28 = new (JAIBasic::msCurrentHeap, 0x20) f32[JAIGlobalParameter::getParamSeqTrackMax()];
-	_2C = new (JAIBasic::msCurrentHeap, 0x20) f32[JAIGlobalParameter::getParamSeqTrackMax()];
-	_34 = new (JAIBasic::msCurrentHeap, 0x20) f32[JAIGlobalParameter::getParamSeqTrackMax()];
-	_44 = new (JAIBasic::msCurrentHeap, 0x20) u32[JAIGlobalParameter::getParamSeqTrackMax() + 1];
-
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r5, 0x20
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r30, 8(r1)
-	stb      r0, 0(r3)
-	li       r3, 0x958
-	stb      r0, 1(r31)
-	stb      r0, 2(r31)
-	stb      r0, 3(r31)
-	stw      r0, 8(r31)
-	stw      r0, 0x48(r31)
-	lwz      r4, msCurrentHeap__8JAIBasic@sda21(r13)
-	bl       __nwa__FUlP7JKRHeapi
-	lis      r4, __ct__Q27JAInter15PlayerParameterFv@ha
-	lis      r5, __dt__Q27JAInter15PlayerParameterFv@ha
-	addi     r4, r4, __ct__Q27JAInter15PlayerParameterFv@l
-	li       r6, 0x48
-	addi     r5, r5, __dt__Q27JAInter15PlayerParameterFv@l
-	li       r7, 0x21
-	bl       __construct_new_array
-	stw      r3, 0x4c(r31)
-	lwz      r30, msCurrentHeap__8JAIBasic@sda21(r13)
-	bl       getParamSeqTrackMax__18JAIGlobalParameterFv
-	slwi     r3, r3, 2
-	mr       r4, r30
-	li       r5, 0x20
-	bl       __nwa__FUlP7JKRHeapi
-	stw      r3, 0x24(r31)
-	lwz      r30, msCurrentHeap__8JAIBasic@sda21(r13)
-	bl       getParamSeqTrackMax__18JAIGlobalParameterFv
-	slwi     r3, r3, 2
-	mr       r4, r30
-	li       r5, 0x20
-	bl       __nwa__FUlP7JKRHeapi
-	stw      r3, 0x30(r31)
-	lwz      r30, msCurrentHeap__8JAIBasic@sda21(r13)
-	bl       getParamSeqTrackMax__18JAIGlobalParameterFv
-	slwi     r3, r3, 2
-	mr       r4, r30
-	li       r5, 0x20
-	bl       __nwa__FUlP7JKRHeapi
-	stw      r3, 0x28(r31)
-	lwz      r30, msCurrentHeap__8JAIBasic@sda21(r13)
-	bl       getParamSeqTrackMax__18JAIGlobalParameterFv
-	slwi     r3, r3, 2
-	mr       r4, r30
-	li       r5, 0x20
-	bl       __nwa__FUlP7JKRHeapi
-	stw      r3, 0x2c(r31)
-	lwz      r30, msCurrentHeap__8JAIBasic@sda21(r13)
-	bl       getParamSeqTrackMax__18JAIGlobalParameterFv
-	slwi     r3, r3, 2
-	mr       r4, r30
-	li       r5, 0x20
-	bl       __nwa__FUlP7JKRHeapi
-	stw      r3, 0x34(r31)
-	lwz      r30, msCurrentHeap__8JAIBasic@sda21(r13)
-	bl       getParamSeqTrackMax__18JAIGlobalParameterFv
-	addi     r0, r3, 1
-	mr       r4, r30
-	slwi     r3, r0, 2
-	li       r5, 0x20
-	bl       __nwa__FUlP7JKRHeapi
-	stw      r3, 0x44(r31)
-	mr       r3, r31
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/**
- * @note Address: 0x800B0F18
- * @note Size: 0x68
- */
-JAInter::PlayerParameter::~PlayerParameter()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_800B0F64
-	addic.   r0, r30, 0x30
-	beq      lbl_800B0F54
-	addic.   r0, r30, 0x30
-	beq      lbl_800B0F54
-	addi     r3, r30, 0x30
-	li       r4, 0
-	bl       __dt__10JSUPtrLinkFv
-
-lbl_800B0F54:
-	extsh.   r0, r31
-	ble      lbl_800B0F64
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_800B0F64:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/**
- * @note Address: 0x800B0F80
- * @note Size: 0x50
- */
-JAInter::PlayerParameter::PlayerParameter()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	addi     r31, r30, 0x30
-	mr       r3, r31
-	mr       r4, r31
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0
-	mr       r3, r30
-	stw      r0, 0x10(r31)
-	stw      r0, 0x14(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/**
- * @note Address: 0x800B0FD0
- * @note Size: 0x58
- */
-JASPortCmd::~JASPortCmd()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_800B100C
-	beq      lbl_800B0FFC
-	li       r4, 0
-	bl       __dt__10JSUPtrLinkFv
-
-lbl_800B0FFC:
-	extsh.   r0, r31
-	ble      lbl_800B100C
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_800B100C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	_24 = new (JAIBasic::getCurrentJAIHeap(), 0x20) f32[JAIGlobalParameter::getParamSeqTrackMax()];
+	_30 = new (JAIBasic::getCurrentJAIHeap(), 0x20) f32[JAIGlobalParameter::getParamSeqTrackMax()];
+	_28 = new (JAIBasic::getCurrentJAIHeap(), 0x20) f32[JAIGlobalParameter::getParamSeqTrackMax()];
+	_2C = new (JAIBasic::getCurrentJAIHeap(), 0x20) f32[JAIGlobalParameter::getParamSeqTrackMax()];
+	_34 = new (JAIBasic::getCurrentJAIHeap(), 0x20) f32[JAIGlobalParameter::getParamSeqTrackMax()];
+	_44 = new (JAIBasic::getCurrentJAIHeap(), 0x20) u32[JAIGlobalParameter::getParamSeqTrackMax() + 1];
 }
 
 /**
@@ -1032,197 +848,44 @@ void checkStartedSeq()
  */
 void checkReadSeq()
 {
+	JAISequence* seq;
 	for (u32 i = 0; i < JAIGlobalParameter::getParamSeqPlayTrackMax(); i++) {
 		SeqUpdateData* info = &seqTrackInfo[i];
-		JAISequence* seq    = info->mSequence;
-		if (seq && seq->mState == SOUNDSTATE_Loaded && seq->mSeqParameter._27C == 0xFFFFFFFF
-		    && seq->mSeqParameter.mUpdateData->mPrepareFlag == 0 && seq->mSeqParameter.mTrack._35B == 0) {
-			seq->mSeqParameter.mTrack.setSeqData(info->_40, JASResArcLoader::getResSize(arcPointer, seq->mSoundInfo->mPriority));
+		seq                 = info->mSequence;
+		if (!seq) {
+			continue;
 		}
-		SeqUpdateData* v1 = seqTrackInfo + info->mSequence->_14;
-		v1->_0C           = 1.0f;
-		v1->_18           = 0.5f;
-		v1->_10           = 1.0f;
-		v1->_14           = 0.0f;
-		v1->_1C           = 0.0f;
-		v1->_20           = 1.0f;
-		for (u32 j = 0; j < JAIGlobalParameter::getParamSeqTrackMax(); j++) {
-			v1->_24[j] = 1.0f;
-			v1->_30[j] = 64.0f;
-			v1->_28[j] = 1.0f;
-			v1->_2C[j] = 0.0f;
-			v1->_34[j] = 0.0f;
-			v1->_44[j] = 0;
+		if (seq->mState != SOUNDSTATE_Loaded) {
+			continue;
 		}
+		if (seq->mSeqParameter._27C != 0xFFFFFFFF) {
+			continue;
+		}
+		if (seq->mSeqParameter.mUpdateData->mPrepareFlag) {
+			continue;
+		}
+		if (seq->mSeqParameter.mTrack._35B) {
+			continue;
+		}
+
+		seq->mSeqParameter.mTrack.setSeqData(info->mFilePtr, JASResArcLoader::getResSize(arcPointer, seq->mSoundInfo->mOffsetNo));
+		seqTrackInfo[info->mSequence->_14].init();
 		info->mSequence->mState = SOUNDSTATE_Ready;
-		if (1 < info->mSequence->mFadeCounter) {
+		if (info->mSequence->mFadeCounter > 1) {
 			info->mSequence->setVolume(0.0f, 0, SOUNDPARAM_Fadeout);
 			info->mSequence->setVolume(1.0f, info->mSequence->mFadeCounter, SOUNDPARAM_Fadeout);
 		}
 		if (info->mPauseMode != SOUNDPAUSE_Unk0) {
-			info->mSequence->setPauseMode(info->mPauseMode, info->_01);
+			info->mSequence->setPauseMode(info->mPauseMode, info->mPauseVolume);
 			info->_0C = 1.1f;
 		}
-		JAIBasic::msBasic->setSeExtParameter(info->mSequence);
+		JAIBasic::getInterface()->setSeExtParameter(info->mSequence);
 		checkPlayingSeqTrack(i);
 		if (info->mSequence != nullptr) {
 			SystemInterface::rootInit(info);
 			seq->mSeqParameter.mTrack.startSeq();
 		}
 	}
-	/*
-	stwu     r1, -0x60(r1)
-	mflr     r0
-	stw      r0, 0x64(r1)
-	stfd     f31, 0x50(r1)
-	psq_st   f31, 88(r1), 0, qr0
-	stfd     f30, 0x40(r1)
-	psq_st   f30, 72(r1), 0, qr0
-	stfd     f29, 0x30(r1)
-	psq_st   f29, 56(r1), 0, qr0
-	stmw     r24, 0x10(r1)
-	li       r29, 0
-	li       r31, 0
-	b        lbl_800B1A08
-
-lbl_800B1850:
-	lwz      r0, seqTrackInfo__Q27JAInter11SequenceMgr@sda21(r13)
-	add      r28, r0, r31
-	lwz      r30, 0x48(r28)
-	cmplwi   r30, 0
-	beq      lbl_800B1A00
-	lbz      r0, 0x15(r30)
-	cmplwi   r0, 2
-	bne      lbl_800B1A00
-	lwz      r3, 0x2c4(r30)
-	addis    r0, r3, 1
-	cmplwi   r0, 0xffff
-	bne      lbl_800B1A00
-	lwz      r3, 0x308(r30)
-	lbz      r0, 2(r3)
-	cmplwi   r0, 0
-	bne      lbl_800B1A00
-	lbz      r0, 0x667(r30)
-	cmplwi   r0, 0
-	bne      lbl_800B1A00
-	lwz      r4, 0x44(r30)
-	lwz      r3, arcPointer__Q27JAInter11SequenceMgr@sda21(r13)
-	lhz      r4, 6(r4)
-	bl       getResSize_mStateJASResArcLoaderFP10JKRArchiveUs
-	lwz      r4, 0x40(r28)
-	mr       r5, r3
-	addi     r3, r30, 0x30c
-	bl       setSeqData__8JASTrackFPUcl
-	lwz      r3, 0x48(r28)
-	li       r26, 0
-	lwz      r4, seqTrackInfo__Q27JAInter11SequenceMgr@sda21(r13)
-	mr       r24, r26
-	lbz      r0, 0x14(r3)
-	mr       r27, r26
-	lfs      f29, lbl_80516FA0@sda21(r2)
-	mulli    r0, r0, 0x50
-	lfs      f0, lbl_80516FA4@sda21(r2)
-	lfs      f30, lbl_80516FA8@sda21(r2)
-	lfs      f31, lbl_80516FAC@sda21(r2)
-	add      r25, r4, r0
-	stfs     f29, 0xc(r25)
-	stfs     f0, 0x18(r25)
-	stfs     f29, 0x10(r25)
-	stfs     f30, 0x14(r25)
-	stfs     f30, 0x1c(r25)
-	stfs     f29, 0x20(r25)
-	b        lbl_800B1940
-
-lbl_800B1908:
-	lwz      r3, 0x24(r25)
-	addi     r26, r26, 1
-	stfsx    f29, r3, r24
-	lwz      r3, 0x30(r25)
-	stfsx    f31, r3, r24
-	lwz      r3, 0x28(r25)
-	stfsx    f29, r3, r24
-	lwz      r3, 0x2c(r25)
-	stfsx    f30, r3, r24
-	lwz      r3, 0x34(r25)
-	stfsx    f30, r3, r24
-	lwz      r3, 0x44(r25)
-	stwx     r27, r3, r24
-	addi     r24, r24, 4
-
-lbl_800B1940:
-	bl       getParamSeqTrackMax__18JAIGlobalParameterFv
-	cmplw    r26, r3
-	blt      lbl_800B1908
-	lwz      r3, 0x48(r28)
-	li       r0, 3
-	stb      r0, 0x15(r3)
-	lwz      r3, 0x48(r28)
-	lwz      r0, 0x28(r3)
-	cmplwi   r0, 1
-	ble      lbl_800B19A4
-	lwz      r12, 0x10(r3)
-	li       r4, 0
-	lfs      f1, lbl_80516FA8@sda21(r2)
-	li       r5, 7
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x48(r28)
-	li       r5, 7
-	lfs      f1, lbl_80516FA0@sda21(r2)
-	lwz      r12, 0x10(r3)
-	lwz      r4, 0x28(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_800B19A4:
-	lbz      r4, 0(r28)
-	cmplwi   r4, 0
-	beq      lbl_800B19C4
-	lwz      r3, 0x48(r28)
-	lbz      r5, 1(r28)
-	bl       setPauseMode__8JAISoundFUcUc
-	lfs      f0, lbl_80516FB0@sda21(r2)
-	stfs     f0, 0xc(r28)
-
-lbl_800B19C4:
-	lwz      r3, msBasic__8JAIBasic@sda21(r13)
-	lwz      r4, 0x48(r28)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r29
-	bl       checkPlayingSeqTrack__Q27JAInter11SequenceMgrFUl
-	lwz      r0, 0x48(r28)
-	cmplwi   r0, 0
-	beq      lbl_800B1A00
-	mr       r3, r28
-	bl       rootInit__Q27JAInter15SystemInterfaceFPQ27JAInter13SeqUpdateData
-	addi     r3, r30, 0x30c
-	bl       startSeq__8JASTrackFv
-
-lbl_800B1A00:
-	addi     r31, r31, 0x50
-	addi     r29, r29, 1
-
-lbl_800B1A08:
-	bl       getParamSeqPlayTrackMax__18JAIGlobalParameterFv
-	cmplw    r29, r3
-	blt      lbl_800B1850
-	psq_l    f31, 88(r1), 0, qr0
-	lfd      f31, 0x50(r1)
-	psq_l    f30, 72(r1), 0, qr0
-	lfd      f30, 0x40(r1)
-	psq_l    f29, 56(r1), 0, qr0
-	lfd      f29, 0x30(r1)
-	lmw      r24, 0x10(r1)
-	lwz      r0, 0x64(r1)
-	mtlr     r0
-	addi     r1, r1, 0x60
-	blr
-	*/
 }
 
 /**
@@ -2803,51 +2466,6 @@ void checkCustomDvdLoadArc(u32 p1, u32 index)
 	} else {
 		CustomHeapInfo info2 = customHeapCallback(2, sequence->mSoundInfo->mOffsetNo, sequence);
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	mulli    r4, r4, 0x50
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	addi     r3, r1, 0x10
-	stw      r31, 0x1c(r1)
-	lwz      r5, seqTrackInfo__Q27JAInter11SequenceMgr@sda21(r13)
-	add      r5, r5, r4
-	li       r4, 1
-	lwz      r31, 0x48(r5)
-	stb      r0, 3(r5)
-	mr       r6, r31
-	lwz      r5, 0x44(r31)
-	lwz      r12, customHeapCallback__Q27JAInter11SequenceMgr@sda21(r13)
-	lhz      r5, 6(r5)
-	mtctr    r12
-	bctrl
-	cmplwi   r31, 0
-	beq      lbl_800B2E64
-	lbz      r0, 0x15(r31)
-	cmplwi   r0, 1
-	bne      lbl_800B2E64
-	li       r0, 2
-	stb      r0, 0x15(r31)
-	b        lbl_800B2E84
-
-lbl_800B2E64:
-	lwz      r4, 0x44(r31)
-	mr       r6, r31
-	lwz      r12, customHeapCallback__Q27JAInter11SequenceMgr@sda21(r13)
-	addi     r3, r1, 8
-	lhz      r5, 6(r4)
-	li       r4, 2
-	mtctr    r12
-	bctrl
-
-lbl_800B2E84:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
@@ -3198,13 +2816,15 @@ void JAInter::SeqParameter::init()
 {
 	mTrack.assignExtBuffer(&mOuterParam);
 	// TODO: is this something like assigning a new (on stack) MoveParaSet? Can't do that to `this`, though...
-	_27C            = 0xFFFFFFFF;
-	mCurrentValue   = 1.0f;
-	mTargetValue    = 1.0f;
-	mMoveCounter    = 0;
-	mPauseMode      = SOUNDPAUSE_Unk0;
-	_27A            = 0;
-	_280            = 0;
+	_27C = 0xFFFFFFFF;
+	_00  = MoveParaSet();
+	// mCurrentValue   = 1.0f;
+	// mTargetValue    = 1.0f;
+	// mMoveCounter    = 0;
+	mPauseMode = SOUNDPAUSE_Unk0;
+	_27A       = 0;
+	_280       = 0;
+
 	mVolumeFlags    = 0;
 	mPanFlags       = 0;
 	mPitchFlags     = 0;
@@ -3218,11 +2838,11 @@ void JAInter::SeqParameter::init()
 	_2AC            = 0;
 	_2B0            = 0;
 	for (u32 i = 0; i < JAIGlobalParameter::getParamSeqTrackMax(); i++) {
-		_260[i]               = MoveParaSet();
-		_264[i]               = MoveParaSetInitHalf();
-		_268[i]               = MoveParaSet();
+		mTrackVolumes[i]      = MoveParaSet();
+		mTrackPans[i]         = MoveParaSetInitHalf();
+		mTrackPitches[i]      = MoveParaSet();
 		mTrackFxmixes[i]      = MoveParaSetInitZero();
-		mTrackDolbys[i]       = MoveParaSetInitZero();
+		mTrackDolbys[i]       = MoveParaSetInitZero(0.5f);
 		mInterruptSwitches[i] = 0;
 		_2B4[i]               = 0;
 		for (int j = 0; j < 16; j++) {
@@ -3241,248 +2861,6 @@ void JAInter::SeqParameter::init()
 		mFxmixes[i] = MoveParaSetInitZero();
 		mDolbys[i]  = MoveParaSetInitHalf();
 	}
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stfd     f31, 0x40(r1)
-	psq_st   f31, 72(r1), 0, qr0
-	stfd     f30, 0x30(r1)
-	psq_st   f30, 56(r1), 0, qr0
-	stfd     f29, 0x20(r1)
-	psq_st   f29, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	addi     r3, r28, 0x2c4
-	addi     r4, r28, 0x62c
-	bl       assignExtBuffer__8JASTrackFP13JASOuterParam
-	li       r0, -1
-	li       r31, 0
-	stw      r0, 0x27c(r28)
-	mr       r30, r31
-	lfs      f31, lbl_80516FA0@sda21(r2)
-	li       r29, 0
-	lfs      f30, lbl_80516FA4@sda21(r2)
-	stfs     f31, 4(r28)
-	lfs      f29, lbl_80516FA8@sda21(r2)
-	stfs     f31, 0(r28)
-	stw      r31, 0xc(r28)
-	stb      r31, 0x279(r28)
-	sth      r31, 0x27a(r28)
-	stw      r31, 0x280(r28)
-	stw      r31, 0x284(r28)
-	stw      r31, 0x288(r28)
-	stw      r31, 0x28c(r28)
-	stw      r31, 0x290(r28)
-	stw      r31, 0x294(r28)
-	stw      r31, 0x298(r28)
-	stw      r31, 0x29c(r28)
-	stw      r31, 0x2a0(r28)
-	stw      r31, 0x2a4(r28)
-	stw      r31, 0x2a8(r28)
-	stw      r31, 0x2ac(r28)
-	stw      r31, 0x2b0(r28)
-	b        lbl_800B348C
-
-lbl_800B3378:
-	lwz      r4, 0x260(r28)
-	li       r3, 0
-	li       r0, 2
-	add      r4, r4, r31
-	stfs     f31, 4(r4)
-	stfs     f31, 0(r4)
-	stw      r3, 0xc(r4)
-	lwz      r4, 0x264(r28)
-	add      r4, r4, r31
-	stfs     f30, 4(r4)
-	stfs     f30, 0(r4)
-	stw      r3, 0xc(r4)
-	lwz      r4, 0x268(r28)
-	add      r4, r4, r31
-	stfs     f31, 4(r4)
-	stfs     f31, 0(r4)
-	stw      r3, 0xc(r4)
-	lwz      r4, 0x26c(r28)
-	add      r4, r4, r31
-	stfs     f29, 4(r4)
-	stfs     f29, 0(r4)
-	stw      r3, 0xc(r4)
-	lwz      r4, 0x270(r28)
-	add      r4, r4, r31
-	stfs     f30, 4(r4)
-	stfs     f30, 0(r4)
-	stw      r3, 0xc(r4)
-	lwz      r4, 0x2b8(r28)
-	stbx     r3, r4, r29
-	lwz      r4, 0x2b4(r28)
-	stwx     r3, r4, r30
-	mtctr    r0
-
-lbl_800B33F8:
-	lwz      r0, 0x274(r28)
-	li       r11, 0
-	addi     r9, r3, 2
-	addi     r8, r3, 4
-	lwzx     r4, r30, r0
-	addi     r7, r3, 6
-	addi     r6, r3, 8
-	addi     r5, r3, 0xa
-	sthx     r11, r4, r3
-	addi     r4, r3, 0xc
-	addi     r0, r3, 0xe
-	addi     r3, r3, 0x10
-	lwz      r10, 0x274(r28)
-	lwzx     r10, r30, r10
-	sthx     r11, r10, r9
-	lwz      r9, 0x274(r28)
-	lwzx     r9, r30, r9
-	sthx     r11, r9, r8
-	lwz      r8, 0x274(r28)
-	lwzx     r8, r30, r8
-	sthx     r11, r8, r7
-	lwz      r7, 0x274(r28)
-	lwzx     r7, r30, r7
-	sthx     r11, r7, r6
-	lwz      r6, 0x274(r28)
-	lwzx     r6, r30, r6
-	sthx     r11, r6, r5
-	lwz      r5, 0x274(r28)
-	lwzx     r5, r30, r5
-	sthx     r11, r5, r4
-	lwz      r4, 0x274(r28)
-	lwzx     r4, r30, r4
-	sthx     r11, r4, r0
-	bdnz     lbl_800B33F8
-	addi     r31, r31, 0x10
-	addi     r30, r30, 4
-	addi     r29, r29, 1
-
-lbl_800B348C:
-	bl       getParamSeqTrackMax__18JAIGlobalParameterFv
-	cmplw    r29, r3
-	blt      lbl_800B3378
-	lfs      f0, lbl_80516FA8@sda21(r2)
-	li       r29, 0
-	lfs      f29, lbl_80516FA0@sda21(r2)
-	mr       r30, r28
-	stfs     f0, 0x14(r28)
-	li       r31, 0
-	stfs     f0, 0x10(r28)
-	stw      r29, 0x1c(r28)
-	stfs     f0, 0x24(r28)
-	stfs     f0, 0x20(r28)
-	stw      r29, 0x2c(r28)
-	stfs     f0, 0x34(r28)
-	stfs     f0, 0x30(r28)
-	stw      r29, 0x3c(r28)
-	stfs     f0, 0x44(r28)
-	stfs     f0, 0x40(r28)
-	stw      r29, 0x4c(r28)
-	stfs     f0, 0x54(r28)
-	stfs     f0, 0x50(r28)
-	stw      r29, 0x5c(r28)
-	stfs     f0, 0x64(r28)
-	stfs     f0, 0x60(r28)
-	stw      r29, 0x6c(r28)
-	stfs     f0, 0x74(r28)
-	stfs     f0, 0x70(r28)
-	stw      r29, 0x7c(r28)
-	stfs     f0, 0x84(r28)
-	stfs     f0, 0x80(r28)
-	stw      r29, 0x8c(r28)
-	stfs     f0, 0x94(r28)
-	stfs     f0, 0x90(r28)
-	stw      r29, 0x9c(r28)
-	stfs     f0, 0xa4(r28)
-	stfs     f0, 0xa0(r28)
-	stw      r29, 0xac(r28)
-	stfs     f0, 0xb4(r28)
-	stfs     f0, 0xb0(r28)
-	stw      r29, 0xbc(r28)
-	stfs     f0, 0xc4(r28)
-	stfs     f0, 0xc0(r28)
-	stw      r29, 0xcc(r28)
-	stfs     f0, 0xd4(r28)
-	stfs     f0, 0xd0(r28)
-	stw      r29, 0xdc(r28)
-	stfs     f0, 0xe4(r28)
-	stfs     f0, 0xe0(r28)
-	stw      r29, 0xec(r28)
-	stfs     f0, 0xf4(r28)
-	stfs     f0, 0xf0(r28)
-	stw      r29, 0xfc(r28)
-	stfs     f0, 0x104(r28)
-	stfs     f0, 0x100(r28)
-	stw      r29, 0x10c(r28)
-	b        lbl_800B3584
-
-lbl_800B3570:
-	stfs     f29, 0x114(r30)
-	addi     r31, r31, 1
-	stfs     f29, 0x110(r30)
-	stw      r29, 0x11c(r30)
-	addi     r30, r30, 0x10
-
-lbl_800B3584:
-	bl       getParamSeqPlayTrackMax__18JAIGlobalParameterFv
-	addi     r0, r3, 0xc
-	cmplw    r31, r0
-	blt      lbl_800B3570
-	lfs      f29, lbl_80516FA4@sda21(r2)
-	li       r30, 0
-	lfs      f30, lbl_80516FA0@sda21(r2)
-	li       r29, 0
-	lfs      f31, lbl_80516FA8@sda21(r2)
-	b        lbl_800B3608
-
-lbl_800B35AC:
-	lwz      r0, 0x250(r28)
-	li       r3, 0
-	addi     r30, r30, 1
-	add      r4, r0, r29
-	stfs     f29, 4(r4)
-	stfs     f29, 0(r4)
-	stw      r3, 0xc(r4)
-	lwz      r0, 0x254(r28)
-	add      r4, r0, r29
-	stfs     f30, 4(r4)
-	stfs     f30, 0(r4)
-	stw      r3, 0xc(r4)
-	lwz      r0, 0x258(r28)
-	add      r4, r0, r29
-	stfs     f31, 4(r4)
-	stfs     f31, 0(r4)
-	stw      r3, 0xc(r4)
-	lwz      r0, 0x25c(r28)
-	add      r4, r0, r29
-	addi     r29, r29, 0x10
-	stfs     f29, 4(r4)
-	stfs     f29, 0(r4)
-	stw      r3, 0xc(r4)
-
-lbl_800B3608:
-	bl       getParamSeqParameterLines__18JAIGlobalParameterFv
-	clrlwi   r0, r3, 0x18
-	cmplw    r30, r0
-	blt      lbl_800B35AC
-	psq_l    f31, 72(r1), 0, qr0
-	lfd      f31, 0x40(r1)
-	psq_l    f30, 56(r1), 0, qr0
-	lfd      f30, 0x30(r1)
-	psq_l    f29, 40(r1), 0, qr0
-	lfd      f29, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r0, 0x54(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
 }
 
 /**

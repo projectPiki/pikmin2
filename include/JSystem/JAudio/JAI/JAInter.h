@@ -8,6 +8,7 @@
 #include "JSystem/JGeometry.h"
 #include "JSystem/JKernel/JKRArchive.h"
 #include "JSystem/JSupport/JSUList.h"
+#include "JSystem/JAudio/JAI/JAIGlobalParameter.h"
 #include "types.h"
 #include "Dolphin/mtx.h"
 
@@ -254,8 +255,8 @@ struct PlayerParameter {
 		s16* ps16;
 	};
 
-	PlayerParameter();
-	~PlayerParameter();
+	PlayerParameter() { }
+	~PlayerParameter() { }
 
 	JASTrack* _00; // _00
 	union {
@@ -298,8 +299,26 @@ struct SeParameter {
 struct SeqUpdateData {
 	SeqUpdateData();
 
-	u8 mPauseMode;          // _00 - unknown
-	u8 _01;                 // _01 - unknown
+	void init()
+	{
+		_0C = 1.0f;
+		_18 = 0.5f;
+		_10 = 1.0f;
+		_14 = 0.0f;
+		_1C = 0.0f;
+		_20 = 1.0f;
+		for (u32 j = 0; j < JAIGlobalParameter::getParamSeqTrackMax(); j++) {
+			_24[j] = 1.0f;
+			_30[j] = 64.0f;
+			_28[j] = 1.0f;
+			_2C[j] = 0.0f;
+			_34[j] = 0.0f;
+			_44[j] = 0;
+		}
+	}
+
+	u8 mPauseMode;          // _00
+	u8 mPauseVolume;        // _01
 	u8 mPrepareFlag;        // _02
 	u8 _03;                 // _03 - could be padding
 	uint _04;               // _04
@@ -316,29 +335,29 @@ struct SeqUpdateData {
 	f32* _30;               // _30
 	f32* _34;               // _34
 	u8 _38[8];              // _38 - unknown
-	u8* _40;                // _40
+	u8* mFilePtr;           // _40, pointer to a data file loaded in by getSeqData
 	u32* _44;               // _44
 	JAISequence* mSequence; // _48
 	PlayerParameter* _4C;   // _4C - pointer to array of 33 parameters
 };
 
-struct SeqParameter : public MoveParaSet {
+struct SeqParameter {
 	~SeqParameter();
 
 	void init();
 
 	inline JASTrack* getTrack() { return &mTrack; }
 
-	// _00-_10 = MoveParaSet
+	MoveParaSet _00;                    // _00
 	MoveParaSet _10[16];                // _10
 	MoveParaSet mVolumes[20];           // _110
 	MoveParaSet* mPans;                 // _250
 	MoveParaSet* mPitches;              // _254
 	MoveParaSet* mFxmixes;              // _258
 	MoveParaSet* mDolbys;               // _25C
-	MoveParaSet* _260;                  // _260
-	MoveParaSetInitHalf* _264;          // _264
-	MoveParaSet* _268;                  // _268
+	MoveParaSet* mTrackVolumes;         // _260
+	MoveParaSetInitHalf* mTrackPans;    // _264
+	MoveParaSet* mTrackPitches;         // _268
 	MoveParaSetInitZero* mTrackFxmixes; // _26C
 	MoveParaSetInitZero* mTrackDolbys;  // _270
 	u16** _274;                         // _274

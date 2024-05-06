@@ -17,12 +17,12 @@ struct SeqUpdateData;
 namespace SeMgr {
 /** @fabricatedName */
 struct TrackUpdate {
-	u8 _00;  // _00
-	f32 _04; // _04
-	f32 _08; // _08
-	f32 _0C; // _0C
-	f32 _10; // _10
-	f32 _14; // _14
+	u8 _00;             // _00
+	f32 mPlayingVolume; // _04
+	f32 mPlayingPitch;  // _08
+	f32 mPlayingFxmix;  // _0C
+	f32 mPlayingPan;    // _10
+	f32 mPlayingDolby;  // _14
 };
 
 // fabricated name
