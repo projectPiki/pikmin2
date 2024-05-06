@@ -451,9 +451,22 @@ struct ActBridgeArg : public ActionArg {
 	Game::ItemBridge::Item* mBridge; // _04
 };
 
-#define PIKIAI_BRIDGE_DEFAULT     0
-#define PIKIAI_BRIDGE_GOTOPOS     1
-#define PIKIAI_BRIDGE_STICKATTACK 2
+/**
+ * @brief The ActBridgeState struct represents the different states of a bridge-related action for a Piki AI.
+ */
+struct ActBridgeState {
+	enum State {
+		GoToPosition  = 0, /**< The AI is moving directly towards the bridge. */
+		FollowTowards = 1, /**< The AI is following a vector field towards the bridge. */
+		StickAttack   = 2, /**< The AI is attacking the bridge. */
+	};
+
+	enum CollisionPartType {
+		NoCollisionPart = 0, /**< No collision part. */
+		Breakable       = 1, /**< The bridge is breakable. */
+		Other           = 2, /**< Another part of the bridge. */
+	};
+};
 
 struct ActBridge : public Action, virtual SysShape::MotionListener {
 	ActBridge(Game::Piki* p);

@@ -20,7 +20,7 @@ static const char aiBridgeName[] = "actBridge";
 ActBridge::ActBridge(Game::Piki* parent)
     : Action(parent)
 {
-	mCollPartType = 0;
+	mCollPartType = ActBridgeState::NoCollisionPart;
 
 	mStickAttack = new ActStickAttack(parent);
 	mGotoPos     = new ActGotoPos(parent);
@@ -48,7 +48,7 @@ void ActBridge::init(ActionArg* actionArg)
 	Game::GameStat::workPikis.inc(mParent);
 
 	mBridge       = static_cast<ActBridgeArg*>(actionArg)->mBridge;
-	mCollPartType = 0;
+	mCollPartType = ActBridgeState::NoCollisionPart;
 
 	initFollow();
 }
@@ -61,7 +61,7 @@ void ActBridge::initFollow()
 {
 	FollowVectorFieldActionArg followArg(mBridge);
 	mFollowField->init(&followArg);
-	mState = 1;
+	mState = ActBridgeState::FollowTowards;
 }
 
 /**
@@ -72,7 +72,7 @@ void ActBridge::initGoto()
 {
 	GotoPosActionArg gotoArg;
 	mGotoPos->init(&gotoArg);
-	mState = 1;
+	mState = ActBridgeState::FollowTowards;
 }
 
 /**
@@ -85,8 +85,9 @@ void ActBridge::initStickAttack()
 	f32 attackDamage = mParent->getAttackDamage();
 	StickAttackActionArg stickAttackArg(attackDamage, mBridge, Game::IPikiAnims::NULLANIM, STICKATK_Bridge);
 
+	// Check if the bridge is breakable and the wall is pointing upwards (hit a wall)
 	bool check = false;
-	if ((mCollPartType & 1) && mParent->mFloorNormal.y > 0.5f) {
+	if ((mCollPartType & ActBridgeState::Breakable) && mParent->mFloorNormal.y > 0.5f) {
 		check = true;
 	}
 
@@ -96,7 +97,7 @@ void ActBridge::initStickAttack()
 
 	mStickAttack->init(&stickAttackArg);
 
-	mState = 2;
+	mState = ActBridgeState::StickAttack;
 }
 
 /**
@@ -105,54 +106,63 @@ void ActBridge::initStickAttack()
  */
 int ActBridge::exec()
 {
+	// Are we done with killing the bridge?
 	if (!mBridge->isAlive()) {
-		mCollPartType = 0;
-		return 0;
+		mCollPartType = ActBridgeState::NoCollisionPart;
+		return ACTEXEC_Success; // Yes, we are done
 	}
 
+	// Did we magically get into water?
 	if (mParent->inWater()) {
-		return 2;
+		return ACTEXEC_Fail; // Cannot break bridges if we're drowning
 	}
 
 	switch (mState) {
-	case 2:
-		bool checkCode = mFollowField->exec() != 0;
-		if (!checkCode) {
-			return 0;
+	case ActBridgeState::StickAttack:
+		// Is the bridge done being made?
+		bool failedFollow = mFollowField->exec() != ACTEXEC_Success;
+		if (!failedFollow) {
+			return ACTEXEC_Success; // Yes, all done
 		}
 
+		// We need to attack the bridge
 		int stickResult = mStickAttack->exec();
-		if (stickResult == 0 || stickResult == 2) {
-			initStickAttack();
+		if (stickResult == ACTEXEC_Success || stickResult == ACTEXEC_Fail) {
+			initStickAttack(); // Start attacking
 		} else {
-			mCollPartType = 0;
+			mCollPartType = ActBridgeState::NoCollisionPart;
 			return stickResult;
 		}
+
 		break;
 
-	case 1:
+	case ActBridgeState::FollowTowards:
 		int followResult = mFollowField->exec();
-		if (followResult == 0) {
+
+		if (followResult == ACTEXEC_Success) {
 			initStickAttack();
 		} else {
-			mCollPartType = 0;
+			mCollPartType = ActBridgeState::NoCollisionPart;
 			return followResult;
 		}
+
 		break;
 
-	case 0:
+	case ActBridgeState::GoToPosition:
 		int gotoResult = mGotoPos->exec();
-		if (gotoResult == 0) {
+
+		if (gotoResult == ACTEXEC_Success) {
 			initStickAttack();
 		} else {
-			mCollPartType = 0;
+			mCollPartType = ActBridgeState::NoCollisionPart;
 			return gotoResult;
 		}
+
 		break;
 	}
 
-	mCollPartType = 0;
-	return 1;
+	mCollPartType = ActBridgeState::NoCollisionPart;
+	return ACTEXEC_Continue;
 }
 
 /**
@@ -164,7 +174,7 @@ void ActBridge::cleanup()
 	Game::GameStat::workPikis.dec(mParent);
 
 	switch (mState) {
-	case 2:
+	case ActBridgeState::StickAttack:
 		mStickAttack->cleanup();
 		break;
 	}
@@ -178,14 +188,17 @@ void ActBridge::platCallback(Game::Piki* p, Game::PlatEvent& platEvent)
 {
 	Game::PlatInstance* instance = platEvent.mInstance;
 	if (platEvent.mObj == mBridge) {
+		// Check if the bridge is breakable or not
 		if (instance->mId.getID() == 'brbk') {
-			mCollPartType |= 0x1;
-		} else if (instance->mId.getID() == 'br__') {
-			mCollPartType |= 0x2;
+			mCollPartType |= ActBridgeState::Breakable;
+		} // Check if the object is part of a bridge
+		else if (instance->mId.getID() == 'br__') {
+			mCollPartType |= ActBridgeState::Other;
 		}
 	}
 
-	if (mState == 1) {
+	// If we were following something, we MAY have hit the bridge!
+	if (mState == ActBridgeState::FollowTowards) {
 		initStickAttack();
 	}
 }
