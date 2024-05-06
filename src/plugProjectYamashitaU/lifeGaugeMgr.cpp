@@ -215,19 +215,8 @@ void LifeGaugeList::draw(Graphics& gfx)
 
 	LifeGauge::initLifeGaugeDraw();
 
-	for (int i = 0; i < mLifeGauge.mSegmentCount; i++) {
-		// TODO
-		GXBegin(GX_TRIANGLEFAN, GX_VTXFMT0, 3);
-
-		GXPosition3f32(y, y, z);
-		GXColor4u8(mLifeGauge.mLifeGaugeColor.r, mLifeGauge.mLifeGaugeColor.g, mLifeGauge.mLifeGaugeColor.b, mLifeGauge.mLifeGaugeColor.a);
-
-		GXPosition3f32(y, y, z);
-		GXColor4u8(mLifeGauge.mLifeGaugeColor.r, mLifeGauge.mLifeGaugeColor.g, mLifeGauge.mLifeGaugeColor.b, mLifeGauge.mLifeGaugeColor.a);
-
-		GXPosition3f32(y, y, z);
-		GXColor4u8(mLifeGauge.mLifeGaugeColor.r, mLifeGauge.mLifeGaugeColor.g, mLifeGauge.mLifeGaugeColor.b, mLifeGauge.mLifeGaugeColor.a);
-	}
+	// idk what values go here
+	mLifeGauge.draw(mParam.mRadius, y, x);
 }
 
 /**
