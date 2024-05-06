@@ -1284,8 +1284,8 @@ void SingleGameSection::drawCaveScreen() { }
  */
 void SingleGameSection::newCaveOtakaraEarningsAndDrops()
 {
-	int otakaraCount = PelletList::Mgr::getCount(PelletList::OTAKARA);
-	int itemCount    = PelletList::Mgr::getCount(PelletList::ITEM);
+	int otakaraCount = PelletList::Mgr::getCount(PelletList::PLK_Otakara);
+	int itemCount    = PelletList::Mgr::getCount(PelletList::PLK_Item);
 	mCaveTreasureCounter.alloc(otakaraCount);
 	mCaveUpgradeCounter.alloc(itemCount);
 	mOtakaraCounter.alloc(otakaraCount);

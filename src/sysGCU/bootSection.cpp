@@ -23,6 +23,7 @@
 
 u32 unused[4] = { 1, 2, 3, 0 }; // has to be generated before nans
 #include "nans.h"
+#include "Game/Piki.h"
 
 static const u32 padding[]        = { 0, 0, 0 };
 u32 TinyPikminMgr::sTinyPikminNum = 10;
@@ -322,33 +323,35 @@ void TinyPikminMgr::loadResource(JKRArchive* arc)
  */
 void TinyPikminMgr::init()
 {
-	f32 test1 = 1.5f / sTinyPikminNum;
-	f32 test2 = 274.0f / sTinyPikminNum;
+	f32 interval = 1.5f / sTinyPikminNum;
+	f32 maxTime  = 274.0f / sTinyPikminNum;
 
-	// make a list of random time values?
-	f32* values = new (-0x20) f32[sTinyPikminNum];
+	// !!! timeValues doesn't ever get used. It's created to be ignored. (in TinyPikmin::init as argument 3)
+
+	// Create a list of random time values
+	f32* timeValues = new (-0x20) f32[sTinyPikminNum];
 	for (int i = 0; i < sTinyPikminNum; i++) {
-		values[i] = (test2 * (f32)i) + (0.75f * test2 * randFloat() - 0.5f);
+		timeValues[i] = (maxTime * (f32)i) + (0.75f * maxTime * randFloat() - 0.5f);
 	}
 
-	// randomly swap around times?
+	// Randomly swap around times
 	for (int i = 0; i < sTinyPikminNum; i++) {
-		int id      = randInt(sTinyPikminNum);
-		f32 old     = values[id];
-		int id2     = randInt(sTinyPikminNum);
-		values[id]  = values[id2];
-		values[id2] = old;
+		int id          = randInt(sTinyPikminNum);
+		f32 temp        = timeValues[id];
+		int id2         = randInt(sTinyPikminNum);
+		timeValues[id]  = timeValues[id2];
+		timeValues[id2] = temp;
 	}
 
-	// red is the default color, 25% chance to pick a random different color
+	// Red is the default color, 25% chance to pick a random different color
 	int color        = TinyPikmin::Red;
 	bool changecolor = false;
 	if (randFloat() > 0.75f) {
 		changecolor = true;
-		color       = randInt(5);
+		color       = randInt(Game::AllPikmin);
 	}
 
-	f32 delay = test2 * 0.5f + 175.0f;
+	f32 delay = maxTime * 0.5f + 175.0f;
 	for (int i = 0; i < sTinyPikminNum; i++) {
 		if (!mDoSlamPikmin || i == sTinyPikminNum - 1) {
 			color = TinyPikmin::Purple;
@@ -362,11 +365,13 @@ void TinyPikminMgr::init()
 		if (i == 0) {
 			x = 0.0f;
 		} else {
-			x = ((f32)i * test1) + (test1 * randFloat());
+			x = ((f32)i * interval) + (interval * randFloat());
 		}
-		mPikis[i].init(color, delay, values[i], x);
+
+		mPikis[i].init(color, delay, timeValues[i], x);
 	}
-	delete[] values;
+
+	delete[] timeValues;
 }
 
 /**
@@ -417,8 +422,8 @@ void TinyPikminMgr::disappear()
  */
 BootSection::BootSection(JKRHeap* heap)
     : BaseHIOSection(heap)
-    , mStateID(SID_NULL)
-    , mChangeStateID(0)
+    , mStateID(SID_NullState)
+    , mChangeStateID(SID_FirstState)
     , mFadeTimer(0.0f)
     , mNintendoLogoTexture(nullptr)
     , mController(nullptr)
@@ -559,29 +564,29 @@ void BootSection::drawScreenProgre(Graphics& gfx)
 void BootSection::doDraw(Graphics& gfx)
 {
 	switch (mStateID) {
-	case 0:
-	case 1:
-	case 2:
-	case 3:
+	case SID_LoadResourceFirst:
+	case SID_LoadMemoryCard:
+	case SID_InitNintendoLogo:
+	case SID_Unused3:
 		drawEpilepsy(gfx); // drawNintendoLogo in USA Demo 1
 		break;
-	case 4:
+	case SID_NintendoLogo:
 		drawNintendoLogo(gfx);
 		break;
-	case 5:
+	case SID_WaitProgressive:
 		drawProgressive(gfx);
 		drawScreenProgre(gfx);
 		break;
-	case 7:
+	case SID_SetInterlace:
 		drawSetInterlace(gfx);
 		drawScreenProgre(gfx);
 		break;
-	case 8:
+	case SID_UpdateSetInterlace:
 		drawSetProgressive(gfx);
 		drawScreenProgre(gfx);
 		break;
-	case 9:
-	case 10:
+	case SID_DolbyLogo:
+	case SID_EndState:
 		drawDolbyLogo(gfx);
 	}
 }
@@ -799,32 +804,32 @@ bool BootSection::doUpdate()
 	mPikiMgr->update();
 	JUTFader* fader;
 	switch (mStateID) {
-	case SID_LOAD_RESOURCE_FIRST:
+	case SID_LoadResourceFirst:
 		updateLoadResourceFirst();
 		break;
-	case SID_LOAD_MEMORY_CARD:
+	case SID_LoadMemoryCard:
 		updateLoadMemoryCard();
 		break;
-	case SID_INIT_NINTENDO_LOGO:
+	case SID_InitNintendoLogo:
 		// setMode(SID_NINTENDO_LOGO);
 		// mPikiMgr->appear();
 		break;
-	case SID_NINTENDO_LOGO:
+	case SID_NintendoLogo:
 		updateNintendoLogo();
 		break;
-	case 5:
+	case SID_WaitProgressive:
 		updateProgressive();
 		break;
-	case 6:
+	case SID_UpdateWaitProgressive:
 		updateWaitProgressive();
 		break;
-	case 8:
+	case SID_UpdateSetInterlace:
 		fader = mDisplay->mFader;
 		switch (fader->mStatus) {
 		case JUTFader::Status_Out:
 			if (mProgressiveScreen->isFinish()) {
 				mFadeTimer = 0.0f;
-				setMode(SID_SET_INTERLACE);
+				setMode(SID_UpdateWaitProgressive);
 				VISetBlack(true);
 				VIFlush();
 				VIWaitForRetrace();
@@ -838,24 +843,20 @@ bool BootSection::doUpdate()
 				gPikmin2AramMgr->setLoadPermission(false);
 			}
 			if (mFadeTimer > 1.0f && !waitLoadResource()) {
-				f32 test = 0.5f / sys->mDeltaTime;
-				test     = (test >= 0.0f) ? test + 0.5f : test - 0.5f;
-				if (mProgressiveScreen->fadeout((int)test)) {
-					f32 test = 0.5f / sys->mDeltaTime;
-					test     = (test >= 0.0f) ? test + 0.5f : test - 0.5f;
-					fader->startFadeOut((int)test);
+				if (mProgressiveScreen->fadeout(getFadeSpeed())) {
+					fader->startFadeOut(getFadeSpeed());
 				}
 			}
 			break;
 		}
 		break;
-	case 7:
+	case SID_SetInterlace:
 		fader = mDisplay->mFader;
 		switch (fader->mStatus) {
 		case JUTFader::Status_Out:
 			if (mProgressiveScreen->isFinish()) {
 				mFadeTimer = 0.0f;
-				setMode(SID_DOLBY_LOGO_2);
+				setMode(SID_DolbyLogo);
 				sys->changeRenderMode(System::RM_NTSC_Standard);
 			}
 			break;
@@ -865,18 +866,14 @@ bool BootSection::doUpdate()
 				gPikmin2AramMgr->setLoadPermission(false);
 			}
 			if (mFadeTimer > 1.0f && !waitLoadResource()) {
-				f32 test = 0.5f / sys->mDeltaTime;
-				test     = (test >= 0.0f) ? test + 0.5f : test - 0.5f;
-				if (mProgressiveScreen->fadeout((int)test)) {
-					f32 test = 0.5f / sys->mDeltaTime;
-					test     = (test >= 0.0f) ? test + 0.5f : test - 0.5f;
-					fader->startFadeOut((int)test);
+				if (mProgressiveScreen->fadeout(getFadeSpeed())) {
+					fader->startFadeOut(getFadeSpeed());
 				}
 			}
 			break;
 		}
 		break;
-	case 9:
+	case SID_DolbyLogo:
 		fader = mDisplay->mFader;
 		switch (fader->mStatus) {
 		case JUTFader::Status_Out:
@@ -891,7 +888,7 @@ bool BootSection::doUpdate()
 			break;
 		}
 		break;
-	case 10:
+	case SID_EndState:
 		mIsMainActive = false;
 		mTimeStep     = 0.5f;
 	}
@@ -1446,7 +1443,7 @@ void BootSection::updateLoadResourceFirst()
 		P2ASSERTLINE(1723, scene);
 		scene->startGlobalStream(P2_STREAM_SOUND_ID(PSSTR_PIKMIN_GREET));
 #endif
-		setMode(SID_LOAD_MEMORY_CARD);
+		setMode(SID_LoadMemoryCard);
 	}
 }
 
@@ -1488,23 +1485,25 @@ void BootSection::updateNintendoLogo()
 		}
 	}
 
-	if (mDoOpenProgressive && mChangeStateID != 5 && !mProgressiveActive) {
-		mChangeStateID = 5;
+	if (mDoOpenProgressive && mChangeStateID != SID_WaitProgressive && !mProgressiveActive) {
+		mChangeStateID = SID_WaitProgressive;
 		sys->dvdLoadUseCallBack(&mThreadCommand, new Delegate<BootSection>(this, &BootSection::load2DResource));
 	}
+
 	mFadeTimer += sys->mDeltaTime;
 	if (mFadeTimer > 1.5f && !waitLoadResource()) {
 		if (!mProgressiveActive) {
 			mProgressiveActive = true;
 		}
-		if (mChangeStateID != 5) {
-			mChangeStateID  = 9;
+
+		if (mChangeStateID != SID_WaitProgressive) {
+			mChangeStateID  = SID_DolbyLogo;
 			JUTFader* fader = mDisplay->mFader;
+
 			if (fader->mStatus == JUTFader::Status_In) {
-				f32 fadeSpeed = 0.5f / sys->mDeltaTime;
-				fadeSpeed     = (fadeSpeed >= 0.0f) ? fadeSpeed + 0.5f : fadeSpeed - 0.5f;
-				fader->startFadeOut((int)fadeSpeed);
+				fader->startFadeOut(getFadeSpeed());
 			}
+
 			if (mDisplay->mFader->mStatus == JUTFader::Status_Out) {
 				setMode(mChangeStateID);
 				mFadeTimer = 0.0f;
@@ -1513,9 +1512,7 @@ void BootSection::updateNintendoLogo()
 			setMode(mChangeStateID);
 			mFadeTimer                 = 0.0f;
 			ebi::TScreenProgre* screen = mProgressiveScreen;
-			f32 fadeSpeed              = 0.5f / sys->mDeltaTime;
-			fadeSpeed                  = (fadeSpeed >= 0.0f) ? fadeSpeed + 0.5f : fadeSpeed - 0.5f;
-			screen->startScreen(0, (int)fadeSpeed);
+			screen->startScreen(0, getFadeSpeed());
 			mProgressiveScreen->mSelect = 1;
 		}
 	}
@@ -1539,26 +1536,18 @@ void BootSection::updateProgressive()
 		}
 
 		if (mProgressiveScreen->mSelected) {
-			f32 fadeSpeed = 0.5f / sys->mDeltaTime;
-			fadeSpeed     = (fadeSpeed >= 0.0f) ? fadeSpeed + 0.5f : fadeSpeed - 0.5f;
-			mProgressiveScreen->fadeout((int)fadeSpeed);
+			mProgressiveScreen->fadeout(getFadeSpeed());
 			mFadeTimer = 10.0f;
 		}
 	}
 
 	if (mProgressiveScreen->isFinish()) {
 		if (mProgressiveScreen->mSelect) {
-			setMode(SID_DOLBY_LOGO_1);
-
-			f32 fadeSpeed = 0.5f / sys->mDeltaTime;
-			fadeSpeed     = (fadeSpeed >= 0.0f) ? fadeSpeed + 0.5f : fadeSpeed - 0.5f;
-			mProgressiveScreen->startScreen(2, (int)fadeSpeed);
+			setMode(SID_UpdateSetInterlace);
+			mProgressiveScreen->startScreen(2, getFadeSpeed());
 		} else {
-			setMode(SID_SET_PROGRESSIVE);
-
-			f32 fadeSpeed = 0.5f / sys->mDeltaTime;
-			fadeSpeed     = (fadeSpeed >= 0.0f) ? fadeSpeed + 0.5f : fadeSpeed - 0.5f;
-			mProgressiveScreen->startScreen(1, (int)fadeSpeed);
+			setMode(SID_SetInterlace);
+			mProgressiveScreen->startScreen(1, getFadeSpeed());
 		}
 
 		mFadeTimer = 0.0f;
@@ -1648,7 +1637,7 @@ void BootSection::setMode(int id)
 	if (mStateID != id) {
 		mStateID = (StateID)id;
 		switch (mStateID) {
-		case SID_NINTENDO_LOGO:
+		case SID_NintendoLogo:
 			mDisplay->mFader->startFadeIn(0.5f / sys->mDeltaTime);
 			mFadeTimer = 0.0f;
 			break;
@@ -1669,4 +1658,4 @@ void BootSection::getModeEpilepsy()
  * @note Address: 0x80449F54
  * @note Size: 0x88
  */
-void BootSection::setModeEpilepsy() { setMode(SID_INIT_NINTENDO_LOGO); }
+void BootSection::setModeEpilepsy() { setMode(SID_InitNintendoLogo); }

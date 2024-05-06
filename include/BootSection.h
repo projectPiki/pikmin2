@@ -3,6 +3,7 @@
 
 #include "DvdThreadCommand.h"
 #include "Game/BaseHIO.h"
+#include "System.h"
 
 #define NINTENDOLOGO_XPOS   117.0f
 #define NINTENDOLOGO_YPOS   154.0f
@@ -44,20 +45,23 @@ struct BootSection : public Game::BaseHIOSection {
 	typedef bool (BootSection::*RunWaitCallback)();
 
 	/**
-	 * @brief Enumeration of state IDs for the boot section.
+	 * @brief Enumeration representing the different state IDs in the boot section.
 	 */
 	enum StateID {
-		SID_LOAD_RESOURCE_FIRST = 0, /**< Load resource first state ID */
-		SID_LOAD_MEMORY_CARD,        /**< Load memory card state ID */
-		SID_INIT_NINTENDO_LOGO,      /**< Initialize Nintendo logo state ID */
-		SID_UNUSED_3,                /**< Unused state ID */
-		SID_NINTENDO_LOGO,           /**< Nintendo logo state ID */
-		SID_WAIT_PROGRESSIVE,        /**< Wait progressive state ID */
-		SID_SET_INTERLACE,           /**< Set interlace state ID */
-		SID_SET_PROGRESSIVE,         /**< Set progressive state ID */
-		SID_DOLBY_LOGO_1,            /**< Dolby logo 1 state ID */
-		SID_DOLBY_LOGO_2,            /**< Dolby logo 2 state ID */
-		SID_NULL = -1                /**< Null state ID */
+		SID_LoadResourceFirst     = 0,  /**< State ID for loading resources first */
+		SID_LoadMemoryCard        = 1,  /**< State ID for loading memory card */
+		SID_InitNintendoLogo      = 2,  /**< State ID for initializing Nintendo logo */
+		SID_Unused3               = 3,  /**< Unused state ID */
+		SID_NintendoLogo          = 4,  /**< State ID for displaying Nintendo logo */
+		SID_WaitProgressive       = 5,  /**< State ID for waiting for progressive scan */
+		SID_UpdateWaitProgressive = 6,  /**< State ID for updating wait for progressive scan */
+		SID_SetInterlace          = 7,  /**< State ID for setting interlace */
+		SID_UpdateSetInterlace    = 8,  /**< State ID for updating set interlace */
+		SID_DolbyLogo             = 9,  /**< State ID for displaying Dolby logo */
+		SID_EndState              = 10, /**< State ID for end state */
+
+		SID_FirstState = 0, /**< First state ID */
+		SID_NullState  = -1 /**< Null state ID */
 	};
 
 	BootSection(JKRHeap*);
@@ -99,8 +103,10 @@ struct BootSection : public Game::BaseHIOSection {
 	void waitSystemDvdLoad();
 	void getModeEpilepsy();
 
+	inline int getFadeSpeed() { return ROUND_F32_TO_U8(0.5f / sys->getDeltaTime()); }
+
 	StateID mStateID;                       // _48
-	int mChangeStateID;                     // _4C
+	StateID mChangeStateID;                 // _4C
 	f32 mFadeTimer;                         // _50
 	JUTTexture* mWarningTexture;            // _54
 	JUTTexture* mWarningPressStartTexture;  // _58

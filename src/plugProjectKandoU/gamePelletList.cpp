@@ -121,8 +121,8 @@ void Mgr::loadResource()
  */
 int Mgr::getDictionaryNum()
 {
-	int itemCount    = mInstance->mConfigList[ITEM].getConfigCount();
-	int otakaraCount = mInstance->mConfigList[OTAKARA].getConfigCount();
+	int itemCount    = mInstance->mConfigList[PLK_Item].getConfigCount();
+	int otakaraCount = mInstance->mConfigList[PLK_Otakara].getConfigCount();
 	return otakaraCount + itemCount;
 }
 
@@ -134,9 +134,9 @@ PelletConfig* Mgr::getConfigFromDictionaryNo(int dictNo)
 {
 	bool isValid = dictNo >= 0 && dictNo < getDictionaryNum();
 	P2ASSERTLINE(188, isValid);
-	PelletConfig* result = mInstance->mConfigList[OTAKARA].getPelletConfig_ByDictionaryNo(dictNo);
+	PelletConfig* result = mInstance->mConfigList[PLK_Otakara].getPelletConfig_ByDictionaryNo(dictNo);
 	if (!result) {
-		result = mInstance->mConfigList[ITEM].getPelletConfig_ByDictionaryNo(dictNo);
+		result = mInstance->mConfigList[PLK_Item].getPelletConfig_ByDictionaryNo(dictNo);
 	}
 	return result;
 }
@@ -148,10 +148,10 @@ PelletConfig* Mgr::getConfigFromDictionaryNo(int dictNo)
 int Mgr::getOffsetFromDictionaryNo(int dictNo)
 {
 	int offset           = 0;
-	PelletConfig* config = mInstance->mConfigList[OTAKARA].getPelletConfig_ByDictionaryNo(dictNo);
+	PelletConfig* config = mInstance->mConfigList[PLK_Otakara].getPelletConfig_ByDictionaryNo(dictNo);
 	if (!config) {
-		offset = mInstance->mConfigList[OTAKARA].getConfigCount();
-		config = mInstance->mConfigList[ITEM].getPelletConfig_ByDictionaryNo(dictNo);
+		offset = mInstance->mConfigList[PLK_Otakara].getConfigCount();
+		config = mInstance->mConfigList[PLK_Item].getPelletConfig_ByDictionaryNo(dictNo);
 	}
 	JUT_ASSERTLINE(210, config, "dictNo:%d \n", dictNo);
 	return offset + config->mParams.mIndex;

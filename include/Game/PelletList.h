@@ -5,13 +5,17 @@
 
 namespace Game {
 namespace PelletList {
+/**
+ * @enum cKind
+ * @brief Enumeration representing the different kinds of pellets.
+ */
 enum cKind {
-	NUMBER_PELLET = 0,
-	CARCASS       = 1,
-	FRUIT         = 2,
-	OTAKARA       = 3,
-	ITEM          = 4,
-	SIZE, // 5
+	PLK_NumberPellet = 0, /**< Number pellet kind */
+	PLK_Carcass      = 1, /**< Carcass kind */
+	PLK_Fruit        = 2, /**< Fruit kind */
+	PLK_Otakara      = 3, /**< Otakara kind */
+	PLK_Item         = 4, /**< Item kind */
+	PLK_Size,             /**< Size of the enumeration */
 };
 
 struct Mgr {

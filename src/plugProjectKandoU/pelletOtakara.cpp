@@ -265,7 +265,7 @@ void Object::changeMaterial()
  * @note Size: 0xB0
  */
 Mgr::Mgr()
-    : FixedSizePelletMgr<Object>(PelletList::OTAKARA)
+    : FixedSizePelletMgr<Object>(PelletList::PLK_Otakara)
 {
 }
 

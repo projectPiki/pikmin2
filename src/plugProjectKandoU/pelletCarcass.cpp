@@ -10,7 +10,7 @@ Mgr* mgr;
  * @note Size: 0xB0
  */
 Mgr::Mgr()
-    : FixedSizePelletMgr<Object>(PelletList::CARCASS)
+    : FixedSizePelletMgr<Object>(PelletList::PLK_Carcass)
 {
 }
 

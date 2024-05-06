@@ -401,8 +401,8 @@ PlayData::PlayData()
 		oldOtakara->updateCounts(i, info);
 	}
 
-	int treasures = PelletList::Mgr::getCount(PelletList::OTAKARA);
-	int items     = PelletList::Mgr::getCount(PelletList::ITEM);
+	int treasures = PelletList::Mgr::getCount(PelletList::PLK_Otakara);
+	int items     = PelletList::Mgr::getCount(PelletList::PLK_Item);
 	int carcasses = PelletList::Mgr::getCount(PelletList::CARCASS);
 
 	mZukanStat      = new PelletFirstMemory(treasures, items, carcasses);
@@ -410,7 +410,7 @@ PlayData::PlayData()
 	mCaveCropMemory = new PelletCropMemory(treasures, items, carcasses);
 	mDemoFlags.create(57, nullptr);
 	mDemoFlags.reset();
-	mFindItemFlags.create(PelletList::Mgr::getCount(PelletList::ITEM), nullptr);
+	mFindItemFlags.create(PelletList::Mgr::getCount(PelletList::PLK_Item), nullptr);
 	mFindItemFlags.reset();
 
 	sys->heapStatusStart("generatorCache", nullptr);
@@ -857,7 +857,7 @@ bool PlayData::isPelletEverGot(u8 type, u8 id)
  */
 bool PlayData::isPelletZukanVisible(int id)
 {
-	PelletConfigList* list = PelletList::Mgr::getConfigList(PelletList::OTAKARA);
+	PelletConfigList* list = PelletList::Mgr::getConfigList(PelletList::PLK_Otakara);
 	PelletConfig* config   = list->getPelletConfig_ByDictionaryNo(id);
 	if (config) {
 		int index = config->mParams.mIndex;
@@ -865,7 +865,7 @@ bool PlayData::isPelletZukanVisible(int id)
 			return true;
 		}
 	} else {
-		list   = PelletList::Mgr::getConfigList(PelletList::ITEM);
+		list   = PelletList::Mgr::getConfigList(PelletList::PLK_Item);
 		config = list->getPelletConfig_ByDictionaryNo(id);
 		if (config) {
 			int index = config->mParams.mIndex;
@@ -883,7 +883,7 @@ bool PlayData::isPelletZukanVisible(int id)
  */
 bool PlayData::isPelletZukanWhatsNew(int id)
 {
-	PelletConfigList* list = PelletList::Mgr::getConfigList(PelletList::OTAKARA);
+	PelletConfigList* list = PelletList::Mgr::getConfigList(PelletList::PLK_Otakara);
 	PelletConfig* config   = list->getPelletConfig_ByDictionaryNo(id);
 	if (config) {
 		int index = config->mParams.mIndex;
@@ -892,7 +892,7 @@ bool PlayData::isPelletZukanWhatsNew(int id)
 			return true;
 		}
 	} else {
-		list   = PelletList::Mgr::getConfigList(PelletList::ITEM);
+		list   = PelletList::Mgr::getConfigList(PelletList::PLK_Item);
 		config = list->getPelletConfig_ByDictionaryNo(id);
 		if (config) {
 			int index = config->mParams.mIndex;

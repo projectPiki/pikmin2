@@ -80,7 +80,7 @@ void Object::sound_otakaraEventFinish()
  * @note Size: 0xB0
  */
 Mgr::Mgr()
-    : FixedSizePelletMgr<Object>(PelletList::ITEM)
+    : FixedSizePelletMgr<Object>(PelletList::PLK_Item)
 {
 }
 

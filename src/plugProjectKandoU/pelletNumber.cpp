@@ -75,7 +75,7 @@ void Object::changeMaterial()
  * @note Size: 0xB0
  */
 Mgr::Mgr()
-    : FixedSizePelletMgr(PelletList::NUMBER_PELLET)
+    : FixedSizePelletMgr(PelletList::PLK_NumberPellet)
 {
 }
 

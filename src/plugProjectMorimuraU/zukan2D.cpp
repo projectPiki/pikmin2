@@ -2719,7 +2719,7 @@ u32 TEnemyZukan::getPrice(int index)
 			return 0;
 		}
 
-		Game::PelletConfigList* list = Game::PelletList::Mgr::getConfigList(Game::PelletList::CARCASS);
+		Game::PelletConfigList* list = Game::PelletList::Mgr::getConfigList(Game::PelletList::PLK_Carcass);
 		Game::PelletConfig* config   = list->getPelletConfig(Game::EnemyInfoFunc::getEnemyName(id, 0xffff));
 		if (config) {
 			return config->mParams.mMoney.mData;

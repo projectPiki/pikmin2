@@ -5529,13 +5529,13 @@ Pellet* PelletMgr::birth(PelletInitArg* arg)
 		config = mgr->mConfigList->getPelletConfig(arg->mTextIdentifier);
 		if (strcmp("yes", config->mParams.mUnique.mData) == 0) {
 			int unk = arg->mPelletIndex;
-			if (arg->mPelletType == PelletList::OTAKARA) {
+			if (arg->mPelletType == PelletList::PLK_Otakara) {
 				u8 result = playData->mZukanStat->mOtakara(unk);
 				if (result & 2) {
 					mgr->mConfigList->getPelletConfig(arg->mTextIdentifier);
 					return nullptr;
 				}
-			} else if (arg->mPelletType == PelletList::ITEM) {
+			} else if (arg->mPelletType == PelletList::PLK_Item) {
 				u8 result = playData->mZukanStat->mItem(unk);
 				if (result & 2) {
 					mgr->mConfigList->getPelletConfig(arg->mTextIdentifier);
@@ -5583,13 +5583,13 @@ bool PelletMgr::setUse(PelletInitArg* arg)
 		config = mgr->mConfigList->getPelletConfig(arg->mTextIdentifier);
 		if (strcmp("yes", config->mParams.mUnique.mData) == 0) {
 			int unk = arg->mPelletIndex;
-			if (arg->mPelletType == PelletList::OTAKARA) {
+			if (arg->mPelletType == PelletList::PLK_Otakara) {
 				u8 result = playData->mZukanStat->mOtakara(unk);
 				if (result & 2) {
 					mgr->mConfigList->getPelletConfig(arg->mTextIdentifier);
 					return false;
 				}
-			} else if (arg->mPelletType == PelletList::ITEM) {
+			} else if (arg->mPelletType == PelletList::PLK_Item) {
 				u8 result = playData->mZukanStat->mItem(unk);
 				if (result & 2) {
 					mgr->mConfigList->getPelletConfig(arg->mTextIdentifier);

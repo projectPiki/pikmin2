@@ -79,7 +79,7 @@ void Object::changeMaterial()
  * @note Size: 0xB0
  */
 Mgr::Mgr()
-    : FixedSizePelletMgr(PelletList::FRUIT)
+    : FixedSizePelletMgr(PelletList::PLK_Fruit)
 {
 }
 

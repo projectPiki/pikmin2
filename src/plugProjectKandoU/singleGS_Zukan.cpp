@@ -2626,8 +2626,8 @@ void ZukanState::execPellet(SingleGameSection* game)
  */
 int ZukanState::getMaxPelletID()
 {
-	int ota   = PelletList::Mgr::getCount(PelletList::OTAKARA);
-	int items = PelletList::Mgr::getCount(PelletList::ITEM);
+	int ota   = PelletList::Mgr::getCount(PelletList::PLK_Otakara);
+	int items = PelletList::Mgr::getCount(PelletList::PLK_Item);
 	return ota + items;
 }
 
@@ -2637,11 +2637,11 @@ int ZukanState::getMaxPelletID()
  */
 PelletConfig* ZukanState::getCurrentPelletConfig(int id)
 {
-	PelletConfigList* list1 = PelletList::Mgr::getConfigList(PelletList::OTAKARA);
-	PelletConfigList* list2 = PelletList::Mgr::getConfigList(PelletList::ITEM);
+	PelletConfigList* list1 = PelletList::Mgr::getConfigList(PelletList::PLK_Otakara);
+	PelletConfigList* list2 = PelletList::Mgr::getConfigList(PelletList::PLK_Item);
 	int index;
 	PelletList::cKind kind = convertPelletID(index, id);
-	if (kind == PelletList::OTAKARA) {
+	if (kind == PelletList::PLK_Otakara) {
 		return list1->getPelletConfig(index);
 	} else {
 		return list2->getPelletConfig(index);
@@ -2654,17 +2654,17 @@ PelletConfig* ZukanState::getCurrentPelletConfig(int id)
  */
 PelletList::cKind ZukanState::convertPelletID(int& ret, int id)
 {
-	PelletList::Mgr::getConfigList(PelletList::OTAKARA);
-	PelletList::Mgr::getConfigList(PelletList::ITEM);
-	int num = PelletList::Mgr::getCount(PelletList::OTAKARA);
-	PelletList::Mgr::getCount(PelletList::ITEM);
+	PelletList::Mgr::getConfigList(PelletList::PLK_Otakara);
+	PelletList::Mgr::getConfigList(PelletList::PLK_Item);
+	int num = PelletList::Mgr::getCount(PelletList::PLK_Otakara);
+	PelletList::Mgr::getCount(PelletList::PLK_Item);
 	PelletList::cKind kind;
 	if (id < num) {
 		ret  = id;
-		kind = PelletList::OTAKARA;
+		kind = PelletList::PLK_Otakara;
 	} else {
 		ret  = id - num;
-		kind = PelletList::ITEM;
+		kind = PelletList::PLK_Item;
 	}
 	return kind;
 }
@@ -6002,7 +6002,7 @@ void ZukanState::dvdloadB_pellet()
 		arg.mPelletIndex    = index;
 		arg.mState          = 3;
 		pelletMgr->setUse(&arg);
-		if (arg.mPelletType == PelletList::OTAKARA) {
+		if (arg.mPelletType == PelletList::PLK_Otakara) {
 			PelletOtakara::mgr->setupResources();
 		} else {
 			PelletItem::mgr->setupResources();
