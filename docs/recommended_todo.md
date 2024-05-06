@@ -33,7 +33,7 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JAudio/JSystem/JAS/JASTaskThread.cpp">JAudio//JAS/JASTaskThread.cpp</a> | 12200 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JAudio/JSystem/JAS/JASWSParser.cpp">JAudio//JAS/JASWSParser.cpp</a> | 12435 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DJoint.cpp">J3D/J3DJoint.cpp</a> | 13780 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JParticle/JPADynamicsBlock.cpp">JParticle/JPADynamicsBlock.cpp</a> | 13972 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JAudio/JSystem/JAS/JASAiCtrl.cpp">JAudio//JAS/JASAiCtrl.cpp</a> | 14267 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DShape.cpp">J3D/J3DShape.cpp</a> | 14990 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JGadget/std-vector.cpp">JGadget/std-vector.cpp</a> | 16058 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JStudio_JParticle/object-particle.cpp">JStudio_JParticle/object-particle.cpp</a> | 16762 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JGadget/std-vector.cpp">JGadget/std-vector.cpp</a> | 16058 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JStudio_JParticle/object-particle.cpp">JStudio_JParticle/object-particle.cpp</a> | 16813 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JStudio/stb.cpp">JStudio/stb.cpp</a> | 16978 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JStudio_JStage/object-camera.cpp">JStudio_JStage/object-camera.cpp</a> | 17767 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DCluster.cpp">J3D/J3DCluster.cpp</a> | 18579 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JAudio/JSystem/JAI/JAISystemInterface.cpp">JAudio//JAI/JAISystemInterface.cpp</a> | 19058 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J2D/J2DTextBoxEx.cpp">J2D/J2DTextBoxEx.cpp</a> | 19100 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JAudio/JSystem/JAS/JASChannel.cpp">JAudio//JAS/JASChannel.cpp</a> | 19212 |
@@ -163,10 +163,10 @@
 ### <section id="plugProjectYamashitaU">plugProjectYamashitaU</section>
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/enemyStoneDrawInfo.cpp">enemyStoneDrawInfo.cpp</a> | 19341 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/lifeGaugeMgr.cpp">lifeGaugeMgr.cpp</a> | 19694 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/singleGS_ZukanParms.cpp">singleGS_ZukanParms.cpp</a> | 21961 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/vtxAnm.cpp">vtxAnm.cpp</a> | 31268 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/lifeGaugeMgr.cpp">lifeGaugeMgr.cpp</a> | 13704 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/enemyStoneDrawInfo.cpp">enemyStoneDrawInfo.cpp</a> | 19341 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/singleGS_ZukanParms.cpp">singleGS_ZukanParms.cpp</a> | 22077 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/vtxAnm.cpp">vtxAnm.cpp</a> | 31268 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/enemyAction.cpp">enemyAction.cpp</a> | 51416 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/generalEnemyMgr.cpp">generalEnemyMgr.cpp</a> | 56894 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/kochappyState.cpp">kochappyState.cpp</a> | 65633 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/gameLightMgr.cpp">gameLightMgr.cpp</a> | 74718 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/kochappyState.cpp">kochappyState.cpp</a> | 65633 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/gameLightMgr.cpp">gameLightMgr.cpp</a> | 74583 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/chappyState.cpp">chappyState.cpp</a> | 76087 |  |  |
 
 ### <section id="sysBootupU">sysBootupU</section>

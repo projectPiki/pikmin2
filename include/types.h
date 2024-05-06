@@ -45,9 +45,9 @@ typedef u16 wchar_t;
 #define SHORT_FLOAT_MIN (-32768.0f)
 
 // Basic defines to allow newer-like C++ code to be written
-#define TRUE    1
-#define FALSE   0
-#define NULL    ((void*)0)
+#define TRUE  1
+#define FALSE 0
+#define NULL  ((void*)0)
 #define nullptr 0
 
 #define SET_FLAG(x, val)     (x |= (val))

@@ -408,7 +408,7 @@ GameLightMgr::GameLightMgr(char* name)
 	registLightObj(mSubLight);
 
 	// setup specular light
-	mSpecLight = new LightObj("スペキュラ-ライト", GX_LIGHT7, TYPE_Spec, JUtility::TColor(255, 255, 255, 255)); // 'specular light'
+	mSpecLight          = new LightObj("スペキュラ-ライト", GX_LIGHT7, TYPE_Spec, JUtility::TColor(255, 255, 255, 255)); // 'specular light'
 	mSpecLight->mKScale = 40.0f;
 	registLightObj(mSpecLight);
 

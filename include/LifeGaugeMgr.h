@@ -34,17 +34,14 @@ struct LifeGaugeList : public JKRDisposer {
 	inline LifeGaugeList(Game::Creature* obj = nullptr)
 	    : mParam()
 	{
-		_3C                  = 0.0f;
-		mSegmentCount2       = 32;
-		mSegmentCount        = 32;
 		mGameObject          = obj;
 		mNext                = nullptr;
 		mPrev                = nullptr;
 		mParam.mIsGaugeShown = false;
 
-		_3C            = 0.0f;
-		mSegmentCount2 = 32;
-		mSegmentCount  = 32;
+		mLifeGauge.mTimer            = 0.0f;
+		mLifeGauge.mCircleResolution = 32;
+		mLifeGauge.mSegmentCount     = 32;
 	}
 	virtual ~LifeGaugeList() { clearRelations(); } // _08 (weak)
 
@@ -60,16 +57,26 @@ struct LifeGaugeList : public JKRDisposer {
 		mPrev = nullptr;
 	}
 
+	inline LifeGaugeList* search(Game::Creature* obj)
+	{
+		for (LifeGaugeList* list = mNext; list; list = list->mNext) {
+			if (list->mGameObject != obj) {
+				continue;
+			}
+
+			return list;
+		}
+
+		return nullptr;
+	}
+
 	void draw(Graphics&);
 
 	LifeGaugeList* mPrev;        // _18
 	LifeGaugeList* mNext;        // _1C
 	Game::Creature* mGameObject; // _20
 	Game::LifeGaugeParam mParam; // _24
-	f32 _3C;                     // _3C
-	u8 _40[4];                   // _40
-	u8 mSegmentCount;            // _44
-	u8 mSegmentCount2;           // _45 - not sure what the purpose is
+	LifeGauge mLifeGauge;        // _28
 };
 
 /**
@@ -86,22 +93,9 @@ struct LifeGaugeMgr {
 	void update();
 	void draw(Graphics&);
 
-	inline LifeGaugeList* search(Game::Creature* obj)
-	{
-		for (LifeGaugeList* list = mListA.mNext; list; list = list->mNext) {
-			if (list->mGameObject != obj) {
-				continue;
-			}
-
-			return list;
-		}
-
-		return nullptr;
-	}
-
-	LifeGaugeList mListA; // _00
-	LifeGaugeList mListB; // _04 (cant be array of 2 for ctor to work)
-	JUTTexture* mTexture; // _90
+	LifeGaugeList mListActive;   // _00
+	LifeGaugeList mListInactive; // _04
+	JUTTexture* mTexture;        // _90
 };
 
 extern LifeGaugeMgr* lifeGaugeMgr;
