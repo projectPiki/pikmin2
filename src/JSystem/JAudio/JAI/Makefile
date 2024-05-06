@@ -13,7 +13,7 @@ JAUDIO_JAI_FILES:=\
 	$(BUILD_DIR)/asm/JSystem/JAudio/JAI/JAISound.o\
 	$(BUILD_DIR)/asm/JSystem/JAudio/JAI/JAISoundTable.o\
 	$(BUILD_DIR)/asm/JSystem/JAudio/JAI/JAIStreamMgr.o\
-	$(BUILD_DIR)/asm/JSystem/JAudio/JAI/JAISystemInterface.o\
+	$(BUILD_DIR)/src/JSystem/JAudio/JAI/JAISystemInterface.o\
 	$(BUILD_DIR)/src/JSystem/JAudio/JAI/JAIObject.o\
 
 DEPENDS += $(JAUDIO_JAI_FILES:.o=.d)

@@ -198,6 +198,7 @@ PodIconScreen::PodIconScreen()
 	mAnmTransTimer      = 0.0f;
 	mAnmTexPattern      = nullptr;
 	mAnmTexPatternTimer = 0.0f;
+	mMomentum.normalise();
 	reset();
 	disappear();
 }

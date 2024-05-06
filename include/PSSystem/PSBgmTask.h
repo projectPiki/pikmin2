@@ -187,7 +187,7 @@ struct OuterParamTask : public ModParamWithFade {
 
 	// _00     = VTBL
 	// _00-_30 = ModParamWithFade
-	int mTaskType; // _30
+	int mTaskType; // _30, see JASOuterParamFlag enum
 };
 
 struct TaskEntry_BankRandTask : public TaskEntry {

@@ -2816,11 +2816,8 @@ void JAInter::SeqParameter::init()
 {
 	mTrack.assignExtBuffer(&mOuterParam);
 	// TODO: is this something like assigning a new (on stack) MoveParaSet? Can't do that to `this`, though...
-	_27C = 0xFFFFFFFF;
-	_00  = MoveParaSet();
-	// mCurrentValue   = 1.0f;
-	// mTargetValue    = 1.0f;
-	// mMoveCounter    = 0;
+	_27C       = 0xFFFFFFFF;
+	_00        = MoveParaSet();
 	mPauseMode = SOUNDPAUSE_Unk0;
 	_27A       = 0;
 	_280       = 0;

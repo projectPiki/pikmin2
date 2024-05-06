@@ -317,17 +317,19 @@ struct SeqUpdateData {
 		}
 	}
 
+	inline JAISequence* getSequence() const { return mSequence; }
+
 	u8 mPauseMode;          // _00
 	u8 mPauseVolume;        // _01
 	u8 mPrepareFlag;        // _02
 	u8 _03;                 // _03 - could be padding
 	uint _04;               // _04
 	int mActiveTrackFlag;   // _08
-	f32 _0C;                // _0C
-	f32 _10;                // _10
-	f32 _14;                // _14
-	f32 _18;                // _18
-	f32 _1C;                // _1C
+	f32 _0C;                // _0C, volume?
+	f32 _10;                // _10, pitch?
+	f32 _14;                // _14, fxmix?
+	f32 _18;                // _18, pan?
+	f32 _1C;                // _1C, dolby?
 	f32 _20;                // _20
 	f32* _24;               // _24
 	f32* _28;               // _28

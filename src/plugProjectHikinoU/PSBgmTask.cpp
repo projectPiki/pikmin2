@@ -102,7 +102,7 @@ f32 OuterParamTask::getPreParam(JASTrack& track)
  */
 void OuterParamTask::timeTask(JASTrack& track, f32 param)
 {
-	if (mTaskType != 2) {
+	if (mTaskType != OUTERPARAM_Pitch) {
 		if (param < 0.0f) {
 			param = 0.0f;
 		} else if (param > 1.0f) {

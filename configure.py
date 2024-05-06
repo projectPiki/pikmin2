@@ -379,7 +379,7 @@ LIBS = [
             ["JSystem/JAudio/JAI/JAISound", False],
             ["JSystem/JAudio/JAI/JAISoundTable", False],
             ["JSystem/JAudio/JAI/JAIStreamMgr", False],
-            ["JSystem/JAudio/JAI/JAISystemInterface", False],
+            ["JSystem/JAudio/JAI/JAISystemInterface", True],
             ["JSystem/JAudio/JAI/JAIObject", True],
         ],
     },

@@ -258,6 +258,7 @@ struct JASTrack : JSUList<JASChannel> {
 	int getReleaseChannelCount() const;
 
 	inline JASSeqCtrl* getCtrl() { return &mSeqCtrl; }
+	inline JASOuterParam* getExtBuffer() const { return mExtBuffer; }
 
 	// JSUPtrList _00;        // _00
 	JASSeqCtrl mSeqCtrl;               // _0C
