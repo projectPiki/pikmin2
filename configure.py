@@ -1645,7 +1645,7 @@ LIBS = [
             ["utilityU/PSMainSide_Director", False],
             ["utilityU/PSMainSide_Factory", False],
             ["utilityU/PSMainSide_ObjSound", False],
-            ["utilityU/PSMainSide_Demo", False],
+            ["utilityU/PSMainSide_Demo", True],
             ["utilityU/PSMainSide_Scene", False],
             ["utilityU/PSMainSide_BossMgr", False],
             ["utilityU/PSMainSide_Se", False],

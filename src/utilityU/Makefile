@@ -3,7 +3,7 @@ UTILITY_FILES:=\
 	$(BUILD_DIR)/asm/utilityU/PSMainSide_Director.o\
 	$(BUILD_DIR)/asm/utilityU/PSMainSide_Factory.o\
 	$(BUILD_DIR)/asm/utilityU/PSMainSide_ObjSound.o\
-	$(BUILD_DIR)/asm/utilityU/PSMainSide_Demo.o\
+	$(BUILD_DIR)/src/utilityU/PSMainSide_Demo.o\
 	$(BUILD_DIR)/asm/utilityU/PSMainSide_Scene.o\
 	$(BUILD_DIR)/asm/utilityU/PSMainSide_BossMgr.o\
 	$(BUILD_DIR)/asm/utilityU/PSMainSide_Se.o\
