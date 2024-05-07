@@ -92,7 +92,7 @@ void TMemoryCard::setArchive(JKRArchive* arc)
 	mAnim3.loadAnm("memory_card_pattern2.bck", arc, 0, 99999);
 	mAnim4.loadAnm("memory_card_yes.bck", arc, 0, 99999);
 	mAnim5.loadAnm("memory_card_no.bck", arc, 0, 99999);
-	mAnim1.play(sys->mDeltaTime * 60.0f, (J3DAnmAttr)2, true);
+	mAnim1.play(sys->mDeltaTime * 60.0f, J3DAA_UNKNOWN_2, true);
 
 	mBlinkFont1.set(mPaneMsg2, temp);
 	mBlinkFont2.set(mPaneMsg2, temp);
@@ -105,20 +105,6 @@ void TMemoryCard::setArchive(JKRArchive* arc)
 
 	sys->heapStatusEnd("TScreenMemoryCard::setArchive");
 }
-
-} // namespace Screen
-
-/**
- * @note Address: 0x803C2724
- * @note Size: 0x1BC
- */
-void E2DCallBack_BlinkFontColor::set(J2DTextBox* pane1, J2DTextBox* pane2)
-{
-	setColors(0, pane1);
-	setColors(1, pane2);
-}
-
-namespace Screen {
 
 /**
  * @note Address: 0x803C28E0
@@ -604,118 +590,6 @@ void TMemoryCard::setSelect_(bool sel)
 	mCursor2.update();
 }
 
-} // namespace Screen
-
-/**
- * @note Address: 0x803C3E88
- * @note Size: 0x128
- */
-void TYesNoCursor::update()
-{
-	if (mPane1 && mPane2) {
-		Vector2f pos1 = E2DPane_getGlbCenter(mPane1);
-		Vector2f pos2 = E2DPane_getGlbCenter(mPane2);
-
-		if (mIsLeft) {
-			mTimer += mSpeed;
-			if (mTimer > 1.0f) {
-				mTimer = 1.0f;
-			}
-		} else {
-			mTimer -= mSpeed;
-			if (mTimer < 0.0f) {
-				mTimer = 0.0f;
-			}
-		}
-		f32 time = mTimer;
-		mPos     = (pos1 * time) + (pos2 * (1.0f - time));
-	}
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stw      r31, 0x3c(r1)
-	mr       r31, r3
-	lwz      r4, 0x30(r3)
-	cmplwi   r4, 0
-	beq      lbl_803C3F9C
-	lwz      r0, 0x34(r31)
-	cmplwi   r0, 0
-	beq      lbl_803C3F9C
-	addi     r3, r1, 0x20
-	bl       E2DPane_getGlbCenter__3ebiFP7J2DPane
-	lfs      f1, 0x20(r1)
-	addi     r3, r1, 0x18
-	lfs      f0, 0x24(r1)
-	stfs     f1, 0x30(r1)
-	lwz      r4, 0x34(r31)
-	stfs     f0, 0x34(r1)
-	bl       E2DPane_getGlbCenter__3ebiFP7J2DPane
-	lbz      r0, 0x2c(r31)
-	lfs      f1, 0x18(r1)
-	lfs      f0, 0x1c(r1)
-	cmplwi   r0, 0
-	stfs     f1, 0x28(r1)
-	stfs     f0, 0x2c(r1)
-	beq      lbl_803C3F1C
-	lfs      f2, 0x28(r31)
-	lfs      f1, 0x24(r31)
-	lfs      f0, lbl_8051F8AC@sda21(r2)
-	fadds    f1, f2, f1
-	stfs     f1, 0x28(r31)
-	lfs      f1, 0x28(r31)
-	fcmpo    cr0, f1, f0
-	ble      lbl_803C3F40
-	stfs     f0, 0x28(r31)
-	b        lbl_803C3F40
-
-lbl_803C3F1C:
-	lfs      f2, 0x28(r31)
-	lfs      f1, 0x24(r31)
-	lfs      f0, lbl_8051F8B0@sda21(r2)
-	fsubs    f1, f2, f1
-	stfs     f1, 0x28(r31)
-	lfs      f1, 0x28(r31)
-	fcmpo    cr0, f1, f0
-	bge      lbl_803C3F40
-	stfs     f0, 0x28(r31)
-
-lbl_803C3F40:
-	lwz      r3, 0x28(r1)
-	lwz      r0, 0x30(r1)
-	stw      r3, 8(r1)
-	lwz      r3, 0x2c(r1)
-	stw      r0, 0x10(r1)
-	lwz      r0, 0x34(r1)
-	stw      r3, 0xc(r1)
-	lfs      f4, 0x28(r31)
-	lfs      f0, lbl_8051F8AC@sda21(r2)
-	stw      r0, 0x14(r1)
-	lfs      f1, 0x10(r1)
-	fsubs    f5, f0, f4
-	lfs      f0, 8(r1)
-	lfs      f3, 0xc(r1)
-	fmuls    f2, f1, f4
-	fmuls    f1, f0, f5
-	lfs      f0, 0x14(r1)
-	fmuls    f3, f3, f5
-	fmuls    f0, f0, f4
-	fadds    f1, f2, f1
-	fadds    f0, f0, f3
-	stfs     f1, 0x1c(r31)
-	stfs     f0, 0x20(r31)
-
-lbl_803C3F9C:
-	lwz      r0, 0x44(r1)
-	lwz      r31, 0x3c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
-}
-
-namespace Screen {
-
 /**
  * @note Address: 0x803C3FB0
  * @note Size: 0x28
@@ -811,6 +685,8 @@ void TMemoryCard::startState(enumState state)
 void TMemoryCard::update()
 {
 	switch (mState) {
+	case MEMCARD_Disabled:
+		break;
 	case MEMCARD_Selection:
 		if (mInputDelay) {
 			mInputDelay--;
@@ -846,8 +722,8 @@ void TMemoryCard::update()
 					mCursor1.stop();
 					mCursor2.stop();
 				}
-				// mCursor1.update();
-				// mCursor2.update();
+				mCursor1.update();
+				mCursor2.update();
 				startState(MEMCARD_Finish);
 				PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_DECIDE, 0);
 				return;
@@ -857,16 +733,16 @@ void TMemoryCard::update()
 				mBlinkFont2.setPaneColors(1);
 				mCursor1.stop();
 				mCursor2.stop();
-				// mCursor1.update();
-				// mCursor2.update();
+				mCursor1.update();
+				mCursor2.update();
 				PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CANCEL, 0);
 				startState(MEMCARD_Finish);
 				return;
 			}
-			// mCursor1.update();
-			// mCursor2.update();
-			mScreenMain->update();
 		}
+		mCursor1.update();
+		mCursor2.update();
+		mScreenMain->update();
 		break;
 
 	case MEMCARD_Message:
@@ -896,26 +772,11 @@ void TMemoryCard::update()
 			mMsgAlpha--;
 		}
 
-		f32 mod; // this might be an inline
-		int temp = mAlphaMod;
-		if (!temp) {
-			mod = 0.0f;
-		} else {
-			mod = (f32)mMsgAlpha / (f32)temp;
-		}
-
-		if (mod < 0.7f) {
+		if (calcAlpha() < 0.7f) {
 			mCursor1.mCursor.fade();
 			mCursor2.mCursor.fade();
 
-			f32 mod;
-			u8 temp = mAlphaMod;
-			if (!temp) {
-				mod = 0.0f;
-			} else {
-				mod = (f32)mMsgAlpha / (f32)temp;
-			}
-			u8 alpha = (mod / 0.7f) * 255.0f;
+			u32 alpha = (u8)((calcAlpha() / 0.7f) * 255.0f);
 			mPaneMsg1->setAlpha(alpha);
 			mPaneMsg2->setAlpha(alpha);
 			mPaneMsg3->setAlpha(alpha);
@@ -924,638 +785,6 @@ void TMemoryCard::update()
 		mScreenMain->update();
 		break;
 	}
-	/*
-stwu     r1, -0xc0(r1)
-mflr     r0
-stw      r0, 0xc4(r1)
-stw      r31, 0xbc(r1)
-mr       r31, r3
-stw      r30, 0xb8(r1)
-lwz      r0, 0(r3)
-cmpwi    r0, 2
-beq      lbl_803C4B60
-bge      lbl_803C44FC
-cmpwi    r0, 0
-beq      lbl_803C4D74
-bge      lbl_803C4508
-b        lbl_803C4D74
-
-lbl_803C44FC:
-cmpwi    r0, 4
-bge      lbl_803C4D74
-b        lbl_803C4C10
-
-lbl_803C4508:
-lwz      r3, 8(r31)
-cmplwi   r3, 0
-beq      lbl_803C451C
-addi     r0, r3, -1
-stw      r0, 8(r31)
-
-lbl_803C451C:
-lwz      r0, 8(r31)
-cmplwi   r0, 0
-bne      lbl_803C4B38
-lbz      r0, 0x19(r31)
-cmplwi   r0, 0
-beq      lbl_803C4B38
-lwz      r3, 4(r31)
-lwz      r0, 0x18(r3)
-rlwinm.  r0, r0, 0, 0x1e, 0x1e
-bne      lbl_803C4554
-lfs      f1, 0x48(r3)
-lfs      f0, lbl_8051F8B8@sda21(r2)
-fcmpo    cr0, f1, f0
-ble      lbl_803C455C
-
-lbl_803C4554:
-li       r0, 1
-b        lbl_803C4560
-
-lbl_803C455C:
-li       r0, 0
-
-lbl_803C4560:
-clrlwi.  r0, r0, 0x18
-beq      lbl_803C45CC
-lbz      r0, 0x18(r31)
-cmplwi   r0, 1
-bne      lbl_803C4B38
-li       r6, 0
-li       r0, 1
-stb      r6, 0x18(r31)
-li       r4, 0x1802
-lfs      f2, lbl_8051F8B4@sda21(r2)
-li       r5, 0
-stb      r6, 0x88(r31)
-lfs      f0, lbl_8051F8B0@sda21(r2)
-stb      r0, 0x89(r31)
-stb      r0, 0xa8(r31)
-lwz      r3, sys@sda21(r13)
-lfs      f1, 0x54(r3)
-fmuls    f1, f2, f1
-stfs     f1, 0xd0(r31)
-stfs     f0, 0xcc(r31)
-stb      r0, 0xd4(r31)
-stb      r6, 0xd5(r31)
-stb      r6, 0x250(r31)
-stb      r6, 0x288(r31)
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-b        lbl_803C4B38
-
-lbl_803C45CC:
-lwz      r0, 0x18(r3)
-clrlwi.  r0, r0, 0x1f
-bne      lbl_803C45E8
-lfs      f1, 0x48(r3)
-lfs      f0, lbl_8051F8BC@sda21(r2)
-fcmpo    cr0, f1, f0
-bge      lbl_803C45F0
-
-lbl_803C45E8:
-li       r0, 1
-b        lbl_803C45F4
-
-lbl_803C45F0:
-li       r0, 0
-
-lbl_803C45F4:
-clrlwi.  r0, r0, 0x18
-beq      lbl_803C4660
-lbz      r0, 0x18(r31)
-cmplwi   r0, 0
-bne      lbl_803C4B38
-li       r6, 1
-lfs      f2, lbl_8051F8B4@sda21(r2)
-stb      r6, 0x18(r31)
-li       r0, 0
-lfs      f0, lbl_8051F8B0@sda21(r2)
-li       r4, 0x1802
-stb      r6, 0x5c(r31)
-li       r5, 0
-lwz      r3, sys@sda21(r13)
-lfs      f1, 0x54(r3)
-fmuls    f1, f2, f1
-stfs     f1, 0x84(r31)
-stfs     f0, 0x80(r31)
-stb      r6, 0x88(r31)
-stb      r0, 0x89(r31)
-stb      r0, 0xd4(r31)
-stb      r6, 0xd5(r31)
-stb      r6, 0x250(r31)
-stb      r6, 0x288(r31)
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-b        lbl_803C4B38
-
-lbl_803C4660:
-lwz      r3, 0x1c(r3)
-rlwinm.  r0, r3, 0, 0x17, 0x17
-beq      lbl_803C498C
-lbz      r0, 0x18(r31)
-cmplwi   r0, 1
-bne      lbl_803C47EC
-li       r0, 0
-stb      r0, 0x5c(r31)
-lwz      r3, 0x58(r31)
-cmplwi   r3, 0
-beq      lbl_803C4724
-lwz      r7, 0x70(r31)
-mr       r30, r3
-addi     r4, r1, 0x90
-stw      r7, 0x34(r1)
-lbz      r5, 0x34(r1)
-lbz      r0, 0x35(r1)
-stb      r5, 0x104(r3)
-lbz      r5, 0x36(r1)
-stb      r0, 0x105(r3)
-lbz      r0, 0x37(r1)
-stb      r5, 0x106(r3)
-stb      r0, 0x107(r3)
-lwz      r6, 0x74(r31)
-stw      r7, 0x88(r1)
-stw      r6, 0x30(r1)
-lbz      r5, 0x30(r1)
-lbz      r0, 0x31(r1)
-stb      r5, 0x108(r3)
-lbz      r5, 0x32(r1)
-stb      r0, 0x109(r3)
-lbz      r0, 0x33(r1)
-stb      r5, 0x10a(r3)
-stb      r0, 0x10b(r3)
-lwz      r0, 0x78(r31)
-stw      r6, 0x8c(r1)
-stw      r0, 0x90(r1)
-lwz      r12, 0(r3)
-lwz      r12, 0xa8(r12)
-mtctr    r12
-bctrl
-lwz      r0, 0x7c(r31)
-mr       r3, r30
-addi     r4, r1, 0x94
-stw      r0, 0x94(r1)
-lwz      r12, 0(r30)
-lwz      r12, 0xa4(r12)
-mtctr    r12
-bctrl
-
-lbl_803C4724:
-li       r0, 0
-stb      r0, 0xa8(r31)
-lwz      r3, 0xa4(r31)
-cmplwi   r3, 0
-beq      lbl_803C47D0
-lwz      r7, 0xac(r31)
-mr       r30, r3
-addi     r4, r1, 0x80
-stw      r7, 0x2c(r1)
-lbz      r5, 0x2c(r1)
-lbz      r0, 0x2d(r1)
-stb      r5, 0x104(r3)
-lbz      r5, 0x2e(r1)
-stb      r0, 0x105(r3)
-lbz      r0, 0x2f(r1)
-stb      r5, 0x106(r3)
-stb      r0, 0x107(r3)
-lwz      r6, 0xb0(r31)
-stw      r7, 0x78(r1)
-stw      r6, 0x28(r1)
-lbz      r5, 0x28(r1)
-lbz      r0, 0x29(r1)
-stb      r5, 0x108(r3)
-lbz      r5, 0x2a(r1)
-stb      r0, 0x109(r3)
-lbz      r0, 0x2b(r1)
-stb      r5, 0x10a(r3)
-stb      r0, 0x10b(r3)
-lwz      r0, 0xb4(r31)
-stw      r6, 0x7c(r1)
-stw      r0, 0x80(r1)
-lwz      r12, 0(r3)
-lwz      r12, 0xa8(r12)
-mtctr    r12
-bctrl
-lwz      r0, 0xb8(r31)
-mr       r3, r30
-addi     r4, r1, 0x84
-stw      r0, 0x84(r1)
-lwz      r12, 0(r30)
-lwz      r12, 0xa4(r12)
-mtctr    r12
-bctrl
-
-lbl_803C47D0:
-lfs      f0, lbl_8051F8AC@sda21(r2)
-li       r0, 1
-stfs     f0, 0x24c(r31)
-stb      r0, 0x250(r31)
-stfs     f0, 0x284(r31)
-stb      r0, 0x288(r31)
-b        lbl_803C495C
-
-lbl_803C47EC:
-li       r0, 0
-stb      r0, 0x5c(r31)
-lwz      r3, 0x58(r31)
-cmplwi   r3, 0
-beq      lbl_803C4898
-lwz      r7, 0x60(r31)
-mr       r30, r3
-addi     r4, r1, 0x70
-stw      r7, 0x24(r1)
-lbz      r5, 0x24(r1)
-lbz      r0, 0x25(r1)
-stb      r5, 0x104(r3)
-lbz      r5, 0x26(r1)
-stb      r0, 0x105(r3)
-lbz      r0, 0x27(r1)
-stb      r5, 0x106(r3)
-stb      r0, 0x107(r3)
-lwz      r6, 0x64(r31)
-stw      r7, 0x68(r1)
-stw      r6, 0x20(r1)
-lbz      r5, 0x20(r1)
-lbz      r0, 0x21(r1)
-stb      r5, 0x108(r3)
-lbz      r5, 0x22(r1)
-stb      r0, 0x109(r3)
-lbz      r0, 0x23(r1)
-stb      r5, 0x10a(r3)
-stb      r0, 0x10b(r3)
-lwz      r0, 0x68(r31)
-stw      r6, 0x6c(r1)
-stw      r0, 0x70(r1)
-lwz      r12, 0(r3)
-lwz      r12, 0xa8(r12)
-mtctr    r12
-bctrl
-lwz      r0, 0x6c(r31)
-mr       r3, r30
-addi     r4, r1, 0x74
-stw      r0, 0x74(r1)
-lwz      r12, 0(r30)
-lwz      r12, 0xa4(r12)
-mtctr    r12
-bctrl
-
-lbl_803C4898:
-li       r0, 0
-stb      r0, 0xa8(r31)
-lwz      r3, 0xa4(r31)
-cmplwi   r3, 0
-beq      lbl_803C4944
-lwz      r7, 0xbc(r31)
-mr       r30, r3
-addi     r4, r1, 0x60
-stw      r7, 0x1c(r1)
-lbz      r5, 0x1c(r1)
-lbz      r0, 0x1d(r1)
-stb      r5, 0x104(r3)
-lbz      r5, 0x1e(r1)
-stb      r0, 0x105(r3)
-lbz      r0, 0x1f(r1)
-stb      r5, 0x106(r3)
-stb      r0, 0x107(r3)
-lwz      r6, 0xc0(r31)
-stw      r7, 0x58(r1)
-stw      r6, 0x18(r1)
-lbz      r5, 0x18(r1)
-lbz      r0, 0x19(r1)
-stb      r5, 0x108(r3)
-lbz      r5, 0x1a(r1)
-stb      r0, 0x109(r3)
-lbz      r0, 0x1b(r1)
-stb      r5, 0x10a(r3)
-stb      r0, 0x10b(r3)
-lwz      r0, 0xc4(r31)
-stw      r6, 0x5c(r1)
-stw      r0, 0x60(r1)
-lwz      r12, 0(r3)
-lwz      r12, 0xa8(r12)
-mtctr    r12
-bctrl
-lwz      r0, 0xc8(r31)
-mr       r3, r30
-addi     r4, r1, 0x64
-stw      r0, 0x64(r1)
-lwz      r12, 0(r30)
-lwz      r12, 0xa4(r12)
-mtctr    r12
-bctrl
-
-lbl_803C4944:
-lfs      f0, lbl_8051F8B0@sda21(r2)
-li       r0, 0
-stfs     f0, 0x24c(r31)
-stb      r0, 0x250(r31)
-stfs     f0, 0x284(r31)
-stb      r0, 0x288(r31)
-
-lbl_803C495C:
-addi     r3, r31, 0x224
-bl       update__Q23ebi12TYesNoCursorFv
-addi     r3, r31, 0x25c
-bl       update__Q23ebi12TYesNoCursorFv
-mr       r3, r31
-li       r4, 3
-bl
-startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState lwz
-r3, spSysIF__8PSSystem@sda21(r13) li       r4, 0x1800 li       r5, 0 bl
-playSystemSe__Q28PSSystem5SysIFFUlUl b        lbl_803C4D74
-
-lbl_803C498C:
-rlwinm.  r0, r3, 0, 0x16, 0x16
-beq      lbl_803C4B38
-li       r0, 0
-stb      r0, 0x18(r31)
-stb      r0, 0x5c(r31)
-lwz      r3, 0x58(r31)
-cmplwi   r3, 0
-beq      lbl_803C4A44
-lwz      r7, 0x60(r31)
-mr       r30, r3
-addi     r4, r1, 0x50
-stw      r7, 0x14(r1)
-lbz      r5, 0x14(r1)
-lbz      r0, 0x15(r1)
-stb      r5, 0x104(r3)
-lbz      r5, 0x16(r1)
-stb      r0, 0x105(r3)
-lbz      r0, 0x17(r1)
-stb      r5, 0x106(r3)
-stb      r0, 0x107(r3)
-lwz      r6, 0x64(r31)
-stw      r7, 0x48(r1)
-stw      r6, 0x10(r1)
-lbz      r5, 0x10(r1)
-lbz      r0, 0x11(r1)
-stb      r5, 0x108(r3)
-lbz      r5, 0x12(r1)
-stb      r0, 0x109(r3)
-lbz      r0, 0x13(r1)
-stb      r5, 0x10a(r3)
-stb      r0, 0x10b(r3)
-lwz      r0, 0x68(r31)
-stw      r6, 0x4c(r1)
-stw      r0, 0x50(r1)
-lwz      r12, 0(r3)
-lwz      r12, 0xa8(r12)
-mtctr    r12
-bctrl
-lwz      r0, 0x6c(r31)
-mr       r3, r30
-addi     r4, r1, 0x54
-stw      r0, 0x54(r1)
-lwz      r12, 0(r30)
-lwz      r12, 0xa4(r12)
-mtctr    r12
-bctrl
-
-lbl_803C4A44:
-li       r0, 0
-stb      r0, 0xa8(r31)
-lwz      r3, 0xa4(r31)
-cmplwi   r3, 0
-beq      lbl_803C4AF0
-lwz      r7, 0xbc(r31)
-mr       r30, r3
-addi     r4, r1, 0x40
-stw      r7, 0xc(r1)
-lbz      r5, 0xc(r1)
-lbz      r0, 0xd(r1)
-stb      r5, 0x104(r3)
-lbz      r5, 0xe(r1)
-stb      r0, 0x105(r3)
-lbz      r0, 0xf(r1)
-stb      r5, 0x106(r3)
-stb      r0, 0x107(r3)
-lwz      r6, 0xc0(r31)
-stw      r7, 0x38(r1)
-stw      r6, 8(r1)
-lbz      r5, 8(r1)
-lbz      r0, 9(r1)
-stb      r5, 0x108(r3)
-lbz      r5, 0xa(r1)
-stb      r0, 0x109(r3)
-lbz      r0, 0xb(r1)
-stb      r5, 0x10a(r3)
-stb      r0, 0x10b(r3)
-lwz      r0, 0xc4(r31)
-stw      r6, 0x3c(r1)
-stw      r0, 0x40(r1)
-lwz      r12, 0(r3)
-lwz      r12, 0xa8(r12)
-mtctr    r12
-bctrl
-lwz      r0, 0xc8(r31)
-mr       r3, r30
-addi     r4, r1, 0x44
-stw      r0, 0x44(r1)
-lwz      r12, 0(r30)
-lwz      r12, 0xa4(r12)
-mtctr    r12
-bctrl
-
-lbl_803C4AF0:
-lfs      f0, lbl_8051F8B0@sda21(r2)
-li       r0, 0
-addi     r3, r31, 0x224
-stfs     f0, 0x24c(r31)
-stb      r0, 0x250(r31)
-stfs     f0, 0x284(r31)
-stb      r0, 0x288(r31)
-bl       update__Q23ebi12TYesNoCursorFv
-addi     r3, r31, 0x25c
-bl       update__Q23ebi12TYesNoCursorFv
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x1801
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-mr       r3, r31
-li       r4, 3
-bl
-startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState b
-lbl_803C4D74
-
-lbl_803C4B38:
-addi     r3, r31, 0x224
-bl       update__Q23ebi12TYesNoCursorFv
-addi     r3, r31, 0x25c
-bl       update__Q23ebi12TYesNoCursorFv
-lwz      r3, 0x1c(r31)
-lwz      r12, 0(r3)
-lwz      r12, 0x30(r12)
-mtctr    r12
-bctrl
-b        lbl_803C4D74
-
-lbl_803C4B60:
-lwz      r3, 8(r31)
-cmplwi   r3, 0
-beq      lbl_803C4B74
-addi     r0, r3, -1
-stw      r0, 8(r31)
-
-lbl_803C4B74:
-lwz      r0, 8(r31)
-cmplwi   r0, 0
-bne      lbl_803C4BDC
-lwz      r3, 4(r31)
-li       r4, 0
-lwz      r3, 0x1c(r3)
-rlwinm.  r0, r3, 0, 0x17, 0x17
-bne      lbl_803C4BB4
-rlwinm.  r0, r3, 0, 0x16, 0x16
-bne      lbl_803C4BB4
-rlwinm.  r0, r3, 0, 0x15, 0x15
-bne      lbl_803C4BB4
-rlwinm.  r0, r3, 0, 0x14, 0x14
-bne      lbl_803C4BB4
-rlwinm.  r0, r3, 0, 0x13, 0x13
-beq      lbl_803C4BB8
-
-lbl_803C4BB4:
-li       r4, 1
-
-lbl_803C4BB8:
-clrlwi.  r0, r4, 0x18
-beq      lbl_803C4BDC
-lbz      r0, 0x19(r31)
-cmplwi   r0, 0
-beq      lbl_803C4BDC
-mr       r3, r31
-li       r4, 3
-bl
-startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState b
-lbl_803C4D74
-
-lbl_803C4BDC:
-lwz      r3, 0x1c(r31)
-lwz      r12, 0(r3)
-lwz      r12, 0x30(r12)
-mtctr    r12
-bctrl
-lbz      r0, 0x294(r31)
-cmplwi   r0, 0
-beq      lbl_803C4D74
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x100b
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-b        lbl_803C4D74
-
-lbl_803C4C10:
-lwz      r3, 0x10(r31)
-cmplwi   r3, 0
-beq      lbl_803C4C24
-addi     r0, r3, -1
-stw      r0, 0x10(r31)
-
-lbl_803C4C24:
-lwz      r4, 0x14(r31)
-cmplwi   r4, 0
-beq      lbl_803C4C64
-lwz      r3, 0x10(r31)
-lis      r0, 0x4330
-stw      r0, 0x98(r1)
-lfd      f2, lbl_8051F8C8@sda21(r2)
-stw      r3, 0x9c(r1)
-lfd      f0, 0x98(r1)
-stw      r4, 0xa4(r1)
-fsubs    f1, f0, f2
-stw      r0, 0xa0(r1)
-lfd      f0, 0xa0(r1)
-fsubs    f0, f0, f2
-fdivs    f1, f1, f0
-b        lbl_803C4C68
-
-lbl_803C4C64:
-lfs      f1, lbl_8051F8B0@sda21(r2)
-
-lbl_803C4C68:
-lfs      f0, lbl_8051F8C0@sda21(r2)
-fcmpo    cr0, f1, f0
-bge      lbl_803C4D60
-addi     r3, r31, 0x224
-lwz      r12, 0x224(r31)
-lwz      r12, 0x10(r12)
-mtctr    r12
-bctrl
-addi     r3, r31, 0x25c
-lwz      r12, 0x25c(r31)
-lwz      r12, 0x10(r12)
-mtctr    r12
-bctrl
-lwz      r4, 0x14(r31)
-cmplwi   r4, 0
-beq      lbl_803C4CDC
-lwz      r3, 0x10(r31)
-lis      r0, 0x4330
-stw      r0, 0xa0(r1)
-lfd      f2, lbl_8051F8C8@sda21(r2)
-stw      r3, 0xa4(r1)
-lfd      f0, 0xa0(r1)
-stw      r4, 0x9c(r1)
-fsubs    f1, f0, f2
-stw      r0, 0x98(r1)
-lfd      f0, 0x98(r1)
-fsubs    f0, f0, f2
-fdivs    f1, f1, f0
-b        lbl_803C4CE0
-
-lbl_803C4CDC:
-lfs      f1, lbl_8051F8B0@sda21(r2)
-
-lbl_803C4CE0:
-lfs      f0, lbl_8051F8C0@sda21(r2)
-lwz      r3, 0x20(r31)
-fdivs    f0, f1, f0
-lfs      f1, lbl_8051F8C4@sda21(r2)
-lwz      r12, 0(r3)
-lwz      r12, 0x24(r12)
-fmuls    f0, f1, f0
-fctiwz   f0, f0
-stfd     f0, 0xa8(r1)
-lwz      r0, 0xac(r1)
-clrlwi   r30, r0, 0x18
-mr       r4, r30
-mtctr    r12
-bctrl
-lwz      r3, 0x24(r31)
-mr       r4, r30
-lwz      r12, 0(r3)
-lwz      r12, 0x24(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x28(r31)
-mr       r4, r30
-lwz      r12, 0(r3)
-lwz      r12, 0x24(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x2c(r31)
-mr       r4, r30
-lwz      r12, 0(r3)
-lwz      r12, 0x24(r12)
-mtctr    r12
-bctrl
-
-lbl_803C4D60:
-lwz      r3, 0x1c(r31)
-lwz      r12, 0(r3)
-lwz      r12, 0x30(r12)
-mtctr    r12
-bctrl
-
-lbl_803C4D74:
-lwz      r0, 0xc4(r1)
-lwz      r31, 0xbc(r1)
-lwz      r30, 0xb8(r1)
-mtlr     r0
-addi     r1, r1, 0xc0
-blr
-	*/
 }
 
 /**
@@ -1564,12 +793,17 @@ blr
  */
 void TMemoryCard::draw()
 {
-	if (mState != MEMCARD_Disabled) {
-		Graphics* gfx       = sys->mGfx;
-		J2DPerspGraph& graf = gfx->mPerspGraph;
-		graf.setPort();
-		mScreenMain->draw(*gfx, graf);
+	if (mState == MEMCARD_Disabled) {
+		return;
 	}
+
+	Graphics& gfx       = *sys->mGfx;
+	J2DPerspGraph* graf = &gfx.mPerspGraph;
+	// AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+	graf->setPort();
+
+	mScreenMain->draw(gfx, *graf);
+
 	/*
 stwu     r1, -0x20(r1)
 mflr     r0
@@ -1607,5 +841,6 @@ addi     r1, r1, 0x20
 blr
 	*/
 }
+
 } // namespace Screen
 } // namespace ebi

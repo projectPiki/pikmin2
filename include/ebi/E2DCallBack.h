@@ -132,7 +132,12 @@ struct E2DCallBack_BlinkFontColor : public E2DCallBack_Base {
 	virtual ~E2DCallBack_BlinkFontColor() { } // _08 (weak)
 	virtual void do_update();                 // _1C
 
-	void set(J2DTextBox*, J2DTextBox*);
+	void set(J2DTextBox* pane1, J2DTextBox* pane2)
+	{
+		setColors(0, pane1);
+		setColors(1, pane2);
+	}
+
 	void set(E2DFullFontColor& fontA, E2DFullFontColor& fontB)
 	{
 		mFonts[0] = fontA;
