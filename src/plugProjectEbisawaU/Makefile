@@ -29,7 +29,7 @@ EBISAWA_FILES:=\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiScreenTitleMenu.o\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiSaveMgr.o\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiScreenSaveMenu.o\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenFileSelect_Mgr.o\
+	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiScreenFileSelect_Mgr.o\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiFileSelectMgr.o\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiCardMgr_Load.o\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiP2TitleCoordMgr.o\

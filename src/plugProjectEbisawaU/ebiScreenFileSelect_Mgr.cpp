@@ -489,7 +489,6 @@ void FSMState00_SelectData::do_init(TMgr* mgr, Game::StateArg*)
  */
 void FSMState00_SelectData::do_exec(TMgr* mgr)
 {
-	bool save;
 	if (mgr->mMainScreen.isWaitScreen()) {
 		if (mCounter) {
 			mCounter--;
@@ -498,14 +497,15 @@ void FSMState00_SelectData::do_exec(TMgr* mgr)
 		int prev            = mgr->mCurrSelection;
 		mgr->mCountNumInterface.update();
 
-		save                                = true;
-		Screen::FileSelect::TFileData* data = &mgr->mMainScreen.mFileData[mgr->mCurrSelection];
-		if (data->mIsNewFile && !data->mIsBrokenFile) {
-			save = false;
+		// I'M DONE WITH YOUR BULLSHIT, GAME
+		// I'M DOOOOOOOOOOOOOOOOOOOOOOOOOONE
+		bool save;
+		for (int i = 0; i < 1; i++) {
+			save = !mgr->mMainScreen.getFileData(mgr->mCurrSelection)->mIsNewFile
+			    || mgr->mMainScreen.getFileData(mgr->mCurrSelection)->mIsBrokenFile;
 		}
 
-		// something dumb here
-		if (mgr->mCurrSelection != prev) {
+		if (prev != mgr->mCurrSelection) {
 			mgr->mMainScreen.outDataBall(prev);
 			mgr->mMainScreen.closeDataWindow();
 			mgr->mMainScreen.inDataBall(mgr->mCurrSelection);
