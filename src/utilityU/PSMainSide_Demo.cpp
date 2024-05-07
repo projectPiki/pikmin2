@@ -556,8 +556,12 @@ void Demo::onDemoEnd()
 	static_cast<PSM::Scene_Game*>(PSMGetChildScene())->pauseOff_Demo();
 	PSSystem::Scene* childScene = PSMGetSceneMgrCheck()->getChildScene();
 
-	PSSystem::checkGameScene(childScene);
-	SceneBase* scene = childScene->toSceneBase();
+	// goofy ass game
+	for (int i = 0; i < 1; i++) {
+		PSSystem::checkGameScene(childScene);
+	}
+
+	SceneBase* scene = (SceneBase*)childScene;
 
 	const char* name          = mCurrentDemoName;
 	PSSystem::EnvSeMgr* envse = scene->getEnvSe();
