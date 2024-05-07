@@ -1324,12 +1324,12 @@ TControl::EModeFlag TControl::setMode(EModeFlag mode)
 		windowPane->mTimer           = 0.0f;
 		windowPane->mMaxTime         = 0.5f;
 		PodIconScreen* podIconScreen = mPodIcon;
-		if ((rand() * 2.0)) {
+		if ((randFloat() * 2.0f)) {
 			_GXRenderModeObj* renderObj = System::getRenderModeObj();
 			u16 efbHeight               = renderObj->efbHeight;
 			renderObj                   = System::getRenderModeObj();
 			u16 fbWidth                 = renderObj->fbWidth;
-			podIconScreen->mPosition.x  = (rand() * 0.5f + 0.3f) * fbWidth;
+			podIconScreen->mPosition.x  = (randFloat() * 0.5f + 0.3f) * fbWidth;
 			podIconScreen->mPosition.y  = efbHeight * 0.65f;
 			podIconScreen->mPosition.z  = 100.0f;
 		} else {
@@ -1337,11 +1337,11 @@ TControl::EModeFlag TControl::setMode(EModeFlag mode)
 			u16 efbHeight               = renderObj->efbHeight;
 			renderObj                   = System::getRenderModeObj();
 			u16 fbWidth                 = renderObj->fbWidth;
-			podIconScreen->mPosition.x  = (rand() * 0.5f + 0.3f) * fbWidth;
+			podIconScreen->mPosition.x  = (randFloat() * 0.5f + 0.3f) * fbWidth;
 			podIconScreen->mPosition.y  = efbHeight * 1.25f;
 			podIconScreen->mPosition.z  = 100.0f;
 		}
-		podIconScreen->mMomentum.x = rand() * 0.5f + 0.5f;
+		podIconScreen->mMomentum.x = randFloat() * 0.5f + 0.5f;
 		podIconScreen->mMomentum.y = rand();
 		podIconScreen->mMomentum.z = 0.0f;
 		podIconScreen->mMomentum.normalise();
