@@ -1465,7 +1465,7 @@ LIBS = [
             ["plugProjectEbisawaU/ebiUtility", True],
             ["plugProjectEbisawaU/ebiP2TitleCamera", True],
             ["plugProjectEbisawaU/ebiP2TitleLight", True],
-            ["plugProjectEbisawaU/ebiScreenMemoryCard", False],
+            ["plugProjectEbisawaU/ebiScreenMemoryCard", True],
             ["plugProjectEbisawaU/efxTPkEffectMgr", True],
             ["plugProjectEbisawaU/efxEnemyGeneral", True],
             ["plugProjectEbisawaU/ebi3DGraph", True],

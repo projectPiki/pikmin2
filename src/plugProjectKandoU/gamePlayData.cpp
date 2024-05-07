@@ -403,7 +403,7 @@ PlayData::PlayData()
 
 	int treasures = PelletList::Mgr::getCount(PelletList::PLK_Otakara);
 	int items     = PelletList::Mgr::getCount(PelletList::PLK_Item);
-	int carcasses = PelletList::Mgr::getCount(PelletList::CARCASS);
+	int carcasses = PelletList::Mgr::getCount(PelletList::PLK_Carcass);
 
 	mZukanStat      = new PelletFirstMemory(treasures, items, carcasses);
 	mMainCropMemory = new PelletCropMemory(treasures, items, carcasses);

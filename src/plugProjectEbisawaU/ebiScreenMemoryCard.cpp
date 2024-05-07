@@ -797,49 +797,14 @@ void TMemoryCard::draw()
 		return;
 	}
 
-	Graphics& gfx       = *sys->mGfx;
-	J2DPerspGraph* graf = &gfx.mPerspGraph;
-	// AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-	graf->setPort();
+	Graphics* gfx       = sys->getGfx();
+	J2DPerspGraph* graf = gfx->getPerspGraph();
 
-	mScreenMain->draw(gfx, *graf);
-
-	/*
-stwu     r1, -0x20(r1)
-mflr     r0
-stw      r0, 0x24(r1)
-stw      r31, 0x1c(r1)
-stw      r30, 0x18(r1)
-stw      r29, 0x14(r1)
-mr       r29, r3
-lwz      r0, 0(r3)
-cmpwi    r0, 0
-beq      lbl_803C4DF0
-lwz      r3, sys@sda21(r13)
-lwz      r31, 0x24(r3)
-addi     r30, r31, 0x190
-lwz      r12, 0(r30)
-mr       r3, r30
-lwz      r12, 0x14(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x1c(r29)
-mr       r4, r31
-mr       r5, r30
-lwz      r12, 0(r3)
-lwz      r12, 0x9c(r12)
-mtctr    r12
-bctrl
-
-lbl_803C4DF0:
-lwz      r0, 0x24(r1)
-lwz      r31, 0x1c(r1)
-lwz      r30, 0x18(r1)
-lwz      r29, 0x14(r1)
-mtlr     r0
-addi     r1, r1, 0x20
-blr
-	*/
+	// computers were a mistake.
+	for (int i = 0; i < 1; i++) {
+		graf->setPort();
+		mScreenMain->draw(*gfx, *graf);
+	}
 }
 
 } // namespace Screen
