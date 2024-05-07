@@ -778,95 +778,14 @@ void TMgr::perseInfo(Game::MemoryCard::PlayerFileInfo& info)
 {
 	for (int i = 0; i < 3; i++) {
 		Game::MemoryCard::Player* player = info.getPlayer(i);
-		bool broken                      = info.isBrokenFile(i);
 
-		u32 floor, cave, treasure, poko, white, purple, yellow, red, blue, day, minutes, hours;
-		floor    = player->mCaveFloor;
-		cave     = player->mCaveID;
-		treasure = player->mTreasures;
-		poko     = player->mPokos;
-		white    = player->mWhitePikis;
-		purple   = player->mPurplePikis;
-		yellow   = player->mYellowPikis;
-		red      = player->mRedPikis;
-		blue     = player->mBluePikis;
-		day      = player->mDay;
-		minutes  = player->mPlayTime % 60;
-		hours    = player->mPlayTime / 60;
-
-		mMainScreen.getFileData(i)->setData(info.isNewFile(i), day, blue, red, yellow, purple, white, poko, treasure, cave, floor, hours,
-		                                    minutes, broken);
+		mMainScreen.getFileData(i)->setData(info.isNewFile(i), player->mDay, player->mBluePikis, player->mRedPikis, player->mYellowPikis,
+		                                    player->mPurplePikis, player->mWhitePikis, player->mPokos, player->mTreasures, player->mCaveID,
+		                                    player->mCaveFloor, player->mPlayTime / 60, player->mPlayTime % 60, info.isBrokenFile(i));
 
 		char buffer[16];
 		EUTDebug_Tag32ToName(player->mCaveID, buffer);
 	}
-	/*
-	stwu     r1, -0x60(r1)
-	mflr     r0
-	lis      r5, 0x88888889@ha
-	stw      r0, 0x64(r1)
-	stmw     r14, 0x18(r1)
-	mr       r30, r4
-	li       r31, 0
-	mr       r16, r3
-	addi     r29, r5, 0x88888889@l
-
-lbl_803E009C:
-	mr       r3, r30
-	mr       r4, r31
-	bl       getPlayer__Q34Game10MemoryCard14PlayerFileInfoFi
-	mr       r28, r3
-	mr       r3, r30
-	mr       r4, r31
-	bl       isBrokenFile__Q34Game10MemoryCard14PlayerFileInfoFi
-	lwz      r15, 0x30(r28)
-	mr       r14, r3
-	lwz      r18, 0x2c(r28)
-	mr       r3, r30
-	mulhwu   r0, r29, r15
-	lwz      r19, 0x28(r28)
-	lwz      r20, 0x24(r28)
-	mr       r4, r31
-	lwz      r21, 0x20(r28)
-	lwz      r22, 0x18(r28)
-	srwi     r0, r0, 5
-	lwz      r23, 0x1c(r28)
-	mulli    r0, r0, 0x3c
-	lwz      r24, 0x14(r28)
-	lwz      r25, 0xc(r28)
-	lwz      r26, 0x10(r28)
-	lwz      r27, 8(r28)
-	subf     r17, r0, r15
-	bl       isNewFile__Q34Game10MemoryCard14PlayerFileInfoFi
-	stb      r3, 0xb01(r16)
-	mulhwu   r0, r29, r15
-	addi     r4, r1, 8
-	stw      r27, 0xb04(r16)
-	stw      r26, 0xb08(r16)
-	stw      r25, 0xb0c(r16)
-	srwi     r0, r0, 5
-	stw      r24, 0xb10(r16)
-	stw      r23, 0xb18(r16)
-	stw      r22, 0xb14(r16)
-	stw      r21, 0xb1c(r16)
-	stw      r20, 0xb20(r16)
-	stw      r19, 0xb24(r16)
-	stw      r18, 0xb28(r16)
-	stw      r0, 0xb2c(r16)
-	stw      r17, 0xb30(r16)
-	stb      r14, 0xb00(r16)
-	lwz      r3, 0x28(r28)
-	bl       EUTDebug_Tag32ToName__3ebiFUlPc
-	addi     r31, r31, 1
-	addi     r16, r16, 0x34
-	cmpwi    r31, 3
-	blt      lbl_803E009C
-	lmw      r14, 0x18(r1)
-	lwz      r0, 0x64(r1)
-	mtlr     r0
-	addi     r1, r1, 0x60
-	blr
-	*/
 }
 
 /**

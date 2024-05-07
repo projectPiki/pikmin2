@@ -34,7 +34,7 @@ struct TMainScreen : public TScreenBase {
 		FileSelectScreen_Decided   = 8
 	};
 
-	~TMainScreen() { }
+	// ~TMainScreen() { }
 
 	virtual void doSetArchive(JKRArchive*);           // _24
 	virtual void doOpenScreen(ArgOpen*);              // _28
