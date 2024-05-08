@@ -578,7 +578,7 @@ void Obj::createFellow()
  */
 void Obj::ballMove()
 {
-	f32 vel = JMAAbs((mCurrentVelocity.y * 2.0f) / 50.0f);
+	f32 vel = absF((mCurrentVelocity.y * 2.0f) / 50.0f);
 	if (vel > 2.0f) {
 		vel = 2.0f;
 	}

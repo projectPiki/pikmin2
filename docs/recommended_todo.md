@@ -107,7 +107,7 @@
 ### <section id="plugProjectMorimuraU">plugProjectMorimuraU</section>
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/tamagoMushi.cpp">tamagoMushi.cpp</a> | 14621 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/panModokiState.cpp">panModokiState.cpp</a> | 21702 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/tamagoMushi.cpp">tamagoMushi.cpp</a> | 14619 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/panModokiState.cpp">panModokiState.cpp</a> | 21702 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/scrollList.cpp">scrollList.cpp</a> | 25920 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/dayEndCount.cpp">dayEndCount.cpp</a> | 26683 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/tyre.cpp">tyre.cpp</a> | 26831 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/hurryUp2D.cpp">hurryUp2D.cpp</a> | 27140 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/miulin.cpp">miulin.cpp</a> | 34626 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/jigumo.cpp">jigumo.cpp</a> | 42363 |
