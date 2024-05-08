@@ -323,6 +323,7 @@ struct Vector3 {
 	f32 distance(Vector3&);
 	f32 distance2D(Vector3&);
 	f32 sqrDistance(Vector3&);
+	f32 sqrDistance2D(Vector3&);
 	f32 distance(JGeometry::TVec3f&);
 	f32 normalise();
 	f32 length2D() const;
@@ -605,6 +606,15 @@ inline f32 Vector3f::sqrDistance(Vector3f& them)
 	f32 diffZ = this->z - them.z;
 
 	return diffX * diffX + diffY * diffY + diffZ * diffZ;
+}
+
+template <>
+inline f32 Vector3f::sqrDistance2D(Vector3f& them)
+{
+	f32 diffX = this->x - them.x;
+	f32 diffZ = this->z - them.z;
+
+	return diffX * diffX + diffZ * diffZ;
 }
 
 // this is wacky and shows up in efxEnemy.cpp

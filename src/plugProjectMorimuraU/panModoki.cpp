@@ -235,16 +235,25 @@ void Obj::updateCaptureMatrix()
 		Vector3f slotPos;
 		calcSlotGlobalPos(slotPos);
 
-		Vector3f pelletPos1(pellet->getPosition().x, 0.0f, pellet->getPosition().z);
-		Vector3f diff = slotPos - pelletPos1;
-		diff.y        = 0.0f;
-		f32 dist2D    = 0.0f;
-		if (diff.sqrMagnitude2D() > 0.0f) {
+		f32 dist = pellet->getSquarePositionTo(slotPos);
+		// Vector3f pelletPos1(pellet->getPosition().x, 0.0f, pellet->getPosition().z);
+		// Vector3f diff = slotPos - pelletPos1;
+		// diff.y        = 0.0f;
+		f32 dist2D = 0.0f;
+		if (dist > dist2D) {
+			dist2D = getPositionTo(slotPos);
+			// f32 z = pellet->getPosition().z;
+			// f32 x = pellet->getPosition().x;
+			// f32 slotX = slotPos.x;
+			// f32 slotZ = slotPos.z;
+			// f32 diffX = slotX - x;
+			// f32 diffZ = slotZ - z;
+			// dist2D = diffX * diffX + diffZ * diffZ;
+			// sqrtf(dist2D);
+			// dist2D =
 			// THIS has to be an inline
-			Vector3f pelletPos2(pellet->getPosition().x, 0.0f, pellet->getPosition().z);
-			Vector3f diff2D = slotPos - pelletPos2;
-			diff2D.y        = 0.0f;
-			dist2D          = diff2D.length2D();
+			// diff2D.y        = 0.0f;
+			// dist2D          = diff2D.length2D();
 		}
 
 		f32 pelletZ = mCarrySizeDiff * 0.2f + dist2D;
@@ -848,7 +857,7 @@ bool Obj::isCarryToGoal()
 		homeRadius = 60.0f;
 	}
 	homeRadius *= homeRadius;
-	// Vector3f diff = mPosition - mHomePosition;
+
 	Vector3f pos = mPosition;
 	if (sqrDistanceXZ(pos, mHomePosition) < homeRadius) {
 		releasePathFinder();
@@ -863,23 +872,13 @@ bool Obj::isCarryToGoal()
 	rad2 *= rad2;
 	rad3 *= rad3;
 
-	// Vector3f nextWPPos = mNextWayPointPosition;
-	// nextWPPos = pos - nextWPPos;
-	// f32 posZ = mNextWayPointPosition.z;
-	// f32 posX = mNextWayPointPosition.x;
-	f32 sqrDist = sqrDistanceXZ(pos, mNextWayPointPosition);
-	// f32 cross          = (posX * posX + posZ * posZ);
-	Creature* creature = getCarryTarget();
-	f32 something      = -1.0f;
+	f32 sqrDist      = pos.sqrDistance2D(mNextWayPointPosition);
+	Creature* pellet = getCarryTarget();
+	f32 something    = -1.0f;
 
 	// this is so a pellet inline.
-	if (creature) {
-		something             = mNextWayPointPosition.z;
-		f32 waypointX         = mNextWayPointPosition.x;
-		Vector3f creaturePos  = creature->getPosition();
-		f32 creaturePosZ      = creaturePos.z;
-		Vector3f creaturePos2 = creature->getPosition();
-		something = (creaturePos2.x - waypointX) * (creaturePos2.x - waypointX) + (creaturePosZ - something) * (creaturePosZ - something);
+	if (pellet) {
+		something = getSquareDistanceTo2D(pellet, mNextWayPointPosition);
 	}
 	if ((sqrDist < rad2) || (something > 0.0f && (something < rad3))) {
 		mMoveSpeedTimer = 0;
@@ -906,193 +905,6 @@ bool Obj::isCarryToGoal()
 		}
 	}
 	return false;
-	/*
-	stwu     r1, -0x90(r1)
-	mflr     r0
-	stw      r0, 0x94(r1)
-	stfd     f31, 0x80(r1)
-	psq_st   f31, 136(r1), 0, qr0
-	stfd     f30, 0x70(r1)
-	psq_st   f30, 120(r1), 0, qr0
-	stfd     f29, 0x60(r1)
-	psq_st   f29, 104(r1), 0, qr0
-	stfd     f28, 0x50(r1)
-	psq_st   f28, 88(r1), 0, qr0
-	stfd     f27, 0x40(r1)
-	psq_st   f27, 72(r1), 0, qr0
-	stfd     f26, 0x30(r1)
-	psq_st   f26, 56(r1), 0, qr0
-	stw      r31, 0x2c(r1)
-	stw      r30, 0x28(r1)
-	mr       r30, r3
-	lbz      r0, 0x2f0(r3)
-	cmplwi   r0, 0
-	bne      lbl_803511E4
-	li       r3, 0
-	b        lbl_803513B4
-
-lbl_803511E4:
-	lwz      r0, 0x318(r30)
-	lwz      r3, 0xc0(r30)
-	cmpwi    r0, 0x64
-	lfs      f5, 0x384(r3)
-	ble      lbl_803511FC
-	lfs      f5, lbl_8051E508@sda21(r2)
-
-lbl_803511FC:
-	lfs      f4, 0x194(r30)
-	fmuls    f5, f5, f5
-	lfs      f0, 0x1a0(r30)
-	lfs      f3, 0x18c(r30)
-	fsubs    f1, f4, f0
-	lfs      f0, 0x198(r30)
-	fsubs    f2, f3, f0
-	fmuls    f0, f1, f1
-	fmadds   f0, f2, f2, f0
-	fcmpo    cr0, f0, f5
-	bge      lbl_80351238
-	mr       r3, r30
-	bl       releasePathFinder__Q34Game13PanModokiBase3ObjFv
-	li       r3, 1
-	b        lbl_803513B4
-
-lbl_80351238:
-	cmpwi    r0, 0x64
-	lfs      f26, lbl_8051E4DC@sda21(r2)
-	lfs      f31, lbl_8051E4D8@sda21(r2)
-	ble      lbl_80351250
-	lfs      f26, lbl_8051E508@sda21(r2)
-	lfs      f31, lbl_8051E50C@sda21(r2)
-
-lbl_80351250:
-	lfs      f0, 0x2c4(r30)
-	fmuls    f26, f26, f26
-	lfs      f1, 0x2bc(r30)
-	fmuls    f31, f31, f31
-	fsubs    f0, f4, f0
-	mr       r3, r30
-	fsubs    f1, f3, f1
-	fmuls    f0, f0, f0
-	fmadds   f27, f1, f1, f0
-	bl       getCarryTarget__Q34Game13PanModokiBase3ObjFv
-	or.      r31, r3, r3
-	lfs      f1, lbl_8051E510@sda21(r2)
-	beq      lbl_803512D4
-	mr       r4, r31
-	addi     r3, r1, 8
-	lwz      r12, 0(r31)
-	lfs      f28, 0x2c4(r30)
-	lwz      r12, 8(r12)
-	lfs      f29, 0x2bc(r30)
-	mtctr    r12
-	bctrl
-	mr       r4, r31
-	addi     r3, r1, 0x14
-	lwz      r12, 0(r31)
-	lfs      f30, 0x10(r1)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	fsubs    f0, f30, f28
-	lfs      f1, 0x14(r1)
-	fsubs    f1, f1, f29
-	fmuls    f0, f0, f0
-	fmadds   f1, f1, f1, f0
-
-lbl_803512D4:
-	fcmpo    cr0, f27, f26
-	blt      lbl_803512F0
-	lfs      f0, lbl_8051E490@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_803513B0
-	fcmpo    cr0, f1, f31
-	bge      lbl_803513B0
-
-lbl_803512F0:
-	li       r0, 0
-	stw      r0, 0x318(r30)
-	lha      r3, 0x2e8(r30)
-	lha      r0, 0x2e6(r30)
-	cmpw     r3, r0
-	bne      lbl_80351330
-	lfs      f0, 0x198(r30)
-	fcmpo    cr0, f1, f31
-	stfs     f0, 0x2bc(r30)
-	lfs      f0, 0x19c(r30)
-	stfs     f0, 0x2c0(r30)
-	lfs      f0, 0x1a0(r30)
-	stfs     f0, 0x2c4(r30)
-	bge      lbl_803513B0
-	li       r3, 1
-	b        lbl_803513B4
-
-lbl_80351330:
-	lwz      r4, 0x384(r30)
-	b        lbl_803513A8
-
-lbl_80351338:
-	lha      r0, 0x20(r4)
-	cmpw     r0, r3
-	bne      lbl_803513A4
-	sth      r3, 0x2ea(r30)
-	lwz      r3, 0xc(r4)
-	cmplwi   r3, 0
-	beq      lbl_80351360
-	lha      r0, 0x20(r3)
-	sth      r0, 0x2e8(r30)
-	b        lbl_80351368
-
-lbl_80351360:
-	lha      r0, 0x2e6(r30)
-	sth      r0, 0x2e8(r30)
-
-lbl_80351368:
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	lha      r4, 0x2e8(r30)
-	lwz      r3, 8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	lfs      f1, 0x50(r3)
-	lfs      f2, 0x54(r3)
-	lfs      f0, 0x4c(r3)
-	li       r3, 0
-	stfs     f0, 0x2bc(r30)
-	stfs     f1, 0x2c0(r30)
-	stfs     f2, 0x2c4(r30)
-	b        lbl_803513B4
-
-lbl_803513A4:
-	lwz      r4, 0xc(r4)
-
-lbl_803513A8:
-	cmplwi   r4, 0
-	bne      lbl_80351338
-
-lbl_803513B0:
-	li       r3, 0
-
-lbl_803513B4:
-	psq_l    f31, 136(r1), 0, qr0
-	lfd      f31, 0x80(r1)
-	psq_l    f30, 120(r1), 0, qr0
-	lfd      f30, 0x70(r1)
-	psq_l    f29, 104(r1), 0, qr0
-	lfd      f29, 0x60(r1)
-	psq_l    f28, 88(r1), 0, qr0
-	lfd      f28, 0x50(r1)
-	psq_l    f27, 72(r1), 0, qr0
-	lfd      f27, 0x40(r1)
-	psq_l    f26, 56(r1), 0, qr0
-	lfd      f26, 0x30(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r0, 0x94(r1)
-	lwz      r30, 0x28(r1)
-	mtlr     r0
-	addi     r1, r1, 0x90
-	blr
-	*/
 }
 
 /**

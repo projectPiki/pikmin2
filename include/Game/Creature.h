@@ -410,6 +410,31 @@ struct Creature : public CellObject {
 		return Vector3f(x, y, z);
 	}
 
+	inline f32 getSquarePositionTo(Vector3f& pos)
+	{
+		f32 z       = getPosition().z;
+		f32 x       = getPosition().x;
+		f32 targetZ = pos.z;
+		f32 targetX = pos.x;
+		f32 diffZ   = targetZ - z;
+		f32 diffX   = targetX - x;
+		return SQUARE(diffX) + SQUARE(diffZ);
+	}
+
+	inline f32 getPositionTo(Vector3f& pos)
+	{
+		Vector3f sep = pos - Vector3f(getPosition().x, 0.0f, getPosition().z);
+		// f32 z = getPosition().z;
+		// f32 x = getPosition().x;
+		// f32 targetZ = pos.z;
+		// f32 targetX = pos.x;
+		// f32 diffZ = targetZ - z;
+		// f32 diffX = targetX - x;
+		f32 sqrDist = SQUARE(sep.x) + SQUARE(sep.z);
+		return sqrtf(sqrDist);
+		// return sqrDist;
+	}
+
 	void applyAirDrag(f32 drag, f32 horizontalDrag, f32 verticalDrag);
 	f32 calcSphereDistance(Creature* other);
 	int checkHell(Creature::CheckHellArg& hellArg);

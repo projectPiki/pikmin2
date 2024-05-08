@@ -1443,7 +1443,7 @@ LIBS = [
             ["plugProjectMorimuraU/tyreState", True],
             ["plugProjectMorimuraU/tyreAnimator", True],
             ["plugProjectMorimuraU/tyreMgr", True],
-            ["plugProjectMorimuraU/tyre", False],
+            ["plugProjectMorimuraU/tyre", True],
         ],
     },
     {

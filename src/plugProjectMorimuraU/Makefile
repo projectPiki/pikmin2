@@ -58,7 +58,7 @@ MORIMURA_FILES:=\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/tyreState.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/tyreAnimator.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/tyreMgr.o\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/tyre.o\
+	$(BUILD_DIR)/src/plugProjectMorimuraU/tyre.o\
 
 DEPENDS += $(MORIMURA_FILES:.o=.d)
 

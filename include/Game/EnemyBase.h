@@ -674,6 +674,8 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 
 	inline void getPosition2D(Vector3f& pos) { pos = Vector3f(mPosition.x, 0.0f, mPosition.z); }
 
+	inline Vector3f getEBPosition2D() { return Vector3f(mPosition.x, 0.0f, mPosition.z); }
+
 	inline void forceMovePosition(Vector3f offset) { mPosition += offset; }
 
 	inline f32 getDamageAnimFrac(f32 scale) { return (mDamageAnimTimer / scale); }
@@ -719,6 +721,17 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 		z         = (f32)cos(getFaceDir());
 
 		mTargetVelocity = Vector3f(speed * x, y, speed * z);
+	}
+
+	inline f32 getSquareDistanceTo2D(Creature* target, Vector3f& position)
+	{
+		f32 z       = position.z;
+		f32 x       = position.x;
+		f32 targetZ = target->getPosition().z;
+		f32 targetX = target->getPosition().x;
+		f32 diffZ   = targetZ - z;
+		f32 diffX   = targetX - x;
+		return SQUARE(diffX) + SQUARE(diffZ);
 	}
 
 	inline bool isAlertLife() { return bool(mHealth < static_cast<EnemyParmsBase*>(mParms)->mGeneral.mLifeBeforeAlert); }
