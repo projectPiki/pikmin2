@@ -24,7 +24,6 @@ struct HeapInfo : public Node, public JKRDisposer {
 
 	void dump(int, bool);
 	void getTotalUsedSize();
-	void dumpNode(int);
 	void search(char*, bool);
 	void isInvalidUsedSize();
 	void isValidUsedSize();
