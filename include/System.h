@@ -1,13 +1,11 @@
 #ifndef _SYSTEM_H
 #define _SYSTEM_H
 
+#include "JSystem/JGeometry.h"
 #include "DvdThreadCommand.h"
-#include "Dolphin/gx.h"
 #include "SysTimers.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "node.h"
 #include "BitFlag.h"
-#include "types.h"
+#include "node.h"
 
 struct Graphics;
 struct OSContext;
