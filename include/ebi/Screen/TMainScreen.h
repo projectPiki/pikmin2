@@ -34,6 +34,11 @@ struct TMainScreen : public TScreenBase {
 		FileSelectScreen_Decided   = 8
 	};
 
+	enum State {
+		State_FadeIn  = 1,
+		State_FadeOut = 2,
+	};
+
 	// ~TMainScreen() { }
 
 	virtual void doSetArchive(JKRArchive*);           // _24

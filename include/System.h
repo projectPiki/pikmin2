@@ -201,6 +201,21 @@ struct System : public OSMutex {
 	inline void resetFlag(u32 flag) { mFlags.typeView &= ~flag; }
 	inline bool isFlag(u32 flag) const { return mFlags.typeView & flag; }
 
+	/**
+	 * Returns the full screen box dimensions.
+	 *
+	 * This function calculates and returns the screen box dimensions based on the current render mode height and width.
+	 *
+	 * @return The screen box dimensions as a `JGeometry::TBox2f` object.
+	 */
+	inline JGeometry::TBox2f getFullScreenBox()
+	{
+		u32 height = getRenderModeHeight();
+		u32 width  = getRenderModeWidth();
+		f32 offset = 0.0f; // Ahh... what we have to do to match a function....
+		return JGeometry::TBox2f(0, 0, offset + width, offset + height);
+	}
+
 	// _00-_18 = OSMutex
 	JKRHeap* mBackupHeap;                 // _18
 	u32 mCpuRetraceCount;                 // _1C

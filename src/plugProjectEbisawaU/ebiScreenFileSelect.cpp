@@ -1881,305 +1881,67 @@ bool TMainScreen::doUpdateStateClose()
 /**
  * @note Address: 0x803D7118
  * @note Size: 0x374
+ * @note TODO: MATCH THIS BLOODCLAAART
  */
 void TMainScreen::doDraw()
 {
-	Graphics* gfx       = sys->mGfx;
-	J2DPerspGraph* graf = &gfx->mPerspGraph;
-	graf->setPort();
-	mMainScreen->draw(*gfx, *graf);
+	// Draw the new screen and the data screen
+	{
+		Graphics* gfx = sys->getGfx();
+		J2DPerspGraph* graf; // WHAT THE FUUUUUUUCK
 
-	if (mNewScreen.mIsActive) {
-		graf = &sys->mGfx->mPerspGraph;
-		Graphics gfx;
-		mNewScreen.mScreenObj->draw(gfx, *graf);
+		sys->getGfx()->getPerspGraph()->setPort();
+		mMainScreen->draw(*gfx, *graf);
+
+		if (mNewScreen.mIsActive) {
+			graf = sys->mGfx->getPerspGraph();
+			Graphics gfx2;
+			mNewScreen.mScreenObj->draw(gfx2, *graf);
+		}
+
+		if (mDataScreen.mIsActive) {
+			graf = sys->mGfx->getPerspGraph();
+			Graphics gfx2;
+			mDataScreen.mScreenObj->draw(gfx2, *graf);
+		}
 	}
 
-	if (mDataScreen.mIsActive) {
-		graf = &sys->mGfx->mPerspGraph;
-		Graphics gfx;
-		mDataScreen.mScreenObj->draw(gfx, *graf);
+	// If no state is set, return
+	if (!mState) {
+		return;
 	}
 
-	if (mState) {
-		gfx  = sys->mGfx;
-		graf = &gfx->mPerspGraph;
-		f32 factor;
+	// Update fader state
+	{
+		J2DPerspGraph* graf = sys->getGfx()->getPerspGraph();
 		graf->setPort();
-		JUtility::TColor color(mDrawColor);
+
+		JUtility::TColor screenColor(mDrawColor);
+		f32 screenOpacity;
 		switch (mState) {
-		case 1:
+		case State_FadeIn:
 			if (mCounterMax) {
-				factor = (f32)mCounter / (f32)mCounterMax;
+				screenOpacity = (f32)mCounter / (f32)mCounterMax;
 			} else {
-				factor = 0.0f;
+				screenOpacity = 0.0f;
 			}
-			color.a = mDrawAlpha * factor;
+
+			screenColor.a = mDrawAlpha * screenOpacity;
 			break;
-		case 2:
+		case State_FadeOut:
 			if (mCounterMax) {
-				factor = (f32)mCounter / (f32)mCounterMax;
+				screenOpacity = (f32)mCounter / (f32)mCounterMax;
 			} else {
-				factor = 0.0f;
+				screenOpacity = 0.0f;
 			}
-			color.a = mDrawAlpha * (1.0f - factor);
+
+			screenColor.a = mDrawAlpha * (1.0f - screenOpacity);
 			break;
 		}
-		graf->setColor(color);
-		u32 y    = System::getRenderModeObj()->efbHeight;
-		u32 x    = System::getRenderModeObj()->fbWidth;
-		f32 zero = 0.0f;
-		JGeometry::TBox2f box(0.0f, 0.0f, zero + x, zero + y);
-		graf->fillBox(box);
+
+		graf->setColor(screenColor);
+		graf->fillBox(sys->getFullScreenBox());
 	}
-	/*
-stwu     r1, -0x5a0(r1)
-mflr     r0
-stw      r0, 0x5a4(r1)
-stw      r31, 0x59c(r1)
-mr       r31, r3
-stw      r30, 0x598(r1)
-stw      r29, 0x594(r1)
-lwz      r4, sys@sda21(r13)
-lwz      r30, 0x24(r4)
-addi     r29, r30, 0x190
-lwz      r12, 0(r29)
-mr       r3, r29
-lwz      r12, 0x14(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0xc(r31)
-mr       r4, r30
-mr       r5, r29
-lwz      r12, 0(r3)
-lwz      r12, 0x9c(r12)
-mtctr    r12
-bctrl
-lbz      r0, 0xba4(r31)
-cmplwi   r0, 0
-beq      lbl_803D7208
-lwz      r4, sys@sda21(r13)
-addi     r3, r1, 0x2cc
-lwz      r4, 0x24(r4)
-addi     r30, r4, 0x190
-bl       __ct__8GraphicsFv
-lwz      r3, 0xba0(r31)
-mr       r5, r30
-addi     r4, r1, 0x2cc
-lwz      r12, 0(r3)
-lwz      r12, 0x9c(r12)
-mtctr    r12
-bctrl
-lis      r3, __vt__8Graphics@ha
-addic.   r4, r1, 0x45c
-addi     r0, r3, __vt__8Graphics@l
-stw      r0, 0x538(r1)
-beq      lbl_803D71E0
-lis      r3, __vt__13J2DPerspGraph@ha
-cmplwi   r4, 0
-addi     r0, r3, __vt__13J2DPerspGraph@l
-stw      r0, 0(r4)
-beq      lbl_803D71E0
-lis      r3, __vt__14J2DGrafContext@ha
-addi     r0, r3, __vt__14J2DGrafContext@l
-stw      r0, 0(r4)
-
-lbl_803D71E0:
-addic.   r4, r1, 0x388
-beq      lbl_803D7208
-lis      r3, __vt__13J2DOrthoGraph@ha
-cmplwi   r4, 0
-addi     r0, r3, __vt__13J2DOrthoGraph@l
-stw      r0, 0(r4)
-beq      lbl_803D7208
-lis      r3, __vt__14J2DGrafContext@ha
-addi     r0, r3, __vt__14J2DGrafContext@l
-stw      r0, 0(r4)
-
-lbl_803D7208:
-lbz      r0, 0xbb4(r31)
-cmplwi   r0, 0
-beq      lbl_803D72A0
-lwz      r4, sys@sda21(r13)
-addi     r3, r1, 0x2c
-lwz      r4, 0x24(r4)
-addi     r30, r4, 0x190
-bl       __ct__8GraphicsFv
-lwz      r3, 0xba8(r31)
-mr       r5, r30
-addi     r4, r1, 0x2c
-lwz      r12, 0(r3)
-lwz      r12, 0x9c(r12)
-mtctr    r12
-bctrl
-lis      r3, __vt__8Graphics@ha
-addic.   r4, r1, 0x1bc
-addi     r0, r3, __vt__8Graphics@l
-stw      r0, 0x298(r1)
-beq      lbl_803D7278
-lis      r3, __vt__13J2DPerspGraph@ha
-cmplwi   r4, 0
-addi     r0, r3, __vt__13J2DPerspGraph@l
-stw      r0, 0(r4)
-beq      lbl_803D7278
-lis      r3, __vt__14J2DGrafContext@ha
-addi     r0, r3, __vt__14J2DGrafContext@l
-stw      r0, 0(r4)
-
-lbl_803D7278:
-addic.   r4, r1, 0xe8
-beq      lbl_803D72A0
-lis      r3, __vt__13J2DOrthoGraph@ha
-cmplwi   r4, 0
-addi     r0, r3, __vt__13J2DOrthoGraph@l
-stw      r0, 0(r4)
-beq      lbl_803D72A0
-lis      r3, __vt__14J2DGrafContext@ha
-addi     r0, r3, __vt__14J2DGrafContext@l
-stw      r0, 0(r4)
-
-lbl_803D72A0:
-lwz      r0, 0xbdc(r31)
-cmpwi    r0, 0
-beq      lbl_803D7470
-lwz      r3, sys@sda21(r13)
-lwz      r3, 0x24(r3)
-addi     r30, r3, 0x190
-mr       r3, r30
-lwz      r12, 0(r30)
-lwz      r12, 0x14(r12)
-mtctr    r12
-bctrl
-lwz      r0, 0xbdc(r31)
-lwz      r3, 0xbd4(r31)
-cmpwi    r0, 2
-stw      r3, 0x18(r1)
-beq      lbl_803D7368
-bge      lbl_803D73E4
-cmpwi    r0, 1
-bge      lbl_803D72F0
-b        lbl_803D73E4
-
-lbl_803D72F0:
-lwz      r4, 0xbe4(r31)
-cmplwi   r4, 0
-beq      lbl_803D7330
-lwz      r3, 0xbe0(r31)
-lis      r0, 0x4330
-stw      r0, 0x570(r1)
-lfd      f2, lbl_8051FB48@sda21(r2)
-stw      r3, 0x574(r1)
-lfd      f0, 0x570(r1)
-stw      r4, 0x57c(r1)
-fsubs    f1, f0, f2
-stw      r0, 0x578(r1)
-lfd      f0, 0x578(r1)
-fsubs    f0, f0, f2
-fdivs    f2, f1, f0
-b        lbl_803D7334
-
-lbl_803D7330:
-lfs      f2, lbl_8051FB1C@sda21(r2)
-
-lbl_803D7334:
-lbz      r3, 0xbd8(r31)
-lis      r0, 0x4330
-stw      r0, 0x580(r1)
-lfd      f1, lbl_8051FB48@sda21(r2)
-stw      r3, 0x584(r1)
-lfd      f0, 0x580(r1)
-fsubs    f0, f0, f1
-fmuls    f0, f0, f2
-fctiwz   f0, f0
-stfd     f0, 0x588(r1)
-lwz      r0, 0x58c(r1)
-stb      r0, 0x1b(r1)
-b        lbl_803D73E4
-
-lbl_803D7368:
-lwz      r4, 0xbe4(r31)
-cmplwi   r4, 0
-beq      lbl_803D73A8
-lwz      r3, 0xbe0(r31)
-lis      r0, 0x4330
-stw      r0, 0x588(r1)
-lfd      f2, lbl_8051FB48@sda21(r2)
-stw      r3, 0x58c(r1)
-lfd      f0, 0x588(r1)
-stw      r4, 0x584(r1)
-fsubs    f1, f0, f2
-stw      r0, 0x580(r1)
-lfd      f0, 0x580(r1)
-fsubs    f0, f0, f2
-fdivs    f1, f1, f0
-b        lbl_803D73AC
-
-lbl_803D73A8:
-lfs      f1, lbl_8051FB1C@sda21(r2)
-
-lbl_803D73AC:
-lbz      r3, 0xbd8(r31)
-lis      r0, 0x4330
-lfs      f0, lbl_8051FB24@sda21(r2)
-stw      r3, 0x57c(r1)
-lfd      f2, lbl_8051FB48@sda21(r2)
-fsubs    f0, f0, f1
-stw      r0, 0x578(r1)
-lfd      f1, 0x578(r1)
-fsubs    f1, f1, f2
-fmuls    f0, f1, f0
-fctiwz   f0, f0
-stfd     f0, 0x570(r1)
-lwz      r0, 0x574(r1)
-stb      r0, 0x1b(r1)
-
-lbl_803D73E4:
-lwz      r0, 0x18(r1)
-mr       r3, r30
-addi     r4, r1, 8
-addi     r5, r1, 0xc
-stw      r0, 0x14(r1)
-addi     r6, r1, 0x10
-addi     r7, r1, 0x14
-stw      r0, 0x10(r1)
-stw      r0, 0xc(r1)
-stw      r0, 8(r1)
-bl
-setColor__14J2DGrafContextFQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor
-bl       getRenderModeObj__6SystemFv
-lhz      r31, 6(r3)
-bl       getRenderModeObj__6SystemFv
-lhz      r4, 4(r3)
-lis      r0, 0x4330
-lfs      f3, lbl_8051FB1C@sda21(r2)
-mr       r3, r30
-stw      r4, 0x58c(r1)
-addi     r4, r1, 0x1c
-lfd      f2, lbl_8051FB48@sda21(r2)
-stw      r0, 0x588(r1)
-lfd      f0, 0x588(r1)
-stw      r31, 0x584(r1)
-fsubs    f1, f0, f2
-stw      r0, 0x580(r1)
-lfd      f0, 0x580(r1)
-fadds    f1, f3, f1
-stfs     f3, 0x1c(r1)
-fsubs    f0, f0, f2
-stfs     f3, 0x20(r1)
-fadds    f0, f3, f0
-stfs     f1, 0x24(r1)
-stfs     f0, 0x28(r1)
-bl       "fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2<f>"
-
-lbl_803D7470:
-lwz      r0, 0x5a4(r1)
-lwz      r31, 0x59c(r1)
-lwz      r30, 0x598(r1)
-lwz      r29, 0x594(r1)
-mtlr     r0
-addi     r1, r1, 0x5a0
-blr
-	*/
 }
 
 /**
