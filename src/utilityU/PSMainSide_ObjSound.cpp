@@ -228,9 +228,10 @@ bool Creature::judgeNearWithPlayer(const Vec& pos1, const Vec& pos2, f32 near, f
  */
 bool Creature::isNear(Game::Creature* obj, f32 near)
 {
-	Vec* pos  = (Vec*)mGameObj->getSound_PosPtr();
-	Vec* pos2 = (Vec*)obj->getSound_PosPtr();
-	return judgeNearWithPlayer(*pos, *pos2, near, near * 0.5f);
+	Vec* pos     = (Vec*)mGameObj->getSound_PosPtr();
+	Vec* pos2    = (Vec*)obj->getSound_PosPtr();
+
+	return judgeNearWithPlayer(*pos, *pos2, near, near / 2);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -298,8 +299,8 @@ u8 Creature::getPlayingHandleNum()
 void Creature::loopCalc(FrameCalcArg& arg)
 {
 	JAInter::Object* jai = arg.mObj->getJAIObject();
-	f32* dist            = arg.mDist;
 	Vec* pos             = &jai->_28;
+	f32* dist            = arg.mDist;
 	P2ASSERTLINE(170, jai->_24);
 
 	u8 players = PSSystem::SingletonBase<ObjCalcBase>::sInstance->getPlayerNo(this);

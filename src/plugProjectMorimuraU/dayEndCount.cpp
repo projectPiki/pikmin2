@@ -90,11 +90,11 @@ void TDayEndCount::doCreate(JKRArchive* arc)
 	pane->setBasePosition(J2DPOS_Center);
 	mNumberPanePos.x = pane->mOffset.x;
 	mNumberPanePos.y = pane->mOffset.y + 25.0f;
-	for (u8 i = 0; i < 4; i++) {
-		JGeometry::TVec2<s16>* color = pane->getTexCoord(i);
-		mTexCoords2[i]               = *color;
-		mTexCoords1[i]               = mTexCoords2[i];
+	
+	for (u8 i = 0; i < ARRAY_SIZE(mTexCoords1); i++) {
+		mTexCoords1[i] = mTexCoords2[i] = *pane->getTexCoord(i);
 	}
+	
 	reset();
 }
 

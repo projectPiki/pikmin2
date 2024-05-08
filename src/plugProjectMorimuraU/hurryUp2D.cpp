@@ -38,10 +38,12 @@ void THuWhitePaneSet::drawSelf(f32 height, f32 width, Mtx* mtx)
 	GXLoadPosMtxImm(test, 0);
 	GXBegin(GX_QUADS, GX_VTXFMT0, 4);
 
-	GXPosition3f32(width, height, 0.0f);
-	GXPosition3f32(xOffs, height, 0.0f);
-	GXPosition3f32(xOffs, yOffs, 0.0f);
-	GXPosition3f32(width, yOffs, 0.0f);
+	f32 depth = 0.0f;
+
+	GXPosition3f32(width, height, depth);
+	GXPosition3f32(xOffs, height, depth);
+	GXPosition3f32(xOffs, yOffs,  depth);
+	GXPosition3f32(width, yOffs,  depth);
 
 	GXSetDstAlpha(GX_FALSE, 0);
 	J2DPictureEx::drawSelf(height, width, mtx);
@@ -52,10 +54,11 @@ void THuWhitePaneSet::drawSelf(f32 height, f32 width, Mtx* mtx)
 	GXLoadPosMtxImm(test, 0);
 	GXBegin(GX_QUADS, GX_VTXFMT0, 4);
 	xFactor = xOffs - xFactor;
-	GXPosition3f32(xFactor, height, 0.0f);
-	GXPosition3f32(xOffs, height, 0.0f);
-	GXPosition3f32(xOffs, yOffs, 0.0f);
-	GXPosition3f32(xFactor, yOffs, 0.0f);
+
+	GXPosition3f32(xFactor, height, depth);
+	GXPosition3f32(xOffs,   height, depth);
+	GXPosition3f32(xOffs,   yOffs,  depth);
+	GXPosition3f32(xFactor, yOffs,  depth);
 
 	GXSetDstAlpha(GX_FALSE, 0);
 	GXSetColorUpdate(GX_TRUE);
@@ -607,10 +610,10 @@ void THurryUp2D::init()
 	}
 
 	// These values need to be treated as variables and not constants, somehow
-	int numA = 75;
-	int numB = 9;
-	int numC = 64;
-	int numD = 6;
+	s32 numA = 75;
+	s32 numB = 9;
+	s32 numC = 64;
+	s32 numD = 6;
 	mTimer   = calcTimer(numA, numB, numC, numD);
 
 	changeState(mState, mTimer);
