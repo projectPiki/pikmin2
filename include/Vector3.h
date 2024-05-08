@@ -258,6 +258,14 @@ struct Vector3 {
 
 	inline void sub(Vector3& a, Vector3& b) { set(a.x - b.x, a.y - b.y, a.z - b.z); }
 
+	inline f32 absX() { return (f32)absF(x); }
+	inline f32 absY() { return absF(y); }
+	inline f32 absZ() { return (f32)absF(z); }
+
+	inline boundedX(f32 bound) { return absX() < bound; }
+	inline boundedY(f32 bound) { return absY() < bound; }
+	inline boundedZ(f32 bound) { return absZ() < bound; }
+
 	/**
 	 * Sets the flat direction from one vector to another.
 	 * The resulting vector will have a zero y-component.

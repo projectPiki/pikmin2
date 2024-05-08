@@ -11,7 +11,7 @@ MORIMURA_FILES:=\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/eggAnimator.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/eggMgr.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/egg.o\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/panModokiState.o\
+	$(BUILD_DIR)/src/plugProjectMorimuraU/panModokiState.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/panModokiAnimator.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/panModokiMgr.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/panModoki.o\
@@ -34,7 +34,7 @@ MORIMURA_FILES:=\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/tamagoMushiState.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/tamagoMushiAnimator.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/tamagoMushiMgr.o\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/tamagoMushi.o\
+	$(BUILD_DIR)/src/plugProjectMorimuraU/tamagoMushi.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/zukan2D.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/hiScore2D.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/umiMushiState.o\

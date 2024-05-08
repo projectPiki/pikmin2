@@ -446,25 +446,7 @@ bool Obj::turnFunc()
  * @note Address: 0x80370160
  * @note Size: 0x34
  */
-bool Obj::isReachToGoal(f32 goalRadius)
-{
-	return sqrDistanceXZ(mPosition, mGoalPosition) < SQUARE(goalRadius);
-	/*
-	fmuls    f0, f1, f1
-	lfs      f2, 0x194(r3)
-	lfs      f1, 0x2e8(r3)
-	lfs      f3, 0x18c(r3)
-	fsubs    f2, f2, f1
-	lfs      f1, 0x2e0(r3)
-	fsubs    f3, f3, f1
-	fmuls    f1, f2, f2
-	fmadds   f1, f3, f3, f1
-	fcmpo    cr0, f1, f0
-	mfcr     r0
-	srwi     r3, r0, 0x1f
-	blr
-	*/
-}
+bool Obj::isReachToGoal(f32 goalRadius) { return (u8)(sqrDistanceXZ(mPosition, mGoalPosition) < SQUARE(goalRadius)); }
 
 /**
  * @note Address: 0x80370194
@@ -524,9 +506,12 @@ void Obj::appearPanic()
 		{
 			Piki* piki = *iter;
 			if (piki->isSearchable()) {
-				// probably should be an inline?
-				Vector2f sep = Vector2f(piki->getPosition().x, piki->getPosition().z) - Vector2f(mPosition.x, mPosition.z);
-				if (sep.sqrMagnitude() < rad) {
+				Vector3f pos;
+				getPosition2D(pos);
+
+				Vector3f pikiPos = Vector3f(piki->getPosition().x, 0.0f, piki->getPosition().z);
+
+				if (sqrDistanceXZ(pikiPos, pos) < rad) {
 					InteractAstonish astonish(this, C_PARMS->mPikiPanicMaxTime);
 					piki->stimulate(astonish);
 				}

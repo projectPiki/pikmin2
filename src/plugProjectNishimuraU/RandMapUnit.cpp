@@ -766,11 +766,11 @@ MapNode* RandMapUnit::getNormalRandMapUnit()
 
 	MapNode* nodeArray = mGenerator->getMapNodeKind(0);
 
-	int a;
-	int b;
-	int c;
-	MapNode* node  = getCalcDoorIndex(a, b, c, randDoor);
-	DoorNode* door = node->getDoorNode(a);
+	int doorIdx;
+	int doorX;
+	int doorY;
+	MapNode* node  = getCalcDoorIndex(doorIdx, doorX, doorY, randDoor);
+	DoorNode* door = node->getDoorNode(doorIdx);
 
 	if (node && door) {
 		setUnitKindOrder(node, kindOrder);
@@ -782,7 +782,7 @@ MapNode* RandMapUnit::getNormalRandMapUnit()
 				setRandomDoorIndex(intArr, currDoorNum);
 
 				for (int j = 0; j < currDoorNum; j++) {
-					if (currNode->isDoorSet(door, b, c, intArr[j]) && mChecker->isPutOnMap(currNode)) {
+					if (currNode->isDoorSet(door, doorX, doorY, intArr[j]) && mChecker->isPutOnMap(currNode)) {
 						return currNode;
 					}
 				}
@@ -2387,10 +2387,10 @@ void RandMapUnit::changeMapPriority(UnitInfo* info)
  */
 void RandMapUnit::moveCentre()
 {
-	int minX = -12800;
-	int minY = -12800;
-	int maxX = 12800;
-	int maxY = 12800;
+	int maxX = -12800;
+	int maxY = -12800;
+	int minX = 12800;
+	int minY = 12800;
 
 	Cave::MapNode* rootNode = mGenerator->mPlacedMapNodes;
 	for (Cave::MapNode* currentNode = static_cast<Cave::MapNode*>(rootNode->mChild); currentNode;
@@ -2401,14 +2401,14 @@ void RandMapUnit::moveCentre()
 		int nodeOffsetY = currentNode->getNodeOffsetY();
 		int nodeSizeY   = currentNode->mUnitInfo->getUnitSizeY() + nodeOffsetY;
 
-		if (nodeOffsetX < maxX)
-			maxX = nodeOffsetX;
-		if (nodeSizeX > minX)
-			minX = nodeSizeX;
-		if (nodeOffsetY < maxY)
-			maxY = nodeOffsetY;
-		if (nodeSizeY > minY)
-			minY = nodeSizeY;
+		if (nodeOffsetX < minX)
+			minX = nodeOffsetX;
+		if (nodeSizeX > maxX)
+			maxX = nodeSizeX;
+		if (nodeOffsetY < minY)
+			minY = nodeOffsetY;
+		if (nodeSizeY > maxY)
+			maxY = nodeSizeY;
 	}
 
 	// Move all nodes so that the bounding box is at the origin
@@ -2417,20 +2417,20 @@ void RandMapUnit::moveCentre()
 		int nodeOffsetX = currentNode->getNodeOffsetX();
 		int nodeOffsetY = currentNode->getNodeOffsetY();
 
-		int x = nodeOffsetX - maxX;
-		int y = nodeOffsetY - maxY;
+		int x = nodeOffsetX - minX;
+		int y = nodeOffsetY - minY;
 
 		currentNode->setOffset(x, y);
 	}
 
 	if (!mMapHasDiameter36) {
-		int x = minX - maxX;
+		int x = maxX - minX;
 
 		if (x > 35) {
 			mMapHasDiameter36 = true;
 		}
 
-		int y = minY - maxY;
+		int y = maxY - minY;
 		if (y > 35) {
 			mMapHasDiameter36 = true;
 		}

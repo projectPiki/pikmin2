@@ -672,6 +672,8 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 		return angleDist;
 	}
 
+	inline void getPosition2D(Vector3f& pos) { pos = Vector3f(mPosition.x, 0.0f, mPosition.z); }
+
 	inline void forceMovePosition(Vector3f offset) { mPosition += offset; }
 
 	inline f32 getDamageAnimFrac(f32 scale) { return (mDamageAnimTimer / scale); }
@@ -700,7 +702,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	inline void setTargetVelocity(f32 speedFactor)
 	{
 		f32 x, y, z;
-		f32 speed = getMoveSpeed(speedFactor);
+		f32 speed = speedFactor * static_cast<EnemyParmsBase*>(mParms)->mGeneral.mMoveSpeed();
 		x         = (f32)sin(getFaceDir());
 		y         = getTargetVelocity().y;
 		z         = (f32)cos(getFaceDir());

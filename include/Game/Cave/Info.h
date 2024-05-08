@@ -170,14 +170,11 @@ struct FloorInfo : public CNode {
 		ParmString mVrBox;            // _1B4  /* f00A */
 		Parm<int> mIsHoleClogged;     // _1D4  /* f010 */
 		ParmEnum mFloorAlphaType;     // _1FC  /* f011 */
-
-		ParmEnum mFloorBetaType; // _220  /* f012 */
-
-		ParmEnum mFloorHidden; // _244  /* f013 */
-
-		Parm<int> mVersion;          // _268  /* f015 */
-		Parm<f32> mWaterwraithTimer; // _290  /* f016 */
-		Parm<int> mGlitchySeesaw;    // _2B8  /* f017 */
+		ParmEnum mFloorBetaType;      // _220  /* f012 */
+		ParmEnum mFloorHidden;        // _244  /* f013 */
+		Parm<int> mVersion;           // _268  /* f015 */
+		Parm<f32> mWaterwraithTimer;  // _290  /* f016 */
+		Parm<int> mGlitchySeesaw;     // _2B8  /* f017 */
 
 		// void* mEnd;                  // _2E0
 	};

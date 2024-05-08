@@ -100,7 +100,7 @@ Obj* Mgr::createGroup(EnemyBirthArg& birthArg, int count, Vector3f& velocity)
  * @note Address: 0x8036DF28
  * @note Size: 0xB0
  */
-Obj* Mgr::createGroupByBigFoot(EnemyBirthArg& birthArg, int count, Vector3f& velocity, f32 p1)
+Obj* Mgr::createGroupByBigFoot(EnemyBirthArg& birthArg, int count, Vector3f& velocity, f32 fallSpeedSpread)
 {
 	EnemyBase* enemy = EnemyMgrBase::birth(birthArg);
 	if (enemy) {
@@ -108,7 +108,7 @@ Obj* Mgr::createGroupByBigFoot(EnemyBirthArg& birthArg, int count, Vector3f& vel
 		leader->init(nullptr);
 		leader->setTypeBall();
 		leader->setVelocity(velocity);
-		createGroupByBigFoot(leader, count, true, p1);
+		createGroupByBigFoot(leader, count, true, fallSpeedSpread);
 		return leader;
 
 	} else {
@@ -120,11 +120,13 @@ Obj* Mgr::createGroupByBigFoot(EnemyBirthArg& birthArg, int count, Vector3f& vel
  * @note Address: 0x8036DFD8
  * @note Size: 0x3AC
  */
-void Mgr::createGroup(Obj* leader, int count, bool check)
+void Mgr::createGroup(Obj* leader, int count, bool isExplodeFromObject)
 {
-	f32 factor1 = 45.0f;
-	if (check) {
-		factor1 = -10.0f;
+	// if appearing from ground, scatter outwards
+	// if exploding from egg/RLL, more tightly + explode "inwards" from leader
+	f32 distanceOffsetFactor = 45.0f;
+	if (isExplodeFromObject) {
+		distanceOffsetFactor = -10.0f;
 	}
 
 	P2ASSERTLINE(170, leader);
@@ -133,9 +135,11 @@ void Mgr::createGroup(Obj* leader, int count, bool check)
 	EnemyBirthArg birthArg;
 	Vector3f leaderPos = leader->getPosition();
 
-	f32 factor2 = 0.5f * randFloat() + 0.5f;
-	if (check) {
-		factor2 = 1.0f;
+	// if appearing from ground, do so at random offsets
+	// if exploding from egg/RLL, do so at fixed radius
+	f32 birthRadius = 0.5f * randFloat() + 0.5f;
+	if (isExplodeFromObject) {
+		birthRadius = 1.0f;
 	}
 
 	birthArg.mFaceDir  = 0.0f;
@@ -147,18 +151,20 @@ void Mgr::createGroup(Obj* leader, int count, bool check)
 	leader->mRotation.y = leader->mFaceDir;
 
 	for (int i = 0; i < count - 1; i++) {
-		if (!check) {
-			factor2 = 0.8f * randFloat() + 0.2f;
+		// if appearing from ground, scatter birth radius even more
+		if (!isExplodeFromObject) {
+			birthRadius = 0.8f * randFloat() + 0.2f;
 		}
 		birthArg.mPosition = leaderPos;
 		birthArg.mFaceDir  = (TAU * (i)) / ((f32)count);
 
-		f32 sinComp = factor1 * sinf(birthArg.mFaceDir);
-		birthArg.mPosition.x += factor2 * sinComp;
-		f32 cosComp = factor1 * cosf(birthArg.mFaceDir);
-		birthArg.mPosition.z += factor2 * cosComp;
+		f32 sinComp = distanceOffsetFactor * sinf(birthArg.mFaceDir);
+		birthArg.mPosition.x += birthRadius * sinComp;
+		f32 cosComp = distanceOffsetFactor * cosf(birthArg.mFaceDir);
+		birthArg.mPosition.z += birthRadius * cosComp;
 
-		if (check || (int)(i % 2) == 1) {
+		// if we're exploding from egg/RLL (or for every second mitite), flip face dir
+		if (isExplodeFromObject || (int)(i % 2) == 1) {
 			birthArg.mFaceDir *= -1.0f;
 		}
 
@@ -166,7 +172,7 @@ void Mgr::createGroup(Obj* leader, int count, bool check)
 		if (enemy) {
 			Obj* tamagomushi = OBJ(enemy);
 			tamagomushi->init(nullptr);
-			if (check) {
+			if (isExplodeFromObject) {
 				Vector3f leaderVelocity = leader->getVelocity();
 				tamagomushi->setVelocity(leaderVelocity);
 			}
@@ -179,7 +185,7 @@ void Mgr::createGroup(Obj* leader, int count, bool check)
  * @note Address: 0x8036E384
  * @note Size: 0x484
  */
-void Mgr::createGroupByBigFoot(Obj* leader, int count, bool check, f32 p1)
+void Mgr::createGroupByBigFoot(Obj* leader, int count, bool doSpreadFallSpeeds, f32 fallSpeedSpread)
 {
 	P2ASSERTLINE(223, leader);
 	leader->setLeader(leader);
@@ -208,12 +214,12 @@ void Mgr::createGroupByBigFoot(Obj* leader, int count, bool check, f32 p1)
 		Obj* tamagomushi = static_cast<Obj*>(EnemyMgrBase::birth(birthArg));
 		if (tamagomushi) {
 			tamagomushi->init(nullptr);
-			if (check) {
+			if (doSpreadFallSpeeds) {
 				Vector3f leaderVelocity = leader->getVelocity();
 				if (i % 3) {
-					leaderVelocity.y -= p1 * randFloat();
+					leaderVelocity.y -= fallSpeedSpread * randFloat();
 				} else {
-					leaderVelocity.y += p1 * randFloat();
+					leaderVelocity.y += fallSpeedSpread * randFloat();
 				}
 
 				tamagomushi->setVelocity(leaderVelocity);

@@ -161,8 +161,12 @@ bool Obj::isAttackStart()
 
 	if (mTargetCreature) {
 		if (FABS(getAngDist(mTargetCreature)) <= contAtkAngle) {
-			Vector3f pos       = Vector3f(mPosition.x, 0.0f, mPosition.z);
+			Vector3f pos;
+			getPosition2D(pos);
+
 			Vector3f targetPos = Vector3f(mTargetCreature->getPosition().x, 0.0f, mTargetCreature->getPosition().z);
+			// Vector3f pos       = Vector3f(mPosition.x, 0.0f, mPosition.z);
+			// Vector3f targetPos = Vector3f(mTargetCreature->getPosition().x, 0.0f, mTargetCreature->getPosition().z);
 
 			f32 sqrDist = sqrDistanceXZ(targetPos, pos);
 			if (sqrDist < minAtkRange + atkRadius && sqrDist > minAtkRange - atkRadius) {
@@ -179,7 +183,9 @@ bool Obj::isAttackStart()
 
 		if (piki->isSearchable()) {
 			if (FABS(getAngDist(piki)) <= contAtkAngle) {
-				Vector3f pos       = Vector3f(mPosition.x, 0.0f, mPosition.z);
+				Vector3f pos;
+				getPosition2D(pos);
+
 				Vector3f targetPos = Vector3f(piki->getPosition().x, 0.0f, piki->getPosition().z);
 
 				f32 sqrDist = sqrDistanceXZ(targetPos, pos);
@@ -586,12 +592,9 @@ bool Obj::isFindTarget()
 		Piki* piki = *iter;
 
 		if (piki->isSearchable() && !piki->isStickTo()) {
-			// Vector3f pikiPos = piki->getPosition();
-			// Vector3f pos     = getPosition();
-
-			// f32 angleDist = angDist(angXZ(pikiPos.x, pikiPos.z, pos), getFaceDir());
 			if (FABS(getAngDist(piki)) <= searchAngle) {
-				Vector3f pos       = Vector3f(mPosition.x, 0.0f, mPosition.z);
+				Vector3f pos;
+				getPosition2D(pos);
 				Vector3f targetPos = Vector3f(piki->getPosition().x, 0.0f, piki->getPosition().z);
 
 				f32 sqrDist = sqrDistanceXZ(targetPos, pos);
@@ -610,334 +613,6 @@ bool Obj::isFindTarget()
 	}
 
 	return false;
-	/*
-	stwu     r1, -0xd0(r1)
-	mflr     r0
-	stw      r0, 0xd4(r1)
-	stfd     f31, 0xc0(r1)
-	psq_st   f31, 200(r1), 0, qr0
-	stfd     f30, 0xb0(r1)
-	psq_st   f30, 184(r1), 0, qr0
-	stfd     f29, 0xa0(r1)
-	psq_st   f29, 168(r1), 0, qr0
-	stfd     f28, 0x90(r1)
-	psq_st   f28, 152(r1), 0, qr0
-	stfd     f27, 0x80(r1)
-	psq_st   f27, 136(r1), 0, qr0
-	stw      r31, 0x7c(r1)
-	stw      r30, 0x78(r1)
-	stw      r29, 0x74(r1)
-	mr       r31, r3
-	lfs      f1, lbl_8051E830@sda21(r2)
-	lwz      r4, 0xc0(r3)
-	li       r0, 0
-	lfs      f2, lbl_8051E82C@sda21(r2)
-	lfs      f0, 0x49c(r4)
-	fmuls    f0, f1, f0
-	stw      r0, 0x230(r3)
-	fmuls    f31, f2, f0
-	bl       isNowCaution__Q34Game6Miulin3ObjFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80364F44
-	lfs      f31, lbl_8051E82C@sda21(r2)
-	b        lbl_80364F5C
-
-lbl_80364F44:
-	mr       r3, r31
-	bl       isProhibitedSearch__Q34Game6Miulin3ObjFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80364F5C
-	li       r3, 0
-	b        lbl_8036532C
-
-lbl_80364F5C:
-	lwz      r6, 0xc0(r31)
-	mr       r3, r31
-	addi     r4, r1, 8
-	li       r5, 0
-	lfs      f1, 0x44c(r6)
-	fmuls    f0, f1, f1
-	stfs     f1, 8(r1)
-	stfs     f0, 8(r1)
-	lwz      r6, 0xc0(r31)
-	lfs      f1, 0x49c(r6)
-	lfs      f2, 0x44c(r6)
-	bl
-"getNearestNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>"
-	stw      r3, 0x230(r31)
-	li       r0, 0
-	lfs      f30, lbl_8051E834@sda21(r2)
-	lis      r4, "__vt__22Iterator<Q24Game4Piki>"@ha
-	lwz      r3, pikiMgr__4Game@sda21(r13)
-	addi     r4, r4, "__vt__22Iterator<Q24Game4Piki>"@l
-	cmplwi   r0, 0
-	fmuls    f30, f30, f30
-	stw      r4, 0x60(r1)
-	stw      r0, 0x6c(r1)
-	stw      r0, 0x64(r1)
-	stw      r3, 0x68(r1)
-	bne      lbl_80364FD8
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x64(r1)
-	b        lbl_803652C0
-
-lbl_80364FD8:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x64(r1)
-	b        lbl_80365044
-
-lbl_80364FF0:
-	lwz      r3, 0x68(r1)
-	lwz      r4, 0x64(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x6c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_803652C0
-	lwz      r3, 0x68(r1)
-	lwz      r4, 0x64(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x64(r1)
-
-lbl_80365044:
-	lwz      r12, 0x60(r1)
-	addi     r3, r1, 0x60
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80364FF0
-	b        lbl_803652C0
-
-lbl_80365064:
-	lwz      r3, 0x68(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	mr       r29, r3
-	li       r30, 0
-	lwz      r12, 0x1c0(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803650C8
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803650C8
-	mr       r3, r29
-	bl       isStickToMouth__Q24Game8CreatureFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_803650C8
-	li       r30, 1
-
-lbl_803650C8:
-	clrlwi.  r0, r30, 0x18
-	beq      lbl_80365204
-	mr       r3, r29
-	bl       isStickTo__Q24Game8CreatureFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80365204
-	mr       r4, r29
-	addi     r3, r1, 0x24
-	lwz      r12, 0(r29)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r31
-	lfs      f2, 0x24(r1)
-	lwz      r12, 0(r31)
-	addi     r3, r1, 0x30
-	lfs      f1, 0x28(r1)
-	lfs      f0, 0x2c(r1)
-	lwz      r12, 8(r12)
-	stfs     f2, 0xc(r1)
-	stfs     f1, 0x10(r1)
-	stfs     f0, 0x14(r1)
-	mtctr    r12
-	bctrl
-	lfs      f5, 0x30(r1)
-	lis      r3, atanTable___5JMath@ha
-	lfs      f3, 0x38(r1)
-	addi     r3, r3, atanTable___5JMath@l
-	lfs      f1, 0xc(r1)
-	lfs      f0, 0x14(r1)
-	lfs      f4, 0x34(r1)
-	fsubs    f1, f1, f5
-	fsubs    f2, f0, f3
-	stfs     f5, 0x18(r1)
-	stfs     f4, 0x1c(r1)
-	stfs     f3, 0x20(r1)
-	bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
-	bl       roundAng__Ff
-	lwz      r12, 0(r31)
-	fmr      f27, f1
-	mr       r3, r31
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	fmr      f2, f1
-	fmr      f1, f27
-	bl       angDist__Fff
-	fabs     f0, f1
-	frsp     f0, f0
-	fcmpo    cr0, f0, f31
-	cror     2, 0, 2
-	bne      lbl_80365204
-	mr       r4, r29
-	addi     r3, r1, 0x48
-	lwz      r12, 0(r29)
-	lfs      f27, 0x194(r31)
-	lwz      r12, 8(r12)
-	lfs      f28, 0x18c(r31)
-	mtctr    r12
-	bctrl
-	mr       r4, r29
-	addi     r3, r1, 0x54
-	lwz      r12, 0(r29)
-	lfs      f29, 0x50(r1)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	fsubs    f1, f29, f27
-	lfs      f2, 0x54(r1)
-	lfs      f0, 8(r1)
-	fsubs    f2, f2, f28
-	fmuls    f1, f1, f1
-	fmadds   f1, f2, f2, f1
-	fcmpo    cr0, f1, f0
-	bge      lbl_80365204
-	fcmpo    cr0, f1, f30
-	ble      lbl_80365204
-	stw      r29, 0x230(r31)
-	stfs     f1, 8(r1)
-
-lbl_80365204:
-	lwz      r0, 0x6c(r1)
-	cmplwi   r0, 0
-	bne      lbl_80365230
-	lwz      r3, 0x68(r1)
-	lwz      r4, 0x64(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x64(r1)
-	b        lbl_803652C0
-
-lbl_80365230:
-	lwz      r3, 0x68(r1)
-	lwz      r4, 0x64(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x64(r1)
-	b        lbl_803652A4
-
-lbl_80365250:
-	lwz      r3, 0x68(r1)
-	lwz      r4, 0x64(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x6c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_803652C0
-	lwz      r3, 0x68(r1)
-	lwz      r4, 0x64(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x64(r1)
-
-lbl_803652A4:
-	lwz      r12, 0x60(r1)
-	addi     r3, r1, 0x60
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80365250
-
-lbl_803652C0:
-	lwz      r3, 0x68(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x64(r1)
-	cmplw    r4, r3
-	bne      lbl_80365064
-	lwz      r4, 0x230(r31)
-	cmplwi   r4, 0
-	beq      lbl_80365328
-	lwz      r12, 0(r4)
-	addi     r3, r1, 0x3c
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0x3c(r1)
-	li       r0, 0
-	li       r3, 1
-	stfs     f0, 0x2bc(r31)
-	lfs      f0, 0x40(r1)
-	stfs     f0, 0x2c0(r31)
-	lfs      f0, 0x44(r1)
-	stfs     f0, 0x2c4(r31)
-	stb      r0, 0x2e4(r31)
-	b        lbl_8036532C
-
-lbl_80365328:
-	li       r3, 0
-
-lbl_8036532C:
-	psq_l    f31, 200(r1), 0, qr0
-	lfd      f31, 0xc0(r1)
-	psq_l    f30, 184(r1), 0, qr0
-	lfd      f30, 0xb0(r1)
-	psq_l    f29, 168(r1), 0, qr0
-	lfd      f29, 0xa0(r1)
-	psq_l    f28, 152(r1), 0, qr0
-	lfd      f28, 0x90(r1)
-	psq_l    f27, 136(r1), 0, qr0
-	lfd      f27, 0x80(r1)
-	lwz      r31, 0x7c(r1)
-	lwz      r30, 0x78(r1)
-	lwz      r0, 0xd4(r1)
-	lwz      r29, 0x74(r1)
-	mtlr     r0
-	addi     r1, r1, 0xd0
-	blr
-	*/
 }
 
 /**
@@ -1017,9 +692,9 @@ void Obj::walkFunc()
 	f32 dashSpeedMultiplier = 1.0f;
 	f32 dashAnimScale       = 1.0f;
 
-	if (mTargetCreature && FABS(getAngDist(mTargetCreature)) < PI * (DEG2RAD * C_PROPERPARMS.mDashableAngle.mValue)) {
-		dashSpeedMultiplier = C_PROPERPARMS.mDashSpeedMultiplier.mValue;
-		dashAnimScale       = C_PROPERPARMS.mDashAnimationScale.mValue;
+	if (mTargetCreature && FABS(getAngDist(mTargetCreature)) < TORADIANS(C_PROPERPARMS.mDashableAngle.mValue)) {
+		dashSpeedMultiplier = C_PROPERPARMS.mDashSpeedMultiplier();
+		dashAnimScale       = C_PROPERPARMS.mDashAnimationScale();
 		setEmotionExcitement();
 	} else {
 		setEmotionCaution();
