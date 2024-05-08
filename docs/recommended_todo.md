@@ -107,8 +107,8 @@
 ### <section id="plugProjectMorimuraU">plugProjectMorimuraU</section>
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/scrollList.cpp">scrollList.cpp</a> | 25920 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/dayEndCount.cpp">dayEndCount.cpp</a> | 26683 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/hurryUp2D.cpp">hurryUp2D.cpp</a> | 27140 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/miulin.cpp">miulin.cpp</a> | 27520 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/scrollList.cpp">scrollList.cpp</a> | 25920 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/dayEndCount.cpp">dayEndCount.cpp</a> | 26623 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/hurryUp2D.cpp">hurryUp2D.cpp</a> | 27180 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/miulin.cpp">miulin.cpp</a> | 27520 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/jigumo.cpp">jigumo.cpp</a> | 42363 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/shijimiChou.cpp">shijimiChou.cpp</a> | 43362 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/panModoki.cpp">panModoki.cpp</a> | 44941 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/kingChappyState.cpp">kingChappyState.cpp</a> | 50795 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/umiMushi.cpp">umiMushi.cpp</a> | 60169 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/kingChappy.cpp">kingChappy.cpp</a> | 64703 |
@@ -199,6 +199,6 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/menu.cpp">menu.cpp</a> | 17351 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/PSMainSide_BossMgr.cpp">PSMainSide_BossMgr.cpp</a> | 17562 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/PSMainSide_Director.cpp">PSMainSide_Director.cpp</a> | 28380 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/PSMainSide_DirectorMgr.cpp">PSMainSide_DirectorMgr.cpp</a> | 28495 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/PSMainSide_Se.cpp">PSMainSide_Se.cpp</a> | 45041 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/PSMainSide_Scene.cpp">PSMainSide_Scene.cpp</a> | 49598 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/PSMainSide_ObjSound.cpp">PSMainSide_ObjSound.cpp</a> | 86635 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/PSMainSide_Factory.cpp">PSMainSide_Factory.cpp</a> | 88157 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/PSMainSide_ObjSound.cpp">PSMainSide_ObjSound.cpp</a> | 86640 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/PSMainSide_Factory.cpp">PSMainSide_Factory.cpp</a> | 88157 |
 
 

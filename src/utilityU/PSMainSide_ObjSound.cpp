@@ -228,8 +228,8 @@ bool Creature::judgeNearWithPlayer(const Vec& pos1, const Vec& pos2, f32 near, f
  */
 bool Creature::isNear(Game::Creature* obj, f32 near)
 {
-	Vec* pos     = (Vec*)mGameObj->getSound_PosPtr();
-	Vec* pos2    = (Vec*)obj->getSound_PosPtr();
+	Vec* pos  = (Vec*)mGameObj->getSound_PosPtr();
+	Vec* pos2 = (Vec*)obj->getSound_PosPtr();
 
 	return judgeNearWithPlayer(*pos, *pos2, near, near / 2);
 	/*

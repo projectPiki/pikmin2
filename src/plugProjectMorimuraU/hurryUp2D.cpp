@@ -42,8 +42,8 @@ void THuWhitePaneSet::drawSelf(f32 height, f32 width, Mtx* mtx)
 
 	GXPosition3f32(width, height, depth);
 	GXPosition3f32(xOffs, height, depth);
-	GXPosition3f32(xOffs, yOffs,  depth);
-	GXPosition3f32(width, yOffs,  depth);
+	GXPosition3f32(xOffs, yOffs, depth);
+	GXPosition3f32(width, yOffs, depth);
 
 	GXSetDstAlpha(GX_FALSE, 0);
 	J2DPictureEx::drawSelf(height, width, mtx);
@@ -56,9 +56,9 @@ void THuWhitePaneSet::drawSelf(f32 height, f32 width, Mtx* mtx)
 	xFactor = xOffs - xFactor;
 
 	GXPosition3f32(xFactor, height, depth);
-	GXPosition3f32(xOffs,   height, depth);
-	GXPosition3f32(xOffs,   yOffs,  depth);
-	GXPosition3f32(xFactor, yOffs,  depth);
+	GXPosition3f32(xOffs, height, depth);
+	GXPosition3f32(xOffs, yOffs, depth);
+	GXPosition3f32(xFactor, yOffs, depth);
 
 	GXSetDstAlpha(GX_FALSE, 0);
 	GXSetColorUpdate(GX_TRUE);

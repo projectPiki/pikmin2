@@ -1887,22 +1887,22 @@ void TMainScreen::doDraw()
 {
 	// Draw the new screen and the data screen
 	{
-		Graphics* gfx = sys->getGfx();
-		J2DPerspGraph* graf; // WHAT THE FUUUUUUUCK
+		Graphics* gfx       = sys->getGfx();
+		J2DPerspGraph* graf = &gfx->mPerspGraph;
 
-		sys->getGfx()->getPerspGraph()->setPort();
+		graf->setPort();
 		mMainScreen->draw(*gfx, *graf);
 
 		if (mNewScreen.mIsActive) {
-			graf = sys->mGfx->getPerspGraph();
+			J2DPerspGraph* graf2 = sys->getGfx()->getPerspGraph();
 			Graphics gfx2;
-			mNewScreen.mScreenObj->draw(gfx2, *graf);
+			mNewScreen.mScreenObj->draw(gfx2, *graf2);
 		}
 
 		if (mDataScreen.mIsActive) {
-			graf = sys->mGfx->getPerspGraph();
+			J2DPerspGraph* graf2 = sys->getGfx()->getPerspGraph();
 			Graphics gfx2;
-			mDataScreen.mScreenObj->draw(gfx2, *graf);
+			mDataScreen.mScreenObj->draw(gfx2, *graf2);
 		}
 	}
 
