@@ -235,6 +235,7 @@ void J3DGDSetVtxAttrFmtv(GXVtxFmt fmt, const GXVtxAttrFmtList* vtxAttr, bool for
  */
 void J3DGDSetTexCoordGen(GXTexGenType type, GXTexGenSrc src)
 {
+	// looks very similar to /src/Dolphin/gx/GXAttr.c : GXSetTexCoordGen2
 	u32 form        = 0;
 	u32 proj        = 0;
 	u32 row         = 5;
@@ -877,66 +878,35 @@ void J3DFifoLoadNrmMtxImm3x3(Mtx33 mtx, u32 idx)
  * @note Address: 0x80077010
  * @note Size: 0x98
  */
+static inline void WriteF32ToGX(f32 *p)
+{
+	u32 _t = *(volatile u32*)p;
+	GX_WRITE_U32(_t);
+}
+
 void J3DFifoLoadNrmMtxToTexMtx(Mtx mtx, u32 idx)
 {
 	GX_WRITE_U8(GX_FIFO_CMD_LOAD_XF_REG);
 	GX_WRITE_U16(11);
 	GX_WRITE_U16((u16)idx * 4);
-	GX_WRITE_U32(*(u32*)&(mtx[0][0]));
-	GX_WRITE_U32(*(u32*)&(mtx[0][1]));
-	GX_WRITE_U32(*(u32*)&(mtx[0][2]));
+
+	WriteF32ToGX(&(mtx[0][0]));
+	WriteF32ToGX(&(mtx[0][1]));
+	WriteF32ToGX(&(mtx[0][2]));
 	f32 x = 0.0f;
-	GX_WRITE_U32(*(u32*)&(x));
-	GX_WRITE_U32(*(u32*)&(mtx[1][0]));
-	GX_WRITE_U32(*(u32*)&(mtx[1][1]));
-	GX_WRITE_U32(*(u32*)&(mtx[1][2]));
+	WriteF32ToGX(&x);
+
+	WriteF32ToGX(&(mtx[1][0]));
+	WriteF32ToGX(&(mtx[1][1]));
+	WriteF32ToGX(&(mtx[1][2]));
 	f32 y = 0.0f;
-	GX_WRITE_U32(*(u32*)&(y));
-	GX_WRITE_U32(*(u32*)&(mtx[2][0]));
-	GX_WRITE_U32(*(u32*)&(mtx[2][1]));
-	GX_WRITE_U32(*(u32*)&(mtx[2][2]));
+	WriteF32ToGX(&y);
+
+	WriteF32ToGX(&(mtx[2][0]));
+	WriteF32ToGX(&(mtx[2][1]));
+	WriteF32ToGX(&(mtx[2][2]));
 	f32 z = 0.0f;
-	GX_WRITE_U32(*(u32*)&(z));
-	/*
-	stwu     r1, -0x20(r1)
-	li       r0, 0x10
-	lis      r6, 0xCC008000@ha
-	lfs      f0, lbl_80516AA4@sda21(r2)
-	stb      r0, 0xCC008000@l(r6)
-	li       r5, 0xb
-	rlwinm   r0, r4, 2, 0x10, 0x1d
-	sth      r5, -0x8000(r6)
-	sth      r0, -0x8000(r6)
-	lwz      r0, 0(r3)
-	stfs     f0, 0x10(r1)
-	stw      r0, -0x8000(r6)
-	lwz      r0, 4(r3)
-	stfs     f0, 0xc(r1)
-	stw      r0, -0x8000(r6)
-	lwz      r0, 8(r3)
-	stfs     f0, 8(r1)
-	stw      r0, -0x8000(r6)
-	lwz      r0, 0x10(r1)
-	stw      r0, -0x8000(r6)
-	lwz      r0, 0x10(r3)
-	stw      r0, -0x8000(r6)
-	lwz      r0, 0x14(r3)
-	stw      r0, -0x8000(r6)
-	lwz      r0, 0x18(r3)
-	stw      r0, -0x8000(r6)
-	lwz      r0, 0xc(r1)
-	stw      r0, -0x8000(r6)
-	lwz      r0, 0x20(r3)
-	stw      r0, -0x8000(r6)
-	lwz      r0, 0x24(r3)
-	stw      r0, -0x8000(r6)
-	lwz      r0, 0x28(r3)
-	stw      r0, -0x8000(r6)
-	lwz      r0, 8(r1)
-	stw      r0, -0x8000(r6)
-	addi     r1, r1, 0x20
-	blr
-	*/
+	WriteF32ToGX(&z);
 }
 
 /**
@@ -948,61 +918,24 @@ void J3DFifoLoadNrmMtxToTexMtx3x3(Mtx33 mtx, u32 idx)
 	GX_WRITE_U8(GX_FIFO_CMD_LOAD_XF_REG);
 	GX_WRITE_U16(11);
 	GX_WRITE_U16((u16)idx * 4);
-	GX_WRITE_U32(*(u32*)&(mtx[0][0]));
-	GX_WRITE_U32(*(u32*)&(mtx[0][1]));
-	GX_WRITE_U32(*(u32*)&(mtx[0][2]));
+
+	WriteF32ToGX(&(mtx[0][0]));
+	WriteF32ToGX(&(mtx[0][1]));
+	WriteF32ToGX(&(mtx[0][2]));
 	f32 x = 0.0f;
-	GX_WRITE_U32(*(u32*)&(x));
-	GX_WRITE_U32(*(u32*)&(mtx[1][0]));
-	GX_WRITE_U32(*(u32*)&(mtx[1][1]));
-	GX_WRITE_U32(*(u32*)&(mtx[1][2]));
+	WriteF32ToGX(&x);
+
+	WriteF32ToGX(&(mtx[1][0]));
+	WriteF32ToGX(&(mtx[1][1]));
+	WriteF32ToGX(&(mtx[1][2]));
 	f32 y = 0.0f;
-	GX_WRITE_U32(*(u32*)&(y));
-	GX_WRITE_U32(*(u32*)&(mtx[2][0]));
-	GX_WRITE_U32(*(u32*)&(mtx[2][1]));
-	GX_WRITE_U32(*(u32*)&(mtx[2][2]));
+	WriteF32ToGX(&y);
+
+	WriteF32ToGX(&(mtx[2][0]));
+	WriteF32ToGX(&(mtx[2][1]));
+	WriteF32ToGX(&(mtx[2][2]));
 	f32 z = 0.0f;
-	GX_WRITE_U32(*(u32*)&(z));
-	/*
-	stwu     r1, -0x20(r1)
-	li       r0, 0x10
-	lis      r6, 0xCC008000@ha
-	lfs      f0, lbl_80516AA4@sda21(r2)
-	stb      r0, 0xCC008000@l(r6)
-	li       r5, 0xb
-	rlwinm   r0, r4, 2, 0x10, 0x1d
-	sth      r5, -0x8000(r6)
-	sth      r0, -0x8000(r6)
-	lwz      r0, 0(r3)
-	stfs     f0, 0x10(r1)
-	stw      r0, -0x8000(r6)
-	lwz      r0, 4(r3)
-	stfs     f0, 0xc(r1)
-	stw      r0, -0x8000(r6)
-	lwz      r0, 8(r3)
-	stfs     f0, 8(r1)
-	stw      r0, -0x8000(r6)
-	lwz      r0, 0x10(r1)
-	stw      r0, -0x8000(r6)
-	lwz      r0, 0xc(r3)
-	stw      r0, -0x8000(r6)
-	lwz      r0, 0x10(r3)
-	stw      r0, -0x8000(r6)
-	lwz      r0, 0x14(r3)
-	stw      r0, -0x8000(r6)
-	lwz      r0, 0xc(r1)
-	stw      r0, -0x8000(r6)
-	lwz      r0, 0x18(r3)
-	stw      r0, -0x8000(r6)
-	lwz      r0, 0x1c(r3)
-	stw      r0, -0x8000(r6)
-	lwz      r0, 0x20(r3)
-	stw      r0, -0x8000(r6)
-	lwz      r0, 8(r1)
-	stw      r0, -0x8000(r6)
-	addi     r1, r1, 0x20
-	blr
-	*/
+	WriteF32ToGX(&z);
 }
 
 /**
