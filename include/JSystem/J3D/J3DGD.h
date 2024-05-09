@@ -139,11 +139,11 @@ inline void J3DGDSetTevKonstantSel_SwapModeTable(GXTevStageID stage, GXTevKColor
 	                | (chan1 | chan2 << 2 | colorSel1 << 4 | alphaSel1 << 9 | colorSel2 << 14 | alphaSel2 << 19) & 0x00FFFFFF);
 }
 
-inline void J3DGDLoadTexMtxImm(f32 (*mtx)[4], u32 mtxNo, GXTexMtxType mtxType)
+inline void J3DGDLoadTexMtxImm(Mtx mtx, u32 mtxNo, GXTexMtxType mtxType)
 {
 	u16 mtxReg = mtxNo << 2;
 	u8 len     = mtxType == GX_MTX2x4 ? 8 : 12;
-	J3DGDWriteXFCmdHdr(mtxReg & 0xFFFF, len);
+	J3DGDWriteXFCmdHdr(mtxReg, len);
 	J3DGDWrite_f32(mtx[0][0]);
 	J3DGDWrite_f32(mtx[0][1]);
 	J3DGDWrite_f32(mtx[0][2]);
