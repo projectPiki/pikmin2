@@ -7,6 +7,13 @@
 #include "BitFlag.h"
 #include "node.h"
 
+struct RenderModeInfo {
+	u32 mIdentifier; // _00, must be set to 'vald' for saved render mode to be used
+	u8 mRenderMode;  // _04 (System::ERenderMode)
+};
+// This struct represents a region of memory that will be saved through soft-resets
+#define RENDER_INFO_STORE ((RenderModeInfo*)DOL_ADDR_LIMIT)
+
 struct Graphics;
 struct OSContext;
 struct _GXRenderModeObj;

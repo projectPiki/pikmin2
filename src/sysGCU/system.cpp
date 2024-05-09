@@ -924,8 +924,8 @@ void System::clearGXVerifyLevel()
  */
 void System::initialize()
 {
-	if (*((u32*)DOL_ADDR_LIMIT) == 'vald') {                              // magic stored from reset
-		System::setRenderMode((ERenderMode) * ((u8*)DOL_ADDR_LIMIT + 4)); // render mode is stored after magic
+	if (RENDER_INFO_STORE->mIdentifier == 'vald') {                         // magic stored from reset
+		System::setRenderMode((ERenderMode)RENDER_INFO_STORE->mRenderMode); // render mode is stored after magic
 	} else {
 		System::setRenderMode(RM_NTSC_Standard);
 	}
@@ -1369,50 +1369,6 @@ void System::setFrameRate(int newFactor)
 	mDeltaTime          = mFrameRate / 60.0f;
 	display->mFrameRate = newFactor;
 	display->mTickRate  = 0;
-	/*
-	    stwu     r1, -0x20(r1)
-	    mflr     r0
-	    stw      r0, 0x24(r1)
-	    stw      r31, 0x1c(r1)
-	    stw      r30, 0x18(r1)
-	    mr       r30, r4
-	    stw      r29, 0x14(r1)
-	    mr       r29, r3
-	    lwz      r31, 0x4c(r3)
-	    cmplwi   r31, 0
-	    bne      lbl_80423574
-	    lis      r3, gStrSystem_CPP@ha
-	    lis      r5, lbl_804999E4@ha
-	    addi     r3, r3, gStrSystem_CPP@l
-	    li       r4, 0x927
-	    addi     r5, r5, lbl_804999E4@l
-	    crclr    6
-	    bl       panic_f__12JUTExceptionFPCciPCce
-
-	lbl_80423574:
-	    xoris    r0, r30, 0x8000
-	    lis      r3, 0x4330
-	    stw      r0, 0xc(r1)
-	    li       r0, 0
-	    lfd      f2, lbl_80520438@sda21(r2)
-	    stw      r3, 8(r1)
-	    lfs      f0, lbl_80520430@sda21(r2)
-	    lfd      f1, 8(r1)
-	    fsubs    f1, f1, f2
-	    stfs     f1, 0x64(r29)
-	    lfs      f1, 0x64(r29)
-	    fdivs    f0, f1, f0
-	    stfs     f0, 0x54(r29)
-	    sth      r30, 0x1c(r31)
-	    stw      r0, 0x20(r31)
-	    lwz      r31, 0x1c(r1)
-	    lwz      r30, 0x18(r1)
-	    lwz      r0, 0x24(r1)
-	    lwz      r29, 0x14(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x20
-	    blr
-	*/
 }
 
 /**
