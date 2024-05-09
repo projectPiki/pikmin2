@@ -510,6 +510,13 @@ struct DispMemberSMenuItem : public DispMemberBase {
 
 // size 0x4C
 struct DispMemberSMenuMap : public DispMemberBase {
+	enum CourseIndex {
+		COURSE_Tutorial  = 0,
+		COURSE_Forest    = 1,
+		COURSE_Yakushima = 2,
+		COURSE_Last      = 3,
+	};
+
 	DispMemberSMenuMap()
 	{
 		mInCave          = false;

@@ -101,16 +101,39 @@ ObjSMenuMap::~ObjSMenuMap() { }
  * @note Address: N/A
  * @note Size: 0x24
  */
-void ObjSMenuMap::calcMapScale() { }
+void ObjSMenuMap::calcMapScale()
+{
+	// UNUSED FUNCTION
+}
 
-// /**
-//  * @note Address: N/A
-//  * @note Size: 0xAC
-//  */
-// void ObjSMenuMap::calcMapPos(Vector2f&)
-// {
-// 	// UNUSED FUNCTION
-// }
+/**
+ * @note Address: N/A
+ * @note Size: 0xAC
+ */
+void ObjSMenuMap::calcMapPos(Vector2f pos, Vector2f* outPos)
+{
+	Vector2f newPos(0.0f);
+	if (mDisp->mInCave) {
+		Vector2f offset;
+		offset.x = -0.2f + pos.x * 0.047f;
+		offset.y = -0.6f + pos.y * 0.047f;
+		newPos.x += offset.x;
+		newPos.y += offset.y;
+
+	} else {
+		f32 xOffset = newPos.x;
+		if (mDisp->mCourseIndex == og::Screen::DispMemberSMenuMap::COURSE_Last) {
+			xOffset = (mMapTextureDimensions.x * 1400.0f) / 4705.6f;
+		}
+		Vector2f offset;
+		offset.x = 24.5f + (mMapTextureDimensions.x / 2 + pos.x * 0.058f) + xOffset;
+		offset.y = -8.85f + (mMapTextureDimensions.y / 2 + pos.y * 0.058f);
+		newPos.x += offset.x;
+		newPos.y += offset.y;
+	}
+
+	*outPos = newPos;
+}
 
 /**
  * @note Address: 0x8030F974
@@ -168,29 +191,20 @@ void ObjSMenuMap::setMapPos()
 
 	if (mDisp->mActiveNavi) {
 		Vector3f aNaviPos = Game::naviMgr->getActiveNavi()->getPosition();
-		f32 xpos, ypos;
 		if (mDisp->mInCave) {
 			if (Game::Cave::randMapMgr) {
-				Game::Cave::randMapMgr->getPositionOnTex(aNaviPos, xpos, ypos);
-				mMapPosition.x = -(xpos + 0.2f);
-				mMapPosition.y = -(ypos + 0.6f);
+				f32 x, y;
+				Game::Cave::randMapMgr->getPositionOnTex(aNaviPos, x, y);
+				mMapPosition.x = -(x + -0.2f);
+				mMapPosition.y = -(y + -0.6f);
 			}
 		} else {
-			Vector2f test(xpos, ypos);
-			if (mDisp->mInCave) {
-				ypos = aNaviPos.z * 0.047f + -0.6f;
-				xpos = aNaviPos.x * 0.047f + -0.2f;
+			Vector2f naviPos(aNaviPos.x, aNaviPos.z);
+			Vector2f mapPos;
+			calcMapPos(naviPos, &mapPos);
 
-			} else {
-				if (mDisp->mCourseIndex == 3) {
-					xpos = (mMapBounds.x * 1400.0f) / 4705.6f;
-				}
-				ypos = mMapBounds.y / 2 + aNaviPos.z * 0.058f + -8.85f;
-				xpos += mMapBounds.x / 2 + aNaviPos.x * 0.058f + 24.5f;
-			}
-			f32 zero       = 0.0f;
-			mMapPosition.x = -(xpos + 0.0f);
-			mMapPosition.y = -(ypos + 0.0f);
+			mMapPosition.x = -mapPos.x;
+			mMapPosition.y = -mapPos.y;
 		}
 	}
 	mMapTexScale.x = mMapBounds.x / mMapTextureDimensions.x;
@@ -306,25 +320,11 @@ void ObjSMenuMap::initMapIcon(JKRArchive* arc)
 			int id = cPoint->mObjType;
 			JUT_ASSERTLINE(569, id >= 0 && id < 22, "Radar type ERR!! (%d)\n", id);
 			Vector2f cPos = cPoint->getPosition();
-
-			Vector2f newPos(0.0f);
-			if (mDisp->mInCave) {
-				newPos.y = cPos.y * 0.047f + -0.6f;
-				newPos.x = cPos.x * 0.047f + -0.2f;
-
-			} else {
-				if (mDisp->mCourseIndex == 3) {
-					newPos.x = (mMapBounds.x * 1400.0f) / 4705.6f;
-				}
-				newPos.y = mMapBounds.y / 2 + cPos.y * 0.058f + -8.85f;
-				newPos.x += mMapBounds.x / 2 + cPos.x * 0.058f + 24.5f;
-			}
-
-			newPos.x = -(newPos.x + 0.0f);
-			newPos.y = -(newPos.y + 0.0f);
+			Vector2f newPos;
+			calcMapPos(cPos, &newPos);
 
 			u64 tag             = map_icon_tag[id];
-			J2DPictureEx* cPane = static_cast<J2DPictureEx*>(og::Screen::TagSearch(mIconScreen, map_icon_tag[id]));
+			J2DPictureEx* cPane = static_cast<J2DPictureEx*>(og::Screen::TagSearch(mIconScreen, tag));
 			cPane->getTypeID();
 			char buf[28];
 			og::Screen::TagToName(tag, buf);
@@ -350,12 +350,16 @@ void ObjSMenuMap::initMapIcon(JKRArchive* arc)
 				}
 				break;
 
-			case Radar::MAP_SHIP:
 			case Radar::MAP_TREASURE:
 			case Radar::MAP_SWALLOWED_TREASURE:
-			case Radar::MAP_INCOMPLETE_CAVE:
 			case Radar::MAP_UPGRADE:
-				u64 tag               = '_000' + (count / 100) * 0x10000 + (count / 10) * 0x100 + count % 10;
+			case Radar::MAP_UNENTERED_CAVE:
+				// don't mark these on the map
+				break;
+
+			default:
+				// mark everything else - pikmin, ship/pod, geyser/hole, complete/incomplete cave
+				u64 tag = '_000' + (((count / 1000) * 0x1000 + ((count / 100) * 0x100 + ((count / 10) * 0x10 + (count % 10)))));
 				J2DPictureEx* copyPic = og::Screen::CopyPictureToPane(cPane, mMapTexPane, newPos.x, newPos.y, tag);
 				if (copyPic) {
 					if (id == Radar::MAP_UPGRADE) {
@@ -1751,15 +1755,10 @@ lbl_80310E9C:
  */
 void ObjSMenuMap::scaleMap()
 {
-	f32 scale = mCurrentZoom;
-	if (mDisp->mInCave)
-		scale *= 2.0f;
-	f32 mapX             = mMapPosition.x;
-	f32 mapY             = mMapPosition.y;
-	mMapRotationOrigin.x = -mapX;
-	mMapRotationOrigin.y = -mapY;
-	mMapTexPane->setBasePosition(J2DPOS_Center);
-	mMapTexPane->updateScale(scale);
+	// i will fix this sdata2 if it kills me
+	mMapTexScale.x = 0.4f;
+	mMapTexScale.x = -0.4f;
+	mMapTexScale.x = 0.03f;
 	// UNUSED FUNCTION
 }
 
@@ -1769,26 +1768,24 @@ void ObjSMenuMap::scaleMap()
  */
 void ObjSMenuMap::setMapColor()
 {
-	// UNUSED FUNCTION
+	JUtility::TColor color(msVal.mMapTexColorWhite.r, msVal.mMapTexColorWhite.g, msVal.mMapTexColorWhite.b, msVal.mMapTexColorWhite.a);
+	JUtility::TColor color2(msVal.mMapTexColorBlack.r, msVal.mMapTexColorBlack.g, msVal.mMapTexColorBlack.b, msVal.mMapTexColorBlack.a);
+	mMapTexPane->setWhite(color);
+	mMapTexPane->setBlack(color2);
 }
 
 /**
  * @note Address: N/A
  * @note Size: 0x54
  */
-void ObjSMenuMap::calcCaveNameAlpha()
+u8 ObjSMenuMap::calcCaveNameAlpha()
 {
-	u8 alpha        = 255;
-	f32 defaultZoom = mStartZoom;
+	u8 alpha = 255;
 
-	if (mCurrentZoom < defaultZoom) {
-		alpha = (u8)(1.0f - (defaultZoom - mCurrentZoom) / (defaultZoom - msVal.mMinZoom)) * 255.0f;
+	if (mCurrentZoom < mStartZoom) {
+		alpha = (1.0 - (mStartZoom - mCurrentZoom) / (mStartZoom - msVal.mMinZoom)) * 255.0f;
 	}
 	mZoomCaveTextAlpha = alpha;
-	for (int i = 0; i < mCaveLabelCount; i++) {
-		mCaveLabelTextBoxes[i]->setAlpha(mZoomCaveTextAlpha);
-	}
-	// UNUSED FUNCTION
 }
 
 /**
@@ -1823,13 +1820,10 @@ void ObjSMenuMap::doCreate(JKRArchive* arc)
 	if (mDisp->mActiveNavi) {
 		Game::Navi* navi = Game::naviMgr->getActiveNavi();
 		Vector3f vec     = Game::cameraMgr->mCameraObjList[navi->mNaviIndex]->getViewVector();
-		mMapAngle        = (JMath::atanTable_.atan2_(vec.x, -vec.z) / PI) * 180.0f;
+		mMapAngle        = 180.0f * (JMAAtan2Radian(vec.x, -vec.z) / PI);
 	}
 	initMapIcon(arc);
-	JUtility::TColor color(msVal.mMapTexColorWhite.r, msVal.mMapTexColorWhite.g, msVal.mMapTexColorWhite.b, msVal.mMapTexColorWhite.a);
-	JUtility::TColor color2(msVal.mMapTexColorBlack.r, msVal.mMapTexColorBlack.g, msVal.mMapTexColorBlack.b, msVal.mMapTexColorBlack.a);
-	mMapTexPane->setWhite(color);
-	mMapTexPane->setBlack(color2);
+	setMapColor();
 
 	u64 tag = 0;
 	if (mDisp->mInCave && mDisp->mActiveNavi) {
@@ -1924,7 +1918,7 @@ void ObjSMenuMap::doCreate(JKRArchive* arc)
 	} else {
 		pane_rocket->hide();
 		pane_rocket = mMapCounter->search('Ntairetu');
-		pane_rocket->add(0.0f, 0.0f);
+		pane_rocket->add(0.0f, -50.0f);
 	}
 	J2DPane* pane_onyn1 = mMapCounter->search('Nonyn_1');
 	J2DPane* pane_onyn2 = mMapCounter->search('Nonyn_2');
@@ -2634,17 +2628,19 @@ void ObjSMenuMap::updateMap()
 	static f32 nv_frame = 0.0f;
 	nv_frame += sys->mDeltaTime;
 
-	if (nv_frame > 1.0f)
-		nv_frame = 1.0f;
+	if (nv_frame > 1.0f) {
+		nv_frame = 0.0f;
+	}
 
-	f32 angle    = nv_frame * TAU;
-	f32 angleSin = sinf(angle * 2.0f);
-	angle += PI;
-	u8 olimarArrowAlpha = ((angleSin + 1.0f) * 0.5f * 0.6f + 0.4f) * 255.0f;
-	f32 angleCos        = cosf(angle * 2.0f);
-	u8 louieArrowAlpha  = ((angleCos + 1.0f) * 0.5f * 0.6f + 0.4f) * 255.0f;
+	f32 angle           = TAU * nv_frame;
+	u8 olimarArrowAlpha = ((sinf(angle) + 1.0f) / 2 * 0.6f + 0.4f) * 255.0f;
+	u8 louieArrowAlpha  = ((sinf(angle + PI) + 1.0f) / 2 * 0.6f + 0.4f) * 255.0f;
 
 	calcCaveNameAlpha();
+
+	for (int i = 0; i < mCaveLabelCount; i++) {
+		mCaveLabelTextBoxes[i]->setAlpha(mZoomCaveTextAlpha);
+	}
 
 	f32 scale = mCurrentZoom;
 	if (mDisp->mInCave)
@@ -2666,12 +2662,13 @@ void ObjSMenuMap::updateMap()
 	}
 
 	if (mOlimarArrow && mOlimarObj) {
-		f32 scaleFactor = msVal.mMapIconScaleBase * (msVal.mMapNaviArrowScaleMod / scale);
+		// f32 factor = (msVal.mMapNaviArrowScaleMod / scale);
+		f32 scaleFactor = msVal.mMapNaviArrowScaleMod * (msVal.mMapIconScaleBase / scale);
 		f32 facedir     = mOlimarObj->getFaceDir();
 		mOlimarArrow->setBasePosition(J2DPOS_Center);
 		mOlimarArrow->updateScale(scaleFactor);
-		f32 calc = (facedir * 360.0f) / TAU + 45.0f;
-		mOlimarArrow->setAngle(calc);
+		facedir = (facedir * 360.0f) / TAU + 45.0f;
+		mOlimarArrow->setAngle(facedir);
 		mOlimarGlow->setBasePosition(J2DPOS_Center);
 		mOlimarGlow->updateScale(scaleFactor);
 		mOlimarGlow->setAngle(facedir);
@@ -2681,12 +2678,12 @@ void ObjSMenuMap::updateMap()
 	}
 
 	if (mLouieArrow && mLouieObj) {
-		f32 scaleFactor = msVal.mMapIconScaleBase * (msVal.mMapNaviArrowScaleMod / scale);
+		f32 scaleFactor = msVal.mMapNaviArrowScaleMod * (msVal.mMapIconScaleBase / scale);
 		f32 facedir     = mLouieObj->getFaceDir();
 		mLouieArrow->setBasePosition(J2DPOS_Center);
 		mLouieArrow->updateScale(scaleFactor);
-		f32 calc = (facedir * 360.0f) / TAU + 45.0f;
-		mLouieArrow->setAngle(calc);
+		facedir = (facedir * 360.0f) / TAU + 45.0f;
+		mLouieArrow->setAngle(facedir);
 		mLouieGlow->setBasePosition(J2DPOS_Center);
 		mLouieGlow->updateScale(scaleFactor);
 		mLouieGlow->setAngle(facedir);
@@ -2694,394 +2691,6 @@ void ObjSMenuMap::updateMap()
 		mLouieArrow->setAlpha(louieArrowAlpha);
 		mLouieGlow->setAlpha(louieArrowAlpha);
 	}
-	/*
-	stwu     r1, -0x90(r1)
-	mflr     r0
-	stw      r0, 0x94(r1)
-	stfd     f31, 0x80(r1)
-	psq_st   f31, 136(r1), 0, qr0
-	stfd     f30, 0x70(r1)
-	psq_st   f30, 120(r1), 0, qr0
-	stfd     f29, 0x60(r1)
-	psq_st   f29, 104(r1), 0, qr0
-	stmw     r26, 0x48(r1)
-	lwz      r12, 0(r3)
-	mr       r28, r3
-	lwz      r12, 0x30(r12)
-	mtctr    r12
-	bctrl
-	bl       getGamePad__Q26Screen9SceneBaseCFv
-	stw      r3, 0x118(r28)
-	lbz      r0, init$4825@sda21(r13)
-	extsb.   r0, r0
-	bne      lbl_80311898
-	lfs      f0, lbl_8051D740@sda21(r2)
-	li       r0, 1
-	stb      r0, init$4825@sda21(r13)
-	stfs     f0, nv_frame$4824@sda21(r13)
-
-lbl_80311898:
-	lwz      r3, sys@sda21(r13)
-	lfs      f2, nv_frame$4824@sda21(r13)
-	lfs      f1, 0x54(r3)
-	lfs      f0, lbl_8051D744@sda21(r2)
-	fadds    f1, f2, f1
-	fcmpo    cr0, f1, f0
-	stfs     f1, nv_frame$4824@sda21(r13)
-	ble      lbl_803118C0
-	lfs      f0, lbl_8051D740@sda21(r2)
-	stfs     f0, nv_frame$4824@sda21(r13)
-
-lbl_803118C0:
-	lfs      f2, lbl_8051D78C@sda21(r2)
-	lfs      f1, nv_frame$4824@sda21(r13)
-	lfs      f0, lbl_8051D740@sda21(r2)
-	fmuls    f4, f2, f1
-	lfs      f7, lbl_8051D7D4@sda21(r2)
-	lfs      f6, lbl_8051D7D8@sda21(r2)
-	lfs      f1, lbl_8051D744@sda21(r2)
-	fcmpo    cr0, f4, f0
-	bge      lbl_80311910
-	lfs      f0, lbl_8051D798@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fmuls    f0, f4, f0
-	fctiwz   f0, f0
-	stfd     f0, 8(r1)
-	lwz      r0, 0xc(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r3, r0
-	fneg     f0, f0
-	b        lbl_80311934
-
-lbl_80311910:
-	lfs      f0, lbl_8051D794@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fmuls    f0, f4, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x10(r1)
-	lwz      r0, 0x14(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r3, r0
-
-lbl_80311934:
-	fadds    f3, f1, f0
-	lfs      f0, lbl_8051D760@sda21(r2)
-	lfs      f1, lbl_8051D7CC@sda21(r2)
-	lfs      f2, lbl_8051D7A8@sda21(r2)
-	fmuls    f5, f3, f0
-	lfs      f0, lbl_8051D740@sda21(r2)
-	fadds    f8, f1, f4
-	lfs      f4, lbl_8051D7D4@sda21(r2)
-	lfs      f3, lbl_8051D7D8@sda21(r2)
-	fmadds   f2, f6, f5, f2
-	fcmpo    cr0, f8, f0
-	lfs      f1, lbl_8051D744@sda21(r2)
-	fmuls    f0, f7, f2
-	fctiwz   f0, f0
-	stfd     f0, 0x18(r1)
-	lwz      r30, 0x1c(r1)
-	bge      lbl_803119A4
-	lfs      f0, lbl_8051D798@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fmuls    f0, f8, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x20(r1)
-	lwz      r0, 0x24(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r3, r0
-	fneg     f0, f0
-	b        lbl_803119C8
-
-lbl_803119A4:
-	lfs      f0, lbl_8051D794@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fmuls    f0, f8, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x28(r1)
-	lwz      r0, 0x2c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r3, r0
-
-lbl_803119C8:
-	fadds    f2, f1, f0
-	lfs      f1, lbl_8051D760@sda21(r2)
-	lfs      f0, lbl_8051D7A8@sda21(r2)
-	li       r0, 0xff
-	lfs      f6, 0xe8(r28)
-	fmuls    f1, f2, f1
-	lfs      f5, 0x138(r28)
-	fmadds   f0, f3, f1, f0
-	fcmpo    cr0, f6, f5
-	fmuls    f0, f4, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x30(r1)
-	lwz      r29, 0x34(r1)
-	bge      lbl_80311A30
-	lis      r3, msVal__Q32og9newScreen11ObjSMenuMap@ha
-	fsubs    f1, f5, f6
-	lfs      f0, msVal__Q32og9newScreen11ObjSMenuMap@l(r3)
-	lfd      f2, lbl_8051D7C0@sda21(r2)
-	fsubs    f0, f5, f0
-	lfd      f3, lbl_8051D7B8@sda21(r2)
-	fdivs    f0, f1, f0
-	fsub     f0, f2, f0
-	fmul     f0, f3, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x38(r1)
-	lwz      r0, 0x3c(r1)
-
-lbl_80311A30:
-	stb      r0, 0x13c(r28)
-	mr       r31, r28
-	li       r27, 0
-	b        lbl_80311A60
-
-lbl_80311A40:
-	lwz      r3, 0x140(r31)
-	lbz      r4, 0x13c(r28)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	addi     r31, r31, 4
-	addi     r27, r27, 1
-
-lbl_80311A60:
-	lwz      r0, 0x154(r28)
-	cmpw     r27, r0
-	blt      lbl_80311A40
-	lwz      r3, 0xa8(r28)
-	lfs      f31, 0xe8(r28)
-	lbz      r0, 0x49(r3)
-	cmplwi   r0, 0
-	beq      lbl_80311A88
-	lfs      f0, lbl_8051D7DC@sda21(r2)
-	fmuls    f31, f31, f0
-
-lbl_80311A88:
-	lfs      f30, 0xe0(r28)
-	li       r4, 4
-	lfs      f29, 0xe4(r28)
-	fneg     f1, f30
-	fneg     f0, f29
-	stfs     f1, 0x110(r28)
-	stfs     f0, 0x114(r28)
-	lwz      r3, 0xc8(r28)
-	bl       setBasePosition__7J2DPaneF15J2DBasePosition
-	lwz      r3, 0xc8(r28)
-	stfs     f31, 0xcc(r3)
-	stfs     f31, 0xd0(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0xc8(r28)
-	li       r4, 0x7a
-	lfs      f1, 0x110(r28)
-	lfs      f2, 0x114(r28)
-	lfs      f3, 0xec(r28)
-	bl       rotate__7J2DPaneFff13J2DRotateAxisf
-	lwz      r3, 0xc8(r28)
-	lis      r4, msVal__Q32og9newScreen11ObjSMenuMap@ha
-	addi     r4, r4, msVal__Q32og9newScreen11ObjSMenuMap@l
-	lwz      r12, 0(r3)
-	lfs      f1, 0x34(r4)
-	lfs      f0, 0x38(r4)
-	lwz      r12, 0x10(r12)
-	fadds    f1, f30, f1
-	fadds    f2, f29, f0
-	mtctr    r12
-	bctrl
-	lis      r3, msVal__Q32og9newScreen11ObjSMenuMap@ha
-	lfs      f30, lbl_8051D790@sda21(r2)
-	addi     r31, r3, msVal__Q32og9newScreen11ObjSMenuMap@l
-	li       r26, 0
-	li       r27, 0
-	b        lbl_80311B80
-
-lbl_80311B24:
-	lfs      f0, 0x24(r31)
-	lwz      r3, 0xcc(r28)
-	fdivs    f0, f0, f31
-	lwzx     r3, r3, r27
-	lwz      r3, 0(r3)
-	stfs     f0, 0xcc(r3)
-	stfs     f0, 0xd0(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0xcc(r28)
-	lfs      f0, 0xec(r28)
-	lwzx     r3, r3, r27
-	fsubs    f0, f30, f0
-	lwz      r3, 0(r3)
-	stfs     f0, 0xc0(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	addi     r27, r27, 4
-	addi     r26, r26, 1
-
-lbl_80311B80:
-	lwz      r0, 0x11c(r28)
-	cmpw     r26, r0
-	blt      lbl_80311B24
-	lwz      r0, 0xd0(r28)
-	cmplwi   r0, 0
-	beq      lbl_80311C98
-	lwz      r3, 0xd4(r28)
-	cmplwi   r3, 0
-	beq      lbl_80311C98
-	lfs      f0, 0x24(r31)
-	lis      r4, msVal__Q32og9newScreen11ObjSMenuMap@ha
-	lwz      r12, 0(r3)
-	addi     r4, r4, msVal__Q32og9newScreen11ObjSMenuMap@l
-	fdivs    f0, f0, f31
-	lfs      f1, 0x28(r4)
-	lwz      r12, 0x64(r12)
-	fmuls    f29, f1, f0
-	mtctr    r12
-	bctrl
-	fmr      f30, f1
-	lwz      r3, 0xd0(r28)
-	li       r4, 4
-	bl       setBasePosition__7J2DPaneF15J2DBasePosition
-	lwz      r3, 0xd0(r28)
-	stfs     f29, 0xcc(r3)
-	stfs     f29, 0xd0(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, lbl_8051D790@sda21(r2)
-	lfs      f2, lbl_8051D7E0@sda21(r2)
-	fmuls    f1, f0, f30
-	lfs      f0, lbl_8051D78C@sda21(r2)
-	lwz      r3, 0xd0(r28)
-	fdivs    f0, f1, f0
-	fadds    f30, f2, f0
-	stfs     f30, 0xc0(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x130(r28)
-	li       r4, 4
-	bl       setBasePosition__7J2DPaneF15J2DBasePosition
-	lwz      r3, 0x130(r28)
-	stfs     f29, 0xcc(r3)
-	stfs     f29, 0xd0(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x130(r28)
-	stfs     f30, 0xc0(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0xd0(r28)
-	mr       r4, r30
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x130(r28)
-	mr       r4, r30
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80311C98:
-	lwz      r0, 0xd8(r28)
-	cmplwi   r0, 0
-	beq      lbl_80311DA4
-	lwz      r3, 0xdc(r28)
-	cmplwi   r3, 0
-	beq      lbl_80311DA4
-	lfs      f0, 0x24(r31)
-	lis      r4, msVal__Q32og9newScreen11ObjSMenuMap@ha
-	lwz      r12, 0(r3)
-	addi     r4, r4, msVal__Q32og9newScreen11ObjSMenuMap@l
-	fdivs    f0, f0, f31
-	lfs      f1, 0x28(r4)
-	lwz      r12, 0x64(r12)
-	fmuls    f29, f1, f0
-	mtctr    r12
-	bctrl
-	fmr      f31, f1
-	lwz      r3, 0xd8(r28)
-	li       r4, 4
-	bl       setBasePosition__7J2DPaneF15J2DBasePosition
-	lwz      r3, 0xd8(r28)
-	stfs     f29, 0xcc(r3)
-	stfs     f29, 0xd0(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, lbl_8051D790@sda21(r2)
-	lfs      f2, lbl_8051D7E0@sda21(r2)
-	fmuls    f1, f0, f31
-	lfs      f0, lbl_8051D78C@sda21(r2)
-	lwz      r3, 0xd8(r28)
-	fdivs    f0, f1, f0
-	fadds    f30, f2, f0
-	stfs     f30, 0xc0(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x134(r28)
-	li       r4, 4
-	bl       setBasePosition__7J2DPaneF15J2DBasePosition
-	lwz      r3, 0x134(r28)
-	stfs     f29, 0xcc(r3)
-	stfs     f29, 0xd0(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x134(r28)
-	stfs     f30, 0xc0(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0xd8(r28)
-	mr       r4, r29
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x134(r28)
-	mr       r4, r29
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80311DA4:
-	psq_l    f31, 136(r1), 0, qr0
-	lfd      f31, 0x80(r1)
-	psq_l    f30, 120(r1), 0, qr0
-	lfd      f30, 0x70(r1)
-	psq_l    f29, 104(r1), 0, qr0
-	lfd      f29, 0x60(r1)
-	lmw      r26, 0x48(r1)
-	lwz      r0, 0x94(r1)
-	mtlr     r0
-	addi     r1, r1, 0x90
-	blr
-	*/
 }
 
 /**
@@ -3281,12 +2890,12 @@ void ObjSMenuMap::drawRectZ(Graphics& gfx, Rectf& rect, Color4& color, f32 z)
  */
 void ObjSMenuMap::drawVecZ(Graphics& gfx, Vec& vec1, Vec& vec2, Vec& vec3, Vec& vec4, Color4& color, f32 z)
 {
-	u16 wid = System::getRenderModeObj()->fbWidth;
-	u16 hei = System::getRenderModeObj()->efbHeight;
+	u16 wid = System::getRenderModeWidth();
+	u16 hei = System::getRenderModeHeight();
 	GXSetZMode(GX_TRUE, GX_ALWAYS, GX_TRUE);
 	Mtx44 temp;
 	Mtx temp2;
-	C_MTXOrtho(temp, 0.0f, (f32)wid, 0.0f, (f32)hei, -1.0f, 1.0f);
+	C_MTXOrtho(temp, 0.0f, (f32)hei, 0.0f, (f32)wid, -1.0f, 1.0f);
 	GXSetProjection(temp, GX_ORTHOGRAPHIC);
 	PSMTXIdentity(temp2);
 	GXLoadPosMtxImm(temp2, 0);
@@ -3304,150 +2913,13 @@ void ObjSMenuMap::drawVecZ(Graphics& gfx, Vec& vec1, Vec& vec2, Vec& vec3, Vec& 
 	GXPosition3f32(vec2.x, vec2.y, z);
 	GXColor4u8(color.r, color.g, color.b, color.a);
 
-	GXPosition3f32(vec3.x, vec3.y, z);
-	GXColor4u8(color.r, color.g, color.b, color.a);
-
 	GXPosition3f32(vec4.x, vec4.y, z);
 	GXColor4u8(color.r, color.g, color.b, color.a);
 
-	GXSetZMode(GX_TRUE, GX_LESS, GX_TRUE);
+	GXPosition3f32(vec3.x, vec3.y, z);
+	GXColor4u8(color.r, color.g, color.b, color.a);
 
-	/*
-	.loc_0x0:
-	  stwu      r1, -0xC0(r1)
-	  mflr      r0
-	  stw       r0, 0xC4(r1)
-	  stfd      f31, 0xB0(r1)
-	  psq_st    f31,0xB8(r1),0,0
-	  stmw      r25, 0x94(r1)
-	  fmr       f31, f1
-	  mr        r25, r5
-	  mr        r26, r6
-	  mr        r30, r7
-	  mr        r27, r8
-	  mr        r31, r9
-	  bl        0x110AFC
-	  lhz       r29, 0x4(r3)
-	  bl        0x110AF4
-	  lhz       r28, 0x6(r3)
-	  li        r3, 0x1
-	  li        r4, 0x7
-	  li        r5, 0x1
-	  bl        -0x2295C0
-	  lis       r0, 0x4330
-	  lfs       f1, -0xC20(r2)
-	  stw       r28, 0x7C(r1)
-	  addi      r3, r1, 0x38
-	  lfd       f4, -0xB68(r2)
-	  fmr       f3, f1
-	  stw       r0, 0x78(r1)
-	  lfs       f5, -0xBC4(r2)
-	  lfd       f0, 0x78(r1)
-	  stw       r29, 0x84(r1)
-	  fsubs     f2, f0, f4
-	  lfs       f6, -0xC1C(r2)
-	  stw       r0, 0x80(r1)
-	  lfd       f0, 0x80(r1)
-	  fsubs     f4, f0, f4
-	  bl        -0x2279AC
-	  addi      r3, r1, 0x38
-	  li        r4, 0x1
-	  bl        -0x229348
-	  addi      r3, r1, 0x8
-	  bl        -0x2284F8
-	  addi      r3, r1, 0x8
-	  li        r4, 0
-	  bl        -0x22922C
-	  li        r3, 0
-	  bl        -0x22CC04
-	  bl        -0x22E0E0
-	  li        r3, 0x9
-	  li        r4, 0x1
-	  bl        -0x22E538
-	  li        r3, 0xB
-	  li        r4, 0x1
-	  bl        -0x22E544
-	  li        r3, 0
-	  li        r4, 0x9
-	  li        r5, 0x1
-	  li        r6, 0x4
-	  li        r7, 0
-	  bl        -0x22E0D8
-	  li        r3, 0
-	  li        r4, 0xB
-	  li        r5, 0x1
-	  li        r6, 0x5
-	  li        r7, 0
-	  bl        -0x22E0F0
-	  li        r3, 0x80
-	  li        r4, 0
-	  li        r5, 0x4
-	  bl        -0x22CE80
-	  lfs       f1, 0x4(r25)
-	  lis       r9, 0xCC01
-	  lfs       f0, 0x0(r25)
-	  li        r3, 0x1
-	  li        r4, 0x1
-	  li        r5, 0x1
-	  stfs      f0, -0x8000(r9)
-	  stfs      f1, -0x8000(r9)
-	  stfs      f31, -0x8000(r9)
-	  lbz       r8, 0x3(r31)
-	  lbz       r7, 0x2(r31)
-	  lbz       r6, 0x1(r31)
-	  lbz       r0, 0x0(r31)
-	  stb       r0, -0x8000(r9)
-	  stb       r6, -0x8000(r9)
-	  stb       r7, -0x8000(r9)
-	  stb       r8, -0x8000(r9)
-	  lfs       f1, 0x4(r26)
-	  lfs       f0, 0x0(r26)
-	  stfs      f0, -0x8000(r9)
-	  stfs      f1, -0x8000(r9)
-	  stfs      f31, -0x8000(r9)
-	  lbz       r8, 0x3(r31)
-	  lbz       r7, 0x2(r31)
-	  lbz       r6, 0x1(r31)
-	  lbz       r0, 0x0(r31)
-	  stb       r0, -0x8000(r9)
-	  stb       r6, -0x8000(r9)
-	  stb       r7, -0x8000(r9)
-	  stb       r8, -0x8000(r9)
-	  lfs       f1, 0x4(r27)
-	  lfs       f0, 0x0(r27)
-	  stfs      f0, -0x8000(r9)
-	  stfs      f1, -0x8000(r9)
-	  stfs      f31, -0x8000(r9)
-	  lbz       r8, 0x3(r31)
-	  lbz       r7, 0x2(r31)
-	  lbz       r6, 0x1(r31)
-	  lbz       r0, 0x0(r31)
-	  stb       r0, -0x8000(r9)
-	  stb       r6, -0x8000(r9)
-	  stb       r7, -0x8000(r9)
-	  stb       r8, -0x8000(r9)
-	  lfs       f1, 0x4(r30)
-	  lfs       f0, 0x0(r30)
-	  stfs      f0, -0x8000(r9)
-	  stfs      f1, -0x8000(r9)
-	  stfs      f31, -0x8000(r9)
-	  lbz       r8, 0x3(r31)
-	  lbz       r7, 0x2(r31)
-	  lbz       r6, 0x1(r31)
-	  lbz       r0, 0x0(r31)
-	  stb       r0, -0x8000(r9)
-	  stb       r6, -0x8000(r9)
-	  stb       r7, -0x8000(r9)
-	  stb       r8, -0x8000(r9)
-	  bl        -0x229768
-	  psq_l     f31,0xB8(r1),0,0
-	  lfd       f31, 0xB0(r1)
-	  lmw       r25, 0x94(r1)
-	  lwz       r0, 0xC4(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0xC0
-	  blr
-	*/
+	GXSetZMode(GX_TRUE, GX_LESS, GX_TRUE);
 }
 
 /**

@@ -400,13 +400,13 @@ struct ObjSMenuMap : public ObjSMenuBase {
 
 	// unused/inlined
 	void calcMapScale();
-	void calcMapPos(Vector2f&);
+	void calcMapPos(Vector2f pos, Vector2f* outPos);
 	void setMapPos();
 	void setCompass();
 	void rotateMap();
 	void scaleMap();
 	void setMapColor();
-	void calcCaveNameAlpha();
+	u8 calcCaveNameAlpha();
 
 	// _00     = VTBL1
 	// _18     = VTBL2
