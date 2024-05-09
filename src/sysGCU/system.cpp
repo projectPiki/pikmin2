@@ -97,7 +97,10 @@ bool sUseABXCommand = true;
 
 struct CallbackObject {
 	u32* funcPtr;
-	u8 filler[14 - 4];
+	u16 _04;
+	OSContext* _08;
+	u32 _0C;
+	u32 _10;
 };
 
 extern CallbackObject exCallbackObject;
@@ -122,20 +125,27 @@ void kando_panic_f(bool r3, const char* r4, int line, const char* r6, ...)
 {
 	va_list list;
 	va_start(list, r6);
-	JUTConsole* console = JUTException::sConsole;
+
+	u32* func            = (u32*)preUserCallback;
+	JUTConsole* console  = JUTException::sConsole;
+	JUTException* except = JUTException::sErrorManager;
 
 	char buffer[0xFF];
 	vsnprintf(buffer, sizeof(buffer), r6, list);
-	if (!console) {
+	if (!except) {
 		OSPanic(r4, line, buffer);
 	}
 
-	char dest[4];
-	memcpy(dest, JFWSystem::mainThread->mThread, 0x2C8);
+	OSContext* thread = &JFWSystem::mainThread->mThread->context;
+	char dest[sizeof(OSContext)];
+	memcpy(dest, thread, sizeof(OSContext));
+	except->mStackPointer = thread;
 
-	void* unknown                              = 0;
-	JUTException::sErrorManager->mStackPointer = unknown;
-	exCallbackObject.funcPtr                   = (u32*)preUserCallback;
+	exCallbackObject.funcPtr = func;
+	exCallbackObject._04     = 255;
+	exCallbackObject._08     = thread;
+	exCallbackObject._0C     = 0;
+	exCallbackObject._10     = 0;
 
 	if (!console || (console && !(console->mOutput & 2))) {
 		OSReport("%s in \"%s\" on line %d\n", buffer, r4, line);
@@ -260,8 +270,6 @@ void kando_panic_f(bool r3, const char* r4, int line, const char* r6, ...)
 	  blr
 	  */
 }
-
-// static const char unusedStrSystem[] = "%s in \"%s\" on\n line %d\n";
 
 /**
  * @note Address: 0x804220EC
@@ -1046,35 +1054,7 @@ int System::run()
  * @note Address: 0x80422EB8
  * @note Size: 0x58
  */
-f32 System::getTime()
-{
-	OSTick tick = OSGetTick();
-	return tick / __OSBusClock / 1000;
-	/*
-	    stwu     r1, -0x10(r1)
-	    mflr     r0
-	    stw      r0, 0x14(r1)
-	    bl       OSGetTick
-	    lis      r5, 0x800000F8@ha
-	    lis      r4, 0x10624DD3@ha
-	    lwz      r5, 0x800000F8@l(r5)
-	    lis      r0, 0x4330
-	    addi     r4, r4, 0x10624DD3@l
-	    stw      r0, 8(r1)
-	    srwi     r0, r5, 2
-	    lfd      f1, lbl_80520420@sda21(r2)
-	    mulhwu   r0, r4, r0
-	    srwi     r0, r0, 6
-	    divwu    r0, r3, r0
-	    stw      r0, 0xc(r1)
-	    lfd      f0, 8(r1)
-	    fsubs    f1, f0, f1
-	    lwz      r0, 0x14(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x10
-	    blr
-	*/
-}
+f32 System::getTime() { return OSTicksToMilliseconds(OSGetTick()); }
 
 /**
  * @note Address: N/A
