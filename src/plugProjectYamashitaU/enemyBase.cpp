@@ -2444,7 +2444,7 @@ void EnemyBase::scaleDamageAnim()
 
 		mDamageAnimRotation.y = 0.0f;
 
-		f32 zWobbleAmt        = altSin(2.0f * horizontalModifier * TAU) * ((TAU / 144.0f) * factor);
+		f32 zWobbleAmt        = sinf(2.0f * horizontalModifier * TAU) * ((TAU / 144.0f) * factor);
 		mDamageAnimRotation.z = horizontalModifier * zWobbleAmt;
 
 		f32 scaleVal = mScaleModifier;

@@ -16,9 +16,9 @@ inline int GetTableIdxPos(f32 x) { return x *= 325.9493f; }
 inline f32 sinf(f32 x)
 {
 	if (x < 0.0f) {
-		return -JMath::sincosTable_.mTable[(int)(x *= -325.9493f) & 0x7ffU].first;
+		return -JMath::sincosTable_.mTable[GetTableIdxNeg(x) & 0x7ffU].first;
 	}
-	return JMath::sincosTable_.mTable[(int)(x *= 325.9493f) & 0x7ffU].first;
+	return JMath::sincosTable_.mTable[GetTableIdxPos(x) & 0x7ffU].first;
 }
 
 inline f32 sinfc(const f32 x)
@@ -93,21 +93,13 @@ inline f32 angXZ(f32 x, f32 z, Vector3f& vec)
 
 inline f32 _angXZ(f32 x1, f32 z1, f32 x2, f32 z2) { return roundAng(JMAAtan2Radian(x1 - x2, z1 - z2)); }
 
-inline f32 altSin(f32 x)
-{
-	if (x < 0.0f) {
-		return -JMath::sincosTable_.mTable[GetTableIdxNeg(x) & 0x7ffU].first;
-	}
-	return JMath::sincosTable_.mTable[GetTableIdxPos(x) & 0x7ffU].first;
-}
-
 inline f32 absF(f32 val)
 {
 	f64 newVal = fabs(val);
 	return (f32)newVal;
 }
 
-inline f32 scaledSin(f32 theta) { return altSin(theta * TAU); }
+inline f32 scaledSin(f32 theta) { return sinf(theta * TAU); }
 
 inline f32 absVal(f32 val) { return (val > 0.0f) ? val : -val; }
 
