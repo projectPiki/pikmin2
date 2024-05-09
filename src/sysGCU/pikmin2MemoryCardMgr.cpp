@@ -377,15 +377,15 @@ bool Mgr::doCardProc(void*, MemoryCardMgrCommand* command)
 	_D8 = 0;
 	switch (command->_00) {
 	case 7:
-		setFlag(MCMFLAG_Unk1);
+		setFlag(MCMFLAG_IsWriting);
 		result = commandCreateNewFile();
-		resetFlag(MCMFLAG_Unk1);
+		resetFlag(MCMFLAG_IsWriting);
 		break;
 
 	case 5:
-		setFlag(MCMFLAG_Unk1);
+		setFlag(MCMFLAG_IsWriting);
 		result = varifyCardStatus() && commandSaveGameOption(false, false) && commandSaveHeader();
-		resetFlag(MCMFLAG_Unk1);
+		resetFlag(MCMFLAG_IsWriting);
 		break;
 
 	case 6:
@@ -393,15 +393,15 @@ bool Mgr::doCardProc(void*, MemoryCardMgrCommand* command)
 		break;
 
 	case 8:
-		setFlag(MCMFLAG_Unk1);
+		setFlag(MCMFLAG_IsWriting);
 		result = varifyCardStatus() && commandSavePlayer(command->mData.intView, true) && commandSaveHeader();
-		resetFlag(MCMFLAG_Unk1);
+		resetFlag(MCMFLAG_IsWriting);
 		break;
 
 	case 9:
-		setFlag(MCMFLAG_Unk1);
+		setFlag(MCMFLAG_IsWriting);
 		result = varifyCardStatus() && commandSavePlayerNoCheckSerialNo(command->mData.intView, true) && commandSaveHeader();
-		resetFlag(MCMFLAG_Unk1);
+		resetFlag(MCMFLAG_IsWriting);
 		break;
 
 	case 10:
@@ -409,15 +409,15 @@ bool Mgr::doCardProc(void*, MemoryCardMgrCommand* command)
 		break;
 
 	case 11:
-		setFlag(MCMFLAG_Unk1);
+		setFlag(MCMFLAG_IsWriting);
 		result = varifyCardStatus() && commandDeletePlayer(command->mData.intView) && commandSaveHeader();
-		resetFlag(MCMFLAG_Unk1);
+		resetFlag(MCMFLAG_IsWriting);
 		break;
 
 	case 12:
-		setFlag(MCMFLAG_Unk1);
+		setFlag(MCMFLAG_IsWriting);
 		result = varifyCardStatus() && commandCopyPlayer(command->mData.shortView[0], command->mData.shortView[1]) && commandSaveHeader();
-		resetFlag(MCMFLAG_Unk1);
+		resetFlag(MCMFLAG_IsWriting);
 		break;
 
 	case 13:

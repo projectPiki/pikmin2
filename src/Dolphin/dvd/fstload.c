@@ -59,8 +59,8 @@ static void cb(s32 param_1, void* param_2) // param_2 is probably a struct
  */
 void __fstLoad(void)
 {
-	int iVar1;
-	char* pcVar2;
+	int status;
+	char* onStr;
 	u8 auStack64[64];
 	void* arenaHi;
 	struct blah* di;
@@ -71,9 +71,9 @@ void __fstLoad(void)
 	DVDReset();
 	DVDReadDiskID(&block, idTmp, cb);
 	do {
-		iVar1 = DVDGetDriveStatus();
-	} while (iVar1 != 0);
-	di                   = (void*)0x80000000;
+		status = DVDGetDriveStatus();
+	} while (status != DVD_STATE_END);
+	di                   = (void*)OS_BASE_CACHED;
 	di->FSTLocationInRam = bb2->_10;
 	di->FSTMaxLength     = bb2->_0C;
 	memcpy(di, idTmp, 32);
@@ -83,11 +83,11 @@ void __fstLoad(void)
 	OSReport("  Disk # ...... %d\n", di->DiskID);
 	OSReport("  Game ver .... %d\n", di->Version);
 	if (di->Streaming == 0) {
-		pcVar2 = "OFF";
+		onStr = "OFF";
 	} else {
-		pcVar2 = "ON";
+		onStr = "ON";
 	}
-	OSReport("  Streaming ... %s\n", pcVar2);
+	OSReport("  Streaming ... %s\n", onStr);
 	OSReport("\n");
 	OSSetArenaHi(bb2->_10);
 	return;

@@ -1265,15 +1265,15 @@ s32 DVDGetDriveStatus()
 	int interrupts = OSDisableInterrupts();
 	int result;
 	if (FatalErrorFlag != FALSE) {
-		result = -1;
+		result = DVD_STATE_FATAL_ERROR;
 	} else {
 		if (PausingFlag != FALSE) {
-			result = 8;
+			result = DVD_STATE_PAUSING;
 		} else {
 			if (executing == nullptr) {
-				result = 0;
+				result = DVD_STATE_END;
 			} else if (executing == &DummyCommandBlock) {
-				result = 0;
+				result = DVD_STATE_END;
 			} else {
 				result = DVDGetCommandBlockStatus((struct DVDCommandBlock*)executing);
 			}

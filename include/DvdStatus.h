@@ -18,6 +18,16 @@ extern char* gMessage_jpn[];
 extern char* gMessage_spa[];
 }; // namespace DvdError
 
+enum DvdErrorID {
+	DvdError_None          = -1,
+	DvdError_Loading       = 0,
+	DvdError_ErrorOccured  = 1,
+	DvdError_DiscReadError = 2,
+	DvdError_InsertDisc    = 3,
+	DvdError_TrayOpen      = 4,
+	DvdError_WrongDisc     = 5,
+};
+
 // Size: 0xC
 struct DvdStatus {
 	DvdStatus();
@@ -26,9 +36,9 @@ struct DvdStatus {
 	bool isErrorOccured();
 	bool update();
 
-	int _00;          // _00
+	int mErrorIndex;  // _00
 	JUTFader* mFader; // _04
-	int _08;          // _08
+	int mCPULockNum;  // _08
 };
 
 #endif

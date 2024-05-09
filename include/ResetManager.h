@@ -5,14 +5,20 @@
 #include "BitFlag.h"
 
 enum ResetManagerFlags {
-	RESETFLAG_1  = 0x1,
-	RESETFLAG_2  = 0x2,
-	RESETFLAG_3  = 0x4,
-	RESETFLAG_4  = 0x8,
-	RESETFLAG_29 = 0x10000000,
+	RESETFLAG_ResetInputEntered = 0x1,
+	RESETFLAG_GPProcessing      = 0x2,
+	RESETFLAG_3                 = 0x4, // unused?
+	RESETFLAG_DoResetToMenu     = 0x8,
+	RESETFLAG_ResetAllowed      = 0x10000000,
 };
 
 struct ResetManager {
+	enum State {
+		ResetState_Inactive = 0,
+		ResetState_Fadeout  = 1,
+		ResetState_Finish   = 2,
+	};
+
 	ResetManager(f32);
 
 	virtual void draw();                // _08
@@ -27,8 +33,8 @@ struct ResetManager {
 	inline bool isFlag(u32 flag) { return mFlags.typeView & flag; }
 
 	// _00 VTBL
-	u32 mState;          // _04
-	f32 mStatusTimer;    // _08
+	int mState;          // _04
+	f32 mFadeTimer;      // _08
 	BitFlag<u32> mFlags; // _40
 	int mCounter;        // _10
 };

@@ -782,22 +782,21 @@ s32 JASAramStream::dvdErrorCheck(void*)
 {
 	u32 status = DVDGetDriveStatus();
 	switch (status) {
-	case 0:
+	case DVD_STATE_END:
 		sSystemPauseFlag = false;
 		break;
-	case 1:
-	case 2:
-	case 3:
-	case 4:
-	case 5:
-	case 6:
-	case 7:
-	case 8:
-	case 9:
-	case 10:
-	case 11:
-	case -1:
-		// default:
+	case DVD_STATE_BUSY:
+	case DVD_STATE_WAITING:
+	case DVD_STATE_COVER_CLOSED:
+	case DVD_STATE_NO_DISK:
+	case DVD_STATE_COVER_OPEN:
+	case DVD_STATE_WRONG_DISK:
+	case DVD_STATE_MOTOR_STOPPED:
+	case DVD_STATE_PAUSING:
+	case DVD_STATE_IGNORED:
+	case DVD_STATE_CANCELED:
+	case DVD_STATE_RETRY:
+	case DVD_STATE_FATAL_ERROR:
 		sSystemPauseFlag = true;
 		break;
 	}

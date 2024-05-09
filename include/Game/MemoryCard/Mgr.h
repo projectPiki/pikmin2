@@ -23,7 +23,7 @@ struct OptionInfo {
 };
 
 enum MemoryCardMgrFlags {
-	MCMFLAG_Unk1 = 0x1, // possibly InUse?
+	MCMFLAG_IsWriting = 0x1,
 };
 
 struct Mgr : public MemoryCardMgr {

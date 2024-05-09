@@ -114,7 +114,7 @@ void Pikmin2DefaultMemoryErrorRoutine(void* address, u32 size, int alignment)
 	JUT_PANICLINE(99, "Memory Alloc Error!\n%x (size %d) align(%d)\nRestTotal=%d\nRestFree =%d\n", address, size, alignment,
 	              static_cast<JKRHeap*>(address)->getTotalFreeSize(), static_cast<JKRHeap*>(address)->getFreeSize());
 
-	OSPanic("system.cpp", 101, "abort\n");
+	OSPanic(__FILE__, 101, "abort\n");
 }
 
 /**
@@ -386,7 +386,7 @@ static const char aramStrmName[] = "aramStrm";
 void retraceCallback(u32)
 {
 	sys->mCpuRetraceCount++;
-	if (DVDGetDriveStatus() == 1) {
+	if (DVDGetDriveStatus() == DVD_STATE_BUSY) {
 		sys->mCpuRetraceCount = 0;
 	}
 
@@ -1177,12 +1177,12 @@ void System::heapStatusDumpNode()
  * @note Address: 0x80423374
  * @note Size: 0x28
  */
-void System::resetOn(bool flag)
+void System::resetOn(bool doResetToMenu)
 {
 	ResetManager* mgr = mResetMgr;
-	mgr->mFlags.set(1);
-	if (flag) {
-		mgr->mFlags.set(8);
+	mgr->setFlag(RESETFLAG_ResetInputEntered);
+	if (doResetToMenu) {
+		mgr->setFlag(RESETFLAG_DoResetToMenu);
 	}
 }
 
@@ -1199,7 +1199,7 @@ void System::resetOff()
  * @note Address: 0x8042339C
  * @note Size: 0x14
  */
-void System::resetPermissionOn() { mResetMgr->mFlags.typeView |= 0x10000000; }
+void System::resetPermissionOn() { mResetMgr->setFlag(RESETFLAG_ResetAllowed); }
 
 /**
  * @note Address: 0x804233B0
@@ -1211,13 +1211,13 @@ bool System::isResetActive() { return mResetMgr->mState; }
  * @note Address: 0x804233C8
  * @note Size: 0x14
  */
-void System::activeGP() { mResetMgr->mFlags.set(2); }
+void System::activeGP() { mResetMgr->setFlag(RESETFLAG_GPProcessing); }
 
 /**
  * @note Address: 0x804233DC
  * @note Size: 0x14
  */
-void System::inactiveGP() { mResetMgr->mFlags.unset(2); }
+void System::inactiveGP() { mResetMgr->resetFlag(RESETFLAG_GPProcessing); }
 
 /**
  * @note Address: 0x804233F0

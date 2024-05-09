@@ -23,8 +23,8 @@ const char* filler1 = "dvdStatus";
  */
 DvdStatus::DvdStatus()
 {
-	mFader = nullptr;
-	_00    = -1;
+	mFader      = nullptr;
+	mErrorIndex = -1;
 }
 
 /**
@@ -34,7 +34,7 @@ DvdStatus::DvdStatus()
 bool DvdStatus::isErrorOccured()
 {
 	bool retval = false;
-	if (!((mFader == nullptr) || (sys->mCardMgr->mFlags.typeView & 1))) {
+	if (!((mFader == nullptr) || (sys->mCardMgr->isFlag(Game::MemoryCard::MCMFLAG_IsWriting)))) {
 		retval = true;
 	}
 	return retval;
@@ -47,23 +47,23 @@ bool DvdStatus::isErrorOccured()
 bool DvdStatus::update()
 {
 	int status = DVDGetDriveStatus();
-	if (status == -1)
-		_00 = 1;
-	else if (status == 11)
-		_00 = 2;
-	else if (status == 4)
-		_00 = 3;
-	else if (status == 5)
-		_00 = 4;
-	else if (status == 6)
-		_00 = 5;
-	else if (_00 != -1 && status == 1) {
-		_00 = 0;
+	if (status == DVD_STATE_FATAL_ERROR)
+		mErrorIndex = DvdError_ErrorOccured;
+	else if (status == DVD_STATE_RETRY)
+		mErrorIndex = DvdError_DiscReadError;
+	else if (status == DVD_STATE_NO_DISK)
+		mErrorIndex = DvdError_InsertDisc;
+	else if (status == DVD_STATE_COVER_OPEN)
+		mErrorIndex = DvdError_TrayOpen;
+	else if (status == DVD_STATE_WRONG_DISK)
+		mErrorIndex = DvdError_WrongDisc;
+	else if (mErrorIndex != -1 && status == DVD_STATE_BUSY) {
+		mErrorIndex = DvdError_Loading;
 	} else {
-		_00 = -1;
+		mErrorIndex = DvdError_None;
 	}
 	if (mFader == nullptr) {
-		if (0 < _00) {
+		if (DvdError_Loading < mErrorIndex) {
 			JFWDisplay* display = sys->mDisplay;
 
 			if (display) {
@@ -76,12 +76,12 @@ bool DvdStatus::update()
 			PADControlMotor(1, 2);
 			PADControlMotor(2, 2);
 			PADControlMotor(3, 2);
-			_08 = sys->disableCPULockDetector();
+			mCPULockNum = sys->disableCPULockDetector();
 			ebi::FileSelect::TMgr::onDvdErrorOccured();
 			ebi::Save::TMgr::onDvdErrorOccured();
 		}
 	} else {
-		if (_00 == -1) {
+		if (mErrorIndex == DvdError_None) {
 			JFWDisplay* display = sys->mDisplay;
 			if (display) {
 				JUT_ASSERTLINE(197, display->mFader == nullptr, "display changed !\n");
@@ -90,7 +90,7 @@ bool DvdStatus::update()
 			} else {
 				JUT_PANICLINE(204, "no display.\n");
 			}
-			sys->enableCPULockDetector(_08);
+			sys->enableCPULockDetector(mCPULockNum);
 			ebi::FileSelect::TMgr::onDvdErrorRecovered();
 			ebi::Save::TMgr::onDvdErrorRecovered();
 		}
@@ -113,9 +113,9 @@ void DvdStatus::draw()
 		J2DPrint print(nullptr, 0.0f);
 
 		if (gP2JMEMgr && gP2JMEMgr->mIsLoaded) {
-			print.setFont((JUTFont*)gP2JMEMgr->mFont);
+			print.setFont(gP2JMEMgr->mFont);
 		} else if (sys->mRomFont) {
-			print.setFont((JUTFont*)sys->mRomFont);
+			print.setFont(sys->mRomFont);
 		} else {
 			JUT_ASSERTLINE(279, false, "no ROM font\n");
 		}
@@ -151,7 +151,7 @@ void DvdStatus::draw()
 			print.mCharColor.set(TCOLOR_WHITE_U8);
 			print.mGradientColor.set(TCOLOR_WHITE_U8);
 
-			print.print(40.0f, 200.0f, errorMsgSet[_00]);
+			print.print(40.0f, 200.0f, errorMsgSet[mErrorIndex]);
 		}
 	}
 }

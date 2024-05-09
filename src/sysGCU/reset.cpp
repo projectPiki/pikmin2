@@ -23,13 +23,13 @@ ResetManager::ResetManager(f32 thres)
 	mFlags.clear();
 
 	// TRIPLE check these flags are reset
-	resetFlag(RESETFLAG_1);
-	resetFlag(RESETFLAG_4);
-	resetFlag(RESETFLAG_2);
+	resetFlag(RESETFLAG_ResetInputEntered);
+	resetFlag(RESETFLAG_DoResetToMenu);
+	resetFlag(RESETFLAG_GPProcessing);
 
-	mState       = 0;
-	mStatusTimer = 0.0f;
-	mCounter     = 0;
+	mState     = ResetState_Inactive;
+	mFadeTimer = 0.0f;
+	mCounter   = 0;
 }
 
 /**
@@ -38,28 +38,28 @@ ResetManager::ResetManager(f32 thres)
  */
 void ResetManager::update()
 {
-	if (DVDGetDriveStatus() == -1)
+	if (DVDGetDriveStatus() == DVD_STATE_FATAL_ERROR)
 		return;
 
 	bool check = true;
-	if (!isFlag(RESETFLAG_29) && !(sys->isDvdErrorOccured())) {
+	if (!isFlag(RESETFLAG_ResetAllowed) && !(sys->isDvdErrorOccured())) {
 		check = false;
 	}
 
-	if ((int)mState != 0) {
-		if (!isWritingMemoryCard() && isSoundSystemStopped() && !isFlag(RESETFLAG_2) && check) {
+	if (mState != ResetState_Inactive) {
+		if (!isWritingMemoryCard() && isSoundSystemStopped() && !isFlag(RESETFLAG_GPProcessing) && check) {
 			switch (mState) {
-			case 1:
+			case ResetState_Fadeout:
 				if (updateStatusEffects()) {
-					mState = 2;
+					mState = ResetState_Finish;
 				}
 				break;
 
-			case 2:
+			case ResetState_Finish:
 				JUTGamePad::clearForReset();
 				sys->deleteThreads();
 				JFWDisplay::setForOSResetSystem();
-				if (isFlag(RESETFLAG_4)) {
+				if (isFlag(RESETFLAG_DoResetToMenu)) {
 					OSResetSystem(true, 0, true);
 				} else {
 					RENDER_INFO_STORE->mIdentifier = 'vald';
@@ -82,7 +82,7 @@ void ResetManager::update()
 				OSReport("\tオーディオ終了待ち\n"); // Waiting for Audio end
 			}
 
-			if (isFlag(RESETFLAG_2)) {
+			if (isFlag(RESETFLAG_GPProcessing)) {
 				OSReport("\tGP処理終了待ち\n"); // GP processing end waiting
 			}
 
@@ -101,9 +101,9 @@ void ResetManager::update()
 			input = JUTGamePad::C3ButtonReset::sResetOccurredPort;
 		}
 
-		if ((JUTGamePad::C3ButtonReset::sResetOccurred || mFlags.isSet(1)) && !OSGetResetSwitchState()) {
+		if ((JUTGamePad::C3ButtonReset::sResetOccurred || isFlag(RESETFLAG_ResetInputEntered)) && !OSGetResetSwitchState()) {
 			bool check2 = true;
-			if (!isFlag(RESETFLAG_1)) {
+			if (!isFlag(RESETFLAG_ResetInputEntered)) {
 				int currInput = input;
 				if (currInput != -1 && (u32)currInput > 1) {
 					check2 = false;
@@ -115,11 +115,11 @@ void ResetManager::update()
 					PSSystem::spSysIF->stopSoundSystem();
 				}
 				THPPlayerSetVolume(0, 120);
-				setFlag(RESETFLAG_1);
-				mState = 1;
+				setFlag(RESETFLAG_ResetInputEntered);
+				mState = ResetState_Fadeout;
 			} else {
-				resetFlag(RESETFLAG_1);
-				resetFlag(RESETFLAG_4);
+				resetFlag(RESETFLAG_ResetInputEntered);
+				resetFlag(RESETFLAG_DoResetToMenu);
 				JUTGamePad::C3ButtonReset::sResetOccurred = false;
 			}
 		}
@@ -132,13 +132,13 @@ void ResetManager::update()
  */
 bool ResetManager::updateStatusEffects()
 {
-	bool check = false;
-	mStatusTimer += sys->mDeltaTime;
-	if (mStatusTimer > 0.25f) {
-		mStatusTimer = 0.25f;
-		check        = true;
+	bool done = false;
+	mFadeTimer += sys->mDeltaTime;
+	if (mFadeTimer > 0.25f) {
+		mFadeTimer = 0.25f;
+		done       = true;
 	}
-	return check;
+	return done;
 }
 
 /**
@@ -147,14 +147,14 @@ bool ResetManager::updateStatusEffects()
  */
 void ResetManager::draw()
 {
-	if ((int)mState != 0 && DVDGetDriveStatus() != -1) {
+	if (mState != ResetState_Inactive && DVDGetDriveStatus() != DVD_STATE_FATAL_ERROR) {
 
 		u16 w = JUTVideo::sManager->mRenderModeObj->fbWidth;
 		u16 h = JUTVideo::sManager->mRenderModeObj->efbHeight;
 		J2DOrthoGraph graf(0.0f, 0.0f, (f32)w, (f32)h, -1.0f, 1.0f);
 		graf.setPort();
 
-		f32 alpha = (mStatusTimer * 255.0f) / 0.25f;
+		f32 alpha = (mFadeTimer * 255.0f) / 0.25f;
 		alpha     = (alpha >= 0.0f) ? alpha + 0.5f : alpha - 0.5f;
 
 		J2DFillBox(0.0f, 0.0f, (f32)JUTVideo::sManager->mRenderModeObj->fbWidth, (f32)JUTVideo::sManager->mRenderModeObj->efbHeight,
@@ -166,7 +166,7 @@ void ResetManager::draw()
  * @note Address: 0x8042A2BC
  * @note Size: 0x14
  */
-bool ResetManager::isWritingMemoryCard() { return sys->mCardMgr->mFlags.isSet(1); }
+bool ResetManager::isWritingMemoryCard() { return sys->mCardMgr->isFlag(Game::MemoryCard::MCMFLAG_IsWriting); }
 
 /**
  * @note Address: 0x8042A2D0

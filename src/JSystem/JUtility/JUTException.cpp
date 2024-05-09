@@ -819,7 +819,7 @@ void JUTException::waitTime(s32 timeout_ms)
 		do {
 			OSTime end_time = OSGetTime();
 			OSTime ticks    = end_time - start_time;
-			ms              = ticks / (OS_TIMER_CLOCK / 1000);
+			ms              = OSTicksToMilliseconds(ticks);
 		} while (ms < timeout_ms);
 	}
 }

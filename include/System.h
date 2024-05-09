@@ -160,7 +160,7 @@ struct System : public OSMutex {
 	void heapStatusDump(bool);
 	void heapStatusIndividual();
 	void heapStatusNormal();
-	void resetOn(bool);
+	void resetOn(bool doResetToMenu);
 	void resetPermissionOn();
 	bool isResetActive();
 	void activeGP();
