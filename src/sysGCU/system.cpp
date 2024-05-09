@@ -299,8 +299,9 @@ void preUserCallback(u16, OSContext*, u32, u32)
 		u32 input;
 		JUTException::waitTime(100);
 		JUTException::sErrorManager->readPad(&input, nullptr);
+		// if current input is correct, go to next input, otherwise reset back to 0
 		if (input) {
-			i = (i + 1) & (input != inputs[i]);
+			i = ((inputs[i] == input) ? i + 1 : 0);
 		}
 	}
 
@@ -311,86 +312,6 @@ void preUserCallback(u16, OSContext*, u32, u32)
 	} else {
 		OSReport("ƒRƒ“ƒ\[ƒ‹‚ª‚ ‚è‚Ü‚¹‚ñ\n");
 	}
-	/*
-	    stwu     r1, -0x40(r1)
-	    mflr     r0
-	    lis      r4, gStrSystem_CPP@ha
-	    stw      r0, 0x44(r1)
-	    stw      r31, 0x3c(r1)
-	    stw      r30, 0x38(r1)
-	    addi     r30, r4, gStrSystem_CPP@l
-	    stw      r29, 0x34(r1)
-	    stw      r28, 0x30(r1)
-	    lwz      r3, sys@sda21(r13)
-	    bl       disableCPULockDetector__6SystemFv
-	    lwz      r7, 0x84(r30)
-	    addi     r31, r1, 0xc
-	    lwz      r6, 0x88(r30)
-	    li       r28, 0
-	    lwz      r5, 0x8c(r30)
-	    lwz      r4, 0x90(r30)
-	    lwz      r3, 0x94(r30)
-	    lhz      r0, 0x98(r30)
-	    stw      r7, 0xc(r1)
-	    stw      r6, 0x10(r1)
-	    stw      r5, 0x14(r1)
-	    stw      r4, 0x18(r1)
-	    stw      r3, 0x1c(r1)
-	    sth      r0, 0x20(r1)
-	    b        lbl_80422190
-
-	lbl_80422154:
-	    li       r3, 0x64
-	    bl       waitTime__12JUTExceptionFl
-	    lwz      r3, sErrorManager__12JUTException@sda21(r13)
-	    addi     r4, r1, 8
-	    li       r5, 0
-	    bl       readPad__12JUTExceptionFPUlPUl
-	    lwz      r0, 8(r1)
-	    cmplwi   r0, 0
-	    beq      lbl_80422190
-	    subf     r3, r29, r0
-	    subf     r0, r0, r29
-	    nor      r3, r3, r0
-	    addi     r0, r28, 1
-	    srawi    r3, r3, 0x1f
-	    and      r28, r0, r3
-
-	lbl_80422190:
-	    slwi     r0, r28, 1
-	    lhzx     r29, r31, r0
-	    cmplwi   r29, 0
-	    bne      lbl_80422154
-	    lwz      r3, sConsole__12JUTException@sda21(r13)
-	    li       r0, 1
-	    stb      r0, sUseABXCommand@sda21(r13)
-	    cmplwi   r3, 0
-	    beq      lbl_804221D8
-	    stb      r0, 0x68(r3)
-	    li       r0, 3
-	    addi     r4, r30, 0x9c
-	    stw      r0, 0x58(r3)
-	    bl       print__10JUTConsoleFPCc
-	    lwz      r3, sManager__17JUTConsoleManager@sda21(r13)
-	    li       r4, 1
-	    bl       drawDirect__17JUTConsoleManagerCFb
-	    b        lbl_804221E4
-
-	lbl_804221D8:
-	    addi     r3, r30, 0xbc
-	    crclr    6
-	    bl       OSReport
-
-	lbl_804221E4:
-	    lwz      r0, 0x44(r1)
-	    lwz      r31, 0x3c(r1)
-	    lwz      r30, 0x38(r1)
-	    lwz      r29, 0x34(r1)
-	    lwz      r28, 0x30(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x40
-	    blr
-	*/
 }
 
 /**
@@ -668,6 +589,7 @@ void System::createSoundSystem()
 	JKRSolidHeap* newheap2 = makeSolidHeap(old->getFreeSize(), old, true);
 	newheap2->becomeCurrentHeap();
 
+	// something in these inlines is doing bad regalloc things. or not enough bad regalloc things. not sure.
 	static_cast<PSGame::PikSceneMgr*>(PSSystem::getSceneMgr())->newAndSetGlobalScene();
 	newheap2->adjustSize();
 
@@ -809,14 +731,12 @@ void System::createSoundSystem()
  */
 void System::loadSoundResource()
 {
-	JKRHeap* old = JKRGetCurrentHeap();
-	JKRSolidHeap* newheap
-	    = makeSolidHeap(old->getFreeSize(), old, true); // using makeSolidHeap corrects r30 at the expense of r29/r28 regswaps
+	JKRHeap* old          = JKRGetCurrentHeap();
+	JKRSolidHeap* newheap = makeSolidHeap(old->getFreeSize(), old, true);
 	newheap->becomeCurrentHeap();
 
-	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-	PSSystem::checkSceneMgr(mgr);
-	PSM::Scene_Global* scene = static_cast<PSM::Scene_Global*>(mgr->mScenes);
+	// something in these inlines is doing bad regalloc things. or not enough bad regalloc things. not sure.
+	PSSystem::Scene* scene = PSMGetSceneMgrCheck()->mScenes;
 	P2ASSERTLINE(1245, scene);
 
 	scene->scene1stLoadSync();
@@ -1377,6 +1297,8 @@ void System::setFrameRate(int newFactor)
  */
 void System::forceFinishSection()
 {
+	// just for weak function spawning
+	((ISectionMgr*)mGameFlow)->getCurrentSection();
 	// UNUSED FUNCTION
 }
 
