@@ -50,6 +50,14 @@ struct J2DGXColorS10 : public GXColorS10 {
 
 	inline operator JUtility::TColor() const { return toTColor(); }
 	inline JUtility::TColor toTColor() const { return JUtility::TColor(r, g, b, a); }
+
+	inline void set(u16 _r, u16 _g, u16 _b, u16 _a)
+	{
+		r = _r;
+		g = _g;
+		b = _b;
+		a = _a;
+	}
 };
 
 #endif

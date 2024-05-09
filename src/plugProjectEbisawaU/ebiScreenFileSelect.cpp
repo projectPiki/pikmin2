@@ -1881,7 +1881,6 @@ bool TMainScreen::doUpdateStateClose()
 /**
  * @note Address: 0x803D7118
  * @note Size: 0x374
- * @note TODO: MATCH THIS BLOODCLAAART
  */
 void TMainScreen::doDraw()
 {
@@ -2543,411 +2542,67 @@ void TMainScreen::initDataBalls_()
 /**
  * @note Address: 0x803D8EC8
  * @note Size: 0x550
+ * @note TODO: Finish matching
  */
 void TMainScreen::setColorTimgDataBall_(s32 fileID)
 {
 	if (mFileData[fileID].mIsBrokenFile) {
 		ResTIMG* time = mPanePdc[fileID]->changeTexture("break_new_icon.bti", 0);
 		P2ASSERTLINE(1363, time);
+
 		time = mPaneMdc[fileID]->changeTexture("break_new_icon.bti", 0);
 		P2ASSERTLINE(1367, time);
-		mPanePdc[fileID]->hide();
+
+		mPaneSelE0[fileID]->hide();
 		mPaneMdc[fileID]->hide();
+
 		P2ASSERTLINE(1373, mCounterDay[fileID]);
 		mCounterDay[fileID]->hide();
+
 		P2ASSERTLINE(1373, mCounterDayM[fileID]);
 		mCounterDayM[fileID]->hide();
 	} else if (mFileData[fileID].mIsNewFile) {
 		ResTIMG* time = mPanePdc[fileID]->changeTexture("new_icon.bti", 0);
 		P2ASSERTLINE(1382, time);
+
 		time = mPaneMdc[fileID]->changeTexture("new_icon.bti", 0);
 		P2ASSERTLINE(1386, time);
-		mPanePdc[fileID]->hide();
+
+		mPaneSelE0[fileID]->hide();
 		mPaneMdc[fileID]->hide();
+
 		P2ASSERTLINE(1392, mCounterDay[fileID]);
 		mCounterDay[fileID]->hide();
+
 		P2ASSERTLINE(1394, mCounterDayM[fileID]);
 		mCounterDayM[fileID]->hide();
 	} else {
 		ResTIMG* time = mPanePdc[fileID]->changeTexture("dicon_icon.bti", 0);
 		P2ASSERTLINE(1400, time);
+
 		time = mPaneMdc[fileID]->changeTexture("dicon_icon.bti", 0);
 		P2ASSERTLINE(1404, time);
-		mPanePdc[fileID]->show();
+
+		mPaneSelE0[fileID]->show();
 		mPaneMdc[fileID]->show();
+
 		mCounterDay[fileID]->show();
 		mCounterDayM[fileID]->show();
 	}
 
-	getDataBallColor_(fileID);
-	/*
-stwu     r1, -0x80(r1)
-mflr     r0
-stw      r0, 0x84(r1)
-stmw     r26, 0x68(r1)
-mr       r30, r4
-lis      r4, lbl_80496AE8@ha
-mr       r29, r3
-mulli    r0, r30, 0x34
-addi     r31, r4, lbl_80496AE8@l
-add      r3, r29, r0
-lbz      r0, 0xb00(r3)
-cmplwi   r0, 0
-beq      lbl_803D9000
-slwi     r27, r30, 2
-addi     r4, r31, 0x1f4
-add      r3, r29, r27
-li       r5, 0
-lwz      r3, 0x50(r3)
-lwz      r12, 0(r3)
-lwz      r12, 0x114(r12)
-mtctr    r12
-bctrl
-cmplwi   r3, 0
-bne      lbl_803D8F3C
-addi     r3, r31, 0x88
-addi     r5, r31, 0xa0
-li       r4, 0x553
-crclr    6
-bl       panic_f__12JUTExceptionFPCciPCce
+	JUtility::TColor color = getDataBallColor_(fileID);
 
-lbl_803D8F3C:
-add      r3, r29, r27
-addi     r4, r31, 0x1f4
-lwz      r3, 0x5c(r3)
-li       r5, 0
-lwz      r12, 0(r3)
-lwz      r12, 0x114(r12)
-mtctr    r12
-bctrl
-cmplwi   r3, 0
-bne      lbl_803D8F78
-addi     r3, r31, 0x88
-addi     r5, r31, 0xa0
-li       r4, 0x557
-crclr    6
-bl       panic_f__12JUTExceptionFPCciPCce
+	J2DGXColorS10 newColor;
+	newColor.r = static_cast<s16>(1023.0f * color.r / 255.0f);
+	newColor.g = static_cast<s16>(1023.0f * color.g / 255.0f);
+	newColor.b = static_cast<s16>(1023.0f * color.b / 255.0f);
+	newColor.a = color.a;
 
-lbl_803D8F78:
-add      r28, r29, r27
-li       r0, 0
-lwz      r3, 0x38(r28)
-stb      r0, 0xb0(r3)
-lwz      r3, 0x44(r28)
-stb      r0, 0xb0(r3)
-lwz      r0, 0x9d4(r28)
-cmplwi   r0, 0
-bne      lbl_803D8FB0
-addi     r3, r31, 0x88
-addi     r5, r31, 0xa0
-li       r4, 0x55d
-crclr    6
-bl       panic_f__12JUTExceptionFPCciPCce
+	setTevColor(mPaneIconColorA[fileID]->getMaterial()->mTevBlock, newColor);
+	setTevColor(mPaneIconColorB[fileID]->getMaterial()->mTevBlock, newColor);
 
-lbl_803D8FB0:
-lwz      r3, 0x9d4(r28)
-lwz      r12, 0(r3)
-lwz      r12, 0x24(r12)
-mtctr    r12
-bctrl
-add      r27, r29, r27
-lwz      r0, 0x9e0(r27)
-cmplwi   r0, 0
-bne      lbl_803D8FE8
-addi     r3, r31, 0x88
-addi     r5, r31, 0xa0
-li       r4, 0x55f
-crclr    6
-bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803D8FE8:
-lwz      r3, 0x9e0(r27)
-lwz      r12, 0(r3)
-lwz      r12, 0x24(r12)
-mtctr    r12
-bctrl
-b        lbl_803D91D0
-
-lbl_803D9000:
-lbz      r0, 0xb01(r3)
-cmplwi   r0, 0
-beq      lbl_803D9110
-slwi     r27, r30, 2
-addi     r4, r31, 0x208
-add      r3, r29, r27
-li       r5, 0
-lwz      r3, 0x50(r3)
-lwz      r12, 0(r3)
-lwz      r12, 0x114(r12)
-mtctr    r12
-bctrl
-cmplwi   r3, 0
-bne      lbl_803D904C
-addi     r3, r31, 0x88
-addi     r5, r31, 0xa0
-li       r4, 0x566
-crclr    6
-bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803D904C:
-add      r3, r29, r27
-addi     r4, r31, 0x208
-lwz      r3, 0x5c(r3)
-li       r5, 0
-lwz      r12, 0(r3)
-lwz      r12, 0x114(r12)
-mtctr    r12
-bctrl
-cmplwi   r3, 0
-bne      lbl_803D9088
-addi     r3, r31, 0x88
-addi     r5, r31, 0xa0
-li       r4, 0x56a
-crclr    6
-bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803D9088:
-add      r28, r29, r27
-li       r0, 0
-lwz      r3, 0x38(r28)
-stb      r0, 0xb0(r3)
-lwz      r3, 0x44(r28)
-stb      r0, 0xb0(r3)
-lwz      r0, 0x9d4(r28)
-cmplwi   r0, 0
-bne      lbl_803D90C0
-addi     r3, r31, 0x88
-addi     r5, r31, 0xa0
-li       r4, 0x570
-crclr    6
-bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803D90C0:
-lwz      r3, 0x9d4(r28)
-lwz      r12, 0(r3)
-lwz      r12, 0x24(r12)
-mtctr    r12
-bctrl
-add      r27, r29, r27
-lwz      r0, 0x9e0(r27)
-cmplwi   r0, 0
-bne      lbl_803D90F8
-addi     r3, r31, 0x88
-addi     r5, r31, 0xa0
-li       r4, 0x572
-crclr    6
-bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803D90F8:
-lwz      r3, 0x9e0(r27)
-lwz      r12, 0(r3)
-lwz      r12, 0x24(r12)
-mtctr    r12
-bctrl
-b        lbl_803D91D0
-
-lbl_803D9110:
-slwi     r27, r30, 2
-addi     r4, r31, 0x218
-add      r3, r29, r27
-li       r5, 0
-lwz      r3, 0x50(r3)
-lwz      r12, 0(r3)
-lwz      r12, 0x114(r12)
-mtctr    r12
-bctrl
-cmplwi   r3, 0
-bne      lbl_803D9150
-addi     r3, r31, 0x88
-addi     r5, r31, 0xa0
-li       r4, 0x578
-crclr    6
-bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803D9150:
-add      r3, r29, r27
-addi     r4, r31, 0x218
-lwz      r3, 0x5c(r3)
-li       r5, 0
-lwz      r12, 0(r3)
-lwz      r12, 0x114(r12)
-mtctr    r12
-bctrl
-cmplwi   r3, 0
-bne      lbl_803D918C
-addi     r3, r31, 0x88
-addi     r5, r31, 0xa0
-li       r4, 0x57c
-crclr    6
-bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803D918C:
-add      r4, r29, r27
-li       r0, 1
-lwz      r3, 0x38(r4)
-stb      r0, 0xb0(r3)
-lwz      r3, 0x44(r4)
-stb      r0, 0xb0(r3)
-lwz      r3, 0x9d4(r4)
-lwz      r12, 0(r3)
-lwz      r12, 0x20(r12)
-mtctr    r12
-bctrl
-add      r3, r29, r27
-lwz      r3, 0x9e0(r3)
-lwz      r12, 0(r3)
-lwz      r12, 0x20(r12)
-mtctr    r12
-bctrl
-
-lbl_803D91D0:
-mr       r4, r29
-mr       r5, r30
-addi     r3, r1, 8
-bl       getDataBallColor___Q43ebi6Screen10FileSelect11TMainScreenFl
-lwz      r0, 8(r1)
-lis      r5, 0x4330
-slwi     r26, r30, 2
-stw      r5, 0x30(r1)
-add      r3, r29, r26
-lfd      f4, lbl_8051FB48@sda21(r2)
-stw      r0, 0xc(r1)
-lwz      r3, 0x68(r3)
-lbz      r6, 0xc(r1)
-lbz      r4, 0xd(r1)
-lbz      r0, 0xe(r1)
-stw      r6, 0x34(r1)
-lwz      r12, 0(r3)
-lfd      f0, 0x30(r1)
-stw      r4, 0x44(r1)
-fsubs    f1, f0, f4
-lfs      f5, lbl_8051FB60@sda21(r2)
-stw      r5, 0x40(r1)
-lfs      f3, lbl_8051FB3C@sda21(r2)
-lfd      f0, 0x40(r1)
-fmuls    f2, f5, f1
-stw      r0, 0x54(r1)
-fsubs    f1, f0, f4
-lwz      r12, 0x13c(r12)
-stw      r5, 0x50(r1)
-fdivs    f2, f2, f3
-lfd      f0, 0x50(r1)
-fsubs    f0, f0, f4
-fmuls    f1, f5, f1
-fctiwz   f2, f2
-fmuls    f0, f5, f0
-fdivs    f1, f1, f3
-stfd     f2, 0x38(r1)
-lwz      r30, 0x3c(r1)
-fdivs    f0, f0, f3
-fctiwz   f1, f1
-fctiwz   f0, f0
-stfd     f1, 0x48(r1)
-stfd     f0, 0x58(r1)
-lwz      r31, 0x4c(r1)
-lwz      r27, 0x5c(r1)
-mtctr    r12
-bctrl
-lwz      r28, 0x70(r3)
-li       r4, 0
-mr       r3, r28
-lwz      r12, 0(r28)
-lwz      r12, 0x38(r12)
-mtctr    r12
-bctrl
-lha      r0, 6(r3)
-mr       r3, r28
-addi     r5, r1, 0x28
-li       r4, 0
-sth      r30, 0x28(r1)
-sth      r31, 0x2a(r1)
-sth      r27, 0x2c(r1)
-sth      r0, 0x2e(r1)
-lwz      r12, 0(r28)
-lwz      r12, 0x34(r12)
-mtctr    r12
-bctrl
-add      r3, r29, r26
-lwz      r3, 0x74(r3)
-lwz      r12, 0(r3)
-lwz      r12, 0x13c(r12)
-mtctr    r12
-bctrl
-lwz      r28, 0x70(r3)
-li       r4, 0
-mr       r3, r28
-lwz      r12, 0(r28)
-lwz      r12, 0x38(r12)
-mtctr    r12
-bctrl
-lha      r0, 6(r3)
-mr       r3, r28
-addi     r5, r1, 0x20
-li       r4, 0
-sth      r30, 0x20(r1)
-sth      r31, 0x22(r1)
-sth      r27, 0x24(r1)
-sth      r0, 0x26(r1)
-lwz      r12, 0(r28)
-lwz      r12, 0x34(r12)
-mtctr    r12
-bctrl
-add      r3, r29, r26
-lwz      r3, 0x38(r3)
-lwz      r12, 0(r3)
-lwz      r12, 0x13c(r12)
-mtctr    r12
-bctrl
-lwz      r28, 0x70(r3)
-li       r4, 0
-mr       r3, r28
-lwz      r12, 0(r28)
-lwz      r12, 0x38(r12)
-mtctr    r12
-bctrl
-lha      r0, 6(r3)
-mr       r3, r28
-addi     r5, r1, 0x18
-li       r4, 0
-sth      r30, 0x18(r1)
-sth      r31, 0x1a(r1)
-sth      r27, 0x1c(r1)
-sth      r0, 0x1e(r1)
-lwz      r12, 0(r28)
-lwz      r12, 0x34(r12)
-mtctr    r12
-bctrl
-add      r3, r29, r26
-lwz      r3, 0x44(r3)
-lwz      r12, 0(r3)
-lwz      r12, 0x13c(r12)
-mtctr    r12
-bctrl
-lwz      r28, 0x70(r3)
-li       r4, 0
-mr       r3, r28
-lwz      r12, 0(r28)
-lwz      r12, 0x38(r12)
-mtctr    r12
-bctrl
-lha      r0, 6(r3)
-mr       r3, r28
-addi     r5, r1, 0x10
-li       r4, 0
-sth      r30, 0x10(r1)
-sth      r31, 0x12(r1)
-sth      r27, 0x14(r1)
-sth      r0, 0x16(r1)
-lwz      r12, 0(r28)
-lwz      r12, 0x34(r12)
-mtctr    r12
-bctrl
-lmw      r26, 0x68(r1)
-lwz      r0, 0x84(r1)
-mtlr     r0
-addi     r1, r1, 0x80
-blr
-	*/
+	setTevColor(mPaneSelE0[fileID]->getMaterial()->mTevBlock, newColor);
+	setTevColor(mPaneSelE1[fileID]->getMaterial()->mTevBlock, newColor);
 }
 
 /**
