@@ -110,7 +110,6 @@ Obj* Mgr::createGroupByBigFoot(EnemyBirthArg& birthArg, int count, Vector3f& vel
 		leader->setVelocity(velocity);
 		createGroupByBigFoot(leader, count, true, fallSpeedSpread);
 		return leader;
-
 	} else {
 		return nullptr;
 	}

@@ -809,8 +809,9 @@ void System::createSoundSystem()
  */
 void System::loadSoundResource()
 {
-	JKRHeap* old          = JKRGetCurrentHeap();
-	JKRSolidHeap* newheap = JKRSolidHeap::create(old->getFreeSize(), old, true);
+	JKRHeap* old = JKRGetCurrentHeap();
+	JKRSolidHeap* newheap
+	    = makeSolidHeap(old->getFreeSize(), old, true); // using makeSolidHeap corrects r30 at the expense of r29/r28 regswaps
 	newheap->becomeCurrentHeap();
 
 	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
@@ -923,10 +924,8 @@ void System::clearGXVerifyLevel()
  */
 void System::initialize()
 {
-	// theres definitely some sort of struct here
-	u32* test = (u32*)DOL_ADDR_LIMIT;
-	if (test[0] == 'vald') {
-		System::setRenderMode((ERenderMode)test[1]);
+	if (*((u32*)DOL_ADDR_LIMIT) == 'vald') {                              // magic stored from reset
+		System::setRenderMode((ERenderMode) * ((u8*)DOL_ADDR_LIMIT + 4)); // render mode is stored after magic
 	} else {
 		System::setRenderMode(RM_NTSC_Standard);
 	}
@@ -948,74 +947,6 @@ void System::initialize()
 	JKRHeap::setErrorHandler(Pikmin2DefaultMemoryErrorRoutine);
 	JKRHeap::sRootHeap->becomeCurrentHeap();
 	JUTException::appendMapFile(cMapFileName);
-	/*
-	    stwu     r1, -0x10(r1)
-	    mflr     r0
-	    lis      r5, 0x80700000@ha
-	    stw      r0, 0x14(r1)
-	    lwz      r4, 0x80700000@l(r5)
-	    addis    r0, r4, 0x899f
-	    cmplwi   r0, 0x6c64
-	    bne      lbl_80422C90
-	    lbz      r3, 4(r5)
-	    bl       setRenderMode__6SystemFQ26System11ERenderMode
-	    b        lbl_80422C98
-
-	lbl_80422C90:
-	    li       r3, 0
-	    bl       setRenderMode__6SystemFQ26System11ERenderMode
-
-	lbl_80422C98:
-	    li       r3, 4
-	    oris     r3, r3, 4
-	    mtspr    0x392, r3
-	    li       r3, 5
-	    oris     r3, r3, 5
-	    mtspr    0x393, r3
-	    li       r3, 6
-	    oris     r3, r3, 6
-	    mtspr    0x394, r3
-	    li       r3, 7
-	    oris     r3, r3, 7
-	    mtspr    0x395, r3
-	    lis      r4, 0x00070800@ha
-	    addi     r5, r4, 0x00070800@l
-	    li       r7, 1
-	    lis      r6, 0xa
-	    lis      r4, 0x90
-	    li       r0, -1
-	    stw      r7, maxStdHeaps__Q29JFWSystem11CSetUpParam@sda21(r13)
-	    stw      r6, sysHeapSize__Q29JFWSystem11CSetUpParam@sda21(r13)
-	    stw      r5, fifoBufSize__Q29JFWSystem11CSetUpParam@sda21(r13)
-	    stw      r4, aramAudioBufSize__Q29JFWSystem11CSetUpParam@sda21(r13)
-	    stw      r0, aramGraphBufSize__Q29JFWSystem11CSetUpParam@sda21(r13)
-	    bl       getRenderModeObj__6SystemFv
-	    stw      r3, renderMode__Q29JFWSystem11CSetUpParam@sda21(r13)
-	    bl       init__9JFWSystemFv
-	    lwz      r5, sErrorManager__12JUTException@sda21(r13)
-	    li       r0, -1
-	    lis      r4, preUserCallback__FUsP9OSContextUlUl@ha
-	    stw      r0, 0x84(r5)
-	    addi     r3, r4, preUserCallback__FUsP9OSContextUlUl@l
-	    stw      r0, 0x88(r5)
-	    bl       setPreUserCallback__12JUTExceptionFPFUsP9OSContextUlUl_v
-	    lwz      r5, sErrorManager__12JUTException@sda21(r13)
-	    li       r0, 0
-	    lis      r4, Pikmin2DefaultMemoryErrorRoutine__FPvUli@ha
-	    stw      r0, 0x90(r5)
-	    addi     r3, r4, Pikmin2DefaultMemoryErrorRoutine__FPvUli@l
-	    lwz      r4, sErrorManager__12JUTException@sda21(r13)
-	    stw      r0, 0x8c(r4)
-	    bl       setErrorHandler__7JKRHeapFPFPvUli_v
-	    lwz      r3, sRootHeap__7JKRHeap@sda21(r13)
-	    bl       becomeCurrentHeap__7JKRHeapFv
-	    lwz      r3, cMapFileName@sda21(r13)
-	    bl       appendMapFile__12JUTExceptionFPCc
-	    lwz      r0, 0x14(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x10
-	    blr
-	*/
 }
 
 /**
