@@ -614,7 +614,7 @@ bool Obj::isReachToGoal(f32 radius)
 		mReachGoalStopTimer = 0;
 		return true;
 	}
-	return sqrDistanceXZ(mPosition, mGoalPosition) < SQUARE(radius); // how is this not matching >:O
+	return (u8)(sqrDistanceXZ(mPosition, mGoalPosition) < SQUARE(radius));
 }
 
 /**

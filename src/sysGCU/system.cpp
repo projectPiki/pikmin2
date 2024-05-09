@@ -28,6 +28,7 @@
 #include "JSystem/JFramework/JFWDisplay.h"
 #include "PSSystem/PSSystemIF.h"
 #include "LoadResource.h"
+#include "Dolphin/__start.h"
 
 GXRenderModeObj localNtsc608x448IntDfProg = { VI_TVMODE_NTSC_PROG,
 	                                          608, // fbWidth
@@ -914,12 +915,15 @@ void System::clearGXVerifyLevel()
  */
 void System::initialize()
 {
-	// If the render mode status is valid, use it, otherwise use NTSC
-	if (sys->mRenderModeStatus == 'vald') {
-		System::setRenderMode(mRenderMode);
+	// theres definitely some sort of struct here
+	u32* test = (u32*)DOL_ADDR_LIMIT;
+	if (test[0] == 'vald') {
+		System::setRenderMode((ERenderMode)test[1]);
 	} else {
 		System::setRenderMode(RM_NTSC_Standard);
 	}
+
+	OSInitFastCast();
 
 	JFWSystem::CSetUpParam::maxStdHeaps      = 1;
 	JFWSystem::CSetUpParam::sysHeapSize      = 0xa0000;
