@@ -956,7 +956,7 @@ void TTitleMgr::draw()
 			JGeometry::TBox2f box(0.0f, 0.0f, zero + x, zero + y);
 			graf->fillBox(box);
 		}
-		Viewport* vp = sys->mGfx->getViewport(0);
+		Viewport* vp = sys->mGfx->getViewport(PLAYER1_VIEWPORT);
 		vp->setViewport();
 		vp->setProjection();
 		mCameraMgr.setProjection();

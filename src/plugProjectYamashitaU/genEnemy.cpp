@@ -665,7 +665,7 @@ void GenObjectEnemy::render(Graphics& gfx, Game::Generator* gen)
 		info.mColorA = Color4(50, 100, 255, 255);
 		info.mColorB = Color4(50, 50, 150, 255);
 
-		gfx.initPerspPrintf(gfx.getViewport(0));
+		gfx.initPerspPrintf(gfx.getViewport(PLAYER1_VIEWPORT));
 
 		Vector3f perspPos = gen->mPosition + gen->mOffset;
 		perspPos.y += 100.0f;

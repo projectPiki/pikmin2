@@ -555,14 +555,14 @@ void BaseGameSection::initViewports(Graphics& gfx)
 	mSplitter = new HorizonalSplitter(&gfx);
 	setSplitter(false);
 
-	gfx.getViewport(0)->setCamera(mOlimarCamera);
-	gfx.getViewport(1)->setCamera(mLouieCamera);
+	gfx.getViewport(PLAYER1_VIEWPORT)->setCamera(mOlimarCamera);
+	gfx.getViewport(PLAYER2_VIEWPORT)->setCamera(mLouieCamera);
 
-	shadowMgr->setViewport(gfx.getViewport(0), 0);
-	shadowMgr->setViewport(gfx.getViewport(1), 1);
+	shadowMgr->setViewport(gfx.getViewport(PLAYER1_VIEWPORT), 0);
+	shadowMgr->setViewport(gfx.getViewport(PLAYER2_VIEWPORT), 1);
 
-	cameraMgr->setViewport(gfx.getViewport(0), CAMNAVI_Olimar);
-	cameraMgr->setViewport(gfx.getViewport(1), CAMNAVI_Louie);
+	cameraMgr->setViewport(gfx.getViewport(PLAYER1_VIEWPORT), CAMNAVI_Olimar);
+	cameraMgr->setViewport(gfx.getViewport(PLAYER2_VIEWPORT), CAMNAVI_Louie);
 
 	cameraMgr->init(CAMNAVI_Olimar);
 	mTreasureZoomCamera         = new ZoomCamera;
@@ -986,11 +986,11 @@ void BaseGameSection::pmTogglePlayer()
 {
 	if (mPrevNaviIdx == NAVIID_Olimar) {
 		setPlayerMode(NAVIID_Louie);
-		moviePlayer->mViewport     = sys->mGfx->getViewport(1);
+		moviePlayer->mViewport     = sys->mGfx->getViewport(PLAYER2_VIEWPORT);
 		moviePlayer->mActingCamera = mLouieCamera;
 	} else if (mPrevNaviIdx == NAVIID_Louie) {
 		setPlayerMode(NAVIID_Olimar);
-		moviePlayer->mViewport     = sys->mGfx->getViewport(0);
+		moviePlayer->mViewport     = sys->mGfx->getViewport(PLAYER1_VIEWPORT);
 		moviePlayer->mActingCamera = mOlimarCamera;
 	}
 	onTogglePlayer();
@@ -1029,10 +1029,10 @@ void BaseGameSection::setPlayerMode(int mode)
 		cameraMgr->changePlayerMode(NAVIID_Olimar, cameraMgrCallback);
 		if (mPlayerMode == 1) {
 			Graphics* gfx = sys->mGfx;
-			gfx->getViewport(0)->setCamera(mOlimarCamera);
-			gfx->getViewport(1)->setCamera(mLouieCamera);
+			gfx->getViewport(PLAYER1_VIEWPORT)->setCamera(mOlimarCamera);
+			gfx->getViewport(PLAYER2_VIEWPORT)->setCamera(mLouieCamera);
 		}
-		Viewport* olimarViewport    = sys->mGfx->getViewport(0);
+		Viewport* olimarViewport    = sys->mGfx->getViewport(PLAYER1_VIEWPORT);
 		sys->mGfx->mCurrentViewport = olimarViewport;
 		mLightMgr->updatePosition(sys->mGfx->mCurrentViewport);
 		break;
@@ -1041,8 +1041,8 @@ void BaseGameSection::setPlayerMode(int mode)
 		if (mPlayerMode == 1) {
 			Graphics* gfx = sys->mGfx;
 
-			gfx->getViewport(0)->setCamera(mLouieCamera);
-			gfx->getViewport(1)->setCamera(mOlimarCamera);
+			gfx->getViewport(PLAYER1_VIEWPORT)->setCamera(mLouieCamera);
+			gfx->getViewport(PLAYER2_VIEWPORT)->setCamera(mOlimarCamera);
 
 			mSecondViewportHeight = 1.0f;
 			mSplitter->split2(1.0f);
@@ -1059,7 +1059,7 @@ void BaseGameSection::setPlayerMode(int mode)
 		mLouieCamera->update();
 		cameraMgr->changePlayerMode(NAVIID_Louie, cameraMgrCallback);
 
-		Viewport* louieViewport     = sys->mGfx->getViewport(1);
+		Viewport* louieViewport     = sys->mGfx->getViewport(PLAYER2_VIEWPORT);
 		sys->mGfx->mCurrentViewport = louieViewport;
 		mLightMgr->updatePosition(sys->mGfx->mCurrentViewport);
 		break;
@@ -1126,7 +1126,7 @@ void BaseGameSection::setCamController()
 		navis[NAVIID_Olimar]->mController2 = olimarController;
 		navis[NAVIID_Louie]->disableController();
 		moviePlayer->mTargetNavi   = navis[NAVIID_Olimar];
-		moviePlayer->mViewport     = sys->mGfx->getViewport(0);
+		moviePlayer->mViewport     = sys->mGfx->getViewport(PLAYER1_VIEWPORT);
 		moviePlayer->mActingCamera = mOlimarCamera;
 		if (!gameSystem->isMultiplayerMode()) {
 			PSSetCurCameraNo(NAVIID_Olimar);
@@ -1143,7 +1143,7 @@ void BaseGameSection::setCamController()
 		navis[NAVIID_Louie]->mController1 = louieController;
 		navis[NAVIID_Louie]->mController2 = louieController;
 		moviePlayer->mTargetNavi          = navis[NAVIID_Louie];
-		moviePlayer->mViewport            = sys->mGfx->getViewport(1);
+		moviePlayer->mViewport            = sys->mGfx->getViewport(PLAYER2_VIEWPORT);
 		moviePlayer->mActingCamera        = mLouieCamera;
 		if (!gameSystem->isMultiplayerMode()) {
 			PSSetCurCameraNo(NAVIID_Louie);
@@ -1704,8 +1704,8 @@ void BaseGameSection::updateBlendCamera()
 	}
 	if (!mIsBlendCameraActive) {
 		Graphics* gfx = sys->mGfx;
-		gfx->getViewport(0)->setCamera(mOlimarCamera);
-		gfx->getViewport(1)->setCamera(mLouieCamera);
+		gfx->getViewport(PLAYER1_VIEWPORT)->setCamera(mOlimarCamera);
+		gfx->getViewport(PLAYER2_VIEWPORT)->setCamera(mLouieCamera);
 		setCamController();
 	}
 }

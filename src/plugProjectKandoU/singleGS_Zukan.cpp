@@ -4001,14 +4001,14 @@ void ZukanState::dvdloadA()
 
 	HorizonalSplitter* split = new HorizonalSplitter(gfx);
 	split->split2(1.0f);
-	Viewport* vp1 = gfx->getViewport(0);
-	Viewport* vp2 = gfx->getViewport(1);
+	Viewport* vp1 = gfx->getViewport(PLAYER1_VIEWPORT);
+	Viewport* vp2 = gfx->getViewport(PLAYER2_VIEWPORT);
 	vp1->mCamera  = mCamera;
 	vp1->updateCameraAspect();
 	vp2->mCamera = mCamera;
 	vp2->updateCameraAspect();
-	vp1->_48 = mCameraAspect;
-	vp1->_50 = Vector2f(1.0f);
+	vp1->mSplitOffset = mCameraAspect;
+	vp1->mSplitRatio  = Vector2f(1.0f);
 	vp1->setRect(mWindowBounds);
 
 	particleMgr->setViewport(*gfx);
@@ -4016,8 +4016,8 @@ void ZukanState::dvdloadA()
 	shadowMgr = new ShadowMgr(2);
 
 	gfx = sys->mGfx;
-	vp1 = gfx->getViewport(0);
-	vp2 = gfx->getViewport(1);
+	vp1 = gfx->getViewport(PLAYER1_VIEWPORT);
+	vp2 = gfx->getViewport(PLAYER2_VIEWPORT);
 	shadowMgr->setViewport(vp1, 0);
 	shadowMgr->setViewport(vp2, 1);
 	mGameSect->initLights();

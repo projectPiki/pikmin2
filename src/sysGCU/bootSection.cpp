@@ -830,7 +830,7 @@ bool BootSection::doUpdate()
 			if (mProgressiveScreen->isFinish()) {
 				mFadeTimer = 0.0f;
 				setMode(SID_UpdateWaitProgressive);
-				VISetBlack(true);
+				VISetBlack(TRUE);
 				VIFlush();
 				VIWaitForRetrace();
 				VIWaitForRetrace();
@@ -883,7 +883,7 @@ bool BootSection::doUpdate()
 		case JUTFader::Status_In:
 			mFadeTimer += sys->mDeltaTime;
 			if (mFadeTimer > 1.0f) {
-				setMode(10);
+				setMode(SID_EndState);
 			}
 			break;
 		}
@@ -1562,10 +1562,10 @@ void BootSection::updateWaitProgressive()
 {
 	mFadeTimer += 1.0f;
 	if (mFadeTimer > 150.0f) {
-		VISetBlack(false);
+		VISetBlack(FALSE);
 		VIFlush();
 		VIWaitForRetrace();
-		setMode(9);
+		setMode(SID_DolbyLogo);
 	}
 }
 
@@ -1579,7 +1579,7 @@ void BootSection::run()
 	sys->dvdLoadUseCallBack(&mThreadCommand, new Delegate<BootSection>(this, &BootSection::loadBootResource));
 	runWait(&waitLoadResource);
 	sys->loadResourceFirst();
-	setMode(0);
+	setMode(SID_LoadResourceFirst);
 	::Section::run();
 	gPikmin2AramMgr->setLoadPermission(false);
 	runWait(&waitLoadResource);

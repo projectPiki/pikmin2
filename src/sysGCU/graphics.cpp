@@ -40,12 +40,12 @@ HorizonalSplitter::HorizonalSplitter(Graphics* gfx)
  */
 void HorizonalSplitter::split2(f32 split)
 {
-	Viewport* vp1 = mGraphics->getViewport(0);
-	Viewport* vp2 = mGraphics->getViewport(1);
+	Viewport* vp1 = mGraphics->getViewport(PLAYER1_VIEWPORT);
+	Viewport* vp2 = mGraphics->getViewport(PLAYER2_VIEWPORT);
 
-	vp1->_50.y = split / 0.5f;
-	vp2->_50.y = (1.0f - split) / 0.5f;
-	vp2->_48.y = vp1->_50.y * (vp1->mBounds.getHeight()) - mBounds.p2.y * 0.5f;
+	vp1->mSplitRatio.y  = split / 0.5f;
+	vp2->mSplitRatio.y  = (1.0f - split) / 0.5f;
+	vp2->mSplitOffset.y = vp1->mSplitRatio.y * (vp1->mBounds.getHeight()) - mBounds.p2.y * 0.5f;
 
 	vp1->refresh();
 	vp2->refresh();
@@ -95,14 +95,14 @@ Viewport::Viewport()
 {
 	mVpId = 0;
 
-	u16 y      = sys->getRenderModeObj()->efbHeight;
-	u16 x      = sys->getRenderModeObj()->fbWidth;
-	mBounds.p1 = 0.0f;
-	mBounds.p2 = Vector2f(x, y);
-	mFlags     = 0;
-	mCamera    = nullptr;
-	_48        = Vector2f(0.0f);
-	_50        = Vector2f(1.0f);
+	u16 y        = sys->getRenderModeObj()->efbHeight;
+	u16 x        = sys->getRenderModeObj()->fbWidth;
+	mBounds.p1   = 0.0f;
+	mBounds.p2   = Vector2f(x, y);
+	mFlags       = 0;
+	mCamera      = nullptr;
+	mSplitOffset = Vector2f(0.0f);
+	mSplitRatio  = Vector2f(1.0f);
 	refresh();
 }
 
@@ -197,8 +197,8 @@ void Viewport::updateCameraAspect()
  */
 void Viewport::refresh()
 {
-	mBounds2.p1 = mBounds.p1 + _48;
-	mBounds2.p2 = mBounds2.p1 + Vector2f(_50.x * mBounds.getWidth(), _50.y * mBounds.getHeight());
+	mBounds2.p1 = mBounds.p1 + mSplitOffset;
+	mBounds2.p2 = mBounds2.p1 + Vector2f(mSplitRatio.x * mBounds.getWidth(), mSplitRatio.y * mBounds.getHeight());
 	updateCameraAspect();
 	/*
 	lfs      f4, 0x1c(r3)

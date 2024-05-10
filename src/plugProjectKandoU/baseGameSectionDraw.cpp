@@ -38,26 +38,27 @@ void BaseGameSection::newdraw_draw3D_all(Graphics& gfx)
 
 	// Draw particles for both viewports
 	sys->mTimers->_start("part-draw", true);
-	drawParticle(gfx, 0);
-	drawParticle(gfx, 1);
+	drawParticle(gfx, PLAYER1_VIEWPORT);
+	drawParticle(gfx, PLAYER2_VIEWPORT);
 	sys->mTimers->_stop("part-draw");
 
 	// Draw counters for both viewports
 	// (Life gauge & Carry info)
 	sys->mTimers->_start("drct-post", true);
 	mLightMgr->set(gfx);
-	Viewport* vp = gfx.getViewport(0);
+	Viewport* vp = gfx.getViewport(PLAYER1_VIEWPORT);
 	if (vp && vp->viewable()) {
 		gfx.mCurrentViewport = vp;
 		directDrawPost(gfx, vp);
 	}
 
 	mLightMgr->set(gfx);
-	vp = gfx.getViewport(1);
+	vp = gfx.getViewport(PLAYER2_VIEWPORT);
 	if (vp && vp->viewable()) {
 		gfx.mCurrentViewport = vp;
 		directDrawPost(gfx, vp);
 	}
+
 	sys->mTimers->_stop("drct-post");
 }
 

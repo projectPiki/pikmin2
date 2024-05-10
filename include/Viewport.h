@@ -15,22 +15,37 @@ namespace SysShape {
 struct Model;
 } // namespace SysShape
 
+#define VIEWPORT_0 (0)
+#define VIEWPORT_1 (1)
+#define VIEWPORT_2 (2) // unused
+#define VIEWPORT_3 (3) // unused
+
+#define PLAYER1_VIEWPORT (VIEWPORT_0)
+#define PLAYER2_VIEWPORT (VIEWPORT_1)
+
 struct Viewport : public CNode {
 	Viewport();
 
 	virtual ~Viewport() { } // _08 (weak)
 
-	void draw2dframe(J2DGrafContext&);
-	void getAspect();
+	// Matrix and view related methods
 	Matrixf* getMatrix(bool getCurrentViewMtx);
-	void refresh();
 	SysShape::Model* setJ3DViewMtx(bool);
-	void setOrthoGraph2d(J2DOrthoGraph&);
 	void setProjection();
+	void updateCameraAspect();
+
+	// Drawing and rendering methods
+	void draw2dframe(J2DGrafContext&);
+	void refresh();
+
+	// Viewport and rectangle methods
 	void setRect(Rectf&);
 	void setViewport();
-	void updateCameraAspect();
 	bool viewable();
+
+	// Other methods
+	void getAspect();
+	void setOrthoGraph2d(J2DOrthoGraph&);
 
 	inline void setCamera(Camera* cam)
 	{
@@ -55,8 +70,8 @@ struct Viewport : public CNode {
 	s8 mFlags;             // _3C
 	Matrixf* mViewMat;     // _40
 	LookAtCamera* mCamera; // _44
-	Vector2f _48;          // _48
-	Vector2f _50;          // _50
+	Vector2f mOffset;      // _48
+	Vector2f mSplitRatio;  // _50
 };
 
 #endif

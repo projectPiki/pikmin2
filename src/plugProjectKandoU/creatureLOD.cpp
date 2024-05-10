@@ -90,8 +90,8 @@ void Creature::updateLOD(Game::AILODParm& parm)
 	if (!(gameSystem->isMultiplayerMode() && (2 <= viewportCount))) {
 		mLod.mSoundVPID = 0;
 	} else {
-		Viewport* vp0 = gfx->getViewport(0);
-		Viewport* vp1 = gfx->getViewport(1);
+		Viewport* vp0 = gfx->getViewport(PLAYER1_VIEWPORT);
+		Viewport* vp1 = gfx->getViewport(PLAYER2_VIEWPORT);
 		if (!vp0->viewable()) {
 			mLod.mSoundVPID = 0;
 		} else {
@@ -447,7 +447,7 @@ void Creature::drawLODInfo(Graphics& gfx, Vector3f& position)
 		gfx.perspPrintf(info, position, "[%s%s %s %s]", (mLod.isFlag(AILOD_IsVisVP0)) ? "v" : "x",
 		                (mLod.isFlag(AILOD_IsVisVP1)) ? "v" : "x", (mLod.isFlag(AILOD_PikiInCell)) ? "p" : "_", nearnessLabels[nearness]);
 
-		Camera* camera0 = sys->mGfx->getViewport(0)->mCamera;
+		Camera* camera0 = sys->mGfx->getViewport(PLAYER1_VIEWPORT)->mCamera;
 		Vector3f sizeOnScreenTextPosition;
 		sizeOnScreenTextPosition = position;
 		sizeOnScreenTextPosition.y += 15.0f;
