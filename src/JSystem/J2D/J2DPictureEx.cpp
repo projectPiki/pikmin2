@@ -465,9 +465,11 @@ void J2DPictureEx::drawFullSet(f32 x, f32 y, f32 width, f32 height, Mtx* texMtx)
  * @note Address: 0x800554FC
  * @note Size: 0x2B4
  */
-void J2DPictureEx::drawTexCoord(f32 p1, f32 p2, f32 p3, f32 p4, s16 p5, s16 p6, s16 p7, s16 p8, s16 p9, s16 p10, s16 p11, s16 p12,
-                                Mtx* texMtx)
+void J2DPictureEx::drawTexCoord(f32 x, f32 y, f32 width, f32 height, s16 xTex0, s16 yTex0, s16 xTex1, s16 yTex1, s16 xTex2, s16 yTex2,
+                                s16 xTex3, s16 yTex3, Mtx* texMtx)
 {
+	f32 x2 = x + width;
+	f32 y2 = y + height;
 	Mtx v1;
 	PSMTXConcat(*texMtx, mGlobalMtx, v1);
 	if (mMaterial && mMaterial->mIsVisible == 0) {
@@ -479,7 +481,7 @@ void J2DPictureEx::drawTexCoord(f32 p1, f32 p2, f32 p3, f32 p4, s16 p5, s16 p6, 
 		if ((mMaterial->mColorBlock.mChannels[1].mColorChan & 1) == 1) {
 			if (mMaterial->mMaterialAlphaCalc == 1) {
 				for (int i = 0; i < 4; i++) {
-					colors[i].a *= mColorAlpha / 0xFF;
+					colors[i].a *= mColorAlpha / 255;
 				}
 			}
 		} else if (!mIsInfluencedAlpha) {
@@ -490,14 +492,24 @@ void J2DPictureEx::drawTexCoord(f32 p1, f32 p2, f32 p3, f32 p4, s16 p5, s16 p6, 
 	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
 	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_TEX_ST, GX_S16, 8);
 	GXBegin(GX_QUADS, GX_VTXFMT0, 4);
-	GXPosition3f32(p1, p2, 0.0f);
-	GXTexCoord2s16(p5, p6);
-	GXPosition3f32(p1 + p3, p2, 0.0f);
-	GXTexCoord2s16(p7, p8);
-	GXPosition3f32(p1 + p3, p2 + p4, 0.0f);
-	GXTexCoord2s16(p9, p10);
-	GXPosition3f32(p1, p2 + p4, 0.0f);
-	GXTexCoord2s16(p11, p12);
+
+	f32 z = 0.0f;
+	// bottom left
+	GXPosition3f32(x, y, z);
+	GXTexCoord2s16(xTex0, yTex0);
+
+	// bottom right
+	GXPosition3f32(x2, y, z);
+	GXTexCoord2s16(xTex1, yTex1);
+
+	// top right
+	GXPosition3f32(x2, y2, z);
+	GXTexCoord2s16(xTex2, yTex2);
+
+	// top left
+	GXPosition3f32(x, y2, z);
+	GXTexCoord2s16(xTex3, yTex3);
+
 	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 15);
 	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_TEX_ST, GX_S16, 0);
 	/*
@@ -691,9 +703,9 @@ void J2DPictureEx::drawTexCoord(f32 p1, f32 p2, f32 p3, f32 p4, s16 p5, s16 p6, 
  * @note Size: 0x48
  * append__12J2DPictureExFPC7ResTIMGP10JUTPalettef
  */
-bool J2DPictureEx::append(const ResTIMG* img, JUTPalette* palette, f32 p3)
+bool J2DPictureEx::append(const ResTIMG* img, JUTPalette* palette, f32 blendRatio)
 {
-	return (!mMaterial) ? false : insert(img, palette, mMaterial->mTexGenBlock.mTexGenNum, p3);
+	return (!mMaterial) ? false : insert(img, palette, mMaterial->mTexGenBlock.mTexGenNum, blendRatio);
 }
 
 /**
@@ -701,9 +713,9 @@ bool J2DPictureEx::append(const ResTIMG* img, JUTPalette* palette, f32 p3)
  * @note Size: 0x48
  * append__12J2DPictureExFPCcP10JUTPalettef
  */
-bool J2DPictureEx::append(const char* p1, JUTPalette* palette, f32 p3)
+bool J2DPictureEx::append(const char* p1, JUTPalette* palette, f32 blendRatio)
 {
-	return (!mMaterial) ? false : insert(p1, palette, mMaterial->mTexGenBlock.mTexGenNum, p3);
+	return (!mMaterial) ? false : insert(p1, palette, mMaterial->mTexGenBlock.mTexGenNum, blendRatio);
 }
 
 /**
@@ -711,9 +723,9 @@ bool J2DPictureEx::append(const char* p1, JUTPalette* palette, f32 p3)
  * @note Size: 0x48
  * append__12J2DPictureExFP10JUTTexturef
  */
-bool J2DPictureEx::append(JUTTexture* texture, f32 p2)
+bool J2DPictureEx::append(JUTTexture* texture, f32 blendRatio)
 {
-	return (!mMaterial) ? false : insert(texture, mMaterial->mTexGenBlock.mTexGenNum, p2);
+	return (!mMaterial) ? false : insert(texture, mMaterial->mTexGenBlock.mTexGenNum, blendRatio);
 }
 
 /**
@@ -721,16 +733,16 @@ bool J2DPictureEx::append(JUTTexture* texture, f32 p2)
  * @note Size: 0xB4
  * insert__12J2DPictureExFPC7ResTIMGP10JUTPaletteUcf
  */
-bool J2DPictureEx::insert(const ResTIMG* img, JUTPalette* palette, u8 p3, f32 p4)
+bool J2DPictureEx::insert(const ResTIMG* img, JUTPalette* palette, u8 index, f32 blendRatio)
 {
 	if (!img) {
 		return false;
 	}
-	if (!isInsert(p3)) {
+	if (!isInsert(index)) {
 		return false;
 	}
-	insertCommon(p3, p4);
-	mMaterial->mTevBlock->insertTexture(p3, img, palette);
+	insertCommon(index, blendRatio);
+	mMaterial->mTevBlock->insertTexture(index, img, palette);
 	return true;
 }
 
@@ -739,9 +751,9 @@ bool J2DPictureEx::insert(const ResTIMG* img, JUTPalette* palette, u8 p3, f32 p4
  * @note Size: 0x78
  * insert__12J2DPictureExFPCcP10JUTPaletteUcf
  */
-bool J2DPictureEx::insert(const char* p1, JUTPalette* palette, u8 p3, f32 p4)
+bool J2DPictureEx::insert(const char* filename, JUTPalette* palette, u8 index, f32 blendRatio)
 {
-	return insert((ResTIMG*)J2DScreen::getNameResource(p1), palette, p3, p4);
+	return insert((ResTIMG*)J2DScreen::getNameResource(filename), palette, index, blendRatio);
 }
 
 /**
@@ -749,16 +761,16 @@ bool J2DPictureEx::insert(const char* p1, JUTPalette* palette, u8 p3, f32 p4)
  * @note Size: 0xA4
  * insert__12J2DPictureExFP10JUTTextureUcf
  */
-bool J2DPictureEx::insert(JUTTexture* texture, u8 p2, f32 p3)
+bool J2DPictureEx::insert(JUTTexture* texture, u8 index, f32 blendRatio)
 {
 	if (!texture) {
 		return false;
 	}
-	if (!isInsert(p2)) {
+	if (!isInsert(index)) {
 		return false;
 	}
-	insertCommon(p2, p3);
-	mMaterial->mTevBlock->insertTexture(p2, texture);
+	insertCommon(index, blendRatio);
+	mMaterial->mTevBlock->insertTexture(index, texture);
 	return true;
 }
 
@@ -767,8 +779,54 @@ bool J2DPictureEx::insert(JUTTexture* texture, u8 p2, f32 p3)
  * @note Size: 0x334
  * insertCommon__12J2DPictureExFUcf
  */
-void J2DPictureEx::insertCommon(u8, f32)
+void J2DPictureEx::insertCommon(u8 index, f32 blendRatio)
 {
+	u8 texGenNum = mMaterial->getTexGenBlock()->getTexGenNum();
+	mMaterial->getTevBlock()->getMaxStage();
+	u8 stageNum = mMaterial->getTevBlock()->getTevStageNum();
+
+	bool check;
+	if (texGenNum <= 1) {
+		check = stageNum != 1;
+	} else {
+		check = (stageNum != (texGenNum + 1));
+	}
+
+	shiftSetBlendRatio(index, blendRatio, true, true);
+	shiftSetBlendRatio(index, blendRatio, false, true);
+
+	u32 nextTexGen = texGenNum + 1; // r30
+	u8 startCount  = (u8)nextTexGen - 1;
+
+	mMaterial->getTexGenBlock()->setTexGenNum(nextTexGen);
+
+	// some loop copy nonsense like this
+	for (int i = nextTexGen; i < index; i++) {
+		mMaterial->mTexGenBlock.mTexCoords[i + 1] = mMaterial->mTexGenBlock.mTexCoords[i];
+	}
+
+	for (u8 i = startCount; i > index; i--) {
+		u8 idx = i - 1;
+		mMaterial->getTexGenBlock()->setTexMtx(idx, *mMaterial->getTexGenBlock()->mTexMtxes[idx]);
+	}
+
+	J2DTexMtx texMtx; // this ctor needs fixing
+	mMaterial->getTexGenBlock()->setTexMtx(index, texMtx);
+
+	u8 newStageNum;
+	if ((u8)nextTexGen == 1) {
+		newStageNum = 1;
+	} else {
+		newStageNum = nextTexGen + (check != 0) + 1;
+	}
+
+	mMaterial->getTevBlock()->setTevStageNum(newStageNum);
+
+	setTevOrder(nextTexGen, newStageNum, check);
+	setTevStage(nextTexGen, newStageNum, check);
+	setTevKColor(nextTexGen);
+	setTevKColorSel(nextTexGen);
+	setTevKAlphaSel(nextTexGen);
 	/*
 	stwu     r1, -0xa0(r1)
 	mflr     r0
@@ -1113,26 +1171,27 @@ BOOL J2DPictureEx::remove(u8 id)
 		return FALSE;
 	}
 	u8 texGenNum = mMaterial->mTexGenBlock.mTexGenNum;
-	// TODO: IDK what operation this is.
-	s8 v1 = -((texGenNum + 1) != mMaterial->mTevBlock->getTevStageNum());
-	// u8 tevStageNum = mMaterial->mTevBlock->getTevStageNum();
-	// s8 v1          = ((texGenNum + 1) - tevStageNum) | (tevStageNum - (texGenNum + 1));
+
+	bool v1 = ((texGenNum + 1) != mMaterial->mTevBlock->getTevStageNum());
 	shiftSetBlendRatio(id, 0.0f, true, false);
 	shiftSetBlendRatio(id, 0.0f, false, false);
-	mMaterial->mTexGenBlock.mTexGenNum = texGenNum - 1;
+	mMaterial->mTexGenBlock.mTexGenNum = (u8)(texGenNum - 1);
+
+	// it needs to stop optimising texGenNum - 1 down into a new variable and dynamically do it
 	mMaterial->mTevBlock->removeTexture(id);
-	if (texGenNum - 1 != 1) {
-		id = texGenNum + (1 - (v1 < 0));
+	u8 comp = texGenNum - 1;
+	if (comp != 1) {
+		id = comp + (v1 != 0) + 1;
 	} else {
-		id = 1 - (v1 < 0);
+		id = (v1 != 0) + 1;
 	}
 	mMaterial->mTevBlock->setTevStageNum(id);
-	setTevOrder(texGenNum - 1, id, v1 < 0);
-	setTevStage(texGenNum - 1, id, v1 < 0);
+	setTevOrder(texGenNum - 1, id, v1);
+	setTevStage(texGenNum - 1, id, v1);
 	setTevKColor(texGenNum - 1);
 	setTevKColorSel(texGenNum - 1);
 	setTevKAlphaSel(texGenNum - 1);
-	return 1;
+	return TRUE;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1294,7 +1353,7 @@ BOOL J2DPictureEx::remove(JUTTexture* texture)
  * @note Address: 0x8005615C
  * @note Size: 0x54
  */
-bool J2DPictureEx::isRemove(u8 p1) const
+bool J2DPictureEx::isRemove(u8 index) const
 {
 	if (!mMaterial) {
 		return false;
@@ -1303,7 +1362,7 @@ bool J2DPictureEx::isRemove(u8 p1) const
 		return false;
 	}
 	u8 texGenNum = mMaterial->mTexGenBlock.mTexGenNum;
-	if (texGenNum <= p1 || texGenNum == 1) {
+	if (texGenNum <= index || texGenNum == 1) {
 		return false;
 	}
 	return true;
@@ -1314,10 +1373,10 @@ bool J2DPictureEx::isRemove(u8 p1) const
  * @note Size: 0x124
  * draw__12J2DPictureExFffUcbbb
  */
-void J2DPictureEx::draw(f32 p1, f32 p2, u8 p3, bool p4, bool p5, bool p6)
+void J2DPictureEx::draw(f32 p1, f32 p2, u8 index, bool p4, bool p5, bool p6)
 {
-	if (mMaterial && mMaterial->mTevBlock && mIsVisible && p3 < mMaterial->mTexGenBlock.mTexGenNum) {
-		JUTTexture* texture = mMaterial->mTevBlock->getTexture(p3);
+	if (mMaterial && mMaterial->mTevBlock && mIsVisible && index < mMaterial->mTexGenBlock.mTexGenNum) {
+		JUTTexture* texture = mMaterial->mTevBlock->getTexture(index);
 		if (texture) {
 			draw(p1, p2, texture->getSizeX(), texture->getSizeY(), p4, p5, p6);
 		}
@@ -1328,8 +1387,110 @@ void J2DPictureEx::draw(f32 p1, f32 p2, u8 p3, bool p4, bool p5, bool p6)
  * @note Address: 0x800562D4
  * @note Size: 0x5A8
  */
-void J2DPictureEx::draw(f32, f32, f32, f32, bool, bool, bool)
+void J2DPictureEx::draw(f32 x, f32 y, f32 width, f32 height, bool p5, bool p6, bool p7)
 {
+	if (!isVisible()) {
+		return;
+	}
+
+	if (!mMaterial) {
+		return;
+	}
+
+	if (!mMaterial->getTevBlock()) {
+		return;
+	}
+
+	if (mMaterial->getTexGenBlock()->mTexGenNum == 0) {
+		return;
+	}
+
+	mMaterial->setGX();
+	makeMatrix(x, y, 0.0f, 0.0f);
+	GXLoadPosMtxImm(mPositionMtx, 0);
+	GXSetCurrentMtx(0);
+
+	if (!mMaterial->isVisible()) {
+		return;
+	}
+
+	GXClearVtxDesc();
+	GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
+	GXSetVtxDesc(GX_VA_CLR0, GX_DIRECT);
+	GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
+
+	mColorAlpha = mAlpha;
+	J2DPicture::TCornerColor colors;
+	getCornerColor(colors);
+
+	if ((int)mMaterial->mMaterialAlphaCalc == 1) {
+		colors.mColor0.a = (mColorAlpha * colors.mColor0.a) / 255;
+		colors.mColor1.a = (mColorAlpha * colors.mColor1.a) / 255;
+		colors.mColor2.a = (mColorAlpha * colors.mColor2.a) / 255;
+		colors.mColor3.a = (mColorAlpha * colors.mColor3.a) / 255;
+	}
+
+	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
+	GXBegin(GX_QUADS, GX_VTXFMT0, 4);
+	f32 z = 0.0f;
+	GXPosition3f32(z, z, z);
+	GXColor1u32(colors.mColor0);
+
+	// i have no idea what's up with these.
+	if (!p7) {
+		GXTexCoord2s16(0x8000 & (p5 != 0), 0x8000 & (p6 != 0));
+	} else {
+		GXTexCoord2s16(0x8000 & (p5 != 0), 0x8000 & (p6 != 0));
+	}
+
+	GXPosition3f32(width, z, z);
+	GXColor1u32(colors.mColor1);
+
+	if (!p7) {
+		GXTexCoord2s16(0x8000 & (p5 != 0), 0x8000 & (p6 != 0));
+	} else {
+		GXTexCoord2s16(0x8000 & (p5 != 0), 0x8000 & (p6 != 0));
+	}
+
+	GXPosition3f32(width, height, z);
+	GXColor1u32(colors.mColor3);
+
+	if (!p7) {
+		GXTexCoord2s16(0x8000 & (p5 != 0), 0x8000 & (p6 != 0));
+	} else {
+		GXTexCoord2s16(0x8000 & (p5 != 0), 0x8000 & (p6 != 0));
+	}
+
+	GXPosition3f32(z, height, z);
+	GXColor1u32(colors.mColor2);
+
+	if (!p7) {
+		GXTexCoord2s16(0x8000 & (p5 != 0), 0x8000 & (p6 != 0));
+	} else {
+		GXTexCoord2s16(0x8000 & (p5 != 0), 0x8000 & (p6 != 0));
+	}
+
+	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_S16, 0);
+	GXSetNumTexGens(0);
+	GXSetNumTevStages(1);
+	GXSetTevOp(GX_TEVSTAGE0, GX_PASSCLR);
+	GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR0A0);
+
+	for (int i = 0; i < 4; i++) {
+		GXSetTevSwapModeTable(GXTevSwapSel(i), GX_CH_RED, GX_CH_GREEN, GX_CH_BLUE, GX_CH_ALPHA);
+	}
+
+	GXSetNumIndStages(0);
+
+	for (int i = 0; i < 16; i++) {
+		GXSetTevDirect(GXTevStageID(i));
+	}
+
+	Mtx posMtx;
+	PSMTXIdentity(posMtx);
+	GXLoadPosMtxImm(posMtx, 0);
+	GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_REG, GX_SRC_VTX, 0, GX_DF_NONE, GX_AF_NONE);
+	GXSetVtxDesc(GX_VA_TEX0, GX_NONE);
 	/*
 	stwu     r1, -0xb0(r1)
 	mflr     r0
@@ -1740,8 +1901,85 @@ void J2DPictureEx::drawOut(f32 p1, f32 p2, f32 p3, f32 p4, f32 p5, f32 p6)
  * @note Address: 0x800569E4
  * @note Size: 0x3E8
  */
-void J2DPictureEx::drawOut(const JGeometry::TBox2<f32>&, const JGeometry::TBox2<f32>&)
+void J2DPictureEx::drawOut(const JGeometry::TBox2<f32>& boundBox, const JGeometry::TBox2<f32>& texBox)
 {
+
+	if (!mMaterial) {
+		return;
+	}
+
+	if (!mMaterial->getTevBlock()) {
+		return;
+	}
+
+	if (!isVisible()) {
+		return;
+	}
+	mMaterial->setGX();
+
+	GXClearVtxDesc();
+	GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
+	GXSetVtxDesc(GX_VA_CLR0, GX_DIRECT);
+	GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
+
+	if (!mMaterial->isVisible()) {
+		return;
+	}
+	mColorAlpha = mAlpha;
+	J2DPicture::TCornerColor colors;
+	getCornerColor(colors);
+
+	if ((int)mMaterial->mMaterialAlphaCalc == 1) {
+		colors.mColor0.a = (mColorAlpha * colors.mColor0.a) / 255;
+		colors.mColor1.a = (mColorAlpha * colors.mColor1.a) / 255;
+		colors.mColor2.a = (mColorAlpha * colors.mColor2.a) / 255;
+		colors.mColor3.a = (mColorAlpha * colors.mColor3.a) / 255;
+	}
+
+	f32 texX0 = (boundBox.i.x - texBox.i.x) / texBox.getWidth();
+	f32 texX1 = 1.0f + ((boundBox.f.x - texBox.f.x) / texBox.getWidth());
+	f32 texY0 = (boundBox.i.y - texBox.i.y) / texBox.getHeight();
+	f32 texY1 = 1.0f + ((boundBox.f.y - texBox.f.y) / texBox.getHeight());
+
+	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_POS_XYZ, GX_F32, 0);
+	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
+	GXBegin(GX_QUADS, GX_VTXFMT0, 4);
+	f32 z = 0.0f;
+	GXPosition3f32(boundBox.i.x, boundBox.i.y, z);
+	GXColor1u32(colors.mColor0);
+	GXPosition2f32(texX0, texY0);
+
+	GXPosition3f32(boundBox.f.x, boundBox.i.y, z);
+	GXColor1u32(colors.mColor1);
+	GXPosition2f32(texX1, texY0);
+
+	GXPosition3f32(boundBox.f.x, boundBox.f.y, z);
+	GXColor1u32(colors.mColor3);
+	GXPosition2f32(texX1, texY1);
+
+	GXPosition3f32(boundBox.i.x, boundBox.f.y, z);
+	GXColor1u32(colors.mColor2);
+	GXPosition2f32(texX0, texY1);
+
+	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_S16, 0);
+	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_POS_XYZ, GX_U16, 15);
+	GXSetNumTexGens(0);
+	GXSetNumTevStages(1);
+	GXSetTevOp(GX_TEVSTAGE0, GX_PASSCLR);
+	GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR0A0);
+
+	for (int i = 0; i < 4; i++) {
+		GXSetTevSwapModeTable(GXTevSwapSel(i), GX_CH_RED, GX_CH_GREEN, GX_CH_BLUE, GX_CH_ALPHA);
+	}
+
+	GXSetNumIndStages(0);
+
+	for (int i = 0; i < 16; i++) {
+		GXSetTevDirect(GXTevStageID(i));
+	}
+
+	GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_REG, GX_SRC_VTX, 0, GX_DF_NONE, GX_AF_NONE);
+	GXSetVtxDesc(GX_VA_TEX0, GX_NONE);
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x80(r1)
@@ -3731,6 +3969,38 @@ lbl_80058CC8:
  */
 const J2DAnmTransform* J2DPictureEx::animationPane(const J2DAnmTransform* animation)
 {
+	if (mAnmVisibility && mMaterialNum != 0xFFFF) {
+		u8 vis;
+		mAnmVisibility->getVisibility(mMaterialNum, &vis);
+		if (vis) {
+			show();
+		} else {
+			hide();
+		}
+	}
+
+	if (mAnmVtxColor) {
+		u16 num0 = mAnmVtxColor->getAnmTableNum(0);
+		for (u8 i = 0; i < 4; i++) {
+			if (_1A4 & (1 << i)) {
+				// inline?
+				for (u16 j = 0; j < num0; j++) {
+					u32 idx       = (u32)mAnmVtxColor->mVtxColorIndexData[j]->mData;
+					u16 count     = (u32)mAnmVtxColor->mVtxColorIndexData[j]->mNum;
+					u16* colorPtr = mAnmVtxColor->mVtxColorIndexPtr[idx];
+					for (u16 k = 0; k < count; k++) {
+						if (_170[i] == colorPtr[k]) {
+							mAnmVtxColor->getColor(0, j, &mCornerColors[i]);
+							goto next_color;
+						}
+					}
+				}
+			}
+		next_color:;
+		}
+	}
+
+	J2DPane::animationPane(animation);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0

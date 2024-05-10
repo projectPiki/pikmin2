@@ -878,7 +878,7 @@ void J3DFifoLoadNrmMtxImm3x3(Mtx33 mtx, u32 idx)
  * @note Address: 0x80077010
  * @note Size: 0x98
  */
-static inline void WriteF32ToGX(f32 *p)
+static inline void WriteF32ToGX(f32* p)
 {
 	u32 _t = *(volatile u32*)p;
 	GX_WRITE_U32(_t);
