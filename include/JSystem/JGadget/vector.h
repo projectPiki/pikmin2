@@ -12,7 +12,7 @@ typedef u32 (*ExtendFunc)(u32, u32, u32);
 
 } // namespace vector
 
-template <typename T, class Allocator>
+template <typename T, class Allocator = JGadget::TAllocator<T> >
 struct TVector {
 	// struct Destructed_deallocate_ {
 	// 	~Destructed_deallocate_(); // unused/inlined
@@ -37,7 +37,7 @@ struct TVector {
 	void assign(u32, const T&);
 	void resize(u32, const T&);
 	void Resize_raw(u32);
-	void operator=(const TVector<T, Allocator>& rhs);
+	void operator=(const TVector<T>& rhs);
 
 	size_t GetSize_extend_(size_t count);
 	T* begin() { return mBegin; }
@@ -58,7 +58,7 @@ struct TVector {
 	void DestroyElement_(T* start, T* end);
 	void DestroyElement_all_();
 
-	u8 _00;                     // _00
+	Allocator mAllocator;       // _00
 	T* mBegin;                  // _04
 	T* mEnd;                    // _08
 	size_t mCapacity;           // _0C

@@ -22,7 +22,7 @@ u32 vector::extend_default(u32 p1, u32 p2, u32 p3) { return p2 * 2; }
  */
 TVector_pointer_void::TVector_pointer_void(const TVoidAllocator& allocator)
 {
-	_00       = allocator._00;
+	mAllocator = allocator;
 	mBegin    = nullptr;
 	mEnd      = mBegin;
 	mCapacity = 0;

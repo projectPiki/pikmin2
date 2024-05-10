@@ -11,7 +11,12 @@
 #include "JSystem/J3D/J3DTransform.h"
 #include "types.h"
 
-u8 j3dTexCoordTable[7623];
+#define J3DTEXCOORDTABLE_DIM_0 11
+#define J3DTEXCOORDTABLE_DIM_1 21
+#define J3DTEXCOORDTABLE_DIM_2 11
+#define J3DTEXCOORDTABLE_DIM_3 3
+
+u8 j3dTexCoordTable[J3DTEXCOORDTABLE_DIM_0 * J3DTEXCOORDTABLE_DIM_1 * J3DTEXCOORDTABLE_DIM_2 * J3DTEXCOORDTABLE_DIM_3];
 GDCurrentDL J3DDisplayListObj::sGDLObj;
 u8 j3dTevSwapTableTable[1024];
 u8 j3dZModeTable[96];
@@ -442,19 +447,35 @@ void loadNBTScale(J3DNBTScale& scale)
  */
 void makeTexCoordTable()
 {
-	u8 texMtx[] = {
-		GX_TEXMTX0, GX_TEXMTX1, GX_TEXMTX2, GX_TEXMTX3, GX_TEXMTX4, GX_TEXMTX5, GX_TEXMTX6, GX_TEXMTX7, GX_TEXMTX8, GX_TEXMTX9, GX_IDENTITY,
-	};
+	// `u8 j3dTexCoordTable[7623]` could also be though of as `u8 j3dTexCoordTable[11][21][11][3]`
+    u8* table = j3dTexCoordTable;
+ 
+    const u8 texMtx[] = {
+        GX_TEXMTX0,
+        GX_TEXMTX1,
+        GX_TEXMTX2,
+        GX_TEXMTX3,
+        GX_TEXMTX4,
+        GX_TEXMTX5,
+        GX_TEXMTX6,
+        GX_TEXMTX7,
+        GX_TEXMTX8,
+        GX_TEXMTX9,
+        GX_IDENTITY,
+    };
 
-	u8* table = j3dTexCoordTable;
+	size_t idx;
+
 	for (u32 i = 0; i < 11; i++) {
-		for (u32 j = 0; j < 21; j++) {
+		for (int j = 0; j < 21u; j++) {
+			// 21u makes me think there's some sizeof() shenanigans
 			for (int k = 0; k < 11; k++) {
-				u32 idx            = j * 11 + i * 0xe7 + k;
+				idx = j * 11 + i * (11 * 21) + k;
+				
 				table[idx * 3 + 0] = i;
-				table[idx * 3 + 1] = j;
-				table[idx * 3 + 2] = texMtx[k];
-			}
+                table[idx * 3 + 1] = j;
+                table[idx * 3 + 2] = texMtx[k];
+            }
 		}
 	}
 	/*
