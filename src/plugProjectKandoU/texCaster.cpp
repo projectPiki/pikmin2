@@ -198,8 +198,8 @@ Caster* Mgr::create(Sys::Sphere& sphere, f32 rotationAngle)
 {
 	Sys::CreateTriangleArg triArg;
 	triArg.mBoundingSphere = sphere;
-	triArg._10             = 0.22f;
-	triArg._14             = 0.5f;
+	triArg.mScale          = 0.22f;
+	triArg.mScaleLimit     = 0.5f;
 	Game::mapMgr->createTriangles(triArg);
 
 	if (triArg.mCount == 0) {
@@ -217,7 +217,7 @@ Caster* Mgr::create(Sys::Sphere& sphere, f32 rotationAngle)
 		triArg.mVertices[5] = Vector3f(spherePos.x + sphereRad, spherePos.y, spherePos.z + sphereRad);
 
 		for (int i = 0; i < 6; i++) {
-			triArg.mVertices[i].y += triArg._10;
+			triArg.mVertices[i].y += triArg.mScale;
 		}
 	}
 

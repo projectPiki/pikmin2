@@ -170,7 +170,7 @@ void SelectState::exec(SingleGameSection* game)
 		break;
 	}
 	case SELECTSTATE_Load: {
-		if (game->mDvdThread.mMode == 2)
+		if (game->mDvdThread.mMode == DvdThreadCommand::CM_Completed)
 			mState = SELECTSTATE_Draw;
 		break;
 	}

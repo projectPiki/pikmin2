@@ -1359,7 +1359,7 @@ void ZukanState::exec(SingleGameSection* game)
 		gameSystem->mTimeMgr->setFlag(TIMEFLAG_Stopped);
 		Screen::gGame2DMgr->update();
 		if (mCurrMode == ModeStartTeki || mCurrMode == ModeStartPellet) {
-			if (mDvdThread.mMode != 2) {
+			if (mDvdThread.mMode != DvdThreadCommand::CM_Completed) {
 				return;
 			}
 
@@ -1390,7 +1390,7 @@ void ZukanState::exec(SingleGameSection* game)
 			return;
 		}
 
-		if (mDvdThread.mMode == 2) {
+		if (mDvdThread.mMode == DvdThreadCommand::CM_Completed) {
 			static_cast<PSM::Scene_Objects*>(PSMGetChildScene())->adaptObjMgr();
 			mDoDraw = true;
 			gameSystem->mTimeMgr->resetFlag(TIMEFLAG_Stopped);

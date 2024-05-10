@@ -123,7 +123,7 @@ void MainResultState::exec(SingleGameSection* game)
 {
 	switch (mStatus) {
 	case Result_LoadData:
-		if (mDvdThread.mMode == 2) {
+		if (mDvdThread.mMode == DvdThreadCommand::CM_Completed) {
 			mStatus = Result_OpenWait;
 			MoviePlayArg arg("s02_dayend_result", nullptr, game->mMovieFinishCallback, 0);
 			moviePlayer->play(arg);

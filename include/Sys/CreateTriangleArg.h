@@ -7,14 +7,14 @@
 namespace Sys {
 struct CreateTriangleArg {
 	CreateTriangleArg()
-	    : _10(0.1f)
-	    , _14(0.5f)
+	    : mScale(0.1f)
+	    , mScaleLimit(0.5f)
 	{
 	}
 
 	Sphere mBoundingSphere; // _00
-	f32 _10;                // _10
-	f32 _14;                // _14
+	f32 mScale;             // _10
+	f32 mScaleLimit;        // _14
 	Vector3f* mVertices;    // _18
 	int mCount;             // _1C
 };

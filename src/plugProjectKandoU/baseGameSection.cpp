@@ -1,43 +1,37 @@
-#include "Game/BaseGameSection.h"
-#include "Game/CameraMgr.h"
-#include "Game/MoviePlayer.h"
-#include "Game/rumble.h"
-#include "Game/PelletBirthBuffer.h"
-#include "Game/Cave/Info.h"
-#include "Game/Cave/RandMapUnit.h"
-#include "Game/Farm.h"
-#include "Game/GameLight.h"
-#include "Game/PikiMgr.h"
-#include "Game/Navi.h"
-#include "Game/generalEnemyMgr.h"
-#include "Game/Entities/ItemOnyon.h"
-#include "Game/Entities/ItemPikihead.h"
-#include "Game/PikiState.h"
-#include "Game/DeathMgr.h"
-#include "Game/pathfinder.h"
-#include "Game/AIConstants.h"
 #include "Game/Entities/ItemBigFountain.h"
+#include "Game/Entities/PelletOtakara.h"
 #include "Game/Entities/PelletCarcass.h"
+#include "Game/Entities/PelletNumber.h"
+#include "Game/Entities/ItemPikihead.h"
 #include "Game/Entities/PelletFruit.h"
 #include "Game/Entities/PelletItem.h"
-#include "Game/Entities/PelletNumber.h"
-#include "Game/Entities/PelletOtakara.h"
+#include "Game/PelletBirthBuffer.h"
+#include "Game/Cave/RandMapUnit.h"
+#include "Game/BaseGameSection.h"
+#include "Game/generalEnemyMgr.h"
+#include "Game/MoviePlayer.h"
+#include "Game/AIConstants.h"
+#include "Game/PikiState.h"
+#include "Game/GameLight.h"
+#include "Game/CameraMgr.h"
+#include "Game/DeathMgr.h"
+#include "Game/PikiMgr.h"
+#include "Game/rumble.h"
+#include "Game/Navi.h"
+#include "Game/Farm.h"
 
 #include "JSystem/JFramework/JFWDisplay.h"
-#include "LifeGaugeMgr.h"
+#include "JSystem/J2D/J2DPrint.h"
 #include "Screen/Game2DMgr.h"
-#include "PSSystem/PSCommon.h"
 #include "Sys/DrawBuffers.h"
 #include "TParticle2dMgr.h"
-#include "PikiAI.h"
-#include "Dolphin/rand.h"
-#include "utilityU.h"
 #include "PSGame/Global.h"
-#include "og/ogLib2D.h"
-#include "JSystem/J2D/J2DPrint.h"
-#include "TexCaster.h"
-#include "og/Screen/ogScreen.h"
 #include "efx/OnyonSpot.h"
+#include "Dolphin/rand.h"
+#include "LifeGaugeMgr.h"
+#include "og/ogLib2D.h"
+#include "utilityU.h"
+#include "PikiAI.h"
 #include "nans.h"
 
 namespace og {
@@ -168,33 +162,33 @@ void BaseGameSection::loadSync(IDelegate* delegate, bool p2)
  * @note Size: 0x120
  */
 
-u32 BaseGameSection::waitSyncLoad(bool dontPause)
+u32 BaseGameSection::waitSyncLoad(bool allowPause)
 {
 	static int col = 0;
 	col++;
 	endFrame();
-	if (!dontPause) {
+
+	if (!allowPause) {
 		gameSystem->setPause(true, "waitSyncLoad", 3);
 	}
+
 	while (true) {
 		beginFrame();
 		beginRender();
 
 		j3dSys.drawInit();
-		GXSetViewport(0.0f, 0.0f, 608.0f, 480.0f, 0.0f, 1.0f);
-		GXSetScissor(0, 0x10, 0x260, 0x1c0);
+		GXSetViewport(0.0f, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT, 0.0f, 1.0f);
+		GXSetScissor(0, 0x10, SCREEN_SCISSOR_WIDTH, SCREEN_SCISSOR_HEIGHT);
 		endRender();
 
-		// I have no clue
-
-		if (mDvdThreadCommand.mMode != 2)
-			;
-
-		else if (!dontPause) {
+		if (mDvdThreadCommand.mMode != DvdThreadCommand::CM_Completed) {
+			// Wait for the DVD thread to finish
+		} else if (!allowPause) {
 			gameSystem->setPause(false, "waitSyncLoad", 3);
 			return;
-		} else
+		} else {
 			break;
+		}
 
 		endFrame();
 	}

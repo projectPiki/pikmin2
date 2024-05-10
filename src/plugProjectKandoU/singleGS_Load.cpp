@@ -98,7 +98,7 @@ void LoadState::exec(SingleGameSection* game)
 			sys->dvdLoadUseCallBack(&game->mDvdThread, game->mLoadGameCallback);
 			mHasLoadBegun = true;
 		}
-		if (game->mDvdThread.mMode == 2) {
+		if (game->mDvdThread.mMode == DvdThreadCommand::CM_Completed) {
 			game->postSetupFloatMemory();
 			if (game->mInCave) {
 				transit(game, SGS_Cave, nullptr);

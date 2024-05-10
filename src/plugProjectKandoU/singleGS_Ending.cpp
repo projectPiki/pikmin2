@@ -135,7 +135,7 @@ void EndingState::exec(SingleGameSection* game)
 			sys->dvdLoadUseCallBack(&game->mDvdThread, mDelegate);
 			break;
 		case EndingStatus_LoadStart:
-			if (game->mDvdThread.mMode == 2) {
+			if (game->mDvdThread.mMode == DvdThreadCommand::CM_Completed) {
 				// if reloading a save, go right to "do you continue?" message
 				if (mFlag & Ending_SkipMovie) {
 					mStatus = EndingStatus_ShowContinueMesg;

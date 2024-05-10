@@ -310,7 +310,7 @@ void CaveResultState::exec(SingleGameSection* section)
 		sys->dvdLoadUseCallBack(&mDvdThread, mLoadCallback);
 		return;
 	case 1:
-		if (mDvdThread.mMode == 2) {
+		if (mDvdThread.mMode == DvdThreadCommand::CM_Completed) {
 			open2D(section);
 		}
 		return;

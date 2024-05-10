@@ -10,6 +10,7 @@
 #include "Splitter.h"
 #include "Rect.h"
 #include "Game/GameMessage.h"
+#include "BuildSettings.h"
 
 struct BlackFader;
 struct Controller;
@@ -96,7 +97,7 @@ struct BaseGameSection : public BaseHIOSection {
 	{
 		mIsLoadingDVD = true;
 		return mIsLoadingDVD;
-	}                                                                         // _28 (weak)
+	} // _28 (weak)
 	virtual bool doUpdate();                                                  // _3C
 	virtual void doDraw(Graphics& gfx);                                       // _40
 	virtual bool sendMessage(GameMessage& msg) { return false; }              // _50 (weak)

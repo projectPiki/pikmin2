@@ -523,12 +523,12 @@ bool MoviePlayer::update(Controller* input1, Controller* input2)
 		if (mFadeTimer > 0.0f) {
 			mFadeTimer -= sys->mDeltaTime;
 		}
-		if (mThreadCommand.mMode == 2) {
+		if (mThreadCommand.mMode == DvdThreadCommand::CM_Completed) {
 			sys->startChangeCurrentHeap(mMovieHeap);
 			setCamera(getActiveGameCamera());
 			sys->endChangeCurrentHeap();
 		}
-		if (mThreadCommand.mMode == 2 && mFadeTimer <= 0.0f) {
+		if (mThreadCommand.mMode == DvdThreadCommand::CM_Completed && mFadeTimer <= 0.0f) {
 			gameSystem->setPause(false, "moviePl:loaddone", 3);
 			gameSystem->paused();
 			if (mDelegate2) {

@@ -10,7 +10,22 @@ struct JKRArchive;
 struct JKRHeap;
 
 struct DvdThreadCommand {
-	enum EHeapDirection { EHD_Unknown0 = 0, EHD_Unknown1 = 1 };
+	enum EHeapDirection {
+		EHD_Unknown0 = 0,
+		EHD_Unknown1 = 1,
+	};
+
+	enum CommandMode {
+		CM_Initialized = 0,
+		CM_Processing  = 1,
+		CM_Completed   = 2,
+	};
+
+	enum LoadType {
+		LT_File     = 0,
+		LT_Archive  = 1,
+		LT_Callback = 2,
+	};
 
 	DvdThreadCommand();
 	~DvdThreadCommand() {};
@@ -61,7 +76,7 @@ struct DvdThread : public AppThread {
 
 	// _00 		= VTBL
 	// _00-_7C 	= AppThread
-	JSUList<DvdThreadCommand> _7C; // _7C
+	JSUList<DvdThreadCommand> mCommandList; // _7C
 };
 
 #endif

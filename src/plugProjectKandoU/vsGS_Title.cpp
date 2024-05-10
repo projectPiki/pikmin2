@@ -195,7 +195,7 @@ void TitleState::execChallenge(VsGameSection* section)
 		return;
 
 	case VSTITLE_PrepareDisp:
-		if (section->mDvdThreadCommand.mMode == 2) {
+		if (section->mDvdThreadCommand.mMode == DvdThreadCommand::CM_Completed) {
 			mTitleStage = VSTITLE_Display;
 
 			Morimura::DispMemberChallengeSelect select;
@@ -278,7 +278,7 @@ void TitleState::execVs(VsGameSection* section)
 		return;
 
 	case VSTITLE_PrepareDisp:
-		if (section->mDvdThreadCommand.mMode == 2) {
+		if (section->mDvdThreadCommand.mMode == DvdThreadCommand::CM_Completed) {
 			mTitleStage = VSTITLE_Display;
 
 			Morimura::DispMemberVsSelect select;

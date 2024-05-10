@@ -47,21 +47,22 @@ bool DvdStatus::isErrorOccured()
 bool DvdStatus::update()
 {
 	int status = DVDGetDriveStatus();
-	if (status == DVD_STATE_FATAL_ERROR)
+	if (status == DVD_STATE_FATAL_ERROR) {
 		mErrorIndex = DvdError_ErrorOccured;
-	else if (status == DVD_STATE_RETRY)
+	} else if (status == DVD_STATE_RETRY) {
 		mErrorIndex = DvdError_DiscReadError;
-	else if (status == DVD_STATE_NO_DISK)
+	} else if (status == DVD_STATE_NO_DISK) {
 		mErrorIndex = DvdError_InsertDisc;
-	else if (status == DVD_STATE_COVER_OPEN)
+	} else if (status == DVD_STATE_COVER_OPEN) {
 		mErrorIndex = DvdError_TrayOpen;
-	else if (status == DVD_STATE_WRONG_DISK)
+	} else if (status == DVD_STATE_WRONG_DISK) {
 		mErrorIndex = DvdError_WrongDisc;
-	else if (mErrorIndex != -1 && status == DVD_STATE_BUSY) {
+	} else if (mErrorIndex != -1 && status == DVD_STATE_BUSY) {
 		mErrorIndex = DvdError_Loading;
 	} else {
 		mErrorIndex = DvdError_None;
 	}
+
 	if (mFader == nullptr) {
 		if (DvdError_Loading < mErrorIndex) {
 			JFWDisplay* display = sys->mDisplay;
@@ -72,29 +73,31 @@ bool DvdStatus::update()
 			} else {
 				JUT_PANICLINE(170, "no display.\n");
 			}
-			PADControlMotor(0, 2);
-			PADControlMotor(1, 2);
-			PADControlMotor(2, 2);
-			PADControlMotor(3, 2);
+
+			PADControlMotor(PAD_CHAN0, PAD_MOTOR_STOP_HARD);
+			PADControlMotor(PAD_CHAN1, PAD_MOTOR_STOP_HARD);
+			PADControlMotor(PAD_CHAN2, PAD_MOTOR_STOP_HARD);
+			PADControlMotor(PAD_CHAN3, PAD_MOTOR_STOP_HARD);
 			mCPULockNum = sys->disableCPULockDetector();
 			ebi::FileSelect::TMgr::onDvdErrorOccured();
 			ebi::Save::TMgr::onDvdErrorOccured();
 		}
-	} else {
-		if (mErrorIndex == DvdError_None) {
-			JFWDisplay* display = sys->mDisplay;
-			if (display) {
-				JUT_ASSERTLINE(197, display->mFader == nullptr, "display changed !\n");
-				display->mFader = mFader;
-				mFader          = nullptr;
-			} else {
-				JUT_PANICLINE(204, "no display.\n");
-			}
-			sys->enableCPULockDetector(mCPULockNum);
-			ebi::FileSelect::TMgr::onDvdErrorRecovered();
-			ebi::Save::TMgr::onDvdErrorRecovered();
+	} else if (mErrorIndex == DvdError_None) {
+
+		JFWDisplay* display = sys->mDisplay;
+		if (display) {
+			JUT_ASSERTLINE(197, display->mFader == nullptr, "display changed !\n");
+			display->mFader = mFader;
+			mFader          = nullptr;
+		} else {
+			JUT_PANICLINE(204, "no display.\n");
 		}
+
+		sys->enableCPULockDetector(mCPULockNum);
+		ebi::FileSelect::TMgr::onDvdErrorRecovered();
+		ebi::Save::TMgr::onDvdErrorRecovered();
 	}
+
 	return mFader != nullptr;
 }
 

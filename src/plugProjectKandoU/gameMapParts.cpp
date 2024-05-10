@@ -4478,8 +4478,8 @@ void RoomMapMgr::createTriangles(Sys::CreateTriangleArg& createArg)
 				}
 
 				Vector3f transRoomVec = room->mRoomSpaceMtx.multTranspose(tri->mTrianglePlane.mNormal);
-				if (transRoomVec.y > createArg._14) {
-					Vector3f addVec  = transRoomVec * createArg._10;
+				if (transRoomVec.y > createArg.mScaleLimit) {
+					Vector3f addVec  = transRoomVec * createArg.mScale;
 					triArray[count]  = tri;
 					roomArray[count] = room;
 					for (int k = 0; k < 3; k++) {

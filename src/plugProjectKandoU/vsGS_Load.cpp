@@ -95,7 +95,7 @@ void LoadState::exec(VsGameSection* section)
 		}
 		Screen::gGame2DMgr->update();
 		if (gameSystem->isVersusMode() && (mAutoStartTime > 0.0f)) {
-			if (mDvdThreadCommand.mMode == 2) { // probably an enum
+			if (mDvdThreadCommand.mMode == DvdThreadCommand::CM_Completed) { // probably an enum
 				Screen::gGame2DMgr->set_FloorVS_LoadEnd();
 				if (mController->isButtonDown(JUTGamePad::PRESS_A | JUTGamePad::PRESS_START)) {
 					PSSystem::spSysIF->playSystemSe(PSSE_SY_FLOOR_COMPLETE, nullptr);
@@ -104,7 +104,7 @@ void LoadState::exec(VsGameSection* section)
 			}
 			mAutoStartTime -= sys->mDeltaTime;
 		}
-		if (!mIsGameStarting && mDvdThreadCommand.mMode == 2) {
+		if (!mIsGameStarting && mDvdThreadCommand.mMode == DvdThreadCommand::CM_Completed) {
 			if (gameSystem->isChallengeMode() || (gameSystem->isVersusMode() && mAutoStartTime <= 0.0f)) {
 				section->postSetupFloatMemory();
 				mIsGameStarting = true;

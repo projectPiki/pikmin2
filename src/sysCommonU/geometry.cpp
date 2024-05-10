@@ -2306,8 +2306,8 @@ void GridDivider::createTriangles(Sys::CreateTriangleArg& triArg)
 			}
 			if ((currTriTest == 0) && (numTri < 128)) {
 				f32 triNorm_y = testTri->mTrianglePlane.mNormal.y; // temp_f11
-				if (triNorm_y > triArg._14) {
-					f32 scaleFactor = triArg._10;
+				if (triNorm_y > triArg.mScaleLimit) {
+					f32 scaleFactor = triArg.mScale;
 					numTri += 1;
 					*triPtr1 = *testTri;
 					triPtr1 += 4;

@@ -16,12 +16,12 @@ DvdThreadCommand::DvdThreadCommand()
     : mLink(this)
 {
 	mCallBack       = nullptr;
-	mLoadType       = 1;
+	mLoadType       = DvdThreadCommand::LT_Archive;
 	mArcPath        = nullptr;
 	mMountedArchive = nullptr;
 	_10             = 32;
 	mHeapDirection  = EHD_Unknown1;
-	mMode           = 0;
+	mMode           = CM_Initialized;
 	OSInitMutex(&mMutex);
 	mHeap = nullptr;
 	OSInitMessageQueue(&mMsgQueue, &mMsgBuffer, 1);
@@ -34,10 +34,10 @@ DvdThreadCommand::DvdThreadCommand()
 void DvdThreadCommand::loadUseCallBack(IDelegate* cb)
 {
 	mCallBack       = cb;
-	mLoadType       = 2;
+	mLoadType       = DvdThreadCommand::LT_Callback;
 	mArcPath        = nullptr;
 	mMountedArchive = nullptr;
-	mMode           = 0;
+	mMode           = CM_Initialized;
 }
 
 /**
@@ -60,6 +60,8 @@ bool DvdThreadCommand::checkExp(const char* path) const
 	u32 pathLen     = strlen(mArcPath);
 	u32 len         = pathLen - 1;
 	const char* str = &mArcPath[len];
+
+	// Find the last '.' in the path
 	do {
 		if (str[0] == '.') {
 			break;
@@ -88,9 +90,9 @@ bool DvdThreadCommand::checkExp(const char* path) const
  * @note Address: 0x804248B8
  * @note Size: 0x4C
  */
-DvdThread::DvdThread(u32 p1, int p2, int p3)
-    : AppThread(p1, p2, p3)
-    , _7C()
+DvdThread::DvdThread(u32 stackSize, int msgCount, int threadPriority)
+    : AppThread(stackSize, msgCount, threadPriority)
+    , mCommandList()
 {
 	OSResumeThread(mThread);
 }
@@ -102,34 +104,41 @@ DvdThread::DvdThread(u32 p1, int p2, int p3)
 void* DvdThread::run()
 {
 	while (true) {
+		// Wait for a message
 		OSMessage msg;
 		OSReceiveMessage(&mMsgQueue, &msg, OS_MESSAGE_BLOCK);
+
 		DvdThreadCommand* cmd = static_cast<DvdThreadCommand*>(msg);
 		OSLockMutex(&cmd->mMutex);
-		cmd->mMode = 1;
 
-		if (cmd->mLoadType == 1) {
+		// Process the command
+		cmd->mMode = DvdThreadCommand::CM_Processing;
+
+		if (cmd->mLoadType == DvdThreadCommand::LT_Archive) {
 			cmd->checkExp("arc");
 		}
 
+		// Load the data
 		switch (cmd->mLoadType) {
-		case 2:
+		case DvdThreadCommand::LT_Callback:
 			cmd->invokeCallBack();
 			break;
-		case 1:
+		case DvdThreadCommand::LT_Archive:
 			loadArchive(cmd);
 			break;
-		case 0:
+		case DvdThreadCommand::LT_File:
 			loadFile(cmd);
 			break;
 		}
 
-		cmd->mMode = 2;
+		// Finish the command
+		cmd->mMode = DvdThreadCommand::CM_Completed;
 
+		// Send a message to the main thread (DVD THREAD LOAD FINISHED)
 		OSSendMessage(&cmd->mMsgQueue, (OSMessage)'DTLF', OS_MESSAGE_NOBLOCK);
 
-		_7C.remove(&cmd->mLink);
-
+		// Remove the command from the list
+		mCommandList.remove(&cmd->mLink);
 		OSUnlockMutex(&cmd->mMutex);
 	}
 }
@@ -142,7 +151,7 @@ void DvdThread::loadArchive(DvdThreadCommand* cmd)
 {
 	JKRHeap* currentHeap = cmd->mHeap->becomeCurrentHeap();
 	JKRArchive* arc      = JKRMountArchive(cmd->mArcPath, JKRArchive::EMM_Mem, cmd->mHeap,
-                                      (cmd->mHeapDirection == 1 ? JKRArchive::EMD_Head : JKRArchive::EMD_Tail));
+	                                       (cmd->mHeapDirection == 1 ? JKRArchive::EMD_Head : JKRArchive::EMD_Tail));
 	P2ASSERTLINE(275, arc);
 	cmd->mMountedArchive = arc;
 	currentHeap->becomeCurrentHeap();
@@ -173,8 +182,8 @@ void DvdThread::loadFile(DvdThreadCommand* cmd)
  */
 void DvdThread::sendCommand(DvdThreadCommand* cmd)
 {
-	cmd->mMode = 0;
-	_7C.append(&cmd->mLink);
+	cmd->mMode = DvdThreadCommand::CM_Initialized;
+	mCommandList.append(&cmd->mLink);
 
 	while (!OSSendMessage(&mMsgQueue, (OSMessage)cmd, OS_MESSAGE_NOBLOCK)) {
 		;
@@ -189,13 +198,14 @@ bool DvdThread::sync(DvdThreadCommand* cmd, DvdThread::ESyncBlockFlag blockFlag)
 {
 	bool result = false;
 	if (blockFlag == BLOCKFLAG_Unk0) {
-		while (cmd->mMode != 2) {
+		while (cmd->mMode != DvdThreadCommand::CM_Completed) {
 			OSMessage msg;
 			OSReceiveMessage(&cmd->mMsgQueue, &msg, OS_MESSAGE_BLOCK);
 			P2ASSERTLINE(396, (u32)msg == 'DTLF');
 		}
+
 		result = true;
-	} else if (cmd->mMode == 2) {
+	} else if (cmd->mMode == DvdThreadCommand::CM_Completed) {
 		result = true;
 	}
 
@@ -209,7 +219,7 @@ bool DvdThread::sync(DvdThreadCommand* cmd, DvdThread::ESyncBlockFlag blockFlag)
 int DvdThread::syncAll(DvdThread::ESyncBlockFlag blockFlag)
 {
 	int failCount = 0;
-	for (JSUListIterator<DvdThreadCommand> iterator(_7C.getFirst()); iterator != nullptr; iterator++) {
+	for (JSUListIterator<DvdThreadCommand> iterator(mCommandList.getFirst()); iterator != nullptr; iterator++) {
 		DvdThreadCommand* cmd = iterator.getObject();
 		if (!sync(cmd, blockFlag)) {
 			failCount++;

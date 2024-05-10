@@ -163,7 +163,7 @@ void ResultState::exec(VsGameSection* section)
 		return;
 
 	case VSRES_PrepareDisp:
-		if (section->mDvdThreadCommand.mMode == 2) {
+		if (section->mDvdThreadCommand.mMode == DvdThreadCommand::CM_Completed) {
 			mResultStage = VSRES_Display;
 			Morimura::DispMemberChallengeResult result;
 			result.mResultInfo = mResultInfo;
