@@ -566,7 +566,7 @@ done:
  */
 void __num2dec_internal(decimal* d, f64 x)
 {
-	s8 sign = (s8)(signbit(x) != 0);
+	s8 sign = (s8)(SIGNBIT(x) != 0);
 
 	if (x == 0) {
 		d->sign        = sign;

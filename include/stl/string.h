@@ -21,6 +21,8 @@ char* strstr(const char*, const char*);
 char* strrchr(const char* str, int chr);
 size_t strlen(const char*);
 
+#define SAME_STRING(a, b) (strcmp(a, b) == 0)
+
 #ifdef __cplusplus
 }
 #endif

@@ -206,7 +206,7 @@ void JUTException::showFloatSub(int reg, f32 flt)
 	if (fpclassify(flt) == 1) {
 		sConsole->print_f("F%02d: Nan      ", reg);
 	} else if (fpclassify(flt) == 2) {
-		if (ispositive(flt)) {
+		if (IS_POSITIVE(flt)) {
 			sConsole->print_f("F%02d:+Inf     ", reg);
 		} else {
 			sConsole->print_f("F%02d:-Inf     ", reg);

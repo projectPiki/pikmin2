@@ -1,8 +1,8 @@
 #ifndef _MATH_H
 #define _MATH_H
 
-#include "types.h"
 #include "PowerPC_EABI_Support/MSL_C/MSL_Common/math_api.h"
+#include "types.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -12,8 +12,8 @@ extern "C" {
 #define IS_WITHIN_CIRCLE(x, z, radius) ((SQUARE(x) + SQUARE(z)) < SQUARE(radius))
 #define VECTOR_SQUARE_MAG(v)           (SQUARE(v.x) + SQUARE(v.y) + SQUARE(v.z))
 
-#define signbit(x)    ((int)(__HI(x) & 0x80000000))
-#define ispositive(x) ((((u8*)&x)[0] & 0x80) != 0)
+#define SIGNBIT(x)     ((int)(__HI(x) & 0x80000000))
+#define IS_POSITIVE(x) ((((u8*)&x)[0] & 0x80) != 0)
 
 #define INFINITY (*(f32*)__float_huge)
 #define NAN      (*(f32*)__float_nan)
@@ -32,6 +32,7 @@ extern "C" {
 #define DEG2RAD            (1.0f / 180.0f)
 #define RAD2DEG            (57.295776f)
 #define TORADIANS(degrees) (PI * (DEG2RAD * degrees))
+#define TODEGREES(radians) (RAD2DEG * radians)
 
 extern int __float_nan[];
 extern int __float_huge[];
