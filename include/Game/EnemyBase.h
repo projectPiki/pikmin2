@@ -577,7 +577,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 			}
 		}
 
-		if (!isOutsideRange && absF(angle) <= TORADIANS(viewAngle)) {
+		if (!isOutsideRange && !(absF(angle) <= TORADIANS(viewAngle)) == 0) {
 			result = false;
 		}
 		return result;
