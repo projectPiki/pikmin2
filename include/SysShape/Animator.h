@@ -18,6 +18,12 @@ struct BaseAnimator {
  * @size{0x1C}
  */
 struct Animator : public BaseAnimator {
+	enum Flags {
+		Stopped  = 1,
+		Finished = 2,
+		Playing  = 4,
+	};
+
 	Animator()
 	{
 		mFlags    = 0;
@@ -39,6 +45,10 @@ struct Animator : public BaseAnimator {
 	void setCurrFrame(f32 timer);
 	void setFrameByKeyType(u32);
 	void setLastFrame();
+
+	inline void setFlag(u8 flag) { mFlags |= flag; }
+	inline void resetFlag(u8 flag) { mFlags &= ~flag; }
+	inline bool isFlag(u8 flag) const { return mFlags & flag; }
 
 	inline int getAnimIndex()
 	{

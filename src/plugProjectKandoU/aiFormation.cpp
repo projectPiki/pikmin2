@@ -217,8 +217,8 @@ void ActFormation::onKeyEvent(SysShape::KeyEvent const& keyEvent)
 		if (mIsAnimating) {
 			mAnimationTimer--;
 			if (mAnimationTimer <= 0) {
-				mParent->mAnimator.mSelfAnimator.mFlags |= EANIM_FLAG_FINISHED;
-				mParent->mAnimator.mBoundAnimator.mFlags |= EANIM_FLAG_FINISHED;
+				mParent->mAnimator.mSelfAnimator.setFlag(SysShape::Animator::Finished);
+				mParent->mAnimator.mBoundAnimator.setFlag(SysShape::Animator::Finished);
 			}
 		}
 		break;

@@ -6905,7 +6905,7 @@ void NaviPelletState::onKeyEvent(Navi* navi, SysShape::KeyEvent const& key)
 {
 	if (mDoForceWakeup) {
 		if (key.mType == 1) {
-			if (navi->mAnimator.mSelfAnimator.mFlags & 2) {
+			if (navi->mAnimator.mSelfAnimator.isFlag(SysShape::Animator::Finished)) {
 				if (playData->mStoryFlags & STORY_DebtPaid) {
 					navi->mSoundObj->startSound(PSSE_PL_WAKEUP_SHACHO, 0);
 				} else {

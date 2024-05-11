@@ -4,10 +4,6 @@
 #include "SysShape/Animator.h"
 #include "BitFlag.h"
 
-#define EANIM_FLAG_STOPPED  (1 << 0) // 1
-#define EANIM_FLAG_FINISHED (1 << 1) // 2
-#define EANIM_FLAG_PLAYING  (1 << 2) // 4
-
 namespace Game {
 struct EnemyAnimatorBase {
 	EnemyAnimatorBase();

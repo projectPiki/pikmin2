@@ -171,8 +171,8 @@ void FakePiki::startMotion(int selfAnimIdx, int boundAnimIdx, SysShape::MotionLi
  */
 void FakePiki::finishMotion()
 {
-	mAnimator.mSelfAnimator.mFlags |= 0x2;
-	mAnimator.mBoundAnimator.mFlags |= 0x2;
+	mAnimator.mSelfAnimator.setFlag(SysShape::Animator::Finished);
+	mAnimator.mBoundAnimator.setFlag(SysShape::Animator::Finished);
 }
 
 /**

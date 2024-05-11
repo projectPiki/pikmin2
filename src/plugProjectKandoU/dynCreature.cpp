@@ -147,20 +147,20 @@ void DynCreature::computeForces(f32 friction)
 			Vector3f sep      = particle->mPosition - mTransformedPosition;
 			Vector3f crossVec = mRigid.mConfigs[0].mRotatedMomentum.cross(sep) + mRigid.mConfigs[0].mVelocity;
 
-			f32 dotProd  = crossVec.dot(particle->_20); // f13
-			f32 dotProd2 = mRigid.mConfigs[0].mForce.dot(particle->_20);
+			f32 dotProd  = crossVec.dot(particle->mCollisionNormal); // f13
+			f32 dotProd2 = mRigid.mConfigs[0].mForce.dot(particle->mCollisionNormal);
 
-			Vector3f sep2 = crossVec - particle->_20 * dotProd;
+			Vector3f sep2 = crossVec - particle->mCollisionNormal * dotProd;
 			sep2.normalise();
 
-			mRigid.mConfigs[0].mForce += particle->_20 * dotProd2;
+			mRigid.mConfigs[0].mForce += particle->mCollisionNormal * dotProd2;
 
 			// f32 dotProd3 = sep2.dot(crossVec);
 			if (absF(sep2.dot(crossVec)) < DynamicsParms::mInstance->mStatic()) {
 				sep2.normalise();
 				mRigid.mConfigs[0].mForce -= sep2 * DynamicsParms::mInstance->mStaParm();
 			} else {
-				Vector3f sep3 = crossVec - particle->_20 * crossVec.dot(particle->_20);
+				Vector3f sep3 = crossVec - particle->mCollisionNormal * crossVec.dot(particle->mCollisionNormal);
 				sep3.normalise();
 				mRigid.mConfigs[0].mForce += sep3 * -DynamicsParms::mInstance->mFixedFrictionValue();
 			}
@@ -198,7 +198,7 @@ void DynCreature::computeForces(f32 friction)
 		}
 		Vector3f sep      = particle->mPosition - mTransformedPosition;
 		Vector3f crossVec = mRigid.mConfigs[0].mRotatedMomentum.cross(sep) + mRigid.mConfigs[0].mVelocity;
-		Vector3f vec      = particle->_20 * crossVec.dot(particle->_20);
+		Vector3f vec      = particle->mCollisionNormal * crossVec.dot(particle->mCollisionNormal);
 		vec               = crossVec - vec;
 		if (DynamicsParms::mInstance->mFrictionTangentVelocity()) {
 			vec.normalise();
@@ -589,18 +589,18 @@ lbl_801A87D0:
  * @note Address: 0x801A87D8
  * @note Size: 0xB4
  */
-void DynCreature::tracemoveCallback(Vector3f& vec1, Vector3f& vec2)
+void DynCreature::tracemoveCallback(Vector3f& point, Vector3f& normal)
 {
-	bool collCheck = mRigid.resolveCollision(0, vec1, vec2, DynamicsParms::mInstance->mElasticity());
+	bool collCheck = mRigid.resolveCollision(0, point, normal, DynamicsParms::mInstance->mElasticity());
 
 	if (mCurrentChildPtcl && collCheck) {
 		if (!mCanBounce) {
 			bounceCallback(nullptr);
 		}
 
-		mHasCollided                   = 1;
-		mCurrentChildPtcl->mIsTouching = 1;
-		mCurrentChildPtcl->_20         = vec2;
+		mHasCollided                        = 1;
+		mCurrentChildPtcl->mIsTouching      = 1;
+		mCurrentChildPtcl->mCollisionNormal = normal;
 	}
 }
 

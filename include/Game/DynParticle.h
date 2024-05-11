@@ -13,10 +13,10 @@ namespace Game {
 struct DynParticle {
 	DynParticle()
 	{
-		mRadius     = 1.0f;
-		mIsTouching = false;
-		mNext       = nullptr;
-		_20         = Vector3f(0.0f);
+		mRadius          = 1.0f;
+		mIsTouching      = false;
+		mNext            = nullptr;
+		mCollisionNormal = Vector3f(0.0f);
 	}
 
 	DynParticle* getAt(int);
@@ -26,12 +26,12 @@ struct DynParticle {
 	void updateGlobal(Matrixf&);
 
 	// _30 = VTBL
-	Vector3f mRotation; // _00
-	Vector3f mPosition; // _0C
-	f32 mRadius;        // _18
-	DynParticle* mNext; // _1C
-	Vector3f _20;       // _20
-	u8 mIsTouching;     // _2C
+	Vector3f mRotation;        // _00
+	Vector3f mPosition;        // _0C
+	f32 mRadius;               // _18
+	DynParticle* mNext;        // _1C
+	Vector3f mCollisionNormal; // _20
+	u8 mIsTouching;            // _2C
 
 	// NB: vtable has to go after the member declarations
 	virtual void constructor() { }               // _08 (weak)

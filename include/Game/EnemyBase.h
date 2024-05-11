@@ -105,8 +105,7 @@ enum DropGroup {
 };
 
 // Interface for specific overrides (e.g. PelplantInitialParams)
-struct EnemyInitialParamBase {
-};
+struct EnemyInitialParamBase { };
 
 struct EnemyKillArg : public CreatureKillArg {
 	inline EnemyKillArg(int flag)
@@ -280,7 +279,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 		SysShape::MotionListener* listener = this;
 
 		EnemyAnimatorBase* animator = mAnimator;
-		animator->mFlags.unset(EANIM_FLAG_STOPPED | EANIM_FLAG_FINISHED);
+		animator->mFlags.unset(SysShape::Animator::Stopped | SysShape::Animator::Finished);
 		animator->mNormalizedTime = 1.0f;
 		animator->getAnimator(0).startAnim(0, listener);
 

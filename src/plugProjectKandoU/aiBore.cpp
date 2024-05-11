@@ -217,7 +217,7 @@ int ActRest::exec()
 			return ACTEXEC_Success;
 		}
 
-		if (mParent->mAnimator.mSelfAnimator.mFlags & 1) {
+		if (mParent->mAnimator.mSelfAnimator.isFlag(SysShape::Animator::Stopped)) {
 			resetFlag(RESTFLAG_IsIdle);
 			if (mState == REST_Sleep) {
 				mState = REST_Sit;

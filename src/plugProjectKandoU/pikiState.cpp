@@ -4696,8 +4696,8 @@ void PikiKokeState::onKeyEvent(Piki* piki, SysShape::KeyEvent const& event)
 	case KEYEVENT_1:
 		mTimer--;
 		if (mTimer <= 0) {
-			piki->mAnimator.mSelfAnimator.mFlags |= EANIM_FLAG_FINISHED;
-			piki->mAnimator.mBoundAnimator.mFlags |= EANIM_FLAG_FINISHED;
+			piki->mAnimator.mSelfAnimator.mFlags |= SysShape::Animator::Finished;
+			piki->mAnimator.mBoundAnimator.mFlags |= SysShape::Animator::Finished;
 		}
 		break;
 
@@ -6411,8 +6411,8 @@ void PikiEscapeState::onKeyEvent(Piki* piki, SysShape::KeyEvent const& event)
 		if (mSubState == 1 || mSubState == 2) {
 			mDoFinishAnim--;
 			if (mDoFinishAnim <= 0) {
-				piki->mAnimator.mSelfAnimator.mFlags |= EANIM_FLAG_FINISHED;
-				piki->mAnimator.mBoundAnimator.mFlags |= EANIM_FLAG_FINISHED;
+				piki->mAnimator.mSelfAnimator.mFlags |= SysShape::Animator::Finished;
+				piki->mAnimator.mBoundAnimator.mFlags |= SysShape::Animator::Finished;
 			}
 		}
 		break;
