@@ -197,7 +197,7 @@ void StateWait::exec(EnemyBase* enemy)
 	if (enemy->mCurAnim->mIsPlaying) {
 		switch (enemy->mCurAnim->mType) {
 		case KEYEVENT_END:
-		case KEYEVENT_1:
+		case KEYEVENT_LOOP_END:
 			f32 maxGrowTime;
 			if (gameSystem->isZukanMode()) {
 				maxGrowTime = 5.0f * randFloat();
@@ -331,7 +331,7 @@ void StateGrow::exec(EnemyBase* enemy)
 	if (enemy->mCurAnim->mIsPlaying) {
 		switch (enemy->mCurAnim->mType) {
 		case KEYEVENT_END:
-		case KEYEVENT_1:
+		case KEYEVENT_LOOP_END:
 			transit(enemy, mNextState, nullptr);
 		}
 	}

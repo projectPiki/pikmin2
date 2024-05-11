@@ -217,13 +217,13 @@ int ActRest::exec()
 			return ACTEXEC_Success;
 		}
 
-		if (mParent->mAnimator.mSelfAnimator.isFlag(SysShape::Animator::Stopped)) {
+		if (mParent->mAnimator.mSelfAnimator.isFlag(SysShape::Animator::AnimCompleted)) {
 			resetFlag(RESTFLAG_IsIdle);
 			if (mState == REST_Sleep) {
 				mState = REST_Sit;
 				mParent->startMotion(Game::IPikiAnims::SUWARU, Game::IPikiAnims::SUWARU, this, nullptr);
-				mParent->mAnimator.mSelfAnimator.setFrameByKeyType(KEYEVENT_NULL);
-				mParent->mAnimator.mBoundAnimator.setFrameByKeyType(KEYEVENT_NULL);
+				mParent->mAnimator.mSelfAnimator.setFrameByKeyType(KEYEVENT_LOOP_START);
+				mParent->mAnimator.mBoundAnimator.setFrameByKeyType(KEYEVENT_LOOP_START);
 			}
 		}
 		return ACTEXEC_Continue;
@@ -260,7 +260,7 @@ void ActRest::cleanup() { }
 void ActRest::onKeyEvent(SysShape::KeyEvent const& event)
 {
 	switch (event.mType) {
-	case KEYEVENT_1:
+	case KEYEVENT_LOOP_END:
 		break;
 
 	case KEYEVENT_200:
@@ -282,8 +282,8 @@ void ActRest::onKeyEvent(SysShape::KeyEvent const& event)
 				resetFlag(RESTFLAG_IsIdle);
 				mState = REST_Sit;
 				mParent->startMotion(Game::IPikiAnims::SUWARU, Game::IPikiAnims::SUWARU, this, nullptr);
-				mParent->mAnimator.mSelfAnimator.setFrameByKeyType(KEYEVENT_NULL);
-				mParent->mAnimator.mBoundAnimator.setFrameByKeyType(KEYEVENT_NULL);
+				mParent->mAnimator.mSelfAnimator.setFrameByKeyType(KEYEVENT_LOOP_START);
+				mParent->mAnimator.mBoundAnimator.setFrameByKeyType(KEYEVENT_LOOP_START);
 				break;
 			}
 		}

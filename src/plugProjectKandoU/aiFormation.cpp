@@ -213,12 +213,12 @@ void ActFormation::onKeyEvent(SysShape::KeyEvent const& keyEvent)
 		}
 		break;
 
-	case KEYEVENT_1:
+	case KEYEVENT_LOOP_END:
 		if (mIsAnimating) {
 			mAnimationTimer--;
 			if (mAnimationTimer <= 0) {
-				mParent->mAnimator.mSelfAnimator.setFlag(SysShape::Animator::Finished);
-				mParent->mAnimator.mBoundAnimator.setFlag(SysShape::Animator::Finished);
+				mParent->mAnimator.mSelfAnimator.setFlag(SysShape::Animator::AnimFinishMotion);
+				mParent->mAnimator.mBoundAnimator.setFlag(SysShape::Animator::AnimFinishMotion);
 			}
 		}
 		break;

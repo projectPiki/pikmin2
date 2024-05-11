@@ -227,7 +227,7 @@ void ActTransport::onKeyEvent(SysShape::KeyEvent const& keyEvent)
 		}
 		break;
 
-	case KEYEVENT_1: {
+	case KEYEVENT_LOOP_END: {
 		Game::Pellet* pellet = mPellet;
 		if (pellet->isPicked()) {
 			mParent->startSound(pellet, PSSE_PK_VC_LIFT_MOVE, PSGame::SeMgr::SETSE_PikiCarry);

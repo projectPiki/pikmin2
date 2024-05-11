@@ -19,9 +19,11 @@ struct BaseAnimator {
  */
 struct Animator : public BaseAnimator {
 	enum Flags {
-		Stopped  = 1,
-		Finished = 2,
-		Playing  = 4,
+		AnimCompleted    = 1,
+		AnimFinishMotion = 2,
+		AnimInProgress   = 4,
+
+		Unk80 = 0x80,
 	};
 
 	Animator()

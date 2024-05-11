@@ -56,6 +56,7 @@ void Animator::startAnim(int animID, MotionListener* listener)
 	} else {
 		mListener = nullptr;
 	}
+
 	mFlags = 0;
 }
 
@@ -70,7 +71,7 @@ void Animator::startExAnim(AnimInfo* info)
 	mListener   = nullptr;
 	mFlags      = 0;
 	mCurAnimKey = nullptr;
-	mFlags |= 0x80;
+	setFlag(Unk80);
 	JUT_ASSERTLINE(252, verbose == 0, "OKOK\n");
 }
 
@@ -97,7 +98,7 @@ void Animator::setCurrFrame(f32 timer)
  */
 void Animator::setFrameByKeyType(u32 id)
 {
-	JUT_ASSERTLINE(300, !(mFlags & 0x80), "ExMotionErr::setFrameByKeyType(%d)\n", id);
+	JUT_ASSERTLINE(300, !(mFlags & Unk80), "ExMotionErr::setFrameByKeyType(%d)\n", id);
 
 	if (id == KEYEVENT_END) {
 		setCurrFrame(mAnimInfo->mAnm->mTotalFrameCount - 1.0f);
@@ -143,8 +144,8 @@ void Animator::animate(f32 deltaTime)
 		}
 
 		switch (currentEv->mType) {
-		case 1:
-			if (!(mFlags & 2)) {
+		case KEYEVENT_LOOP_START:
+			if (!isFlag(AnimFinishMotion)) {
 				KeyEvent* start = mAnimInfo->getLastLoopStart(currentEv);
 				if (start) {
 					mTimer = start->mFrame;
@@ -169,12 +170,12 @@ void Animator::animate(f32 deltaTime)
 	if (time >= mTimer) {
 		mTimer = time - 1.0f;
 
-		if (mListener && !(mFlags & 1)) {
+		if (mListener && !isFlag(SysShape::Animator::AnimCompleted)) {
 			KeyEvent event;
 			event.mFrame   = (f32)mAnimInfo->mAnm->mTotalFrameCount;
 			event.mType    = KEYEVENT_END;
 			event.mAnimIdx = mAnimInfo->mId;
-			mFlags |= 1;
+			setFlag(SysShape::Animator::AnimCompleted);
 			mListener->onKeyEvent(event);
 		}
 	}
@@ -468,12 +469,12 @@ void BlendAnimator::endBlend()
  * @note Address: 0x8042956C
  * @note Size: 0x278
  */
-void BlendAnimator::animate(BlendFunction* func, f32 a1, f32 a2, f32 a3)
+void BlendAnimator::animate(BlendFunction* func, f32 dt, f32 anim0Dt, f32 anim1Dt)
 {
 	if (mIsBlendEnabled) {
-		mAnimators[0].animate(a2);
-		mAnimators[1].animate(a3);
-		mTimer += a1;
+		mAnimators[0].animate(anim0Dt);
+		mAnimators[1].animate(anim1Dt);
+		mTimer += dt;
 		if (mTimer >= mTimeMax) {
 			mTimer = mTimeMax;
 			if (!mIsBlendFinished) {
@@ -488,7 +489,7 @@ void BlendAnimator::animate(BlendFunction* func, f32 a1, f32 a2, f32 a3)
 		}
 		setWeight(func->getValue(mTimer / mTimeMax));
 	} else {
-		mAnimators[0].animate(a2);
+		mAnimators[0].animate(anim0Dt);
 	}
 }
 
@@ -604,7 +605,7 @@ KeyEvent* AnimInfo::getLastLoopStart(KeyEvent* key)
 {
 	FOREACH_NODE_REVERSE(KeyEvent, key->mPrev, prev)
 	{
-		if (prev->mType == 0) {
+		if (prev->mType == KEYEVENT_LOOP_END) {
 			return prev;
 		}
 	}

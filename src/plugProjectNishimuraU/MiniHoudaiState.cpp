@@ -1267,7 +1267,7 @@ void StateWalk::exec(EnemyBase* enemy)
 	}
 
 	if (mini->mCurAnim->mIsPlaying) {
-		if (mini->mCurAnim->mType == KEYEVENT_NULL) {
+		if (mini->mCurAnim->mType == KEYEVENT_LOOP_START) {
 			mini->createSmokeSmallEffect(true);
 
 		} else if (mini->mCurAnim->mType == KEYEVENT_2) {
@@ -1927,7 +1927,7 @@ void StateWalkHome::exec(EnemyBase* enemy)
 	sys->updateTimer(mini->mUpdateTimer, 1.0f); // dumb way to get an fmadd with 1.0f as the multiplier
 
 	if (mini->mCurAnim->mIsPlaying) {
-		if (mini->mCurAnim->mType == KEYEVENT_NULL) {
+		if (mini->mCurAnim->mType == KEYEVENT_LOOP_START) {
 			mini->createSmokeSmallEffect(true);
 
 		} else if (mini->mCurAnim->mType == KEYEVENT_2) {
@@ -2014,7 +2014,7 @@ void StateWalkPath::exec(EnemyBase* enemy)
 	mini->mUpdateTimer += 0.5f * sys->mDeltaTime;
 
 	if (mini->mCurAnim->mIsPlaying) {
-		if (mini->mCurAnim->mType == KEYEVENT_NULL) {
+		if (mini->mCurAnim->mType == KEYEVENT_LOOP_START) {
 			mini->createSmokeSmallEffect(true);
 
 		} else if (mini->mCurAnim->mType == KEYEVENT_2) {

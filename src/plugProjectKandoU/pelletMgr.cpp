@@ -3691,7 +3691,7 @@ void Pellet::stop_carrymotion() { mAnimSpeed = 0.0f; }
 void Pellet::finish_carrymotion()
 {
 	if (mCarryAnim.mAnimMgr) {
-		mCarryAnim.mFlags |= 2;
+		mCarryAnim.setFlag(SysShape::Animator::AnimFinishMotion);
 		return;
 	}
 
@@ -3706,7 +3706,7 @@ void Pellet::finish_carrymotion()
  */
 void Pellet::onKeyEvent(SysShape::KeyEvent const& keyEvent)
 {
-	if ((keyEvent.mType == KEYEVENT_END) && (mCarryAnim.mFlags & 2)) {
+	if ((keyEvent.mType == KEYEVENT_END) && (mCarryAnim.isFlag(SysShape::Animator::AnimFinishMotion))) {
 		mCarryAnim.startAnim(0, this);
 		if (mPickFlags & 1) {
 			mAnimSpeed = 30.0f * sys->mDeltaTime;
@@ -4386,7 +4386,7 @@ void Pellet::startPick()
 		}
 
 		if (mCarryAnim.mAnimMgr) {
-			if (!(mCarryAnim.mFlags & 2)) {
+			if (!(mCarryAnim.isFlag(SysShape::Animator::AnimFinishMotion))) {
 				mCarryAnim.startAnim(0, this);
 				mAnimSpeed = 30.0f * sys->mDeltaTime;
 			}
@@ -4444,7 +4444,7 @@ void Pellet::endPick(bool b)
 
 		if (!b) {
 			if (mCarryAnim.mAnimMgr) {
-				mCarryAnim.mFlags |= 2;
+				mCarryAnim.setFlag(SysShape::Animator::AnimFinishMotion);
 			} else if (mPelletView) {
 				mPelletView->view_finish_carrymotion();
 			}

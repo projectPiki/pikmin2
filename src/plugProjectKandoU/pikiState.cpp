@@ -3709,7 +3709,7 @@ void PikiSuikomiState::execMouth(Piki* piki)
  */
 void PikiSuikomiState::onKeyEvent(Piki* piki, SysShape::KeyEvent const& keyEvent)
 {
-	if (keyEvent.mType == KEYEVENT_NULL) {
+	if (keyEvent.mType == KEYEVENT_LOOP_START) {
 		piki->startSound(PSSE_PK_VC_SWALLOWED, PSGame::SeMgr::SETSE_PikiInJellyfloat);
 	}
 }
@@ -4693,11 +4693,11 @@ void PikiKokeState::onKeyEvent(Piki* piki, SysShape::KeyEvent const& event)
 		piki->mTargetVelocity = Vector3f(0.0f);
 		break;
 
-	case KEYEVENT_1:
+	case KEYEVENT_LOOP_END:
 		mTimer--;
 		if (mTimer <= 0) {
-			piki->mAnimator.mSelfAnimator.mFlags |= SysShape::Animator::Finished;
-			piki->mAnimator.mBoundAnimator.mFlags |= SysShape::Animator::Finished;
+			piki->mAnimator.mSelfAnimator.setFlag(SysShape::Animator::AnimFinishMotion);
+			piki->mAnimator.mBoundAnimator.setFlag(SysShape::Animator::AnimFinishMotion);
 		}
 		break;
 
@@ -5497,11 +5497,11 @@ void PikiDrownState::onKeyEvent(Piki* piki, SysShape::KeyEvent const& event)
 		}
 		break;
 
-	case KEYEVENT_NULL:
+	case KEYEVENT_LOOP_START:
 		piki->mSoundObj->startFreePikiSetSound(PSSE_PK_VC_WATER_DROWN, PSGame::SeMgr::SETSE_PikiWorking, 0, 0);
 		break;
 
-	case KEYEVENT_1:
+	case KEYEVENT_LOOP_END:
 		if (mSubState == 1) {
 			mSizumuAnimDelay--;
 			if (mSizumuAnimDelay == 0) {
@@ -5728,11 +5728,11 @@ void PikiAbsorbState::exec(Piki* piki)
 void PikiAbsorbState::onKeyEvent(Piki* piki, SysShape::KeyEvent const& event)
 {
 	switch (event.mType) {
-	case KEYEVENT_NULL:
+	case KEYEVENT_LOOP_START:
 		mState = 1;
 		break;
 
-	case KEYEVENT_1:
+	case KEYEVENT_LOOP_END:
 		Creature* creature = mAbsorbingCreature;
 		P2ASSERTLINE(4261, creature->mObjectTypeID == OBJTYPE_Honey);
 		ItemHoney::Item* nectar = (ItemHoney::Item*)mAbsorbingCreature;
@@ -6407,12 +6407,12 @@ void PikiEscapeState::onKeyEvent(Piki* piki, SysShape::KeyEvent const& event)
 		}
 		break;
 
-	case KEYEVENT_1:
+	case KEYEVENT_LOOP_END:
 		if (mSubState == 1 || mSubState == 2) {
 			mDoFinishAnim--;
 			if (mDoFinishAnim <= 0) {
-				piki->mAnimator.mSelfAnimator.mFlags |= SysShape::Animator::Finished;
-				piki->mAnimator.mBoundAnimator.mFlags |= SysShape::Animator::Finished;
+				piki->mAnimator.mSelfAnimator.mFlags |= SysShape::Animator::AnimFinishMotion;
+				piki->mAnimator.mBoundAnimator.mFlags |= SysShape::Animator::AnimFinishMotion;
 			}
 		}
 		break;

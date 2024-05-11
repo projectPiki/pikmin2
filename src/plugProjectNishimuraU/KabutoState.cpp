@@ -478,7 +478,7 @@ void Kabuto::StateMove::exec(EnemyBase* enemy)
 	kabuto->mStateTimer += sys->mDeltaTime;
 
 	if (kabuto->mCurAnim->mIsPlaying) {
-		if (kabuto->mCurAnim->mType == KEYEVENT_NULL) {
+		if (kabuto->mCurAnim->mType == KEYEVENT_LOOP_START) {
 			kabuto->mIsWalking = true;
 		} else if (kabuto->mCurAnim->mType == KEYEVENT_END) {
 			transit(kabuto, kabuto->mNextState, nullptr);

@@ -336,7 +336,7 @@ int J3DShapePacket::calcDifferedBufferSize(u32 flag)
 		if (uVar2 > local_4c) {
 			local_4c = uVar2;
 		}
-		if (flag & 0x1000) {
+		if (flag & J3DMDF_DiffTexGen) {
 			size += calcDifferedBufferSize_TexGenSize(local_4c);
 		} else {
 			size += calcDifferedBufferSize_TexMtxSize(local_4c);
@@ -353,7 +353,7 @@ int J3DShapePacket::calcDifferedBufferSize(u32 flag)
 		}
 		u32 local_50 = local_58;
 		local_50     = uVar2 > local_50 ? uVar2 : local_50;
-		if ((flag & 0x4000000)) {
+		if ((flag & J3DMDF_DiffTevOrderFull)) {
 			size += calcDifferedBufferSize_TexNoAndTexCoordScaleSize(local_50);
 		} else {
 			size += calcDifferedBufferSize_TexNoSize(local_50);
@@ -371,12 +371,12 @@ int J3DShapePacket::calcDifferedBufferSize(u32 flag)
 		u32 local_50 = local_58;
 		local_50     = uVar2 > local_50 ? uVar2 : local_50;
 		size += calcDifferedBufferSize_TevStageSize(local_50);
-		if (flag & 0x8000000) {
+		if (flag & J3DMDF_DiffIndTevStage) {
 			size += calcDifferedBufferSize_TevStageDirectSize(local_50);
 		}
 	}
 
-	return (size + 0x1f) & ~0x1f;
+	return OSRoundUp32B(size);
 }
 
 /**
@@ -429,7 +429,7 @@ void J3DShapePacket::prepareDraw() const
 	j3dSys.setModel(mModel);
 	j3dSys.setShapePacket((J3DShapePacket*)this);
 
-	J3DShapeMtx::setLODFlag(mModel->checkFlag(J3DMODEL_Unk5));
+	J3DShapeMtx::setLODFlag(mModel->checkFlag(J3DMODEL_LevelOfDetail));
 
 	if (mModel->checkFlag(J3DMODEL_SkinPosCpu)) {
 		mShape->onFlag(J3DMODEL_SkinPosCpu);

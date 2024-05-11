@@ -279,7 +279,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 		SysShape::MotionListener* listener = this;
 
 		EnemyAnimatorBase* animator = mAnimator;
-		animator->mFlags.unset(SysShape::Animator::Stopped | SysShape::Animator::Finished);
+		animator->mFlags.unset(SysShape::Animator::AnimCompleted | SysShape::Animator::AnimFinishMotion);
 		animator->mNormalizedTime = 1.0f;
 		animator->getAnimator(0).startAnim(0, listener);
 

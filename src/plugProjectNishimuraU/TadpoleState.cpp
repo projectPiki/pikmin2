@@ -356,10 +356,10 @@ void StateLeap::exec(EnemyBase* enemy)
 		} else if (tadpole->mCurAnim->mType == KEYEVENT_4) {
 			tadpole->enableEvent(0, EB_NoInterrupt);
 
-		} else if (tadpole->mCurAnim->mType == KEYEVENT_NULL) {
+		} else if (tadpole->mCurAnim->mType == KEYEVENT_LOOP_START) {
 			tadpole->enableEvent(0, EB_NoInterrupt);
 
-		} else if (tadpole->mCurAnim->mType == KEYEVENT_1) {
+		} else if (tadpole->mCurAnim->mType == KEYEVENT_LOOP_END) {
 			tadpole->disableEvent(0, EB_NoInterrupt);
 			tadpole->createLeapEffect();
 			if (randWeightFloat(1.0f) < 0.5f) {

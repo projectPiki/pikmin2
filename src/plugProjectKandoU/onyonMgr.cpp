@@ -825,7 +825,7 @@ void Onyon::doAI()
 			// stay open for 3 seconds without interruption
 			if (mSuckTimer > 3.0f) {
 				mAnimator.setFrameByKeyType(1);
-				mAnimator.mFlags |= 2;
+				mAnimator.setFlag(SysShape::Animator::AnimFinishMotion);
 				mAnimSpeed = 30.0f;
 				mUfoPodOpenSuck->fade();
 				SoundID soundid = PSSE_EV_POD_CLOSE;
@@ -1049,7 +1049,7 @@ void Onyon::startWaitMotion()
 void Onyon::onKeyEvent_UFO(const SysShape::KeyEvent& event)
 {
 	switch (event.mType) {
-	case KEYEVENT_NULL:
+	case KEYEVENT_LOOP_START:
 		if (mSuckState != SUCKSTATE_Opening) {
 			return;
 		}
@@ -1057,7 +1057,7 @@ void Onyon::onKeyEvent_UFO(const SysShape::KeyEvent& event)
 		mSuckState = SUCKSTATE_Opened;
 		break;
 
-	case KEYEVENT_1:
+	case KEYEVENT_LOOP_END:
 		if (mSuckState != SUCKSTATE_GetPellet) {
 			return;
 		}
@@ -1151,7 +1151,7 @@ void Onyon::onKeyEvent_Onyon(SysShape::KeyEvent const& event)
 			efxPafuKira();
 		break;
 
-	case KEYEVENT_1:
+	case KEYEVENT_LOOP_END:
 		if (mOnyonType <= ONYON_TYPE_YELLOW) {
 			switch (animid) {
 			case 1: // shoot out seeds
@@ -1205,7 +1205,7 @@ void Onyon::onKeyEvent_Onyon(SysShape::KeyEvent const& event)
 						}
 					}
 				} else {
-					mAnimator.mFlags |= 2;
+					mAnimator.setFlag(SysShape::Animator::AnimFinishMotion);
 				}
 				break;
 

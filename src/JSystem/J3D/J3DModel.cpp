@@ -40,7 +40,7 @@ void J3DModel::initialize()
  * @note Address: 0x80066380
  * @note Size: 0xC4
  */
-int J3DModel::entryModelData(J3DModelData* data, u32 p2, u32 modelType)
+int J3DModel::entryModelData(J3DModelData* data, u32 flags, u32 modelType)
 {
 	mModelData = data;
 	mMtxBuffer = new J3DMtxBuffer();
@@ -52,7 +52,7 @@ int J3DModel::entryModelData(J3DModelData* data, u32 p2, u32 modelType)
 	if (result) {
 		return result;
 	}
-	result = createMatPacket(data, p2);
+	result = createMatPacket(data, flags);
 	if (result) {
 		return result;
 	}
@@ -99,11 +99,11 @@ int J3DModel::createMatPacket(J3DModelData* data, u32 flags)
 		if (data->mJointTree.mFlags == 1) {
 			matPacket->mFlags = matPacket->mFlags | 1;
 		}
-		if ((flags & 0x80000) != 0) {
+		if ((flags & J3DMODEL_ShareDL) != 0) {
 			matPacket->mDisplayList = material->mSharedDLObj;
 		} else {
 			if (data->mJointTree.mFlags == 1) {
-				if ((flags & 0x40000) != 0) {
+				if ((flags & J3DMODEL_UseSingleSharedDL) != 0) {
 					matPacket->mDisplayList = material->mSharedDLObj;
 				} else {
 					J3DDisplayListObj* dl = material->mSharedDLObj;
@@ -113,8 +113,8 @@ int J3DModel::createMatPacket(J3DModelData* data, u32 flags)
 					}
 					matPacket->mDisplayList = dl;
 				}
-			} else if ((flags & 0x20000) != 0) {
-				if ((flags & 0x40000) != 0) {
+			} else if ((flags & J3DMODEL_CreateNewDL) != 0) {
+				if ((flags & J3DMODEL_UseSingleSharedDL) != 0) {
 					material->newSingleSharedDisplayList(material->countDLSize());
 					matPacket->mDisplayList = material->mSharedDLObj;
 				} else {
@@ -124,7 +124,7 @@ int J3DModel::createMatPacket(J3DModelData* data, u32 flags)
 					matPacket->mDisplayList = dl;
 				}
 			} else {
-				if ((flags & 0x40000) != 0) {
+				if ((flags & J3DMODEL_UseSingleSharedDL) != 0) {
 					matPacket->newSingleDisplayList(material->countDLSize());
 				} else {
 					matPacket->newDisplayList(material->countDLSize());

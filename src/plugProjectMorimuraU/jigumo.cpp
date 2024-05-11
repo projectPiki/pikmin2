@@ -653,7 +653,7 @@ void Obj::walkFunc()
 		if (getStateID() == JIGUMO_Carry) {
 			if (C_PARMS->mIsWalkPauseActive) { // runs by default
 				mPauseTimer += 1.0f;
-				if (mCurAnim->mIsPlaying && mCurAnim->mType == KEYEVENT_1 && mPauseTimer > mPauseTriggerTime) {
+				if (mCurAnim->mIsPlaying && mCurAnim->mType == KEYEVENT_LOOP_END && mPauseTimer > mPauseTriggerTime) {
 					mDoPauseAnim = !mDoPauseAnim; // change from pausing to running, or vice versa
 					if (mClimbingTimer > 0) {     // if we're climbing (?), don't pause
 						mDoPauseAnim = false;

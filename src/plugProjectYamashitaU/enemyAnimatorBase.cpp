@@ -20,21 +20,21 @@ EnemyAnimatorBase::EnemyAnimatorBase()
  */
 void EnemyAnimatorBase::animate(f32 speed)
 {
-	if (!(mFlags.isSet(SysShape::Animator::Stopped))) {
-		if (mFlags.isSet(SysShape::Animator::Finished)) {
+	if (!(mFlags.isSet(SysShape::Animator::AnimCompleted))) {
+		if (mFlags.isSet(SysShape::Animator::AnimFinishMotion)) {
 			mNormalizedTime *= 0.9f;
 			if (mNormalizedTime < 0.1f) {
 				mNormalizedTime = 0.0f;
 
-				mFlags.unset(SysShape::Animator::Playing);
-				mFlags.set(SysShape::Animator::Stopped);
+				mFlags.unset(SysShape::Animator::AnimInProgress);
+				mFlags.set(SysShape::Animator::AnimCompleted);
 			}
-		} else if (mFlags.isSet(SysShape::Animator::Playing)) {
+		} else if (mFlags.isSet(SysShape::Animator::AnimInProgress)) {
 			mNormalizedTime *= 1.1f;
 			if (mNormalizedTime > 1.0f) {
 				mNormalizedTime = 1.0f;
 
-				mFlags.unset(SysShape::Animator::Finished | SysShape::Animator::Stopped);
+				mFlags.unset(SysShape::Animator::AnimFinishMotion | SysShape::Animator::AnimCompleted);
 				mNormalizedTime = 1.0f;
 			}
 		}
@@ -51,21 +51,21 @@ void EnemyAnimatorBase::animate(f32 speed)
  */
 void EnemyAnimatorBase::animate(int animatorNum, f32 speed)
 {
-	if (!(mFlags.isSet(SysShape::Animator::Stopped))) {
-		if (mFlags.isSet(SysShape::Animator::Finished)) {
+	if (!(mFlags.isSet(SysShape::Animator::AnimCompleted))) {
+		if (mFlags.isSet(SysShape::Animator::AnimFinishMotion)) {
 			mNormalizedTime *= 0.9f;
 			if (mNormalizedTime < 0.1f) {
 				mNormalizedTime = 0.0f;
 
-				mFlags.unset(SysShape::Animator::Playing);
-				mFlags.set(SysShape::Animator::Stopped);
+				mFlags.unset(SysShape::Animator::AnimInProgress);
+				mFlags.set(SysShape::Animator::AnimCompleted);
 			}
-		} else if (mFlags.isSet(SysShape::Animator::Playing)) {
+		} else if (mFlags.isSet(SysShape::Animator::AnimInProgress)) {
 			mNormalizedTime *= 1.1f;
 			if (mNormalizedTime > 1.0f) {
 				mNormalizedTime = 1.0f;
 
-				mFlags.unset(SysShape::Animator::Finished | SysShape::Animator::Stopped);
+				mFlags.unset(SysShape::Animator::AnimFinishMotion | SysShape::Animator::AnimCompleted);
 				mNormalizedTime = 1.0f;
 			}
 		}

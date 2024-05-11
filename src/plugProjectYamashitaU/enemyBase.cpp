@@ -1660,7 +1660,7 @@ void EnemyBase::doAnimationCullingOff()
 	sys->mTimers->_stop("e-calc");
 	mCollTree->update();
 
-	if (mAnimator->getAnimator().mFlags & 1) {
+	if (mAnimator->getAnimator().isFlag(SysShape::Animator::AnimCompleted)) {
 		static_cast<PSM::CreatureAnime*>(mSoundObj)->setAnime(nullptr, 1, 0.0f, 0.0f);
 	}
 }
@@ -2291,7 +2291,7 @@ void EnemyBase::startMotion(int id, SysShape::MotionListener* inputListener)
 	}
 
 	EnemyAnimatorBase* animator = mAnimator;
-	animator->mFlags.unset(SysShape::Animator::Stopped | SysShape::Animator::Finished);
+	animator->mFlags.unset(SysShape::Animator::AnimCompleted | SysShape::Animator::AnimFinishMotion);
 	animator->mNormalizedTime = 1.0f;
 
 	animator->getAnimator(0).startAnim(id, inputListener);
@@ -2352,7 +2352,7 @@ f32 EnemyBase::getMotionFrame() { return mAnimator->getAnimator().mTimer; }
  * @note Address: 0x801052A0
  * @note Size: 0x40
  */
-void EnemyBase::finishMotion() { SET_FLAG(mAnimator->getAnimator(0).mFlags, SysShape::Animator::Finished); }
+void EnemyBase::finishMotion() { mAnimator->getAnimator(0).setFlag(SysShape::Animator::AnimFinishMotion); }
 
 /**
  * @note Address: 0x801052E0
@@ -2997,7 +2997,7 @@ void EnemyBase::view_start_carrymotion() { startCarcassMotion(); }
  * @note Address: 0x80106A78
  * @note Size: 0x40
  */
-void EnemyBase::view_finish_carrymotion() { mAnimator->getAnimator(0).mFlags |= 2; }
+void EnemyBase::view_finish_carrymotion() { mAnimator->getAnimator(0).setFlag(SysShape::Animator::AnimFinishMotion); }
 
 /**
  * @note Address: 0x80106AB8
@@ -3113,7 +3113,7 @@ PSM::EnemyBase* EnemyBase::createPSEnemyBase()
 void EnemyBase::startMotion()
 {
 	EnemyAnimatorBase* animator = mAnimator;
-	RESET_FLAG(animator->mFlags.typeView, SysShape::Animator::Stopped | SysShape::Animator::Finished);
+	RESET_FLAG(animator->mFlags.typeView, SysShape::Animator::AnimCompleted | SysShape::Animator::AnimFinishMotion);
 	animator->mNormalizedTime = 1.0f;
 }
 
@@ -3144,21 +3144,21 @@ f32 EnemyBase::getFirstKeyFrame()
 void EnemyBase::stopMotion()
 {
 	EnemyAnimatorBase* animator = mAnimator;
-	RESET_FLAG(animator->mFlags.typeView, SysShape::Animator::Playing);
-	SET_FLAG(animator->mFlags.typeView, SysShape::Animator::Stopped);
+	RESET_FLAG(animator->mFlags.typeView, SysShape::Animator::AnimInProgress);
+	SET_FLAG(animator->mFlags.typeView, SysShape::Animator::AnimCompleted);
 }
 
 /**
  * @note Address: 0x80107300
  * @note Size: 0x38
  */
-bool EnemyBase::isFinishMotion() { return mAnimator->getAnimator().mFlags >> 1 & 1; }
+bool EnemyBase::isFinishMotion() { return mAnimator->getAnimator().isFlag(SysShape::Animator::AnimFinishMotion); }
 
 /**
  * @note Address: 0x80107338
  * @note Size: 0x10
  */
-bool EnemyBase::isStopMotion() { return mAnimator->mFlags.isSet(SysShape::Animator::Stopped); }
+bool EnemyBase::isStopMotion() { return mAnimator->mFlags.isSet(SysShape::Animator::AnimCompleted); }
 
 /**
  * @note Address: 0x80107348

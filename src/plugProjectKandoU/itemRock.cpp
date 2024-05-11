@@ -30,8 +30,8 @@ void FSM::init(Item*)
 void NormalState::init(Item* item, StateArg* stateArg)
 {
 	static_cast<ItemRock::Item*>(item)->startWaitMotion();
-	_10 = 0;
-	_11 = 0;
+	mIsDamaged  = 0;
+	mIsFullSize = 0;
 }
 
 /**
@@ -45,7 +45,7 @@ void NormalState::exec(Item* item)
 	if (rock->mSize > Item::SIZE_Max) {
 		rock->mSizeTimer += sys->mDeltaTime;
 		if (rock->mSizeTimer >= changeTime) {
-			_11           = 1;
+			mIsFullSize   = 1;
 			rock->mHealth = rock->mHealthLimits[rock->mSize - 1];
 			transit(rock, ITEMROCK_Up, nullptr);
 		}
@@ -70,7 +70,7 @@ void NormalState::onDamage(Item* item, f32 damage)
 	rock->mHealth -= rock->mDamageBuffer;
 	rock->mDamageBuffer = 0.0f;
 	if (rock->mHealth < rock->mHealthLimits[rock->mSize + 1]) {
-		_10 = 1;
+		mIsDamaged = 1;
 		transit(rock, ITEMROCK_Down, nullptr);
 	}
 }
@@ -87,11 +87,11 @@ void NormalState::onKeyEvent(Item* item, const SysShape::KeyEvent& event)
 		rock->startFukuEffect(rockPos);
 	}
 
-	if (_11) {
+	if (mIsFullSize) {
 		rock->mHealth = rock->mHealthLimits[rock->mSize - 1];
 		transit(rock, ITEMROCK_Up, nullptr);
 		return;
-	} else if (_10) {
+	} else if (mIsDamaged) {
 		transit(rock, ITEMROCK_Down, nullptr);
 		return;
 	}
@@ -630,7 +630,7 @@ Mgr::Mgr()
 	mObjectPathComponent = "user/Kando/objects/ojamarock";
 	mParms               = new RockParms();
 	void* resource       = JKRDvdRipper::loadToMainRAM("user/Abe/item/rockParms.txt", nullptr, Switch_0, 0, nullptr,
-                                                 JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
+	                                                   JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
 	if (resource) {
 		RamStream stream(resource, -1);
 		stream.resetPosition(true, true);

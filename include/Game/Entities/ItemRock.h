@@ -36,9 +36,9 @@ struct State : public ItemState<Item> {
 
 	// _00     = VTBL
 	// _00-_0C = ItemState
-	u32 _0C; // _0C, unknown - probably was mName
-	u8 _10;  // _10
-	u8 _11;  // _11
+	u32 _0C;        // _0C, unknown - probably was mName
+	u8 mIsDamaged;  // _10
+	u8 mIsFullSize; // _11
 };
 
 struct NormalState : public State {

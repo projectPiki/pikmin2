@@ -281,7 +281,7 @@ void StatePulled::exec(EnemyBase* enemy)
 	}
 
 	if (enemy->getEnemyTypeID() == EnemyTypeID::EnemyID_OoPanModoki) {
-		if (enemy->mCurAnim->mIsPlaying && enemy->mCurAnim->mType == KEYEVENT_NULL) {
+		if (enemy->mCurAnim->mIsPlaying && enemy->mCurAnim->mType == KEYEVENT_LOOP_START) {
 			enemy->mSoundObj->startSound(PSSE_EN_OPAN_HIPPARARE, 0);
 		}
 	}
@@ -683,7 +683,7 @@ void StateCarryEnd::exec(EnemyBase* enemy)
 		if (diff.boundedX(2.0f) && diff.boundedZ(2.0f)) {
 			Vector3f homePos = enemy->mHomePosition;
 			enemy->onSetPosition(homePos);
-			if (enemy->mCurAnim->mIsPlaying && enemy->mCurAnim->mType == KEYEVENT_1) {
+			if (enemy->mCurAnim->mIsPlaying && enemy->mCurAnim->mType == KEYEVENT_LOOP_END) {
 				transit(enemy, PANMODOKI_Hide, nullptr);
 			}
 

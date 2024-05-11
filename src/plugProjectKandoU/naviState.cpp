@@ -242,7 +242,7 @@ void NaviCarryBombState::exec(Navi* navi)
 void NaviCarryBombState::onKeyEvent(Navi* navi, SysShape::KeyEvent const& event)
 {
 	switch (event.mType) {
-	case KEYEVENT_1:
+	case KEYEVENT_LOOP_END:
 		if (mDoThrow && mBomb) {
 			f32 faceDir     = navi->getFaceDir();
 			Vector3f offset = getRotationOffset(260.0f, 340.0f, (const f32)faceDir);
@@ -6905,7 +6905,7 @@ void NaviPelletState::onKeyEvent(Navi* navi, SysShape::KeyEvent const& key)
 {
 	if (mDoForceWakeup) {
 		if (key.mType == 1) {
-			if (navi->mAnimator.mSelfAnimator.isFlag(SysShape::Animator::Finished)) {
+			if (navi->mAnimator.mSelfAnimator.isFlag(SysShape::Animator::AnimFinishMotion)) {
 				if (playData->mStoryFlags & STORY_DebtPaid) {
 					navi->mSoundObj->startSound(PSSE_PL_WAKEUP_SHACHO, 0);
 				} else {

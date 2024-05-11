@@ -4908,7 +4908,7 @@ void ActStickAttack::createEfx()
 void ActStickAttack::onKeyEvent(SysShape::KeyEvent const& keyEvent)
 {
 	switch (keyEvent.mType) {
-	case KEYEVENT_1:
+	case KEYEVENT_LOOP_END:
 		break;
 
 	case KEYEVENT_2: // attack ready

@@ -139,6 +139,18 @@ struct J3DCallBackPacket : public J3DPacket {
 	CallBack mCallBack; // _10
 };
 
+enum J3DModelDiffFlags {
+	J3DMDF_DiffMatColor     = 0x00000001, // Diff material color
+	J3DMDF_DiffLight        = 0x00000002, // Diff light settings
+	J3DMDF_DiffTexGen       = 0x00001000, // Diff TexCoordGen
+	J3DMDF_DiffColorReg     = 0x01000000, // Diff color registers (TEV)
+	J3DMDF_DiffKonstColor   = 0x02000000, // Diff Konst colors
+	J3DMDF_DiffTevOrderFull = 0x04000000, // Diff full TevOrder (TexMap and TexCoordIdx)
+	J3DMDF_DiffIndTevStage  = 0x08000000, // Diff indirect TevStages
+	J3DMDF_DiffFog          = 0x10000000, // Diff fog settings
+	J3DMDF_DiffBlend        = 0x20000000  // Diff blend settings
+};
+
 /**
  * @size{0x3C}
  */
@@ -186,7 +198,7 @@ struct J3DMatPacket : public J3DDrawPacket {
 	{
 		sortFunc func = J3DDrawBuffer::sortFuncTable[buffer->mSortType];
 		return (buffer->*func)(this);
-	}                        // _08 (weak)
+	} // _08 (weak)
 	virtual void draw();     // _0C
 	virtual ~J3DMatPacket(); // _10
 

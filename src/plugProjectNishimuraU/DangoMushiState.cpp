@@ -1482,7 +1482,7 @@ void StateAttack::exec(EnemyBase* enemy)
 				crab->startRollingMoveEffect();
 			}
 
-		} else if (crab->mCurAnim->mType == KEYEVENT_1) {
+		} else if (crab->mCurAnim->mType == KEYEVENT_LOOP_END) {
 			if (crab->isFinishMotion()) {
 				crab->mIsRolling = false;
 				crab->mIsBall    = false;
@@ -1564,7 +1564,7 @@ void StateTurn::exec(EnemyBase* enemy)
 			cameraMgr->startVibration(VIBTYPE_HardMidShort, crabPos, CAMNAVI_Both);
 			rumbleMgr->startRumble(RUMBLETYPE_Fixed14, crabPos, RUMBLEID_Both);
 
-		} else if (crab->mCurAnim->mType == KEYEVENT_NULL) {
+		} else if (crab->mCurAnim->mType == KEYEVENT_LOOP_START) {
 			if (crab->isEvent(0, EB_Invulnerable)) {
 				crab->disableEvent(0, EB_NoInterrupt);
 				crab->disableEvent(0, EB_Invulnerable);

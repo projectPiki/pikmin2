@@ -4708,7 +4708,7 @@ bool BlackMan::Obj::isTyreFreeze()
 bool BlackMan::Obj::isTyreDead()
 {
 	if (mTyre && mTyre->mHealth <= 0.0f) {
-		if (mAnimator->getAnimator().mFlags & 0x1) {
+		if (mAnimator->getAnimator().isFlag(SysShape::Animator::AnimCompleted)) {
 			mTyre->enableEvent(0, EB_Invulnerable);
 			mTyre        = nullptr;
 			mEscapePhase = 2;
