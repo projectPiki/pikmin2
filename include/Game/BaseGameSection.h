@@ -66,6 +66,19 @@ enum DemoTimers {
 	DEMOTIMER_YouAppearLost          = 7, // When you wait 3 minutes on day 1 after growing 15 reds before crushing the first bag
 };
 
+enum DrawBufferType {
+	DB_NormalLayer = 0,
+	DB_NormalFogOffLayer,
+	DB_MapLayer,
+	DB_PikiLayer,
+	DB_PostRenderLayer,
+	DB_2DLayer,
+	DB_FirstLayer,
+	DB_PostShadowLayer,
+	DB_ObjectLastLayer,
+	DB_FarmLayer,
+};
+
 struct BaseGameSection : public BaseHIOSection {
 
 	struct ZoomCamera : public LookAtCamera {
@@ -277,8 +290,8 @@ struct BaseGameSection : public BaseHIOSection {
 	int _120;                                                 // _120
 	u32 _124;                                                 // _124
 	GameLightMgr* mLightMgr;                                  // _128
-	Sys::DrawBuffers* mDrawBuffer1;                           // _12C
-	Sys::DrawBuffers* mDrawBuffer2;                           // _130
+	Sys::DrawBuffers* mOpaqueDrawBuffer;                      // _12C
+	Sys::DrawBuffers* mTransparentDrawBuffer;                 // _130
 	int mTreasureGetState;                                    // _134
 	Viewport* mTreasureGetViewport;                           // _138
 	Creature* mDraw2DCreature;                                // _13C

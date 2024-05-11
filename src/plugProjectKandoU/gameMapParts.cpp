@@ -7111,14 +7111,14 @@ void RoomMapMgr::doEntry()
 			mSeaMgr->doEntry();
 		}
 
-		section->setDrawBuffer(2);
+		section->setDrawBuffer(DB_MapLayer);
 		mRoomMgr.doEntry();
 		if (mVRBox.mModel) {
-			section->setDrawBuffer(6);
+			section->setDrawBuffer(DB_FirstLayer);
 			mVRBox.mModel->mJ3dModel->entry();
 		}
 
-		section->setDrawBuffer(0);
+		section->setDrawBuffer(DB_NormalLayer);
 	}
 
 	sys->mTimers->_stop("ENT-MAP");

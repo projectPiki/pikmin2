@@ -202,9 +202,9 @@ void Object::theEntry()
 {
 	BaseGameSection* game = gameSystem->mSection;
 	if (game->mDraw2DCreature != this && mConfig->mParams.mIndirectState == PelletConfig::Indirect_Yes) {
-		game->setDrawBuffer(8);
+		game->setDrawBuffer(DB_ObjectLastLayer);
 		mModel->mJ3dModel->entry();
-		game->setDrawBuffer(0);
+		game->setDrawBuffer(DB_NormalLayer);
 	} else {
 		mModel->mJ3dModel->entry();
 	}

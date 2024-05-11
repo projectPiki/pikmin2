@@ -14,7 +14,7 @@
 #include "trig.h"
 #include "nans.h"
 
-f32 efx::TCursor::kAngleSpeed = 0.05235988f;
+f32 efx::TCursor::kAngleSpeed = PI / 60.0f;
 
 namespace Game {
 

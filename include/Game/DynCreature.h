@@ -44,10 +44,10 @@ struct DynCreature : public Creature {
 	DynParticle* mDynParticle;      // _178
 	Rigid mRigid;                   // _17C
 	Vector3f mRotation;             // _2F4
-	Vector3f _300;                  // _300
+	Vector3f mTransformedPosition;  // _300
 	DynParticle* mCurrentChildPtcl; // _30C
 	u8 mCanBounce;                  // _310
-	u8 _311;                        // _311
+	bool mHasCollided;              // _311
 };
 } // namespace Game
 

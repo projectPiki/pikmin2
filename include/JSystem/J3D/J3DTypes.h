@@ -43,7 +43,7 @@ typedef u32 J3DModelLoaderFlags;
 #define J3DMLF_27                         0x04000000
 #define J3DMLF_28                         0x08000000
 #define J3DMLF_29                         0x10000000
-#define J3DMLF_30                         0x20000000
+#define J3DMLF_HasUniqueMaterials         0x20000000
 #define J3DMLF_31                         0x40000000
 #define J3DMLF_32                         0x80000000
 

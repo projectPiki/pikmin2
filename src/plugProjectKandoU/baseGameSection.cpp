@@ -446,92 +446,81 @@ inline void j3dStuff(Sys::DrawBuffers*& buffer, Sys::DrawBuffer::CreateArg& draw
 
 	drawArg.mSize = 0x80;
 	drawArg.mName = "normal";
-
-	buffer->get(0)->create(drawArg);
+	buffer->get(DB_NormalLayer)->create(drawArg);
 
 	drawArg.mSize = 1;
 	drawArg.mName = (doFog) ? "normal-fogoff" : "normal";
-
-	buffer->get(1)->create(drawArg);
+	buffer->get(DB_NormalFogOffLayer)->create(drawArg);
 
 	drawArg.mSize = 1;
 	drawArg.mName = "map";
-	if (doFog)
+	if (doFog) {
 		drawArg.mSortType = J3DDrawBuffer::J3DSORT_NonSort;
-
-	buffer->get(2)->create(drawArg);
+	}
+	buffer->get(DB_MapLayer)->create(drawArg);
 
 	drawArg.mSize = 1;
 	drawArg.mName = "piki";
-	if (doFog)
+	if (doFog) {
 		drawArg.mSortType = J3DDrawBuffer::J3DSORT_Mat;
-
-	buffer->get(3)->create(drawArg);
+	}
+	buffer->get(DB_PikiLayer)->create(drawArg);
 
 	drawArg.mSize = 1;
 	drawArg.mName = "post";
-
-	buffer->get(4)->create(drawArg);
+	buffer->get(DB_PostRenderLayer)->create(drawArg);
 
 	drawArg.mSize = 1;
 	drawArg.mName = "2d";
-
-	buffer->get(5)->create(drawArg);
+	buffer->get(DB_2DLayer)->create(drawArg);
 
 	drawArg.mSize = 1;
 	drawArg.mName = "first";
-
-	buffer->get(6)->create(drawArg);
+	buffer->get(DB_FirstLayer)->create(drawArg);
 
 	drawArg.mSize = 1;
 	drawArg.mName = "postshadow";
-
-	buffer->get(7)->create(drawArg);
+	buffer->get(DB_PostShadowLayer)->create(drawArg);
 
 	drawArg.mSize = 1;
 	drawArg.mName = "objectlast";
-
-	buffer->get(8)->create(drawArg);
+	buffer->get(DB_ObjectLastLayer)->create(drawArg);
 
 	drawArg.mSize = 1;
 	drawArg.mName = "farm";
-
-	buffer->get(9)->create(drawArg);
+	buffer->get(DB_FarmLayer)->create(drawArg);
 }
 
 void BaseGameSection::initJ3D()
 {
-	mDrawBuffer1 = new Sys::DrawBuffers;
-	mDrawBuffer2 = new Sys::DrawBuffers;
+	mOpaqueDrawBuffer      = new Sys::DrawBuffers;
+	mTransparentDrawBuffer = new Sys::DrawBuffers;
 
-	mDrawBuffer1->allocate(10);
-	mDrawBuffer1->mName = "OPA";
+	mOpaqueDrawBuffer->allocate(10);
+	mOpaqueDrawBuffer->mName = "OPA";
 	{
 		Sys::DrawBuffer::CreateArg drawArg;
 		drawArg.mSortType = J3DDrawBuffer::J3DSORT_Mat;
 		drawArg.mDrawType = J3DDrawBuffer::J3DDRAW_Head;
-		j3dStuff(mDrawBuffer1, drawArg, true);
+		j3dStuff(mOpaqueDrawBuffer, drawArg, true);
 	}
 
-	mDrawBuffer2->allocate(10);
-	mDrawBuffer2->mName = "XLU";
+	mTransparentDrawBuffer->allocate(10);
+	mTransparentDrawBuffer->mName = "XLU";
 
 	{
 		Sys::DrawBuffer::CreateArg drawArg;
-
 		drawArg.mSortType = J3DDrawBuffer::J3DSORT_Mat;
 		drawArg.mDrawType = J3DDrawBuffer::J3DDRAW_Head;
-
 		drawArg.mFlags.typeView |= 1;
-
-		j3dStuff(mDrawBuffer2, drawArg, false);
+		j3dStuff(mTransparentDrawBuffer, drawArg, false);
 	}
 
-	addGenNode(mDrawBuffer1);
-	addGenNode(mDrawBuffer2);
+	addGenNode(mOpaqueDrawBuffer);
+	addGenNode(mTransparentDrawBuffer);
 
-	j3dSys.mDrawBuffer[0] = mDrawBuffer1->get(0)->mBuffer;
-	j3dSys.mDrawBuffer[1] = mDrawBuffer2->get(0)->mBuffer;
+	j3dSys.mDrawBuffer[0] = mOpaqueDrawBuffer->get(DB_NormalLayer)->mBuffer;
+	j3dSys.mDrawBuffer[1] = mTransparentDrawBuffer->get(DB_NormalLayer)->mBuffer;
 
 	System::FragmentationChecker frag("poyol", false);
 }
@@ -1609,13 +1598,13 @@ void BaseGameSection::changeGeneratorCursor(Vector3f& vec) { naviMgr->getAt(NAVI
  */
 void BaseGameSection::doEntry()
 {
-	setDrawBuffer(0);
+	setDrawBuffer(DB_NormalLayer);
 	sys->mTimers->_start("ENT-GSYS", true);
 	gameSystem->doEntry();
 	sys->mTimers->_stop("ENT-GSYS");
 	sys->mTimers->_start("ENT-REST", true);
 	if (particleMgr) {
-		setDrawBuffer(1);
+		setDrawBuffer(DB_NormalFogOffLayer);
 		particleMgr->doEntry();
 	}
 	sys->mTimers->_stop("ENT-REST");
@@ -1848,8 +1837,8 @@ void BaseGameSection::clearHeap()
 	itemMgr->clearGlobalPointers();
 	platCellMgr = nullptr;
 	cellMgr     = nullptr;
-	mDrawBuffer1->frameInitAll();
-	mDrawBuffer2->frameInitAll();
+	mOpaqueDrawBuffer->frameInitAll();
+	mTransparentDrawBuffer->frameInitAll();
 	particleMgr->killAll();
 	particleMgr->reset();
 	Generator::initialiseSystem();
@@ -3455,8 +3444,8 @@ lbl_801513A8:
 void BaseGameSection::setDrawBuffer(int index)
 {
 	P2ASSERTBOUNDSLINE(5295, 0, index, 10);
-	j3dSys.mDrawBuffer[0] = mDrawBuffer1->get(index)->mBuffer;
-	j3dSys.mDrawBuffer[1] = mDrawBuffer2->get(index)->mBuffer;
+	j3dSys.mDrawBuffer[0] = mOpaqueDrawBuffer->get(index)->mBuffer;
+	j3dSys.mDrawBuffer[1] = mTransparentDrawBuffer->get(index)->mBuffer;
 }
 
 /**

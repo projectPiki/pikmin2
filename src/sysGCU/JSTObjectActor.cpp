@@ -418,9 +418,9 @@ lbl_8042EE70:
 void ObjectActor::entry()
 {
 	if (mModel) {
-		gameSystem->mSection->setDrawBuffer(2);
+		gameSystem->mSection->setDrawBuffer(DB_MapLayer);
 		mModel->entry();
-		gameSystem->mSection->setDrawBuffer(0);
+		gameSystem->mSection->setDrawBuffer(DB_NormalLayer);
 	}
 }
 

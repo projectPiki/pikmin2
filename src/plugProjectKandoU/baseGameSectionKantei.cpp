@@ -341,17 +341,17 @@ void BaseGameSection::do_drawOtakaraWindow(Graphics& gfx)
 			mDraw2DCreature->doViewCalc();
 			SysShape::Model::setViewCalcModeImm();
 			mDraw2DCreature->doViewCalc();
-			setDrawBuffer(5);
+			setDrawBuffer(DB_2DLayer);
 			mDraw2DCreature->doEntry();
-			setDrawBuffer(0);
+			setDrawBuffer(DB_NormalLayer);
 		}
 		vp->setViewport();
 		vp->setProjection();
 
-		mDrawBuffer1->get(5)->draw();
-		mDrawBuffer2->get(5)->draw();
-		mDrawBuffer1->get(5)->frameInit();
-		mDrawBuffer2->get(5)->frameInit();
+		mOpaqueDrawBuffer->get(DB_2DLayer)->draw();
+		mTransparentDrawBuffer->get(DB_2DLayer)->draw();
+		mOpaqueDrawBuffer->get(DB_2DLayer)->frameInit();
+		mTransparentDrawBuffer->get(DB_2DLayer)->frameInit();
 
 		PSMTXCopy(mtx2, j3dSys.mViewMtx);
 		j3dSys.reinitGX();

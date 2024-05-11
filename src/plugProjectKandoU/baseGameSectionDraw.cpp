@@ -29,8 +29,8 @@ void BaseGameSection::newdraw_draw3D_all(Graphics& gfx)
 	gfx.mapViewport(&vpDelegate);
 
 	// Initialise both draw buffers for the frame
-	mDrawBuffer1->frameInitAll();
-	mDrawBuffer2->frameInitAll();
+	mOpaqueDrawBuffer->frameInitAll();
+	mTransparentDrawBuffer->frameInitAll();
 
 	if (!gameSystem->isMultiplayerMode()) {
 		particleMgr->setXfb(mXfbImage->mTexInfo);
@@ -82,18 +82,18 @@ void BaseGameSection::newdraw_drawAll(Viewport* vp)
 
 	sys->mTimers->_start("jdraw", true);
 	mLightMgr->set(gfx);
-	mDrawBuffer1->get(6)->draw();
-	mDrawBuffer1->get(2)->draw();
-	mDrawBuffer1->get(9)->draw();
-	mDrawBuffer1->get(3)->draw();
-	mDrawBuffer1->get(0)->draw();
+	mOpaqueDrawBuffer->get(DB_FirstLayer)->draw();
+	mOpaqueDrawBuffer->get(DB_MapLayer)->draw();
+	mOpaqueDrawBuffer->get(DB_FarmLayer)->draw();
+	mOpaqueDrawBuffer->get(DB_PikiLayer)->draw();
+	mOpaqueDrawBuffer->get(DB_NormalLayer)->draw();
 	doSimpleDraw(vp);
 	mLightMgr->set(gfx);
-	mDrawBuffer2->get(3)->draw();
-	mDrawBuffer2->get(0)->draw();
+	mTransparentDrawBuffer->get(DB_PikiLayer)->draw();
+	mTransparentDrawBuffer->get(DB_NormalLayer)->draw();
 	mLightMgr->mFogMgr->off(gfx);
-	mDrawBuffer1->get(1)->draw();
-	mDrawBuffer2->get(1)->draw();
+	mOpaqueDrawBuffer->get(DB_NormalFogOffLayer)->draw();
+	mTransparentDrawBuffer->get(DB_NormalFogOffLayer)->draw();
 	mLightMgr->mFogMgr->set(gfx);
 	sys->mTimers->_stop("jdraw");
 
@@ -109,8 +109,8 @@ void BaseGameSection::newdraw_drawAll(Viewport* vp)
 	vp->setProjection();
 
 	sys->mTimers->_start("j3d-etc", true);
-	mDrawBuffer1->get(7)->draw();
-	mDrawBuffer2->get(7)->draw();
+	mOpaqueDrawBuffer->get(DB_PostShadowLayer)->draw();
+	mTransparentDrawBuffer->get(DB_PostShadowLayer)->draw();
 
 	// only capture normal xfb image if the 2d one doesnt exist
 	if (!mXfbTexture2d && (mXfbFlags & 3) == 0) {
@@ -119,18 +119,18 @@ void BaseGameSection::newdraw_drawAll(Viewport* vp)
 	mLightMgr->set(gfx);
 	mLightMgr->mFogMgr->off(gfx);
 
-	mDrawBuffer1->get(8)->draw();
-	mDrawBuffer2->get(8)->draw();
+	mOpaqueDrawBuffer->get(DB_ObjectLastLayer)->draw();
+	mTransparentDrawBuffer->get(DB_ObjectLastLayer)->draw();
 
 	vp->setJ3DViewMtx(true);
 
 	mLightMgr->mFogMgr->off(gfx);
-	mDrawBuffer1->get(4)->draw();
-	mDrawBuffer2->get(4)->draw();
+	mOpaqueDrawBuffer->get(DB_PostRenderLayer)->draw();
+	mTransparentDrawBuffer->get(DB_PostRenderLayer)->draw();
 	mLightMgr->mFogMgr->set(gfx);
 	vp->setJ3DViewMtx(true);
 
-	mDrawBuffer2->get(2)->draw();
+	mTransparentDrawBuffer->get(DB_MapLayer)->draw();
 	vp->setJ3DViewMtx(false);
 	sys->mTimers->_stop("j3d-etc");
 }

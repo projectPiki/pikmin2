@@ -861,7 +861,7 @@ void Pellet::onInit(CreatureInitArg* initArg)
 	mClaim         = 0;
 	mAngleOffset   = 0.0f;
 	mFloorTriangle = nullptr;
-	_311           = 0;
+	mHasCollided   = 0;
 	mFaceDir       = 0.0f;
 	mAnimSpeed     = 0.0f;
 	mIsCaptured    = 0;
@@ -2179,7 +2179,7 @@ void Pellet::update()
 
 		bool someCheck              = true;
 		mRigid.mConfigs[0].mForce.y = -_aiConstants->mGravity.mData;
-		if ((mPelletSM->getCurrID(this) == 0) && (_311 != 0) && !isPicked()) {
+		if ((mPelletSM->getCurrID(this) == 0) && (mHasCollided != 0) && !isPicked()) {
 			Vector3f rigidVelocity = mRigid.mConfigs[0].mVelocity;
 			f32 mag                = rigidVelocity.length();
 

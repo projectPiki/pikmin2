@@ -70,12 +70,12 @@ DynParticle* DynParticle::getAt(int idx)
  */
 DynCreature::DynCreature()
 {
-	mCurrentChildPtcl = nullptr;
-	mDynParticle      = nullptr;
-	mRotation         = Vector3f(0.0f);
-	_300              = Vector3f(0.0f);
-	mCanBounce        = 0;
-	_311              = 0;
+	mCurrentChildPtcl    = nullptr;
+	mDynParticle         = nullptr;
+	mRotation            = Vector3f(0.0f);
+	mTransformedPosition = Vector3f(0.0f);
+	mCanBounce           = 0;
+	mHasCollided         = 0;
 }
 
 /**
@@ -144,7 +144,7 @@ void DynCreature::computeForces(f32 friction)
 			if (!particle->mIsTouching) {
 				continue;
 			}
-			Vector3f sep      = particle->mPosition - _300;
+			Vector3f sep      = particle->mPosition - mTransformedPosition;
 			Vector3f crossVec = mRigid.mConfigs[0].mRotatedMomentum.cross(sep) + mRigid.mConfigs[0].mVelocity;
 
 			f32 dotProd  = crossVec.dot(particle->_20); // f13
@@ -196,7 +196,7 @@ void DynCreature::computeForces(f32 friction)
 		if (!particle->mIsTouching) {
 			continue;
 		}
-		Vector3f sep      = particle->mPosition - _300;
+		Vector3f sep      = particle->mPosition - mTransformedPosition;
 		Vector3f crossVec = mRigid.mConfigs[0].mRotatedMomentum.cross(sep) + mRigid.mConfigs[0].mVelocity;
 		Vector3f vec      = particle->_20 * crossVec.dot(particle->_20);
 		vec               = crossVec - vec;
@@ -598,7 +598,7 @@ void DynCreature::tracemoveCallback(Vector3f& vec1, Vector3f& vec2)
 			bounceCallback(nullptr);
 		}
 
-		_311                           = 1;
+		mHasCollided                   = 1;
 		mCurrentChildPtcl->mIsTouching = 1;
 		mCurrentChildPtcl->_20         = vec2;
 	}
@@ -662,12 +662,12 @@ int DynCreature::getParticleNum()
  */
 void DynCreature::simulate(f32 rate)
 {
-	mCanBounce = _311;
-	_311       = 0;
+	mCanBounce   = mHasCollided;
+	mHasCollided = 0;
 
 	RigidBodyCallback delegate(this, &DynCreature::tracemoveCallback);
 
-	_300 = mBaseTrMatrix.mtxMult(mRotation);
+	mTransformedPosition = mBaseTrMatrix.mtxMult(mRotation);
 	mRigid.integrate(rate, 0);
 
 	Vector3f velocity;
@@ -676,7 +676,7 @@ void DynCreature::simulate(f32 rate)
 		particle->mPosition = mBaseTrMatrix.mtxMult(particle->mRotation);
 
 		velocity     = mRigid.mConfigs[0].mRotatedMomentum;
-		Vector3f sep = particle->mPosition - _300;
+		Vector3f sep = particle->mPosition - mTransformedPosition;
 		velocity.cross(velocity, sep);
 		velocity = velocity + mRigid.mConfigs[0].mVelocity;
 
