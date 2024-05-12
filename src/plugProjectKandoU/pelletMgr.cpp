@@ -5286,7 +5286,7 @@ SysShape::Model* BasePelletMgr::createShape(int modelDataIndex, int arg2)
 			JUT_PANICLINE(5061, "bpmgr:no modelData!%d\n", modelDataIndex);
 		}
 		model = new SysShape::Model(mModelData[modelDataIndex], 0, modelType);
-		model->mJ3dModel->newDifferedTexMtx(TexDiff_0);
+		model->mJ3dModel->newDifferedTexMtx(TEXDIFF_Material);
 	}
 	return model;
 }

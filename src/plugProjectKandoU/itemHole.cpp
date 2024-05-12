@@ -412,7 +412,7 @@ void Mgr::onLoadResources()
  */
 void Mgr::setup(Game::BaseItem* item)
 {
-	item->mModel = new SysShape::Model(getModelData(0), 0x20000, 2);
+	item->mModel = new SysShape::Model(getModelData(0), J3DMODEL_CreateNewDL, 2);
 	item->mModel->mJ3dModel->calc();
 	item->mModel->mJ3dModel->calcMaterial();
 	item->mModel->mJ3dModel->makeDL();

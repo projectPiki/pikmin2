@@ -46,10 +46,10 @@ J3DSys::J3DSys()
 	mVtxColor     = nullptr;
 
 	for (u32 i = 0; i < 8; i++) {
-		sTexCoordScaleTable[i]._00 = 1;
-		sTexCoordScaleTable[i]._02 = 1;
-		sTexCoordScaleTable[i]._04 = 0;
-		sTexCoordScaleTable[i]._06 = 0;
+		sTexCoordScaleTable[i].mScaleS = 1;
+		sTexCoordScaleTable[i].mScaleT = 1;
+		sTexCoordScaleTable[i].mBiasS  = 0;
+		sTexCoordScaleTable[i].mBiasT  = 0;
 	}
 }
 

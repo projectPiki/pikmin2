@@ -89,7 +89,7 @@ void Mgr::loadTexData()
  */
 SysShape::Model* Mgr::createModel()
 {
-	SysShape::Model* model = new SysShape::Model(mModelData, 0x40000, mModelType);
+	SysShape::Model* model = new SysShape::Model(mModelData, J3DMODEL_UseSingleSharedDL, mMtxBufferSize);
 	P2ASSERTLINE(144, model);
 	return model;
 }

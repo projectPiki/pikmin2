@@ -770,7 +770,7 @@ void Mgr::onLoadResources()
  * @note Address: 0x801EB3C8
  * @note Size: 0x74
  */
-void Mgr::setup(BaseItem* item) { item->mModel = new SysShape::Model(getModelData(0), 0x20000, 2); }
+void Mgr::setup(BaseItem* item) { item->mModel = new SysShape::Model(getModelData(0), J3DMODEL_CreateNewDL, 2); }
 
 /**
  * @note Address: 0x801EB43C

@@ -21,8 +21,8 @@ struct ModelMgr {
 	J3DModelData** mModelData;     // _04
 	int mHeapLimit;                // _08
 	JKRSolidHeap** mHeaps;         // _0C
-	u32 _10;                       // _10
-	u32 _14;                       // _14
+	u32 mModelFlags;               // _10
+	u32 mModelType;                // _14
 	IDelegate1<Model*>* mDelegate; // _18
 };
 } // namespace SysShape

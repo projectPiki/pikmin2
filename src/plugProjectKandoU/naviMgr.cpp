@@ -108,7 +108,7 @@ void NaviMgr::setupNavi(Navi* navi)
 	navi->mParms       = mNaviParms;
 	navi->mMarkerModel = new SysShape::Model(mCursorModelData, 0, 2);
 
-	navi->mCursorModel = new SysShape::Model(mMarkerModelData, 0x80000, 2);
+	navi->mCursorModel = new SysShape::Model(mMarkerModelData, J3DMODEL_ShareDL, 2);
 	navi->mCursorModel->mJ3dModel->newDifferedDisplayList(0x1000000);
 	navi->mCursorModel->mJ3dModel->calc();
 	navi->mCursorModel->mJ3dModel->calcMaterial();

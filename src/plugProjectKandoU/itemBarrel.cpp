@@ -211,7 +211,7 @@ void Item::constructor() { mSoundObj = new PSM::WorkItem(this); }
  */
 void Item::onInit(CreatureInitArg*)
 {
-	mModel = new SysShape::Model(mgr->getModelData(0), 0x20000, 2);
+	mModel = new SysShape::Model(mgr->getModelData(0), J3DMODEL_CreateNewDL, 2);
 	mModel->mJ3dModel->calc();
 	mModel->mJ3dModel->calcMaterial();
 	mModel->mJ3dModel->makeDL();
@@ -359,7 +359,7 @@ Mgr::Mgr()
 	mObjectPathComponent = "user/Kando/objects/barrel";
 	mParms               = new BarrelParms();
 	void* resource       = JKRDvdRipper::loadToMainRAM("user/Abe/item/barrelParms.txt", nullptr, Switch_0, 0, nullptr,
-                                                 JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
+	                                                   JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
 	if (resource) {
 		RamStream stream(resource, -1);
 		stream.resetPosition(true, true);

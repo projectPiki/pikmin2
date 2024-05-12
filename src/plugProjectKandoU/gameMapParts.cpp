@@ -5153,8 +5153,8 @@ void RoomMapMgr::makeOneRoom(f32 centreX, f32 centreY, f32 direction, char* unit
 	room->mUnit = unit;
 	PSMTXCopy(mtx1.mMatrix.mtxView, room->mRoomSpaceMtx.mMatrix.mtxView);
 	PSMTXInverse(mtx1.mMatrix.mtxView, room->mInvRoomSpaceMtx.mMatrix.mtxView);
-	room->mModel = new SysShape::Model(unit->mModelData, 0x20000, 2);
-	room->mModel->mJ3dModel->newDifferedTexMtx(TexDiff_0);
+	room->mModel = new SysShape::Model(unit->mModelData, J3DMODEL_CreateNewDL, 2);
+	room->mModel->mJ3dModel->newDifferedTexMtx(TEXDIFF_Material);
 	room->mModel->mJ3dModel->newDifferedDisplayList(0x200);
 
 	PSMTXCopy(room->mRoomSpaceMtx.mMatrix.mtxView, room->mModel->mJ3dModel->mPosMtx);

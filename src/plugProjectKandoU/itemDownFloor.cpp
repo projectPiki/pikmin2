@@ -509,7 +509,7 @@ Mgr::Mgr()
 void Mgr::setupDownFloor(Item* item)
 {
 	sys->heapStatusStart("new Model", nullptr);
-	item->mModel = new SysShape::Model(mModelData[item->mModelType], 0x20000, 2);
+	item->mModel = new SysShape::Model(mModelData[item->mModelType], J3DMODEL_CreateNewDL, 2);
 	item->mModel->mJ3dModel->calc();
 	item->mModel->mJ3dModel->calcMaterial();
 	item->mModel->mJ3dModel->makeDL();

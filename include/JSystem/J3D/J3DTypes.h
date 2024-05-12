@@ -655,10 +655,10 @@ struct J3DNBTScale : public J3DNBTScaleInfo {
 };
 
 struct J3DTexCoordScaleInfo {
-	u16 _00; // _00
-	u16 _02; // _02
-	u16 _04; // _04
-	u16 _06; // _06
+	u16 mScaleS; // _00
+	u16 mScaleT; // _02
+	u16 mBiasS;  // _04
+	u16 mBiasT;  // _06
 };
 
 void patchTexNo_PtrToIdx(u32 texID, const u16& idx);
@@ -669,7 +669,7 @@ void loadTexCoordGens(u32, J3DTexCoord*);
 
 inline void loadTexCoordScale(GXTexCoordID coord, const J3DTexCoordScaleInfo& info)
 {
-	J3DGDSetTexCoordScale2(coord, info._00, info._04 == 1, 0, info._02, info._06 == 1, 0);
+	J3DGDSetTexCoordScale2(coord, info.mScaleS, info.mBiasS == 1, 0, info.mScaleT, info.mBiasT == 1, 0);
 }
 
 inline void loadTevColor(u32 reg, const J3DGXColorS10& color) { J3DGDSetTevColorS10(GXTevRegID(reg + 1), (GXColorS10)color); }
@@ -678,9 +678,15 @@ inline void loadTevKColor(u32 reg, const J3DGXColor& color) { J3DGDSetTevKColor(
 
 inline void loadZCompLoc(u8 compLoc) { J3DGDSetZCompLoc(compLoc); }
 
-enum J3DTexDiffFlag { TexDiff_0 = 0, TexDiff_1 };
+enum J3DTexDiffFlag {
+	TEXDIFF_Material = 0,
+	TEXDIFF_Default,
+};
 
-enum J3DDeformAttachFlag { DeformAttach_0 = 0, DeformAttach_1 = 1 };
+enum J3DDeformAttachFlag {
+	DeformAttach_0 = 0,
+	DeformAttach_1 = 1,
+};
 
 extern const GXColor j3dDefaultColInfo;
 extern const GXColor j3dDefaultAmbInfo;

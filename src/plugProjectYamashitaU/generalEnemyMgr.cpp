@@ -739,7 +739,7 @@ EnemyMgrBase* GeneralEnemyMgr::getIEnemyMgrBase(int enemyID)
  * @note Address: 0x8010D5F8
  * @note Size: 0x21C
  */
-void GeneralEnemyMgr::allocateEnemys(u8 type, int heapSize)
+void GeneralEnemyMgr::allocateEnemys(u8 count, int heapSize)
 {
 	if (heapSize < 0) {
 		mHeapSize = ENEMY_HEAP_SIZE_STORY;
@@ -776,7 +776,7 @@ void GeneralEnemyMgr::allocateEnemys(u8 type, int heapSize)
 	for (int i = 0; i < gEnemyInfoNum; i++) {
 		int enemyNum = getEnemyNum(gEnemyInfo[i].mId, true);
 		if ((gEnemyInfo[i].mFlags & EFlag_UseOwnID) && (enemyNum > 0)) {
-			createEnemyMgr(type, gEnemyInfo[i].mId, enemyNum);
+			createEnemyMgr(count, gEnemyInfo[i].mId, enemyNum);
 		}
 	}
 

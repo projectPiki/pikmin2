@@ -33,7 +33,7 @@ EnemyMgrBase::EnemyMgrBase(int objLimit, u8 modelType)
 {
 	mModelData          = nullptr;
 	mAnimMgr            = nullptr;
-	mModelType          = modelType;
+	mMtxBufferSize      = modelType;
 	mCollPartFactory    = nullptr;
 	mObjLimit           = objLimit;
 	mNumObjects         = 0;
@@ -345,7 +345,7 @@ void EnemyMgrBase::resetDebugParm(u32 debugParm) { mParms->resetDebugParm(debugP
  */
 SysShape::Model* EnemyMgrBase::createModel()
 {
-	SysShape::Model* model = new SysShape::Model(mModelData, 0x20000, mModelType);
+	SysShape::Model* model = new SysShape::Model(mModelData, J3DMODEL_CreateNewDL, mMtxBufferSize);
 
 	Matrixf identity;
 	PSMTXIdentity(identity.mMatrix.mtxView);

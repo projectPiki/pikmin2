@@ -776,7 +776,7 @@ void ShapeMapMgr::load(LoadArg& arg)
 	J3DModelData* model = J3DModelLoaderDataBase::load(file, 0x20040000);
 	model->newSharedDisplayList(0x40000);
 	model->makeSharedDL();
-	mMapModel = new SysShape::Model(model, 0x20000, 2);
+	mMapModel = new SysShape::Model(model, J3DMODEL_CreateNewDL, 2);
 	mMapModel->getJ3DModel()->newDifferedDisplayList(0x200);
 	mMapModel->getJ3DModel()->calc();
 	mMapModel->getJ3DModel()->calcMaterial();

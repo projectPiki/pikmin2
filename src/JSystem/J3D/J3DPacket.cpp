@@ -14,7 +14,8 @@
 #include "JSystem/J3D/J3DSys.h"
 #include "JSystem/JKernel/JKRHeap.h"
 
-static u32 sDifferedRegister[7] = { 1, 2, 0x1000000, 0x10000000, 0x20000000, 0x2000000, 0x8000000 };
+static u32 sDifferedRegister[7] = { J3DMDF_DiffMatColor, J3DMDF_DiffLight,      J3DMDF_DiffColorReg,   J3DMDF_DiffFog,
+	                                J3DMDF_DiffBlend,    J3DMDF_DiffKonstColor, J3DMDF_DiffIndTevStage };
 static u32 sSizeOfDiffered[7]   = { 0xD, 0x15, 0x78, 0x37, 0xF, 0x13, 0x2D };
 
 int J3DDisplayListObj::sInterruptFlag;
@@ -399,7 +400,7 @@ J3DErrType J3DShapePacket::newDifferedDisplayList(u32 flag)
 J3DErrType J3DShapePacket::newDifferedTexMtx(J3DTexDiffFlag flag)
 {
 	switch (flag) {
-	case TexDiff_0: {
+	case TEXDIFF_Material: {
 		u32 texGenNum = mShape->getMaterial()->mTexGenBlock->getTexGenNum();
 		mTexMtxObj    = new J3DTexMtxObj(texGenNum);
 		if (mTexMtxObj == nullptr) {
@@ -407,7 +408,7 @@ J3DErrType J3DShapePacket::newDifferedTexMtx(J3DTexDiffFlag flag)
 		}
 		break;
 	}
-	case TexDiff_1:
+	case TEXDIFF_Default:
 		mTexMtxObj = new J3DTexMtxObj(8);
 		if (mTexMtxObj == nullptr) {
 			return JET_OutOfMemory;

@@ -217,7 +217,7 @@ void Item::constructor() { mSoundObj = new PSM::WorkItem(this); }
 void Item::onInit(CreatureInitArg* initArg)
 {
 	mSizeTimer = 0.0f;
-	mModel     = new SysShape::Model(mgr->getModelData(0), 0x20000, 2);
+	mModel     = new SysShape::Model(mgr->getModelData(0), J3DMODEL_CreateNewDL, 2);
 	mModel->mJ3dModel->calc();
 	mModel->mJ3dModel->calcMaterial();
 	mModel->mJ3dModel->makeDL();

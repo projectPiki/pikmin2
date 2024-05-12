@@ -402,9 +402,9 @@ u16 getTexNoReg(void* p1) { return *(u32*)(static_cast<u8*>(p1) + 1); }
  */
 void loadTexNo(u32 id, const u16& data)
 {
-	ResTIMG* resTIMG                    = j3dSys.getTexture()->getResTIMG(data);
-	J3DSys::sTexCoordScaleTable[id]._00 = resTIMG->getWidth();
-	J3DSys::sTexCoordScaleTable[id]._02 = resTIMG->getHeight();
+	ResTIMG* resTIMG                        = j3dSys.getTexture()->getResTIMG(data);
+	J3DSys::sTexCoordScaleTable[id].mScaleS = resTIMG->getWidth();
+	J3DSys::sTexCoordScaleTable[id].mScaleT = resTIMG->getHeight();
 	GDOverflowCheck(0x14);
 	J3DGDSetTexImgPtr(GXTexMapID(id), (u8*)resTIMG + resTIMG->mImageDataOffset);
 	J3DGDSetTexImgAttr(GXTexMapID(id), resTIMG->getWidth(), resTIMG->getHeight(), GXTexFmt(resTIMG->mTextureFormat & 0x0f));
@@ -448,21 +448,11 @@ void loadNBTScale(J3DNBTScale& scale)
 void makeTexCoordTable()
 {
 	// `u8 j3dTexCoordTable[7623]` could also be though of as `u8 j3dTexCoordTable[11][21][11][3]`
-    u8* table = j3dTexCoordTable;
- 
-    const u8 texMtx[] = {
-        GX_TEXMTX0,
-        GX_TEXMTX1,
-        GX_TEXMTX2,
-        GX_TEXMTX3,
-        GX_TEXMTX4,
-        GX_TEXMTX5,
-        GX_TEXMTX6,
-        GX_TEXMTX7,
-        GX_TEXMTX8,
-        GX_TEXMTX9,
-        GX_IDENTITY,
-    };
+	u8* table = j3dTexCoordTable;
+
+	const u8 texMtx[] = {
+		GX_TEXMTX0, GX_TEXMTX1, GX_TEXMTX2, GX_TEXMTX3, GX_TEXMTX4, GX_TEXMTX5, GX_TEXMTX6, GX_TEXMTX7, GX_TEXMTX8, GX_TEXMTX9, GX_IDENTITY,
+	};
 
 	size_t idx;
 
@@ -471,11 +461,11 @@ void makeTexCoordTable()
 			// 21u makes me think there's some sizeof() shenanigans
 			for (int k = 0; k < 11; k++) {
 				idx = j * 11 + i * (11 * 21) + k;
-				
+
 				table[idx * 3 + 0] = i;
-                table[idx * 3 + 1] = j;
-                table[idx * 3 + 2] = texMtx[k];
-            }
+				table[idx * 3 + 1] = j;
+				table[idx * 3 + 2] = texMtx[k];
+			}
 		}
 	}
 	/*

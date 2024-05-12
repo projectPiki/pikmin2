@@ -2,6 +2,7 @@
 #define _JSYSTEM_J3D_J3DPE_H
 
 #include "JSystem/J3D/J3DTypes.h"
+#include "JSystem/J3D/J3DPacket.h"
 #include "types.h"
 
 struct J3DFogInfo {
@@ -97,7 +98,7 @@ struct J3DPEBlockFogOff : public J3DPEBlock {
 	virtual void load();             // _0C
 	virtual void diff(u32 flag)      // _14 (weak)
 	{
-		if (flag & 0x20000000) {
+		if (flag & J3DMDF_DiffBlend) {
 			diffBlend();
 		}
 	}

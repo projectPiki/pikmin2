@@ -129,7 +129,7 @@ struct GeneralEnemyMgr : public GenericObjectMgr, public CNode {
 	char* getEnemyName(int enemyID, int flags);
 	int getEnemyID(char* name, int flags);
 	EnemyMgrBase* getIEnemyMgrBase(int enemyID);
-	void allocateEnemys(u8 count, int enemyID);
+	void allocateEnemys(u8 playerMode, int enemyID);
 	void resetEnemyNum();
 	void addEnemyNum(int enemyID, u8 count, GenObjectEnemy* genEnemy);
 	u8 getEnemyNum(int enemyID, bool doCheckOriginal);

@@ -77,7 +77,10 @@ struct Generator : public CNode {
 	u8 mIsInactive;            // _AC
 	int mIndex;                // _B0
 
-	enum RamMode { RM_Disc = 0, RM_MemoryCache };
+	enum RamMode {
+		RM_Disc = 0,
+		RM_MemoryCache,
+	};
 	static u8 ramMode;
 };
 

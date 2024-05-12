@@ -2041,7 +2041,7 @@ Onyon* ItemOnyon::Mgr::birth(int objtype, int onyontype)
 		onyon->mAnimator.startAnim(0, nullptr);
 		onyon->mAnimSpeed    = 0.0f;
 		onyon->mObjectTypeID = OBJTYPE_Ufo;
-		onyon->mModel        = new SysShape::Model(mModelData[objtype], 0x00080000, 2);
+		onyon->mModel        = new SysShape::Model(mModelData[objtype], J3DMODEL_ShareDL, 2);
 
 		onyon->mModel->mJ3dModel->newDifferedDisplayList(0x1000000);
 		onyon->mModel->mJ3dModel->calc();

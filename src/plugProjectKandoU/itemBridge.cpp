@@ -69,7 +69,7 @@ void Item::onInit(CreatureInitArg* settings)
 		mBridgeType = ((BridgeInitArg*)settings)->mBridgeType;
 	}
 
-	mModel = new SysShape::Model(mgr->getModelData(mBridgeType), 0x20000, 2);
+	mModel = new SysShape::Model(mgr->getModelData(mBridgeType), J3DMODEL_CreateNewDL, 2);
 	mModel->mJ3dModel->calc();
 	mModel->mJ3dModel->calcMaterial();
 	mModel->mJ3dModel->makeDL();

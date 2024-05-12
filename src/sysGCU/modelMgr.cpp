@@ -60,7 +60,7 @@ namespace SysShape {
  * @note Address: 0x8042AB00
  * @note Size: 0x1D8
  */
-ModelMgr::ModelMgr(int modelDataLimit, J3DModelData** modelData, int heapLimit, u32 p4, u32 p5, IDelegate1<Model*>* delegate)
+ModelMgr::ModelMgr(int modelDataLimit, J3DModelData** modelData, int heapLimit, u32 modelFlags, u32 modelType, IDelegate1<Model*>* delegate)
 {
 	mModelDataLimit = modelDataLimit;
 	mModelData      = new J3DModelData*[modelDataLimit];
@@ -68,8 +68,8 @@ ModelMgr::ModelMgr(int modelDataLimit, J3DModelData** modelData, int heapLimit, 
 		mModelData[i] = modelData[i];
 	}
 	mHeapLimit  = heapLimit;
-	_10         = p4;
-	_14         = p5;
+	mModelFlags = modelFlags;
+	mModelType  = modelType;
 	mDelegate   = delegate;
 	mHeaps      = new JKRSolidHeap*[heapLimit];
 	int maxSize = calcMaximumModelSize();
@@ -106,7 +106,7 @@ int ModelMgr::calcModelSize(J3DModelData* data)
 		return 0;
 	}
 	uint initialFreeSize   = JKRHeap::sCurrentHeap->getTotalFreeSize();
-	SysShape::Model* model = new SysShape::Model(data, _10, _14);
+	SysShape::Model* model = new SysShape::Model(data, mModelFlags, mModelType);
 	if (mDelegate) {
 		mDelegate->invoke(model);
 	}
@@ -132,7 +132,7 @@ Model* ModelMgr::createModel(int modelIndex, int heapIndex)
 		for (int i = 0; i < mHeapLimit; i++) { }
 		JUT_PANICLINE(173, "solidHeap null!\n");
 	}
-	SysShape::Model* model = new SysShape::Model(mModelData[modelIndex], _10, _14);
+	SysShape::Model* model = new SysShape::Model(mModelData[modelIndex], mModelFlags, mModelType);
 	if (mDelegate) {
 		mDelegate->invoke(model);
 	}

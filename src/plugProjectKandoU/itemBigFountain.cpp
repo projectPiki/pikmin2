@@ -247,7 +247,7 @@ void Item::constructor() { mSoundObj = new PSM::WorkItem(this); }
  */
 void Item::onInit(CreatureInitArg* initArg)
 {
-	mModel = new SysShape::Model(mgr->getModelData(0), 0x20000, 2);
+	mModel = new SysShape::Model(mgr->getModelData(0), J3DMODEL_CreateNewDL, 2);
 	mModel->mJ3dModel->calc();
 	mModel->mJ3dModel->calcMaterial();
 	mModel->mJ3dModel->makeDL();
@@ -500,7 +500,7 @@ Mgr::Mgr()
 	mItemName            = "ãAä“ä‘åáêÚ"; // 'return geyser'
 	mParms               = new FountainParms();
 	void* data           = JKRDvdRipper::loadToMainRAM("user/Abe/item/fountainParms.txt", nullptr, Switch_0, 0, nullptr,
-                                             JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
+	                                                   JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
 	if (data != nullptr) {
 		RamStream input(data, -1);
 		input.resetPosition(true, 1);

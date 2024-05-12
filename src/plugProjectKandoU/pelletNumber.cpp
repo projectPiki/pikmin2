@@ -108,7 +108,7 @@ void Mgr::setupResources()
  */
 void Mgr::onCreateModel(SysShape::Model* model)
 {
-	model->mJ3dModel->newDifferedTexMtx(TexDiff_0);
+	model->mJ3dModel->newDifferedTexMtx(TEXDIFF_Material);
 	model->mJ3dModel->newDifferedDisplayList(0x1000200);
 	model->mJ3dModel->calc();
 	model->mJ3dModel->calcMaterial();
