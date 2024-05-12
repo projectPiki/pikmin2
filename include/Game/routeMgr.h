@@ -166,6 +166,8 @@ struct WPEdgeSearchArg {
 		mStartPosition = startPos;
 	}
 
+	inline bool isLinkedTo(s16 idx) { return mLinks ? mLinks->isLinkedTo(idx) : false; }
+
 	Vector3f mStartPosition; // _00
 	bool mInWater;           // _0C
 	WayPointLinks* mLinks;   // _10
