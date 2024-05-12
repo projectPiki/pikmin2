@@ -249,14 +249,25 @@ Caster* Mgr::create(Sys::Sphere& sphere, f32 rotationAngle)
 	caster->mDisplayListSize = OSRoundDown32B(caster->mTriangleCount * 12 + 34);
 	caster->mDisplayList     = new (0x20) u8[caster->mDisplayListSize];
 
-	// this is wrong
+	int index               = 0;
 	caster->mDisplayList[0] = 0x90;
-	caster->mDisplayList[1] = (caster->mTriangleCount * 3) * 16;
-	caster->mDisplayList[2] = (caster->mTriangleCount * 3);
+	caster->mDisplayList[1] = 3 * (caster->mTriangleCount >> 16);
 
-	// this is wrong
-	for (int i = 0; i < caster->mDisplayListSize; i++) {
-		caster->mDisplayList[i] = i * 2;
+	for (int i = 0; i < caster->mTriangleCount; ++i) {
+		int j                           = index + 1;
+		caster->mDisplayList[index + 3] = (index >> 8) & 0xFF;
+		caster->mDisplayList[index + 4] = index & 0xFF;
+		caster->mDisplayList[index + 5] = (j >> 8) & 0xFF;
+		caster->mDisplayList[index + 6] = j & 0xFF;
+		index += 3;
+	}
+
+	int remaining = caster->mDisplayList[caster->mDisplayListSize - index];
+	while (remaining > 0) {
+		int size = MIN(remaining, 8);
+		memset(caster->mDisplayList + index, 0, size);
+		index += size;
+		remaining -= size;
 	}
 
 	DCFlushRange(caster->mDisplayList, caster->mDisplayListSize);
