@@ -74,9 +74,9 @@ CullFrustum::CullFrustum(int a)
 Vector3f CullFrustum::getUpVector()
 {
 	Vector3f upVec;
-	upVec.x = mViewMatrix->mMatrix.vecView.y[0];
-	upVec.y = mViewMatrix->mMatrix.vecView.y[1];
-	upVec.z = mViewMatrix->mMatrix.vecView.y[2];
+	upVec.x = mViewMatrix->mMatrix.structView.yx;
+	upVec.y = mViewMatrix->mMatrix.structView.yy;
+	upVec.z = mViewMatrix->mMatrix.structView.yz;
 	return upVec;
 }
 
@@ -87,9 +87,9 @@ Vector3f CullFrustum::getUpVector()
 Vector3f CullFrustum::getSideVector()
 {
 	Vector3f sideVec;
-	sideVec.x = -mViewMatrix->mMatrix.vecView.x[0];
-	sideVec.y = -mViewMatrix->mMatrix.vecView.x[1];
-	sideVec.z = -mViewMatrix->mMatrix.vecView.x[2];
+	sideVec.x = -mViewMatrix->mMatrix.structView.xx;
+	sideVec.y = -mViewMatrix->mMatrix.structView.xy;
+	sideVec.z = -mViewMatrix->mMatrix.structView.xz;
 	return sideVec;
 }
 
@@ -100,9 +100,9 @@ Vector3f CullFrustum::getSideVector()
 Vector3f CullFrustum::getViewVector()
 {
 	Vector3f viewVec;
-	viewVec.x = -mViewMatrix->mMatrix.vecView.z[0];
-	viewVec.y = -mViewMatrix->mMatrix.vecView.z[1];
-	viewVec.z = -mViewMatrix->mMatrix.vecView.z[2];
+	viewVec.x = -mViewMatrix->mMatrix.structView.zx;
+	viewVec.y = -mViewMatrix->mMatrix.structView.zy;
+	viewVec.z = -mViewMatrix->mMatrix.structView.zz;
 	return viewVec;
 }
 
@@ -113,24 +113,24 @@ Vector3f CullFrustum::getViewVector()
 Vector3f CullFrustum::getPosition()
 {
 	Vector3f tVec;
-	tVec.x = -mViewMatrix->mMatrix.vecView.x[3];
-	tVec.y = -mViewMatrix->mMatrix.vecView.y[3];
-	tVec.z = -mViewMatrix->mMatrix.vecView.z[3];
+	tVec.x = -mViewMatrix->mMatrix.structView.tx;
+	tVec.y = -mViewMatrix->mMatrix.structView.ty;
+	tVec.z = -mViewMatrix->mMatrix.structView.tz;
 
 	Vector3f xVec;
-	xVec.x = mViewMatrix->mMatrix.vecView.x[0];
-	xVec.y = mViewMatrix->mMatrix.vecView.y[0];
-	xVec.z = mViewMatrix->mMatrix.vecView.z[0];
+	xVec.x = mViewMatrix->mMatrix.structView.xx;
+	xVec.y = mViewMatrix->mMatrix.structView.yx;
+	xVec.z = mViewMatrix->mMatrix.structView.zx;
 
 	Vector3f yVec;
-	yVec.x = mViewMatrix->mMatrix.vecView.x[1];
-	yVec.y = mViewMatrix->mMatrix.vecView.y[1];
-	yVec.z = mViewMatrix->mMatrix.vecView.z[1];
+	yVec.x = mViewMatrix->mMatrix.structView.xy;
+	yVec.y = mViewMatrix->mMatrix.structView.yy;
+	yVec.z = mViewMatrix->mMatrix.structView.zy;
 
 	Vector3f zVec;
-	zVec.x = mViewMatrix->mMatrix.vecView.x[2];
-	zVec.y = mViewMatrix->mMatrix.vecView.y[2];
-	zVec.z = mViewMatrix->mMatrix.vecView.z[2];
+	zVec.x = mViewMatrix->mMatrix.structView.xz;
+	zVec.y = mViewMatrix->mMatrix.structView.yz;
+	zVec.z = mViewMatrix->mMatrix.structView.zz;
 
 	Vector3f position;
 	position.x = dot(tVec, xVec);

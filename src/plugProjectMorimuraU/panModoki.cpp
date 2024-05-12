@@ -259,9 +259,9 @@ void Obj::updateCaptureMatrix()
 		f32 pelletZ = mCarrySizeDiff * 0.2f + dist2D;
 		matrix      = mKamuJoint->getWorldMatrix();
 		PSMTXCopy(matrix->mMatrix.mtxView, mCarryMatrix.mMatrix.mtxView);
-		mCarryMatrix.mMatrix.vecView.x[3] += (f32)(xVec.x * pelletZ);
-		mCarryMatrix.mMatrix.vecView.y[3] += (f32)(xVec.y * pelletZ);
-		mCarryMatrix.mMatrix.vecView.z[3] += (f32)(xVec.z * pelletZ);
+		mCarryMatrix.mMatrix.structView.tx += (f32)(xVec.x * pelletZ);
+		mCarryMatrix.mMatrix.structView.ty += (f32)(xVec.y * pelletZ);
+		mCarryMatrix.mMatrix.structView.tz += (f32)(xVec.z * pelletZ);
 		pellet->startCapture(&mCarryMatrix);
 		Vector3f rot(0.0f, HALF_PI - mAlsoRotationOffset, PI);
 

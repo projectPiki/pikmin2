@@ -461,13 +461,6 @@ struct Matrixf {
 	union {
 		Mtx mtxView; ///< A view of the matrix as a Mtx object.
 
-		// there is NO reason vecView should exist. TODO: Purge it.
-		struct {
-			f32 x[4];
-			f32 y[4];
-			f32 z[4];
-		} vecView; ///< A view of the matrix as three 4-element arrays.
-
 		struct {
 			f32 xx, yx, zx, tx;
 			f32 xy, yy, zy, ty;
