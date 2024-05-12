@@ -162,7 +162,7 @@ struct J3DMatPacket : public J3DDrawPacket {
 	{
 		sortFunc func = J3DDrawBuffer::sortFuncTable[buffer->mSortType];
 		return (buffer->*func)(this);
-	} // _08 (weak)
+	}                        // _08 (weak)
 	virtual void draw();     // _0C
 	virtual ~J3DMatPacket(); // _10
 

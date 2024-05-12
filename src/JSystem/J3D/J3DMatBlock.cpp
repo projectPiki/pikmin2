@@ -139,7 +139,7 @@ void J3DTevBlockPatched::initialize()
 		mTexIndices[i] = 0xFFFF;
 	}
 	for (int i = 0; i < 8; i++) {
-		mStages[i].mGPCommand  = 0xC0 + (i * 2);
+		mStages[i].mBPCommand1 = 0xC0 + (i * 2);
 		mStages[i].mBPCommand2 = 0xC1 + (i * 2);
 	}
 
@@ -168,7 +168,7 @@ void J3DTevBlock1::initialize()
 		mTexIndices[i] = 0xFFFF;
 	}
 	for (int i = 0; i < 1; i++) {
-		mStages[i].mGPCommand  = 0xC0 + (i * 2);
+		mStages[i].mBPCommand1 = 0xC0 + (i * 2);
 		mStages[i].mBPCommand2 = 0xC1 + (i * 2);
 	}
 	mTexNoOffset = 0;
@@ -187,7 +187,7 @@ void J3DTevBlock2::initialize()
 	mStageNum = 1;
 
 	for (int i = 0; i < 2; i++) {
-		mStages[i].mGPCommand  = 0xC0 + (i * 2);
+		mStages[i].mBPCommand1 = 0xC0 + (i * 2);
 		mStages[i].mBPCommand2 = 0xC1 + (i * 2);
 	}
 
@@ -220,7 +220,7 @@ void J3DTevBlock4::initialize()
 	mStageNum = 1;
 
 	for (int i = 0; i < 4; i++) {
-		mStages[i].mGPCommand  = 0xC0 + (i * 2);
+		mStages[i].mBPCommand1 = 0xC0 + (i * 2);
 		mStages[i].mBPCommand2 = 0xC1 + (i * 2);
 	}
 
@@ -265,7 +265,7 @@ void J3DTevBlock16::initialize()
 	}
 
 	for (int i = 0; i < 16; i++) {
-		mStages[i].mGPCommand  = 0xC0 + (i * 2);
+		mStages[i].mBPCommand1 = 0xC0 + (i * 2);
 		mStages[i].mBPCommand2 = 0xC1 + (i * 2);
 	}
 

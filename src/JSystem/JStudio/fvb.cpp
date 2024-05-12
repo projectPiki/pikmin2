@@ -380,7 +380,7 @@ void TObject_composite::prepare_data_(const data::TParse_TParagraph::TData& data
 	const TFunctionValue_composite* content = static_cast<const TFunctionValue_composite*>(data.mContent);
 	const CompositeOperation* ops           = getCompositeOperation_(*(JStudio::fvb::data::TEComposite*)content);
 
-	mSpecFV.data_set(ops->mSetFunc, ops->mGetFunc(&content->_00));
+	mSpecFV.data_set(ops->mSetFunc, ops->mGetFunc(&content->mAllocator));
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)

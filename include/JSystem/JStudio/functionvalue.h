@@ -293,6 +293,7 @@ struct TFunctionValue_composite : public TFunctionValue, public TFunctionValueAt
 		inline void operator=(const TData& other) { mDoubleData = other.mDoubleData; }
 		u32 getAsWord() const { return mWordData; }
 		f64 getAsDouble() const { return mDoubleData; }
+		const void* getAsRaw() const { return mRawData; }
 
 		union {
 			const void* mRawData;

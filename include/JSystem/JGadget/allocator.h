@@ -10,7 +10,7 @@ struct TAllocator {
 
 	inline TAllocator() { }
 
-	u8 _00;  // _00
+	u8 _00; // _00
 };
 
 typedef TAllocator<void*> TVoidAllocator;

@@ -4007,8 +4007,8 @@ void ZukanState::dvdloadA()
 	vp1->updateCameraAspect();
 	vp2->mCamera = mCamera;
 	vp2->updateCameraAspect();
-	vp1->mSplitOffset = mCameraAspect;
-	vp1->mSplitRatio  = Vector2f(1.0f);
+	vp1->mOffset     = mCameraAspect;
+	vp1->mSplitRatio = Vector2f(1.0f);
 	vp1->setRect(mWindowBounds);
 
 	particleMgr->setViewport(*gfx);

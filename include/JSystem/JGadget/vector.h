@@ -12,7 +12,7 @@ typedef u32 (*ExtendFunc)(u32, u32, u32);
 
 } // namespace vector
 
-template <typename T, class Allocator = JGadget::TAllocator<T> >
+template <typename T, class Allocator = JGadget::TAllocator<T> /***/>
 struct TVector {
 	// struct Destructed_deallocate_ {
 	// 	~Destructed_deallocate_(); // unused/inlined
