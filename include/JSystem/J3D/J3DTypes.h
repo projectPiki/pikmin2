@@ -827,7 +827,7 @@ enum J3DTexDiffFlag {
 
 enum J3DDeformAttachFlag {
 	DeformAttach_0 = 0,
-	DeformFlasg    = 1,
+	DeformAttach_1 = 1,
 };
 
 extern const GXColor j3dDefaultColInfo;
