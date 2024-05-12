@@ -253,7 +253,7 @@ void TParticle2dMgr::kill(JPABaseEmitter* emitter)
 void TParticle2dMgr::fade(JPABaseEmitter* emitter)
 {
 	if (emitter) {
-		emitter->mFlags |= 1;
+		emitter->setFlag(JPAEMIT_StopEmitting);
 		emitter->mMaxFrame = 1;
 	}
 }

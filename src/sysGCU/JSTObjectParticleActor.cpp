@@ -408,7 +408,7 @@ void ObjectParticleActor::emit()
 
 	mEmitter = particleMgr->createDemo(mEfxID, pos, mEfxType, 7);
 	if (mEmitter) {
-		mEmitter->mFlags |= 0x40;
+		mEmitter->setFlag(JPAEMIT_Immortal);
 		mEmitter->mEmitterCallback = this;
 		mEmitter->setGlobalRTMatrix(mMatrix.mMatrix.mtxView);
 	}

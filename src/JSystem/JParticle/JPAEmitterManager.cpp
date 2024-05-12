@@ -129,7 +129,7 @@ void JPAEmitterManager::calc()
 			emit      = (JPABaseEmitter*)link->getObjectPtr();
 			link      = link->getNext();
 			bool stat = emit->mResource->calc(mWorkData, emit);
-			if (stat && !emit->isFlag(0x200)) {
+			if (stat && !emit->isFlag(JPAEMIT_Unk10)) {
 				forceDeleteEmitter(emit);
 			}
 		}
@@ -167,7 +167,7 @@ void JPAEmitterManager::draw(const JPADrawInfo* info, u8 id)
 	JSUPtrLink* link = mGrpEmtr[id].mHead;
 	while (link) {
 		JPABaseEmitter* emit = (JPABaseEmitter*)link->getObjectPtr();
-		if (!emit->isFlag(0x4)) {
+		if (!emit->isFlag(JPAEMIT_StopDraw)) {
 			mWorkData->mResourceMgr = mResMgrAry[emit->mResMgrID];
 			emit->mResource->draw(mWorkData, emit);
 		}
@@ -231,7 +231,7 @@ void JPAEmitterManager::forceDeleteGroupEmitter(u8 grp)
 void JPAEmitterManager::forceDeleteEmitter(JPABaseEmitter* emit)
 {
 	emit->deleteAllParticle();
-	emit->setFlag(0x300);
+	emit->setFlag(JPAEMIT_ForceDelete | JPAEMIT_Unk10);
 	mGrpEmtr[emit->mGroupID].remove(&emit->mLink);
 	mFreeEmtrList.prepend(&emit->mLink);
 }

@@ -71,14 +71,16 @@ struct TOneEmitterChasePos : public TBase, public JPAEmitterCallBack {
 		if (mEmitter == nullptr) {
 			return;
 		}
-		mEmitter->mFlags |= 4;
+
+		mEmitter->setFlag(JPAEMIT_StopDraw);
 	} // _34 (weak)
 	virtual void endDemoDrawOn()
 	{
 		if (mEmitter == nullptr) {
 			return;
 		}
-		mEmitter->mFlags &= ~4;
+
+		mEmitter->resetFlag(JPAEMIT_StopDraw);
 	}                                  // _38 (weak)
 	virtual ~TOneEmitterChasePos() { } // _3C (weak)
 
@@ -123,13 +125,13 @@ struct TOneEmitterSimple : public TBase, public JPAEmitterCallBack {
 	virtual void startDemoDrawOff()             // _34 (weak)
 	{
 		if (mEmitter) {
-			mEmitter->mFlags |= 0x4;
+			mEmitter->setFlag(JPAEMIT_StopDraw);
 		}
 	}
 	virtual void endDemoDrawOn() // _38 (weak)
 	{
 		if (mEmitter) {
-			mEmitter->mFlags &= ~0x4;
+			mEmitter->resetFlag(JPAEMIT_StopDraw);
 		}
 	}
 	virtual ~TOneEmitterSimple() { } // _3C (weak)

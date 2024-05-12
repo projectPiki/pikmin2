@@ -25,8 +25,8 @@ struct JPAResource {
 	void init(JKRHeap*);
 	bool calc(JPAEmitterWorkData*, struct JPABaseEmitter*);
 	void draw(JPAEmitterWorkData*, JPABaseEmitter*);
-	void drawP(JPAEmitterWorkData*);
-	void drawC(JPAEmitterWorkData*);
+	void drawP(JPAEmitterWorkData*); // Draw parent
+	void drawC(JPAEmitterWorkData*); // Draw child
 	void setPTev();
 	void setCTev(JPAEmitterWorkData*);
 	void calc_p(JPAEmitterWorkData*, JPABaseParticle*);

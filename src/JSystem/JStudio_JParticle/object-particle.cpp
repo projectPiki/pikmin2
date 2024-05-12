@@ -127,11 +127,13 @@ void JStudio_JParticle::TAdaptor_particle::adaptor_do_END(JStudio::data::TEOpera
 	if (operation != JStudio::data::TEOD_Unknown_01) {
 		return;
 	}
+
 	JPABaseEmitter* emitter = mEmitter;
 	if (emitter == nullptr) {
 		return;
 	}
-	emitter->mFlags |= 1;
+
+	emitter->setFlag(JPAEMIT_StopEmitting);
 	emitter->mMaxFrame = 1;
 }
 

@@ -27,15 +27,16 @@ struct JPADrawInfo {
 };
 
 enum JPAEmitterFlags {
-	JPAEMIT_StopEmit            = 0x1,
+	JPAEMIT_StopEmitting        = 0x1,
 	JPAEMIT_StopCalc            = 0x2,
 	JPAEMIT_StopDraw            = 0x4,
 	JPAEMIT_EnableDeleteEmitter = 0x8,
 	JPAEMIT_FirstEmit           = 0x10,
 	JPAEMIT_RateStepEmit        = 0x20,
 	JPAEMIT_Immortal            = 0x40,
-	JPAEMIT_Unk8                = 0x80,
-	JPAEMIT_Unk9                = 0x100,
+	JPAEMIT_DrawChild           = 0x80,
+	JPAEMIT_ForceDelete         = 0x100,
+	JPAEMIT_Unk10               = 0x200,
 };
 
 struct JPABaseParticle {
@@ -132,7 +133,6 @@ struct JPABaseEmitter {
 	void setFlag(u32 flag) { mFlags |= flag; }
 	bool isFlag(u32 flag) const { return mFlags & flag; }
 	void resetFlag(u32 flag) { mFlags &= ~flag; }
-	bool is100() { return mFlags & 0x100; }
 
 	inline void setScale(f32 scale)
 	{

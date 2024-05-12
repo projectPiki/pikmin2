@@ -265,7 +265,7 @@ bool TFueactCircle::create(Arg* arg)
 		if (mEmitter) {
 			mEmitter->mEmitterCallback  = this;
 			mEmitter->mParticleCallback = this;
-			mEmitter->mFlags |= 0x40;
+			mEmitter->setFlag(JPAEMIT_Immortal);
 			return true;
 		} else {
 			return false;

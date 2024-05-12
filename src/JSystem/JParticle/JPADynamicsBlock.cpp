@@ -541,7 +541,7 @@ void JPADynamicsBlock::create(JPAEmitterWorkData* work)
 		}
 
 		work->mCreateNumber = emitCount;
-		if (work->mEmitter->isFlag(JPAEMIT_StopEmit)) {
+		if (work->mEmitter->isFlag(JPAEMIT_StopEmitting)) {
 			emitCount = 0;
 		}
 

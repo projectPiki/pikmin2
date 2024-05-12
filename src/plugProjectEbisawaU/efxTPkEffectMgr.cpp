@@ -17,8 +17,8 @@ bool TPkOneEmitterSimple::create(Arg*)
 	mEmitter = particleMgr->create(mEffectID, Vector3f::zero, 0);
 
 	if (mEmitter) {
-		mEmitter->mFlags |= 0x40;
-		mEmitter->mFlags |= 0x1;
+		mEmitter->setFlag(JPAEMIT_Immortal);
+		mEmitter->setFlag(JPAEMIT_StopEmitting);
 		mEmitter->mMaxFrame        = 0;
 		mEmitter->mEmitterCallback = this;
 	}

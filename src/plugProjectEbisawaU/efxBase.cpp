@@ -80,8 +80,8 @@ bool TOneEmitter::create(Arg*)
 	}
 	mEmitter = particleMgr->create(mEffectID, Vector3f::zero, 0);
 	if (mEmitter) {
-		mEmitter->mFlags |= 0x40;
-		mEmitter->mFlags |= 0x01;
+		mEmitter->setFlag(JPAEMIT_Immortal);
+		mEmitter->setFlag(JPAEMIT_StopEmitting);
 		mEmitter->mEmitterCallback = this;
 	}
 	return (mEmitter);
@@ -145,8 +145,8 @@ bool TOneEmitterChasePos::create(Arg* arg)
 	}
 	mEmitter = particleMgr->create(mEffectID, Vector3f::zero, 0);
 	if (mEmitter) {
-		mEmitter->mFlags |= 0x40;
-		mEmitter->mFlags |= 0x01;
+		mEmitter->setFlag(JPAEMIT_Immortal);
+		mEmitter->setFlag(JPAEMIT_StopEmitting);
 		mEmitter->mEmitterCallback = this;
 	}
 	return (mEmitter);
@@ -215,8 +215,8 @@ bool TOneEmitterSimple::create(Arg* arg)
 	}
 	mEmitter = particleMgr->create(mEffectID, Vector3f::zero, 0);
 	if (mEmitter) {
-		mEmitter->mFlags |= 0x40;
-		mEmitter->mFlags |= 0x01;
+		mEmitter->setFlag(JPAEMIT_Immortal);
+		mEmitter->setFlag(JPAEMIT_StopEmitting);
 		mEmitter->mMaxFrame        = 0;
 		mEmitter->mEmitterCallback = this;
 	}
@@ -431,7 +431,7 @@ bool TSync::create(Arg* arg)
 	mEmitter = particleMgr->create(mEffectID, position, 0);
 	if (mEmitter) {
 		mEmitter->mEmitterCallback = this;
-		mEmitter->mFlags |= 0x40;
+		mEmitter->setFlag(JPAEMIT_Immortal);
 	} else {
 		return false;
 	}
@@ -447,10 +447,11 @@ bool TSync::create(Arg* arg)
 void TSync::execute(JPABaseEmitter* emitter)
 {
 	bool check = false;
-	// TODO: This "check" is probably an inlined function or macro...
-	if ((emitter->mFlags & 8) != 0 && emitter->getParticleNumber() == 0) {
+
+	if (mEmitter->isFlag(JPAEMIT_EnableDeleteEmitter) && emitter->getParticleNumber() == 0) {
 		check = true;
 	}
+
 	if (check) {
 		fade();
 	} else {
@@ -468,9 +469,9 @@ void TSync::executeAfter(JPABaseEmitter* emitter)
 	particleMgr->setGlobalColor(emitter);
 	if (particleMgr->cullByResFlg(emitter) == 0) {
 		if (mFlags & 1) {
-			emitter->mFlags |= 4;
+			emitter->setFlag(JPAEMIT_StopDraw);
 		} else {
-			emitter->mFlags &= ~4;
+			emitter->resetFlag(JPAEMIT_StopDraw);
 		}
 	}
 	doExecuteAfter(emitter);

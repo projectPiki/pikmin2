@@ -2359,20 +2359,22 @@ bool JPAResource::calc(JPAEmitterWorkData* data, JPABaseEmitter* emitter)
 		return false;
 	}
 
-	if (emitter->mFlags & 2) {
+	if (emitter->isFlag(JPAEMIT_StopCalc)) {
 		JPAEmitterCallBack* cback = emitter->mEmitterCallback;
 		if (cback) {
 			return false;
 		}
-		cback->execute(emitter);
 
-		if (emitter->mFlags & 0x100) {
+		cback->execute(emitter);
+		if (emitter->isFlag(JPAEMIT_ForceDelete)) {
 			return true;
 		}
+
 		emitter->mEmitterCallback->executeAfter(emitter);
-		if (emitter->mFlags & 0x100) {
+		if (emitter->isFlag(JPAEMIT_ForceDelete)) {
 			return true;
 		}
+
 		return false;
 	}
 
@@ -2380,14 +2382,14 @@ bool JPAResource::calc(JPAEmitterWorkData* data, JPABaseEmitter* emitter)
 
 	for (int i = mFieldBlockNum - 1; 0 <= i; i--) {
 		JPAFieldBlock* field = mFieldBlocks[i];
-		field->mOffset       = field->mData->_0C;
-		field->mVelocity     = field->mData->_18;
+		field->mOffset       = field->mData->mOffset;
+		field->mVelocity     = field->mData->mVelocity;
 		field->mSpeed        = field->mData->mAmplitude;
 	}
 
 	if (emitter->mEmitterCallback) {
 		emitter->mEmitterCallback->execute(emitter);
-		if (emitter->mFlags & 0x100) {
+		if (emitter->isFlag(JPAEMIT_ForceDelete)) {
 			return true;
 		}
 	}
@@ -2402,13 +2404,13 @@ bool JPAResource::calc(JPAEmitterWorkData* data, JPABaseEmitter* emitter)
 		mFieldBlocks[i]->mField->prepare(data, mFieldBlocks[i]);
 	}
 
-	if (!(emitter->mFlags & 8)) {
+	if (emitter->isFlag(JPAEMIT_EnableDeleteEmitter)) {
 		mDynamicsBlock->create(data);
 	}
 
 	if (emitter->mEmitterCallback) {
 		emitter->mEmitterCallback->executeAfter(emitter);
-		if (emitter->mFlags & 0x100) {
+		if (emitter->isFlag(JPAEMIT_ForceDelete)) {
 			return true;
 		}
 	}
@@ -2876,8 +2878,7 @@ void JPAResource::draw(JPAEmitterWorkData* work, JPABaseEmitter* emtr)
  */
 void JPAResource::drawP(JPAEmitterWorkData* data)
 {
-
-	data->mEmitter->mFlags &= ~0x80;
+	data->mEmitter->resetFlag(JPAEMIT_DrawChild);
 	data->mGlobalPtclScl.x = data->mEmitter->mGlobalPScl.x * mBaseShape->mData->mBaseSizeX;
 	data->mGlobalPtclScl.y = data->mEmitter->mGlobalPScl.y * mBaseShape->mData->mBaseSizeY;
 	u32 flag               = mBaseShape->mData->mFlags & 0xf;
@@ -3207,7 +3208,7 @@ lbl_80097508:
  */
 void JPAResource::drawC(JPAEmitterWorkData* data)
 {
-	data->mEmitter->mFlags |= 0x80;
+	data->mEmitter->setFlag(JPAEMIT_DrawChild);
 	if (mChildShape->mData->mFlags & 0x10000) {
 		data->mGlobalPtclScl.x = data->mEmitter->mGlobalPScl.x * mBaseShape->mData->mBaseSizeX;
 		data->mGlobalPtclScl.y = data->mEmitter->mGlobalPScl.y * mBaseShape->mData->mBaseSizeY;
