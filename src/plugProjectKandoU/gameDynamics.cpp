@@ -113,18 +113,21 @@ void Game::Rigid::computeForces(int configIdx)
 static f32 getYDegree(Quat& quat, Vector3f& vec)
 {
 	Vector3f yAxis(0.0f, 1.0f, 0.0f);
-	Quat q1(0.0f, yAxis);
-	Quat q2;
-	Quat q3;
-	q3 = quat.inverse();
 
-	// how does one of these match and not the other.
-	q2 = quat * q1;
-	q2 = q2 * q3;
+	Quat yAxisQuat(0.0f, yAxis);
+	Quat intermediateQuat;
 
-	vec = q2.v;
+	Quat inverseQuat;
+	inverseQuat = quat.inverse();
 
-	return q2.v.y;
+	// Issues are here
+	intermediateQuat = quat * yAxisQuat;
+
+	intermediateQuat = intermediateQuat * inverseQuat;
+
+	vec = intermediateQuat.v;
+
+	return intermediateQuat.v.y;
 
 	/*
 	stwu     r1, -0xc0(r1)
@@ -295,6 +298,7 @@ void Game::Rigid::integrate(f32 timeStep, int configIdx)
 
 	otherConfig->mPosition        = thisConfig->mPosition;
 	otherConfig->mPrimaryRotation = thisConfig->mPrimaryRotation;
+
 	Matrixf rotationMtx;  // 0x1d0
 	Matrixf concatMtx;    // 0x1a0
 	Matrixf transposeMtx; // 0x170
@@ -310,38 +314,42 @@ void Game::Rigid::integrate(f32 timeStep, int configIdx)
 
 	thisConfig->mRotatedMomentum = thisConfig->mRotatedTransform.mtxMult(thisConfig->mMomentum);
 
-	Quat q1;                                     // 0x160
-	Quat q2(0.0f, thisConfig->mRotatedMomentum); // 0x150
+	Quat primaryQ;                                             // 0x160
+	Quat rotatedMomentumQ(0.0f, thisConfig->mRotatedMomentum); // 0x150
 
-	q1 = thisConfig->mPrimaryRotation * q2;
+	primaryQ = rotatedMomentumQ * thisConfig->mPrimaryRotation;
 
 	if (mFlags.typeView & 1) {
-		Quat q3; // 0x140
-		q3 = Quat((0.5f * timeStep) * q1.w, q1.v * (0.5f * timeStep));
-		Quat q4; // 0x130
-		q4 = Quat(q3 + thisConfig->mPrimaryRotation);
+		Quat halfTimeQ; // 0x140
+		halfTimeQ = Quat((0.5f * timeStep) * primaryQ.w, primaryQ.v * (0.5f * timeStep));
+
+		Quat primaryRotatedQ; // 0x130
+		primaryRotatedQ = Quat(halfTimeQ + thisConfig->mPrimaryRotation);
+
 		Vector3f vec1; // 0x124
 		f32 yDeg48 = getYDegree(thisConfig->mPrimaryRotation, vec1);
+
 		Vector3f vec2; // 0x118
-		f32 yDeg4 = getYDegree(q4, vec2);
-		f32 f29   = JMASSin(8192);
+		f32 yDeg4 = getYDegree(primaryRotatedQ, vec2);
+
+		f32 sinValue8192 = JMASSin(8192);
 		if (yDeg48 < JMASSin(10912)) {
 			if (yDeg4 < yDeg48) {
 				Vector3f yAxis(0.0f, 1.0f, 0.0);
 				thisConfig->mMomentum        = thisConfig->mMomentum + vec1.cross(yAxis) * 1000.0f;
 				thisConfig->mRotatedMomentum = thisConfig->mRotatedTransform.mtxMult(thisConfig->mMomentum);
-				if (!(yDeg4 < f29)) {
-					thisConfig->mPrimaryRotation = q4;
+				if (!(yDeg4 < sinValue8192)) {
+					thisConfig->mPrimaryRotation = primaryRotatedQ;
 				}
 			} else {
-				thisConfig->mPrimaryRotation = q4;
+				thisConfig->mPrimaryRotation = primaryRotatedQ;
 			}
 		} else {
-			thisConfig->mPrimaryRotation = Quat(thisConfig->mPrimaryRotation + q3);
+			thisConfig->mPrimaryRotation = Quat(thisConfig->mPrimaryRotation + halfTimeQ);
 		}
 	} else {
 		Quat q5; // 0x108
-		q5                           = Quat((0.5f * timeStep) * q1.w, q1.v * (0.5f * timeStep));
+		q5                           = Quat((0.5f * timeStep) * primaryQ.w, primaryQ.v * (0.5f * timeStep));
 		thisConfig->mPrimaryRotation = Quat(thisConfig->mPrimaryRotation + q5);
 	}
 
