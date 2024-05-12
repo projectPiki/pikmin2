@@ -54,7 +54,7 @@ int J3DMtxBuffer::create(J3DModelData* data, u32 mtxBufferSize)
 	if (data->mModelLoaderFlags >> 8 & 1) {
 		setNoUseDrawMtx();
 	} else {
-		switch (data->mModelLoaderFlags & 0x10) {
+		switch (data->mModelLoaderFlags & J3DMLF_UseImmediateMtx) {
 		case 0x10:
 			result = setNoUseDrawMtx();
 			break;
@@ -67,7 +67,7 @@ int J3DMtxBuffer::create(J3DModelData* data, u32 mtxBufferSize)
 	if (result != JET_Success) {
 		return result;
 	}
-	if ((data->mModelLoaderFlags & 0x10) != 0) {
+	if ((data->mModelLoaderFlags & J3DMLF_UseImmediateMtx) != 0) {
 		data->mBumpFlag = 0;
 	} else {
 		result = createBumpMtxArray(data, mtxBufferSize);
@@ -150,7 +150,7 @@ int J3DMtxBuffer::createDoubleDrawMtx(J3DModelData* data, u32 num)
  */
 int J3DMtxBuffer::createBumpMtxArray(J3DModelData* data, u32 matrixBufferCapacity)
 {
-	if (data->mJointTree.mFlags == 0) {
+	if (data->mJointTree.mFlags == J3DMLF_None) {
 		u16 materialCount = data->mMaterialTable.mMaterialNum;
 		u16 bumpMtxCount  = 0;
 		u16 v1            = 0;

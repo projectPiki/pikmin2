@@ -58,42 +58,6 @@ struct J3DUnkCalc2 {
 	virtual void calc(J3DModelData* mpModelData);
 };
 
-// TODO: name these
-enum J3DModelFlags {
-	J3DMODEL_Unk1              = 0x1,
-	J3DMODEL_Unk2              = 0x2,
-	J3DMODEL_SkinPosCpu        = 0x4,
-	J3DMODEL_SkinNrmCpu        = 0x8,
-	J3DMODEL_LevelOfDetail     = 0x10,
-	J3DMODEL_Unk6              = 0x20,
-	J3DMODEL_Unk7              = 0x40,
-	J3DMODEL_Unk8              = 0x80,
-	J3DMODEL_Unk9              = 0x100,
-	J3DMODEL_Unk10             = 0x200,
-	J3DMODEL_Unk11             = 0x400,
-	J3DMODEL_Unk12             = 0x800,
-	J3DMODEL_Unk13             = 0x1000,
-	J3DMODEL_Unk14             = 0x2000,
-	J3DMODEL_Unk15             = 0x4000,
-	J3DMODEL_Unk16             = 0x8000,
-	J3DMODEL_Unk17             = 0x10000,
-	J3DMODEL_CreateNewDL       = 0x20000,
-	J3DMODEL_UseSingleSharedDL = 0x40000,
-	J3DMODEL_ShareDL           = 0x80000,
-	J3DMODEL_Unk21             = 0x100000,
-	J3DMODEL_Unk22             = 0x200000,
-	J3DMODEL_Unk23             = 0x400000,
-	J3DMODEL_Unk24             = 0x800000,
-	J3DMODEL_Unk25             = 0x1000000,
-	J3DMODEL_Unk26             = 0x2000000,
-	J3DMODEL_Unk27             = 0x4000000,
-	J3DMODEL_Unk28             = 0x8000000,
-	J3DMODEL_Unk29             = 0x10000000,
-	J3DMODEL_Unk30             = 0x20000000,
-	J3DMODEL_Unk31             = 0x40000000,
-	J3DMODEL_Unk32             = 0x80000000,
-};
-
 /**
  * @size{0xE4}
  */

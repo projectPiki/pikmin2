@@ -84,7 +84,7 @@ SysShape::Model* Mgr::createModel()
 		if (!strcmp(name, "kage_mat")) {
 
 			model->mJ3dModel->mMatPackets[i].mShapePacket->newDifferedDisplayList(
-			    J3DMDF_Unknown | J3DMDF_DiffColorReg | J3DMDF_DiffTevOrderFull | J3DMDF_DiffTexGen | CREATE_DIFF_FLAG(0, 2, 0, 0));
+			    J3DMDF_TexCoord1 | J3DMDF_DiffColorReg | J3DMDF_DiffTexCoordScale | J3DMDF_DiffTexGen | CREATE_DIFF_FLAG(0, 2, 0, 0));
 		}
 	}
 

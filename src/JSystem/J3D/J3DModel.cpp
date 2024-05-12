@@ -96,13 +96,13 @@ int J3DModel::createMatPacket(J3DModelData* data, u32 flags)
 		matPacket->addShapePacket(shapePacket);
 		matPacket->mTexture  = data->mMaterialTable.mTextures;
 		matPacket->mDiffFlag = material->mDiffFlag;
-		if (data->mJointTree.mFlags == 1) {
-			matPacket->mFlags = matPacket->mFlags | 1;
+		if (data->mJointTree.mFlags == J3DMLF_MtxSoftImageCalc) {
+			matPacket->mFlags |= 1;
 		}
 		if ((flags & J3DMODEL_ShareDL) != 0) {
 			matPacket->mDisplayList = material->mSharedDLObj;
 		} else {
-			if (data->mJointTree.mFlags == 1) {
+			if (data->mJointTree.mFlags == J3DMLF_MtxSoftImageCalc) {
 				if ((flags & J3DMODEL_UseSingleSharedDL) != 0) {
 					matPacket->mDisplayList = material->mSharedDLObj;
 				} else {
@@ -351,13 +351,13 @@ void J3DModel::calcMaterial()
 {
 	j3dSys.setModel(this);
 
-	if (checkFlag(4)) {
+	if (checkFlag(J3DMODEL_SkinPosCpu)) {
 		j3dSys.onFlag(4);
 	} else {
 		j3dSys.offFlag(4);
 	}
 
-	if (checkFlag(8)) {
+	if (checkFlag(J3DMODEL_SkinNrmCpu)) {
 		j3dSys.onFlag(8);
 	} else {
 		j3dSys.offFlag(8);
@@ -648,7 +648,8 @@ void J3DModel::setVtxColorCalc(J3DVtxColorCalc* vtxColorCalc, J3DDeformAttachFla
  */
 void J3DModel::calcWeightEnvelopeMtx()
 {
-	if (mModelData->mJointTree.mEnvelopeCnt && !(mFlags & 0x10) && !(mModelData->mModelLoaderFlags & J3DMLF_09)) {
+	if (mModelData->mJointTree.mEnvelopeCnt && !(mFlags & J3DMODEL_LevelOfDetail)
+	    && !(mModelData->mModelLoaderFlags & J3DMLF_NoMatrixTransform)) {
 		mMtxBuffer->calcWeightEnvelopeMtx();
 	}
 }
@@ -705,7 +706,7 @@ void J3DModel::calc()
 
 	j3dSys.setModel(this);
 
-	if (checkFlag(2)) {
+	if (checkFlag(J3DMODEL_UseDefaultJ3D)) {
 		getModelData()->getJointTree().calc(mMtxBuffer, j3dDefaultScale, j3dDefaultMtx);
 	} else {
 		getModelData()->getJointTree().calc(mMtxBuffer, mModelScale, mPosMtx);
@@ -730,12 +731,12 @@ void J3DModel::calc()
 void J3DModel::entry()
 {
 	j3dSys.mModel = this;
-	if (mFlags & 4) {
+	if (mFlags & J3DMODEL_SkinPosCpu) {
 		j3dSys.mFlags |= 0x4;
 	} else {
 		j3dSys.mFlags &= ~0x4;
 	}
-	if (mFlags & 8) {
+	if (mFlags & J3DMODEL_SkinNrmCpu) {
 		j3dSys.mFlags |= 0x8;
 	} else {
 		j3dSys.mFlags &= ~0x8;
@@ -836,7 +837,7 @@ void J3DModel::viewCalc()
 	mMtxBuffer->swapDrawMtx();
 	mMtxBuffer->swapNrmMtx();
 
-	if (mModelData->checkFlag(0x10)) {
+	if (mModelData->checkFlag(J3DMLF_UseImmediateMtx)) {
 		if (getMtxCalcMode() == 2) {
 			J3DCalcViewBaseMtx(*j3dSys.getViewMtx(), mModelScale, mPosMtx, (MtxP)&mInternalView);
 		}
@@ -1228,7 +1229,7 @@ void J3DModel::prepareShapePackets()
 		J3DShape* xx        = mModelData->getShapeNodePointer(i);
 		J3DShapePacket* pkt = getShapePacket(i);
 		pkt->setMtxBuffer(mMtxBuffer);
-		if ((mFlags & (J3DMODEL_Unk2 | J3DMODEL_Unk1)) == J3DMODEL_Unk2) {
+		if ((mFlags & (J3DMODEL_UseDefaultJ3D | J3DMODEL_Unk1)) == 2) {
 			pkt->setBaseMtxPtr(&mInternalView);
 		} else {
 			pkt->setBaseMtxPtr(&j3dSys.mViewMtx);

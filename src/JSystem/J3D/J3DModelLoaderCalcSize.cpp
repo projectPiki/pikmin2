@@ -226,7 +226,9 @@ int J3DModelLoader::calcLoadMaterialTableSize(const void* stream)
 		case J3DFBT_MaterialV21:
 			break;
 		case J3DFBT_Material:
-			size += calcSizeMaterialTable((const J3DMaterialBlock*)nextBlock, J3DMLF_21 | J3DMLF_25 | J3DMLF_29 | J3DMLF_31);
+			size
+			    += calcSizeMaterialTable((const J3DMaterialBlock*)nextBlock,
+			                             J3DMLF_21 | J3DMLF_Material_UseIndirect | J3DMLF_Material_PE_Full | J3DMLF_Material_Color_LightOn);
 			break;
 		case J3DFBT_Texture:
 			size += calcSizeTextureTable((const J3DTextureBlock*)nextBlock);
@@ -318,7 +320,7 @@ int J3DModelLoader::calcLoadBinaryDisplayListSize(const void* stream, u32 flags)
 	const J3DFileHeader* header       = (const J3DFileHeader*)stream;
 	u32 blockCount                    = header->mBlockCount;
 	const J3DFileBlockBase* nextBlock = header->getFirstBlock();
-	u32 matFlags                      = flags & (J3DMLF_25 | J3DMLF_26);
+	u32 matFlags                      = flags & (J3DMLF_Material_UseIndirect | J3DMLF_26);
 	int size                          = sizeof(J3DModelData);
 	for (u32 i = 0; i < blockCount; i++) {
 		switch (nextBlock->mBlockType) {
@@ -341,7 +343,7 @@ int J3DModelLoader::calcLoadBinaryDisplayListSize(const void* stream, u32 flags)
 			break;
 		case J3DFBT_Material:
 			mMaterialBlock = (const J3DMaterialBlock*)nextBlock;
-			matFlags |= (J3DMLF_21 | J3DMLF_29 | J3DMLF_31);
+			matFlags |= (J3DMLF_21 | J3DMLF_Material_PE_Full | J3DMLF_Material_Color_LightOn);
 			if ((flags & (J3DMLF_13 | J3DMLF_14)) == 0) {
 				_18 = 1;
 				size += calcSizeMaterial((const J3DMaterialBlock*)nextBlock, matFlags);
@@ -537,14 +539,14 @@ lbl_80087DAC:
 int J3DModelLoader::calcSizeInformation(const J3DModelInfoBlock* block, u32 flags)
 {
 	int size = 0;
-	switch ((flags | block->mFlags) & (J3DMLF_MtxCalc_SoftImage | J3DMLF_MtxCalc_Maya | J3DMLF_03 | J3DMLF_04)) {
-	case 0:
+	switch ((flags | block->mFlags) & J3DMLF_MtxTypeMask) {
+	case 0: // Basic
 		size = 4;
 		break;
-	case J3DMLF_MtxCalc_SoftImage:
+	case J3DMLF_MtxSoftImageCalc:
 		size = 4;
 		break;
-	case J3DMLF_MtxCalc_Maya:
+	case J3DMLF_MtxMayaCalc:
 		size = 4;
 		break;
 	default:
@@ -600,7 +602,7 @@ size_t J3DModelLoader_v26::calcSizeMaterial(const J3DMaterialBlock* block, u32 f
 	}
 	size_t size = padding + (count * sizeof(J3DMaterial*));
 	// TODO: the casting of uniqueCount smells like a u16 argument to an inline
-	if ((flags & J3DMLF_22) != 0) {
+	if ((flags & J3DMLF_UseUniqueMaterials) != 0) {
 		// calc for allocated materials as well
 		size += ALIGN_NEXT((u16)uniqueCount * sizeof(J3DMaterial), 0x20);
 		for (u32 i = 0; i < uniqueCount; i++) {

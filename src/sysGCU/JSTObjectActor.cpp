@@ -495,7 +495,7 @@ bool ObjectActor::setAnim()
 					sys->endChangeCurrentHeap();
 					return false;
 				} else {
-					mMtxCalcAnm                                 = J3DNewMtxCalcAnm(mModelData->mJointTree.mFlags & 0xf, mAnmTransform);
+					mMtxCalcAnm = J3DNewMtxCalcAnm(mModelData->mJointTree.mFlags & J3DMLF_MtxTypeMask, mAnmTransform);
 					mModelData->mJointTree.mJoints[0]->mMtxCalc = mMtxCalcAnm;
 					mAnimFrameMax                               = mAnmTransform->mTotalFrameCount;
 					mAnimationFileId                            = mAnimation;

@@ -10,10 +10,10 @@
 struct J3DUMtxAnmCacheTableBase {
 	~J3DUMtxAnmCacheTableBase();
 
-	int _00;         // _00, unknown
-	int mJointCount; // _04
-	int mTime;       // _08
-	Mtx* mMatrices;  // _0C, array of Mtxs
+	int mAnimationFrame; // _00, unknown
+	int mJointCount;     // _04
+	int mTime;           // _08
+	Mtx* mMatrices;      // _0C, array of Mtxs
 };
 
 struct J3DUMtxAnmCacheTable : public J3DUMtxAnmCacheTableBase {
@@ -44,15 +44,16 @@ struct J3DUMtxCacheRef : public J3DUMtxCacheBase {
 		J3DModelData* modelData = model->mModelData;
 		int jointCount          = modelData->mJointTree.mJointCnt;
 
-		if (model->checkFlag(J3DMODEL_Unk2)) {
+		if (model->checkFlag(J3DMODEL_UseDefaultJ3D)) {
 			J3DUMtxAnmCacheTable* table = getTable();
 			for (int i = 0; i < jointCount; i++) {
-				PSMTXCopy(table->mMatrices[i + table->_00 * table->mJointCount], model->mMtxBuffer->mWorldMatrices[i]);
+				PSMTXCopy(table->mMatrices[i + table->mAnimationFrame * table->mJointCount], model->mMtxBuffer->mWorldMatrices[i]);
 			}
 		} else {
 			J3DUMtxAnmCacheTable* table = getTable();
 			for (int i = 0; i < jointCount; i++) {
-				PSMTXConcat(model->mPosMtx, table->mMatrices[i + table->_00 * table->mJointCount], model->mMtxBuffer->mWorldMatrices[i]);
+				PSMTXConcat(model->mPosMtx, table->mMatrices[i + table->mAnimationFrame * table->mJointCount],
+				            model->mMtxBuffer->mWorldMatrices[i]);
 			}
 		}
 	}

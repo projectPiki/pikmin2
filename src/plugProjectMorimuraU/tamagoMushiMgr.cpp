@@ -45,10 +45,10 @@ EnemyBase* Mgr::birth(EnemyBirthArg& birthArg)
  * @note Address: 0x8036DDD8
  * @note Size: 0x58
  */
-void Mgr::fetch(J3DModel* model, f32 p1)
+void Mgr::fetch(J3DModel* model, f32 animationFrame)
 {
 	if (mMtxCacheRef) {
-		mMtxCacheRef->mCache->_00 = 0.5f + p1;
+		mMtxCacheRef->mCache->mAnimationFrame = 0.5f + animationFrame;
 		static_cast<J3DUMtxCacheBase*>(mMtxCacheRef)->fetch(model);
 	}
 }

@@ -30,21 +30,19 @@ struct J3DIndInitData {
 	J3DIndTevStageInfo mIndTevStageInfo[16];          // _78
 };
 
-struct J3DLightInfo {
-};
+struct J3DLightInfo { };
 
 struct J3DPatchingInfo {
-	u16 _00;   // _00
-	u16 _02;   // _02
-	u16 _04;   // _04
-	u16 _06;   // _06
-	u16 _08;   // _08
-	u16 _0A;   // _0A
-	u8 _0C[4]; // _0C
+	u16 mMatColorOffset;  // _00
+	u16 mColorChanOffset; // _02
+	u16 mTexMtxOffset;    // _04
+	u16 mTexNoOffset;     // _06
+	u16 mTevRegOffset;    // _08
+	u16 mFogOffset;       // _0A
+	u8 _0C[4];            // _0C
 };
 
-struct J3DTexCoord2Info {
-};
+struct J3DTexCoord2Info { };
 
 /**
  * @size{0x14C}

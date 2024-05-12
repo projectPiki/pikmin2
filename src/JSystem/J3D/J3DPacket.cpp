@@ -14,8 +14,8 @@
 #include "JSystem/J3D/J3DSys.h"
 #include "JSystem/JKernel/JKRHeap.h"
 
-static u32 sDifferedRegister[7] = { J3DMDF_DiffMatColor, J3DMDF_DiffLight,      J3DMDF_DiffColorReg,   J3DMDF_DiffFog,
-	                                J3DMDF_DiffBlend,    J3DMDF_DiffKonstColor, J3DMDF_DiffIndTevStage };
+static u32 sDifferedRegister[7] = { J3DMDF_DiffMatColor, J3DMDF_DiffLight,      J3DMDF_DiffColorReg,        J3DMDF_DiffFog,
+	                                J3DMDF_DiffBlend,    J3DMDF_DiffKonstColor, J3DMDF_DiffTevStageIndirect };
 static u32 sSizeOfDiffered[7]   = { 0xD, 0x15, 0x78, 0x37, 0xF, 0x13, 0x2D };
 
 int J3DDisplayListObj::sInterruptFlag;
@@ -354,7 +354,7 @@ int J3DShapePacket::calcDifferedBufferSize(u32 flag)
 		}
 		u32 local_50 = local_58;
 		local_50     = uVar2 > local_50 ? uVar2 : local_50;
-		if ((flag & J3DMDF_DiffTevOrderFull)) {
+		if ((flag & J3DMDF_DiffTexCoordScale)) {
 			size += calcDifferedBufferSize_TexNoAndTexCoordScaleSize(local_50);
 		} else {
 			size += calcDifferedBufferSize_TexNoSize(local_50);
@@ -372,7 +372,7 @@ int J3DShapePacket::calcDifferedBufferSize(u32 flag)
 		u32 local_50 = local_58;
 		local_50     = uVar2 > local_50 ? uVar2 : local_50;
 		size += calcDifferedBufferSize_TevStageSize(local_50);
-		if (flag & J3DMDF_DiffIndTevStage) {
+		if (flag & J3DMDF_DiffTevStageIndirect) {
 			size += calcDifferedBufferSize_TevStageDirectSize(local_50);
 		}
 	}

@@ -14,38 +14,147 @@
  * @fabricatedName
  */
 typedef u32 J3DModelLoaderFlags;
-#define J3DMLF_MtxCalc_SoftImage          0x00000001
-#define J3DMLF_MtxCalc_Maya               0x00000002
-#define J3DMLF_03                         0x00000004
-#define J3DMLF_04                         0x00000008
-#define J3DMLF_UseConcatViewShapeMatrices 0x00000010
-#define J3DMLF_06                         0x00000020
-#define J3DMLF_07                         0x00000040
-#define J3DMLF_08                         0x00000080
-#define J3DMLF_09                         0x00000100
-#define J3DMLF_10                         0x00000200
-#define J3DMLF_11                         0x00000400
-#define J3DMLF_12                         0x00000800
-#define J3DMLF_13                         0x00001000
-#define J3DMLF_14                         0x00002000
-#define J3DMLF_15                         0x00004000
-#define J3DMLF_16                         0x00008000
-#define J3DMLF_17                         0x00010000
-#define J3DMLF_18                         0x00020000
-#define J3DMLF_19                         0x00040000
-#define J3DMLF_20                         0x00080000
-#define J3DMLF_21                         0x00100000
-#define J3DMLF_22                         0x00200000
-#define J3DMLF_23                         0x00400000
-#define J3DMLF_24                         0x00800000
-#define J3DMLF_25                         0x01000000
-#define J3DMLF_26                         0x02000000
-#define J3DMLF_27                         0x04000000
-#define J3DMLF_28                         0x08000000
-#define J3DMLF_29                         0x10000000
-#define J3DMLF_HasUniqueMaterials         0x20000000
-#define J3DMLF_31                         0x40000000
-#define J3DMLF_32                         0x80000000
+enum J3DModelLoaderFlagTypes {
+	J3DMLF_None = 0x00000000,
+
+	J3DMLF_MtxSoftImageCalc = 0x00000001,
+	J3DMLF_MtxMayaCalc      = 0x00000002,
+	J3DMLF_MtxBasicCalc     = 0x00000004,
+	J3DMLF_04               = 0x00000008,
+	J3DMLF_MtxTypeMask
+	= J3DMLF_MtxSoftImageCalc | J3DMLF_MtxMayaCalc | J3DMLF_MtxBasicCalc | J3DMLF_04, // 0 - 2 (0 = Basic, 1 = SoftImage, 2 = Maya)
+
+	J3DMLF_UseImmediateMtx          = 0x00000010,
+	J3DMLF_06                       = 0x00000020,
+	J3DMLF_07                       = 0x00000040,
+	J3DMLF_08                       = 0x00000080,
+	J3DMLF_NoMatrixTransform        = 0x00000100,
+	J3DMLF_10                       = 0x00000200,
+	J3DMLF_11                       = 0x00000400,
+	J3DMLF_12                       = 0x00000800,
+	J3DMLF_13                       = 0x00001000,
+	J3DMLF_14                       = 0x00002000,
+	J3DMLF_15                       = 0x00004000,
+	J3DMLF_16                       = 0x00008000,
+	J3DMLF_TevNumShift              = 0x00010000,
+	J3DMLF_18                       = 0x00020000,
+	J3DMLF_19                       = 0x00040000,
+	J3DMLF_20                       = 0x00080000,
+	J3DMLF_21                       = 0x00100000,
+	J3DMLF_UseUniqueMaterials       = 0x00200000,
+	J3DMLF_23                       = 0x00400000,
+	J3DMLF_24                       = 0x00800000,
+	J3DMLF_Material_UseIndirect     = 0x01000000,
+	J3DMLF_26                       = 0x02000000,
+	J3DMLF_27                       = 0x04000000,
+	J3DMLF_Material_TexGen_Block4   = 0x08000000,
+	J3DMLF_Material_PE_Full         = 0x10000000,
+	J3DMLF_Material_PE_FogOff       = 0x20000000,
+	J3DMLF_Material_Color_LightOn   = 0x40000000,
+	J3DMLF_Material_Color_AmbientOn = 0x80000000
+};
+
+enum J3DModelFlags {
+	J3DMODEL_Unk1              = 0x1,
+	J3DMODEL_UseDefaultJ3D     = 0x2,
+	J3DMODEL_SkinPosCpu        = 0x4,
+	J3DMODEL_SkinNrmCpu        = 0x8,
+	J3DMODEL_LevelOfDetail     = 0x10,
+	J3DMODEL_Unk6              = 0x20,
+	J3DMODEL_Unk7              = 0x40,
+	J3DMODEL_Unk8              = 0x80,
+	J3DMODEL_Unk9              = 0x100,
+	J3DMODEL_Unk10             = 0x200,
+	J3DMODEL_Unk11             = 0x400,
+	J3DMODEL_Unk12             = 0x800,
+	J3DMODEL_Unk13             = 0x1000,
+	J3DMODEL_Unk14             = 0x2000,
+	J3DMODEL_Unk15             = 0x4000,
+	J3DMODEL_Unk16             = 0x8000,
+	J3DMODEL_Unk17             = 0x10000,
+	J3DMODEL_CreateNewDL       = 0x20000,
+	J3DMODEL_UseSingleSharedDL = 0x40000,
+	J3DMODEL_ShareDL           = 0x80000,
+	J3DMODEL_Unk21             = 0x100000,
+	J3DMODEL_Unk22             = 0x200000,
+	J3DMODEL_Unk23             = 0x400000,
+	J3DMODEL_Unk24             = 0x800000,
+	J3DMODEL_Unk25             = 0x1000000,
+	J3DMODEL_Unk26             = 0x2000000,
+	J3DMODEL_Unk27             = 0x4000000,
+	J3DMODEL_Unk28             = 0x8000000,
+	J3DMODEL_Unk29             = 0x10000000,
+	J3DMODEL_Unk30             = 0x20000000,
+	J3DMODEL_Unk31             = 0x40000000,
+	J3DMODEL_Unk32             = 0x80000000,
+};
+
+/*
+ * J3DModelDiffFlags is an enumeration that defines different flags for 3D model differences.
+ * Each flag represents a different aspect of the model that can be different.
+ *
+ * J3DMDF_DiffMatColor:     This flag is set if the material color is different. It corresponds to the 1st bit.
+ * J3DMDF_DiffLight:        This flag is set if the light settings are different. It corresponds to the 2nd bit.
+ * J3DMDF_DiffTexGen:       This flag is set if the TexCoordGen is different. It corresponds to the 13th bit.
+ * J3DMDF_Unknown:          This flag is reserved for a flag that isn't yet understood. It corresponds to the 18th bit.
+ * J3DMDF_DiffColorReg:     This flag is set if the color registers (TEV) are different. It corresponds to the 25th bit.
+ * J3DMDF_DiffKonstColor:   This flag is set if the Konst colors are different. It corresponds to the 26th bit.
+ * J3DMDF_DiffTevOrderFull: This flag is set if the full TevOrder (TexMap and TexCoordIdx) is different. It corresponds to the 27th bit.
+ * J3DMDF_DiffIndTevStage:  This flag is set if the indirect TevStages are different. It corresponds to the 28th bit.
+ * J3DMDF_DiffFog:          This flag is set if the fog settings are different. It corresponds to the 29th bit.
+ * J3DMDF_DiffBlend:        This flag is set if the blend settings are different. It corresponds to the 30th bit.
+ *
+ * The CREATE_DIFF_FLAG macro is used to create a u32 value with specific flags set.
+ * It takes four parameters: lightObjNum, texGenNum, texNoNum, and tevStageNum. Each parameter is expected to be a 4-bit value.
+ * The parameters are shifted to their respective positions in the u32 value and combined using the bitwise OR operator.
+ *
+ * lightObjNum: This value is shifted to bits 4 - 7.
+ * texGenNum:   This value is shifted to bits 8 - 11.
+ * texNoNum:    This value is shifted to bits 16 - 19.
+ * tevStageNum: This value is shifted to bits 20 - 23.
+ */
+
+enum J3DModelDiffFlags {
+	J3DMDF_DiffMatColor = 0x00000001, // Diff material color
+	J3DMDF_DiffLight    = 0x00000002, // Diff light settings
+	J3DMDF_DiffTexGen   = 0x00001000, // Diff TexCoordGen
+
+	J3DMDF_TexCoord0 = 0x000010000, // TexCoord0
+	J3DMDF_TexCoord1 = 0x000020000, // TexCoord1
+	J3DMDF_TexCoord2 = 0x000030000, // TexCoord2
+	J3DMDF_TexCoord3 = 0x000040000, // TexCoord3
+	J3DMDF_TexCoord4 = 0x000050000, // TexCoord4
+	J3DMDF_TexCoord5 = 0x000060000, // TexCoord5
+	J3DMDF_TexCoord6 = 0x000070000, // TexCoord6
+	J3DMDF_TexCoord7 = 0x000080000, // TexCoord7
+
+	J3DMDF_DiffColorReg         = 0x01000000, // Diff color registers (TEV)
+	J3DMDF_DiffKonstColor       = 0x02000000, // Diff Konst colors
+	J3DMDF_DiffTexCoordScale    = 0x04000000, // Diff TexCoord scales
+	J3DMDF_DiffTevStageIndirect = 0x08000000, // Diff indirect TevStages
+	J3DMDF_DiffFog              = 0x10000000, // Diff fog settings
+	J3DMDF_DiffBlend            = 0x20000000  // Diff blend settings
+};
+
+#define CREATE_DIFF_FLAG(lightObjNum, texGenNum, texNoNum, tevStageNum) \
+	(((lightObjNum & 0xf) << 4) | ((texGenNum & 0xf) << 8) | ((texNoNum & 0xf) << 16) | ((tevStageNum & 0xf) << 20))
+
+inline u32 getDiffFlag_LightObjNum(u32 diffFlags) { return (diffFlags & 0xf0) >> 4; }
+inline u32 getDiffFlag_TexGenNum(u32 diffFlags) { return (diffFlags & 0xf00) >> 8; }
+inline u32 getDiffFlag_TexNoNum(u32 diffFlags) { return (diffFlags & 0xf0000) >> 16; }
+inline u32 getDiffFlag_TevStageNum(u32 diffFlags) { return (diffFlags & 0xf00000) >> 20; }
+
+inline int calcDifferedBufferSize_TexMtxSize(int diffFlags) { return diffFlags * 53; }
+inline int calcDifferedBufferSize_TexGenSize(int diffFlags) { return diffFlags * 61 + 10; }
+inline int calcDifferedBufferSize_TexNoSize(int diffFlags) { return diffFlags * 55; }
+inline u32 calcDifferedBufferSize_TexNoAndTexCoordScaleSize(u32 diffFlags)
+{
+	u32 res = diffFlags * 55;
+	res += ((diffFlags + 1) >> 1) * 55;
+	return res;
+}
+inline int calcDifferedBufferSize_TevStageSize(int diffFlags) { return diffFlags * 10; }
+inline int calcDifferedBufferSize_TevStageDirectSize(int diffFlags) { return diffFlags * 5; }
 
 enum JBlockType {
 	JBT_ColorAmbientOn = 'CLAB',
@@ -73,7 +182,40 @@ enum JBlockType {
 	JBT_TevPatched     = 'TVPT'
 };
 
-enum J3DErrType { JET_Success = 0, JET_NoMatAnm, JET_LockedModelData, JET_NullBinRes, JET_OutOfMemory, JET_InvalidArg, JET_InvalidData };
+/**
+ * @enum J3DErrType
+ * @brief Enumerates the types of errors that can occur in the J3D engine.
+ *
+ * @var J3DErrType::JET_Success
+ * Operation completed successfully.
+ *
+ * @var J3DErrType::JET_NoMatAnm
+ * Error occurred due to no material animation.
+ *
+ * @var J3DErrType::JET_LockedModelData
+ * Error occurred due to locked model data.
+ *
+ * @var J3DErrType::JET_NullBinRes
+ * Error occurred due to null binary resource.
+ *
+ * @var J3DErrType::JET_OutOfMemory
+ * Error occurred due to insufficient memory.
+ *
+ * @var J3DErrType::JET_InvalidArg
+ * Error occurred due to an invalid argument.
+ *
+ * @var J3DErrType::JET_InvalidData
+ * Error occurred due to invalid data.
+ */
+enum J3DErrType {
+	JET_Success = 0,
+	JET_NoMatAnm,
+	JET_LockedModelData,
+	JET_NullBinRes,
+	JET_OutOfMemory,
+	JET_InvalidArg,
+	JET_InvalidData,
+};
 
 extern u8 j3dTevSwapTableTable[1024];
 
@@ -353,7 +495,7 @@ struct J3DIndTevStage {
 struct J3DLightObj {
 	JGeometry::TVec3f mPosition;  // _00
 	JGeometry::TVec3f mDirection; // _0C
-	_GXColor _18;                 // _18
+	_GXColor mLightColor;         // _18
 	f32 _1C;                      // _1C
 	f32 _20;                      // _20
 	f32 _24;                      // _24
@@ -539,15 +681,15 @@ struct J3DTevStage {
 
 	void load(u32) const
 	{
-		J3DGDWriteBPCmd(*(u32*)&_00);
-		J3DGDWriteBPCmd(*(u32*)&_04);
+		J3DGDWriteBPCmd(*(u32*)&mBPCommand1);
+		J3DGDWriteBPCmd(*(u32*)&mBPCommand2);
 	}
 
-	u8 _00;              // _00
+	u8 mBPCommand1;      // _00
 	u8 mTevColorOp;      // _01
 	u8 mTevColorAB;      // _02
 	u8 mTevColorCD;      // _03
-	u8 _04;              // _04
+	u8 mBPCommand2;      // _04
 	u8 mTevAlphaOp;      // _05
 	u8 mTevAlphaAB;      // _06
 	u8 mTevSwapModeInfo; // _07
@@ -685,7 +827,7 @@ enum J3DTexDiffFlag {
 
 enum J3DDeformAttachFlag {
 	DeformAttach_0 = 0,
-	DeformAttach_1 = 1,
+	DeformFlasg    = 1,
 };
 
 extern const GXColor j3dDefaultColInfo;

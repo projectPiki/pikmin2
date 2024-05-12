@@ -23,7 +23,7 @@ void AnimInfo::attach(J3DModelData* modelData, void* animData)
 	JUT_ASSERTLINE(64, animData != nullptr, "animData null!\n");
 
 	mAnm  = (J3DAnmTransform*)J3DAnmLoaderDataBase::load(animData);
-	mCalc = J3DNewMtxCalcAnm(modelData->mJointTree.mFlags & 0xf, mAnm);
+	mCalc = J3DNewMtxCalcAnm(modelData->mJointTree.mFlags & J3DMLF_MtxTypeMask, mAnm);
 }
 
 /**
@@ -70,7 +70,7 @@ void AnimMgr::load(Stream& s, J3DModelData* md, JKRFileLoader* fl, char* folderN
 		JUT_ASSERTLINE(64, animData, "animData null!\n");
 
 		c->mAnm  = (J3DAnmTransform*)J3DAnmLoaderDataBase::load(animData);
-		c->mCalc = J3DNewMtxCalcAnm(md->mJointTree.mFlags & 0xF, c->mAnm);
+		c->mCalc = J3DNewMtxCalcAnm(md->mJointTree.mFlags & J3DMLF_MtxTypeMask, c->mAnm);
 	}
 }
 

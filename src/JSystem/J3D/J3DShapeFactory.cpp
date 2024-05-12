@@ -47,11 +47,7 @@ J3DShape* J3DShapeFactory::create(int id, u32 flags, GXVtxDescList* vtxDescList)
 	return shape;
 }
 
-static inline u32 getMdlDataFlag_MtxLoadType(u32 flag) { return flag & 0x10; }
-
-enum {
-	J3DMdlDataFlag_ConcatView = 0x10,
-};
+static inline u32 getMdlDataFlag_MtxLoadType(u32 flag) { return flag & J3DMLF_UseImmediateMtx; }
 
 /**
  * @note Address: 0x80071F74
@@ -65,7 +61,7 @@ J3DShapeMtx* J3DShapeFactory::newShapeMtx(u32 flags, int shapeID, int mtxIndex) 
 
 	u32 mtxLoadType = getMdlDataFlag_MtxLoadType(flags);
 	switch (mtxLoadType) {
-	case J3DMdlDataFlag_ConcatView:
+	case 0x10:
 		switch (shapeInitData.mShapeMtxType) {
 		case J3DShapeMtx_Base:
 			ret = new J3DShapeMtxConcatView(mtxInitData.mUseMtxIndex);
@@ -161,7 +157,7 @@ int J3DShapeFactory::calcSizeShapeMtx(u32 flag, int shapeNo, int mtxGroupNo) con
 
 	u32 mtxLoadType = getMdlDataFlag_MtxLoadType(flag);
 	switch (mtxLoadType) {
-	case J3DMdlDataFlag_ConcatView:
+	case 0x10:
 		switch (shapeInitData.mShapeMtxType) {
 		case J3DShapeMtx_Base:
 			ret = 0x08;

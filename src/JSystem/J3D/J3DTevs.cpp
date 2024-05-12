@@ -128,7 +128,7 @@ void J3DLightObj::load(u32 lightIdx) const
 	GXLightID id = (GXLightID)(1 << lightIdx);
 	J3DGDSetLightPos(id, mPosition.x, mPosition.y, mPosition.z);
 	J3DGDSetLightAttn(id, _1C, _20, _24, _28, _2C, _30);
-	J3DGDSetLightColor(id, _18);
+	J3DGDSetLightColor(id, mLightColor);
 	J3DGDSetLightDir(id, mDirection.x, mDirection.y, mDirection.z);
 }
 

@@ -107,9 +107,9 @@ void TMapBase::setArchive(JKRArchive* arc)
 	mMainModelData->newSharedDisplayList(0x40000);
 	mMainModelData->makeSharedDL();
 
-	mAnimMtxCalcWait = J3DNewMtxCalcAnm(mMainModelData->mJointTree.mFlags & 15, mAnimWait);
-	mAnimMtxCalcWind = static_cast<J3DMtxCalcAnmBase*>(
-	    J3DUNewMtxCalcAnm(mMainModelData->mJointTree.mFlags & 15, mAnimWait, mAnimWind, nullptr, nullptr, (J3DMtxCalcFlag)0));
+	mAnimMtxCalcWait = J3DNewMtxCalcAnm(mMainModelData->mJointTree.mFlags & J3DMLF_MtxTypeMask, mAnimWait);
+	mAnimMtxCalcWind = static_cast<J3DMtxCalcAnmBase*>(J3DUNewMtxCalcAnm(mMainModelData->mJointTree.mFlags & J3DMLF_MtxTypeMask, mAnimWait,
+	                                                                     mAnimWind, nullptr, nullptr, (J3DMtxCalcFlag)0));
 
 	mParms[0] = 0.0f;
 
@@ -200,7 +200,7 @@ void TBGEnemyBase::setArchive(JKRArchive* arc)
 	mMainModelData->newSharedDisplayList(0x40000);
 	mMainModelData->makeSharedDL();
 
-	mAnimMtxCalc = J3DNewMtxCalcAnm(mMainModelData->mJointTree.mFlags & 15, mAnim);
+	mAnimMtxCalc = J3DNewMtxCalcAnm(mMainModelData->mJointTree.mFlags & J3DMLF_MtxTypeMask, mAnim);
 
 	mParms[0] = 0.0f;
 
@@ -253,7 +253,7 @@ void TBlackPlane::setArchive(JKRArchive* arc)
 	P2ASSERTLINE(273, file);
 	mAnimColor = static_cast<J3DAnmTevRegKey*>(J3DAnmLoaderDataBase::load(file));
 
-	mAnimMtxCalc = J3DNewMtxCalcAnm(mMainModelData->mJointTree.mFlags & 15, mAnim);
+	mAnimMtxCalc = J3DNewMtxCalcAnm(mMainModelData->mJointTree.mFlags & J3DMLF_MtxTypeMask, mAnim);
 
 	mParms[0] = 0.0f;
 

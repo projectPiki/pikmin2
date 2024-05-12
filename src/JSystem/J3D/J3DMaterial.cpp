@@ -43,7 +43,7 @@ J3DTexGenBlock* J3DMaterial::createTexGenBlock(u32 createFlag)
 {
 	J3DTexGenBlock* result = nullptr;
 	switch (createFlag) {
-	case J3DMLF_28:
+	case J3DMLF_Material_TexGen_Block4:
 		return new J3DTexGenBlock4();
 	case 0:
 	default:
@@ -99,9 +99,9 @@ J3DPEBlock* J3DMaterial::createPEBlock(u32 createFlag, u32 materialFlag)
 		}
 	}
 
-	if (createFlag == 0x10000000) {
+	if (createFlag == J3DMLF_Material_PE_Full) {
 		rv = new J3DPEBlockFull();
-	} else if (createFlag == 0x20000000) {
+	} else if (createFlag == J3DMLF_Material_PE_FogOff) {
 		rv = new J3DPEBlockFogOff();
 	}
 	return rv;
@@ -295,10 +295,10 @@ u32 J3DMaterial::calcSizeColorBlock(u32 createFlag)
 	case 0x0:
 		size = sizeof(J3DColorBlockLightOff);
 		break;
-	case 0x40000000:
+	case J3DMLF_Material_Color_LightOn:
 		size = sizeof(J3DColorBlockLightOn);
 		break;
-	case 0x80000000:
+	case J3DMLF_Material_Color_AmbientOn:
 		size = sizeof(J3DColorBlockAmbientOn);
 		break;
 	}
@@ -312,7 +312,7 @@ u32 J3DMaterial::calcSizeColorBlock(u32 createFlag)
 u32 J3DMaterial::calcSizeTexGenBlock(u32 createFlag)
 {
 	switch (createFlag) {
-	case J3DMLF_28:
+	case J3DMLF_Material_TexGen_Block4:
 		return sizeof(J3DTexGenBlock4);
 	case 0:
 	default:
@@ -367,9 +367,9 @@ u32 J3DMaterial::calcSizePEBlock(u32 createFlag, u32 materialFlag)
 		} else if (materialFlag & 4) {
 			size = sizeof(J3DPEBlockXlu);
 		}
-	} else if (createFlag == 0x10000000) {
+	} else if (createFlag == J3DMLF_Material_PE_Full) {
 		size = sizeof(J3DPEBlockFull);
-	} else if (createFlag == 0x20000000) {
+	} else if (createFlag == J3DMLF_Material_PE_FogOff) {
 		size = sizeof(J3DPEBlockFogOff);
 	}
 	return size;
@@ -501,7 +501,7 @@ void J3DMaterial::diff(u32 p1)
 		mTevBlock->diff(p1);
 		mIndBlock->diff(p1);
 		mPEBlock->diff(p1);
-		if (p1 & 0x2000000) {
+		if (p1 & J3DMDF_DiffKonstColor) {
 			J3DGDSetGenMode_3Param(mTexGenBlock->getTexGenNum(), mTevBlock->getTevStageNum(), mIndBlock->getIndTexStageNum());
 			J3DGDSetNumTexGens(mTexGenBlock->getTexGenNum());
 		}

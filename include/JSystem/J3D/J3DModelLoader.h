@@ -102,6 +102,7 @@ inline u32 getMdlDataFlag_TevStageNum(u32 flag) { return (flag >> 16) & 0x1F; }
 inline u32 getMdlDataFlag_TexGenFlag(u32 flag) { return flag & 0x0C000000; }
 inline u32 getMdlDataFlag_PEFlag(u32 flag) { return flag & 0x30000000; }
 inline u32 getMdlDataFlag_ColorFlag(u32 flag) { return flag & 0xC0000000; }
+
 inline u32 getBdlFlag_MaterialType(u32 flag) { return flag & 0x3000; }
 
 #endif

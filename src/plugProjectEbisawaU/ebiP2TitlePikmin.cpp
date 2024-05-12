@@ -120,9 +120,10 @@ void Pikmin::TAnimator::setArchive(JKRArchive* arc)
 	mWaitAnim = (J3DAnmTransform*)J3DAnmLoaderDataBase::load(file);
 	file      = arc->getResource("pikmin/wave.bck");
 	P2ASSERTLINE(233, file);
-	mWaitAnim    = (J3DAnmTransform*)J3DAnmLoaderDataBase::load(file);
-	mAnmCalcWait = J3DNewMtxCalcAnm(mModelDataRed->mJointTree.mFlags & 0xf, mWaitAnim);
-	mAnmCalcWave = J3DUNewMtxCalcAnm(mModelDataRed->mJointTree.mFlags & 0xf, mWaitAnim, mWaitAnim, nullptr, nullptr, (J3DMtxCalcFlag)0);
+	mWaitAnim           = (J3DAnmTransform*)J3DAnmLoaderDataBase::load(file);
+	mAnmCalcWait        = J3DNewMtxCalcAnm(mModelDataRed->mJointTree.mFlags & J3DMLF_MtxTypeMask, mWaitAnim);
+	mAnmCalcWave        = J3DUNewMtxCalcAnm(mModelDataRed->mJointTree.mFlags & J3DMLF_MtxTypeMask, mWaitAnim, mWaitAnim, nullptr, nullptr,
+	                                        (J3DMtxCalcFlag)0);
 	J3DModelData* model = mModelDataBlue;
 	model->doMakeShared();
 	mModelDataRed->doMakeShared();

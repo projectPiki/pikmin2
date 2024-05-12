@@ -12,7 +12,7 @@ void init(J3DModel* model, J3DAnmTransform* transform, T* table)
 {
 	J3DModelData* data      = model->getModelData();
 	J3DMtxCalc* calc        = data->getJointNodePointer(0)->getMtxCalc();
-	J3DMtxCalcAnmBase* base = J3DNewMtxCalcAnm(data->mJointTree.mFlags & 0xF, transform);
+	J3DMtxCalcAnmBase* base = J3DNewMtxCalcAnm(data->mJointTree.mFlags & J3DMLF_MtxTypeMask, transform);
 
 	data->getJointNodePointer(0)->mMtxCalc = base;
 
@@ -57,9 +57,9 @@ J3DUMtxAnmCacheTable::J3DUMtxAnmCacheTable(J3DModel* model, J3DAnmTransform* tra
 	int jointCount = model->mModelData->getJointNum();
 	int frameCount = transform->getFrameMax();
 
-	_00         = 0;
-	mJointCount = jointCount;
-	mTime       = frameCount;
-	mMatrices   = new (0x20) Mtx[frameCount * jointCount];
+	mAnimationFrame = 0;
+	mJointCount     = jointCount;
+	mTime           = frameCount;
+	mMatrices       = new (0x20) Mtx[frameCount * jointCount];
 	init<J3DUMtxAnmCacheTable>(model, transform, this);
 }

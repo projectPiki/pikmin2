@@ -922,7 +922,7 @@ J2DResReference* J2DScreen::getResReference(JSURandomInputStream* input, u32 fla
 	input->seek(initialPosition + size2, SEEK_SET);
 	size1 = size1 - size2;
 	char* data;
-	if (flags & (J3DMLF_17 | J3DMLF_18 | J3DMLF_19 | J3DMLF_20 | J3DMLF_21)) {
+	if (flags & (J3DMLF_TevNumShift | J3DMLF_18 | J3DMLF_19 | J3DMLF_20 | J3DMLF_21)) {
 		data = new char[size1];
 	} else {
 		data = new (-4) char[size1];

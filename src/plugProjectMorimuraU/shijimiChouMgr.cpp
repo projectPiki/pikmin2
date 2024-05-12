@@ -111,7 +111,7 @@ void Mgr::doAnimation()
 void Mgr::fetch(J3DModel* model, f32 p1)
 {
 	if (mMtxCacheRef) {
-		mMtxCacheRef->mCache->_00 = 0.5f + p1;
+		mMtxCacheRef->mCache->mAnimationFrame = 0.5f + p1;
 		mMtxCacheRef->fetch(model);
 	}
 }

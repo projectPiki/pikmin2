@@ -13,7 +13,7 @@ void E3DAnimRes::load(J3DModelData* modelData, JKRArchive* archive, char* resour
 	P2ASSERTLINE(20, resource);
 
 	mAnimTransform = (J3DAnmTransform*)J3DAnmLoaderDataBase::load(resource);
-	mAnmCalcMtx    = J3DNewMtxCalcAnm((modelData->mJointTree).mFlags & 0xf, mAnimTransform);
+	mAnmCalcMtx    = J3DNewMtxCalcAnm((modelData->mJointTree).mFlags & J3DMLF_MtxTypeMask, mAnimTransform);
 
 	mStartFrame = 0.0f;
 	mStopFrame  = mAnimTransform->mTotalFrameCount - 2.0f;

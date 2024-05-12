@@ -69,7 +69,7 @@ void OnyonSpotData::loadResources()
 	void* file = JKRFileLoader::getGlbResource("onyonspot.bmd", nullptr);
 	P2ASSERTLINE(95, file);
 
-	J3DModelData* model = J3DModelLoaderDataBase::load(file, J3DMLF_HasUniqueMaterials | 0x1020000);
+	J3DModelData* model = J3DModelLoaderDataBase::load(file, J3DMLF_Material_PE_FogOff | 0x1020000);
 	*mModelData         = model;
 	mTexAnimCount       = 1;
 	mTexAnims           = new Sys::MatTexAnimation[mTexAnimCount];

@@ -98,9 +98,9 @@ J3DModelData* J3DModelLoader::load(const void* stream, u32 flags)
 	mModelData->mShapeTable.sortVcdVatCmd();
 	mModelData->mJointTree.findImportantMtxIndex();
 	setupBBoardInfo();
-	if (mModelData->mModelLoaderFlags & 0x100) {
+	if (mModelData->mModelLoaderFlags & J3DMLF_NoMatrixTransform) {
 		for (u16 i = 0; i < mModelData->getShapeNum(); i++) {
-			mModelData->mShapeTable.getItem(i)->onFlag(0x200);
+			mModelData->mShapeTable.getItem(i)->onFlag(J3DShape_NoMtx);
 		}
 	}
 	return mModelData;
@@ -250,14 +250,14 @@ void J3DModelLoader::readInformation(const J3DModelInfoBlock* block, u32 flags)
 	J3DMtxCalc* calc              = nullptr;
 	mModelData->mModelLoaderFlags = flags | block->mFlags;
 	mModelData->mJointTree.mFlags = mModelData->mModelLoaderFlags;
-	switch (mModelData->mModelLoaderFlags & (J3DMLF_MtxCalc_SoftImage | J3DMLF_MtxCalc_Maya | J3DMLF_03 | J3DMLF_04)) {
-	case 0:
+	switch (mModelData->mModelLoaderFlags & J3DMLF_MtxTypeMask) {
+	case 0: // Basic
 		calc = new J3DMtxCalcNoAnm<J3DMtxCalcCalcTransformBasic, J3DMtxCalcJ3DSysInitBasic>;
 		break;
-	case J3DMLF_MtxCalc_SoftImage:
+	case J3DMLF_MtxSoftImageCalc:
 		calc = new J3DMtxCalcNoAnm<J3DMtxCalcCalcTransformSoftimage, J3DMtxCalcJ3DSysInitSoftimage>;
 		break;
-	case J3DMLF_MtxCalc_Maya:
+	case J3DMLF_MtxMayaCalc:
 		calc = new J3DMtxCalcNoAnm<J3DMtxCalcCalcTransformMaya, J3DMtxCalcJ3DSysInitMaya>;
 		break;
 	}
@@ -416,12 +416,12 @@ void J3DModelLoader_v26::readMaterial(const J3DMaterialBlock* block, u32 flags)
 	}
 
 	mMaterialTable->mMaterials = new J3DMaterial*[mMaterialTable->mMaterialNum];
-	if (flags & 0x200000) {
+	if (flags & J3DMLF_UseUniqueMaterials) {
 		mMaterialTable->mUniqueMaterials = new (0x20) J3DMaterial[mMaterialTable->mUniqueMaterialNum];
 	} else {
 		mMaterialTable->mUniqueMaterials = nullptr;
 	}
-	if (flags & 0x200000) {
+	if (flags & J3DMLF_UseUniqueMaterials) {
 		for (u16 i = 0; i < mMaterialTable->mUniqueMaterialNum; i++) {
 			factory.create(&mMaterialTable->mUniqueMaterials[i], J3DMaterialFactory::NORMAL, i, flags);
 			mMaterialTable->mUniqueMaterials[i].mDiffFlag = (u32)&mMaterialTable->mUniqueMaterials[i] >> 4;
@@ -430,7 +430,7 @@ void J3DModelLoader_v26::readMaterial(const J3DMaterialBlock* block, u32 flags)
 	for (u16 i = 0; i < mMaterialTable->mMaterialNum; i++) {
 		mMaterialTable->mMaterials[i] = factory.create(nullptr, J3DMaterialFactory::NORMAL, i, flags);
 	}
-	if (flags & 0x200000) {
+	if (flags & J3DMLF_UseUniqueMaterials) {
 		for (u16 i = 0; i < mMaterialTable->mMaterialNum; i++) {
 			mMaterialTable->mMaterials[i]->mDiffFlag     = (u32)&mMaterialTable->mUniqueMaterials[factory.getMaterialID(i)] >> 4;
 			mMaterialTable->mMaterials[i]->mOrigMaterial = &mMaterialTable->mUniqueMaterials[factory.getMaterialID(i)];
@@ -458,12 +458,12 @@ void J3DModelLoader_v21::readMaterial_v21(const J3DMaterialBlock_v21* block, u32
 	}
 
 	mMaterialTable->mMaterials = new J3DMaterial*[mMaterialTable->mMaterialNum];
-	if (flags & 0x200000) {
+	if (flags & J3DMLF_UseUniqueMaterials) {
 		mMaterialTable->mUniqueMaterials = new (0x20) J3DMaterial[mMaterialTable->mUniqueMaterialNum];
 	} else {
 		mMaterialTable->mUniqueMaterials = nullptr;
 	}
-	if (flags & 0x200000) {
+	if (flags & J3DMLF_UseUniqueMaterials) {
 		for (u16 i = 0; i < mMaterialTable->mUniqueMaterialNum; i++) {
 			factory.create(&mMaterialTable->mUniqueMaterials[i], i, flags);
 			mMaterialTable->mUniqueMaterials[i].mDiffFlag = (u32)&mMaterialTable->mUniqueMaterials[i] >> 4;
@@ -472,7 +472,7 @@ void J3DModelLoader_v21::readMaterial_v21(const J3DMaterialBlock_v21* block, u32
 	for (u16 i = 0; i < mMaterialTable->mMaterialNum; i++) {
 		mMaterialTable->mMaterials[i] = factory.create(nullptr, i, flags);
 	}
-	if (flags & 0x200000) {
+	if (flags & J3DMLF_UseUniqueMaterials) {
 		for (u16 i = 0; i < mMaterialTable->mMaterialNum; i++) {
 			mMaterialTable->mMaterials[i]->mDiffFlag     = (u32)&mMaterialTable->mUniqueMaterials[factory.getMaterialID(i)] >> 4;
 			mMaterialTable->mMaterials[i]->mOrigMaterial = &mMaterialTable->mUniqueMaterials[factory.getMaterialID(i)];

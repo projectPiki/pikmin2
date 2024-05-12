@@ -1922,12 +1922,12 @@ J3DLockedMaterial* J3DMaterialFactory::createLockedMaterial(J3DMaterial* materia
 		material->mMaterialMode = mPEModes[index];
 	}
 	material->mCurrentMtx = mCurrMtxInfo[index];
-	material->mColorBlock->setMatColorOffset(mPatchInfo[index]._00);
-	material->mColorBlock->setColorChanOffset(mPatchInfo[index]._02);
-	material->mTexGenBlock->setTexMtxOffset(mPatchInfo[index]._04);
-	material->mTevBlock->setTexNoOffset(mPatchInfo[index]._06);
-	material->mTevBlock->setTevRegOffset(mPatchInfo[index]._08);
-	material->mPEBlock->setFogOffset(mPatchInfo[index]._0A);
+	material->mColorBlock->setMatColorOffset(mPatchInfo[index].mMatColorOffset);
+	material->mColorBlock->setColorChanOffset(mPatchInfo[index].mColorChanOffset);
+	material->mTexGenBlock->setTexMtxOffset(mPatchInfo[index].mTexMtxOffset);
+	material->mTevBlock->setTexNoOffset(mPatchInfo[index].mTexNoOffset);
+	material->mTevBlock->setTevRegOffset(mPatchInfo[index].mTevRegOffset);
+	material->mPEBlock->setFogOffset(mPatchInfo[index].mFogOffset);
 
 	if (material->mSharedDLObj == nullptr) {
 		material->mSharedDLObj = new J3DDisplayListObj;
