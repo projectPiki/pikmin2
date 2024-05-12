@@ -151,7 +151,7 @@ void DvdThread::loadArchive(DvdThreadCommand* cmd)
 {
 	JKRHeap* currentHeap = cmd->mHeap->becomeCurrentHeap();
 	JKRArchive* arc      = JKRMountArchive(cmd->mArcPath, JKRArchive::EMM_Mem, cmd->mHeap,
-	                                       (cmd->mHeapDirection == 1 ? JKRArchive::EMD_Head : JKRArchive::EMD_Tail));
+                                      (cmd->mHeapDirection == 1 ? JKRArchive::EMD_Head : JKRArchive::EMD_Tail));
 	P2ASSERTLINE(275, arc);
 	cmd->mMountedArchive = arc;
 	currentHeap->becomeCurrentHeap();

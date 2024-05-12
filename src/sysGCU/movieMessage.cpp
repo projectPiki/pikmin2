@@ -190,17 +190,20 @@ void AbtnPane::update()
  * @note Size: 0xCC
  */
 PodIconScreen::PodIconScreen()
+    : mState(-1)
+    , mAnmColor(nullptr)
+    , mAnmColorTimer(0.0f)
+    , mAnmTrans(nullptr)
+    , mAnmTransTimer(0.0f)
+    , mAnmTexPattern(nullptr)
+    , mAnmTexPatternTimer(0.0f)
 {
-	mState              = -1;
-	mAnmColor           = nullptr;
-	mAnmColorTimer      = 0.0f;
-	mAnmTrans           = nullptr;
-	mAnmTransTimer      = 0.0f;
-	mAnmTexPattern      = nullptr;
-	mAnmTexPatternTimer = 0.0f;
-	mMomentum.normalise();
+	u16 y = sys->getRenderModeHeight();
+	u16 x = sys->getRenderModeWidth();
+	mInitialPos.set(x * 0.75f, y, 100.0f);
 	reset();
-	disappear();
+
+	mIsVisible = false;
 }
 
 /**
@@ -222,9 +225,10 @@ void PodIconScreen::setTrans()
  */
 void PodIconScreen::reset()
 {
-	u16 y       = sys->getRenderModeObj()->efbHeight;
-	u16 x       = sys->getRenderModeObj()->fbWidth;
-	mInitialPos = Vector3f(x * 0.75f, y, 100.0f);
+	mMomentum.set(1.0f, randFloat(), 0.0f);
+	mMomentum.normalise(); // Needs to be here, but we are reaching limits of inline complexity
+	mPosition.set(0.0f, 0.0f, 0.0f);
+	setTrans();
 }
 
 /**
@@ -1320,12 +1324,12 @@ TControl::EModeFlag TControl::setMode(EModeFlag mode)
 		windowPane->mTimer           = 0.0f;
 		windowPane->mMaxTime         = 0.5f;
 		PodIconScreen* podIconScreen = mPodIcon;
-		if ((rand() * 2.0)) {
+		if ((randFloat() * 2.0f)) {
 			_GXRenderModeObj* renderObj = System::getRenderModeObj();
 			u16 efbHeight               = renderObj->efbHeight;
 			renderObj                   = System::getRenderModeObj();
 			u16 fbWidth                 = renderObj->fbWidth;
-			podIconScreen->mPosition.x  = (rand() * 0.5f + 0.3f) * fbWidth;
+			podIconScreen->mPosition.x  = (randFloat() * 0.5f + 0.3f) * fbWidth;
 			podIconScreen->mPosition.y  = efbHeight * 0.65f;
 			podIconScreen->mPosition.z  = 100.0f;
 		} else {
@@ -1333,11 +1337,11 @@ TControl::EModeFlag TControl::setMode(EModeFlag mode)
 			u16 efbHeight               = renderObj->efbHeight;
 			renderObj                   = System::getRenderModeObj();
 			u16 fbWidth                 = renderObj->fbWidth;
-			podIconScreen->mPosition.x  = (rand() * 0.5f + 0.3f) * fbWidth;
+			podIconScreen->mPosition.x  = (randFloat() * 0.5f + 0.3f) * fbWidth;
 			podIconScreen->mPosition.y  = efbHeight * 1.25f;
 			podIconScreen->mPosition.z  = 100.0f;
 		}
-		podIconScreen->mMomentum.x = rand() * 0.5f + 0.5f;
+		podIconScreen->mMomentum.x = randFloat() * 0.5f + 0.5f;
 		podIconScreen->mMomentum.y = rand();
 		podIconScreen->mMomentum.z = 0.0f;
 		podIconScreen->mMomentum.normalise();
