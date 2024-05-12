@@ -57,8 +57,8 @@ void Game::Rigid::initPosition(Vector3f& posVec, Vector3f& quatVec)
 {
 	initPositionIndex(posVec, 0, quatVec);
 	initPositionIndex(posVec, 1, quatVec);
-	PSMTXIdentity(mConfigs[0]._58.mMatrix.mtxView);
-	PSMTXIdentity(mConfigs[1]._58.mMatrix.mtxView);
+	PSMTXIdentity(mConfigs[0].mRotatedTransform.mMatrix.mtxView);
+	PSMTXIdentity(mConfigs[1].mRotatedTransform.mMatrix.mtxView);
 	PSMTXIdentity(mTransformationMtx.mMatrix.mtxView);
 	mTimeStep = 1.0f;
 	updateMatrix(0);
@@ -302,13 +302,13 @@ void Game::Rigid::integrate(f32 timeStep, int configIdx)
 	rotationMtx.makeQ(thisConfig->mPrimaryRotation);
 	PSMTXTranspose(rotationMtx.mMatrix.mtxView, transposeMtx.mMatrix.mtxView);
 	PSMTXConcat(rotationMtx.mMatrix.mtxView, mTransformationMtx.mMatrix.mtxView, concatMtx.mMatrix.mtxView);
-	PSMTXConcat(concatMtx.mMatrix.mtxView, transposeMtx.mMatrix.mtxView, thisConfig->_58.mMatrix.mtxView);
+	PSMTXConcat(concatMtx.mMatrix.mtxView, transposeMtx.mMatrix.mtxView, thisConfig->mRotatedTransform.mMatrix.mtxView);
 
 	thisConfig->mPosition = thisConfig->mPosition + thisConfig->mVelocity * timeStep;
 	thisConfig->mMomentum = thisConfig->mMomentum + thisConfig->mTorque * timeStep;
 	thisConfig->mVelocity = thisConfig->mVelocity + thisConfig->mForce * (timeStep * mTimeStep);
 
-	thisConfig->mRotatedMomentum = thisConfig->_58.mtxMult(thisConfig->mMomentum);
+	thisConfig->mRotatedMomentum = thisConfig->mRotatedTransform.mtxMult(thisConfig->mMomentum);
 
 	Quat q1;                                     // 0x160
 	Quat q2(0.0f, thisConfig->mRotatedMomentum); // 0x150
@@ -329,7 +329,7 @@ void Game::Rigid::integrate(f32 timeStep, int configIdx)
 			if (yDeg4 < yDeg48) {
 				Vector3f yAxis(0.0f, 1.0f, 0.0);
 				thisConfig->mMomentum        = thisConfig->mMomentum + vec1.cross(yAxis) * 1000.0f;
-				thisConfig->mRotatedMomentum = thisConfig->_58.mtxMult(thisConfig->mMomentum);
+				thisConfig->mRotatedMomentum = thisConfig->mRotatedTransform.mtxMult(thisConfig->mMomentum);
 				if (!(yDeg4 < f29)) {
 					thisConfig->mPrimaryRotation = q4;
 				}
@@ -780,36 +780,47 @@ lbl_8013AB2C:
 bool Game::Rigid::resolveCollision(int configIndex, Vector3f& collisionPoint, Vector3f& collisionNormal, f32 restitutionCoefficient)
 {
 	if (DynamicsParms::mInstance->mMicroCollision.mValue == 1120.0f) {
-		;
+#if _DEBUG
+		// Stripped from release build
+		OSReport("rassclaaat");
+#endif
 	}
-	RigidConfig& config       = mConfigs[configIndex];
-	Vector3f relativePosition = collisionPoint - config.mPosition;
-	Vector3f relativeVelocity = (config.mVelocity + relativePosition.cross(config.mRotatedMomentum));
-	relativeVelocity.negate();
-	f32 velocityDotNormal = relativeVelocity.dot(collisionNormal);
-	if (velocityDotNormal < -0.0f) {
+
+	RigidConfig* config = &this->mConfigs[configIndex];
+
+	Vector3f positionDelta = collisionPoint - config->mPosition;
+
+	Vector3f angularMomentum(config->mRotatedMomentum.z * positionDelta.y - config->mRotatedMomentum.y * positionDelta.z,
+	                         config->mRotatedMomentum.x * positionDelta.z - config->mRotatedMomentum.z * positionDelta.x,
+	                         config->mRotatedMomentum.y * positionDelta.x - config->mRotatedMomentum.x * positionDelta.y);
+
+	config->mRotatedMomentum = angularMomentum;
+
+	Vector3f impulse = angularMomentum + config->mVelocity;
+	impulse.negate2();
+
+	float impulseMagnitude = impulse.dot(collisionNormal);
+
+	// If there's a collision
+	if (impulseMagnitude < 0.0f * -0.0f) {
 		return false;
 	}
-	if (absF(velocityDotNormal) <= -0.0f) {
+
+	// If it's tiny, just set it to 0
+	if (fabs(impulseMagnitude) <= 0.0f) {
 		restitutionCoefficient = 1.0f;
-		velocityDotNormal      = -0.0f;
+		impulseMagnitude       = 0.0f;
 	}
-	f32 timeStep         = mTimeStep;
-	f32 impulseMagnitude = -(1.0f + restitutionCoefficient) * velocityDotNormal;
 
-	Vector3f vec = relativePosition;
-	vec          = vec.cross(collisionNormal);
-	vec          = config._58.mtxMult(vec);
-	vec          = vec.cross(collisionNormal);
+	Vector3f rotatedVelocity = config->mRotatedTransform.mtxMult(positionDelta.cross(collisionNormal));
 
-	timeStep += collisionNormal.dot(vec);
-	Vector3f impulse = collisionNormal;
-	impulse *= -(impulseMagnitude / timeStep);
-	config.mVelocity        = config.mVelocity + impulse * mTimeStep;
-	vec                     = relativePosition;
-	vec                     = vec.cross(impulse);
-	config.mMomentum        = config.mMomentum + vec;
-	config.mRotatedMomentum = config._58.mtxMult(config.mMomentum);
+	f32 dynamicCoefficient = collisionNormal.dot(rotatedVelocity);
+	f32 scalar             = -(1.0f + restitutionCoefficient) * impulseMagnitude / dynamicCoefficient;
+
+	Vector3f collisionImpulse = positionDelta * (collisionNormal * scalar);
+
+	config->mVelocity = config->mVelocity + collisionImpulse;
+	config->setMomentum(positionDelta.cross(collisionImpulse));
 	return true;
 	/*
 	stwu     r1, -0x90(r1)

@@ -204,6 +204,9 @@ struct Vector3 {
 		this->z /= other.z;
 	}
 
+	// Negation operator
+	inline Vector3 operator-() const { return Vector3(-x, -y, -z); }
+
 	inline void addXZ(const Vector3& other)
 	{
 		this->x += other.x;

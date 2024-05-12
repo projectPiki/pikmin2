@@ -369,7 +369,7 @@ struct Matrixf {
 	 * @param other The vector to be multiplied.
 	 * @return The resulting vector after multiplication.
 	 */
-	inline Vector3f mtxMult(Vector3f& other)
+	inline Vector3f mtxMult(const Vector3f& other)
 	{
 		Vector3f outVec;
 		PSMTXMultVec(this->mMatrix.mtxView, (Vec*)&other, (Vec*)&outVec);

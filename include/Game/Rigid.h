@@ -13,6 +13,12 @@ namespace Game {
 struct RigidConfig {
 	RigidConfig() { }
 
+	inline void setMomentum(const Vector3f& momentum)
+	{
+		mMomentum        = mMomentum + momentum;
+		mRotatedMomentum = mRotatedTransform.mtxMult(momentum);
+	}
+
 	Vector3f mPosition;        // _00, for mConfigs: (_034, _0BC)
 	Vector3f mVelocity;        // _0C, for mConfigs: (_040, _0C8)
 	Vector3f mForce;           // _18, for mConfigs: (_04C, _0D4)
@@ -20,7 +26,7 @@ struct RigidConfig {
 	Vector3f mMomentum;        // _30, for mConfigs: (_064, _0EC)
 	Vector3f mTorque;          // _3C, for mConfigs: (_070, _0F8)
 	Quat mPrimaryRotation;     // _48, for mConfigs: (_07C, _104)
-	Matrixf _58;               // _58, for mConfigs: (_08C, _114)
+	Matrixf mRotatedTransform; // _58, for mConfigs: (_08C, _114)
 };
 
 struct Rigid {
