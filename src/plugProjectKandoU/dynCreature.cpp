@@ -612,7 +612,7 @@ void DynCreature::tracemoveCallback(Vector3f& point, Vector3f& normal)
  */
 bool range_check(f32 val)
 {
-	if (val < -128000.0f || val > 128000.0f) {
+	if (val < FLOAT_DIST_MIN || val > FLOAT_DIST_MAX) {
 		return false;
 	}
 	return true;

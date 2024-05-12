@@ -82,7 +82,7 @@ struct BaseItem : public Creature, public SysShape::MotionListener {
 	virtual bool interactFarmHaero(InteractFarmHaero&) { return false; }              // _1FC (weak)
 	virtual bool interactGotKey(InteractGotKey&) { return false; }                    // _200 (weak)
 	virtual bool getVectorField(Sys::Sphere&, Vector3f&) { return true; }             // _204 (weak)
-	virtual f32 getWorkDistance(Sys::Sphere&) { return 128000.0f; }                   // _208 (weak)
+	virtual f32 getWorkDistance(Sys::Sphere&) { return FLOAT_DIST_MAX; }              // _208 (weak)
 	virtual void do_doAnimation() { }                                                 // _20C (weak)
 	virtual void bounceCallback(Sys::Triangle* tri) { }                               // _E8 (weak)
 	virtual void collisionCallback(CollEvent& event) { }                              // _EC (weak)
@@ -158,8 +158,7 @@ struct CItemFSM : public StateMachine<CFSMItem> {
 };
 
 template <typename T>
-struct ItemFSM : public StateMachine<T> {
-};
+struct ItemFSM : public StateMachine<T> { };
 
 struct CItemState : public FSMState<CFSMItem> {
 	inline CItemState(int id)

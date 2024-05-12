@@ -711,5 +711,5 @@ inline f32 sqrDistance(Vector3f& vec1, Vector3f& vec2)
 #endif
 
 // I saw this constant being used a lot, if you have a better name please replace it
-#define FLOAT_DIST_MAX 128000.0
-#define FLOAT_DIST_MIN -128000.0
+#define FLOAT_DIST_MAX 128000.0f
+#define FLOAT_DIST_MIN -128000.0f

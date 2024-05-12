@@ -59,7 +59,7 @@ CPlate::CPlate(int slotLimit)
     , mParms()
     , mSlotLimit(slotLimit)
 {
-	_B4              = 10.0f;
+	mMoveStickRadius = 10.0f;
 	mBaseRadius      = 10.0f;
 	mPosition        = Vector3f(0.0f);
 	mAngle           = 0.0f;
@@ -706,14 +706,14 @@ void CPlate::rearrangeSlot(Vector3f& target, f32 direction, Vector3f& velocity)
 void CPlate::getSlotPosition(int idx, Vector3f& outPosition)
 {
 	JUT_ASSERTLINE(627, validSlot(idx), "invalid slot idx %d\n", idx);
-	outPosition = mSlots[idx]._0C + mBasePositionOffset;
+	outPosition = mSlots[idx].mPosition + mBasePositionOffset;
 }
 
 /**
  * @note Address: 0x801960F8
  * @note Size: 0x1B8
  */
-void CPlate::refresh(int groupSize, f32 moveStrength)
+void CPlate::refresh(int formationSize, f32 moveStrength)
 {
 	if (moveStrength > 1.0f) {
 		moveStrength = 1.0f;
@@ -721,40 +721,40 @@ void CPlate::refresh(int groupSize, f32 moveStrength)
 		moveStrength = 0.0f;
 	}
 
-	if (groupSize < mActiveGroupSize) {
-		mSlotCount -= (mActiveGroupSize - groupSize);
+	if (formationSize < mActiveGroupSize) {
+		mSlotCount -= (mActiveGroupSize - formationSize);
 	}
 
-	mActiveGroupSize = groupSize;
+	mActiveGroupSize = formationSize;
 
-	f32 maxSizeParm = mParms.mMaxPositionSize();
-	f32 maxSize     = maxSizeParm * (mShrinkTimer ? 0.5f : 1.0f);
+	f32 maxPositionSize  = mParms.mMaxPositionSize();
+	f32 effectiveMaxSize = maxPositionSize * (mShrinkTimer ? 0.5f : 1.0f);
 
-	f32 val = (f32)groupSize / PI;
-	val     = _sqrtf(val);
+	f32 radiusFactor = (f32)formationSize / PI;
+	radiusFactor     = _sqrtf(radiusFactor);
 
-	mMaxRadius = (2.1f * maxSize) * val;
-	f32 val2   = 1.9f * maxSize;
+	mMaxRadius        = (2.1f * effectiveMaxSize) * radiusFactor;
+	f32 smallerRadius = 1.9f * effectiveMaxSize;
 
-	f32 val3 = mMaxRadius;
-	if (val2 > val3) {
-		val = val2;
+	f32 largerRadius = mMaxRadius;
+	if (smallerRadius > largerRadius) {
+		radiusFactor = smallerRadius;
 	} else {
-		val  = val3;
-		val3 = val2;
+		radiusFactor = largerRadius;
+		largerRadius = smallerRadius;
 	}
 
-	_B4 = (moveStrength * -(val - val3)) + val;
-	if (_B4 == 0.0f) {
+	mMoveStickRadius = (moveStrength * -(radiusFactor - largerRadius)) + radiusFactor;
+	if (mMoveStickRadius == 0.0f) {
 		mBaseRadius = 10.0f;
 	} else {
-		mBaseRadius = (maxSize * ((4.0f * (f32)groupSize) * maxSize)) / (PI * _B4);
+		mBaseRadius = (effectiveMaxSize * ((4.0f * (f32)formationSize) * effectiveMaxSize)) / (PI * mMoveStickRadius);
 	}
 
 	f32 lengthLimit = mParms.mLengthLimit();
 	if (mBaseRadius > lengthLimit) {
-		mBaseRadius = lengthLimit;
-		_B4         = (maxSize * ((4.0f * (f32)groupSize) * maxSize)) / (PI * mBaseRadius);
+		mBaseRadius      = lengthLimit;
+		mMoveStickRadius = (effectiveMaxSize * ((4.0f * (f32)formationSize) * effectiveMaxSize)) / (PI * mBaseRadius);
 	}
 
 	refreshSlot(moveStrength);
@@ -790,7 +790,7 @@ void CPlate::refreshSlot(f32 p1)
 		f32 sqrBase  = mBaseRadius * mBaseRadius;
 		f32 sqrRad   = radius * radius;
 		f32 rootDiff = _sqrtf(sqrBase - sqrRad);
-		int val      = (_B4 * rootDiff) / radius / x;
+		int val      = (mMoveStickRadius * rootDiff) / radius / x;
 		if (val < 0) {
 			val = 0;
 		}
@@ -809,8 +809,8 @@ void CPlate::refreshSlot(f32 p1)
 
 		for (int i = val * 2 + 1; i > 0; i--, fCounter -= step) {
 			if (slotCount < mActiveGroupSize) {
-				mSlots[row]._00 = Vector3f(fCounter, 0.0f, radius);
-				mSlots[row]._0C = rotationMtx.mtxMult(mSlots[row]._00);
+				mSlots[row].mRelativePosition = Vector3f(fCounter, 0.0f, radius);
+				mSlots[row].mPosition         = rotationMtx.mtxMult(mSlots[row].mRelativePosition);
 				row++;
 				slotCount++;
 			}

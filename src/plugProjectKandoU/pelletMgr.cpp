@@ -815,7 +815,7 @@ void Pellet::onKill(CreatureKillArg* killArg)
 
 	if (mModel) {
 		mLodSphere.mPosition = Vector3f(0.0f);
-		mLodSphere.mRadius   = 128000.0f;
+		mLodSphere.mRadius   = FLOAT_DIST_MAX;
 		mScale               = Vector3f(1.0f);
 		PSMTXCopy(mBaseTrMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
 		mScale.setVec(mModel->mJ3dModel->mModelScale);

@@ -218,7 +218,7 @@ f32 MapMgr::getBestAngle(Vector3f& position, f32 distance, f32 divisor)
 	}
 
 	// Find the best angle
-	f32 bestAngle    = 128000.0f;
+	f32 bestAngle    = FLOAT_DIST_MAX;
 	int bestAngleNum = 0;
 	for (int i = 0; i < 16; i++) {
 		if (bestAngle > angles[i]) {

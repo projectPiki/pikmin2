@@ -17,14 +17,14 @@ struct CPlate : public Container<Creature> {
 	struct Slot {
 		Slot()
 		{
-			mCreature = nullptr;
-			mListener = nullptr;
-			_00       = Vector3f(0.0f);
-			_0C       = Vector3f(0.0f);
+			mCreature         = nullptr;
+			mListener         = nullptr;
+			mRelativePosition = Vector3f(0.0f);
+			mPosition         = Vector3f(0.0f);
 		}
 
-		Vector3f _00;                  // _00
-		Vector3f _0C;                  // _0C
+		Vector3f mRelativePosition;    // _00
+		Vector3f mPosition;            // _0C
 		Creature* mCreature;           // _18
 		SlotChangeListener* mListener; // _1C
 	};
@@ -74,7 +74,7 @@ struct CPlate : public Container<Creature> {
 	Parms mParms;                                // _1C
 	Vector3f mMaxPositionOffset;                 // _A4
 	f32 mBaseRadius;                             // _B0
-	f32 _B4;                                     // _B4
+	f32 mMoveStickRadius;                        // _B4
 	f32 mMaxRadius;                              // _B8
 	int mActiveGroupSize;                        // _BC
 	Slot* mSlots;                                // _C0

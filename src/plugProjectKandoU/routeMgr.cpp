@@ -501,7 +501,7 @@ WayPoint* RouteMgr::getNearestWayPoint(WPSearchArg& searchArg)
  */
 bool RouteMgr::getNearestEdge(WPEdgeSearchArg& searchArg)
 {
-	f32 minDist = 128000.0f;
+	f32 minDist = FLOAT_DIST_MAX;
 	bool result = false;
 	Iterator<WayPoint> iter(this);
 	CI_LOOP(iter)

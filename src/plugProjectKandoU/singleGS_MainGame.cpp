@@ -188,7 +188,7 @@ void GameState::init(SingleGameSection* game, StateArg* arg)
 	// Do a dumb calcNearestTreasure because any non-0 return means a treasure at least exists
 	Vector3f dummyPos;
 	f32 dummyDist;
-	if (Radar::mgr->calcNearestTreasure(Vector3f::zero, 128000.0f, dummyPos, dummyDist) == 0) {
+	if (Radar::mgr->calcNearestTreasure(Vector3f::zero, FLOAT_DIST_MAX, dummyPos, dummyDist) == 0) {
 		game->mNeedTreasureCalc = true;
 	} else {
 		game->mNeedTreasureCalc = false;

@@ -563,7 +563,7 @@ void AnimInfo::attach(Model*, void*)
  */
 KeyEvent* AnimInfo::getLowestAnimKey(f32 minimumFrame)
 {
-	f32 lowestFrame     = 128000.0f;
+	f32 lowestFrame     = FLOAT_DIST_MAX;
 	KeyEvent* lowestKey = nullptr;
 	FOREACH_NODE(KeyEvent, mKeyEvent.mChild, key)
 	{

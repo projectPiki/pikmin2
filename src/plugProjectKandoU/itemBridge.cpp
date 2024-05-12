@@ -1028,14 +1028,14 @@ f32 Item::getWorkDistance(Sys::Sphere& sphere)
 	getBridgePos(sphere.mPosition, x, z);
 
 	if (mCurrStageIdx == mStageCount) {
-		return 128000.0f;
+		return FLOAT_DIST_MAX;
 	}
 
 	f32 rad = getStageZ(mCurrStageIdx);
 	z -= 10.0f;
 
 	if (z > rad + 10.0f) {
-		return 128000.0f;
+		return FLOAT_DIST_MAX;
 	}
 
 	if (z >= 0.0f && z <= rad) {
@@ -1046,11 +1046,11 @@ f32 Item::getWorkDistance(Sys::Sphere& sphere)
 	}
 
 	if (z < -100.0f) {
-		return 128000.0f;
+		return FLOAT_DIST_MAX;
 	}
 
 	if (absF(x) >= 105.0f) {
-		return 128000.0f;
+		return FLOAT_DIST_MAX;
 	}
 
 	return absF(z - rad);

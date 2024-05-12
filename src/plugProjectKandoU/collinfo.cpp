@@ -604,7 +604,7 @@ CollPart* CollTree::findCollPart(FindCollPartArg& findArg)
 		int count    = 0;
 		int numParts = mPart->getAllCollPartToArray(partArray, 256, count);
 
-		f32 minDist         = 128000.0f;
+		f32 minDist         = FLOAT_DIST_MAX;
 		CollPart* foundPart = nullptr;
 		for (int i = 0; i < numParts; i++) {
 			CollPart* currPart = partArray[i];

@@ -394,7 +394,7 @@ Camera::Camera()
 {
 	mJstObject          = 0;
 	mProjectionNear     = 1.0f;
-	mProjectionFar      = 128000.0f;
+	mProjectionFar      = FLOAT_DIST_MAX;
 	mFieldOfViewRatio   = 1.0f;
 	mFieldOfViewTangent = 1.0f;
 	mCameraSizeModifier = 1.0f;

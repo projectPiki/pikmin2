@@ -2742,7 +2742,7 @@ lbl_8041F49C:
  * @note Address: 0x8041F4B8
  * @note Size: 0x2C
  */
-f32 OBBTree::getMinY(Vector3f& pos) { getOBB()->getMinY(pos, *mTriangleTable, -128000.0f); }
+f32 OBBTree::getMinY(Vector3f& pos) { getOBB()->getMinY(pos, *mTriangleTable, FLOAT_DIST_MIN); }
 
 /**
  * @note Address: 0x8041F4E4
@@ -3347,7 +3347,7 @@ lbl_8041FB74:
  */
 f32 OBB::getMinYTriList(Vector3f& vec, Sys::TriangleTable& triTable)
 {
-	f32 min = -128000.0f;
+	f32 min = FLOAT_DIST_MIN;
 	for (int i = 0; i < mTriIndexList.mCount; i++) {
 		Triangle* currTri = triTable.getTriangle(mTriIndexList.mObjects[i]);
 		Vector3f testVec  = vec;
