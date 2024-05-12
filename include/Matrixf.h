@@ -254,6 +254,13 @@ struct Matrixf {
 		mMatrix.mtxView[2][index] = in.z;
 	}
 
+	inline void setColumn(int index, const Vector3f& in)
+	{
+		mMatrix.mtxView[0][index] = in.x;
+		mMatrix.mtxView[1][index] = in.y;
+		mMatrix.mtxView[2][index] = in.z;
+	}
+
 	/**
 	 * @brief Sets the values of a specific column in the matrix.
 	 *

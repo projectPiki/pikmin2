@@ -5958,7 +5958,7 @@ u32 Navi::ogGetNextThrowPiki()
 
 inline f32 pikmin2_normalise(Vector3f& vec)
 {
-	f32 length = pikmin2_sqrtf(vec.magnitude());
+	f32 length = pikmin2_sqrtf(vec.sqrMagnitude());
 	if (length > 0) {
 		f32 norm = 1.0f / length;
 		vec *= norm;

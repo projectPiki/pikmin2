@@ -30,11 +30,7 @@ Platform::Platform() { mTriDivider = nullptr; }
  * @note Address: N/A
  * @note Size: 0x8
  */
-void Platform::setTriDivider(Sys::TriDivider* triDivider)
-{
-	// UNUSED FUNCTION
-	mTriDivider = (Sys::OBBTree*)triDivider;
-}
+void Platform::setTriDivider(Sys::TriDivider* triDivider) { mTriDivider = (Sys::OBBTree*)triDivider; }
 
 /**
  * @note Address: 0x801336EC
@@ -612,12 +608,12 @@ CollPart* CollTree::findCollPart(FindCollPartArg& findArg)
 		CollPart* foundPart = nullptr;
 		for (int i = 0; i < numParts; i++) {
 			CollPart* currPart = partArray[i];
-			if (((findArg.mCondition == nullptr) || findArg.mCondition->satisfy(currPart)) && currPart->isSphere()) {
-				f32 dist = findArg.mPosition.mPosition.sqrDistance(currPart->mPosition) - SQUARE(currPart->mRadius);
+			if ((!findArg.mCondition || findArg.mCondition->satisfy(currPart)) && currPart->isSphere()) {
+				f32 distance = sqrDistance(findArg.getHitPosition(), currPart->mPosition) - currPart->getSqrRadius();
 
-				if (dist < minDist) {
+				if (distance < minDist) {
 					foundPart = currPart;
-					minDist   = dist;
+					minDist   = distance;
 				}
 			}
 		}
@@ -855,10 +851,8 @@ void CollPart::calcStickLocal(Vector3f& input, Vector3f& localPosition)
 		Matrixf inv;
 		PSMTXInverse(mtx.mMatrix.mtxView, inv.mMatrix.mtxView);
 
-		Vector3f row1 = Vector3f(mtx.getRow(0));
-
-		f32 len = row1.length();
-
+		Vector3f row0 = mtx.getRow(0);
+		f32 len       = _length(row0);
 		if (FABS(len) < 0.001f) {
 			localPosition = Vector3f(0.0f);
 			return;
@@ -1097,23 +1091,21 @@ void CollPart::calcPoseMatrix(Vector3f& input, Matrixf& poseMatrix)
 	case COLLTYPE_SPHERE:
 		Matrixf mtx;
 		makeMatrixTo(mtx);
-		Vector3f pos  = mtx.getColumn(3);
-		Vector3f diff = pos - input;
-		f32 len       = diff.normalise();
+
+		Vector3f pos = mtx.getTranslation();
+		pos -= input;
+		f32 len = pos.normalise();
+
 		if (len == 0.0f) {
-			diff = Vector3f(0.0f, 0.0f, 1.0f);
+			pos = Vector3f(0.0f, 0.0f, 1.0f);
 		}
+
 		Vector3f zAxis(0.0f, 0.0f, 1.0f);
-		Vector3f crossProd = cross(diff, zAxis);
+		Vector3f crossProd = pos.cross(zAxis);
 		crossProd.normalise();
 		poseMatrix.setColumn(0, crossProd);
-		f32 zVal = diff.y * crossProd.x;
-		Vector3f otherVec;
-		otherVec.x = diff.y * crossProd.z - diff.z * crossProd.y;
-		otherVec.y = diff.z * crossProd.x - diff.x * crossProd.z;
-		otherVec.z = diff.x * crossProd.y - diff.y * crossProd.x;
-		poseMatrix.setColumn(1, otherVec);
-		poseMatrix.setColumn(2, diff);
+		poseMatrix.setColumn(1, pos.cross(crossProd));
+		poseMatrix.setColumn(2, pos);
 		break;
 
 	case COLLTYPE_TUBETREE:
@@ -1142,15 +1134,17 @@ void CollPart::calcPoseMatrix(Vector3f& input, Matrixf& poseMatrix)
 	case COLLTYPE_TUBE:
 		Sys::Tube tube;
 		getTube(tube);
+
 		Vector3f axis;
 		tube.getAxisVector(axis);
-		axis.x             = -axis.x;
-		axis.y             = -axis.y;
-		axis.z             = -axis.z;
-		Vector3f axisCross = cross(input, axis);
-		axisCross.normalise();
-		Vector3f thirdAxis = cross(axisCross, axis);
-		thirdAxis.normalise();
+		axis.negate2();
+
+		Vector3f axisCross = input.cross(axis);
+		_normaliseVec(axisCross);
+
+		Vector3f thirdAxis = axisCross.cross(axis);
+		_normaliseVec(thirdAxis);
+
 		poseMatrix.setColumn(0, axisCross);
 		poseMatrix.setColumn(1, axis);
 		poseMatrix.setColumn(2, thirdAxis);

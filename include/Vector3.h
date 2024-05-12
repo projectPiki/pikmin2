@@ -108,11 +108,6 @@ struct Vector3 {
 	/**
 	 * @fabricated
 	 */
-	inline f32 magnitude() { return x * x + y * y + z * z; }
-
-	/**
-	 * @fabricated
-	 */
 	// inline JGeometry::TVec3<T> toTVec() const
 	// {
 	// 	JGeometry::TVec3<T> vec;
@@ -162,6 +157,13 @@ struct Vector3 {
 		z *= -1.0f;
 	}
 
+	inline void negate2()
+	{
+		x = -x;
+		y = -y;
+		z = -z;
+	}
+
 	// 	inline Vector3& operator+(const Vector3 other) {
 	//     Vector3 newVector = *this;
 	//     x += other.x;
@@ -176,7 +178,6 @@ struct Vector3 {
 	//     newVector.z *= other;
 	//     return newVector;
 	// }
-	// inline void operator*=(const f32 other) { *this = Vector3(x * other, y * other, z * other); }
 	inline void operator*=(Matrixf& other);
 	inline void operator*=(const f32 other)
 	{
@@ -317,6 +318,15 @@ struct Vector3 {
 		f32 diffZ = this->z - them.z;
 
 		return pikmin2_sqrtf(SQUARE(diffX) + SQUARE(diffY) + SQUARE(diffZ));
+	}
+
+	inline f32 sqrDistanceToSphere(Vector3& them)
+	{
+		f32 diffX = this->x - them.x;
+		f32 diffY = this->y - them.y;
+		f32 diffZ = this->z - them.z;
+
+		return SQUARE(diffX) + SQUARE(diffY) + SQUARE(diffZ);
 	}
 
 	f32 length() const;
@@ -605,7 +615,7 @@ inline f32 Vector3f::sqrDistance(Vector3f& them)
 	f32 diffY = this->y - them.y;
 	f32 diffZ = this->z - them.z;
 
-	return diffX * diffX + diffY * diffY + diffZ * diffZ;
+	return SQUARE(diffX) + SQUARE(diffY) + SQUARE(diffZ);
 }
 
 template <>
@@ -691,6 +701,7 @@ inline f32 sqrDistance(Vector3f& vec1, Vector3f& vec2)
 	f32 x = vec1.x - vec2.x;
 	f32 y = vec1.y - vec2.y;
 	f32 z = vec1.z - vec2.z;
+
 	return x * x + y * y + z * z;
 }
 

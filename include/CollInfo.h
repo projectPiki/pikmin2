@@ -87,6 +87,8 @@ struct CollPart : public CNode {
 	void setScale(f32);
 	void update();
 
+	inline f32 getSqrRadius() { return mRadius * mRadius; }
+
 	f32 mBaseRadius;             // _18, base radius used to calculate real radius (in setScale, it's scaled)
 	f32 mRadius;                 // _1C
 	Vector3f mOffset;            // _20
@@ -109,7 +111,9 @@ struct CollPartMgr : public MonoObjectMgr<CollPart> {
 
 struct FindCollPartArg {
 	Condition<CollPart>* mCondition; // _00
-	Sys::Sphere mPosition;           // _04
+	Sys::Sphere mHitSphere;          // _04
+
+	inline Vector3f& getHitPosition() { return mHitSphere.mPosition; }
 };
 
 struct MouthCollPart : public CollPart {

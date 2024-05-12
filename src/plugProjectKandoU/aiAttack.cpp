@@ -170,7 +170,7 @@ void ActAttack::calcAttackPos()
 		FindCollPartArg findArg;
 		FindCondition condition;
 		findArg.mCondition = &condition;
-		mParent->getBoundingSphere(findArg.mPosition);
+		mParent->getBoundingSphere(findArg.mHitSphere);
 		CollPart* part = mCreature->mCollTree->findCollPart(findArg);
 		if (part) {
 			mAttackSphere.mPosition = part->mPosition;
