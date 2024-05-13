@@ -23,7 +23,7 @@ struct Caster : public CNode {
 	// unused/inlined:
 	void show();
 	void fadeout(f32);
-	void makeDL();
+	inline void makeDL();
 	void update();
 	void draw(Graphics&);
 	void drawLine(Graphics&);

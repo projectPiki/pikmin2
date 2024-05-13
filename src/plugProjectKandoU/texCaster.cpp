@@ -78,7 +78,27 @@ void Caster::fadeout(f32)
  */
 void Caster::makeDL()
 {
-	// UNUSED FUNCTION
+	mDisplayListSize = OSRoundDown32B(mTriangleCount * 12 + 34);
+	mDisplayList     = new (0x20) u8[mDisplayListSize];
+
+	int index       = 0;
+	mDisplayList[0] = 0x90;
+	mDisplayList[1] = 3 * (mTriangleCount >> 16);
+
+	for (int i = 0; i < mTriangleCount; ++i) {
+		int j                   = index + 1;
+		mDisplayList[index + 3] = (index >> 8) & 0xFF;
+		mDisplayList[index + 4] = index & 0xFF;
+		mDisplayList[index + 5] = (j >> 8) & 0xFF;
+		mDisplayList[index + 6] = j & 0xFF;
+		index += 3;
+	}
+
+	for (int i = index; i < mDisplayListSize; i += 8) {
+		memset(mDisplayList + i, 0, 8);
+	}
+
+	DCFlushRange(mDisplayList, mDisplayListSize);
 }
 
 /**
@@ -246,31 +266,7 @@ Caster* Mgr::create(Sys::Sphere& sphere, f32 rotationAngle)
 		}
 	}
 
-	caster->mDisplayListSize = OSRoundDown32B(caster->mTriangleCount * 12 + 34);
-	caster->mDisplayList     = new (0x20) u8[caster->mDisplayListSize];
-
-	int index               = 0;
-	caster->mDisplayList[0] = 0x90;
-	caster->mDisplayList[1] = 3 * (caster->mTriangleCount >> 16);
-
-	for (int i = 0; i < caster->mTriangleCount; ++i) {
-		int j                           = index + 1;
-		caster->mDisplayList[index + 3] = (index >> 8) & 0xFF;
-		caster->mDisplayList[index + 4] = index & 0xFF;
-		caster->mDisplayList[index + 5] = (j >> 8) & 0xFF;
-		caster->mDisplayList[index + 6] = j & 0xFF;
-		index += 3;
-	}
-
-	int remaining = caster->mDisplayList[caster->mDisplayListSize - index];
-	while (remaining > 0) {
-		int size = MIN(remaining, 8);
-		memset(caster->mDisplayList + index, 0, size);
-		index += size;
-		remaining -= size;
-	}
-
-	DCFlushRange(caster->mDisplayList, caster->mDisplayListSize);
+	caster->makeDL();
 	mCaster.add(caster);
 	return caster;
 	/*
