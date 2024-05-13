@@ -181,6 +181,14 @@ void CNode::concat(CNode* newEnd)
 CNode::~CNode() { }
 
 /**
+ * @brief Deletes the current node from its parent's child list.
+ *
+ * This function removes the current node from its parent's child list.
+ * If there are other nodes before or after the current node, pointers are updated to maintain the linked list structure.
+ * If the current node is the only child of its parent, the parent's child pointer is updated to the next node, if any.
+ *
+ * @note This function assumes that the current node has a valid parent.
+ *
  * @note Address: 0x804115D0
  * @note Size: 0x98
  */

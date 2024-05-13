@@ -66,8 +66,8 @@ struct MgrCommand : public CNode, JKRDisposer {
 	Node* mNode2;                           // _A8
 	JKRHeap* mActiveHeap;                   // _AC
 	IDelegate1<MgrCommand*>* mUserCallback; // _B0
-	Delegate<MgrCommand> mDelegateMemory;   // _B4
-	Delegate<MgrCommand> mDelegateDvdLoad;  // _C8
+	Delegate<MgrCommand> mDelegateDvdLoad;  // _B4
+	Delegate<MgrCommand> mDelegateMemory;   // _C8
 	Delegate<MgrCommand> mDelegateAramLoad; // _DC
 };
 
@@ -85,7 +85,7 @@ struct Mgr {
 	bool sync(MgrCommand*, bool);
 
 	// Unused/inlined:
-	void search(const char*);
+	Node* search(const char* path);
 	void dump();
 	void syncAll(bool);
 	void watchHeap();

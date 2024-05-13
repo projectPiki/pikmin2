@@ -68,7 +68,8 @@ void Node::destroy(Node* node)
 {
 	// UNUSED FUNCTION
 	if (node) {
-		((JKRExpHeap*)node->mHeap)->freeGroup(node->mHeapGroupID);
+		JKRExpHeap* heap = (JKRExpHeap*)node->mHeap;
+		heap->freeGroup(node->mHeapGroupID);
 	}
 }
 
@@ -80,8 +81,8 @@ MgrCommand::MgrCommand(char* name)
     : CNode(name)
     , mActiveHeap(nullptr)
     , mUserCallback(nullptr)
-    , mDelegateMemory(this, &MgrCommand::memoryCallBackFunc)
-    , mDelegateDvdLoad(this, &MgrCommand::dvdLoadCallBackFunc)
+    , mDelegateDvdLoad(this, &MgrCommand::memoryCallBackFunc)
+    , mDelegateMemory(this, &MgrCommand::dvdLoadCallBackFunc)
     , mDelegateAramLoad(this, &MgrCommand::aramLoadCallBackFunc)
 {
 	setModeInvalid();
@@ -191,7 +192,24 @@ void MgrCommand::releaseCurrentHeap()
  */
 bool MgrCommand::isFinish()
 {
-	// UNUSED FUNCTION
+	bool result = false;
+
+	switch (mMode) {
+	case 0:
+		result = _34 ? mDvdThread.mMode == 2 : true;
+		break;
+	case 1:
+		result = _34 ? mDvdThread.mMode == 2 : true;
+		break;
+	case 2:
+		result = _34 ? mDvdThread.mMode == 2 : true;
+		break;
+	default:
+		JUT_PANICLINE(252, "P2Assert");
+		break;
+	}
+
+	return result;
 }
 
 /**
@@ -204,27 +222,37 @@ void* MgrCommand::getResource() { return mNode1->mResource; }
  * @note Address: N/A
  * @note Size: 0x40
  */
-void MgrCommand::setModeMemory(Node*)
+void MgrCommand::setModeMemory(Node* node)
 {
-	// UNUSED FUNCTION
+	mMode  = 2;
+	mNode1 = node;
+	_34    = 1;
+	sys->dvdLoadUseCallBack(&mDvdThread, &mDelegateMemory);
 }
 
 /**
  * @note Address: N/A
  * @note Size: 0x40
  */
-void MgrCommand::setModeAram(Node*, ARAM::Node*)
+void MgrCommand::setModeAram(Node* node, ARAM::Node* aramNode)
 {
-	// UNUSED FUNCTION
+	mMode  = 1;
+	mNode1 = node;
+	_34    = 1;
+	mNode2 = (Node*)aramNode;
+	sys->dvdLoadUseCallBack(&mDvdThread, &mDelegateAramLoad);
 }
 
 /**
  * @note Address: N/A
  * @note Size: 0x40
  */
-void MgrCommand::setModeDvd(Node*)
+void MgrCommand::setModeDvd(Node* node)
 {
-	// UNUSED FUNCTION
+	mMode  = 0;
+	mNode1 = node;
+	_34    = 1;
+	sys->dvdLoadUseCallBack(&mDvdThread, &mDelegateDvdLoad);
 }
 
 /**
@@ -354,8 +382,16 @@ Mgr::Mgr(JKRHeap* parentHeap, u32 size)
  * @note Address: N/A
  * @note Size: 0x6C
  */
-void Mgr::search(char const*)
+Node* Mgr::search(char const* path)
 {
+	Node* node = nullptr;
+	FOREACH_NODE(Node, mNodes.mChild, cnode)
+	{
+		if (!strcmp(path, cnode->mName)) {
+			node = cnode;
+		}
+	}
+	return node;
 	// UNUSED FUNCTION
 }
 
@@ -374,21 +410,34 @@ void Mgr::dump()
  */
 void Mgr::drawDump(Graphics&, int, int) { }
 
+struct UseList {
+	UseList()
+	{
+		for (int i = 0; i < 256; i++) {
+			mList.mUseListInt[i] = 0;
+		}
+	}
+
+	inline u8 operator[](u8 index) const { return mList.mUseList[index]; }
+	inline u8& operator[](u8 index) { return mList.mUseList[index]; }
+
+	union {
+		u8 mUseList[256];
+		u32 mUseListInt[64];
+	} mList;
+};
+
 /**
  * @note Address: 0x804337E0
  * @note Size: 0x1B4
  */
 Node* Mgr::createNewNode(char const* path)
 {
+	FORCE_DONT_INLINE
+
 	u8 id     = mHeap->getCurrentGroupId();
 	int nodes = 0;
-
-	u8 useList[256];
-	// something dumb here
-	u32* test = (u32*)useList;
-	for (int i = 0; i < 64; i++) {
-		test[i] = 0;
-	}
+	UseList useList;
 
 	FOREACH_NODE(Node, mNodes.mChild, node)
 	{
@@ -397,6 +446,7 @@ Node* Mgr::createNewNode(char const* path)
 		} else {
 			P2ASSERTLINE(623, false);
 		}
+
 		nodes++;
 	}
 	P2ASSERTLINE(629, nodes < 255);
@@ -407,6 +457,7 @@ Node* Mgr::createNewNode(char const* path)
 			id = 255;
 		}
 	}
+
 	mHeap->changeGroupID(id);
 
 	Node* node         = new (mHeap, 0) Node(path);
@@ -551,166 +602,37 @@ lbl_80433964:
  */
 void Mgr::loadResource(MgrCommand* command, char const* path, bool)
 {
-	if (command->mMode == -1) {
-		delFinishCommand();
-		P2ASSERTLINE(674, searchCommand(command));
+	if (command->mMode != -1) {
+		return;
+	}
 
-		Node* node;
-		FOREACH_NODE(Node, mNodes.mChild, cnode)
-		{
-			if (!strcmp(path, cnode->mName)) {
-				node = cnode;
-			}
-		}
+	delFinishCommand();
+	P2ASSERTLINE(674, !searchCommand(command));
 
-		if (node) {
-			command->mMode  = 0;
-			command->mNode1 = nullptr;
-			command->_34    = true;
-			sys->dvdLoadUseCallBack(&command->mDvdThread, &command->mDelegateMemory);
+	Node* node = search(path);
+	if (node) {
+		command->setModeDvd(node);
+		mLoadingNodes.add(command);
+	}
+
+	if (!node) {
+		ARAM::Node* aram = gAramMgr->search(path);
+		if (aram) {
+			node = createNewNode(path);
+			command->setModeAram(node, aram);
 			mLoadingNodes.add(command);
-		} else {
-			ARAM::Node* aram = gAramMgr->search(path);
-			if (aram) {
-				node            = createNewNode(path);
-				command->mMode  = 1;
-				command->mNode1 = node;
-				command->_34    = true;
-				command->mNode2 = node;
-				sys->dvdLoadUseCallBack(&command->mDvdThread, &command->mDelegateMemory);
-				mLoadingNodes.add(command);
-			}
-		}
-
-		if (!node) {
-			node            = createNewNode(path);
-			command->mMode  = 0;
-			command->mNode1 = nullptr;
-			command->_34    = true;
-			sys->dvdLoadUseCallBack(&command->mDvdThread, &command->mDelegateMemory);
-			mLoadingNodes.add(command);
-		}
-
-		if (node) {
-			node->mMgrCommand = command;
 		}
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r27, 0xc(r1)
-	mr       r31, r4
-	mr       r30, r3
-	mr       r27, r5
-	lwz      r0, 0x30(r4)
-	cmpwi    r0, -1
-	bne      lbl_80433B08
-	bl       delFinishCommand__Q28Resource3MgrFv
-	mr       r3, r30
-	mr       r4, r31
-	bl       searchCommand__Q28Resource3MgrFPQ28Resource10MgrCommand
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_804339F0
-	lis      r3, lbl_8049A640@ha
-	lis      r5, lbl_8049A650@ha
-	addi     r3, r3, lbl_8049A640@l
-	li       r4, 0x2a2
-	addi     r5, r5, lbl_8049A650@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
 
-lbl_804339F0:
-	lwz      r29, 0x20(r30)
-	li       r28, 0
-	b        lbl_80433A18
+	if (!node) {
+		node = createNewNode(path);
+		command->setModeMemory(node);
+		mLoadingNodes.add(command);
+	}
 
-lbl_804339FC:
-	lwz      r4, 0x14(r29)
-	mr       r3, r27
-	bl       strcmp
-	cmpwi    r3, 0
-	bne      lbl_80433A14
-	mr       r28, r29
-
-lbl_80433A14:
-	lwz      r29, 4(r29)
-
-lbl_80433A18:
-	cmplwi   r29, 0
-	bne      lbl_804339FC
-	cmplwi   r28, 0
-	beq      lbl_80433A58
-	li       r3, 0
-	li       r0, 1
-	stw      r3, 0x30(r31)
-	addi     r4, r31, 0x3c
-	addi     r5, r31, 0xb4
-	stw      r28, 0x38(r31)
-	stb      r0, 0x34(r31)
-	lwz      r3, sys@sda21(r13)
-	bl       dvdLoadUseCallBack__6SystemFP16DvdThreadCommandP9IDelegate
-	mr       r4, r31
-	addi     r3, r30, 0x28
-	bl       add__5CNodeFP5CNode
-
-lbl_80433A58:
-	cmplwi   r28, 0
-	bne      lbl_80433AB4
-	lwz      r3, gAramMgr@sda21(r13)
-	mr       r4, r27
-	bl       search__Q24ARAM3MgrFPCc
-	or.      r29, r3, r3
-	beq      lbl_80433AB4
-	mr       r3, r30
-	mr       r4, r27
-	bl       createNewNode__Q28Resource3MgrFPCc
-	li       r0, 1
-	mr       r28, r3
-	stw      r0, 0x30(r31)
-	addi     r4, r31, 0x3c
-	addi     r5, r31, 0xdc
-	stw      r28, 0x38(r31)
-	stb      r0, 0x34(r31)
-	stw      r29, 0xa8(r31)
-	lwz      r3, sys@sda21(r13)
-	bl       dvdLoadUseCallBack__6SystemFP16DvdThreadCommandP9IDelegate
-	mr       r4, r31
-	addi     r3, r30, 0x28
-	bl       add__5CNodeFP5CNode
-
-lbl_80433AB4:
-	cmplwi   r28, 0
-	bne      lbl_80433AFC
-	mr       r3, r30
-	mr       r4, r27
-	bl       createNewNode__Q28Resource3MgrFPCc
-	li       r0, 2
-	mr       r28, r3
-	stw      r0, 0x30(r31)
-	li       r0, 1
-	addi     r4, r31, 0x3c
-	addi     r5, r31, 0xc8
-	stw      r28, 0x38(r31)
-	stb      r0, 0x34(r31)
-	lwz      r3, sys@sda21(r13)
-	bl       dvdLoadUseCallBack__6SystemFP16DvdThreadCommandP9IDelegate
-	mr       r4, r31
-	addi     r3, r30, 0x28
-	bl       add__5CNodeFP5CNode
-
-lbl_80433AFC:
-	cmplwi   r28, 0
-	beq      lbl_80433B08
-	stw      r31, 0x3c(r28)
-
-lbl_80433B08:
-	lmw      r27, 0xc(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (node) {
+		node->mMgrCommand = command;
+	}
 }
 
 /**
@@ -726,7 +648,10 @@ bool Mgr::destroy(MgrCommand* command) { return command->destroy(); }
  */
 void Mgr::destroyAll()
 {
-	FOREACH_NODE(Node, mNodes.mChild, node) { Node::destroy(node); }
+	while (mNodes.mChild) {
+		Node::destroy((Node*)mNodes.mChild);
+	}
+
 	mHeap->freeAll();
 	/*
 	stwu     r1, -0x10(r1)
@@ -767,172 +692,23 @@ lbl_80433BC8:
  * @note Address: 0x80433BF0
  * @note Size: 0x1E0
  */
-bool Mgr::sync(MgrCommand*, bool)
+bool Mgr::sync(MgrCommand* command, bool waitUntilDone)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	clrlwi.  r0, r5, 0x18
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	li       r30, 0
-	beq      lbl_80433CE4
-	b        lbl_80433CD8
+	bool result = false;
+	if (waitUntilDone) {
+		// Wait for the command to finish
+		while (!result) {
+			result = command->isFinish();
+		}
+	} else {
+		result = command->isFinish();
+	}
 
-lbl_80433C18:
-	lwz      r0, 0x30(r31)
-	li       r30, 0
-	cmpwi    r0, 1
-	beq      lbl_80433C6C
-	bge      lbl_80433C38
-	cmpwi    r0, 0
-	bge      lbl_80433C44
-	b        lbl_80433CBC
+	if (result) {
+		command->del();
+	}
 
-lbl_80433C38:
-	cmpwi    r0, 3
-	bge      lbl_80433CBC
-	b        lbl_80433C94
-
-lbl_80433C44:
-	lbz      r0, 0x34(r31)
-	cmplwi   r0, 0
-	beq      lbl_80433C64
-	lwz      r0, 0x54(r31)
-	subfic   r0, r0, 2
-	cntlzw   r0, r0
-	srwi     r30, r0, 5
-	b        lbl_80433CD8
-
-lbl_80433C64:
-	li       r30, 1
-	b        lbl_80433CD8
-
-lbl_80433C6C:
-	lbz      r0, 0x34(r31)
-	cmplwi   r0, 0
-	beq      lbl_80433C8C
-	lwz      r0, 0x54(r31)
-	subfic   r0, r0, 2
-	cntlzw   r0, r0
-	srwi     r30, r0, 5
-	b        lbl_80433CD8
-
-lbl_80433C8C:
-	li       r30, 1
-	b        lbl_80433CD8
-
-lbl_80433C94:
-	lbz      r0, 0x34(r31)
-	cmplwi   r0, 0
-	beq      lbl_80433CB4
-	lwz      r0, 0x54(r31)
-	subfic   r0, r0, 2
-	cntlzw   r0, r0
-	srwi     r30, r0, 5
-	b        lbl_80433CD8
-
-lbl_80433CB4:
-	li       r30, 1
-	b        lbl_80433CD8
-
-lbl_80433CBC:
-	lis      r3, lbl_8049A640@ha
-	lis      r5, lbl_8049A650@ha
-	addi     r3, r3, lbl_8049A640@l
-	li       r4, 0xfc
-	addi     r5, r5, lbl_8049A650@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80433CD8:
-	clrlwi.  r0, r30, 0x18
-	beq      lbl_80433C18
-	b        lbl_80433DA4
-
-lbl_80433CE4:
-	lwz      r0, 0x30(r31)
-	li       r30, 0
-	cmpwi    r0, 1
-	beq      lbl_80433D38
-	bge      lbl_80433D04
-	cmpwi    r0, 0
-	bge      lbl_80433D10
-	b        lbl_80433D88
-
-lbl_80433D04:
-	cmpwi    r0, 3
-	bge      lbl_80433D88
-	b        lbl_80433D60
-
-lbl_80433D10:
-	lbz      r0, 0x34(r31)
-	cmplwi   r0, 0
-	beq      lbl_80433D30
-	lwz      r0, 0x54(r31)
-	subfic   r0, r0, 2
-	cntlzw   r0, r0
-	srwi     r30, r0, 5
-	b        lbl_80433DA4
-
-lbl_80433D30:
-	li       r30, 1
-	b        lbl_80433DA4
-
-lbl_80433D38:
-	lbz      r0, 0x34(r31)
-	cmplwi   r0, 0
-	beq      lbl_80433D58
-	lwz      r0, 0x54(r31)
-	subfic   r0, r0, 2
-	cntlzw   r0, r0
-	srwi     r30, r0, 5
-	b        lbl_80433DA4
-
-lbl_80433D58:
-	li       r30, 1
-	b        lbl_80433DA4
-
-lbl_80433D60:
-	lbz      r0, 0x34(r31)
-	cmplwi   r0, 0
-	beq      lbl_80433D80
-	lwz      r0, 0x54(r31)
-	subfic   r0, r0, 2
-	cntlzw   r0, r0
-	srwi     r30, r0, 5
-	b        lbl_80433DA4
-
-lbl_80433D80:
-	li       r30, 1
-	b        lbl_80433DA4
-
-lbl_80433D88:
-	lis      r3, lbl_8049A640@ha
-	lis      r5, lbl_8049A650@ha
-	addi     r3, r3, lbl_8049A640@l
-	li       r4, 0xfc
-	addi     r5, r5, lbl_8049A650@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80433DA4:
-	clrlwi.  r0, r30, 0x18
-	beq      lbl_80433DB4
-	mr       r3, r31
-	bl       del__5CNodeFv
-
-lbl_80433DB4:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return result;
 }
 
 /**
@@ -950,6 +726,13 @@ void Mgr::syncAll(bool)
  */
 void Mgr::delFinishCommand()
 {
+	FOREACH_NODE(MgrCommand, mLoadingNodes.mChild, command)
+	{
+		if (command->mMode == -1 || command->isFinish()) {
+			command->del();
+		}
+	}
+
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1062,13 +845,17 @@ lbl_80433EDC:
  */
 bool Mgr::searchCommand(MgrCommand* command)
 {
+
+	bool found = false;
 	FOREACH_NODE(MgrCommand, mLoadingNodes.mChild, node)
 	{
 		if (node == command) {
-			return true;
+			found = true;
+			break;
 		}
 	}
-	return false;
+
+	return found;
 	/*
 	lwz      r5, 0x38(r3)
 	li       r3, 0
