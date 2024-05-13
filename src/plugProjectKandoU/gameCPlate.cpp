@@ -709,6 +709,8 @@ void CPlate::getSlotPosition(int idx, Vector3f& outPosition)
 	outPosition = mSlots[idx].mPosition + mBasePositionOffset;
 }
 
+#define RADIUS_VARIANCE 0.1f
+
 /**
  * @note Address: 0x801960F8
  * @note Size: 0x1B8
@@ -733,8 +735,8 @@ void CPlate::refresh(int formationSize, f32 moveStrength)
 	f32 radiusFactor = (f32)formationSize / PI;
 	radiusFactor     = _sqrtf(radiusFactor);
 
-	mMaxRadius        = (2.1f * effectiveMaxSize) * radiusFactor;
-	f32 smallerRadius = 1.9f * effectiveMaxSize;
+	mMaxRadius        = ((2.0f + RADIUS_VARIANCE) * effectiveMaxSize) * radiusFactor;
+	f32 smallerRadius = (2.0f - RADIUS_VARIANCE) * effectiveMaxSize;
 
 	f32 largerRadius = mMaxRadius;
 	if (smallerRadius > largerRadius) {
