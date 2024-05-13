@@ -19,10 +19,7 @@ struct Stream {
 	{
 		mEndian   = STREAM_BIG_ENDIAN;
 		mPosition = 0;
-		mMode     = STREAM_MODE_BINARY;
-		if (mMode == STREAM_MODE_TEXT) {
-			mTabCount = 0;
-		}
+		setMode(STREAM_MODE_BINARY, 1);
 	}
 	Stream(int);
 
@@ -80,9 +77,10 @@ struct Stream {
 		}
 	}
 
-	inline void resetPosition(bool a1, int a2)
+	// the second argument really shouldnt have to exist, except for ONE call in itemMgr.cpp that uses -1
+	inline void setMode(bool mode, int a2)
 	{
-		mMode = a1;
+		mMode = mode;
 		if (mMode == a2) {
 			mTabCount = 0;
 		}
@@ -131,7 +129,7 @@ inline void loadAndRead(T* thisPtr, char* fname, JKRHeap* heap = nullptr, bool n
 	}
 
 	RamStream stream(handle, -1);
-	stream.resetPosition(true, 1);
+	stream.setMode(STREAM_MODE_TEXT, 1);
 	thisPtr->read(stream);
 	delete[] handle;
 }

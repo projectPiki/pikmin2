@@ -456,7 +456,7 @@ void FSMState_NowSave::do_exec(TMgr* mgr)
 		}
 		break;
 	case 4:
-		if (mgr->mCounter * sys->mDeltaTime < 0.5f && mgr->mController->mButton.mButtonDown & Controller::PRESS_A) {
+		if (mgr->mCounter * sys->mDeltaTime < 0.5f && mgr->mController->getButtonDown() & Controller::PRESS_A) {
 			mgr->mSaveMenu.closeMsg();
 		}
 
@@ -506,7 +506,7 @@ void FSMState_AfterSave::do_init(TMgr* mgr, Game::StateArg*)
  */
 void FSMState_AfterSave::do_exec(TMgr* mgr)
 {
-	if (mgr->mCounter * sys->mDeltaTime < 0.5f && mgr->mController->mButton.mButtonDown & Controller::PRESS_A) {
+	if (mgr->mCounter * sys->mDeltaTime < 0.5f && mgr->mController->getButtonDown() & Controller::PRESS_A) {
 		mgr->mSaveMenu.closeMsg();
 	}
 

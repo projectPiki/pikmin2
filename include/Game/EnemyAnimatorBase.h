@@ -46,7 +46,7 @@ struct EnemyBlendAnimatorBase : public EnemyAnimatorBase {
 	virtual void setAnimMgr(SysShape::AnimMgr* mgr);  // _0C
 	virtual SysShape::Animator& getAnimator();        // _10
 	virtual SysShape::Animator& getAnimator(int idx); // _14
-	virtual void animate(f32);                        // _18
+	virtual void animate(f32 speed);                  // _18
 	/**
 	 * @reifiedAddress{8010AA4C}
 	 * @reifiedFile{plugProjectYamashitaU/pelplant.cpp}

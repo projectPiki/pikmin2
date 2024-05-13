@@ -22,13 +22,7 @@ Vector2f Radar::Point::getPosition()
  * @note Address: N/A
  * @note Size: 0x28
  */
-void Radar::Point::clear()
-{
-	mChild  = nullptr;
-	mParent = nullptr;
-	mPrev   = nullptr;
-	mNext   = nullptr;
-}
+void Radar::Point::clear() { clearRelations(); }
 
 /**
  * @note Address: 0x8021E2F4

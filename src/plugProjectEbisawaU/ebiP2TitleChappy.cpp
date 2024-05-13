@@ -286,7 +286,7 @@ void Chappy::TUnit::update()
 		if (control) {
 			if (control->mSStick.mStickMag > 0.7f) {
 				check = true;
-			} else if (control->mButton.mButtonDown & Controller::PRESS_Z) {
+			} else if (control->getButtonDown() & Controller::PRESS_Z) {
 				check = true;
 			}
 		}
@@ -309,7 +309,7 @@ void Chappy::TUnit::update()
 		if (control) {
 			stickX       = control->mSStick.mXPos;
 			stickY       = control->mSStick.mYPos;
-			isButtonDown = (control->mButton.mButtonDown & Controller::PRESS_Z) == Controller::PRESS_Z;
+			isButtonDown = (control->getButtonDown() & Controller::PRESS_Z) == Controller::PRESS_Z;
 		}
 
 		if (mCounter == 0) {

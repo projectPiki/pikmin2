@@ -2564,7 +2564,7 @@ void EnemyBase::throwupItem()
 	PelletInitArg pelletInitArg;
 
 	if (pelletMgr->makePelletInitArg(pelletInitArg, mPelletDropCode)) {
-		pelletInitArg.mState         = 2;
+		pelletInitArg.mState         = PelBirthType_ScaleAppear;
 		EnemyTypeID::EEnemyTypeID id = getEnemyTypeID();
 
 		// For bosses in the final floor of a cave in story mode,
@@ -2636,7 +2636,7 @@ void EnemyBase::throwupItem()
 		}
 
 		PelletNumberInitArg numberInitArg(mPelletInfo.mSize, pelletColor);
-		numberInitArg.mState = 2;
+		numberInitArg.mState = PelBirthType_ScaleAppear;
 
 		Pellet* pellet = pelletMgr->birth(&numberInitArg);
 		if (pellet) {

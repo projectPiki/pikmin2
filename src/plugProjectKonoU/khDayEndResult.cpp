@@ -597,8 +597,8 @@ bool ObjDayEndResultItem::doUpdate()
 		break;
 	}
 
-	if (getGamePad()->mButton.mButtonDown & Controller::PRESS_A) {
-		if (getGamePad()->mButton.mButtonDown & Controller::PRESS_A && !isFlag(0x40)) {
+	if (getGamePad()->getButtonDown() & Controller::PRESS_A) {
+		if (getGamePad()->getButtonDown() & Controller::PRESS_A && !isFlag(0x40)) {
 			mFlags |= 0x20;
 		}
 
@@ -1261,24 +1261,24 @@ bool ObjDayEndResultIncP::doUpdate()
 		break;
 	}
 
-	if (getGamePad()->mButton.mButtonDown & (Controller::PRESS_A | Controller::PRESS_B)) {
-		if (getGamePad()->mButton.mButtonDown & Controller::PRESS_A && mStatus == INCPSTATUS_Slot && !isFlag(0x40)) {
+	if (getGamePad()->getButtonDown() & (Controller::PRESS_A | Controller::PRESS_B)) {
+		if (getGamePad()->getButtonDown() & Controller::PRESS_A && mStatus == INCPSTATUS_Slot && !isFlag(0x40)) {
 			mFlags |= 0x20;
 		}
 
-		if (getGamePad()->mButton.mButtonDown & Controller::PRESS_A && mStatus == INCPSTATUS_DecPSlot && !isFlag(0x100)) {
+		if (getGamePad()->getButtonDown() & Controller::PRESS_A && mStatus == INCPSTATUS_DecPSlot && !isFlag(0x100)) {
 			mFlags |= 0x80;
 		}
 
 		if (mStatus == INCPSTATUS_Normal || mStatus == INCPSTATUS_DecP) {
-			if (getGamePad()->mButton.mButtonDown & Controller::PRESS_A) {
+			if (getGamePad()->getButtonDown() & Controller::PRESS_A) {
 				::Screen::SetSceneArg setArg(SCENE_DAY_END_RESULT_MAIL, getDispMember());
 				if (getOwner()->setScene(setArg)) {
 					SArgDayEndResultMail argMail(1);
 					getOwner()->startScene(&argMail);
 					mFlags &= ~0x10;
 				}
-			} else if (getGamePad()->mButton.mButtonDown & Controller::PRESS_B) {
+			} else if (getGamePad()->getButtonDown() & Controller::PRESS_B) {
 				::Screen::SetSceneArg setArg(SCENE_DAY_END_RESULT_ITEM, getDispMember());
 				if (getOwner()->setScene(setArg)) {
 					SArgDayEndResultItem argItem(0);
@@ -1369,7 +1369,7 @@ void ObjDayEndResultIncP::doDraw(Graphics& gfx)
  */
 void ObjDayEndResultIncP::statusNormal()
 {
-	if (getGamePad()->mButton.mButtonDown & 0x10) {
+	if (getGamePad()->getButtonDown() & 0x10) {
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_MESSAGE_EXIT, 0);
 		mStatus = INCPSTATUS_Fadeout;
 	}
@@ -1412,7 +1412,7 @@ void ObjDayEndResultIncP::statusFadeout()
  */
 void ObjDayEndResultIncP::statusDecP()
 {
-	if (getGamePad()->mButton.mButtonDown & 0x10) {
+	if (getGamePad()->getButtonDown() & 0x10) {
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_MESSAGE_EXIT, 0);
 		mStatus = INCPSTATUS_Fadein;
 	}
@@ -2475,10 +2475,10 @@ bool ObjDayEndResultMail::doUpdateFadeout()
  */
 void ObjDayEndResultMail::statusNormal()
 {
-	if (getGamePad()->mButton.mButtonDown & Controller::PRESS_A) {
+	if (getGamePad()->getButtonDown() & Controller::PRESS_A) {
 		mFlags |= 4;
 		mSaveMgr->start();
-	} else if (getGamePad()->mButton.mButtonDown & Controller::PRESS_B) {
+	} else if (getGamePad()->getButtonDown() & Controller::PRESS_B) {
 		DispDayEndResultIncP* dispIncP = static_cast<DispDayEndResultIncP*>(getDispMember());
 		::Screen::SetSceneArg setArg(SCENE_DAY_END_RESULT_INC_P, dispIncP);
 		if (getOwner()->setScene(setArg)) {

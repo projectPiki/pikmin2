@@ -144,8 +144,8 @@ bool TSequenceProcessor::do_isReady()
 			bool checkVars = (mController1 || mController2);
 			P2ASSERTLINE(381, checkVars);
 
-			if ((mController1 && (mController1->mButton.mButtonDown & PAD_BUTTON_A))
-			    || (mController2 && (mController2->mButton.mButtonDown & PAD_BUTTON_A))) {
+			if ((mController1 && (mController1->getButtonDown() & PAD_BUTTON_A))
+			    || (mController2 && (mController2->getButtonDown() & PAD_BUTTON_A))) {
 				resetAbtnWait();
 				mFlags.unset(8);
 			}
@@ -154,8 +154,8 @@ bool TSequenceProcessor::do_isReady()
 		f32 frameCount = 1.0f;
 		if (mFlags.isSet(8)) {
 			frameCount = 10.0f;
-		} else if ((mController1 && (mController1->mButton.mButtonDown & PAD_BUTTON_B))
-		           || (mController2 && (mController2->mButton.mButtonDown & PAD_BUTTON_B))) {
+		} else if ((mController1 && (mController1->getButtonDown() & PAD_BUTTON_B))
+		           || (mController2 && (mController2->getButtonDown() & PAD_BUTTON_B))) {
 			doFastForwardSE();
 			mFlags.set(8);
 		} else if ((mController1 && (mController1->getButton() & PAD_BUTTON_A))

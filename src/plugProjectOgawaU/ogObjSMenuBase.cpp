@@ -123,13 +123,13 @@ bool ObjSMenuBase::doUpdate()
 
 	} else {
 		SceneSMenuBase* scene = static_cast<SceneSMenuBase*>(getOwner());
-		if (scene->getGamePad()->mButton.mButtonDown & getButtonState(1)) {
+		if (scene->getGamePad()->isButtonDown(mButtonStates[1])) {
 			ret            = true;
 			mCancelToState = MENUCLOSE_R;
-		} else if (scene->getGamePad()->mButton.mButtonDown & getButtonState(0)) {
+		} else if (scene->getGamePad()->isButtonDown(mButtonStates[0])) {
 			ret            = true;
 			mCancelToState = MENUCLOSE_L;
-		} else if (scene->getGamePad()->mButton.mButtonDown & (Controller::PRESS_START | Controller::PRESS_B)) {
+		} else if (scene->getGamePad()->isButtonDown(Controller::PRESS_START | Controller::PRESS_B)) {
 			mCancelToState = MENUCLOSE_Finish;
 			doUpdateCancelAction();
 			ret = true;
@@ -372,7 +372,7 @@ bool ObjSMenuBase::updateFadeIn()
 		mFadeLevel += sys->mDeltaTime;
 		if (mFadeLevel > msBaseVal.mFadeInOutTime) {
 			ret = true;
-		} else if (pad->mButton.mButtonDown & mButtonStates[1]) {
+		} else if (pad->isButtonDown(mButtonStates[1])) {
 			mCancelToState = MENUCLOSE_R;
 			mExiting       = true;
 		}
@@ -384,7 +384,7 @@ bool ObjSMenuBase::updateFadeIn()
 		mFadeLevel += sys->mDeltaTime;
 		if (mFadeLevel > msBaseVal.mFadeInOutTime) {
 			ret = true;
-		} else if (pad->mButton.mButtonDown & mButtonStates[0]) {
+		} else if (pad->isButtonDown(mButtonStates[0])) {
 			mCancelToState = MENUCLOSE_L;
 			mExiting       = true;
 		}

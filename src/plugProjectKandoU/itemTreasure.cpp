@@ -419,7 +419,7 @@ Mgr::Mgr()
 	                                         (JKRDvdRipper::EAllocDirection)2, 0, nullptr, nullptr);
 	if (file) {
 		RamStream stm(file, -1);
-		stm.resetPosition(true, 1);
+		stm.setMode(STREAM_MODE_TEXT, 1);
 		mParameters->read(stm);
 		delete[] file;
 	}

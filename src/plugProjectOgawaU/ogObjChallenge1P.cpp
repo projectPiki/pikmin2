@@ -241,7 +241,7 @@ bool ObjChallenge1P::doStart(::Screen::StartSceneArg const* arg)
 	ObjChallengeBase::doStart(arg);
 	if (arg && arg->getSceneType() == SCENE_CHALLENGE_1P) {
 		SArgChallenge1P* challArg = static_cast<SArgChallenge1P*>((::Screen::StartSceneArg*)(arg));
-		mIncTimeLeftDelay         = (challArg->_04);
+		mIncTimeLeftDelay         = challArg->mTimeAddDelay;
 	} else {
 		mIncTimeLeftDelay = 0.0f;
 	}

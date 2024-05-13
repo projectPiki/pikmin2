@@ -827,7 +827,7 @@ void Pellet::onKill(CreatureKillArg* killArg)
 	mCollTree->release();
 	mMgr->kill(this);
 
-	if ((killArg && (static_cast<PelletKillArg*>(killArg)->_08 != 0)) || (gameSystem->isVersusMode() && mPelletFlag == FLAG_VS_CHERRY)) {
+	if ((killArg && static_cast<PelletKillArg*>(killArg)->mDoRevive) || (gameSystem->isVersusMode() && mPelletFlag == FLAG_VS_CHERRY)) {
 		mMgr->setRevival(this);
 	}
 
@@ -875,12 +875,12 @@ void Pellet::onInit(CreatureInitArg* initArg)
 	P2ASSERTLINE(1632, initArg);
 
 	u16 stateType = static_cast<PelletInitArg*>(initArg)->mState;
-	if (stateType == 0) {
+	if (stateType == PelBirthType_Normal) {
 		mPelletSM->start(this, PELSTATE_Normal, nullptr);
 		mScale = Vector3f(1.0f);
-	} else if (stateType == 3) {
+	} else if (stateType == PelBirthType_Piklopedia) {
 		mPelletSM->start(this, PELSTATE_Zukan, nullptr);
-	} else if (stateType == 1) {
+	} else if (stateType == PelBirthType_Appear) {
 		mPelletSM->start(this, PELSTATE_Appear, nullptr);
 		mScale = Vector3f(0.01f);
 	} else {

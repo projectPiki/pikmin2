@@ -51,10 +51,10 @@ void EnemyBlendAnimatorBase::endBlend() { mAnimator.endBlend(); }
  * @note Address: 0x8012E22C
  * @note Size: 0x48
  */
-void EnemyBlendAnimatorBase::animate(SysShape::BlendFunction* function, f32 p2, f32 p3, f32 p4)
+void EnemyBlendAnimatorBase::animate(SysShape::BlendFunction* function, f32 timeRate, f32 speedA, f32 speedB)
 {
 	if (!(mFlags.isSet(1))) {
-		mAnimator.animate(function, p2, p3, p4);
+		mAnimator.animate(function, timeRate, speedA, speedB);
 	} else {
 		mAnimator.animate(function, 0.0f, 0.0f, 0.0f);
 	}
@@ -65,12 +65,12 @@ void EnemyBlendAnimatorBase::animate(SysShape::BlendFunction* function, f32 p2, 
  * @note Address: 0x8012E274
  * @note Size: 0xB0
  */
-void EnemyBlendAnimatorBase::animate(f32 p1)
+void EnemyBlendAnimatorBase::animate(f32 speed)
 {
 	SysShape::BlendLinearFun function;
 	if (!(mFlags.isSet(1))) {
 		if (!(mFlags.isSet(1))) {
-			mAnimator.animate(&function, p1, p1, p1);
+			mAnimator.animate(&function, speed, speed, speed);
 		} else {
 			mAnimator.animate(&function, 0.0f, 0.0f, 0.0f);
 		}

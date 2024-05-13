@@ -503,7 +503,7 @@ Mgr::Mgr()
                                              JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
 	if (data != nullptr) {
 		RamStream input(data, -1);
-		input.resetPosition(true, 1);
+		input.setMode(STREAM_MODE_TEXT, 1);
 		mParms->read(input);
 		delete[] data;
 	}

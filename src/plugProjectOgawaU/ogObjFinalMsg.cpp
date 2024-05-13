@@ -122,7 +122,7 @@ bool ObjFinalMsg::menu()
 	Controller* pad = getGamePad();
 	mMenuMgr->update();
 
-	u32 input = pad->mButton.mButtonDown;
+	u32 input = pad->getButtonDown();
 
 	if (input & Controller::PRESS_UP) {
 		if (mCurrSel > 0) {

@@ -133,7 +133,7 @@ bool ObjSMenuPauseVS::menu()
 		}
 	}
 
-	u32 input = getGamePad()->mButton.mButtonDown;
+	u32 input = getGamePad()->getButtonDown();
 	if (input & Controller::PRESS_UP) {
 		if (mCurrMenuSel > 0) {
 			mCurrMenuSel--;

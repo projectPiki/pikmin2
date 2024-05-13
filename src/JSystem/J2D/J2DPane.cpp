@@ -213,9 +213,9 @@ void J2DPane::changeUseTrans(J2DPane* parent)
 
 	if (parent) {
 		u8 parentBasePos = parent->mBasePosition;
-		f32 width        = parent->mBounds.getWidth();
-		f32 height       = parent->mBounds.getHeight();
-		v1.set(parent->mBounds.getWidth(), parent->mBounds.getHeight());
+		f32 width        = parent->getWidth();
+		f32 height       = parent->getHeight();
+		v1.set(parent->getWidth(), parent->getHeight());
 
 		if (parentBasePos % 3 == 1) {
 			mOffset.x -= width / 2;

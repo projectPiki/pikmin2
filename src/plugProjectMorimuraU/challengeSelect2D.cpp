@@ -2123,7 +2123,7 @@ void TChallengeSelect::doCreate(JKRArchive* arc)
 		                                         JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
 		if (file) {
 			RamStream strm(file, -1);
-			strm.resetPosition(true, 1);
+			strm.setMode(STREAM_MODE_TEXT, 1);
 			mStageList->read(strm);
 		}
 	}

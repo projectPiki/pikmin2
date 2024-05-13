@@ -7,10 +7,6 @@
 #include "JSystem/JStudio_JStage.h"
 #include "types.h"
 
-/*
-    Generated from dpostproc
-*/
-
 /**
  * @note Address: 0x80011DCC
  * @note Size: 0x98

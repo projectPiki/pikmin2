@@ -96,7 +96,7 @@ void DVDInit()
 	OSInitThreadQueue(&__DVDThreadQueue);
 	__DIRegs[DI_STATUS]       = 42;
 	__DIRegs[DI_COVER_STATUS] = 0;
-	if (bootInfo->magic == 0xE5207C22) {
+	if (bootInfo->magic == OS_BOOTINFO_MAGIC_JTAG) {
 		OSReport("load fst\n");
 		__fstLoad();
 	} else if (bootInfo->magic != 0xD15EA5E) {

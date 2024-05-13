@@ -1185,7 +1185,7 @@ bool ObjFinalResult::doUpdate()
 		}
 		if (mState == StatusNormal && mCurrentPage == 7) {
 			Controller* pad = getGamePad();
-			if (pad->mButton.mButtonDown & Controller::PRESS_A) {
+			if (pad->getButtonDown() & Controller::PRESS_A) {
 				mFlags |= SaveOpen;
 				mSaveMgr->start();
 			}

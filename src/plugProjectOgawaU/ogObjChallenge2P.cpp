@@ -205,15 +205,15 @@ void ObjChallenge2P::doDraw(Graphics& gfx)
 	J2DPerspGraph* graf = &gfx.mPerspGraph;
 	graf->setPort();
 
-	JUtility::TColor color1 = msVal._20;
+	JUtility::TColor color1 = msVal.mDividerBarColor;
 	int test                = (f32)color1.a * mScale;
 	color1.a                = test;
 	graf->setColor(color1);
 
-	JGeometry::TBox2f box = getBox1();
+	JGeometry::TBox2f box = getDividerBar();
 	graf->fillBox(box);
 
-	JGeometry::TBox2f box2 = getBox2();
+	JGeometry::TBox2f box2 = getDividerBar2();
 	graf->fillBox(box2);
 
 	mBloGroup->draw(graf);
@@ -281,7 +281,7 @@ bool ObjChallenge2P::doStart(::Screen::StartSceneArg const* arg)
 	ObjChallengeBase::doStart(arg);
 	if (arg && arg->getSceneType() == SCENE_CHALLENGE_2P) {
 		SArgChallenge2P* challArg = static_cast<SArgChallenge2P*>((::Screen::StartSceneArg*)(arg));
-		mIncTimeLeftDelay         = (challArg->_04);
+		mIncTimeLeftDelay         = challArg->mTimeAddDelay;
 	} else {
 		mIncTimeLeftDelay = 0.0f;
 	}

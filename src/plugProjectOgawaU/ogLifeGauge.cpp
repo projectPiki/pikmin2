@@ -152,8 +152,8 @@ void CallBack_LifeGauge::setOffset(f32 x, f32 y)
 	if (!mPane) {
 		JUT_PANICLINE(243, "ERR! : NULL Pane !!!\n");
 	} else {
-		mOffsetX = (mPane->mBounds.getWidth() / 2) + x;
-		mOffsetY = (mPane->mBounds.getHeight() / 2) + y;
+		mOffsetX = (mPane->getWidth() / 2) + x;
+		mOffsetY = (mPane->getHeight() / 2) + y;
 	}
 }
 
@@ -226,8 +226,7 @@ void CallBack_LifeGauge::update()
 			// inline perhaps?
 			f32 timer = mLowLifeSoundTimer;
 			f32 scale = mLowLifeSoundTimer / 2.f + 1.0f;
-			mPin1->rotate((mPin1->mBounds.f.x - mPin1->mBounds.i.x) / 2.f, (mPin1->mBounds.f.y - mPin1->mBounds.i.y) / 2.f, J2DROTATE_Z,
-			              0.0f);
+			mPin1->rotate((mPin1->getWidth()) / 2.f, (mPin1->getHeight()) / 2.f, J2DROTATE_Z, 0.0f);
 			mPin1->updateScale(scale);
 			mPin1->setAlpha(-(timer * 255.0f - 255.0f));
 
@@ -236,8 +235,7 @@ void CallBack_LifeGauge::update()
 				timerScale += 1.0f;
 
 			scale = timerScale / 2.f + 1.0f;
-			mPin2->rotate((mPin2->mBounds.f.x - mPin2->mBounds.i.x) / 2.f, (mPin2->mBounds.f.y - mPin2->mBounds.i.y) / 2.f, J2DROTATE_Z,
-			              0.0f);
+			mPin2->rotate((mPin2->getWidth()) / 2.f, (mPin2->getHeight()) / 2.f, J2DROTATE_Z, 0.0f);
 			mPin2->updateScale(scale);
 			mPin2->setAlpha(-(timerScale * 255.0f - 255.0f));
 			if (mNaviLifeRatio <= 0.0f) {
@@ -294,9 +292,9 @@ void NaviLifeGauge::setCallBack(DataNavi* data, CallBack_LifeGauge::LifeGaugeTyp
 			JUT_PANICLINE(243, "ERR! : NULL Pane !!!\n");
 		} else {
 			f32 temp        = 0.0f;
-			cback->mOffsetX = (pane->mBounds.f.x - pane->mBounds.i.x) / 2 + temp;
+			cback->mOffsetX = (pane->getWidth()) / 2 + temp;
 			J2DPane* pane2  = cback->mPane;
-			cback->mOffsetY = (pane2->mBounds.f.y - pane2->mBounds.i.y) / 2 + temp;
+			cback->mOffsetY = (pane2->getHeight()) / 2 + temp;
 		}
 	}
 }

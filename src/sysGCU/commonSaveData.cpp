@@ -84,10 +84,7 @@ void Mgr::write(Stream& output)
  */
 void Mgr::read(Stream& input)
 {
-	input.mMode = STREAM_MODE_BINARY;
-	if (input.mMode == STREAM_MODE_TEXT) {
-		input.mTabCount = 0;
-	}
+	input.setMode(STREAM_MODE_BINARY, 1);
 	mSoundMode    = input.readByte();
 	mMusicVol     = input.readByte();
 	mSeVol        = input.readByte();

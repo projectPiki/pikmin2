@@ -64,6 +64,13 @@ struct PathNode;
 struct PelletState;
 struct Onyon;
 
+enum PelletBirthType {
+	PelBirthType_Normal      = 0,
+	PelBirthType_Appear      = 1,
+	PelBirthType_ScaleAppear = 2,
+	PelBirthType_Piklopedia  = 3,
+};
+
 struct PelletMgr : public NodeObjectMgr<GenericObjectMgr> {
 	struct OtakaraItemCode {
 		OtakaraItemCode(s16 v = 0)
@@ -144,7 +151,7 @@ struct PelletInitArg : public CreatureInitArg {
 	PelletInitArg()
 	{
 		mDoSkipCreateModel    = false;
-		mState                = 0;
+		mState                = PelBirthType_Normal;
 		mPelletType           = PELTYPE_INVALID;
 		mPelView              = nullptr;
 		mDontCheckCollected   = 0;
@@ -193,12 +200,12 @@ struct PelletKillArg : public CreatureKillArg {
 	inline PelletKillArg()
 	    : CreatureKillArg(CKILL_NULL)
 	{
-		_08 = 1;
+		mDoRevive = true;
 	}
 
 	// _00     = VTBL
 	// _00-_08 = CreatureKillArg
-	u8 _08; // _08
+	u8 mDoRevive; // _08
 };
 
 /**

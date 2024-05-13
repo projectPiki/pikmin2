@@ -34,16 +34,6 @@ struct DispMemberBase {
 	DispMemberBase* getSubMember(u32, u64);
 	void setSubMemberAll();
 
-	// inline void getOwnerName(char* outName) {
-	// 	TagToName(getOwnerID(), outName);
-	// }
-	// inline void dump() {
-	// 	char owner[12];
-	// 	char member[12];
-	// 	getOwnerName(owner);
-	// 	getMemberName(member);
-	// }
-
 	// _00 = VTBL
 	DispMemberBase* mSubMember; // _04
 };
@@ -761,16 +751,11 @@ struct DispMemberVs : public DispMemberBase {
 struct DispMemberWorldMapInfoWin0 : public DispMemberBase {
 	inline DispMemberWorldMapInfoWin0()
 	    : mResult(0)
-	    , mMsgIDYes('4710_00')
-	    , mMsgIDNo('4711_00')
+	    , mMsgIDYes('4710_00') // "Continue"
+	    , mMsgIDNo('4711_00')  // "Return to Title Screen"
 	    , mBgAlpha(180)
 	    , mStartSelection(0)
 	{
-		// mResult         = 0;
-		// mMsgIDYes       = '4710_00'; // "Continue"
-		// mMsgIDNo        = '4711_00'; // "Return to Title Screen"
-		// _20             = 180;
-		// mStartSelection = 0;
 	}
 
 	virtual u32 getSize() { return sizeof(DispMemberWorldMapInfoWin0); } // _08 (weak)

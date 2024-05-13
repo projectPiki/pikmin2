@@ -152,7 +152,7 @@ void Mgr::loadEnemy()
 	heap2->becomeCurrentHeap();
 
 	RamStream stream(JKRLoadToMainRAM("/enemy/enemyResList.txt"), -1);
-	stream.resetPosition(true, 1);
+	stream.setMode(STREAM_MODE_TEXT, 1);
 
 	JKRAram::getAramHeap()->getFreeSize();
 

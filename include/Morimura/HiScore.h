@@ -29,7 +29,7 @@ struct DispMemberHighScore : public og::Screen::DispMemberBase {
 
 struct THiScoreIndPane : public TIndPane {
 	THiScoreIndPane(J2DPane* pane)
-	    : TIndPane("hi_score_00.bti", pane->mBounds.f.x - pane->mBounds.i.x, pane->mBounds.f.y - pane->mBounds.i.y)
+	    : TIndPane("hi_score_00.bti", pane->getWidth(), pane->getHeight())
 	{
 	}
 

@@ -38,9 +38,9 @@ AnimMgr* AnimMgr::load(JKRFileLoader* a1, char* a2, J3DModelData* a3, JKRFileLoa
 	}
 
 	RamStream rs(resource, -1);
-	rs.resetPosition(true, 1);
+	rs.setMode(STREAM_MODE_TEXT, 1);
 
-	AnimMgr* newMgr = new AnimMgr();
+	AnimMgr* newMgr = new AnimMgr;
 	newMgr->load(rs, a3, a4, a5);
 
 	return newMgr;

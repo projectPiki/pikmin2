@@ -197,8 +197,6 @@ struct ObjSMenuBase : public ::Screen::ObjBase {
 	void jump_LR(::Screen::SetSceneArg&, bool);
 	void startYaji();
 
-	inline u32 getButtonState(int i) { return mButtonStates[i]; }
-
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_38 = Screen::ObjBase

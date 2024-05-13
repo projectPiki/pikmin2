@@ -2392,7 +2392,7 @@ void WorldMap::update(::Game::WorldMap::UpdateArg& arg)
 			mRocketMoveCounter = 0;
 		}
 
-		if (mInitArg.mController->mButton.mButtonDown & Controller::PRESS_B) {
+		if (mInitArg.mController->getButtonDown() & Controller::PRESS_B) {
 			mCurrentState = WMAP_InputTarget;
 			resetFlag(WMAPFLAG_Unk1 | WMAPFLAG_Unk2);
 			mRocketMoveCounter = 0;
@@ -2410,7 +2410,7 @@ void WorldMap::update(::Game::WorldMap::UpdateArg& arg)
 			mCurrentState      = WMAP_RocketMoving2;
 			PSMGetWorldMapRocket()->stateChange(PSM::WorldMapRocket::PSMRocket_3);
 		}
-		if (mInitArg.mController->mButton.mButtonDown & Controller::PRESS_B) {
+		if (mInitArg.mController->getButtonDown() & Controller::PRESS_B) {
 			mCurrentState = WMAP_InputTarget;
 			resetFlag(WMAPFLAG_Unk1 | WMAPFLAG_Unk2);
 			mRocketMoveCounter = 0;
@@ -2431,7 +2431,7 @@ void WorldMap::update(::Game::WorldMap::UpdateArg& arg)
 		if (mZukanFadeout < 255 - msVal._79) {
 			mZukanFadeout += msVal._79 >> 1;
 		}
-		if (mInitArg.mController->mButton.mButtonDown & Controller::PRESS_B) {
+		if (mInitArg.mController->getButtonDown() & Controller::PRESS_B) {
 			mCurrentState = WMAP_InputTarget;
 			resetFlag(WMAPFLAG_Unk1 | WMAPFLAG_Unk2 | WMAPFLAG_Unk5);
 			mRocketMoveCounter = 0;

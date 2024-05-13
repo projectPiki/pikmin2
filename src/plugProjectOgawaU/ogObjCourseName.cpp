@@ -28,7 +28,7 @@ ObjCourseName::ObjCourseName(char const* name)
 	mScreen = nullptr;
 	mAnims  = nullptr;
 
-	mTimer = msVal._0C;
+	mTimer = msVal.mFinishWaitTime;
 	mState = 0;
 
 	mColor.set(0, 0, 0, 255);

@@ -318,11 +318,11 @@ bool TTitleMenu::doUpdateStateWait()
 		mAnims1[mState][mSelectID].play(sys->mDeltaTime * 60.0f, J3DAA_UNKNOWN_0, true);
 	}
 
-	if (mController->mButton.mButtonDown & Controller::PRESS_A || mController->mButton.mButtonDown & Controller::PRESS_START) {
+	if (mController->getButtonDown() & Controller::PRESS_A || mController->getButtonDown() & Controller::PRESS_START) {
 		mDecidedMenuOption = true;
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_DECIDE, 0);
 		return true;
-	} else if (mController->mButton.mButtonDown & Controller::PRESS_B) {
+	} else if (mController->getButtonDown() & Controller::PRESS_B) {
 		mDoCloseMenu = true;
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CANCEL, 0);
 		return true;

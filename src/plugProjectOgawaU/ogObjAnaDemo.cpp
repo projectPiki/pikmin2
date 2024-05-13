@@ -478,7 +478,7 @@ bool ObjAnaDemo::doUpdate()
 		break;
 
 	case ANADEMOSTATE_IdleWait:
-		if (pad->mButton.mButtonDown & Controller::PRESS_UP) {
+		if (pad->isButtonDown(Controller::PRESS_UP)) {
 			if (mCurrMenuSel > 0) {
 				mCurrMenuSel--;
 				if (mMenuMgr) {
@@ -498,7 +498,7 @@ bool ObjAnaDemo::doUpdate()
 				}
 			}
 
-		} else if (pad->mButton.mButtonDown & Controller::PRESS_DOWN) {
+		} else if (pad->isButtonDown(Controller::PRESS_DOWN)) {
 			if (mCurrMenuSel < 1) {
 				mCurrMenuSel++;
 				if (mMenuMgr) {
@@ -517,7 +517,7 @@ bool ObjAnaDemo::doUpdate()
 					}
 				}
 			}
-		} else if (pad->mButton.mButtonDown & Controller::PRESS_A) {
+		} else if (pad->isButtonDown(Controller::PRESS_A)) {
 			if (mMenuMgr)
 				mMenuMgr->killCursor();
 			if (mCurrMenuSel == 0) {
@@ -555,7 +555,7 @@ bool ObjAnaDemo::doUpdate()
 				mCloseTimer      = 0.0f;
 				ogSound->setDecide();
 			}
-		} else if (pad->mButton.mButtonDown & Controller::PRESS_B) {
+		} else if (pad->isButtonDown(Controller::PRESS_B)) {
 			if (mMenuMgr) {
 				mMenuMgr->killCursor();
 			}
@@ -568,7 +568,7 @@ bool ObjAnaDemo::doUpdate()
 
 	case ANADEMOSTATE_ErrorWait:
 		bool anyButtonDown = false;
-		u32 input          = pad->mButton.mButtonDown;
+		u32 input          = pad->mButton.mButtonDown; // getButtonDown doesnt cooperate here
 		if (input & Controller::PRESS_A || input & Controller::PRESS_B || input & Controller::PRESS_X || input & Controller::PRESS_Y
 		    || input & Controller::PRESS_START) {
 			anyButtonDown = true;

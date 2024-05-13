@@ -22,7 +22,7 @@ void OSLockMutex(OSMutex* mutex)
 	OSThread* ownerThread;
 
 	while (TRUE) {
-		ownerThread = ((OSMutex*)mutex)->thread;
+		ownerThread = mutex->thread;
 		if (ownerThread == 0) {
 			mutex->thread = currentThread;
 			mutex->count++;

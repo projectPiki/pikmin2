@@ -213,7 +213,7 @@ void TMainTitleMgr::update()
 		} else {
 			mPressStart.mIsOpen = false;
 		}
-		if (Game::gGameConfig.mParms.mNintendoVersion.mData && mController->mButton.mButtonDown & Controller::PRESS_B) {
+		if (Game::gGameConfig.mParms.mNintendoVersion.mData && mController->getButtonDown() & Controller::PRESS_B) {
 			sys->resetOn(false);
 		}
 		if (mPressStart.isFinishScreen()) {

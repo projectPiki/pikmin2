@@ -4053,7 +4053,7 @@ void ZukanState::dvdloadA()
 	void* file = arc->getResource("course.txt");
 	P2ASSERTLINE(2603, file);
 	RamStream stream(file, -1);
-	stream.resetPosition(true, 1);
+	stream.setMode(STREAM_MODE_TEXT, 1);
 	mCourseInfo = new CourseInfo;
 	mCourseInfo->read(stream);
 	mCourseInfo->dump();
@@ -6000,7 +6000,7 @@ void ZukanState::dvdloadB_pellet()
 		arg.mTextIdentifier = config->mParams.mName.mData;
 		arg.mPelletColor    = 0;
 		arg.mPelletIndex    = index;
-		arg.mState          = 3;
+		arg.mState          = PelBirthType_Piklopedia;
 		pelletMgr->setUse(&arg);
 		if (arg.mPelletType == PelletList::PLK_Otakara) {
 			PelletOtakara::mgr->setupResources();

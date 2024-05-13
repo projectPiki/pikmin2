@@ -70,7 +70,6 @@ void Section::init()
 	addGenNode(&mMoviePlayer);
 	mTimeStep = 0.5f;
 
-	// this struct appears messed up
 	JUTProcBar::sManager->setVisible(false);
 	JUTProcBar::sManager->setVisibleHeapBar(false);
 	if (sMovieIndex == -1) {
@@ -89,7 +88,7 @@ void Section::doDraw(Graphics& gfx)
 
 	J2DPicture pic(mLogoTexture);
 	LogoLocation& location = sLogoLocate[sMovieIndex];
-	pic.draw(location.x, location.y, pic.mBounds.f.x - pic.mBounds.i.x, pic.mBounds.f.y - pic.mBounds.i.y, false, false, false);
+	pic.draw(location.x, location.y, pic.getWidth(), pic.getHeight(), false, false, false);
 }
 
 /**

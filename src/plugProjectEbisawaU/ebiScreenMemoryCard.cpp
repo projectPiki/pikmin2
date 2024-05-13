@@ -710,7 +710,7 @@ void TMemoryCard::update()
 					mCursor2.mIsLeft = true;
 					PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CURSOR, 0);
 				}
-			} else if (mController->mButton.mButtonDown & Controller::PRESS_A) {
+			} else if (mController->getButtonDown() & Controller::PRESS_A) {
 				if (mSelectionIdx == 1) {
 					mBlinkFont1.setPaneColors(1);
 					mBlinkFont2.setPaneColors(0);
@@ -727,7 +727,7 @@ void TMemoryCard::update()
 				startState(MEMCARD_Finish);
 				PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_DECIDE, 0);
 				return;
-			} else if (mController->mButton.mButtonDown & Controller::PRESS_B) {
+			} else if (mController->getButtonDown() & Controller::PRESS_B) {
 				mSelectionIdx = 0;
 				mBlinkFont1.setPaneColors(0);
 				mBlinkFont2.setPaneColors(1);

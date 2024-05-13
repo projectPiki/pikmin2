@@ -2306,12 +2306,12 @@ Mgr::Mgr()
 	mItemName = "Plant";
 	setModelSize(1);
 	mObjectPathComponent = "user/Kando/objects/plants";
-	mParms               = new PlantParms();
+	mParms               = new PlantParms;
 	void* data = JKRDvdRipper::loadToMainRAM("user/Abe/item/plantParms.txt", nullptr, Switch_0, 0, nullptr, JKRDvdRipper::ALLOC_DIR_BOTTOM,
 	                                         0, nullptr, nullptr);
-	if (data != nullptr) {
+	if (data) {
 		RamStream input(data, -1);
-		input.resetPosition(true, 1);
+		input.setMode(STREAM_MODE_TEXT, 1);
 		mParms->read(input);
 		delete[] data;
 	}
@@ -2508,7 +2508,7 @@ void Fruits::bearAll(u16 plantType)
 			}
 
 			pelletArg.mPelletIndex = 0;
-			pelletArg.mState       = PELSTATE_Goal;
+			pelletArg.mState       = PelBirthType_Appear;
 			pelletArg.mPelletType  = PELTYPE_BERRY;
 
 			Pellet* pellet = pelletMgr->birth(&pelletArg);

@@ -587,7 +587,7 @@ PlatAttacher* BaseItemMgr::loadPlatAttacher(JKRFileLoader* loader, char* path)
 		JUT_PANICLINE(1028, "platAttacher %s not found !\n", path);
 	} else {
 		RamStream stream(data, -1);
-		stream.resetPosition(false, -1);
+		stream.setMode(STREAM_MODE_BINARY, -1);
 		attacher->read(stream);
 		return attacher;
 	}

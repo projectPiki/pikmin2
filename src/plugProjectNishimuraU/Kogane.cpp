@@ -367,7 +367,7 @@ bool Kogane::Obj::createTreasureItem()
 	if (mHitCount == 0) {
 		PelletInitArg arg;
 		if (pelletMgr->makePelletInitArg(arg, mPelletDropCode)) {
-			arg.mState = 2;
+			arg.mState = PelBirthType_ScaleAppear;
 			if (Pellet::sFromTekiEnable)
 				arg.mFromEnemy = true;
 

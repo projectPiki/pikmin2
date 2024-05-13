@@ -50,7 +50,7 @@ bool TParamBase::loadSettingFile(JKRArchive* arc, char* path)
 	void* file = arc->getResource(path);
 	if (file) {
 		RamStream stream(file, -1);
-		stream.resetPosition(true, 1);
+		stream.setMode(STREAM_MODE_TEXT, 1);
 		read(stream);
 		return true;
 	}

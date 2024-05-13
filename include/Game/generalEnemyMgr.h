@@ -109,6 +109,12 @@ struct GenObjectEnemy;
 struct GeneralEnemyMgr : public GenericObjectMgr, public CNode {
 	GeneralEnemyMgr();
 
+	// both of these are always set
+	enum EnemyMgrFlags {
+		GEM_DoSimulate = 1,
+		GEM_DoDraw     = 2,
+	};
+
 	// vtable 1 (GenericObjectMgr, _00, _08-_38)
 	virtual void doAnimation();                 // _08
 	virtual void doEntry();                     // _0C

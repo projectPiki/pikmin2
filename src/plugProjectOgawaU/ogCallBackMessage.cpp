@@ -44,8 +44,8 @@ void CallBack_Message::draw(Graphics& gfx, J2DGrafContext& graf)
 		GXLoadPosMtxImm(mtx.mMatrix.mtxView, 0);
 
 		J2DPane* pane = mPane;
-		f32 x1        = pane->mBounds.getWidth();
-		f32 y1        = pane->mBounds.getHeight();
+		f32 x1        = pane->getWidth();
+		f32 y1        = pane->getHeight();
 		int flag      = pane->mBasePosition % 3;
 
 		f32 y2, x2;

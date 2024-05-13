@@ -646,7 +646,7 @@ void AnimInfo::readEditor(Stream& input)
 		if (frame == -1) {
 			return;
 		}
-		KeyEvent* key = new KeyEvent();
+		KeyEvent* key = new KeyEvent;
 		key->mFrame   = frame;
 		key->mType    = input.readInt();
 		mKeyEvent.add(key);
@@ -666,8 +666,8 @@ AnimMgr* AnimMgr::load(char* path, J3DModelData* modelData, JKRFileLoader* fileL
 		return nullptr;
 	}
 	RamStream input(data, -1);
-	input.resetPosition(true, 1);
-	AnimMgr* mgr = new AnimMgr();
+	input.setMode(STREAM_MODE_TEXT, 1);
+	AnimMgr* mgr = new AnimMgr;
 	mgr->load(input, modelData, fileLoader, nullptr);
 	delete[] data;
 	return mgr;

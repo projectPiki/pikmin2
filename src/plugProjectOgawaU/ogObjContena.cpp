@@ -878,7 +878,7 @@ bool ObjContena::moveContena()
 	if (!disp->mState) {
 		disp->mState = 1;
 	} else {
-		if (mController->mButton.mButtonDown & Controller::PRESS_B) {
+		if (mController->getButtonDown() & Controller::PRESS_B) {
 			disp                    = mDisp;
 			disp->mOnyonID          = mOnyonID;
 			disp->mInOnion          = mInOnionCount;
@@ -902,7 +902,7 @@ bool ObjContena::moveContena()
 				ogSound->setClose();
 			}
 			ret = true;
-		} else if (mController->mButton.mButtonDown & Controller::PRESS_A) {
+		} else if (mController->getButtonDown() & Controller::PRESS_A) {
 			disp->mState = 2;
 			mDispState2  = 4;
 			ogSound->setDecide();
@@ -911,7 +911,7 @@ bool ObjContena::moveContena()
 	}
 
 	if (disp->mState == 1) {
-		if (mController->mButton.mButtonDown & Controller::PRESS_UP) {
+		if (mController->getButtonDown() & Controller::PRESS_UP) {
 			switch (mScreenState) {
 			case 0:
 				mScreenState = 1;

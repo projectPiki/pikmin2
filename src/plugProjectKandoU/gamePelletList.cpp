@@ -107,7 +107,7 @@ void Mgr::loadResource()
 		void* data = archive->getResource(configs[i]);
 		JUT_ASSERTLINE(168, data, "no config file [%s]\n", configs[i]);
 		RamStream stream(data, -1);
-		stream.resetPosition(STREAM_MODE_TEXT, STREAM_MODE_TEXT);
+		stream.setMode(STREAM_MODE_TEXT, STREAM_MODE_TEXT);
 		getConfig(i)->read(stream);
 	}
 	archive->unmount();

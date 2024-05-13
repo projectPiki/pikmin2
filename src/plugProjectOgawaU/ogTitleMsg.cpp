@@ -138,13 +138,13 @@ void TitleMsg::setFontPane(J2DPictureEx* pic, int id)
 	mPanes1[id]->setBasePosition(J2DPOS_BottomCenter);
 	mPanes1[id]->setWhite(mPanes1White);
 
-	mPanes2[id] = og::Screen::CopyPictureToPane(pic, mPanes1[id], (pic->mBounds.getWidth() / 2) - 3.0f,
-	                                            (pic->mBounds.getHeight() / 2) - 3.0f, 'tBody000' + id);
+	mPanes2[id]
+	    = og::Screen::CopyPictureToPane(pic, mPanes1[id], (pic->getWidth() / 2) - 3.0f, (pic->getHeight() / 2) - 3.0f, 'tBody000' + id);
 	mPanes2[id]->setBasePosition(J2DPOS_BottomCenter);
 	mPanes2[id]->setWhite(mPanes2White);
 	mPanes2[id]->setBlack(mPanes2Black);
 
-	mCurrXpos += (mPanes1[id]->mBounds.getWidth());
+	mCurrXpos += (mPanes1[id]->getWidth());
 }
 
 /**

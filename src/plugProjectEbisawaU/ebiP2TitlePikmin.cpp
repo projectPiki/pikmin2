@@ -205,7 +205,7 @@ void Pikmin::TMgr::setArchive(JKRArchive* arc)
 	void* file = arc->getResource("param/param_boid.txt");
 	if (file != nullptr) {
 		RamStream stream(file, -1);
-		stream.resetPosition(STREAM_MODE_TEXT, true);
+		stream.setMode(STREAM_MODE_TEXT, true);
 		mBoidParamMgr.mParams[0].read(stream);
 		mBoidParamMgr.mParams[1].read(stream);
 		mBoidParamMgr.mParams[2].read(stream);

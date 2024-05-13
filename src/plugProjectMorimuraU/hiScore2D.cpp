@@ -1764,7 +1764,7 @@ u64 THiScore::getNameID(int id) { return mNameID[id]; }
 bool THiScore::doUpdate()
 {
 	if (mCanInput) {
-		if (mController->mButton.mButtonDown & Controller::PRESS_B) {
+		if (mController->getButtonDown() & Controller::PRESS_B) {
 			if (!mIsSection) {
 				P2ASSERTLINE(549, getOwner());
 				getOwner()->endScene(nullptr);
@@ -1940,7 +1940,7 @@ bool THiScore::doUpdate()
 				y = 0.0f;
 				if (mIsAllTreasures) {
 					f32 zero = 0.0f;
-					y        = (pane->mBounds.f.y - pane->mBounds.i.y) * 2.0f + zero;
+					y        = (pane->getHeight()) * 2.0f + zero;
 				}
 				break;
 			case 3:
@@ -1948,7 +1948,7 @@ bool THiScore::doUpdate()
 				y = 0.0f;
 				if (mIsAllTreasures) {
 					f32 zero = 0.0f;
-					y        = (pane->mBounds.f.y - pane->mBounds.i.y) * 2.0f + zero;
+					y        = (pane->getHeight()) * 2.0f + zero;
 				}
 				break;
 			}

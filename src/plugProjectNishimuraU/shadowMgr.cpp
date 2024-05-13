@@ -696,7 +696,7 @@ void ShadowMgr::readShadowParms(char* fileName)
 
 	if (data) {
 		RamStream input(data, -1);
-		input.resetPosition(true, 1);
+		input.setMode(STREAM_MODE_TEXT, 1);
 		read(input);
 		delete[] data;
 	}

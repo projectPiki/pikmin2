@@ -211,7 +211,7 @@ static void VideoDecode(THPReadBuffer* readBuffer)
 OSMessage PopFreeTextureSet()
 {
 	void* msg;
-	OSReceiveMessage(&FreeTextureSetQueue, &msg, 1);
+	OSReceiveMessage(&FreeTextureSetQueue, &msg, OS_MESSAGE_BLOCK);
 	return msg;
 }
 

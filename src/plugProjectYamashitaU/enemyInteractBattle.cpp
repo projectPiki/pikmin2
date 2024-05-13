@@ -40,7 +40,7 @@ bool InteractPress::actEnemy(EnemyBase* enemy) { return enemy->pressCallBack(mCr
  * @note Address: 0x8010BB30
  * @note Size: 0x40
  */
-bool InteractFlyCollision::actEnemy(EnemyBase* enemy) { return enemy->flyCollisionCallBack(mCreature, _08, mCollPart); }
+bool InteractFlyCollision::actEnemy(EnemyBase* enemy) { return enemy->flyCollisionCallBack(mCreature, mDamage, mCollPart); }
 
 /**
  * @note Address: 0x8010BB70

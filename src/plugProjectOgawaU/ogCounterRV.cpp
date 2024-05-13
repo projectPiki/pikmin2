@@ -246,8 +246,8 @@ void CallBack_CounterRV::init(J2DScreen* screen, u64 tag1, u64 tag2, u64 tag3, u
 	mPaneScale.y         = mPic1->mScale.y;
 	mPanePosition.x      = mPic1->mOffset.x;
 	mPanePosition.y      = mPic1->mOffset.y;
-	mPaneSize.x          = mPic1->mBounds.f.x - mPic1->mBounds.i.x;
-	mPaneSize.y          = mPic1->mBounds.f.y - mPic1->mBounds.i.y;
+	mPaneSize.x          = mPic1->getWidth();
+	mPaneSize.y          = mPic1->getHeight();
 	mBasePosition        = mPic1->mBasePosition;
 	mPaneAlpha           = mPic1->mAlpha;
 	bool alphatype       = mPic1->mIsInfluencedAlpha;

@@ -491,7 +491,7 @@ bool ObjSMenuPause::menu_pause()
 	Controller* pad = getGamePad();
 	mMenuPause->update();
 
-	u32 input = pad->mButton.mButtonDown;
+	u32 input = pad->getButtonDown();
 	if (input & Controller::PRESS_UP) {
 		if (mCurrSelPause > 0) {
 			mCurrSelPause--;
@@ -560,7 +560,7 @@ bool ObjSMenuPause::menu_yuugata()
 	Controller* pad = getGamePad();
 	mMenuSunset->update();
 
-	u32 input = pad->mButton.mButtonDown;
+	u32 input = pad->getButtonDown();
 	if (input & Controller::PRESS_UP) {
 		if (mCurrSelSunset > 0) {
 			mCurrSelSunset--;
@@ -617,7 +617,7 @@ bool ObjSMenuPause::menu_zenkai()
 	Controller* pad = getGamePad();
 	mMenuReturn->update();
 
-	u32 input = pad->mButton.mButtonDown;
+	u32 input = pad->getButtonDown();
 	if (input & Controller::PRESS_UP) {
 		if (mCurrSelReturn > 0) {
 			mCurrSelReturn--;

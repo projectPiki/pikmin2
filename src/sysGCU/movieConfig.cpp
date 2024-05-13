@@ -130,11 +130,8 @@ void MovieList::construct() { movieList = new MovieList; }
  */
 MovieList::MovieList()
 {
-	mName           = "MovieList";
-	mConfig.mChild  = nullptr;
-	mConfig.mParent = nullptr;
-	mConfig.mPrev   = nullptr;
-	mConfig.mNext   = nullptr;
+	mName = "MovieList";
+	mConfig.clearRelations();
 
 	void* file = JKRDvdRipper::loadToMainRAM("user/Mukki/movie/demos.txt", nullptr, Switch_0, 0, nullptr, JKRDvdRipper::ALLOC_DIR_BOTTOM, 0,
 	                                         nullptr, nullptr);
@@ -187,10 +184,7 @@ void MovieList::read(Stream& data)
 {
 	int nodes = data.readInt();
 
-	mConfig.mChild  = nullptr;
-	mConfig.mParent = nullptr;
-	mConfig.mPrev   = nullptr;
-	mConfig.mNext   = nullptr;
+	mConfig.clearRelations();
 
 	for (int i = 0; i < nodes; i++) {
 		MovieConfig* config = new MovieConfig;

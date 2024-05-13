@@ -167,7 +167,7 @@ void THPPlayer::loadResource(const THPPlayerLoadResourceArg& loadArg)
 #endif
 
 		RamStream stream(handle, -1);
-		stream.resetPosition(true, 1);
+		stream.setMode(STREAM_MODE_TEXT, 1);
 		mCaptionMgr->read(stream);
 
 		sys->heapStatusEnd("THPPlayr_caption");

@@ -190,8 +190,7 @@ struct TMovePane {
 
 struct THuWhitePaneSet : public J2DPictureEx {
 	THuWhitePaneSet(J2DPane* pane)
-	    : J2DPictureEx('test', JGeometry::TBox2f(0.0f, 0.0f, pane->mBounds.f.x - pane->mBounds.i.x, pane->mBounds.f.y - pane->mBounds.i.y),
-	                   "sunh_w.bti", 0x1100000)
+	    : J2DPictureEx('test', JGeometry::TBox2f(0.0f, 0.0f, pane->getWidth(), pane->getHeight()), "sunh_w.bti", 0x1100000)
 	{
 		_1A8 = Vector2f(0.0f);
 	}

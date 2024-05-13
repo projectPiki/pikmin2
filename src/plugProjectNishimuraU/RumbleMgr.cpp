@@ -268,7 +268,7 @@ void RumbleMgr::readRumbleParms(char* fileName)
 	void* handle = JKRDvdRipper::loadToMainRAM(fileName, 0, Switch_0, 0, nullptr, JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, 0, 0);
 	if (handle) {
 		RamStream stream(handle, -1);
-		stream.resetPosition(true, 1);
+		stream.setMode(STREAM_MODE_TEXT, 1);
 		mParms->read(stream);
 		delete[] handle;
 	} else {
@@ -285,7 +285,7 @@ void RumbleMgr::readRumbleData(char* fileName)
 	void* handle = JKRDvdRipper::loadToMainRAM(fileName, 0, Switch_0, 0, nullptr, JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, 0, 0);
 	if (handle) {
 		RamStream stream(handle, -1);
-		stream.resetPosition(true, 1);
+		stream.setMode(STREAM_MODE_TEXT, 1);
 		mDataMgr->read(stream);
 		delete[] handle;
 	} else {

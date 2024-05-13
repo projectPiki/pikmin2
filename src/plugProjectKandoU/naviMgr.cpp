@@ -174,7 +174,7 @@ void NaviMgr::loadResources()
 	                                              JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
 	if (parmsFile) {
 		RamStream stream(parmsFile, -1);
-		stream.resetPosition(true, 1);
+		stream.setMode(STREAM_MODE_TEXT, 1);
 		mNaviParms->read(stream);
 		delete[] parmsFile;
 	}

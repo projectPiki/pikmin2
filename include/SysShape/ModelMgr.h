@@ -22,7 +22,7 @@ struct ModelMgr {
 	int mHeapLimit;                // _08
 	JKRSolidHeap** mHeaps;         // _0C
 	u32 mModelFlags;               // _10
-	u32 mModelType;                // _14
+	u32 mViewNum;                  // _14
 	IDelegate1<Model*>* mDelegate; // _18
 };
 } // namespace SysShape

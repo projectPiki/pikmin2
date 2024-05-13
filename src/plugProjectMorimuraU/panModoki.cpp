@@ -1741,7 +1741,7 @@ void Obj::throwUpEatItem()
 			Pellet* pellet = mHeldTreasures[i];
 			if (pellet) {
 				pellet->mMgr->setComeAlive(pellet);
-				initArg.mState             = PELSTATE_Bury;
+				initArg.mState             = PelBirthType_ScaleAppear;
 				initArg.mDoSkipCreateModel = 1; // breadbug drops are already loaded
 				pellet->init(&initArg);
 

@@ -80,7 +80,7 @@ void CallBack_SunMeter::update()
 	f32 x  = currentTime * (x1 - x0) + x0;
 	mSuniPane->move(x, y);
 
-	mSun1Pane->rotate(mSun1Pane->mBounds.getWidth() / 2, mSun1Pane->mBounds.getHeight() / 2, J2DROTATE_Z, -mTimer);
+	mSun1Pane->rotate(mSun1Pane->getWidth() / 2, mSun1Pane->getHeight() / 2, J2DROTATE_Z, -mTimer);
 
 	f32 sinVal = sin(-mTimer * DEG2RAD * PI * 2.0f);
 	f32 alpha  = sinVal * 64.0f + 191.0f;

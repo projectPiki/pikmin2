@@ -59,7 +59,7 @@ void PikiMgr::init()
  */
 void PikiMgr::resetMgr()
 {
-	MonoObjectMgr::resetMgr(); // should be MonoObjectMgr::resetMgr
+	MonoObjectMgr::resetMgr();
 	mDopedPikis = 0;
 	mFlags[0]   = 0;
 }
@@ -153,24 +153,24 @@ Piki* PikiMgr::birth()
  * @note Address: 0x8015EABC
  * @note Size: 0xCC
  */
-void PikiMgr::loadResources(int modelFlag)
+void PikiMgr::loadResources(int viewNum)
 {
 	void* file
 	    = JKRDvdRipper::loadToMainRAM("user/Abe/piki/pikiParms.txt", 0, Switch_0, 0, nullptr, JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, 0, 0);
 	if (file) {
 		RamStream stream(file, -1);
-		stream.resetPosition(true, 1);
+		stream.setMode(STREAM_MODE_TEXT, 1);
 		mParms->read(stream);
 		delete[] file;
 	}
-	load(modelFlag);
+	load(viewNum);
 }
 
 /**
  * @note Address: 0x8015EBD8
  * @note Size: 0x298
  */
-void PikiMgr::load(int modelFlag)
+void PikiMgr::load(int viewNum)
 {
 	JKRHeap* heap = JKRGetCurrentHeap();
 	heap->getFreeSize();
@@ -193,7 +193,7 @@ void PikiMgr::load(int modelFlag)
 	mHappaModel[Flower_Red] = J3DModelLoaderDataBase::load(arc->getResource("happa_model/flower_red.bmd"), 0x240000);
 
 	sys->heapStatusStart("pikmin-ModelMgr", nullptr);
-	mModelMgr = new SysShape::ModelMgr(PikiColorCount, &mBluPikiModel, MAX_PIKI_COUNT, 0x20000, modelFlag,
+	mModelMgr = new SysShape::ModelMgr(PikiColorCount, &mBluPikiModel, MAX_PIKI_COUNT, 0x20000, viewNum,
 	                                   new Delegate1<PikiMgr, SysShape::Model*>(this, createModelCallback));
 	sys->heapStatusEnd("pikmin-ModelMgr");
 

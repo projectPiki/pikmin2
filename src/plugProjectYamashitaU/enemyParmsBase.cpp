@@ -12,7 +12,7 @@ bool EnemyParmsBase::loadSettingFile(JKRArchive* archive, char* name)
 	void* handle = archive->getResource(name);
 	if (handle) {
 		RamStream stream(handle, -1);
-		stream.resetPosition(true, 1);
+		stream.setMode(STREAM_MODE_TEXT, 1);
 		read(stream);
 		return true;
 	}

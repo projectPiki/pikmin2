@@ -2474,7 +2474,7 @@ Mgr::Mgr()
 	void* resource      = textArc->getResource("parms.txt");
 	P2ASSERTLINE(1271, resource);
 	RamStream input(resource, -1);
-	input.resetPosition(true, 1);
+	input.setMode(STREAM_MODE_TEXT, 1);
 	mBoidParameter.read(input);
 
 	closeTextArc(textArc);

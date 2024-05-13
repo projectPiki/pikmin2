@@ -839,7 +839,7 @@ bool BootSection::doUpdate()
 			break;
 		case JUTFader::Status_In:
 			mFadeTimer += sys->mDeltaTime;
-			if (mController->mButton.mButtonDown & Controller::PRESS_A || mFadeTimer > 2.0f) {
+			if (mController->getButtonDown() & Controller::PRESS_A || mFadeTimer > 2.0f) {
 				gPikmin2AramMgr->setLoadPermission(false);
 			}
 			if (mFadeTimer > 1.0f && !waitLoadResource()) {
@@ -862,7 +862,7 @@ bool BootSection::doUpdate()
 			break;
 		case JUTFader::Status_In:
 			mFadeTimer += sys->mDeltaTime;
-			if (mController->mButton.mButtonDown & Controller::PRESS_A || mFadeTimer > 2.0f) {
+			if (mController->getButtonDown() & Controller::PRESS_A || mFadeTimer > 2.0f) {
 				gPikmin2AramMgr->setLoadPermission(false);
 			}
 			if (mFadeTimer > 1.0f && !waitLoadResource()) {
@@ -1478,7 +1478,7 @@ void BootSection::updateNintendoLogo()
 {
 	int lastMode = mStateID;
 	if (!Game::gGameConfig.mParms.mNintendoVersion.mData && sys->mRenderMode != System::RM_NTSC_Progressive) {
-		if ((OSGetProgressiveMode() == 1 || mController->mButton.mButton & Controller::PRESS_B) && VIGetDTVStatus() == 1) {
+		if ((OSGetProgressiveMode() == 1 || mController->getButton() & Controller::PRESS_B) && VIGetDTVStatus() == 1) {
 			mDoOpenProgressive = true;
 		} else if (VIGetDTVStatus() != 1) {
 			OSSetProgressiveMode(0);

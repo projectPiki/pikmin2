@@ -29,11 +29,11 @@ EnemyBirthArg::EnemyBirthArg()
  * @note Address: 0x8012EC94
  * @note Size: 0xC4
  */
-EnemyMgrBase::EnemyMgrBase(int objLimit, u8 modelType)
+EnemyMgrBase::EnemyMgrBase(int objLimit, u8 viewNum)
 {
 	mModelData          = nullptr;
 	mAnimMgr            = nullptr;
-	mMtxBufferSize      = modelType;
+	mMtxBufferSize      = viewNum;
 	mCollPartFactory    = nullptr;
 	mObjLimit           = objLimit;
 	mNumObjects         = 0;
@@ -388,7 +388,7 @@ void EnemyMgrBase::loadStoneSetting(const char* filename)
 	void* resource = gParmArc->getResource(filename);
 	if (resource) {
 		RamStream stream(resource, -1);
-		stream.resetPosition(STREAM_MODE_TEXT, STREAM_MODE_TEXT);
+		stream.setMode(STREAM_MODE_TEXT, STREAM_MODE_TEXT);
 		mStoneInfo.setup(stream);
 	}
 }

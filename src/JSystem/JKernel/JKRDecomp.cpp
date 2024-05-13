@@ -50,7 +50,7 @@ void* JKRDecomp::run()
 	while (true) {
 		while (true) {
 			while (true) {
-				OSReceiveMessage(&sMessageQueue, inputBuffer, TRUE);
+				OSReceiveMessage(&sMessageQueue, inputBuffer, OS_MESSAGE_BLOCK);
 				command = static_cast<JKRDecompCommand*>(inputBuffer[0]);
 				decode(command->mSourceBuffer, command->mDestBuffer, command->mSourceLength, command->mDestLength);
 				if (command->_20 == 0) {
@@ -67,10 +67,10 @@ void* JKRDecomp::run()
 		}
 		if (command->_1C) {
 			// outMessage = 1;
-			OSSendMessage(command->_1C, (void*)1, FALSE);
+			OSSendMessage(command->_1C, (void*)1, OS_MESSAGE_NOBLOCK);
 		} else {
 			// outMessage = 1;
-			OSSendMessage(&command->mMessageQueue, (void*)1, FALSE);
+			OSSendMessage(&command->mMessageQueue, (void*)1, OS_MESSAGE_NOBLOCK);
 		}
 	}
 }
@@ -79,7 +79,7 @@ void* JKRDecomp::run()
  * @note Address: 0x8001CB0C
  * @note Size: 0x30
  */
-BOOL JKRDecomp::sendCommand(JKRDecompCommand* command) { return OSSendMessage(&sMessageQueue, command, TRUE); }
+BOOL JKRDecomp::sendCommand(JKRDecompCommand* command) { return OSSendMessage(&sMessageQueue, command, OS_MESSAGE_BLOCK); }
 
 /**
  * @note Address: 0x8001CB3C
@@ -87,15 +87,15 @@ BOOL JKRDecomp::sendCommand(JKRDecompCommand* command) { return OSSendMessage(&s
  */
 bool JKRDecomp::orderSync(u8* srcBuffer, u8* destBuffer, u32 srcLen, u32 destLen)
 {
-	JKRDecompCommand* command = new (JKRHeap::sSystemHeap, -4) JKRDecompCommand();
+	JKRDecompCommand* command = new (JKRHeap::sSystemHeap, -4) JKRDecompCommand;
 	command->mSourceBuffer    = srcBuffer;
 	command->mDestBuffer      = destBuffer;
 	command->mSourceLength    = srcLen;
 	command->mDestLength      = destLen;
 	command->mCallback        = nullptr;
-	OSSendMessage(&sMessageQueue, command, TRUE);
+	OSSendMessage(&sMessageQueue, command, OS_MESSAGE_BLOCK);
 	void* inputBuffer[1];
-	OSReceiveMessage(&command->mMessageQueue, inputBuffer, TRUE);
+	OSReceiveMessage(&command->mMessageQueue, inputBuffer, OS_MESSAGE_BLOCK);
 	delete command;
 	return true;
 }

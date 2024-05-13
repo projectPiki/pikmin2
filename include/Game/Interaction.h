@@ -271,9 +271,9 @@ struct InteractFlockAttack : public Interaction {
 };
 
 struct InteractFlyCollision : public Interaction {
-	inline InteractFlyCollision(Creature* parent, f32 p1, CollPart* collpart)
+	inline InteractFlyCollision(Creature* parent, f32 damage, CollPart* collpart)
 	    : Interaction(parent)
-	    , _08(p1)
+	    , mDamage(damage)
 	    , mCollPart(collpart)
 	{
 	}
@@ -282,7 +282,7 @@ struct InteractFlyCollision : public Interaction {
 
 	// _00 = VTBL
 	// _04 = Creature*
-	f32 _08;             // _08
+	f32 mDamage;         // _08
 	CollPart* mCollPart; // _0C
 };
 

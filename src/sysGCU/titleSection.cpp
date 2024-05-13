@@ -250,19 +250,19 @@ void Section::updateMenu()
 	if (mDoCheckShortCut) {
 		mMenu->doUpdate(false);
 		if (mMenu->mState == 2 || mMenu->mState == 1) {
-			if (mController1->mButton.mButtonDown & Controller::PRESS_DPAD_UP && Game::gGameConfig.mParms.mShortCutUp.mData >= 0) {
+			if (mController1->getButtonDown() & Controller::PRESS_DPAD_UP && Game::gGameConfig.mParms.mShortCutUp.mData >= 0) {
 				GameFlow::mActiveSectionFlag = Game::gGameConfig.mParms.mShortCutUp.mData;
 				mIsMainActive                = false;
 			}
-			if (mController1->mButton.mButtonDown & Controller::PRESS_DPAD_DOWN && Game::gGameConfig.mParms.mShortCutDown.mData >= 0) {
+			if (mController1->getButtonDown() & Controller::PRESS_DPAD_DOWN && Game::gGameConfig.mParms.mShortCutDown.mData >= 0) {
 				GameFlow::mActiveSectionFlag = Game::gGameConfig.mParms.mShortCutDown.mData;
 				mIsMainActive                = false;
 			}
-			if (mController1->mButton.mButtonDown & Controller::PRESS_DPAD_LEFT && Game::gGameConfig.mParms.mShortCutLeft.mData >= 0) {
+			if (mController1->getButtonDown() & Controller::PRESS_DPAD_LEFT && Game::gGameConfig.mParms.mShortCutLeft.mData >= 0) {
 				GameFlow::mActiveSectionFlag = Game::gGameConfig.mParms.mShortCutLeft.mData;
 				mIsMainActive                = false;
 			}
-			if (mController1->mButton.mButtonDown & Controller::PRESS_DPAD_RIGHT && Game::gGameConfig.mParms.mShortCutRight.mData >= 0) {
+			if (mController1->getButtonDown() & Controller::PRESS_DPAD_RIGHT && Game::gGameConfig.mParms.mShortCutRight.mData >= 0) {
 				GameFlow::mActiveSectionFlag = Game::gGameConfig.mParms.mShortCutRight.mData;
 				mIsMainActive                = false;
 			}
@@ -283,7 +283,7 @@ void Section::doUpdateMainTitle()
 		mGoToDemoTimer = 0.0f;
 	}
 
-	if (mController1->mButton.mButtonDown & Controller::PRESS_Y) {
+	if (mController1->getButtonDown() & Controller::PRESS_Y) {
 		OSReport("code size           %dKB\n", ((int)JKRHeap::getCodeEnd() - (int)JKRHeap::getCodeStart()) / 1024);
 		OSReport("GameSystemHeap Free %dKB\n", (int)sys->mSysHeap->getTotalFreeSize() / 1024);
 	}
@@ -425,8 +425,8 @@ void Section::doUpdateOmake()
 		}
 		mThpPlayer->update();
 		if (mThpPlayer->isFinishLoading()) {
-			if (mThpPlayer->isFinishPlaying() || mController1->mButton.mButtonDown & Controller::PRESS_B) {
-				if (mController1->mButton.mButtonDown & Controller::PRESS_B) {
+			if (mThpPlayer->isFinishPlaying() || mController1->getButtonDown() & Controller::PRESS_B) {
+				if (mController1->getButtonDown() & Controller::PRESS_B) {
 					PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CANCEL, 0);
 				}
 				mThpPlayer->pause();

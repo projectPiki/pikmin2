@@ -246,25 +246,23 @@ struct ObjChallenge2P : public ObjChallengeBase {
 
 	void commonUpdate();
 
-	inline f32 getStatic1() { return msVal._08; }
-
-	inline JGeometry::TBox2f getBox1()
+	inline JGeometry::TBox2f getDividerBar()
 	{
 		JGeometry::TBox2f box;
-		box.i = JGeometry::TVec2f(msVal._08, msVal._0C);
+		box.i = JGeometry::TVec2f(msVal.mDividerBarXPos, msVal.mDividerBarYPos);
 		box.f = box.i;
-		box.f.x += msVal._10;
-		box.f.y += msVal._14;
+		box.f.x += msVal.mDividerBarWidth;
+		box.f.y += msVal.mDividerBarHeight;
 		return box;
 	}
 
-	inline JGeometry::TBox2f getBox2()
+	inline JGeometry::TBox2f getDividerBar2()
 	{
 		JGeometry::TBox2f box;
-		box.i = JGeometry::TVec2f(msVal._18, msVal._0C);
+		box.i = JGeometry::TVec2f(msVal.mDividerBarWidth2, msVal.mDividerBarYPos);
 		box.f = box.i;
-		box.f.x += msVal._1C;
-		box.f.y += msVal._14;
+		box.f.x += msVal.mDividerBarHeight2;
+		box.f.y += msVal.mDividerBarHeight;
 		return box;
 	}
 
@@ -310,29 +308,29 @@ struct ObjChallenge2P : public ObjChallengeBase {
 			mPikisXScaleMod = 1.0f;
 			mPikisYScaleMod = 1.0f;
 
-			mFadeinTime  = 0.6f;
-			mFadeoutTime = 0.2f;
-			_08          = 0;
-			_0C          = 223;
-			_10          = 640;
-			_14          = 3;
-			_18          = 640;
-			_1C          = 0;
-			_20.r        = 0;
-			_20.g        = 0;
-			_20.b        = 0;
-			_20.a        = 200;
+			mFadeinTime        = 0.6f;
+			mFadeoutTime       = 0.2f;
+			mDividerBarXPos    = 0;
+			mDividerBarYPos    = 223;
+			mDividerBarWidth   = 640;
+			mDividerBarHeight  = 3;
+			mDividerBarWidth2  = 640;
+			mDividerBarHeight2 = 0;
+			mDividerBarColor.r = 0;
+			mDividerBarColor.g = 0;
+			mDividerBarColor.b = 0;
+			mDividerBarColor.a = 200;
 		}
 
 		f32 mFadeinTime;
 		f32 mFadeoutTime;
-		int _08;
-		int _0C;
-		int _10;
-		int _14;
-		int _18;
-		int _1C;
-		JUtility::TColor _20;
+		int mDividerBarXPos;
+		int mDividerBarYPos;
+		int mDividerBarWidth;
+		int mDividerBarHeight;
+		int mDividerBarWidth2;
+		int mDividerBarHeight2;
+		JUtility::TColor mDividerBarColor;
 
 		J2DPane* mMenu00;    // _00
 		f32 mPokoXPos;       // _04
@@ -365,10 +363,10 @@ struct ObjChallenge2P : public ObjChallengeBase {
 };
 
 struct SArgChallengeBase : public ::Screen::StartSceneArg {
-	SArgChallengeBase(f32 data) { _04 = data; }
+	SArgChallengeBase(f32 delay) { mTimeAddDelay = delay; }
 
 	// _00     = VTBL
-	f32 _04; // _04
+	f32 mTimeAddDelay; // _04
 };
 
 struct SArgChallenge1P : public SArgChallengeBase {

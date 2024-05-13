@@ -320,10 +320,10 @@ bool TOmakeGame::doUpdateStateWait()
 			PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CURSOR, 0);
 		}
 		if (!mCursor.mCounter) {
-			if (mInput->mButton.mButtonDown & Controller::PRESS_A) {
+			if (mInput->getButtonDown() & Controller::PRESS_A) {
 				mExitState = false;
 			}
-			if (mInput->mButton.mButtonDown & Controller::PRESS_B) {
+			if (mInput->getButtonDown() & Controller::PRESS_B) {
 				PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CANCEL, 0);
 				return true;
 			}

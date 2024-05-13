@@ -264,7 +264,7 @@ void CaveState::check_SMenu(SingleGameSection* game)
 	case -1:
 		// Conditions to open pause menu
 		if (!(gameSystem->isFlag(GAMESYS_DisablePause)) && moviePlayer->mDemoState == DEMOSTATE_Inactive && !gameSystem->paused()
-		    && game->mControllerP1->mButton.mButtonDown & Controller::PRESS_START) {
+		    && game->mControllerP1->getButtonDown() & Controller::PRESS_START) {
 			og::Screen::DispMemberSMenuAll disp;
 			game->setDispMemberSMenu(disp);
 			if (!Screen::gGame2DMgr->open_SMenu(disp)) {

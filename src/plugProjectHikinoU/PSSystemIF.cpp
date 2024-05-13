@@ -203,7 +203,7 @@ bool TextDataBase::load(const char* path, JKRDvdRipper::EAllocDirection directio
 	onlyLoad(path, direction);
 	if (mFile) {
 		RamStream stream(mFile, -1);
-		stream.resetPosition(true, 1);
+		stream.setMode(STREAM_MODE_TEXT, 1);
 		return read(stream);
 	}
 	return false;

@@ -448,7 +448,7 @@ void J2DPictureEx::drawSelf(f32 x, f32 y, Mtx* texMtx)
 	GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
 	GXSetVtxDesc(GX_VA_CLR0, GX_DIRECT);
 	GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
-	drawFullSet(x, y, mBounds.f.x - mBounds.i.x, mBounds.f.y - mBounds.i.y, texMtx);
+	drawFullSet(x, y, getWidth(), getHeight(), texMtx);
 }
 
 /**

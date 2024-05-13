@@ -2576,13 +2576,13 @@ void ObjVs::doDraw(Graphics& gfx)
 	J2DPerspGraph* graf = &gfx.mPerspGraph;
 	graf->setPort();
 
-	JUtility::TColor color1 = ObjChallenge2P::msVal._20;
+	JUtility::TColor color1 = ObjChallenge2P::msVal.mDividerBarColor;
 	int test                = (f32)color1.a * mScale;
 	color1.a                = test;
 	graf->setColor(color1);
 
-	f32 baseY = (f32)ObjChallenge2P::msVal._0C;
-	JGeometry::TBox2f box(0.0f, baseY, 640.0f, baseY + (f32)ObjChallenge2P::msVal._14);
+	f32 baseY = (f32)ObjChallenge2P::msVal.mDividerBarYPos;
+	JGeometry::TBox2f box(0.0f, baseY, 640.0f, baseY + (f32)ObjChallenge2P::msVal.mDividerBarHeight);
 
 	graf->fillBox(box);
 

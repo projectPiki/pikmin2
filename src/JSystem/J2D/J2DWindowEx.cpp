@@ -852,7 +852,7 @@ void J2DWindowEx::draw(const JGeometry::TBox2<f32>& p1, const JGeometry::TBox2<f
 	makeMatrix(p1.i.x, p1.i.y, 0.0f, 0.0f);
 	GXLoadPosMtxImm(mPositionMtx, 0);
 	GXSetCurrentMtx(0);
-	draw_private(JGeometry::TBox2f(0.0f, 0.0f, p1.f.x - p1.i.x, p1.f.y - p1.i.y), p2);
+	draw_private(JGeometry::TBox2f(0.0f, 0.0f, p1.getWidth(), p1.getHeight()), p2);
 	for (int i = 0; i < 4; i++) {
 		GXSetTevSwapModeTable((GXTevSwapSel)i, GX_CH_RED, GX_CH_GREEN, GX_CH_BLUE, GX_CH_ALPHA);
 	}

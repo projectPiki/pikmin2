@@ -1,9 +1,6 @@
 #include "JSystem/JMath.h"
 #include "types.h"
 
-/*
-    Generated from dpostproc
-*/
 namespace JMath {
 
 /**

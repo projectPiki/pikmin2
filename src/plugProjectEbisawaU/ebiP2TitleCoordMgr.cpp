@@ -67,7 +67,7 @@ void TCoordMgr::readCoordinate(JKRArchive* arc, char* path)
 
 	if (file) {
 		RamStream stream(file, -1);
-		stream.resetPosition(true, 1);
+		stream.setMode(STREAM_MODE_TEXT, 1);
 
 		readCoordinate(stream);
 	}

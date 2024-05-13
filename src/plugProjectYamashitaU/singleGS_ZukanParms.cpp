@@ -898,7 +898,7 @@ void Parms::loadFile(JKRArchive* archive)
 	void* resource = archive->getResource("setting.ini");
 	P2ASSERTLINE(736, resource);
 	RamStream stream(resource, -1);
-	stream.resetPosition(true, true);
+	stream.setMode(STREAM_MODE_TEXT, 1);
 	read(stream);
 }
 

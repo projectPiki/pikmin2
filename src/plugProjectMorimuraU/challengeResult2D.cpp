@@ -1151,7 +1151,7 @@ void TChallengeResult::doCreate(JKRArchive* arc)
 		                                         JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
 		if (file) {
 			RamStream strm(file, -1);
-			strm.resetPosition(true, 1);
+			strm.setMode(STREAM_MODE_TEXT, 1);
 			mStageList->read(strm);
 		}
 	}
@@ -1431,7 +1431,7 @@ bool TChallengeResult::doUpdate()
 
 	if (mCanInput && mDisp->_10 == 0) {
 		if (mDemoState == 6) {
-			if (mControls->mButton.mButtonDown & Controller::PRESS_A) {
+			if (mControls->getButtonDown() & Controller::PRESS_A) {
 				// skip prompt to save in certain test versions of the game
 				if (Game::gGameConfig.mParms.mNintendoVersion.mData || Game::gGameConfig.mParms.mE3version.mData) {
 					mDisp->_10 = 1;

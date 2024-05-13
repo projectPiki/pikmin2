@@ -631,8 +631,8 @@ CaveInfo* CaveInfo::load(char* path)
 	void* data = JKRDvdToMainRam(pathCopyBuffer, nullptr, Switch_0, 0, nullptr, JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
 	JUT_ASSERTLINE(1249, data != nullptr, "%s not found !\n", pathCopyBuffer);
 	RamStream input(data, -1);
-	input.resetPosition(true, 1);
-	CaveInfo* caveInfo = new CaveInfo();
+	input.setMode(STREAM_MODE_TEXT, 1);
+	CaveInfo* caveInfo = new CaveInfo;
 	caveInfo->read(input);
 	delete[] data;
 	return caveInfo;

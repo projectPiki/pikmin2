@@ -828,7 +828,7 @@ void ShapeMapMgr::load(LoadArg& arg)
 	file = JKRDvdToMainRam(lightPath, nullptr, Switch_0, 0, nullptr, JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
 	if (file) {
 		RamStream stream(file, -1);
-		stream.resetPosition(true, 1);
+		stream.setMode(STREAM_MODE_TEXT, 1);
 		if (gameSystem) {
 			gameSystem->getLightMgr()->loadParm(stream);
 		}
@@ -851,7 +851,7 @@ void ShapeMapMgr::load(LoadArg& arg)
 		if (file) {
 			sys->heapStatusStart("waterbox", nullptr);
 			RamStream stream(file, -1);
-			stream.resetPosition(true, 1);
+			stream.setMode(STREAM_MODE_TEXT, 1);
 			mSeaMgr->read(stream);
 			sys->heapStatusEnd("waterbox");
 		}
@@ -877,7 +877,7 @@ void ShapeMapMgr::load(LoadArg& arg)
 			    = JKRDvdToMainRam(arg.mWaterboxPath, nullptr, Switch_0, 0, nullptr, JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
 			sys->heapStatusStart("waterbox", nullptr);
 			RamStream stream(file, -1);
-			stream.resetPosition(true, 1);
+			stream.setMode(STREAM_MODE_TEXT, 1);
 			mSeaMgr->read(stream);
 			sys->heapStatusEnd("waterbox");
 			delete[] file;
@@ -898,7 +898,7 @@ void ShapeMapMgr::load(LoadArg& arg)
 		void* file = JKRDvdToMainRam(arg.mRoutePath, nullptr, Switch_0, 0, nullptr, JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
 		sys->heapStatusStart("routeInfo", nullptr);
 		RamStream stream(file, -1);
-		stream.resetPosition(true, 1);
+		stream.setMode(STREAM_MODE_TEXT, 1);
 		if (!mRouteMgr) {
 			mRouteMgr = new GameRouteMgr;
 		}

@@ -362,7 +362,7 @@ Mgr::Mgr()
                                                  JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
 	if (resource) {
 		RamStream stream(resource, -1);
-		stream.resetPosition(true, true);
+		stream.setMode(STREAM_MODE_TEXT, true);
 		mParms->read(stream);
 		delete[] resource;
 	}

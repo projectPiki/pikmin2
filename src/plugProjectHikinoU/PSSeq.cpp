@@ -33,7 +33,7 @@ int SeqDataList::getSeqVolume(char const* bmsname)
 	char buf[32];
 	P2ASSERTLINE(36, mFile);
 	RamStream stream(mFile, -1);
-	stream.resetPosition(true, 1);
+	stream.setMode(STREAM_MODE_TEXT, 1);
 	stream.readString(buf, 32);
 
 	while (strcmp(buf, "endoffile")) {
@@ -155,7 +155,7 @@ int StreamDataList::getStreamVolume(u32 id)
 	char buf[32];
 	P2ASSERTLINE(76, mFile);
 	RamStream stream(mFile, -1);
-	stream.resetPosition(true, 1);
+	stream.setMode(STREAM_MODE_TEXT, 1);
 	stream.readString(buf, 32);
 	while (strcmp(buf, "endoffile")) {
 		for (int i = 0; i < 1; i++) {

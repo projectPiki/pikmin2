@@ -332,8 +332,8 @@ bool ObjKantei::doUpdate()
 
 	case Kantei_PokoAppearDelay:
 		mStartTimer += sys->mDeltaTime;
-		if (mStartTimer >= msVal.mNameAppearDelay || pad->mButton.mButtonDown & Controller::PRESS_A
-		    || (mDisp->mSecondaryController && mDisp->mSecondaryController->mButton.mButtonDown & Controller::PRESS_A)) {
+		if (mStartTimer >= msVal.mNameAppearDelay || pad->getButtonDown() & Controller::PRESS_A
+		    || (mDisp->mSecondaryController && mDisp->mSecondaryController->getButtonDown() & Controller::PRESS_A)) {
 			mState              = Kantei_SetPokoValue;
 			mDisp->mPelletValue = 0;
 			mPokoCounterCurr->startSlot(msVal.mPokoSlotFactor);
@@ -369,8 +369,8 @@ bool ObjKantei::doUpdate()
 	case Kantei_Idle:
 		if (mIdleStateTimer > 0.0f) {
 			mIdleStateTimer -= sys->mDeltaTime;
-		} else if (pad && pad->mButton.mButtonDown & Controller::PRESS_A
-		           || (mDisp->mSecondaryController && mDisp->mSecondaryController->mButton.mButtonDown & Controller::PRESS_A)) {
+		} else if (pad && pad->getButtonDown() & Controller::PRESS_A
+		           || (mDisp->mSecondaryController && mDisp->mSecondaryController->getButtonDown() & Controller::PRESS_A)) {
 			mShipMessageBoxID = mDisp->mPelletMessageID;
 			// if the tagID exists, open ship message box, unless in E3 mode
 			if (mShipMessageBoxID != 0 && !Game::gGameConfig.mParms.mE3version.mData) {

@@ -2,63 +2,6 @@
 #include "Iterator.h"
 #include "Game/Navi.h"
 
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_8049E1C8
-    lbl_8049E1C8:
-        .asciz "PSMainSide_ObjCalc.cpp"
-        .skip 1
-    .global lbl_8049E1E0
-    lbl_8049E1E0:
-        .asciz "P2Assert"
-        .skip 3
-    .global lbl_8049E1EC
-    lbl_8049E1EC:
-        .4byte 0x82A082E8
-        .4byte 0x82A682C8
-        .4byte 0x82A28350
-        .4byte 0x815B8358
-        .asciz "1"
-        .skip 2
-    .global lbl_8049E200
-    lbl_8049E200:
-        .4byte 0x82A082E8
-        .4byte 0x82A682C8
-        .4byte 0x82A28350
-        .4byte 0x815B8358
-        .asciz "2"
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q23PSM14ObjCalc_2PGame
-    __vt__Q23PSM14ObjCalc_2PGame:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q23PSM14ObjCalc_2PGameFv
-        .4byte getPlayerNo__Q23PSM14ObjCalc_2PGameFPQ23PSM8Creature
-        .4byte getPlayerNo__Q23PSM14ObjCalc_2PGameFR3Vec
-        .4byte setMode__Q23PSM11ObjCalcBaseFQ33PSM11ObjCalcBase4Mode
-        .4byte is1PGame__Q23PSM14ObjCalc_2PGameFv
-    .global __vt__Q23PSM18ObjCalc_SingleGame
-    __vt__Q23PSM18ObjCalc_SingleGame:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q23PSM18ObjCalc_SingleGameFv
-        .4byte getPlayerNo__Q23PSM18ObjCalc_SingleGameFPQ23PSM8Creature
-        .4byte getPlayerNo__Q23PSM18ObjCalc_SingleGameFR3Vec
-        .4byte setMode__Q23PSM11ObjCalcBaseFQ33PSM11ObjCalcBase4Mode
-        .4byte is1PGame__Q23PSM11ObjCalcBaseFv
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80520E28
-    lbl_80520E28:
-        .float 100000.0
-    .global lbl_80520E2C
-    lbl_80520E2C:
-        .float 1000000.0
-*/
-
 namespace PSM {
 
 /**

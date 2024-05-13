@@ -181,7 +181,7 @@ void FSMState_SelectGame::do_exec(TMgr* mgr)
 			mgr->mOmakeGame.setSelfControl();
 			mStatus = Idle;
 		}
-		if (mTimer > 2 && mgr->mController->mButton.mButtonDown & Controller::PRESS_B) {
+		if (mTimer > 2 && mgr->mController->getButtonDown() & Controller::PRESS_B) {
 			PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CANCEL, 0);
 			mTimer    = 1;
 			mTimerMax = 1;

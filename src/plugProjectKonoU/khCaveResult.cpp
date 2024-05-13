@@ -336,7 +336,7 @@ bool ObjCaveResult::doUpdate()
 		}
 
 		Controller* pad = getGamePad();
-		if (pad->mButton.mButtonDown & Controller::PRESS_A) {
+		if (pad->getButtonDown() & Controller::PRESS_A) {
 			if (!isFlag(CAVERESFLAG_PikisKilledShown)) {
 				setFlag(CAVERESFLAG_FinishAutoScroll);
 			}

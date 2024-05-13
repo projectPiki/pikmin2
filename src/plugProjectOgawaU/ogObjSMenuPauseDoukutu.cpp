@@ -276,7 +276,7 @@ bool ObjSMenuPauseDoukutu::menu_pause()
 	Controller* pad = getGamePad();
 	mMenuPause->update();
 
-	u32 input = pad->mButton.mButtonDown;
+	u32 input = pad->getButtonDown();
 	if (input & Controller::PRESS_UP) {
 		if (mCurrPauseSel > 0) {
 			mCurrPauseSel--;
@@ -366,7 +366,7 @@ bool ObjSMenuPauseDoukutu::menu_giveup()
 	Controller* pad = getGamePad();
 	mMenuGiveup->update();
 
-	u32 input = pad->mButton.mButtonDown;
+	u32 input = pad->getButtonDown();
 	if (input & Controller::PRESS_UP) {
 		if (mCurrGiveupSel > 0) {
 			mCurrGiveupSel--;

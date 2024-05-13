@@ -143,14 +143,14 @@ bool ObjUfoMenu::doUpdate()
 	bool ret        = false;
 	Controller* pad = getGamePad();
 	if (mDisp->mHasWhite && mDisp->mHasPurple) {
-		if (pad->mButton.mButtonDown & Controller::PRESS_UP) {
+		if (pad->getButtonDown() & Controller::PRESS_UP) {
 			if (mSelectIndex > 0) {
 				mSelectIndex--;
 				mMenu->select(mSelectIndex & 0xffff);
 				setSelectPikmin(mSelectIndex);
 			}
 
-		} else if (pad->mButton.mButtonDown & Controller::PRESS_DOWN) {
+		} else if (pad->getButtonDown() & Controller::PRESS_DOWN) {
 			if (mSelectIndex < 1) {
 				mSelectIndex++;
 				mMenu->select(mSelectIndex & 0xffff);
@@ -168,7 +168,7 @@ bool ObjUfoMenu::doUpdate()
 			}
 		}
 	}
-	if (pad->mButton.mButtonDown & Controller::PRESS_A) {
+	if (pad->getButtonDown() & Controller::PRESS_A) {
 		ogSound->setDecide();
 		ret = 1;
 		if (mSelectIndex == 0) {
@@ -192,7 +192,7 @@ bool ObjUfoMenu::doUpdate()
 				JUT_ASSERTLINE(372, check, "‚¾‚ß‚Å‚·\n");
 			}
 		}
-	} else if (pad->mButton.mButtonDown & Controller::PRESS_B) {
+	} else if (pad->getButtonDown() & Controller::PRESS_B) {
 		ogSound->setClose();
 		mDisp->mUfoMenu.mContenaType = 0;
 		setBackupScene();

@@ -89,13 +89,13 @@ struct ObjCourseName : public ::Screen::ObjBase {
 			mBgAlphaFadeTime = 0.3f;
 			mFadeinTime      = 1.0f;
 			mFadeoutTime     = 0.2f;
-			_0C              = 3.0f;
+			mFinishWaitTime  = 3.0f;
 		}
 
 		f32 mBgAlphaFadeTime; // _00
 		f32 mFadeinTime;      // _04
 		f32 mFadeoutTime;     // _08
-		f32 _0C;              // _0C
+		f32 mFinishWaitTime;  // _0C
 	} msVal;
 };
 

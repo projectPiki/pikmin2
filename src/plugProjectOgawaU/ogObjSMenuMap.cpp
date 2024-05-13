@@ -173,8 +173,8 @@ void ObjSMenuMap::setMapTexture()
 
 	mMapTextureDimensions.x = mMapTexPane->getTexture(0)->getSizeX();
 	mMapTextureDimensions.y = mMapTexPane->getTexture(0)->getSizeY();
-	mMapBounds.x            = mMapTexPane->mBounds.getWidth();
-	mMapBounds.y            = mMapTexPane->mBounds.getHeight();
+	mMapBounds.x            = mMapTexPane->getWidth();
+	mMapBounds.y            = mMapTexPane->getHeight();
 	mMapTexPane->resize(mMapTextureDimensions.x, mMapTextureDimensions.y);
 
 	FORCE_DONT_INLINE;

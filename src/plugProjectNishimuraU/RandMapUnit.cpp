@@ -46,7 +46,7 @@ void EditMapUnit::read(char* filepath)
  */
 void EditMapUnit::read(Stream* stream)
 {
-	stream->resetPosition(true, true);
+	stream->setMode(STREAM_MODE_TEXT, 1);
 	mChanceOfUse = stream->readFloat();
 	mEditCount   = stream->readInt();
 	mUnitCounts  = new int[mEditCount];

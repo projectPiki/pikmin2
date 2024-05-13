@@ -395,7 +395,7 @@ void CameraMgr::readCameraParms(char* path)
  */
 void CameraMgr::readParameter(Stream& stream)
 {
-	stream.resetPosition(true, true);
+	stream.setMode(STREAM_MODE_TEXT, 1);
 	mCameraParms[0]->read(stream);
 	mCameraParms[1]->read(stream);
 	mVibrationParms->read(stream);

@@ -5,49 +5,6 @@
 #include "SysShape/ModelMgr.h"
 #include "System.h"
 
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80499E68
-    lbl_80499E68:
-        .4byte 0x6D6F6465
-        .4byte 0x6C4D6772
-        .4byte 0x00000000
-    .global lbl_80499E74
-    lbl_80499E74:
-        .4byte 0x6D6F6465
-        .4byte 0x6C4D6772
-        .4byte 0x2E637070
-        .4byte 0x00000000
-    .global lbl_80499E84
-    lbl_80499E84:
-        .4byte 0x736F6C69
-        .4byte 0x64206865
-        .4byte 0x61702063
-        .4byte 0x72656174
-        .4byte 0x696F6E20
-        .4byte 0x6661696C
-        .4byte 0x65642021
-        .4byte 0x0A000000
-        .asciz "P2Assert"
-        .skip 3
-        .4byte 0x736F6C69
-        .4byte 0x64486561
-        .4byte 0x70206E75
-        .4byte 0x6C6C210A
-        .4byte 0x00000000
-        .4byte 0x6661696C
-        .4byte 0x65642074
-        .4byte 0x6F206E65
-        .4byte 0x77206D6F
-        .4byte 0x64656C20
-        .4byte 0x21206964
-        .4byte 0x20256420
-        .4byte 0x69647820
-        .4byte 0x25640A00
-*/
-
 /**
  * @note Address: N/A
  * @note Size: 0xE4
@@ -60,7 +17,7 @@ namespace SysShape {
  * @note Address: 0x8042AB00
  * @note Size: 0x1D8
  */
-ModelMgr::ModelMgr(int modelDataLimit, J3DModelData** modelData, int heapLimit, u32 modelFlags, u32 modelType, IDelegate1<Model*>* delegate)
+ModelMgr::ModelMgr(int modelDataLimit, J3DModelData** modelData, int heapLimit, u32 flags, u32 viewNum, IDelegate1<Model*>* delegate)
 {
 	mModelDataLimit = modelDataLimit;
 	mModelData      = new J3DModelData*[modelDataLimit];
@@ -68,8 +25,8 @@ ModelMgr::ModelMgr(int modelDataLimit, J3DModelData** modelData, int heapLimit, 
 		mModelData[i] = modelData[i];
 	}
 	mHeapLimit  = heapLimit;
-	mModelFlags = modelFlags;
-	mModelType  = modelType;
+	mModelFlags = flags;
+	mViewNum    = viewNum;
 	mDelegate   = delegate;
 	mHeaps      = new JKRSolidHeap*[heapLimit];
 	int maxSize = calcMaximumModelSize();
@@ -106,7 +63,7 @@ int ModelMgr::calcModelSize(J3DModelData* data)
 		return 0;
 	}
 	uint initialFreeSize   = JKRHeap::sCurrentHeap->getTotalFreeSize();
-	SysShape::Model* model = new SysShape::Model(data, mModelFlags, mModelType);
+	SysShape::Model* model = new SysShape::Model(data, mModelFlags, mViewNum);
 	if (mDelegate) {
 		mDelegate->invoke(model);
 	}
@@ -132,7 +89,7 @@ Model* ModelMgr::createModel(int modelIndex, int heapIndex)
 		for (int i = 0; i < mHeapLimit; i++) { }
 		JUT_PANICLINE(173, "solidHeap null!\n");
 	}
-	SysShape::Model* model = new SysShape::Model(mModelData[modelIndex], mModelFlags, mModelType);
+	SysShape::Model* model = new SysShape::Model(mModelData[modelIndex], mModelFlags, mViewNum);
 	if (mDelegate) {
 		mDelegate->invoke(model);
 	}

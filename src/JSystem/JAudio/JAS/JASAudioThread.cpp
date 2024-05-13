@@ -63,7 +63,7 @@ void* JASAudioThread::run()
 
 	while (true) {
 		OSMessage msg;
-		OSReceiveMessage(&mMsgQueue, &msg, 1);
+		OSReceiveMessage(&mMsgQueue, &msg, OS_MESSAGE_BLOCK);
 		switch ((int)msg) {
 		case AUDIOMSG_DMA:
 			if (sbPauseFlag) {

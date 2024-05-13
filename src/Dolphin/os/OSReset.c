@@ -134,8 +134,6 @@ static void KillThreads()
 		case 4:
 			OSCancelThread(thread);
 			break;
-		default:
-			break;
 		}
 	}
 }

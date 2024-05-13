@@ -4,10 +4,6 @@
 #include "JSystem/JParticle/JPATexture.h"
 #include "types.h"
 
-/*
-    Generated from dpostproc
-*/
-
 #define GetTypeFromByteStream(data, type, offset) (*(type*)((data) + (offset)))
 
 /**

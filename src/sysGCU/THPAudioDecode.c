@@ -150,7 +150,7 @@ static void AudioDecode(THPReadBuffer* readBuffer)
 void* PopFreeAudioBuffer()
 {
 	void* buf;
-	OSReceiveMessage(&FreeAudioBufferQueue, &buf, 1);
+	OSReceiveMessage(&FreeAudioBufferQueue, &buf, OS_MESSAGE_BLOCK);
 	return buf;
 }
 

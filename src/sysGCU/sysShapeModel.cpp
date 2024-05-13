@@ -13,9 +13,9 @@ int Model::cullCount;
  * @note Address: 0x8043E1D8
  * @note Size: 0xC4
  */
-Model::Model(J3DModelData* data, u32 flags, u32 mtxBufferSize)
+Model::Model(J3DModelData* data, u32 flags, u32 viewNum)
 {
-	mJ3dModel   = new J3DModel(data, flags, mtxBufferSize);
+	mJ3dModel   = new J3DModel(data, flags, viewNum);
 	mJointCount = mJ3dModel->mModelData->getJointNum();
 	initJoints();
 	_05          = 1;
@@ -27,9 +27,9 @@ Model::Model(J3DModelData* data, u32 flags, u32 mtxBufferSize)
  * @note Address: 0x8043E29C
  * @note Size: 0x17C
  */
-void Model::enableMaterialAnim(J3DModelData* data, int mode)
+void Model::enableMaterialAnim(J3DModelData* data, int type)
 {
-	switch (mode) {
+	switch (type) {
 	case 0:
 		for (u16 i = 0; i < data->getMaterialNum(); i++) {
 			J3DMaterialAnm* anm = new J3DMaterialAnm;
@@ -46,9 +46,9 @@ void Model::enableMaterialAnim(J3DModelData* data, int mode)
  * @note Address: 0x8043E418
  * @note Size: 0x174
  */
-void Model::enableMaterialAnim(int mode)
+void Model::enableMaterialAnim(int type)
 {
-	switch (mode) {
+	switch (type) {
 	case 0:
 		J3DModelData* data = mJ3dModel->mModelData;
 		for (u16 i = 0; i < data->getMaterialNum(); i++) {

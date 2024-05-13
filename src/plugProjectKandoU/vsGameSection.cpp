@@ -424,7 +424,7 @@ void VsGameSection::loadChallengeStageList()
 		return;
 	}
 	RamStream ram(loadRam, -1);
-	ram.resetPosition(1, 1);
+	ram.setMode(STREAM_MODE_TEXT, 1);
 	mChallengeStageList->read(ram);
 }
 
@@ -443,7 +443,7 @@ void VsGameSection::loadVsStageList()
 	}
 
 	RamStream ram(loadRam, -1);
-	ram.resetPosition(true, 1);
+	ram.setMode(STREAM_MODE_TEXT, 1);
 	mVsStageList->read(ram);
 }
 

@@ -43,7 +43,7 @@ void TTitleFogMgr::loadSettingFile(JKRArchive* archive, char* file)
 	void* resource = archive->getResource(file);
 	if (resource) {
 		RamStream stream(resource, -1);
-		stream.resetPosition(true, 1);
+		stream.setMode(STREAM_MODE_TEXT, 1);
 		mParms.read(stream);
 	}
 }

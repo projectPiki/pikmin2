@@ -495,7 +495,7 @@ void JFWThreadAlarmHandler(OSAlarm* p_alarm, OSContext* p_ctx)
  * @note Address: 0x8008A788
  * @note Size: 0xBC
  */
-void JFWDisplay::threadSleep(s64 time)
+void JFWDisplay::threadSleep(OSTime time)
 {
 	JFWAlarm alarm;
 	alarm.createAlarm();

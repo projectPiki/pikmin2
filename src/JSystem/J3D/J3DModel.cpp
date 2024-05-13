@@ -40,11 +40,11 @@ void J3DModel::initialize()
  * @note Address: 0x80066380
  * @note Size: 0xC4
  */
-int J3DModel::entryModelData(J3DModelData* data, u32 flags, u32 mtxBufferSize)
+int J3DModel::entryModelData(J3DModelData* data, u32 matFlags, u32 viewNum)
 {
 	mModelData = data;
-	mMtxBuffer = new J3DMtxBuffer();
-	int result = mMtxBuffer->create(data, mtxBufferSize);
+	mMtxBuffer = new J3DMtxBuffer;
+	int result = mMtxBuffer->create(data, viewNum);
 	if (result) {
 		return result;
 	}
@@ -52,7 +52,7 @@ int J3DModel::entryModelData(J3DModelData* data, u32 flags, u32 mtxBufferSize)
 	if (result) {
 		return result;
 	}
-	result = createMatPacket(data, flags);
+	result = createMatPacket(data, matFlags);
 	if (result) {
 		return result;
 	}

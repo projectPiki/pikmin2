@@ -704,13 +704,13 @@ bool TTitleMgr::update()
 			mCanInput = true;
 		}
 		if (mCanInput && mController) {
-			u32 press = mController->mButton.mButtonDown;
+			u32 press = mController->getButtonDown();
 			if (press & Controller::PRESS_L) {
 				boidToAssemble(0);
 			} else if (press & Controller::PRESS_R) {
 				boidToAssemble(1);
 			}
-			press = mController->mButton.mButtonDown;
+			press = mController->getButtonDown();
 			if (press & Controller::PRESS_X) {
 				if (!Game::gGameConfig.mParms.mE3version.mData) {
 					startChappy();
@@ -991,7 +991,7 @@ void TTitleMgr::readTitleParam(JKRArchive* arc, char* path)
 	void* file = arc->getResource(path);
 	if (file) {
 		RamStream stream(file, -1);
-		stream.resetPosition(true, 1);
+		stream.setMode(STREAM_MODE_TEXT, 1);
 		mTitleParms.read(stream);
 	}
 }

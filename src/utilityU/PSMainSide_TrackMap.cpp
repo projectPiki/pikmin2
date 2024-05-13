@@ -69,7 +69,7 @@ BgmTrackMap BgmTrackMapFile::readTrackMap(const char* path)
 	JUT_ASSERTLINE(119, mFile, "not loaded\n");
 
 	RamStream input(mFile, -1);
-	input.resetPosition(true, 1);
+	input.setMode(STREAM_MODE_TEXT, 1);
 
 	BgmTrackMap map;
 

@@ -69,7 +69,7 @@ struct J3DMtxBuffer {
 	Mtx** mDrawMatrices[2];       // _14
 	Mtx33** mNormMatrices[2];     // _1C
 	Mtx33*** mBumpMatrices[2];    // _24
-	u32 mBufferSize;              // _2C
+	u32 mViewCount;               // _2C
 	u32 mCurrentViewNumber;       // _30
 
 	// _34     = VTBL

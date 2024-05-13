@@ -2898,7 +2898,7 @@ bool TItemZukan::doUpdate()
 		case 2:
 			break;
 		case ZUKANDEMO_Reading:
-			if (mController->mButton.mButtonDown & (Controller::PRESS_A | Controller::PRESS_B)) {
+			if (mController->getButtonDown() & (Controller::PRESS_A | Controller::PRESS_B)) {
 				mEfxTimer  = 0;
 				mDemoState = ZUKANDEMO_AppearEffect;
 				PSSystem::spSysIF->playSystemSe(PSSE_SY_MESSAGE_EXIT, 0);

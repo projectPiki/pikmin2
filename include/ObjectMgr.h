@@ -120,10 +120,7 @@ struct NodeObjectMgr : public ObjectMgr<T> {
 	// second VTBL:
 	virtual void resetMgr() // _20
 	{
-		mNode.mChild  = nullptr;
-		mNode.mParent = nullptr;
-		mNode.mPrev   = nullptr;
-		mNode.mNext   = nullptr;
+		mNode.clearRelations();
 	}
 
 	// _00     = VTBL

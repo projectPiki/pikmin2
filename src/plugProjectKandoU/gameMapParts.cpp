@@ -333,7 +333,7 @@ void MapUnitMgr::makeUnit(MapUnit* unit, char* folder)
 	void* waterBoxResource = archive->getResource("waterbox.txt");
 	if (waterBoxResource) {
 		RamStream stream(waterBoxResource, -1);
-		stream.resetPosition(true, 1);
+		stream.setMode(STREAM_MODE_TEXT, 1);
 		unit->mSeaMgr.read(stream);
 	}
 
@@ -341,7 +341,7 @@ void MapUnitMgr::makeUnit(MapUnit* unit, char* folder)
 	void* routeResource = archive->getResource("route.txt");
 	if (routeResource) {
 		RamStream stream(routeResource, -1);
-		stream.resetPosition(true, 1);
+		stream.setMode(STREAM_MODE_TEXT, 1);
 		unit->mRouteMgr.read(stream);
 	}
 
@@ -1016,7 +1016,7 @@ void RoomMapMgr::createRandomMap(int floorNum, Cave::EditMapUnit* edit)
 	JUT_ASSERTLINE(1609, unitFile, "%s not found !\n", unitFileName);
 
 	RamStream unitStream(unitFile, -1);
-	unitStream.resetPosition(true, 1);
+	unitStream.setMode(STREAM_MODE_TEXT, 1);
 
 	// set up map unit interfaces
 	int interfaceCount           = unitStream.readInt();
@@ -1037,7 +1037,7 @@ void RoomMapMgr::createRandomMap(int floorNum, Cave::EditMapUnit* edit)
 		                                                 nullptr, nullptr);
 		if (lightingFile) {
 			RamStream lightingStream(lightingFile, -1);
-			lightingStream.resetPosition(true, 1);
+			lightingStream.setMode(STREAM_MODE_TEXT, 1);
 			gameSystem->getLightMgr()->loadParm(lightingStream);
 			delete[] lightingFile;
 		} else {
@@ -1056,7 +1056,7 @@ void RoomMapMgr::createRandomMap(int floorNum, Cave::EditMapUnit* edit)
 		void* res = layoutArc->getResource("layout.txt");
 		if (res) {
 			RamStream layoutStream(res, -1);
-			layoutStream.resetPosition(true, 1);
+			layoutStream.setMode(STREAM_MODE_TEXT, 1);
 			interfaces[i].mBaseGen->read(layoutStream);
 		}
 
