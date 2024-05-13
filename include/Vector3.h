@@ -49,10 +49,10 @@ struct Vector3 {
 	 * @param from The starting point of the direction vector.
 	 * @param to The ending point of the direction vector.
 	 */
-	static inline void getDirectionFromTo(Vector3& from, Vector3& to)
+	static inline f32 getDirectionFromTo(const Vector3& from, Vector3& to)
 	{
 		to -= from;
-		to.normalise();
+		return to.normalise();
 	}
 
 	/**
@@ -252,10 +252,10 @@ struct Vector3 {
 	 * @param from The starting point of the direction.
 	 * @param to The ending point of the direction.
 	 */
-	inline void setDirectionFromTo(Vector3& from, Vector3& to)
+	inline f32 setDirectionFromTo(const Vector3& from, const Vector3& to)
 	{
 		*this = to - from;
-		this->normalise();
+		return this->normalise();
 	}
 
 	static inline f32 distance(Vector3& a, Vector3& b) { return (a - b).length(); }

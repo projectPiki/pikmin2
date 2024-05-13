@@ -215,19 +215,17 @@ struct Matrixf {
 	 */
 	inline void getColumn(int index, Vector3f& out)
 	{
-		out.x = mMatrix.mtxView[0][index];
-		out.y = mMatrix.mtxView[1][index];
-		out.z = mMatrix.mtxView[2][index];
+		out.x = operator()(0, index);
+		out.y = operator()(1, index);
+		out.z = operator()(2, index);
 	}
 
 	// for navi_demoCheck.cpp
 	inline void getBasis(int index, Vector3f& out)
 	{
-		out.x = mMatrix.mtxView[0][index];
-		out.y = mMatrix.mtxView[1][index];
-		out.z = mMatrix.mtxView[2][index];
-
-		FORCE_DONT_INLINE;
+		out.x = operator()(0, index);
+		out.y = operator()(1, index);
+		out.z = operator()(2, index);
 	}
 
 	/**
@@ -297,6 +295,12 @@ struct Matrixf {
 	 */
 	inline Vector3f getRow(int index) { return Vector3f(mMatrix.mtxView[index][0], mMatrix.mtxView[index][1], mMatrix.mtxView[index][2]); }
 
+	inline f32 getRowLength(int index)
+	{
+		Vector3f row = getRow(index);
+		return row.length();
+	}
+
 	/**
 	 * @brief Sets the values of a specific row in the matrix.
 	 *
@@ -330,7 +334,7 @@ struct Matrixf {
 	 *
 	 * @param out The output vector to store the translation.
 	 */
-	inline void getTranslation(Vector3f& out) { getColumn(3, out); }
+	inline void getTranslation(Vector3f& out) { getBasis(3, out); }
 
 	/**
 	 * Returns the translation vector of the matrix.

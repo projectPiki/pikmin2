@@ -848,11 +848,11 @@ void CollPart::calcStickLocal(Vector3f& input, Vector3f& localPosition)
 	case COLLTYPE_SPHERE:
 		Matrixf mtx;
 		makeMatrixTo(mtx);
+
 		Matrixf inv;
 		PSMTXInverse(mtx.mMatrix.mtxView, inv.mMatrix.mtxView);
 
-		Vector3f row0 = mtx.getRow(0);
-		f32 len       = _length(row0);
+		f32 len = mtx.getRowLength(0);
 		if (FABS(len) < 0.001f) {
 			localPosition = Vector3f(0.0f);
 			return;
