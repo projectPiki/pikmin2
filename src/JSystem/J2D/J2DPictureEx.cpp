@@ -2532,8 +2532,19 @@ lbl_800572AC:
  * @note Address: 0x800572CC
  * @note Size: 0x300
  */
-void J2DPictureEx::setStage(J2DTevStage*, J2DPictureEx::stage_enum)
+void J2DPictureEx::setStage(J2DTevStage* tevStage, J2DPictureEx::stage_enum i)
 {
+	u8 colorABCDs[8][4] = { { 15, 8, 10, 15 }, { 15, 8, 10, 15 }, { 15, 8, 14, 15 }, { 15, 8, 14, 0 },
+		                    { 15, 10, 0, 15 }, { 2, 4, 8, 15 },   { 2, 4, 8, 15 },   { 2, 4, 0, 15 } };
+	u8 alphaABCDs[8][4] = { { 7, 4, 5, 7 }, { 5, 7, 7, 7 }, { 7, 4, 6, 7 }, { 7, 4, 6, 0 },
+		                    { 7, 5, 0, 7 }, { 1, 2, 4, 7 }, { 7, 7, 7, 2 }, { 1, 2, 0, 7 } };
+	u8 ops[8][5]        = { { 0, 0, 0, 1, 0 }, { 0, 0, 0, 1, 0 }, { 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0 },
+                     { 0, 0, 0, 1, 0 }, { 0, 0, 0, 1, 0 }, { 0, 0, 0, 1, 0 }, { 0, 0, 0, 0, 0 } };
+
+	tevStage->setColorABCD(colorABCDs[i][0], colorABCDs[i][1], colorABCDs[i][2], colorABCDs[i][3]);
+	tevStage->setTevColorOp(ops[i][0], ops[i][1], ops[i][2], ops[i][3], ops[i][4]);
+	tevStage->setAlphaABCD(alphaABCDs[i][0], alphaABCDs[i][1], alphaABCDs[i][2], alphaABCDs[i][3]);
+	tevStage->setTevAlphaOp(ops[i][0], ops[i][1], ops[i][2], ops[i][3], ops[i][4]);
 	/*
 	stwu     r1, -0xc0(r1)
 	lis      r3, lbl_804785E0@ha
@@ -2742,355 +2753,58 @@ lbl_8005759C:
  * @note Address: 0x800575CC
  * @note Size: 0x4A4
  */
-void J2DPictureEx::setTevKColor(u8)
+void J2DPictureEx::setTevKColor(u8 p1)
 {
-	// this is just here so I can match other functions and not have this disappear
-	// clang-format off
-	(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; 
-	(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; 
-	(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; 
-	(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; 
-	(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; 
-	(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; 
-	(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; 
-	(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; 
-	(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0;
-	// clang-format on
-	/*
-	stwu     r1, -0x70(r1)
-	mflr     r0
-	clrlwi   r5, r4, 0x18
-	stw      r0, 0x74(r1)
-	cmplwi   r5, 1
-	stmw     r24, 0x50(r1)
-	mr       r30, r3
-	beq      lbl_80057A5C
-	lfs      f0, lbl_805168E4@sda21(r2)
-	cmplwi   r5, 4
-	fmr      f1, f0
-	bge      lbl_800576D8
-	cmplwi   r5, 0
-	li       r6, 0
-	ble      lbl_800577E8
-	cmplwi   r5, 8
-	addi     r0, r4, -8
-	ble      lbl_800576A4
-	clrlwi   r0, r0, 0x18
-	b        lbl_80057698
+	if (p1 == 1) {
+		return;
+	}
 
-lbl_8005761C:
-	rlwinm   r3, r6, 2, 0x16, 0x1d
-	addi     r6, r6, 8
-	add      r3, r30, r3
-	lfs      f2, 0x124(r3)
-	lfs      f9, 0x134(r3)
-	fadds    f0, f0, f2
-	lfs      f2, 0x128(r3)
-	fadds    f1, f1, f9
-	lfs      f8, 0x138(r3)
-	lfs      f3, 0x12c(r3)
-	fadds    f0, f0, f2
-	fadds    f1, f1, f8
-	lfs      f7, 0x13c(r3)
-	lfs      f2, 0x130(r3)
-	fadds    f0, f0, f3
-	lfs      f6, 0x140(r3)
-	fadds    f1, f1, f7
-	lfs      f5, 0x144(r3)
-	fadds    f0, f0, f2
-	lfs      f4, 0x148(r3)
-	fadds    f1, f1, f6
-	lfs      f3, 0x14c(r3)
-	lfs      f2, 0x150(r3)
-	fadds    f0, f0, f9
-	fadds    f1, f1, f5
-	fadds    f0, f0, f8
-	fadds    f1, f1, f4
-	fadds    f0, f0, f7
-	fadds    f1, f1, f3
-	fadds    f0, f0, f6
-	fadds    f1, f1, f2
+	f32 colorRatio = 0.0f;
+	f32 alphaRatio = 0.0f;
+	if (p1 < 4) {
+		for (u8 i = 0; i < p1; i++) {
+			colorRatio += mBlendColorRatio[i];
+			alphaRatio += mBlendAlphaRatio[i];
+		}
+	} else {
+		for (u8 i = 0; i < 4; i++) {
+			colorRatio += mBlendColorRatio[i];
+			alphaRatio += mBlendAlphaRatio[i];
+		}
 
-lbl_80057698:
-	clrlwi   r3, r6, 0x18
-	cmplw    r3, r0
-	blt      lbl_8005761C
+		for (u8 i = 0; i < (p1 - 4); i++) {
+			colorRatio += mExBlendColorRatio[i];
+			alphaRatio += mExBlendAlphaRatio[i];
+		}
+	}
 
-lbl_800576A4:
-	clrlwi   r0, r4, 0x18
-	b        lbl_800576C8
+	u8 colA[8];
+	u8 colB[8];
 
-lbl_800576AC:
-	rlwinm   r3, r6, 2, 0x16, 0x1d
-	addi     r6, r6, 1
-	add      r3, r30, r3
-	lfs      f3, 0x124(r3)
-	lfs      f2, 0x134(r3)
-	fadds    f0, f0, f3
-	fadds    f1, f1, f2
+	for (int i = 0; i < 8; i++) {
+		colA[i] = 255;
+		colB[i] = 255;
+	}
 
-lbl_800576C8:
-	clrlwi   r3, r6, 0x18
-	cmplw    r3, r0
-	blt      lbl_800576AC
-	b        lbl_800577E8
+	for (u8 i = 0; i < p1; i++) {
+		if (i < 4) {
+			colA[i] = (255.0f * mBlendColorRatio[i] / colorRatio);
+			colB[i] = (255.0f * mBlendAlphaRatio[i] / alphaRatio);
+		} else {
+			colA[i] = (255.0f * mExBlendColorRatio[i - 4] / colorRatio);
+			colB[i] = (255.0f * mExBlendAlphaRatio[i - 4] / alphaRatio);
+		}
+	}
 
-lbl_800576D8:
-	lfs      f3, 0x124(r30)
-	addic.   r6, r5, -4
-	lfs      f2, 0x134(r30)
-	li       r7, 0
-	fadds    f0, f0, f3
-	lfs      f4, 0x128(r30)
-	fadds    f1, f1, f2
-	lfs      f3, 0x138(r30)
-	lfs      f2, 0x12c(r30)
-	fadds    f0, f0, f4
-	fadds    f1, f1, f3
-	lfs      f4, 0x13c(r30)
-	lfs      f3, 0x130(r30)
-	fadds    f0, f0, f2
-	lfs      f2, 0x140(r30)
-	fadds    f1, f1, f4
-	fadds    f0, f0, f3
-	fadds    f1, f1, f2
-	ble      lbl_800577E8
-	cmpwi    r6, 8
-	addi     r3, r5, -12
-	ble      lbl_800577DC
-	b        lbl_800577B0
+	JUtility::TColor jColors[4];
+	jColors[3] = colA[0] | (colA[1] << 8 | (colA[3] << 24 | (colA[2] << 16)));
+	jColors[2] = colA[4] | (colA[5] << 8 | (colA[7] << 24 | (colA[6] << 16)));
+	jColors[1] = colB[0] | (colB[1] << 8 | (colB[3] << 24 | (colB[2] << 16)));
+	jColors[0] = colB[4] | (colB[5] << 8 | (colB[7] << 24 | (colB[6] << 16)));
 
-lbl_80057734:
-	rlwinm   r0, r7, 2, 0x16, 0x1d
-	addi     r7, r7, 8
-	add      r5, r30, r0
-	lfs      f2, 0x178(r5)
-	lfs      f9, 0x188(r5)
-	fadds    f0, f0, f2
-	lfs      f2, 0x17c(r5)
-	fadds    f1, f1, f9
-	lfs      f8, 0x18c(r5)
-	lfs      f3, 0x180(r5)
-	fadds    f0, f0, f2
-	fadds    f1, f1, f8
-	lfs      f7, 0x190(r5)
-	lfs      f2, 0x184(r5)
-	fadds    f0, f0, f3
-	lfs      f6, 0x194(r5)
-	fadds    f1, f1, f7
-	lfs      f5, 0x198(r5)
-	fadds    f0, f0, f2
-	lfs      f4, 0x19c(r5)
-	fadds    f1, f1, f6
-	lfs      f3, 0x1a0(r5)
-	lfs      f2, 0x1a4(r5)
-	fadds    f0, f0, f9
-	fadds    f1, f1, f5
-	fadds    f0, f0, f8
-	fadds    f1, f1, f4
-	fadds    f0, f0, f7
-	fadds    f1, f1, f3
-	fadds    f0, f0, f6
-	fadds    f1, f1, f2
-
-lbl_800577B0:
-	clrlwi   r0, r7, 0x18
-	cmpw     r0, r3
-	blt      lbl_80057734
-	b        lbl_800577DC
-
-lbl_800577C0:
-	rlwinm   r0, r7, 2, 0x16, 0x1d
-	addi     r7, r7, 1
-	add      r3, r30, r0
-	lfs      f3, 0x178(r3)
-	lfs      f2, 0x188(r3)
-	fadds    f0, f0, f3
-	fadds    f1, f1, f2
-
-lbl_800577DC:
-	clrlwi   r0, r7, 0x18
-	cmpw     r0, r6
-	blt      lbl_800577C0
-
-lbl_800577E8:
-	li       r3, 0xff
-	clrlwi   r0, r4, 0x18
-	stb      r3, 0x24(r1)
-	li       r8, 0
-	stb      r3, 0x1c(r1)
-	stb      r3, 0x25(r1)
-	stb      r3, 0x1d(r1)
-	stb      r3, 0x26(r1)
-	stb      r3, 0x1e(r1)
-	stb      r3, 0x27(r1)
-	stb      r3, 0x1f(r1)
-	stb      r3, 0x28(r1)
-	stb      r3, 0x20(r1)
-	stb      r3, 0x29(r1)
-	stb      r3, 0x21(r1)
-	stb      r3, 0x2a(r1)
-	stb      r3, 0x22(r1)
-	stb      r3, 0x2b(r1)
-	stb      r3, 0x23(r1)
-	b        lbl_800578E4
-
-lbl_80057838:
-	clrlwi   r7, r8, 0x18
-	cmplwi   r7, 4
-	bge      lbl_80057894
-	rlwinm   r3, r8, 2, 0x16, 0x1d
-	lfs      f4, lbl_805168F0@sda21(r2)
-	add      r4, r30, r3
-	addi     r5, r1, 0x24
-	lfs      f3, 0x124(r4)
-	addi     r3, r1, 0x1c
-	lfs      f2, 0x134(r4)
-	fmuls    f3, f4, f3
-	fmuls    f2, f4, f2
-	fdivs    f3, f3, f0
-	fdivs    f2, f2, f1
-	fctiwz   f3, f3
-	fctiwz   f2, f2
-	stfd     f3, 0x40(r1)
-	stfd     f2, 0x48(r1)
-	lwz      r6, 0x44(r1)
-	lwz      r4, 0x4c(r1)
-	stbx     r6, r5, r7
-	stbx     r4, r3, r7
-	b        lbl_800578E0
-
-lbl_80057894:
-	rlwinm   r3, r8, 2, 0x16, 0x1d
-	lfs      f4, lbl_805168F0@sda21(r2)
-	add      r4, r30, r3
-	addi     r5, r1, 0x24
-	lfs      f3, 0x168(r4)
-	addi     r3, r1, 0x1c
-	lfs      f2, 0x178(r4)
-	fmuls    f3, f4, f3
-	fmuls    f2, f4, f2
-	fdivs    f3, f3, f0
-	fdivs    f2, f2, f1
-	fctiwz   f3, f3
-	fctiwz   f2, f2
-	stfd     f3, 0x48(r1)
-	stfd     f2, 0x40(r1)
-	lwz      r6, 0x4c(r1)
-	lwz      r4, 0x44(r1)
-	stbx     r6, r5, r7
-	stbx     r4, r3, r7
-
-lbl_800578E0:
-	addi     r8, r8, 1
-
-lbl_800578E4:
-	clrlwi   r3, r8, 0x18
-	cmplw    r3, r0
-	blt      lbl_80057838
-	lbz      r3, 0x26(r1)
-	li       r0, -1
-	lbz      r4, 0x1e(r1)
-	addi     r29, r1, 0x2c
-	lbz      r5, 0x2a(r1)
-	slwi     r12, r3, 0x10
-	lbz      r3, 0x22(r1)
-	slwi     r6, r4, 0x10
-	lbz      r7, 0x1f(r1)
-	slwi     r9, r5, 0x10
-	lbz      r5, 0x27(r1)
-	slwi     r3, r3, 0x10
-	lbz      r4, 0x23(r1)
-	rlwimi   r6, r7, 0x18, 0, 7
-	lbz      r10, 0x2b(r1)
-	rlwimi   r12, r5, 0x18, 0, 7
-	lbz      r24, 0x25(r1)
-	rlwimi   r3, r4, 0x18, 0, 7
-	lbz      r8, 0x1d(r1)
-	rlwimi   r9, r10, 0x18, 0, 7
-	lbz      r11, 0x29(r1)
-	rlwimi   r12, r24, 8, 0x10, 0x17
-	lbz      r7, 0x24(r1)
-	rlwimi   r6, r8, 8, 0x10, 0x17
-	lbz      r5, 0x21(r1)
-	rlwimi   r9, r11, 8, 0x10, 0x17
-	or       r10, r7, r12
-	lbz      r4, 0x28(r1)
-	stw      r10, 0x18(r1)
-	rlwimi   r3, r5, 8, 0x10, 0x17
-	or       r8, r4, r9
-	lbz      r7, 0x1c(r1)
-	stw      r8, 0x14(r1)
-	li       r31, 0
-	lbz      r4, 0x20(r1)
-	or       r5, r7, r6
-	stw      r5, 0x10(r1)
-	or       r3, r4, r3
-	lbz      r24, 0x18(r1)
-	stw      r3, 0xc(r1)
-	lbz      r25, 0x19(r1)
-	stw      r0, 0x38(r1)
-	lbz      r26, 0x1a(r1)
-	lbz      r27, 0x1b(r1)
-	stw      r0, 0x2c(r1)
-	lbz      r6, 0xc(r1)
-	lbz      r5, 0xd(r1)
-	lbz      r4, 0xe(r1)
-	lbz      r3, 0xf(r1)
-	stw      r0, 0x30(r1)
-	lbz      r10, 0x10(r1)
-	lbz      r9, 0x11(r1)
-	lbz      r8, 0x12(r1)
-	lbz      r7, 0x13(r1)
-	stw      r0, 0x34(r1)
-	lbz      r28, 0x14(r1)
-	lbz      r12, 0x15(r1)
-	lbz      r11, 0x16(r1)
-	lbz      r0, 0x17(r1)
-	stb      r24, 0x38(r1)
-	stb      r25, 0x39(r1)
-	stb      r26, 0x3a(r1)
-	stb      r27, 0x3b(r1)
-	stb      r28, 0x34(r1)
-	stb      r12, 0x35(r1)
-	stb      r11, 0x36(r1)
-	stb      r0, 0x37(r1)
-	stb      r10, 0x30(r1)
-	stb      r9, 0x31(r1)
-	stb      r8, 0x32(r1)
-	stb      r7, 0x33(r1)
-	stb      r6, 0x2c(r1)
-	stb      r5, 0x2d(r1)
-	stb      r4, 0x2e(r1)
-	stb      r3, 0x2f(r1)
-	b        lbl_80057A50
-
-lbl_80057A20:
-	rlwinm   r0, r31, 2, 0x16, 0x1d
-	clrlwi   r4, r31, 0x18
-	lwzx     r0, r29, r0
-	addi     r5, r1, 8
-	stw      r0, 8(r1)
-	lwz      r3, 0x168(r30)
-	lwz      r3, 0x70(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	addi     r31, r31, 1
-
-lbl_80057A50:
-	clrlwi   r0, r31, 0x18
-	cmplwi   r0, 4
-	blt      lbl_80057A20
-
-lbl_80057A5C:
-	lmw      r24, 0x50(r1)
-	lwz      r0, 0x74(r1)
-	mtlr     r0
-	addi     r1, r1, 0x70
-	blr
-	*/
+	for (u8 i = 0; i < 4; i++) {
+		mMaterial->getTevBlock()->setTevKColor(i, jColors[i]);
+	}
 }
 
 /**
