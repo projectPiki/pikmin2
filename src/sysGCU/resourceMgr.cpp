@@ -106,6 +106,7 @@ MgrCommand::~MgrCommand()
 {
 	Node::destroy(mNode1);
 	del();
+
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -648,44 +649,14 @@ bool Mgr::destroy(MgrCommand* command) { return command->destroy(); }
  */
 void Mgr::destroyAll()
 {
-	while (mNodes.mChild) {
-		Node::destroy((Node*)mNodes.mChild);
+	Node* node = static_cast<Node*>(mNodes.mChild);
+	while (node) {
+		Node* next = static_cast<Node*>(node->mNext);
+		Node::destroy(node);
+		node = next;
 	}
 
 	mHeap->freeAll();
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r4, 0x20(r3)
-	b        lbl_80433BC8
-
-lbl_80433BAC:
-	cmplwi   r4, 0
-	lwz      r31, 4(r4)
-	beq      lbl_80433BC4
-	lwz      r3, 0x30(r4)
-	lbz      r4, 0x34(r4)
-	bl       freeGroup__10JKRExpHeapFUc
-
-lbl_80433BC4:
-	mr       r4, r31
-
-lbl_80433BC8:
-	cmplwi   r4, 0
-	bne      lbl_80433BAC
-	lwz      r3, 4(r30)
-	bl       freeAll__7JKRHeapFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /**
@@ -726,117 +697,17 @@ void Mgr::syncAll(bool)
  */
 void Mgr::delFinishCommand()
 {
-	FOREACH_NODE(MgrCommand, mLoadingNodes.mChild, command)
-	{
-		if (command->mMode == -1 || command->isFinish()) {
+	CNode* node = mLoadingNodes.mChild;
+	while (node) {
+		CNode* next         = node->mNext;
+		MgrCommand* command = static_cast<MgrCommand*>(node);
+		if (command->mMode == -1) {
+			command->del();
+		} else if (command->isFinish()) {
 			command->del();
 		}
+		node = next;
 	}
-
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	lwz      r3, 0x38(r3)
-	b        lbl_80433EDC
-
-lbl_80433DF0:
-	lwz      r0, 0x30(r3)
-	mr       r30, r3
-	lwz      r31, 4(r3)
-	cmpwi    r0, -1
-	bne      lbl_80433E0C
-	bl       del__5CNodeFv
-	b        lbl_80433ED8
-
-lbl_80433E0C:
-	cmpwi    r0, 1
-	li       r29, 0
-	beq      lbl_80433E5C
-	bge      lbl_80433E28
-	cmpwi    r0, 0
-	bge      lbl_80433E34
-	b        lbl_80433EAC
-
-lbl_80433E28:
-	cmpwi    r0, 3
-	bge      lbl_80433EAC
-	b        lbl_80433E84
-
-lbl_80433E34:
-	lbz      r0, 0x34(r3)
-	cmplwi   r0, 0
-	beq      lbl_80433E54
-	lwz      r0, 0x54(r3)
-	subfic   r0, r0, 2
-	cntlzw   r0, r0
-	srwi     r29, r0, 5
-	b        lbl_80433EC8
-
-lbl_80433E54:
-	li       r29, 1
-	b        lbl_80433EC8
-
-lbl_80433E5C:
-	lbz      r0, 0x34(r3)
-	cmplwi   r0, 0
-	beq      lbl_80433E7C
-	lwz      r0, 0x54(r3)
-	subfic   r0, r0, 2
-	cntlzw   r0, r0
-	srwi     r29, r0, 5
-	b        lbl_80433EC8
-
-lbl_80433E7C:
-	li       r29, 1
-	b        lbl_80433EC8
-
-lbl_80433E84:
-	lbz      r0, 0x34(r3)
-	cmplwi   r0, 0
-	beq      lbl_80433EA4
-	lwz      r0, 0x54(r3)
-	subfic   r0, r0, 2
-	cntlzw   r0, r0
-	srwi     r29, r0, 5
-	b        lbl_80433EC8
-
-lbl_80433EA4:
-	li       r29, 1
-	b        lbl_80433EC8
-
-lbl_80433EAC:
-	lis      r3, lbl_8049A640@ha
-	lis      r5, lbl_8049A650@ha
-	addi     r3, r3, lbl_8049A640@l
-	li       r4, 0xfc
-	addi     r5, r5, lbl_8049A650@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80433EC8:
-	clrlwi.  r0, r29, 0x18
-	beq      lbl_80433ED8
-	mr       r3, r30
-	bl       del__5CNodeFv
-
-lbl_80433ED8:
-	mr       r3, r31
-
-lbl_80433EDC:
-	cmplwi   r3, 0
-	bne      lbl_80433DF0
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
@@ -845,37 +716,19 @@ lbl_80433EDC:
  */
 bool Mgr::searchCommand(MgrCommand* command)
 {
-
-	bool found = false;
-	FOREACH_NODE(MgrCommand, mLoadingNodes.mChild, node)
-	{
-		if (node == command) {
+	bool found       = false;
+	MgrCommand* node = static_cast<MgrCommand*>(mLoadingNodes.mChild);
+	while (node) {
+		MgrCommand* next = static_cast<MgrCommand*>(node->mNext);
+		if (command == node) {
 			found = true;
 			break;
 		}
+
+		node = next;
 	}
 
 	return found;
-	/*
-	lwz      r5, 0x38(r3)
-	li       r3, 0
-	b        lbl_80433F24
-
-lbl_80433F0C:
-	cmplw    r4, r5
-	lwz      r0, 4(r5)
-	bne      lbl_80433F20
-	li       r3, 1
-	blr
-
-lbl_80433F20:
-	mr       r5, r0
-
-lbl_80433F24:
-	cmplwi   r5, 0
-	bne      lbl_80433F0C
-	blr
-	*/
 }
 
 /**
