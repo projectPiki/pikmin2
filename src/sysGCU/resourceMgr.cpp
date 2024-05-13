@@ -414,8 +414,9 @@ void Mgr::drawDump(Graphics&, int, int) { }
 struct UseList {
 	UseList()
 	{
-		for (int i = 0; i < 256; i++) {
-			mList.mUseListInt[i] = 0;
+		for (u32 i = 0; i < 256;) {
+			mList.mUseList[i] = 0;
+			i += 4;
 		}
 	}
 
@@ -438,6 +439,7 @@ Node* Mgr::createNewNode(char const* path)
 
 	u8 id     = mHeap->getCurrentGroupId();
 	int nodes = 0;
+
 	UseList useList;
 
 	FOREACH_NODE(Node, mNodes.mChild, node)
