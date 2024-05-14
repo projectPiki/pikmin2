@@ -4,6 +4,7 @@
 #include "JSystem/J3D/J3DModelLoader.h"
 #include "Game/GameSystem.h"
 #include "JSystem/JStudio/stb-data-parse.h"
+#include "Viewport.h"
 #include "nans.h"
 
 static const u32 filler[]    = { 0, 0, 0 };
@@ -167,6 +168,100 @@ void ObjectActor::update()
 	if (mAnimation != mAnimationFileId) {
 		setAnim();
 	}
+
+	Matrixf mtx;
+	PSMTXIdentity(mtx.mMatrix.mtxView);
+	mtx.setTranslation(mTranslation);
+
+	Matrixf mtx2;
+	f32 angle                  = mRotation.z * DEG2RAD;
+	f32 sinAngle               = sin(angle);
+	f32 cosAngle               = cos(angle);
+	mtx2.mMatrix.structView.xx = cosAngle;
+	mtx2.mMatrix.structView.yy = cosAngle;
+	mtx2.mMatrix.structView.xy = sinAngle;
+	mtx2.mMatrix.structView.yx = -sinAngle;
+
+	mtx2.mMatrix.structView.zz = 1.0f;
+	mtx2.mMatrix.structView.yz = 0.0f;
+	mtx2.mMatrix.structView.zy = 0.0f;
+
+	mtx2.mMatrix.structView.xz = 0.0f;
+	mtx2.mMatrix.structView.zx = 0.0f;
+	Vector3f pos(0.0f);
+	mtx2.setTranslation(pos);
+
+	Mtx out;
+	PSMTXConcat(mtx.mMatrix.mtxView, mtx2.mMatrix.mtxView, out);
+
+	angle                      = mRotation.y * DEG2RAD;
+	sinAngle                   = sin(angle);
+	cosAngle                   = cos(angle);
+	mtx2.mMatrix.structView.xx = cosAngle;
+	mtx2.mMatrix.structView.yy = cosAngle;
+	mtx2.mMatrix.structView.xy = sinAngle;
+	mtx2.mMatrix.structView.yx = -sinAngle;
+
+	mtx2.mMatrix.structView.zz = 1.0f;
+	mtx2.mMatrix.structView.yz = 0.0f;
+	mtx2.mMatrix.structView.zy = 0.0f;
+
+	mtx2.mMatrix.structView.xz = 0.0f;
+	mtx2.mMatrix.structView.zx = 0.0f;
+	Vector3f pos2(0.0f);
+	mtx2.setTranslation(pos2);
+	PSMTXConcat(out, mtx2.mMatrix.mtxView, mtx.mMatrix.mtxView);
+
+	angle                      = mRotation.x * DEG2RAD;
+	sinAngle                   = sin(angle);
+	cosAngle                   = cos(angle);
+	mtx2.mMatrix.structView.xx = cosAngle;
+	mtx2.mMatrix.structView.yy = cosAngle;
+	mtx2.mMatrix.structView.xy = sinAngle;
+	mtx2.mMatrix.structView.yx = -sinAngle;
+
+	mtx2.mMatrix.structView.zz = 1.0f;
+	mtx2.mMatrix.structView.yz = 0.0f;
+	mtx2.mMatrix.structView.zy = 0.0f;
+
+	mtx2.mMatrix.structView.xz = 0.0f;
+	mtx2.mMatrix.structView.zx = 0.0f;
+	Vector3f pos3(0.0f);
+	mtx2.setTranslation(pos3);
+	PSMTXConcat(mtx.mMatrix.mtxView, mtx2.mMatrix.mtxView, out);
+
+	if (mModel) {
+		PSMTXCopy(out, mModel->mPosMtx);
+		mModel->setBaseScale(mScaling.x, mScaling.y, mScaling.z);
+		if (mAnmTransform) {
+			mAnimFrame += 1.0f;
+			if (mAnimFrame > mAnimFrameMax) {
+				mAnimFrame = mAnimFrameMax;
+			}
+			mAnmTransform->setFrame(mAnimFrame);
+		}
+		SysShape::Model::setViewCalcModeInd();
+		Viewport* vp = moviePlayer->mViewport;
+		if (vp) {
+			vp->setJ3DViewMtx(false);
+			vp->setViewport();
+			vp->setProjection();
+		}
+
+		Matrixf mtx;
+		Vector3f pos(mTranslation);
+		Vector3f rot(mRotation * DEG2RAD * PI);
+		mtx.makeTR(pos, rot);
+		PSMTXCopy(mtx.mMatrix.mtxView, mModel->mPosMtx);
+
+		Vector3f scale(1.0f, 1.0f, 1.0f);
+		mModel->setBaseScale(scale);
+
+		mModel->calc();
+		mModel->mMtxBuffer->mCurrentViewNumber = 0;
+		mModel->viewCalc();
+	}
+
 	/*
 	stwu     r1, -0x120(r1)
 	mflr     r0

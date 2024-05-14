@@ -206,6 +206,18 @@ struct J3DModel {
 		mModelScale.y = scale.y;
 		mModelScale.z = scale.z;
 	}
+	void setBaseScale(Vector3f scale)
+	{
+		mModelScale.x = scale.x;
+		mModelScale.y = scale.y;
+		mModelScale.z = scale.z;
+	}
+	void setBaseScale(f32 x, f32 y, f32 z)
+	{
+		mModelScale.x = x;
+		mModelScale.y = y;
+		mModelScale.z = z;
+	}
 	void setUserArea(u32 area) { mUserArea = area; }
 	u32 getUserArea() const { return mUserArea; }
 	void setAnmMtx(int i, Mtx m) { mMtxBuffer->setAnmMtx(i, m); }

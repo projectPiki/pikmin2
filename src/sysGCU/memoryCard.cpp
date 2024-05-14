@@ -1343,7 +1343,16 @@ void MemoryCardMgr::doSetCardStat(CARDStat* cardStat)
  */
 u32 MemoryCardMgr::calcCheckSum(void* dataptr, u32 key)
 {
+	u16 low  = 0;
+	u16 high = 0;
 
+	for (u32 i = 0; i < key; i++) {
+		u16 data = ((u16*)dataptr)[i];
+		high += data;
+		low = low + ~data & 0xffff;
+	}
+
+	return high << 0x10 | low;
 	/*
 	srwi     r5, r5, 1
 	li       r3, 0

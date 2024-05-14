@@ -178,7 +178,7 @@ struct Item : public WorkItem<Item, FSM, State> {
 	efx::TKouhai1* mEfxKouhaiSmall;  // _1F0
 	efx::TKouhai2* mEfxKouhaiMedium; // _1F4
 	efx::TKouhai3* mEfxKouhaiMax;    // _1F8
-	u8 _1FC;                         // _1FC
+	u8 mMakeEffectDelay;             // _1FC
 	f32 mHealth;                     // _200, current health (resets each time size changes)
 	f32 mMaxHealth;                  // _204, health at max size
 	f32* mHealthLimits;              // _208

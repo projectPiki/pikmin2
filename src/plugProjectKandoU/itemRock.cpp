@@ -240,7 +240,7 @@ void Item::onInit(CreatureInitArg* initArg)
 	mWorkRadii[SIZE_Small]  = mgr->mParms->mRockParms.mWorkRadiusSmall.mValue;
 
 	mCollTree->createSingleSphere(mModel, 0, mBoundingSphere, nullptr);
-	_1FC = 0;
+	mMakeEffectDelay = 0;
 }
 
 /**
@@ -266,7 +266,7 @@ void Item::onSetPosition()
  */
 void Item::emitDamageEffect()
 {
-	if (!_1FC) {
+	if (!mMakeEffectDelay) {
 		int type;
 		switch (mSize) {
 		case SIZE_Max:
@@ -284,7 +284,7 @@ void Item::emitDamageEffect()
 		efx::ArgKouhai fxArg(mPosition, type);
 		damageFX.create(&fxArg);
 
-		_1FC = (int)(randFloat() * 5.0f) + 6;
+		mMakeEffectDelay = (int)(randFloat() * 5.0f) + 6;
 	}
 }
 
@@ -410,8 +410,8 @@ void Item::doAI()
 		finishLoopEffect();
 	}
 
-	if (_1FC) {
-		_1FC--;
+	if (mMakeEffectDelay) {
+		mMakeEffectDelay--;
 	}
 }
 

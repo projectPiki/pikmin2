@@ -136,43 +136,39 @@ struct TRenderingProcessor : public TRenderingProcessorBase {
 	JGeometry::TBox2f mMesgBounds; // _7C
 	BitFlag<u32> mFlags;           // _8C
 	JGeometry::TBox2f mLocate;     // _90
-	// union {
-	// 	u32 u32View;
-	// 	u8 u8View[4];
-	// } _A0;                // _A0
-	u32 _A0;                 // _A0
-	u8 mCurrLine;            // _A4
-	u8 _A5;                  // _A5
-	u8 mPageInfoNum;         // _A6
-	u8 _A7;                  // _A7
-	f32* mLineWidths;        // _A8
-	u8* mOnePageLines;       // _AC
-	u8* mPageInfoCounts;     // _B0
-	f32 _B4;                 // _B4
-	s32 _B8;                 // _B8
-	f32 _BC;                 // _BC
-	f32 _C0;                 // _C0
-	f32 _C4;                 // _C4
-	f32 mLineHeight;         // _C8
-	JUtility::TColor _CC;    // _CC
-	JUtility::TColor _D0;    // _D0
-	JUtility::TColor _D4;    // _D4
-	JUtility::TColor _D8;    // _D8
-	u8 mMatrixType;          // _DC
-	f32 mFontWidthAdjusted;  // _E0
-	f32 mFontHeightAdjusted; // _E4
-	f32 mFontWidth;          // _E8
-	f32 mFontHeight;         // _EC
-	u8 _F0;                  // _F0
-	u8 _F1;                  // _F1
-	u8 _F2;                  // _F2
-	u32 _F4;                 // _F4
-	u8 _F8;                  // _F8
-	u32 _FC;                 // _FC
-	char* mRubyBuffer;       // _100
-	f32 _104;                // _104
-	f32 _108;                // _108
-	f32 _10C;                // _10C
+	u32 _A0;                       // _A0
+	u8 mCurrLine;                  // _A4
+	u8 mParagraphNum;              // _A5
+	u8 mPageInfoNum;               // _A6
+	u8 _A7;                        // _A7
+	f32* mLineWidths;              // _A8
+	u8* mOnePageLines;             // _AC
+	u8* mPageInfoCounts;           // _B0
+	f32 _B4;                       // _B4
+	s32 mCharacterNum;             // _B8
+	f32 _BC;                       // _BC
+	f32 _C0;                       // _C0
+	f32 _C4;                       // _C4
+	f32 mLineHeight;               // _C8
+	JUtility::TColor _CC;          // _CC
+	JUtility::TColor _D0;          // _D0
+	JUtility::TColor _D4;          // _D4
+	JUtility::TColor _D8;          // _D8
+	u8 mMatrixType;                // _DC
+	f32 mFontWidthAdjusted;        // _E0
+	f32 mFontHeightAdjusted;       // _E4
+	f32 mFontWidth;                // _E8
+	f32 mFontHeight;               // _EC
+	u8 _F0;                        // _F0
+	u8 _F1;                        // _F1
+	u8 _F2;                        // _F2
+	u32 _F4;                       // _F4
+	u8 _F8;                        // _F8
+	u32 _FC;                       // _FC
+	char* mRubyBuffer;             // _100
+	f32 _104;                      // _104
+	f32 _108;                      // _108
+	f32 _10C;                      // _10C
 
 	static u32 cPageInfoBufferNum;
 };

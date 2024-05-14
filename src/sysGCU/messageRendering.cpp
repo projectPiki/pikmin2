@@ -211,7 +211,7 @@ TRenderingProcessor::TRenderingProcessor(JMessage::TReference const* ref)
     , mMesgBounds(1.0f, 1.0f, 1.0f, 1.0f)
     , mLocate(0.0f, 0.0f, 0.0f, 0.0f)
     , mCurrLine(0)
-    , _A5(0)
+    , mParagraphNum(0)
     , mPageInfoNum(0)
     , _BC(0.0f)
     , _C0(42.0f)
@@ -248,7 +248,15 @@ TRenderingProcessor::TRenderingProcessor(JMessage::TReference const* ref)
  */
 void TRenderingProcessor::setDrawLocateX()
 {
-	// UNUSED FUNCTION
+	if (mFlags.isSet(1)) {
+		mLocate.i.x = mLocate.f.x;
+	} else if (mFlags.isSet(0x20)) {
+		mLocate.i.x = (mTextBoxWidth - mLineWidths[mCurrLine]) / 2;
+	} else if (mFlags.isSet(0x40)) {
+		mLocate.i.x = (mTextBoxWidth - mLineWidths[mCurrLine]);
+	} else {
+		mLocate.i.x = mLocate.f.x;
+	}
 }
 
 /**
@@ -257,6 +265,19 @@ void TRenderingProcessor::setDrawLocateX()
  */
 void TRenderingProcessor::setDrawLocateY()
 {
+	if (mFlags.isSet(1)) {
+		mLocate.i.y = mLineHeight * (f32)mParagraphNum + mTextBoxHeight * (f32)mPageInfoNum + mFontHeight * (f32)mMainFont->getAscent()
+		            + mLocate.f.y;
+	} else if (mFlags.isSet(0x200)) {
+		mLocate.i.y = mLineHeight * (f32)mParagraphNum + mTextBoxHeight * (f32)mPageInfoNum + mFontHeight * (f32)mMainFont->getAscent()
+		            + mLocate.f.y;
+	} else if (mFlags.isSet(0x40)) {
+		mLocate.i.y = mLineHeight * (f32)mParagraphNum + mTextBoxHeight * (f32)mPageInfoNum + mFontHeight * (f32)mMainFont->getAscent()
+		            + mLocate.f.y;
+	} else {
+		mLocate.i.y = mLineHeight * (f32)mParagraphNum + mTextBoxHeight * (f32)mPageInfoNum + mFontHeight * (f32)mMainFont->getAscent()
+		            + mLocate.f.y;
+	}
 	// UNUSED FUNCTION
 }
 
@@ -270,7 +291,7 @@ void TRenderingProcessor::do_begin(void const* p1, char const* p2)
 	mFontHeightAdjusted = mFontHeight;
 	_F0                 = 0;
 	_F1                 = 0;
-	_B8                 = 0;
+	mCharacterNum       = 0;
 	_40                 = 0;
 	initRuby();
 	f32 v1      = static_cast<const char*>(p1)[4];
@@ -278,9 +299,9 @@ void TRenderingProcessor::do_begin(void const* p1, char const* p2)
 	_C4         = v1;
 	mLineHeight = _C0;
 	mFlags.unset(0x10000000);
-	mPageInfoNum = 0;
-	mCurrLine    = 0;
-	_A5          = 0;
+	mPageInfoNum  = 0;
+	mCurrLine     = 0;
+	mParagraphNum = 0;
 	setDrawLocate();
 	mMatrixType = 0;
 	mMainFont->setGX(_CC, _D0);
@@ -294,6 +315,8 @@ void TRenderingProcessor::setDrawLocate()
 {
 	setDrawLocateX();
 	setDrawLocateY();
+	FORCE_DONT_INLINE; // hopefully can be removed once matched
+
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0
@@ -564,7 +587,7 @@ void TRenderingProcessor::addDrawLines()
 {
 	// UNUSED FUNCTION
 	u32 pageInfoBufferNum = cPageInfoBufferNum;
-	_A5                   = 0;
+	mParagraphNum         = 0;
 	mPageInfoNum++;
 	P2ASSERTLINE(490, mPageInfoNum < pageInfoBufferNum);
 	mFlags.set(TProcFlag_PageFinished);
@@ -579,7 +602,7 @@ void TRenderingProcessor::newParagraph()
 	setLineWidth();
 	mCurrLine++;
 	P2ASSERTLINE(509, mCurrLine < 64);
-	_A5++;
+	mParagraphNum++;
 	if (mFlags.isSet(TProcFlag_PageFinished) != 0) {
 		setPageInfo();
 		setOnePageLine();
@@ -655,8 +678,43 @@ lbl_80439BAC:
  * @note Address: 0x80439BCC
  * @note Size: 0x31C
  */
-void TRenderingProcessor::do_character(int)
+void TRenderingProcessor::do_character(int character)
 {
+	if (character == '\n') {
+		newParagraph();
+	} else {
+		if (_F0 == 0) {
+			mColorData1.set(_D4);
+		} else {
+			JMessage::TResourceContainer* res = mReference ? mReference->mResource : nullptr;
+			JMessage::TResource_color* color  = &res->mColor ? &res->mColor : nullptr;
+			mColorData1.set(*(JUtility::TColor*)color->mBlock.getRaw()); // something along the lines of this probably
+		}
+
+		if (_F1 == 0) {
+			mColorData2.set(_D8);
+		} else {
+			JMessage::TResourceContainer* res = mReference ? mReference->mResource : nullptr;
+			JMessage::TResource_color* color  = &res->mColor ? &res->mColor : nullptr;
+			mColorData2.set(*(JUtility::TColor*)color->mBlock.getRaw());
+		}
+
+		f32 xScale = mFontWidthAdjusted * (f32)mMainFont->getWidth();
+		if (mFlags.isSet(1)) {
+			mLocate.i.x += calcWidth(mMainFont, character, xScale, true);
+		} else {
+			mLocate.i.x += doDrawLetter(mLocate.i.x + _54, mLocate.i.y + _58, xScale, mFontHeightAdjusted * (f32)mMainFont->getHeight(),
+			                            character, true);
+		}
+		mLocate.i.x += _C4;
+		_40++;
+	}
+
+	if (sys->mPlayData->mIsRubyFont) {
+		drawRuby();
+	}
+
+	mCharacterNum++;
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -1114,7 +1172,7 @@ bool TRenderingProcessor::tagRuby(void const* data, u32 size)
 		char c                = *mRubyBuffer;
 		mRubyBuffer[size - 1] = 0;
 		_F2                   = 1;
-		_F4                   = _B8 - 1;
+		_F4                   = mCharacterNum - 1;
 		_F8                   = c;
 		_FC                   = size - 1;
 		_104                  = mLocate.i.x;
@@ -1282,8 +1340,36 @@ bool TRenderingProcessor::doTagControlAbtnWait()
  * @note Address: 0x8043A4BC
  * @note Size: 0x71C
  */
-bool TRenderingProcessor::tagPosition(u16, void const*, u32)
+bool TRenderingProcessor::tagPosition(u16 type, void const* data, u32)
 {
+	switch (type) {
+	case 0:
+		_C4 = _BC;
+		break;
+	case 1:
+		_C4 = *(u8*)data;
+		break;
+	case 2:
+		mLineHeight = _C0;
+		setDrawLocateY();
+		break;
+	case 3:
+		mLineHeight = *(u8*)data;
+		setDrawLocateY();
+		break;
+	case 4:
+		mFontHeightAdjusted = mFontHeight;
+		break;
+	case 5:
+		mFontHeightAdjusted = (f32)(*(u32*)data) / 100.0f;
+		break;
+	case 6:
+		mFontWidthAdjusted = mFontWidth;
+		break;
+	case 7:
+		mFontWidthAdjusted = (f32)(*(u32*)data) / 100.0f;
+		break;
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x60(r1)
@@ -1788,6 +1874,26 @@ void TRenderingProcessor::initRuby()
  */
 void TRenderingProcessor::drawRuby()
 {
+	if (!_F2) {
+		return;
+	}
+
+	if (mFlags.isSet(1)) {
+		_F2 = false;
+		return;
+	}
+
+	f32 scale = mLocate.i.y - ROUND_F32_TO_U8(mFontHeight * (f32)mMainFont->getHeight());
+	if (scale > _108) {
+		_108 = scale;
+	}
+
+	if (mCharacterNum != _F4 + _F8) {
+		return;
+	}
+
+	for (int i = 0; i < _FC; i++) { }
+	_F2 = false;
 	/*
 	stwu     r1, -0x110(r1)
 	mflr     r0
@@ -3476,7 +3582,7 @@ void TRenderingProcessor::setOnePageLine()
 	}
 	for (int i = 0; i < mCurrLine; i++) {
 		if (mOnePageLines[i] == 0) {
-			mOnePageLines[i] = _A5;
+			mOnePageLines[i] = mParagraphNum;
 		}
 	}
 }
