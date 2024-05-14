@@ -25,9 +25,9 @@ TRenderingProcessorBase::TRenderingProcessorBase(JMessage::TReference const* ref
  */
 bool TRenderingProcessorBase::do_tag(u32 type, void const* a1, u32 a2)
 {
-
-	bool check   = false;
-	u8 argByte   = (u8)(type >> 0x10U);
+	bool check = false;
+	// Get byte1
+	u8 argByte   = (u8)(type >> 16);
 	u16 argShort = (u16)type;
 
 	if (argByte < 0xC0) { // 192
@@ -37,10 +37,13 @@ bool TRenderingProcessorBase::do_tag(u32 type, void const* a1, u32 a2)
 			break;
 		case 1:
 			check = tagColorEX(argShort, a1, a2);
+			break;
 		case 2:
 			check = tagControl(argShort, a1, a2);
+			break;
 		case 3:
 			check = tagPosition(argShort, a1, a2);
+			break;
 		default:
 			check = true;
 			break;
@@ -59,131 +62,11 @@ bool TRenderingProcessorBase::do_tag(u32 type, void const* a1, u32 a2)
 		case 3:
 			check = tagFont(a1, a2);
 			break;
+		case 4:
+			break;
 		}
 	}
 	return check;
-
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	rlwinm   r7, r4, 0x10, 0x18, 0x1f
-	clrlwi   r4, r4, 0x10
-	stw      r0, 0x14(r1)
-	cmplwi   r7, 0xc0
-	li       r0, 0
-	bge      lbl_804392DC
-	cmpwi    r7, 2
-	beq      lbl_804392A4
-	bge      lbl_80439268
-	cmpwi    r7, 0
-	beq      lbl_80439274
-	bge      lbl_8043928C
-	b        lbl_804392D4
-
-	lbl_80439268:
-	cmpwi    r7, 4
-	bge      lbl_804392D4
-	b        lbl_804392BC
-
-	lbl_80439274:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x58(r12)
-	mtctr    r12
-	bctrl
-	mr       r0, r3
-	b        lbl_8043938C
-
-	lbl_8043928C:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x5c(r12)
-	mtctr    r12
-	bctrl
-	mr       r0, r3
-	b        lbl_8043938C
-
-	lbl_804392A4:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x60(r12)
-	mtctr    r12
-	bctrl
-	mr       r0, r3
-	b        lbl_8043938C
-
-	lbl_804392BC:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	mr       r0, r3
-	b        lbl_8043938C
-
-	lbl_804392D4:
-	li       r0, 1
-	b        lbl_8043938C
-
-	lbl_804392DC:
-	cmplwi   r7, 0xff
-	bne      lbl_8043938C
-	cmpwi    r4, 2
-	beq      lbl_80439350
-	bge      lbl_80439300
-	cmpwi    r4, 0
-	beq      lbl_80439310
-	bge      lbl_80439330
-	b        lbl_8043938C
-
-	lbl_80439300:
-	cmpwi    r4, 4
-	beq      lbl_8043938C
-	bge      lbl_8043938C
-	b        lbl_80439370
-
-	lbl_80439310:
-	lwz      r12, 0(r3)
-	mr       r4, r5
-	mr       r5, r6
-	lwz      r12, 0x48(r12)
-	mtctr    r12
-	bctrl
-	mr       r0, r3
-	b        lbl_8043938C
-
-	lbl_80439330:
-	lwz      r12, 0(r3)
-	mr       r4, r5
-	mr       r5, r6
-	lwz      r12, 0x4c(r12)
-	mtctr    r12
-	bctrl
-	mr       r0, r3
-	b        lbl_8043938C
-
-	lbl_80439350:
-	lwz      r12, 0(r3)
-	mr       r4, r5
-	mr       r5, r6
-	lwz      r12, 0x50(r12)
-	mtctr    r12
-	bctrl
-	mr       r0, r3
-	b        lbl_8043938C
-
-	lbl_80439370:
-	lwz      r12, 0(r3)
-	mr       r4, r5
-	mr       r5, r6
-	lwz      r12, 0x54(r12)
-	mtctr    r12
-	bctrl
-	mr       r0, r3
-
-	lbl_8043938C:
-	mr       r3, r0
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /**
@@ -229,9 +112,9 @@ TRenderingProcessor::TRenderingProcessor(JMessage::TReference const* ref)
     , _10C(0.5f)
 {
 	mFlags.clear();
-	mFlags.unset(0x40);
+	mFlags.unset(0x70);
 	mFlags.set(0x10);
-	mFlags.unset(0x400);
+	mFlags.unset(0x700);
 	mFlags.set(0x100);
 
 	mLineWidths = new f32[0x40];
@@ -251,12 +134,14 @@ void TRenderingProcessor::setDrawLocateX()
 	if (mFlags.isSet(1)) {
 		mLocate.i.x = mLocate.f.x;
 	} else if (mFlags.isSet(0x20)) {
-		mLocate.i.x = (mTextBoxWidth - mLineWidths[mCurrLine]) / 2;
+		mLocate.i.x = 0.5f * (mTextBoxWidth - mLineWidths[mCurrLine]);
 	} else if (mFlags.isSet(0x40)) {
 		mLocate.i.x = (mTextBoxWidth - mLineWidths[mCurrLine]);
 	} else {
 		mLocate.i.x = mLocate.f.x;
 	}
+
+	mLocate.setX(mLocate.i.x);
 }
 
 /**
@@ -266,19 +151,28 @@ void TRenderingProcessor::setDrawLocateX()
 void TRenderingProcessor::setDrawLocateY()
 {
 	if (mFlags.isSet(1)) {
-		mLocate.i.y = mLineHeight * (f32)mParagraphNum + mTextBoxHeight * (f32)mPageInfoNum + mFontHeight * (f32)mMainFont->getAscent()
-		            + mLocate.f.y;
+		mLocate.setY(mFontHeightAdjusted * mParagraphNum + mLineHeight * mPageInfoNum + mFontHeight * mMainFont->getDescent()
+		             + mLocate.f.y);
 	} else if (mFlags.isSet(0x200)) {
-		mLocate.i.y = mLineHeight * (f32)mParagraphNum + mTextBoxHeight * (f32)mPageInfoNum + mFontHeight * (f32)mMainFont->getAscent()
-		            + mLocate.f.y;
-	} else if (mFlags.isSet(0x40)) {
-		mLocate.i.y = mLineHeight * (f32)mParagraphNum + mTextBoxHeight * (f32)mPageInfoNum + mFontHeight * (f32)mMainFont->getAscent()
-		            + mLocate.f.y;
+		float totalFontHeight       = 0.0f;
+		unsigned char* lineWidthPtr = (mOnePageLines + ((2 * mPageInfoNum) & 0x1FE));
+		int lineWidthIndex          = lineWidthPtr[0];
+		int lineWidthEndIndex       = lineWidthPtr[1] + 1 - lineWidthIndex;
+
+		while (lineWidthEndIndex > 0) {
+			if (*(mLineWidths + 4 * lineWidthIndex) > 0.0f) {
+				totalFontHeight += mFontHeightAdjusted;
+			}
+			lineWidthIndex++;
+			lineWidthEndIndex--;
+		}
+	} else if (mFlags.isSet(0x400)) {
+		float paragraphNumFloat = mOnePageLines[mParagraphNum] - (mPageInfoNum + 1);
+		mLocate.setY(
+		    -((mFontHeightAdjusted * paragraphNumFloat) - (mFontHeight * mMainFont->getDescent() + mLineHeight * (1.0f + mPageInfoNum))));
 	} else {
-		mLocate.i.y = mLineHeight * (f32)mParagraphNum + mTextBoxHeight * (f32)mPageInfoNum + mFontHeight * (f32)mMainFont->getAscent()
-		            + mLocate.f.y;
+		mLocate.setY(mFontHeightAdjusted * mParagraphNum + mLineHeight * mPageInfoNum + mFontHeight * mMainFont->getAscent() + mLocate.f.y);
 	}
-	// UNUSED FUNCTION
 }
 
 /**
@@ -315,7 +209,6 @@ void TRenderingProcessor::setDrawLocate()
 {
 	setDrawLocateX();
 	setDrawLocateY();
-	FORCE_DONT_INLINE; // hopefully can be removed once matched
 
 	/*
 	stwu     r1, -0x60(r1)
