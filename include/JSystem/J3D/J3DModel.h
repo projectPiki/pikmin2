@@ -106,7 +106,7 @@ struct J3DModelData {
 	u16 getShapeNum() const { return mShapeTable.getShapeNum(); }
 	u16 getMaterialNum() const { return mMaterialTable.getMaterialNum(); }
 	u16 getJointNum() const { return mJointTree.getJointNum(); }
-	u16 getDrawMtxNum() const { return mJointTree.getDrawMtxNum(); }
+	u32 getDrawMtxNum() const { return mJointTree.getDrawMtxNum(); }
 	J3DMaterial* getMaterialNodePointer(u16 idx) const { return mMaterialTable.getMaterialNodePointer(idx); }
 	J3DShape* getShapeNodePointer(u16 idx) const { return mShapeTable.getItem(idx); }
 	J3DJointTree& getJointTree() { return mJointTree; }

@@ -3,6 +3,7 @@
 
 #include "Dolphin/mtx.h"
 #include "Matrixf.h"
+#include "JSystem/J3D/J3DTransform.h"
 #include "types.h"
 
 struct J3DJointTree;
@@ -33,6 +34,7 @@ struct J3DMtxBuffer {
 	u32* getCurrentViewNoPtr() { return &mCurrentViewNumber; }
 	u8* getScaleFlagArray() const { return mScaleFlags; }
 	u8 getScaleFlag(u16 idx) const { return mScaleFlags[idx]; }
+	u8 getEnvScaleFlag(int idx) const { return mEnvelopeScaleFlags[idx]; }
 	Mtx** getDrawMtxPtrPtr() const { return mDrawMatrices[1]; }
 	Mtx* getDrawMtxPtr() const { return mDrawMatrices[1][mCurrentViewNumber]; }
 	Mtx* getDrawMtx(u16 idx) const { return &mDrawMatrices[1][mCurrentViewNumber][idx]; }
@@ -41,6 +43,8 @@ struct J3DMtxBuffer {
 	Mtx33* getNrmMtx(u16 idx) const { return &mNormMatrices[1][mCurrentViewNumber][idx]; }
 	Mtx33*** getBumpMtxPtrPtr() const { return mBumpMatrices[1]; }
 	Mtx33* getBumpMtxPtr(int idx) const { return mBumpMatrices[1][idx][mCurrentViewNumber]; }
+
+	void setNrmMtx(int p1, MtxP mtx) { J3DPSMtx33CopyFrom34(mtx, mNormMatrices[1][mCurrentViewNumber][p1]); }
 
 	void swapDrawMtx()
 	{

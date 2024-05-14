@@ -56,7 +56,7 @@ struct J3DShape {
 	virtual void simpleDrawCache() const; // _14
 
 	void calcNBTScale(const Vec&, Mtx33*, Mtx33*);
-	int countBumpMtxNum() const;
+	u32 countBumpMtxNum() const;
 	void initialize();
 	bool isSameVcdVatCmd(J3DShape*);
 	void loadPreDrawSetting() const;
@@ -80,6 +80,7 @@ struct J3DShape {
 	bool getNBTFlag() const { return mHasNBT; }
 	u32 getBumpMtxOffset() const { return mBumpMtxOffset; }
 	void setCurrentMtx(J3DCurrentMtx& mtx) { mCurrentMtx = mtx; }
+	void setBumpMtxOffset(u32 offset) { mBumpMtxOffset = offset; }
 
 	J3DMaterial* getMaterial() const { return mMaterial; }
 	u32 getIndex() const { return mId; }

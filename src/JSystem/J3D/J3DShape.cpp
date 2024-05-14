@@ -52,9 +52,9 @@ void J3DShape::calcNBTScale(const Vec& scale, Mtx33* srcArray, Mtx33* dstArray)
  * @note Address: 0x80060938
  * @note Size: 0x80
  */
-int J3DShape::countBumpMtxNum() const
+u32 J3DShape::countBumpMtxNum() const
 {
-	int count = 0;
+	u32 count = 0;
 	for (u16 i = 0; i < mMtxGroupNum; i++) {
 		count += mShapeMtx[i]->getUseMtxNum();
 	}

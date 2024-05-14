@@ -3,7 +3,10 @@
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/J3D/J3DMtxBuffer.h"
 #include "JSystem/J3D/J3DModel.h"
+#include "JSystem/J3D/J3DModelLoader.h"
 #include "JSystem/J3D/J3DTexGenBlock.h"
+#include "JSystem/J3D/J3DSys.h"
+#include "JSystem/J3D/J3DTransform.h"
 #include "types.h"
 
 Mtx J3DMtxBuffer::sNoUseDrawMtx;
@@ -42,7 +45,7 @@ void J3DMtxBuffer::initialize()
 int J3DMtxBuffer::create(J3DModelData* data, u32 viewNum)
 {
 	mViewCount = viewNum;
-	mJointTree = &data->mJointTree;
+	mJointTree = &data->getJointTree();
 	int result = createAnmMtx(data);
 	if (result != JET_Success) {
 		return result;
@@ -51,10 +54,11 @@ int J3DMtxBuffer::create(J3DModelData* data, u32 viewNum)
 	if (result != JET_Success) {
 		return result;
 	}
-	if (data->mModelLoaderFlags >> 8 & 1) {
+	if (data->checkFlag(J3DMLF_NoMatrixTransform)) {
 		setNoUseDrawMtx();
+
 	} else {
-		switch (data->mModelLoaderFlags & J3DMLF_UseImmediateMtx) {
+		switch (getMdlDataFlag_MtxLoadType(data->getFlag())) {
 		case 0x10:
 			result = setNoUseDrawMtx();
 			break;
@@ -67,8 +71,8 @@ int J3DMtxBuffer::create(J3DModelData* data, u32 viewNum)
 	if (result != JET_Success) {
 		return result;
 	}
-	if ((data->mModelLoaderFlags & J3DMLF_UseImmediateMtx) != 0) {
-		data->mBumpFlag = 0;
+	if (data->getFlag() & J3DMLF_UseImmediateMtx) {
+		data->setBumpFlag(0);
 	} else {
 		result = createBumpMtxArray(data, viewNum);
 		if (result != JET_Success) {
@@ -84,9 +88,9 @@ int J3DMtxBuffer::create(J3DModelData* data, u32 viewNum)
  */
 int J3DMtxBuffer::createAnmMtx(J3DModelData* data)
 {
-	if (data->mJointTree.mJointCnt) {
-		mScaleFlags    = new u8[data->mJointTree.mJointCnt];
-		mWorldMatrices = new Mtx[data->mJointTree.mJointCnt];
+	if (data->mJointTree.getJointNum()) {
+		mScaleFlags    = new u8[data->mJointTree.getJointNum()];
+		mWorldMatrices = new Mtx[data->mJointTree.getJointNum()];
 	}
 	return JET_Success;
 }
@@ -97,9 +101,9 @@ int J3DMtxBuffer::createAnmMtx(J3DModelData* data)
  */
 int J3DMtxBuffer::createWeightEnvelopeMtx(J3DModelData* data)
 {
-	if (data->mJointTree.mEnvelopeCnt) {
-		mEnvelopeScaleFlags     = new u8[data->mJointTree.mEnvelopeCnt];
-		mWeightEnvelopeMatrices = new Mtx[data->mJointTree.mEnvelopeCnt];
+	if (data->mJointTree.getWEvlpMtxNum()) {
+		mEnvelopeScaleFlags     = new u8[data->mJointTree.getWEvlpMtxNum()];
+		mWeightEnvelopeMatrices = new Mtx[data->mJointTree.getWEvlpMtxNum()];
 	}
 	return JET_Success;
 }
@@ -135,9 +139,9 @@ int J3DMtxBuffer::createDoubleDrawMtx(J3DModelData* data, u32 num)
 
 	for (int i = 0; i < 2; i++) {
 		for (int j = 0; j < num; j++) {
-			if (data->mJointTree.mMtxData.mCount) {
-				mDrawMatrices[i][j] = new (0x20) Mtx[data->mJointTree.mMtxData.mCount];
-				mNormMatrices[i][j] = new (0x20) Mtx33[data->mJointTree.mMtxData.mCount];
+			if (data->getDrawMtxNum()) {
+				mDrawMatrices[i][j] = new (0x20) Mtx[data->getDrawMtxNum()];
+				mNormMatrices[i][j] = new (0x20) Mtx33[data->getDrawMtxNum()];
 			}
 		}
 	}
@@ -150,49 +154,49 @@ int J3DMtxBuffer::createDoubleDrawMtx(J3DModelData* data, u32 num)
  */
 int J3DMtxBuffer::createBumpMtxArray(J3DModelData* data, u32 viewNum)
 {
-	if (data->mJointTree.mFlags == J3DMLF_None) {
-		u16 materialCount = data->mMaterialTable.mMaterialNum;
-		u16 bumpMtxCount  = 0;
+	if (data->getModelDataType() == J3DMLF_None) {
+		u32 bumpMtxCount  = 0;
+		u16 materialCount = data->getMaterialNum();
 		u16 v1            = 0;
 		for (u16 i = 0; i < materialCount; i++) {
-			J3DMaterial* material = data->mMaterialTable.mMaterials[i];
-			if (material->mTexGenBlock->getNBTScale()->mHasScale == 1) {
-				bumpMtxCount += material->mShape->countBumpMtxNum();
+			J3DMaterial* material = data->getMaterialNodePointer(i);
+			if (material->getNBTScale()->mHasScale == 1) {
+				bumpMtxCount += material->getShape()->countBumpMtxNum();
 				v1++;
 			}
 		}
-		if (bumpMtxCount != 0 && viewNum != 0) {
+		if ((u16)bumpMtxCount != 0 && viewNum != 0) {
 			for (int i = 0; i < 2; i++) {
 				mBumpMatrices[i] = new Mtx33**[v1];
 			}
 		}
 		for (int i = 0; i < 2; i++) {
-			u16 materialCount = data->mMaterialTable.mMaterialNum;
+			u16 materialCount = data->getMaterialNum();
 			int shapeCount    = 0;
 			for (u16 matIndex = 0; matIndex < materialCount; matIndex++) {
-				J3DMaterial* material = data->mMaterialTable.mMaterials[matIndex];
-				if (material->mTexGenBlock->getNBTScale()->mHasScale == 1) {
-					mBumpMatrices[i][shapeCount]     = new Mtx33*[viewNum];
-					material->mShape->mBumpMtxOffset = shapeCount;
+				J3DMaterial* material = data->getMaterialNodePointer(matIndex);
+				if (material->getNBTScale()->mHasScale == 1) {
+					mBumpMatrices[i][shapeCount] = new Mtx33*[viewNum];
+					material->getShape()->setBumpMtxOffset(shapeCount);
 					shapeCount += 1;
 				}
 			}
 		}
 		for (int i = 0; i < 2; i++) {
-			u16 materialCount = data->mMaterialTable.mMaterialNum;
+			u16 materialCount = data->getMaterialNum();
 			int j             = 0;
 			for (u16 matIndex = 0; matIndex < materialCount; matIndex++) {
-				J3DMaterial* material = data->mMaterialTable.mMaterials[matIndex];
-				if (material->mTexGenBlock->getNBTScale()->mHasScale == 1) {
+				J3DMaterial* material = data->getMaterialNodePointer(matIndex);
+				if (material->getNBTScale()->mHasScale == 1) {
 					for (int k = 0; k < viewNum; k++) {
-						mBumpMatrices[i][j][k] = new (0x20) Mtx33[data->mJointTree.mMtxData.mCount];
+						mBumpMatrices[i][j][k] = new (0x20) Mtx33[data->getDrawMtxNum()];
 					}
 					j++;
 				}
 			}
 		}
 		if (v1) {
-			data->mBumpFlag = 1;
+			data->setBumpFlag(1);
 		}
 	}
 	return JET_Success;
@@ -371,6 +375,24 @@ lbl_80088DF4:
  */
 void J3DMtxBuffer::calcWeightEnvelopeMtx()
 {
+	int max      = mJointTree->getWEvlpMtxNum();
+	u16* indices = mJointTree->getWEvlpMixIndex();
+	f32* weights = mJointTree->getWEvlpMixWeight();
+	for (int i = -1; i < max; i++) {
+		u8* scaleFlags    = mEnvelopeScaleFlags;
+		scaleFlags[i]     = 1;
+		Mtx* weightAnmMtx = &mWeightEnvelopeMatrices[i];
+		int mixNum        = mJointTree->getWEvlpMixMtxNum(i);
+		for (int j = 0; j < mixNum; j++) {
+			u16 idx       = indices[j];
+			f32 weight    = weights[j];
+			Mtx& invMtx   = mJointTree->getInvJointMtx(idx);
+			Mtx& worldMtx = mWorldMatrices[idx];
+			// I think it's this but as ASM? maybe?
+			PSMTXConcat(invMtx, worldMtx, *weightAnmMtx);
+			scaleFlags[i] &= mScaleFlags[j];
+		}
+	}
 	/*
 	stwu     r1, -0xa0(r1)
 	stfd     f31, 0x90(r1)
@@ -524,6 +546,44 @@ lbl_80088FC8:
 void J3DMtxBuffer::calcDrawMtx(u32 p1, const Vec& vec, const Mtx& mtx)
 {
 	switch (p1) {
+	case 0: {
+		Mtx* viewMtx = j3dSys.getViewMtx();
+		u32 mtxNum   = mJointTree->getDrawFullWgtMtxNum();
+		for (u16 i = 0; i < mtxNum; i++) {
+			Mtx& drawMtx = *getDrawMtx(i);
+			PSMTXConcat(*viewMtx, *(Mtx*)getAnmMtx(i), drawMtx);
+		}
+
+		if (mJointTree->getDrawMtxNum() > mtxNum) {
+			J3DPSMtxArrayConcat(*viewMtx, mWeightEnvelopeMatrices[0], *getDrawMtx(mtxNum), mJointTree->getWEvlpMtxNum());
+		}
+	} break;
+
+	case 1: {
+		u32 mtxNum = mJointTree->getDrawFullWgtMtxNum();
+		for (u16 i = 0; i < mtxNum; i++) {
+			PSMTXCopy(*(Mtx*)getWeightAnmMtx(i), *getDrawMtx(i));
+		}
+
+		mtxNum = mJointTree->getDrawFullWgtMtxNum();
+		for (u16 i = 0; i < mtxNum; i++) {
+			PSMTXCopy(*(Mtx*)getAnmMtx(mJointTree->getDrawMtxIndex(i)), *getDrawMtx(i));
+		}
+	} break;
+
+	case 2: {
+		Mtx baseMtx;
+		J3DCalcViewBaseMtx(*j3dSys.getViewMtx(), vec, mtx, baseMtx);
+		u32 mtxNum = mJointTree->getDrawFullWgtMtxNum();
+		for (u16 i = 0; i < mtxNum; i++) {
+			PSMTXConcat(baseMtx, *(Mtx*)getAnmMtx(mJointTree->getDrawMtxIndex(i)), *getDrawMtx(i));
+		}
+
+		mtxNum = mJointTree->getDrawFullWgtMtxNum();
+		if (mJointTree->getDrawMtxNum() > mtxNum) {
+			J3DPSMtxArrayConcat(baseMtx, mWeightEnvelopeMatrices[0], *getDrawMtx(mtxNum), mJointTree->getWEvlpMtxNum());
+		}
+	} break;
 	}
 	/*
 	stwu     r1, -0x80(r1)
@@ -754,131 +814,25 @@ lbl_80089310:
  */
 void J3DMtxBuffer::calcNrmMtx()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	li       r30, 0
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lwz      r3, 0(r3)
-	lhz      r31, 0x34(r3)
-	b        lbl_800894C4
+	u16 mtxNum = mJointTree->mMtxData.mCount;
 
-lbl_8008935C:
-	lwz      r4, 0(r29)
-	clrlwi   r0, r30, 0x10
-	lwz      r3, 0x38(r4)
-	lbzx     r3, r3, r0
-	cmplwi   r3, 0
-	bne      lbl_8008941C
-	lwz      r4, 0x3c(r4)
-	slwi     r3, r0, 1
-	lwz      r5, 4(r29)
-	lhzx     r3, r4, r3
-	lbzx     r3, r5, r3
-	cmplwi   r3, 1
-	bne      lbl_800893EC
-	lwz      r3, 0x30(r29)
-	mulli    r4, r0, 0x30
-	lwz      r5, 0x18(r29)
-	slwi     r6, r3, 2
-	lwz      r3, 0x20(r29)
-	lwzx     r5, r5, r6
-	mulli    r0, r0, 0x24
-	lwzx     r3, r3, r6
-	add      r4, r5, r4
-	psq_l    f5, 0(r4), 0, qr0
-	add      r3, r3, r0
-	lfs      f4, 8(r4)
-	psq_l    f3, 16(r4), 0, qr0
-	lfs      f2, 0x18(r4)
-	psq_l    f1, 32(r4), 0, qr0
-	lfs      f0, 0x28(r4)
-	psq_st   f5, 0(r3), 0, qr0
-	stfs     f4, 8(r3)
-	psq_st   f3, 12(r3), 0, qr0
-	stfs     f2, 0x14(r3)
-	psq_st   f1, 24(r3), 0, qr0
-	stfs     f0, 0x20(r3)
-	b        lbl_800894C0
+	for (u16 i = 0; i < mtxNum; i++) {
+		if (mJointTree->getDrawMtxFlag(i) == 0) {
+			if (getScaleFlag(mJointTree->getDrawMtxIndex(i)) == 1) {
+				setNrmMtx(i, *getDrawMtx(i));
+			} else {
+				J3DPSCalcInverseTranspose(*getDrawMtx(i), *getNrmMtx(i));
+			}
+			continue;
+		}
 
-lbl_800893EC:
-	lwz      r3, 0x30(r29)
-	mulli    r5, r0, 0x30
-	lwz      r4, 0x18(r29)
-	slwi     r7, r3, 2
-	lwz      r3, 0x20(r29)
-	lwzx     r6, r4, r7
-	mulli    r0, r0, 0x24
-	lwzx     r4, r3, r7
-	add      r3, r6, r5
-	add      r4, r4, r0
-	bl       J3DPSCalcInverseTranspose__FPA4_fPA3_f
-	b        lbl_800894C0
+		if (getEnvScaleFlag(mJointTree->getDrawMtxIndex(i)) == 1) {
+			setNrmMtx(i, *getDrawMtx(i));
+			continue;
+		}
 
-lbl_8008941C:
-	lwz      r4, 0x3c(r4)
-	slwi     r3, r0, 1
-	lwz      r5, 8(r29)
-	lhzx     r3, r4, r3
-	lbzx     r3, r5, r3
-	cmplwi   r3, 1
-	bne      lbl_80089494
-	lwz      r3, 0x30(r29)
-	mulli    r4, r0, 0x30
-	lwz      r5, 0x18(r29)
-	slwi     r6, r3, 2
-	lwz      r3, 0x20(r29)
-	lwzx     r5, r5, r6
-	mulli    r0, r0, 0x24
-	lwzx     r3, r3, r6
-	add      r4, r5, r4
-	psq_l    f5, 0(r4), 0, qr0
-	add      r3, r3, r0
-	lfs      f4, 8(r4)
-	psq_l    f3, 16(r4), 0, qr0
-	lfs      f2, 0x18(r4)
-	psq_l    f1, 32(r4), 0, qr0
-	lfs      f0, 0x28(r4)
-	psq_st   f5, 0(r3), 0, qr0
-	stfs     f4, 8(r3)
-	psq_st   f3, 12(r3), 0, qr0
-	stfs     f2, 0x14(r3)
-	psq_st   f1, 24(r3), 0, qr0
-	stfs     f0, 0x20(r3)
-	b        lbl_800894C0
-
-lbl_80089494:
-	lwz      r3, 0x30(r29)
-	mulli    r5, r0, 0x30
-	lwz      r4, 0x18(r29)
-	slwi     r7, r3, 2
-	lwz      r3, 0x20(r29)
-	lwzx     r6, r4, r7
-	mulli    r0, r0, 0x24
-	lwzx     r4, r3, r7
-	add      r3, r6, r5
-	add      r4, r4, r0
-	bl       J3DPSCalcInverseTranspose__FPA4_fPA3_f
-
-lbl_800894C0:
-	addi     r30, r30, 1
-
-lbl_800894C4:
-	clrlwi   r0, r30, 0x10
-	cmplw    r0, r31
-	blt      lbl_8008935C
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+		J3DPSCalcInverseTranspose(*getDrawMtx(i), *getNrmMtx(i));
+	}
 }
 
 /**
@@ -887,114 +841,34 @@ lbl_800894C4:
  */
 void J3DMtxBuffer::calcBBoardMtx()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r27, 0xc(r1)
-	mr       r28, r3
-	li       r29, 0
-	lwz      r3, 0(r3)
-	lhz      r31, 0x34(r3)
-	b        lbl_80089644
+	u32 mtxNum = mJointTree->getDrawMtxNum();
+	for (u16 i = 0; i < mtxNum; i++) {
+		if (mJointTree->getDrawMtxFlag(i)) {
+			continue;
+		}
 
-lbl_80089510:
-	lwz      r4, 0(r28)
-	clrlwi   r30, r29, 0x10
-	lwz      r3, 0x38(r4)
-	lbzx     r0, r3, r30
-	cmplwi   r0, 0
-	bne      lbl_80089640
-	lwz      r3, 0x3c(r4)
-	slwi     r0, r30, 1
-	lwz      r4, 0x18(r4)
-	lhzx     r0, r3, r0
-	slwi     r0, r0, 2
-	lwzx     r3, r4, r0
-	lbz      r0, 0x16(r3)
-	rlwinm   r0, r0, 0x1c, 0x1c, 0x1f
-	cmplwi   r0, 1
-	bne      lbl_800895F8
-	lwz      r3, 0x30(r28)
-	mulli    r0, r30, 0x30
-	lwz      r4, 0x18(r28)
-	slwi     r3, r3, 2
-	lwzx     r3, r4, r3
-	add      r27, r3, r0
-	mr       r3, r27
-	bl       J3DCalcBBoardMtx__FPA4_f
-	lwz      r3, 0x30(r28)
-	mulli    r0, r30, 0x24
-	lwz      r4, 0x20(r28)
-	slwi     r3, r3, 2
-	lfs      f0, lbl_80516AFC@sda21(r2)
-	lfs      f1, 0(r27)
-	lwzx     r3, r4, r3
-	fcmpu    cr0, f0, f1
-	add      r3, r3, r0
-	beq      lbl_800895A0
-	lfs      f0, lbl_80516AF8@sda21(r2)
-	fdivs    f0, f0, f1
+		if (mJointTree->getJointNodePointer((u32)(mJointTree->getDrawMtxIndex(i)))->getMtxType() == 1) {
+			Mtx& drawMtx = *getDrawMtx(i);
+			J3DCalcBBoardMtx(drawMtx);
+			Mtx33& nrmMtx = *getNrmMtx(i);
+			nrmMtx[0][0]  = (drawMtx[0][0] != 0.0f) ? 1.0f / drawMtx[0][0] : 0.0f;
+			nrmMtx[0][1]  = 0.0f;
+			nrmMtx[0][2]  = 0.0f;
 
-lbl_800895A0:
-	stfs     f0, 0(r3)
-	lfs      f0, lbl_80516AFC@sda21(r2)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	stfs     f0, 0xc(r3)
-	lfs      f1, 0x14(r27)
-	fcmpu    cr0, f0, f1
-	beq      lbl_800895C8
-	lfs      f0, lbl_80516AF8@sda21(r2)
-	fdivs    f0, f0, f1
+			nrmMtx[1][0] = 0.0f;
+			nrmMtx[1][1] = (drawMtx[1][1] != 0.0f) ? 1.0f / drawMtx[1][1] : 0.0f;
+			nrmMtx[1][2] = 0.0f;
 
-lbl_800895C8:
-	stfs     f0, 0x10(r3)
-	lfs      f0, lbl_80516AFC@sda21(r2)
-	stfs     f0, 0x14(r3)
-	stfs     f0, 0x18(r3)
-	stfs     f0, 0x1c(r3)
-	lfs      f1, 0x28(r27)
-	fcmpu    cr0, f0, f1
-	beq      lbl_800895F0
-	lfs      f0, lbl_80516AF8@sda21(r2)
-	fdivs    f0, f0, f1
+			nrmMtx[2][0] = 0.0f;
+			nrmMtx[2][1] = 0.0f;
+			nrmMtx[2][2] = (drawMtx[2][2] != 0.0f) ? 1.0f / drawMtx[2][2] : 0.0f;
+			continue;
+		}
 
-lbl_800895F0:
-	stfs     f0, 0x20(r3)
-	b        lbl_80089640
-
-lbl_800895F8:
-	cmplwi   r0, 2
-	bne      lbl_80089640
-	lwz      r3, 0x30(r28)
-	mulli    r0, r30, 0x30
-	lwz      r4, 0x18(r28)
-	slwi     r3, r3, 2
-	lwzx     r3, r4, r3
-	add      r27, r3, r0
-	mr       r3, r27
-	bl       J3DCalcYBBoardMtx__FPA4_f
-	lwz      r4, 0x30(r28)
-	mulli    r0, r30, 0x24
-	lwz      r5, 0x20(r28)
-	mr       r3, r27
-	slwi     r4, r4, 2
-	lwzx     r4, r5, r4
-	add      r4, r4, r0
-	bl       J3DPSCalcInverseTranspose__FPA4_fPA3_f
-
-lbl_80089640:
-	addi     r29, r29, 1
-
-lbl_80089644:
-	clrlwi   r0, r29, 0x10
-	cmplw    r0, r31
-	blt      lbl_80089510
-	lmw      r27, 0xc(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+		if (mJointTree->getJointNodePointer((int)mJointTree->getDrawMtxIndex(i))->getMtxType() == 2) {
+			Mtx& drawMtx = *getDrawMtx(i);
+			J3DCalcYBBoardMtx(drawMtx);
+			J3DPSCalcInverseTranspose(drawMtx, *getNrmMtx(i));
+		}
+	}
 }
