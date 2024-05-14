@@ -24,7 +24,7 @@ struct OneResultData {
 	int mScore3;             // _0C
 	int mScore4;             // _10
 	int mScore5;             // _14
-	u8 _18;                  // _18
+	u8 mDoDraw;              // _18
 };
 
 struct TotalResultData {
@@ -116,8 +116,8 @@ struct ObjFinalResult : public ::Screen::ObjBase {
 	int mScrollTargetPos;                              // _134
 	int mScrollMoveProgress;                           // _138
 	int mAutoScrollDelay;                              // _13C
-	u32 _140;                                          // _140
-	u32 _144;                                          // _144
+	u32 mScissorYPos;                                  // _140
+	u32 mScissorBoundsHeight;                          // _144
 	int mState;                                        // _148
 	u8 mRandAnimCounter1;                              // _14C
 	u8 mRandAnimCounter2;                              // _14D

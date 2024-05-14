@@ -26,7 +26,7 @@ namespace Screen {
  */
 OneResultData::OneResultData(int score1, int score5, int score2, int score3, int score4, const char* bloName, JKRArchive* arc)
     : mScore5(score5)
-    , _18(false)
+    , mDoDraw(false)
 {
 	mScore1 = score1;
 	mScore2 = score2;
@@ -80,9 +80,15 @@ void TotalResultData::init()
  * @note Address: N/A
  * @note Size: 0xB0
  */
-void TotalResultData::draw(Graphics&, u32, u32)
+void TotalResultData::draw(Graphics& gfx, u32 yPos, u32 height)
 {
-	// UNUSED/INLINED
+	for (int i = 0; i < 16; i++) {
+		if (mResults[i]->mDoDraw == true) {
+			gfx.mOrthoGraph.setPort();
+			GXSetScissor(0, yPos, sys->getRenderModeWidth(), height);
+			mResults[i]->mScreen->draw(gfx, gfx.mOrthoGraph);
+		}
+	}
 }
 
 /**
@@ -1258,7 +1264,7 @@ void ObjFinalResult::doDraw(Graphics& gfx)
 	DispFinalResult* disp = static_cast<DispFinalResult*>(getDispMember());
 	TotalResultData* data = disp->mTotalResultData;
 	for (int i = 0; i < 16; i++) {
-		data->mResults[i]->_18 = false;
+		data->mResults[i]->mDoDraw = false;
 	}
 
 	if (mState == StatusNormal) {
@@ -1309,8 +1315,8 @@ void ObjFinalResult::updateCommon()
 {
 	JGeometry::TVec3f pos1 = mScreen->search('Nmask')->getGlbVtx(0);
 	JGeometry::TVec3f pos2 = mScreen->search('Nmask')->getGlbVtx(3);
-	_140                   = pos1.y + 0.5f;
-	_144                   = pos2.y - pos1.y;
+	mScissorYPos           = pos1.y + 0.5f;
+	mScissorBoundsHeight   = pos2.y - pos1.y;
 
 	mAnmTrans5->mCurrentFrame = mAnimTimers[2];
 	mAnimTimers[2] += 1.0f;
@@ -1515,6 +1521,27 @@ void ObjFinalResult::drawReplace(Graphics& gfx, int id)
 {
 	JUT_ASSERTLINE(726, getDispMember()->isID(OWNER_KH, MEMBER_FINAL_RESULT), "disp member err");
 	DispFinalResult* disp = static_cast<DispFinalResult*>(getDispMember());
+	int id2               = id * 2 + 1;
+	TotalResultData* data = disp->mTotalResultData;
+
+	u64 mesgIds[16] = {
+		'8452_00', // "Days Spent:"
+		'8453_00', // "Pikmin Lost:"
+		'8454_00', // "Pikmin Lost in Battle:"
+		'8455_00', // "Pikmin Left Behind:"
+		'8456_00', // "Pikmin Lost to Fire:"
+		'8457_00', // "Pikmin Lost to Water:"
+		'8458_00', // "Pikmin Lost to Electricity:"
+		'8459_00', // "Pikmin Lost to Explosions:"
+		'8460_00', // "Pikmin Lost to Poison:"
+		'8461_00', // "Pikmin Born:"
+		'8462_00', // "Red Pikmin Born:"
+		'8463_00', // "Yellow Pikmin Born:"
+		'8464_00', // "Blue Pikmin Born:"
+		'8465_00', // "White Pikmin Born:"
+		'8466_00', // "Purple Pikmin Born:"
+		'8467_00', // "Total Play Time:"
+	};
 
 	if (id != 7) {
 		mScreen->search('Nsetp_c')->show();
@@ -1523,6 +1550,106 @@ void ObjFinalResult::drawReplace(Graphics& gfx, int id)
 		mScreen->search('Nsetp_c')->hide();
 		mScreen->search('Nsetp_d')->show();
 	}
+
+	for (int i = 0; i < 4; i++) {
+		int count = data->mResults[i]->mScore1;
+		if (count < 0) {
+			mCounterData1[i] = 0;
+			mCounters1[i]->setBlind(true);
+		} else {
+			mCounterData1[i] = count;
+			mCounters1[i]->setBlind(false);
+		}
+
+		mScreen->search('Ttitl0')->setMsgID(mesgIds[id2]);
+		mScreen->search('Ttitl0s')->setMsgID(mesgIds[id2]);
+	}
+
+	for (int i = 0; i < 4; i++) {
+		int count = data->mResults[i]->mScore1;
+		if (count < 0) {
+			mCounterData2[i] = 0;
+			mCounters2[i]->setBlind(true);
+		} else {
+			mCounterData2[i] = count;
+			mCounters2[i]->setBlind(false);
+		}
+
+		mScreen->search('Ttitle1')->setMsgID(mesgIds[id]);
+		mScreen->search('Ttitle1s')->setMsgID(mesgIds[id]);
+	}
+
+	static_cast<J2DPicture*>(mScreen->search('Ptokyop1'))->setBlack(mColor);
+	static_cast<J2DPicture*>(mScreen->search('Ptomadp1'))->setBlack(mColor);
+	static_cast<J2DPicture*>(mScreen->search('Pkon1'))->setBlack(mColor);
+	static_cast<J2DPicture*>(mScreen->search('Pkon3'))->setBlack(mColor);
+
+	u64 paneTags1[3] = {
+		'P1st0_1',
+		'P2nd0_1',
+		'P3rd0_1',
+	};
+
+	u64 paneTags2[3] = {
+		'P1st1_1',
+		'P2nd1_1',
+		'P3rd1_1',
+	};
+
+	u64 paneTags3[3] = {
+		'P1stt3',
+		'P2ndt3',
+		'P3rdt3',
+	};
+
+	u64 paneTags4[3] = {
+		'P1stt1',
+		'P2ndt1',
+		'P3rdt1',
+	};
+
+	for (int i = 0; i < 3; i++) {
+		if (i == data->mResults[id]->mScore5) {
+			static_cast<J2DPicture*>(mScreen->search(paneTags1[i]))->setBlack(mColor);
+		} else {
+			static_cast<J2DPicture*>(mScreen->search(paneTags1[i]))->setBlack(JUtility::TColor(0, 255, 255, 0));
+		}
+
+		if (i == data->mResults[id]->mScore5) {
+			static_cast<J2DPicture*>(mScreen->search(paneTags2[i]))->setBlack(mColor);
+			static_cast<J2DPicture*>(mScreen->search(paneTags3[i]))->setBlack(mColor);
+			static_cast<J2DPicture*>(mScreen->search(paneTags4[i]))->setBlack(mColor);
+		} else {
+			static_cast<J2DPicture*>(mScreen->search(paneTags2[i]))->setBlack(JUtility::TColor(0, 255, 255, 0));
+			static_cast<J2DPicture*>(mScreen->search(paneTags3[i]))->setBlack(JUtility::TColor(0, 255, 255, 0));
+			static_cast<J2DPicture*>(mScreen->search(paneTags4[i]))->setBlack(JUtility::TColor(0, 255, 255, 0));
+		}
+	}
+
+	for (int i = 0; i < 4; i++) {
+		mCounters1[i]->update();
+		mCounters2[i]->update();
+	}
+
+	gfx.mOrthoGraph.setPort();
+	GXSetScissor(0, mScissorYPos, sys->getRenderModeHeight(), mScissorBoundsHeight);
+
+	mScreen->draw(gfx, gfx.mOrthoGraph);
+
+	data->mResults[id]->mDoDraw = true;
+
+	J2DPane* image = data->mResults[id]->mScreen->search('Pimage');
+	J2DPane* pict  = mScreen->search('Ppict0');
+	PSMTXCopy(pict->mGlobalMtx, image->mPositionMtx);
+
+	data->mResults[id]->mDoDraw = true;
+
+	image = data->mResults[id]->mScreen->search('Pimage');
+	pict  = mScreen->search('Ppict1');
+	PSMTXCopy(pict->mGlobalMtx, image->mPositionMtx);
+
+	data->draw(gfx, mScissorYPos, mScissorBoundsHeight);
+
 	/*
 stwu     r1, -0x160(r1)
 mflr     r0
@@ -2150,71 +2277,6 @@ void SceneFinalResult::doUserCallBackFunc(Resource::MgrCommand*)
 	} else {
 		JUT_PANICLINE(864, "failed");
 	}
-
-	/*
-stwu     r1, -0x40(r1)
-mflr     r0
-lis      r5, 0x52534C54@ha
-lis      r4, lbl_80498CD8@ha
-stw      r0, 0x44(r1)
-addi     r6, r5, 0x52534C54@l
-li       r5, 0x465f
-stw      r31, 0x3c(r1)
-addi     r31, r4, lbl_80498CD8@l
-li       r4, 0x4b48
-stw      r30, 0x38(r1)
-mr       r30, r3
-lwz      r3, 0x21c(r3)
-bl       isID__Q32og6Screen14DispMemberBaseFUlUx
-clrlwi.  r0, r3, 0x18
-bne      lbl_8040EC84
-addi     r3, r31, 0
-addi     r5, r31, 0x300
-li       r4, 0x358
-crclr    6
-bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8040EC84:
-addi     r3, r30, 4
-addi     r4, r31, 0x458
-bl       makeLanguageResName__Q22og9newScreenFPcPCc
-addi     r3, r1, 8
-addi     r4, r30, 4
-bl       __ct__Q212LoadResource3ArgFPCc
-lwz      r3, gLoadResourceMgr@sda21(r13)
-addi     r4, r1, 8
-bl       mountArchive__Q212LoadResource3MgrFRQ212LoadResource3Arg
-cmplwi   r3, 0
-beq      lbl_8040ECDC
-lwz      r31, 0x34(r3)
-li       r3, 0x150
-bl       __nw__FUl
-or.      r4, r3, r3
-beq      lbl_8040ECCC
-bl       __ct__Q32kh6Screen14ObjFinalResultFv
-mr       r4, r3
-
-lbl_8040ECCC:
-mr       r3, r30
-mr       r5, r31
-bl       registObj__Q26Screen9SceneBaseFPQ26Screen7ObjBaseP10JKRArchive
-b        lbl_8040ECF0
-
-lbl_8040ECDC:
-addi     r3, r31, 0
-li       r4, 0x360
-addi     r5, r2, lbl_80520198@sda21
-crclr    6
-bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8040ECF0:
-lwz      r0, 0x44(r1)
-lwz      r31, 0x3c(r1)
-lwz      r30, 0x38(r1)
-mtlr     r0
-addi     r1, r1, 0x40
-blr
-	*/
 }
 
 /**
