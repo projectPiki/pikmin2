@@ -19,15 +19,29 @@ struct J3DVertexBuffer {
 		mVtxColor[1]  = prev;
 	}
 
-	GXColor* getVtxColArrayPointer(int idx) { return mVtxColor[idx]; }
+	void swapVtxPosArrayPointer()
+	{
+		void* old  = mVtxPos[0];
+		mVtxPos[0] = mVtxPos[1];
+		mVtxPos[1] = old;
+	}
+
+	void swapVtxNrmArrayPointer()
+	{
+		void* old   = mVtxNorm[0];
+		mVtxNorm[0] = mVtxNorm[1];
+		mVtxNorm[1] = old;
+	}
 
 	J3DVertexData* getVertexData() const { return mVtxData; }
 
-	void setCurrentVtxPos(void* pVtxPos) { mCurrentVtxPos = pVtxPos; }
-
-	void setCurrentVtxNrm(void* pVtxNrm) { mCurrentVtxNorm = pVtxNrm; }
+	GXColor* getVtxColArrayPointer(int idx) { return mVtxColor[idx]; }
+	void* getVtxPosArrayPointer(int idx) { return mVtxPos[idx]; }
+	void* getVtxNrmArrayPointer(int idx) { return mVtxNorm[idx]; }
 
 	void setCurrentVtxCol(GXColor* pVtxCol) { mCurrentVtxColor = pVtxCol; }
+	void setCurrentVtxPos(void* pVtxPos) { mCurrentVtxPos = pVtxPos; }
+	void setCurrentVtxNrm(void* pVtxNrm) { mCurrentVtxNorm = pVtxNrm; }
 
 	void frameInit()
 	{
