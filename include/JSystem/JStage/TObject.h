@@ -3,24 +3,6 @@
 #include "Dolphin/gx.h"
 #include "JSystem/JStudio/TObject.h"
 #include "types.h"
-/*
-    __vt__Q26JStage7TObject:
-    .4byte 0
-    .4byte 0
-    .4byte 0
-    .4byte 0
-    .4byte JSGGetName__Q26JStage7TObjectCFv
-    .4byte JSGUpdate__Q26JStage7TObjectFv
-    .4byte JSGGetFlag__Q26JStage7TObjectCFv
-    .4byte JSGSetFlag__Q26JStage7TObjectFUl
-    .4byte JSGGetData__Q26JStage7TObjectCFUlPvUl
-    .4byte JSGSetData__Q26JStage7TObjectFUlPCvUl
-    .4byte JSGGetParent__Q26JStage7TObjectCFPPQ26JStage7TObjectPUl
-    .4byte JSGSetParent__Q26JStage7TObjectFPQ26JStage7TObjectUl
-    .4byte JSGSetRelation__Q26JStage7TObjectFbPQ26JStage7TObjectUl
-    .4byte JSGFindNodeID__Q26JStage7TObjectCFPCc
-    .4byte JSGGetNodeTransformation__Q26JStage7TObjectCFUlPA4_f
-*/
 
 namespace JStage {
 struct TObject {

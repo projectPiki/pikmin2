@@ -8,7 +8,7 @@ template <typename T>
 struct TAllocator {
 	static TAllocator get() { }
 
-	inline TAllocator() { }
+	// inline TAllocator() { }
 
 	u8 _00; // _00
 };

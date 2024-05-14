@@ -9,6 +9,8 @@ namespace JGadget {
 template <typename Element, typename Allocator>
 struct TList {
 	struct iterator : std::iterator<std::input_iterator_tag, Element> {
+		iterator(Element* elem) { mElement = elem; }
+
 		Element* mElement;
 	};
 	~TList() { } // unused/inlined
@@ -50,8 +52,18 @@ struct TList_pointer_void : public TList<void*, TVoidAllocator> {
 	void* mPrev;     // _0C
 };
 
-// template <typename Iterator, typename Value>
-// void findUpperBound_binary_current(Iterator, Iterator, Iterator, const Value&);
+template <typename T>
+struct TList_pointer : public TList_pointer_void {
+
+	TList_pointer(const TVoidAllocator& allocator)
+	    : TList_pointer_void(allocator)
+	{
+	}
+
+	~TList_pointer() { }
+
+	// _00-_10 = TList_pointer_void
+};
 
 template <typename Iterator, typename Value, typename Predicate>
 void findUpperBound_binary_current(Iterator, Iterator, Iterator, const Value&, Predicate);

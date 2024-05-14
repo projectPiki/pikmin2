@@ -33,7 +33,7 @@ struct ObjectSystem : public JStage::TSystem, public ObjectBase {
 	// _00     = VTABLE (JStage::TSystem)
 	// _04     = VTABLE2 (ObjectBase)
 	// _04-_20 = ObjectBase
-	JGadget::TList_pointer_void mListPointerVoid; // _20
+	JGadget::TList_pointer<JStage::TObject*> mObjListPointer; // _20
 };
 
 } // namespace P2JST
