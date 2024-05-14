@@ -541,10 +541,45 @@ bool JASAramStream::load()
 		return false;
 	}
 
-	// u32
-	// for (int i = 0; i < _24A; i++) {
-	// 	if (JKRAram::mainRamToAram(sReadBuffer, ))
-	// }
+	u32* preBuffer = (u32*)sReadBuffer;
+	u32 size       = _238 + (_1FC * sBlockSize);
+	for (int i = 0; i < _24A; i++) {
+		if (JKRMainRamToAram((u8*)(sReadBuffer + (preBuffer[1] + 0x20)), size + (i * sBlockSize * _250), ((u32*)sReadBuffer)[1], Switch_0,
+		                     0, nullptr, -1, nullptr)
+		    == 0) {
+			sFatalErrorFlag = true;
+			return false;
+		}
+	}
+
+	_1FC++;
+
+	if (_1FC >= _1F8) {
+		int val200 = _200 + (_1F8 - 1);
+		if (_258) {
+			while (val200 > val2) {
+				val200 = (val2 - val200) + val4;
+			}
+		}
+		if (val200 == val2 || val200 + 2 == val2) {
+			_1F8 = _250;
+			OSSendMessage(&mMsgQueueB, (void*)5, OS_MESSAGE_BLOCK);
+		} else {
+			_1F8 = _250 - 1;
+		}
+
+		for (int i = 0; i < _24A; i++) {
+			_220[0][i] = ((s16*)preBuffer)[2 * i + 4];
+			_220[1][i] = ((s16*)preBuffer)[2 * i + 5];
+		}
+		_1FC = 0;
+	}
+
+	_200++;
+	if (_200 > val2 && _258) {
+		_200 = val4;
+	}
+	return true;
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -781,11 +816,12 @@ s32 JASAramStream::channelProcCallback(void* stream) { return static_cast<JASAra
 s32 JASAramStream::dvdErrorCheck(void*)
 {
 	u32 status = DVDGetDriveStatus();
+
+	// WHY WILL THIS NOT SPAWN A JUMP TABLE
 	switch (status) {
 	case DVD_STATE_END:
 		sSystemPauseFlag = false;
 		break;
-	case DVD_STATE_BUSY:
 	case DVD_STATE_WAITING:
 	case DVD_STATE_COVER_CLOSED:
 	case DVD_STATE_NO_DISK:
@@ -796,8 +832,11 @@ s32 JASAramStream::dvdErrorCheck(void*)
 	case DVD_STATE_IGNORED:
 	case DVD_STATE_CANCELED:
 	case DVD_STATE_RETRY:
-	case DVD_STATE_FATAL_ERROR:
+	case 0xFFFFFFFF:
+	default:
 		sSystemPauseFlag = true;
+		break;
+	case DVD_STATE_BUSY:
 		break;
 	}
 	return 0;

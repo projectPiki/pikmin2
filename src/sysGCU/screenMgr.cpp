@@ -10,6 +10,8 @@ static const u32 padding[3] = { 0, 0, 0 };
 
 namespace Screen {
 
+Mgr* Mgr::sScreenMgr;
+
 /**
  * @note Address: N/A
  * @note Size: 0x60
@@ -91,8 +93,21 @@ void MgrCommand::clearDispMemberBuf()
  */
 void MgrCommand::setArg(SceneArgBase* arg)
 {
-	P2ASSERTLINE(405, arg);
-	// UNUSED FUNCTION
+	OSLockMutex(&mMutex);
+	if (arg) {
+		P2ASSERTLINE(258, (u32)arg->getClassSize() <= 0x40);
+
+		mScreenArgBufferPtr = mScreenArgBuffer;
+		memcpy(&mScreenArgBuffer, arg, arg->getClassSize());
+	} else {
+		if (mScreenArgBufferPtr) {
+			clearArgBuf();
+		}
+
+		mScreenArgBufferPtr = nullptr;
+	}
+
+	OSUnlockMutex(&mMutex);
 }
 
 /**
@@ -103,18 +118,18 @@ void MgrCommand::setDispMember(og::Screen::DispMemberBase* disp)
 {
 	OSLockMutex(&mMutex);
 
-	if (!disp) {
-		mDispBufferPtr = nullptr;
-	}
-
-	if (disp->getSize() <= 0x400) {
-		mDispBufferPtr = (og::Screen::DispMemberBase*)mDispBuffer;
-		memcpy(mDispBuffer, disp, disp->getSize());
-		mDispBufferPtr->setSubMemberAll();
+	if (disp) {
+		if (disp->getSize() <= 0x400) {
+			mDispBufferPtr = (og::Screen::DispMemberBase*)mDispBuffer;
+			memcpy(mDispBuffer, disp, disp->getSize());
+			mDispBufferPtr->setSubMemberAll();
+		} else {
+			char temp[12];
+			disp->getMemberName(temp);
+			JUT_PANICLINE(293, "dispMember[%s] Size over. \n %d max:%d", temp, disp->getSize(), 0x400);
+		}
 	} else {
-		char temp[64];
-		disp->getMemberName(temp);
-		JUT_PANICLINE(293, "dispMember[%s] Size over. \n %d max:%d", temp, disp->getSize(), 0x400);
+		mDispBufferPtr = nullptr;
 	}
 
 	OSUnlockMutex(&mMutex);
@@ -129,16 +144,9 @@ void MgrCommand::setTypeSetScene(SetSceneArg& arg)
 	mName    = "SetScene";
 	mArgType = CommandType_Set;
 
-	OSLockMutex(&mMutex);
+	setArg(&arg);
 
-	// should be arg != nullptr?
-	if (arg._08) {
-		P2ASSERTLINE(258, arg.getClassSize() < 0x40);
-		mScreenArgBufferPtr = mScreenArgBuffer;
-		memcpy(mScreenArgBufferPtr, &arg, arg.getClassSize());
-	}
-
-	OSUnlockMutex(&mMutex);
+	setDispMember(arg.mDispMember);
 }
 
 /**
@@ -150,20 +158,7 @@ void MgrCommand::setTypeStartScene(SceneArgBase* arg)
 	OSLockMutex(&mMutex);
 	mName    = "StartScene";
 	mArgType = CommandType_Start;
-	OSLockMutex(&mMutex);
-	if (arg) {
-		P2ASSERTLINE(258, arg->getClassSize() <= 0x40);
-
-		mScreenArgBufferPtr = mScreenArgBuffer;
-		memcpy(&mScreenArgBuffer, arg, arg->getClassSize());
-	} else {
-		if (mScreenArgBufferPtr) {
-			clearArgBuf();
-		}
-
-		mScreenArgBufferPtr = nullptr;
-	}
-
+	setArg(arg);
 	OSUnlockMutex(&mMutex);
 }
 
@@ -176,21 +171,7 @@ void MgrCommand::setTypeEndScene(SceneArgBase* arg)
 	OSLockMutex(&mMutex);
 	mName    = "EndScene";
 	mArgType = CommandType_End;
-	OSLockMutex(&mMutex);
-	if (arg) {
-		P2ASSERTLINE(258, arg->getClassSize() <= 0x40);
-
-		mScreenArgBufferPtr = mScreenArgBuffer;
-		memcpy(&mScreenArgBuffer, arg, arg->getClassSize());
-	} else {
-		if (mScreenArgBufferPtr) {
-			clearArgBuf();
-		}
-
-		mScreenArgBufferPtr = nullptr;
-	}
-
-	OSUnlockMutex(&mMutex);
+	setArg(arg);
 	OSUnlockMutex(&mMutex);
 }
 
@@ -198,10 +179,7 @@ void MgrCommand::setTypeEndScene(SceneArgBase* arg)
  * @note Address: N/A
  * @note Size: 0x8C
  */
-void MgrCommand::setTypeInvalid()
-{
-	// UNUSED FUNCTION
-}
+void MgrCommand::setTypeInvalid() { setTypeEndScene(nullptr); }
 
 /**
  * @note Address: 0x80452354
@@ -225,12 +203,6 @@ Mgr::Mgr()
 		mSceneInfoList.add(&info[i]);
 	}
 }
-
-/**
- * @note Address: 0x80452520
- * @note Size: 0x60
- */
-SceneInfoList::~SceneInfoList() { }
 
 /**
  * @note Address: 0x80452580
@@ -289,23 +261,27 @@ void Mgr::create()
  */
 bool Mgr::startScene(StartSceneArg* arg)
 {
-	if (mBackupScene && mBackupScene->confirmStartScene(arg)) {
+	bool result = true;
+	if (!mBackupScene || (mBackupScene && mBackupScene->confirmStartScene(arg))) {
+		bool isReady = false;
 		if (mAvailableCommands.mChild) {
-			return true;
+			isReady = true;
+		} else if (mBackupScene) {
+			if (!mBackupScene->start(arg)) {
+				isReady = true;
+			}
+		} else {
+			result = false;
 		}
 
-		// WTF going on?
-		if (mBackupScene && !mBackupScene->start(arg)) {
-			return true;
+		if (isReady) {
+			Screen::MgrCommand* cmd = getNewCommand();
+			if (!cmd) {
+				result = false;
+			} else {
+				cmd->setTypeStartScene(arg);
+			}
 		}
-
-		Screen::MgrCommand* cmd = getNewCommand();
-		if (!cmd) {
-			return false;
-		}
-
-		cmd->setTypeStartScene(arg);
-		OSUnlockMutex(&cmd->mMutex);
 	} else {
 		char ownerStr[12];
 		og::Screen::TagToName((u32)mBackupScene->getOwnerID(), ownerStr);
@@ -313,156 +289,11 @@ bool Mgr::startScene(StartSceneArg* arg)
 		char memberIdStr[12];
 		og::Screen::TagToName(mBackupScene->getMemberID(), memberIdStr);
 
-		JUT_PANICLINE(427, "can\'t startScene.\n owner[%s] member[%s]\n", ownerStr, memberIdStr);
+		JUT_PANICLINE(530, "can\'t startScene.\n owner[%s] member[%s]\n", ownerStr, memberIdStr);
+		result = false;
 	}
 
-	return false;
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	lis      r5, lbl_8049B8C8@ha
-	stw      r0, 0x44(r1)
-	stmw     r27, 0x2c(r1)
-	mr       r27, r3
-	mr       r28, r4
-	addi     r30, r5, lbl_8049B8C8@l
-	li       r29, 1
-	lwz      r3, 0x1c(r3)
-	cmplwi   r3, 0
-	beq      lbl_8045272C
-	beq      lbl_8045285C
-	bl       confirmStartScene__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8045285C
-
-	lbl_8045272C:
-	lwz      r0, 0x3c(r27)
-	li       r31, 0
-	cmplwi   r0, 0
-	beq      lbl_80452744
-	li       r31, 1
-	b        lbl_8045276C
-
-	lbl_80452744:
-	lwz      r3, 0x1c(r27)
-	cmplwi   r3, 0
-	beq      lbl_80452768
-	mr       r4, r28
-	bl       start__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8045276C
-	li       r31, 1
-	b        lbl_8045276C
-
-	lbl_80452768:
-	li       r29, 0
-
-	lbl_8045276C:
-	clrlwi.  r0, r31, 0x18
-	beq      lbl_804528BC
-	mr       r3, r27
-	bl       getNewCommand__Q26Screen3MgrFv
-	or.      r31, r3, r3
-	bne      lbl_8045278C
-	li       r29, 0
-	b        lbl_804528BC
-
-	lbl_8045278C:
-	addi     r3, r31, 0x464
-	bl       OSLockMutex
-	addi     r3, r30, 0x5c
-	li       r0, 1
-	stw      r3, 0x14(r31)
-	addi     r3, r31, 0x464
-	stw      r0, 0x18(r31)
-	bl       OSLockMutex
-	cmplwi   r28, 0
-	beq      lbl_80452814
-	mr       r3, r28
-	lwz      r12, 0(r28)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	cmplwi   r3, 0x40
-	ble      lbl_804527E4
-	addi     r3, r30, 0xc
-	addi     r5, r30, 0x1c
-	li       r4, 0x102
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-	lbl_804527E4:
-	addi     r0, r31, 0x20
-	mr       r3, r28
-	stw      r0, 0x1c(r31)
-	lwz      r12, 0(r28)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	mr       r5, r3
-	mr       r4, r28
-	addi     r3, r31, 0x20
-	bl       memcpy
-	b        lbl_80452848
-
-	lbl_80452814:
-	lwz      r0, 0x1c(r31)
-	cmplwi   r0, 0
-	beq      lbl_80452840
-	addi     r3, r31, 0x464
-	bl       OSLockMutex
-	addi     r3, r31, 0x20
-	li       r4, 0xcd
-	li       r5, 0x40
-	bl       memset
-	addi     r3, r31, 0x464
-	bl       OSUnlockMutex
-
-	lbl_80452840:
-	li       r0, 0
-	stw      r0, 0x1c(r31)
-
-	lbl_80452848:
-	addi     r3, r31, 0x464
-	bl       OSUnlockMutex
-	addi     r3, r31, 0x464
-	bl       OSUnlockMutex
-	b        lbl_804528BC
-
-	lbl_8045285C:
-	lwz      r3, 0x1c(r27)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	addi     r5, r1, 0x14
-	li       r3, 0
-	bl       TagToName__Q22og6ScreenFUxPc
-	lwz      r3, 0x1c(r27)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	addi     r5, r1, 8
-	bl       TagToName__Q22og6ScreenFUxPc
-	addi     r3, r30, 0xc
-	addi     r5, r30, 0x98
-	addi     r6, r1, 0x14
-	addi     r7, r1, 8
-	li       r4, 0x212
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-	li       r29, 0
-
-	lbl_804528BC:
-	mr       r3, r29
-	lmw      r27, 0x2c(r1)
-	lwz      r0, 0x44(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+	return result;
 }
 
 /**
@@ -472,136 +303,32 @@ bool Mgr::startScene(StartSceneArg* arg)
 bool Mgr::endScene(Screen::EndSceneArg* arg)
 {
 	bool ret = true;
-	if (mBackupScene && mBackupScene->confirmEndScene(arg)) {
+	if (!mBackupScene || (mBackupScene && mBackupScene->confirmEndScene(arg))) {
 
-		getNewCommand()->setTypeEndScene(arg);
+		bool isReady = false;
+		if (mAvailableCommands.mChild) {
+			isReady = true;
+		} else if (mBackupScene) {
+			if (!mBackupScene->end(arg)) {
+				isReady = true;
+			}
+		} else {
+			ret = false;
+		}
+
+		if (isReady) {
+			Screen::MgrCommand* cmd = getNewCommand();
+			if (!cmd) {
+				ret = false;
+			} else {
+				cmd->setTypeEndScene(arg);
+			}
+		}
+
 	} else {
 		ret = false;
 	}
 	return ret;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r5, lbl_8049B8C8@ha
-	stw      r0, 0x24(r1)
-	stmw     r27, 0xc(r1)
-	mr       r27, r3
-	mr       r28, r4
-	addi     r30, r5, lbl_8049B8C8@l
-	li       r29, 1
-	lwz      r3, 0x1c(r3)
-	cmplwi   r3, 0
-	beq      lbl_80452914
-	beq      lbl_80452A44
-	bl       confirmEndScene__Q26Screen9SceneBaseFPQ26Screen11EndSceneArg
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80452A44
-
-lbl_80452914:
-	lwz      r0, 0x3c(r27)
-	li       r31, 0
-	cmplwi   r0, 0
-	beq      lbl_8045292C
-	li       r31, 1
-	b        lbl_80452954
-
-lbl_8045292C:
-	lwz      r3, 0x1c(r27)
-	cmplwi   r3, 0
-	beq      lbl_80452950
-	mr       r4, r28
-	bl       end__Q26Screen9SceneBaseFPQ26Screen11EndSceneArg
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80452954
-	li       r31, 1
-	b        lbl_80452954
-
-lbl_80452950:
-	li       r29, 0
-
-lbl_80452954:
-	clrlwi.  r0, r31, 0x18
-	beq      lbl_80452A48
-	mr       r3, r27
-	bl       getNewCommand__Q26Screen3MgrFv
-	or.      r31, r3, r3
-	bne      lbl_80452974
-	li       r29, 0
-	b        lbl_80452A48
-
-lbl_80452974:
-	addi     r3, r31, 0x464
-	bl       OSLockMutex
-	addi     r3, r30, 0x68
-	li       r0, 2
-	stw      r3, 0x14(r31)
-	addi     r3, r31, 0x464
-	stw      r0, 0x18(r31)
-	bl       OSLockMutex
-	cmplwi   r28, 0
-	beq      lbl_804529FC
-	mr       r3, r28
-	lwz      r12, 0(r28)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	cmplwi   r3, 0x40
-	ble      lbl_804529CC
-	addi     r3, r30, 0xc
-	addi     r5, r30, 0x1c
-	li       r4, 0x102
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804529CC:
-	addi     r0, r31, 0x20
-	mr       r3, r28
-	stw      r0, 0x1c(r31)
-	lwz      r12, 0(r28)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	mr       r5, r3
-	mr       r4, r28
-	addi     r3, r31, 0x20
-	bl       memcpy
-	b        lbl_80452A30
-
-lbl_804529FC:
-	lwz      r0, 0x1c(r31)
-	cmplwi   r0, 0
-	beq      lbl_80452A28
-	addi     r3, r31, 0x464
-	bl       OSLockMutex
-	addi     r3, r31, 0x20
-	li       r4, 0xcd
-	li       r5, 0x40
-	bl       memset
-	addi     r3, r31, 0x464
-	bl       OSUnlockMutex
-
-lbl_80452A28:
-	li       r0, 0
-	stw      r0, 0x1c(r31)
-
-lbl_80452A30:
-	addi     r3, r31, 0x464
-	bl       OSUnlockMutex
-	addi     r3, r31, 0x464
-	bl       OSUnlockMutex
-	b        lbl_80452A48
-
-lbl_80452A44:
-	li       r29, 0
-
-lbl_80452A48:
-	mr       r3, r29
-	lmw      r27, 0xc(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
@@ -659,223 +386,69 @@ void Mgr::updateCurrentScene()
  */
 void Mgr::update()
 {
-	JUT_PANICLINE(999, "Mismatch arg. current scene:%d arg:%d\n"); // temp for rodata
-	                                                               /*
-	                                                               stwu     r1, -0x20(r1)
-	                                                               mflr     r0
-	                                                               stw      r0, 0x24(r1)
-	                                                               stw      r31, 0x1c(r1)
-	                                                               mr       r31, r3
-	                                                               lis      r3, lbl_8049B8C8@ha
-	                                                               stw      r30, 0x18(r1)
-	                                                               stw      r29, 0x14(r1)
-	                                                               addi     r29, r3, lbl_8049B8C8@l
-	                                                               stw      r28, 0x10(r1)
-	                                                               lwz      r4, 0x20(r31)
-	                                                               lwz      r28, 0x3c(r31)
-	                                                               cmplwi   r4, 0
-	                                                               beq      lbl_80452BC0
-	                                                               lwz      r0, 0x1c(r4)
-	                                                               rlwinm.  r0, r0, 0, 0x13, 0x13
-	                                                               beq      lbl_80452BC0
-	                                                               mr       r3, r28
-	                                                               b        lbl_80452BB8
-	                                                           
-	                                                           lbl_80452BB4:
-	                                                               lwz      r3, 4(r3)
-	                                                           
-	                                                           lbl_80452BB8:
-	                                                               cmplwi   r3, 0
-	                                                               bne      lbl_80452BB4
-	                                                           
-	                                                           lbl_80452BC0:
-	                                                               cmplwi   r28, 0
-	                                                               beq      lbl_80452E10
-	                                                               addi     r3, r28, 0x464
-	                                                               bl       OSLockMutex
-	                                                               lwz      r0, 0x18(r28)
-	                                                               lwz      r3, 0x1c(r31)
-	                                                               cmpwi    r0, 1
-	                                                               beq      lbl_80452C68
-	                                                               bge      lbl_80452BF4
-	                                                               cmpwi    r0, -1
-	                                                               beq      lbl_80452E08
-	                                                               bge      lbl_80452C00
-	                                                               b        lbl_80452DF4
-	                                                           
-	                                                           lbl_80452BF4:
-	                                                               cmpwi    r0, 3
-	                                                               bge      lbl_80452DF4
-	                                                               b        lbl_80452D4C
-	                                                           
-	                                                           lbl_80452C00:
-	                                                               lwz      r29, 0x1c(r28)
-	                                                               mr       r3, r31
-	                                                               bl       isCurrentSceneLoading__Q26Screen3MgrFv
-	                                                               clrlwi.  r0, r3, 0x18
-	                                                               bne      lbl_80452E08
-	                                                               lbz      r0, 8(r29)
-	                                                               cmplwi   r0, 0
-	                                                               bne      lbl_80452C30
-	                                                               mr       r3, r31
-	                                                               bl       isSceneFinish__Q26Screen3MgrFv
-	                                                               clrlwi.  r0, r3, 0x18
-	                                                               beq      lbl_80452E08
-	                                                           
-	                                                           lbl_80452C30:
-	                                                               lwz      r5, 0x60(r28)
-	                                                               mr       r3, r31
-	                                                               mr       r4, r29
-	                                                               bl       changeScene__Q26Screen3MgrFRQ26Screen11SetSceneArgPUc
-	                                                               addi     r3, r28, 0x464
-	                                                               bl       OSLockMutex
-	                                                               mr       r3, r28
-	                                                               bl       del__5CNodeFv
-	                                                               mr       r4, r28
-	                                                               addi     r3, r31, 0x44
-	                                                               bl       add__5CNodeFP5CNode
-	                                                               addi     r3, r28, 0x464
-	                                                               bl       OSUnlockMutex
-	                                                               b        lbl_80452E08
-	                                                           
-	                                                           lbl_80452C68:
-	                                                               cmplwi   r3, 0
-	                                                               bne      lbl_80452C84
-	                                                               addi     r3, r29, 0xc
-	                                                               addi     r5, r29, 0x1c
-	                                                               li       r4, 0x2d6
-	                                                               crclr    6
-	                                                               bl       panic_f__12JUTExceptionFPCciPCce
-	                                                           
-	                                                           lbl_80452C84:
-	                                                               lwz      r3, 0x1c(r28)
-	                                                               cmplwi   r3, 0
-	                                                               beq      lbl_80452D08
-	                                                               lwz      r12, 0(r3)
-	                                                               lwz      r12, 8(r12)
-	                                                               mtctr    r12
-	                                                               bctrl
-	                                                               mr       r30, r3
-	                                                               lwz      r3, 0x1c(r31)
-	                                                               lwz      r12, 0(r3)
-	                                                               lwz      r12, 8(r12)
-	                                                               mtctr    r12
-	                                                               bctrl
-	                                                               cmpw     r3, r30
-	                                                               beq      lbl_80452D08
-	                                                               lwz      r3, 0x1c(r28)
-	                                                               lwz      r12, 0(r3)
-	                                                               lwz      r12, 8(r12)
-	                                                               mtctr    r12
-	                                                               bctrl
-	                                                               mr       r30, r3
-	                                                               lwz      r3, 0x1c(r31)
-	                                                               lwz      r12, 0(r3)
-	                                                               lwz      r12, 8(r12)
-	                                                               mtctr    r12
-	                                                               bctrl
-	                                                               mr       r6, r3
-	                                                               mr       r7, r30
-	                                                               addi     r3, r29, 0xc
-	                                                               addi     r5, r29, 0x110
-	                                                               li       r4, 0x2de
-	                                                               crclr    6
-	                                                               bl       panic_f__12JUTExceptionFPCciPCce
-	                                                           
-	                                                           lbl_80452D08:
-	                                                               lwz      r3, 0x1c(r31)
-	                                                               lwz      r4, 0x1c(r28)
-	                                                               bl       start__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg
-	                                                               clrlwi.  r0, r3, 0x18
-	                                                               beq      lbl_80452E08
-	                                                               addi     r3, r28, 0x464
-	                                                               bl       OSLockMutex
-	                                                               mr       r3, r28
-	                                                               bl       del__5CNodeFv
-	                                                               mr       r4, r28
-	                                                               addi     r3, r31, 0x44
-	                                                               bl       add__5CNodeFP5CNode
-	                                                               addi     r3, r28, 0x464
-	                                                               bl       OSUnlockMutex
-	                                                               lwz      r3, 0x1c(r31)
-	                                                               bl       update__Q26Screen9SceneBaseFv
-	                                                               b        lbl_80452E08
-	                                                           
-	                                                           lbl_80452D4C:
-	                                                               cmplwi   r3, 0
-	                                                               bne      lbl_80452D68
-	                                                               addi     r3, r29, 0xc
-	                                                               addi     r5, r29, 0x1c
-	                                                               li       r4, 0x2f3
-	                                                               crclr    6
-	                                                               bl       panic_f__12JUTExceptionFPCciPCce
-	                                                           
-	                                                           lbl_80452D68:
-	                                                               lwz      r3, 0x1c(r28)
-	                                                               cmplwi   r3, 0
-	                                                               beq      lbl_80452DB8
-	                                                               lwz      r12, 0(r3)
-	                                                               lwz      r12, 8(r12)
-	                                                               mtctr    r12
-	                                                               bctrl
-	                                                               mr       r30, r3
-	                                                               lwz      r3, 0x1c(r31)
-	                                                               lwz      r12, 0(r3)
-	                                                               lwz      r12, 8(r12)
-	                                                               mtctr    r12
-	                                                               bctrl
-	                                                               cmpw     r3, r30
-	                                                               beq      lbl_80452DB8
-	                                                               addi     r3, r29, 0xc
-	                                                               addi     r5, r29, 0x1c
-	                                                               li       r4, 0x2f7
-	                                                               crclr    6
-	                                                               bl       panic_f__12JUTExceptionFPCciPCce
-	                                                           
-	                                                           lbl_80452DB8:
-	                                                               lwz      r3, 0x1c(r31)
-	                                                               lwz      r4, 0x1c(r28)
-	                                                               bl       end__Q26Screen9SceneBaseFPQ26Screen11EndSceneArg
-	                                                               clrlwi.  r0, r3, 0x18
-	                                                               beq      lbl_80452E08
-	                                                               addi     r3, r28, 0x464
-	                                                               bl       OSLockMutex
-	                                                               mr       r3, r28
-	                                                               bl       del__5CNodeFv
-	                                                               mr       r4, r28
-	                                                               addi     r3, r31, 0x44
-	                                                               bl       add__5CNodeFP5CNode
-	                                                               addi     r3, r28, 0x464
-	                                                               bl       OSUnlockMutex
-	                                                               b        lbl_80452E08
-	                                                           
-	                                                           lbl_80452DF4:
-	                                                               addi     r3, r29, 0xc
-	                                                               addi     r5, r29, 0x1c
-	                                                               li       r4, 0x30d
-	                                                               crclr    6
-	                                                               bl       panic_f__12JUTExceptionFPCciPCce
-	                                                           
-	                                                           lbl_80452E08:
-	                                                               addi     r3, r28, 0x464
-	                                                               bl       OSUnlockMutex
-	                                                           
-	                                                           lbl_80452E10:
-	                                                               lwz      r3, 0x1c(r31)
-	                                                               cmplwi   r3, 0
-	                                                               beq      lbl_80452E20
-	                                                               bl       update__Q26Screen9SceneBaseFv
-	                                                           
-	                                                           lbl_80452E20:
-	                                                               lwz      r0, 0x24(r1)
-	                                                               lwz      r31, 0x1c(r1)
-	                                                               lwz      r30, 0x18(r1)
-	                                                               lwz      r29, 0x14(r1)
-	                                                               lwz      r28, 0x10(r1)
-	                                                               mtlr     r0
-	                                                               addi     r1, r1, 0x20
-	                                                               blr
-	                                                               */
+	MgrCommand* cmd = static_cast<MgrCommand*>(mAvailableCommands.mChild);
+	if (mController && mController->isButtonDown(Controller::PRESS_START)) {
+		MgrCommand* tmp = cmd;
+		while (tmp) {
+			tmp = static_cast<MgrCommand*>(tmp->mNext);
+		}
+	}
+	if (cmd) {
+		OSLockMutex(&cmd->mMutex);
+		SceneBase* scene = mBackupScene;
+		switch (cmd->mArgType) {
+		case MgrCommand::CommandType_Set: {
+			SetSceneArg* arg = static_cast<SetSceneArg*>(cmd->mScreenArgBufferPtr);
+
+			if (!isCurrentSceneLoading() && (arg->_08 || isSceneFinish())) {
+				changeScene(*arg, (u8*)cmd->mDispBufferPtr);
+				releaseCommand(cmd);
+			}
+		} break;
+
+		case MgrCommand::CommandType_Start: {
+			P2ASSERTLINE(726, scene);
+			SetSceneArg* arg = static_cast<SetSceneArg*>(cmd->mScreenArgBufferPtr);
+			if (arg) {
+				if (mBackupScene->getSceneType() != arg->getSceneType()) {
+					JUT_PANICLINE(734, "Mismatch arg. current scene:%d arg:%d\n", mBackupScene->getSceneType(),
+					              static_cast<SetSceneArg*>(cmd->mScreenArgBufferPtr)->getSceneType());
+				}
+			}
+
+			if (mBackupScene->start(static_cast<StartSceneArg*>(cmd->mScreenArgBufferPtr))) {
+				releaseCommand(cmd);
+				mBackupScene->update();
+			}
+		} break;
+
+		case MgrCommand::CommandType_End: {
+			P2ASSERTLINE(755, scene);
+			SetSceneArg* arg = static_cast<SetSceneArg*>(cmd->mScreenArgBufferPtr);
+			if (arg) {
+				if (mBackupScene->getSceneType() != arg->getSceneType()) {
+					P2ASSERTLINE(759, false);
+				}
+			}
+			if (mBackupScene->end(static_cast<EndSceneArg*>(cmd->mScreenArgBufferPtr))) {
+				releaseCommand(cmd);
+			}
+		} break;
+
+		default:
+			P2ASSERTLINE(781, false);
+			break;
+
+		case MgrCommand::CommandType_NULL:
+			break;
+		}
+
+		OSUnlockMutex(&cmd->mMutex);
+	}
+
+	if (mBackupScene) {
+		mBackupScene->update();
+	}
 }
 
 /**
@@ -927,18 +500,7 @@ SceneBase* Mgr::getSceneBase(s32 type)
  */
 void Mgr::createNewBackupSceneInfo(SceneBase* scene)
 {
-	P2ASSERTLINE(855, scene);
-	SceneInfoList* info = (SceneInfoList*)mSceneInfoList.mChild;
-	if (!info) {
-		JUT_PANICLINE(872, "can\'t create New SceneInfoList.\n");
-	} else {
-		info->del();
-		og::Screen::DispMemberBase* disp = scene->mDispMember;
-		info->mSceneType                 = scene->getSceneType();
-		memcpy(info->mDispMemberBuffer, disp, disp->getSize());
-		((og::Screen::DispMemberBase*)&info->mDispMemberBuffer)->setSubMemberAll();
-	}
-	mBackupInfoList.add(info);
+	// UNUSED/INLINED
 }
 
 /**
@@ -972,7 +534,18 @@ void Mgr::changeScene(SetSceneArg& arg, u8* dispBuf)
 	SceneBase* scene = mBackupScene;
 	if (scene) {
 		if (arg.mDoCreateBackup) {
-			createNewBackupSceneInfo(scene);
+			P2ASSERTLINE(855, scene);
+			SceneInfoList* info = getFirstList();
+			if (!info) {
+				JUT_PANICLINE(872, "can\'t create New SceneInfoList.\n");
+			} else {
+				info->del();
+				og::Screen::DispMemberBase* disp = scene->mDispMember;
+				info->mSceneType                 = scene->getSceneType();
+				memcpy(info->mDispMemberBuffer, disp, disp->getSize());
+				((og::Screen::DispMemberBase*)&info->mDispMemberBuffer)->setSubMemberAll();
+			}
+			mBackupInfoList.addHead(info);
 		}
 		mBackupScene->destroy();
 		mCurrHeap->freeAll();
@@ -993,177 +566,6 @@ void Mgr::changeScene(SetSceneArg& arg, u8* dispBuf)
 			clearBackupSceneInfo();
 		}
 	}
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stmw     r25, 0x14(r1)
-	mr       r30, r4
-	lis      r4, lbl_8049B8C8@ha
-	mr       r29, r3
-	mr       r3, r30
-	mr       r31, r5
-	addi     r27, r4, lbl_8049B8C8@l
-	lwz      r12, 0(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, particle2dMgr@sda21(r13)
-	mr       r25, r3
-	cmplwi   r0, 0
-	beq      lbl_80452FD8
-	mr       r3, r0
-	li       r4, 0
-	bl       killGroup__14TParticle2dMgrFUc
-	lwz      r3, particle2dMgr@sda21(r13)
-	li       r4, 1
-	bl       killGroup__14TParticle2dMgrFUc
-
-lbl_80452FD8:
-	lwz      r26, 0x1c(r29)
-	cmplwi   r26, 0
-	beq      lbl_8045309C
-	lbz      r0, 9(r30)
-	cmplwi   r0, 0
-	beq      lbl_8045308C
-	cmplwi   r26, 0
-	bne      lbl_8045300C
-	addi     r3, r27, 0xc
-	addi     r5, r27, 0x1c
-	li       r4, 0x357
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8045300C:
-	lwz      r28, 0x88(r29)
-	cmplwi   r28, 0
-	bne      lbl_80453030
-	addi     r3, r27, 0xc
-	addi     r5, r27, 0x14c
-	li       r4, 0x368
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-	b        lbl_80453080
-
-lbl_80453030:
-	mr       r3, r28
-	bl       del__5CNodeFv
-	mr       r3, r26
-	lwz      r26, 0x21c(r26)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x18(r28)
-	mr       r3, r26
-	lwz      r12, 0(r26)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r5, r3
-	mr       r4, r26
-	addi     r3, r28, 0x1c
-	bl       memcpy
-	addi     r3, r28, 0x1c
-	bl       setSubMemberAll__Q32og6Screen14DispMemberBaseFv
-
-lbl_80453080:
-	mr       r4, r28
-	addi     r3, r29, 0x60
-	bl       addHead__5CNodeFP5CNode
-
-lbl_8045308C:
-	lwz      r3, 0x1c(r29)
-	bl       destroy__Q26Screen9SceneBaseFv
-	lwz      r3, 0x5c(r29)
-	bl       freeAll__7JKRHeapFv
-
-lbl_8045309C:
-	lwz      r3, sCurrentHeap__7JKRHeap@sda21(r13)
-	bl       getTotalFreeSize__7JKRHeapFv
-	stw      r3, 0x24(r29)
-	lwz      r3, gResMgr2D@sda21(r13)
-	lwz      r3, 4(r3)
-	lwz      r0, 0x38(r3)
-	stw      r0, 0x28(r29)
-	lwz      r26, sCurrentHeap__7JKRHeap@sda21(r13)
-	lwz      r3, 0x5c(r29)
-	bl       becomeCurrentHeap__7JKRHeapFv
-	mr       r3, r29
-	mr       r4, r25
-	lwz      r12, 0(r29)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	mr       r28, r3
-	mr       r3, r26
-	bl       becomeCurrentHeap__7JKRHeapFv
-	cmplwi   r28, 0
-	bne      lbl_80453104
-	addi     r3, r27, 0xc
-	addi     r5, r27, 0x138
-	li       r4, 0x34b
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80453104:
-	lwz      r0, 0x20(r29)
-	stw      r0, 0x104(r28)
-	stw      r28, 0x1c(r29)
-	lwz      r3, 0x1c(r29)
-	cmplwi   r3, 0
-	beq      lbl_804531B0
-	lwz      r0, 0xc(r30)
-	cmplwi   r0, 0
-	beq      lbl_80453138
-	lwz      r4, 0x21c(r3)
-	mr       r3, r29
-	mr       r5, r31
-	bl       copyDispMember__Q26Screen3MgrFPUcPUc
-
-lbl_80453138:
-	lwz      r3, 0x1c(r29)
-	stw      r29, 0x108(r3)
-	lwz      r0, 0x20(r29)
-	lwz      r3, 0x1c(r29)
-	stw      r0, 0x104(r3)
-	lwz      r3, 0x1c(r29)
-	bl       create__Q26Screen9SceneBaseFv
-	lwz      r3, 0x1c(r29)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_804531B0
-	lwz      r28, 0x70(r29)
-	b        lbl_80453194
-
-lbl_80453178:
-	lwz      r27, 4(r28)
-	mr       r3, r28
-	bl       del__5CNodeFv
-	mr       r4, r28
-	addi     r3, r29, 0x78
-	bl       add__5CNodeFP5CNode
-	mr       r28, r27
-
-lbl_80453194:
-	cmplwi   r28, 0
-	bne      lbl_80453178
-	li       r0, 0
-	stw      r0, 0x70(r29)
-	stw      r0, 0x6c(r29)
-	stw      r0, 0x68(r29)
-	stw      r0, 0x64(r29)
-
-lbl_804531B0:
-	lmw      r25, 0x14(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /**
@@ -1172,462 +574,48 @@ lbl_804531B0:
  */
 bool Mgr::setScene(SetSceneArg& arg)
 {
-	if (arg._08 == 0) {
-		if (mBackupScene && !mBackupScene->confirmSetScene(arg)) {
-			return false;
+	bool result = true;
+	if (arg._08 || !mBackupScene || (mBackupScene && mBackupScene->confirmSetScene(arg))) {
+		MgrCommand* command = getNewCommand();
+		if (!command) {
+			result = false;
+		} else {
+			OSLockMutex(&command->mMutex);
+			if (arg._08) {
+				if (isCurrentSceneLoading()) {
+					command->setTypeSetScene(arg);
+				} else {
+					releaseCommand(command);
+					if (arg.mDispMember) {
+						arg.mDispMember->setSubMemberAll();
+					}
+					changeScene(arg, (u8*)arg.mDispMember);
+				}
+			} else if (mBackupScene) {
+				MgrCommand* newCommand = getNewCommand();
+				if (newCommand) {
+
+					command->setTypeInvalid();
+					newCommand->setTypeSetScene(arg);
+				} else {
+					releaseCommand(command);
+					result = false;
+				}
+			} else {
+				releaseCommand(command);
+				if (arg.mDispMember) {
+					arg.mDispMember->setSubMemberAll();
+				}
+				changeScene(arg, (u8*)arg.mDispMember);
+			}
 		}
+
+		OSUnlockMutex(&command->mMutex);
+	} else {
+		result = false;
 	}
 
-	Screen::MgrCommand* command = (Screen::MgrCommand*)mCommandList.mChild;
-	JUT_ASSERTLINE(615, command != nullptr, "screen command buffer is empty.\n");
-
-	if (!command) {
-		JUT_PANICLINE(626, "【エラー】コマンドバッファが足りません\n");
-		return false;
-	}
-
-	OSLockMutex(&command->mMutex);
-	command->del();
-	mCommandList.add(command);
-	OSUnlockMutex(&command->mMutex);
-
-	if (!command) {
-		return false;
-	}
-
-	OSLockMutex(&command->mMutex);
-	if (arg._08) {
-		if (isCurrentSceneLoading()) {
-			command->setTypeSetScene(arg);
-		}
-	}
-
-	OSUnlockMutex(&command->mMutex);
-	return true;
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	lis      r5, lbl_8049B8C8@ha
-	stw      r0, 0x44(r1)
-	stmw     r26, 0x28(r1)
-	mr       r27, r4
-	mr       r26, r3
-	addi     r31, r5, lbl_8049B8C8@l
-	li       r28, 1
-	lbz      r0, 8(r4)
-	cmplwi   r0, 0
-	bne      lbl_80453210
-	lwz      r3, 0x1c(r26)
-	cmplwi   r3, 0
-	beq      lbl_80453210
-	beq      lbl_80453740
-	bl       confirmSetScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80453740
-
-lbl_80453210:
-	lwz      r30, 0x54(r26)
-	cmplwi   r30, 0
-	bne      lbl_80453230
-	addi     r3, r31, 0xc
-	addi     r5, r31, 0xc4
-	li       r4, 0x267
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80453230:
-	cmplwi   r30, 0
-	beq      lbl_80453260
-	addi     r3, r30, 0x464
-	bl       OSLockMutex
-	mr       r3, r30
-	bl       del__5CNodeFv
-	mr       r4, r30
-	addi     r3, r26, 0x2c
-	bl       add__5CNodeFP5CNode
-	addi     r3, r30, 0x464
-	bl       OSUnlockMutex
-	b        lbl_80453274
-
-lbl_80453260:
-	addi     r3, r31, 0xc
-	addi     r5, r31, 0xe8
-	li       r4, 0x272
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80453274:
-	cmplwi   r30, 0
-	bne      lbl_80453284
-	li       r28, 0
-	b        lbl_80453734
-
-lbl_80453284:
-	addi     r3, r30, 0x464
-	bl       OSLockMutex
-	lbz      r0, 8(r27)
-	cmplwi   r0, 0
-	beq      lbl_8045346C
-	mr       r3, r26
-	bl       isCurrentSceneLoading__Q26Screen3MgrFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80453424
-	addi     r3, r31, 0x50
-	li       r0, 0
-	stw      r3, 0x14(r30)
-	addi     r3, r30, 0x464
-	stw      r0, 0x18(r30)
-	bl       OSLockMutex
-	cmplwi   r27, 0
-	beq      lbl_80453328
-	mr       r3, r27
-	lwz      r12, 0(r27)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	cmplwi   r3, 0x40
-	ble      lbl_804532F8
-	addi     r3, r31, 0xc
-	addi     r5, r31, 0x1c
-	li       r4, 0x102
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804532F8:
-	addi     r0, r30, 0x20
-	mr       r3, r27
-	stw      r0, 0x1c(r30)
-	lwz      r12, 0(r27)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	mr       r5, r3
-	mr       r4, r27
-	addi     r3, r30, 0x20
-	bl       memcpy
-	b        lbl_8045335C
-
-lbl_80453328:
-	lwz      r0, 0x1c(r30)
-	cmplwi   r0, 0
-	beq      lbl_80453354
-	addi     r3, r30, 0x464
-	bl       OSLockMutex
-	addi     r3, r30, 0x20
-	li       r4, 0xcd
-	li       r5, 0x40
-	bl       memset
-	addi     r3, r30, 0x464
-	bl       OSUnlockMutex
-
-lbl_80453354:
-	li       r0, 0
-	stw      r0, 0x1c(r30)
-
-lbl_8045335C:
-	addi     r3, r30, 0x464
-	bl       OSUnlockMutex
-	lwz      r27, 0xc(r27)
-	addi     r3, r30, 0x464
-	bl       OSLockMutex
-	cmplwi   r27, 0
-	beq      lbl_80453410
-	mr       r3, r27
-	lwz      r12, 0(r27)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	cmplwi   r3, 0x400
-	bgt      lbl_804533CC
-	addi     r0, r30, 0x64
-	mr       r3, r27
-	stw      r0, 0x60(r30)
-	lwz      r12, 0(r27)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r5, r3
-	mr       r4, r27
-	addi     r3, r30, 0x64
-	bl       memcpy
-	lwz      r3, 0x60(r30)
-	bl       setSubMemberAll__Q32og6Screen14DispMemberBaseFv
-	b        lbl_80453418
-
-lbl_804533CC:
-	mr       r3, r27
-	addi     r4, r1, 0x14
-	bl       getMemberName__Q32og6Screen14DispMemberBaseFPc
-	mr       r3, r27
-	lwz      r12, 0(r27)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r7, r3
-	addi     r3, r31, 0xc
-	addi     r5, r31, 0x28
-	addi     r6, r1, 0x14
-	li       r4, 0x125
-	li       r8, 0x400
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-	b        lbl_80453418
-
-lbl_80453410:
-	li       r0, 0
-	stw      r0, 0x60(r30)
-
-lbl_80453418:
-	addi     r3, r30, 0x464
-	bl       OSUnlockMutex
-	b        lbl_80453734
-
-lbl_80453424:
-	addi     r3, r30, 0x464
-	bl       OSLockMutex
-	mr       r3, r30
-	bl       del__5CNodeFv
-	mr       r4, r30
-	addi     r3, r26, 0x44
-	bl       add__5CNodeFP5CNode
-	addi     r3, r30, 0x464
-	bl       OSUnlockMutex
-	lwz      r3, 0xc(r27)
-	cmplwi   r3, 0
-	beq      lbl_80453458
-	bl       setSubMemberAll__Q32og6Screen14DispMemberBaseFv
-
-lbl_80453458:
-	lwz      r5, 0xc(r27)
-	mr       r3, r26
-	mr       r4, r27
-	bl       changeScene__Q26Screen3MgrFRQ26Screen11SetSceneArgPUc
-	b        lbl_80453734
-
-lbl_8045346C:
-	lwz      r0, 0x1c(r26)
-	cmplwi   r0, 0
-	beq      lbl_804536F0
-	lwz      r29, 0x54(r26)
-	cmplwi   r29, 0
-	bne      lbl_80453498
-	addi     r3, r31, 0xc
-	addi     r5, r31, 0xc4
-	li       r4, 0x267
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80453498:
-	cmplwi   r29, 0
-	beq      lbl_804534C8
-	addi     r3, r29, 0x464
-	bl       OSLockMutex
-	mr       r3, r29
-	bl       del__5CNodeFv
-	mr       r4, r29
-	addi     r3, r26, 0x2c
-	bl       add__5CNodeFP5CNode
-	addi     r3, r29, 0x464
-	bl       OSUnlockMutex
-	b        lbl_804534DC
-
-lbl_804534C8:
-	addi     r3, r31, 0xc
-	addi     r5, r31, 0xe8
-	li       r4, 0x272
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804534DC:
-	cmplwi   r29, 0
-	beq      lbl_804536C4
-	addi     r3, r30, 0x464
-	bl       OSLockMutex
-	addi     r3, r31, 0x68
-	li       r0, 2
-	stw      r3, 0x14(r30)
-	addi     r3, r30, 0x464
-	stw      r0, 0x18(r30)
-	bl       OSLockMutex
-	lwz      r0, 0x1c(r30)
-	cmplwi   r0, 0
-	beq      lbl_80453530
-	addi     r3, r30, 0x464
-	bl       OSLockMutex
-	addi     r3, r30, 0x20
-	li       r4, 0xcd
-	li       r5, 0x40
-	bl       memset
-	addi     r3, r30, 0x464
-	bl       OSUnlockMutex
-
-lbl_80453530:
-	li       r0, 0
-	addi     r3, r30, 0x464
-	stw      r0, 0x1c(r30)
-	bl       OSUnlockMutex
-	addi     r3, r30, 0x464
-	bl       OSUnlockMutex
-	addi     r3, r31, 0x50
-	li       r0, 0
-	stw      r3, 0x14(r29)
-	addi     r3, r29, 0x464
-	stw      r0, 0x18(r29)
-	bl       OSLockMutex
-	cmplwi   r27, 0
-	beq      lbl_804535C8
-	mr       r3, r27
-	lwz      r12, 0(r27)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	cmplwi   r3, 0x40
-	ble      lbl_80453598
-	addi     r3, r31, 0xc
-	addi     r5, r31, 0x1c
-	li       r4, 0x102
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80453598:
-	addi     r0, r29, 0x20
-	mr       r3, r27
-	stw      r0, 0x1c(r29)
-	lwz      r12, 0(r27)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	mr       r5, r3
-	mr       r4, r27
-	addi     r3, r29, 0x20
-	bl       memcpy
-	b        lbl_804535FC
-
-lbl_804535C8:
-	lwz      r0, 0x1c(r29)
-	cmplwi   r0, 0
-	beq      lbl_804535F4
-	addi     r3, r29, 0x464
-	bl       OSLockMutex
-	addi     r3, r29, 0x20
-	li       r4, 0xcd
-	li       r5, 0x40
-	bl       memset
-	addi     r3, r29, 0x464
-	bl       OSUnlockMutex
-
-lbl_804535F4:
-	li       r0, 0
-	stw      r0, 0x1c(r29)
-
-lbl_804535FC:
-	addi     r3, r29, 0x464
-	bl       OSUnlockMutex
-	lwz      r27, 0xc(r27)
-	addi     r3, r29, 0x464
-	bl       OSLockMutex
-	cmplwi   r27, 0
-	beq      lbl_804536B0
-	mr       r3, r27
-	lwz      r12, 0(r27)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	cmplwi   r3, 0x400
-	bgt      lbl_8045366C
-	addi     r0, r29, 0x64
-	mr       r3, r27
-	stw      r0, 0x60(r29)
-	lwz      r12, 0(r27)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r5, r3
-	mr       r4, r27
-	addi     r3, r29, 0x64
-	bl       memcpy
-	lwz      r3, 0x60(r29)
-	bl       setSubMemberAll__Q32og6Screen14DispMemberBaseFv
-	b        lbl_804536B8
-
-lbl_8045366C:
-	mr       r3, r27
-	addi     r4, r1, 8
-	bl       getMemberName__Q32og6Screen14DispMemberBaseFPc
-	mr       r3, r27
-	lwz      r12, 0(r27)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r7, r3
-	addi     r3, r31, 0xc
-	addi     r5, r31, 0x28
-	addi     r6, r1, 8
-	li       r4, 0x125
-	li       r8, 0x400
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-	b        lbl_804536B8
-
-lbl_804536B0:
-	li       r0, 0
-	stw      r0, 0x60(r29)
-
-lbl_804536B8:
-	addi     r3, r29, 0x464
-	bl       OSUnlockMutex
-	b        lbl_80453734
-
-lbl_804536C4:
-	addi     r3, r30, 0x464
-	bl       OSLockMutex
-	mr       r3, r30
-	bl       del__5CNodeFv
-	mr       r4, r30
-	addi     r3, r26, 0x44
-	bl       add__5CNodeFP5CNode
-	addi     r3, r30, 0x464
-	bl       OSUnlockMutex
-	li       r28, 0
-	b        lbl_80453734
-
-lbl_804536F0:
-	addi     r3, r30, 0x464
-	bl       OSLockMutex
-	mr       r3, r30
-	bl       del__5CNodeFv
-	mr       r4, r30
-	addi     r3, r26, 0x44
-	bl       add__5CNodeFP5CNode
-	addi     r3, r30, 0x464
-	bl       OSUnlockMutex
-	lwz      r3, 0xc(r27)
-	cmplwi   r3, 0
-	beq      lbl_80453724
-	bl       setSubMemberAll__Q32og6Screen14DispMemberBaseFv
-
-lbl_80453724:
-	lwz      r5, 0xc(r27)
-	mr       r3, r26
-	mr       r4, r27
-	bl       changeScene__Q26Screen3MgrFRQ26Screen11SetSceneArgPUc
-
-lbl_80453734:
-	addi     r3, r30, 0x464
-	bl       OSUnlockMutex
-	b        lbl_80453744
-
-lbl_80453740:
-	li       r28, 0
-
-lbl_80453744:
-	mr       r3, r28
-	lmw      r26, 0x28(r1)
-	lwz      r0, 0x44(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+	return result;
 }
 
 /**

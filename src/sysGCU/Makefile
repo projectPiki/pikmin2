@@ -61,7 +61,7 @@ GC_FILES:=\
 	$(BUILD_DIR)/src/sysGCU/captionMgr.o\
 	$(BUILD_DIR)/src/sysGCU/captionMessage.o\
 	$(BUILD_DIR)/src/sysGCU/screenScene.o\
-	$(BUILD_DIR)/asm/sysGCU/screenMgr.o\
+	$(BUILD_DIR)/src/sysGCU/screenMgr.o\
 	$(BUILD_DIR)/src/sysGCU/screenObj.o\
 	$(BUILD_DIR)/asm/sysGCU/JSTObjectParticleActor.o\
 	$(BUILD_DIR)/src/sysGCU/moviePlayerAudio.o\

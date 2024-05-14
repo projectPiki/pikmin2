@@ -17,9 +17,7 @@ namespace Screen {
 struct SceneInfoList : public CNode {
 	SceneInfoList();
 
-	virtual ~SceneInfoList(); // _00
-
-	// virtual void _08() = 0;       // _08
+	virtual ~SceneInfoList() { } // _00
 
 	void set(s32, og::Screen::DispMemberBase*);
 

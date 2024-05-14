@@ -58,7 +58,7 @@ struct MgrCommand : public CNode {
 	// _00     = VTBL
 	// _00-_18 = CNode
 	int mArgType;                               // _18
-	char* mScreenArgBufferPtr;                  // _1C
+	void* mScreenArgBufferPtr;                  // _1C
 	char mScreenArgBuffer[0x40];                // _20
 	og::Screen::DispMemberBase* mDispBufferPtr; // _60
 	char mDispBuffer[0x400];                    // _64

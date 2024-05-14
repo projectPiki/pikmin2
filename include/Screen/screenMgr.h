@@ -77,6 +77,10 @@ struct Mgr : public MgrBase {
 		P2ASSERTLINE(280, controller);
 	}
 
+	static Mgr* sScreenMgr;
+
+	inline SceneInfoList* getFirstList() { return static_cast<SceneInfoList*>(mSceneInfoList.mChild); }
+
 	// _00     = VTBL
 	// _00-_18 = MgrBase
 	BitFlag<u32> mFlags;      // _18
@@ -88,9 +92,7 @@ struct Mgr : public MgrBase {
 	CNode mCommandList;       // _44
 	JKRSolidHeap* mCurrHeap;  // _5C
 	CNode mBackupInfoList;    // _60
-	CNode mSceneInfoList;     // _78, treat as SceneInfoList // NOTE: Why can't this just be SceneInfoList?
-
-	static Mgr* sScreenMgr;
+	CNode mSceneInfoList;     // _78, treat as SceneInfoList
 };
 
 inline void checkSceneList(SceneInfoList* list) { P2ASSERTLINE(329, list); }
