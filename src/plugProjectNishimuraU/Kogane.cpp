@@ -623,7 +623,7 @@ void Kogane::Obj::createDoping(u8 type, int num)
 	Vector3f pos = mtx->getColumn(3);
 
 	for (int i = 0; i < num; i++) {
-		ItemHoney::InitArg arg(type, 0);
+		ItemHoney::InitArg arg(type, false);
 		BaseItem* honey = ItemHoney::mgr->birth();
 		if (honey) {
 			honey->init(&arg);

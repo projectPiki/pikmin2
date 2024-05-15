@@ -265,7 +265,7 @@ void Obj::createHoney()
 {
 	Parms* parms = C_PARMS;
 	if (randWeightFloat(1.0f) < parms->mProperParms.mNectarChance.mValue) {
-		ItemHoney::InitArg arg(false, false);
+		ItemHoney::InitArg arg(HONEY_Y, false);
 
 		ItemHoney::Item* item = ItemHoney::mgr->birth();
 		if (item) {

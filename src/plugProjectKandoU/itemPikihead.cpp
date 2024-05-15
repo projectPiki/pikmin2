@@ -27,13 +27,13 @@ Mgr* mgr;
 void FSM::init(Item*)
 {
 	create(PIKIHEAD_StateCount);
-	registerState(new FallState());
-	registerState(new BuryState());
-	registerState(new WaitState());
-	registerState(new TaneState());
-	registerState(new HatugaState());
-	registerState(new GrowState());
-	registerState(new SioreState());
+	registerState(new FallState);
+	registerState(new BuryState);
+	registerState(new WaitState);
+	registerState(new TaneState);
+	registerState(new HatugaState);
+	registerState(new GrowState);
+	registerState(new SioreState);
 }
 
 /**
@@ -677,17 +677,16 @@ void Item::doAI()
  */
 void Item::changeMaterial()
 {
-	J3DMaterial* mat = mModel->mJ3dModel->mModelData->getMaterialNodePointer(0);
+	J3DMaterial* mat = mModel->mJ3dModel->getModelData()->getMaterialNodePointer(0);
 	if (mat) {
 		Color4 pikiColor = Piki::pikiColors[mColor];
-		J2DGXColorS10 color(pikiColor.r, pikiColor.g, pikiColor.b, pikiColor.a);
-		mat->mTevBlock->setTevColor(0, color);
+		mat->getTevBlock()->setTevColor(0, J2DGXColorS10(pikiColor.r, pikiColor.g, pikiColor.b, pikiColor.a));
 	}
 
 	mModel->mJ3dModel->calcMaterial();
 
 	for (u16 i = 0; i < mModel->mJ3dModel->getModelData()->getMaterialNum(); i++) {
-		J3DMatPacket* packet = &mModel->mJ3dModel->mMatPackets[i];
+		J3DMatPacket* packet = mModel->getJ3DModel()->getMatPacket(i);
 		if (packet->mInitShapePacket->mDisplayList) {
 			packet->beginDiff();
 			mModel->mJ3dModel->getModelData()->getMaterialNodePointer(i)->mTevBlock->diff(0x1000000);
@@ -859,7 +858,7 @@ bool Item::canPullout()
  */
 bool Item::interactFue(InteractFue& whistle)
 {
-	if (canPullout() && isAlive()) {
+	if (canPullout() != false && isAlive()) {
 		Navi* navi = static_cast<Navi*>(whistle.mCreature);
 		if (!navi->getOlimarData()->hasItem(OlimarData::ODII_ProfessionalNoisemaker)) {
 			return false;
@@ -888,128 +887,7 @@ bool Item::interactFue(InteractFue& whistle)
 			return true;
 		}
 	}
-
 	return false;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	stw      r28, 0x10(r1)
-	mr       r28, r4
-	bl
-"getStateID__Q24Game89FSMItem<Q34Game12ItemPikihead4Item,Q34Game12ItemPikihead3FSM,Q34Game12ItemPikihead5State>Fv"
-	subfic   r0, r3, 2
-	cntlzw   r0, r0
-	rlwinm.  r0, r0, 0x1b, 0x18, 0x1f
-	beq      lbl_801DA644
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801DA644
-	lwz      r30, 4(r28)
-	mr       r3, r30
-	bl       getOlimarData__Q24Game4NaviFv
-	li       r4, 3
-	bl       hasItem__Q24Game10OlimarDataFi
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801DA534
-	li       r3, 0
-	b        lbl_801DA648
-
-lbl_801DA534:
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	lwz      r0, 0x44(r3)
-	cmpwi    r0, 1
-	bne      lbl_801DA55C
-	lhz      r3, 0x1f4(r31)
-	lhz      r0, 0x2dc(r30)
-	cmplw    r3, r0
-	bne      lbl_801DA55C
-	li       r3, 0
-	b        lbl_801DA648
-
-lbl_801DA55C:
-	li       r0, 1
-	lwz      r3, pikiMgr__4Game@sda21(r13)
-	stw      r0, mBirthMode__Q24Game7PikiMgr@sda21(r13)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x7c(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 0
-	or.      r29, r3, r3
-	stw      r0, mBirthMode__Q24Game7PikiMgr@sda21(r13)
-	beq      lbl_801DA644
-	lwz      r3, 4(r28)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801DA5C0
-	lis      r3, lbl_80480828@ha
-	lis      r5, lbl_8048084C@ha
-	addi     r3, r3, lbl_80480828@l
-	li       r4, 0x2bd
-	addi     r5, r5, lbl_8048084C@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801DA5C0:
-	mr       r3, r29
-	li       r4, 0
-	bl       init__Q24Game8CreatureFPQ24Game15CreatureInitArg
-	lhz      r4, 0x1f4(r31)
-	mr       r3, r29
-	bl       changeShape__Q24Game4PikiFi
-	lhz      r4, 0x1f6(r31)
-	mr       r3, r29
-	bl       changeHappa__Q24Game4PikiFi
-	stw      r30, 0x2c4(r29)
-	mr       r3, r29
-	addi     r4, r31, 0x19c
-	li       r5, 0
-	bl       "setPosition__Q24Game8CreatureFR10Vector3<f>b"
-	lwz      r3, 0x28c(r29)
-	mr       r4, r29
-	li       r5, 0x11
-	li       r6, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	li       r4, 0
-	bl       kill__Q24Game8CreatureFPQ24Game15CreatureKillArg
-	mr       r3, r31
-	li       r4, 0
-	lwz      r12, 0(r31)
-	lwz      r12, 0xac(r12)
-	mtctr    r12
-	bctrl
-	li       r3, 1
-	b        lbl_801DA648
-
-lbl_801DA644:
-	li       r3, 0
-
-lbl_801DA648:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**

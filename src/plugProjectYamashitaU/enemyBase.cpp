@@ -1321,7 +1321,7 @@ void EnemyBase::onKill(CreatureKillArg* inputArg)
 					Sys::Sphere ball;
 					getBoundingSphere(ball);
 
-					ItemHoney::InitArg honeyArg(honeyKind, 0);
+					ItemHoney::InitArg honeyArg(honeyKind, false);
 					ItemHoney::Item* drop = static_cast<ItemHoney::Item*>(ItemHoney::mgr->birth());
 
 					if (drop != nullptr) {
