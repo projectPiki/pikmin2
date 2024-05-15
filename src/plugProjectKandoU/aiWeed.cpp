@@ -51,7 +51,7 @@ void ActWeed::init(ActionArg* arg)
 	JUT_ASSERTLINE(124, arg, "no actweedarg");
 	mWeed = weedArg->mWeed;
 	JUT_ASSERTLINE(127, mWeed, "ActWeed:no target");
-	mFlockMgr = mWeed->getFlockMgr();
+	mFlockMgr = static_cast<Game::BaseItem*>(mWeed)->getFlockMgr();
 	JUT_ASSERTLINE(130, mFlockMgr, "no flockmgr");
 	mIsAttacking = false;
 

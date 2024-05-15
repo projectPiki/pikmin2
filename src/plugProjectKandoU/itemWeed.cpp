@@ -103,18 +103,19 @@ void WeedMgr::init(Sys::Sphere& sphere, cWeedType weedType)
  */
 void WeedMgr::createWeeds(cWeedType weedType)
 {
+	Weed* weed;
 	for (int i = 0; i < getMaxObjects(); i++) {
-		Weed* weed = mMonoObjectMgr.birth();
+		weed = mMonoObjectMgr.birth();
 		if (weed) {
 			if (weedType == WEEDTYPE_Grass) {
-				weed->_40 = 0;
+				weed->mModelIdx = 0;
 			} else {
-				weed->_40 = (int)(randFloat() * 3.0f) + 1;
+				weed->mModelIdx = (int)(randFloat() * 3.0f) + 1; // random between 1 and 4
 			}
 			f32 randRadius = mActivationSpherePosition.mRadius * randFloat();
 			f32 randTheta  = randFloat() * TAU;
-			Vector3f weedPos
-			    = Vector3f(randRadius * sinf(randTheta), 0.0f, randRadius * cosf(randTheta)) + mActivationSpherePosition.mPosition;
+			Vector3f weedPos(randRadius * sinf(randTheta), 0.0f, randRadius * cosf(randTheta));
+			weedPos += mActivationSpherePosition.mPosition;
 			weed->init(this, weedPos);
 		}
 	}
@@ -189,180 +190,9 @@ void Item::onInit(CreatureInitArg* initArg)
 void Item::onSetPosition()
 {
 	mBaseTrMatrix.makeT(mPosition);
-	Sys::Sphere sphere(mPosition, mBoundingSphere.mRadius);
+	f32 radius = mBoundingSphere.mRadius;
+	Sys::Sphere sphere(mPosition, radius);
 	mFlockMgr->init(sphere, mWeedType);
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stfd     f31, 0x40(r1)
-	psq_st   f31, 72(r1), 0, qr0
-	stw      r31, 0x3c(r1)
-	stw      r30, 0x38(r1)
-	stw      r29, 0x34(r1)
-	stw      r28, 0x30(r1)
-	mr       r28, r3
-	addi     r3, r28, 0x138
-	addi     r4, r28, 0x19c
-	bl       "makeT__7MatrixfFR10Vector3<f>"
-	lfs      f3, 0x1d0(r28)
-	li       r29, 0
-	lfs      f1, 0x1a0(r28)
-	lfs      f2, 0x1a4(r28)
-	lwz      r30, 0x1ec(r28)
-	lwz      r31, 0x1e8(r28)
-	lfs      f0, 0x19c(r28)
-	stfs     f0, 0xc(r31)
-	stfs     f1, 0x10(r31)
-	stfs     f2, 0x14(r31)
-	stfs     f3, 0x18(r31)
-	b        lbl_8020F9CC
-
-lbl_8020F818:
-	addi     r3, r31, 0x3c
-	lwz      r12, 0x3c(r31)
-	lwz      r12, 0x7c(r12)
-	mtctr    r12
-	bctrl
-	or.      r28, r3, r3
-	beq      lbl_8020F9C8
-	cmpwi    r30, 1
-	bne      lbl_8020F848
-	li       r0, 0
-	stb      r0, 0x40(r28)
-	b        lbl_8020F88C
-
-lbl_8020F848:
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	lfd      f3, lbl_80519F08@sda21(r2)
-	stw      r0, 8(r1)
-	lfs      f1, lbl_80519F00@sda21(r2)
-	lfd      f2, 8(r1)
-	lfs      f0, lbl_80519F14@sda21(r2)
-	fsubs    f2, f2, f3
-	fdivs    f1, f2, f1
-	fmuls    f0, f0, f1
-	fctiwz   f0, f0
-	stfd     f0, 0x10(r1)
-	lwz      r3, 0x14(r1)
-	addi     r0, r3, 1
-	stb      r0, 0x40(r28)
-
-lbl_8020F88C:
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x14(r1)
-	lfd      f3, lbl_80519F08@sda21(r2)
-	stw      r0, 0x10(r1)
-	lfs      f1, lbl_80519F00@sda21(r2)
-	lfd      f2, 0x10(r1)
-	lfs      f0, 0x18(r31)
-	fsubs    f2, f2, f3
-	fdivs    f1, f2, f1
-	fmuls    f31, f0, f1
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	lfd      f3, lbl_80519F08@sda21(r2)
-	stw      r0, 8(r1)
-	lfs      f2, lbl_80519F00@sda21(r2)
-	lfd      f0, 8(r1)
-	lfs      f1, lbl_80519F04@sda21(r2)
-	fsubs    f3, f0, f3
-	lfs      f0, lbl_80519EF8@sda21(r2)
-	fdivs    f2, f3, f2
-	fmuls    f3, f1, f2
-	fmr      f1, f3
-	fcmpo    cr0, f3, f0
-	bge      lbl_8020F900
-	fneg     f1, f3
-
-lbl_8020F900:
-	lfs      f2, lbl_80519F18@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	lfs      f0, lbl_80519EF8@sda21(r2)
-	addi     r4, r3, sincosTable___5JMath@l
-	fmuls    f1, f1, f2
-	fcmpo    cr0, f3, f0
-	fctiwz   f0, f1
-	stfd     f0, 0x18(r1)
-	lwz      r0, 0x1c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	add      r3, r4, r0
-	lfs      f0, 4(r3)
-	fmuls    f4, f31, f0
-	bge      lbl_8020F95C
-	lfs      f0, lbl_80519F1C@sda21(r2)
-	fmuls    f0, f3, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x20(r1)
-	lwz      r0, 0x24(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r4, r0
-	fneg     f1, f0
-	b        lbl_8020F974
-
-lbl_8020F95C:
-	fmuls    f0, f3, f2
-	fctiwz   f0, f0
-	stfd     f0, 0x28(r1)
-	lwz      r0, 0x2c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f1, r4, r0
-
-lbl_8020F974:
-	lfs      f0, 0x14(r31)
-	fmuls    f3, f31, f1
-	lfs      f2, 0xc(r31)
-	mr       r3, r28
-	lfs      f1, 0x10(r31)
-	fadds    f4, f4, f0
-	lfs      f0, lbl_80519EFC@sda21(r2)
-	stw      r31, 0x50(r28)
-	fadds    f3, f3, f2
-	lfs      f2, lbl_80519EF8@sda21(r2)
-	stfs     f0, 0x44(r28)
-	fadds    f2, f2, f1
-	stfs     f0, 0x48(r28)
-	stfs     f0, 0x4c(r28)
-	stfs     f3, 0(r28)
-	stfs     f2, 4(r28)
-	stfs     f4, 8(r28)
-	lwz      r12, 0xc(r28)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8020F9C8:
-	addi     r29, r29, 1
-
-lbl_8020F9CC:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	cmpw     r29, r3
-	blt      lbl_8020F818
-	lfs      f1, lbl_80519F10@sda21(r2)
-	mr       r3, r31
-	bl       resolveCollision__Q24Game12BaseFlockMgrFf
-	psq_l    f31, 72(r1), 0, qr0
-	lwz      r0, 0x54(r1)
-	lfd      f31, 0x40(r1)
-	lwz      r31, 0x3c(r1)
-	lwz      r30, 0x38(r1)
-	lwz      r29, 0x34(r1)
-	lwz      r28, 0x30(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
 }
 
 /**
@@ -572,60 +402,6 @@ BaseItem* Mgr::generatorBirth(Vector3f& position, Vector3f& p2, GenItemParm* gen
 	item->setPosition(position, false);
 	return item;
 }
-
-/**
- * @note Address: 0x802105CC
- * @note Size: 0x134
- */
-Mgr::~Mgr() { }
-
-/**
- * @note Address: 0x80210700
- * @note Size: 0x148
- */
-BaseItem* Mgr::doNew() { return new Item; }
-
-/**
- * @note Address: 0x80210848
- * @note Size: 0xC
- */
-u32 Mgr::generatorGetID() { return 'weed'; }
-
-/**
- * @note Address: 0x80210854
- * @note Size: 0xC
- */
-u32 Mgr::generatorLocalVersion() { return '0001'; }
-
-/**
- * @note Address: 0x80210860
- * @note Size: 0x8
- */
-char* Item::getCreatureName() { return "Weed"; }
-
-/**
- * @note Address: 0x80210868
- * @note Size: 0x8
- */
-BaseFlockMgr* Item::getFlockMgr() { return mFlockMgr; }
-
-/**
- * @note Address: 0x80210870
- * @note Size: 0x4
- */
-void Item::makeTrMatrix() { }
-
-/**
- * @note Address: 0x80210874
- * @note Size: 0x8
- */
-Matrixf* Item::DummyShape::getMatrix(int) { return mMatrix; }
-
-/**
- * @note Address: 0x802108B0
- * @note Size: 0x118
- */
-WeedMgr::~WeedMgr() { }
 
 } // namespace ItemWeed
 } // namespace Game

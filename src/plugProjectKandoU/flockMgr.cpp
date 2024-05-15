@@ -340,7 +340,7 @@ void BaseFlockMgr::doSimpleDraw(Viewport* vp, J3DModelData** models, int p1)
 				for (int j = 0; j < getMaxObjects(); j++) {
 					TFlock* flock = getFlock(j);
 					if (isFlagAlive(j)) {
-						if (flock->isVisible() && flock->_40 == i) {
+						if (flock->isVisible() && flock->mModelIdx == i) {
 							Matrixf mtx;
 							PSMTXConcat(vp->getMatrix(true)->mMatrix.mtxView, flock->mTransformationMtx.mMatrix.mtxView,
 							            mtx.mMatrix.mtxView);

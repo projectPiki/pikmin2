@@ -13,7 +13,7 @@ struct J3DModelData;
 namespace Game {
 struct TFlock : public Vector3f {
 	inline TFlock()
-	    : _40(0)
+	    : mModelIdx(0)
 	{
 	}
 
@@ -28,7 +28,7 @@ struct TFlock : public Vector3f {
 	// _00 - _0C Vector3f
 	// _0C VTBL
 	Matrixf mTransformationMtx; // _10
-	u8 _40;                     // _40
+	u8 mModelIdx;               // _40
 };
 
 struct BaseFlockMgr {

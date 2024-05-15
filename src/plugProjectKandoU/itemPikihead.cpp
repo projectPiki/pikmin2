@@ -460,25 +460,22 @@ void Item::cacheLoad(Stream& input)
  */
 void Item::makeTrMatrix()
 {
-	if (getStateID() == PIKIHEAD_Fall) {
-		if (mVelocity.length() > 0.0f) {
-			Vector3f xVec = mVelocity;
-			_normalise2(xVec);
-			xVec *= -1.0f;
+	if (getStateID() == PIKIHEAD_Fall && mVelocity.length() > 0.0f) {
+		Vector3f yVec = mVelocity;
+		yVec.normalise();
+		yVec = yVec * -1.0f;
 
-			Vector3f zAxis(0.0f, 0.0f, -5.0f);
-			Vector3f yVec = cross(xVec, zAxis);
-			_normalise2(yVec);
+		Vector3f zAxis(0.0f, 0.0f, 1.0f);
+		Vector3f xVec = yVec.cross(zAxis);
+		xVec.normalise();
 
-			Vector3f xAxis(1.0f, 0.0f, 0.0f);
-			Vector3f zVec = cross(yVec, xAxis);
-			_normalise2(zVec);
+		Vector3f zVec = xVec.cross(yVec);
+		zVec.normalise();
 
-			mBaseTrMatrix.setColumn(0, xVec);
-			mBaseTrMatrix.setColumn(1, yVec);
-			mBaseTrMatrix.setColumn(2, zVec);
-			mBaseTrMatrix.setTranslation(mPosition);
-		}
+		mBaseTrMatrix.setColumn(0, xVec);
+		mBaseTrMatrix.setColumn(1, yVec);
+		mBaseTrMatrix.setColumn(2, zVec);
+		mBaseTrMatrix.setTranslation(mPosition);
 	} else {
 		BaseItem::makeTrMatrix();
 	}
@@ -677,19 +674,20 @@ void Item::doAI()
  */
 void Item::changeMaterial()
 {
-	J3DMaterial* mat = mModel->mJ3dModel->getModelData()->getMaterialNodePointer(0);
-	if (mat) {
+	// J3DMaterial* mat = mModel->mJ3dModel->getModelData()->getMaterialNodePointer(0);
+	if (mModel->mJ3dModel->getModelData()->getMaterialNodePointer(0)) {
 		Color4 pikiColor = Piki::pikiColors[mColor];
-		mat->getTevBlock()->setTevColor(0, J2DGXColorS10(pikiColor.r, pikiColor.g, pikiColor.b, pikiColor.a));
+		mModel->mJ3dModel->getModelData()->getMaterialNodePointer(0)->getTevBlock()->setTevColor(
+		    0, J2DGXColorS10(pikiColor.r, pikiColor.g, pikiColor.b, pikiColor.a));
 	}
 
 	mModel->mJ3dModel->calcMaterial();
 
 	for (u16 i = 0; i < mModel->mJ3dModel->getModelData()->getMaterialNum(); i++) {
-		J3DMatPacket* packet = mModel->getJ3DModel()->getMatPacket(i);
+		J3DMatPacket* packet = mModel->mJ3dModel->getMatPacket(i);
 		if (packet->mInitShapePacket->mDisplayList) {
 			packet->beginDiff();
-			mModel->mJ3dModel->getModelData()->getMaterialNodePointer(i)->mTevBlock->diff(0x1000000);
+			mModel->mJ3dModel->getModelData()->getMaterialNodePointer(i)->getTevBlock()->diff(0x1000000);
 			packet->endDiff();
 		}
 	}
