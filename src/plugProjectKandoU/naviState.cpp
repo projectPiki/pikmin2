@@ -303,7 +303,7 @@ void NaviStuckState::exec(Navi* navi)
 	f32 stickMag = _lenVec(stickVals);
 
 	if (stickMag > 0.3f) {
-		f32 dir = dot(stickVals, mPrevStickDirection);
+		f32 dir = stickVals.dot(mPrevStickDirection);
 		if (dir < 0.5f) {
 			mWiggleCounter++;
 			if (mWiggleCounter > 9) {

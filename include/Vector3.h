@@ -49,7 +49,7 @@ struct Vector3 {
 	 * @param from The starting point of the direction vector.
 	 * @param to The ending point of the direction vector.
 	 */
-	static inline f32 getDirectionFromTo(const Vector3& from, Vector3& to)
+	static inline T getDirectionFromTo(const Vector3& from, Vector3& to)
 	{
 		to -= from;
 		return to.normalise();
@@ -77,7 +77,7 @@ struct Vector3 {
 		return *this;
 	}
 
-	inline void operator=(Vector3<T>& other)
+	inline void operator=(Vector3& other)
 	{
 		x = other.x;
 		y = other.y;
@@ -91,7 +91,7 @@ struct Vector3 {
 		z = other.z;
 	}
 
-	inline operator Vector2f() const { return Vector2f(x, y); }
+	inline operator Vector2<T>() const { return Vector2<T>(x, y); }
 
 	// /**
 	//  * @fabricated
@@ -124,14 +124,14 @@ struct Vector3 {
 		z = vec.z;
 	}
 
-	inline void set(f32 _x, f32 _y, f32 _z)
+	inline void set(T _x, T _y, T _z)
 	{
 		x = _x;
 		y = _y;
 		z = _z;
 	}
 
-	inline void set(f32 xyz) { x = y = z = xyz; }
+	inline void set(T xyz) { x = y = z = xyz; }
 
 	/**
 	 * @fabricated
@@ -179,7 +179,7 @@ struct Vector3 {
 	//     return newVector;
 	// }
 	inline void operator*=(Matrixf& other);
-	inline void operator*=(const f32 other)
+	inline void operator*=(const T other)
 	{
 		this->x *= other;
 		this->y *= other;
@@ -221,8 +221,8 @@ struct Vector3 {
 
 	inline void scaleXY(const Vector3& other)
 	{
-		f32 newVal = this->x * other.x;
-		this->x    = newVal;
+		T newVal = this->x * other.x;
+		this->x  = newVal;
 
 		newVal  = this->y * other.y;
 		this->y = newVal;
@@ -258,17 +258,17 @@ struct Vector3 {
 		return this->normalise();
 	}
 
-	static inline f32 distance(Vector3& a, Vector3& b) { return (a - b).length(); }
+	static inline T distance(Vector3& a, Vector3& b) { return (a - b).length(); }
 
 	inline void sub(Vector3& a, Vector3& b) { set(a.x - b.x, a.y - b.y, a.z - b.z); }
 
-	inline f32 absX() { return (f32)absF(x); }
-	inline f32 absY() { return absF(y); }
-	inline f32 absZ() { return (f32)absF(z); }
+	inline T absX() { return (T)absF(x); }
+	inline T absY() { return absF(y); }
+	inline T absZ() { return (T)absF(z); }
 
-	inline boundedX(f32 bound) { return absX() < bound; }
-	inline boundedY(f32 bound) { return absY() < bound; }
-	inline boundedZ(f32 bound) { return absZ() < bound; }
+	inline boundedX(T bound) { return absX() < bound; }
+	inline boundedY(T bound) { return absY() < bound; }
+	inline boundedZ(T bound) { return absZ() < bound; }
 
 	/**
 	 * Sets the flat direction from one vector to another.
@@ -294,18 +294,18 @@ struct Vector3 {
 	}
 
 	// Squared magnitude
-	inline f32 sqrMagnitude() const { return this->x * this->x + this->y * this->y + this->z * this->z; }
+	inline T sqrMagnitude() const { return this->x * this->x + this->y * this->y + this->z * this->z; }
 	// 2D magnitude
-	inline f32 sqrMagnitude2D() const { return this->x * this->x + this->z * this->z; }
+	inline T sqrMagnitude2D() const { return this->x * this->x + this->z * this->z; }
 	// Quick length
-	inline f32 qLength() const { return pikmin2_sqrtf(this->sqrMagnitude()); }
-	inline f32 qLength2D() const { return pikmin2_sqrtf(this->sqrMagnitude2D()); }
+	inline T qLength() const { return pikmin2_sqrtf(this->sqrMagnitude()); }
+	inline T qLength2D() const { return pikmin2_sqrtf(this->sqrMagnitude2D()); }
 
-	inline f32 qNormalise()
+	inline T qNormalise()
 	{
-		f32 length = this->qLength();
+		T length = this->qLength();
 		if (length > 0.0f) {
-			f32 len = 1.0f / length;
+			T len = 1.0f / length;
 			this->x *= len;
 			this->y *= len;
 			this->z *= len;
@@ -314,33 +314,33 @@ struct Vector3 {
 		return 0.0f;
 	}
 
-	inline f32 qDistance(Vector3& them)
+	inline T qDistance(Vector3& them)
 	{
-		f32 diffX = this->x - them.x;
-		f32 diffY = this->y - them.y;
-		f32 diffZ = this->z - them.z;
+		T diffX = this->x - them.x;
+		T diffY = this->y - them.y;
+		T diffZ = this->z - them.z;
 
 		return pikmin2_sqrtf(SQUARE(diffX) + SQUARE(diffY) + SQUARE(diffZ));
 	}
 
-	inline f32 sqrDistanceToSphere(Vector3& them)
+	inline T sqrDistanceToSphere(Vector3& them)
 	{
-		f32 diffX = this->x - them.x;
-		f32 diffY = this->y - them.y;
-		f32 diffZ = this->z - them.z;
+		T diffX = this->x - them.x;
+		T diffY = this->y - them.y;
+		T diffZ = this->z - them.z;
 
 		return SQUARE(diffX) + SQUARE(diffY) + SQUARE(diffZ);
 	}
 
-	f32 length() const;
-	f32 distance(Vector3&);
-	f32 distance2D(Vector3&);
-	f32 sqrDistance(Vector3&);
-	f32 sqrDistance2D(Vector3&);
-	f32 distance(JGeometry::TVec3f&);
-	f32 normalise();
-	f32 length2D() const;
-	f32 normalise2D();
+	T length() const;
+	T distance(Vector3&);
+	T distance2D(Vector3&);
+	T sqrDistance(Vector3&);
+	T sqrDistance2D(Vector3&);
+	T distance(JGeometry::TVec3f&);
+	T normalise();
+	T length2D() const;
+	T normalise2D();
 
 	void read(Stream&);
 	void write(Stream&);
@@ -356,25 +356,17 @@ struct Vector3 {
 typedef Vector3<f32> Vector3f;
 typedef Vector3<int> Vector3i;
 
-/**
- * @reifiedAddress{80207BA0}
- * @reifiedFile{plugProjectKandoU/itemUjamushi.cpp}
- */
 inline Vector3f operator+(const Vector3f& a, const Vector3f& b) { return Vector3f(a.x + b.x, a.y + b.y, a.z + b.z); }
-
-/**
- * @reifiedAddress{80207E70}
- * @reifiedFile{plugProjectKandoU/itemUjamushi.cpp}
- */
 inline Vector3f operator-(const Vector3f& a, const Vector3f& b) { return Vector3f(a.x - b.x, a.y - b.y, a.z - b.z); }
-
 inline Vector3f operator*(const Vector3f& a, const f32 b) { return Vector3f(a.x * b, a.y * b, a.z * b); }
-
 inline Vector3f operator/(const Vector3f& a, const f32 b) { return Vector3f(a.x / b, a.y / b, a.z / b); }
-
 inline Vector3f operator*=(const Vector3f& a, const f32 b) { return Vector3f(a.x * b, a.y * b, a.z * b); }
 
-inline f32 dot(const Vector3f& a, const Vector3f& b) { return a.x * b.x + a.y * b.y + a.z * b.z; }
+inline Vector3i operator+(const Vector3i& a, const Vector3i& b) { return Vector3i(a.x + b.x, a.y + b.y, a.z + b.z); }
+inline Vector3i operator-(const Vector3i& a, const Vector3i& b) { return Vector3i(a.x - b.x, a.y - b.y, a.z - b.z); }
+inline Vector3i operator*(const Vector3i& a, const int b) { return Vector3i(a.x * b, a.y * b, a.z * b); }
+inline Vector3i operator/(const Vector3i& a, const int b) { return Vector3i(a.x / b, a.y / b, a.z / b); }
+inline Vector3i operator*=(const Vector3i& a, const int b) { return Vector3i(a.x * b, a.y * b, a.z * b); }
 
 inline bool operator==(const Vector3f& a, const Vector3f& b) { return (a.x == b.x && a.y == b.y && a.z == b.z); }
 
@@ -496,20 +488,6 @@ inline f32 _normalise2(Vector3f& diff)
 		return dist;
 	}
 	return 0.0f;
-}
-
-inline void _normalise(Vector3f& vec)
-{
-	Vector2f sqr(vec.z * vec.z, vec.x * vec.x + vec.y * vec.y);
-	f32 length = sqr.x + sqr.y;
-	__sqrtf(length, &length);
-
-	if (length > 0.0f) {
-		f32 norm = 1.0f / length;
-		vec.x *= norm;
-		vec.y *= norm;
-		vec.z *= norm;
-	}
 }
 
 inline void _normaliseScale(Vector3f& vec, f32 scale)

@@ -111,8 +111,8 @@ struct FallState : public State {
 
 	// _00     = VTBL
 	// _00-_10 = State
-	f32 _10; // _10
-	f32 _14; // _14
+	f32 mHorizontalDrag; // _10
+	f32 mVerticalDrag;   // _14
 };
 
 struct GrowState : public State {

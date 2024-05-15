@@ -576,7 +576,7 @@ bool RouteMgr::getNearestEdge(WPEdgeSearchArg& searchArg)
 				f32 distanceMagnitude = relativePosition.normalise();
 
 				Vector3f searchSep = searchArg.mStartPosition - wpPos;
-				f32 dotProd        = dot(relativePosition, searchSep) / distanceMagnitude;
+				f32 dotProd        = relativePosition.dot(searchSep) / distanceMagnitude;
 
 				if (distanceMagnitude < 0.1f) {
 					JUT_PANICLINE(768, "wpA(%d) and wpB(%d) cause singularity !\n", wpA->mIndex, wpB->mIndex);

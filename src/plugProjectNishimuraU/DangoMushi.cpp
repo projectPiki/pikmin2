@@ -254,7 +254,7 @@ void Obj::wallCallback(const MoveInfo& mvInfo)
 		f32 speed         = velocity.normalise();
 
 		// if we're rolling fast enough and hit the wall at a 30 degree angle or more (90 degree = head-on), crash
-		if (speed > 100.0f && dot(velocity, mvInfo.mWallNormal) < -0.5f) {
+		if (speed > 100.0f && velocity.dot(mvInfo.mWallNormal) < -0.5f) {
 			createBodyWallCrashEffect(mvInfo.mWallNormal);
 			mFsm->transit(this, DANGOMUSHI_Turn, nullptr);
 		}

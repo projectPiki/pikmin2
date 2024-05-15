@@ -133,9 +133,9 @@ Vector3f CullFrustum::getPosition()
 	zVec.z = mViewMatrix->mMatrix.structView.zz;
 
 	Vector3f position;
-	position.x = dot(tVec, xVec);
-	position.y = dot(tVec, yVec);
-	position.z = dot(tVec, zVec);
+	position.x = tVec.dot(xVec);
+	position.y = tVec.dot(yVec);
+	position.z = tVec.dot(zVec);
 	return position;
 }
 
@@ -164,7 +164,7 @@ void CullFrustum::updatePlanes()
 	planeVec.y          = outVec.y;
 	planeVec.z          = outVec.z;
 	mObjects[0].mNormal = planeVec;
-	dist                = dot(planeVec, posVec);
+	dist                = planeVec.dot(posVec);
 	mObjects[0].mOffset = dist;
 
 	Vec outVec1;
@@ -176,7 +176,7 @@ void CullFrustum::updatePlanes()
 	planeVec1.y         = outVec1.y;
 	planeVec1.z         = outVec1.z;
 	mObjects[1].mNormal = planeVec1;
-	mObjects[1].mOffset = dot(planeVec1, posVec);
+	mObjects[1].mOffset = planeVec1.dot(posVec);
 
 	Vec outVec2;
 	Vector3f planeVec2;
@@ -187,7 +187,7 @@ void CullFrustum::updatePlanes()
 	planeVec2.y         = outVec2.y;
 	planeVec2.z         = outVec2.z;
 	mObjects[2].mNormal = planeVec2;
-	mObjects[2].mOffset = dot(planeVec2, posVec);
+	mObjects[2].mOffset = planeVec2.dot(posVec);
 
 	Vec outVec3;
 	Vector3f planeVec3;
@@ -198,7 +198,7 @@ void CullFrustum::updatePlanes()
 	planeVec3.y         = outVec3.y;
 	planeVec3.z         = outVec3.z;
 	mObjects[3].mNormal = planeVec3;
-	mObjects[3].mOffset = dot(planeVec3, posVec);
+	mObjects[3].mOffset = planeVec3.dot(posVec);
 	/*
 	stwu     r1, -0xf0(r1)
 	mflr     r0
@@ -467,12 +467,12 @@ void Camera::updatePlanes()
 	mObjects[4].mNormal = Vector3f(-zVec.x, -zVec.y, -zVec.z);
 	Vector3f farPlaneVec(mObjects[4].mNormal.x, mObjects[4].mNormal.y, mObjects[4].mNormal.z);
 	Vector3f farVec     = zVec * mProjectionFar + pos;
-	mObjects[4].mOffset = dot(farPlaneVec, farVec);
+	mObjects[4].mOffset = farPlaneVec.dot(farVec);
 
 	mObjects[5].mNormal = Vector3f(-zVec.x, -zVec.y, -zVec.z);
 	Vector3f nearPlaneVec(mObjects[5].mNormal.x, mObjects[5].mNormal.y, mObjects[5].mNormal.z);
 	Vector3f nearVec    = zVec * mProjectionNear + pos;
-	mObjects[5].mOffset = dot(nearPlaneVec, farVec);
+	mObjects[5].mOffset = nearPlaneVec.dot(farVec);
 	/*
 	stwu     r1, -0x70(r1)
 	mflr     r0

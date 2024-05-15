@@ -2574,7 +2574,7 @@ void BlackMan::Obj::findNextRoutePoint()
 				Vector3f sep2 = wp->mPosition - mPosition;
 				sep2.normalise();
 
-				f32 dotProd = dot(crossVec, sep2);
+				f32 dotProd = crossVec.dot(sep2);
 				if (dotProd > maxDot) {
 					maxDot = dotProd;
 					val    = i;

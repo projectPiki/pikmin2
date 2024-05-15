@@ -8,10 +8,8 @@
 #include "Vector3.h"
 #include "Plane.h"
 
-#define FABS(x) (f32) __fabs(x)
-
 // probably a Vector3.h thing
-inline f32 lenVec(const Vector3f& a) { return pikmin2_sqrtf(dot(a, a)); }
+inline f32 lenVec(Vector3f& a) { return pikmin2_sqrtf(a.dot(a)); }
 
 // no zero check
 inline f32 _normalise(Vector3f* a)

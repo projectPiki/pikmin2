@@ -409,12 +409,12 @@ void Obj::checkInteract(Obj* partner)
 			Vector3f creatureSep = creature->getPosition();
 			creatureSep -= pos;
 
-			f32 creatureDot = dot(crossVec, creatureSep); // f3
+			f32 creatureDot = crossVec.dot(creatureSep); // f3
 			f32 absDot      = absVal(creatureDot);        // f4
 
 			if (absDot < 10.0f) {
-				f32 sepDot = dot(sep, creatureSep); // f6
-				if (sepDot < dist && sepDot > 0.0f && absVal(dot(vec3, creatureSep)) < 15.0f) {
+				f32 sepDot = sep.dot(creatureSep); // f6
+				if (sepDot < dist && sepDot > 0.0f && absVal(vec3.dot(creatureSep)) < 15.0f) {
 					f32 factor = creatureDot / absDot;
 					Vector3f dir(factor * denkiDir.x, denkiDir.y, factor * denkiDir.z);
 					InteractDenki denki(this, C_GENERALPARMS.mAttackDamage(), &dir);

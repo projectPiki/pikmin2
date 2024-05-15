@@ -568,7 +568,7 @@ int ActGotoSlot::exec()
 
 			sep *= -1.0f;
 
-			f32 dotProd    = dot(slotPos, sep);
+			f32 dotProd    = slotPos.dot(sep);
 			f32 crossThing = (slotPos.z * sep.x) - (slotPos.x * sep.z);
 			f32 factor     = (dotProd >= 1.0f) ? 1.0f : (dotProd <= -1.0f) ? -1.0f : dotProd; // f3
 
@@ -3551,7 +3551,7 @@ void ActPathMove::crInit()
 		if (dist == 0.0f) {
 			newPoint = newPoint;
 		} else {
-			f32 ratio = dot(sep, pelletSep) / dist;
+			f32 ratio = sep.dot(pelletSep) / dist;
 			if (ratio < 0.0f) {
 				newPoint = newPoint;
 			} else if (ratio > 1.0f) {
@@ -3635,7 +3635,7 @@ bool ActPathMove::crMove()
 	f32 factor; // f27
 	if (dist > 0.0f) {
 		Vector3f diff = pelletPos - point0;
-		factor        = dot(sep, diff) / dist;
+		factor        = sep.dot(diff) / dist;
 	} else {
 		factor = 1.0f;
 	}

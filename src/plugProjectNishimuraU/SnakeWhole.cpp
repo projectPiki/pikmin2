@@ -905,8 +905,8 @@ Piki* Obj::getAttackPiki(int animIdx)
 		if (piki->isAlive() && piki->isPikmin() && !piki->isStickToMouth()) {
 			Vector3f pikiPos = piki->getPosition();
 			Vector3f sep     = pikiPos - snakePos;
-			f32 dotDir       = dot(dir, sep);      // f1
-			f32 dotPerpDir   = dot(orthoDir, sep); // f2
+			f32 dotDir       = dir.dot(sep);      // f1
+			f32 dotPerpDir   = orthoDir.dot(sep); // f2
 			for (int i = p1; i < p2; i++) {
 				if (dotDir < maxDotDirs[i] && dotDir > minDotDirs[i] && dotPerpDir < maxDotPerpDirs[i] && dotPerpDir > minDotPerpDirs[i]
 				    && sep.y < maxYs[i] && sep.y > minYs[i]) {
@@ -1371,8 +1371,8 @@ Navi* Obj::getAttackNavi(int animIdx)
 		if (navi->isAlive()) {
 			Vector3f naviPos = navi->getPosition();
 			Vector3f sep     = naviPos - snakePos;
-			f32 dotDir       = dot(dir, sep);      // f1
-			f32 dotPerpDir   = dot(orthoDir, sep); // f2
+			f32 dotDir       = dir.dot(sep);      // f1
+			f32 dotPerpDir   = orthoDir.dot(sep); // f2
 			for (int i = p1; i < p2; i++) {
 				if (dotDir < maxDotDirs[i] && dotDir > minDotDirs[i] && dotPerpDir < maxDotPerpDirs[i] && dotPerpDir > minDotPerpDirs[i]
 				    && sep.y < maxYs[i] && sep.y > minYs[i]) {

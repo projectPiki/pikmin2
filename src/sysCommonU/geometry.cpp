@@ -92,7 +92,7 @@ bool Tube::collide(Sphere& ball, Vector3f& repulsionVec, f32& posRatio)
 	Vector3f sep = ball.mPosition - mStartPos;
 
 	// calculate scalar projection of sep onto tube
-	f32 scalarProj = dot(axis, sep) / lenTube;
+	f32 scalarProj = axis.dot(sep) / lenTube;
 
 	// calculate perpendicular distance vector between (center of) tube and (center of) ball
 	Vector3f perpVec = (diff * scalarProj) + mStartPos - ball.mPosition;
@@ -318,7 +318,7 @@ f32 Tube::getPosRatio(const Vector3f& point)
 	Vector3f sep = point - mStartPos;
 
 	// calculate scalar projection of sep onto tube
-	return dot(axis, sep) / mag;
+	return axis.dot(sep) / mag;
 }
 
 /**
@@ -441,7 +441,7 @@ bool Sphere::intersect(Edge& edge, f32& t)
 	Vector3f sep(mPosition.x - edge.mStartPos.x, mPosition.y - edge.mStartPos.y, mPosition.z - edge.mStartPos.z);
 
 	// set t = scalar projection of sep onto edge
-	t = dot(sep, edgeVec);
+	t = sep.dot(edgeVec);
 
 	// if we're before edge (t < 0) or past edge (t > edgeLen), no intersection
 	if ((t < 0.0f) || (t > edgeLen)) {
@@ -500,7 +500,7 @@ bool Sphere::intersect(Edge& edge, f32& t, Vector3f& intersectPoint)
 	Vector3f sep(intersectPoint.x - edge.mStartPos.x, intersectPoint.y - edge.mStartPos.y, intersectPoint.z - edge.mStartPos.z);
 
 	// set t = scalar projection of sep onto edge
-	t = dot(sep, edgeVec);
+	t = sep.dot(edgeVec);
 
 	// if we're before edge (t < 0) or past edge (t > edgeLen), no intersection
 	if ((t < 0.0f) || (t > edgeLen)) {
@@ -545,7 +545,7 @@ bool Sphere::intersect(Edge& edge, f32& t, Vector3f& repulsionVec, f32& strength
 	Vector3f startSep(mPosition.x - edge.mStartPos.x, mPosition.y - edge.mStartPos.y, mPosition.z - edge.mStartPos.z);
 
 	// get scalar projection of startSep onto edge
-	t = dot(startSep, edgeVec);
+	t = startSep.dot(edgeVec);
 
 	// if we're 'before' edge (t < 0) or 'beyond' edge (t > edgeLen), just check end points
 	if ((t < 0.0f) || (t > edgeLen)) {
@@ -808,7 +808,7 @@ bool Triangle::intersect(Edge& edge, f32 cutoff, Vector3f& intersectionPoint)
 
 	Vector3f triPlaneNormal(mTrianglePlane.mNormal);
 
-	f32 scalarProj = dot(triPlaneNormal, edgeVec);
+	f32 scalarProj = triPlaneNormal.dot(edgeVec);
 
 	// if edge has no length, cannot intersect
 	if (0.0f == edgeLen) {
@@ -826,12 +826,12 @@ bool Triangle::intersect(Edge& edge, f32 cutoff, Vector3f& intersectionPoint)
 			for (int i = 0; i < 3; i++) {
 				// project normal onto edge
 				Vector3f edgePlaneNormal(mEdgePlanes[i].mNormal);
-				f32 edgePlaneProj = dot(edgePlaneNormal, edgeVec);
+				f32 edgePlaneProj = edgePlaneNormal.dot(edgeVec);
 
 				// check that projection isn't vanishingly small
 				if (FABS(edgePlaneProj) > 0.01f) {
 					// check we have an intersection point
-					f32 edgePlaneRatio = (mEdgePlanes[i].mOffset - dot(edgePlaneNormal, edge.mStartPos)) / edgePlaneProj;
+					f32 edgePlaneRatio = (mEdgePlanes[i].mOffset - edgePlaneNormal.dot(edge.mStartPos)) / edgePlaneProj;
 					if ((edgePlaneRatio > -ratio) && (edgePlaneRatio < (1 + ratio))) {
 						// get intersection point
 						Vector3f projVec  = edgeVec * edgePlaneRatio;
@@ -853,7 +853,7 @@ bool Triangle::intersect(Edge& edge, f32 cutoff, Vector3f& intersectionPoint)
 
 	// edge not (close to) perpendicular, can just check triangle plane itself
 	// check if we have an intersection point
-	f32 triPlaneRatio = (mTrianglePlane.mOffset - dot(triPlaneNormal, edge.mStartPos)) / scalarProj;
+	f32 triPlaneRatio = (mTrianglePlane.mOffset - triPlaneNormal.dot(edge.mStartPos)) / scalarProj;
 	if ((triPlaneRatio < -ratio) || (triPlaneRatio > (1 + ratio))) {
 		// we don't
 		return false;
@@ -889,7 +889,7 @@ bool Sys::Triangle::intersect(Sys::Edge& edge, f32 cutoff, Vector3f& intersectio
 
 	Vector3f triPlaneNormal(mTrianglePlane.mNormal);
 
-	f32 scalarProj = dot(triPlaneNormal, edgeVec);
+	f32 scalarProj = triPlaneNormal.dot(edgeVec);
 
 	// if edge has no length, cannot intersect
 	if (0.0f == edgeLen) {
@@ -907,12 +907,12 @@ bool Sys::Triangle::intersect(Sys::Edge& edge, f32 cutoff, Vector3f& intersectio
 			for (int i = 0; i < 3; i++) {
 				// project normal onto edge
 				Vector3f edgePlaneNormal(mEdgePlanes[i].mNormal);
-				f32 edgePlaneProj = dot(edgePlaneNormal, edgeVec);
+				f32 edgePlaneProj = edgePlaneNormal.dot(edgeVec);
 
 				// check that projection isn't vanishingly small
 				if (FABS(edgePlaneProj) > 0.01f) {
 					// check we have an intersection point
-					f32 edgePlaneRatio = (mEdgePlanes[i].mOffset - dot(edgePlaneNormal, edge.mStartPos)) / edgePlaneProj;
+					f32 edgePlaneRatio = (mEdgePlanes[i].mOffset - edgePlaneNormal.dot(edge.mStartPos)) / edgePlaneProj;
 					if ((edgePlaneRatio > -ratio) && (edgePlaneRatio < (1 + ratio))) {
 						// get intersection point
 						Vector3f projVec  = edgeVec * edgePlaneRatio;
@@ -936,7 +936,7 @@ bool Sys::Triangle::intersect(Sys::Edge& edge, f32 cutoff, Vector3f& intersectio
 
 	// edge not (close to) perpendicular, can just check triangle plane itself
 	// check if we have an intersection point
-	f32 triPlaneRatio = (mTrianglePlane.mOffset - dot(triPlaneNormal, edge.mStartPos)) / scalarProj;
+	f32 triPlaneRatio = (mTrianglePlane.mOffset - triPlaneNormal.dot(edge.mStartPos)) / scalarProj;
 	if ((triPlaneRatio < -ratio) || (triPlaneRatio > (1 + ratio))) {
 		// we don't
 		return false;
@@ -3796,7 +3796,7 @@ void TriIndexList::getMinMax(VertexTable& vertTable, TriangleTable& triTable, Ve
 		vertices[2] = vertTable.mObjects[currTri->mVertices[2]];
 
 		for (int j = 0; j < 3; j++) {
-			f32 testVal = dot(vec1, vertices[j] - vec2);
+			f32 testVal = vec1.dot(vertices[j] - vec2);
 			if (testVal > max) {
 				max = testVal;
 			}

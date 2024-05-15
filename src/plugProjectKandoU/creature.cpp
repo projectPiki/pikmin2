@@ -730,7 +730,7 @@ void Creature::resolveOneColl(CollPart* source, CollPart* dest, Vector3f& direct
 	CollEvent destToSrcEvent(op, dest, source);
 
 	Vector3f velocityDifference = velAtSource - velAtDest;
-	f32 sepDot                  = dot(velocityDifference, collisionNormal);
+	f32 sepDot                  = velocityDifference.dot(collisionNormal);
 	collisionCallback(destToSrcEvent);
 
 	CollEvent srcToDestEvent(this, source, dest);

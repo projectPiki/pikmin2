@@ -544,8 +544,8 @@ bool Obj::isAttackableTarget()
 			if (targetable) {
 				Vector3f targetPos = target->getPosition();
 				targetPos -= shotGunPos;
-				if (absVal(targetPos.y) < 200.0f && absVal(dot(perpDir, targetPos)) < 25.0f) {
-					f32 dotProd = dot(dir, targetPos);
+				if (absVal(targetPos.y) < 200.0f && absVal(perpDir.dot(targetPos)) < 25.0f) {
+					f32 dotProd = dir.dot(targetPos);
 					if (dotProd > 1.0f && dotProd < C_GENERALPARMS.mSearchDistance.mValue) {
 						mTargetPosition = target->getPosition();
 						return true;

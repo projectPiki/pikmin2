@@ -200,13 +200,13 @@ Pellet* PelletView::becomePellet(PelletViewArg* viewArg)
 
 		Vector3f row1;
 		viewArg->mMatrix->getRow(0, row1);
-		vecPtr->x = dot(offset, row1);
+		vecPtr->x = offset.dot(row1);
 		Vector3f row2;
 		viewArg->mMatrix->getRow(1, row2);
-		vecPtr->y = dot(offset, row2);
+		vecPtr->y = offset.dot(row2);
 		Vector3f row3;
 		viewArg->mMatrix->getRow(2, row3);
-		vecPtr->z = dot(offset, row3);
+		vecPtr->z = offset.dot(row3);
 		position  = position + resultVec;
 
 		newPellet->setPosition(position, false);
@@ -2109,7 +2109,7 @@ void Pellet::update()
 
 		if (mPickFlags & 1) {
 			bool check = (info.mWallTriangle != nullptr);
-			if (check && (dot(moveVel, info.mWallNormal) > 0.5f)) {
+			if (check && (moveVel.dot(info.mWallNormal) > 0.5f)) {
 				check = false;
 			}
 			if (check) {
@@ -2141,9 +2141,9 @@ void Pellet::update()
 			if (!(mPickFlags & 1) && (mIsAlwaysCarried == 0)) {
 				/////// this bit is full of regswaps
 				Vector3f currVel = *velocityPtr;
-				f32 dotVelocity  = dot(currVel, info.mFloorNormal);
+				f32 dotVelocity  = currVel.dot(info.mFloorNormal);
 				Vector3f impulse(0.0f, -(_aiConstants->mGravity.mData * sys->mDeltaTime), 0.0f);
-				f32 dotImpulse = dot(impulse, info.mFloorNormal);
+				f32 dotImpulse = impulse.dot(info.mFloorNormal);
 
 				Vector3f res = info.mFloorNormal * dotVelocity;
 				res          = currVel - res;
@@ -2244,7 +2244,7 @@ void Pellet::update()
 
 		if (mPickFlags & 1) {
 			bool check = (info3.mWallTriangle != nullptr);
-			if (check && (dot(anotherMoveVec, info3.mWallNormal) > 0.5f)) {
+			if (check && (anotherMoveVec.dot(info3.mWallNormal) > 0.5f)) {
 				check = false;
 			}
 			if (check) {

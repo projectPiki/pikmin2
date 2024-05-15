@@ -471,7 +471,7 @@ int PikiAI::ActFormation::exec()
 		Vector3f plateSep    = mParent->mNavi->getPosition() - mCPlate->mMaxPositionOffset;
 		plateSep.normalise();
 
-		if (dot(plateSep, naviPikiSep) > 0.0f) {
+		if (plateSep.dot(naviPikiSep) > 0.0f) {
 			Vector3f impulse = Vector3f(-naviPikiSep.z, 0.0f, naviPikiSep.x); // f29, f27, f30
 			if (mSlotID & 1) {
 				impulse.negate();
@@ -497,7 +497,7 @@ int PikiAI::ActFormation::exec()
 		Vector3f plateSep    = mParent->mNavi->getPosition() - mCPlate->mMaxPositionOffset;
 		plateSep.normalise();
 
-		if (dot(plateSep, naviPikiSep) > 0.0f) {
+		if (plateSep.dot(naviPikiSep) > 0.0f) {
 			Vector3f impulse = Vector3f(-naviPikiSep.z, 0.0f, naviPikiSep.x); // f29, f27, f30
 			if (mSlotID & 1) {
 				impulse.negate();

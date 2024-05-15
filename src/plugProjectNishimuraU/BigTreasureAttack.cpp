@@ -458,9 +458,9 @@ bool BigTreasureElecAttack::update()
 				Vector3f creaturePos = creature->getPosition();
 
 				Vector3f sep = creaturePos - mPosition;
-				f32 dot1     = dot(crossVec1, sep);
-				if (absVal(dot1) < 10.0f && absVal(dot(crossVec2, sep)) < 20.0f) {
-					f32 dotSep = dot(partnerSep, sep);
+				f32 dot1     = crossVec1.dot(sep);
+				if (absVal(dot1) < 10.0f && absVal(crossVec2.dot(sep)) < 20.0f) {
+					f32 dotSep = partnerSep.dot(sep);
 					if (dotSep > 0.0f && dotSep < dist) {
 						Vector3f zapDir(dot1 * crossVec1.x, 0.0f, dot1 * crossVec1.z);
 						zapDir.normalise();

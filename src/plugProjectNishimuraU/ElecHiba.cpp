@@ -293,7 +293,7 @@ void Obj::interactDenkiAttack(Vector3f& position)
 			Vector3f creaturePos = creature->getPosition();
 			// Vector3f creatureSep = creaturePos - some other vector of consts;
 
-			// f32 dotProd = dot(crossProd, creatureSep);
+			// f32 dotProd = crossProd.dot(creatureSep);
 			f32 dotProd = 1.0f;
 			if (!(dotProd > 0.0f)) { // make sure it's positive
 				dotProd = -dotProd;

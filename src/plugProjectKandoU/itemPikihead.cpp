@@ -42,8 +42,8 @@ void FSM::init(Item*)
  */
 void FallState::init(Item* item, StateArg* arg)
 {
-	_14 = 10.0f - randFloat() * 0.5f; // 9.5-10.5
-	_10 = _14 * 0.2f;                 // 1.9-2.1
+	mVerticalDrag   = RAND_FLOAT_RANGE(10.0f, 0.5f); // 9.5-10.5
+	mHorizontalDrag = mVerticalDrag * 0.2f;          // 1.9-2.1
 	item->mEfxTane->createTanekira_(item->mEfxTane->mEfxPos);
 	item->mAnimator.startAnim(4, nullptr);
 }
@@ -52,7 +52,7 @@ void FallState::init(Item* item, StateArg* arg)
  * @note Address: 0x801D8DE8
  * @note Size: 0x38
  */
-void FallState::exec(Item* item) { item->applyAirDrag(sys->getDeltaTime(), _10, _14); }
+void FallState::exec(Item* item) { item->applyAirDrag(sys->getDeltaTime(), mHorizontalDrag, mVerticalDrag); }
 
 /**
  * @note Address: 0x801D8E20

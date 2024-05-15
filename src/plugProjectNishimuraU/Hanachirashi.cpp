@@ -1016,7 +1016,7 @@ bool Obj::windTarget()
 		if (navi->isAlive()) {
 			Vector3f naviPos = navi->getPosition();
 			Vector3f sep     = naviPos - vec1;
-			f32 dotProd      = dot(sep, vec2);
+			f32 dotProd      = sep.dot(vec2);
 			if (dotProd < radius && dotProd > 0.0f) {
 				// more vector math here.
 				InteractWind wind(this, 0.0f, &vec2); // not vec2
@@ -1032,7 +1032,7 @@ bool Obj::windTarget()
 		if (piki->isAlive()) {
 			Vector3f pikiPos = piki->getPosition();
 			Vector3f sep     = pikiPos - vec1;
-			f32 dotProd      = dot(sep, vec2);
+			f32 dotProd      = sep.dot(vec2);
 			if (dotProd < radius && dotProd > 0.0f) {
 				// more vector math here.
 				InteractWind wind(this, 0.0f, &vec2); // not vec2

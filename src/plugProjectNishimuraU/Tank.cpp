@@ -281,8 +281,8 @@ bool Obj::isAttackable(bool check)
 			f32 absY      = absVal(diff.y);
 			if (absY < parms->mGeneral.mAttackRadius()) {
 				Vector3f angle(cosTheta, 0.0f, sinTheta);
-				if (absVal(dot(angle, diff)) < parms->mGeneral.mAttackRadius()) {
-					f32 dotProd = dot(dir, diff);
+				if (absVal(angle.dot(diff)) < parms->mGeneral.mAttackRadius()) {
+					f32 dotProd = dir.dot(diff);
 					if (dotProd < ratio && dotProd > 0.0f) {
 						if (check) {
 							interactCreature(creature);

@@ -1007,7 +1007,7 @@ void OBB::determineDivPlane(Sys::VertexTable& vertTable, Sys::TriangleTable& tri
 		currPlane.mNormal.x = currAxis->x;
 		currPlane.mNormal.y = currAxis->y;
 		currPlane.mNormal.z = currAxis->z;
-		currPlane.mOffset   = dot(*currAxis, mPosition);
+		currPlane.mOffset   = *currAxis.dot(mPosition);
 
 		// loop through all triangles
 		for (int j = 0; j < mTriIndexList.mCount; j++) {
@@ -1039,7 +1039,7 @@ void OBB::determineDivPlane(Sys::VertexTable& vertTable, Sys::TriangleTable& tri
 	Vector3f correctAxis = mAxes[axisID];
 	// divPlane has normal = axis with min cuts, and goes through center/position of box
 	mDivPlane.mNormal = correctAxis;
-	mDivPlane.mOffset = dot(correctAxis, mPosition);
+	mDivPlane.mOffset = correctAxis.dot(mPosition);
 	/*
 	stwu     r1, -0x80(r1)
 	mflr     r0

@@ -163,8 +163,8 @@ int ActCrop::exec()
 		sep.normalise();
 		Vector3f unitYVel(0.0f, 1.0f, 0.0f);
 
-		f32 horizComp = dot(unitXZVel, sep);
-		f32 yComp     = dot(unitYVel, sep);
+		f32 horizComp = unitXZVel.dot(sep);
+		f32 yComp     = unitYVel.dot(sep);
 		f32 negYComp  = -yComp;
 		mParent->endStick();
 

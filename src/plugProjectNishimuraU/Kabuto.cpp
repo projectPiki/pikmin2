@@ -229,9 +229,9 @@ bool Obj::isAttackableTarget()
 				Vector3f creaturePos = creature->getPosition();
 				Vector3f diff        = creaturePos - mPosition;
 				if (absVal(diff.x) < C_GENERALPARMS.mFov()) {
-					f32 dotProd = absVal(dot(diff, angles));
+					f32 dotProd = absVal(diff.dot(angles));
 					if (dotProd < 15.0f) {
-						f32 secondDotProd = dot(diff, angles);
+						f32 secondDotProd = diff.dot(angles);
 						if (secondDotProd > 15.0f && secondDotProd < C_GENERALPARMS.mSightRadius.mValue) {
 							return true;
 						}

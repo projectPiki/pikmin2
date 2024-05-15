@@ -190,17 +190,17 @@ bool HoudaiShotGunNode::update()
 			Vector3f creaturePos = target->getPosition();
 			Vector3f sep         = creaturePos - startPos;
 
-			f32 dot2 = dot(vec2, sep);
+			f32 dot2 = vec2.dot(sep);
 			if (!(absVal(dot2) < radius)) {
 				continue;
 			}
 
-			f32 dot3 = dot(vec3, sep);
+			f32 dot3 = vec3.dot(sep);
 			if (!(absVal(dot3) < radius)) {
 				continue;
 			}
 
-			f32 dot1 = dot(vec1, sep);
+			f32 dot1 = vec1.dot(sep);
 			if (!(dot1 > -radius)) {
 				continue;
 			}

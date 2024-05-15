@@ -839,7 +839,7 @@ bool Obj::suckNavi(f32 offset)
 
 						Vector3f sep = naviPos - partPos;
 						InteractSarai suck(this, 100.0f, nullptr);
-						slot->mOffset = Vector3f(dot(xVec, sep), dot(yVec, sep), dot(zVec, sep));
+						slot->mOffset = Vector3f(xVec.dot(sep), yVec.dot(sep), zVec.dot(sep));
 
 						if (currNavi->stimulate(suck)) {
 							mSuckedNavis[i] = currNavi;

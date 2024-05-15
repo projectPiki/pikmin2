@@ -1943,7 +1943,7 @@ void Graphics::drawCone(Vector3f& start, Vector3f& end, f32 inAngle, int limit)
 	Vector3f xVec; // f3, f4, f5
 	Vector3f yVec; // f6, f7, f8
 	Vector3f yAxis(0.0f, 1.0f, 0.0f);
-	if (FABS(dot(sep, yAxis)) < 1.0E-7f) {
+	if (FABS(sep.dot(yAxis)) < 1.0E-7f) {
 		xVec = cross(yAxis, sep);
 		xVec.normalise();
 

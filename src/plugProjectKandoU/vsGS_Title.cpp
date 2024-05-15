@@ -315,7 +315,7 @@ void TitleState::execVs(VsGameSection* section)
 			f32 highest     = 0.0f;
 			int vsEditIndex = 0;
 			for (int i = 0; i < 4; i++) {
-				f32 stickWeight = dot(directions[i], stickPos);
+				f32 stickWeight = directions[i].dot(stickPos);
 				if (stickWeight > highest) {
 					highest     = stickWeight;
 					vsEditIndex = i; // up = 0, right = 1, down = 2, left = 3
