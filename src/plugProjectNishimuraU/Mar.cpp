@@ -438,10 +438,7 @@ bool Obj::isTargetLost()
 		f32 privRad   = C_GENERALPARMS.mPrivateRadius.mValue;
 		f32 sightDiff = getCreatureViewAngle(target);
 
-		bool checkDist = isTargetAttackable(target, sightDiff, privRad, sightRad);
-		if (!checkDist && FABS(sightDiff) <= viewAngle * DEG2RAD * PI) {
-			return false;
-		}
+		return isTargetWithinRange(target, sightDiff, privRad, sightRad, 12800.0f, viewAngle);
 	}
 
 	return true;

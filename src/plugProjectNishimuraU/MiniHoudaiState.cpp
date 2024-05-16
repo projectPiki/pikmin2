@@ -537,8 +537,8 @@ void StateTurn::exec(EnemyBase* enemy)
 		if (target) {
 			mini->mHealthGaugeTimer = 0.0f;
 			f32 angleSep            = mini->turnToTarget(target, CG_GENERALPARMS(mini).mTurnSpeed(), CG_GENERALPARMS(mini).mMaxTurnAngle());
-			if (mini->isTargetOutOfRange(target, angleSep, CG_GENERALPARMS(mini).mPrivateRadius(), CG_GENERALPARMS(mini).mSightRadius(),
-			                             CG_GENERALPARMS(mini).mFov(), mini->getViewAngle())) {
+			if (mini->isTargetWithinRange(target, angleSep, CG_GENERALPARMS(mini).mPrivateRadius(), CG_GENERALPARMS(mini).mSightRadius(),
+			                              CG_GENERALPARMS(mini).mFov(), mini->getViewAngle())) {
 				mini->mNextState = MINIHOUDAI_Lost;
 				mini->finishMotion();
 			} else {
@@ -1222,8 +1222,8 @@ void StateWalk::exec(EnemyBase* enemy)
 			if (target) {
 				mini->mHealthGaugeTimer = 0.0f;
 				f32 angleSep            = mini->turnToTarget(target, turnSpeed, maxTurnAngle);
-				if (mini->isTargetOutOfRange(target, angleSep, CG_GENERALPARMS(mini).mPrivateRadius(), CG_GENERALPARMS(mini).mSightRadius(),
-				                             CG_GENERALPARMS(mini).mFov(), mini->getViewAngle())) {
+				if (mini->isTargetWithinRange(target, angleSep, CG_GENERALPARMS(mini).mPrivateRadius(),
+				                              CG_GENERALPARMS(mini).mSightRadius(), CG_GENERALPARMS(mini).mFov(), mini->getViewAngle())) {
 					mini->mNextState = MINIHOUDAI_Lost;
 					mini->finishMotion();
 				} else {

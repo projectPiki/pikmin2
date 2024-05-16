@@ -459,9 +459,9 @@ void StateWait::exec(EnemyBase* enemy)
 	if (previousTarget) {
 		if (previousTarget->isAlive() && !previousTarget->isStickToMouth() && previousTarget->mSticker != snagret) {
 			// this inline needs fixing
-			if (snagret->isTargetOutOfRange(previousTarget, snagret->getCreatureViewAngle(previousTarget),
-			                                CG_GENERALPARMS(snagret).mPrivateRadius(), CG_GENERALPARMS(snagret).mSightRadius(),
-			                                CG_GENERALPARMS(snagret).mFov(), CG_GENERALPARMS(snagret).mViewAngle())) {
+			if (snagret->isTargetWithinRange(previousTarget, snagret->getCreatureViewAngle(previousTarget),
+			                                 CG_GENERALPARMS(snagret).mPrivateRadius(), CG_GENERALPARMS(snagret).mSightRadius(),
+			                                 CG_GENERALPARMS(snagret).mFov(), CG_GENERALPARMS(snagret).mViewAngle())) {
 				target = nullptr;
 			} else {
 				target = EnemyFunc::getNearestPikminOrNavi(snagret, CG_GENERALPARMS(snagret).mViewAngle(),

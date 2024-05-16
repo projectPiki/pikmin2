@@ -1779,8 +1779,8 @@ void Obj::checkAttack(bool check)
 
 	if (mTargetCreature && mTargetCreature->isAlive()) {
 		Creature* target = mTargetCreature;
-		if (isTargetOutOfRange(target, getCreatureViewAngle(target), C_GENERALPARMS.mPrivateRadius(), C_GENERALPARMS.mSightRadius(),
-		                       C_GENERALPARMS.mFov(), C_GENERALPARMS.mViewAngle())) {
+		if (isTargetWithinRange(target, getCreatureViewAngle(target), C_GENERALPARMS.mPrivateRadius(), C_GENERALPARMS.mSightRadius(),
+		                        C_GENERALPARMS.mFov(), C_GENERALPARMS.mViewAngle())) {
 			mTargetCreature = nullptr;
 
 		} else {

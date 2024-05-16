@@ -301,9 +301,9 @@ void StateTurn::exec(EnemyBase* enemy)
 				OBJ(enemy)->setAnimationSpeed(60.0f);
 				mNextState = CHAPPY_Attack;
 
-			} else if (enemy->isTargetOutOfRange(enemy->mTargetCreature, angleDist, CG_GENERALPARMS(enemy).mPrivateRadius(),
-			                                     CG_GENERALPARMS(enemy).mSightRadius(), CG_GENERALPARMS(enemy).mFov(),
-			                                     OBJ(enemy)->mViewAngle)) {
+			} else if (enemy->isTargetWithinRange(enemy->mTargetCreature, angleDist, CG_GENERALPARMS(enemy).mPrivateRadius(),
+			                                      CG_GENERALPARMS(enemy).mSightRadius(), CG_GENERALPARMS(enemy).mFov(),
+			                                      OBJ(enemy)->mViewAngle)) {
 				mNextState = CHAPPY_TurnToHome;
 				enemy->finishMotion();
 			} else {
@@ -949,9 +949,9 @@ void StateWalk::exec(EnemyBase* enemy)
 				if (mNextState == CHAPPY_Attack) {
 					OBJ(enemy)->setAnimationSpeed(60.0f);
 				}
-			} else if (enemy->isTargetOutOfRange(enemy->mTargetCreature, angle, CG_GENERALPARMS(enemy).mPrivateRadius(),
-			                                     CG_GENERALPARMS(enemy).mSightRadius(), CG_GENERALPARMS(enemy).mFov(),
-			                                     OBJ(enemy)->mViewAngle)) {
+			} else if (enemy->isTargetWithinRange(enemy->mTargetCreature, angle, CG_GENERALPARMS(enemy).mPrivateRadius(),
+			                                      CG_GENERALPARMS(enemy).mSightRadius(), CG_GENERALPARMS(enemy).mFov(),
+			                                      OBJ(enemy)->mViewAngle)) {
 				mNextState = CHAPPY_TurnToHome;
 				enemy->finishMotion();
 				enemy->mTargetVelocity = Vector3f(0.0f);

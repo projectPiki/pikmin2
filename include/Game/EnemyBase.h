@@ -105,8 +105,7 @@ enum DropGroup {
 };
 
 // Interface for specific overrides (e.g. PelplantInitialParams)
-struct EnemyInitialParamBase {
-};
+struct EnemyInitialParamBase { };
 
 struct EnemyKillArg : public CreatureKillArg {
 	inline EnemyKillArg(int flag)
@@ -449,17 +448,23 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 
 	inline f32 getCreatureViewAngle(Creature* target)
 	{
-		Vector3f targetPos = target->getPosition();
-		Vector3f pos       = getPosition();
-		f32 ang            = _angXZ(targetPos.x, targetPos.z, pos.x, pos.z);
-		return angDist(ang, getFaceDir());
+		Vector3f targetPosition = target->getPosition();
+		Vector3f myPosition     = getPosition();
+
+		f32 x = targetPosition.x - myPosition.x;
+		f32 z = targetPosition.z - myPosition.z;
+
+		return angDist(angXZ(x, z), getFaceDir());
 	}
 
 	inline f32 getCreatureViewAngle(Vector3f& targetPos)
 	{
 		Vector3f pos = getPosition();
-		f32 ang      = _angXZ(targetPos.x, targetPos.z, pos.x, pos.z);
-		return angDist(ang, getFaceDir());
+
+		f32 x = targetPos.x - pos.x;
+		f32 z = targetPos.z - pos.z;
+
+		return angDist(angXZ(x, z), getFaceDir());
 	}
 
 	// this seems necessary and correct based on BombSarai::Obj::throwBomb
@@ -546,41 +551,40 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 		sep.x = target->getPosition().x - getPosition().x;
 		sep.y = target->getPosition().y - getPosition().y;
 		sep.z = target->getPosition().z - getPosition().z;
-		if ((sep.sqrMagnitude() < SQUARE(attackDist)) && FABS(angleDiff) <= TORADIANS(attackAngle)) {
+		if ((sep.sqrMagnitude() < SQUARE(attackDist)) && (FABS(angleDiff) <= TORADIANS(attackAngle)) != false) {
 			result = true;
 		}
 		return result;
 	}
 
-	inline bool isTargetOutOfRange(Creature* target, f32 angle, f32 privateRad, f32 sightRad, f32 fov, f32 viewAngle)
+	/**
+	 * Checks if a target is within the range of the enemy.
+	 *
+	 * @param target The target creature to check.
+	 * @param pAngle The angle between the enemy and the target.
+	 * @param pPrivateRadius The private radius of the enemy.
+	 * @param pSightRadius The sight radius of the enemy.
+	 * @param pFov The field of view of the enemy.
+	 * @param pViewAngle The view angle of the enemy.
+	 * @return True if the target is within range, false otherwise.
+	 */
+	inline bool isTargetWithinRange(Creature* target, f32 pAngle, f32 pPrivateRadius, f32 pSightRadius, f32 pFov, f32 pViewAngle)
 	{
+		// Calculate the separation between us and target
 		Vector3f sep;
 		sep.x = target->getPosition().x - getPosition().x;
 		sep.y = target->getPosition().y - getPosition().y;
 		sep.z = target->getPosition().z - getPosition().z;
 
-		f32 rad1 = SQUARE(privateRad);
-		f32 rad2 = SQUARE(sightRad);
+		// Calculate the squared distance between us and target
+		f32 privateRadius = SQUARE(pPrivateRadius);
+		f32 sightRadius   = SQUARE(pSightRadius);
+		f32 distance      = sep.sqrMagnitude2D();
 
-		bool result         = true;  // r3
-		bool isOutsideRange = false; // r4
-		bool isOutsideSight;
-		f32 dist2D = sep.sqrMagnitude2D();
-		if (dist2D > rad1) {
-			isOutsideSight = false;
-			if (dist2D > rad2 && absF(sep.y) < fov) {
-				isOutsideSight = true;
-			}
-
-			if (isOutsideSight) {
-				isOutsideRange = true;
-			}
-		}
-
-		if (!isOutsideRange && absF(angle) <= TORADIANS(viewAngle)) {
-			result = false;
-		}
-		return result;
+		// Check if the target is outside the private and sight radius and within the field of view
+		return (distance > privateRadius && (distance > sightRadius && absF(sep.y) < pFov))
+		    // Check if the angle to the target is within the field of view
+		    || (FABS(pAngle) <= TORADIANS(pViewAngle)) == false;
 	}
 
 	inline f32 changeFaceDir2(Creature* target)

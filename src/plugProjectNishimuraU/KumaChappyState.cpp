@@ -1800,9 +1800,9 @@ void StateTurn::exec(EnemyBase* enemy)
 				chappy->finishMotion();
 				chappy->setAnimSpeed(60.0f);
 
-			} else if (chappy->isTargetOutOfRange(target, angleSep, CG_GENERALPARMS(chappy).mPrivateRadius(),
-			                                      CG_GENERALPARMS(chappy).mSightRadius(), CG_GENERALPARMS(chappy).mFov(),
-			                                      chappy->getViewAngle())) {
+			} else if (chappy->isTargetWithinRange(target, angleSep, CG_GENERALPARMS(chappy).mPrivateRadius(),
+			                                       CG_GENERALPARMS(chappy).mSightRadius(), CG_GENERALPARMS(chappy).mFov(),
+			                                       chappy->getViewAngle())) {
 				chappy->mNextState = KUMACHAPPY_Lost;
 				chappy->finishMotion();
 			} else if (absF(angleSep) <= TORADIANS(CG_GENERALPARMS(chappy).mMaxAttackAngle())) {
@@ -2732,9 +2732,9 @@ void StateWalk::exec(EnemyBase* enemy)
 				chappy->finishMotion();
 				chappy->setAnimSpeed(60.0f);
 
-			} else if (chappy->isTargetOutOfRange(target, angleSep, CG_GENERALPARMS(chappy).mPrivateRadius(),
-			                                      CG_GENERALPARMS(chappy).mSightRadius(), CG_GENERALPARMS(chappy).mFov(),
-			                                      chappy->getViewAngle())) {
+			} else if (chappy->isTargetWithinRange(target, angleSep, CG_GENERALPARMS(chappy).mPrivateRadius(),
+			                                       CG_GENERALPARMS(chappy).mSightRadius(), CG_GENERALPARMS(chappy).mFov(),
+			                                       chappy->getViewAngle())) {
 				chappy->mNextState = KUMACHAPPY_Lost;
 				chappy->finishMotion();
 			} else if (!(absF(angleSep) <= TORADIANS(CG_GENERALPARMS(chappy).mMaxAttackAngle()))) {

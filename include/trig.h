@@ -91,7 +91,13 @@ inline f32 angXZ(f32 x, f32 z, Vector3f& vec)
 	return roundAng(JMAAtan2Radian(x - pos.x, z - pos.z));
 }
 
-inline f32 _angXZ(f32 x1, f32 z1, f32 x2, f32 z2) { return roundAng(JMAAtan2Radian(x1 - x2, z1 - z2)); }
+inline f32 _angXZ(f32 x1, f32 z1, f32 x2, f32 z2)
+{
+	f32 angle = JMAAtan2Radian(x1 - x2, z1 - z2);
+	return roundAng(angle);
+}
+
+inline f32 angXZ(f32 x, f32 z) { return roundAng(JMAAtan2Radian(x, z)); }
 
 inline f32 absF(f32 val)
 {

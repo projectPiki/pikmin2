@@ -188,9 +188,9 @@ void StateMove::exec(EnemyBase* enemy)
 		if (target) {
 			// f32 angleDist = tank->getAngDist(target); // f26
 
-			if (tank->isTargetOutOfRange(target, tank->getAngDist(target), CG_GENERALPARMS(tank).mPrivateRadius(),
-			                             CG_GENERALPARMS(tank).mSightRadius(), CG_GENERALPARMS(tank).mFov(),
-			                             viewAngle)) { // slightly different inline?
+			if (tank->isTargetWithinRange(target, tank->getAngDist(target), CG_GENERALPARMS(tank).mPrivateRadius(),
+			                              CG_GENERALPARMS(tank).mSightRadius(), CG_GENERALPARMS(tank).mFov(),
+			                              viewAngle)) { // slightly different inline?
 				transit(tank, TANK_Wait, nullptr);
 				return;
 			}
@@ -604,7 +604,7 @@ void StateMoveTurn::init(EnemyBase* enemy, StateArg* stateArg)
 	tank->mTurnGoalDir += PI / 3;
 	Vector3f homePos(tank->mHomePosition);
 	tank->mGoalPosition   = Vector3f(CG_GENERALPARMS(tank).mTerritoryRadius() * sinf(tank->mTurnGoalDir) + homePos.x, homePos.y,
-                                   CG_GENERALPARMS(tank).mTerritoryRadius() * cosf(tank->mTurnGoalDir) + homePos.z);
+	                                 CG_GENERALPARMS(tank).mTerritoryRadius() * cosf(tank->mTurnGoalDir) + homePos.z);
 	tank->mTargetCreature = nullptr;
 	tank->mTargetVelocity = Vector3f(0.0f);
 	tank->startMotion(TANKANIM_Turn, nullptr);
@@ -778,8 +778,8 @@ void StateChaseTurn::exec(EnemyBase* enemy)
 		tank->mCautionTimer = 0.0f;
 		f32 angleDist       = tank->changeFaceDir2(target);
 		if (target->isAlive()) {
-			if (tank->isTargetOutOfRange(target, angleDist, CG_GENERALPARMS(tank).mPrivateRadius(), CG_GENERALPARMS(tank).mSightRadius(),
-			                             CG_GENERALPARMS(tank).mFov(), viewAngle)) {
+			if (tank->isTargetWithinRange(target, angleDist, CG_GENERALPARMS(tank).mPrivateRadius(), CG_GENERALPARMS(tank).mSightRadius(),
+			                              CG_GENERALPARMS(tank).mFov(), viewAngle)) {
 				tank->mTargetCreature = nullptr;
 				tank->finishMotion();
 			}

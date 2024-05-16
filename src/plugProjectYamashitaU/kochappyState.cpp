@@ -113,7 +113,7 @@ void StateWait::exec(EnemyBase* enemy)
 				Parms* parms = CG_PARMS(enemy);
 				f32 angLimit = parms->mProperParms.mRotationEndAngle.mValue;
 				f32 angDist  = enemy->turnToTarget(enemy->mTargetCreature, CG_GENERALPARMS(enemy).mTurnSpeed(),
-                                                  CG_GENERALPARMS(enemy).mMaxTurnAngle()); // this is wrong?
+				                                   CG_GENERALPARMS(enemy).mMaxTurnAngle()); // this is wrong?
 				if (FABS(angDist) <= TORADIANS(angLimit)) {
 					transit(enemy, KOCHAPPY_Walk, nullptr);
 				} else {
@@ -441,8 +441,8 @@ void StateTurn::exec(EnemyBase* enemy)
 				enemy->finishMotion();
 				OBJ(enemy)->setAnimationSpeed(60.0f);
 			} else {
-				if (enemy->isTargetOutOfRange(enemy->mTargetCreature, angle, CG_GENERALPARMS(enemy).mPrivateRadius(),
-				                              CG_GENERALPARMS(enemy).mSightRadius(), CG_GENERALPARMS(enemy).mFov(), viewAngle)) {
+				if (enemy->isTargetWithinRange(enemy->mTargetCreature, angle, CG_GENERALPARMS(enemy).mPrivateRadius(),
+				                               CG_GENERALPARMS(enemy).mSightRadius(), CG_GENERALPARMS(enemy).mFov(), viewAngle)) {
 					mNextState = KOCHAPPY_TurnToHome;
 					enemy->finishMotion();
 				} else {
@@ -1029,9 +1029,9 @@ void StateWalk::exec(EnemyBase* enemy)
 				enemy->finishMotion();
 				enemy->mTargetVelocity = Vector3f(0.0f);
 				OBJ(enemy)->setAnimationSpeed(60.0f);
-			} else if (enemy->isTargetOutOfRange(enemy->mTargetCreature, angle, CG_GENERALPARMS(enemy).mPrivateRadius(),
-			                                     CG_GENERALPARMS(enemy).mSightRadius(), CG_GENERALPARMS(enemy).mFov(),
-			                                     CG_GENERALPARMS(enemy).mViewAngle())) {
+			} else if (enemy->isTargetWithinRange(enemy->mTargetCreature, angle, CG_GENERALPARMS(enemy).mPrivateRadius(),
+			                                      CG_GENERALPARMS(enemy).mSightRadius(), CG_GENERALPARMS(enemy).mFov(),
+			                                      CG_GENERALPARMS(enemy).mViewAngle())) {
 				mNextState = KOCHAPPY_TurnToHome;
 				enemy->finishMotion();
 				enemy->mTargetVelocity = Vector3f(0.0f);
