@@ -54,6 +54,11 @@
         "gxdata.h": "c",
         "gxtypes.h": "c",
         "gxtexture.h": "c",
-        "arith.h": "c"
+        "arith.h": "c",
+        "file_pos.h": "c",
+        "ctype.h": "c",
+        "mem_funcs.h": "c",
+        "card.h": "c",
+        "FILE_POS.C": "cpp"
     }
 }

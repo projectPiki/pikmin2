@@ -10,7 +10,7 @@ void DBInit(void)
 {
 	__DBInterface = (void*)IsDebuggerPresent;
 	// WTF?? is this the only way to match?
-	*(u32*)ExceptionHookDestination = (u32)__DBExceptionDestination - 0x80000000;
+	*(u32*)ExceptionHookDestination = (u32)__DBExceptionDestination - OS_BASE_CACHED;
 	DBVerbose                       = 1;
 }
 
@@ -30,7 +30,7 @@ void DBIsDebuggerPresent(void)
 static void __DBExceptionDestinationAux(void)
 {
 	u8 dummy[8];
-	OSContext* ctx = (void*)(0x80000000 + *(u32*)0xC0); // WTF??
+	OSContext* ctx = (void*)(OS_BASE_CACHED + *(u32*)0xC0); // WTF??
 	OSReport("DBExceptionDestination\n");
 	OSDumpContext(ctx);
 	PPCHalt();

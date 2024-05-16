@@ -1,10 +1,5 @@
 #include "PowerPC_EABI_Support/MSL_C/MSL_Common/mem_funcs.h"
 
-#define srcCharPtr  ((u8*)pSrc)
-#define destCharPtr ((u8*)pDest)
-#define srcLongPtr  ((u32*)pSrc)
-#define destLongPtr ((u32*)pDest)
-
 /**
  * @note Address: N/A
  * @note Size: 0x60

@@ -1265,26 +1265,26 @@ s32 MemoryCardMgr::checkSpace(ECardSlot cardSlot, int requiredSpace)
  * @note Address: 0x804423A4
  * @note Size: 0x104
  */
-void MemoryCardMgr::doMakeHeader(u8* param_1)
+void MemoryCardMgr::doMakeHeader(u8* header)
 {
 	OSCalendarTime calendar;
-	snprintf((char*)param_1 + 0x1c00, 0x20, "ピクミン２　セーブデータ");
+	snprintf((char*)header + 0x1c00, 0x20, "ピクミン２　セーブデータ");
 	OSTime osTime = OSGetTime();
 	OSTicksToCalendarTime(osTime, &calendar);
-	snprintf((char*)param_1 + 0x1c20, 0x20, "%04d/%02d/%02d %02d:%02d:%02d", calendar.year, calendar.mon + 1, calendar.mday, calendar.hour,
+	snprintf((char*)header + 0x1c20, 0x20, "%04d/%02d/%02d %02d:%02d:%02d", calendar.year, calendar.mon + 1, calendar.mday, calendar.hour,
 	         calendar.min, calendar.sec);
-	memset(param_1, 0, 0xe00);
-	param_1[0xc00] = -0x10;
-	param_1[0xc01] = -1;
+	memset(header, 0, 0xe00);
+	header[0xc00] = -0x10;
+	header[0xc01] = -1;
 	for (int i = 0; i < 3; i++) {
-		memset(param_1 + (0xe00 + (0x400 * i)), i, 0x400);
+		memset(header + (0xe00 + (0x400 * i)), i, 0x400);
 	}
-	param_1[0x1a00] = -1;
-	param_1[0x1a01] = '\x0f';
-	param_1[0x1a02] = -1;
-	param_1[0x1a03] = '\0';
-	param_1[0x1a04] = -1;
-	param_1[0x1a05] = -0x10;
+	header[0x1a00] = -1;
+	header[0x1a01] = '\x0f';
+	header[0x1a02] = -1;
+	header[0x1a03] = 0;
+	header[0x1a04] = -1;
+	header[0x1a05] = -0x10;
 	return;
 }
 
@@ -1341,90 +1341,20 @@ void MemoryCardMgr::doSetCardStat(CARDStat* cardStat)
  * @note Address: 0x80442690
  * @note Size: 0xF8
  */
-u32 MemoryCardMgr::calcCheckSum(void* dataptr, u32 key)
+u32 MemoryCardMgr::calcCheckSum(void* dataptr, u32 length)
 {
-	u16 low  = 0;
-	u16 high = 0;
+	u16* p;
+	int i;
 
-	for (u32 i = 0; i < key; i++) {
-		u16 data = ((u16*)dataptr)[i];
-		high += data;
-		low = low + ~data & 0xffff;
+	length /= sizeof(u16);
+	u16 checksumInv = 0;
+	u16 checksum    = 0;
+
+	for (i = 0, p = (u16*)dataptr; i < length; i++, p++) {
+		checksum += *p;
+		checksumInv += ~*p;
 	}
-
-	return high << 0x10 | low;
-	/*
-	srwi     r5, r5, 1
-	li       r3, 0
-	cmplwi   r5, 0
-	li       r7, 0
-	ble      lbl_80442780
-	rlwinm.  r0, r5, 0x1d, 3, 0x1f
-	mtctr    r0
-	beq      lbl_80442760
-
-lbl_804426B0:
-	lhz      r6, 0(r4)
-	nor      r0, r6, r6
-	add      r7, r7, r6
-	lhz      r6, 2(r4)
-	add      r0, r3, r0
-	clrlwi   r3, r0, 0x10
-	nor      r0, r6, r6
-	add      r7, r7, r6
-	lhz      r6, 4(r4)
-	add      r0, r3, r0
-	clrlwi   r3, r0, 0x10
-	nor      r0, r6, r6
-	add      r7, r7, r6
-	lhz      r6, 6(r4)
-	add      r0, r3, r0
-	clrlwi   r3, r0, 0x10
-	nor      r0, r6, r6
-	add      r7, r7, r6
-	lhz      r6, 8(r4)
-	add      r0, r3, r0
-	clrlwi   r3, r0, 0x10
-	nor      r0, r6, r6
-	add      r7, r7, r6
-	lhz      r6, 0xa(r4)
-	add      r0, r3, r0
-	clrlwi   r3, r0, 0x10
-	nor      r0, r6, r6
-	add      r7, r7, r6
-	lhz      r6, 0xc(r4)
-	add      r0, r3, r0
-	clrlwi   r3, r0, 0x10
-	nor      r0, r6, r6
-	add      r7, r7, r6
-	lhz      r6, 0xe(r4)
-	add      r0, r3, r0
-	clrlwi   r3, r0, 0x10
-	addi     r4, r4, 0x10
-	nor      r0, r6, r6
-	add      r7, r7, r6
-	add      r0, r3, r0
-	clrlwi   r3, r0, 0x10
-	bdnz     lbl_804426B0
-	andi.    r5, r5, 7
-	beq      lbl_80442780
-
-lbl_80442760:
-	mtctr    r5
-
-lbl_80442764:
-	lhz      r6, 0(r4)
-	addi     r4, r4, 2
-	nor      r0, r6, r6
-	add      r7, r7, r6
-	add      r0, r3, r0
-	clrlwi   r3, r0, 0x10
-	bdnz     lbl_80442764
-
-lbl_80442780:
-	rlwimi   r3, r7, 0x10, 0, 0xf
-	blr
-	*/
+	return checksum << 0x10 | checksumInv;
 }
 
 /**

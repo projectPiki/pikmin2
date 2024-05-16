@@ -18,9 +18,9 @@ FILE __files[4] =
 	  0,                  // _04, open_mode
 	  1,                  // _04, io_mode
 	  1,                  // _04, buffer_mode
-	  2,                  // _04, file_kind
+	  __console_file,     // _04, file_kind
 	  0,                  // _04, binary_io
-	  0,                  // _08, io_state
+	  __neutral,          // _08, io_state
 	  0,                  // _08, free_buffer
 	  0,                  // _08, eof
 	  0,                  // _08, error
@@ -50,9 +50,9 @@ FILE __files[4] =
 	  0,                   // _04, open_mode
 	  2,                   // _04, io_mode
 	  1,                   // _04, buffer_mode
-	  2,                   // _04, file_kind
+	  __console_file,      // _04, file_kind
 	  0,                   // _04, binary_io
-	  0,                   // _08, io_state
+	  __neutral,           // _08, io_state
 	  0,                   // _08, free_buffer
 	  0,                   // _08, eof
 	  0,                   // _08, error
@@ -82,9 +82,9 @@ FILE __files[4] =
 	  0,                   // _04, open_mode
 	  2,                   // _04, io_mode
 	  0,                   // _04, buffer_mode
-	  2,                   // _04, file_kind
+	  __console_file,      // _04, file_kind
 	  0,                   // _04, binary_io
-	  0,                   // _08, io_state
+	  __neutral,           // _08, io_state
 	  0,                   // _08, free_buffer
 	  0,                   // _08, eof
 	  0,                   // _08, error

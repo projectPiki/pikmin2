@@ -27,7 +27,7 @@ ASM void __init_hardware() {
 #endif // clang-format on
 }
 
-DECL_SECT(".init") ASM void __flush_cache(u32 param_1, int param_2)
+DECL_SECT(".init") ASM void __flush_cache(u32 addr, int size)
 {
 #ifdef __MWERKS__ // clang-format off
 	nofralloc

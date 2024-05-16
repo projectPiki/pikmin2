@@ -27,7 +27,6 @@ int ftell(FILE* stream)
 	return retval;
 }
 
-
 /**
  * @note Address: N/A
  * @note Size: 0xAC
@@ -39,7 +38,7 @@ int _ftell(FILE* file)
 
 	u8 tmp_kind = file->mMode.file_kind;
 	if (!(tmp_kind == __disk_file || tmp_kind == __console_file) || file->mState.error) {
-		errno = 0x28;
+		errno = EFPOS;
 		return -1;
 	}
 
@@ -79,16 +78,16 @@ int _fseek(FILE* file, u32 offset, int whence)
 
 	char* ptr;
 
-	if (file->mMode.file_kind != 1 || file->mState.error != 0) {
-		errno = 0x28;
+	if (file->mMode.file_kind != __disk_file || file->mState.error != 0) {
+		errno = EFPOS;
 		return -1;
 	}
 
-	if (file->mState.io_state == 1) {
+	if (file->mState.io_state == __writing) {
 		if (__flush_buffer(file, nullptr) != 0) {
 			file->mState.error  = 1;
 			file->mBufferLength = 0;
-			errno                = 0x28;
+			errno               = EFPOS;
 			return -1;
 		}
 	}
@@ -96,19 +95,19 @@ int _fseek(FILE* file, u32 offset, int whence)
 	if (whence == SEEK_CUR) {
 		whence = SEEK_SET;
 		adjust = 0;
-		if ((file->mMode.file_kind != 1 && file->mMode.file_kind != 2) || file->mState.error != 0) {
-			errno = 0x28;
+		if ((file->mMode.file_kind != __disk_file && file->mMode.file_kind != __console_file) || file->mState.error != 0) {
+			errno = EFPOS;
 			pos   = -1;
 		} else {
 			state = file->mState.io_state;
-			if (state == 0) {
+			if (state == __neutral) {
 				pos = file->mPosition;
 			} else {
 				pos     = file->mBufferPosition;
 				ptr     = file->mBuffer;
 				buffLen = (file->mBufferPtr - ptr);
 				pos += buffLen;
-				if ((state >= 3)) {
+				if ((state >= __rereading)) {
 					adjust = (state - 2);
 					pos -= adjust;
 				}
@@ -128,23 +127,24 @@ int _fseek(FILE* file, u32 offset, int whence)
 		offset += pos;
 	}
 
-	if ((whence != SEEK_END) && (file->mMode.io_mode != 3) && (file->mState.io_state == 2 || file->mState.io_state == 3)) {
+	if ((whence != SEEK_END) && (file->mMode.io_mode != 3)
+	    && (file->mState.io_state == __reading || file->mState.io_state == __rereading)) {
 		if ((offset >= file->mPosition) || !(offset >= file->mBufferPosition)) {
-			file->mState.io_state = 0;
+			file->mState.io_state = __neutral;
 		} else {
 			file->mBufferPtr      = file->mBuffer + (offset - file->mBufferPosition);
 			file->mBufferLength   = file->mPosition - offset;
-			file->mState.io_state = 2;
+			file->mState.io_state = __reading;
 		}
 	} else {
-		file->mState.io_state = 0;
+		file->mState.io_state = __neutral;
 	}
 
-	if (file->mState.io_state == 0) {
+	if (file->mState.io_state == __neutral) {
 		if (file->positionFunc != nullptr && (int)file->positionFunc(file->mHandle, &offset, whence, file->ref_con)) {
 			file->mState.error  = 1;
 			file->mBufferLength = 0;
-			errno                = 0x28;
+			errno               = EFPOS;
 			return -1;
 		} else {
 			file->mState.eof    = 0;

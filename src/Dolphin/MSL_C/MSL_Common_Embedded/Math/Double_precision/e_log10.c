@@ -76,11 +76,11 @@ f64 __ieee754_log10(x) f64 x;
 	k = 0;
 	if (hx < 0x00100000) { /* x < 2**-1022  */
 		if (((hx & 0x7fffffff) | lx) == 0) {
-			errno = 33;
+			errno = EDOM;
 			return -two54 / zero;
 		} /* log(+-0)=-inf */
 		if (hx < 0) {
-			errno = 33;
+			errno = EDOM;
 			return (x - x) / zero;
 		} /* log(-#) = NaN */
 		k -= 54;

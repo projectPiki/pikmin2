@@ -1,13 +1,10 @@
-#include "types.h"
 #include "mem.h"
 
+// thanks, kiwi!
 /**
  * @note Address: 0x800C708C
  * @note Size: 0xCC
  */
-
-// thanks, kiwi!
-
 void* memmove(void* dst, const void* src, size_t len)
 {
 	u8* csrc;
@@ -58,7 +55,6 @@ void* memmove(void* dst, const void* src, size_t len)
  * @note Address: 0x800C7060
  * @note Size: 0x2C
  */
-
 void* memchr(u8* s, int c, size_t n)
 {
 	int n_count;
@@ -80,8 +76,6 @@ void* memchr(u8* s, int c, size_t n)
  * @note Address: 0x800C7034
  * @note Size: 0x2C
  */
-
-// https://decomp.me/scratch/hTmGp
 u8* __memrchr(u8* s, u8 c, size_t n)
 {
 	int n_count;
@@ -103,7 +97,6 @@ u8* __memrchr(u8* s, u8 c, size_t n)
  * @note Address: 0x800C6FE8
  * @note Size: 0x4C
  */
-
 int memcmp(const void* __s1, const void* __s2, size_t __n)
 {
 	const u8* val1 = ((const u8*)__s1 - 1);

@@ -315,7 +315,7 @@ u32 strtoul(const char* str, char** end, int base)
 
 	if (overflow) {
 		value = ULONG_MAX;
-		errno = 0x22;
+		errno = ERANGE;
 	} else if (negative) {
 		value = -value;
 	}

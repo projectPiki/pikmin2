@@ -25,6 +25,7 @@ u8 ErrorCode2Num(u32 errorCode)
 	return 29;
 }
 #pragma dont_inline reset
+
 /**
  * @note Address: 0x800DF770
  * @note Size: 0x7C
@@ -32,7 +33,7 @@ u8 ErrorCode2Num(u32 errorCode)
 void __DVDStoreErrorCode(u32 errCode)
 {
 	u8 storedCode;
-	u8* sramPtr;
+	OSSramEx* sramPtr;
 	u32 upperByte;
 
 	if (errCode == 0x1234567) {
@@ -48,7 +49,7 @@ void __DVDStoreErrorCode(u32 errCode)
 		storedCode = storedCode + upperByte * 30;
 	}
 
-	sramPtr     = (u8*)__OSLockSramEx();
-	sramPtr[36] = storedCode;
-	__OSUnlockSramEx(1);
+	sramPtr               = __OSLockSramEx();
+	sramPtr->dvdErrorCode = storedCode;
+	__OSUnlockSramEx(TRUE);
 }

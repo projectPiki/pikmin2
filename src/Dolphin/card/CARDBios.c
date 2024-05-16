@@ -69,12 +69,6 @@ void __CARDExtHandler(s32 channel, OSContext* context)
 	}
 }
 
-// inline int __CARDUnknownInline(int slotIndex)
-// {
-// 	u8 status[0xC];
-// 	int v1;
-// }
-
 /**
  * @note Address: 0x800D477C
  * @note Size: 0x118

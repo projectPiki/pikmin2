@@ -95,18 +95,18 @@ void _heapmin(void)
  * @note Address: 0x800CFCDC
  * @note Size: 0x8C
  */
-int stricmp(char* param_1, char* param_2)
+int stricmp(char* str1, char* str2)
 {
 	s8 a_var;
 	s8 b_var;
 
 	do {
-		a_var = *param_1;
-		param_1++;
+		a_var = *str1;
+		str1++;
 		b_var = _tolower(a_var);
 
-		a_var = *param_2;
-		param_2++;
+		a_var = *str2;
+		str2++;
 		a_var = _tolower(a_var);
 
 		if (b_var < a_var) {

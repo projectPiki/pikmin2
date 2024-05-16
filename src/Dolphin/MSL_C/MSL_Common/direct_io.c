@@ -10,6 +10,11 @@
 #include "PowerPC_EABI_Support/MSL_C/MSL_Common/misc_io.h"
 #include "PowerPC_EABI_Support/MSL_C/MSL_Common/critical_regions.h"
 
+// define standard C file pointer location names
+#define SEEK_SET (0)
+#define SEEK_CUR (1)
+#define SEEK_END (2)
+
 /**
  * @note Address: N/A
  * @note Size: 0x7C
@@ -59,28 +64,28 @@ size_t __fwrite(const void* pPtr, size_t memb_size, size_t num_memb, FILE* pFile
 
 	rem_bytes = memb_size * num_memb;
 
-	if (rem_bytes == 0 || pFile->mState.error || pFile->mMode.file_kind == 0) {
+	if (rem_bytes == 0 || pFile->mState.error || pFile->mMode.file_kind == __closed_file) {
 		return 0;
 	}
 
-	if (pFile->mMode.file_kind == 2) {
+	if (pFile->mMode.file_kind == __console_file) {
 		__stdio_atexit();
 	}
 
 	buff = (!pFile->mMode.binary_io || pFile->mMode.buffer_mode == 2 || pFile->mMode.buffer_mode == 1);
 
-	if (pFile->mState.io_state == 0 && pFile->mMode.io_mode & 2) {
+	if (pFile->mState.io_state == __neutral && pFile->mMode.io_mode & 2) {
 		if (pFile->mMode.io_mode & 4) {
-			if (fseek(pFile, 0, 2)) {
+			if (fseek(pFile, 0, SEEK_END)) {
 				return 0;
 			}
 		}
 
-		pFile->mState.io_state = 1;
+		pFile->mState.io_state = __writing;
 		__prep_buffer(pFile);
 	}
 
-	if (pFile->mState.io_state != 1) {
+	if (pFile->mState.io_state != __writing) {
 		pFile->mState.error  = 1;
 		pFile->mBufferLength = 0;
 		return 0;

@@ -1988,24 +1988,24 @@ bool Mgr::resetError()
  * @note Address: 0x804468E0
  * @note Size: 0x12C
  */
-void Mgr::doMakeHeader(u8* param_1)
+void Mgr::doMakeHeader(u8* header)
 {
 	OSCalendarTime calendar;
-	snprintf((char*)(param_1 + 0x1800), 0x20, "PIKMIN 2");
+	snprintf((char*)(header + 0x1800), 0x20, "PIKMIN 2");
 	OSTime time = OSGetTime();
 	OSTicksToCalendarTime(time, &calendar);
-	snprintf((char*)(param_1 + 0x1820), 0x20, "%02d/%02d/%04d %02d:%02d:%02d", calendar.mon + 1, calendar.mday, calendar.year,
-	         calendar.hour, calendar.min, calendar.sec);
+	snprintf((char*)(header + 0x1820), 0x20, "%02d/%02d/%04d %02d:%02d:%02d", calendar.mon + 1, calendar.mday, calendar.year, calendar.hour,
+	         calendar.min, calendar.sec);
 	if (mBannerImageFile && mIconImageFile) {
-		memcpy(param_1, mBannerImageFile, 0xe00);
-		memcpy(param_1 + 0xe00, mIconImageFile, 0x400);
-		memcpy(param_1 + 0x1200, mIconImageFile, 0x400);
-		memcpy(param_1 + 0x1600, (void*)((u32)mIconImageFile + 0x400), 0x200);
+		memcpy(header, mBannerImageFile, 0xe00);
+		memcpy(header + 0xe00, mIconImageFile, 0x400);
+		memcpy(header + 0x1200, mIconImageFile, 0x400);
+		memcpy(header + 0x1600, (void*)((u32)mIconImageFile + 0x400), 0x200);
 	} else {
-		memset(param_1, 0, 0xc00);
-		memset(param_1 + 0xc00, 0xff, 0x200);
-		memset(param_1 + 0xe00, 0x0, 0x2000);
-		memset(param_1 + 0x2e00, 0xff, 0x200);
+		memset(header, 0, 0xc00);
+		memset(header + 0xc00, 0xff, 0x200);
+		memset(header + 0xe00, 0x0, 0x2000);
+		memset(header + 0x2e00, 0xff, 0x200);
 	}
 	return;
 	/*

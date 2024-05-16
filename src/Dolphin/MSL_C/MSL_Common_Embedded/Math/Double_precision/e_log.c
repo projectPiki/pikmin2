@@ -106,7 +106,7 @@ f64 __ieee754_log(x) f64 x;
 		if (((hx & 0x7fffffff) | lx) == 0)
 			return -two54 / zero; /* log(+-0)=-inf */
 		if (hx < 0) {
-			errno = 33;
+			errno = EDOM;
 			return (x - x) / zero;
 		} /* log(-#) = NaN */
 		k -= 54;

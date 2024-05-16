@@ -392,7 +392,7 @@ s32 DVDReadPrio(DVDFileInfo* fileInfo, void* addr, s32 length, s32 offset, s32 p
 
 	enabled = OSDisableInterrupts();
 
-	while (1) {
+	while (TRUE) {
 		state = ((volatile DVDCommandBlock*)block)->state;
 
 		if (state == DVD_STATE_END) {

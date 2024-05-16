@@ -111,7 +111,7 @@ f64 __ieee754_sqrt(x) f64 x;
 
 	/* take care of Inf and NaN */
 	if ((ix0 & 0x7ff00000) == 0x7ff00000) {
-		errno = 33;
+		errno = EDOM;
 		return x * x + x; /* sqrt(NaN)=NaN, sqrt(+inf)=+inf
 		             sqrt(-inf)=sNaN */
 	}
@@ -120,7 +120,7 @@ f64 __ieee754_sqrt(x) f64 x;
 		if (((ix0 & (~sign)) | ix1) == 0)
 			return x; /* sqrt(+-0) = +-0 */
 		else if (ix0 < 0) {
-			errno = 33;
+			errno = EDOM;
 			return NAN;
 		} /* sqrt(-ve) = sNaN */
 	}
