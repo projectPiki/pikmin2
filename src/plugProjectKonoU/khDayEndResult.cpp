@@ -1508,7 +1508,7 @@ void ObjDayEndResultIncP::statusDecPSlot()
 		}
 	}
 }
-static const int someDumbUnusedArray[0x40] = { 0 }; // not actually unused according to pikhacker
+
 /**
  * @note Address: 0x804077F0
  * @note Size: 0x88
@@ -1651,10 +1651,8 @@ void ObjDayEndResultMail::doCreate(JKRArchive* arc)
 	}
 	DispDayEndResult* dispResult = static_cast<DispDayEndResult*>(getDispMember());
 
-	mSaveMgr             = ebi::Save::TMgr::createInstance();
-	ebi::Save::TMgr* mgr = mSaveMgr;
-	mgr->mSaveMenu.loadResource();
-	mgr->doLoadResource(JKRGetCurrentHeap());
+	mSaveMgr = ebi::Save::TMgr::createInstance();
+	mSaveMgr->doLoadMenuResource();
 	mSaveMgr->setControllers(getGamePad());
 
 	int day     = dispResult->mMail.mDayCount;
@@ -1665,33 +1663,34 @@ void ObjDayEndResultMail::doCreate(JKRArchive* arc)
 	setCallBackMessage(mScreenMain);
 
 	SceneDayEndResultMail* scene = static_cast<SceneDayEndResultMail*>(getOwner());
+	char* path;
 	if (dispResult->mMail.mHeap) {
 		mIconArchive  = scene->mIconArchive;
 		mMailIconAnms = new MailIconAnm[20];
-
+		s8* data      = scene->mMailFlags.byteView;
 		for (int i = 0; i < 20; i++) {
-			s8 id = scene->mMailFlags.byteView[i];
+			s8 id = data[i];
 			if (id == -1)
 				break;
 			if (id == -2) {
-				mMailIconAnms[i].mTIMG      = nullptr;
 				mMailIconAnms[i].mIconCount = 0;
+				mMailIconAnms[i].mTIMG      = nullptr;
 			} else {
-				char* path = scene->mTableData[id]->mFileName;
-				char buf[64];
+				path          = scene->mTableData[id]->mFileName;
+				char buf[256] = { 0 };
 				do {
 					mMailIconAnms[i].mIconCount++;
 					sprintf(buf, "%s%003d.bti", path);
-				} while (JKRFileLoader::getGlbResource(buf, mIconArchive));
+				} while (JKRGetResource(buf, mIconArchive));
+
 				mMailIconAnms[i].mIconCount--;
 				if (mMailIconAnms[i].mIconCount) {
 					mMailIconAnms[i].mTIMG = new ResTIMG*[mMailIconAnms[i].mIconCount];
 				}
 
-				for (int j = 0; i < mMailIconAnms[i].mIconCount; j++) {
-					char buf2[64];
-					sprintf(buf2, "%s%003d.bti", path, j);
-					mMailIconAnms[i].mTIMG[j] = static_cast<ResTIMG*>(JKRFileLoader::getGlbResource(buf2, mIconArchive));
+				for (int j = 0; j < mMailIconAnms[i].mIconCount; j++) {
+					sprintf(buf, "%s%003d.bti", path, j);
+					mMailIconAnms[i].mTIMG[j] = JKRGetImageResource(buf, mIconArchive);
 				}
 			}
 		}
