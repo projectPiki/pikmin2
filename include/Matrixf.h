@@ -177,7 +177,7 @@ struct Matrixf {
 	 * @param other The matrix to be added.
 	 * @return A reference to the current matrix after addition.
 	 */
-	inline Matrixf& operator+(Matrixf& other)
+	inline Matrixf operator+(Matrixf& other)
 	{
 		Matrixf concatMtx;
 		PSMTXConcat(mMatrix.mtxView, other.mMatrix.mtxView, concatMtx.mMatrix.mtxView);
@@ -190,7 +190,7 @@ struct Matrixf {
 	 * @param other The matrix to subtract.
 	 * @return A reference to the current matrix after subtraction.
 	 */
-	inline Matrixf& operator-(Matrixf& other)
+	inline Matrixf operator-(Matrixf& other)
 	{
 		Matrixf result;
 		result.mMatrix.structView.xx = mMatrix.structView.xx - other.mMatrix.structView.xx;

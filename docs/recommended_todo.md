@@ -102,7 +102,7 @@
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKonoU/khCaveResult.cpp">khCaveResult.cpp</a> | 42208 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKonoU/khFinalResult.cpp">khFinalResult.cpp</a> | 59951 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKonoU/khDayEndResult.cpp">khDayEndResult.cpp</a> | 95685 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKonoU/khWorldMap.cpp">khWorldMap.cpp</a> | 195273 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKonoU/khDayEndResult.cpp">khDayEndResult.cpp</a> | 81577 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKonoU/khWorldMap.cpp">khWorldMap.cpp</a> | 195273 |
 
 ### <section id="plugProjectMorimuraU">plugProjectMorimuraU</section>
 | File | Size (bytes) | File | Size (bytes) |
@@ -125,7 +125,7 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/SnakeWholeShadow.cpp">SnakeWholeShadow.cpp</a> | 11927 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/SnakeCrowShadow.cpp">SnakeCrowShadow.cpp</a> | 12091 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Kabuto.cpp">Kabuto.cpp</a> | 12215 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/BabyState.cpp">BabyState.cpp</a> | 12812 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Kogane.cpp">Kogane.cpp</a> | 14498 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/RandMapMgr.cpp">RandMapMgr.cpp</a> | 15150 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/ElecBugState.cpp">ElecBugState.cpp</a> | 15706 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/ElecBug.cpp">ElecBug.cpp</a> | 18052 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/ElecBugState.cpp">ElecBugState.cpp</a> | 15706 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/ElecBug.cpp">ElecBug.cpp</a> | 18051 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/JointShadowBase.cpp">JointShadowBase.cpp</a> | 18414 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Rock.cpp">Rock.cpp</a> | 19439 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/ImomushiState.cpp">ImomushiState.cpp</a> | 19590 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Imomushi.cpp">Imomushi.cpp</a> | 20108 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/UjiaState.cpp">UjiaState.cpp</a> | 20986 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/ElecHiba.cpp">ElecHiba.cpp</a> | 21756 |
@@ -173,7 +173,7 @@
 | ---- | ---- | ---- | ---- |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysCommonU/geomIntersection.cpp">geomIntersection.cpp</a> | 11238 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysCommonU/geomTraceMove.cpp">geomTraceMove.cpp</a> | 14985 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysCommonU/camera.cpp">camera.cpp</a> | 26973 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysCommonU/sysMath.cpp">sysMath.cpp</a> | 31745 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysCommonU/geomOBBTree.cpp">geomOBBTree.cpp</a> | 82131 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysCommonU/geometry.cpp">geometry.cpp</a> | 104518 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysCommonU/geomOBBTree.cpp">geomOBBTree.cpp</a> | 82131 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysCommonU/geometry.cpp">geometry.cpp</a> | 104548 |
 
 ### <section id="sysGCU">sysGCU</section>
 | File | Size (bytes) | File | Size (bytes) |

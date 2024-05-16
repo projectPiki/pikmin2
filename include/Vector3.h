@@ -266,9 +266,9 @@ struct Vector3 {
 	inline T absY() { return absF(y); }
 	inline T absZ() { return (T)absF(z); }
 
-	inline boundedX(T bound) { return absX() < bound; }
-	inline boundedY(T bound) { return absY() < bound; }
-	inline boundedZ(T bound) { return absZ() < bound; }
+	inline bool boundedX(T bound) { return absX() < bound; }
+	inline bool boundedY(T bound) { return absY() < bound; }
+	inline bool boundedZ(T bound) { return absZ() < bound; }
 
 	/**
 	 * Sets the flat direction from one vector to another.

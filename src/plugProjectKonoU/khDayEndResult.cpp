@@ -1611,14 +1611,14 @@ void ObjDayEndResultMail::doCreate(JKRArchive* arc)
 	mScreenMain = new P2DScreen::Mgr_tuning;
 	mScreenMain->set("result_mail.blo", 0x1040000, arc);
 
-	void* resource  = JKRFileLoader::getGlbResource("result_mail.bck", arc);
+	void* resource  = JKRGetResource("result_mail.bck", arc);
 	mMainAnimTrans1 = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(resource));
 	mMainAnimTrans2 = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(resource));
 	mMainAnimTrans3 = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(resource));
 	mMainAnimTrans4 = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(resource));
 
-	mMainAnimSRT = static_cast<J2DAnmTextureSRTKey*>(J2DAnmLoaderDataBase::load(JKRFileLoader::getGlbResource("result_mail.btk", arc)));
-	mMainAnimTev = static_cast<J2DAnmTevRegKey*>(J2DAnmLoaderDataBase::load(JKRFileLoader::getGlbResource("result_mail.brk", arc)));
+	mMainAnimSRT = static_cast<J2DAnmTextureSRTKey*>(J2DAnmLoaderDataBase::load(JKRGetResource("result_mail.btk", arc)));
+	mMainAnimTev = static_cast<J2DAnmTevRegKey*>(J2DAnmLoaderDataBase::load(JKRGetResource("result_mail.brk", arc)));
 	mScreenMain->setAnimation(mMainAnimSRT);
 	mScreenMain->setAnimation(mMainAnimTev);
 
@@ -1636,14 +1636,12 @@ void ObjDayEndResultMail::doCreate(JKRArchive* arc)
 
 	mScreenCharacter = new P2DScreen::Mgr_tuning;
 	mScreenCharacter->set("result_maile_big_icon.blo", 0x1040000, arc);
-	mCharacterAnimTrans
-	    = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(JKRFileLoader::getGlbResource("result_maile_big_icon.bck", arc)));
+	mCharacterAnimTrans = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(JKRGetResource("result_maile_big_icon.bck", arc)));
 	mScreenCharacter->search('NitemW')->setAnimation(mCharacterAnimTrans);
 
 	mScreenStars = new P2DScreen::Mgr_tuning;
 	mScreenStars->set("result_mail_constellation.blo", 0x40000, arc);
-	mStarsAnimColor
-	    = static_cast<J2DAnmColor*>(J2DAnmLoaderDataBase::load(JKRFileLoader::getGlbResource("result_mail_constellation.bpk", arc)));
+	mStarsAnimColor = static_cast<J2DAnmColor*>(J2DAnmLoaderDataBase::load(JKRGetResource("result_mail_constellation.bpk", arc)));
 	mScreenStars->setAnimation(mStarsAnimColor);
 
 	if (!getDispMember()->isID(OWNER_KH, MEMBER_DAY_END_RESULT)) {
@@ -1663,7 +1661,6 @@ void ObjDayEndResultMail::doCreate(JKRArchive* arc)
 	setCallBackMessage(mScreenMain);
 
 	SceneDayEndResultMail* scene = static_cast<SceneDayEndResultMail*>(getOwner());
-	char* path;
 	if (dispResult->mMail.mHeap) {
 		mIconArchive  = scene->mIconArchive;
 		mMailIconAnms = new MailIconAnm[20];
@@ -1676,11 +1673,10 @@ void ObjDayEndResultMail::doCreate(JKRArchive* arc)
 				mMailIconAnms[i].mIconCount = 0;
 				mMailIconAnms[i].mTIMG      = nullptr;
 			} else {
-				path          = scene->mTableData[id]->mFileName;
-				char buf[256] = { 0 };
+				const char* path = scene->mTableData[id]->getFileName();
+				char buf[256]    = { 0 };
 				do {
-					mMailIconAnms[i].mIconCount++;
-					sprintf(buf, "%s%003d.bti", path);
+					sprintf(buf, "%s%003d.bti", path, mMailIconAnms[i].mIconCount++);
 				} while (JKRGetResource(buf, mIconArchive));
 
 				mMailIconAnms[i].mIconCount--;
@@ -1717,600 +1713,6 @@ void ObjDayEndResultMail::doCreate(JKRArchive* arc)
 		mCharacterIconScaleY = 1.0f;
 		mCharacterIconScaleX = 1.0f;
 	}
-	/*
-stwu     r1, -0x140(r1)
-mflr     r0
-lis      r5, lbl_80498830@ha
-stw      r0, 0x144(r1)
-stmw     r22, 0x118(r1)
-mr       r31, r3
-mr       r25, r4
-li       r3, 0x148
-addi     r28, r5, lbl_80498830@l
-bl       __nw__FUl
-or.      r0, r3, r3
-beq      lbl_80407DF0
-bl       __ct__Q29P2DScreen10Mgr_tuningFv
-mr       r0, r3
-
-lbl_80407DF0:
-stw      r0, 0x38(r31)
-mr       r6, r25
-addi     r4, r28, 0x14
-lis      r5, 0x104
-lwz      r3, 0x38(r31)
-bl       set__9J2DScreenFPCcUlP10JKRArchive
-mr       r4, r25
-addi     r3, r28, 0x28
-bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
-bl       load__20J2DAnmLoaderDataBaseFPCv
-stw      r3, 0x3c(r31)
-mr       r4, r25
-addi     r3, r28, 0x3c
-bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
-bl       load__20J2DAnmLoaderDataBaseFPCv
-stw      r3, 0x40(r31)
-lwz      r3, 0x38(r31)
-lwz      r4, 0x3c(r31)
-lwz      r12, 0(r3)
-lwz      r12, 0x60(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x38(r31)
-lwz      r4, 0x40(r31)
-lwz      r12, 0(r3)
-lwz      r12, 0x64(r12)
-mtctr    r12
-bctrl
-lis      r4, 0x62746E32@ha
-lwz      r3, 0x38(r31)
-addi     r6, r4, 0x62746E32@l
-li       r5, 0x4e
-li       r7, 8
-bl       create__Q32kh6Screen14khUtilFadePaneFPQ29P2DScreen3MgrUxUc
-stw      r3, 0x8c(r31)
-lwz      r3, 0x8c(r31)
-bl       fadeout__Q32kh6Screen14khUtilFadePaneFv
-lwz      r3, 0x8c(r31)
-li       r4, 0
-bl       set_init_alpha__Q32kh6Screen14khUtilFadePaneFUc
-li       r3, 0x148
-bl       __nw__FUl
-or.      r0, r3, r3
-beq      lbl_80407EA8
-bl       __ct__Q29P2DScreen10Mgr_tuningFv
-mr       r0, r3
-
-lbl_80407EA8:
-stw      r0, 0x4c(r31)
-mr       r6, r25
-addi     r4, r28, 0x2d0
-lis      r5, 0x104
-lwz      r3, 0x4c(r31)
-bl       set__9J2DScreenFPCcUlP10JKRArchive
-mr       r4, r25
-addi     r3, r28, 0x2e0
-bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
-mr       r24, r3
-bl       load__20J2DAnmLoaderDataBaseFPCv
-stw      r3, 0x50(r31)
-mr       r3, r24
-bl       load__20J2DAnmLoaderDataBaseFPCv
-stw      r3, 0x54(r31)
-mr       r3, r24
-bl       load__20J2DAnmLoaderDataBaseFPCv
-stw      r3, 0xa8(r31)
-mr       r3, r24
-bl       load__20J2DAnmLoaderDataBaseFPCv
-stw      r3, 0xac(r31)
-mr       r4, r25
-addi     r3, r28, 0x2f0
-bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
-bl       load__20J2DAnmLoaderDataBaseFPCv
-stw      r3, 0x58(r31)
-mr       r4, r25
-addi     r3, r28, 0x300
-bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
-bl       load__20J2DAnmLoaderDataBaseFPCv
-stw      r3, 0x5c(r31)
-lwz      r3, 0x4c(r31)
-lwz      r4, 0x58(r31)
-lwz      r12, 0(r3)
-lwz      r12, 0x6c(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x4c(r31)
-lwz      r4, 0x5c(r31)
-lwz      r12, 0(r3)
-lwz      r12, 0x70(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x4c(r31)
-lis      r5, 0x656D5731@ha
-lis      r4, 0x004E6974@ha
-lwz      r12, 0(r3)
-addi     r6, r5, 0x656D5731@l
-addi     r5, r4, 0x004E6974@l
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-lwz      r12, 0(r3)
-lwz      r4, 0xa8(r31)
-lwz      r12, 0x60(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x4c(r31)
-lis      r4, 0x74656D57@ha
-addi     r6, r4, 0x74656D57@l
-li       r5, 0x4e69
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-lwz      r12, 0(r3)
-lwz      r4, 0x50(r31)
-lwz      r12, 0x60(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x4c(r31)
-lis      r5, 0x74703030@ha
-lis      r4, 0x004E7365@ha
-lwz      r12, 0(r3)
-addi     r6, r5, 0x74703030@l
-addi     r5, r4, 0x004E7365@l
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-lwz      r12, 0(r3)
-lwz      r4, 0x50(r31)
-lwz      r12, 0x60(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x4c(r31)
-lis      r5, 0x74703031@ha
-lis      r4, 0x004E7365@ha
-lwz      r12, 0(r3)
-addi     r6, r5, 0x74703031@l
-addi     r5, r4, 0x004E7365@l
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-lwz      r12, 0(r3)
-lwz      r4, 0x50(r31)
-lwz      r12, 0x60(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x4c(r31)
-lis      r5, 0x74703032@ha
-lis      r4, 0x004E7365@ha
-lwz      r12, 0(r3)
-addi     r6, r5, 0x74703032@l
-addi     r5, r4, 0x004E7365@l
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-lwz      r12, 0(r3)
-lwz      r4, 0x50(r31)
-lwz      r12, 0x60(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x4c(r31)
-lis      r5, 0x74703033@ha
-lis      r4, 0x004E7365@ha
-lwz      r12, 0(r3)
-addi     r6, r5, 0x74703033@l
-addi     r5, r4, 0x004E7365@l
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-lwz      r12, 0(r3)
-lwz      r4, 0x50(r31)
-lwz      r12, 0x60(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x4c(r31)
-lis      r5, 0x74703034@ha
-lis      r4, 0x004E7365@ha
-lwz      r12, 0(r3)
-addi     r6, r5, 0x74703034@l
-addi     r5, r4, 0x004E7365@l
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-lwz      r12, 0(r3)
-lwz      r4, 0x50(r31)
-lwz      r12, 0x60(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x4c(r31)
-lis      r5, 0x74703035@ha
-lis      r4, 0x004E7365@ha
-lwz      r12, 0(r3)
-addi     r6, r5, 0x74703035@l
-addi     r5, r4, 0x004E7365@l
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-lwz      r12, 0(r3)
-lwz      r4, 0x50(r31)
-lwz      r12, 0x60(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x4c(r31)
-lis      r4, 0x65745F70@ha
-addi     r6, r4, 0x65745F70@l
-li       r5, 0x5073
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-lwz      r12, 0(r3)
-lwz      r4, 0xac(r31)
-lwz      r12, 0x60(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x4c(r31)
-lis      r4, 0x69746C65@ha
-addi     r6, r4, 0x69746C65@l
-li       r5, 0x4e74
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-lwz      r12, 0(r3)
-lwz      r4, 0x54(r31)
-lwz      r12, 0x60(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x4c(r31)
-lis      r4, 0x69636F6E@ha
-addi     r6, r4, 0x69636F6E@l
-li       r5, 0x4e
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-lwz      r12, 0(r3)
-lwz      r4, 0xa8(r31)
-lwz      r12, 0x60(r12)
-mtctr    r12
-bctrl
-li       r3, 0x148
-bl       __nw__FUl
-or.      r0, r3, r3
-beq      lbl_804081C4
-bl       __ct__Q29P2DScreen10Mgr_tuningFv
-mr       r0, r3
-
-lbl_804081C4:
-stw      r0, 0x9c(r31)
-mr       r6, r25
-addi     r4, r28, 0x310
-lis      r5, 0x104
-lwz      r3, 0x9c(r31)
-bl       set__9J2DScreenFPCcUlP10JKRArchive
-mr       r4, r25
-addi     r3, r28, 0x32c
-bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
-bl       load__20J2DAnmLoaderDataBaseFPCv
-stw      r3, 0xa0(r31)
-lis      r3, 0x74656D57@ha
-addi     r6, r3, 0x74656D57@l
-li       r5, 0x4e69
-lwz      r3, 0x9c(r31)
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-lwz      r12, 0(r3)
-lwz      r4, 0xa0(r31)
-lwz      r12, 0x60(r12)
-mtctr    r12
-bctrl
-li       r3, 0x148
-bl       __nw__FUl
-or.      r0, r3, r3
-beq      lbl_8040823C
-bl       __ct__Q29P2DScreen10Mgr_tuningFv
-mr       r0, r3
-
-lbl_8040823C:
-stw      r0, 0x70(r31)
-mr       r6, r25
-addi     r4, r28, 0x348
-lis      r5, 4
-lwz      r3, 0x70(r31)
-bl       set__9J2DScreenFPCcUlP10JKRArchive
-mr       r4, r25
-addi     r3, r28, 0x368
-bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
-bl       load__20J2DAnmLoaderDataBaseFPCv
-stw      r3, 0x74(r31)
-lwz      r3, 0x70(r31)
-lwz      r4, 0x74(r31)
-lwz      r12, 0(r3)
-lwz      r12, 0x64(r12)
-mtctr    r12
-bctrl
-mr       r3, r31
-bl       getDispMember__Q26Screen7ObjBaseFv
-lis      r4, 0x52534C54@ha
-lis      r5, 0x0044455F@ha
-addi     r6, r4, 0x52534C54@l
-li       r4, 0x4b48
-addi     r5, r5, 0x0044455F@l
-bl       isID__Q32og6Screen14DispMemberBaseFUlUx
-clrlwi.  r0, r3, 0x18
-bne      lbl_804082BC
-addi     r3, r28, 0
-addi     r5, r28, 0xd0
-li       r4, 0x76e
-crclr    6
-bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804082BC:
-mr       r3, r31
-bl       getDispMember__Q26Screen7ObjBaseFv
-mr       r29, r3
-bl       createInstance__Q33ebi4Save4TMgrFv
-stw      r3, 0xa4(r31)
-lwz      r24, 0xa4(r31)
-addi     r3, r24, 0x18
-bl       loadResource__Q33ebi6Screen9TSaveMenuFv
-lwz      r23, sCurrentHeap__7JKRHeap@sda21(r13)
-addi     r3, r24, 0x100
-mr       r4, r23
-bl       loadResource__Q33ebi6Screen11TMemoryCardFP7JKRHeap
-lwz      r3, sys@sda21(r13)
-mr       r4, r23
-lwz      r3, 0x5c(r3)
-bl       loadResource__Q34Game10MemoryCard3MgrFP7JKRHeap
-mr       r3, r31
-bl       getGamePad__Q26Screen7ObjBaseCFv
-lwz      r9, 0xa4(r31)
-lis      r8, 0x79325F31@ha
-lis      r5, 0x00506461@ha
-lis      r4, 0x64617931@ha
-stw      r3, 0x3d0(r9)
-addi     r5, r5, 0x00506461@l
-addi     r11, r31, 0xbc
-li       r0, 3
-stw      r3, 0x24(r9)
-mr       r7, r5
-addi     r6, r8, 0x79325F31@l
-addi     r8, r8, 0x5f32
-stw      r3, 0x104(r9)
-addi     r10, r4, 0x64617931@l
-li       r9, 0x50
-lwz      r3, 0x64(r29)
-stw      r3, 0xbc(r31)
-stw      r3, 0xb8(r31)
-stw      r11, 8(r1)
-stw      r0, 0xc(r1)
-stw      r25, 0x10(r1)
-lwz      r3, 0x4c(r31)
-bl
-setCallBack_CounterDay__Q22og6ScreenFPQ29P2DScreen3MgrUxUxUxPUlUsP10JKRArchive
-stw      r3, 0xb4(r31)
-li       r4, 1
-lwz      r3, 0xb4(r31)
-bl       setPuyoAnim__Q32og6Screen18CallBack_CounterRVFb
-lwz      r4, 0x4c(r31)
-mr       r3, r31
-bl setCallBackMessage__Q32kh6Screen19ObjDayEndResultMailFPQ29P2DScreen3Mgr
-mr       r3, r31
-lwz      r12, 0(r31)
-lwz      r12, 0x30(r12)
-mtctr    r12
-bctrl
-lwz      r0, 0x4c(r29)
-mr       r30, r3
-cmplwi   r0, 0
-beq      lbl_8040853C
-lwz      r0, 0x224(r30)
-li       r3, 0xb0
-stw      r0, 0xc0(r31)
-bl       __nwa__FUl
-lis      r4, __ct__Q42kh6Screen19ObjDayEndResultMail11MailIconAnmFv@ha
-li       r5, 0
-addi     r4, r4, __ct__Q42kh6Screen19ObjDayEndResultMail11MailIconAnmFv@l
-li       r6, 8
-li       r7, 0x14
-bl       __construct_new_array
-stw      r3, 0xc4(r31)
-addi     r24, r30, 0x228
-li       r25, 0
-li       r26, 0
-
-lbl_804083D8:
-lbz      r0, 0(r24)
-extsb    r0, r0
-cmpwi    r0, -1
-beq      lbl_8040851C
-cmpwi    r0, -2
-bne      lbl_8040840C
-lwz      r3, 0xc4(r31)
-addi     r0, r26, 4
-li       r4, 0
-stwx     r4, r3, r0
-lwz      r3, 0xc4(r31)
-stwx     r4, r3, r26
-b        lbl_80408508
-
-lbl_8040840C:
-lwz      r4, 0x220(r30)
-slwi     r3, r0, 2
-li       r0, 0x20
-addi     r5, r1, 0x14
-lwzx     r3, r4, r3
-addi     r4, r28, 0x1cc
-lwz      r27, 0xc(r3)
-mtctr    r0
-
-lbl_8040842C:
-lwz      r3, 4(r4)
-lwzu     r0, 8(r4)
-stw      r3, 4(r5)
-stwu     r0, 8(r5)
-bdnz     lbl_8040842C
-
-lbl_80408440:
-lwz      r6, 0xc4(r31)
-mr       r5, r27
-addi     r3, r1, 0x18
-addi     r4, r28, 0x388
-addi     r7, r6, 4
-lwzx     r6, r26, r7
-addi     r0, r6, 1
-stwx     r0, r26, r7
-crclr    6
-bl       sprintf
-lwz      r4, 0xc0(r31)
-addi     r3, r1, 0x18
-bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
-cmplwi   r3, 0
-bne      lbl_80408440
-lwz      r5, 0xc4(r31)
-addi     r4, r26, 4
-lwzx     r3, r5, r4
-addi     r0, r3, -1
-stwx     r0, r5, r4
-lwz      r3, 0xc4(r31)
-lwzx     r0, r3, r4
-cmpwi    r0, 0
-beq      lbl_804084B0
-slwi     r3, r0, 2
-bl       __nwa__FUl
-lwz      r4, 0xc4(r31)
-stwx     r3, r4, r26
-
-lbl_804084B0:
-li       r22, 0
-li       r23, 0
-b        lbl_804084F4
-
-lbl_804084BC:
-mr       r5, r27
-mr       r6, r22
-addi     r3, r1, 0x18
-addi     r4, r28, 0x388
-crclr    6
-bl       sprintf
-lwz      r4, 0xc0(r31)
-addi     r3, r1, 0x18
-bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
-lwz      r0, 0xc4(r31)
-addi     r22, r22, 1
-lwzx     r4, r26, r0
-stwx     r3, r4, r23
-addi     r23, r23, 4
-
-lbl_804084F4:
-lwz      r3, 0xc4(r31)
-addi     r0, r3, 4
-lwzx     r0, r26, r0
-cmpw     r22, r0
-blt      lbl_804084BC
-
-lbl_80408508:
-addi     r25, r25, 1
-addi     r24, r24, 1
-cmpwi    r25, 0x14
-addi     r26, r26, 8
-blt      lbl_804083D8
-
-lbl_8040851C:
-lwz      r4, 0xc4(r31)
-lis      r5, 0x65745F70@ha
-lwz      r3, 0x4c(r31)
-addi     r6, r5, 0x65745F70@l
-lwz      r4, 0(r4)
-li       r5, 0x5073
-lwz      r7, 0(r4)
-bl       setTex__Q22kh6ScreenFP9J2DScreenUxPC7ResTIMG
-
-lbl_8040853C:
-lbz      r0, 0x228(r30)
-lis      r4, 0x74657874@ha
-lwz      r3, 0x4c(r31)
-addi     r6, r4, 0x74657874@l
-extsb    r0, r0
-lwz      r4, 0x220(r30)
-lwz      r12, 0(r3)
-slwi     r0, r0, 2
-lwzx     r4, r4, r0
-li       r5, 0x54
-lwz      r12, 0x3c(r12)
-lwz      r24, 0(r4)
-lwz      r25, 4(r4)
-mtctr    r12
-bctrl
-stw      r25, 0x1c(r3)
-lis      r5, 0x6A695F6C@ha
-lis      r4, 0x004E7961@ha
-li       r7, 0x20
-stw      r24, 0x18(r3)
-addi     r6, r5, 0x6A695F6C@l
-addi     r5, r4, 0x004E7961@l
-lwz      r3, 0x4c(r31)
-bl       create__Q32kh6Screen14khUtilFadePaneFPQ29P2DScreen3MgrUxUc
-stw      r3, 0xcc(r31)
-lis      r5, 0x6A695F72@ha
-lis      r4, 0x004E7961@ha
-li       r7, 0x20
-lwz      r3, 0x4c(r31)
-addi     r6, r5, 0x6A695F72@l
-addi     r5, r4, 0x004E7961@l
-bl       create__Q32kh6Screen14khUtilFadePaneFPQ29P2DScreen3MgrUxUc
-stw      r3, 0xd0(r31)
-lwz      r0, 0xb8(r31)
-cmplwi   r0, 1
-bne      lbl_804085E0
-lwz      r3, 0xcc(r31)
-bl       fadeout__Q32kh6Screen14khUtilFadePaneFv
-lwz      r3, 0xcc(r31)
-li       r4, 0
-bl       set_init_alpha__Q32kh6Screen14khUtilFadePaneFUc
-
-lbl_804085E0:
-lwz      r3, 0xd0(r31)
-bl       fadeout__Q32kh6Screen14khUtilFadePaneFv
-lwz      r3, 0xd0(r31)
-li       r4, 0
-bl       set_init_alpha__Q32kh6Screen14khUtilFadePaneFUc
-lwz      r3, 0x9c(r31)
-lis      r4, 0x74656D57@ha
-addi     r6, r4, 0x74656D57@l
-li       r5, 0x4e69
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-bl       setInfAlpha__Q22kh6ScreenFP7J2DPane
-mr       r3, r31
-bl       changeAlpha__Q32kh6Screen19ObjDayEndResultMailFv
-lbz      r0, 0x5c(r29)
-cmplwi   r0, 0
-beq      lbl_80408658
-li       r3, 0
-li       r0, 0xff
-stw      r3, 0x98(r31)
-mr       r3, r31
-stw      r0, 0xe8(r31)
-bl       changeAlpha__Q32kh6Screen19ObjDayEndResultMailFv
-lwz      r3, 0x8c(r31)
-bl       fadein__Q32kh6Screen14khUtilFadePaneFv
-lfs      f0, lbl_805200B0@sda21(r2)
-stfs     f0, 0xdc(r31)
-stfs     f0, 0xd8(r31)
-
-lbl_80408658:
-lmw      r22, 0x118(r1)
-lwz      r0, 0x144(r1)
-mtlr     r0
-addi     r1, r1, 0x140
-blr
-	*/
 }
 
 /**
@@ -2936,7 +2338,7 @@ void SceneDayEndResultMail::doUserCallBackFunc(Resource::MgrCommand* mgr)
 	LoadResource::Arg tableArg("/user/Koono/mail_table.szs");
 	LoadResource::Node* tableNode = gLoadResourceMgr->mountArchive(tableArg);
 	if (tableNode) {
-		file = static_cast<MailTableFile*>(JKRFileLoader::getGlbResource("mail_table.bin", tableNode->mArchive));
+		file = static_cast<MailTableFile*>(JKRGetResource("mail_table.bin", tableNode->mArchive));
 	} else {
 		JUT_PANICLINE(2674, "failed");
 	}
@@ -2947,7 +2349,7 @@ void SceneDayEndResultMail::doUserCallBackFunc(Resource::MgrCommand* mgr)
 	u32 entries = file->mEntries;
 	mTableData  = new MailTableData*[entries];
 	for (int i = 0; i < entries; i++) {
-		mTableData[i]   = new MailTableData(&file->mData[offset], saveFlags, i);
+		mTableData[i]   = new MailTableData(file[offset].mData[0], saveFlags, i);
 		int fileNameLen = 0;
 		for (u8* ptr = (u8*)mTableData[i]->mFileName; *ptr; ptr++, fileNameLen++) {
 			;

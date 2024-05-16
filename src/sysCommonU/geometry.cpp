@@ -664,8 +664,8 @@ void Triangle::createSphere(VertexTable& vertTable)
 	for (int i = 0; i < 3; i++) {
 		int* vertPtr     = mVertices;
 		Vector3f currVtx = (vertTable.mObjects[vertPtr[i]]);
-
-		f32 vtxDist = lenVec(currVtx - center);
+		Vector3f sep     = currVtx - center;
+		f32 vtxDist      = lenVec(sep);
 		if (vtxDist > new_radius) {
 			new_radius = vtxDist;
 		}

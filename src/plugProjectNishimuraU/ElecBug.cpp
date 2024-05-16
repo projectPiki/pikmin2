@@ -410,7 +410,7 @@ void Obj::checkInteract(Obj* partner)
 			creatureSep -= pos;
 
 			f32 creatureDot = crossVec.dot(creatureSep); // f3
-			f32 absDot      = absVal(creatureDot);        // f4
+			f32 absDot      = absVal(creatureDot);       // f4
 
 			if (absDot < 10.0f) {
 				f32 sepDot = sep.dot(creatureSep); // f6

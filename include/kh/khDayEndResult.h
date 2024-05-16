@@ -664,6 +664,8 @@ struct MailTableData {
 		mSaveFlag  = bool(flags.byteView[15 - byte] & (1 << (i - (byte << 3))));
 	}
 
+	inline const char* getFileName() { return mFileName; }
+
 	u64 mMessageID;  // _00
 	u8 mFlag[3];     // _08
 	char* mFileName; // _0C
@@ -671,8 +673,8 @@ struct MailTableData {
 };
 
 struct MailTableFile {
-	int mEntries;         // _00
-	MailTableData* mData; // _04, might be double pointer
+	int mEntries;          // _00
+	MailTableData** mData; // _04, might be double pointer
 };
 
 struct SceneDayEndResultMail : public ::Screen::SceneBase {

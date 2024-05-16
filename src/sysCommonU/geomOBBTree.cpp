@@ -1007,7 +1007,7 @@ void OBB::determineDivPlane(Sys::VertexTable& vertTable, Sys::TriangleTable& tri
 		currPlane.mNormal.x = currAxis->x;
 		currPlane.mNormal.y = currAxis->y;
 		currPlane.mNormal.z = currAxis->z;
-		currPlane.mOffset   = *currAxis.dot(mPosition);
+		currPlane.mOffset   = currAxis->dot(mPosition);
 
 		// loop through all triangles
 		for (int j = 0; j < mTriIndexList.mCount; j++) {
