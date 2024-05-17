@@ -156,8 +156,9 @@ bool CellIterator::find()
 inline bool isIntersecting(Vector3f& position, Sys::Sphere& targetSphere, Sys::Sphere& bounds)
 {
 	f32 distance = position.sqrDistance2D(targetSphere.mPosition);
-	f32 radius   = SQUARE(targetSphere.mRadius + bounds.mRadius);
-	return radius > distance;
+	f32 radius   = (targetSphere.mRadius + bounds.mRadius);
+	radius *= radius;
+	return distance > radius;
 }
 
 /**
@@ -189,128 +190,19 @@ bool CellIterator::satisfy()
 			if (isIntersecting(objPos, mArg.mSphere, boundingSphere)) {
 				return false;
 			}
-		} else if (isIntersecting(objPos, mArg.mSphere, boundingSphere)) {
-			return false;
+		} else {
+			objPos -= mArg.mSphere.mPosition;
+			f32 distance = objPos.x * objPos.x + objPos.z * objPos.z;
+			f32 radius   = (mArg.mSphere.mRadius + boundingSphere.mRadius);
+			radius *= radius;
+			if (distance > radius) {
+				return false;
+			}
 		}
 	}
 
 	mCurrLeg->mObject->mPassID = mPassID;
 	return true;
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stfd     f31, 0x40(r1)
-	psq_st   f31, 72(r1), 0, qr0
-	stfd     f30, 0x30(r1)
-	psq_st   f30, 56(r1), 0, qr0
-	stw      r31, 0x2c(r1)
-	stw      r30, 0x28(r1)
-	mr       r30, r3
-	lwz      r3, 0(r3)
-	cmplwi   r3, 0
-	bne      lbl_8022E7B4
-	li       r3, 0
-	b        lbl_8022E8DC
-
-lbl_8022E7B4:
-	beq      lbl_8022E7CC
-	lwz      r4, 0xc(r3)
-	lwz      r0, 0x20(r30)
-	lwz      r3, 0xa4(r4)
-	cmplw    r3, r0
-	bne      lbl_8022E7D4
-
-lbl_8022E7CC:
-	li       r3, 0
-	b        lbl_8022E8DC
-
-lbl_8022E7D4:
-	lwz      r3, 0x34(r30)
-	cmplwi   r3, 0
-	beq      lbl_8022E800
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8022E800
-	li       r3, 0
-	b        lbl_8022E8DC
-
-lbl_8022E800:
-	lwz      r4, 0(r30)
-	addi     r3, r1, 8
-	lwz      r31, 0xc(r4)
-	mr       r4, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	addi     r4, r1, 0x14
-	lwz      r12, 0(r31)
-	lfs      f31, 8(r1)
-	lwz      r12, 0x10(r12)
-	lfs      f30, 0x10(r1)
-	mtctr    r12
-	bctrl
-	lbz      r0, 0x40(r30)
-	cmplwi   r0, 0
-	bne      lbl_8022E8C8
-	lwz      r0, 0x38(r30)
-	cmpwi    r0, 0
-	bne      lbl_8022E890
-	lfs      f0, 0x2c(r30)
-	lfs      f2, 0x24(r30)
-	fsubs    f3, f30, f0
-	lfs      f1, 0x30(r30)
-	lfs      f0, 0x20(r1)
-	fsubs    f2, f31, f2
-	fadds    f1, f1, f0
-	fmuls    f0, f3, f3
-	fmuls    f1, f1, f1
-	fmadds   f0, f2, f2, f0
-	fcmpo    cr0, f0, f1
-	ble      lbl_8022E8C8
-	li       r3, 0
-	b        lbl_8022E8DC
-
-lbl_8022E890:
-	lfs      f0, 0x2c(r30)
-	lfs      f2, 0x24(r30)
-	fsubs    f30, f30, f0
-	lfs      f1, 0x30(r30)
-	lfs      f0, 0x20(r1)
-	fsubs    f31, f31, f2
-	fadds    f1, f1, f0
-	fmuls    f0, f30, f30
-	fmuls    f1, f1, f1
-	fmadds   f0, f31, f31, f0
-	fcmpo    cr0, f0, f1
-	ble      lbl_8022E8C8
-	li       r3, 0
-	b        lbl_8022E8DC
-
-lbl_8022E8C8:
-	lwz      r4, 0(r30)
-	li       r3, 1
-	lwz      r0, 0x20(r30)
-	lwz      r4, 0xc(r4)
-	stw      r0, 0xa4(r4)
-
-lbl_8022E8DC:
-	psq_l    f31, 72(r1), 0, qr0
-	lfd      f31, 0x40(r1)
-	psq_l    f30, 56(r1), 0, qr0
-	lfd      f30, 0x30(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r0, 0x54(r1)
-	lwz      r30, 0x28(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
 }
 
 /**

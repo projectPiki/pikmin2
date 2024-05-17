@@ -3549,23 +3549,23 @@ void WorldMap::rocketUpdate(J2DPane* pane)
 	f32 scale2 = msVal._1C[mOpenCourses] * mRocketScale;
 	shipPane->updateScale(scale2);
 
-	f32 x                  = mRocketPosition.x - mRocketPosition2.x;
-	f32 y                  = mRocketPosition.y - mRocketPosition2.y;
+	Vector2f sep           = mRocketPosition - mRocketPosition2;
 	J2DPane* shipPane2     = mScreenRocket->search('Procket');
 	JGeometry::TVec3f pos1 = shipPane2->getGlbVtx(0);
 	JGeometry::TVec3f pos2 = shipPane2->getGlbVtx(1);
 	JGeometry::TVec3f pos3 = shipPane2->getGlbVtx(2);
 	JGeometry::TVec3f pos4 = shipPane2->getGlbVtx(3);
-	f32 inv                = 1.0f - msVal._1C[0];
-	mEffectPos.x           = x + (pos1.x + pos2.x) * 0.5f * inv + (pos3.x + pos4.x) * 0.5f * msVal._1C[0];
-	mEffectPos.y           = y + (pos1.x + pos2.x) * 0.5f * inv + (pos3.x + pos4.x) * 0.5f * msVal._1C[0];
-	mEffectDir.x           = -mRocketAngle.x;
-	mEffectDir.y           = -mRocketAngle.y;
+	f32 factor             = msVal._1C[0];
+	JGeometry::TVec2f mid1((pos1.x + pos2.x) / 2, (pos1.y + pos2.y) / 2);
+	JGeometry::TVec2f mid2((pos3.x + pos4.x) / 2, (pos3.y + pos4.y) / 2);
+	// f32 inv                = 1.0f - msVal._1C[0];
+	mEffectPos = sep + Vector2f(mid1.x * (1.0f - factor) + mid2.x * factor, mid1.y * (1.0f - factor) + mid2.y * factor);
+	mEffectDir = Vector2f(-mRocketAngle.x, -mRocketAngle.y);
 
 	efx2d::WorldMap::ArgDirScale arg(mEffectPos, mEffectDir, scale2);
 	efx2d::WorldMap::T2DRocketA efx;
-	efx.mResMgrId = 1;
 	efx.mGroup    = 3;
+	efx.mResMgrId = 1;
 	efx.create(&arg);
 	mEfxRocketSparks->setGlobalParticleScale(scale2);
 	mEfxRocketGlow->setGlobalParticleScale(scale2);

@@ -9,7 +9,7 @@
 namespace efx2d {
 namespace WorldMap {
 struct ArgDirScale : public Arg {
-	ArgDirScale(Vector2f& pos, Vector2f& dir, f32 scale)
+	ArgDirScale(Vector2f pos, Vector2f dir, f32 scale)
 	    : Arg(pos)
 	{
 		mDir   = dir;
@@ -24,7 +24,7 @@ struct ArgDirScale : public Arg {
 	// _00-_08 	= Vector2f
 	// _08		= VTBL
 	Vector2f mDir; // _0C
-	f32 mScale;
+	f32 mScale;    // _14
 };
 
 struct TSimple_ArgDirScale : public TSimple1 {
@@ -92,6 +92,7 @@ struct T2DRocketA : public TSimple_ArgDirScale {
 	inline T2DRocketA()
 	    : TSimple_ArgDirScale(PID_RocketA)
 	{
+		mResMgrId = 1;
 	}
 
 	// _00		= VTBL
