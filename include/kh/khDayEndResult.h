@@ -34,6 +34,8 @@ enum MailCategory {
 };
 
 union MailSaveFlags {
+	inline u8 getReverseByte(int i) { return byteView[15 - i]; }
+
 	u32 typeView[4];
 	u8 byteView[16];
 };
@@ -652,29 +654,42 @@ struct SceneDayEndResultItem : public ::Screen::SceneBase {
 	// TODO: work out if this has extra members
 };
 
+struct MailTableDataEntry {
+	u64 mMessageID;          // _00
+	u8 mFlag[4];             // _08
+	const char mFileName[0]; // _0C
+};
+
 struct MailTableData {
-	MailTableData(MailTableData* data, MailSaveFlags& flags, int i)
+	MailTableData(MailTableDataEntry* data, MailSaveFlags& flags, int i)
 	{
+		u8 bit     = flags.getReverseByte(i >> 3);
+		int shift  = (i - (int(i >> 3) << 3));
 		mMessageID = data->mMessageID;
 		mFlag[0]   = data->mFlag[0];
 		mFlag[1]   = data->mFlag[1];
 		mFlag[2]   = data->mFlag[2];
-		mFileName  = data->mFileName;
-		int byte   = i >> 3;
-		mSaveFlag  = bool(flags.byteView[15 - byte] & (1 << (i - (byte << 3))));
+		mFileName  = (const char*)&data->mFileName;
+		mSaveFlag  = ((1 << shift) & bit) != 0;
+	}
+
+	inline u32 calcSaveFlag(MailSaveFlags& flags, int i)
+	{
+		u32 cleared = (i >> 3);
+		return (1 << (i - (cleared << 3))) & flags.byteView[15 - (i >> 3)];
 	}
 
 	inline const char* getFileName() { return mFileName; }
 
-	u64 mMessageID;  // _00
-	u8 mFlag[3];     // _08
-	char* mFileName; // _0C
-	u8 mSaveFlag;    // _10
+	u64 mMessageID;        // _00
+	u8 mFlag[3];           // _08
+	const char* mFileName; // _0C
+	u8 mSaveFlag;          // _10
 };
 
 struct MailTableFile {
-	int mEntries;          // _00
-	MailTableData** mData; // _04, might be double pointer
+	int mEntries;               // _00
+	MailTableDataEntry** mData; // _04
 };
 
 struct SceneDayEndResultMail : public ::Screen::SceneBase {

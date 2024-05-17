@@ -2343,30 +2343,34 @@ void SceneDayEndResultMail::doUserCallBackFunc(Resource::MgrCommand* mgr)
 		JUT_PANICLINE(2674, "failed");
 	}
 
+	// problem is from here
 	int offset              = 4;
 	MailSaveFlags saveFlags = Game::playData->mMailSaveData.mPastLogs;
 
 	u32 entries = file->mEntries;
 	mTableData  = new MailTableData*[entries];
 	for (int i = 0; i < entries; i++) {
-		mTableData[i]   = new MailTableData(file[offset].mData[0], saveFlags, i);
+		mTableData[i]
+		    = new MailTableData(reinterpret_cast<MailTableDataEntry*>((u8*)file + offset), saveFlags, i); // this is the main issue
 		int fileNameLen = 0;
 		for (u8* ptr = (u8*)mTableData[i]->mFileName; *ptr; ptr++, fileNameLen++) {
 			;
 		}
 		offset += (fileNameLen + 16) & ~0x3;
 	}
+	// to here
 
 	if (!getDispMember()->isID(OWNER_KH, MEMBER_DAY_END_RESULT)) {
 		JUT_PANICLINE(2690, "disp member err");
 	}
 
-	DispDayEndResult* dispResult = static_cast<DispDayEndResult*>(getDispMember());
-	if (dispResult->mMail.mHeap && !dispResult->mMail.mBackupHeap) {
-		dispResult->mMail.mBackupHeap = makeSolidHeap(-1, dispResult->mMail.mHeap, false);
-		int mailID                    = -1;
+	int mailID;
+	DispDayEndResultMail& dispResult = static_cast<DispDayEndResult*>(getDispMember())->mMail;
+	if (dispResult.mHeap && !dispResult.mBackupHeap) {
+		dispResult.mBackupHeap = makeSolidHeap(-1, dispResult.mHeap, false);
+		mailID                 = -1;
 		for (int i = 0; i < entries; i++) {
-			if (dispResult->mMail.mMailCategory != mTableData[i]->mFlag[0]) {
+			if (dispResult.mMailCategory != mTableData[i]->mFlag[0]) {
 				continue;
 			}
 
@@ -2379,7 +2383,7 @@ void SceneDayEndResultMail::doUserCallBackFunc(Resource::MgrCommand* mgr)
 		JUT_ASSERTLINE(2710, mailID != -1, "error");
 
 		for (int i = 0; i < entries; i++) {
-			if (dispResult->mMail.mMailCategory != mTableData[i]->mFlag[0]) {
+			if (dispResult.mMailCategory != mTableData[i]->mFlag[0]) {
 				continue;
 			}
 			if (!mTableData[i]->mSaveFlag || (s8)mTableData[i]->mFlag[1] < 0) {
@@ -2391,20 +2395,20 @@ void SceneDayEndResultMail::doUserCallBackFunc(Resource::MgrCommand* mgr)
 			}
 		}
 
-		dispResult->mMail.mTodayMailID = mailID;
+		dispResult.mTodayMailID = mailID;
 
-		if (dispResult->mMail.mTodayMailID < 128) {
-			int byte = dispResult->mMail.mTodayMailID >> 3;
-			saveFlags.byteView[15 - byte] |= (1 << (dispResult->mMail.mTodayMailID - (byte << 3)));
+		if (dispResult.mTodayMailID < 128) {
+			int byte = dispResult.mTodayMailID >> 3;
+			saveFlags.byteView[15 - byte] |= (1 << (dispResult.mTodayMailID - (byte << 3)));
 		}
 
 		Game::playData->mMailSaveData.mPastLogs = saveFlags;
-		Game::playData->mMailSaveData.set_history(dispResult->mMail.mTodayMailID);
+		Game::playData->mMailSaveData.set_history(dispResult.mTodayMailID);
 
 		mMailFlags = Game::playData->mMailSaveData.mHistory;
 
 		LoadResource::Arg iconArg("/user/Koono/mail_icon.szs");
-		iconArg.mHeap                = dispResult->mMail.mBackupHeap;
+		iconArg.mHeap                = dispResult.mBackupHeap;
 		LoadResource::Node* iconNode = gLoadResourceMgr->mountArchive(iconArg);
 		if (iconNode) {
 			mIconArchive = static_cast<JKRMemArchive*>(iconNode->mArchive);

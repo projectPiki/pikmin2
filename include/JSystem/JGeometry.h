@@ -145,6 +145,8 @@ struct TVec2 {
 		return dist;
 	}
 
+	f32 dot(const TVec2<f32>& other) const { return x * other.x + y * other.y; }
+
 	bool isAbove(const TVec2<T>& other) const { return (x >= other.x) && (y >= other.y) ? true : false; }
 
 	bool isZero() const { return squared() <= 32.0f * FLT_EPSILON; }

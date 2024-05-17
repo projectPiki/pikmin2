@@ -102,6 +102,12 @@ struct khUtilColorAnm : public P2DScreen::CallBackNode {
 	inline void setColor(JUtility::TColor color, int id) { mColorList[id] = color; }
 	inline void setDisabledColor(JUtility::TColor color) { mDisabledColor = color; }
 
+	inline void reset()
+	{
+		mColor = mColorList[0];
+		mFrame = 0;
+	}
+
 	// _00     = VTBL
 	// _00-_1C = P2DScreen::Node
 	JUtility::TColor* mColorList;    // _1C

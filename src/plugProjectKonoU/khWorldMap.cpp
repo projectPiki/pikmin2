@@ -783,21 +783,18 @@ void WorldMap::update(::Game::WorldMap::UpdateArg& arg)
 		mRocketAngle = JGeometry::TVec2f(temp.x * x - temp.y * y, temp.x * y + temp.y * x);
 		f32 angle    = mRocketAngle.squared();
 		mRocketAngle.normalize();
-		// f32 angle      = mRocketAngle.x * mRocketAngle.x + mRocketAngle.y + mRocketAngle.y;
-		// if (angle > FLT_EPSILON) {
-		// 	mRocketAngle = angle;
-		// }
-		Vector2f rot;
+
 		getRotDir(temp, 0.0f);
 		mRocketPosition.x += msVal._04 * (mRocketAngle.x * msVal._00);
 		mRocketPosition.y += msVal._04 * (mRocketAngle.y * msVal._00);
 
+		// this is the regswap
 		JGeometry::TVec2f vec(getPaneCenterX(cPointPane) - mRocketPosition.x, getPaneCenterY(cPointPane) - mRocketPosition.y);
 		f32 dist = vec.x * vec.x + vec.y + vec.y; // is this a typo?
 		if (!isFlag(WMAPFLAG_Unk4)) {
 			vec.normalize();
-			if (vec.x * mRocketAngle.x + vec.y * mRocketAngle.y > 0.7f) {
-				// 	resetFlag(WMAPFLAG_Unk2);
+			if (vec.dot(mRocketAngle) > 0.7f) {
+
 				if (!isFlag(WMAPFLAG_Unk1)) {
 					setFlag(WMAPFLAG_Unk1 | WMAPFLAG_Unk2);
 				} else if (!isFlag(WMAPFLAG_Unk2)) {
@@ -981,7 +978,7 @@ void WorldMap::update(::Game::WorldMap::UpdateArg& arg)
 		break;
 	}
 
-	case WMAP_Unk10: { // UP TO HERE
+	case WMAP_Unk10: {
 		f32 angle = pikmin2_atan2f(mRocketAngle.x, -mRocketAngle.y);
 
 		if (mRocketAngleMode == ROT_Unk1 && angle > 0.0f) {
@@ -996,17 +993,14 @@ void WorldMap::update(::Game::WorldMap::UpdateArg& arg)
 		mRocketAngle.x = pikmin2_sinf(angle);
 		mRocketAngle.y = -pikmin2_cosf(angle);
 
-		// dumb shit here
-		f32 dist = mRocketAngle.squared();
-		if (!mRocketAngle.isZero()) {
-			f32 mod = sqrtf(dist);
-			dist    = mod / 2 * -(dist * mod - 3.0f);
-			mRocketAngle.scale(dist);
-		}
-		mRocketPosition.add(msVal._04 * mRocketAngle.x * msVal._00, msVal._04 * mRocketAngle.y * msVal._00);
+		mRocketAngle.normalize();
 
-		f32 zero = 0.0f;
-		if (mRocketAngle.x * zero + mRocketAngle.y * -1.0f > 0.95f) {
+		mRocketPosition.x += msVal._04 * (mRocketAngle.x * msVal._00);
+		mRocketPosition.y += msVal._04 * (mRocketAngle.y * msVal._00);
+
+		JGeometry::TVec2f vec(0.0f, -1.0f);
+		f32 downComponent = vec.x * mRocketAngle.x + vec.y * mRocketAngle.y;
+		if (downComponent > 0.95f) {
 			if (!isFlag(WMAPFLAG_Unk1)) {
 				setFlag(WMAPFLAG_Unk1 | WMAPFLAG_Unk2);
 			} else if (!isFlag(WMAPFLAG_Unk2)) {
@@ -1019,8 +1013,7 @@ void WorldMap::update(::Game::WorldMap::UpdateArg& arg)
 					mScreenInfo->search('Nlwin')->show();
 
 					if (!mInitArg.mDoNewEntriesEfx) {
-						Vector2f efxPos2(getPaneCenterX(target) + msVal._50[0].x, getPaneCenterY(target) + msVal._50[0].y);
-						efx2d::Arg arg(efxPos2);
+						efx2d::Arg arg(Vector2f(getPaneCenterX(target) + msVal._50[0].x, getPaneCenterY(target) + msVal._50[0].y));
 						efx2d::T2DChangesmoke efx;
 						efx.create(&arg);
 					}
@@ -1031,16 +1024,16 @@ void WorldMap::update(::Game::WorldMap::UpdateArg& arg)
 					mScreenInfo->search('Nrwin')->show();
 
 					if (!mInitArg.mDoNewEntriesEfx) {
-						Vector2f efxPos2(getPaneCenterX(target) + msVal._50[0].x, getPaneCenterY(target) + msVal._50[0].y);
-						efx2d::Arg arg(efxPos2);
+						// Vector2f efxPos2(getPaneCenterX(target) + msVal._50[0].x, getPaneCenterY(target) + msVal._50[0].y);
+						efx2d::Arg arg(Vector2f(getPaneCenterX(target) + msVal._50[1].x, getPaneCenterY(target) + msVal._50[1].y));
 						efx2d::T2DChangesmoke efx;
 						efx.create(&arg);
 					}
 				}
 				if (mInitArg.mHasNewPiklopediaEntries || mInitArg.mHasNewTreasureHoardEntries) {
 					khUtilColorAnm* anm = mColorAnim2;
-					anm->mColor         = anm->mColorList[0];
-					anm->mFrame         = 0;
+					mColorAnim2->reset();
+
 					if (!mInitArg.mDoNewEntriesEfx) {
 						mScaleMgr->up();
 						PSSystem::spSysIF->playSystemSe(PSSE_SY_WMAP_ZUKAN_NEW, 0);
@@ -1060,7 +1053,7 @@ void WorldMap::update(::Game::WorldMap::UpdateArg& arg)
 		for (int i = 0; i < mOnyonCount; i++) {
 			mOnyonArray[i].mOnyonPane->setOffset(1000.0f, 0.0f);
 		}
-		if (mRocketMoveCounter++ > 5) {
+		if (++mRocketMoveCounter > 5) {
 			mCurrentCourseIndex = mInitArg.mInitialCourseIndex;
 			if (mCurrentCourseIndex < 0) {
 				mCurrentCourseIndex = 0;
@@ -1071,13 +1064,15 @@ void WorldMap::update(::Game::WorldMap::UpdateArg& arg)
 			mRocketPosition        = Vector2f(getPaneCenterX(cPointPane), getPaneCenterY(cPointPane));
 			mRocketScale           = 0.01f;
 			paneRocket->setOffset(mRocketPosition.x, mRocketPosition.y);
-			paneRocket->setAngle(TODEGREES(JMAAtan2Radian(-mRocketAngle.x, -mRocketAngle.y)));
+			f32 atanVal = JMAAtan2Radian(-mRocketAngle.x, -mRocketAngle.y) * JMath::TAngleConstant_<f32>::RADIAN_TO_DEGREE_FACTOR();
+			paneRocket->setAngle(atanVal);
 			paneRocket->updateScale(mRocketScale);
 			for (int i = 0; i < mOnyonCount; i++) {
 				mOnyonArray[i].mOffset = mRocketPosition;
 				mOnyonArray[i].mAngle.set(mRocketAngle);
 				mOnyonArray[i].mOnyonPane->setOffset(mRocketPosition.x, mRocketPosition.y);
-				mOnyonArray[i].mOnyonPane->setAngle(TODEGREES(JMAAtan2Radian(-mRocketAngle.x, -mRocketAngle.y)));
+				f32 atanVal = JMAAtan2Radian(-mRocketAngle.x, -mRocketAngle.y) * JMath::TAngleConstant_<f32>::RADIAN_TO_DEGREE_FACTOR();
+				mOnyonArray[i].mOnyonPane->setAngle(atanVal);
 				mOnyonArray[i].mOnyonPane->updateScale(mRocketScale);
 			}
 			mRocketMoveCounter = 0;
@@ -3246,15 +3241,13 @@ f32 WorldMap::rocketMove(J2DPane* pane, bool flag)
 	angle.x = mRocketAngle.x;
 	angle.y = mRocketAngle.y;
 	JGeometry::TVec2f pos(getPaneCenterX(pane) - mRocketPosition.x, getPaneCenterY(pane) - mRocketPosition.y);
-	f32 otherFactor = msVal._4C;
+	f32 dist        = pos.x * pos.x + pos.y * pos.y;
 	f32 factor      = msVal._08;
-	int num         = (mRocketMoveCounter - 86) / 5;
-	f32 dist        = pos.squared();
+	f32 otherFactor = msVal._4C;
 
-	if (mRocketMoveCounter > 90) {
-		for (int i = mRocketMoveCounter; i < 90; i++) {
-			factor *= 0.99f;
-		}
+	// something weird going on here
+	for (int i = mRocketMoveCounter; i > 90; i--) {
+		factor *= 0.99f;
 	}
 
 	pos.normalize();
@@ -3278,8 +3271,9 @@ f32 WorldMap::rocketMove(J2DPane* pane, bool flag)
 		val2 += TAU;
 	}
 
+	f32 phi;
 	f32 theta = val3 * otherFactor + (val1 * factor + (val2 * (1.0f - factor)));
-	f32 phi   = theta - val1;
+	phi       = theta - val1;
 
 	_B4.set(pikmin2_sinf(phi), -pikmin2_cosf(phi));
 
@@ -3550,8 +3544,7 @@ void WorldMap::rocketUpdate(J2DPane* pane)
 	shipPane->setOffset(mRocketPosition.x, mRocketPosition.y);
 	shipPane->setAngle(TODEGREES(JMAAtan2Radian(-mRocketAngle.x, -mRocketAngle.y)));
 
-	f32 scale = tag2num(pane->mMessageID);
-	mRocketScale *= msVal._08 + (1.0f - msVal._08) * scale;
+	mRocketScale = mRocketScale * msVal._08 + (1.0f - msVal._08) * tag2num(pane->mMessageID);
 
 	f32 scale2 = msVal._1C[mOpenCourses] * mRocketScale;
 	shipPane->updateScale(scale2);
@@ -3569,13 +3562,13 @@ void WorldMap::rocketUpdate(J2DPane* pane)
 	mEffectDir.x           = -mRocketAngle.x;
 	mEffectDir.y           = -mRocketAngle.y;
 
-	efx2d::WorldMap::ArgDirScale arg(mEffectPos, mEffectDir, scale);
+	efx2d::WorldMap::ArgDirScale arg(mEffectPos, mEffectDir, scale2);
 	efx2d::WorldMap::T2DRocketA efx;
 	efx.mResMgrId = 1;
 	efx.mGroup    = 3;
 	efx.create(&arg);
-	mEfxRocketSparks->setGlobalParticleScale(scale);
-	mEfxRocketGlow->setGlobalParticleScale(scale);
+	mEfxRocketSparks->setGlobalParticleScale(scale2);
+	mEfxRocketGlow->setGlobalParticleScale(scale2);
 
 	/*
 stwu     r1, -0x100(r1)
@@ -4199,7 +4192,7 @@ void WorldMap::changeInfo()
 	u64 tags2[4]
 	    = { '8396_01', '8398_01', '8401_01', '8410_01' }; // "Hole of Beasts" 	"White Flower Garden"	"Bulblax Kingdom" 	"Snagret Hole"
 	u64 tags3[4]     = { '8397_01', '8402_01', '8403_01',
-		                 '8411_01' }; // "Citadel of Spiders"	"Glutton's Kitchen"		"Shower Room"		"Submerged Castle"
+                     '8411_01' }; // "Citadel of Spiders"	"Glutton's Kitchen"		"Shower Room"		"Submerged Castle"
 	u64 tags4[4]     = { '8412_01', '8413_01', '8414_01', 'no_data' }; // "Cavern of Chaos" 	"Hole of Heroes"	 	"Dream Den"
 	u64* caveTags[4] = { tags1, tags2, tags3, tags4 };
 
