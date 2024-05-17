@@ -123,14 +123,16 @@ int GeneratorCache::getColorMePikmins(int pikminType)
  */
 int CourseCache::getColorMePikmins(u8* buffer, int pikminType)
 {
-	int pikiheadFlags = 0;
-	int count         = 0;
+	int pikiheadFlags;
+	int count = 0;
+
 	RamStream stream(&buffer[mCreatureSize + mOffset + mGeneratorSize], mPikiheadSize);
 	for (int i = 0; i < mPikiheadCount; i++) {
 		pikiheadFlags = stream.readByte();
-		Vector3f position;
-		position.read(stream);
-		// TODO: Replace 0xf with define for ItemPikiheadTypeMask?
+
+		Vector3f unused;
+		unused.read(stream);
+
 		if ((pikiheadFlags & 0xF) == pikminType) {
 			count++;
 		}
@@ -215,16 +217,17 @@ void GeneratorCache::destroyHeap()
  */
 CourseCache* GeneratorCache::findCache(Game::CourseCache& haystack, int courseIndex)
 {
-	// TODO: Perhaps one check is checking the child before assigning?
 	FOREACH_NODE(CourseCache, haystack.mChild, cache)
 	{
 		if (cache == nullptr) {
 			return nullptr;
 		}
+
 		if (cache->mCourseIndex == courseIndex) {
 			return cache;
 		}
 	}
+
 	return nullptr;
 }
 
@@ -243,20 +246,13 @@ void GeneratorCache::loadGenerators(int courseIndex)
 			Generator::ramMode = Generator::RM_MemoryCache;
 			generator->read(input);
 
-			int v1             = 0;
 			Generator::ramMode = Generator::RM_Disc;
 
 			generator->mIndex      = i;
 			generator->mIsInactive = FALSE;
 
-			FOREACH_NODE(Generator, mGenerator.mChild, child)
-			{
-				if (child->mIsInactive == FALSE) {
-					v1++;
-				}
-			}
-
-			if (v1 < 80) {
+			int inactives = mGenerator.getInactives();
+			if (inactives < 80) {
 				mGenerator.add(generator);
 			}
 		}
@@ -373,7 +369,7 @@ void GeneratorCache::loadCreatures(int courseIndex)
 {
 	mCurrentCache = findCache(mRootCache, courseIndex);
 	if (mCurrentCache) {
-		RamStream input(mHeapBuffer + mCurrentCache->mGeneratorSize + mCurrentCache->mOffset, mCurrentCache->mCreatureSize);
+		RamStream input(mCurrentCache->mGeneratorSize + mHeapBuffer + mCurrentCache->mOffset, mCurrentCache->mCreatureSize);
 		for (int i = 0; i < mCurrentCache->mCreatureCount; i++) {
 			int id         = input.readInt();
 			Generator* gen = findRamGenerator(id);
@@ -386,8 +382,10 @@ void GeneratorCache::loadCreatures(int courseIndex)
 					sprintf(buf, "none");
 					gen->mObject->getDebugInfo(buf);
 					ID32 objID(gen->mObject->mTypeID);
-					JUT_PANICLINE(448, "loadC[%s](no%d):%s", objID.getID(), id, buf);
+
+					JUT_PANICLINE(448, "loadC[%s](no%d):%s", objID.getStr(), id, buf);
 				}
+
 				JUT_PANICLINE(450, "loadC(no%d)\n", id);
 			}
 		}
@@ -637,17 +635,32 @@ lbl_801F20F0:
  */
 void GeneratorCache::slideCache()
 {
-	int size = mCurrentCache->mSize;
-	FOREACH_NODE(CourseCache, mCurrentCache->mChild, cache)
+	CourseCache* currentCache = this->mCurrentCache;
+	u32 cacheSize             = currentCache->mSize;
+
+	// Iterate over each node in the cache
+	FOREACH_NODE(CourseCache, currentCache->mNext, cache)
 	{
-		// wackness in here
-		cache->mOffset -= size;
+		int offset            = mRootCache.mOffset + cache->mOffset;
+		u8* sourceBuffer      = &this->mHeapBuffer[offset];
+		u8* destinationBuffer = &sourceBuffer[-cacheSize];
+
+		for (s32 index = 0; index < cache->mSize; ++index) {
+			u8 value             = *sourceBuffer++;
+			*destinationBuffer++ = value;
+		}
+
+		cache->mOffset -= cacheSize;
 	}
 
+	// Delete the current cache and add it to the free cache
 	mCurrentCache->del();
-	mRootCache.add(mCurrentCache);
-	mFreeOffset -= size;
-	mFreeSize += size;
+	mFreeCache.add(mCurrentCache);
+
+	// Update the free offset and size
+	mFreeOffset -= cacheSize;
+	mFreeSize += cacheSize;
+
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -778,10 +791,12 @@ void GeneratorCache::saveGenerator(Generator* generator)
 	if (generator->mDayLimit == -1 || gameSystem->mTimeMgr->mDayCount < generator->mDayLimit) {
 		if (generator->need_saveCreature()) {
 			RamStream output(mHeapBuffer + mFreeOffset, mFreeSize);
-			generator->mIndex  = mCurrentCache->mGeneratorCount;
+			generator->mIndex = mCurrentCache->mGeneratorCount;
+
 			Generator::ramMode = Generator::RM_MemoryCache;
 			generator->write(output);
 			Generator::ramMode = Generator::RM_Disc;
+
 			mFreeOffset += output.mPosition;
 			mFreeSize -= output.mPosition;
 			mCurrentCache->mGeneratorCount++;
@@ -863,26 +878,33 @@ lbl_801F2538:
  */
 void GeneratorCache::saveCreature(Generator* gen)
 {
-	if (gen->mCreature && (gen->mDayLimit == -1 || gameSystem->mTimeMgr->mDayCount < gen->mDayLimit)) {
-		RamStream output(mHeapBuffer + mFreeOffset, mFreeSize);
-		Generator::ramMode = Generator::RM_MemoryCache;
-		if (gen->need_saveCreature()) {
-			output.writeInt(gen->mIndex);
-			gen->saveCreature(output);
-
-			JUT_ASSERTLINE(672, mCurrentCache->mGeneratorCount < gen->mIndex, "(gen number large %d>=%d\n", mCurrentCache->mGeneratorCount,
-			               gen->mIndex);
-			Generator::ramMode = Generator::RM_Disc;
-		} else {
-			Generator::ramMode = Generator::RM_Disc;
-		}
-		int size = output.mPosition;
-		mFreeOffset += size;
-		mFreeSize -= size;
-		mCurrentCache->mCreatureCount++;
-		mCurrentCache->mSize += size;
-		mCurrentCache->mGeneratorSize += size;
+	if (!gen->mCreature) {
+		return;
 	}
+
+	if ((gen->mDayLimit == -1) || (gameSystem->mTimeMgr->mDayCount >= gen->mDayLimit)) {
+		return;
+	}
+
+	RamStream output(mHeapBuffer + mFreeOffset, mFreeSize);
+	Generator::ramMode = Generator::RM_MemoryCache;
+	if (gen->need_saveCreature()) {
+		output.writeInt(gen->mIndex);
+		gen->saveCreature(output);
+
+		JUT_ASSERTLINE(672, mCurrentCache->mGeneratorCount < gen->mIndex, "(gen number large %d>=%d\n", mCurrentCache->mGeneratorCount,
+		               gen->mIndex);
+		Generator::ramMode = Generator::RM_Disc;
+		return;
+	}
+
+	Generator::ramMode = Generator::RM_Disc;
+	int size           = output.mPosition;
+	mFreeOffset += size;
+	mFreeSize -= size;
+	mCurrentCache->mCreatureCount++;
+	mCurrentCache->mSize += size;
+	mCurrentCache->mGeneratorSize += size;
 	/*
 	stwu     r1, -0x430(r1)
 	mflr     r0
@@ -990,223 +1012,18 @@ void GeneratorCache::savePikiheads()
 		if (obj->isAlive() && obj->needSave()) {
 			int size = output.mPosition;
 			obj->cacheSave(output);
-			size -= output.mPosition;
-			mFreeOffset += size;
-			mFreeSize -= size;
+			int otherSize = output.mPosition - size;
+			mFreeOffset += otherSize;
+			mFreeSize -= otherSize;
 			mCurrentCache->mPikiheadCount++;
-			mCurrentCache->mSize += size;
-			mCurrentCache->mPikiheadSize += size;
+			mCurrentCache->mSize += otherSize;
+			mCurrentCache->mPikiheadSize += otherSize;
 		} else {
 			if (obj->isAlive()) {
 				obj->kill(nullptr);
 			}
 		}
 	}
-
-	/*
-	stwu     r1, -0x450(r1)
-	mflr     r0
-	stw      r0, 0x454(r1)
-	stw      r31, 0x44c(r1)
-	mr       r31, r3
-	addi     r3, r1, 0x18
-	stw      r30, 0x448(r1)
-	stw      r29, 0x444(r1)
-	lwz      r4, 0x7c(r31)
-	lwz      r0, 0x84(r31)
-	lwz      r5, 0x88(r31)
-	add      r4, r4, r0
-	bl       __ct__9RamStreamFPvi
-	lwz      r3, mgr__Q24Game12ItemPikihead@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_801F26D4
-	addi     r3, r3, 0x30
-
-lbl_801F26D4:
-	li       r0, 0
-	lis      r4, "__vt__36Iterator<Q34Game12ItemPikihead4Item>"@ha
-	addi     r4, r4, "__vt__36Iterator<Q34Game12ItemPikihead4Item>"@l
-	stw      r0, 0x14(r1)
-	cmplwi   r0, 0
-	stw      r4, 8(r1)
-	stw      r0, 0xc(r1)
-	stw      r3, 0x10(r1)
-	bne      lbl_801F2710
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801F2924
-
-lbl_801F2710:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801F277C
-
-lbl_801F2728:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801F2924
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-
-lbl_801F277C:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801F2728
-	b        lbl_801F2924
-
-lbl_801F279C:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	mr       r30, r3
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801F2840
-	mr       r3, r30
-	bl       needSave__Q34Game12ItemPikihead4ItemFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801F2840
-	lwz      r29, 0x20(r1)
-	mr       r3, r30
-	addi     r4, r1, 0x18
-	bl       cacheSave__Q34Game12ItemPikihead4ItemFR6Stream
-	lwz      r3, 0x20(r1)
-	lwz      r0, 0x84(r31)
-	subf     r5, r29, r3
-	add      r0, r0, r5
-	stw      r0, 0x84(r31)
-	lwz      r0, 0x88(r31)
-	subf     r0, r5, r0
-	stw      r0, 0x88(r31)
-	lwz      r4, 0x78(r31)
-	lwz      r3, 0x34(r4)
-	addi     r0, r3, 1
-	stw      r0, 0x34(r4)
-	lwz      r3, 0x78(r31)
-	lwz      r0, 0x20(r3)
-	add      r0, r0, r5
-	stw      r0, 0x20(r3)
-	lwz      r3, 0x78(r31)
-	lwz      r0, 0x38(r3)
-	add      r0, r0, r5
-	stw      r0, 0x38(r3)
-	b        lbl_801F2868
-
-lbl_801F2840:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801F2868
-	mr       r3, r30
-	li       r4, 0
-	bl       kill__Q24Game8CreatureFPQ24Game15CreatureKillArg
-
-lbl_801F2868:
-	lwz      r0, 0x14(r1)
-	cmplwi   r0, 0
-	bne      lbl_801F2894
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801F2924
-
-lbl_801F2894:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801F2908
-
-lbl_801F28B4:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801F2924
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-
-lbl_801F2908:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801F28B4
-
-lbl_801F2924:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xc(r1)
-	cmplw    r4, r3
-	bne      lbl_801F279C
-	lwz      r0, 0x454(r1)
-	lwz      r31, 0x44c(r1)
-	lwz      r30, 0x448(r1)
-	lwz      r29, 0x444(r1)
-	mtlr     r0
-	addi     r1, r1, 0x450
-	blr
-	*/
 }
 
 /**
@@ -1494,6 +1311,7 @@ void GeneratorCache::read(Stream& input)
 			mFreeCache.add(cache);
 		}
 	}
+
 	mRootCache.clearRelations();
 	mFreeOffset   = 0;
 	mFreeSize     = mHeapSize;
@@ -1501,7 +1319,8 @@ void GeneratorCache::read(Stream& input)
 	CourseCache newcache(-1);
 
 	for (int i = 0; i < stageList->getCourseCount(); i++) {
-		u8 flag            = input.readByte();
+		u32 flag = input.readByte();
+
 		CourseCache* cache = findCache(newcache, i);
 		JUT_ASSERTLINE(1009, cache, "cache %d is not in dead list\n", i);
 		cache->read(input);
@@ -1521,6 +1340,7 @@ void GeneratorCache::read(Stream& input)
 		cache->del();
 		mFreeCache.add(cache);
 	}
+
 	mHeapSize   = input.readInt();
 	mFreeOffset = input.readInt();
 	mFreeSize   = input.readInt();

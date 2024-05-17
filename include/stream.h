@@ -97,7 +97,7 @@ struct Stream {
 };
 
 struct RamStream : Stream {
-	RamStream(void* RamBufferPtr, int bounds);
+	RamStream(void* bufferPointer, int bounds);
 
 	virtual void read(void*, int);
 	virtual void write(void*, int);

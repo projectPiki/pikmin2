@@ -54,6 +54,18 @@ struct Generator : public CNode {
 		}
 	}
 
+	inline int getInactives()
+	{
+		int count = 0;
+		FOREACH_NODE(Generator, mChild, child)
+		{
+			if (child->mIsInactive == FALSE) {
+				count++;
+			}
+		}
+		return count;
+	}
+
 	GenObject* mObject;        // _18
 	u32 mId;                   // _1C /* Initialized to '____' */
 	char mGenObjName[32];      // _20 /* shift-jis name given in generator files */

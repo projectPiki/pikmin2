@@ -16,9 +16,9 @@ struct CourseCache : public CNode {
 	void read(Stream&);
 	void write(Stream&);
 
-	int mCourseIndex;    // _18
+	s32 mCourseIndex;    // _18
 	u32 mOffset;         // _1C
-	u32 mSize;           // _20
+	s32 mSize;           // _20
 	int mGeneratorCount; // _24
 	int mGeneratorSize;  // _28
 	int mCreatureCount;  // _2C
