@@ -228,6 +228,21 @@ struct Vector3 {
 		this->y = newVal;
 	}
 
+	inline void scale2D(f32 other)
+	{
+		T newVal = this->x * other;
+		this->x  = newVal;
+
+		newVal  = this->z * other;
+		this->z = newVal;
+	}
+
+	inline void set2D(const Vector3& other)
+	{
+		x = other.x;
+		z = other.z;
+	}
+
 	inline T dot(const Vector3& other) { return this->x * other.x + this->y * other.y + this->z * other.z; }
 
 	inline Vector3 cross(const Vector3& other)
@@ -369,26 +384,10 @@ inline Vector3i operator/(const Vector3i& a, const int b) { return Vector3i(a.x 
 inline Vector3i operator*=(const Vector3i& a, const int b) { return Vector3i(a.x * b, a.y * b, a.z * b); }
 
 inline bool operator==(const Vector3f& a, const Vector3f& b) { return (a.x == b.x && a.y == b.y && a.z == b.z); }
+inline bool operator!=(const Vector3f& a, const Vector3f& b) { return (a.x != b.x || a.y != b.y || a.z != b.z); }
 
-inline void weightVecXZ(Vector3f& vec, f32 weight)
-{
-	Vector3f temp = vec;
-	temp.x *= weight;
-	temp.z *= weight;
-	vec = temp;
-}
-
-inline void getScaledXZVec(Vector3f& vec, f32 x, f32 z, f32 scale)
-{
-	vec.x = x * scale;
-	vec.z = z * scale;
-}
-
-inline void getScaledXYVec(Vector3f& vec, const f32& x, const f32& z, f32 scale)
-{
-	vec.x = x * scale;
-	vec.y = z * scale;
-}
+inline bool operator==(const Vector3i& a, const Vector3i& b) { return (a.x == b.x && a.y == b.y && a.z == b.z); }
+inline bool operator!=(const Vector3i& a, const Vector3i& b) { return (a.x != b.x || a.y != b.y || a.z != b.z); }
 
 template <>
 inline f32 Vector3f::length() const
@@ -444,12 +443,6 @@ inline f32 Vector3f::normalise2D()
 	return len;
 }
 
-inline f32 _lenVec(Vector3f& vec)
-{
-	Vector2f sqr(vec.z * vec.z, vec.x * vec.x + vec.y * vec.y);
-	return _sqrtf(sqr.x + sqr.y);
-}
-
 inline f32 stickMagnitude(Vector3f& vec)
 {
 	Vector3f a = vec;
@@ -471,12 +464,6 @@ inline f32 _length2(Vector3f& vec)
 	a.x *= a.x;
 	a.y *= a.y;
 	return _sqrtf(a.x + a.z * a.z + a.y);
-}
-
-inline f32 _lengthXZ(Vector3f& vec)
-{
-	Vector3f a = vec;
-	return _sqrtf(a.x * a.x + a.z * a.z);
 }
 
 inline f32 _normalise2(Vector3f& diff)

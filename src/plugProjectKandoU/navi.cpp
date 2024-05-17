@@ -6041,7 +6041,7 @@ void Navi::throwPiki(Piki* piki, Vector3f& cursorPos)
 	Vector3f momentum;
 	// Momentum is navi simulation velocity components, scaled by 1.0f.
 	//  -- I suspect devs toyed around with this value in development.
-	getScaledXZVec(momentum, mVelocity.x, mVelocity.z, 1.0f);
+	momentum.set2D(mVelocity * 1.0f);
 	momentum.y = 0.0f;
 
 	// Normalise vector into just a 'direction' and grab the 'length' - this is just navi ground speed.

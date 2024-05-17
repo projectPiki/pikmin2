@@ -746,7 +746,7 @@ void FakePiki::updateLook()
 		Vector3f pos    = getPosition();
 		Vector3f sep    = *mLookAtPosition - pos;
 		horizontalAngle = JMAAtan2Radian(sep.x, sep.z);
-		verticalAngle   = JMAAtan2Radian(sep.y, _lengthXZ(sep));
+		verticalAngle   = JMAAtan2Radian(sep.y, sep.length2D());
 
 	} else {
 		mNeckTheta = roundAng(0.2f * angDist(0.0f, mNeckTheta) + mNeckTheta);

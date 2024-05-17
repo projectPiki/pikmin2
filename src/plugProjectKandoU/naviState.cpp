@@ -300,7 +300,7 @@ void NaviStuckState::exec(Navi* navi)
 	navi->control();
 
 	Vector3f stickVals(navi->mController1->getMainStickX(), 0.0f, navi->mController1->getMainStickY());
-	f32 stickMag = _lenVec(stickVals);
+	f32 stickMag = stickVals.length();
 
 	if (stickMag > 0.3f) {
 		f32 dir = stickVals.dot(mPrevStickDirection);

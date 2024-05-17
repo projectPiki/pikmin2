@@ -105,7 +105,7 @@ void StateBorn::exec(EnemyBase* enemy)
 	if (enemy->mFloorTriangle) {
 
 		Vector3f vec = enemy->mTargetVelocity;
-		weightVecXZ(vec, 0.95f);
+		vec.scale2D(0.95f);
 		enemy->mTargetVelocity = vec;
 
 		enemy->finishMotion();
