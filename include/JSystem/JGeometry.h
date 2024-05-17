@@ -130,7 +130,7 @@ struct TVec2 {
 		y = other.y * norm;
 	}
 
-	f32 distance(const TVec2<f32>& other)
+	f32 distance(const TVec2<f32>& other) const
 	{
 		f32 X    = x - other.x;
 		f32 Y    = y - other.y;
@@ -146,6 +146,8 @@ struct TVec2 {
 	}
 
 	bool isAbove(const TVec2<T>& other) const { return (x >= other.x) && (y >= other.y) ? true : false; }
+
+	bool isZero() const { return squared() <= 32.0f * FLT_EPSILON; }
 
 	T x;
 	T y;

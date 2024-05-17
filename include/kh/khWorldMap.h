@@ -156,7 +156,7 @@ struct WorldMap : public Game::WorldMap::Base {
 		J2DPane* mOnyonPane;                       // _00
 		Vector2f mOffset;                          // _04
 		Vector2f mVelocity;                        // _0C
-		Vector2f mAngle;                           // _14
+		JGeometry::TVec2f mAngle;                  // _14
 		efx2d::WorldMap::T2DOnyonKira* mOnyonKira; // _1C
 		Vector2f mEfxPosition;                     // _20
 		Vector2f _28;                              // _28
@@ -216,7 +216,7 @@ struct WorldMap : public Game::WorldMap::Base {
 	Vector2f mRocketPosition;                                         // _9C
 	Vector2f mRocketPosition2;                                        // _A4
 	JGeometry::TVec2f mRocketAngle;                                   // _AC
-	Vector2f _B4;                                                     // _B4
+	JGeometry::TVec2f _B4;                                            // _B4
 	f32 mRocketScale;                                                 // _BC
 	efx2d::WorldMap::T2DRocketGlow* mEfxRocketGlow;                   // _C0
 	efx2d::WorldMap::T2DRocketB* mEfxRocketSparks;                    // _C4

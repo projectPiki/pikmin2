@@ -309,15 +309,15 @@ char* CourseInfo::getCaveinfoFilename_FromID(ID32& id)
  * @note Address: 0x801ADC3C
  * @note Size: 0x3C
  */
-ID32* CourseInfo::getCaveID_FromIndex(int childIdx)
+u32 CourseInfo::getCaveID_FromIndex(int childIdx)
 {
 	CaveOtakara* node = (CaveOtakara*)mCaveOtakaraInfo.mOwner.getChildAt(childIdx);
 
 	if (node) {
-		return (ID32*)node->mId.getID();
+		return node->mId.getID();
 	}
 
-	return (ID32*)'none';
+	return 'none';
 }
 
 /**

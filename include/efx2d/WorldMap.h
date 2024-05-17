@@ -53,7 +53,6 @@ struct T2DMapFlare : public TChasePos {
 
 	// _00		= VTBL
 	// _00-_18	= TChasePos
-	// u8 _18[4]; // _18
 };
 
 struct T2DNewmap : public TSimple2 {

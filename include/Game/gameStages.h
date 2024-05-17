@@ -75,7 +75,7 @@ struct CourseInfo : public CNode {
 	int getOtakaraNum(int);
 	int getCaveIndex_FromID(ID32&);
 	char* getCaveinfoFilename_FromID(ID32&);
-	ID32* getCaveID_FromIndex(int);
+	u32 getCaveID_FromIndex(int);
 	int getCaveNum();
 
 	char* mFolder;                    // _18
