@@ -160,7 +160,7 @@ void PelletGoalState::init(Pellet* pellet, StateArg* arg)
 	}
 
 	Vector3f sep = mOnyon->getSuckPos() - pellet->getPosition();
-	mDistance    = _length(sep);
+	mDistance    = sep.length();
 	_14          = 0.0f;
 	mSuckDelay   = 1.5f;
 
@@ -486,7 +486,7 @@ void PelletGoalState::exec(Pellet* pelt)
 		mStartSuck = false;
 
 		Vector3f sep = mOnyon->getSuckPos() - mCurrPos;
-		mDistance    = _length(sep);
+		mDistance    = sep.length();
 		mTimer       = 0.0f;
 	}
 

@@ -818,7 +818,7 @@ void Pellet::onKill(CreatureKillArg* killArg)
 		mLodSphere.mRadius   = FLOAT_DIST_MAX;
 		mScale               = Vector3f(1.0f);
 		PSMTXCopy(mBaseTrMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
-		mScale.setVec(mModel->mJ3dModel->mModelScale);
+		mScale.set(mModel->mJ3dModel->mModelScale);
 		mModel->clearAnimatorAll();
 		mModel->mJ3dModel->calc();
 	}
@@ -3602,7 +3602,7 @@ void Pellet::entryShape()
 	if (mPelletView == nullptr) {
 		if (mModel) {
 			PSMTXCopy(mBaseTrMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
-			mScale.setVec(mModel->mJ3dModel->mModelScale);
+			mScale.set(mModel->mJ3dModel->mModelScale);
 			mModel->mJ3dModel->calc();
 			mCollTree->update();
 		}
@@ -4568,7 +4568,7 @@ void Pellet::onStartCapture()
 		mBaseTrMatrix.makeT(mPelletPosition);
 		PSMTXCopy(mBaseTrMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
 
-		mScale.setVec(mModel->mJ3dModel->mModelScale);
+		mScale.set(mModel->mJ3dModel->mModelScale);
 		mModel->mJ3dModel->calc();
 
 		if (mCollTree) {
@@ -4609,7 +4609,7 @@ void Pellet::onUpdateCapture(Matrixf& matrix)
 		if (mModel) {
 			PSMTXCopy(mBaseTrMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
 			J3DModel* j3dModel = mModel->mJ3dModel;
-			mScale.setVec(mModel->mJ3dModel->mModelScale);
+			mScale.set(mModel->mJ3dModel->mModelScale);
 			mModel->mJ3dModel->calc();
 			mCollTree->update();
 		}

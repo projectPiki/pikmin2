@@ -2207,7 +2207,7 @@ void PikiGoHangState::exec(Piki* piki)
 	}
 	Vector3f naviPos      = piki->mNavi->mVelocity;
 	f32 factor            = scale * static_cast<NaviParms*>(piki->mNavi->mParms)->mNaviParms.mAutopluckDistance.mValue;
-	f32 dist              = _length(naviPos);
+	f32 dist              = naviPos.length();
 	piki->mTargetVelocity = diff * (factor + dist);
 
 	if (piki->mNavi->getStateID() != 6) {

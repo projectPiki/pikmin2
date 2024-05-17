@@ -249,13 +249,12 @@ u32 CellPyramid::getCheckCount() { return mPassID; }
  */
 f32 CellObject::calcCollisionDistance(CellObject* them)
 {
-	// basically same function as calcSphereDistance from creature.cpp
 	Sys::Sphere ourBounds;
 	Sys::Sphere theirBounds;
 	getBoundingSphere(ourBounds);
 	them->getBoundingSphere(theirBounds);
 	Vector3f sepVec = ourBounds.mPosition - theirBounds.mPosition;
-	f32 dist        = _length(sepVec); // regswaps
+	f32 dist        = sepVec.length();
 	return dist - (ourBounds.mRadius + theirBounds.mRadius);
 }
 

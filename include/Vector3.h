@@ -93,29 +93,7 @@ struct Vector3 {
 
 	inline operator Vector2<T>() const { return Vector2<T>(x, y); }
 
-	// /**
-	//  * @fabricated
-	//  */
-	// inline Vector3<T> operator-(const Vector3<T>& other) const {
-	// 	return Vector3<T>(x - other.x, y - other.y, z - other.z);
-	// }
-
-	/**
-	 * @fabricated
-	 */
 	inline Vector3<T> operator*(const Vector3<T>& other) const { return Vector3<T>(x * other.x, y * other.y, z * other.z); }
-
-	/**
-	 * @fabricated
-	 */
-	// inline JGeometry::TVec3<T> toTVec() const
-	// {
-	// 	JGeometry::TVec3<T> vec;
-	// 	vec.x = x;
-	// 	vec.y = y;
-	// 	vec.z = z;
-	// 	return vec;
-	// }
 
 	inline void set(const Vector3& vec)
 	{
@@ -133,17 +111,14 @@ struct Vector3 {
 
 	inline void set(T xyz) { x = y = z = xyz; }
 
-	/**
-	 * @fabricated
-	 */
-	inline void setTVec(JGeometry::TVec3<T>& vec)
+	inline void set(JGeometry::TVec3<T>& vec)
 	{
 		vec.x = x;
 		vec.y = y;
 		vec.z = z;
 	}
 
-	inline void setVec(Vec& vec)
+	inline void set(Vec& vec)
 	{
 		vec.x = x;
 		vec.y = y;
@@ -164,20 +139,6 @@ struct Vector3 {
 		z = -z;
 	}
 
-	// 	inline Vector3& operator+(const Vector3 other) {
-	//     Vector3 newVector = *this;
-	//     x += other.x;
-	//     y += other.y;
-	//     z += other.z;
-	//     return newVector;
-	// }
-	// inline Vector3& operator*(const f32 other) {
-	//     Vector3 newVector = *this;
-	//     newVector.x *= other;
-	//     newVector.y *= other;
-	//     newVector.z *= other;
-	//     return newVector;
-	// }
 	inline void operator*=(Matrixf& other);
 	inline void operator*=(const T other)
 	{
@@ -228,7 +189,7 @@ struct Vector3 {
 		this->y = newVal;
 	}
 
-	inline void scale2D(f32 other)
+	inline void scale2D(T other)
 	{
 		T newVal = this->x * other;
 		this->x  = newVal;
@@ -267,7 +228,7 @@ struct Vector3 {
 	 * @param from The starting point of the direction.
 	 * @param to The ending point of the direction.
 	 */
-	inline f32 setDirectionFromTo(const Vector3& from, const Vector3& to)
+	inline T setDirectionFromTo(const Vector3& from, const Vector3& to)
 	{
 		*this = to - from;
 		return this->normalise();
@@ -278,7 +239,7 @@ struct Vector3 {
 	inline void sub(Vector3& a, Vector3& b) { set(a.x - b.x, a.y - b.y, a.z - b.z); }
 
 	inline T absX() { return (T)absF(x); }
-	inline T absY() { return absF(y); }
+	inline T absY() { return (T)absF(y); }
 	inline T absZ() { return (T)absF(z); }
 
 	inline bool boundedX(T bound) { return absX() < bound; }
@@ -450,20 +411,20 @@ inline f32 stickMagnitude(Vector3f& vec)
 	return _sqrtf(a.x * a.x + a.y * a.y + a.z);
 }
 
-inline f32 _length(Vector3f& vec)
-{
-	Vector3f a = vec;
-	a.y *= a.y;
-	a.z *= a.z;
-	return _sqrtf(a.y + a.x * a.x + a.z);
-}
-
 inline f32 _length2(Vector3f& vec)
 {
 	Vector3f a = vec;
 	a.x *= a.x;
 	a.y *= a.y;
 	return _sqrtf(a.x + a.z * a.z + a.y);
+}
+
+inline f32 _length(Vector3f& vec)
+{
+	Vector3f a = vec;
+	a.y *= a.y;
+	a.z *= a.z;
+	return _sqrtf(a.y + a.x * a.x + a.z);
 }
 
 inline f32 _normalise2(Vector3f& diff)
@@ -592,7 +553,7 @@ inline f32 Vector3f::sqrDistance2D(Vector3f& them)
 	f32 diffX = this->x - them.x;
 	f32 diffZ = this->z - them.z;
 
-	return diffX * diffX + diffZ * diffZ;
+	return SQUARE(diffX) + SQUARE(diffZ);
 }
 
 // this is wacky and shows up in efxEnemy.cpp

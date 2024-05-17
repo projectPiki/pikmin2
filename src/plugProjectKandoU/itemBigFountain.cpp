@@ -277,7 +277,7 @@ void Item::onInit(CreatureInitArg* initArg)
 	}
 
 	// weird but required for stack.
-	Vector3f(1.0f).setVec(mModel->mJ3dModel->mModelScale);
+	Vector3f(1.0f).set(mModel->mJ3dModel->mModelScale);
 	mMass    = 0.0f;
 	mFaceDir = 0.0f;
 }
@@ -500,7 +500,7 @@ Mgr::Mgr()
 	mItemName            = "ãAä“ä‘åáêÚ"; // 'return geyser'
 	mParms               = new FountainParms();
 	void* data           = JKRDvdRipper::loadToMainRAM("user/Abe/item/fountainParms.txt", nullptr, Switch_0, 0, nullptr,
-                                             JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
+	                                                   JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
 	if (data != nullptr) {
 		RamStream input(data, -1);
 		input.setMode(STREAM_MODE_TEXT, 1);

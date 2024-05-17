@@ -8,10 +8,11 @@
 extern "C" {
 #endif // ifdef __cplusplus
 
-#define SQUARE(v)                      ((v) * (v))
-#define IS_WITHIN_CIRCLE(x, z, radius) ((SQUARE(x) + SQUARE(z)) < SQUARE(radius))
-#define IS_WITHIN_SPHERE(x, y, z, r)   ((SQUARE(x) + SQUARE(y) + SQUARE(z)) < SQUARE(r))
-#define VECTOR_SQUARE_MAG(v)           (SQUARE(v.x) + SQUARE(v.y) + SQUARE(v.z))
+#define SQUARE(v)                       ((v) * (v))
+#define IS_WITHIN_CIRCLE(x, z, radius)  ((SQUARE(x) + SQUARE(z)) < SQUARE(radius))
+#define IS_OUTSIDE_CIRCLE(x, z, radius) ((SQUARE(x) + SQUARE(z)) > SQUARE(radius))
+#define IS_WITHIN_SPHERE(x, y, z, r)    ((SQUARE(x) + SQUARE(y) + SQUARE(z)) < SQUARE(r))
+#define VECTOR_SQUARE_MAG(v)            (SQUARE(v.x) + SQUARE(v.y) + SQUARE(v.z))
 
 #define SIGNBIT(x)     ((int)(__HI(x) & 0x80000000))
 #define IS_POSITIVE(x) ((((u8*)&x)[0] & 0x80) != 0)

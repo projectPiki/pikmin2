@@ -153,6 +153,13 @@ bool CellIterator::find()
 	return false;
 }
 
+inline bool isIntersecting(Vector3f& position, Sys::Sphere& targetSphere, Sys::Sphere& bounds)
+{
+	f32 distance = position.sqrDistance2D(targetSphere.mPosition);
+	f32 radius   = SQUARE(targetSphere.mRadius + bounds.mRadius);
+	return radius > distance;
+}
+
 /**
  * @note Address: 0x8022E778
  * @note Size: 0x18C
@@ -179,17 +186,11 @@ bool CellIterator::satisfy()
 
 	if (!mArg.mOptimise) {
 		if (!mArg.mUseCustomRadius) {
-			f32 radius = mArg.mSphere.mRadius + boundingSphere.mRadius;
-			radius *= radius;
-			if (sqrDistanceXZ(objPos, mArg.mSphere.mPosition) > radius) {
+			if (isIntersecting(objPos, mArg.mSphere, boundingSphere)) {
 				return false;
 			}
-		} else {
-			f32 radius = mArg.mSphere.mRadius + boundingSphere.mRadius;
-			radius *= radius;
-			if (sqrDistanceXZ(objPos, mArg.mSphere.mPosition) > radius) {
-				return false;
-			}
+		} else if (isIntersecting(objPos, mArg.mSphere, boundingSphere)) {
+			return false;
 		}
 	}
 

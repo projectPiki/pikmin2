@@ -630,7 +630,7 @@ bool TBabaHe::create(Arg* arg)
 		trs *= -35.0f;
 		trs += pos;
 		volatile Vector3f dumb = trs;
-		trs.setTVec(mEmitters[0]->mGlobalTrs);
+		trs.set(mEmitters[0]->mGlobalTrs);
 		return true;
 	}
 	return false;

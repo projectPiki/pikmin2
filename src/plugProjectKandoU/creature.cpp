@@ -306,7 +306,7 @@ f32 Creature::calcSphereDistance(Creature* other)
 	getBoundingSphere(srcBoundSphere);
 
 	Vector3f dir = srcBoundSphere.mPosition - otherBoundSphere.mPosition;
-	return _length(dir) - (srcBoundSphere.mRadius + otherBoundSphere.mRadius);
+	return dir.length() - (srcBoundSphere.mRadius + otherBoundSphere.mRadius);
 }
 
 /**

@@ -287,7 +287,7 @@ void PodIconScreen::update()
 		animation();
 
 		Vector3f diff = mPosition - mInitialPos;
-		f32 length    = _length(diff);
+		f32 length    = diff.length();
 
 		if (length > 1.0E-4f) {
 			f32 norm = 1.0f / length;
