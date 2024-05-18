@@ -732,7 +732,6 @@ void BaseGameSection::initGenerators()
 
 					limitGeneratorMgr->addMgr(currentNonloopMgr);
 					playData->mLimitGen[courseInfo->mCourseIndex].mNonLoops.setFlag(i);
-					
 				}
 			}
 
@@ -745,10 +744,10 @@ void BaseGameSection::initGenerators()
 			int intervalDay = today % 30;
 
 			int intervalIterations = day / 30;
-			
+
 			// effectively day > 30
 			if (intervalIterations >= 1) {
-				
+
 				int floorDay = intervalIterations * 30;
 
 				for (int i = 0; i < courseInfo->mLoopGenInfo.mCount; i++) {
@@ -758,7 +757,7 @@ void BaseGameSection::initGenerators()
 					int intervalMax = currentGen->mMaximumDay % 30;
 
 					if (intervalMin > intervalDay || intervalDay > intervalMax)
-					 	continue;
+						continue;
 
 					bool loopLoaded = playData->mLimitGen[courseInfo->mCourseIndex].mLoops.isFlag(i);
 
