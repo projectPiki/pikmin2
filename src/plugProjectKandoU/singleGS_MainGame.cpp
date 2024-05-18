@@ -481,20 +481,20 @@ void GameState::exec(SingleGameSection* game)
 	// Check status of opened pause menu
 	int menustate = Screen::gGame2DMgr->check_SMenu();
 	switch (menustate) {
-	case 0:
+	case Screen::Game2DMgr::CHECK2D_SMenu_Opened:
 		break;
-	case 1: // cancel menu
+	case Screen::Game2DMgr::CHECK2D_SMenu_Cancel: // cancel menu
 		gameSystem->setMoviePause(false, "sm-canc");
 		gameSystem->setPause(false, "sm-canc", 3);
 		break;
-	case 2:
+	case Screen::Game2DMgr::CHECK2D_SMenu_GoToSunset:
 		gameSystem->resetFlag(GAMESYS_IsGameWorldActive);
 		gameSystem->setMoviePause(false, "sm-ugot");
 		gameSystem->setPause(false, "sm-ugot", 3);
 		DayEndArg arg(DayEndState::DETYPE_Normal);
 		transit(game, SGS_DayEnd, &arg);
 		return;
-	case 3:
+	case Screen::Game2DMgr::CHECK2D_SMenu_ReturnToFileSelect:
 		P2ASSERTLINE(1304, Screen::gGame2DMgr->mScreenMgr->reset() == 1);
 		playData->mDeadNaviID = 0;
 		naviMgr->clearDeadCount();
@@ -504,7 +504,7 @@ void GameState::exec(SingleGameSection* game)
 		game->clearHeap();
 		transit(game, SGS_File, nullptr);
 		return;
-	case 4:
+	case Screen::Game2DMgr::CHECK2D_SMenu_EscapeCave:
 		JUT_PANICLINE(1318, "smenu_escape\n");
 		break;
 	default:

@@ -8,8 +8,9 @@
 #include "efx2d/T2DGo.h"
 #include "Game/GameSystem.h"
 #include "JSystem/J2D/J2DAnmLoader.h"
+#include "Screen/Game2DMgr.h"
 
-static const char pad[] = { "\0\0\0\0\0\0\0\0" };
+static const u32 padding[] = { 0, 0, 0 };
 static void _Print(char* format, ...) { OSReport(format, __FILE__); }
 
 namespace kh {
@@ -178,7 +179,7 @@ bool ObjReadyGo::updateAnimation()
 		// Set the status of the display member to 1 and start the main BGM if necessary
 		if (mAnimTime1[i] >= goalTime2) {
 			mIsAnimComplete = true;
-			disp->mStatus   = 1;
+			disp->mStatus   = ::Screen::Game2DMgr::CHECK2D_ReadyGo_Finished;
 		}
 	}
 

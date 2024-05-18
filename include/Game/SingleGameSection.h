@@ -98,7 +98,7 @@ struct SingleGameSection : public BaseGameSection {
 	bool mDoEnd;                                          // _1B5
 	DvdThreadCommand mDvdThread;                          // _1B8
 	Delegate<Game::SingleGameSection>* mLoadGameCallback; // _224
-	u8 _228;                                              // _228
+	u8 mIsGameStarted;                                    // _228, used to tell if new entry effects should play on opening the world map
 	Game::CourseInfo* mCurrentCourseInfo;                 // _22C
 	ID32 mCaveID;                                         // _230
 	bool mInCave;                                         // _23C

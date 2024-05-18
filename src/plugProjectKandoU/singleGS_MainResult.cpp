@@ -144,10 +144,10 @@ void MainResultState::exec(SingleGameSection* game)
 		break;
 	case Result_ScreenActive:
 		switch (Screen::gGame2DMgr->check_DayEndResult()) {
-		case 1:
+		case Screen::Game2DMgr::CHECK2D_DayResult_SaveFinished:
 			moviePlayer->unsuspend(1, false);
 			break;
-		case 2:
+		case Screen::Game2DMgr::CHECK2D_DayResult_ReturnToFileSelect:
 			moviePlayer->stop();
 			game->clearHeap();
 			transit(game, SGS_File, nullptr);

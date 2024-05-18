@@ -8,6 +8,7 @@
 #include "PSSystem/PSSystemIF.h"
 #include "Dolphin/rand.h"
 #include "efx2d/T2DChangesmoke.h"
+#include "Screen/Game2DMgr.h"
 #include "nans.h"
 
 static const int unusedArray[] = { 0, 0, 0 };
@@ -202,7 +203,7 @@ TZukanBase::TZukanBase(char* name)
     , mInfoVal2(0)
     , mInfoVal3(0)
     , mDisplayIndex(0)
-    , mState(0)
+    , mState(Screen::Game2DMgr::CHECK2D_Zukan_Default)
     , mCurrObjectID(0)
 {
 
@@ -404,10 +405,10 @@ bool TZukanBase::doUpdate()
 		doUpdateIn();
 	}
 
-	if (!mIsInDemo && mState < 2) {
-		mState = 0;
+	if (!mIsInDemo && mState < Screen::Game2DMgr::CHECK2D_Zukan_ExitStart) {
+		mState = Screen::Game2DMgr::CHECK2D_Zukan_Default;
 		if (mIsDrawScene) {
-			mState            = 1;
+			mState            = Screen::Game2DMgr::CHECK2D_Zukan_Changing;
 			mIsDrawScene      = false;
 			mIsEffectRequired = false;
 			if (mIsBigWindowOpened) {
@@ -419,7 +420,7 @@ bool TZukanBase::doUpdate()
 		           && mIndexPaneList[mCurrActiveRowSel]->getIndex() == mCurrIndex) {
 			if (!mIsEffectRequired) {
 				if (mRequestTimer > mRequestTimerMax) {
-					mState = 1;
+					mState = Screen::Game2DMgr::CHECK2D_Zukan_Changing;
 					if (mIsSection) {
 						mIsEffectRequired = true;
 					}
@@ -463,11 +464,11 @@ bool TZukanBase::doUpdate()
 	}
 
 	bool isHorizontalScroll = false;
-	if (!mIsInDemo && !mCanInput && mState < 2) {
+	if (!mIsInDemo && !mCanInput && mState < Screen::Game2DMgr::CHECK2D_Zukan_ExitStart) {
 		mIsInFadeInOut = true;
 	}
 
-	if (!mIsInDemo && mCanInput && mState < 2 && !isOpenConfirmWindow()) {
+	if (!mIsInDemo && mCanInput && mState < Screen::Game2DMgr::CHECK2D_Zukan_ExitStart && !isOpenConfirmWindow()) {
 		mIsInFadeInOut = false;
 		if (!mIsBigWindowOpened && !mWindow->mState) {
 			Controller* pad = mController;
@@ -531,10 +532,10 @@ bool TZukanBase::doUpdate()
 		if (!mIndexGroup->mStateID && !isHorizontalScroll) {
 			Controller* pad = mController;
 			if (pad->getButtonDown() & Controller::PRESS_X) {
-				mState = 1;
+				mState = Screen::Game2DMgr::CHECK2D_Zukan_Changing;
 				doPushXButton();
 			} else if (pad->getButtonDown() & Controller::PRESS_Y) {
-				mState = 1;
+				mState = Screen::Game2DMgr::CHECK2D_Zukan_Changing;
 				doPushYButton();
 			} else if (pad->getButtonDown() & (Controller::PRESS_L | Controller::PRESS_R)) {
 				if (mIsBigWindowOpened) {
@@ -548,7 +549,7 @@ bool TZukanBase::doUpdate()
 			} else if (pad->getButtonDown() & Controller::PRESS_B) {
 				doPushBButton();
 			} else if (pad->getButtonDown() & Controller::PRESS_A) {
-				mState = 1;
+				mState = Screen::Game2DMgr::CHECK2D_Zukan_Changing;
 				if (mCameraFadeInLevel < 0.5f) {
 					if (!mIsBigWindowOpened) {
 						PSSystem::spSysIF->playSystemSe(PSSE_SY_CAMERAVIEW_CHANGE, 0);
@@ -591,8 +592,8 @@ bool TZukanBase::doUpdate()
 		}
 	}
 
-	if (getDispDataZukan()->mDispWorldMapInfoWin0->mResult == 1 && !mIsSection && mState < 2) {
-		mState = 2;
+	if (getDispDataZukan()->mDispWorldMapInfoWin0->mResult == 1 && !mIsSection && mState < Screen::Game2DMgr::CHECK2D_Zukan_ExitStart) {
+		mState = Screen::Game2DMgr::CHECK2D_Zukan_ExitStart;
 		getOwner()->endScene(nullptr);
 	}
 
@@ -720,7 +721,7 @@ bool TZukanBase::doUpdate()
 	mPaneModel->setOffset(xpos, ypos);
 	mPaneWindowBack->setOffset(xpos, ypos);
 	mPaneWindowBack_Child->setOffset(xpos, ypos);
-	if (mState == 1) {
+	if (mState == Screen::Game2DMgr::CHECK2D_Zukan_Changing) {
 		mCurrObjectID = getModelIndex(mIndexPaneList[mCurrActiveRowSel]->getIndex());
 		if (!mIsCurrentSelUnlocked) {
 			mCurrObjectID = -1;
@@ -940,8 +941,8 @@ void TZukanBase::doDraw(Graphics& gfx)
  */
 void TZukanBase::doUpdateFadeoutFinish()
 {
-	if (mState == 2) {
-		mState = 3;
+	if (mState == Screen::Game2DMgr::CHECK2D_Zukan_ExitStart) {
+		mState = Screen::Game2DMgr::CHECK2D_Zukan_ExitFinished;
 	}
 }
 

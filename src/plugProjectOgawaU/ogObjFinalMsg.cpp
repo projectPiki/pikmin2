@@ -3,6 +3,7 @@
 #include "og/Screen/ogScreen.h"
 #include "og/Screen/MenuMgr.h"
 #include "og/Screen/callbackNodes.h"
+#include "Screen/Game2DMgr.h"
 #include "og/Sound.h"
 #include "System.h"
 #include "Controller.h"
@@ -139,16 +140,16 @@ bool ObjFinalMsg::menu()
 	} else if (input & Controller::PRESS_A) {
 		if (mCurrSel == 0) {
 			ret                = true;
-			mDisp->mFinalState = 1;
+			mDisp->mFinalState = ::Screen::Game2DMgr::CHECK2D_FinalMessage_Continue;
 			ogSound->setDecide();
 		} else if (mCurrSel == 1) {
 			ret                = true;
-			mDisp->mFinalState = 2;
+			mDisp->mFinalState = ::Screen::Game2DMgr::CHECK2D_FinalMessage_ConfirmQuit;
 			ogSound->setDecide();
 		}
 	} else if (input & Controller::PRESS_B) {
 		ret                = true;
-		mDisp->mFinalState = 2;
+		mDisp->mFinalState = ::Screen::Game2DMgr::CHECK2D_FinalMessage_ConfirmQuit;
 		ogSound->setClose();
 	}
 	return ret;

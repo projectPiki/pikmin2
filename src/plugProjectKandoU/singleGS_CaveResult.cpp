@@ -323,7 +323,7 @@ void CaveResultState::exec(SingleGameSection* section)
 
 	case 3:
 		switch (Screen::gGame2DMgr->check_CaveResult()) {
-		case 1:
+		case Screen::Game2DMgr::CHECK2D_CaveResult_Finished:
 			LoadArg arg(mGameState, false, true, false);
 			section->loadMainMapSituation();
 			transit(section, SGS_Load, &arg);

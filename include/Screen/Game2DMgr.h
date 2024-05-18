@@ -71,6 +71,109 @@ struct Game2DMgr : public JKRDisposer {
 		GOTITLE_PikminZero    = 4,
 	};
 
+	// represents return values of "check" functions for all screens
+	enum CheckStatus {
+		CHECK2D_WorldMapInfoWin0_Cancel  = 0,
+		CHECK2D_WorldMapInfoWin0_Confirm = 1,
+		CHECK2D_WorldMapInfoWin0_Error   = 2,
+		CHECK2D_WorldMapInfoWin0_Active  = 3,
+
+		CHECK2D_WorldMapInfoWin1_Confirm = 0,
+		CHECK2D_WorldMapInfoWin1_Cancel  = 1,
+		CHECK2D_WorldMapInfoWin1_Error   = 2,
+		CHECK2D_WorldMapInfoWin1_Active  = 3,
+
+		CHECK2D_SMenu_Error              = -1,
+		CHECK2D_SMenu_Opened             = 0,
+		CHECK2D_SMenu_Cancel             = 1,
+		CHECK2D_SMenu_GoToSunset         = 2,
+		CHECK2D_SMenu_ReturnToFileSelect = 3,
+		CHECK2D_SMenu_EscapeCave         = 4,
+		CHECK2D_SMenu_QuitChallenge      = 5,
+
+		CHECK2D_CaveInMenu_Error_NoDisp    = -2,
+		CHECK2D_CaveInMenu_Error_WrongDisp = -1,
+		CHECK2D_CaveInMenu_MenuOpen        = 0,
+		CHECK2D_CaveInMenu_Confirm         = 1,
+		CHECK2D_CaveInMenu_Cancel          = 2,
+		CHECK2D_CaveInMenu_Unused          = 3,
+
+		CHECK2D_KanketuMenu_Error_NoDisp    = -2,
+		CHECK2D_KanketuMenu_Error_WrongDisp = -1,
+		CHECK2D_KanketuMenu_MenuOpen        = 0,
+		CHECK2D_KanketuMenu_Confirm         = 1,
+		CHECK2D_KanketuMenu_Cancel          = 2,
+		CHECK2D_KanketuMenu_Unused          = 3,
+
+		CHECK2D_CaveMoreMenu_Error_NoDisp    = -2,
+		CHECK2D_CaveMoreMenu_Error_WrongDisp = -1,
+		CHECK2D_CaveMoreMenu_MenuOpen        = 0,
+		CHECK2D_CaveMoreMenu_Confirm         = 1,
+		CHECK2D_CaveMoreMenu_Cancel          = 2,
+		CHECK2D_CaveMoreMenu_Unused          = 3,
+
+		CHECK2D_FinalResult_Error    = -1,
+		CHECK2D_FinalResult_MenuOpen = 0,
+		CHECK2D_FinalResult_Finished = 1,
+
+		CHECK2D_CaveResult_Error    = -1,
+		CHECK2D_CaveResult_MenuOpen = 0,
+		CHECK2D_CaveResult_Finished = 1,
+
+		CHECK2D_DayResult_Error              = -1,
+		CHECK2D_DayResult_MenuOpen           = 0,
+		CHECK2D_DayResult_SaveFinished       = 1,
+		CHECK2D_DayResult_ReturnToFileSelect = 2,
+
+		CHECK2D_PayDept_NotFinished = 0,
+		CHECK2D_PayDept_Finished    = 1,
+
+		CHECK2D_Save_NotFinished = 0,
+		CHECK2D_Save_Finished    = 1,
+
+		CHECK2D_FinalMessage_Error       = -10,
+		CHECK2D_FinalMessage_NotOpen     = 0,
+		CHECK2D_FinalMessage_Continue    = 1,
+		CHECK2D_FinalMessage_ConfirmQuit = 2,
+
+		CHECK2D_ReadyGo_Error       = -1,
+		CHECK2D_ReadyGo_NotFinished = 0,
+		CHECK2D_ReadyGo_Finished    = 1,
+
+		CHECK2D_WinLoseReason_NotFinished = 0,
+		CHECK2D_WinLoseReason_Finished    = 1,
+
+		CHECK2D_WinLose_Error     = -1,
+		CHECK2D_WinLose_NotOpened = 0,
+		CHECK2D_WinLose_Opened    = 1,
+		CHECK2D_WinLose_AnimDone  = 2,
+		CHECK2D_WinLose_Finished  = 3,
+
+		CHECK2D_Contena_Error      = -1,
+		CHECK2D_Contena_MenuOpened = 0,
+		CHECK2D_Contena_Cancel     = 1,
+		CHECK2D_Contena_Confirmed  = 2,
+
+		CHECK2D_Ufo_Default   = 0,
+		CHECK2D_Ufo_Cancel    = 1,
+		CHECK2D_Ufo_Confirmed = 2,
+
+		CHECK2D_Zukan_Default      = 0,
+		CHECK2D_Zukan_Changing     = 1,
+		CHECK2D_Zukan_ExitStart    = 2,
+		CHECK2D_Zukan_ExitFinished = 3,
+
+		CHECK2D_ChallengeSelect_Default       = 0,
+		CHECK2D_ChallengeSelect_InDemo        = 1,
+		CHECK2D_ChallengeSelect_CancelToTitle = 2,
+		CHECK2D_ChallengeSelect_ExitFinished  = 3,
+
+		CHECK2D_VsSelect_Default       = 0,
+		CHECK2D_VsSelect_InDemo        = 1,
+		CHECK2D_VsSelect_CancelToTitle = 2,
+		CHECK2D_VsSelect_ExitFinished  = 3,
+	};
+
 	virtual ~Game2DMgr(); // _08
 
 	static void create();

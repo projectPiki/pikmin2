@@ -55,7 +55,7 @@ void TitleState::init(VsGameSection* section, StateArg* arg)
 	section->mCurrentFloor = 0;
 
 	TitleArg* titleArg = static_cast<TitleArg*>(arg);
-	if (titleArg && titleArg->_00) {
+	if (titleArg && titleArg->mDoNeedClearHeap) {
 		section->clearHeap();
 	}
 
@@ -214,11 +214,11 @@ void TitleState::execChallenge(VsGameSection* section)
 		int playType;
 		int check = Screen::gGame2DMgr->check_ChallengeSelect(stageNumber, playType);
 		switch (check) {
-		case 2:
+		case Screen::Game2DMgr::CHECK2D_ChallengeSelect_CancelToTitle:
 			section->mIsMenuRunning = true;
 			return;
 
-		case 3:
+		case Screen::Game2DMgr::CHECK2D_ChallengeSelect_ExitFinished:
 			OSReport("from Morimun:STATE_GO:stageNo=%d:playType=%d\n", stageNumber, playType);
 
 			if (section->mIsVersusMode) {
@@ -330,10 +330,10 @@ void TitleState::execVs(VsGameSection* section)
 		int stageNumber;
 		int check = Screen::gGame2DMgr->check_VsSelect(stageNumber, section->mOlimarHandicap, section->mLouieHandicap);
 		switch (check) {
-		case 2:
+		case Screen::Game2DMgr::CHECK2D_VsSelect_CancelToTitle:
 			section->mIsMenuRunning = true;
 			return;
-		case 3:
+		case Screen::Game2DMgr::CHECK2D_VsSelect_ExitFinished:
 			gameSystem->mMode = GSM_VERSUS_MODE;
 
 			LoadArg load(0, 0, 0);

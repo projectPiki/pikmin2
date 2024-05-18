@@ -4,6 +4,7 @@
 #include "JSystem/JKernel/JKRArchive.h"
 #include "utilityU.h"
 #include "JSystem/J2D/J2DAnmLoader.h"
+#include "Screen/Game2DMgr.h"
 
 static void _Print(char* format, ...) { OSReport(format, __FILE__); }
 
@@ -224,11 +225,11 @@ bool ObjWinLose::updateAnimation()
 
 	// Check if it's time to stop playing BGM and SEs
 	if (old > msVal.mEndBGMFrame) {
-		disp->_0C = 3;
+		disp->mStatus = ::Screen::Game2DMgr::CHECK2D_WinLose_Finished;
 		PSStop2DStream();
 		PSMuteOffSE_on2D();
 	} else if (mFrameTimer > msVal.mFinishFrame) {
-		disp->_0C = 2;
+		disp->mStatus = ::Screen::Game2DMgr::CHECK2D_WinLose_AnimDone;
 	}
 
 	return false;

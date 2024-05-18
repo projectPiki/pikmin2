@@ -4896,10 +4896,10 @@ void NaviContainerState::exec(Navi* navi)
 
 	if (mOnyon->mOnyonType == ONYON_TYPE_SHIP) {
 		switch (Screen::gGame2DMgr->check_UfoMenu()) {
-		case 1:
+		case Screen::Game2DMgr::CHECK2D_Ufo_Cancel:
 			transit(navi, NSID_Walk, nullptr);
 			break;
-		case 2:
+		case Screen::Game2DMgr::CHECK2D_Ufo_Confirmed:
 			int a;
 			int b;
 			Screen::gGame2DMgr->result_UfoMenu(&a, &b);
@@ -4935,10 +4935,10 @@ void NaviContainerState::exec(Navi* navi)
 		}
 	} else {
 		switch (Screen::gGame2DMgr->check_Contena()) {
-		case 1:
+		case Screen::Game2DMgr::CHECK2D_Contena_Cancel:
 			transit(navi, NSID_Walk, nullptr);
 			break;
-		case 2:
+		case Screen::Game2DMgr::CHECK2D_Contena_Confirmed:
 			int res = Screen::gGame2DMgr->result_Contena();
 			if (res < 0) {
 				Onyon* onyon = mOnyon;

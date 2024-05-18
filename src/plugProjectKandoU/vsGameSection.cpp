@@ -567,10 +567,10 @@ bool VsGameSection::updateCaveMenus()
 {
 	if (mMenuFlags & 2) {
 		switch (Screen::gGame2DMgr->check_CaveMoreMenu()) {
-		case 0:
+		case Screen::Game2DMgr::CHECK2D_CaveMoreMenu_MenuOpen:
 			break;
 
-		case 1:
+		case Screen::Game2DMgr::CHECK2D_CaveMoreMenu_Confirm:
 			playData->mNaviLifeMax[NAVIID_Olimar] = naviMgr->getAt(NAVIID_Olimar)->mHealth;
 			playData->mNaviLifeMax[NAVIID_Louie]  = naviMgr->getAt(NAVIID_Louie)->mHealth;
 			gameSystem->setPause(false, "more-yes", 3);
@@ -579,23 +579,23 @@ bool VsGameSection::updateCaveMenus()
 			goNextFloor(mHole);
 			return true;
 
-		case 2:
+		case Screen::Game2DMgr::CHECK2D_CaveMoreMenu_Cancel:
 			gameSystem->setPause(false, "more-no", 3);
 			gameSystem->setMoviePause(false, "more-no");
 			mMenuFlags &= ~2;
 			break;
 
-		case 3:
+		case Screen::Game2DMgr::CHECK2D_CaveMoreMenu_Unused:
 			gameSystem->setMoviePause(false, "more-zenkai");
 			break;
 		}
 
 	} else if (mMenuFlags & 4) {
 		switch (Screen::gGame2DMgr->check_KanketuMenu()) {
-		case 0:
+		case Screen::Game2DMgr::CHECK2D_KanketuMenu_MenuOpen:
 			break;
 
-		case 1:
+		case Screen::Game2DMgr::CHECK2D_KanketuMenu_Confirm:
 			gameSystem->setPause(false, "kk-yes", 3);
 			gameSystem->setMoviePause(false, "kk-yes");
 			mMenuFlags &= ~4;
@@ -608,13 +608,13 @@ bool VsGameSection::updateCaveMenus()
 			moviePlayer->play(arg);
 			return true;
 
-		case 2:
+		case Screen::Game2DMgr::CHECK2D_KanketuMenu_Cancel:
 			gameSystem->setPause(false, "kk-no", 3);
 			gameSystem->setMoviePause(false, "kk-no");
 			mMenuFlags &= ~4;
 			break;
 
-		case 3:
+		case Screen::Game2DMgr::CHECK2D_KanketuMenu_Unused:
 			break;
 		}
 	}

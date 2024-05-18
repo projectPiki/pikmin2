@@ -217,16 +217,16 @@ void EndingState::exec(SingleGameSection* game)
 		case EndingStatus_ShowContinueMesg:
 			particle2dMgr->update();
 			switch (Screen::gGame2DMgr->check_FinalMessage()) {
-			case 1:
+			case Screen::Game2DMgr::CHECK2D_FinalMessage_Continue:
 				PSGame::PikSceneMgr* mgr = static_cast<PSGame::PikSceneMgr*>(PSSystem::getSceneMgr());
 				mgr->checkScene();
 				mgr->mScenes->mChild->stopMainSeq(30);
 				Screen::gGame2DMgr->mScreenMgr->reset();
-				mStatus   = 7;
+				mStatus   = EndingStatus_PlayMoviePostDebtStart;
 				mThpState = 1;
 				mTHPPlayer->load(THPPlayer::OPENING_PostDebtStart);
 				break;
-			case 2:
+			case Screen::Game2DMgr::CHECK2D_FinalMessage_ConfirmQuit:
 				game->flow_goto_title();
 				break;
 			}

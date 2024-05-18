@@ -7,6 +7,7 @@
 #include "JSystem/JKernel/JKRDvdRipper.h"
 #include "PSSystem/PSSystemIF.h"
 #include "Controller.h"
+#include "Screen/Game2DMgr.h"
 
 namespace Morimura {
 
@@ -4279,7 +4280,8 @@ bool TChallengeSelect::doUpdate()
 	int oldSelState = mLevelNameMoveState;
 	int oldID       = mCurrentSelection;
 
-	if (mCanInput && mDisp->_1C == 0 && !static_cast<TChallengeSelectScene*>(getOwner())->mConfirmEndWindow->mHasDrawn) {
+	if (mCanInput && mDisp->mStatus == Screen::Game2DMgr::CHECK2D_ChallengeSelect_Default
+	    && !static_cast<TChallengeSelectScene*>(getOwner())->mConfirmEndWindow->mHasDrawn) {
 		Controller* input = mControls;
 		if (input->getButtonDown() & Controller::PRESS_Z) {
 			if (mPlayModeScreen->mState == 0) {
@@ -4302,7 +4304,7 @@ bool TChallengeSelect::doUpdate()
 							if (!mIsSection) {
 								_134 = true;
 								demoStart();
-								mDisp->_1C = 1;
+								mDisp->mStatus = Screen::Game2DMgr::CHECK2D_ChallengeSelect_InDemo;
 							}
 							mDisp->mStageNumber = mCurrentSelection;
 							mDisp->mPlayType    = 0;
@@ -4448,8 +4450,8 @@ bool TChallengeSelect::doUpdate()
 	}
 
 	if (mDisp->mTitleInfo->mCount == 1 && !mIsSection) {
-		_134       = false;
-		mDisp->_1C = 1;
+		_134           = false;
+		mDisp->mStatus = Screen::Game2DMgr::CHECK2D_ChallengeSelect_InDemo;
 		getOwner()->endScene(nullptr);
 	}
 
@@ -6673,9 +6675,9 @@ void TChallengeSelect::doUpdateFadeoutFinish()
 {
 	P2ASSERTLINE(2218, mDisp);
 	if (_134) {
-		mDisp->_1C = 3;
+		mDisp->mStatus = Screen::Game2DMgr::CHECK2D_ChallengeSelect_ExitFinished;
 	} else {
-		mDisp->_1C = 2;
+		mDisp->mStatus = Screen::Game2DMgr::CHECK2D_ChallengeSelect_CancelToTitle;
 	}
 }
 

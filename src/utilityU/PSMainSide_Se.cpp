@@ -91,7 +91,7 @@ PSSystem::ClusterSe::PartInitArg ClusterFactory::partInit(u8 unknownID)
 WorldMapRocket::WorldMapRocket()
     : JADHioNode(nullptr)
 {
-	mState     = PSMRocket_0;
+	mState     = PSMRocket_Inactive;
 	mStartPosX = 0.0f;
 	mEndPosX   = 608.0f;
 	_10        = 4.0f;
@@ -138,7 +138,7 @@ JAISe* WorldMapRocket::startRocketSE(f32 posX, f32 posY)
 		}
 
 		switch (mState) {
-		case PSMRocket_1:
+		case PSMRocket_Appear:
 			se->setVolume(1.0f, 2, SOUNDPARAM_Unk0);
 			se->setPitch(2.0f, 2, SOUNDPARAM_Unk0);
 			if (se->getPitch(SOUNDPARAM_Unk0) >= 2.0f) {
@@ -163,7 +163,7 @@ JAISe* WorldMapRocket::startRocketSE(f32 posX, f32 posY)
 			se->setVolume(0.5f, 30, SOUNDPARAM_Unk0);
 			se->setPitch(1.0f, 30, SOUNDPARAM_Unk0);
 			break;
-		case PSMRocket_5:
+		case PSMRocket_Idle:
 			se->setVolume(0.5f, 10, SOUNDPARAM_Unk0);
 			se->setPitch(1.0f, 10, SOUNDPARAM_Unk0);
 			break;
@@ -178,13 +178,13 @@ JAISe* WorldMapRocket::startRocketSE(f32 posX, f32 posY)
 			se->setVolume(tmpVol, 5, SOUNDPARAM_Unk0);
 			if (se->getVolume(SOUNDPARAM_Unk0) == tmpVol) {
 				if (tmpVol < 0.5f) {
-					mState = PSMRocket_5;
+					mState = PSMRocket_Idle;
 				} else {
 					mState = PSMRocket_4;
 				}
 			}
 			break;
-		case PSMRocket_0:
+		case PSMRocket_Inactive:
 			se->setVolume(0.0f, 0, SOUNDPARAM_Unk0);
 			se->setPitch(0.0f, 0, SOUNDPARAM_Unk0);
 			break;

@@ -266,7 +266,7 @@ void SingleGameSection::flow_goto_title() { mDoEnd = true; }
  */
 void SingleGameSection::onInit()
 {
-	_228              = 0;
+	mIsGameStarted    = false;
 	gameSystem->mMode = GSM_STORY_MODE;
 
 	System::assert_fragmentation("SGS::onInit");
@@ -276,11 +276,11 @@ void SingleGameSection::onInit()
 	clearCaveMenus();
 
 	mUnusedFlag       = false;
-	mLoadGameCallback = new Delegate<Game::SingleGameSection>(this, setupFloatMemory);
+	mLoadGameCallback = new Delegate<SingleGameSection>(this, setupFloatMemory);
 
 	mFsm = new SingleGame::FSM;
 	mFsm->init(this);
-	mFsm->start(this, 0, nullptr);
+	mFsm->start(this, SingleGame::SGS_File, nullptr);
 
 	System::assert_fragmentation("SGS::FSM");
 	setupFixMemory();
@@ -807,9 +807,9 @@ bool SingleGameSection::updateCaveMenus()
 	u32 flag = mOpenMenuFlags;
 	if (flag & 1) {
 		switch (Screen::gGame2DMgr->check_CaveInMenu()) {
-		case 0:
+		case Screen::Game2DMgr::CHECK2D_CaveInMenu_MenuOpen:
 			break;
-		case 1:
+		case Screen::Game2DMgr::CHECK2D_CaveInMenu_Confirm:
 			playData->mNaviLifeMax[NAVIID_Olimar] = naviMgr->mNaviParms->mNaviParms.mMaxHealth;
 			playData->mNaviLifeMax[NAVIID_Louie]  = naviMgr->mNaviParms->mNaviParms.mMaxHealth;
 			gameSystem->setPause(false, "cave-yes", 3);
@@ -817,20 +817,20 @@ bool SingleGameSection::updateCaveMenus()
 			mOpenMenuFlags &= ~1;
 			goCave(mCurrentCave);
 			return true;
-		case 2:
+		case Screen::Game2DMgr::CHECK2D_CaveInMenu_Cancel:
 			gameSystem->setPause(false, "cave-no", 3);
 			gameSystem->setMoviePause(false, "cave-no");
 			mOpenMenuFlags &= ~1;
 			break;
-		case 3:
+		case Screen::Game2DMgr::CHECK2D_CaveInMenu_Unused:
 			gameSystem->setMoviePause(false, "cave-zenkai");
 			break;
 		}
 	} else if (flag & 2) {
 		switch (Screen::gGame2DMgr->check_CaveMoreMenu()) {
-		case 0:
+		case Screen::Game2DMgr::CHECK2D_CaveMoreMenu_MenuOpen:
 			break;
-		case 1:
+		case Screen::Game2DMgr::CHECK2D_CaveMoreMenu_Confirm:
 			playData->mNaviLifeMax[NAVIID_Olimar] = naviMgr->getAt(NAVIID_Olimar)->mHealth;
 			playData->mNaviLifeMax[NAVIID_Louie]  = naviMgr->getAt(NAVIID_Louie)->mHealth;
 			gameSystem->setPause(false, "more-yes", 3);
@@ -838,27 +838,27 @@ bool SingleGameSection::updateCaveMenus()
 			mOpenMenuFlags &= ~2;
 			goNextFloor(mHole);
 			return true;
-		case 2:
+		case Screen::Game2DMgr::CHECK2D_CaveMoreMenu_Cancel:
 			gameSystem->setPause(false, "more-no", 3);
 			gameSystem->setMoviePause(false, "more-no");
 			mOpenMenuFlags &= ~2;
 			break;
-		case 3:
+		case Screen::Game2DMgr::CHECK2D_CaveMoreMenu_Unused:
 			gameSystem->setMoviePause(false, "more-zenkai");
 			break;
 		}
 	} else if (flag & 4) {
 		switch (Screen::gGame2DMgr->check_KanketuMenu()) {
-		case 1:
+		case Screen::Game2DMgr::CHECK2D_KanketuMenu_Confirm:
 			gameSystem->setPause(false, "kank-yes", 3);
 			gameSystem->setMoviePause(false, "kank-yes");
 			mOpenMenuFlags &= ~4;
 			goMainMap(mFountain);
 			return true;
-		case 0:
-		case 3:
+		case Screen::Game2DMgr::CHECK2D_KanketuMenu_MenuOpen:
+		case Screen::Game2DMgr::CHECK2D_KanketuMenu_Unused:
 			break;
-		case 2:
+		case Screen::Game2DMgr::CHECK2D_KanketuMenu_Cancel:
 			gameSystem->setPause(false, "kank-no", 3);
 			gameSystem->setMoviePause(false, "kank-no");
 			mOpenMenuFlags &= ~4;

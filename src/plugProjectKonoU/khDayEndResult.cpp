@@ -11,6 +11,7 @@
 #include "og/newScreen/ogUtil.h"
 #include "Dolphin/rand.h"
 #include "LoadResource.h"
+#include "Screen/Game2DMgr.h"
 
 namespace kh {
 namespace Screen {
@@ -125,8 +126,8 @@ DispDayEndResultMail::DispDayEndResultMail(JKRHeap* heap, MailCategory category)
 	mHeap         = heap;
 	mBackupHeap   = nullptr;
 	mMailCategory = category;
-	_14           = 0;
-	_18           = 0;
+	mExitStatus   = ::Screen::Game2DMgr::CHECK2D_DayResult_MenuOpen;
+	mHasOpened    = false;
 	mTodayMailID  = -1;
 	mDayCount     = Game::gameSystem->mTimeMgr->mDayCount;
 }
@@ -1705,7 +1706,7 @@ void ObjDayEndResultMail::doCreate(JKRArchive* arc)
 	mFadePaneArrowR->set_init_alpha(0);
 	setInfAlpha(mScreenCharacter->search('NitemW'));
 	changeAlpha();
-	if (dispResult->mMail._18) {
+	if (dispResult->mMail.mHasOpened) {
 		mStatus = MAILSTATUS_Normal;
 		mAlpha  = 255;
 		changeAlpha();
@@ -1737,7 +1738,7 @@ bool ObjDayEndResultMail::doStart(const ::Screen::StartSceneArg* arg)
 		JUT_PANICLINE(2022, "disp member err");
 	}
 	DispDayEndResult* dispResult = static_cast<DispDayEndResult*>(getDispMember());
-	if (!dispResult->mMail._18) {
+	if (!dispResult->mMail.mHasOpened) {
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_MAIL_RECIEVE, 0);
 	}
 	return true;
@@ -1788,7 +1789,7 @@ bool ObjDayEndResultMail::doUpdate()
 			switch (mSaveMgr->mCurrStateID) {
 			case 2:
 			case 0:
-				dispResult->mMail._14 = 1;
+				dispResult->mMail.mExitStatus = ::Screen::Game2DMgr::CHECK2D_DayResult_SaveFinished;
 				break;
 
 			case 1:
@@ -1796,7 +1797,7 @@ bool ObjDayEndResultMail::doUpdate()
 				break;
 
 			case 3:
-				dispResult->mMail._14 = 2;
+				dispResult->mMail.mExitStatus = ::Screen::Game2DMgr::CHECK2D_DayResult_ReturnToFileSelect;
 				break;
 			}
 		}
@@ -1994,7 +1995,7 @@ void ObjDayEndResultMail::statusWaitOpen()
 		JUT_PANICLINE(2289, "disp member err");
 	}
 	DispDayEndResult* dispResult = static_cast<DispDayEndResult*>(getDispMember());
-	dispResult->mMail._18        = 1;
+	dispResult->mMail.mHasOpened = true;
 
 	SceneDayEndResultMail* scene = static_cast<SceneDayEndResultMail*>(getOwner());
 

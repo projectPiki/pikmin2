@@ -3,6 +3,7 @@
 
 #include "og/Screen/DispMember.h"
 #include "Screen/screenObj.h"
+#include "Screen/Game2DMgr.h"
 #include "P2DScreen.h"
 
 struct JKRArchive;
@@ -17,7 +18,7 @@ struct DispReadyGo : public og::Screen::DispMemberBase {
 
 	DispReadyGo()
 	{
-		mStatus       = 0;
+		mStatus       = ::Screen::Game2DMgr::CHECK2D_ReadyGo_NotFinished;
 		mIs2Player    = false;
 		mIsFinalFloor = false;
 		mGameType     = TYPE_2PBattle;

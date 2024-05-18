@@ -185,10 +185,10 @@ void FSMState_WorldMapInfoWindow::do_init(TMgr* obj, Game::StateArg* arg)
 void FSMState_WorldMapInfoWindow::do_exec(TMgr* obj)
 {
 	switch (::Screen::gGame2DMgr->check_WorldMapInfoWin0()) {
-	case 0:
+	case ::Screen::Game2DMgr::CHECK2D_WorldMapInfoWin0_Cancel:
 		transit(obj, ScreenWait, nullptr);
 		break;
-	case 1:
+	case ::Screen::Game2DMgr::CHECK2D_WorldMapInfoWin0_Confirm:
 		obj->mOptionScreen.mOptionParamB.saveRam();
 		transit(obj, ScreenClose, nullptr);
 		break;

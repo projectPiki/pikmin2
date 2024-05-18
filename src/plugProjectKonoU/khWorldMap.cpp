@@ -166,7 +166,7 @@ WorldMap::WorldMap()
 	mAnimTimers[0]      = 0.0f;
 	mCameraZoomX        = 0.0f;
 	mCameraZoomMinFrame = 0.0f;
-	_98                 = 1.0f;
+	mCameraZoomY        = 1.0f;
 	mRocketPosition.set(0.0f, 0.0f);
 	mRocketPosition2.set(0.0f, 0.0f);
 
@@ -209,7 +209,7 @@ WorldMap::WorldMap()
 	mColorAnim2 = nullptr;
 	mArrowBlink = nullptr;
 	// possibly a substruct?
-	mCurrentState    = WMAP_Unk13;
+	mCurrentState    = WMAP_Begin;
 	mRocketAngleMode = ROT_Unk1;
 	mFlags           = WMAPFLAG_IsFirstTimeEffect;
 	// end possible substruct
@@ -624,7 +624,7 @@ void WorldMap::loadResource()
  * @note Address: 0x803F37D4
  * @note Size: 0x1C20
  */
-void WorldMap::update(::Game::WorldMap::UpdateArg& arg)
+void WorldMap::update(Game::WorldMap::UpdateArg& arg)
 {
 	arg.mCourseInfo           = mInitArg.mStages->getCourseInfo(mCurrentCourseIndex);
 	mKitaAnim1->mCurrentFrame = mAnimTimers[0];
@@ -750,7 +750,7 @@ void WorldMap::update(::Game::WorldMap::UpdateArg& arg)
 		if (test < msVal._0C) {
 			mRocketMoveCounter = 0;
 			mCurrentState      = WMAP_Idle;
-			PSMGetWorldMapRocket()->stateChange(PSM::WorldMapRocket::PSMRocket_5);
+			PSMGetWorldMapRocket()->stateChange(PSM::WorldMapRocket::PSMRocket_Idle);
 		}
 		onyonMove();
 		changeState();
@@ -807,15 +807,15 @@ void WorldMap::update(::Game::WorldMap::UpdateArg& arg)
 
 		} else if (dist > msVal._14) {
 			mCurrentState = WMAP_RocketMoving3;
-			resetFlag(WMAPFLAG_Unk1 | WMAPFLAG_Unk4 | WMAPFLAG_Unk6);
-			setFlag(WMAPFLAG_Unk5);
+			resetFlag(WMAPFLAG_Unk1 | WMAPFLAG_Unk4 | WMAPFLAG_IsBackdropBehindInfo);
+			setFlag(WMAPFLAG_IsBackdropActive);
 			mRocketMoveCounter = 0;
 		}
 
 		if (mRocketMoveCounter > 60 && dist > msVal._14) {
 			mCurrentState = WMAP_RocketMoving3;
-			resetFlag(WMAPFLAG_Unk1 | WMAPFLAG_Unk4 | WMAPFLAG_Unk6);
-			setFlag(WMAPFLAG_Unk5);
+			resetFlag(WMAPFLAG_Unk1 | WMAPFLAG_Unk4 | WMAPFLAG_IsBackdropBehindInfo);
+			setFlag(WMAPFLAG_IsBackdropActive);
 			mRocketMoveCounter = 0;
 		}
 
@@ -829,7 +829,7 @@ void WorldMap::update(::Game::WorldMap::UpdateArg& arg)
 		break;
 	}
 
-	case WMAP_Unk14: {
+	case WMAP_LandingStart: {
 		f32 test = rocketMove(cPointPane, true);
 		rocketUpdate(cWaitPane);
 		if (test < msVal._18) {
@@ -851,16 +851,16 @@ void WorldMap::update(::Game::WorldMap::UpdateArg& arg)
 		rocketUpdate(cPointPane);
 		if (dist < msVal._14) {
 			mRocketMoveCounter = 0;
-			arg.mStatus        = 1;
+			arg.mStatus        = Game::WorldMap::WMapUpdate_BeginGame;
 			finish();
 			break;
 		}
-		if (mZukanFadeout < 255 - msVal._79) {
-			mZukanFadeout += msVal._79 >> 1;
+		if (mZukanFadeout < 255 - msVal.mZukanFadeoutSpeed) {
+			mZukanFadeout += msVal.mZukanFadeoutSpeed >> 1;
 		}
 		if (mInitArg.mController->getButtonDown() & Controller::PRESS_B) {
 			mCurrentState = WMAP_InputTarget;
-			resetFlag(WMAPFLAG_Unk1 | WMAPFLAG_Unk2 | WMAPFLAG_Unk5);
+			resetFlag(WMAPFLAG_Unk1 | WMAPFLAG_Unk2 | WMAPFLAG_IsBackdropActive);
 			mRocketMoveCounter = 0;
 		}
 		onyonMove();
@@ -877,7 +877,7 @@ void WorldMap::update(::Game::WorldMap::UpdateArg& arg)
 			if (x * x + y * y < msVal._0C) {
 				postureControl(cWaitPane);
 				mCurrentState = WMAP_Idle;
-				PSMGetWorldMapRocket()->stateChange(PSM::WorldMapRocket::PSMRocket_5);
+				PSMGetWorldMapRocket()->stateChange(PSM::WorldMapRocket::PSMRocket_Idle);
 			} else {
 				rocketMove(cWaitPane, true);
 				rocketUpdate(cWaitPane);
@@ -905,10 +905,10 @@ void WorldMap::update(::Game::WorldMap::UpdateArg& arg)
 			postureControl(cWaitPane);
 		}
 		onyonMove();
-		setFlag(WMAPFLAG_Unk5);
-		mZukanFadeout += msVal._79;
-		if (mZukanFadeout >= 255 - msVal._79) {
-			arg.mStatus = 4;
+		setFlag(WMAPFLAG_IsBackdropActive);
+		mZukanFadeout += msVal.mZukanFadeoutSpeed;
+		if (mZukanFadeout >= 255 - msVal.mZukanFadeoutSpeed) {
+			arg.mStatus = Game::WorldMap::WMapUpdate_GoToZukanItem;
 			finish();
 		}
 		break;
@@ -921,10 +921,10 @@ void WorldMap::update(::Game::WorldMap::UpdateArg& arg)
 			postureControl(cWaitPane);
 		}
 		onyonMove();
-		setFlag(WMAPFLAG_Unk5);
-		mZukanFadeout += msVal._79;
-		if (mZukanFadeout >= 255 - msVal._79) {
-			arg.mStatus = 3;
+		setFlag(WMAPFLAG_IsBackdropActive);
+		mZukanFadeout += msVal.mZukanFadeoutSpeed;
+		if (mZukanFadeout >= 255 - msVal.mZukanFadeoutSpeed) {
+			arg.mStatus = Game::WorldMap::WMapUpdate_GoToZukanEnemy;
 			finish();
 		}
 		break;
@@ -934,22 +934,22 @@ void WorldMap::update(::Game::WorldMap::UpdateArg& arg)
 		rocketUpdate(cWaitPane);
 		onyonUpdate();
 		switch (::Screen::gGame2DMgr->check_WorldMapInfoWin0()) {
-		case 0: {
+		case ::Screen::Game2DMgr::CHECK2D_WorldMapInfoWin0_Cancel: {
 			PSMGetWorldMapRocket()->stateChange(PSM::WorldMapRocket::PSMRocket_7);
 			mCurrentState = WMAP_InputTarget;
-			resetFlag(WMAPFLAG_Unk5);
+			resetFlag(WMAPFLAG_IsBackdropActive);
 			break;
 		}
-		case 1: {
+		case ::Screen::Game2DMgr::CHECK2D_WorldMapInfoWin0_Confirm: {
 			PSMGetWorldMapRocket()->stateChange(PSM::WorldMapRocket::PSMRocket_7);
-			resetFlag(WMAPFLAG_Unk5);
-			arg.mStatus = 5;
+			resetFlag(WMAPFLAG_IsBackdropActive);
+			arg.mStatus = Game::WorldMap::WMapUpdate_ReturnToTitle;
 			finish();
 			break;
 		}
 		}
 		if (mZukanFadeout < 180) {
-			mZukanFadeout += msVal._79;
+			mZukanFadeout += msVal.mZukanFadeoutSpeed;
 		}
 		break;
 	}
@@ -958,27 +958,27 @@ void WorldMap::update(::Game::WorldMap::UpdateArg& arg)
 		rocketUpdate(cWaitPane);
 		onyonUpdate();
 		switch (::Screen::gGame2DMgr->check_WorldMapInfoWin1()) {
-		case 1: {
+		case ::Screen::Game2DMgr::CHECK2D_WorldMapInfoWin1_Cancel: {
 			PSMGetWorldMapRocket()->stateChange(PSM::WorldMapRocket::PSMRocket_7);
 			mCurrentState = WMAP_InputTarget;
-			resetFlag(WMAPFLAG_Unk5);
+			resetFlag(WMAPFLAG_IsBackdropActive);
 			break;
 		}
-		case 0: {
+		case ::Screen::Game2DMgr::CHECK2D_WorldMapInfoWin1_Confirm: {
 			PSMGetWorldMapRocket()->stateChange(PSM::WorldMapRocket::PSMRocket_2);
-			mCurrentState = WMAP_Unk14;
-			resetFlag(WMAPFLAG_Unk5);
+			mCurrentState = WMAP_LandingStart;
+			resetFlag(WMAPFLAG_IsBackdropActive);
 			mRocketMoveCounter = 0;
 			break;
 		}
 		}
 		if (mZukanFadeout < 180) {
-			mZukanFadeout += msVal._79;
+			mZukanFadeout += msVal.mZukanFadeoutSpeed;
 		}
 		break;
 	}
 
-	case WMAP_Unk10: {
+	case WMAP_BeginShipAppear: {
 		f32 angle = pikmin2_atan2f(mRocketAngle.x, -mRocketAngle.y);
 
 		if (mRocketAngleMode == ROT_Unk1 && angle > 0.0f) {
@@ -1048,7 +1048,7 @@ void WorldMap::update(::Game::WorldMap::UpdateArg& arg)
 		break;
 	}
 
-	case WMAP_Unk11: {
+	case WMAP_BeginWait: {
 		paneRocket->setOffset(1000.0f, 0.0f);
 		for (int i = 0; i < mOnyonCount; i++) {
 			mOnyonArray[i].mOnyonPane->setOffset(1000.0f, 0.0f);
@@ -1076,8 +1076,8 @@ void WorldMap::update(::Game::WorldMap::UpdateArg& arg)
 				mOnyonArray[i].mOnyonPane->updateScale(mRocketScale);
 			}
 			mRocketMoveCounter = 0;
-			mCurrentState      = WMAP_Unk10;
-			PSMGetWorldMapRocket()->stateChange(PSM::WorldMapRocket::PSMRocket_1);
+			mCurrentState      = WMAP_BeginShipAppear;
+			PSMGetWorldMapRocket()->stateChange(PSM::WorldMapRocket::PSMRocket_Appear);
 		}
 		break;
 	}
@@ -1088,35 +1088,37 @@ void WorldMap::update(::Game::WorldMap::UpdateArg& arg)
 		if (test < msVal._0C) {
 			mRocketMoveCounter = 0;
 			mCurrentState      = WMAP_Idle;
-			PSMGetWorldMapRocket()->stateChange(PSM::WorldMapRocket::PSMRocket_5);
+			PSMGetWorldMapRocket()->stateChange(PSM::WorldMapRocket::PSMRocket_Idle);
 		}
 		onyonMove();
 		break;
 	}
 
-	case WMAP_Unk13: {
+	case WMAP_Begin: {
+		// hide ship/onions offscreen
 		paneRocket->setOffset(1000.0f, 0.0f);
 		for (int i = 0; i < mOnyonCount; i++) {
 			mOnyonArray[i].mOnyonPane->setOffset(1000.0f, 0.0f);
 		}
-		_98 += msVal._48;
-		mAnimTimers[0] = mCameraZoomMinFrame * (1.0f - (_98 * _98 * _98 * _98));
+
+		mCameraZoomY += msVal._48;
+		mAnimTimers[0] = mCameraZoomMinFrame * (1.0f - (mCameraZoomY * mCameraZoomY * mCameraZoomY * mCameraZoomY));
 		if (mCameraZoomMinFrame - mAnimTimers[0] < 2.0f) {
 			mAnimTimers[0] = mCameraZoomMinFrame;
-			mCurrentState  = WMAP_Unk11;
+			mCurrentState  = WMAP_BeginWait;
 		}
 		break;
 	}
 	}
 
-	if (!isFlag(WMAPFLAG_Unk5) && mZukanFadeout) {
-		mZukanFadeout -= msVal._79;
-		if (mZukanFadeout < msVal._79) {
+	if (!isFlag(WMAPFLAG_IsBackdropActive) && mZukanFadeout) {
+		mZukanFadeout -= msVal.mZukanFadeoutSpeed;
+		if (mZukanFadeout < msVal.mZukanFadeoutSpeed) {
 			mZukanFadeout = 0;
 		}
 	}
 
-	if (mCurrentState != WMAP_Unk13 && mCurrentState != WMAP_Unk11 && mCurrentState != WMAP_NewMapOpened) {
+	if (mCurrentState != WMAP_Begin && mCurrentState != WMAP_BeginWait && mCurrentState != WMAP_NewMapOpened) {
 		// only show the "light" pane of the currently selected level
 		for (int i = 0; i < mOpenCourses; i++) {
 			if (mCurrentCourseIndex == i) {
@@ -1127,7 +1129,7 @@ void WorldMap::update(::Game::WorldMap::UpdateArg& arg)
 		}
 	}
 
-	if (mCurrentState != WMAP_Unk13 && mCurrentState != WMAP_Unk11) {
+	if (mCurrentState != WMAP_Begin && mCurrentState != WMAP_BeginWait) {
 		PSMGetWorldMapRocket()->startRocketSE(mRocketPosition.x, mRocketPosition.y);
 	}
 
@@ -3201,7 +3203,7 @@ void WorldMap::draw3rd(Graphics& gfx)
 	mScreenKitagawa->search('Nhapa')->show();
 	mScreenKitagawa->draw(gfx, gfx.mPerspGraph);
 
-	if (isFlag(WMAPFLAG_Unk6) && mZukanFadeout) {
+	if (isFlag(WMAPFLAG_IsBackdropBehindInfo) && mZukanFadeout) {
 		gfx.mOrthoGraph.setPort();
 		gfx.mOrthoGraph.setColor(JUtility::TColor(0, 0, 0, mZukanFadeout));
 		f32 zero = 0.0f;
@@ -3219,7 +3221,7 @@ void WorldMap::draw3rd(Graphics& gfx)
  */
 void WorldMap::draw4th(Graphics& gfx)
 {
-	if (!isFlag(WMAPFLAG_Unk6) && mZukanFadeout) {
+	if (!isFlag(WMAPFLAG_IsBackdropBehindInfo) && mZukanFadeout) {
 		gfx.mOrthoGraph.setPort();
 		gfx.mOrthoGraph.setColor(JUtility::TColor(0, 0, 0, mZukanFadeout));
 		f32 zero = 0.0f;
@@ -3919,7 +3921,7 @@ bool WorldMap::changeState()
 			mCurrentState = WMAP_InSelReturnToTitle;
 			PSMGetWorldMapRocket()->stateChange(PSM::WorldMapRocket::PSMRocket_6);
 			isStateChange = true;
-			setFlag(WMAPFLAG_Unk5 | WMAPFLAG_Unk6);
+			setFlag(WMAPFLAG_IsBackdropActive | WMAPFLAG_IsBackdropBehindInfo);
 		}
 
 	} else if (mInitArg.mController->isButtonDown(Controller::PRESS_A)) {
@@ -3932,7 +3934,7 @@ bool WorldMap::changeState()
 			mCurrentState = WMAP_InSelLandHere;
 			PSMGetWorldMapRocket()->stateChange(PSM::WorldMapRocket::PSMRocket_6);
 			isStateChange = true;
-			setFlag(WMAPFLAG_Unk5 | WMAPFLAG_Unk6);
+			setFlag(WMAPFLAG_IsBackdropActive | WMAPFLAG_IsBackdropBehindInfo);
 		}
 
 	} else if (mInitArg.mController->isButtonDown(Controller::PRESS_L)) {

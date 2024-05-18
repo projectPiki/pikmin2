@@ -8,14 +8,10 @@
 #include "LoadResource.h"
 #include "JSystem/J2D/J2DAnmLoader.h"
 #include "Dolphin/rand.h"
+#include "Screen/Game2DMgr.h"
 #include "trig.h"
 
 static void _Print(char* format, ...) { OSReport(format, __FILE__); }
-
-// char* bloNames[16] = { "result_final_image00.blo", "result_final_image01.blo", "result_final_image02.blo", "result_final_image03.blo",
-// 	                   "result_final_image04.blo", "result_final_image05.blo", "result_final_image06.blo", "result_final_image07.blo",
-// 	                   "result_final_image08.blo", "result_final_image09.blo", "result_final_image10.blo", "result_final_image11.blo",
-// 	                   "result_final_image12.blo", "result_final_image13.blo", "result_final_image14.blo", "result_final_image15.blo" };
 
 namespace kh {
 namespace Screen {
@@ -99,7 +95,7 @@ DispFinalResult::DispFinalResult(TotalResultData* data, DispFinalResult::ResultT
 {
 	mTotalResultData = data;
 	mResultType      = type;
-	mExitStatus      = 0;
+	mExitStatus      = ::Screen::Game2DMgr::CHECK2D_FinalResult_MenuOpen;
 	mHeap            = heap;
 }
 
@@ -1166,7 +1162,7 @@ bool ObjFinalResult::doUpdate()
 			case 2:
 				JUT_ASSERTLINE(382, getDispMember()->isID(OWNER_KH, MEMBER_FINAL_RESULT), "disp member err");
 				DispFinalResult* disp = static_cast<DispFinalResult*>(getDispMember());
-				disp->mExitStatus     = 1;
+				disp->mExitStatus     = ::Screen::Game2DMgr::CHECK2D_FinalResult_Finished;
 				break;
 			case 1:
 				mFlags &= ~SaveOpen;

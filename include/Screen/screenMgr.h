@@ -2,15 +2,23 @@
 #define _SCREEN_SCREENMGR_H
 
 #include "Screen/screenObj.h"
+#include "Screen/SceneInfoList.h"
 
-// no idea if theres a better place to put this, its kind of a random single function
-namespace kh {
+struct Controller;
+
+namespace og {
 namespace Screen {
-::Screen::SceneBase* createScene_Koono(s32);
-} // namespace Screen
-} // namespace kh
+struct DispMemberBase;
+}
+} // namespace og
 
 namespace Screen {
+
+struct SceneBase;
+struct SetSceneArg;
+struct StartSceneArg;
+struct EndSceneArg;
+struct MgrCommand;
 
 ScreenOwnerID getSceneOwnerName(SceneBase* scene);
 ScreenMemberID getSceneMemberName(SceneBase* scene);
@@ -138,5 +146,12 @@ struct Mgr : public Screen::Mgr {
 	int mBgMode;               // _A4
 };
 } // namespace newScreen
+
+// no idea if theres a better place to put this, its kind of a random single function
+namespace kh {
+namespace Screen {
+::Screen::SceneBase* createScene_Koono(s32);
+} // namespace Screen
+} // namespace kh
 
 #endif

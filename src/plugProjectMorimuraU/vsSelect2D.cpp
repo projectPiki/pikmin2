@@ -5,6 +5,7 @@
 #include "Game/gameChallenge2D.h"
 #include "efx2d/T2DBattleDive.h"
 #include "Dolphin/rand.h"
+#include "Screen/Game2DMgr.h"
 #include "Controller.h"
 
 static const char unusedName[] = "vsSelect2D";
@@ -3842,7 +3843,8 @@ bool TVsSelect::doUpdate()
 		rulesinactive = true;
 	}
 
-	if (mCanInput && mDispMember->mState == 0 && !static_cast<TVsSelectScene*>(getOwner())->mConfirmEndWindow->mHasDrawn) {
+	if (mCanInput && mDispMember->mState == Screen::Game2DMgr::CHECK2D_VsSelect_Default
+	    && !static_cast<TVsSelectScene*>(getOwner())->mConfirmEndWindow->mHasDrawn) {
 		if (mZoomState == 0) {
 			if (rulesinactive) {
 				if (mController->getButtonDown() & Controller::PRESS_R) {
@@ -3956,9 +3958,10 @@ bool TVsSelect::doUpdate()
 		}
 	}
 
-	if (mDispMember->mState != 1 && mDispMember->mDispWorldMapInfoWin0->mResult == 1 && !mIsSection) {
+	if (mDispMember->mState != Screen::Game2DMgr::CHECK2D_VsSelect_InDemo && mDispMember->mDispWorldMapInfoWin0->mResult == 1
+	    && !mIsSection) {
 		mIsDemoStarted      = 0;
-		mDispMember->mState = 1;
+		mDispMember->mState = Screen::Game2DMgr::CHECK2D_VsSelect_InDemo;
 		getOwner()->endScene(nullptr);
 	}
 
@@ -6441,9 +6444,9 @@ void TVsSelect::doUpdateFadeoutFinish()
 	mDispMember->mLouieHandicap      = mHandicapSel[1];
 	mDispMember->mSelectedStageIndex = mIndexPaneList[mCurrActiveRowSel]->getIndex();
 	if (mIsDemoStarted) {
-		mDispMember->mState = 3;
+		mDispMember->mState = Screen::Game2DMgr::CHECK2D_VsSelect_ExitFinished;
 	} else {
-		mDispMember->mState = 2;
+		mDispMember->mState = Screen::Game2DMgr::CHECK2D_VsSelect_CancelToTitle;
 	}
 }
 
@@ -6976,7 +6979,7 @@ void TVsSelect::doScreenEffect()
 			mEndDelayTimer += 1.0f;
 			if (mEndDelayTimer > 15.0f && !mIsSection) {
 				mZoomState          = 0;
-				mDispMember->mState = 1;
+				mDispMember->mState = Screen::Game2DMgr::CHECK2D_VsSelect_InDemo;
 				P2ASSERTLINE(2374, getOwner());
 				getOwner()->endScene(nullptr);
 				for (int i = 0; i < mNumActiveRows; i++) {

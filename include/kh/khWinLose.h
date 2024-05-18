@@ -15,7 +15,7 @@ struct DispWinLose : public og::Screen::DispMemberBase {
 	DispWinLose(int type, int state)
 	{
 		mOutcome = type;
-		_0C      = state;
+		mStatus  = state;
 	}
 
 	virtual u32 getSize() { return sizeof(DispWinLose); } // _08 (weak)
@@ -25,7 +25,7 @@ struct DispWinLose : public og::Screen::DispMemberBase {
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase
 	int mOutcome; // _08
-	int _0C;      // _0C
+	int mStatus;  // _0C
 };
 
 struct DispWinLoseReason : public og::Screen::DispMemberBase {

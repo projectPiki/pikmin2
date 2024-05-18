@@ -1,4 +1,5 @@
 #include "og/newScreen/FinalMsg.h"
+#include "Screen/Game2DMgr.h"
 
 namespace og {
 namespace newScreen {
@@ -32,7 +33,7 @@ void FinalMsg::doCreateObj(JKRArchive* archive)
 int FinalMsg::doGetFinishState()
 {
 	Screen::DispMemberFinalMessage* dispMember = static_cast<Screen::DispMemberFinalMessage*>(mDispMember);
-	int finalState                             = 0;
+	int finalState                             = ::Screen::Game2DMgr::CHECK2D_FinalMessage_NotOpen;
 
 	if (dispMember->isID(OWNER_OGA, MEMBER_FINAL_MSG)) {
 		finalState = dispMember->mFinalState;

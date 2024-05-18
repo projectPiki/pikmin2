@@ -66,11 +66,18 @@ struct InitArg {
 	u8 mDoNewEntriesEfx;              // _16
 };
 
-enum UpdateArgStatus { WMapUpdate_0, WMapUpdate_GoToLoad, WMapUpdate_2, WMapUpdate_GoToZukan, WMapUpdate_4, WMapUpdate_ReturnToTitle };
+enum UpdateArgStatus {
+	WMapUpdate_Null,
+	WMapUpdate_BeginGame,
+	WMapUpdate_UnusedZukan,
+	WMapUpdate_GoToZukanEnemy,
+	WMapUpdate_GoToZukanItem,
+	WMapUpdate_ReturnToTitle,
+};
 
 struct UpdateArg {
 	CourseInfo* mCourseInfo; // _00
-	int mStatus;             // _04
+	int mStatus;             // _04, see UpdateArgStatus
 };
 
 struct Base : public JKRDisposer {
@@ -108,22 +115,22 @@ struct WorldMap : public Game::WorldMap::Base {
 		WMAP_GoToZukanEnemy,     // 7
 		WMAP_InSelReturnToTitle, // 8
 		WMAP_InSelLandHere,      // 9
-		WMAP_Unk10,              // 10
-		WMAP_Unk11,              // 11
+		WMAP_BeginShipAppear,    // 10
+		WMAP_BeginWait,          // 11
 		WMAP_Unk12,              // 12
-		WMAP_Unk13,              // 13
-		WMAP_Unk14,              // 14
+		WMAP_Begin,              // 13
+		WMAP_LandingStart,       // 14
 	};
 
 	enum WorldMapFlags {
-		WMAPFLAG_Unk1              = 0x1,
-		WMAPFLAG_Unk2              = 0x2,
-		WMAPFLAG_IsFirstTimeEffect = 0x4,
-		WMAPFLAG_Unk4              = 0x8,
-		WMAPFLAG_Unk5              = 0x10,
-		WMAPFLAG_Unk6              = 0x20,
-		WMAPFLAG_Unk7              = 0x40,
-		WMAPFLAG_Unk8              = 0x80,
+		WMAPFLAG_Unk1                 = 0x1,
+		WMAPFLAG_Unk2                 = 0x2,
+		WMAPFLAG_IsFirstTimeEffect    = 0x4,
+		WMAPFLAG_Unk4                 = 0x8,
+		WMAPFLAG_IsBackdropActive     = 0x10, // if unset, lower backdrop alpha until it is 0
+		WMAPFLAG_IsBackdropBehindInfo = 0x20, // if set, backdrop is drawn before info screen, otherwise it is drawn after
+		WMAPFLAG_Unk7                 = 0x40,
+		WMAPFLAG_Unk8                 = 0x80,
 	};
 
 	enum RocketRotation {
@@ -212,7 +219,7 @@ struct WorldMap : public Game::WorldMap::Base {
 	f32 mAnimTimers[10];                                              // _68
 	f32 mCameraZoomMinFrame;                                          // _90
 	f32 mCameraZoomX;                                                 // _94
-	f32 _98;                                                          // _98
+	f32 mCameraZoomY;                                                 // _98, temp name
 	Vector2f mRocketPosition;                                         // _9C
 	Vector2f mRocketPosition2;                                        // _A4
 	JGeometry::TVec2f mRocketAngle;                                   // _AC
@@ -285,7 +292,7 @@ struct WorldMap : public Game::WorldMap::Base {
 			_70.set(255, 128, 32, 255);
 			_74.set(255, 255, 128, 140);
 			mInputLockoutFrames = 8;
-			_79                 = 8;
+			mZukanFadeoutSpeed  = 8;
 		}
 
 		f32 _00;                  // _00
@@ -311,7 +318,7 @@ struct WorldMap : public Game::WorldMap::Base {
 		JUtility::TColor _70;     // _70
 		JUtility::TColor _74;     // _74
 		u8 mInputLockoutFrames;   // _78
-		u8 _79;                   // _79
+		u8 mZukanFadeoutSpeed;    // _79
 	} msVal;
 };
 } // namespace Screen

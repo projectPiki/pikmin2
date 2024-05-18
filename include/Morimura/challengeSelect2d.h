@@ -7,6 +7,7 @@
 #include "efx2d/T2DCursor.h"
 #include "efx2d/T2DChalDive.h"
 #include "Game/ChallengeGame.h"
+#include "Screen/Game2DMgr.h"
 
 namespace og {
 namespace Screen {
@@ -28,7 +29,7 @@ struct DispMemberChallengeSelect : public og::Screen::DispMemberBase {
 		mStageNumber          = -1;
 		mSelectedStageIndex   = 0;
 		mPlayType             = 0;
-		_1C                   = 0;
+		mStatus               = Screen::Game2DMgr::CHECK2D_ChallengeSelect_Default;
 		mDispWorldMapInfoWin0 = nullptr;
 	}
 
@@ -43,7 +44,7 @@ struct DispMemberChallengeSelect : public og::Screen::DispMemberBase {
 	int mStageNumber;                                              // _10
 	int mSelectedStageIndex;                                       // _14
 	int mPlayType;                                                 // _18
-	int _1C;                                                       // _1C
+	int mStatus;                                                   // _1C
 	og::Screen::DispMemberWorldMapInfoWin0* mDispWorldMapInfoWin0; // _20
 };
 

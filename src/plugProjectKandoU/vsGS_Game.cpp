@@ -167,7 +167,7 @@ void GameState::exec(VsGameSection* section)
 
 	if (isFlag(VSGS_Unk8)) {
 		switch (Screen::gGame2DMgr->check_ReadyGo()) {
-		case 1:
+		case Screen::Game2DMgr::CHECK2D_ReadyGo_Finished:
 			gameSystem->setPause(false, "vs-rg-arr", 3);
 			gameSystem->setMoviePause(false, "vs-rg-arr");
 			resetFlag(VSGS_Unk8);
@@ -224,7 +224,7 @@ void GameState::exec(VsGameSection* section)
 					section->mVsWinner = -1;
 				}
 
-				kh::Screen::DispWinLose winLose(outcome, 1);
+				kh::Screen::DispWinLose winLose(outcome, ::Screen::Game2DMgr::CHECK2D_WinLose_Opened);
 				Screen::gGame2DMgr->open_WinLose(winLose);
 				return;
 
@@ -235,13 +235,13 @@ void GameState::exec(VsGameSection* section)
 
 		if (isFlag(VSGS_Unk10)) {
 			switch (Screen::gGame2DMgr->check_WinLose()) {
-			case 0:
-			case 1:
-			case 2:
+			case Screen::Game2DMgr::CHECK2D_WinLose_NotOpened:
+			case Screen::Game2DMgr::CHECK2D_WinLose_Opened:
+			case Screen::Game2DMgr::CHECK2D_WinLose_AnimDone:
 				break;
-			case 3:
+			case Screen::Game2DMgr::CHECK2D_WinLose_Finished:
 				TitleArg arg;
-				arg._00 = 1;
+				arg.mDoNeedClearHeap = true;
 				transit(section, VGS_Title, &arg);
 			}
 			return;
@@ -269,11 +269,11 @@ void GameState::exec(VsGameSection* section)
 
 		if (isFlag(VSGS_Unk4)) {
 			switch (Screen::gGame2DMgr->check_WinLose()) {
-			case 0:
-			case 1:
-			case 2:
+			case Screen::Game2DMgr::CHECK2D_WinLose_NotOpened:
+			case Screen::Game2DMgr::CHECK2D_WinLose_Opened:
+			case Screen::Game2DMgr::CHECK2D_WinLose_AnimDone:
 				break;
-			case 3:
+			case Screen::Game2DMgr::CHECK2D_WinLose_Finished:
 				GameStat::alivePikis.clear();
 				ResultArg arg;
 				arg.mEndFlag.clear();
@@ -306,10 +306,10 @@ void GameState::exec(VsGameSection* section)
 
 	if (!isFlag(VSGS_Unk1) && section->mHole) {
 		switch (Screen::gGame2DMgr->check_CaveMoreMenu()) {
-		case 0:
+		case Screen::Game2DMgr::CHECK2D_CaveMoreMenu_MenuOpen:
 			break;
 
-		case 1:
+		case Screen::Game2DMgr::CHECK2D_CaveMoreMenu_Confirm:
 			gameSystem->resetFlag(GAMESYS_IsGameWorldActive);
 			gameSystem->setPause(false, "cmore-yes", 3);
 			gameSystem->setMoviePause(false, "cmore-yes");
@@ -317,12 +317,12 @@ void GameState::exec(VsGameSection* section)
 			setFlag(VSGS_Unk1);
 			return;
 
-		case 2:
+		case Screen::Game2DMgr::CHECK2D_CaveMoreMenu_Cancel:
 			gameSystem->setPause(false, "cmore-no", 3);
 			gameSystem->setMoviePause(false, "cmore-no");
 			break;
 
-		case 3:
+		case Screen::Game2DMgr::CHECK2D_CaveInMenu_Unused:
 			gameSystem->resetFlag(GAMESYS_IsGameWorldActive);
 			gameSystem->setMoviePause(false, "cmore-zenk");
 			break;
@@ -419,27 +419,27 @@ void GameState::checkFindKeyDemo(VsGameSection* section)
 void GameState::checkSMenu(VsGameSection* section)
 {
 	switch (Screen::gGame2DMgr->check_SMenu()) {
-	case 1:
+	case Screen::Game2DMgr::CHECK2D_SMenu_Cancel:
 		gameSystem->setPause(false, "sm-canc", 3);
 		gameSystem->setMoviePause(false, "sm-canc");
-	case 0: // this is just cursed
+	case Screen::Game2DMgr::CHECK2D_SMenu_Opened:
 		return;
 
-	case 2:
+	case Screen::Game2DMgr::CHECK2D_SMenu_GoToSunset:
 		JUT_PANICLINE(617, "‚ ‚è‚¦‚È‚¢‚Á‚·\n"); // 'impossible'
 		return;
 
-	case 3:
+	case Screen::Game2DMgr::CHECK2D_SMenu_ReturnToFileSelect:
 		JUT_PANICLINE(620, "‚È‚¢\n"); // 'no'
 		return;
 
-	case 5:
+	case Screen::Game2DMgr::CHECK2D_SMenu_QuitChallenge:
 		gameSystem->setMoviePause(false, "sm-quit");
 		if (gameSystem->isVersusMode()) {
 			section->mVsWinner = -1;
 			gameSystem->resetFlag(GAMESYS_IsGameWorldActive);
 			TitleArg titleArg;
-			titleArg._00 = 1;
+			titleArg.mDoNeedClearHeap = true;
 			transit(section, VGS_Title, &titleArg);
 			return;
 		}
@@ -480,7 +480,7 @@ void GameState::checkSMenu(VsGameSection* section)
 			}
 
 		} else if (gameSystem->isMultiplayerMode()) {
-			if ((section->mControllerP2->isButtonDown(JUTGamePad::PRESS_START))) {
+			if (section->mControllerP2->isButtonDown(JUTGamePad::PRESS_START)) {
 				og::Screen::DispMemberSMenuAll sMenu;
 				int versus = 2;
 				if (gameSystem->isVersusMode()) {
@@ -810,7 +810,7 @@ void GameState::onMovieDone(VsGameSection* section, MovieConfig* config, u32 p1,
 		GameStat::alivePikis.clear();
 		moviePlayer->clearSuspendedDemo();
 		TitleArg arg;
-		arg._00 = 1;
+		arg.mDoNeedClearHeap = true;
 		transit(section, VGS_Title, &arg);
 
 	} else if (config->is("s03_orimadown")) {

@@ -298,7 +298,7 @@ struct DispMemberDummy : public DispMemberBase {
 // size 0xC
 struct DispMemberFinalMessage : public DispMemberBase {
 
-	inline DispMemberFinalMessage() { mFinalState = 0; }
+	inline DispMemberFinalMessage() { mFinalState = 0; } // ::Screen::Game2DMgr::CHECK2D_FinalMessage_NotOpen
 
 	virtual u32 getSize() { return sizeof(DispMemberFinalMessage); } // _08 (weak)
 	virtual u32 getOwnerID() { return OWNER_OGA; }                   // _0C (weak)
@@ -411,7 +411,7 @@ struct DispMemberKantei : public DispMemberBase {
 		mPelletMessageID     = 0;
 		mPelletOffset        = 0;
 		mTotalPokosCave      = 5555;
-		_28                  = 0;
+		mIsPayDebt           = false;
 		mSecondaryController = nullptr;
 		_29                  = false;
 		mIsDone              = false;
@@ -432,7 +432,7 @@ struct DispMemberKantei : public DispMemberBase {
 	u64 mPelletMessageID;                                // _18
 	u32 mPelletOffset;                                   // _20
 	int mTotalPokosCave;                                 // _24
-	u8 _28;                                              // _28
+	u8 mIsPayDebt;                                       // _28
 	u8 _29;                                              // _29
 	Controller* mSecondaryController;                    // _2C
 	u8 mIsDone;                                          // _30

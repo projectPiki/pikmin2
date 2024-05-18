@@ -1407,8 +1407,9 @@ void ZukanState::exec(SingleGameSection* game)
 		execModeChange(game, ModePellet);
 		break;
 	case ModeTeki:
-		int idk;
-		if (!sys->dvdLoadSyncAllNoBlock() && Screen::gGame2DMgr->check_ZukanEnemyRequest(idk) == 3) {
+		int enemyID;
+		if (!sys->dvdLoadSyncAllNoBlock()
+		    && Screen::gGame2DMgr->check_ZukanEnemyRequest(enemyID) == Screen::Game2DMgr::CHECK2D_Zukan_ExitFinished) {
 			clearHeaps();
 			transit(game, SGS_Select, nullptr);
 		} else {
@@ -1416,7 +1417,8 @@ void ZukanState::exec(SingleGameSection* game)
 		}
 		break;
 	case ModePellet:
-		if (!sys->dvdLoadSyncAllNoBlock() && Screen::gGame2DMgr->check_ZukanItemRequest(idk) == 3) {
+		if (!sys->dvdLoadSyncAllNoBlock()
+		    && Screen::gGame2DMgr->check_ZukanItemRequest(enemyID) == Screen::Game2DMgr::CHECK2D_Zukan_ExitFinished) {
 			clearHeaps();
 			transit(game, SGS_Select, nullptr);
 		} else {

@@ -545,6 +545,11 @@ struct SelectState : public State {
 	bool mNewLevelOpen;                      // _2C
 };
 
+enum ZukanLoadType {
+	ZukanType_Item  = 0,
+	ZukanType_Enemy = 1,
+};
+
 struct ZukanStateArg : public StateArg {
 	u8 mZukanType;
 	int mCourseID;

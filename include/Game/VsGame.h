@@ -513,7 +513,7 @@ struct ResultState : public State {
 };
 
 struct TitleArg : public StateArg {
-	u8 _00; // _00, unknown
+	bool mDoNeedClearHeap; // _00
 };
 
 struct TitleState : public State {

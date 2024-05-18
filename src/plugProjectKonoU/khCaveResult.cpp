@@ -14,6 +14,7 @@
 #include "LoadResource.h"
 #include "Controller.h"
 #include "Dolphin/gx.h"
+#include "Screen/Game2DMgr.h"
 
 namespace kh {
 namespace Screen {
@@ -60,7 +61,7 @@ void DispCaveResult::init(Game::Result::TNode* node, u32 death, bool caveComp)
 
 	mDeadPikis  = death;
 	mCaveComp   = caveComp;
-	mIsFinished = 0;
+	mIsFinished = ::Screen::Game2DMgr::CHECK2D_CaveResult_MenuOpen;
 }
 
 /**
@@ -295,7 +296,7 @@ bool ObjCaveResult::doUpdate()
 			switch (mSaveMgr->mCurrStateID) {
 			case 2:
 			case 0:
-				disp->mIsFinished = 1;
+				disp->mIsFinished = ::Screen::Game2DMgr::CHECK2D_CaveResult_Finished;
 				break;
 
 			case 1:

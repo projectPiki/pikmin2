@@ -227,11 +227,11 @@ void CaveState::check_SMenu(SingleGameSection* game)
 	Screen::gGame2DMgr->setGamePad(game->mControllerP1);
 	int state = Screen::gGame2DMgr->check_SMenu();
 	switch (state) {
-	case 1: // unpause and resume gameplay
+	case Screen::Game2DMgr::CHECK2D_SMenu_Cancel: // unpause and resume gameplay
 		gameSystem->setPause(false, "sm-canc", 3);
 		gameSystem->setMoviePause(false, "sm-canc");
 		return;
-	case 4:
+	case Screen::Game2DMgr::CHECK2D_SMenu_EscapeCave:
 		gameSystem->resetFlag(GAMESYS_IsGameWorldActive);
 		gameSystem->setMoviePause(false, "sm-giveup");
 		if (moviePlayer->mDemoState != DEMOSTATE_Inactive)
@@ -261,7 +261,7 @@ void CaveState::check_SMenu(SingleGameSection* game)
 			}
 		}
 		return;
-	case -1:
+	case Screen::Game2DMgr::CHECK2D_SMenu_Error:
 		// Conditions to open pause menu
 		if (!(gameSystem->isFlag(GAMESYS_DisablePause)) && moviePlayer->mDemoState == DEMOSTATE_Inactive && !gameSystem->paused()
 		    && game->mControllerP1->getButtonDown() & Controller::PRESS_START) {
@@ -274,7 +274,7 @@ void CaveState::check_SMenu(SingleGameSection* game)
 			gameSystem->setMoviePause(true, "open-sm");
 		}
 		break;
-	case 0:
+	case Screen::Game2DMgr::CHECK2D_SMenu_Opened:
 		break;
 	default:
 		JUT_PANICLINE(854, "Illegal return value %d.", Screen::gGame2DMgr->check_SMenu());

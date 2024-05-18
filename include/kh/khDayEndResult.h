@@ -123,8 +123,8 @@ struct DispDayEndResultMail : public og::Screen::DispMemberBase {
 	JKRHeap* mHeap;             // _08
 	JKRHeap* mBackupHeap;       // _0C
 	MailCategory mMailCategory; // _10
-	u32 _14;                    // _14, unknown
-	u8 _18;                     // _18
+	u32 mExitStatus;            // _14
+	bool mHasOpened;            // _18
 	int mTodayMailID;           // _1C
 	uint mDayCount;             // _20
 };

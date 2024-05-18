@@ -102,8 +102,8 @@ void SelectState::initNext(SingleGameSection* section)
 
 	arg.mHasNewPiklopediaEntries    = playData->mTekiStatMgr.whatsNew();
 	arg.mHasNewTreasureHoardEntries = playData->hasPelletZukanWhatsNew();
-	arg.mDoNewEntriesEfx            = section->_228;
-	section->_228                   = 1;
+	arg.mDoNewEntriesEfx            = section->mIsGameStarted;
+	section->mIsGameStarted         = true;
 	static_cast<Game::WorldMap::Base*>(mWorldMap)->init(arg);
 
 	section->mDisplayWiper = section->mWipeInFader;
@@ -179,11 +179,11 @@ void SelectState::exec(SingleGameSection* game)
 			game->BaseHIOSection::doUpdate();
 			WorldMap::UpdateArg arg;
 			arg.mCourseInfo = nullptr;
-			arg.mStatus     = WorldMap::WMapUpdate_0;
+			arg.mStatus     = WorldMap::WMapUpdate_Null;
 			static_cast<Game::WorldMap::Base*>(mWorldMap)->update(arg);
 
 			switch (arg.mStatus) {
-			case WorldMap::WMapUpdate_GoToLoad: {
+			case WorldMap::WMapUpdate_BeginGame: {
 				mPreviousCourseID = -1;
 				ZukanState* state = static_cast<ZukanState*>(game->mFsm->getState(SGS_Zukan));
 				if (state) {
@@ -191,8 +191,8 @@ void SelectState::exec(SingleGameSection* game)
 					state->_114 = -1;
 				}
 				if (arg.mCourseInfo) {
-					CourseInfo* info = arg.mCourseInfo;
-					game->_228       = 0;
+					CourseInfo* info     = arg.mCourseInfo;
+					game->mIsGameStarted = false;
 					playData->setPelletZukanOutOfDateAll();
 					playData->mTekiStatMgr.setOutOfDateAll();
 					game->mDisplayWiper = game->mWipeInFader;
@@ -203,22 +203,22 @@ void SelectState::exec(SingleGameSection* game)
 				}
 				break;
 			}
-			case WorldMap::WMapUpdate_2: {
+			case WorldMap::WMapUpdate_UnusedZukan: {
 				ZukanStateArg sarg;
-				sarg.mZukanType = 1;
-				sarg.mCourseID  = 0;
+				sarg.mZukanType = ZukanType_Enemy;
+				sarg.mCourseID  = kh::Screen::WorldMap::COURSE_Tutorial;
 				transit(game, SGS_Zukan, &sarg);
 				break;
 			}
-			case WorldMap::WMapUpdate_GoToZukan: {
+			case WorldMap::WMapUpdate_GoToZukanEnemy: {
 				ZukanStateArg sarg;
-				sarg.mZukanType = 1;
-				sarg.mCourseID  = 0;
+				sarg.mZukanType = ZukanType_Enemy;
+				sarg.mCourseID  = kh::Screen::WorldMap::COURSE_Tutorial;
 				if (arg.mCourseInfo) {
 					sarg.mCourseID    = arg.mCourseInfo->mCourseIndex;
 					mPreviousCourseID = sarg.mCourseID;
 				} else {
-					sarg.mCourseID = 2;
+					sarg.mCourseID = kh::Screen::WorldMap::COURSE_Yakushima;
 				}
 				transit(game, SGS_Zukan, &sarg);
 				break;
@@ -230,19 +230,19 @@ void SelectState::exec(SingleGameSection* game)
 					state->_110 = -1;
 					state->_114 = -1;
 				}
-				game->_228 = 0;
+				game->mIsGameStarted = false;
 				game->flow_goto_title();
 				return;
 			}
-			case WorldMap::WMapUpdate_4: {
+			case WorldMap::WMapUpdate_GoToZukanItem: {
 				ZukanStateArg sarg2;
-				sarg2.mZukanType = 0;
-				sarg2.mCourseID  = 0;
+				sarg2.mZukanType = ZukanType_Item;
+				sarg2.mCourseID  = kh::Screen::WorldMap::COURSE_Tutorial;
 				if (arg.mCourseInfo) {
 					sarg2.mCourseID   = arg.mCourseInfo->mCourseIndex;
 					mPreviousCourseID = sarg2.mCourseID;
 				} else {
-					sarg2.mCourseID = 2;
+					sarg2.mCourseID = kh::Screen::WorldMap::COURSE_Yakushima;
 				}
 				transit(game, SGS_Zukan, &sarg2);
 				break;
