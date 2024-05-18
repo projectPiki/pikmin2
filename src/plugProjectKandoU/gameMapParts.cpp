@@ -636,7 +636,7 @@ void MapRoom::doAnimation()
 void MapRoom::doEntry()
 {
 	if (RoomMapMgr::mUseCylinderViewCulling) {
-		Graphics* gfx  = sys->mGfx;
+		Graphics* gfx  = sys->getGfx();
 		bool isVisible = false;
 		for (int i = 0; i < gfx->mActiveViewports; i++) {
 			Viewport* vp = gfx->getViewport(i);
@@ -650,7 +650,7 @@ void MapRoom::doEntry()
 		}
 	} else {
 		bool isVisible = false;
-		Graphics* gfx  = sys->mGfx;
+		Graphics* gfx  = sys->getGfx();
 
 		for (int i = 0; i < gfx->mActiveViewports; i++) {
 			Viewport* vp = gfx->getViewport(i);
@@ -659,6 +659,7 @@ void MapRoom::doEntry()
 				break;
 			}
 		}
+
 		if (isVisible) {
 			if (!gameSystem->paused()) {
 				for (int i = 0; i < mAnimationCount; i++) {
@@ -671,6 +672,7 @@ void MapRoom::doEntry()
 			if (BaseHIOParms::sEntryOptMapRoom && !gameSystem->isMultiplayerMode()) {
 				return;
 			}
+
 			mModel->hide();
 		}
 
@@ -679,171 +681,6 @@ void MapRoom::doEntry()
 
 	mModel->mJ3dModel->calcMaterial();
 	mModel->mJ3dModel->diff();
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r27, 0xc(r1)
-	mr       r31, r3
-	lbz      r0, mUseCylinderViewCulling__Q24Game10RoomMapMgr@sda21(r13)
-	cmplwi   r0, 0
-	beq      lbl_801B785C
-	lwz      r3, sys@sda21(r13)
-	li       r28, 0
-	li       r27, 0
-	lwz      r29, 0x24(r3)
-	b        lbl_801B782C
-
-lbl_801B77F0:
-	mr       r3, r29
-	mr       r4, r27
-	bl       getViewport__8GraphicsFi
-	mr       r30, r3
-	bl       viewable__8ViewportFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801B7828
-	lwz      r3, 0x44(r30)
-	addi     r4, r31, 0x160
-	bl       isCylinderVisible__9CullPlaneFRQ23Sys8Cylinder
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801B7828
-	li       r28, 1
-	b        lbl_801B7838
-
-lbl_801B7828:
-	addi     r27, r27, 1
-
-lbl_801B782C:
-	lwz      r0, 0x264(r29)
-	cmpw     r27, r0
-	blt      lbl_801B77F0
-
-lbl_801B7838:
-	clrlwi.  r0, r28, 0x18
-	beq      lbl_801B7978
-	lwz      r3, 0x13c(r31)
-	lwz      r3, 8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_801B7978
-
-lbl_801B785C:
-	lwz      r3, sys@sda21(r13)
-	li       r27, 0
-	li       r28, 0
-	lwz      r29, 0x24(r3)
-	b        lbl_801B78AC
-
-lbl_801B7870:
-	mr       r3, r29
-	mr       r4, r28
-	bl       getViewport__8GraphicsFi
-	mr       r30, r3
-	bl       viewable__8ViewportFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801B78A8
-	lwz      r3, 0x44(r30)
-	addi     r4, r31, 0x150
-	bl       isVisible__9CullPlaneFRQ23Sys6Sphere
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801B78A8
-	li       r27, 1
-	b        lbl_801B78B8
-
-lbl_801B78A8:
-	addi     r28, r28, 1
-
-lbl_801B78AC:
-	lwz      r0, 0x264(r29)
-	cmpw     r28, r0
-	blt      lbl_801B7870
-
-lbl_801B78B8:
-	clrlwi.  r0, r27, 0x18
-	beq      lbl_801B7918
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	bl       paused__Q24Game10GameSystemFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801B7900
-	li       r27, 0
-	li       r29, 0
-	b        lbl_801B78F4
-
-lbl_801B78DC:
-	lwz      r0, 0xcc(r31)
-	lfs      f1, lbl_80519460@sda21(r2)
-	add      r3, r0, r29
-	bl       animate__Q23Sys15MatBaseAnimatorFf
-	addi     r29, r29, 0xc
-	addi     r27, r27, 1
-
-lbl_801B78F4:
-	lwz      r0, 0xc8(r31)
-	cmpw     r27, r0
-	blt      lbl_801B78DC
-
-lbl_801B7900:
-	lwz      r3, 0x13c(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_801B7960
-
-lbl_801B7918:
-	lbz      r0, sEntryOptMapRoom__Q24Game12BaseHIOParms@sda21(r13)
-	cmplwi   r0, 0
-	beq      lbl_801B794C
-	lwz      r4, gameSystem__4Game@sda21(r13)
-	li       r3, 0
-	lwz      r0, 0x44(r4)
-	cmpwi    r0, 1
-	beq      lbl_801B7940
-	cmpwi    r0, 3
-	bne      lbl_801B7944
-
-lbl_801B7940:
-	li       r3, 1
-
-lbl_801B7944:
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801B799C
-
-lbl_801B794C:
-	lwz      r3, 0x13c(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-
-lbl_801B7960:
-	lwz      r3, 0x13c(r31)
-	lwz      r3, 8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-
-lbl_801B7978:
-	lwz      r3, 0x13c(r31)
-	lwz      r3, 8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x13c(r31)
-	lwz      r3, 8(r3)
-	bl       diff__8J3DModelFv
-
-lbl_801B799C:
-	lmw      r27, 0xc(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
