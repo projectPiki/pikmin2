@@ -190,18 +190,13 @@ f32 MapMgr::getBestAngle(Vector3f& position, f32 distance, f32 divisor)
 	// Shoot 16 beams, 22.5 degrees apart from each other (PI / 8)
 	for (int i = 0; i < 16; i++) {
 		f32 angle    = (PI / 8) * (f32)i;
-		f32 tanTheta = distance * (f32)tan(divisor);
+		f32 tanTheta = tanf_kludge(divisor) * distance;
 
-		Vector3f offset  = Vector3f(distance * sinf(angle), tanTheta, distance * cosf(angle));
-		Vector3f beamPos = adjustedPos;
-		offset           = offset + beamPos;
+		Vector3f offset(distance * sinf(angle), tanTheta, distance * cosf(angle));
+		offset = offset + adjustedPos;
 
-		BeamCollisionArg beamArg(10.0f, 0, 0);
-		beamArg.mIndex    = i;
-		beamArg.mPosition = beamPos;
-
-		beamArg.mTargetPosition = offset;
-		beamArg.mBeamRadius     = 10.0f;
+		BeamCollisionArg beamArg(10.0f, i, 0);
+		beamArg.setup(i, offset, adjustedPos, 10.0f);
 		checkBeamCollision(beamArg);
 		angles[i] = beamArg.mTargetDistance;
 	}
