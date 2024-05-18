@@ -1658,6 +1658,21 @@ LIBS = [
     },
 ]
 
+for lib in LIBS:
+    cflags = lib['cflags'].lstrip("$")
+    cflags_split = cflags.split(" ")
+    if len(cflags_split) > 1:
+        cflags = f'[*{cflags_split[0]}, {", ".join(f'"{flag}"' for flag in cflags_split[1:])}]'
+    print(f"""    {{
+        "lib": "{lib['lib']}",
+        "cflags": {cflags},
+        "mw_version": "{lib['mw_version']}",
+        "host": {lib['host']},
+        "objects": [
+            {",\n            ".join([f'Object({'Matching' if obj[1] else 'NonMatching'}, "{obj[0]}.cpp"{f', {obj[2]}' if len(obj) > 2 else ''})' for obj in lib['objects']])}
+        ]
+    }},""")
+
 
 def main():
     import os

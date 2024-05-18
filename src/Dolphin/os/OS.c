@@ -1,6 +1,7 @@
 #include "types.h"
 #include "Dolphin/os.h"
 #include "Dolphin/PPCArch.h"
+#include "Dolphin/hw_regs.h"
 
 DECL_SECT(".init") extern char _db_stack_end[];
 
@@ -747,7 +748,6 @@ void __OSPSInit(void)
  * @note Address: 0x800EBA74
  * @note Size: 0x14
  */
-extern vu32 __DIRegs[];
 #define DI_CONFIG_IDX         0x9
 #define DI_CONFIG_CONFIG_MASK 0xFF
 u32 __OSGetDIConfig(void) { return (__DIRegs[DI_CONFIG_IDX] & DI_CONFIG_CONFIG_MASK); }

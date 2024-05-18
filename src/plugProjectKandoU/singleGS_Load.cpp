@@ -15,7 +15,7 @@ namespace SingleGame {
  * @note Address: N/A
  * @note Size: 0xE4
  */
-// void _Print(char*, ...)
+// static void _Print(char*, ...)
 //{
 // UNUSED FUNCTION
 //}
