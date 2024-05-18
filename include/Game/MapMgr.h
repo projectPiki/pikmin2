@@ -34,19 +34,16 @@ struct MapMgr : virtual public GenericObjectMgr {
 	struct BeamCollisionArg {
 		BeamCollisionArg() { }
 
-		BeamCollisionArg(f32 beamRadius, int index, u8 hitSuccess)
+		BeamCollisionArg(int index, const Vector3f& position, const Vector3f& targetPosition)
 		{
-			mBeamRadius = beamRadius;
+			mBeamRadius = 10.0f;
 			mIndex      = index;
-			mHitSuccess = hitSuccess;
-		}
+			mHitSuccess = false;
 
-		inline void setup(int index, const Vector3f& position, const Vector3f& targetPosition, f32 beamRadius)
-		{
 			mIndex          = index;
 			mPosition       = position;
 			mTargetPosition = targetPosition;
-			mBeamRadius     = beamRadius;
+			mBeamRadius     = 10.0f;
 		}
 
 		Vector3f mPosition;       // _00
