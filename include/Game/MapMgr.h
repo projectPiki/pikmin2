@@ -31,19 +31,21 @@ struct WaterBox;
 // };
 
 struct MapMgr : virtual public GenericObjectMgr {
+#define BEAM_RADIUS (10.0f)
 	struct BeamCollisionArg {
-		BeamCollisionArg() { }
-
-		BeamCollisionArg(int index, const Vector3f& position, const Vector3f& targetPosition)
+		BeamCollisionArg()
 		{
-			mBeamRadius = 10.0f;
-			mIndex      = index;
+			mBeamRadius = BEAM_RADIUS;
+			mIndex      = 0;
 			mHitSuccess = false;
+		}
 
+		inline void setup(int index, const Vector3f& position, const Vector3f& targetPosition)
+		{
 			mIndex          = index;
 			mPosition       = position;
 			mTargetPosition = targetPosition;
-			mBeamRadius     = 10.0f;
+			mBeamRadius     = BEAM_RADIUS;
 		}
 
 		Vector3f mPosition;       // _00

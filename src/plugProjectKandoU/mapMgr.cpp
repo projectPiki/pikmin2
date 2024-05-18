@@ -195,7 +195,8 @@ f32 MapMgr::getBestAngle(Vector3f& position, f32 distance, f32 divisor)
 		Vector3f offset(distance * sinf(angle), tanTheta, distance * cosf(angle));
 		offset = offset + adjustedPos;
 
-		BeamCollisionArg beamArg(i, adjustedPos, offset);
+		BeamCollisionArg beamArg;
+		beamArg.setup(i, adjustedPos, offset);
 		checkBeamCollision(beamArg);
 		angles[i] = beamArg.mTargetDistance;
 	}
