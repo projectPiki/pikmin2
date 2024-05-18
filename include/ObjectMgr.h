@@ -12,68 +12,83 @@ struct ObjectMgr : public Container<T>, GenericObjectMgr {
 	{
 	}
 
-	///////////////// VTABLE
-	// virtual ~ObjectMgr() { }   // _08 (weak)
-	virtual void doAnimation() // _34
-	{
-		Iterator<T> iter(this);
-		iter.first();
-		while (!iter.isDone()) {
-			(*iter)->doAnimation();
-			iter.next();
-		}
-	}
-	virtual void doEntry() // _38
-	{
-		Iterator<T> iter(this);
-		iter.first();
-		while (!iter.isDone()) {
-			(*iter)->doEntry();
-			iter.next();
-		}
-	}
-	virtual void doSetView(int viewportNumber) // _3C
-	{
-		Iterator<T> iter(this);
-		iter.first();
-		while (!iter.isDone()) {
-			(*iter)->doSetView(viewportNumber);
-			iter.next();
-		}
-	}
-	virtual void doViewCalc() // _40
-	{
-		Iterator<T> iter(this);
-		iter.first();
-		while (!iter.isDone()) {
-			(*iter)->doViewCalc();
-			iter.next();
-		}
-	}
-	virtual void doSimulation(f32 constraint) // _44
-	{
-		Iterator<T> iter(this);
-		iter.first();
-		while (!iter.isDone()) {
-			(*iter)->doSimulation(constraint);
-			iter.next();
-		}
-	}
-	virtual void doDirectDraw(Graphics& graphics) // _48
-	{
-		Iterator<T> iter(this);
-		iter.first();
-		while (!iter.isDone()) {
-			(*iter)->doDirectDraw(graphics);
-			iter.next();
-		}
-	}
-	///////////////// VTABLE END
+	virtual void doAnimation();                    // _34
+	virtual void doEntry();                        // _38
+	virtual void doSetView(int viewportNumber);    // _3C
+	virtual void doViewCalc();                     // _40
+	virtual void doSimulation(f32 constraint);     // _44
+	virtual void doDirectDraw(Graphics& graphics); // _48
 
 	// _00		= VTBL
 	// _00-_1C	= Container
 	// _1C-_20  = GenericObjectMgr
 };
+
+template <typename T>
+void ObjectMgr<T>::doAnimation()
+{
+	Iterator<T> iter(this);
+	iter.first();
+	while (!iter.isDone()) {
+		(*iter)->doAnimation();
+		iter.next();
+	}
+}
+
+template <typename T>
+void ObjectMgr<T>::doEntry()
+{
+	Iterator<T> iter(this);
+	iter.first();
+	while (!iter.isDone()) {
+		(*iter)->doEntry();
+		iter.next();
+	}
+}
+
+template <typename T>
+void ObjectMgr<T>::doSetView(int viewportNumber)
+{
+	Iterator<T> iter(this);
+	iter.first();
+	while (!iter.isDone()) {
+		(*iter)->doSetView(viewportNumber);
+		iter.next();
+	}
+}
+
+template <typename T>
+void ObjectMgr<T>::doViewCalc()
+{
+	Iterator<T> iter(this);
+	iter.first();
+	while (!iter.isDone()) {
+		(*iter)->doViewCalc();
+		iter.next();
+	}
+}
+
+template <typename T>
+void ObjectMgr<T>::doSimulation(f32 constraint)
+{
+	Iterator<T> iter(this);
+	iter.first();
+	while (!iter.isDone()) {
+		(*iter)->doSimulation(constraint);
+		iter.next();
+	}
+}
+
+template <typename T>
+void ObjectMgr<T>::doDirectDraw(Graphics& gfx)
+{
+	Iterator<T> iter(this);
+	iter.first();
+	while (!iter.isDone()) {
+		(*iter)->doDirectDraw(gfx);
+		iter.next();
+	}
+}
 
 template <typename T>
 struct TObjectNode : public CNode {

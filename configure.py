@@ -900,7 +900,7 @@ LIBS = [
             ["plugProjectKandoU/cellPyramid", False],
             ["plugProjectKandoU/naviMgr", True],
             ["plugProjectKandoU/pikiMgr", True],
-            ["plugProjectKandoU/mapMgr", False],
+            ["plugProjectKandoU/mapMgr", True],
             ["plugProjectKandoU/baseHIOSection", True],
             ["plugProjectKandoU/naviWhistle", False],
             ["plugProjectKandoU/pelletMgr", False],

@@ -131,8 +131,18 @@ struct ShapeMapMgr : public MapMgr {
 
 	ShapeMapMgr() { }
 
-	virtual void getBoundBox2d(BoundBox2d&);                                // _18 (weak)
-	virtual void getBoundBox(BoundBox&);                                    // _1C (weak)
+	virtual void getBoundBox2d(BoundBox2d& bounds) // _18 (weak)
+	{
+		BoundBox calc;
+		mMapCollision.mDivider->getBoundBox(calc);
+		bounds.fromBoundBox(calc);
+	}
+	virtual void getBoundBox(BoundBox& bounds) // _1C (weak)
+	{
+		BoundBox calc;
+		mMapCollision.mDivider->getBoundBox(calc);
+		bounds = calc;
+	}
 	virtual bool findRayIntersection(Sys::RayIntersectInfo&);               // _20
 	virtual Sys::TriIndexList* traceMove(MoveInfo&, f32);                   // _24
 	virtual f32 getMinY(Vector3f&);                                         // _28
