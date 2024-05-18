@@ -872,6 +872,7 @@ void RoomMapMgr::createRandomMap(int floorNum, Cave::EditMapUnit* edit)
 	if (DVDConvertPathToEntrynum(lightingFileName) != -1) {
 		void* lightingFile = JKRDvdRipper::loadToMainRAM(lightingFileName, nullptr, Switch_0, 0, nullptr, JKRDvdRipper::ALLOC_DIR_BOTTOM, 0,
 		                                                 nullptr, nullptr);
+
 		if (lightingFile) {
 			RamStream lightingStream(lightingFile, -1);
 			lightingStream.setMode(STREAM_MODE_TEXT, 1);
@@ -904,7 +905,8 @@ void RoomMapMgr::createRandomMap(int floorNum, Cave::EditMapUnit* edit)
 
 	// make map.
 	sys->heapStatusStart("246-CreateRandomMap", nullptr);
-	nishimuraCreateRandomMap(interfaces, interfaceCount, floorInfo, floorNum == mCaveInfo->getFloorMax() - 1, edit);
+	bool isFinalFloor = mCaveInfo->isFinalFloor(floorNum);
+	nishimuraCreateRandomMap(interfaces, interfaceCount, floorInfo, isFinalFloor, edit);
 	sys->heapStatusEnd("246-CreateRandomMap");
 
 	delete[] unitFile;
@@ -939,8 +941,7 @@ void RoomMapMgr::createRandomMap(int floorNum, Cave::EditMapUnit* edit)
 	CI_LOOP(iter)
 	{
 		if ((*iter)->mUnitKind == Cave::UNITKIND_Room) {
-			mRoomList[roomIdx] = *iter;
-			roomIdx++;
+			mRoomList[roomIdx++] = (*iter);
 		}
 	}
 

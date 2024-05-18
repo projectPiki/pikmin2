@@ -243,6 +243,8 @@ struct CaveInfo : public CNode {
 	FloorInfo* getFloorInfo(int floorIndex);
 	static CaveInfo* load(char* path);
 
+	inline bool isFinalFloor(u32 floorIndex) { return getFloorMax() - 1 == floorIndex; }
+
 	// _00     = VTBL
 	// _00-_18 = CNode
 	Parms mParms;         // _18
