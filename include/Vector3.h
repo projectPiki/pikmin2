@@ -14,6 +14,7 @@ struct Matrixf;
  * @brief A 3-dimensional vector template class.
  *
  * @tparam T The type of the vector components.
+ * @note 2D functions refer to the X and Z components, and ignores the y dimension, a flat plane.
  */
 template <typename T>
 struct Vector3 {
@@ -75,9 +76,9 @@ struct Vector3 {
 	inline T absX();
 	inline T absY();
 	inline T absZ();
-	inline bool boundedX(T bound);
-	inline bool boundedY(T bound);
-	inline bool boundedZ(T bound);
+	inline bool isBoundedX(T bound);
+	inline bool isBoundedY(T bound);
+	inline bool isBoundedZ(T bound);
 	inline void scale(T scale);
 
 	// Magnitude Functions
@@ -416,19 +417,19 @@ inline T Vector3<T>::absZ()
 }
 
 template <typename T>
-inline bool Vector3<T>::boundedX(T bound)
+inline bool Vector3<T>::isBoundedX(T bound)
 {
 	return absX() < bound;
 }
 
 template <typename T>
-inline bool Vector3<T>::boundedY(T bound)
+inline bool Vector3<T>::isBoundedY(T bound)
 {
 	return absY() < bound;
 }
 
 template <typename T>
-inline bool Vector3<T>::boundedZ(T bound)
+inline bool Vector3<T>::isBoundedZ(T bound)
 {
 	return absZ() < bound;
 }
