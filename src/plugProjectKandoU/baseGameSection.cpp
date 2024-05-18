@@ -1229,7 +1229,6 @@ void BaseGameSection::setDefaultPSSceneInfo(PSGame::SceneInfo& sceneInfo)
  * @note Address: 0x8014E130
  * @note Size: 0x68C
  */
-// void prepareHoleIn__Q24Game15BaseGameSectionFR10Vector3f b()
 void BaseGameSection::prepareHoleIn(Vector3f& suroundPos, bool killPikihead)
 {
 	Screen::gGame2DMgr->mScreenMgr->reset();
@@ -1244,7 +1243,8 @@ void BaseGameSection::prepareHoleIn(Vector3f& suroundPos, bool killPikihead)
 				DeathMgr::inc(DeathCounter::COD_All);
 				if (gameSystem->isChallengeMode()) {
 					GameMessageVsPikminDead deadPikmin;
-					sendMessage(deadPikmin);
+					// REALLY????? WHAT FILE ARE WE IN???
+					gameSystem->mSection->sendMessage(deadPikmin);
 				}
 			}
 		}
@@ -1271,8 +1271,8 @@ void BaseGameSection::prepareHoleIn(Vector3f& suroundPos, bool killPikihead)
 				vec += suroundPos;
 				vec.y = mapMgr->getMinY(vec);
 				piki->setPosition(vec, false);
-				PikiAI::ActFormationInitArg arg(aliveOrima, 1);
-				arg.mDoUseTouchCooldown = false;
+				PikiAI::ActFormationInitArg arg(aliveOrima);
+				arg.mIsDemoFollow = true;
 				piki->mBrain->start(PikiAI::ACT_Formation, &arg);
 				piki->movie_begin(false);
 			}
@@ -1287,14 +1287,15 @@ void BaseGameSection::prepareHoleIn(Vector3f& suroundPos, bool killPikihead)
  * @note Address: 0x8014E7BC
  * @note Size: 0x714
  */
-// void prepareFountainOn__Q24Game15BaseGameSectionFR10Vector3f()
 void BaseGameSection::prepareFountainOn(Vector3f& suroundPos)
 {
-	Iterator<BaseItem> iFountain = ItemBigFountain::mgr;
-	CI_LOOP(iFountain)
-	{
-		ItemBigFountain::Item* fountain = static_cast<ItemBigFountain::Item*>(*iFountain);
-		fountain->killAllEffect();
+	if (ItemBigFountain::mgr) {
+		Iterator<BaseItem> iFountain = ItemBigFountain::mgr;
+		CI_LOOP(iFountain)
+		{
+			ItemBigFountain::Item* fountain = static_cast<ItemBigFountain::Item*>(*iFountain);
+			fountain->killAllEffect();
+		}
 	}
 	Screen::gGame2DMgr->mScreenMgr->reset();
 	Navi* aliveOrima = naviMgr->getAliveOrima(ALIVEORIMA_Active);
@@ -1308,7 +1309,8 @@ void BaseGameSection::prepareFountainOn(Vector3f& suroundPos)
 			DeathMgr::inc(DeathCounter::COD_All);
 			if (gameSystem->isChallengeMode()) {
 				GameMessageVsPikminDead deadPikmin;
-				sendMessage(deadPikmin);
+				// OH MY FUCKING GOD NOT AGAIN
+				gameSystem->mSection->sendMessage(deadPikmin);
 			}
 		}
 	}
@@ -1325,10 +1327,14 @@ void BaseGameSection::prepareFountainOn(Vector3f& suroundPos)
 			piki->endStick();
 			piki->mFsm->transitForce(piki, PIKISTATE_Walk, nullptr);
 			piki->getCreatureID();
-			piki->mNavi = aliveOrima;
+			
 
-			PikiAI::ActFormationInitArg arg(aliveOrima);
-			arg.mIsDemoFollow = true;
+			PikiAI::ActFormationInitArg arg(aliveOrima, false);
+
+			piki->mNavi = aliveOrima;
+			
+			arg.mIsDemoFollow = true; // MAKE UP YOUR DAMN MIND I STG
+
 			piki->mBrain->start(PikiAI::ACT_Formation, &arg);
 			piki->movie_begin(false);
 		}
@@ -1993,7 +1999,8 @@ void BaseGameSection::setupFixMemory_dvdload()
 	mMizuTexture  = new JUTTexture(file);
 	sys->heapStatusStart("fbTexture", nullptr);
 
-	mXfbImage = new JUTTexture((u32)(sys->getRenderModeObj()->fbWidth >> 1), (u32)(sys->getRenderModeObj()->efbHeight >> 1), GX_TF_RGB565);
+	// I don't know lmao, also ty https://celestialamber.github.io/rlwinm-clrlwi-decoder/
+	mXfbImage = new JUTTexture((System::getRenderModeWidth() >> 1) & 0x7FFF, (System::getRenderModeHeight() >> 1) & 0x7FFF, GX_TF_RGB565);
 	gameSystem->mXfbTexture = mXfbImage;
 
 	sys->heapStatusEnd("fbTexture");
@@ -2013,7 +2020,7 @@ void BaseGameSection::setupFixMemory_dvdload()
 	efx::OnyonSpotData* spot = new efx::OnyonSpotData;
 	spot->entry();
 	particleMgr->endEntryModelEffect();
-	// reload particleMgr here
+	// Instance_TPkEffectMgr isn't static, checked particleMgr.o
 	particleMgr->Instance_TPkEffectMgr();
 
 	sys->heapStatusEnd("particle");
@@ -2328,13 +2335,11 @@ void BaseGameSection::setupFloatMemory()
 	lifeGaugeMgr = new LifeGaugeMgr;
 	lifeGaugeMgr->loadResource();
 
-	CarryInfoMgr* mgr;
 	if (gameSystem->isStoryMode()) {
-		mgr = new CarryInfoMgr(48);
+		carryInfoMgr = new CarryInfoMgr(48);
 	} else {
-		mgr = new CarryInfoMgr(64);
+		carryInfoMgr = new CarryInfoMgr(64);
 	}
-	carryInfoMgr = mgr;
 	carryInfoMgr->loadResource();
 
 	platMgr   = new PlatMgr;
@@ -2496,12 +2501,14 @@ void BaseGameSection::setupFloatMemory()
 		sys->heapStatusEnd("PlatCellMgr");
 	}
 	sys->heapStatusEnd("CellMgr");
+	
+
 	if (cave) {
 		static_cast<RoomMapMgr*>(mapMgr)->placeObjects();
 	}
-	Graphics* gfx = sys->mGfx;
-	initViewports(*gfx);
-	particleMgr->setViewport(*gfx);
+	Graphics& gfx = *sys->getGfx();
+	initViewports(gfx);
+	particleMgr->setViewport(gfx);
 	particleMgr->start();
 
 	initGenerators();
