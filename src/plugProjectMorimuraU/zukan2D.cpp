@@ -379,7 +379,7 @@ void TZukanBase::doCreate(JKRArchive* archive)
 	mRequestTimer = 0xffffffce;
 	indexPaneInit(screen);
 	J2DPane* idpane = mIndexPaneList[0]->mPane;
-	float diff      = mIndexPaneList[1]->mPane->mOffset.y - idpane->mOffset.y;
+	f32 diff        = mIndexPaneList[1]->mPane->mOffset.y - idpane->mOffset.y;
 	idpane->show();
 
 	mIndexGroup                 = new TIndexGroup;

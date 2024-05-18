@@ -154,7 +154,7 @@ void TRenderingProcessor::setDrawLocateY()
 		mLocate.setY(mFontHeightAdjusted * mParagraphNum + mLineHeight * mPageInfoNum + mFontHeight * mMainFont->getDescent()
 		             + mLocate.f.y);
 	} else if (mFlags.isSet(0x200)) {
-		float totalFontHeight       = 0.0f;
+		f32 totalFontHeight         = 0.0f;
 		unsigned char* lineWidthPtr = (mOnePageLines + ((2 * mPageInfoNum) & 0x1FE));
 		int lineWidthIndex          = lineWidthPtr[0];
 		int lineWidthEndIndex       = lineWidthPtr[1] + 1 - lineWidthIndex;
@@ -167,7 +167,7 @@ void TRenderingProcessor::setDrawLocateY()
 			lineWidthEndIndex--;
 		}
 	} else if (mFlags.isSet(0x400)) {
-		float paragraphNumFloat = mOnePageLines[mParagraphNum] - (mPageInfoNum + 1);
+		f32 paragraphNumFloat = mOnePageLines[mParagraphNum] - (mPageInfoNum + 1);
 		mLocate.setY(
 		    -((mFontHeightAdjusted * paragraphNumFloat) - (mFontHeight * mMainFont->getDescent() + mLineHeight * (1.0f + mPageInfoNum))));
 	} else {

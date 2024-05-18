@@ -807,7 +807,7 @@ bool Game::Rigid::resolveCollision(int configIndex, Vector3f& collisionPoint, Ve
 	Vector3f impulse = angularMomentum + config->mVelocity;
 	impulse.negate2();
 
-	float impulseMagnitude = impulse.dot(collisionNormal);
+	f32 impulseMagnitude = impulse.dot(collisionNormal);
 
 	// If there's a collision
 	if (impulseMagnitude < 0.0f * -0.0f) {

@@ -28,6 +28,19 @@ void calcLagrange(const Vector3f* controlPoints, f32 t, Vector3f& output)
 }
 
 /**
+ * Calculates the scale based on the given distances.
+ *
+ * @param distanceTopToTarget The distance from the top to the target.
+ * @param distanceTopMiddle The distance from the top to the middle.
+ * @param distanceMiddleBottom The distance from the middle to the bottom.
+ * @return The calculated scale.
+ */
+inline f32 calculateScale(f32 distanceTopToTarget, f32 distanceTopMiddle, f32 distanceMiddleBottom)
+{
+	return (2.0f / distanceTopToTarget) * (distanceTopToTarget + (distanceTopMiddle - distanceMiddleBottom));
+}
+
+/**
  * @note Address: 0x8023D858
  * @note Size: 0x1D8
  */
@@ -47,30 +60,27 @@ void calcJointPos(const Vector3f& topPosition, const Vector3f& bottomPosition, f
 	f32 distanceTopMiddle    = SQUARE(topToMiddleDistance);
 	f32 distanceMiddleBottom = SQUARE(middleToBottomDistance);
 
-	Vector3f targetXyz         = bottomPosition;
-	Vector3f topToTargetVector = bottomPosition - topPosition;
+	Vector3f targetXyz = bottomPosition;
 
-	f32 distanceTopToTarget = topToTargetVector.sqrMagnitude(); // f11
+	Vector3f topToTargetVector = targetXyz - topPosition;
+	f32 distanceTopToTarget    = topToTargetVector.sqrMagnitude(); // f11
 	if (!(distanceTopToTarget < 0.000001f)) {
-		f32 factor = (0.5f / distanceTopToTarget) * (distanceTopToTarget + (distanceTopMiddle - distanceMiddleBottom)); // f3
+		f32 scale                  = calculateScale(distanceTopToTarget, distanceTopMiddle, distanceMiddleBottom);
+		Vector3f scaledTopToTarget = scaleAndTranslate(topToTargetVector, topPosition, scale);
+		Vector3f offsetFromTop     = scaledTopToTarget - topPosition;
 
-		Vector3f scaledTopToTarget(factor * topToTargetVector.x + topPosition.x, factor * topToTargetVector.y + topPosition.y,
-		                           factor * topToTargetVector.z + topPosition.z);
+		f32 distance = distanceTopMiddle - SQUARE(offsetFromTop.x) - SQUARE(offsetFromTop.y) - SQUARE(offsetFromTop.z); // f30
 
-		Vector3f offsetFromTop = scaledTopToTarget - topPosition;
-
-		f32 distanceAdjustment = distanceTopMiddle - SQUARE(offsetFromTop.x) - SQUARE(offsetFromTop.y) - SQUARE(offsetFromTop.z); // f30
-
-		if (!(distanceAdjustment <= 0.0f)) {
-			Vector3f cross1 = cross(middleJointPos, topToTargetVector);
-			middleJointPos  = cross(cross1, topToTargetVector);
+		if (!(distance <= 0.0f)) {
+			Vector3f translation = middleJointPos.cross(topToTargetVector);
+			middleJointPos       = translation.cross(topToTargetVector);
 
 			f32 outSqr = middleJointPos.sqrMagnitude();
 			if (outSqr != 0.0f) {
-				f32 len               = _sqrtf2(distanceAdjustment / outSqr);
-				bottomJointPosition.x = len * middleJointPos.x + cross1.x;
-				bottomJointPosition.y = len * middleJointPos.y + cross1.y;
-				bottomJointPosition.z = len * middleJointPos.z + cross1.z;
+				f32 scale             = _sqrtf2(distance / outSqr);
+				bottomJointPosition.x = scale * middleJointPos.x + translation.x;
+				bottomJointPosition.y = scale * middleJointPos.y + translation.y;
+				bottomJointPosition.z = scale * middleJointPos.z + translation.z;
 				return;
 			}
 		}
