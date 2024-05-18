@@ -404,6 +404,14 @@ inline f32 Vector3f::normalise2D()
 	return len;
 }
 
+inline bool isWithinSphere(Vector3f& pToCheck, f32 pRadius)
+{
+	f32 distance = pToCheck.sqrMagnitude2D();
+	f32 radius   = pRadius;
+	radius *= radius;
+	return distance > radius;
+}
+
 inline f32 stickMagnitude(Vector3f& vec)
 {
 	Vector3f a = vec;

@@ -153,14 +153,6 @@ bool CellIterator::find()
 	return false;
 }
 
-inline bool isIntersecting(Vector3f& position, Sys::Sphere& targetSphere, Sys::Sphere& bounds)
-{
-	f32 distance = position.sqrDistance2D(targetSphere.mPosition);
-	f32 radius   = (targetSphere.mRadius + bounds.mRadius);
-	radius *= radius;
-	return distance > radius;
-}
-
 /**
  * @note Address: 0x8022E778
  * @note Size: 0x18C
@@ -187,15 +179,15 @@ bool CellIterator::satisfy()
 
 	if (!mArg.mOptimise) {
 		if (!mArg.mUseCustomRadius) {
-			if (isIntersecting(objPos, mArg.mSphere, boundingSphere)) {
+			objPos = objPos - mArg.mSphere.mPosition;
+
+			if (isWithinSphere(objPos, mArg.mSphere.mRadius + boundingSphere.mRadius)) {
 				return false;
 			}
 		} else {
 			objPos -= mArg.mSphere.mPosition;
-			f32 distance = objPos.x * objPos.x + objPos.z * objPos.z;
-			f32 radius   = (mArg.mSphere.mRadius + boundingSphere.mRadius);
-			radius *= radius;
-			if (distance > radius) {
+
+			if (isWithinSphere(objPos, mArg.mSphere.mRadius + boundingSphere.mRadius)) {
 				return false;
 			}
 		}
@@ -211,20 +203,23 @@ bool CellIterator::satisfy()
  */
 void CellIterator::calcExtent()
 {
-	CellPyramid* mgr = mArg.mCellMgr;
-	f32 r            = mArg.mSphere.mRadius;
-	f32 z            = mArg.mSphere.mPosition.z;
-	f32 x            = mArg.mSphere.mPosition.x;
+	// Get the cell manager and sphere properties from mArg
+	CellPyramid* cellManager = mArg.mCellMgr;
+	Vector3f spherePosition  = mArg.mSphere.mPosition;
+	f32 sphereRadius         = mArg.mSphere.mRadius;
 
-	f32 a = mArg.mCellMgr->mBounds.y;
-	f32 b = mArg.mCellMgr->mBounds.x;
+	// Get the bounds from the cell manager
+	f32 boundsY = cellManager->mBounds.y;
+	f32 boundsX = cellManager->mBounds.x;
 
-	f32 norm = 1.0f / (mgr->mScale * mgr->mLayers[mCurrLayerIdx].mLayerSize);
+	// Calculate the normalization factor
+	f32 normalizationFactor = 1.0f / (cellManager->mScale * cellManager->mLayers[mCurrLayerIdx].mLayerSize);
 
-	mMinX = (x - r - a) * norm;
-	mMinY = (z - r - b) * norm;
-	mMaxX = (x + r - a) * norm;
-	mMaxY = (z + r - b) * norm;
+	// Calculate the minimum and maximum x and y values
+	mMinX = (spherePosition.x - sphereRadius - boundsY) * normalizationFactor;
+	mMinY = (spherePosition.z - sphereRadius - boundsX) * normalizationFactor;
+	mMaxX = (spherePosition.x + sphereRadius - boundsY) * normalizationFactor;
+	mMaxY = (spherePosition.z + sphereRadius - boundsX) * normalizationFactor;
 
 	if (mMinX > mMaxX) {
 		JUT_PANICLINE(249, "x %f>%f", mMinX, mMaxX);
