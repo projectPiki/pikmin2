@@ -40,6 +40,11 @@ namespace Game {
 /**
  * @note Address: 0x8021F3D0
  * @note Size: 0x1790
+ *
+ * @note Functionally instruction match the function by removing the definition for
+ *       the 'Vector3f operator-(const Vector3f&, const Vector3f&)' inline function.
+ *       At line ~335 in Vector3f.h replace the line with:
+ *       Vector3f operator-(const Vector3f& a, const Vector3f& b);
  */
 bool Navi::demoCheck()
 {
@@ -63,16 +68,19 @@ bool Navi::demoCheck()
 	}
 
 	Pom::Mgr* pommgr = static_cast<Pom::Mgr*>(generalEnemyMgr->getEnemyMgr(EnemyTypeID::EnemyID_Pom));
-	bool whiteflag   = playData->isDemoFlag(DEMO_White_Candypop) == false;
-	bool purpleflag  = playData->isDemoFlag(DEMO_Purple_Candypop) == false;
-	if (pommgr && (purpleflag || whiteflag)) {
-		// help this is broken
+
+	// regswaps issue with hasWhite, hasPurple nad cPom and color
+	bool hasWhite  = playData->hasGotWhites();
+	bool hasPurple = playData->hasGotPurples();
+	if (pommgr && (hasPurple || hasWhite)) {
 		EnemyIterator<Pom::Obj> iter(pommgr);
 		CI_LOOP(iter)
 		{
 			Pom::Obj* cPom = *iter;
-			int color      = cPom->mPikiKind;
-			if ((color == Purple || color == White) && (color != Purple || purpleflag) && (color != White || whiteflag)) {
+			// regswaps issue with color
+			int color = cPom->mPikiKind;
+
+			if ((color == Purple || color == White) && (color != Purple || hasPurple) && (color != White || hasWhite)) {
 				Sys::Sphere bounds;
 				cPom->getBoundingSphere(bounds);
 				bounds.mRadius += FindCandypopTriggerSize;

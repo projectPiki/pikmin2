@@ -414,6 +414,9 @@ struct PlayData : public CNode {
 
 	inline bool isStoryFlag(StoryFlags flag) { return mStoryFlags & flag; }
 
+	inline bool hasGotWhites() { return !isDemoFlag(DEMO_White_Candypop); }
+	inline bool hasGotPurples() { return !isDemoFlag(DEMO_Purple_Candypop); }
+
 	inline PelletFirstMemory* getZukanStat() { return mZukanStat; }
 
 	inline void writeSprayCounts(Stream& output, char* textBuffer)
