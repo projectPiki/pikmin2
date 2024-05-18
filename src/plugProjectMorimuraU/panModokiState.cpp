@@ -1,6 +1,6 @@
-#include "Game/Entities/PanModokiBase.h"
 #include "Game/EnemyAnimKeyEvent.h"
 #include "Game/EnemyFunc.h"
+#include "Game/Entities/PanModokiBase.h"
 #include "Game/Stickers.h"
 
 namespace Game {
@@ -680,7 +680,7 @@ void StateCarryEnd::exec(EnemyBase* enemy)
 
 	} else {
 		Vector3f diff = enemy->mHomePosition - enemy->getPosition();
-		if (diff.boundedX(2.0f) && diff.boundedZ(2.0f)) {
+		if (diff.isBoundedX(2.0f) && diff.isBoundedZ(2.0f)) {
 			Vector3f homePos = enemy->mHomePosition;
 			enemy->onSetPosition(homePos);
 			if (enemy->mCurAnim->mIsPlaying && enemy->mCurAnim->mType == KEYEVENT_LOOP_END) {
