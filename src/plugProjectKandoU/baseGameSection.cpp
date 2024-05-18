@@ -732,6 +732,7 @@ void BaseGameSection::initGenerators()
 
 					limitGeneratorMgr->addMgr(currentNonloopMgr);
 					playData->mLimitGen[courseInfo->mCourseIndex].mNonLoops.setFlag(i);
+					
 				}
 			}
 
@@ -741,12 +742,23 @@ void BaseGameSection::initGenerators()
 			int day = gameSystem->mTimeMgr->mDayCount;
 			// int loopGenCount = courseInfo->mLoopGenInfo.mCount;
 
-			if (day % 30 == 0) {
+			int intervalDay = today % 30;
+
+			int intervalIterations = day / 30;
+			
+			// effectively day > 30
+			if (intervalIterations >= 1) {
+				
+				int floorDay = intervalIterations * 30;
 
 				for (int i = 0; i < courseInfo->mLoopGenInfo.mCount; i++) {
 					LimitGen* currentGen = static_cast<LimitGen*>(courseInfo->mLoopGenInfo.mOwner.getChildAt(i));
-					if (currentGen->mMinimumDay - 30 > day % 30 || day % 30 > currentGen->mMinimumDay - 30)
-						continue;
+
+					int intervalMin = currentGen->mMinimumDay % 30;
+					int intervalMax = currentGen->mMaximumDay % 30;
+
+					if (intervalMin > intervalDay || intervalDay > intervalMax)
+					 	continue;
 
 					bool loopLoaded = playData->mLimitGen[courseInfo->mCourseIndex].mLoops.isFlag(i);
 
@@ -766,7 +778,7 @@ void BaseGameSection::initGenerators()
 						currentLoopMgr->mUnusedFlag  = true; // is nonrepeating?
 
 						currentLoopMgr->read(loopTxt, false);
-						currentLoopMgr->setDayLimit(currentGen->mMaximumDay - 30);
+						currentLoopMgr->setDayLimit(floorDay + currentGen->mMaximumDay - 30);
 						currentLoopMgr->updateUseList();
 
 						generatorManagers[fileIdx] = currentLoopMgr;
@@ -894,7 +906,7 @@ void BaseGameSection::initGenerators()
 		louie->mFaceDir = roundAng(mapRotation);
 		louie->setPosition(vec_0x1c24, false);
 		louie->setVelocity(vec_0x1c30);
-		if (!(playData->mDeadNaviID & 1)) {
+		if (!(playData->mDeadNaviID >> 1 & 1)) {
 			louie->mHealth = playData->mNaviLifeMax[1];
 		}
 		if (playData->mDeadNaviID & 2) {
