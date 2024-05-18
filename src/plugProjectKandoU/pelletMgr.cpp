@@ -192,22 +192,22 @@ Pellet* PelletView::becomePellet(PelletViewArg* viewArg)
 		Vector3f position = viewArg->mPosition;
 		position.y += 0.5f * newPellet->getCylinderHeight();
 
-		Vector3f offset = newPellet->mConfig->mParams.mOffset.mData;
+		Vector3f offset = newPellet->getOffset();
 
 		Vector3f resultVec;
-		Vector3f* vecPtr = &resultVec;
-		*vecPtr          = offset;
+		Vector3f& vecPtr = resultVec;
+		vecPtr           = offset;
 
-		Vector3f row1;
-		viewArg->mMatrix->getRow(0, row1);
-		vecPtr->x = offset.dot(row1);
-		Vector3f row2;
-		viewArg->mMatrix->getRow(1, row2);
-		vecPtr->y = offset.dot(row2);
-		Vector3f row3;
-		viewArg->mMatrix->getRow(2, row3);
-		vecPtr->z = offset.dot(row3);
-		position  = position + resultVec;
+		Vector3f row1 = viewArg->mMatrix->getRow(0);
+		resultVec.x   = offset.dot(row1);
+
+		Vector3f row2 = viewArg->mMatrix->getRow(1);
+		resultVec.y   = offset.dot(row2);
+
+		Vector3f row3 = viewArg->mMatrix->getRow(2);
+		resultVec.z   = offset.dot(row3);
+
+		position = position + resultVec;
 
 		newPellet->setPosition(position, false);
 		mPellet = newPellet;
@@ -453,103 +453,19 @@ f32 Pellet::getBuryDepth() { return mConfig->mParams.mDepth.mData; }
  * @note Address: 0x80166254
  * @note Size: 0x124
  */
-// WIP: https://decomp.me/scratch/HVCzF
-f32 Pellet::getBuryRadius(f32 p1)
+f32 Pellet::getBuryRadius(f32 pelletSize)
 {
-	bool check             = false;
-	int index              = (int)(4.0f * p1);
-	f32 buryRadiusArray[5] = { 0.0f, 0.0f, 0.0f, 0.0f, 0.0f };
+	f32 buryRadiusValues[5] = { mConfig->mParams.mDepthA.mData, mConfig->mParams.mDepthB.mData, mConfig->mParams.mDepthC.mData,
+		                        mConfig->mParams.mDepthD.mData, mConfig->mParams.mDepthD.mData };
 
-	buryRadiusArray[0] = mConfig->mParams.mDepthA.mData;
-	buryRadiusArray[1] = mConfig->mParams.mDepthB.mData;
-	buryRadiusArray[2] = mConfig->mParams.mDepthC.mData;
-	buryRadiusArray[3] = mConfig->mParams.mDepthD.mData;
-	buryRadiusArray[4] = mConfig->mParams.mDepthD.mData;
+	int arrayIndex    = pelletSize * 4.0f;
+	f32 indexFraction = (f32)arrayIndex * 0.25f;
 
-	f32 factor1 = 0.25f * (f32)index;
-	f32 factor  = 4.0f * (p1 - factor1);
-	check       = (index >= 0) && (index <= 4);
-	P2ASSERTLINE(1006, check);
-	return ((1.0f - factor) * buryRadiusArray[index]) + (factor * buryRadiusArray[index + 1]);
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stfd     f31, 0x40(r1)
-	psq_st   f31, 72(r1), 0, qr0
-	stw      r31, 0x3c(r1)
-	lfs      f4, lbl_80518938@sda21(r2)
-	lis      r4, 0x4330
-	lwz      r5, 0x35c(r3)
-	lis      r3, lbl_8047E318@ha
-	fmuls    f0, f4, f1
-	addi     r11, r3, lbl_8047E318@l
-	lwz      r10, 0x48(r11)
-	li       r0, 0
-	lwz      r9, 0x4c(r11)
-	fctiwz   f0, f0
-	lwz      r8, 0x50(r11)
-	lwz      r7, 0x54(r11)
-	stfd     f0, 0x20(r1)
-	lwz      r6, 0x58(r11)
-	lwz      r31, 0x24(r1)
-	stw      r4, 0x28(r1)
-	xoris    r3, r31, 0x8000
-	lfd      f2, lbl_80518930@sda21(r2)
-	stw      r3, 0x2c(r1)
-	cmpwi    r31, 0
-	lfs      f3, lbl_8051893C@sda21(r2)
-	lfd      f0, 0x28(r1)
-	stw      r10, 8(r1)
-	fsubs    f0, f0, f2
-	lfs      f6, 0x1d0(r5)
-	stw      r9, 0xc(r1)
-	lfs      f5, 0x1e0(r5)
-	fmuls    f0, f3, f0
-	stw      r8, 0x10(r1)
-	lfs      f2, 0x1f0(r5)
-	stw      r7, 0x14(r1)
-	fsubs    f0, f1, f0
-	lfs      f1, 0x200(r5)
-	stw      r6, 0x18(r1)
-	fmuls    f31, f4, f0
-	stfs     f6, 8(r1)
-	stfs     f5, 0xc(r1)
-	stfs     f2, 0x10(r1)
-	stfs     f1, 0x14(r1)
-	stfs     f1, 0x18(r1)
-	blt      lbl_8016631C
-	cmpwi    r31, 4
-	bgt      lbl_8016631C
-	li       r0, 1
+	f32 t = (pelletSize - indexFraction) * 4.0f;
+	P2ASSERTBOUNDSINCLUSIVELINE(1006, 0, arrayIndex, 4);
 
-lbl_8016631C:
-	clrlwi.  r0, r0, 0x18
-	bne      lbl_80166338
-	addi     r3, r11, 0x2c
-	addi     r5, r11, 0x3c
-	li       r4, 0x3ee
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80166338:
-	slwi     r0, r31, 2
-	addi     r3, r1, 0xc
-	lfs      f1, lbl_80518910@sda21(r2)
-	addi     r4, r1, 8
-	lfsx     f0, r3, r0
-	fsubs    f2, f1, f31
-	lfsx     f1, r4, r0
-	fmuls    f0, f31, f0
-	fmadds   f1, f2, f1, f0
-	psq_l    f31, 72(r1), 0, qr0
-	lwz      r0, 0x54(r1)
-	lfd      f31, 0x40(r1)
-	lwz      r31, 0x3c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
+	// Interpolate between the two values (current and next in the array)
+	return (1.0f - t) * buryRadiusValues[arrayIndex] + t * buryRadiusValues[arrayIndex + 1];
 }
 
 /**
@@ -1058,7 +974,7 @@ int Pellet::getPelletConfigMax()
 // WIP: https://decomp.me/scratch/SWcqK
 void Pellet::setupParticles()
 {
-	f32 radius       = mConfig->mParams.mRadius.mData; // 35C->A0
+	f32 radius       = mConfig->mParams.mRadius.mData;
 	f32 nil          = 0.0f;
 	mRotation        = nil;
 	mMaxCollParticle = mConfig->mParams.mNumParticles.mData;
@@ -1090,10 +1006,9 @@ void Pellet::setupParticles()
 				// mDynParticle->getAt(i)->_00 = rotation;
 				// mDynParticle->getAt(i)->_18 = mid;
 			}
+
 			Vector3f rotation = Vector3f(0.0f, 0.0f, 0.0f);
-
-			f32 configHeight = mConfig->mParams.mHeight.mData / 2;
-
+			f32 configHeight  = mConfig->mParams.mHeight.mData / 2;
 			setupDynParticle(particleCount, configHeight, rotation);
 			// _2F4               = _2F4 + Vector3f(0.0f, 0.0f, 0.0f);
 			// f32 height = configHeight / 2;
@@ -1350,16 +1265,14 @@ void Pellet::setupParticles_simple()
 	createParticles(mMaxCollParticle);
 
 	f32 endIndex = (f32)mMaxCollParticle;
-	f32 mid      = 0.5f * mConfig->mParams.mHeight.mData;
-	f32 diff     = radius - mid;
+
+	f32 mid = getParticleHeight();
+	radius -= mid;
 
 	for (int i = 0; i < mMaxCollParticle; i++) {
 		f32 theta = (TAU / endIndex) * (f32)i;
-		Vector3f rotation(diff * sinf(theta), 0.0f, diff * cosf(theta));
-		// _2F4                        = _2F4 + rotation;
+		Vector3f rotation(radius * sinf(theta), 0.0f, radius * cosf(theta));
 		setupDynParticle(i, mid, rotation);
-		// mDynParticle->getAt(i)->_00 = rotation;
-		// mDynParticle->getAt(i)->_18 = mid;
 	}
 	/*
 	stwu     r1, -0xc0(r1)
@@ -1519,7 +1432,7 @@ lbl_80167AD8:
 void Pellet::setupParticles_tall()
 {
 	f32 radius = mConfig->mParams.mRadius.mData;
-	f32 mid    = 0.5f * mConfig->mParams.mHeight.mData;
+	f32 mid    = getParticleHeight();
 
 	f32 height = mid;
 	if (mid > 10.0f) {
