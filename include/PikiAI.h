@@ -747,20 +747,21 @@ struct ActFormationInitArg : public CreatureActionArg {
 	inline ActFormationInitArg(Game::Creature* navi, bool b1)
 	    : CreatureActionArg(navi)
 	    , mIsDemoFollow(b1)
+		, mDoUseTouchCooldown(false)
 	{
 	}
 
 	inline ActFormationInitArg(Game::Creature* navi)
 	    : CreatureActionArg(navi)
 	    , mIsDemoFollow(false)
-	    , mDoUseTouchCooldown(0)
+	    , mDoUseTouchCooldown(false)
 	{
 	}
 
 	// _00     = VTBL
 	// _00-_08 = CreatureActionArg, Creature* = Navi*
-	bool mIsDemoFollow;     // _08, dont check if the piki is too far away? true for dayend/geyser demo
-	u8 mDoUseTouchCooldown; // _09, if true, pikmin cant be c-sticked into things for 45 frames upon joining
+	bool mIsDemoFollow;       // _08, dont check if the piki is too far away? true for dayend/geyser demo
+	bool mDoUseTouchCooldown; // _09, if true, pikmin cant be c-sticked into things for 45 frames upon joining
 };
 
 #define FORMATION_SORT_NONE    (0)
