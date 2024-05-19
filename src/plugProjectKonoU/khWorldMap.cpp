@@ -3566,8 +3566,7 @@ void WorldMap::rocketUpdate(J2DPane* pane)
 
 	efx2d::WorldMap::ArgDirScale arg(mEffectPos, mEffectDir, scale2);
 	efx2d::WorldMap::T2DRocketA efx;
-	efx.mGroup    = 3;
-	efx.mResMgrId = 1;
+	efx.mGroup = 3;
 	efx.create(&arg);
 	mEfxRocketSparks->setGlobalParticleScale(scale2);
 	mEfxRocketGlow->setGlobalParticleScale(scale2);
@@ -4194,7 +4193,7 @@ void WorldMap::changeInfo()
 	u64 tags2[4]
 	    = { '8396_01', '8398_01', '8401_01', '8410_01' }; // "Hole of Beasts" 	"White Flower Garden"	"Bulblax Kingdom" 	"Snagret Hole"
 	u64 tags3[4]     = { '8397_01', '8402_01', '8403_01',
-                     '8411_01' }; // "Citadel of Spiders"	"Glutton's Kitchen"		"Shower Room"		"Submerged Castle"
+		                 '8411_01' }; // "Citadel of Spiders"	"Glutton's Kitchen"		"Shower Room"		"Submerged Castle"
 	u64 tags4[4]     = { '8412_01', '8413_01', '8414_01', 'no_data' }; // "Cavern of Chaos" 	"Hole of Heroes"	 	"Dream Den"
 	u64* caveTags[4] = { tags1, tags2, tags3, tags4 };
 
@@ -5049,8 +5048,10 @@ void WorldMap::effectFirstTime()
 			    != Game::playData->isCaveFirstTime_Old(mCurrentCourseIndex, caveID)) {
 				JGeometry::TVec3f pos1 = mScreenInfo->search(getSerialTagName('Pcave_00', i))->getGlbVtx(0);
 				JGeometry::TVec3f pos2 = mScreenInfo->search(getSerialTagName('Pcave_00', i))->getGlbVtx(3);
+				f32 x                  = (pos1.y + pos2.y) / 2;
 				for (int j = 0; j < 5; j++) {
-					Vector2f pos((pos1.y + pos2.y) / 2, (pos1.z - j) * (pos2.z - j) / 4);
+					int k = 4 - j;
+					Vector2f pos(x, ((pos1.z * k) + (pos2.z * j)) / 4);
 					efx2d::Arg arg(pos);
 					efx2d::T2DChangesmoke efx;
 					efx.create(&arg);
@@ -5498,9 +5499,11 @@ void WorldMap::OnyonDynamics::initPtcl()
  */
 Vector2f WorldMap::OnyonDynamics::move(WorldMap* wmap, const JGeometry::TVec2f& pos)
 {
-	u64 tags[4]   = { 'Nwait0', 'Nwait1', 'Nwait2', 'Nwait3' };
-	int id        = wmap->mCurrentCourseIndex;
-	J2DPane* pane = wmap->mScreenInfo->search(tags[id]);
+	// unused pane
+	u64 tags[4] = { 'Nwait0', 'Nwait1', 'Nwait2', 'Nwait3' };
+	int id      = wmap->mCurrentCourseIndex;
+	wmap->mScreenInfo->search(tags[id]);
+
 	f32 dist      = pos.distance(mOffset);
 	int prevAngle = mRotateAngle;
 	mRotateAngle += 500;
@@ -5529,6 +5532,7 @@ Vector2f WorldMap::OnyonDynamics::move(WorldMap* wmap, const JGeometry::TVec2f& 
 			mOnyonPane->getParentPane()->appendChild(mOnyonPane);
 		}
 	} else {
+		if (FLT_EPSILON * 32.0f > dist) { }
 		f32 calc  = pikmin2_atan2f(mAngle.x, -mAngle.y);
 		f32 calc2 = pikmin2_atan2f(mAngle.x, -mAngle.y);
 		if (calc < 0.0f) {
@@ -5537,11 +5541,24 @@ Vector2f WorldMap::OnyonDynamics::move(WorldMap* wmap, const JGeometry::TVec2f& 
 		if (calc2 < 0.0f) {
 			calc2 += TAU;
 		}
+		if (calc < calc2) {
+			if (PI > (calc2 - calc)) {
+				calc2 += TAU;
+			}
+		} else if (PI > (calc - calc2)) {
+			calc += TAU;
+		}
+		calc2 = (calc * msVal._44 + (calc2 * (1.0f - msVal._44)));
+		if ((calc2 - calc) < -0.1f) {
+			if ((calc - calc2) > 0.1f) {
+				calc2 = calc + 0.1f;
+			}
+		}
 		mAngle.set(pikmin2_sinf(calc2), -pikmin2_cosf(calc2));
 	}
 
 	update(wmap);
-	return (mEfxPosition.x, mEfxPosition.y);
+	return mOffset;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x60(r1)
