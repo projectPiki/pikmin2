@@ -37,7 +37,7 @@ struct TypedProc : public JSUList<EnemyBoss> {
 	f32 mMaxDistance;                  // _2C
 	DirectorUpdator* mDirectorUpdator; // _30
 	u8 mNeedJump;                      // _34
-	f32 _38;                           // _38
+	                                   // f32 _38;                           // _38
 };
 
 /**
@@ -93,7 +93,7 @@ struct Mgr : ::PSSystem::SingletonBase<Mgr> {
 	}
 
 	// _00 VTBL
-	TypedProc_MidBoss mTypedProc; // _04
+	TypedProc mTypedProc; // _04
 };
 } // namespace BossBgmFader
 } // namespace PSM

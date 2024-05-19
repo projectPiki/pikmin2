@@ -55,11 +55,9 @@ struct J2DPrint {
 		mGlyphHeight = (height > 0.0f) ? height : 0.0f;
 	}
 
-	inline void setColors(JUtility::TColor gradColor, JUtility::TColor charColor)
-	{
-		mCharColor     = charColor;
-		mGradientColor = gradColor;
-	}
+	inline void setCharColor(JUtility::TColor color) { mCharColor = color; }
+
+	inline void setGradColor(JUtility::TColor color) { mGradientColor = color; }
 
 	static const u8* mStrBuff;
 	static size_t mStrBuffSize;
