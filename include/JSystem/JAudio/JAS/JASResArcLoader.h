@@ -35,10 +35,10 @@ struct CallbackArgs {
 	OSMessageQueue* mQueue; // _18
 };
 
-size_t getResSize(JKRArchive*, u16);
-static void loadResourceCallback(void*);
-int loadResource(JKRArchive*, u16, u8*, u32);
-int loadResourceAsync(JKRArchive*, u16, u8*, u32, LoadCallback, u32);
+size_t getResSize(JKRArchive* archive, u16 resourceID);
+static void loadResourceCallback(void* args);
+int loadResource(JKRArchive* archive, u16 id, u8* buffer, u32 size);
+int loadResourceAsync(JKRArchive* archive, u16 id, u8* buffer, u32 size, LoadCallback callback, u32 cbArg);
 } // namespace JASResArcLoader
 
 #endif

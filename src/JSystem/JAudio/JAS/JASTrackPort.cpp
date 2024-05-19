@@ -6,10 +6,10 @@
  */
 void JASTrackPort::init()
 {
-	for (int i = 0; i < 0x10; i++) {
-		_00[i] = 0;
-		_10[i] = 0;
-		_20[i] = 0;
+	for (int i = 0; i < TRACKPORT_MAX; i++) {
+		mImportFlag[i] = 0;
+		mExportFlag[i] = 0;
+		mValue[i]      = 0;
 	}
 }
 
@@ -17,38 +17,38 @@ void JASTrackPort::init()
  * @note Address: 0x8009C398
  * @note Size: 0x18
  */
-u16 JASTrackPort::readImport(int p1)
+u16 JASTrackPort::readImport(int portNo)
 {
-	_00[p1] = 0;
-	return _20[p1];
+	mImportFlag[portNo] = 0;
+	return mValue[portNo];
 }
 
 /**
  * @note Address: 0x8009C3B0
  * @note Size: 0x1C
  */
-u16 JASTrackPort::readExport(int p1)
+u16 JASTrackPort::readExport(int portNo)
 {
-	_10[p1] = 0;
-	return _20[p1];
+	mExportFlag[portNo] = 0;
+	return mValue[portNo];
 }
 
 /**
  * @note Address: 0x8009C3CC
  * @note Size: 0x18
  */
-void JASTrackPort::writeImport(int p1, u16 p2)
+void JASTrackPort::writeImport(int portNo, u16 value)
 {
-	_00[p1] = 1;
-	_20[p1] = p2;
+	mImportFlag[portNo] = 1;
+	mValue[portNo]      = value;
 }
 
 /**
  * @note Address: 0x8009C3E4
  * @note Size: 0x1C
  */
-void JASTrackPort::writeExport(int p1, u16 p2)
+void JASTrackPort::writeExport(int portNo, u16 value)
 {
-	_10[p1] = 1;
-	_20[p1] = p2;
+	mExportFlag[portNo] = 1;
+	mValue[portNo]      = value;
 }

@@ -324,7 +324,7 @@ int JASSeqParser::cmdChildWritePort(JASTrack* track, u32* args)
  */
 int JASSeqParser::cmdCheckPortImport(JASTrack* track, u32* args)
 {
-	track->mRegisterParam._00[3] = track->mTrackPort._00[args[0]];
+	track->mRegisterParam._00[3] = track->mTrackPort.mImportFlag[args[0]];
 	return 0;
 }
 
@@ -334,7 +334,7 @@ int JASSeqParser::cmdCheckPortImport(JASTrack* track, u32* args)
  */
 int JASSeqParser::cmdCheckPortExport(JASTrack* track, u32* args)
 {
-	track->mRegisterParam._00[3] = track->mTrackPort._10[args[0]];
+	track->mRegisterParam._00[3] = track->mTrackPort.mExportFlag[args[0]];
 	return 0;
 }
 
@@ -508,7 +508,7 @@ int JASSeqParser::cmdDisInterrupt(JASTrack* track, u32* args)
  */
 int JASSeqParser::cmdClrI(JASTrack* track, u32* args)
 {
-	track->mIntrMgr._00              = 1;
+	track->mIntrMgr.mIsActive        = true;
 	track->mSeqCtrl.mPreviousFilePtr = nullptr;
 	return 0;
 }
@@ -519,7 +519,7 @@ int JASSeqParser::cmdClrI(JASTrack* track, u32* args)
  */
 int JASSeqParser::cmdSetI(JASTrack* track, u32* args)
 {
-	track->mIntrMgr._00 = 0;
+	track->mIntrMgr.mIsActive = false;
 	return 0;
 }
 
@@ -529,7 +529,7 @@ int JASSeqParser::cmdSetI(JASTrack* track, u32* args)
  */
 int JASSeqParser::cmdRetI(JASTrack* track, u32* args)
 {
-	track->mIntrMgr._00 = 1;
+	track->mIntrMgr.mIsActive = true;
 	track->mSeqCtrl.retIntr();
 	track->tryInterrupt();
 	return track->mSeqCtrl.mWaitTimer > 0;
@@ -541,10 +541,10 @@ int JASSeqParser::cmdRetI(JASTrack* track, u32* args)
  */
 int JASSeqParser::cmdIntTimer(JASTrack* track, u32* args)
 {
-	u32 a1              = args[1];
-	track->mIntrMgr._03 = args[0];
-	track->mIntrMgr._04 = a1;
-	track->mIntrMgr._08 = a1;
+	u32 time                    = args[1];
+	track->mIntrMgr.mTimerCount = args[0];
+	track->mIntrMgr.mTimer      = time;
+	track->mIntrMgr.mMaxTime    = time;
 	return 0;
 }
 
@@ -677,7 +677,7 @@ int JASSeqParser::cmdPanSwSet(JASTrack* track, u32* args)
  */
 int JASSeqParser::cmdOscRoute(JASTrack* track, u32* args)
 {
-	track->_2D8[(args[0] / 16) & 0xF] = args[0] & 0xF;
+	track->mOscRoute[(args[0] / 16) & 0xF] = args[0] & 0xF;
 	return 0;
 }
 
@@ -723,25 +723,12 @@ int JASSeqParser::cmdVibPitch(JASTrack* track, u32* args)
  */
 int JASSeqParser::cmdIIRSet(JASTrack* track, u32* args)
 {
-	track->mTimedParam.mMoveParams[12].mGoalValue = (s16)args[0] / SHORT_FLOAT_MAX;
-	track->mTimedParam.mMoveParams[12]._00        = track->mTimedParam.mMoveParams[12].mGoalValue;
-	track->mTimedParam.mMoveParams[12]._0C        = 0.0f;
-	track->mTimedParam.mMoveParams[12]._08        = 1.0f;
-
-	track->mTimedParam.mMoveParams[13].mGoalValue = (s16)args[1] / SHORT_FLOAT_MAX;
-	track->mTimedParam.mMoveParams[13]._00        = track->mTimedParam.mMoveParams[13].mGoalValue;
-	track->mTimedParam.mMoveParams[13]._0C        = 0.0f;
-	track->mTimedParam.mMoveParams[13]._08        = 1.0f;
-
-	track->mTimedParam.mMoveParams[14].mGoalValue = (s16)args[2] / SHORT_FLOAT_MAX;
-	track->mTimedParam.mMoveParams[14]._00        = track->mTimedParam.mMoveParams[14].mGoalValue;
-	track->mTimedParam.mMoveParams[14]._0C        = 0.0f;
-	track->mTimedParam.mMoveParams[14]._08        = 1.0f;
-
-	track->mTimedParam.mMoveParams[15].mGoalValue = (s16)args[3] / SHORT_FLOAT_MAX;
-	track->mTimedParam.mMoveParams[15]._00        = track->mTimedParam.mMoveParams[15].mGoalValue;
-	track->mTimedParam.mMoveParams[15]._0C        = 0.0f;
-	track->mTimedParam.mMoveParams[15]._08        = 1.0f;
+	for (int i = 0; i < 4; i++) {
+		track->mTimedParam.mInnerParam.mIIRs[i].mTargetValue  = (s16)args[i] / SHORT_FLOAT_MAX;
+		track->mTimedParam.mInnerParam.mIIRs[i].mCurrentValue = track->mTimedParam.mInnerParam.mIIRs[i].mTargetValue;
+		track->mTimedParam.mInnerParam.mIIRs[i].mMoveAmount   = 0.0f;
+		track->mTimedParam.mInnerParam.mIIRs[i].mMoveTime     = 1.0f;
+	}
 	return 0;
 }
 
@@ -751,27 +738,13 @@ int JASSeqParser::cmdIIRSet(JASTrack* track, u32* args)
  */
 int JASSeqParser::cmdIIRCutOff(JASTrack* track, u32* args)
 {
-	// u16 arg                                 = ((u8)args[0]) * 4;
-	s16* table                                    = &JASPlayer::CUTOFF_TO_IIR_TABLE[((u8)args[0]) * 4];
-	track->mTimedParam.mMoveParams[12].mGoalValue = table[0] / 32767.0f;
-	track->mTimedParam.mMoveParams[12]._00        = track->mTimedParam.mMoveParams[12].mGoalValue;
-	track->mTimedParam.mMoveParams[12]._0C        = 0.0f;
-	track->mTimedParam.mMoveParams[12]._08        = 1.0f;
-
-	track->mTimedParam.mMoveParams[13].mGoalValue = table[1] / 32767.0f;
-	track->mTimedParam.mMoveParams[13]._00        = track->mTimedParam.mMoveParams[13].mGoalValue;
-	track->mTimedParam.mMoveParams[13]._0C        = 0.0f;
-	track->mTimedParam.mMoveParams[13]._08        = 1.0f;
-
-	track->mTimedParam.mMoveParams[14].mGoalValue = table[2] / 32767.0f;
-	track->mTimedParam.mMoveParams[14]._00        = track->mTimedParam.mMoveParams[14].mGoalValue;
-	track->mTimedParam.mMoveParams[14]._0C        = 0.0f;
-	track->mTimedParam.mMoveParams[14]._08        = 1.0f;
-
-	track->mTimedParam.mMoveParams[15].mGoalValue = table[3] / 32767.0f;
-	track->mTimedParam.mMoveParams[15]._00        = track->mTimedParam.mMoveParams[15].mGoalValue;
-	track->mTimedParam.mMoveParams[15]._0C        = 0.0f;
-	track->mTimedParam.mMoveParams[15]._08        = 1.0f;
+	s16* table = &JASPlayer::CUTOFF_TO_IIR_TABLE[u8(args[0]) * 4];
+	for (int i = 0; i < 4; i++) {
+		track->mTimedParam.mInnerParam.mIIRs[i].mTargetValue  = table[i] / (SHORT_FLOAT_MAX - 1.0f);
+		track->mTimedParam.mInnerParam.mIIRs[i].mCurrentValue = track->mTimedParam.mInnerParam.mIIRs[i].mTargetValue;
+		track->mTimedParam.mInnerParam.mIIRs[i].mMoveAmount   = 0.0f;
+		track->mTimedParam.mInnerParam.mIIRs[i].mMoveTime     = 1.0f;
+	}
 	return 0;
 }
 
@@ -1268,20 +1241,20 @@ int JASSeqParser::cmdNoteOff(JASTrack*, u8)
  * @note Address: 0x8009DCF8
  * @note Size: 0x3D4
  */
-int JASSeqParser::cmdNoteOn(JASTrack* track, u8 p2)
+int JASSeqParser::cmdNoteOn(JASTrack* track, u8 note)
 {
 	s32 flag = *track->mSeqCtrl.mCurrentFilePtr++;
 	if (flag & 0x80) {
-		p2 = track->exchangeRegisterValue(p2);
+		note = track->exchangeRegisterValue(note);
 	}
 
-	p2 += track->getTranspose();
+	note += track->getTranspose();
 
 	int val28 = (flag >> 5) & 0x3;
 	u8 val27;
 	if ((flag >> 5) & 0x2) {
-		val27 = p2;
-		p2    = track->_E5;
+		val27 = note;
+		note  = track->_E5;
 	}
 
 	u8 val26 = *track->mSeqCtrl.mCurrentFilePtr++;
@@ -1330,7 +1303,7 @@ int JASSeqParser::cmdNoteOn(JASTrack* track, u8 p2)
 		}
 
 		if (!track->mIsPaused || !(track->mPauseStatus & 0x10)) {
-			track->gateOn(val24, p2, val26, time);
+			track->gateOn(val24, note, val26, time);
 		}
 	} else {
 		if (flag != -1) {
@@ -1341,7 +1314,7 @@ int JASSeqParser::cmdNoteOn(JASTrack* track, u8 p2)
 		}
 
 		if (!track->mIsPaused || !(track->mPauseStatus & 0x10)) {
-			track->noteOn(val24, p2, val26, time, val23);
+			track->noteOn(val24, note, val26, time, val23);
 		}
 	}
 
@@ -1357,10 +1330,10 @@ int JASSeqParser::cmdNoteOn(JASTrack* track, u8 p2)
 			track->mChannels[0]->setKeySweepTarget(val27, val);
 		}
 
-		p2 = val27;
+		note = val27;
 	}
 
-	track->_E5 = p2;
+	track->_E5 = note;
 	if (flag == 0xFFFFFFFF) {
 		return 0;
 	}

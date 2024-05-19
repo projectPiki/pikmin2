@@ -8,23 +8,23 @@
 
 namespace JAIGlobalParameter {
 
-u8 distanceParameterMoveTime = 0x03;
-u8 audioSystemThreadPriority = 0x02;
-u8 audioDvdThreadPriority    = 0x03;
-u8 seqMuteVolumeSePlay       = 0x28;
-u8 seqParameterLines         = 0x07;
-u8 streamParameterLines      = 0x07;
-u16 seDistanceFxParameter    = 0x96;
-u32 soundSceneMax            = 0x02;
-u32 seRegistMax              = 0x14;
-u32 seTrackMax               = 0x20;
-u32 seqTrackMax              = 0x20;
-u32 seqPlayTrackMax          = 0x08;
-u32 seqControlBufferMax      = 0x08;
+u8 distanceParameterMoveTime = 3;
+u8 audioSystemThreadPriority = 2;
+u8 audioDvdThreadPriority    = 3;
+u8 seqMuteVolumeSePlay       = 40;
+u8 seqParameterLines         = 7;
+u8 streamParameterLines      = 7;
+u16 seDistanceFxParameter    = 150;
+u32 soundSceneMax            = 2;
+u32 seRegistMax              = 20;
+u32 seTrackMax               = 32;
+u32 seqTrackMax              = 32;
+u32 seqPlayTrackMax          = 8;
+u32 seqControlBufferMax      = 8;
 // u32 streamControlBufferMax     = 0xFFFFFFFF; // unused/inlined
 // u32 streamParameterBufferMax   = 0xFFFFFFFF; // unused/inlined
-u32 autoHeapMax      = 0x02;
-u32 stayHeapMax      = 0x02;
+u32 autoHeapMax      = 2;
+u32 stayHeapMax      = 2;
 u32 autoHeapRoomSize = 0xC000;
 u32 stayHeapSize     = 0x10000;
 // char* soundTableFileName       = ""; // unused/inlined
@@ -41,31 +41,30 @@ f32 maxVolumeDistance          = 1000.0f;
 f32 seDolbyCenterValue         = 30.0f;
 f32 seDolbyFrontDistanceMax    = -300.0f;
 f32 seDolbyBehindDistanceMax   = 1000.0f;
-u32 dopplarMoveTime            = 0xF;
-u32 dummyObjectLifeTime        = 0x258;
-u32 dummyObjectMax             = 0xA;
-u32 seqMuteMoveSpeedSePlay     = 0x3;
-u32 audioCameraMax             = 0x1;
-s32 systemTrackMax             = 0x100;
-s32 systemRootTrackMax         = 0x10;
+u32 dopplarMoveTime            = 15;
+u32 dummyObjectLifeTime        = 600;
+u32 dummyObjectMax             = 10;
+u32 seqMuteMoveSpeedSePlay     = 3;
+u32 audioCameraMax             = 1;
+s32 systemTrackMax             = 256;
+s32 systemRootTrackMax         = 16;
 f32 panDistanceMax             = 500.0f;
 f32 panDistance2Max            = 1000.0f;
 f32 panAngleParameter          = 12.0f;
 f32 panAngleParameter2         = 2.4f;
 f32 dopplarParameter           = 3200.0f;
-u16 seDistanceWaitMax          = 0xC;
+u16 seDistanceWaitMax          = 12;
 f32 seDistancepitchMax         = 0.2f;
 
 u16 seDefaultFx;
 u32 interfaceHeapSize;
 f32 minDistanceVolume;
-} // namespace JAIGlobalParameter
 
 /**
  * @note Address: N/A
  * @note Size: 0x8
  */
-void JAIGlobalParameter::setParamAudioSystemThreadPriority(u8 value)
+void setParamAudioSystemThreadPriority(u8 value)
 {
 	// UNUSED FUNCTION
 	audioSystemThreadPriority = value;
@@ -75,7 +74,7 @@ void JAIGlobalParameter::setParamAudioSystemThreadPriority(u8 value)
  * @note Address: N/A
  * @note Size: 0x8
  */
-void JAIGlobalParameter::setParamAudioDvdThreadPriority(u8 value)
+void setParamAudioDvdThreadPriority(u8 value)
 {
 	// UNUSED FUNCTION
 	audioDvdThreadPriority = value;
@@ -85,7 +84,7 @@ void JAIGlobalParameter::setParamAudioDvdThreadPriority(u8 value)
  * @note Address: N/A
  * @note Size: 0xC
  */
-void JAIGlobalParameter::setParamInitFileLoadSwitch(u8 value)
+void setParamInitFileLoadSwitch(u8 value)
 {
 	// UNUSED FUNCTION
 }
@@ -94,7 +93,7 @@ void JAIGlobalParameter::setParamInitFileLoadSwitch(u8 value)
  * @note Address: 0x800AD950
  * @note Size: 0x14
  */
-void JAIGlobalParameter::setParamInitDataPointer(void* value)
+void setParamInitDataPointer(void* value)
 {
 	JAInter::InitData::aafPointer = (u32*)value;
 	JAIBasic::msBasic->_0C        = 4;
@@ -104,7 +103,7 @@ void JAIGlobalParameter::setParamInitDataPointer(void* value)
  * @note Address: N/A
  * @note Size: 0x8
  */
-void JAIGlobalParameter::setParamInterfaceHeapSize(u32 value)
+void setParamInterfaceHeapSize(u32 value)
 {
 	// UNUSED FUNCTION
 	interfaceHeapSize = value;
@@ -114,13 +113,13 @@ void JAIGlobalParameter::setParamInterfaceHeapSize(u32 value)
  * @note Address: 0x800AD964
  * @note Size: 0x8
  */
-void JAIGlobalParameter::setParamSoundSceneMax(u32 value) { soundSceneMax = value; }
+void setParamSoundSceneMax(u32 value) { soundSceneMax = value; }
 
 /**
  * @note Address: N/A
  * @note Size: 0x8
  */
-void JAIGlobalParameter::setParamSeRegistMax(u32 value)
+void setParamSeRegistMax(u32 value)
 {
 	// UNUSED FUNCTION
 	seRegistMax = value;
@@ -130,13 +129,13 @@ void JAIGlobalParameter::setParamSeRegistMax(u32 value)
  * @note Address: 0x800AD96C
  * @note Size: 0x8
  */
-void JAIGlobalParameter::setParamSeTrackMax(u32 value) { seTrackMax = value; }
+void setParamSeTrackMax(u32 value) { seTrackMax = value; }
 
 /**
  * @note Address: N/A
  * @note Size: 0x8
  */
-void JAIGlobalParameter::setParamSeqTrackMax(u32 value)
+void setParamSeqTrackMax(u32 value)
 {
 	// UNUSED FUNCTION
 	seqTrackMax = value;
@@ -146,7 +145,7 @@ void JAIGlobalParameter::setParamSeqTrackMax(u32 value)
  * @note Address: 0x800AD974
  * @note Size: 0x10
  */
-void JAIGlobalParameter::setParamSeqPlayTrackMax(u32 value)
+void setParamSeqPlayTrackMax(u32 value)
 {
 	seqPlayTrackMax     = value;
 	seqControlBufferMax = value << 1; // * sizeof(u16);
@@ -156,13 +155,13 @@ void JAIGlobalParameter::setParamSeqPlayTrackMax(u32 value)
  * @note Address: 0x800AD984
  * @note Size: 0x8
  */
-void JAIGlobalParameter::setParamSeqControlBufferMax(u32 value) { seqControlBufferMax = value; }
+void setParamSeqControlBufferMax(u32 value) { seqControlBufferMax = value; }
 
 /**
  * @note Address: N/A
  * @note Size: 0x8
  */
-void JAIGlobalParameter::setParamStreamControlBufferMax(u32 value)
+void setParamStreamControlBufferMax(u32 value)
 {
 	// UNUSED FUNCTION
 	streamControlBufferMax = value;
@@ -172,7 +171,7 @@ void JAIGlobalParameter::setParamStreamControlBufferMax(u32 value)
  * @note Address: N/A
  * @note Size: 0x8
  */
-void JAIGlobalParameter::setParamStreamParameterBufferMax(u32 value)
+void setParamStreamParameterBufferMax(u32 value)
 {
 	// UNUSED FUNCTION
 	streamParameterBufferMax = value;
@@ -182,19 +181,19 @@ void JAIGlobalParameter::setParamStreamParameterBufferMax(u32 value)
  * @note Address: 0x800AD98C
  * @note Size: 0x8
  */
-void JAIGlobalParameter::setParamAutoHeapMax(u32 value) { autoHeapMax = value; }
+void setParamAutoHeapMax(u32 value) { autoHeapMax = value; }
 
 /**
  * @note Address: 0x800AD994
  * @note Size: 0x8
  */
-void JAIGlobalParameter::setParamStayHeapMax(u32 value) { stayHeapMax = value; }
+void setParamStayHeapMax(u32 value) { stayHeapMax = value; }
 
 /**
  * @note Address: N/A
  * @note Size: 0x8
  */
-void JAIGlobalParameter::setParamInputGainDown(f32 value)
+void setParamInputGainDown(f32 value)
 {
 	// UNUSED FUNCTION
 	inputGainDown = value;
@@ -204,7 +203,7 @@ void JAIGlobalParameter::setParamInputGainDown(f32 value)
  * @note Address: N/A
  * @note Size: 0x8
  */
-void JAIGlobalParameter::setParamOutputGainUp(f32 value)
+void setParamOutputGainUp(f32 value)
 {
 	// UNUSED FUNCTION
 	outputGainUp = value;
@@ -214,25 +213,25 @@ void JAIGlobalParameter::setParamOutputGainUp(f32 value)
  * @note Address: 0x800AD99C
  * @note Size: 0x8
  */
-void JAIGlobalParameter::setParamDistanceMax(f32 value) { distanceMax = value; }
+void setParamDistanceMax(f32 value) { distanceMax = value; }
 
 /**
  * @note Address: 0x800AD9A4
  * @note Size: 0x8
  */
-void JAIGlobalParameter::setParamMaxVolumeDistance(f32 value) { maxVolumeDistance = value; }
+void setParamMaxVolumeDistance(f32 value) { maxVolumeDistance = value; }
 
 /**
  * @note Address: 0x800AD9AC
  * @note Size: 0x8
  */
-void JAIGlobalParameter::setParamMinDistanceVolume(f32 value) { minDistanceVolume = value; }
+void setParamMinDistanceVolume(f32 value) { minDistanceVolume = value; }
 
 /**
  * @note Address: N/A
  * @note Size: 0x8
  */
-void JAIGlobalParameter::setParamSeDistanceFxParameter(u16 value)
+void setParamSeDistanceFxParameter(u16 value)
 {
 	// UNUSED FUNCTION
 	seDistanceFxParameter = value;
@@ -242,7 +241,7 @@ void JAIGlobalParameter::setParamSeDistanceFxParameter(u16 value)
  * @note Address: N/A
  * @note Size: 0x14
  */
-void JAIGlobalParameter::setParamInitDataLoadOffFlag(bool value)
+void setParamInitDataLoadOffFlag(bool value)
 {
 	// UNUSED FUNCTION
 }
@@ -251,7 +250,7 @@ void JAIGlobalParameter::setParamInitDataLoadOffFlag(bool value)
  * @note Address: N/A
  * @note Size: 0x14
  */
-void JAIGlobalParameter::setParamStreamUseOffFlag(bool value)
+void setParamStreamUseOffFlag(bool value)
 {
 	// UNUSED FUNCTION
 }
@@ -260,7 +259,7 @@ void JAIGlobalParameter::setParamStreamUseOffFlag(bool value)
  * @note Address: N/A
  * @note Size: 0x20
  */
-void JAIGlobalParameter::setParamStreamDecodedBufferBlocks(u32 value)
+void setParamStreamDecodedBufferBlocks(u32 value)
 {
 	// UNUSED FUNCTION
 }
@@ -269,25 +268,25 @@ void JAIGlobalParameter::setParamStreamDecodedBufferBlocks(u32 value)
  * @note Address: 0x800AD9B4
  * @note Size: 0x14
  */
-void JAIGlobalParameter::setParamStreamInsideBufferCut(bool value) { JAIBasic::msBasic->_0E._4 = value; }
+void setParamStreamInsideBufferCut(bool value) { JAIBasic::getInterface()->mFlags._04 = value; }
 
 /**
  * @note Address: 0x800AD9C8
  * @note Size: 0x8
  */
-void JAIGlobalParameter::setParamAutoHeapRoomSize(u32 value) { autoHeapRoomSize = value; }
+void setParamAutoHeapRoomSize(u32 value) { autoHeapRoomSize = value; }
 
 /**
  * @note Address: 0x800AD9D0
  * @note Size: 0x8
  */
-void JAIGlobalParameter::setParamStayHeapSize(u32 value) { stayHeapSize = value; }
+void setParamStayHeapSize(u32 value) { stayHeapSize = value; }
 
 /**
  * @note Address: N/A
  * @note Size: 0x2C
  */
-void JAIGlobalParameter::setParamSeDolbyCenterValue(u8 value)
+void setParamSeDolbyCenterValue(u8 value)
 {
 	// UNUSED FUNCTION
 	seDolbyCenterValue = value;
@@ -297,7 +296,7 @@ void JAIGlobalParameter::setParamSeDolbyCenterValue(u8 value)
  * @note Address: N/A
  * @note Size: 0x8
  */
-void JAIGlobalParameter::setParamSeDolbyFrontDistanceMax(f32 value)
+void setParamSeDolbyFrontDistanceMax(f32 value)
 {
 	// UNUSED FUNCTION
 	seDolbyFrontDistanceMax = value;
@@ -307,7 +306,7 @@ void JAIGlobalParameter::setParamSeDolbyFrontDistanceMax(f32 value)
  * @note Address: N/A
  * @note Size: 0x8
  */
-void JAIGlobalParameter::setParamSeDolbyBehindDistanceMax(f32 value)
+void setParamSeDolbyBehindDistanceMax(f32 value)
 {
 	// UNUSED FUNCTION
 	seDolbyBehindDistanceMax = value;
@@ -317,13 +316,13 @@ void JAIGlobalParameter::setParamSeDolbyBehindDistanceMax(f32 value)
  * @note Address: 0x800AD9D8
  * @note Size: 0x8
  */
-void JAIGlobalParameter::setParamInitDataFileName(char* value) { initDataFileName = value; }
+void setParamInitDataFileName(char* value) { initDataFileName = value; }
 
 /**
  * @note Address: N/A
  * @note Size: 0x8
  */
-void JAIGlobalParameter::setParamSoundTableFileName(char* value)
+void setParamSoundTableFileName(char* value)
 {
 	// UNUSED FUNCTION
 }
@@ -332,7 +331,7 @@ void JAIGlobalParameter::setParamSoundTableFileName(char* value)
  * @note Address: N/A
  * @note Size: 0x8
  */
-void JAIGlobalParameter::setParamWavePath(char* value)
+void setParamWavePath(char* value)
 {
 	// UNUSED FUNCTION
 	wavePath = value;
@@ -342,7 +341,7 @@ void JAIGlobalParameter::setParamWavePath(char* value)
  * @note Address: N/A
  * @note Size: 0x8
  */
-void JAIGlobalParameter::setParamSequenceArchivesPath(char* value)
+void setParamSequenceArchivesPath(char* value)
 {
 	// UNUSED FUNCTION
 	sequenceArchivesPath = value;
@@ -352,7 +351,7 @@ void JAIGlobalParameter::setParamSequenceArchivesPath(char* value)
  * @note Address: N/A
  * @note Size: 0x8
  */
-void JAIGlobalParameter::setParamStreamPath(char* value)
+void setParamStreamPath(char* value)
 {
 	// UNUSED FUNCTION
 	streamPath = value;
@@ -362,7 +361,7 @@ void JAIGlobalParameter::setParamStreamPath(char* value)
  * @note Address: N/A
  * @note Size: 0x8
  */
-void JAIGlobalParameter::setParamAudioResPath(char* value)
+void setParamAudioResPath(char* value)
 {
 	// UNUSED FUNCTION
 	audioResPath = value;
@@ -372,13 +371,13 @@ void JAIGlobalParameter::setParamAudioResPath(char* value)
  * @note Address: 0x800AD9E0
  * @note Size: 0x8
  */
-void JAIGlobalParameter::setParamSequenceArchivesFileName(char* value) { sequenceArchivesFileName = value; }
+void setParamSequenceArchivesFileName(char* value) { sequenceArchivesFileName = value; }
 
 /**
  * @note Address: N/A
  * @note Size: 0x14
  */
-void JAIGlobalParameter::setParamSeqEntryCancelFlag(bool value)
+void setParamSeqEntryCancelFlag(bool value)
 {
 	// UNUSED FUNCTION
 }
@@ -387,7 +386,7 @@ void JAIGlobalParameter::setParamSeqEntryCancelFlag(bool value)
  * @note Address: N/A
  * @note Size: 0x14
  */
-void JAIGlobalParameter::setParamStreamEntryCancelFlag(bool value)
+void setParamStreamEntryCancelFlag(bool value)
 {
 	// UNUSED FUNCTION
 }
@@ -396,7 +395,7 @@ void JAIGlobalParameter::setParamStreamEntryCancelFlag(bool value)
  * @note Address: N/A
  * @note Size: 0x8
  */
-void JAIGlobalParameter::setParamDopplarMoveTime(u32 value)
+void setParamDopplarMoveTime(u32 value)
 {
 	// UNUSED FUNCTION
 	dopplarMoveTime = value;
@@ -406,13 +405,13 @@ void JAIGlobalParameter::setParamDopplarMoveTime(u32 value)
  * @note Address: 0x800AD9E8
  * @note Size: 0x8
  */
-void JAIGlobalParameter::setParamDistanceParameterMoveTime(u8 value) { distanceParameterMoveTime = value; }
+void setParamDistanceParameterMoveTime(u8 value) { distanceParameterMoveTime = value; }
 
 /**
  * @note Address: N/A
  * @note Size: 0x8
  */
-void JAIGlobalParameter::setParamDummyObjectLifeTime(u32 value)
+void setParamDummyObjectLifeTime(u32 value)
 {
 	// UNUSED FUNCTION
 	dummyObjectLifeTime = value;
@@ -422,7 +421,7 @@ void JAIGlobalParameter::setParamDummyObjectLifeTime(u32 value)
  * @note Address: N/A
  * @note Size: 0x8
  */
-void JAIGlobalParameter::setParamDummyObjectMax(u32 value)
+void setParamDummyObjectMax(u32 value)
 {
 	// UNUSED FUNCTION
 	dummyObjectMax = value;
@@ -432,7 +431,7 @@ void JAIGlobalParameter::setParamDummyObjectMax(u32 value)
  * @note Address: N/A
  * @note Size: 0x8
  */
-void JAIGlobalParameter::setParamSeqMuteVolumeSePlay(u8 value)
+void setParamSeqMuteVolumeSePlay(u8 value)
 {
 	// UNUSED FUNCTION
 	seqMuteVolumeSePlay = value;
@@ -442,7 +441,7 @@ void JAIGlobalParameter::setParamSeqMuteVolumeSePlay(u8 value)
  * @note Address: N/A
  * @note Size: 0x8
  */
-void JAIGlobalParameter::setParamSeqMuteMoveSpeedSePlay(u32 value)
+void setParamSeqMuteMoveSpeedSePlay(u32 value)
 {
 	// UNUSED FUNCTION
 	seqMuteMoveSpeedSePlay = value;
@@ -452,25 +451,25 @@ void JAIGlobalParameter::setParamSeqMuteMoveSpeedSePlay(u32 value)
  * @note Address: 0x800AD9F0
  * @note Size: 0x8
  */
-void JAIGlobalParameter::setParamAudioCameraMax(u32 value) { audioCameraMax = value; }
+void setParamAudioCameraMax(u32 value) { audioCameraMax = value; }
 
 /**
  * @note Address: 0x800AD9F8
  * @note Size: 0x8
  */
-void JAIGlobalParameter::setParamSystemTrackMax(s32 value) { systemTrackMax = value; }
+void setParamSystemTrackMax(s32 value) { systemTrackMax = value; }
 
 /**
  * @note Address: 0x800ADA00
  * @note Size: 0x8
  */
-void JAIGlobalParameter::setParamSystemRootTrackMax(s32 value) { systemRootTrackMax = value; }
+void setParamSystemRootTrackMax(s32 value) { systemRootTrackMax = value; }
 
 /**
  * @note Address: N/A
  * @note Size: 0x14
  */
-void JAIGlobalParameter::setParamPanDistanceMax(f32 value)
+void setParamPanDistanceMax(f32 value)
 {
 	// UNUSED FUNCTION
 }
@@ -479,7 +478,7 @@ void JAIGlobalParameter::setParamPanDistanceMax(f32 value)
  * @note Address: N/A
  * @note Size: 0x20
  */
-void JAIGlobalParameter::setParamPanAngleParameter(f32 value)
+void setParamPanAngleParameter(f32 value)
 {
 	// UNUSED FUNCTION
 }
@@ -488,7 +487,7 @@ void JAIGlobalParameter::setParamPanAngleParameter(f32 value)
  * @note Address: N/A
  * @note Size: 0x8
  */
-void JAIGlobalParameter::setParamDopplarParameter(f32 value)
+void setParamDopplarParameter(f32 value)
 {
 	// UNUSED FUNCTION
 	dopplarParameter = value;
@@ -498,7 +497,7 @@ void JAIGlobalParameter::setParamDopplarParameter(f32 value)
  * @note Address: N/A
  * @note Size: 0x8
  */
-void JAIGlobalParameter::setParamSeDistanceWaitMax(u16 value)
+void setParamSeDistanceWaitMax(u16 value)
 {
 	// UNUSED FUNCTION
 	seDistanceWaitMax = value;
@@ -508,7 +507,7 @@ void JAIGlobalParameter::setParamSeDistanceWaitMax(u16 value)
  * @note Address: N/A
  * @note Size: 0x8
  */
-void JAIGlobalParameter::setParamSeDistancepitchMax(f32 value)
+void setParamSeDistancepitchMax(f32 value)
 {
 	// UNUSED FUNCTION
 	seDistancepitchMax = value;
@@ -518,7 +517,7 @@ void JAIGlobalParameter::setParamSeDistancepitchMax(f32 value)
  * @note Address: N/A
  * @note Size: 0x8
  */
-void JAIGlobalParameter::setParamSeqParameterLines(u8 value)
+void setParamSeqParameterLines(u8 value)
 {
 	// UNUSED FUNCTION
 	seqParameterLines = value;
@@ -528,7 +527,7 @@ void JAIGlobalParameter::setParamSeqParameterLines(u8 value)
  * @note Address: N/A
  * @note Size: 0x8
  */
-void JAIGlobalParameter::setParamStreamParameterLines(u8 value)
+void setParamStreamParameterLines(u8 value)
 {
 	// UNUSED FUNCTION
 	streamParameterLines = value;
@@ -538,7 +537,7 @@ void JAIGlobalParameter::setParamStreamParameterLines(u8 value)
  * @note Address: 0x800ADA08
  * @note Size: 0x68
  */
-void JAIGlobalParameter::setParamSoundOutputMode(u32 outputMode)
+void setParamSoundOutputMode(u32 outputMode)
 {
 	u32 mode = JASOUTPUT_Stereo;
 	switch (outputMode) {
@@ -560,7 +559,7 @@ void JAIGlobalParameter::setParamSoundOutputMode(u32 outputMode)
  * @note Address: N/A
  * @note Size: 0x8
  */
-u8 JAIGlobalParameter::getParamAudioSystemThreadPriority()
+u8 getParamAudioSystemThreadPriority()
 {
 	// UNUSED FUNCTION
 	return audioSystemThreadPriority;
@@ -570,7 +569,7 @@ u8 JAIGlobalParameter::getParamAudioSystemThreadPriority()
  * @note Address: N/A
  * @note Size: 0x8
  */
-u8 JAIGlobalParameter::getParamAudioDvdThreadPriority()
+u8 getParamAudioDvdThreadPriority()
 {
 	// UNUSED FUNCTION
 	return audioDvdThreadPriority;
@@ -580,7 +579,7 @@ u8 JAIGlobalParameter::getParamAudioDvdThreadPriority()
  * @note Address: N/A
  * @note Size: 0xC
  */
-u8 JAIGlobalParameter::getParamInitFileLoadSwitch()
+u8 getParamInitFileLoadSwitch()
 {
 	// UNUSED FUNCTION
 }
@@ -589,7 +588,7 @@ u8 JAIGlobalParameter::getParamInitFileLoadSwitch()
  * @note Address: N/A
  * @note Size: 0x8
  */
-void* JAIGlobalParameter::getParamInitDataPointer()
+void* getParamInitDataPointer()
 {
 	// UNUSED FUNCTION
 }
@@ -598,7 +597,7 @@ void* JAIGlobalParameter::getParamInitDataPointer()
  * @note Address: N/A
  * @note Size: 0x8
  */
-u32 JAIGlobalParameter::getParamInterfaceHeapSize()
+u32 getParamInterfaceHeapSize()
 {
 	// UNUSED FUNCTION
 }
@@ -607,43 +606,43 @@ u32 JAIGlobalParameter::getParamInterfaceHeapSize()
  * @note Address: 0x800ADA70
  * @note Size: 0x24
  */
-u32 JAIGlobalParameter::getParamSeCategoryMax() { return JAInter::SoundTable::getCategotyMax(); }
+u32 getParamSeCategoryMax() { return JAInter::SoundTable::getCategotyMax(); }
 
 /**
  * @note Address: 0x800ADA94
  * @note Size: 0x8
  */
-u32 JAIGlobalParameter::getParamSoundSceneMax() { return soundSceneMax; }
+u32 getParamSoundSceneMax() { return soundSceneMax; }
 
 /**
  * @note Address: 0x800ADA9C
  * @note Size: 0x8
  */
-u32 JAIGlobalParameter::getParamSeRegistMax() { return seRegistMax; }
+u32 getParamSeRegistMax() { return seRegistMax; }
 
 /**
  * @note Address: 0x800ADAA4
  * @note Size: 0x8
  */
-u32 JAIGlobalParameter::getParamSeTrackMax() { return seTrackMax; }
+u32 getParamSeTrackMax() { return seTrackMax; }
 
 /**
  * @note Address: 0x800ADAAC
  * @note Size: 0x8
  */
-u32 JAIGlobalParameter::getParamSeqTrackMax() { return seqTrackMax; }
+u32 getParamSeqTrackMax() { return seqTrackMax; }
 
 /**
  * @note Address: 0x800ADAB4
  * @note Size: 0x8
  */
-u32 JAIGlobalParameter::getParamSeqControlBufferMax() { return seqControlBufferMax; }
+u32 getParamSeqControlBufferMax() { return seqControlBufferMax; }
 
 /**
  * @note Address: N/A
  * @note Size: 0x8
  */
-u32 JAIGlobalParameter::getParamStreamControlBufferMax()
+u32 getParamStreamControlBufferMax()
 {
 	// UNUSED FUNCTION
 	return streamControlBufferMax;
@@ -653,7 +652,7 @@ u32 JAIGlobalParameter::getParamStreamControlBufferMax()
  * @note Address: N/A
  * @note Size: 0x8
  */
-u32 JAIGlobalParameter::getParamStreamParameterBufferMax()
+u32 getParamStreamParameterBufferMax()
 {
 	// UNUSED FUNCTION
 	return streamParameterBufferMax;
@@ -663,25 +662,25 @@ u32 JAIGlobalParameter::getParamStreamParameterBufferMax()
  * @note Address: 0x800ADABC
  * @note Size: 0x8
  */
-u32 JAIGlobalParameter::getParamAutoHeapMax() { return autoHeapMax; }
+u32 getParamAutoHeapMax() { return autoHeapMax; }
 
 /**
  * @note Address: 0x800ADAC4
  * @note Size: 0x8
  */
-u32 JAIGlobalParameter::getParamStayHeapMax() { return stayHeapMax; }
+u32 getParamStayHeapMax() { return stayHeapMax; }
 
 /**
  * @note Address: 0x800ADACC
  * @note Size: 0x8
  */
-u32 JAIGlobalParameter::getParamSeqPlayTrackMax() { return seqPlayTrackMax; }
+u32 getParamSeqPlayTrackMax() { return seqPlayTrackMax; }
 
 /**
  * @note Address: N/A
  * @note Size: 0x8
  */
-f32 JAIGlobalParameter::getParamInputGainDown()
+f32 getParamInputGainDown()
 {
 	// UNUSED FUNCTION
 	return inputGainDown;
@@ -691,7 +690,7 @@ f32 JAIGlobalParameter::getParamInputGainDown()
  * @note Address: N/A
  * @note Size: 0x8
  */
-f32 JAIGlobalParameter::getParamOutputGainUp()
+f32 getParamOutputGainUp()
 {
 	// UNUSED FUNCTION
 	return outputGainUp;
@@ -701,25 +700,25 @@ f32 JAIGlobalParameter::getParamOutputGainUp()
  * @note Address: 0x800ADAD4
  * @note Size: 0x8
  */
-f32 JAIGlobalParameter::getParamDistanceMax() { return distanceMax; }
+f32 getParamDistanceMax() { return distanceMax; }
 
 /**
  * @note Address: 0x800ADADC
  * @note Size: 0x8
  */
-f32 JAIGlobalParameter::getParamMaxVolumeDistance() { return maxVolumeDistance; }
+f32 getParamMaxVolumeDistance() { return maxVolumeDistance; }
 
 /**
  * @note Address: 0x800ADAE4
  * @note Size: 0x8
  */
-f32 JAIGlobalParameter::getParamMinDistanceVolume() { return minDistanceVolume; }
+f32 getParamMinDistanceVolume() { return minDistanceVolume; }
 
 /**
  * @note Address: N/A
  * @note Size: 0xC
  */
-u32 JAIGlobalParameter::getParamSoundOutputMode()
+u32 getParamSoundOutputMode()
 {
 	// UNUSED FUNCTION
 }
@@ -728,7 +727,7 @@ u32 JAIGlobalParameter::getParamSoundOutputMode()
  * @note Address: N/A
  * @note Size: 0x8
  */
-u16 JAIGlobalParameter::getParamSeDistanceFxParameter()
+u16 getParamSeDistanceFxParameter()
 {
 	// UNUSED FUNCTION
 	return seDistanceFxParameter;
@@ -738,7 +737,7 @@ u16 JAIGlobalParameter::getParamSeDistanceFxParameter()
  * @note Address: N/A
  * @note Size: 0x1C
  */
-bool JAIGlobalParameter::getParamInitDataLoadOffFlag()
+bool getParamInitDataLoadOffFlag()
 {
 	// UNUSED FUNCTION
 }
@@ -747,7 +746,7 @@ bool JAIGlobalParameter::getParamInitDataLoadOffFlag()
  * @note Address: N/A
  * @note Size: 0x1C
  */
-bool JAIGlobalParameter::getParamStreamUseOffFlag()
+bool getParamStreamUseOffFlag()
 {
 	// UNUSED FUNCTION
 }
@@ -756,31 +755,31 @@ bool JAIGlobalParameter::getParamStreamUseOffFlag()
  * @note Address: 0x800ADAEC
  * @note Size: 0x20
  */
-u32 JAIGlobalParameter::getParamStreamDecodedBufferBlocks() { return JAInter::StreamMgr::getDecodedBufferBlocks(); }
+u32 getParamStreamDecodedBufferBlocks() { return JAInter::StreamMgr::getDecodedBufferBlocks(); }
 
 /**
  * @note Address: 0x800ADB0C
  * @note Size: 0x8
  */
-u32 JAIGlobalParameter::getParamAutoHeapRoomSize() { return autoHeapRoomSize; }
+u32 getParamAutoHeapRoomSize() { return autoHeapRoomSize; }
 
 /**
  * @note Address: 0x800ADB14
  * @note Size: 0x8
  */
-u32 JAIGlobalParameter::getParamStayHeapSize() { return stayHeapSize; }
+u32 getParamStayHeapSize() { return stayHeapSize; }
 
 /**
  * @note Address: 0x800ADB1C
  * @note Size: 0x8
  */
-f32 JAIGlobalParameter::getParamSeDolbyCenterValue() { return seDolbyCenterValue; }
+f32 getParamSeDolbyCenterValue() { return seDolbyCenterValue; }
 
 /**
  * @note Address: N/A
  * @note Size: 0x8
  */
-f32 JAIGlobalParameter::getParamSeDolbyFrontDistanceMax()
+f32 getParamSeDolbyFrontDistanceMax()
 {
 	// UNUSED FUNCTION
 	return seDolbyFrontDistanceMax;
@@ -790,7 +789,7 @@ f32 JAIGlobalParameter::getParamSeDolbyFrontDistanceMax()
  * @note Address: N/A
  * @note Size: 0x8
  */
-f32 JAIGlobalParameter::getParamSeDolbyBehindDistanceMax()
+f32 getParamSeDolbyBehindDistanceMax()
 {
 	// UNUSED FUNCTION
 	return seDolbyBehindDistanceMax;
@@ -800,13 +799,13 @@ f32 JAIGlobalParameter::getParamSeDolbyBehindDistanceMax()
  * @note Address: 0x800ADB24
  * @note Size: 0x8
  */
-char* JAIGlobalParameter::getParamInitDataFileName() { return initDataFileName; }
+char* getParamInitDataFileName() { return initDataFileName; }
 
 /**
  * @note Address: N/A
  * @note Size: 0x8
  */
-char* JAIGlobalParameter::getParamSoundTableFileName()
+char* getParamSoundTableFileName()
 {
 	// UNUSED FUNCTION
 	return soundTableFileName;
@@ -816,37 +815,37 @@ char* JAIGlobalParameter::getParamSoundTableFileName()
  * @note Address: 0x800ADB2C
  * @note Size: 0x8
  */
-char* JAIGlobalParameter::getParamWavePath() { return wavePath; }
+char* getParamWavePath() { return wavePath; }
 
 /**
  * @note Address: 0x800ADB34
  * @note Size: 0x8
  */
-char* JAIGlobalParameter::getParamSequenceArchivesPath() { return sequenceArchivesPath; }
+char* getParamSequenceArchivesPath() { return sequenceArchivesPath; }
 
 /**
  * @note Address: 0x800ADB3C
  * @note Size: 0x8
  */
-char* JAIGlobalParameter::getParamStreamPath() { return streamPath; }
+char* getParamStreamPath() { return streamPath; }
 
 /**
  * @note Address: 0x800ADB44
  * @note Size: 0x8
  */
-char* JAIGlobalParameter::getParamAudioResPath() { return audioResPath; }
+char* getParamAudioResPath() { return audioResPath; }
 
 /**
  * @note Address: 0x800ADB4C
  * @note Size: 0x8
  */
-char* JAIGlobalParameter::getParamSequenceArchivesFileName() { return sequenceArchivesFileName; }
+char* getParamSequenceArchivesFileName() { return sequenceArchivesFileName; }
 
 /**
  * @note Address: N/A
  * @note Size: 0x1C
  */
-bool JAIGlobalParameter::getParamSeqEntryCancelFlag()
+bool getParamSeqEntryCancelFlag()
 {
 	// UNUSED FUNCTION
 }
@@ -855,7 +854,7 @@ bool JAIGlobalParameter::getParamSeqEntryCancelFlag()
  * @note Address: N/A
  * @note Size: 0x1C
  */
-bool JAIGlobalParameter::getParamStreamEntryCancelFlag()
+bool getParamStreamEntryCancelFlag()
 {
 	// UNUSED FUNCTION
 }
@@ -864,13 +863,13 @@ bool JAIGlobalParameter::getParamStreamEntryCancelFlag()
  * @note Address: 0x800ADB54
  * @note Size: 0x8
  */
-u32 JAIGlobalParameter::getParamDopplarMoveTime() { return dopplarMoveTime; }
+u32 getParamDopplarMoveTime() { return dopplarMoveTime; }
 
 /**
  * @note Address: N/A
  * @note Size: 0x8
  */
-f32 JAIGlobalParameter::getParamDopplarParameter()
+f32 getParamDopplarParameter()
 {
 	// UNUSED FUNCTION
 	return dopplarParameter;
@@ -880,43 +879,43 @@ f32 JAIGlobalParameter::getParamDopplarParameter()
  * @note Address: 0x800ADB5C
  * @note Size: 0x8
  */
-u8 JAIGlobalParameter::getParamDistanceParameterMoveTime() { return distanceParameterMoveTime; }
+u8 getParamDistanceParameterMoveTime() { return distanceParameterMoveTime; }
 
 /**
  * @note Address: 0x800ADB64
  * @note Size: 0x8
  */
-u32 JAIGlobalParameter::getParamDummyObjectLifeTime() { return dummyObjectLifeTime; }
+u32 getParamDummyObjectLifeTime() { return dummyObjectLifeTime; }
 
 /**
  * @note Address: 0x800ADB6C
  * @note Size: 0x8
  */
-u32 JAIGlobalParameter::getParamDummyObjectMax() { return dummyObjectMax; }
+u32 getParamDummyObjectMax() { return dummyObjectMax; }
 
 /**
  * @note Address: 0x800ADB74
  * @note Size: 0x8
  */
-u8 JAIGlobalParameter::getParamSeqMuteVolumeSePlay() { return seqMuteVolumeSePlay; }
+u8 getParamSeqMuteVolumeSePlay() { return seqMuteVolumeSePlay; }
 
 /**
  * @note Address: 0x800ADB7C
  * @note Size: 0x8
  */
-u32 JAIGlobalParameter::getParamSeqMuteMoveSpeedSePlay() { return seqMuteMoveSpeedSePlay; }
+u32 getParamSeqMuteMoveSpeedSePlay() { return seqMuteMoveSpeedSePlay; }
 
 /**
  * @note Address: 0x800ADB84
  * @note Size: 0x8
  */
-u32 JAIGlobalParameter::getParamAudioCameraMax() { return audioCameraMax; }
+u32 getParamAudioCameraMax() { return audioCameraMax; }
 
 /**
  * @note Address: N/A
  * @note Size: 0x8
  */
-s32 JAIGlobalParameter::getParamSystemTrackMax()
+s32 getParamSystemTrackMax()
 {
 	// UNUSED FUNCTION
 	return systemTrackMax;
@@ -926,7 +925,7 @@ s32 JAIGlobalParameter::getParamSystemTrackMax()
  * @note Address: N/A
  * @note Size: 0x8
  */
-s32 JAIGlobalParameter::getParamSystemRootTrackMax()
+s32 getParamSystemRootTrackMax()
 {
 	// UNUSED FUNCTION
 	return systemRootTrackMax;
@@ -936,16 +935,18 @@ s32 JAIGlobalParameter::getParamSystemRootTrackMax()
  * @note Address: 0x800ADB8C
  * @note Size: 0x8
  */
-u8 JAIGlobalParameter::getParamSeqParameterLines() { return seqParameterLines; }
+u8 getParamSeqParameterLines() { return seqParameterLines; }
 
 /**
  * @note Address: 0x800ADB94
  * @note Size: 0x8
  */
-u8 JAIGlobalParameter::getParamStreamParameterLines() { return streamParameterLines; }
+u8 getParamStreamParameterLines() { return streamParameterLines; }
 
 /**
  * @note Address: 0x800ADB9C
  * @note Size: 0x8
  */
-u16 JAIGlobalParameter::getParamSeDistanceWaitMax() { return seDistanceWaitMax; }
+u16 getParamSeDistanceWaitMax() { return seDistanceWaitMax; }
+
+} // namespace JAIGlobalParameter

@@ -239,7 +239,7 @@ u32 JAInter::HeapMgr::getStayHeapCount()
  * @note Address: 0x800B059C
  * @note Size: 0x100
  */
-void* JAInter::HeapMgr::checkOnMemory(u32 soundID, u8* p2)
+void* JAInter::HeapMgr::checkOnMemory(u32 soundID, u8* outHeapIndex)
 {
 	for (u8 i = 0; i < JAIGlobalParameter::getParamAutoHeapMax(); i++) {
 		if (soundID != sAutoHeap[i].mSoundID) {
@@ -248,8 +248,8 @@ void* JAInter::HeapMgr::checkOnMemory(u32 soundID, u8* p2)
 		if (sAutoHeap[i].mStatus == 1) {
 			return (void*)-1;
 		}
-		if (p2) {
-			*p2 = i;
+		if (outHeapIndex) {
+			*outHeapIndex = i;
 		}
 		return sAutoHeap[i].getPointer();
 	}
@@ -257,8 +257,8 @@ void* JAInter::HeapMgr::checkOnMemory(u32 soundID, u8* p2)
 		if (soundID != sStayHeap[i].mSoundID) {
 			continue;
 		}
-		if (p2) {
-			*p2 = 255;
+		if (outHeapIndex) {
+			*outHeapIndex = 255;
 		}
 		return sStayHeap[i].getPointer();
 	}

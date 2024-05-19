@@ -354,7 +354,7 @@ PSSystem::BgmSeq* Demo::initiate(DemoArg demoArg, u8* unk)
 	init.setDefault("x03_find_red_onyon", P2_STREAM_SOUND_ID(PSSTR_RED_ONYON));
 
 	if (streq("s02_dayend_result", init.mName)) {
-		audio_info.mVolume.c -= 15;
+		audio_info.mVolume.byteView[0] -= 15;
 	}
 	// clang-format off
 	if (streq("s10_suck_treasure",        init.mName) ||

@@ -311,14 +311,14 @@ SeqHeap::~SeqHeap() { delete[] mFileData; }
  * @note Address: 0x8033123C
  * @note Size: 0x200
  */
-JAInter::SequenceMgr::CustomHeapInfo SeqHeap::requestCallback(u32 request, u16 res, JAISequence* seq)
+JAInter::SequenceMgr::CustomHeapInfo SeqHeap::requestCallback(u32 request, u16 seqOffset, JAISequence* seq)
 {
 	JAInter::SequenceMgr::CustomHeapInfo info;
-	info._00         = 0;
+	info.mFilePtr    = nullptr;
 	info._04         = 0;
 	static int oldID = 0;
 
-	u16 res2 = (u16)res;
+	u16 resID = (u16)seqOffset;
 	switch (request) {
 	case 0: {
 		P2ASSERTLINE(190, seq);
@@ -327,12 +327,12 @@ JAInter::SequenceMgr::CustomHeapInfo SeqHeap::requestCallback(u32 request, u16 r
 		SeqHeap* heap = baseSeq->mSeqHeap;
 		if (!heap->mOwner) {
 			info._04 = 1;
-			P2ASSERTLINE(201, JASResArcLoader::getResSize(JAInter::SequenceMgr::getArchivePointer(), res2) <= heap->mSize);
+			P2ASSERTLINE(201, JASResArcLoader::getResSize(JAInter::SequenceMgr::getArchivePointer(), resID) <= heap->mSize);
 		} else {
 			info._04 = 0;
 		}
-		info._00 = (u32)heap->mFileData;
-		P2ASSERTLINE(208, info._00);
+		info.mFilePtr = heap->mFileData;
+		P2ASSERTLINE(208, info.mFilePtr);
 	} break;
 	case 1:
 	case 3: {
@@ -341,7 +341,7 @@ JAInter::SequenceMgr::CustomHeapInfo SeqHeap::requestCallback(u32 request, u16 r
 		P2ASSERTLINE(222, sound);
 		JKRArchive* arc = JAInter::SequenceMgr::getArchivePointer();
 		P2ASSERTLINE(224, arc);
-		size_t size = JASResArcLoader::getResSize(arc, res2);
+		size_t size = JASResArcLoader::getResSize(arc, resID);
 		sound->mSeqHeap->loadedCallback(size, (u32)sound->mSeqHeap);
 	} break;
 	case 2: {
@@ -438,7 +438,7 @@ void SeqBase::init()
 {
 	if (mBmsFileName) {
 		if (SeqDataList::sInstance) {
-			mSoundInfo.mVolume.c = SeqDataList::sInstance->getSeqVolume(mBmsFileName);
+			mSoundInfo.mVolume.byteView[0] = SeqDataList::sInstance->getSeqVolume(mBmsFileName);
 		}
 		mSeqHeap = new SeqHeap(((int*)getFileEntry())[3], this);
 	}
@@ -703,7 +703,7 @@ void StreamBgm::setId(u32 a1) { mId = a1; }
 void StreamBgm::startSeq()
 {
 	if (StreamDataList::sInstance) {
-		mSoundInfo.mVolume.c = StreamDataList::sInstance->getStreamVolume(mId);
+		mSoundInfo.mVolume.byteView[0] = StreamDataList::sInstance->getStreamVolume(mId);
 	}
 	OSLockMutex(&mMutex);
 	JAIBasic::msBasic->startSoundBasic(mId, &mJaiSound, nullptr, 0, 0, &mSoundInfo);

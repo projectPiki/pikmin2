@@ -6,14 +6,14 @@
  */
 void JASIntrMgr::init()
 {
-	_00 = 1;
-	_01 = 0;
-	_02 = 0;
-	_03 = 0;
-	_04 = 0;
-	_08 = 0;
+	mIsActive    = true;
+	mRequestFlag = 0;
+	mIntrFlag    = 0;
+	mTimerCount  = 0;
+	mTimer       = 0;
+	mMaxTime     = 0;
 	for (int i = 0; i < 8; i++) {
-		_0C[i] = nullptr;
+		mData[i] = nullptr;
 	}
 }
 
@@ -23,10 +23,10 @@ void JASIntrMgr::init()
  */
 void JASIntrMgr::request(u32 interrupt)
 {
-	if ((_02 & (1 << interrupt)) == 0) {
+	if ((mIntrFlag & (1 << interrupt)) == 0) {
 		return;
 	}
-	_01 |= 1 << interrupt;
+	mRequestFlag |= 1 << interrupt;
 }
 
 /**
@@ -35,15 +35,15 @@ void JASIntrMgr::request(u32 interrupt)
  */
 void JASIntrMgr::setIntr(u32 interrupt, void* data)
 {
-	_02 |= 1 << interrupt;
-	_0C[interrupt] = data;
+	mIntrFlag |= 1 << interrupt;
+	mData[interrupt] = data;
 }
 
 /**
  * @note Address: 0x800A2A84
  * @note Size: 0x18
  */
-void JASIntrMgr::resetInter(u32 interrupt) { _02 &= ~(1 << interrupt); }
+void JASIntrMgr::resetInter(u32 interrupt) { mIntrFlag &= ~(1 << interrupt); }
 
 /**
  * @note Address: 0x800A2A9C
@@ -51,13 +51,13 @@ void JASIntrMgr::resetInter(u32 interrupt) { _02 &= ~(1 << interrupt); }
  */
 void* JASIntrMgr::checkIntr()
 {
-	if (_00 == 0) {
+	if (!mIsActive) {
 		return nullptr;
 	}
-	for (u32 i = 0, v1 = _02 & _01; v1 != 0; v1 >>= 1, i++) {
-		if (v1 & 1) {
-			_01 &= ~(1 << i);
-			return _0C[i];
+	for (u32 i = 0, currFlag = mIntrFlag & mRequestFlag; currFlag != 0; currFlag >>= 1, i++) {
+		if (currFlag & 1) {
+			mRequestFlag &= ~(1 << i);
+			return mData[i];
 		}
 	}
 	return nullptr;
@@ -69,24 +69,25 @@ void* JASIntrMgr::checkIntr()
  */
 void JASIntrMgr::timerProcess()
 {
-	if (_04 == 0) {
+	if (mTimer == 0) {
 		return;
 	}
-	_04--;
-	if (_04 != 0) {
+	mTimer--;
+	if (mTimer != 0) {
 		return;
 	}
-	if ((_02 & 0x40) != 0) {
-		_01 |= 0x40;
+
+	// timer is newly 0
+	if (mIntrFlag & 0x40) {
+		mRequestFlag |= 0x40;
 	}
-	if (_03) {
-		_03--;
-		if (_03 == 0) {
+	if (mTimerCount) {
+		mTimerCount--;
+		if (mTimerCount == 0) {
 			return;
 		}
-		_04 = _08;
+		mTimer = mMaxTime;
 		return;
 	}
-	_04 = _08;
-	return;
+	mTimer = mMaxTime;
 }

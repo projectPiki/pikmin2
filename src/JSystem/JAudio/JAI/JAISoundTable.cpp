@@ -158,7 +158,7 @@ u8 JAInter::SoundTable::getCategotyMax() { return mCategotyMax; }
  * @note Address: 0x800B763C
  * @note Size: 0x10
  */
-u16 JAInter::SoundTable::getSoundMax(u8 p1) { return mSoundMax[p1]; }
+u16 JAInter::SoundTable::getSoundMax(u8 cat) { return mSoundMax[cat]; }
 
 /**
  * @note Address: N/A

@@ -14,6 +14,14 @@ struct JAIStream;
 struct JKRHeap;
 
 struct JAIBasic {
+	struct Flags {
+		bool _00 : 1;
+		bool _01 : 1;
+		bool _02 : 1;
+		bool _03 : 1;
+		bool _04 : 1;
+	};
+
 	JAIBasic();
 
 	virtual JAISequence* makeSequence();       // _08
@@ -101,17 +109,11 @@ struct JAIBasic {
 	JKRHeap* mHeap;            // _08
 	u8 _0C;                    // _0C
 	u8 mParamSoundOutputMode;  // _0D, see JASOutputMode enum
-	struct Flags {
-		bool _0 : 1;
-		bool _1 : 1;
-		bool _2 : 1;
-		bool _3 : 1;
-		bool _4 : 1;
-	} _0E;    // _0E
-	u32 _10;  // _10
-	u32 _14;  // _14
-	u8* _18;  // _18
-	u8** _1C; // _1C
+	Flags mFlags;              // _0E
+	u32 _10;                   // _10
+	u32 _14;                   // _14
+	u8* _18;                   // _18
+	u8** _1C;                  // _1C
 
 	static JAIBasic* msBasic;
 	static JKRHeap* msCurrentHeap;

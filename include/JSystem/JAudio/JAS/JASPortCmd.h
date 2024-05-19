@@ -5,7 +5,7 @@
 #include "JSystem/JSupport/JSUList.h"
 #include "types.h"
 
-struct JASPortCmd : JSULink<JASPortCmd> {
+struct JASPortCmd : public JSULink<JASPortCmd> {
 	typedef void (*Command)(JASPortArgs*);
 
 	struct TPortHead : JSUList<JASPortCmd> {
@@ -22,8 +22,8 @@ struct JASPortCmd : JSULink<JASPortCmd> {
 
 	JASPortCmd()
 	    : JSULink<JASPortCmd>(this)
-	    , mCommand(0)
-	    , mCommandArgs(0)
+	    , mCommand(nullptr)
+	    , mCommandArgs(nullptr)
 	{
 	}
 
@@ -38,11 +38,12 @@ struct JASPortCmd : JSULink<JASPortCmd> {
 	u32 addPortCmdStay();
 	u32 cancelPortCmdStay();
 
-	Command mCommand;
-	JASPortArgs* mCommandArgs;
-
 	static TPortHead sCommandListOnce;
 	static TPortHead sCommandListStay;
+
+	// _00-_10 = JSULink
+	Command mCommand;          // _10
+	JASPortArgs* mCommandArgs; // _14
 };
 
 #endif

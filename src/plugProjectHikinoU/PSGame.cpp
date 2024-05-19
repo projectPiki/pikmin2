@@ -615,7 +615,7 @@ PSSystem::Scene* PikSceneMgr::newAndSetGlobalScene()
 	                                                                                           JKRDvdRipper::ALLOC_DIR_TOP));
 
 	JAInter::SoundInfo seInfo = { 0x00001F00, 255, 0, 0, 0x3F800000, 0x7f000000 };
-	P2ASSERTLINE(1040, seInfo.mVolume.c <= 127);
+	P2ASSERTLINE(1040, seInfo.mVolume.byteView[0] <= 127);
 	PSSystem::SeSeq* seSeq = new PSSystem::SeSeq("se.bms", seInfo);
 	P2ASSERTLINE(1043, seSeq);
 	seSeq->init();
@@ -740,7 +740,7 @@ PSSystem::BgmSeq* PikSceneMgr::initBossBgm(SceneInfo& info, u8* wScene)
 	seq->assertValidTrack();
 
 	seq->mRootTrack->mBeatInterval = 60;
-	P2ASSERTLINE(1267, soundInfo.mVolume.c <= 127);
+	P2ASSERTLINE(1267, soundInfo.mVolume.byteView[0] <= 127);
 	return seq;
 }
 
@@ -776,7 +776,7 @@ void PikSceneMgr::initAdditionalBgm(SceneInfo& info, PSSystem::Scene* scene)
 
 	case SceneInfo::CHALLENGE_MODE:
 		soundInfo._05                 = 4;
-		soundInfo.mVolume.c           = 35;
+		soundInfo.mVolume.byteView[0] = 35;
 		soundInfo.mFlag               = 0x1F00;
 		JADUtility::AccessMode flag   = (JADUtility::AccessMode)mAccessMode;
 		PSSystem::DirectedBgm* seqold = (PSSystem::DirectedBgm*)scene->mSeqMgr.getFirstSeq();
@@ -992,7 +992,7 @@ PSSystem::BgmSeq* PikSceneMgr::initMainBgm(SceneInfo& info, u8* wScene)
 	}
 
 	P2ASSERTLINE(1749, bgm);
-	P2ASSERTLINE(1750, soundInfo.mVolume.c <= 127);
+	P2ASSERTLINE(1750, soundInfo.mVolume.byteView[0] <= 127);
 
 	return bgm;
 	/*

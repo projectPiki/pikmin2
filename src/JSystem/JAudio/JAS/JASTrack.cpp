@@ -25,7 +25,7 @@ JASTrack* JASTrack::sFreeListEnd;
 JASTrack::JASTrack()
     : mVibrate()
     , mChannelUpdater()
-    , _144(nullptr)
+    , mNoteOnCallback(nullptr)
     , mTimedParam()
     , mRegisterParam()
     , mParentTrack(nullptr)
@@ -91,13 +91,13 @@ void JASTrack::init()
 		mChannels[i] = nullptr;
 	}
 	mChannelUpdater.init();
-	_144 = nullptr;
+	mNoteOnCallback = nullptr;
 	initTimed();
 	mRegisterParam.init();
 
 	for (int i = 0; i < 2; i++) {
-		_2D8[i]     = 15;
-		mOscData[i] = JASPlayer::sEnvelopeDef;
+		mOscRoute[i] = 0xF;
+		mOscData[i]  = JASPlayer::sEnvelopeDef;
 	}
 
 	mParentTrack  = nullptr;
@@ -651,31 +651,24 @@ void JASTrack::getDolby() const
  */
 void JASTrack::initTimed()
 {
-	for (u8 i = 0; i < 18; i++) {
-		mTimedParam.mMoveParams[i]._08        = 0.0f;
-		mTimedParam.mMoveParams[i]._00        = 1.0f;
-		mTimedParam.mMoveParams[i].mGoalValue = 1.0f;
+	// initialise all params
+	for (u8 i = 0; i < TIMED_Count; i++) {
+		mTimedParam.mMoveParams[i].mMoveTime = 0.0f;
+		mTimedParam.mMoveParams[i].set(1.0f);
 	}
-	mTimedParam.mMoveParams[1]._00         = 0.0f;
-	mTimedParam.mMoveParams[1].mGoalValue  = 0.0f;
-	mTimedParam.mMoveParams[3]._00         = 0.5f;
-	mTimedParam.mMoveParams[3].mGoalValue  = 0.5f;
-	mTimedParam.mMoveParams[16]._00        = 0.5f;
-	mTimedParam.mMoveParams[16].mGoalValue = 0.5f;
-	mTimedParam.mMoveParams[17]._00        = 0.0f;
-	mTimedParam.mMoveParams[17].mGoalValue = 0.0f;
-	mTimedParam.mMoveParams[2]._00         = 0.0f;
-	mTimedParam.mMoveParams[2].mGoalValue  = 0.0f;
-	mTimedParam.mMoveParams[4]._00         = 0.0f;
-	mTimedParam.mMoveParams[4].mGoalValue  = 0.0f;
-	mTimedParam.mMoveParams[13]._00        = 0.0f;
-	mTimedParam.mMoveParams[13].mGoalValue = 0.0f;
-	mTimedParam.mMoveParams[14]._00        = 0.0f;
-	mTimedParam.mMoveParams[14].mGoalValue = 0.0f;
-	mTimedParam.mMoveParams[15]._00        = 0.0f;
-	mTimedParam.mMoveParams[15].mGoalValue = 0.0f;
-	mTimedParam.mMoveParams[5]._00         = 0.0f;
-	mTimedParam.mMoveParams[5].mGoalValue  = 0.0f;
+
+	// not all params should be initialised to 1.0f
+	// i.e. only Unk0, Osc params, and IIR_Unk0. change the rest
+	mTimedParam.mMoveParams[TIMED_Unk1].set(0.0f);
+	mTimedParam.mMoveParams[TIMED_Unk3].set(0.5f);
+	mTimedParam.mMoveParams[TIMED_Unk16].set(0.5f);
+	mTimedParam.mMoveParams[TIMED_Unk17].set(0.0f);
+	mTimedParam.mMoveParams[TIMED_Unk2].set(0.0f);
+	mTimedParam.mMoveParams[TIMED_Unk4].set(0.0f);
+	mTimedParam.mMoveParams[TIMED_IIR_Unk1].set(0.0f);
+	mTimedParam.mMoveParams[TIMED_IIR_Unk2].set(0.0f);
+	mTimedParam.mMoveParams[TIMED_IIR_Unk3].set(0.0f);
+	mTimedParam.mMoveParams[TIMED_Unk5].set(0.0f);
 }
 
 /**
@@ -699,8 +692,9 @@ int JASTrack::noteOn(u8 channelIndex, s32 p2, s32 p3, s32 p4, u32 p5)
 	noteOff(channelIndex, 0);
 	u8 physicalNumber   = JASBankMgr::getPhysicalNumber(mRegisterParam.getBankNumber());
 	u8 programNumber    = mRegisterParam.getProgramNumber();
-	JASChannel* channel = !_144 ? JASBankMgr::noteOn(physicalNumber, programNumber, p2, p3, mRegisterParam._1A, channelUpdateCallback, this)
-	                            : _144(this, physicalNumber, programNumber, p2, p3, mRegisterParam._1A);
+	JASChannel* channel = !mNoteOnCallback
+	                        ? JASBankMgr::noteOn(physicalNumber, programNumber, p2, p3, mRegisterParam._1A, channelUpdateCallback, this)
+	                        : mNoteOnCallback(this, physicalNumber, programNumber, p2, p3, mRegisterParam._1A);
 	if (channel == nullptr) {
 		return -1;
 	}
@@ -723,72 +717,19 @@ int JASTrack::noteOn(u8 channelIndex, s32 p2, s32 p3, s32 p4, u32 p5)
 void JASTrack::overwriteOsc(JASChannel* channel)
 {
 	for (int i = 0; i < 2; i++) {
-		const u32 v1 = _2D8[i];
-		if (v1 != 15) {
-			const u32 v2 = v1 & 3;
-			if ((v1 & 8) != 0) {
-				channel->copyOsc(v2, mOscData + i);
-			} else {
-				if ((v1 & 4) != 0) {
-					const s16* v3 = mOscData[i].mRelease;
-					channel->copyOsc(v2, mOscData + i);
-					mOscData[i].mRelease = v3;
-				}
+		u32 flag = mOscRoute[i];
+		if (flag != 0xF) {
+			u8 index = flag & 3;
+			if (flag & 8) {
+				channel->copyOsc(index, &mOscData[i]);
+			} else if (flag & 4) {
+				s16* release = (s16*)mOscData[i].mRelease;
+				channel->copyOsc(index, &mOscData[i]);
+				mOscData[i].mRelease = release;
 			}
-			channel->overwriteOsc(v2, mOscData + i);
+			channel->overwriteOsc(index, &mOscData[i]);
 		}
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r26, 8(r1)
-	mr       r26, r4
-	mr       r30, r3
-	li       r28, 0
-	mr       r29, r3
-
-lbl_8009F978:
-	lwz      r3, 0x2d8(r30)
-	cmplwi   r3, 0xf
-	beq      lbl_8009F9D4
-	rlwinm.  r0, r3, 0, 0x1c, 0x1c
-	clrlwi   r31, r3, 0x1e
-	beq      lbl_8009F9A4
-	mr       r3, r26
-	mr       r4, r31
-	addi     r5, r29, 0x2a8
-	bl       copyOsc__10JASChannelFiPQ213JASOscillator4Data
-	b        lbl_8009F9C4
-
-lbl_8009F9A4:
-	rlwinm.  r0, r3, 0, 0x1d, 0x1d
-	beq      lbl_8009F9C4
-	lwz      r27, 0x2b4(r29)
-	mr       r3, r26
-	mr       r4, r31
-	addi     r5, r29, 0x2a8
-	bl       copyOsc__10JASChannelFiPQ213JASOscillator4Data
-	stw      r27, 0x2b4(r29)
-
-lbl_8009F9C4:
-	mr       r3, r26
-	mr       r4, r31
-	addi     r5, r29, 0x2a8
-	bl       overwriteOsc__10JASChannelFiPQ213JASOscillator4Data
-
-lbl_8009F9D4:
-	addi     r28, r28, 1
-	addi     r29, r29, 0x18
-	cmpwi    r28, 2
-	addi     r30, r30, 4
-	blt      lbl_8009F978
-	lmw      r26, 8(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
@@ -965,33 +906,34 @@ void JASTrack::oscSetupSimple(u8 p1)
  */
 void JASTrack::updateTimedParam()
 {
-	for (int i = 0; i < 18; i++) {
-		if (mTimedParam.mMoveParams[i]._08 > 0.0f) {
-			mTimedParam.mMoveParams[i]._00 += mTimedParam.mMoveParams[i]._0C;
-			mTimedParam.mMoveParams[i]._08 -= 1.0f;
-			if (i <= 5 || 11 <= i) {
+	for (int i = 0; i < TIMED_Count; i++) {
+		// move and update parameter
+		if (mTimedParam.mMoveParams[i].mMoveTime > 0.0f) {
+			mTimedParam.mMoveParams[i].mCurrentValue += mTimedParam.mMoveParams[i].mMoveAmount;
+			mTimedParam.mMoveParams[i].mMoveTime -= 1.0f;
+			if (i <= TIMED_Unk5 || i >= TIMED_Osc1_Vertex) {
 				_34C |= (1 << i);
 				continue;
 			}
-			f32 v1 = mTimedParam.mMoveParams[i]._00;
+			f32 value = mTimedParam.mMoveParams[i].mCurrentValue;
 			switch (i) {
-			case 6:
-				mOscData[0].mWidth = v1;
+			case TIMED_Osc0_Width:
+				mOscData[0].mWidth = value;
 				break;
-			case 7:
-				mOscData[0].mRate = v1;
+			case TIMED_Osc0_Rate:
+				mOscData[0].mRate = value;
 				break;
-			case 8:
-				mOscData[0].mVertex = v1;
+			case TIMED_Osc0_Vertex:
+				mOscData[0].mVertex = value;
 				break;
-			case 9:
-				mOscData[1].mWidth = v1;
+			case TIMED_Osc1_Width:
+				mOscData[1].mWidth = value;
 				break;
-			case 10:
-				mOscData[1].mRate = v1;
+			case TIMED_Osc1_Rate:
+				mOscData[1].mRate = value;
 				break;
-			case 11:
-				mOscData[1].mVertex = v1;
+			case TIMED_Osc1_Vertex:
+				mOscData[1].mVertex = value;
 				break;
 			}
 		}
@@ -1996,57 +1938,18 @@ lbl_800A0DD4:
  * @note Address: 0x800A0DF8
  * @note Size: 0x84
  */
-void JASTrack::setParam(int paramIndex, f32 value, int p3)
+void JASTrack::setParam(int paramIndex, f32 value, int moveTime)
 {
-	MoveParam_* moveParam = mTimedParam.mMoveParams + paramIndex;
-	moveParam->mGoalValue = value;
-	if (p3 <= 1) {
-		moveParam->_00 = moveParam->mGoalValue;
-		moveParam->_0C = 0.0f;
-		moveParam->_08 = 1.0f;
+	MoveParam_* moveParam   = &mTimedParam.mMoveParams[paramIndex];
+	moveParam->mTargetValue = value;
+	if (moveTime <= 0) {
+		moveParam->mCurrentValue = moveParam->mTargetValue;
+		moveParam->mMoveAmount   = 0.0f;
+		moveParam->mMoveTime     = 1.0f;
 	} else {
-		moveParam->_0C = (moveParam->mGoalValue - moveParam->_00) / p3;
-		moveParam->_08 = p3;
+		moveParam->mMoveAmount = (moveParam->mTargetValue - moveParam->mCurrentValue) / moveTime;
+		moveParam->mMoveTime   = moveTime;
 	}
-	/*
-	slwi     r4, r4, 4
-	stwu     r1, -0x20(r1)
-	addi     r4, r4, 0x148
-	cmpwi    r5, 0
-	add      r4, r3, r4
-	stfs     f1, 4(r4)
-	bgt      lbl_800A0E30
-	lfs      f0, 4(r4)
-	lfs      f1, lbl_80516D78@sda21(r2)
-	stfs     f0, 0(r4)
-	lfs      f0, lbl_80516D7C@sda21(r2)
-	stfs     f1, 0xc(r4)
-	stfs     f0, 8(r4)
-	b        lbl_800A0E74
-
-lbl_800A0E30:
-	xoris    r3, r5, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	lfs      f3, 4(r4)
-	stw      r0, 8(r1)
-	lfs      f1, 0(r4)
-	lfd      f2, lbl_80516DA8@sda21(r2)
-	lfd      f0, 8(r1)
-	fsubs    f1, f3, f1
-	stw      r3, 0x14(r1)
-	fsubs    f0, f0, f2
-	stw      r0, 0x10(r1)
-	fdivs    f1, f1, f0
-	lfd      f0, 0x10(r1)
-	fsubs    f0, f0, f2
-	stfs     f1, 0xc(r4)
-	stfs     f0, 8(r4)
-
-lbl_800A0E74:
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
@@ -2649,7 +2552,7 @@ u32 JASTrack::exchangeRegisterValue(u8 val)
 	}
 
 	u8 calc = val - 64;
-	return mTrackPort._20[calc * 2 & 0x1fe];
+	return mTrackPort.mValue[calc * 2 & 0x1fe];
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -3520,25 +3423,25 @@ lbl_800A2090:
  * @note Address: 0x800A20A4
  * @note Size: 0x24
  */
-u16 JASTrack::readSelfPort(int portNumber) { return mTrackPort.readImport(portNumber); }
+u16 JASTrack::readSelfPort(int portNo) { return mTrackPort.readImport(portNo); }
 
 /**
  * @note Address: 0x800A20C8
  * @note Size: 0x24
  */
-void JASTrack::writeSelfPort(int portNumber, u16 value) { mTrackPort.writeExport(portNumber, value); }
+void JASTrack::writeSelfPort(int portNo, u16 value) { mTrackPort.writeExport(portNo, value); }
 
 /**
  * @note Address: 0x800A20EC
  * @note Size: 0x68
  */
-bool JASTrack::writePortAppDirect(u32 p1, u16 value)
+bool JASTrack::writePortAppDirect(u32 portNo, u16 value)
 {
-	mTrackPort.writeImport(p1, value);
-	if (p1 == 0 || p1 == 1) {
+	mTrackPort.writeImport(portNo, value);
+	if (portNo == 0 || portNo == 1) {
 		JASIntrMgr* intrMgr = &mIntrMgr;
 		u32 v1              = 4;
-		if (p1 == 0) {
+		if (portNo == 0) {
 			v1 = 3;
 		}
 		intrMgr->request(v1);
@@ -3550,9 +3453,9 @@ bool JASTrack::writePortAppDirect(u32 p1, u16 value)
  * @note Address: 0x800A2154
  * @note Size: 0x38
  */
-bool JASTrack::readPortAppDirect(u32 p1, u16* value)
+bool JASTrack::readPortAppDirect(u32 portNo, u16* outValue)
 {
-	*value = mTrackPort.readExport(p1);
+	*outValue = mTrackPort.readExport(portNo);
 	return true;
 }
 
@@ -3589,18 +3492,15 @@ void JASTrack::routeTrack(u32) const
  * @note Address: 0x800A218C
  * @note Size: 0xB4
  */
-bool JASTrack::writePortApp(u32 p1, u16 p2)
+bool JASTrack::writePortApp(u32 p1, u16 value)
 {
 	JASTrack* track = routeTrack(p1);
 	if (!track) {
 		return false;
 	}
 
-	u32 val = p1 >> 16 & 0xFF;
-	track->mTrackPort.writeImport(val, p2);
-	if (val == 0 || val == 1) {
-		track->mIntrMgr.request((val) ? (int)4 : (int)3);
-	}
+	u32 portNo = p1 >> 16 & 0xFF;
+	track->writePortAppDirect(portNo, value);
 
 	return true;
 	/*

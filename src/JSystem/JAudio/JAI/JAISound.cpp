@@ -2070,13 +2070,11 @@ void JAISound::getActorGroundNumber()
  */
 u32 JAISound::getTrackPortRoute(u8 p1, u8 p2)
 {
-	if ((mSoundID & 0x800) != 0) {
+	if (!IsJAISoundIDInUse(mSoundID)) {
 		return (p1 >> 4) + 0x20000000 + p2 * 0x10000 + (p1 & 0xF) * 0x10;
 	} else {
 		return (p1 & 0xF) + 0x10000000 + p2 * 0x10000;
 	}
-	// return ((mSoundID & 0x800) != 0) ? (p1 >> 4) + 0x20000000 + p2 * 0x10000 + (p1 & 0xF) * 0x10 : (p1 & 0xF) + 0x10000000 + p2 *
-	// 0x10000;
 
 	/*
 	lwz      r0, 0x20(r3)
@@ -2425,7 +2423,7 @@ u16 JAISe::getPortData(u8 p1)
 		static u16 _port = -1;
 		if (JAInter::SeMgr::seHandle->mState >= SOUNDSTATE_Playing) {
 			u32 v2;
-			if ((JAInter::SeMgr::seHandle->mSoundID & 0x800) != 0) {
+			if (!IsJAISoundIDInUse(JAInter::SeMgr::seHandle->mSoundID)) {
 				v2 = (v1 >> 4) + 0x20000000 + (v1 & 0xF) * 0x10 + p1 * 0x10000;
 			} else {
 				v2 = (v1 & 0xF) + 0x10000000 + p1 * 0x10000;

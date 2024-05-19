@@ -5,6 +5,11 @@
 
 namespace JAInter {
 namespace HeapMgr {
+enum HeapKind {
+	HEAP_Auto = 0,
+	HEAP_Stay = 1,
+};
+
 void init(u8, u32, u8, u32);
 HeapBlock* getAutoHeapPointer();
 void* checkOnMemory(u32, u8*);

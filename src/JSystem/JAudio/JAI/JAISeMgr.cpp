@@ -1487,7 +1487,7 @@ void sendSeAllParameter(JAISe* se)
 
 	if (seqData->_44[se->_14]) {
 		SystemInterface::setSeqPortargsU32(SequenceMgr::getPlayTrackInfo(seHandle->_14), se->_14, 2, seqData->_44[se->_14]);
-		seqData->_4C[se->_14]._30.addPortCmdOnce();
+		seqData->mPlayerParams[se->_14].mCommand.addPortCmdOnce();
 	}
 }
 

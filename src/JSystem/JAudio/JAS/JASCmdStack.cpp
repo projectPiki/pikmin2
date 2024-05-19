@@ -38,7 +38,7 @@ u32 JASPortCmd::cancelPortCmdStay()
  * @note Address: 0x800A6780
  * @note Size: 0x24
  */
-bool JASPortCmd::setPortCmd(void (*command)(JASPortArgs*), JASPortArgs* args)
+bool JASPortCmd::setPortCmd(Command command, JASPortArgs* args)
 {
 	if (mList != nullptr) {
 		return false;
