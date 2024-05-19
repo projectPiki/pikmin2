@@ -364,9 +364,9 @@ struct JKRSolidHeap : public JKRHeap {
 
 inline void* operator new(size_t size, void* mem) { return mem; } // fabricated?
 void* operator new(size_t, JKRHeap*, int);
-void* operator new(u32 byteCount, int p2);
+void* operator new(size_t byteCount, int p2);
 void* operator new[](size_t, JKRHeap*, int);
-void* operator new[](u32 byteCount, int p2);
+void* operator new[](size_t byteCount, int p2);
 
 static void JKRDefaultMemoryErrorRoutine(void* heap, u32 size, int alignment);
 

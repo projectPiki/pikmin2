@@ -747,7 +747,7 @@ struct ActFormationInitArg : public CreatureActionArg {
 	inline ActFormationInitArg(Game::Creature* navi, bool b1)
 	    : CreatureActionArg(navi)
 	    , mIsDemoFollow(b1)
-		, mDoUseTouchCooldown(false)
+	    , mDoUseTouchCooldown(false)
 	{
 	}
 

@@ -4,9 +4,12 @@
 #include "JSystem/JAudio/JAI/JAISequence.h"
 #include "JSystem/JAudio/JAI/JAInter.h"
 #include "JSystem/JAudio/JAI/JAInter/MoveParaSet.h"
+#include "JSystem/JAudio/JAI/JAInter/BankWave.h"
+#include "JSystem/JAudio/JAI/JAInter/HeapMgr.h"
 #include "JSystem/JAudio/JAS/JASPortCmd.h"
 #include "JSystem/JAudio/JAS/JASResArcLoader.h"
 #include "JSystem/JKernel/JKRArchive.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "types.h"
 
 namespace JAInter {
@@ -31,322 +34,38 @@ void init()
 		JAISequence* sequence = JAIBasic::getInterface()->makeSequence();
 		seqControl.mFreeList->append(sequence);
 	}
-
+	JAISequence* obj;
 	for (JSULink<JAISound>* link = seqControl.mFreeList->getFirst(); link; link = link->getNext()) {
-		JAISound* obj = link->getObject();
+		obj = static_cast<JAISequence*>(link->getObject());
+
+		obj->mSeqParameter.mPans    = new (JAIGetCurrentHeap(), 0x20) MoveParaSet[JAIGlobalParameter::getParamSeqParameterLines()];
+		obj->mSeqParameter.mPitches = new (JAIGetCurrentHeap(), 0x20) MoveParaSet[JAIGlobalParameter::getParamSeqParameterLines()];
+		obj->mSeqParameter.mFxmixes = new (JAIGetCurrentHeap(), 0x20) MoveParaSet[JAIGlobalParameter::getParamSeqParameterLines()];
+		obj->mSeqParameter.mDolbys  = new (JAIGetCurrentHeap(), 0x20) MoveParaSet[JAIGlobalParameter::getParamSeqParameterLines()];
+
+		obj->mSeqParameter.mTrackVolumes = new (JAIGetCurrentHeap(), 0x20) MoveParaSet[JAIGlobalParameter::getParamSeqTrackMax()];
+		obj->mSeqParameter.mTrackPans    = new (JAIGetCurrentHeap(), 0x20) MoveParaSetInitHalf[JAIGlobalParameter::getParamSeqTrackMax()];
+		obj->mSeqParameter.mTrackPitches = new (JAIGetCurrentHeap(), 0x20) MoveParaSet[JAIGlobalParameter::getParamSeqTrackMax()];
+		obj->mSeqParameter.mTrackFxmixes = new (JAIGetCurrentHeap(), 0x20) MoveParaSetInitZero[JAIGlobalParameter::getParamSeqTrackMax()];
+		obj->mSeqParameter.mTrackDolbys  = new (JAIGetCurrentHeap(), 0x20) MoveParaSetInitZero[JAIGlobalParameter::getParamSeqTrackMax()];
+
+		obj->mSeqParameter._274 = new (JAIGetCurrentHeap(), 0x20) u16*[JAIGlobalParameter::getParamSeqTrackMax()];
+
+		for (u32 i = 0; i < JAIGlobalParameter::getParamSeqTrackMax(); i++) {
+			obj->mSeqParameter._274[i] = new (JAIGetCurrentHeap(), 0x20) u16[16];
+		}
+
+		obj->mSeqParameter._2B4               = new (JAIGetCurrentHeap(), 0x20) u32[JAIGlobalParameter::getParamSeqTrackMax()];
+		obj->mSeqParameter.mInterruptSwitches = new (JAIGetCurrentHeap(), 0x20) u8[JAIGlobalParameter::getParamSeqTrackMax()];
+		obj->mSeqParameter._2BC = (MuteBit*)new (JAIGetCurrentHeap(), 0x20) MuteBit[JAIGlobalParameter::getParamSeqTrackMax()];
 	}
-	/*
-	stwu     r1, -0x80(r1)
-	mflr     r0
-	stw      r0, 0x84(r1)
-	stfd     f31, 0x70(r1)
-	psq_st   f31, 120(r1), 0, qr0
-	stfd     f30, 0x60(r1)
-	psq_st   f30, 104(r1), 0, qr0
-	stfd     f29, 0x50(r1)
-	psq_st   f29, 88(r1), 0, qr0
-	stfd     f28, 0x40(r1)
-	psq_st   f28, 72(r1), 0, qr0
-	stmw     r20, 0x10(r1)
-	addi     r3, r13, seqControl__Q27JAInter11SequenceMgr@sda21
-	bl       init__Q27JAInter9LinkSoundFv
-	lwz      r21, msCurrentHeap__8JAIBasic@sda21(r13)
-	bl       getParamSeqPlayTrackMax__18JAIGlobalParameterFv
-	slwi     r3, r3, 2
-	mr       r4, r21
-	li       r5, 0x20
-	bl       __nwa__FUlP7JKRHeapi
-	stw      r3, FixSeqBufPointer__Q27JAInter11SequenceMgr@sda21(r13)
-	li       r21, 0
-	b        lbl_800B09C8
 
-lbl_800B09A0:
-	lwz      r3, msBasic__8JAIBasic@sda21(r13)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r0, r3
-	lwz      r3, seqControl__Q27JAInter11SequenceMgr@sda21(r13)
-	mr       r4, r0
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	addi     r21, r21, 1
+	seqTrackInfo = new (JAIGetCurrentHeap(), 0x20) SeqUpdateData[JAIGlobalParameter::getParamSeqPlayTrackMax()];
 
-lbl_800B09C8:
-	bl       getParamSeqControlBufferMax__18JAIGlobalParameterFv
-	cmplw    r21, r3
-	blt      lbl_800B09A0
-	lwz      r6, seqControl__Q27JAInter11SequenceMgr@sda21(r13)
-	lis      r3, __defctor__Q27JAInter11MoveParaSetFv@ha
-	addi     r23, r3, __defctor__Q27JAInter11MoveParaSetFv@l
-	lis      r4, __ct__Q27JAInter19MoveParaSetInitZeroFv@ha
-	lis      r5, __ct__Q27JAInter19MoveParaSetInitHalfFv@ha
-	lis      r3, __ct__Q27JAInter7MuteBitFv@ha
-	lwz      r30, 0(r6)
-	addi     r29, r4, __ct__Q27JAInter19MoveParaSetInitZeroFv@l
-	mr       r24, r23
-	mr       r25, r23
-	mr       r26, r23
-	mr       r28, r23
-	addi     r27, r5, __ct__Q27JAInter19MoveParaSetInitHalfFv@l
-	addi     r22, r3, __ct__Q27JAInter7MuteBitFv@l
-	b        lbl_800B0CA4
-
-lbl_800B0A10:
-	lwz      r31, 0(r30)
-	bl       getParamSeqParameterLines__18JAIGlobalParameterFv
-	rlwinm   r6, r3, 4, 0x14, 0x1b
-	lwz      r4, msCurrentHeap__8JAIBasic@sda21(r13)
-	clrlwi   r21, r3, 0x18
-	li       r5, 0x20
-	addi     r3, r6, 0x10
-	bl       __nwa__FUlP7JKRHeapi
-	mr       r4, r23
-	mr       r7, r21
-	li       r5, 0
-	li       r6, 0x10
-	bl       __construct_new_array
-	stw      r3, 0x298(r31)
-	bl       getParamSeqParameterLines__18JAIGlobalParameterFv
-	rlwinm   r6, r3, 4, 0x14, 0x1b
-	lwz      r4, msCurrentHeap__8JAIBasic@sda21(r13)
-	clrlwi   r21, r3, 0x18
-	li       r5, 0x20
-	addi     r3, r6, 0x10
-	bl       __nwa__FUlP7JKRHeapi
-	mr       r4, r23
-	mr       r7, r21
-	li       r5, 0
-	li       r6, 0x10
-	bl       __construct_new_array
-	stw      r3, 0x29c(r31)
-	bl       getParamSeqParameterLines__18JAIGlobalParameterFv
-	rlwinm   r6, r3, 4, 0x14, 0x1b
-	lwz      r4, msCurrentHeap__8JAIBasic@sda21(r13)
-	clrlwi   r21, r3, 0x18
-	li       r5, 0x20
-	addi     r3, r6, 0x10
-	bl       __nwa__FUlP7JKRHeapi
-	mr       r4, r24
-	mr       r7, r21
-	li       r5, 0
-	li       r6, 0x10
-	bl       __construct_new_array
-	stw      r3, 0x2a0(r31)
-	bl       getParamSeqParameterLines__18JAIGlobalParameterFv
-	rlwinm   r6, r3, 4, 0x14, 0x1b
-	lwz      r4, msCurrentHeap__8JAIBasic@sda21(r13)
-	clrlwi   r21, r3, 0x18
-	li       r5, 0x20
-	addi     r3, r6, 0x10
-	bl       __nwa__FUlP7JKRHeapi
-	mr       r4, r25
-	mr       r7, r21
-	li       r5, 0
-	li       r6, 0x10
-	bl       __construct_new_array
-	stw      r3, 0x2a4(r31)
-	bl       getParamSeqTrackMax__18JAIGlobalParameterFv
-	mr       r21, r3
-	slwi     r3, r3, 4
-	lwz      r4, msCurrentHeap__8JAIBasic@sda21(r13)
-	li       r5, 0x20
-	addi     r3, r3, 0x10
-	bl       __nwa__FUlP7JKRHeapi
-	mr       r4, r26
-	mr       r7, r21
-	li       r5, 0
-	li       r6, 0x10
-	bl       __construct_new_array
-	stw      r3, 0x2a8(r31)
-	bl       getParamSeqTrackMax__18JAIGlobalParameterFv
-	mr       r21, r3
-	slwi     r3, r3, 4
-	lwz      r4, msCurrentHeap__8JAIBasic@sda21(r13)
-	li       r5, 0x20
-	addi     r3, r3, 0x10
-	bl       __nwa__FUlP7JKRHeapi
-	mr       r4, r27
-	mr       r7, r21
-	li       r5, 0
-	li       r6, 0x10
-	bl       __construct_new_array
-	stw      r3, 0x2ac(r31)
-	bl       getParamSeqTrackMax__18JAIGlobalParameterFv
-	mr       r21, r3
-	slwi     r3, r3, 4
-	lwz      r4, msCurrentHeap__8JAIBasic@sda21(r13)
-	li       r5, 0x20
-	addi     r3, r3, 0x10
-	bl       __nwa__FUlP7JKRHeapi
-	mr       r4, r28
-	mr       r7, r21
-	li       r5, 0
-	li       r6, 0x10
-	bl       __construct_new_array
-	stw      r3, 0x2b0(r31)
-	bl       getParamSeqTrackMax__18JAIGlobalParameterFv
-	mr       r21, r3
-	slwi     r3, r3, 4
-	lwz      r4, msCurrentHeap__8JAIBasic@sda21(r13)
-	li       r5, 0x20
-	addi     r3, r3, 0x10
-	bl       __nwa__FUlP7JKRHeapi
-	mr       r4, r29
-	mr       r7, r21
-	li       r5, 0
-	li       r6, 0x10
-	bl       __construct_new_array
-	stw      r3, 0x2b4(r31)
-	bl       getParamSeqTrackMax__18JAIGlobalParameterFv
-	mr       r21, r3
-	slwi     r3, r3, 4
-	lwz      r4, msCurrentHeap__8JAIBasic@sda21(r13)
-	li       r5, 0x20
-	addi     r3, r3, 0x10
-	bl       __nwa__FUlP7JKRHeapi
-	mr       r4, r29
-	mr       r7, r21
-	li       r5, 0
-	li       r6, 0x10
-	bl       __construct_new_array
-	stw      r3, 0x2b8(r31)
-	lwz      r21, msCurrentHeap__8JAIBasic@sda21(r13)
-	bl       getParamSeqTrackMax__18JAIGlobalParameterFv
-	slwi     r3, r3, 2
-	mr       r4, r21
-	li       r5, 0x20
-	bl       __nwa__FUlP7JKRHeapi
-	stw      r3, 0x2bc(r31)
-	li       r20, 0
-	li       r21, 0
-	b        lbl_800B0C30
-
-lbl_800B0C10:
-	lwz      r4, msCurrentHeap__8JAIBasic@sda21(r13)
-	li       r3, 0x20
-	li       r5, 0x20
-	bl       __nwa__FUlP7JKRHeapi
-	lwz      r4, 0x2bc(r31)
-	addi     r20, r20, 1
-	stwx     r3, r4, r21
-	addi     r21, r21, 4
-
-lbl_800B0C30:
-	bl       getParamSeqTrackMax__18JAIGlobalParameterFv
-	cmplw    r20, r3
-	blt      lbl_800B0C10
-	lwz      r21, msCurrentHeap__8JAIBasic@sda21(r13)
-	bl       getParamSeqTrackMax__18JAIGlobalParameterFv
-	slwi     r3, r3, 2
-	mr       r4, r21
-	li       r5, 0x20
-	bl       __nwa__FUlP7JKRHeapi
-	stw      r3, 0x2fc(r31)
-	lwz      r21, msCurrentHeap__8JAIBasic@sda21(r13)
-	bl       getParamSeqTrackMax__18JAIGlobalParameterFv
-	mr       r4, r21
-	li       r5, 0x20
-	bl       __nwa__FUlP7JKRHeapi
-	stw      r3, 0x300(r31)
-	bl       getParamSeqTrackMax__18JAIGlobalParameterFv
-	mr       r21, r3
-	lwz      r4, msCurrentHeap__8JAIBasic@sda21(r13)
-	li       r5, 0x20
-	addi     r3, r21, 0x10
-	bl       __nwa__FUlP7JKRHeapi
-	mr       r4, r22
-	mr       r7, r21
-	li       r5, 0
-	li       r6, 1
-	bl       __construct_new_array
-	stw      r3, 0x304(r31)
-	lwz      r30, 0xc(r30)
-
-lbl_800B0CA4:
-	cmplwi   r30, 0
-	bne      lbl_800B0A10
-	bl       getParamSeqPlayTrackMax__18JAIGlobalParameterFv
-	mr       r21, r3
-	lwz      r4, msCurrentHeap__8JAIBasic@sda21(r13)
-	mulli    r3, r21, 0x50
-	li       r5, 0x20
-	addi     r3, r3, 0x10
-	bl       __nwa__FUlP7JKRHeapi
-	lis      r4, __ct__Q27JAInter13SeqUpdateDataFv@ha
-	mr       r7, r21
-	addi     r4, r4, __ct__Q27JAInter13SeqUpdateDataFv@l
-	li       r5, 0
-	li       r6, 0x50
-	bl       __construct_new_array
-	li       r25, 0
-	stw      r3, seqTrackInfo__Q27JAInter11SequenceMgr@sda21(r13)
-	lfs      f29, lbl_80516FA0@sda21(r2)
-	mr       r26, r25
-	lfs      f30, lbl_80516FAC@sda21(r2)
-	li       r20, 0
-	lfs      f31, lbl_80516FA8@sda21(r2)
-	lfs      f28, lbl_80516FA4@sda21(r2)
-	b        lbl_800B0D8C
-
-lbl_800B0D04:
-	lwz      r3, FixSeqBufPointer__Q27JAInter11SequenceMgr@sda21(r13)
-	li       r22, 0
-	mr       r21, r22
-	stwx     r22, r3, r25
-	mr       r24, r22
-	lwz      r0, seqTrackInfo__Q27JAInter11SequenceMgr@sda21(r13)
-	add      r23, r0, r26
-	stfs     f29, 0xc(r23)
-	stfs     f28, 0x18(r23)
-	stfs     f29, 0x10(r23)
-	stfs     f31, 0x14(r23)
-	stfs     f31, 0x1c(r23)
-	stfs     f29, 0x20(r23)
-	b        lbl_800B0D74
-
-lbl_800B0D3C:
-	lwz      r3, 0x24(r23)
-	addi     r21, r21, 1
-	stfsx    f29, r3, r24
-	lwz      r3, 0x30(r23)
-	stfsx    f30, r3, r24
-	lwz      r3, 0x28(r23)
-	stfsx    f29, r3, r24
-	lwz      r3, 0x2c(r23)
-	stfsx    f31, r3, r24
-	lwz      r3, 0x34(r23)
-	stfsx    f31, r3, r24
-	lwz      r3, 0x44(r23)
-	stwx     r22, r3, r24
-	addi     r24, r24, 4
-
-lbl_800B0D74:
-	bl       getParamSeqTrackMax__18JAIGlobalParameterFv
-	cmplw    r21, r3
-	blt      lbl_800B0D3C
-	addi     r25, r25, 4
-	addi     r26, r26, 0x50
-	addi     r20, r20, 1
-
-lbl_800B0D8C:
-	bl       getParamSeqPlayTrackMax__18JAIGlobalParameterFv
-	cmplw    r20, r3
-	blt      lbl_800B0D04
-	psq_l    f31, 120(r1), 0, qr0
-	lfd      f31, 0x70(r1)
-	psq_l    f30, 104(r1), 0, qr0
-	lfd      f30, 0x60(r1)
-	psq_l    f29, 88(r1), 0, qr0
-	lfd      f29, 0x50(r1)
-	psq_l    f28, 72(r1), 0, qr0
-	lfd      f28, 0x40(r1)
-	lmw      r20, 0x10(r1)
-	lwz      r0, 0x84(r1)
-	mtlr     r0
-	addi     r1, r1, 0x80
-	blr
-	*/
+	for (u32 i = 0; i < JAIGlobalParameter::getParamSeqPlayTrackMax(); i++) {
+		FixSeqBufPointer[i] = nullptr;
+		seqTrackInfo[i].init();
+	}
 }
 
 /**
@@ -894,72 +613,40 @@ void checkReadSeq()
  */
 void checkSeqWave()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	li       r31, 0
-	stw      r30, 8(r1)
-	li       r30, 0
-	b        lbl_800B1AF4
+	for (u32 i = 0; i < JAIGlobalParameter::getParamSeqPlayTrackMax(); i++) {
+		JAISequence* seq = seqTrackInfo[i].getSequence();
+		if (!seq) {
+			continue;
+		}
 
-lbl_800B1A60:
-	lwz      r3, seqTrackInfo__Q27JAInter11SequenceMgr@sda21(r13)
-	addi     r0, r31, 0x48
-	lwzx     r3, r3, r0
-	cmplwi   r3, 0
-	beq      lbl_800B1AEC
-	addic.   r5, r3, 0x48
-	beq      lbl_800B1AEC
-	lwz      r4, 0x27c(r5)
-	addis    r0, r4, 1
-	cmplwi   r0, 0xffff
-	beq      lbl_800B1AEC
-	lwz      r6, SceneSetFlag__Q27JAInter8BankWave@sda21(r13)
-	addis    r0, r6, 1
-	cmplwi   r0, 0xffff
-	beq      lbl_800B1AEC
-	cmplw    r4, r6
-	beq      lbl_800B1AE4
-	addis    r0, r4, 0x100
-	cmplwi   r0, 0xff00
-	beq      lbl_800B1AE4
-	rlwinm   r3, r4, 0, 0, 0xf
-	rlwinm   r0, r6, 0, 0, 0xf
-	cmplw    r3, r0
-	bne      lbl_800B1AC8
-	cmplwi   r4, 0xffff
-	beq      lbl_800B1AE4
+		SeqParameter* param = &seq->mSeqParameter;
+		if (!param) {
+			continue;
+		}
 
-lbl_800B1AC8:
-	clrlwi   r3, r4, 0x10
-	clrlwi   r0, r6, 0x10
-	cmplw    r3, r0
-	bne      lbl_800B1AEC
-	addis    r0, r4, 1
-	cmplwi   r0, 0
-	bne      lbl_800B1AEC
+		u32 flag = param->getSceneFlag();
+		if (flag == 0xFFFFFFFF) {
+			continue;
+		}
 
-lbl_800B1AE4:
-	li       r0, -1
-	stw      r0, 0x27c(r5)
+		u32 sceneFlag = BankWave::SceneSetFlag;
+		if (sceneFlag == 0xFFFFFFFF) {
+			continue;
+		}
 
-lbl_800B1AEC:
-	addi     r31, r31, 0x50
-	addi     r30, r30, 1
+		if (flag != sceneFlag && flag != 0xFF00FF00) {
+			if ((flag & 0xFFFF0000) != (sceneFlag & 0xFFFF0000) || flag != 0xFFFF) {
+				if ((flag & 0xFFFF) != (sceneFlag & 0xFFFF)) {
+					continue;
+				}
+				if (flag != 0xFFFF0000) {
+					continue;
+				}
+			}
+		}
 
-lbl_800B1AF4:
-	bl       getParamSeqPlayTrackMax__18JAIGlobalParameterFv
-	cmplw    r30, r3
-	blt      lbl_800B1A60
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+		param->_27C = -1;
+	}
 }
 
 /**
@@ -2281,105 +1968,37 @@ void JAISequence::setPan(f32 value, u32 moveTime, u8 type) { setSeqInterPan(type
  * @note Address: 0x800B2BE8
  * @note Size: 0x130
  */
-void stopSeq(JAISequence*)
+void stopSeq(JAISequence* seq)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	bl       getSwBit__8JAISoundFv
-	clrlwi.  r0, r3, 0x1f
-	beq      lbl_800B2C80
-	li       r30, 0
-	li       r31, 0
-	b        lbl_800B2C74
+	if (seq->getSwBit() & 0x1) {
+		for (u32 i = 0; i < JAIGlobalParameter::getParamSeqPlayTrackMax(); i++) {
+			JAISequence* playingSeq = seqTrackInfo[i].mSequence;
+			if (seq != playingSeq && playingSeq && !(playingSeq->getSwBit() & 0x2)) {
+				playingSeq->setVolume(1.0f, 10, SOUNDPARAM_Unk10);
+			}
+		}
+	}
 
-lbl_800B2C20:
-	lwz      r3, seqTrackInfo__Q27JAInter11SequenceMgr@sda21(r13)
-	addi     r0, r31, 0x48
-	lwzx     r29, r3, r0
-	cmplw    r28, r29
-	beq      lbl_800B2C6C
-	cmplwi   r29, 0
-	beq      lbl_800B2C6C
-	mr       r3, r29
-	bl       getSwBit__8JAISoundFv
-	rlwinm.  r0, r3, 0, 0x1e, 0x1e
-	bne      lbl_800B2C6C
-	mr       r3, r29
-	lfs      f1, lbl_80516FA0@sda21(r2)
-	lwz      r12, 0x10(r29)
-	li       r4, 0xa
-	li       r5, 0xa
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
+	seq->mMainSoundPPointer        = nullptr;
+	seq->mSeqParameter.mUpdateData = nullptr;
+	if (seq->mState >= SOUNDSTATE_Ready) {
+		if (customHeapCallback) {
+			customHeapCallback(2, seq->mSoundInfo->mOffsetNo, seq);
+		} else {
+			HeapMgr::releaseAutoHeapPointer(seq->mSeqParameter._278);
+		}
+	}
 
-lbl_800B2C6C:
-	addi     r31, r31, 0x50
-	addi     r30, r30, 1
-
-lbl_800B2C74:
-	bl       getParamSeqPlayTrackMax__18JAIGlobalParameterFv
-	cmplw    r30, r3
-	blt      lbl_800B2C20
-
-lbl_800B2C80:
-	li       r0, 0
-	stw      r0, 0x40(r28)
-	stw      r0, 0x308(r28)
-	lbz      r0, 0x15(r28)
-	cmplwi   r0, 3
-	blt      lbl_800B2CCC
-	lwz      r12, customHeapCallback__Q27JAInter11SequenceMgr@sda21(r13)
-	cmplwi   r12, 0
-	beq      lbl_800B2CC4
-	lwz      r4, 0x44(r28)
-	mr       r6, r28
-	addi     r3, r1, 8
-	lhz      r5, 6(r4)
-	li       r4, 2
-	mtctr    r12
-	bctrl
-	b        lbl_800B2CCC
-
-lbl_800B2CC4:
-	lbz      r3, 0x2c0(r28)
-	bl       releaseAutoHeapPointer__Q27JAInter7HeapMgrFUc
-
-lbl_800B2CCC:
-	li       r0, 0
-	mr       r4, r28
-	stb      r0, 0x15(r28)
-	addi     r3, r13, seqControl__Q27JAInter11SequenceMgr@sda21
-	bl       releaseSound__Q27JAInter9LinkSoundFP8JAISound
-	lbz      r0, 0x14(r28)
-	li       r4, 0
-	lwz      r3, seqTrackInfo__Q27JAInter11SequenceMgr@sda21(r13)
-	mulli    r0, r0, 0x50
-	add      r3, r3, r0
-	stw      r4, 0x48(r3)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	seq->mState = SOUNDSTATE_Inactive;
+	seqControl.releaseSound(seq);
+	seqTrackInfo[seq->_14].mSequence = nullptr;
 }
 
 /**
  * @note Address: 0x800B2D18
  * @note Size: 0xE4
  */
-void checkDvdLoadArc(u32, u32)
+void checkDvdLoadArc(u32 p1, u32 p2)
 {
 	/*
 	stwu     r1, -0x20(r1)

@@ -9,6 +9,7 @@
 #include "JSystem/JKernel/JKRArchive.h"
 #include "JSystem/JSupport/JSUList.h"
 #include "JSystem/JAudio/JAI/JAIGlobalParameter.h"
+#include "JSystem/JAudio/JAI/JAInter/BankWave.h"
 #include "types.h"
 #include "Dolphin/mtx.h"
 
@@ -331,11 +332,11 @@ struct SeqUpdateData {
 	f32 _18;                // _18, pan?
 	f32 _1C;                // _1C, dolby?
 	f32 _20;                // _20
-	f32* _24;               // _24
-	f32* _28;               // _28
-	f32* _2C;               // _2C
-	f32* _30;               // _30
-	f32* _34;               // _34
+	f32* _24;               // _24, volume?
+	f32* _28;               // _28, pitch?
+	f32* _2C;               // _2C, fxmix?
+	f32* _30;               // _30, ??
+	f32* _34;               // _34, dolby?
 	u8 _38[8];              // _38 - unknown
 	u8* mFilePtr;           // _40, pointer to a data file loaded in by getSeqData
 	u32* _44;               // _44
@@ -349,6 +350,9 @@ struct SeqParameter {
 	void init();
 
 	inline JASTrack* getTrack() { return &mTrack; }
+
+	// this name is made up, don't rely on it to name the member
+	inline u32 getSceneFlag() const { return _27C; }
 
 	MoveParaSet _00;                    // _00
 	MoveParaSet _10[16];                // _10
@@ -366,7 +370,7 @@ struct SeqParameter {
 	u8 _278;                            // _278 - auto heap index?
 	u8 mPauseMode;                      // _279
 	s16 _27A;                           // _27A
-	u32 _27C;                           // _27C
+	int _27C;                           // _27C
 	u32 _280;                           // _280
 	u32 mVolumeFlags;                   // _284
 	u32 mPanFlags;                      // _288

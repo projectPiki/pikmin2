@@ -1,6 +1,12 @@
 #ifndef _TYPES_H
 #define _TYPES_H
 
+// this is just here until a new cpptools version comes out
+// since they broke forceIncludes in vscode configs :')
+#ifdef __INTELLISENSE__
+#include "../.vscode/warnings.h"
+#endif
+
 #include "BuildSettings.h"
 
 // r2 is  8051E360
