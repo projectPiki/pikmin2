@@ -3169,14 +3169,14 @@ void NaviNukuAdjustState::exec(Navi* navi)
 	sproutToNavi.length(); // unused
 
 	Vector3f targetToNavi    = mTargetPosition - navi->getPosition(); // f26, f27, f28
-	f32 targetToNaviDistance = targetToNavi.length();                 // f31
+	f32 targetToNaviDistance = targetToNavi.length2D();               // f31
 	f32 absoluteDeltaY       = absF(targetToNavi.y);
 
 	f32 normalisedDistance = targetToNavi.normalise(); // f30, why tho
 
 	f32 newFaceDir = mAngleToPiki;
 	f32 angle      = angDist(newFaceDir, navi->mFaceDir);
-	if (absF(angle) < (PI / 10) && targetToNaviDistance < 2.0f && absoluteDeltaY < 10.0f) {
+	if (absF(angle) < (PI / 10.0f) && targetToNaviDistance < 2.0f && absoluteDeltaY < 10.0f) {
 		navi->mFaceDir      = newFaceDir;
 		PikiMgr::mBirthMode = PikiMgr::PSM_Force;
 		Piki* piki          = pikiMgr->birth();
@@ -3211,7 +3211,7 @@ void NaviNukuAdjustState::exec(Navi* navi)
 		transit(navi, NSID_Nuku, &nukuArg);
 
 	} else {
-		f32 angleOffset = 2.0f * angle;
+		f32 angleOffset = 0.2f * angle;
 		navi->mFaceDir  = roundAng(navi->mFaceDir + angleOffset);
 
 		f32 speed = 100.0f;
@@ -3219,10 +3219,9 @@ void NaviNukuAdjustState::exec(Navi* navi)
 			speed = 0.5f / sys->mDeltaTime;
 		}
 
-		Vector3f vel          = targetToNavi * speed;
-		navi->mVelocity       = vel;
+		navi->mVelocity       = targetToNavi * speed;
 		navi->mTargetVelocity = Vector3f(0.0f);
-		navi->mTargetVelocity = vel;
+		navi->mTargetVelocity = targetToNavi * speed;
 	}
 
 	if (mWallHitCounter > 10) {

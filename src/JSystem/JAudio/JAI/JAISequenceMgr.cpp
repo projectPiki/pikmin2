@@ -452,8 +452,34 @@ void checkPlayingSeqUpdateTrack(u32, u32, JAInter::MoveParaSet*, u32*, u8, f32*)
  * @note Address: 0x800B1B18
  * @note Size: 0x1078
  */
-void checkPlayingSeqTrack(u32)
+void checkPlayingSeqTrack(u32 playTrackNo)
 {
+	SeqUpdateData* data = &seqTrackInfo[playTrackNo];
+	SeqParameter& param = data->mSequence->mSeqParameter;
+	if (data->mSequence->mSeqParameter.mPauseMode == 2) {
+		return;
+	}
+
+	u32* valPtr = data->_44;
+	for (u8 i = 0; i < JAIGlobalParameter::getParamSeqTrackMax() + 1; i++) {
+		valPtr[i] = 0;
+	}
+
+	if (data->mActiveTrackFlag & SOUNDACTIVE_DoFadeout) {
+		if (data->mSequence->mFadeCounter == 0 || data->mSequence->mState < SOUNDSTATE_Playing) {
+			if (data->mSequence->mState >= SOUNDSTATE_Ready) {
+				param.mTrack.stopSeq();
+			}
+			data->mSequence->clearMainSoundPPointer();
+			stopSeq(data->mSequence);
+			data->mActiveTrackFlag = 0;
+			return;
+		}
+
+		data->mSequence->setVolume(0.0f, data->mSequence->mFadeCounter, SOUNDPARAM_Fadeout);
+		data->mSequence->mState = SOUNDSTATE_Fadeout;
+		data->mActiveTrackFlag ^= 2;
+	}
 	/*
 	stwu     r1, -0xa0(r1)
 	mflr     r0
