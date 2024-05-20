@@ -2,8 +2,9 @@
 #define _SYS_MATBASEANIMATOR_H
 
 #include "types.h"
+#include "Sys/MatBaseAnimation.h"
+
 namespace Sys {
-struct MatBaseAnimation;
 
 /**
  * @size{0xC}
@@ -20,7 +21,29 @@ struct MatBaseAnimator {
 
 	// unused/inlined:
 	void removeMotion();
-	f32 forward(f32);
+	int forward(f32);
+
+	// by all means this should not exist, its just forward with - instead of +
+	// but alas, the subtract is needed and idk how else to make it work
+	int backward(f32 rate)
+	{
+		int state;
+		if (!mAnimation) {
+			state = 0x8000;
+		} else {
+			state = 0;
+			mCurrFrame -= rate;
+			if (mCurrFrame < 0.0f) {
+				mCurrFrame = 0.0f;
+				state      = 1;
+			} else if (mCurrFrame >= mAnimation->getFrameMax()) {
+				mCurrFrame = mAnimation->getFrameMax();
+				state      = 2;
+			}
+			mAnimation->getAnmBase()->setFrame(mCurrFrame);
+		}
+		return state;
+	}
 
 	// VTBL _00
 	MatBaseAnimation* mAnimation; // _04

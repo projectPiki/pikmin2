@@ -28,7 +28,7 @@ GC_FILES:=\
 	$(BUILD_DIR)/asm/sysGCU/aramMgr.o\
 	$(BUILD_DIR)/asm/sysGCU/resourceMgr.o\
 	$(BUILD_DIR)/src/sysGCU/resourceMgr2D.o\
-	$(BUILD_DIR)/asm/sysGCU/sysMaterialAnim.o\
+	$(BUILD_DIR)/src/sysGCU/sysMaterialAnim.o\
 	$(BUILD_DIR)/src/sysGCU/P2DScreen.o\
 	$(BUILD_DIR)/asm/sysGCU/movieMessage.o\
 	$(BUILD_DIR)/src/sysGCU/moviePlayerPauseAndDraw.o\
