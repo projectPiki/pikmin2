@@ -10,6 +10,7 @@
 #include "JSystem/JAudio/JAS/JASResArcLoader.h"
 #include "JSystem/JKernel/JKRArchive.h"
 #include "JSystem/JKernel/JKRHeap.h"
+#include "stl/math.h"
 #include "types.h"
 
 namespace JAInter {
@@ -480,6 +481,47 @@ void checkPlayingSeqTrack(u32 playTrackNo)
 		data->mSequence->mState = SOUNDSTATE_Fadeout;
 		data->mActiveTrackFlag ^= 2;
 	}
+
+	if (data->mSequence && data->mSequence->mCreatureObj) {
+		u32 startIdx;
+		u32 cameraMax;
+		if (data->mSequence->_18 == 4) {
+			startIdx  = 0;
+			cameraMax = JAIGlobalParameter::getParamAudioCameraMax();
+		} else {
+			startIdx  = data->mSequence->_18;
+			cameraMax = data->mSequence->_18 + 1;
+		}
+
+		for (u32 i = startIdx; i < cameraMax; i++) {
+			JAISound_0x34* soundObj = &data->mSequence->mSoundObj[i];
+			soundObj->_0C           = soundObj->mPosition;
+
+			PSMTXMultVec(*JAIBasic::getInterface()->mCameras[i].mMtx, data->mSequence->_3C, &soundObj->mPosition);
+			soundObj->mDistance
+			    = dolsqrtfull(SQUARE(soundObj->mPosition.x) + SQUARE(soundObj->mPosition.y) + SQUARE(soundObj->mPosition.z));
+
+			f32 vol = data->mSequence->setDistanceVolumeCommon(JAIGlobalParameter::getParamDistanceMax(), 0);
+			data->mSequence->setVolume(u8(127.0f * vol), JAIGlobalParameter::getParamDistanceParameterMoveTime(), SOUNDPARAM_Distance);
+
+			f32 pan = data->mSequence->setDistancePanCommon();
+			data->mSequence->setPan(u8(pan), JAIGlobalParameter::getParamDistanceParameterMoveTime(), SOUNDPARAM_Distance);
+
+			f32 pitch = data->mSequence->setPositionDopplarCommon(256);
+			data->mSequence->setPitch(pitch, JAIGlobalParameter::getParamDopplarMoveTime(), SOUNDPARAM_Distance);
+		}
+	}
+
+	if (data->mSequence) {
+		data->mSequence->_2C++;
+	}
+
+	if (!data->mActiveTrackFlag) {
+		return;
+	}
+
+	u8 playTrackMax = JAIGlobalParameter::getParamSeqPlayTrackMax() + 12;
+
 	/*
 	stwu     r1, -0xa0(r1)
 	mflr     r0
