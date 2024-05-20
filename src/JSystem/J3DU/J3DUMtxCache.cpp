@@ -55,7 +55,7 @@ J3DUMtxAnmCacheTableBase::~J3DUMtxAnmCacheTableBase()
 J3DUMtxAnmCacheTable::J3DUMtxAnmCacheTable(J3DModel* model, J3DAnmTransform* transform)
 {
 	int jointCount = model->mModelData->getJointNum();
-	int frameCount = transform->getFrameMax();
+	int frameCount = transform->getTotalFrameCount();
 
 	mAnimationFrame = 0;
 	mJointCount     = jointCount;

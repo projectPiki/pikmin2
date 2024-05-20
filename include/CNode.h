@@ -51,6 +51,20 @@ struct CNode {
 		setName(name);
 	}
 
+	inline CNode* getParent() const { return mParent; }
+	inline CNode* getChild() const { return mChild; }
+	inline CNode* getNext() const { return mNext; }
+	inline CNode* getPrev() const { return mPrev; }
+	inline const char* getName() const { return mName; }
+
+	inline bool isChild() const { return mParent != nullptr; }
+	inline bool isRoot() const { return mParent == nullptr; }
+
+	inline void setParent(CNode* parent) { mParent = parent; }
+	inline void setChild(CNode* child) { mChild = child; }
+	inline void setNext(CNode* next) { mNext = next; }
+	inline void setPrev(CNode* prev) { mPrev = prev; }
+
 	// _00 vtbl
 	CNode* mNext;      // _04
 	CNode* mPrev;      // _08

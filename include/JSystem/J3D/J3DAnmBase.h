@@ -41,7 +41,7 @@ enum J3DAnmAttr { J3DAA_UNKNOWN_0 = 0, J3DAA_UNKNOWN_1 = 1, J3DAA_UNKNOWN_2 = 2,
 struct J3DAnmBase {
 	inline J3DAnmBase()
 	    : mAttribute(0)
-	    , _05(0)
+	    , mUnused(0)
 	    , mTotalFrameCount(0)
 	    , mCurrentFrame(0.0f)
 	{
@@ -51,13 +51,13 @@ struct J3DAnmBase {
 	virtual J3DAnmKind getKind() const = 0; // _0C
 
 	u8 getAttribute() const { return mAttribute; }
-	s16 getFrameMax() const { return mTotalFrameCount; }
+	s16 getTotalFrameCount() const { return mTotalFrameCount; }
 	f32 getFrame() const { return mCurrentFrame; }
 	void setFrame(f32 frame) { mCurrentFrame = frame; }
 
 	// _00 = VTBL
 	u8 mAttribute;        // _04
-	u8 _05;               // _05
+	u8 mUnused;           // _05
 	s16 mTotalFrameCount; // _06
 	f32 mCurrentFrame;    // _08
 };

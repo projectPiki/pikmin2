@@ -39,7 +39,7 @@ struct Animator : public BaseAnimator {
 	{
 		return (mAnimInfo != nullptr) ? mAnimInfo->mCalc : nullptr;
 	}
-	virtual void animate(f32); // _0C
+	virtual void animate(f32 speed); // _0C
 
 	void startAnim(int animID, MotionListener* listener);
 	void startExAnim(AnimInfo* info);

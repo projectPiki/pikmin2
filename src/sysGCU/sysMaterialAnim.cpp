@@ -35,7 +35,7 @@ void MatBaseAnimation::attachResource(void* resource, J3DModelData* modelData)
 f32 MatBaseAnimation::getFrameMax()
 {
 	P2ASSERTLINE(57, getAnmBase());
-	return getAnmBase()->getFrameMax();
+	return getAnmBase()->getTotalFrameCount();
 }
 
 /**
@@ -151,16 +151,16 @@ int MatBaseAnimator::forward(f32 rate)
 {
 	int state;
 	if (!mAnimation) {
-		state = 0x8000;
+		state = NoAnimation;
 	} else {
-		state = 0;
+		state = Playing;
 		mCurrFrame += rate;
 		if (mCurrFrame < 0.0f) {
 			mCurrFrame = 0.0f;
-			state      = 1;
+			state      = AtStart;
 		} else if (mCurrFrame >= mAnimation->getFrameMax()) {
 			mCurrFrame = mAnimation->getFrameMax();
-			state      = 2;
+			state      = AtEnd;
 		}
 		mAnimation->getAnmBase()->setFrame(mCurrFrame);
 	}
@@ -210,7 +210,7 @@ void MatLoopAnimator::do_animate(f32 rate)
 {
 	u32 state = forward(rate);
 
-	if (state == 2) {
+	if (state == MatBaseAnimator::AtEnd) {
 		mCurrFrame = 0.0f;
 	}
 }
@@ -219,7 +219,7 @@ void MatLoopAnimator::do_animate(f32 rate)
  * @note Address: 0x80434778
  * @note Size: 0xC
  */
-void MatRepeatAnimator::onStart() { _0C = 1; }
+void MatRepeatAnimator::onStart() { mStarted = true; }
 
 /**
  * @note Address: 0x80434784
@@ -227,17 +227,15 @@ void MatRepeatAnimator::onStart() { _0C = 1; }
  */
 void MatRepeatAnimator::do_animate(f32 rate)
 {
-	if (_0C) {
+	if (mStarted) {
 		u32 state = forward(rate);
-
-		if (state == 2) {
-			_0C = false;
+		if (state == MatBaseAnimator::AtEnd) {
+			mStarted = false;
 		}
 	} else {
 		u32 state = backward(rate);
-
-		if (state == 1) {
-			_0C = true;
+		if (state == MatBaseAnimator::AtStart) {
+			mStarted = true;
 		}
 	}
 }

@@ -49,6 +49,7 @@ void Animator::startAnim(int animID, MotionListener* listener)
 		mAnimMgr->dump();
 		JUT_PANICLINE(220, "go to hell !\n");
 	}
+
 	mTimer      = 0.0f;
 	mCurAnimKey = mAnimInfo->getLowestAnimKey(0.0f);
 	if (listener != nullptr) {
@@ -98,15 +99,16 @@ void Animator::setCurrFrame(f32 timer)
  */
 void Animator::setFrameByKeyType(u32 id)
 {
-	JUT_ASSERTLINE(300, !(mFlags & Unk80), "ExMotionErr::setFrameByKeyType(%d)\n", id);
+	JUT_ASSERTLINE(300, !isFlag(Unk80), "ExMotionErr::setFrameByKeyType(%d)\n", id);
 
 	if (id == KEYEVENT_END) {
-		setCurrFrame(mAnimInfo->mAnm->mTotalFrameCount - 1.0f);
-	} else {
-		KeyEvent* evt = mAnimInfo->getAnimKeyByType(id);
-		if (evt) {
-			setCurrFrame(evt->mFrame);
-		}
+		setCurrFrame(mAnimInfo->mAnm->getTotalFrameCount() - 1.0f);
+		return;
+	}
+
+	KeyEvent* evt = mAnimInfo->getAnimKeyByType(id);
+	if (evt) {
+		setCurrFrame(evt->mFrame);
 	}
 }
 
@@ -117,7 +119,7 @@ void Animator::setFrameByKeyType(u32 id)
 void Animator::setLastFrame()
 {
 	if (mAnimInfo) {
-		setCurrFrame(mAnimInfo->mAnm->mTotalFrameCount - 1.0f);
+		setCurrFrame(mAnimInfo->mAnm->getTotalFrameCount() - 1.0f);
 	}
 }
 
@@ -125,16 +127,16 @@ void Animator::setLastFrame()
  * @note Address: 0x80428F78
  * @note Size: 0x2AC
  */
-void Animator::animate(f32 deltaTime)
+void Animator::animate(f32 speed)
 {
 	if (!mAnimInfo) {
 		return;
 	}
 
-	mTimer += deltaTime;
+	mTimer += speed;
 
-	bool found = false;
-	while (!found && mCurAnimKey && mCurAnimKey->mFrame < (int)mTimer) {
+	bool loopEndFound = false;
+	while (!loopEndFound && mCurAnimKey && mCurAnimKey->getFrame() < (int)mTimer) {
 		onKeyEventTrigger(mCurAnimKey);
 
 		SysShape::KeyEvent* currentEv = mCurAnimKey;
@@ -147,13 +149,13 @@ void Animator::animate(f32 deltaTime)
 			if (!isFlag(AnimFinishMotion)) {
 				KeyEvent* start = mAnimInfo->getLastLoopStart(currentEv);
 				if (start) {
-					mTimer = start->mFrame;
+					mTimer = start->getFrame();
 				} else {
 					mTimer = 0.0f;
 					JUT_PANICLINE(369, "mismatch LOOP_START - LOOP_END\n");
 				}
 
-				found = true;
+				loopEndFound = true;
 				break;
 			}
 		}
@@ -161,17 +163,17 @@ void Animator::animate(f32 deltaTime)
 		mCurAnimKey = (KeyEvent*)mCurAnimKey->mNext;
 	}
 
-	if (found) {
+	if (loopEndFound) {
 		mCurAnimKey = mAnimInfo->getLowestAnimKey(mTimer);
 	}
 
-	int time = mAnimInfo->mAnm->getFrameMax();
+	s32 time = mAnimInfo->mAnm->getTotalFrameCount();
 	if (mTimer >= time) {
 		mTimer = time - 1.0f;
 
 		if (mListener && !isFlag(AnimCompleted)) {
 			KeyEvent event;
-			event.mFrame   = (f32)mAnimInfo->mAnm->getFrameMax();
+			event.mFrame   = (f32)mAnimInfo->mAnm->getTotalFrameCount();
 			event.mType    = KEYEVENT_END;
 			event.mAnimIdx = mAnimInfo->mId;
 			setFlag(AnimCompleted);
