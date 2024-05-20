@@ -78,10 +78,6 @@ struct Animator : public BaseAnimator {
 		}
 	}
 
-	inline f32 getTimer() const { return mTimer; }
-
-	inline KeyEvent* moveCurAnim() { return mCurAnimKey = (KeyEvent*)mCurAnimKey->mNext; }
-
 	MotionListener* mListener; // _04
 	f32 mTimer;                // _08
 	AnimInfo* mAnimInfo;       // _0C

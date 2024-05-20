@@ -396,15 +396,15 @@ void Model::initJointsRec(int id, Joint* jnt)
 	J3DJoint* jnt2 = joint->mJ3d->getChild();
 	J3DJoint* jnt3 = joint->mJ3d->getYounger();
 	if (jnt2) {
-		int id2       = jnt2->getJntNo();
-		joint->mChild = &mJoints[id2];
-		initJointsRec(id2, joint);
+		id            = jnt2->getJntNo();
+		joint->mChild = &mJoints[id];
+		initJointsRec(id, joint);
 	}
 
 	if (jnt3) {
-		int id2      = jnt3->getJntNo();
-		joint->mNext = &mJoints[id2];
-		initJointsRec(id2, jnt);
+		id           = jnt3->getJntNo();
+		joint->mNext = &mJoints[id];
+		initJointsRec(id, jnt);
 	}
 	/*
 	stwu     r1, -0x30(r1)
@@ -695,40 +695,6 @@ void Model::viewCalc()
 	if (needViewCalc()) {
 		mJ3dModel->viewCalc();
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lbz      r0, viewCalcMode__Q28SysShape5Model@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_8043F080
-	bl       isMtxImmediate__Q28SysShape5ModelFv
-	b        lbl_8043F090
-
-lbl_8043F080:
-	bl       isMtxImmediate__Q28SysShape5ModelFv
-	clrlwi   r0, r3, 0x18
-	cntlzw   r0, r0
-	srwi     r3, r0, 5
-
-lbl_8043F090:
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8043F0AC
-	lwz      r3, 8(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8043F0AC:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /**

@@ -1571,7 +1571,7 @@ LIBS = [
             ["sysGCU/controller", True],
             ["sysGCU/graphics", False],
             ["sysGCU/matMath", False],
-            ["sysGCU/sysShape", False],
+            ["sysGCU/sysShape", True],
             ["sysGCU/reset", True],
             ["sysGCU/dvdStatus", True],
             ["sysGCU/sysTimers", True],

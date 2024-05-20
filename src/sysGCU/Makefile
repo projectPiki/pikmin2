@@ -8,7 +8,7 @@ GC_FILES:=\
 	$(BUILD_DIR)/src/sysGCU/controller.o\
 	$(BUILD_DIR)/asm/sysGCU/graphics.o\
 	$(BUILD_DIR)/asm/sysGCU/matMath.o\
-	$(BUILD_DIR)/asm/sysGCU/sysShape.o\
+	$(BUILD_DIR)/src/sysGCU/sysShape.o\
 	$(BUILD_DIR)/src/sysGCU/reset.o\
 	$(BUILD_DIR)/src/sysGCU/dvdStatus.o\
 	$(BUILD_DIR)/src/sysGCU/sysTimers.o\
