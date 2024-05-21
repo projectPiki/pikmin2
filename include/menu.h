@@ -6,6 +6,13 @@
 #include "IDelegate.h"
 
 struct Menu {
+	enum State {
+		Inactive = 0,
+		FadeIn   = 1,
+		Active   = 2,
+		FadeOut  = 3,
+	};
+
 	/**
 	 * @struct Menu::KeyEvent
 	 * @brief Represents a key event in the menu.
@@ -120,10 +127,17 @@ struct Menu {
 		mPositionY = y;
 	}
 
+	inline void nextItem()
+	{
+		if (!mCurrentItem && !mItemList.getFirstLink()) {
+			mCurrentItem = (MenuItem*)mItemList.getFirstLink()->getObjectPtr();
+		}
+	}
+
 	JUTGamePad* mControl;   // _00
 	JUTFont* mFont;         // _04
 	bool mFlag;             // _08
-	u32 _0C;                // _0C, possibly Menu*
+	Menu* _0C;              // _0C
 	Menu* mSelf;            // _10
 	Menu* _14;              // _14
 	JSUPtrList mItemList;   // _18

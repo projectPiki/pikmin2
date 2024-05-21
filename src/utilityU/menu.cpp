@@ -34,7 +34,7 @@ Menu::Menu(JUTGamePad* control, JUTFont* font, bool flag)
 	_48            = 260;
 	mIsInitialised = true;
 	mIsUpdated     = true;
-	mState         = 0;
+	mState         = Inactive;
 	mTimer         = 0.0f;
 	mTimer2        = 0.0f;
 
@@ -98,22 +98,22 @@ Menu* Menu::doUpdate(bool flag)
 	mSelf = this;
 	mTimer2 += sys->mDeltaTime * 7.0f;
 	switch (mState) {
-	case 1:
+	case FadeIn:
 		mTimer += sys->mDeltaTime * 8.0f;
 		if (mTimer >= 1.0f) {
 			mTimer = 1.0f;
-			mState = 2;
+			mState = Active;
 		}
 		break;
-	case 3:
+	case FadeOut:
 		mTimer = -(sys->mDeltaTime * 8.0f - mTimer);
 		if (mTimer < 0.0f) {
 			mTimer = 0.0f;
-			mState = 0;
+			mState = Inactive;
 			menu   = _14;
 		}
 		break;
-	case 2:
+	case Active:
 		if (flag) {
 			mIsUpdated = true;
 		}
@@ -182,20 +182,18 @@ Menu* Menu::doUpdate(bool flag)
 				_50->invoke(*this);
 			}
 
-			menu = mSelf; // this shouldnt exist but regswaps without it
 			if (mSelf) {
+				menu         = mSelf;
 				menu->mTimer = 0.0f;
-				menu->mState = 1;
-				if (!menu->mCurrentItem && !menu->mItemList.getFirstLink()) {
-					menu->mCurrentItem = (MenuItem*)menu->mItemList.getFirstLink()->getObjectPtr();
-				}
+				menu->mState = FadeIn;
+				menu->nextItem();
 				menu = mSelf;
 			} else {
 				if (!_0C) {
 					mSelf = (Menu*)_0C;
 				}
 				mTimer = 1.0f;
-				mState = 3;
+				mState = FadeOut;
 			}
 			_14 = mSelf;
 		}
@@ -204,285 +202,6 @@ Menu* Menu::doUpdate(bool flag)
 	}
 
 	return menu;
-
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lfs      f2, lbl_80520BF8@sda21(r2)
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	mr       r31, r30
-	stw      r29, 0x14(r1)
-	stw      r30, 0x10(r3)
-	lwz      r3, sys@sda21(r13)
-	lfs      f0, 0x3c(r30)
-	lfs      f1, 0x54(r3)
-	fmadds   f0, f2, f1, f0
-	stfs     f0, 0x3c(r30)
-	lwz      r0, 0x34(r30)
-	cmpwi    r0, 2
-	beq      lbl_80456514
-	bge      lbl_80456490
-	cmpwi    r0, 1
-	bge      lbl_8045649C
-	b        lbl_804567B8
-
-lbl_80456490:
-	cmpwi    r0, 4
-	bge      lbl_804567B8
-	b        lbl_804564D8
-
-lbl_8045649C:
-	lwz      r3, sys@sda21(r13)
-	lfs      f3, lbl_80520BFC@sda21(r2)
-	lfs      f2, 0x54(r3)
-	lfs      f1, 0x38(r30)
-	lfs      f0, lbl_80520BF4@sda21(r2)
-	fmadds   f1, f3, f2, f1
-	stfs     f1, 0x38(r30)
-	lfs      f1, 0x38(r30)
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_804567B8
-	stfs     f0, 0x38(r30)
-	li       r0, 2
-	stw      r0, 0x34(r30)
-	b        lbl_804567B8
-
-lbl_804564D8:
-	lwz      r3, sys@sda21(r13)
-	lfs      f3, lbl_80520BFC@sda21(r2)
-	lfs      f2, 0x54(r3)
-	lfs      f1, 0x38(r30)
-	lfs      f0, lbl_80520BF0@sda21(r2)
-	fnmsubs  f1, f3, f2, f1
-	stfs     f1, 0x38(r30)
-	lfs      f1, 0x38(r30)
-	fcmpo    cr0, f1, f0
-	bge      lbl_804567B8
-	stfs     f0, 0x38(r30)
-	li       r0, 0
-	stw      r0, 0x34(r30)
-	lwz      r31, 0x14(r30)
-	b        lbl_804567B8
-
-lbl_80456514:
-	clrlwi.  r0, r4, 0x18
-	beq      lbl_80456524
-	li       r0, 1
-	stb      r0, 0x59(r30)
-
-lbl_80456524:
-	lwz      r4, 0(r30)
-	lis      r3, 0x04000004@ha
-	addi     r0, r3, 0x04000004@l
-	lwz      r4, 0x30(r4)
-	and.     r0, r4, r0
-	beq      lbl_804565CC
-	lwz      r3, 0x24(r30)
-	mr       r4, r30
-	li       r5, 2
-	bl       checkEvents__Q24Menu8MenuItemFP4Menui
-	lwz      r3, 0x24(r30)
-	bl       getNext__Q24Menu8MenuItemFv
-	stw      r3, 0x24(r30)
-	lwz      r0, 0x24(r30)
-	cmplwi   r0, 0
-	bne      lbl_80456594
-	lwz      r3, 0x18(r30)
-	lwz      r0, 0(r3)
-	stw      r0, 0x24(r30)
-	b        lbl_80456594
-
-lbl_80456574:
-	bl       getNext__Q24Menu8MenuItemFv
-	stw      r3, 0x24(r30)
-	lwz      r0, 0x24(r30)
-	cmplwi   r0, 0
-	bne      lbl_80456594
-	lwz      r3, 0x18(r30)
-	lwz      r0, 0(r3)
-	stw      r0, 0x24(r30)
-
-lbl_80456594:
-	lwz      r3, 0x24(r30)
-	lwz      r0, 8(r3)
-	cmplwi   r0, 0
-	beq      lbl_80456574
-	lbz      r0, 4(r3)
-	cmplwi   r0, 0
-	beq      lbl_80456574
-	li       r0, 1
-	li       r4, 0x1802
-	stb      r0, 0x59(r30)
-	li       r5, 0
-	lwz      r3, spSysIF__8PSSystem@sda21(r13)
-	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-	b        lbl_80456660
-
-lbl_804565CC:
-	lis      r3, 0x08000008@ha
-	addi     r0, r3, 0x08000008@l
-	and.     r0, r4, r0
-	beq      lbl_80456660
-	lwz      r3, 0x24(r30)
-	mr       r4, r30
-	li       r5, 2
-	bl       checkEvents__Q24Menu8MenuItemFP4Menui
-	lwz      r3, 0x24(r30)
-	bl       getPrev__Q24Menu8MenuItemFv
-	stw      r3, 0x24(r30)
-	lwz      r0, 0x24(r30)
-	cmplwi   r0, 0
-	bne      lbl_80456634
-	lwz      r3, 0x1c(r30)
-	lwz      r0, 0(r3)
-	stw      r0, 0x24(r30)
-	b        lbl_80456634
-
-lbl_80456614:
-	bl       getPrev__Q24Menu8MenuItemFv
-	stw      r3, 0x24(r30)
-	lwz      r0, 0x24(r30)
-	cmplwi   r0, 0
-	bne      lbl_80456634
-	lwz      r3, 0x1c(r30)
-	lwz      r0, 0(r3)
-	stw      r0, 0x24(r30)
-
-lbl_80456634:
-	lwz      r3, 0x24(r30)
-	lwz      r0, 8(r3)
-	cmplwi   r0, 0
-	beq      lbl_80456614
-	lbz      r0, 4(r3)
-	cmplwi   r0, 0
-	beq      lbl_80456614
-	lwz      r3, spSysIF__8PSSystem@sda21(r13)
-	li       r4, 0x1802
-	li       r5, 0
-	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-
-lbl_80456660:
-	lbz      r0, 0x58(r30)
-	cmplwi   r0, 0
-	beq      lbl_8045669C
-	lwz      r3, 0x4c(r30)
-	cmplwi   r3, 0
-	beq      lbl_8045668C
-	lwz      r12, 0(r3)
-	mr       r4, r30
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8045668C:
-	li       r3, 0
-	li       r0, 1
-	stb      r3, 0x58(r30)
-	stb      r0, 0x59(r30)
-
-lbl_8045669C:
-	lbz      r0, 0x59(r30)
-	lis      r3, 0x0000FFFC@ha
-	addi     r29, r3, 0x0000FFFC@l
-	cmplwi   r0, 0
-	beq      lbl_804566E4
-	lwz      r3, 0x54(r30)
-	ori      r29, r29, 1
-	cmplwi   r3, 0
-	beq      lbl_804566D4
-	lwz      r12, 0(r3)
-	mr       r4, r30
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_804566D4:
-	lfs      f0, lbl_80520BF0@sda21(r2)
-	li       r0, 0
-	stfs     f0, 0x3c(r30)
-	stb      r0, 0x59(r30)
-
-lbl_804566E4:
-	lwz      r3, 0x24(r30)
-	mr       r4, r30
-	mr       r5, r29
-	bl       checkEvents__Q24Menu8MenuItemFP4Menui
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80456710
-	lwz      r3, 0x18(r30)
-	mr       r4, r30
-	mr       r5, r29
-	lwz      r3, 0(r3)
-	bl       checkEvents__Q24Menu8MenuItemFP4Menui
-
-lbl_80456710:
-	lwz      r0, 0x10(r30)
-	cmplw    r0, r30
-	beq      lbl_804567B8
-	lwz      r3, 0x24(r30)
-	mr       r4, r30
-	li       r5, 2
-	bl       checkEvents__Q24Menu8MenuItemFP4Menui
-	lwz      r3, 0x50(r30)
-	cmplwi   r3, 0
-	beq      lbl_8045674C
-	lwz      r12, 0(r3)
-	mr       r4, r30
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8045674C:
-	lwz      r3, 0x10(r30)
-	cmplwi   r3, 0
-	beq      lbl_80456790
-	lfs      f0, lbl_80520BF0@sda21(r2)
-	li       r0, 1
-	stfs     f0, 0x38(r3)
-	stw      r0, 0x34(r3)
-	lwz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	bne      lbl_80456788
-	lwz      r4, 0x18(r3)
-	cmplwi   r4, 0
-	bne      lbl_80456788
-	lwz      r0, 0(r4)
-	stw      r0, 0x24(r3)
-
-lbl_80456788:
-	lwz      r31, 0x10(r30)
-	b        lbl_804567B0
-
-lbl_80456790:
-	lwz      r0, 0xc(r30)
-	cmplwi   r0, 0
-	bne      lbl_804567A0
-	stw      r0, 0x10(r30)
-
-lbl_804567A0:
-	lfs      f0, lbl_80520BF4@sda21(r2)
-	li       r0, 3
-	stfs     f0, 0x38(r30)
-	stw      r0, 0x34(r30)
-
-lbl_804567B0:
-	lwz      r0, 0x10(r30)
-	stw      r0, 0x14(r30)
-
-lbl_804567B8:
-	lwz      r0, 0x24(r1)
-	mr       r3, r31
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
@@ -581,12 +300,12 @@ bool Menu::MenuItem::checkEvents(Menu* menu, int type)
 							menu->mSelf = (Menu*)menu->_0C;
 						}
 						menu->mTimer = 7.0f;
-						menu->mState = 3;
+						menu->mState = FadeOut;
 						menu->mSelf  = menu;
 						menu->_14    = menu->mCurrentItem->mMenu;
 						Menu* temp   = menu->_14; // might be an inline
 						temp->mTimer = 1.0f;
-						temp->mState = 1;
+						temp->mState = FadeIn;
 
 						if (!menu->mCurrentItem && !menu->mItemList.getFirstLink()) {
 							menu->mCurrentItem = (MenuItem*)menu->mItemList.getFirstLink()->getObjectPtr();
