@@ -25,8 +25,8 @@ struct Menu {
 		 */
 		KeyEvent(cTypeFlag type, u32 param, IDelegate1<Menu&>* action);
 
-		int mType; // _00
-		int _04;
+		int mType;   // _00
+		int mButton; // _04
 		IDelegate1<Menu&>* mAction;
 		JSUPtrLink mLink;
 	};
@@ -67,7 +67,7 @@ struct Menu {
 		 * @param menu A pointer to the Menu object.
 		 * @param param The parameter of the menu item.
 		 */
-		void checkEvents(Menu* menu, int param);
+		bool checkEvents(Menu* menu, int param);
 
 		Menu* mMenu;       // _00
 		bool mIsActive;    // _04
@@ -107,7 +107,7 @@ struct Menu {
 	 * @brief Updates the menu.
 	 * @param flag A boolean indicating whether the menu should be updated or not.
 	 */
-	void doUpdate(bool flag);
+	Menu* doUpdate(bool flag);
 
 	/**
 	 * @brief Sets the position of the menu.
@@ -123,7 +123,7 @@ struct Menu {
 	JUTGamePad* mControl;   // _00
 	JUTFont* mFont;         // _04
 	bool mFlag;             // _08
-	int _0C;                // _0C, possibly Menu*
+	u32 _0C;                // _0C, possibly Menu*
 	Menu* mSelf;            // _10
 	Menu* _14;              // _14
 	JSUPtrList mItemList;   // _18
@@ -137,12 +137,12 @@ struct Menu {
 	int mPositionX;         // _40
 	int mPositionY;         // _44
 	int _48;                // _48
-	int _4C;                // _4C
-	int _50;                // _50
-	int _54;                // _54
+	IDelegate1<Menu&>* _4C; // _4C
+	IDelegate1<Menu&>* _50; // _50
+	IDelegate1<Menu&>* _54; // _54
 	bool mIsInitialised;    // _58
 	bool mIsUpdated;        // _59
-	int _5C;
+	int mButtonValue;       // _5C
 };
 
 #endif
