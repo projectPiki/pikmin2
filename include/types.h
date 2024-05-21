@@ -51,19 +51,19 @@ typedef u16 wchar_t;
 #define SHORT_FLOAT_MIN (-32768.0f)
 
 // Basic defines to allow newer-like C++ code to be written
-#define TRUE    1
-#define FALSE   0
-#define NULL    ((void*)0)
+#define TRUE  1
+#define FALSE 0
+#define NULL  ((void*)0)
 #define nullptr 0
 
 #define SET_FLAG(x, val)     (x |= (val))
 #define RESET_FLAG(x, val)   (x &= ~(val))
 #define IS_FLAG(x, val)      (x & val)
 #define ARRAY_SIZE(o)        (sizeof((o)) / sizeof(*(o)))
-#define ALIGN_PREV(X, N)     ((X) & ~((N) - 1))
-#define ALIGN_NEXT(X, N)     ALIGN_PREV(((X) + (N) - 1), N)
-#define IS_ALIGNED(X, N)     ((X & ((N) - 1)) == 0)
-#define IS_NOT_ALIGNED(X, N) (((X) & ((N) - 1)) != 0)
+#define ALIGN_PREV(X, N)     ((X) & ~((N)-1))
+#define ALIGN_NEXT(X, N)     ALIGN_PREV(((X) + (N)-1), N)
+#define IS_ALIGNED(X, N)     ((X & ((N)-1)) == 0)
+#define IS_NOT_ALIGNED(X, N) (((X) & ((N)-1)) != 0)
 #define ATTRIBUTE_ALIGN(num) __attribute__((aligned(num)))
 
 #define ASSERT_HANG(cond) \

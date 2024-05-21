@@ -32,11 +32,8 @@ struct Matrix3f {
 			}
 		}
 
-		// Take absolute value of sum
-		f32 absOffDiag = FABS(sumOffDiag);
-
 		// Check for convergence, i.e. if off-diagonals are sufficiently small yet
-		if (absOffDiag < thresh) {
+		if (FABS(sumOffDiag) < thresh) {
 			// If sum of off-diags is not exactly zero but IS small enough, we put zero into all the off diagonals
 			if (sumOffDiag != 0.0f) {
 				for (int row_idx = 0; row_idx < 3; row_idx++) {
@@ -68,20 +65,16 @@ struct Matrix3f {
 		return y;
 	}
 
-	/**
-	 * @brief Creates a Jacobi matrix.
-	 *
-	 * @param row The row index of the Jacobi matrix.
-	 * @param col The column index of the Jacobi matrix.
-	 * @param c_theta The cosine of the rotation angle.
-	 * @param s_theta The sine of the rotation angle.
-	 */
-	inline void createJacobi(int row, int col, f32 c_theta, f32 s_theta)
+	inline void updateJacobiDiagonal(int row, int col, f32 cosTheta)
 	{
-		mMatrix[row][row] = c_theta; // these are especially dodgy
-		mMatrix[col][col] = c_theta;
-		mMatrix[row][col] = s_theta;
-		mMatrix[col][row] = -s_theta;
+		getAt(col, col) = cosTheta;
+		getAt(row, row) = cosTheta;
+	}
+
+	inline void updateJacobiOffDiagonal(int row, int col, f32 sinTheta)
+	{
+		getAt(row, col) = sinTheta;
+		getAt(col, row) = -sinTheta;
 	}
 
 	/**
@@ -99,6 +92,8 @@ struct Matrix3f {
 	 * @return The row of the matrix as a Vector3f object.
 	 */
 	inline Vector3f getRow(int i) { return Vector3f(mMatrix[i][0], mMatrix[i][1], mMatrix[i][2]); }
+
+	inline f32& getAt(int row, int col) { return mMatrix[row][col]; }
 
 	/**
 	 * @brief Multiplies this matrix with another matrix.
