@@ -743,7 +743,7 @@ void PlayingStream()
 		}
 	}
 
-	if (data->mActiveTrackFlag & SOUNDACTIVE_ChannelVolume) {
+	if (data->mActiveTrackFlag & SOUNDACTIVE_TrackVolume) {
 		for (u8 i = 0; i < sChannelMax; i++) {
 			MoveParaSet* chanVol = &param->mChannelVolumes[i];
 			if (param->mChannelVolumeFlags & (1 << i)) {
@@ -755,7 +755,7 @@ void PlayingStream()
 		}
 
 		if (param->mChannelVolumeFlags == 0) {
-			data->mActiveTrackFlag ^= SOUNDACTIVE_ChannelVolume;
+			data->mActiveTrackFlag ^= SOUNDACTIVE_TrackVolume;
 		}
 	}
 
@@ -807,7 +807,7 @@ void PlayingStream()
 		}
 	}
 
-	if (data->mActiveTrackFlag & SOUNDACTIVE_ChannelPan) {
+	if (data->mActiveTrackFlag & SOUNDACTIVE_TrackPan) {
 		for (u8 i = 0; i < sChannelMax; i++) {
 			MoveParaSet* pan = &param->mChannelPans[i];
 			if (param->mChannelPanFlags & (1 << i)) {
@@ -819,7 +819,7 @@ void PlayingStream()
 		}
 
 		if (param->mChannelPanFlags == 0) {
-			data->mActiveTrackFlag ^= SOUNDACTIVE_ChannelPan;
+			data->mActiveTrackFlag ^= SOUNDACTIVE_TrackPan;
 		}
 	}
 
@@ -927,7 +927,7 @@ void PlayingStream()
 		}
 	}
 
-	if (data->mActiveTrackFlag & SOUNDACTIVE_ChannelDolby) {
+	if (data->mActiveTrackFlag & SOUNDACTIVE_TrackDolby) {
 		for (u8 i = 0; i < sChannelMax; i++) {
 			MoveParaSet* dolby = &param->mChannelDolbys[i];
 			if (param->mChannelDolbyFlags & (1 << i)) {
@@ -939,7 +939,7 @@ void PlayingStream()
 		}
 
 		if (param->mChannelDolbyFlags == 0) {
-			data->mActiveTrackFlag ^= SOUNDACTIVE_ChannelDolby;
+			data->mActiveTrackFlag ^= SOUNDACTIVE_TrackDolby;
 		}
 	}
 

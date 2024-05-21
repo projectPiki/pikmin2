@@ -82,12 +82,12 @@ JAInter::SeqUpdateData::SeqUpdateData()
     , mSequence(nullptr)
     , mPlayerParams(new (JAIBasic::getCurrentJAIHeap(), 0x20) PlayerParameter[33])
 {
-	_24 = new (JAIBasic::getCurrentJAIHeap(), 0x20) f32[JAIGlobalParameter::getParamSeqTrackMax()];
-	_30 = new (JAIBasic::getCurrentJAIHeap(), 0x20) f32[JAIGlobalParameter::getParamSeqTrackMax()];
-	_28 = new (JAIBasic::getCurrentJAIHeap(), 0x20) f32[JAIGlobalParameter::getParamSeqTrackMax()];
-	_2C = new (JAIBasic::getCurrentJAIHeap(), 0x20) f32[JAIGlobalParameter::getParamSeqTrackMax()];
-	_34 = new (JAIBasic::getCurrentJAIHeap(), 0x20) f32[JAIGlobalParameter::getParamSeqTrackMax()];
-	_44 = new (JAIBasic::getCurrentJAIHeap(), 0x20) u32[JAIGlobalParameter::getParamSeqTrackMax() + 1];
+	mTrackVolumes = new (JAIBasic::getCurrentJAIHeap(), 0x20) f32[JAIGlobalParameter::getParamSeqTrackMax()];
+	mTrackPans    = new (JAIBasic::getCurrentJAIHeap(), 0x20) f32[JAIGlobalParameter::getParamSeqTrackMax()];
+	mTrackPitches = new (JAIBasic::getCurrentJAIHeap(), 0x20) f32[JAIGlobalParameter::getParamSeqTrackMax()];
+	mTrackFxmixes = new (JAIBasic::getCurrentJAIHeap(), 0x20) f32[JAIGlobalParameter::getParamSeqTrackMax()];
+	mTrackDolbys  = new (JAIBasic::getCurrentJAIHeap(), 0x20) f32[JAIGlobalParameter::getParamSeqTrackMax()];
+	_44           = new (JAIBasic::getCurrentJAIHeap(), 0x20) u32[JAIGlobalParameter::getParamSeqTrackMax() + 1];
 }
 
 /**
@@ -369,7 +369,7 @@ void checkReadSeq()
 		}
 		if (info->mPauseMode != SOUNDPAUSE_Unk0) {
 			info->mSequence->setPauseMode(info->mPauseMode, info->mPauseVolume);
-			info->_0C = 1.1f;
+			info->mSeqVolume = 1.1f;
 		}
 		JAIBasic::getInterface()->setSeExtParameter(info->mSequence);
 		checkPlayingSeqTrack(i);
@@ -426,8 +426,34 @@ void checkSeqWave()
  * @note Address: N/A
  * @note Size: 0x138
  */
-void checkPlayingSeqUpdateMultiplication(u32, u8, u32, JAInter::MoveParaSet*, u32*, u8, f32*)
+void checkPlayingSeqUpdateMultiplication(u32 playTrackNo, u8 max, u32 trackType, JAInter::MoveParaSet* params, u32* paramFlags,
+                                         u8 portargType, f32* mixPtr)
 {
+	SeqUpdateData* data = &seqTrackInfo[playTrackNo];
+	if (data->mActiveTrackFlag & trackType) {
+		f32 factor = 1.0f;
+		for (u8 i = 0; i < max; i++) {
+			MoveParaSet* set = &params[i];
+			if (*paramFlags & (1 << i)) {
+				if (set->move() == FALSE) {
+					*paramFlags ^= (1 << i);
+				}
+			}
+
+			factor *= set->mCurrentValue;
+		}
+
+		if (*mixPtr != factor) {
+			*mixPtr = factor;
+			SystemInterface::setSeqPortargsF32(&seqTrackInfo[playTrackNo], JAIGlobalParameter::getParamSeqTrackMax(), portargType, factor);
+
+			seqTrackInfo[playTrackNo]._44[JAIGlobalParameter::getParamSeqTrackMax()] |= (1 << (portargType - 3));
+		}
+
+		if (*paramFlags == 0) {
+			data->mActiveTrackFlag ^= trackType;
+		}
+	}
 	// UNUSED FUNCTION
 }
 
@@ -435,8 +461,41 @@ void checkPlayingSeqUpdateMultiplication(u32, u8, u32, JAInter::MoveParaSet*, u3
  * @note Address: N/A
  * @note Size: 0x178
  */
-void checkPlayingSeqUpdateAddition(u32, u8, u32, JAInter::MoveParaSet*, u32*, u8, f32*, f32)
+void checkPlayingSeqUpdateAddition(u32 playTrackNo, u8 max, u32 trackType, JAInter::MoveParaSet* params, u32* paramFlags, u8 portargType,
+                                   f32* mixPtr, f32 center)
 {
+	SeqUpdateData* data = &seqTrackInfo[playTrackNo];
+	if (data->mActiveTrackFlag & trackType) {
+		f32 factor = 0.0f;
+		for (u8 i = 0; i < max; i++) {
+			MoveParaSet* set = &params[i];
+			if (*paramFlags & (1 << i)) {
+				if (set->move() == FALSE) {
+					*paramFlags ^= (1 << i);
+				}
+			}
+
+			factor += (set->mCurrentValue - center);
+		}
+
+		factor += center;
+		if (factor > 1.0f) {
+			factor = 1.0f;
+		} else if (factor < 0.0f) {
+			factor = 0.0f;
+		}
+
+		if (*mixPtr != factor) {
+			*mixPtr = factor;
+			SystemInterface::setSeqPortargsF32(&seqTrackInfo[playTrackNo], JAIGlobalParameter::getParamSeqTrackMax(), portargType, factor);
+
+			seqTrackInfo[playTrackNo]._44[JAIGlobalParameter::getParamSeqTrackMax()] |= (1 << (portargType - 3));
+		}
+
+		if (*paramFlags == 0) {
+			data->mActiveTrackFlag ^= trackType;
+		}
+	}
 	// UNUSED FUNCTION
 }
 
@@ -444,8 +503,29 @@ void checkPlayingSeqUpdateAddition(u32, u8, u32, JAInter::MoveParaSet*, u32*, u8
  * @note Address: N/A
  * @note Size: 0x118
  */
-void checkPlayingSeqUpdateTrack(u32, u32, JAInter::MoveParaSet*, u32*, u8, f32*)
+void checkPlayingSeqUpdateTrack(u32 playTrackNo, u32 trackType, JAInter::MoveParaSet* params, u32* paramFlags, u8 portargType, f32* mixPtr)
 {
+	SeqUpdateData* data = &seqTrackInfo[playTrackNo];
+	if (data->mActiveTrackFlag & trackType) {
+		for (u8 i = 0; i < JAIGlobalParameter::getParamSeqTrackMax(); i++) {
+			MoveParaSet* set = &params[i];
+			if (*paramFlags & (1 << i)) {
+				if (set->move() == FALSE) {
+					*paramFlags ^= (1 << i);
+				}
+			}
+
+			if (mixPtr[i] != set->mCurrentValue) {
+				mixPtr[i] = set->mCurrentValue;
+				SystemInterface::setSeqPortargsF32(&seqTrackInfo[playTrackNo], i, portargType, set->mCurrentValue);
+				seqTrackInfo[playTrackNo]._44[i] |= (1 << (portargType - 3));
+			}
+		}
+
+		if (*paramFlags == 0) {
+			data->mActiveTrackFlag ^= trackType;
+		}
+	}
 	// UNUSED FUNCTION
 }
 
@@ -456,8 +536,8 @@ void checkPlayingSeqUpdateTrack(u32, u32, JAInter::MoveParaSet*, u32*, u8, f32*)
 void checkPlayingSeqTrack(u32 playTrackNo)
 {
 	SeqUpdateData* data = &seqTrackInfo[playTrackNo];
-	SeqParameter& param = data->mSequence->mSeqParameter;
-	if (data->mSequence->mSeqParameter.mPauseMode == 2) {
+	SeqParameter* param = &data->mSequence->mSeqParameter;
+	if (data->mSequence->mSeqParameter.mPauseMode == SOUNDPAUSE_Unk2) {
 		return;
 	}
 
@@ -469,7 +549,7 @@ void checkPlayingSeqTrack(u32 playTrackNo)
 	if (data->mActiveTrackFlag & SOUNDACTIVE_DoFadeout) {
 		if (data->mSequence->mFadeCounter == 0 || data->mSequence->mState < SOUNDSTATE_Playing) {
 			if (data->mSequence->mState >= SOUNDSTATE_Ready) {
-				param.mTrack.stopSeq();
+				param->mTrack.stopSeq();
 			}
 			data->mSequence->clearMainSoundPPointer();
 			stopSeq(data->mSequence);
@@ -520,8 +600,108 @@ void checkPlayingSeqTrack(u32 playTrackNo)
 		return;
 	}
 
-	u8 playTrackMax = JAIGlobalParameter::getParamSeqPlayTrackMax() + 12;
+	// check volumes
+	checkPlayingSeqUpdateMultiplication(playTrackNo, JAIGlobalParameter::getParamSeqPlayTrackMax() + 12, SOUNDACTIVE_Volume,
+	                                    param->mVolumes, &param->mVolumeFlags, 3, &data->mSeqVolume);
 
+	// check pans
+	checkPlayingSeqUpdateAddition(playTrackNo, JAIGlobalParameter::getParamSeqParameterLines(), SOUNDACTIVE_Pan, param->mPans,
+	                              &param->mPanFlags, 5, &data->mSeqPan, 0.5f);
+
+	// check pitches
+	checkPlayingSeqUpdateMultiplication(playTrackNo, JAIGlobalParameter::getParamSeqParameterLines(), SOUNDACTIVE_Pitch, param->mPitches,
+	                                    &param->mPitchFlags, 4, &data->mSeqPitch);
+
+	// check fxmixes
+	checkPlayingSeqUpdateAddition(playTrackNo, JAIGlobalParameter::getParamSeqParameterLines(), SOUNDACTIVE_Fxmix, param->mFxmixes,
+	                              &param->mFxmixFlags, 6, &data->mSeqFxmix, 0.0f);
+
+	// check dolbys
+	checkPlayingSeqUpdateAddition(playTrackNo, JAIGlobalParameter::getParamSeqParameterLines(), SOUNDACTIVE_Dolby, param->mDolbys,
+	                              &param->mDolbyFlags, 7, &data->mSeqDolby, 0.5f);
+
+	if (data->mActiveTrackFlag & SOUNDACTIVE_TempoProportion) {
+		if (param->mTempo.move() == FALSE) {
+			data->mActiveTrackFlag ^= SOUNDACTIVE_TempoProportion;
+		}
+
+		if (data->mSeqTempo != param->mTempo.mCurrentValue) {
+			data->mSeqTempo = param->mTempo.mCurrentValue;
+			SystemInterface::setSeqPortargsF32(&seqTrackInfo[playTrackNo], JAIGlobalParameter::getParamSeqTrackMax(), 10,
+			                                   param->mTempo.mCurrentValue);
+			valPtr[JAIGlobalParameter::getParamSeqTrackMax()] |= 0x80;
+		}
+	}
+
+	if (data->mActiveTrackFlag & SOUNDACTIVE_Unk5) {
+		for (u8 i = 0; i < 16; i++) {
+			if (param->_280 & (1 << i)) {
+				if (param->_10[i].move() == FALSE) {
+					param->_280 ^= (1 << i);
+				}
+			}
+			u16 portVal;
+			param->mTrack.readPortApp(i << 16, &portVal);
+
+			if (portVal != (u16)param->_10[i].mCurrentValue) {
+				param->mTrack.writePortApp(i << 16, (u16)param->_10[i].mCurrentValue);
+			}
+		}
+
+		if (param->_280 == 0) {
+			data->mActiveTrackFlag ^= SOUNDACTIVE_Unk5;
+		}
+	}
+
+	if (data->mActiveTrackFlag & SOUNDACTIVE_Unk6) {
+		data->mActiveTrackFlag ^= SOUNDACTIVE_Unk6;
+		for (u8 i = 0; i < JAIGlobalParameter::getParamSeqTrackMax(); i++) {
+			MuteBit* mutes = param->mMuteBits;
+			if (bool(mutes[i]._02) == true && bool(mutes[i]._00) != bool(mutes[i]._01)) {
+				JASTrack* seqP = SystemInterface::trackToSeqp(data->mSequence, i);
+				if (seqP) {
+					seqP->muteTrack(bool(mutes[i]._01));
+				}
+				mutes[i]._00 = bool(mutes[i]._01);
+			}
+		}
+	}
+
+	checkPlayingSeqUpdateTrack(playTrackNo, SOUNDACTIVE_TrackVolume, param->mTrackVolumes, &param->mTrackVolumeFlag, 3,
+	                           data->mTrackVolumes);
+	checkPlayingSeqUpdateTrack(playTrackNo, SOUNDACTIVE_TrackPan, param->mTrackPans, &param->mTrackPanFlag, 5, data->mTrackPans);
+	checkPlayingSeqUpdateTrack(playTrackNo, SOUNDACTIVE_TrackPitch, param->mTrackPitches, &param->mTrackPitchFlag, 4, data->mTrackPitches);
+	checkPlayingSeqUpdateTrack(playTrackNo, SOUNDACTIVE_TrackFxmix, param->mTrackFxmixes, &param->mTrackFxmixFlag, 6, data->mTrackFxmixes);
+	checkPlayingSeqUpdateTrack(playTrackNo, SOUNDACTIVE_TrackDolby, param->mTrackDolbys, &param->mTrackDolbyFlag, 7, data->mTrackDolbys);
+
+	if (data->mActiveTrackFlag & SOUNDACTIVE_TrackInterruptSwitch) {
+		data->mActiveTrackFlag ^= SOUNDACTIVE_TrackInterruptSwitch;
+		for (u8 i = 0; i < JAIGlobalParameter::getParamSeqTrackMax(); i++) {
+			if (param->mInterruptSwitches[i] == 1) {
+				valPtr[i] |= 0x40;
+				SystemInterface::setSeqPortargsU32(&seqTrackInfo[playTrackNo], i, 9, 1);
+				param->mInterruptSwitches[i] = 0;
+			}
+		}
+	}
+
+	if (data->mActiveTrackFlag & SOUNDACTIVE_TrackPortData) {
+		for (u8 i = 0; i < JAIGlobalParameter::getParamSeqTrackMax(); i++) {
+			if (param->mTrackPortDataFlag & (1 << i)) {
+				param->mTrackPortDataFlag ^= (1 << i);
+				for (u8 j = 0; j < 16; j++) {
+					if (param->_2B4[i] & (1 << j)) {
+						param->mTrack.writePortApp(data->mSequence->getTrackPortRoute(i, j), param->_274[i][j]);
+						param->_2B4[i] ^= (1 << j);
+					}
+				}
+			}
+		}
+
+		if (param->mTrackPortDataFlag == 0) {
+			data->mActiveTrackFlag ^= SOUNDACTIVE_TrackPortData;
+		}
+	}
 	/*
 	stwu     r1, -0xa0(r1)
 	mflr     r0
@@ -2291,25 +2471,24 @@ void storeSeqBuffer(JAISequence** soundHandlePtr, JAInter::Actor* actor, u32 sou
 void JAInter::SeqParameter::init()
 {
 	mTrack.assignExtBuffer(&mOuterParam);
-	// TODO: is this something like assigning a new (on stack) MoveParaSet? Can't do that to `this`, though...
 	_27C       = 0xFFFFFFFF;
-	_00        = MoveParaSet();
+	mTempo     = MoveParaSet();
 	mPauseMode = SOUNDPAUSE_Unk0;
 	_27A       = 0;
 	_280       = 0;
 
-	mVolumeFlags    = 0;
-	mPanFlags       = 0;
-	mPitchFlags     = 0;
-	mFxmixFlags     = 0;
-	mDolbyFlags     = 0;
-	_298            = 0;
-	_29C            = 0;
-	_2A0            = 0;
-	mTrackFxmixFlag = 0;
-	_2A8            = 0;
-	_2AC            = 0;
-	_2B0            = 0;
+	mVolumeFlags       = 0;
+	mPanFlags          = 0;
+	mPitchFlags        = 0;
+	mFxmixFlags        = 0;
+	mDolbyFlags        = 0;
+	mTrackVolumeFlag   = 0;
+	mTrackPanFlag      = 0;
+	mTrackPitchFlag    = 0;
+	mTrackFxmixFlag    = 0;
+	mTrackDolbyFlag    = 0;
+	_2AC               = 0;
+	mTrackPortDataFlag = 0;
 	for (u32 i = 0; i < JAIGlobalParameter::getParamSeqTrackMax(); i++) {
 		mTrackVolumes[i]      = MoveParaSet();
 		mTrackPans[i]         = MoveParaSetInitHalf();

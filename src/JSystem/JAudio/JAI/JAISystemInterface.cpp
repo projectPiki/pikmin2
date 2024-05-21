@@ -151,12 +151,12 @@ void JAInter::SystemInterface::outerInit(JAInter::SeqUpdateData* updateData, JAS
 	updateData->mPlayerParams[trackNo].mCommand.setPortCmd(setSePortParameter, portArgs);
 	JASOuterParam* outerParam = seqP->getExtBuffer();
 	if (trackNo == JAIGlobalParameter::getParamSeqTrackMax()) {
-		portArgs->mTrackVolume = updateData->_0C;
-		portArgs->mTrackPitch  = updateData->_10;
-		portArgs->mTrackFxmix  = updateData->_14;
-		portArgs->mTrackPan    = updateData->_18;
-		portArgs->mTrackDolby  = updateData->_1C;
-		portArgs->mTrackTempo  = updateData->_20;
+		portArgs->mTrackVolume = updateData->mSeqVolume;
+		portArgs->mTrackPitch  = updateData->mSeqPitch;
+		portArgs->mTrackFxmix  = updateData->mSeqFxmix;
+		portArgs->mTrackPan    = updateData->mSeqPan;
+		portArgs->mTrackDolby  = updateData->mSeqDolby;
+		portArgs->mTrackTempo  = updateData->mSeqTempo;
 		portArgs->mFlags       = 0xFF;
 		outerParam->onSwitch(OUTERPARAM_Tempo);
 	} else {

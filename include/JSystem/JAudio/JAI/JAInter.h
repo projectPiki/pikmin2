@@ -25,10 +25,10 @@ enum JAISoundTrackActiveFlags {
 	SOUNDACTIVE_Unk4                 = 1 << 3,  // 0x8
 	SOUNDACTIVE_Unk5                 = 1 << 4,  // 0x10
 	SOUNDACTIVE_Unk6                 = 1 << 5,  // 0x20
-	SOUNDACTIVE_ChannelVolume        = 1 << 6,  // 0x40
-	SOUNDACTIVE_ChannelPan           = 1 << 7,  // 0x80
-	SOUNDACTIVE_ChannelDolby         = 1 << 8,  // 0x100
-	SOUNDACTIVE_Unk10                = 1 << 9,  // 0x200
+	SOUNDACTIVE_TrackVolume          = 1 << 6,  // 0x40
+	SOUNDACTIVE_TrackPan             = 1 << 7,  // 0x80
+	SOUNDACTIVE_TrackDolby           = 1 << 8,  // 0x100
+	SOUNDACTIVE_TrackPitch           = 1 << 9,  // 0x200
 	SOUNDACTIVE_Unk11                = 1 << 10, // 0x400
 	SOUNDACTIVE_TrackFxmix           = 1 << 11, // 0x800
 	SOUNDACTIVE_TrackPortData        = 1 << 12, // 0x1000
@@ -283,9 +283,8 @@ struct SeParameter {
 	{
 	}
 
-	u16 _00[0x10];                   // _00, possibly not this size but definitely an array at _00 of u16s
+	u16 _00[16];                     // _00, possibly not this size but definitely an array at _00 of u16s
 	u16 _20;                         // _20
-	u8 _22[0x2];                     // _22 - possibly padding
 	MoveParaSet _24[16];             // _24
 	MoveParaSet mVolumes[8];         // _124
 	MoveParaSetInitHalf mPans[8];    // _1A4
@@ -306,19 +305,19 @@ struct SeqUpdateData {
 
 	void init()
 	{
-		_0C = 1.0f;
-		_18 = 0.5f;
-		_10 = 1.0f;
-		_14 = 0.0f;
-		_1C = 0.0f;
-		_20 = 1.0f;
+		mSeqVolume = 1.0f;
+		mSeqPan    = 0.5f;
+		mSeqPitch  = 1.0f;
+		mSeqFxmix  = 0.0f;
+		mSeqDolby  = 0.0f;
+		mSeqTempo  = 1.0f;
 		for (u32 j = 0; j < JAIGlobalParameter::getParamSeqTrackMax(); j++) {
-			_24[j] = 1.0f;
-			_30[j] = 64.0f;
-			_28[j] = 1.0f;
-			_2C[j] = 0.0f;
-			_34[j] = 0.0f;
-			_44[j] = 0;
+			mTrackVolumes[j] = 1.0f;
+			mTrackPans[j]    = 64.0f;
+			mTrackPitches[j] = 1.0f;
+			mTrackFxmixes[j] = 0.0f;
+			mTrackDolbys[j]  = 0.0f;
+			_44[j]           = 0;
 		}
 	}
 
@@ -329,18 +328,18 @@ struct SeqUpdateData {
 	u8 mPrepareFlag;                // _02
 	u8 _03;                         // _03
 	u32 _04;                        // _04
-	int mActiveTrackFlag;           // _08
-	f32 _0C;                        // _0C, volume?
-	f32 _10;                        // _10, pitch?
-	f32 _14;                        // _14, fxmix?
-	f32 _18;                        // _18, pan?
-	f32 _1C;                        // _1C, dolby?
-	f32 _20;                        // _20
-	f32* _24;                       // _24, volumes? length seqTrackMax
-	f32* _28;                       // _28, pitches? length seqTrackMax
-	f32* _2C;                       // _2C, fxmixes? length seqTrackMax
-	f32* _30;                       // _30, ?? length seqTrackMax
-	f32* _34;                       // _34, dolby? length seqTrackMax
+	u32 mActiveTrackFlag;           // _08
+	f32 mSeqVolume;                 // _0C
+	f32 mSeqPitch;                  // _10
+	f32 mSeqFxmix;                  // _14
+	f32 mSeqPan;                    // _18
+	f32 mSeqDolby;                  // _1C
+	f32 mSeqTempo;                  // _20
+	f32* mTrackVolumes;             // _24, length seqTrackMax
+	f32* mTrackPitches;             // _28, length seqTrackMax
+	f32* mTrackFxmixes;             // _2C, length seqTrackMax
+	f32* mTrackPans;                // _30, length seqTrackMax
+	f32* mTrackDolbys;              // _34, length seqTrackMax
 	u8 _38[8];                      // _38, unknown
 	u8* mFilePtr;                   // _40, pointer to a data file loaded in by getSeqData
 	u32* _44;                       // _44, length seqTrackMax + 1
@@ -358,7 +357,7 @@ struct SeqParameter {
 	// this name is made up, don't rely on it to name the member
 	inline u32 getSceneFlag() const { return _27C; }
 
-	MoveParaSet _00;                    // _00
+	MoveParaSet mTempo;                 // _00
 	MoveParaSet _10[16];                // _10
 	MoveParaSet mVolumes[20];           // _110
 	MoveParaSet* mPans;                 // _250, length seqParameterLines
@@ -374,20 +373,20 @@ struct SeqParameter {
 	u8 mHeapIndex;                      // _278
 	u8 mPauseMode;                      // _279
 	s16 _27A;                           // _27A
-	int _27C;                           // _27C
+	u32 _27C;                           // _27C
 	u32 _280;                           // _280
 	u32 mVolumeFlags;                   // _284
 	u32 mPanFlags;                      // _288
 	u32 mPitchFlags;                    // _28C
 	u32 mFxmixFlags;                    // _290
 	u32 mDolbyFlags;                    // _294
-	u32 _298;                           // _298
-	u32 _29C;                           // _29C
-	u32 _2A0;                           // _2A0
+	u32 mTrackVolumeFlag;               // _298
+	u32 mTrackPanFlag;                  // _29C
+	u32 mTrackPitchFlag;                // _2A0
 	u32 mTrackFxmixFlag;                // _2A4
-	u32 _2A8;                           // _2A8
+	u32 mTrackDolbyFlag;                // _2A8
 	u32 _2AC;                           // _2AC
-	u32 _2B0;                           // _2B0
+	u32 mTrackPortDataFlag;             // _2B0
 	u32* _2B4;                          // _2B4, length seqTrackMax
 	u8* mInterruptSwitches;             // _2B8, length seqTrackMax
 	MuteBit* mMuteBits;                 // _2BC, length seqTrackMax

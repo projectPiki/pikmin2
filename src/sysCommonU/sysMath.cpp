@@ -23,17 +23,47 @@ f32 pikmin2_sinf(f32 x) { return sinf(x); }
  */
 f32 pikmin2_cosf(f32 x) { return cosf(x); }
 
+f32 acosfDumb(f32 x)
+{
+	// not right but it's a start
+	if (x <= -1.0f) {
+		return 0.0f;
+	}
+	if (x >= 1.0f) {
+		return PI;
+	}
+	if (x < 0.0f) {
+		f32 dumb = HALF_PI;
+		f32 acos = JMath::asinAcosTable_.mTable[(u32)(-x * 1023.5f)];
+		return acos + dumb;
+	} else {
+		return HALF_PI - JMath::asinAcosTable_.mTable[(u32)(x * 1023.5f)];
+	}
+}
+
 /**
  * @note Address: N/A
  * @note Size: 0xF4
  */
-f32 pikmin2_acosf(f32 x) { return acosfDumb(x); }
+f32 pikmin2_acosf(f32 x)
+{
+	if (x < -1.0f || x > 1.0f) {
+		JUT_PANICLINE(65, "acosf %f\n", x);
+	}
+	return JMath::asinAcosTable_.acos_(x);
+}
 
 /**
  * @note Address: N/A
  * @note Size: 0xFC
  */
-f32 pikmin2_asinf(f32 x) { return JMath::asinAcosTable_.asin_(x); }
+const f32 pikmin2_asinf(f32 x)
+{
+	// if (x < -1.0f || x > 1.0f) {
+	// 	JUT_PANICLINE(65, "acosf %f\n", x);
+	// }
+	// return JMath::asinAcosTable_.asin_(x);
+}
 
 /**
  * @note Address: 0x804117DC
@@ -607,7 +637,7 @@ void Quat::slerp(Quat& q1, f32 t, Quat& qout)
 {
 	// take dot product between start and end - this is cos(omega)
 	// these inputs really should be unit quats, so this should never be > |1|
-	f32 cos_omega = dot(q1);
+	f32 cos_omega = (w * q1.w) + ((v.z * q1.v.z) + ((v.x * q1.v.x) + (v.y * q1.v.y)));
 
 	// acos is gonna throw errors if we put in > |1|, so don't do that
 	if (cos_omega > 1.0f) {
@@ -626,15 +656,15 @@ void Quat::slerp(Quat& q1, f32 t, Quat& qout)
 	}
 
 	// if something's gone drastically wrong, panic bc we can't do acos math on stuff that's outside -1 to 1
-	if (cos_omega < -1.0f || cos_omega > 1.0f) {
-		JUT_PANICLINE(65, "acosf %f\n", cos_omega);
-	}
+	// if (cos_omega < -1.0f || cos_omega > 1.0f) {
+	// 	JUT_PANICLINE(65, "acosf %f\n", cos_omega);
+	// }
 
 	// call acos to get omega
 	// [ISSUE HERE] ----------------------------------------------------------------=-=-=-=-=-=-=-=-=-=-HEREHERHEHERHERHE
 	// I negated to fix the resgwaps below, which indicates some fuckry
 	// Regswaps happen inside this function but once fixed I think it'll solve the ones below
-	f32 newOmega = -pikmin2_asinf(cos_omega);
+	f32 newOmega = -pikmin2_acosf(cos_omega);
 
 	// calculate sin(omega)
 	f32 sinOmega = pikmin2_sinf(newOmega);
