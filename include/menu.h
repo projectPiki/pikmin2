@@ -42,10 +42,10 @@ struct Menu {
 
 		inline void invokeMenuAction(Menu* menu) { mAction->invoke(*menu); }
 
-		int mType;   // _00
-		int mButton; // _04
-		IDelegate1<Menu&>* mAction;
-		JSUPtrLink mLink;
+		int mType;                  // _00
+		int mButton;                // _04
+		IDelegate1<Menu&>* mAction; // _08
+		JSULink<KeyEvent> mLink;    // _0C
 	};
 
 	/**
@@ -90,13 +90,13 @@ struct Menu {
 		 */
 		bool checkEvents(Menu* menu, int param);
 
-		Menu* mParentMenu; // _00
-		bool mIsActive;    // _04
-		char* mName;       // _08
-		int mSectionFlags; // _0C
-		int mType;         // _10
-		JSUPtrList mList;  // _14
-		JSUPtrLink mLink;  // _20
+		Menu* mParentMenu;            // _00
+		bool mIsActive;               // _04
+		char* mName;                  // _08
+		int mSectionFlags;            // _0C
+		int mType;                    // _10
+		JSUList<KeyEvent> mEventList; // _14
+		JSULink<MenuItem> mItemLink;  // _20
 	};
 
 	/**
@@ -141,15 +141,9 @@ struct Menu {
 		mPositionY = y;
 	}
 
-	inline void nextItem()
-	{
-		mTimer = 1.0f;
-		mState = FadeIn;
-
-		if (!mCurrentItem && !mItemList.getFirstLink()) {
-			mCurrentItem = (MenuItem*)mItemList.getFirstLink()->getObjectPtr();
-		}
-	}
+	// unused/inlined:
+	void open();
+	void close();
 
 	JUTGamePad* mControl;                     // _00
 	JUTFont* mFont;                           // _04
@@ -157,7 +151,7 @@ struct Menu {
 	Menu* mPreviousMenu;                      // _0C
 	Menu* mActiveMenu;                        // _10
 	Menu* mCurrentItemParent;                 // _14
-	JSUPtrList mItemList;                     // _18
+	JSUList<MenuItem> mItemList;              // _18
 	MenuItem* mCurrentItem;                   // _24
 	MenuItem* mLastItem;                      // _28
 	int _2C;                                  // _2C

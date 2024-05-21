@@ -18,7 +18,7 @@ Menu::Menu(JUTGamePad* control, JUTFont* font, bool flag)
 
 	MenuItem* rootItem  = new MenuItem(MenuItem::UNK0, 0, "root");
 	rootItem->mIsActive = false;
-	mItemList.append(&rootItem->mLink);
+	mItemList.append(&rootItem->mItemLink);
 
 	_2C                   = 0;
 	mItemCount            = 0;
@@ -48,6 +48,33 @@ Menu::Menu(JUTGamePad* control, JUTFont* font, bool flag)
 }
 
 /**
+ * @note Address: N/A
+ * @note Size: 0xC0
+ */
+void Menu::open()
+{
+	mTimer = 0.0f;
+	mState = FadeIn;
+
+	if (!mCurrentItem && !mItemList.getFirstLink()) {
+		mCurrentItem = (MenuItem*)mItemList.getFirstLink()->getObjectPtr();
+	}
+}
+
+/**
+ * @note Address: N/A
+ * @note Size: 0xC0
+ */
+void Menu::close()
+{
+	if (!mPreviousMenu) {
+		mActiveMenu = mPreviousMenu;
+	}
+	mTimer = 1.0f;
+	mState = FadeOut;
+}
+
+/**
  * @note Address: 0x804562B0
  * @note Size: 0xC0
  */
@@ -55,7 +82,7 @@ void Menu::addOption(int optionIdx, char* optionName, IDelegate1<Menu&>* pressAc
 {
 	mLastItem            = new MenuItem(MenuItem::UNK1, optionIdx, optionName);
 	mLastItem->mIsActive = isActive;
-	mItemList.append(&mLastItem->mLink);
+	mItemList.append(&mLastItem->mItemLink);
 	if (pressAction) {
 		addKeyEvent(KeyEvent::INVOKE_ACTION_ON_BUTTON_PRESS, mButtonValue, pressAction);
 	}
@@ -76,11 +103,11 @@ void Menu::addKeyEvent(KeyEvent::cTypeFlag type, u32 button, IDelegate1<Menu&>* 
 	KeyEvent* key = new KeyEvent(type, button, delegate);
 
 	if (mLastItem) {
-		mLastItem->mList.append(&key->mLink);
+		mLastItem->mEventList.append(&key->mLink);
 	} else {
 		JSUPtrLink* list = mItemList.mHead;
 		if (list) {
-			((MenuItem*)list->mValue)->mList.append(&key->mLink);
+			((MenuItem*)list->mValue)->mEventList.append(&key->mLink);
 		} else {
 			JUT_PANICLINE(183, "MenuList is wrong.\n");
 		}
@@ -120,7 +147,7 @@ Menu* Menu::doUpdate(bool flag)
 
 		u32 input = mControl->mButton.mRepeat; // WHY
 		if (input & Controller::PRESS_DOWN) {
-			mCurrentItem->checkEvents(this, 2);
+			mCurrentItem->checkEvents(this, KeyEvent::U2);
 			mCurrentItem = mCurrentItem->getNext();
 
 			if (!mCurrentItem) {
@@ -136,8 +163,9 @@ Menu* Menu::doUpdate(bool flag)
 
 			mIsUpdated = true;
 			PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CURSOR, 0);
+
 		} else if (input & Controller::PRESS_UP) {
-			mCurrentItem->checkEvents(this, 2);
+			mCurrentItem->checkEvents(this, KeyEvent::U2);
 			mCurrentItem = mCurrentItem->getPrev();
 
 			if (!mCurrentItem) {
@@ -161,9 +189,9 @@ Menu* Menu::doUpdate(bool flag)
 			mIsUpdated     = true;
 		}
 
-		u32 eventType = 0x10000 - 4;
+		u32 eventType = 0xFFFC; // everything except 0x1 and 0x2
 		if (mIsUpdated) {
-			eventType |= 1;
+			eventType |= KeyEvent::U1;
 			if (mOnUpdateCallback) {
 				mOnUpdateCallback->invoke(*this);
 			}
@@ -172,7 +200,7 @@ Menu* Menu::doUpdate(bool flag)
 		}
 
 		if (!mCurrentItem->checkEvents(this, eventType)) {
-			((MenuItem*)menu->mItemList.getFirstLink()->getObjectPtr())->checkEvents(this, eventType);
+			menu->mItemList.getFirst()->getObject()->checkEvents(this, eventType);
 		}
 
 		if (mActiveMenu != this) {
@@ -183,15 +211,10 @@ Menu* Menu::doUpdate(bool flag)
 			}
 
 			if (mActiveMenu) {
-				menu = mActiveMenu;
-				menu->nextItem();
+				mActiveMenu->open();
 				menu = mActiveMenu;
 			} else {
-				if (!mPreviousMenu) {
-					mActiveMenu = mPreviousMenu;
-				}
-				mTimer = 1.0f;
-				mState = FadeOut;
+				close();
 			}
 			mCurrentItemParent = mActiveMenu;
 		}
@@ -219,7 +242,7 @@ Menu::KeyEvent::KeyEvent(cTypeFlag type, u32 button, IDelegate1<Menu&>* delegate
  * @note Size: 0x80
  */
 Menu::MenuItem::MenuItem(cTypeFlag type, int a1, char* name)
-    : mLink(this)
+    : mItemLink(this)
 {
 	mIsActive     = true;
 	mName         = name;
@@ -234,9 +257,8 @@ Menu::MenuItem::MenuItem(cTypeFlag type, int a1, char* name)
  */
 Menu::MenuItem* Menu::MenuItem::getNext()
 {
-	JSUPtrLink* link = mLink.mNext;
-	if (link) {
-		return (Menu::MenuItem*)link->mValue;
+	if (mItemLink.getNext()) {
+		return mItemLink.getNext()->getObject();
 	}
 	return nullptr;
 }
@@ -247,9 +269,8 @@ Menu::MenuItem* Menu::MenuItem::getNext()
  */
 Menu::MenuItem* Menu::MenuItem::getPrev()
 {
-	JSUPtrLink* link = mLink.mPrev;
-	if (link) {
-		return (Menu::MenuItem*)link->mValue;
+	if (mItemLink.getPrev()) {
+		return mItemLink.getPrev()->getObject();
 	}
 	return nullptr;
 }
@@ -260,13 +281,13 @@ Menu::MenuItem* Menu::MenuItem::getPrev()
  */
 bool Menu::MenuItem::checkEvents(Menu* menu, int eventType)
 {
-	JSUPtrLink* link;
+	JSULink<KeyEvent>* link;
 	bool success = false;
 
-	for (link = mList.mHead; link; link = (JSUPtrLink*)link->getNext()) {
+	for (link = mEventList.getFirst(); link; link = link->getNext()) {
 		bool doFinish = false;
 
-		KeyEvent* menuEvent = (KeyEvent*)link->getObjectPtr();
+		KeyEvent* menuEvent = link->getObject();
 		if (!(eventType & menuEvent->mType)) {
 			continue;
 		}
@@ -275,14 +296,17 @@ bool Menu::MenuItem::checkEvents(Menu* menu, int eventType)
 		case KeyEvent::U1:
 			menuEvent->invokeMenuAction(menu);
 			break;
+
 		case KeyEvent::U2:
 			menuEvent->invokeMenuAction(menu);
 			break;
+
 		case KeyEvent::U3:
 			if (menu->mControl->isButtonHeld(menuEvent->mButton)) {
 				menuEvent->invokeMenuAction(menu);
 			}
 			break;
+
 		case KeyEvent::U4:
 		case KeyEvent::U6:
 			if (menu->mControl->isButtonDown(menuEvent->mButton)) {
@@ -291,6 +315,7 @@ bool Menu::MenuItem::checkEvents(Menu* menu, int eventType)
 				doFinish = true;
 			}
 			break;
+
 		case KeyEvent::INVOKE_ACTION_ON_BUTTON_PRESS:
 			if (menu->mControl->isButtonDown(menuEvent->mButton)) {
 				if (menu->mCurrentItem->mType == MenuItem::UNK2) {
@@ -300,11 +325,11 @@ bool Menu::MenuItem::checkEvents(Menu* menu, int eventType)
 						menu->mActiveMenu = menu->mPreviousMenu;
 					}
 
-					menu->mTimer             = 7.0f;
+					menu->mTimer             = 1.0f;
 					menu->mState             = FadeOut;
 					menu->mActiveMenu        = menu;
 					menu->mCurrentItemParent = menu->mCurrentItem->mParentMenu;
-					menu->mCurrentItemParent->nextItem();
+					menu->mCurrentItemParent->open();
 
 					menu->mIsInitialised = true;
 
@@ -328,163 +353,4 @@ bool Menu::MenuItem::checkEvents(Menu* menu, int eventType)
 		}
 	}
 	return success;
-
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r26, 8(r1)
-	mr       r26, r3
-	mr       r27, r4
-	mr       r28, r5
-	li       r30, 0
-	lwz      r31, 0x14(r3)
-	b        lbl_80456AD8
-
-lbl_80456920:
-	lwz      r4, 0(r31)
-	li       r29, 0
-	lwz      r5, 0(r4)
-	and.     r0, r28, r5
-	beq      lbl_80456AD4
-	cmplwi   r5, 0x20
-	bgt      lbl_80456ACC
-	lis      r3, lbl_804EDCC8@ha
-	slwi     r0, r5, 2
-	addi     r3, r3, lbl_804EDCC8@l
-	lwzx     r0, r3, r0
-	mtctr    r0
-	bctr
-
-lbl_80456954:
-	lwz      r3, 8(r4)
-	mr       r4, r27
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80456ACC
-
-lbl_80456970:
-	lwz      r3, 8(r4)
-	mr       r4, r27
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80456ACC
-
-lbl_8045698C:
-	lwz      r3, 0(r27)
-	lwz      r0, 4(r4)
-	lwz      r3, 0x18(r3)
-	and.     r0, r3, r0
-	beq      lbl_80456ACC
-	lwz      r3, 8(r4)
-	mr       r4, r27
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80456ACC
-
-lbl_804569BC:
-
-lbl_804569BC:
-	lwz      r3, 0(r27)
-	lwz      r0, 4(r4)
-	lwz      r3, 0x1c(r3)
-	and.     r0, r3, r0
-	beq      lbl_80456ACC
-	lwz      r3, 8(r4)
-	mr       r4, r27
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	li       r30, 1
-	li       r29, 1
-	b        lbl_80456ACC
-
-lbl_804569F4:
-	lwz      r3, 0(r27)
-	lwz      r0, 4(r4)
-	lwz      r3, 0x1c(r3)
-	and.     r0, r3, r0
-	beq      lbl_80456ACC
-	lwz      r3, 0x24(r27)
-	lwz      r0, 0x10(r3)
-	cmpwi    r0, 2
-	bne      lbl_80456AAC
-	mr       r3, r26
-	mr       r4, r27
-	li       r5, 2
-	bl       checkEvents__Q24Menu8MenuItemFP4Menui
-	lwz      r0, 0xc(r27)
-	cmplwi   r0, 0
-	bne      lbl_80456A38
-	stw      r0, 0x10(r27)
-
-lbl_80456A38:
-	lfs      f1, lbl_80520BF4@sda21(r2)
-	li       r3, 3
-	lfs      f0, lbl_80520BF0@sda21(r2)
-	li       r0, 1
-	stfs     f1, 0x38(r27)
-	stw      r3, 0x34(r27)
-	stw      r27, 0x10(r27)
-	lwz      r3, 0x24(r27)
-	lwz      r3, 0(r3)
-	stw      r3, 0x14(r27)
-	lwz      r3, 0x14(r27)
-	stfs     f0, 0x38(r3)
-	stw      r0, 0x34(r3)
-	lwz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	bne      lbl_80456A8C
-	lwz      r4, 0x18(r3)
-	cmplwi   r4, 0
-	bne      lbl_80456A8C
-	lwz      r0, 0(r4)
-	stw      r0, 0x24(r3)
-
-lbl_80456A8C:
-	li       r0, 1
-	li       r30, 0
-	stb      r0, 0x58(r27)
-	li       r29, 1
-	lwz      r3, 0x24(r27)
-	lwz      r3, 0(r3)
-	stb      r0, 0x58(r3)
-	b        lbl_80456ACC
-
-lbl_80456AAC:
-	lwz      r3, 8(r4)
-	mr       r4, r27
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	li       r30, 1
-	li       r29, 1
-
-lbl_80456ACC:
-	clrlwi.  r0, r29, 0x18
-	bne      lbl_80456AE0
-
-lbl_80456AD4:
-	lwz      r31, 0xc(r31)
-
-lbl_80456AD8:
-	cmplwi   r31, 0
-	bne      lbl_80456920
-
-lbl_80456AE0:
-	mr       r3, r30
-	lmw      r26, 8(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }

@@ -1641,7 +1641,7 @@ LIBS = [
         "mw_version": "2.6",
         "host": True,
         "objects": [
-            ["utilityU/menu", False],
+            ["utilityU/menu", True],
             ["utilityU/PSMainSide_Director", False],
             ["utilityU/PSMainSide_Factory", False],
             ["utilityU/PSMainSide_ObjSound", False],
