@@ -648,24 +648,21 @@ Triangle::Triangle() { mCode.mContents = (bool)0; }
  */
 void Triangle::createSphere(VertexTable& vertTable)
 {
-	// creates sphere centered at center of triangle
-	// radius is large enough to include all vertices of triangle
-	f32 new_radius = 0.0f;
-
-	// get vertices of triangle
-	Vector3f vert_3 = vertTable.mObjects[mVertices[2]];
-	Vector3f vert_2 = vertTable.mObjects[mVertices[1]];
-	Vector3f vert_1 = vertTable.mObjects[mVertices[0]];
+	Vector3f vert_3 = vertTable.getVertexAt(mVertices[2]);
+	Vector3f vert_2 = vertTable.getVertexAt(mVertices[1]);
+	Vector3f vert_1 = vertTable.getVertexAt(mVertices[0]);
 
 	// get center of triangle
-	Vector3f center = (vert_1 + vert_2 + vert_3) * (f32)0x3EAAAAAB; // 0x3EAAAAAB = 1/3
+	Vector3f center = (vert_1 + vert_2);
+	center          = (center + vert_3) * (1.0f / 3.0f);
 
 	// make sure radius includes all vertices
+	f32 new_radius = 0.0f;
 	for (int i = 0; i < 3; i++) {
-		int* vertPtr     = mVertices;
-		Vector3f currVtx = (vertTable.mObjects[vertPtr[i]]);
-		Vector3f sep     = currVtx - center;
-		f32 vtxDist      = lenVec(sep);
+		int* vertPtr = mVertices;
+		Vector3f sep = vertTable.mObjects[vertPtr[i]] - center;
+
+		f32 vtxDist = sep.qLength();
 		if (vtxDist > new_radius) {
 			new_radius = vtxDist;
 		}
