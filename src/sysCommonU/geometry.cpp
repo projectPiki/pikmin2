@@ -889,7 +889,7 @@ bool Sys::Triangle::intersect(Sys::Edge& edge, f32 cutoff, Vector3f& intersectio
 	f32 scalarProj = triPlaneNormal.dot(edgeVec);
 
 	// if edge has no length, cannot intersect
-	if (0.0f == edgeLen) {
+	if (edgeLen == 0.0f) {
 		return false;
 	}
 
@@ -903,13 +903,12 @@ bool Sys::Triangle::intersect(Sys::Edge& edge, f32 cutoff, Vector3f& intersectio
 			// check each edge plane of triangle
 			for (int i = 0; i < 3; i++) {
 				// project normal onto edge
-				Vector3f edgePlaneNormal(mEdgePlanes[i].mNormal);
-				f32 edgePlaneProj = edgePlaneNormal.dot(edgeVec);
+				f32 edgePlaneProj = mEdgePlanes[i].mNormal.dot(edgeVec);
 
 				// check that projection isn't vanishingly small
 				if (FABS(edgePlaneProj) > 0.01f) {
 					// check we have an intersection point
-					f32 edgePlaneRatio = (mEdgePlanes[i].mOffset - edgePlaneNormal.dot(edge.mStartPos)) / edgePlaneProj;
+					f32 edgePlaneRatio = (mEdgePlanes[i].mOffset - mEdgePlanes[i].mNormal.dot(edge.mStartPos)) / edgePlaneProj;
 					if ((edgePlaneRatio > -ratio) && (edgePlaneRatio < (1 + ratio))) {
 						// get intersection point
 						Vector3f projVec  = edgeVec * edgePlaneRatio;
@@ -979,39 +978,29 @@ bool Triangle::intersect(Sys::VertexTable& vertTable, Sys::Sphere& ball)
 		if (edgePlaneDist > ball.mRadius) { // too far away, can't possibly intersect
 			return false;
 		}
+
 		// keep track of distances for later
 		ballDists[i] = edgePlaneDist;
 	}
 
 	// check for intersection with each edge in turn
-	// REGSWAP START
-	int vert_1     = mVertices[0];
-	int vert_2     = mVertices[1];
-	edge.mStartPos = *vertTable.getVertex(vert_1);
-	edge.mEndPos   = *vertTable.getVertex(vert_2);
-
+	// Iteration 0
+	edge.setStartEnd(*vertTable.getVertex(mVertices[0]), *vertTable.getVertex(mVertices[1]));
 	if (ball.intersect(edge, t) != 0) {
 		return true;
 	}
 
-	vert_1         = mVertices[1];
-	vert_2         = mVertices[2];
-	edge.mStartPos = *vertTable.getVertex(vert_1);
-	edge.mEndPos   = *vertTable.getVertex(vert_2);
-
+	// Iteration 1
+	edge.setStartEnd(*vertTable.getVertex(mVertices[1]), *vertTable.getVertex(mVertices[2]));
 	if (ball.intersect(edge, t) != 0) {
 		return true;
 	}
 
-	vert_1         = mVertices[2];
-	vert_2         = mVertices[0];
-	edge.mStartPos = *vertTable.getVertex(vert_1);
-	edge.mEndPos   = *vertTable.getVertex(vert_2);
-
+	// Iteration 2
+	edge.setStartEnd(*vertTable.getVertex(mVertices[2]), *vertTable.getVertex(mVertices[0]));
 	if (ball.intersect(edge, t) != 0) {
 		return true;
 	}
-	// REGSWAP END
 
 	// check ball center is 'inside' triangle (i.e. directly above or below)
 	for (int i = 0; i < 3; i++) {
@@ -1022,201 +1011,6 @@ bool Triangle::intersect(Sys::VertexTable& vertTable, Sys::Sphere& ball)
 
 	// passes all checks, assume it intersects
 	return true;
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stw      r31, 0x3c(r1)
-	mr       r31, r5
-	stw      r30, 0x38(r1)
-	mr       r30, r4
-	stw      r29, 0x34(r1)
-	mr       r29, r3
-	lfs      f5, 4(r5)
-	lfs      f0, 0x10(r3)
-	lfs      f6, 0(r5)
-	fmuls    f0, f5, f0
-	lfs      f1, 0xc(r3)
-	lfs      f7, 8(r5)
-	lfs      f2, 0x14(r3)
-	fmadds   f1, f6, f1, f0
-	lfs      f0, 0x18(r3)
-	lfs      f4, 0xc(r5)
-	fmadds   f1, f7, f2, f1
-	fsubs    f0, f1, f0
-	fabs     f0, f0
-	frsp     f0, f0
-	fcmpo    cr0, f0, f4
-	ble      lbl_80417358
-	li       r3, 0
-	b        lbl_8041757C
-
-lbl_80417358:
-	lfs      f0, 0x20(r29)
-	lfs      f2, 0x1c(r29)
-	fmuls    f1, f5, f0
-	lfs      f3, 0x24(r29)
-	lfs      f0, 0x28(r29)
-	fmadds   f1, f6, f2, f1
-	fmadds   f1, f7, f3, f1
-	fsubs    f8, f1, f0
-	fcmpo    cr0, f8, f4
-	ble      lbl_80417388
-	li       r3, 0
-	b        lbl_8041757C
-
-lbl_80417388:
-	lfs      f0, 0x30(r29)
-	lfs      f2, 0x2c(r29)
-	fmuls    f1, f5, f0
-	lfs      f3, 0x34(r29)
-	lfs      f0, 0x38(r29)
-	stfs     f8, 0xc(r1)
-	fmadds   f1, f6, f2, f1
-	fmadds   f1, f7, f3, f1
-	fsubs    f8, f1, f0
-	fcmpo    cr0, f8, f4
-	ble      lbl_804173BC
-	li       r3, 0
-	b        lbl_8041757C
-
-lbl_804173BC:
-	lfs      f0, 0x40(r29)
-	lfs      f2, 0x3c(r29)
-	fmuls    f1, f5, f0
-	lfs      f3, 0x44(r29)
-	lfs      f0, 0x48(r29)
-	stfs     f8, 0x10(r1)
-	fmadds   f1, f6, f2, f1
-	fmadds   f1, f7, f3, f1
-	fsubs    f8, f1, f0
-	fcmpo    cr0, f8, f4
-	ble      lbl_804173F0
-	li       r3, 0
-	b        lbl_8041757C
-
-lbl_804173F0:
-	lwz      r0, 0(r29)
-	mr       r3, r31
-	lwz      r6, 4(r29)
-	addi     r4, r1, 0x18
-	mulli    r0, r0, 0xc
-	lwz      r8, 0x24(r30)
-	stfs     f8, 0x14(r1)
-	addi     r5, r1, 8
-	add      r7, r8, r0
-	lfs      f0, 0(r7)
-	mulli    r0, r6, 0xc
-	stfs     f0, 0x18(r1)
-	add      r6, r8, r0
-	lfs      f0, 4(r7)
-	stfs     f0, 0x1c(r1)
-	lfs      f0, 8(r7)
-	stfs     f0, 0x20(r1)
-	lfs      f0, 0(r6)
-	stfs     f0, 0x24(r1)
-	lfs      f0, 4(r6)
-	stfs     f0, 0x28(r1)
-	lfs      f0, 8(r6)
-	stfs     f0, 0x2c(r1)
-	bl       intersect__Q23Sys6SphereFRQ23Sys4EdgeRf
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80417460
-	li       r3, 1
-	b        lbl_8041757C
-
-lbl_80417460:
-	lwz      r0, 4(r29)
-	mr       r3, r31
-	lwz      r6, 8(r29)
-	addi     r4, r1, 0x18
-	mulli    r0, r0, 0xc
-	lwz      r8, 0x24(r30)
-	addi     r5, r1, 8
-	add      r7, r8, r0
-	lfs      f0, 0(r7)
-	mulli    r0, r6, 0xc
-	stfs     f0, 0x18(r1)
-	add      r6, r8, r0
-	lfs      f0, 4(r7)
-	stfs     f0, 0x1c(r1)
-	lfs      f0, 8(r7)
-	stfs     f0, 0x20(r1)
-	lfs      f0, 0(r6)
-	stfs     f0, 0x24(r1)
-	lfs      f0, 4(r6)
-	stfs     f0, 0x28(r1)
-	lfs      f0, 8(r6)
-	stfs     f0, 0x2c(r1)
-	bl       intersect__Q23Sys6SphereFRQ23Sys4EdgeRf
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_804174CC
-	li       r3, 1
-	b        lbl_8041757C
-
-lbl_804174CC:
-	lwz      r0, 8(r29)
-	mr       r3, r31
-	lwz      r6, 0(r29)
-	addi     r4, r1, 0x18
-	mulli    r0, r0, 0xc
-	lwz      r8, 0x24(r30)
-	addi     r5, r1, 8
-	add      r7, r8, r0
-	lfs      f0, 0(r7)
-	mulli    r0, r6, 0xc
-	stfs     f0, 0x18(r1)
-	add      r6, r8, r0
-	lfs      f0, 4(r7)
-	stfs     f0, 0x1c(r1)
-	lfs      f0, 8(r7)
-	stfs     f0, 0x20(r1)
-	lfs      f0, 0(r6)
-	stfs     f0, 0x24(r1)
-	lfs      f0, 4(r6)
-	stfs     f0, 0x28(r1)
-	lfs      f0, 8(r6)
-	stfs     f0, 0x2c(r1)
-	bl       intersect__Q23Sys6SphereFRQ23Sys4EdgeRf
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80417538
-	li       r3, 1
-	b        lbl_8041757C
-
-lbl_80417538:
-	lfs      f0, lbl_80520308@sda21(r2)
-	lfs      f1, 0xc(r1)
-	fcmpo    cr0, f1, f0
-	ble      lbl_80417550
-	li       r3, 0
-	b        lbl_8041757C
-
-lbl_80417550:
-	lfs      f1, 0x10(r1)
-	fcmpo    cr0, f1, f0
-	ble      lbl_80417564
-	li       r3, 0
-	b        lbl_8041757C
-
-lbl_80417564:
-	lfs      f1, 0x14(r1)
-	fcmpo    cr0, f1, f0
-	ble      lbl_80417578
-	li       r3, 0
-	b        lbl_8041757C
-
-lbl_80417578:
-	li       r3, 1
-
-lbl_8041757C:
-	lwz      r0, 0x44(r1)
-	lwz      r31, 0x3c(r1)
-	lwz      r30, 0x38(r1)
-	lwz      r29, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
 }
 
 /**
@@ -1239,17 +1033,15 @@ bool Triangle::intersect(Sys::VertexTable& vertTable, Sys::Sphere& ball, Vector3
 
 	// this is wrong/suspicious
 	// but should get all the distances?? from sphere to triangle? maybe?
-	f32 triPlaneDist = (mTrianglePlane.mNormal.x * ball.mPosition.x + mTrianglePlane.mNormal.y * ball.mPosition.y
-	                    + mTrianglePlane.mNormal.z * ball.mPosition.z)
-	                 - mTrianglePlane.mOffset;
 	Vector3f triPlaneNormal(mTrianglePlane.mNormal);
-	Vector3f sepVec = ball.mPosition - triPlaneNormal * triPlaneDist;
+	f32 triPlaneDist = triPlaneNormal.dot(ball.mPosition) - mTrianglePlane.mOffset;
+
+	Vector3f triPlaneOffset = triPlaneNormal * triPlaneDist;
+	Vector3f sepVec         = ball.mPosition - triPlaneOffset;
 
 	for (int i = 0; i < 3; i++) {
-		f32 edgePlaneDist
-		    = (sepVec.x * mEdgePlanes[i].mNormal.x + sepVec.y * mEdgePlanes[i].mNormal.y + sepVec.z * mEdgePlanes[i].mNormal.z)
-		    - mEdgePlanes[i].mOffset;
-		ballDists[i] = edgePlaneDist;
+		f32 edgePlaneDist = sepVec.dot(mEdgePlanes[i].mNormal) - mEdgePlanes[i].mOffset;
+		ballDists[i]      = edgePlaneDist;
 	}
 	// end wrong/suspicious
 

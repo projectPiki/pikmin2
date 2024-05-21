@@ -9,6 +9,12 @@ struct Edge {
 	// Unused/inlined:
 	void calcNearestEdgePoint(Vector3f&, Vector3f&);
 
+	inline void setStartEnd(const Vector3f& start, const Vector3f& end)
+	{
+		mStartPos = start;
+		mEndPos   = end;
+	}
+
 	Vector3f mStartPos; // _00
 	Vector3f mEndPos;   // _0C
 };
