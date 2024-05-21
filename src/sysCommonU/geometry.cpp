@@ -1019,56 +1019,39 @@ bool Triangle::intersect(Sys::VertexTable& vertTable, Sys::Sphere& ball)
  */
 bool Triangle::intersect(Sys::VertexTable& vertTable, Sys::Sphere& ball, Vector3f& intersectPoint)
 {
-	// check if ball intersects triangle, given a table of its vertices
-	// return true if intersects, along with intersection point in intersectPoint (?)
-
-	f32 ballDists[3]; // distances from ball center to each edge plane
-	Sys::Edge edge;   // reusable edge to check intersections
-	f32 t;            // dummy variable for intersection check
-
-	// check we're not too high or low from plane of triangle
 	if (FABS(mTrianglePlane.calcDist(ball.mPosition)) > ball.mRadius) {
 		return false;
 	}
 
-	// this is wrong/suspicious
-	// but should get all the distances?? from sphere to triangle? maybe?
-	Vector3f triPlaneNormal(mTrianglePlane.mNormal);
+	Vector3f triPlaneNormal = mTrianglePlane.mNormal;
+
 	f32 triPlaneDist = triPlaneNormal.dot(ball.mPosition) - mTrianglePlane.mOffset;
 
 	Vector3f triPlaneOffset = triPlaneNormal * triPlaneDist;
 	Vector3f sepVec         = ball.mPosition - triPlaneOffset;
 
+	f32 ballDists[3];
 	for (int i = 0; i < 3; i++) {
 		f32 edgePlaneDist = sepVec.dot(mEdgePlanes[i].mNormal) - mEdgePlanes[i].mOffset;
 		ballDists[i]      = edgePlaneDist;
 	}
-	// end wrong/suspicious
 
-	// check for intersection with each edge in turn
-	int vert_1     = mVertices[0];
-	int vert_2     = mVertices[1];
-	edge.mStartPos = *vertTable.getVertex(vert_1);
-	edge.mEndPos   = *vertTable.getVertex(vert_2);
+	Sys::Edge edge;
+	f32 t;
 
+	edge.setStartEnd(*vertTable.getVertex(mVertices[0]), *vertTable.getVertex(mVertices[1]));
 	if (ball.intersect(edge, t, intersectPoint) != 0) {
 		return true;
 	}
 
-	vert_1         = mVertices[1];
-	vert_2         = mVertices[2];
-	edge.mStartPos = *vertTable.getVertex(vert_1);
-	edge.mEndPos   = *vertTable.getVertex(vert_2);
-
+	// Iteration 1
+	edge.setStartEnd(*vertTable.getVertex(mVertices[1]), *vertTable.getVertex(mVertices[2]));
 	if (ball.intersect(edge, t, intersectPoint) != 0) {
 		return true;
 	}
 
-	vert_1         = mVertices[2];
-	vert_2         = mVertices[0];
-	edge.mStartPos = *vertTable.getVertex(vert_1);
-	edge.mEndPos   = *vertTable.getVertex(vert_2);
-
+	// Iteration 2
+	edge.setStartEnd(*vertTable.getVertex(mVertices[2]), *vertTable.getVertex(mVertices[0]));
 	if (ball.intersect(edge, t, intersectPoint) != 0) {
 		return true;
 	}
@@ -1081,8 +1064,7 @@ bool Triangle::intersect(Sys::VertexTable& vertTable, Sys::Sphere& ball, Vector3
 	}
 
 	// get normal to plane scaled by ball radius??
-	triPlaneNormal   = Vector3f(mTrianglePlane.mNormal);
-	Vector3f radNorm = triPlaneNormal * ball.mRadius;
+	Vector3f radNorm = mTrianglePlane.mNormal * ball.mRadius;
 
 	// calc outputs
 	intersectPoint = ball.mPosition - radNorm;
@@ -1329,37 +1311,22 @@ bool Triangle::intersectHard(Sys::VertexTable& vertTable, Sys::Sphere& ball, Vec
 	}
 
 	// check for intersection with each edge in turn
-	// REGSWAP START
-	// A-B
-	int vert_1     = mVertices[0];
-	int vert_2     = mVertices[1];
-	edge.mStartPos = *vertTable.getVertex(vert_1);
-	edge.mEndPos   = *vertTable.getVertex(vert_2);
-
-	if (ball.intersect(edge, t, intersectPoint)) {
+	edge.setStartEnd(*vertTable.getVertex(mVertices[0]), *vertTable.getVertex(mVertices[1]));
+	if (ball.intersect(edge, t, intersectPoint) != 0) {
 		return true;
 	}
 
-	// B-C
-	vert_1         = mVertices[1];
-	vert_2         = mVertices[2];
-	edge.mStartPos = *vertTable.getVertex(vert_1);
-	edge.mEndPos   = *vertTable.getVertex(vert_2);
-
-	if (ball.intersect(edge, t, intersectPoint)) {
+	// Iteration 1
+	edge.setStartEnd(*vertTable.getVertex(mVertices[1]), *vertTable.getVertex(mVertices[2]));
+	if (ball.intersect(edge, t, intersectPoint) != 0) {
 		return true;
 	}
 
-	// C-A
-	vert_1         = mVertices[2];
-	vert_2         = mVertices[0];
-	edge.mStartPos = *vertTable.getVertex(vert_1);
-	edge.mEndPos   = *vertTable.getVertex(vert_2);
-
-	if (ball.intersect(edge, t, intersectPoint)) {
+	// Iteration 2
+	edge.setStartEnd(*vertTable.getVertex(mVertices[2]), *vertTable.getVertex(mVertices[0]));
+	if (ball.intersect(edge, t, intersectPoint) != 0) {
 		return true;
 	}
-	// REGSWAP END
 
 	// check ball center is 'inside' triangle (i.e. directly above or below)
 	for (int i = 0; i < 3; i++) {
@@ -2055,67 +2022,69 @@ bool RayIntersectInfo::condition(Sys::Triangle& triangle)
  */
 void GridDivider::createTriangles(Sys::CreateTriangleArg& triArg)
 {
-	triArg.mVertices = nullptr;
+	// Initialize output arguments
 	triArg.mCount    = 0;
+	triArg.mVertices = nullptr;
 
-	int numTri = 0;
+	Vector3f verticesBuffer[128 * 3]; // Max 128 triangles, 3 vertices each
+	int triangleCount = 0;
 
-	Triangle* testTri;
-	TriIndexList* triList;
-	Vector3f vertexArray[0x180]; // or 32?
+	// Calculate grid indices based on input bounding sphere
+	float inputX   = triArg.mBoundingSphere.mPosition.x;
+	float inputZ   = triArg.mBoundingSphere.mPosition.z;
+	int gridXIndex = static_cast<int>((inputX - mBoundingBox.mMin.x) / mScaleX);
+	int gridZIndex = static_cast<int>((inputZ - mBoundingBox.mMin.z) / mScaleZ);
 
-	f32 x_in    = triArg.mBoundingSphere.mPosition.x;
-	f32 z_in    = triArg.mBoundingSphere.mPosition.z;
-	int x_index = (int)((x_in - mBoundingBox.mMin.x) / mScaleX);
-	int z_index = (int)((z_in - mBoundingBox.mMin.z) / mScaleZ);
+	// Check if the calculated indices are within bounds
+	bool indicesInBounds = (gridXIndex >= 0) && (gridZIndex >= 0) && (gridXIndex < mMaxX) && (gridZIndex < mMaxZ);
 
-	bool existTest = ((x_index >= (int)0) && (z_index >= (int)0) && (x_index < (int)mMaxX) && (z_index < (int)mMaxZ));
+	if (indicesInBounds) {
+		Triangle* currentTriangle;
+		TriIndexList& triIndexList = mTriIndexLists[gridZIndex + (gridXIndex * mMaxZ)];
+		Triangle* firstTriangle    = mTriangleTable->getTriangle(0);
 
-	if (existTest) {
-		Triangle* triPtr1 = mTriangleTable->getTriangle(0);
-		triList           = &mTriIndexLists[(int)(z_index + (x_index * mMaxZ))];
-		for (int triCtr = 0; triCtr < triList->getNum(); triCtr++) {
-			Triangle* triPtr2 = triPtr1;
-			bool currTriTest  = false;
+		for (int i = 0; i < triIndexList.getNum(); ++i) {
+			currentTriangle  = mTriangleTable->getTriangle(triIndexList.mObjects[i]);
+			Vector3f vertexA = *mVertexTable->getVertex(currentTriangle->mVertices[0]);
+			Vector3f vertexB = *mVertexTable->getVertex(currentTriangle->mVertices[1]);
+			Vector3f vertexC = *mVertexTable->getVertex(currentTriangle->mVertices[2]);
 
-			testTri         = mTriangleTable->getTriangle(triList->mObjects[triCtr]);
-			Vector3f vert_A = *mVertexTable->getVertex(testTri->mVertices[0]);
-			Vector3f vert_B = *mVertexTable->getVertex(testTri->mVertices[1]);
-			Vector3f vert_C = *mVertexTable->getVertex(testTri->mVertices[2]);
-
-			int var_ctr = numTri;
-			if (numTri > 0) {
-				do {
-					if (testTri == triPtr2) {
-						currTriTest = 1;
-					}
-					triPtr2 += 4;
-					var_ctr -= 1;
-				} while (var_ctr != 0);
+			// Check if the triangle is already processed
+			bool isDuplicate = false;
+			for (int j = 0; j < triangleCount; ++j) {
+				if (currentTriangle == (firstTriangle + j * 4)) {
+					isDuplicate = true;
+					break;
+				}
 			}
-			if ((currTriTest == 0) && (numTri < 128)) {
-				f32 triNorm_y = testTri->mTrianglePlane.mNormal.y; // temp_f11
-				if (triNorm_y > triArg.mScaleLimit) {
-					f32 scaleFactor = triArg.mScale;
-					numTri += 1;
-					*triPtr1 = *testTri;
-					triPtr1 += 4;
-					Vector3f testVec(testTri->mTrianglePlane.mNormal.x * scaleFactor, triNorm_y * scaleFactor,
-					                 testTri->mTrianglePlane.mNormal.z * scaleFactor);
-					vertexArray[3 * triCtr + 0] = vert_A + testVec;
-					vertexArray[3 * triCtr + 1] = vert_B + testVec;
-					vertexArray[3 * triCtr + 2] = vert_C + testVec;
-					// var_r6 += 0x24;
+
+			// Process the triangle if it's not a duplicate and if within the triangle limit
+			if (!isDuplicate && triangleCount < 128) {
+				float normalY = currentTriangle->mTrianglePlane.mNormal.y;
+
+				if (normalY > triArg.mScaleLimit) {
+					float scaleFactor     = triArg.mScale;
+					Vector3f offsetVector = currentTriangle->mTrianglePlane.mNormal * scaleFactor;
+
+					verticesBuffer[triangleCount * 3]     = vertexA + offsetVector;
+					verticesBuffer[triangleCount * 3 + 1] = vertexB + offsetVector;
+					verticesBuffer[triangleCount * 3 + 2] = vertexC + offsetVector;
+
+					firstTriangle[triangleCount * 4] = *currentTriangle; // Copy current triangle
+					++triangleCount;
 				}
 			}
 		}
-		int numVertices  = numTri * 3;
-		triArg.mVertices = new Vector3f[numVertices];
-		for (int i = 0; i < numVertices; i++) {
-			triArg.mVertices[i] = vertexArray[i];
+
+		// Allocate and copy vertices to the output argument
+		int totalVertices = triangleCount * 3;
+		triArg.mVertices  = new Vector3f[totalVertices];
+		for (int i = 0; i < totalVertices; ++i) {
+			triArg.mVertices[i] = verticesBuffer[i];
 		}
-		triArg.mCount = numTri;
+		triArg.mCount = triangleCount;
 	}
+
 	/*
 	stwu     r1, -0x1440(r1)
 	mflr     r0
@@ -2416,72 +2385,57 @@ lbl_80418584:
  */
 f32 GridDivider::getMinY(Vector3f& inputPoint)
 {
-	Triangle* testTri;
-	TriIndexList* triList;
+	// Calculate grid indices based on the input point
+	float inputX   = inputPoint.x;
+	float inputZ   = inputPoint.z;
+	int gridXIndex = static_cast<int>((inputX - mBoundingBox.mMin.x) / mScaleX);
+	int gridZIndex = static_cast<int>((inputZ - mBoundingBox.mMin.z) / mScaleZ);
 
-	bool existTest = 0;
-	f32 x_in       = inputPoint.x;
-	f32 z_in       = inputPoint.z;
-	int x_diff     = (int)((x_in - mBoundingBox.mMin.x) / mScaleX);
-	int z_diff     = (int)((z_in - mBoundingBox.mMin.z) / mScaleZ);
-
-	bool withinBounds = ((x_diff >= 0) && (z_diff >= 0) && (x_diff < (int)mMaxX) && (z_diff < (int)mMaxZ));
+	// Check if the calculated indices are within bounds
+	bool withinBounds = (gridXIndex >= 0) && (gridZIndex >= 0) && (gridXIndex < mMaxX) && (gridZIndex < mMaxZ);
 
 	if (!withinBounds) {
 		return 0.0f;
 	}
 
-	bool yTest = false;
-	f32 y_val  = inputPoint.y;
-	f32 y_min  = 328000.0f;
-	triList    = &mTriIndexLists[(int)(z_diff + (x_diff * mMaxZ))];
+	float minY                 = 328000.0f;
+	bool foundY                = false;
+	TriIndexList& triIndexList = mTriIndexLists[gridZIndex + (gridXIndex * mMaxZ)];
 
-	for (int triCtr = 0; triCtr < triList->getNum(); triCtr++) {
-		testTri       = mTriangleTable->getTriangle(triList->mObjects[triCtr]);
-		f32 triNorm_y = testTri->mTrianglePlane.mNormal.y;
-		bool insideTriTest;
+	for (int i = 0; i < triIndexList.getNum(); ++i) {
+		Triangle* triangle = mTriangleTable->getTriangle(triIndexList.mObjects[i]);
+		float normalY      = triangle->mTrianglePlane.mNormal.y;
 
-		if (triNorm_y <= 0.0f) {
-			insideTriTest = false;
-		} else {
-			insideTriTest = false;
-			y_val         = (testTri->mTrianglePlane.mOffset
-                     - ((testTri->mTrianglePlane.mNormal.x * x_in) + (testTri->mTrianglePlane.mNormal.z * z_in)))
-			      / triNorm_y;
-			if (!(((x_in * testTri->mEdgePlanes[0].mNormal.x + y_val * testTri->mEdgePlanes[0].mNormal.y
-			        + z_in * testTri->mEdgePlanes[0].mNormal.z)
-			       - testTri->mEdgePlanes[0].mOffset)
-			      > 0.0f)
-			    && !(((x_in * testTri->mEdgePlanes[1].mNormal.x + y_val * testTri->mEdgePlanes[1].mNormal.y
-			           + z_in * testTri->mEdgePlanes[1].mNormal.z)
-			          - testTri->mEdgePlanes[1].mOffset)
-			         > 0.0f)
-			    && !(((x_in * testTri->mEdgePlanes[2].mNormal.x + y_val * testTri->mEdgePlanes[2].mNormal.y
-			           + z_in * testTri->mEdgePlanes[2].mNormal.z)
-			          - testTri->mEdgePlanes[2].mOffset)
-			         > 0.0f)) {
-				insideTriTest = true;
+		if (normalY <= 0.0f) {
+			continue; // Skip triangles with non-positive normal Y component
+		}
+
+		// Calculate potential Y value based on the plane equation
+		float potentialY = (triangle->mTrianglePlane.mOffset - (triangle->mTrianglePlane.mNormal.x * inputX)
+		                    - (triangle->mTrianglePlane.mNormal.z * inputZ))
+		                 / normalY;
+
+		// Check if the point is inside the triangle
+		bool isInsideTriangle = true;
+		for (int j = 0; j < 3; ++j) {
+			const Plane& edgePlane = triangle->mEdgePlanes[j];
+
+			if ((inputX * edgePlane.mNormal.x + potentialY * edgePlane.mNormal.y + inputZ * edgePlane.mNormal.z) - edgePlane.mOffset
+			    > 0.0f) {
+				isInsideTriangle = false;
+				break;
 			}
 		}
 
-		if ((insideTriTest) && (y_val > y_min)) {
-			y_val = y_min;
-			yTest = true;
+		// Update minY if the point is inside the triangle and potentialY is valid
+		if (isInsideTriangle && potentialY < minY) {
+			minY   = potentialY;
+			foundY = true;
 		}
-		// seems like it should use this function auto-inlined or something?
-		// or at least very similar code, maybe with some other inline?
-
-		// if ((testTri->insideXZ(inputPoint)) && (y_val > y_min)) {
-		//     y_val = y_min;
-		//     yTest = 1;
-		// }
 	}
 
-	if (yTest) {
-		return y_val;
-	}
+	return foundY ? minY : 0.0f;
 
-	return 0.0f;
 	/*
 	stwu     r1, -0x20(r1)
 	li       r5, 0
@@ -2632,55 +2586,58 @@ lbl_80418774:
  * @note Address: 0x8041877C
  * @note Size: 0x234
  */
-void GridDivider::getCurrTri(Game::CurrTriInfo& inputInfo)
+void GridDivider::getCurrTri(Game::CurrTriInfo& triInfo)
 {
-	Triangle* testTri;
-	TriIndexList* triList;
+	// Calculate grid indices based on the input position
+	float inputX   = triInfo.mPosition.x;
+	float inputZ   = triInfo.mPosition.z;
+	int gridXIndex = static_cast<int>((inputX - mBoundingBox.mMin.x) / mScaleX);
+	int gridZIndex = static_cast<int>((inputZ - mBoundingBox.mMin.z) / mScaleZ);
 
-	f32 x_in   = inputInfo.mPosition.x;
-	f32 z_in   = inputInfo.mPosition.z;
-	int x_diff = (int)((x_in - mBoundingBox.mMin.x) / mScaleX);
-	int z_diff = (int)((z_in - mBoundingBox.mMin.z) / mScaleZ);
-
-	bool withinBounds = ((x_diff >= 0) && (z_diff >= 0) && (x_diff < (int)mMaxX) && (z_diff < (int)mMaxZ));
+	// Check if the calculated indices are within bounds
+	bool withinBounds = (gridXIndex >= 0) && (gridZIndex >= 0) && (gridXIndex < mMaxX) && (gridZIndex < mMaxZ);
 
 	if (withinBounds) {
-		bool yTest = false;
-		f32 min_y  = 328000.0f;
-		f32 max_y  = -328000.0f;
-		f32 y_val  = inputInfo.mPosition.y;
-		triList    = &mTriIndexLists[(int)(z_diff + (x_diff * mMaxZ))];
+		bool foundValidY = false;
 
-		for (int triCtr = 0; triCtr < triList->getNum(); triCtr++) {
-			testTri       = mTriangleTable->getTriangle(triList->mObjects[triCtr]);
-			f32 triNorm_y = testTri->mTrianglePlane.mNormal.y;
-			Vector3f tempPoint(x_in, y_val, z_in);
-			if (testTri->insideXZ(tempPoint)) {
-				if (min_y > y_val) {
-					min_y = y_val;
-					if (inputInfo.mUpdateOnNewMaxY != 0) {
-						yTest                = true;
-						inputInfo.mNormalVec = testTri->mTrianglePlane.mNormal;
-						inputInfo.mTriangle  = testTri;
+		float minY = 328000.0f;
+		float maxY = -328000.0f;
+
+		float inputY               = triInfo.mPosition.y;
+		TriIndexList& triIndexList = mTriIndexLists[gridZIndex + (gridXIndex * mMaxZ)];
+
+		for (int i = 0; i < triIndexList.getNum(); ++i) {
+			Triangle* triangle = mTriangleTable->getTriangle(triIndexList.mObjects[i]);
+			float normalY      = triangle->mTrianglePlane.mNormal.y;
+
+			Vector3f tempPoint(inputX, inputY, inputZ);
+			if (triangle->insideXZ(tempPoint)) {
+				if (minY > tempPoint.y) {
+					minY = tempPoint.y;
+					if (triInfo.mUpdateOnNewMaxY != 0) {
+						foundValidY        = true;
+						triInfo.mNormalVec = triangle->mTrianglePlane.mNormal;
+						triInfo.mTriangle  = triangle;
 					}
 				}
 
-				if (y_val > max_y) {
-					max_y = y_val;
-					if (inputInfo.mUpdateOnNewMaxY == 0) {
-						yTest                = true;
-						inputInfo.mNormalVec = testTri->mTrianglePlane.mNormal;
-						inputInfo.mTriangle  = testTri;
+				if (tempPoint.y > maxY) {
+					maxY = tempPoint.y;
+					if (triInfo.mUpdateOnNewMaxY == 0) {
+						foundValidY        = true;
+						triInfo.mNormalVec = triangle->mTrianglePlane.mNormal;
+						triInfo.mTriangle  = triangle;
 					}
 				}
 			}
 		}
 
-		if (yTest) {
-			inputInfo.mMaxY = max_y; // max height?
-			inputInfo.mMinY = min_y; // min height?
+		if (foundValidY) {
+			triInfo.mMaxY = minY;
+			triInfo.mMinY = maxY;
 		}
 	}
+
 	/*
 	stwu     r1, -0x20(r1)
 	li       r5, 0
@@ -3578,17 +3535,20 @@ void TriIndexList::getMinMax(VertexTable& vertTable, TriangleTable& triTable, Ve
 	max = -10000000000.0f;
 
 	for (int i = 0; i < mCount; i++) {
-		Triangle* currTri = &triTable.mObjects[mObjects[i]];
-		Vector3f vertices[3];
-		vertices[0] = vertTable.mObjects[currTri->mVertices[0]];
-		vertices[1] = vertTable.mObjects[currTri->mVertices[1]];
-		vertices[2] = vertTable.mObjects[currTri->mVertices[2]];
+		Triangle* currTri    = &triTable.mObjects[mObjects[i]];
+		Vector3f vertices[3] = {
+			vertTable.mObjects[currTri->mVertices[0]],
+			vertTable.mObjects[currTri->mVertices[1]],
+			vertTable.mObjects[currTri->mVertices[2]],
+		};
 
 		for (int j = 0; j < 3; j++) {
 			f32 testVal = vec1.dot(vertices[j] - vec2);
+
 			if (testVal > max) {
 				max = testVal;
 			}
+
 			if (testVal < min) {
 				min = testVal;
 			}

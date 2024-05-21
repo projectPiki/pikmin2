@@ -20,6 +20,12 @@ struct Plane {
 	void calcProjection(Vector3f&);
 	void intersectRay(Vector3f&, Vector3f&);
 
+	inline void define(const Vector3f& normal, const Vector3f& point)
+	{
+		mNormal = normal;
+		mOffset = mNormal.dot(point);
+	}
+
 	Vector3f mNormal; // _00
 	f32 mOffset;      // _0C
 };
