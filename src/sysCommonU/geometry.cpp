@@ -809,7 +809,7 @@ bool Triangle::intersect(Edge& edge, f32 cutoff, Vector3f& intersectionPoint)
 	f32 scalarProj = triPlaneNormal.dot(edgeVec);
 
 	// if edge has no length, cannot intersect
-	if (0.0f == edgeLen) {
+	if (edgeLen == 0.0f) {
 		return false;
 	}
 
@@ -823,13 +823,12 @@ bool Triangle::intersect(Edge& edge, f32 cutoff, Vector3f& intersectionPoint)
 			// check each edge plane of triangle
 			for (int i = 0; i < 3; i++) {
 				// project normal onto edge
-				Vector3f edgePlaneNormal(mEdgePlanes[i].mNormal);
-				f32 edgePlaneProj = edgePlaneNormal.dot(edgeVec);
+				f32 edgePlaneProj = mEdgePlanes[i].mNormal.dot(edgeVec);
 
 				// check that projection isn't vanishingly small
 				if (FABS(edgePlaneProj) > 0.01f) {
 					// check we have an intersection point
-					f32 edgePlaneRatio = (mEdgePlanes[i].mOffset - edgePlaneNormal.dot(edge.mStartPos)) / edgePlaneProj;
+					f32 edgePlaneRatio = (mEdgePlanes[i].mOffset - mEdgePlanes[i].mNormal.dot(edge.mStartPos)) / edgePlaneProj;
 					if ((edgePlaneRatio > -ratio) && (edgePlaneRatio < (1 + ratio))) {
 						// get intersection point
 						Vector3f projVec  = edgeVec * edgePlaneRatio;
