@@ -15,7 +15,7 @@ bool Triangle::intersect(Sys::VertexTable& vtxTable, Sys::Triangle::SphereSweep&
 
 	f32 distSweep = mTrianglePlane.calcDist(sweep.mSphere.mPosition);
 
-	Vector3f* intersectPoint = &sweep.mIntersectionPoint;
+	Vector3f& intersectPoint = sweep.mIntersectionPoint;
 	switch (sweep.mSweepType) {
 	case Triangle::SphereSweep::ST_SphereInsidePlane:
 		if (!(FABS(distSweep) > sweep.mSphere.mRadius)) {
@@ -28,6 +28,7 @@ bool Triangle::intersect(Sys::VertexTable& vtxTable, Sys::Triangle::SphereSweep&
 		if (distSweep > sweep.mSphere.mRadius) {
 			return false;
 		}
+
 		if (distSweep < (-sweep.mSphere.mRadius - 5.0f)) {
 			return false;
 		}
@@ -35,17 +36,20 @@ bool Triangle::intersect(Sys::VertexTable& vtxTable, Sys::Triangle::SphereSweep&
 
 	case Triangle::SphereSweep::ST_EdgeIntersect:
 		Edge edge_intersect;
-		edge_intersect.mStartPos = sweep.mStartPos;
-		edge_intersect.mEndPos   = sweep.mSphere.mPosition;
+		edge_intersect.setStartEnd(sweep.mStartPos, sweep.mSphere.mPosition);
 
-		if (sweep.mStartPos.qDistance(sweep.mSphere.mPosition) == 0.0f) {
+		Vector3f startPos = edge_intersect.mStartPos;
+		Vector3f endPos   = edge_intersect.mEndPos;
+		f32 distance      = startPos.qDistance(endPos);
+		if (distance == 0.0f) {
 			if (distSweep > sweep.mSphere.mRadius) {
 				return false;
 			}
+
 			break;
 		}
 
-		bool isIntersect = intersect(edge_intersect, sweep.mSphere.mRadius, *intersectPoint, sweep.mDistanceFromRadius);
+		bool isIntersect = intersect(edge_intersect, sweep.mSphere.mRadius, intersectPoint, sweep.mDistanceFromRadius);
 		if (isIntersect) {
 			sweep.mNormal = mTrianglePlane.mNormal;
 		}
@@ -70,12 +74,9 @@ bool Triangle::intersect(Sys::VertexTable& vtxTable, Sys::Triangle::SphereSweep&
 	Edge edge_in;
 	f32 t; // sp8
 
-	int vertA         = mVertices[0];
-	int vertB         = mVertices[1];
-	edge_in.mStartPos = *vtxTable.getVertex(vertA); // sp28, 2C, 30
-	edge_in.mEndPos   = *vtxTable.getVertex(vertB); // sp34, 38, 3C
-	                                                // = vert_A;
-	                                                // = vert_B;
+	int vertA = mVertices[0];
+	int vertB = mVertices[1];
+	edge_in.setStartEnd(*vtxTable.getVertex(vertA), *vtxTable.getVertex(vertB));
 
 	if (ball.intersect(edge_in, t, sweep.mNormal, sweep.mDistanceFromRadius)) {
 		Vector3f new_norm        = sweep.mNormal * sweep.mSphere.mRadius;
@@ -83,10 +84,9 @@ bool Triangle::intersect(Sys::VertexTable& vtxTable, Sys::Triangle::SphereSweep&
 		return true;
 	}
 
-	vertA             = mVertices[1];
-	vertB             = mVertices[2];
-	edge_in.mStartPos = *vtxTable.getVertex(vertA); // sp28, 2C, 30
-	edge_in.mEndPos   = *vtxTable.getVertex(vertB); // sp34, 38, 3C
+	vertA = mVertices[1];
+	vertB = mVertices[2];
+	edge_in.setStartEnd(*vtxTable.getVertex(vertA), *vtxTable.getVertex(vertB));
 
 	if (ball.intersect(edge_in, t, sweep.mNormal, sweep.mDistanceFromRadius)) {
 		Vector3f new_norm        = sweep.mNormal * sweep.mSphere.mRadius;
@@ -94,16 +94,16 @@ bool Triangle::intersect(Sys::VertexTable& vtxTable, Sys::Triangle::SphereSweep&
 		return true;
 	}
 
-	vertA             = mVertices[2];
-	vertB             = mVertices[0];
-	edge_in.mStartPos = *vtxTable.getVertex(vertA); // sp28, 2C, 30
-	edge_in.mEndPos   = *vtxTable.getVertex(vertB); // sp34, 38, 3C
+	vertA = mVertices[2];
+	vertB = mVertices[0];
+	edge_in.setStartEnd(*vtxTable.getVertex(vertA), *vtxTable.getVertex(vertB));
 
 	if (ball.intersect(edge_in, t, sweep.mNormal, sweep.mDistanceFromRadius)) {
 		Vector3f new_norm        = sweep.mNormal * sweep.mSphere.mRadius;
 		sweep.mIntersectionPoint = sweep.mSphere.mPosition - new_norm;
 		return true;
 	}
+
 	return false;
 	/*
 	stwu     r1, -0x80(r1)
