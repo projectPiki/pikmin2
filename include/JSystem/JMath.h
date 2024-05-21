@@ -120,6 +120,24 @@ struct TAsinAcosTable<1024, f32> {
 
 		return TAngleConstant_<f32>::RADIAN_DEG090() - mTable[u32(1023.5f * value)];
 	}
+
+	f32 asin_(f32 value) const
+	{
+		if (value >= 1.0f) {
+			return TAngleConstant_<f32>::RADIAN_DEG090();
+		}
+
+		if (value <= -1.0f) {
+			return -TAngleConstant_<f32>::RADIAN_DEG090();
+		}
+
+		if (value < 0.0f) {
+			return mTable[(u32)(-value * 1023.5f)] + TAngleConstant_<f32>::RADIAN_DEG090();
+		}
+
+		return TAngleConstant_<f32>::RADIAN_DEG090() - mTable[(u32)(value * 1023.5f)];
+	}
+
 	f32 mTable[1024];
 	f32 mTable2[8];
 };

@@ -33,24 +33,7 @@ f32 pikmin2_acosf(f32 x) { return acosfDumb(x); }
  * @note Address: N/A
  * @note Size: 0xFC
  */
-f32 pikmin2_asinf(f32 x)
-{
-	if (x >= 1.0f) {
-		return 0.0f;
-	}
-	if (x <= -1.0f) {
-		return PI;
-	}
-
-	// this is wrong, but it'll be a small modification on the acos one
-	if (x < 0.0f) {
-		f32 dumb = HALF_PI;
-		f32 acos = JMath::asinAcosTable_.mTable[(u32)(-x * 1023.5f)];
-		return acos + dumb;
-	} else {
-		return HALF_PI - JMath::asinAcosTable_.mTable[(u32)(x * 1023.5f)];
-	}
-}
+f32 pikmin2_asinf(f32 x) { return JMath::asinAcosTable_.asin_(x); }
 
 /**
  * @note Address: 0x804117DC
@@ -106,13 +89,6 @@ f32 qdist3(f32 x1, f32 y1, f32 z1, f32 x2, f32 y2, f32 z2)
 	Vector3f xyz(xdiff, ydiff, zdiff);
 
 	return xyz.qLength();
-
-	// f32 dist = ((xdiff * xdiff) + (ydiff * ydiff) + (zdiff * zdiff));
-	// if (dist > 0.0f) {
-	// 	vf32 calcDist = dist * (__frsqrte(dist));
-	// 	dist                    = calcDist;
-	// }
-	// return dist;
 }
 
 /**
@@ -651,32 +627,30 @@ void Quat::normalise()
  * @note Address: 0x804128F0
  * @note Size: 0x348
  */
+/**
+ * Performs Spherical Linear Interpolation (SLERP) between two quaternions.
+ * This function calculates a quaternion that represents a rotation from the start point to the end point
+ * based on a linear interpolation parameter.
+ *
+ * @param q1 The end point of the path.
+ * @param t The linear interpolation parameter (how far from start to end do we want to be).
+ * @param qout The interpolated quaternion on the path, fraction t from start.
+ */
 void Quat::slerp(Quat& q1, f32 t, Quat& qout)
 {
-	// S_pherical L_inear int_ERP_olation
-	// does 3D rotations, basically
-	//     (*this) is the start point of the path
-	//     q1 is the end point of the path
-	//     t is the linear interpolation parameter (how far from start to end do we want to be)
-	//     qout is (output) interpolated quat on the path, fraction t from start
-	int flipDirection;
-	f32 omega;
-	f32 a;
-
 	// take dot product between start and end - this is cos(omega)
 	// these inputs really should be unit quats, so this should never be > |1|
-	f32 cos_omega = (w * q1.w) + ((v.z * q1.v.z) + ((v.x * q1.v.x) + (v.y * q1.v.y))); // var_f30
+	f32 cos_omega = dot(q1);
 
 	// acos is gonna throw errors if we put in > |1|, so don't do that
 	if (cos_omega > 1.0f) {
 		cos_omega = 1.0f;
-	} else {
-		if (cos_omega < -1.0f) {
-			cos_omega = -1.0f;
-		}
+	} else if (cos_omega < -1.0f){
+		cos_omega = -1.0f;
 	}
 
 	// calculate omega based on positive, but need to remember to flip back later if negative
+	int flipDirection;
 	if (cos_omega < 0.0) {
 		cos_omega     = -cos_omega;
 		flipDirection = 1;
@@ -685,24 +659,28 @@ void Quat::slerp(Quat& q1, f32 t, Quat& qout)
 	}
 
 	// if something's gone drastically wrong, panic bc we can't do acos math on stuff that's outside -1 to 1
-	if ((cos_omega < -1.0f) || (cos_omega > 1.0f)) {
+	if (cos_omega < -1.0f || cos_omega > 1.0f) {
 		JUT_PANICLINE(65, "acosf %f\n", cos_omega);
 	}
 
 	// call acos to get omega
-	omega = pikmin2_asinf(cos_omega);
+	// [ISSUE HERE] ----------------------------------------------------------------=-=-=-=-=-=-=-=-=-=-HEREHERHEHERHERHE
+	// I negated to fix the resgwaps below, which indicates some fuckry
+	// Regswaps happen inside this function but once fixed I think it'll solve the ones below
+	f32 newOmega = -pikmin2_asinf(cos_omega);
 
 	// calculate sin(omega)
-	f32 sin_omega = pikmin2_sinf(omega);
+	f32 sinOmega = pikmin2_sinf(newOmega);
 
 	// work out what the linear interpolation factors should be
 	// if sin_omega is super tiny, just use an approximation
-	if (FABS(sin_omega) < 0.00001f) {
+	f32 a;
+	if (FABS(sinOmega) < 0.00001f) {
 		a = 1.0f - t;
 	} else {
-		f32 t_omega = t * omega;
-		f32 denom   = 1.0f / sin_omega;
-		a           = pikmin2_sinf(omega - t_omega) * denom;
+		f32 denom   = (1.0f / sinOmega);
+		f32 t_omega = t * newOmega;
+		a           = pikmin2_sinf(newOmega - t_omega) * denom;
 		t           = pikmin2_sinf(t_omega) * denom;
 	}
 
@@ -1124,67 +1102,6 @@ void BoundBox::makeBoundSphere(Sys::Sphere& sphere)
 	f32 len_max = qdist3(mMax.x, mMax.y, mMax.z, mid.x, mid.y, mid.z);
 
 	sphere.mRadius = (len_min > len_max) ? len_min : len_max;
-	/*
-	.loc_0x0:
-	  lfs       f1, 0x0(r3)
-	  lfs       f0, 0xC(r3)
-	  lfs       f3, 0x4(r3)
-	  lfs       f2, 0x10(r3)
-	  fadds     f0, f1, f0
-	  lfs       f4, 0x1F28(r2)
-	  fadds     f1, f3, f2
-	  lfs       f3, 0x8(r3)
-	  lfs       f2, 0x14(r3)
-	  fmuls     f8, f0, f4
-	  lfs       f0, 0x1F10(r2)
-	  fadds     f2, f3, f2
-	  fmuls     f5, f1, f4
-	  stfs      f8, 0x0(r4)
-	  fmuls     f6, f2, f4
-	  stfs      f5, 0x4(r4)
-	  stfs      f6, 0x8(r4)
-	  lfs       f1, 0x4(r3)
-	  lfs       f2, 0x0(r3)
-	  fsubs     f3, f5, f1
-	  lfs       f1, 0x8(r3)
-	  fsubs     f4, f8, f2
-	  fsubs     f2, f6, f1
-	  fmuls     f1, f3, f3
-	  fmadds    f1, f4, f4, f1
-	  fmadds    f7, f2, f2, f1
-	  fcmpo     cr0, f7, f0
-	  ble-      .loc_0x78
-	  fsqrte    f0, f7
-	  fmuls     f7, f0, f7
-
-	.loc_0x78:
-	  lfs       f0, 0x10(r3)
-	  lfs       f2, 0xC(r3)
-	  fsubs     f3, f5, f0
-	  lfs       f1, 0x14(r3)
-	  fsubs     f4, f8, f2
-	  lfs       f0, 0x1F10(r2)
-	  fsubs     f2, f6, f1
-	  fmuls     f1, f3, f3
-	  fmadds    f1, f4, f4, f1
-	  fmadds    f1, f2, f2, f1
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0xB0
-	  fsqrte    f0, f1
-	  fmuls     f1, f0, f1
-
-	.loc_0xB0:
-	  fcmpo     cr0, f7, f1
-	  ble-      .loc_0xBC
-	  b         .loc_0xC0
-
-	.loc_0xBC:
-	  fmr       f7, f1
-
-	.loc_0xC0:
-	  stfs      f7, 0xC(r4)
-	  blr
-	*/
 }
 
 /**
@@ -1195,7 +1112,6 @@ int BoundBox::transform(Matrixf& mtx)
 {
 	// takes a 3x3 matrix M and transforms a BoundBox
 	// by acting as a linear operator on each vertex
-	// also spits out 3 lol
 
 	Vector3f store[8]; // this is gonna hold a whole bunch of vertex information
 	Vector3f mult_out; // vector to store matrix multiplication output
@@ -1207,11 +1123,13 @@ int BoundBox::transform(Matrixf& mtx)
 		} else {
 			store[vertex].x = mMax.x;
 		}
+
 		if ((vertex & 2) == 0) {
 			store[vertex].y = mMin.y;
 		} else {
 			store[vertex].y = mMax.y;
 		}
+
 		if ((vertex & 4) == 0) {
 			store[vertex].z = mMin.z;
 		} else {
@@ -1232,10 +1150,7 @@ int BoundBox::transform(Matrixf& mtx)
 	mMax.y = -SHORT_FLOAT_MAX;
 	mMax.z = -SHORT_FLOAT_MAX;
 
-	// loop over stuff in pairs?
-	// I don't get why this is in pairs tbqh but so be it
-	int count = 0; // idk why we're returning this tbh
-
+	int count = 0;
 	for (int i = 0; i < 4; i++, count++) {
 		include(store[2 * i]);
 		include(store[2 * i + 1]);
