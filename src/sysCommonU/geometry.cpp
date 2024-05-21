@@ -678,11 +678,12 @@ void Triangle::createSphere(VertexTable& vertTable)
  */
 bool Triangle::fastIntersect(Sphere& ball)
 {
-	// check if triangle bounding sphere intersects with sphere 'ball'
+	f32 x = ball.mPosition.x - mSphere.mPosition.x;
+	f32 y = ball.mPosition.y - mSphere.mPosition.y;
+	f32 z = ball.mPosition.z - mSphere.mPosition.z;
 
-	// get center-to-center distance
-	Vector3f sep = ball.mPosition - mSphere.mPosition;
-	f32 dist     = lenVec(sep);
+	Vector3f sep(x, y, z);
+	f32 dist = sep.qLength();
 
 	// check how much "stuff" is between them
 	f32 radii = ball.mRadius + mSphere.mRadius;
