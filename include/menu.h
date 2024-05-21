@@ -22,7 +22,15 @@ struct Menu {
 		 * @enum cTypeFlag
 		 * @brief Flags for the key event type.
 		 */
-		enum cTypeFlag { UNK0 = 16, UNK1 = 32 };
+		enum cTypeFlag {
+			U0                            = 0,
+			U1                            = 1,
+			U2                            = 2,
+			U3                            = 4,
+			U4                            = 8,
+			INVOKE_ACTION_ON_BUTTON_PRESS = 16,
+			U6                            = 32,
+		};
 
 		/**
 		 * @brief Constructs a KeyEvent object.
@@ -31,6 +39,8 @@ struct Menu {
 		 * @param action The action to be performed when the key event occurs.
 		 */
 		KeyEvent(cTypeFlag type, u32 param, IDelegate1<Menu&>* action);
+
+		inline void invokeMenuAction(Menu* menu) { mAction->invoke(*menu); }
 
 		int mType;   // _00
 		int mButton; // _04
@@ -47,7 +57,11 @@ struct Menu {
 		 * @enum cTypeFlag
 		 * @brief Flags for the menu item type.
 		 */
-		enum cTypeFlag { UNK0 = 0, UNK1 = 1 };
+		enum cTypeFlag {
+			UNK0 = 0,
+			UNK1 = 1,
+			UNK2 = 2,
+		};
 
 		/**
 		 * @brief Constructs a MenuItem object.
@@ -76,7 +90,7 @@ struct Menu {
 		 */
 		bool checkEvents(Menu* menu, int param);
 
-		Menu* mMenu;       // _00
+		Menu* mParentMenu; // _00
 		bool mIsActive;    // _04
 		char* mName;       // _08
 		int mSectionFlags; // _0C
@@ -129,34 +143,37 @@ struct Menu {
 
 	inline void nextItem()
 	{
+		mTimer = 1.0f;
+		mState = FadeIn;
+
 		if (!mCurrentItem && !mItemList.getFirstLink()) {
 			mCurrentItem = (MenuItem*)mItemList.getFirstLink()->getObjectPtr();
 		}
 	}
 
-	JUTGamePad* mControl;   // _00
-	JUTFont* mFont;         // _04
-	bool mFlag;             // _08
-	Menu* _0C;              // _0C
-	Menu* mSelf;            // _10
-	Menu* _14;              // _14
-	JSUPtrList mItemList;   // _18
-	MenuItem* mCurrentItem; // _24
-	MenuItem* mLastItem;    // _28
-	int _2C;                // _2C
-	int mItemCount;         // _30
-	int mState;             // _34
-	f32 mTimer;             // _38
-	f32 mTimer2;            // _3C
-	int mPositionX;         // _40
-	int mPositionY;         // _44
-	int _48;                // _48
-	IDelegate1<Menu&>* _4C; // _4C
-	IDelegate1<Menu&>* _50; // _50
-	IDelegate1<Menu&>* _54; // _54
-	bool mIsInitialised;    // _58
-	bool mIsUpdated;        // _59
-	int mButtonValue;       // _5C
+	JUTGamePad* mControl;                     // _00
+	JUTFont* mFont;                           // _04
+	bool mFlag;                               // _08
+	Menu* mPreviousMenu;                      // _0C
+	Menu* mActiveMenu;                        // _10
+	Menu* mCurrentItemParent;                 // _14
+	JSUPtrList mItemList;                     // _18
+	MenuItem* mCurrentItem;                   // _24
+	MenuItem* mLastItem;                      // _28
+	int _2C;                                  // _2C
+	int mItemCount;                           // _30
+	int mState;                               // _34
+	f32 mTimer;                               // _38
+	f32 mTimer2;                              // _3C
+	int mPositionX;                           // _40
+	int mPositionY;                           // _44
+	int _48;                                  // _48
+	IDelegate1<Menu&>* mOnInitialiseCallback; // _4C
+	IDelegate1<Menu&>* mOnInactiveCallback;   // _50
+	IDelegate1<Menu&>* mOnUpdateCallback;     // _54
+	bool mIsInitialised;                      // _58
+	bool mIsUpdated;                          // _59
+	int mButtonValue;                         // _5C
 };
 
 #endif

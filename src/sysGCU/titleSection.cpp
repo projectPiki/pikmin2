@@ -124,8 +124,8 @@ void Section::init()
 	// this entire menu class seems to be for a scrapped debug menu
 	mMenu      = new Menu(mController1, JFWSystem::systemFont, false);
 	mMenu->_48 = 260;
-	mMenu->addKeyEvent(Menu::KeyEvent::UNK1, 512, new Delegate1<Section, Menu&>(this, &menuCancel));
-	mMenu->addKeyEvent(Menu::KeyEvent::UNK0, 256, new Delegate1<Section, Menu&>(this, &menuSelect));
+	mMenu->addKeyEvent(Menu::KeyEvent::U6, PAD_BUTTON_B, new Delegate1<Section, Menu&>(this, &menuCancel));
+	mMenu->addKeyEvent(Menu::KeyEvent::INVOKE_ACTION_ON_BUTTON_PRESS, PAD_BUTTON_A, new Delegate1<Section, Menu&>(this, &menuSelect));
 	int sects = 0;
 	for (int i = 0; i < GameFlow::SN_SECTION_COUNT; i++) {
 		SectionInfo* data = GameFlow::getSectionInfo(i);
@@ -279,7 +279,7 @@ void Section::doUpdateMainTitle()
 	mGoToDemoTimer += sys->mDeltaTime;
 	updateMenu();
 	mMainTitleMgr.update();
-	if (mController1->isButton(~JUTGamePad::False)) {
+	if (mController1->isButtonHeld(~JUTGamePad::False)) {
 		mGoToDemoTimer = 0.0f;
 	}
 

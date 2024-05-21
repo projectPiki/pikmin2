@@ -12,31 +12,31 @@ Menu::Menu(JUTGamePad* control, JUTFont* font, bool flag)
 {
 	mControl = control;
 	mControl->setButtonRepeat(0xc000000, 15, 3);
-	mFont = font;
-	mFlag = flag;
-	_0C   = 0;
+	mFont         = font;
+	mFlag         = flag;
+	mPreviousMenu = nullptr;
 
 	MenuItem* rootItem  = new MenuItem(MenuItem::UNK0, 0, "root");
 	rootItem->mIsActive = false;
 	mItemList.append(&rootItem->mLink);
 
-	_2C            = 0;
-	mItemCount     = 0;
-	mLastItem      = nullptr;
-	mCurrentItem   = nullptr;
-	_14            = nullptr;
-	mSelf          = nullptr;
-	_4C            = 0;
-	_50            = 0;
-	_54            = 0;
-	mPositionX     = 190;
-	mPositionY     = 220;
-	_48            = 260;
-	mIsInitialised = true;
-	mIsUpdated     = true;
-	mState         = Inactive;
-	mTimer         = 0.0f;
-	mTimer2        = 0.0f;
+	_2C                   = 0;
+	mItemCount            = 0;
+	mLastItem             = nullptr;
+	mCurrentItem          = nullptr;
+	mCurrentItemParent    = nullptr;
+	mActiveMenu           = nullptr;
+	mOnInitialiseCallback = 0;
+	mOnInactiveCallback   = nullptr;
+	mOnUpdateCallback     = 0;
+	mPositionX            = 190;
+	mPositionY            = 220;
+	_48                   = 260;
+	mIsInitialised        = true;
+	mIsUpdated            = true;
+	mState                = Inactive;
+	mTimer                = 0.0f;
+	mTimer2               = 0.0f;
 
 	volatile int idk1, idk2, idk3, idk4;
 	idk4 = 190;
@@ -57,7 +57,7 @@ void Menu::addOption(int optionIdx, char* optionName, IDelegate1<Menu&>* pressAc
 	mLastItem->mIsActive = isActive;
 	mItemList.append(&mLastItem->mLink);
 	if (pressAction) {
-		addKeyEvent(KeyEvent::UNK0, mButtonValue, pressAction);
+		addKeyEvent(KeyEvent::INVOKE_ACTION_ON_BUTTON_PRESS, mButtonValue, pressAction);
 	}
 
 	if (!mCurrentItem && mLastItem->mIsActive) {
@@ -71,9 +71,9 @@ void Menu::addOption(int optionIdx, char* optionName, IDelegate1<Menu&>* pressAc
  * @note Address: 0x80456370
  * @note Size: 0xC8
  */
-void Menu::addKeyEvent(KeyEvent::cTypeFlag type, u32 a1, IDelegate1<Menu&>* delegate)
+void Menu::addKeyEvent(KeyEvent::cTypeFlag type, u32 button, IDelegate1<Menu&>* delegate)
 {
-	KeyEvent* key = new KeyEvent(type, a1, delegate);
+	KeyEvent* key = new KeyEvent(type, button, delegate);
 
 	if (mLastItem) {
 		mLastItem->mList.append(&key->mLink);
@@ -95,7 +95,7 @@ Menu* Menu::doUpdate(bool flag)
 {
 	Menu* menu = this;
 
-	mSelf = this;
+	mActiveMenu = this;
 	mTimer2 += sys->mDeltaTime * 7.0f;
 	switch (mState) {
 	case FadeIn:
@@ -110,7 +110,7 @@ Menu* Menu::doUpdate(bool flag)
 		if (mTimer < 0.0f) {
 			mTimer = 0.0f;
 			mState = Inactive;
-			menu   = _14;
+			menu   = mCurrentItemParent;
 		}
 		break;
 	case Active:
@@ -154,48 +154,46 @@ Menu* Menu::doUpdate(bool flag)
 		}
 
 		if (mIsInitialised) {
-			if (_4C) {
-				_4C->invoke(*this);
+			if (mOnInitialiseCallback) {
+				mOnInitialiseCallback->invoke(*this);
 			}
 			mIsInitialised = false;
 			mIsUpdated     = true;
 		}
 
-		u32 id = 0x10000 - 4;
+		u32 eventType = 0x10000 - 4;
 		if (mIsUpdated) {
-			id |= 1;
-			if (_54) {
-				_54->invoke(*this);
+			eventType |= 1;
+			if (mOnUpdateCallback) {
+				mOnUpdateCallback->invoke(*this);
 			}
 			mTimer2    = 0.0f;
 			mIsUpdated = false;
 		}
 
-		if (!mCurrentItem->checkEvents(this, id)) {
-			((MenuItem*)menu->mItemList.getFirstLink()->getObjectPtr())->checkEvents(this, id);
+		if (!mCurrentItem->checkEvents(this, eventType)) {
+			((MenuItem*)menu->mItemList.getFirstLink()->getObjectPtr())->checkEvents(this, eventType);
 		}
 
-		if (mSelf != this) {
-			mCurrentItem->checkEvents(this, 2);
+		if (mActiveMenu != this) {
+			mCurrentItem->checkEvents(this, KeyEvent::U2);
 
-			if (_50) {
-				_50->invoke(*this);
+			if (mOnInactiveCallback) {
+				mOnInactiveCallback->invoke(*this);
 			}
 
-			if (mSelf) {
-				menu         = mSelf;
-				menu->mTimer = 0.0f;
-				menu->mState = FadeIn;
+			if (mActiveMenu) {
+				menu = mActiveMenu;
 				menu->nextItem();
-				menu = mSelf;
+				menu = mActiveMenu;
 			} else {
-				if (!_0C) {
-					mSelf = (Menu*)_0C;
+				if (!mPreviousMenu) {
+					mActiveMenu = mPreviousMenu;
 				}
 				mTimer = 1.0f;
 				mState = FadeOut;
 			}
-			_14 = mSelf;
+			mCurrentItemParent = mActiveMenu;
 		}
 
 		break;
@@ -227,7 +225,7 @@ Menu::MenuItem::MenuItem(cTypeFlag type, int a1, char* name)
 	mName         = name;
 	mSectionFlags = a1;
 	mType         = type;
-	mMenu         = nullptr;
+	mParentMenu   = nullptr;
 }
 
 /**
@@ -259,77 +257,77 @@ Menu::MenuItem* Menu::MenuItem::getPrev()
 /**
  * @note Address: 0x804568F8
  * @note Size: 0x200
- * this function is a clusterfuck. -EpochFlame
  */
-bool Menu::MenuItem::checkEvents(Menu* menu, int type)
+bool Menu::MenuItem::checkEvents(Menu* menu, int eventType)
 {
 	JSUPtrLink* link;
-	bool ret = false;
-	bool doFinish;
+	bool success = false;
 
 	for (link = mList.mHead; link; link = (JSUPtrLink*)link->getNext()) {
+		bool doFinish = false;
 
-		doFinish      = false;
-		KeyEvent* obj = (KeyEvent*)link->getObjectPtr();
-		if (type & obj->mType) {
-			switch (obj->mType) {
-			case 1:
-				obj->mAction->invoke(*menu);
-				break;
-			case 2:
-				obj->mAction->invoke(*menu);
-				break;
-			case 4:
-				if (menu->mControl->isButton(obj->mButton)) {
-					obj->mAction->invoke(*menu);
-				}
-				break;
-			case 8:
-			case 32:
-				if (menu->mControl->isButtonDown(obj->mButton)) {
-					obj->mAction->invoke(*menu);
-					ret      = true;
+		KeyEvent* menuEvent = (KeyEvent*)link->getObjectPtr();
+		if (!(eventType & menuEvent->mType)) {
+			continue;
+		}
+
+		switch (menuEvent->mType) {
+		case KeyEvent::U1:
+			menuEvent->invokeMenuAction(menu);
+			break;
+		case KeyEvent::U2:
+			menuEvent->invokeMenuAction(menu);
+			break;
+		case KeyEvent::U3:
+			if (menu->mControl->isButtonHeld(menuEvent->mButton)) {
+				menuEvent->invokeMenuAction(menu);
+			}
+			break;
+		case KeyEvent::U4:
+		case KeyEvent::U6:
+			if (menu->mControl->isButtonDown(menuEvent->mButton)) {
+				menuEvent->invokeMenuAction(menu);
+				success  = true;
+				doFinish = true;
+			}
+			break;
+		case KeyEvent::INVOKE_ACTION_ON_BUTTON_PRESS:
+			if (menu->mControl->isButtonDown(menuEvent->mButton)) {
+				if (menu->mCurrentItem->mType == MenuItem::UNK2) {
+					checkEvents(menu, KeyEvent::U2);
+
+					if (!menu->mPreviousMenu) {
+						menu->mActiveMenu = menu->mPreviousMenu;
+					}
+
+					menu->mTimer             = 7.0f;
+					menu->mState             = FadeOut;
+					menu->mActiveMenu        = menu;
+					menu->mCurrentItemParent = menu->mCurrentItem->mParentMenu;
+					menu->mCurrentItemParent->nextItem();
+
+					menu->mIsInitialised = true;
+
+					// mCurrentItem->mParentMenu IS menu!!!! wtf?
+					menu->mCurrentItem->mParentMenu->mIsInitialised = true;
+					success                                         = false;
+					doFinish                                        = true;
+				} else {
+					menuEvent->invokeMenuAction(menu);
+
+					success  = true;
 					doFinish = true;
 				}
-				break;
-			case 16:
-				if (menu->mControl->isButtonDown(obj->mButton)) {
-					if (menu->mCurrentItem->mType == 2) {
-						checkEvents(menu, 2);
-						if (!menu->_0C) {
-							menu->mSelf = (Menu*)menu->_0C;
-						}
-						menu->mTimer = 7.0f;
-						menu->mState = FadeOut;
-						menu->mSelf  = menu;
-						menu->_14    = menu->mCurrentItem->mMenu;
-						Menu* temp   = menu->_14; // might be an inline
-						temp->mTimer = 1.0f;
-						temp->mState = FadeIn;
-
-						if (!menu->mCurrentItem && !menu->mItemList.getFirstLink()) {
-							menu->mCurrentItem = (MenuItem*)menu->mItemList.getFirstLink()->getObjectPtr();
-						}
-
-						ret                                       = 0;
-						menu->mIsInitialised                      = true;
-						doFinish                                  = true;
-						menu->mCurrentItem->mMenu->mIsInitialised = true;
-					} else {
-						obj->mAction->invoke(*menu);
-						ret      = true;
-						doFinish = true;
-					}
-				}
-				break;
 			}
 
-			if (doFinish) {
-				break;
-			}
+			break;
+		}
+
+		if (doFinish) {
+			break;
 		}
 	}
-	return ret;
+	return success;
 
 	/*
 	stwu     r1, -0x20(r1)

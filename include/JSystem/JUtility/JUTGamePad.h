@@ -208,11 +208,11 @@ struct JUTGamePad : public JKRDisposer {
 
 	inline bool isConnected() const { return (mPortNum >= 0 && mPortNum < 4); }
 	inline bool isButtonDown(u32 buttons) { return mButton.mButtonDown & buttons; }
-	inline bool isButton(u32 buttons) { return mButton.mButton & buttons; }
+	inline bool isButtonHeld(u32 buttons) { return mButton.mButton & buttons; }
 
 	inline bool isMoveLeft()
 	{
-		if (isButton(PRESS_DPAD_LEFT) || mMStick.mXPos < -0.5f) {
+		if (isButtonHeld(PRESS_DPAD_LEFT) || mMStick.mXPos < -0.5f) {
 			return true;
 		} else {
 			return false;
@@ -220,7 +220,7 @@ struct JUTGamePad : public JKRDisposer {
 	}
 	inline bool isMoveRight()
 	{
-		if (isButton(PRESS_DPAD_RIGHT) || mMStick.mXPos > 0.5f) {
+		if (isButtonHeld(PRESS_DPAD_RIGHT) || mMStick.mXPos > 0.5f) {
 			return true;
 		} else {
 			return false;
@@ -228,7 +228,7 @@ struct JUTGamePad : public JKRDisposer {
 	}
 	inline bool isMoveUp()
 	{
-		if (isButton(PRESS_DPAD_UP) || mMStick.mYPos > 0.5f) {
+		if (isButtonHeld(PRESS_DPAD_UP) || mMStick.mYPos > 0.5f) {
 			return true;
 		} else {
 			return false;
@@ -236,7 +236,7 @@ struct JUTGamePad : public JKRDisposer {
 	}
 	inline bool isMoveDown()
 	{
-		if (isButton(PRESS_DPAD_DOWN) || mMStick.mYPos < -0.5f) {
+		if (isButtonHeld(PRESS_DPAD_DOWN) || mMStick.mYPos < -0.5f) {
 			return true;
 		} else {
 			return false;

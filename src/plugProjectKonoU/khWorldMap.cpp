@@ -3950,7 +3950,7 @@ bool WorldMap::changeState()
 		isStateChange = true;
 		mCurrentState = WMAP_GoToZukanItem;
 
-	} else if (mInitArg.mController->getMainStickValue() > 0.1f || mInitArg.mController->isButton(Controller::PRESS_DPAD)) {
+	} else if (mInitArg.mController->getMainStickValue() > 0.1f || mInitArg.mController->isButtonHeld(Controller::PRESS_DPAD)) {
 		if (mLockoutCounter == 0) {
 			isStateChange   = true;
 			mLockoutCounter = msVal.mInputLockoutFrames;
@@ -4079,11 +4079,11 @@ int WorldMap::getTarget()
 	case COURSE_Tutorial: // currently selected valley of repose
 	{
 		// press right, go to awakening wood if opened
-		if (mInitArg.mController->isButton(Controller::PRESS_RIGHT)) {
+		if (mInitArg.mController->isButtonHeld(Controller::PRESS_RIGHT)) {
 			newMap = COURSE_Forest;
 		}
 		// press up, go to perplexing pool if opened
-		else if (mInitArg.mController->isButton(Controller::PRESS_UP)) {
+		else if (mInitArg.mController->isButtonHeld(Controller::PRESS_UP)) {
 			newMap = COURSE_Yakushima;
 		}
 		break;
@@ -4091,11 +4091,11 @@ int WorldMap::getTarget()
 	case COURSE_Forest: // currently selected awakening wood
 	{
 		// press left, go to valley of repose if opened
-		if (mInitArg.mController->isButton(Controller::PRESS_LEFT)) {
+		if (mInitArg.mController->isButtonHeld(Controller::PRESS_LEFT)) {
 			newMap = COURSE_Tutorial;
 		}
 		// press up, go to wistful wild if opened, or go to perplexing pool if not
-		else if (mInitArg.mController->isButton(Controller::PRESS_UP)) {
+		else if (mInitArg.mController->isButtonHeld(Controller::PRESS_UP)) {
 			newMap = mOpenCourses == (COURSE_Yakushima + 1) ? (int)COURSE_Yakushima
 			                                                : (int)COURSE_Last; // the int casts prevent this from un-optimising
 		}
@@ -4104,11 +4104,11 @@ int WorldMap::getTarget()
 	case COURSE_Yakushima: // currently selected perplexing pool
 	{
 		// press right, go to wistful wild if open, otherwise awakening wood
-		if (mInitArg.mController->isButton(Controller::PRESS_RIGHT)) {
+		if (mInitArg.mController->isButtonHeld(Controller::PRESS_RIGHT)) {
 			newMap = mOpenCourses == (COURSE_Yakushima + 1) ? (int)COURSE_Forest : (int)COURSE_Last;
 		}
 		// press down, to go valley of repose
-		else if (mInitArg.mController->isButton(Controller::PRESS_DOWN)) {
+		else if (mInitArg.mController->isButtonHeld(Controller::PRESS_DOWN)) {
 			newMap = COURSE_Tutorial;
 		}
 		break;
@@ -4116,11 +4116,11 @@ int WorldMap::getTarget()
 	case COURSE_Last: // currently selected wistful wild
 	{
 		// press left, go to perplexing pool
-		if (mInitArg.mController->isButton(Controller::PRESS_LEFT)) {
+		if (mInitArg.mController->isButtonHeld(Controller::PRESS_LEFT)) {
 			newMap = COURSE_Yakushima;
 		}
 		// press down, go to awakening wood
-		else if (mInitArg.mController->isButton(Controller::PRESS_DOWN)) {
+		else if (mInitArg.mController->isButtonHeld(Controller::PRESS_DOWN)) {
 			newMap = COURSE_Forest;
 		}
 		break;
@@ -4193,7 +4193,7 @@ void WorldMap::changeInfo()
 	u64 tags2[4]
 	    = { '8396_01', '8398_01', '8401_01', '8410_01' }; // "Hole of Beasts" 	"White Flower Garden"	"Bulblax Kingdom" 	"Snagret Hole"
 	u64 tags3[4]     = { '8397_01', '8402_01', '8403_01',
-                     '8411_01' }; // "Citadel of Spiders"	"Glutton's Kitchen"		"Shower Room"		"Submerged Castle"
+		                 '8411_01' }; // "Citadel of Spiders"	"Glutton's Kitchen"		"Shower Room"		"Submerged Castle"
 	u64 tags4[4]     = { '8412_01', '8413_01', '8414_01', 'no_data' }; // "Cavern of Chaos" 	"Hole of Heroes"	 	"Dream Den"
 	u64* caveTags[4] = { tags1, tags2, tags3, tags4 };
 

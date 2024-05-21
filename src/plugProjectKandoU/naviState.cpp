@@ -452,7 +452,7 @@ void NaviWalkState::exec(Navi* navi)
 				}
 			}
 
-			if (navi->mController1->isButton(JUTGamePad::PRESS_X)) {
+			if (navi->mController1->isButtonHeld(JUTGamePad::PRESS_X)) {
 				if (mDismissTimer != 0) {
 					mDismissTimer++;
 
@@ -2850,10 +2850,10 @@ void NaviNukuState::exec(Navi* navi)
 		}
 		navi->mPluckingCounter = 0;
 	} else if (mIsFollower == 0) {
-		if (mDidPressA == 0 && navi->mController1->isButton(JUTGamePad::PRESS_A)) {
+		if (mDidPressA == 0 && navi->mController1->isButtonHeld(JUTGamePad::PRESS_A)) {
 			mDidPressA = 1;
 		}
-		if (mDidPressA != 0 && !navi->mController1->isButton(JUTGamePad::PRESS_A)) {
+		if (mDidPressA != 0 && !navi->mController1->isButtonHeld(JUTGamePad::PRESS_A)) {
 			mIsActive = 1;
 			navi->mPluckingCounter++;
 		}
