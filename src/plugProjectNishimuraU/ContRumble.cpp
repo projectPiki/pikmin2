@@ -51,7 +51,7 @@ void ContRumble::init()
  */
 void ContRumble::update()
 {
-	f32 maxRumbleIntensity = 0.0;
+	f32 maxRumbleIntensity = 0.0f;
 
 	FOREACH_NODE_CHILD(RumbleNode, mParentNode->mChild, currentNode)
 	{
@@ -85,7 +85,7 @@ void ContRumble::update()
 		}
 
 		currentNode->mCurrentIntensity *= currentNode->mDefaultIntensity;
-		currentNode->mRumbleTimer += sys->mDeltaTime;
+		currentNode->mRumbleTimer += sys->getDeltaTime();
 
 		if (maxRumbleIntensity < currentNode->mCurrentIntensity) {
 			maxRumbleIntensity = currentNode->mCurrentIntensity;
@@ -98,6 +98,8 @@ void ContRumble::update()
 			shouldAddToActiveNodes = false;
 		} else if (currentNode->mRumbleTimer < currentNode->_28) {
 			shouldAddToActiveNodes = false;
+		} else {
+			shouldAddToActiveNodes = true;
 		}
 
 		if (shouldAddToActiveNodes) {
@@ -111,10 +113,17 @@ void ContRumble::update()
 		mRumbleTimer += sys->mDeltaTime;
 		mRumbleTimeoutTimer = 0.0f;
 
+		if (mTotalIntensity < 1.0f) {
+			if (mIsActive) {
+				PADControlMotor(mPadChannel, PAD_MOTOR_STOP);
+			} else {
+				mTotalIntensity -= 1.0f;
+			}
+		}
+
 		if (mIsActive) {
-			PADControlMotor(mPadChannel, PAD_MOTOR_STOP);
-		} else {
 			PADControlMotor(mPadChannel, PAD_MOTOR_RUMBLE);
+			return;
 		}
 
 	} else {
@@ -223,53 +232,14 @@ void ContRumble::rumbleStop(int idx)
  * @note Address: 0x80253208
  * @note Size: 0x9C
  */
-void ContRumble::getRumbleParameter(int idx, f32& x, f32& y)
+void ContRumble::getRumbleParameter(int index, f32& x, f32& y)
 {
-	f32 parm1[3] = { 0.4f, 0.55f, 1.0f };
-	f32 parm2[3] = { 0.2f, 0.35f, 0.5f };
+	f32 xRumbles[3] = { 0.4f, 0.55f, 1.0f };
+	f32 yRumbles[3] = { 0.2f, 0.35f, 0.5f };
 
-	x = parm1[idx % 3] * x;
-	y = parm2[idx % 3];
-	/*
-	stwu     r1, -0x30(r1)
-	lis      r3, 0x55555556@ha
-	lis      r7, lbl_80484850@ha
-	stw      r31, 0x2c(r1)
-	addi     r31, r4, -8
-	addi     r10, r7, lbl_80484850@l
-	addi     r0, r3, 0x55555556@l
-	mulhw    r7, r0, r31
-	lwz      r9, 0(r10)
-	lwz      r12, 4(r10)
-	lis      r4, lbl_8048485C@ha
-	lwz      r11, 8(r10)
-	addi     r3, r1, 8
-	addi     r8, r4, lbl_8048485C@l
-	srwi     r0, r7, 0x1f
-	add      r7, r7, r0
-	stw      r9, 0x14(r1)
-	mulli    r0, r7, 3
-	lwz      r10, 0(r8)
-	lwz      r9, 4(r8)
-	addi     r4, r1, 0x14
-	lwz      r8, 8(r8)
-	slwi     r7, r7, 2
-	subf     r0, r0, r31
-	stw      r12, 0x18(r1)
-	lfs      f1, 0(r5)
-	slwi     r0, r0, 2
-	stw      r11, 0x1c(r1)
-	lfsx     f0, r4, r7
-	stw      r10, 8(r1)
-	fmuls    f0, f1, f0
-	stw      r9, 0xc(r1)
-	stw      r8, 0x10(r1)
-	stfs     f0, 0(r5)
-	lfsx     f0, r3, r0
-	stfs     f0, 0(r6)
-	lwz      r31, 0x2c(r1)
-	addi     r1, r1, 0x30
-	blr
-	*/
+	int offsetIndex = index - 8;
+
+	x *= xRumbles[offsetIndex / 3];
+	y = yRumbles[offsetIndex % 3];
 }
 } // namespace Game
