@@ -44,6 +44,12 @@ struct SingletonBase {
 
 	static T* sInstance;
 };
+
+// template <typename T>
+// SingletonBase<T>::~SingletonBase()
+// {
+// 	sInstance = nullptr;
+// }
 } // namespace PSSystem
 
 #endif

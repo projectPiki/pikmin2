@@ -2,12 +2,11 @@
 #define _JSYSTEM_JAS_JASTRACK_H
 
 #include "JSystem/JAudio/JAS/JASBank.h"
-#include "JSystem/JAudio/JAS/JASOscillator.h"
-#include "types.h"
 #include "JSystem/JSupport/JSUList.h"
 #include "JSystem/JAudio/JAS/JASSeqCtrl.h"
 #include "JSystem/JAudio/JAS/JASChannel.h"
 #include "JSystem/JAudio/JAS/JASRegisterParam.h"
+#include "JSystem/JAudio/JAS/JASPlayer.h"
 
 #define TRACKPORT_MAX (16)
 
@@ -220,7 +219,7 @@ struct JASTrack : public JSUList<JASChannel> {
 	void overwriteOsc(JASChannel*);
 	bool noteOff(u8, u16);
 	int gateOn(u8, s32, s32, s32);
-	BOOL checkNoteStop(s32);
+	bool checkNoteStop(s32);
 	void oscSetupFull(u8, u32, u32);
 	void oscSetupSimpleEnv(u8, u32);
 	void oscSetupSimple(u8);
@@ -290,7 +289,15 @@ struct JASTrack : public JSUList<JASChannel> {
 	inline JASSeqCtrl* getCtrl() { return &mSeqCtrl; }
 	inline JASOuterParam* getExtBuffer() const { return mExtBuffer; }
 
-	static struct JASSeqParser* sParser;
+	inline void initOscillators()
+	{
+		for (int i = 0; i < 2; i++) {
+			mOscRoute[i] = 0xF;
+			mOscData[i]  = JASPlayer::sEnvelopeDef;
+		}
+	}
+
+	static struct JASSeqParser sParser;
 
 	// these might be JSUList<JASChannel>, for whatever difference that may or may not make
 	static JASTrack* sFreeList;

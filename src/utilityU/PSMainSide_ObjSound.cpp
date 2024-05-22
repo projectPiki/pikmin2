@@ -4019,7 +4019,7 @@ void PSSetCurCameraNo(u8 cams)
  * @note Address: 0x80463244
  * @note Size: 0x8
  */
-f32 PSMGetNoukouDist() { return PSM::CreaturePrm::cNokouDistance; }
+f32 PSMGetNoukouDist() { return PSM::CreaturePrm::cNoukouDistance; }
 
 /**
  * @note Address: 0x8046324C
