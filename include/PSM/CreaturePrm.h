@@ -6,11 +6,7 @@
 
 namespace PSM {
 struct CreaturePrm : public PSSystem::SingletonBase<CreaturePrm> {
-	CreaturePrm()
-	    : PSSystem::SingletonBase<CreaturePrm>(this)
-	{
-		mPersp.set(1.0f, 400.0f, 0.8f, 700.0f, 0.0f);
-	}
+	CreaturePrm() { mPersp.set(1.0f, 400.0f, 0.8f, 700.0f, 0.0f); }
 
 	virtual ~CreaturePrm() { } // _08 (weak)
 

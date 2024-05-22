@@ -21,15 +21,39 @@ enum THP_ID {
 };
 
 struct THPDemoDinamics {
-	f32 _00;
+	f32 mBaseVolumeModifier;
 	f32 _04;
 	f32 _08;
 	bool mEnableDyn;
 	char* mName;
+
+	inline f32 calcDinamic(f32 input)
+	{
+		BOOL isNegative = (input < 0.0f) ? TRUE : FALSE;
+
+		f32 calc = input;
+		if (isNegative) {
+			calc = -1.0f * calc;
+		}
+
+		if (calc < _04) {
+			input = _08;
+			calc  = calc * (input / _04);
+			input = (input > calc) ? _08 : (calc < 0.0f) ? calc : 0.0f;
+		} else {
+			calc  = (calc - 1.0f) * ((_08 - 1.0f) / (_04 - 1.0f)) + 1.0f;
+			input = (calc < 1.0f) ? calc : (calc > _08) ? _08 : 1.0f;
+		}
+
+		if (isNegative) {
+			input = -1.0f * input;
+		}
+		return input;
+	}
 };
 
 struct THPDinamicsProc {
-	THPDinamicsProc(); // inlined/unused
+	THPDinamicsProc() { mDemoInfo = nullptr; }
 
 	void setSetting(THP_ID id);
 	void setSetting(THPDemoDinamics* dyn);

@@ -3,9 +3,8 @@
 
 namespace PSM {
 
-static CreaturePrm sInsReal;
-
-// THPDinamicsProc sTHPDinamicsProc;
+THPDinamicsProc sTHPDinamicsProc;
+CreaturePrm sInsReal;
 
 // clang-format off
 THPDemoDinamics sTHPDemoDinamics[THP_COUNT]
@@ -49,7 +48,7 @@ void THPDinamicsProc::setSetting(THPDemoDinamics* dyn)
 	P2ASSERTLINE(125, dyn);
 	P2ASSERTBOUNDSLINE2(126, 0.0f, dyn->_04, 1.0f);
 	P2ASSERTBOUNDSLINE2(127, 0.0f, dyn->_08, 1.0f);
-	P2ASSERTLINE(128, dyn->_00 > 0.0f);
+	P2ASSERTLINE(128, dyn->mBaseVolumeModifier > 0.0f);
 }
 
 /**
@@ -59,11 +58,10 @@ void THPDinamicsProc::setSetting(THPDemoDinamics* dyn)
 f32 THPDinamicsProc::dinamics(f32 input)
 {
 	P2ASSERTLINE(137, mDemoInfo);
-	THPDemoDinamics* info = mDemoInfo;
-	if (info->mEnableDyn) {
-		// nasty
-	}
-	return input * info->_00;
+
+	f32 volume = (mDemoInfo->mEnableDyn) ? mDemoInfo->calcDinamic(input) : input;
+	return volume * mDemoInfo->mBaseVolumeModifier;
+
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
