@@ -1651,7 +1651,7 @@ LIBS = [
             ["utilityU/PSMainSide_Se", False],
             ["utilityU/PSMainSide_DirectorMgr", False],
             ["utilityU/PSMainSide_Sound", False],
-            ["utilityU/PSMainSide_TrackMap", False],
+            ["utilityU/PSMainSide_TrackMap", True],
             ["utilityU/PSMainSide_CreaturePrm", False],
             ["utilityU/PSMainSide_ObjCalc", False],
         ],

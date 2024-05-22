@@ -23,6 +23,23 @@ struct BgmTrackMap {
 		strcpy(mFileName, "");
 	};
 
+	BgmTrackMap(BgmTrackMap& other)
+	{
+		mBasicTrackCount   = other.mBasicTrackCount;
+		mEventTrackCount   = other.mEventTrackCount;
+		mOtakaraTrackCount = other.mOtakaraTrackCount;
+		mKehaiTrackCount   = other.mKehaiTrackCount;
+		mBattleTrackCount  = other.mBattleTrackCount;
+		mGroundTrackCount  = other.mGroundTrackCount;
+		for (u8 i = 0; i < 16; i++) {
+			mPikNum[i] = other.mPikNum[i];
+		}
+		for (u8 i = 0; i < 8; i++) {
+			mPikMask[i] = other.mPikMask[i];
+		}
+		strcpy(mFileName, other.mFileName);
+	};
+
 	inline int getPikNum()
 	{
 		int num = 0;
@@ -68,9 +85,9 @@ struct BgmTrackMapFile : public ::PSSystem::TextDataBase, public ::PSSystem::Sin
 	// _1C     = VTBL 2
 	// _00-_1C = PSSystem::TextDataBase
 	// _1C-_20 = PSSystem::SingletonBase
-	BgmTrackMap* mTrackMaps; // _20, array of 32 track maps
-	int mMapCount;           // _24, number of track maps in array
-	bool _28;                // _28
+	BgmTrackMap* mTrackMaps;     // _20, array of 32 track maps
+	int mMapCount;               // _24, number of track maps in array
+	bool mIsTrackMapListEnabled; // _28
 };
 } // namespace PSM
 
