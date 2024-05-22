@@ -81,6 +81,24 @@ static inline u8 __OSf32tou8(register f32 inF)
 
 static inline void OSf32tou8(f32* f, u8* out) { *out = __OSf32tou8(*f); }
 
+static inline s8 __OSf32tos8(register f32 inF)
+{
+	register s8 out;
+	u32 tmp;
+	register u32* tmpPtr = &tmp;
+#ifdef __MWERKS__ // clang-format off
+	asm {
+		psq_st inF, 0(tmpPtr), 0x1, OS_FASTCAST_S8
+		lbz out, 0(tmpPtr)
+		extsb out, out
+	}
+#endif // clang-format on
+
+	return out;
+}
+
+static inline void OSf32tos8(f32* f, s8* out) { *out = __OSf32tos8(*f); }
+
 // Int to float.
 // NB: should have these for u8/u16/s8/s16 eventually.
 

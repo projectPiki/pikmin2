@@ -474,7 +474,7 @@ f32 getDacRate() { return sDacRate; }
  * @note Address: 0x800A81F8
  * @note Size: 0x8
  */
-int getSubFrames() { return sSubFrames; }
+u32 getSubFrames() { return sSubFrames; }
 
 /**
  * @note Address: 0x800A8200

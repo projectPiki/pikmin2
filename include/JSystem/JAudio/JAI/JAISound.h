@@ -40,6 +40,7 @@ enum JAISoundPauseMode {
 	SOUNDPAUSE_Unk2 = 2,
 	SOUNDPAUSE_Unk3 = 3,
 	SOUNDPAUSE_Unk4 = 4,
+	SOUNDPAUSE_Unk5 = 8,
 };
 
 namespace JAInter {

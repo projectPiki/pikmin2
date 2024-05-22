@@ -91,9 +91,9 @@ JASChannel::JASChannel(Callback callback, void* cbData)
 	for (u32 i = 0; i < 4; i++) {
 		mOscillators[i].init();
 	}
-	_100       = 1.0f;
-	_104       = 1.0f;
-	mPauseFlag = false;
+	mVolumeChannel = 1.0f;
+	mPitchChannel  = 1.0f;
+	mPauseFlag     = false;
 }
 
 /**
@@ -409,7 +409,7 @@ void JASChannel::updateEffectorParam(JASDsp::TChannel* dspChan, u16* mixerVol, c
 		break;
 	}
 
-	f32 volume = _100 * (_FC * effectParms.mVolume);
+	f32 volume = mVolumeChannel * (_FC * effectParms.mVolume);
 
 	pan   = JASCalc::clamp01(pan);
 	fxmix = JASCalc::clamp01(fxmix);
@@ -495,7 +495,7 @@ void JASChannel::initialUpdateDSPChannel(JASDsp::TChannel* dspChan)
 		dspChan->setMixerInitVolume(i, mixerVols[i]);
 	}
 
-	f32 pitch = 4096.0f * (_104 * (mModifiedPitch * effectParms.mPitch));
+	f32 pitch = 4096.0f * (mPitchChannel * (mModifiedPitch * effectParms.mPitch));
 	dspChan->setPitch(pitch);
 
 	dspChan->setPauseFlag(mPauseFlag);
@@ -546,7 +546,7 @@ s32 JASChannel::updateDSPChannel(JASDsp::TChannel* dspChan)
 		dspChan->setMixerVolume(i, mixerVols[i]);
 	}
 
-	f32 pitch = 4096.0f * (_104 * (mModifiedPitch * effectParms.mPitch));
+	f32 pitch = 4096.0f * (mPitchChannel * (mModifiedPitch * effectParms.mPitch));
 	dspChan->setPitch(pitch);
 	dspChan->setPauseFlag(mPauseFlag);
 

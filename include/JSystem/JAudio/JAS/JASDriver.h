@@ -56,7 +56,7 @@ void readDspBuffer(s16*, u32);
 void finishDSPFrame();
 void registerMixCallback(MixCallback, JASMixMode);
 f32 getDacRate();
-int getSubFrames();
+u32 getSubFrames();
 static int getDacSize();
 static int getFrameSamples();
 static void mixMonoTrack(s16*, u32, MixCallback);

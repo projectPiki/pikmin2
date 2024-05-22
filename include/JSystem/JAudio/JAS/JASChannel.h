@@ -126,8 +126,8 @@ struct JASChannel : public JSULink<JASChannel>,
 	f32 mVolume;                   // _F4
 	f32 mModifiedPitch;            // _F8
 	f32 _FC;                       // _FC, related to volume
-	f32 _100;                      // _100, related to volume
-	f32 _104;                      // _104, related to pitch
+	f32 mVolumeChannel;            // _100, related to volume
+	f32 mPitchChannel;             // _104, related to pitch
 	u8 mPanCalcType;               // _108
 	u8 mFxMixCalcType;             // _109
 	u8 mDolbyCalcType;             // _10A
@@ -144,24 +144,22 @@ struct JASChannelUpdater {
 	void initialUpdateChannel(JASChannel*, JASDsp::TChannel*);
 	void updateChannel(JASChannel*, JASDsp::TChannel*);
 
-	f32 _00;              // _00
-	f32 _04;              // _04
-	f32 mPan;             // _08
-	f32 mFxMix;           // _0C
-	f32 mDolby;           // _10
-	s16 mFIR8FilterParam; // _14
-	u16 _16[7];           // _16 - unknown
-	s16 mIIRFilterParam;  // _24
-	u16 _26[3];           // _26 - unknown
-	u8 _2C[8];            // _2C - unknown
-	s16 _34;              // _34 - unknown
-	u16 mMixConfigs[6];   // _36
-	u8 mDelaySamples[6];  // _42 - unknown
-	u8 mDelayMax;         // _48
-	u8 mFilterMode;       // _49
-	u8 mPanCalcType;      // _4A
-	u8 mFxMixCalcType;    // _4B
-	u8 mDolbyCalcType;    // _4C
+	f32 mVolume;              // _00
+	f32 mPitch;               // _04
+	f32 mPan;                 // _08
+	f32 mFxMix;               // _0C
+	f32 mDolby;               // _10
+	s16 mFIR8FilterParams[8]; // _14
+	s16 mIIRFilterParams[4];  // _24
+	u8 _2C[8];                // _2C - unknown
+	s16 _34;                  // _34 - unknown
+	u16 mMixConfigs[6];       // _36
+	u8 mDelaySamples[6];      // _42 - unknown
+	u8 mDelayMax;             // _48
+	u8 mFilterMode;           // _49
+	u8 mPanCalcType;          // _4A
+	u8 mFxMixCalcType;        // _4B
+	u8 mDolbyCalcType;        // _4C
 };
 
 #endif

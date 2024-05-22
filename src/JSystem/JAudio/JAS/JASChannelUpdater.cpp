@@ -12,43 +12,37 @@ JASChannelUpdater::JASChannelUpdater() { init(); }
  */
 void JASChannelUpdater::init()
 {
-	_00              = 1.0f;
-	_04              = 1.0f;
-	mPan             = 0.5f;
-	mFxMix           = 0.0f;
-	mDolby           = 0.0f;
-	mFIR8FilterParam = 0;
-	_16[0]           = 0;
-	_16[1]           = 0;
-	_16[2]           = 0;
-	_16[3]           = 0;
-	_16[4]           = 0;
-	_16[5]           = 0;
-	_16[6]           = 0;
-	mFIR8FilterParam = 0x7FFF;
-	_34              = 0;
-	mIIRFilterParam  = 0;
-	_26[0]           = 0;
-	_26[1]           = 0;
-	_26[2]           = 0;
-	mDelaySamples[0] = 0;
-	mDelaySamples[1] = 0;
-	mDelaySamples[2] = 0;
-	mDelaySamples[3] = 0;
-	mDelaySamples[4] = 0;
-	mDelaySamples[5] = 0;
-	mDelayMax        = 0;
-	mIIRFilterParam  = 0x7FFF;
-	mFilterMode      = 0;
-	mMixConfigs[0]   = 0x150;
-	mMixConfigs[1]   = 0x210;
-	mMixConfigs[2]   = 0x352;
-	mMixConfigs[3]   = 0x412;
-	mMixConfigs[4]   = 0;
-	mMixConfigs[5]   = 0;
-	mPanCalcType     = JASChannel::CALC_AddAll;
-	mFxMixCalcType   = JASChannel::CALC_AddAll;
-	mDolbyCalcType   = JASChannel::CALC_AddAll;
+	mVolume = 1.0f;
+	mPitch  = 1.0f;
+	mPan    = 0.5f;
+	mFxMix  = 0.0f;
+	mDolby  = 0.0f;
+	for (int i = 0; i < 8; i++) {
+		mFIR8FilterParams[i] = 0;
+	}
+	mFIR8FilterParams[0] = 0x7FFF;
+	_34                  = 0;
+	for (int i = 0; i < 4; i++) {
+		mIIRFilterParams[i] = 0;
+	}
+	mDelaySamples[0]    = 0;
+	mDelaySamples[1]    = 0;
+	mDelaySamples[2]    = 0;
+	mDelaySamples[3]    = 0;
+	mDelaySamples[4]    = 0;
+	mDelaySamples[5]    = 0;
+	mDelayMax           = 0;
+	mIIRFilterParams[0] = 0x7FFF;
+	mFilterMode         = 0;
+	mMixConfigs[0]      = 0x150;
+	mMixConfigs[1]      = 0x210;
+	mMixConfigs[2]      = 0x352;
+	mMixConfigs[3]      = 0x412;
+	mMixConfigs[4]      = 0;
+	mMixConfigs[5]      = 0;
+	mPanCalcType        = JASChannel::CALC_AddAll;
+	mFxMixCalcType      = JASChannel::CALC_AddAll;
+	mDolbyCalcType      = JASChannel::CALC_AddAll;
 }
 
 /**
@@ -71,8 +65,8 @@ void JASChannelUpdater::initialUpdateChannel(JASChannel* chan, JASDsp::TChannel*
 	chan->mPanCalcType   = mPanCalcType;
 	chan->mFxMixCalcType = mFxMixCalcType;
 	chan->mDolbyCalcType = mDolbyCalcType;
-	chan->_100           = _00;
-	chan->_104           = _04;
+	chan->mVolumeChannel = mVolume;
+	chan->mPitchChannel  = mPitch;
 	chan->mPanChannel    = mPan;
 	chan->mFxMixChannel  = mFxMix;
 	chan->mDolbyChannel  = mDolby;
@@ -80,10 +74,10 @@ void JASChannelUpdater::initialUpdateChannel(JASChannel* chan, JASDsp::TChannel*
 		dspChan->setMixerDelaySamples(i, mDelaySamples[i]);
 	}
 	if (mFilterMode & 0x20) {
-		dspChan->setIIRFilterParam(&mIIRFilterParam);
+		dspChan->setIIRFilterParam(mIIRFilterParams);
 	}
 	if (mFilterMode & 0x1F) {
-		dspChan->setFIR8FilterParam(&mFIR8FilterParam);
+		dspChan->setFIR8FilterParam(mFIR8FilterParams);
 	}
 	dspChan->setFilterMode(mFilterMode);
 	dspChan->setDistFilter(_34);
@@ -97,19 +91,19 @@ void JASChannelUpdater::initialUpdateChannel(JASChannel* chan, JASDsp::TChannel*
 void JASChannelUpdater::updateChannel(JASChannel* chan, JASDsp::TChannel* dspChan)
 {
 	if (chan->mStatus != JASChannel::STATUS_RELEASE) {
-		chan->_100          = _00;
-		chan->_104          = _04;
-		chan->mPanChannel   = mPan;
-		chan->mFxMixChannel = mFxMix;
-		chan->mDolbyChannel = mDolby;
+		chan->mVolumeChannel = mVolume;
+		chan->mPitchChannel  = mPitch;
+		chan->mPanChannel    = mPan;
+		chan->mFxMixChannel  = mFxMix;
+		chan->mDolbyChannel  = mDolby;
 		for (u8 i = 0; i < 6; i++) {
 			dspChan->setMixerDelaySamples(i, mDelaySamples[i]);
 		}
 		if (mFilterMode & 0x20) {
-			dspChan->setIIRFilterParam(&mIIRFilterParam);
+			dspChan->setIIRFilterParam(mIIRFilterParams);
 		}
 		if (mFilterMode & 0x1F) {
-			dspChan->setFIR8FilterParam(&mFIR8FilterParam);
+			dspChan->setFIR8FilterParam(mFIR8FilterParams);
 		}
 		dspChan->setFilterMode(mFilterMode);
 		dspChan->setDistFilter(_34);

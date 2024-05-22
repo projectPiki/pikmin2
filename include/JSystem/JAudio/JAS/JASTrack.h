@@ -13,12 +13,13 @@
 struct JASTrack;
 
 enum JASOuterParamFlag {
-	OUTERPARAM_Volume = 0x1,
-	OUTERPARAM_Pitch  = 0x2,
-	OUTERPARAM_Fxmix  = 0x4,
-	OUTERPARAM_Pan    = 0x8,
-	OUTERPARAM_Dolby  = 0x10,
-	OUTERPARAM_Tempo  = 0x40,
+	OUTERPARAM_Volume     = 0x1,
+	OUTERPARAM_Pitch      = 0x2,
+	OUTERPARAM_Fxmix      = 0x4,
+	OUTERPARAM_Pan        = 0x8,
+	OUTERPARAM_Dolby      = 0x10,
+	OUTERPARAM_Tempo      = 0x40,
+	OUTERPARAM_FIR8Filter = 0x80,
 };
 
 /**
@@ -113,11 +114,11 @@ struct JASTrack : public JSUList<JASChannel> {
 	typedef u16 (*SeqCallback)(JASTrack*, u16);
 
 	enum TimedParamType {
-		TIMED_Unk0        = 0,
-		TIMED_Unk1        = 1,
-		TIMED_Unk2        = 2,
-		TIMED_Unk3        = 3,
-		TIMED_Unk4        = 4,
+		TIMED_Volume      = 0,
+		TIMED_Pitch       = 1,
+		TIMED_Fxmix       = 2,
+		TIMED_Pan         = 3,
+		TIMED_Dolby       = 4,
 		TIMED_Unk5        = 5,
 		TIMED_Osc0_Width  = 6,
 		TIMED_Osc0_Rate   = 7,
@@ -157,11 +158,11 @@ struct JASTrack : public JSUList<JASChannel> {
 
 	struct AInnerParam_ {
 		AInnerParam_()
-		    : _00()
-		    , _10()
-		    , _20()
-		    , _30()
-		    , _40()
+		    : mVolume()
+		    , mPitch()
+		    , mFxmix()
+		    , mPan()
+		    , mDolby()
 		    , _50()
 		    , mOsc0Width()
 		    , mOsc0Rate()
@@ -175,11 +176,11 @@ struct JASTrack : public JSUList<JASChannel> {
 		{
 		}
 
-		MoveParam_ _00;         // _00
-		MoveParam_ _10;         // _10
-		MoveParam_ _20;         // _20
-		MoveParam_ _30;         // _30
-		MoveParam_ _40;         // _40
+		MoveParam_ mVolume;     // _00
+		MoveParam_ mPitch;      // _10
+		MoveParam_ mFxmix;      // _20
+		MoveParam_ mPan;        // _30
+		MoveParam_ mDolby;      // _40
 		MoveParam_ _50;         // _50
 		MoveParam_ mOsc0Width;  // _60
 		MoveParam_ mOsc0Rate;   // _70
@@ -252,7 +253,7 @@ struct JASTrack : public JSUList<JASChannel> {
 	int getTranspose() const;
 	void setTempo(u16);
 	void setTimebase(u16);
-	f32 panCalc(f32, f32, f32, u8);
+	f32 panCalc(f32 valA, f32 valB, f32 weight, u8 calcType);
 	void setNoteMask(u8);
 	void muteTrack(bool);
 
@@ -340,12 +341,12 @@ struct JASTrack : public JSUList<JASChannel> {
 	u8 mVolumeMode;                    // _359
 	u8 mNoteMask;                      // _35A
 	u8 _35B;                           // _35B
-	u8 _35C;                           // _35C
-	u8 _35D;                           // _35D
-	u8 _35E;                           // _35E
-	u8 _35F;                           // _35F
-	u8 _360;                           // _360
-	u8 _361;                           // _361
+	u8 _35C;                           // _35C, pan calc type?
+	u8 _35D;                           // _35D, fxmix calc type?
+	u8 _35E;                           // _35E, dolby calc type?
+	u8 _35F;                           // _35F, parent pan calc type?
+	u8 _360;                           // _360, parent fxmix calc type?
+	u8 _361;                           // _361, parent dolby calc type?
 	bool mIsPaused;                    // _362
 	bool mIsMuted;                     // _363
 	u8 mTimeRelate;                    // _364
