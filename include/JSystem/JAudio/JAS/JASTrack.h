@@ -18,8 +18,40 @@ enum JASOuterParamFlag {
 	OUTERPARAM_Fxmix      = 0x4,
 	OUTERPARAM_Pan        = 0x8,
 	OUTERPARAM_Dolby      = 0x10,
+	OUTERPARAM_Unk6       = 0x20,
 	OUTERPARAM_Tempo      = 0x40,
 	OUTERPARAM_FIR8Filter = 0x80,
+	OUTERPARAM_IIR0       = 0x1000,
+	OUTERPARAM_IIR1       = 0x2000,
+	OUTERPARAM_IIR2       = 0x4000,
+	OUTERPARAM_IIR3       = 0x8000,
+	OUTERPARAM_Unk18      = 0x20000,
+
+	OUTERPARAM_IIRFilter = OUTERPARAM_IIR0 | OUTERPARAM_IIR1 | OUTERPARAM_IIR2 | OUTERPARAM_IIR3,
+};
+
+enum JASRegisters {
+	JASREG_Unk0 = 0,
+	JASREG_Unk1 = 1,
+	JASREG_Unk2 = 2,
+
+	JASREG_Unk4 = 4,
+	JASREG_Unk5 = 5,
+
+	JASREG_BankNumber    = 0x20,
+	JASREG_ProgramNumber = 0x21,
+	JASREG_Unk34         = 0x22,
+	JASREG_Unk35         = 0x23,
+
+	JASREG_Unk40 = 0x28,
+	JASREG_Unk41 = 0x29,
+	JASREG_Unk42 = 0x2A,
+	JASREG_Unk43 = 0x2B,
+
+	JASREG_Unk44 = 0x2C, // related to children?
+	JASREG_Unk45 = 0x2D, // related to channels?
+
+	JASREG_SeqLoopTimer = 0x30,
 };
 
 /**
@@ -240,7 +272,7 @@ struct JASTrack : public JSUList<JASChannel> {
 	JASTrack* openChild(u8, u8);
 	u32 exchangeRegisterValue(u8);
 	u32 readReg32(u8);
-	u32 readReg16(u8);
+	u16 readReg16(u8);
 	void writeRegDirect(u8, u16);
 	void writeRegParam(u8);
 	u16 readSelfPort(int portNo);
@@ -248,7 +280,7 @@ struct JASTrack : public JSUList<JASChannel> {
 	bool writePortAppDirect(u32 portNo, u16 value);
 	bool readPortAppDirect(u32 portNo, u16* outValue);
 	bool writePortApp(u32, u16 value);
-	void readPortApp(u32, u16* outValue);
+	bool readPortApp(u32, u16* outValue);
 	void pause(bool, bool);
 	int getTranspose() const;
 	void setTempo(u16);
@@ -331,7 +363,7 @@ struct JASTrack : public JSUList<JASChannel> {
 	f32 _340;                          // _340
 	f32 mCurrentTempo;                 // _344, actual calculated tempo for playback
 	u32 _348;                          // _348
-	u32 _34C;                          // _34C, unknown
+	u32 mUpdateFlags;                  // _34C
 	u16 _350;                          // _350
 	u16 mTempo;                        // _352, direct value read from bms
 	u16 mTimeBase;                     // _354
@@ -341,12 +373,12 @@ struct JASTrack : public JSUList<JASChannel> {
 	u8 mVolumeMode;                    // _359
 	u8 mNoteMask;                      // _35A
 	u8 _35B;                           // _35B
-	u8 _35C;                           // _35C, pan calc type?
-	u8 _35D;                           // _35D, fxmix calc type?
-	u8 _35E;                           // _35E, dolby calc type?
-	u8 _35F;                           // _35F, parent pan calc type?
-	u8 _360;                           // _360, parent fxmix calc type?
-	u8 _361;                           // _361, parent dolby calc type?
+	u8 mPanCalcType;                   // _35C
+	u8 mFxmixCalcType;                 // _35D
+	u8 mDolbyCalcType;                 // _35E
+	u8 mParentPanCalcType;             // _35F
+	u8 mParentFxmixCalcType;           // _360
+	u8 mParentDolbyCalcType;           // _361
 	bool mIsPaused;                    // _362
 	bool mIsMuted;                     // _363
 	u8 mTimeRelate;                    // _364

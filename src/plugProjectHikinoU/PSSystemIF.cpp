@@ -22,8 +22,8 @@ MakeSeCallback PSSystem::SysIF::sMakeJAISeCallback;
  */
 u32 getObject(JASTrack* track, u8 p2)
 {
-	u32 hi = track->readReg16(p2);
-	u32 lo = track->readReg16(p2 + 1);
+	u16 hi = track->readReg16(p2);
+	u16 lo = track->readReg16(p2 + 1);
 	return ((hi << 16) & 0xFFFF0000 | (lo)&0x0000FFFF);
 }
 

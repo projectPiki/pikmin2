@@ -21,10 +21,9 @@ JASRegisterParam::JASRegisterParam()
 	_14    = 0;
 	_16[0] = 0;
 	_16[1] = 0;
-	_20    = 0;
-	_24    = 0;
-	_28    = 0;
-	_2C    = 0;
+	for (int i = 0; i < 4; i++) {
+		_20[i] = 0;
+	}
 }
 
 /**
@@ -47,10 +46,9 @@ void JASRegisterParam::init()
 	_14    = 1;
 	_16[0] = 0x7FFF;
 	_16[1] = 0x4000;
-	_20    = 0;
-	_24    = 0;
-	_28    = 0;
-	_2C    = 0;
+	for (int i = 0; i < 4; i++) {
+		_20[i] = 0;
+	}
 }
 
 /**
@@ -73,10 +71,9 @@ void JASRegisterParam::inherit(const JASRegisterParam& other)
 	_14    = other._14;
 	_16[0] = other._16[0];
 	_16[1] = other._16[1];
-	_20    = 0;
-	_24    = 0;
-	_28    = 0;
-	_2C    = 0;
+	for (int i = 0; i < 4; i++) {
+		_20[i] = 0;
+	}
 }
 
 /**

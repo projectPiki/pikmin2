@@ -27,10 +27,7 @@ struct JASRegisterParam {
 	u16 _16[2]; // _16 - unknown
 	u16 _1A;    // _1A
 	u8 _1C[4];  // _1C - unknown
-	u32 _20;    // _20
-	u32 _24;    // _24
-	u32 _28;    // _28
-	u32 _2C;    // _2C
+	u32 _20[4]; // _20
 };
 
 #endif
