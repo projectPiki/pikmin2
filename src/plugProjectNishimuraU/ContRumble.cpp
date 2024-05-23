@@ -5,6 +5,85 @@
 namespace Game {
 
 /**
+ * @note Address: N/A
+ * @note Size: 0x60
+ */
+RumbleNode::RumbleNode()
+    : mNodeIdx(-1)
+    , mCurrentIntensity(0.0f)
+    , mDefaultIntensity(0.0f)
+    , mRumbleTimer(0.0f)
+    , mRumbleTimeLimit(0.0f)
+    , mRumbleData(nullptr)
+{
+}
+
+/**
+ * @note Address: N/A
+ * @note Size: 0xD0
+ */
+void RumbleNode::update()
+{
+	mCurrentIntensity = 0.0f;
+
+	if (mRumbleData) {
+		// Find the current segment
+		for (int i = 0; i < mRumbleData->mCount - 1; i++) {
+			int nextIdx = i + 1;
+			if (mRumbleTimer >= mRumbleData->mTimes[i] && mRumbleTimer < mRumbleData->mTimes[nextIdx]) {
+				f32 t = (mRumbleTimer - mRumbleData->mTimes[i]) / (mRumbleData->mTimes[nextIdx] - mRumbleData->mTimes[i]);
+
+				f32 intensityStart = mRumbleData->mIntensities[i];
+				f32 intensityEnd   = mRumbleData->mIntensities[nextIdx];
+
+				mCurrentIntensity = ((1.0f - t) * intensityStart) + (t * intensityEnd);
+				break;
+			}
+		}
+		mCurrentIntensity *= mDefaultIntensity;
+
+	} else {
+		mCurrentIntensity = mDefaultIntensity;
+	}
+
+	mRumbleTimer += sys->getDeltaTime();
+}
+
+/**
+ * @note Address: N/A
+ * @note Size: 0x20
+ */
+void RumbleNode::startRumble(int, f32, RumbleData*, f32)
+{
+	// UNUSED/INLINED
+}
+
+/**
+ * @note Address: N/A
+ * @note Size: 0x14
+ */
+bool RumbleNode::isSameLabel(int)
+{
+	// UNUSED/INLINED
+}
+
+/**
+ * @note Address: N/A
+ * @note Size: 0x5C
+ */
+bool RumbleNode::isRumbleEnd()
+{
+	if (mRumbleData) {
+		if (mRumbleData->mCount > 0 && mRumbleTimer < mRumbleData->mTimes[mRumbleData->mCount - 1]) {
+			return false;
+		}
+	} else if (mRumbleTimer < mRumbleTimeLimit) {
+		return false;
+	}
+	return true;
+}
+
+/**
  * @note Address: 0x80252B20
  * @note Size: 0x158
  */
@@ -47,65 +126,26 @@ void ContRumble::init()
 /**
  * @note Address: 0x80252D04
  * @note Size: 0x290
- * TODO
  */
 void ContRumble::update()
 {
 	f32 maxRumbleIntensity = 0.0f;
 
-	FOREACH_NODE_CHILD(RumbleNode, mParentNode->mChild, currentNode)
-	{
-		RumbleData* rumbleData = ((RumbleNode*)currentNode->mNext)->mRumbleData;
-
-		if (rumbleData) {
-			int numRumbleSegments = rumbleData->mCount - 1;
-
-			// Find the current segment
-			int currentSegment;
-			for (currentSegment = 0; currentSegment < numRumbleSegments; currentSegment++) {
-				if (currentNode->mRumbleTimer < rumbleData->mTimes[currentSegment]) {
-					break;
-				}
-			}
-
-			// Calculate the current intensity
-			if (currentSegment >= numRumbleSegments) {
-				f32 timeStart = rumbleData->mTimes[4 * currentSegment];
-				f32 timeEnd   = rumbleData->mTimes[4 * (currentSegment + 1)];
-				f32 t         = (currentNode->mRumbleTimer - timeStart) / (timeEnd - timeStart);
-
-				f32 intensityStart = rumbleData->mIntensities[4 * currentSegment];
-				f32 intensityEnd   = rumbleData->mIntensities[4 * (currentSegment + 1)];
-
-				currentNode->mCurrentIntensity = ((1.0 - t) * intensityStart) + (t * intensityEnd);
-			} else {
-			}
-		} else {
-			currentNode->mCurrentIntensity = currentNode->mDefaultIntensity;
-		}
-
-		currentNode->mCurrentIntensity *= currentNode->mDefaultIntensity;
-		currentNode->mRumbleTimer += sys->getDeltaTime();
+	CNode* node = mParentNode->mChild;
+	while (node) {
+		CNode* next             = node->mNext;
+		RumbleNode* currentNode = static_cast<RumbleNode*>(node);
+		currentNode->update();
 
 		if (maxRumbleIntensity < currentNode->mCurrentIntensity) {
 			maxRumbleIntensity = currentNode->mCurrentIntensity;
 		}
 
-		RumbleData* limitData = currentNode->mRumbleData;
-		bool shouldAddToActiveNodes;
-
-		if (limitData && limitData->mCount > 0 && currentNode->mRumbleTimer < limitData->mTimes[limitData->mCount - 1]) {
-			shouldAddToActiveNodes = false;
-		} else if (currentNode->mRumbleTimer < currentNode->_28) {
-			shouldAddToActiveNodes = false;
-		} else {
-			shouldAddToActiveNodes = true;
-		}
-
-		if (shouldAddToActiveNodes) {
+		if (currentNode->isRumbleEnd()) {
 			currentNode->del();
 			mActiveNodes->add(currentNode);
 		}
+		node = next;
 	}
 
 	if (maxRumbleIntensity > 0.0f) {
@@ -116,9 +156,10 @@ void ContRumble::update()
 		if (mTotalIntensity < 1.0f) {
 			if (mIsActive) {
 				PADControlMotor(mPadChannel, PAD_MOTOR_STOP);
-			} else {
-				mTotalIntensity -= 1.0f;
 			}
+			return;
+		} else {
+			mTotalIntensity -= 1.0f;
 		}
 
 		if (mIsActive) {
@@ -156,7 +197,6 @@ void ContRumble::setController(bool isActive)
 /**
  * @note Address: 0x80252FEC
  * @note Size: 0x104
- * TODO
  */
 void ContRumble::startRumble(int idx, f32 intensity)
 {
@@ -170,9 +210,9 @@ void ContRumble::startRumble(int idx, f32 intensity)
 		if (data) {
 			node->setParameters(idx, 0.0f, intensity, 0.0f, 0.0f, data);
 		} else {
-			f32 z = 0.0f;
-			getRumbleParameter(idx, intensity, z);
-			node->setParameters(idx, 0.0f, intensity, 0.0f, z, data);
+			f32 timeLimit = 0.0f;
+			getRumbleParameter(idx, intensity, timeLimit);
+			node->setParameters(idx, 0.0f, intensity, 0.0f, timeLimit, data);
 		}
 
 		mParentNode->add(node);
@@ -182,7 +222,6 @@ void ContRumble::startRumble(int idx, f32 intensity)
 /**
  * @note Address: 0x802530F0
  * @note Size: 0x88
- * TODO
  */
 void ContRumble::rumbleStop()
 {
@@ -232,14 +271,14 @@ void ContRumble::rumbleStop(int idx)
  * @note Address: 0x80253208
  * @note Size: 0x9C
  */
-void ContRumble::getRumbleParameter(int index, f32& x, f32& y)
+void ContRumble::getRumbleParameter(int index, f32& intensity, f32& timeLimit)
 {
-	f32 xRumbles[3] = { 0.4f, 0.55f, 1.0f };
-	f32 yRumbles[3] = { 0.2f, 0.35f, 0.5f };
+	f32 intensityFactors[3] = { 0.4f, 0.55f, 1.0f };
+	f32 durations[3]        = { 0.2f, 0.35f, 0.5f };
 
 	int offsetIndex = index - 8;
 
-	x *= xRumbles[offsetIndex / 3];
-	y = yRumbles[offsetIndex % 3];
+	intensity *= intensityFactors[offsetIndex / 3];
+	timeLimit = durations[offsetIndex % 3];
 }
 } // namespace Game

@@ -21,7 +21,7 @@ NISHIMURA_FILES:=\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/RandGateUnit.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/ObjectLayout.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/CameraMgr.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/ContRumble.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/ContRumble.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/RumbleMgr.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/PomAnimator.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/PomMgr.o\

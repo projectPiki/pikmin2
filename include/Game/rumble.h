@@ -80,36 +80,33 @@ struct RumbleDataMgr {
 };
 
 struct RumbleNode : public CNode {
-	inline RumbleNode()
-	    : CNode()
-	    , mNodeIdx(-1)
-	    , mCurrentIntensity(0.0f)
-	    , mDefaultIntensity(0.0f)
-	    , mRumbleTimer(0.0f)
-	    , _28(0.0f)
-	    , mRumbleData(0)
-	{
-	}
+	RumbleNode();
 
 	virtual ~RumbleNode() { } // _08 (weak)
 
-	inline void setParameters(int idx, f32 curIntensity, f32 defIntensity, f32 timer, f32 p1, RumbleData* data)
+	inline void setParameters(int idx, f32 curIntensity, f32 defIntensity, f32 timer, f32 timeLimit, RumbleData* data)
 	{
 		mNodeIdx          = idx;
 		mCurrentIntensity = curIntensity;
 		mDefaultIntensity = defIntensity;
 		mRumbleTimer      = timer;
-		_28               = p1;
+		mRumbleTimeLimit  = timeLimit;
 		mRumbleData       = data;
 	}
+
+	// unused/inlined:
+	void update();
+	void startRumble(int, f32, RumbleData*, f32);
+	bool isSameLabel(int);
+	bool isRumbleEnd();
 
 	// _00     = VTBL
 	// _00-_18 = CNode
 	int mNodeIdx;            // _18
 	f32 mCurrentIntensity;   // _1C
 	f32 mDefaultIntensity;   // _20
-	f32 mRumbleTimer;        // _24
-	f32 _28;                 // _28
+	f32 mRumbleTimer;        // _24, for rumble without data
+	f32 mRumbleTimeLimit;    // _28, for rumble without data
 	RumbleData* mRumbleData; // _2C
 };
 

@@ -1053,7 +1053,7 @@ LIBS = [
             ["plugProjectNishimuraU/RandGateUnit", True],
             ["plugProjectNishimuraU/ObjectLayout", True],
             ["plugProjectNishimuraU/CameraMgr", True],
-            ["plugProjectNishimuraU/ContRumble", False],
+            ["plugProjectNishimuraU/ContRumble", True],
             ["plugProjectNishimuraU/RumbleMgr", True],
             ["plugProjectNishimuraU/PomAnimator", True],
             ["plugProjectNishimuraU/PomMgr", True],
