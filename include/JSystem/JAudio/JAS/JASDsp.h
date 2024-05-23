@@ -91,7 +91,9 @@ struct TChannel {
 	u16 mSamplesPerBlock;    // _64
 	u16 _66;                 // _66
 	u32 mBlockCount;         // _68
-	u8 _6C[0xC];             // _6C
+	u8 _6C[0x4];             // _6C
+	u32 _70;                 // _70
+	u32 _74;                 // _74
 	s16 _78[4];              // _78
 	s16 _80[20];             // _80
 	s16 _A8[4];              // _A8

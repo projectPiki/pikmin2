@@ -15,6 +15,12 @@ u32 JASAramStream::sChannelMax;
 bool JASAramStream::sSystemPauseFlag;
 bool JASAramStream::sFatalErrorFlag;
 
+static const s16 OSC_RELEASE_TABLE[6] = {
+	0, 2, 0, 15, 0, 0,
+};
+
+static const JASOscillator::Data OSC_ENV = { 0, 1.0f, nullptr, OSC_RELEASE_TABLE, 1.0f, 0.0f };
+
 /**
  * @note Address: 0x800A8FA4
  * @note Size: 0x90
@@ -360,9 +366,12 @@ int JASAramStream::cancel()
  * @note Address: N/A
  * @note Size: 0x34
  */
-void JASAramStream::getBlockSamples() const
+u32 JASAramStream::getBlockSamples() const
 {
-	// UNUSED FUNCTION
+	if (_248 == 0) {
+		return (sBlockSize << 4) / 9;
+	}
+	return sBlockSize >> 1;
 }
 
 /**
@@ -409,7 +418,7 @@ void JASAramStream::firstLoadTask(void* args)
  * @note Address: 0x800A9540
  * @note Size: 0x20
  */
-bool JASAramStream::loadToAramTask(void* p1) { return static_cast<JASAramStream*>(p1)->load(); }
+void JASAramStream::loadToAramTask(void* p1) { static_cast<JASAramStream*>(p1)->load(); }
 
 /**
  * @note Address: 0x800A9560
@@ -891,6 +900,183 @@ void JASAramStream::channelCallback(u32 p1, JASChannel* chan, JASDsp::TChannel* 
  */
 void JASAramStream::updateChannel(u32 p1, JASChannel* chan, JASDsp::TChannel* dspChan)
 {
+	u32 blockSamples = getBlockSamples();
+	switch (p1) {
+	case 1: {
+		if (!_198) {
+			_198 = chan;
+			_1A4 = blockSamples * _24C;
+			_1A8 = 0;
+			_1A0 = 0;
+			_1AC = (_260 - 1) / blockSamples;
+			_1B0 = 0;
+			_1B4 = 0;
+			_21C = 0;
+		}
+	} break;
+	case 0: {
+		if (dspChan->_08) {
+			break;
+		}
+		if (chan == _198) {
+			_21C    = 0;
+			u32 val = dspChan->_74 + dspChan->mSamplesPerBlock;
+			if (val <= _1A4) {
+				_1A8 += (_1A4 - val);
+			} else if (!_1B0) {
+				_1A8 += _1A4;
+				_1A8 += (blockSamples * _24C) - val;
+			} else {
+				_1A8 += _1A4;
+				_1A8 += (blockSamples * _24C) - val - dspChan->_110;
+				_1A8 -= _260;
+				_1A8 += _25C;
+				dspChan->_110 = 0;
+				_210          = 0;
+				_21C |= 2;
+				if (_1B4 < -1) {
+					_1B4++;
+				}
+				_1B0 = 0;
+			}
+
+			if (_1A8 > _260) {
+				sFatalErrorFlag = true;
+			}
+
+			f32 val2 = f32(_1B4) * f32(_260 - _25C);
+			if (_1B4 < -1) {
+				val2 += f32(_1A8);
+			}
+
+			_1B8 = val2 / f32(_254);
+
+			if (_1A8 + 400 >= _260 && !_1B0) {
+				if (_258) {
+					u32 val3 = _1AC + 1;
+					if (val3 >= _24C) {
+						val3 = 0;
+					}
+					dspChan->_110 = (_25C % blockSamples) + (val3 * blockSamples);
+					_210          = dspChan->_110;
+					_21C |= 2;
+				} else {
+					dspChan->_102 = 0;
+					_218          = 0;
+					_21C |= 8;
+				}
+
+				dspChan->_74 -= (blockSamples * _24C) - (_260 % blockSamples) + (_1AC * blockSamples);
+				_20C = dspChan->_74;
+				_21C |= 1;
+				_1AC += (_260 - 1) / blockSamples - (_25C / blockSamples) + 1;
+				_1B0 = 1;
+			}
+
+			u32 val4 = dspChan->_70 - (u32)chan->mWaveData;
+			if (val4 != 0) {
+				val4--;
+			}
+			u32 val5 = val4 / sBlockSize;
+			if (val5 != _1A0) {
+				u32 val6 = bool((_1A0 ^ val5) == 0);
+				while (val5 != _1A0) {
+					if (sLoadThread->sendCmdMsg(&loadToAramTask, this) == 0) {
+						sFatalErrorFlag = true;
+						break;
+					}
+
+					{
+						JASCriticalSection cs;
+						mLoadedCount++;
+					}
+					_1A0++;
+					if (_1A0 >= _24C) {
+						_1A0 = 0;
+					}
+				}
+
+				if (val6) {
+					_1AC -= _24C;
+					if (_19D) {
+						if (!_1B0) {
+							dspChan->_74 += blockSamples;
+							_20C = dspChan->_74;
+							_21C |= 1;
+						}
+						dspChan->_114 += blockSamples;
+						_214 = dspChan->_114;
+						_21C |= 4;
+						_24C = _250;
+						_19D = 0;
+
+					} else if (_24C != _250 - 1) {
+						_24C = _250 - 1;
+						dspChan->_114 -= blockSamples;
+						_214 = dspChan->_114;
+						_21C |= 4;
+						if (!_1B0) {
+							dspChan->_74 -= blockSamples;
+							_20C = dspChan->_74;
+							_21C |= 1;
+						}
+					}
+				}
+			} else if (mLoadedCount == 0 && !sSystemPauseFlag) {
+				_19E &= ~2;
+				_19E &= ~4;
+			}
+
+			_1A4 = dspChan->_74 + dspChan->mSamplesPerBlock;
+
+			if (mLoadedCount >= _250 - 2) {
+				_19E |= 4;
+			}
+
+		} else {
+			if (_21C & 0x1) {
+				dspChan->_74 = _20C;
+			}
+			if (_21C & 0x2) {
+				dspChan->_110 = _210;
+			}
+			if (_21C & 0x4) {
+				dspChan->_114 = _214;
+			}
+			if (_21C & 0x8) {
+				dspChan->_102 = _218;
+			}
+		}
+		bool check = false;
+		int count  = 0;
+		for (count; count < 6; count++) {
+			if (chan == mChannels[count]) {
+				break;
+			}
+		}
+		dspChan->_104 = _220[0][count];
+		dspChan->_106 = _220[1][count];
+	} break;
+	case 2: {
+		bool check = false;
+		for (int i = 0; i < 6; i++) {
+			if (chan == mChannels[i]) {
+				mChannels[i] = nullptr;
+			} else if (mChannels[i]) {
+				check = true;
+			}
+		}
+		if (!check) {
+			_204 = 1;
+			if (sLoadThread->sendCmdMsg(&finishTask, this) == 0) {
+				sFatalErrorFlag = true;
+				return;
+			}
+		}
+	} break;
+	}
+
+	chan->setPauseFlag(_19E != 0);
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0
@@ -1461,175 +1647,127 @@ lbl_800AA294:
  */
 int JASAramStream::channelProc()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	stw      r30, 0x18(r1)
-	li       r30, 1
-	b        lbl_800AA2F0
+	OSMessage msg;
+	while (OSReceiveMessage(&mMsgQueueB, &msg, OS_MESSAGE_NOBLOCK)) {
+		switch ((u32)msg) {
+		case 4:
+			_19C = true;
+			break;
+		case 5:
+			_19D = true;
+			break;
+		}
+	}
 
-lbl_800AA2C8:
-	lwz      r0, 8(r1)
-	cmpwi    r0, 5
-	beq      lbl_800AA2EC
-	bge      lbl_800AA2F0
-	cmpwi    r0, 4
-	bge      lbl_800AA2E4
-	b        lbl_800AA2F0
+	if (!_19C) {
+		return 0;
+	}
 
-lbl_800AA2E4:
-	stb      r30, 0x19c(r31)
-	b        lbl_800AA2F0
+	while (OSReceiveMessage(&mMsgQueueA, &msg, OS_MESSAGE_NOBLOCK)) {
+		switch ((u32)msg & 0xFF) {
+		case 0:
+			channelStart();
+			break;
+		case 1:
+			channelStop((u32)msg >> 16);
+			break;
+		case 2:
+			_19E |= 1;
+			break;
+		case 3:
+			_19E &= ~1;
+			break;
+		}
+	}
 
-lbl_800AA2EC:
-	stb      r30, 0x19d(r31)
+	if (!mChannels[0]) {
+		return 0;
+	}
 
-lbl_800AA2F0:
-	addi     r3, r31, 0x20
-	addi     r4, r1, 8
-	li       r5, 0
-	bl       OSReceiveMessage
-	cmpwi    r3, 0
-	bne      lbl_800AA2C8
-	lbz      r0, 0x19c(r31)
-	cmplwi   r0, 0
-	bne      lbl_800AA388
-	li       r3, 0
-	b        lbl_800AA474
-	b        lbl_800AA388
+	if (sFatalErrorFlag) {
+		_19E |= 8;
+	}
+	if (sSystemPauseFlag) {
+		_19E |= 2;
+	}
 
-lbl_800AA320:
-	lwz      r3, 8(r1)
-	clrlwi   r0, r3, 0x18
-	cmpwi    r0, 2
-	beq      lbl_800AA36C
-	bge      lbl_800AA344
-	cmpwi    r0, 0
-	beq      lbl_800AA350
-	bge      lbl_800AA35C
-	b        lbl_800AA388
+	for (int i = 0; i < _24A; i++) {
+		JASChannel* channel     = mChannels[i];
+		channel->mVolumeChannel = _264 * _26C[0][i];
+		channel->mPitchChannel  = _268;
+		if (_2D8) {
+			channel->mPanChannel = _26C[1][i];
+		}
+		channel->mFxMixChannel = _26C[2][i];
+		channel->mDolbyChannel = _26C[3][i];
+	}
 
-lbl_800AA344:
-	cmpwi    r0, 4
-	bge      lbl_800AA388
-	b        lbl_800AA37C
+	if (!_2D8 && _24A == 2) {
+		mChannels[0]->mPanChannel = 0.0f;
+		mChannels[1]->mPanChannel = 1.0f;
+	}
 
-lbl_800AA350:
-	mr       r3, r31
-	bl       channelStart__13JASAramStreamFv
-	b        lbl_800AA388
-
-lbl_800AA35C:
-	srwi     r4, r3, 0x10
-	mr       r3, r31
-	bl       channelStop__13JASAramStreamFUs
-	b        lbl_800AA388
-
-lbl_800AA36C:
-	lbz      r0, 0x19e(r31)
-	ori      r0, r0, 1
-	stb      r0, 0x19e(r31)
-	b        lbl_800AA388
-
-lbl_800AA37C:
-	lbz      r0, 0x19e(r31)
-	rlwinm   r0, r0, 0, 0x18, 0x1e
-	stb      r0, 0x19e(r31)
-
-lbl_800AA388:
-	mr       r3, r31
-	addi     r4, r1, 8
-	li       r5, 0
-	bl       OSReceiveMessage
-	cmpwi    r3, 0
-	bne      lbl_800AA320
-	lwz      r0, 0x180(r31)
-	cmplwi   r0, 0
-	bne      lbl_800AA3B4
-	li       r3, 0
-	b        lbl_800AA474
-
-lbl_800AA3B4:
-	lbz      r0, sFatalErrorFlag__13JASAramStream@sda21(r13)
-	cmplwi   r0, 0
-	beq      lbl_800AA3CC
-	lbz      r0, 0x19e(r31)
-	ori      r0, r0, 8
-	stb      r0, 0x19e(r31)
-
-lbl_800AA3CC:
-	lbz      r0, sSystemPauseFlag__13JASAramStream@sda21(r13)
-	cmplwi   r0, 0
-	beq      lbl_800AA3E4
-	lbz      r0, 0x19e(r31)
-	ori      r0, r0, 2
-	stb      r0, 0x19e(r31)
-
-lbl_800AA3E4:
-	mr       r3, r31
-	li       r5, 0
-	b        lbl_800AA438
-
-lbl_800AA3F0:
-	lfs      f1, 0x264(r31)
-	lfs      f0, 0x26c(r3)
-	lwz      r4, 0x180(r3)
-	fmuls    f0, f1, f0
-	stfs     f0, 0x100(r4)
-	lfs      f0, 0x268(r31)
-	stfs     f0, 0x104(r4)
-	lbz      r0, 0x2d8(r31)
-	cmplwi   r0, 0
-	beq      lbl_800AA420
-	lfs      f0, 0x284(r3)
-	stfs     f0, 0xd0(r4)
-
-lbl_800AA420:
-	lfs      f0, 0x29c(r3)
-	addi     r5, r5, 1
-	stfs     f0, 0xd8(r4)
-	lfs      f0, 0x2b4(r3)
-	addi     r3, r3, 4
-	stfs     f0, 0xe0(r4)
-
-lbl_800AA438:
-	lhz      r4, 0x24a(r31)
-	cmpw     r5, r4
-	blt      lbl_800AA3F0
-	lbz      r0, 0x2d8(r31)
-	cmplwi   r0, 0
-	bne      lbl_800AA470
-	cmplwi   r4, 2
-	bne      lbl_800AA470
-	lfs      f1, lbl_80516EB0@sda21(r2)
-	lwz      r3, 0x180(r31)
-	lfs      f0, lbl_80516EB4@sda21(r2)
-	stfs     f1, 0xd0(r3)
-	lwz      r3, 0x184(r31)
-	stfs     f0, 0xd0(r3)
-
-lbl_800AA470:
-	li       r3, 0
-
-lbl_800AA474:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	return 0;
 }
+
+// ??
+static const int one = 1;
 
 /**
  * @note Address: 0x800AA48C
  * @note Size: 0x240
  */
-char* JASAramStream::channelStart()
+void JASAramStream::channelStart()
 {
+	u8 blockType;
+	switch (_248) {
+	case 0:
+		blockType = 0;
+		break;
+	case 1:
+		blockType = 3;
+		break;
+	}
+	for (int i = 0; i < _24A; i++) {
+		JASWaveInfo* info = &mWaveInfos[i];
+		info->mBlockType  = blockType;
+		info->_10         = -1;
+		info->mBlockCount = 0;
+
+		u32 val = _24C;
+		val *= getBlockSamples();
+		info->_18 = val;
+		info->_1C = info->_18;
+		info->_20 = 0;
+		info->_22 = 0;
+		info->_24 = (void*)one;
+
+		JASChannel* chan
+		    = (JASChannel*)JASPoolAllocObject<JASChannel, JASCreationPolicy::NewFromRootHeap, JASThreadingModel::SingleThreaded>::alloc();
+		if (chan) {
+			// chan = JASChannel(channelCallback, this); // ????? how???
+		}
+
+		chan->mPriority = 127;
+		chan->setPanPower(0.0f, 0.0f, 1.0f);
+		chan->mPanCalcType   = 1;
+		chan->mFxMixCalcType = 1;
+		chan->mDolbyCalcType = 1;
+
+		for (int i = 0; i < 6; i++) {
+			chan->setMixConfig(i, _2CC[i]);
+		}
+
+		chan->mActivePitch   = f32(_254) / JASDriver::getDacRate();
+		chan->mModifiedPitch = chan->mActivePitch;
+		chan->setOscInit(0, &OSC_ENV);
+		chan->mWaveInfo   = info;
+		chan->mWaveData   = (void*)(_238 + (i * (sBlockSize * _250)));
+		chan->mWaveFormat = 0;
+		chan->playForce();
+		mChannels[i] = chan;
+	}
+	_198 = nullptr;
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0

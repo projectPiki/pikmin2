@@ -4,11 +4,9 @@
 #include "types.h"
 
 struct JASDisposer {
-	/**
-	 * @reifiedAddress{8009C02C}
-	 * @reifiedFile{JSystem/JAS/JASWaveArcLoader.cpp}
-	 */
-	virtual void onDispose() {}; // _08 (weak)
+	virtual void onDispose() { } // _08 (weak)
+
+	// _00 = VTBL
 };
 
 #endif

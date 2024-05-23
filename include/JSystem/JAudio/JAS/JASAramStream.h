@@ -6,6 +6,7 @@
 #include "JSystem/JAudio/JAS/JASChannel.h"
 #include "JSystem/JAudio/JAS/JASDsp.h"
 #include "JSystem/JAudio/JAS/JASThread.h"
+#include "JSystem/JAudio/JAS/JASWave.h"
 #include "types.h"
 
 /**
@@ -40,13 +41,13 @@ struct JASAramStream {
 	bool load();
 	void updateChannel(u32, JASChannel*, JASDsp::TChannel*);
 	int channelProc();
-	char* channelStart();
+	void channelStart();
 	void channelStop(u16);
 
 	static void initSystem(u32, u32);
 	static void headerLoadTask(void*);
 	static void firstLoadTask(void*);
-	static bool loadToAramTask(void*);
+	static void loadToAramTask(void*);
 	static void finishTask(void*);
 	static void prepareFinishTask(void*);
 	static s32 channelProcCallback(void*);
@@ -57,13 +58,13 @@ struct JASAramStream {
 	void setLoadThread(JASTaskThread*);
 	void setBusSetting(u32, u16);
 	void prepare(const char*, int);
-	void getBlockSamples() const;
+	u32 getBlockSamples() const;
 
 	OSMessageQueue mMsgQueueA;       // _00
 	OSMessageQueue mMsgQueueB;       // _20
 	void* mMsgSlotsA[16];            // _40
 	void* mMsgSlotsB[4];             // _80
-	u8 _90[0xF0];                    // _90 - unknown
+	JASWaveInfo mWaveInfos[6];       // _90
 	JASChannel* mChannels[6];        // _180
 	JASChannel* _198;                // _198
 	u8 _19C;                         // _19C
@@ -81,11 +82,13 @@ struct JASAramStream {
 	int _1FC;                        // _1FC
 	int _200;                        // _200
 	u8 _204;                         // _204
-	int mLoadedCount;                // _208
-	u8 _20C[0xC];                    // _20C - unknown
-	s16 _218;                        // _218
+	u32 mLoadedCount;                // _208
+	u32 _20C;                        // _20C
+	u32 _210;                        // _210
+	u32 _214;                        // _214
+	u16 _218;                        // _218
 	u32 _21C;                        // _21C
-	u16 _220[2][6];                  // _220
+	s16 _220[2][6];                  // _220
 	u32 _238;                        // _238
 	u32 _23C;                        // _23C
 	JASAramStreamCallback mCallback; // _240

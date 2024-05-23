@@ -1,7 +1,6 @@
 #ifndef _JSYSTEM_JAS_JASWAVE_H
 #define _JSYSTEM_JAS_JASWAVE_H
 
-#include "JSystem/JAudio/JAS/JASDisposer.h"
 #include "JSystem/JAudio/JAS/JASHeap.h"
 
 struct JASWaveArc : public JASDisposer {
