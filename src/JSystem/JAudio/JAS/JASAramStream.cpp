@@ -54,50 +54,50 @@ void JASAramStream::setLoadThread(JASTaskThread*)
  * @note Size: 0x158
  */
 JASAramStream::JASAramStream()
-    : _198(nullptr)
+    : mActiveChannel(nullptr)
     , _19C(0)
     , _19D(0)
-    , _19E(0)
-    , _1A0(0)
-    , _1A4(0)
-    , _1A8(0)
-    , _1AC(0)
+    , mPauseFlags(0)
+    , mCurrentReadOffset(0)
+    , mNextBlockSample(0)
+    , mNextReadOffset(0)
+    , mMaxBlocks(0)
     , _1B0(0)
     , _1B4(0)
     , _1B8(0.0f)
-    , _1F8(0)
-    , _1FC(0)
-    , _200(0)
-    , _204(0)
+    , mMaxLoadIndex(0)
+    , mCurrentLoadIndex(0)
+    , mCurrentBlock(0)
+    , mAbortFlag(0)
     , mLoadedCount(0)
-    , _21C(0)
-    , _238(0)
-    , _23C(0)
+    , mControlFlags(0)
+    , mDataOffset(0)
+    , mDataLength(0)
     , mCallback(nullptr)
     , _244(nullptr)
-    , _248(0)
-    , _24A(0)
-    , _24C(0)
-    , _250(0)
-    , _254(0)
-    , _258(0)
-    , _25C(0)
-    , _260(0)
-    , _264(1.0f)
-    , _268(1.0f)
-    , _2D8(0)
+    , mStreamType(0)
+    , mNumBlocks(0)
+    , mCurrentBlockNum(0)
+    , mBlockCount(0)
+    , mSampleRate(0)
+    , mLoopFlag(0)
+    , mAramSize(0)
+    , mFileSize(0)
+    , mVolume(1.0f)
+    , mPitch(1.0f)
+    , mUseStereo(0)
 {
 	for (int i = 0; i < 6; i++) {
-		mChannels[i] = nullptr;
-		_220[0][i]   = 0;
-		_220[1][i]   = 0;
-		_26C[0][i]   = 1.0f;
-		_26C[1][i]   = 0.5f;
-		_26C[2][i]   = 0.0f;
-		_26C[3][i]   = 0.0f;
+		mChannels[i]       = nullptr;
+		mSampleData[0][i]  = 0;
+		mSampleData[1][i]  = 0;
+		mChannelData[0][i] = 1.0f;
+		mChannelData[1][i] = 0.5f;
+		mChannelData[2][i] = 0.0f;
+		mChannelData[3][i] = 0.0f;
 	}
 	for (int i = 0; i < 6; i++) {
-		_2CC[i] = 0;
+		mMixData[i] = 0;
 	}
 	/*
 	li       r0, 0
@@ -193,28 +193,34 @@ JASAramStream::JASAramStream()
  * @note Address: 0x800A918C
  * @note Size: 0xF8
  */
-void JASAramStream::init(u32 p1, u32 p2, JASAramStreamCallback callback, void* p4)
+void JASAramStream::init(u32 dataOffs, u32 dataLen, JASAramStreamCallback callback, void* p4)
 {
-	_238 = p1;
-	_23C = p2;
-	_1B8 = 0.0f;
-	_19E = 0;
-	_19C = 0;
-	_19D = 0;
-	_204 = 0;
-	_24A = 0;
+	const f32 x = 0.0f;
+	const f32 y = 1.0f;
+	const f32 z = 0.5f;
+
+	mDataOffset = dataOffs;
+	mDataLength = dataLen;
+	_1B8        = 0;
+	mPauseFlags = 0;
+	_19C        = 0.01;
+	_19D        = 0;
+	mAbortFlag  = 0;
+	mNumBlocks  = 0;
+
 	for (int i = 0; i < 6; i++) {
-		_26C[0][i] = 1.0f;
-		_26C[1][i] = 0.5f;
-		_26C[2][i] = 0.0f;
-		_26C[3][i] = 0.0f;
+		mChannelData[0][i] = y;
+		mChannelData[1][i] = z;
+		mChannelData[2][i] = x;
+		mChannelData[3][i] = x;
 	}
-	_264      = 1.0f;
-	_268      = 1.0f;
-	_2D8      = 0;
-	_2CC[0]   = -1;
-	mCallback = callback;
-	_244      = p4;
+
+	mVolume     = y;
+	mPitch      = y;
+	mUseStereo  = 0;
+	mMixData[0] = -1;
+	mCallback   = callback;
+	_244        = p4;
 	OSInitMessageQueue(&mMsgQueueA, mMsgSlotsA, ARRAY_SIZE(mMsgSlotsA));
 	OSInitMessageQueue(&mMsgQueueB, mMsgSlotsB, ARRAY_SIZE(mMsgSlotsB));
 	/*
@@ -306,7 +312,7 @@ void JASAramStream::prepare(const char*, int)
  * @note Address: 0x800A9284
  * @note Size: 0xB8
  */
-BOOL JASAramStream::prepare(s32 entryNum, int p2)
+BOOL JASAramStream::prepare(s32 entryNum, int index)
 {
 	if (!DVDFastOpen(entryNum, &mFileInfo)) {
 		return FALSE;
@@ -314,13 +320,13 @@ BOOL JASAramStream::prepare(s32 entryNum, int p2)
 	if (!JASDriver::registerSubFrameCallback(channelProcCallback, this)) {
 		return FALSE;
 	}
-	if (_204 != 0) {
+	if (mAbortFlag != 0) {
 		return FALSE;
 	}
 	HeaderLoadTaskArgs args;
-	args.mStream = this;
-	args._04     = _23C;
-	args._08     = p2;
+	args.mStream     = this;
+	args.mDataLength = mDataLength;
+	args.mIndex      = index;
 	return sLoadThread->sendCmdMsg(headerLoadTask, &args, sizeof(args)) != FALSE;
 }
 
@@ -358,7 +364,7 @@ bool JASAramStream::pause(bool p1)
  */
 int JASAramStream::cancel()
 {
-	_204 = 1;
+	mAbortFlag = 1;
 	return sLoadThread->sendCmdMsg(finishTask, this) != FALSE;
 }
 
@@ -368,7 +374,7 @@ int JASAramStream::cancel()
  */
 u32 JASAramStream::getBlockSamples() const
 {
-	if (_248 == 0) {
+	if (mStreamType == 0) {
 		return (sBlockSize << 4) / 9;
 	}
 	return sBlockSize >> 1;
@@ -381,7 +387,7 @@ u32 JASAramStream::getBlockSamples() const
 void JASAramStream::headerLoadTask(void* args)
 {
 	HeaderLoadTaskArgs* castedArgs = static_cast<HeaderLoadTaskArgs*>(args);
-	castedArgs->mStream->headerLoad(castedArgs->_04, castedArgs->_08);
+	castedArgs->mStream->headerLoad(castedArgs->mDataLength, castedArgs->mIndex);
 }
 
 /**
@@ -395,18 +401,18 @@ void JASAramStream::firstLoadTask(void* args)
 	if (!stream->load()) {
 		return;
 	}
-	if (castedArgs->_08 > 0) {
-		--castedArgs->_08;
-		if (castedArgs->_08 == 0) {
+	if (castedArgs->mIndex > 0) {
+		--castedArgs->mIndex;
+		if (castedArgs->mIndex == 0) {
 			if (!sLoadThread->sendCmdMsg(prepareFinishTask, stream)) {
 				sFatalErrorFlag = true;
 			}
 		}
 	}
-	if (castedArgs->_04 == 0) {
+	if (castedArgs->mDataLength == 0) {
 		return;
 	}
-	castedArgs->_04--;
+	castedArgs->mDataLength--;
 	if (!sLoadThread->sendCmdMsg(firstLoadTask, castedArgs, sizeof(*castedArgs))) {
 		sFatalErrorFlag = true;
 	}
@@ -451,47 +457,52 @@ void JASAramStream::prepareFinishTask(void* args)
  * @note Address: 0x800A9618
  * @note Size: 0x1CC
  */
-bool JASAramStream::headerLoad(u32 p1, int p2)
+bool JASAramStream::headerLoad(u32 length, int index)
 {
 	if (sFatalErrorFlag) {
 		return false;
 	}
-	if (_204 != 0) {
+	if (mAbortFlag != 0) {
 		return false;
 	}
 	if (DVDReadPrio(&mFileInfo, sReadBuffer, 0x40, 0, 1) < 0) {
 		sFatalErrorFlag = true;
 		return false;
 	}
-	u8* buffer   = sReadBuffer;
-	_248         = buffer[9];
-	_24A         = *(u16*)(buffer + 0x0C);
-	_254         = *(u32*)(buffer + 0x10);
-	_258         = (*(u16*)(buffer + 0x0E) != FALSE);
-	_25C         = *(u32*)(buffer + 0x18);
-	_260         = *(u32*)(buffer + 0x1C);
-	_264         = buffer[0x28] / 127.0f;
-	mLoadedCount = 0;
-	_200         = 0;
-	_1FC         = 0;
-	_250         = p1 / sBlockSize / *(u16*)(buffer + 0x0C);
-	_24C         = _250;
-	_24C--;
-	_1F8 = _24C;
-	if (p2 < 0 || p2 > _1F8) {
-		p2 = _1F8;
+	u8* buffer        = sReadBuffer;
+	mStreamType       = buffer[9];
+	mNumBlocks        = *(u16*)(buffer + 0x0C);
+	mSampleRate       = *(u32*)(buffer + 0x10);
+	mLoopFlag         = (*(u16*)(buffer + 0x0E) != FALSE);
+	mAramSize         = *(u32*)(buffer + 0x18);
+	mFileSize         = *(u32*)(buffer + 0x1C);
+	mVolume           = buffer[0x28] / 127.0f;
+	mLoadedCount      = 0;
+	mCurrentBlock     = 0;
+	mCurrentLoadIndex = 0;
+	mBlockCount       = length / sBlockSize / *(u16*)(buffer + 0x0C);
+	mCurrentBlockNum  = mBlockCount;
+	mCurrentBlockNum--;
+	mMaxLoadIndex = mCurrentBlockNum;
+
+	// Ensure the loadIndex is valid
+	if (index < 0 || index > mMaxLoadIndex) {
+		index = mMaxLoadIndex;
 	}
-	if (_204 != 0) {
+
+	if (mAbortFlag != 0) {
 		return false;
 	}
+
 	FirstLoadTaskArgs loadArgs;
-	loadArgs.mStream = this;
-	loadArgs._04     = _1F8 - 1;
-	loadArgs._08     = p2;
+	loadArgs.mStream         = this;
+	loadArgs.mTotalLoadCount = mMaxLoadIndex - 1;
+	loadArgs.mIndex          = index;
 	if (!sLoadThread->sendCmdMsg(firstLoadTask, &loadArgs, sizeof(loadArgs))) {
 		sFatalErrorFlag = true;
 		return false;
 	}
+
 	JASCriticalSection criticalSection;
 	mLoadedCount++;
 	return true;
@@ -512,36 +523,36 @@ bool JASAramStream::load()
 		return false;
 	}
 
-	if (_204) {
+	if (mAbortFlag) {
 		return false;
 	}
 
-	u32 val;
-	if (_248 == 0) {
-		val = sBlockSize * 16 / 9;
+	u32 blockSize;
+	if (mStreamType == 0) {
+		blockSize = sBlockSize * 16 / 9;
 	} else {
-		val = sBlockSize / 2;
+		blockSize = sBlockSize / 2;
 	}
 
-	u32 val2 = (_260 - 1) / val;
+	u32 numMaxBlocks = (mFileSize - 1) / blockSize;
 
-	u32 val3;
-	if (_248 == 0) {
-		val3 = sBlockSize * 16 / 9;
+	u32 adjustedBlockSize;
+	if (mStreamType == 0) {
+		adjustedBlockSize = sBlockSize * 16 / 9;
 	} else {
-		val3 = sBlockSize / 2;
+		adjustedBlockSize = sBlockSize / 2;
 	}
 
-	u32 val4 = (_25C) / val3;
+	u32 adjustedBlockCount = (mAramSize) / adjustedBlockSize;
 
-	if (_200 > val2) {
+	if (mCurrentBlock > numMaxBlocks) {
 		return false;
 	}
 
-	u32 length = sBlockSize * _24A + 0x20;
-	u32 offset = _200 * _24A + 0x40;
+	u32 length = sBlockSize * mNumBlocks + 0x20;
+	u32 offset = mCurrentBlock * mNumBlocks + 0x40;
 
-	if (_200 == val2) {
+	if (mCurrentBlock == numMaxBlocks) {
 		length = mFileInfo.length - offset;
 	}
 
@@ -551,42 +562,42 @@ bool JASAramStream::load()
 	}
 
 	u32* preBuffer = (u32*)sReadBuffer;
-	u32 size       = _238 + (_1FC * sBlockSize);
-	for (int i = 0; i < _24A; i++) {
-		if (JKRMainRamToAram((u8*)(sReadBuffer + (preBuffer[1] + 0x20)), size + (i * sBlockSize * _250), ((u32*)sReadBuffer)[1], Switch_0,
-		                     0, nullptr, -1, nullptr)
+	u32 size       = mDataOffset + (mCurrentLoadIndex * sBlockSize);
+	for (int i = 0; i < mNumBlocks; i++) {
+		if (JKRMainRamToAram((u8*)(sReadBuffer + (preBuffer[1] + 0x20)), size + (i * sBlockSize * mBlockCount), ((u32*)sReadBuffer)[1],
+		                     Switch_0, 0, nullptr, -1, nullptr)
 		    == 0) {
 			sFatalErrorFlag = true;
 			return false;
 		}
 	}
 
-	_1FC++;
+	mCurrentLoadIndex++;
 
-	if (_1FC >= _1F8) {
-		int val200 = _200 + (_1F8 - 1);
-		if (_258) {
-			while (val200 > val2) {
-				val200 = (val2 - val200) + val4;
+	if (mCurrentLoadIndex >= mMaxLoadIndex) {
+		int nextBlock = mCurrentBlock + (mMaxLoadIndex - 1);
+		if (mLoopFlag) {
+			while (nextBlock > numMaxBlocks) {
+				nextBlock = (numMaxBlocks - nextBlock) + adjustedBlockCount;
 			}
 		}
-		if (val200 == val2 || val200 + 2 == val2) {
-			_1F8 = _250;
+		if (nextBlock == numMaxBlocks || nextBlock + 2 == numMaxBlocks) {
+			mMaxLoadIndex = mBlockCount;
 			OSSendMessage(&mMsgQueueB, (void*)5, OS_MESSAGE_BLOCK);
 		} else {
-			_1F8 = _250 - 1;
+			mMaxLoadIndex = mBlockCount - 1;
 		}
 
-		for (int i = 0; i < _24A; i++) {
-			_220[0][i] = ((s16*)preBuffer)[2 * i + 4];
-			_220[1][i] = ((s16*)preBuffer)[2 * i + 5];
+		for (int i = 0; i < mNumBlocks; i++) {
+			mSampleData[0][i] = ((s16*)preBuffer)[2 * i + 4];
+			mSampleData[1][i] = ((s16*)preBuffer)[2 * i + 5];
 		}
-		_1FC = 0;
+		mCurrentLoadIndex = 0;
 	}
 
-	_200++;
-	if (_200 > val2 && _258) {
-		_200 = val4;
+	mCurrentBlock++;
+	if (mCurrentBlock > numMaxBlocks && mLoopFlag) {
+		mCurrentBlock = adjustedBlockCount;
 	}
 	return true;
 	/*
@@ -898,89 +909,91 @@ void JASAramStream::channelCallback(u32 p1, JASChannel* chan, JASDsp::TChannel* 
  * @note Address: 0x800A9B50
  * @note Size: 0x758
  */
-void JASAramStream::updateChannel(u32 p1, JASChannel* chan, JASDsp::TChannel* dspChan)
+void JASAramStream::updateChannel(u32 command, JASChannel* chan, JASDsp::TChannel* dspChan)
 {
 	u32 blockSamples = getBlockSamples();
-	switch (p1) {
+	switch (command) {
 	case 1: {
-		if (!_198) {
-			_198 = chan;
-			_1A4 = blockSamples * _24C;
-			_1A8 = 0;
-			_1A0 = 0;
-			_1AC = (_260 - 1) / blockSamples;
-			_1B0 = 0;
-			_1B4 = 0;
-			_21C = 0;
+		if (!mActiveChannel) {
+			mActiveChannel     = chan;
+			mNextBlockSample   = blockSamples * mCurrentBlockNum;
+			mNextReadOffset    = 0;
+			mCurrentReadOffset = 0;
+			mMaxBlocks         = (mFileSize - 1) / blockSamples;
+			_1B0               = 0;
+			_1B4               = 0;
+			mControlFlags      = 0;
 		}
 	} break;
 	case 0: {
-		if (dspChan->_08) {
+		if (dspChan->mIsPlaying) {
 			break;
 		}
-		if (chan == _198) {
-			_21C    = 0;
-			u32 val = dspChan->_74 + dspChan->mSamplesPerBlock;
-			if (val <= _1A4) {
-				_1A8 += (_1A4 - val);
+		if (chan == mActiveChannel) {
+			mControlFlags            = 0;
+			u32 currentSampleAddress = dspChan->mCurrentSampleOffset + dspChan->mSamplesPerBlock;
+			if (currentSampleAddress <= mNextBlockSample) {
+				mNextReadOffset += (mNextBlockSample - currentSampleAddress);
 			} else if (!_1B0) {
-				_1A8 += _1A4;
-				_1A8 += (blockSamples * _24C) - val;
+				mNextReadOffset += mNextBlockSample;
+				mNextReadOffset += (blockSamples * mCurrentBlockNum) - currentSampleAddress;
 			} else {
-				_1A8 += _1A4;
-				_1A8 += (blockSamples * _24C) - val - dspChan->_110;
-				_1A8 -= _260;
-				_1A8 += _25C;
-				dspChan->_110 = 0;
-				_210          = 0;
-				_21C |= 2;
+				mNextReadOffset += mNextBlockSample;
+				mNextReadOffset += (blockSamples * mCurrentBlockNum) - currentSampleAddress - dspChan->mLoopStartOffset;
+				mNextReadOffset -= mFileSize;
+				mNextReadOffset += mAramSize;
+				dspChan->mLoopStartOffset = 0;
+				mLoopSampleOffset         = 0;
+				mControlFlags |= 2;
 				if (_1B4 < -1) {
 					_1B4++;
 				}
 				_1B0 = 0;
 			}
 
-			if (_1A8 > _260) {
+			if (mNextReadOffset > mFileSize) {
 				sFatalErrorFlag = true;
 			}
 
-			f32 val2 = f32(_1B4) * f32(_260 - _25C);
+			f32 adjustedReadOffset = f32(_1B4) * f32(mFileSize - mAramSize);
 			if (_1B4 < -1) {
-				val2 += f32(_1A8);
+				adjustedReadOffset += f32(mNextReadOffset);
 			}
 
-			_1B8 = val2 / f32(_254);
+			_1B8 = adjustedReadOffset / f32(mSampleRate);
 
-			if (_1A8 + 400 >= _260 && !_1B0) {
-				if (_258) {
-					u32 val3 = _1AC + 1;
-					if (val3 >= _24C) {
+			if (mNextReadOffset + 400 >= mFileSize && !_1B0) {
+				if (mLoopFlag) {
+					u32 val3 = mMaxBlocks + 1;
+					if (val3 >= mCurrentBlockNum) {
 						val3 = 0;
 					}
-					dspChan->_110 = (_25C % blockSamples) + (val3 * blockSamples);
-					_210          = dspChan->_110;
-					_21C |= 2;
+					dspChan->mLoopStartOffset = (mAramSize % blockSamples) + (val3 * blockSamples);
+					mLoopSampleOffset         = dspChan->mLoopStartOffset;
+					mControlFlags |= 2;
 				} else {
-					dspChan->_102 = 0;
-					_218          = 0;
-					_21C |= 8;
+					dspChan->mLoopOffset = 0;
+					mEndSampleOffset     = 0;
+					mControlFlags |= 8;
 				}
 
-				dspChan->_74 -= (blockSamples * _24C) - (_260 % blockSamples) + (_1AC * blockSamples);
-				_20C = dspChan->_74;
-				_21C |= 1;
-				_1AC += (_260 - 1) / blockSamples - (_25C / blockSamples) + 1;
+				dspChan->mCurrentSampleOffset
+				    -= (blockSamples * mCurrentBlockNum) - (mFileSize % blockSamples) + (mMaxBlocks * blockSamples);
+				mCurrentSampleOffset = dspChan->mCurrentSampleOffset;
+				mControlFlags |= 1;
+				mMaxBlocks += (mFileSize - 1) / blockSamples - (mAramSize / blockSamples) + 1;
 				_1B0 = 1;
 			}
 
-			u32 val4 = dspChan->_70 - (u32)chan->mWaveData;
-			if (val4 != 0) {
-				val4--;
+			u32 sampleOffset = dspChan->mSampleOffset - (u32)chan->mWaveData;
+			if (sampleOffset != 0) {
+				sampleOffset--;
 			}
-			u32 val5 = val4 / sBlockSize;
-			if (val5 != _1A0) {
-				u32 val6 = bool((_1A0 ^ val5) == 0);
-				while (val5 != _1A0) {
+
+			u32 blockIndex = sampleOffset / sBlockSize;
+			if (blockIndex != mCurrentReadOffset) {
+				u32 isNewBlock = bool((mCurrentReadOffset ^ blockIndex) == 0);
+				while (blockIndex != mCurrentReadOffset) {
 					if (sLoadThread->sendCmdMsg(&loadToAramTask, this) == 0) {
 						sFatalErrorFlag = true;
 						break;
@@ -990,61 +1003,61 @@ void JASAramStream::updateChannel(u32 p1, JASChannel* chan, JASDsp::TChannel* ds
 						JASCriticalSection cs;
 						mLoadedCount++;
 					}
-					_1A0++;
-					if (_1A0 >= _24C) {
-						_1A0 = 0;
+					mCurrentReadOffset++;
+					if (mCurrentReadOffset >= mCurrentBlockNum) {
+						mCurrentReadOffset = 0;
 					}
 				}
 
-				if (val6) {
-					_1AC -= _24C;
+				if (isNewBlock) {
+					mMaxBlocks -= mCurrentBlockNum;
 					if (_19D) {
 						if (!_1B0) {
-							dspChan->_74 += blockSamples;
-							_20C = dspChan->_74;
-							_21C |= 1;
+							dspChan->mCurrentSampleOffset += blockSamples;
+							mCurrentSampleOffset = dspChan->mCurrentSampleOffset;
+							mControlFlags |= 1;
 						}
-						dspChan->_114 += blockSamples;
-						_214 = dspChan->_114;
-						_21C |= 4;
-						_24C = _250;
-						_19D = 0;
+						dspChan->mNextSampleOffset += blockSamples;
+						mNextSampleOffset = dspChan->mNextSampleOffset;
+						mControlFlags |= 4;
+						mCurrentBlockNum = mBlockCount;
+						_19D             = 0;
 
-					} else if (_24C != _250 - 1) {
-						_24C = _250 - 1;
-						dspChan->_114 -= blockSamples;
-						_214 = dspChan->_114;
-						_21C |= 4;
+					} else if (mCurrentBlockNum != mBlockCount - 1) {
+						mCurrentBlockNum = mBlockCount - 1;
+						dspChan->mNextSampleOffset -= blockSamples;
+						mNextSampleOffset = dspChan->mNextSampleOffset;
+						mControlFlags |= 4;
 						if (!_1B0) {
-							dspChan->_74 -= blockSamples;
-							_20C = dspChan->_74;
-							_21C |= 1;
+							dspChan->mCurrentSampleOffset -= blockSamples;
+							mCurrentSampleOffset = dspChan->mCurrentSampleOffset;
+							mControlFlags |= 1;
 						}
 					}
 				}
 			} else if (mLoadedCount == 0 && !sSystemPauseFlag) {
-				_19E &= ~2;
-				_19E &= ~4;
+				mPauseFlags &= ~2;
+				mPauseFlags &= ~4;
 			}
 
-			_1A4 = dspChan->_74 + dspChan->mSamplesPerBlock;
+			mNextBlockSample = dspChan->mCurrentSampleOffset + dspChan->mSamplesPerBlock;
 
-			if (mLoadedCount >= _250 - 2) {
-				_19E |= 4;
+			if (mLoadedCount >= mBlockCount - 2) {
+				mPauseFlags |= 4;
 			}
 
 		} else {
-			if (_21C & 0x1) {
-				dspChan->_74 = _20C;
+			if (mControlFlags & 0x1) {
+				dspChan->mCurrentSampleOffset = mCurrentSampleOffset;
 			}
-			if (_21C & 0x2) {
-				dspChan->_110 = _210;
+			if (mControlFlags & 0x2) {
+				dspChan->mLoopStartOffset = mLoopSampleOffset;
 			}
-			if (_21C & 0x4) {
-				dspChan->_114 = _214;
+			if (mControlFlags & 0x4) {
+				dspChan->mNextSampleOffset = mNextSampleOffset;
 			}
-			if (_21C & 0x8) {
-				dspChan->_102 = _218;
+			if (mControlFlags & 0x8) {
+				dspChan->mLoopOffset = mEndSampleOffset;
 			}
 		}
 		bool check = false;
@@ -1054,8 +1067,8 @@ void JASAramStream::updateChannel(u32 p1, JASChannel* chan, JASDsp::TChannel* ds
 				break;
 			}
 		}
-		dspChan->_104 = _220[0][count];
-		dspChan->_106 = _220[1][count];
+		dspChan->mLast   = mSampleData[0][count];
+		dspChan->mPenult = mSampleData[1][count];
 	} break;
 	case 2: {
 		bool check = false;
@@ -1067,7 +1080,7 @@ void JASAramStream::updateChannel(u32 p1, JASChannel* chan, JASDsp::TChannel* ds
 			}
 		}
 		if (!check) {
-			_204 = 1;
+			mAbortFlag = 1;
 			if (sLoadThread->sendCmdMsg(&finishTask, this) == 0) {
 				sFatalErrorFlag = true;
 				return;
@@ -1076,7 +1089,7 @@ void JASAramStream::updateChannel(u32 p1, JASChannel* chan, JASDsp::TChannel* ds
 	} break;
 	}
 
-	chan->setPauseFlag(_19E != 0);
+	chan->setPauseFlag(mPauseFlags != 0);
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0
@@ -1672,10 +1685,10 @@ int JASAramStream::channelProc()
 			channelStop((u32)msg >> 16);
 			break;
 		case 2:
-			_19E |= 1;
+			mPauseFlags |= 1;
 			break;
 		case 3:
-			_19E &= ~1;
+			mPauseFlags &= ~1;
 			break;
 		}
 	}
@@ -1685,24 +1698,24 @@ int JASAramStream::channelProc()
 	}
 
 	if (sFatalErrorFlag) {
-		_19E |= 8;
+		mPauseFlags |= 8;
 	}
 	if (sSystemPauseFlag) {
-		_19E |= 2;
+		mPauseFlags |= 2;
 	}
 
-	for (int i = 0; i < _24A; i++) {
+	for (int i = 0; i < mNumBlocks; i++) {
 		JASChannel* channel     = mChannels[i];
-		channel->mVolumeChannel = _264 * _26C[0][i];
-		channel->mPitchChannel  = _268;
-		if (_2D8) {
-			channel->mPanChannel = _26C[1][i];
+		channel->mVolumeChannel = mVolume * mChannelData[0][i];
+		channel->mPitchChannel  = mPitch;
+		if (mUseStereo) {
+			channel->mPanChannel = mChannelData[1][i];
 		}
-		channel->mFxMixChannel = _26C[2][i];
-		channel->mDolbyChannel = _26C[3][i];
+		channel->mFxMixChannel = mChannelData[2][i];
+		channel->mDolbyChannel = mChannelData[3][i];
 	}
 
-	if (!_2D8 && _24A == 2) {
+	if (!mUseStereo && mNumBlocks == 2) {
 		mChannels[0]->mPanChannel = 0.0f;
 		mChannels[1]->mPanChannel = 1.0f;
 	}
@@ -1720,7 +1733,7 @@ static const int one = 1;
 void JASAramStream::channelStart()
 {
 	u8 blockType;
-	switch (_248) {
+	switch (mStreamType) {
 	case 0:
 		blockType = 0;
 		break;
@@ -1728,19 +1741,19 @@ void JASAramStream::channelStart()
 		blockType = 3;
 		break;
 	}
-	for (int i = 0; i < _24A; i++) {
-		JASWaveInfo* info = &mWaveInfos[i];
-		info->mBlockType  = blockType;
-		info->_10         = -1;
-		info->mBlockCount = 0;
+	for (int i = 0; i < mNumBlocks; i++) {
+		JASWaveInfo* info      = &mWaveInfos[i];
+		info->mFormat          = blockType;
+		info->mLoopOffset      = -1;
+		info->mLoopStartOffset = 0;
 
-		u32 val = _24C;
+		u32 val = mCurrentBlockNum;
 		val *= getBlockSamples();
-		info->_18 = val;
-		info->_1C = info->_18;
-		info->_20 = 0;
-		info->_22 = 0;
-		info->_24 = (void*)one;
+		info->mLoopEndOffset = val;
+		info->mSampleCount   = info->mLoopEndOffset;
+		info->mLast          = 0;
+		info->mPenult        = 0;
+		info->_24            = (void*)one;
 
 		JASChannel* chan
 		    = (JASChannel*)JASPoolAllocObject<JASChannel, JASCreationPolicy::NewFromRootHeap, JASThreadingModel::SingleThreaded>::alloc();
@@ -1755,19 +1768,19 @@ void JASAramStream::channelStart()
 		chan->mDolbyCalcType = 1;
 
 		for (int i = 0; i < 6; i++) {
-			chan->setMixConfig(i, _2CC[i]);
+			chan->setMixConfig(i, mMixData[i]);
 		}
 
-		chan->mActivePitch   = f32(_254) / JASDriver::getDacRate();
+		chan->mActivePitch   = f32(mSampleRate) / JASDriver::getDacRate();
 		chan->mModifiedPitch = chan->mActivePitch;
 		chan->setOscInit(0, &OSC_ENV);
 		chan->mWaveInfo   = info;
-		chan->mWaveData   = (void*)(_238 + (i * (sBlockSize * _250)));
+		chan->mWaveData   = (void*)(mDataOffset + (i * (sBlockSize * mBlockCount)));
 		chan->mWaveFormat = 0;
 		chan->playForce();
 		mChannels[i] = chan;
 	}
-	_198 = nullptr;
+	mActiveChannel = nullptr;
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0
@@ -1950,7 +1963,7 @@ lbl_800AA69C:
  */
 void JASAramStream::channelStop(u16 p1)
 {
-	for (int i = 0; i < _24A; i++) {
+	for (int i = 0; i < mNumBlocks; i++) {
 		if (mChannels[i] != nullptr) {
 			mChannels[i]->release(p1);
 		}

@@ -39,17 +39,17 @@ JASBasicWaveBank* JASWSParser::createBasicWaveBank(void* stream)
 		for (int waveIndex = 0; waveIndex < ctrlRaw->mWaveCount; waveIndex++) {
 			TWave* waveRaw = JSUConvertOffsetToPtr<TWave>(header, archiveRaw->mWaveOffsets[waveIndex]);
 			JASWaveInfo info;
-			info.mBlockType        = waveRaw->mFormat;
+			info.mFormat           = waveRaw->mFormat;
 			info.mKey              = waveRaw->mKey;
 			info.mSampleRate       = waveRaw->mSampleRate;
-			info.mOffset           = waveRaw->mAwOffset;
-			info._0C               = waveRaw->mAwLength;
-			info._10               = waveRaw->mLoop;
-			info.mBlockCount       = waveRaw->mLoopStart;
-			info._18               = waveRaw->mLoopEnd;
-			info._1C               = waveRaw->mSampleCount;
-			info._20               = waveRaw->mLast;
-			info._22               = waveRaw->mPenult;
+			info.mAwOffset         = waveRaw->mAwOffset;
+			info.mAwLength         = waveRaw->mAwLength;
+			info.mLoopOffset       = waveRaw->mLoop;
+			info.mLoopStartOffset  = waveRaw->mLoopStart;
+			info.mLoopEndOffset    = waveRaw->mLoopEnd;
+			info.mSampleCount      = waveRaw->mSampleCount;
+			info.mLast             = waveRaw->mLast;
+			info.mPenult           = waveRaw->mPenult;
 			TCtrlWave* ctrlWaveRaw = JSUConvertOffsetToPtr<TCtrlWave>(header, ctrlRaw->mCtrlWaveOffsets[waveIndex]);
 			size_t size            = (u16)ctrlWaveRaw->_00;
 			waveGroup->setWaveInfo(waveIndex, size, info);
@@ -246,17 +246,17 @@ JASSimpleWaveBank* JASWSParser::createSimpleWaveBank(void* stream)
 	for (int waveIndex = 0; waveIndex < ctrlRaw->mWaveCount; waveIndex++) {
 		TWave* waveRaw = JSUConvertOffsetToPtr<TWave>(header, archiveRaw->mWaveOffsets[waveIndex]);
 		JASWaveInfo info;
-		info.mBlockType        = waveRaw->mFormat;
+		info.mFormat           = waveRaw->mFormat;
 		info.mKey              = waveRaw->mKey;
 		info.mSampleRate       = waveRaw->mSampleRate;
-		info.mOffset           = waveRaw->mAwOffset;
-		info._0C               = waveRaw->mAwLength;
-		info._10               = waveRaw->mLoop;
-		info.mBlockCount       = waveRaw->mLoopStart;
-		info._18               = waveRaw->mLoopEnd;
-		info._1C               = waveRaw->mSampleCount;
-		info._20               = waveRaw->mLast;
-		info._22               = waveRaw->mPenult;
+		info.mAwOffset         = waveRaw->mAwOffset;
+		info.mAwLength         = waveRaw->mAwLength;
+		info.mLoopOffset       = waveRaw->mLoop;
+		info.mLoopStartOffset  = waveRaw->mLoopStart;
+		info.mLoopEndOffset    = waveRaw->mLoopEnd;
+		info.mSampleCount      = waveRaw->mSampleCount;
+		info.mLast             = waveRaw->mLast;
+		info.mPenult           = waveRaw->mPenult;
 		TCtrlWave* ctrlWaveRaw = JSUConvertOffsetToPtr<TCtrlWave>(header, ctrlRaw->mCtrlWaveOffsets[waveIndex]);
 		bank->setWaveInfo(ctrlWaveRaw->_00 & 0xFFFF, info);
 	}

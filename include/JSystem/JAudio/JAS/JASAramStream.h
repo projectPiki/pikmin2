@@ -18,15 +18,15 @@ struct JASAramStream {
 	/** @fabricated */
 	struct HeaderLoadTaskArgs {
 		JASAramStream* mStream; // _00
-		u32 _04;                // _04
-		int _08;                // _08
+		u32 mDataLength;        // _04
+		int mIndex;             // _08
 	};
 
 	/** @fabricated */
 	struct FirstLoadTaskArgs {
 		JASAramStream* mStream; // _00
-		u32 _04;                // _04
-		u32 _08;                // _08
+		u32 mTotalLoadCount;    // _04
+		u32 mIndex;             // _08
 	};
 
 	JASAramStream();
@@ -66,46 +66,46 @@ struct JASAramStream {
 	void* mMsgSlotsB[4];             // _80
 	JASWaveInfo mWaveInfos[6];       // _90
 	JASChannel* mChannels[6];        // _180
-	JASChannel* _198;                // _198
+	JASChannel* mActiveChannel;      // _198
 	u8 _19C;                         // _19C
 	u8 _19D;                         // _19D
-	u8 _19E;                         // _19E
-	u32 _1A0;                        // _1A0
-	u32 _1A4;                        // _1A4
-	u32 _1A8;                        // _1A8
-	int _1AC;                        // _1AC
+	u8 mPauseFlags;                  // _19E
+	u32 mCurrentReadOffset;          // _1A0
+	u32 mNextBlockSample;            // _1A4
+	u32 mNextReadOffset;             // _1A8
+	int mMaxBlocks;                  // _1AC
 	u8 _1B0;                         // _1B0
 	u32 _1B4;                        // _1B4
 	f32 _1B8;                        // _1B8
 	DVDFileInfo mFileInfo;           // _1BC
-	u32 _1F8;                        // _1F8
-	int _1FC;                        // _1FC
-	int _200;                        // _200
-	u8 _204;                         // _204
+	u32 mMaxLoadIndex;               // _1F8
+	int mCurrentLoadIndex;           // _1FC
+	int mCurrentBlock;               // _200
+	u8 mAbortFlag;                   // _204
 	u32 mLoadedCount;                // _208
-	u32 _20C;                        // _20C
-	u32 _210;                        // _210
-	u32 _214;                        // _214
-	u16 _218;                        // _218
-	u32 _21C;                        // _21C
-	s16 _220[2][6];                  // _220
-	u32 _238;                        // _238
-	u32 _23C;                        // _23C
+	u32 mCurrentSampleOffset;        // _20C
+	u32 mLoopSampleOffset;           // _210
+	u32 mNextSampleOffset;           // _214
+	u16 mEndSampleOffset;            // _218
+	u32 mControlFlags;               // _21C
+	s16 mSampleData[2][6];           // _220
+	u32 mDataOffset;                 // _238
+	u32 mDataLength;                 // _23C
 	JASAramStreamCallback mCallback; // _240
 	void* _244;                      // _244
-	u16 _248;                        // _248
-	u16 _24A;                        // _24A
-	u32 _24C;                        // _24C
-	int _250;                        // _250
-	u32 _254;                        // _254
-	u8 _258;                         // _258
-	u32 _25C;                        // _25C
-	u32 _260;                        // _260
-	f32 _264;                        // _264
-	f32 _268;                        // _268, pitch
-	f32 _26C[4][6];                  // _26C, values (volume, pan, fxmix, dolby) for each of the 6 channels
-	u16 _2CC[6];                     // _2CC
-	u8 _2D8;                         // _2D8, related to pan
+	u16 mStreamType;                 // _248
+	u16 mNumBlocks;                  // _24A
+	u32 mCurrentBlockNum;            // _24C
+	int mLoopStartOffsete;           // _250
+	u32 mSampleRate;                 // _254
+	u8 mLoopFlag;                    // _258
+	u32 mAramSize;                   // _25C
+	u32 mFileSize;                   // _260
+	f32 mVolume;                     // _264
+	f32 mPitch;                      // _268
+	f32 mChannelData[4][6];          // _26C, values (volume, pan, fxmix, dolby) for each of the 6 channels
+	u16 mMixData[6];                 // _2CC
+	u8 mUseStereo;                   // _2D8, related to pan
 
 	static JASTaskThread* sLoadThread;
 	static u8* sReadBuffer;

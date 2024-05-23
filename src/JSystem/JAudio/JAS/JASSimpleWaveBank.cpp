@@ -96,7 +96,7 @@ void* JASSimpleWaveBank::TWaveHandle::getWavePtr() const
 	if (mHeap->mBase == nullptr) {
 		return nullptr;
 	}
-	return mHeap->mBase + mInfo.mOffset;
+	return mHeap->mBase + mInfo.mAwOffset;
 }
 
 /**

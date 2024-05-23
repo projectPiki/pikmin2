@@ -44,18 +44,18 @@ struct JASWaveArc : public JASDisposer {
 };
 
 struct JASWaveInfo {
-	u8 mBlockType;   // _00
-	u8 mKey;         // _01
-	f32 mSampleRate; // _04
-	u32 mOffset;     // _08
-	u32 _0C;         // _0C
-	u32 _10;         // _10
-	u32 mBlockCount; // _14
-	u32 _18;         // _18
-	u32 _1C;         // _1C
-	s16 _20;         // _20
-	s16 _22;         // _22
-	void* _24;       // _24
+	u8 mFormat;           // _00
+	u8 mKey;              // _01
+	f32 mSampleRate;      // _04
+	u32 mAwOffset;        // _08
+	u32 mAwLength;        // _0C
+	u32 mLoopOffset;      // _10
+	u32 mLoopStartOffset; // _14
+	u32 mLoopEndOffset;   // _18
+	u32 mSampleCount;     // _1C
+	s16 mLast;            // _20
+	s16 mPenult;          // _22
+	void* _24;            // _24
 };
 
 struct JASWaveHandle {
@@ -96,7 +96,7 @@ struct JASBasicWaveBank : public JASWaveBank {
 			if (mHeap->mBase == nullptr) {
 				return nullptr;
 			}
-			return mHeap->mBase + mInfo.mOffset;
+			return mHeap->mBase + mInfo.mAwOffset;
 		}
 
 		JASWaveInfo mInfo; // _04

@@ -947,23 +947,23 @@ void PlayingStream()
 		BOOL interrupts = OSDisableInterrupts();
 		for (int i = 0; i < getChannelMax(); i++) {
 			if (trackFlags[i] & SOUNDACTIVE_Volume) {
-				streamSystem->_26C[0][i] = streamUpdate->_04 * param->mChannelVolumes[i].mCurrentValue;
+				streamSystem->mChannelData[0][i] = streamUpdate->_04 * param->mChannelVolumes[i].mCurrentValue;
 			}
 			if (trackFlags[i] & SOUNDACTIVE_Pan) {
-				JASAramStream* system = streamSystem;
-				system->_26C[1][i]    = (streamUpdate->_0C + param->mChannelPans[i].mCurrentValue) - 0.5f;
-				system->_2D8          = 1;
+				JASAramStream* system      = streamSystem;
+				system->mChannelData[1][i] = (streamUpdate->_0C + param->mChannelPans[i].mCurrentValue) - 0.5f;
+				system->mUseStereo         = 1;
 			}
 			if (trackFlags[i] & SOUNDACTIVE_Fxmix) {
-				streamSystem->_26C[2][i] = streamUpdate->_10 + param->mChannelFxmixes[i].mCurrentValue;
+				streamSystem->mChannelData[2][i] = streamUpdate->_10 + param->mChannelFxmixes[i].mCurrentValue;
 			}
 			if (trackFlags[i] & SOUNDACTIVE_Dolby) {
-				streamSystem->_26C[3][i] = streamUpdate->_14 + param->mChannelDolbys[i].mCurrentValue;
+				streamSystem->mChannelData[3][i] = streamUpdate->_14 + param->mChannelDolbys[i].mCurrentValue;
 			}
 		}
 
 		if (isPitchUpdated) {
-			streamSystem->_268 = streamUpdate->_08;
+			streamSystem->mPitch = streamUpdate->_08;
 		}
 		OSRestoreInterrupts(interrupts);
 	}

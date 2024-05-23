@@ -276,10 +276,10 @@ void TChannel::init()
  */
 void TChannel::playStart()
 {
-	_10C = 0;
-	_60  = 0;
-	_08  = 1;
-	_66  = 0;
+	_10C       = 0;
+	_60        = 0;
+	mIsPlaying = 1;
+	_66        = 0;
 
 	for (s32 i = 0; i < 4; i++) {
 		_78[i] = 0;
@@ -357,8 +357,8 @@ void TChannel::setWaveInfo(JASWaveInfo const& info, u32 dataOffset, u32 blockCou
 	static u8 COMP_BLOCKBYTES[8]   = { 0x9, 0x5, 0x8, 0x10, 0x1, 0x1, 0x1, 0x1 };
 
 	mDataOffset      = dataOffset;
-	mSamplesPerBlock = COMP_BLOCKSAMPLES[info.mBlockType];
-	mBytesPerBlock   = COMP_BLOCKBYTES[info.mBlockType];
+	mSamplesPerBlock = COMP_BLOCKSAMPLES[info.mFormat];
+	mBytesPerBlock   = COMP_BLOCKBYTES[info.mFormat];
 
 	mBlockCount = 0;
 
@@ -366,29 +366,29 @@ void TChannel::setWaveInfo(JASWaveInfo const& info, u32 dataOffset, u32 blockCou
 		return;
 	}
 
-	_11C = info._1C;
-	_102 = info._10;
-	if (_102 != 0) {
+	mSampleCount = info.mSampleCount;
+	mLoopOffset  = info.mLoopOffset;
+	if (mLoopOffset != 0) {
 		if (blockCount == 1) {
-			blockCount = info.mBlockCount;
+			blockCount = info.mLoopStartOffset;
 		}
 
-		_110 = info.mBlockCount;
-		_114 = info._18;
-		_104 = info._20;
-		_106 = info._22;
+		mLoopStartOffset  = info.mLoopStartOffset;
+		mNextSampleOffset = info.mLoopEndOffset;
+		mLast             = info.mLast;
+		mPenult           = info.mPenult;
 	} else {
-		_114 = _11C;
+		mNextSampleOffset = mSampleCount;
 	}
 
-	if (blockCount != 0 && _114 > blockCount) {
-		switch (info.mBlockType) {
+	if (blockCount != 0 && mNextSampleOffset > blockCount) {
+		switch (info.mFormat) {
 		case 0:
 		case 1:
 			mBlockCount = blockCount;
 			mDataOffset += blockCount * mBytesPerBlock >> 4;
-			_110 -= blockCount;
-			_114 -= blockCount;
+			mLoopStartOffset -= blockCount;
+			mNextSampleOffset -= blockCount;
 			break;
 		case 2:
 		case 3:
@@ -539,8 +539,6 @@ void TChannel::setPauseFlag(u8 pauseFlag) { mPauseFlag = pauseFlag; }
 /**
  * @note Address: 0x800A59C4
  * @note Size: 0x24
- * TODO: Sizeof?
- * flush__Q26JASDsp8TChannelFv
  */
 void TChannel::flush() { DCFlushRange(this, sizeof(TChannel)); }
 
