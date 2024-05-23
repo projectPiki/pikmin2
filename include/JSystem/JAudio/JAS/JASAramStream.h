@@ -96,7 +96,7 @@ struct JASAramStream {
 	u16 mStreamType;                 // _248
 	u16 mNumBlocks;                  // _24A
 	u32 mCurrentBlockNum;            // _24C
-	int mLoopStartOffsete;           // _250
+	int mBlockCount;                 // _250
 	u32 mSampleRate;                 // _254
 	u8 mLoopFlag;                    // _258
 	u32 mAramSize;                   // _25C
