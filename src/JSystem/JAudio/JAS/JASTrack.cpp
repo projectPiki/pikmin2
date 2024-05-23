@@ -3312,17 +3312,21 @@ void JASTrack::registerSeqCallback(JASTrack::SeqCallback cb) { sCallBackFunc = c
  */
 void JASTrack::newMemPool(int id)
 {
-	// what on EARTH is going on in here
-	u8* track                                      = new (JASDram, 0) u8[0x368];
-	reinterpret_cast<JASTrack*>(track)->mExtBuffer = new (JASDram, 0) JASOuterParam;
-	sFreeList                                      = reinterpret_cast<JASTrack*>(track);
+	JASTrack* track   = (JASTrack*)new (JASDram, 0) u8[sizeof(JASTrack)];
+	track->mExtBuffer = new (JASDram, 0) JASOuterParam;
+	sFreeList         = track;
 
 	for (int i = 1; i < id; i++) {
-		track                                              = new (JASDram, 0) u8[0x368];
-		reinterpret_cast<JASTrack**>(track)[0]->mExtBuffer = new (JASDram, 0) JASOuterParam;
-		sFreeListEnd                                       = reinterpret_cast<JASTrack**>(track)[0];
+		// TRACK LIST?
+		track               = (JASTrack*)new (JASDram, 0) u8[sizeof(JASTrack)];
+		JASTrack** list     = reinterpret_cast<JASTrack**>(track);
+		list[0]->mExtBuffer = new (JASDram, 0) JASOuterParam;
+		sFreeListEnd        = list[0];
 	}
-	track = nullptr;
+
+	// TRACK LIST?
+	((JASTrack**)track)[0] = nullptr;
+
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
