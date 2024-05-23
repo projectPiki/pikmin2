@@ -2982,18 +2982,17 @@ bool JASTrack::readPortAppDirect(u32 portNo, u16* outValue)
  */
 JASTrack* JASTrack::routeTrack(u32 route)
 {
-	JASTrack* outTrack;
 	u32 idx = route;
 	for (u32 i = 0; i < (route >> 28); i++) {
-		outTrack = mChildList[idx & 0xF];
+		JASTrack* outTrack = mChildList[idx & 0xF];
 		if (!outTrack) {
 			return nullptr;
 		}
+
 		idx >>= 4;
 	}
 
-	return outTrack;
-	// UNUSED FUNCTION
+	return this;
 }
 
 /**
