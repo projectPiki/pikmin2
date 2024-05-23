@@ -10,7 +10,7 @@ struct Scene_Objects;
 namespace PSM {
 // TODO: This inheritance is still wrong. Maybe needs virtual. Maybe SingletonBase has JKRDisposer (which may or may not be inheritance,
 // virtual inheritance, or composition). Maybe needs reordering. IDK.
-struct ObjMgr : public JSUPtrList,
+struct ObjMgr : public JSUList<ObjBase>,
                 public PSSystem::SingletonBase<ObjMgr>,
                 public JKRDisposer { // causes build errors from PSSystem::SingletonBase<ObjMgr>
 	ObjMgr()

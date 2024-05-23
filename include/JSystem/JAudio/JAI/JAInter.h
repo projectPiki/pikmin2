@@ -143,6 +143,13 @@ extern CustomHeapCallback customHeapCallback;
 struct Actor {
 	inline Actor(void* vec1, Vec* vec2, Vec* vec3, u32 unk)
 	{
+		// The use in ObjSound is close to this
+		// mObj              = (!vec1) ? vec2 : vec1;
+		// mVec2             = vec2;
+		// mVec3             = -1;
+		// mUnk              = 0;
+		// mFlag.boolView[0] = true;
+
 		mObj  = vec1;
 		mVec2 = vec2;
 		mVec3 = vec3;
@@ -212,8 +219,7 @@ struct DummyObjectMgr {
 	static DummyObject* deadObjectObject;
 };
 
-struct DummyVec {
-};
+struct DummyVec { };
 
 struct HeapBlock {
 	HeapBlock();
@@ -470,8 +476,8 @@ void* getDvdThreadPointer();
 void setAudioThreadPauseFlag(bool);
 }; // namespace JAInterface
 
-#define IsJAISoundIDInUse(id)    (((id)&0x800) == 0)
-#define IsJAISoundIDFree(id)     (((id)&0x800) == 1)
+#define IsJAISoundIDInUse(id)    (((id) & 0x800) == 0)
+#define IsJAISoundIDFree(id)     (((id) & 0x800) == 1)
 #define JAISoundID_TypeMask      0xC0000000
 #define JAISoundID_Type_Se       0x00000000
 #define JAISoundID_Type_Sequence 0x80000000

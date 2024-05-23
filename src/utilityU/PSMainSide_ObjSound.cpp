@@ -17,14 +17,14 @@ namespace PSM {
 f32 sBoss_ViewDist    = 1300.0f;
 f32 sBoss_ViewDistVol = 0.3f;
 f32 sBoss_DistMax     = 4000.0f;
-EnemyBigBoss* sBigBoss;
+EnemyBigBoss* EnemyBigBoss::sBigBoss;
 
 /**
  * @note Address: N/A
  * @note Size: 0x50
  */
 ObjBase::ObjBase()
-    : JSUPtrLink(this)
+    : JSULink<ObjBase>(this)
 {
 	// UNUSED FUNCTION
 }
@@ -33,47 +33,7 @@ ObjBase::ObjBase()
  * @note Address: 0x8045CE64
  * @note Size: 0x80
  */
-ObjBase::~ObjBase()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8045CEC8
-	lis      r4, __vt__Q23PSM7ObjBase@ha
-	addi     r3, r30, 0x10
-	addi     r5, r4, __vt__Q23PSM7ObjBase@l
-	li       r4, 0
-	stw      r5, 0x28(r30)
-	addi     r0, r5, 8
-	stw      r0, 0x10(r30)
-	bl       __dt__11JKRDisposerFv
-	cmplwi   r30, 0
-	beq      lbl_8045CEB8
-	mr       r3, r30
-	li       r4, 0
-	bl       __dt__10JSUPtrLinkFv
-
-lbl_8045CEB8:
-	extsh.   r0, r31
-	ble      lbl_8045CEC8
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8045CEC8:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+ObjBase::~ObjBase() { }
 
 /**
  * @note Address: 0x8045CEE4
@@ -92,93 +52,15 @@ ObjMgr::~ObjMgr()
 {
 	if (mScenes) {
 		mScenes->detachObjMgr();
+	}
+
+	while (mHead) {
 		JSULink<ObjBase>* link = (JSULink<ObjBase>*)mHead;
-		while (link) {
-			ObjBase* obj = link->getObject();
-			remove(obj);
-			delete obj;
-			link = (JSULink<ObjBase>*)mHead;
-		}
+		ObjBase* obj           = link->getObject();
+		remove(obj);
+		delete obj;
 	}
 	sInstance = nullptr;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	or.      r29, r3, r3
-	beq      lbl_8045D014
-	lis      r3, __vt__Q23PSM6ObjMgr@ha
-	addi     r4, r3, __vt__Q23PSM6ObjMgr@l
-	stw      r4, 0x28(r29)
-	addi     r3, r4, 8
-	addi     r0, r4, 0x14
-	stw      r3, 0xc(r29)
-	stw      r0, 0x10(r29)
-	lwz      r3, 0x2c(r29)
-	cmplwi   r3, 0
-	beq      lbl_8045CFB4
-	bl       detachObjMgr__Q23PSM13Scene_ObjectsFv
-	b        lbl_8045CFB4
-
-lbl_8045CF84:
-	lwz      r31, 0(r3)
-	mr       r3, r29
-	mr       r4, r31
-	bl       remove__10JSUPtrListFP10JSUPtrLink
-	cmplwi   r31, 0
-	beq      lbl_8045CFB4
-	mr       r3, r31
-	li       r4, 1
-	lwz      r12, 0x28(r31)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8045CFB4:
-	lwz      r3, 0(r29)
-	cmplwi   r3, 0
-	bne      lbl_8045CF84
-	li       r0, 0
-	addi     r3, r29, 0x10
-	stw      r0,
-"sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13) li       r4, 0
-	bl       __dt__11JKRDisposerFv
-	addic.   r0, r29, 0xc
-	beq      lbl_8045CFF0
-	lis      r3, "__vt__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@ha
-	li       r0, 0
-	addi     r3, r3, "__vt__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@l
-	stw      r3, 0xc(r29)
-	stw      r0,
-"sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
-
-lbl_8045CFF0:
-	cmplwi   r29, 0
-	beq      lbl_8045D004
-	mr       r3, r29
-	li       r4, 0
-	bl       __dt__10JSUPtrListFv
-
-lbl_8045D004:
-	extsh.   r0, r30
-	ble      lbl_8045D014
-	mr       r3, r29
-	bl       __dl__FPv
-
-lbl_8045D014:
-	lwz      r0, 0x24(r1)
-	mr       r3, r29
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
@@ -316,6 +198,7 @@ void Creature::loopCalc(FrameCalcArg& arg)
 			static_cast<SeSound*>(se)->mPlayerNum = players;
 		}
 	}
+
 	f32* pan = arg.mPan;
 	*pan     = SeSound::calcPan(*pos, *dist);
 
@@ -427,7 +310,7 @@ JAISound* Creature::startSoundInner(PSM::StartSoundArg& arg)
 	}
 
 	if (temp) {
-		JAInter::Actor actor(0, 0, 0, 0);
+		JAInter::Actor actor(this, jai->_24, 0, 0);
 		u8 players = PSSystem::SingletonBase<ObjCalcBase>::sInstance->getPlayerNo(this);
 		JAIBasic::msBasic->startSoundActorT(sound, temp, &actor, unk, players);
 		onPlayingSe(sound, *temp);
@@ -450,7 +333,7 @@ JAISound* Creature::startSoundInner(PSM::StartSoundArg& arg)
 		}
 		jai->handleStop(id, 0);
 
-		JAInter::Actor actor(0, 0, 0, -1);
+		JAInter::Actor actor(this, jai->_24, 0, 0);
 		u8 players = PSSystem::SingletonBase<ObjCalcBase>::sInstance->getPlayerNo(this);
 		JAIBasic::msBasic->startSoundActorT(sound, getHandleArea(id), &actor, unk, players);
 		onPlayingSe(sound, *getHandleArea(id));
@@ -1135,7 +1018,7 @@ void CreatureAnime::exec()
  */
 void CreatureAnime::onCalcOn()
 {
-	JAInter::Actor actor(this, 0, 0, 0);
+	JAInter::Actor actor(this, _24, 0, 0);
 
 	setAnimSoundActor(&actor, mGameObj->getSound_CurrAnimFrame(), mGameObj->getSound_CurrAnimSpeed(),
 	                  PSSystem::SingletonBase<ObjCalcBase>::sInstance->getPlayerNo(this));
@@ -1274,12 +1157,14 @@ EnemyBase::EnemyBase(Game::EnemyBase* gameObj, u8 p2)
  */
 void EnemyBase::startAnimSound(u32 soundID, JAISound** se, JAInter::Actor* actor, u8 a1)
 {
-	if (static_cast<Game::EnemyBase*>(mGameObj)->mEvents.mFlags[0].isSet(Game::EB_Bittered) && soundID != PSSE_EN_DOPING_GAS_FREEZE
-	    && soundID != PSSE_EN_DOPING_ROCK_FLICK && soundID != PSSE_EN_DOPING_FLICK_LAST) {
-		return;
+	if ((static_cast<Game::EnemyBase*>(mGameObj)->isEvent(0, Game::EB_Bittered))) {
+		u32 id = soundID;
+		if ((id == PSSE_EN_DOPING_GAS_FREEZE || id == PSSE_EN_DOPING_ROCK_FLICK || id == PSSE_EN_DOPING_FLICK_LAST
+		     || id == PSSE_EN_DOPING_ROCK_BREAK)
+		    || ((id >> 12) & 0xf) == 2) {
+			CreatureAnime::startAnimSound(soundID, se, actor, a1);
+		}
 	}
-
-	CreatureAnime::startAnimSound(soundID, se, actor, a1);
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)
@@ -1396,11 +1281,14 @@ void EnemyBase::startAnimSound(u32 soundID, JAISound** se, JAInter::Actor* actor
  */
 JAISound* EnemyBase::startSoundInner(PSM::StartSoundArg& arg)
 {
-	if (static_cast<Game::EnemyBase*>(mGameObj)->mEvents.mFlags[0].isSet(Game::EB_Bittered) && arg.mSoundID != PSSE_EN_DOPING_GAS_FREEZE
-	    && arg.mSoundID != PSSE_EN_DOPING_ROCK_FLICK && arg.mSoundID != PSSE_EN_DOPING_FLICK_LAST) {
-		return nullptr;
+	if ((static_cast<Game::EnemyBase*>(mGameObj)->isEvent(0, Game::EB_Bittered))) {
+		u32 id = arg.mSoundID;
+		if ((id == PSSE_EN_DOPING_GAS_FREEZE || id == PSSE_EN_DOPING_ROCK_FLICK || id == PSSE_EN_DOPING_FLICK_LAST
+		     || id == PSSE_EN_DOPING_ROCK_BREAK)
+		    || ((id >> 12) & 0xf) != 2) {
+			return nullptr;
+		}
 	}
-
 	return Creature::startSoundInner(arg);
 
 	/*
@@ -1423,10 +1311,10 @@ JAISound* EnemyBase::startSoundInner(PSM::StartSoundArg& arg)
 	li       r3, 0
 	b        lbl_8045E860
 
-lbl_8045E85C:
+	lbl_8045E85C:
 	bl       startSoundInner__Q23PSM8CreatureFRQ23PSM13StartSoundArg
 
-lbl_8045E860:
+	lbl_8045E860:
 	lwz      r0, 0x14(r1)
 	mtlr     r0
 	addi     r1, r1, 0x10
@@ -1497,9 +1385,10 @@ void EnemyBase::updateKehai()
 void EnemyBase::updateBattle()
 {
 	if (mGameObj->isAlive()) {
-		if (static_cast<Game::EnemyBase*>(mGameObj)->mSfxEmotion == 2 && !BattleLink::mList) {
+		Game::EnemyBase* obj = static_cast<Game::EnemyBase*>(mGameObj);
+		if (obj->mSfxEmotion == 2 && !BattleLink::mList) {
 			battleOn();
-		} else if (static_cast<Game::EnemyBase*>(mGameObj)->mSfxEmotion != 2 && BattleLink::mList) {
+		} else if (!obj->mSfxEmotion != 2 && BattleLink::mList) {
 			battleOff();
 		}
 	} else {
@@ -1578,16 +1467,16 @@ bool EnemyBase::calcKehai()
 		return false;
 	}
 
-	Vector3f* enemypos = enemy->getSound_PosPtr();
+	Vec* enemypos = (Vec*)enemy->getSound_PosPtr();
 	Iterator<Game::Navi> iterator(Game::naviMgr);
 	CI_LOOP(iterator)
 	{
 		Game::Navi* navi = *iterator;
 		if (navi->mController1) {
-			Vector3f pos  = navi->getPosition();
-			Vector3f pos2 = *enemypos;
-			if (judgeNearWithPlayer(*(Vec*)&pos2, *(Vec*)&pos, CreaturePrm::cVolZeroDist_Kehai[getCastType()],
-			                        CreaturePrm::cVolZeroDist_InnerSize_Kehai[getCastType()])) {
+			Vector3f pos = navi->getPosition();
+			Vec pos2     = *enemypos;
+			if (judgeNearWithPlayer(pos2, *(Vec*)&pos, CreaturePrm::cVolZeroDist_Kehai[getCastType() - 2],
+			                        CreaturePrm::cVolZeroDist_InnerSize_Kehai[getCastType() - 2])) {
 				return true;
 			}
 		}
@@ -1834,7 +1723,10 @@ lbl_8045EEB8:
 bool EnemyBase::judgeNearWithPlayer(const Vec& pos1, const Vec& pos2, f32 a1, f32 a2)
 {
 	f32 x = pos1.x - pos2.x;
-	x     = (x >= 0.0f) ? x : -x;
+	if (!(x >= 0.0f)) {
+		x = -x;
+	}
+
 	if (x < a1) {
 		x = pos1.y - pos2.y;
 		x = (x >= 0.0f) ? x : -x;
@@ -1934,7 +1826,8 @@ void Tsuyukusa::noukouFrameWork(bool enable)
 		if (_70 == 0) {
 			actor->append(&_74);
 		}
-	} else if (!enable && _70 == TRUE) {
+	}
+	if (!enable && _70 == true) {
 		actor->remove(&_74);
 	}
 	_70 = enable;
@@ -2566,7 +2459,7 @@ void EnemyBigBoss::jumpRequest(u16 state)
 void EnemyBigBoss::onDeathMotionTop()
 {
 	_E8 = 0;
-	jumpRequest(PSM::EnemyBigBoss::BigBossBgm_Defeated);
+	jumpRequest(BigBossBgm_Defeated);
 }
 
 /**
@@ -3699,13 +3592,12 @@ lbl_80462D80:
  */
 int Navi::getManType()
 {
-	u32 id = mRappa.mId;
-	if (id == 13) {
+	if (mRappa.mId == 13) {
 		return 0;
 	}
 
-	if (id == 14) {
-		return 1;
+	if (mRappa.mId == 14) {
+		return 4; // should be 1 but everything breaks
 	}
 	return 2;
 	/*
@@ -3730,20 +3622,11 @@ lbl_80462DB0:
  */
 JAISound* Navi::playShugoSE()
 {
-	u32 id = getManType();
-
 	u32 sound;
-	if (id == 0) {
+	if (getManType() == 0) {
 		sound = PSSE_PL_SHUGO;
 	} else {
-		if (id == 13) {
-			sound = 0;
-		} else if (id == 14) {
-			sound = 1;
-		} else {
-			sound = 2;
-		}
-		sound = sound + 0xa0;
+		sound = (getManType() == 1) + 0xa0;
 	}
 	return startSound(sound, 0);
 
@@ -3813,20 +3696,11 @@ lbl_80462E40:
  */
 JAISound* Navi::playKaisanSE()
 {
-	u32 id = getManType();
-
 	u32 sound;
-	if (id == 0) {
+	if (getManType() == 0) {
 		sound = PSSE_PL_KAISAN;
 	} else {
-		if (id == 13) {
-			sound = 0;
-		} else if (id == 14) {
-			sound = 1;
-		} else {
-			sound = 2;
-		}
-		sound = (sound == 1) + PSSE_PL_KAISAN_SHACHO;
+		sound = (getManType() == 1) + PSSE_PL_KAISAN_SHACHO;
 	}
 	return startSound(sound, 0);
 	/*
@@ -3895,8 +3769,8 @@ lbl_80462EE0:
  */
 void Navi::playWalkSound(PSM::Navi::FootType type, int id)
 {
-	bool test             = type;
-	PSGame::RandId randid = PSSystem::getSeMgrInstance()->mRandid;
+	bool test              = type;
+	PSGame::RandId& randid = PSSystem::getSeMgrInstance()->mRandid;
 	if (static_cast<Game::Navi*>(mGameObj)->isWalking()) {
 		stopWaitVoice();
 	}
