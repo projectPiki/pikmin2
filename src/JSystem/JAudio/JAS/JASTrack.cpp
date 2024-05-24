@@ -3315,16 +3315,16 @@ void JASTrack::newMemPool(int id)
 	track->mExtBuffer = new (JASDram, 0) JASOuterParam;
 	sFreeList         = track;
 
+	JASTrack** list = reinterpret_cast<JASTrack**>(track);
 	for (int i = 1; i < id; i++) {
-		// TRACK LIST?
-		track               = (JASTrack*)new (JASDram, 0) u8[sizeof(JASTrack)];
-		JASTrack** list     = reinterpret_cast<JASTrack**>(track);
+		list[0]             = (JASTrack*)new (JASDram, 0) u8[sizeof(JASTrack)];
 		list[0]->mExtBuffer = new (JASDram, 0) JASOuterParam;
-		sFreeListEnd        = list[0];
+		list                = (JASTrack**)list[0];
+
+		sFreeListEnd = (JASTrack*)list;
 	}
 
-	// TRACK LIST?
-	((JASTrack**)track)[0] = nullptr;
+	list[0] = nullptr;
 
 	/*
 	stwu     r1, -0x20(r1)
