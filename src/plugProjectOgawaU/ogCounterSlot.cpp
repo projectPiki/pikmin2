@@ -56,14 +56,14 @@ void CallBack_CounterSlot::setPuyoParam(f32 parm1, f32 parm2, f32 parm3)
  */
 void CallBack_CounterSlot::update()
 {
-	int goal = mCurrentCounters;
-	if (goal > mCounterLimit) {
-		goal = mCounterLimit;
+	int goal = mCurrentDigitNum;
+	if (goal > mMaxDisplayDigitNum) {
+		goal = mMaxDisplayDigitNum;
 	}
 
 	if (mSlotStarted && !_AC) {
 		for (int i = 0; i < goal; i++) {
-			J2DPane* pane = mCounters[i]->mPicture;
+			J2DPane* pane = mCounterDigits[i]->mPicture;
 			if (i <= (int)mCurrentDigitID && _A9) {
 				pane->show();
 			} else {
@@ -74,8 +74,8 @@ void CallBack_CounterSlot::update()
 		if (mTimer >= mUpdateInterval) {
 			mTimer = 0.0f;
 			mCurrentDigitID++;
-			if ((int)mCurrentDigitID >= (int)mCurrentCounters) {
-				if ((int)mCurrentDigitID >= (int)mCounterLimit) {
+			if ((int)mCurrentDigitID >= (int)mCurrentDigitNum) {
+				if ((int)mCurrentDigitID >= (int)mMaxDisplayDigitNum) {
 					mSlotStarted = false;
 					_AB          = true;
 				}
@@ -101,10 +101,10 @@ void CallBack_CounterSlot::update()
  */
 void CallBack_CounterSlot::slot_up(int k)
 {
-	if (k > mCounterLimit) {
+	if (k > mMaxDisplayDigitNum) {
 		JUT_PANICLINE(169, "slot_up overflow ! (k=%d)\n", k);
-	} else if (k != mCounterLimit) {
-		mCounters[k]->mScaleMgr->up(mPuyoParm1, mPuyoParm2, mPuyoParm3, 0.0f);
+	} else if (k != mMaxDisplayDigitNum) {
+		mCounterDigits[k]->mScaleMgr->up(mPuyoParm1, mPuyoParm2, mPuyoParm3, 0.0f);
 		if ((u32)mChangeSoundID != 0) {
 			ogSound->setSE(mChangeSoundID);
 		}
@@ -140,30 +140,30 @@ void CallBack_CounterSlot::setValue(bool flag1, bool flag2)
 		mInitialDisplayValue = 0;
 		mCurrDisplayValue    = 0;
 	}
-	mCurrentCounters = CalcKeta(mInitialDisplayValue);
+	mCurrentDigitNum = CalcKeta(mInitialDisplayValue);
 
-	int counts = mCurrentCounters;
-	if (counts < mMaxCounterLimit) {
-		counts = mMaxCounterLimit;
+	int counts = mCurrentDigitNum;
+	if (counts < mMinDisplayDigitNum) {
+		counts = mMinDisplayDigitNum;
 	}
 
-	for (int i = 0; i < mCounterLimit; i++) {
+	for (int i = 0; i < mMaxDisplayDigitNum; i++) {
 		u32 power   = pow(10.0f, (f64)i);
 		u16 sujiVal = (mInitialDisplayValue / power) % 10;
 		if (mIsBlind) {
-			mCounters[i]->setSuji(mImgResources, 10);
+			mCounterDigits[i]->setSuji(mImgResources, 10);
 		} else if (mDoUseRandomValue) {
-			mCounters[i]->setSuji(mImgResources, (u16)randInt(9));
+			mCounterDigits[i]->setSuji(mImgResources, (u16)randInt(9));
 		} else {
-			mCounters[i]->setSuji(mImgResources, sujiVal);
+			mCounterDigits[i]->setSuji(mImgResources, sujiVal);
 		}
-		J2DPicture* keta = mCounters[i]->mPicture;
+		J2DPicture* keta = mCounterDigits[i]->mPicture;
 		if (keta) {
 			if (i < counts) {
 				if (_AC) {
 					keta->mIsVisible = true;
 				}
-				if (i + 1 > mCurrentCounters) {
+				if (i + 1 > mCurrentDigitNum) {
 					if (mIsBlind) {
 						keta->setAlpha(255);
 					} else {
@@ -171,14 +171,14 @@ void CallBack_CounterSlot::setValue(bool flag1, bool flag2)
 					}
 				} else {
 					keta->setAlpha(255);
-					ScaleMgr* smgr = mCounters[i]->mScaleMgr;
+					ScaleMgr* smgr = mCounterDigits[i]->mScaleMgr;
 					if (flag1) {
-						smgr->up(msVal._00, msVal._04, msVal._08, 0.025f * i);
+						smgr->up(msVal.mScaleRestoreAmplitude, msVal.mScaleAngularFreq, msVal.mScaleMaxRestoreTime, 0.025f * i);
 					} else if (flag2) {
 						smgr->down();
 					}
 				}
-				mCounters[i]->calcScale();
+				mCounterDigits[i]->calcScale();
 			} else {
 				keta->hide();
 			}
@@ -189,8 +189,8 @@ void CallBack_CounterSlot::setValue(bool flag1, bool flag2)
 	f32 temp3 = 0.0f;
 
 	u16 changedCounts = counts;
-	if (changedCounts > mCounterLimit) {
-		changedCounts = mCounterLimit;
+	if (changedCounts > mMaxDisplayDigitNum) {
+		changedCounts = mMaxDisplayDigitNum;
 	}
 
 	if (changedCounts >= 2) {
@@ -212,8 +212,8 @@ void CallBack_CounterSlot::setValue(bool flag1, bool flag2)
 	mPaneBounds.x          = box->i.x;
 	mPaneBounds.y          = box->i.y;
 
-	for (int i = 0; i < mCounterLimit; i++) {
-		J2DPicture* cPane = mCounters[i]->mPicture;
+	for (int i = 0; i < mMaxDisplayDigitNum; i++) {
+		J2DPicture* cPane = mCounterDigits[i]->mPicture;
 		if (cPane) {
 			f32 boxVal = (f32)i * (-mPane12DistX * temp);
 			JGeometry::TBox2f cBox(mPaneBounds.x + boxVal, mPaneBounds.y, boxVal + (mPaneBounds.x + mPaneSize.x),
@@ -222,7 +222,7 @@ void CallBack_CounterSlot::setValue(bool flag1, bool flag2)
 
 			if (mIsPuyoAnim && !_AC) {
 				cPane->setBasePosition(J2DPOS_Center);
-				CounterKeta* cKeta = mCounters[i];
+				CounterKeta* cKeta = mCounterDigits[i];
 				cKeta->mSize       = Vector2f(temp, mPaneScale.y);
 
 			} else {

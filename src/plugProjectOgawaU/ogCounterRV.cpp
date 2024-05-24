@@ -12,25 +12,25 @@ namespace Screen {
  * @note Address: 0x8030B524
  * @note Size: 0x1E0
  */
-CallBack_CounterRV::CallBack_CounterRV(char** characterTexturePaths, u16 ketaCount, u16 p3, JKRArchive* archive)
+CallBack_CounterRV::CallBack_CounterRV(char** characterTexturePaths, u16 maxDigits, u16 minDigits, JKRArchive* archive)
     : P2DScreen::CallBackNode()
 {
 	mCharacterTexturePaths = characterTexturePaths;
-	if (10 < ketaCount) {
-		ketaCount = 10;
+	if (maxDigits > 10) {
+		maxDigits = 10;
 	}
-	if (ketaCount < 2) {
-		ketaCount = 2;
+	if (maxDigits < 2) {
+		maxDigits = 2;
 	}
-	mCounterLimit        = ketaCount;
-	mMaxCounterLimit     = p3;
+	mMaxDisplayDigitNum  = maxDigits;
+	mMinDisplayDigitNum  = minDigits;
 	mCountPtr            = nullptr;
 	mInitialDisplayValue = 0;
 	mCurrDisplayValue    = 0;
 	mImgResources        = og::Screen::makeSujiFontTable(mCharacterTexturePaths, archive);
-	mCounters            = new CounterKeta*[ketaCount];
-	for (int i = 0; i < ketaCount; i++) {
-		mCounters[i] = nullptr;
+	mCounterDigits       = new CounterKeta*[maxDigits];
+	for (int i = 0; i < maxDigits; i++) {
+		mCounterDigits[i] = nullptr;
 	}
 	mPic1             = nullptr;
 	mPic2             = nullptr;
@@ -76,9 +76,9 @@ void CallBack_CounterRV::setValue() { setValue(false, false); }
 void CallBack_CounterRV::hide()
 {
 	mIsHidden = true;
-	for (int i = 0; i < mCounterLimit; i++) {
-		if (mCounters[i]) {
-			mCounters[i]->mPicture->hide();
+	for (int i = 0; i < mMaxDisplayDigitNum; i++) {
+		if (mCounterDigits[i]) {
+			mCounterDigits[i]->mPicture->hide();
 		}
 	}
 }
@@ -100,19 +100,19 @@ J2DPane* CallBack_CounterRV::getMotherPane()
  * @note Address: 0x8030B7D8
  * @note Size: 0x8
  */
-void CallBack_CounterRV::setPuyoAnim(bool a1) { mIsPuyoAnim = a1; }
+void CallBack_CounterRV::setPuyoAnim(bool isPuyoAnim) { mIsPuyoAnim = isPuyoAnim; }
 
 /**
  * @note Address: 0x8030B7E0
  * @note Size: 0x8
  */
-void CallBack_CounterRV::setPuyoAnimZero(bool a1) { mIsPuyoAnimZero = a1; }
+void CallBack_CounterRV::setPuyoAnimZero(bool isPuyoAnimZero) { mIsPuyoAnimZero = isPuyoAnimZero; }
 
 /**
  * @note Address: 0x8030B7E8
  * @note Size: 0x8
  */
-void CallBack_CounterRV::setBlind(bool a1) { mIsBlind = a1; }
+void CallBack_CounterRV::setBlind(bool isBlind) { mIsBlind = isBlind; }
 
 /**
  * @note Address: N/A
@@ -136,18 +136,19 @@ void CallBack_CounterRV::setValPtr(u32*)
  * @note Address: 0x8030B7F0
  * @note Size: 0x8
  */
-void CallBack_CounterRV::setZeroAlpha(u8 a1) { mZeroAlpha = a1; }
+void CallBack_CounterRV::setZeroAlpha(u8 alpha) { mZeroAlpha = alpha; }
 
 /**
  * @note Address: 0x8030B7F8
  * @note Size: 0xE4
  */
-void CallBack_CounterRV::startPuyoUp(f32 p1)
+void CallBack_CounterRV::startPuyoUp(f32 scaleDelayFactor)
 {
-	mIsPuyoAnim = true;
-	int max     = (mCurrentCounters >= mCounterLimit) ? mCounterLimit : mCurrentCounters;
+	setPuyoAnim(true);
+	u16 max = (mCurrentDigitNum >= mMaxDisplayDigitNum) ? mMaxDisplayDigitNum : mCurrentDigitNum;
 	for (int i = 0; i < max; i++) {
-		mCounters[i]->mScaleMgr->up(msVal._00, msVal._04, msVal._08, 0.025f * i * p1);
+		mCounterDigits[i]->mScaleMgr->up(msVal.mScaleRestoreAmplitude, msVal.mScaleAngularFreq, msVal.mScaleMaxRestoreTime,
+		                                 (0.025f * f32(i)) * scaleDelayFactor);
 	}
 	/*
 stwu     r1, -0x60(r1)
@@ -226,9 +227,9 @@ void CallBack_CounterRV::setCenteringMode(EnumCenteringMode centeringMode) { mCe
  * @note Address: 0x8030B8E4
  * @note Size: 0x4D0
  */
-void CallBack_CounterRV::init(J2DScreen* screen, u64 tag1, u64 tag2, u64 tag3, u32* data, bool flag)
+void CallBack_CounterRV::init(J2DScreen* screen, u64 tag1, u64 tag2, u64 tag3, u32* countPtr, bool hasMother)
 {
-	mIsMother = flag;
+	mIsMother = hasMother;
 	mPic1     = static_cast<J2DPictureEx*>(og::Screen::TagSearch(screen, tag1));
 	mPic2     = og::Screen::TagSearch(screen, tag2);
 	mPic1->setBasePosition(J2DPOS_Center);
@@ -239,8 +240,8 @@ void CallBack_CounterRV::init(J2DScreen* screen, u64 tag1, u64 tag2, u64 tag3, u
 	} else {
 		mPic3 = mPic2;
 	}
-	mCountPtr            = data;
-	mInitialDisplayValue = *data;
+	mCountPtr            = countPtr;
+	mInitialDisplayValue = *countPtr;
 	mCurrDisplayValue    = mInitialDisplayValue;
 	mPaneScale.x         = mPic1->mScale.x;
 	mPaneScale.y         = mPic1->mScale.y;
@@ -265,29 +266,29 @@ void CallBack_CounterRV::init(J2DScreen* screen, u64 tag1, u64 tag2, u64 tag3, u
 	mPic1->calcMtx();
 	mPaneBounds.x = box->i.x;
 	mPaneBounds.y = box->i.y;
-	if (flag) {
-		for (int i = 0; i < mCounterLimit; i++) {
+	if (hasMother) {
+		for (int i = 0; i < mMaxDisplayDigitNum; i++) {
 			J2DPane* newpane = CopyPictureToPane(mPic1, mMotherPane, mPanePosition.x, mPanePosition.y, 'ogPic_0' + i);
 			newpane->setBasePosition((J2DBasePosition)mBasePosition);
 			newpane->setInfluencedAlpha(alphatype, false);
-			mCounters[i] = new CounterKeta(static_cast<J2DPicture*>(newpane));
+			mCounterDigits[i] = new CounterKeta(static_cast<J2DPicture*>(newpane));
 		}
 	} else {
 
 		J2DPane* newpane = CopyPictureToPane(mPic1, mMotherPane, mPanePosition.x, mPanePosition.y, 'ogPic_0');
 		newpane->setBasePosition((J2DBasePosition)mBasePosition);
 		newpane->setInfluencedAlpha(alphatype, false);
-		mCounters[0] = new CounterKeta(static_cast<J2DPicture*>(newpane));
+		mCounterDigits[0] = new CounterKeta(static_cast<J2DPicture*>(newpane));
 
-		for (int i = 1; i < mMaxCounterLimit; i++) {
-			J2DPane* newpane = screen->search(0);
-			mCounters[i]     = new CounterKeta(static_cast<J2DPicture*>(newpane));
+		for (int i = 1; i < mMinDisplayDigitNum; i++) {
+			J2DPane* newpane  = screen->search(0);
+			mCounterDigits[i] = new CounterKeta(static_cast<J2DPicture*>(newpane));
 		}
-		for (int i = mMaxCounterLimit / 2; i < mCounterLimit; i++) {
+		for (int i = mMinDisplayDigitNum / 2; i < mMaxDisplayDigitNum; i++) {
 			J2DPane* newpane = CopyPictureToPane(mPic1, mMotherPane, mPanePosition.x, mPanePosition.y, 'ogPic_0' + i);
 			newpane->setBasePosition((J2DBasePosition)mBasePosition);
 			newpane->setInfluencedAlpha(alphatype, false);
-			mCounters[i] = new CounterKeta(static_cast<J2DPicture*>(newpane));
+			mCounterDigits[i] = new CounterKeta(static_cast<J2DPicture*>(newpane));
 		}
 	}
 	mIsInitialized = true;
@@ -648,36 +649,36 @@ void CallBack_CounterRV::init(J2DScreen* screen, u64 tag1, u64 tag2, u64 tag3, u
  * @note Address: 0x8030BDB4
  * @note Size: 0x220
  */
-void CallBack_CounterRV::setKetaSub(int count, bool flag1, bool flag2)
+void CallBack_CounterRV::setKetaSub(int displayDigitNum, bool isUp, bool isDown)
 {
-	for (int i = 0; i < mCounterLimit; i++) {
+	for (int i = 0; i < mMaxDisplayDigitNum; i++) {
 		u32 temp = pow(10.0f, i);
 		temp     = u16((mInitialDisplayValue / temp) % 10);
 		if (mIsBlind) {
-			mCounters[i]->setSuji(mImgResources, 10);
+			mCounterDigits[i]->setSuji(mImgResources, 10);
 		} else if (mDoUseRandomValue) {
-			mCounters[i]->setSuji(mImgResources, (u16)(randFloat() * 9.0f));
+			mCounterDigits[i]->setSuji(mImgResources, (u16)(randFloat() * 9.0f));
 		} else {
-			mCounters[i]->setSuji(mImgResources, temp);
+			mCounterDigits[i]->setSuji(mImgResources, temp);
 		}
 
-		if (i < count) {
-			mCounters[i]->mPicture->show();
+		if (i < displayDigitNum) {
+			mCounterDigits[i]->mPicture->show();
 			u8 alpha = mPaneAlpha;
-			if (i + 1 > mCurrentCounters && !mIsBlind) {
+			if (i + 1 > mCurrentDigitNum && !mIsBlind) {
 				alpha = mZeroAlpha;
 			}
-			mCounters[i]->mPicture->setAlpha(alpha);
-			if (i + 1 <= mCurrentCounters) {
-				setCounterUpDown(i, flag1, flag2);
+			mCounterDigits[i]->mPicture->setAlpha(alpha);
+			if (i + 1 <= mCurrentDigitNum) {
+				setCounterUpDown(i, isUp, isDown);
 			} else {
 				if (!mIsBlind && mIsPuyoAnimZero) {
-					setCounterUpDown(i, flag1, flag2);
+					setCounterUpDown(i, isUp, isDown);
 				}
 			}
-			mCounters[i]->calcScale();
+			mCounterDigits[i]->calcScale();
 		} else {
-			J2DPane* pane = mCounters[i]->mPicture;
+			J2DPane* pane = mCounterDigits[i]->mPicture;
 			if (pane)
 				pane->hide();
 		}
@@ -688,16 +689,16 @@ void CallBack_CounterRV::setKetaSub(int count, bool flag1, bool flag2)
  * @note Address: 0x8030BFD4
  * @note Size: 0xB0
  */
-void CallBack_CounterRV::setCounterUpDown(int i, bool isUp, bool flag2)
+void CallBack_CounterRV::setCounterUpDown(int digitID, bool isUp, bool isDown)
 {
-	ScaleMgr* scale = mCounters[i]->mScaleMgr;
+	ScaleMgr* scale = mCounterDigits[digitID]->mScaleMgr;
 	if (isUp) {
-		scale->up(msVal._00, msVal._04, msVal._08, 0.025f * i);
+		scale->up(msVal.mScaleRestoreAmplitude, msVal.mScaleAngularFreq, msVal.mScaleMaxRestoreTime, 0.025f * digitID);
 		u32 id = mScaleUpSoundID;
 		if (id) {
 			ogSound->setSE(id);
 		}
-	} else if (flag2) {
+	} else if (isDown) {
 		scale->down();
 		u32 id = mScaleDownSoundID;
 		if (id) {
@@ -710,7 +711,7 @@ void CallBack_CounterRV::setCounterUpDown(int i, bool isUp, bool flag2)
  * @note Address: 0x8030C084
  * @note Size: 0x3F8
  */
-void CallBack_CounterRV::setValue(bool flag1, bool flag2)
+void CallBack_CounterRV::setValue(bool isUp, bool isDown)
 {
 	if (!mIsHidden) {
 		if (mIsBlind) {
@@ -718,22 +719,25 @@ void CallBack_CounterRV::setValue(bool flag1, bool flag2)
 			mCurrDisplayValue    = 0;
 		}
 
-		mCurrentCounters = CalcKeta(mInitialDisplayValue);
-		u16 maxCounter   = mCurrentCounters < (s32)mMaxCounterLimit ? mMaxCounterLimit : mCurrentCounters;
+		mCurrentDigitNum = CalcKeta(mInitialDisplayValue);
 
-		setKetaSub(maxCounter, flag1, flag2);
-		if (maxCounter > mCounterLimit) {
-			maxCounter = mCounterLimit;
+		int digits = (int)mCurrentDigitNum < (s32)mMinDisplayDigitNum ? mMinDisplayDigitNum : (int)mCurrentDigitNum;
+
+		setKetaSub(digits, isUp, isDown);
+
+		u16 displayNum = digits;
+		if (displayNum > mMaxDisplayDigitNum) {
+			displayNum = mMaxDisplayDigitNum;
 		}
 
 		mPaneOffsetX = 0.0f;
 		mKetaScaleX  = 1.0f;
 
-		if (maxCounter >= 2) {
-			f32 temp = mPane12DistX * (maxCounter - 1) + mPaneSize.x;
+		if (displayNum >= 2) {
+			f32 temp = mPane12DistX * (displayNum - 1) + mPaneSize.x;
 			if (temp > mPane13DistX) {
 				mKetaScaleX  = mPane13DistX / temp;
-				mPaneOffsetX = mPaneSize.x * 0.5f * (1.0f - mKetaScaleX);
+				mPaneOffsetX = mPaneSize.x / 2 * (1.0f - mKetaScaleX);
 			}
 		}
 
@@ -746,47 +750,42 @@ void CallBack_CounterRV::setValue(bool flag1, bool flag2)
 
 		mPaneBounds.x = bounds->i.x;
 		mPaneBounds.y = bounds->i.y;
+		mPaneOffsetY  = 0.0f;
 		if (mCenteringMode == ECM_Unknown1) {
-			if (mCurrentCounters < mMaxCounterLimit) {
-				f32 x        = (mMaxCounterLimit - mCurrentCounters) * 0.5f;
-				mPaneOffsetY = (mKetaScaleX * mPane12DistX * -x);
+			if (mCurrentDigitNum < mMinDisplayDigitNum) {
+				// f32 x        = f32(mMinDisplayDigitNum - mCurrentDigitNum);
+				mPaneOffsetY = -(mKetaScaleX * (mPane12DistX * f32(mMinDisplayDigitNum - mCurrentDigitNum))) / 2;
 			}
 
-			mPaneAlpha = 0;
+			mZeroAlpha = 0;
+
 		} else if (mCenteringMode == ECM_UNKNOWN_2) {
-			if (mCurrentCounters < mMaxCounterLimit) {
-				f32 x        = -(mMaxCounterLimit - mCurrentCounters);
-				mPaneOffsetY = (mKetaScaleX * mPane12DistX * x);
+			if (mCurrentDigitNum < mMinDisplayDigitNum) {
+				f32 x        = -(mMinDisplayDigitNum - mCurrentDigitNum);
+				mPaneOffsetY = (mKetaScaleX * (mPane12DistX * f32(-(mMinDisplayDigitNum - mCurrentDigitNum))));
 			}
 
-			mPaneAlpha = 0;
+			mZeroAlpha = 0;
 		}
 
-		for (int i = 0; i < mCounterLimit; i++) {
-			J2DPicture* pane = mCounters[i]->mPicture;
+		for (int i = 0; i < mMaxDisplayDigitNum; i++) {
+			J2DPicture* pane = mCounterDigits[i]->getPicture();
 			if (pane) {
 				// Calculate the new x position
-				f32 newXPosition = static_cast<f32>(i) * (-mPane12DistX * mKetaScaleX);
+				f32 offset = mPaneOffsetX + (static_cast<f32>(i) * (-mPane12DistX * mKetaScaleX) + mPaneOffsetY);
 
 				// Create a new box
-				JGeometry::TBox2f box;
-
-				// Set the initial x and y positions of the box
-				box.i.x = mPaneBounds.x + mPaneOffsetX + newXPosition;
-				box.i.y = mPaneBounds.y + mPaneOffsetY;
-
-				// Set the final x and y positions of the box
-				box.f.x = box.i.x + mPaneSize.x;
-				box.f.y = box.i.y + mPaneSize.y;
+				JGeometry::TBox2f box(mPaneBounds.x + offset, mPaneBounds.y, offset + (mPaneBounds.x + mPaneSize.x),
+				                      mPaneBounds.y + mPaneSize.y);
 
 				// Place the pane at the calculated box position
 				pane->place(box);
 
-				if (mIsPuyoAnimZero) {
+				if (mIsPuyoAnim) {
 					pane->setBasePosition(J2DPOS_Center);
-					CounterKeta* keta = mCounters[i];
-					keta->mSize.x     = mKetaScaleX;
-					keta->mSize.y     = mPaneScale.y;
+					CounterKeta* keta = mCounterDigits[i];
+					keta->mSize       = Vector2f(mKetaScaleX, mPaneScale.y);
+
 				} else {
 					pane->setBasePosition((J2DBasePosition)mBasePosition);
 					pane->updateScale(mKetaScaleX, mPaneScale.y);
@@ -799,290 +798,6 @@ void CallBack_CounterRV::setValue(bool flag1, bool flag2)
 			}
 		}
 	}
-	/*
-stwu     r1, -0x80(r1)
-mflr     r0
-stw      r0, 0x84(r1)
-stfd     f31, 0x70(r1)
-psq_st   f31, 120(r1), 0, qr0
-stfd     f30, 0x60(r1)
-psq_st   f30, 104(r1), 0, qr0
-stfd     f29, 0x50(r1)
-psq_st   f29, 88(r1), 0, qr0
-stw      r31, 0x4c(r1)
-stw      r30, 0x48(r1)
-stw      r29, 0x44(r1)
-stw      r28, 0x40(r1)
-mr       r31, r3
-mr       r30, r4
-lbz      r0, 0x87(r3)
-mr       r28, r5
-cmplwi   r0, 0
-bne      lbl_8030C444
-lbz      r0, 0x86(r31)
-cmplwi   r0, 0
-beq      lbl_8030C0E8
-li       r0, 0
-stw      r0, 0x24(r31)
-stw      r0, 0x28(r31)
-
-lbl_8030C0E8:
-lwz      r3, 0x24(r31)
-bl       CalcKeta__Q22og6ScreenFUl
-sth      r3, 0x2c(r31)
-lhz      r29, 0x2c(r31)
-lhz      r0, 0x30(r31)
-cmpw     r29, r0
-bge      lbl_8030C108
-mr       r29, r0
-
-lbl_8030C108:
-mr       r3, r31
-mr       r4, r29
-mr       r5, r30
-mr       r6, r28
-bl       setKetaSub__Q32og6Screen18CallBack_CounterRVFibb
-lhz      r0, 0x2e(r31)
-clrlwi   r3, r29, 0x10
-cmplw    r3, r0
-ble      lbl_8030C130
-mr       r3, r0
-
-lbl_8030C130:
-lfs      f0, lbl_8051D6A0@sda21(r2)
-clrlwi   r3, r3, 0x10
-lfs      f4, lbl_8051D6B0@sda21(r2)
-cmplwi   r3, 2
-stfs     f0, 0xa4(r31)
-stfs     f4, 0x3c(r31)
-blt      lbl_8030C1A8
-addi     r3, r3, -1
-lis      r0, 0x4330
-xoris    r3, r3, 0x8000
-stw      r0, 0x30(r1)
-lfd      f2, lbl_8051D6A8@sda21(r2)
-stw      r3, 0x34(r1)
-lfs      f3, 0x34(r31)
-lfd      f1, 0x30(r1)
-lfs      f0, 0x48(r31)
-fsubs    f1, f1, f2
-lfs      f2, 0x38(r31)
-fmadds   f0, f3, f1, f0
-fcmpo    cr0, f0, f2
-ble      lbl_8030C1A8
-fdivs    f0, f2, f0
-lfs      f1, lbl_8051D6C8@sda21(r2)
-stfs     f0, 0x3c(r31)
-lfs      f2, 0x48(r31)
-lfs      f0, 0x3c(r31)
-fmuls    f1, f2, f1
-fsubs    f0, f4, f0
-fmuls    f0, f1, f0
-stfs     f0, 0xa4(r31)
-
-lbl_8030C1A8:
-lwz      r4, 0x6c(r31)
-addi     r3, r1, 0x14
-lwz      r12, 0(r4)
-lfs      f31, 0xb8(r4)
-lwz      r12, 0x138(r12)
-lfs      f30, 0xbc(r4)
-lfs      f29, 0xc0(r4)
-mtctr    r12
-bctrl
-lwz      r4, 0x6c(r31)
-addi     r3, r1, 0x10
-lwz      r0, 0x14(r1)
-lwz      r12, 0(r4)
-stw      r0, 0x1c(r1)
-lwz      r12, 0x134(r12)
-mtctr    r12
-bctrl
-lwz      r0, 0x10(r1)
-lwz      r3, 0x6c(r31)
-stw      r0, 0x18(r1)
-bl       getBounds__7J2DPaneFv
-lfs      f1, 0(r3)
-lfs      f0, lbl_8051D6A0@sda21(r2)
-stfs     f1, 0x58(r31)
-lfs      f1, 4(r3)
-stfs     f1, 0x5c(r31)
-stfs     f0, 0xa0(r31)
-lwz      r0, 0x8c(r31)
-cmpwi    r0, 1
-bne      lbl_8030C27C
-lhz      r0, 0x2c(r31)
-lhz      r3, 0x30(r31)
-cmplw    r0, r3
-bge      lbl_8030C270
-subf     r3, r0, r3
-lis      r0, 0x4330
-xoris    r3, r3, 0x8000
-stw      r0, 0x30(r1)
-lfd      f1, lbl_8051D6A8@sda21(r2)
-stw      r3, 0x34(r1)
-lfs      f2, 0x34(r31)
-lfd      f0, 0x30(r1)
-lfs      f3, 0x3c(r31)
-fsubs    f1, f0, f1
-lfs      f0, lbl_8051D6C8@sda21(r2)
-fmuls    f1, f2, f1
-fmuls    f1, f3, f1
-fneg     f1, f1
-fmuls    f0, f1, f0
-stfs     f0, 0xa0(r31)
-
-lbl_8030C270:
-li       r0, 0
-stb      r0, 0x90(r31)
-b        lbl_8030C2D4
-
-lbl_8030C27C:
-cmpwi    r0, 2
-bne      lbl_8030C2D4
-lhz      r0, 0x2c(r31)
-lhz      r3, 0x30(r31)
-cmplw    r0, r3
-bge      lbl_8030C2CC
-subf     r3, r0, r3
-lis      r0, 0x4330
-neg      r3, r3
-stw      r0, 0x30(r1)
-xoris    r0, r3, 0x8000
-lfd      f1, lbl_8051D6A8@sda21(r2)
-stw      r0, 0x34(r1)
-lfs      f2, 0x34(r31)
-lfd      f0, 0x30(r1)
-lfs      f3, 0x3c(r31)
-fsubs    f0, f0, f1
-fmuls    f0, f2, f0
-fmuls    f0, f3, f0
-stfs     f0, 0xa0(r31)
-
-lbl_8030C2CC:
-li       r0, 0
-stb      r0, 0x90(r31)
-
-lbl_8030C2D4:
-li       r28, 0
-li       r29, 0
-b        lbl_8030C438
-
-lbl_8030C2E0:
-lwz      r3, 0x7c(r31)
-lwzx     r3, r3, r29
-lwz      r30, 0(r3)
-cmplwi   r30, 0
-beq      lbl_8030C430
-xoris    r3, r28, 0x8000
-lfs      f0, 0x34(r31)
-lis      r0, 0x4330
-stw      r3, 0x34(r1)
-fneg     f1, f0
-lfs      f0, 0x3c(r31)
-stw      r0, 0x30(r1)
-mr       r3, r30
-lfd      f4, lbl_8051D6A8@sda21(r2)
-addi     r4, r1, 0x20
-lfd      f3, 0x30(r1)
-fmuls    f2, f1, f0
-lfs      f1, 0xa0(r31)
-fsubs    f3, f3, f4
-lfs      f4, 0xa4(r31)
-lfs      f5, 0x58(r31)
-lfs      f0, 0x48(r31)
-fmadds   f2, f3, f2, f1
-lfs      f3, 0x5c(r31)
-lfs      f1, 0x4c(r31)
-fadds    f0, f5, f0
-fadds    f4, f4, f2
-stfs     f3, 0x24(r1)
-fadds    f2, f3, f1
-fadds    f1, f4, f0
-fadds    f0, f5, f4
-stfs     f2, 0x2c(r1)
-stfs     f1, 0x28(r1)
-stfs     f0, 0x20(r1)
-bl       "place__7J2DPaneFRCQ29JGeometry8TBox2<f>"
-lbz      r0, 0x84(r31)
-cmplwi   r0, 0
-beq      lbl_8030C3A0
-mr       r3, r30
-li       r4, 4
-bl       setBasePosition__7J2DPaneF15J2DBasePosition
-lwz      r3, 0x7c(r31)
-lfs      f1, 0x44(r31)
-lwzx     r3, r3, r29
-lfs      f0, 0x3c(r31)
-stfs     f0, 0xc(r3)
-stfs     f1, 0x10(r3)
-b        lbl_8030C3D0
-
-lbl_8030C3A0:
-lwz      r4, 0x60(r31)
-mr       r3, r30
-bl       setBasePosition__7J2DPaneF15J2DBasePosition
-lfs      f1, 0x44(r31)
-mr       r3, r30
-lfs      f0, 0x3c(r31)
-stfs     f0, 0xcc(r30)
-stfs     f1, 0xd0(r30)
-lwz      r12, 0(r30)
-lwz      r12, 0x2c(r12)
-mtctr    r12
-bctrl
-
-lbl_8030C3D0:
-stfs     f31, 0xb8(r30)
-mr       r3, r30
-stfs     f30, 0xbc(r30)
-stfs     f29, 0xc0(r30)
-lwz      r12, 0(r30)
-lwz      r12, 0x2c(r12)
-mtctr    r12
-bctrl
-lwz      r0, 0x1c(r1)
-mr       r3, r30
-addi     r4, r1, 0xc
-stw      r0, 0xc(r1)
-lwz      r12, 0(r30)
-lwz      r12, 0x12c(r12)
-mtctr    r12
-bctrl
-lwz      r0, 0x18(r1)
-mr       r3, r30
-addi     r4, r1, 8
-stw      r0, 8(r1)
-lwz      r12, 0(r30)
-lwz      r12, 0x128(r12)
-mtctr    r12
-bctrl
-
-lbl_8030C430:
-addi     r29, r29, 4
-addi     r28, r28, 1
-
-lbl_8030C438:
-lhz      r0, 0x2e(r31)
-cmpw     r28, r0
-blt      lbl_8030C2E0
-
-lbl_8030C444:
-psq_l    f31, 120(r1), 0, qr0
-lfd      f31, 0x70(r1)
-psq_l    f30, 104(r1), 0, qr0
-lfd      f30, 0x60(r1)
-psq_l    f29, 88(r1), 0, qr0
-lfd      f29, 0x50(r1)
-lwz      r31, 0x4c(r1)
-lwz      r30, 0x48(r1)
-lwz      r29, 0x44(r1)
-lwz      r0, 0x84(r1)
-lwz      r28, 0x40(r1)
-mtlr     r0
-addi     r1, r1, 0x80
-blr
-	*/
 }
 
 /**
@@ -1124,11 +839,11 @@ void CallBack_CounterRV::draw(Graphics&, J2DGrafContext&) { }
  * @note Address: 0x8030C530
  * @note Size: 0xD8
  */
-CallBack_CounterRV* setCallBack_CounterRV(P2DScreen::Mgr* screen, u64 tag1, u64 tag2, u64 tag3, u32* data, u16 flag1, u16 flag2,
+CallBack_CounterRV* setCallBack_CounterRV(P2DScreen::Mgr* screen, u64 tag1, u64 tag2, u64 tag3, u32* countPtr, u16 maxDigits, u16 minDigits,
                                           bool isPuyo, JKRArchive* arc)
 {
-	CallBack_CounterRV* counter = new CallBack_CounterRV(const_cast<char**>(SujiTex32), flag1, flag2, arc);
-	counter->init(screen, tag1, tag2, tag3, data, true);
+	CallBack_CounterRV* counter = new CallBack_CounterRV(const_cast<char**>(SujiTex32), maxDigits, minDigits, arc);
+	counter->init(screen, tag1, tag2, tag3, countPtr, true);
 	counter->mIsPuyoAnim = isPuyo;
 	screen->addCallBack(tag1, counter);
 	return counter;
@@ -1138,18 +853,19 @@ CallBack_CounterRV* setCallBack_CounterRV(P2DScreen::Mgr* screen, u64 tag1, u64 
  * @note Address: 0x8030C608
  * @note Size: 0x17C
  */
-CallBack_CounterRV* setCallBack_CounterRV(P2DScreen::Mgr* mgr, u64 tag, u32* data, u16 flag1, bool flag2, bool isPuyo, JKRArchive* arc)
+CallBack_CounterRV* setCallBack_CounterRV(P2DScreen::Mgr* mgr, u64 tag, u32* countPtr, u16 maxDigits, bool hasMother, bool isPuyo,
+                                          JKRArchive* arc)
 {
-	u64 tag1 = maskTag(tag, 1, 1);
-	u64 tag2 = maskTag(tag, 1, 2);
-	u64 tag3 = tag2;
-	u16 a    = 1;
+	u64 tag1      = maskTag(tag, 1, 1);
+	u64 tag2      = maskTag(tag, 1, 2);
+	u64 tag3      = tag2;
+	u16 minDigits = 1;
 
 	for (int i = 3; i <= 10; i++) {
 		u64 tag4      = maskTag(tag, 1, i);
 		J2DPane* pane = mgr->search(tag4);
 		if (!pane) {
-			a = i - 1;
+			minDigits = i - 1;
 			break;
 		}
 
@@ -1157,8 +873,8 @@ CallBack_CounterRV* setCallBack_CounterRV(P2DScreen::Mgr* mgr, u64 tag, u32* dat
 		pane->hide();
 	}
 
-	CallBack_CounterRV* counter = new CallBack_CounterRV(const_cast<char**>(SujiTex32), flag1, a, arc);
-	counter->init(mgr, tag1, tag2, tag2, data, flag2);
+	CallBack_CounterRV* counter = new CallBack_CounterRV(const_cast<char**>(SujiTex32), maxDigits, minDigits, arc);
+	counter->init(mgr, tag1, tag2, tag2, countPtr, hasMother);
 	counter->mIsPuyoAnim = isPuyo;
 	mgr->addCallBack(tag1, counter);
 	return counter;
@@ -1283,28 +999,29 @@ void setCallBack_CounterRV2(P2DScreen::Mgr*, u64, u32*, u16, bool, bool, JKRArch
  * @note Address: 0x8030C784
  * @note Size: 0x18C
  */
-CallBack_CounterRV* setCallBack_CounterRV(P2DScreen::Mgr* mgr, u64 tag, u32 data, u16 flag1, bool isPuyo, bool flag2, JKRArchive* arc)
+CallBack_CounterRV* setCallBack_CounterRV(P2DScreen::Mgr* mgr, u64 tag, u32 value, u16 maxDigits, bool isPuyo, bool hasMother,
+                                          JKRArchive* arc)
 {
-	u32* ptr = new u32(data);
+	u32* countPtr = new u32(value);
 
-	u64 tag1 = maskTag(tag, 1, 1);
-	u64 tag2 = maskTag(tag, 1, 2);
-	u64 tag3 = tag2;
-	u16 a    = 1;
+	u64 tag1      = maskTag(tag, 1, 1);
+	u64 tag2      = maskTag(tag, 1, 2);
+	u64 tag3      = tag2;
+	u16 minDigits = 1;
 
 	for (int i = 3; i <= 10; i++) {
 		u64 tag4      = maskTag(tag, 1, i);
 		J2DPane* pane = mgr->search(tag4);
 		if (!pane) {
-			a = i - 1;
+			minDigits = i - 1;
 			break;
 		}
 		tag3 = tag4;
 		pane->hide();
 	}
 
-	CallBack_CounterRV* counter = new CallBack_CounterRV(const_cast<char**>(SujiTex32), flag1, a, arc);
-	counter->init(mgr, tag1, tag2, tag3, ptr, flag2);
+	CallBack_CounterRV* counter = new CallBack_CounterRV(const_cast<char**>(SujiTex32), maxDigits, minDigits, arc);
+	counter->init(mgr, tag1, tag2, tag3, countPtr, hasMother);
 	counter->mIsPuyoAnim = isPuyo;
 	mgr->addCallBack(tag1, counter);
 	return counter;

@@ -769,8 +769,8 @@ TCounterRV::TCounterRV(char** a1, u16 a2, u16 a3, JKRArchive* arc)
     , _B1(false)
 {
 	setColor(255);
-	mEfxCountKiras = new efx2d::T2DCountKira*[mCounterLimit];
-	for (int i = 0; i < mCounterLimit; i++) {
+	mEfxCountKiras = new efx2d::T2DCountKira*[mMaxDisplayDigitNum];
+	for (int i = 0; i < mMaxDisplayDigitNum; i++) {
 		mEfxCountKiras[i] = new efx2d::T2DCountKira;
 	}
 	setPuyoAnim(false);
@@ -783,7 +783,7 @@ TCounterRV::TCounterRV(char** a1, u16 a2, u16 a3, JKRArchive* arc)
 void TCounterRV::update()
 {
 	og::Screen::CallBack_CounterRV::update();
-	for (int i = 0; i < mCounterLimit; i++) {
+	for (int i = 0; i < mMaxDisplayDigitNum; i++) {
 		J2DPicture* pic = getKetaPicture(i);
 		P2ASSERTLINE(557, pic);
 		pic->setWhite(mColor);
@@ -801,7 +801,7 @@ void TCounterRV::setValue(bool flag1, bool flag2)
 		setPuyoAnim(true);
 		u16 max = og::Screen::CalcKeta(mInitialDisplayValue);
 		for (int i = 0; i < max; i++) {
-			mCounters[i]->mScaleMgr->up(0.4f, 50.0f, 0.8f, 0.05f * f32(max - i));
+			mCounterDigits[i]->mScaleMgr->up(0.4f, 50.0f, 0.8f, 0.05f * f32(max - i));
 		}
 	} else {
 		og::Screen::CallBack_CounterRV::setValue(flag1, flag2);
@@ -815,7 +815,7 @@ void TCounterRV::setValue(bool flag1, bool flag2)
 void TCounterRV::createKiraEffect(f32 scale, int max)
 {
 	for (int i = 0; i < max; i++) {
-		J2DPicture* pic = mCounters[i]->mPicture;
+		J2DPicture* pic = mCounterDigits[i]->mPicture;
 		P2ASSERTLINE(597, pic);
 		pic->setBasePosition(J2DPOS_Center);
 		Vector2f pos;
@@ -833,7 +833,7 @@ void TCounterRV::createKiraEffect(f32 scale, int max)
  */
 void TCounterRV::fadeKiraEffect()
 {
-	for (int j = 0; j < mCounterLimit; j++) {
+	for (int j = 0; j < mMaxDisplayDigitNum; j++) {
 		P2ASSERTLINE(619, mEfxCountKiras[j]);
 		mEfxCountKiras[j]->fade();
 	}
@@ -857,7 +857,7 @@ void TCounterRV::reset()
 	mEnabled = false;
 	_B1      = false;
 	setPuyoAnim(false);
-	for (int i = 0; i < mCounterLimit; i++) {
+	for (int i = 0; i < mMaxDisplayDigitNum; i++) {
 		P2ASSERTLINE(619, mEfxCountKiras[i]);
 		mEfxCountKiras[i]->fade();
 	}
@@ -3706,7 +3706,7 @@ void TChallengeResult::updateDemo()
 		}
 		if (check) {
 			for (int i = 0; i < 3; i++) {
-				mOnyonMovePane[i]->startStick(mCounter1->mCounters[0]->mPicture);
+				mOnyonMovePane[i]->startStick(mCounter1->mCounterDigits[0]->mPicture);
 			}
 			PSSystem::spSysIF->playSystemSe(PSSE_SY_CHALLENGE_ONY_MOVE, 0);
 			mDemoState = 3;
@@ -3741,7 +3741,7 @@ void TChallengeResult::updateDemo()
 				if (mOnyonMovePane[i]->mCounter > 0) {
 					P2ASSERTLINE(1977, mRankInSlot >= 0);
 
-					J2DPicture* pic  = mHighScoreCounter[mRankInSlot]->mCounters[0]->mPicture;
+					J2DPicture* pic  = mHighScoreCounter[mRankInSlot]->mCounterDigits[0]->mPicture;
 					TMovePane* mpane = mOnyonMovePane[i];
 					f32 x            = _168._00.x + pic->mGlobalMtx[1][3];
 					mpane->mOffset   = Vector2f(x, pic->mGlobalMtx[0][3] - 1000.0f);

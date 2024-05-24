@@ -61,7 +61,7 @@ void CallBack_CounterDay::setValue()
 		CallBack_CounterRV::setValue(false, false);
 	}
 
-	J2DPicture* picture = mCounters[0]->mPicture;
+	J2DPicture* picture = mCounterDigits[0]->mPicture;
 	mDayPic->changeTexture(picture->getTexture(0)->mTexInfo, 0);
 
 	if (mIsHidden) {
@@ -101,8 +101,8 @@ void CallBack_CounterDay::show()
 void CallBack_CounterDay::hide()
 {
 	mIsHidden = true;
-	for (int i = 0; i < mCounterLimit; i++) {
-		mCounters[i]->mPicture->hide();
+	for (int i = 0; i < mMaxDisplayDigitNum; i++) {
+		mCounterDigits[i]->mPicture->hide();
 	}
 	mDayPic->hide();
 }

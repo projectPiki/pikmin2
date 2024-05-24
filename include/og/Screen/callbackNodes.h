@@ -37,6 +37,8 @@ struct CounterKeta {
 	void setSuji(ResTIMG**, u32);
 	void calcScale();
 
+	inline J2DPicture* getPicture() { return mPicture; }
+
 	J2DPicture* mPicture; // _00
 	u32 mTextureIndex;    // _04
 	ScaleMgr* mScaleMgr;  // _08
@@ -66,33 +68,32 @@ struct CallBack_CatchPiki : public P2DScreen::CallBackNode {
 struct CallBack_CounterRV : public P2DScreen::CallBackNode {
 	enum EnumCenteringMode { ECM_Unknown0 = 0, ECM_Unknown1 = 1, ECM_UNKNOWN_2 = 2 };
 
-	CallBack_CounterRV(char**, u16, u16, JKRArchive*);
+	CallBack_CounterRV(char** charTexturePaths, u16 maxDigits, u16 minDigits, JKRArchive* arc);
 
-	virtual ~CallBack_CounterRV() { }              // _08 (weak)
-	virtual void update();                         // _10
-	virtual void draw(Graphics&, J2DGrafContext&); // _14
-	virtual void init(J2DScreen*, u64, u64, u64, u32*,
-	                  bool);           // _1C
-	virtual void show();               // _20
-	virtual void hide();               // _24
-	virtual void setValue(bool, bool); // _28
-	virtual void setValue();           // _2C (weak)
+	virtual ~CallBack_CounterRV() { }                                                                  // _08 (weak)
+	virtual void update();                                                                             // _10
+	virtual void draw(Graphics& gfx, J2DGrafContext& graf);                                            // _14
+	virtual void init(J2DScreen* screen, u64 tag1, u64 tag2, u64 tag3, u32* countPtr, bool hasMother); // _1C
+	virtual void show();                                                                               // _20
+	virtual void hide();                                                                               // _24
+	virtual void setValue(bool isUp, bool isDown);                                                     // _28
+	virtual void setValue();                                                                           // _2C (weak)
 
-	inline int getMaxCounter() { return (mCurrentCounters >= mCounterLimit) ? mCounterLimit : mCurrentCounters; }
+	inline int getMaxCounter() { return (mCurrentDigitNum >= mMaxDisplayDigitNum) ? mMaxDisplayDigitNum : mCurrentDigitNum; }
 
 	J2DPane* getMotherPane();
-	void setBlind(bool);
-	void setCenteringMode(EnumCenteringMode);
-	void setCounterUpDown(int, bool, bool);
-	void setKetaSub(int, bool, bool);
-	void setPuyoAnim(bool);
-	void setPuyoAnimZero(bool);
+	void setBlind(bool isBlind);
+	void setCenteringMode(EnumCenteringMode centerMode);
+	void setCounterUpDown(int digitID, bool isUp, bool isDown);
+	void setKetaSub(int displayDigitNum, bool isUp, bool isDown);
+	void setPuyoAnim(bool isPuyoAnim);
+	void setPuyoAnimZero(bool isPuyoAnimZero);
 	void setRandMode(bool);
 	void setValPtr(u32*);
-	void setZeroAlpha(u8);
-	void startPuyoUp(f32);
+	void setZeroAlpha(u8 alpha);
+	void startPuyoUp(f32 scaleDelayFactor);
 
-	inline J2DPicture* getKetaPicture(int i) { return mCounters[i]->mPicture; }
+	inline J2DPicture* getKetaPicture(int i) { return mCounterDigits[i]->mPicture; }
 
 	// _00     = VTBL
 	// _00-_1C = P2DScreen::CallBackNode
@@ -100,9 +101,9 @@ struct CallBack_CounterRV : public P2DScreen::CallBackNode {
 	u32* mCountPtr;                   // _20
 	u32 mInitialDisplayValue;         // _24
 	u32 mCurrDisplayValue;            // _28
-	u16 mCurrentCounters;             // _2C
-	u16 mCounterLimit;                // _2E
-	u16 mMaxCounterLimit;             // _30
+	u16 mCurrentDigitNum;             // _2C
+	u16 mMaxDisplayDigitNum;          // _2E
+	u16 mMinDisplayDigitNum;          // _30
 	f32 mPane12DistX;                 // _34
 	f32 mPane13DistX;                 // _38
 	f32 mKetaScaleX;                  // _3C
@@ -117,7 +118,7 @@ struct CallBack_CounterRV : public P2DScreen::CallBackNode {
 	J2DPane* mPic2;                   // _70
 	J2DPane* mPic3;                   // _74
 	J2DPane* mMotherPane;             // _78
-	CounterKeta** mCounters;          // _7C
+	CounterKeta** mCounterDigits;     // _7C
 	ResTIMG** mImgResources;          // _80
 	bool mIsPuyoAnim;                 // _84
 	bool mIsPuyoAnimZero;             // _85
@@ -136,14 +137,16 @@ struct CallBack_CounterRV : public P2DScreen::CallBackNode {
 	static struct StaticValues {
 		inline StaticValues()
 		{
-			_00 = 0.5f;
-			_04 = 30.0f;
-			_08 = 0.8f;
+			// the funny thing is, these are just the default values.
+			// they should've just called mScaleMgr->up(f32), but that's stripped
+			mScaleRestoreAmplitude = 0.5f;
+			mScaleAngularFreq      = 30.0f;
+			mScaleMaxRestoreTime   = 0.8f;
 		}
 
-		f32 _00; // _00
-		f32 _04; // _04
-		f32 _08; // _08
+		f32 mScaleRestoreAmplitude; // _00
+		f32 mScaleAngularFreq;      // _04
+		f32 mScaleMaxRestoreTime;   // _08
 	} msVal;
 };
 
@@ -180,7 +183,7 @@ struct CallBack_CounterSlot : public CallBack_CounterRV {
 
 	inline void hidePicture(int i)
 	{
-		J2DPicture* pic = mCounters[i]->mPicture;
+		J2DPicture* pic = mCounterDigits[i]->mPicture;
 		pic->hide();
 	}
 
