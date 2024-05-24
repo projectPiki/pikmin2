@@ -1719,35 +1719,34 @@ lbl_802C4F80:
 	*/
 }
 
+inline f32 clampRotation(f32 value)
+{
+	f32 difference = 0.0f;
+	if (difference >= value) {
+		if (TAU - (difference - value) < (difference - value)) {
+			difference -= TAU;
+		}
+	} else if (TAU - (value - difference) < (value - difference)) {
+		difference += TAU;
+	}
+
+	return difference;
+}
+
 /**
  * @note Address: 0x802C4FBC
  * @note Size: 0x178
  */
 bool HoudaiShotGunMgr::returnShotGunRotation()
 {
-	f32 val = 0.0f;
-	if (val >= mYaw) {
-		if (TAU - (val - mYaw) < (val - mYaw)) {
-			val -= TAU;
-		}
-	} else if (TAU - (mYaw - val) < (mYaw - val)) {
-		val += TAU;
-	}
+	f32 yawDifference = clampRotation(mYaw);
+	f32 newYaw        = absVal(mYaw - yawDifference) < 0.025f ? yawDifference : (mYaw < yawDifference) ? mYaw + 0.025f : mYaw - 0.025f;
+	mYaw              = newYaw;
 
-	mYaw = (absVal(mYaw - val) < 0.025f) ? val : (mYaw < val) ? mYaw + 0.025f : mYaw - 0.025f;
+	f32 pitchDifference = clampRotation(mPitch);
+	mPitch = absVal(mPitch - pitchDifference) < 0.025f ? pitchDifference : (mPitch < pitchDifference) ? mPitch + 0.025f : mPitch - 0.025f;
 
-	f32 val3 = 0.0f;
-	if (val3 >= mPitch) {
-		if (TAU - (val3 - mPitch) < (val3 - mPitch)) {
-			val3 -= TAU;
-		}
-	} else if (TAU - (mPitch - val3) < (mPitch - val3)) {
-		val3 += TAU;
-	}
-
-	mPitch = (absVal(mPitch - val3) < 0.025f) ? val3 : (mPitch < val3) ? mPitch + 0.025f : mPitch - 0.025f;
-
-	if (absVal(mYaw - val) < 0.01f && absVal(mPitch - val3) < 0.01f) {
+	if (absVal(mYaw - yawDifference) < 0.01f && absVal(mPitch - pitchDifference) < 0.01f) {
 		return true;
 	}
 
