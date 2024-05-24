@@ -228,40 +228,17 @@ struct DispMemberChallenge2P : public DispMemberBase {
 
 // size 0x38
 struct DispMemberContena : public DispMemberBase {
-	inline DispMemberContena()
-	{
-		mInOnion          = 100;
-		mCurrInMap        = 1000;
-		mNewInPartyNum    = 0;
-		mMaxPikiField     = 20;
-		mInParty2         = 50;
-		mOnMapMinusWild   = 60;
-		mMaxPikiMinusWild = 200;
-		mOnyonID          = -1;
-		mInTransfer       = 0;
-		mExitSoundType    = 0;
-		mState            = 0;
-		mResult           = 0;
-	}
+	inline DispMemberContena() { }
 
 	virtual u32 getSize() { return sizeof(DispMemberContena); } // _08 (weak)
 	virtual u32 getOwnerID() { return OWNER_OGA; }              // _0C (weak)
 	virtual u64 getMemberID() { return MEMBER_CONTENA; }        // _10 (weak)
 
+	inline DataContena* getDataContena() { return &mDataContena; }
+
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase
-	int mOnyonID;          // _08
-	u32 mInOnion;          // _0C
-	int mCurrInMap;        // _10
-	u32 mNewInPartyNum;    // _14
-	int mMaxPikiField;     // _18
-	int mInParty2;         // _1C
-	u32 mOnMapMinusWild;   // _20
-	int mMaxPikiMinusWild; // _24
-	u32 mInTransfer;       // _28
-	bool mExitSoundType;   // _2C
-	int mState;            // _30
-	s16 mResult;           // _34
+	DataContena mDataContena; // _08
 };
 
 // size 0x10
@@ -677,11 +654,11 @@ struct DispMemberUfoMenu : public DispMemberBase {
 struct DispMemberUfoGroup : public DispMemberBase {
 	inline DispMemberUfoGroup()
 	{
-		mHasWhite          = false;
-		mHasPurple         = false;
-		mContena1.mOnyonID = 4;
-		mContena2.mOnyonID = 3;
-		mHasPaidDebt       = false;
+		mHasWhite                       = false;
+		mHasPurple                      = false;
+		mContena1.mDataContena.mOnyonID = 4;
+		mContena2.mDataContena.mOnyonID = 3;
+		mHasPaidDebt                    = false;
 	}
 
 	virtual u32 getSize() { return sizeof(DispMemberUfoGroup); } // _08 (weak)

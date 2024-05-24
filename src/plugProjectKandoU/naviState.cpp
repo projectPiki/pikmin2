@@ -4824,31 +4824,31 @@ void NaviContainerState::init(Navi* navi, StateArg* stateArg)
 	if (mOnyon->mOnyonType == ONYON_TYPE_SHIP) {
 		og::Screen::DispMemberUfoGroup disp;
 
-		disp.mContena1.mOnyonID = White;
-		int max                 = playData->mPikiContainer.getColorSum(White) - mOnyon->mWhitesToWithdraw;
+		disp.mContena1.mDataContena.mOnyonID = White;
+		int max                              = playData->mPikiContainer.getColorSum(White) - mOnyon->mWhitesToWithdraw;
 		if (max < 0) {
 			max = 0;
 		}
-		disp.mContena1.mInOnion          = max;
-		disp.mContena1.mCurrInMap        = 128000;
-		disp.mContena1.mNewInPartyNum    = GameStat::formationPikis.getCount(navi->mNaviIndex, White);
-		disp.mContena1.mMaxPikiField     = 100;
-		disp.mContena1.mInParty2         = GameStat::formationPikis.getTotal(navi->mNaviIndex);
-		disp.mContena1.mOnMapMinusWild   = GameStat::getMapPikmins(AllPikminCalcs) - GameStat::getZikatuPikmins(AllPikminCalcs);
-		disp.mContena1.mMaxPikiMinusWild = 100 - GameStat::getZikatuPikmins(AllPikminCalcs);
+		disp.mContena1.mDataContena.mInOnionCount   = max;
+		disp.mContena1.mDataContena.mCurrField      = 128000;
+		disp.mContena1.mDataContena.mInSquadCount   = GameStat::formationPikis.getCount(navi->mNaviIndex, White);
+		disp.mContena1.mDataContena.mMaxPikiOnField = 100;
+		disp.mContena1.mDataContena.mInParty2       = GameStat::formationPikis.getTotal(navi->mNaviIndex);
+		disp.mContena1.mDataContena.mOnMapCount     = GameStat::getMapPikmins(AllPikminCalcs) - GameStat::getZikatuPikmins(AllPikminCalcs);
+		disp.mContena1.mDataContena.mMaxPikiCount   = 100 - GameStat::getZikatuPikmins(AllPikminCalcs);
 
-		disp.mContena2.mOnyonID = Purple;
-		max                     = playData->mPikiContainer.getColorSum(Purple) - mOnyon->mPurplesToWithdraw;
+		disp.mContena2.mDataContena.mOnyonID = Purple;
+		max                                  = playData->mPikiContainer.getColorSum(Purple) - mOnyon->mPurplesToWithdraw;
 		if (max < 0) {
 			max = 0;
 		}
-		disp.mContena2.mInOnion          = max;
-		disp.mContena2.mCurrInMap        = 128000;
-		disp.mContena2.mNewInPartyNum    = GameStat::formationPikis.getCount(navi->mNaviIndex, Purple);
-		disp.mContena2.mMaxPikiField     = 100;
-		disp.mContena2.mInParty2         = GameStat::formationPikis.getTotal(navi->mNaviIndex);
-		disp.mContena2.mOnMapMinusWild   = GameStat::getMapPikmins(AllPikminCalcs) - GameStat::getZikatuPikmins(AllPikminCalcs);
-		disp.mContena2.mMaxPikiMinusWild = 100 - GameStat::getZikatuPikmins(AllPikminCalcs);
+		disp.mContena2.mDataContena.mInOnionCount   = max;
+		disp.mContena2.mDataContena.mCurrField      = 128000;
+		disp.mContena2.mDataContena.mInSquadCount   = GameStat::formationPikis.getCount(navi->mNaviIndex, Purple);
+		disp.mContena2.mDataContena.mMaxPikiOnField = 100;
+		disp.mContena2.mDataContena.mInParty2       = GameStat::formationPikis.getTotal(navi->mNaviIndex);
+		disp.mContena2.mDataContena.mOnMapCount     = GameStat::getMapPikmins(AllPikminCalcs) - GameStat::getZikatuPikmins(AllPikminCalcs);
+		disp.mContena2.mDataContena.mMaxPikiCount   = 100 - GameStat::getZikatuPikmins(AllPikminCalcs);
 
 		disp.mHasWhite    = playData->hasContainer(White);
 		disp.mHasPurple   = playData->hasContainer(Purple);
@@ -4861,14 +4861,14 @@ void NaviContainerState::init(Navi* navi, StateArg* stateArg)
 	} else {
 		og::Screen::DispMemberContena disp;
 
-		disp.mOnyonID          = type;
-		disp.mInOnion          = playData->mPikiContainer.getColorSum(type);
-		disp.mCurrInMap        = 128000;
-		disp.mNewInPartyNum    = GameStat::formationPikis.getCount(navi->mNaviIndex, type);
-		disp.mMaxPikiField     = 100;
-		disp.mInParty2         = GameStat::formationPikis.getTotal(navi->mNaviIndex);
-		disp.mOnMapMinusWild   = GameStat::getMapPikmins(AllPikminCalcs) - GameStat::getZikatuPikmins(AllPikminCalcs);
-		disp.mMaxPikiMinusWild = 100 - GameStat::getZikatuPikmins(AllPikminCalcs);
+		disp.mDataContena.mOnyonID        = type;
+		disp.mDataContena.mInOnionCount   = playData->mPikiContainer.getColorSum(type);
+		disp.mDataContena.mCurrField      = 128000;
+		disp.mDataContena.mInSquadCount   = GameStat::formationPikis.getCount(navi->mNaviIndex, type);
+		disp.mDataContena.mMaxPikiOnField = 100;
+		disp.mDataContena.mInParty2       = GameStat::formationPikis.getTotal(navi->mNaviIndex);
+		disp.mDataContena.mOnMapCount     = GameStat::getMapPikmins(AllPikminCalcs) - GameStat::getZikatuPikmins(AllPikminCalcs);
+		disp.mDataContena.mMaxPikiCount   = 100 - GameStat::getZikatuPikmins(AllPikminCalcs);
 
 		mIsScreenOpen = Screen::gGame2DMgr->open_Contena(disp);
 	}

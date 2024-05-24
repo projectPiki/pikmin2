@@ -32,22 +32,10 @@ void ObjContena::setStartPos()
  */
 ObjContena::ObjContena(char const* name)
 {
-	mInOnionCount   = 100;
-	mCurrField      = 1000;
-	mInSquadCount   = 0;
-	mMaxPikiOnField = 20;
-	mInParty2       = 50;
-	mOnMapCount     = 60;
-	mMaxPikiCount   = 200;
-	mOnyonID        = -1;
-	mInTransfer     = 0;
-	mExitSoundType  = 0;
-	mDispState      = 0;
-	mDispResult     = 0;
-	mName           = name;
-	mDisp           = nullptr;
-	mContena        = nullptr;
-	mController     = nullptr;
+	mName       = name;
+	mDisp       = nullptr;
+	mContena    = nullptr;
+	mController = nullptr;
 
 	for (int i = 0; i < 10; i++) {
 		mAnimList[i] = nullptr;
@@ -63,7 +51,7 @@ ObjContena::ObjContena(char const* name)
 	mScreenState        = 0;
 	mMoveTime           = 0.5f;
 	mTimer0             = mMoveTime;
-	mDispState2         = 1;
+	mDispState          = 1;
 	mFuriko             = nullptr;
 	mMenuMoveAngle      = 0.0f;
 	mYAnalog            = 0.0f;
@@ -139,22 +127,11 @@ void ObjContena::doCreate(JKRArchive* arc)
 	}
 	og::Screen::DispMemberContena* disp2 = mDisp;
 
-	mOnyonID        = disp2->mOnyonID;
-	mInOnionCount   = disp2->mInOnion;
-	mCurrField      = disp2->mCurrInMap;
-	mInSquadCount   = disp2->mNewInPartyNum;
-	mMaxPikiOnField = disp2->mMaxPikiField;
-	mInParty2       = disp2->mInParty2;
-	mOnMapCount     = disp2->mOnMapMinusWild;
-	mMaxPikiCount   = disp2->mMaxPikiMinusWild;
-	mInTransfer     = disp2->mInTransfer;
-	mExitSoundType  = disp2->mExitSoundType;
-	mDispState      = disp2->mState;
-	mDispResult     = disp2->mResult;
-	mDisp->mState   = 0;
-	mContena        = new og::Screen::ContenaCounter(mDisp);
+	mDataContena               = disp2->mDataContena;
+	mDisp->mDataContena.mState = 0;
+	mContena                   = new og::Screen::ContenaCounter(mDisp);
 
-	switch (mDisp->mOnyonID) {
+	switch (mDisp->mDataContena.mOnyonID) {
 	case 0:
 		mContena->setblo("contena_b.blo", arc);
 		break;
@@ -261,7 +238,7 @@ void ObjContena::doCreate(JKRArchive* arc)
 	mScaleMgr3 = new og::Screen::ScaleMgr;
 	mScaleMgr4 = new og::Screen::ScaleMgr;
 
-	int type = mDisp->mOnyonID;
+	int type = mDisp->mDataContena.mOnyonID;
 	if (type == 3 || type == 4) {
 		J2DPane* pane1 = og::Screen::TagSearch(mContena, 'P1_1');
 		J2DPane* pane2 = og::Screen::TagSearch(mContena, 'P1_2');
@@ -281,7 +258,13 @@ void ObjContena::doCreate(JKRArchive* arc)
  */
 void ObjContena::tairetuOnOff()
 {
-	// UNUSED FUNCTION
+	for (int i = 0; i < mPikiPaneNum; i++) {
+		if (i + 1 <= mDisp->mDataContena.mInSquadCount) {
+			mPikiPaneList[i]->show();
+		} else {
+			mPikiPaneList[i]->hide();
+		}
+	}
 }
 
 /**
@@ -346,7 +329,7 @@ void ObjContena::setStickUpDown()
 void ObjContena::putinPiki(bool soundType)
 {
 	og::Screen::DispMemberContena* disp = mDisp;
-	if (disp->mCurrInMap <= disp->mInOnion) {
+	if (disp->mDataContena.mCurrField <= disp->mDataContena.mInOnionCount) {
 		if (mState == 1) {
 			if (!soundType) {
 				ogSound->setError();
@@ -359,7 +342,7 @@ void ObjContena::putinPiki(bool soundType)
 		return;
 	}
 
-	if (disp->mNewInPartyNum == 0) {
+	if (disp->mDataContena.mInSquadCount == 0) {
 		if (mState == 4) {
 			if (!soundType) {
 				ogSound->setError();
@@ -371,12 +354,12 @@ void ObjContena::putinPiki(bool soundType)
 		}
 	} else {
 		changeMessage(0);
-		disp->mInOnion++;
-		disp->mNewInPartyNum--;
-		disp->mInParty2--;
-		disp->mOnMapMinusWild--;
-		disp->mResult++;
-		disp->mInTransfer = (u16)abs(disp->mResult); // should be just abs
+		disp->mDataContena.mInOnionCount++;
+		disp->mDataContena.mInSquadCount--;
+		disp->mDataContena.mInParty2--;
+		disp->mDataContena.mOnMapCount--;
+		disp->mDataContena.mResult++;
+		disp->mDataContena.mInTransfer = (u16)abs(disp->mDataContena.mResult); // should be just abs
 		setStickUpDown();
 		if (mTimer1 <= 0.0f) {
 			mScaleArrow1->up();
@@ -395,7 +378,7 @@ void ObjContena::putinPiki(bool soundType)
 void ObjContena::takeoutPiki(bool soundType)
 {
 	og::Screen::DispMemberContena* disp = mDisp;
-	if (disp->mNewInPartyNum < disp->mMaxPikiField) {
+	if (disp->mDataContena.mInSquadCount < disp->mDataContena.mMaxPikiOnField) {
 	} else if (mState == 2) {
 		if (!soundType) {
 			ogSound->setError();
@@ -408,7 +391,7 @@ void ObjContena::takeoutPiki(bool soundType)
 		return;
 	}
 
-	if (disp->mInOnion == 0) {
+	if (disp->mDataContena.mInOnionCount == 0) {
 		if (mState == 3) {
 			if (!soundType) {
 				ogSound->setError();
@@ -420,7 +403,7 @@ void ObjContena::takeoutPiki(bool soundType)
 			setStickUp();
 			return;
 		}
-	} else if (disp->mOnMapMinusWild < disp->mMaxPikiMinusWild) {
+	} else if (disp->mDataContena.mOnMapCount < disp->mDataContena.mMaxPikiCount) {
 	} else if (mState == 5) {
 		if (!soundType) {
 			ogSound->setError();
@@ -434,12 +417,12 @@ void ObjContena::takeoutPiki(bool soundType)
 	}
 
 	changeMessage(0);
-	disp->mInOnion--;
-	disp->mNewInPartyNum++;
-	disp->mInParty2++;
-	disp->mOnMapMinusWild++;
-	disp->mResult--;
-	disp->mInTransfer = (u16)abs(disp->mResult);
+	disp->mDataContena.mInOnionCount--;
+	disp->mDataContena.mInSquadCount++;
+	disp->mDataContena.mInParty2++;
+	disp->mDataContena.mOnMapCount++;
+	disp->mDataContena.mResult--;
+	disp->mDataContena.mInTransfer = (u16)abs(disp->mDataContena.mResult);
 	setStickUpDown();
 	if (mTimer2 <= 0.0f) {
 		mScaleArrow2->up();
@@ -456,11 +439,10 @@ void ObjContena::takeoutPiki(bool soundType)
  */
 bool ObjContena::moveContena()
 {
-	bool ret                            = false;
-	og::Screen::DispMemberContena* disp = mDisp;
-	int* onyontype                      = &disp->mOnyonID;
-	JUT_ASSERTLINE(603, onyontype, "DataContena is not found!\n");
-	JUT_ASSERTLINE(607, *onyontype != -1, "Contena Type error!\n");
+	bool ret                      = false;
+	og::Screen::DataContena* data = &mDisp->mDataContena;
+	JUT_ASSERTLINE(603, data, "DataContena is not found!\n");
+	JUT_ASSERTLINE(607, data->mOnyonID != -1, "Contena Type error!\n");
 
 	if (mTimer1 > 0.0f) {
 		mTimer1 -= sys->mDeltaTime;
@@ -469,43 +451,31 @@ bool ObjContena::moveContena()
 		mTimer2 -= sys->mDeltaTime;
 	}
 
-	if (!disp->mState) {
-		disp->mState = 1;
+	if (!data->mState) {
+		data->mState = 1;
 	} else {
 		if (mController->getButtonDown() & Controller::PRESS_B) {
-			disp                    = mDisp;
-			disp->mOnyonID          = mOnyonID;
-			disp->mInOnion          = mInOnionCount;
-			disp->mCurrInMap        = mCurrField;
-			disp->mNewInPartyNum    = mInSquadCount;
-			disp->mMaxPikiField     = mMaxPikiOnField;
-			disp->mInParty2         = mInParty2;
-			disp->mOnMapMinusWild   = mOnMapCount;
-			disp->mMaxPikiMinusWild = mMaxPikiCount;
-			disp->mInTransfer       = mInTransfer;
-			disp->mExitSoundType    = mExitSoundType;
-			disp->mInTransfer       = mDispState;
-			disp->mResult           = mDispResult;
-			disp->mState            = 2;
-			mDispState2             = 3;
-			disp->mResult           = 0;
-			disp->mInTransfer       = 0;
-			if ((*onyontype == 3 || *onyontype == 4) && disp->mExitSoundType) {
+			mDisp->mDataContena = mDataContena;
+			data->mState        = 2;
+			mDispState          = 3;
+			data->mResult       = 0;
+			data->mInTransfer   = 0;
+			if ((data->mOnyonID == 3 || data->mOnyonID == 4) && data->mExitSoundType) {
 				ogSound->setCancel();
 			} else {
 				ogSound->setClose();
 			}
 			ret = true;
 		} else if (mController->getButtonDown() & Controller::PRESS_A) {
-			disp->mState = 2;
-			mDispState2  = 4;
+			data->mState = 2;
+			mDispState   = 4;
 			ogSound->setDecide();
 			ret = true;
 		}
 	}
 
-	if (disp->mState == 1) {
-		if (mController->getButtonDown() & Controller::PRESS_UP) {
+	if (data->mState == 1) {
+		if (mController->getButton() & Controller::PRESS_UP) {
 			switch (mScreenState) {
 			case 0:
 				mScreenState = 1;
@@ -524,7 +494,7 @@ bool ObjContena::moveContena()
 				mScreenState = 0;
 				break;
 			}
-		} else if (mController->getButtonDown() & Controller::PRESS_DOWN) {
+		} else if (mController->getButton() & Controller::PRESS_DOWN) {
 			switch (mScreenState) {
 			case 0:
 				mScreenState = 3;
@@ -548,261 +518,6 @@ bool ObjContena::moveContena()
 		}
 	}
 	return ret;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, lbl_8048EFE0@ha
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 0
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	stw      r28, 0x10(r1)
-	addi     r28, r4, lbl_8048EFE0@l
-	lwz      r3, 0x38(r3)
-	addic.   r30, r3, 8
-	bne      lbl_803210D4
-	addi     r3, r28, 0
-	addi     r5, r28, 0xd8
-	li       r4, 0x25b
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803210D4:
-	lwz      r0, 0(r30)
-	cmpwi    r0, -1
-	bne      lbl_803210F4
-	addi     r3, r28, 0
-	addi     r5, r28, 0xf4
-	li       r4, 0x25f
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803210F4:
-	lfs      f1, 0x140(r29)
-	lfs      f0, lbl_8051DC8C@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_80321114
-	lwz      r3, sys@sda21(r13)
-	lfs      f0, 0x54(r3)
-	fsubs    f0, f1, f0
-	stfs     f0, 0x140(r29)
-
-lbl_80321114:
-	lfs      f1, 0x144(r29)
-	lfs      f0, lbl_8051DC8C@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_80321134
-	lwz      r3, sys@sda21(r13)
-	lfs      f0, 0x54(r3)
-	fsubs    f0, f1, f0
-	stfs     f0, 0x144(r29)
-
-lbl_80321134:
-	lwz      r0, 0x28(r30)
-	cmpwi    r0, 0
-	bne      lbl_8032114C
-	li       r0, 1
-	stw      r0, 0x28(r30)
-	b        lbl_8032123C
-
-lbl_8032114C:
-	lwz      r3, 0x48(r29)
-	lwz      r3, 0x1c(r3)
-	rlwinm.  r0, r3, 0, 0x16, 0x16
-	beq      lbl_80321218
-	lwz      r6, 0x38(r29)
-	li       r4, 2
-	lwz      r5, 0xb8(r29)
-	li       r3, 3
-	li       r0, 0
-	stw      r5, 8(r6)
-	lwz      r5, 0xbc(r29)
-	stw      r5, 0xc(r6)
-	lwz      r5, 0xc0(r29)
-	stw      r5, 0x10(r6)
-	lwz      r5, 0xc4(r29)
-	stw      r5, 0x14(r6)
-	lwz      r5, 0xc8(r29)
-	stw      r5, 0x18(r6)
-	lwz      r5, 0xcc(r29)
-	stw      r5, 0x1c(r6)
-	lwz      r5, 0xd0(r29)
-	stw      r5, 0x20(r6)
-	lwz      r5, 0xd4(r29)
-	stw      r5, 0x24(r6)
-	lwz      r5, 0xd8(r29)
-	stw      r5, 0x28(r6)
-	lbz      r5, 0xdc(r29)
-	stb      r5, 0x2c(r6)
-	lwz      r5, 0xe0(r29)
-	stw      r5, 0x30(r6)
-	lha      r5, 0xe4(r29)
-	sth      r5, 0x34(r6)
-	stw      r4, 0x28(r30)
-	stw      r3, 0xe8(r29)
-	sth      r0, 0x2c(r30)
-	stw      r0, 0x20(r30)
-	lwz      r0, 0(r30)
-	cmpwi    r0, 3
-	beq      lbl_803211F0
-	cmpwi    r0, 4
-	bne      lbl_80321208
-
-lbl_803211F0:
-	lbz      r0, 0x24(r30)
-	cmplwi   r0, 0
-	beq      lbl_80321208
-	lwz      r3, ogSound__2og@sda21(r13)
-	bl       setCancel__Q22og5SoundFv
-	b        lbl_80321210
-
-lbl_80321208:
-	lwz      r3, ogSound__2og@sda21(r13)
-	bl       setClose__Q22og5SoundFv
-
-lbl_80321210:
-	li       r31, 1
-	b        lbl_8032123C
-
-lbl_80321218:
-	rlwinm.  r0, r3, 0, 0x17, 0x17
-	beq      lbl_8032123C
-	li       r3, 2
-	li       r0, 4
-	stw      r3, 0x28(r30)
-	stw      r0, 0xe8(r29)
-	lwz      r3, ogSound__2og@sda21(r13)
-	bl       setDecide__Q22og5SoundFv
-	li       r31, 1
-
-lbl_8032123C:
-	lwz      r0, 0x28(r30)
-	cmpwi    r0, 1
-	bne      lbl_803213A0
-	lwz      r4, 0x48(r29)
-	lis      r3, 0x08000008@ha
-	addi     r0, r3, 0x08000008@l
-	lwz      r4, 0x18(r4)
-	and.     r0, r4, r0
-	beq      lbl_803212F4
-	lwz      r0, 0xac(r29)
-	cmpwi    r0, 1
-	beq      lbl_803212A8
-	bge      lbl_8032127C
-	cmpwi    r0, 0
-	bge      lbl_80321288
-	b        lbl_803212E8
-
-lbl_8032127C:
-	cmpwi    r0, 3
-	bge      lbl_803212E8
-	b        lbl_803212D8
-
-lbl_80321288:
-	li       r0, 1
-	mr       r3, r29
-	stw      r0, 0xac(r29)
-	li       r4, 0
-	bl       putinPiki__Q32og9newScreen10ObjContenaFb
-	lfs      f0, 0xb0(r29)
-	stfs     f0, 0xb4(r29)
-	b        lbl_803213A0
-
-lbl_803212A8:
-	lwz      r3, sys@sda21(r13)
-	lfs      f2, 0xb4(r29)
-	lfs      f1, 0x54(r3)
-	lfs      f0, lbl_8051DC8C@sda21(r2)
-	fsubs    f1, f2, f1
-	stfs     f1, 0xb4(r29)
-	lfs      f1, 0xb4(r29)
-	fcmpo    cr0, f1, f0
-	bge      lbl_803213A0
-	li       r0, 2
-	stw      r0, 0xac(r29)
-	b        lbl_803213A0
-
-lbl_803212D8:
-	mr       r3, r29
-	li       r4, 1
-	bl       putinPiki__Q32og9newScreen10ObjContenaFb
-	b        lbl_803213A0
-
-lbl_803212E8:
-	li       r0, 0
-	stw      r0, 0xac(r29)
-	b        lbl_803213A0
-
-lbl_803212F4:
-	lis      r3, 0x04000004@ha
-	addi     r0, r3, 0x04000004@l
-	and.     r0, r4, r0
-	beq      lbl_80321398
-	lwz      r0, 0xac(r29)
-	cmpwi    r0, 3
-	beq      lbl_8032134C
-	bge      lbl_80321320
-	cmpwi    r0, 0
-	beq      lbl_8032132C
-	b        lbl_8032138C
-
-lbl_80321320:
-	cmpwi    r0, 5
-	bge      lbl_8032138C
-	b        lbl_8032137C
-
-lbl_8032132C:
-	li       r0, 3
-	mr       r3, r29
-	stw      r0, 0xac(r29)
-	li       r4, 0
-	bl       takeoutPiki__Q32og9newScreen10ObjContenaFb
-	lfs      f0, 0xb0(r29)
-	stfs     f0, 0xb4(r29)
-	b        lbl_803213A0
-
-lbl_8032134C:
-	lwz      r3, sys@sda21(r13)
-	lfs      f2, 0xb4(r29)
-	lfs      f1, 0x54(r3)
-	lfs      f0, lbl_8051DC8C@sda21(r2)
-	fsubs    f1, f2, f1
-	stfs     f1, 0xb4(r29)
-	lfs      f1, 0xb4(r29)
-	fcmpo    cr0, f1, f0
-	bge      lbl_803213A0
-	li       r0, 4
-	stw      r0, 0xac(r29)
-	b        lbl_803213A0
-
-lbl_8032137C:
-	mr       r3, r29
-	li       r4, 1
-	bl       takeoutPiki__Q32og9newScreen10ObjContenaFb
-	b        lbl_803213A0
-
-lbl_8032138C:
-	li       r0, 0
-	stw      r0, 0xac(r29)
-	b        lbl_803213A0
-
-lbl_80321398:
-	li       r0, 0
-	stw      r0, 0xac(r29)
-
-lbl_803213A0:
-	lwz      r0, 0x24(r1)
-	mr       r3, r31
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
@@ -817,8 +532,7 @@ void ObjContena::commonUpdate()
 				mAnimList[i]->update();
 		}
 		for (int i = 0; i < 6; i++) {
-			u8 alpha = mAlphaMgr[i]->calc();
-			mPaneList[i]->setAlpha(alpha);
+			mPaneList[i]->setAlpha(mAlphaMgr[i]->calc());
 		}
 		f32 scale1 = mScaleMgr3->calc();
 		f32 scale2 = mScaleMgr4->calc();
@@ -830,26 +544,16 @@ void ObjContena::commonUpdate()
 		if (angle > TAU) {
 			angle -= TAU;
 		}
-		f32 cosangle    = sinf(angle) * msVal._28;
-		J2DPane* pane   = mPaneArrowUp;
-		pane->mOffset.x = mPaneArrowUpPos.x;
-		pane->mOffset.y = -1.0f + mPaneArrowUpPos.y + cosangle;
-		pane->calcMtx();
+		f32 cosangle = sinf(angle) * msVal._28;
+		mPaneArrowUp->setOffset(mPaneArrowUpPos.x, msVal._2C + (mPaneArrowUpPos.y + cosangle));
 
-		pane            = mPaneArrowDown;
-		pane->mOffset.x = mPaneArrowDownPos.x;
-		pane->mOffset.y = 1.0f + mPaneArrowDownPos.y - cosangle;
-		pane->calcMtx();
+		mPaneArrowDown->setOffset(mPaneArrowDownPos.x, msVal._30 + (mPaneArrowDownPos.y - cosangle));
 
-		u8 alpha = mAlphaArrow1->calc();
-		mPaneArrowUp->setAlpha(alpha);
-		alpha = mAlphaArrow2->calc();
-		mPaneArrowDown->setAlpha(alpha);
+		mPaneArrowUp->setAlpha(u32(mAlpha * mAlphaArrow1->calc()) / 255);
+		mPaneArrowDown->setAlpha(u32(mAlpha * mAlphaArrow2->calc()) / 255);
 
-		f32 scale3 = mScaleArrow1->calc();
-		scale3     = msVal._34 * (scale3 - 1.0f) + 1.0f;
-		f32 scale4 = mScaleArrow2->calc();
-		scale4     = msVal._34 * (scale4 - 1.0f) + 1.0f;
+		f32 scale3 = msVal._34 * (mScaleArrow1->calc() - 1.0f) + 1.0f;
+		f32 scale4 = msVal._34 * (mScaleArrow2->calc() - 1.0f) + 1.0f;
 		mPaneArrowUp->updateScale(scale3);
 		mPaneArrowDown->updateScale(scale4);
 	}
@@ -861,34 +565,33 @@ void ObjContena::commonUpdate()
 			mMenuMoveAngle += input1 * 100.0f;
 		}
 		if (input2 > 0.4f || input2 < -0.4f) {
-			mYAnalog += input1 * -100.0f;
+			mYAnalog += input2 * -100.0f;
 		}
 		if (mFuriko) {
 			mFuriko->setParam(msVal._14, msVal._1C, msVal._18);
 		}
 	}
 
-	for (int i = 0; i < mPikiPaneNum; i++) {
-		if (i + 1 > mDisp->mNewInPartyNum) {
-			mPikiPaneList[i]->hide();
-		} else {
-			mPikiPaneList[i]->show();
-		}
-	}
+	tairetuOnOff();
+
 	mDoDraw = true;
 	mContena->setXY(mMenuMoveAngle, mYAnalog);
-	mScreenCupsule->calcMtx();
+	mContena->update();
 
-	mTimer += sys->mDeltaTime;
-	f32 time = mTimer;
-	if (mTimer > TAU) {
-		time = 0.0f;
+	mScreenCupsule->update();
+
+	mTimer += msVal._08;
+	if (mTimer >= TAU) {
+		mTimer = 0.0f;
 	}
-	mPaneSpot->setOffset(msVal._00 * 2.0f * JMath::sincosTable_.mTable[(int)(time *= 325.9493f) & 0x7ffU].first, mSpotX + msVal._04,
-	                     msVal._00 * JMath::sincosTable_.mTable[(int)(time *= 325.9493f) & 0x7ffU].first, mSpotY);
+	f32 time = mTimer;
+
+	f32 x = (2.0f * msVal._00) * cosf(time) + (mSpotX + msVal._04);
+	f32 y = msVal._00 * sinf(time) + mSpotY;
+	mPaneSpot->setOffset(x, y);
 
 	mPaneSpot->setAlpha(mScreenAngle * 255.0f * msVal._10);
-	mPaneSpot->updateScale(msVal._0C * ((1.0f - mScreenAngle) * 2.0f + 1.0f) * mSpotScale);
+	mPaneSpot->updateScale(msVal._0C * (((1.0f - mScreenAngle) * 2.0f + 1.0f) * mSpotScale));
 	mScreenSpot->update();
 	/*
 	stwu     r1, -0x60(r1)
@@ -1402,58 +1105,12 @@ bool ObjContena::doUpdateFadein()
 	commonUpdate();
 	mFadeLevel += sys->mDeltaTime;
 	mScreenAngle   = mFadeLevel / msVal._20;
-	f32 calc       = og::Screen::calcSmooth0to1(mFadeLevel, msVal._20);
-	mMenuMoveAngle = (1.0f - calc) * 800.0f;
+	mMenuMoveAngle = (1.0f - og::Screen::calcSmooth0to1(mFadeLevel, msVal._20)) * 800.0f;
 
-	if (mFadeLevel >= msVal._20)
+	if (mFadeLevel >= msVal._20) {
 		check = true;
+	}
 	return check;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	li       r30, 0
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	bl       commonUpdate__Q32og9newScreen10ObjContenaFv
-	lwz      r4, sys@sda21(r13)
-	lis      r3, msVal__Q32og9newScreen10ObjContena@ha
-	lfs      f1, 0x110(r29)
-	addi     r31, r3, msVal__Q32og9newScreen10ObjContena@l
-	lfs      f0, 0x54(r4)
-	fadds    f0, f1, f0
-	stfs     f0, 0x110(r29)
-	lfs      f1, 0x110(r29)
-	lfs      f0, 0x20(r31)
-	fdivs    f0, f1, f0
-	stfs     f0, 0xa8(r29)
-	lfs      f1, 0x110(r29)
-	lfs      f2, 0x20(r31)
-	bl       calcSmooth0to1__Q22og6ScreenFff
-	lfs      f2, lbl_8051DC94@sda21(r2)
-	lfs      f0, lbl_8051DC88@sda21(r2)
-	fsubs    f1, f2, f1
-	fmuls    f0, f0, f1
-	stfs     f0, 0xf0(r29)
-	lfs      f1, 0x110(r29)
-	lfs      f0, 0x20(r31)
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_80321C5C
-	li       r30, 1
-
-lbl_80321C5C:
-	lwz      r0, 0x24(r1)
-	mr       r3, r30
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
@@ -1463,27 +1120,30 @@ lbl_80321C5C:
 bool ObjContena::doUpdateFadeout()
 {
 	bool check = false;
-	commonUpdate();
 	mFadeLevel += sys->mDeltaTime;
 	mScreenAngle   = 1.0f - mFadeLevel / msVal._20;
-	f32 calc       = og::Screen::calcSmooth0to1(mFadeLevel, msVal._20);
-	mMenuMoveAngle = -800.0f * calc;
+	mMenuMoveAngle = -800.0f * og::Screen::calcSmooth0to1(mFadeLevel, msVal._20);
 	if (mFadeLevel >= msVal._20) {
-		check                               = true;
-		::Screen::SceneBase* scene          = getOwner();
-		og::Screen::DispMemberContena* disp = mDisp;
-		disp->mState                        = mDispState2;
-		if (disp->mState == 3 && disp->mExitSoundType) {
-			if (disp->mOnyonID == 4 || disp->mOnyonID == 3) {
+		check                         = true;
+		::Screen::SceneBase* scene    = getOwner();
+		og::Screen::DataContena* data = mDisp->getDataContena();
+		data->mState                  = mDispState;
+		if (data->mState == 3 && data->mExitSoundType) {
+			if (data->mOnyonID == 4 || data->mOnyonID == 3) {
 				::Screen::SetSceneArg arg(SCENE_UFO_MENU, getDispMember());
+				arg.mDoCreateBackup = false;
 				if (scene->setScene(arg) && !scene->startScene(nullptr)) {
 					JUT_PANICLINE(944, "‚¾‚ß‚Å‚·\n");
 				}
 			}
 			return;
 		}
-		JUT_ASSERTLINE(953, scene->setBackupScene(), "START ERR! (BackupScene)");
-		JUT_ASSERTLINE(958, scene->startScene(nullptr), "setBackupScene ERR!");
+
+		if (scene->setBackupScene()) {
+			JUT_ASSERTLINE(953, scene->startScene(nullptr), "START ERR! (BackupScene)");
+		} else {
+			JUT_PANICLINE(958, "setBackupScene ERR!");
+		}
 	}
 	commonUpdate();
 	return check;

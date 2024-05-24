@@ -12,10 +12,10 @@ namespace Screen {
 ContenaCounter::ContenaCounter(DispMemberContena* contena)
 {
 	mDisp       = contena;
-	mInOnion    = &mDisp->mInOnion;
-	mInTransfer = &mDisp->mInTransfer;
-	mNewCount   = &mDisp->mNewInPartyNum;
-	mOnField    = &mDisp->mOnMapMinusWild;
+	mInOnion    = &mDisp->mDataContena.mInOnionCount;
+	mInTransfer = &mDisp->mDataContena.mInTransfer;
+	mNewCount   = &mDisp->mDataContena.mInSquadCount;
+	mOnField    = &mDisp->mDataContena.mOnMapCount;
 	mCounter1   = nullptr;
 	mCounter2   = nullptr;
 	mCounter3   = nullptr;
