@@ -59,6 +59,7 @@
         "ctype.h": "c",
         "mem_funcs.h": "c",
         "card.h": "c",
-        "FILE_POS.C": "cpp"
+        "FILE_POS.C": "cpp",
+        "ctype_api.h": "c"
     }
 }

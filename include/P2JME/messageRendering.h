@@ -114,6 +114,10 @@ struct TRenderingProcessor : public TRenderingProcessorBase {
 	void preProcCenteringPre();
 	void preProcCenteringPost();
 
+	static const u32 cPageInfoBufferNum;
+
+	inline void checkPageInfoNum() { P2ASSERTLINE(490, mPageInfoNum < cPageInfoBufferNum); }
+
 	// _00     = VTBL
 	// _00-_38 = JMessage::TRenderingProcessor
 	f32 mTextBoxWidth;             // _38
@@ -125,8 +129,8 @@ struct TRenderingProcessor : public TRenderingProcessorBase {
 	JUTFont* mRubyFont;            // _50
 	f32 _54;                       // _54
 	f32 _58;                       // _58
-	u32 _5C;                       // _5C
-	u32 _60;                       // _60
+	JUtility::TColor _5C;          // _5C
+	JUtility::TColor _60;          // _60
 	JUtility::TColor mColorData1;  // _64
 	JUtility::TColor mColorData2;  // _68
 	JUtility::TColor mColorData3;  // _6C
@@ -169,11 +173,7 @@ struct TRenderingProcessor : public TRenderingProcessorBase {
 	f32 _104;                      // _104
 	f32 _108;                      // _108
 	f32 _10C;                      // _10C
-
-	static u32 cPageInfoBufferNum;
 };
-
-static char sRubyDataBuffer[32];
 
 } // namespace P2JME
 

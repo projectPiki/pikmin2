@@ -153,7 +153,7 @@
 | ---- | ---- | ---- | ---- |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogCopyPane.cpp">ogCopyPane.cpp</a> | 7678 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogCounterSlot.cpp">ogCounterSlot.cpp</a> | 15278 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjSMenuItem.cpp">ogObjSMenuItem.cpp</a> | 26365 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogMenuMgr.cpp">ogMenuMgr.cpp</a> | 26684 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogCounterRV.cpp">ogCounterRV.cpp</a> | 28223 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjContena.cpp">ogObjContena.cpp</a> | 31532 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogCounterRV.cpp">ogCounterRV.cpp</a> | 28333 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjContena.cpp">ogObjContena.cpp</a> | 31532 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjVs.cpp">ogObjVs.cpp</a> | 67702 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjSMenuMap.cpp">ogObjSMenuMap.cpp</a> | 74769 |
 
 ### <section id="plugProjectYamashitaU">plugProjectYamashitaU</section>
@@ -188,7 +188,7 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/system.cpp">system.cpp</a> | 32972 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/windowMessage.cpp">windowMessage.cpp</a> | 37900 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/bootSection.cpp">bootSection.cpp</a> | 38565 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/movieMessage.cpp">movieMessage.cpp</a> | 44324 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/pikmin2MemoryCardMgr.cpp">pikmin2MemoryCardMgr.cpp</a> | 50866 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/graphics.cpp">graphics.cpp</a> | 76184 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/messageRendering.cpp">messageRendering.cpp</a> | 100248 |  |  |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/messageRendering.cpp">messageRendering.cpp</a> | 100358 |  |  |
 
 ### <section id="utilityU">utilityU</section>
 | File | Size (bytes) | File | Size (bytes) |

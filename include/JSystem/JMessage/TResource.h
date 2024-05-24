@@ -103,6 +103,13 @@ struct TResourceContainer {
 
 	bool isEncodingSettable(u8 e) const { return mEncoding == e || mEncoding == 0; }
 	const TCResource* getResourceContainer() const { return &mContainer; }
+	const TResource_color* getResourceColor() const
+	{
+		if (mColor.mHeader.getRaw() != nullptr) {
+			return &mColor;
+		}
+		return nullptr;
+	}
 	void destroyResource() { mContainer.Clear_destroy(); }
 	void destroyResource_color() { mColor.reset(); }
 	void destroyResource_all()

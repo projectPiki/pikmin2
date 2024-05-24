@@ -2,7 +2,7 @@
 #define _P2JME_ANALYZER_H
 
 #include "types.h"
-#include "P2JME/TRenderingProcessor.h"
+#include "P2JME/messageRendering.h"
 
 namespace P2JME {
 

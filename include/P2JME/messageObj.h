@@ -2,7 +2,7 @@
 #define _P2JME_WINDOW_H
 
 #include "JSystem/JMessage/TControl.h"
-#include "P2JME/TRenderingProcessor.h"
+#include "P2JME/messageRendering.h"
 #include "P2JME/TSequenceProcessor.h"
 #include "P2JME/P2JME.h"
 #include "Matrixf.h"

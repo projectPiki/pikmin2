@@ -1,14 +1,29 @@
 #include "JSystem/JMessage/TProcessor.h"
 #include "JSystem/JUtility/JUTFont.h"
-#include "P2JME/TRenderingProcessor.h"
+#include "JSystem/JUtility/JUTTexture.h"
+#include "P2JME/messageRendering.h"
+#include "P2JME/P2JME.h"
 #include "JSystem/J2D/J2DTextBox.h"
 #include "Game/Data.h"
 #include "P2Macros.h"
+#include "stl/ctype.h"
 #include "System.h"
 
 namespace P2JME {
 
-u32 TRenderingProcessor::cPageInfoBufferNum = 0xA;
+static char sRubyDataBuffer[33];
+
+namespace {
+GXColor cBtnIconColor[22] = {
+	{ 255, 255, 255, 255 }, { 0, 166, 0, 0 },       { 255, 255, 255, 255 }, { 255, 0, 0, 0 },       { 0, 0, 0, 255 },
+	{ 255, 255, 0, 0 },     { 0, 0, 0, 255 },       { 200, 200, 200, 0 },   { 0, 0, 0, 255 },       { 200, 200, 200, 0 },
+	{ 0, 0, 255, 255 },     { 255, 255, 255, 0 },   { 0, 0, 0, 255 },       { 200, 200, 200, 0 },   { 0, 0, 0, 255 },
+	{ 200, 200, 200, 0 },   { 225, 225, 225, 255 }, { 136, 136, 136, 255 }, { 225, 225, 225, 255 }, { 136, 136, 136, 255 },
+	{ 225, 225, 225, 255 }, { 136, 136, 136, 255 },
+};
+} // namespace
+
+const u32 TRenderingProcessor::cPageInfoBufferNum = 10;
 
 /**
  * @note Address: 0x804391F0
@@ -23,7 +38,7 @@ TRenderingProcessorBase::TRenderingProcessorBase(JMessage::TReference const* ref
  * @note Address: 0x8043922C
  * @note Size: 0x174
  */
-bool TRenderingProcessorBase::do_tag(u32 type, void const* a1, u32 a2)
+bool TRenderingProcessorBase::do_tag(u32 type, const void* a1, u32 a2)
 {
 	bool check = false;
 	// Get byte1
@@ -179,7 +194,7 @@ void TRenderingProcessor::setDrawLocateY()
  * @note Address: 0x80439658
  * @note Size: 0xE8
  */
-void TRenderingProcessor::do_begin(void const* p1, char const* p2)
+void TRenderingProcessor::do_begin(const void* p1, char const* p2)
 {
 	mFontWidthAdjusted  = mFontWidth;
 	mFontHeightAdjusted = mFontHeight;
@@ -479,11 +494,6 @@ lbl_80439AC4:
 void TRenderingProcessor::addDrawLines()
 {
 	// UNUSED FUNCTION
-	u32 pageInfoBufferNum = cPageInfoBufferNum;
-	mParagraphNum         = 0;
-	mPageInfoNum++;
-	P2ASSERTLINE(490, mPageInfoNum < pageInfoBufferNum);
-	mFlags.set(TProcFlag_PageFinished);
 }
 
 /**
@@ -499,72 +509,12 @@ void TRenderingProcessor::newParagraph()
 	if (mFlags.isSet(TProcFlag_PageFinished) != 0) {
 		setPageInfo();
 		setOnePageLine();
-		addDrawLines();
+		mParagraphNum = 0;
+		mPageInfoNum++;
+		checkPageInfoNum();
+		mFlags.unset(TProcFlag_PageFinished);
 	}
 	setDrawLocate();
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, lbl_8049ABE8@ha
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	addi     r31, r4, lbl_8049ABE8@l
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bl       setLineWidth__Q25P2JME19TRenderingProcessorFv
-	lbz      r3, 0xa4(r30)
-	addi     r0, r3, 1
-	stb      r0, 0xa4(r30)
-	lbz      r0, 0xa4(r30)
-	cmplwi   r0, 0x40
-	blt      lbl_80439B40
-	addi     r3, r31, 0
-	addi     r5, r31, 0x18
-	li       r4, 0x1fd
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80439B40:
-	lbz      r3, 0xa5(r30)
-	addi     r0, r3, 1
-	stb      r0, 0xa5(r30)
-	lwz      r0, 0x8c(r30)
-	rlwinm.  r0, r0, 0, 3, 3
-	beq      lbl_80439BAC
-	mr       r3, r30
-	bl       setPageInfo__Q25P2JME19TRenderingProcessorFv
-	mr       r3, r30
-	bl       setOnePageLine__Q25P2JME19TRenderingProcessorFv
-	li       r3, 0
-	lwz      r0, cPageInfoBufferNum__Q25P2JME19TRenderingProcessor@sda21(r2)
-	stb      r3, 0xa5(r30)
-	lbz      r3, 0xa6(r30)
-	addi     r3, r3, 1
-	stb      r3, 0xa6(r30)
-	lbz      r3, 0xa6(r30)
-	cmplw    r3, r0
-	blt      lbl_80439BA0
-	addi     r3, r31, 0x24
-	addi     r5, r31, 0x18
-	li       r4, 0x1ea
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80439BA0:
-	lwz      r0, 0x8c(r30)
-	rlwinm   r0, r0, 0, 4, 2
-	stw      r0, 0x8c(r30)
-
-lbl_80439BAC:
-	mr       r3, r30
-	bl       setDrawLocate__Q25P2JME19TRenderingProcessorFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /**
@@ -577,20 +527,24 @@ void TRenderingProcessor::do_character(int character)
 		newParagraph();
 	} else {
 		if (_F0 == 0) {
-			mColorData1.set(_D4);
+			mColorData1 = _D4;
 		} else {
-			JMessage::TResourceContainer* res = mReference ? mReference->mResource : nullptr;
-			JMessage::TResource_color* color  = &res->mColor ? &res->mColor : nullptr;
-			mColorData1.set(*(JUtility::TColor*)color->mBlock.getRaw()); // something along the lines of this probably
+			JMessage::TResourceContainer* res      = getResourceContainer();
+			const JMessage::TResource_color* color = res->getResourceColor();
+			mColorData1.set(*(JUtility::TColor*)(((u32)color->mBlock.getRaw() + _F0) + 3)); // something along the lines of this probably
 		}
 
+		mColorData1.a = f32(mColorData1.a) * _78;
+
 		if (_F1 == 0) {
-			mColorData2.set(_D8);
+			mColorData2 = _D8;
 		} else {
-			JMessage::TResourceContainer* res = mReference ? mReference->mResource : nullptr;
-			JMessage::TResource_color* color  = &res->mColor ? &res->mColor : nullptr;
-			mColorData2.set(*(JUtility::TColor*)color->mBlock.getRaw());
+			JMessage::TResourceContainer* res      = getResourceContainer();
+			const JMessage::TResource_color* color = res->getResourceColor();
+			mColorData2.set(*(JUtility::TColor*)(((u32)color->mBlock.getRaw() + _F1) + 3)); // something along the lines of this probably
 		}
+
+		mColorData2.a = f32(mColorData2.a) * _78;
 
 		f32 xScale = mFontWidthAdjusted * (f32)mMainFont->getWidth();
 		if (mFlags.isSet(1)) {
@@ -890,143 +844,19 @@ void TRenderingProcessor::do_select_separate()
  * @note Address: 0x8043A0C8
  * @note Size: 0x174
  */
-bool TRenderingProcessor::do_tag(u32 type, void const* a1, u32 a2)
-{
-	return TRenderingProcessorBase::do_tag(type, a1, a2);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r7, 0
-	stw      r0, 0x14(r1)
-	rlwinm   r0, r4, 0x10, 0x18, 0x1f
-	cmplwi   r0, 0xc0
-	clrlwi   r4, r4, 0x10
-	bge      lbl_8043A178
-	cmpwi    r0, 2
-	beq      lbl_8043A140
-	bge      lbl_8043A104
-	cmpwi    r0, 0
-	beq      lbl_8043A110
-	bge      lbl_8043A128
-	b        lbl_8043A170
-
-lbl_8043A104:
-	cmpwi    r0, 4
-	bge      lbl_8043A170
-	b        lbl_8043A158
-
-lbl_8043A110:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x58(r12)
-	mtctr    r12
-	bctrl
-	mr       r7, r3
-	b        lbl_8043A228
-
-lbl_8043A128:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x5c(r12)
-	mtctr    r12
-	bctrl
-	mr       r7, r3
-	b        lbl_8043A228
-
-lbl_8043A140:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x60(r12)
-	mtctr    r12
-	bctrl
-	mr       r7, r3
-	b        lbl_8043A228
-
-lbl_8043A158:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	mr       r7, r3
-	b        lbl_8043A228
-
-lbl_8043A170:
-	li       r7, 1
-	b        lbl_8043A228
-
-lbl_8043A178:
-	cmplwi   r0, 0xff
-	bne      lbl_8043A228
-	cmpwi    r4, 2
-	beq      lbl_8043A1EC
-	bge      lbl_8043A19C
-	cmpwi    r4, 0
-	beq      lbl_8043A1AC
-	bge      lbl_8043A1CC
-	b        lbl_8043A228
-
-lbl_8043A19C:
-	cmpwi    r4, 4
-	beq      lbl_8043A228
-	bge      lbl_8043A228
-	b        lbl_8043A20C
-
-lbl_8043A1AC:
-	lwz      r12, 0(r3)
-	mr       r4, r5
-	mr       r5, r6
-	lwz      r12, 0x48(r12)
-	mtctr    r12
-	bctrl
-	mr       r7, r3
-	b        lbl_8043A228
-
-lbl_8043A1CC:
-	lwz      r12, 0(r3)
-	mr       r4, r5
-	mr       r5, r6
-	lwz      r12, 0x4c(r12)
-	mtctr    r12
-	bctrl
-	mr       r7, r3
-	b        lbl_8043A228
-
-lbl_8043A1EC:
-	lwz      r12, 0(r3)
-	mr       r4, r5
-	mr       r5, r6
-	lwz      r12, 0x50(r12)
-	mtctr    r12
-	bctrl
-	mr       r7, r3
-	b        lbl_8043A228
-
-lbl_8043A20C:
-	lwz      r12, 0(r3)
-	mr       r4, r5
-	mr       r5, r6
-	lwz      r12, 0x54(r12)
-	mtctr    r12
-	bctrl
-	mr       r7, r3
-
-lbl_8043A228:
-	lwz      r0, 0x14(r1)
-	mr       r3, r7
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+bool TRenderingProcessor::do_tag(u32 type, const void* a1, u32 a2) { return TRenderingProcessorBase::do_tag(type, a1, a2); }
 
 /**
  * @note Address: 0x8043A23C
  * @note Size: 0x8
  */
-bool TRenderingProcessor::do_systemTagCode(u16, void const*, u32) { return false; }
+bool TRenderingProcessor::do_systemTagCode(u16, const void*, u32) { return false; }
 
 /**
  * @note Address: 0x8043A244
  * @note Size: 0x2C
  */
-bool TRenderingProcessor::tagColor(void const* p1, u32 p2)
+bool TRenderingProcessor::tagColor(const void* p1, u32 p2)
 {
 	u8 v1 = *static_cast<const char*>(p1);
 	if (v1 == 0) {
@@ -1043,7 +873,7 @@ bool TRenderingProcessor::tagColor(void const* p1, u32 p2)
  * @note Address: 0x8043A270
  * @note Size: 0x3C
  */
-bool TRenderingProcessor::tagSize(void const* p1, u32 p2)
+bool TRenderingProcessor::tagSize(const void* p1, u32 p2)
 {
 	f32 v1              = *static_cast<const u16*>(p1) / 100.0f;
 	mFontWidthAdjusted  = v1;
@@ -1055,139 +885,39 @@ bool TRenderingProcessor::tagSize(void const* p1, u32 p2)
  * @note Address: 0x8043A2AC
  * @note Size: 0x164
  */
-bool TRenderingProcessor::tagRuby(void const* data, u32 size)
+bool TRenderingProcessor::tagRuby(const void* data, u32 size)
 {
 	if (sys->mPlayData->mIsRubyFont && !mFlags.isSet(1)) {
 
 		P2ASSERTLINE(839, size < 33);
 		strncpy(mRubyBuffer, (char*)data + 1, size - 1);
 
-		char c                = *mRubyBuffer;
 		mRubyBuffer[size - 1] = 0;
 		_F2                   = 1;
 		_F4                   = mCharacterNum - 1;
-		_F8                   = c;
+		_F8                   = ((u8*)data)[0];
 		_FC                   = size - 1;
 		_104                  = mLocate.i.x;
 
 		f32 y = mFontHeightAdjusted * mMainFont->getAscent();
-		y     = (y >= 1.0f) ? y + 0.5f : y - 0.5f;
+		y     = (y >= 0.0f) ? y + 0.5f : y - 0.5f;
 		_108  = mLocate.i.y - (int)y;
 	}
 
 	return true;
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	mr       r31, r3
-	stw      r30, 0x28(r1)
-	mr       r30, r5
-	stw      r29, 0x24(r1)
-	mr       r29, r4
-	lwz      r6, sys@sda21(r13)
-	lwz      r3, 0x60(r6)
-	lbz      r0, 0x3c(r3)
-	cmplwi   r0, 0
-	beq      lbl_8043A3F0
-	lwz      r0, 0x8c(r31)
-	clrlwi.  r0, r0, 0x1f
-	bne      lbl_8043A3F0
-	cmplwi   r30, 0x21
-	blt      lbl_8043A314
-	lis      r3, lbl_8049ABE8@ha
-	lis      r5, lbl_8049AC00@ha
-	addi     r3, r3, lbl_8049ABE8@l
-	li       r4, 0x347
-	addi     r5, r5, lbl_8049AC00@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8043A314:
-	lwz      r3, 0x100(r31)
-	addi     r4, r29, 1
-	addi     r5, r30, -1
-	bl       strncpy
-	lwz      r0, 0x100(r31)
-	li       r6, 0
-	li       r4, 1
-	lbz      r3, 0(r29)
-	add      r5, r0, r30
-	addi     r0, r30, -1
-	stb      r6, -1(r5)
-	stb      r4, 0xf2(r31)
-	lwz      r4, 0xb8(r31)
-	addi     r4, r4, -1
-	stw      r4, 0xf4(r31)
-	stb      r3, 0xf8(r31)
-	stw      r0, 0xfc(r31)
-	lfs      f0, 0x90(r31)
-	stfs     f0, 0x104(r31)
-	lwz      r3, 0x4c(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	lfd      f3, lbl_805208D0@sda21(r2)
-	stw      r0, 8(r1)
-	lfs      f1, 0xe4(r31)
-	lfd      f2, 8(r1)
-	lfs      f0, lbl_805208C0@sda21(r2)
-	fsubs    f3, f2, f3
-	lfs      f2, 0x94(r31)
-	fmuls    f1, f1, f3
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_8043A3B8
-	lfs      f0, lbl_805208CC@sda21(r2)
-	fadds    f0, f0, f1
-	b        lbl_8043A3C0
-
-lbl_8043A3B8:
-	lfs      f0, lbl_805208CC@sda21(r2)
-	fsubs    f0, f1, f0
-
-lbl_8043A3C0:
-	fctiwz   f0, f0
-	lis      r0, 0x4330
-	stw      r0, 0x18(r1)
-	lfd      f1, lbl_805208D0@sda21(r2)
-	stfd     f0, 0x10(r1)
-	lwz      r0, 0x14(r1)
-	xoris    r0, r0, 0x8000
-	stw      r0, 0x1c(r1)
-	lfd      f0, 0x18(r1)
-	fsubs    f0, f0, f1
-	fsubs    f0, f2, f0
-	stfs     f0, 0x108(r31)
-
-lbl_8043A3F0:
-	lwz      r0, 0x34(r1)
-	li       r3, 1
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /**
  * @note Address: 0x8043A410
  * @note Size: 0x8
  */
-bool TRenderingProcessor::tagFont(void const*, u32) { return true; }
+bool TRenderingProcessor::tagFont(const void*, u32) { return true; }
 
 /**
  * @note Address: 0x8043A418
  * @note Size: 0x24
  */
-bool TRenderingProcessor::tagColorEX(u16 id, void const* p1, u32)
+bool TRenderingProcessor::tagColorEX(u16 id, const void* p1, u32)
 {
 	u8* data = (u8*)p1;
 	switch (id) {
@@ -1203,7 +933,7 @@ bool TRenderingProcessor::tagColorEX(u16 id, void const* p1, u32)
  * @note Address: 0x8043A43C
  * @note Size: 0x6C
  */
-bool TRenderingProcessor::tagControl(u16 p1, void const* p2, u32 p3)
+bool TRenderingProcessor::tagControl(u16 p1, const void* p2, u32 p3)
 {
 	bool result = true;
 	switch (p1) {
@@ -1233,7 +963,7 @@ bool TRenderingProcessor::doTagControlAbtnWait()
  * @note Address: 0x8043A4BC
  * @note Size: 0x71C
  */
-bool TRenderingProcessor::tagPosition(u16 type, void const* data, u32)
+bool TRenderingProcessor::tagPosition(u16 type, const void* data, u32)
 {
 	switch (type) {
 	case 0:
@@ -1776,16 +1506,49 @@ void TRenderingProcessor::drawRuby()
 		return;
 	}
 
-	f32 scale = mLocate.i.y - ROUND_F32_TO_U8(mFontHeight * (f32)mMainFont->getHeight());
-	if (scale > _108) {
+	f32 height = mFontHeightAdjusted * f32(mMainFont->getAscent());
+	f32 scale  = mLocate.i.y - (int)(f32(ROUND_F32_TO_U8(height)));
+	if (_108 > scale) {
 		_108 = scale;
 	}
 
-	if (mCharacterNum != _F4 + _F8) {
+	if (mCharacterNum != (int)(_F4 + _F8)) {
 		return;
 	}
 
-	for (int i = 0; i < _FC; i++) { }
+	int msgBuffer[33];
+	f32 val31 = _10C;
+	f32 val30 = val31 * f32(mRubyFont->getWidth());
+	f32 val28 = 0.0f;
+	f32 val27 = (mLocate.i.x - _C4) - _104;
+
+	int msgLen = 0;
+	for (int i = 0; i < _FC; i++, msgLen++) {
+		int byte = mRubyBuffer[i];
+		if (mRubyFont->isLeadByte(byte)) {
+			byte >>= 4;
+			byte |= (mRubyBuffer[++msgLen] >> 8);   // idk what this is meant to be
+		} else if (byte <= 255 && !isspace(byte)) { // some ctype inline we don't have
+			byte = '?';
+		}
+
+		val28 += calcWidth(mRubyFont, byte, val30, true);
+		msgBuffer[i] = byte;
+	}
+
+	f32 len   = f32(msgLen + 1);
+	f32 val29 = (val27 - val28) / len;
+	if (val29 < _C4 * val31) {
+		val29 = _C4 * val31;
+	}
+
+	_104 += val29 + 0.5f * (val27 - (val29 * len + val28));
+
+	for (int i = 0; i < msgLen; i++) {
+		_104 += doDrawRuby(_104 + _54, _108 + _58, val30, val31 * f32(mRubyFont->getHeight()), msgBuffer[i], true);
+		_104 += val29;
+		_40++;
+	}
 	_F2 = false;
 	/*
 	stwu     r1, -0x110(r1)
@@ -2035,8 +1798,80 @@ lbl_8043AF18:
  * @note Address: 0x8043AF54
  * @note Size: 0x438
  */
-bool TRenderingProcessor::tagImage(u16, void const*, u32)
+bool TRenderingProcessor::tagImage(u16 p1, const void* p2, u32 p3)
 {
+	P2ASSERTLINE(1114, p3 == 1);
+	int type;
+	u8 firstByte = ((u8*)p2)[0]; // r29
+	f32 width;
+	f32 height;
+	switch (p1) {
+	case 0:
+		type   = 0;
+		width  = 32.0f * mFontWidthAdjusted;
+		height = 32.0f * mFontHeightAdjusted;
+		break;
+	default:
+		P2ASSERTLINE(1134, false);
+		break;
+	}
+
+	if (gP2JMEMgr) {
+		JUTTexture* img = gP2JMEMgr->getImage(ImageGroup::ID0, firstByte);
+		if (img && !mFlags.isSet(0x1)) {
+			JUtility::TColor color2(_60);
+			JUtility::TColor color1(_5C);
+			switch (type) {
+			case 0:
+				GXColor* colorA = &cBtnIconColor[firstByte];
+				GXColor* colorB = &cBtnIconColor[firstByte + 1];
+				if (firstByte < 8) {
+					_60.set(colorA->r, colorA->g, colorA->b, colorA->a);
+					_5C.set(colorB->r, colorB->g, colorB->b, colorB->a);
+					mColorData4.set(255, 255, 255, 255);
+					mColorData5.set(205, 205, 205, 255);
+				} else {
+					mColorData4.set(colorA->r, colorA->g, colorA->b, colorA->a);
+					mColorData5.set(colorB->r, colorB->g, colorB->b, colorB->a);
+				}
+				break;
+			default:
+				if (_F0 == 0) {
+					mColorData4 = _D4;
+				} else {
+					JMessage::TResourceContainer* res      = getResourceContainer();
+					const JMessage::TResource_color* color = res->getResourceColor();
+					mColorData4.set(
+					    *(JUtility::TColor*)(((u32)color->mBlock.getRaw() + _F0) + 3)); // something along the lines of this probably
+				}
+
+				if (_F1 == 0) {
+					mColorData5 = _D8;
+				} else {
+					JMessage::TResourceContainer* res      = getResourceContainer();
+					const JMessage::TResource_color* color = res->getResourceColor();
+					mColorData5.set(
+					    *(JUtility::TColor*)(((u32)color->mBlock.getRaw() + _F1) + 3)); // something along the lines of this probably
+				}
+				break;
+			}
+
+			mColorData4.a = f32(mColorData4.a) * _78;
+			mColorData5.a = f32(mColorData5.a) * _78;
+			doDrawImage(img, mLocate.i.x + _54, mLocate.i.y + _58, width, height);
+			switch (type) {
+			case 0:
+				_60 = color2;
+				_5C = color1;
+				break;
+			}
+		}
+	}
+
+	mLocate.i.x += width;
+	_40++;
+	mMainFont->setGX(_CC, _D0);
+	return true;
 	/*
 	stwu     r1, -0x70(r1)
 	mflr     r0
@@ -2357,8 +2192,38 @@ lbl_8043B314:
  * @note Address: N/A
  * @note Size: 0x1B8
  */
-void TRenderingProcessor::calcColorCoe(JUtility::TColor const&, JUtility::TColor*)
+void TRenderingProcessor::calcColorCoe(JUtility::TColor const& colorData, JUtility::TColor* outColor)
 {
+	f32 bottomRF = f32(colorData.r) * mMesgBounds.i.x;
+	if (bottomRF > 255.0f) {
+		bottomRF = 255.0f;
+	}
+
+	f32 bottomGF = f32(colorData.g) * mMesgBounds.i.y;
+	if (bottomGF > 255.0f) {
+		bottomGF = 255.0f;
+	}
+
+	f32 bottomBF = f32(colorData.b) * mMesgBounds.f.x;
+	if (bottomBF > 255.0f) {
+		bottomBF = 255.0f;
+	}
+
+	f32 bottomAF = f32(colorData.a) * mMesgBounds.f.y;
+	if (bottomAF > 255.0f) {
+		bottomAF = 255.0f;
+	}
+
+	u8 bottomR = u8(ROUND_F32_TO_U8(bottomRF)) & 0xFF;
+	u8 bottomG = u8(ROUND_F32_TO_U8(bottomGF)) & 0xFF;
+	u8 bottomB = u8(ROUND_F32_TO_U8(bottomBF)) & 0xFF;
+	u8 bottomA = u8(ROUND_F32_TO_U8(bottomAF)) & 0xFF;
+
+	outColor->r = bottomR;
+	outColor->g = bottomG;
+	outColor->b = bottomB;
+	outColor->a = bottomA;
+	// outColor->set(bottomR, bottomG, bottomB, bottomA);
 	// UNUSED FUNCTION
 }
 
@@ -2366,8 +2231,15 @@ void TRenderingProcessor::calcColorCoe(JUtility::TColor const&, JUtility::TColor
  * @note Address: 0x8043B38C
  * @note Size: 0x440
  */
-f32 TRenderingProcessor::doDrawLetter(f32, f32, f32, f32, int, bool)
+f32 TRenderingProcessor::doDrawLetter(f32 p1, f32 p2, f32 p3, f32 p4, int p5, bool p6)
 {
+	JUtility::TColor bottomColor;
+	JUtility::TColor topColor;
+	calcColorCoe(mColorData1, &bottomColor);
+	calcColorCoe(mColorData2, &topColor);
+
+	mMainFont->setGradColor(bottomColor, topColor);
+	mMainFont->drawChar_scale(p1, p2, p3, p4, p5, p6);
 	/*
 	stwu     r1, -0xf0(r1)
 	mflr     r0
@@ -2696,8 +2568,13 @@ lbl_8043B728:
  * @note Address: 0x8043B7CC
  * @note Size: 0x29C
  */
-f32 TRenderingProcessor::doDrawRuby(f32, f32, f32, f32, int, bool)
+f32 TRenderingProcessor::doDrawRuby(f32 p1, f32 p2, f32 p3, f32 p4, int p5, bool p6)
 {
+	JUtility::TColor charColor;
+	mColorData3.a = 255.0f * _78;
+	calcColorCoe(mColorData3, &charColor);
+	mRubyFont->setCharColor(charColor);
+	mRubyFont->drawChar_scale(p1, p2, p3, p4, p5, p6);
 	/*
 	stwu     r1, -0xb0(r1)
 	mflr     r0
@@ -2909,7 +2786,7 @@ void TRenderingProcessor::doDrawImage(JUTTexture* texture, f32 p2, f32 p3, f32 p
  */
 void TRenderingProcessor::setImageGX()
 {
-	if (_5C == 0 && _60 == -1) {
+	if (*(u32*)&_5C == 0 && *(u32*)&_60 == -1) {
 		GXSetNumChans(1);
 		GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_VTX, GX_SRC_VTX, 1, GX_DF_CLAMP, GX_AF_NONE);
 		GXClearVtxDesc();
@@ -2960,8 +2837,37 @@ void TRenderingProcessor::setImageGX()
  * @note Address: 0x8043BE10
  * @note Size: 0x4F4
  */
-void TRenderingProcessor::drawImage(JUTTexture*, f32, f32, f32, f32)
+void TRenderingProcessor::drawImage(JUTTexture* img, f32 p2, f32 p3, f32 p4, f32 p5)
 {
+	img->load(GX_TEXMAP0);
+
+	p3 = mFontHeightAdjusted * f32(mMainFont->getDescent()) + p3;
+	p4 = p2 + p4;
+	p5 = p3 - p5;
+
+	JUtility::TColor colorA;
+	JUtility::TColor colorB;
+
+	calcColorCoe(mColorData4, &colorA);
+	calcColorCoe(mColorData5, &colorB);
+
+	f32 zero = 0.0f;
+	GXBegin(GX_QUADS, GX_VTXFMT0, 4);
+	GXPosition3f32(p2, p3, zero);
+	GXColor4u8(colorB.r, colorB.g, colorB.b, colorB.a);
+	GXTexCoord2u8(0, 16);
+
+	GXPosition3f32(p2, p5, zero);
+	GXColor4u8(colorA.r, colorA.g, colorA.b, colorA.a);
+	GXTexCoord2u8(0, 0);
+
+	GXPosition3f32(p4, p5, zero);
+	GXColor4u8(colorA.r, colorA.g, colorA.b, colorA.a);
+	GXTexCoord2u8(16, 0);
+
+	GXPosition3f32(p4, p3, zero);
+	GXColor4u8(colorB.r, colorB.g, colorB.b, colorB.a);
+	GXTexCoord2u8(16, 16);
 	/*
 	stwu     r1, -0xe0(r1)
 	mflr     r0
@@ -3353,10 +3259,14 @@ f32 TRenderingProcessor::calcWidth(JUTFont* font, int p2, f32 p3, bool p4)
 	}
 	JUTFont::TWidth width;
 	font->getWidthEntry(p2, &width);
+
+	f32 val;
 	if (p4 == false) {
-		return v1 * (width.w1 + width.w0);
+		val = f32(width.w1 + width.w0) * v1;
+	} else {
+		val = f32(width.w1) * v1;
 	}
-	return width.w1 * v1;
+	return val;
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
