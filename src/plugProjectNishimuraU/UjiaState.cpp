@@ -262,9 +262,9 @@ void StateMove::exec(EnemyBase* enemy)
 			f32 angBetween = roundAng(JMAAtan2Radian(ujiPos.x - targetPos.x, ujiPos.z - targetPos.z));
 			f32 angleDist  = angDist(angBetween, uji->getFaceDir());
 
-			f32 limit     = PI * (DEG2RAD * rotSpeed);
+			f32 limit     = TORADIANS(rotSpeed);
 			f32 turnSpeed = angleDist * rotAccel;
-			if (FABS(turnSpeed) > limit) {
+			if (absF(turnSpeed) > limit) {
 				turnSpeed = (turnSpeed > 0.0f) ? limit : -limit;
 			}
 
@@ -274,49 +274,20 @@ void StateMove::exec(EnemyBase* enemy)
 			// CG_GENERALPARMS(uji).mMaxTurnAngle.mValue); uji->changeFaceDir(target);
 			f32 speed = CG_GENERALPARMS(uji).mMoveSpeed.mValue;
 
-			f32 sinTheta = (f32)sin(uji->getFaceDir());
+			f32 sinTheta = sinf_kludge(uji->getFaceDir());
 			f32 y        = uji->getTargetVelocity().y;
-			f32 cosTheta = (f32)cos(uji->getFaceDir());
+			f32 cosTheta = cosf_kludge(uji->getFaceDir());
 
 			uji->mTargetVelocity = Vector3f(speed * sinTheta, y, speed * cosTheta);
 
-			f32 sightRad  = CG_GENERALPARMS(uji).mSightRadius(); // f30
-			f32 fov       = CG_GENERALPARMS(uji).mFov();         // f25
-			f32 viewAngle = CG_GENERALPARMS(uji).mViewAngle();   // f26
-
-			f32 xDiff = target->getPosition().x - uji->getPosition().x;
-			f32 yDiff = target->getPosition().y - uji->getPosition().y;
-			f32 zDiff = target->getPosition().z - uji->getPosition().z;
-
-			f32 rad1    = SQUARE(viewAngle);
-			f32 rad2    = SQUARE(sightRad);
-			f32 sqrDiff = SQUARE(xDiff) + SQUARE(yDiff) + SQUARE(zDiff);
-			bool check0 = true;
-			bool check1 = false;
-			bool check2;
-			if (sqrDiff > rad1) {
-				check2 = false;
-				if (sqrDiff > rad2) {
-					if (FABS(yDiff) < fov) {
-						check2 = true;
-					}
-				}
-				if (check2) {
-					check1 = true;
-				}
-			}
-
-			if (!check1) {
-				if (!(FABS(angleDist) <= PI * (DEG2RAD * sightRad))) {
-					check0 = false;
-				}
-			}
-			if (check0) {
+			if (uji->isTargetWithinRange(target, angleDist, CG_GENERALPARMS(uji).mPrivateRadius(), CG_GENERALPARMS(uji).mSightRadius(),
+			                             CG_GENERALPARMS(uji).mFov(), uji->mFaceDir)) {
 				uji->mTargetCreature = nullptr;
 			} else {
-				Vector3f diff = uji->getPosition() - uji->mHomePosition;
-				f32 len       = diff.length();
-				if (len > CG_GENERALPARMS(uji).mTerritoryRadius()) {
+				Vector3f deltaPosition = uji->getPosition() - uji->mHomePosition;
+				f32 distance           = deltaPosition.length();
+				f32 radius             = CG_GENERALPARMS(uji).mTerritoryRadius();
+				if (distance > radius) {
 					uji->mTargetCreature = nullptr;
 				}
 			}
