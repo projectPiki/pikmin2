@@ -1512,12 +1512,14 @@ void HoudaiShotGunMgr::forceFinishShotGun()
  */
 bool HoudaiShotGunMgr::searchShotGunRotation()
 {
-	Vector3f sep  = mTargetPosition - mGunMtx->getColumn(3);
-	f32 headPitch = JMAAtan2Radian(mHeadMtx->mMatrix.mtxView[0][1], mHeadMtx->mMatrix.mtxView[2][1]);
-	f32 turnAngle = JMAAtan2Radian(-sep.x, -sep.z);
-	f32 angleDist = angDist(headPitch, turnAngle);
+	Vector3f sep = mTargetPosition - mGunMtx->getColumn(3);
 
-	f32 absDist = absVal(angleDist);
+	Vector3f headVec = mHeadMtx->getColumn(1);
+	f32 headPitch    = JMAAtan2Radian(headVec.x, headVec.z);
+	f32 turnAngle    = JMAAtan2Radian(-sep.x, -sep.z);
+
+	f32 angleDist = angDist(headPitch, turnAngle);
+	f32 absDist   = absVal(angleDist);
 
 	if (absDist > 0.05f) {
 		mYaw -= 0.05f * (angleDist / absDist);
@@ -1542,181 +1544,6 @@ bool HoudaiShotGunMgr::searchShotGunRotation()
 
 	mPitch = (mPitch < 0.0f) ? TAU + mPitch : (mPitch >= TAU) ? mPitch - TAU : mPitch;
 	return true;
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stfd     f31, 0x40(r1)
-	psq_st   f31, 72(r1), 0, qr0
-	stfd     f30, 0x30(r1)
-	psq_st   f30, 56(r1), 0, qr0
-	stfd     f29, 0x20(r1)
-	psq_st   f29, 40(r1), 0, qr0
-	stfd     f28, 0x10(r1)
-	psq_st   f28, 24(r1), 0, qr0
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lis      r3, atanTable___5JMath@ha
-	lwz      r5, 0x14(r31)
-	addi     r3, r3, atanTable___5JMath@l
-	lfs      f2, 0x20(r31)
-	lfs      f0, 0x2c(r5)
-	lfs      f3, 0x1c(r31)
-	fsubs    f29, f2, f0
-	lfs      f1, 0x1c(r5)
-	lfs      f2, 0x18(r31)
-	lfs      f0, 0xc(r5)
-	fsubs    f30, f3, f1
-	lwz      r4, 0x10(r31)
-	fsubs    f31, f2, f0
-	lfs      f1, 4(r4)
-	lfs      f2, 0x24(r4)
-	bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
-	fmr      f28, f1
-	lis      r3, atanTable___5JMath@ha
-	fneg     f1, f31
-	addi     r3, r3, atanTable___5JMath@l
-	fneg     f2, f29
-	bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
-	fmr      f2, f1
-	fmr      f1, f28
-	bl       angDist__Fff
-	lfs      f0, lbl_8051C588@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_802C4E34
-	fmr      f0, f1
-	b        lbl_802C4E38
-
-lbl_802C4E34:
-	fneg     f0, f1
-
-lbl_802C4E38:
-	lfs      f2, lbl_8051C5D8@sda21(r2)
-	fcmpo    cr0, f0, f2
-	ble      lbl_802C4E58
-	fdivs    f1, f1, f0
-	lfs      f0, 8(r31)
-	fnmsubs  f0, f2, f1, f0
-	stfs     f0, 8(r31)
-	b        lbl_802C4E64
-
-lbl_802C4E58:
-	lfs      f0, 8(r31)
-	fsubs    f0, f0, f1
-	stfs     f0, 8(r31)
-
-lbl_802C4E64:
-	lfs      f1, 8(r31)
-	lfs      f0, lbl_8051C588@sda21(r2)
-	fcmpo    cr0, f1, f0
-	bge      lbl_802C4E80
-	lfs      f0, lbl_8051C5DC@sda21(r2)
-	fadds    f1, f0, f1
-	b        lbl_802C4E94
-
-lbl_802C4E80:
-	lfs      f0, lbl_8051C5DC@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_802C4E94
-	fsubs    f1, f1, f0
-
-lbl_802C4E94:
-	fmuls    f2, f29, f29
-	lfs      f0, lbl_8051C588@sda21(r2)
-	stfs     f1, 8(r31)
-	fmadds   f1, f31, f31, f2
-	fcmpo    cr0, f1, f0
-	ble      lbl_802C4EBC
-	ble      lbl_802C4EC0
-	frsqrte  f0, f1
-	fmuls    f1, f0, f1
-	b        lbl_802C4EC0
-
-lbl_802C4EBC:
-	fmr      f1, f0
-
-lbl_802C4EC0:
-	fmr      f2, f30
-	lis      r3, atanTable___5JMath@ha
-	addi     r3, r3, atanTable___5JMath@l
-	bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
-	lfs      f2, lbl_8051C5E0@sda21(r2)
-	lfs      f0, lbl_8051C588@sda21(r2)
-	fadds    f2, f2, f1
-	fcmpo    cr0, f2, f0
-	bge      lbl_802C4EF0
-	lfs      f0, lbl_8051C5DC@sda21(r2)
-	fadds    f2, f0, f2
-	b        lbl_802C4F04
-
-lbl_802C4EF0:
-	lfs      f0, lbl_8051C5DC@sda21(r2)
-	fcmpo    cr0, f2, f0
-	cror     2, 1, 2
-	bne      lbl_802C4F04
-	fsubs    f2, f2, f0
-
-lbl_802C4F04:
-	lfs      f1, 0xc(r31)
-	bl       angDist__Fff
-	lfs      f0, lbl_8051C588@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_802C4F20
-	fmr      f0, f1
-	b        lbl_802C4F24
-
-lbl_802C4F20:
-	fneg     f0, f1
-
-lbl_802C4F24:
-	lfs      f2, lbl_8051C5D8@sda21(r2)
-	fcmpo    cr0, f0, f2
-	ble      lbl_802C4F44
-	fdivs    f1, f1, f0
-	lfs      f0, 0xc(r31)
-	fnmsubs  f0, f2, f1, f0
-	stfs     f0, 0xc(r31)
-	b        lbl_802C4F50
-
-lbl_802C4F44:
-	lfs      f0, 0xc(r31)
-	fsubs    f0, f0, f1
-	stfs     f0, 0xc(r31)
-
-lbl_802C4F50:
-	lfs      f1, 0xc(r31)
-	lfs      f0, lbl_8051C588@sda21(r2)
-	fcmpo    cr0, f1, f0
-	bge      lbl_802C4F6C
-	lfs      f0, lbl_8051C5DC@sda21(r2)
-	fadds    f1, f0, f1
-	b        lbl_802C4F80
-
-lbl_802C4F6C:
-	lfs      f0, lbl_8051C5DC@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_802C4F80
-	fsubs    f1, f1, f0
-
-lbl_802C4F80:
-	stfs     f1, 0xc(r31)
-	li       r3, 1
-	psq_l    f31, 72(r1), 0, qr0
-	lfd      f31, 0x40(r1)
-	psq_l    f30, 56(r1), 0, qr0
-	lfd      f30, 0x30(r1)
-	psq_l    f29, 40(r1), 0, qr0
-	lfd      f29, 0x20(r1)
-	psq_l    f28, 24(r1), 0, qr0
-	lfd      f28, 0x10(r1)
-	lwz      r0, 0x54(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
 }
 
 /**
