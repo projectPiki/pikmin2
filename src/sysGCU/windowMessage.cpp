@@ -8,225 +8,6 @@
 
 static const char idk[] = "\0\0\0\0\0\0\0\0\0";
 
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-        .4byte __sinit_windowMessage_cpp
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_8049ACA8
-    lbl_8049ACA8:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global lbl_8049ACB4
-    lbl_8049ACB4:
-        .4byte 0x77696E64
-        .4byte 0x6F774D65
-        .4byte 0x73736167
-        .4byte 0x652E6370
-        .4byte 0x70000000
-    .global lbl_8049ACC8
-    lbl_8049ACC8:
-        .asciz "P2Assert"
-        .skip 3
-        .4byte 0x44726177
-        .4byte 0x496E666F
-        .4byte 0x4D67723A
-        .4byte 0x3A696E69
-        .4byte 0x74000000
-    .global lbl_8049ACE8
-    lbl_8049ACE8:
-        .4byte 0x50534761
-        .4byte 0x6D652E68
-        .4byte 0x00000000
-        .4byte 0x6D657373
-        .4byte 0x6167654F
-        .4byte 0x626A2E68
-        .4byte 0x00000000
-        .4byte 0x00000000
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804ECC50
-    lbl_804ECC50:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global __vt__Q35P2JME6Window8TControl
-    __vt__Q35P2JME6Window8TControl:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q35P2JME6Window8TControlFv
-        .4byte reset__Q35P2JME6Window8TControlFv
-        .4byte update__Q25P2JME8TControlFv
-        .4byte update__Q35P2JME6Window8TControlFP10ControllerP10Controller
-        .4byte draw__Q35P2JME6Window8TControlFR8Graphics
-        .4byte draw__Q35P2JME6Window8TControlFPA4_fPA4_f
-        .4byte setMessageID__Q25P2JME8TControlFUlUl
-        .4byte setMessageID__Q25P2JME8TControlFPc
-        .4byte setMessageID__Q25P2JME8TControlFUx
-        .4byte setMessageCode__Q25P2JME8TControlFUsUs
-        .4byte setMessageCode__Q25P2JME8TControlFUl
-        .4byte onInit__Q35P2JME6Window8TControlFv
-        .4byte createReference__Q25P2JME8TControlFv
-        .4byte createResourceContainer__Q25P2JME8TControlFv
-        .4byte createSequenceProcessor__Q35P2JME6Window8TControlFv
-        .4byte createRenderingProcessor__Q35P2JME6Window8TControlFv
-    .global __vt__Q35P2JME6Window19TRenderingProcessor
-    __vt__Q35P2JME6Window19TRenderingProcessor:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q35P2JME6Window19TRenderingProcessorFv
-        .4byte do_reset__Q28JMessage10TProcessorFv
-        .4byte do_character__Q25P2JME19TRenderingProcessorFi
-        .4byte do_tag__Q25P2JME19TRenderingProcessorFUlPCvUl
-        .4byte do_systemTagCode__Q25P2JME19TRenderingProcessorFUsPCvUl
-        .4byte do_select_begin__Q25P2JME19TRenderingProcessorFUl
-        .4byte do_select_end__Q25P2JME19TRenderingProcessorFv
-        .4byte do_select_separate__Q25P2JME19TRenderingProcessorFv
-        .4byte do_reset___Q28JMessage19TRenderingProcessorFPCc
-        .4byte do_setBegin_isReady___Q28JMessage10TProcessorCFv
-        .4byte do_begin___Q28JMessage19TRenderingProcessorFPCvPCc
-        .4byte do_end___Q28JMessage19TRenderingProcessorFv
-        .4byte do_tag___Q28JMessage19TRenderingProcessorFUlPCvUl
-        .4byte do_systemTagCode___Q28JMessage19TRenderingProcessorFUsPCvUl
-        .4byte do_begin__Q25P2JME19TRenderingProcessorFPCvPCc
-        .4byte do_end__Q28JMessage19TRenderingProcessorFv
-        .4byte tagColor__Q25P2JME19TRenderingProcessorFPCvUl
-        .4byte tagSize__Q25P2JME19TRenderingProcessorFPCvUl
-        .4byte tagRuby__Q25P2JME19TRenderingProcessorFPCvUl
-        .4byte tagFont__Q25P2JME19TRenderingProcessorFPCvUl
-        .4byte tagImage__Q25P2JME19TRenderingProcessorFUsPCvUl
-        .4byte tagColorEX__Q25P2JME19TRenderingProcessorFUsPCvUl
-        .4byte tagControl__Q25P2JME19TRenderingProcessorFUsPCvUl
-        .4byte tagPosition__Q25P2JME19TRenderingProcessorFUsPCvUl
-        .4byte update__Q35P2JME6Window19TRenderingProcessorFv
-        .4byte reset__Q35P2JME6Window19TRenderingProcessorFv
-        .4byte newParagraph__Q25P2JME19TRenderingProcessorFv
-        .4byte
-   doDrawImage__Q35P2JME6Window19TRenderingProcessorFP10JUTTextureffff .4byte
-   doDrawRuby__Q35P2JME6Window19TRenderingProcessorFffffib .4byte
-   doDrawLetter__Q35P2JME6Window19TRenderingProcessorFffffib .4byte
-   doTagControlAbtnWait__Q25P2JME19TRenderingProcessorFv .4byte
-   doDrawCommon__Q35P2JME6Window19TRenderingProcessorFffP7MatrixfP7Matrixf
-        .4byte
-   "makeMatrix__Q35P2JME6Window19TRenderingProcessorFP7MatrixfPQ35P2JME6Window8DrawInfof10Vector3<f>"
-        .4byte
-   doGetDrawInfo__Q35P2JME6Window19TRenderingProcessorFPQ35P2JME6Window8DrawInfo
-    .global __vt__Q35P2JME6Window18TSequenceProcessor
-    __vt__Q35P2JME6Window18TSequenceProcessor:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q35P2JME6Window18TSequenceProcessorFv
-        .4byte do_reset__Q28JMessage10TProcessorFv
-        .4byte do_character__Q25P2JME18TSequenceProcessorFi
-        .4byte do_tag__Q25P2JME18TSequenceProcessorFUlPCvUl
-        .4byte do_systemTagCode__Q25P2JME18TSequenceProcessorFUsPCvUl
-        .4byte do_select_begin__Q28JMessage10TProcessorFUl
-        .4byte do_select_end__Q28JMessage10TProcessorFv
-        .4byte do_select_separate__Q28JMessage10TProcessorFv
-        .4byte do_reset___Q28JMessage18TSequenceProcessorFPCc
-        .4byte do_setBegin_isReady___Q28JMessage18TSequenceProcessorCFv
-        .4byte do_begin___Q28JMessage18TSequenceProcessorFPCvPCc
-        .4byte do_end___Q28JMessage18TSequenceProcessorFv
-        .4byte do_tag___Q28JMessage18TSequenceProcessorFUlPCvUl
-        .4byte do_systemTagCode___Q28JMessage18TSequenceProcessorFUsPCvUl
-        .4byte do_begin__Q25P2JME18TSequenceProcessorFPCvPCc
-        .4byte do_end__Q25P2JME18TSequenceProcessorFv
-        .4byte do_isReady__Q25P2JME18TSequenceProcessorFv
-        .4byte do_jump_isReady__Q25P2JME18TSequenceProcessorFv
-        .4byte do_jump__Q25P2JME18TSequenceProcessorFPCvPCc
-        .4byte do_branch_query__Q25P2JME18TSequenceProcessorFUs
-        .4byte do_branch_queryResult__Q25P2JME18TSequenceProcessorFv
-        .4byte do_branch__Q25P2JME18TSequenceProcessorFPCvPCc
-        .4byte doResetAbtnWaitSE__Q25P2JME18TSequenceProcessorFv
-        .4byte doCharacterSEStart__Q35P2JME6Window18TSequenceProcessorFv
-        .4byte doCharacterSE__Q35P2JME6Window18TSequenceProcessorFi
-        .4byte doCharacterSEEnd__Q35P2JME6Window18TSequenceProcessorFv
-        .4byte doFastForwardSE__Q35P2JME6Window18TSequenceProcessorFv
-        .4byte reset__Q25P2JME18TSequenceProcessorFv
-    .global __vt__Q35P2JME6Window8DrawInfo
-    __vt__Q35P2JME6Window8DrawInfo:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q35P2JME6Window8DrawInfoFv
-        .4byte getChildCount__5CNodeFv
-        .4byte 0
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global lbl_80516288
-    lbl_80516288:
-        .skip 0x4
-    .global lbl_8051628C
-    lbl_8051628C:
-        .skip 0x4
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80520920
-    lbl_80520920:
-        .4byte 0x00000000
-    .global lbl_80520924
-    lbl_80520924:
-        .4byte 0x00000000
-    .global lbl_80520928
-    lbl_80520928:
-        .float 0.5
-    .global lbl_8052092C
-    lbl_8052092C:
-        .4byte 0x41F00000
-    .global lbl_80520930
-    lbl_80520930:
-        .4byte 0x3FC90FDB
-    .global lbl_80520934
-    lbl_80520934:
-        .4byte 0x437F0000
-    .global lbl_80520938
-    lbl_80520938:
-        .4byte 0x41200000
-    .global lbl_8052093C
-    lbl_8052093C:
-        .4byte 0x40A00000
-    .global lbl_80520940
-    lbl_80520940:
-        .4byte 0x43300000
-        .4byte 0x00000000
-    .global lbl_80520948
-    lbl_80520948:
-        .4byte 0x41490FDB
-    .global lbl_8052094C
-    lbl_8052094C:
-        .4byte 0x43A2F983
-    .global lbl_80520950
-    lbl_80520950:
-        .float 1.0
-    .global lbl_80520954
-    lbl_80520954:
-        .4byte 0x3F4CCCCD
-    .global lbl_80520958
-    lbl_80520958:
-        .4byte 0x40000000
-    .global lbl_8052095C
-    lbl_8052095C:
-        .4byte 0x40C90FDB
-    .global lbl_80520960
-    lbl_80520960:
-        .4byte 0x40800000
-    .global lbl_80520964
-    lbl_80520964:
-        .4byte 0x41700000
-    .global lbl_80520968
-    lbl_80520968:
-        .4byte 0x40490FDB
-    .global lbl_8052096C
-    lbl_8052096C:
-        .4byte 0x42480000
-    .global lbl_80520970
-    lbl_80520970:
-        .4byte 0x43680000
-        .4byte 0x00000000
-*/
-
 namespace P2JME {
 namespace Window {
 /**
@@ -266,7 +47,13 @@ void DrawInfoMgr::init(u32 count)
  */
 void DrawInfoMgr::update()
 {
-	// UNUSED FUNCTION
+	FOREACH_NODE(DrawInfo, mInfoList1.mChild, node)
+	{
+		node->mTimer += sys->mDeltaTime;
+		if (node->mTimer > node->mTimeLimit) {
+			node->mTimer = node->mTimeLimit;
+		}
+	}
 }
 
 /**
@@ -275,7 +62,16 @@ void DrawInfoMgr::update()
  */
 void DrawInfoMgr::reset()
 {
-	// UNUSED FUNCTION
+	DrawInfo* node = (DrawInfo*)mInfoList1.mChild;
+	while (node) {
+		DrawInfo* next = (DrawInfo*)node->mNext;
+		P2ASSERTLINE(253, node);
+		node->_18    = -1;
+		node->mTimer = 0.0f;
+		node->del();
+		mInfoList2.add(node);
+		node = next;
+	}
 }
 
 /**
@@ -391,10 +187,7 @@ TRenderingProcessor::TRenderingProcessor(JMessage::TReference* ref)
  * @note Address: N/A
  * @note Size: 0x100
  */
-void TRenderingProcessor::initDrawInfoMgr(u32)
-{
-	// UNUSED FUNCTION
-}
+void TRenderingProcessor::initDrawInfoMgr(u32 count) { mDrawInfo.init(count); }
 
 /**
  * @note Address: 0x8043F55C
@@ -402,22 +195,17 @@ void TRenderingProcessor::initDrawInfoMgr(u32)
  */
 BOOL TRenderingProcessor::doDrawCommon(f32 a1, f32 a2, Matrixf* mtx1, Matrixf* mtx2)
 {
-	DrawInfo* info = nullptr;
-	FOREACH_NODE(DrawInfo, mDrawInfo.mInfoList1.mChild, node)
-	{
-		if (_40 == node->_18) {
-			info = node;
-		}
-	};
+	u8 ret = 255;
 
-	f32 speed = mSpeed;
-	if (-speed > a2) {
+	DrawInfo* info = mDrawInfo.searchDrawInfo(_40);
+	f32 speed      = mSpeed;
+	if (-speed >= a2) {
 		f32 speed2 = mTextBoxHeight;
 		f32 calc   = 0.0f;
 		f32 calc2;
 		if (speed + speed2 < a2) {
 
-			if (a2 < 0.0f) {
+			if (a2 <= 0.0f) {
 				calc2 = calc;
 				if (speed2 < a2) {
 					calc2 = a2;
@@ -431,7 +219,8 @@ BOOL TRenderingProcessor::doDrawCommon(f32 a1, f32 a2, Matrixf* mtx1, Matrixf* m
 					speed    = JMath::atanTable_.atan2_(speed2, calc2);
 					calc     = speed + HALF_PI;
 					f32 what = calc2 / mSpeed * 255.0f;
-					calc     = (what > 0.0f) ? what + 0.5f : what - 0.5f;
+					calc     = (what >= 0.0f) ? what + 0.5f : what - 0.5f;
+					ret      = 255 - (u8)calc;
 					calc2    = speed2 + mSpeed;
 				}
 			}
@@ -444,6 +233,7 @@ BOOL TRenderingProcessor::doDrawCommon(f32 a1, f32 a2, Matrixf* mtx1, Matrixf* m
 					mDrawInfo.mInfoList1.add(info);
 					doGetDrawInfo(info);
 				}
+				info = (DrawInfo*)info->mChild;
 			}
 
 			Matrixf mtx;
@@ -470,10 +260,11 @@ BOOL TRenderingProcessor::doDrawCommon(f32 a1, f32 a2, Matrixf* mtx1, Matrixf* m
 				GXLoadPosMtxImm(mtx.mMatrix.mtxView, 0);
 			}
 		}
-		return (int)(calc * _78);
+	} else {
+		ret = 0;
 	}
 
-	return false;
+	return (int)(ret * _78);
 
 	/*
 	stwu     r1, -0xe0(r1)
@@ -745,14 +536,14 @@ void TRenderingProcessor::makeMatrix(Matrixf* mtx, DrawInfo* info, f32 angle, Ve
 	}
 	case 1: {
 		f32 calc = info->getCalc();
-		Vector3f scale(fabs((1.0f - calc) * cosf(calc) * 2.0f * (1.0f - calc)) + 1.0f);
+		Vector3f scale((f32)fabs((1.0f - calc) * cosf(calc) * 2.0f * (1.0f - calc)) + 1.0f);
 		Vector3f rotate(angle, 0.0f, 0.0f);
 		mtx->makeSRT(scale, rotate, pos);
 		break;
 	}
 	case 2: {
 		f32 calc = info->getCalc();
-		pos.y    = -(fabs(calc * cosf(calc) * 4.0f * calc) * 15.0f - pos.y);
+		pos.y    = -((f32)fabs((1.0f - calc) * cosf(calc) * 4.0f * (1.0f - calc)) * 15.0f - pos.y);
 		Vector3f scale(1.0f);
 		Vector3f rotate(angle, 0.0f, 0.0f);
 		mtx->makeSRT(scale, rotate, pos);
@@ -947,22 +738,24 @@ void TRenderingProcessor::makeMatrix(Matrixf* mtx, DrawInfo* info, f32 angle, Ve
  * @note Address: 0x8043FB28
  * @note Size: 0x188
  */
-f32 TRenderingProcessor::doDrawLetter(f32, f32, f32 x, f32 y, int a1, bool flag)
+f32 TRenderingProcessor::doDrawLetter(f32 x0, f32 y0, f32 x, f32 y, int a1, bool flag)
 {
 	f32 wid;
 	Matrixf mtx1;
 	Matrixf mtx2;
-	u8 ret = doDrawCommon(x, y, &mtx1, &mtx2);
+	u8 ret = doDrawCommon(x0, y0, &mtx1, &mtx2);
 	if (ret) {
 		GXLoadPosMtxImm(mtx2.mMatrix.mtxView, 0);
-		JUtility::TColor color(ret >> 1, ret, ret, ret);
+		JUtility::TColor color;
+		color.set(0, 0, 0, ret >> 1);
 		mMainFont->setGradColor(color, color);
 		mMainFont->drawChar_scale(0.0f, 0.0f, x, y, a1, flag);
+
 		GXLoadPosMtxImm(mtx1.mMatrix.mtxView, 0);
 		mColorData1.a = ret;
 		mColorData2.a = ret;
-		JUtility::TColor color3;
-		mMainFont->setGradColor(color, color3);
+
+		mMainFont->setGradColor(mColorData1, mColorData2);
 		wid = mMainFont->drawChar_scale(0.0f, 0.0f, x, y, a1, flag);
 	} else {
 		wid = calcWidth(mMainFont, a1, x, flag);
@@ -1079,18 +872,23 @@ f32 TRenderingProcessor::doDrawLetter(f32, f32, f32 x, f32 y, int a1, bool flag)
  * @note Address: 0x8043FCB0
  * @note Size: 0x17C
  */
-f32 TRenderingProcessor::doDrawRuby(f32, f32, f32 x, f32 y, int a1, bool flag)
+f32 TRenderingProcessor::doDrawRuby(f32 x0, f32 y0, f32 x, f32 y, int a1, bool flag)
 {
 	f32 wid;
 	Matrixf mtx1;
 	Matrixf mtx2;
-	u8 ret = doDrawCommon(x, y, &mtx1, &mtx2);
+	u8 ret = doDrawCommon(x0, y0, nullptr, nullptr);
 	if (ret) {
-		JUtility::TColor color(ret >> 1, ret, ret, ret);
+		JUtility::TColor color(mColorData3);
+		color.a = ret;
 		mRubyFont->setCharColor(color);
 
 		GXColor col(_CC);
-		GXSetTevColor(GX_TEVREG1, col);
+		col.r = col.r >> 1;
+		col.g = col.g >> 1;
+		col.b = col.b >> 1;
+		col.a = col.a >> 1;
+		GXSetTevColor(GX_TEVREG0, col);
 		wid = mRubyFont->drawChar_scale(0.0f, 0.0f, x, y, a1, flag);
 
 		GXColor col2(_CC);
@@ -1207,29 +1005,23 @@ f32 TRenderingProcessor::doDrawRuby(f32, f32, f32 x, f32 y, int a1, bool flag)
  * @note Address: 0x8043FE2C
  * @note Size: 0x1DC
  */
-void TRenderingProcessor::doDrawImage(JUTTexture* tex, f32, f32, f32 x, f32 y)
+void TRenderingProcessor::doDrawImage(JUTTexture* tex, f32 x0, f32 y0, f32 x, f32 y)
 {
 	Matrixf mtx1;
 	Matrixf mtx2;
-	u8 ret = doDrawCommon(x, y, &mtx1, &mtx2);
+	u8 ret = doDrawCommon(x0, y0, &mtx1, &mtx2);
 	if (ret) {
+		JUtility::TColor color, color2;
 		mColorData4.a = (mColorData4.a * ret) / 255;
 		mColorData5.a = (mColorData5.a * ret) / 255;
-		JUtility::TColor color(mColorData4);
-		JUtility::TColor color2(mColorData5);
+		color         = (mColorData4);
+		color2        = (mColorData5);
 
 		setImageGX();
 		GXLoadPosMtxImm(mtx2.mMatrix.mtxView, 0);
 
-		mColorData4.r = 0;
-		mColorData4.g = 0;
-		mColorData4.b = 0;
-		mColorData4.a >>= 1;
-
-		mColorData5.r = 0;
-		mColorData5.g = 0;
-		mColorData5.b = 0;
-		mColorData5.a = 0;
+		mColorData4.set(0, 0, 0, mColorData4.a >> 1);
+		mColorData5.set(0, 0, 0, mColorData5.a >> 1);
 
 		P2JME::TRenderingProcessor::drawImage(tex, 0.0f, 0.0f, x, y);
 		GXLoadPosMtxImm(mtx1.mMatrix.mtxView, 0);
@@ -1368,16 +1160,7 @@ void TRenderingProcessor::doDrawImage(JUTTexture* tex, f32, f32, f32 x, f32 y)
  * @note Address: 0x80440008
  * @note Size: 0x40
  */
-void TRenderingProcessor::update()
-{
-	FOREACH_NODE(DrawInfo, mDrawInfo.mInfoList1.mChild, node)
-	{
-		node->mTimer += sys->mDeltaTime;
-		if (node->mTimer > node->mTimeLimit) {
-			node->mTimer = node->mTimeLimit;
-		}
-	}
-}
+void TRenderingProcessor::update() { mDrawInfo.update(); }
 
 /**
  * @note Address: 0x80440048
@@ -1386,14 +1169,7 @@ void TRenderingProcessor::update()
 void TRenderingProcessor::reset()
 {
 	P2JME::TRenderingProcessor::reset();
-	FOREACH_NODE(DrawInfo, mDrawInfo.mInfoList1.mChild, node)
-	{
-		P2ASSERTLINE(253, node);
-		node->_18    = -1;
-		node->mTimer = 0.0f;
-		node->del();
-		mDrawInfo.mInfoList2.add(node);
-	}
+	mDrawInfo.reset();
 }
 
 /**
@@ -1411,11 +1187,7 @@ TControl::TControl()
  * @note Address: 0x8044013C
  * @note Size: 0x100
  */
-void TControl::initRenderingProcessor(u32 count)
-{
-	Window::TRenderingProcessor* proc = static_cast<Window::TRenderingProcessor*>(mTextRenderProc);
-	proc->mDrawInfo.init(count);
-}
+void TControl::initRenderingProcessor(u32 count) { static_cast<Window::TRenderingProcessor*>(mTextRenderProc)->initDrawInfoMgr(count); }
 
 /**
  * @note Address: 0x8044023C
