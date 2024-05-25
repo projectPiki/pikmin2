@@ -22,6 +22,32 @@ struct TCursor : public TBase {
 	void update(Arg*);
 	void calcPos_(Vector3f*, f32, s32);
 
+	inline void initNoCheck(s32 whistleType, s32 contextNum)
+	{
+		if (contextNum < 0) {
+			contextNum = 16;
+		}
+
+		mContextNum = contextNum;
+		mAngleSpeed = kAngleSpeed;
+
+		// Louie and President whistles are unused in vanilla as whistleType is always 0 for navis
+		switch (whistleType) {
+		case 0:
+			mOneEmitter.mEffectID = PID_Cursor_Olimar;
+			break;
+		case 1:
+			mOneEmitter.mEffectID = PID_Cursor_President;
+			break;
+		case 2:
+			mOneEmitter.mEffectID = PID_Cursor_Louie;
+			break;
+		case 3:
+			mOneEmitter.mEffectID = PID_WhistleFuebug;
+			break;
+		}
+	}
+
 	// _00      = VTBL
 	TOneEmitter mOneEmitter;                    // _04
 	s32 mContextNum;                            // _38

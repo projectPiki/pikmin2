@@ -30,7 +30,7 @@ struct TNaviEffect {
 	{
 	}
 
-	enum enumNaviType { NAVITYPE_Olimar, NAVITYPE_Louie, NAVITYPE_President };
+	enum enumNaviType { NAVITYPE_Olimar, NAVITYPE_Louie, NAVITYPE_President, NAVITYPE_Fuebug };
 
 	void init(Vector3f*, Mtx, Vector3f*, enumNaviType);
 

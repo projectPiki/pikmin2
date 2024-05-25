@@ -1015,105 +1015,32 @@ void TNaviEffect::init(Vector3f* pos, Mtx mtx, Vector3f* naviPos, enumNaviType n
 /**
  * @note Address: 0x803B7E24
  * @note Size: 0xD8
+ * TODO: fix enums
  */
 void TNaviEffect::setNaviType(enumNaviType type)
 {
 	switch (type) {
 	case NAVITYPE_Olimar:
-		mCursor.mContextNum           = WHISTLE_CONTEXT_NUM;
-		mCursor.mAngleSpeed           = TCursor::kAngleSpeed;
-		mCursor.mOneEmitter.mEffectID = PID_Cursor_Olimar;
-		mLight.mNaviType              = 0;
-		mLightAct.mNaviType           = 0;
+		mCursor.initNoCheck(0, WHISTLE_CONTEXT_NUM);
+		mLight.mNaviType    = 0;
+		mLightAct.mNaviType = 0;
 		break;
 	case NAVITYPE_Louie:
-		mCursor.mContextNum           = WHISTLE_CONTEXT_NUM;
-		mCursor.mAngleSpeed           = TCursor::kAngleSpeed;
-		mCursor.mOneEmitter.mEffectID = PID_Cursor_Louie;
-		mLight.mNaviType              = 1;
-		mLightAct.mNaviType           = 1;
+		mCursor.initNoCheck(0, WHISTLE_CONTEXT_NUM);
+		mLight.mNaviType    = 1;
+		mLightAct.mNaviType = 1;
 		break;
 	case NAVITYPE_President:
-		mCursor.mContextNum           = WHISTLE_CONTEXT_NUM;
-		mCursor.mAngleSpeed           = TCursor::kAngleSpeed;
-		mCursor.mOneEmitter.mEffectID = PID_Cursor_President;
-		mLight.mNaviType              = 0;
-		mLightAct.mNaviType           = 0;
+		mCursor.initNoCheck(1, WHISTLE_CONTEXT_NUM);
+		mLight.mNaviType    = 0;
+		mLightAct.mNaviType = 0;
 		break;
-	case 3:
-		mCursor.mContextNum           = WHISTLE_CONTEXT_NUM;
-		mCursor.mAngleSpeed           = TCursor::kAngleSpeed;
-		mCursor.mOneEmitter.mEffectID = PID_Cursor_Louie;
-		mLight.mNaviType              = 1;
-		mLightAct.mNaviType           = 1;
+	case NAVITYPE_Fuebug:
+		mCursor.initNoCheck(2, WHISTLE_CONTEXT_NUM);
+		mLight.mNaviType    = 1;
+		mLightAct.mNaviType = 1;
 		break;
 	}
-	/*
-	cmpwi    r4, 2
-	beq      lbl_803B7EA4
-	bge      lbl_803B7E40
-	cmpwi    r4, 0
-	beq      lbl_803B7E4C
-	bge      lbl_803B7E78
-	blr
-
-lbl_803B7E40:
-	cmpwi    r4, 4
-	bgelr
-	b        lbl_803B7ED0
-
-lbl_803B7E4C:
-	li       r0, 0x10
-	cmpwi    r0, 0
-	stw      r0, 0xe4(r3)
-	li       r4, 0x19
-	li       r0, 0
-	lfs      f0, kAngleSpeed__Q23efx7TCursor@sda21(r13)
-	stfs     f0, 0x338(r3)
-	sth      r4, 0xbc(r3)
-	stw      r0, 0x368(r3)
-	stw      r0, 0x398(r3)
-	blr
-
-lbl_803B7E78:
-	li       r0, 0x10
-	cmpwi    r0, 0
-	stw      r0, 0xe4(r3)
-	li       r4, 0x19
-	li       r0, 1
-	lfs      f0, kAngleSpeed__Q23efx7TCursor@sda21(r13)
-	stfs     f0, 0x338(r3)
-	sth      r4, 0xbc(r3)
-	stw      r0, 0x368(r3)
-	stw      r0, 0x398(r3)
-	blr
-
-lbl_803B7EA4:
-	li       r0, 0x10
-	cmpwi    r0, 0
-	stw      r0, 0xe4(r3)
-	li       r4, 0x1b
-	li       r0, 0
-	lfs      f0, kAngleSpeed__Q23efx7TCursor@sda21(r13)
-	stfs     f0, 0x338(r3)
-	sth      r4, 0xbc(r3)
-	stw      r0, 0x368(r3)
-	stw      r0, 0x398(r3)
-	blr
-
-lbl_803B7ED0:
-	li       r0, 0x10
-	cmpwi    r0, 0
-	stw      r0, 0xe4(r3)
-	li       r4, 0x1a
-	li       r0, 1
-	lfs      f0, kAngleSpeed__Q23efx7TCursor@sda21(r13)
-	stfs     f0, 0x338(r3)
-	sth      r4, 0xbc(r3)
-	stw      r0, 0x368(r3)
-	stw      r0, 0x398(r3)
-	blr
-	*/
 }
 
 /**
