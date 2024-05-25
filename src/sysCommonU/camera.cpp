@@ -74,9 +74,9 @@ CullFrustum::CullFrustum(int a)
 Vector3f CullFrustum::getUpVector()
 {
 	Vector3f upVec;
-	upVec.x = mViewMatrix->mMatrix.structView.yx;
+	upVec.x = mViewMatrix->mMatrix.structView.xy;
 	upVec.y = mViewMatrix->mMatrix.structView.yy;
-	upVec.z = mViewMatrix->mMatrix.structView.yz;
+	upVec.z = mViewMatrix->mMatrix.structView.zy;
 	return upVec;
 }
 
@@ -88,8 +88,8 @@ Vector3f CullFrustum::getSideVector()
 {
 	Vector3f sideVec;
 	sideVec.x = -mViewMatrix->mMatrix.structView.xx;
-	sideVec.y = -mViewMatrix->mMatrix.structView.xy;
-	sideVec.z = -mViewMatrix->mMatrix.structView.xz;
+	sideVec.y = -mViewMatrix->mMatrix.structView.yx;
+	sideVec.z = -mViewMatrix->mMatrix.structView.zx;
 	return sideVec;
 }
 
@@ -100,8 +100,8 @@ Vector3f CullFrustum::getSideVector()
 Vector3f CullFrustum::getViewVector()
 {
 	Vector3f viewVec;
-	viewVec.x = -mViewMatrix->mMatrix.structView.zx;
-	viewVec.y = -mViewMatrix->mMatrix.structView.zy;
+	viewVec.x = -mViewMatrix->mMatrix.structView.xz;
+	viewVec.y = -mViewMatrix->mMatrix.structView.yz;
 	viewVec.z = -mViewMatrix->mMatrix.structView.zz;
 	return viewVec;
 }
@@ -112,25 +112,12 @@ Vector3f CullFrustum::getViewVector()
  */
 Vector3f CullFrustum::getPosition()
 {
-	Vector3f tVec;
-	tVec.x = -mViewMatrix->mMatrix.structView.tx;
-	tVec.y = -mViewMatrix->mMatrix.structView.ty;
-	tVec.z = -mViewMatrix->mMatrix.structView.tz;
+	Vector3f tVec = mViewMatrix->getBasis(3);
+	tVec.negate2();
 
-	Vector3f xVec;
-	xVec.x = mViewMatrix->mMatrix.structView.xx;
-	xVec.y = mViewMatrix->mMatrix.structView.yx;
-	xVec.z = mViewMatrix->mMatrix.structView.zx;
-
-	Vector3f yVec;
-	yVec.x = mViewMatrix->mMatrix.structView.xy;
-	yVec.y = mViewMatrix->mMatrix.structView.yy;
-	yVec.z = mViewMatrix->mMatrix.structView.zy;
-
-	Vector3f zVec;
-	zVec.x = mViewMatrix->mMatrix.structView.xz;
-	zVec.y = mViewMatrix->mMatrix.structView.yz;
-	zVec.z = mViewMatrix->mMatrix.structView.zz;
+	Vector3f xVec = mViewMatrix->getBasis(0);
+	Vector3f yVec = mViewMatrix->getBasis(1);
+	Vector3f zVec = mViewMatrix->getBasis(2);
 
 	Vector3f position;
 	position.x = tVec.dot(xVec);
@@ -153,19 +140,15 @@ void CullFrustum::updatePlanes()
 	f32 viewAngle = PI * (mViewAngle / 360.0f);                    // 27
 	f32 fovAngle  = (f32)atan(mAspectRatio * (f32)tan(viewAngle)); // 31
 
+	// this is inlines bruv.
 	Matrixf outMat;
-	Vec outVec;
+	Vector3f outVec;
 	Vector3f planeVec;
 	f32 dist;
-
 	PSMTXRotAxisRad(outMat.mMatrix.mtxView, (Vec*)&row1, (PI - viewAngle));
-	PSMTXMultVec(outMat.mMatrix.mtxView, (Vec*)&row2, &outVec);
-	planeVec.x          = outVec.x;
-	planeVec.y          = outVec.y;
-	planeVec.z          = outVec.z;
-	mObjects[0].mNormal = planeVec;
-	dist                = planeVec.dot(posVec);
-	mObjects[0].mOffset = dist;
+	PSMTXMultVec(outMat.mMatrix.mtxView, (Vec*)&row2, (Vec*)&outVec);
+	mObjects[0].mNormal = outVec;
+	mObjects[0].mOffset = outVec.dot(posVec);
 
 	Vec outVec1;
 	Vector3f planeVec1;
@@ -457,22 +440,17 @@ void Camera::copyFrom(Camera* camera)
 void Camera::updatePlanes()
 {
 	CullFrustum::updatePlanes();
-	Vector3f zVec;
-	zVec.x = -mViewMatrix->mMatrix.structView.xz;
-	zVec.y = -mViewMatrix->mMatrix.structView.yz;
-	zVec.z = -mViewMatrix->mMatrix.structView.zz;
 
-	Vector3f pos = getPosition();
+	Vector3f viewVector = getViewVector();
+	Vector3f position   = getPosition();
 
-	mObjects[4].mNormal = Vector3f(-zVec.x, -zVec.y, -zVec.z);
-	Vector3f farPlaneVec(mObjects[4].mNormal.x, mObjects[4].mNormal.y, mObjects[4].mNormal.z);
-	Vector3f farVec     = zVec * mProjectionFar + pos;
-	mObjects[4].mOffset = farPlaneVec.dot(farVec);
+	// Update far plane
+	Vector3f farPoint = viewVector * mProjectionFar + position;
+	mObjects[4].define(-viewVector, farPoint);
 
-	mObjects[5].mNormal = Vector3f(-zVec.x, -zVec.y, -zVec.z);
-	Vector3f nearPlaneVec(mObjects[5].mNormal.x, mObjects[5].mNormal.y, mObjects[5].mNormal.z);
-	Vector3f nearVec    = zVec * mProjectionNear + pos;
-	mObjects[5].mOffset = nearPlaneVec.dot(farVec);
+	// Update near plane
+	Vector3f nearPoint = viewVector * mProjectionNear + position;
+	mObjects[2].define(viewVector, nearPoint);
 	/*
 	stwu     r1, -0x70(r1)
 	mflr     r0
@@ -616,11 +594,8 @@ Vector3f Camera::getPosition()
 		return mJstObject->mViewPos;
 	}
 
-	Vector3f vec;
-	vec.x = -mViewMatrix->mMatrix.structView.tx;
-	vec.y = -mViewMatrix->mMatrix.structView.ty;
-	vec.z = -mViewMatrix->mMatrix.structView.tz;
-
+	Vector3f vec = mViewMatrix->getColumn(3);
+	vec.negate2();
 	return mViewMatrix->multTranspose(vec);
 }
 
@@ -778,16 +753,14 @@ void Camera::updateScreenConstants()
  */
 f32 Camera::calcScreenSize(Sys::Sphere& ball)
 {
-	Vector3f camPos = getPosition();
-	Matrixf* matrix = mViewMatrix;
-	Vector3f netPos = ball.mPosition - camPos;
-	f32 dotprod
-	    = netPos.x * -matrix->mMatrix.structView.xz + netPos.y * -matrix->mMatrix.structView.yz + netPos.z * -matrix->mMatrix.structView.zz;
-	f32 scaledRad = mFieldOfViewTangent * ball.mRadius;
+	Vector3f cameraPosition = getPosition();
+	Vector3f sphereToCamera = ball.mPosition - cameraPosition;
+	Vector3f viewDirection  = getViewVector();
 
-	f32 product = mCameraSizeModifier * scaledRad / dotprod;
+	f32 scaledRadius = mFieldOfViewTangent * ball.mRadius;
+	f32 screenSize   = mCameraSizeModifier * scaledRadius / sphereToCamera.dot(viewDirection);
 
-	return absF(product);
+	return absF(screenSize);
 }
 
 /**
@@ -805,26 +778,32 @@ f32 Camera::calcScreenSize(Sys::Sphere& ball)
  */
 void Camera::updateSoundCamera(f32 angle)
 {
-	f32 cotan = cosf(angle) / sinf(angle);
+	// This is definitely Camera::calcScreenSize(Sys::Sphere&, f32&, f32&, Vector3f&)
+	f32 angleRatio = cosfc(angle) / sinf(angle);
 
-	Vector3f targetPos = getTargetDistance(); // wrong func call
+	Vector3f targetPos = getLookAtPosition();
 	Vector3f pos       = getPosition();
-	Vector3f viewVec1;
-	viewVec1.x = -(*mViewMatrix)(2, 0);
-	viewVec1.y = -(*mViewMatrix)(2, 1);
-	viewVec1.z = -(*mViewMatrix)(2, 2);
+	Vector3f viewVec1  = getViewVector();
 
 	f32 distance = targetPos.distance(pos);
-	f32 ratio    = (cotan * distance) / mFieldOfViewTangent;
+	f32 ratio    = (angleRatio * distance) / mFieldOfViewTangent;
 
 	mSoundPosition.x = -(viewVec1.x * ratio - targetPos.x);
 	mSoundPosition.y = -(viewVec1.y * ratio - targetPos.y);
 	mSoundPosition.z = -(viewVec1.z * ratio - targetPos.z);
 
-	Matrixf mat = *mViewMatrix;
+	// I think to here
 
-	// mat.setMultNeg(mSoundPosition);
-	PSMTXCopy(mat.mMatrix.mtxView, mSoundMatrix.mMatrix.mtxView);
+	Vector3f normal0 = mObjects[0].mNormal;
+	Vector3f normal1 = mObjects[1].mNormal;
+	Vector3f normal2 = mObjects[2].mNormal;
+
+	Matrixf matrix;
+	matrix.setRow(0, normal0);
+	matrix.setRow(1, normal1);
+	matrix.setRow(2, normal2);
+	matrix.setRow(3, mSoundPosition);
+	PSMTXCopy(matrix.mMatrix.mtxView, mSoundMatrix.mMatrix.mtxView);
 }
 
 /**
@@ -955,12 +934,7 @@ void BlendCamera::doUpdate()
 	vectMatrix.mMatrix.structView.zx *= vect3.x;
 	vectMatrix.mMatrix.structView.yx *= vect3.x;
 
-	vect3.x = vect3.z * vectMatrix.mMatrix.structView.xz + vect3.x * vectMatrix.mMatrix.structView.xx
-	        + vect3.y * vectMatrix.mMatrix.structView.xy;
-
-	vect3.y = vect3.z * vectMatrix.mMatrix.structView.yz + vectMatrix.mMatrix.structView.yx + vect3.y * vectMatrix.mMatrix.structView.yy;
-
-	vect3.z = vect3.z * vectMatrix.mMatrix.structView.zz + vectMatrix.mMatrix.structView.zx + vectMatrix.mMatrix.structView.zy;
+	vect3 = vectMatrix * vect3;
 
 	mTargetMatrix.makeTQ(vect3, slerpQuat);
 
