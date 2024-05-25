@@ -102,6 +102,37 @@ inline f32 adjustVal(f32 y, f32 x, f32 delta)
 	return (diff < delta) ? x : (y < x) ? y + delta : y - delta;
 }
 
+inline f32 adjustVal(f32& diff, f32 y, f32 x, f32 delta)
+{
+	diff = absVal(y - x);
+
+	return (diff < delta) ? x : (y < x) ? y + delta : y - delta;
+}
+
+inline f32 _normaliseAngle(f32 angle)
+{
+	f32 normalisedAngle = 0.0f;
+	if (normalisedAngle >= angle) {
+		f32 delta = normalisedAngle - angle;
+		if (TAU - delta < delta) {
+			normalisedAngle -= TAU;
+		}
+	} else {
+		f32 delta = angle - normalisedAngle;
+		if (TAU - delta < delta) {
+			normalisedAngle += TAU;
+		}
+	}
+
+	return normalisedAngle;
+}
+
+inline f32 _clampAngle(f32 angle, f32 difference, f32 limit)
+{
+	f32 angDistance = absVal(angle - difference);
+	return angDistance < limit ? difference : (angle < difference) ? angle + limit : angle - limit;
+}
+
 inline int adjustValInt(int current, int dest, const int delta)
 {
 	return (absVal(current - dest) < delta) ? dest : (current < dest ? current += delta : current -= delta);

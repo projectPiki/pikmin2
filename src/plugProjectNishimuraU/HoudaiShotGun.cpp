@@ -1719,32 +1719,17 @@ lbl_802C4F80:
 	*/
 }
 
-inline f32 clampRotation(f32 value)
-{
-	f32 difference = 0.0f;
-	if (difference >= value) {
-		if (TAU - (difference - value) < (difference - value)) {
-			difference -= TAU;
-		}
-	} else if (TAU - (value - difference) < (value - difference)) {
-		difference += TAU;
-	}
-
-	return difference;
-}
-
 /**
  * @note Address: 0x802C4FBC
  * @note Size: 0x178
  */
 bool HoudaiShotGunMgr::returnShotGunRotation()
 {
-	f32 yawDifference = clampRotation(mYaw);
-	f32 newYaw        = absVal(mYaw - yawDifference) < 0.025f ? yawDifference : (mYaw < yawDifference) ? mYaw + 0.025f : mYaw - 0.025f;
-	mYaw              = newYaw;
+	f32 yawDifference = _normaliseAngle(mYaw);
+	mYaw              = _clampAngle(mYaw, yawDifference, 0.025f);
 
-	f32 pitchDifference = clampRotation(mPitch);
-	mPitch = absVal(mPitch - pitchDifference) < 0.025f ? pitchDifference : (mPitch < pitchDifference) ? mPitch + 0.025f : mPitch - 0.025f;
+	f32 pitchDifference = _normaliseAngle(mPitch);
+	mPitch              = _clampAngle(mPitch, pitchDifference, 0.025f);
 
 	if (absVal(mYaw - yawDifference) < 0.01f && absVal(mPitch - pitchDifference) < 0.01f) {
 		return true;
