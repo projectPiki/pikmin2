@@ -1147,16 +1147,15 @@ void HoudaiShotGunMgr::emitShotGun()
 		return;
 	}
 
-	Vector3f xVec;
-	mGunMtx->getBasis(1, xVec);
-	Vector3f gunPos;
-	mGunMtx->getBasis(3, gunPos);
+	Vector3f xVec   = mGunMtx->getBasis(0);
+	Vector3f gunPos = mGunMtx->getTranslation();
 
 	xVec.normalise();
 
 	Game::EnemyParmsBase::Parms& parms = CG_GENERALPARMS(mOwner);
-	f32 factor                         = parms.mAttackHitAngle.mValue * 2.0f;
 
+	f32 attackHit = parms.mAttackHitAngle.mValue;
+	f32 factor    = attackHit * 2.0f;
 	xVec.x += randWeightFloat(factor) - parms.mAttackHitAngle.mValue;
 	xVec.y += randWeightFloat(factor) - parms.mAttackHitAngle.mValue;
 	xVec.z += randWeightFloat(factor) - parms.mAttackHitAngle.mValue;
@@ -1169,7 +1168,7 @@ void HoudaiShotGunMgr::emitShotGun()
 
 	node->setPosition(gunPos);
 
-	xVec *= 600.0f;
+	xVec.scale(600.0f);
 	node->setVelocity(xVec);
 
 	node->startShotGun();

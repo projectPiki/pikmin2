@@ -228,6 +228,8 @@ struct Matrixf {
 		out.z = operator()(2, index);
 	}
 
+	inline Vector3f getBasis(int index) { return Vector3f(operator()(0, index), operator()(1, index), operator()(2, index)); }
+
 	/**
 	 * @brief Retrieves the column vector at the specified index.
 	 *
