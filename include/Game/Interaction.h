@@ -553,10 +553,8 @@ struct InteractWind : public Interaction {
 	inline InteractWind(Creature* parent, f32 force, Vector3f* direction)
 	    : Interaction(parent)
 	{
-		mDamage      = force;
-		mDirection.x = direction->x;
-		mDirection.y = direction->y;
-		mDirection.z = direction->z;
+		mDamage    = force;
+		mDirection = *direction;
 	}
 
 	virtual bool actPiki(Piki*); // _0C

@@ -376,50 +376,69 @@ void Obj::effectDrawOff() { mEffectObj->effectDrawOff(); }
  */
 void Obj::checkInteract(Obj* partner)
 {
-	Vector3f pos        = getPosition();          // f19, f20, f22
+	Vector3f currentPos = getPosition();          // f19, f20, f22
 	Vector3f partnerPos = partner->getPosition(); // f2, f1, f0
 
-	Vector3f sep = partnerPos - pos; // f30, f29, f31
-	sep.normalise();
+	Vector3f separationVec = partnerPos - currentPos; // f30, f29, f31
+	separationVec.normalise();
 
 	Vector3f yAxis(0.0f, 1.0f, 0.0f);
 
-	Vector3f crossVec = cross(yAxis, sep); // f28, f27, f26
+	Vector3f crossVec = yAxis.cross(separationVec); // f28, f27, f26
 	crossVec.normalise();
 
-	Vector3f vec3 = cross(sep, crossVec);
-	vec3.normalise(); // f23, f24, f25
+	Vector3f perpVec = separationVec.cross(crossVec);
+	perpVec.normalise(); // f23, f24, f25
 
-	f32 dist = pos.distance(partnerPos); // f21
+	f32 distance = currentPos.distance(partnerPos); // f21
 
-	Vector3f denkiDir = crossVec * C_GENERALPARMS.mSearchDistance();
-	denkiDir.y        = C_GENERALPARMS.mSearchHeight();
+	Vector3f searchDirection(crossVec);
+	searchDirection.scale(C_GENERALPARMS.mSearchDistance());
+	searchDirection.y = C_GENERALPARMS.mSearchHeight();
 
-	Sys::Sphere searchSphere;
-	searchSphere.mPosition = Vector3f(0.5f * (pos.x + partnerPos.x), 0.5f * (pos.y + partnerPos.y), 0.5f * (pos.z + partnerPos.z));
-	searchSphere.mRadius   = dist;
+	Vector3f middle;
+	middle.setMiddle(currentPos, partnerPos);
+	Sys::Sphere searchSphere(middle, distance);
 
 	CellIteratorArg iterArg(searchSphere);
 	iterArg.mOptimise = true;
+
 	CellIterator iter(iterArg);
 	CI_LOOP(iter)
 	{
 		Creature* creature = static_cast<Creature*>(*iter);
-		if (creature->isAlive() && (creature->isNavi() || creature->isPiki())) {
-			Vector3f creatureSep = creature->getPosition();
-			creatureSep -= pos;
 
-			f32 creatureDot = crossVec.dot(creatureSep); // f3
-			f32 absDot      = absVal(creatureDot);       // f4
+		// Skip if the creature is not alive or is neither a Navi nor a Piki
+		if (!creature->isAlive() || (!creature->isNavi() && !creature->isPiki())) {
+			continue;
+		}
 
-			if (absDot < 10.0f) {
-				f32 sepDot = sep.dot(creatureSep); // f6
-				if (sepDot < dist && sepDot > 0.0f && absVal(vec3.dot(creatureSep)) < 15.0f) {
-					f32 factor = creatureDot / absDot;
-					Vector3f dir(factor * denkiDir.x, denkiDir.y, factor * denkiDir.z);
-					InteractDenki denki(this, C_GENERALPARMS.mAttackDamage(), &dir);
-					creature->stimulate(denki);
-				}
+		// Calculate the separation vector from the creature to the current object
+		Vector3f creatureSepVec = creature->getPosition() - currentPos;
+
+		// Check if the creature is in the same general direction
+		f32 dotCross = crossVec.dot(creatureSepVec);
+		f32 abs      = absVal(dotCross);
+
+		if (!(abs < 10.0f)) {
+			continue;
+		}
+
+		// Check if the creature is within the distance range
+		f32 dotSeparation = separationVec.dot(creatureSepVec);
+		if (dotSeparation < distance && dotSeparation > 0.0f) {
+			// Check if the creature is within a certain perpendicular distance
+			f32 dotPerp = perpVec.dot(creatureSepVec);
+
+			if (absVal(dotPerp) < 15.0f) {
+				// Calculate the direction for interaction
+				Vector3f interactionDir = searchDirection;
+				interactionDir.scale2D(dotCross / abs);
+
+				// Perform the interaction with the calculated attack damage
+				f32 attackDamage = C_GENERALPARMS.mAttackDamage.mValue;
+				InteractDenki interaction(this, attackDamage, &interactionDir);
+				creature->stimulate(interaction);
 			}
 		}
 	}

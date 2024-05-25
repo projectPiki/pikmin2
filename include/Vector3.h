@@ -61,6 +61,7 @@ struct Vector3 {
 	inline void set2D(const Vector3& other);
 	inline void setZero();
 	inline void sub(Vector3& a, Vector3& b);
+	inline void setMiddle(Vector3& a, Vector3& b);
 
 	// Direction Functions
 	static inline T getDirectionFromTo(const Vector3& from, Vector3& to);
@@ -396,6 +397,14 @@ template <typename T>
 inline void Vector3<T>::sub(Vector3& a, Vector3& b)
 {
 	set(a.x - b.x, a.y - b.y, a.z - b.z);
+}
+
+template <typename T>
+inline void Vector3<T>::setMiddle(Vector3& a, Vector3& b)
+{
+	x = (a.x + b.x) * 0.5f;
+	y = (a.y + b.y) * 0.5f;
+	z = (a.z + b.z) * 0.5f;
 }
 
 template <typename T>
