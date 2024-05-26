@@ -1319,7 +1319,13 @@ bool PlayData::checkRepayLevelFirstClear()
 {
 	int id = getRepayLevel();
 
-	return (id < 0 || getDebtProgressFlags(1) & id);
+	if (id >= 0) {
+		int byte = id >> 3;
+		if ((getDebtProgressFlags(1 - byte) & 1 << (id - (byte << 3))) == 0) {
+			return true;
+		}
+	}
+	return false;
 }
 
 /**
