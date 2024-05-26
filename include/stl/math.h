@@ -163,4 +163,9 @@ static inline f32 dolsqrtfull(f32 mag)
 
 static inline f32 scaleValue(f32 scale, f32 value) { return scale * value; }
 
+static inline f32 dolsinf(f32 val) { return (f32)sin((f32)val); }
+static inline f32 dolcosf(f32 val) { return (f32)cos((f32)val); }
+static inline f32 doltanf(f32 val) { return (f32)tan((f32)val); }
+static inline f32 dolatan2f(f32 val1, f32 val2) { return (f32)atan2((f32)val1, (f32)val2); }
+
 #endif

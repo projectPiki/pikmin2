@@ -37,6 +37,11 @@ struct TControl : public stb::TControl {
 		Vec mPosition;
 	};
 
+	struct TTransform_position_direction {
+		Vec mPosition;  // _00
+		Vec mDirection; // _0C
+	};
+
 	TControl();
 
 	virtual ~TControl(); // _08
@@ -76,6 +81,9 @@ struct TControl : public stb::TControl {
 		}
 		return obj->referFunctionValue();
 	}
+
+	inline f32 getOnGetRotY() const { return mTransformOnGet_RotY; }
+	inline f32 getOnSetRotY() const { return mTransformOnSet_RotY; }
 
 	f64 getSecondsPerFrame() const { return mSecondsPerFrame; }
 

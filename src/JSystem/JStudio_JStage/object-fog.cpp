@@ -7,8 +7,8 @@
 namespace JStudio_JStage {
 
 const TAdaptor_fog::TVVOutput TAdaptor_fog::saoVVOutput_[3]
-    = { TVVOutput(4, &JStage::TFog::virtual_48, &JStage::TFog::virtual_44),
-	    TVVOutput(5, &JStage::TFog::virtual_50, &JStage::TFog::virtual_4C), TVVOutput(-1, nullptr, nullptr) };
+    = { TVVOutput(4, &JStage::TFog::JSGSetStartZ, &JStage::TFog::JSGGetStartZ),
+	    TVVOutput(5, &JStage::TFog::JSGSetEndZ, &JStage::TFog::JSGGetEndZ), TVVOutput(-1, nullptr, nullptr) };
 
 /**
  * @note Address: 0x80014134

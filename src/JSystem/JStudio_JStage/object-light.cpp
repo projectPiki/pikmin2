@@ -1,8 +1,9 @@
 #include "JSystem/JStudio_JStage.h"
+#include "stl/math.h"
 
 namespace JStudio_JStage {
 
-const TAdaptor_light::TVVOutput_direction_ saoVVOutput_direction[6]
+TAdaptor_light::TVVOutput_direction_ TAdaptor_light::saoVVOutput_direction_[6]
     = { TAdaptor_light::TVVOutput_direction_(10, 1), TAdaptor_light::TVVOutput_direction_(11, 1),
 	    TAdaptor_light::TVVOutput_direction_(7, 2),  TAdaptor_light::TVVOutput_direction_(8, 2),
 	    TAdaptor_light::TVVOutput_direction_(9, 2),  TAdaptor_light::TVVOutput_direction_(-1, 0) };
@@ -30,7 +31,7 @@ TAdaptor_light::~TAdaptor_light() { adaptor_do_end(nullptr); }
  */
 void TAdaptor_light::adaptor_do_prepare(const JStudio::TObject* obj)
 {
-	for (const TVVOutput_direction_* output = saoVVOutput_direction; output->mValueIndex != -1; output++) {
+	for (const TVVOutput_direction_* output = saoVVOutput_direction_; output->mValueIndex != -1; output++) {
 		mVariableValues[output->mValueIndex].setOutput(output);
 	}
 }
@@ -39,8 +40,43 @@ void TAdaptor_light::adaptor_do_prepare(const JStudio::TObject* obj)
  * @note Address: 0x80011530
  * @note Size: 0x2AC
  */
-void TAdaptor_light::adaptor_do_begin(const JStudio::TObject*)
+void TAdaptor_light::adaptor_do_begin(const JStudio::TObject* object)
 {
+	mObject->setFlagOn(1);
+	JStudio::TControl* control = object->getControl(); // r29
+	GXColor color              = mObject->JSGGetColor();
+	adaptor_setVariableValue_GXColor(sauVariableValue_4_COLOR_RGBA, color);
+
+	JStudio::TControl::TTransform_position_direction posDir;
+	JStudio::TControl::TTransform_position_direction* vvVec = &posDir;
+	mObject->JSGGetPosition(&posDir.mPosition);
+	mObject->JSGGetDirection(&posDir.mDirection);
+
+	// this should probably be an inline
+	if (!control->mTransformOnGet) {
+		vvVec = &posDir;
+	} else {
+		JStudio::TControl::TTransform_position_direction transformedPosDir;
+		PSMTXMultVec(control->mTransformOnGet_Mtx, &posDir.mPosition, &transformedPosDir.mPosition);
+		PSMTXMultVecSR(control->mTransformOnGet_Mtx, &vvVec->mPosition, &transformedPosDir.mDirection);
+		vvVec = &transformedPosDir;
+	}
+
+	adaptor_setVariableValue_Vec(sauVariableValue_3_POSITION_XYZ, vvVec->mPosition);
+
+	f32 x        = vvVec->mDirection.x;
+	f32 y        = vvVec->mDirection.y;
+	f32 z        = vvVec->mDirection.z;
+	f32 dist     = dolsqrtfull(x * x + z * z);
+	f32 atanVal1 = dolatan2f(x, z);
+	f32 atanVal2 = dolatan2f(y, dist);
+
+	adaptor_setVariableValue_immediate(10, 57.29578f * atanVal1);
+	adaptor_setVariableValue_immediate(11, 57.29578f * atanVal2);
+
+	Vec targetPos;
+	PSVECAdd(&vvVec->mPosition, &vvVec->mDirection, &targetPos);
+	adaptor_setVariableValue_Vec(sauVariableValue_3_TARGET_POSITION_XYZ, targetPos);
 	/*
 	stwu     r1, -0x90(r1)
 	mflr     r0
@@ -235,169 +271,63 @@ r1, 0x10 bl       adaptor_setVariableValue_Vec__Q27JStudio8TAdaptorFPCUlRC3Vec
  * @note Address: 0x800117DC
  * @note Size: 0x54
  */
-void TAdaptor_light::adaptor_do_end(const JStudio::TObject*)
-{
-	JStage::TLight* obj = mObject;
-	obj->JSGSetFlag(obj->JSGGetFlag() & ~0x1);
-}
+void TAdaptor_light::adaptor_do_end(const JStudio::TObject*) { mObject->setFlagOff(1); }
 
 /**
  * @note Address: 0x80011830
  * @note Size: 0x1C8
  */
-void TAdaptor_light::adaptor_do_update(const JStudio::TObject*, u32)
+void TAdaptor_light::adaptor_do_update(const JStudio::TObject* object, u32 p2)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x90(r1)
-	  mflr      r0
-	  stw       r0, 0x94(r1)
-	  stfd      f31, 0x80(r1)
-	  psq_st    f31,0x88(r1),0,0
-	  stfd      f30, 0x70(r1)
-	  psq_st    f30,0x78(r1),0,0
-	  stfd      f29, 0x60(r1)
-	  psq_st    f29,0x68(r1),0,0
-	  stw       r31, 0x5C(r1)
-	  stw       r30, 0x58(r1)
-	  lis       r5, 0x8047
-	  lwz       r31, 0x14(r4)
-	  addi      r5, r5, 0x33D0
-	  mr        r30, r3
-	  addi      r4, r1, 0xC
-	  bl        -0x442C
-	  lwz       r0, 0xC(r1)
-	  addi      r4, r1, 0x8
-	  stw       r0, 0x8(r1)
-	  lwz       r3, 0x114(r30)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x50(r12)
-	  mtctr     r12
-	  bctrl
-	  lis       r4, 0x8047
-	  mr        r3, r30
-	  addi      r5, r4, 0x33E0
-	  addi      r4, r1, 0x34
-	  bl        -0x4578
-	  lwz       r0, 0x118(r30)
-	  cmpwi     r0, 0x2
-	  beq-      .loc_0xF8
-	  bge-      .loc_0x11C
-	  cmpwi     r0, 0x1
-	  bge-      .loc_0x94
-	  b         .loc_0x11C
+	JStudio::TControl* control = object->getControl();
+	GXColor color;
+	adaptor_getVariableValue_GXColor(&color, sauVariableValue_4_COLOR_RGBA);
+	get_pJSG_()->JSGSetColor(color);
 
-	.loc_0x94:
-	  lwz       r3, 0x4(r30)
-	  lfs       f1, -0x7EBC(r2)
-	  lfs       f0, 0xDC(r3)
-	  lfs       f31, 0xC8(r3)
-	  fmuls     f29, f1, f0
-	  fmr       f1, f29
-	  bl        0xBD9D8
-	  frsp      f30, f1
-	  fmr       f1, f29
-	  bl        0xBDF34
-	  lfs       f0, -0x7EBC(r2)
-	  frsp      f29, f1
-	  fmuls     f31, f0, f31
-	  fmr       f1, f31
-	  bl        0xBDF20
-	  frsp      f0, f1
-	  stfs      f29, 0x44(r1)
-	  fmr       f1, f31
-	  fmuls     f0, f30, f0
-	  stfs      f0, 0x40(r1)
-	  bl        0xBD9A0
-	  frsp      f0, f1
-	  fmuls     f0, f30, f0
-	  stfs      f0, 0x48(r1)
-	  b         .loc_0x11C
+	JStudio::TControl::TTransform_position_direction posDir1;
+	adaptor_getVariableValue_Vec(&posDir1.mPosition, sauVariableValue_3_POSITION_XYZ);
 
-	.loc_0xF8:
-	  lis       r4, 0x8047
-	  mr        r3, r30
-	  addi      r5, r4, 0x33EC
-	  addi      r4, r1, 0x10
-	  bl        -0x460C
-	  addi      r3, r1, 0x10
-	  addi      r4, r1, 0x34
-	  addi      r5, r1, 0x40
-	  bl        0xD9590
+	switch (_118) {
+	case 1:
+		f32 val10 = adaptor_getVariableValue(10)->getValue();
+		f32 val11 = adaptor_getVariableValue(11)->getValue();
+		f32 cosX  = dolcosf(DEG2RAD * val11);
+		f32 sinX  = dolsinf(DEG2RAD * val11);
 
-	.loc_0x11C:
-	  lbz       r0, 0x74(r31)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x130
-	  addi      r31, r1, 0x34
-	  b         .loc_0x154
+		posDir1.mDirection.x = cosX * dolsinf(DEG2RAD * val10);
+		posDir1.mDirection.y = sinX;
+		posDir1.mDirection.z = cosX * dolcosf(DEG2RAD * val10);
 
-	.loc_0x130:
-	  addi      r3, r31, 0x98
-	  addi      r4, r1, 0x34
-	  addi      r5, r1, 0x1C
-	  bl        0xD926C
-	  addi      r3, r31, 0x98
-	  addi      r4, r1, 0x40
-	  addi      r5, r1, 0x28
-	  bl        0xD92B0
-	  addi      r31, r1, 0x1C
+		break;
+	case 2:
+		Vec target;
+		adaptor_getVariableValue_Vec(&target, sauVariableValue_3_TARGET_POSITION_XYZ);
+		PSVECSubtract(&target, &posDir1.mPosition, &posDir1.mDirection);
+		break;
+	}
 
-	.loc_0x154:
-	  lwz       r3, 0x114(r30)
-	  mr        r4, r31
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x48(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x114(r30)
-	  addi      r4, r31, 0xC
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x68(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x114(r30)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  psq_l     f31,0x88(r1),0,0
-	  lfd       f31, 0x80(r1)
-	  psq_l     f30,0x78(r1),0,0
-	  lfd       f30, 0x70(r1)
-	  psq_l     f29,0x68(r1),0,0
-	  lfd       f29, 0x60(r1)
-	  lwz       r31, 0x5C(r1)
-	  lwz       r0, 0x94(r1)
-	  lwz       r30, 0x58(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x90
-	  blr
-	*/
+	JStudio::TControl::TTransform_position_direction* posDir;
+	if (!control->mTransformOnSet) {
+		posDir = &posDir1;
+	} else {
+		JStudio::TControl::TTransform_position_direction posDir2;
+		PSMTXMultVec(control->mTransformOnSet_Mtx, &posDir1.mPosition, &posDir2.mPosition);
+		PSMTXMultVecSR(control->mTransformOnSet_Mtx, &posDir1.mDirection, &posDir2.mDirection);
+		posDir = &posDir2;
+	}
+
+	get_pJSG_()->JSGSetPosition(posDir->mPosition);
+	get_pJSG_()->JSGSetDirection(posDir->mDirection);
+	get_pJSG_()->JSGUpdate();
 }
 
 /**
  * @note Address: 0x800119F8
  * @note Size: 0x34
  */
-void TAdaptor_light::adaptor_do_data(const JStudio::TObject*, const void*, u32, const void*, u32)
+void TAdaptor_light::adaptor_do_data(const JStudio::TObject* object, const void* p2, u32 p3, const void* p4, u32 p5)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r4, r5
-	  mr        r5, r6
-	  stw       r0, 0x14(r1)
-	  mr        r6, r7
-	  mr        r7, r8
-	  lwz       r3, 0x114(r3)
-	  bl        0x62C
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	TAdaptor_object_::adaptor_data_(mObject, p2, p3, p4, p5);
 }
 
 /**
@@ -408,24 +338,27 @@ void TAdaptor_light::adaptor_do_FACULTY(JStudio::data::TEOperationData op, const
 {
 	switch (op) {
 	case JStudio::data::TEOD_Unknown_02:
-		return;
+		JStage::TELight lightType = JStage::TELIGHT_Unk0;
+		switch (((int*)data)[0]) {
+		default:
+			return;
+		case 0x301:
+			lightType = JStage::TELIGHT_Unk1;
+			break;
+		case 0x302:
+			lightType = JStage::TELIGHT_Unk2;
+			break;
+		case 0x303:
+			lightType = JStage::TELIGHT_Unk3;
+			break;
+		}
+
+		get_pJSG_()->JSGSetLightType(lightType);
+		break;
+	default:
+		break;
 	}
 
-	int flag;
-	switch (((int*)data)[0]) {
-	default:
-		return;
-	case 0x300:
-		flag = 1;
-		break;
-	case 0x302:
-		flag = 2;
-		break;
-	case 0x303:
-		flag = 3;
-		break;
-	}
-	mObject->JSGSetFlag(flag);
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)

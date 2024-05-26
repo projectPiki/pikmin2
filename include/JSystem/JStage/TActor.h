@@ -30,6 +30,8 @@ struct TActor : public TObject {
 	virtual f32 JSGGetTextureAnimationFrame() const;    // _80
 	virtual void JSGSetTextureAnimationFrame(f32);      // _84
 	virtual f32 JSGGetTextureAnimationFrameMax() const; // _88
+
+	// _00 = VTBL
 };
 } // namespace JStage
 

@@ -51,7 +51,7 @@ LIBS = [
             ["JSystem/JStudio_JStage/object", True],
             ["JSystem/JStudio_JStage/object-actor", False],
             ["JSystem/JStudio_JStage/object-ambientlight", True],
-            ["JSystem/JStudio_JStage/object-camera", False],
+            ["JSystem/JStudio_JStage/object-camera", True],
             ["JSystem/JStudio_JStage/object-fog", True],
             ["JSystem/JStudio_JStage/control", True],
         ],
