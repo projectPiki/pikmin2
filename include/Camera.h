@@ -50,6 +50,8 @@ struct CullFrustum : public CullPlane {
 	Vector3f getUpVector();
 	Vector3f getViewVector();
 
+	inline f32 getFOV(f32 viewAngle) { return (f32)atan(mAspectRatio * (f32)tan(viewAngle)); }
+
 	// CullPlane _00 - _24
 	f32 mViewAngle;       // _28
 	f32 mAspectRatio;     // _2C
@@ -60,12 +62,15 @@ struct CullFrustum : public CullPlane {
 struct Camera : public CullFrustum {
 	Camera();
 
-	virtual ~Camera() { }                                     // _08 (weak)
-	virtual Matrixf* getViewMatrix(bool);                     // _48
-	virtual Vector3f getPosition();                           // _4C
-	virtual void updatePlanes();                              // _50
-	virtual void updateScreenConstants();                     // _54
-	virtual Vector3f getLookAtPosition_();                    // _58 (weak)
+	virtual ~Camera() { }                 // _08 (weak)
+	virtual Matrixf* getViewMatrix(bool); // _48
+	virtual Vector3f getPosition();       // _4C
+	virtual void updatePlanes();          // _50
+	virtual void updateScreenConstants(); // _54
+	virtual Vector3f getLookAtPosition_() // _58 (weak)
+	{
+		return Vector3f::zero;
+	}
 	virtual f32 getTargetDistance() { return 0.0f; }          // _5C (weak)
 	virtual Vector3f* getPositionPtr();                       // _60
 	virtual Vector3f* on_getPositionPtr() { return nullptr; } // _64 (weak)

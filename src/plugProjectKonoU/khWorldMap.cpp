@@ -4193,7 +4193,7 @@ void WorldMap::changeInfo()
 	u64 tags2[4]
 	    = { '8396_01', '8398_01', '8401_01', '8410_01' }; // "Hole of Beasts" 	"White Flower Garden"	"Bulblax Kingdom" 	"Snagret Hole"
 	u64 tags3[4]     = { '8397_01', '8402_01', '8403_01',
-		                 '8411_01' }; // "Citadel of Spiders"	"Glutton's Kitchen"		"Shower Room"		"Submerged Castle"
+                     '8411_01' }; // "Citadel of Spiders"	"Glutton's Kitchen"		"Shower Room"		"Submerged Castle"
 	u64 tags4[4]     = { '8412_01', '8413_01', '8414_01', 'no_data' }; // "Cavern of Chaos" 	"Hole of Heroes"	 	"Dream Den"
 	u64* caveTags[4] = { tags1, tags2, tags3, tags4 };
 

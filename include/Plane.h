@@ -20,10 +20,10 @@ struct Plane {
 	void calcProjection(Vector3f&);
 	void intersectRay(Vector3f&, Vector3f&);
 
-	inline void define(const Vector3f& normal, const Vector3f& point)
+	inline void updatePlane(const Vector3f& position, Vec newPoint) // don't ask me why this is Vec and not Vector3f
 	{
-		mNormal = normal;
-		mOffset = mNormal.dot(point);
+		mNormal = newPoint;
+		mOffset = mNormal.dot(position);
 	}
 
 	Vector3f mNormal; // _00

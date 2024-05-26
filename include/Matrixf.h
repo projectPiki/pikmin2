@@ -360,6 +360,13 @@ struct Matrixf {
 	 */
 	inline void newTranslation(Vector3f in) { setColumn(3, in); }
 
+	inline Vector3f getSoundPosition(Vector3f& soundPos, Vector3f& newPos)
+	{
+		newPos.set(-(soundPos.x * mMatrix.mtxView[0][0] + soundPos.y * mMatrix.mtxView[0][1] + soundPos.z * mMatrix.mtxView[0][2]),
+		           -(soundPos.x * mMatrix.mtxView[1][0] + soundPos.y * mMatrix.mtxView[1][1] + soundPos.z * mMatrix.mtxView[1][2]),
+		           -(soundPos.x * mMatrix.mtxView[2][0] + soundPos.y * mMatrix.mtxView[2][1] + soundPos.z * mMatrix.mtxView[2][2]));
+	}
+
 	/**
 	 * @brief Scales the matrix by a scalar value.
 	 *
