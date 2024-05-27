@@ -267,6 +267,12 @@ struct JPABaseEmitter {
 		mGlobalPrmClr.a = color.a;
 	}
 
+	inline void setPrmColor(Color4& color)
+	{
+		setPrmColorRGB(color.r, color.g, color.b);
+		mGlobalPrmClr.a = color.a;
+	}
+
 	inline void setTranslation(f32 x, f32 y, f32 z)
 	{
 		mGlobalTrs.x = x;
@@ -281,7 +287,9 @@ struct JPABaseEmitter {
 	void setRate(f32 rate) { mRate = rate; }
 	void setEmitterCallBackPtr(JPAEmitterCallBack* ptr) { mEmitterCallback = ptr; }
 	void setGlobalRTMatrix(const Mtx m) { JPASetRMtxTVecfromMtx(m, mGlobalRot, &mGlobalTrs); }
+	void setGlobalRMatrix(const Mtx m) { JPASetRMtxfromMtx(m, mGlobalRot); }
 	void setGlobalTranslation(f32 x, f32 y, f32 z) { mGlobalTrs.set(x, y, z); }
+	void setGlobalTranslation(JGeometry::TVec3f& vec) { mGlobalTrs.set(vec); }
 	void getLocalTranslation(JGeometry::TVec3f& vec) { vec.set(mLocalTrs); }
 	void setGlobalRotation(const JGeometry::TVec3<s16>& rot) { JPAGetXYZRotateMtx(rot.x, rot.y, rot.z, mGlobalRot); }
 	void setGlobalAlpha(u8 alpha) { mGlobalPrmClr.a = alpha; }

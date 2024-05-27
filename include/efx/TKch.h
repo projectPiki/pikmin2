@@ -176,15 +176,16 @@ struct TParticleCallBack_KchYodare : public JPAParticleCallBack {
 	virtual void init(JPABaseEmitter*, JPABaseParticle*);    // _14
 
 	// _00 VTBL
-	TKchYodareHitGr mHitGround; // _04
-	TKchYodareHitWat mHitWater; // _30
+	TKchYodareHitGr mHitGround; // _04 (size 0x1c)
+	TKchYodareHitWat mHitWater; // _20
+	f32 mGroundYPos;            // _3C
 };
 
 struct TKchYodareBaseChaseMtx : public TChaseMtx {
 	inline TKchYodareBaseChaseMtx(Mtx mtx, u16 effectID)
 	    : TChaseMtx(effectID, (Matrixf*)mtx)
 	{
-		mGroundYPos = 0.0f;
+		mParticleCallBack.mGroundYPos = 0.0f;
 	}
 
 	virtual bool create(Arg*); // _08
@@ -219,7 +220,6 @@ struct TKchYodareBaseChaseMtx : public TChaseMtx {
 	// _00      = VTBL
 	// _00-_14  = TChaseMtx
 	TParticleCallBack_KchYodare mParticleCallBack; // _14
-	f32 mGroundYPos;                               // _50
 };
 
 struct TKchAttackYodare : public TKchYodareBaseChaseMtx {

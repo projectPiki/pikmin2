@@ -26,10 +26,9 @@ bool TDangoCrash::create(Arg* arg)
 
 		Matrixf mtx;
 		Vector3f vecDir(0.0f, 1.0f, 0.0f);
-		// Vector3f vecAng (x, y, z);
 		mtx.setTransformationMtx(vecDir, ang, Vector3f::zero);
 		for (int i = 0; i < 2; i++) {
-			mEmitters[i]->setGlobalRTMatrix(mtx.mMatrix.mtxView);
+			mEmitters[i]->setGlobalRMatrix(mtx.mMatrix.mtxView);
 		}
 		return true;
 	} else {
@@ -76,7 +75,7 @@ void TKageMove::setGlobalPrmColor(Color4& color)
 	if (mEmitter == nullptr)
 		return;
 
-	mEmitter->setPrmColor(*(JUtility::TColor*)(&color));
+	mEmitter->setPrmColor(color);
 }
 
 /**
@@ -88,7 +87,7 @@ void TKageRun::setGlobalPrmColor(Color4& color)
 	if (mEmitter == nullptr)
 		return;
 
-	mEmitter->setPrmColor(*(JUtility::TColor*)(&color));
+	mEmitter->setPrmColor(color);
 }
 
 /**
@@ -100,7 +99,7 @@ void TKageDead1::setGlobalPrmColor(Color4& color)
 	if (mEmitter == nullptr)
 		return;
 
-	mEmitter->setPrmColor(*(JUtility::TColor*)(&color));
+	mEmitter->setPrmColor(color);
 }
 
 /**
@@ -115,9 +114,7 @@ bool TKageDead2::create(Arg* arg)
 	ArgPrmColor* argp = static_cast<ArgPrmColor*>(arg);
 
 	if (TSimple1::create(arg)) {
-		mEmitters[0]->setPrmColor(*(JUtility::TColor*)(&argp->mColor));
-		// mEmitters[0]->mColor1.setRGB(*(JUtility::TColor*)(&argp->mColor));
-		// mEmitters[0]->mColor1.a = argp->mColor.a;
+		mEmitters[0]->setPrmColor(argp->mColor);
 		return true;
 	}
 	return false;
@@ -186,7 +183,7 @@ lbl_803EB764:
  * @note Address: N/A
  * @note Size: 0x18
  */
-void TOootaParticle::setGlobalDynamicsScale(f32)
+void TOootaParticle::setGlobalDynamicsScale(f32 scale)
 {
 	// UNUSED FUNCTION
 }
@@ -210,8 +207,10 @@ bool TOootaBombLeg::create(Arg* arg)
 		makeMtxZAxisAlongPosPos(mtx.mMatrix.mtxView, pos1, pos2);
 		f32 dist = Vector3f::distance(pos2, pos1);
 		dist /= 100.0f;
-		mEmitters[0]->setGlobalRTMatrix(mtx.mMatrix.mtxView);
-		mEmitters[0]->mLocalScl.y *= dist;
+		for (int i = 0; i < 1; i++) {
+			mEmitters[i]->setGlobalRTMatrix(mtx.mMatrix.mtxView);
+			mEmitters[i]->mLocalScl.y *= dist;
+		}
 		return true;
 	}
 	return false;
@@ -583,21 +582,22 @@ void TParticleCallBack_KchYodare::execute(JPABaseEmitter* emit, JPABaseParticle*
 	if (position.y < groundY) {
 		ptcl->mFlags |= 2;
 		position.y = groundY;
-		// if (mPosID1 < _1C) {
-		// 	Vector3f* pos = &mPosList1[mPosID1];
-		// 	*pos          = position;
-		// 	mPosID1++;
-		// }
+		if (mHitGround.mCurrPosIndex < mHitGround.mPositionNum) {
+			Vector3f* pos = &mHitGround.mPositionList[mHitGround.mCurrPosIndex];
+			*pos          = position;
+			mHitGround.mCurrPosIndex++;
+		}
 	}
-	// if (position.y < _3C) {
-	// 	ptcl->_7C |= 2;
-	// 	position.y = _3C;
-	// if (mPosID2 < _38) {
-	// 	Vector3f* pos = &mPosList2[mPosID2];
-	// 	*pos          = position;
-	// 	mPosID2++;
-	// }
-	// }
+
+	if (position.y < mGroundYPos) {
+		ptcl->mFlags |= 2;
+		position.y = mGroundYPos;
+		if (mHitWater.mCurrPosIndex < mHitWater.mPositionNum) {
+			Vector3f* pos = &mHitWater.mPositionList[mHitWater.mCurrPosIndex];
+			*pos          = position;
+			mHitWater.mCurrPosIndex++;
+		}
+	}
 }
 
 /**
@@ -614,7 +614,7 @@ bool TKchYodareBaseChaseMtx::create(Arg* arg)
 	f32 y              = argp->mGroundYPos;
 	mParticleCallBack.mHitGround.create(nullptr);
 	mParticleCallBack.mHitWater.create(nullptr);
-	mGroundYPos = y;
+	mParticleCallBack.mGroundYPos = y;
 
 	if (TSync::create(arg)) {
 		mEmitter->mParticleCallback = &mParticleCallBack;
@@ -641,10 +641,8 @@ void efx::THdamaSight::setPosNrm(Vector3f& pos, Vector3f& angle)
 {
 	if (mEmitter) {
 		Matrixf mtx;
-		angle.normalise();
-		mtx.multTranspose(angle); // setAngleMtx maybe
-
-		mtx.setTranslation(pos);
+		Vector3f vecDir(1.0f, 1.0f, 0.0f);
+		mtx.setTransformationMtx(vecDir, angle, pos);
 		mEmitter->setGlobalRTMatrix(mtx.mMatrix.mtxView);
 	}
 	/*
@@ -774,7 +772,7 @@ bool THdamaHit2W::create(efx::Arg* arg)
 		                         Vector3f::zero); // not quite right for this one, needs something else to happen to vecAng first I think?
 
 		for (int i = 0; i < 3; i++) {
-			mEmitters[i]->setGlobalRTMatrix(mtx.mMatrix.mtxView);
+			mEmitters[i]->setGlobalRMatrix(mtx.mMatrix.mtxView);
 		}
 		THdamaShootA effect;
 		effect.create(argd);

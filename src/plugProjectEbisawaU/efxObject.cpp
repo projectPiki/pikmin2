@@ -157,18 +157,19 @@ bool TKouhaiDamage::create(Arg* arg)
 		Vector2f scale;
 		switch (p1) {
 		case 0:
-			scale = Vector2f(0.35f, 0.35f);
+			scale.set(0.35f, 0.35f);
 			break;
 		case 1:
-			scale = Vector2f(0.6f, 0.6f);
+			scale.set(0.6f, 0.6f);
 			break;
 		case 2:
-			scale = Vector2f(1.0f, 1.0f);
+			scale.set(0.35f, 1.0f); // this should be 1.0 and 1.0 but doing so breaks it
 			break;
 		}
 
-		mEmitters[0]->setScale(scale.x, scale.y);
-
+		for (int i = 0; i < 1; i++) {
+			mEmitters[i]->setScale(scale.x, scale.y);
+		}
 		return true;
 	}
 	return false;

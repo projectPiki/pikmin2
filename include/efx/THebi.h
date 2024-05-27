@@ -7,9 +7,9 @@
 
 namespace efx {
 struct THebiAphd_base : public TSimple4 {
-	inline THebiAphd_base(u16 effectID1, u16 effectID2, u16 effectID3, u16 effectID4, u32 val)
+	inline THebiAphd_base(u16 effectID1, u16 effectID2, u16 effectID3, u16 effectID4, u32 duration)
 	    : TSimple4(effectID1, effectID2, effectID3, effectID4)
-	    , _1C(val) // this is from the THebiAphd_dive ctor
+	    , mMaxDuration(duration) // this is from the THebiAphd_dive ctor
 	{
 	}
 
@@ -17,7 +17,7 @@ struct THebiAphd_base : public TSimple4 {
 
 	// _00      = VTBL
 	// _00-_1C  = TSimple4
-	u32 _1C; // _1C, unknown
+	u32 mMaxDuration; // _1C
 };
 
 struct THebiAphd_appear1 : public THebiAphd_base {
