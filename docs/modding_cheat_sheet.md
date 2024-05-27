@@ -2,6 +2,8 @@
 
 This cheat sheet provides an overview of the game's functions and classes that are of interest to modders. It aims to help you understand the game's structure and guide you in your modding efforts.
 
+## Files of Interest
+
 ## Functions of Interest
 
 ### In plugProjectYamashitaU/enemyBase.cpp
@@ -16,4 +18,7 @@ This cheat sheet provides an overview of the game's functions and classes that a
 
 ### EnemyBase - Basic Enemy functions
 
+
+
+## Variables of Interest
 
