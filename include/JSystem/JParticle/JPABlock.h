@@ -28,6 +28,18 @@ enum JPAVolType {
 	JPAVOL_Line     = 6,
 };
 
+enum JPAFieldBlockType {
+	JPAFIELD_Gravity    = 0,
+	JPAFIELD_Air        = 1,
+	JPAFIELD_Magnet     = 2,
+	JPAFIELD_Newton     = 3,
+	JPAFIELD_Vortex     = 4,
+	JPAFIELD_Random     = 5,
+	JPAFIELD_Drag       = 6,
+	JPAFIELD_Convection = 7,
+	JPAFIELD_Spin       = 8,
+};
+
 struct JPADynamicsBlockData {
 	// Representation of the contents in a .jpc file
 	u8 mMagic[4]; // _00
@@ -120,12 +132,13 @@ struct JPAFieldBlock {
 		JGeometry::TVec3f mOffset;   // _0C
 		JGeometry::TVec3f mVelocity; // _18
 		f32 mAmplitude;              // _24
-		f32 _28;                     // _28
-		f32 _2C;                     // _2C
-		f32 _30;                     // _30
-		f32 _34;                     // _34
-		f32 _38;                     // _38
-		f32 _3C;                     // _3C
+		f32 mMagRndm;                // _28
+		f32 mVal1;                   // _2C
+		f32 mFadeInTime;             // _30
+		f32 mFadeOutTime;            // _34
+		f32 mEnTime;                 // _38
+		f32 mDisTime;                // _3C
+		u8 mCycle;                   // _40
 	};
 
 	JPAFieldBlock(const u8*, JKRHeap*);
@@ -135,10 +148,34 @@ struct JPAFieldBlock {
 	// unused/inlined:
 	void init_jpa(const u8*, JKRHeap*);
 
+	inline u32 getSttFlag() const { return mData->_08 >> 16; }
+	inline u32 getAddType() const { return (mData->_08 >> 8) & 0x3; }
+	inline u32 getType() const { return mData->_08 & 0xF; }
+	inline int checkStatus(u16 flag) { return getSttFlag() & flag; }
+
+	inline JGeometry::TVec3f& getDir() { return mVelocity; } // should be const?
+	inline JGeometry::TVec3f& getPos() { return mOffset; }
+
+	inline f32 getMag() const { return mSpeed; }
+	inline f32 getEnTime() const { return mData->mEnTime; }
+	inline f32 getDisTime() const { return mData->mDisTime; }
+	inline f32 getFadeOutTime() const { return mData->mFadeOutTime; }
+	inline f32 getFadeInTime() const { return mData->mFadeInTime; }
+	inline f32 getFadeOutRate() const { return mFadeOutRate; }
+	inline f32 getFadeInRate() const { return mFadeInRate; }
+
+	inline f32 getMagRndm() const { return mData->mMagRndm; }
+	inline f32 getVal1() const { return mData->mVal1; }
+	inline u16 getCycle() const { return mData->mCycle; }
+
+	inline void getPosOrig(JGeometry::TVec3f* pos) const { *pos = mData->mOffset; }
+	inline void getDirOrig(JGeometry::TVec3f* dir) const { *dir = mData->mVelocity; }
+	inline f32 getMagOrig() const { return mData->mAmplitude; }
+
 	const Data* mData;           // _00
 	JPAFieldBase* mField;        // _04
-	f32 _08;                     // _08
-	f32 _0C;                     // _0C
+	f32 mFadeInRate;             // _08
+	f32 mFadeOutRate;            // _0C
 	JGeometry::TVec3f mOffset;   // _10
 	JGeometry::TVec3f mVelocity; // _1C
 	f32 mSpeed;                  // _28

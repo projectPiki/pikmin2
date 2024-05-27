@@ -13,6 +13,21 @@ inline f32 fsqrt_step(f32 mag)
 
 namespace JGeometry {
 template <typename T>
+struct TUtil {
+	static f32 epsilon() { return FLT_EPSILON * 32.0f; }
+	static f32 inv_sqrt(f32 val)
+	{
+		f32 norm;
+		if (val <= 0.0f) {
+			norm = val;
+		} else {
+			norm = fsqrt_step(val);
+		}
+		return norm;
+	}
+};
+
+template <typename T>
 struct TVec2 {
 	TVec2() { }
 	TVec2(T v) { set(v); }
@@ -238,11 +253,25 @@ struct TVec3 {
 	// 	z = vec.z;
 	// }
 
+	void add(const TVec3<f32>& b)
+	{
+		x += b.x;
+		y += b.y;
+		z += b.z;
+	}
+
 	void sub(const TVec3<f32>& b)
 	{
 		x -= b.x;
 		y -= b.y;
 		z -= b.z;
+	}
+
+	void sub(const TVec3<f32>& a, const TVec3<f32>& b)
+	{
+		x = a.x - b.x;
+		y = a.y - b.y;
+		z = a.z - b.z;
 	}
 
 	void scale(const f32 scale)
@@ -263,42 +292,62 @@ struct TVec3 {
 
 	f32 squared() const { return x * x + y * y + z * z; }
 
-	void normalize()
+	f32 length() const
 	{
-		if (squared() <= FLT_EPSILON * 32.0f) {
-			return;
-		}
 		f32 sq = squared();
 		f32 norm;
 		if (sq <= 0.0f) {
 			norm = sq;
 		} else {
-			norm = fsqrt_step(sq);
+			norm = sq * fsqrt_step(sq);
 		}
-		x *= norm;
-		y *= norm;
-		z *= norm;
+		return norm;
+	}
+
+	void setLength(f32 length)
+	{
+		f32 sq = squared();
+		if (sq <= TUtil<f32>::epsilon()) {
+			return;
+		}
+		f32 norm = TUtil<f32>::inv_sqrt(sq);
+		scale(norm * length);
+	}
+
+	void setLength(const TVec3<f32>& other, f32 length)
+	{
+		f32 sq = other.squared();
+		if (sq <= TUtil<f32>::epsilon()) {
+			zero();
+			return;
+		}
+		f32 norm = TUtil<f32>::inv_sqrt(sq);
+		scale(other, norm * length);
+	}
+
+	void normalize()
+	{
+		if (squared() <= TUtil<f32>::epsilon()) {
+			return;
+		}
+		f32 norm = TUtil<f32>::inv_sqrt(squared());
+		scale(norm);
 	}
 
 	void normalize(const TVec3<f32>& other)
 	{
 		f32 sq = other.squared();
-		if (sq <= FLT_EPSILON * 32.0f) {
+		if (sq <= TUtil<f32>::epsilon()) {
 			zero();
 			return;
 		}
-		f32 norm;
-		if (sq <= 0.0f) {
-			norm = sq;
-		} else {
-			norm = fsqrt_step(sq);
-		}
-		x = other.x * norm;
-		y = other.y * norm;
-		z = other.z * norm;
+		f32 norm = TUtil<f32>::inv_sqrt(sq);
+		scale(other, norm);
 	}
 
 	void cross(const TVec3<f32>& a, const TVec3<f32>& b) { set(a.y * b.z - a.z * b.y, a.z * b.x - a.x * b.z, a.x * b.y - a.y * b.x); }
+
+	f32 dot(const TVec3<f32>& a) const { return x * a.x + y * a.y + z * a.z; }
 
 	// idk why they didn't use set for this one but go figure.
 	void mul(const TVec3<f32>& a, const TVec3<f32>& b)
