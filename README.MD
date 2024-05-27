@@ -25,7 +25,7 @@ This repository builds the following DOLs:
 [Python 3.8+](https://www.python.org/downloads/)
 
 ### Instructions
-1. Intsall git from the link provided if not already installed https://git-scm.com/downloads. 
+1. Install git from the link provided if not already installed https://git-scm.com/downloads. 
 
 2. Clone the repo using `git clone https://github.com/projectPiki/pikmin2/`
 
@@ -77,8 +77,8 @@ This repository builds the following DOLs:
 - Credit to encounter and the [Metroid Prime decomp project](https://github.com/PrimeDecomp/prime) for the script!
 
 ### Documentation
-- With in the this repo there is a folder by the name of docs. And within said folder are .md documents filled with useful tips for modders alike!
-- And This Section of the read me will detail what/how these docs can be put to use for modding pikmin 2, including: linked files vs unliked files as of late, general writting rules for the decomp, and files and functions of intrest.
+- Within this repo there is a folder by the name of docs. And within said folder are .md documents filled with useful tips for modders alike!
+- And In This Section of the read me will detail what/how these docs can be put to use for modding pikmin 2, including: linked files vs unliked files as of late, general writting rules for the decomp, and files and functions of intrest.
 	1. writing_code.md: details the basics of writting code with these libs and modules for the repo
 	2. modding_cheat_sheet.md: details the functions,classes,variables, and files that are most intresting in terms of game edits
 	3. recommended_todo.md: the doc the details the unlinked files whice could be helpful on seeing what has been fully decomped as of late
