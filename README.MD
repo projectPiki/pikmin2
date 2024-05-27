@@ -79,9 +79,7 @@ This repository builds the following DOLs:
 ### Documentation
 - With in the this repo there is a folder by the name of docs. And within said folder are .md documents filled with useful tips for modders alike!
 - And This Section of the read me will detail what/how these docs can be put to use for modding pikmin 2, including: linked files vs unliked files as of late, general writting rules for the decomp, and files and functions of intrest.
-	1. Navigate to the `Actions` tab of the objdiff repo.
-	2. Select the latest `main` workflow.
-	3. Scroll to the bottom of the page and download the `stable` release for your platform (Mac, Linux, Windows).
-	4. Extract contents of `.zip` to obtain an executable version.
 
-	
+	1. writing_code.md: details the basics of writting code with these libs and modules for the repo
+	2. modding_cheat_sheet.md: details the functions,classes,variables, and files that are most intresting in terms of game edits
+	3. recommended_todo.md: the doc the details the unlinked files whice could be helpful on seeing what has been fully decomped as of late
