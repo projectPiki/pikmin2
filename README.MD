@@ -79,10 +79,6 @@ This repository builds the following DOLs:
 ### Documentation
 - With in the this repo there is a folder by the name of docs. And within said folder are .md documents filled with useful tips for modders alike!
 - And This Section of the read me will detail what/how these docs can be put to use for modding pikmin 2, including: linked files vs unliked files as of late, general writting rules for the decomp, and files and functions of intrest.
-		- Project dir: `/path/to/cloned/pikmin2`.
-		- Custom make program: `ninja` or `make`, depending on what was used to build previously.
-			- If specifying the name isn't enough, it's likely the program isn't on your `PATH`; try an absolute path instead.
-		- (`make` only) Build config: `None`.
-		- (`make` only) Select target build dir: `/path/to/cloned/pikmin2/build/pikmin2.usa/asm`.
-		- (`make` only) Select base build dir: `/path/to/cloned/pikmin2/build/pikmin2.usa/src`.
-
+	-rec
+	-code
+	
