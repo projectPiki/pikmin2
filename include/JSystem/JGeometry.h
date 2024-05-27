@@ -14,18 +14,49 @@ inline f32 fsqrt_step(f32 mag)
 namespace JGeometry {
 template <typename T>
 struct TUtil {
-	static f32 epsilon() { return FLT_EPSILON * 32.0f; }
-	static f32 inv_sqrt(f32 val)
+	static f32 abs(f32 x) { return __fabsf(x); }
+	static f32 atan2(f32 y, f32 x) { return JMAAtan2Radian(y, x); }
+	static const f32 epsilon() { return 32.0f * FLT_EPSILON; }
+
+	static bool epsilonEquals(T a1, T a2, T a3)
 	{
-		f32 norm;
-		if (val <= 0.0f) {
-			norm = val;
-		} else {
-			norm = fsqrt_step(val);
+		bool equal = false;
+
+		a1 -= a2;
+
+		if (-a3 <= a1 && a1 <= a3) {
+			equal = true;
 		}
-		return norm;
+
+		return equal;
 	}
+
+	f32 invert(f32 x) { return 1.0f / x; }
+
+	static f32 sqrt(f32 x)
+	{
+		if (x <= 0.0f)
+			return x;
+
+		f32 y = __frsqrte(x);
+		y     = 0.5f * y * (3.0f - (x * (y * y)));
+		return x * y;
+	}
+
+	static f32 inv_sqrt(f32 x)
+	{
+		if (x <= 0.0f)
+			return x;
+
+		f32 y = __frsqrte(x);
+		y     = 0.5f * y * (3.0f - (x * (y * y)));
+		return y;
+	}
+
+	T one() { return (T)1; }
 };
+
+typedef TUtil<f32> TUtilf;
 
 template <typename T>
 struct TVec2 {
@@ -274,14 +305,14 @@ struct TVec3 {
 		z = a.z - b.z;
 	}
 
-	void scale(const f32 scale)
+	void scale(f32 scale)
 	{
 		x *= scale;
 		y *= scale;
 		z *= scale;
 	}
 
-	void scale(const TVec3<f32>& a, const f32 scale)
+	void scale(const f32 scale, const TVec3<f32>& a)
 	{
 		x = a.x * scale;
 		y = a.y * scale;
@@ -306,43 +337,46 @@ struct TVec3 {
 
 	void setLength(f32 length)
 	{
-		f32 sq = squared();
-		if (sq <= TUtil<f32>::epsilon()) {
+		if (squared() <= TUtilf::epsilon()) {
 			return;
 		}
-		f32 norm = TUtil<f32>::inv_sqrt(sq);
+		f32 sq   = squared();
+		f32 norm = TUtilf::inv_sqrt(sq);
 		scale(norm * length);
 	}
 
 	void setLength(const TVec3<f32>& other, f32 length)
 	{
 		f32 sq = other.squared();
-		if (sq <= TUtil<f32>::epsilon()) {
+		if (sq <= TUtilf::epsilon()) {
 			zero();
 			return;
 		}
-		f32 norm = TUtil<f32>::inv_sqrt(sq);
-		scale(other, norm * length);
+		f32 norm = TUtilf::inv_sqrt(sq);
+		scale(norm * length, other);
 	}
 
-	void normalize()
+	f32 normalize()
 	{
-		if (squared() <= TUtil<f32>::epsilon()) {
-			return;
+		f32 this_squared = squared();
+		if (this_squared <= TUtilf::epsilon()) {
+			return 0.0f;
 		}
-		f32 norm = TUtil<f32>::inv_sqrt(squared());
-		scale(norm);
+		f32 invsqrt = TUtilf::inv_sqrt(this_squared);
+		scale(invsqrt);
+		return invsqrt * this_squared;
 	}
 
-	void normalize(const TVec3<f32>& other)
+	f32 normalize(const TVec3<f32>& other)
 	{
 		f32 sq = other.squared();
-		if (sq <= TUtil<f32>::epsilon()) {
+		if (sq <= TUtilf::epsilon()) {
 			zero();
-			return;
+			return 0.0f;
 		}
-		f32 norm = TUtil<f32>::inv_sqrt(sq);
-		scale(other, norm);
+		f32 norm = TUtilf::inv_sqrt(sq);
+		scale(norm, other);
+		return norm;
 	}
 
 	void cross(const TVec3<f32>& a, const TVec3<f32>& b) { set(a.y * b.z - a.z * b.y, a.z * b.x - a.x * b.z, a.x * b.y - a.y * b.x); }

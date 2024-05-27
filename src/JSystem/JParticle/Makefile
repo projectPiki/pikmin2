@@ -6,7 +6,7 @@ JPARTICLE_FILES:=\
 	$(BUILD_DIR)/src/JSystem/JParticle/JPAEmitterManager.o\
 	$(BUILD_DIR)/src/JSystem/JParticle/JPAExTexShape.o\
 	$(BUILD_DIR)/src/JSystem/JParticle/JPAExtraShape.o\
-	$(BUILD_DIR)/asm/JSystem/JParticle/JPAFieldBlock.o\
+	$(BUILD_DIR)/src/JSystem/JParticle/JPAFieldBlock.o\
 	$(BUILD_DIR)/src/JSystem/JParticle/JPAKeyBlock.o\
 	$(BUILD_DIR)/asm/JSystem/JParticle/JPAMath.o\
 	$(BUILD_DIR)/asm/JSystem/JParticle/JPAParticle.o\
