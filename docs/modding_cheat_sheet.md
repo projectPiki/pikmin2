@@ -1,8 +1,11 @@
 # Game Modding Cheat Sheet
 
-This cheat sheet provides an overview of the game's functions and classes that are of interest to modders. It aims to help you understand the game's structure and guide you in your modding efforts.
+This cheat sheet provides an overview of the game's functions and classes that are of interest to modders. It aims to help you understand the game's structure and guide you in your modding efforts.an example of somthing that would go in this sheet would be like an array that holds all the enemy ids and just general stuff like that that would help with mods like new enemys or purple and white onions.also these files or functions MUST be linked due to the fact nonlinked can cause some issues to not being fully matched.
 
 ## Files of Interest
+
+## In Project plugProjectKandoU
+- `pikiMgr`: The Manager for the pikmin and contains code for stuff such as j3d model loader stuff for the models and also load bmd lines for the pikis
 
 ## Functions of Interest
 
@@ -15,7 +18,6 @@ This cheat sheet provides an overview of the game's functions and classes that a
 
 
 ## Classes of Interest
-
 ### EnemyBase - Basic Enemy functions
 
 
