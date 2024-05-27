@@ -77,4 +77,6 @@ This repository builds the following DOLs:
 - Credit to encounter and the [Metroid Prime decomp project](https://github.com/PrimeDecomp/prime) for the script!
 
 ### Documentation
-	- With in the this repo there is a folder by the name of docs. And within said folder are .md documents filled with useful tips for modders alike!
+- With in the this repo there is a folder by the name of docs. And within said folder are .md documents filled with useful tips for modders alike!
+- And This Section of the read me will detail what/how these docs can be put to use for modding pikmin 2.
+
