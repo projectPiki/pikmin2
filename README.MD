@@ -25,7 +25,7 @@ This repository builds the following DOLs:
 [Python 3.8+](https://www.python.org/downloads/)
 
 ### Instructions
-1. Intsall git from the link provided if not already installed(https://git-scm.com/downloads). 
+1. Intsall git from the link provided if not already installed https://git-scm.com/downloads. 
 
 2. Clone the repo using `git clone https://github.com/projectPiki/pikmin2/`
 
