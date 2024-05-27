@@ -78,5 +78,6 @@ This repository builds the following DOLs:
 
 ### Documentation
 - With in the this repo there is a folder by the name of docs. And within said folder are .md documents filled with useful tips for modders alike!
-- And This Section of the read me will detail what/how these docs can be put to use for modding pikmin 2.
+- And This Section of the read me will detail what/how these docs can be put to use for modding pikmin 2, including: linked files vs unliked files as of late, general writting rules for the decomp, and files and functions of intrest.
+
 
