@@ -473,74 +473,11 @@ void TYakiBody::setRateLOD(int id)
 	};
 
 	for (int i = 0; i < 4; i++) {
-		if (mItems[i].mEmitter)
-			mItems[i].mEmitter->setRate(lods[i][id]);
+		JPABaseEmitter* emitter = mItems[i].getEmitter();
+		if (emitter) {
+			emitter->setRate(lods[i][id]);
+		}
 	}
-	/*
-	stwu     r1, -0x50(r1)
-	lis      r5, lbl_804958CC@ha
-	slwi     r0, r4, 2
-	stmw     r27, 0x3c(r1)
-	addi     r29, r5, lbl_804958CC@l
-	addi     r27, r1, 8
-	add      r27, r27, r0
-	lwz      r28, 0xc(r3)
-	lwz      r30, 0(r29)
-	lwz      r31, 4(r29)
-	cmplwi   r28, 0
-	lwz      r12, 8(r29)
-	lwz      r11, 0xc(r29)
-	lwz      r10, 0x10(r29)
-	lwz      r9, 0x14(r29)
-	lwz      r8, 0x18(r29)
-	lwz      r7, 0x1c(r29)
-	lwz      r6, 0x20(r29)
-	lwz      r5, 0x24(r29)
-	lwz      r4, 0x28(r29)
-	lwz      r0, 0x2c(r29)
-	stw      r30, 8(r1)
-	stw      r31, 0xc(r1)
-	stw      r12, 0x10(r1)
-	stw      r11, 0x14(r1)
-	stw      r10, 0x18(r1)
-	stw      r9, 0x1c(r1)
-	stw      r8, 0x20(r1)
-	stw      r7, 0x24(r1)
-	stw      r6, 0x28(r1)
-	stw      r5, 0x2c(r1)
-	stw      r4, 0x30(r1)
-	stw      r0, 0x34(r1)
-	beq      lbl_803B3CC8
-	lfs      f0, 0(r27)
-	stfs     f0, 0x28(r28)
-
-lbl_803B3CC8:
-	lwz      r28, 0x20(r3)
-	cmplwi   r28, 0
-	beq      lbl_803B3CDC
-	lfs      f0, 0xc(r27)
-	stfs     f0, 0x28(r28)
-
-lbl_803B3CDC:
-	addi     r3, r3, 0x28
-	lwz      r28, 0xc(r3)
-	cmplwi   r28, 0
-	beq      lbl_803B3CF4
-	lfs      f0, 0x18(r27)
-	stfs     f0, 0x28(r28)
-
-lbl_803B3CF4:
-	lwz      r28, 0x20(r3)
-	cmplwi   r28, 0
-	beq      lbl_803B3D08
-	lfs      f0, 0x24(r27)
-	stfs     f0, 0x28(r28)
-
-lbl_803B3D08:
-	lmw      r27, 0x3c(r1)
-	addi     r1, r1, 0x50
-	blr
-	*/
 }
 
 /**
@@ -1213,74 +1150,11 @@ void THibaFire::setRateLOD(int id)
 	};
 
 	for (int i = 0; i < 4; i++) {
-		if (mItems[i].mEmitter)
-			mItems[i].mEmitter->mRate = lods[i][id];
+		JPABaseEmitter* emitter = mItems[i].getEmitter();
+		if (emitter) {
+			emitter->setRate(lods[i][id]);
+		}
 	}
-	/*
-	stwu     r1, -0x50(r1)
-	lis      r5, lbl_804958FC@ha
-	slwi     r0, r4, 2
-	stmw     r27, 0x3c(r1)
-	addi     r29, r5, lbl_804958FC@l
-	addi     r27, r1, 8
-	add      r27, r27, r0
-	lwz      r28, 0xc(r3)
-	lwz      r30, 0(r29)
-	lwz      r31, 4(r29)
-	cmplwi   r28, 0
-	lwz      r12, 8(r29)
-	lwz      r11, 0xc(r29)
-	lwz      r10, 0x10(r29)
-	lwz      r9, 0x14(r29)
-	lwz      r8, 0x18(r29)
-	lwz      r7, 0x1c(r29)
-	lwz      r6, 0x20(r29)
-	lwz      r5, 0x24(r29)
-	lwz      r4, 0x28(r29)
-	lwz      r0, 0x2c(r29)
-	stw      r30, 8(r1)
-	stw      r31, 0xc(r1)
-	stw      r12, 0x10(r1)
-	stw      r11, 0x14(r1)
-	stw      r10, 0x18(r1)
-	stw      r9, 0x1c(r1)
-	stw      r8, 0x20(r1)
-	stw      r7, 0x24(r1)
-	stw      r6, 0x28(r1)
-	stw      r5, 0x2c(r1)
-	stw      r4, 0x30(r1)
-	stw      r0, 0x34(r1)
-	beq      lbl_803B4A40
-	lfs      f0, 0(r27)
-	stfs     f0, 0x28(r28)
-
-lbl_803B4A40:
-	lwz      r28, 0x1c(r3)
-	cmplwi   r28, 0
-	beq      lbl_803B4A54
-	lfs      f0, 0xc(r27)
-	stfs     f0, 0x28(r28)
-
-lbl_803B4A54:
-	addi     r3, r3, 0x20
-	lwz      r28, 0xc(r3)
-	cmplwi   r28, 0
-	beq      lbl_803B4A6C
-	lfs      f0, 0x18(r27)
-	stfs     f0, 0x28(r28)
-
-lbl_803B4A6C:
-	lwz      r28, 0x1c(r3)
-	cmplwi   r28, 0
-	beq      lbl_803B4A80
-	lfs      f0, 0x24(r27)
-	stfs     f0, 0x28(r28)
-
-lbl_803B4A80:
-	lmw      r27, 0x3c(r1)
-	addi     r1, r1, 0x50
-	blr
-	*/
 }
 
 /**
@@ -1314,45 +1188,11 @@ void TGasuHiba::setRateLOD(int id)
 	};
 
 	for (int i = 0; i < 2; i++) {
-		if (mItems[i].mEmitter)
-			mItems[i].mEmitter->mRate = lods[i][id];
+		JPABaseEmitter* emitter = mItems[i].getEmitter();
+		if (emitter) {
+			emitter->setRate(lods[i][id]);
+		}
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	lis      r5, lbl_80495938@ha
-	addi     r9, r5, lbl_80495938@l
-	slwi     r0, r4, 2
-	lwz      r10, 0xc(r3)
-	addi     r11, r1, 8
-	lwz      r8, 0(r9)
-	add      r11, r11, r0
-	lwz      r7, 4(r9)
-	cmplwi   r10, 0
-	lwz      r6, 8(r9)
-	lwz      r5, 0xc(r9)
-	lwz      r4, 0x10(r9)
-	lwz      r0, 0x14(r9)
-	stw      r8, 8(r1)
-	stw      r7, 0xc(r1)
-	stw      r6, 0x10(r1)
-	stw      r5, 0x14(r1)
-	stw      r4, 0x18(r1)
-	stw      r0, 0x1c(r1)
-	beq      lbl_803B4BA8
-	lfs      f0, 0(r11)
-	stfs     f0, 0x28(r10)
-
-lbl_803B4BA8:
-	lwz      r10, 0x1c(r3)
-	cmplwi   r10, 0
-	beq      lbl_803B4BBC
-	lfs      f0, 0xc(r11)
-	stfs     f0, 0x28(r10)
-
-lbl_803B4BBC:
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
@@ -1651,62 +1491,11 @@ void TDenkiHibaMgr::setRateLOD(int id)
 	};
 
 	for (int i = 0; i < 3; i++) {
-		if (mHiba.mItems[i].mEmitter)
-			mHiba.mItems[i].mEmitter->setRate(lods[i][id]);
+		JPABaseEmitter* emitter = mHiba.mItems[i].getEmitter();
+		if (emitter) {
+			emitter->setRate(lods[i][id]);
+		}
 	}
-	/*
-	stwu     r1, -0x40(r1)
-	lis      r5, lbl_80495960@ha
-	addi     r12, r5, lbl_80495960@l
-	slwi     r0, r4, 2
-	stw      r31, 0x3c(r1)
-	stw      r30, 0x38(r1)
-	addi     r30, r1, 8
-	add      r30, r30, r0
-	lwz      r31, 0x10(r3)
-	lwz      r11, 0(r12)
-	lwz      r10, 4(r12)
-	cmplwi   r31, 0
-	lwz      r9, 8(r12)
-	lwz      r8, 0xc(r12)
-	lwz      r7, 0x10(r12)
-	lwz      r6, 0x14(r12)
-	lwz      r5, 0x18(r12)
-	lwz      r4, 0x1c(r12)
-	lwz      r0, 0x20(r12)
-	stw      r11, 8(r1)
-	stw      r10, 0xc(r1)
-	stw      r9, 0x10(r1)
-	stw      r8, 0x14(r1)
-	stw      r7, 0x18(r1)
-	stw      r6, 0x1c(r1)
-	stw      r5, 0x20(r1)
-	stw      r4, 0x24(r1)
-	stw      r0, 0x28(r1)
-	beq      lbl_803B5210
-	lfs      f0, 0(r30)
-	stfs     f0, 0x28(r31)
-
-lbl_803B5210:
-	lwz      r31, 0x20(r3)
-	cmplwi   r31, 0
-	beq      lbl_803B5224
-	lfs      f0, 0xc(r30)
-	stfs     f0, 0x28(r31)
-
-lbl_803B5224:
-	lwz      r31, 0x30(r3)
-	cmplwi   r31, 0
-	beq      lbl_803B5238
-	lfs      f0, 0x18(r30)
-	stfs     f0, 0x28(r31)
-
-lbl_803B5238:
-	lwz      r31, 0x3c(r1)
-	lwz      r30, 0x38(r1)
-	addi     r1, r1, 0x40
-	blr
-	*/
 }
 
 } // namespace efx

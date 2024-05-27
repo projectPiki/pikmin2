@@ -37,6 +37,8 @@ struct TSync : public TBase, public JPAEmitterCallBack {
 	virtual void endDemoDrawOn() { mFlags &= ~TSYNCFLAG_DemoDrawOff; }   // _44 (weak)
 	virtual ~TSync() { }                                                 // _48 (weak; thunk at _1C)
 
+	inline JPABaseEmitter* getEmitter() const { return mEmitter; }
+
 	// _00		= VTBL
 	// _04		= JPAEmitterCallBack
 	JPABaseEmitter* mEmitter; // _08
