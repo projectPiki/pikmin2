@@ -3,7 +3,24 @@
 
 namespace std {
 template <class ForwardIterator, class T>
-ForwardIterator lower_bound(ForwardIterator first, ForwardIterator last, const T& val);
+ForwardIterator lower_bound(ForwardIterator first, ForwardIterator last, const T& val)
+{
+	int count = last - first; // probably needs to be std::distance or w/e but im not gonna be the one to implement it
+	ForwardIterator it;
+	u32 step;
+
+	while (count > 0) {
+		it   = first;
+		step = count / 2;
+		it += step;
+		if (*it < val) {
+			first = ++it;
+			count -= step + 1;
+		} else {
+			count = step;
+		}
+	}
+}
 
 template <class ForwardIterator, class T>
 ForwardIterator upper_bound(ForwardIterator first, ForwardIterator last, const T& val);

@@ -77,6 +77,8 @@ struct TResource_color {
 		mBlock.setRaw(nullptr);
 	}
 
+	void setData_header(const void* header) { mHeader.setRaw(header); }
+
 	data::TParse_THeader mHeader;     // _00
 	data::TParse_TBlock_color mBlock; // _04
 };
@@ -101,6 +103,7 @@ struct TResourceContainer {
 	TResource* getResource_groupID(u16 groupID) { return mContainer.Get_groupID(groupID); }
 	TResource* getResource_groupID(u16 groupID) const { return getResource_groupID(groupID); }
 
+	bool isResourceContained_color() const { return mColor.mHeader.getRaw() != nullptr; }
 	bool isEncodingSettable(u8 e) const { return mEncoding == e || mEncoding == 0; }
 	const TCResource* getResourceContainer() const { return &mContainer; }
 	const TResource_color* getResourceColor() const
