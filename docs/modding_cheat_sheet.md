@@ -10,16 +10,16 @@ This cheat sheet provides an overview of the game's functions and classes that a
 - `genEnemy.cpp`: The gen for each enemy in the game, could be useful when adding new enemys.
 - `enemyInfo.cpp`: The File That Contains the list,params and ids for all the enemys in the game.
 - `generalEnemyMgr.cpp`: The General manger for all the enemys in game and contains a switch case full of the games enemys.
-- `enemyBase.cpp`: Contains the base enemys events such as what happens to an enemys if a enemy gets bittered etc etc
+- `enemyBase.cpp`: Contains the base enemys events such as what happens to an enemy if a enemy gets bittered etc etc
 ## Headers/Includes
-- `Game/enemyInfo.h`: The Header file for enemyInfo.cpp and contains the methods/functions and also structs and enum for that file.
+- `Game/enemyInfo.h`: The Header file for enemyInfo.cpp and contains the methods/functions but also structs and enum for that file.
 ## Functions of Interest
 ### In plugProjectYamashitaU/enemyBase.cpp
 - `bool EnemyBase::eatWhitePikminCallBack`: What happens when an enemy eats a white Pikmin.
 - `bool EnemyBase::bombCallBack`: What happens when an enemy gets hit by an exploding bomb.
 - `bool EnemyBase::dopeCallBack`: What happens when an enemy gets hit by either spray (bitter or spicy).
 - `bool EnemyBase::hipdropCallBack`: What happens when an enemy gets stunned by a Purple Pikmin.
-- `bool EnemyBase::damageCallBack` / `void EnemyBase::addDamage`: What happens when an enemy gets damaged.
+- `bool EnemyBase::damageCallBack` / `void EnemyBase::addDamage`: What happens when a enemy gets damaged.
 ### In plugProjectYamashitaU/generalEnemyMgr.cpp
 - `void GeneralEnemyMgr::createEnemyMgr`: The Function That Contains the switch case full of the ingame enemys.
 
