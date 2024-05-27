@@ -25,16 +25,16 @@ This repository builds the following DOLs:
 [Python 3.8+](https://www.python.org/downloads/)
 
 ### Instructions
+1. Intsall git from the link provided if not already installed(https://git-scm.com/downloads). 
 
-1. Clone the repo using `git clone https://github.com/projectPiki/pikmin2/`
+2. Clone the repo using `git clone https://github.com/projectPiki/pikmin2/`
 
-2. Run `configure.py` to automatically download/build any other necessary files for the project.
+3. Run `configure.py` to automatically download/build any other necessary files for the project.
 
-3. Enter `ninja` (recommended) or `make -j` in a command prompt or terminal.
+4. Enter `ninja` (recommended) or `make -j` in a command prompt or terminal.
 	- `-j` Allows `make` to use multiple threads, speeding up the process.
 	- `ninja` already implicitly uses the max amount of cores available, only use `-j` to *decrease* the thread count.
 	- If just `-j` gives errors on your setup, try specifying a set number of threads, e.g. `make -j 4`.
-
 * OPTIONAL STEPS:
 	- Obtain a clean DOL of Pikmin 2 USA 1.0 and place it in the base working directory and rename it to `baserom.dol`.
 	- To generate a linker map (takes a considerable amount of time), run `ninja -m` or  `make MAPGENFLAG=1 -j`.
