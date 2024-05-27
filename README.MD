@@ -75,3 +75,6 @@ This repository builds the following DOLs:
 - To use, call the generator via the terminal/command line from the root directory (replacing DIRECTORY and FILE as required):
 	```python tools/decompctx.py src/DIRECTORY/FILE.cpp```
 - Credit to encounter and the [Metroid Prime decomp project](https://github.com/PrimeDecomp/prime) for the script!
+
+### Documentation
+	-With in the this repo there is a folder by the name of docs. And within said folder are .md documents filled with useful tips for modders alike!
