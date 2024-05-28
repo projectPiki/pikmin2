@@ -65,7 +65,7 @@ enum EnemyEvent {
 	EB_Constrained         = 0x400,      // position is fixed, but can rotate or be moved externally
 	EB_LifegaugeVisible    = 0x800,      // has visible lifegauge
 	EB_PlatformCollEnabled = 0x1000,     // can interact with platform collision
-	EB_14                  = 0x2000,     // unknown (only set by an imomushi state, reset by imomushi and rock states?)
+	EB_CullSound           = 0x2000,     // unknown (only set by an imomushi state, reset by imomushi and rock states?)
 	EB_EatingWhitePikmin   = 0x4000,     // has eaten white pikmin (trigger poison effect, damage)
 	EB_Animating           = 0x8000,     // currently animating
 	EB_AttackingNavi0      = 0x10000,    // is attacking the player's main character?
@@ -83,7 +83,6 @@ enum EnemyEvent {
 	EB_Alive               = 0x10000000, //
 	EB_CollisionActive     = 0x20000000, //
 	EB_ModelHidden         = 0x40000000, //
-	EB_32                  = 0x80000000  // unknown
 };
 
 enum EnemyEvent2 {
@@ -105,8 +104,7 @@ enum DropGroup {
 };
 
 // Interface for specific overrides (e.g. PelplantInitialParams)
-struct EnemyInitialParamBase {
-};
+struct EnemyInitialParamBase { };
 
 struct EnemyKillArg : public CreatureKillArg {
 	inline EnemyKillArg(int flag)
@@ -263,7 +261,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	virtual bool sound_culling()                                                     // _104 (weak)
 	{
 		bool culling = false;
-		if (isEvent(0, EB_14)) {
+		if (isEvent(0, EB_CullSound)) {
 			if (!mLod.isFlag(AILOD_IsVisible) && !mLod.isFlag(AILOD_PikiInCell)) {
 				culling = true;
 			}

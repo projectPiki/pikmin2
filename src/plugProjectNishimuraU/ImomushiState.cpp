@@ -160,7 +160,7 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 	imomushi->enableEvent(0, EB_Invulnerable);
 	imomushi->mIsUnderground = true;
 	imomushi->enableEvent(0, EB_BitterImmune);
-	imomushi->enableEvent(0, EB_14);
+	imomushi->enableEvent(0, EB_CullSound);
 	imomushi->disableEvent(0, EB_LifegaugeVisible);
 	imomushi->hardConstraintOn();
 	imomushi->disableEvent(0, EB_Animating);
@@ -197,7 +197,7 @@ void StateStay::cleanup(EnemyBase* enemy)
 	imomushi->disableEvent(0, EB_Invulnerable);
 	imomushi->mIsUnderground = false;
 	imomushi->disableEvent(0, EB_BitterImmune);
-	imomushi->disableEvent(0, EB_14);
+	imomushi->disableEvent(0, EB_CullSound);
 	imomushi->hardConstraintOff();
 	imomushi->enableEvent(0, EB_Animating);
 	imomushi->disableEvent(0, EB_ModelHidden);
