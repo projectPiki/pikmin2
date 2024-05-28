@@ -45,42 +45,38 @@ void Creature::updateLOD(Game::AILODParm& parm)
 		getLODCylinder(lodCylinder);
 	}
 
-	// gonna have to play with the order of these probably
-	mLod.mFlags     = AILOD_NULL;
-	bool shouldCull = true; // set to false if visible on any viewport
 	int vpStats[2];
-	Graphics* gfx     = sys->mGfx;
-	int viewportCount = gfx->mActiveViewports;
-	u32 currFlag      = 2;
+	mLod.mFlags       = AILOD_NULL;
+	Graphics* gfx     = sys->getGfx();
+	int viewportCount = gfx->getViewportNum();
+	bool shouldCull   = true; // set to false if visible on any viewport
+	int currFlag      = AILOD_IsFar;
 
 	for (int i = 0; i < viewportCount; i++) {
 		Viewport* vp = gfx->getViewport(i);
 		if (!vp->viewable()) {
-			vpStats[i] = 2;
+			vpStats[i] = AILOD_IsFar;
 		} else {
-			Camera* camera = vp->mCamera;
+			Camera* camera = vp->getCamera();
 			if (parm.mIsCylinder) {
 				if (camera->isCylinderVisible(lodCylinder)) {
 					shouldCull = false;
 					mLod.setVPVisible(i);
 				}
-			} else {
-				if (camera->isVisible(lodSphere)) {
-					shouldCull = false;
-					mLod.setVPVisible(i);
-				}
+			} else if (camera->isVisible(lodSphere)) {
+				shouldCull = false;
+				mLod.setVPVisible(i);
 			}
+
 			f32 screenSize = camera->calcScreenSize(lodSphere);
 			if (screenSize > parm.mFar) {
-
-				vpStats[i] = 0;
+				vpStats[i] = AILOD_NULL;
+			} else if (screenSize > parm.mClose) {
+				vpStats[i] = AILOD_IsMid;
 			} else {
-				if (screenSize > parm.mClose) {
-					vpStats[i] = 1;
-				} else {
-					vpStats[i] = 2;
-				}
+				vpStats[i] = AILOD_IsFar;
 			}
+
 			if (vpStats[i] < currFlag) {
 				currFlag = vpStats[i];
 			}
@@ -93,17 +89,17 @@ void Creature::updateLOD(Game::AILODParm& parm)
 		Viewport* vp0 = gfx->getViewport(PLAYER1_VIEWPORT);
 		Viewport* vp1 = gfx->getViewport(PLAYER2_VIEWPORT);
 		if (!vp0->viewable()) {
-			mLod.mSoundVPID = 0;
+			mLod.mSoundVPID = 1;
 		} else {
 			if (!vp1->viewable()) {
 				mLod.mSoundVPID = 0;
 			} else {
-				P2ASSERTLINE(175, vp0->mCamera);
-				P2ASSERTLINE(176, vp1->mCamera);
+				P2ASSERTLINE(175, vp0->getCamera());
+				P2ASSERTLINE(176, vp1->getCamera());
 
-				Vector3f pos0 = *vp0->mCamera->getSoundPositionPtr();
-				Vector3f pos1 = *vp1->mCamera->getSoundPositionPtr();
-
+				Vector3f pos0 = *vp0->getCamera()->getSoundPositionPtr();
+				Vector3f pos1 = *vp1->getCamera()->getSoundPositionPtr();
+				// problem with these
 				f32 dist0 = pos0.sqrDistance(lodSphere.mPosition);
 				f32 dist1 = pos1.sqrDistance(lodSphere.mPosition);
 
