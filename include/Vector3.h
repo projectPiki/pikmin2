@@ -60,8 +60,12 @@ struct Vector3 {
 	inline void scale2D(T other);
 	inline void set2D(const Vector3& other);
 	inline void setZero();
+	inline void add(const Vector3& other);
+	inline void add(Vector3& a, Vector3& b);
+	inline void sub(const Vector3& other);
 	inline void sub(Vector3& a, Vector3& b);
 	inline void setMiddle(Vector3& a, Vector3& b);
+	static inline Vector3<T> sub2(const Vector3& a, const Vector3& b);
 
 	// Direction Functions
 	static inline T getDirectionFromTo(const Vector3& from, Vector3& to);
@@ -118,6 +122,9 @@ typedef Vector3<int> Vector3i;
 
 inline Vector3f operator+(const Vector3f& a, const Vector3f& b) { return Vector3f(a.x + b.x, a.y + b.y, a.z + b.z); }
 inline Vector3f operator-(const Vector3f& a, const Vector3f& b) { return Vector3f(a.x - b.x, a.y - b.y, a.z - b.z); }
+// i think this ^ should actually be this v, but this breaks _something_ _somewhere_, I'm assuming some delicate inline depth thing
+// inline Vector3f operator-(const Vector3f& a, const Vector3f& b) { return Vector3f::sub2(a, b); }
+
 inline Vector3f operator*(const Vector3f& a, const f32 b) { return Vector3f(a.x * b, a.y * b, a.z * b); }
 inline Vector3f operator/(const Vector3f& a, const f32 b) { return Vector3f(a.x / b, a.y / b, a.z / b); }
 inline Vector3f operator*=(const Vector3f& a, const f32 b) { return Vector3f(a.x * b, a.y * b, a.z * b); }
@@ -394,6 +401,28 @@ inline T Vector3<T>::distance(Vector3& a, Vector3& b)
 }
 
 template <typename T>
+inline void Vector3<T>::add(const Vector3& other)
+{
+	x += other.x;
+	y += other.y;
+	z += other.z;
+}
+
+template <typename T>
+inline void Vector3<T>::add(Vector3& a, Vector3& b)
+{
+	set(a.x + b.x, a.y + b.y, a.z + b.z);
+}
+
+template <typename T>
+inline void Vector3<T>::sub(const Vector3& other)
+{
+	x -= other.x;
+	y -= other.y;
+	z -= other.z;
+}
+
+template <typename T>
 inline void Vector3<T>::sub(Vector3& a, Vector3& b)
 {
 	set(a.x - b.x, a.y - b.y, a.z - b.z);
@@ -405,6 +434,12 @@ inline void Vector3<T>::setMiddle(Vector3& a, Vector3& b)
 	x = (a.x + b.x) * 0.5f;
 	y = (a.y + b.y) * 0.5f;
 	z = (a.z + b.z) * 0.5f;
+}
+
+template <typename T>
+inline Vector3<T> Vector3<T>::sub2(const Vector3& a, const Vector3& b)
+{
+	return Vector3(a.x - b.x, a.y - b.y, a.z - b.z);
 }
 
 template <typename T>

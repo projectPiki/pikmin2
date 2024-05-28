@@ -6,8 +6,9 @@
  * @note Address: N/A
  * @note Size: 0xB0
  */
-void JPAConvertFixToFloat(s16)
+f32 JPAConvertFixToFloat(s16 fix)
 {
+	return 1.0f;
 	// UNUSED FUNCTION
 }
 
@@ -17,12 +18,35 @@ void JPAConvertFixToFloat(s16)
  */
 void JPAGetDirMtx(const JGeometry::TVec3f& vec, Mtx mtx)
 {
-	JGeometry::TVec3f local_78;
-	f32 minusx = -vec.x;
-	local_78.x = vec.y;
-	local_78.y = minusx;
-	local_78.z = 0.0f;
-	local_78.normalize();
+	JGeometry::TVec3f newVec;
+	newVec.set(vec.y, -vec.x, 0.0f);
+	f32 mag = newVec.length();
+	if (mag <= JGeometry::TUtilf::epsilon()) {
+		newVec.zero();
+	} else {
+		newVec.scale(1.0f / mag);
+	}
+
+	f32 xSq  = newVec.x * newVec.x;
+	f32 ySq  = newVec.y * newVec.y;
+	f32 xLen = newVec.x * mag;
+	f32 yLen = newVec.y * mag;
+	f32 xyz  = (1.0f - newVec.z) * (newVec.x * newVec.y);
+
+	mtx[0][0] = xSq + (vec.z * (1.0f - xSq));
+	mtx[0][1] = xyz;
+	mtx[0][2] = -yLen;
+	mtx[0][3] = 0.0f;
+	mtx[1][0] = xyz;
+	mtx[1][1] = ySq + (vec.z * (1.0f - ySq));
+	mtx[1][2] = xLen;
+	mtx[1][3] = 0.0f;
+	mtx[2][0] = yLen;
+	mtx[2][1] = -ySq;
+	mtx[2][2] = vec.z;
+	mtx[2][3] = 0.0f;
+
+	// local_78.normalize();
 	// f32 len; //    = local_78.length();
 
 	// // if (len <= 32.0f * FLT_EPSILON) {
@@ -202,192 +226,36 @@ void JPASetRMtxTVecfromMtx(const Mtx p1, Mtx p2, JGeometry::TVec3f* p3)
  * @note Address: 0x80093D44
  * @note Size: 0x21C
  */
-void JPASetRMtxSTVecfromMtx(const Mtx p1, Mtx p2, JGeometry::TVec3f* vec1, JGeometry::TVec3f* vec2)
+void JPASetRMtxSTVecfromMtx(const Mtx mtx, Mtx RMtx, JGeometry::TVec3f* lengths, JGeometry::TVec3f* translation)
 {
-	JGeometry::TVec3f aTStack_54;
-	aTStack_54.set(p1[0][0], p1[1][0], p1[2][0]);
-	// vec1->x = aTStack_54.length();
-	aTStack_54.set(p1[0][1], p1[1][1], p1[2][1]);
-	// vec1->y = p1.length();
-	aTStack_54.set(p1[0][2], p1[1][2], p1[2][2]);
-	// vec1->z = aTStack_54.length();
-	// MTXIdentity(p2);
-	if (vec1->x != 0.0f) {
-		f32 fVar5 = 1.0f / vec1->x;
-		p2[0][0]  = p1[0][0] * fVar5;
-		p2[1][0]  = p1[1][0] * fVar5;
-		p2[2][0]  = p1[2][0] * fVar5;
+	JGeometry::TVec3f tempVec;
+	tempVec.set(mtx[0][0], mtx[1][0], mtx[2][0]);
+	lengths->x = tempVec.length();
+	tempVec.set(mtx[0][1], mtx[1][1], mtx[2][1]);
+	lengths->y = tempVec.length();
+	tempVec.set(mtx[0][2], mtx[1][2], mtx[2][2]);
+	lengths->z = tempVec.length();
+	PSMTXIdentity(RMtx);
+	if (lengths->x != 0.0f) {
+		f32 fVar5  = 1.0f / lengths->x;
+		RMtx[0][0] = mtx[0][0] * fVar5;
+		RMtx[1][0] = mtx[1][0] * fVar5;
+		RMtx[2][0] = mtx[2][0] * fVar5;
 	}
-	if (vec1->y != 0.0f) {
-		f32 fVar5 = 1.0f / vec1->y;
-		p2[0][1]  = p1[0][1] * fVar5;
-		p2[1][1]  = p1[1][1] * fVar5;
-		p2[2][1]  = p1[2][1] * fVar5;
+	if (lengths->y != 0.0f) {
+		f32 fVar5  = 1.0f / lengths->y;
+		RMtx[0][1] = mtx[0][1] * fVar5;
+		RMtx[1][1] = mtx[1][1] * fVar5;
+		RMtx[2][1] = mtx[2][1] * fVar5;
 	}
-	if (vec1->z != 0.0f) {
-		f32 fVar5 = 1.0f / vec1->z;
-		p2[0][2]  = p1[0][2] * fVar5;
-		p2[1][2]  = p1[1][2] * fVar5;
-		p2[2][2]  = p1[2][2] * fVar5;
+	if (lengths->z != 0.0f) {
+		f32 fVar5  = 1.0f / lengths->z;
+		RMtx[0][2] = mtx[0][2] * fVar5;
+		RMtx[1][2] = mtx[1][2] * fVar5;
+		RMtx[2][2] = mtx[2][2] * fVar5;
 	}
-	vec2->set(p1[0][3], p1[1][3], p1[2][3]);
 
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lfs       f1, 0x10(r3)
-	  stw       r0, 0x24(r1)
-	  fmuls     f1, f1, f1
-	  lfs       f2, 0x0(r3)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r6
-	  lfs       f3, 0x20(r3)
-	  fmadds    f1, f2, f2, f1
-	  stw       r30, 0x18(r1)
-	  mr        r30, r5
-	  lfs       f0, -0x7744(r2)
-	  fmadds    f4, f3, f3, f1
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  fcmpo     cr0, f4, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x58
-	  b         .loc_0x7C
-
-	.loc_0x58:
-	  fsqrte    f3, f4
-	  lfs       f2, -0x7740(r2)
-	  lfs       f0, -0x773C(r2)
-	  frsp      f3, f3
-	  fmuls     f1, f3, f3
-	  fmuls     f2, f2, f3
-	  fnmsubs   f0, f4, f1, f0
-	  fmuls     f0, f2, f0
-	  fmuls     f4, f4, f0
-
-	.loc_0x7C:
-	  lfs       f0, 0x14(r28)
-	  lfs       f2, 0x4(r28)
-	  fmuls     f1, f0, f0
-	  lfs       f3, 0x24(r28)
-	  lfs       f0, -0x7744(r2)
-	  stfs      f4, 0x0(r30)
-	  fmadds    f1, f2, f2, f1
-	  fmadds    f4, f3, f3, f1
-	  fcmpo     cr0, f4, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0xAC
-	  b         .loc_0xD0
-
-	.loc_0xAC:
-	  fsqrte    f3, f4
-	  lfs       f2, -0x7740(r2)
-	  lfs       f0, -0x773C(r2)
-	  frsp      f3, f3
-	  fmuls     f1, f3, f3
-	  fmuls     f2, f2, f3
-	  fnmsubs   f0, f4, f1, f0
-	  fmuls     f0, f2, f0
-	  fmuls     f4, f4, f0
-
-	.loc_0xD0:
-	  lfs       f0, 0x18(r28)
-	  lfs       f2, 0x8(r28)
-	  fmuls     f1, f0, f0
-	  lfs       f3, 0x28(r28)
-	  lfs       f0, -0x7744(r2)
-	  stfs      f4, 0x4(r30)
-	  fmadds    f1, f2, f2, f1
-	  fmadds    f4, f3, f3, f1
-	  fcmpo     cr0, f4, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x100
-	  b         .loc_0x124
-
-	.loc_0x100:
-	  fsqrte    f3, f4
-	  lfs       f2, -0x7740(r2)
-	  lfs       f0, -0x773C(r2)
-	  frsp      f3, f3
-	  fmuls     f1, f3, f3
-	  fmuls     f2, f2, f3
-	  fnmsubs   f0, f4, f1, f0
-	  fmuls     f0, f2, f0
-	  fmuls     f4, f4, f0
-
-	.loc_0x124:
-	  stfs      f4, 0x8(r30)
-	  mr        r3, r29
-	  bl        0x56430
-	  lfs       f0, -0x7744(r2)
-	  lfs       f1, 0x0(r30)
-	  fcmpu     cr0, f0, f1
-	  beq-      .loc_0x16C
-	  lfs       f0, -0x7748(r2)
-	  lfs       f2, 0x0(r28)
-	  fdivs     f3, f0, f1
-	  lfs       f1, 0x10(r28)
-	  lfs       f0, 0x20(r28)
-	  fmuls     f2, f2, f3
-	  fmuls     f1, f1, f3
-	  fmuls     f0, f0, f3
-	  stfs      f2, 0x0(r29)
-	  stfs      f1, 0x10(r29)
-	  stfs      f0, 0x20(r29)
-
-	.loc_0x16C:
-	  lfs       f0, -0x7744(r2)
-	  lfs       f1, 0x4(r30)
-	  fcmpu     cr0, f0, f1
-	  beq-      .loc_0x1A8
-	  lfs       f0, -0x7748(r2)
-	  lfs       f2, 0x4(r28)
-	  fdivs     f3, f0, f1
-	  lfs       f1, 0x14(r28)
-	  lfs       f0, 0x24(r28)
-	  fmuls     f2, f2, f3
-	  fmuls     f1, f1, f3
-	  fmuls     f0, f0, f3
-	  stfs      f2, 0x4(r29)
-	  stfs      f1, 0x14(r29)
-	  stfs      f0, 0x24(r29)
-
-	.loc_0x1A8:
-	  lfs       f0, -0x7744(r2)
-	  lfs       f1, 0x8(r30)
-	  fcmpu     cr0, f0, f1
-	  beq-      .loc_0x1E4
-	  lfs       f0, -0x7748(r2)
-	  lfs       f2, 0x8(r28)
-	  fdivs     f3, f0, f1
-	  lfs       f1, 0x18(r28)
-	  lfs       f0, 0x28(r28)
-	  fmuls     f2, f2, f3
-	  fmuls     f1, f1, f3
-	  fmuls     f0, f0, f3
-	  stfs      f2, 0x8(r29)
-	  stfs      f1, 0x18(r29)
-	  stfs      f0, 0x28(r29)
-
-	.loc_0x1E4:
-	  lfs       f0, 0xC(r28)
-	  lfs       f1, 0x1C(r28)
-	  stfs      f0, 0x0(r31)
-	  lfs       f0, 0x2C(r28)
-	  stfs      f1, 0x4(r31)
-	  stfs      f0, 0x8(r31)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+	translation->set(mtx[0][3], mtx[1][3], mtx[2][3]);
 }
 
 /**
@@ -408,7 +276,7 @@ f32 JPACalcKeyAnmValue(f32 currentFrame, u16 keyFrameCount, const f32* keyFrameD
 	int frame = keyFrameCount;
 	while (frame > 1) {
 		u32 halfIndex = frame / 2;
-		if (frame >= keyFrameData[halfIndex * 4]) {
+		if (currentFrame >= keyFrameData[halfIndex * 4]) {
 			keyFrameData += halfIndex * 4;
 			frame -= halfIndex;
 		} else {
@@ -416,6 +284,6 @@ f32 JPACalcKeyAnmValue(f32 currentFrame, u16 keyFrameCount, const f32* keyFrameD
 		}
 	}
 
-	return JMAHermiteInterpolation(frame, keyFrameData[0], keyFrameData[1], keyFrameData[3], keyFrameData[4], keyFrameData[5],
+	return JMAHermiteInterpolation(currentFrame, keyFrameData[0], keyFrameData[1], keyFrameData[3], keyFrameData[4], keyFrameData[5],
 	                               keyFrameData[6]);
 }
