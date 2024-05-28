@@ -200,7 +200,7 @@ struct JKRHeap : public JKRDisposer {
 
 	// _00     = VTBL
 	// _00-_18 = JKRDisposer
-	OSMutex mMutex;                     // _18
+	mutable OSMutex mMutex;             // _18
 	u8* mStartAddress;                  // _30
 	u8* mEndAddress;                    // _34
 	u32 mHeapSize;                      // _38
@@ -208,7 +208,7 @@ struct JKRHeap : public JKRDisposer {
 	u8 mFillCheckFlag;                  // _3D
 	u8 mAllocMode;                      // _3E, see EAllocMode enum
 	u8 mGroupID;                        // _3F
-	mutable JSUTree<JKRHeap> mTree;     // _40
+	JSUTree<JKRHeap> mTree;             // _40
 	JSUList<JKRDisposer> mDisposerList; // _5C
 	bool mErrorFlag;                    // _68
 	bool mInitFlag;                     // _69
