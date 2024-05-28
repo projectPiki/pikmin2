@@ -2,6 +2,7 @@
 #include "Game/Entities/ItemHoney.h"
 #include "Game/gamePlayData.h"
 #include "Game/PikiMgr.h"
+#include "Game/Navi.h"
 #include "Dolphin/rand.h"
 #include "JSystem/J3D/J3DTransform.h"
 #include "nans.h"
@@ -432,223 +433,191 @@ void Uja::update(BoidParms& parms)
 		closestUjaDirection = mPreviousClosestUjaDir;
 	}
 
-	// EVERYTHING PAST HERE IS FAKE
-	// remove these later, these are just to force inline off for stuff to make it easier to match this shit
+	Vector3f pos    = mFlockMgr->mBoundSphere.mPosition - *this;
+	Vector3f result = 0.0f;
+	f32 radius      = mFlockMgr->mBoundSphere.mRadius;
+	f32 diff        = pos.normalise();
+	if (diff > 0.0f) {
+		f32 angle = JMAAtan2Radian(pos.x, pos.z) * 8.0f;
+		if (radius * (cosf(angle) * 0.2f + 0.8f) < diff) {
+			result = pos;
+		}
+	}
 
+	f32 randAngle = parms.mRandomAngle() * (randFloat() - 0.5f) + mFaceDirection;
+	f32 randCos   = cosf(randAngle);
+	f32 randSin   = sinf(randAngle);
+
+	Iterator<Navi> naviIt(naviMgr);
+	scale               = (scale + 6.0f) + 6.0f;
+	Vector3f naviResult = 0.0f;
+	CI_LOOP(naviIt)
 	{
-		Iterator<Uja> iter(mFlockMgr);
-		CI_LOOP(iter)
-		{
-			Uja* uja = *iter;
-			if (uja != this && uja->mState != STATE_2) {
-				Vector3f ujaSep = *this - *uja;
-				*this - *uja;
-				*this - *uja;
-				*this - *uja;
-				*this - *uja;
-				*this - *uja;
-				*this - *uja;
-				*this - *uja;
-				*this - *uja;
-				*this - *uja;
-				*this - *uja;
-				*this - *uja;
-				*this - *uja;
-				*this - *uja;
-				*this - *uja;
-				*this - *uja;
-				*this - *uja;
-				*this - *uja;
-				*this - *uja;
-				*this - *uja;
-				*this - *uja;
-				*this - *uja;
-				*this - *uja;
-				*this - *uja;
-				f32 dist = ujaSep.normalise();
+		Navi* navi = *naviIt;
+		if (navi->isAlive()) {
+			Vector3f posDiff = navi->getPosition() - *this;
+			f32 dist         = posDiff.normalise();
+			if (dist < scale) {
+				f32 inv      = (scale - dist) * -1.0f;
+				naviResult.x = posDiff.x * inv;
+				naviResult.y = dist;
+				naviResult.z = posDiff.z * inv;
+			} else if (dist < 40.0f) {
+				naviResult = posDiff;
+			}
+		}
+	}
+	Vector3f center = 0.0f;
+	center          = mFlockMgr->mFlockCentre - *this;
+	if (center.normalise() < 10.0f && mState == 3) {
+		mState = 6;
+	}
+
+	Vector3f pikiResult = 0.0f;
+	if (mClosePikiBuffer[0] && mClosePikiBuffer[0]->isAlive()) {
+		Vector3f posDiff = mClosePikiBuffer[0]->getPosition() - *this;
+		f32 dist         = posDiff.normalise();
+		if (dist > scale) {
+			f32 inv      = (scale - dist) * -1.0f;
+			pikiResult.x = posDiff.x * inv;
+			pikiResult.y = dist;
+			pikiResult.z = posDiff.z * inv;
+		} else if (dist < 40.0f) {
+			pikiResult = posDiff;
+			if (mState == 0 && dist < 30.0f) {
+				mState = 2;
+				Vector3f offs;
+				f32 xz    = randFloat() * 10.0f + 60.0f;
+				offs.x    = posDiff.x * xz;
+				offs.y    = randFloat() * 10.0f + 72.0f;
+				offs.z    = posDiff.z * xz;
+				mVelocity = mVelocity + offs;
+				if (randFloat() > 0.99f) {
+					InteractGas act(nullptr, 0.0f);
+					mClosePikiBuffer[0]->stimulate(act);
+				}
 			}
 		}
 	}
 
-	{
-		Iterator<Uja> iter(mFlockMgr);
-		CI_LOOP(iter)
-		{
-			Uja* uja = *iter;
-			if (uja != this && uja->mState != STATE_2) {
-				Vector3f ujaSep = *this - *uja;
-				f32 dist        = ujaSep.normalise();
-			}
+	Vector3f totalResult;
+	if (mState != 2) {
+		f32 speed2   = speed * parms.mTarget();
+		Vector3f dir = directionTo_44 * speed2;
+
+		speed2           = speed * parms.mRandom();
+		Vector3f randDir = Vector3f(randCos, 0.0f, randSin) * speed2;
+
+		speed2           = speed * parms.mNavi();
+		Vector3f naviPos = naviResult * speed2;
+
+		speed2             = speed * parms.mGoHome();
+		Vector3f centerPos = center * speed2;
+
+		speed2           = speed * parms.mPiki();
+		Vector3f pikiPos = pikiResult * speed2;
+
+		speed2            = speed * parms.mBounds();
+		Vector3f boundPos = result * speed2;
+
+		speed2       = speed * parms.mSeparation();
+		Vector3f sep = closestUjaDirection * speed2;
+
+		speed2         = speed * parms.mAlignment();
+		Vector3f align = alignmentVec * speed2;
+
+		speed2        = speed * parms.mCohesion();
+		Vector3f sep2 = seperationVec * speed2;
+
+		totalResult = dir + randDir + naviPos + centerPos + pikiPos + boundPos + sep + align + sep2;
+	}
+
+	if (totalResult.z != 0.0f) {
+		f32 angle = JMAAtan2Radian(totalResult.x, totalResult.z);
+		mFaceDirection += (angDist(roundAng(angle), mFaceDirection) * 8.0f) * frameLength;
+		mFaceDirection = roundAng(mFaceDirection);
+	}
+	f32 faceCos = cosf(mFaceDirection);
+	f32 faceSin = sinf(mFaceDirection);
+	f32 mult    = mFlockMgr->mUjaParms->mMysteryMultiply();
+	mVelocity   = mVelocity + Vector3f(faceSin, 0.0f, faceCos) * mult;
+
+	if (mState != 2) {
+		mVelocity.y = 0.0f;
+	}
+
+	if (mState == 2) {
+		mVelocity.y = -(sys->mDeltaTime * 560.0f - mVelocity.y);
+		f32 minY    = mFlockMgr->mBoundSphere.mPosition.y;
+		if (this->y <= minY) {
+			this->y = minY;
+			mState  = 0;
 		}
 	}
 
-	{
-		Iterator<Uja> iter(mFlockMgr);
-		CI_LOOP(iter)
-		{
-			Uja* uja = *iter;
-			if (uja != this && uja->mState != STATE_2) {
-				Vector3f ujaSep = *this - *uja;
-				f32 dist        = ujaSep.normalise();
+	f32 vel = mVelocity.length();
+	if (mState != 2 && speed > vel) {
+		f32 inv = (1.0f / vel) * speed;
+		mVelocity *= inv;
+		vel = speed;
+	}
+
+	if (_AE) {
+		if (!_AD) {
+			_AE = false;
+			_AD = randInt(100) + '2';
+		}
+		_AD--;
+	} else {
+		if (_AD) {
+			_AD--;
+			if (!_AD) {
+				_AE = true;
+				_AD = randInt(30) + '\n';
 			}
+		}
+		Vector3f test    = pikiResult * frameLength * 10.0f;
+		Vector3f dist    = test + *this;
+		(Vector3f)* this = dist;
+
+		Vector3f velocity = mVelocity * frameLength;
+		Vector3f dist2    = velocity + *this;
+		(Vector3f)* this  = dist2;
+	}
+
+	Vector3f boundPos  = mFlockMgr->mBoundSphere.mPosition;
+	Vector3f boundDiff = boundPos - *this;
+	f32 boundDist      = boundDiff.normalise();
+	f32 radius2        = mFlockMgr->mBoundSphere.mRadius;
+	if (boundDist > 0.0f) {
+		f32 angle = JMAAtan2Radian(boundDiff.x, boundDiff.z);
+		f32 one   = 1.0f;
+		radius2 *= one;
+		if (boundDist > radius2) {
+			f32 diff      = mVelocity.sqrDistance(boundDiff);
+			Vector3f temp = boundDiff * diff;
+			mVelocity     = mVelocity - temp;
+
+			(Vector3f)* this = boundPos - (boundDiff * boundDist);
 		}
 	}
 
-	{
-		Iterator<Uja> iter(mFlockMgr);
-		CI_LOOP(iter)
-		{
-			Uja* uja = *iter;
-			if (uja != this && uja->mState != STATE_2) {
-				Vector3f ujaSep = *this - *uja;
-				f32 dist        = ujaSep.normalise();
-			}
+	f32 minY = mFlockMgr->mBoundSphere.mPosition.y;
+	if (this->y < minY) {
+		this->y = minY;
+		if (mState == 2) {
+			mState = 0;
+		}
+	} else {
+		minY += radius2 * 2.0f;
+		if (minY > this->y) {
+			this->y = minY;
 		}
 	}
 
-	{
-		Iterator<Uja> iter(mFlockMgr);
-		CI_LOOP(iter)
-		{
-			Uja* uja = *iter;
-			if (uja != this && uja->mState != STATE_2) {
-				Vector3f ujaSep = *this - *uja;
-				f32 dist        = ujaSep.normalise();
-			}
-		}
-	}
+	updateScale(alignmentThreshold);
+	makeMatrix();
 
-	{
-		Iterator<Uja> iter(mFlockMgr);
-		CI_LOOP(iter)
-		{
-			Uja* uja = *iter;
-			if (uja != this && uja->mState != STATE_2) {
-				Vector3f ujaSep = *this - *uja;
-				f32 dist        = ujaSep.normalise();
-			}
-		}
-	}
-
-	{
-		Iterator<Uja> iter(mFlockMgr);
-		CI_LOOP(iter)
-		{
-			Uja* uja = *iter;
-			if (uja != this && uja->mState != STATE_2) {
-				Vector3f ujaSep = *this - *uja;
-				f32 dist        = ujaSep.normalise();
-			}
-		}
-	}
-
-	{
-		Iterator<Uja> iter(mFlockMgr);
-		CI_LOOP(iter)
-		{
-			Uja* uja = *iter;
-			if (uja != this && uja->mState != STATE_2) {
-				Vector3f ujaSep = *this - *uja;
-				f32 dist        = ujaSep.normalise();
-			}
-		}
-	}
-
-	{
-		Iterator<Uja> iter(mFlockMgr);
-		CI_LOOP(iter)
-		{
-			Uja* uja = *iter;
-			if (uja != this && uja->mState != STATE_2) {
-				Vector3f ujaSep = *this - *uja;
-				f32 dist        = ujaSep.normalise();
-			}
-		}
-	}
-
-	{
-		Iterator<Uja> iter(mFlockMgr);
-		CI_LOOP(iter)
-		{
-			Uja* uja = *iter;
-			if (uja != this && uja->mState != STATE_2) {
-				Vector3f ujaSep = *this - *uja;
-				f32 dist        = ujaSep.normalise();
-			}
-		}
-	}
-
-	{
-		Iterator<Uja> iter(mFlockMgr);
-		CI_LOOP(iter)
-		{
-			Uja* uja = *iter;
-			if (uja != this && uja->mState != STATE_2) {
-				Vector3f ujaSep = *this - *uja;
-				f32 dist        = ujaSep.normalise();
-			}
-		}
-	}
-
-	{
-		Iterator<Uja> iter(mFlockMgr);
-		CI_LOOP(iter)
-		{
-			Uja* uja = *iter;
-			if (uja != this && uja->mState != STATE_2) {
-				Vector3f ujaSep = *this - *uja;
-				f32 dist        = ujaSep.normalise();
-			}
-		}
-	}
-
-	{
-		Iterator<Uja> iter(mFlockMgr);
-		CI_LOOP(iter)
-		{
-			Uja* uja = *iter;
-			if (uja != this && uja->mState != STATE_2) {
-				Vector3f ujaSep = *this - *uja;
-				f32 dist        = ujaSep.normalise();
-			}
-		}
-	}
-
-	{
-		Iterator<Uja> iter(mFlockMgr);
-		CI_LOOP(iter)
-		{
-			Uja* uja = *iter;
-			if (uja != this && uja->mState != STATE_2) {
-				Vector3f ujaSep = *this - *uja;
-				f32 dist        = ujaSep.normalise();
-			}
-		}
-	}
-
-	{
-		Iterator<Uja> iter(mFlockMgr);
-		CI_LOOP(iter)
-		{
-			Uja* uja = *iter;
-			if (uja != this && uja->mState != STATE_2) {
-				Vector3f ujaSep = *this - *uja;
-				f32 dist        = ujaSep.normalise();
-			}
-		}
-	}
-
-	{
-		Iterator<Uja> iter(mFlockMgr);
-		CI_LOOP(iter)
-		{
-			Uja* uja = *iter;
-			if (uja != this && uja->mState != STATE_2) {
-				Vector3f ujaSep = *this - *uja;
-				f32 dist        = ujaSep.normalise();
-			}
-		}
-	}
 	/*
 	stwu     r1, -0x430(r1)
 	mflr     r0
@@ -2006,6 +1975,7 @@ void UjaMgr::init(UjaMgrInitArg& initArg)
 	mBoidParameter = initArg.mBoidParameter;
 	mUjaParms      = initArg.mUjaParms;
 	test_createUjas();
+	FORCE_DONT_INLINE;
 }
 
 /**
