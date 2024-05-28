@@ -95,7 +95,7 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 
 	rock->enableEvent(0, EB_ModelHidden);
 	rock->disableEvent(0, EB_Cullable);
-	rock->disableEvent(0, EB_14);
+	rock->disableEvent(0, EB_CullSound);
 
 	rock->mTargetVelocity = Vector3f(0.0f);
 	rock->startMotion(ROCKANIM_Run, nullptr);
@@ -154,7 +154,7 @@ void StateDropWait::cleanup(EnemyBase* enemy)
 {
 	Obj* rock = OBJ(enemy);
 	rock->disableEvent(0, EB_Cullable);
-	rock->disableEvent(0, EB_14);
+	rock->disableEvent(0, EB_CullSound);
 
 	shadowMgr->addShadow(rock);
 	shadowMgr->setForceVisible(rock, true);
@@ -208,7 +208,7 @@ void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* rock = OBJ(enemy);
 	rock->disableEvent(0, EB_Cullable);
-	rock->disableEvent(0, EB_14);
+	rock->disableEvent(0, EB_CullSound);
 	rock->startMotion(ROCKANIM_Run, nullptr);
 	rock->mTimer = 0.0f;
 

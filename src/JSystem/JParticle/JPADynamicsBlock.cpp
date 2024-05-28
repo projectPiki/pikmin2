@@ -82,6 +82,52 @@ void JPAVolumeCube(JPAEmitterWorkData* workData)
  */
 void JPAVolumeSphere(JPAEmitterWorkData* workData)
 {
+	s16 phi;   // r0
+	s16 theta; // r4
+	if (workData->mEmitter->checkDynFlag(JPADYN_FixedInterval)) {
+
+		u16 preTheta = (workData->mVolumeAngleNum << 16) / (workData->mVolumeAngleMax - 1);
+		phi          = u16((workData->mVolumeX << 15) / (workData->mDivNumber - 1) + 0x4000);
+		theta        = f32(preTheta) * workData->mVolumeSweep + SHORT_FLOAT_MAX;
+		workData->mVolumeAngleNum++;
+		if (workData->mVolumeAngleNum == workData->mVolumeAngleMax) {
+
+			workData->mVolumeAngleNum = 0;
+			workData->mVolumeX++;
+			if (workData->mVolumeX * 2 < workData->mDivNumber) {
+				int angleMax = workData->mVolumeAngleMax;
+				if (workData->mVolumeAngleMax != 1) {
+					angleMax += 4;
+				} else {
+					angleMax += 3;
+				}
+				workData->mVolumeAngleMax = angleMax;
+			} else {
+				int angleMax = workData->mVolumeAngleMax;
+				if (workData->mVolumeAngleMax != 4) {
+					angleMax -= 4;
+				} else {
+					angleMax = 1;
+				}
+				workData->mVolumeAngleMax = angleMax;
+			}
+		}
+	} else {
+		phi          = workData->mEmitter->getRandS16() >> 1;
+		s16 preTheta = workData->mEmitter->getRandS16();
+		theta        = workData->mVolumeSweep * f32(preTheta);
+	}
+
+	f32 factor = workData->mEmitter->getRandF32();
+	if (workData->mEmitter->checkDynFlag(JPADYN_FixedDensity)) {
+		factor = 1.0f - factor * factor * factor;
+	}
+
+	f32 rad = workData->mVolumeSize * (workData->mVolumeMinRad + (factor * (1.0f - workData->mVolumeMinRad)));
+
+	workData->mVolumePos.set((rad * JMASCos(phi)) * JMASSin(theta), -rad * JMASSin(phi), (rad * JMASCos(phi)) * JMASCos(theta));
+	workData->mVelOmni.mul(workData->mVolumePos, workData->mGlobalScl);
+	workData->mVelAxis.set(workData->mVolumePos.x, 0.0f, workData->mVolumePos.z);
 	/*
 	stwu     r1, -0x20(r1)
 	lwz      r7, 0(r3)
@@ -271,107 +317,17 @@ lbl_8008F674:
  */
 void JPAVolumeCylinder(JPAEmitterWorkData* workData)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	lis      r4, 0x0019660D@ha
-	lis      r0, 0x4330
-	lfd      f2, lbl_80516B88@sda21(r2)
-	lwz      r7, 0(r3)
-	addi     r5, r4, 0x0019660D@l
-	stw      r0, 0x10(r1)
-	lwz      r6, 0xc4(r7)
-	lfs      f0, lbl_80516B7C@sda21(r2)
-	mullw    r4, r6, r5
-	addis    r4, r4, 0x3c6f
-	addi     r0, r4, -3233
-	stw      r0, 0xc4(r7)
-	srwi     r0, r0, 0x10
-	extsh    r0, r0
-	lwz      r6, 0(r3)
-	xoris    r0, r0, 0x8000
-	stw      r0, 0x14(r1)
-	lwz      r0, 0xc4(r6)
-	lfd      f1, 0x10(r1)
-	mullw    r4, r0, r5
-	lfs      f3, 0x3c(r3)
-	fsubs    f1, f1, f2
-	fmuls    f1, f3, f1
-	addis    r4, r4, 0x3c6f
-	addi     r0, r4, -3233
-	stw      r0, 0xc4(r6)
-	srwi     r0, r0, 9
-	oris     r0, r0, 0x3f80
-	fctiwz   f2, f1
-	lwz      r7, 0(r3)
-	stw      r0, 0xc(r1)
-	lwz      r4, 0xe8(r7)
-	lfs      f1, 0xc(r1)
-	lwz      r4, 0x2c(r4)
-	stfd     f2, 0x18(r1)
-	fsubs    f1, f1, f0
-	lwz      r4, 0(r4)
-	lwz      r8, 0x1c(r1)
-	lwz      r0, 8(r4)
-	fmr      f2, f1
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_8008F7D0
-	fnmsubs  f2, f1, f1, f0
+	s16 angle  = workData->mVolumeSweep * f32(workData->mEmitter->getRandS16());
+	f32 factor = workData->mEmitter->getRandF32();
+	if (workData->mEmitter->checkDynFlag(JPADYN_FixedDensity)) {
+		factor = 1.0f - (factor * factor);
+	}
 
-lbl_8008F7D0:
-	lis      r4, 0x0019660D@ha
-	lwz      r5, 0xc4(r7)
-	addi     r0, r4, 0x0019660D@l
-	lis      r6, sincosTable___5JMath@ha
-	mullw    r4, r5, r0
-	lfs      f1, 0x38(r3)
-	lfs      f5, lbl_80516B7C@sda21(r2)
-	addi     r6, r6, sincosTable___5JMath@l
-	rlwinm   r8, r8, 0x1e, 0x12, 0x1c
-	lfs      f3, 0x34(r3)
-	addis    r4, r4, 0x3c6f
-	fsubs    f0, f5, f1
-	addi     r4, r4, -3233
-	add      r5, r6, r8
-	srwi     r0, r4, 9
-	lfs      f4, 4(r5)
-	oris     r0, r0, 0x3f80
-	stw      r0, 8(r1)
-	fmadds   f2, f2, f0, f1
-	lfs      f0, lbl_80516B78@sda21(r2)
-	lfs      f1, 8(r1)
-	fmuls    f7, f3, f2
-	stw      r4, 0xc4(r7)
-	fsubs    f6, f1, f5
-	lfsx     f1, r6, r8
-	lfs      f3, 0x34(r3)
-	fmuls    f4, f7, f4
-	fadds    f2, f6, f6
-	fmuls    f1, f7, f1
-	fsubs    f2, f2, f5
-	stfs     f1, 0x10(r3)
-	fmuls    f1, f3, f2
-	stfs     f1, 0x14(r3)
-	stfs     f4, 0x18(r3)
-	lfs      f2, 0x10(r3)
-	lfs      f1, 0x114(r3)
-	fmuls    f1, f2, f1
-	stfs     f1, 0x1c(r3)
-	lfs      f2, 0x14(r3)
-	lfs      f1, 0x118(r3)
-	fmuls    f1, f2, f1
-	stfs     f1, 0x20(r3)
-	lfs      f2, 0x18(r3)
-	lfs      f1, 0x11c(r3)
-	fmuls    f1, f2, f1
-	stfs     f1, 0x24(r3)
-	lfs      f2, 0x18(r3)
-	lfs      f1, 0x10(r3)
-	stfs     f1, 0x28(r3)
-	stfs     f0, 0x2c(r3)
-	stfs     f2, 0x30(r3)
-	addi     r1, r1, 0x20
-	blr
-	*/
+	f32 rad = workData->mVolumeSize * (workData->mVolumeMinRad + (factor * (1.0f - workData->mVolumeMinRad)));
+
+	workData->mVolumePos.set(rad * JMASSin(angle), workData->mVolumeSize * workData->mEmitter->getRandZP(), rad * JMASCos(angle));
+	workData->mVelOmni.mul(workData->mVolumePos, workData->mGlobalScl);
+	workData->mVelAxis.set(workData->mVolumePos.x, 0.0f, workData->mVolumePos.z);
 }
 
 /**
@@ -380,82 +336,15 @@ lbl_8008F7D0:
  */
 void JPAVolumeTorus(JPAEmitterWorkData* workData)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	lis      r5, 0x0019660D@ha
-	lis      r0, 0x4330
-	lis      r4, sincosTable___5JMath@ha
-	lwz      r8, 0(r3)
-	addi     r4, r4, sincosTable___5JMath@l
-	addi     r6, r5, 0x0019660D@l
-	stw      r0, 8(r1)
-	lwz      r7, 0xc4(r8)
-	addi     r9, r4, 4
-	lfd      f1, lbl_80516B88@sda21(r2)
-	mullw    r5, r7, r6
-	addis    r5, r5, 0x3c6f
-	addi     r5, r5, -3233
-	srwi     r0, r5, 0x10
-	stw      r5, 0xc4(r8)
-	extsh    r0, r0
-	xoris    r0, r0, 0x8000
-	lwz      r7, 0(r3)
-	stw      r0, 0xc(r1)
-	lwz      r0, 0xc4(r7)
-	lfd      f0, 8(r1)
-	mullw    r5, r0, r6
-	lfs      f2, 0x3c(r3)
-	fsubs    f0, f0, f1
-	fmuls    f0, f2, f0
-	addis    r5, r5, 0x3c6f
-	addi     r0, r5, -3233
-	fctiwz   f0, f0
-	stw      r0, 0xc4(r7)
-	rlwinm   r0, r0, 0xe, 0x12, 0x1c
-	lfs      f1, 0x34(r3)
-	stfd     f0, 0x10(r1)
-	lfs      f0, 0x38(r3)
-	lwz      r5, 0x14(r1)
-	fmuls    f5, f1, f0
-	lfsx     f1, r4, r0
-	rlwinm   r5, r5, 0x1e, 0x12, 0x1c
-	lfsx     f4, r9, r0
-	lfsx     f0, r4, r5
-	lfsx     f2, r9, r5
-	fmuls    f0, f5, f0
-	fmuls    f3, f5, f1
-	fmuls    f1, f5, f2
-	fmuls    f0, f0, f4
-	fmuls    f1, f1, f4
-	stfs     f0, 0x28(r3)
-	stfs     f3, 0x2c(r3)
-	stfs     f1, 0x30(r3)
-	lfs      f4, 0x34(r3)
-	lfsx     f1, r4, r5
-	lfs      f0, 0x28(r3)
-	lfsx     f3, r9, r5
-	fmadds   f0, f4, f1, f0
-	lfs      f2, 0x30(r3)
-	lfs      f1, 0x2c(r3)
-	fmadds   f2, f4, f3, f2
-	stfs     f0, 0x10(r3)
-	stfs     f1, 0x14(r3)
-	stfs     f2, 0x18(r3)
-	lfs      f1, 0x10(r3)
-	lfs      f0, 0x114(r3)
-	fmuls    f0, f1, f0
-	stfs     f0, 0x1c(r3)
-	lfs      f1, 0x14(r3)
-	lfs      f0, 0x118(r3)
-	fmuls    f0, f1, f0
-	stfs     f0, 0x20(r3)
-	lfs      f1, 0x18(r3)
-	lfs      f0, 0x11c(r3)
-	fmuls    f0, f1, f0
-	stfs     f0, 0x24(r3)
-	addi     r1, r1, 0x20
-	blr
-	*/
+	s16 phi   = workData->mVolumeSweep * f32(workData->mEmitter->getRandS16());
+	s16 theta = workData->mEmitter->getRandS16();
+
+	f32 rad = workData->mVolumeSize * workData->mVolumeMinRad;
+
+	workData->mVelAxis.set((rad * JMASSin(phi)) * JMASCos(theta), rad * JMASSin(theta), (rad * JMASCos(phi)) * JMASCos(theta));
+	workData->mVolumePos.set(workData->mVelAxis.x + (workData->mVolumeSize * JMASSin(phi)), workData->mVelAxis.y,
+	                         workData->mVelAxis.z + (workData->mVolumeSize * JMASCos(phi)));
+	workData->mVelOmni.mul(workData->mVolumePos, workData->mGlobalScl);
 }
 
 /**

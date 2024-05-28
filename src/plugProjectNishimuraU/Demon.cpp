@@ -1,6 +1,8 @@
 #include "Game/Entities/Demon.h"
 #include "Game/Navi.h"
 
+#define GENERALPARMS (static_cast<Sarai::Parms*>(mParms)->mGeneral)
+
 namespace Game {
 namespace Demon {
 /**
@@ -19,22 +21,25 @@ FakePiki* Obj::getAttackableTarget()
 	if (mAttackTimer > 3.0f) {
 		Vector3f pos = getPosition();
 
-		if (sqrDistanceXZ(pos, mHomePosition) < SQUARE(static_cast<Sarai::Parms*>(mParms)->mGeneral.mTerritoryRadius())) {
-			f32 fov = PI * (DEG2RAD * static_cast<Sarai::Parms*>(mParms)->mGeneral.mViewAngle());
-			f32 max = SQUARE(static_cast<Sarai::Parms*>(mParms)->mGeneral.mSightRadius());
+		if (sqrDistanceXZ(pos, mHomePosition) < SQUARE(GENERALPARMS.mTerritoryRadius())) {
+			f32 fov = TORADIANS(GENERALPARMS.mViewAngle());
+			f32 max = SQUARE(GENERALPARMS.mSightRadius());
 
 			Iterator<Navi> iter(naviMgr);
 			Navi* navi;
 			CI_LOOP(iter)
 			{
 				navi = (*iter);
-				if (navi->isAlive() && !navi->isStickToMouth()) {
-					f32 ang = getAngDist(navi);
-					if (FABS(ang) <= fov) {
-						Vector3f Navipos2 = navi->getPosition();
-						if (sqrDistanceXZ(pos, Navipos2) < max) {
-							return navi;
-						}
+
+				if (!navi->isAlive() || navi->isStickToMouth()) {
+					continue;
+				}
+
+				f32 ang = getAngDist(navi);
+				if (FABS(ang) <= fov) {
+					Vector3f naviPos = navi->getPosition();
+					if (sqrDistanceXZ(pos, naviPos) < max) {
+						return navi;
 					}
 				}
 			}
@@ -49,32 +54,38 @@ FakePiki* Obj::getAttackableTarget()
  */
 int Obj::catchTarget()
 {
-	int id = 0;
+	int caughtCount = 0;
 	Iterator<Game::Navi> iter(Game::naviMgr);
 	Game::Navi* navi;
 	CI_LOOP(iter)
 	{
 		navi = (*iter);
-		if (navi->isAlive() && !navi->isStickToMouth()) {
-			for (int i = 0; i < mMouthSlots.mMax; i++) {
-				MouthCollPart* slot = mMouthSlots.getSlot(i);
-				if (!slot->mStuckCreature) {
-					Vector3f slotpos;
-					slot->getPosition(slotpos);
-					Vector3f naviPos = navi->getPosition();
 
-					f32 dist = slotpos.distance(naviPos);
-					if (dist < slot->mRadius) {
-						InteractSarai act(this, 1.0f, slot);
-						navi->stimulate(act);
-						id++;
-						break;
-					}
-				}
+		if (!navi->isAlive() || navi->isStickToMouth()) {
+			continue;
+		}
+
+		for (int i = 0; i < mMouthSlots.mMax; i++) {
+			MouthCollPart* slot = mMouthSlots.getSlot(i);
+			if (slot->mStuckCreature) {
+				continue;
+			}
+
+			Vector3f slotpos;
+			slot->getPosition(slotpos);
+			Vector3f naviPos = navi->getPosition();
+
+			f32 distanceToSlot = slotpos.distance(naviPos);
+			if (distanceToSlot < slot->mRadius) {
+				InteractSarai act(this, 1.0f, slot);
+				navi->stimulate(act);
+				caughtCount++;
+				break;
 			}
 		}
 	}
-	return id;
+
+	return caughtCount;
 }
 
 } // namespace Demon

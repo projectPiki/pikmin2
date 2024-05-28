@@ -93,12 +93,14 @@ void CameraMgr::init(int state)
 void CameraMgr::setCameraAngle(f32 angle, int camID)
 {
 	int naviIDs[2];
-	if (isStartAndEnd(naviIDs, camID)) {
-		for (int i = naviIDs[0]; i < naviIDs[1]; i++) {
-			PlayCamera* cam = mCameraObjList[i];
-			if (cam) {
-				cam->setCameraAngle(angle);
-			}
+	if (!isStartAndEnd(naviIDs, camID)) {
+		return;
+	}
+
+	for (int i = naviIDs[0]; i < naviIDs[1]; i++) {
+		PlayCamera* cam = mCameraObjList[i];
+		if (cam) {
+			cam->setCameraAngle(angle);
 		}
 	}
 }
@@ -109,36 +111,44 @@ void CameraMgr::setCameraAngle(f32 angle, int camID)
  */
 void CameraMgr::update()
 {
-	if (isCameraUpdateOn()) {
-		if (mCurrPlayerMode == 2) {
+	if (!isCameraUpdateOn()) {
+		return;
+	}
+
+	if (mCurrPlayerMode == CAMNAVI_Both) {
+		for (int i = 0; i < 2; i++) {
+			mCameraObjList[i]->update();
+		}
+	} else {
+		Navi* navi = naviMgr->getActiveNavi();
+		if (navi) {
+			int id = navi->mNaviIndex;
+			mCameraObjList[id]->update();
+
+			Mtx mtx;
+			PSMTXCopy(mCameraObjList[id]->mLookMatrix.mMatrix.mtxView, mtx);
+
+			CameraData data;
+			mCameraObjList[id]->getCameraData(data);
+
+			id ^= 1;
+
+			PSMTXCopy(mtx, mCameraObjList[id]->mLookMatrix.mMatrix.mtxView);
+
+			mCameraObjList[id]->setCameraData(data);
+			mCameraObjList[id]->noUpdate();
+		} else {
 			for (int i = 0; i < 2; i++) {
 				mCameraObjList[i]->update();
 			}
-		} else {
-			Navi* navi = naviMgr->getActiveNavi();
-			if (navi) {
-				int id = navi->mNaviIndex;
-				mCameraObjList[id]->update();
-				Mtx mtx;
-				PSMTXCopy(mCameraObjList[id]->mLookMatrix.mMatrix.mtxView, mtx);
-				CameraData data;
-				mCameraObjList[id]->getCameraData(data);
-				id ^= 1;
-				PSMTXCopy(mtx, mCameraObjList[id]->mLookMatrix.mMatrix.mtxView);
-				mCameraObjList[id]->setCameraData(data);
-				mCameraObjList[id]->noUpdate();
-			} else {
-				for (int i = 0; i < 2; i++) {
-					mCameraObjList[i]->update();
-				}
-			}
 		}
-		if (mDelegate && (mCameraObjList[0]->mChangePlayerState | mCameraObjList[1]->mChangePlayerState) == 0) {
-			CameraArg arg;
-			arg.mState = mCurrPlayerMode;
-			mDelegate->invoke(&arg);
-			mDelegate = nullptr;
-		}
+	}
+
+	if (mDelegate && (mCameraObjList[NAVIID_Olimar]->mChangePlayerState | mCameraObjList[NAVIID_Louie]->mChangePlayerState) == 0) {
+		CameraArg arg;
+		arg.mState = mCurrPlayerMode;
+		mDelegate->invoke(&arg);
+		mDelegate = nullptr;
 	}
 }
 
@@ -150,19 +160,25 @@ void CameraMgr::startVibration(int type, Vector3f& pos, int camID)
 {
 	if (mZukanCamera) {
 		mZukanCamera->startVibration(type);
-	} else {
-		int naviIDs[2];
-		if (isStartAndEnd(naviIDs, camID)) {
-			for (int i = naviIDs[0]; i < naviIDs[1]; i++) {
-				if (mViewportList[i]->viewable() && isVibrationStart(type, i)) {
-					Vector3f naviPos = mCameraObjList[i]->mTargetObj->getPosition();
-					f32 min          = pos.distance(naviPos);
-					f32 max          = mVibrationParms->mVibMaxDistance.mValue;
-					if (min < max) {
-						mCameraObjList[i]->startVibration(type, (max - min) / max);
-					}
-				}
-			}
+		return;
+	}
+
+	int naviIDs[2];
+	if (!isStartAndEnd(naviIDs, camID)) {
+		return;
+	}
+
+	for (int i = naviIDs[0]; i < naviIDs[1]; i++) {
+		if (!mViewportList[i]->viewable() || !isVibrationStart(type, i)) {
+			continue;
+		}
+
+		Vector3f naviPos = mCameraObjList[i]->mTargetObj->getPosition();
+
+		f32 min = pos.distance(naviPos);
+		f32 max = mVibrationParms->mVibMaxDistance.mValue;
+		if (min < max) {
+			mCameraObjList[i]->startVibration(type, (max - min) / max);
 		}
 	}
 }
@@ -175,15 +191,20 @@ void CameraMgr::startVibration(int type, int camID)
 {
 	if (mZukanCamera) {
 		mZukanCamera->startVibration(type);
-	} else {
-		int naviIDs[2];
-		if (isStartAndEnd(naviIDs, camID)) {
-			for (int i = naviIDs[0]; i < naviIDs[1]; i++) {
-				if (mViewportList[i]->viewable() && isVibrationStart(type, i)) {
-					mCameraObjList[i]->startVibration(type, 1.0f);
-				}
-			}
+		return;
+	}
+
+	int naviIDs[2];
+	if (!isStartAndEnd(naviIDs, camID)) {
+		return;
+	}
+
+	for (int i = naviIDs[0]; i < naviIDs[1]; i++) {
+		if (!mViewportList[i]->viewable() || !isVibrationStart(type, i)) {
+			continue;
 		}
+
+		mCameraObjList[i]->startVibration(type, 1.0f);
 	}
 }
 
@@ -194,10 +215,12 @@ void CameraMgr::startVibration(int type, int camID)
 void CameraMgr::controllerLock(int camID)
 {
 	int naviIDs[2];
-	if (isStartAndEnd(naviIDs, camID)) {
-		for (int i = naviIDs[0]; i < naviIDs[1]; i++) {
-			mCameraObjList[i]->mCanInput = false;
-		}
+	if (!isStartAndEnd(naviIDs, camID)) {
+		return;
+	}
+
+	for (int i = naviIDs[0]; i < naviIDs[1]; i++) {
+		mCameraObjList[i]->mCanInput = false;
 	}
 }
 
@@ -208,10 +231,12 @@ void CameraMgr::controllerLock(int camID)
 void CameraMgr::controllerUnLock(int camID)
 {
 	int naviIDs[2];
-	if (isStartAndEnd(naviIDs, camID)) {
-		for (int i = naviIDs[0]; i < naviIDs[1]; i++) {
-			mCameraObjList[i]->mCanInput = true;
-		}
+	if (!isStartAndEnd(naviIDs, camID)) {
+		return;
+	}
+
+	for (int i = naviIDs[0]; i < naviIDs[1]; i++) {
+		mCameraObjList[i]->mCanInput = true;
 	}
 }
 
@@ -222,10 +247,12 @@ void CameraMgr::controllerUnLock(int camID)
 void CameraMgr::startDemoCamera(int camID, int type)
 {
 	int naviIDs[2];
-	if (isStartAndEnd(naviIDs, camID)) {
-		for (int i = naviIDs[0]; i < naviIDs[1]; i++) {
-			mCameraObjList[i]->startDemoCamera(type);
-		}
+	if (!isStartAndEnd(naviIDs, camID)) {
+		return;
+	}
+
+	for (int i = naviIDs[0]; i < naviIDs[1]; i++) {
+		mCameraObjList[i]->startDemoCamera(type);
 	}
 }
 
@@ -236,10 +263,12 @@ void CameraMgr::startDemoCamera(int camID, int type)
 void CameraMgr::finishDemoCamera(int camID)
 {
 	int naviIDs[2];
-	if (isStartAndEnd(naviIDs, camID)) {
-		for (int i = naviIDs[0]; i < naviIDs[1]; i++) {
-			mCameraObjList[i]->finishDemoCamera();
-		}
+	if (!isStartAndEnd(naviIDs, camID)) {
+		return;
+	}
+
+	for (int i = naviIDs[0]; i < naviIDs[1]; i++) {
+		mCameraObjList[i]->finishDemoCamera();
 	}
 }
 
@@ -249,33 +278,36 @@ void CameraMgr::finishDemoCamera(int camID)
  */
 void CameraMgr::changePlayerMode(int naviID, IDelegate1<Game::CameraArg*>* delegate)
 {
-	bool flag = false;
+	bool centerCamera = false;
 	switch (naviID) {
 	case NAVIID_Olimar: {
-		if (mCurrPlayerMode == NAVIID_Louie) {
+		if (mCurrPlayerMode == CAMNAVI_Louie) {
 			CameraData data;
 			mCameraObjList[NAVIID_Louie]->getCameraData(data);
 			mCameraObjList[NAVIID_Olimar]->setCameraData(data);
-			flag = true;
+			centerCamera = true;
 		}
+
 		mCameraObjList[NAVIID_Olimar]->setCameraParms(mCameraParms[0]);
-		mCameraObjList[NAVIID_Olimar]->changePlayerMode(flag);
+		mCameraObjList[NAVIID_Olimar]->changePlayerMode(centerCamera);
 		break;
 	}
 	case NAVIID_Louie: {
-		if (mCurrPlayerMode == NAVIID_Olimar) {
+		if (mCurrPlayerMode == CAMNAVI_Olimar) {
 			CameraData data;
 			mCameraObjList[NAVIID_Olimar]->getCameraData(data);
 			mCameraObjList[NAVIID_Louie]->setCameraData(data);
-			flag = true;
+			centerCamera = true;
 		}
+
 		mCameraObjList[NAVIID_Louie]->setCameraParms(mCameraParms[0]);
-		mCameraObjList[NAVIID_Louie]->changePlayerMode(flag);
+		mCameraObjList[NAVIID_Louie]->changePlayerMode(centerCamera);
 		break;
 	}
 	case NAVIID_Multiplayer: {
 		mCameraObjList[NAVIID_Olimar]->setCameraParms(mCameraParms[1]);
 		mCameraObjList[NAVIID_Olimar]->changePlayerMode(false);
+
 		mCameraObjList[NAVIID_Louie]->setCameraParms(mCameraParms[1]);
 		mCameraObjList[NAVIID_Louie]->changePlayerMode(false);
 		break;
@@ -295,10 +327,10 @@ bool CameraMgr::isChangePlayer()
 		return true;
 	}
 
-	int test = 0;
+	int changeFlag = 0;
 	for (int i = 0; i < 2; i++) {
-		test |= mCameraObjList[i]->mChangePlayerState;
-		if (test & 1) {
+		changeFlag |= mCameraObjList[i]->mChangePlayerState;
+		if (changeFlag & 1) {
 			return true;
 		}
 	}
@@ -314,9 +346,10 @@ void CameraMgr::setZukanCamera(LookAtCamera* cam)
 {
 	if (gameSystem && gameSystem->isZukanMode()) {
 		mZukanCamera = cam;
-	} else {
-		JUT_PANICLINE(463, "not zukan mode\n");
+		return;
 	}
+
+	JUT_PANICLINE(463, "not zukan mode\n");
 }
 
 /**
@@ -328,6 +361,7 @@ bool CameraMgr::isCameraUpdateOn()
 	if (gameSystem && !gameSystem->mIsFrozen) {
 		return true;
 	}
+
 	return false;
 }
 
@@ -338,20 +372,23 @@ bool CameraMgr::isCameraUpdateOn()
 bool CameraMgr::isStartAndEnd(int* naviIDs, int type)
 {
 	if (type == CAMNAVI_Both) { // both navi cameras
-		naviIDs[0] = 0;
-		naviIDs[1] = 2;
+		naviIDs[0] = NAVIID_Olimar;
+		naviIDs[1] = NAVIID_Both;
 		return true;
 	}
+
 	if (type == CAMNAVI_Olimar) { // just olimar
-		naviIDs[0] = 0;
-		naviIDs[1] = 1;
+		naviIDs[0] = NAVIID_Olimar;
+		naviIDs[1] = NAVIID_Louie;
 		return true;
 	}
+
 	if (type == CAMNAVI_Louie) { // just louie/president
-		naviIDs[0] = 1;
-		naviIDs[1] = 2;
+		naviIDs[0] = NAVIID_Louie;
+		naviIDs[1] = NAVIID_Both;
 		return true;
 	}
+
 	return false;
 }
 
@@ -370,6 +407,7 @@ bool CameraMgr::isVibrationStart(int type, int camID)
 		mCameraVibrateState[camID] = type;
 		return true;
 	}
+
 	return false;
 }
 
