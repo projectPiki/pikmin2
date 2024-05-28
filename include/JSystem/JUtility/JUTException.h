@@ -171,7 +171,7 @@ struct JUTException : public JKRThread {
 // TODO: Reasonable definition of a debug print function
 #define JUT_LOG(...) JUT_PANIC(__VA_ARGS__)
 #else
-#define JUT_LOG(...) __VA_ARGS__
+#define JUT_LOG(...) (void)0
 #endif
 
 #endif

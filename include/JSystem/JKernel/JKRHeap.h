@@ -21,15 +21,15 @@ struct JKRHeap : public JKRDisposer {
 			{
 			}
 
-			const char* _00; // _00
-			int _04;         // _04
+			char* _00; // _00
+			int _04;   // _04
 		};
 
 		struct TArgument {
-			TArgument(const JKRHeap* heap, u32 p2, bool p3)
+			TArgument(const JKRHeap* heap, u32 id, bool compareOnDestruct)
 			    : mHeap((heap) ? heap : JKRHeap::sCurrentHeap)
-			    , mId(p2)
-			    , mIsCompareOnDestructed(p3)
+			    , mId(id)
+			    , mIsCompareOnDestructed(compareOnDestruct)
 			{
 			}
 
@@ -55,7 +55,7 @@ struct JKRHeap : public JKRDisposer {
 
 		~TState();
 		void dump() const { mArgument.mHeap->state_dump(*this); }
-		bool isVerbose() { return bVerbose_; };
+		static inline bool isVerbose() { return bVerbose_; };
 		bool isCompareOnDestructed() const { return mArgument.mIsCompareOnDestructed; };
 		u32 getUsedSize() const { return mUsedSize; }
 		u32 getCheckCode() const { return mCheckCode; }
@@ -208,7 +208,7 @@ struct JKRHeap : public JKRDisposer {
 	u8 mFillCheckFlag;                  // _3D
 	u8 mAllocMode;                      // _3E, see EAllocMode enum
 	u8 mGroupID;                        // _3F
-	JSUTree<JKRHeap> mTree;             // _40
+	mutable JSUTree<JKRHeap> mTree;     // _40
 	JSUList<JKRDisposer> mDisposerList; // _5C
 	bool mErrorFlag;                    // _68
 	bool mInitFlag;                     // _69
