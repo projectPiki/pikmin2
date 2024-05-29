@@ -135,7 +135,7 @@ void CloseState::cleanup(Game::CFSMItem*) { }
 void Item::movieUserCommand(u32 command, MoviePlayer* player)
 {
 	switch (command) {
-	case 100:
+	case CC_MovieCommand1:
 		PelletIterator iterator;
 		iterator.first();
 		while (!iterator.isDone()) {

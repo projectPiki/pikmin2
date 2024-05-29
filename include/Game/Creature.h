@@ -7,6 +7,7 @@
 #include "Game/updateMgr.h"
 #include "BitFlag.h"
 #include "ObjectTypes.h"
+#include "Game/P2JST/ObjectActor.h"
 #include "trig.h"
 
 // Shorthand cast to obj-specific 'parms'

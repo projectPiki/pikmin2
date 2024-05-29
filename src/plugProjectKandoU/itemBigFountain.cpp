@@ -173,7 +173,7 @@ void OutState::cleanup(Item* item) { }
 void Item::movieUserCommand(u32 command, MoviePlayer* player)
 {
 	switch (command) {
-	case 100:
+	case CC_MovieCommand1:
 		PelletIterator iter;
 		CI_LOOP(iter)
 		{
@@ -500,7 +500,7 @@ Mgr::Mgr()
 	mItemName            = "ãAä“ä‘åáêÚ"; // 'return geyser'
 	mParms               = new FountainParms();
 	void* data           = JKRDvdRipper::loadToMainRAM("user/Abe/item/fountainParms.txt", nullptr, Switch_0, 0, nullptr,
-                                             JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
+	                                                   JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
 	if (data != nullptr) {
 		RamStream input(data, -1);
 		input.setMode(STREAM_MODE_TEXT, 1);

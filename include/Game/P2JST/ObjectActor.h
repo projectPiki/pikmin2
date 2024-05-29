@@ -18,6 +18,21 @@ namespace Game {
 struct Creature;
 struct MoviePlayer;
 
+enum CutsceneCommandID {
+	CC_Null           = -1,
+	CC_StartAnimation = 0,
+
+	CC_MovieCommand1 = 100,
+	CC_MovieCommand2 = 101,
+	CC_MovieCommand3 = 102,
+	CC_MovieCommand4 = 103,
+	CC_MovieCommand5 = 104,
+	CC_MovieCommand6 = 105,
+	CC_MovieCommand7 = 106,
+	CC_MovieCommand8 = 107,
+	CC_MovieCommand9 = 108,
+};
+
 namespace P2JST {
 
 struct ObjectActor : public JStage::TActor, public ObjectBase {

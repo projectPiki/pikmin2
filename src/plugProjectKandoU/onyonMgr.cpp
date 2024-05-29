@@ -46,8 +46,8 @@ void Onyon::movieUserCommand(u32 code, MoviePlayer* player)
 {
 	// TODO: make code enum
 	switch (code) {
-	case 100: // 0x64
-	case 105: // 0x69
+	case CC_MovieCommand1: // 0x64
+	case CC_MovieCommand6: // 0x69
 		if (!playData->hasBootContainer(mOnyonType)) {
 			JUT_PANICLINE(534, "BIKKURI no boot!\n");
 		}
@@ -139,7 +139,7 @@ void Onyon::movieUserCommand(u32 code, MoviePlayer* player)
 		}
 		break;
 
-	case 101: // 0x65
+	case CC_MovieCommand2: // 0x65
 		if (mOnyonType <= ONYON_TYPE_YELLOW) {
 			if (moviePlayer->isFlag(MVP_IsFinished)) {
 				setSpotState(SPOTSTATE_Opened);
@@ -151,7 +151,7 @@ void Onyon::movieUserCommand(u32 code, MoviePlayer* player)
 		}
 		break;
 
-	case 102: // 0x66
+	case CC_MovieCommand3: // 0x66
 		if (mOnyonType <= ONYON_TYPE_YELLOW) {
 			if (moviePlayer->isFlag(MVP_IsFinished)) {
 				setSpotState(SPOTSTATE_Closed);
@@ -163,13 +163,13 @@ void Onyon::movieUserCommand(u32 code, MoviePlayer* player)
 		}
 		break;
 
-	case 103: // 0x67
+	case CC_MovieCommand4: // 0x67
 		if (mOnyonType == ONYON_TYPE_SHIP) {
 			startPropera();
 		}
 		break;
 
-	case 104: // 0x68
+	case CC_MovieCommand5: // 0x68
 		if (mOnyonType == ONYON_TYPE_SHIP) {
 			stopPropera();
 		}

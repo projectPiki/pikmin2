@@ -231,11 +231,11 @@ void BaseItem::move(f32 step)
  * @note Address: 0x801CC80C
  * @note Size: 0x7C
  */
-void BaseItem::movieStartAnimation(u32 p1)
+void BaseItem::movieStartAnimation(u32 animId)
 {
 	if (mAnimator.mAnimMgr) {
 		getCreatureName();
-		mAnimator.startAnim(p1, nullptr);
+		mAnimator.startAnim(animId, nullptr);
 		mAnimSpeed = 30.0f;
 	} else {
 		getCreatureName();
