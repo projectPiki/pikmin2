@@ -564,12 +564,12 @@ void System::destroyRomFont()
 void System::createSoundSystem()
 {
 	sys->heapStatusStart("SoundSystem", nullptr);
-	JKRHeap* old = JKRGetCurrentHeap();
+	JKRHeap* old = JKRHeap::getCurrentHeap();
 
-	P2ASSERTLINE(1158, JKRGetCurrentHeap());
+	P2ASSERTLINE(1158, old);
 	P2ASSERTLINE(1161, gResMgr2D);
 
-	JKRHeap* resHeap    = gResMgr2D->mHeap;
+	JKRHeap* resHeap    = gResMgr2D->getHeap();
 	JKRExpHeap* newheap = makeExpHeap(resHeap->getFreeSize(), resHeap, true);
 
 	P2ASSERTLINE(1165, newheap);
@@ -731,7 +731,7 @@ void System::createSoundSystem()
  */
 void System::loadSoundResource()
 {
-	JKRHeap* old          = JKRGetCurrentHeap();
+	JKRHeap* old          = JKRHeap::sCurrentHeap;
 	JKRSolidHeap* newheap = makeSolidHeap(old->getFreeSize(), old, true);
 	newheap->becomeCurrentHeap();
 
