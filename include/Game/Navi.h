@@ -75,7 +75,11 @@ struct NaviFSM : public StateMachine<Navi> {
 struct NaviWhistle {
 	NaviWhistle(Navi*);
 
-	enum WhistleState { Whistle_Inactive, Whistle_Active, Whistle_Timeout };
+	enum WhistleState {
+		WS_Idle,
+		WS_Blowing,
+		WS_Ended,
+	};
 
 	void init();
 	void updatePosition();
@@ -85,6 +89,8 @@ struct NaviWhistle {
 	void setFaceDir(f32);
 	void updateWhistle();
 	void update(Vector3f&, bool);
+
+	inline f32 getTimePercentage();
 
 	Vector3f mNaviOffsetVec; // _00
 	Vector3f mPosition;      // _0C
@@ -235,6 +241,7 @@ struct Navi : public FakePiki, virtual public PelletView {
 
 	inline void setCurrState(StateType* state) { mCurrentState = state; }
 	inline StateType* getCurrState() { return mCurrentState; }
+	inline struct NaviParms* getParms() { return static_cast<NaviParms*>(mParms); }
 
 	// _000      = VTBL
 	// _000-_250 = FakePiki

@@ -26,14 +26,14 @@ NaviWhistle::NaviWhistle(Game::Navi* navi)
  */
 void NaviWhistle::init()
 {
-	mState            = 0;
-	mRadius           = 10.0f;
-	mActiveTime       = 0.0f;
-	mColor            = Color4(255, 150, 0, 120);
-	const f32 faceDir = mNavi->getFaceDir();
-	NaviParms* parms  = static_cast<NaviParms*>(mNavi->mParms);
-	f32 v1            = parms->mNaviParms.mMaxCursorMoveRadius.mValue * 0.5f;
-	mNaviOffsetVec    = Vector3f(sinf(faceDir) * v1, 0.0f, cosf(faceDir) * v1);
+	mState               = 0;
+	mRadius              = 10.0f;
+	mActiveTime          = 0.0f;
+	mColor               = Color4(255, 150, 0, 120);
+	const f32 faceDir    = mNavi->getFaceDir();
+	NaviParms* parms     = static_cast<NaviParms*>(mNavi->mParms);
+	f32 cursorRadiusHalf = parms->mNaviParms.mMaxCursorMoveRadius.mValue * 0.5f;
+	mNaviOffsetVec       = Vector3f(sinf(faceDir) * cursorRadiusHalf, 0.0f, cosf(faceDir) * cursorRadiusHalf);
 
 	updatePosition();
 }
@@ -44,12 +44,15 @@ void NaviWhistle::init()
  */
 void NaviWhistle::updatePosition()
 {
+	// Move relative to the player
 	mPosition = mNavi->getPosition() + mNaviOffsetVec;
 
+	// Shoot a raycast down and assign conform to the terrain
 	CurrTriInfo info;
 	f32 y          = 0.0f;
 	info.mPosition = mPosition;
 	if (mapMgr) {
+		// If we have a map manager, get the current triangle
 		info.mUpdateOnNewMaxY = false;
 		mapMgr->getCurrTri(info);
 		y       = info.mMinY;
@@ -57,6 +60,7 @@ void NaviWhistle::updatePosition()
 	}
 
 	if (platMgr) {
+		// If we're on a platform, get the current triangle
 		info.mMinY = FLOAT_DIST_MIN;
 		platMgr->getCurrTri(info);
 		f32 minY = info.mMinY;
@@ -79,17 +83,15 @@ void NaviWhistle::start()
 	mIsWhistleActive = false;
 
 	switch (mState) {
-	case Whistle_Inactive:
-		mState           = 1;
-		mActiveTime      = 0.0f;
-		NaviParms* parms = static_cast<NaviParms*>(mNavi->mParms);
-		mRadius          = parms->mNaviParms.mPikiCallMinRadius.mValue;
-		return;
-	case Whistle_Timeout:
-		mState      = 1;
+	case WS_Idle:
+		mState      = WS_Blowing;
 		mActiveTime = 0.0f;
-		parms       = static_cast<NaviParms*>(mNavi->mParms);
-		mRadius     = parms->mNaviParms.mPikiCallMinRadius.mValue;
+		mRadius     = mNavi->getParms()->mNaviParms.mPikiCallMinRadius.mValue;
+		return;
+	case WS_Ended:
+		mState      = WS_Blowing;
+		mActiveTime = 0.0f;
+		mRadius     = mNavi->getParms()->mNaviParms.mPikiCallMinRadius.mValue;
 		return;
 	}
 }
@@ -102,14 +104,13 @@ void NaviWhistle::start()
 void NaviWhistle::stop()
 {
 	switch (mState) {
-
-	case Whistle_Active:
-		mState           = 2;
+	case WS_Blowing:
+		mState           = WS_Ended;
 		mActiveTime      = 0.0f;
 		mIsWhistleActive = true;
 		return;
-	case Whistle_Inactive:
-	case Whistle_Timeout:
+	case WS_Idle:
+	case WS_Ended:
 	default:
 		return;
 	}
@@ -119,7 +120,7 @@ void NaviWhistle::stop()
  * @note Address: 0x80165420
  * @note Size: 0x10
  */
-bool NaviWhistle::timeout() { return mState == Whistle_Inactive; }
+bool NaviWhistle::timeout() { return mState == WS_Idle; }
 
 /**
  * @note Address: 0x80165430
@@ -127,10 +128,12 @@ bool NaviWhistle::timeout() { return mState == Whistle_Inactive; }
  */
 void NaviWhistle::setFaceDir(f32 dir)
 {
-	f32 dist = mNaviOffsetVec.length();
-
+	// Move the cursor in a circle around the player based on dir
+	f32 dist       = mNaviOffsetVec.length();
 	mNaviOffsetVec = Vector3f(dist * sinf(dir), 0.0f, dist * cosf(dir));
 }
+
+inline f32 NaviWhistle::getTimePercentage() { return mActiveTime / mNavi->getParms()->mNaviParms.mMaxCallTime.mValue; }
 
 /**
  * @note Address: 0x80165524
@@ -139,51 +142,53 @@ void NaviWhistle::setFaceDir(f32 dir)
 void NaviWhistle::updateWhistle()
 {
 	switch (mState) {
-	case Whistle_Inactive:
-		mColor.r = 255;
-		mColor.g = 120;
-		mColor.b = 0;
-		mColor.a = 120;
+	case WS_Idle:
+		mColor.set(255, 120, 0, 120);
 		break;
-	case Whistle_Active:
-		NaviParms* parms = static_cast<NaviParms*>(mNavi->mParms);
-		f32 growth       = mActiveTime / parms->mNaviParms.mMaxCallTime.mValue;
-		f32 zero         = 0.0f;
-		mColor.r         = (growth * -175.0f + 255.0f);
-		mColor.g         = (growth * -110.0f + 120.0f);
-		mColor.b         = (growth * 255.0f + zero);
-		mColor.a         = (growth * zero + 120.0f);
+
+	case WS_Blowing:
+		// When blowing do some cool rainbow colors
+		f32 zero   = 0.0f;
+		f32 growth = getTimePercentage();
+		u8 r       = (growth * -175.0f + 255.0f);
+		u8 g       = (growth * -110.0f + 120.0f);
+		u8 b       = (growth * 255.0f + zero);
+		u8 a       = (growth * zero + 120.0f);
+		mColor.set(r, g, b, a);
+
 		mActiveTime += sys->mDeltaTime;
-		Navi* navi = mNavi;
-		parms      = static_cast<NaviParms*>(mNavi->mParms);
-		if (mActiveTime > parms->mNaviParms.mMaxCallTime.mValue) {
+		// If we've been calling for too long, end
+		if (mActiveTime > mNavi->getParms()->mNaviParms.mMaxCallTime.mValue) {
 			mActiveTime = 0.0f;
-			mState      = Whistle_Timeout;
-		} else {
-			OlimarData* data = navi->getOlimarData();
-			f32 maxSize;
-			if (data->hasItem(OlimarData::ODII_AmplifiedAmplifier)) {
-				parms   = naviMgr->mNaviParms;
-				maxSize = parms->mNaviParms.mWideWhistleRadius.mValue;
-			} else {
-				parms   = naviMgr->mNaviParms;
-				maxSize = parms->mNaviParms.mPikiCallMaxRadius.mValue;
-			}
-			parms     = static_cast<NaviParms*>(mNavi->mParms);
-			f32 ratio = mActiveTime / parms->mNaviParms.mMaxCallTime();
-			f32 diff  = maxSize - parms->mNaviParms.mPikiCallMinRadius();
-			mRadius   = ratio * diff + parms->mNaviParms.mPikiCallMinRadius();
+			mState      = WS_Ended;
+			break;
 		}
+
+		// If we've got the amplified amplifier we can go wide whistle
+		f32 maxSize;
+		NaviParms* parms;
+		OlimarData* data = mNavi->getOlimarData();
+		if (data->hasItem(OlimarData::ODII_AmplifiedAmplifier)) {
+			parms   = naviMgr->mNaviParms;
+			maxSize = parms->mNaviParms.mWideWhistleRadius.mValue;
+		} else {
+			parms   = naviMgr->mNaviParms;
+			maxSize = parms->mNaviParms.mPikiCallMaxRadius.mValue;
+		}
+
+		f32 timeRatio        = getTimePercentage();
+		f32 radiusDifference = maxSize - mNavi->getParms()->mNaviParms.mPikiCallMinRadius();
+		mRadius              = timeRatio * radiusDifference + mNavi->getParms()->mNaviParms.mPikiCallMinRadius();
 		break;
-	case Whistle_Timeout:
-		parms    = static_cast<NaviParms*>(mNavi->mParms);
-		mColor.a = (1.0f - mActiveTime / parms->mNaviParms.mCircleDisappearTime.mValue) * 120.0f;
+	case WS_Ended:
+		// If ended, fade out the whistle
+		mColor.a = (1.0f - mActiveTime / mNavi->getParms()->mNaviParms.mCircleDisappearTime.mValue) * 120.0f;
 		mActiveTime += sys->mDeltaTime;
 
-		parms = static_cast<NaviParms*>(mNavi->mParms);
-		if (mActiveTime > parms->mNaviParms.mCircleDisappearTime.mValue) {
+		// If we've faded out for too long, reset
+		if (mActiveTime > mNavi->getParms()->mNaviParms.mCircleDisappearTime.mValue) {
 			mActiveTime = 0.0f;
-			mState      = Whistle_Inactive;
+			mState      = WS_Idle;
 			mRadius     = 10.0f;
 		}
 		break;
