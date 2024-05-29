@@ -67,12 +67,16 @@ Piki::Piki()
  */
 bool Piki::isWalking()
 {
+	// If we're in formation
 	if (getCurrActionID() == PikiAI::ACT_Formation) {
 		PikiAI::ActFormation* action = static_cast<PikiAI::ActFormation*>(getCurrAction());
+
+		// We're in formation and we're walking
 		if (action && action->mSortState == FORMATION_SORT_FORMED && mTargetVelocity.length() > 20.0f) {
 			return true;
 		}
 	}
+
 	return false;
 }
 
@@ -84,10 +88,12 @@ int Piki::getFormationSlotID()
 {
 	if (getCurrActionID() == PikiAI::ACT_Formation) {
 		PikiAI::ActFormation* action = static_cast<PikiAI::ActFormation*>(getCurrAction());
+
 		if (action) {
 			return action->mSlotID;
 		}
 	}
+
 	return -1;
 }
 
@@ -205,10 +211,7 @@ void Piki::onKill(CreatureKillArg* killArg)
 		}
 	}
 
-	bool isBulbmin = false;
-	if (!isPikmin() && getKind() == Bulbmin) {
-		isBulbmin = true;
-	}
+	bool isBulbmin = !isPikmin() && getKind() == Bulbmin;
 
 	killFakePiki();
 	setFreeLightEffect(false);
@@ -362,9 +365,10 @@ void Piki::startSound(u32 id, bool isNotFree)
 {
 	if (isNotFree) {
 		startSound(id, PSGame::SeMgr::SETSE_Unk0);
-	} else {
-		mSoundObj->startFreePikiSound(id, 90, 0);
+		return;
 	}
+
+	mSoundObj->startFreePikiSound(id, 90, 0);
 }
 
 /**
@@ -375,9 +379,10 @@ void Piki::startSound(u32 id, PSGame::SeMgr::SetSeId setSeId)
 {
 	if (setSeId < 8) {
 		mSoundObj->startFreePikiSetSound(id, setSeId, 90, 0);
-	} else {
-		mSoundObj->startFreePikiSound(id, 90, 0);
+		return;
 	}
+
+	mSoundObj->startFreePikiSound(id, 90, 0);
 }
 
 /**
@@ -432,10 +437,7 @@ bool Piki::canVsBattle() { return mCurrentState->battleOK(); }
  */
 Piki* Piki::getVsBattlePiki()
 {
-	if (getCurrActionID() == PikiAI::ACT_Battle) {
-		return static_cast<PikiAI::ActBattle*>(getCurrAction())->mOther;
-	}
-	return nullptr;
+	return getCurrActionID() == PikiAI::ACT_Battle ? static_cast<PikiAI::ActBattle*>(getCurrAction())->mOther : nullptr;
 }
 
 /**
@@ -828,10 +830,10 @@ bool Piki::isThrowable()
 int Piki::getDownfloorMass()
 {
 	if (getStateID() == PIKISTATE_Hanged) {
-		return 0;
+		return PW_Weightless;
 	}
 
-	return (getKind() == Purple) ? 10 : 1;
+	return (getKind() == Purple) ? PW_PurpleWeight : PW_NormalWeight;
 }
 
 /**
@@ -1122,6 +1124,7 @@ bool Piki::startDope(int isDoped)
 		mIsDoped = isDoped;
 		extendDopeTime();
 		mEffectsObj->doDoping();
+
 		startSound(PSSE_PK_VC_DOPING, PSGame::SeMgr::SETSE_Unk0);
 		startSound(PSSE_PK_DOPING_IMI, PSGame::SeMgr::SETSE_Unk0);
 

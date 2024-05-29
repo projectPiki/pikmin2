@@ -121,6 +121,12 @@ struct PikiFSM : public StateMachine<Piki> {
 	int mStateID; // _1C, state ID?
 };
 
+enum PikiWeight {
+	PW_Weightless   = 0,
+	PW_NormalWeight = 1,
+	PW_PurpleWeight = 10,
+};
+
 struct Piki : public FakePiki {
 	typedef PikiState StateType;
 	struct InvokeAIFreeArg {
