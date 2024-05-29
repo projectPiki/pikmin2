@@ -1,4 +1,5 @@
 #include "JSystem/JStudio/math.h"
+#include "JSystem/JGeometry.h"
 #include "types.h"
 #include "math.h"
 
@@ -61,8 +62,76 @@ void math::transform_SRxyzT(MtxP, f32 const (*)[4], Vec const&, Vec const&, Vec 
  * @note Address: 0x80011174
  * @note Size: 0x254
  */
-void math::getFromTransformation_SRxyzT(Vec*, Vec*, Vec*, f32 const (*)[4])
+void math::getFromTransformation_SRxyzT(Vec* p1, Vec* p2, Vec* p3, const Mtx mtx)
 {
+	Vec row1;
+	row1.x = mtx[0][0];
+	row1.y = mtx[1][0];
+	row1.z = mtx[2][0];
+	p1->x  = PSVECMag(&row1);
+	Vec row2;
+	row2.x = mtx[0][1];
+	row2.y = mtx[1][1];
+	row2.z = mtx[2][1];
+	p1->y  = PSVECMag(&row2);
+	Vec row3;
+	row3.x = mtx[0][2];
+	row3.y = mtx[1][2];
+	row3.z = mtx[2][2];
+	p1->z  = PSVECMag(&row3);
+
+	p3->x = mtx[0][3];
+	p3->y = mtx[1][3];
+	p3->z = mtx[2][3];
+
+	f64 val0 = 0.0; // f10
+	f64 val1 = 0.0; // f11
+	f64 val2 = 0.0; // f4
+
+	if (p1->x != 0.0f) {
+		val0 = 1.0 / p1->x;
+	}
+
+	if (p1->y != 0.0f) {
+		val1 = 1.0 / p1->y;
+	}
+
+	if (p1->z != 0.0f) {
+		val2 = 1.0 / p1->z;
+	}
+
+	// this is all inlines/novel JGeometry structs according to tp debug
+
+	f64 outX, outY, outZ;      // f28, f3, f29
+	f64 d9 = mtx[2][2] * val2; // f8
+	f64 d8 = mtx[2][1] * val1; // f7
+	f64 d5 = mtx[1][1] * val1; // f2
+	f64 d4 = mtx[1][0] * val0; // f29
+	f64 d2 = mtx[0][1] * val1; // f1
+	f64 d1 = mtx[0][0] * val0; // f30
+	f64 d7 = mtx[2][0] * val0; // f31
+
+	if (d7 - 1.0 >= -JGeometry::TUtilf::epsilon()) {
+		outX = atan2(-d2, d5);
+		outY = -1.5707963267948966;
+		outZ = 0.0;
+	} else if (d7 + 1.0 <= JGeometry::TUtilf::epsilon()) {
+		outX = atan2(d2, d5);
+		outY = 1.5707963267948966;
+		outZ = 0.0;
+	} else {
+		outX = atan2(d8, d9);
+		outZ = atan2(d4, d1);
+		outY = asin(-d7);
+	}
+
+	outX *= 57.29577951308232;
+	outY *= 57.29577951308232;
+	outZ *= 57.29577951308232;
+	p2->x = f32(outX);
+	p2->y = f32(outY);
+	p2->z = f32(outZ);
+
 	/*
 	stwu     r1, -0x80(r1)
 	mflr     r0
