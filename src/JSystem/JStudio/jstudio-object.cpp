@@ -7,1225 +7,48 @@
 #include "JSystem/JGadget/enumerator.h"
 #include "types.h"
 
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-    .4byte "__sinit_jstudio-object_cpp"
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global sauVariableValue_3_TRANSLATION_XYZ__Q27JStudio14TAdaptor_actor
-    sauVariableValue_3_TRANSLATION_XYZ__Q27JStudio14TAdaptor_actor:
-        .4byte 0x00000003
-        .4byte 0x00000004
-        .4byte 0x00000005
-    .global sauVariableValue_3_ROTATION_XYZ__Q27JStudio14TAdaptor_actor
-    sauVariableValue_3_ROTATION_XYZ__Q27JStudio14TAdaptor_actor:
-        .4byte 0x00000006
-        .4byte 0x00000007
-        .4byte 0x00000008
-    .global sauVariableValue_3_SCALING_XYZ__Q27JStudio14TAdaptor_actor
-    sauVariableValue_3_SCALING_XYZ__Q27JStudio14TAdaptor_actor:
-        .4byte 0x00000009
-        .4byte 0x0000000A
-        .4byte 0x0000000B
-    .global sauVariableValue_3_COLOR_RGB__Q27JStudio21TAdaptor_ambientLight
-    sauVariableValue_3_COLOR_RGB__Q27JStudio21TAdaptor_ambientLight:
-        .4byte 0x00000000
-        .4byte 0x00000001
-        .4byte 0x00000002
-    .global sauVariableValue_4_COLOR_RGBA__Q27JStudio21TAdaptor_ambientLight
-    sauVariableValue_4_COLOR_RGBA__Q27JStudio21TAdaptor_ambientLight:
-        .4byte 0x00000000
-        .4byte 0x00000001
-        .4byte 0x00000002
-        .4byte 0x00000003
-    .global sauVariableValue_3_POSITION_XYZ__Q27JStudio15TAdaptor_camera
-    sauVariableValue_3_POSITION_XYZ__Q27JStudio15TAdaptor_camera:
-        .4byte 0x00000000
-        .4byte 0x00000001
-        .4byte 0x00000002
-    .global sauVariableValue_3_TARGET_POSITION_XYZ__Q27JStudio15TAdaptor_camera
-    sauVariableValue_3_TARGET_POSITION_XYZ__Q27JStudio15TAdaptor_camera:
-        .4byte 0x00000003
-        .4byte 0x00000004
-        .4byte 0x00000005
-    .global sauVariableValue_3_COLOR_RGB__Q27JStudio12TAdaptor_fog
-    sauVariableValue_3_COLOR_RGB__Q27JStudio12TAdaptor_fog:
-        .4byte 0x00000000
-        .4byte 0x00000001
-        .4byte 0x00000002
-    .global sauVariableValue_4_COLOR_RGBA__Q27JStudio12TAdaptor_fog
-    sauVariableValue_4_COLOR_RGBA__Q27JStudio12TAdaptor_fog:
-        .4byte 0x00000000
-        .4byte 0x00000001
-        .4byte 0x00000002
-        .4byte 0x00000003
-    .global sauVariableValue_3_COLOR_RGB__Q27JStudio14TAdaptor_light
-    sauVariableValue_3_COLOR_RGB__Q27JStudio14TAdaptor_light:
-        .4byte 0x00000000
-        .4byte 0x00000001
-        .4byte 0x00000002
-    .global sauVariableValue_4_COLOR_RGBA__Q27JStudio14TAdaptor_light
-    sauVariableValue_4_COLOR_RGBA__Q27JStudio14TAdaptor_light:
-        .4byte 0x00000000
-        .4byte 0x00000001
-        .4byte 0x00000002
-        .4byte 0x00000003
-    .global sauVariableValue_3_POSITION_XYZ__Q27JStudio14TAdaptor_light
-    sauVariableValue_3_POSITION_XYZ__Q27JStudio14TAdaptor_light:
-        .4byte 0x00000004
-        .4byte 0x00000005
-        .4byte 0x00000006
-    .global sauVariableValue_3_TARGET_POSITION_XYZ__Q27JStudio14TAdaptor_light
-    sauVariableValue_3_TARGET_POSITION_XYZ__Q27JStudio14TAdaptor_light:
-        .4byte 0x00000007
-        .4byte 0x00000008
-        .4byte 0x00000009
-    .global sauVariableValue_3_TRANSLATION_XYZ__Q27JStudio17TAdaptor_particle
-    sauVariableValue_3_TRANSLATION_XYZ__Q27JStudio17TAdaptor_particle:
-        .4byte 0x00000000
-        .4byte 0x00000001
-        .4byte 0x00000002
-    .global sauVariableValue_3_ROTATION_XYZ__Q27JStudio17TAdaptor_particle
-    sauVariableValue_3_ROTATION_XYZ__Q27JStudio17TAdaptor_particle:
-        .4byte 0x00000003
-        .4byte 0x00000004
-        .4byte 0x00000005
-    .global sauVariableValue_3_SCALING_XYZ__Q27JStudio17TAdaptor_particle
-    sauVariableValue_3_SCALING_XYZ__Q27JStudio17TAdaptor_particle:
-        .4byte 0x00000006
-        .4byte 0x00000007
-        .4byte 0x00000008
-    .global sauVariableValue_3_COLOR_RGB__Q27JStudio17TAdaptor_particle
-    sauVariableValue_3_COLOR_RGB__Q27JStudio17TAdaptor_particle:
-        .4byte 0x00000009
-        .4byte 0x0000000A
-        .4byte 0x0000000B
-    .global sauVariableValue_4_COLOR_RGBA__Q27JStudio17TAdaptor_particle
-    sauVariableValue_4_COLOR_RGBA__Q27JStudio17TAdaptor_particle:
-        .4byte 0x00000009
-        .4byte 0x0000000A
-        .4byte 0x0000000B
-        .4byte 0x0000000C
-    .global sauVariableValue_3_COLOR1_RGB__Q27JStudio17TAdaptor_particle
-    sauVariableValue_3_COLOR1_RGB__Q27JStudio17TAdaptor_particle:
-        .4byte 0x00000009
-        .4byte 0x0000000A
-        .4byte 0x0000000B
-    .global sauVariableValue_4_COLOR1_RGBA__Q27JStudio17TAdaptor_particle
-    sauVariableValue_4_COLOR1_RGBA__Q27JStudio17TAdaptor_particle:
-        .4byte 0x00000009
-        .4byte 0x0000000A
-        .4byte 0x0000000B
-        .4byte 0x0000000C
-    .global sauVariableValue_3_POSITION_XYZ__Q27JStudio14TAdaptor_sound
-    sauVariableValue_3_POSITION_XYZ__Q27JStudio14TAdaptor_sound:
-        .4byte 0x00000000
-        .4byte 0x00000001
-        .4byte 0x00000002
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_8049E698
-    lbl_8049E698:
-        .4byte 0x00000000
-        .4byte 0x00000028
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000038
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000028
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000038
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000020
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x0000003C
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x0000003C
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000040
-        .4byte 0x00000000
-    .global lbl_8049E6F8
-    lbl_8049E6F8:
-        .4byte lbl_8000D254
-        .4byte lbl_8000D204
-        .4byte lbl_8000D214
-        .4byte lbl_8000D224
-        .4byte lbl_8000D254
-        .4byte lbl_8000D254
-        .4byte lbl_8000D254
-        .4byte lbl_8000D254
-        .4byte lbl_8000D254
-        .4byte lbl_8000D254
-        .4byte lbl_8000D254
-        .4byte lbl_8000D254
-        .4byte lbl_8000D254
-        .4byte lbl_8000D254
-        .4byte lbl_8000D254
-        .4byte lbl_8000D254
-        .4byte lbl_8000D234
-        .4byte lbl_8000D254
-        .4byte lbl_8000D244
-        .4byte 0x00000000
-        .4byte 0x0000003C
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000040
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000044
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000048
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x0000004C
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000020
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000024
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000028
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x0000002C
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000030
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000034
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000038
-        .4byte 0x00000000
-    .global lbl_8049E7D4
-    lbl_8049E7D4:
-        .4byte lbl_8000DCF8
-        .4byte lbl_8000DCAC
-        .4byte lbl_8000DCB8
-        .4byte lbl_8000DCC4
-        .4byte lbl_8000DCF8
-        .4byte lbl_8000DCF8
-        .4byte lbl_8000DCF8
-        .4byte lbl_8000DCF8
-        .4byte lbl_8000DCF8
-        .4byte lbl_8000DCF8
-        .4byte lbl_8000DCF8
-        .4byte lbl_8000DCF8
-        .4byte lbl_8000DCF8
-        .4byte lbl_8000DCF8
-        .4byte lbl_8000DCF8
-        .4byte lbl_8000DCF8
-        .4byte lbl_8000DCD0
-        .4byte lbl_8000DCF8
-        .4byte lbl_8000DCDC
-    .global lbl_8049E820
-    lbl_8049E820:
-        .4byte lbl_8000DC48
-        .4byte lbl_8000DBF8
-        .4byte lbl_8000DC04
-        .4byte lbl_8000DC10
-        .4byte lbl_8000DC48
-        .4byte lbl_8000DC48
-        .4byte lbl_8000DC48
-        .4byte lbl_8000DC48
-        .4byte lbl_8000DC48
-        .4byte lbl_8000DC48
-        .4byte lbl_8000DC48
-        .4byte lbl_8000DC48
-        .4byte lbl_8000DC48
-        .4byte lbl_8000DC48
-        .4byte lbl_8000DC48
-        .4byte lbl_8000DC48
-        .4byte lbl_8000DC1C
-        .4byte lbl_8000DC48
-        .4byte lbl_8000DC28
-    .global lbl_8049E86C
-    lbl_8049E86C:
-        .4byte lbl_8000DB54
-        .4byte lbl_8000DB5C
-        .4byte lbl_8000DB64
-        .4byte lbl_8000DB9C
-        .4byte lbl_8000DB6C
-        .4byte lbl_8000DB74
-        .4byte lbl_8000DB7C
-        .4byte lbl_8000DBA8
-        .4byte lbl_8000DB84
-        .4byte lbl_8000DB8C
-        .4byte lbl_8000DB94
-        .4byte lbl_8000DBB4
-        .4byte lbl_8000DBC0
-        .4byte lbl_8000DBC0
-        .4byte lbl_8000DBC0
-        .4byte lbl_8000DBC0
-        .4byte lbl_8000DBC0
-        .4byte lbl_8000DBC0
-        .4byte lbl_8000DBC0
-        .4byte lbl_8000DBC0
-        .4byte lbl_8000DBC0
-        .4byte lbl_8000DBC0
-        .4byte lbl_8000DBC0
-        .4byte lbl_8000DBC0
-        .4byte lbl_8000DBC0
-        .4byte lbl_8000DBC0
-        .4byte lbl_8000DBC0
-        .4byte lbl_8000DBC0
-        .4byte lbl_8000DBC0
-        .4byte lbl_8000DBC0
-        .4byte lbl_8000DBC0
-        .4byte lbl_8000DBC0
-        .4byte lbl_8000DBC0
-        .4byte lbl_8000DBC0
-        .4byte lbl_8000DBC0
-        .4byte lbl_8000DBC0
-        .4byte lbl_8000DBC0
-        .4byte lbl_8000DBC0
-        .4byte lbl_8000DBC0
-        .4byte lbl_8000DA60
-        .4byte lbl_8000DA7C
-        .4byte lbl_8000DA98
-        .4byte lbl_8000DAE0
-        .4byte lbl_8000DAFC
-        .4byte lbl_8000DB18
-        .4byte lbl_8000DBC0
-        .4byte lbl_8000DBC0
-        .4byte lbl_8000DBC0
-        .4byte lbl_8000D9D4
-        .4byte lbl_8000D9F0
-        .4byte lbl_8000DB44
-        .4byte lbl_8000DBC0
-        .4byte lbl_8000DBC0
-        .4byte lbl_8000DBC0
-        .4byte lbl_8000DBC0
-        .4byte lbl_8000DBC0
-        .4byte lbl_8000DBC0
-        .4byte lbl_8000DBC0
-        .4byte lbl_8000DA0C
-        .4byte lbl_8000DBC0
-        .4byte lbl_8000DBC0
-        .4byte lbl_8000DBC0
-        .4byte lbl_8000DBC0
-        .4byte lbl_8000DBC0
-        .4byte lbl_8000DBC0
-        .4byte lbl_8000DBC0
-        .4byte lbl_8000DB4C
-        .4byte lbl_8000DA28
-        .4byte lbl_8000DBC0
-        .4byte lbl_8000DA44
-        .4byte lbl_8000DBC0
-        .4byte lbl_8000DBC0
-        .4byte lbl_8000DAC4
-    .global lbl_8049E990
-    lbl_8049E990:
-        .4byte lbl_8000DFA4
-        .4byte lbl_8000DF58
-        .4byte lbl_8000DF64
-        .4byte lbl_8000DF70
-        .4byte lbl_8000DFA4
-        .4byte lbl_8000DFA4
-        .4byte lbl_8000DFA4
-        .4byte lbl_8000DFA4
-        .4byte lbl_8000DFA4
-        .4byte lbl_8000DFA4
-        .4byte lbl_8000DFA4
-        .4byte lbl_8000DFA4
-        .4byte lbl_8000DFA4
-        .4byte lbl_8000DFA4
-        .4byte lbl_8000DFA4
-        .4byte lbl_8000DFA4
-        .4byte lbl_8000DF7C
-        .4byte lbl_8000DFA4
-        .4byte lbl_8000DF88
-        .4byte 0x00000000
-        .4byte 0x00000020
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000024
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000028
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x0000002C
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000030
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000034
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000038
-        .4byte 0x00000000
-    .global lbl_8049EA30
-    lbl_8049EA30:
-        .4byte lbl_8000E434
-        .4byte lbl_8000E3E8
-        .4byte lbl_8000E3F4
-        .4byte lbl_8000E400
-        .4byte lbl_8000E434
-        .4byte lbl_8000E434
-        .4byte lbl_8000E434
-        .4byte lbl_8000E434
-        .4byte lbl_8000E434
-        .4byte lbl_8000E434
-        .4byte lbl_8000E434
-        .4byte lbl_8000E434
-        .4byte lbl_8000E434
-        .4byte lbl_8000E434
-        .4byte lbl_8000E434
-        .4byte lbl_8000E434
-        .4byte lbl_8000E40C
-        .4byte lbl_8000E434
-        .4byte lbl_8000E418
-    .global lbl_8049EA7C
-    lbl_8049EA7C:
-        .4byte lbl_8000E384
-        .4byte lbl_8000E334
-        .4byte lbl_8000E340
-        .4byte lbl_8000E34C
-        .4byte lbl_8000E384
-        .4byte lbl_8000E384
-        .4byte lbl_8000E384
-        .4byte lbl_8000E384
-        .4byte lbl_8000E384
-        .4byte lbl_8000E384
-        .4byte lbl_8000E384
-        .4byte lbl_8000E384
-        .4byte lbl_8000E384
-        .4byte lbl_8000E384
-        .4byte lbl_8000E384
-        .4byte lbl_8000E384
-        .4byte lbl_8000E358
-        .4byte lbl_8000E384
-        .4byte lbl_8000E364
-    .global lbl_8049EAC8
-    lbl_8049EAC8:
-        .4byte lbl_8000E278
-        .4byte lbl_8000E280
-        .4byte lbl_8000E288
-        .4byte lbl_8000E2C8
-        .4byte lbl_8000E290
-        .4byte lbl_8000E298
-        .4byte lbl_8000E2A0
-        .4byte lbl_8000E2DC
-        .4byte lbl_8000E2FC
-        .4byte lbl_8000E2FC
-        .4byte lbl_8000E2FC
-        .4byte lbl_8000E2FC
-        .4byte lbl_8000E2FC
-        .4byte lbl_8000E2FC
-        .4byte lbl_8000E2FC
-        .4byte lbl_8000E2FC
-        .4byte lbl_8000E2FC
-        .4byte lbl_8000E2B0
-        .4byte lbl_8000E2A8
-        .4byte lbl_8000E2B8
-        .4byte lbl_8000E2C0
-        .4byte lbl_8000E2F0
-        .4byte lbl_8000E2FC
-        .4byte lbl_8000E2FC
-        .4byte lbl_8000E2FC
-        .4byte lbl_8000E2FC
-        .4byte lbl_8000E2FC
-        .4byte lbl_8000E194
-        .4byte lbl_8000E1B0
-        .4byte lbl_8000E1CC
-        .4byte lbl_8000E2FC
-        .4byte lbl_8000E2FC
-        .4byte lbl_8000E2FC
-        .4byte lbl_8000E2FC
-        .4byte lbl_8000E2FC
-        .4byte lbl_8000E2FC
-        .4byte lbl_8000E2FC
-        .4byte lbl_8000E2FC
-        .4byte lbl_8000E2FC
-        .4byte lbl_8000E2FC
-        .4byte lbl_8000E2FC
-        .4byte lbl_8000E2FC
-        .4byte lbl_8000E2FC
-        .4byte lbl_8000E2FC
-        .4byte lbl_8000E2FC
-        .4byte lbl_8000E2FC
-        .4byte lbl_8000E2FC
-        .4byte lbl_8000E2FC
-        .4byte lbl_8000E2FC
-        .4byte lbl_8000E2FC
-        .4byte lbl_8000E2FC
-        .4byte lbl_8000E2FC
-        .4byte lbl_8000E2FC
-        .4byte lbl_8000E2FC
-        .4byte lbl_8000E2FC
-        .4byte lbl_8000E2FC
-        .4byte lbl_8000E2FC
-        .4byte lbl_8000E2FC
-        .4byte lbl_8000E2FC
-        .4byte lbl_8000E2FC
-        .4byte lbl_8000E1F8
-        .4byte lbl_8000E214
-        .4byte lbl_8000E230
-        .4byte lbl_8000E24C
-    .global lbl_8049EBC8
-    lbl_8049EBC8:
-        .4byte lbl_8000E6EC
-        .4byte lbl_8000E6A0
-        .4byte lbl_8000E6AC
-        .4byte lbl_8000E6B8
-        .4byte lbl_8000E6EC
-        .4byte lbl_8000E6EC
-        .4byte lbl_8000E6EC
-        .4byte lbl_8000E6EC
-        .4byte lbl_8000E6EC
-        .4byte lbl_8000E6EC
-        .4byte lbl_8000E6EC
-        .4byte lbl_8000E6EC
-        .4byte lbl_8000E6EC
-        .4byte lbl_8000E6EC
-        .4byte lbl_8000E6EC
-        .4byte lbl_8000E6EC
-        .4byte lbl_8000E6C4
-        .4byte lbl_8000E6EC
-        .4byte lbl_8000E6D0
-    .global lbl_8049EC14
-    lbl_8049EC14:
-        .4byte lbl_8000E618
-        .4byte lbl_8000E620
-        .4byte lbl_8000E628
-        .4byte lbl_8000E630
-        .4byte lbl_8000E648
-        .4byte lbl_8000E65C
-        .4byte lbl_8000E67C
-        .4byte lbl_8000E67C
-        .4byte lbl_8000E67C
-        .4byte lbl_8000E67C
-        .4byte lbl_8000E67C
-        .4byte lbl_8000E67C
-        .4byte lbl_8000E67C
-        .4byte lbl_8000E67C
-        .4byte lbl_8000E638
-        .4byte lbl_8000E640
-        .4byte lbl_8000E670
-    .global lbl_8049EC58
-    lbl_8049EC58:
-        .4byte 0x00000000
-        .4byte 0x00000020
-        .4byte 0x00000000
-    .global lbl_8049EC64
-    lbl_8049EC64:
-        .4byte 0x00000000
-        .4byte 0x00000024
-        .4byte 0x00000000
-    .global lbl_8049EC70
-    lbl_8049EC70:
-        .4byte lbl_8000EAFC
-        .4byte lbl_8000EAB0
-        .4byte lbl_8000EABC
-        .4byte lbl_8000EAC8
-        .4byte lbl_8000EAFC
-        .4byte lbl_8000EAFC
-        .4byte lbl_8000EAFC
-        .4byte lbl_8000EAFC
-        .4byte lbl_8000EAFC
-        .4byte lbl_8000EAFC
-        .4byte lbl_8000EAFC
-        .4byte lbl_8000EAFC
-        .4byte lbl_8000EAFC
-        .4byte lbl_8000EAFC
-        .4byte lbl_8000EAFC
-        .4byte lbl_8000EAFC
-        .4byte lbl_8000EAD4
-        .4byte lbl_8000EAFC
-        .4byte lbl_8000EAE0
-    .global lbl_8049ECBC
-    lbl_8049ECBC:
-        .4byte lbl_8000EA54
-        .4byte lbl_8000EA04
-        .4byte lbl_8000EA10
-        .4byte lbl_8000EA1C
-        .4byte lbl_8000EA54
-        .4byte lbl_8000EA54
-        .4byte lbl_8000EA54
-        .4byte lbl_8000EA54
-        .4byte lbl_8000EA54
-        .4byte lbl_8000EA54
-        .4byte lbl_8000EA54
-        .4byte lbl_8000EA54
-        .4byte lbl_8000EA54
-        .4byte lbl_8000EA54
-        .4byte lbl_8000EA54
-        .4byte lbl_8000EA54
-        .4byte lbl_8000EA28
-        .4byte lbl_8000EA54
-        .4byte lbl_8000EA34
-    .global lbl_8049ED08
-    lbl_8049ED08:
-        .4byte lbl_8000E950
-        .4byte lbl_8000E958
-        .4byte lbl_8000E960
-        .4byte lbl_8000E9A8
-        .4byte lbl_8000E968
-        .4byte lbl_8000E970
-        .4byte lbl_8000E978
-        .4byte lbl_8000E9B4
-        .4byte lbl_8000E930
-        .4byte lbl_8000E938
-        .4byte lbl_8000E940
-        .4byte lbl_8000E948
-        .4byte lbl_8000E990
-        .4byte lbl_8000E99C
-        .4byte lbl_8000E980
-        .4byte lbl_8000E988
-        .4byte lbl_8000E9C0
-        .4byte lbl_8000E9CC
-        .4byte lbl_8000E9CC
-        .4byte lbl_8000E9CC
-        .4byte lbl_8000E9CC
-        .4byte lbl_8000E9CC
-        .4byte lbl_8000E9CC
-        .4byte lbl_8000E9CC
-        .4byte lbl_8000E9CC
-        .4byte lbl_8000E9CC
-        .4byte lbl_8000E9CC
-        .4byte lbl_8000E9CC
-        .4byte lbl_8000E9CC
-        .4byte lbl_8000E9CC
-        .4byte lbl_8000E9CC
-        .4byte lbl_8000E9CC
-        .4byte lbl_8000E9CC
-        .4byte lbl_8000E8DC
-        .4byte lbl_8000E90C
-    .global lbl_8049ED94
-    lbl_8049ED94:
-        .4byte 0x00000000
-        .4byte 0x00000020
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000020
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000024
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000028
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x0000002C
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000030
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000034
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000038
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x0000003C
-        .4byte 0x00000000
-    .global lbl_8049EE00
-    lbl_8049EE00:
-        .4byte lbl_8000F144
-        .4byte lbl_8000F0F8
-        .4byte lbl_8000F104
-        .4byte lbl_8000F110
-        .4byte lbl_8000F144
-        .4byte lbl_8000F144
-        .4byte lbl_8000F144
-        .4byte lbl_8000F144
-        .4byte lbl_8000F144
-        .4byte lbl_8000F144
-        .4byte lbl_8000F144
-        .4byte lbl_8000F144
-        .4byte lbl_8000F144
-        .4byte lbl_8000F144
-        .4byte lbl_8000F144
-        .4byte lbl_8000F144
-        .4byte lbl_8000F11C
-        .4byte lbl_8000F144
-        .4byte lbl_8000F128
-    .global lbl_8049EE4C
-    lbl_8049EE4C:
-        .4byte lbl_8000F09C
-        .4byte lbl_8000F04C
-        .4byte lbl_8000F058
-        .4byte lbl_8000F064
-        .4byte lbl_8000F09C
-        .4byte lbl_8000F09C
-        .4byte lbl_8000F09C
-        .4byte lbl_8000F09C
-        .4byte lbl_8000F09C
-        .4byte lbl_8000F09C
-        .4byte lbl_8000F09C
-        .4byte lbl_8000F09C
-        .4byte lbl_8000F09C
-        .4byte lbl_8000F09C
-        .4byte lbl_8000F09C
-        .4byte lbl_8000F09C
-        .4byte lbl_8000F070
-        .4byte lbl_8000F09C
-        .4byte lbl_8000F07C
-    .global lbl_8049EE98
-    lbl_8049EE98:
-        .4byte lbl_8000EF38
-        .4byte lbl_8000EF40
-        .4byte lbl_8000EF48
-        .4byte lbl_8000EFC0
-        .4byte lbl_8000EF50
-        .4byte lbl_8000EF58
-        .4byte lbl_8000EF60
-        .4byte lbl_8000EFCC
-        .4byte lbl_8000EF68
-        .4byte lbl_8000EF70
-        .4byte lbl_8000EF78
-        .4byte lbl_8000EFD8
-        .4byte lbl_8000F014
-        .4byte lbl_8000F014
-        .4byte lbl_8000F014
-        .4byte lbl_8000F014
-        .4byte lbl_8000F014
-        .4byte lbl_8000F014
-        .4byte lbl_8000F014
-        .4byte lbl_8000F014
-        .4byte lbl_8000EF80
-        .4byte lbl_8000EF88
-        .4byte lbl_8000EF90
-        .4byte lbl_8000EF98
-        .4byte lbl_8000EFE4
-        .4byte lbl_8000EFF0
-        .4byte lbl_8000F014
-        .4byte lbl_8000F014
-        .4byte lbl_8000F014
-        .4byte lbl_8000F014
-        .4byte lbl_8000F014
-        .4byte lbl_8000F014
-        .4byte lbl_8000F014
-        .4byte lbl_8000F014
-        .4byte lbl_8000F014
-        .4byte lbl_8000F014
-        .4byte lbl_8000F014
-        .4byte lbl_8000EE84
-        .4byte lbl_8000EEBC
-        .4byte lbl_8000EED8
-        .4byte lbl_8000EEF4
-        .4byte lbl_8000EF10
-        .4byte lbl_8000F014
-        .4byte lbl_8000F014
-        .4byte lbl_8000F014
-        .4byte lbl_8000F014
-        .4byte lbl_8000F014
-        .4byte lbl_8000F014
-        .4byte lbl_8000F014
-        .4byte lbl_8000F014
-        .4byte lbl_8000F014
-        .4byte lbl_8000F014
-        .4byte lbl_8000F014
-        .4byte lbl_8000F014
-        .4byte lbl_8000F014
-        .4byte lbl_8000F014
-        .4byte lbl_8000F014
-        .4byte lbl_8000F014
-        .4byte lbl_8000F014
-        .4byte lbl_8000EE4C
-        .4byte lbl_8000EFA0
-        .4byte lbl_8000EFA8
-        .4byte lbl_8000EFB0
-        .4byte lbl_8000EFB8
-        .4byte lbl_8000EFFC
-        .4byte lbl_8000F008
-        .4byte lbl_8000F014
-        .4byte lbl_8000F014
-        .4byte lbl_8000F014
-        .4byte lbl_8000F014
-        .4byte lbl_8000EE68
-        .4byte lbl_8000EEA0
-        .4byte 0x00000000
-        .4byte 0x00000020
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000024
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000028
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x0000002C
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000030
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000034
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000038
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x0000003C
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000040
-        .4byte 0x00000000
-    .global lbl_8049F024
-    lbl_8049F024:
-        .4byte lbl_8000F5F4
-        .4byte lbl_8000F5A8
-        .4byte lbl_8000F5B4
-        .4byte lbl_8000F5C0
-        .4byte lbl_8000F5F4
-        .4byte lbl_8000F5F4
-        .4byte lbl_8000F5F4
-        .4byte lbl_8000F5F4
-        .4byte lbl_8000F5F4
-        .4byte lbl_8000F5F4
-        .4byte lbl_8000F5F4
-        .4byte lbl_8000F5F4
-        .4byte lbl_8000F5F4
-        .4byte lbl_8000F5F4
-        .4byte lbl_8000F5F4
-        .4byte lbl_8000F5F4
-        .4byte lbl_8000F5CC
-        .4byte lbl_8000F5F4
-        .4byte lbl_8000F5D8
-    .global lbl_8049F070
-    lbl_8049F070:
-        .4byte lbl_8000F544
-        .4byte lbl_8000F4F4
-        .4byte lbl_8000F500
-        .4byte lbl_8000F50C
-        .4byte lbl_8000F544
-        .4byte lbl_8000F544
-        .4byte lbl_8000F544
-        .4byte lbl_8000F544
-        .4byte lbl_8000F544
-        .4byte lbl_8000F544
-        .4byte lbl_8000F544
-        .4byte lbl_8000F544
-        .4byte lbl_8000F544
-        .4byte lbl_8000F544
-        .4byte lbl_8000F544
-        .4byte lbl_8000F544
-        .4byte lbl_8000F518
-        .4byte lbl_8000F544
-        .4byte lbl_8000F524
-    .global lbl_8049F0BC
-    lbl_8049F0BC:
-        .4byte lbl_8000F46C
-        .4byte lbl_8000F474
-        .4byte lbl_8000F47C
-        .4byte lbl_8000F4AC
-        .4byte lbl_8000F4BC
-        .4byte lbl_8000F4BC
-        .4byte lbl_8000F4BC
-        .4byte lbl_8000F4BC
-        .4byte lbl_8000F4BC
-        .4byte lbl_8000F4BC
-        .4byte lbl_8000F4BC
-        .4byte lbl_8000F4BC
-        .4byte lbl_8000F4BC
-        .4byte lbl_8000F4BC
-        .4byte lbl_8000F4BC
-        .4byte lbl_8000F4BC
-        .4byte lbl_8000F4BC
-        .4byte lbl_8000F4BC
-        .4byte lbl_8000F4BC
-        .4byte lbl_8000F4BC
-        .4byte lbl_8000F4BC
-        .4byte lbl_8000F4BC
-        .4byte lbl_8000F4BC
-        .4byte lbl_8000F4BC
-        .4byte lbl_8000F4BC
-        .4byte lbl_8000F388
-        .4byte lbl_8000F3C0
-        .4byte lbl_8000F3DC
-        .4byte lbl_8000F3F8
-        .4byte lbl_8000F414
-        .4byte lbl_8000F4BC
-        .4byte lbl_8000F4BC
-        .4byte lbl_8000F4BC
-        .4byte lbl_8000F4BC
-        .4byte lbl_8000F4BC
-        .4byte lbl_8000F440
-        .4byte lbl_8000F4BC
-        .4byte lbl_8000F4BC
-        .4byte lbl_8000F4BC
-        .4byte lbl_8000F350
-        .4byte lbl_8000F484
-        .4byte lbl_8000F48C
-        .4byte lbl_8000F494
-        .4byte lbl_8000F49C
-        .4byte lbl_8000F4A4
-        .4byte lbl_8000F4BC
-        .4byte lbl_8000F4BC
-        .4byte lbl_8000F4BC
-        .4byte lbl_8000F4BC
-        .4byte lbl_8000F4BC
-        .4byte lbl_8000F4BC
-        .4byte lbl_8000F4BC
-        .4byte lbl_8000F4BC
-        .4byte lbl_8000F4BC
-        .4byte lbl_8000F4BC
-        .4byte lbl_8000F4BC
-        .4byte lbl_8000F4BC
-        .4byte lbl_8000F4BC
-        .4byte lbl_8000F36C
-        .4byte lbl_8000F3A4
-    .global __vt__Q27JStudio13TObject_sound
-    __vt__Q27JStudio13TObject_sound:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q27JStudio13TObject_soundFv
-        .4byte do_begin__Q27JStudio7TObjectFv
-        .4byte do_end__Q27JStudio7TObjectFv
-        .4byte do_paragraph__Q27JStudio13TObject_soundFUlPCvUl
-        .4byte do_wait__Q27JStudio7TObjectFUl
-        .4byte do_data__Q27JStudio7TObjectFPCvUlPCvUl
-    .global __vt__Q27JStudio14TAdaptor_sound
-    __vt__Q27JStudio14TAdaptor_sound:
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte adaptor_do_prepare__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
-        .4byte adaptor_do_begin__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
-        .4byte adaptor_do_end__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
-        .4byte adaptor_do_update__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectUl
-        .4byte
-   adaptor_do_data__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectPCvUlPCvUl .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-    .global __vt__Q27JStudio16TObject_particle
-    __vt__Q27JStudio16TObject_particle:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q27JStudio16TObject_particleFv
-        .4byte do_begin__Q27JStudio7TObjectFv
-        .4byte do_end__Q27JStudio7TObjectFv
-        .4byte do_paragraph__Q27JStudio16TObject_particleFUlPCvUl
-        .4byte do_wait__Q27JStudio7TObjectFUl
-        .4byte do_data__Q27JStudio7TObjectFPCvUlPCvUl
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-    .global __vt__Q27JStudio15TObject_message
-    __vt__Q27JStudio15TObject_message:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q27JStudio15TObject_messageFv
-        .4byte do_begin__Q27JStudio7TObjectFv
-        .4byte do_end__Q27JStudio7TObjectFv
-        .4byte do_paragraph__Q27JStudio15TObject_messageFUlPCvUl
-        .4byte do_wait__Q27JStudio7TObjectFUl
-        .4byte do_data__Q27JStudio7TObjectFPCvUlPCvUl
-    .global __vt__Q27JStudio16TAdaptor_message
-    __vt__Q27JStudio16TAdaptor_message:
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte adaptor_do_prepare__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
-        .4byte adaptor_do_begin__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
-        .4byte adaptor_do_end__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
-        .4byte adaptor_do_update__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectUl
-        .4byte
-   adaptor_do_data__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectPCvUlPCvUl .4byte 0
-    .global __vt__Q27JStudio13TObject_light
-    __vt__Q27JStudio13TObject_light:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q27JStudio13TObject_lightFv
-        .4byte do_begin__Q27JStudio7TObjectFv
-        .4byte do_end__Q27JStudio7TObjectFv
-        .4byte do_paragraph__Q27JStudio13TObject_lightFUlPCvUl
-        .4byte do_wait__Q27JStudio7TObjectFUl
-        .4byte do_data__Q27JStudio7TObjectFPCvUlPCvUl
-    .global __vt__Q27JStudio14TAdaptor_light
-    __vt__Q27JStudio14TAdaptor_light:
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte adaptor_do_prepare__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
-        .4byte adaptor_do_begin__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
-        .4byte adaptor_do_end__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
-        .4byte adaptor_do_update__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectUl
-        .4byte
-   adaptor_do_data__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectPCvUlPCvUl .4byte 0
-        .4byte 0
-    .global __vt__Q27JStudio11TObject_fog
-    __vt__Q27JStudio11TObject_fog:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q27JStudio11TObject_fogFv
-        .4byte do_begin__Q27JStudio7TObjectFv
-        .4byte do_end__Q27JStudio7TObjectFv
-        .4byte do_paragraph__Q27JStudio11TObject_fogFUlPCvUl
-        .4byte do_wait__Q27JStudio7TObjectFUl
-        .4byte do_data__Q27JStudio7TObjectFPCvUlPCvUl
-    .global __vt__Q27JStudio12TAdaptor_fog
-    __vt__Q27JStudio12TAdaptor_fog:
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte adaptor_do_prepare__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
-        .4byte adaptor_do_begin__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
-        .4byte adaptor_do_end__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
-        .4byte adaptor_do_update__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectUl
-        .4byte
-   adaptor_do_data__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectPCvUlPCvUl .global
-   __vt__Q27JStudio14TObject_camera
-    __vt__Q27JStudio14TObject_camera:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q27JStudio14TObject_cameraFv
-        .4byte do_begin__Q27JStudio7TObjectFv
-        .4byte do_end__Q27JStudio7TObjectFv
-        .4byte do_paragraph__Q27JStudio14TObject_cameraFUlPCvUl
-        .4byte do_wait__Q27JStudio7TObjectFUl
-        .4byte do_data__Q27JStudio7TObjectFPCvUlPCvUl
-    .global __vt__Q27JStudio15TAdaptor_camera
-    __vt__Q27JStudio15TAdaptor_camera:
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte adaptor_do_prepare__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
-        .4byte adaptor_do_begin__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
-        .4byte adaptor_do_end__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
-        .4byte adaptor_do_update__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectUl
-        .4byte
-   adaptor_do_data__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectPCvUlPCvUl .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-    .global __vt__Q27JStudio20TObject_ambientLight
-    __vt__Q27JStudio20TObject_ambientLight:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q27JStudio20TObject_ambientLightFv
-        .4byte do_begin__Q27JStudio7TObjectFv
-        .4byte do_end__Q27JStudio7TObjectFv
-        .4byte do_paragraph__Q27JStudio20TObject_ambientLightFUlPCvUl
-        .4byte do_wait__Q27JStudio7TObjectFUl
-        .4byte do_data__Q27JStudio7TObjectFPCvUlPCvUl
-    .global __vt__Q27JStudio21TAdaptor_ambientLight
-    __vt__Q27JStudio21TAdaptor_ambientLight:
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte adaptor_do_prepare__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
-        .4byte adaptor_do_begin__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
-        .4byte adaptor_do_end__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
-        .4byte adaptor_do_update__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectUl
-        .4byte
-   adaptor_do_data__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectPCvUlPCvUl .global
-   __vt__Q27JStudio13TObject_actor
-    __vt__Q27JStudio13TObject_actor:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q27JStudio13TObject_actorFv
-        .4byte do_begin__Q27JStudio7TObjectFv
-        .4byte do_end__Q27JStudio7TObjectFv
-        .4byte do_paragraph__Q27JStudio13TObject_actorFUlPCvUl
-        .4byte do_wait__Q27JStudio7TObjectFUl
-        .4byte do_data__Q27JStudio7TObjectFPCvUlPCvUl
-    .global __vt__Q27JStudio14TAdaptor_actor
-    __vt__Q27JStudio14TAdaptor_actor:
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte adaptor_do_prepare__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
-        .4byte adaptor_do_begin__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
-        .4byte adaptor_do_end__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
-        .4byte adaptor_do_update__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectUl
-        .4byte
-   adaptor_do_data__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectPCvUlPCvUl .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-    .global __vt__Q27JStudio7TObject
-    __vt__Q27JStudio7TObject:
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte do_begin__Q27JStudio7TObjectFv
-        .4byte do_end__Q27JStudio7TObjectFv
-        .4byte 0
-        .4byte do_wait__Q27JStudio7TObjectFUl
-        .4byte do_data__Q27JStudio7TObjectFPCvUlPCvUl
-    .global __vt__Q27JStudio8TAdaptor
-    __vt__Q27JStudio8TAdaptor:
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte adaptor_do_prepare__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
-        .4byte adaptor_do_begin__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
-        .4byte adaptor_do_end__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
-        .4byte adaptor_do_update__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectUl
-        .4byte
-   adaptor_do_data__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectPCvUlPCvUl .global
-   __vt__Q37JStudio14TVariableValue13TOutput_none_
-    __vt__Q37JStudio14TVariableValue13TOutput_none_:
-        .4byte 0
-        .4byte 0
-        .4byte
-   __cl__Q37JStudio14TVariableValue13TOutput_none_CFfPQ27JStudio8TAdaptor .4byte
-   __dt__Q37JStudio14TVariableValue13TOutput_none_Fv .global
-   __vt__Q37JStudio14TVariableValue7TOutput
-    __vt__Q37JStudio14TVariableValue7TOutput:
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-    .global lbl_8049F4A8
-    lbl_8049F4A8:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte
-   "__cl__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_sound>CFfPQ27JStudio8TAdaptor"
-        .4byte
-   "__dt__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_sound>Fv"
-    .global lbl_8049F4B8
-    lbl_8049F4B8:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte
-   "__cl__Q37JStudio28@unnamed@jstudio_object_cpp@57TOutputVariableValue_BOOL_<Q27JStudio17TAdaptor_particle>CFfPQ27JStudio8TAdaptor"
-        .4byte
-   "__dt__Q37JStudio28@unnamed@jstudio_object_cpp@57TOutputVariableValue_BOOL_<Q27JStudio17TAdaptor_particle>Fv"
-    .global lbl_8049F4C8
-    lbl_8049F4C8:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte
-   "__cl__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_light>CFfPQ27JStudio8TAdaptor"
-        .4byte
-   "__dt__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_light>Fv"
-    .global lbl_8049F4D8
-    lbl_8049F4D8:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte
-   "__cl__Q37JStudio28@unnamed@jstudio_object_cpp@55TOutputVariableValue_BOOL_<Q27JStudio15TAdaptor_camera>CFfPQ27JStudio8TAdaptor"
-        .4byte
-   "__dt__Q37JStudio28@unnamed@jstudio_object_cpp@55TOutputVariableValue_BOOL_<Q27JStudio15TAdaptor_camera>Fv"
-    .global lbl_8049F4E8
-    lbl_8049F4E8:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte
-   "__cl__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_actor>CFfPQ27JStudio8TAdaptor"
-        .4byte
-   "__dt__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_actor>Fv"
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global soOutput_none___Q27JStudio14TVariableValue
-    soOutput_none___Q27JStudio14TVariableValue:
-        .skip 0x8
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80516408
-    lbl_80516408:
-        .4byte 0x43300000
-        .4byte 0x00000000
-    .global lbl_80516410
-    lbl_80516410:
-        .4byte 0x00000000
-    .global lbl_80516414
-    lbl_80516414:
-        .4byte 0x437F0000
-    .global sauVariableValue_2_DISTANCE_NEAR_FAR__Q27JStudio15TAdaptor_camera
-    sauVariableValue_2_DISTANCE_NEAR_FAR__Q27JStudio15TAdaptor_camera:
-        .4byte 0x00000008
-        .4byte 0x00000009
-    .global sauVariableValue_2_RANGE_BEGIN_END__Q27JStudio12TAdaptor_fog
-    sauVariableValue_2_RANGE_BEGIN_END__Q27JStudio12TAdaptor_fog:
-        .4byte 0x00000004
-        .4byte 0x00000005
-    .global sauVariableValue_2_DIRECTION_THETA_PHI__Q27JStudio14TAdaptor_light
-    sauVariableValue_2_DIRECTION_THETA_PHI__Q27JStudio14TAdaptor_light:
-        .4byte 0x0000000A
-        .4byte 0x0000000B
-    .global lbl_80516430
-    lbl_80516430:
-        .float 0.5
-        .4byte 0x00000000
-*/
-
 namespace JStudio {
 
 namespace {
 template <typename Adaptor>
 struct TOutputVariableValue_BOOL_ : public TVariableValue::TOutput {
-	TOutputVariableValue_BOOL_()
-	    : mSetFunc(nullptr)
-	    , _08(40)
-	    , _0C(0)
+	TOutputVariableValue_BOOL_(TAdaptor::AdaptorDoFunction func)
+	    : mDoFunc(func)
 	{
 	}
 
 	virtual void operator()(f32 p1, TAdaptor* adaptor) const // _08
 	{
-		int val = 0;
+		u32 val = 0;
 		if (p1 >= 0.5f) {
 			val = 1;
 		}
 
-		mSetFunc(adaptor, nullptr, 2, &val, 4); // this is not how this works i dont think
+		(adaptor->*mDoFunc)(data::TEOD_Unknown_02, &val, 4); // idek what functions fit this typedef but fine
 	}
 	virtual ~TOutputVariableValue_BOOL_() { } // _0C
 
-	TAdaptor::StaticCapsSetVariableValueFunction mSetFunc; // _04, this is probably not what it should be
-	u32 _08;                                               // _08
-	u32 _0C;                                               // _0C, unknown
+	// _00 = VTBL
+	TAdaptor::AdaptorDoFunction mDoFunc; // _04
 };
 
-static TOutputVariableValue_BOOL_<TAdaptor_actor> soovv_actor_PARENT_ENABLE_;
-static TOutputVariableValue_BOOL_<TAdaptor_actor> soovv_actor_RELATION_ENABLE_;
-static TOutputVariableValue_BOOL_<TAdaptor_camera> soovv_camera_PARENT_ENABLE_;
-static TOutputVariableValue_BOOL_<TAdaptor_camera> soovv_camera_TARGET_PARENT_ENABLE_;
-static TOutputVariableValue_BOOL_<TAdaptor_light> soovv_light_ENABLE_;
-static TOutputVariableValue_BOOL_<TAdaptor_particle> soovv_particle_PARENT_ENABLE_;
-static TOutputVariableValue_BOOL_<TAdaptor_sound> soovv_sound_PARENT_ENABLE_;
-static TOutputVariableValue_BOOL_<TAdaptor_sound> soovv_sound_LOCATED_;
+static TOutputVariableValue_BOOL_<TAdaptor_actor>
+    soovv_actor_PARENT_ENABLE_((TAdaptor::AdaptorDoFunction)&TAdaptor_actor::adaptor_do_PARENT_ENABLE);
+static TOutputVariableValue_BOOL_<TAdaptor_actor>
+    soovv_actor_RELATION_ENABLE_((TAdaptor::AdaptorDoFunction)&TAdaptor_actor::adaptor_do_RELATION_ENABLE);
+static TOutputVariableValue_BOOL_<TAdaptor_camera>
+    soovv_camera_PARENT_ENABLE_((TAdaptor::AdaptorDoFunction)&TAdaptor_camera::adaptor_do_PARENT_ENABLE);
+static TOutputVariableValue_BOOL_<TAdaptor_camera>
+    soovv_camera_TARGET_PARENT_ENABLE_((TAdaptor::AdaptorDoFunction)&TAdaptor_camera::adaptor_do_TARGET_PARENT_ENABLE);
+static TOutputVariableValue_BOOL_<TAdaptor_light> soovv_light_ENABLE_((TAdaptor::AdaptorDoFunction)&TAdaptor_light::adaptor_do_ENABLE);
+static TOutputVariableValue_BOOL_<TAdaptor_particle>
+    soovv_particle_PARENT_ENABLE_((TAdaptor::AdaptorDoFunction)&TAdaptor_particle::adaptor_do_PARENT_ENABLE);
+static TOutputVariableValue_BOOL_<TAdaptor_sound>
+    soovv_sound_PARENT_ENABLE_((TAdaptor::AdaptorDoFunction)&TAdaptor_sound::adaptor_do_PARENT_ENABLE);
+static TOutputVariableValue_BOOL_<TAdaptor_sound> soovv_sound_LOCATED_((TAdaptor::AdaptorDoFunction)&TAdaptor_sound::adaptor_do_LOCATED);
 } // namespace
+
+TVariableValue::TOutput_none_ TVariableValue::soOutput_none_;
 
 /**
  * @note Address: 0x8000D068
@@ -1238,9 +61,12 @@ TVariableValue::TOutput::~TOutput() { }
  * @note Address: N/A
  * @note Size: 0x64
  */
-void TVariableValue::update(f64, JStudio::TAdaptor*)
+void TVariableValue::update(f64 timeStep, JStudio::TAdaptor* adaptor)
 {
-	// UNUSED FUNCTION
+	if (_08) {
+		_08(this, timeStep);
+		(*_10)(mValue, adaptor);
+	}
 }
 
 /**
@@ -1407,8 +233,10 @@ void TAdaptor::adaptor_setVariableValue_n(JStudio::TObject* object, u32 const* v
 	default:
 		return;
 	}
-	for (u32 i = 0; i < p3; i++) {
-		func(this, object, values[i], p5, offset);
+
+	JGadget::TEnumerator<const u32*> enumerator(values, &values[p3]);
+	while (enumerator) {
+		func(this, object, **enumerator, p5, offset);
 		p5 = ((u8*)p5) + offset;
 	}
 }
@@ -1564,6 +392,37 @@ void TAdaptor::adaptor_setVariableValue_FVR_INDEX_(JStudio::TAdaptor* adaptor, J
 	varVal->setValueFunctionValue(object->getControl()->getFunctionValue_index(*(u32*)value));
 }
 
+const u32 TAdaptor_actor::sauVariableValue_3_TRANSLATION_XYZ[3] = { 3, 4, 5 };
+const u32 TAdaptor_actor::sauVariableValue_3_ROTATION_XYZ[3]    = { 6, 7, 8 };
+const u32 TAdaptor_actor::sauVariableValue_3_SCALING_XYZ[3]     = { 9, 10, 11 };
+
+const u32 TAdaptor_ambientLight::sauVariableValue_3_COLOR_RGB[3]  = { 0, 1, 2 };
+const u32 TAdaptor_ambientLight::sauVariableValue_4_COLOR_RGBA[4] = { 0, 1, 2, 3 };
+
+const u32 TAdaptor_camera::sauVariableValue_3_POSITION_XYZ[3]        = { 0, 1, 2 };
+const u32 TAdaptor_camera::sauVariableValue_3_TARGET_POSITION_XYZ[3] = { 3, 4, 5 };
+const u32 TAdaptor_camera::sauVariableValue_2_DISTANCE_NEAR_FAR[2]   = { 8, 9 };
+
+const u32 TAdaptor_fog::sauVariableValue_3_COLOR_RGB[3]       = { 0, 1, 2 };
+const u32 TAdaptor_fog::sauVariableValue_4_COLOR_RGBA[4]      = { 0, 1, 2, 3 };
+const u32 TAdaptor_fog::sauVariableValue_2_RANGE_BEGIN_END[2] = { 4, 5 };
+
+const u32 TAdaptor_light::sauVariableValue_3_COLOR_RGB[3]           = { 0, 1, 2 };
+const u32 TAdaptor_light::sauVariableValue_4_COLOR_RGBA[4]          = { 0, 1, 2, 3 };
+const u32 TAdaptor_light::sauVariableValue_3_POSITION_XYZ[3]        = { 4, 5, 6 };
+const u32 TAdaptor_light::sauVariableValue_3_TARGET_POSITION_XYZ[3] = { 7, 8, 9 };
+const u32 TAdaptor_light::sauVariableValue_2_DIRECTION_THETA_PHI[2] = { 10, 11 };
+
+const u32 TAdaptor_particle::sauVariableValue_3_TRANSLATION_XYZ[3] = { 0, 1, 2 };
+const u32 TAdaptor_particle::sauVariableValue_3_ROTATION_XYZ[3]    = { 3, 4, 5 };
+const u32 TAdaptor_particle::sauVariableValue_3_SCALING_XYZ[3]     = { 6, 7, 8 };
+const u32 TAdaptor_particle::sauVariableValue_3_COLOR_RGB[3]       = { 9, 10, 11 };
+const u32 TAdaptor_particle::sauVariableValue_4_COLOR_RGBA[4]      = { 9, 10, 11, 12 };
+const u32 TAdaptor_particle::sauVariableValue_3_COLOR1_RGB[3]      = { 9, 10, 11 };
+const u32 TAdaptor_particle::sauVariableValue_4_COLOR1_RGBA[4]     = { 9, 10, 11, 12 };
+
+const u32 TAdaptor_sound::sauVariableValue_3_POSITION_XYZ[3] = { 0, 1, 2 };
+
 /**
  * @note Address: N/A
  * @note Size: 0x84
@@ -1581,7 +440,7 @@ TObject::~TObject()
 void TObject::forward_value(u32 p1)
 {
 	TAdaptor* adaptor = getAdaptor();
-	if (adaptor != nullptr) {
+	if (adaptor) {
 		adaptor->adaptor_updateVariableValue(this, p1);
 		adaptor->adaptor_do_update(this, p1);
 	}
@@ -1757,8 +616,188 @@ TObject_actor::TObject_actor(JStudio::stb::data::TParse_TBlock_object const& p1,
  * @note Address: 0x8000D950
  * @note Size: 0x484
  */
-void TObject_actor::do_paragraph(u32, void const*, u32)
+void TObject_actor::do_paragraph(u32 p1, const void* p2, u32 p3)
 {
+	TAdaptor_actor* adaptor = static_cast<TAdaptor_actor*>(getAdaptor());
+	if (!adaptor) {
+		return;
+	}
+
+	u32 value2;                      // r5
+	u32 value;                       // r29
+	TVariableValue::TOutput* output; // r28
+	const u32* values;
+	u32 v1                             = p1 >> 5;
+	data::TEOperationData operation    = (data::TEOperationData)(p1 & 0x1F);
+	TAdaptor::AdaptorDoFunction doFunc = nullptr;
+
+	switch (v1) {
+	case 0x39:
+		doFunc = (TAdaptor::AdaptorDoFunction)&TAdaptor_actor::adaptor_do_SHAPE;
+		goto output_type_4;
+		return;
+
+	case 0x3A:
+		doFunc = (TAdaptor::AdaptorDoFunction)&TAdaptor_actor::adaptor_do_ANIMATION;
+		goto output_type_4;
+		return;
+
+	case 0x43:
+		doFunc = (TAdaptor::AdaptorDoFunction)&TAdaptor_actor::adaptor_do_ANIMATION_MODE;
+		goto output_type_4;
+		return;
+
+	case 0x4C:
+		doFunc = (TAdaptor::AdaptorDoFunction)&TAdaptor_actor::adaptor_do_TEXTURE_ANIMATION;
+		goto output_type_4;
+		return;
+
+	case 0x4E:
+		doFunc = (TAdaptor::AdaptorDoFunction)&TAdaptor_actor::adaptor_do_TEXTURE_ANIMATION_MODE;
+		goto output_type_4;
+		return;
+
+	case 0x30:
+		doFunc = (TAdaptor::AdaptorDoFunction)&TAdaptor_actor::adaptor_do_PARENT;
+		goto output_type_4;
+		return;
+
+	case 0x31:
+		doFunc = (TAdaptor::AdaptorDoFunction)&TAdaptor_actor::adaptor_do_PARENT_NODE;
+		goto output_type_4;
+		return;
+
+	case 0x32:
+		output = &soovv_actor_PARENT_ENABLE_;
+		value  = 12;
+		doFunc = (TAdaptor::AdaptorDoFunction)&TAdaptor_actor::adaptor_do_PARENT_ENABLE;
+		goto output_type_1;
+		return;
+
+	case 0x51:
+		doFunc = (TAdaptor::AdaptorDoFunction)&TAdaptor_actor::adaptor_do_PARENT_FUNCTION;
+		goto output_type_4;
+		return;
+
+	case 0x33:
+		doFunc = (TAdaptor::AdaptorDoFunction)&TAdaptor_actor::adaptor_do_RELATION;
+		goto output_type_4;
+		return;
+
+	case 0x34:
+		doFunc = (TAdaptor::AdaptorDoFunction)&TAdaptor_actor::adaptor_do_RELATION_NODE;
+		goto output_type_4;
+		return;
+
+	case 0x35:
+		output = &soovv_actor_RELATION_ENABLE_;
+		value  = 13;
+		doFunc = (TAdaptor::AdaptorDoFunction)&TAdaptor_actor::adaptor_do_RELATION_ENABLE;
+		goto output_type_1;
+		return;
+
+	case 0x3B:
+		value2 = 0;
+		goto output_type_2;
+		return;
+
+	case 0x4B:
+		value2 = 1;
+		goto output_type_2;
+		return;
+
+	case 0x9:
+		value2 = 3;
+		goto output_type_2;
+		return;
+
+	case 0xA:
+		value2 = 4;
+		goto output_type_2;
+		return;
+
+	case 0xB:
+		value2 = 5;
+		goto output_type_2;
+		return;
+
+	case 0xD:
+		value2 = 6;
+		goto output_type_2;
+		return;
+
+	case 0xE:
+		value2 = 7;
+		goto output_type_2;
+		return;
+
+	case 0xF:
+		value2 = 8;
+		goto output_type_2;
+		return;
+
+	case 0x11:
+		value2 = 9;
+		goto output_type_2;
+		return;
+
+	case 0x12:
+		value2 = 10;
+		goto output_type_2;
+		return;
+
+	case 0x13:
+		value2 = 11;
+		goto output_type_2;
+		return;
+
+	case 0xC:
+		values = TAdaptor_actor::sauVariableValue_3_TRANSLATION_XYZ;
+		value2 = 3;
+		goto output_type_3;
+		return;
+
+	case 0x10:
+		values = TAdaptor_actor::sauVariableValue_3_ROTATION_XYZ;
+		value2 = 3;
+		goto output_type_3;
+		return;
+
+	case 0x14:
+		values = TAdaptor_actor::sauVariableValue_3_SCALING_XYZ;
+		value2 = 3;
+		goto output_type_3;
+		return;
+
+	default:
+		return;
+	}
+
+output_type_1: // 0x274
+	switch (operation) {
+	case data::TEOD_Unknown_10:
+	case data::TEOD_Unknown_11:
+	case data::TEOD_Unknown_12:
+		adaptor->adaptor_setVariableValue(this, value, operation, p2, p3);
+		adaptor->adaptor_referVariableValue(value).setOutput(output);
+		break;
+	default:
+		(adaptor->*doFunc)(operation, p2, p3);
+		break;
+	}
+	return;
+
+output_type_2: // 0x33C
+	adaptor->adaptor_setVariableValue(this, value2, operation, p2, p3);
+	return;
+
+output_type_3: // 0x3AC
+	adaptor->adaptor_setVariableValue_n(this, values, value2, operation, p2, p3);
+	return;
+
+output_type_4: // 0x458
+	(adaptor->*doFunc)(operation, p2, p3);
+	return;
 
 	/*
 	stwu     r1, -0x40(r1)
@@ -2257,54 +1296,8 @@ TObject_ambientLight::TObject_ambientLight(const JStudio::stb::data::TParse_TBlo
  */
 void TObject_ambientLight::do_paragraph(u32 p1, void const* p2, u32 p3)
 {
-	// if (mAdaptor == nullptr) {
-	// 	return;
-	// }
-	// u32 value;
-	// u32 v1                          = p1 >> 5;
-	// data::TEOperationData operation = (data::TEOperationData)(p1 & 0x1F);
-	// if (v1 <= 0x20) {
-	// 	switch (v1) {
-	// 	case 0x1D:
-	// 		value = 0;
-	// 		break;
-	// 	case 0x1E:
-	// 		value = 1;
-	// 		break;
-	// 	case 0x1F:
-	// 		value = 2;
-	// 		break;
-	// 	case 0x20:
-	// 		value = 3;
-	// 		break;
-	// 	// case 0x21:
-	// 	// 	mAdaptor->adaptor_setVariableValue_n(this, TAdaptor_ambientLight::sauVariableValue_3_COLOR_RGB, 3, operation, p2, 0);
-	// 	// 	return;
-	// 	// case 0x22:
-	// 	// 	mAdaptor->adaptor_setVariableValue_n(this, TAdaptor_ambientLight::sauVariableValue_4_COLOR_RGBA, 4, operation, p2, 0);
-	// 	// 	return;
-	// 	default:
-	// 		return;
-	// 	}
-	// } else {
-	// 	const u32* values;
-	// 	u32 count;
-	// 	switch (v1) {
-	// 	case 0x21:
-	// 		count  = 3;
-	// 		values = TAdaptor_ambientLight::sauVariableValue_3_COLOR_RGB;
-	// 		break;
-	// 	case 0x22:
-	// 		count  = 4;
-	// 		values = TAdaptor_ambientLight::sauVariableValue_4_COLOR_RGBA;
-	// 		break;
-	// 	default:
-	// 		return;
-	// 	}
-	// 	mAdaptor->adaptor_setVariableValue_n(this, values, count, operation, p2, 0);
-	// }
-	// mAdaptor->adaptor_setVariableValue(this, value, operation, p2, p3);
-	if (mAdaptor == nullptr) {
+	TAdaptor* adaptor = getAdaptor();
+	if (adaptor == nullptr) {
 		return;
 	}
 	u32 value;
@@ -2338,10 +1331,10 @@ void TObject_ambientLight::do_paragraph(u32 p1, void const* p2, u32 p3)
 	default:
 		return;
 	}
-	mAdaptor->adaptor_setVariableValue(this, value, operation, p2, p3);
+	adaptor->adaptor_setVariableValue(this, value, operation, p2, p3);
 	return;
 multi:
-	mAdaptor->adaptor_setVariableValue_n(this, values, count, operation, p2, 0);
+	adaptor->adaptor_setVariableValue_n(this, values, count, operation, p2, 0);
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x30(r1)
@@ -2537,8 +1530,158 @@ TObject_camera::TObject_camera(JStudio::stb::data::TParse_TBlock_object const& p
  * @note Size: 0x3F8
  * do_paragraph__Q27JStudio14TObject_cameraFUlPCvUl
  */
-void TObject_camera::do_paragraph(u32, void const*, u32)
+void TObject_camera::do_paragraph(u32 p1, const void* p2, u32 p3)
 {
+	TAdaptor_camera* adaptor = static_cast<TAdaptor_camera*>(getAdaptor());
+	if (!adaptor) {
+		return;
+	}
+
+	u32 v1                          = p1 >> 5;
+	data::TEOperationData operation = (data::TEOperationData)(p1 & 0x1F);
+
+	TAdaptor::AdaptorDoFunction doFunc = nullptr;
+	u32 value                          = -1;
+	const u32* values                  = nullptr;
+	TVariableValue::TOutput* output    = nullptr;
+
+	switch (v1) {
+	case 0x30:
+		doFunc = (TAdaptor::AdaptorDoFunction)&TAdaptor_camera::adaptor_do_PARENT;
+		goto output_type_4;
+		return;
+
+	case 0x31:
+		doFunc = (TAdaptor::AdaptorDoFunction)&TAdaptor_camera::adaptor_do_PARENT_NODE;
+		goto output_type_4;
+		return;
+
+	case 0x32:
+		output = &soovv_camera_PARENT_ENABLE_;
+		value  = 10;
+		doFunc = (TAdaptor::AdaptorDoFunction)&TAdaptor_camera::adaptor_do_PARENT_ENABLE;
+		goto output_type_1;
+		return;
+
+	case 0x51:
+		doFunc = (TAdaptor::AdaptorDoFunction)&TAdaptor_camera::adaptor_do_PARENT_FUNCTION;
+		goto output_type_4;
+		return;
+
+	case 0x52:
+		doFunc = (TAdaptor::AdaptorDoFunction)&TAdaptor_camera::adaptor_do_TARGET_PARENT;
+		goto output_type_4;
+		return;
+
+	case 0x53:
+		doFunc = (TAdaptor::AdaptorDoFunction)&TAdaptor_camera::adaptor_do_TARGET_PARENT_NODE;
+		goto output_type_4;
+		return;
+
+	case 0x54:
+		output = &soovv_camera_TARGET_PARENT_ENABLE_;
+		value  = 11;
+		doFunc = (TAdaptor::AdaptorDoFunction)&TAdaptor_camera::adaptor_do_TARGET_PARENT_ENABLE;
+		goto output_type_1;
+		return;
+
+	case 0x15:
+		value = 0;
+		goto output_type_2;
+		return;
+
+	case 0x16:
+		value = 1;
+		goto output_type_2;
+		return;
+
+	case 0x17:
+		value = 2;
+		goto output_type_2;
+		return;
+
+	case 0x19:
+		value = 3;
+		goto output_type_2;
+		return;
+
+	case 0x1A:
+		value = 4;
+		goto output_type_2;
+		return;
+
+	case 0x1B:
+		value = 5;
+		goto output_type_2;
+		return;
+
+	case 0x27:
+		value = 6;
+		goto output_type_2;
+		return;
+
+	case 0x26:
+		value = 7;
+		goto output_type_2;
+		return;
+
+	case 0x28:
+		value = 8;
+		goto output_type_2;
+		return;
+
+	case 0x29:
+		value = 9;
+		goto output_type_2;
+		return;
+
+	case 0x18:
+		values = TAdaptor_camera::sauVariableValue_3_POSITION_XYZ;
+		value  = 3;
+		goto output_type_3;
+		return;
+
+	case 0x1C:
+		values = TAdaptor_camera::sauVariableValue_3_TARGET_POSITION_XYZ;
+		value  = 3;
+		goto output_type_3;
+		return;
+
+	case 0x2A:
+		values = TAdaptor_camera::sauVariableValue_2_DISTANCE_NEAR_FAR;
+		value  = 2;
+		goto output_type_3;
+		return;
+
+	default:
+		return;
+	}
+
+output_type_1: // 0x274
+	switch (operation) {
+	case data::TEOD_Unknown_10:
+	case data::TEOD_Unknown_11:
+	case data::TEOD_Unknown_12:
+		adaptor->adaptor_setVariableValue(this, value, operation, p2, p3);
+		adaptor->adaptor_referVariableValue(value).setOutput(output);
+		break;
+	default:
+		(adaptor->*doFunc)(operation, p2, p3);
+		break;
+	}
+	return;
+
+output_type_2: // 0x33C
+	adaptor->adaptor_setVariableValue(this, value, operation, p2, p3);
+	return;
+
+output_type_3: // 0x3AC
+	adaptor->adaptor_setVariableValue_n(this, values, value, operation, p2, p3);
+	return;
+
+output_type_4: // 0x458
+	(adaptor->*doFunc)(operation, p2, p3);
+	return;
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -2992,8 +2135,80 @@ TObject_fog::TObject_fog(JStudio::stb::data::TParse_TBlock_object const& p1, JSt
  * @note Size: 0x1E8
  * do_paragraph__Q27JStudio11TObject_fogFUlPCvUl
  */
-void TObject_fog::do_paragraph(u32, void const*, u32)
+void TObject_fog::do_paragraph(u32 p1, const void* p2, u32 p3)
 {
+	TAdaptor_fog* adaptor = static_cast<TAdaptor_fog*>(getAdaptor());
+	if (!adaptor) {
+		return;
+	}
+
+	u32 v1                          = p1 >> 5;
+	data::TEOperationData operation = (data::TEOperationData)(p1 & 0x1F);
+
+	u32 value;
+	const u32* values = nullptr;
+
+	switch (v1) {
+	case 0x1D:
+		value = 0;
+		goto output_type_single;
+		return;
+
+	case 0x1E:
+		value = 1;
+		goto output_type_single;
+		return;
+
+	case 0x1F:
+		value = 2;
+		goto output_type_single;
+		return;
+
+	case 0x20:
+		value = 3;
+		goto output_type_single;
+		return;
+
+	case 0x2B:
+		value = 4;
+		goto output_type_single;
+		return;
+
+	case 0x2C:
+		value = 5;
+		goto output_type_single;
+		return;
+
+	case 0x21:
+		values = TAdaptor_fog::sauVariableValue_3_COLOR_RGB;
+		value  = 3;
+		goto output_type_multi;
+		return;
+
+	case 0x22:
+		values = TAdaptor_fog::sauVariableValue_4_COLOR_RGBA;
+		value  = 4;
+		goto output_type_multi;
+		return;
+
+	case 0x2D:
+		values = TAdaptor_fog::sauVariableValue_2_RANGE_BEGIN_END;
+		value  = 2;
+		goto output_type_multi;
+		return;
+
+	default:
+		return;
+	}
+
+output_type_single: // 0x33C
+	adaptor->adaptor_setVariableValue(this, value, operation, p2, p3);
+	return;
+
+output_type_multi: // 0x3AC
+	adaptor->adaptor_setVariableValue_n(this, values, value, operation, p2, p3);
+	return;
+
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -3214,38 +2429,7 @@ lbl_8000E798:
  * @note Size: 0x5C
  * __dt__Q27JStudio14TAdaptor_lightFv
  */
-TAdaptor_light::~TAdaptor_light()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_8000E7F0
-	lis      r3, __vt__Q27JStudio14TAdaptor_light@ha
-	addi     r0, r3, __vt__Q27JStudio14TAdaptor_light@l
-	stw      r0, 0(r31)
-	beq      lbl_8000E7E0
-	lis      r3, __vt__Q27JStudio8TAdaptor@ha
-	addi     r0, r3, __vt__Q27JStudio8TAdaptor@l
-	stw      r0, 0(r31)
-
-lbl_8000E7E0:
-	extsh.   r0, r4
-	ble      lbl_8000E7F0
-	mr       r3, r31
-	bl       __dl__FPv
-
-lbl_8000E7F0:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+TAdaptor_light::~TAdaptor_light() { }
 
 /**
  * @note Address: N/A
@@ -3273,8 +2457,153 @@ TObject_light::TObject_light(JStudio::stb::data::TParse_TBlock_object const& p1,
  * @note Size: 0x370
  * do_paragraph__Q27JStudio13TObject_lightFUlPCvUl
  */
-void TObject_light::do_paragraph(u32, void const*, u32)
+void TObject_light::do_paragraph(u32 p1, const void* p2, u32 p3)
 {
+	TAdaptor_light* adaptor = static_cast<TAdaptor_light*>(getAdaptor());
+	if (!adaptor) {
+		return;
+	}
+
+	u32 v1                          = p1 >> 5;
+	data::TEOperationData operation = (data::TEOperationData)(p1 & 0x1F);
+
+	TAdaptor::AdaptorDoFunction doFunc = nullptr;
+	u32 value                          = -1;
+	const u32* values                  = nullptr;
+	TVariableValue::TOutput* output    = nullptr;
+
+	switch (v1) {
+	case 0x36:
+		output = &soovv_light_ENABLE_;
+		value  = 12;
+		doFunc = (TAdaptor::AdaptorDoFunction)&TAdaptor_light::adaptor_do_ENABLE;
+		goto output_type_1;
+		return;
+
+	case 0x37:
+		doFunc = (TAdaptor::AdaptorDoFunction)&TAdaptor_light::adaptor_do_FACULTY;
+		goto output_type_4;
+		return;
+
+	case 0x1D:
+		value = 0;
+		goto output_type_2;
+		return;
+
+	case 0x1E:
+		value = 1;
+		goto output_type_2;
+		return;
+
+	case 0x1F:
+		value = 2;
+		goto output_type_2;
+		return;
+
+	case 0x20:
+		value = 3;
+		goto output_type_2;
+		return;
+
+	case 0x15:
+		value = 4;
+		goto output_type_2;
+		return;
+
+	case 0x16:
+		value = 5;
+		goto output_type_2;
+		return;
+
+	case 0x17:
+		value = 6;
+		goto output_type_2;
+		return;
+
+	case 0x19:
+		value = 7;
+		goto output_type_2;
+		return;
+
+	case 0x1A:
+		value = 8;
+		goto output_type_2;
+		return;
+
+	case 0x1B:
+		value = 9;
+		goto output_type_2;
+		return;
+
+	case 0x23:
+		value = 10;
+		goto output_type_2;
+		return;
+
+	case 0x24:
+		value = 11;
+		goto output_type_2;
+		return;
+
+	case 0x21:
+		values = TAdaptor_light::sauVariableValue_3_COLOR_RGB;
+		value  = 3;
+		goto output_type_3;
+		return;
+
+	case 0x22:
+		values = TAdaptor_light::sauVariableValue_4_COLOR_RGBA;
+		value  = 4;
+		goto output_type_3;
+		return;
+
+	case 0x18:
+		values = TAdaptor_light::sauVariableValue_3_POSITION_XYZ;
+		value  = 3;
+		goto output_type_3;
+		return;
+
+	case 0x1C:
+		values = TAdaptor_light::sauVariableValue_3_TARGET_POSITION_XYZ;
+		value  = 3;
+		goto output_type_3;
+		return;
+
+	case 0x25:
+		values = TAdaptor_light::sauVariableValue_2_DIRECTION_THETA_PHI;
+		value  = 2;
+		goto output_type_3;
+		return;
+
+	default:
+		return;
+	}
+
+output_type_1: // 0x274
+	switch (operation) {
+	case data::TEOD_Unknown_10:
+	case data::TEOD_Unknown_11:
+	case data::TEOD_Unknown_12:
+		adaptor->adaptor_setVariableValue(this, value, operation, p2, p3);
+		adaptor->adaptor_referVariableValue(value).setOutput(output);
+		break;
+	default:
+		(adaptor->*doFunc)(operation, p2, p3);
+		break;
+	}
+	return;
+
+output_type_2: // 0x33C
+	adaptor->adaptor_setVariableValue(this, value, operation, p2, p3);
+	return;
+
+output_type_3: // 0x3AC
+	adaptor->adaptor_setVariableValue_n(this, values, value, operation, p2, p3);
+	return;
+
+output_type_4: // 0x458
+	(adaptor->*doFunc)(operation, p2, p3);
+	return;
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -3665,8 +2994,27 @@ TObject_message::TObject_message(JStudio::stb::data::TParse_TBlock_object const&
  * @note Size: 0x90
  * do_paragraph__Q27JStudio15TObject_messageFUlPCvUl
  */
-void TObject_message::do_paragraph(u32, void const*, u32)
+void TObject_message::do_paragraph(u32 p1, const void* p2, u32 p3)
 {
+	TAdaptor_camera* adaptor = static_cast<TAdaptor_camera*>(getAdaptor());
+	if (!adaptor) {
+		return;
+	}
+
+	u32 v1                             = p1 >> 5;
+	data::TEOperationData operation    = (data::TEOperationData)(p1 & 0x1F);
+	TAdaptor::AdaptorDoFunction doFunc = nullptr;
+
+	switch (v1) {
+	case 0x42:
+		doFunc = (TAdaptor::AdaptorDoFunction)&TAdaptor_camera::adaptor_do_PARENT;
+		break;
+
+	default:
+		return;
+	}
+
+	(adaptor->*doFunc)(operation, p2, p3);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -3746,8 +3094,220 @@ TObject_particle::TObject_particle(JStudio::stb::data::TParse_TBlock_object cons
  * @note Size: 0x458
  * do_paragraph__Q27JStudio16TObject_particleFUlPCvUl
  */
-void TObject_particle::do_paragraph(u32, void const*, u32)
+void TObject_particle::do_paragraph(u32 p1, const void* p2, u32 p3)
 {
+	TAdaptor_particle* adaptor = static_cast<TAdaptor_particle*>(getAdaptor());
+	if (!adaptor) {
+		return;
+	}
+
+	u32 v1                          = p1 >> 5;
+	data::TEOperationData operation = (data::TEOperationData)(p1 & 0x1F);
+
+	TAdaptor::AdaptorDoFunction doFunc = nullptr;
+	u32 value                          = -1;
+	const u32* values                  = nullptr;
+	TVariableValue::TOutput* output    = nullptr;
+
+	switch (v1) {
+	case 0x44:
+		doFunc = (TAdaptor::AdaptorDoFunction)&TAdaptor_particle::adaptor_do_PARTICLE;
+		goto output_type_4;
+		return;
+
+	case 0x4F:
+		doFunc = (TAdaptor::AdaptorDoFunction)&TAdaptor_particle::adaptor_do_BEGIN;
+		goto output_type_4;
+		return;
+
+	case 0x2E:
+		doFunc = (TAdaptor::AdaptorDoFunction)&TAdaptor_particle::adaptor_do_BEGIN_FADE_IN;
+		goto output_type_4;
+		return;
+
+	case 0x50:
+		doFunc = (TAdaptor::AdaptorDoFunction)&TAdaptor_particle::adaptor_do_END;
+		goto output_type_4;
+		return;
+
+	case 0x2F:
+		doFunc = (TAdaptor::AdaptorDoFunction)&TAdaptor_particle::adaptor_do_END_FADE_OUT;
+		goto output_type_4;
+		return;
+
+	case 0x30:
+		doFunc = (TAdaptor::AdaptorDoFunction)&TAdaptor_particle::adaptor_do_PARENT;
+		goto output_type_4;
+		return;
+
+	case 0x31:
+		doFunc = (TAdaptor::AdaptorDoFunction)&TAdaptor_particle::adaptor_do_PARENT_NODE;
+		goto output_type_4;
+		return;
+
+	case 0x32:
+		output = &soovv_particle_PARENT_ENABLE_;
+		value  = 17;
+		doFunc = (TAdaptor::AdaptorDoFunction)&TAdaptor_particle::adaptor_do_PARENT_ENABLE;
+		goto output_type_1;
+		return;
+
+	case 0x9:
+		value = 0;
+		goto output_type_2;
+		return;
+
+	case 0xA:
+		value = 1;
+		goto output_type_2;
+		return;
+
+	case 0xB:
+		value = 2;
+		goto output_type_2;
+		return;
+
+	case 0xD:
+		value = 3;
+		goto output_type_2;
+		return;
+
+	case 0xE:
+		value = 4;
+		goto output_type_2;
+		return;
+
+	case 0xF:
+		value = 5;
+		goto output_type_2;
+		return;
+
+	case 0x11:
+		value = 6;
+		goto output_type_2;
+		return;
+
+	case 0x12:
+		value = 7;
+		goto output_type_2;
+		return;
+
+	case 0x13:
+		value = 8;
+		goto output_type_2;
+		return;
+
+	case 0x1D:
+		value = 9;
+		goto output_type_2;
+		return;
+
+	case 0x1E:
+		value = 10;
+		goto output_type_2;
+		return;
+
+	case 0x1F:
+		value = 11;
+		goto output_type_2;
+		return;
+
+	case 0x20:
+		value = 12;
+		goto output_type_2;
+		return;
+
+	case 0x45:
+		value = 13;
+		goto output_type_2;
+		return;
+
+	case 0x46:
+		value = 14;
+		goto output_type_2;
+		return;
+
+	case 0x47:
+		value = 15;
+		goto output_type_2;
+		return;
+
+	case 0x48:
+		value = 16;
+		goto output_type_2;
+		return;
+
+	case 0xC:
+		values = TAdaptor_particle::sauVariableValue_3_TRANSLATION_XYZ;
+		value  = 3;
+		goto output_type_3;
+		return;
+
+	case 0x10:
+		values = TAdaptor_particle::sauVariableValue_3_ROTATION_XYZ;
+		value  = 3;
+		goto output_type_3;
+		return;
+
+	case 0x14:
+		values = TAdaptor_particle::sauVariableValue_3_SCALING_XYZ;
+		value  = 3;
+		goto output_type_3;
+		return;
+
+	case 0x21:
+		values = TAdaptor_particle::sauVariableValue_3_COLOR_RGB;
+		value  = 3;
+		goto output_type_3;
+		return;
+
+	case 0x22:
+		values = TAdaptor_particle::sauVariableValue_4_COLOR_RGBA;
+		value  = 4;
+		goto output_type_3;
+		return;
+
+	case 0x49:
+		values = TAdaptor_particle::sauVariableValue_3_COLOR1_RGB;
+		value  = 3;
+		goto output_type_3;
+		return;
+
+	case 0x4A:
+		values = TAdaptor_particle::sauVariableValue_4_COLOR1_RGBA;
+		value  = 4;
+		goto output_type_3;
+		return;
+
+	default:
+		return;
+	}
+
+output_type_1: // 0x274
+	switch (operation) {
+	case data::TEOD_Unknown_10:
+	case data::TEOD_Unknown_11:
+	case data::TEOD_Unknown_12:
+		adaptor->adaptor_setVariableValue(this, value, operation, p2, p3);
+		adaptor->adaptor_referVariableValue(value).setOutput(output);
+		break;
+	default:
+		(adaptor->*doFunc)(operation, p2, p3);
+		break;
+	}
+	return;
+
+output_type_2: // 0x33C
+	adaptor->adaptor_setVariableValue(this, value, operation, p2, p3);
+	return;
+
+output_type_3: // 0x3AC
+	adaptor->adaptor_setVariableValue_n(this, values, value, operation, p2, p3);
+	return;
+
+output_type_4: // 0x458
+	(adaptor->*doFunc)(operation, p2, p3);
+	return;
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -4212,8 +3772,146 @@ TObject_sound::TObject_sound(JStudio::stb::data::TParse_TBlock_object const& p1,
  * @note Size: 0x3F8
  * do_paragraph__Q27JStudio13TObject_soundFUlPCvUl
  */
-void TObject_sound::do_paragraph(u32, void const*, u32)
+void TObject_sound::do_paragraph(u32 p1, const void* p2, u32 p3)
 {
+	TAdaptor_sound* adaptor = static_cast<TAdaptor_sound*>(getAdaptor());
+	if (!adaptor) {
+		return;
+	}
+
+	u32 v1                          = p1 >> 5;
+	data::TEOperationData operation = (data::TEOperationData)(p1 & 0x1F);
+
+	TAdaptor::AdaptorDoFunction doFunc = nullptr;
+	u32 value                          = -1;
+	const u32* values                  = nullptr;
+	TVariableValue::TOutput* output    = nullptr;
+
+	switch (v1) {
+	case 0x3C:
+		doFunc = (TAdaptor::AdaptorDoFunction)&TAdaptor_sound::adaptor_do_SOUND;
+		goto output_type_4;
+		return;
+
+	case 0x4F:
+		doFunc = (TAdaptor::AdaptorDoFunction)&TAdaptor_sound::adaptor_do_BEGIN;
+		goto output_type_4;
+		return;
+
+	case 0x2E:
+		doFunc = (TAdaptor::AdaptorDoFunction)&TAdaptor_sound::adaptor_do_BEGIN_FADE_IN;
+		goto output_type_4;
+		return;
+
+	case 0x50:
+		doFunc = (TAdaptor::AdaptorDoFunction)&TAdaptor_sound::adaptor_do_END;
+		goto output_type_4;
+		return;
+
+	case 0x2F:
+		doFunc = (TAdaptor::AdaptorDoFunction)&TAdaptor_sound::adaptor_do_END_FADE_OUT;
+		goto output_type_4;
+		return;
+
+	case 0x30:
+		doFunc = (TAdaptor::AdaptorDoFunction)&TAdaptor_sound::adaptor_do_PARENT;
+		goto output_type_4;
+		return;
+
+	case 0x31:
+		doFunc = (TAdaptor::AdaptorDoFunction)&TAdaptor_sound::adaptor_do_PARENT_NODE;
+		goto output_type_4;
+		return;
+
+	case 0x32:
+		output = &soovv_sound_PARENT_ENABLE_;
+		value  = 3;
+		doFunc = (TAdaptor::AdaptorDoFunction)&TAdaptor_sound::adaptor_do_PARENT_ENABLE;
+		goto output_type_1;
+		return;
+
+	case 0x38:
+		output = &soovv_sound_LOCATED_;
+		value  = 4;
+		doFunc = (TAdaptor::AdaptorDoFunction)&TAdaptor_sound::adaptor_do_LOCATED;
+		goto output_type_1;
+		return;
+
+	case 0x15:
+		value = 0;
+		goto output_type_2;
+		return;
+
+	case 0x16:
+		value = 1;
+		goto output_type_2;
+		return;
+
+	case 0x17:
+		value = 2;
+		goto output_type_2;
+		return;
+
+	case 0x3D:
+		value = 5;
+		goto output_type_2;
+		return;
+
+	case 0x3E:
+		value = 6;
+		goto output_type_2;
+		return;
+
+	case 0x3F:
+		value = 7;
+		goto output_type_2;
+		return;
+
+	case 0x40:
+		value = 8;
+		goto output_type_2;
+		return;
+
+	case 0x41:
+		value = 9;
+		goto output_type_2;
+		return;
+
+	case 0x18:
+		values = TAdaptor_sound::sauVariableValue_3_POSITION_XYZ;
+		value  = 3;
+		goto output_type_3;
+		return;
+
+	default:
+		return;
+	}
+
+output_type_1: // 0x274
+	switch (operation) {
+	case data::TEOD_Unknown_10:
+	case data::TEOD_Unknown_11:
+	case data::TEOD_Unknown_12:
+		adaptor->adaptor_setVariableValue(this, value, operation, p2, p3);
+		adaptor->adaptor_referVariableValue(value).setOutput(output);
+		break;
+	default:
+		(adaptor->*doFunc)(operation, p2, p3);
+		break;
+	}
+	return;
+
+output_type_2: // 0x33C
+	adaptor->adaptor_setVariableValue(this, value, operation, p2, p3);
+	return;
+
+output_type_3: // 0x3AC
+	adaptor->adaptor_setVariableValue_n(this, values, value, operation, p2, p3);
+	return;
+
+output_type_4: // 0x458
+	(adaptor->*doFunc)(operation, p2, p3);
+	return;
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0

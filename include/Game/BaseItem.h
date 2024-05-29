@@ -158,7 +158,8 @@ struct CItemFSM : public StateMachine<CFSMItem> {
 };
 
 template <typename T>
-struct ItemFSM : public StateMachine<T> { };
+struct ItemFSM : public StateMachine<T> {
+};
 
 struct CItemState : public FSMState<CFSMItem> {
 	inline CItemState(int id)

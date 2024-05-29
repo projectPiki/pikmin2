@@ -13,7 +13,7 @@ struct JKRHeap : public JKRDisposer {
 		HEAPALLOC_Unk1 = 1,
 	};
 
-	struct TState { // NB: this struct doesn't agree with TP's struct
+	struct TState {
 		struct TLocation {
 			TLocation()
 			    : _00(nullptr)
