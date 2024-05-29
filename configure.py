@@ -1116,7 +1116,7 @@ LIBS = [
             ["plugProjectNishimuraU/TadpoleAnimator", True],
             ["plugProjectNishimuraU/TadpoleMgr", True],
             ["plugProjectNishimuraU/Tadpole", True],
-            ["plugProjectNishimuraU/ElecBugState", False],
+            ["plugProjectNishimuraU/ElecBugState", True],
             ["plugProjectNishimuraU/ElecBugAnimator", True],
             ["plugProjectNishimuraU/ElecBugMgr", True],
             ["plugProjectNishimuraU/ElecBug", False],

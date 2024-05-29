@@ -222,8 +222,8 @@ void StateCharge::exec(EnemyBase* enemy)
 		bug->mHasStartedSearch = true;
 		Vector3f bugPos        = bug->getPosition();
 		Mgr* mgr               = static_cast<Mgr*>(generalEnemyMgr->getEnemyMgr(EnemyTypeID::EnemyID_ElecBug));
-		if (mgr) {                                                                     // sanity check moment
-			EnemyIterator<Obj> iElecBug = ((Container<Obj>*)(GenericContainer*)(mgr)); // this is correct... /shrug
+		if (mgr) { // sanity check moment
+			EnemyIterator<Obj> iElecBug = (mgr);
 			CI_LOOP(iElecBug)
 			{
 				Obj* otherBug = *iElecBug;
@@ -237,21 +237,21 @@ void StateCharge::exec(EnemyBase* enemy)
 			}
 		}
 		if (bugCount != 0) {
-			Obj* randBug = seachingBugs[(int)(randFloat() * bugCount)];
+			Obj* randBug = seachingBugs[randInt(bugCount)];
 			bug->startChargeState(randBug);
 			bug->disableEvent(0, EB_Cullable);
 		}
 	}
-	Obj* partner = bug->mPartner;
+	Obj* partner = bug->getPartner();
 	if (partner) {
 		Vector3f bugPos     = bug->getPosition();
 		Vector3f partnerPos = partner->getPosition();
 		Vector3f pos        = bugPos - partnerPos;
 		pos += bugPos;
-		partner->turnToTarget2(pos, 0.15f, CG_GENERALPARMS(bug).mMaxTurnAngle());
+		bug->turnToTarget2(pos, 0.15f, CG_GENERALPARMS(bug).mMaxTurnAngle());
 	}
 	if (bug->mStateTimer > 3.0f) {
-		if (bug->mPartner) {
+		if (bug->getPartner()) {
 			transit(bug, ELECBUG_Discharge, nullptr);
 		} else {
 			bug->finishPartnerAndEffect();
@@ -356,15 +356,15 @@ void StateChildCharge::init(EnemyBase* enemy, StateArg* stateArg)
 void StateChildCharge::exec(EnemyBase* enemy)
 {
 	Obj* bug     = OBJ(enemy);
-	Obj* partner = bug->mPartner;
+	Obj* partner = bug->getPartner();
 	if (partner) {
 		Vector3f bugPos     = bug->getPosition();
 		Vector3f partnerPos = partner->getPosition();
 		Vector3f pos        = bugPos - partnerPos;
 		pos += bugPos;
-		partner->turnToTarget2(pos, 0.15f, CG_GENERALPARMS(bug).mMaxTurnAngle());
+		bug->turnToTarget2(pos, 0.15f, CG_GENERALPARMS(bug).mMaxTurnAngle());
 	}
-	if (bug->mStateTimer > 3.0f) {
+	if (bug->mStateTimer > 1.0f) {
 		if (partner) {
 			transit(bug, ELECBUG_ChildDischarge, nullptr);
 		} else {
@@ -373,156 +373,6 @@ void StateChildCharge::exec(EnemyBase* enemy)
 		}
 	}
 	bug->mStateTimer += sys->mDeltaTime;
-	/*
-	stwu     r1, -0x90(r1)
-	mflr     r0
-	stw      r0, 0x94(r1)
-	stfd     f31, 0x80(r1)
-	psq_st   f31, 136(r1), 0, qr0
-	stfd     f30, 0x70(r1)
-	psq_st   f30, 120(r1), 0, qr0
-	stfd     f29, 0x60(r1)
-	psq_st   f29, 104(r1), 0, qr0
-	stfd     f28, 0x50(r1)
-	psq_st   f28, 88(r1), 0, qr0
-	stw      r31, 0x4c(r1)
-	stw      r30, 0x48(r1)
-	stw      r29, 0x44(r1)
-	lwz      r31, 0x2d8(r4)
-	mr       r29, r3
-	mr       r30, r4
-	cmplwi   r31, 0
-	beq      lbl_8027A198
-	lwz      r12, 0(r4)
-	addi     r3, r1, 0x2c
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r31
-	addi     r3, r1, 0x20
-	lwz      r12, 0(r31)
-	lfs      f30, 0x2c(r1)
-	lwz      r12, 8(r12)
-	lfs      f31, 0x34(r1)
-	mtctr    r12
-	bctrl
-	lfs      f1, 0x20(r1)
-	mr       r4, r30
-	lfs      f0, 0x28(r1)
-	addi     r3, r1, 0x14
-	fsubs    f29, f30, f1
-	lwz      r12, 0(r30)
-	fsubs    f28, f31, f0
-	lwz      r5, 0xc0(r30)
-	lwz      r12, 8(r12)
-	fadds    f29, f29, f30
-	fadds    f28, f28, f31
-	lfs      f31, 0x334(r5)
-	mtctr    r12
-	bctrl
-	lfs      f4, 0x14(r1)
-	lis      r3, atanTable___5JMath@ha
-	lfs      f0, 0x1c(r1)
-	addi     r3, r3, atanTable___5JMath@l
-	lfs      f3, 0x18(r1)
-	fsubs    f1, f29, f4
-	fsubs    f2, f28, f0
-	stfs     f4, 8(r1)
-	stfs     f3, 0xc(r1)
-	stfs     f0, 0x10(r1)
-	bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
-	bl       roundAng__Ff
-	lwz      r12, 0(r30)
-	fmr      f30, f1
-	mr       r3, r30
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	fmr      f2, f1
-	fmr      f1, f30
-	bl       angDist__Fff
-	lfs      f2, lbl_8051B4AC@sda21(r2)
-	lfs      f0, lbl_8051B490@sda21(r2)
-	fmuls    f30, f1, f2
-	lfs      f1, lbl_8051B48C@sda21(r2)
-	fmuls    f0, f0, f31
-	fabs     f2, f30
-	fmuls    f1, f1, f0
-	frsp     f0, f2
-	fcmpo    cr0, f0, f1
-	ble      lbl_8027A170
-	lfs      f0, lbl_8051B488@sda21(r2)
-	fcmpo    cr0, f30, f0
-	ble      lbl_8027A16C
-	fmr      f30, f1
-	b        lbl_8027A170
-
-lbl_8027A16C:
-	fneg     f30, f1
-
-lbl_8027A170:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	fadds    f1, f30, f1
-	bl       roundAng__Ff
-	stfs     f1, 0x1fc(r30)
-	lfs      f0, 0x1fc(r30)
-	stfs     f0, 0x1a8(r30)
-
-lbl_8027A198:
-	lfs      f1, 0x2c4(r30)
-	lfs      f0, lbl_8051B4C4@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_8027A1FC
-	cmplwi   r31, 0
-	beq      lbl_8027A1D4
-	mr       r3, r29
-	mr       r4, r30
-	lwz      r12, 0(r29)
-	li       r5, 7
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8027A1FC
-
-lbl_8027A1D4:
-	mr       r3, r30
-	bl       finishPartnerAndEffect__Q34Game7ElecBug3ObjFv
-	mr       r3, r29
-	mr       r4, r30
-	lwz      r12, 0(r29)
-	li       r5, 2
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8027A1FC:
-	lwz      r3, sys@sda21(r13)
-	lfs      f1, 0x2c4(r30)
-	lfs      f0, 0x54(r3)
-	fadds    f0, f1, f0
-	stfs     f0, 0x2c4(r30)
-	psq_l    f31, 136(r1), 0, qr0
-	lfd      f31, 0x80(r1)
-	psq_l    f30, 120(r1), 0, qr0
-	lfd      f30, 0x70(r1)
-	psq_l    f29, 104(r1), 0, qr0
-	lfd      f29, 0x60(r1)
-	psq_l    f28, 88(r1), 0, qr0
-	lfd      f28, 0x50(r1)
-	lwz      r31, 0x4c(r1)
-	lwz      r30, 0x48(r1)
-	lwz      r0, 0x94(r1)
-	lwz      r29, 0x44(r1)
-	mtlr     r0
-	addi     r1, r1, 0x90
-	blr
-	*/
 }
 
 /**

@@ -84,7 +84,7 @@ NISHIMURA_FILES:=\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/TadpoleAnimator.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/TadpoleMgr.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/Tadpole.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/ElecBugState.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/ElecBugState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/ElecBugAnimator.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/ElecBugMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/ElecBug.o\
