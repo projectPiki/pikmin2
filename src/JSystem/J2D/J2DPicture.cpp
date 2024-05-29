@@ -1427,6 +1427,57 @@ void J2DPicture::setTexCoord(const JUTTexture* texture, J2DBinding binding, J2DM
 	setTexCoord(mTexCoords, texture, binding, mirror, doRotate90);
 }
 
+static inline bool unkInline(J2DBinding binding, bool doRotate90, J2DMirror mirror, bool &bindLeft, bool &bindRight, bool &bindTop, bool &bindBottom)
+{
+	if (!doRotate90) {
+		if (mirror & J2DMIRROR_X) {
+			bindLeft = binding & J2DBIND_Right;
+		} else {
+			bindLeft = binding & J2DBIND_Left;
+		}
+		if (mirror & J2DMIRROR_X) {
+			bindRight = binding & J2DBIND_Left;
+		} else {
+			bindRight = binding & J2DBIND_Right;
+		}
+		if (mirror & J2DMIRROR_Y) {
+			bindTop = binding & J2DBIND_Bottom;
+		} else {
+			bindTop = binding & J2DBIND_Top;
+		}
+		if (mirror & J2DMIRROR_Y) {
+			bindBottom = binding & J2DBIND_Top;
+		} else {
+			bindBottom = binding & J2DBIND_Bottom;
+		}
+		
+		return mirror & J2DMIRROR_Y;
+	} else {
+		if (mirror & J2DMIRROR_X) {
+			bindLeft = binding & J2DBIND_Bottom;
+		} else {
+			bindLeft = binding & J2DBIND_Top;
+		}
+		if (mirror & J2DMIRROR_X) {
+			bindRight = binding & J2DBIND_Top;
+		} else {
+			bindRight = binding & J2DBIND_Bottom;
+		}
+		if (mirror & J2DMIRROR_Y) {
+			bindTop = binding & J2DBIND_Left;
+		} else {
+			bindTop = binding & J2DBIND_Right;
+		}
+		if (mirror & J2DMIRROR_Y) {
+			bindBottom = binding & J2DBIND_Right;
+		} else {
+			bindBottom = binding & J2DBIND_Left;
+		}
+
+		return mirror & J2DMIRROR_Y;
+	}
+}
+
 /**
  * @note Address: 0x8003CEA4
  * @note Size: 0x318
@@ -1438,48 +1489,18 @@ void J2DPicture::setTexCoord(JGeometry::TVec2s* texCoords, const JUTTexture* tex
 	bool bindTop;
 	bool bindBottom;
 
-	if (!doRotate90) {
-		if (mirror & J2DMIRROR_X)
-			bindLeft = binding & J2DBIND_Right;
-		else
-			bindLeft = binding & J2DBIND_Left;
-
-		if (mirror & J2DMIRROR_X)
-			bindRight = binding & J2DBIND_Left;
-		else
-			bindRight = binding & J2DBIND_Right;
-
-		if (mirror & J2DMIRROR_Y)
-			bindTop = binding & J2DBIND_Bottom;
-		else
-			bindTop = binding & J2DBIND_Top;
-
-		if (mirror & J2DMIRROR_Y)
-			bindBottom = binding & J2DBIND_Top;
-		else
-			bindBottom = binding & J2DBIND_Bottom;
+    if (!doRotate90) {
+         bindLeft    = (mirror & J2DMIRROR_X) ? (bool)(binding & J2DBIND_Right)  : (bool)(binding & J2DBIND_Left);
+         bindRight   = (mirror & J2DMIRROR_X) ? (bool)(binding & J2DBIND_Left)   : (bool)(binding & J2DBIND_Right);
+         bindTop     = (mirror & J2DMIRROR_Y) ? (bool)(binding & J2DBIND_Bottom) : (bool)(binding & J2DBIND_Top);
+         bindBottom  = (mirror & J2DMIRROR_Y) ? (bool)(binding & J2DBIND_Top)    : (bool)(binding & J2DBIND_Bottom);
 	} else {
-		if (mirror & J2DMIRROR_X)
-			bindLeft = binding & J2DBIND_Bottom;
-		else
-			bindLeft = binding & J2DBIND_Top;
-
-		if (mirror & J2DMIRROR_X)
-			bindRight = binding & J2DBIND_Top;
-		else
-			bindRight = binding & J2DBIND_Bottom;
-
-		if (mirror & J2DMIRROR_Y)
-			bindTop = binding & J2DBIND_Left;
-		else
-			bindTop = binding & J2DBIND_Right;
-
-		if (mirror & J2DMIRROR_Y)
-			bindBottom = binding & J2DBIND_Right;
-		else
-			bindBottom = binding & J2DBIND_Left;
+         bindLeft    = (mirror & J2DMIRROR_X) ? (bool)(binding & J2DBIND_Bottom) : (bool)(binding & J2DBIND_Top);
+         bindRight   = (mirror & J2DMIRROR_X) ? (bool)(binding & J2DBIND_Top)    : (bool)(binding & J2DBIND_Bottom);
+         bindTop     = (mirror & J2DMIRROR_Y) ? (bool)(binding & J2DBIND_Left)   : (bool)(binding & J2DBIND_Right);
+         bindBottom  = (mirror & J2DMIRROR_Y) ? (bool)(binding & J2DBIND_Right)  : (bool)(binding & J2DBIND_Left);
 	}
-
+    
 	f32 rectWidth;
 	f32 rectHeight;
 
@@ -1488,7 +1509,7 @@ void J2DPicture::setTexCoord(JGeometry::TVec2s* texCoords, const JUTTexture* tex
 
 	f32 texWidth;
 	f32 texHeight;
-	if (texture == nullptr) {
+	if (!texture) {
 		texWidth  = rectWidth;
 		texHeight = rectHeight;
 	} else {
@@ -1520,14 +1541,10 @@ void J2DPicture::setTexCoord(JGeometry::TVec2s* texCoords, const JUTTexture* tex
 	}
 
 	if (mirror & J2DMIRROR_X) {
-		f32 tmp = s0;
-		s0      = s1;
-		s1      = tmp;
+        swap(s0, s1);
 	}
 	if (mirror & J2DMIRROR_Y) {
-		f32 tmp = t0;
-		t0      = t1;
-		t1      = tmp;
+        swap(t0, t1);
 	}
 
 	s16 temp_r27 = J2DCast_F32_to_S16(s0, 8);
@@ -1546,275 +1563,6 @@ void J2DPicture::setTexCoord(JGeometry::TVec2s* texCoords, const JUTTexture* tex
 		texCoords[2].set(temp_r28, temp_r31);
 		texCoords[3].set(temp_r28, temp_r30);
 	}
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x60(r1)
-	  mflr      r0
-	  stw       r0, 0x64(r1)
-	  stfd      f31, 0x50(r1)
-	  psq_st    f31,0x58(r1),0,0
-	  stfd      f30, 0x40(r1)
-	  psq_st    f30,0x48(r1),0,0
-	  stfd      f29, 0x30(r1)
-	  psq_st    f29,0x38(r1),0,0
-	  stmw      r27, 0x1C(r1)
-	  rlwinm.   r0,r8,0,24,31
-	  mr        r31, r8
-	  mr        r30, r4
-	  bne-      .loc_0x98
-	  rlwinm.   r4,r7,0,30,30
-	  beq-      .loc_0x48
-	  rlwinm    r0,r6,30,31,31
-	  b         .loc_0x4C
-
-	.loc_0x48:
-	  rlwinm    r0,r6,29,31,31
-
-	.loc_0x4C:
-	  cmpwi     r4, 0
-	  beq-      .loc_0x5C
-	  rlwinm    r4,r6,29,31,31
-	  b         .loc_0x60
-
-	.loc_0x5C:
-	  rlwinm    r4,r6,30,31,31
-
-	.loc_0x60:
-	  rlwinm.   r9,r7,0,31,31
-	  beq-      .loc_0x70
-	  rlwinm    r8,r6,0,31,31
-	  b         .loc_0x74
-
-	.loc_0x70:
-	  rlwinm    r8,r6,31,31,31
-
-	.loc_0x74:
-	  cmpwi     r9, 0
-	  mr        r9, r8
-	  beq-      .loc_0x8C
-	  rlwinm    r6,r6,31,31,31
-	  mr        r10, r6
-	  b         .loc_0xF4
-
-	.loc_0x8C:
-	  rlwinm    r6,r6,0,31,31
-	  mr        r10, r6
-	  b         .loc_0xF4
-
-	.loc_0x98:
-	  rlwinm.   r4,r7,0,30,30
-	  beq-      .loc_0xA8
-	  rlwinm    r0,r6,0,31,31
-	  b         .loc_0xAC
-
-	.loc_0xA8:
-	  rlwinm    r0,r6,31,31,31
-
-	.loc_0xAC:
-	  cmpwi     r4, 0
-	  beq-      .loc_0xBC
-	  rlwinm    r4,r6,31,31,31
-	  b         .loc_0xC0
-
-	.loc_0xBC:
-	  rlwinm    r4,r6,0,31,31
-
-	.loc_0xC0:
-	  rlwinm.   r9,r7,0,31,31
-	  beq-      .loc_0xD0
-	  rlwinm    r8,r6,29,31,31
-	  b         .loc_0xD4
-
-	.loc_0xD0:
-	  rlwinm    r8,r6,30,31,31
-
-	.loc_0xD4:
-	  cmpwi     r9, 0
-	  mr        r9, r8
-	  beq-      .loc_0xEC
-	  rlwinm    r6,r6,30,31,31
-	  mr        r10, r6
-	  b         .loc_0xF4
-
-	.loc_0xEC:
-	  rlwinm    r6,r6,29,31,31
-	  mr        r10, r6
-
-	.loc_0xF4:
-	  rlwinm    r6,r31,0,24,31
-	  cntlzw    r8, r6
-	  rlwinm.   r6,r8,27,24,31
-	  rlwinm    r6,r8,27,5,31
-	  beq-      .loc_0x118
-	  lfs       f1, 0x28(r3)
-	  lfs       f0, 0x20(r3)
-	  fsubs     f3, f1, f0
-	  b         .loc_0x124
-
-	.loc_0x118:
-	  lfs       f1, 0x2C(r3)
-	  lfs       f0, 0x24(r3)
-	  fsubs     f3, f1, f0
-
-	.loc_0x124:
-	  rlwinm.   r6,r6,0,24,31
-	  beq-      .loc_0x13C
-	  lfs       f1, 0x2C(r3)
-	  lfs       f0, 0x24(r3)
-	  fsubs     f4, f1, f0
-	  b         .loc_0x148
-
-	.loc_0x13C:
-	  lfs       f1, 0x28(r3)
-	  lfs       f0, 0x20(r3)
-	  fsubs     f4, f1, f0
-
-	.loc_0x148:
-	  cmplwi    r5, 0
-	  bne-      .loc_0x15C
-	  fmr       f5, f3
-	  fmr       f6, f4
-	  b         .loc_0x198
-
-	.loc_0x15C:
-	  lwz       r3, 0x20(r5)
-	  lis       r5, 0x4330
-	  stw       r5, 0x8(r1)
-	  lhz       r6, 0x2(r3)
-	  lhz       r3, 0x4(r3)
-	  xoris     r6, r6, 0x8000
-	  stw       r5, 0x10(r1)
-	  xoris     r3, r3, 0x8000
-	  lfd       f2, -0x7B58(r2)
-	  stw       r6, 0xC(r1)
-	  stw       r3, 0x14(r1)
-	  lfd       f1, 0x8(r1)
-	  lfd       f0, 0x10(r1)
-	  fsubs     f5, f1, f2
-	  fsubs     f6, f0, f2
-
-	.loc_0x198:
-	  rlwinm.   r0,r0,0,24,31
-	  beq-      .loc_0x1BC
-	  rlwinm.   r0,r4,0,24,31
-	  lfs       f1, -0x7B60(r2)
-	  beq-      .loc_0x1B4
-	  lfs       f30, -0x7B70(r2)
-	  b         .loc_0x1EC
-
-	.loc_0x1B4:
-	  fdivs     f30, f3, f5
-	  b         .loc_0x1EC
-
-	.loc_0x1BC:
-	  rlwinm.   r0,r4,0,24,31
-	  beq-      .loc_0x1D8
-	  fdivs     f0, f3, f5
-	  lfs       f1, -0x7B70(r2)
-	  fmr       f30, f1
-	  fsubs     f1, f1, f0
-	  b         .loc_0x1EC
-
-	.loc_0x1D8:
-	  fdivs     f0, f3, f5
-	  lfs       f2, -0x7B4C(r2)
-	  fmuls     f0, f0, f2
-	  fsubs     f1, f2, f0
-	  fadds     f30, f2, f0
-
-	.loc_0x1EC:
-	  rlwinm.   r0,r9,0,24,31
-	  beq-      .loc_0x210
-	  rlwinm.   r0,r10,0,24,31
-	  lfs       f31, -0x7B60(r2)
-	  beq-      .loc_0x208
-	  lfs       f29, -0x7B70(r2)
-	  b         .loc_0x240
-
-	.loc_0x208:
-	  fdivs     f29, f4, f6
-	  b         .loc_0x240
-
-	.loc_0x210:
-	  rlwinm.   r0,r10,0,24,31
-	  beq-      .loc_0x22C
-	  fdivs     f0, f4, f6
-	  lfs       f2, -0x7B70(r2)
-	  fmr       f29, f2
-	  fsubs     f31, f2, f0
-	  b         .loc_0x240
-
-	.loc_0x22C:
-	  fdivs     f0, f4, f6
-	  lfs       f2, -0x7B4C(r2)
-	  fmuls     f0, f0, f2
-	  fsubs     f31, f2, f0
-	  fadds     f29, f2, f0
-
-	.loc_0x240:
-	  rlwinm.   r0,r7,0,30,30
-	  beq-      .loc_0x254
-	  fmr       f0, f1
-	  fmr       f1, f30
-	  fmr       f30, f0
-
-	.loc_0x254:
-	  rlwinm.   r0,r7,0,31,31
-	  beq-      .loc_0x268
-	  fmr       f0, f31
-	  fmr       f31, f29
-	  fmr       f29, f0
-
-	.loc_0x268:
-	  li        r3, 0x8
-	  bl        -0x3E08
-	  fmr       f1, f30
-	  mr        r27, r3
-	  li        r3, 0x8
-	  bl        -0x3E18
-	  fmr       f1, f31
-	  mr        r28, r3
-	  li        r3, 0x8
-	  bl        -0x3E28
-	  fmr       f1, f29
-	  mr        r29, r3
-	  li        r3, 0x8
-	  bl        -0x3E38
-	  rlwinm.   r0,r31,0,24,31
-	  bne-      .loc_0x2CC
-	  sth       r27, 0x0(r30)
-	  sth       r29, 0x2(r30)
-	  sth       r28, 0x4(r30)
-	  sth       r29, 0x6(r30)
-	  sth       r27, 0x8(r30)
-	  sth       r3, 0xA(r30)
-	  sth       r28, 0xC(r30)
-	  sth       r3, 0xE(r30)
-	  b         .loc_0x2EC
-
-	.loc_0x2CC:
-	  sth       r27, 0x0(r30)
-	  sth       r3, 0x2(r30)
-	  sth       r27, 0x4(r30)
-	  sth       r29, 0x6(r30)
-	  sth       r28, 0x8(r30)
-	  sth       r3, 0xA(r30)
-	  sth       r28, 0xC(r30)
-	  sth       r29, 0xE(r30)
-
-	.loc_0x2EC:
-	  psq_l     f31,0x58(r1),0,0
-	  lfd       f31, 0x50(r1)
-	  psq_l     f30,0x48(r1),0,0
-	  lfd       f30, 0x40(r1)
-	  psq_l     f29,0x38(r1),0,0
-	  lfd       f29, 0x30(r1)
-	  lmw       r27, 0x1C(r1)
-	  lwz       r0, 0x64(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x60
-	  blr
-	*/
 }
 
 /**

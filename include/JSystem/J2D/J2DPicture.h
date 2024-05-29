@@ -195,6 +195,13 @@ struct J2DPicture : public J2DPane {
 
 	inline JGeometry::TVec2<s16>* getTexCoord(int i) { return &mTexCoords[i]; }
 
+	inline void swap(f32& a, f32&b)
+	{
+		f32 tmp = a;
+		a = b;
+		b = tmp;
+	}
+
 	// _000      = VTBL
 	// _000-_100 = J2DPane
 	JUTTexture* mTextures[4];            // _100
