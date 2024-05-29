@@ -9,7 +9,7 @@ JPARTICLE_FILES:=\
 	$(BUILD_DIR)/src/JSystem/JParticle/JPAFieldBlock.o\
 	$(BUILD_DIR)/src/JSystem/JParticle/JPAKeyBlock.o\
 	$(BUILD_DIR)/asm/JSystem/JParticle/JPAMath.o\
-	$(BUILD_DIR)/asm/JSystem/JParticle/JPAParticle.o\
+	$(BUILD_DIR)/src/JSystem/JParticle/JPAParticle.o\
 	$(BUILD_DIR)/asm/JSystem/JParticle/JPAResource.o\
 	$(BUILD_DIR)/asm/JSystem/JParticle/JPAResourceLoader.o\
 	$(BUILD_DIR)/src/JSystem/JParticle/JPAResourceManager.o\

@@ -279,7 +279,7 @@ LIBS = [
             ["JSystem/JParticle/JPAFieldBlock", True],
             ["JSystem/JParticle/JPAKeyBlock", True],
             ["JSystem/JParticle/JPAMath", False],
-            ["JSystem/JParticle/JPAParticle", False],
+            ["JSystem/JParticle/JPAParticle", True],
             ["JSystem/JParticle/JPAResource", False],
             ["JSystem/JParticle/JPAResourceLoader", False],
             ["JSystem/JParticle/JPAResourceManager", True],

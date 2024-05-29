@@ -319,6 +319,13 @@ struct TVec3 {
 		z = a.z * scale;
 	}
 
+	void scaleAdd(f32 scale, const TVec3<f32>& a, const TVec3<f32>& b)
+	{
+		x = a.x * scale + b.x;
+		y = a.y * scale + b.y;
+		z = a.z * scale + b.z;
+	}
+
 	void zero() { x = y = z = 0.0f; }
 
 	f32 squared() const { return x * x + y * y + z * z; }
@@ -389,6 +396,13 @@ struct TVec3 {
 		x = a.x * b.x;
 		y = a.y * b.y;
 		z = a.z * b.z;
+	}
+
+	void mul(const TVec3<f32>& a)
+	{
+		x *= a.x;
+		y *= a.y;
+		z *= a.z;
 	}
 
 	bool isAbove(const TVec3<T>& other) const { return (x >= other.x) && (y >= other.y) && (z >= other.z); }
