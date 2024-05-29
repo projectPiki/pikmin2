@@ -1503,13 +1503,9 @@ void CellPyramid::entry(CellObject* object, Sys::Sphere& sphere)
 // TODO: Finish this. It's pretty much one big ol' usage of inlined functions.
 // I know that SysShape::Model::entry(Sys::Sphere&) exists, among others...
 /**
- * entry__Q24Game11CellPyramidFPQ24Game10CellObjectRQ23Sys6SphereRiR7Rect
- *
  * @note Address: 0x80158554
  * @note Size: 0x4B8
  */
-// void entry__Q24Game11CellPyramidFPQ24Game10CellObjectRQ23Sys6SphereRiR7Rect<
-//     int>()
 void CellPyramid::entry(CellObject* object, Sys::Sphere& sphere, int& layerIndex, Recti& boundingRect)
 {
 	Cell::sCurrCellMgr = this;
@@ -1622,47 +1618,6 @@ void CellPyramid::entry(CellObject* object, Sys::Sphere& sphere, int& layerIndex
 			object->mCellLegs->mCell = nullptr;
 		}
 	}
-
-	// int iVar9 = 0;
-
-	// if (10 < (param_4.p2.x - param_4.p1.x) * (param_4.p2.y - param_4.p1.y)) {
-	// 	for (int cellX = param_4.p1.x; cellX <= param_4.p2.x; cellX++) {
-	// 		for (int cellY = param_4.p1.y; cellY <= param_4.p2.y; cellY++) {
-	// 			Cell* cell = nullptr;
-
-	// 			if (cellX >= 0 && cellY >= 0 && cellX < layer->mSizeX && cellY < layer->mSizeY) {
-	// 				cell = &layer->mCells[cellX + (cellY * layer->mSizeX)];
-	// 			}
-
-	// 			if (cell) {
-	// 				if (3 < iVar9) {
-	// 					goto LAB_801589e8;
-	// 				}
-
-	// 				cell->entry(object->mCellLegs.arrayView, SUB41((uint)-iVar12 >> 0x1f, 0));
-
-	// 				for (CellLeg* pCVar6 = cell->mLeg; pCVar6 != nullptr; pCVar6 = pCVar6->pNext) {
-	// 					if (pCVar6 == object->mCellLegs) {
-	// 						bVar5 = true;
-	// 						goto LAB_80158994;
-	// 					}
-	// 				}
-
-	// 				bVar5 = false;
-
-	// 			LAB_80158994:
-	// 				if (!bVar5) {
-	// 					// Handle the case when leg entry fails (uncomment if needed)
-	// 					// JUTException::panic_f("cellPyramid.cpp", 0x59f, "leg entry failed !!!!!!!!!!\n");
-	// 				}
-	// 			}
-
-	// 			object = (CellObject*)&(object->sweepPruneObject).minX.flags;
-	// 			object = (CellObject*)&(object->sweepPruneObject).minX.flags;
-	// 			iVar9 += 1;
-	// 		}
-	// 	}
-	// }
 }
 
 /**

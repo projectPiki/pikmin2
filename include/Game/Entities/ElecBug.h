@@ -58,6 +58,8 @@ struct Obj : public EnemyBase {
 	void effectDrawOff();
 	void checkInteract(Obj*);
 
+	Obj* getPartner() const { return mPartner; }
+
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
 	FSM* mFsm;                     // _2BC

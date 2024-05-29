@@ -173,7 +173,7 @@ void OutState::cleanup(Item* item) { }
 void Item::movieUserCommand(u32 command, MoviePlayer* player)
 {
 	switch (command) {
-	case 100:
+	case CC_MovieCommand1:
 		PelletIterator iter;
 		CI_LOOP(iter)
 		{

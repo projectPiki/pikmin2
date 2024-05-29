@@ -814,9 +814,9 @@ void GameState::onMovieDone(SingleGameSection* game, MovieConfig* config, u32, u
 		Iterator<Piki> iterator(pikiMgr);
 		CI_LOOP(iterator)
 		{
-			Piki* piki   = *iterator;
-			Vector3f pos = piki->getPosition();
-			pos.y        = mapMgr->getMinY(pos);
+			FakePiki* piki = *iterator;
+			Vector3f pos   = piki->getPosition();
+			pos.y          = mapMgr->getMinY(pos);
 			piki->setPosition(pos, false);
 		}
 

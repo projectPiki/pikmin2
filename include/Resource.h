@@ -90,6 +90,8 @@ struct Mgr {
 	void syncAll(bool);
 	void watchHeap();
 
+	JKRHeap* getHeap() const { return mHeap; }
+
 	// _00 = VTBL
 	JKRHeap* mHeap;      // _04
 	u32 mHeapSize;       // _08

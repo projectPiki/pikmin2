@@ -1,42 +1,7 @@
 #include "JSystem/JStudio/math.h"
+#include "JSystem/JGeometry.h"
 #include "types.h"
 #include "math.h"
-
-/*
-    Generated from dpostproc
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80516448
-    lbl_80516448:
-        .4byte 0x3C8EFA35
-    .global lbl_8051644C
-    lbl_8051644C:
-        .4byte 0x00000000
-    .global lbl_80516450
-    lbl_80516450:
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global lbl_80516458
-    lbl_80516458:
-        .4byte 0x3FF00000
-        .4byte 0x00000000
-    .global lbl_80516460
-    lbl_80516460:
-        .4byte 0x42000000
-        .4byte 0x00000000
-    .global lbl_80516468
-    lbl_80516468:
-        .4byte 0xBFF921FB
-        .4byte 0x54442D18
-    .global lbl_80516470
-    lbl_80516470:
-        .4byte 0x3FF921FB
-        .4byte 0x54442D18
-    .global lbl_80516478
-    lbl_80516478:
-        .4byte 0x404CA5DC
-        .4byte 0x1A63C1F8
-*/
 
 namespace JStudio {
 
@@ -46,12 +11,12 @@ namespace JStudio {
  */
 void math::getRotation_xyz(MtxP mtx, f32 x, f32 y, f32 z)
 {
-	f32 cosx     = cos(x * 0.017453292f);
-	f32 sinx     = sin(x * 0.017453292f);
-	f32 cosy     = cos(y * 0.017453292f);
-	f32 siny     = sin(y * 0.017453292f);
-	f32 cosz     = cos(z * 0.017453292f);
-	f32 sinz     = sin(z * 0.017453292f);
+	f32 cosx     = dolcosf(x * 0.017453292f);
+	f32 sinx     = dolsinf(x * 0.017453292f);
+	f32 cosy     = dolcosf(y * 0.017453292f);
+	f32 siny     = dolsinf(y * 0.017453292f);
+	f32 cosz     = dolcosf(z * 0.017453292f);
+	f32 sinz     = dolsinf(z * 0.017453292f);
 	f32 cosxcosz = cosx * cosz;
 	f32 cosxsinz = cosx * sinz;
 	f32 sinxcosz = sinx * cosz;
@@ -69,8 +34,6 @@ void math::getRotation_xyz(MtxP mtx, f32 x, f32 y, f32 z)
 	mtx[0][3] = 0.0f;
 	mtx[1][3] = 0.0f;
 	mtx[2][3] = 0.0f;
-
-	// UNUSED FUNCTION
 }
 
 /**
@@ -84,117 +47,6 @@ void math::getTransformation_SRxyzT(MtxP mtx, const Vec& scale, const Vec& rotat
 	Mtx tempMtx;
 	rotate_xyz(scaleMtx, tempMtx, rotation);
 	PSMTXTransApply(tempMtx, mtx, translation.x, translation.y, translation.z);
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x110(r1)
-	  mflr      r0
-	  stw       r0, 0x114(r1)
-	  stfd      f31, 0x100(r1)
-	  psq_st    f31,0x108(r1),0,0
-	  stfd      f30, 0xF0(r1)
-	  psq_st    f30,0xF8(r1),0,0
-	  stfd      f29, 0xE0(r1)
-	  psq_st    f29,0xE8(r1),0,0
-	  stfd      f28, 0xD0(r1)
-	  psq_st    f28,0xD8(r1),0,0
-	  stfd      f27, 0xC0(r1)
-	  psq_st    f27,0xC8(r1),0,0
-	  stfd      f26, 0xB0(r1)
-	  psq_st    f26,0xB8(r1),0,0
-	  stw       r31, 0xAC(r1)
-	  stw       r30, 0xA8(r1)
-	  stw       r29, 0xA4(r1)
-	  lfs       f1, 0x0(r4)
-	  mr        r29, r3
-	  lfs       f2, 0x4(r4)
-	  mr        r30, r5
-	  lfs       f3, 0x8(r4)
-	  mr        r31, r6
-	  addi      r3, r1, 0x68
-	  bl        0xD97AC
-	  lfs       f1, -0x7F18(r2)
-	  lfs       f0, 0x0(r30)
-	  lfs       f30, 0x8(r30)
-	  fmuls     f27, f1, f0
-	  lfs       f31, 0x4(r30)
-	  fmr       f1, f27
-	  bl        0xBE270
-	  frsp      f29, f1
-	  fmr       f1, f27
-	  bl        0xBE7CC
-	  lfs       f0, -0x7F18(r2)
-	  frsp      f28, f1
-	  fmuls     f31, f0, f31
-	  fmr       f1, f31
-	  bl        0xBE250
-	  frsp      f27, f1
-	  fmr       f1, f31
-	  bl        0xBE7AC
-	  lfs       f0, -0x7F18(r2)
-	  frsp      f31, f1
-	  fmuls     f26, f0, f30
-	  fmr       f1, f26
-	  bl        0xBE230
-	  frsp      f30, f1
-	  fmr       f1, f26
-	  bl        0xBE78C
-	  frsp      f7, f1
-	  lfs       f0, -0x7F14(r2)
-	  fmuls     f2, f27, f30
-	  addi      r3, r1, 0x8
-	  fneg      f1, f31
-	  stfs      f0, 0x14(r1)
-	  fmuls     f6, f29, f30
-	  stfs      f2, 0x8(r1)
-	  fmuls     f5, f28, f7
-	  addi      r4, r1, 0x68
-	  fmuls     f2, f27, f7
-	  stfs      f1, 0x28(r1)
-	  fmuls     f4, f28, f27
-	  stfs      f0, 0x24(r1)
-	  fmuls     f3, f29, f27
-	  addi      r5, r1, 0x38
-	  fmadds    f1, f6, f31, f5
-	  stfs      f2, 0x18(r1)
-	  fmadds    f2, f5, f31, f6
-	  stfs      f4, 0x2C(r1)
-	  fmuls     f5, f29, f7
-	  fmuls     f4, f28, f30
-	  stfs      f3, 0x30(r1)
-	  stfs      f1, 0x10(r1)
-	  fmsubs    f3, f4, f31, f5
-	  fmsubs    f1, f5, f31, f4
-	  stfs      f2, 0x1C(r1)
-	  stfs      f3, 0xC(r1)
-	  stfs      f1, 0x20(r1)
-	  stfs      f0, 0x34(r1)
-	  bl        0xD91F4
-	  lfs       f1, 0x0(r31)
-	  mr        r4, r29
-	  lfs       f2, 0x4(r31)
-	  addi      r3, r1, 0x38
-	  lfs       f3, 0x8(r31)
-	  bl        0xD9664
-	  psq_l     f31,0x108(r1),0,0
-	  lfd       f31, 0x100(r1)
-	  psq_l     f30,0xF8(r1),0,0
-	  lfd       f30, 0xF0(r1)
-	  psq_l     f29,0xE8(r1),0,0
-	  lfd       f29, 0xE0(r1)
-	  psq_l     f28,0xD8(r1),0,0
-	  lfd       f28, 0xD0(r1)
-	  psq_l     f27,0xC8(r1),0,0
-	  lfd       f27, 0xC0(r1)
-	  psq_l     f26,0xB8(r1),0,0
-	  lfd       f26, 0xB0(r1)
-	  lwz       r31, 0xAC(r1)
-	  lwz       r30, 0xA8(r1)
-	  lwz       r0, 0x114(r1)
-	  lwz       r29, 0xA4(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x110
-	  blr
-	*/
 }
 
 /**
@@ -210,8 +62,76 @@ void math::transform_SRxyzT(MtxP, f32 const (*)[4], Vec const&, Vec const&, Vec 
  * @note Address: 0x80011174
  * @note Size: 0x254
  */
-void math::getFromTransformation_SRxyzT(Vec*, Vec*, Vec*, f32 const (*)[4])
+void math::getFromTransformation_SRxyzT(Vec* p1, Vec* p2, Vec* p3, const Mtx mtx)
 {
+	Vec row1;
+	row1.x = mtx[0][0];
+	row1.y = mtx[1][0];
+	row1.z = mtx[2][0];
+	p1->x  = PSVECMag(&row1);
+	Vec row2;
+	row2.x = mtx[0][1];
+	row2.y = mtx[1][1];
+	row2.z = mtx[2][1];
+	p1->y  = PSVECMag(&row2);
+	Vec row3;
+	row3.x = mtx[0][2];
+	row3.y = mtx[1][2];
+	row3.z = mtx[2][2];
+	p1->z  = PSVECMag(&row3);
+
+	p3->x = mtx[0][3];
+	p3->y = mtx[1][3];
+	p3->z = mtx[2][3];
+
+	f64 val0 = 0.0; // f10
+	f64 val1 = 0.0; // f11
+	f64 val2 = 0.0; // f4
+
+	if (p1->x != 0.0f) {
+		val0 = 1.0 / p1->x;
+	}
+
+	if (p1->y != 0.0f) {
+		val1 = 1.0 / p1->y;
+	}
+
+	if (p1->z != 0.0f) {
+		val2 = 1.0 / p1->z;
+	}
+
+	// this is all inlines/novel JGeometry structs according to tp debug
+
+	f64 outX, outY, outZ;      // f28, f3, f29
+	f64 d9 = mtx[2][2] * val2; // f8
+	f64 d8 = mtx[2][1] * val1; // f7
+	f64 d5 = mtx[1][1] * val1; // f2
+	f64 d4 = mtx[1][0] * val0; // f29
+	f64 d2 = mtx[0][1] * val1; // f1
+	f64 d1 = mtx[0][0] * val0; // f30
+	f64 d7 = mtx[2][0] * val0; // f31
+
+	if (d7 - 1.0 >= -JGeometry::TUtilf::epsilon()) {
+		outX = atan2(-d2, d5);
+		outY = -1.5707963267948966;
+		outZ = 0.0;
+	} else if (d7 + 1.0 <= JGeometry::TUtilf::epsilon()) {
+		outX = atan2(d2, d5);
+		outY = 1.5707963267948966;
+		outZ = 0.0;
+	} else {
+		outX = atan2(d8, d9);
+		outZ = atan2(d4, d1);
+		outY = asin(-d7);
+	}
+
+	outX *= 57.29577951308232;
+	outY *= 57.29577951308232;
+	outZ *= 57.29577951308232;
+	p2->x = f32(outX);
+	p2->y = f32(outY);
+	p2->z = f32(outZ);
+
 	/*
 	stwu     r1, -0x80(r1)
 	mflr     r0

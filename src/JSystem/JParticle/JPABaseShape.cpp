@@ -3085,12 +3085,6 @@ void JPADrawParticleCallBack(JPAEmitterWorkData* workData, JPABaseParticle* part
 }
 
 /**
- * @note Address: 0x8008E968
- * @note Size: 0x4
- */
-void JPAParticleCallBack::draw(JPABaseEmitter*, JPABaseParticle* particle) { }
-
-/**
  * @note Address: 0x8008E96C
  * @note Size: 0x284
  */

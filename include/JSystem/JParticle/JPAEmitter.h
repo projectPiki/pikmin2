@@ -62,6 +62,7 @@ struct JPABaseParticle {
 	void getGlobalPosition(JGeometry::TVec3<f32>& pos) const { pos.set(mPosition); }
 	f32 getParticleScaleX() const { return mParticleScaleX; }
 	f32 getParticleScaleY() const { return mParticleScaleY; }
+	void initStatus(u32 val) { mFlags = val; }
 	void setStatus(u32 flag) { mFlags |= flag; }
 	u32 checkStatus(u32 flag) { return mFlags & flag; }
 	void setInvisibleParticleFlag() { setStatus(8); }
@@ -98,9 +99,9 @@ struct JPABaseParticle {
 };
 
 struct JPAParticleCallBack {
-	virtual ~JPAParticleCallBack() = 0;                      // _08
-	virtual void execute(JPABaseEmitter*, JPABaseParticle*); // _0C (weak)
-	virtual void draw(JPABaseEmitter*, JPABaseParticle*);    // _10 (weak)
+	virtual ~JPAParticleCallBack() = 0;                         // _08
+	virtual void execute(JPABaseEmitter*, JPABaseParticle*) { } // _0C (weak)
+	virtual void draw(JPABaseEmitter*, JPABaseParticle*) { }    // _10 (weak)
 };
 
 struct JPABaseEmitter {
@@ -340,7 +341,6 @@ struct JPABaseEmitter {
 	JGeometry::TVec2f mGlobalPScl;           // _B0
 	GXColor mGlobalPrmClr;                   // _B8, NEEDS TO BE GXCOLOR
 	GXColor mGlobalEnvClr;                   // _BC, NEEDS TO BE GXCOLOR
-	s32 : 0;                                 // reset alignment to _C0
 	s32 mpUserWork;                          // _C0
 	JPARandom mRandom;                       // _C4
 	JPAList<JPABaseParticle> mAlivePtclBase; // _C8

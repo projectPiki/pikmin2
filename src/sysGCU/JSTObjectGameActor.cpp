@@ -96,9 +96,9 @@ void ObjectGameActor::update()
 	}
 
 	for (int i = 0; i < mCurrCommandCount; i++) {
-		if (mCommandIDs[i] >= 100) {
+		if (mCommandIDs[i] >= CC_MovieCommand1) {
 			mGameObject->movieUserCommand(mCommandIDs[i], mMoviePlayer);
-		} else if (mCommandIDs[i] == 0) {
+		} else if (mCommandIDs[i] == CC_StartAnimation) {
 			mGameObject->movieStartAnimation(mMovieCommandData[i]);
 		} else if (mCommandIDs[i] == 1) {
 			void* file = mActorArchive->getIdxResource(mMovieCommandData[i]);

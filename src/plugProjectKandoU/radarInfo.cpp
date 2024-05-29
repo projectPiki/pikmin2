@@ -22,7 +22,7 @@ Vector2f Radar::Point::getPosition()
  * @note Address: N/A
  * @note Size: 0x28
  */
-void Radar::Point::clear() { clearRelations(); }
+// void Radar::Point::clear() {  }
 
 /**
  * @note Address: 0x8021E2F4
@@ -136,9 +136,7 @@ void Radar::Mgr::attach(Game::TPositionObject* obj, Radar::cRadarType type, u32 
 	Point* point  = static_cast<Point*>(mPointNode2.mChild);
 	if (cPoint) {
 		cPoint->del();
-		point->mObject  = obj;
-		point->mObjType = type;
-		point->mCaveID  = flag;
+		point->setData(obj, type, flag);
 		mPointNode1.add(cPoint);
 	}
 }
@@ -158,9 +156,7 @@ bool Radar::Mgr::detach(Game::TPositionObject* obj)
 		point->del();
 
 		point->clearRelations();
-		point->mObject  = nullptr;
-		point->mObjType = MAP_NULL_ICON;
-		point->mCaveID  = nullptr;
+		point->setData(nullptr, MAP_NULL_ICON, 0);
 
 		if (type == MAP_TREASURE || type == MAP_SWALLOWED_TREASURE || type == MAP_UPGRADE) {
 			mgr->mOtakaraNum--;
@@ -182,9 +178,9 @@ int Radar::Mgr::calcNearestTreasure(Vector3f& naviPos, f32 searchDist, Vector3f&
 		if (mFuefukiTimer > 0) {
 			mFuefukiTimer--;
 			return 4;
-		} else {
-			return 3;
 		}
+
+		return 3;
 	}
 
 	Point* retPoint = nullptr;
@@ -192,34 +188,36 @@ int Radar::Mgr::calcNearestTreasure(Vector3f& naviPos, f32 searchDist, Vector3f&
 	f32 dist        = searchDist;
 	FOREACH_NODE(Point, mPointNode1.mChild, cPoint)
 	{
-		if (cPoint->mObjType == MAP_TREASURE || cPoint->mObjType == MAP_SWALLOWED_TREASURE || cPoint->mObjType == MAP_UPGRADE) {
-			ret++;
-			Game::Creature* cObj = static_cast<Game::Pellet*>(cPoint->mObject);
-			if (!cObj->isTeki()) {
-				cObj->isPellet();
-			}
-			Vector3f objPos = cObj->getPosition();
-			Sys::Sphere test;
-			Vector2f diff = Vector2f(objPos.x, objPos.z);
-			diff.x -= naviPos.x;
-			diff.y -= naviPos.z;
-			cObj->getBoundingSphere(test);
+		if (cPoint->mObjType != MAP_TREASURE && cPoint->mObjType != MAP_SWALLOWED_TREASURE && cPoint->mObjType != MAP_UPGRADE) {
+			continue;
+		}
 
-			f32 cDist = _lenVec2D(diff) - test.mRadius;
-			if (cDist <= dist) {
-				dist        = cDist;
-				retPoint    = cPoint;
-				treasurePos = cObj->getPosition();
-				dist2       = cDist;
-			}
+		ret++;
+		Game::Creature* cObj = static_cast<Game::Pellet*>(cPoint->mObject);
+		if (!cObj->isTeki()) {
+			cObj->isPellet();
+		}
+		Vector3f objPos = cObj->getPosition();
+		Sys::Sphere test;
+		Vector2f diff = Vector2f(objPos.x, objPos.z);
+		diff.x -= naviPos.x;
+		diff.y -= naviPos.z;
+		cObj->getBoundingSphere(test);
+
+		f32 cDist = _lenVec2D(diff) - test.mRadius;
+		if (cDist <= dist) {
+			dist        = cDist;
+			retPoint    = cPoint;
+			treasurePos = cObj->getPosition();
+			dist2       = cDist;
 		}
 	}
 
 	if (retPoint != nullptr) {
 		return 2;
-	} else {
-		return ret > 0;
 	}
+
+	return ret > 0;
 }
 
 /**

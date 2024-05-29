@@ -2017,7 +2017,7 @@ void Navi::on_movie_end(bool)
 void Navi::movieUserCommand(u32 command, MoviePlayer* player)
 {
 	switch (command) {
-	case 100: {
+	case CC_MovieCommand1: {
 		enterAllPikis();
 		if (player->isFlag(MVP_IsFinished)) {
 			pikiMgr->forceEnterPikmins(0);
@@ -2025,7 +2025,7 @@ void Navi::movieUserCommand(u32 command, MoviePlayer* player)
 		break;
 	}
 
-	case 102: {
+	case CC_MovieCommand3: {
 		Creature* hole = player->mTargetObject;
 		JUT_ASSERTLINE(2134, hole != nullptr, "no target!! HOLEIN\n");
 
@@ -2034,7 +2034,7 @@ void Navi::movieUserCommand(u32 command, MoviePlayer* player)
 		break;
 	}
 
-	case 103: {
+	case CC_MovieCommand4: {
 		Creature* fountain = player->mTargetObject;
 		JUT_ASSERTLINE(2148, fountain, "no target!! FOUNTAINON\n");
 
@@ -2043,17 +2043,17 @@ void Navi::movieUserCommand(u32 command, MoviePlayer* player)
 		break;
 	}
 
-	case 104: {
+	case CC_MovieCommand5: {
 		shadowMgr->delShadow(this);
 		break;
 	}
 
-	case 107: {
+	case CC_MovieCommand8: {
 		shadowMgr->addShadow(this);
 		break;
 	}
 
-	case 105: {
+	case CC_MovieCommand6: {
 		efx::TNaviEffect* fx = mEffectsObj;
 
 		if (!fx->isFlag(efx::NAVIFX_IsSaved)) {
@@ -2073,7 +2073,7 @@ void Navi::movieUserCommand(u32 command, MoviePlayer* player)
 		break;
 	}
 
-	case 106: {
+	case CC_MovieCommand7: {
 		// mEffectsObj->setMovieEffect(); using the inline fixes this part, but breaks everything else
 		efx::TNaviEffect* fx = mEffectsObj;
 		if (fx->isFlag(efx::NAVIFX_IsSaved)) {

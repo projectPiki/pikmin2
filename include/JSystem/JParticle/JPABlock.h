@@ -111,7 +111,9 @@ struct JPADynamicsBlock {
 	f32 getInitVelDir() { return mData->mInitialVelDir; }
 	f32 getInitVelDirSp() { return mData->mSpread; }
 	f32 getInitVelRndm() { return mData->mInitialVelRndm; }
+	f32 getInitVelRatio() { return mData->mInitialVelRatio; }
 	f32 getAirRes() { return mData->mAirResist; }
+	f32 getMomentRndm() const { return mData->mMoment; }
 
 	// unused/inlined:
 	void init_jpa(const u8*, JKRHeap*);
