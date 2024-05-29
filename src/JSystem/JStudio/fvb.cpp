@@ -377,7 +377,8 @@ TObject_composite::TObject_composite(const data::TParse_TBlock& block)
 
 void TObject_composite::prepare_data_(const data::TParse_TParagraph::TData& data, TControl* control)
 {
-	const TFunctionValue_composite* content = static_cast<const TFunctionValue_composite*>(data.mContent);
+	const void* preContent                  = data.mContent;
+	const TFunctionValue_composite* content = static_cast<const TFunctionValue_composite*>(preContent);
 	const CompositeOperation* ops           = getCompositeOperation_(*(JStudio::fvb::data::TEComposite*)content);
 
 	mSpecFV.data_set(ops->mSetFunc, ops->mGetFunc(&content->mAllocator));
@@ -530,10 +531,7 @@ TControl::~TControl() { }
  * @note Address: N/A
  * @note Size: 0x50
  */
-void TControl::appendObject(TObject* object)
-{
-	// UNUSED/INLINED
-}
+void TControl::appendObject(TObject* object) { mObjectContainer.Push_back(object); }
 
 /**
  * @note Address: 0x8000BF70
@@ -566,51 +564,16 @@ TObject* TControl::getObject(const void* id, u32 length)
  */
 TObject* TControl::getObject_index(u32 idx)
 {
-	/*
-stwu     r1, -0x10(r1)
-lwz      r0, 8(r3)
-cmplw    r4, r0
-blt      lbl_8000C0B8
-li       r3, 0
-b        lbl_8000C114
+	if (idx >= mObjectContainer.size()) {
+		return nullptr;
+	}
 
-lbl_8000C0B8:
-lwz      r3, 0xc(r3)
-cmplwi   r4, 0
-stw      r3, 0xc(r1)
-stw      r3, 8(r1)
-beq      lbl_8000C110
-rlwinm.  r0, r4, 0x1d, 3, 0x1f
-mtctr    r0
-beq      lbl_8000C104
-
-lbl_8000C0D8:
-lwz      r3, 0(r3)
-lwz      r3, 0(r3)
-lwz      r3, 0(r3)
-lwz      r3, 0(r3)
-lwz      r3, 0(r3)
-lwz      r3, 0(r3)
-lwz      r3, 0(r3)
-lwz      r3, 0(r3)
-bdnz     lbl_8000C0D8
-andi.    r4, r4, 7
-beq      lbl_8000C110
-
-lbl_8000C104:
-mtctr    r4
-
-lbl_8000C108:
-lwz      r3, 0(r3)
-bdnz     lbl_8000C108
-
-lbl_8000C110:
-addi     r3, r3, -12
-
-lbl_8000C114:
-addi     r1, r1, 0x10
-blr
-	*/
+	JGadget::TLinkList<TObject, -12>::iterator begin(mObjectContainer.begin());
+	while (idx != 0) {
+		begin++;
+		idx--;
+	}
+	return &*begin;
 }
 
 /**
