@@ -48,10 +48,19 @@ struct Radar {
 
 		Vector2f getPosition();
 
-		static void entry(Game::TPositionObject*, Radar::cRadarType, u32); // unused? or inline
-		inline void clear();
+		inline void clear() { clearRelations(); }
+		inline void setData(Game::TPositionObject* object, Radar::cRadarType type, u32 caveID)
+		{
+			mObject  = object;
+			mObjType = type;
+			mCaveID  = caveID;
+		}
 
 		inline u32 getCaveID() { return mCaveID; }
+		inline Game::TPositionObject* getObject() { return mObject; }
+		inline Radar::cRadarType getType() { return mObjType; }
+
+		static void entry(Game::TPositionObject*, Radar::cRadarType, u32); // unused? or inline
 
 		// _00     = VTBL
 		// _00-_18 = CNode
