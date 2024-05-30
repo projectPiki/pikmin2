@@ -195,11 +195,11 @@ struct J2DPicture : public J2DPane {
 
 	inline JGeometry::TVec2<s16>* getTexCoord(int i) { return &mTexCoords[i]; }
 
-	static inline void swap(f32& a, f32&b)
+	static inline void swap(f32& a, f32& b)
 	{
 		f32 tmp = a;
-		a = b;
-		b = tmp;
+		a       = b;
+		b       = tmp;
 	}
 
 	// _000      = VTBL

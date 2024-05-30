@@ -1427,7 +1427,8 @@ void J2DPicture::setTexCoord(const JUTTexture* texture, J2DBinding binding, J2DM
 	setTexCoord(mTexCoords, texture, binding, mirror, doRotate90);
 }
 
-static inline bool unkInline(J2DBinding binding, bool doRotate90, J2DMirror mirror, bool &bindLeft, bool &bindRight, bool &bindTop, bool &bindBottom)
+static inline bool unkInline(J2DBinding binding, bool doRotate90, J2DMirror mirror, bool& bindLeft, bool& bindRight, bool& bindTop,
+                             bool& bindBottom)
 {
 	if (!doRotate90) {
 		if (mirror & J2DMIRROR_X) {
@@ -1450,7 +1451,7 @@ static inline bool unkInline(J2DBinding binding, bool doRotate90, J2DMirror mirr
 		} else {
 			bindBottom = binding & J2DBIND_Bottom;
 		}
-		
+
 		return mirror & J2DMIRROR_Y;
 	} else {
 		if (mirror & J2DMIRROR_X) {
@@ -1489,18 +1490,18 @@ void J2DPicture::setTexCoord(JGeometry::TVec2s* texCoords, const JUTTexture* tex
 	bool bindTop;
 	bool bindBottom;
 
-    if (!doRotate90) {
-         bindLeft    = (mirror & J2DMIRROR_X) ? (bool)(binding & J2DBIND_Right)  : (bool)(binding & J2DBIND_Left);
-         bindRight   = (mirror & J2DMIRROR_X) ? (bool)(binding & J2DBIND_Left)   : (bool)(binding & J2DBIND_Right);
-         bindTop     = (mirror & J2DMIRROR_Y) ? (bool)(binding & J2DBIND_Bottom) : (bool)(binding & J2DBIND_Top);
-         bindBottom  = (mirror & J2DMIRROR_Y) ? (bool)(binding & J2DBIND_Top)    : (bool)(binding & J2DBIND_Bottom);
+	if (!doRotate90) {
+		bindLeft   = (mirror & J2DMIRROR_X) ? (bool)(binding & J2DBIND_Right) : (bool)(binding & J2DBIND_Left);
+		bindRight  = (mirror & J2DMIRROR_X) ? (bool)(binding & J2DBIND_Left) : (bool)(binding & J2DBIND_Right);
+		bindTop    = (mirror & J2DMIRROR_Y) ? (bool)(binding & J2DBIND_Bottom) : (bool)(binding & J2DBIND_Top);
+		bindBottom = (mirror & J2DMIRROR_Y) ? (bool)(binding & J2DBIND_Top) : (bool)(binding & J2DBIND_Bottom);
 	} else {
-         bindLeft    = (mirror & J2DMIRROR_X) ? (bool)(binding & J2DBIND_Bottom) : (bool)(binding & J2DBIND_Top);
-         bindRight   = (mirror & J2DMIRROR_X) ? (bool)(binding & J2DBIND_Top)    : (bool)(binding & J2DBIND_Bottom);
-         bindTop     = (mirror & J2DMIRROR_Y) ? (bool)(binding & J2DBIND_Left)   : (bool)(binding & J2DBIND_Right);
-         bindBottom  = (mirror & J2DMIRROR_Y) ? (bool)(binding & J2DBIND_Right)  : (bool)(binding & J2DBIND_Left);
+		bindLeft   = (mirror & J2DMIRROR_X) ? (bool)(binding & J2DBIND_Bottom) : (bool)(binding & J2DBIND_Top);
+		bindRight  = (mirror & J2DMIRROR_X) ? (bool)(binding & J2DBIND_Top) : (bool)(binding & J2DBIND_Bottom);
+		bindTop    = (mirror & J2DMIRROR_Y) ? (bool)(binding & J2DBIND_Left) : (bool)(binding & J2DBIND_Right);
+		bindBottom = (mirror & J2DMIRROR_Y) ? (bool)(binding & J2DBIND_Right) : (bool)(binding & J2DBIND_Left);
 	}
-    
+
 	f32 rectWidth;
 	f32 rectHeight;
 
@@ -1541,10 +1542,10 @@ void J2DPicture::setTexCoord(JGeometry::TVec2s* texCoords, const JUTTexture* tex
 	}
 
 	if (mirror & J2DMIRROR_X) {
-        swap(s0, s1);
+		swap(s0, s1);
 	}
 	if (mirror & J2DMIRROR_Y) {
-        swap(t0, t1);
+		swap(t0, t1);
 	}
 
 	s16 temp_r27 = J2DCast_F32_to_S16(s0, 8);
