@@ -460,6 +460,30 @@ struct Matrixf {
 		(*this)(2, 3) = pos.z;
 	}
 
+	inline void setTransformationMtx2(Vector3f& direction, Vector3f& angle, Vector3f& translation)
+	{
+		Vector3f cross(direction.y * angle.z - direction.z * angle.y, direction.z * angle.x - direction.x * angle.z,
+		               direction.x * angle.y - direction.y * angle.x);
+
+		Vector3f cross2(cross.y * angle.z - cross.z * angle.y, cross.z * angle.x - cross.x * angle.z,
+		                cross.x * angle.y - cross.y * angle.x);
+
+		(*this)(0, 0) = cross2.x;
+		(*this)(0, 1) = angle.x;
+		(*this)(0, 2) = cross.x;
+		(*this)(0, 3) = translation.x;
+
+		(*this)(1, 0) = cross2.y;
+		(*this)(1, 1) = angle.y;
+		(*this)(1, 2) = cross.y;
+		(*this)(1, 3) = translation.y;
+
+		(*this)(2, 0) = cross2.z;
+		(*this)(2, 1) = angle.z;
+		(*this)(2, 2) = cross.z;
+		(*this)(2, 3) = translation.z;
+	}
+
 	/**
 	 * @brief Calculates the scaled translation of a 2D vector using the current matrix.
 	 *

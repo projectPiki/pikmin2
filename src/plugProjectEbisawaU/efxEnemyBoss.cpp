@@ -114,69 +114,11 @@ bool TKageDead2::create(Arg* arg)
 	ArgPrmColor* argp = static_cast<ArgPrmColor*>(arg);
 
 	if (TSimple1::create(arg)) {
-		mEmitters[0]->setPrmColor(argp->mColor);
+		mEmitters[0]->setPrmColorRGB(argp->mColor.r, argp->mColor.g, argp->mColor.b);
+		mEmitters[0]->mGlobalPrmClr.a = argp->mColor.a;
 		return true;
 	}
 	return false;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	lis      r4, lbl_80497910@ha
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	mr       r3, r30
-	addi     r31, r4, lbl_80497910@l
-	lwz      r12, 0(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	addi     r3, r31, 0x20
-	bl       strcmp
-	cntlzw   r0, r3
-	rlwinm.  r0, r0, 0x1b, 0x18, 0x1f
-	bne      lbl_803EB71C
-	addi     r3, r31, 0
-	addi     r5, r31, 0x14
-	li       r4, 0x67
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803EB71C:
-	mr       r3, r29
-	mr       r4, r30
-	bl       create__Q23efx8TSimple1FPQ23efx3Arg
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803EB760
-	lbz      r6, 0x12(r30)
-	li       r3, 1
-	lbz      r5, 0x11(r30)
-	lwz      r4, 8(r29)
-	lbz      r0, 0x10(r30)
-	stb      r0, 0xb8(r4)
-	stb      r5, 0xb9(r4)
-	stb      r6, 0xba(r4)
-	lbz      r0, 0x13(r30)
-	lwz      r4, 8(r29)
-	stb      r0, 0xbb(r4)
-	b        lbl_803EB764
-
-lbl_803EB760:
-	li       r3, 0
-
-lbl_803EB764:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
@@ -641,8 +583,10 @@ void efx::THdamaSight::setPosNrm(Vector3f& pos, Vector3f& angle)
 {
 	if (mEmitter) {
 		Matrixf mtx;
-		Vector3f vecDir(1.0f, 1.0f, 0.0f);
-		mtx.setTransformationMtx(vecDir, angle, pos);
+		Vector3f fixedAngle = angle;
+		Vector3f vecDir(0.0f, 1.0f, 0.0f);
+		_normalise2(fixedAngle);
+		mtx.setTransformationMtx2(vecDir, fixedAngle, pos);
 		mEmitter->setGlobalRTMatrix(mtx.mMatrix.mtxView);
 	}
 	/*
@@ -758,18 +702,13 @@ bool THdamaHit2W::create(efx::Arg* arg)
 	P2ASSERTLINE(453, nameCheck);
 
 	efx::ArgDir* argd = static_cast<efx::ArgDir*>(arg);
-
-	f32 x = argd->mAngle.x;
-	f32 y = argd->mAngle.y;
-	f32 z = argd->mAngle.z;
+	Vector3f angle    = argd->mAngle;
 
 	if (TSimple3::create(argd)) {
 
 		Matrixf mtx;
-		Vector3f vecDir(0.0f, 1.0f, 0.0f);
-		Vector3f vecAng(x, y, z);
-		mtx.setTransformationMtx(vecDir, vecAng,
-		                         Vector3f::zero); // not quite right for this one, needs something else to happen to vecAng first I think?
+		Vector3f vecDir(1.0f, 1.0f, 0.0f);
+		mtx.setTransformationMtx2(vecDir, angle, Vector3f::zero);
 
 		for (int i = 0; i < 3; i++) {
 			mEmitters[i]->setGlobalRMatrix(mtx.mMatrix.mtxView);
