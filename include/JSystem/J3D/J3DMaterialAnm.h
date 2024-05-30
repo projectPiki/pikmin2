@@ -32,7 +32,7 @@ struct J3DMatColorAnm {
 
 	void setAnmFlag(bool flag) { mAnmFlag = flag; }
 	bool getAnmFlag() const { return mAnmFlag; }
-	void calc(GXColor* pColor) const { mAnm->getColor(mIndex, pColor); }
+	void calc(GXColor* pColor) const { mAnm->getColor(*(u16*)&mIndex, pColor); }
 
 	u16 getIndex() const { return mIndex; }
 
@@ -44,7 +44,8 @@ struct J3DMatColorAnm {
 struct J3DTexNoAnm {
 	J3DTexNoAnm();
 
-	virtual void calc(u16* data) const { getAnmTexPattern()->getTexNo(mIndex, data); } // _08 (weak) // nonmatching
+	// incredible useless u16 cast needed for match
+	virtual void calc(u16* data) const { getAnmTexPattern()->getTexNo(*(u16*)&mIndex, data); } // _08 (weak)
 
 	void operator=(J3DTexNoAnm const& other)
 	{
@@ -115,7 +116,7 @@ struct J3DTevColorAnm {
 
 	void setAnmFlag(bool flag) { mAnmFlag = flag; }
 	bool getAnmFlag() const { return mAnmFlag; }
-	void calc(GXColorS10* color) const { mAnm->getTevColorReg(mIndex, color); }
+	void calc(GXColorS10* color) const { mAnm->getTevColorReg(*(u16*)&mIndex, color); }
 
 	u16 mIndex;            // _00
 	u16 mAnmFlag;          // _02
@@ -143,7 +144,7 @@ struct J3DTevKColorAnm {
 
 	void setAnmFlag(bool flag) { mAnmFlag = flag; }
 	bool getAnmFlag() const { return mAnmFlag; }
-	void calc(GXColor* pColor) const { mAnm->getTevKonstReg(mIndex, pColor); }
+	void calc(GXColor* pColor) const { mAnm->getTevKonstReg(*(u16*)&mIndex, pColor); }
 
 	u16 mIndex;            // _00
 	u16 mAnmFlag;          // _02
