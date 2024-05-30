@@ -341,30 +341,36 @@ lbl_80165704:
 /**
  * @note Address: 0x80165718
  * @note Size: 0x1D4
+ * TODO: Decomp this properly and then comment on it
  */
 void NaviWhistle::update(Vector3f& stick, bool active)
 {
-	Vector3f res;
+	Vector3f offset;
 	if (active) {
-		res = 0.0f;
+		offset = Vector3f(0.0f);
 	} else {
-		res              = stick;
-		f32 dist         = res.normalise();
-		NaviParms* parms = static_cast<NaviParms*>(mNavi->mParms);
-		res *= parms->mNaviParms.mCursorMovementSpeed.mValue;
-		f32 time = sys->mDeltaTime;
-		res *= time;
-		res += mNaviOffsetVec;
-		dist = res.normalise();
-		res *= dist;
-		res *= time;
-		res += mNaviOffsetVec;
-		// wtf is this
-	}
-	mNaviOffsetVec = res;
+		offset     = stick;
+		float dist = offset.normalise();
+		offset.scale(mNavi->getParms()->mNaviParms.mCursorMovementSpeed.mValue);
+		offset.scale(sys->getDeltaTime());
+		offset = offset + mNaviOffsetVec;
 
-	updatePosition(); // why... wont... you... NOT INLINE
+		dist = offset.normalise();
+		if (dist < mNavi->getParms()->mNaviParms.mMaxCursorMoveRadius.mValue) {
+			offset.scale(sys->getDeltaTime());
+			offset = offset + mNaviOffsetVec;
+		}
+
+		offset.scale(dist);
+		offset = mNaviOffsetVec - offset;
+		offset = offset + mNaviOffsetVec;
+	}
+
+	mNaviOffsetVec = offset;
+
+	updatePosition();
 	updateWhistle();
+
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
