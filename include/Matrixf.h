@@ -460,13 +460,18 @@ struct Matrixf {
 		(*this)(2, 3) = pos.z;
 	}
 
-	inline void setTransformationMtx2(Vector3f& direction, Vector3f& angle, Vector3f& translation)
+	inline void setTransformationMtx2(Vector3f& angle, Vector3f& translation)
 	{
-		Vector3f cross(direction.y * angle.z - direction.z * angle.y, direction.z * angle.x - direction.x * angle.z,
-		               direction.x * angle.y - direction.y * angle.x);
+		Vector3f direction(1.0f, 0.0f, 0.0f);
+		Vector3f cross;
+		cross.x = direction.y * angle.z - direction.z * angle.y;
+		cross.y = direction.z * angle.x - direction.x * angle.z;
+		cross.z = direction.x * angle.y - direction.y * angle.x;
 
-		Vector3f cross2(cross.y * angle.z - cross.z * angle.y, cross.z * angle.x - cross.x * angle.z,
-		                cross.x * angle.y - cross.y * angle.x);
+		Vector3f cross2;
+		cross2.x = angle.y * cross.z - angle.z * cross.y;
+		cross2.y = angle.z * cross.x - angle.x * cross.z;
+		cross2.z = angle.x * cross.y - angle.y * cross.x;
 
 		(*this)(0, 0) = cross2.x;
 		(*this)(0, 1) = angle.x;
