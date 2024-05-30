@@ -15,8 +15,8 @@ struct Plane {
 	f32 calcDist(const Vector3f& vec) const { return (vec.x * mNormal.x + vec.y * mNormal.y + vec.z * mNormal.z - mOffset); }
 
 	inline void setVec(Plane& plane) { mNormal = plane.mNormal; }
-
 	inline void setDist(Plane& plane) { mOffset = plane.mOffset; }
+
 	void calcProjection(Vector3f&);
 	void intersectRay(Vector3f&, Vector3f&);
 

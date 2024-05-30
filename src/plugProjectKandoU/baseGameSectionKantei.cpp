@@ -13,8 +13,8 @@
 namespace Game {
 
 struct OtakaraArray {
-	int a;
-	f32 b;
+	int mConfigIndex;
+	f32 mRadiusModifier;
 } asArrayOtakara[] = { { -1, 1.0f } };
 
 /**
@@ -59,7 +59,7 @@ void BaseGameSection::startZoomWindow()
 	SysShape::Model* model = mDraw2DCreature->mModel;
 	f32 modelRadius        = model->getRoughBoundingRadius();
 	Vector3f center        = model->getRoughCenter();
-	Vector3f* vecPtr       = &center;
+	Vector3f& vecPtr       = center;
 
 	if (mDraw2DCreature->getObjType() == OBJTYPE_Honey) {
 		modelRadius *= 1.5f;
@@ -67,11 +67,12 @@ void BaseGameSection::startZoomWindow()
 
 	if (mDraw2DCreature->getObjType() == OBJTYPE_Pellet) {
 		Pellet* p = (Pellet*)mDraw2DCreature;
+
 		if (p->getKind() == PELTYPE_TREASURE) {
 			int configIdx = p->getConfigIndex();
-			for (int i = 0; asArrayOtakara[i].a != -1; i++) {
-				if (configIdx == asArrayOtakara[i].a) {
-					modelRadius /= asArrayOtakara[i].b;
+			for (int i = 0; asArrayOtakara[i].mConfigIndex != -1; i++) {
+				if (configIdx == asArrayOtakara[i].mConfigIndex) {
+					modelRadius /= asArrayOtakara[i].mRadiusModifier;
 					break;
 				}
 			}
@@ -83,7 +84,6 @@ void BaseGameSection::startZoomWindow()
 	f32 properDist = mTreasureZoomCamera->calcProperDistance(20.0f, modelRadius);
 	Vector3f pos(0.0f, center.length(), 0.0f);
 	mTreasureZoomCamera->init(properDist, properDist * JMath::sincosTable_.mTable[256].first, pos, mControllerP1);
-
 	FORCE_DONT_INLINE;
 }
 
@@ -156,11 +156,11 @@ void BaseGameSection::onKanteiDone(Rectf& rect)
  * @note Address: 0x8023BB30
  * @note Size: 0x114
  */
-void BaseGameSection::ZoomCamera::init(f32 dist1, f32 dist2, Vector3f& pos, Controller* control)
+void BaseGameSection::ZoomCamera::init(f32 initialDistance, f32 targetDistance, Vector3f& pos, Controller* control)
 {
 	mController = control;
 	f32 angle   = HALF_PI;
-	f32 dist    = dist2 / dist1;
+	f32 dist    = targetDistance / initialDistance;
 	mAngleX     = HALF_PI;
 	if (dist >= 1.0f) {
 		angle = HALF_PI;
@@ -174,8 +174,8 @@ void BaseGameSection::ZoomCamera::init(f32 dist1, f32 dist2, Vector3f& pos, Cont
 	mAngleY           = angle;
 	mTargetFrontAngle = angle;
 
-	mTargetDistance = dist1;
-	mUnusedDist     = dist1;
+	mTargetDistance = initialDistance;
+	mUnusedDist     = initialDistance;
 	mTargetDistance *= 0.75f;
 	mLookAtPosition = pos;
 	makeLookAt();

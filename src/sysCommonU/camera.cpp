@@ -231,13 +231,13 @@ void Camera::copyFrom(Camera* camera)
  */
 void Camera::updatePlanes()
 {
-	Vec temp;
 	CullFrustum::updatePlanes();
 
 	Vector3f viewVector = getViewVector();
 	Vector3f position   = getPosition();
 
 	// Update far plane
+	Vec temp;
 	temp.x            = -viewVector.x;
 	temp.y            = -viewVector.y;
 	temp.z            = -viewVector.z;
@@ -367,36 +367,36 @@ Matrixf* Camera::getViewMatrix(bool getCurrentViewMtx)
 }
 
 /**
+ * Calculates the proper distance for the camera based on the given field of view percentage and initial distance.
+ *
+ * @param fovPercentage The field of view percentage. [0.0f, 100.0f]
+ * @param initialDistance The initial distance.
+ * @return The proper distance for the camera.
+ *
  * @note Address: 0x8041AEF8
  * @note Size: 0x120
  */
-f32 Camera::calcProperDistance(f32 f1, f32 f2)
+f32 Camera::calcProperDistance(f32 fovPercentage, f32 initialDistance)
 {
-	f32 input2;
-	f32 angle;
-	f32 cos;
-	f32 sin;
-	f32 pct;
-	f32 ratio;
-	f32 returnValue;
-	f32 new_var2;
-	f32 returnMax;
-
-	input2 = f2;
-	if (input2 < 0.01f) {
-		input2 = 100.0f;
+	f32 adjustedDistance = initialDistance;
+	if (adjustedDistance < 0.01f) {
+		adjustedDistance = 100.0f;
 	}
 
-	angle       = PI * (mViewAngle * 0.5f / 180.0f);
-	cos         = cosf(angle);
-	sin         = sinf(angle);
-	returnMax   = (-(mProjectionFar - mProjectionNear)) / ((mProjectionFar * 2.0f) * mProjectionNear);
-	pct         = f1 / 100.0f;
-	new_var2    = cos / sin;
-	ratio       = returnMax * (new_var2 * input2);
-	returnValue = fabs(ratio / (mAspectRatio * pct));
-	returnMax   = fabs(ratio / pct);
-	return (returnValue > returnMax) ? returnValue : returnMax;
+	f32 halfViewAngleRadians = PI * (mViewAngle * 0.5f / 180.0f);
+	f32 cosHalfAngle         = cosf(halfViewAngleRadians);
+	f32 sinHalfAngle         = sinf(halfViewAngleRadians);
+	f32 maxAllowedDistance   = (-(mProjectionFar - mProjectionNear)) / ((mProjectionFar * 2.0f) * mProjectionNear);
+
+	f32 viewPercentage = fovPercentage / 100.0f;
+	f32 aspectRatio    = cosHalfAngle / sinHalfAngle;
+
+	f32 properDistance = maxAllowedDistance * (aspectRatio * adjustedDistance);
+	f32 distance       = fabs(properDistance / (mAspectRatio * viewPercentage));
+
+	maxAllowedDistance = fabs(properDistance / viewPercentage);
+
+	return (distance > maxAllowedDistance) ? distance : maxAllowedDistance;
 }
 
 /**
