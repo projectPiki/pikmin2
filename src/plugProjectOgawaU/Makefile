@@ -26,7 +26,7 @@ OGAWA_FILES:=\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogLib2D.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjSMenuMap.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneSMenuMap.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjSMenuItem.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogObjSMenuItem.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneSMenuItem.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneSMenuPause.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogObjSMenuPause.o\

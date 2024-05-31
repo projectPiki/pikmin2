@@ -1301,7 +1301,7 @@ LIBS = [
             ["plugProjectOgawaU/ogLib2D", True],
             ["plugProjectOgawaU/ogObjSMenuMap", False],
             ["plugProjectOgawaU/ogSceneSMenuMap", True],
-            ["plugProjectOgawaU/ogObjSMenuItem", False],
+            ["plugProjectOgawaU/ogObjSMenuItem", True],
             ["plugProjectOgawaU/ogSceneSMenuItem", True],
             ["plugProjectOgawaU/ogSceneSMenuPause", True],
             ["plugProjectOgawaU/ogObjSMenuPause", True],

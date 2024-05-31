@@ -326,7 +326,7 @@ struct ObjSMenuCont : public ObjSMenuBase {
 struct ObjSMenuItem : public ObjSMenuBase {
 	ObjSMenuItem(const char*);
 
-	virtual ~ObjSMenuItem();                              // _08 (weak)
+	virtual ~ObjSMenuItem();                              // _08
 	virtual bool doStart(const ::Screen::StartSceneArg*); // _44
 	virtual bool doEnd(const ::Screen::EndSceneArg*);     // _48
 	virtual void doCreate(JKRArchive*);                   // _4C
@@ -339,7 +339,7 @@ struct ObjSMenuItem : public ObjSMenuBase {
 	virtual void wait();                                  // _80
 	virtual void out_L();                                 // _84
 	virtual void out_R();                                 // _88
-	virtual void doUpdateCancelAction();                  // _90 (weak)
+	virtual void doUpdateCancelAction() { }               // _90 (weak)
 	virtual void doUpdateRAction();                       // _94
 	virtual void doUpdateLAction();                       // _98
 	virtual void commonUpdate();                          // _A4
