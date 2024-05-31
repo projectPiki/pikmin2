@@ -165,8 +165,8 @@ f32 calcSmooth0to1(f32 start, f32 end)
  */
 void calcGlbCenter(J2DPane* pane, Vector2f* center)
 {
-	JGeometry::TVec3f vec1 = pane->getGlbVtx(0);
-	JGeometry::TVec3f vec2 = pane->getGlbVtx(3);
+	JGeometry::TVec3f vec1 = pane->getGlbVtx(GLBVTX_BtmLeft);
+	JGeometry::TVec3f vec2 = pane->getGlbVtx(GLBVTX_TopRight);
 	center->x              = (vec1.x + vec2.x) / 2;
 	center->y              = (vec1.y + vec2.y) / 2;
 }

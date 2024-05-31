@@ -287,8 +287,8 @@ void TitleMsgDrop::update()
 					mDropFlags[i] = true;
 					mTimers[i]    = 1.0f;
 
-					JGeometry::TVec3f pos1 = pane->getGlbVtx(0);
-					JGeometry::TVec3f pos2 = pane->getGlbVtx(3);
+					JGeometry::TVec3f pos1 = pane->getGlbVtx(GLBVTX_BtmLeft);
+					JGeometry::TVec3f pos2 = pane->getGlbVtx(GLBVTX_TopRight);
 					Vector2f argVec((pos1.x + pos2.x) / 2, (pos1.y + pos2.y) / 2 + mYOffset);
 					efx2d::Arg arg(argVec);
 					mEffects[i]->setGroup(2);
@@ -392,8 +392,8 @@ void TitleMsgWave::update()
 			if (mTimers[i] > 0.1f) {
 				mDropFlags[i]          = true;
 				J2DPane* pane          = mPanes1[i];
-				JGeometry::TVec3f pos1 = pane->getGlbVtx(0);
-				JGeometry::TVec3f pos2 = pane->getGlbVtx(3);
+				JGeometry::TVec3f pos1 = pane->getGlbVtx(GLBVTX_BtmLeft);
+				JGeometry::TVec3f pos2 = pane->getGlbVtx(GLBVTX_TopRight);
 				Vector2f argVec((pos1.x + pos2.x) / 2, (pos1.y + pos2.y) / 2 + mYOffset);
 				efx2d::Arg arg(argVec);
 
@@ -485,8 +485,8 @@ void TitleMsgClash::update()
 			if (mTimers[i] > 1.0f) {
 				mDropFlags[i]          = true;
 				J2DPane* pane          = mPanes1[i];
-				JGeometry::TVec3f pos1 = pane->getGlbVtx(0);
-				JGeometry::TVec3f pos2 = pane->getGlbVtx(3);
+				JGeometry::TVec3f pos1 = pane->getGlbVtx(GLBVTX_BtmLeft);
+				JGeometry::TVec3f pos2 = pane->getGlbVtx(GLBVTX_TopRight);
 				Vector2f argVec((pos1.x + pos2.x) / 2, (pos1.y + pos2.y) / 2 + mYOffset);
 				efx2d::Arg arg(argVec);
 				mEffects[i]->setGroup(2);

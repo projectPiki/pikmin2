@@ -613,7 +613,7 @@ bool ObjAnaDemo::doUpdate()
 		mSwingMovePosition = og::Screen::calcSmooth0to1(mCloseTimer, msVal.mMoveFinishRatio) * -800.0f;
 		if (mCloseTimer >= msVal.mMoveFinishRatio) {
 			ret                = true;
-			mDisp->mExitStatus = 0; // confirm menu
+			mDisp->mExitStatus = og::Screen::MENUFINISH_CaveExit; // confirm menu
 			mState             = ANADEMOSTATE_Disabled;
 		}
 		break;

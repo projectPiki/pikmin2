@@ -240,15 +240,16 @@ void ObjSMenuPauseDoukutu::doUpdateFadeoutFinish()
 	case MENUCLOSE_None:
 		SceneSMenuBase* scene = static_cast<SceneSMenuBase*>(getOwner());
 		switch (mDisp->mExitStatus) {
-		case 5:
+		case og::Screen::MENUFINISH_ContinueCave:
 			scene->setBackupScene();
 			scene->startScene(nullptr);
 			finishPause();
 			break;
-		case 6:
+
+		case og::Screen::MENUFINISH_GiveUpEscape:
 			scene->endScene(nullptr);
 			finishPause();
-			scene->setColorBG(0, 0, 0, 0);
+			scene->setColorBG(0, 0, 0, 0); // cut to black
 			break;
 		}
 		setFinishState(mDisp->mExitStatus);
@@ -306,9 +307,9 @@ bool ObjSMenuPauseDoukutu::menu_pause()
 
 		} else if (mCurrPauseSel == 0) {
 			mMenuPause->killCursor();
-			mDisp->mExitStatus = 5;
+			mDisp->mExitStatus = og::Screen::MENUFINISH_ContinueCave;
 			out_L();
-			ret = 1;
+			ret = true;
 			ogSound->setDecide();
 		}
 
@@ -323,7 +324,7 @@ bool ObjSMenuPauseDoukutu::menu_pause()
  * @note Address: 0x80322DA8
  * @note Size: 0x10
  */
-void ObjSMenuPauseDoukutu::doUpdateCancelAction() { mDisp->mExitStatus = 5; }
+void ObjSMenuPauseDoukutu::doUpdateCancelAction() { mDisp->mExitStatus = og::Screen::MENUFINISH_ContinueCave; }
 
 /**
  * @note Address: 0x80322DB8
@@ -341,7 +342,7 @@ void ObjSMenuPauseDoukutu::doUpdateLAction()
  */
 void ObjSMenuPauseDoukutu::doUpdateRAction()
 {
-	if (msBaseVal.mUseController) {
+	if (msBaseVal.mUseControlMenu) {
 		::Screen::SetSceneArg arg(SCENE_PAUSE_MENU_CONTROLS, getDispMember());
 		jump_R(arg);
 	} else {
@@ -390,7 +391,7 @@ bool ObjSMenuPauseDoukutu::menu_giveup()
 
 	} else if (mGiveupOpened && (input & Controller::PRESS_A)) {
 		if (mCurrGiveupSel == 0) {
-			mDisp->mExitStatus = 6;
+			mDisp->mExitStatus = og::Screen::MENUFINISH_GiveUpEscape;
 			out_L();
 			ret = true;
 
@@ -505,7 +506,7 @@ void ObjSMenuPauseDoukutu::set_Blink_Normal()
 		} else {
 			mTextContinue->blink(0.0f, 0.0f);
 		}
-		mTextDoGiveup->mColorType = 2;
+		mTextDoGiveup->mColorType = og::Screen::ANIMTEXTCOLOR_GreyedOut;
 	} else {
 		if (mCurrPauseSel == 0) {
 			mTextContinue->blink(0.6f, 0.0f);

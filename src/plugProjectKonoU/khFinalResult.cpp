@@ -1309,8 +1309,8 @@ void ObjFinalResult::doDraw(Graphics& gfx)
  */
 void ObjFinalResult::updateCommon()
 {
-	JGeometry::TVec3f pos1 = mScreen->search('Nmask')->getGlbVtx(0);
-	JGeometry::TVec3f pos2 = mScreen->search('Nmask')->getGlbVtx(3);
+	JGeometry::TVec3f pos1 = mScreen->search('Nmask')->getGlbVtx(GLBVTX_BtmLeft);
+	JGeometry::TVec3f pos2 = mScreen->search('Nmask')->getGlbVtx(GLBVTX_TopRight);
 	mScissorYPos           = pos1.y + 0.5f;
 	mScissorBoundsHeight   = pos2.y - pos1.y;
 

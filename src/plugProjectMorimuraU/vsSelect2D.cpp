@@ -197,10 +197,10 @@ void TVsPiki::update(int pikis)
 	mPikminRight->setBasePosition(J2DPOS_TopLeft);
 	mPikminFlower->setBasePosition(J2DPOS_Center);
 
-	mBounds[0]
-	    = Vector2f(mPikminLeft->getGlbVtx(0).x - mPikminRight->getGlbVtx(1).x, mPikminLeft->getGlbVtx(0).y - mPikminRight->getGlbVtx(1).y);
-	mBounds[1] = Vector2f(mPikminLeft->getGlbVtx(0).x - mPikminFlower->getGlbVtx(0).x,
-	                      mPikminLeft->getGlbVtx(0).y - mPikminFlower->getGlbVtx(0).y);
+	mBounds[0] = Vector2f(mPikminLeft->getGlbVtx(GLBVTX_BtmLeft).x - mPikminRight->getGlbVtx(GLBVTX_BtmRight).x,
+	                      mPikminLeft->getGlbVtx(GLBVTX_BtmLeft).y - mPikminRight->getGlbVtx(GLBVTX_BtmRight).y);
+	mBounds[1] = Vector2f(mPikminLeft->getGlbVtx(GLBVTX_BtmLeft).x - mPikminFlower->getGlbVtx(GLBVTX_BtmLeft).x,
+	                      mPikminLeft->getGlbVtx(GLBVTX_BtmLeft).y - mPikminFlower->getGlbVtx(GLBVTX_BtmLeft).y);
 
 	for (int i = 0; i < 10; i++) {
 		if (i < pikis) {
@@ -250,11 +250,11 @@ void TVsPiki::update(int pikis)
  */
 void TVsPiki::draw()
 {
-	JGeometry::TVec3f pos = mPikminLeft->getGlbVtx(2);
+	JGeometry::TVec3f pos = mPikminLeft->getGlbVtx(GLBVTX_TopLeft);
 	f32 x1                = pos.x - mPikiOffset.x;
 	f32 xoffs             = mPikiOffset.x;
 	f32 y1                = pos.y - 50.0f;
-	pos                   = mPikminLeft->getGlbVtx(2);
+	pos                   = mPikminLeft->getGlbVtx(GLBVTX_TopLeft);
 	f32 y2                = pos.y - y1;
 	f32 x2                = (xoffs * 12.0f + x1) - x1;
 	GXSetScissor(x1, y1, x2, y2);
@@ -263,8 +263,8 @@ void TVsPiki::draw()
 	for (int i = 0; i < 10; i++) {
 		J2DPicture* pic = mPikminLeft;
 		f32 calc        = TVsSelect::mDemoScale;
-		f32 x           = mPosInfos[i].mPosition.x * calc + pic->getGlbVtx(0).x;
-		f32 y           = mPosInfos[i].mPosition.y * calc + pic->getGlbVtx(0).y;
+		f32 x           = mPosInfos[i].mPosition.x * calc + pic->getGlbVtx(GLBVTX_BtmLeft).x;
+		f32 y           = mPosInfos[i].mPosition.y * calc + pic->getGlbVtx(GLBVTX_BtmLeft).y;
 		pic->draw(x, y, calc * pic->getWidth(), calc * pic->getHeight(), false, false, false);
 		pic->calcMtx();
 
@@ -4007,7 +4007,8 @@ bool TVsSelect::doUpdate()
 				mEfxCountKira->mScale = calc;
 				J2DPane* pane         = mMainScreen->mScreenObj->search('Pori_c');
 				pane->setBasePosition(J2DPOS_Center);
-				Vector2f pos(pane->getWidth() * 0.5f + pane->getGlbVtx(0).x, pane->getHeight() * 0.5f + pane->getGlbVtx(0).y);
+				Vector2f pos(pane->getWidth() * 0.5f + pane->getGlbVtx(GLBVTX_BtmLeft).x,
+				             pane->getHeight() * 0.5f + pane->getGlbVtx(GLBVTX_BtmLeft).y);
 				efx2d::Arg arg(pos);
 				mEfxCountKira->create(&arg);
 				PSSystem::spSysIF->playSystemSe(PSSE_SY_2P_WIN_COUNT, 0);
@@ -4024,7 +4025,8 @@ bool TVsSelect::doUpdate()
 				mEfxCountKira->mScale = calc;
 				J2DPane* pane         = mMainScreen->mScreenObj->search('Plui_c');
 				pane->setBasePosition(J2DPOS_Center);
-				Vector2f pos(pane->getWidth() * 0.5f + pane->getGlbVtx(0).x, pane->getHeight() * 0.5f + pane->getGlbVtx(0).y);
+				Vector2f pos(pane->getWidth() * 0.5f + pane->getGlbVtx(GLBVTX_BtmLeft).x,
+				             pane->getHeight() * 0.5f + pane->getGlbVtx(GLBVTX_BtmLeft).y);
 				efx2d::Arg arg(pos);
 				mEfxCountKira->create(&arg);
 				PSSystem::spSysIF->playSystemSe(PSSE_SY_2P_WIN_COUNT, 0);
@@ -4109,13 +4111,13 @@ bool TVsSelect::doUpdate()
 	}
 	mPaneRulesInfo->setOffset(mRulesPanePos.x + mRulesMoveXPos, mRulesPanePos.y);
 
-	JGeometry::TVec3f vec1 = mPaneStageNameBg->getGlbVtx(0);
-	JGeometry::TVec3f vec2 = mPaneStageNameBg->getGlbVtx(3);
+	JGeometry::TVec3f vec1 = mPaneStageNameBg->getGlbVtx(GLBVTX_BtmLeft);
+	JGeometry::TVec3f vec2 = mPaneStageNameBg->getGlbVtx(GLBVTX_TopRight);
 	TVsSelectScreen* scrn  = static_cast<TVsSelectScreen*>(mMainScreen);
 	scrn->mCallbackScissor->mBounds.set(Vector2f(vec1.x, vec1.y), Vector2f(vec2.x, vec2.y));
 
-	vec1 = mPaneStageList->getGlbVtx(0);
-	vec2 = mPaneStageList->getGlbVtx(3);
+	vec1 = mPaneStageList->getGlbVtx(GLBVTX_BtmLeft);
+	vec2 = mPaneStageList->getGlbVtx(GLBVTX_TopRight);
 	mScissorBounds.set(vec1.x, vec1.y, vec2.x, vec2.y);
 
 	for (int i = 0; i < 2; i++) {

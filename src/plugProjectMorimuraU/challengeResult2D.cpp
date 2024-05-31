@@ -819,8 +819,8 @@ void TCounterRV::createKiraEffect(f32 scale, int max)
 		P2ASSERTLINE(597, pic);
 		pic->setBasePosition(J2DPOS_Center);
 		Vector2f pos;
-		pos.x = pic->getGlbVtx(0).x + pic->getWidth() * 0.5f;
-		pos.y = pic->getGlbVtx(0).y + pic->getHeight() * 0.5f;
+		pos.x = pic->getGlbVtx(GLBVTX_BtmLeft).x + pic->getWidth() * 0.5f;
+		pos.y = pic->getGlbVtx(GLBVTX_BtmLeft).y + pic->getHeight() * 0.5f;
 		efx2d::Arg arg(pos);
 		mEfxCountKiras[i]->mScale = scale;
 		mEfxCountKiras[i]->create(&arg);
@@ -986,8 +986,8 @@ void TClearTexture::changeTexture(bool on)
  */
 void TClearTexture::getPosition(Vector2f& pos)
 {
-	pos.x = mPane1->getGlbVtx(0).x + mPane1->getWidth();
-	pos.y = mPane1->getGlbVtx(0).y + mPane1->getHeight();
+	pos.x = mPane1->getGlbVtx(GLBVTX_BtmLeft).x + mPane1->getWidth();
+	pos.y = mPane1->getGlbVtx(GLBVTX_BtmLeft).y + mPane1->getHeight();
 }
 
 /**
@@ -996,8 +996,8 @@ void TClearTexture::getPosition(Vector2f& pos)
  */
 void TClearTexture::getEffectPosition(Vector2f& pos)
 {
-	pos.x = mPane1->getWidth() / 2 + mPane1->getGlbVtx(0).x;
-	pos.y = mPane1->getHeight() / 2 + mPane1->getGlbVtx(0).y;
+	pos.x = mPane1->getWidth() / 2 + mPane1->getGlbVtx(GLBVTX_BtmLeft).x;
+	pos.y = mPane1->getHeight() / 2 + mPane1->getGlbVtx(GLBVTX_BtmLeft).y;
 }
 
 /**
@@ -1405,8 +1405,8 @@ bool TChallengeResult::doUpdate()
 		mResultDemoScreen->update();
 	}
 
-	JGeometry::TVec3f pos1 = mPane6->getGlbVtx(0);
-	JGeometry::TVec3f pos2 = mPane6->getGlbVtx(3);
+	JGeometry::TVec3f pos1 = mPane6->getGlbVtx(GLBVTX_BtmLeft);
+	JGeometry::TVec3f pos2 = mPane6->getGlbVtx(GLBVTX_TopRight);
 	JGeometry::TBox2f box(pos1.x, pos1.y, pos2.x, pos2.y);
 	TScissorPane* pic = mScissorPic;
 	pic->mBounds      = box;

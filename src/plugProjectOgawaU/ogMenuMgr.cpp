@@ -202,13 +202,13 @@ void MenuMgr::init2takuTitle(J2DScreen* screen, u64 tag1, u64 tag2, u64 tag3, u6
  * @note Address: 0x8030A63C
  * @note Size: 0x494
  */
-void MenuMgr::init(J2DScreen* screen, u16 options, u64 tag1, u64 tag2, u64 tag3, u64 tag4, u64 tag5)
+void MenuMgr::init(J2DScreen* screen, u16 numOptions, u64 tag1, u64 tag2, u64 tag3, u64 tag4, u64 tag5)
 {
-	mElementCount = options;
-	mPaneList1    = new J2DPane*[options];
-	mPaneList2    = new J2DPane*[options];
-	mPaneList3    = new J2DPane*[options];
-	mScaleMgrs    = new ScaleMgr[options];
+	mElementCount = numOptions;
+	mPaneList1    = new J2DPane*[numOptions];
+	mPaneList2    = new J2DPane*[numOptions];
+	mPaneList3    = new J2DPane*[numOptions];
+	mScaleMgrs    = new ScaleMgr[numOptions];
 
 	u64 mesg0;
 	if (tag1) {
@@ -217,7 +217,7 @@ void MenuMgr::init(J2DScreen* screen, u16 options, u64 tag1, u64 tag2, u64 tag3,
 	u64 mesg1 = MojiToNum(tag2, 2);
 	u64 mesg2 = MojiToNum(tag3, 2);
 
-	for (int i = 0; i < options; i++) {
+	for (int i = 0; i < numOptions; i++) {
 		u64 cMesg     = mesg0 + (i % 10) + (i / 10) % 10 * 256;
 		mPaneList1[i] = screen->search(cMesg);
 
@@ -237,13 +237,13 @@ void MenuMgr::init(J2DScreen* screen, u16 options, u64 tag1, u64 tag2, u64 tag3,
 	mCursorDelayTimer = 0.0f;
 	selectSub(mCSelectId);
 
-	mPaneList4 = new J2DPane*[options];
-	mPaneList5 = new J2DPane*[options];
+	mPaneList4 = new J2DPane*[numOptions];
+	mPaneList5 = new J2DPane*[numOptions];
 
 	mesg1 = MojiToNum(tag2, 2);
 	mesg2 = MojiToNum(tag3, 2);
 
-	for (int i = 0; i < options; i++) {
+	for (int i = 0; i < numOptions; i++) {
 		u64 cMesg     = mesg1 + (i % 10) + (i / 10) % 10 * 256;
 		mPaneList4[i] = og::Screen::TagSearch(screen, cMesg);
 
@@ -622,8 +622,8 @@ void MenuMgr::initSelNum(u16 sel)
  */
 void MenuMgr::calcCenter(J2DPane* pane, Vector2f* pos)
 {
-	JGeometry::TVec3f pos1 = pane->getGlbVtx(0);
-	JGeometry::TVec3f pos2 = pane->getGlbVtx(3);
+	JGeometry::TVec3f pos1 = pane->getGlbVtx(GLBVTX_BtmLeft);
+	JGeometry::TVec3f pos2 = pane->getGlbVtx(GLBVTX_TopRight);
 	pos->x                 = (pos1.x + pos2.x) / 2;
 	pos->y                 = (pos1.y + pos2.y) / 2;
 }

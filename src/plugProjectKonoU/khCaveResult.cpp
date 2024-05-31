@@ -1365,8 +1365,8 @@ void ObjCaveResult::statusEffect()
  */
 void ObjCaveResult::updateAnimation()
 {
-	JGeometry::TVec3f vec1 = (mScreenMain->search('Nmask')->getGlbVtx(0));
-	JGeometry::TVec3f vec2 = (mScreenMain->search('Nmask')->getGlbVtx(3));
+	JGeometry::TVec3f vec1 = (mScreenMain->search('Nmask')->getGlbVtx(GLBVTX_BtmLeft));
+	JGeometry::TVec3f vec2 = (mScreenMain->search('Nmask')->getGlbVtx(GLBVTX_TopRight));
 	f32 yoffs              = vec1.y;
 	mScissorMin            = vec1.y + 0.5f;
 	mScissorMax            = vec2.y - yoffs;

@@ -106,8 +106,8 @@ void E2DPane_setTreeCallBackMessage(P2DScreen::Mgr* mgr, J2DPane* pane)
 Vector2f E2DPane_getGlbCenter(J2DPane* pane)
 {
 	P2ASSERTLINE(115, pane);
-	JGeometry::TVec3f pos1 = pane->getGlbVtx(0);
-	JGeometry::TVec3f pos2 = pane->getGlbVtx(3);
+	JGeometry::TVec3f pos1 = pane->getGlbVtx(GLBVTX_BtmLeft);
+	JGeometry::TVec3f pos2 = pane->getGlbVtx(GLBVTX_TopRight);
 	Vector2f argVec((pos1.x + pos2.x) * 0.5f, (pos1.y + pos2.y) * 0.5f);
 	return argVec;
 }

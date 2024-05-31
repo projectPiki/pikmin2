@@ -3617,16 +3617,16 @@ void TItemZukan::doDemoDraw(Graphics& gfx)
 
 	J2DPane* pane1 = mMainScreen->mScreenObj->search('Pzbtn3');
 	pane1->setAlpha(alpha);
-	static_cast<J2DPicture*>(pane1)->draw(pane1->getGlbVtx(0).x, pane1->getGlbVtx(1).y, pane1->getWidth(), pane1->getHeight(), false, false,
-	                                      false);
+	static_cast<J2DPicture*>(pane1)->draw(pane1->getGlbVtx(GLBVTX_BtmLeft).x, pane1->getGlbVtx(GLBVTX_BtmRight).y, pane1->getWidth(),
+	                                      pane1->getHeight(), false, false, false);
 	pane1->calcMtx();
 	pane1->setAlpha(255);
 
 	J2DPane* pane2;
 	pane2 = mMainScreen->mScreenObj->search('Pzbtn2');
 	pane2->setAlpha(alpha);
-	static_cast<J2DPicture*>(pane2)->draw(pane2->getGlbVtx(0).x, pane2->getGlbVtx(1).y, pane2->getWidth(), pane2->getHeight(), false, false,
-	                                      false);
+	static_cast<J2DPicture*>(pane2)->draw(pane2->getGlbVtx(GLBVTX_BtmLeft).x, pane2->getGlbVtx(GLBVTX_BtmRight).y, pane2->getWidth(),
+	                                      pane2->getHeight(), false, false, false);
 	pane2->calcMtx();
 	pane2->setAlpha(255);
 
@@ -3649,22 +3649,24 @@ void TItemZukan::doDemoDraw(Graphics& gfx)
 				J2DPictureEx* pane1 = icon->mPic;
 				u8 oldalpha         = pane1->mAlpha;
 				pane1->setAlpha(alpha);
-				pane1->draw(pane1->getGlbVtx(0).x + 8.0f, pane1->getGlbVtx(0).y + 2.5f, pane1->getWidth(), pane1->getHeight(), false, false,
-				            false);
+				pane1->draw(pane1->getGlbVtx(GLBVTX_BtmLeft).x + 8.0f, pane1->getGlbVtx(GLBVTX_BtmLeft).y + 2.5f, pane1->getWidth(),
+				            pane1->getHeight(), false, false, false);
 				pane1->calcMtx();
 				pane1->setAlpha(oldalpha);
 
 				pane2    = static_cast<J2DPictureEx*>(mIndexPaneList[i]->mIconInfos[j]->mPane);
 				oldalpha = pane2->mAlpha;
 				pane2->setAlpha(mMessageBoxBGAlpha);
-				pane2->draw(pane2->getGlbVtx(0).x, pane2->getGlbVtx(0).y, pane2->getWidth(), pane2->getHeight(), false, false, false);
+				pane2->draw(pane2->getGlbVtx(GLBVTX_BtmLeft).x, pane2->getGlbVtx(GLBVTX_BtmLeft).y, pane2->getWidth(), pane2->getHeight(),
+				            false, false, false);
 				pane2->calcMtx();
 				pane2->setAlpha(oldalpha);
 
 				pane3    = static_cast<J2DPictureEx*>(mIndexPaneList[i]->mIconInfos[j]->mPane2);
 				oldalpha = pane3->mAlpha;
 				pane3->setAlpha(mMessageBoxBGAlpha);
-				pane3->draw(pane3->getGlbVtx(0).x, pane3->getGlbVtx(0).y, pane3->getWidth(), pane3->getHeight(), false, false, false);
+				pane3->draw(pane3->getGlbVtx(GLBVTX_BtmLeft).x, pane3->getGlbVtx(GLBVTX_BtmLeft).y, pane3->getWidth(), pane3->getHeight(),
+				            false, false, false);
 				pane3->calcMtx();
 				pane3->setAlpha(oldalpha);
 			}
@@ -4699,8 +4701,8 @@ void TZukanWindow::update()
 			                     y * sinf(mIconYHeightSin) + (mScrollPosition + mPaneIcon->getOffsetY()));
 		}
 	}
-	JGeometry::TVec3f pos1 = mPaneWinCap->getGlbVtx(0);
-	JGeometry::TVec3f pos2 = mPaneWinCap->getGlbVtx(3);
+	JGeometry::TVec3f pos1 = mPaneWinCap->getGlbVtx(GLBVTX_BtmLeft);
+	JGeometry::TVec3f pos2 = mPaneWinCap->getGlbVtx(GLBVTX_TopRight);
 	pos1.x += 10.0f;
 	pos1.y += 5.0f;
 	pos2.x -= 10.0f;

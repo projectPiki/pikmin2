@@ -77,12 +77,14 @@ void TChallengePiki::reset()
  */
 void TChallengePiki::jumpStart(f32 time)
 {
-	mVec[0]  = Vector2f(mPanes[0]->getGlbVtx(0).x - mPanes[1]->getGlbVtx(1).x, mPanes[0]->getGlbVtx(0).y - mPanes[1]->getGlbVtx(1).y);
-	mVec[1]  = Vector2f(mPanes[0]->getGlbVtx(0).x - mPanes[2]->getGlbVtx(0).x, mPanes[0]->getGlbVtx(0).y - mPanes[2]->getGlbVtx(0).y);
+	mVec[0]  = Vector2f(mPanes[0]->getGlbVtx(GLBVTX_BtmLeft).x - mPanes[1]->getGlbVtx(GLBVTX_BtmRight).x,
+                       mPanes[0]->getGlbVtx(GLBVTX_BtmLeft).y - mPanes[1]->getGlbVtx(GLBVTX_BtmRight).y);
+	mVec[1]  = Vector2f(mPanes[0]->getGlbVtx(GLBVTX_BtmLeft).x - mPanes[2]->getGlbVtx(GLBVTX_BtmLeft).x,
+                       mPanes[0]->getGlbVtx(GLBVTX_BtmLeft).y - mPanes[2]->getGlbVtx(GLBVTX_BtmLeft).y);
 	mYOffset = -500.0f;
 	for (int i = 0; i < 50; i++) {
 		mPosInfo[i].mTimer      = (0.1f * randFloat()) + -(0.1f * (f32)i - time);
-		mPosInfo[i].mCurrentPos = Vector2f(mPanes[0]->getGlbVtx(0).x, mPanes[0]->getGlbVtx(0).y);
+		mPosInfo[i].mCurrentPos = Vector2f(mPanes[0]->getGlbVtx(GLBVTX_BtmLeft).x, mPanes[0]->getGlbVtx(GLBVTX_BtmLeft).y);
 		//	mPosInfo[i].mInitialPos = mPosInfo[i].mCurrentPos;
 		// whole thing wont inline when this is enabled
 		mPosInfo[i]._08 = i % 3;
@@ -1497,8 +1499,8 @@ void TChallengePlayModeScreen::draw(Graphics& gfx, J2DPerspGraph* persp)
 		J2DPicture* pane = static_cast<J2DPicture*>(mScreenObj->search('P2orimaF'));
 		pane->setAlpha(mPaneList0[1]->mAlpha);
 		f32 offs               = pane->getWidth();
-		JGeometry::TVec3f vec1 = pane->getGlbVtx(1);
-		JGeometry::TVec3f vec2 = pane->getGlbVtx(0);
+		JGeometry::TVec3f vec1 = pane->getGlbVtx(GLBVTX_BtmRight);
+		JGeometry::TVec3f vec2 = pane->getGlbVtx(GLBVTX_BtmLeft);
 		pane->draw(vec2.x + offs, vec1.y + offs, -offs, pane->getHeight(), false, false, false);
 		pane->calcMtx();
 		pane->setAlpha(0);
@@ -1506,8 +1508,8 @@ void TChallengePlayModeScreen::draw(Graphics& gfx, J2DPerspGraph* persp)
 		J2DPicture* pane2 = static_cast<J2DPicture*>(mPane4);
 		pane2->setAlpha(mPaneList0[1]->mAlpha);
 		f32 offs2              = pane2->getWidth();
-		JGeometry::TVec3f vec3 = pane2->getGlbVtx(1);
-		JGeometry::TVec3f vec4 = pane2->getGlbVtx(0);
+		JGeometry::TVec3f vec3 = pane2->getGlbVtx(GLBVTX_BtmRight);
+		JGeometry::TVec3f vec4 = pane2->getGlbVtx(GLBVTX_BtmLeft);
 		pane2->draw(vec3.x + offs2, vec4.y + offs2, -offs2, pane2->getHeight(), false, false, false);
 		pane2->calcMtx();
 		pane2->setAlpha(0);
@@ -1515,8 +1517,8 @@ void TChallengePlayModeScreen::draw(Graphics& gfx, J2DPerspGraph* persp)
 		J2DPicture* pane3 = static_cast<J2DPicture*>(mPaneList1[1]);
 		pane3->setAlpha(pane3->mAlpha);
 		f32 offs3              = pane3->getWidth();
-		JGeometry::TVec3f vec5 = pane3->getGlbVtx(1);
-		JGeometry::TVec3f vec6 = pane3->getGlbVtx(0);
+		JGeometry::TVec3f vec5 = pane3->getGlbVtx(GLBVTX_BtmRight);
+		JGeometry::TVec3f vec6 = pane3->getGlbVtx(GLBVTX_BtmLeft);
 		pane3->draw(vec6.x + offs3, vec5.y, -offs3, pane3->getHeight(), false, false, false);
 		pane3->calcMtx();
 

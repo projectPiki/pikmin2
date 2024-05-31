@@ -928,8 +928,8 @@ void ObjDayEndResultItem::updateCommon()
 {
 	ObjDayEndResultBase::updateCommon();
 
-	JGeometry::TVec3f topLeft    = mScreenMain->search('Nmask')->getGlbVtx(J2DPOS_TopLeft);
-	JGeometry::TVec3f centerLeft = mScreenMain->search('Nmask')->getGlbVtx(J2DPOS_CenterLeft);
+	JGeometry::TVec3f topLeft    = mScreenMain->search('Nmask')->getGlbVtx(GLBVTX_BtmLeft);
+	JGeometry::TVec3f centerLeft = mScreenMain->search('Nmask')->getGlbVtx(GLBVTX_TopRight);
 
 	// this is so dumb. SO DUMB.
 	f32 yTop;

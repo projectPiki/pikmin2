@@ -29,7 +29,7 @@ void SMenuPauseDoukutu::doCreateObj(JKRArchive* archive) { registObj(new ObjSMen
 int SMenuPauseDoukutu::doGetFinishState()
 {
 	int finishState = mFinishState;
-	if (finishState == 1) {
+	if (finishState == og::Screen::MENUFINISH_GetFromSubMember) {
 		Screen::DispMemberBase* dispMember = getDispMember();
 		if (dispMember->isID(OWNER_OGA, MEMBER_START_MENU_ALL)) {
 			Screen::DispMemberSMenuPauseDoukutu* subMember

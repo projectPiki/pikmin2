@@ -3553,10 +3553,10 @@ void WorldMap::rocketUpdate(J2DPane* pane)
 
 	Vector2f sep           = mRocketPosition - mRocketPosition2;
 	J2DPane* shipPane2     = mScreenRocket->search('Procket');
-	JGeometry::TVec3f pos1 = shipPane2->getGlbVtx(0);
-	JGeometry::TVec3f pos2 = shipPane2->getGlbVtx(1);
-	JGeometry::TVec3f pos3 = shipPane2->getGlbVtx(2);
-	JGeometry::TVec3f pos4 = shipPane2->getGlbVtx(3);
+	JGeometry::TVec3f pos1 = shipPane2->getGlbVtx(GLBVTX_BtmLeft);
+	JGeometry::TVec3f pos2 = shipPane2->getGlbVtx(GLBVTX_BtmRight);
+	JGeometry::TVec3f pos3 = shipPane2->getGlbVtx(GLBVTX_TopLeft);
+	JGeometry::TVec3f pos4 = shipPane2->getGlbVtx(GLBVTX_TopRight);
 	f32 factor             = msVal._1C[0];
 	JGeometry::TVec2f mid1((pos1.x + pos2.x) / 2, (pos1.y + pos2.y) / 2);
 	JGeometry::TVec2f mid2((pos3.x + pos4.x) / 2, (pos3.y + pos4.y) / 2);
@@ -5046,8 +5046,8 @@ void WorldMap::effectFirstTime()
 			ID32 caveID(mInitArg.mStages->getCourseInfo(mCurrentCourseIndex)->getCaveID_FromIndex(i));
 			if (Game::playData->isCaveFirstTime(mCurrentCourseIndex, caveID)
 			    != Game::playData->isCaveFirstTime_Old(mCurrentCourseIndex, caveID)) {
-				JGeometry::TVec3f pos1 = mScreenInfo->search(getSerialTagName('Pcave_00', i))->getGlbVtx(0);
-				JGeometry::TVec3f pos2 = mScreenInfo->search(getSerialTagName('Pcave_00', i))->getGlbVtx(3);
+				JGeometry::TVec3f pos1 = mScreenInfo->search(getSerialTagName('Pcave_00', i))->getGlbVtx(GLBVTX_BtmLeft);
+				JGeometry::TVec3f pos2 = mScreenInfo->search(getSerialTagName('Pcave_00', i))->getGlbVtx(GLBVTX_TopRight);
 				f32 x                  = (pos1.y + pos2.y) / 2;
 				for (int j = 0; j < 5; j++) {
 					int k = 4 - j;

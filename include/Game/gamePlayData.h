@@ -10,6 +10,9 @@
 #include "id32.h"
 #include "kh/khDayEndResult.h"
 
+// HOW MUCH IS THE DEBT
+#define DEBT_AMOUNT (10000)
+
 namespace Game {
 struct CourseInfo;
 struct Pellet;
