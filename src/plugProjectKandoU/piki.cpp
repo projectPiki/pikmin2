@@ -177,6 +177,7 @@ void Piki::onInit(CreatureInitArg* initArg)
  */
 void Piki::onKill(CreatureKillArg* killArg)
 {
+	// If we're in versus mode and Piki was killed another piki
 	if (gameSystem->isVersusMode() && killArg && killArg->isFlag(CKILL_VsChargePiki)) {
 		Onyon* onyon = ItemOnyon::mgr->getOnyon(getKind());
 		if (onyon) {
@@ -184,27 +185,34 @@ void Piki::onKill(CreatureKillArg* killArg)
 		}
 	}
 
+	// Clear Piki effects and the spicy state
 	clearDope();
 	mEffectsObj->clear();
 
+	// If the kill argument isn't set, or the kill should count as a death
 	if (!killArg || !(killArg->isFlag(CKILL_DontCountAsDeath))) {
+		// If we're in challenge mode and we're a Pikmin
 		if (gameSystem && gameSystem->isChallengeMode() && isPikmin()) {
 			GameMessageVsPikminDead deadMsg;
 			gameSystem->mSection->sendMessage(deadMsg);
 		}
 
+		// Create dead piki noise and effect
 		Vector3f pikiPos          = getPosition();
 		efx::TPkEffect* effectObj = mEffectsObj;
 		effectObj->clear();
 		efx::createSimpleDead(*effectObj->mHamonPosPtr, effectObj->mPikiColor);
 		mSoundObj->startFreePikiSound(PSSE_PK_VC_GHOST, 90, 0);
 
+		// If death counter is enabled
 		if (gameSystem && !gameSystem->isFlag(GAMESYS_DisableDeathCounter)) {
+			// If we're not a Bulbmin, wild Pikmin, or Pikmin (carrot)
 			int pikiType = getKind();
 			if (pikiType < Bulbmin && !isZikatu() && !isPikmin()) {
 				DeathMgr::inc(DeathCounter::COD_All);
 			}
 
+			// Increment stats of whoever killed us
 			if (mTekiKillID != -1 && gameSystem->isStoryMode()) {
 				playData->mTekiStatMgr.getTekiInfo(mTekiKillID)->incKillPikmin();
 			}
@@ -213,9 +221,16 @@ void Piki::onKill(CreatureKillArg* killArg)
 
 	bool isBulbmin = !isPikmin() && getKind() == Bulbmin;
 
+	// Delete shadow of the Pikmin
 	killFakePiki();
+
+	// Set the light effect as if the Pikmin is free (wild)
 	setFreeLightEffect(false);
+
+	// Disable the spicy spray state
 	setDopeEffect(false);
+
+	// Finish our current action
 	if (getCurrAction()) {
 		getCurrAction()->cleanup();
 	}
@@ -223,10 +238,12 @@ void Piki::onKill(CreatureKillArg* killArg)
 	clearCurrAction();
 	mPikiUpdateContext.exit();
 
+	// If we're not a Bulbmin, decrement the number of alive Pikmin
 	if (!isBulbmin) {
 		GameStat::alivePikis.dec(this);
 	}
 
+	// Remove associated variables and remove from radar
 	pikiMgr->kill(this);
 	mNavi = nullptr;
 	Radar::Mgr::exit(this);
