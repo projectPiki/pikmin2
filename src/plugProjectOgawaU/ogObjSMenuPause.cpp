@@ -120,14 +120,16 @@ void ObjSMenuPause::doCreate(JKRArchive* arc)
 	mMenuReturn = new og::Screen::MenuMgr;
 	mMenuState  = PAUSEMENU_Normal;
 
-	mMenuPause->init(mScreenPause, 3, 'nu_00', 'h_00', 's_00', 'il00', 'ir00'); // "Continue" (pane, text, ?, left dot, right dot)
+	// main pause menu (pane, text, ?, left dot, right dot) - 3 options
+	mMenuPause->init(mScreenPause, 3, 'nu_00', 'h_00', 's_00', 'il00', 'ir00');
 	mCurrSelPause = SELPAUSE_Continue;
 
-	mMenuSunset->init(mScreenPause, 2, 'nu_04', 'h_04', 's_04', 'il04', 'ir04'); // "Go to Sunset" (pane, text, ?, left dot, right dot)
+	// "Go to Sunset" submenu (pane, text, ?, left dot, right dot) - 2 options
+	mMenuSunset->init(mScreenPause, 2, 'nu_04', 'h_04', 's_04', 'il04', 'ir04');
 	mCurrSelSunset = SELSUNSET_No;
 
-	mMenuReturn->init(mScreenPause, 2, 'nu_07', 'h_07', 's_07', 'il07',
-	                  'ir07'); // "Return to Last Save"? (pane, text, ?, left dot, right dot)
+	// "Return to Last Save" submenu (pane, text, ?, left dot, right dot) - 2 options
+	mMenuReturn->init(mScreenPause, 2, 'nu_07', 'h_07', 's_07', 'il07', 'ir07');
 	mCurrSelReturn = SELSUNSET_No;
 
 	mTextContinue = og::Screen::setMenuScreen(arc, mScreenPause, 'h_00');
