@@ -95,19 +95,21 @@ void BaseFlockMgr::resolveCollision(f32 p1)
 	f32 halfVal = 0.5f * p1; // f31
 	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j < getMaxObjects(); j++) {
-			if (isFlagAlive(j)) {
-				for (int k = 0; k < getMaxObjects(); k++) {
-					if (isFlagAlive(k) && j != k) {
-						TFlock* flock1 = getFlock(j); // r31
-						TFlock* flock2 = getFlock(k); // r3
-						Vector3f sep   = *flock1 - *flock2;
-						sep.y          = 0.0f;
-						if (sep.length2D() < p1) {
-							sep.normalise();
-							sep *= halfVal;
-							(Vector3f)* flock1 = *flock1 - sep;
-							(Vector3f)* flock2 = *flock2 + sep;
-						}
+			if (!isFlagAlive(j)) {
+				continue;
+			}
+
+			for (int k = 0; k < getMaxObjects(); k++) {
+				if (isFlagAlive(k) && j != k) {
+					TFlock* flock1 = getFlock(j); // r31
+					TFlock* flock2 = getFlock(k); // r3
+					Vector3f sep   = *flock1 - *flock2;
+					sep.y          = 0.0f;
+					if (sep.length2D() < p1) {
+						sep.normalise();
+						sep *= halfVal;
+						(Vector3f)* flock1 = *flock1 - sep;
+						(Vector3f)* flock2 = *flock2 + sep;
 					}
 				}
 			}

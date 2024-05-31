@@ -56,30 +56,31 @@ void Creature::updateLOD(Game::AILODParm& parm)
 		Viewport* vp = gfx->getViewport(i);
 		if (!vp->viewable()) {
 			vpStats[i] = AILOD_IsFar;
-		} else {
-			Camera* camera = vp->getCamera();
-			if (parm.mIsCylinder) {
-				if (camera->isCylinderVisible(lodCylinder)) {
-					shouldCull = false;
-					mLod.setVPVisible(i);
-				}
-			} else if (camera->isVisible(lodSphere)) {
+			continue;
+		}
+
+		Camera* camera = vp->getCamera();
+		if (parm.mIsCylinder) {
+			if (camera->isCylinderVisible(lodCylinder)) {
 				shouldCull = false;
 				mLod.setVPVisible(i);
 			}
+		} else if (camera->isVisible(lodSphere)) {
+			shouldCull = false;
+			mLod.setVPVisible(i);
+		}
 
-			f32 screenSize = camera->calcScreenSize(lodSphere);
-			if (screenSize > parm.mFar) {
-				vpStats[i] = AILOD_NULL;
-			} else if (screenSize > parm.mClose) {
-				vpStats[i] = AILOD_IsMid;
-			} else {
-				vpStats[i] = AILOD_IsFar;
-			}
+		f32 screenSize = camera->calcScreenSize(lodSphere);
+		if (screenSize > parm.mFar) {
+			vpStats[i] = AILOD_NULL;
+		} else if (screenSize > parm.mClose) {
+			vpStats[i] = AILOD_IsMid;
+		} else {
+			vpStats[i] = AILOD_IsFar;
+		}
 
-			if (vpStats[i] < currFlag) {
-				currFlag = vpStats[i];
-			}
+		if (vpStats[i] < currFlag) {
+			currFlag = vpStats[i];
 		}
 	}
 
@@ -115,12 +116,15 @@ void Creature::updateLOD(Game::AILODParm& parm)
 	for (int i = 0; i < viewportCount; i++) {
 		gfx->getViewport(i)->viewable();
 	}
+
 	mLod.setFlag((u8)currFlag);
+
 	if (!shouldCull) {
 		mLod.setFlag(AILOD_IsVisible);
 	} else {
 		mLod.mFlags = (AILOD_IsFar);
 	}
+
 	if (0 < getCellPikiCount()) {
 		mLod.setFlag(AILOD_PikiInCell);
 	}

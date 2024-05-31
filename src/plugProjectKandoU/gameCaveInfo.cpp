@@ -67,7 +67,7 @@ void TekiInfo::read(Stream& stream)
 	char parsedBuffer[128];
 	char* inputString = stream.readString(nullptr, 0);
 
-	if (*inputString == '$') {
+	if (inputString[0] == '$') {
 		char dropModeChar = inputString[1];
 
 		if (dropModeChar >= '1' && '9' >= dropModeChar) {
@@ -363,8 +363,8 @@ FloorInfo::Parms::Parms()
     , mLightingFile(this, "light.ini", 64, 'f009', "使用ライト")                 // 'light used'
     , mVrBox(this, "test", 64, 'f00A', "VRBOX")                                  // 'VRBOX'
     , mIsHoleClogged(this, 'f010', "階段を壊す岩で隠す(0=オフ 1=オン)", 0, 0, 1) // 'hide stairs with rocks that break (0=off 1=on)'
-    , mFloorAlphaType(this, enum_floor_alpha_types, 0, 6, 'f011', "α属性")      // 'alpha attribute'
-    , mFloorBetaType(this, enum_floor_beta_types, 0, 3, 'f012', "β属性")        // 'beta attribute'
+    , mFloorAlphaType(this, enum_floor_alpha_types, 0, 6, 'f011', "α属性")       // 'alpha attribute'
+    , mFloorBetaType(this, enum_floor_beta_types, 0, 3, 'f012', "β属性")         // 'beta attribute'
     , mFloorHidden(this, enum_floor_hiddens, 0, 2, 'f013', "隠し床")             // 'hidden floor'
     , mVersion(this, 'f015', "Version", 0, 0, 10000)                             // 'Version'
     , mWaterwraithTimer(this, 'f016', "BlackManTimer", 0.0f, 0.0f, 10000.0f)     // 'BlackManTimer'
@@ -538,6 +538,7 @@ bool FloorInfo::useKaidanBarrel() { return mParms.mIsHoleClogged == 1; }
 /**
  * @note Address: 0x801D70D8
  * @note Size: 0x224
+ * TODO: inline here
  */
 void FloorInfo::read(Stream& input)
 {

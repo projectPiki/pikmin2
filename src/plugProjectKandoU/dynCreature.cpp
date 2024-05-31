@@ -688,7 +688,6 @@ void DynCreature::simulate(f32 rate)
 		radius += extraRad;
 
 		JUT_ASSERTLINE(497, range_check(particle->mRotation) && range_check(particle->mPosition), "simulate error\n");
-
 		moveSphere.mPosition           = particle->mPosition;
 		moveSphere.mRadius             = radius;
 		mCurrentChildPtcl              = particle;
