@@ -35,7 +35,7 @@ struct ToeChudoku {
 	void create(Vector3f*);
 	void kill();
 
-	ContextChasePos mContext;
+	ContextChasePos mContext[1];
 };
 
 struct ToeDoping {
@@ -43,7 +43,7 @@ struct ToeDoping {
 	void create(Vector3f*);
 	void kill();
 
-	ContextChasePos mContext;
+	ContextChasePos mContext[1];
 };
 
 struct ToeHamonA {
@@ -84,7 +84,7 @@ struct ToeMoeSmoke {
 	void create(Vector3f*);
 	void kill();
 
-	ContextChasePos mContext;
+	ContextChasePos mContext[1];
 };
 
 struct ToeNagekira {
@@ -92,7 +92,7 @@ struct ToeNagekira {
 	void create(Vector3f*);
 	void kill();
 
-	ContextChasePos mContext;
+	ContextChasePos mContext[1];
 };
 
 struct ToeTanekira {

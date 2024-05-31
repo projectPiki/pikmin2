@@ -664,90 +664,28 @@ int Piki::getStateID()
 f32 Piki::getSpeed(f32 multiplier)
 {
 	if (doped()) {
-		return pikiMgr->mParms->mPikiParms.mDopeRunSpeed.mValue;
+		return pikiMgr->mParms->mPikiParms.mDopeRunSpeed();
 	}
 
-	f32 baseSpeed = scaleValue(1.0f, pikiMgr->mParms->mPikiParms.mRunSpeed.mValue);
+	f32 baseSpeed = scaleValue(1.0f, pikiMgr->mParms->mPikiParms.mRunSpeed());
 
 	if (mHappaKind == Flower) {
-		baseSpeed = pikiMgr->mParms->mPikiParms.mFlowerRunSpeed.mValue;
+		baseSpeed = pikiMgr->mParms->mPikiParms.mFlowerRunSpeed();
 	} else if (mHappaKind == Bud) {
-		baseSpeed = pikiMgr->mParms->mPikiParms.mBudRunSpeed.mValue;
+		baseSpeed = pikiMgr->mParms->mPikiParms.mBudRunSpeed();
 	}
 
 	int pikiType = getKind();
-	f32 drag     = scaleValue(1.0f, pikiMgr->mParms->mPikiParms.mWalkSpeed.mValue);
+	f32 drag     = scaleValue(1.0f, pikiMgr->mParms->mPikiParms.mWalkSpeed());
 	f32 speed    = multiplier * (baseSpeed - drag) + drag;
 
 	if (pikiType == White) {
-		speed *= pikiMgr->mParms->mPikiParms.mWhiteRunSpeedMultiplier.mValue;
+		speed *= pikiMgr->mParms->mPikiParms.mWhiteRunSpeedMultiplier();
 	} else if (pikiType == Purple) {
-		speed *= pikiMgr->mParms->mPikiParms.mPurpleRunSpeedMultiplier.mValue;
+		speed *= pikiMgr->mParms->mPikiParms.mPurpleRunSpeedMultiplier();
 	}
 
 	return speed;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stfd     f31, 0x10(r1)
-	psq_st   f31, 24(r1), 0, qr0
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	fmr      f31, f1
-	bl       doped__Q24Game4PikiFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80148F8C
-	lwz      r3, pikiMgr__4Game@sda21(r13)
-	lwz      r3, 0x6c(r3)
-	lfs      f1, 0x11a0(r3)
-	b        lbl_80148FFC
-
-lbl_80148F8C:
-	lwz      r3, pikiMgr__4Game@sda21(r13)
-	lbz      r0, 0x2b9(r31)
-	lwz      r3, 0x6c(r3)
-	lfs      f1, lbl_80518440@sda21(r2)
-	cmplwi   r0, 2
-	lfs      f0, 0x2c8(r3)
-	fmuls    f2, f1, f0
-	bne      lbl_80148FB4
-	lfs      f2, 0x2f0(r3)
-	b        lbl_80148FC0
-
-lbl_80148FB4:
-	cmplwi   r0, 1
-	bne      lbl_80148FC0
-	lfs      f2, 0x318(r3)
-
-lbl_80148FC0:
-	lfs      f1, lbl_80518440@sda21(r2)
-	lfs      f0, 0x2a0(r3)
-	lbz      r0, 0x2b8(r31)
-	fmuls    f1, f1, f0
-	cmpwi    r0, 4
-	fsubs    f0, f2, f1
-	fmadds   f1, f31, f0, f1
-	bne      lbl_80148FEC
-	lfs      f0, 0x1010(r3)
-	fmuls    f1, f1, f0
-	b        lbl_80148FFC
-
-lbl_80148FEC:
-	cmpwi    r0, 3
-	bne      lbl_80148FFC
-	lfs      f0, 0x1038(r3)
-	fmuls    f1, f1, f0
-
-lbl_80148FFC:
-	psq_l    f31, 24(r1), 0, qr0
-	lwz      r0, 0x24(r1)
-	lfd      f31, 0x10(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**

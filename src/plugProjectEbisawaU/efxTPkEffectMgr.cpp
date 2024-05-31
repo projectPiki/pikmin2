@@ -446,15 +446,15 @@ void ToeKourin::kill()
 void ToeDoping::create(Vector3f* chasePos)
 {
 	P2ASSERTLINE(385, chasePos);
-	mContext.mPosition = chasePos;
-	pkEffectMgr->mTOneEmitters.mToeDoping->add(&mContext);
+	mContext[0].mPosition = chasePos;
+	pkEffectMgr->mTOneEmitters.mToeDoping->add(mContext);
 }
 
 /**
  * @note Address: 0x803C729C
  * @note Size: 0x2C
  */
-void ToeDoping::kill() { pkEffectMgr->mTOneEmitters.mToeDoping->del(&mContext); }
+void ToeDoping::kill() { pkEffectMgr->mTOneEmitters.mToeDoping->del(mContext); }
 
 /**
  * @note Address: 0x803C72C8
@@ -463,15 +463,15 @@ void ToeDoping::kill() { pkEffectMgr->mTOneEmitters.mToeDoping->del(&mContext); 
 void ToeNagekira::create(Vector3f* chasePos)
 {
 	P2ASSERTLINE(399, chasePos);
-	mContext.mPosition = chasePos;
-	pkEffectMgr->mTOneEmitters.mToeNageKira->add(&mContext);
+	mContext[0].mPosition = chasePos;
+	pkEffectMgr->mTOneEmitters.mToeNageKira->add(mContext);
 }
 
 /**
  * @note Address: 0x803C7330
  * @note Size: 0x2C
  */
-void ToeNagekira::kill() { pkEffectMgr->mTOneEmitters.mToeNageKira->del(&mContext); }
+void ToeNagekira::kill() { pkEffectMgr->mTOneEmitters.mToeNageKira->del(mContext); }
 
 /**
  * @note Address: 0x803C735C
@@ -504,15 +504,15 @@ void ToeMoeBC::kill()
 void ToeChudoku::create(Vector3f* chasePos)
 {
 	P2ASSERTLINE(429, chasePos);
-	mContext.mPosition = chasePos;
-	pkEffectMgr->mTOneEmitters.mToeChudoku->add(&mContext);
+	mContext[0].mPosition = chasePos;
+	pkEffectMgr->mTOneEmitters.mToeChudoku->add(mContext);
 }
 
 /**
  * @note Address: 0x803C7488
  * @note Size: 0x2C
  */
-void ToeChudoku::kill() { pkEffectMgr->mTOneEmitters.mToeChudoku->del(&mContext); }
+void ToeChudoku::kill() { pkEffectMgr->mTOneEmitters.mToeChudoku->del(mContext); }
 
 /**
  * @note Address: 0x803C74B4
@@ -583,15 +583,15 @@ void ToeHamonB::kill() { pkEffectMgr->mTOneEmitters.mToeHamonB->del(mContext); }
 void ToeMoeSmoke::create(Vector3f* chasePos)
 {
 	P2ASSERTLINE(495, chasePos);
-	mContext.mPosition = chasePos;
-	pkEffectMgr->mTOneEmitters.mToeMoeSmoke->add(&mContext);
+	mContext[0].mPosition = chasePos;
+	pkEffectMgr->mTOneEmitters.mToeMoeSmoke->add(mContext);
 }
 
 /**
  * @note Address: 0x803C7720
  * @note Size: 0x2C
  */
-void ToeMoeSmoke::kill() { pkEffectMgr->mTOneEmitters.mToeMoeSmoke->del(&mContext); }
+void ToeMoeSmoke::kill() { pkEffectMgr->mTOneEmitters.mToeMoeSmoke->del(mContext); }
 
 /**
  * @note Address: 0x803C774C
