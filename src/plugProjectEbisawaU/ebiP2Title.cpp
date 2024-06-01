@@ -32,8 +32,8 @@ TTitleMgr::TTitleMgr()
     , mLightMgr()
 {
 	_F54          = true;
-	mState        = 0;
-	mLevelSetting = Summer;
+	mState        = TITLE_Inactive;
+	mLevelSetting = LEVEL_Summer;
 
 	u32 count         = 0.0f / sys->mDeltaTime;
 	mCounterCommon    = count;
@@ -144,10 +144,10 @@ void TTitleMgr::init()
 
 	add(&mLightMgr);
 	add(&mFogMgr);
-	add(&mCoordMgr[0]);
-	mCoordMgr[0].mName = "TCoordMgr Main";
-	add(&mCoordMgr[1]);
-	mCoordMgr[1].mName = "TCoordMgr Sub";
+	add(&mCoordMgr[COORD_Main]);
+	mCoordMgr[COORD_Main].mName = "TCoordMgr Main";
+	add(&mCoordMgr[COORD_Sub]);
+	mCoordMgr[COORD_Sub].mName = "TCoordMgr Sub";
 
 	add(&mPikminMgr);
 	add(&mKoganeMgr);
@@ -160,14 +160,8 @@ void TTitleMgr::init()
  */
 void TTitleMgr::setDestToPiki(s32 index)
 {
-	// this and setPosToPiki arent quite right based on their sizes, but this is the best i can get it
-	if (index == 0)
-		setPosToPiki(0);
-	else if (index == 1) {
-		setPosToPiki(1);
-	}
+	setPosToPiki(index);
 	mPikminMgr.setDestPos(mPikiPosList);
-	//  UNUSED FUNCTION
 }
 
 /**
@@ -200,7 +194,7 @@ void TTitleMgr::setLogo()
 	mKoganeMgr.mObject->outOfCalc();
 	mChappyMgr.mObject->outOfCalc();
 	mBlackPlane.setLogo();
-	mState = 1;
+	mState = TITLE_Normal;
 }
 
 /**
@@ -213,10 +207,10 @@ void TTitleMgr::calcBreakupDestination()
 		f32 angle = 4.712389f * randEbisawaFloat() + -0.78539819f;
 		f32 max   = mTitleParms.mMaxPikminScatterRadius();
 		f32 min   = mTitleParms.mMinPikminScatterRadius();
-		f32 scale = (max - min) * randEbisawaFloat() + min;
+		f32 scale = getBreakupDistance();
 
-		mPikiPosList[i]
-		    = Vector2f(scale * cosf(angle) + mTitleParms.mPikiScatterOriginX(), scale * sinf(angle) + mTitleParms.mPikiScatterOriginY());
+		mPikiPosList[i].set(scale * cosf(angle) + mTitleParms.mPikiScatterOriginX(),
+		                    scale * sinf(angle) + mTitleParms.mPikiScatterOriginY());
 	}
 }
 
@@ -263,39 +257,39 @@ void TTitleMgr::loadResource()
 	readTitleParam(arc, "param/param_title.txt");
 
 	if (Game::gGameConfig.mParms.mE3version.mData) {
-		mCoordMgr[0].readCoordinate(arc, "logo/coordinate_eng");
-		mCoordMgr[1].readCoordinate(arc, "logo/coordinate_Nintendo");
+		mCoordMgr[COORD_Main].readCoordinate(arc, "logo/coordinate_eng");
+		mCoordMgr[COORD_Sub].readCoordinate(arc, "logo/coordinate_Nintendo");
 	} else {
 		switch (sys->mRegion) {
 		case System::LANG_Japanese:
 			if (Game::gGameConfig.mParms.mKFesVersion.mData) {
-				mCoordMgr[0].readCoordinate(arc, "logo/coordinate_eng");
+				mCoordMgr[COORD_Main].readCoordinate(arc, "logo/coordinate_eng");
 			} else {
-				mCoordMgr[0].readCoordinate(arc, "logo/coordinate_jpn");
+				mCoordMgr[COORD_Main].readCoordinate(arc, "logo/coordinate_jpn");
 			}
-			mCoordMgr[1].readCoordinate(arc, "logo/coordinate_Nintendo");
+			mCoordMgr[COORD_Sub].readCoordinate(arc, "logo/coordinate_Nintendo");
 			break;
 		default:
-			mCoordMgr[0].readCoordinate(arc, "logo/coordinate_eng");
-			mCoordMgr[1].readCoordinate(arc, "logo/coordinate_Nintendo");
+			mCoordMgr[COORD_Main].readCoordinate(arc, "logo/coordinate_eng");
+			mCoordMgr[COORD_Sub].readCoordinate(arc, "logo/coordinate_Nintendo");
 			break;
 		}
 	}
 
 	switch (mLevelSetting) {
-	case Spring:
+	case LEVEL_Spring:
 		mLightMgr.loadSettingFile(arc, "param/param_light_spring.txt");
 		mFogMgr.loadSettingFile(arc, "param/param_fog_spring.txt");
 		break;
-	case Summer:
+	case LEVEL_Summer:
 		mLightMgr.loadSettingFile(arc, "param/param_light_summer.txt");
 		mFogMgr.loadSettingFile(arc, "param/param_fog_summer.txt");
 		break;
-	case Autumn:
+	case LEVEL_Autumn:
 		mLightMgr.loadSettingFile(arc, "param/param_light_autumn.txt");
 		mFogMgr.loadSettingFile(arc, "param/param_fog_autumn.txt");
 		break;
-	case Winter:
+	case LEVEL_Winter:
 		mLightMgr.loadSettingFile(arc, "param/param_light_winter.txt");
 		mFogMgr.loadSettingFile(arc, "param/param_fog_winter.txt");
 		break;
@@ -307,16 +301,16 @@ void TTitleMgr::loadResource()
 
 	char* path = "";
 	switch (mLevelSetting) {
-	case Spring:
+	case LEVEL_Spring:
 		path = "user/Ebisawa/title/bg_spring.szs";
 		break;
-	case Summer:
+	case LEVEL_Summer:
 		path = "user/Ebisawa/title/bg_summer.szs";
 		break;
-	case Autumn:
+	case LEVEL_Autumn:
 		path = "user/Ebisawa/title/bg_autumn.szs";
 		break;
-	case Winter:
+	case LEVEL_Winter:
 		path = "user/Ebisawa/title/bg_winter.szs";
 		break;
 	}
@@ -363,7 +357,7 @@ void TTitleMgr::setDrawBufferToJ3DSys()
 {
 	// this isnt right, i cant figure out what j3dsys related thing goes here and is only 0x1C long
 	mDrawBufferA->frameInit();
-	mDrawBufferB->frameInit();
+	// mDrawBufferB->frameInit();
 	// UNUSED FUNCTION
 }
 
@@ -498,11 +492,7 @@ void TTitleMgr::start()
 	mKoganeMgr.mObject->outOfCalc();
 	mChappyMgr.mObject->outOfCalc();
 	mBlackPlane.start();
-	mBlackPlane.updateBeforeCamera();
-
-	Vector3f camPos = mBlackPlane.getCameraPos();
-	mCameraMgr.setPosition(camPos);
-	mCameraMgr.update();
+	updateCameras();
 
 	u32 count     = 10.0f / sys->mDeltaTime;
 	mCounter2     = count;
@@ -521,7 +511,7 @@ void TTitleMgr::start()
 	mPikminMgr.startDemo();
 	mBlackPlane.start();
 	mBgEnemyBase.start();
-	startState(STATE1);
+	startState(TITLE_Normal);
 }
 
 /**
@@ -530,21 +520,22 @@ void TTitleMgr::start()
  */
 void TTitleMgr::windBlow()
 {
-	f32 minX = mTitleParms.mBoundsMinX();
-	f32 maxX = mTitleParms.mBoundsMaxX() - minX;
+	f32 ratio, maxX, minX;
+	minX = mTitleParms.mBoundsMinX();
+	maxX = mTitleParms.mBoundsMaxX() - minX;
 
-	f32 max  = mCounterCommonMax;
+	ratio    = maxX / f32(mCounterCommonMax);
 	f32 calc = mCounterCommonMax ? mCounterCommon / (f32)mCounterCommonMax : 0.0f;
 
+	f32 initX = maxX * (1.0f - (mCounterCommonMax ? mCounterCommon / f32(mCounterCommonMax) : 0.0f)) + minX;
 	EGEBox2f box;
-	JGeometry::TVec2f x(maxX * (1.0f - calc) + minX, (maxX * (1.0f - calc) + minX) + maxX / max);
-	box.setI(x);
+	JGeometry::TVec2f i(initX, mTitleParms.mBoundsMinY());
+	box.setI(i);
 
-	JGeometry::TVec2f y(mTitleParms.mBoundsMinY(), mTitleParms.mBoundsMaxY());
-	box.setF(y);
+	JGeometry::TVec2f f(initX + ratio, mTitleParms.mBoundsMaxY());
+	box.setF(f);
 
 	mPikminMgr.startWindBlow(box);
-	// UNUSED FUNCTION
 }
 
 /**
@@ -558,7 +549,7 @@ bool TTitleMgr::breakup()
 	mPikminMgr.quickAssemble();
 	mKoganeMgr.mObject->goHome();
 	mChappyMgr.mObject->goHome();
-	startState(STATE1);
+	startState(TITLE_Normal);
 	return true;
 }
 
@@ -579,7 +570,7 @@ bool TTitleMgr::startKogane()
 		pos2.x = 0.0f;
 		pos2.y = 0.0f;
 		mKoganeMgr.mObject->startZigzagWalk(pos1, pos2);
-		startState(Enemy);
+		startState(TITLE_Enemy);
 		return true;
 	}
 
@@ -603,7 +594,7 @@ bool TTitleMgr::startChappy()
 		pos2.x = 0.0f;
 		pos2.y = 0.0f;
 		mChappyMgr.mObject->startZigzagWalk(pos1, pos2);
-		startState(Enemy);
+		startState(TITLE_Enemy);
 		return true;
 	}
 
@@ -614,16 +605,22 @@ bool TTitleMgr::startChappy()
  * @note Address: 0x803BF9EC
  * @note Size: 0x23C
  */
-bool TTitleMgr::boidToAssemble(s32 id)
+bool TTitleMgr::boidToAssemble(s32 coordType)
 {
 	mKoganeMgr.mObject->goHome();
 	mChappyMgr.mObject->goHome();
 
 	calcBreakupDestination();
 
-	setDestToPiki(id);
+	if (coordType == COORD_Main) {
+		setPosToPiki(COORD_Main);
+	} else if (coordType == COORD_Sub) {
+		setPosToPiki(COORD_Sub);
+	}
 
-	startState(BoidDisperse);
+	mPikminMgr.setDestPos(mPikiPosList);
+
+	startState(TITLE_BoidDisperse);
 	mIsWindActive = 0;
 	return true;
 }
@@ -683,28 +680,28 @@ void TTitleMgr::startState(enumState state)
 	u32 count;
 	mState = state;
 	switch (state) {
-	case BoidDisperse:
+	case TITLE_BoidDisperse:
 		mPikminMgr.startBoid1(mTitleParms.mBoidDurationDisperse);
 		count             = mTitleParms.mBoidDurationDisperse.mValue / sys->mDeltaTime;
 		mCounterCommon    = count;
 		mCounterCommonMax = count;
 		break;
-	case BoidRegroup:
+	case TITLE_BoidRegroup:
 		mPikminMgr.startBoid2(mTitleParms.mBoidDurationRegroup);
 		count             = mTitleParms.mBoidDurationRegroup.mValue / sys->mDeltaTime;
 		mCounterCommon    = count;
 		mCounterCommonMax = count;
 		break;
-	case BoidSwirl:
+	case TITLE_BoidSwirl:
 		boid3ToAssemble();
 		break;
-	case StartWind:
+	case TITLE_StartWind:
 		count             = mTitleParms.mWindMoveDuration.mValue / sys->mDeltaTime;
 		mCounterCommon    = count;
 		mCounterCommonMax = count;
 		mMapBase.startWind(mTitleParms.mPlantMoveDuration.mValue);
 		break;
-	case Enemy:
+	case TITLE_Enemy:
 		count             = mTitleParms.mEnemyStayDuration.mValue / sys->mDeltaTime;
 		mCounterCommon    = count;
 		mCounterCommonMax = count;
@@ -718,7 +715,7 @@ void TTitleMgr::startState(enumState state)
  */
 bool TTitleMgr::update()
 {
-	if (mState != 0) {
+	if (mState != TITLE_Inactive) {
 		if (mCounter2) {
 			mCounter2--;
 		}
@@ -735,10 +732,11 @@ bool TTitleMgr::update()
 		if (mCanInput && mController) {
 			u32 press = mController->getButtonDown();
 			if (press & Controller::PRESS_L) {
-				boidToAssemble(0);
+				boidToAssemble(COORD_Main); // "Pikmin 2"
 			} else if (press & Controller::PRESS_R) {
-				boidToAssemble(1);
+				boidToAssemble(COORD_Sub); // "Nintendo"
 			}
+
 			press = mController->getButtonDown();
 			if (press & Controller::PRESS_X) {
 				if (!Game::gGameConfig.mParms.mE3version.mData) {
@@ -751,12 +749,18 @@ bool TTitleMgr::update()
 		if (!mCounter2) {
 			bool flag = false;
 			if (!mIsWindActive) {
-				if (isAssemble()) {
-					mState            = StartWind;
+				bool assembleCheck;
+				if (!isAssemble()) {
+					assembleCheck = false;
+				} else {
+					mState            = TITLE_StartWind;
 					u32 count         = mTitleParms.mWindMoveDuration.mValue / sys->mDeltaTime;
 					mCounterCommon    = count;
 					mCounterCommonMax = count;
 					mMapBase.startWind(mTitleParms.mPlantMoveDuration.mValue);
+					assembleCheck = true;
+				}
+				if (assembleCheck) {
 					mIsWindActive = true;
 					flag          = true;
 				}
@@ -777,23 +781,36 @@ bool TTitleMgr::update()
 						}
 					}
 				} else if (test < 0.6f) {
-					if (mState != Enemy) {
-						mState = StartWind;
+					bool assembleCheck;
+					if (mState == TITLE_Enemy) {
+						assembleCheck = false;
+					} else {
+						mState = TITLE_BoidSwirl;
 						boid3ToAssemble();
 						mIsWindActive = false;
-						flag          = true;
+						assembleCheck = true;
+					}
+					if (assembleCheck) {
+						flag = true;
 					}
 				} else {
-					if (isAssemble()) {
-						mState            = StartWind;
+					bool assembleCheck;
+					if (!isAssemble()) {
+						assembleCheck = false;
+					} else {
+						mState            = TITLE_StartWind;
 						u32 count         = mTitleParms.mWindMoveDuration.mValue / sys->mDeltaTime;
 						mCounterCommon    = count;
 						mCounterCommonMax = count;
 						mMapBase.startWind(mTitleParms.mPlantMoveDuration);
+						assembleCheck = true;
+					}
+					if (assembleCheck) {
 						flag = true;
 					}
 				}
 			}
+
 			if (flag) {
 				u32 count    = 10.0f / sys->mDeltaTime;
 				mCounter2    = count;
@@ -815,48 +832,43 @@ bool TTitleMgr::update()
 void TTitleMgr::updateState()
 {
 	switch (mState) {
-	case 0:
+	case TITLE_Inactive:
 		return;
-	case 4:
+	case TITLE_BoidDisperse:
 		if (mCounterCommon) {
 			mCounterCommon--;
 		}
-		if (!mCounterCommon) {
-			mState = 5;
-			mPikminMgr.startBoid2(mTitleParms.mBoidDurationRegroup.mValue);
-			u32 count         = mTitleParms.mBoidDurationRegroup.mValue / sys->mDeltaTime;
-			mCounterCommon    = count;
-			mCounterCommonMax = count;
+		if (mCounterCommon == 0) {
+			startState(TITLE_BoidRegroup);
 		}
 		break;
-	case 5:
+	case TITLE_BoidRegroup:
 		if (mCounterCommon) {
 			mCounterCommon--;
 		}
-		if (!mCounterCommon) {
-			mState = 6;
-			boid3ToAssemble();
+		if (mCounterCommon == 0) {
+			startState(TITLE_BoidSwirl);
 		}
 		break;
-	case 6:
+	case TITLE_BoidSwirl:
 		if (mCounterCommon) {
 			mCounterCommon--;
 		}
-		if (!mCounterCommon) {
+		if (mCounterCommon == 0) {
 			mPikminMgr.assemble();
-			mState = 1;
+			startState(TITLE_Normal);
 		}
 		break;
-	case 2:
+	case TITLE_StartWind:
 		if (mCounterCommon) {
 			mCounterCommon--;
 		}
 		windBlow();
-		if (!mCounterCommon) {
-			mState = 1;
+		if (mCounterCommon == 0) {
+			startState(TITLE_Normal);
 		}
 		break;
-	case 3:
+	case TITLE_Enemy:
 		if (mCounterCommon) {
 			mCounterCommon--;
 		}
@@ -871,18 +883,13 @@ void TTitleMgr::updateState()
 		}
 		if (!mChappyMgr.mObject->isCalc() && !mKoganeMgr.mObject->isCalc()) {
 			mPikminMgr.assemble();
-			mState = 1;
+			startState(TITLE_Normal);
 		}
 		break;
 	}
 
 	mLightMgr.update();
-	mBlackPlane.updateBeforeCamera();
-
-	Vector3f camPos = mBlackPlane.getCameraPos();
-	mCameraMgr.setPosition(camPos);
-
-	mCameraMgr.update();
+	updateCameras();
 	PSMTXCopy(mCameraMgr.mLookMatrix.mMatrix.mtxView, j3dSys.mViewMtx);
 	mBlackPlane.updateAfterCamera();
 	mPikminMgr.update();
@@ -917,20 +924,26 @@ void TTitleMgr::checkEncounter_()
 			f32 distmax = 1000.0f;
 
 			if (mKoganeMgr.mObject->isCalc()) {
-				Vector2f dist = mKoganeMgr.mObject->mPosition - piki->mPosition;
-				if (dist.length() < distmax) {
-					distmax         = dist.length();
-					piki->mEnemyObj = mKoganeMgr.mObject;
-				}
+				piki->checkClosestEnemy(mKoganeMgr.mObject, distmax);
 			}
-
 			if (mChappyMgr.mObject->isCalc()) {
-				Vector2f dist = mChappyMgr.mObject->mPosition - piki->mPosition;
-				if (dist.length() < distmax) {
-					distmax         = dist.length();
-					piki->mEnemyObj = mChappyMgr.mObject;
-				}
+				piki->checkClosestEnemy(mChappyMgr.mObject, distmax);
 			}
+			// if (mKoganeMgr.mObject->isCalc()) {
+			// 	Vector2f dist = mKoganeMgr.mObject->mPosition - piki->mPosition;
+			// 	if (dist.length() < distmax) {
+			// 		distmax         = dist.length();
+			// 		piki->mEnemyObj = mKoganeMgr.mObject;
+			// 	}
+			// }
+
+			// if (mChappyMgr.mObject->isCalc()) {
+			// 	Vector2f dist = mChappyMgr.mObject->mPosition - piki->mPosition;
+			// 	if (dist.length() < distmax) {
+			// 		distmax         = dist.length();
+			// 		piki->mEnemyObj = mChappyMgr.mObject;
+			// 	}
+			// }
 		}
 	}
 }
@@ -941,8 +954,8 @@ void TTitleMgr::checkEncounter_()
  */
 void TTitleMgr::draw()
 {
-	if (mState != 0) {
-		if (mLevelSetting == Winter) {
+	if (mState != TITLE_Inactive) {
+		if (mLevelSetting == LEVEL_Winter) {
 			J2DPerspGraph* graf = &sys->mGfx->mPerspGraph;
 			graf->setPort();
 			JUtility::TColor c(255, 255, 255, 255);
@@ -1002,12 +1015,6 @@ void TTitleMgr::readTitleParam(JKRArchive* arc, char* path)
 		mTitleParms.read(stream);
 	}
 }
-
-/**
- * @note Address: 0x803C0A98
- * @note Size: 0x24
- */
-void TTitleCameraMgr::read(Stream& file) { mParms.read(file); }
 
 } // namespace title
 } // namespace ebi

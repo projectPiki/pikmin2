@@ -44,6 +44,8 @@ struct TObjBase {
 
 	void pushOut_(Vector2f&);
 
+	inline Vector2f getPosition() { return mPosition; }
+
 	// _00 = VTBL
 	Vector2f mPosition; // _04
 	Vector2f mAngle;    // _0C

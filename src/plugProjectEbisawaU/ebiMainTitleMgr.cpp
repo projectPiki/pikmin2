@@ -38,16 +38,16 @@ void TMainTitleMgr::setMode(s32 set)
 {
 	switch (set) {
 	case 0:
-		title::titleMgr->mLevelSetting = title::TTitleMgr::Spring;
+		title::titleMgr->mLevelSetting = title::TTitleMgr::LEVEL_Spring;
 		break;
 	case 1:
-		title::titleMgr->mLevelSetting = title::TTitleMgr::Summer;
+		title::titleMgr->mLevelSetting = title::TTitleMgr::LEVEL_Summer;
 		break;
 	case 2:
-		title::titleMgr->mLevelSetting = title::TTitleMgr::Autumn;
+		title::titleMgr->mLevelSetting = title::TTitleMgr::LEVEL_Autumn;
 		break;
 	case 3:
-		title::titleMgr->mLevelSetting = title::TTitleMgr::Winter;
+		title::titleMgr->mLevelSetting = title::TTitleMgr::LEVEL_Winter;
 		break;
 	}
 }

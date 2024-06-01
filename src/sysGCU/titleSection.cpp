@@ -611,49 +611,49 @@ void Section::loadResource()
 
 	switch (id) {
 	case 0:
-		sSeasonIndex = ebi::title::TTitleMgr::Winter;
+		sSeasonIndex = ebi::title::TTitleMgr::LEVEL_Winter;
 		break;
 	case 1:
-		sSeasonIndex = ebi::title::TTitleMgr::Winter;
+		sSeasonIndex = ebi::title::TTitleMgr::LEVEL_Winter;
 		break;
 	case 2:
-		sSeasonIndex = ebi::title::TTitleMgr::Spring;
+		sSeasonIndex = ebi::title::TTitleMgr::LEVEL_Spring;
 		break;
 	case 3:
-		sSeasonIndex = ebi::title::TTitleMgr::Spring;
+		sSeasonIndex = ebi::title::TTitleMgr::LEVEL_Spring;
 		break;
 	case 4:
-		sSeasonIndex = ebi::title::TTitleMgr::Spring;
+		sSeasonIndex = ebi::title::TTitleMgr::LEVEL_Spring;
 		break;
 	case 5:
-		sSeasonIndex = ebi::title::TTitleMgr::Summer;
+		sSeasonIndex = ebi::title::TTitleMgr::LEVEL_Summer;
 		break;
 	case 6:
-		sSeasonIndex = ebi::title::TTitleMgr::Summer;
+		sSeasonIndex = ebi::title::TTitleMgr::LEVEL_Summer;
 		break;
 	case 7:
-		sSeasonIndex = ebi::title::TTitleMgr::Summer;
+		sSeasonIndex = ebi::title::TTitleMgr::LEVEL_Summer;
 		break;
 	case 8:
-		sSeasonIndex = ebi::title::TTitleMgr::Autumn;
+		sSeasonIndex = ebi::title::TTitleMgr::LEVEL_Autumn;
 		break;
 	case 9:
-		sSeasonIndex = ebi::title::TTitleMgr::Autumn;
+		sSeasonIndex = ebi::title::TTitleMgr::LEVEL_Autumn;
 		break;
 	case 10:
-		sSeasonIndex = ebi::title::TTitleMgr::Autumn;
+		sSeasonIndex = ebi::title::TTitleMgr::LEVEL_Autumn;
 		break;
 	case 11:
-		sSeasonIndex = ebi::title::TTitleMgr::Winter;
+		sSeasonIndex = ebi::title::TTitleMgr::LEVEL_Winter;
 		break;
 	default:
-		if ((s8)(++sSeasonIndex) > ebi::title::TTitleMgr::Winter) {
-			sSeasonIndex = ebi::title::TTitleMgr::Spring;
+		if ((s8)(++sSeasonIndex) > ebi::title::TTitleMgr::LEVEL_Winter) {
+			sSeasonIndex = ebi::title::TTitleMgr::LEVEL_Spring;
 		}
 	}
 
 	if (Game::gGameConfig.mParms.mKFesVersion.mData) {
-		mMainTitleMgr.setMode(ebi::title::TTitleMgr::Summer);
+		mMainTitleMgr.setMode(ebi::title::TTitleMgr::LEVEL_Summer);
 	} else {
 		mMainTitleMgr.setMode(sSeasonIndex);
 	}
