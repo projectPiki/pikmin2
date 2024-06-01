@@ -511,7 +511,7 @@ void TOmake::doOpenScreen(ArgOpen* arg)
 		for (int i = 0; i < 4; i++) {
 			J2DTextBox* pane = mPaneListMesg[i];
 			pane->setCharColor(mColor8);
-			pane->setGradientColor(mColor9);
+			pane->setGradColor(mColor9);
 			pane->setWhite(mColor10);
 			pane->setBlack(mColor11);
 
@@ -523,7 +523,7 @@ void TOmake::doOpenScreen(ArgOpen* arg)
 	if (!flag2) {
 		J2DTextBox* pane = mPaneListMesg[4];
 		pane->setCharColor(mColor8);
-		pane->setGradientColor(mColor9);
+		pane->setGradColor(mColor9);
 		pane->setWhite(mColor10);
 		pane->setBlack(mColor11);
 
@@ -534,7 +534,7 @@ void TOmake::doOpenScreen(ArgOpen* arg)
 	if (!flag3) {
 		J2DTextBox* pane = mPaneListMesg[5];
 		pane->setCharColor(mColor8);
-		pane->setGradientColor(mColor9);
+		pane->setGradColor(mColor9);
 		pane->setWhite(mColor10);
 		pane->setBlack(mColor11);
 
@@ -545,7 +545,7 @@ void TOmake::doOpenScreen(ArgOpen* arg)
 	if (sys->mRegion != System::LANG_Japanese) {
 		J2DTextBox* pane = mPaneListMesg[6];
 		pane->setCharColor(mColor8);
-		pane->setGradientColor(mColor9);
+		pane->setGradColor(mColor9);
 		pane->setWhite(mColor10);
 		pane->setBlack(mColor11);
 

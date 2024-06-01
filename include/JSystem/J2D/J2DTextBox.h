@@ -108,7 +108,15 @@ struct J2DTextBox : public J2DPane {
 
 	// not quite right
 	inline void setCharColor(JUtility::TColor color) { mCharColor.set(color); }
-	inline void setGradientColor(JUtility::TColor color) { mGradientColor.set(color); }
+	inline void setGradColor(JUtility::TColor color) { mGradientColor.set(color); }
+
+	inline void setFontColor(JUtility::TColor charColor, JUtility::TColor gradColor)
+	{
+		mCharColor     = charColor;
+		mGradientColor = gradColor;
+	}
+
+	// inline void setDefaultColors
 
 	// _000      = VTBL
 	// _000-_100 = J2DPane

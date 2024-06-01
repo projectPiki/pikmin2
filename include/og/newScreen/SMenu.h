@@ -425,6 +425,8 @@ struct ObjSMenuMap : public ObjSMenuBase {
 	void setMapColor();
 	u8 calcCaveNameAlpha();
 
+	f32 getMapAdjustVal(f32 stickMag, f32 factor) { return stickMag * (factor * (1.0f / mCurrentZoom)); }
+
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_A8 = ObjSMenuBase
@@ -465,28 +467,36 @@ struct ObjSMenuMap : public ObjSMenuBase {
 
 	static struct StaticValues {
 		inline StaticValues()
-		    : mMinZoom(0.5f)
-		    , mMaxZoom(8.0f)
-		    , _08(255)
+		    : _08(255)
 		    , _09(255)
 		    , _0A(255)
 		    , mMapTexColorWhite(210, 220, 255, 255)
 		    , mMapTexColorBlack(0, 0, 50, 0)
 		    , mItemPelletWhiteColor(255, 132, 0, 255)
 		    , mItemPelletBlackColor(255, 0, 0, 0)
-		    , _1B(220)
 		    , mMapMoveRate(5.5f)
 		    , mMapMoveRate2(2.0f)
-		    , mMapIconScaleBase(0.7f)
-		    , mMapNaviArrowScaleMod(1.5f)
-		    , mGroundZoom(1.8f)
-		    , mCaveZoom(1.8f)
-		    // , mMapTexOffset(22.0f, 12.0f)
 		    , mMapMoveInputReduction(1.8f)
-		    , mMapScreenScale(1.0f, 0.92f)
-		    , mTempPikiColorWhite(0, 128, 255, 255)
-		    , mTempPikiColorBlack(0, 255, 255, 0)
 		{
+			_1B                   = 220;
+			mMinZoom              = 0.5f;
+			mMaxZoom              = 8.0f;
+			mMapIconScaleBase     = 0.7f;
+			mMapNaviArrowScaleMod = 1.5f;
+			mGroundZoom           = 1.8f;
+			mCaveZoom             = 1.8f;
+			mMapTexOffset.x       = 22.0f;
+			mMapTexOffset.y       = 12.0f;
+			mMapScreenScale.x     = 1.0f;
+			mMapScreenScale.y     = 0.92f;
+			mTempPikiColorWhite.r = 0;
+			mTempPikiColorWhite.g = 128;
+			mTempPikiColorWhite.b = 255;
+			mTempPikiColorWhite.a = 255;
+			mTempPikiColorBlack.r = 0;
+			mTempPikiColorBlack.g = 255;
+			mTempPikiColorBlack.b = 255;
+			mTempPikiColorBlack.a = 0;
 		}
 
 		f32 mMinZoom;                           // _00
