@@ -120,9 +120,9 @@ void Pikmin::TAnimator::setArchive(JKRArchive* arc)
 	mWaitAnim = (J3DAnmTransform*)J3DAnmLoaderDataBase::load(file);
 	file      = arc->getResource("pikmin/wave.bck");
 	P2ASSERTLINE(233, file);
-	mWaitAnim           = (J3DAnmTransform*)J3DAnmLoaderDataBase::load(file);
+	mWaveAnim           = (J3DAnmTransform*)J3DAnmLoaderDataBase::load(file);
 	mAnmCalcWait        = J3DNewMtxCalcAnm(mModelDataRed->mJointTree.mFlags & J3DMLF_MtxTypeMask, mWaitAnim);
-	mAnmCalcWave        = J3DUNewMtxCalcAnm(mModelDataRed->mJointTree.mFlags & J3DMLF_MtxTypeMask, mWaitAnim, mWaitAnim, nullptr, nullptr,
+	mAnmCalcWave        = J3DUNewMtxCalcAnm(mModelDataRed->mJointTree.mFlags & J3DMLF_MtxTypeMask, mWaitAnim, mWaveAnim, nullptr, nullptr,
                                      (J3DMtxCalcFlag)0);
 	J3DModelData* model = mModelDataBlue;
 	model->doMakeShared();
@@ -421,10 +421,10 @@ void Pikmin::TMgr::updateCalcBoid_()
 		}
 	}
 
-	int i     = (boidCalcTimer * TITLE_PIKI_TOTAL) / 10;
+	int max   = (boidCalcTimer * TITLE_PIKI_TOTAL) / 10;
 	int limit = (boidCalcTimer == 9) ? TITLE_PIKI_TOTAL : (((boidCalcTimer + 1) * TITLE_PIKI_TOTAL) / 10);
 
-	for (i; i < limit; i++) {
+	for (int i = max; i < limit; i++) {
 		TUnit* unit = &mUnits[i];
 		if (!unit->isWalk()) {
 			continue;
@@ -1838,7 +1838,7 @@ blr
 void Pikmin::TMgr::setStartPos(Vector2f* pos)
 {
 	for (int i = 0; i < TITLE_PIKI_TOTAL; i++) {
-		TUnit* unit       = &mUnits[i];
+		TUnit* unit       = getUnit(i);
 		unit->mPosition.x = pos[i].x;
 		unit->mPosition.y = pos[i].y;
 	}
@@ -1851,7 +1851,7 @@ void Pikmin::TMgr::setStartPos(Vector2f* pos)
 void Pikmin::TMgr::setDestPos(Vector2f* pos)
 {
 	for (int i = 0; i < TITLE_PIKI_TOTAL; i++) {
-		TUnit* unit      = &mUnits[i];
+		TUnit* unit      = getUnit(i);
 		unit->mDestPos.x = pos[i].x;
 		unit->mDestPos.y = pos[i].y;
 	}
