@@ -4441,7 +4441,7 @@
         ],
         [
           "plugProjectEbisawaU/efx2dEffect",
-          false
+          true
         ],
         [
           "plugProjectEbisawaU/particleMgr",

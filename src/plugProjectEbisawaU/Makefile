@@ -5,7 +5,7 @@ EBISAWA_FILES:=\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/efxPikmin.o\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/particle2dMgr.o\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/efx2dBase.o\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/efx2dEffect.o\
+	$(BUILD_DIR)/src/plugProjectEbisawaU/efx2dEffect.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/particleMgr.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiP2Title.o\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiP2TitleUnit.o\
