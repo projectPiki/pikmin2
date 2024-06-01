@@ -283,8 +283,8 @@ struct J2DTevStageInfo {
 struct J2DTevSwapModeInfo {
 	u8 mRasSel; // _00
 	u8 mTexSel; // _01
-	            // u8 _02;     // _02
-	            // u8 _03;     // _03
+	u8 _02;     // _02
+	u8 _03;     // _03
 };
 
 struct J2DTevSwapModeTableInfo {
@@ -496,15 +496,15 @@ struct J2DIndTevStage {
 
 	void load(u8);
 
-	GXIndTexStageID getIndStage() const { return (GXIndTexStageID)(mFlags & 0x03); }
-	GXIndTexFormat getIndFormat() const { return (GXIndTexFormat)((mFlags >> 2) & 0x03); }
-	GXIndTexBiasSel getBiasSel() const { return (GXIndTexBiasSel)((mFlags >> 4) & 0x07); }
-	GXIndTexWrap getWrapS() const { return (GXIndTexWrap)((mFlags >> 8) & 0x07); }
-	GXIndTexWrap getWrapT() const { return (GXIndTexWrap)((mFlags >> 11) & 0x07); }
-	GXIndTexMtxID getMtxSel() const { return (GXIndTexMtxID)((mFlags >> 16) & 0x0F); }
-	GXBool getPrev() const { return (GXBool)((mFlags >> 20) & 0x01); }
-	GXBool getLod() const { return (GXBool)((mFlags >> 21) & 0x01); }
-	GXIndTexAlphaSel getAlphaSel() const { return (GXIndTexAlphaSel)((mFlags >> 22) & 0x03); }
+	GXIndTexStageID getIndStage() const { return (GXIndTexStageID)u8(mFlags & 0x03); }
+	GXIndTexFormat getIndFormat() const { return (GXIndTexFormat)u8((mFlags >> 2) & 0x03); }
+	GXIndTexBiasSel getBiasSel() const { return (GXIndTexBiasSel)u8((mFlags >> 4) & 0x07); }
+	GXIndTexWrap getWrapS() const { return (GXIndTexWrap)u8((mFlags >> 8) & 0x07); }
+	GXIndTexWrap getWrapT() const { return (GXIndTexWrap)u8((mFlags >> 11) & 0x07); }
+	GXIndTexMtxID getMtxSel() const { return (GXIndTexMtxID)u8((mFlags >> 16) & 0x0F); }
+	GXBool getPrev() const { return (GXBool)u8((mFlags >> 20) & 0x01); }
+	GXBool getLod() const { return (GXBool)u8((mFlags >> 21) & 0x01); }
+	GXIndTexAlphaSel getAlphaSel() const { return (GXIndTexAlphaSel)u8((mFlags >> 22) & 0x03); }
 
 	void setIndTevStageInfo(const J2DIndTevStageInfo& info) { mFlags = J2DCalcIndTevStage(info); }
 

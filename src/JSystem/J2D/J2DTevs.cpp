@@ -156,29 +156,6 @@ void J2DIndTevStage::load(u8 tevStage)
 {
 	GXSetTevIndirect((GXTevStageID)tevStage, getIndStage(), getIndFormat(), getBiasSel(), getMtxSel(), getWrapS(), getWrapT(), getPrev(),
 	                 getLod(), getAlphaSel());
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r10, 0(r3)
-	clrlwi   r3, r4, 0x18
-	rlwinm   r0, r10, 0xb, 0x1f, 0x1f
-	clrlwi   r4, r10, 0x1e
-	stw      r0, 8(r1)
-	rlwinm   r0, r10, 0xa, 0x1e, 0x1f
-	rlwinm   r5, r10, 0x1e, 0x1e, 0x1f
-	rlwinm   r6, r10, 0x1c, 0x1d, 0x1f
-	stw      r0, 0xc(r1)
-	rlwinm   r7, r10, 0x10, 0x1c, 0x1f
-	rlwinm   r8, r10, 0x18, 0x1d, 0x1f
-	rlwinm   r9, r10, 0x15, 0x1d, 0x1f
-	rlwinm   r10, r10, 0xc, 0x1f, 0x1f
-	bl       GXSetTevIndirect
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /**

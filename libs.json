@@ -531,7 +531,7 @@
         ],
         [
           "JSystem/J2D/J2DTevs",
-          false
+          true
         ],
         [
           "JSystem/J2D/J2DTextBoxEx",
