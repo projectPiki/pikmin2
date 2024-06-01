@@ -131,6 +131,8 @@ struct LookAtCamera : public Camera {
 	virtual void updateMatrix();                                      // _74
 	virtual void startVibration(int) { }                              // _7C (weak)
 
+	inline void setPosition(Vector3f& pos) { mPosition = pos; }
+
 	// Camera _00 - _144
 	Matrixf mLookMatrix;      // _144
 	Vector3f mPosition;       // _174

@@ -271,7 +271,7 @@ struct TTitleMgr : public CNode, JKRDisposer {
 	void initAfterLoadRes();
 	void setController(Controller*);
 	bool inField(TObjBase*);
-	bool inViewField(TObjBase*);
+	void inViewField(TObjBase*);
 	bool isInViewField(TObjBase*);
 	bool isOutViewField(Vector2f&, f32);
 	bool isOutViewField(TObjBase*);
@@ -296,9 +296,9 @@ struct TTitleMgr : public CNode, JKRDisposer {
 	void calcDestination(s32);
 	bool isAssemble();
 	void setDrawBufferToJ3DSys();
-	void inField(Vector2f&);
-	void inViewField(Vector2f&, f32);
-	void isInViewField(Vector2f&, f32);
+	bool inField(Vector2f&);
+	bool inViewField(Vector2f&, f32);
+	bool isInViewField(Vector2f&, f32);
 	void windBlow();
 	void boid3ToAssemble();
 	void isAnyKey();

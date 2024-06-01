@@ -479,6 +479,18 @@ struct TBox2 : TBox<TVec2<T> > {
 	// 	return *this;
 	// }
 
+	void setI(TVec2<T>& in)
+	{
+		i.x = in.x;
+		i.y = in.y;
+	}
+
+	void setF(TVec2<T>& in)
+	{
+		f.x = in.x;
+		f.y = in.y;
+	}
+
 	void absolute() {
 		if (!this->isValid()) {
 			TBox2<T> box(*this);

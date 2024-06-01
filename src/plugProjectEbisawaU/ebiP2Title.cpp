@@ -158,17 +158,25 @@ void TTitleMgr::init()
  * @note Address: N/A
  * @note Size: 0x38
  */
-void TTitleMgr::setDestToPiki(s32)
+void TTitleMgr::setDestToPiki(s32 index)
 {
-	// UNUSED FUNCTION
+	// this and setPosToPiki arent quite right based on their sizes, but this is the best i can get it
+	if (index == 0)
+		setPosToPiki(0);
+	else if (index == 1) {
+		setPosToPiki(1);
+	}
+	mPikminMgr.setDestPos(mPikiPosList);
+	//  UNUSED FUNCTION
 }
 
 /**
  * @note Address: N/A
  * @note Size: 0x38
  */
-void TTitleMgr::setPosToPiki(s32)
+void TTitleMgr::setPosToPiki(s32 index)
 {
+	mCoordMgr[index].copyCoordinate(mPikiPosList);
 	// UNUSED FUNCTION
 }
 
@@ -178,7 +186,8 @@ void TTitleMgr::setPosToPiki(s32)
  */
 Vector2f TTitleMgr::setStartPosToPiki()
 {
-	// UNUSED FUNCTION
+	mPikminMgr.setStartPos(mPikiPosList);
+	calcBreakupDestination();
 }
 
 /**
@@ -201,13 +210,13 @@ void TTitleMgr::setLogo()
 void TTitleMgr::calcBreakupDestination()
 {
 	for (int i = 0; i < 500; i++) {
-		f32 angle = 4.712388f * randEbisawaFloat() + -0.785398f;
-		f32 max   = mTitleParms.mMaxPikminScatterRadius.mValue;
-		f32 min   = mTitleParms.mMinPikminScatterRadius.mValue;
+		f32 angle = 4.712389f * randEbisawaFloat() + -0.78539819f;
+		f32 max   = mTitleParms.mMaxPikminScatterRadius();
+		f32 min   = mTitleParms.mMinPikminScatterRadius();
 		f32 scale = (max - min) * randEbisawaFloat() + min;
 
-		mPikiPosList[i] = Vector2f(scale * cosf(angle) + mTitleParms.mPikiScatterOriginX.mValue,
-		                           scale * sinf(angle) + mTitleParms.mPikiScatterOriginY.mValue);
+		mPikiPosList[i]
+		    = Vector2f(scale * cosf(angle) + mTitleParms.mPikiScatterOriginX(), scale * sinf(angle) + mTitleParms.mPikiScatterOriginY());
 	}
 }
 
@@ -232,9 +241,9 @@ bool TTitleMgr::isAssemble()
 		return false;
 	} else if (mChappyMgr.mObject->isCalc()) {
 		return false;
-	} else {
-		return true;
 	}
+
+	return true;
 }
 
 /**
@@ -352,6 +361,9 @@ void TTitleMgr::setController(Controller* control)
  */
 void TTitleMgr::setDrawBufferToJ3DSys()
 {
+	// this isnt right, i cant figure out what j3dsys related thing goes here and is only 0x1C long
+	mDrawBufferA->frameInit();
+	mDrawBufferB->frameInit();
 	// UNUSED FUNCTION
 }
 
@@ -359,14 +371,12 @@ void TTitleMgr::setDrawBufferToJ3DSys()
  * @note Address: N/A
  * @note Size: 0x38
  */
-void TTitleMgr::inField(Vector2f& pos)
+bool TTitleMgr::inField(Vector2f& pos)
 {
-	// This may or may not be correct, I was just trying to get startChappy/startKogane to not inline in update
-	f32 angle = randEbisawaFloat() * TAU;
-	f32 x     = mTitleParms.mMaxPikminScatterRadius.mValue;
-
-	pos = Vector2f(x * cosf(angle), mTitleParms.mMaxPikminScatterRadius.mValue * sinf(angle));
-	// UNUSED FUNCTION
+	EGECircle2f bounds;
+	bounds.mCenter = 0.0f;
+	bounds.mRadius = mTitleParms.mMaxPikminScatterRadius();
+	return bounds.in(&pos);
 }
 
 /**
@@ -376,10 +386,7 @@ void TTitleMgr::inField(Vector2f& pos)
 bool TTitleMgr::inField(TObjBase* obj)
 {
 	if (obj->isCalc()) {
-		EGECircle2f bounds;
-		bounds.mCenter = 0.0f;
-		bounds.mRadius = mTitleParms.mMaxPikminScatterRadius.mValue;
-		return bounds.in(&obj->mPosition);
+		return inField(obj->mPosition);
 	}
 }
 
@@ -387,21 +394,25 @@ bool TTitleMgr::inField(TObjBase* obj)
  * @note Address: N/A
  * @note Size: 0x44
  */
-void TTitleMgr::inViewField(Vector2f&, f32)
+bool TTitleMgr::inViewField(Vector2f& pos, f32 radius)
 {
-	// UNUSED FUNCTION
+	EGEBox2f bounds;
+	JGeometry::TVec2f x(mTitleParms.mBoundsMaxX(), mTitleParms.mBoundsMaxY());
+	bounds.setF(x);
+	JGeometry::TVec2f y(mTitleParms.mBoundsMinX(), mTitleParms.mBoundsMinY());
+	bounds.setI(y);
+
+	bounds.in(&pos, radius);
 }
 
 /**
  * @note Address: 0x803BEEA4
  * @note Size: 0x80
  */
-bool TTitleMgr::inViewField(TObjBase* obj)
+void TTitleMgr::inViewField(TObjBase* obj)
 {
 	if (obj->isCalc()) {
-		EGEBox2f bounds(mTitleParms.mBoundsMinX.mValue, mTitleParms.mBoundsMinY.mValue, mTitleParms.mBoundsMaxX.mValue,
-		                mTitleParms.mBoundsMaxY.mValue);
-		bounds.in(&obj->mPosition, obj->mParms[4]);
+		inViewField(obj->mPosition, obj->mParms[4]);
 	}
 }
 
@@ -409,9 +420,15 @@ bool TTitleMgr::inViewField(TObjBase* obj)
  * @note Address: N/A
  * @note Size: 0x44
  */
-void TTitleMgr::isInViewField(Vector2f&, f32)
+bool TTitleMgr::isInViewField(Vector2f& pos, f32 radius)
 {
-	// UNUSED FUNCTION
+	EGEBox2f bounds;
+	JGeometry::TVec2f x(mTitleParms.mBoundsMaxX(), mTitleParms.mBoundsMaxY());
+	bounds.setF(x);
+	JGeometry::TVec2f y(mTitleParms.mBoundsMinX(), mTitleParms.mBoundsMinY());
+	bounds.setI(y);
+
+	return bounds.isIn(pos, radius);
 }
 
 /**
@@ -421,9 +438,7 @@ void TTitleMgr::isInViewField(Vector2f&, f32)
 bool TTitleMgr::isInViewField(TObjBase* obj)
 {
 	if (obj->isCalc()) {
-		EGEBox2f bounds(mTitleParms.mBoundsMinX.mValue, mTitleParms.mBoundsMinY.mValue, mTitleParms.mBoundsMaxX.mValue,
-		                mTitleParms.mBoundsMaxY.mValue);
-		return bounds.isIn(obj->mPosition, obj->mParms[4]);
+		return isInViewField(obj->mPosition, obj->mParms[4]);
 	}
 	return false;
 }
@@ -434,8 +449,12 @@ bool TTitleMgr::isInViewField(TObjBase* obj)
  */
 bool TTitleMgr::isOutViewField(Vector2f& pos, f32 radius)
 {
-	EGEBox2f bounds(mTitleParms.mBoundsMinX.mValue, mTitleParms.mBoundsMinY.mValue, mTitleParms.mBoundsMaxX.mValue,
-	                mTitleParms.mBoundsMaxY.mValue);
+	EGEBox2f bounds;
+	JGeometry::TVec2f x(mTitleParms.mBoundsMaxX(), mTitleParms.mBoundsMaxY());
+	bounds.setF(x);
+	JGeometry::TVec2f y(mTitleParms.mBoundsMinX(), mTitleParms.mBoundsMinY());
+	bounds.setI(y);
+
 	return bounds.isOut(pos, radius);
 }
 
@@ -446,12 +465,9 @@ bool TTitleMgr::isOutViewField(Vector2f& pos, f32 radius)
 bool TTitleMgr::isOutViewField(TObjBase* obj)
 {
 	if (obj->isCalc()) {
-		EGEBox2f bounds(mTitleParms.mBoundsMinX.mValue, mTitleParms.mBoundsMinY.mValue, mTitleParms.mBoundsMaxX.mValue,
-		                mTitleParms.mBoundsMaxY.mValue);
-		return bounds.isOut(obj->mPosition, obj->mParms[4]);
-	} else {
-		return false;
+		return isOutViewField(obj->mPosition, obj->mParms[4]);
 	}
+	return true;
 }
 
 /**
@@ -475,18 +491,17 @@ void TTitleMgr::start()
 
 	calcBreakupDestination();
 
-	mPikminMgr.setStartPos(mPikiPosList);
+	setStartPosToPiki();
 
-	calcBreakupDestination();
-
-	mCoordMgr[0].copyCoordinate(mPikiPosList);
-	mPikminMgr.setDestPos(mPikiPosList);
+	setDestToPiki(0);
 
 	mKoganeMgr.mObject->outOfCalc();
 	mChappyMgr.mObject->outOfCalc();
 	mBlackPlane.start();
 	mBlackPlane.updateBeforeCamera();
-	mCameraMgr.mPosition = mBlackPlane.getCameraPos();
+
+	Vector3f camPos = mBlackPlane.getCameraPos();
+	mCameraMgr.setPosition(camPos);
 	mCameraMgr.update();
 
 	u32 count     = 10.0f / sys->mDeltaTime;
@@ -515,6 +530,20 @@ void TTitleMgr::start()
  */
 void TTitleMgr::windBlow()
 {
+	f32 minX = mTitleParms.mBoundsMinX();
+	f32 maxX = mTitleParms.mBoundsMaxX() - minX;
+
+	f32 max  = mCounterCommonMax;
+	f32 calc = mCounterCommonMax ? mCounterCommon / (f32)mCounterCommonMax : 0.0f;
+
+	EGEBox2f box;
+	JGeometry::TVec2f x(maxX * (1.0f - calc) + minX, (maxX * (1.0f - calc) + minX) + maxX / max);
+	box.setI(x);
+
+	JGeometry::TVec2f y(mTitleParms.mBoundsMinY(), mTitleParms.mBoundsMaxY());
+	box.setF(y);
+
+	mPikminMgr.startWindBlow(box);
 	// UNUSED FUNCTION
 }
 
@@ -553,6 +582,8 @@ bool TTitleMgr::startKogane()
 		startState(Enemy);
 		return true;
 	}
+
+	FORCE_DONT_INLINE;
 }
 
 /**
@@ -575,6 +606,8 @@ bool TTitleMgr::startChappy()
 		startState(Enemy);
 		return true;
 	}
+
+	FORCE_DONT_INLINE;
 }
 
 /**
@@ -588,12 +621,7 @@ bool TTitleMgr::boidToAssemble(s32 id)
 
 	calcBreakupDestination();
 
-	if (id == 0) {
-		mCoordMgr[0].copyCoordinate(mPikiPosList);
-	} else if (id == 1) {
-		mCoordMgr[1].copyCoordinate(mPikiPosList);
-	}
-	mPikminMgr.setDestPos(mPikiPosList);
+	setDestToPiki(id);
 
 	startState(BoidDisperse);
 	mIsWindActive = 0;
@@ -606,7 +634,11 @@ bool TTitleMgr::boidToAssemble(s32 id)
  */
 void TTitleMgr::boid3ToAssemble()
 {
-	// UNUSED FUNCTION
+	mPikminMgr.startBoid3(mTitleParms.mBoidDurationSwirl.mValue);
+	u32 count         = mTitleParms.mBoidDurationSwirl.mValue / sys->mDeltaTime;
+	mCounterCommon    = count;
+	mCounterCommonMax = count;
+	//  UNUSED FUNCTION
 }
 
 /**
@@ -664,10 +696,7 @@ void TTitleMgr::startState(enumState state)
 		mCounterCommonMax = count;
 		break;
 	case BoidSwirl:
-		mPikminMgr.startBoid3(mTitleParms.mBoidDurationSwirl);
-		count             = mTitleParms.mBoidDurationSwirl.mValue / sys->mDeltaTime;
-		mCounterCommon    = count;
-		mCounterCommonMax = count;
+		boid3ToAssemble();
 		break;
 	case StartWind:
 		count             = mTitleParms.mWindMoveDuration.mValue / sys->mDeltaTime;
@@ -749,13 +778,10 @@ bool TTitleMgr::update()
 					}
 				} else if (test < 0.6f) {
 					if (mState != Enemy) {
-						mState = BoidSwirl;
-						mPikminMgr.startBoid3(mTitleParms.mBoidDurationSwirl.mValue);
-						u32 count         = mTitleParms.mBoidDurationSwirl.mValue / sys->mDeltaTime;
-						mCounterCommon    = count;
-						mCounterCommonMax = count;
-						mIsWindActive     = false;
-						flag              = true;
+						mState = StartWind;
+						boid3ToAssemble();
+						mIsWindActive = false;
+						flag          = true;
 					}
 				} else {
 					if (isAssemble()) {
@@ -809,10 +835,7 @@ void TTitleMgr::updateState()
 		}
 		if (!mCounterCommon) {
 			mState = 6;
-			mPikminMgr.startBoid3(mTitleParms.mBoidDurationSwirl.mValue);
-			u32 count         = mTitleParms.mBoidDurationSwirl.mValue / sys->mDeltaTime;
-			mCounterCommon    = count;
-			mCounterCommonMax = count;
+			boid3ToAssemble();
 		}
 		break;
 	case 6:
@@ -828,19 +851,7 @@ void TTitleMgr::updateState()
 		if (mCounterCommon) {
 			mCounterCommon--;
 		}
-		u32 test = mCounterCommonMax;
-		f32 calc;
-		if (test) {
-			calc = 0.0f;
-		} else {
-			calc = (f32)mCounterCommon / mCounterCommonMax;
-		}
-		EGEBox2f box((mTitleParms.mBoundsMaxX.mValue - mTitleParms.mBoundsMinX.mValue) * (1.0f - calc) + mTitleParms.mBoundsMinX.mValue,
-		             mTitleParms.mBoundsMaxY.mValue,
-		             mTitleParms.mBoundsMinY.mValue + (mTitleParms.mBoundsMaxX.mValue - mTitleParms.mBoundsMinX.mValue) / test,
-		             mTitleParms.mBoundsMaxY.mValue);
-
-		mPikminMgr.startWindBlow(box);
+		windBlow();
 		if (!mCounterCommon) {
 			mState = 1;
 		}
@@ -867,9 +878,12 @@ void TTitleMgr::updateState()
 
 	mLightMgr.update();
 	mBlackPlane.updateBeforeCamera();
-	mCameraMgr.mPosition = mBlackPlane.getCameraPos();
+
+	Vector3f camPos = mBlackPlane.getCameraPos();
+	mCameraMgr.setPosition(camPos);
+
 	mCameraMgr.update();
-	PSMTXCopy(mCameraMgr.mViewMatrix->mMatrix.mtxView, j3dSys.mViewMtx);
+	PSMTXCopy(mCameraMgr.mLookMatrix.mMatrix.mtxView, j3dSys.mViewMtx);
 	mBlackPlane.updateAfterCamera();
 	mPikminMgr.update();
 	mKoganeMgr.mObject->update();
@@ -887,40 +901,33 @@ void TTitleMgr::updateState()
  */
 void TTitleMgr::checkEncounter_()
 {
-	static bool init;
-	static u32 boidCalcTimer;
+	static int boidCalcTimer = 0;
 
-	if (!init) {
-		boidCalcTimer = 0;
-		init          = true;
-	}
 	boidCalcTimer++;
-	if (boidCalcTimer > 10) {
+	if (boidCalcTimer >= 10) {
 		boidCalcTimer = 0;
 	}
 
-	int i = (boidCalcTimer * 500) / 10;
-	int max;
-	if (boidCalcTimer == 9) {
-		max = 500;
-	} else {
-		max = (boidCalcTimer + 1) * 500 / 10;
-	}
+	int start = (boidCalcTimer * 500) / 10;
+	int max   = (boidCalcTimer == 9) ? 500 : (boidCalcTimer + 1) * 500 / 10;
 
-	for (; i < max; i++) {
+	for (int i = start; i < max; i++) {
 		Pikmin::TUnit* piki = mPikminMgr.getUnit(i);
 		if (piki->isCalc()) {
 			f32 distmax = 1000.0f;
+
 			if (mKoganeMgr.mObject->isCalc()) {
 				Vector2f dist = mKoganeMgr.mObject->mPosition - piki->mPosition;
-				if (_lenVec2D(dist) < 1000.0f) {
-					distmax         = _lenVec2D(dist);
+				if (dist.length() < distmax) {
+					distmax         = dist.length();
 					piki->mEnemyObj = mKoganeMgr.mObject;
 				}
 			}
+
 			if (mChappyMgr.mObject->isCalc()) {
 				Vector2f dist = mChappyMgr.mObject->mPosition - piki->mPosition;
-				if (_lenVec2D(dist) < distmax) {
+				if (dist.length() < distmax) {
+					distmax         = dist.length();
 					piki->mEnemyObj = mChappyMgr.mObject;
 				}
 			}
