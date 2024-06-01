@@ -49,7 +49,7 @@ LIBS = [
         "objects": [
             ["JSystem/JStudio_JStage/object-light", False],
             ["JSystem/JStudio_JStage/object", True],
-            ["JSystem/JStudio_JStage/object-actor", False],
+            ["JSystem/JStudio_JStage/object-actor", True],
             ["JSystem/JStudio_JStage/object-ambientlight", True],
             ["JSystem/JStudio_JStage/object-camera", True],
             ["JSystem/JStudio_JStage/object-fog", True],
