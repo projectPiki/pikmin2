@@ -540,6 +540,8 @@ struct J2DTexCoord {
 	s32 getTexGenSrc() { return mTexCoordInfo.mTexGenSrc; }
 	s32 getTexGenMtx() { return mTexCoordInfo.mTexGenMtx; }
 
+	void setTexGenMtx(u8 mtx) { mTexCoordInfo.mTexGenMtx = mtx; }
+
 	J2DTexCoordInfo mTexCoordInfo; // _00
 };
 
