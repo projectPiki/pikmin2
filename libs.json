@@ -4626,7 +4626,7 @@
         ],
         [
           "plugProjectEbisawaU/ebiScreenOmakeCardE",
-          false,
+          true,
           {
             "cflags": "$cflags_pikmin -sym on"
           }

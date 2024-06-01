@@ -43,7 +43,7 @@ EBISAWA_FILES:=\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiCardEReader.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenOmake.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiOmakeMgr.o\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenOmakeCardE.o\
+	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiScreenOmakeCardE.o\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiScreenOmakeGame.o\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiScreenInfoWindow.o\
 

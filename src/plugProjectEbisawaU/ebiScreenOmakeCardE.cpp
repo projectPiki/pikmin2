@@ -138,8 +138,8 @@ bool TOmakeCardE::doUpdateStateWait()
 		mMesgScroll->scroll(mInput->mMStick.mYPos);
 		f32 scroll            = mMesgScroll->getPosRate();
 		const int changeAlpha = sys->mDeltaTime * 2550.0f;
-		int alphaArrowUp      = mPaneArrowUp->getAlpha(); // register dumbness here
-		int alphaArrowDown    = mPaneArrowDown->getAlpha();
+		int alphaArrowUp      = mPaneArrowUp->getAlpha();
+		int alphaArrowDown    = mPaneArrowDown->mAlpha;
 		if (scroll <= 0.0f) {
 			alphaArrowUp -= changeAlpha;
 			alphaArrowDown += changeAlpha;
