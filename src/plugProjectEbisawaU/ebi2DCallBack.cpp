@@ -56,7 +56,20 @@ void E2DCallBack_BlinkFontColor::do_update()
 		EUTColor_complement(mFonts[0].mWhite, mFonts[1].mWhite, weight0, weight1, &white);
 		EUTColor_complement(mFonts[0].mBlack, mFonts[1].mBlack, weight0, weight1, &black);
 
-		setPaneColors(0);
+		JUtility::TColor charColor;
+		charColor.set(color1);
+		JUtility::TColor gradColor;
+		gradColor.set(color2);
+		JUtility::TColor tbWhite;
+		tbWhite.set(white);
+		JUtility::TColor tbBlack;
+		tbBlack.set(black);
+
+		J2DTextBox* pane = static_cast<J2DTextBox*>(mPane);
+		pane->setCharColor(charColor);
+		pane->setGradColor(gradColor);
+		pane->setWhite(tbWhite);
+		pane->setBlack(tbBlack);
 	}
 	/*
 	stwu     r1, -0x90(r1)
