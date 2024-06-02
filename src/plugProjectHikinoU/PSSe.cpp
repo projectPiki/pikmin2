@@ -104,13 +104,15 @@ Rappa::Rappa()
  */
 void Rappa::init(u16 id)
 {
-	bool check  = true;
-	int idCheck = 1 - id;
-	if ((idCheck <= 0) == 0) {
+	bool check = true;
+	// something dumb along these lines
+	if (bool(-id) == 1) {
 		check = false;
 	}
 	P2ASSERTLINE(180, check);
-	mId        = ((id == 0) >> 5 & 1) + 14;
+
+	u32 val    = -(id == 0);
+	mId        = val + 14;
 	sRappa[id] = this;
 	/*
 	stwu     r1, -0x10(r1)
@@ -761,7 +763,37 @@ void Builder_EvnSe_Perspective::build(f32 p1, PSSystem::EnvSeMgr* mgr)
 		P2ASSERTBOOLLINE(639, _1C > 0 && _20 > 0);
 	}
 
-	for (int i = 0; i < _1C; i++) { }
+	f32 thingA = sizeX / f32(_1C);
+	f32 thingB = thingA / 2 + mBox.mMin.x;
+
+	f32 thingC = sizeZ / f32(_20);
+	f32 thingD = thingC / 2 + mBox.mMin.y;
+
+	for (int i = 0; i < _1C; i++) {
+
+		f32 outX = thingA * f32(i) + thingB;
+		for (int j = 0; j < _20; j++) {
+			f32 outZ = thingC * f32(j) + thingD;
+
+			// this panic needs to be an inline in PSCommon.h
+			// its also terrible and idk if any of this is right
+			JUT_ASSERTLINE(210, mList.mNextLink, "ƒŠƒ“ƒN‚ª‚ ‚è‚Ü‚¹‚ñ"); // No link
+			PSSystem::IdLink* link = (PSSystem::IdLink*)mList.mNextLink;
+			mList.mNextLink        = (PSSystem::IdLink*)link->getNext();
+			if (!mList.mNextLink) {
+				mList.mNextLink = (PSSystem::IdLink*)mList.mHead;
+			}
+
+			Vec pos;
+			pos.x                 = outX;
+			pos.y                 = _3C;
+			pos.z                 = outZ;
+			EnvSe_Perspective* se = newSeObj(mList.mNextLink->mId, p1, pos);
+			P2ASSERTLINE(662, se);
+			onBuild(se);
+			mgr->mEnvList.append(se);
+		}
+	}
 
 	/*
 	stwu     r1, -0xc0(r1)
@@ -984,76 +1016,6 @@ EnvSe_Perspective* Builder_EvnSe_Perspective::newSeObj(u32 soundID, f32 volume, 
  * @note Address: 0x803406A8
  * @note Size: 0xC8
  */
-Builder_EvnSe_Perspective::~Builder_EvnSe_Perspective()
-{
-	FOREACH_NODE(PSSystem::IdLink, mList.getFirst(), se)
-	{
-		mList.remove(se);
-		if (se)
-			delete se;
-	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	or.      r29, r3, r3
-	beq      lbl_80340750
-	lis      r3, __vt__Q26PSGame25Builder_EvnSe_Perspective@ha
-	addic.   r0, r29, 0x40
-	addi     r0, r3, __vt__Q26PSGame25Builder_EvnSe_Perspective@l
-	stw      r0, 0(r29)
-	beq      lbl_80340734
-	b        lbl_80340714
-
-lbl_803406E4:
-	mr       r4, r31
-	addi     r3, r29, 0x40
-	bl       remove__10JSUPtrListFP10JSUPtrLink
-	lwz      r31, 0(r31)
-	cmplwi   r31, 0
-	beq      lbl_80340714
-	beq      lbl_8034070C
-	mr       r3, r31
-	li       r4, 0
-	bl       __dt__10JSUPtrLinkFv
-
-lbl_8034070C:
-	mr       r3, r31
-	bl       __dl__FPv
-
-lbl_80340714:
-	lwz      r31, 0x40(r29)
-	cmplwi   r31, 0
-	bne      lbl_803406E4
-	addic.   r0, r29, 0x40
-	beq      lbl_80340734
-	addi     r3, r29, 0x40
-	li       r4, 0
-	bl       __dt__10JSUPtrListFv
-
-lbl_80340734:
-	mr       r3, r29
-	li       r4, 0
-	bl       __dt__11JKRDisposerFv
-	extsh.   r0, r30
-	ble      lbl_80340750
-	mr       r3, r29
-	bl       __dl__FPv
-
-lbl_80340750:
-	lwz      r0, 0x24(r1)
-	mr       r3, r29
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+Builder_EvnSe_Perspective::~Builder_EvnSe_Perspective() { }
 
 } // namespace PSGame

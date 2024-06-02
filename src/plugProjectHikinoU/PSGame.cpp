@@ -890,7 +890,7 @@ PSSystem::BgmSeq* PikSceneMgr::initMainBgm(SceneInfo& info, u8* wScene)
 			bool loaded         = list->load(txtpath, JKRDvdRipper::ALLOC_DIR_BOTTOM);
 			P2ASSERTLINE(1601, loaded);
 			OSReport("caveID==%d\n", cinfo.getCaveNoFromID());
-			char* name = list->getInfo(cinfo.mFloorNum, cinfo.getCaveNoFromID());
+			char* name = list->getInfo(cinfo.getCaveNoFromID(), cinfo.mFloorNum);
 			u8 wScene2;
 			char* bmsName;
 			list->getSeqAndWaveFromConductor(name, &wScene2, &bmsName);

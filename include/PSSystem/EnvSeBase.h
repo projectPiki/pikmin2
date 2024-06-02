@@ -41,9 +41,17 @@ struct IdLink : public JSULink<IdLink> {
 struct IdList : public JSUList<IdLink> {
 	IdList() { }
 
-	~IdList() { }
+	~IdList()
+	{
+		JSULink<IdLink>* link;
+		while (link = (JSULink<IdLink>*)mHead) {
+			remove(link);
+			delete (IdLink*)link->getObjectPtr();
+		}
+	}
 
 	// _00-_0C = JSUList
+	IdLink* mNextLink; // _0C, I have no idea if this should actually exist or not
 };
 
 struct EnvSeBase : public JSULink<EnvSeBase> {
