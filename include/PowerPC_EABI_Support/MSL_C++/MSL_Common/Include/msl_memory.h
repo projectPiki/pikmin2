@@ -14,15 +14,13 @@ inline ForwardIt uninitialized_fill_n(ForwardIt first, Size count, const T& valu
 
 template <class T, int A, int B>
 class __uninitialized_copy_helper {
-	static T* uninitialized_copy(T* begin, T* end, T*dest)
+	static T* uninitialized_copy(T* begin, T* end, T* dest)
 	{
-		for (; begin < end; ++begin, ++dest)
-		{
+		for (; begin < end; ++begin, ++dest) {
 			*dest = *begin;
 		}
 		return dest;
 	}
-
 };
 
 template <class T>

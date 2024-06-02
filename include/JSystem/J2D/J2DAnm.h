@@ -469,6 +469,7 @@ struct J2DAnmTextureSRTKey : public J2DAnmBase {
 	inline u16 getUpdateMaterialNum() const { return mUpdateMaterialNum / 3; }
 	inline u16 getUpdateMaterialID(u16 i) const { return mUpdateMaterialID[i]; }
 	inline u8 getUpdateTexMtxID(u16 i) const { return mUpdateTexMtxID[i]; }
+	inline void getTransform(u16 i, J3DTextureSRTInfo* info) const { calcTransform(mCurrentFrame, i, info); }
 
 	// _00     = VTBL
 	// _00-_10 = J2DAnmBase

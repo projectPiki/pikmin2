@@ -38,7 +38,7 @@ struct J2DAlphaCompInfo {
 	u8 _07;   // _07
 };
 
-inline u16 J2DCalcAlphaCmp(s32 param_1, u32 param_2, u32 param_3) { return ((param_1) << 5) | ((param_2 & 0xff) << 3) | (param_3 & 0xff); }
+inline u16 J2DCalcAlphaCmp(s32 param_1, u32 param_2, u32 param_3) { return ((param_1) << 5) | ((param_2) << 3) | (param_3 & 0xff); }
 
 struct J2DAlphaComp {
 	J2DAlphaComp()
@@ -190,7 +190,7 @@ struct J2DColorChanInfo {
 	u8 _03; // _03, padding?
 };
 
-inline u8 J2DCalcColorChanID(u8 param_1) { return param_1; }
+inline u8 J2DCalcColorChanID(u8 id) { return id; }
 extern const J2DColorChanInfo j2dDefaultColorChanInfo;
 
 /**
@@ -294,10 +294,7 @@ struct J2DTevSwapModeTableInfo {
 	u8 mA; // _03
 };
 
-inline u8 J2DCalcTevSwapTable(u8 param_0, u8 param_1, u8 param_2, u8 param_3)
-{
-	return (param_0 << 6) + (param_1 << 4) + (param_2 << 2) + param_3;
-}
+inline u8 J2DCalcTevSwapTable(u32 r, u32 g, u32 b, u32 a) { return (r << 6) + (g << 4) + (b << 2) + a; }
 
 extern const J2DTevSwapModeInfo j2dDefaultTevSwapMode;
 extern const J2DTevSwapModeTableInfo j2dDefaultTevSwapModeTable;
@@ -308,7 +305,14 @@ struct J2DTevSwapModeTable {
 
 	J2DTevSwapModeTable(const J2DTevSwapModeTableInfo& info) { _00 = J2DCalcTevSwapTable(info.mR, info.mG, info.mB, info.mA); }
 
-	void setTevSwapModeTableInfo(const J2DTevSwapModeTableInfo& info) { _00 = J2DCalcTevSwapTable(info.mR, info.mG, info.mB, info.mA); }
+	void setTevSwapModeTableInfo(const J2DTevSwapModeTableInfo& info)
+	{
+		u8 r = info.mR;
+		u8 g = info.mG;
+		u8 b = info.mB;
+		u8 a = info.mA;
+		_00  = J2DCalcTevSwapTable(r, g, b, a);
+	}
 
 	u8 getR() { return _00 >> 6 & 3; }
 	u8 getG() { return _00 >> 4 & 3; }
@@ -356,9 +360,9 @@ struct J2DTevStage {
 		setRasSel(swapInfo.mRasSel);
 	}
 
-	void setTexSel(u32 param_0) { _07 = (_07 & ~0x0c) | (param_0 * 4); }
+	void setTexSel(u8 texSel) { _07 = (_07 & ~0xC) | (texSel << 2); }
 
-	void setRasSel(u32 param_0) { _07 = (_07 & ~0x03) | param_0; }
+	void setRasSel(u8 rasSel) { _07 = (_07 & ~0x3) | (u8)rasSel; }
 
 	void setColorABCD(u8 a, u8 b, u8 c, u8 d)
 	{
@@ -467,6 +471,19 @@ struct J2DTevStage {
 };
 
 struct J2DIndTevStageInfo {
+	inline void operator=(const J2DIndTevStageInfo& other)
+	{
+		mIndStage  = other.mIndStage;
+		mIndFormat = other.mIndFormat;
+		mBiasSel   = other.mBiasSel;
+		mMtxSel    = other.mMtxSel;
+		mWrapS     = other.mWrapS;
+		mWrapT     = other.mWrapT;
+		mPrev      = other.mPrev;
+		mLod       = other.mLod;
+		mAlphaSel  = other.mAlphaSel;
+	}
+
 	u8 mIndStage;  // _00
 	u8 mIndFormat; // _01
 	u8 mBiasSel;   // _02
@@ -476,9 +493,9 @@ struct J2DIndTevStageInfo {
 	u8 mPrev;      // _06
 	u8 mLod;       // _07
 	u8 mAlphaSel;  // _08
-	u8 field_0x9;  // _09
-	u8 field_0xa;  // _0A
-	u8 field_0xb;  // _0B
+	u8 _09;        // _09
+	u8 _0A;        // _0A
+	u8 _0B;        // _0B
 };
 
 inline u32 J2DCalcIndTevStage(J2DIndTevStageInfo info)

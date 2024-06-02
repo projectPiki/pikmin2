@@ -20,19 +20,13 @@ struct TVector {
 			mAllocator = &alloc;
 			mPointer   = pointer;
 		}
-		
-		~TDestructed_deallocate_() 
-		{ 
-			mAllocator->deallocate(mPointer, 0); 
-		}
 
-		void set(T* p) 
-		{ 
-			mPointer = p; 
-		}
-		
-		Allocator *mAllocator;
-        T* mPointer;
+		~TDestructed_deallocate_() { mAllocator->deallocate(mPointer, 0); }
+
+		void set(T* p) { mPointer = p; }
+
+		Allocator* mAllocator;
+		T* mPointer;
 	};
 
 	// TVector(u32, const T&, const Allocator<T>&);

@@ -71,8 +71,7 @@ inline OutputIt copy(InputIt first, InputIt last, OutputIt d_first)
 	return d_first;
 }
 template <class T, int N>
-class __copy_backward
-{
+class __copy_backward {
 	static T* copy_backward(T* first, T* last, T* d_last)
 	{
 		for (; last > first;) {

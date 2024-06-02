@@ -119,7 +119,7 @@ struct J2DPaneExBlock : J2DScrnBlockHeader {
  * @size{0x30}
  * @fabricated
  */
-struct J2DPictureBlockTrailer {
+struct J2DScrnBlockPictureParameter {
 	u8 _00[2];                           // _00
 	u16 mMaterialNum;                    // _02
 	u16 mMaterialID;                     // _04

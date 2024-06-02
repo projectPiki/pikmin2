@@ -281,11 +281,11 @@ void J2DMaterial::animation()
 		for (u8 i = 0; i < 8; i++) {
 			if (mAnmPtr->mSRTIds[i] != 0xFFFF) {
 				J3DTextureSRTInfo info3D;
-				mAnmPtr->mSRTAnm->calcTransform(mAnmPtr->mSRTAnm->mCurrentFrame, mAnmPtr->mSRTIds[i], &info3D);
+				mAnmPtr->mSRTAnm->getTransform(mAnmPtr->mSRTIds[i], &info3D);
 				J2DTextureSRTInfo info2D;
 				info2D.mScaleX       = info3D.mScaleX;
 				info2D.mScaleY       = info3D.mScaleY;
-				info2D.mRotationDeg  = (360.0f * f32(info3D.mRotation)) / 65535.0f;
+				info2D.mRotationDeg  = (360.0f * f32((u16)info3D.mRotation)) / 65535.0f;
 				info2D.mTranslationX = info3D.mTranslationX;
 				info2D.mTranslationY = info3D.mTranslationY;
 
@@ -299,10 +299,10 @@ void J2DMaterial::animation()
 		}
 	}
 
-	if (mTevBlock && mAnmPtr->mPatternAnm) {
+	if (getTevBlock() && mAnmPtr->mPatternAnm) {
 		for (u8 i = 0; i < 8; i++) {
 			if (mAnmPtr->mPatternIds[i] != 0xFFFF) {
-				JUTTexture* texture = mTevBlock->getTexture(i);
+				JUTTexture* texture = getTevBlock()->getTexture(i);
 				if (!texture) {
 					continue;
 				}
@@ -310,15 +310,15 @@ void J2DMaterial::animation()
 				u16 idx = mAnmPtr->mPatternIds[i];
 				u16 texNo;
 				mAnmPtr->mPatternAnm->getTexNo(idx, &texNo);
-				mTevBlock->setTexNo(i, texNo);
+				getTevBlock()->setTexNo(i, texNo);
 
 				ResTIMG* img = mAnmPtr->mPatternAnm->getResTIMG(idx);
-				if (texture->mTexInfo != img) {
+				if (texture->getTexInfo() != img) {
 					JUTPalette* palette = nullptr;
 					u32 tlut            = GX_TLUT0;
 					if (img->mPaletteFormat != 0) {
 						palette = mAnmPtr->mPatternAnm->getPalette(idx);
-						if (palette->mNumColors > 256) {
+						if (palette->getNumColors() > 256) {
 							tlut = i % 4 + 16;
 						} else {
 							tlut = i;
@@ -331,12 +331,12 @@ void J2DMaterial::animation()
 		}
 	}
 
-	if (mTevBlock && mAnmPtr->mTevAnm) {
+	if (getTevBlock() && mAnmPtr->mTevAnm) {
 		for (u8 i = 0; i < 4; i++) {
 			if (mAnmPtr->mTevCRegIds[i] != 0xFFFF) {
-				GXColorS10 color;
+				J2DGXColorS10 color;
 				mAnmPtr->mTevAnm->getTevColorReg(mAnmPtr->mTevCRegIds[i], &color);
-				mTevBlock->setTevColor(i, color);
+				getTevBlock()->setTevColor(i, color);
 			}
 		}
 
@@ -345,7 +345,7 @@ void J2DMaterial::animation()
 			if (idx != 0xFFFF) {
 				JUtility::TColor konstColor;
 				mAnmPtr->mTevAnm->getTevKonstReg(idx, &konstColor);
-				mTevBlock->setTevKColor(i, konstColor);
+				getTevBlock()->setTevKColor(i, konstColor);
 			}
 		}
 	}

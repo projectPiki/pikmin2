@@ -32,10 +32,10 @@ TVector_pointer_void::TVector_pointer_void(const TVoidAllocator& allocator)
 template <>
 size_t TVPVBase::GetSize_extend_(size_t count) const
 {
-	u32 oldSize = size();
+	u32 oldSize        = size();
 	u32 neededNewSpace = oldSize + count;
-	u32 extendedSize = mExtend(capacity(), oldSize, count);
-	
+	u32 extendedSize   = mExtend(capacity(), oldSize, count);
+
 	return neededNewSpace > extendedSize ? neededNewSpace : extendedSize;
 }
 

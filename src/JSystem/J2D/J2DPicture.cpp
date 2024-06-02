@@ -47,12 +47,12 @@ J2DPicture::J2DPicture(J2DPane* parent, JSURandomInputStream* input, J2DMaterial
 	makePaneExStream(parent, input);
 	input->seek(paneExPosition + paneExHeader.mBlockLength, SEEK_SET);
 
-	J2DPictureBlockTrailer trailer;
-	input->read(&trailer, sizeof(J2DPictureBlockTrailer));
+	J2DScrnBlockPictureParameter trailer;
+	input->read(&trailer, sizeof(J2DScrnBlockPictureParameter));
 	u16 v1 = trailer.mMaterialID;
 	for (int i = 0; i < 4; i++) {
-		mTexCoords[i] = trailer.mTexCoords[i];
-		mCornerColors[i].set(trailer.mCornerColor[i]); // just need to fix this
+		mTexCoords[i]    = trailer.mTexCoords[i];
+		mCornerColors[i] = JUtility::TColor(*(u32*)&trailer.mCornerColor[i]); // just need to fix this
 	}
 	input->seek(headerPosition + header.mBlockLength, SEEK_SET);
 

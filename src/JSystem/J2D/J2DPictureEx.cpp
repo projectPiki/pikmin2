@@ -102,8 +102,8 @@ J2DPictureEx::J2DPictureEx(J2DPane* parent, JSURandomInputStream* input, u32 fla
 	input->peek(nextInfo, 8);
 	makePaneExStream(parent, input);
 	input->seek(newPosition + nextInfo[1], SEEK_SET);
-	J2DPictureBlockTrailer trailer;
-	input->read(&trailer, sizeof(J2DPictureBlockTrailer));
+	J2DScrnBlockPictureParameter trailer;
+	input->read(&trailer, sizeof(J2DScrnBlockPictureParameter));
 	mMaterialNum = trailer.mMaterialNum;
 	mMaterialID  = trailer.mMaterialID;
 
