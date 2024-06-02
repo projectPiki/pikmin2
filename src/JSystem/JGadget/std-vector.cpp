@@ -30,15 +30,13 @@ TVector_pointer_void::TVector_pointer_void(const TVoidAllocator& allocator)
 }
 
 template <>
-size_t TVPVBase::GetSize_extend_(size_t count)
+size_t TVPVBase::GetSize_extend_(size_t count) const
 {
-	u32 iVar2 = size();
-	u32 uVar3 = capacity();
-	u32 uVar4 = mExtend(uVar3, iVar2, count);
-	if (uVar4 < iVar2 + count) {
-		uVar4 = iVar2 + count;
-	}
-	return uVar4;
+	u32 oldSize = size();
+	u32 neededNewSpace = oldSize + count;
+	u32 extendedSize = mExtend(capacity(), oldSize, count);
+	
+	return neededNewSpace > extendedSize ? neededNewSpace : extendedSize;
 }
 
 /**
@@ -78,8 +76,7 @@ template <>
 inline void TVPVBase::DestroyElement_(void** start, void** end)
 {
 	for (; start != end; start++) {
-		// This is from TP, but I guess we didn't do anything
-		// field_0x0.destroy(start);
+		mAllocator.destroy(start);
 	}
 }
 
@@ -113,46 +110,60 @@ void TVPVBase::insert(void** values, u32 count, void* const& defaultValue)
  * @note Size: 0x470
  */
 template <>
-void** TVPVBase::Insert_raw(void** pos, u32 count)
+void** TVPVBase::Insert_raw(void** pItFirst, u32 count)
 {
+	// leaving this because it's in tp debug, doesn't effect code gen
+	void** pItFirst_ = pItFirst;
+
+	// tp debug has assert "(pBegin_<=pItFirst)&&(pItFirst<=pEnd_)"
+	// it's assumed the pointer is to something already in the vector
+
 	if (count == 0) {
-		return pos;
+		return pItFirst;
 	}
-	void** ppvVar5;
-	if (mCapacity < count + size()) {
-		size_t uVar4 = GetSize_extend_(count);
-		ppvVar5      = new void*[uVar4];
-		if (ppvVar5 == NULL) {
-			pos = mEnd;
+
+	// we can fit in the space already allocated
+	if (count + size() <= mCapacity) {
+		// get the theoretical new end
+		void** newEnd = pItFirst_ + count;
+		// if we're inserting inside of the vec, not at the end
+		if (newEnd < mEnd) {
+			// get a pointer to the values that will be overwritten
+			void** pOverwrittenValues = mEnd - count;
+			// copy the old values to the end of the vector, but within capacity
+			std::uninitialized_copy(pOverwrittenValues, mEnd, mEnd);
+			// copy the new values in
+			std::copy_backward(pItFirst_, pOverwrittenValues, mEnd);
+			DestroyElement_(pItFirst_, newEnd);
+			mEnd += count;
+
+			return pItFirst;
 		} else {
-			// TDestructed_deallocate_ aTStack_30(&field_0x0, ppvVar5);
-			void** ppvVar6 = std::uninitialized_copy(mBegin, pos, ppvVar5);
-			std::uninitialized_copy(pos, mEnd, ppvVar6 + count);
-			DestroyElement_all_();
-			// aTStack_30.set(pBegin_);
-			size_t uVar2 = (size_t)mEnd - (size_t)mBegin;
-			mEnd         = ppvVar5 + count + (uVar2 / 4);
-			mBegin       = ppvVar5;
-			mCapacity    = uVar4;
-			pos          = ppvVar6;
+			std::uninitialized_copy(pItFirst_, mEnd, newEnd);
+			DestroyElement_(pItFirst_, mEnd);
+			mEnd += count;
+
+			return pItFirst;
 		}
 	} else {
-		void** ppvVar5 = pos + count;
-		if (ppvVar5 < end()) {
-			void** ppvVar6 = end() - count;
-			std::uninitialized_copy(ppvVar6, end(), end());
-			std::copy_backward(pos, ppvVar6, end());
-			DestroyElement_(pos, ppvVar5);
-			mEnd += count;
-		} else {
-			std::copy(pos, mEnd, ppvVar5);
-			DestroyElement_(pos, mEnd);
-			mEnd += count;
+		u32 newSize           = GetSize_extend_(count);
+		void** newDataPointer = mAllocator.allocate(newSize, 0);
+		if (!newDataPointer) {
+			return end();
 		}
-	}
-	delete ppvVar5;
 
-	return pos;
+		TDestructed_deallocate_ s(mAllocator, newDataPointer);
+		void** endOfCopy = std::uninitialized_copy(mBegin, pItFirst_, newDataPointer);
+		std::uninitialized_copy(pItFirst_, mEnd, endOfCopy + count);
+		DestroyElement_all_();
+		s.set(mBegin);
+
+		mEnd      = newDataPointer + (mEnd - mBegin + count);
+		mBegin    = newDataPointer;
+		mCapacity = newSize;
+
+		return endOfCopy;
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x30(r1)

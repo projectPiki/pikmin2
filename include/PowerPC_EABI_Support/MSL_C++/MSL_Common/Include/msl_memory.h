@@ -12,13 +12,23 @@ inline ForwardIt uninitialized_fill_n(ForwardIt first, Size count, const T& valu
 	return first;
 }
 
-template <class InputIt, class NoThrowForwardIt>
-inline NoThrowForwardIt uninitialized_copy(InputIt first, InputIt last, NoThrowForwardIt d_first)
-{
-	for (; first != last; ++first, ++d_first) {
-		*d_first = *first;
+template <class T, int A, int B>
+class __uninitialized_copy_helper {
+	static T* uninitialized_copy(T* begin, T* end, T*dest)
+	{
+		for (; begin < end; ++begin, ++dest)
+		{
+			*dest = *begin;
+		}
+		return dest;
 	}
-	return d_first;
+
+};
+
+template <class T>
+inline T* uninitialized_copy(T* first, T* last, T* d_first)
+{
+	return __uninitialized_copy_helper<T, 0, 1>::uninitialized_copy(first, last, d_first);
 }
 
 } // namespace std
