@@ -104,6 +104,17 @@ struct TParse_TParagraph_data : public TParseData_aligned<4> {
 		u32 _08;                // _08
 		const void* mFileCount; // _0C
 		const void* _10;        // _10
+
+		// Is this name accurate? are any of these member names accurate? are these developers sane?
+		inline bool isLoaded()
+		{
+			bool stop = false;
+			if (mFileCount != 0 && mStatus == 0x60) {
+				stop = true;
+			}
+
+			return stop;
+		}
 	};
 
 	TParse_TParagraph_data(const void* content)
