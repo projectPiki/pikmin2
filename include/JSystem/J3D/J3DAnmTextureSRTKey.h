@@ -45,7 +45,7 @@ struct J3DAnmTextureSRTKey : public J3DAnmBase {
 	void searchUpdateMaterialID(struct J3DModelData*);
 	void searchUpdateMaterialID(struct J3DMaterialTable*);
 
-	void getTransform(u16 param_0, J3DTextureSRTInfo* pSRTInfo) const { calcTransform(getFrame(), param_0, pSRTInfo); }
+	void getTransform(u16 index, J3DTextureSRTInfo* pSRTInfo) const { calcTransform(getFrame(), index, pSRTInfo); }
 
 	u16 getUpdateMaterialID(u16 idx) const { return mUpdateMaterialID[idx]; }
 	u16 getUpdateMaterialNum() const { return mTrackNum / 3; }
