@@ -73,10 +73,12 @@ TVPVBase::~TVector()
  * @note Size: 0x78
  */
 template <>
-inline void TVPVBase::DestroyElement_(void** start, void** end)
+inline void TVPVBase::DestroyElement_(void** pFirst, void** pLast)
 {
-	for (; start != end; start++) {
-		mAllocator.destroy(start);
+    void** iter = pFirst;
+	while (iter != pLast) {
+        mAllocator.destroy(iter);
+		++iter;
 	}
 }
 
