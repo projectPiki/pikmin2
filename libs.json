@@ -1705,7 +1705,7 @@
       ["sysGCU/commonSaveData", true],
       ["sysGCU/bootSection", false],
       ["sysGCU/titleSection", false],
-      ["sysGCU/loadResource", false],
+      ["sysGCU/loadResource", true],
       ["sysGCU/rootMenuSection", true],
       ["sysGCU/demoSection", true],
       ["sysGCU/THPAudioDecode", true],
