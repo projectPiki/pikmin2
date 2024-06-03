@@ -335,7 +335,7 @@ void EndingState::draw(SingleGameSection* game, Graphics& gfx)
 void EndingState::cleanup(SingleGameSection* game)
 {
 	PSGame::PikSceneMgr* mgr = static_cast<PSGame::PikSceneMgr*>(PSSystem::getSceneMgr());
-	PSSystem::checkSceneMgr(mgr);
+	PSSystem::validateSceneMgr(mgr);
 	mgr->deleteCurrentScene();
 	if (mTHPPlayer) {
 		mTHPPlayer->stop();

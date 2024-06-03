@@ -4766,7 +4766,7 @@ lbl_802254A0:
 void ZukanState::createTeki(int)
 {
 	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-	PSSystem::checkSceneMgr(mgr);
+	PSSystem::validateSceneMgr(mgr);
 	PSM::Scene_Objects* scene = static_cast<PSM::Scene_Objects*>(mgr->getChildScene());
 	scene->detachObjMgr();
 
@@ -6163,7 +6163,7 @@ void ZukanState::clearHeaps()
 		clearHeapB_common();
 	}
 	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-	PSSystem::checkSceneMgr(mgr);
+	PSSystem::validateSceneMgr(mgr);
 	mgr->deleteCurrentScene();
 	delete PSSystem::SingletonBase<PSM::ObjMgr>::sInstance;
 	PSSystem::SingletonBase<PSM::ObjMgr>::sInstance = nullptr;

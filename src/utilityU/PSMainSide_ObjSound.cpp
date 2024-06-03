@@ -1720,23 +1720,25 @@ lbl_8045EEB8:
  * @note Address: 0x8045EED8
  * @note Size: 0x94
  */
-bool EnemyBase::judgeNearWithPlayer(const Vec& pos1, const Vec& pos2, f32 a1, f32 a2)
+bool EnemyBase::judgeNearWithPlayer(const Vec& enemyPosition, const Vec& naviPosition, f32 distanceX, f32 distanceY)
 {
-	f32 x = pos1.x - pos2.x;
+	f32 x = enemyPosition.x - naviPosition.x;
 	if (!(x >= 0.0f)) {
 		x = -x;
 	}
 
-	if (x < a1) {
-		x = pos1.y - pos2.y;
+	if (x < distanceX) {
+		x = enemyPosition.y - naviPosition.y;
 		x = (x >= 0.0f) ? x : -x;
-		if (x < a1) {
-			x = pos1.z - pos2.z;
+
+		if (x < distanceX) {
+			x = enemyPosition.z - naviPosition.z;
 			x = (x >= 0.0f) ? x : -x;
-			if (x < a1)
+			if (x < distanceX)
 				return true;
 		}
 	}
+
 	return false;
 	/*
 	lfs      f3, 0(r4)

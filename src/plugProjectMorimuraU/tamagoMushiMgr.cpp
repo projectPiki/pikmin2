@@ -76,24 +76,23 @@ int Mgr::getFreeNum()
  */
 Obj* Mgr::createGroup(EnemyBirthArg& birthArg, int count, Vector3f& velocity)
 {
-	Obj* leader;
 	int freeSlots = getFreeNum();
 
 	if (freeSlots < count) {
 		return nullptr;
-	} else {
-		EnemyBase* newEnemy = static_cast<Obj*>(EnemyMgrBase::birth(birthArg));
-		if (newEnemy) {
-			leader = static_cast<Obj*>(newEnemy);
-			leader->init(nullptr);
-			leader->setTypeBall();
-			leader->setVelocity(velocity);
-			createGroup(leader, count, true);
-			return leader;
-		} else {
-			return nullptr;
-		}
 	}
+
+	EnemyBase* newEnemy = EnemyMgrBase::birth(birthArg);
+	if (newEnemy) {
+		Obj* leader = static_cast<Obj*>(newEnemy);
+		leader->init(nullptr);
+		leader->setTypeBall();
+		leader->setVelocity(velocity);
+		createGroup(leader, count, true);
+		return leader;
+	}
+
+	return nullptr;
 }
 
 /**
@@ -103,6 +102,7 @@ Obj* Mgr::createGroup(EnemyBirthArg& birthArg, int count, Vector3f& velocity)
 Obj* Mgr::createGroupByBigFoot(EnemyBirthArg& birthArg, int count, Vector3f& velocity, f32 fallSpeedSpread)
 {
 	EnemyBase* enemy = EnemyMgrBase::birth(birthArg);
+
 	if (enemy) {
 		Obj* leader = OBJ(enemy);
 		leader->init(nullptr);
@@ -110,9 +110,9 @@ Obj* Mgr::createGroupByBigFoot(EnemyBirthArg& birthArg, int count, Vector3f& vel
 		leader->setVelocity(velocity);
 		createGroupByBigFoot(leader, count, true, fallSpeedSpread);
 		return leader;
-	} else {
-		return nullptr;
 	}
+
+	return nullptr;
 }
 
 /**

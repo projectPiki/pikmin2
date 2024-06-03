@@ -944,7 +944,7 @@ void Onyon::do_doAnimation()
 				sound->specializePerspCalc(persp);
 
 				PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-				PSSystem::checkSceneMgr(mgr);
+				PSSystem::validateSceneMgr(mgr);
 				PSM::Scene_Game* scene = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
 				scene                  = (scene->isGameScene()) ? scene : nullptr;
 

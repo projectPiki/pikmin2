@@ -76,7 +76,7 @@ void Ground::doUpdateActive()
 {
 	if (Game::gameSystem) {
 		PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-		PSSystem::checkSceneMgr(mgr);
+		PSSystem::validateSceneMgr(mgr);
 		PSM::Scene_Ground* scene = static_cast<PSM::Scene_Ground*>(mgr->getChildScene());
 
 		Game::TimeMgr* timemgr = Game::gameSystem->mTimeMgr;

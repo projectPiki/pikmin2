@@ -1985,7 +1985,7 @@ void Obj::startBossAttackBGM()
 		mIsFirstAttackBGM = false; // don't play normal boss attack BGM on first getup
 	} else {
 		PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(mSoundObj);
-		PSM::checkBoss(soundObj);
+		PSM::assertIsBoss(soundObj);
 		soundObj->jumpRequest(PSM::EnemyMidBoss::BossBgm_Attack);
 	}
 }
@@ -1997,7 +1997,7 @@ void Obj::startBossAttackBGM()
 void Obj::startBossFlickBGM()
 {
 	PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(mSoundObj);
-	PSM::checkBoss(soundObj);
+	PSM::assertIsBoss(soundObj);
 	soundObj->jumpRequest(PSM::EnemyMidBoss::BossBgm_Flick);
 }
 
@@ -2008,7 +2008,7 @@ void Obj::startBossFlickBGM()
 void Obj::updateBossBGM()
 {
 	PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(mSoundObj);
-	PSM::checkBoss(soundObj);
+	PSM::assertIsBoss(soundObj);
 	if (mStuckPikminCount != 0) {
 		soundObj->postPikiAttack(true);
 	} else {
@@ -2025,7 +2025,7 @@ void Obj::resetBossAppearBGM()
 	if (!mIsAppearBGMEnabled) {
 		mIsAppearBGMEnabled      = true;
 		PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(mSoundObj);
-		PSM::checkBoss(soundObj);
+		PSM::assertIsBoss(soundObj);
 		soundObj->setAppearFlag(false);
 	}
 }
@@ -2039,7 +2039,7 @@ void Obj::setBossAppearBGM()
 	if (mIsAppearBGMEnabled) {
 		mIsAppearBGMEnabled      = false;
 		PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(mSoundObj);
-		PSM::checkBoss(soundObj);
+		PSM::assertIsBoss(soundObj);
 		soundObj->setAppearFlag(true);
 	}
 }

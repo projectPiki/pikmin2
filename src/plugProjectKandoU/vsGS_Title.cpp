@@ -392,7 +392,7 @@ void TitleState::draw(VsGameSection* section, Graphics& gfx)
 void TitleState::cleanup(VsGameSection* section)
 {
 	PSSystem::SceneMgr* sceneMgr = PSSystem::getSceneMgr();
-	PSSystem::checkSceneMgr(sceneMgr);
+	PSSystem::validateSceneMgr(sceneMgr);
 	sceneMgr->deleteCurrentScene();
 
 	particle2dMgr->killAll();

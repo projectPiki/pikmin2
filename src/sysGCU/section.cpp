@@ -59,7 +59,7 @@ Section::Section(JFWDisplay* display, JKRHeap* heap, bool b)
 		} else {
 			mDisplay = JFWDisplay::createManager(nullptr, mDisplayHeap, JUTXfb::DoubleBuffer, false);
 			mFader   = new JUTFader(0, 0, JUTVideo::sManager->mRenderModeObj->fbWidth, JUTVideo::sManager->mRenderModeObj->efbHeight,
-                                  JUtility::TColor(0, 0, 0, 0)); // TODO: HELP
+			                        JUtility::TColor(0, 0, 0, 0)); // TODO: HELP
 			mDisplay->mFader = mFader;
 			mIsDisplayNew    = true;
 
@@ -216,7 +216,7 @@ void Section::main()
 	s32 timer = getX(mTimeStep);
 
 	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-	PSSystem::checkSceneMgr(mgr);
+	PSSystem::validateSceneMgr(mgr);
 	mgr->checkScene();
 
 	PSSystem::Scene* scene = mgr->mScenes->mChild;

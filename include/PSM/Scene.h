@@ -316,7 +316,7 @@ inline PSSystem::SceneMgr* PSMGetSceneMgr()
 inline PSSystem::SceneMgr* PSMGetSceneMgrCheck()
 {
 	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-	PSSystem::checkSceneMgr(mgr);
+	PSSystem::validateSceneMgr(mgr);
 	return mgr;
 }
 
@@ -383,7 +383,7 @@ inline PSGame::SceneInfo* PSGameGetSceneInfo()
 inline void PSMStartMainSeq()
 {
 	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-	PSSystem::checkSceneMgr(mgr);
+	PSSystem::validateSceneMgr(mgr);
 	mgr->checkScene();
 	mgr->mScenes->mChild->startMainSeq();
 }

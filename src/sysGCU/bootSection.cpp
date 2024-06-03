@@ -1456,7 +1456,7 @@ void BootSection::updateLoadMemoryCard()
 	sys->mCardMgr->update();
 
 	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-	PSSystem::checkSceneMgr(mgr);
+	PSSystem::validateSceneMgr(mgr);
 	PSM::Scene_Global* scene = static_cast<PSM::Scene_Global*>(mgr->mScenes);
 	P2ASSERTLINE(1748, scene);
 	JAISound* handle = *(scene->getGlobalStream()->getHandleP());

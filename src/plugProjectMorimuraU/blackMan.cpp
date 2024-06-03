@@ -387,7 +387,7 @@ void BlackMan::Obj::doUpdate()
 		if (mTyre && mTyre->isEvent(0, EB_HardConstrained) && mWraithFallTimer < 0.0f) {
 			if (gameSystem && !gameSystem->isZukanMode() && gameSystem->mSection && gameSystem->mSection->getCaveID() == 'y_04') {
 				PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-				PSSystem::checkSceneMgr(mgr);
+				PSSystem::validateSceneMgr(mgr);
 				mgr->checkScene();
 				PSSystem::SeqBase* seqBase = PSSystem::getSeqData(mgr, 0);
 				P2ASSERTLINE(489, seqBase);
@@ -4757,7 +4757,7 @@ void BlackMan::Obj::moveRestart()
 	} else if (!isFinalFloor() && !mHasStartedChaseBgm && !mIsMoviePlaying && gameSystem->mSection
 	           && gameSystem->mSection->getCaveID() == 'y_04') {
 		PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-		PSSystem::checkSceneMgr(mgr);
+		PSSystem::validateSceneMgr(mgr);
 		mgr->checkScene();
 		PSSystem::SeqBase* seqBase = PSSystem::getSeqData(mgr, 1);
 		P2ASSERTLINE(2221, seqBase);
@@ -5034,12 +5034,12 @@ void BlackMan::Obj::appearFanfare()
 	mNeedAppearBgm = false;
 
 	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-	PSSystem::checkSceneMgr(mgr);
+	PSSystem::validateSceneMgr(mgr);
 	PSSystem::Scene* scene = mgr->getChildScene();
 
 	if (PSSystem::checkChildScene(scene)) {
 		PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-		PSSystem::checkSceneMgr(mgr);
+		PSSystem::validateSceneMgr(mgr);
 		PSSystem::Scene* scene = mgr->getChildScene();
 		PSSystem::checkChildScene(scene)->startMainSeq();
 	}

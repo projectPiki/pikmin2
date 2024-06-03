@@ -137,7 +137,7 @@ void Obj::onInit(CreatureInitArg* initArg)
 	mEfxDeadHana->setMtxptr(mModel->getJoint("hana")->getWorldMatrix()->mMatrix.mtxView);
 
 	PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(mSoundObj);
-	PSM::checkBoss(soundObj);
+	PSM::assertIsBoss(soundObj);
 	soundObj->setAppearFlag(false);
 
 	mIsBig = false;
@@ -365,7 +365,7 @@ void Obj::doAnimationCullingOff()
 	mCollTree->update();
 
 	PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(mSoundObj); // get sound object
-	PSM::checkBoss(soundObj);                                           // make sure we have sound object
+	PSM::assertIsBoss(soundObj);                                        // make sure we have sound object
 	if (soundObj) {                                                     // REALLY MAKE SURE WE HAVE SOUND OBJECT
 		// POINTLESS IF STATEMENT
 		if (mSticked) {

@@ -24,7 +24,7 @@ u32 getObject(JASTrack* track, u8 p2)
 {
 	u16 hi = track->readReg16(p2);
 	u16 lo = track->readReg16(p2 + 1);
-	return ((hi << 16) & 0xFFFF0000 | (lo)&0x0000FFFF);
+	return ((hi << 16) & 0xFFFF0000 | (lo) & 0x0000FFFF);
 }
 
 /**
@@ -66,7 +66,7 @@ SysIF::SysIF(const SetupArg& arg)
 void SysIF::stopSoundSystem()
 {
 	SceneMgr* mgr = getSceneMgr();
-	checkSceneMgr(mgr);
+	validateSceneMgr(mgr);
 	Scene* scene = mgr->mScenes;
 	P2ASSERTLINE(183, scene);
 	scene->stopAllSound(5);

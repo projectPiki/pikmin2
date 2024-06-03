@@ -212,7 +212,7 @@ void FileState::draw(SingleGameSection* game, Graphics& gfx)
 void FileState::cleanup(SingleGameSection* game)
 {
 	PSSystem::SceneMgr* sceneMgr = PSSystem::getSceneMgr();
-	PSSystem::checkSceneMgr(sceneMgr);
+	PSSystem::validateSceneMgr(sceneMgr);
 	sceneMgr->deleteCurrentScene();
 	mFSMgr->forceQuit();
 	mMainHeap->freeAll();

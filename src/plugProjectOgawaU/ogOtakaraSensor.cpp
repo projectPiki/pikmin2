@@ -230,7 +230,7 @@ void OtakaraSensor::updateInit()
 				mNoiseLevel             = 0.0f;
 				mIsPoweringOff          = true;
 				PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-				PSSystem::checkSceneMgr(mgr);
+				PSSystem::validateSceneMgr(mgr);
 				PSM::Scene_Cave* scene = static_cast<PSM::Scene_Cave*>(mgr->getChildScene());
 				PSSystem::checkGameScene(scene);
 				if (scene->isCave()) {

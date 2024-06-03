@@ -1905,7 +1905,7 @@ void Pellet::update()
 		if ((gameSystem->isStoryMode()) && !(moviePlayer->isFlag(MVP_IsActive)) && (!isPicked())
 		    && (getKind() == PELTYPE_TREASURE || getKind() == PELTYPE_UPGRADE)) {
 			PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-			PSSystem::checkSceneMgr(mgr);
+			PSSystem::validateSceneMgr(mgr);
 
 			PSM::Scene_Game* currScene = (PSM::Scene_Game*)mgr->getChildScene();
 			PSSystem::checkGameScene(currScene);

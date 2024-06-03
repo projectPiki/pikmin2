@@ -214,7 +214,7 @@ void StateAttack::exec(EnemyBase* enemy)
 		case KEYEVENT_2:
 			// this bit needs fixing
 			PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(enemy->mSoundObj);
-			PSM::checkBoss(soundObj);
+			PSM::assertIsBoss(soundObj);
 			if (soundObj) {
 				soundObj->jumpRequest(PSM::EnemyMidBoss::BossBgm_Attack);
 			}
@@ -851,7 +851,7 @@ void StateFlick::exec(EnemyBase* enemy)
 			rumbleMgr->startRumble(RUMBLETYPE_Fixed11, pos, RUMBLEID_Both);
 
 			PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(enemy->mSoundObj);
-			PSM::checkBoss(soundObj);
+			PSM::assertIsBoss(soundObj);
 			if (soundObj) {
 				soundObj->jumpRequest(PSM::EnemyMidBoss::BossBgm_Flick);
 			}
@@ -1909,7 +1909,7 @@ void StateHide::exec(EnemyBase* enemy)
 
 		case KEYEVENT_END:
 			PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(enemy->mSoundObj);
-			PSM::checkBoss(soundObj);
+			PSM::assertIsBoss(soundObj);
 			soundObj->setAppearFlag(false);
 			transit(enemy, KINGCHAPPY_HideWait, nullptr);
 			break;
@@ -2049,7 +2049,7 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 	rumbleMgr->startRumble(RUMBLETYPE_Fixed12, pos, RUMBLEID_Both);
 
 	PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(enemy->mSoundObj);
-	PSM::checkBoss(soundObj);
+	PSM::assertIsBoss(soundObj);
 	if (soundObj) {
 		soundObj->setAppearFlag(true);
 	}

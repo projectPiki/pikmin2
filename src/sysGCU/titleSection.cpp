@@ -63,7 +63,7 @@ Section::~Section() { ebi::title::TTitleMgr::deleteInstance(); }
 void Section::doExit()
 {
 	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-	PSSystem::checkSceneMgr(mgr);
+	PSSystem::validateSceneMgr(mgr);
 	mgr->deleteCurrentScene();
 	mThpPlayer->stop();
 	if (!Screen::gGame2DMgr->mScreenMgr->reset()) {
@@ -292,7 +292,7 @@ void Section::doUpdateMainTitle()
 	PSSystem::SeqBase* seq;
 	if (mMainTitleMgr.mDoEndBGM) {
 		mgr = PSSystem::getSceneMgr();
-		PSSystem::checkSceneMgr(mgr);
+		PSSystem::validateSceneMgr(mgr);
 		mgr->checkScene();
 		PSSystem::SeqBase* seq = PSSystem::getSeqData(mgr, BGM_MainTheme);
 		f32 rate               = (ebi::TMainTitleMgr::kFadeOutTime / sys->mDeltaTime);
@@ -318,7 +318,7 @@ void Section::doUpdateMainTitle()
 			mOptionMgr.start();
 			mIsMainActive = true;
 			mgr           = PSSystem::getSceneMgr();
-			PSSystem::checkSceneMgr(mgr);
+			PSSystem::validateSceneMgr(mgr);
 			mgr->checkScene();
 			seq = PSSystem::getSeqData(mgr, BGM_Options);
 			seq->startSeq();
@@ -331,7 +331,7 @@ void Section::doUpdateMainTitle()
 				disp.mImageArchive = mHiScoreTex;
 				Screen::gGame2DMgr->open_HighScore(disp);
 				mgr = PSSystem::getSceneMgr();
-				PSSystem::checkSceneMgr(mgr);
+				PSSystem::validateSceneMgr(mgr);
 				mgr->checkScene();
 				seq = PSSystem::getSeqData(mgr, BGM_HiScore);
 				seq->startSeq();
@@ -343,7 +343,7 @@ void Section::doUpdateMainTitle()
 			mOmakeMgr.start();
 			mIsMainActive = true;
 			mgr           = PSSystem::getSceneMgr();
-			PSSystem::checkSceneMgr(mgr);
+			PSSystem::validateSceneMgr(mgr);
 			mgr->checkScene();
 			seq = PSSystem::getSeqData(mgr, BGM_Bonus);
 			seq->startSeq();
@@ -399,7 +399,7 @@ void Section::doUpdateOmake()
 	mOmakeMgr.update();
 	if (mOmakeMgr.mIsFinished) {
 		mgr = PSSystem::getSceneMgr();
-		PSSystem::checkSceneMgr(mgr);
+		PSSystem::validateSceneMgr(mgr);
 		mgr->checkScene();
 		PSSystem::SeqBase* seq = PSSystem::getSeqData(mgr, BGM_Bonus);
 		f32 rate               = ebi::E2DFader::kFadeTime / sys->mDeltaTime;
@@ -410,7 +410,7 @@ void Section::doUpdateOmake()
 	if (mOmakeMgr.isMovieState()) {
 		if (mMovieIndex < 0) {
 			mgr = PSSystem::getSceneMgr();
-			PSSystem::checkSceneMgr(mgr);
+			PSSystem::validateSceneMgr(mgr);
 			mgr->checkScene();
 			PSSystem::SeqBase* seq = PSSystem::getSeqData(mgr, BGM_Bonus);
 			seq->stopSeq(0);
@@ -434,7 +434,7 @@ void Section::doUpdateOmake()
 				mOmakeMgr.restartFromMovieState();
 				mMovieIndex = -1;
 				mgr         = PSSystem::getSceneMgr();
-				PSSystem::checkSceneMgr(mgr);
+				PSSystem::validateSceneMgr(mgr);
 				mgr->checkScene();
 				seq = PSSystem::getSeqData(mgr, BGM_Bonus);
 				seq->startSeq();
@@ -447,7 +447,7 @@ void Section::doUpdateOmake()
 		int idk;
 		mMainTitleMgr.startMenuSet(idk, ebi::TMainTitleMgr::Select_Bonus);
 		mgr = PSSystem::getSceneMgr();
-		PSSystem::checkSceneMgr(mgr);
+		PSSystem::validateSceneMgr(mgr);
 		mgr->checkScene();
 		seq = PSSystem::getSeqData(mgr, BGM_MainTheme);
 		seq->startSeq();

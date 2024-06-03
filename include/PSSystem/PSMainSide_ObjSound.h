@@ -6,10 +6,8 @@
 #include "PSM/EnemyBoss.h"
 #include "PSM/Otakara.h"
 
-// idk what else goes in this file (if anything? maybe this is in the PSGame folder??)
-// but these use the file name in the exception check so :shrug:
 namespace PSM {
-inline void checkBoss(PSM::EnemyBase* soundObj)
+inline void assertIsBoss(PSM::EnemyBase* soundObj)
 {
 	bool isBoss = false;
 	if (soundObj->getCastType() == CCT_Unknown5 || soundObj->getCastType() == CCT_EnemyMidBoss

@@ -29,7 +29,7 @@ void Sound::setChimeNoon()
 	PSSystem::spSysIF->playSystemSe(PSSE_SY_TIME_SIGNAL_NOON, 0);
 
 	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-	PSSystem::checkSceneMgr(mgr);
+	PSSystem::validateSceneMgr(mgr);
 	PSM::Scene_Ground* scene = static_cast<PSM::Scene_Ground*>(mgr->getChildScene());
 	scene                    = (scene->isGameScene()) ? scene : nullptr;
 	scene->changeEnvSE_Noon();
@@ -276,7 +276,7 @@ void Sound::setVsWin1P()
 	PSStart2DStream(P2_STREAM_SOUND_ID(PSSTR_VS_BEE_WIN_ORI));
 
 	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-	PSSystem::checkSceneMgr(mgr);
+	PSSystem::validateSceneMgr(mgr);
 	PSM::Scene_Game* scene = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
 	scene->stopAllSound(2);
 	PSMuteSE_on2D();
@@ -291,7 +291,7 @@ void Sound::setVsWin2P()
 	PSStart2DStream(P2_STREAM_SOUND_ID(PSSTR_VS_BEE_WIN_LUI));
 
 	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-	PSSystem::checkSceneMgr(mgr);
+	PSSystem::validateSceneMgr(mgr);
 	PSM::Scene_Game* scene = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
 	scene->stopAllSound(2);
 	PSMuteSE_on2D();
@@ -306,7 +306,7 @@ void Sound::setVsDraw()
 	PSStart2DStream(P2_STREAM_SOUND_ID(PSSTR_VS_BEE_DROW));
 
 	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-	PSSystem::checkSceneMgr(mgr);
+	PSSystem::validateSceneMgr(mgr);
 	PSM::Scene_Game* scene = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
 	scene->stopAllSound(2);
 	PSMuteSE_on2D();
