@@ -59,7 +59,7 @@ bool MovieConfig::isNeverSkippable() { return mFlags >> 1 & 1; }
  * @note Address: 0x804318CC
  * @note Size: 0x54
  */
-bool MovieConfig::is(char* name) { return strncmp(mMovieNameBuffer2, name, strlen(name)) == 0; }
+bool MovieConfig::is(char* name) { return IS_SAME_STRING_N(mMovieNameBuffer2, name, strlen(name)); }
 
 /**
  * @note Address: 0x80431920
@@ -160,8 +160,8 @@ MovieConfig* MovieList::findConfig(char* movieName, char* mapName)
 
 	FOREACH_NODE(MovieConfig, mConfig.mChild, cNode)
 	{
-		if (!strncmp(movieName, cNode->mMovieNameBuffer2, movielen)) {
-			if (mapName == nullptr || !strncmp(mapName, cNode->mMapName, maplen)) {
+		if (IS_SAME_STRING_N(movieName, cNode->mMovieNameBuffer2, movielen)) {
+			if (mapName == nullptr || IS_SAME_STRING_N(mapName, cNode->mMapName, maplen)) {
 				return cNode;
 			}
 		}

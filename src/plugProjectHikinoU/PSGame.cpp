@@ -161,12 +161,12 @@ void ConductorList::getSeqAndWaveFromConductor(char const* cndName, u8* wScene, 
 	}
 
 	// CAVECONC UNITS
-	if (!strncmp("caveconc", cndName, strlen("caveconc"))) {
+	if (IS_SAME_STRING_N("caveconc", cndName, strlen("caveconc"))) {
 		*bmsName = "caveconc.bms";
 		cndName += strlen("caveconc_");
-		if (!strncmp(cndName, "00", 2)) {
+		if (IS_SAME_STRING_PREFIX(cndName, "00")) {
 			*wScene = PSSystem::WaveScene::WSCENE26_CaveConc_00;
-		} else if (!strncmp(cndName, "05", 2)) {
+		} else if (IS_SAME_STRING_PREFIX(cndName, "05")) {
 			*wScene = PSSystem::WaveScene::WSCENE31_CaveConc_05;
 		} else {
 			*wScene = PSSystem::WaveScene::WSCENE32_CaveConc_10;
@@ -175,7 +175,7 @@ void ConductorList::getSeqAndWaveFromConductor(char const* cndName, u8* wScene, 
 	}
 
 	// NEW UNITS
-	if (!strncmp("new", cndName, strlen("new"))) {
+	if (IS_SAME_STRING_N("new", cndName, strlen("new"))) {
 		strcpy(newSeqName, cndName);
 		strcpy(&newSeqName[6], ".bms");
 		*bmsName = newSeqName;
@@ -184,28 +184,28 @@ void ConductorList::getSeqAndWaveFromConductor(char const* cndName, u8* wScene, 
 	}
 
 	// CAVETILE UNITS
-	if (!strncmp("cavetile", cndName, strlen("cavetile"))) {
+	if (IS_SAME_STRING_N("cavetile", cndName, strlen("cavetile"))) {
 		*bmsName = "cavetile.bms";
 		*wScene  = PSSystem::WaveScene::WSCENE24_CaveTile;
 		return;
 	}
 
 	// CAVEGLASS UNITS
-	if (!strncmp("caveglass", cndName, strlen("caveglass"))) {
+	if (IS_SAME_STRING_N("caveglass", cndName, strlen("caveglass"))) {
 		*bmsName = "caveglass.bms";
 		*wScene  = PSSystem::WaveScene::WSCENE23_CaveOutside;
 		return;
 	}
 
 	// CAVETSUMIKI UNITS
-	if (!strncmp("cavetsumiki", cndName, strlen("cavetsumiki"))) {
+	if (IS_SAME_STRING_N("cavetsumiki", cndName, strlen("cavetsumiki"))) {
 		*bmsName = "cavetsumiki.bms";
 		*wScene  = PSSystem::WaveScene::WSCENE25_CaveToy;
 		return;
 	}
 
 	// CAVERELAX UNITS
-	if (!strncmp("caverelax", cndName, strlen("caverelax"))) {
+	if (IS_SAME_STRING_N("caverelax", cndName, strlen("caverelax"))) {
 		*bmsName = "caverelax.bms";
 		*wScene  = PSSystem::WaveScene::WSCENE28_CaveRestFloor;
 		return;

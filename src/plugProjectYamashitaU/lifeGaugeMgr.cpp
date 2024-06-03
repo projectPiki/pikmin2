@@ -281,7 +281,7 @@ void LifeGaugeMgr::activeLifeGauge(Game::Creature* obj, f32 healthRatio)
 	if (list) {
 		// calculate segment count based on ratio
 		f32 segments                        = list->mLifeGauge.mMaxSegmentNum * healthRatio;
-		list->mLifeGauge.mCurrentSegmentNum = segments >= 0.0f ? (segments + 0.5f) : (segments - 0.5f);
+		list->mLifeGauge.mCurrentSegmentNum = ROUND_F32_TO_U8(segments);
 
 		// add to active list
 		list->clearRelations();

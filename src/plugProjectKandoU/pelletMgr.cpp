@@ -5819,7 +5819,7 @@ int PelletMgr::getCaveID(char* name)
 			PelletConfig* config = mgr->getPelletConfig(i);
 			char* currName       = mgr->getPelletConfig(i)->mParams.mName.mData;
 
-			if (!strncmp(currName, name, strlen(name))) {
+			if (IS_SAME_STRING_N(currName, name, strlen(name))) {
 				int id = (mgr->getMgrID() << 24);
 				id |= i;
 				return id;

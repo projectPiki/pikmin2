@@ -363,7 +363,7 @@ inline void Stages::update()
 CourseInfo* Stages::getCourseInfo(char* name)
 {
 	for (CNode* node = mCourseInfo.mChild; node; node = node->mNext) {
-		if (!strncmp(name, node->mName, strlen(name))) {
+		if (IS_SAME_STRING_N(name, node->mName, strlen(name))) {
 			return (CourseInfo*)node;
 		}
 	}

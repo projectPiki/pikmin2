@@ -44,7 +44,7 @@ void RandCapEnemyUnit::setCapEnemySlot()
 	{
 		if (currTile->mUnitInfo->getUnitKind() == UNITKIND_Cap) { // make sure we're in a cap
 			// make sure no treasure/hole placed && make sure no ground cap teki already placed
-			if ((strncmp(currTile->getUnitName(), "item", 4) == 0) && !mRandItemUnit->isGroundCapEnemySetDone(currTile)) {
+			if (IS_SAME_STRING_PREFIX(currTile->getUnitName(), "item") && !mRandItemUnit->isGroundCapEnemySetDone(currTile)) {
 				// set the enemy slot (0 for ground teki)
 				setCapCommonEnemySlot(currTile, SPAWN_Ground);
 			}
@@ -55,7 +55,7 @@ void RandCapEnemyUnit::setCapEnemySlot()
 	{
 		if (currTile->mUnitInfo->getUnitKind() == UNITKIND_Cap) { // make sure we're in a cap
 			// make sure no treasure/hole placed && make sure no falling cap teki already placed
-			if ((strncmp(currTile->getUnitName(), "item", 4) == 0) && !mRandItemUnit->isFallCapEnemySetDone(currTile)) {
+			if (IS_SAME_STRING_PREFIX(currTile->getUnitName(), "item") && !mRandItemUnit->isFallCapEnemySetDone(currTile)) {
 				// set the enemy slot (1 for falling teki)
 				setCapCommonEnemySlot(currTile, SPAWN_Falling);
 			}

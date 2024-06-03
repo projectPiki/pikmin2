@@ -588,12 +588,15 @@ char* Mgr::getCaveName(int type)
 int Mgr::getCaveID(char* name)
 {
 	int id;
+
 	if (strncmp("DownFloor", name, strlen("DownFloor")) == 0) {
 		return DFMODEL_SmallBlock;
 	}
+
 	if (strncmp("DownFloor2", name, strlen("DownFloor2")) == 0) {
 		return DFMODEL_LargeBlock;
 	}
+
 	if (strncmp("DownFloor3", name, strlen("DownFloor3")) != 0) {
 		return -1;
 	}

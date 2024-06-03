@@ -830,7 +830,7 @@ static void MixAudio(s16* buf, s16* buf2, u32 n)
 				}
 
 				volFromTable = VolumeTable[(int)ActivePlayer.mCurVolume];
-				vol1         = 32768.0f * PSM::sTHPDinamicsProc.dinamics((volFromTable * curPtr[0] >> 15) / 32768.0f);
+				vol1         = SHORT_FLOAT_MAX * PSM::sTHPDinamicsProc.dinamics((volFromTable * curPtr[0] >> 15) / SHORT_FLOAT_MAX);
 				// clamp volume
 				if (vol1 < -32768) {
 					vol1 = -32768;
@@ -840,7 +840,7 @@ static void MixAudio(s16* buf, s16* buf2, u32 n)
 				}
 				*aBuf++ = vol1;
 
-				vol2 = 32768.0f * PSM::sTHPDinamicsProc.dinamics((volFromTable * curPtr[1] >> 15) / 32768.0f);
+				vol2 = SHORT_FLOAT_MAX * PSM::sTHPDinamicsProc.dinamics((volFromTable * curPtr[1] >> 15) / SHORT_FLOAT_MAX);
 				if (vol2 < -32768) {
 					vol2 = -32768;
 				}

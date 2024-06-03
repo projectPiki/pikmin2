@@ -128,7 +128,7 @@ MapNode* RandGateUnit::getItemSetCapDoor(int& idx)
 
 	MapNode* node = static_cast<MapNode*>(mGenerator->mPlacedMapNodes->mChild);
 	for (node; node != nullptr; node = static_cast<MapNode*>(node->mNext)) {
-		if (node->mUnitInfo->getUnitKind() == UNITKIND_Cap && !strncmp(node->getUnitName(), "item", 4)
+		if (node->mUnitInfo->getUnitKind() == UNITKIND_Cap && IS_SAME_STRING_PREFIX(node->getUnitName(), "item")
 		    && mItemUnit->isItemSetDone(node, nullptr)) {
 			for (int i = 0; i < node->getNumDoors(); i++) {
 				if (!node->isGateSetDoor(i)) {
