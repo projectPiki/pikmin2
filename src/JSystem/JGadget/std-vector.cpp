@@ -114,428 +114,108 @@ void TVPVBase::insert(void** values, u32 count, void* const& defaultValue)
 template <>
 void** TVPVBase::Insert_raw(void** pItFirst, u32 count)
 {
-	// leaving this because it's in tp debug, doesn't effect code gen
-	void** pItFirst_ = pItFirst;
+	// purpose: to make space for `count` many elements at the supplied location
+    // returns: pointer to location for new items
+    
+    void** const pItFirst_ = pItFirst;
 
-	// tp debug has assert "(pBegin_<=pItFirst)&&(pItFirst<=pEnd_)"
-	// it's assumed the pointer is to something already in the vector
+    // JUT_DEBUG_ASSERT((mBegin<=pItFirst_)&&(pItFirst_<=mEnd), 0x1be);
+    
+    // it's assumed the pointer is to something already in the vector, or pointing to the end
 
-	if (count == 0) {
-		return pItFirst;
-	}
+    if (count == 0) {
+        return pItFirst;
+    }
 
-	// we can fit in the space already allocated
-	if (count + size() <= mCapacity) {
-		// get the theoretical new end
-		void** newEnd = pItFirst_ + count;
-		// if we're inserting inside of the vec, not at the end
-		if (newEnd < mEnd) {
-			// get a pointer to the values that will be overwritten
-			void** pOverwrittenValues = mEnd - count;
-			// copy the old values to the end of the vector, but within capacity
-			std::uninitialized_copy(pOverwrittenValues, mEnd, mEnd);
-			// copy the new values in
-			std::copy_backward(pItFirst_, pOverwrittenValues, mEnd);
-			DestroyElement_(pItFirst_, newEnd);
-			mEnd += count;
+    // can we fit in the space already allocated?
+    if (count + size() <= mCapacity) {
 
-			return pItFirst;
-		} else {
-			std::uninitialized_copy(pItFirst_, mEnd, newEnd);
-			DestroyElement_(pItFirst_, mEnd);
-			mEnd += count;
+        // get the theoretical new end
+        void** newEnd = pItFirst_ + count;
 
-			return pItFirst;
-		}
-	} else {
-		u32 newSize           = GetSize_extend_(count);
-		void** newDataPointer = mAllocator.allocate(newSize, 0);
-		if (!newDataPointer) {
-			return end();
-		}
+        // if there exists items in the current vector past where we will insert these items
+        // then we need to move them to be at the end of the vector
+        if (newEnd < mEnd) {
 
-		TDestructed_deallocate_ s(mAllocator, newDataPointer);
-		void** endOfCopy = std::uninitialized_copy(mBegin, pItFirst_, newDataPointer);
-		std::uninitialized_copy(pItFirst_, mEnd, endOfCopy + count);
-		DestroyElement_all_();
-		s.set(mBegin);
+            // get a pointer to the `count` many values that need to be pushed to the end
+            void** pOverwrittenValues = mEnd - count;
 
-		mEnd      = newDataPointer + (mEnd - mBegin + count);
-		mBegin    = newDataPointer;
-		mCapacity = newSize;
+            // copy `count` many values to the end of the vector
+            std::uninitialized_copy(pOverwrittenValues, mEnd, mEnd);
 
-		return endOfCopy;
-	}
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stmw      r27, 0x1C(r1)
-	  mr.       r28, r5
-	  mr        r27, r3
-	  mr        r30, r4
-	  bne-      .loc_0x28
-	  mr        r3, r4
-	  b         .loc_0x45C
+            // copy the remaining values that need to be shifted
+            // copying backwards so we don't move a value into the range we're copying from, erasing data
+            std::copy_backward(pItFirst_, pOverwrittenValues, mEnd);
 
-	.loc_0x28:
-	  lwz       r5, 0x4(r27)
-	  cmplwi    r5, 0
-	  bne-      .loc_0x3C
-	  li        r0, 0
-	  b         .loc_0x4C
+            // destroy everything from pItFirst_ -> newEnd, this treats the inserted items as "uninitialized"
+            DestroyElement_(pItFirst_, newEnd);
 
-	.loc_0x3C:
-	  lwz       r0, 0x8(r27)
-	  sub       r0, r0, r5
-	  srawi     r0, r0, 0x2
-	  addze     r0, r0
+            // increment count
+            mEnd += count;
 
-	.loc_0x4C:
-	  lwz       r3, 0xC(r27)
-	  add       r0, r28, r0
-	  cmplw     r0, r3
-	  bgt-      .loc_0x270
-	  rlwinm    r7,r28,2,0,29
-	  lwz       r6, 0x8(r27)
-	  add       r8, r30, r7
-	  cmplw     r8, r6
-	  bge-      .loc_0x1B0
-	  sub       r9, r6, r7
-	  addi      r3, r6, 0x3
-	  cmplw     r9, r6
-	  sub       r3, r3, r9
-	  mr        r5, r9
-	  rlwinm    r3,r3,30,2,31
-	  bge-      .loc_0x104
-	  rlwinm.   r0,r3,29,3,31
-	  mtctr     r0
-	  beq-      .loc_0xEC
+            // return pointer to new items
+            return pItFirst;
+        } else {
+            // pItFirst + count >= mEnd
+            // else our values that we want to add will write beyond the current mEnd
 
-	.loc_0x98:
-	  lwz       r0, 0x0(r5)
-	  stw       r0, 0x0(r6)
-	  lwz       r0, 0x4(r5)
-	  stw       r0, 0x4(r6)
-	  lwz       r0, 0x8(r5)
-	  stw       r0, 0x8(r6)
-	  lwz       r0, 0xC(r5)
-	  stw       r0, 0xC(r6)
-	  lwz       r0, 0x10(r5)
-	  stw       r0, 0x10(r6)
-	  lwz       r0, 0x14(r5)
-	  stw       r0, 0x14(r6)
-	  lwz       r0, 0x18(r5)
-	  stw       r0, 0x18(r6)
-	  lwz       r0, 0x1C(r5)
-	  addi      r5, r5, 0x20
-	  stw       r0, 0x1C(r6)
-	  addi      r6, r6, 0x20
-	  bdnz+     .loc_0x98
-	  andi.     r3, r3, 0x7
-	  beq-      .loc_0x104
+            // copy the values that exist at our pointer to the newEnd, which is pItFirst + count, making room for our `count` many
+            // items
+            std::uninitialized_copy(pItFirst_, mEnd, newEnd);
 
-	.loc_0xEC:
-	  mtctr     r3
+            // uninitialize the values that used to be there
+            DestroyElement_(pItFirst_, mEnd);
 
-	.loc_0xF0:
-	  lwz       r0, 0x0(r5)
-	  addi      r5, r5, 0x4
-	  stw       r0, 0x0(r6)
-	  addi      r6, r6, 0x4
-	  bdnz+     .loc_0xF0
+            // increment count
+            mEnd += count;
 
-	.loc_0x104:
-	  addi      r3, r9, 0x3
-	  cmplw     r9, r30
-	  sub       r3, r3, r30
-	  lwz       r6, 0x8(r27)
-	  mr        r5, r9
-	  rlwinm    r3,r3,30,2,31
-	  ble-      .loc_0x188
-	  rlwinm.   r0,r3,29,3,31
-	  mtctr     r0
-	  beq-      .loc_0x178
+            // return pointer to new items
+            return pItFirst;
+        }
+    }
+    
+    // count + size() > mCapacity
+    // we need more space
 
-	.loc_0x12C:
-	  lwz       r0, -0x4(r5)
-	  stw       r0, -0x4(r6)
-	  lwz       r0, -0x8(r5)
-	  stw       r0, -0x8(r6)
-	  lwz       r0, -0xC(r5)
-	  stw       r0, -0xC(r6)
-	  lwz       r0, -0x10(r5)
-	  stw       r0, -0x10(r6)
-	  lwz       r0, -0x14(r5)
-	  stw       r0, -0x14(r6)
-	  lwz       r0, -0x18(r5)
-	  stw       r0, -0x18(r6)
-	  lwz       r0, -0x1C(r5)
-	  stw       r0, -0x1C(r6)
-	  lwzu      r0, -0x20(r5)
-	  stwu      r0, -0x20(r6)
-	  bdnz+     .loc_0x12C
-	  andi.     r3, r3, 0x7
-	  beq-      .loc_0x188
+    // figure out how much space we'll need
+    u32 newSize = GetSize_extend_(count);
 
-	.loc_0x178:
-	  mtctr     r3
+    // allocate that space
+    void** newDataPointer = mAllocator.allocate(newSize, 0);
 
-	.loc_0x17C:
-	  lwzu      r0, -0x4(r5)
-	  stwu      r0, -0x4(r6)
-	  bdnz+     .loc_0x17C
+    // make sure that data was actually allocated
+    if (!newDataPointer) {
+        // return end pointer?
+        return end();
+    }
 
-	.loc_0x188:
-	  mr        r3, r30
-	  b         .loc_0x194
+    // this struct will deallocate the specified data pointer when destroyed
+	// If we end up throwing an exception, it'll deallocate our new data pointer, no leaks!
+    TDestructed_deallocate_ destructionDeallocator(mAllocator, newDataPointer);
 
-	.loc_0x190:
-	  addi      r3, r3, 0x4
+    // copy all the beginning of our data up to our pointer to the new data
+    void** const endOfCopy = std::uninitialized_copy(mBegin, pItFirst_, newDataPointer);
 
-	.loc_0x194:
-	  cmplw     r3, r8
-	  bne+      .loc_0x190
-	  lwz       r0, 0x8(r27)
-	  mr        r3, r4
-	  add       r0, r0, r7
-	  stw       r0, 0x8(r27)
-	  b         .loc_0x45C
+    // copy the rest of the data to fit at the end of our new data
+    // this leaves a gap of `count` many items in our new data
+    std::uninitialized_copy(pItFirst_, mEnd, endOfCopy + count);
 
-	.loc_0x1B0:
-	  addi      r3, r6, 0x3
-	  cmplw     r30, r6
-	  sub       r3, r3, r30
-	  mr        r6, r8
-	  mr        r5, r30
-	  rlwinm    r3,r3,30,2,31
-	  bge-      .loc_0x244
-	  rlwinm.   r0,r3,29,3,31
-	  mtctr     r0
-	  beq-      .loc_0x22C
+    // destroy all our current elements, the other elements should be living in the new data
+	// and we're about to deallocate our 
+    DestroyElement_all_();
 
-	.loc_0x1D8:
-	  lwz       r0, 0x0(r5)
-	  stw       r0, 0x0(r6)
-	  lwz       r0, 0x4(r5)
-	  stw       r0, 0x4(r6)
-	  lwz       r0, 0x8(r5)
-	  stw       r0, 0x8(r6)
-	  lwz       r0, 0xC(r5)
-	  stw       r0, 0xC(r6)
-	  lwz       r0, 0x10(r5)
-	  stw       r0, 0x10(r6)
-	  lwz       r0, 0x14(r5)
-	  stw       r0, 0x14(r6)
-	  lwz       r0, 0x18(r5)
-	  stw       r0, 0x18(r6)
-	  lwz       r0, 0x1C(r5)
-	  addi      r5, r5, 0x20
-	  stw       r0, 0x1C(r6)
-	  addi      r6, r6, 0x20
-	  bdnz+     .loc_0x1D8
-	  andi.     r3, r3, 0x7
-	  beq-      .loc_0x244
+    // everything should be set, so now we can deallocate our old data pointer
+	// when this func exits
+    destructionDeallocator.set(mBegin);
 
-	.loc_0x22C:
-	  mtctr     r3
+    // set our new vector member variables
+    mEnd      = newDataPointer + (mEnd - mBegin + count);
+    mBegin    = newDataPointer;
+    mCapacity = newSize;
 
-	.loc_0x230:
-	  lwz       r0, 0x0(r5)
-	  addi      r5, r5, 0x4
-	  stw       r0, 0x0(r6)
-	  addi      r6, r6, 0x4
-	  bdnz+     .loc_0x230
-
-	.loc_0x244:
-	  lwz       r0, 0x8(r27)
-	  mr        r3, r30
-	  b         .loc_0x254
-
-	.loc_0x250:
-	  addi      r3, r3, 0x4
-
-	.loc_0x254:
-	  cmplw     r3, r0
-	  bne+      .loc_0x250
-	  lwz       r0, 0x8(r27)
-	  mr        r3, r4
-	  add       r0, r0, r7
-	  stw       r0, 0x8(r27)
-	  b         .loc_0x45C
-
-	.loc_0x270:
-	  cmplwi    r5, 0
-	  bne-      .loc_0x280
-	  li        r4, 0
-	  b         .loc_0x290
-
-	.loc_0x280:
-	  lwz       r0, 0x8(r27)
-	  sub       r0, r0, r5
-	  srawi     r0, r0, 0x2
-	  addze     r4, r0
-
-	.loc_0x290:
-	  lwz       r12, 0x10(r27)
-	  mr        r5, r28
-	  add       r29, r4, r28
-	  mtctr     r12
-	  bctrl
-	  cmplw     r29, r3
-	  mr        r31, r3
-	  ble-      .loc_0x2B4
-	  mr        r31, r29
-
-	.loc_0x2B4:
-	  rlwinm    r3,r31,2,0,29
-	  bl        -0x3B2C
-	  mr.       r0, r3
-	  bne-      .loc_0x2CC
-	  lwz       r3, 0x8(r27)
-	  b         .loc_0x45C
-
-	.loc_0x2CC:
-	  lwz       r5, 0x4(r27)
-	  addi      r4, r30, 0x3
-	  stw       r27, 0x8(r1)
-	  mr        r6, r0
-	  cmplw     r5, r30
-	  sub       r4, r4, r5
-	  stw       r0, 0xC(r1)
-	  rlwinm    r4,r4,30,2,31
-	  bge-      .loc_0x368
-	  rlwinm.   r3,r4,29,3,31
-	  mtctr     r3
-	  beq-      .loc_0x350
-
-	.loc_0x2FC:
-	  lwz       r3, 0x0(r5)
-	  stw       r3, 0x0(r6)
-	  lwz       r3, 0x4(r5)
-	  stw       r3, 0x4(r6)
-	  lwz       r3, 0x8(r5)
-	  stw       r3, 0x8(r6)
-	  lwz       r3, 0xC(r5)
-	  stw       r3, 0xC(r6)
-	  lwz       r3, 0x10(r5)
-	  stw       r3, 0x10(r6)
-	  lwz       r3, 0x14(r5)
-	  stw       r3, 0x14(r6)
-	  lwz       r3, 0x18(r5)
-	  stw       r3, 0x18(r6)
-	  lwz       r3, 0x1C(r5)
-	  addi      r5, r5, 0x20
-	  stw       r3, 0x1C(r6)
-	  addi      r6, r6, 0x20
-	  bdnz+     .loc_0x2FC
-	  andi.     r4, r4, 0x7
-	  beq-      .loc_0x368
-
-	.loc_0x350:
-	  mtctr     r4
-
-	.loc_0x354:
-	  lwz       r3, 0x0(r5)
-	  addi      r5, r5, 0x4
-	  stw       r3, 0x0(r6)
-	  addi      r6, r6, 0x4
-	  bdnz+     .loc_0x354
-
-	.loc_0x368:
-	  lwz       r5, 0x8(r27)
-	  rlwinm    r3,r28,2,0,29
-	  mr        r29, r6
-	  mr        r7, r30
-	  addi      r4, r5, 0x3
-	  cmplw     r30, r5
-	  sub       r4, r4, r30
-	  add       r5, r6, r3
-	  rlwinm    r4,r4,30,2,31
-	  bge-      .loc_0x408
-	  rlwinm.   r3,r4,29,3,31
-	  mtctr     r3
-	  beq-      .loc_0x3F0
-
-	.loc_0x39C:
-	  lwz       r3, 0x0(r7)
-	  stw       r3, 0x0(r5)
-	  lwz       r3, 0x4(r7)
-	  stw       r3, 0x4(r5)
-	  lwz       r3, 0x8(r7)
-	  stw       r3, 0x8(r5)
-	  lwz       r3, 0xC(r7)
-	  stw       r3, 0xC(r5)
-	  lwz       r3, 0x10(r7)
-	  stw       r3, 0x10(r5)
-	  lwz       r3, 0x14(r7)
-	  stw       r3, 0x14(r5)
-	  lwz       r3, 0x18(r7)
-	  stw       r3, 0x18(r5)
-	  lwz       r3, 0x1C(r7)
-	  addi      r7, r7, 0x20
-	  stw       r3, 0x1C(r5)
-	  addi      r5, r5, 0x20
-	  bdnz+     .loc_0x39C
-	  andi.     r4, r4, 0x7
-	  beq-      .loc_0x408
-
-	.loc_0x3F0:
-	  mtctr     r4
-
-	.loc_0x3F4:
-	  lwz       r3, 0x0(r7)
-	  addi      r7, r7, 0x4
-	  stw       r3, 0x0(r5)
-	  addi      r5, r5, 0x4
-	  bdnz+     .loc_0x3F4
-
-	.loc_0x408:
-	  lwz       r3, 0x4(r27)
-	  lwz       r5, 0x8(r27)
-	  mr        r4, r3
-	  b         .loc_0x41C
-
-	.loc_0x418:
-	  addi      r4, r4, 0x4
-
-	.loc_0x41C:
-	  cmplw     r4, r5
-	  bne+      .loc_0x418
-	  lwz       r5, 0x4(r27)
-	  lwz       r4, 0x8(r27)
-	  stw       r3, 0xC(r1)
-	  sub       r4, r4, r5
-	  srawi     r4, r4, 0x2
-	  addze     r4, r4
-	  add       r4, r28, r4
-	  rlwinm    r4,r4,2,0,29
-	  add       r4, r0, r4
-	  stw       r4, 0x8(r27)
-	  stw       r0, 0x4(r27)
-	  stw       r31, 0xC(r27)
-	  bl        -0x3AB8
-	  mr        r3, r29
-
-	.loc_0x45C:
-	  lmw       r27, 0x1C(r1)
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
-	*/
+    // return where the gap of `count` many items lives
+    return endOfCopy;
 }
-
-/**
- * @note Address: N/A
- * @note Size: 0x54
- */
-// template <>
-// TVPVBase::Destructed_deallocate_::~Destructed_deallocate_()
-// {
-// 	// UNUSED FUNCTION
-// }
 
 /**
  * @note Address: 0x80027B88
