@@ -1682,7 +1682,7 @@
       ["sysGCU/gameConfig", true],
       ["sysGCU/fogMgr", true],
       ["sysGCU/aramMgr", false],
-      ["sysGCU/resourceMgr", false],
+      ["sysGCU/resourceMgr", true],
       ["sysGCU/resourceMgr2D", true],
       ["sysGCU/sysMaterialAnim", true],
       ["sysGCU/P2DScreen", true],
