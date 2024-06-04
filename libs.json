@@ -142,7 +142,7 @@
       ["JSystem/JGadget/binary", true],
       ["JSystem/JGadget/linklist", true],
       ["JSystem/JGadget/std-list", false],
-      ["JSystem/JGadget/std-vector", false]
+      ["JSystem/JGadget/std-vector", true]
     ]
   },
   {
