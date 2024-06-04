@@ -69,7 +69,7 @@ struct TList {
 	// not empty according to tp debug
 	~TList()
 	{
-		Confirm();
+		// Confirm();
 		clear();
 	}
 
@@ -78,12 +78,49 @@ struct TList {
 	TList& operator=(const TList& other);
 
 	// from TP debug:
-	TNode_* CreateNode_(TNode_*, TNode_*, Element const& value);
-	void DestroyNode_(TNode_*);
+	TNode_* CreateNode_(TNode_* nextNode, TNode_* prevNode, Element const& value)
+	{
+		TNode_* newNode = (TNode_*)mAllocator.AllocateRaw(sizeof(TNode_));
+		if (!newNode) {
+			return nullptr;
+		}
+
+		newNode->mNext = nextNode;
+		newNode->mPrev = prevNode;
+		mAllocator.construct(&newNode->mElement, value);
+		return newNode;
+	}
+	void DestroyNode_(TNode_* node)
+	{
+		mAllocator.destroy(&node->mElement);
+		mAllocator.DeallocateRaw(node);
+	}
 	void Confirm() const;
 
-	iterator insert(iterator position, Element const& value);
-	iterator erase(iterator position);
+	iterator insert(iterator position, Element const& value)
+	{
+		TNode_* currNode = position.mNode;
+		TNode_* prevNode = currNode->mPrev;
+		TNode_* newNode  = CreateNode_(currNode, prevNode, value);
+		if (!newNode) {
+			return end();
+		}
+
+		currNode->mPrev = newNode;
+		prevNode->mNext = newNode;
+		mSize++;
+		return iterator(newNode);
+	}
+	iterator erase(iterator position)
+	{
+		TNode_* currNode       = position.mNode;
+		TNode_* nextNode       = currNode->mNext;
+		currNode->mPrev->mNext = nextNode;
+		nextNode->mPrev        = currNode->mPrev;
+		DestroyNode_(currNode);
+		mSize--;
+		return iterator(nextNode);
+	}
 	iterator erase(iterator start, iterator end)
 	{
 		while (start != end) {
@@ -102,11 +139,11 @@ struct TList {
 	const_iterator end() const { return const_iterator(mNode.mPrev); }
 	bool empty() const { return size() == 0; }
 	u32 size() const { return mSize; }
-	void clear() { erase(end(), begin()); }
+	iterator clear() { return erase(end(), begin()); }
 
-	u8 _00;       // _00, unknown
-	u32 mSize;    // _04
-	TNode_ mNode; // _08
+	Allocator mAllocator; // _00
+	u32 mSize;            // _04
+	TNode_ mNode;         // _08
 };
 
 struct TList_pointer_void : public TList<void*, TVoidAllocator> {
@@ -115,8 +152,8 @@ struct TList_pointer_void : public TList<void*, TVoidAllocator> {
 	TList_pointer_void(u32, const void*&, const TVoidAllocator&); // unused/inlined
 	~TList_pointer_void();
 
-	void insert(iterator position, void* const& value);
-	void erase(iterator);
+	iterator insert(iterator position, void* const& value);
+	iterator erase(iterator);
 
 	// unused/inlined:
 	void insert(iterator position, u32 count, void* const& value);

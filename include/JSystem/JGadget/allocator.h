@@ -16,6 +16,13 @@ struct TAllocator {
 
 	void DeallocateRaw(void* p) { delete (p); }
 
+	void construct(T* pObject, T const& value)
+	{
+		if (pObject) {
+			*pObject = value;
+		}
+	}
+
 	void destroy(T* p) { p->~T(); }
 
 	// inline TAllocator() { }
