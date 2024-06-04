@@ -25,7 +25,7 @@
 | ---- | ---- | ---- | ---- |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JAudio/JSystem/JAI/JAISoundTable.cpp">JAudio//JAI/JAISoundTable.cpp</a> | 4382 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J2D/J2DBloSaver.cpp">J2D/J2DBloSaver.cpp</a> | 5301 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JAudio/JSystem/JAI/JAIFx.cpp">JAudio//JAI/JAIFx.cpp</a> | 6025 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JParticle/JPAMath.cpp">JParticle/JPAMath.cpp</a> | 6293 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JMessage/control.cpp">JMessage/control.cpp</a> | 6412 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JGadget/std-list.cpp">JGadget/std-list.cpp</a> | 6508 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JMessage/control.cpp">JMessage/control.cpp</a> | 6412 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JGadget/std-list.cpp">JGadget/std-list.cpp</a> | 6509 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JStudio/jstudio-math.cpp">JStudio/jstudio-math.cpp</a> | 6948 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JParticle/JPAResourceLoader.cpp">JParticle/JPAResourceLoader.cpp</a> | 9831 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JAudio/JSystem/JAI/JAISequenceHeap.cpp">JAudio//JAI/JAISequenceHeap.cpp</a> | 10033 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JAudio/JSystem/JAI/JAIInitData.cpp">JAudio//JAI/JAIInitData.cpp</a> | 10317 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JStudio_JStage/object-light.cpp">JStudio_JStage/object-light.cpp</a> | 11294 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JAudio/JSystem/JAS/JASDSPChannel.cpp">JAudio//JAS/JASDSPChannel.cpp</a> | 11896 |
@@ -96,7 +96,7 @@
 ### <section id="plugProjectKonoU">plugProjectKonoU</section>
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKonoU/khCaveResult.cpp">khCaveResult.cpp</a> | 42360 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKonoU/khFinalResult.cpp">khFinalResult.cpp</a> | 59554 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKonoU/khCaveResult.cpp">khCaveResult.cpp</a> | 42526 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKonoU/khFinalResult.cpp">khFinalResult.cpp</a> | 59554 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKonoU/khDayEndResult.cpp">khDayEndResult.cpp</a> | 81835 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKonoU/khWorldMap.cpp">khWorldMap.cpp</a> | 158638 |
 
 ### <section id="plugProjectMorimuraU">plugProjectMorimuraU</section>

@@ -406,10 +406,10 @@ void ObjCaveResult::doDraw(Graphics& gfx)
 	gfx.mOrthoGraph.setPort();
 	pane1->show();
 	pane2->hide();
-	paneList[0]->hide();
-	paneList[1]->hide();
+	for (int i = 0; i < 2; i++) {
+		paneList[i]->hide();
+	}
 
-	J2DPane** list = paneList;
 	mScreenMain->draw(gfx, gfx.mOrthoGraph);
 
 	u32 x, y, wd, ht;
@@ -425,25 +425,28 @@ void ObjCaveResult::doDraw(Graphics& gfx)
 
 	f32 offs = mScrollUpDown * 2.0f;
 	for (int i = 0; i < 2; i++) {
-		list[i]->add(0.0f, mScrollPos - offs);
+		paneList[i]->add(0.0f, mScrollPos - offs);
 	}
 
 	for (int i = 0; i < 2; i++) {
-		mScreenMain->search(nametags[i])->show();
 		mScreenMain->search(icontags[i])->show();
+		mScreenMain->search(nametags[i])->show();
 		mCounterOtaValues[i]->show();
 	}
 
 	u32 i = 0;
-	int next;
 	FOREACH_NODE(Game::Result::TNode, mResultNode->mChild, cNode)
 	{
+		// regswaps are probably mostly from these values
 		int isOdd = i % 2;
-		f32 calc  = i * mScrollUpDown + mScrollPos;
+		u32 next;
+
+		f32 calc = i * mScrollUpDown + mScrollPos;
 
 		if (calc < -mScrollUpDown || mScissorMax < calc) {
 			paneList[isOdd]->add(0.0f, offs);
 		} else {
+			// isFlag doesnt work for this
 			if ((cNode->mItemMgr->mFlags & LOSTITEM_Unk2) == 2) {
 				if (cNode->mPokoValue < 0) {
 					next = 0;
@@ -452,7 +455,8 @@ void ObjCaveResult::doDraw(Graphics& gfx)
 				}
 				setAlpha(isOdd, 48);
 			} else {
-				next = cNode->getNextIndex(cNode->mQuantity, cNode->mLostNum);
+				// this whole thing is wrong, might not be an inline at all
+				next = cNode->getNextIndex(cNode->mLostNum, cNode->mQuantity) * cNode->mLostNum;
 				setAlpha(isOdd, 255);
 			}
 			paneList[!isOdd]->hide();
@@ -461,9 +465,9 @@ void ObjCaveResult::doDraw(Graphics& gfx)
 			setTex(mScreenMain, icontags[isOdd], cNode->mTexture->mTexInfo);
 			u64 tag = cNode->mMesgTag;
 			if (tag == 0) {
-				mScreenMain->search(icontags[isOdd])->hide();
+				mScreenMain->search(nametags[isOdd])->hide();
 			} else {
-				mScreenMain->search(icontags[isOdd])->setMsgID(tag + 1);
+				mScreenMain->search(nametags[isOdd])->setMsgID(tag + 1);
 			}
 			mCurrOtaValues[isOdd] = next;
 			mCounterOtaValues[isOdd]->update();
@@ -480,13 +484,13 @@ void ObjCaveResult::doDraw(Graphics& gfx)
 		setAlpha(isOdd, 255);
 		mScreenMain->search(icontags[isOdd])->hide();
 		mScreenMain->search(nametags[isOdd])->hide();
-		mCounterOtaValues[i]->hide();
+		mCounterOtaValues[isOdd]->hide();
 		mScreenMain->draw(gfx, gfx.mOrthoGraph);
 	}
 
 	GXSetScissor(x, y, wd, ht);
-	pane1->show();
-	pane2->hide();
+	pane1->hide();
+	pane2->show();
 	paneList[0]->hide();
 	paneList[1]->hide();
 	mScreenMain->draw(gfx, gfx.mOrthoGraph);
@@ -504,7 +508,7 @@ void ObjCaveResult::doDraw(Graphics& gfx)
 		u32 y    = System::getRenderModeObj()->efbHeight;
 		u32 x    = System::getRenderModeObj()->fbWidth;
 		f32 zero = 0.0f;
-		JGeometry::TBox2f box(0.0f, zero + x, 0.0f, zero + y);
+		JGeometry::TBox2f box(0.0f, 0.0f, zero + x, zero + y);
 		gfx.mOrthoGraph.fillBox(box);
 	}
 
