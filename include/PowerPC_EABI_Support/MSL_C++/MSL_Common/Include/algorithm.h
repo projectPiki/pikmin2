@@ -75,21 +75,20 @@ inline OutputIt copy(InputIt first, InputIt last, OutputIt d_first)
 
 template <class T, int N>
 class __copy_backward {
-	public:
+public:
 	static T* copy_backward(T* begin, T* end, T* dest)
 	{
-		#ifdef DEBUG
-			size_t size = (end-begin);
-			dest -= size;
-			memmove(dest, begin, size * sizeof(begin));
-			return dest;
-		#else
-			for(;end > begin;)
-			{
-				*--dest = *--end;
-			}
-			return end;
-		#endif
+#ifdef DEBUG
+		size_t size = (end - begin);
+		dest -= size;
+		memmove(dest, begin, size * sizeof(begin));
+		return dest;
+#else
+		for (; end > begin;) {
+			*--dest = *--end;
+		}
+		return end;
+#endif
 	}
 };
 

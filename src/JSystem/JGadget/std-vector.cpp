@@ -75,9 +75,9 @@ TVPVBase::~TVector()
 template <>
 inline void TVPVBase::DestroyElement_(void** pFirst, void** pLast)
 {
-    void** iter = pFirst;
+	void** iter = pFirst;
 	while (iter != pLast) {
-        mAllocator.destroy(iter);
+		mAllocator.destroy(iter);
 		++iter;
 	}
 }
@@ -115,106 +115,106 @@ template <>
 void** TVPVBase::Insert_raw(void** pItFirst, u32 count)
 {
 	// purpose: to make space for `count` many elements at the supplied location
-    // returns: pointer to location for new items
-    
-    void** const pItFirst_ = pItFirst;
+	// returns: pointer to location for new items
 
-    // JUT_DEBUG_ASSERT((mBegin<=pItFirst_)&&(pItFirst_<=mEnd), 0x1be);
-    
-    // it's assumed the pointer is to something already in the vector, or pointing to the end
+	void** const pItFirst_ = pItFirst;
 
-    if (count == 0) {
-        return pItFirst;
-    }
+	// JUT_DEBUG_ASSERT((mBegin<=pItFirst_)&&(pItFirst_<=mEnd), 0x1be);
 
-    // can we fit in the space already allocated?
-    if (count + size() <= mCapacity) {
+	// it's assumed the pointer is to something already in the vector, or pointing to the end
 
-        // get the theoretical new end
-        void** newEnd = pItFirst_ + count;
+	if (count == 0) {
+		return pItFirst;
+	}
 
-        // if there exists items in the current vector past where we will insert these items
-        // then we need to move them to be at the end of the vector
-        if (newEnd < mEnd) {
+	// can we fit in the space already allocated?
+	if (count + size() <= mCapacity) {
 
-            // get a pointer to the `count` many values that need to be pushed to the end
-            void** pOverwrittenValues = mEnd - count;
+		// get the theoretical new end
+		void** newEnd = pItFirst_ + count;
 
-            // copy `count` many values to the end of the vector
-            std::uninitialized_copy(pOverwrittenValues, mEnd, mEnd);
+		// if there exists items in the current vector past where we will insert these items
+		// then we need to move them to be at the end of the vector
+		if (newEnd < mEnd) {
 
-            // copy the remaining values that need to be shifted
-            // copying backwards so we don't move a value into the range we're copying from, erasing data
-            std::copy_backward(pItFirst_, pOverwrittenValues, mEnd);
+			// get a pointer to the `count` many values that need to be pushed to the end
+			void** pOverwrittenValues = mEnd - count;
 
-            // destroy everything from pItFirst_ -> newEnd, this treats the inserted items as "uninitialized"
-            DestroyElement_(pItFirst_, newEnd);
+			// copy `count` many values to the end of the vector
+			std::uninitialized_copy(pOverwrittenValues, mEnd, mEnd);
 
-            // increment count
-            mEnd += count;
+			// copy the remaining values that need to be shifted
+			// copying backwards so we don't move a value into the range we're copying from, erasing data
+			std::copy_backward(pItFirst_, pOverwrittenValues, mEnd);
 
-            // return pointer to new items
-            return pItFirst;
-        } else {
-            // pItFirst + count >= mEnd
-            // else our values that we want to add will write beyond the current mEnd
+			// destroy everything from pItFirst_ -> newEnd, this treats the inserted items as "uninitialized"
+			DestroyElement_(pItFirst_, newEnd);
 
-            // copy the values that exist at our pointer to the newEnd, which is pItFirst + count, making room for our `count` many
-            // items
-            std::uninitialized_copy(pItFirst_, mEnd, newEnd);
+			// increment count
+			mEnd += count;
 
-            // uninitialize the values that used to be there
-            DestroyElement_(pItFirst_, mEnd);
+			// return pointer to new items
+			return pItFirst;
+		} else {
+			// pItFirst + count >= mEnd
+			// else our values that we want to add will write beyond the current mEnd
 
-            // increment count
-            mEnd += count;
+			// copy the values that exist at our pointer to the newEnd, which is pItFirst + count, making room for our `count` many
+			// items
+			std::uninitialized_copy(pItFirst_, mEnd, newEnd);
 
-            // return pointer to new items
-            return pItFirst;
-        }
-    }
-    
-    // count + size() > mCapacity
-    // we need more space
+			// uninitialize the values that used to be there
+			DestroyElement_(pItFirst_, mEnd);
 
-    // figure out how much space we'll need
-    u32 newSize = GetSize_extend_(count);
+			// increment count
+			mEnd += count;
 
-    // allocate that space
-    void** newDataPointer = mAllocator.allocate(newSize, 0);
+			// return pointer to new items
+			return pItFirst;
+		}
+	}
 
-    // make sure that data was actually allocated
-    if (!newDataPointer) {
-        // return end pointer?
-        return end();
-    }
+	// count + size() > mCapacity
+	// we need more space
 
-    // this struct will deallocate the specified data pointer when destroyed
+	// figure out how much space we'll need
+	u32 newSize = GetSize_extend_(count);
+
+	// allocate that space
+	void** newDataPointer = mAllocator.allocate(newSize, 0);
+
+	// make sure that data was actually allocated
+	if (!newDataPointer) {
+		// return end pointer?
+		return end();
+	}
+
+	// this struct will deallocate the specified data pointer when destroyed
 	// If we end up throwing an exception, it'll deallocate our new data pointer, no leaks!
-    TDestructed_deallocate_ destructionDeallocator(mAllocator, newDataPointer);
+	TDestructed_deallocate_ destructionDeallocator(mAllocator, newDataPointer);
 
-    // copy all the beginning of our data up to our pointer to the new data
-    void** const endOfCopy = std::uninitialized_copy(mBegin, pItFirst_, newDataPointer);
+	// copy all the beginning of our data up to our pointer to the new data
+	void** const endOfCopy = std::uninitialized_copy(mBegin, pItFirst_, newDataPointer);
 
-    // copy the rest of the data to fit at the end of our new data
-    // this leaves a gap of `count` many items in our new data
-    std::uninitialized_copy(pItFirst_, mEnd, endOfCopy + count);
+	// copy the rest of the data to fit at the end of our new data
+	// this leaves a gap of `count` many items in our new data
+	std::uninitialized_copy(pItFirst_, mEnd, endOfCopy + count);
 
-    // destroy all our current elements, the other elements should be living in the new data
-	// and we're about to deallocate our 
-    DestroyElement_all_();
+	// destroy all our current elements, the other elements should be living in the new data
+	// and we're about to deallocate our
+	DestroyElement_all_();
 
-    // everything should be set, so now we can deallocate our old data pointer
+	// everything should be set, so now we can deallocate our old data pointer
 	// when this func exits
-    destructionDeallocator.set(mBegin);
+	destructionDeallocator.set(mBegin);
 
-    // set our new vector member variables
-    mEnd      = newDataPointer + (mEnd - mBegin + count);
-    mBegin    = newDataPointer;
-    mCapacity = newSize;
+	// set our new vector member variables
+	mEnd      = newDataPointer + (mEnd - mBegin + count);
+	mBegin    = newDataPointer;
+	mCapacity = newSize;
 
-    // return where the gap of `count` many items lives
-    return endOfCopy;
+	// return where the gap of `count` many items lives
+	return endOfCopy;
 }
 
 /**

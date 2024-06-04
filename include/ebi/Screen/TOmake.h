@@ -32,6 +32,26 @@ struct TOmake : public TScreenBase {
 	void openFromMovie_();
 	void openFromCardE_();
 
+	// this has to exist like this for doUpdateStateClose to work
+	inline bool isFadeoutFinished()
+	{
+		bool ret;
+		if (mCounter != 0)
+			ret = false;
+		else
+			ret = true;
+
+		return ret;
+	}
+
+	void setMsgColor(J2DTextBox* pane)
+	{
+		pane->setCharColor(mColor8);
+		pane->setGradColor(mColor9);
+		pane->setWhite(mColor10);
+		pane->setBlack(mColor11);
+	}
+
 	// _00     = VTBL
 	// _00-_08 = TScreenBase
 	int mState2;                          // _0C

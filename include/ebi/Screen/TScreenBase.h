@@ -22,18 +22,18 @@ struct ArgOpen {
 struct ArgOpenOmake : public ArgOpen {
 	virtual char* getName() { return "ArgOpenOmake"; } // _08 (weak)
 
-	ArgOpenOmake(u8 a1, u8 a2, bool a3)
+	ArgOpenOmake(u8 debt, u8 comp, bool louie)
 	{
-		mFlag1 = a1;
-		mFlag2 = a2;
-		mFlag3 = a3;
+		mIsDebtComplete    = debt;
+		mIsAllTreasures    = comp;
+		mIsLouieDarkSecret = louie;
 	}
 
 	// _00 = VTBL
-	u8 mFlag1;
-	u8 mFlag2;
-	bool mFlag3;
-	int mUnusedVal; // related to e-reader screen?
+	u8 mIsDebtComplete;      // _04
+	u8 mIsAllTreasures;      // _05
+	bool mIsLouieDarkSecret; // _06
+	int mUnusedVal;          // related to e-reader screen?
 };
 
 struct ArgOpenTitleMenu : public ArgOpen {
