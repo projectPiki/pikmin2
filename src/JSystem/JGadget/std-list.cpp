@@ -10,9 +10,9 @@
 JGadget::TList_pointer_void::TList_pointer_void(const JGadget::TVoidAllocator& allocator)
 {
 	_00         = allocator._00;
-	mChildCount = 0;
-	mNext       = &mNext;
-	mPrev       = &mNext;
+	mSize       = 0;
+	mNode.mNext = &mNode;
+	mNode.mPrev = &mNode;
 }
 
 /**
@@ -39,16 +39,17 @@ JGadget::TList_pointer_void::TList_pointer_void(const JGadget::TVoidAllocator& a
  */
 JGadget::TList_pointer_void::~TList_pointer_void()
 {
-	TList_object* current = static_cast<TList_object*>(mNext);
-	TList_object* next    = current->mNext;
+	iterator it(mNode.mNext);
+	TNode_* current = static_cast<TNode_*>(mNode.mNext);
+	TNode_* next    = current->mNext;
 	while (next != current) {
-		TList_object* tempNext = static_cast<TList_object*>(mNext);
-		next->mPrev->mNext     = next->mNext;
-		tempNext->mPrev        = next->mPrev;
+		TNode_* tempNext   = static_cast<TNode_*>(mNode.mNext);
+		next->mPrev->mNext = next->mNext;
+		tempNext->mPrev    = next->mPrev;
 
 		delete next;
 		next = tempNext;
-		mChildCount--;
+		mSize--;
 	}
 
 	/*
@@ -115,15 +116,15 @@ lbl_80027540:
  * @note Address: 0x80027564
  * @note Size: 0x98
  */
-void JGadget::TList_pointer_void::insert(JGadget::TList_pointer_void::iterator it, void* const& value)
+void JGadget::TList_pointer_void::insert(JGadget::TList_pointer_void::iterator pos, void* const& value)
 {
-	TList_object* newElement = new TList_object((u32)value);
+	TNode_* newElement = new TNode_();
 	if (newElement != nullptr) {
 		return;
 	}
 
-	TList_object* currentElement = reinterpret_cast<TList_object*>(it.mElement);
-	TList_object* nextElement    = currentElement->mNext;
+	TNode_* currentElement = reinterpret_cast<TNode_*>(pos.mNode);
+	TNode_* nextElement    = currentElement->mNext;
 
 	newElement->mPrev = currentElement;
 	newElement->mNext = nextElement;
@@ -200,9 +201,9 @@ void JGadget::TList_pointer_void::insert(JGadget::TList_pointer_void::iterator, 
  */
 void JGadget::TList_pointer_void::erase(JGadget::TList_pointer_void::iterator it)
 {
-	TList_object** element = reinterpret_cast<TList_object**>(it.mElement);
-	TList_object* next     = (*element)->mNext;
-	TList_object* prev     = (*element)->mPrev;
+	TNode_** element = reinterpret_cast<TNode_**>(it.mNode);
+	TNode_* next     = (*element)->mNext;
+	TNode_* prev     = (*element)->mPrev;
 
 	// Update the next and previous elements to skip over the element being erased
 	prev->mNext = next;
@@ -211,9 +212,9 @@ void JGadget::TList_pointer_void::erase(JGadget::TList_pointer_void::iterator it
 	// Delete the element
 	delete *element;
 
-	mChildCount--;
+	mSize--;
 
-	mNext = next;
+	mNode.mNext = next;
 	/*
 .loc_0x0:
   stwu      r1, -0x20(r1)
