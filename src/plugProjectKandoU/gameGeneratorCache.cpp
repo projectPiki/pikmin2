@@ -126,7 +126,7 @@ int CourseCache::getColorMePikmins(u8* buffer, int pikminType)
 	int pikiheadFlags;
 	int count = 0;
 
-	RamStream stream(&buffer[mCreatureSize + mOffset + mGeneratorSize], mPikiheadSize);
+	RamStream stream(buffer + mGeneratorSize + mOffset + mCreatureSize, mPikiheadSize);
 	for (int i = 0; i < mPikiheadCount; i++) {
 		pikiheadFlags = stream.readByte();
 
@@ -639,15 +639,15 @@ void GeneratorCache::slideCache()
 	u32 cacheSize             = currentCache->mSize;
 
 	// Iterate over each node in the cache
-	FOREACH_NODE(CourseCache, currentCache->mNext, cache)
+	FOREACH_NODE(CourseCache, currentCache, cache)
 	{
+		// I dont think  mRootCache.mOffset should be here, but it all breaks without it
 		int offset            = mRootCache.mOffset + cache->mOffset;
-		u8* sourceBuffer      = &this->mHeapBuffer[offset];
+		u8* sourceBuffer      = &mHeapBuffer[offset];
 		u8* destinationBuffer = &sourceBuffer[-cacheSize];
 
-		for (s32 index = 0; index < cache->mSize; ++index) {
-			u8 value             = *sourceBuffer++;
-			*destinationBuffer++ = value;
+		for (s32 index = 0; index < cache->mSize; index++) {
+			*destinationBuffer++ = *sourceBuffer++;
 		}
 
 		cache->mOffset -= cacheSize;
@@ -795,81 +795,16 @@ void GeneratorCache::saveGenerator(Generator* generator)
 
 			Generator::ramMode = Generator::RM_MemoryCache;
 			generator->write(output);
+			int newPos         = output.mPosition;
 			Generator::ramMode = Generator::RM_Disc;
 
-			mFreeOffset += output.mPosition;
-			mFreeSize -= output.mPosition;
+			mFreeOffset += newPos;
+			mFreeSize -= newPos;
 			mCurrentCache->mGeneratorCount++;
-			mCurrentCache->mSize += output.mPosition;
-			mCurrentCache->mGeneratorSize += output.mPosition;
+			mCurrentCache->mSize += newPos;
+			mCurrentCache->mGeneratorSize += newPos;
 		}
 	}
-	/*
-	stwu     r1, -0x430(r1)
-	mflr     r0
-	stw      r0, 0x434(r1)
-	stw      r31, 0x42c(r1)
-	mr       r31, r3
-	stw      r30, 0x428(r1)
-	mr       r30, r4
-	lwz      r4, 0x84(r4)
-	cmpwi    r4, -1
-	beq      lbl_801F249C
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	lwz      r3, 0x40(r3)
-	lwz      r0, 0x218(r3)
-	cmplw    r0, r4
-	bge      lbl_801F2538
-
-lbl_801F249C:
-	mr       r3, r30
-	bl       need_saveCreature__Q24Game9GeneratorFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801F2538
-	lwz      r4, 0x7c(r31)
-	addi     r3, r1, 8
-	lwz      r0, 0x84(r31)
-	lwz      r5, 0x88(r31)
-	add      r4, r4, r0
-	bl       __ct__9RamStreamFPvi
-	lwz      r5, 0x78(r31)
-	li       r0, 1
-	mr       r3, r30
-	addi     r4, r1, 8
-	lwz      r5, 0x24(r5)
-	stw      r5, 0xb0(r30)
-	stb      r0, ramMode__Q24Game9Generator@sda21(r13)
-	bl       write__Q24Game9GeneratorFR6Stream
-	li       r0, 0
-	lwz      r5, 0x10(r1)
-	stb      r0, ramMode__Q24Game9Generator@sda21(r13)
-	lwz      r0, 0x84(r31)
-	add      r0, r0, r5
-	stw      r0, 0x84(r31)
-	lwz      r0, 0x88(r31)
-	subf     r0, r5, r0
-	stw      r0, 0x88(r31)
-	lwz      r4, 0x78(r31)
-	lwz      r3, 0x24(r4)
-	addi     r0, r3, 1
-	stw      r0, 0x24(r4)
-	lwz      r3, 0x78(r31)
-	lwz      r0, 0x20(r3)
-	add      r0, r0, r5
-	stw      r0, 0x20(r3)
-	lwz      r3, 0x78(r31)
-	lwz      r0, 0x28(r3)
-	add      r0, r0, r5
-	stw      r0, 0x28(r3)
-
-lbl_801F2538:
-	lwz      r0, 0x434(r1)
-	lwz      r31, 0x42c(r1)
-	lwz      r30, 0x428(r1)
-	mtlr     r0
-	addi     r1, r1, 0x430
-	blr
-	*/
 }
 
 /**
@@ -878,11 +813,7 @@ lbl_801F2538:
  */
 void GeneratorCache::saveCreature(Generator* gen)
 {
-	if (!gen->mCreature) {
-		return;
-	}
-
-	if ((gen->mDayLimit == -1) || (gameSystem->mTimeMgr->mDayCount >= gen->mDayLimit)) {
+	if (!gen->mCreature || (gen->mDayLimit != -1) && (gameSystem->mTimeMgr->mDayCount >= gen->mDayLimit)) {
 		return;
 	}
 
@@ -892,8 +823,10 @@ void GeneratorCache::saveCreature(Generator* gen)
 		output.writeInt(gen->mIndex);
 		gen->saveCreature(output);
 
-		JUT_ASSERTLINE(672, mCurrentCache->mGeneratorCount < gen->mIndex, "(gen number large %d>=%d\n", mCurrentCache->mGeneratorCount,
-		               gen->mIndex);
+		if (gen->mIndex >= mCurrentCache->mGeneratorCount) {
+			JUT_PANICLINE(672, "(gen number large %d>=%d\n", gen->mIndex, mCurrentCache->mGeneratorCount);
+		}
+	} else {
 		Generator::ramMode = Generator::RM_Disc;
 		return;
 	}
@@ -904,97 +837,7 @@ void GeneratorCache::saveCreature(Generator* gen)
 	mFreeSize -= size;
 	mCurrentCache->mCreatureCount++;
 	mCurrentCache->mSize += size;
-	mCurrentCache->mGeneratorSize += size;
-	/*
-	stwu     r1, -0x430(r1)
-	mflr     r0
-	stw      r0, 0x434(r1)
-	stw      r31, 0x42c(r1)
-	mr       r31, r3
-	stw      r30, 0x428(r1)
-	mr       r30, r4
-	lwz      r0, 0x6c(r4)
-	cmplwi   r0, 0
-	beq      lbl_801F2678
-	lwz      r4, 0x84(r30)
-	cmpwi    r4, -1
-	beq      lbl_801F259C
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	lwz      r3, 0x40(r3)
-	lwz      r0, 0x218(r3)
-	cmplw    r0, r4
-	blt      lbl_801F259C
-	b        lbl_801F2678
-
-lbl_801F259C:
-	lwz      r4, 0x7c(r31)
-	addi     r3, r1, 8
-	lwz      r0, 0x84(r31)
-	lwz      r5, 0x88(r31)
-	add      r4, r4, r0
-	bl       __ct__9RamStreamFPvi
-	li       r0, 1
-	mr       r3, r30
-	stb      r0, ramMode__Q24Game9Generator@sda21(r13)
-	bl       need_saveCreature__Q24Game9GeneratorFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801F2618
-	lwz      r4, 0xb0(r30)
-	addi     r3, r1, 8
-	bl       writeInt__6StreamFi
-	mr       r3, r30
-	addi     r4, r1, 8
-	bl       saveCreature__Q24Game9GeneratorFR6Stream
-	lwz      r3, 0x78(r31)
-	lwz      r6, 0xb0(r30)
-	lwz      r7, 0x24(r3)
-	cmpw     r6, r7
-	blt      lbl_801F2624
-	lis      r3, lbl_80481490@ha
-	lis      r4, lbl_80481538@ha
-	addi     r5, r4, lbl_80481538@l
-	addi     r3, r3, lbl_80481490@l
-	li       r4, 0x2a0
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-	b        lbl_801F2624
-
-lbl_801F2618:
-	li       r0, 0
-	stb      r0, ramMode__Q24Game9Generator@sda21(r13)
-	b        lbl_801F2678
-
-lbl_801F2624:
-	li       r0, 0
-	lwz      r5, 0x10(r1)
-	stb      r0, ramMode__Q24Game9Generator@sda21(r13)
-	lwz      r0, 0x84(r31)
-	add      r0, r0, r5
-	stw      r0, 0x84(r31)
-	lwz      r0, 0x88(r31)
-	subf     r0, r5, r0
-	stw      r0, 0x88(r31)
-	lwz      r4, 0x78(r31)
-	lwz      r3, 0x2c(r4)
-	addi     r0, r3, 1
-	stw      r0, 0x2c(r4)
-	lwz      r3, 0x78(r31)
-	lwz      r0, 0x20(r3)
-	add      r0, r0, r5
-	stw      r0, 0x20(r3)
-	lwz      r3, 0x78(r31)
-	lwz      r0, 0x30(r3)
-	add      r0, r0, r5
-	stw      r0, 0x30(r3)
-
-lbl_801F2678:
-	lwz      r0, 0x434(r1)
-	lwz      r31, 0x42c(r1)
-	lwz      r30, 0x428(r1)
-	mtlr     r0
-	addi     r1, r1, 0x430
-	blr
-	*/
+	mCurrentCache->mCreatureSize += size;
 }
 
 /**
@@ -1077,14 +920,14 @@ void GeneratorCache::write(Stream& output)
 {
 	for (int i = 0; i < stageList->getCourseCount(); i++) {
 
-		CourseCache* cache = findCache(mFreeCache, i);
+		CourseCache* cache = findCache(mRootCache, i);
 		if (cache) {
 			output.textWriteTab(output.mTabCount);
 			output.writeByte(0);
 			output.textWriteText("\t# Alive\r\n");
 
 		} else {
-			cache = findCache(mRootCache, i);
+			cache = findCache(mFreeCache, i);
 
 			JUT_ASSERTLINE(945, cache, "no cache : %d\n", i);
 			output.textWriteTab(output.mTabCount);
@@ -1106,196 +949,20 @@ void GeneratorCache::write(Stream& output)
 	output.writeInt(mFreeSize);
 	output.textWriteText("\t# freeSize\r\n");
 
-	for (int j = 0; j < mHeapSize; j++) {
+	int j        = 0;
+	int heapOffs = 0;
+	int currSize;
+	for (j = mHeapSize; j > 0; j -= currSize) {
+		currSize = 0x40;
+		if (j < 0x40) {
+			currSize = j;
+		}
 		output.textWriteTab(output.mTabCount);
-		for (int k = 0; k < 0x40; k++) {
-			output.writeByte(mHeapBuffer[k]);
+		for (int k = 0; k < currSize; k++) {
+			output.writeByte(mHeapBuffer[heapOffs++]);
 		}
 		output.textWriteText("\r\n");
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r5, lbl_80481480@ha
-	stw      r0, 0x24(r1)
-	stmw     r26, 8(r1)
-	mr       r30, r3
-	mr       r31, r4
-	li       r28, 0
-	addi     r29, r5, lbl_80481480@l
-	b        lbl_801F2B24
-
-lbl_801F2A20:
-	lwz      r3, 0x10(r30)
-	b        lbl_801F2A4C
-
-lbl_801F2A28:
-	cmplwi   r3, 0
-	bne      lbl_801F2A38
-	li       r3, 0
-	b        lbl_801F2A58
-
-lbl_801F2A38:
-	lwz      r0, 0x18(r3)
-	cmpw     r0, r28
-	bne      lbl_801F2A48
-	b        lbl_801F2A58
-
-lbl_801F2A48:
-	lwz      r3, 4(r3)
-
-lbl_801F2A4C:
-	cmplwi   r3, 0
-	bne      lbl_801F2A28
-	li       r3, 0
-
-lbl_801F2A58:
-	cmplwi   r3, 0
-	mr       r27, r3
-	beq      lbl_801F2A90
-	lwz      r4, 0x414(r31)
-	mr       r3, r31
-	bl       textWriteTab__6StreamFi
-	mr       r3, r31
-	li       r4, 0
-	bl       writeByte__6StreamFUc
-	mr       r3, r31
-	addi     r4, r29, 0xd4
-	crclr    6
-	bl       textWriteText__6StreamFPce
-	b        lbl_801F2B14
-
-lbl_801F2A90:
-	lwz      r3, 0x4c(r30)
-	b        lbl_801F2ABC
-
-lbl_801F2A98:
-	cmplwi   r3, 0
-	bne      lbl_801F2AA8
-	li       r3, 0
-	b        lbl_801F2AC8
-
-lbl_801F2AA8:
-	lwz      r0, 0x18(r3)
-	cmpw     r0, r28
-	bne      lbl_801F2AB8
-	b        lbl_801F2AC8
-
-lbl_801F2AB8:
-	lwz      r3, 4(r3)
-
-lbl_801F2ABC:
-	cmplwi   r3, 0
-	bne      lbl_801F2A98
-	li       r3, 0
-
-lbl_801F2AC8:
-	cmplwi   r3, 0
-	mr       r27, r3
-	bne      lbl_801F2AEC
-	mr       r6, r28
-	addi     r3, r29, 0x10
-	addi     r5, r29, 0xe0
-	li       r4, 0x3b1
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801F2AEC:
-	lwz      r4, 0x414(r31)
-	mr       r3, r31
-	bl       textWriteTab__6StreamFi
-	mr       r3, r31
-	li       r4, 0xff
-	bl       writeByte__6StreamFUc
-	mr       r3, r31
-	addi     r4, r29, 0xf0
-	crclr    6
-	bl       textWriteText__6StreamFPce
-
-lbl_801F2B14:
-	mr       r3, r27
-	mr       r4, r31
-	bl       write__Q24Game11CourseCacheFR6Stream
-	addi     r28, r28, 1
-
-lbl_801F2B24:
-	lwz      r3, stageList__4Game@sda21(r13)
-	lhz      r0, 0x100(r3)
-	cmpw     r28, r0
-	blt      lbl_801F2A20
-	lwz      r4, 0x414(r31)
-	mr       r3, r31
-	bl       textWriteTab__6StreamFi
-	lwz      r4, 0x80(r30)
-	mr       r3, r31
-	bl       writeInt__6StreamFi
-	mr       r3, r31
-	addi     r4, r29, 0xfc
-	crclr    6
-	bl       textWriteText__6StreamFPce
-	lwz      r4, 0x414(r31)
-	mr       r3, r31
-	bl       textWriteTab__6StreamFi
-	lwz      r4, 0x84(r30)
-	mr       r3, r31
-	bl       writeInt__6StreamFi
-	mr       r3, r31
-	addi     r4, r29, 0x10c
-	crclr    6
-	bl       textWriteText__6StreamFPce
-	lwz      r4, 0x414(r31)
-	mr       r3, r31
-	bl       textWriteTab__6StreamFi
-	lwz      r4, 0x88(r30)
-	mr       r3, r31
-	bl       writeInt__6StreamFi
-	mr       r3, r31
-	addi     r4, r29, 0x11c
-	crclr    6
-	bl       textWriteText__6StreamFPce
-	lwz      r27, 0x80(r30)
-	li       r28, 0
-	b        lbl_801F2C10
-
-lbl_801F2BB8:
-	cmpwi    r27, 0x40
-	li       r29, 0x40
-	bge      lbl_801F2BC8
-	mr       r29, r27
-
-lbl_801F2BC8:
-	lwz      r4, 0x414(r31)
-	mr       r3, r31
-	bl       textWriteTab__6StreamFi
-	li       r26, 0
-	b        lbl_801F2BF4
-
-lbl_801F2BDC:
-	lwz      r4, 0x7c(r30)
-	mr       r3, r31
-	lbzx     r4, r4, r28
-	addi     r28, r28, 1
-	bl       writeByte__6StreamFUc
-	addi     r26, r26, 1
-
-lbl_801F2BF4:
-	cmpw     r26, r29
-	blt      lbl_801F2BDC
-	mr       r3, r31
-	addi     r4, r2, lbl_80519BCC@sda21
-	crclr    6
-	bl       textWriteText__6StreamFPce
-	subf     r27, r29, r27
-
-lbl_801F2C10:
-	cmpwi    r27, 0
-	bgt      lbl_801F2BB8
-	lmw      r26, 8(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
@@ -1304,24 +971,15 @@ lbl_801F2C10:
  */
 void GeneratorCache::read(Stream& input)
 {
-	for (int i = 0; i < stageList->getCourseCount(); i++) {
-		CourseCache* cache = findCache(mRootCache, i);
-		if (cache) {
-			cache->del();
-			mFreeCache.add(cache);
-		}
-	}
+	clearCache();
 
-	mRootCache.clearRelations();
-	mFreeOffset   = 0;
-	mFreeSize     = mHeapSize;
-	mCurrentCache = nullptr;
 	CourseCache newcache(-1);
 
+	u32 flag;
 	for (int i = 0; i < stageList->getCourseCount(); i++) {
-		u32 flag = input.readByte();
+		flag = input.readByte();
 
-		CourseCache* cache = findCache(newcache, i);
+		CourseCache* cache = findCache(mFreeCache, i);
 		JUT_ASSERTLINE(1009, cache, "cache %d is not in dead list\n", i);
 		cache->read(input);
 		if (flag == 0) {
@@ -1329,16 +987,28 @@ void GeneratorCache::read(Stream& input)
 			newcache.add(cache);
 		} else if (flag == 255) {
 			cache->del();
-			mRootCache.add(cache);
+			mFreeCache.add(cache);
 		} else {
 			JUT_PANICLINE(1019, "illegal cache flag(%x)\n", flag);
 		}
 	}
 
-	CourseCache* cache = findCache(newcache, -1);
-	if (cache) {
-		cache->del();
-		mFreeCache.add(cache);
+	while (newcache.mChild) {
+		// this might be an inline, its not findCache though
+		u32 id             = -1;
+		CourseCache* cache = nullptr;
+		FOREACH_NODE(CourseCache, newcache.mChild, cnode)
+		{
+			if (id > cnode->mOffset) {
+				id    = cnode->mOffset;
+				cache = cnode;
+			}
+		}
+
+		if (cache) {
+			cache->del();
+			mRootCache.add(cache);
+		}
 	}
 
 	mHeapSize   = input.readInt();
