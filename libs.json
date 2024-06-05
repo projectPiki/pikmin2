@@ -1603,7 +1603,7 @@
     "host": true,
     "objects": [
       ["plugProjectKonoU/khWorldMap", false],
-      ["plugProjectKonoU/khCaveResult", false],
+      ["plugProjectKonoU/khCaveResult", true],
       ["plugProjectKonoU/khSceneLoader", true],
       ["plugProjectKonoU/newGame2DMgr", true],
       ["plugProjectKonoU/newScreenMgr", true],
