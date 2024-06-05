@@ -90,11 +90,13 @@ struct TList {
 		mAllocator.construct(&newNode->mElement, value);
 		return newNode;
 	}
+
 	void DestroyNode_(TNode_* node)
 	{
 		mAllocator.destroy(&node->mElement);
 		mAllocator.DeallocateRaw(node);
 	}
+
 	void Confirm() const;
 
 	iterator insert(iterator position, Element const& value)
@@ -111,8 +113,11 @@ struct TList {
 		mSize++;
 		return iterator(newNode);
 	}
+
 	iterator erase(iterator position)
 	{
+		volatile iterator iter(position);
+
 		TNode_* currNode       = position.mNode;
 		TNode_* nextNode       = currNode->mNext;
 		currNode->mPrev->mNext = nextNode;
@@ -121,6 +126,7 @@ struct TList {
 		mSize--;
 		return iterator(nextNode);
 	}
+
 	iterator erase(iterator start, iterator end)
 	{
 		while (start != end) {

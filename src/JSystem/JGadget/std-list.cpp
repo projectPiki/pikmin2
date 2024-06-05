@@ -105,6 +105,7 @@ lbl_80027540:
  */
 JGadget::TList_pointer_void::iterator JGadget::TList_pointer_void::insert(JGadget::TList_pointer_void::iterator pos, void* const& value)
 {
+	volatile iterator iter(pos);
 	TNode_* currNode = pos.mNode;
 	TNode_* prevNode = currNode->mPrev;
 	TNode_* newNode  = CreateNode_(currNode, prevNode, value);
