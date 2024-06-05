@@ -25,7 +25,7 @@
 | ---- | ---- | ---- | ---- |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JAudio/JSystem/JAI/JAISoundTable.cpp">JAudio//JAI/JAISoundTable.cpp</a> | 4382 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J2D/J2DBloSaver.cpp">J2D/J2DBloSaver.cpp</a> | 5301 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JAudio/JSystem/JAI/JAIFx.cpp">JAudio//JAI/JAIFx.cpp</a> | 6025 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JParticle/JPAMath.cpp">JParticle/JPAMath.cpp</a> | 6293 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JMessage/control.cpp">JMessage/control.cpp</a> | 6412 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JGadget/std-list.cpp">JGadget/std-list.cpp</a> | 6509 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JMessage/control.cpp">JMessage/control.cpp</a> | 6412 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JGadget/std-list.cpp">JGadget/std-list.cpp</a> | 6540 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JStudio/jstudio-math.cpp">JStudio/jstudio-math.cpp</a> | 6948 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JParticle/JPAResourceLoader.cpp">JParticle/JPAResourceLoader.cpp</a> | 9831 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JAudio/JSystem/JAI/JAISequenceHeap.cpp">JAudio//JAI/JAISequenceHeap.cpp</a> | 10033 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JAudio/JSystem/JAI/JAIInitData.cpp">JAudio//JAI/JAIInitData.cpp</a> | 10317 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JStudio_JStage/object-light.cpp">JStudio_JStage/object-light.cpp</a> | 11294 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JAudio/JSystem/JAS/JASDSPChannel.cpp">JAudio//JAS/JASDSPChannel.cpp</a> | 11896 |
@@ -57,7 +57,7 @@
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/ebi2DCallBack.cpp">ebi2DCallBack.cpp</a> | 10843 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/particleMgr.cpp">particleMgr.cpp</a> | 12945 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/ebiP2Title.cpp">ebiP2Title.cpp</a> | 23868 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/efxPikmin.cpp">efxPikmin.cpp</a> | 31421 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/ebiP2Title.cpp">ebiP2Title.cpp</a> | 23868 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/efxPikmin.cpp">efxPikmin.cpp</a> | 31868 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/efxEnemy.cpp">efxEnemy.cpp</a> | 32976 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/efxBase.cpp">efxBase.cpp</a> | 34393 |
 
 ### <section id="plugProjectHikinoU">plugProjectHikinoU</section>
@@ -153,7 +153,7 @@
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/enemyStoneDrawInfo.cpp">enemyStoneDrawInfo.cpp</a> | 19376 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/singleGS_ZukanParms.cpp">singleGS_ZukanParms.cpp</a> | 22080 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/vtxAnm.cpp">vtxAnm.cpp</a> | 31268 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/enemyAction.cpp">enemyAction.cpp</a> | 51416 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/vtxAnm.cpp">vtxAnm.cpp</a> | 31264 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/enemyAction.cpp">enemyAction.cpp</a> | 51416 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/kochappyState.cpp">kochappyState.cpp</a> | 65638 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/gameLightMgr.cpp">gameLightMgr.cpp</a> | 74592 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/chappyState.cpp">chappyState.cpp</a> | 76099 |  |  |
 

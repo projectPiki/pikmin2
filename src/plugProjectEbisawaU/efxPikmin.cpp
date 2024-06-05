@@ -282,21 +282,20 @@ void TFueactCircle::execute(JPABaseEmitter* emit)
 	P2ASSERTLINE(530, mMtx);
 	P2ASSERTLINE(531, mPos);
 
+	// Vector3f probably doesnt belong in these functions
+	// the JGeometry Util stuff seems to be what was used
+
 	Vector3f sep = *mPos - mMtx->getColumn(3);
+	JGeometry::TVec3f sep2;
+	sep2.set(sep.x, sep.y, sep.z);
 
 	// super wacky normalisation.
-	f32 sqrLen = sep.x * sep.x + sep.y * sep.y + sep.z * sep.z;
-	if (!(sqrLen <= 32.0f * __float_epsilon[0])) {
-		if (sqrLen <= 0.0f) {
-
-		} else {
-			f32 len = (f32)__frsqrte(sqrLen);
-			sqrLen  = (0.5f * len) * (3.0f - sqrLen * (len * len));
-		}
-		sep = sep * sqrLen;
+	f32 sqrLen = sep2.x * sep2.x + sep2.y * sep2.y + sep2.z * sep2.z;
+	if (!(sqrLen <= JGeometry::TUtilf::epsilon())) {
+		sep2.scale(JGeometry::TUtilf::inv_sqrt(sqrLen));
 	}
 
-	emit->setAngle(sep.x, sep.y, sep.z);
+	emit->setAngle(&sep2);
 
 	/*
 	stwu     r1, -0x10(r1)
@@ -391,18 +390,25 @@ lbl_803B7000:
  */
 void TFueactCircle::execute(JPABaseEmitter*, JPABaseParticle* prt)
 {
-	P2ASSERTLINE(530, mMtx);
-	P2ASSERTLINE(531, mPos);
+	P2ASSERTLINE(547, mMtx);
+	P2ASSERTLINE(548, mPos);
 
-	Vector3f ang = *mPos - mMtx->getColumn(0);
-	if (ang.normalise() > 175.0f) {
-		ang.normalise();
-		ang *= 175.0f;
+	Vector3f sep = *mPos - mMtx->getTranslation();
+	JGeometry::TVec3f sep2;
+	sep2.set(sep.x, sep.y, sep.z);
+
+	f32 sqrLen = sep2.x * sep2.x + sep2.y * sep2.y + sep2.z * sep2.z;
+	if (sqrLen > 175.0f) {
+		if (!(sqrLen <= JGeometry::TUtilf::epsilon())) {
+			sep2.scale(JGeometry::TUtilf::inv_sqrt(sqrLen));
+		}
+		sep2.scale(175.0f);
 	}
 
-	prt->mOffsetPosition.x = ang.x;
-	prt->mOffsetPosition.y = ang.y;
-	prt->mOffsetPosition.z = ang.z;
+	if (!(prt->mFlags & 4)) {
+		sep2.scale(prt->mScaleOut);
+		prt->setOffsetPosition(sep2);
+	}
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0
@@ -610,15 +616,23 @@ lbl_803B72D8:
  */
 void TFueactBiriBase::doExecuteEmitterOperation(JPABaseEmitter* emit)
 {
-	P2ASSERTLINE(530, mMtx);
-	P2ASSERTLINE(531, mPos);
+	P2ASSERTLINE(579, mMtx);
+	P2ASSERTLINE(580, mPos);
 
-	Vector3f ang = *mPos - mMtx->getColumn(0);
-	ang.normalise();
-	Matrixf mtx; // i cant even
-	JPASetRMtxTVecfromMtx(mtx.mMatrix.mtxView, mMtx->mMatrix.mtxView, mPos);
-	ang /= 100.0f;
-	emit->setAngle(ang.x, ang.y, ang.z);
+	Vector3f* pos   = (Vector3f*)&mPos;
+	Vector3f mtxPos = mMtx->getTranslation();
+	Vector3f angle  = *pos - mtxPos;
+	f32 scale       = angle.length();
+	angle.normalise();
+
+	Matrixf mtx;
+	mtx.setTransformationMtx2(angle, mtxPos);
+
+	JPASetRMtxTVecfromMtx(mtx.mMatrix.mtxView, emit->mGlobalRot, &emit->mGlobalTrs);
+	if (scale > 175.0f) {
+		scale = 175.0f;
+	}
+	emit->setScaleOnly(scale / 100.0f);
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0
