@@ -16,11 +16,14 @@ struct CourseCache : public CNode {
 	void read(Stream&);
 	void write(Stream&);
 
-	s32 mCourseIndex;    // _18
+	inline void* getOffsetBuffer(void* buffer, int offset) { return (void*)(((u32)buffer + mOffset + mGeneratorSize) + offset); }
+	inline void* getOffsetBufferNoGen(void* buffer, int offset) { return (void*)(((u32)buffer + mOffset) - offset); }
+
+	int mCourseIndex;    // _18
 	u32 mOffset;         // _1C
-	s32 mSize;           // _20
+	int mSize;           // _20
 	int mGeneratorCount; // _24
-	int mGeneratorSize;  // _28
+	u32 mGeneratorSize;  // _28
 	int mCreatureCount;  // _2C
 	int mCreatureSize;   // _30
 	int mPikiheadCount;  // _34

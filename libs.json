@@ -969,7 +969,7 @@
       ["plugProjectKandoU/itemBigFountain", true],
       ["plugProjectKandoU/itemBridge", false],
       ["plugProjectKandoU/pikiContainer", true],
-      ["plugProjectKandoU/gameGeneratorCache", false],
+      ["plugProjectKandoU/gameGeneratorCache", true],
       ["plugProjectKandoU/itemTreasure", true],
       ["plugProjectKandoU/itemDownFloor", true],
       ["plugProjectKandoU/kandoLib", true],
