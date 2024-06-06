@@ -285,15 +285,9 @@ void TFueactCircle::execute(JPABaseEmitter* emit)
 	// Vector3f probably doesnt belong in these functions
 	// the JGeometry Util stuff seems to be what was used
 
-	Vector3f sep = *mPos - mMtx->getColumn(3);
 	JGeometry::TVec3f sep2;
-	sep2.set(sep.x, sep.y, sep.z);
-
-	// super wacky normalisation.
-	f32 sqrLen = sep2.x * sep2.x + sep2.y * sep2.y + sep2.z * sep2.z;
-	if (!(sqrLen <= JGeometry::TUtilf::epsilon())) {
-		sep2.scale(JGeometry::TUtilf::inv_sqrt(sqrLen));
-	}
+	sep2.set(mPos->x - (*mMtx)(0, 3), mPos->y - (*mMtx)(1, 3), mPos->z - (*mMtx)(2, 3));
+	sep2.normalize();
 
 	emit->setAngle(&sep2);
 
@@ -393,20 +387,25 @@ void TFueactCircle::execute(JPABaseEmitter*, JPABaseParticle* prt)
 	P2ASSERTLINE(547, mMtx);
 	P2ASSERTLINE(548, mPos);
 
-	Vector3f sep = *mPos - mMtx->getTranslation();
+	// Vector3f sep = *mPos - mMtx->getTranslation();
+	JGeometry::TVec3f pos = *(JGeometry::TVec3f*)mPos; // 0x38
+	JGeometry::TVec3f mtxPos;
+	mtxPos.set((*mMtx)(0, 3), (*mMtx)(1, 3), (*mMtx)(2, 3));
 	JGeometry::TVec3f sep2;
-	sep2.set(sep.x, sep.y, sep.z);
+	sep2.sub(pos, mtxPos);
+	f32 dist = sep2.squared();
+	sep2.normalize();
+	if (dist > 175.0f) {
+		sep2.setLength(dist);
 
-	f32 sqrLen = sep2.x * sep2.x + sep2.y * sep2.y + sep2.z * sep2.z;
-	if (sqrLen > 175.0f) {
-		if (!(sqrLen <= JGeometry::TUtilf::epsilon())) {
-			sep2.scale(JGeometry::TUtilf::inv_sqrt(sqrLen));
-		}
-		sep2.scale(175.0f);
+		// some JGeometry/Vector3f shit
+		pos.set(sep2);
 	}
 
-	if (!(prt->mFlags & 4)) {
-		sep2.scale(prt->mScaleOut);
+	if (!prt->checkStatus(0x4)) {
+		JGeometry::TVec3f newScaledVec;
+		newScaledVec.scale(prt->mTime, pos);
+		sep2.scaleAdd(1.0f - prt->mTime, mtxPos, newScaledVec);
 		prt->setOffsetPosition(sep2);
 	}
 	/*
@@ -622,7 +621,7 @@ void TFueactBiriBase::doExecuteEmitterOperation(JPABaseEmitter* emit)
 	Vector3f* pos   = (Vector3f*)&mPos;
 	Vector3f mtxPos = mMtx->getTranslation();
 	Vector3f angle  = *pos - mtxPos;
-	f32 scale       = angle.length();
+	f32 scale       = pos->distance(mtxPos);
 	angle.normalise();
 
 	Matrixf mtx;
