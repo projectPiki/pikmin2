@@ -144,6 +144,7 @@ void DynCreature::computeForces(f32 friction)
 			if (!particle->mIsTouching) {
 				continue;
 			}
+
 			Vector3f sep      = particle->mPosition - mTransformedPosition;
 			Vector3f crossVec = mRigid.mConfigs[0].mRotatedMomentum.cross(sep) + mRigid.mConfigs[0].mVelocity;
 

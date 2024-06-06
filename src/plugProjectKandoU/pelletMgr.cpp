@@ -5497,15 +5497,16 @@ bool PelletMgr::setUse(PelletInitArg* arg)
 		config = mgr->mConfigList->getPelletConfig(arg->mTextIdentifier);
 
 		if (IS_SAME_STRING("yes", config->mParams.mUnique.mData)) {
-			int unk = arg->mPelletIndex;
+			int pelletIdx = arg->mPelletIndex;
+
 			if (arg->mPelletType == PelletList::PLK_Otakara) {
-				u8 result = playData->mZukanStat->mOtakara(unk);
+				u8 result = playData->mZukanStat->mOtakara(pelletIdx);
 				if (result & 2) {
 					mgr->mConfigList->getPelletConfig(arg->mTextIdentifier);
 					return false;
 				}
 			} else if (arg->mPelletType == PelletList::PLK_Item) {
-				u8 result = playData->mZukanStat->mItem(unk);
+				u8 result = playData->mZukanStat->mItem(pelletIdx);
 				if (result & 2) {
 					mgr->mConfigList->getPelletConfig(arg->mTextIdentifier);
 					return false;

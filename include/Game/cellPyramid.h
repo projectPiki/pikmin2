@@ -222,9 +222,9 @@ struct CellIteratorArg {
 
 	Sys::Sphere mSphere;               // _00
 	CellIteratorCondition* mCondition; // _10
-	int mUseCustomRadius;              // _14, Useless flag,
+	int mUseCustomRadius;              // _14, Useless flag
 	CellPyramid* mCellMgr;             // _18
-	bool mOptimise;                    // _1C, if false, will calc overlapping bounding spheres rather than just "in cell or no"
+	bool mOptimise;                    // _1C, if true, use "is within cell", if false, calculate overlapping bounding spheres
 	u8 mUnused;                        // _1D, set to 0 and unused
 };
 

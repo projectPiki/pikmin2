@@ -258,7 +258,7 @@ void Item::doAI()
 	CollPart* part = mCollTree->mPart;
 	part->mRadius  = getWorkRadius();
 	switch (mSoundEvent.update()) {
-	case 2:
+	case TSE_ApplyTransition:
 		P2ASSERTLINE(298, mSoundObj->getCastType() == PSM::CCT_WorkItem);
 		static_cast<PSM::WorkItem*>(mSoundObj)->eventStop();
 	}
@@ -359,7 +359,7 @@ Mgr::Mgr()
 	mObjectPathComponent = "user/Kando/objects/barrel";
 	mParms               = new BarrelParms();
 	void* resource       = JKRDvdRipper::loadToMainRAM("user/Abe/item/barrelParms.txt", nullptr, Switch_0, 0, nullptr,
-                                                 JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
+	                                                   JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
 	if (resource) {
 		RamStream stream(resource, -1);
 		stream.setMode(STREAM_MODE_TEXT, true);

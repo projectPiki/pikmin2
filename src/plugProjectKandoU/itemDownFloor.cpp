@@ -381,7 +381,7 @@ void Item::doAI()
 {
 	if (mDownFloorType == DFTYPE_PaperBag) {
 		switch (mSoundEvent.update()) {
-		case 2:
+		case TSE_ApplyTransition:
 			P2ASSERTLINE(607, mSoundObj->getCastType() == PSM::CCT_WorkItem);
 			static_cast<PSM::WorkItem*>(mSoundObj)->eventStop();
 			break;

@@ -830,7 +830,7 @@ bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* collpart)
 	} else if (creature->isAlive()) {
 		Vector3f creaturePos = creature->getPosition();
 		if (creaturePos.y < 5.0f + mPosition.y) {
-			if (sqrDistanceXZ(creaturePos, mPosition) < 1600.0f) {
+			if (sqrDistanceXZ(creaturePos, mPosition) < SQUARE(40.0f)) {
 				addDamage(damage * 0.2f, 1.0f);
 				return true;
 			}

@@ -372,7 +372,7 @@ void Item::doAI()
 {
 	mFsm->exec(this);
 	switch (mSoundEvent.update()) {
-	case 2:
+	case TSE_ApplyTransition:
 		P2ASSERTLINE(492, mSoundObj->getCastType() == PSM::CCT_WorkItem);
 		static_cast<PSM::WorkItem*>(mSoundObj)->eventStop();
 		break;
@@ -500,7 +500,7 @@ Mgr::Mgr()
 	mItemName            = "ãAä“ä‘åáêÚ"; // 'return geyser'
 	mParms               = new FountainParms();
 	void* data           = JKRDvdRipper::loadToMainRAM("user/Abe/item/fountainParms.txt", nullptr, Switch_0, 0, nullptr,
-                                             JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
+	                                                   JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
 	if (data != nullptr) {
 		RamStream input(data, -1);
 		input.setMode(STREAM_MODE_TEXT, 1);

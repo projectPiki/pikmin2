@@ -548,7 +548,7 @@ void PikiMgr::killDayEndPikmins(PikiContainer& container)
 				// convert offset to demo space
 				offset       = mapMgr->getDemoMatrix()->mtxMult(offset);
 				Vector3f pos = piki->getPosition();
-				if (sqrDistanceXZ(pos, offset) < 139876.0f) {
+				if (sqrDistanceXZ(pos, offset) < SQUARE(374.0f)) {
 					continue;
 				}
 			}

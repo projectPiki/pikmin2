@@ -192,7 +192,7 @@ void ItemGate::doAI()
 	mMabiki.update(4);
 	mFsm->exec(this);
 	switch (mSoundEvent.update()) {
-	case 2:
+	case TSE_ApplyTransition:
 		P2ASSERTLINE(354, mSoundObj->getCastType() == PSM::CCT_WorkItem);
 		static_cast<PSM::WorkItem*>(mSoundObj)->eventStop();
 	}

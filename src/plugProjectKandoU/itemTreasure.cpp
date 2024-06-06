@@ -231,7 +231,7 @@ void Item::doAI()
 	if (isAlive()) {
 		int state = mSoundEvent.update();
 		switch (state) {
-		case 2:
+		case TSE_ApplyTransition:
 			P2ASSERTLINE(406, mSoundObj->getCastType() == PSM::CCT_WorkItem);
 			static_cast<PSM::WorkItem*>(mSoundObj)->eventStop();
 			break;
