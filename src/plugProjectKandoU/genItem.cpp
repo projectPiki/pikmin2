@@ -112,12 +112,17 @@ void GenItem::doRead(Stream& stream)
 		delete mParm;
 		mParm = nullptr;
 	}
+
 	mItemMgr = nullptr;
+
 	ID32 id32;
 	id32.read(stream);
+
 	mItemMgr  = itemMgr->getMgrByID(id32);
 	mMgrIndex = itemMgr->getIndexByMgr(mItemMgr);
+
 	JUT_ASSERTLINE(175, mItemMgr && mMgrIndex != -1, "no baseItemMgr for %s\n", &id32);
+
 	mParm       = mItemMgr->generatorNewItemParm();
 	mRotation.x = stream.readFloat();
 	mRotation.y = stream.readFloat();
@@ -149,9 +154,7 @@ void GenItem::ramLoadParameters(Stream&) { }
  */
 Creature* GenItem::generate(Game::Generator* generator)
 {
-	Vector3f pos = generator->mPosition + generator->mOffset;
-	GenArg arg;
-	arg.mPosition = pos;
+	GenArg arg(generator->mPosition + generator->mOffset);
 	birth(&arg);
 }
 
@@ -165,10 +168,7 @@ Creature* GenItem::birth(Game::GenArg* arg)
 	BaseItemMgr* baseItemMgr = mItemMgr;
 	if (baseItemMgr) {
 		Vector3f pos      = arg->mPosition;
-		f32 z             = mRotation.z * DEG2RAD * PI;
-		f32 y             = mRotation.y * DEG2RAD * PI;
-		f32 x             = mRotation.x * DEG2RAD * PI;
-		Vector3f rotation = Vector3f(x, y, z);
+		Vector3f rotation = getRadiansRotation();
 		baseItem          = baseItemMgr->generatorBirth(pos, rotation, mParm);
 	}
 	return baseItem;

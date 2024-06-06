@@ -48,10 +48,7 @@ void GenObjectNavi::ramLoadParameters(Stream&) { }
  */
 Creature* GenObjectNavi::generate(Generator* gen)
 {
-	Vector3f finalPos(gen->mPosition.x + gen->mOffset.x, gen->mPosition.y + gen->mOffset.y, gen->mPosition.z + gen->mOffset.z);
-
-	GenArg arg;
-	arg.mPosition = finalPos;
+	GenArg arg(gen->mPosition + gen->mOffset);
 	return birth(&arg);
 }
 
@@ -80,7 +77,7 @@ Creature* GenObjectNavi::birth(GenArg* arg)
 		tempModel->loopTimer();
 
 		newNavi->setPosition(arg->mPosition, false);
-		newNavi->mFaceDir = PI * (DEG2RAD * mRotation.mValue);
+		newNavi->mFaceDir = TORADIANS(mRotation.mValue);
 	}
 	return newNavi;
 }

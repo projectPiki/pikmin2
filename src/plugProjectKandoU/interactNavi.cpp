@@ -44,7 +44,7 @@ bool InteractSarai::actNavi(Game::Navi* navi)
  */
 bool InteractBomb::actNavi(Game::Navi* navi)
 {
-	if ((gameSystem->isFlag(GAMESYS_IsGameWorldActive)) == FALSE) {
+	if (!gameSystem->isFlag(GAMESYS_IsGameWorldActive)) {
 		return false;
 	}
 
