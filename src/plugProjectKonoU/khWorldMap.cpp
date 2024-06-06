@@ -100,7 +100,7 @@ void khUtilColorAnmWM::effect_on(u32 max)
 	mUpdateMode = true;
 	for (int i = 0; i < 4; i++) {
 		if (i % 2 == 0 || max >= 10) {
-			Vector2f pos(getPaneCenterX(mPaneList[i]), getPaneCenterY(mPaneList[i]));
+			Vector3f pos(getPaneCenterX(mPaneList[i]), getPaneCenterY(mPaneList[i]), 0.0f);
 			efx2d::Arg arg(pos);
 			mEfx[i]->create(&arg);
 		}
@@ -5502,9 +5502,12 @@ Vector2f WorldMap::OnyonDynamics::move(WorldMap* wmap, const JGeometry::TVec2f& 
 	// unused pane
 	u64 tags[4] = { 'Nwait0', 'Nwait1', 'Nwait2', 'Nwait3' };
 	int id      = wmap->mCurrentCourseIndex;
-	wmap->mScreenInfo->search(tags[id]);
+	wmap->mScreenKitagawa->search(tags[id]);
 
-	f32 dist      = pos.distance(mOffset);
+	JGeometry::TVec2f posDiff = pos;
+	posDiff -= mOffset;
+	f32 dist = posDiff.length();
+
 	int prevAngle = mRotateAngle;
 	mRotateAngle += 500;
 	if (dist < 1.0f) {
@@ -5532,9 +5535,9 @@ Vector2f WorldMap::OnyonDynamics::move(WorldMap* wmap, const JGeometry::TVec2f& 
 			mOnyonPane->getParentPane()->appendChild(mOnyonPane);
 		}
 	} else {
-		if (FLT_EPSILON * 32.0f > dist) { }
+		posDiff.normalize();
 		f32 calc  = pikmin2_atan2f(mAngle.x, -mAngle.y);
-		f32 calc2 = pikmin2_atan2f(mAngle.x, -mAngle.y);
+		f32 calc2 = pikmin2_atan2f(posDiff.x, -posDiff.y);
 		if (calc < 0.0f) {
 			calc += TAU;
 		}
@@ -5550,9 +5553,9 @@ Vector2f WorldMap::OnyonDynamics::move(WorldMap* wmap, const JGeometry::TVec2f& 
 		}
 		calc2 = (calc * msVal._44 + (calc2 * (1.0f - msVal._44)));
 		if ((calc2 - calc) < -0.1f) {
-			if ((calc - calc2) > 0.1f) {
-				calc2 = calc + 0.1f;
-			}
+			calc2 = calc - 0.1f;
+		} else if (calc2 > 0.1f) {
+			calc2 = calc + 0.1f;
 		}
 		mAngle.set(pikmin2_sinf(calc2), -pikmin2_cosf(calc2));
 	}

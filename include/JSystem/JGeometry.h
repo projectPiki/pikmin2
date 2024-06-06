@@ -120,6 +120,13 @@ struct TVec2 {
 		return *this;
 	}
 
+	TVec2<T>& operator-=(const TVec2<T>& other)
+	{
+		x -= other.x;
+		y -= other.y;
+		return *this;
+	}
+
 	TVec2<T>& operator*=(const TVec2<T>& other)
 	{
 		x *= other.x;
@@ -142,6 +149,12 @@ struct TVec2 {
 	void zero() { x = y = 0.0f; }
 
 	f32 squared() const { return x * x + y * y; }
+
+	T length()
+	{
+		f32 sq = squared();
+		return JGeometry::TUtil<T>::sqrt(sq);
+	}
 
 	void normalize()
 	{
