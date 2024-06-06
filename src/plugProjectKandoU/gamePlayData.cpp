@@ -170,7 +170,7 @@ PelletFirstMemory::PelletFirstMemory(int p1, int p2, int p3)
  */
 bool PelletFirstMemory::firstCarryPellet(Pellet* pellet)
 {
-	if (pellet->getKind() == PELTYPE_TREASURE) {
+	if (pellet->getKind() == PelletType::Treasure) {
 		int id = pellet->getConfigIndex();
 
 		if (!(mOtakara(id) & 2)) {
@@ -179,7 +179,7 @@ bool PelletFirstMemory::firstCarryPellet(Pellet* pellet)
 			return true;
 		}
 
-	} else if (pellet->getKind() == PELTYPE_UPGRADE) {
+	} else if (pellet->getKind() == PelletType::Upgrade) {
 		int id = pellet->getConfigIndex();
 		if (!(mItem(id) & 2)) {
 			mItem(id) |= 2;
@@ -187,7 +187,7 @@ bool PelletFirstMemory::firstCarryPellet(Pellet* pellet)
 			return true;
 		}
 
-	} else if (pellet->getKind() == PELTYPE_CARCASS) {
+	} else if (pellet->getKind() == PelletType::Carcass) {
 		int id = pellet->getConfigIndex();
 		if (!(mCarcass(id) & 2)) {
 			mCarcass(id) |= 2;
@@ -205,11 +205,11 @@ bool PelletFirstMemory::firstCarryPellet(Pellet* pellet)
  */
 void PelletFirstMemory::obtainPellet(BasePelletMgr* mgr, int id)
 {
-	if (mgr->getMgrID() == PELTYPE_TREASURE) {
+	if (mgr->getMgrID() == PelletType::Treasure) {
 		mOtakara(id) |= 2;
 		mgr->getPelletConfig(id);
 
-	} else if (mgr->getMgrID() == PELTYPE_UPGRADE) {
+	} else if (mgr->getMgrID() == PelletType::Upgrade) {
 		mItem(id) |= 2;
 		mgr->getPelletConfig(id);
 
@@ -224,11 +224,11 @@ void PelletFirstMemory::obtainPellet(BasePelletMgr* mgr, int id)
  */
 void PelletFirstMemory::losePellet(Game::BasePelletMgr* mgr, int id)
 {
-	if (mgr->getMgrID() == PELTYPE_TREASURE) {
+	if (mgr->getMgrID() == PelletType::Treasure) {
 		mOtakara(id) &= ~0x2;
 		mgr->getPelletConfig(id);
 
-	} else if (mgr->getMgrID() == PELTYPE_UPGRADE) {
+	} else if (mgr->getMgrID() == PelletType::Upgrade) {
 		mItem(id) &= ~0x2;
 		mgr->getPelletConfig(id);
 
@@ -763,19 +763,19 @@ void PlayData::losePellet(Game::BasePelletMgr* mgr, int p2) { mZukanStat->losePe
 void PlayData::obtainPellet_Main(Game::Pellet* pellet)
 {
 	PelletCropMemory* mem = mMainCropMemory;
-	if (pellet->getKind() == PELTYPE_TREASURE) {
+	if (pellet->getKind() == PelletType::Treasure) {
 		int id = pellet->getConfigIndex();
 		(mem->mOtakara(id))++;
 		pellet->getConfigName();
 		(mem->mOtakara(id));
 
-	} else if (pellet->getKind() == PELTYPE_UPGRADE) {
+	} else if (pellet->getKind() == PelletType::Upgrade) {
 		int id = pellet->getConfigIndex();
 		(mem->mItem(id))++;
 		pellet->getConfigName();
 		(mem->mItem(id));
 
-	} else if (pellet->getKind() == PELTYPE_CARCASS) {
+	} else if (pellet->getKind() == PelletType::Carcass) {
 		int id = pellet->getConfigIndex();
 		(mem->mCarcass(id))++;
 		pellet->getConfigName();
@@ -783,9 +783,9 @@ void PlayData::obtainPellet_Main(Game::Pellet* pellet)
 	}
 
 	BasePelletMgr* mgr = 0;
-	if (pellet->getKind() == PELTYPE_TREASURE) {
+	if (pellet->getKind() == PelletType::Treasure) {
 		mgr = PelletOtakara::mgr;
-	} else if (pellet->getKind() == PELTYPE_UPGRADE) {
+	} else if (pellet->getKind() == PelletType::Upgrade) {
 		mgr = PelletItem::mgr;
 	}
 
@@ -802,19 +802,19 @@ void PlayData::obtainPellet_Main(Game::Pellet* pellet)
 void PlayData::obtainPellet_Cave(Game::Pellet* pellet)
 {
 	PelletCropMemory* mem = mCaveCropMemory;
-	if (pellet->getKind() == PELTYPE_TREASURE) {
+	if (pellet->getKind() == PelletType::Treasure) {
 		int id = pellet->getConfigIndex();
 		(mem->mOtakara(id))++;
 		pellet->getConfigName();
 		(mem->mOtakara(id));
 
-	} else if (pellet->getKind() == PELTYPE_UPGRADE) {
+	} else if (pellet->getKind() == PelletType::Upgrade) {
 		int id = pellet->getConfigIndex();
 		(mem->mItem(id))++;
 		pellet->getConfigName();
 		(mem->mItem(id));
 
-	} else if (pellet->getKind() == PELTYPE_CARCASS) {
+	} else if (pellet->getKind() == PelletType::Carcass) {
 		int id = pellet->getConfigIndex();
 		(mem->mCarcass(id))++;
 		pellet->getConfigName();
@@ -840,11 +840,11 @@ void PlayData::confirmCaveCropMemory() { }
  */
 bool PlayData::isPelletEverGot(u8 type, u8 id)
 {
-	if (type == PELTYPE_UPGRADE) {
+	if (type == PelletType::Upgrade) {
 		int itemID = mZukanStat->mItem(id);
 		return itemID > 0;
 	}
-	if (type == PELTYPE_TREASURE) {
+	if (type == PelletType::Treasure) {
 		int treasureID = mZukanStat->mOtakara(id);
 		return treasureID > 0;
 	}

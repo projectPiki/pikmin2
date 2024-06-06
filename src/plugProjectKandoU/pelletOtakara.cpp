@@ -297,7 +297,7 @@ Pellet* Mgr::generatorBirth(Vector3f& pos, Vector3f& rot, GenPelletParm* genParm
 	PelletConfig* config = mgr->getPelletConfig(genParm->mIndex);
 	PelletInitArg arg;
 	arg.mTextIdentifier = config->mParams.mName.mData;
-	arg.mPelletType     = PELTYPE_TREASURE;
+	arg.mPelletType     = PelletType::Treasure;
 	arg.mPelletIndex    = genParm->mIndex;
 	arg.mPelView        = nullptr;
 

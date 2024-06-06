@@ -41,14 +41,17 @@
 #define PELCOLOR_SPECTRALID (0)
 #define PELSIZE_SPECTRALID  (1)
 
-// pellet types
 // for use with Pellet:mPelletType and getKind()
-#define PELTYPE_NUMBER   (0)
-#define PELTYPE_CARCASS  (1)
-#define PELTYPE_BERRY    (2)
-#define PELTYPE_TREASURE (3)
-#define PELTYPE_UPGRADE  (4)
-#define PELTYPE_INVALID  (0xFF)
+struct PelletType {
+	enum Type {
+		Number   = 0,
+		Carcass  = 1,
+		Berry    = 2,
+		Treasure = 3,
+		Upgrade  = 4,
+		Invalid  = 0xFF,
+	};
+};
 
 namespace PSM {
 struct EventBase;
@@ -152,7 +155,7 @@ struct PelletInitArg : public CreatureInitArg {
 	{
 		mDoSkipCreateModel    = false;
 		mState                = PelBirthType_Normal;
-		mPelletType           = PELTYPE_INVALID;
+		mPelletType           = PelletType::Invalid;
 		mPelView              = nullptr;
 		mDontCheckCollected   = 0;
 		mUnusedFlag           = true;
@@ -177,7 +180,7 @@ struct PelletInitArg : public CreatureInitArg {
 	int mPelletColor;         // _0C, for number pellets
 	int mPelletIndex;         // _10
 	u16 mState;               // _14
-	u8 mPelletType;           // _16
+	u8 mPelletType;           // _16, use PelletType:: struct
 	u8 mDontCheckCollected;   // _17, true = dont check if you already have it before spawning, never true
 	PelletView* mPelView;     // _18
 	u8 mDoSkipCreateModel;    // _1C, true for corpses, or breadbug drops since those were already loaded

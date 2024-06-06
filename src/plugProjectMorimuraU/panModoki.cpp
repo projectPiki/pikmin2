@@ -223,7 +223,7 @@ void Obj::updateCaptureMatrix()
 		releaseCarryTarget();
 	}
 
-	if (pellet->getKind() == PELTYPE_CARCASS && !pellet->isAlive()) {
+	if (pellet->getKind() == PelletType::Carcass && !pellet->isAlive()) {
 		releaseCarryTarget();
 	}
 
@@ -1165,7 +1165,7 @@ Pellet* Obj::findNearestPellet()
 	CI_LOOP(iterator)
 	{
 		Pellet* pelt = *iterator;
-		if (pelt->isPickable() && pelt->isAlive() && pelt->getKind() != PELTYPE_UPGRADE && pelt->mCaptureMatrix == nullptr
+		if (pelt->isPickable() && pelt->isAlive() && pelt->getKind() != PelletType::Upgrade && pelt->mCaptureMatrix == nullptr
 		    && isTargetable(pelt) && canTarget(pelt->mConfig->mParams.mMin.mData, C_PROPERPARMS.mMaxCarryWeight.mValue)) {
 			f32 y = pelt->getPosition().y - 0.5f * pelt->getCylinderHeight();
 			if (absF(y - mPosition.y) > 10.0f) {
@@ -1174,7 +1174,7 @@ Pellet* Obj::findNearestPellet()
 			f32 angle = getCreatureViewAngle(pelt);
 			if (absF(angle) <= maxAngle) {
 				s32 id = pelt->getCreatureID();
-				if (pelt->getKind() == PELTYPE_CARCASS && (id == 0 || id == 1)) {
+				if (pelt->getKind() == PelletType::Carcass && (id == 0 || id == 1)) {
 					if (strcmp("orima", pelt->getCreatureName()) == 0) {
 						continue;
 					}
@@ -1437,7 +1437,7 @@ void Obj::endCarry()
 	endStick();
 	pelt->mPelletCarry->giveup(2);
 	bool doKillPellet = true;
-	if (pelt->getKind() == PELTYPE_TREASURE) {
+	if (pelt->getKind() == PelletType::Treasure) {
 		mHeldTreasures[mHeldTreasureNum] = pelt;
 		if (mHeldTreasureNum == 0) {
 			pelt->setAlive(false);
@@ -1620,7 +1620,7 @@ bool Obj::isTargetable(Pellet* pellet)
 	}
 
 	if (pellet) {
-		if (pellet->getKind() >= PELTYPE_TREASURE && mHeldTreasureNum >= PANMODOKI_MaxHeldTreasures) {
+		if (pellet->getKind() >= PelletType::Treasure && mHeldTreasureNum >= PANMODOKI_MaxHeldTreasures) {
 			return false;
 		}
 

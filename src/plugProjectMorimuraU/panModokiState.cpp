@@ -202,7 +202,7 @@ void StateBack::exec(EnemyBase* enemy)
 			if (target) {
 				bool check = false;
 				if ((gameSystem && gameSystem->isVersusMode() && !enemy->isStickTo() && !target->mCaptureMatrix)
-				    || (target->getKind() == PELTYPE_CARCASS && !target->isAlive())
+				    || (target->getKind() == PelletType::Carcass && !target->isAlive())
 				    || FABS(target->getPosition().y - enemy->getPosition().y) > 50.0f) {
 
 					check = true;
@@ -297,7 +297,7 @@ void StatePulled::exec(EnemyBase* enemy)
 			} else {
 				bool check = false;
 				if ((gameSystem && gameSystem->isVersusMode() && !enemy->isStickTo() && !target->mCaptureMatrix)
-				    || (target->getKind() == PELTYPE_CARCASS && !target->isAlive())
+				    || (target->getKind() == PelletType::Carcass && !target->isAlive())
 				    || FABS(target->getPosition().y - enemy->getPosition().y) > 50.0f) {
 
 					check = true;

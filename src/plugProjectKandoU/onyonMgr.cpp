@@ -44,7 +44,6 @@ static const char UNUSED_2[] = "onyonMgr";
  */
 void Onyon::movieUserCommand(u32 code, MoviePlayer* player)
 {
-	// TODO: make code enum
 	switch (code) {
 	case CC_MovieCommand1: // 0x64
 	case CC_MovieCommand6: // 0x69
@@ -204,9 +203,9 @@ bool Onyon::isSuckReady()
 		}
 
 		return false;
-	} else {
-		return true;
 	}
+
+	return true;
 }
 
 /**
@@ -387,7 +386,9 @@ bool InteractSuckDone::actOnyon(Onyon* item)
 			int money    = pellet->mConfig->mParams.mMoney.mData;
 
 			// carcass (1), ?? (3) or item (4)
-			if (money > 0 && (pellet->getKind() == 1 || pellet->getKind() == 3 || pellet->getKind() == 4)) {
+			if (money > 0
+			    && (pellet->getKind() == PelletType::Carcass || pellet->getKind() == PelletType::Treasure
+			        || pellet->getKind() == PelletType::Upgrade)) {
 				pos += Vector3f(0.0f, 80.0f, 0.0f);
 				carryInfoMgr->appearPoko(pos, money);
 			}
@@ -497,7 +498,7 @@ bool InteractSuckDone::actOnyon(Onyon* item)
 	}
 
 	// number pellet (checks if color matches onion)
-	if (pellet->getKind() == PELTYPE_NUMBER) {
+	if (pellet->getKind() == PelletType::Number) {
 		int min, max;
 
 		u16 color = (int)pellet->mPelletColor;
@@ -511,7 +512,8 @@ bool InteractSuckDone::actOnyon(Onyon* item)
 		}
 	} else {
 		// carry treasure/item/carcass to an onion/ship
-		if (pellet->getKind() == PELTYPE_TREASURE || pellet->getKind() == PELTYPE_UPGRADE || pellet->getKind() == PELTYPE_CARCASS) {
+		if (pellet->getKind() == PelletType::Treasure || pellet->getKind() == PelletType::Upgrade
+		    || pellet->getKind() == PelletType::Carcass) {
 			// brought to the pod (the game just assumes you're in a cave)
 			if (item->mOnyonType == ONYON_TYPE_POD) {
 				if (pellet->mConfig->mParams.mMoney.mData > 0) {
@@ -529,7 +531,7 @@ bool InteractSuckDone::actOnyon(Onyon* item)
 					}
 				}
 				// carry carcass to onions
-			} else if (pellet->getKind() == PELTYPE_CARCASS) {
+			} else if (pellet->getKind() == PelletType::Carcass) {
 				int min, max;
 				pellet->getPikiBirthCount(min, max);
 				item->mToBirth += max;
@@ -1975,33 +1977,33 @@ void Onyon::on_movie_end(bool)
  * @note Address: 0x8017AEDC
  * @note Size: 0xBC0
  */
-Onyon* ItemOnyon::Mgr::birth(int objtype, int onyontype)
+Onyon* ItemOnyon::Mgr::birth(int objType, int onyonType)
 {
 	Onyon* resultOnyon          = nullptr;
 	TObjectNode<Onyon>* nodeobj = new TObjectNode<Onyon>;
 
-	switch (objtype) {
+	switch (objType) {
 	case ONYON_OBJECT_ONYON:
 		Onyon* onyon = new Onyon;
 		onyon->init(nullptr);
 
-		onyon->mAnimator.mAnimMgr = mAnimMgrFiles[objtype];
+		onyon->mAnimator.mAnimMgr = mAnimMgrFiles[objType];
 		onyon->mAnimator.startAnim(0, nullptr);
 		onyon->mAnimSpeed = 30.0f;
-		onyon->mModel     = new SysShape::Model(mModelData[objtype], 0, 2);
-		onyon->setType(onyontype);
+		onyon->mModel     = new SysShape::Model(mModelData[objType], 0, 2);
+		onyon->setType(onyonType);
 
-		onyon->mCollTree->createFromFactory(onyon->mModel, mCollFactories[objtype], nullptr);
+		onyon->mCollTree->createFromFactory(onyon->mModel, mCollFactories[objType], nullptr);
 		onyon->initTube();
 
 		onyon->startWaitMotion();
 
 		resultOnyon        = onyon;
-		mOnyons[onyontype] = onyon;
-		playData->hasBootContainer(onyontype);
+		mOnyons[onyonType] = onyon;
+		playData->hasBootContainer(onyonType);
 
 		// play boot animation if the onion isnt booted (glitched onion)
-		if (gameSystem->isStoryMode() && !playData->hasBootContainer(onyontype)) {
+		if (gameSystem->isStoryMode() && !playData->hasBootContainer(onyonType)) {
 			onyon->mAnimator.startAnim(4, nullptr);
 			onyon->mAnimSpeed = 0.0f;
 		}
@@ -2014,13 +2016,13 @@ Onyon* ItemOnyon::Mgr::birth(int objtype, int onyontype)
 			shadowMgr->addShadow(onyon);
 		}
 		onyon->init(nullptr);
-		onyon->mAnimator.mAnimMgr = mAnimMgrFiles[objtype];
+		onyon->mAnimator.mAnimMgr = mAnimMgrFiles[objType];
 		onyon->mAnimator.startAnim(0, nullptr);
 		onyon->mAnimSpeed = 30.0f;
-		onyon->mModel     = new SysShape::Model(mModelData[objtype], 0, 2);
+		onyon->mModel     = new SysShape::Model(mModelData[objType], 0, 2);
 		onyon->setType(ONYON_TYPE_POD);
 
-		onyon->mCollTree->createFromFactory(onyon->mModel, mCollFactories[objtype], nullptr);
+		onyon->mCollTree->createFromFactory(onyon->mModel, mCollFactories[objType], nullptr);
 
 		onyon->startWaitMotion();
 
@@ -2037,11 +2039,11 @@ Onyon* ItemOnyon::Mgr::birth(int objtype, int onyontype)
 		onyon = new Onyon;
 
 		onyon->init(nullptr);
-		onyon->mAnimator.mAnimMgr = mAnimMgrFiles[objtype];
+		onyon->mAnimator.mAnimMgr = mAnimMgrFiles[objType];
 		onyon->mAnimator.startAnim(0, nullptr);
 		onyon->mAnimSpeed    = 0.0f;
 		onyon->mObjectTypeID = OBJTYPE_Ufo;
-		onyon->mModel        = new SysShape::Model(mModelData[objtype], J3DMODEL_ShareDL, 2);
+		onyon->mModel        = new SysShape::Model(mModelData[objType], J3DMODEL_ShareDL, 2);
 
 		onyon->mModel->mJ3dModel->newDifferedDisplayList(0x1000000);
 		onyon->mModel->mJ3dModel->calc();
@@ -2050,7 +2052,7 @@ Onyon* ItemOnyon::Mgr::birth(int objtype, int onyontype)
 		onyon->mModel->mJ3dModel->lock();
 
 		onyon->setType(ONYON_TYPE_SHIP);
-		onyon->mCollTree->createFromFactory(onyon->mModel, mCollFactories[objtype], nullptr);
+		onyon->mCollTree->createFromFactory(onyon->mModel, mCollFactories[objType], nullptr);
 
 		onyon->init_pmotions();
 

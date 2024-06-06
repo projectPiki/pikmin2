@@ -68,7 +68,7 @@ void BaseGameSection::startZoomWindow()
 	if (mDraw2DCreature->getObjType() == OBJTYPE_Pellet) {
 		Pellet* p = (Pellet*)mDraw2DCreature;
 
-		if (p->getKind() == PELTYPE_TREASURE) {
+		if (p->getKind() == PelletType::Treasure) {
 			int configIdx = p->getConfigIndex();
 			for (int i = 0; asArrayOtakara[i].mConfigIndex != -1; i++) {
 				if (configIdx == asArrayOtakara[i].mConfigIndex) {
@@ -95,7 +95,7 @@ void BaseGameSection::startKantei2D()
 {
 	if (mDraw2DCreature->isPellet()) {
 		Pellet* obj = static_cast<Pellet*>(mDraw2DCreature);
-		if (obj->getKind() == PELTYPE_TREASURE || obj->getKind() == PELTYPE_UPGRADE) {
+		if (obj->getKind() == PelletType::Treasure || obj->getKind() == PelletType::Upgrade) {
 			og::Screen::DispMemberKantei disp;
 			PelletConfig* config  = obj->mConfig;
 			int totalmoney        = playData->mPokoCount;
@@ -269,7 +269,7 @@ void BaseGameSection::do_drawOtakaraWindow(Graphics& gfx)
 	f32 time = sys->mDeltaTime;
 	if (mDraw2DCreature && mDraw2DCreature->isPellet()) {
 		Pellet* obj = static_cast<Pellet*>(mDraw2DCreature);
-		if ((obj->getKind() == PELTYPE_TREASURE || obj->getKind() == PELTYPE_UPGRADE) && !Screen::gGame2DMgr->update_Kantei()
+		if ((obj->getKind() == PelletType::Treasure || obj->getKind() == PelletType::Upgrade) && !Screen::gGame2DMgr->update_Kantei()
 		    && mTreasureGetState == 2) {
 			mTreasureGetState = 4;
 			if (moviePlayer) {

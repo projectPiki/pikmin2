@@ -206,7 +206,7 @@ bool Navi::demoCheck()
 		CI_LOOP(pelIt)
 		{
 			Pellet* pelt = *pelIt;
-			if (pelt->getKind() == PELTYPE_TREASURE) {
+			if (pelt->getKind() == PelletType::Treasure) {
 				Vector3f peltPos = pelt->getPosition();
 				Sys::Sphere bound(peltPos, pelt->getBottomRadius() + FindFirstTreasureTriggerSize);
 				if (checkDemoNaviAndPiki(bound)) {
