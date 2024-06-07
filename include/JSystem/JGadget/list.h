@@ -66,11 +66,22 @@ struct TList {
 		TNode_* mNode; // _00
 	};
 
-	// not empty according to tp debug
 	~TList()
 	{
-		// Confirm();
-		clear();
+		// definitely fake, maybe iterators taking pointers to stack?
+		TNode_* volatile arr[6];
+
+		arr[5] = &mNode;
+		arr[4] = &mNode;
+		arr[3] = mNode.mNext;
+		arr[2] = mNode.mNext;
+		arr[0] = &mNode;
+
+		
+		while (arr[2] != &mNode)
+		{
+			arr[2] = erase(arr[2]).mNode;
+		}
 	}
 
 	// unused/inlined:
