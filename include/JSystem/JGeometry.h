@@ -478,6 +478,12 @@ struct TBox2 : TBox<TVec2<T> > {
 		i.set(i_);
 		f.set(f_); 
 	}
+
+	TBox2(const TVec3<T>& i_, const TVec3<T>& f_) 
+	{ 
+		i.set(i_.x, i_.y);
+		f.set(f_.x, f_.y); 
+	}
 	// TBox2(const TVec2<T>& i, T x1, T y1) { set(i, x1, y1); }
 	// TBox2(T x0, T y0, const TVec2<T>& f) { set(x0, y0, f); }
 	TBox2(f32 x0, f32 y0, f32 x1, f32 y1) { set(x0, y0, x1, y1); }

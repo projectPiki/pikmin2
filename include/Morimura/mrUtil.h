@@ -97,6 +97,14 @@ struct TCounterRV : public og::Screen::CallBack_CounterRV {
 		mColor.a = a;
 	}
 
+	inline void start()
+	{
+		if (!_B1) {
+			mEnabled = true;
+			_B1      = true;
+		}
+	}
+
 	// _00     = VTBL
 	// _00-_A8 = og::Screen::CallBack_CounterRV
 	GXColor mColor;                       // _A8
@@ -171,6 +179,13 @@ struct TMovePane {
 	void startStick(J2DPane*);
 	bool isReachToGoal();
 	void reset();
+
+	inline void start()
+	{
+		mState   = 1;
+		mOffset  = mPanePosition;
+		mCounter = 0;
+	}
 
 	J2DPane* mPane;                   // _00
 	J2DPane* mStickPane;              // _04

@@ -120,8 +120,9 @@ void TChallengePiki::update()
 			mPosInfo[i].mTimer += TChallengeSelect::mTimerSpeed;
 
 			if (isJump && mPosInfo[i].mTimer > 0.0f) {
-				JAISound* sound
-				    = PSSystem::SingletonBase<PSGame::SeMgr>::getInstance()->mSetSeList[5]->playSystemSe(PSSE_PK_VC_JUMP_INTO_HOLE, 0);
+				JAISound* sound = PSSystem::SingletonBase<PSGame::SeMgr>::getInstance()
+				                      ->mSetSeList[PSGame::SeMgr::SETSE_ChallengeModeTop]
+				                      ->playSystemSe(PSSE_PK_VC_JUMP_INTO_HOLE, 0);
 				if (sound) {
 					sound->setPan(0.7f, 0, SOUNDPARAM_Unk0);
 				}
@@ -135,7 +136,7 @@ void TChallengePiki::update()
 			switch (mPosInfo[i].mState) {
 			case ChallengePiki_Standby:
 				f32 time = mPosInfo[i].mTimer;
-				if (time > 0.0f) {
+				if (!(time < 0.0f)) {
 					if (time > HALF_PI) {
 						mPosInfo[i].mState = 3;
 					}
@@ -170,7 +171,7 @@ void TChallengePiki::update()
 					calc = 8.0f;
 				}
 				mPosInfo[i].mCurrentPos.x
-				    = mPosInfo[i].mInitialPos.x + (mPosInfo[i].mTimer * (calc + mGoalXPos - mPosInfo[i].mInitialPos.x)) / PI;
+				    = mPosInfo[i].mInitialPos.x + (mPosInfo[i].mTimer * (mGoalXPos - mPosInfo[i].mInitialPos.x + calc)) / PI;
 				mPosInfo[i].mCurrentPos.y = -(sinf(mPosInfo[i].mTimer) * 70.0f - mPosInfo[i].mInitialPos.y);
 				break;
 			case ChallengePiki_Falling:
@@ -1476,6 +1477,7 @@ void TChallengePlayModeScreen::draw(Graphics& gfx, J2DPerspGraph* persp)
 		y1 = (1.0f - mAlphaTimer) * pic->getHeight() * pic2->mScale.y * 1.1f + TChallengeSelect::mMetOffset._04 + pic2->mGlobalMtx[1][3];
 		x1 = TChallengeSelect::mMetOffset._00 + pic2->mGlobalMtx[0][3];
 		GXSetScissor(x1, y1, x2, y2);
+
 		pic  = mSphereTex;
 		pic2 = mPane3;
 		pic->draw(TChallengeSelect::mMetOffset._00 + pic2->mGlobalMtx[0][3], TChallengeSelect::mMetOffset._04 + pic2->mGlobalMtx[1][3],
@@ -1489,6 +1491,7 @@ void TChallengePlayModeScreen::draw(Graphics& gfx, J2DPerspGraph* persp)
 		y1   = (1.0f - mAlphaTimer) * pic->getHeight() * pic2->mScale.y * 1.1f + TChallengeSelect::mMetOffset._04 + pic2->mGlobalMtx[1][3];
 		x1   = TChallengeSelect::mMetOffset._00 + pic2->mGlobalMtx[0][3];
 		GXSetScissor(x1, y1, x2, y2);
+
 		pic  = mSphereTex;
 		pic2 = mPane3;
 		pic->draw(TChallengeSelect::mMetOffset._00 + pic2->mGlobalMtx[0][3], TChallengeSelect::mMetOffset._04 + pic2->mGlobalMtx[1][3],
@@ -1498,39 +1501,36 @@ void TChallengePlayModeScreen::draw(Graphics& gfx, J2DPerspGraph* persp)
 
 		J2DPicture* pane = static_cast<J2DPicture*>(mScreenObj->search('P2orimaF'));
 		pane->setAlpha(mPaneList0[1]->mAlpha);
-		f32 offs               = pane->getWidth();
-		JGeometry::TVec3f vec1 = pane->getGlbVtx(GLBVTX_BtmRight);
-		JGeometry::TVec3f vec2 = pane->getGlbVtx(GLBVTX_BtmLeft);
-		pane->draw(vec2.x + offs, vec1.y + offs, -offs, pane->getHeight(), false, false, false);
+		f32 width = pane->getWidth();
+		pane->draw(pane->getGlbVtx(GLBVTX_BtmLeft).x + width, pane->getGlbVtx(GLBVTX_BtmRight).y, -width, pane->getHeight(), false, false,
+		           false);
 		pane->calcMtx();
 		pane->setAlpha(0);
 
-		J2DPicture* pane2 = static_cast<J2DPicture*>(mPane4);
-		pane2->setAlpha(mPaneList0[1]->mAlpha);
-		f32 offs2              = pane2->getWidth();
-		JGeometry::TVec3f vec3 = pane2->getGlbVtx(GLBVTX_BtmRight);
-		JGeometry::TVec3f vec4 = pane2->getGlbVtx(GLBVTX_BtmLeft);
-		pane2->draw(vec3.x + offs2, vec4.y + offs2, -offs2, pane2->getHeight(), false, false, false);
-		pane2->calcMtx();
-		pane2->setAlpha(0);
+		pane = static_cast<J2DPicture*>(mPane4);
+		pane->setAlpha(mPaneList0[1]->mAlpha);
+		width = pane->getWidth();
+		pane->draw(pane->getGlbVtx(GLBVTX_BtmLeft).x + width, pane->getGlbVtx(GLBVTX_BtmRight).y, -width, pane->getHeight(), false, false,
+		           false);
+		pane->calcMtx();
+		pane->setAlpha(0);
 
-		J2DPicture* pane3 = static_cast<J2DPicture*>(mPaneList1[1]);
-		pane3->setAlpha(pane3->mAlpha);
-		f32 offs3              = pane3->getWidth();
-		JGeometry::TVec3f vec5 = pane3->getGlbVtx(GLBVTX_BtmRight);
-		JGeometry::TVec3f vec6 = pane3->getGlbVtx(GLBVTX_BtmLeft);
-		pane3->draw(vec6.x + offs3, vec5.y, -offs3, pane3->getHeight(), false, false, false);
-		pane3->calcMtx();
+		pane = static_cast<J2DPicture*>(mPaneList1[1]);
+		pane->setAlpha(pane->mAlpha);
+		width = pane->getWidth();
+		pane->draw(pane->getGlbVtx(GLBVTX_BtmLeft).x + width, pane->getGlbVtx(GLBVTX_BtmRight).y, -width, pane->getHeight(), false, false,
+		           false);
+		pane->calcMtx();
 
 		pic  = mSphereTex;
-		pic2 = mPane3;
+		pic2 = mPane5;
 		y2   = pic->getHeight() * pic2->mScale.y * 1.1f;
 		x2   = pic->getWidth() * pic2->mScale.x * 1.1f;
 		y1   = (1.0f - mAlphaTimer) * pic->getHeight() * pic2->mScale.y * 1.1f + TChallengeSelect::mMetOffset._04 + pic2->mGlobalMtx[1][3];
 		x1   = TChallengeSelect::mMetOffset._00 + pic2->mGlobalMtx[0][3];
 		GXSetScissor(x1, y1, x2, y2);
 		pic  = mSphereTex;
-		pic2 = mPane3;
+		pic2 = mPane4;
 		pic->draw(TChallengeSelect::mMetOffset._00 + pic2->mGlobalMtx[0][3], TChallengeSelect::mMetOffset._04 + pic2->mGlobalMtx[1][3],
 		          pic->getWidth() * pic2->mScale.x * 1.1f, pic->getHeight() * pic2->mScale.y * 1.1f, false, false, false);
 		mSphereTex->calcMtx();

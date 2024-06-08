@@ -77,9 +77,7 @@ struct TList {
 		arr[2] = mNode.mNext;
 		arr[0] = &mNode;
 
-		
-		while (arr[2] != &mNode)
-		{
+		while (arr[2] != &mNode) {
 			arr[2] = erase(arr[2]).mNode;
 		}
 	}
