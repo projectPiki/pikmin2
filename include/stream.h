@@ -21,27 +21,27 @@ struct Stream {
 		mPosition = 0;
 		setMode(STREAM_MODE_BINARY, 1);
 	}
+
 	Stream(int);
 
-	virtual void read(void*, int)  = 0;
-	virtual void write(void*, int) = 0;
-	virtual bool eof();
-	virtual u32 getPending();
+	virtual void read(void*, int)  = 0; // _04
+	virtual void write(void*, int) = 0; // _08
+	virtual bool eof();                 // _0C
+	virtual u32 getPending();           // _10
 
-	void differentEndian();  // unused
-	bool isSpace(char);      // inline
-	char skipSpace();        // inline
-	void copyToTextBuffer(); // inline
+	bool differentEndian() { return mEndian != STREAM_BIG_ENDIAN; }
+	bool isSpace(char);
+	char skipSpace();
+	void copyToTextBuffer();
 	char* getNextToken();
 	void textBeginGroup(char*);
 	void textEndGroup();
 	void printf(char*, ...);
 	void textWriteText(char*, ...);
-	void skipPadding(u32); // inline
 	void skipReading(u32);
 	void skipReadingText();
-	void _read(void*, int);  // unused
-	void _write(void*, int); // unused
+	void _read(void* buffer, int length);
+	void _write(void*, int);
 	void textWriteTab(int);
 
 	u8 readByte();
@@ -50,10 +50,8 @@ struct Stream {
 	int readInt();
 	f32 readFloat();
 	char* readString(char*, int);
-	void readFixedString(); // unused
 
 	void writeString(char*);
-	void writeFixedString(char*); // unused
 	void writeByte(u8);
 	void _writeByte(u8);
 	void writeShort(s16);
@@ -99,12 +97,9 @@ struct Stream {
 struct RamStream : Stream {
 	RamStream(void* bufferPointer, int bounds);
 
-	virtual void read(void*, int);
-	virtual void write(void*, int);
-	virtual bool eof();
-	// virtual void getPending(); // from Stream
-
-	void set(u8*, int);
+	virtual void read(void*, int);  // _04
+	virtual void write(void*, int); // _08
+	virtual bool eof();             // _0C
 
 	void* mRamBufferStart; // _418
 	int mBounds;           // _41C
@@ -121,7 +116,7 @@ struct RamStream : Stream {
  * @param nullCheck	Should we check if the file was successfully mounted to RAM or not?
  */
 template <typename T>
-inline void loadAndRead(T* thisPtr, char* fname, JKRHeap* heap = nullptr, bool nullCheck = true)
+inline void loadFromFile(T* thisPtr, char* fname, JKRHeap* heap = nullptr, bool nullCheck = true)
 {
 	void* handle = JKRDvdRipper::loadToMainRAM(fname, 0, Switch_0, 0, heap, JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, 0, 0);
 	if (nullCheck && !handle) {

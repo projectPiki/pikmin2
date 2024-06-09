@@ -499,8 +499,9 @@ Mgr::Mgr()
 	mObjectPathComponent = "user/Kando/objects/kanketusen";
 	mItemName            = "ãAä“ä‘åáêÚ"; // 'return geyser'
 	mParms               = new FountainParms();
-	void* data           = JKRDvdRipper::loadToMainRAM("user/Abe/item/fountainParms.txt", nullptr, Switch_0, 0, nullptr,
-                                             JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
+
+	void* data = JKRDvdRipper::loadToMainRAM("user/Abe/item/fountainParms.txt", nullptr, Switch_0, 0, nullptr,
+	                                         JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
 	if (data != nullptr) {
 		RamStream input(data, -1);
 		input.setMode(STREAM_MODE_TEXT, 1);

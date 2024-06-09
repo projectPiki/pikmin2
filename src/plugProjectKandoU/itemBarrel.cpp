@@ -358,8 +358,9 @@ Mgr::Mgr()
 	setModelSize(1);
 	mObjectPathComponent = "user/Kando/objects/barrel";
 	mParms               = new BarrelParms();
-	void* resource       = JKRDvdRipper::loadToMainRAM("user/Abe/item/barrelParms.txt", nullptr, Switch_0, 0, nullptr,
-                                                 JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
+
+	void* resource = JKRDvdRipper::loadToMainRAM("user/Abe/item/barrelParms.txt", nullptr, Switch_0, 0, nullptr,
+	                                             JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
 	if (resource) {
 		RamStream stream(resource, -1);
 		stream.setMode(STREAM_MODE_TEXT, true);

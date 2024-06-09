@@ -207,7 +207,7 @@ f32 TimeMgr::getRealDayTime()
  */
 void TimeMgr::loadSettingFile(char* filename)
 {
-	loadAndRead(&mParms.mParms, filename, JKRHeap::sSystemHeap);
+	loadFromFile(&mParms.mParms, filename, JKRHeap::sSystemHeap);
 	init();
 }
 

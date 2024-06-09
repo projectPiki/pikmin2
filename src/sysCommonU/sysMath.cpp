@@ -95,15 +95,15 @@ f32 pikmin2_sqrtf(register f32 x)
  */
 f32 qdist2(f32 x1, f32 y1, f32 x2, f32 y2)
 {
+	f32 deltaX = x2 - x1;
+	f32 deltaY = y2 - y1;
 
-	f32 xdiff = (x2 - x1);
-	f32 ydiff = (y2 - y1);
-
-	f32 dist = ((xdiff * xdiff) + (ydiff * ydiff));
+	f32 dist = SQUARE(deltaX) + SQUARE(deltaY);
 	if (dist > 0.0f) {
 		vf32 calcDist = dist * (__frsqrte(dist));
 		dist          = calcDist;
 	}
+
 	return dist;
 }
 
@@ -113,11 +113,7 @@ f32 qdist2(f32 x1, f32 y1, f32 x2, f32 y2)
  */
 f32 qdist3(f32 x1, f32 y1, f32 z1, f32 x2, f32 y2, f32 z2)
 {
-	f32 xdiff = (x2 - x1);
-	f32 ydiff = (y2 - y1);
-	f32 zdiff = (z2 - z1);
-	Vector3f xyz(xdiff, ydiff, zdiff);
-
+	Vector3f xyz(x2 - x1, y2 - y1, z2 - z1);
 	return xyz.qLength();
 }
 
@@ -134,34 +130,34 @@ Vector3f CRSpline(f32 t, Vector3f* controls)
 }
 
 /**
+ * Calculates the tangent of a Catmull-Rom spline at a given parameter value.
+ *
+ * @param t The parameter value of the spline (between 0 and 1).
+ * @param controls An array of four control points that define the spline.
+ * @return The tangent vector at the given parameter value.
+ *
  * @note Address: 0x80411858
  * @note Size: 0xF4
  */
 Vector3f CRSplineTangent(f32 t, Vector3f* controls)
-/* == Centripetal Catmull-Rom Spline tangent calculation ==
-Outputs tangent vector of desired point, given:
-- coords for a set of 4 control points (controls[0] to controls[4]) for the curve, and
-- a parameter for the curve, t, between 0 and 1
-    - t represents how 'far' between controls[1] and controls[2] the desired point is
-    - so t=0, point will be controls[1]; t=1, point will be controls[2]
-*/
 {
 	f32 tSqr = t * t;
 	Vector3f out;
 
-	// set coefficients - the floats are from centripetal CR matrices, assuming no tension
-	// (this is actually just drawn out matrix multiplication)
+	// Calculate the 4 basis functions for the Catmull-Rom spline
 	f32 f0 = (-1.5f * tSqr) + (2.0f * t) - 0.5f;
 	f32 f1 = (4.5f * tSqr) - 5.0f * t;
 	f32 f2 = (-4.5f * tSqr) + (4.0f * t) + 0.5f;
 	f32 f3 = (1.5f * tSqr) - t;
 
+	// Multiply each control point by its corresponding basis function
 	Vector3f ctr0 = controls[0] * f0;
 	Vector3f ctr1 = controls[1] * f1;
 	Vector3f ctr2 = controls[2] * f2;
 	Vector3f ctr3 = controls[3] * f3;
-	out           = ctr0 + ctr1 + ctr2 + ctr3;
 
+	// Add the results together to get the tangent
+	out = ctr0 + ctr1 + ctr2 + ctr3;
 	return out;
 }
 
@@ -410,83 +406,9 @@ Quat::Quat(f32 _w, Vector3f vec)
  */
 Quat::Quat(RPY& rpy)
 {
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
 	Quat quat(0.0f, Vector3f(0.0f, 0.0f, 0.0f));
 	Quat quat2(0.0f, Vector3f(0.0f, 0.0f, 0.0f));
 	*this = quat * quat2;
-	// this needs to spawn the operator* weak function somehow
-	// probably is recursive? this will do for now to match it
 }
 
 /**
@@ -495,24 +417,24 @@ Quat::Quat(RPY& rpy)
  */
 void Quat::set(Vector3f& vec)
 {
-	Quat q1; // 0x48
-	Quat q2; // 0x38
-	Quat q3; // 0x28
+	Quat quatX;
+	Quat quatY;
+	Quat quatZ;
 
-	f32 cos_x = cos(0.5f * vec.x);
-	f32 sin_x = pikmin2_sinf(0.5f * vec.x);
-	q1.set(cos_x, sin_x, 0.0f, 0.0f);
+	f32 cosHalfX = cos(0.5f * vec.x);
+	f32 sinHalfX = pikmin2_sinf(0.5f * vec.x);
+	quatX.set(cosHalfX, sinHalfX, 0.0f, 0.0f);
 
-	f32 cos_y = cos(0.5f * vec.y);
-	f32 sin_y = pikmin2_sinf(0.5f * vec.y);
-	q2.set(cos_y, 0.0f, sin_y, 0.0f);
+	f32 cosHalfY = cos(0.5f * vec.y);
+	f32 sinHalfY = pikmin2_sinf(0.5f * vec.y);
+	quatY.set(cosHalfY, 0.0f, sinHalfY, 0.0f);
 
-	f32 cos_z = cos(0.5f * vec.z);
-	f32 sin_z = pikmin2_sinf(0.5f * vec.z);
-	q3.set(cos_z, 0.0f, 0.0f, sin_z);
+	f32 cosHalfZ = cos(0.5f * vec.z);
+	f32 sinHalfZ = pikmin2_sinf(0.5f * vec.z);
+	quatZ.set(cosHalfZ, 0.0f, 0.0f, sinHalfZ);
 
-	*this = q3 * q2;
-	*this = *this * q1;
+	*this = quatZ * quatY;
+	*this = *this * quatX;
 }
 
 /**
@@ -621,10 +543,6 @@ void Quat::normalise()
 }
 
 /**
- * @note Address: 0x804128F0
- * @note Size: 0x348
- */
-/**
  * Performs Spherical Linear Interpolation (SLERP) between two quaternions.
  * This function calculates a quaternion that represents a rotation from the start point to the end point
  * based on a linear interpolation parameter.
@@ -632,6 +550,9 @@ void Quat::normalise()
  * @param q1 The end point of the path.
  * @param t The linear interpolation parameter (how far from start to end do we want to be).
  * @param qout The interpolated quaternion on the path, fraction t from start.
+ *
+ * @note Address: 0x804128F0
+ * @note Size: 0x348
  */
 void Quat::slerp(Quat& q1, f32 t, Quat& qout)
 {
@@ -983,74 +904,87 @@ void Quat::toMatrix(Matrix3f& m)
  */
 void Quat::fromMatrixf(Matrixf& mtx)
 {
-	int case_var;
-	f32 temp_norm;
+	int maxElementCase;
+	f32 averageElement = 0.25f * (1.0f + (mtx.mMatrix.mtxView[2][2] + (mtx.mMatrix.mtxView[0][0] + mtx.mMatrix.mtxView[1][1])));
+	f32 element00      = -((0.5f * (mtx.mMatrix.mtxView[1][1] + mtx.mMatrix.mtxView[2][2])) - averageElement);
+	f32 element11      = -((0.5f * (mtx.mMatrix.mtxView[2][2] + mtx.mMatrix.mtxView[0][0])) - averageElement);
+	f32 element22      = -((0.5f * (mtx.mMatrix.mtxView[0][0] + mtx.mMatrix.mtxView[1][1])) - averageElement);
 
-	f32 avg_elem = 0.25f * (1.0f + (mtx.mMatrix.mtxView[2][2] + (mtx.mMatrix.mtxView[0][0] + mtx.mMatrix.mtxView[1][1])));
-	f32 var_00   = -((0.5f * (mtx.mMatrix.mtxView[1][1] + mtx.mMatrix.mtxView[2][2])) - avg_elem);
-	f32 var_11   = -((0.5f * (mtx.mMatrix.mtxView[2][2] + mtx.mMatrix.mtxView[0][0])) - avg_elem);
-	f32 var_22   = -((0.5f * (mtx.mMatrix.mtxView[0][0] + mtx.mMatrix.mtxView[1][1])) - avg_elem);
-
-	if (avg_elem > var_00) {
-		if (avg_elem > var_11) {
-			if (avg_elem > var_22) {
-				case_var = 0; // w norm
+	if (averageElement > element00) {
+		if (averageElement > element11) {
+			if (averageElement > element22) {
+				maxElementCase = 0; // w norm
 			} else {
-				case_var = 3; // z norm
+				maxElementCase = 3; // z norm
 			}
-		} else if (var_11 > var_22) {
-			case_var = 2; // y norm
+		} else if (element11 > element22) {
+			maxElementCase = 2; // y norm
 		} else {
-			case_var = 3; // z norm
+			maxElementCase = 3; // z norm
 		}
-	} else if (var_00 > var_11) {
-		if (var_00 > var_22) {
-			case_var = 1; // x norm
+	} else if (element00 > element11) {
+		if (element00 > element22) {
+			maxElementCase = 1; // x norm
 		} else {
-			case_var = 3; // z norm
+			maxElementCase = 3; // z norm
 		}
-	} else if (var_11 > var_22) {
-		case_var = 2; // y norm
+	} else if (element11 > element22) {
+		maxElementCase = 2; // y norm
 	} else {
-		case_var = 3; // z norm
+		maxElementCase = 3; // z norm
 	}
 
-	switch (case_var) {
+	// Normalise quaternion based on the maximum element index
+	switch (maxElementCase) {
 	case 0: // w norm
-		w         = pikmin2_sqrtf(avg_elem);
-		temp_norm = 0.25f / w;
-		v.x       = temp_norm * (mtx.mMatrix.mtxView[2][1] - mtx.mMatrix.mtxView[1][2]);
-		v.y       = temp_norm * (mtx.mMatrix.mtxView[0][2] - mtx.mMatrix.mtxView[2][0]);
-		v.z       = temp_norm * (mtx.mMatrix.mtxView[1][0] - mtx.mMatrix.mtxView[0][1]);
-		break;
-	case 1: // x norm
-		v.x       = pikmin2_sqrtf(var_00);
-		temp_norm = 0.25f / v.x;
-		w         = temp_norm * (mtx.mMatrix.mtxView[2][1] - mtx.mMatrix.mtxView[1][2]);
-		v.y       = temp_norm * (mtx.mMatrix.mtxView[0][1] + mtx.mMatrix.mtxView[1][0]);
-		v.z       = temp_norm * (mtx.mMatrix.mtxView[0][2] + mtx.mMatrix.mtxView[2][0]);
-		break;
-	case 2: // y norm
-		v.y       = pikmin2_sqrtf(var_11);
-		temp_norm = 0.25f / v.y;
-		w         = temp_norm * (mtx.mMatrix.mtxView[0][2] - mtx.mMatrix.mtxView[2][0]);
-		v.z       = temp_norm * (mtx.mMatrix.mtxView[1][2] + mtx.mMatrix.mtxView[2][1]);
-		v.x       = temp_norm * (mtx.mMatrix.mtxView[1][0] + mtx.mMatrix.mtxView[0][1]);
-		break;
-	case 3: // z norm
-		v.z       = pikmin2_sqrtf(var_22);
-		temp_norm = 0.25f / v.z;
-		w         = temp_norm * (mtx.mMatrix.mtxView[1][0] - mtx.mMatrix.mtxView[0][1]);
-		v.x       = temp_norm * (mtx.mMatrix.mtxView[2][0] + mtx.mMatrix.mtxView[0][2]);
-		v.y       = temp_norm * (mtx.mMatrix.mtxView[2][1] + mtx.mMatrix.mtxView[1][2]);
+	{
+		w = pikmin2_sqrtf(averageElement);
+
+		f32 temp_norm = 0.25f / w;
+		v.x           = temp_norm * (mtx.mMatrix.mtxView[2][1] - mtx.mMatrix.mtxView[1][2]);
+		v.y           = temp_norm * (mtx.mMatrix.mtxView[0][2] - mtx.mMatrix.mtxView[2][0]);
+		v.z           = temp_norm * (mtx.mMatrix.mtxView[1][0] - mtx.mMatrix.mtxView[0][1]);
 		break;
 	}
+	case 1: // x norm
+	{
+		v.x = pikmin2_sqrtf(element00);
+
+		f32 temp_norm = 0.25f / v.x;
+		w             = temp_norm * (mtx.mMatrix.mtxView[2][1] - mtx.mMatrix.mtxView[1][2]);
+		v.y           = temp_norm * (mtx.mMatrix.mtxView[0][1] + mtx.mMatrix.mtxView[1][0]);
+		v.z           = temp_norm * (mtx.mMatrix.mtxView[0][2] + mtx.mMatrix.mtxView[2][0]);
+		break;
+	}
+	case 2: // y norm
+	{
+		v.y = pikmin2_sqrtf(element11);
+
+		f32 temp_norm = 0.25f / v.y;
+		w             = temp_norm * (mtx.mMatrix.mtxView[0][2] - mtx.mMatrix.mtxView[2][0]);
+		v.z           = temp_norm * (mtx.mMatrix.mtxView[1][2] + mtx.mMatrix.mtxView[2][1]);
+		v.x           = temp_norm * (mtx.mMatrix.mtxView[1][0] + mtx.mMatrix.mtxView[0][1]);
+		break;
+	}
+	case 3: // z norm
+	{
+		v.z = pikmin2_sqrtf(element22);
+
+		f32 temp_norm = 0.25f / v.z;
+		w             = temp_norm * (mtx.mMatrix.mtxView[1][0] - mtx.mMatrix.mtxView[0][1]);
+		v.x           = temp_norm * (mtx.mMatrix.mtxView[2][0] + mtx.mMatrix.mtxView[0][2]);
+		v.y           = temp_norm * (mtx.mMatrix.mtxView[2][1] + mtx.mMatrix.mtxView[1][2]);
+		break;
+	}
+	}
+
 	if (w < 0.0f) {
 		w   = -w;
 		v.x = -v.x;
 		v.y = -v.y;
 		v.z = -v.z;
 	}
+
 	f32 len_q = pikmin2_sqrtf(w * w + v.x * v.x + v.y * v.y + v.z * v.z);
 	f32 norm  = 1.0f / len_q;
 	w *= norm;

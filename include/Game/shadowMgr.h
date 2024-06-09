@@ -285,7 +285,7 @@ struct ShadowMgr : public CNode {
 	u8 mEnabled;                                // _3C
 	u8 mDoCheckCylinderType;                    // _3D
 	int mCylinderID;                            // _40
-	int _44;                                    // _44, seems to be entirely unused
+	int mUnused0;                               // _44, seems to be entirely unused
 	Color4 mColor;                              // _48
 	ShadowParms* mParms;                        // _4C
 };
