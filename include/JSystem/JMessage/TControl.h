@@ -11,9 +11,9 @@ struct TResource;
 struct TControl {
 	TControl();
 
-	virtual ~TControl();      // _08
-	virtual void reset() = 0; // _0C
+	virtual ~TControl(); // _08
 
+	void reset();
 	bool update();
 	void render();
 	bool setMessageCode(u16, u16);

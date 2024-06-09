@@ -18,7 +18,7 @@
       ["JSystem/JMessage/resource", false],
       ["JSystem/JMessage/data", true],
       ["JSystem/JMessage/processor", false],
-      ["JSystem/JMessage/control", false]
+      ["JSystem/JMessage/control", true]
     ]
   },
   {

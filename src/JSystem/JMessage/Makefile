@@ -2,7 +2,7 @@ JMESSAGE_FILES:=\
 	$(BUILD_DIR)/asm/JSystem/JMessage/resource.o\
 	$(BUILD_DIR)/src/JSystem/JMessage/data.o\
 	$(BUILD_DIR)/asm/JSystem/JMessage/processor.o\
-	$(BUILD_DIR)/asm/JSystem/JMessage/control.o\
+	$(BUILD_DIR)/src/JSystem/JMessage/control.o\
 
 DEPENDS += $(JMESSAGE_FILES:.o=.d)
 

@@ -19,14 +19,6 @@ struct TProcessor {
 	struct TStack {
 		TStack() { clear(); }
 
-		TStack(const TStack& other)
-		{
-			mSize = other.mSize;
-			for (int i = 0; i < mSize; i++) {
-				mStack[i] = mStack[i];
-			}
-		}
-
 		inline bool empty() const { return mSize == 0; }
 		inline bool isPushable() const { return mSize < 4; }
 		inline void clear() { mSize = 0; }
@@ -42,6 +34,22 @@ struct TProcessor {
 		}
 
 		inline void pop() { mSize--; }
+
+		inline void operator=(const TStack& other)
+		{
+			mSize = other.mSize;
+
+			// pointers to copy from/to
+			const char** dst = mStack;
+			const char** src = (const char**)other.mStack;
+
+			// this is a wild way to do this but sure.
+			// copy from src to dst until src addr hits the actual end of the struct
+			const char** endOfStruct = (const char**)&other.mStack[other.mSize];
+			for (int i = 0; src < endOfStruct; i++) {
+				*dst++ = *src++;
+			}
+		}
 
 		u32 mSize;             // _00
 		const char* mStack[4]; // _04
