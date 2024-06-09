@@ -66,6 +66,7 @@ bool TControl::update()
 		mMessageBegin = nullptr;
 		return false;
 	}
+
 	return true;
 }
 
@@ -80,7 +81,7 @@ void TControl::render()
 	}
 
 	mBaseProcRender->setBegin_messageEntryText(mResourceCache, mEntry, _20);
-	mBaseProcRender->mStack = mRenderStack; // here in lies bullshit, btw
+	mBaseProcRender->mStack = mRenderStack;
 	mBaseProcRender->process(mCurrentText);
 }
 
@@ -88,18 +89,18 @@ void TControl::render()
  * @note Address: 0x8000867C
  * @note Size: 0xDC
  */
-bool TControl::setMessageCode(u16 idx1, u16 idx2) { return setMessageCode_inReset_(getProcessor(), idx1, idx2); }
+bool TControl::setMessageCode(u16 msgCode, u16 msgIndex) { return setMessageCode_inReset_(getProcessor(), msgCode, msgIndex); }
 
 /**
  * @note Address: 0x80008758
  * @note Size: 0xFC
  * setMessageID__Q28JMessage8TControlFUlUlPb
  */
-bool TControl::setMessageID(u32 p1, u32 p2, bool* p3)
+bool TControl::setMessageID(u32 lowerHalf, u32 upperHalf, bool* isMsgValid)
 {
 	TProcessor* proc = getProcessor();
 
-	u32 code = proc->toMessageCode_messageID(p1, p2, p3);
+	u32 code = proc->toMessageCode_messageID(lowerHalf, upperHalf, isMsgValid);
 	if (code == -1) {
 		return false;
 	}

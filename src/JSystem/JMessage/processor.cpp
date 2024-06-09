@@ -103,9 +103,9 @@ lbl_80006E44:
  * @note Address: 0x80006E60
  * @note Size: 0x44
  */
-void TProcessor::setBegin_messageID(u32 p1, u32 p2, bool* p3)
+void TProcessor::setBegin_messageID(u32 lowerHalfMsg, u32 upperHalfMsg, bool* isMsgValid)
 {
-	u32 code = toMessageCode_messageID(p1, p2, p3);
+	u32 code = toMessageCode_messageID(lowerHalfMsg, upperHalfMsg, isMsgValid);
 	if (code != 0xFFFFFFFF) {
 		setBegin_messageCode(code);
 	}
@@ -222,12 +222,12 @@ const TResource* TProcessor::getResource_groupID(u16 groupID) const
  * @note Address: 0x80006FE4
  * @note Size: 0x150
  */
-u32 TProcessor::toMessageCode_messageID(u32 p1, u32 p2, bool* p3) const
+u32 TProcessor::toMessageCode_messageID(u32 lowerHalfMsg, u32 upperHalfMsg, bool* isMsgValid) const
 {
 	const TResource* resource = mResourceCache;
 	u16 index;
 	if (resource) {
-		index = resource->toMessageIndex_messageID(p1, p2, p3);
+		index = resource->toMessageIndex_messageID(lowerHalfMsg, upperHalfMsg, isMsgValid);
 		if (index != 0xFFFF) {
 			return index | (resource->getGroupID() << 16);
 		}
@@ -242,7 +242,7 @@ u32 TProcessor::toMessageCode_messageID(u32 p1, u32 p2, bool* p3) const
 	while (enumerator) {
 		newRes = (const TResource*)&(*enumerator);
 		if (newRes != resource) {
-			index = newRes->toMessageIndex_messageID(p1, p2, p3);
+			index = newRes->toMessageIndex_messageID(lowerHalfMsg, upperHalfMsg, isMsgValid);
 			if (index != 0xFFFF) {
 				((TProcessor*)this)->mResourceCache = newRes;
 				return index | (newRes->getGroupID() << 0x10);

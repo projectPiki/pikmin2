@@ -9,7 +9,7 @@
  * @note Address: 0x800063C4
  * @note Size: 0x1E4
  */
-u16 JMessage::TResource::toMessageIndex_messageID(u32 p1, u32 p2, bool* p3) const
+u16 JMessage::TResource::toMessageIndex_messageID(u32 lowerHalf, u32 upperHalf, bool* isMsgValid) const
 {
 	if (!mMessageID.get()) {
 		return 0xFFFF;
@@ -20,41 +20,41 @@ u16 JMessage::TResource::toMessageIndex_messageID(u32 p1, u32 p2, bool* p3) cons
 
 	switch (mMessageID.get_formSupplement()) {
 	case 0:
-		if (p2) {
+		if (upperHalf) {
 			check = false;
 		}
-		val = p1;
+		val = lowerHalf;
 		break;
 	case 1:
-		if (p1 > 0xFFFFFF || p2 > 0xFF) {
+		if (lowerHalf > 0xFFFFFF || upperHalf > 0xFF) {
 			check = false;
 		}
-		val = ((p1 << 8) & 0xFFFFFF00) | (p2 & 0xFF);
+		val = ((lowerHalf << 8) & 0xFFFFFF00) | (upperHalf & 0xFF);
 		break;
 	case 2:
-		if (p1 > 0xFFFF || p2 > 0xFFFF) {
+		if (lowerHalf > 0xFFFF || upperHalf > 0xFFFF) {
 			check = false;
 		}
-		val = ((p1 << 16) & 0xFFFF0000) | (p2 & 0xFFFF);
+		val = ((lowerHalf << 16) & 0xFFFF0000) | (upperHalf & 0xFFFF);
 		break;
 	case 3:
-		if (p1 > 0xFF || p2 > 0xFFFFFF) {
+		if (lowerHalf > 0xFF || upperHalf > 0xFFFFFF) {
 			check = false;
 		}
-		val = ((p1 << 24) & 0xFF000000) | (p2 & 0x00FFFFFF);
+		val = ((lowerHalf << 24) & 0xFF000000) | (upperHalf & 0x00FFFFFF);
 		break;
 	case 4:
-		if (p1) {
+		if (lowerHalf) {
 			check = false;
 		}
-		val = p2;
+		val = upperHalf;
 		break;
 	default:
 		return 0xFFFF;
 	}
 
-	if (p3) {
-		*p3 = check;
+	if (isMsgValid) {
+		*isMsgValid = check;
 	}
 
 	if (val == 0xFFFFFFFF) {

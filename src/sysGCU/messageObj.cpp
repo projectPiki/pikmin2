@@ -172,11 +172,11 @@ void TControl::setMessageID(char* mesg)
  * @note Address: 0x80439020
  * @note Size: 0x84
  */
-BOOL TControl::setMessageID(u32 part1, u32 part2)
+BOOL TControl::setMessageID(u32 lowerHalf, u32 upperHalf)
 {
 	reset();
-	bool ret = JMessage::TControl::setMessageID(part1, part2, nullptr);
-	mTextRenderProc->preProcID(part1, part2);
+	bool ret = JMessage::TControl::setMessageID(lowerHalf, upperHalf, nullptr);
+	mTextRenderProc->preProcID(lowerHalf, upperHalf);
 	return ret;
 }
 
