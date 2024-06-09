@@ -30,7 +30,7 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JAudio/JSystem/JAI/JAIInitData.cpp">JAudio//JAI/JAIInitData.cpp</a> | 10317 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JStudio_JStage/object-light.cpp">JStudio_JStage/object-light.cpp</a> | 11294 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JAudio/JSystem/JAS/JASDSPChannel.cpp">JAudio//JAS/JASDSPChannel.cpp</a> | 11896 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JAudio/JSystem/JAS/JASTaskThread.cpp">JAudio//JAS/JASTaskThread.cpp</a> | 12200 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JAudio/JSystem/JAS/JASWSParser.cpp">JAudio//JAS/JASWSParser.cpp</a> | 12435 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JParticle/JPADynamicsBlock.cpp">JParticle/JPADynamicsBlock.cpp</a> | 12718 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JMessage/resource.cpp">JMessage/resource.cpp</a> | 12954 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DJoint.cpp">J3D/J3DJoint.cpp</a> | 13780 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JMessage/resource.cpp">JMessage/resource.cpp</a> | 13104 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DJoint.cpp">J3D/J3DJoint.cpp</a> | 13780 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JAudio/JSystem/JAS/JASAiCtrl.cpp">JAudio//JAS/JASAiCtrl.cpp</a> | 14267 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DShape.cpp">J3D/J3DShape.cpp</a> | 14990 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J2D/J2DMaterial.cpp">J2D/J2DMaterial.cpp</a> | 15401 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JStudio_JParticle/object-particle.cpp">JStudio_JParticle/object-particle.cpp</a> | 16851 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JStudio/stb.cpp">JStudio/stb.cpp</a> | 16978 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DCluster.cpp">J3D/J3DCluster.cpp</a> | 18929 |
@@ -42,7 +42,7 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J2D/J2DWindow.cpp">J2D/J2DWindow.cpp</a> | 23735 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DGD.cpp">J3D/J3DGD.cpp</a> | 24264 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DModel.cpp">J3D/J3DModel.cpp</a> | 25170 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JAudio/JSystem/JAI/JAIBasic.cpp">JAudio//JAI/JAIBasic.cpp</a> | 29235 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DMaterialAttach.cpp">J3D/J3DMaterialAttach.cpp</a> | 29965 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J2D/J2DScreen.cpp">J2D/J2DScreen.cpp</a> | 30751 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DMaterialFactory_v21.cpp">J3D/J3DMaterialFactory_v21.cpp</a> | 35247 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JMessage/processor.cpp">JMessage/processor.cpp</a> | 35637 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DMaterialFactory_v21.cpp">J3D/J3DMaterialFactory_v21.cpp</a> | 35247 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JMessage/processor.cpp">JMessage/processor.cpp</a> | 35777 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J2D/J2DPicture.cpp">J2D/J2DPicture.cpp</a> | 42051 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JAudio/JSystem/JAS/JASAramStream.cpp">JAudio//JAS/JASAramStream.cpp</a> | 47117 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J2D/J2DWindowEx.cpp">J2D/J2DWindowEx.cpp</a> | 47225 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JAudio/JSystem/JAS/JASSeqParser.cpp">JAudio//JAS/JASSeqParser.cpp</a> | 47291 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JStudio/functionvalue.cpp">JStudio/functionvalue.cpp</a> | 50054 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JAudio/JSystem/JAI/JAISound.cpp">JAudio//JAI/JAISound.cpp</a> | 51800 |
@@ -144,10 +144,9 @@
 ### <section id="plugProjectOgawaU">plugProjectOgawaU</section>
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogCopyPane.cpp">ogCopyPane.cpp</a> | 7678 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogCounterRV.cpp">ogCounterRV.cpp</a> | 15147 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogCounterSlot.cpp">ogCounterSlot.cpp</a> | 15278 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogMenuMgr.cpp">ogMenuMgr.cpp</a> | 18723 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjContena.cpp">ogObjContena.cpp</a> | 31532 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjSMenuMap.cpp">ogObjSMenuMap.cpp</a> | 53588 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjVs.cpp">ogObjVs.cpp</a> | 67702 |  |  |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogCopyPane.cpp">ogCopyPane.cpp</a> | 7678 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogCounterSlot.cpp">ogCounterSlot.cpp</a> | 15278 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogMenuMgr.cpp">ogMenuMgr.cpp</a> | 18723 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjContena.cpp">ogObjContena.cpp</a> | 31532 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjSMenuMap.cpp">ogObjSMenuMap.cpp</a> | 53588 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjVs.cpp">ogObjVs.cpp</a> | 67702 |
 
 ### <section id="plugProjectYamashitaU">plugProjectYamashitaU</section>
 | File | Size (bytes) | File | Size (bytes) |

@@ -1299,7 +1299,7 @@
       ["plugProjectOgawaU/ogCallBackMessage", true],
       ["plugProjectOgawaU/ogMenuMgr", false],
       ["plugProjectOgawaU/ogCallBackScreen", true],
-      ["plugProjectOgawaU/ogCounterRV", false],
+      ["plugProjectOgawaU/ogCounterRV", true],
       ["plugProjectOgawaU/ogSE", true],
       ["plugProjectOgawaU/ogCounterDay", true],
       ["plugProjectOgawaU/testScene", true],
