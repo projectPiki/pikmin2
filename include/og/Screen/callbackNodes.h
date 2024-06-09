@@ -84,9 +84,9 @@ struct CallBack_CounterRV : public P2DScreen::CallBackNode {
 	virtual void show();                                                                               // _20
 	virtual void hide();                                                                               // _24
 	virtual void setValue(bool isUp, bool isDown);                                                     // _28
-	virtual void setValue();                                                                           // _2C (weak)
+	virtual void setValue() { setValue(false, false); }                                                // _2C (weak)
 
-	inline int getMaxCounter() { return (mCurrentDigitNum >= mMaxDisplayDigitNum) ? mMaxDisplayDigitNum : mCurrentDigitNum; }
+	inline u16 getMaxCounter() { return (mCurrentDigitNum >= mMaxDisplayDigitNum) ? mMaxDisplayDigitNum : mCurrentDigitNum; }
 
 	J2DPane* getMotherPane();
 	void setBlind(bool isBlind);
@@ -132,7 +132,7 @@ struct CallBack_CounterRV : public P2DScreen::CallBackNode {
 	bool mIsBlind;                    // _86
 	bool mIsHidden;                   // _87
 	bool mIsMother;                   // _88
-	u8 mDoUseRandomValue;             // _89
+	bool mDoUseRandomValue;           // _89
 	EnumCenteringMode mCenteringMode; // _8C
 	u8 mZeroAlpha;                    // _90
 	SoundID mScaleUpSoundID;          // _94

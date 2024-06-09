@@ -144,8 +144,8 @@
 ### <section id="plugProjectOgawaU">plugProjectOgawaU</section>
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogCopyPane.cpp">ogCopyPane.cpp</a> | 7678 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogCounterSlot.cpp">ogCounterSlot.cpp</a> | 15278 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogMenuMgr.cpp">ogMenuMgr.cpp</a> | 18723 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogCounterRV.cpp">ogCounterRV.cpp</a> | 28333 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogCopyPane.cpp">ogCopyPane.cpp</a> | 7678 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogCounterRV.cpp">ogCounterRV.cpp</a> | 15147 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogCounterSlot.cpp">ogCounterSlot.cpp</a> | 15278 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogMenuMgr.cpp">ogMenuMgr.cpp</a> | 18723 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjContena.cpp">ogObjContena.cpp</a> | 31532 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjSMenuMap.cpp">ogObjSMenuMap.cpp</a> | 53588 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjVs.cpp">ogObjVs.cpp</a> | 67702 |  |  |
 
