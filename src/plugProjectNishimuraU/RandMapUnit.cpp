@@ -1220,7 +1220,7 @@ MapNode* RandMapUnit::getLinkDoorNodeFirst(MapNode* tile, int doorIdx, int b, in
 		}
 
 		for (int i = 0; i < currTile->getNumDoors(); i++) {
-			// Matches the logic within weird register shit in getLoopRandMapUnit. INLINE???
+			// Matches the logic within weird register in getLoopRandMapUnit. INLINE???
 			if (!currTile->isDoorClose(i)) {
 				currTile->getDoorNode(i);
 

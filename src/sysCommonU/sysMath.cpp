@@ -583,7 +583,7 @@ void Quat::slerp(Quat& q1, f32 t, Quat& qout)
 
 	// call acos to get omega
 	// [ISSUE HERE] ----------------------------------------------------------------=-=-=-=-=-=-=-=-=-=-HEREHERHEHERHERHE
-	// I negated to fix the resgwaps below, which indicates some fuckry
+	// I negated to fix the resgwaps below, which indicates some weirdness
 	// Regswaps happen inside this function but once fixed I think it'll solve the ones below
 	f32 newOmega = -pikmin2_acosf(cos_omega);
 

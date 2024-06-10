@@ -398,7 +398,6 @@ void TFueactCircle::execute(JPABaseEmitter*, JPABaseParticle* prt)
 	if (dist > 175.0f) {
 		sep2.setLength(dist);
 
-		// some JGeometry/Vector3f shit
 		pos.set(sep2);
 	}
 

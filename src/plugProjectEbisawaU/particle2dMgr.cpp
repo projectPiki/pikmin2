@@ -108,7 +108,7 @@ void TParticle2dMgr::createMgr(char* path, u32 u1, u32 u2, u32 u3)
 	backup->becomeCurrentHeap();
 
 	mResourceManager = new (mSolidHeap, 0) JPAResourceManager(file, mSolidHeap);
-	mActiveEmitter   = new (mSolidHeap, 0) JPAEmitterManager(a, b, mSolidHeap, 8, 2); // screaming shitting crying
+	mActiveEmitter   = new (mSolidHeap, 0) JPAEmitterManager(a, b, mSolidHeap, 8, 2);
 
 	mActiveEmitter->entryResourceManager(mResourceManager, 0);
 	mSolidHeap->adjustSize();

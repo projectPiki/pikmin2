@@ -16,7 +16,6 @@
 
 static const f32 unusedSectionArray[] = { 0.0f, 0.0f, 0.0f };
 
-// Some bullshit
 static OSTime sPlayTime = OS_TIMER_CLOCK * 300;
 
 /**
@@ -59,7 +58,7 @@ Section::Section(JFWDisplay* display, JKRHeap* heap, bool b)
 		} else {
 			mDisplay = JFWDisplay::createManager(nullptr, mDisplayHeap, JUTXfb::DoubleBuffer, false);
 			mFader   = new JUTFader(0, 0, JUTVideo::sManager->mRenderModeObj->fbWidth, JUTVideo::sManager->mRenderModeObj->efbHeight,
-                                  JUtility::TColor(0, 0, 0, 0)); // TODO: HELP
+			                        JUtility::TColor(0, 0, 0, 0)); // TODO: HELP
 			mDisplay->mFader = mFader;
 			mIsDisplayNew    = true;
 

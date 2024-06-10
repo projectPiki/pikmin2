@@ -145,9 +145,9 @@ void FSMState_ScreenClose::do_exec(TMgr* obj)
  */
 void FSMState_WaitCloseForNoCard::do_init(TMgr* obj, Game::StateArg* arg)
 {
-	u32 v1        = 1.0f / sys->mDeltaTime;
-	mWaitTimer    = v1;
-	mWaitTimerMax = v1;
+	u32 inverseDeltaTime = 1.0f / sys->mDeltaTime;
+	mWaitTimer           = inverseDeltaTime;
+	mWaitTimerMax        = inverseDeltaTime;
 }
 
 /**

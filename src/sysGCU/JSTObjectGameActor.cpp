@@ -258,11 +258,11 @@ void ObjectGameActor::parseUserData_(u32 data1, void const* data2)
 	data.getData(&tdata);
 	if (tdata.mStatus) {
 		bool test = false;
-		if (tdata.mFileCount && tdata.mStatus == 0x32 && tdata._10) {
+		if (tdata.mData && tdata.mStatus == 0x32 && tdata.mDataBlockEnd) {
 			test = true;
 		}
 		if (test) {
-			for (u16* i = (u16*)tdata.mFileCount; i != (u16*)tdata.mFileCount + tdata.mDataSize; i++) {
+			for (u16* i = (u16*)tdata.mData; i != (u16*)tdata.mData + tdata.mDataSize; i++) {
 				mMovieCommandData[count] = i[0];
 			}
 		}
