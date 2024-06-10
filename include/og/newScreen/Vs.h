@@ -82,7 +82,7 @@ struct ObjVs : public ::Screen::ObjBase {
 	void doUpdateCommon();
 
 	// unused/inline
-	void isCompBdama(int);
+	bool isCompBdama(int);
 	bool startGetBdama(J2DPane*);
 	void startBdamaComp(J2DPane*);
 	void startBdamaWinRed(J2DPane*);

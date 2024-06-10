@@ -108,8 +108,8 @@ void ObjVs::doCreate(JKRArchive* arc)
 		    = og::Screen::CopyPictureToPane(paneBdamaB, root, msVal.mMarbleBaseXOffs + xoffs, msVal.mMarbleP1YOffs, 'wd1P_000' + i);
 		mScaleMgrP1_1[i] = new og::Screen::ScaleMgr;
 		mScaleMgrP1_2[i] = new og::Screen::ScaleMgr;
-		xoffs += 40;
 		mPane_windama1P[i]->hide();
+		xoffs += 40;
 	}
 
 	J2DPane* root2 = scrn2->search('ROOT');
@@ -123,8 +123,8 @@ void ObjVs::doCreate(JKRArchive* arc)
 		    = og::Screen::CopyPictureToPane(paneBdamaR, root2, msVal.mMarbleBaseXOffs + xoffs, msVal.mMarbleP2YOffs, 'wd2P_000' + i);
 		mScaleMgrP2_1[i] = new og::Screen::ScaleMgr;
 		mScaleMgrP2_2[i] = new og::Screen::ScaleMgr;
-		xoffs += 40;
 		mPane_windama2P[i]->hide();
+		xoffs += 40;
 	}
 
 	mScreenIcons = new P2DScreen::Mgr_tuning;
@@ -132,7 +132,7 @@ void ObjVs::doCreate(JKRArchive* arc)
 
 	J2DPictureEx* paneObake = static_cast<J2DPictureEx*>(mScreenIcons->search('obake'));
 	mPaneObake1P            = og::Screen::CopyPictureToPane(paneObake, root, msVal.mRouletteXOffs, msVal.mRouletteP1YOffs, 'obake1P');
-	mPaneObake2P            = og::Screen::CopyPictureToPane(paneObake, root, msVal.mRouletteXOffs, msVal.mRouletteP2YOffs, 'obake2P');
+	mPaneObake2P            = og::Screen::CopyPictureToPane(paneObake, root2, msVal.mRouletteXOffs, msVal.mRouletteP2YOffs, 'obake2P');
 	mPaneObake1P->setAlpha(mAlphaObakeP1 * 255.0f);
 	mPaneObake2P->setAlpha(mAlphaObakeP2 * 255.0f);
 	setOnOffBdama(false);
@@ -694,9 +694,14 @@ lbl_8032632C:
  * @note Address: N/A
  * @note Size: 0x20
  */
-void ObjVs::isCompBdama(int)
+bool ObjVs::isCompBdama(int i)
 {
-	// UNUSED FUNCTION
+	bool complete = false;
+	if (i == 3) {
+		complete   = true;
+		mDoneState = 1;
+	}
+	return complete;
 }
 
 /**
@@ -705,34 +710,67 @@ void ObjVs::isCompBdama(int)
  */
 bool ObjVs::startGetBdama(J2DPane* pane)
 {
-	// UNUSED FUNCTION
+	if (mDoneState != 1) {
+		ogSound->setBdamaGet();
+		Vector2f pos;
+		og::Screen::calcGlbCenter(pane, &pos);
+
+		JUtility::TColor colorA(0xe7, 0xe7, 87, 255);
+		JUtility::TColor colorB(0xcf, 0xcf, 0, 255);
+		efx2d::ArgScaleColorColor arg(pos, 1.0f, colorA, colorB);
+		efx2d::T2DSprayset_forVS efx;
+		efx.create(&arg);
+	}
 }
 
 /**
  * @note Address: N/A
  * @note Size: 0xC8
  */
-void ObjVs::startBdamaComp(J2DPane*)
+void ObjVs::startBdamaComp(J2DPane* pane)
 {
-	// UNUSED FUNCTION
+	Vector2f pos;
+	og::Screen::calcGlbCenter(pane, &pos);
+
+	efx2d::ArgScale arg(pos, 0.6f);
+	efx2d::T2DSensorGet_forVS efx;
+	efx.create(&arg);
 }
 
 /**
  * @note Address: N/A
  * @note Size: 0x124
  */
-void ObjVs::startBdamaWinRed(J2DPane*)
+void ObjVs::startBdamaWinRed(J2DPane* pane)
 {
-	// UNUSED FUNCTION
+	Vector2f pos;
+	og::Screen::calcGlbCenter(pane, &pos);
+
+	JUtility::TColor colorA(255, 135, 135, 255);
+	JUtility::TColor colorB(255, 0, 0, 255);
+	efx2d::ArgScaleColorColor arg(pos, 1.0f, colorA, colorB);
+	efx2d::T2DSprayset_forVS efx;
+	efx.create(&arg);
+	ogSound->setBdamaGet();
+	mDoneState = 1;
 }
 
 /**
  * @note Address: N/A
  * @note Size: 0x13C
  */
-void ObjVs::startBdamaWinBlue(J2DPane*)
+void ObjVs::startBdamaWinBlue(J2DPane* pane)
 {
-	// UNUSED FUNCTION
+	Vector2f pos;
+	og::Screen::calcGlbCenter(pane, &pos);
+
+	JUtility::TColor colorA(87, 135, 255, 255);
+	JUtility::TColor colorB(32, 32, 255, 255);
+	efx2d::ArgScaleColorColor arg(pos, 1.0f, colorA, colorB);
+	efx2d::T2DSprayset_forVS efx;
+	efx.create(&arg);
+	ogSound->setBdamaGet();
+	mDoneState = 1;
 }
 
 /**
@@ -760,16 +798,7 @@ void ObjVs::setOnOffBdama(bool doEfx)
 				if (!mFirstBedamaGetP1) {
 					mFirstBedamaGetP1 = true;
 					if (doEfx) {
-						Vector2f pos;
-						og::Screen::calcGlbCenter(mPane_windama1P[i], &pos);
-
-						JUtility::TColor colorA(0x20, 0x20, 255, 255);
-						JUtility::TColor colorB(0x57, 0x87, 255, 255);
-						efx2d::ArgScaleColorColor arg(pos, 1.0f, colorA, colorB);
-						efx2d::T2DSprayset_forVS efx;
-						efx.create(&arg);
-						ogSound->setBdamaGet();
-						mDoneState = 1;
+						startBdamaWinBlue(mPane_windama1P[i]);
 						mScaleMgrP1_2[i]->up();
 						p1win = true;
 					}
@@ -784,16 +813,7 @@ void ObjVs::setOnOffBdama(bool doEfx)
 				if (!mFirstBedamaGetP2) {
 					mFirstBedamaGetP2 = true;
 					if (doEfx) {
-						Vector2f pos;
-						og::Screen::calcGlbCenter(mPane_windama2P[i], &pos);
-
-						JUtility::TColor colorA(255, 0, 0, 255);
-						JUtility::TColor colorB(255, 0x87, 0x87, 255);
-						efx2d::ArgScaleColorColor arg(pos, 1.0f, colorA, colorB);
-						efx2d::T2DSprayset_forVS efx;
-						efx.create(&arg);
-						ogSound->setBdamaGet();
-						mDoneState = 1;
+						startBdamaWinRed(mPane_windama2P[i]);
 						mScaleMgrP2_2[i]->up();
 						p2win = true;
 					}
@@ -807,23 +827,9 @@ void ObjVs::setOnOffBdama(bool doEfx)
 				mPane_bedama1P[i]->show();
 				mPane_bedama1P[i]->updateScale(scale1);
 				if (!mBedamaGotFlagsP1[i]) {
-					mHasAllBedamaP1 = false;
-					if (i == 3) {
-						mDoneState      = 1;
-						mHasAllBedamaP1 = true;
-					}
+					mHasAllBedamaP1 = isCompBdama(i);
 					if (doEfx) {
-						if (mDoneState != 1) {
-							ogSound->setBdamaGet();
-							Vector2f pos;
-							og::Screen::calcGlbCenter(mPane_bedama1P[i], &pos);
-
-							JUtility::TColor colorA(0xcf, 0xcf, 0, 255);
-							JUtility::TColor colorB(0xe7, 0xe7, 0x57, 255);
-							efx2d::ArgScaleColorColor arg(pos, 1.0f, colorA, colorB);
-							efx2d::T2DSprayset_forVS efx;
-							efx.create(&arg);
-						}
+						startGetBdama(mPane_bedama1P[i]);
 						mScaleMgrP1_1[i]->up();
 					}
 				}
@@ -838,25 +844,12 @@ void ObjVs::setOnOffBdama(bool doEfx)
 			if (mDisp->mMarbleCountP2 > i) {
 				mPane_nodama2P[i]->hide();
 				mPane_bedama2P[i]->show();
-				mPane_bedama2P[i]->updateScale(scale1);
+				mPane_bedama2P[i]->updateScale(scale2);
 				if (!mBedamaGotFlagsP2[i]) {
-					mHasAllBedamaP2 = false;
-					if (i == 3) {
-						mDoneState      = 1;
-						mHasAllBedamaP2 = true;
-					}
-					if (doEfx) {
-						if (mDoneState != 1) {
-							ogSound->setBdamaGet();
-							Vector2f pos;
-							og::Screen::calcGlbCenter(mPane_bedama2P[i], &pos);
+					mHasAllBedamaP2 = isCompBdama(i);
 
-							JUtility::TColor colorA(0xcf, 0xcf, 0, 255);
-							JUtility::TColor colorB(0xe7, 0xe7, 0x57, 255);
-							efx2d::ArgScaleColorColor arg(pos, 1.0f, colorA, colorB);
-							efx2d::T2DSprayset_forVS efx;
-							efx.create(&arg);
-						}
+					if (doEfx) {
+						startGetBdama(mPane_bedama2P[i]);
 						mScaleMgrP2_1[i]->up();
 					}
 				}
@@ -877,12 +870,7 @@ void ObjVs::setOnOffBdama(bool doEfx)
 			f32 scale = 0.6f;
 			for (int i = 0; i < 4; i++) {
 				mScaleMgrP1_1[i]->up();
-				Vector2f pos;
-				og::Screen::calcGlbCenter(mPane_bedama1P[i], &pos);
-
-				efx2d::ArgScale arg(pos, scale);
-				efx2d::T2DSensorGet_forVS efx;
-				efx.create(&arg);
+				startBdamaComp(mPane_bedama1P[i]);
 				p1win = true;
 			}
 		}
@@ -892,15 +880,9 @@ void ObjVs::setOnOffBdama(bool doEfx)
 		mBedamaGetTimer -= sys->mDeltaTime;
 		if (mBedamaGetTimer <= 0.0f && doEfx) {
 			ogSound->setBdamaGet();
-			f32 scale = 0.6f;
 			for (int i = 0; i < 4; i++) {
 				mScaleMgrP2_1[i]->up();
-				Vector2f pos;
-				og::Screen::calcGlbCenter(mPane_bedama2P[i], &pos);
-
-				efx2d::ArgScale arg(pos, scale);
-				efx2d::T2DSensorGet_forVS efx;
-				efx.create(&arg);
+				startBdamaComp(mPane_bedama2P[i]);
 				p2win = true;
 			}
 		}
@@ -918,698 +900,6 @@ void ObjVs::setOnOffBdama(bool doEfx)
 			mPlayWinSound = true;
 		}
 	}
-	/*
-	stwu     r1, -0x1f0(r1)
-	mflr     r0
-	stw      r0, 0x1f4(r1)
-	stfd     f31, 0x1e0(r1)
-	psq_st   f31, 488(r1), 0, qr0
-	stfd     f30, 0x1d0(r1)
-	psq_st   f30, 472(r1), 0, qr0
-	stfd     f29, 0x1c0(r1)
-	psq_st   f29, 456(r1), 0, qr0
-	stfd     f28, 0x1b0(r1)
-	psq_st   f28, 440(r1), 0, qr0
-	stmw     r20, 0x180(r1)
-	mr       r26, r3
-	mr       r27, r4
-	mr       r31, r26
-	li       r30, 0
-	li       r29, 0
-	li       r28, 0
-
-lbl_80326490:
-	lwz      r3, 0xb4(r31)
-	bl       calc__Q32og6Screen8ScaleMgrFv
-	fmr      f30, f1
-	lwz      r3, 0xc4(r31)
-	bl       calc__Q32og6Screen8ScaleMgrFv
-	fmr      f31, f1
-	lwz      r3, 0xd4(r31)
-	bl       calc__Q32og6Screen8ScaleMgrFv
-	fmr      f28, f1
-	lwz      r3, 0xe4(r31)
-	bl       calc__Q32og6Screen8ScaleMgrFv
-	lwz      r3, 0x74(r31)
-	fmr      f29, f1
-	stfs     f28, 0xcc(r3)
-	stfs     f28, 0xd0(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0xa4(r31)
-	stfs     f29, 0xcc(r3)
-	stfs     f29, 0xd0(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x38(r26)
-	lbz      r0, 0x68(r3)
-	cmplwi   r0, 0
-	beq      lbl_80326670
-	lwz      r0, 0x60(r3)
-	cmpw     r0, r28
-	bne      lbl_80326670
-	lfs      f2, 0x108(r26)
-	lfs      f1, lbl_8051DD98@sda21(r2)
-	fcmpo    cr0, f2, f1
-	ble      lbl_80326670
-	lwz      r3, sys@sda21(r13)
-	lfs      f0, 0x54(r3)
-	fsubs    f0, f2, f0
-	stfs     f0, 0x108(r26)
-	lfs      f0, 0x108(r26)
-	fcmpo    cr0, f0, f1
-	cror     2, 0, 2
-	bne      lbl_80326670
-	lwz      r3, 0x74(r31)
-	li       r4, 1
-	stb      r4, 0xb0(r3)
-	lbz      r0, 0x10c(r26)
-	cmplwi   r0, 0
-	bne      lbl_80326670
-	clrlwi.  r0, r27, 0x18
-	stb      r4, 0x10c(r26)
-	beq      lbl_80326670
-	lwz      r3, 0x74(r31)
-	addi     r4, r1, 0x80
-	bl       "calcGlbCenter__Q22og6ScreenFP7J2DPaneP10Vector2<f>"
-	lis      r3, __vt__Q25efx2d7TBaseIF@ha
-	li       r21, 0xff
-	addi     r0, r3, __vt__Q25efx2d7TBaseIF@l
-	li       r8, 0
-	lwz      r3, 0x80(r1)
-	lis      r7, __vt__Q25efx2d5TBase@ha
-	li       r12, 0x20
-	lwz      r5, 0x84(r1)
-	li       r23, 0x57
-	li       r22, 0x87
-	stw      r3, 0x50(r1)
-	lis      r3, __vt__Q25efx2d3Arg@ha
-	lis      r4, __vt__Q25efx2d8TSimple2@ha
-	lfs      f0, lbl_8051DDA4@sda21(r2)
-	stw      r5, 0x54(r1)
-	addi     r11, r3, __vt__Q25efx2d3Arg@l
-	lfs      f2, 0x50(r1)
-	lis      r9, __vt__Q25efx2d18ArgScaleColorColor@ha
-	lfs      f1, 0x54(r1)
-	lis      r3, __vt__Q25efx2d17T2DSprayset_forVS@ha
-	li       r6, 0x22
-	li       r5, 0x23
-	stw      r0, 0x16c(r1)
-	addi     r0, r7, __vt__Q25efx2d5TBase@l
-	addi     r7, r4, __vt__Q25efx2d8TSimple2@l
-	addi     r10, r9, __vt__Q25efx2d18ArgScaleColorColor@l
-	stw      r0, 0x16c(r1)
-	addi     r0, r3, __vt__Q25efx2d17T2DSprayset_forVS@l
-	addi     r3, r1, 0x16c
-	addi     r4, r1, 0x154
-	stw      r11, 0x15c(r1)
-	stw      r7, 0x16c(r1)
-	stb      r23, 0x20(r1)
-	stb      r22, 0x21(r1)
-	stb      r21, 0x22(r1)
-	stb      r21, 0x23(r1)
-	lwz      r9, 0x20(r1)
-	stb      r12, 0x24(r1)
-	stb      r12, 0x25(r1)
-	stb      r21, 0x26(r1)
-	stb      r21, 0x27(r1)
-	lwz      r7, 0x24(r1)
-	stfs     f2, 0x154(r1)
-	stfs     f1, 0x158(r1)
-	stw      r10, 0x15c(r1)
-	stfs     f0, 0x160(r1)
-	stw      r9, 0x164(r1)
-	stw      r7, 0x168(r1)
-	stb      r8, 0x170(r1)
-	stb      r8, 0x171(r1)
-	sth      r6, 0x174(r1)
-	sth      r5, 0x176(r1)
-	stw      r8, 0x178(r1)
-	stw      r8, 0x17c(r1)
-	stw      r0, 0x16c(r1)
-	bl       create__Q25efx2d17T2DSprayset_forVSFPQ25efx2d3Arg
-	lwz      r3, ogSound__2og@sda21(r13)
-	bl       setBdamaGet__Q22og5SoundFv
-	li       r0, 1
-	stw      r0, 0x100(r26)
-	lwz      r3, 0xd4(r31)
-	bl       up__Q32og6Screen8ScaleMgrFv
-	li       r30, 1
-
-lbl_80326670:
-	lwz      r3, 0x38(r26)
-	lbz      r0, 0x69(r3)
-	cmplwi   r0, 0
-	beq      lbl_803267E0
-	lwz      r0, 0x64(r3)
-	cmpw     r0, r28
-	bne      lbl_803267E0
-	lfs      f2, 0x108(r26)
-	lfs      f1, lbl_8051DD98@sda21(r2)
-	fcmpo    cr0, f2, f1
-	ble      lbl_803267E0
-	lwz      r3, sys@sda21(r13)
-	lfs      f0, 0x54(r3)
-	fsubs    f0, f2, f0
-	stfs     f0, 0x108(r26)
-	lfs      f0, 0x108(r26)
-	fcmpo    cr0, f0, f1
-	cror     2, 0, 2
-	bne      lbl_803267E0
-	lwz      r3, 0xa4(r31)
-	li       r4, 1
-	stb      r4, 0xb0(r3)
-	lbz      r0, 0x10d(r26)
-	cmplwi   r0, 0
-	bne      lbl_803267E0
-	clrlwi.  r0, r27, 0x18
-	stb      r4, 0x10d(r26)
-	beq      lbl_803267E0
-	lwz      r3, 0xa4(r31)
-	addi     r4, r1, 0x78
-	bl       "calcGlbCenter__Q22og6ScreenFP7J2DPaneP10Vector2<f>"
-	lis      r3, __vt__Q25efx2d7TBaseIF@ha
-	li       r11, 0
-	addi     r0, r3, __vt__Q25efx2d7TBaseIF@l
-	li       r21, 0xff
-	lwz      r4, 0x78(r1)
-	lis      r3, __vt__Q25efx2d5TBase@ha
-	li       r12, 0x87
-	lwz      r6, 0x7c(r1)
-	stw      r4, 0x48(r1)
-	lis      r5, __vt__Q25efx2d3Arg@ha
-	lis      r4, __vt__Q25efx2d8TSimple2@ha
-	addi     r8, r3, __vt__Q25efx2d5TBase@l
-	stw      r0, 0x140(r1)
-	addi     r10, r5, __vt__Q25efx2d3Arg@l
-	lfs      f2, 0x48(r1)
-	lis      r9, __vt__Q25efx2d18ArgScaleColorColor@ha
-	stw      r6, 0x4c(r1)
-	lis      r3, __vt__Q25efx2d17T2DSprayset_forVS@ha
-	lfs      f0, lbl_8051DDA4@sda21(r2)
-	li       r6, 0x22
-	lfs      f1, 0x4c(r1)
-	li       r5, 0x23
-	stb      r21, 0x18(r1)
-	addi     r7, r4, __vt__Q25efx2d8TSimple2@l
-	addi     r9, r9, __vt__Q25efx2d18ArgScaleColorColor@l
-	addi     r0, r3, __vt__Q25efx2d17T2DSprayset_forVS@l
-	stw      r8, 0x140(r1)
-	addi     r3, r1, 0x140
-	addi     r4, r1, 0x128
-	stw      r10, 0x130(r1)
-	stw      r7, 0x140(r1)
-	stb      r12, 0x19(r1)
-	stb      r12, 0x1a(r1)
-	stb      r21, 0x1b(r1)
-	lwz      r8, 0x18(r1)
-	stb      r21, 0x1c(r1)
-	stb      r11, 0x1d(r1)
-	stb      r11, 0x1e(r1)
-	stb      r21, 0x1f(r1)
-	lwz      r7, 0x1c(r1)
-	stfs     f2, 0x128(r1)
-	stfs     f1, 0x12c(r1)
-	stw      r9, 0x130(r1)
-	stfs     f0, 0x134(r1)
-	stw      r8, 0x138(r1)
-	stw      r7, 0x13c(r1)
-	stb      r11, 0x144(r1)
-	stb      r11, 0x145(r1)
-	sth      r6, 0x148(r1)
-	sth      r5, 0x14a(r1)
-	stw      r11, 0x14c(r1)
-	stw      r11, 0x150(r1)
-	stw      r0, 0x140(r1)
-	bl       create__Q25efx2d17T2DSprayset_forVSFPQ25efx2d3Arg
-	lwz      r3, ogSound__2og@sda21(r13)
-	bl       setBdamaGet__Q22og5SoundFv
-	li       r0, 1
-	stw      r0, 0x100(r26)
-	lwz      r3, 0xe4(r31)
-	bl       up__Q32og6Screen8ScaleMgrFv
-	li       r29, 1
-
-lbl_803267E0:
-	lbz      r0, 0x10c(r26)
-	cmplwi   r0, 0
-	bne      lbl_80326B90
-	lbz      r0, 0x10d(r26)
-	cmplwi   r0, 0
-	bne      lbl_80326B90
-	lwz      r3, 0x38(r26)
-	lwz      r0, 0x60(r3)
-	cmpw     r0, r28
-	ble      lbl_80326984
-	lwz      r3, 0x64(r31)
-	li       r4, 0
-	li       r0, 1
-	stb      r4, 0xb0(r3)
-	lwz      r3, 0x54(r31)
-	stb      r0, 0xb0(r3)
-	lwz      r3, 0x54(r31)
-	stfs     f30, 0xcc(r3)
-	stfs     f30, 0xd0(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	addi     r25, r28, 0xf4
-	lbzx     r0, r26, r25
-	cmplwi   r0, 0
-	bne      lbl_80326978
-	cmpwi    r28, 3
-	li       r3, 0
-	bne      lbl_80326860
-	li       r3, 1
-	stw      r3, 0x100(r26)
-
-lbl_80326860:
-	clrlwi.  r0, r27, 0x18
-	stb      r3, 0x104(r26)
-	beq      lbl_80326978
-	lwz      r0, 0x100(r26)
-	lwz      r21, 0x54(r31)
-	cmpwi    r0, 1
-	beq      lbl_80326970
-	lwz      r3, ogSound__2og@sda21(r13)
-	bl       setBdamaGet__Q22og5SoundFv
-	mr       r3, r21
-	addi     r4, r1, 0x70
-	bl       "calcGlbCenter__Q22og6ScreenFP7J2DPaneP10Vector2<f>"
-	lis      r3, __vt__Q25efx2d7TBaseIF@ha
-	li       r0, 0
-	addi     r12, r3, __vt__Q25efx2d7TBaseIF@l
-	li       r8, 0xe7
-	lwz      r3, 0x70(r1)
-	lis      r9, __vt__Q25efx2d5TBase@ha
-	li       r6, 0xff
-	li       r5, 0xcf
-	lwz      r10, 0x74(r1)
-	li       r7, 0x57
-	stw      r3, 0x40(r1)
-	lis      r3, __vt__Q25efx2d3Arg@ha
-	lis      r4, __vt__Q25efx2d8TSimple2@ha
-	lfs      f0, lbl_8051DDA4@sda21(r2)
-	stw      r10, 0x44(r1)
-	addi     r22, r3, __vt__Q25efx2d3Arg@l
-	lfs      f2, 0x40(r1)
-	lis      r21, __vt__Q25efx2d18ArgScaleColorColor@ha
-	lfs      f1, 0x44(r1)
-	lis      r3, __vt__Q25efx2d17T2DSprayset_forVS@ha
-	li       r11, 0x22
-	li       r10, 0x23
-	stw      r12, 0x114(r1)
-	addi     r9, r9, __vt__Q25efx2d5TBase@l
-	addi     r12, r4, __vt__Q25efx2d8TSimple2@l
-	addi     r21, r21, __vt__Q25efx2d18ArgScaleColorColor@l
-	stw      r9, 0x114(r1)
-	addi     r9, r3, __vt__Q25efx2d17T2DSprayset_forVS@l
-	addi     r3, r1, 0x114
-	addi     r4, r1, 0xfc
-	stw      r22, 0x104(r1)
-	stw      r12, 0x114(r1)
-	stb      r8, 0x10(r1)
-	stb      r8, 0x11(r1)
-	stb      r7, 0x12(r1)
-	stb      r6, 0x13(r1)
-	lwz      r7, 0x10(r1)
-	stb      r5, 0x14(r1)
-	stb      r5, 0x15(r1)
-	stb      r0, 0x16(r1)
-	stb      r6, 0x17(r1)
-	lwz      r5, 0x14(r1)
-	stfs     f2, 0xfc(r1)
-	stfs     f1, 0x100(r1)
-	stw      r21, 0x104(r1)
-	stfs     f0, 0x108(r1)
-	stw      r7, 0x10c(r1)
-	stw      r5, 0x110(r1)
-	stb      r0, 0x118(r1)
-	stb      r0, 0x119(r1)
-	sth      r11, 0x11c(r1)
-	sth      r10, 0x11e(r1)
-	stw      r0, 0x120(r1)
-	stw      r0, 0x124(r1)
-	stw      r9, 0x114(r1)
-	bl       create__Q25efx2d17T2DSprayset_forVSFPQ25efx2d3Arg
-
-lbl_80326970:
-	lwz      r3, 0xb4(r31)
-	bl       up__Q32og6Screen8ScaleMgrFv
-
-lbl_80326978:
-	li       r0, 1
-	stbx     r0, r26, r25
-	b        lbl_803269C4
-
-lbl_80326984:
-	lwz      r3, 0x54(r31)
-	li       r4, 0
-	li       r0, 1
-	stb      r4, 0xb0(r3)
-	lwz      r3, 0x64(r31)
-	stb      r0, 0xb0(r3)
-	lwz      r3, 0x64(r31)
-	stfs     f30, 0xcc(r3)
-	stfs     f30, 0xd0(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	addi     r0, r28, 0xf4
-	li       r3, 0
-	stbx     r3, r26, r0
-
-lbl_803269C4:
-	lwz      r3, 0x38(r26)
-	lwz      r0, 0x64(r3)
-	cmpw     r0, r28
-	ble      lbl_80326B50
-	lwz      r3, 0x94(r31)
-	li       r4, 0
-	li       r0, 1
-	stb      r4, 0xb0(r3)
-	lwz      r3, 0x84(r31)
-	stb      r0, 0xb0(r3)
-	lwz      r3, 0x84(r31)
-	stfs     f31, 0xcc(r3)
-	stfs     f31, 0xd0(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	addi     r25, r28, 0xf8
-	lbzx     r0, r26, r25
-	cmplwi   r0, 0
-	bne      lbl_80326B44
-	cmpwi    r28, 3
-	li       r3, 0
-	bne      lbl_80326A2C
-	li       r3, 1
-	stw      r3, 0x100(r26)
-
-lbl_80326A2C:
-	clrlwi.  r0, r27, 0x18
-	stb      r3, 0x105(r26)
-	beq      lbl_80326B44
-	lwz      r0, 0x100(r26)
-	lwz      r21, 0x84(r31)
-	cmpwi    r0, 1
-	beq      lbl_80326B3C
-	lwz      r3, ogSound__2og@sda21(r13)
-	bl       setBdamaGet__Q22og5SoundFv
-	mr       r3, r21
-	addi     r4, r1, 0x68
-	bl       "calcGlbCenter__Q22og6ScreenFP7J2DPaneP10Vector2<f>"
-	lis      r3, __vt__Q25efx2d7TBaseIF@ha
-	li       r0, 0
-	addi     r12, r3, __vt__Q25efx2d7TBaseIF@l
-	li       r8, 0xe7
-	lwz      r3, 0x68(r1)
-	lis      r9, __vt__Q25efx2d5TBase@ha
-	li       r6, 0xff
-	li       r5, 0xcf
-	lwz      r10, 0x6c(r1)
-	li       r7, 0x57
-	stw      r3, 0x38(r1)
-	lis      r3, __vt__Q25efx2d3Arg@ha
-	lis      r4, __vt__Q25efx2d8TSimple2@ha
-	lfs      f0, lbl_8051DDA4@sda21(r2)
-	stw      r10, 0x3c(r1)
-	addi     r22, r3, __vt__Q25efx2d3Arg@l
-	lfs      f2, 0x38(r1)
-	lis      r21, __vt__Q25efx2d18ArgScaleColorColor@ha
-	lfs      f1, 0x3c(r1)
-	lis      r3, __vt__Q25efx2d17T2DSprayset_forVS@ha
-	li       r11, 0x22
-	li       r10, 0x23
-	stw      r12, 0xe8(r1)
-	addi     r9, r9, __vt__Q25efx2d5TBase@l
-	addi     r12, r4, __vt__Q25efx2d8TSimple2@l
-	addi     r21, r21, __vt__Q25efx2d18ArgScaleColorColor@l
-	stw      r9, 0xe8(r1)
-	addi     r9, r3, __vt__Q25efx2d17T2DSprayset_forVS@l
-	addi     r3, r1, 0xe8
-	addi     r4, r1, 0xd0
-	stw      r22, 0xd8(r1)
-	stw      r12, 0xe8(r1)
-	stb      r8, 8(r1)
-	stb      r8, 9(r1)
-	stb      r7, 0xa(r1)
-	stb      r6, 0xb(r1)
-	lwz      r7, 8(r1)
-	stb      r5, 0xc(r1)
-	stb      r5, 0xd(r1)
-	stb      r0, 0xe(r1)
-	stb      r6, 0xf(r1)
-	lwz      r5, 0xc(r1)
-	stfs     f2, 0xd0(r1)
-	stfs     f1, 0xd4(r1)
-	stw      r21, 0xd8(r1)
-	stfs     f0, 0xdc(r1)
-	stw      r7, 0xe0(r1)
-	stw      r5, 0xe4(r1)
-	stb      r0, 0xec(r1)
-	stb      r0, 0xed(r1)
-	sth      r11, 0xf0(r1)
-	sth      r10, 0xf2(r1)
-	stw      r0, 0xf4(r1)
-	stw      r0, 0xf8(r1)
-	stw      r9, 0xe8(r1)
-	bl       create__Q25efx2d17T2DSprayset_forVSFPQ25efx2d3Arg
-
-lbl_80326B3C:
-	lwz      r3, 0xc4(r31)
-	bl       up__Q32og6Screen8ScaleMgrFv
-
-lbl_80326B44:
-	li       r0, 1
-	stbx     r0, r26, r25
-	b        lbl_80326B90
-
-lbl_80326B50:
-	lwz      r3, 0x84(r31)
-	li       r4, 0
-	li       r0, 1
-	stb      r4, 0xb0(r3)
-	lwz      r3, 0x94(r31)
-	stb      r0, 0xb0(r3)
-	lwz      r3, 0x94(r31)
-	stfs     f31, 0xcc(r3)
-	stfs     f31, 0xd0(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	addi     r0, r28, 0xf8
-	li       r3, 0
-	stbx     r3, r26, r0
-
-lbl_80326B90:
-	addi     r28, r28, 1
-	addi     r31, r31, 4
-	cmpwi    r28, 4
-	blt      lbl_80326490
-	lbz      r0, 0x104(r26)
-	cmplwi   r0, 0
-	beq      lbl_80326CBC
-	lfs      f2, 0x108(r26)
-	lfs      f1, lbl_8051DD98@sda21(r2)
-	fcmpo    cr0, f2, f1
-	ble      lbl_80326CBC
-	lwz      r3, sys@sda21(r13)
-	lfs      f0, 0x54(r3)
-	fsubs    f0, f2, f0
-	stfs     f0, 0x108(r26)
-	lfs      f0, 0x108(r26)
-	fcmpo    cr0, f0, f1
-	cror     2, 0, 2
-	bne      lbl_80326CBC
-	clrlwi.  r0, r27, 0x18
-	beq      lbl_80326CBC
-	lwz      r3, ogSound__2og@sda21(r13)
-	bl       setBdamaGet__Q22og5SoundFv
-	lis      r8, __vt__Q25efx2d3Arg@ha
-	lis      r7, __vt__Q25efx2d8ArgScale@ha
-	lis      r6, __vt__Q25efx2d7TBaseIF@ha
-	lis      r5, __vt__Q25efx2d5TBase@ha
-	lis      r4, __vt__Q25efx2d8TSimple2@ha
-	lis      r3, __vt__Q25efx2d18T2DSensorGet_forVS@ha
-	lfs      f30, lbl_8051DDB8@sda21(r2)
-	mr       r25, r26
-	addi     r31, r8, __vt__Q25efx2d3Arg@l
-	addi     r28, r7, __vt__Q25efx2d8ArgScale@l
-	addi     r21, r6, __vt__Q25efx2d7TBaseIF@l
-	addi     r24, r5, __vt__Q25efx2d5TBase@l
-	addi     r23, r4, __vt__Q25efx2d8TSimple2@l
-	addi     r22, r3, __vt__Q25efx2d18T2DSensorGet_forVS@l
-	li       r20, 0
-
-lbl_80326C28:
-	lwz      r3, 0xb4(r25)
-	bl       up__Q32og6Screen8ScaleMgrFv
-	lwz      r3, 0x54(r25)
-	addi     r4, r1, 0x60
-	bl       "calcGlbCenter__Q22og6ScreenFP7J2DPaneP10Vector2<f>"
-	stw      r21, 0xbc(r1)
-	li       r6, 0
-	lwz      r3, 0x60(r1)
-	li       r5, 0x1a
-	lwz      r7, 0x64(r1)
-	li       r0, 0x1b
-	stw      r3, 0x30(r1)
-	addi     r3, r1, 0xbc
-	addi     r4, r1, 0x98
-	stw      r7, 0x34(r1)
-	lfs      f1, 0x30(r1)
-	stw      r24, 0xbc(r1)
-	lfs      f0, 0x34(r1)
-	stw      r31, 0xa0(r1)
-	stw      r23, 0xbc(r1)
-	stfs     f1, 0x98(r1)
-	stfs     f0, 0x9c(r1)
-	stw      r28, 0xa0(r1)
-	stfs     f30, 0xa4(r1)
-	stb      r6, 0xc0(r1)
-	stb      r6, 0xc1(r1)
-	sth      r5, 0xc4(r1)
-	sth      r0, 0xc6(r1)
-	stw      r6, 0xc8(r1)
-	stw      r6, 0xcc(r1)
-	stw      r22, 0xbc(r1)
-	bl       create__Q25efx2d18T2DSensorGet_forVSFPQ25efx2d3Arg
-	addi     r20, r20, 1
-	li       r30, 1
-	cmpwi    r20, 4
-	addi     r25, r25, 4
-	blt      lbl_80326C28
-
-lbl_80326CBC:
-	lbz      r0, 0x105(r26)
-	cmplwi   r0, 0
-	beq      lbl_80326DD8
-	lfs      f2, 0x108(r26)
-	lfs      f1, lbl_8051DD98@sda21(r2)
-	fcmpo    cr0, f2, f1
-	ble      lbl_80326DD8
-	lwz      r3, sys@sda21(r13)
-	lfs      f0, 0x54(r3)
-	fsubs    f0, f2, f0
-	stfs     f0, 0x108(r26)
-	lfs      f0, 0x108(r26)
-	fcmpo    cr0, f0, f1
-	cror     2, 0, 2
-	bne      lbl_80326DD8
-	clrlwi.  r0, r27, 0x18
-	beq      lbl_80326DD8
-	lwz      r3, ogSound__2og@sda21(r13)
-	bl       setBdamaGet__Q22og5SoundFv
-	lis      r8, __vt__Q25efx2d3Arg@ha
-	lis      r7, __vt__Q25efx2d8ArgScale@ha
-	lis      r6, __vt__Q25efx2d7TBaseIF@ha
-	lis      r5, __vt__Q25efx2d5TBase@ha
-	lis      r4, __vt__Q25efx2d8TSimple2@ha
-	lis      r3, __vt__Q25efx2d18T2DSensorGet_forVS@ha
-	lfs      f30, lbl_8051DDB8@sda21(r2)
-	mr       r25, r26
-	addi     r27, r8, __vt__Q25efx2d3Arg@l
-	addi     r22, r7, __vt__Q25efx2d8ArgScale@l
-	addi     r23, r6, __vt__Q25efx2d7TBaseIF@l
-	addi     r24, r5, __vt__Q25efx2d5TBase@l
-	addi     r31, r4, __vt__Q25efx2d8TSimple2@l
-	addi     r28, r3, __vt__Q25efx2d18T2DSensorGet_forVS@l
-	li       r20, 0
-
-lbl_80326D44:
-	lwz      r3, 0xc4(r25)
-	bl       up__Q32og6Screen8ScaleMgrFv
-	lwz      r3, 0x84(r25)
-	addi     r4, r1, 0x58
-	bl       "calcGlbCenter__Q22og6ScreenFP7J2DPaneP10Vector2<f>"
-	stw      r23, 0xa8(r1)
-	li       r6, 0
-	lwz      r3, 0x58(r1)
-	li       r5, 0x1a
-	lwz      r7, 0x5c(r1)
-	li       r0, 0x1b
-	stw      r3, 0x28(r1)
-	addi     r3, r1, 0xa8
-	addi     r4, r1, 0x88
-	stw      r7, 0x2c(r1)
-	lfs      f1, 0x28(r1)
-	stw      r24, 0xa8(r1)
-	lfs      f0, 0x2c(r1)
-	stw      r27, 0x90(r1)
-	stw      r31, 0xa8(r1)
-	stfs     f1, 0x88(r1)
-	stfs     f0, 0x8c(r1)
-	stw      r22, 0x90(r1)
-	stfs     f30, 0x94(r1)
-	stb      r6, 0xac(r1)
-	stb      r6, 0xad(r1)
-	sth      r5, 0xb0(r1)
-	sth      r0, 0xb2(r1)
-	stw      r6, 0xb4(r1)
-	stw      r6, 0xb8(r1)
-	stw      r28, 0xa8(r1)
-	bl       create__Q25efx2d18T2DSensorGet_forVSFPQ25efx2d3Arg
-	addi     r20, r20, 1
-	li       r29, 1
-	cmpwi    r20, 4
-	addi     r25, r25, 4
-	blt      lbl_80326D44
-
-lbl_80326DD8:
-	lbz      r0, 0x128(r26)
-	cmplwi   r0, 0
-	bne      lbl_80326E3C
-	clrlwi.  r0, r30, 0x18
-	beq      lbl_80326E08
-	clrlwi.  r0, r29, 0x18
-	beq      lbl_80326E08
-	lwz      r3, ogSound__2og@sda21(r13)
-	bl       setVsDraw__Q22og5SoundFv
-	li       r0, 1
-	stb      r0, 0x128(r26)
-	b        lbl_80326E3C
-
-lbl_80326E08:
-	clrlwi.  r0, r30, 0x18
-	beq      lbl_80326E24
-	lwz      r3, ogSound__2og@sda21(r13)
-	bl       setVsWin1P__Q22og5SoundFv
-	li       r0, 1
-	stb      r0, 0x128(r26)
-	b        lbl_80326E3C
-
-lbl_80326E24:
-	clrlwi.  r0, r29, 0x18
-	beq      lbl_80326E3C
-	lwz      r3, ogSound__2og@sda21(r13)
-	bl       setVsWin2P__Q22og5SoundFv
-	li       r0, 1
-	stb      r0, 0x128(r26)
-
-lbl_80326E3C:
-	psq_l    f31, 488(r1), 0, qr0
-	lfd      f31, 0x1e0(r1)
-	psq_l    f30, 472(r1), 0, qr0
-	lfd      f30, 0x1d0(r1)
-	psq_l    f29, 456(r1), 0, qr0
-	lfd      f29, 0x1c0(r1)
-	psq_l    f28, 440(r1), 0, qr0
-	lfd      f28, 0x1b0(r1)
-	lmw      r20, 0x180(r1)
-	lwz      r0, 0x1f4(r1)
-	mtlr     r0
-	addi     r1, r1, 0x1f0
-	blr
-	*/
 }
 
 /**
@@ -1643,186 +933,6 @@ void ObjVs::ScreenSet::init(og::Screen::DataNavi* data, JKRArchive* arc, u32* pi
 	mScreen->addCallBack('back', mLifeGauge);
 	mLifeGauge->setOffset(msVal.mLifeGaugeXOffs, msVal.mLifeGaugeYOffs);
 	og::Screen::setCallBack_DrawAfter(mScreen, 'mete');
-
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  stmw      r27, 0x2C(r1)
-	  mr        r29, r3
-	  mr        r30, r4
-	  mr        r31, r5
-	  mr        r27, r6
-	  li        r3, 0x44
-	  bl        -0x302FF0
-	  mr.       r28, r3
-	  beq-      .loc_0x38
-	  bl        -0x1F680
-	  mr        r28, r3
-
-	.loc_0x38:
-	  lis       r5, 0x7069
-	  lwz       r4, 0x0(r29)
-	  mr        r3, r28
-	  mr        r8, r31
-	  addi      r6, r5, 0x6B69
-	  addi      r7, r30, 0x8
-	  li        r5, 0
-	  bl        -0x1F5E8
-	  lis       r4, 0x7069
-	  lwz       r3, 0x0(r29)
-	  mr        r7, r28
-	  li        r5, 0
-	  addi      r6, r4, 0x6B69
-	  bl        0x10DC48
-	  addi      r0, r30, 0x4
-	  lis       r3, 0x635F
-	  stw       r0, 0x8(r1)
-	  li        r0, 0x3
-	  addi      r8, r3, 0x6D6C
-	  li        r4, 0x2
-	  stw       r0, 0xC(r1)
-	  li        r0, 0x1
-	  mr        r10, r8
-	  addi      r6, r3, 0x6D72
-	  stw       r4, 0x10(r1)
-	  li        r5, 0
-	  li        r7, 0
-	  li        r9, 0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0x18(r1)
-	  lwz       r3, 0x0(r29)
-	  bl        -0x1A9F4
-	  stw       r27, 0x8(r1)
-	  lis       r3, 0x635F
-	  li        r0, 0x3
-	  li        r4, 0x2
-	  stw       r0, 0xC(r1)
-	  addi      r8, r3, 0x6C6C
-	  li        r0, 0x1
-	  addi      r6, r3, 0x6C72
-	  stw       r4, 0x10(r1)
-	  mr        r10, r8
-	  li        r5, 0
-	  li        r7, 0
-	  stw       r0, 0x14(r1)
-	  li        r9, 0
-	  stw       r31, 0x18(r1)
-	  lwz       r3, 0x0(r29)
-	  bl        -0x1AA38
-	  li        r0, 0x1828
-	  lis       r4, 0x6472
-	  stw       r0, 0x94(r3)
-	  li        r0, 0x182A
-	  addi      r8, r4, 0x5F6C
-	  addi      r5, r30, 0xC
-	  stw       r0, 0x98(r3)
-	  li        r7, 0x3
-	  li        r3, 0x2
-	  li        r0, 0x1
-	  stw       r5, 0x8(r1)
-	  mr        r10, r8
-	  addi      r6, r4, 0x5F72
-	  li        r5, 0
-	  stw       r7, 0xC(r1)
-	  li        r7, 0
-	  li        r9, 0
-	  stw       r3, 0x10(r1)
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0x18(r1)
-	  lwz       r3, 0x0(r29)
-	  bl        -0x1AA90
-	  li        r4, 0x1
-	  bl        -0x1B6EC
-	  lwz       r3, 0x0(r29)
-	  lis       r4, 0x6472
-	  addi      r6, r4, 0x5F63
-	  li        r5, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x3C(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r0, 0
-	  lis       r4, 0x6479
-	  stb       r0, 0xB0(r3)
-	  addi      r0, r30, 0x10
-	  addi      r8, r4, 0x5F6C
-	  li        r5, 0x3
-	  stw       r0, 0x8(r1)
-	  li        r3, 0x2
-	  li        r0, 0x1
-	  mr        r10, r8
-	  stw       r5, 0xC(r1)
-	  addi      r6, r4, 0x5F72
-	  li        r5, 0
-	  li        r7, 0
-	  stw       r3, 0x10(r1)
-	  li        r9, 0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0x18(r1)
-	  lwz       r3, 0x0(r29)
-	  bl        -0x1AB08
-	  li        r4, 0x1
-	  bl        -0x1B764
-	  lwz       r3, 0x0(r29)
-	  lis       r4, 0x6479
-	  addi      r6, r4, 0x5F63
-	  li        r5, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x3C(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r0, 0
-	  lis       r5, 0x6F5F
-	  stb       r0, 0xB0(r3)
-	  lis       r4, 0x74
-	  addi      r6, r5, 0x3031
-	  lwz       r3, 0x0(r29)
-	  addi      r5, r4, 0x6F79
-	  bl        -0x241D4
-	  stw       r3, 0x14(r29)
-	  lis       r5, 0x6F5F
-	  lis       r4, 0x74
-	  lwz       r3, 0x0(r29)
-	  addi      r6, r5, 0x3030
-	  addi      r5, r4, 0x6F79
-	  bl        -0x241F0
-	  stw       r3, 0x18(r29)
-	  lwz       r3, 0x8(r29)
-	  lwz       r4, 0x14(r29)
-	  lwz       r5, 0x18(r29)
-	  lwz       r6, 0xC(r29)
-	  lwz       r7, 0x10(r29)
-	  bl        -0x232B4
-	  lwz       r3, 0x4(r29)
-	  mr        r5, r30
-	  lwz       r4, 0x0(r29)
-	  li        r6, 0
-	  bl        -0x20ECC
-	  lis       r4, 0x6261
-	  lwz       r3, 0x0(r29)
-	  lwz       r7, 0x4(r29)
-	  addi      r6, r4, 0x636B
-	  li        r5, 0
-	  bl        0x10DA40
-	  lis       r4, 0x8051
-	  lwz       r3, 0x4(r29)
-	  addi      r4, r4, 0x3F40
-	  lfs       f1, 0x8(r4)
-	  lfs       f2, 0xC(r4)
-	  bl        -0x20804
-	  lis       r4, 0x6D65
-	  lwz       r3, 0x0(r29)
-	  addi      r6, r4, 0x7465
-	  li        r5, 0
-	  bl        0x6674
-	  lmw       r27, 0x2C(r1)
-	  lwz       r0, 0x44(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
-	*/
 }
 
 /**
@@ -1891,7 +1001,7 @@ void ObjVs::checkObake()
 	}
 
 	f32 calc = mObakeMovePos * 2.0f;
-	calc     = (sinf(calc) + 1.0f) * 0.5f;
+	calc     = (sinf(calc) + 1.0f) / 2;
 
 	f32 mod1 = 1.0f;
 	f32 mod2 = 1.0f;
@@ -1925,20 +1035,23 @@ void ObjVs::checkObake()
 	if (mObakeMovePos > TAU) {
 		mObakeMovePos -= TAU;
 	}
-	f32 sin = sinf(mObakeMovePos);
-	f32 cos = -sinf(mObakeMovePos);
-	mPaneObake1P->rotate(angle1 * sin * 20.0f);
-	mPaneObake2P->rotate(angle2 * cos * 20.0f);
 
-	cos = cosf(mObakeMovePos);
+	f32 timeAngle    = angle1 * sinf(mObakeMovePos) * 20.0f;
+	f32 timeAngleInv = angle2 * sinf(mObakeMovePos) * 20.0f;
+	mPaneObake1P->rotate(timeAngle);
+	mPaneObake2P->rotate(timeAngleInv);
 
-	mPaneObake1P->setOffset(msVal.mRouletteXOffs + (sin * angle1) * msVal.mRouletteXSpeed,
-	                        msVal.mRouletteP1YOffs + (cos * angle1) * msVal.mRouletteYSpeed);
-	mPaneObake2P->setOffset(msVal.mRouletteXOffs + (sin * angle2) * msVal.mRouletteXSpeed,
-	                        msVal.mRouletteP2YOffs + (cos * angle2) * msVal.mRouletteYSpeed);
+	f32 cos = cosf(mObakeMovePos) * msVal.mRouletteYSpeed;
+	f32 sin = sinf(mObakeMovePos) * msVal.mRouletteXSpeed;
 
-	mPaneObake1P->updateScale(msVal.mRouletteScale);
-	mPaneObake2P->updateScale(msVal.mRouletteScale);
+	sin += msVal.mRouletteXOffs;
+
+	mPaneObake1P->setOffset((sin * angle1), msVal.mRouletteP1YOffs + (cos * angle1));
+	mPaneObake2P->setOffset((sin * angle2), msVal.mRouletteP2YOffs + (cos * angle2));
+
+	f32 scale = msVal.mRouletteScale;
+	mPaneObake1P->updateScale(scale);
+	mPaneObake2P->updateScale(scale);
 
 	/*
 	stwu     r1, -0xa0(r1)
@@ -2341,9 +1454,11 @@ lbl_803275A4:
  */
 void ObjVs::doUpdateCommon()
 {
-	f32 scale = (cosf(mScale * PI) + 1.0f) * 0.5f;
+	f32 scale = (cosf(mScale * PI) + 1.0f) / 2;
+
 	setOnOffBdama(mSetBedamaFlag == false);
 	checkObake();
+
 	switch (mDoneState) {
 	case 0:
 		break;

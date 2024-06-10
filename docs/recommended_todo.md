@@ -146,7 +146,7 @@
 | ---- | ---- | ---- | ---- |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogCopyPane.cpp">ogCopyPane.cpp</a> | 7678 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogCounterSlot.cpp">ogCounterSlot.cpp</a> | 15278 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogMenuMgr.cpp">ogMenuMgr.cpp</a> | 18723 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjContena.cpp">ogObjContena.cpp</a> | 31532 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjSMenuMap.cpp">ogObjSMenuMap.cpp</a> | 53588 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjVs.cpp">ogObjVs.cpp</a> | 67702 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjVs.cpp">ogObjVs.cpp</a> | 44612 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjSMenuMap.cpp">ogObjSMenuMap.cpp</a> | 53588 |
 
 ### <section id="plugProjectYamashitaU">plugProjectYamashitaU</section>
 | File | Size (bytes) | File | Size (bytes) |
@@ -164,7 +164,7 @@
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysCommonU/geomIntersection.cpp">geomIntersection.cpp</a> | 10969 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysCommonU/camera.cpp">camera.cpp</a> | 13560 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysCommonU/geomTraceMove.cpp">geomTraceMove.cpp</a> | 14985 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysCommonU/sysMath.cpp">sysMath.cpp</a> | 26371 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysCommonU/geomTraceMove.cpp">geomTraceMove.cpp</a> | 14985 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysCommonU/sysMath.cpp">sysMath.cpp</a> | 24886 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysCommonU/geomOBBTree.cpp">geomOBBTree.cpp</a> | 82131 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysCommonU/geometry.cpp">geometry.cpp</a> | 98859 |
 
 ### <section id="sysGCU">sysGCU</section>
