@@ -1588,7 +1588,7 @@ bool RandMapScore::isFixObjSet(MapNode* node, BaseGen* spawner)
 	}
 
 	// test remaining fix obj nodes
-	for (int i = 1; i < FIXNODE_Count; i++) {
+	for (int i = FIXNODE_Hole; i < FIXNODE_Count; i++) {
 		if (node == getFixObjNode(i) && spawner == getFixObjGen(i)) {
 			return false;
 		}

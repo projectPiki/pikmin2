@@ -11,12 +11,15 @@ struct EnemyNode;
 struct MapNode;
 
 enum FixObjNodeTypes {
-	FIXNODE_Pod         = 0,
-	FIXNODE_Hole        = 1,
-	FIXNODE_Fountain    = 2,
-	FIXNODE_VsRedOnyon  = 3,
+	FIXNODE_Pod        = 0,
+	FIXNODE_Hole       = 1,
+	FIXNODE_Fountain   = 2,
+	FIXNODE_VsRedOnyon = 3,
+	FIXNODE_VsStart    = FIXNODE_VsRedOnyon, // 3
+
 	FIXNODE_VsBlueOnyon = 4,
-	FIXNODE_Count, // 5
+	FIXNODE_VsEnd       = FIXNODE_VsBlueOnyon, // 4
+	FIXNODE_Count,                             // 5
 };
 
 enum MapTekiTypes {

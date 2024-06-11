@@ -960,7 +960,7 @@ void RandEnemyUnit::setSlotEnemyTypeF(int p1)
 	MapNode* placedNodes = mGenerator->getPlacedNodes();
 	if (mGenerator->mIsVersusMode) {
 		MapNode* onyon;
-		for (int i = 3; i <= 4; i++) {
+		for (int i = FIXNODE_VsStart; i <= FIXNODE_VsEnd; i++) {
 			onyon               = mMapScore->getFixObjNode(i);
 			BaseGen* onyonSpawn = mMapScore->getFixObjGen(i);
 			if (!onyon) {
@@ -982,7 +982,8 @@ void RandEnemyUnit::setSlotEnemyTypeF(int p1)
 		}
 	} else {
 		MapNode* exit;
-		for (int i = 0; i <= 2; i++) {
+		// loop through start and exits (pod, hole, fountain)
+		for (int i = FIXNODE_Pod; i <= FIXNODE_Fountain; i++) {
 			exit               = mMapScore->getFixObjNode(i);
 			BaseGen* exitSpawn = mMapScore->getFixObjGen(i);
 			if (exit) {
@@ -1453,7 +1454,7 @@ void RandEnemyUnit::setSlotEnemyTypeB(int p1)
 	if (mGenerator->mIsVersusMode) {
 		MapNode* onyon;
 		BaseGen* onyonSpawn;
-		for (int i = 3; i <= 4; i++) {
+		for (int i = FIXNODE_VsStart; i <= FIXNODE_VsEnd; i++) {
 			onyon      = mMapScore->getFixObjNode(i);
 			onyonSpawn = mMapScore->getFixObjGen(i);
 			if (!onyon) {
@@ -1475,7 +1476,8 @@ void RandEnemyUnit::setSlotEnemyTypeB(int p1)
 		}
 	} else {
 		MapNode* exit;
-		for (int i = 0; i <= 2; i++) {
+		// loop through start and exits (pod, hole, fountain)
+		for (int i = FIXNODE_Pod; i <= FIXNODE_Fountain; i++) {
 			exit               = mMapScore->getFixObjNode(i);
 			BaseGen* exitSpawn = mMapScore->getFixObjGen(i);
 			if (exit) {
@@ -2400,7 +2402,7 @@ void RandEnemyUnit::setSlotEnemyTypeA(int& max, int& min, int vsColor)
 	if (mGenerator->mIsVersusMode) {
 		MapNode* onyon;
 		BaseGen* onyonSpawn;
-		for (int i = 3; i <= 4; i++) {
+		for (int i = FIXNODE_VsStart; i <= FIXNODE_VsEnd; i++) {
 			onyon      = mMapScore->getFixObjNode(i);
 			onyonSpawn = mMapScore->getFixObjGen(i);
 			if (!onyon) {
@@ -2420,10 +2422,10 @@ void RandEnemyUnit::setSlotEnemyTypeA(int& max, int& min, int vsColor)
 			counter++;
 		}
 	} else {
-		MapNode* exit      = mMapScore->getFixObjNode(FIXNODE_Pod);
-		BaseGen* exitSpawn = mMapScore->getFixObjGen(FIXNODE_Pod);
-		if (exit) {
-			Vector3f spawnPos   = exit->getBaseGenGlobalPosition(exitSpawn);
+		MapNode* start      = mMapScore->getFixObjNode(FIXNODE_Pod);
+		BaseGen* startSpawn = mMapScore->getFixObjGen(FIXNODE_Pod);
+		if (start) {
+			Vector3f spawnPos   = start->getBaseGenGlobalPosition(startSpawn);
 			vecArray[counter]   = spawnPos;
 			floatArray[counter] = 300.0f;
 			counter++;

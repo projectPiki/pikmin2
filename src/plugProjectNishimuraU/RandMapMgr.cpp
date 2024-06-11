@@ -1,4 +1,5 @@
 #include "Game/Cave/RandMapMgr.h"
+#include "Game/Navi.h"
 #include "Dolphin/rand.h"
 
 namespace Game {
@@ -175,16 +176,16 @@ ObjectLayoutInfo* RandMapMgr::makeObjectLayoutInfo(int idx)
  * @note Address: 0x80244AB4
  * @note Size: 0x88
  */
-void RandMapMgr::getStartPosition(Vector3f& position, int idx)
+void RandMapMgr::getStartPosition(Vector3f& position, int naviID)
 {
 	if (mGenerator->mIsVersusMode) {
-		if (idx == 0) {
-			mRandMapScore->getGlobalPosition(3, position);
+		if (naviID == NAVIID_Olimar) {
+			mRandMapScore->getGlobalPosition(FIXNODE_VsRedOnyon, position);
 		} else {
-			mRandMapScore->getGlobalPosition(4, position);
+			mRandMapScore->getGlobalPosition(FIXNODE_VsBlueOnyon, position);
 		}
 	} else {
-		mRandMapScore->getGlobalPosition(0, position);
+		mRandMapScore->getGlobalPosition(FIXNODE_Pod, position);
 	}
 
 	position.y += 50.0f;
