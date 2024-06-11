@@ -94,11 +94,12 @@ void DirectorMgr_Scene::initTrackMap(::PSSystem::DirectedBgm& bgm)
 	JUT_ASSERTLINE(161, trackMap.mBasicTrackCount, "track map is\nnot initialized\n");
 	::PSSystem::DirectorBase* actor = nullptr;
 	DamageDirector* damage          = nullptr;
+
 	switch (type) {
 	case Director_Working: {
 		actor = new ActorDirector_Scaled("eventD", trackMap.mEventTrackCount, 200.0f, 1500.0f, 100, 100, 100);
 		P2ASSERTLINE(173, actor);
-		for (int i = 0; i < trackMap.mEventTrackCount; i++) {
+		for (u8 i = 0; i < (int)trackMap.mEventTrackCount; i++) {
 			actor->setTrack(i, bgm.getChildTrack(i + trackMap.mBasicTrackCount));
 		}
 		break;
@@ -106,7 +107,7 @@ void DirectorMgr_Scene::initTrackMap(::PSSystem::DirectedBgm& bgm)
 	case Director_EnemyNear: {
 		actor = new ActorDirector_Kehai("kehaiD   ", trackMap.mKehaiTrackCount, 100, 100, 100);
 		P2ASSERTLINE(188, actor);
-		for (int i = 0; i < trackMap.mKehaiTrackCount; i++) {
+		for (u8 i = 0; i < (int)trackMap.mKehaiTrackCount; i++) {
 			int id = trackMap.mEventTrackCount + trackMap.mBasicTrackCount + trackMap.mOtakaraTrackCount + i;
 			actor->setTrack(i, bgm.getChildTrack(id));
 		}
@@ -115,7 +116,7 @@ void DirectorMgr_Scene::initTrackMap(::PSSystem::DirectedBgm& bgm)
 	case Director_Battle: {
 		actor = new ActorDirector_Battle("battleD  ", trackMap.mBattleTrackCount, 100, 100, 100);
 		P2ASSERTLINE(206, actor);
-		for (int i = 0; i < trackMap.mBattleTrackCount; i++) {
+		for (u8 i = 0; i < (int)trackMap.mBattleTrackCount; i++) {
 			int id = trackMap.mEventTrackCount + trackMap.mBasicTrackCount + trackMap.mOtakaraTrackCount + trackMap.mKehaiTrackCount + i;
 			actor->setTrack(i, bgm.getChildTrack(id));
 		}
@@ -124,7 +125,7 @@ void DirectorMgr_Scene::initTrackMap(::PSSystem::DirectedBgm& bgm)
 	case Director_Treasure: {
 		actor = new ActorDirector_TrackOn("OtakaraD", trackMap.mOtakaraTrackCount, 100, 100);
 		P2ASSERTLINE(219, actor);
-		for (int i = 0; i < trackMap.mOtakaraTrackCount; i++) {
+		for (u8 i = 0; i < (int)trackMap.mOtakaraTrackCount; i++) {
 			int id = trackMap.mEventTrackCount + trackMap.mBasicTrackCount + i;
 			actor->setTrack(i, bgm.getChildTrack(id));
 		}
@@ -137,7 +138,7 @@ void DirectorMgr_Scene::initTrackMap(::PSSystem::DirectedBgm& bgm)
 			actor = new ActorDirector_Scaled("GroundD  ", trackMap.mGroundTrackCount, 300.0f, 600.0f, 200, 200, 10);
 		}
 		P2ASSERTLINE(275, actor);
-		for (int i = 0; (u8)i < trackMap.mGroundTrackCount; i++) {
+		for (u8 i = 0; i < (int)trackMap.mGroundTrackCount; i++) {
 			int id = trackMap.mEventTrackCount + trackMap.mBasicTrackCount + trackMap.mOtakaraTrackCount + trackMap.mKehaiTrackCount
 			       + trackMap.mBattleTrackCount + i;
 			actor->setTrack(i, bgm.getChildTrack(id));
@@ -146,7 +147,7 @@ void DirectorMgr_Scene::initTrackMap(::PSSystem::DirectedBgm& bgm)
 	}
 	case Director_Pikmin: {
 		int pikNum = trackMap.getPikNum();
-		int mask   = trackMap.getPikMaskFlag();
+		u8 mask    = trackMap.getPikMaskFlag();
 		actor      = newPikminNumberDirector(pikNum, mask, bgm);
 		P2ASSERTLINE(290, actor);
 		u8 id = 0;
@@ -172,10 +173,9 @@ void DirectorMgr_Scene::initTrackMap(::PSSystem::DirectedBgm& bgm)
 	}
 	}
 
-	::PSSystem::DirectorBase* ret;
-	if (actor || (!actor && damage)) {
-		ret = actor;
-	}
+	// some mess here
+	::PSSystem::DirectorBase* ret = nullptr;
+	ret                           = !actor ? damage ? damage : nullptr : actor ? actor : nullptr;
 
 	P2ASSERTLINE(334, ret);
 
@@ -823,7 +823,7 @@ void DirectorMgr_Scene::adaptDirectorActor(::PSSystem::DirectorBase* director, u
 		static_cast<ActorDirector_TempoChange*>(director)->mActor = actor;
 		break;
 	default:
-		JUT_PANICLINE(405, "P2Assert");
+		P2ASSERTLINE(405, false);
 	}
 }
 
@@ -880,7 +880,9 @@ DirectorMgr_Battle::DirectorMgr_Battle()
 			startID  = 1;
 		}
 		director = new PikAttackDirector(tracknum);
-		::PSSystem::SingletonBase<BossBgmFader::Mgr>::getInstance()->setUpdator(director);
+		if (::PSSystem::SingletonBase<BossBgmFader::Mgr>::sInstance) {
+			::PSSystem::SingletonBase<BossBgmFader::Mgr>::getInstance()->setUpdator(director);
+		}
 		break;
 	case 1:
 		if (boss) {
@@ -894,8 +896,8 @@ DirectorMgr_Battle::DirectorMgr_Battle()
 		break;
 	}
 
-	P2ASSERTLINE(495, tracknum != 255);
-	P2ASSERTLINE(496, startID != 255);
+	P2ASSERTLINE(495, startID != 255);
+	P2ASSERTLINE(496, tracknum != 255);
 	P2ASSERTLINE(497, director);
 
 	for (u8 i = 0; i < tracknum; i++) {

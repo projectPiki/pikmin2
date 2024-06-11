@@ -51,12 +51,13 @@ struct BgmTrackMap {
 		return num;
 	}
 
-	inline int getPikMaskFlag()
+	inline u8 getPikMaskFlag()
 	{
 		u8 num = 0;
 		for (u8 i = 0; i < 8; i++) {
-			if (mPikMask[i]) {
-				num |= mPikMask[i] << i;
+			u8 val = (u32)mPikMask[i];
+			if (val) {
+				num |= val << i;
 			}
 		}
 		return num;

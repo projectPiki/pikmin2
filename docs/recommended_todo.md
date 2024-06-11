@@ -88,7 +88,7 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/navi_demoCheck.cpp">navi_demoCheck.cpp</a> | 58044 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/pelletState.cpp">pelletState.cpp</a> | 63285 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/itemUjamushi.cpp">itemUjamushi.cpp</a> | 64483 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/itemPlant.cpp">itemPlant.cpp</a> | 73157 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/baseGameSection.cpp">baseGameSection.cpp</a> | 86605 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/aiPrimitives.cpp">aiPrimitives.cpp</a> | 117085 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/pelletMgr.cpp">pelletMgr.cpp</a> | 141396 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/navi.cpp">navi.cpp</a> | 152315 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/pelletMgr.cpp">pelletMgr.cpp</a> | 141396 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/navi.cpp">navi.cpp</a> | 152313 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/pikiState.cpp">pikiState.cpp</a> | 155487 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/singleGS_Zukan.cpp">singleGS_Zukan.cpp</a> | 163805 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gameMapParts.cpp">gameMapParts.cpp</a> | 164131 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/naviState.cpp">naviState.cpp</a> | 182701 |
 
@@ -170,7 +170,7 @@
 ### <section id="sysGCU">sysGCU</section>
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/aramMgr.cpp">aramMgr.cpp</a> | 4254 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/section.cpp">section.cpp</a> | 7978 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/aramMgr.cpp">aramMgr.cpp</a> | 4254 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/section.cpp">section.cpp</a> | 7985 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/JSTObjectCamera.cpp">JSTObjectCamera.cpp</a> | 8577 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/JSTObjectGameActor.cpp">JSTObjectGameActor.cpp</a> | 9285 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/sysShapeModel.cpp">sysShapeModel.cpp</a> | 15500 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/titleSection.cpp">titleSection.cpp</a> | 19709 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/JSTObjectActor.cpp">JSTObjectActor.cpp</a> | 22510 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/JSTObjectSystem.cpp">JSTObjectSystem.cpp</a> | 22652 |
@@ -185,7 +185,7 @@
 | ---- | ---- | ---- | ---- |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/PSMainSide_CreaturePrm.cpp">PSMainSide_CreaturePrm.cpp</a> | 2600 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/PSMainSide_ObjCalc.cpp">PSMainSide_ObjCalc.cpp</a> | 7679 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/PSMainSide_Sound.cpp">PSMainSide_Sound.cpp</a> | 11782 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/PSMainSide_BossMgr.cpp">PSMainSide_BossMgr.cpp</a> | 17562 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/PSMainSide_Director.cpp">PSMainSide_Director.cpp</a> | 28380 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/PSMainSide_DirectorMgr.cpp">PSMainSide_DirectorMgr.cpp</a> | 28495 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/PSMainSide_Director.cpp">PSMainSide_Director.cpp</a> | 28380 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/PSMainSide_DirectorMgr.cpp">PSMainSide_DirectorMgr.cpp</a> | 28648 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/PSMainSide_Se.cpp">PSMainSide_Se.cpp</a> | 45066 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/PSMainSide_Scene.cpp">PSMainSide_Scene.cpp</a> | 49598 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/PSMainSide_ObjSound.cpp">PSMainSide_ObjSound.cpp</a> | 84112 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/PSMainSide_Factory.cpp">PSMainSide_Factory.cpp</a> | 88157 |
 
