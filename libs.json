@@ -1043,7 +1043,7 @@
     "host": true,
     "objects": [
       ["plugProjectNishimuraU/nslibmath", false],
-      ["plugProjectNishimuraU/ShadowCylinder", false],
+      ["plugProjectNishimuraU/ShadowCylinder", true],
       ["plugProjectNishimuraU/playCamera", false],
       ["plugProjectNishimuraU/shadowMgr", true],
       ["plugProjectNishimuraU/MapUnit", true],

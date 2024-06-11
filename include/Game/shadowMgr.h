@@ -96,25 +96,7 @@ struct CylinderBase {
 	void fillRectAlphaZero();
 	void drawCylinderList(int);
 
-	inline f32 getRadius(int i)
-	{
-		f32 size = 1.0f;
-		switch (i) {
-		case 1:
-			size = 1.05f;
-			break;
-		case 0:
-		case 2:
-			size = 1.35f;
-			break;
-		default:
-			break;
-		}
-
-		return size;
-	}
-
-	// VTBL _00
+	// _00 = VTBL
 	CylinderList** mDisplayListObj; // _04
 	Color4* mColor;                 // _08
 	ShadowParms* mParms;            // _0C
