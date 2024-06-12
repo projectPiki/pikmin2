@@ -679,7 +679,7 @@ void StateCarryEnd::exec(EnemyBase* enemy)
 		transit(enemy, PANMODOKI_Dead, nullptr);
 
 	} else {
-		Vector3f diff = enemy->mHomePosition - enemy->getPosition();
+		Vector3f diff = Vector3f::sub2(enemy->mHomePosition, enemy->getPosition());
 		if (diff.isBoundedX(2.0f) && diff.isBoundedZ(2.0f)) {
 			Vector3f homePos = enemy->mHomePosition;
 			enemy->onSetPosition(homePos);

@@ -40,11 +40,6 @@ namespace Game {
 /**
  * @note Address: 0x8021F3D0
  * @note Size: 0x1790
- *
- * @note Functionally instruction match the function by removing the definition for
- *       the 'Vector3f operator-(const Vector3f&, const Vector3f&)' inline function.
- *       At line ~335 in Vector3f.h replace the line with:
- *       Vector3f operator-(const Vector3f& a, const Vector3f& b);
  */
 bool Navi::demoCheck()
 {
@@ -72,7 +67,7 @@ bool Navi::demoCheck()
 	// regswaps issue with hasWhite, hasPurple nad cPom and color
 	bool hasWhite  = playData->hasGotWhites();
 	bool hasPurple = playData->hasGotPurples();
-	if (pommgr && (hasPurple || hasWhite)) {
+	if (pommgr && (hasWhite || hasPurple)) {
 		EnemyIterator<Pom::Obj> iter(pommgr);
 		CI_LOOP(iter)
 		{
@@ -145,8 +140,9 @@ bool Navi::demoCheck()
 					Piki* cPiki = nullptr;
 					CI_LOOP(pikiIter)
 					{
-						cPiki = *pikiIter;
-						if (cPiki->getKind() != Yellow) {
+						Piki* temp = *pikiIter;
+						if (temp->getKind() == Yellow) {
+							cPiki = temp;
 							break;
 						}
 					}
@@ -165,7 +161,7 @@ bool Navi::demoCheck()
 				Vector3f navipos  = getPosition();
 				f32 dist          = onyonpos.distance(navipos);
 				if (dist < FindBlueOnionTriggerSize) {
-					playData->setDemoFlag(DEMO_Find_Yellow_Onion);
+					playData->setDemoFlag(DEMO_Find_Blue_Onion);
 					MoviePlayArg arg("x11_find_blue_onyon", nullptr, nullptr, 0);
 
 					// make any wogpoles visible in the cutscene
@@ -235,7 +231,7 @@ bool Navi::demoCheck()
 				f32 radius       = pelt->getBottomRadius() + FindGlobeTreasureTriggerSize;
 				// only the two globe treasures should check if a captain/pikmin is near, others play instantly
 				bool check = false;
-				if (id == OlimarData::ODII_SphericalAtlas || id != OlimarData::ODII_GeographicProjection) {
+				if (id != OlimarData::ODII_SphericalAtlas && id != OlimarData::ODII_GeographicProjection) {
 					check = true;
 				}
 
@@ -276,7 +272,7 @@ bool Navi::demoCheck()
 					arg.mOrigin = pelt->getPosition();
 					Vector3f test;
 					pelt->mBaseTrMatrix.getBasis(2, test);
-					arg.mAngle                 = JMath::atanTable_.atan2_(test.x, test.z);
+					arg.mAngle                 = JMAAtan2Radian(test.x, test.z);
 					moviePlayer->mTargetObject = pelt;
 					moviePlayer->play(arg);
 					playData->setDemoFlag(DEMO_Find_Loozy_Treasure);
@@ -294,14 +290,16 @@ bool Navi::demoCheck()
 		Iterator<BaseItem> caveIt(ItemCave::mgr);
 		CI_LOOP(caveIt)
 		{
-			cCave = static_cast<ItemCave::Item*>(*caveIt);
-			if (playData->isCaveFirstTime(id, cCave->mCaveID)) {
+			ItemCave::Item* temp = static_cast<ItemCave::Item*>(*caveIt);
+			if (playData->isCaveFirstTime(id, temp->mCaveID)) {
 				Sys::Sphere bound;
-				cCave->getBoundingSphere(bound);
+				temp->getBoundingSphere(bound);
 				bound.mRadius += FindNewCaveTriggerSize;
 				FakePiki* piki = checkDemoNaviAndPiki(bound);
-				if (!piki)
+				if (piki) {
+					cCave = temp;
 					break;
+				}
 			}
 		}
 
@@ -336,7 +334,7 @@ bool Navi::demoCheck()
 		{
 			ItemHole::Item* temp = static_cast<ItemHole::Item*>(*holeIt);
 			Sys::Sphere bounds;
-			cHole->getBoundingSphere(bounds);
+			temp->getBoundingSphere(bounds);
 			Vector3f posDiff = bounds.mPosition - mPosition;
 			f32 len          = posDiff.length() - bounds.mRadius;
 			if (len < checkrad) {
@@ -362,12 +360,16 @@ bool Navi::demoCheck()
 		f32 checkrad = FindGeyserTriggerSize;
 		CI_LOOP(fountainIt)
 		{
-			cFountain = static_cast<ItemBigFountain::Item*>(*fountainIt);
+			ItemBigFountain::Item* item = static_cast<ItemBigFountain::Item*>(*fountainIt);
 			Sys::Sphere bounds;
-			cFountain->getBoundingSphere(bounds);
+			item->getBoundingSphere(bounds);
 			bounds.mRadius += checkrad;
-			if (checkDemoNaviAndPiki(bounds) == nullptr)
+			// I have no clue why were writing a pikmin to a geyser object but I guess theyre both creatures
+			cFountain = reinterpret_cast<ItemBigFountain::Item*>(checkDemoNaviAndPiki(bounds));
+			if (cFountain) {
+				cFountain = item;
 				break;
+			}
 		}
 
 		if (cFountain && moviePlayer) {
@@ -413,7 +415,7 @@ bool Navi::demoCheck()
 			ItemHoney::Item* temp = *honeyIt;
 			if (temp->demoOK() && temp->mHoneyType == HONEY_R && temp->isAlive()) {
 				Sys::Sphere bounds;
-				cHoney->getBoundingSphere(bounds);
+				temp->getBoundingSphere(bounds);
 				Vector3f naviPos = bounds.mPosition - mPosition;
 				f32 len          = naviPos.length() - bounds.mRadius;
 				if (len < checkrad) {
@@ -443,7 +445,7 @@ bool Navi::demoCheck()
 			ItemHoney::Item* temp = *honeyIt;
 			if (temp->demoOK() && temp->mHoneyType == HONEY_B && temp->isAlive()) {
 				Sys::Sphere bounds;
-				cHoney->getBoundingSphere(bounds);
+				temp->getBoundingSphere(bounds);
 				Vector3f naviPos = bounds.mPosition - mPosition;
 				f32 len          = naviPos.length() - bounds.mRadius;
 				if (len < checkrad) {
