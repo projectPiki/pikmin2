@@ -6,7 +6,7 @@
 #include "JSystem/JGadget/allocator.h"
 
 namespace JGadget {
-template <typename Element, typename Allocator>
+template <typename Element, typename Allocator = TAllocator<Element> >
 struct TList {
 	struct TNode_ {
 		TNode_* getNext() const { return mNext; }
@@ -25,7 +25,6 @@ struct TList {
 	struct iterator {
 		iterator() { mNode = nullptr; }
 		iterator(TNode_* node) { mNode = node; }
-		iterator(const iterator& other) { mNode = other.mNode; }
 
 		inline void operator=(const iterator& other) { mNode = other.mNode; }
 		inline Element operator*() const { return mNode->mElement; }
@@ -68,18 +67,7 @@ struct TList {
 
 	~TList()
 	{
-		// definitely fake, maybe iterators taking pointers to stack?
-		TNode_* volatile arr[6];
-
-		arr[5] = &mNode;
-		arr[4] = &mNode;
-		arr[3] = mNode.mNext;
-		arr[2] = mNode.mNext;
-		arr[0] = &mNode;
-
-		while (arr[2] != &mNode) {
-			arr[2] = erase(arr[2]).mNode;
-		}
+		clear();
 	}
 
 	// unused/inlined:
@@ -125,8 +113,6 @@ struct TList {
 
 	iterator erase(iterator position)
 	{
-		volatile iterator iter(position);
-
 		TNode_* currNode       = position.mNode;
 		TNode_* nextNode       = currNode->mNext;
 		currNode->mPrev->mNext = nextNode;
@@ -148,20 +134,20 @@ struct TList {
 	void push_back(Element element) { insert(end(), &element); }
 
 	iterator begin() { return iterator(mNode.mNext); }
-	iterator end() { return iterator(mNode.mPrev); }
+	iterator end() { return iterator(&mNode); }
 
-	const_iterator begin() const { return const_iterator(mNode.mNext); }
-	const_iterator end() const { return const_iterator(mNode.mPrev); }
+	// const_iterator begin() const { return const_iterator(mNode.mNext); }
+	// const_iterator end() const { return const_iterator(mNode.mPrev); }
 	bool empty() const { return size() == 0; }
 	u32 size() const { return mSize; }
-	iterator clear() { return erase(end(), begin()); }
+	iterator clear() { return erase(begin(), end()); }
 
 	Allocator mAllocator; // _00
 	u32 mSize;            // _04
 	TNode_ mNode;         // _08
 };
 
-struct TList_pointer_void : public TList<void*, TVoidAllocator> {
+struct TList_pointer_void : public TList<void*> {
 	TList_pointer_void(); // unused/inlined?
 	TList_pointer_void(const TVoidAllocator& allocator);
 	TList_pointer_void(u32, const void*&, const TVoidAllocator&); // unused/inlined

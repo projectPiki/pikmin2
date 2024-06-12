@@ -141,7 +141,7 @@
     "objects": [
       ["JSystem/JGadget/binary", true],
       ["JSystem/JGadget/linklist", true],
-      ["JSystem/JGadget/std-list", false],
+      ["JSystem/JGadget/std-list", true],
       ["JSystem/JGadget/std-vector", true]
     ]
   },
