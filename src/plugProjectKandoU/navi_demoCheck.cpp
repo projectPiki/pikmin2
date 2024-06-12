@@ -170,13 +170,12 @@ bool Navi::demoCheck()
 								targetPiki = temp;
 								break;
 							}
+						}
 
 // INTNS: Added this code for poor new modders wondering why they crash
 #if FOR_MODDING
-							static int count = 0;
-							JUT_ASSERT(count++ > 500000, "No yellow pikmin found for yellow onion cutscene\n");
+						JUT_ASSERT(targetPiki, "No yellow pikmin found for yellow onion cutscene\n");
 #endif
-						}
 
 						arg.mOrigin                = targetPiki->getPosition();
 						arg.mAngle                 = targetPiki->getFaceDir();
@@ -219,13 +218,12 @@ bool Navi::demoCheck()
 								targetPiki = temp;
 								targetPiki->movie_begin(false);
 							}
-
-							// INTNS: Added this code for poor new modders wondering why they crash
-#if FOR_MODDING
-							static int count = 0;
-							JUT_ASSERT(count++ > 500000, "No blue pikmin found for blue onion cutscene\n");
-#endif
 						}
+
+// INTNS: Added this code for poor new modders wondering why they crash
+#if FOR_MODDING
+						JUT_ASSERT(targetPiki, "No blue pikmin found for blue onion cutscene\n");
+#endif
 
 						arg.mOrigin        = targetPiki->getPosition();
 						arg.mAngle         = targetPiki->getFaceDir();
