@@ -61,7 +61,7 @@ void TMainTitleMgr::loadResource()
 	sys->heapStatusStart("TMainTitleMgr::loadResource", nullptr);
 	sys->heapStatusStart("TTitleMenu::loadResource", nullptr);
 
-	char buf[256];
+	char buf[PATH_MAX];
 	og::newScreen::makeLanguageResName(buf, "title.szs");
 
 	JKRArchive* arc = JKRMountArchive(buf, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);

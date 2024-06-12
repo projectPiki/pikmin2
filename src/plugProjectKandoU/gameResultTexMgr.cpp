@@ -94,7 +94,7 @@ void ResultTexMgr::Mgr::create(ResultTexMgr::Arg& arg)
 
 	mOtakaraTextures.alloc(otakaraCount);
 	for (int i = 0; i < otakaraCount; i++) {
-		char otakaraTexturePath[256];
+		char otakaraTexturePath[PATH_MAX];
 		sprintf(otakaraTexturePath, "%s/texture.bti", mOtakaraConfigList->getPelletConfig(i)->mParams.mName.mData);
 
 		ResTIMG* otakaraTexture = static_cast<ResTIMG*>(archive->getResource(otakaraTexturePath));
@@ -110,7 +110,7 @@ void ResultTexMgr::Mgr::create(ResultTexMgr::Arg& arg)
 
 	mItemTextures.alloc(itemCount);
 	for (int i = 0; i < itemCount; i++) {
-		char itemTexturePath[256];
+		char itemTexturePath[PATH_MAX];
 		sprintf(itemTexturePath, "%s/texture.bti", mItemConfigList->getPelletConfig(i)->mParams.mName.mData);
 
 		ResTIMG* itemTexture = static_cast<ResTIMG*>(archive->getResource(itemTexturePath));

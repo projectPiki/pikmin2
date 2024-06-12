@@ -221,6 +221,9 @@ struct Matrixf {
 	}
 
 	// for navi_demoCheck.cpp
+	// getBasis(0) is for the Right Vector
+	// getBasis(1) is for the Up Vector
+	// getBasis(2) is for the Forward Vector
 	inline void getBasis(int index, Vector3f& out)
 	{
 		out.x = operator()(0, index);

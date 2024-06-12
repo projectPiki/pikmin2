@@ -512,7 +512,7 @@ void TOption::doDraw()
  */
 void TOption::loadResource()
 {
-	char resName[256];
+	char resName[PATH_MAX];
 	sys->heapStatusStart("TOption::loadResource", nullptr);
 	og::newScreen::makeLanguageResName(resName, "option_us.szs");
 	JKRArchive* archive = JKRMountArchive(resName, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);

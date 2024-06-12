@@ -622,7 +622,7 @@ void BaseGameSection::initGenerators()
 
 		int fileIdx = 0;
 
-		char filenameCharArr[256];
+		char filenameCharArr[PATH_MAX];
 		void* generatorFiles[64];
 		GeneratorMgr* generatorManagers[64];
 

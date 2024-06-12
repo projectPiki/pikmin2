@@ -21,8 +21,6 @@ void drawObjName(Graphics&, char*)
 }
 
 /**
- * TODO: This is currently slightly too small.
- *
  * @note Address: N/A
  * @note Size: 0x84
  * Tells the game which resource folder path to use, based on system language.
@@ -70,11 +68,6 @@ void makeLanguageResName(char* languageResName, char const* path)
 	char langDirBuffer[16];
 
 	if (*path == '/') {
-		// TODO: Perhaps this is inlined from some path normalization func?
-		// It's currently putting %s before the subdirs in rodata, when it
-		// should be afterwards.
-
-		// nah, it works now. -Epoch
 		sprintf(languageResName, "%s", path);
 		return;
 	}

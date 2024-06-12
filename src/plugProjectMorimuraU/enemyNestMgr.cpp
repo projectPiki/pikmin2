@@ -153,7 +153,7 @@ void Mgr::doSimpleDraw(Viewport* viewport)
  */
 void Mgr::initObjects()
 {
-	char path[256];
+	char path[PATH_MAX];
 	if (isValidEnemyTypeID()) {
 		char* collisionFolder = EnemyInfoFunc::getEnemyInfo(getEnemyTypeID(), 0xFFFF)->mCollName;
 		if (*collisionFolder == '\0') {

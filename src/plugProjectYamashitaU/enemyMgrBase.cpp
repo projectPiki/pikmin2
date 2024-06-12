@@ -538,7 +538,7 @@ void EnemyMgrBase::loadAnimData()
 		animName = EnemyInfoFunc::getEnemyName(getEnemyTypeID(), 0xFFFF);
 	}
 
-	char file[256];
+	char file[PATH_MAX];
 	sprintf(file, "/enemy/data/%s/anim.szs", animName);
 
 	JKRArchive* archive = nullptr;

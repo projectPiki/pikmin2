@@ -225,7 +225,7 @@ void PikiMgr::load(int viewNum)
  */
 void PikiMgr::loadBmd(int id, char* name)
 {
-	char pathbuf[256];
+	char pathbuf[PATH_MAX];
 	sprintf(pathbuf, "piki_model/%s.bmd", name);
 	J3DModelData* data = J3DModelLoaderDataBase::load(mModelArchive->getResource(pathbuf), 0x60010);
 	{

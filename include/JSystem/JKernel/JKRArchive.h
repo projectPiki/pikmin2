@@ -36,10 +36,10 @@ struct JKRArchive : public JKRFileLoader {
 		CArcName() { }
 		CArcName(const char* name) { store(name); }
 
-		u16 mHash;         // _00
-		u16 mLength;       // _02
-		char mString[256]; // _04
-		u8 _104[4];        // _104, unknown
+		u16 mHash;              // _00
+		u16 mLength;            // _02
+		char mString[PATH_MAX]; // _04
+		u8 _104[4];             // _104, unknown
 	};
 
 	struct SDIFileEntry {

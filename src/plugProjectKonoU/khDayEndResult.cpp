@@ -1674,8 +1674,8 @@ void ObjDayEndResultMail::doCreate(JKRArchive* arc)
 				mMailIconAnms[i].mIconCount = 0;
 				mMailIconAnms[i].mTIMG      = nullptr;
 			} else {
-				const char* path = scene->mTableData[id]->getFileName();
-				char buf[256]    = { 0 };
+				const char* path   = scene->mTableData[id]->getFileName();
+				char buf[PATH_MAX] = { 0 };
 				do {
 					sprintf(buf, "%s%003d.bti", path, mMailIconAnms[i].mIconCount++);
 				} while (JKRGetResource(buf, mIconArchive));

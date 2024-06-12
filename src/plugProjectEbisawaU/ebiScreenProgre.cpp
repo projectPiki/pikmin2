@@ -17,7 +17,7 @@ namespace ebi {
 void TScreenProgre::loadResource()
 {
 	sys->heapStatusStart("TScreenProgre::loadResource", nullptr);
-	char path[256];
+	char path[PATH_MAX];
 	og::newScreen::makeLanguageResName(path, "progre.szs");
 	JKRArchive* arc = JKRMountArchive(path, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
 	P2ASSERTLINE(37, arc);
