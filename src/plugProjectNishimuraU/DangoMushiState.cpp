@@ -835,13 +835,7 @@ void StateMove::exec(EnemyBase* enemy)
 		} else {
 			crab->turnToTarget(target, CG_GENERALPARMS(crab).mTurnSpeed(), CG_GENERALPARMS(crab).mMaxTurnAngle());
 			if (FABS(viewAngle) <= PI * (DEG2RAD * CG_GENERALPARMS(crab).mMaxAttackAngle())) {
-				f32 moveSpeed = CG_GENERALPARMS(crab).mMoveSpeed();
-				f32 x         = sin(crab->getFaceDir());
-				f32 y         = crab->getTargetVelocity().y;
-				f32 z         = cos(crab->getFaceDir());
-
-				crab->mTargetVelocity = Vector3f(moveSpeed * x, y, moveSpeed * z);
-
+				crab->setTargetVelocity();
 			} else {
 				crab->mTargetVelocity = Vector3f(0.0f);
 			}
@@ -856,22 +850,17 @@ void StateMove::exec(EnemyBase* enemy)
 	} else {
 		Vector3f targetPos = crab->mTargetPosition;
 		f32 viewAngle      = crab->getCreatureViewAngle(targetPos);
-		crab->turnToTarget(targetPos, CG_GENERALPARMS(crab).mTurnSpeed(), CG_GENERALPARMS(crab).mMaxTurnAngle());
+		crab->turnToTarget2(targetPos, CG_GENERALPARMS(crab).mTurnSpeed(), CG_GENERALPARMS(crab).mMaxTurnAngle());
 
 		if (FABS(viewAngle) <= HALF_PI) {
-			f32 moveSpeed = CG_GENERALPARMS(crab).mMoveSpeed();
-			f32 x         = sin(crab->getFaceDir());
-			f32 y         = crab->getTargetVelocity().y;
-			f32 z         = cos(crab->getFaceDir());
-
-			crab->mTargetVelocity = Vector3f(moveSpeed * x, y, moveSpeed * z);
+			crab->setTargetVelocity();
 		} else {
-			crab->mTargetVelocity = Vector3f(0.0f);
+			crab->setTargetVelocity(Vector3f(0.0f));
 		}
 	}
 
 	if (crab->isFinishMotion()) {
-		crab->mTargetVelocity = Vector3f(0.0f);
+		crab->setTargetVelocity(Vector3f(0.0f));
 	}
 
 	crab->mStateTimer += sys->mDeltaTime;

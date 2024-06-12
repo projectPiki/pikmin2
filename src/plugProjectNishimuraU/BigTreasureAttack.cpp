@@ -433,7 +433,7 @@ bool BigTreasureElecAttack::update()
 		mPosition = mOwner->mModel->getJoint("otakara_elec_eff")->getWorldMatrix()->getColumn(3);
 	}
 
-	if (mIsVisibleNode) {
+	if (mConnectedNode) {
 		Vector3f partnerSep = mConnectedNode->mPosition - mPosition; // f30, f26, f31
 		f32 dist            = partnerSep.normalise();                // f29
 
@@ -2374,10 +2374,10 @@ void BigTreasureAttackMgr::startElecAttack()
 		counter++;
 	}
 
-	f32 attackVal     = (f32)mAttackData->mElecMaxNodes * 0.25f;
-	mElecSENodeIDs[0] = attackVal * 1.0f;
-	mElecSENodeIDs[1] = attackVal * 2.0f;
-	mElecSENodeIDs[2] = attackVal * 3.0f;
+	f32 attackVal = (f32)mAttackData->mElecMaxNodes * 0.25f;
+	for (int i = 0; i < 3; i++) {
+		mElecSENodeIDs[i] = attackVal * f32(i);
+	}
 
 	/*
 	stwu     r1, -0xd0(r1)
