@@ -195,10 +195,11 @@ void Obj::setQurioneStartPos(f32 slideDist)
  */
 void Obj::moveFaceDir()
 {
-	f32 moveSpeed = C_GENERALPARMS.mMoveSpeed.mValue;
-	f32 x         = sin(getFaceDir());
-	f32 y         = getTargetVelocity().y;
-	f32 z         = cos(getFaceDir());
+	f32 moveSpeed = getMoveSpeed();
+	// Vector3f vel;
+	f32 x = dolsinf(getFaceDir());
+	f32 y = getTargetVelocity().y;
+	f32 z = dolcosf(getFaceDir());
 
 	mTargetVelocity = Vector3f(moveSpeed * x, y, moveSpeed * z);
 

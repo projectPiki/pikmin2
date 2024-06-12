@@ -760,9 +760,9 @@ void Obj::walkFunc()
 	}
 
 	if (stateID == JIGUMO_Attack) {
-		f32 x = (f32)sin(getFaceDir());
+		f32 x = dolsinf(getFaceDir());
 		f32 y = getTargetVelocity().y;
-		f32 z = (f32)cos(getFaceDir());
+		f32 z = dolcosf(getFaceDir());
 
 		mTargetVelocity = Vector3f(walkSpeed * x, y, walkSpeed * z);
 

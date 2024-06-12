@@ -400,12 +400,12 @@ void Obj::rollingMove()
 
 	turnToTarget2(targetPos, C_PROPERPARMS.mRollingTurnAccel(), C_PROPERPARMS.mRollingTurnSpeed());
 
-	f32 rollSpeed = C_PROPERPARMS.mRollingMoveSpeed();
-	f32 x         = (f32)sin(getFaceDir());
+	f32 moveSpeed = getMoveSpeed();
+	f32 x         = dolsinf(getFaceDir());
 	f32 y         = getTargetVelocity().y;
-	f32 z         = (f32)cos(getFaceDir());
+	f32 z         = dolcosf(getFaceDir());
 
-	mTargetVelocity = Vector3f(rollSpeed * x, y, rollSpeed * z);
+	mTargetVelocity = Vector3f(moveSpeed * x, y, moveSpeed * z);
 
 	if (mWallTriangle) {
 		Vector3f vel(mCurrentVelocity);

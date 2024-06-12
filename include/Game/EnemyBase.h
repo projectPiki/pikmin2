@@ -701,6 +701,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	inline Vector3f getTargetVelocity() { return mTargetVelocity; }
 	inline void setTargetVelocity(const Vector3f& ref) { mTargetVelocity = ref; }
 
+	inline f32 getMoveSpeed() { return static_cast<EnemyParmsBase*>(mParms)->mGeneral.mMoveSpeed(); }
 	inline f32 getMoveSpeed(f32 speedFactor) { return speedFactor * static_cast<EnemyParmsBase*>(mParms)->mGeneral.mMoveSpeed(); }
 
 	inline f32 getScaleMod() const { return mScaleModifier; }
@@ -709,9 +710,9 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	{
 		f32 x, y, z;
 		f32 speed = speedFactor * static_cast<EnemyParmsBase*>(mParms)->mGeneral.mMoveSpeed();
-		x         = (f32)sin(getFaceDir());
+		x         = dolsinf(getFaceDir());
 		y         = getTargetVelocity().y;
-		z         = (f32)cos(getFaceDir());
+		z         = dolcosf(getFaceDir());
 
 		mTargetVelocity = Vector3f(speed * x, y, speed * z);
 	}
@@ -720,9 +721,9 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	{
 		f32 x, y, z;
 		f32 speed = static_cast<EnemyParmsBase*>(mParms)->mGeneral.mMoveSpeed();
-		x         = (f32)sin(getFaceDir());
+		x         = dolsinf(getFaceDir());
 		y         = getTargetVelocity().y;
-		z         = (f32)cos(getFaceDir());
+		z         = dolcosf(getFaceDir());
 
 		mTargetVelocity = Vector3f(speed * x, y, speed * z);
 	}
