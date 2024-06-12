@@ -25,7 +25,7 @@ def main():
         return 1
         
     modify_makefile(provided_filename, unlink)
-    modify_configure(provided_filename, unlink)
+    modify_ninja(provided_filename, unlink)
     modify_o_file(provided_filename, unlink)
     delete_source_file(provided_filename, unlink)
 
@@ -69,21 +69,21 @@ def modify_makefile(whole_file_path:Path, unlink:bool):
     return
 
 
-def modify_configure(whole_file_path:Path, unlink:bool):
+def modify_ninja(whole_file_path:Path, unlink:bool):
     containing_folder = whole_file_path.parent
     file_without_extension =  whole_file_path.stem
 
-    # make sure we can find "configure.py", i.e. this was run in the root of the project
-    configure_to_modify = Path("configure.py")
+    # make sure we can find "libs.json", i.e. this was run in the root of the project
+    ninja_configure_to_modify = Path("libs.json")
     
-    if not configure_to_modify.exists():
-        print(f"Unable to modify \"{configure_to_modify}\" in root directory. Make sure this command was run from the root of the project.")
+    if not ninja_configure_to_modify.exists():
+        print(f"Unable to modify \"{ninja_configure_to_modify}\" in root directory. Make sure this command was run from the root of the project.")
         return
     
     # remove the "src" folder from path, and remove any extension
     part_to_change = PurePosixPath(*containing_folder.parts[1:]) / PurePosixPath(file_without_extension)
 
-    whole_configure = configure_to_modify.read_text()
+    whole_configure = ninja_configure_to_modify.read_text()
 
     # wrap the file in quotes, cuz that's how it'll appear in the config file
     entry = f"\"{part_to_change}\""
@@ -93,15 +93,15 @@ def modify_configure(whole_file_path:Path, unlink:bool):
 
     # make sure it only appears once
     if entry_count <= 0:
-        print(f"Unable to find {entry} file in \"{configure_to_modify}\".")
+        print(f"Unable to find {entry} file in \"{ninja_configure_to_modify}\".")
         return
     elif entry_count > 1:
-        print(f"Too many matches of {entry} in \"{configure_to_modify}\", unable to edit.")
+        print(f"Too many matches of {entry} in \"{ninja_configure_to_modify}\", unable to edit.")
         return
 
     # get the "True" or "False" of (un)linking
-    to_change = str(unlink)
-    to_change_to = str(not unlink)
+    to_change = str(unlink).lower()
+    to_change_to = str(not unlink).lower()
 
     # offset to after the file is located in the configure.py file
     offset = whole_configure.find(entry) + len(entry)
@@ -113,17 +113,17 @@ def modify_configure(whole_file_path:Path, unlink:bool):
 
     # if we didn't find the bool we're looking for
     if linking_status_found < 0:
-        print(f"Unable to find \"{to_change}\" for {entry} in {configure_to_modify}")
+        print(f"Unable to find \"{to_change}\" for {entry} in {ninja_configure_to_modify}")
         return
 
-    print(f"Changing linking of {entry} from \"{to_change}\" to \"{to_change_to}\" in \"{configure_to_modify}\"")
+    print(f"Changing linking of {entry} from \"{to_change}\" to \"{to_change_to}\" in \"{ninja_configure_to_modify}\"")
 
     offset += linking_status_found
 
     # string manipulation to replace the bool with our new bool
     new_configure = whole_configure[:offset] + to_change_to + whole_configure[offset + len(to_change):]
     
-    configure_to_modify.write_text(new_configure)
+    ninja_configure_to_modify.write_text(new_configure)
 
     return
 
