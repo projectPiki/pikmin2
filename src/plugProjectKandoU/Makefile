@@ -98,7 +98,7 @@ KANDO_FILES:=\
 	$(BUILD_DIR)/src/plugProjectKandoU/baseHIOparms.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/radarInfo.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/singleGS_Movie.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/navi_demoCheck.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/navi_demoCheck.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/singleGS_Zukan.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/gameResultTexMgr.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/gamePelletList.o\

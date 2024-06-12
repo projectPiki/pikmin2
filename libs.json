@@ -998,7 +998,7 @@
       ["plugProjectKandoU/baseHIOparms", true],
       ["plugProjectKandoU/radarInfo", true],
       ["plugProjectKandoU/singleGS_Movie", true],
-      ["plugProjectKandoU/navi_demoCheck", false],
+      ["plugProjectKandoU/navi_demoCheck", true],
       ["plugProjectKandoU/singleGS_Zukan", false],
       ["plugProjectKandoU/gameResultTexMgr", true],
       ["plugProjectKandoU/gamePelletList", true],
