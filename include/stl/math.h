@@ -25,6 +25,7 @@ extern "C" {
 #define TAU        6.2831855f
 #define PI         3.1415927f
 #define HALF_PI    1.5707964f
+#define HALF_PI_F64 1.5707963267948966
 #define THIRD_PI   1.0471976f
 #define QUARTER_PI 0.7853982f
 
@@ -33,6 +34,7 @@ extern "C" {
 
 #define DEG2RAD            (1.0f / 180.0f)
 #define RAD2DEG            (57.295776f)
+#define RAD2DEG_F64            (57.29577951308232)
 #define TORADIANS(degrees) (PI * (DEG2RAD * degrees))
 #define TODEGREES(radians) (RAD2DEG * radians)
 

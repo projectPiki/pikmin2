@@ -8,11 +8,16 @@
 namespace JStudio {
 namespace math {
 void getTransformation_SRxyzT(MtxP, const Vec&, const Vec&, const Vec&);
-void getFromTransformation_SRxyzT(Vec*, Vec*, Vec*, f32 const (*)[4]);
+void getFromTransformation_SRxyzT(Vec*, Vec*, Vec*, const Mtx mtx);
+
+void getFromTransformation_S(Vec*, const Mtx mtx);
+f32 getFromTransformation_Sn(const Mtx mtx, u32);
+
+void getFromTransformation_T(Vec*, const Mtx mtx);
 
 // unused/inlined:
 void getRotation_xyz(MtxP, f32, f32, f32);
-void transform_SRxyzT(MtxP, f32 const (*)[4], const Vec&, const Vec&, const Vec&);
+void transform_SRxyzT(MtxP, const Mtx, const Vec&, const Vec&, const Vec&);
 
 inline void getRotation_y(Mtx mtx, f32 yRot) { PSMTXRotRad(mtx, 'y', yRot * 0.017453292f); }
 

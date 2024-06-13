@@ -10,7 +10,7 @@ JSTUDIO_FILES:=\
 	$(BUILD_DIR)/src/JSystem/JStudio/object-id.o\
 	$(BUILD_DIR)/asm/JSystem/JStudio/stb.o\
 	$(BUILD_DIR)/src/JSystem/JStudio/stb-data.o\
-	$(BUILD_DIR)/asm/JSystem/JStudio/jstudio-math.o\
+	$(BUILD_DIR)/src/JSystem/JStudio/jstudio-math.o\
 
 DEPENDS += $(JSTUDIO_FILES:.o=.d)
 
