@@ -30,7 +30,7 @@ ObjSMenuBase::ObjSMenuBase()
 	mCancelToState   = MENUCLOSE_None;
 	mEnableYaji      = false;
 	mAlpha           = 0;
-	_88              = 0.0f;
+	mUnused88        = 0.0f;
 	mButtonStates[1] = Controller::PRESS_R;
 	mButtonStates[0] = Controller::PRESS_L;
 
@@ -44,7 +44,7 @@ ObjSMenuBase::ObjSMenuBase()
 	mTyaji_l    = nullptr;
 	mTyaji_r    = nullptr;
 	mScreenMain = nullptr;
-	_A4         = 1.0f;
+	mUnusedA4   = 1.0f;
 	mPaneNsize  = nullptr;
 	mArrowBlink = new og::Screen::ArrowAlphaBlink;
 }
@@ -87,15 +87,15 @@ void ObjSMenuBase::doCreateAfter(JKRArchive* arc, P2DScreen::Mgr* scrn)
 	mScreenLR->set("s_menu_yajirushi_LR.blo", 0x1040000, arc);
 	og::Screen::setAlphaScreen(mScreenLR);
 
-	mNyaji_l    = og::Screen::TagSearch(mScreenLR, 'Nyaji_l');
+	mNyaji_l    = og::Screen::TagSearch(mScreenLR, 'Nyaji_l'); // overall L button pane
 	mYajiLpos.x = mNyaji_l->mOffset.x;
 	mYajiLpos.y = mNyaji_l->mOffset.y;
-	mNyaji_r    = og::Screen::TagSearch(mScreenLR, 'Nyaji_r');
+	mNyaji_r    = og::Screen::TagSearch(mScreenLR, 'Nyaji_r'); // overall R button pane
 	mYajiRpos.x = mNyaji_r->mOffset.x;
 	mYajiRpos.y = mNyaji_r->mOffset.y;
 
-	mTyaji_l = static_cast<J2DTextBoxEx*>(og::Screen::TagSearch(mScreenLR, 'Tyaji_l'));
-	mTyaji_r = static_cast<J2DTextBoxEx*>(og::Screen::TagSearch(mScreenLR, 'Tyaji_r'));
+	mTyaji_l = static_cast<J2DTextBoxEx*>(og::Screen::TagSearch(mScreenLR, 'Tyaji_l')); // L button textbox (items, etc)
+	mTyaji_r = static_cast<J2DTextBoxEx*>(og::Screen::TagSearch(mScreenLR, 'Tyaji_r')); // R button textbox (menu, etc)
 	og::Screen::setCallBackMessage(mScreenLR);
 }
 

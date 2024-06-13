@@ -33,8 +33,8 @@ void CallBack_DrawAfter::update() { }
 void CallBack_DrawAfter::draw(Graphics& gfx, J2DGrafContext& context)
 {
 	if (mIsVisible) {
-		JGeometry::TVec3f minPos = mOrigPane->getGlbVtx(0);
-		JGeometry::TVec3f maxPos = mOrigPane->getGlbVtx(3);
+		JGeometry::TVec3f minPos = mOrigPane->getGlbVtx(GLBVTX_BtmLeft);
+		JGeometry::TVec3f maxPos = mOrigPane->getGlbVtx(GLBVTX_TopRight);
 
 		gfx.mOrthoGraph.setPort();
 

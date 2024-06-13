@@ -10,17 +10,6 @@
 
 namespace JStudio_JStage {
 
-const TAdaptor_actor::TVVOutputObject TAdaptor_actor::saoVVOutput_[2]
-    = { TVVOutputObject(4, &JStage::TActor::JSGSetAnimationTransition, &JStage::TActor::JSGGetAnimationTransition),
-	    TVVOutputObject(5, nullptr, nullptr) };
-
-const TAdaptor_actor::TVVOutput_ANIMATION_FRAME_ TAdaptor_actor::saoVVOutput_ANIMATION_FRAME_[3]
-    = { TVVOutput_ANIMATION_FRAME_(4, &JStage::TActor::JSGSetAnimationFrame, &JStage::TActor::JSGGetAnimationFrame,
-	                               &JStage::TActor::JSGGetAnimationFrameMax),
-	    TVVOutput_ANIMATION_FRAME_(5, &JStage::TActor::JSGSetTextureAnimationFrame, &JStage::TActor::JSGGetTextureAnimationFrame,
-	                               &JStage::TActor::JSGGetTextureAnimationFrameMax),
-	    TVVOutput_ANIMATION_FRAME_(5, nullptr, nullptr, nullptr) };
-
 /**
  * @note Address: 0x80012198
  * @note Size: 0xC8
@@ -395,9 +384,13 @@ void TAdaptor_actor::TVVOutput_ANIMATION_FRAME_::operator()(f32 p1, JStudio::TAd
 {
 	JStage::TActor* actor = static_cast<TAdaptor_actor*>(adaptor)->get_pJSG();
 	// not sure what this bit is
-	u8 idx     = adaptor->mVariableValues[_08]._04;
+	u32 idx = *(u32*)(((u32)adaptor - 1) + _08);
+
+	u8 idx_lowBytes  = idx;
+	u8 idx_highBytes = idx >> 8;
+
 	f32 maxVal = (actor->*mMaxGetter)();
-	switch (idx & 0x2) { // not sure what this is either
+	switch (idx_highBytes) {
 	case 1:
 		p1 = maxVal - p1;
 		break;
@@ -406,75 +399,20 @@ void TAdaptor_actor::TVVOutput_ANIMATION_FRAME_::operator()(f32 p1, JStudio::TAd
 	}
 
 	if (maxVal > 0.0f) {
-		p1 = (f32)(*JStudio::TFunctionValue::toFunction_outside(idx))(p1, maxVal);
+		p1 = (f32)(*JStudio::TFunctionValue::toFunction_outside(idx_lowBytes))(p1, maxVal);
 	}
 	(actor->*mSetter)(p1);
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  stfd      f31, 0x30(r1)
-	  psq_st    f31,0x38(r1),0,0
-	  stfd      f30, 0x20(r1)
-	  psq_st    f30,0x28(r1),0,0
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  lwz       r31, 0x128(r4)
-	  lwz       r0, 0x8(r3)
-	  fmr       f30, f1
-	  mr        r3, r31
-	  addi      r12, r28, 0x24
-	  add       r4, r4, r0
-	  lwz       r30, -0x1(r4)
-	  rlwinm    r29,r30,0,24,31
-	  bl        0xAEEEC
-	  nop
-	  rlwinm    r0,r30,24,24,31
-	  fmr       f31, f1
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x70
-	  bge-      .loc_0x74
-	  b         .loc_0x74
-
-	.loc_0x70:
-	  fsubs     f30, f31, f30
-
-	.loc_0x74:
-	  lfs       f0, -0x7EB8(r2)
-	  fcmpo     cr0, f31, f0
-	  ble-      .loc_0xA0
-	  mr        r3, r29
-	  bl        -0xA180
-	  fmr       f1, f30
-	  mr        r12, r3
-	  fmr       f2, f31
-	  mtctr     r12
-	  bctrl
-	  frsp      f30, f1
-
-	.loc_0xA0:
-	  fmr       f1, f30
-	  mr        r3, r31
-	  addi      r12, r28, 0xC
-	  bl        0xAEE90
-	  nop
-	  psq_l     f31,0x38(r1),0,0
-	  lfd       f31, 0x30(r1)
-	  psq_l     f30,0x28(r1),0,0
-	  lfd       f30, 0x20(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r0, 0x44(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
-	*/
 }
+
+const TAdaptor_actor::TVVOutputObject TAdaptor_actor::saoVVOutput_[2]
+    = { TVVOutputObject(1, &JStage::TActor::JSGSetAnimationTransition, &JStage::TActor::JSGGetAnimationTransition),
+	    TVVOutputObject(-1, nullptr, nullptr) };
+
+const TAdaptor_actor::TVVOutput_ANIMATION_FRAME_ TAdaptor_actor::saoVVOutput_ANIMATION_FRAME_[3]
+    = { TVVOutput_ANIMATION_FRAME_(0, 301, &JStage::TActor::JSGSetAnimationFrame, &JStage::TActor::JSGGetAnimationFrame,
+	                               &JStage::TActor::JSGGetAnimationFrameMax),
+	    TVVOutput_ANIMATION_FRAME_(2, 305, &JStage::TActor::JSGSetTextureAnimationFrame, &JStage::TActor::JSGGetTextureAnimationFrame,
+	                               &JStage::TActor::JSGGetTextureAnimationFrameMax),
+	    TVVOutput_ANIMATION_FRAME_(-1, 0, nullptr, nullptr, nullptr) };
 
 } // namespace JStudio_JStage

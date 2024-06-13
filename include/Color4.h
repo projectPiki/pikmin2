@@ -66,4 +66,10 @@ union u_color {
 	}
 };
 
+inline void GXSetChanMatColor4(Color4* color)
+{
+	GXColor gxCol = color->toGXColor();
+	GXSetChanMatColor(GX_COLOR0A0, gxCol);
+}
+
 #endif

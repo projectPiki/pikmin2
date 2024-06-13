@@ -230,7 +230,7 @@ void OtakaraSensor::updateInit()
 				mNoiseLevel             = 0.0f;
 				mIsPoweringOff          = true;
 				PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-				PSSystem::checkSceneMgr(mgr);
+				PSSystem::validateSceneMgr(mgr);
 				PSM::Scene_Cave* scene = static_cast<PSM::Scene_Cave*>(mgr->getChildScene());
 				PSSystem::checkGameScene(scene);
 				if (scene->isCave()) {
@@ -341,8 +341,8 @@ void OtakaraSensor::calcAppear()
 				mScaleMgr->up(0.7f, 40.0f, 0.5f, 0.0f);
 				mAppearTimer = 3.0f;
 				efx2d::T2DSensorGet efx;
-				JGeometry::TVec3f pos1 = mPane1->getGlbVtx(0);
-				JGeometry::TVec3f pos2 = mPane1->getGlbVtx(3);
+				JGeometry::TVec3f pos1 = mPane1->getGlbVtx(GLBVTX_BtmLeft);
+				JGeometry::TVec3f pos2 = mPane1->getGlbVtx(GLBVTX_TopRight);
 				Vector2f argVec((pos1.x + pos2.x) / 2 + mAppearEfxOffset.x, (pos1.y + pos2.y) / 2 + mAppearEfxOffset.y);
 				efx2d::Arg arg = argVec;
 				efx.create(&arg);
@@ -359,8 +359,8 @@ void OtakaraSensor::calcAppear()
 void OtakaraSensor::startGraySensor()
 {
 	efx2d::T2DSensorComp efx;
-	JGeometry::TVec3f pos1 = mPane1->getGlbVtx(0);
-	JGeometry::TVec3f pos2 = mPane1->getGlbVtx(3);
+	JGeometry::TVec3f pos1 = mPane1->getGlbVtx(GLBVTX_BtmLeft);
+	JGeometry::TVec3f pos2 = mPane1->getGlbVtx(GLBVTX_TopRight);
 	Vector2f argVec((pos1.x + pos2.x) / 2 + mCompleteEfxOffset.x, (pos1.y + pos2.y) / 2 + mCompleteEfxOffset.y);
 	efx2d::Arg arg = argVec;
 	efx.create(&arg);
@@ -450,8 +450,8 @@ void OtakaraSensor::calcReaction()
 				if (mAppearTimer <= 0.0f) {
 					mScaleMgr->up(mCurrReactionLevel * 0.1f, 30.0f, 0.8f, 0.0f);
 					efx2d::T2DSensorAct efx;
-					JGeometry::TVec3f pos1 = mPane1->getGlbVtx(0);
-					JGeometry::TVec3f pos2 = mPane1->getGlbVtx(3);
+					JGeometry::TVec3f pos1 = mPane1->getGlbVtx(GLBVTX_BtmLeft);
+					JGeometry::TVec3f pos2 = mPane1->getGlbVtx(GLBVTX_TopRight);
 					Vector2f argVec((pos1.x + pos2.x) / 2 + mCompleteEfxOffset.x, (pos1.y + pos2.y) / 2 + mCompleteEfxOffset.y);
 					efx2d::Arg arg = argVec;
 					efx.create(&arg);

@@ -132,7 +132,7 @@ BaseGameSection::~BaseGameSection()
 {
 	theExpHeap = nullptr;
 	PSSystem::SceneMgr* sceneMgr;
-	PSSystem::checkSceneMgr(sceneMgr = PSSystem::getSceneMgr());
+	PSSystem::validateSceneMgr(sceneMgr = PSSystem::getSceneMgr());
 	sceneMgr->deleteCurrentScene();
 	TParticle2dMgr::deleteInstance();
 	particleMgr->deleteInstance_TPkEffectMgr();
@@ -622,7 +622,7 @@ void BaseGameSection::initGenerators()
 
 		int fileIdx = 0;
 
-		char filenameCharArr[256];
+		char filenameCharArr[PATH_MAX];
 		void* generatorFiles[64];
 		GeneratorMgr* generatorManagers[64];
 
@@ -1848,7 +1848,7 @@ void BaseGameSection::clearHeap()
 {
 	TexCaster::Mgr::deleteInstance();
 	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-	PSSystem::checkSceneMgr(mgr);
+	PSSystem::validateSceneMgr(mgr);
 	mgr->deleteCurrentScene();
 	GXWaitDrawDone();
 	itemMgr->clearGlobalPointers();

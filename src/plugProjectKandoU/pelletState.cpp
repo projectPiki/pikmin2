@@ -111,7 +111,7 @@ void PelletGoalState::init(Pellet* pellet, StateArg* arg)
 	pellet->clearClaim();
 
 	// check if a new upgrade is acquired
-	if (pellet->getKind() == PELTYPE_UPGRADE && gameSystem->isStoryMode()) {
+	if (pellet->getKind() == PelletType::Upgrade && gameSystem->isStoryMode()) {
 		int id = pellet->getConfigIndex();
 		if (id >= 0 && id < OlimarData::ODII_LAST_NON_EXPLORATION_KIT_ITEM) {
 			playData->mOlimarData->getItem(id);
@@ -217,10 +217,10 @@ bool PelletGoalState::checkMovie(Pellet* pelt)
 	if (gameSystem->isStoryMode()) {
 		isGot = playData->firstCarryPellet(pelt);
 	}
-	if (pelt->getKind() == PELTYPE_BERRY) {
+	if (pelt->getKind() == PelletType::Berry) {
 		isGot = true;
 	}
-	if (pelt->getKind() == PELTYPE_NUMBER) {
+	if (pelt->getKind() == PelletType::Number) {
 		isGot = true;
 	}
 
@@ -253,7 +253,7 @@ bool PelletGoalState::checkMovie(Pellet* pelt)
 		if (onyon && onyon->mOnyonType == ONYON_TYPE_SHIP) {
 			if (gameSystem->mSection->getCurrentCourseInfo()) {
 				// for berries, check if a kind was collected for the first time, or 10 of the berry have been collected
-				if (pelt->getKind() == PELTYPE_BERRY) {
+				if (pelt->getKind() == PelletType::Berry) {
 					int type = pelt->mPelletColor;
 					// Spicy berries.
 					if ((int)pelt->mPelletColor == SPRAY_TYPE_SPICY) {
@@ -333,7 +333,7 @@ bool PelletGoalState::checkMovie(Pellet* pelt)
 						}
 					}
 
-				} else if (pelt->getKind() == PELTYPE_TREASURE) {
+				} else if (pelt->getKind() == PelletType::Treasure) {
 					// Treasure carried to the ship (assume above ground)
 					gameSystem->mSection->setDraw2DCreature(pelt);
 					BaseGameSection* section = gameSystem->mSection;
@@ -343,7 +343,7 @@ bool PelletGoalState::checkMovie(Pellet* pelt)
 					moviePlayer->play(moviearg);
 					doPlay = true;
 
-				} else if (pelt->getKind() == PELTYPE_UPGRADE) {
+				} else if (pelt->getKind() == PelletType::Upgrade) {
 					// Upgrade carried to the ship (this only appears with the globe in AW normally)
 					// strangely, upgrades with an ID of 8 or more use a different theme
 					gameSystem->mSection->setDraw2DCreature(pelt);
@@ -368,7 +368,7 @@ bool PelletGoalState::checkMovie(Pellet* pelt)
 				}
 			}
 		} else if (onyon && onyon->mOnyonType == ONYON_TYPE_POD) {
-			if (pelt->getKind() == PELTYPE_TREASURE) {
+			if (pelt->getKind() == PelletType::Treasure) {
 				// Treasure carried to the cave pod
 				gameSystem->mSection->setDraw2DCreature(pelt);
 				MoviePlayArg moviearg("s22_cv_suck_treasure", nullptr, gameSystem->mSection->mMovieFinishCallback, 0);
@@ -380,7 +380,7 @@ bool PelletGoalState::checkMovie(Pellet* pelt)
 				moviePlayer->play(moviearg);
 				doPlay = true;
 
-			} else if (pelt->getKind() == PELTYPE_UPGRADE) {
+			} else if (pelt->getKind() == PelletType::Upgrade) {
 				// Upgrade carried to the cave pod
 				gameSystem->mSection->setDraw2DCreature(pelt);
 				BaseGameSection* section = gameSystem->mSection;
@@ -396,7 +396,7 @@ bool PelletGoalState::checkMovie(Pellet* pelt)
 				moviePlayer->play(moviearg);
 				doPlay = true;
 
-			} else if (pelt->getKind() == PELTYPE_CARCASS && pelt->mPelletFlag != Pellet::FLAG_NAVI_NAPSACK
+			} else if (pelt->getKind() == PelletType::Carcass && pelt->mPelletFlag != Pellet::FLAG_NAVI_NAPSACK
 			           && !playData->isDemoFlag(DEMO_First_Corpse_In_Cave)) {
 				// first corpse collected in cave
 				playData->setDemoFlag(DEMO_First_Corpse_In_Cave);
@@ -410,7 +410,7 @@ bool PelletGoalState::checkMovie(Pellet* pelt)
 				doPlay = true;
 			}
 		} else if (onyon && onyon->mOnyonType <= ONYON_TYPE_YELLOW) {
-			if (pelt->getKind() == PELTYPE_NUMBER && !playData->isDemoFlag(DEMO_First_Number_Pellet)) {
+			if (pelt->getKind() == PelletType::Number && !playData->isDemoFlag(DEMO_First_Number_Pellet)) {
 				playData->setDemoFlag(DEMO_First_Number_Pellet);
 				BaseGameSection* section = gameSystem->mSection;
 				MoviePlayArg moviearg("x18_exp_pellet", nullptr, section->mMovieFinishCallback, 0);
@@ -426,9 +426,9 @@ bool PelletGoalState::checkMovie(Pellet* pelt)
 
 	if (doPlay) {
 		Pellet* pelt2 = nullptr;
-		if (pelt->getKind() == PELTYPE_CARCASS) {
+		if (pelt->getKind() == PelletType::Carcass) {
 			pelt->mPelletView->mCreature->movie_begin(false);
-		} else if (pelt->getKind() == PELTYPE_NUMBER) {
+		} else if (pelt->getKind() == PelletType::Number) {
 			pelt->movie_begin(false);
 		} else {
 			pelt2 = pelt;
@@ -544,24 +544,24 @@ void PelletGoalState::exec(Pellet* pelt)
 	if (Radar::mgr) {
 		Radar::Mgr::getNumOtakaraItems();
 		Radar::Mgr::getNumOtakaraItems();
-		bool check = pelt->getKind() == PELTYPE_TREASURE;
+		bool check = pelt->getKind() == PelletType::Treasure;
 		if (!check) {
 			pelt->getKind();
 		}
 	}
 
-	if (!gameSystem->isVersusMode() && (pelt->getKind() == PELTYPE_TREASURE || pelt->getKind() == PELTYPE_UPGRADE)
+	if (!gameSystem->isVersusMode() && (pelt->getKind() == PelletType::Treasure || pelt->getKind() == PelletType::Upgrade)
 	    && Radar::Mgr::getNumOtakaraItems() <= 1) {
 		if (gameSystem->mIsInCave) {
 			PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-			PSSystem::checkSceneMgr(mgr);
+			PSSystem::validateSceneMgr(mgr);
 			PSM::Scene_Cave* scene = static_cast<PSM::Scene_Cave*>(mgr->getChildScene());
 			PSSystem::checkGameScene(scene);
 			scene->stopPollutionSe();
 			if (gameSystem->isChallengeMode()) {
 				if (strcmp(pelt->mConfig->mParams.mName.mData, "key")) {
 					PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-					PSSystem::checkSceneMgr(mgr);
+					PSSystem::validateSceneMgr(mgr);
 					PSM::Scene_Cave* scene = static_cast<PSM::Scene_Cave*>(mgr->getChildScene());
 					PSSystem::checkGameScene(scene);
 					if (scene->isCave()) {
@@ -571,7 +571,7 @@ void PelletGoalState::exec(Pellet* pelt)
 			}
 		} else {
 			PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-			PSSystem::checkSceneMgr(mgr);
+			PSSystem::validateSceneMgr(mgr);
 			PSM::Scene_Ground* scene = static_cast<PSM::Scene_Ground*>(mgr->getChildScene());
 			PSSystem::checkGameScene(scene);
 			scene->setPollutUp();
@@ -587,9 +587,9 @@ void PelletGoalState::exec(Pellet* pelt)
 		}
 		pelt->kill(nullptr);
 	} else {
-		if (pelt->getKind() == PELTYPE_CARCASS || pelt->getKind() == PELTYPE_NUMBER) {
+		if (pelt->getKind() == PelletType::Carcass || pelt->getKind() == PelletType::Number) {
 			pelt->kill(nullptr);
-		} else if (pelt->getKind() == PELTYPE_UPGRADE || pelt->getKind() == PELTYPE_TREASURE) {
+		} else if (pelt->getKind() == PelletType::Upgrade || pelt->getKind() == PelletType::Treasure) {
 			pelt->mAnimSpeed = sys->mDeltaTime * 30.0f;
 			pelt->mCarryAnim.setFrameByKeyType(0);
 		}

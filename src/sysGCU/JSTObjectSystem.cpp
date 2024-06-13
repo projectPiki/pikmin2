@@ -42,12 +42,12 @@ ObjectSystem::~ObjectSystem() { destroyObjectAll(); }
 void ObjectSystem::destroyObjectAll()
 {
 	// AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-	JGadget::TList<void*, JGadget::TVoidAllocator>::iterator iter(&mObjListPointer.mNext);
-	while (mObjListPointer.mChildCount) {
-		if (static_cast<JGadget::TList_pointer<JStage::TObject*>*>(*iter.mElement)->mNext) {
-			static_cast<JStage::TObject*>(static_cast<JGadget::TList_pointer<JStage::TObject*>*>(*iter.mElement)->mNext)->~TObject();
+	JGadget::TList<void*, JGadget::TVoidAllocator>::iterator iter(&mObjListPointer.mNode);
+	while (!mObjListPointer.empty()) {
+		if (static_cast<JStage::TObject*>(*iter)) {
+			static_cast<JStage::TObject*>(*iter)->~TObject();
 		}
-		mObjListPointer.erase(iter);
+		mObjListPointer.erase(JGadget::TList_pointer<JStudio::TObject*>::iterator(iter.mNode->mNext));
 	}
 	/*
 	stwu     r1, -0x30(r1)
@@ -108,10 +108,10 @@ lbl_80430AF4:
  */
 void ObjectSystem::reset()
 {
-	JGadget::TList<void*, JGadget::TVoidAllocator>::iterator iterStart(&mObjListPointer.mNext);
-	JGadget::TList<void*, JGadget::TVoidAllocator>::iterator iterEnd((void**)mObjListPointer.mNext);
-	while (iterStart.mElement != iterEnd.mElement) {
-		JStage::TObject* obj = static_cast<JStage::TObject*>((void*)iterStart.mElement);
+	JGadget::TList<void*, JGadget::TVoidAllocator>::iterator iterStart(&mObjListPointer.mNode);
+	JGadget::TList<void*, JGadget::TVoidAllocator>::iterator iterEnd(mObjListPointer.mNode.mNext);
+	while (iterStart != iterEnd) {
+		JStage::TObject* obj = static_cast<JStage::TObject*>(*iterStart);
 		switch (obj->JSGFGetType()) {
 		case JStage::TEO_Camera:
 			static_cast<ObjectCamera*>(obj)->reset();
@@ -128,7 +128,7 @@ void ObjectSystem::reset()
 			break;
 		}
 
-		// ++iterStart; // probably something like this
+		++iterStart; // probably something like this
 	}
 	/*
 	stwu     r1, -0x30(r1)
@@ -215,18 +215,18 @@ lbl_80430BEC:
  */
 void ObjectSystem::entry()
 {
-	JGadget::TList<void*, JGadget::TVoidAllocator>::iterator iterStart(&mObjListPointer.mNext);
-	JGadget::TList<void*, JGadget::TVoidAllocator>::iterator iterEnd((void**)mObjListPointer.mNext);
-	while (iterStart.mElement != iterEnd.mElement) {
-		JStage::TObject* obj = static_cast<JStage::TObject*>((void*)iterStart.mElement);
-		switch (obj->JSGFGetType()) {
-		case JStage::TEO_Actor:
-			static_cast<ObjectActor*>(obj)->entry();
-			break;
-		}
+	// JGadget::TList<void*, JGadget::TVoidAllocator>::iterator iterStart(&mObjListPointer.mNext);
+	// JGadget::TList<void*, JGadget::TVoidAllocator>::iterator iterEnd((void**)mObjListPointer.mNext);
+	// while (iterStart.mElement != iterEnd.mElement) {
+	// 	JStage::TObject* obj = static_cast<JStage::TObject*>((void*)iterStart.mElement);
+	// 	switch (obj->JSGFGetType()) {
+	// 	case JStage::TEO_Actor:
+	// 		static_cast<ObjectActor*>(obj)->entry();
+	// 		break;
+	// 	}
 
-		// ++iterStart; // probably something like this
-	}
+	// 	// ++iterStart; // probably something like this
+	// }
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -288,24 +288,24 @@ lbl_80430C98:
  */
 void ObjectSystem::update()
 {
-	JGadget::TList<void*, JGadget::TVoidAllocator>::iterator iterStart(&mObjListPointer.mNext);
-	JGadget::TList<void*, JGadget::TVoidAllocator>::iterator iterEnd((void**)mObjListPointer.mNext);
-	while (iterStart.mElement != iterEnd.mElement) {
-		JStage::TObject* obj = static_cast<JStage::TObject*>((void*)iterStart.mElement);
-		switch (obj->JSGFGetType()) {
-		default:
-			// probably some DEBUG thing to make this spawn
-			break;
-		case JStage::TEO_Actor:
-			static_cast<ObjectActor*>(obj)->update();
-			break;
-		case JStage::TEO_Camera:
-			static_cast<ObjectCamera*>(obj)->update();
-			break;
-		}
+	// JGadget::TList<void*, JGadget::TVoidAllocator>::iterator iterStart(&mObjListPointer.mNext);
+	// JGadget::TList<void*, JGadget::TVoidAllocator>::iterator iterEnd((void**)mObjListPointer.mNext);
+	// while (iterStart.mElement != iterEnd.mElement) {
+	// 	JStage::TObject* obj = static_cast<JStage::TObject*>((void*)iterStart.mElement);
+	// 	switch (obj->JSGFGetType()) {
+	// 	default:
+	// 		// probably some DEBUG thing to make this spawn
+	// 		break;
+	// 	case JStage::TEO_Actor:
+	// 		static_cast<ObjectActor*>(obj)->update();
+	// 		break;
+	// 	case JStage::TEO_Camera:
+	// 		static_cast<ObjectCamera*>(obj)->update();
+	// 		break;
+	// 	}
 
-		// ++iterStart; // probably something like this
-	}
+	// 	// ++iterStart; // probably something like this
+	// }
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -379,24 +379,24 @@ lbl_80430D6C:
  */
 void ObjectSystem::start()
 {
-	JGadget::TList<void*, JGadget::TVoidAllocator>::iterator iterStart(&mObjListPointer.mNext);
-	JGadget::TList<void*, JGadget::TVoidAllocator>::iterator iterEnd((void**)mObjListPointer.mNext);
-	while (iterStart.mElement != iterEnd.mElement) {
-		JStage::TObject* obj = static_cast<JStage::TObject*>((void*)iterStart.mElement);
-		switch (obj->JSGFGetType()) {
-		default:
-			// probably some DEBUG thing to make this spawn
-			break;
-		case JStage::TEO_Actor:
-			static_cast<ObjectActor*>(obj)->start();
-			break;
-		case JStage::TEO_Camera:
-			static_cast<ObjectCamera*>(obj)->start();
-			break;
-		}
+	// JGadget::TList<void*, JGadget::TVoidAllocator>::iterator iterStart(&mObjListPointer.mNext);
+	// JGadget::TList<void*, JGadget::TVoidAllocator>::iterator iterEnd((void**)mObjListPointer.mNext);
+	// while (iterStart.mElement != iterEnd.mElement) {
+	// 	JStage::TObject* obj = static_cast<JStage::TObject*>((void*)iterStart.mElement);
+	// 	switch (obj->JSGFGetType()) {
+	// 	default:
+	// 		// probably some DEBUG thing to make this spawn
+	// 		break;
+	// 	case JStage::TEO_Actor:
+	// 		static_cast<ObjectActor*>(obj)->start();
+	// 		break;
+	// 	case JStage::TEO_Camera:
+	// 		static_cast<ObjectCamera*>(obj)->start();
+	// 		break;
+	// 	}
 
-		// ++iterStart; // probably something like this
-	}
+	// 	// ++iterStart; // probably something like this
+	// }
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -470,24 +470,24 @@ lbl_80430E40:
  */
 void ObjectSystem::stop()
 {
-	JGadget::TList<void*, JGadget::TVoidAllocator>::iterator iterStart(&mObjListPointer.mNext);
-	JGadget::TList<void*, JGadget::TVoidAllocator>::iterator iterEnd((void**)mObjListPointer.mNext);
-	while (iterStart.mElement != iterEnd.mElement) {
-		JStage::TObject* obj = static_cast<JStage::TObject*>((void*)iterStart.mElement);
-		switch (obj->JSGFGetType()) {
-		default:
-			// probably some DEBUG thing to make this spawn
-			break;
-		case JStage::TEO_Actor:
-			static_cast<ObjectActor*>(obj)->stop();
-			break;
-		case JStage::TEO_Camera:
-			static_cast<ObjectCamera*>(obj)->stop();
-			break;
-		}
+	// JGadget::TList<void*, JGadget::TVoidAllocator>::iterator iterStart(&mObjListPointer.mNext);
+	// JGadget::TList<void*, JGadget::TVoidAllocator>::iterator iterEnd((void**)mObjListPointer.mNext);
+	// while (iterStart.mElement != iterEnd.mElement) {
+	// 	JStage::TObject* obj = static_cast<JStage::TObject*>((void*)iterStart.mElement);
+	// 	switch (obj->JSGFGetType()) {
+	// 	default:
+	// 		// probably some DEBUG thing to make this spawn
+	// 		break;
+	// 	case JStage::TEO_Actor:
+	// 		static_cast<ObjectActor*>(obj)->stop();
+	// 		break;
+	// 	case JStage::TEO_Camera:
+	// 		static_cast<ObjectCamera*>(obj)->stop();
+	// 		break;
+	// 	}
 
-		// ++iterStart; // probably something like this
-	}
+	// 	// ++iterStart; // probably something like this
+	// }
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -561,31 +561,31 @@ lbl_80430F14:
  */
 JStage::TObject* ObjectSystem::findObject(const char* name, JStage::TEObject type) const
 {
-	JGadget::TList<void*, JGadget::TVoidAllocator>::iterator iterStart((void**)&mObjListPointer.mNext);
-	JGadget::TList<void*, JGadget::TVoidAllocator>::iterator iterEnd((void**)mObjListPointer.mNext);
-	while (iterStart.mElement != iterEnd.mElement) {
-		// ++iterStart; // probably
+	// JGadget::TList<void*, JGadget::TVoidAllocator>::iterator iterStart((void**)&mObjListPointer.mNext);
+	// JGadget::TList<void*, JGadget::TVoidAllocator>::iterator iterEnd((void**)mObjListPointer.mNext);
+	// while (iterStart.mElement != iterEnd.mElement) {
+	// 	// ++iterStart; // probably
 
-		if (iterStart.mElement != iterEnd.mElement) {
-			JStage::TObject* obj = static_cast<JStage::TObject*>((void*)iterStart.mElement);
-			bool check;
-			if (!obj) {
-				check = false;
-			} else {
-				check = (strcmp(obj->JSGGetName(), name) == 0);
-			}
-			if (check) {
-				continue;
-			}
-		}
-		break;
-	}
+	// 	if (iterStart.mElement != iterEnd.mElement) {
+	// 		JStage::TObject* obj = static_cast<JStage::TObject*>((void*)iterStart.mElement);
+	// 		bool check;
+	// 		if (!obj) {
+	// 			check = false;
+	// 		} else {
+	// 			check = (strcmp(obj->JSGGetName(), name) == 0);
+	// 		}
+	// 		if (check) {
+	// 			continue;
+	// 		}
+	// 	}
+	// 	break;
+	// }
 
-	if (iterStart.mElement != iterEnd.mElement) {
-		return static_cast<JStage::TObject*>((void*)iterStart.mElement);
-	}
+	// if (iterStart.mElement != iterEnd.mElement) {
+	// 	return static_cast<JStage::TObject*>((void*)iterStart.mElement);
+	// }
 
-	return nullptr;
+	// return nullptr;
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0
@@ -699,14 +699,14 @@ int ObjectSystem::JSGFindObject(JStage::TObject** outObject, const char* name, J
 		newObj = new ObjectCamera(name, mMoviePlayer);
 		break;
 	default:
-		JGadget::TList<void*, JGadget::TVoidAllocator>::iterator iterStart((void**)obj);
-		JGadget::TList<void*, JGadget::TVoidAllocator>::iterator iterEnd((void**)obj);
-		while (iterStart.mElement != iterEnd.mElement) {
-			JStage::TObject* obj = static_cast<JStage::TObject*>((void*)iterStart.mElement);
-			obj->JSGGetName(); // debug probably
+		// JGadget::TList<void*, JGadget::TVoidAllocator>::iterator iterStart((void**)obj);
+		// JGadget::TList<void*, JGadget::TVoidAllocator>::iterator iterEnd((void**)obj);
+		// while (iterStart.mElement != iterEnd.mElement) {
+		// 	JStage::TObject* obj = static_cast<JStage::TObject*>((void*)iterStart.mElement);
+		// 	obj->JSGGetName(); // debug probably
 
-			// ++iterStart; // probably, eventually
-		}
+		// 	// ++iterStart; // probably, eventually
+		// }
 		JUT_PANICLINE(449, "JSGFindObject---- %d not found\n");
 		break;
 	case JStage::TEO_AmbientLight:
@@ -716,8 +716,8 @@ int ObjectSystem::JSGFindObject(JStage::TObject** outObject, const char* name, J
 	}
 
 	if (newObj) {
-		JGadget::TList<void*, JGadget::TVoidAllocator>::iterator iterStart((void**)obj);
-		void* const& val = &newObj;
+		// JGadget::TList<void*, JGadget::TVoidAllocator>::iterator iterStart((void**)obj);
+		// void* const& val = &newObj;
 		// mObjListPointer.insert(iterStart, 0, val);
 	}
 

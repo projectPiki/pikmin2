@@ -220,34 +220,28 @@ J2DTevBlock1::~J2DTevBlock1()
  */
 void J2DTevBlock1::initialize()
 {
-	for (int i = 0; i < 1; i++) {
-		mTexIndices[i] = -1;
-	}
-	mFontNo = -1;
-	for (int i = 0; i < 1; i++) {
-		mOrders[i].setTevOrderInfo(j2dDefaultTevOrderInfoNull);
-	}
+	mTexIndices[0] = -1;
+	mFontNo        = -1;
+	mOrders[0].setTevOrderInfo(j2dDefaultTevOrderInfoNull);
 
 	J2DGXColorS10 color(j2dDefaultTevColor);
 	for (int i = 0; i < 4; i++) {
 		mColors[i] = color;
 	}
-	for (int i = 0; i < 1; i++) {
-		mStages[i].setStageNo(0);
-	}
+
+	mStages[0].setStageNo(0);
+
 	for (int i = 0; i < 4; i++) {
 		mKColors[i] = j2dDefaultTevKColor;
 	}
 
 	for (int i = 0; i < 1; i++) {
 		mKColorSels[i] = 255;
-	}
-	for (int i = 0; i < 1; i++) {
 		mKAlphaSels[i] = 255;
 	}
 
 	for (int i = 0; i < 4; i++) {
-		mSwapModeTables[i] = j2dDefaultTevSwapModeTable;
+		mSwapModeTables[i].setTevSwapModeTableInfo(j2dDefaultTevSwapModeTable);
 	}
 
 	for (int i = 0; i < 1; i++) {
@@ -1199,10 +1193,11 @@ bool J2DTevBlock2::setTexture(u32 id, const ResTIMG* timg)
 
 	u8 tlutid = 0;
 	if (timg && timg->mPaletteFormat) {
-		if (mTextures[id == 0]) {
-			const ResTIMG* timg = mTextures[id == 0]->getTexInfo();
+		JUTTexture* tex = mTextures[id == 0];
+		if (tex) {
+			const ResTIMG* timg = tex->getTexInfo();
 			if (timg != nullptr && timg->mPaletteFormat) {
-				int tlutname = mTextures[id == 0]->getTlutName();
+				int tlutname = tex->getTlutName();
 				u8 var_r0    = 0;
 
 				if (tlutname >= 16) {

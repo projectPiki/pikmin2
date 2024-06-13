@@ -197,7 +197,7 @@ TMainScreen::TMainScreen()
 void TMainScreen::loadResource()
 {
 	sys->heapStatusStart("TScreenFileSelect::loadResource", nullptr);
-	char path[256];
+	char path[PATH_MAX];
 	og::newScreen::makeLanguageResName(path, "file_select.szs");
 	JKRArchive* arc = JKRMountArchive(path, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
 	P2ASSERTLINE(255, arc);

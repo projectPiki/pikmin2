@@ -16,7 +16,6 @@
 
 static const f32 unusedSectionArray[] = { 0.0f, 0.0f, 0.0f };
 
-// Some bullshit
 static OSTime sPlayTime = OS_TIMER_CLOCK * 300;
 
 /**
@@ -216,7 +215,7 @@ void Section::main()
 	s32 timer = getX(mTimeStep);
 
 	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-	PSSystem::checkSceneMgr(mgr);
+	PSSystem::validateSceneMgr(mgr);
 	mgr->checkScene();
 
 	PSSystem::Scene* scene = mgr->mScenes->mChild;

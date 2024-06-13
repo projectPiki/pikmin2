@@ -482,8 +482,7 @@ bool Obj::damageCallBack(Creature* source, f32 damage, CollPart* part)
  */
 bool Obj::farmCallBack(Creature* c, f32 power)
 {
-	// If power > 0, round up + 1; else we round down -1
-	mFarmPow = (s8)(power >= 0.0f ? power + 0.5f : power - 0.5f);
+	mFarmPow = ROUND_F32_TO_U8(power);
 
 	if (mFarmPow < 0) {
 		resetPelFlag(PELPLANTFLAG_Growing);

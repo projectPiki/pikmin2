@@ -24,7 +24,7 @@ J2DDataManage* J2DScreen::mDataManage;
  * @note Size: 0xA8
  */
 J2DScreen::J2DScreen()
-    : J2DPane(nullptr, true, 'root', getDefaultBounds())
+    : J2DPane(nullptr, true, 'root', JGeometry::TBox2f(0.0f, 0.0f, 640.0f, 480.0f))
 {
 	mAnimPaneIndex = 0xFFFF;
 	mIsScissor     = false;
@@ -194,7 +194,7 @@ u32 J2DScreen::makeHierarchyPanes(J2DPane* parent, JSURandomInputStream* input, 
 	J2DPane* currentPane = parent;
 	while (true) {
 		J2DScrnBlockHeader header;
-		input->peek(&header, sizeof(header));
+		input->peek(&header, 8);
 		switch (header.mBloBlockType) {
 		case 'EXT1':
 			input->seek(header.mBlockLength, SEEK_CUR);
@@ -230,6 +230,7 @@ u32 J2DScreen::makeHierarchyPanes(J2DPane* parent, JSURandomInputStream* input, 
 			}
 			break;
 		default:
+
 			if (!archive) {
 				currentPane = createPane(header, input, parent, flags);
 			} else {
@@ -798,8 +799,7 @@ void J2DScreen::drawSelf(f32 x, f32 y, Mtx* mtx)
 		return;
 	}
 
-	JUtility::TColor colorAlpha((color & 0xFFFFFF00) | alpha);
-	color = colorAlpha;
+	color = (color & 0xFFFFFF00) | alpha;
 	GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_SET);
 	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
 	GXBegin(GX_QUADS, GX_VTXFMT0, 4);
@@ -940,8 +940,8 @@ J2DResReference* J2DScreen::getResReference(JSURandomInputStream* input, u32 fla
 bool J2DScreen::createMaterial(JSURandomInputStream* input, u32 flags, JKRArchive* archive)
 {
 	int initialPosition = input->getPosition();
-	s32 size1;
-	size1          = input->readS32();
+	u32 blank[2];
+	input->read(blank, 8);
 	mMaterialCount = input->readU16();
 	input->skip(2);
 
@@ -951,10 +951,10 @@ bool J2DScreen::createMaterial(JSURandomInputStream* input, u32 flags, JKRArchiv
 		mMaterials = new (-4) J2DMaterial[mMaterialCount];
 	}
 
-	J2DMaterialBlock* blocks = new (-4) J2DMaterialBlock[size1];
+	J2DMaterialBlock* blocks = (J2DMaterialBlock*)new (-4) u8[blank[1]];
 	if (mMaterials && blocks) {
 		input->seek(initialPosition, SEEK_SET);
-		input->read(blocks, size1);
+		input->read(blocks, blank[1]);
 
 		J2DMaterialFactory factory(blocks[0]);
 		for (u16 i = 0; i < mMaterialCount; i++) {

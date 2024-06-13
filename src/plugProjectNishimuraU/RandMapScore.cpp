@@ -884,7 +884,7 @@ void RandMapScore::setChallengeFixObjNormal()
 								}
 
 							} else if (roomTypes[j] == UNITKIND_Cap) {
-								if (strncmp(currNode->getUnitName(), "item", 4) == 0 && isFixObjSet(currNode, nullptr)) {
+								if (IS_SAME_STRING_PREFIX(currNode->getUnitName(), "item") && isFixObjSet(currNode, nullptr)) {
 									scoreList[counter] = score;
 									tally += scoreList[counter];
 									mapList[counter] = currNode;
@@ -1263,7 +1263,7 @@ void RandMapScore::setChallengeFixObjHard()
 								}
 
 							} else if (roomTypes[j] == UNITKIND_Cap) {
-								if (strncmp(currNode->getUnitName(), "item", 4) == 0 && isFixObjSet(currNode, nullptr)) {
+								if (IS_SAME_STRING_PREFIX(currNode->getUnitName(), "item") && isFixObjSet(currNode, nullptr)) {
 									if (score >= maxScore) {
 										if (score > maxScore) {
 											counter  = 0;
@@ -1588,7 +1588,7 @@ bool RandMapScore::isFixObjSet(MapNode* node, BaseGen* spawner)
 	}
 
 	// test remaining fix obj nodes
-	for (int i = 1; i < FIXNODE_Count; i++) {
+	for (int i = FIXNODE_Hole; i < FIXNODE_Count; i++) {
 		if (node == getFixObjNode(i) && spawner == getFixObjGen(i)) {
 			return false;
 		}

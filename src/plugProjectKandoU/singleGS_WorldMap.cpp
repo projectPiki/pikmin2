@@ -313,7 +313,7 @@ void SelectState::draw(SingleGameSection* game, Graphics& gfx)
 void SelectState::cleanup(SingleGameSection* game)
 {
 	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-	PSSystem::checkSceneMgr(mgr);
+	PSSystem::validateSceneMgr(mgr);
 	mgr->deleteCurrentScene();
 
 	playData->doneWorldMapEffect();

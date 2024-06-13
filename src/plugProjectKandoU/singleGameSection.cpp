@@ -1021,10 +1021,10 @@ void SingleGameSection::setDispMemberSMenu(og::Screen::DispMemberSMenuAll& disp)
 	disp.mSMenuMap.mCourseIndex         = mCurrentCourseInfo->mCourseIndex;
 
 	// Items screen data
-	disp.mSMenuItem.mSpicySprayCount  = playData->getDopeCount(SPRAY_TYPE_BITTER);
-	disp.mSMenuItem.mSpicyBerryCount  = playData->getDopeFruitCount(SPRAY_TYPE_BITTER);
-	disp.mSMenuItem.mBitterSprayCount = playData->getDopeCount(SPRAY_TYPE_SPICY);
-	disp.mSMenuItem.mBitterBerryCount = playData->getDopeFruitCount(SPRAY_TYPE_SPICY);
+	disp.mSMenuItem.mBitterSprayCount = playData->getDopeCount(SPRAY_TYPE_BITTER);
+	disp.mSMenuItem.mBitterBerryCount = playData->getDopeFruitCount(SPRAY_TYPE_BITTER);
+	disp.mSMenuItem.mSpicySprayCount  = playData->getDopeCount(SPRAY_TYPE_SPICY);
+	disp.mSMenuItem.mSpicyBerryCount  = playData->getDopeFruitCount(SPRAY_TYPE_SPICY);
 	for (int i = 0; i < OlimarData::ODII_FIRST_NON_EXPLORATION_KIT_ITEM; i++) {
 		disp.mSMenuItem.mExplorationKitInventory[i] = playData->mOlimarData[0].hasItem(i);
 	}

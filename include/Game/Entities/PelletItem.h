@@ -14,14 +14,14 @@ namespace PelletItem {
 struct Object : public Pellet {
 	Object() { }
 
-	virtual void constructor();                      // _2C
-	virtual void do_onInit(CreatureInitArg*);        // _1CC
-	virtual void onBounce();                         // _1D8
-	virtual u8 getKind() { return PELTYPE_UPGRADE; } // _1F4 (weak)
-	virtual void sound_otakaraEventStart();          // _20C
-	virtual void sound_otakaraEventRestart();        // _210
-	virtual void sound_otakaraEventStop();           // _214
-	virtual void sound_otakaraEventFinish();         // _218
+	virtual void constructor();                          // _2C
+	virtual void do_onInit(CreatureInitArg*);            // _1CC
+	virtual void onBounce();                             // _1D8
+	virtual u8 getKind() { return PelletType::Upgrade; } // _1F4 (weak)
+	virtual void sound_otakaraEventStart();              // _20C
+	virtual void sound_otakaraEventRestart();            // _210
+	virtual void sound_otakaraEventStop();               // _214
+	virtual void sound_otakaraEventFinish();             // _218
 
 	// _00      = VTBL
 	// _00-_458 = Pellet
@@ -32,7 +32,7 @@ struct Mgr : public FixedSizePelletMgr<Object> {
 
 	virtual void setupResources();                                        // _44
 	virtual char* getMgrName() { return "item"; }                         // _58 (weak)
-	virtual u8 getMgrID() { return PELTYPE_UPGRADE; }                     // _5C (weak)
+	virtual u8 getMgrID() { return PelletType::Upgrade; }                 // _5C (weak)
 	virtual Pellet* generatorBirth(Vector3f&, Vector3f&, GenPelletParm*); // _70
 	virtual void generatorWrite(Stream&, GenPelletParm*);                 // _74
 	virtual void generatorRead(Stream&, GenPelletParm*, u32);             // _78

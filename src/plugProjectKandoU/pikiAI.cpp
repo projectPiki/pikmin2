@@ -98,7 +98,7 @@ int Piki::graspSituation_Fast(Game::Creature** outTarget)
 		case OBJTYPE_Pellet: { // can we pick up the pellet?
 			Pellet* pellet   = static_cast<Pellet*>(creature);
 			bool isGrabbable = true;
-			if (pellet->getKind() == PELTYPE_UPGRADE && gameSystem->isStoryMode()) {
+			if (pellet->getKind() == PelletType::Upgrade && gameSystem->isStoryMode()) {
 				int configIdx = pellet->getConfigIndex();
 				if (!playData->isFindItemDemoFlag(configIdx)) {
 					isGrabbable = false;
@@ -348,7 +348,7 @@ int Piki::graspSituation(Game::Creature** outTarget)
 		Pellet* pellet = *pelIter;
 		if (pellet->isAlive() && !pellet->mCaptureMatrix && pellet->getFreeStickSlot() != -1 && !isZikatu()) {
 			bool isGrabbable = true;
-			if (pellet->getKind() == PELTYPE_UPGRADE && gameSystem->isStoryMode()) {
+			if (pellet->getKind() == PelletType::Upgrade && gameSystem->isStoryMode()) {
 				int configIdx = pellet->getConfigIndex();
 				if (!playData->isFindItemDemoFlag(configIdx)) {
 					isGrabbable = false;
@@ -643,7 +643,7 @@ bool Piki::invokeAI(Game::CollEvent* event, bool check)
 			if (!gameSystem->isVersusMode() || pellet->getBedamaColor() != getKind()) {
 				if (pellet->getTotalPikmins() < pellet->getPelletConfigMax() && !pellet->discoverDisabled()) {
 					bool upgradeReady = true;
-					if (pellet->getKind() == PELTYPE_UPGRADE && gameSystem->isStoryMode()) {
+					if (pellet->getKind() == PelletType::Upgrade && gameSystem->isStoryMode()) {
 						int configIdx = pellet->getConfigIndex();
 						if (!playData->isFindItemDemoFlag(configIdx)) {
 							upgradeReady = false;

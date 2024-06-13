@@ -1,6 +1,6 @@
 KONO_FILES:=\
 	$(BUILD_DIR)/asm/plugProjectKonoU/khWorldMap.o\
-	$(BUILD_DIR)/asm/plugProjectKonoU/khCaveResult.o\
+	$(BUILD_DIR)/src/plugProjectKonoU/khCaveResult.o\
 	$(BUILD_DIR)/src/plugProjectKonoU/khSceneLoader.o\
 	$(BUILD_DIR)/src/plugProjectKonoU/newGame2DMgr.o\
 	$(BUILD_DIR)/src/plugProjectKonoU/newScreenMgr.o\

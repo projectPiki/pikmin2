@@ -10,29 +10,29 @@ static const char className[] = "246-ShadowCylinder";
 namespace Game {
 
 // clang-format off
-u8 sHighCylinderDL[] = {
+static u8 sHighCylinderDL[]  ATTRIBUTE_ALIGN(32) = {
 	GX_TRIANGLEFAN,   0, 12, 0, 0,  0, 1,  0, 2,  0, 3,  0, 4,  0, 5,  0, 6,  0, 7,  0, 8,  0, 9,  0, 10, 0, 11,
 	GX_TRIANGLEFAN,   0, 12, 0, 23, 0, 22, 0, 21, 0, 20, 0, 19, 0, 18, 0, 17, 0, 16, 0, 15, 0, 14, 0, 13, 0, 12,
 	GX_TRIANGLESTRIP, 0, 26, 0, 0,  0, 12, 0, 1,  0, 13, 0, 2,  0, 14, 0, 3,  0, 15, 0, 4,  0, 16, 0, 5,  0, 17, 0, 6, 0, 18, 0, 7, 0, 19, 0, 8, 0, 20, 0, 9, 0, 21, 0, 10, 0, 22, 0, 11, 0, 23,
-	 0, 0, 0, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-};
+	 0, 0, 0, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+} ;
 
-u8 sMidCylinderDL[] = {
+static u8 sMidCylinderDL[]  ATTRIBUTE_ALIGN(32) = {
 	GX_TRIANGLEFAN,   0, 8, 0, 24, 0, 25, 0, 26, 0, 27,  0, 28,  0, 29,  0, 30,  0, 31,
 	GX_TRIANGLEFAN,   0, 8, 0, 39, 0, 38, 0, 37, 0, 36, 0, 35, 0, 34, 0, 33, 0, 32,
 	GX_TRIANGLESTRIP, 0, 18, 0, 24, 0, 32, 0, 25, 0, 33, 0, 26, 0, 34, 0, 27, 0, 35, 0, 28, 0, 36, 0, 29, 0, 37, 0, 30, 0, 38, 0, 31, 0, 39, 0, 24, 0, 32, 0, 0,
-	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 };
 
-u8 sLowCylinderDL[] = {
+static u8 sLowCylinderDL[]  ATTRIBUTE_ALIGN(32) = {
 	GX_TRIANGLEFAN,   0, 4, 0, 40, 0, 41, 0, 42, 0, 43,  
 	GX_TRIANGLEFAN,   0, 4, 0, 47, 0, 46, 0, 45, 0, 44,
 	GX_TRIANGLESTRIP, 0, 10, 0, 40, 0, 44, 0, 41, 0, 45, 0, 42, 0, 46, 0, 43, 0, 47, 0, 40, 0, 44, 0,
-	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 };
 // clang-format on
 
-static f32 sCylinderVertPos[30];
+static f32 sCylinderVertPos[48 * 3];
 
 /**
  * @note Address: N/A
@@ -60,6 +60,7 @@ CylinderList::CylinderList(int index)
 		mSize          = 77;
 		break;
 	}
+
 	P2ASSERTBOOLLINE(188, mTriangleCount && mDLData && mSize);
 }
 
@@ -69,32 +70,33 @@ CylinderList::CylinderList(int index)
  */
 void CylinderList::createCylinder(int cylinderType, f32 radius)
 {
-	// THIS NEEDS TO BE AN INLINE!
 	int vertexIndex = 0;
 	switch (cylinderType) {
+	case 0:
+		vertexIndex = 0;
+		break;
 	case 1:
 		vertexIndex = 72;
 		break;
-	case 0:
 	case 2:
 		vertexIndex = 120;
 		break;
 	}
 
 	f32 angleStep = TAU / mTriangleCount;
+	f32 offset    = angleStep / 2;
 	for (int i = 0; i < mTriangleCount; i++) {
+		int botVert       = i + mTriangleCount;
 		f32 currentAngle  = i * angleStep;
-		f32 adjustedAngle = currentAngle - (angleStep * 0.5f);
+		f32 adjustedAngle = currentAngle - offset;
 
-		sCylinderVertPos[vertexIndex]     = radius * cosf(adjustedAngle);
-		sCylinderVertPos[vertexIndex + 1] = 0.0f;
-		sCylinderVertPos[vertexIndex + 2] = radius * sinf(adjustedAngle);
+		sCylinderVertPos[(vertexIndex << 0) + 3 * i + 0] = radius * cosf(adjustedAngle);
+		sCylinderVertPos[(vertexIndex << 0) + 3 * i + 1] = 0.0f;
+		sCylinderVertPos[(vertexIndex << 0) + 3 * i + 2] = radius * sinf(adjustedAngle);
 
-		int bottomVertexIndex = vertexIndex + (i + mTriangleCount) * 3;
-
-		sCylinderVertPos[bottomVertexIndex]     = radius * cosf(adjustedAngle);
-		sCylinderVertPos[bottomVertexIndex + 1] = -1.0f;
-		sCylinderVertPos[bottomVertexIndex + 2] = radius * sinf(adjustedAngle);
+		sCylinderVertPos[((vertexIndex + botVert * 3)) + 0] = radius * cosf(currentAngle);
+		sCylinderVertPos[((vertexIndex + botVert * 3)) + 1] = -1.0f;
+		sCylinderVertPos[((vertexIndex + botVert * 3)) + 2] = radius * sinf(currentAngle);
 	}
 }
 
@@ -115,10 +117,21 @@ CylinderBase::CylinderBase()
 {
 	mDisplayListObj = new CylinderList*[3];
 	for (int i = 0; i < 3; i++) {
-		f32 radius = getRadius(i);
+		f32 size = 1.0f;
+		switch (i) {
+		case 0:
+			size = 1.0f;
+			break;
+		case 1:
+			size = 1.05f;
+			break;
+		case 2:
+			size = 1.35f;
+			break;
+		}
 
 		mDisplayListObj[i] = new CylinderList(i);
-		mDisplayListObj[i]->createCylinder(i, radius);
+		mDisplayListObj[i]->createCylinder(i, size);
 	}
 
 	u16 y = sys->getRenderModeObj()->efbHeight;
@@ -134,367 +147,6 @@ CylinderBase::CylinderBase()
 		mCamLookAt[i]     = Vector3f(0.0f, 0.0f, 1.0f);
 		mCameraSizeMod[i] = 12800.0f;
 	}
-	/*
-	stwu     r1, -0xe0(r1)
-	mflr     r0
-	stw      r0, 0xe4(r1)
-	stfd     f31, 0xd0(r1)
-	psq_st   f31, 216(r1), 0, qr0
-	stfd     f30, 0xc0(r1)
-	psq_st   f30, 200(r1), 0, qr0
-	stfd     f29, 0xb0(r1)
-	psq_st   f29, 184(r1), 0, qr0
-	stfd     f28, 0xa0(r1)
-	psq_st   f28, 168(r1), 0, qr0
-	stfd     f27, 0x90(r1)
-	psq_st   f27, 152(r1), 0, qr0
-	stfd     f26, 0x80(r1)
-	psq_st   f26, 136(r1), 0, qr0
-	stfd     f25, 0x70(r1)
-	psq_st   f25, 120(r1), 0, qr0
-	stfd     f24, 0x60(r1)
-	psq_st   f24, 104(r1), 0, qr0
-	stmw     r24, 0x40(r1)
-	lis      r4, __vt__Q24Game12CylinderBase@ha
-	mr       r24, r3
-	addi     r0, r4, __vt__Q24Game12CylinderBase@l
-	lis      r3, "__ct__10Vector3<f>Fv"@ha
-	addi     r4, r3, "__ct__10Vector3<f>Fv"@l
-	stw      r0, 0(r24)
-	lis      r3, lbl_804C1780@ha
-	li       r5, 0
-	addi     r27, r3, lbl_804C1780@l
-	li       r6, 0xc
-	addi     r3, r24, 0x20
-	li       r7, 2
-	bl       __construct_array
-	lis      r4, "__ct__10Vector3<f>Fv"@ha
-	addi     r3, r24, 0x38
-	addi     r4, r4, "__ct__10Vector3<f>Fv"@l
-	li       r5, 0
-	li       r6, 0xc
-	li       r7, 2
-	bl       __construct_array
-	li       r3, 0xc
-	bl       __nwa__FUl
-	lis      r5, sincosTable___5JMath@ha
-	lis      r4, sCylinderVertPos__4Game@ha
-	stw      r3, 4(r24)
-	addi     r30, r5, sincosTable___5JMath@l
-	lfd      f29, lbl_8051A638@sda21(r2)
-	addi     r31, r4, sCylinderVertPos__4Game@l
-	lfs      f30, lbl_8051A620@sda21(r2)
-	li       r25, 0
-	lfs      f31, lbl_8051A624@sda21(r2)
-	li       r26, 0
-	lfs      f24, lbl_8051A62C@sda21(r2)
-	lis      r29, 0x4330
-	lfs      f26, lbl_8051A618@sda21(r2)
-	lfd      f27, lbl_8051A630@sda21(r2)
-	lfs      f28, lbl_8051A61C@sda21(r2)
-
-lbl_8023DB14:
-	cmpwi    r25, 1
-	lfs      f25, lbl_8051A640@sda21(r2)
-	beq      lbl_8023DB40
-	bge      lbl_8023DB30
-	cmpwi    r25, 0
-	bge      lbl_8023DB4C
-	b        lbl_8023DB4C
-
-lbl_8023DB30:
-	cmpwi    r25, 3
-	bge      lbl_8023DB4C
-	b        lbl_8023DB48
-	b        lbl_8023DB4C
-
-lbl_8023DB40:
-	lfs      f25, lbl_8051A644@sda21(r2)
-	b        lbl_8023DB4C
-
-lbl_8023DB48:
-	lfs      f25, lbl_8051A648@sda21(r2)
-
-lbl_8023DB4C:
-	li       r3, 0xc
-	bl       __nw__FUl
-	or.      r28, r3, r3
-	beq      lbl_8023DC30
-	li       r0, 0
-	cmpwi    r25, 1
-	stb      r0, 0(r28)
-	stw      r0, 4(r28)
-	stw      r0, 8(r28)
-	beq      lbl_8023DBAC
-	bge      lbl_8023DB84
-	cmpwi    r25, 0
-	bge      lbl_8023DB90
-	b        lbl_8023DBE0
-
-lbl_8023DB84:
-	cmpwi    r25, 3
-	bge      lbl_8023DBE0
-	b        lbl_8023DBC8
-
-lbl_8023DB90:
-	li       r0, 0xc
-	addi     r3, r27, 0x20
-	stb      r0, 0(r28)
-	li       r0, 0x8d
-	stw      r3, 4(r28)
-	stw      r0, 8(r28)
-	b        lbl_8023DBE0
-
-lbl_8023DBAC:
-	li       r0, 8
-	addi     r3, r27, 0xc0
-	stb      r0, 0(r28)
-	li       r0, 0x6d
-	stw      r3, 4(r28)
-	stw      r0, 8(r28)
-	b        lbl_8023DBE0
-
-lbl_8023DBC8:
-	li       r0, 4
-	addi     r3, r27, 0x140
-	stb      r0, 0(r28)
-	li       r0, 0x4d
-	stw      r3, 4(r28)
-	stw      r0, 8(r28)
-
-lbl_8023DBE0:
-	lbz      r0, 0(r28)
-	li       r3, 0
-	cmplwi   r0, 0
-	beq      lbl_8023DC0C
-	lwz      r0, 4(r28)
-	cmplwi   r0, 0
-	beq      lbl_8023DC0C
-	lwz      r0, 8(r28)
-	cmpwi    r0, 0
-	beq      lbl_8023DC0C
-	li       r3, 1
-
-lbl_8023DC0C:
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8023DC30
-	lis      r3, lbl_80483F78@ha
-	lis      r5, lbl_80483F8C@ha
-	addi     r3, r3, lbl_80483F78@l
-	li       r4, 0xbc
-	addi     r5, r5, lbl_80483F8C@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8023DC30:
-	lwz      r3, 4(r24)
-	cmpwi    r25, 1
-	li       r0, 0
-	stwx     r28, r3, r26
-	lwz      r3, 4(r24)
-	lwzx     r4, r3, r26
-	beq      lbl_8023DC6C
-	bge      lbl_8023DC5C
-	cmpwi    r25, 0
-	bge      lbl_8023DC78
-	b        lbl_8023DC78
-
-lbl_8023DC5C:
-	cmpwi    r25, 3
-	bge      lbl_8023DC78
-	b        lbl_8023DC74
-	b        lbl_8023DC78
-
-lbl_8023DC6C:
-	li       r0, 0x48
-	b        lbl_8023DC78
-
-lbl_8023DC74:
-	li       r0, 0x78
-
-lbl_8023DC78:
-	lbz      r7, 0(r4)
-	mr       r5, r0
-	stw      r29, 8(r1)
-	slwi     r6, r0, 2
-	li       r3, 0
-	stw      r7, 0xc(r1)
-	lfd      f0, 8(r1)
-	fsubs    f0, f0, f27
-	fdivs    f1, f26, f0
-	fmuls    f0, f1, f28
-	b        lbl_8023DE0C
-
-lbl_8023DCA4:
-	xoris    r7, r3, 0x8000
-	stw      r29, 8(r1)
-	add      r9, r3, r8
-	stw      r7, 0xc(r1)
-	lfd      f2, 8(r1)
-	fsubs    f2, f2, f29
-	fmuls    f4, f2, f1
-	fsubs    f3, f4, f0
-	fmr      f2, f3
-	fcmpo    cr0, f3, f30
-	bge      lbl_8023DCD4
-	fneg     f2, f3
-
-lbl_8023DCD4:
-	fmuls    f2, f2, f31
-	add      r10, r31, r6
-	fcmpo    cr0, f3, f30
-	fctiwz   f2, f2
-	stfd     f2, 0x10(r1)
-	lwz      r7, 0x14(r1)
-	rlwinm   r7, r7, 3, 0x12, 0x1c
-	add      r7, r30, r7
-	lfs      f2, 4(r7)
-	fmuls    f2, f25, f2
-	stfs     f2, 0(r10)
-	stfs     f30, 4(r10)
-	bge      lbl_8023DD34
-	lfs      f2, lbl_8051A628@sda21(r2)
-	lis      r7, sincosTable___5JMath@ha
-	addi     r7, r7, sincosTable___5JMath@l
-	fmuls    f2, f3, f2
-	fctiwz   f2, f2
-	stfd     f2, 0x18(r1)
-	lwz      r8, 0x1c(r1)
-	rlwinm   r8, r8, 3, 0x12, 0x1c
-	lfsx     f2, r7, r8
-	fneg     f2, f2
-	b        lbl_8023DD54
-
-lbl_8023DD34:
-	fmuls    f2, f3, f31
-	lis      r7, sincosTable___5JMath@ha
-	addi     r7, r7, sincosTable___5JMath@l
-	fctiwz   f2, f2
-	stfd     f2, 0x20(r1)
-	lwz      r8, 0x24(r1)
-	rlwinm   r8, r8, 3, 0x12, 0x1c
-	lfsx     f2, r7, r8
-
-lbl_8023DD54:
-	fmuls    f2, f25, f2
-	fmr      f3, f4
-	fcmpo    cr0, f4, f30
-	stfs     f2, 8(r10)
-	bge      lbl_8023DD6C
-	fneg     f3, f4
-
-lbl_8023DD6C:
-	fmuls    f2, f3, f31
-	mulli    r7, r9, 3
-	fcmpo    cr0, f4, f30
-	fctiwz   f2, f2
-	add      r7, r0, r7
-	slwi     r7, r7, 2
-	add      r9, r31, r7
-	stfd     f2, 0x28(r1)
-	lwz      r7, 0x2c(r1)
-	rlwinm   r7, r7, 3, 0x12, 0x1c
-	add      r7, r30, r7
-	lfs      f2, 4(r7)
-	fmuls    f2, f25, f2
-	stfs     f2, 0(r9)
-	stfs     f24, 4(r9)
-	bge      lbl_8023DDD8
-	lfs      f2, lbl_8051A628@sda21(r2)
-	lis      r7, sincosTable___5JMath@ha
-	addi     r7, r7, sincosTable___5JMath@l
-	fmuls    f2, f4, f2
-	fctiwz   f2, f2
-	stfd     f2, 0x30(r1)
-	lwz      r8, 0x34(r1)
-	rlwinm   r8, r8, 3, 0x12, 0x1c
-	lfsx     f2, r7, r8
-	fneg     f2, f2
-	b        lbl_8023DDF8
-
-lbl_8023DDD8:
-	fmuls    f2, f4, f31
-	lis      r7, sincosTable___5JMath@ha
-	addi     r7, r7, sincosTable___5JMath@l
-	fctiwz   f2, f2
-	stfd     f2, 0x38(r1)
-	lwz      r8, 0x3c(r1)
-	rlwinm   r8, r8, 3, 0x12, 0x1c
-	lfsx     f2, r7, r8
-
-lbl_8023DDF8:
-	fmuls    f2, f25, f2
-	addi     r5, r5, 3
-	addi     r6, r6, 0xc
-	addi     r3, r3, 1
-	stfs     f2, 8(r9)
-
-lbl_8023DE0C:
-	lbz      r8, 0(r4)
-	cmpw     r3, r8
-	blt      lbl_8023DCA4
-	addi     r25, r25, 1
-	addi     r26, r26, 4
-	cmpwi    r25, 3
-	blt      lbl_8023DB14
-	bl       getRenderModeObj__6SystemFv
-	lhz      r25, 6(r3)
-	bl       getRenderModeObj__6SystemFv
-	lhz      r4, 4(r3)
-	lis      r0, 0x4330
-	lfs      f5, lbl_8051A620@sda21(r2)
-	mr       r3, r24
-	stw      r4, 0x3c(r1)
-	lfd      f4, lbl_8051A630@sda21(r2)
-	stw      r0, 0x38(r1)
-	lfs      f1, lbl_8051A640@sda21(r2)
-	lfd      f0, 0x38(r1)
-	stfs     f5, 0x10(r24)
-	fsubs    f3, f0, f4
-	lfs      f0, lbl_8051A64C@sda21(r2)
-	stfs     f5, 0x14(r24)
-	stw      r25, 0x34(r1)
-	stw      r0, 0x30(r1)
-	lfd      f2, 0x30(r1)
-	stfs     f3, 0x18(r24)
-	fsubs    f2, f2, f4
-	stfs     f2, 0x1c(r24)
-	stfs     f5, 0x20(r24)
-	stfs     f5, 0x24(r24)
-	stfs     f1, 0x28(r24)
-	stfs     f5, 0x38(r24)
-	stfs     f5, 0x3c(r24)
-	stfs     f1, 0x40(r24)
-	stfs     f0, 0x50(r24)
-	stfs     f5, 0x2c(r24)
-	stfs     f5, 0x30(r24)
-	stfs     f1, 0x34(r24)
-	stfs     f5, 0x44(r24)
-	stfs     f5, 0x48(r24)
-	stfs     f1, 0x4c(r24)
-	stfs     f0, 0x54(r24)
-	psq_l    f31, 216(r1), 0, qr0
-	lfd      f31, 0xd0(r1)
-	psq_l    f30, 200(r1), 0, qr0
-	lfd      f30, 0xc0(r1)
-	psq_l    f29, 184(r1), 0, qr0
-	lfd      f29, 0xb0(r1)
-	psq_l    f28, 168(r1), 0, qr0
-	lfd      f28, 0xa0(r1)
-	psq_l    f27, 152(r1), 0, qr0
-	lfd      f27, 0x90(r1)
-	psq_l    f26, 136(r1), 0, qr0
-	lfd      f26, 0x80(r1)
-	psq_l    f25, 120(r1), 0, qr0
-	lfd      f25, 0x70(r1)
-	psq_l    f24, 104(r1), 0, qr0
-	lfd      f24, 0x60(r1)
-	lmw      r24, 0x40(r1)
-	lwz      r0, 0xe4(r1)
-	mtlr     r0
-	addi     r1, r1, 0xe0
-	blr
-	*/
 }
 
 /**
@@ -759,7 +411,7 @@ void ShadowCylinder2::drawInit()
 
 	setupFilterGX();
 
-	GXSetChanMatColor(GX_COLOR0A0, mColor->toGXColor());
+	GXSetChanMatColor4(mColor);
 
 	GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_REG, GX_SRC_REG, 0, GX_DF_NONE, GX_AF_NONE);
 	GXSetCullMode(GX_CULL_BACK);
@@ -788,220 +440,6 @@ void ShadowCylinder2::drawInit()
 	GXSetVtxDesc(GX_VA_POS, GX_INDEX16);
 	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
 	GXSetArray(GX_VA_POS, sCylinderVertPos, 0xc);
-	/*
-	stwu     r1, -0xe0(r1)
-	mflr     r0
-	stw      r0, 0xe4(r1)
-	stfd     f31, 0xd0(r1)
-	psq_st   f31, 216(r1), 0, qr0
-	stfd     f30, 0xc0(r1)
-	psq_st   f30, 200(r1), 0, qr0
-	stw      r31, 0xbc(r1)
-	stw      r30, 0xb8(r1)
-	stw      r29, 0xb4(r1)
-	stw      r28, 0xb0(r1)
-	mr       r31, r3
-	lis      r3, lbl_80483F58@ha
-	lfs      f1, 0x14(r31)
-	addi     r30, r3, lbl_80483F58@l
-	lfs      f2, 0x1c(r31)
-	addi     r3, r1, 0x68
-	lfs      f3, 0x10(r31)
-	lfs      f4, 0x18(r31)
-	lfs      f5, lbl_8051A620@sda21(r2)
-	lfs      f6, lbl_8051A650@sda21(r2)
-	bl       C_MTXOrtho
-	addi     r3, r1, 0x68
-	li       r4, 1
-	bl       GXSetProjection
-	lwz      r29, 0x40(r30)
-	addi     r3, r1, 0x38
-	lwz      r28, 0x44(r30)
-	addi     r4, r1, 0x2c
-	lwz      r12, 0x48(r30)
-	addi     r5, r1, 0x14
-	lwz      r11, 0x4c(r30)
-	addi     r6, r1, 0x20
-	lwz      r10, 0x50(r30)
-	lwz      r9, 0x54(r30)
-	lwz      r8, 0x58(r30)
-	lwz      r7, 0x5c(r30)
-	lwz      r0, 0x60(r30)
-	stw      r29, 0x14(r1)
-	stw      r28, 0x18(r1)
-	stw      r12, 0x1c(r1)
-	stw      r11, 0x20(r1)
-	stw      r10, 0x24(r1)
-	stw      r9, 0x28(r1)
-	stw      r8, 0x2c(r1)
-	stw      r7, 0x30(r1)
-	stw      r0, 0x34(r1)
-	bl       C_MTXLookAt
-	addi     r3, r1, 0x38
-	li       r4, 0
-	bl       GXLoadPosMtxImm
-	lfs      f31, 0x14(r31)
-	lfs      f0, 0x1c(r31)
-	lfs      f30, 0x10(r31)
-	fsubs    f1, f0, f31
-	bl       __cvt_fp2unsigned
-	lfs      f0, 0x18(r31)
-	mr       r28, r3
-	fsubs    f1, f0, f30
-	bl       __cvt_fp2unsigned
-	fmr      f1, f31
-	mr       r29, r3
-	bl       __cvt_fp2unsigned
-	fmr      f1, f30
-	mr       r30, r3
-	bl       __cvt_fp2unsigned
-	mr       r4, r30
-	mr       r5, r29
-	mr       r6, r28
-	bl       GXSetScissor
-	lfs      f2, 0x14(r31)
-	lfs      f0, 0x1c(r31)
-	lfs      f1, 0x10(r31)
-	lfs      f3, 0x18(r31)
-	fsubs    f4, f0, f2
-	lfs      f5, lbl_8051A620@sda21(r2)
-	fsubs    f3, f3, f1
-	lfs      f6, lbl_8051A640@sda21(r2)
-	bl       GXSetViewport
-	li       r3, 0
-	bl       GXSetNumTexGens
-	li       r3, 0
-	bl       GXSetNumIndStages
-	li       r3, 0
-	bl       __GXSetIndirectMask
-	li       r3, 0
-	bl       GXSetCurrentMtx
-	li       r3, 1
-	bl       GXSetNumTevStages
-	li       r3, 0
-	li       r4, 4
-	bl       GXSetTevOp
-	li       r3, 0
-	li       r4, 0xff
-	li       r5, 0xff
-	li       r6, 4
-	bl       GXSetTevOrder
-	li       r3, 1
-	bl       GXSetNumChans
-	lwz      r8, 8(r31)
-	addi     r4, r1, 0xc
-	li       r3, 4
-	lbz      r7, 0(r8)
-	lbz      r6, 1(r8)
-	lbz      r5, 2(r8)
-	lbz      r0, 3(r8)
-	stb      r7, 8(r1)
-	stb      r6, 9(r1)
-	stb      r5, 0xa(r1)
-	stb      r0, 0xb(r1)
-	lwz      r0, 8(r1)
-	stw      r0, 0xc(r1)
-	bl       GXSetChanMatColor
-	li       r3, 4
-	li       r4, 0
-	li       r5, 0
-	li       r6, 0
-	li       r7, 0
-	li       r8, 0
-	li       r9, 2
-	bl       GXSetChanCtrl
-	li       r3, 2
-	bl       GXSetCullMode
-	li       r3, 0
-	li       r4, 0
-	li       r5, 0
-	bl       GXSetZMode
-	li       r3, 0
-	li       r4, 1
-	li       r5, 1
-	li       r6, 0
-	bl       GXSetBlendMode
-	li       r3, 0
-	bl       GXSetColorUpdate
-	li       r3, 1
-	bl       GXSetAlphaUpdate
-	li       r3, 1
-	li       r4, 0
-	bl       GXSetDstAlpha
-	bl       GXClearVtxDesc
-	bl       GXInvalidateVtxCache
-	li       r3, 9
-	li       r4, 1
-	bl       GXSetVtxDesc
-	li       r3, 0
-	li       r4, 9
-	li       r5, 1
-	li       r6, 4
-	li       r7, 0
-	bl       GXSetVtxAttrFmt
-	li       r3, 0x80
-	li       r4, 0
-	li       r5, 4
-	bl       GXBegin
-	lfs      f2, 0x14(r31)
-	lis      r5, 0xCC008000@ha
-	lfs      f0, 0x10(r31)
-	li       r3, 0
-	lfs      f1, lbl_8051A620@sda21(r2)
-	li       r4, 0
-	stfs     f0, 0xCC008000@l(r5)
-	stfs     f2, -0x8000(r5)
-	stfs     f1, -0x8000(r5)
-	lfs      f2, 0x14(r31)
-	lfs      f0, 0x18(r31)
-	stfs     f0, -0x8000(r5)
-	stfs     f2, -0x8000(r5)
-	stfs     f1, -0x8000(r5)
-	lfs      f2, 0x1c(r31)
-	lfs      f0, 0x18(r31)
-	stfs     f0, -0x8000(r5)
-	stfs     f2, -0x8000(r5)
-	stfs     f1, -0x8000(r5)
-	lfs      f2, 0x1c(r31)
-	lfs      f0, 0x10(r31)
-	stfs     f0, -0x8000(r5)
-	stfs     f2, -0x8000(r5)
-	stfs     f1, -0x8000(r5)
-	bl       GXSetDstAlpha
-	lwz      r0, lbl_8051A654@sda21(r2)
-	addi     r4, r1, 0x10
-	li       r3, 4
-	stw      r0, 0x10(r1)
-	bl       GXSetChanMatColor
-	bl       GXClearVtxDesc
-	bl       GXInvalidateVtxCache
-	li       r3, 9
-	li       r4, 3
-	bl       GXSetVtxDesc
-	li       r3, 0
-	li       r4, 9
-	li       r5, 1
-	li       r6, 4
-	li       r7, 0
-	bl       GXSetVtxAttrFmt
-	lis      r4, sCylinderVertPos__4Game@ha
-	li       r3, 9
-	addi     r4, r4, sCylinderVertPos__4Game@l
-	li       r5, 0xc
-	bl       GXSetArray
-	psq_l    f31, 216(r1), 0, qr0
-	lfd      f31, 0xd0(r1)
-	psq_l    f30, 200(r1), 0, qr0
-	lfd      f30, 0xc0(r1)
-	lwz      r31, 0xbc(r1)
-	lwz      r30, 0xb8(r1)
-	lwz      r29, 0xb4(r1)
-	lwz      r0, 0xe4(r1)
-	lwz      r28, 0xb0(r1)
-	mtlr     r0
-	addi     r1, r1, 0xe0
-	blr
-	*/
 }
 
 /**
@@ -1069,7 +507,7 @@ void ShadowCylinder2::setupTextureFilterGX()
 	GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX3X4, GX_TG_TEX0, 0x3c, GX_FALSE, 0x7d);
 	GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR0A0);
 
-	GXColor color = { 255, 255, 255, 0x7f };
+	GXColor color = {};
 	GXSetTevColor(GX_TEVREG0, color);
 	GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_TEXA, GX_CC_C1, GX_CC_RASC, GX_CC_ZERO);
 	GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_COMP_R8_GT, GX_TB_ZERO, GX_CS_SCALE_1, GX_FALSE, GX_TEVPREV);
@@ -1128,7 +566,7 @@ void ShadowCylinder3::drawInit()
 
 	setupFilterGX();
 
-	GXSetChanMatColor(GX_COLOR0A0, mColor->toGXColor());
+	GXSetChanMatColor4(mColor);
 
 	GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_REG, GX_SRC_REG, 0, GX_DF_NONE, GX_AF_NONE);
 	GXSetCullMode(GX_CULL_BACK);
@@ -1150,228 +588,13 @@ void ShadowCylinder3::drawInit()
 	GXPosition3f32(mScreenBounds.p1.x, mScreenBounds.p2.y, zero);
 
 	GXSetDstAlpha(GX_FALSE, 0);
-	GXColor color = { 255, 255, 255, 0x7f };
+	GXColor color = { 255, 255, 255, 127 };
 	GXSetChanMatColor(GX_COLOR0A0, color);
 	GXClearVtxDesc();
 	GXInvalidateVtxCache();
 	GXSetVtxDesc(GX_VA_POS, GX_INDEX16);
 	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
 	GXSetArray(GX_VA_POS, sCylinderVertPos, 0xc);
-
-	/*
-	stwu     r1, -0xe0(r1)
-	mflr     r0
-	stw      r0, 0xe4(r1)
-	stfd     f31, 0xd0(r1)
-	psq_st   f31, 216(r1), 0, qr0
-	stfd     f30, 0xc0(r1)
-	psq_st   f30, 200(r1), 0, qr0
-	stw      r31, 0xbc(r1)
-	stw      r30, 0xb8(r1)
-	stw      r29, 0xb4(r1)
-	stw      r28, 0xb0(r1)
-	mr       r31, r3
-	lis      r3, lbl_80483F58@ha
-	lfs      f1, 0x14(r31)
-	addi     r30, r3, lbl_80483F58@l
-	lfs      f2, 0x1c(r31)
-	addi     r3, r1, 0x68
-	lfs      f3, 0x10(r31)
-	lfs      f4, 0x18(r31)
-	lfs      f5, lbl_8051A620@sda21(r2)
-	lfs      f6, lbl_8051A650@sda21(r2)
-	bl       C_MTXOrtho
-	addi     r3, r1, 0x68
-	li       r4, 1
-	bl       GXSetProjection
-	lwz      r29, 0x40(r30)
-	addi     r3, r1, 0x38
-	lwz      r28, 0x44(r30)
-	addi     r4, r1, 0x2c
-	lwz      r12, 0x48(r30)
-	addi     r5, r1, 0x14
-	lwz      r11, 0x4c(r30)
-	addi     r6, r1, 0x20
-	lwz      r10, 0x50(r30)
-	lwz      r9, 0x54(r30)
-	lwz      r8, 0x58(r30)
-	lwz      r7, 0x5c(r30)
-	lwz      r0, 0x60(r30)
-	stw      r29, 0x14(r1)
-	stw      r28, 0x18(r1)
-	stw      r12, 0x1c(r1)
-	stw      r11, 0x20(r1)
-	stw      r10, 0x24(r1)
-	stw      r9, 0x28(r1)
-	stw      r8, 0x2c(r1)
-	stw      r7, 0x30(r1)
-	stw      r0, 0x34(r1)
-	bl       C_MTXLookAt
-	addi     r3, r1, 0x38
-	li       r4, 0
-	bl       GXLoadPosMtxImm
-	lfs      f31, 0x14(r31)
-	lfs      f0, 0x1c(r31)
-	lfs      f30, 0x10(r31)
-	fsubs    f1, f0, f31
-	bl       __cvt_fp2unsigned
-	lfs      f0, 0x18(r31)
-	mr       r28, r3
-	fsubs    f1, f0, f30
-	bl       __cvt_fp2unsigned
-	fmr      f1, f31
-	mr       r29, r3
-	bl       __cvt_fp2unsigned
-	fmr      f1, f30
-	mr       r30, r3
-	bl       __cvt_fp2unsigned
-	mr       r4, r30
-	mr       r5, r29
-	mr       r6, r28
-	bl       GXSetScissor
-	lfs      f2, 0x14(r31)
-	lfs      f0, 0x1c(r31)
-	lfs      f1, 0x10(r31)
-	lfs      f3, 0x18(r31)
-	fsubs    f4, f0, f2
-	lfs      f5, lbl_8051A620@sda21(r2)
-	fsubs    f3, f3, f1
-	lfs      f6, lbl_8051A640@sda21(r2)
-	bl       GXSetViewport
-	li       r3, 0
-	bl       GXSetNumTexGens
-	li       r3, 0
-	bl       GXSetNumIndStages
-	li       r3, 0
-	bl       __GXSetIndirectMask
-	li       r3, 0
-	bl       GXSetCurrentMtx
-	li       r3, 1
-	bl       GXSetNumTevStages
-	li       r3, 0
-	li       r4, 4
-	bl       GXSetTevOp
-	li       r3, 0
-	li       r4, 0xff
-	li       r5, 0xff
-	li       r6, 4
-	bl       GXSetTevOrder
-	li       r3, 1
-	bl       GXSetNumChans
-	lwz      r8, 8(r31)
-	addi     r4, r1, 0xc
-	li       r3, 4
-	lbz      r7, 0(r8)
-	lbz      r6, 1(r8)
-	lbz      r5, 2(r8)
-	lbz      r0, 3(r8)
-	stb      r7, 8(r1)
-	stb      r6, 9(r1)
-	stb      r5, 0xa(r1)
-	stb      r0, 0xb(r1)
-	lwz      r0, 8(r1)
-	stw      r0, 0xc(r1)
-	bl       GXSetChanMatColor
-	li       r3, 4
-	li       r4, 0
-	li       r5, 0
-	li       r6, 0
-	li       r7, 0
-	li       r8, 0
-	li       r9, 2
-	bl       GXSetChanCtrl
-	li       r3, 2
-	bl       GXSetCullMode
-	li       r3, 0
-	li       r4, 0
-	li       r5, 0
-	bl       GXSetZMode
-	li       r3, 0
-	li       r4, 1
-	li       r5, 1
-	li       r6, 0
-	bl       GXSetBlendMode
-	li       r3, 0
-	bl       GXSetColorUpdate
-	li       r3, 1
-	bl       GXSetAlphaUpdate
-	li       r3, 1
-	li       r4, 0
-	bl       GXSetDstAlpha
-	bl       GXClearVtxDesc
-	bl       GXInvalidateVtxCache
-	li       r3, 9
-	li       r4, 1
-	bl       GXSetVtxDesc
-	li       r3, 0
-	li       r4, 9
-	li       r5, 1
-	li       r6, 4
-	li       r7, 0
-	bl       GXSetVtxAttrFmt
-	li       r3, 0x80
-	li       r4, 0
-	li       r5, 4
-	bl       GXBegin
-	lfs      f2, 0x14(r31)
-	lis      r5, 0xCC008000@ha
-	lfs      f0, 0x10(r31)
-	li       r3, 0
-	lfs      f1, lbl_8051A620@sda21(r2)
-	li       r4, 0
-	stfs     f0, 0xCC008000@l(r5)
-	stfs     f2, -0x8000(r5)
-	stfs     f1, -0x8000(r5)
-	lfs      f2, 0x14(r31)
-	lfs      f0, 0x18(r31)
-	stfs     f0, -0x8000(r5)
-	stfs     f2, -0x8000(r5)
-	stfs     f1, -0x8000(r5)
-	lfs      f2, 0x1c(r31)
-	lfs      f0, 0x18(r31)
-	stfs     f0, -0x8000(r5)
-	stfs     f2, -0x8000(r5)
-	stfs     f1, -0x8000(r5)
-	lfs      f2, 0x1c(r31)
-	lfs      f0, 0x10(r31)
-	stfs     f0, -0x8000(r5)
-	stfs     f2, -0x8000(r5)
-	stfs     f1, -0x8000(r5)
-	bl       GXSetDstAlpha
-	lwz      r0, lbl_8051A658@sda21(r2)
-	addi     r4, r1, 0x10
-	li       r3, 4
-	stw      r0, 0x10(r1)
-	bl       GXSetChanMatColor
-	bl       GXClearVtxDesc
-	bl       GXInvalidateVtxCache
-	li       r3, 9
-	li       r4, 3
-	bl       GXSetVtxDesc
-	li       r3, 0
-	li       r4, 9
-	li       r5, 1
-	li       r6, 4
-	li       r7, 0
-	bl       GXSetVtxAttrFmt
-	lis      r4, sCylinderVertPos__4Game@ha
-	li       r3, 9
-	addi     r4, r4, sCylinderVertPos__4Game@l
-	li       r5, 0xc
-	bl       GXSetArray
-	psq_l    f31, 216(r1), 0, qr0
-	lfd      f31, 0xd0(r1)
-	psq_l    f30, 200(r1), 0, qr0
-	lfd      f30, 0xc0(r1)
-	lwz      r31, 0xbc(r1)
-	lwz      r30, 0xb8(r1)
-	lwz      r29, 0xb4(r1)
-	lwz      r0, 0xe4(r1)
-	lwz      r28, 0xb0(r1)
-	mtlr     r0
-	addi     r1, r1, 0xe0
-	blr
-	*/
 }
 
 /**
@@ -1424,11 +647,11 @@ void ShadowCylinder3::drawScreenFilter()
 	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
 	GXBegin(GX_QUADS, GX_VTXFMT0, 4);
 
-	f32 one = 1.0f;
-	GXPosition3f32(mScreenBounds.p1.x, mScreenBounds.p1.y, one);
-	GXPosition3f32(mScreenBounds.p2.x, mScreenBounds.p1.y, one);
-	GXPosition3f32(mScreenBounds.p2.x, mScreenBounds.p2.y, one);
-	GXPosition3f32(mScreenBounds.p1.x, mScreenBounds.p2.y, one);
+	f32 zero = 0.0f;
+	GXPosition3f32(mScreenBounds.p1.x, mScreenBounds.p1.y, zero);
+	GXPosition3f32(mScreenBounds.p2.x, mScreenBounds.p1.y, zero);
+	GXPosition3f32(mScreenBounds.p2.x, mScreenBounds.p2.y, zero);
+	GXPosition3f32(mScreenBounds.p1.x, mScreenBounds.p2.y, zero);
 }
 
 } // namespace Game

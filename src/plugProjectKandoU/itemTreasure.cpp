@@ -231,8 +231,8 @@ void Item::doAI()
 	if (isAlive()) {
 		int state = mSoundEvent.update();
 		switch (state) {
-		case 2:
-			P2ASSERTLINE(406, mSoundObj->getCastType() == 10);
+		case TSE_ApplyTransition:
+			P2ASSERTLINE(406, mSoundObj->getCastType() == PSM::CCT_WorkItem);
 			static_cast<PSM::WorkItem*>(mSoundObj)->eventStop();
 			break;
 		}
@@ -346,11 +346,11 @@ bool Item::interactAttack(InteractAttack& act)
 		int id = mSoundEvent.event();
 		switch (id) {
 		case 1:
-			P2ASSERTLINE(555, mSoundObj->getCastType() == 10);
+			P2ASSERTLINE(555, mSoundObj->getCastType() == PSM::CCT_WorkItem);
 			static_cast<PSM::WorkItem*>(mSoundObj)->eventStart();
 			break;
 		case 3:
-			P2ASSERTLINE(561, mSoundObj->getCastType() == 10);
+			P2ASSERTLINE(561, mSoundObj->getCastType() == PSM::CCT_WorkItem);
 			static_cast<PSM::WorkItem*>(mSoundObj)->eventRestart();
 			break;
 		}

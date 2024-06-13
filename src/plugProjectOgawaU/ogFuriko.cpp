@@ -120,8 +120,8 @@ void CallBack_Furiko::update()
 void CallBack_Furiko::draw(Graphics& gfx, J2DGrafContext& calc)
 {
 	if (mPane) {
-		JGeometry::TVec3f pos1 = mPane->getGlbVtx(0);
-		JGeometry::TVec3f pos2 = mPane->getGlbVtx(3);
+		JGeometry::TVec3f pos1 = mPane->getGlbVtx(GLBVTX_BtmLeft);
+		JGeometry::TVec3f pos2 = mPane->getGlbVtx(GLBVTX_TopRight);
 
 		u8 basePos = mPane->mBasePosition;
 		switch (basePos % 3) {

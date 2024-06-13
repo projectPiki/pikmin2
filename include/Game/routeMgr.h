@@ -103,6 +103,7 @@ struct WayPoint : public JKRDisposer {
 	inline Vector3f getPosition() { return mPosition; }
 
 	inline s16 getNumFromLinks() const { return mNumFromLinks; }
+	inline s16 getFromLink(int i) const { return mFromLinks[i]; }
 
 	RoomList mRoomList; // _18
 	u8 mFlags;          // _34

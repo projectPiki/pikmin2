@@ -112,24 +112,24 @@ struct THiScore : public TScrollList {
 	int mState;                                  // _178
 	DispMemberHighScore* mDisp;                  // _17C
 	f32 mAlphaTimer;                             // _180
-	f32 _184;                                    // _184
+	f32 mIndPaneXDirection;                      // _184
 	f32 mAngleGrowRate;                          // _188
 	f32 mPaneAngle;                              // _18C
-	f32 mPaneAngle2;                             // _190
-	f32 _194;                                    // _194
-	f32 _198;                                    // _198
-	f32 _19C;                                    // _19C
-	f32 _1A0;                                    // _1A0
+	f32 mCornerAnimTimer;                        // _190
+	f32 mCornerSelScaleModifier;                 // _194
+	f32 mCornerAnimSpeed;                        // _198
+	f32 mCornerSelScale;                         // _19C
+	f32 mCornerXOffset;                          // _1A0
 	Vector2f mCoords[4];                         // _1A4
-	u8 _1C4;                                     // _1C4
-	u8 _1C5;                                     // _1C5
+	u8 mNoAlphaUpdate;                           // _1C4
+	u8 mIndPaneType;                             // _1C5
 	u8 mErrorSoundCounter;                       // _1C6
 	u8 mDoEnd;                                   // _1C7
 	J2DTevBlock* mTevBlock[2];                   //_1C8
 	J2DColorBlock* mColorBlock[2];               // _1D0
 	GXColorS10 mColors[4];                       // _1D8
-	f32 _1F8;                                    // _1F8
-	f32 _1FC;                                    // _1FC
+	f32 mColorChangeTimer;                       // _1F8
+	f32 mPaneHeightDiff;                         // _1FC
 	Vector2f mPaneListPos;                       // _200
 	Vector2f mPaneIconPos;                       // _208
 

@@ -43,7 +43,7 @@ Navi* getNearestNavi(Creature* creature, f32 searchAngle, f32 searchRadius, f32*
 		if (currNavi->isAlive()) {
 			f32 angleDist = creature->getAngDist(currNavi);
 			if (FABS(angleDist) <= searchAngle) {
-				// something fucky here
+				// something here
 				Vector3f sep = Vector3f(currNavi->getPosition().x, 0.0f, currNavi->getPosition().z)
 				             - Vector3f(creature->getPosition().x, 0.0f, creature->getPosition().z);
 				f32 newDist = SQUARE(sep.x) + SQUARE(sep.z);
@@ -394,7 +394,7 @@ Piki* getNearestPikmin(Creature* creature, f32 searchAngle, f32 searchRadius, f3
 		if (currPiki->isSearchable()) {
 			f32 angleDist = creature->getAngDist(currPiki);
 			if (FABS(angleDist) <= searchAngle) {
-				// something fucky here
+				// something here
 				Vector3f sep = Vector3f(currPiki->getPosition().x, 0.0f, currPiki->getPosition().z)
 				             - Vector3f(creature->getPosition().x, 0.0f, creature->getPosition().z);
 				f32 newDist = SQUARE(sep.x) + SQUARE(sep.z);
@@ -835,7 +835,7 @@ void flickNearbyNavi(Creature* creature, f32 searchRadius, f32 knockback, f32 da
 	CI_LOOP(iter)
 	{
 		Navi* navi = *iter;
-		// this is fucky
+		// this is weird
 		Vector3f sep = Vector3f(creature->getPosition().x, creature->getPosition().y, creature->getPosition().z)
 		             - Vector3f(navi->getPosition().x, navi->getPosition().y, navi->getPosition().z);
 		f32 newDist = SQUARE(sep.x) + SQUARE(sep.y) + SQUARE(sep.z);

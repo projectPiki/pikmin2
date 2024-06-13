@@ -621,7 +621,7 @@ void ObjectActor::parseUserData_(u32 p1, void const* p2)
 	if (v2.mStatus == 0) {
 		return;
 	}
-	if (v2.mFileCount == 0 || v2.mStatus != 0x22 || v2._10 == nullptr) {
+	if (v2.mData == 0 || v2.mStatus != 0x22 || v2.mDataBlockEnd == nullptr) {
 		return;
 	}
 

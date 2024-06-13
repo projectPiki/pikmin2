@@ -80,7 +80,7 @@ struct J2DMaterial {
 	static J2DTevBlock* createTevBlock(int, bool);
 	static J2DIndBlock* createIndBlock(int, bool);
 
-	u16 getIndex() const { return mIndex; }
+	u32 getIndex() const { return mIndex; }
 	J2DColorBlock* getColorBlock() { return &mColorBlock; }
 	J2DTexGenBlock* getTexGenBlock() { return &mTexGenBlock; }
 	J2DPEBlock* getPEBlock() { return &mPeBlock; }

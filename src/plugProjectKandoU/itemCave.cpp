@@ -207,7 +207,7 @@ bool Item::sound_culling()
 	Navi* navi = naviMgr->getActiveNavi();
 	if (navi) {
 		Vector3f pos = navi->getPosition();
-		if (sqrDistanceXZ(pos, mPosition) >= 490000.0f) {
+		if (sqrDistanceXZ(pos, mPosition) >= SQUARE(700.0f)) {
 			return true;
 		}
 	}

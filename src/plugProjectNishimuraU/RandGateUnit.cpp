@@ -128,7 +128,7 @@ MapNode* RandGateUnit::getItemSetCapDoor(int& idx)
 
 	MapNode* node = static_cast<MapNode*>(mGenerator->mPlacedMapNodes->mChild);
 	for (node; node != nullptr; node = static_cast<MapNode*>(node->mNext)) {
-		if (node->mUnitInfo->getUnitKind() == UNITKIND_Cap && !strncmp(node->getUnitName(), "item", 4)
+		if (node->mUnitInfo->getUnitKind() == UNITKIND_Cap && IS_SAME_STRING_PREFIX(node->getUnitName(), "item")
 		    && mItemUnit->isItemSetDone(node, nullptr)) {
 			for (int i = 0; i < node->getNumDoors(); i++) {
 				if (!node->isGateSetDoor(i)) {
@@ -156,7 +156,7 @@ MapNode* RandGateUnit::getRoomMinScoreDoor(int& idx)
 {
 	MapNode* node = static_cast<MapNode*>(mGenerator->mPlacedMapNodes->mChild);
 	for (node; node != nullptr; node = static_cast<MapNode*>(node->mNext)) {
-		if (node->mUnitInfo->getUnitKind() == UNITKIND_Room && node != mMapScore->getFixObjNode(0)) {
+		if (node->mUnitInfo->getUnitKind() == UNITKIND_Room && node != mMapScore->getFixObjNode(FIXNODE_Pod)) {
 			int minScore = 128000;
 			for (int i = 0; i < node->getNumDoors(); i++) {
 				int doorScore = node->mAdjustInfo[i].mDoorScore;

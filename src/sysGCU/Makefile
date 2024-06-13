@@ -26,7 +26,7 @@ GC_FILES:=\
 	$(BUILD_DIR)/src/sysGCU/gameConfig.o\
 	$(BUILD_DIR)/src/sysGCU/fogMgr.o\
 	$(BUILD_DIR)/asm/sysGCU/aramMgr.o\
-	$(BUILD_DIR)/asm/sysGCU/resourceMgr.o\
+	$(BUILD_DIR)/src/sysGCU/resourceMgr.o\
 	$(BUILD_DIR)/src/sysGCU/resourceMgr2D.o\
 	$(BUILD_DIR)/src/sysGCU/sysMaterialAnim.o\
 	$(BUILD_DIR)/src/sysGCU/P2DScreen.o\
@@ -49,7 +49,7 @@ GC_FILES:=\
 	$(BUILD_DIR)/src/sysGCU/commonSaveData.o\
 	$(BUILD_DIR)/asm/sysGCU/bootSection.o\
 	$(BUILD_DIR)/asm/sysGCU/titleSection.o\
-	$(BUILD_DIR)/asm/sysGCU/loadResource.o\
+	$(BUILD_DIR)/src/sysGCU/loadResource.o\
 	$(BUILD_DIR)/src/sysGCU/rootMenuSection.o\
 	$(BUILD_DIR)/src/sysGCU/demoSection.o\
 	$(BUILD_DIR)/src/sysGCU/THPAudioDecode.o\
@@ -63,7 +63,7 @@ GC_FILES:=\
 	$(BUILD_DIR)/src/sysGCU/screenScene.o\
 	$(BUILD_DIR)/src/sysGCU/screenMgr.o\
 	$(BUILD_DIR)/src/sysGCU/screenObj.o\
-	$(BUILD_DIR)/asm/sysGCU/JSTObjectParticleActor.o\
+	$(BUILD_DIR)/src/sysGCU/JSTObjectParticleActor.o\
 	$(BUILD_DIR)/src/sysGCU/moviePlayerAudio.o\
 	$(BUILD_DIR)/src/sysGCU/illustratedBookMessage.o\
 	$(BUILD_DIR)/src/sysGCU/sysDrawBuffer.o\

@@ -128,9 +128,8 @@ void THiScoreListScreen::create(char const* path, u32 screenFlags)
 	TCallbackScissor* scis = new TCallbackScissor;
 
 	JGeometry::TBox2f* bounds = mScreenObj->search('Nlist1')->getBounds();
-	// some funky TBox2 inlines here
 	JGeometry::TBox2f box(*bounds);
-	box.set(bounds->i.x, (bounds->i.y - 5.0f), (bounds->f.x + 5.0f), bounds->f.y);
+	// something dumb is going on here
 	box.set(bounds->i.x * mScreenObj->mstTuningScaleX, (bounds->i.y - 5.0f) * mScreenObj->mstTuningScaleY,
 	        (bounds->f.x + 5.0f) * mScreenObj->mstTuningScaleX, bounds->f.y * mScreenObj->mstTuningScaleY);
 	scis->mBounds = box;
@@ -386,24 +385,24 @@ THiScore::THiScore()
     , mIsAllTreasures(false)
     , mState(false)
     , mAlphaTimer(1.0f)
-    , _184(0.0f)
+    , mIndPaneXDirection(0.0f)
     , mAngleGrowRate(0.05f)
     , mPaneAngle(0.0f)
-    , mPaneAngle2(0.0f)
-    , _194(0.02f)
-    , _198(0.25f)
-    , _19C(0.0f)
-    , _1A0(0.0f)
+    , mCornerAnimTimer(0.0f)
+    , mCornerSelScaleModifier(0.02f)
+    , mCornerAnimSpeed(0.25f)
+    , mCornerSelScale(0.0f)
+    , mCornerXOffset(0.0f)
 {
-	_1C4               = 0;
-	_1C5               = 0;
+	mNoAlphaUpdate     = false;
+	mIndPaneType       = 0;
 	mErrorSoundCounter = 0;
 	mDoEnd             = 0;
 	mTevBlock[0]       = nullptr;
 	mTevBlock[1]       = nullptr;
 	mColorBlock[0]     = nullptr;
 	mColorBlock[1]     = nullptr;
-	_1F8               = 0.0f;
+	mColorChangeTimer  = 0.0f;
 	mNumActiveRows     = 5; // 5 high score images active at once
 
 	for (int i = 0; i < 6; i++) {
@@ -482,7 +481,7 @@ void THiScore::doCreate(JKRArchive* arc)
 	mMainScreen->addAnim("hi_score_main.bck");
 	mMainScreen->addAnim("hi_score_main.bpk");
 
-	P2DScreen::Mgr_tuning* screen = mMainScreen->mScreenObj;
+	P2DScreen::Mgr_tuning* screen = mMainScreen->getScreenObj();
 	mStickAnimPic                 = og::Screen::setCallBack_3DStickSmall(mArchive, screen, 'ota3dl');
 	m3DStickPane                  = screen->search('ota3dl');
 	P2ASSERTLINE(347, m3DStickPane);
@@ -498,7 +497,7 @@ void THiScore::doCreate(JKRArchive* arc)
 	mListScreen = new THiScoreListScreen(arc, 0);
 	mListScreen->create("hi_score_list.blo", 0x20000);
 
-	screen         = mListScreen->mScreenObj;
+	screen         = mListScreen->getScreenObj();
 	mPaneListPos.x = screen->search('Nlist1')->mOffset.x;
 	mPaneListPos.y = screen->search('Nlist1')->mOffset.y;
 	mPaneIconPos.x = screen->search('Nselicon')->mOffset.x;
@@ -553,21 +552,16 @@ void THiScore::doCreate(JKRArchive* arc)
 
 	if (mIsAllTreasures) {
 		for (int i = 0; i < mNumActiveRows; i++) {
-			J2DPane* cPane = mIndexPaneList[i]->mPane;
+			J2DPane* cPane = mIndexPaneList[i]->getMainPane();
 			cPane->appendChild(cPane->getFirstChildPane()->getFirstChildPane());
-
-			cPane = mIndexPaneList[i]->mPane->getFirstChildPane();
-			if (cPane->getParentPane()) {
-				cPane->getParentPane()->removeChild(cPane);
-			}
-			mIndexPaneList[i]->mPane2->appendChild(mIndexPaneList[i]->mPane);
+			mIndexPaneList[i]->getMainPane()->getFirstChildPane()->removeFromParent();
+			mIndexPaneList[i]->getMainPane()->appendChild(mIndexPaneList[i]->getSubPane());
 
 			J2DPictureEx* pic = static_cast<J2DPictureEx*>(mIndexPaneList[i]->mPane->getFirstChildPane());
 			if (mPicTexture[i]) {
 				pic->changeTexture(mPicTexture[i], 0);
 			}
-			J2DTevBlock* tev = pic->getMaterial()->mTevBlock;
-			changeTevBlock(tev, mHighScorePic->getMaterial()->mTevBlock);
+			changeTevBlock(mHighScorePic->getMaterial()->getTevBlock(), pic->getMaterial()->getTevBlock());
 			changeColorBlock(&mHighScorePic->getMaterial()->mColorBlock, &pic->getMaterial()->mColorBlock);
 		}
 	}
@@ -622,7 +616,6 @@ void THiScore::doCreate(JKRArchive* arc)
 
 	f32 yoffs = mIndexGroup->mHeight;
 	for (int i = 0; i < 2; i++) {
-
 		for (int j = 0; j < mNumActiveRows; j++) {
 			TIndexPane* IDPane = mIndexPaneList[j];
 			IDPane->mPane->setOffset(IDPane->mPane->mOffset.x, IDPane->mYOffset + yoffs);
@@ -634,1121 +627,6 @@ void THiScore::doCreate(JKRArchive* arc)
 		grp->mStateID      = TIndexGroup::IDGroup_Idle;
 		changePaneInfo();
 	}
-
-	/*
-	stwu     r1, -0x2c0(r1)
-	mflr     r0
-	stw      r0, 0x2c4(r1)
-	stfd     f31, 0x2b0(r1)
-	psq_st   f31, 696(r1), 0, qr0
-	stfd     f30, 0x2a0(r1)
-	psq_st   f30, 680(r1), 0, qr0
-	stfd     f29, 0x290(r1)
-	psq_st   f29, 664(r1), 0, qr0
-	stfd     f28, 0x280(r1)
-	psq_st   f28, 648(r1), 0, qr0
-	stfd     f27, 0x270(r1)
-	psq_st   f27, 632(r1), 0, qr0
-	stfd     f26, 0x260(r1)
-	psq_st   f26, 616(r1), 0, qr0
-	stfd     f25, 0x250(r1)
-	psq_st   f25, 600(r1), 0, qr0
-	stfd     f24, 0x240(r1)
-	psq_st   f24, 584(r1), 0, qr0
-	stfd     f23, 0x230(r1)
-	psq_st   f23, 568(r1), 0, qr0
-	stfd     f22, 0x220(r1)
-	psq_st   f22, 552(r1), 0, qr0
-	stfd     f21, 0x210(r1)
-	psq_st   f21, 536(r1), 0, qr0
-	stfd     f20, 0x200(r1)
-	psq_st   f20, 520(r1), 0, qr0
-	stfd     f19, 0x1f0(r1)
-	psq_st   f19, 504(r1), 0, qr0
-	stfd     f18, 0x1e0(r1)
-	psq_st   f18, 488(r1), 0, qr0
-	stfd     f17, 0x1d0(r1)
-	psq_st   f17, 472(r1), 0, qr0
-	stfd     f16, 0x1c0(r1)
-	psq_st   f16, 456(r1), 0, qr0
-	stmw     r23, 0x19c(r1)
-	mr       r31, r3
-	mr       r25, r4
-	lis      r4, lbl_804932E0@ha
-	stw      r25, 0x78(r3)
-	addi     r30, r4, lbl_804932E0@l
-	bl       getDispMember__Q26Screen7ObjBaseFv
-	lis      r4, 0x4D524D52@ha
-	lis      r6, 0x48495343@ha
-	mr       r24, r3
-	li       r5, 0
-	addi     r4, r4, 0x4D524D52@l
-	addi     r6, r6, 0x48495343@l
-	bl       isID__Q32og6Screen14DispMemberBaseFUlUx
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8037D1C4
-	stw      r24, 0x17c(r31)
-	lwz      r0, 0x17c(r31)
-	cmplwi   r0, 0
-	bne      lbl_8037D1AC
-	addi     r3, r30, 0x310
-	addi     r5, r30, 0x320
-	li       r4, 0x11f
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8037D1AC:
-	lwz      r3, sys@sda21(r13)
-	bl       getPlayCommonData__6SystemFv
-	lbz      r0, 0(r3)
-	rlwinm   r0, r0, 0x1f, 0x1f, 0x1f
-	stb      r0, 0x174(r31)
-	b        lbl_8037D208
-
-lbl_8037D1C4:
-	li       r3, 0x10
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_8037D1FC
-	lis      r5, __vt__Q32og6Screen14DispMemberBase@ha
-	lis      r4, __vt__Q28Morimura19DispMemberHighScore@ha
-	addi     r0, r5, __vt__Q32og6Screen14DispMemberBase@l
-	li       r5, 0
-	stw      r0, 0(r3)
-	addi     r0, r4, __vt__Q28Morimura19DispMemberHighScore@l
-	stw      r5, 4(r3)
-	stw      r0, 0(r3)
-	stw      r5, 8(r3)
-	stb      r5, 0xc(r3)
-
-lbl_8037D1FC:
-	stw      r3, 0x17c(r31)
-	li       r0, 1
-	stb      r0, mIsSection__Q28Morimura9TTestBase@sda21(r13)
-
-lbl_8037D208:
-	lbz      r0, mForceClear__Q28Morimura8THiScore@sda21(r13)
-	cmplwi   r0, 0
-	beq      lbl_8037D21C
-	li       r0, 1
-	stb      r0, 0x174(r31)
-
-lbl_8037D21C:
-	lbz      r0, 0x174(r31)
-	cmplwi   r0, 0
-	bne      lbl_8037D278
-	lha      r0, 0x8e(r31)
-	slwi     r3, r0, 2
-	bl       __nwa__FUl
-	stw      r3, 0xe0(r31)
-	li       r26, 0
-	li       r24, 0
-	b        lbl_8037D26C
-
-lbl_8037D244:
-	li       r3, 0x1c
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8037D25C
-	bl       __ct__Q32og6Screen8ScaleMgrFv
-	mr       r0, r3
-
-lbl_8037D25C:
-	lwz      r3, 0xe0(r31)
-	addi     r26, r26, 1
-	stwx     r0, r3, r24
-	addi     r24, r24, 4
-
-lbl_8037D26C:
-	lha      r0, 0x8e(r31)
-	cmpw     r26, r0
-	blt      lbl_8037D244
-
-lbl_8037D278:
-	mr       r3, r31
-	bl       getGamePad__Q26Screen7ObjBaseCFv
-	stw      r3, 0x80(r31)
-	lwz      r3, 0x17c(r31)
-	lwz      r29, 0x18c(r30)
-	lwz      r0, 8(r3)
-	lwz      r28, 0x190(r30)
-	lwz      r27, 0x194(r30)
-	cmplwi   r0, 0
-	lwz      r26, 0x198(r30)
-	lwz      r24, 0x19c(r30)
-	lwz      r12, 0x1a0(r30)
-	lwz      r11, 0x1a4(r30)
-	lwz      r10, 0x1a8(r30)
-	lwz      r9, 0x1ac(r30)
-	lwz      r8, 0x1b0(r30)
-	lwz      r7, 0x1b4(r30)
-	lwz      r6, 0x1b8(r30)
-	lwz      r5, 0x1bc(r30)
-	lwz      r4, 0x1c0(r30)
-	lwz      r3, 0x1c4(r30)
-	lwz      r0, 0x1c8(r30)
-	stw      r29, 0x150(r1)
-	stw      r28, 0x154(r1)
-	stw      r27, 0x158(r1)
-	stw      r26, 0x15c(r1)
-	stw      r24, 0x160(r1)
-	stw      r12, 0x164(r1)
-	stw      r11, 0x168(r1)
-	stw      r10, 0x16c(r1)
-	stw      r9, 0x170(r1)
-	stw      r8, 0x174(r1)
-	stw      r7, 0x178(r1)
-	stw      r6, 0x17c(r1)
-	stw      r5, 0x180(r1)
-	stw      r4, 0x184(r1)
-	stw      r3, 0x188(r1)
-	stw      r0, 0x18c(r1)
-	beq      lbl_8037D37C
-	lis      r3, mPicTexture__Q28Morimura8THiScore@ha
-	addi     r24, r1, 0x150
-	addi     r26, r3, mPicTexture__Q28Morimura8THiScore@l
-	li       r27, 0
-
-lbl_8037D324:
-	lwz      r3, 0x17c(r31)
-	lwz      r4, 0(r24)
-	lwz      r3, 8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0(r26)
-	lwz      r0, 0(r26)
-	cmplwi   r0, 0
-	bne      lbl_8037D364
-	addi     r3, r30, 0x310
-	addi     r5, r30, 0x320
-	li       r4, 0x145
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8037D364:
-	addi     r27, r27, 1
-	addi     r26, r26, 4
-	cmpwi    r27, 0x10
-	addi     r24, r24, 4
-	blt      lbl_8037D324
-	b        lbl_8037D3D4
-
-lbl_8037D37C:
-	lis      r3, mPicTexture__Q28Morimura8THiScore@ha
-	li       r26, 0
-	addi     r24, r3, mPicTexture__Q28Morimura8THiScore@l
-
-lbl_8037D388:
-	lwz      r3, 0x78(r31)
-	addi     r4, r30, 0xc
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0(r24)
-	lwz      r0, 0(r24)
-	cmplwi   r0, 0
-	bne      lbl_8037D3C4
-	addi     r3, r30, 0x310
-	addi     r5, r30, 0x320
-	li       r4, 0x14b
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8037D3C4:
-	addi     r26, r26, 1
-	addi     r24, r24, 4
-	cmpwi    r26, 0x10
-	blt      lbl_8037D388
-
-lbl_8037D3D4:
-	li       r3, 0x18
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8037D3F4
-	mr       r4, r25
-	li       r5, 2
-	bl       __ct__Q28Morimura11TScreenBaseFP10JKRArchivei
-	mr       r0, r3
-
-lbl_8037D3F4:
-	stw      r0, 0x7c(r31)
-	addi     r4, r30, 0x32c
-	lis      r5, 2
-	lwz      r3, 0x7c(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x7c(r31)
-	addi     r4, r30, 0x340
-	bl       addAnim__Q28Morimura11TScreenBaseFPc
-	lwz      r3, 0x7c(r31)
-	addi     r4, r30, 0x354
-	bl       addAnim__Q28Morimura11TScreenBaseFPc
-	lwz      r5, 0x7c(r31)
-	lis      r4, 0x6133646C@ha
-	lwz      r3, 0x78(r31)
-	addi     r6, r4, 0x6133646C@l
-	lwz      r24, 8(r5)
-	li       r5, 0x6f74
-	mr       r4, r24
-	bl setCallBack_3DStickSmall__Q22og6ScreenFP10JKRArchivePQ29P2DScreen3MgrUx
-	stw      r3, 0xd8(r31)
-	mr       r3, r24
-	lis      r4, 0x6133646C@ha
-	li       r5, 0x6f74
-	lwz      r12, 0(r24)
-	addi     r6, r4, 0x6133646C@l
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xd4(r31)
-	lwz      r0, 0xd4(r31)
-	cmplwi   r0, 0
-	bne      lbl_8037D494
-	addi     r3, r30, 0x310
-	addi     r5, r30, 0x320
-	li       r4, 0x15b
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8037D494:
-	lwz      r0, 0xd8(r31)
-	cmplwi   r0, 0
-	bne      lbl_8037D4B4
-	addi     r3, r30, 0x310
-	addi     r5, r30, 0x320
-	li       r4, 0x15c
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8037D4B4:
-	lwz      r3, 0xd8(r31)
-	lfs      f1, lbl_8051EC64@sda21(r2)
-	lwz      r3, 0x34(r3)
-	bl       setSpeed__Q32og6Screen9AnimGroupFf
-	lwz      r3, 0xd8(r31)
-	lwz      r3, 0x34(r3)
-	bl       start__Q32og6Screen9AnimGroupFv
-	li       r3, 8
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8037D4EC
-	lwz      r4, 0xd8(r31)
-	bl       __ct__Q32og6Screen12StickAnimMgrFPQ32og6Screen16CallBack_Picture
-	mr       r0, r3
-
-lbl_8037D4EC:
-	stw      r0, 0xdc(r31)
-	lwz      r0, 0xdc(r31)
-	cmplwi   r0, 0
-	bne      lbl_8037D510
-	addi     r3, r30, 0x310
-	addi     r5, r30, 0x320
-	li       r4, 0x161
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8037D510:
-	mr       r3, r24
-	lis      r5, 0x5F303031@ha
-	lwz      r12, 0(r24)
-	lis      r4, 0x50494354@ha
-	addi     r6, r5, 0x5F303031@l
-	lwz      r12, 0x3c(r12)
-	addi     r5, r4, 0x50494354@l
-	mtctr    r12
-	bctrl
-	stw      r3, 0xbc(r31)
-	lwz      r0, 0xbc(r31)
-	cmplwi   r0, 0
-	bne      lbl_8037D558
-	addi     r3, r30, 0x310
-	addi     r5, r30, 0x320
-	li       r4, 0x165
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8037D558:
-	li       r3, 0x18
-	bl       __nw__FUl
-	or.      r24, r3, r3
-	beq      lbl_8037D58C
-	mr       r4, r25
-	li       r5, 0
-	bl       __ct__Q28Morimura11TScreenBaseFP10JKRArchivei
-	lis      r4, __vt__Q28Morimura11TListScreen@ha
-	lis      r3, __vt__Q28Morimura18THiScoreListScreen@ha
-	addi     r0, r4, __vt__Q28Morimura11TListScreen@l
-	stw      r0, 0(r24)
-	addi     r0, r3, __vt__Q28Morimura18THiScoreListScreen@l
-	stw      r0, 0(r24)
-
-lbl_8037D58C:
-	stw      r24, 0xb4(r31)
-	addi     r4, r30, 0x368
-	lis      r5, 2
-	lwz      r3, 0xb4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xb4(r31)
-	lis      r3, 0x69737431@ha
-	addi     r6, r3, 0x69737431@l
-	li       r5, 0x4e6c
-	lwz      r29, 8(r4)
-	lwz      r12, 0(r29)
-	mr       r3, r29
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0xd4(r3)
-	lis      r4, 0x69737431@ha
-	mr       r3, r29
-	li       r5, 0x4e6c
-	stfs     f0, 0x200(r31)
-	addi     r6, r4, 0x69737431@l
-	lwz      r12, 0(r29)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0xd8(r3)
-	lis      r5, 0x69636F6E@ha
-	lis      r4, 0x4E73656C@ha
-	mr       r3, r29
-	stfs     f0, 0x204(r31)
-	addi     r6, r5, 0x69636F6E@l
-	addi     r5, r4, 0x4E73656C@l
-	lwz      r12, 0(r29)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0xd4(r3)
-	lis      r5, 0x69636F6E@ha
-	lis      r4, 0x4E73656C@ha
-	mr       r3, r29
-	stfs     f0, 0x208(r31)
-	addi     r6, r5, 0x69636F6E@l
-	addi     r5, r4, 0x4E73656C@l
-	lwz      r12, 0(r29)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0xd8(r3)
-	lis      r5, 0x69636F6E@ha
-	lis      r4, 0x4E73656C@ha
-	mr       r3, r29
-	stfs     f0, 0x20c(r31)
-	addi     r6, r5, 0x69636F6E@l
-	addi     r5, r4, 0x4E73656C@l
-	lwz      r12, 0(r29)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc0(r31)
-	lwz      r0, 0xc0(r31)
-	cmplwi   r0, 0
-	beq      lbl_8037D7B0
-	mr       r3, r29
-	lis      r5, 0x6C5F6C75@ha
-	lwz      r12, 0(r29)
-	lis      r4, 0x00507365@ha
-	addi     r6, r5, 0x6C5F6C75@l
-	lwz      r12, 0x3c(r12)
-	addi     r5, r4, 0x00507365@l
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc4(r31)
-	lwz      r0, 0xc4(r31)
-	cmplwi   r0, 0
-	bne      lbl_8037D6D8
-	addi     r3, r30, 0x310
-	addi     r5, r30, 0x320
-	li       r4, 0x177
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8037D6D8:
-	mr       r3, r29
-	lis      r5, 0x6C5F7275@ha
-	lwz      r12, 0(r29)
-	lis      r4, 0x00507365@ha
-	addi     r6, r5, 0x6C5F7275@l
-	lwz      r12, 0x3c(r12)
-	addi     r5, r4, 0x00507365@l
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc8(r31)
-	lwz      r0, 0xc8(r31)
-	cmplwi   r0, 0
-	bne      lbl_8037D720
-	addi     r3, r30, 0x310
-	addi     r5, r30, 0x320
-	li       r4, 0x17a
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8037D720:
-	mr       r3, r29
-	lis      r5, 0x6C5F6C6C@ha
-	lwz      r12, 0(r29)
-	lis      r4, 0x00507365@ha
-	addi     r6, r5, 0x6C5F6C6C@l
-	lwz      r12, 0x3c(r12)
-	addi     r5, r4, 0x00507365@l
-	mtctr    r12
-	bctrl
-	stw      r3, 0xcc(r31)
-	lwz      r0, 0xcc(r31)
-	cmplwi   r0, 0
-	bne      lbl_8037D768
-	addi     r3, r30, 0x310
-	addi     r5, r30, 0x320
-	li       r4, 0x17d
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8037D768:
-	mr       r3, r29
-	lis      r5, 0x6C5F726C@ha
-	lwz      r12, 0(r29)
-	lis      r4, 0x00507365@ha
-	addi     r6, r5, 0x6C5F726C@l
-	lwz      r12, 0x3c(r12)
-	addi     r5, r4, 0x00507365@l
-	mtctr    r12
-	bctrl
-	stw      r3, 0xd0(r31)
-	lwz      r0, 0xd0(r31)
-	cmplwi   r0, 0
-	bne      lbl_8037D7B0
-	addi     r3, r30, 0x310
-	addi     r5, r30, 0x320
-	li       r4, 0x180
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8037D7B0:
-	li       r0, 1
-	li       r5, 0
-	stb      r0, 0xb0(r31)
-	li       r4, 2
-	mr       r3, r29
-	addi     r0, r1, 0x128
-	stw      r5, 0x90(r31)
-	stw      r4, 0x94(r31)
-	lha      r4, 0x8e(r31)
-	addi     r4, r4, -1
-	stw      r4, 0x98(r31)
-	lfd      f0, 0x1d0(r30)
-	lfd      f8, 0x1d8(r30)
-	lfd      f7, 0x1e0(r30)
-	lfd      f6, 0x1e8(r30)
-	lfd      f5, 0x1f0(r30)
-	stfd     f0, 0x128(r1)
-	lfd      f4, 0x1f8(r30)
-	lfd      f3, 0x200(r30)
-	lfd      f2, 0x208(r30)
-	lfd      f1, 0x210(r30)
-	lfd      f0, 0x218(r30)
-	stfd     f8, 0x130(r1)
-	stfd     f7, 0x138(r1)
-	stfd     f6, 0x140(r1)
-	stfd     f5, 0x148(r1)
-	lwz      r4, 0x90(r31)
-	lwz      r12, 0(r29)
-	slwi     r4, r4, 3
-	stfd     f4, 0x100(r1)
-	add      r6, r0, r4
-	lwz      r12, 0x3c(r12)
-	lwz      r5, 0(r6)
-	stfd     f3, 0x108(r1)
-	lwz      r6, 4(r6)
-	stfd     f2, 0x110(r1)
-	stfd     f1, 0x118(r1)
-	stfd     f0, 0x120(r1)
-	mtctr    r12
-	bctrl
-	or.      r24, r3, r3
-	bne      lbl_8037D86C
-	addi     r3, r30, 0x310
-	addi     r5, r30, 0x320
-	li       r4, 0x191
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8037D86C:
-	lfs      f0, 0xd8(r24)
-	mr       r3, r29
-	addi     r0, r1, 0x128
-	stfs     f0, 0xa0(r31)
-	lwz      r4, 0x98(r31)
-	lwz      r12, 0(r29)
-	slwi     r4, r4, 3
-	add      r6, r0, r4
-	lwz      r12, 0x3c(r12)
-	lwz      r5, 0(r6)
-	lwz      r6, 4(r6)
-	mtctr    r12
-	bctrl
-	or.      r24, r3, r3
-	bne      lbl_8037D8BC
-	addi     r3, r30, 0x310
-	addi     r5, r30, 0x320
-	li       r4, 0x195
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8037D8BC:
-	lfs      f0, 0xd8(r24)
-	stfs     f0, 0xa4(r31)
-	lha      r0, 0x8e(r31)
-	slwi     r3, r0, 2
-	bl       __nwa__FUl
-	stw      r3, 0x88(r31)
-	addi     r28, r1, 0x128
-	addi     r26, r1, 0x100
-	li       r25, 0
-	li       r27, 0
-	b        lbl_8037DA90
-
-lbl_8037D8E8:
-	li       r3, 0x28
-	bl       __nw__FUl
-	or.      r24, r3, r3
-	beq      lbl_8037D948
-	mr       r3, r29
-	lwz      r5, 0(r28)
-	lwz      r12, 0(r29)
-	lwz      r6, 4(r28)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 0
-	lfs      f0, lbl_8051EC18@sda21(r2)
-	stw      r0, 0(r24)
-	stw      r3, 4(r24)
-	stw      r0, 8(r24)
-	stw      r0, 0xc(r24)
-	stw      r0, 0x10(r24)
-	stfs     f0, 0x18(r24)
-	stw      r0, 0x20(r24)
-	stw      r0, 0x24(r24)
-	lwz      r3, 4(r24)
-	lfs      f0, 0xd8(r3)
-	stfs     f0, 0x1c(r24)
-
-lbl_8037D948:
-	lwz      r4, 0x88(r31)
-	mr       r3, r29
-	lwz      r5, 0(r26)
-	stwx     r24, r4, r27
-	lwz      r6, 4(r26)
-	lwz      r12, 0(r29)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x88(r31)
-	lwzx     r4, r4, r27
-	stw      r3, 8(r4)
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	lwz      r5, 0(r28)
-	lwz      r12, 0x3c(r12)
-	lwz      r6, 4(r28)
-	mtctr    r12
-	bctrl
-	cmplwi   r3, 0
-	bne      lbl_8037D9B4
-	mr       r6, r25
-	addi     r3, r30, 0x310
-	addi     r5, r30, 0x37c
-	li       r4, 0x19f
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8037D9B4:
-	lwz      r3, 0x88(r31)
-	lwzx     r3, r3, r27
-	lwz      r3, 4(r3)
-	bl       getFirstChildPane__7J2DPaneFv
-	bl       getFirstChildPane__7J2DPaneFv
-	li       r4, 0
-	li       r5, 0
-	bl       setInfluencedAlpha__7J2DPaneFbb
-	lwz      r3, 0x88(r31)
-	lwzx     r3, r3, r27
-	lwz      r24, 8(r3)
-	cmplwi   r24, 0
-	bne      lbl_8037D9FC
-	addi     r3, r30, 0x310
-	addi     r5, r30, 0x320
-	li       r4, 0x1a7
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8037D9FC:
-	mr       r3, r31
-	mr       r4, r25
-	lwz      r12, 0(r31)
-	lwz      r12, 0x8c(r12)
-	mtctr    r12
-	bctrl
-	stw      r4, 0x1c(r24)
-	stw      r3, 0x18(r24)
-	mr       r3, r24
-	bl       getFirstChildPane__7J2DPaneFv
-	or.      r24, r3, r3
-	bne      lbl_8037DA40
-	addi     r3, r30, 0x310
-	addi     r5, r30, 0x320
-	li       r4, 0x1ac
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8037DA40:
-	mr       r3, r24
-	li       r4, 0
-	li       r5, 0
-	bl       setInfluencedAlpha__7J2DPaneFbb
-	mr       r3, r31
-	mr       r4, r25
-	lwz      r12, 0(r31)
-	lwz      r12, 0x8c(r12)
-	mtctr    r12
-	bctrl
-	stw      r4, 0x1c(r24)
-	mr       r4, r25
-	stw      r3, 0x18(r24)
-	lwz      r3, 0x88(r31)
-	lwzx     r3, r3, r27
-	bl       setIndex__Q28Morimura10TIndexPaneFi
-	addi     r28, r28, 8
-	addi     r27, r27, 4
-	addi     r26, r26, 8
-	addi     r25, r25, 1
-
-lbl_8037DA90:
-	lha      r0, 0x8e(r31)
-	cmpw     r25, r0
-	blt      lbl_8037D8E8
-	lbz      r0, 0x174(r31)
-	cmplwi   r0, 0
-	beq      lbl_8037DBF0
-	lis      r3, mPicTexture__Q28Morimura8THiScore@ha
-	li       r25, 0
-	addi     r27, r3, mPicTexture__Q28Morimura8THiScore@l
-	li       r26, 0
-	b        lbl_8037DBE4
-
-lbl_8037DABC:
-	lwz      r3, 0x88(r31)
-	lwzx     r3, r3, r26
-	lwz      r24, 4(r3)
-	mr       r3, r24
-	bl       getFirstChildPane__7J2DPaneFv
-	bl       getFirstChildPane__7J2DPaneFv
-	mr       r4, r3
-	mr       r3, r24
-	bl       appendChild__7J2DPaneFP7J2DPane
-	lwz      r3, 0x88(r31)
-	lwzx     r3, r3, r26
-	lwz      r3, 4(r3)
-	bl       getFirstChildPane__7J2DPaneFv
-	mr       r24, r3
-	bl       getParentPane__7J2DPaneFv
-	cmplwi   r3, 0
-	beq      lbl_8037DB10
-	mr       r3, r24
-	bl       getParentPane__7J2DPaneFv
-	mr       r4, r24
-	bl       removeChild__7J2DPaneFP7J2DPane
-
-lbl_8037DB10:
-	lwz      r3, 0x88(r31)
-	lwzx     r3, r3, r26
-	lwz      r4, 8(r3)
-	lwz      r3, 4(r3)
-	bl       appendChild__7J2DPaneFP7J2DPane
-	lwz      r3, 0x88(r31)
-	lwzx     r3, r3, r26
-	lwz      r3, 4(r3)
-	bl       getFirstChildPane__7J2DPaneFv
-	lwz      r4, 0(r27)
-	mr       r28, r3
-	cmplwi   r4, 0
-	beq      lbl_8037DB58
-	lwz      r12, 0(r3)
-	li       r5, 0
-	lwz      r12, 0x110(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8037DB58:
-	mr       r3, r28
-	lwz      r12, 0(r28)
-	lwz      r12, 0x13c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r24, 0x70(r3)
-	lwz      r3, 0xbc(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x13c(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	mr       r3, r31
-	lwz      r4, 0x70(r4)
-	mr       r5, r24
-	bl       changeTevBlock__Q28Morimura8THiScoreFP11J2DTevBlockP11J2DTevBlock
-	mr       r3, r28
-	lwz      r12, 0(r28)
-	lwz      r12, 0x13c(r12)
-	mtctr    r12
-	bctrl
-	mr       r28, r3
-	lwz      r3, 0xbc(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x13c(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	mr       r3, r31
-	addi     r4, r4, 0x10
-	addi     r5, r28, 0x10
-	bl changeColorBlock__Q28Morimura8THiScoreFP13J2DColorBlockP13J2DColorBlock
-	addi     r26, r26, 4
-	addi     r27, r27, 4
-	addi     r25, r25, 1
-
-lbl_8037DBE4:
-	lha      r0, 0x8e(r31)
-	cmpw     r25, r0
-	blt      lbl_8037DABC
-
-lbl_8037DBF0:
-	lwz      r4, 0x88(r31)
-	li       r0, 1
-	li       r3, 0x30
-	lwz      r4, 0(r4)
-	lwz      r4, 4(r4)
-	stb      r0, 0xb0(r4)
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8037DC1C
-	bl       __ct__Q28Morimura11TIndexGroupFv
-	mr       r0, r3
-
-lbl_8037DC1C:
-	stw      r0, 0x84(r31)
-	mr       r3, r31
-	bl       updateLayout__Q28Morimura8THiScoreFv
-	lis      r3, mScrollParm__Q28Morimura8THiScore@ha
-	lis      r4, 0x33726473@ha
-	addi     r7, r3, mScrollParm__Q28Morimura8THiScore@l
-	lis      r3, 0x00546F74@ha
-	lwz      r8, 0x84(r31)
-	addi     r6, r4, 0x33726473@l
-	lfs      f0, 0(r7)
-	addi     r5, r3, 0x00546F74@l
-	stfs     f0, 0(r8)
-	lfs      f0, 4(r7)
-	stfs     f0, 4(r8)
-	lfs      f0, 8(r7)
-	stfs     f0, 8(r8)
-	lfs      f0, 0xc(r7)
-	stfs     f0, 0xc(r8)
-	lfs      f0, 0x10(r7)
-	stfs     f0, 0x10(r8)
-	lwz      r3, 0x7c(r31)
-	lwz      r3, 8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	or.      r25, r3, r3
-	bne      lbl_8037DCA0
-	addi     r3, r30, 0x310
-	addi     r5, r30, 0x320
-	li       r4, 0x1d5
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8037DCA0:
-	lis      r4, 0x325F3030@ha
-	lis      r3, 0x00383437@ha
-	addi     r0, r4, 0x325F3030@l
-	mr       r24, r31
-	stw      r0, 0x1c(r25)
-	addi     r0, r3, 0x00383437@l
-	addi     r26, r1, 0xd0
-	addi     r27, r1, 0x70
-	stw      r0, 0x18(r25)
-	addi     r25, r1, 0xa0
-	addi     r28, r1, 0x10
-	addi     r29, r1, 0x40
-	lfd      f16, 0x220(r30)
-	li       r23, 0
-	lfd      f17, 0x228(r30)
-	lfd      f18, 0x230(r30)
-	lfd      f19, 0x238(r30)
-	lfd      f20, 0x240(r30)
-	lfd      f21, 0x248(r30)
-	lfd      f22, 0x250(r30)
-	lfd      f23, 0x258(r30)
-	lfd      f24, 0x260(r30)
-	lfd      f25, 0x268(r30)
-	lfd      f26, 0x270(r30)
-	lfd      f27, 0x278(r30)
-	lfd      f28, 0x280(r30)
-	lfd      f29, 0x288(r30)
-	lfd      f30, 0x290(r30)
-	lfd      f31, 0x298(r30)
-	lfd      f13, 0x2a0(r30)
-	lfd      f12, 0x2a8(r30)
-	lfd      f11, 0x2b0(r30)
-	lfd      f10, 0x2b8(r30)
-	lfd      f9, 0x2c0(r30)
-	lfd      f8, 0x2c8(r30)
-	lfd      f7, 0x2d0(r30)
-	lfd      f6, 0x2d8(r30)
-	lfd      f5, 0x2e0(r30)
-	lfd      f4, 0x2e8(r30)
-	lfd      f3, 0x2f0(r30)
-	lfd      f2, 0x2f8(r30)
-	lfd      f1, 0x300(r30)
-	lfd      f0, 0x308(r30)
-	stfd     f16, 0xd0(r1)
-	stfd     f17, 0xd8(r1)
-	stfd     f18, 0xe0(r1)
-	stfd     f19, 0xe8(r1)
-	stfd     f20, 0xf0(r1)
-	stfd     f21, 0xf8(r1)
-	stfd     f22, 0xa0(r1)
-	stfd     f23, 0xa8(r1)
-	stfd     f24, 0xb0(r1)
-	stfd     f25, 0xb8(r1)
-	stfd     f26, 0xc0(r1)
-	stfd     f27, 0xc8(r1)
-	stfd     f28, 0x70(r1)
-	stfd     f29, 0x78(r1)
-	stfd     f30, 0x80(r1)
-	stfd     f31, 0x88(r1)
-	stfd     f13, 0x90(r1)
-	stfd     f12, 0x98(r1)
-	stfd     f11, 0x40(r1)
-	stfd     f10, 0x48(r1)
-	stfd     f9, 0x50(r1)
-	stfd     f8, 0x58(r1)
-	stfd     f7, 0x60(r1)
-	stfd     f6, 0x68(r1)
-	stfd     f5, 0x10(r1)
-	stfd     f4, 0x18(r1)
-	stfd     f3, 0x20(r1)
-	stfd     f2, 0x28(r1)
-	stfd     f1, 0x30(r1)
-	stfd     f0, 0x38(r1)
-
-lbl_8037DDC4:
-	lwz      r3, 0x7c(r31)
-	addi     r7, r24, 0xfc
-	lwz      r5, 0(r26)
-	li       r8, 0xa
-	lwz      r3, 8(r3)
-	lwz      r6, 4(r26)
-	lwz      r9, 0x78(r31)
-	bl       setScaleUpCounter__8MorimuraFPQ29P2DScreen3MgrUxPUlUsP10JKRArchive
-	stw      r3, 0xe4(r24)
-	addi     r9, r24, 0x144
-	lwz      r5, 0(r25)
-	li       r10, 3
-	lwz      r0, 0x78(r31)
-	lwz      r6, 4(r25)
-	stw      r0, 8(r1)
-	lwz      r7, 0(r27)
-	lwz      r3, 0x7c(r31)
-	lwz      r8, 4(r27)
-	lwz      r3, 8(r3)
-	bl setScaleUpCounter2__8MorimuraFPQ29P2DScreen3MgrUxUxPUlUsP10JKRArchive stw
-r3, 0x114(r24) addi     r9, r24, 0x15c lwz      r5, 0(r29) li       r10, 3 lwz
-r0, 0x78(r31) lwz      r6, 4(r29) stw      r0, 8(r1) lwz      r7, 0(r28) lwz r3,
-0x7c(r31) lwz      r8, 4(r28) lwz      r3, 8(r3) bl
-setScaleUpCounter2__8MorimuraFPQ29P2DScreen3MgrUxUxPUlUsP10JKRArchive stw r3,
-0x12c(r24) li       r4, 0xff lwz      r3, 0x12c(r24) bl
-setZeroAlpha__Q32og6Screen18CallBack_CounterRVFUc lwz      r3, 0x12c(r24) li r4,
-1 bl       setPuyoAnimZero__Q32og6Screen18CallBack_CounterRVFb addi     r23,
-r23, 1 addi     r26, r26, 8 cmpwi    r23, 6 addi     r27, r27, 8 addi     r25,
-r25, 8 addi     r28, r28, 8 addi     r29, r29, 8 addi     r24, r24, 4 blt
-lbl_8037DDC4 mr       r3, r31 lwz      r12, 0(r31) lwz      r12, 0x80(r12) mtctr
-r12 bctrl li       r3, 0x48 bl       __nw__FUl or.      r25, r3, r3 beq
-lbl_8037DED8 lwz      r5, 0xbc(r31) addi     r4, r30, 0x390 lfs      f3,
-0x28(r5) lfs      f1, 0x20(r5) lfs      f2, 0x2c(r5) lfs      f0, 0x24(r5) fsubs
-f1, f3, f1 fsubs    f2, f2, f0 bl       __ct__Q28Morimura8TIndPaneFPCcff lis r3,
-__vt__Q28Morimura15THiScoreIndPane@ha addi     r0, r3,
-__vt__Q28Morimura15THiScoreIndPane@l stw      r0, 0(r25)
-
-lbl_8037DED8:
-	stw      r25, 0xb8(r31)
-	addi     r4, r30, 0x390
-	lwz      r3, 0xb8(r31)
-	bl       createIndTexture__Q28Morimura8TIndPaneFPCc
-	lwz      r3, 0xb8(r31)
-	li       r4, 0
-	bl       createCaptureTexture__Q28Morimura8TIndPaneF9_GXTexFmt
-	lwz      r6, 0xb8(r31)
-	lis      r3, mPicTexture__Q28Morimura8THiScore@ha
-	addi     r4, r3, mPicTexture__Q28Morimura8THiScore@l
-	li       r5, 0
-	lwz      r3, 0x18(r6)
-	lwz      r4, 0(r4)
-	bl       storeTIMG__10JUTTextureFPC7ResTIMGUc
-	lwz      r6, 0xb8(r31)
-	lis      r3, mPicTexture__Q28Morimura8THiScore@ha
-	addi     r4, r3, mPicTexture__Q28Morimura8THiScore@l
-	li       r5, 0
-	lwz      r3, 0x1c(r6)
-	lwz      r4, 0(r4)
-	bl       storeTIMG__10JUTTextureFPC7ResTIMGUc
-	lwz      r3, 0xb8(r31)
-	lwz      r3, 0x20(r3)
-	lwz      r23, 0x20(r3)
-	cmplwi   r23, 0
-	bne      lbl_8037DF54
-	addi     r3, r30, 0x310
-	addi     r5, r30, 0x320
-	li       r4, 0x1fb
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8037DF54:
-	li       r0, 2
-	stb      r0, 1(r23)
-	lwz      r3, 0xb8(r31)
-	lwz      r3, 0x18(r3)
-	lwz      r24, 0x20(r3)
-	cmplwi   r24, 0
-	bne      lbl_8037DF84
-	addi     r3, r30, 0x310
-	addi     r5, r30, 0x320
-	li       r4, 0x200
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8037DF84:
-	li       r0, 2
-	stb      r0, 1(r24)
-	lwz      r3, 0xb8(r31)
-	lwz      r3, 0x1c(r3)
-	lwz      r24, 0x20(r3)
-	cmplwi   r24, 0
-	bne      lbl_8037DFB4
-	addi     r3, r30, 0x310
-	addi     r5, r30, 0x320
-	li       r4, 0x204
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8037DFB4:
-	li       r0, 2
-	mr       r3, r31
-	stb      r0, 1(r24)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x84(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x84(r31)
-	li       r23, 0
-	lfs      f31, lbl_8051EC18@sda21(r2)
-	lfs      f16, 0x18(r3)
-
-lbl_8037DFE0:
-	li       r25, 0
-	li       r24, 0
-	b        lbl_8037E030
-
-lbl_8037DFEC:
-	lwz      r3, 0x88(r31)
-	lwzx     r4, r3, r24
-	lfs      f0, 0x1c(r4)
-	lwz      r3, 4(r4)
-	fadds    f0, f0, f16
-	stfs     f0, 0xd8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x88(r31)
-	addi     r25, r25, 1
-	lwzx     r4, r3, r24
-	addi     r24, r24, 4
-	lwz      r3, 4(r4)
-	lfs      f0, 0xd8(r3)
-	stfs     f0, 0x1c(r4)
-
-lbl_8037E030:
-	lha      r0, 0x8e(r31)
-	cmpw     r25, r0
-	blt      lbl_8037DFEC
-	mr       r3, r31
-	li       r4, 0
-	lwz      r12, 0(r31)
-	lwz      r12, 0xa4(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x84(r31)
-	li       r0, 0
-	mr       r3, r31
-	stfs     f31, 0x14(r4)
-	stw      r0, 0x20(r4)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x84(r12)
-	mtctr    r12
-	bctrl
-	addi     r23, r23, 1
-	cmpwi    r23, 2
-	blt      lbl_8037DFE0
-	psq_l    f31, 696(r1), 0, qr0
-	lfd      f31, 0x2b0(r1)
-	psq_l    f30, 680(r1), 0, qr0
-	lfd      f30, 0x2a0(r1)
-	psq_l    f29, 664(r1), 0, qr0
-	lfd      f29, 0x290(r1)
-	psq_l    f28, 648(r1), 0, qr0
-	lfd      f28, 0x280(r1)
-	psq_l    f27, 632(r1), 0, qr0
-	lfd      f27, 0x270(r1)
-	psq_l    f26, 616(r1), 0, qr0
-	lfd      f26, 0x260(r1)
-	psq_l    f25, 600(r1), 0, qr0
-	lfd      f25, 0x250(r1)
-	psq_l    f24, 584(r1), 0, qr0
-	lfd      f24, 0x240(r1)
-	psq_l    f23, 568(r1), 0, qr0
-	lfd      f23, 0x230(r1)
-	psq_l    f22, 552(r1), 0, qr0
-	lfd      f22, 0x220(r1)
-	psq_l    f21, 536(r1), 0, qr0
-	lfd      f21, 0x210(r1)
-	psq_l    f20, 520(r1), 0, qr0
-	lfd      f20, 0x200(r1)
-	psq_l    f19, 504(r1), 0, qr0
-	lfd      f19, 0x1f0(r1)
-	psq_l    f18, 488(r1), 0, qr0
-	lfd      f18, 0x1e0(r1)
-	psq_l    f17, 472(r1), 0, qr0
-	lfd      f17, 0x1d0(r1)
-	psq_l    f16, 456(r1), 0, qr0
-	lfd      f16, 0x1c0(r1)
-	lmw      r23, 0x19c(r1)
-	lwz      r0, 0x2c4(r1)
-	mtlr     r0
-	addi     r1, r1, 0x2c0
-	blr
-	*/
 }
 
 /**
@@ -1764,7 +642,8 @@ u64 THiScore::getNameID(int id) { return mNameID[id]; }
 bool THiScore::doUpdate()
 {
 	if (mCanInput) {
-		if (mController->getButtonDown() & Controller::PRESS_B) {
+		Controller* input = mController;
+		if (input->getButtonDown() & Controller::PRESS_B) {
 			if (!mIsSection) {
 				P2ASSERTLINE(549, getOwner());
 				getOwner()->endScene(nullptr);
@@ -1773,13 +652,10 @@ bool THiScore::doUpdate()
 				changePaneInfo();
 			}
 			PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CANCEL, 0);
-		}
-	} else {
-		u32 press = mController->getButton();
-		if (press & Controller::PRESS_DOWN) {
+		} else if ((input->getButton() & Controller::ANALOG_UP) || (input->getButton() & Controller::PRESS_DPAD_UP)) {
 			if (mState != 1) {
-				if (_184 == 0.0f) {
-					_184 = 1.0f;
+				if (mIndPaneXDirection == 0.0f) {
+					mIndPaneXDirection = 1.0f;
 				}
 				mIndexGroup->upIndex();
 			} else {
@@ -1788,14 +664,14 @@ bool THiScore::doUpdate()
 					PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_ERROR, 0);
 				}
 			}
-		} else if (press & Controller::PRESS_UP) {
+		} else if ((input->getButton() & Controller::ANALOG_DOWN) || (input->getButton() & Controller::PRESS_DPAD_DOWN)) {
 			if (mState != 2) {
-				if (_184 == 0.0f) {
-					_184 = -1.0f;
+				if (mIndPaneXDirection == 0.0f) {
+					mIndPaneXDirection = -1.0f;
 				}
 				mIndexGroup->downIndex();
 			} else {
-				if (!mIndexGroup->mStateID && mErrorSoundCounter == 0) {
+				if (mIndexGroup->isState(0) && mErrorSoundCounter == 0) {
 					mErrorSoundCounter = 1;
 					PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_ERROR, 0);
 				}
@@ -1830,24 +706,24 @@ bool THiScore::doUpdate()
 		}
 	}
 
-	f32 test = mAlphaTimer;
-	if (test < 0.2f) {
-		test = 0.0f;
+	f32 alpha = mAlphaTimer;
+	if (alpha < 0.2f) {
+		alpha = 0.0f;
 	}
-	mListScreen->mScreenObj->search('Nheten')->setAlpha(test * 255.0f);
-	mListScreen->mScreenObj->search('Notten')->setAlpha(test * 255.0f);
+	mMainScreen->mScreenObj->search('Nheten')->setAlpha(alpha * 255.0f);
+	mMainScreen->mScreenObj->search('Notten')->setAlpha(alpha * 255.0f);
 
 	for (int i = 0; i < 6; i++) {
-		mScaleCounter1[i]->getMotherPane()->setAlpha(test * 255.0f);
-		mScaleCounter2[i]->getMotherPane()->setAlpha(test * 255.0f);
-		mScaleCounter3[i]->getMotherPane()->setAlpha(test * 255.0f);
+		mScaleCounter1[i]->getMotherPane()->setAlpha(alpha * 255.0f);
+		mScaleCounter2[i]->getMotherPane()->setAlpha(alpha * 255.0f);
+		mScaleCounter3[i]->getMotherPane()->setAlpha(alpha * 255.0f);
 	}
 
 	if (!mIndexGroup->mStateID) {
 		mAlphaTimer += 0.04f;
 		if (mAlphaTimer > 1.0f) {
-			mAlphaTimer = 1.0f;
-			_184        = 0.0f;
+			mAlphaTimer        = 1.0f;
+			mIndPaneXDirection = 0.0f;
 		}
 	} else {
 		mAlphaTimer *= 0.75f;
@@ -1861,7 +737,8 @@ bool THiScore::doUpdate()
 	if (mPaneAngle > TAU) {
 		mPaneAngle -= TAU;
 	}
-	if (!_1C4) {
+
+	if (!mNoAlphaUpdate) {
 		f32 alpha = mAlphaTimer;
 		if (alpha > 0.2f) {
 			alpha *= 2.0f;
@@ -1870,14 +747,15 @@ bool THiScore::doUpdate()
 			alpha = 1.0f;
 		}
 		if (alpha == 0.0f) {
-			if (!_1C5) {
+			if (mIndPaneType) {
+				alpha = mPaneAngle;
 				mIndPane->setRadius(-6, alpha);
 			} else {
 				mIndPane->setXY(0.0f, 0.0f);
 			}
 		} else {
 			mIndPane->setFlag(1);
-			mIndPane->setXY(alpha * _184 * 1.1f, 0.0f);
+			mIndPane->setXY(alpha * mIndPaneXDirection * 1.1f, 0.0f);
 		}
 		mHighScorePic->setAlpha(alpha * 255.0f);
 	}
@@ -1907,24 +785,24 @@ bool THiScore::doUpdate()
 	if (mIsAllTreasures) {
 		for (int i = 0; i < mNumActiveRows; i++) {
 			TIndexPane* pane = mIndexPaneList[i];
-			pane->mPane2->setOffset(pane->mPane->mOffset.x, 0.5f * -_1FC);
+			pane->mPane2->setOffset(pane->mPane->mOffset.x, 0.5f * -mPaneHeightDiff);
 		}
 	}
 
 	if (mSelIconPane) {
-		mPaneAngle2 += _198;
-		if (mPaneAngle2 > TAU) {
-			mPaneAngle2 -= TAU;
+		mCornerAnimTimer += mCornerAnimSpeed;
+		if (mCornerAnimTimer > TAU) {
+			mCornerAnimTimer -= TAU;
 		}
-		_19C          = _194 * sinf(mPaneAngle2) + 0.85f;
-		f32 test      = 0.0f;
-		J2DPane* pane = mIndexPaneList[mCurrActiveRowSel]->mPane->getFirstChildPane();
+		mCornerSelScale = mCornerSelScaleModifier * sinf(mCornerAnimTimer) + 0.85f;
+		f32 paneHeight  = 0.0f;
+		J2DPane* pane   = mIndexPaneList[mCurrActiveRowSel]->mPane->getFirstChildPane();
 		if (mIsAllTreasures) {
-			test = -_1FC * 0.5f;
-			pane = mIndexPaneList[mCurrActiveRowSel]->mPane2;
+			paneHeight = -mPaneHeightDiff * 0.5f;
+			pane       = mIndexPaneList[mCurrActiveRowSel]->mPane2;
 		}
 		pane->setBasePosition(J2DPOS_Center);
-		for (int i = 0; i < 4; i++) {
+		for (u8 i = 0; i < 4; i++) {
 			f32 x, y;
 			switch (i) {
 			case 0:
@@ -1952,9 +830,9 @@ bool THiScore::doUpdate()
 				}
 				break;
 			}
-			f32 x2 = _19C * pane->getGlbVtx(i).x - pane->mGlobalMtx[0][3] + _1A0;
-			f32 y2 = _19C * test + pane->getGlbVtx(i).y - pane->mGlobalMtx[1][3];
-			mSelIconCorners[i]->setOffset(x2 + x, y2 + y);
+			f32 width  = pane->getGlbVtx(i).x - pane->mGlobalMtx[0][3];
+			f32 height = pane->getGlbVtx(i).y - pane->mGlobalMtx[1][3];
+			mSelIconCorners[i]->setOffset(mCornerSelScale * width + mCornerXOffset + x, mCornerSelScale * height + paneHeight + y);
 		}
 	}
 	return false;
@@ -2710,7 +1588,7 @@ void THiScoreListScreen::update() { mScreenObj->update(); }
  */
 void THiScore::doDraw(Graphics& gfx)
 {
-	J2DPerspGraph* graf = &gfx.mPerspGraph;
+	J2DPerspGraph* graf = gfx.getPerspGraph();
 	if (mDoEnd) {
 		gfx.mOrthoGraph.setPort();
 		Graphics::dirtyInitGX();
@@ -2817,7 +1695,7 @@ void THiScore::doUpdateFadeoutFinish()
  */
 void THiScore::changePaneInfo()
 {
-	_1F8 = 0.0f;
+	mColorChangeTimer = 0.0f;
 
 	int id = mIndexPaneList[mCurrActiveRowSel]->getIndex();
 
@@ -3359,16 +2237,16 @@ lbl_8037F6CC:
  */
 void THiScore::setPaneCharacter(int id)
 {
-	int index = mIndexPaneList[id]->getIndex();
+	int index = getIndexPane(id)->getIndex();
 	u64 tag   = getNameID(index);
-	mIndexPaneList[id]->mPane2->setMsgID(tag);
+	getIndexPane(id)->mPane2->setMsgID(tag);
 
-	J2DPane* pane = mIndexPaneList[id]->mPane2->getFirstChildPane();
+	J2DPane* pane = getIndexPane(id)->mPane2->getFirstChildPane();
 	P2ASSERTLINE(1031, pane);
 	pane->setMsgID(getNameID(index));
 
 	if (mIsAllTreasures && mPicTexture[index]) {
-		static_cast<J2DPictureEx*>(mIndexPaneList[id]->mPane->getFirstChildPane())->changeTexture(mPicTexture[index], 0);
+		static_cast<J2DPictureEx*>(getIndexPane(id)->mPane->getFirstChildPane())->changeTexture(mPicTexture[index], 0);
 	}
 	/*
 	stwu     r1, -0x20(r1)
@@ -3538,18 +2416,18 @@ int THiScore::getRecord(int type, int id)
  */
 void THiScore::changeTextTevBlock(int p1)
 {
-	J2DTextBox* textbox  = static_cast<J2DTextBox*>(mIndexPaneList[p1]->mPane2->getFirstChildPane()); // r29
-	f32 val              = mIndexPaneList[p1]->getPaneYOffset() + mIndexGroup->mScrollOffset;
-	J2DTextBox* startBox = static_cast<J2DTextBox*>(mIndexPaneList[p1]->mPane2); // r28
+	J2DTextBox* textbox  = static_cast<J2DTextBox*>(getIndexPane(p1)->getSubPane()->getFirstChildPane()); // r29
+	f32 val              = getIndexPane(p1)->getPaneYOffset() + mIndexGroup->mScrollOffset;
+	J2DTextBox* startBox = static_cast<J2DTextBox*>(getIndexPane(p1)->getSubPane()); // r28
 
 	if (mIndexGroup->mStateID == TIndexGroup::IDGroup_Idle && val < mCursorSelectionYOffset && val > mSelectionYOffset) {
-		changeTevBlock(mTevBlock[0], textbox->getMaterial()->mTevBlock);
-		_1F8 += 0.1f;
-		if (_1F8 > TAU) {
-			_1F8 -= TAU;
+		changeTevBlock(mTevBlock[0], textbox->getMaterial()->getTevBlock());
+		mColorChangeTimer += 0.1f;
+		if (mColorChangeTimer > TAU) {
+			mColorChangeTimer -= TAU;
 		}
 
-		f32 t = cosf(_1F8);
+		f32 t = cosf(mColorChangeTimer);
 		if (t < 0.0f) {
 			t = 0.0f;
 		}
@@ -3566,15 +2444,15 @@ void THiScore::changeTextTevBlock(int p1)
 		int b1 = (int)(tInv * (f32)mColors[3].b + t * (f32)mColors[1].b);
 		int a1 = (int)(tInv * (f32)mColors[3].a + t * (f32)mColors[1].a);
 
-		textbox->getMaterial()->mTevBlock->setTevColor(0, J2DGXColorS10(r0, g0, b0, a0));
-		textbox->getMaterial()->mTevBlock->setTevColor(1, J2DGXColorS10(r1, g1, b1, a1));
+		textbox->getMaterial()->getTevBlock()->setTevColor(0, J2DGXColorS10(r0, g0, b0, a0));
+		textbox->getMaterial()->getTevBlock()->setTevColor(1, J2DGXColorS10(r1, g1, b1, a1));
 
-		changeColorBlock(mColorBlock[0], &startBox->getMaterial()->mColorBlock);
+		changeColorBlock(mColorBlock[0], startBox->getMaterial()->getColorBlock());
 		return;
 	}
 
-	changeTevBlock(mTevBlock[1], textbox->getMaterial()->mTevBlock);
-	changeColorBlock(mColorBlock[1], &startBox->getMaterial()->mColorBlock);
+	changeTevBlock(mTevBlock[1], textbox->getMaterial()->getTevBlock());
+	changeColorBlock(mColorBlock[1], startBox->getMaterial()->getColorBlock());
 	/*
 	stwu     r1, -0x100(r1)
 	mflr     r0
@@ -3934,14 +2812,12 @@ void THiScore::changeColorBlock(J2DColorBlock* colorB, J2DColorBlock* colorA)
  */
 void THiScore::updateLayout()
 {
-	f32 ydiff = mIndexPaneList[0]->mPane->mOffset.y - mIndexPaneList[1]->mPane->mOffset.y;
-	_1FC      = ydiff * 2.0f;
+	f32 ydiff       = mIndexPaneList[0]->mPane->mOffset.y - mIndexPaneList[1]->mPane->mOffset.y;
+	mPaneHeightDiff = ydiff * 2.0f;
 
 	if (mIsAllTreasures) {
 		for (int i = 0; i < mNumActiveRows; i++) {
-			TIndexPane* idpane = mIndexPaneList[i];
-			idpane->mPane->setOffsetY(idpane->mYOffset + (ydiff * mClearListHeightRate) * f32(i - mCurrActiveRowSel));
-			idpane->mYOffset = idpane->mPane->mOffset.y;
+			updateIDPaneYOffset(i, (ydiff * mClearListHeightRate) * f32(i - mCurrActiveRowSel));
 		}
 
 		ydiff          = mIndexPaneList[0]->mPane->mOffset.y - mIndexPaneList[1]->mPane->mOffset.y;

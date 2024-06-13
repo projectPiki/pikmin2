@@ -53,7 +53,7 @@ struct PikiMgr : public MonoObjectMgr<Piki> {
 	SysShape::Model* createLeafModel(int id, int num);
 	void setMovieDraw(bool drawOn);
 	void debugShapeDL(char* text);
-	void setVsXlu(int p1, bool p2);
+	void setVsXlu(int naviIndex, bool ghostIconNotActive);
 	void setupSoundViewerAndBas();
 	int getColorTransportScale(int color);
 	void allocStorePikmins();
@@ -68,6 +68,8 @@ struct PikiMgr : public MonoObjectMgr<Piki> {
 	void caveSaveAllPikmins(bool check1, bool check2);
 	void saveFormationPikmins(PikiContainer& container);
 	void saveAllPikmins(PikiContainer& container);
+
+	inline void updateArrayAt(int i);
 
 	static int mBirthMode;
 	static bool throwPikiDebug;

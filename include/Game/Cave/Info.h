@@ -29,20 +29,17 @@ enum EnemyDropMode {
 struct BaseGen : public CNode {
 	/**
 	 * Spawn type used by BaseGen (caves).
-	 * UNUSED_3 is player 1 spawn in vs mode? (see
-	 * Game::Cave::RandMapMgr::getStartPosition)
 	 */
 	enum CaveGenType {
-		CGT_EnemyEasy = 0, // AKA TekiA / Easy Teki
-		CGT_EnemyHard,     // AKA TekiB / Hard Teki
-		CGT_TreasureItem,
-		CGT_Unknown3,
-		CGT_HoleOrGeyser,
-		CGT_DoorSeam,
-		CGT_Plant,
-		CGT_Start,
-		CGT_EnemySpecial, // AKA TekiF / Special Teki, contribute 0 to score, spawn individually
-		CGT_Alcove
+		CGT_EnemyEasy = 0, // 0, AKA TekiA / Easy Teki
+		CGT_EnemyHard,     // 1, AKA TekiB / Hard Teki
+		CGT_TreasureItem,  // 2, AKA stand-alone treasures
+		CGT_Unknown3,      // 3, unused
+		CGT_HoleOrGeyser,  // 4
+		CGT_DoorSeam,      // 5, AKA seam hazards
+		CGT_Plant,         // 6
+		CGT_Start,         // 7, AKA pod/ship
+		CGT_EnemySpecial,  // 8, AKA TekiF / Special Teki, contribute 0 to score, spawn individually
 	};
 
 	BaseGen();

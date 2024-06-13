@@ -14,11 +14,7 @@ void TagParm::read(Stream& input) { doRead(input); }
  * @note Address: N/A
  * @note Size: 0x84
  */
-void TagParm::write(Stream& output)
-{
-	// TODO: There was clearly more to this one, given the length.
-	doWrite(output);
-}
+void TagParm::write(Stream& output) { doWrite(output); }
 
 /**
  * @note Address: N/A
@@ -227,7 +223,9 @@ TagParameters::TagParameters(char* name)
  * @note Address: N/A
  * @note Size: 0x48
  */
-// bool TagParameters::isEndToken(char* token)
+// bool TagParameters::isEndToken(char* token) {
+
+// }
 
 /**
  * @note Address: N/A
@@ -260,20 +258,16 @@ TagParm::TagParm(TagParameters* container, char* name)
  * @note Address: 0x8041C0D4
  * @note Size: 0xD4
  */
-
 void TagParameters::read(Stream& stream)
 {
-	// char* str;
-	// while (str = stream.readString(nullptr, 0), !isEndToken(str)) {
 	while (true) {
-		char* str = stream.readString(nullptr, 0);
-		// if (isEndToken(str)) {
-		// 	return;
-		// }
-		int strLen  = strlen("end");
-		bool is_end = ((strncmp("end", str, strLen)) == 0);
-		if (is_end)
+		char* str  = stream.readString(nullptr, 0);
+		int strLen = strlen("end");
+		bool isEnd = IS_SAME_STRING_N("end", str, strLen);
+
+		if (isEnd) {
 			break;
+		}
 
 		for (TagParm* node = mHead; node; node = node->mNext) {
 			strLen          = strlen(str);
@@ -283,7 +277,7 @@ void TagParameters::read(Stream& stream)
 			}
 
 			strLen = strlen(str);
-			if (strncmp(node->mName, str, strLen) == 0) {
+			if (IS_SAME_STRING_N(node->mName, str, strLen)) {
 				node->doRead(stream);
 			}
 		}

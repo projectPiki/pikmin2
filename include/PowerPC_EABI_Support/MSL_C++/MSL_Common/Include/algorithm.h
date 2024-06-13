@@ -1,6 +1,8 @@
 #ifndef MSL_ALGORITHM_H_
 #define MSL_ALGORITHM_H_
 
+#include "mem.h"
+
 namespace std {
 template <class ForwardIterator, class T>
 ForwardIterator lower_bound(ForwardIterator first, ForwardIterator last, const T& val)
@@ -65,19 +67,35 @@ void fill(ForwardIt first, ForwardIt last, const T& value)
 template <class InputIt, class OutputIt>
 inline OutputIt copy(InputIt first, InputIt last, OutputIt d_first)
 {
-	for (; first < last; ++first, ++d_first) {
-		*d_first = *first;
+	for (; first < last;) {
+		*d_first++ = *first++;
 	}
 	return d_first;
 }
 
-template <class BidirIt1, class BidirIt2>
-inline BidirIt2 copy_backward(BidirIt1 first, BidirIt1 last, BidirIt2 d_last)
-{
-	while (first != last) {
-		*(--d_last) = *(--last);
+template <class T, int N>
+class __copy_backward {
+public:
+	static T* copy_backward(T* begin, T* end, T* dest)
+	{
+#ifdef DEBUG
+		size_t size = (end - begin);
+		dest -= size;
+		memmove(dest, begin, size * sizeof(begin));
+		return dest;
+#else
+		for (; end > begin;) {
+			*--dest = *--end;
+		}
+		return end;
+#endif
 	}
-	return d_last;
+};
+
+template <class T>
+inline T* copy_backward(T* first, T* last, T* d_last)
+{
+	return __copy_backward<T, 1>::copy_backward(first, last, d_last);
 }
 
 } // namespace std

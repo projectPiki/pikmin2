@@ -197,10 +197,10 @@ void TVsPiki::update(int pikis)
 	mPikminRight->setBasePosition(J2DPOS_TopLeft);
 	mPikminFlower->setBasePosition(J2DPOS_Center);
 
-	mBounds[0]
-	    = Vector2f(mPikminLeft->getGlbVtx(0).x - mPikminRight->getGlbVtx(1).x, mPikminLeft->getGlbVtx(0).y - mPikminRight->getGlbVtx(1).y);
-	mBounds[1] = Vector2f(mPikminLeft->getGlbVtx(0).x - mPikminFlower->getGlbVtx(0).x,
-	                      mPikminLeft->getGlbVtx(0).y - mPikminFlower->getGlbVtx(0).y);
+	mBounds[0] = Vector2f(mPikminLeft->getGlbVtx(GLBVTX_BtmLeft).x - mPikminRight->getGlbVtx(GLBVTX_BtmRight).x,
+	                      mPikminLeft->getGlbVtx(GLBVTX_BtmLeft).y - mPikminRight->getGlbVtx(GLBVTX_BtmRight).y);
+	mBounds[1] = Vector2f(mPikminLeft->getGlbVtx(GLBVTX_BtmLeft).x - mPikminFlower->getGlbVtx(GLBVTX_BtmLeft).x,
+	                      mPikminLeft->getGlbVtx(GLBVTX_BtmLeft).y - mPikminFlower->getGlbVtx(GLBVTX_BtmLeft).y);
 
 	for (int i = 0; i < 10; i++) {
 		if (i < pikis) {
@@ -250,12 +250,11 @@ void TVsPiki::update(int pikis)
  */
 void TVsPiki::draw()
 {
-	JGeometry::TVec3f pos = mPikminLeft->getGlbVtx(2);
+	JGeometry::TVec3f pos = mPikminLeft->getGlbVtx(GLBVTX_TopLeft);
 	f32 x1                = pos.x - mPikiOffset.x;
 	f32 xoffs             = mPikiOffset.x;
 	f32 y1                = pos.y - 50.0f;
-	pos                   = mPikminLeft->getGlbVtx(2);
-	f32 y2                = pos.y - y1;
+	f32 y2                = mPikminLeft->getGlbVtx(GLBVTX_TopLeft).y - y1;
 	f32 x2                = (xoffs * 12.0f + x1) - x1;
 	GXSetScissor(x1, y1, x2, y2);
 	Vector2f* offs = &mPikiOffset;
@@ -263,8 +262,8 @@ void TVsPiki::draw()
 	for (int i = 0; i < 10; i++) {
 		J2DPicture* pic = mPikminLeft;
 		f32 calc        = TVsSelect::mDemoScale;
-		f32 x           = mPosInfos[i].mPosition.x * calc + pic->getGlbVtx(0).x;
-		f32 y           = mPosInfos[i].mPosition.y * calc + pic->getGlbVtx(0).y;
+		f32 x           = mPosInfos[i].mPosition.x * calc + pic->getGlbVtx(GLBVTX_BtmLeft).x;
+		f32 y           = mPosInfos[i].mPosition.y * calc + pic->getGlbVtx(GLBVTX_BtmLeft).y;
 		pic->draw(x, y, calc * pic->getWidth(), calc * pic->getHeight(), false, false, false);
 		pic->calcMtx();
 
@@ -278,6 +277,8 @@ void TVsPiki::draw()
 	}
 
 	GXSetScissor(0, 0, 640, 480);
+
+	FORCE_DONT_INLINE;
 
 	/*
 	stwu     r1, -0x80(r1)
@@ -570,9 +571,9 @@ void TVsSelectOnyon::draw()
 	if (0.4f == mOnyonPane->mScale.x) {
 		mNaviPane->setBasePosition(J2DPOS_Center);
 		mNaviPane->draw(mCurrentPosition.x + -30.0f, mCurrentPosition.y + -30.0f, false, false, false);
-		mOnyonPane->calcMtx();
+		mNaviPane->calcMtx();
 		_30 += 0.05f;
-		mNaviPane->hide();
+		mOnyonPane->hide();
 		if (_30 > 2.0f) {
 			_30 = 2.0f;
 		}
@@ -859,7 +860,7 @@ void TVsSelect::doCreate(JKRArchive* arc)
 	mDispMember->mDebugExpHeap->becomeCurrentHeap();
 	sys->heapStatusStart("vsSelectTexture", nullptr);
 	mVsSelectTextureArc = nullptr;
-	char path[64];
+	char path[50];
 	og::newScreen::makeLanguageResName(path, "res_vsSelectTexture.szs");
 	mVsSelectTextureArc = JKRMountArchive(path, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
 	JUT_ASSERTLINE(893, mVsSelectTextureArc, "arcName = %s\n", path);
@@ -869,11 +870,11 @@ void TVsSelect::doCreate(JKRArchive* arc)
 	    = { "timg/otegaru.bti",  "timg/ujyaujya.bti", "timg/hirobiro.bti", "timg/karakuchi.bti", "timg/semai.bti",
 		    "timg/hiyahiya.bti", "timg/nobinobi.bti", "timg/kakukaku.bti", "timg/meiro.bti",     "timg/tile.bti" };
 	for (int i = 0; i < mStageCount; i++) {
-		mLevelTextures[i] = (ResTIMG*)mVsSelectTextureArc->getResource(texNames[i]);
+		mLevelTextures[i] = JKRGetArchiveImageResource(mVsSelectTextureArc, texNames[i]);
 
 		// Use louie face as a default if level icon not found
 		if (!mLevelTextures[i]) {
-			mLevelTextures[i] = (ResTIMG*)mArchive->getResource("timg/loozy_icon.bti");
+			mLevelTextures[i] = JKRGetArchiveImageResource(mArchive, "timg/loozy_icon.bti");
 		}
 	}
 
@@ -881,9 +882,9 @@ void TVsSelect::doCreate(JKRArchive* arc)
 	    = { "timg/orima001.bti", "timg/orima002.bti", "timg/orima003.bti", "timg/orima004.bti", "timg/orima005.bti" };
 	const char* louieTexNames[5] = { "timg/lui001.bti", "timg/lui002.bti", "timg/lui003.bti", "timg/lui004.bti", "timg/lui005.bti" };
 	for (int i = 0; i < 5; i++) {
-		mOrimaTexture[i] = (ResTIMG*)mVsSelectTextureArc->getResource(olimarTexNames[i]);
+		mOrimaTexture[i] = JKRGetArchiveImageResource(mVsSelectTextureArc, olimarTexNames[i]);
 		P2ASSERTLINE(926, mOrimaTexture[i]);
-		mLouieTexture[i] = (ResTIMG*)mVsSelectTextureArc->getResource(louieTexNames[i]);
+		mLouieTexture[i] = JKRGetArchiveImageResource(mVsSelectTextureArc, louieTexNames[i]);
 		P2ASSERTLINE(930, mLouieTexture[i]);
 	}
 
@@ -894,12 +895,9 @@ void TVsSelect::doCreate(JKRArchive* arc)
 		                 'P1icon00', 'P1icon01', 'P1icon02', 'P1icon03', 'P1icon04', 'P1icon05' };
 
 	for (int i = 0; i < 12; i++) {
-		TVsSelectSlotIndex* info = TVsSelectSlotIndex::getIndexInfo(i);
-		int id                   = info->mIndex;
-		int tagID                = info->mTagID;
-		vu64 tag                 = info->mMesg;
-		mPowerIconPanes[id]      = mSlotTexturesScreen->mScreenObj->search(iconTags[tagID]);
-		P2ASSERTLINE(949, mPowerIconPanes[id]);
+		TVsSelectSlotIndex info      = *TVsSelectSlotIndex::getIndexInfo(i);
+		mPowerIconPanes[info.mIndex] = mSlotTexturesScreen->mScreenObj->search(iconTags[info.mTagID]);
+		P2ASSERTLINE(949, mPowerIconPanes[info.mIndex]);
 	}
 
 	mArrowBlink = new og::Screen::ArrowAlphaBlink;
@@ -3906,8 +3904,7 @@ bool TVsSelect::doUpdate()
 				}
 			} else if (mController->getButtonDown() & Controller::PRESS_Z) {
 				mRulesWindow->openClose();
-			}
-			if (rulesinactive) {
+			} else if (rulesinactive) {
 				if (mController->getButtonDown() & (Controller::PRESS_START | Controller::PRESS_A)) {
 					if (!mIsSection) {
 						mIsDemoStarted = 1;
@@ -4007,7 +4004,8 @@ bool TVsSelect::doUpdate()
 				mEfxCountKira->mScale = calc;
 				J2DPane* pane         = mMainScreen->mScreenObj->search('Pori_c');
 				pane->setBasePosition(J2DPOS_Center);
-				Vector2f pos(pane->getWidth() * 0.5f + pane->getGlbVtx(0).x, pane->getHeight() * 0.5f + pane->getGlbVtx(0).y);
+				Vector2f pos(pane->getGlbVtx(GLBVTX_BtmLeft).x + pane->getWidth() / 2,
+				             pane->getGlbVtx(GLBVTX_BtmLeft).y + pane->getHeight() / 2);
 				efx2d::Arg arg(pos);
 				mEfxCountKira->create(&arg);
 				PSSystem::spSysIF->playSystemSe(PSSE_SY_2P_WIN_COUNT, 0);
@@ -4024,7 +4022,8 @@ bool TVsSelect::doUpdate()
 				mEfxCountKira->mScale = calc;
 				J2DPane* pane         = mMainScreen->mScreenObj->search('Plui_c');
 				pane->setBasePosition(J2DPOS_Center);
-				Vector2f pos(pane->getWidth() * 0.5f + pane->getGlbVtx(0).x, pane->getHeight() * 0.5f + pane->getGlbVtx(0).y);
+				Vector2f pos(pane->getGlbVtx(GLBVTX_BtmLeft).x + pane->getWidth() / 2,
+				             pane->getGlbVtx(GLBVTX_BtmLeft).y + pane->getHeight() / 2);
 				efx2d::Arg arg(pos);
 				mEfxCountKira->create(&arg);
 				PSSystem::spSysIF->playSystemSe(PSSE_SY_2P_WIN_COUNT, 0);
@@ -4046,7 +4045,7 @@ bool TVsSelect::doUpdate()
 	mListScreen->mScreenObj->scaleScreen(mDemoScale);
 	mFireScreen->mScreenObj->scaleScreen(mDemoScale);
 
-	f32 calc = -mScreenXPos / mDemoScale;
+	f32 calc = mScreenXPos / mDemoScale;
 	mPaneSpot->updateScale(mScreenXPos);
 	f32 something = 243.0f;
 	something *= 40.0f;
@@ -4061,7 +4060,7 @@ bool TVsSelect::doUpdate()
 		dist = -30.0f;
 	}
 	mLevelNameYPos += (dist - mLevelNameYPos) * 0.3f;
-	if (fabs(mLevelNameYPos - dist) < 0.1f) {
+	if ((f32)fabs(mLevelNameYPos - dist) < 0.1f) {
 		mLevelNameYPos = dist;
 	}
 	mPaneLevelName->setOffset(0.0f, mLevelNameYPos + -3.0f);
@@ -4109,13 +4108,13 @@ bool TVsSelect::doUpdate()
 	}
 	mPaneRulesInfo->setOffset(mRulesPanePos.x + mRulesMoveXPos, mRulesPanePos.y);
 
-	JGeometry::TVec3f vec1 = mPaneStageNameBg->getGlbVtx(0);
-	JGeometry::TVec3f vec2 = mPaneStageNameBg->getGlbVtx(3);
+	JGeometry::TVec3f vec1 = mPaneStageNameBg->getGlbVtx(GLBVTX_BtmLeft);
+	JGeometry::TVec3f vec2 = mPaneStageNameBg->getGlbVtx(GLBVTX_TopRight);
 	TVsSelectScreen* scrn  = static_cast<TVsSelectScreen*>(mMainScreen);
-	scrn->mCallbackScissor->mBounds.set(Vector2f(vec1.x, vec1.y), Vector2f(vec2.x, vec2.y));
+	scrn->mCallbackScissor->mBounds.set(vec1.x, vec1.y, vec2.x, vec2.y);
 
-	vec1 = mPaneStageList->getGlbVtx(0);
-	vec2 = mPaneStageList->getGlbVtx(3);
+	vec1 = mPaneStageList->getGlbVtx(GLBVTX_BtmLeft);
+	vec2 = mPaneStageList->getGlbVtx(GLBVTX_TopRight);
 	mScissorBounds.set(vec1.x, vec1.y, vec2.x, vec2.y);
 
 	for (int i = 0; i < 2; i++) {
@@ -5549,14 +5548,18 @@ void TVsSelect::doDraw(Graphics& gfx)
 		GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
 		GXBegin(GX_QUADS, GX_VTXFMT0, 4);
 
-		GXTexCoord2f32(0.0f, 0.0f);
-		GXTexCoord2f32(0.0f, 386.0f);
+		f32 zero = 0.0f;
+		f32 pos1 = 386.0f;
+		f32 pos2 = 290.0f;
 
-		GXTexCoord2f32(0.0f, 0.0f);
-		GXTexCoord2f32(386.0f, 290.0f);
+		GXTexCoord2f32(zero, zero);
+		GXTexCoord2f32(zero, pos1);
 
-		GXTexCoord2f32(0.0f, 0.0f);
-		GXTexCoord2f32(290.0f, 0.0f);
+		GXTexCoord2f32(zero, zero);
+		GXTexCoord2f32(pos1, pos2);
+
+		GXTexCoord2f32(zero, zero);
+		GXTexCoord2f32(pos2, zero);
 
 		J2DPicture pics[2];
 		pics[0] = J2DPicture("navi_l.bti");
@@ -5614,10 +5617,10 @@ void TVsSelect::doDraw(Graphics& gfx)
 	gfx.mOrthoGraph.setPort();
 
 	for (int i = 0; i < 2; i++) {
-		// mVsPiki[i]->draw(); needs to not inline
+		mVsPiki[i]->draw();
 	}
 
-	if (mZoomState > 2) {
+	if (mZoomState >= 3) {
 		for (int i = 0; i < 2; i++) {
 			mOnyonObj[i]->draw();
 		}
@@ -5627,10 +5630,10 @@ void TVsSelect::doDraw(Graphics& gfx)
 	mRulesWindow->draw(gfx, graf);
 	mFireScreen->draw(gfx, graf);
 
-	bool test             = false;
+	bool needBG           = false;
 	TVsSelectScene* owner = static_cast<TVsSelectScene*>(getOwner());
 	if (owner->mConfirmEndWindow->mHasDrawn) {
-		test = true;
+		needBG = true;
 
 		owner = static_cast<TVsSelectScene*>(getOwner());
 		if (owner->mConfirmEndWindow->mIsActive) {
@@ -5647,7 +5650,7 @@ void TVsSelect::doDraw(Graphics& gfx)
 		}
 	}
 
-	if (test) {
+	if (needBG) {
 		JUtility::TColor c;
 		c.set(0, 0, 0, 0);
 		c.a = mDrawAlpha;
@@ -5669,15 +5672,17 @@ void TVsSelect::doDraw(Graphics& gfx)
 				baseID = 6;
 			}
 			J2DPictureEx* pane = (J2DPictureEx*)mPowerIconPanes[baseID + i];
-			pane->draw(mPowerIconOffset.x + (0.5f * pane->getWidth() - mPaneRulesIcons[i]->mGlobalMtx[0][3]),
-			           mPowerIconOffset.y + (0.5f * pane->getHeight() - mPaneRulesIcons[i]->mGlobalMtx[1][3]), false, false, false);
+			f32 width          = pane->getWidth();
+			f32 height         = pane->getHeight();
+			pane->draw(mPowerIconOffset.x + (width / 2 - mPaneRulesIcons[i]->mGlobalMtx[0][3]),
+			           mPowerIconOffset.y + (height / 2 - mPaneRulesIcons[i]->mGlobalMtx[1][3]), width, height, false, false, false);
 			mPowerIconPanes[baseID + i]->calcMtx();
 		}
 		gfx.mPerspGraph.setPort();
 	}
 
 	JUtility::TColor c;
-	c.set(0, 0, 0, mFadeAlpha);
+	c.set(0, 0, 0, 255 - mFadeAlpha);
 	graf->setColor(c);
 	GXSetAlphaUpdate(GX_FALSE);
 	u32 y    = System::getRenderModeObj()->efbHeight;
@@ -6766,14 +6771,19 @@ void TVsSelect::doZoom()
 	} else if (mZoomState == 2) {
 		mZoomLevel -= 1.0f;
 		if (mZoomLevel <= 0.0f) {
-			mZoomLevel = 0.0f;
-			f32 y1     = mOnyonObj[0]->mCurrentPosition.y - 240.0f;
-			f32 x1     = mOnyonObj[0]->mCurrentPosition.x - 320.0f;
-			f32 y2     = mOnyonObj[1]->mCurrentPosition.y - 240.0f;
-			f32 x2     = mOnyonObj[1]->mCurrentPosition.x - 320.0f;
-			if ((y2 * y2) + (x2 * x2) <= 160000.0f && (y1 * y1) + (x1 * x1) <= 160000.0f) {
-				mZoomState = 0;
+			mZoomLevel  = 0.0f;
+			bool finish = true;
+			Vector2f offset(320.0f, 240.0f);
+			Vector2f diff1 = mOnyonObj[0]->mCurrentPosition - offset;
+			if (diff1.sqrMagnitude() < 160000.0f) {
+				finish = false;
 			}
+			Vector2f diff2 = mOnyonObj[1]->mCurrentPosition - offset;
+			if (diff2.sqrMagnitude() < 160000.0f) {
+				finish = false;
+			}
+			if (finish)
+				mZoomState = 0;
 		}
 	}
 
@@ -7398,10 +7408,11 @@ void TVsSelect::demoStart()
 {
 	mDemoScale  = 1.0f;
 	mScreenXPos = 0.0f;
+	int i       = 0;
 	mZoomState  = 0;
 	mZoomLevel  = 0.0f;
 
-	for (int i = 0; i < 2; i++) {
+	for (; i < 2; i++) {
 		mOnyonObj[i]->reset();
 	}
 

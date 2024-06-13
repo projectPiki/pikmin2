@@ -32,7 +32,7 @@ void Object::constructor()
  */
 void Object::do_onInit(CreatureInitArg*)
 {
-	P2ASSERTLINE(171, mSoundMgr->getCastType() == 12);
+	P2ASSERTLINE(171, mSoundMgr->getCastType() == PSM::CCT_PelletOtakara);
 	PSM::PelletOtakara* psm = static_cast<PSM::PelletOtakara*>(mSoundMgr);
 	psm->mBedamaType        = 0;
 	if (gameSystem->isVersusMode()) {
@@ -67,7 +67,7 @@ void Object::getShadowParam(ShadowParam& shadowParam) { Pellet::getShadowParam(s
  */
 void Object::sound_otakaraEventStart()
 {
-	P2ASSERTLINE(253, mSoundMgr->getCastType() == 12);
+	P2ASSERTLINE(253, mSoundMgr->getCastType() == PSM::CCT_PelletOtakara);
 
 	PSM::PelletOtakara* psm = static_cast<PSM::PelletOtakara*>(mSoundMgr);
 	if (gameSystem->isVersusMode()) {
@@ -110,7 +110,7 @@ void Object::sound_otakaraEventStart()
  */
 void Object::sound_otakaraEventRestart()
 {
-	P2ASSERTLINE(309, mSoundMgr->getCastType() == 12);
+	P2ASSERTLINE(309, mSoundMgr->getCastType() == PSM::CCT_PelletOtakara);
 
 	PSM::PelletOtakara* psm = static_cast<PSM::PelletOtakara*>(mSoundMgr);
 	if (gameSystem->isVersusMode()) {
@@ -153,7 +153,7 @@ void Object::sound_otakaraEventRestart()
  */
 void Object::sound_otakaraEventStop()
 {
-	P2ASSERTLINE(360, mSoundMgr->getCastType() == 12);
+	P2ASSERTLINE(360, mSoundMgr->getCastType() == PSM::CCT_PelletOtakara);
 
 	PSM::PelletOtakara* psm = static_cast<PSM::PelletOtakara*>(mSoundMgr);
 	psm->otakaraEventStop();
@@ -165,7 +165,7 @@ void Object::sound_otakaraEventStop()
  */
 void Object::sound_otakaraEventFinish()
 {
-	P2ASSERTLINE(373, mSoundMgr->getCastType() == 12);
+	P2ASSERTLINE(373, mSoundMgr->getCastType() == PSM::CCT_PelletOtakara);
 
 	PSM::PelletOtakara* psm = static_cast<PSM::PelletOtakara*>(mSoundMgr);
 	psm->otakaraEventFinish();
@@ -297,7 +297,7 @@ Pellet* Mgr::generatorBirth(Vector3f& pos, Vector3f& rot, GenPelletParm* genParm
 	PelletConfig* config = mgr->getPelletConfig(genParm->mIndex);
 	PelletInitArg arg;
 	arg.mTextIdentifier = config->mParams.mName.mData;
-	arg.mPelletType     = PELTYPE_TREASURE;
+	arg.mPelletType     = PelletType::Treasure;
 	arg.mPelletIndex    = genParm->mIndex;
 	arg.mPelView        = nullptr;
 

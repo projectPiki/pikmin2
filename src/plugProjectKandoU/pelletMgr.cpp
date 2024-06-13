@@ -184,7 +184,7 @@ Pellet* PelletView::becomePellet(PelletViewArg* viewArg)
 	initArg.mTextIdentifier = viewArg->mEnemyName;
 	initArg.mPelletColor    = 0;
 	initArg.mPelletIndex    = -1;
-	initArg.mPelletType     = PELTYPE_CARCASS;
+	initArg.mPelletType     = PelletType::Carcass;
 	initArg.mPelView        = this;
 
 	Pellet* newPellet = pelletMgr->birth(&initArg);
@@ -486,7 +486,7 @@ bool Pellet::stimulate(Interaction& interaction)
  */
 bool InteractMattuan::actPellet(Pellet* pellet)
 {
-	if (pellet->getKind() == PELTYPE_UPGRADE) {
+	if (pellet->getKind() == PelletType::Upgrade) {
 		pellet->startDiscoverDisable(mWaitTimer / sys->mDeltaTime);
 	} else {
 		pellet->clearDiscoverDisable();
@@ -500,7 +500,7 @@ bool InteractMattuan::actPellet(Pellet* pellet)
  */
 bool InteractEat::actPellet(Pellet* pellet)
 {
-	if ((pellet->getKind() == PELTYPE_BERRY) && pellet->isAlive()) {
+	if ((pellet->getKind() == PelletType::Berry) && pellet->isAlive()) {
 		// this is very dumb but also necessary to get a second vector on the stack??????
 		Vector3f position = pellet->getPosition();
 		Vector3f position2;
@@ -688,7 +688,7 @@ PelletNumberInitArg::PelletNumberInitArg(int pelNumber, int pelColor)
 	}
 
 	mPelletColor = pelColor;
-	mPelletType  = PELTYPE_NUMBER;
+	mPelletType  = PelletType::Number;
 }
 
 /**
@@ -755,7 +755,7 @@ void Pellet::onKill(CreatureKillArg* killArg)
 		mPelletView          = nullptr;
 	}
 
-	if (getKind() == PELTYPE_TREASURE || getKind() == PELTYPE_UPGRADE) {
+	if (getKind() == PelletType::Treasure || getKind() == PelletType::Upgrade) {
 		Radar::Mgr::exit(this);
 	}
 }
@@ -929,9 +929,9 @@ void Pellet::onInit(CreatureInitArg* initArg)
 	setupParticles();
 	do_onInit(initArg);
 
-	if (getKind() == PELTYPE_TREASURE) {
+	if (getKind() == PelletType::Treasure) {
 		Radar::Mgr::entry(this, Radar::MAP_TREASURE, 0);
-	} else if (getKind() == PELTYPE_UPGRADE) {
+	} else if (getKind() == PelletType::Upgrade) {
 		Radar::Mgr::entry(this, Radar::MAP_UPGRADE, 0);
 	}
 
@@ -1695,7 +1695,7 @@ void Pellet::setVelocity(Vector3f& velocity) { mRigid.mConfigs[0].mVelocity = ve
  */
 void Pellet::allocateTexCaster()
 {
-	if ((getKind() == PELTYPE_TREASURE || getKind() == PELTYPE_UPGRADE) && mCaster == nullptr) {
+	if ((getKind() == PelletType::Treasure || getKind() == PelletType::Upgrade) && mCaster == nullptr) {
 		f32 radius = mConfig->mParams.mPRadius.mData;
 		Sys::Sphere sphere(mPelletPosition, 2.0f * radius);
 		mCaster = TexCaster::Mgr::sInstance->create(sphere, TAU * randFloat());
@@ -1870,7 +1870,7 @@ void Pellet::bounceCallback(Sys::Triangle* triangle)
 		mIsBounced = true;
 		return;
 	}
-	if (!mIsBounced && (getKind() != PELTYPE_CARCASS)) {
+	if (!mIsBounced && (getKind() != PelletType::Carcass)) {
 		mSoundMgr->startSound(fallType + 0x3808, 0);
 		mIsBounced = 1;
 		onBounce();
@@ -1903,9 +1903,9 @@ void Pellet::update()
 	if (mSoundMgr) {
 		mSoundMgr->exec();
 		if ((gameSystem->isStoryMode()) && !(moviePlayer->isFlag(MVP_IsActive)) && (!isPicked())
-		    && (getKind() == PELTYPE_TREASURE || getKind() == PELTYPE_UPGRADE)) {
+		    && (getKind() == PelletType::Treasure || getKind() == PelletType::Upgrade)) {
 			PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-			PSSystem::checkSceneMgr(mgr);
+			PSSystem::validateSceneMgr(mgr);
 
 			PSM::Scene_Game* currScene = (PSM::Scene_Game*)mgr->getChildScene();
 			PSSystem::checkGameScene(currScene);
@@ -3918,7 +3918,7 @@ Onyon* Pellet::getPelletGoal()
 	Onyon* goalOnyon;
 
 	if ((gameSystem->isVersusMode())
-	    || ((getKind() != PELTYPE_TREASURE) && (getKind() != PELTYPE_BERRY) && (getKind() != PELTYPE_UPGRADE))) {
+	    || ((getKind() != PelletType::Treasure) && (getKind() != PelletType::Berry) && (getKind() != PelletType::Upgrade))) {
 		int maxCount = -1;
 		int counter  = 0;
 		int i        = 0;
@@ -5486,24 +5486,27 @@ Pellet* PelletMgr::birth(PelletInitArg* arg)
  */
 bool PelletMgr::setUse(PelletInitArg* arg)
 {
-	P2ASSERTBOOLLINE(5531, arg && arg->mPelletType != 255);
+	P2ASSERTBOOLLINE(5531, arg && arg->mPelletType != PelletType::Invalid);
 
 	BasePelletMgr* mgr = getMgrByID(arg->mPelletType);
 	P2ASSERTLINE(5533, mgr);
 
 	PelletConfig* config;
+	// If not piklopedia (second conditino always evaluates to true)
 	if (!gameSystem->isZukanMode() && !arg->mDontCheckCollected) {
 		config = mgr->mConfigList->getPelletConfig(arg->mTextIdentifier);
-		if (strcmp("yes", config->mParams.mUnique.mData) == 0) {
-			int unk = arg->mPelletIndex;
+
+		if (IS_SAME_STRING("yes", config->mParams.mUnique.mData)) {
+			int pelletIdx = arg->mPelletIndex;
+
 			if (arg->mPelletType == PelletList::PLK_Otakara) {
-				u8 result = playData->mZukanStat->mOtakara(unk);
+				u8 result = playData->mZukanStat->mOtakara(pelletIdx);
 				if (result & 2) {
 					mgr->mConfigList->getPelletConfig(arg->mTextIdentifier);
 					return false;
 				}
 			} else if (arg->mPelletType == PelletList::PLK_Item) {
-				u8 result = playData->mZukanStat->mItem(unk);
+				u8 result = playData->mZukanStat->mItem(pelletIdx);
 				if (result & 2) {
 					mgr->mConfigList->getPelletConfig(arg->mTextIdentifier);
 					return false;
@@ -5819,7 +5822,7 @@ int PelletMgr::getCaveID(char* name)
 			PelletConfig* config = mgr->getPelletConfig(i);
 			char* currName       = mgr->getPelletConfig(i)->mParams.mName.mData;
 
-			if (!strncmp(currName, name, strlen(name))) {
+			if (IS_SAME_STRING_N(currName, name, strlen(name))) {
 				int id = (mgr->getMgrID() << 24);
 				id |= i;
 				return id;

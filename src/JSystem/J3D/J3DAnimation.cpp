@@ -314,9 +314,9 @@ void J3DAnmTransformKey::calcTransform(f32 p1, u16 p2, J3DTransformInfo* info) c
  * @note Address: 0x8006829C
  * @note Size: 0x268
  */
-void J3DAnmTextureSRTKey::calcTransform(f32 p1, u16 p2, J3DTextureSRTInfo* info) const
+void J3DAnmTextureSRTKey::calcTransform(f32 frame, u16 index, J3DTextureSRTInfo* info) const
 {
-	u16 idx                       = p2 * 3;
+	u16 idx                       = index * 3;
 	J3DAnmTransformKeyTable* xInf = &mTable1[idx];
 	J3DAnmTransformKeyTable* yInf = &mTable1[idx + 1];
 	J3DAnmTransformKeyTable* zInf = &mTable1[idx + 2];
@@ -329,7 +329,7 @@ void J3DAnmTextureSRTKey::calcTransform(f32 p1, u16 p2, J3DTextureSRTInfo* info)
 		info->mScaleX = mScale1Vals[xInf->mScaleInfo.mOffset];
 		break;
 	default:
-		info->mScaleX = J3DGetKeyFrameInterpolation<f32>(p1, &xInf->mScaleInfo, &mScale1Vals[xInf->mScaleInfo.mOffset]);
+		info->mScaleX = J3DGetKeyFrameInterpolation<f32>(frame, &xInf->mScaleInfo, &mScale1Vals[xInf->mScaleInfo.mOffset]);
 	}
 
 	switch (yInf->mScaleInfo.mMaxFrame) {
@@ -340,7 +340,7 @@ void J3DAnmTextureSRTKey::calcTransform(f32 p1, u16 p2, J3DTextureSRTInfo* info)
 		info->mScaleY = mScale1Vals[yInf->mScaleInfo.mOffset];
 		break;
 	default:
-		info->mScaleY = J3DGetKeyFrameInterpolation<f32>(p1, &yInf->mScaleInfo, &mScale1Vals[yInf->mScaleInfo.mOffset]);
+		info->mScaleY = J3DGetKeyFrameInterpolation<f32>(frame, &yInf->mScaleInfo, &mScale1Vals[yInf->mScaleInfo.mOffset]);
 	}
 
 	switch (zInf->mRotationInfo.mMaxFrame) {
@@ -352,7 +352,7 @@ void J3DAnmTextureSRTKey::calcTransform(f32 p1, u16 p2, J3DTextureSRTInfo* info)
 		break;
 	default:
 		info->mRotation
-		    = static_cast<s32>(J3DGetKeyFrameInterpolation<s16>(p1, &zInf->mRotationInfo, &mRotation1Vals[zInf->mRotationInfo.mOffset]))
+		    = static_cast<s32>(J3DGetKeyFrameInterpolation<s16>(frame, &zInf->mRotationInfo, &mRotation1Vals[zInf->mRotationInfo.mOffset]))
 		   << mRotationScale;
 	}
 
@@ -365,7 +365,7 @@ void J3DAnmTextureSRTKey::calcTransform(f32 p1, u16 p2, J3DTextureSRTInfo* info)
 		break;
 	default:
 		info->mTranslationX
-		    = J3DGetKeyFrameInterpolation<f32>(p1, &xInf->mTranslationInfo, &mTranslation1Vals[xInf->mTranslationInfo.mOffset]);
+		    = J3DGetKeyFrameInterpolation<f32>(frame, &xInf->mTranslationInfo, &mTranslation1Vals[xInf->mTranslationInfo.mOffset]);
 	}
 
 	switch (yInf->mTranslationInfo.mMaxFrame) {
@@ -377,7 +377,7 @@ void J3DAnmTextureSRTKey::calcTransform(f32 p1, u16 p2, J3DTextureSRTInfo* info)
 		break;
 	default:
 		info->mTranslationY
-		    = J3DGetKeyFrameInterpolation<f32>(p1, &yInf->mTranslationInfo, &mTranslation1Vals[yInf->mTranslationInfo.mOffset]);
+		    = J3DGetKeyFrameInterpolation<f32>(frame, &yInf->mTranslationInfo, &mTranslation1Vals[yInf->mTranslationInfo.mOffset]);
 	}
 }
 

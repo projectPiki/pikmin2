@@ -13,6 +13,7 @@
 #include "ebi/title/TCoordMgr.h"
 #include "Viewport.h"
 #include "JSystem/JKernel/JKRArchive.h"
+#include "Dolphin/rand.h"
 
 struct Controller;
 
@@ -75,8 +76,8 @@ struct TTitleCameraMgr : public LookAtCamera {
 		Parm<f32> mFOVY;    // _1CC, cam4
 	};
 
-	virtual ~TTitleCameraMgr() { } // _08 (weak)
-	virtual void read(Stream&);    // _38 (weak)
+	virtual ~TTitleCameraMgr() { }                         // _08 (weak)
+	virtual void read(Stream& file) { mParms.read(file); } // _38 (weak)
 
 	void update();
 
@@ -238,9 +239,27 @@ struct TTitleLightMgr : public LightMgr {
 };
 
 struct TTitleMgr : public CNode, JKRDisposer {
-	enum enumState { UNKNOWN, STATE1, StartWind, Enemy, BoidDisperse, BoidRegroup, BoidSwirl };
+	enum enumState {
+		TITLE_Inactive,     // 0
+		TITLE_Normal,       // 1
+		TITLE_StartWind,    // 2
+		TITLE_Enemy,        // 3
+		TITLE_BoidDisperse, // 4
+		TITLE_BoidRegroup,  // 5
+		TITLE_BoidSwirl,    // 6
+	};
 
-	enum levelSetting { Spring, Summer, Autumn, Winter };
+	enum levelSetting {
+		LEVEL_Spring, // 0
+		LEVEL_Summer, // 1
+		LEVEL_Autumn, // 2
+		LEVEL_Winter, // 3
+	};
+
+	enum CoordType {
+		COORD_Main, // 0
+		COORD_Sub,  // 1
+	};
 
 	TTitleMgr();
 
@@ -271,7 +290,7 @@ struct TTitleMgr : public CNode, JKRDisposer {
 	void initAfterLoadRes();
 	void setController(Controller*);
 	bool inField(TObjBase*);
-	bool inViewField(TObjBase*);
+	void inViewField(TObjBase*);
 	bool isInViewField(TObjBase*);
 	bool isOutViewField(Vector2f&, f32);
 	bool isOutViewField(TObjBase*);
@@ -296,13 +315,29 @@ struct TTitleMgr : public CNode, JKRDisposer {
 	void calcDestination(s32);
 	bool isAssemble();
 	void setDrawBufferToJ3DSys();
-	void inField(Vector2f&);
-	void inViewField(Vector2f&, f32);
-	void isInViewField(Vector2f&, f32);
+	bool inField(Vector2f&);
+	bool inViewField(Vector2f&, f32);
+	bool isInViewField(Vector2f&, f32);
 	void windBlow();
 	void boid3ToAssemble();
 	void isAnyKey();
 	void showInfo(s32, s32, s32, s32);
+
+	inline void updateCameras()
+	{
+		mBlackPlane.updateBeforeCamera();
+
+		Vector3f camPos = mBlackPlane.getCameraPos();
+		mCameraMgr.setPosition(camPos);
+		mCameraMgr.update();
+	}
+
+	inline f32 getBreakupDistance()
+	{
+		f32 max = mTitleParms.mMaxPikminScatterRadius();
+		f32 min = mTitleParms.mMinPikminScatterRadius();
+		return (max - min) * randEbisawaFloat() + min;
+	}
 
 	// _00     = VTBL
 	// _00-_18 = CNode
@@ -314,8 +349,8 @@ struct TTitleMgr : public CNode, JKRDisposer {
 	Kogane::TMgr mKoganeMgr;      // _AE4
 	Chappy::TMgr mChappyMgr;      // _CF4
 	u8 _F54;                      // _F54
-	int mState;                   // _F58
-	int mLevelSetting;            // _F5C
+	int mState;                   // _F58, see enumState enum
+	int mLevelSetting;            // _F5C, see levelSetting enum
 	u32 mCounterCommon;           // _F60
 	u32 mCounterCommonMax;        // _F64
 	u32 mCounter2;                // _F68
@@ -327,7 +362,7 @@ struct TTitleMgr : public CNode, JKRDisposer {
 	u32 mCounterPressStart;       // _F7C
 	u32 mCounterPressStartMax;    // _F80
 	Vector2f mPikiPosList[500];   // _F84
-	TCoordMgr mCoordMgr[2];       // _1F24, 0 = main, 1 = sub
+	TCoordMgr mCoordMgr[2];       // _1F24, see CoordType enum
 	Controller* mController;      // _401C
 	Viewport mViewport;           // _4020
 	TTitleCameraMgr mCameraMgr;   // _4078

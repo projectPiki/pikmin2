@@ -13,8 +13,8 @@
 namespace Game {
 
 struct OtakaraArray {
-	int a;
-	f32 b;
+	int mConfigIndex;
+	f32 mRadiusModifier;
 } asArrayOtakara[] = { { -1, 1.0f } };
 
 /**
@@ -59,7 +59,7 @@ void BaseGameSection::startZoomWindow()
 	SysShape::Model* model = mDraw2DCreature->mModel;
 	f32 modelRadius        = model->getRoughBoundingRadius();
 	Vector3f center        = model->getRoughCenter();
-	Vector3f* vecPtr       = &center;
+	Vector3f& vecPtr       = center;
 
 	if (mDraw2DCreature->getObjType() == OBJTYPE_Honey) {
 		modelRadius *= 1.5f;
@@ -67,11 +67,12 @@ void BaseGameSection::startZoomWindow()
 
 	if (mDraw2DCreature->getObjType() == OBJTYPE_Pellet) {
 		Pellet* p = (Pellet*)mDraw2DCreature;
-		if (p->getKind() == PELTYPE_TREASURE) {
+
+		if (p->getKind() == PelletType::Treasure) {
 			int configIdx = p->getConfigIndex();
-			for (int i = 0; asArrayOtakara[i].a != -1; i++) {
-				if (configIdx == asArrayOtakara[i].a) {
-					modelRadius /= asArrayOtakara[i].b;
+			for (int i = 0; asArrayOtakara[i].mConfigIndex != -1; i++) {
+				if (configIdx == asArrayOtakara[i].mConfigIndex) {
+					modelRadius /= asArrayOtakara[i].mRadiusModifier;
 					break;
 				}
 			}
@@ -83,7 +84,6 @@ void BaseGameSection::startZoomWindow()
 	f32 properDist = mTreasureZoomCamera->calcProperDistance(20.0f, modelRadius);
 	Vector3f pos(0.0f, center.length(), 0.0f);
 	mTreasureZoomCamera->init(properDist, properDist * JMath::sincosTable_.mTable[256].first, pos, mControllerP1);
-
 	FORCE_DONT_INLINE;
 }
 
@@ -95,7 +95,7 @@ void BaseGameSection::startKantei2D()
 {
 	if (mDraw2DCreature->isPellet()) {
 		Pellet* obj = static_cast<Pellet*>(mDraw2DCreature);
-		if (obj->getKind() == PELTYPE_TREASURE || obj->getKind() == PELTYPE_UPGRADE) {
+		if (obj->getKind() == PelletType::Treasure || obj->getKind() == PelletType::Upgrade) {
 			og::Screen::DispMemberKantei disp;
 			PelletConfig* config  = obj->mConfig;
 			int totalmoney        = playData->mPokoCount;
@@ -156,11 +156,11 @@ void BaseGameSection::onKanteiDone(Rectf& rect)
  * @note Address: 0x8023BB30
  * @note Size: 0x114
  */
-void BaseGameSection::ZoomCamera::init(f32 dist1, f32 dist2, Vector3f& pos, Controller* control)
+void BaseGameSection::ZoomCamera::init(f32 initialDistance, f32 targetDistance, Vector3f& pos, Controller* control)
 {
 	mController = control;
 	f32 angle   = HALF_PI;
-	f32 dist    = dist2 / dist1;
+	f32 dist    = targetDistance / initialDistance;
 	mAngleX     = HALF_PI;
 	if (dist >= 1.0f) {
 		angle = HALF_PI;
@@ -174,8 +174,8 @@ void BaseGameSection::ZoomCamera::init(f32 dist1, f32 dist2, Vector3f& pos, Cont
 	mAngleY           = angle;
 	mTargetFrontAngle = angle;
 
-	mTargetDistance = dist1;
-	mUnusedDist     = dist1;
+	mTargetDistance = initialDistance;
+	mUnusedDist     = initialDistance;
 	mTargetDistance *= 0.75f;
 	mLookAtPosition = pos;
 	makeLookAt();
@@ -201,8 +201,8 @@ void BaseGameSection::ZoomCamera::makeLookAt()
  */
 void BaseGameSection::ZoomCamera::doUpdate()
 {
-	bool check1 = false; // r4
-	bool check2 = false; // r5
+	bool xPassThreshold = false; // r4
+	bool yPassThreshold = false; // r5
 
 	f32 x   = mController->mMStick.mXPos;
 	f32 val = x; // f3
@@ -212,13 +212,11 @@ void BaseGameSection::ZoomCamera::doUpdate()
 		val = 0.0f;
 	}
 
-	bool cStickXCheck = (f32)absX < 0.2f;
-	if (!cStickXCheck) {
-		check1 = true;
+	if (!bool((f32)absX < 0.2f)) {
+		xPassThreshold = true;
 	}
 
 	mAngleX -= (PI / 25) * val;
-
 	if (mAngleX >= TAU) {
 		mAngleX -= TAU;
 	} else if (mAngleX < 0.0f) {
@@ -235,7 +233,7 @@ void BaseGameSection::ZoomCamera::doUpdate()
 
 	bool cStickYCheck = (f32)absY < 0.2f;
 	if (!cStickYCheck) {
-		check2 = true;
+		yPassThreshold = true;
 	}
 
 	mAngleY -= (PI / 50) * val2;
@@ -244,16 +242,17 @@ void BaseGameSection::ZoomCamera::doUpdate()
 	f32 upperLim = TORADIANS(30.6f) + mTargetFrontAngle;
 
 	if (mAngleY < lowerLim) {
-		mAngleY = lowerLim;
-		check2  = false;
+		mAngleY        = lowerLim;
+		yPassThreshold = false;
 	} else if (mAngleY > upperLim) {
-		mAngleY = upperLim;
-		check2  = false;
+		mAngleY        = upperLim;
+		yPassThreshold = false;
 	}
 
-	if (check1 || check2) {
+	if (xPassThreshold || yPassThreshold) {
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_OTAKARA_SCROLL, 0);
 	}
+
 	makeLookAt();
 }
 
@@ -263,99 +262,104 @@ void BaseGameSection::ZoomCamera::doUpdate()
  */
 void BaseGameSection::do_drawOtakaraWindow(Graphics& gfx)
 {
-	if (!gameSystem->isZukanMode()) {
-		f32 time = sys->mDeltaTime;
-		if (mDraw2DCreature && mDraw2DCreature->isPellet()) {
-			Pellet* obj = static_cast<Pellet*>(mDraw2DCreature);
-			if ((obj->getKind() == PELTYPE_TREASURE || obj->getKind() == PELTYPE_UPGRADE) && !Screen::gGame2DMgr->update_Kantei()
-			    && mTreasureGetState == 2) {
-				mTreasureGetState = 4;
-				if (moviePlayer) {
-					moviePlayer->unsuspend(1, false);
-				}
-			}
-		}
-		switch (mTreasureGetState) {
-		case 0:
-			return;
-		case 1:
-			mDraw2DCreatureScale += time * 2.0f;
-			if (mDraw2DCreatureScale >= 1.0f) {
-				mDraw2DCreatureScale = 1.0f;
-				mTreasureGetState    = 2;
-				mUnused2DCreatureVal = 6.0f;
-			}
-			break;
-		case 2:
-			break;
-		case 3:
-			mDraw2DCreatureScale = -(time * 10.0f - mDraw2DCreatureScale);
-			mDraw2DCreatureScale = 0.0f;
-			mDraw2DCreatureScale = 0.0f; // you know, just to be sure
-			mTreasureGetState    = 0;
+	if (gameSystem->isZukanMode()) {
+		return;
+	}
+
+	f32 time = sys->mDeltaTime;
+	if (mDraw2DCreature && mDraw2DCreature->isPellet()) {
+		Pellet* obj = static_cast<Pellet*>(mDraw2DCreature);
+		if ((obj->getKind() == PelletType::Treasure || obj->getKind() == PelletType::Upgrade) && !Screen::gGame2DMgr->update_Kantei()
+		    && mTreasureGetState == 2) {
+			mTreasureGetState = 4;
 			if (moviePlayer) {
 				moviePlayer->unsuspend(1, false);
 			}
 		}
-		mTreasureLightMgr->update();
-		Matrixf mtx;
-		PSMTXIdentity(mtx.mMatrix.mtxView);
-		mTreasureLightMgr->set(mtx);
-		mTreasureZoomCamera->update();
-
-		u16 y = sys->getRenderModeObj()->efbHeight;
-		u16 x = sys->getRenderModeObj()->fbWidth;
-		Rectf bounds(0.0f, 0.0f, x, y);
-		gfx.clearZBuffer(bounds);
-
-		Mtx mtx2;
-		PSMTXCopy(j3dSys.mViewMtx, mtx2);
-		Viewport* vp = mTreasureGetViewport;
-		if (mDraw2DCreature) {
-			vp->setJ3DViewMtx(false);
-			Camera* cam = mTreasureZoomCamera;
-			cam->setProjection();
-			Matrixf* cammtx = cam->getViewMatrix(false);
-			PSMTXCopy(cammtx->mMatrix.mtxView, j3dSys.mViewMtx);
-
-			mDraw2DCreature->mLod.setFlag(AILOD_IsVisVP0 | AILOD_IsVisVP1 | AILOD_IsVisible);
-
-			PSMTXIdentity(mDraw2DCreature->mBaseTrMatrix.mMatrix.mtxView);
-			f32 scale = mDraw2DCreatureScale;
-			scale *= scale;
-			Vec scaleVec;
-			scaleVec.x = scale;
-			scaleVec.y = scale;
-			scaleVec.z = scale;
-
-			Vec* vecPtr = &scaleVec;
-
-			Mtx mtx;
-			PSMTXIdentity(mtx);
-			PSMTXCopy(mtx, mDraw2DCreature->mModel->mJ3dModel->mPosMtx);
-			mDraw2DCreature->doSetView(0);
-			mDraw2DCreature->mModel->mJ3dModel->mModelScale = scaleVec;
-			mDraw2DCreature->mModel->mJ3dModel->calc();
-
-			SysShape::Model::setViewCalcModeInd();
-			mDraw2DCreature->doViewCalc();
-			SysShape::Model::setViewCalcModeImm();
-			mDraw2DCreature->doViewCalc();
-			setDrawBuffer(DB_2DLayer);
-			mDraw2DCreature->doEntry();
-			setDrawBuffer(DB_NormalLayer);
-		}
-		vp->setViewport();
-		vp->setProjection();
-
-		mOpaqueDrawBuffer->get(DB_2DLayer)->draw();
-		mTransparentDrawBuffer->get(DB_2DLayer)->draw();
-		mOpaqueDrawBuffer->get(DB_2DLayer)->frameInit();
-		mTransparentDrawBuffer->get(DB_2DLayer)->frameInit();
-
-		PSMTXCopy(mtx2, j3dSys.mViewMtx);
-		j3dSys.reinitGX();
 	}
+
+	switch (mTreasureGetState) {
+	case 0:
+		return;
+	case 1:
+		mDraw2DCreatureScale += time * 2.0f;
+		if (mDraw2DCreatureScale >= 1.0f) {
+			mDraw2DCreatureScale = 1.0f;
+			mTreasureGetState    = 2;
+			mUnused2DCreatureVal = 6.0f;
+		}
+		break;
+	case 2:
+		break;
+	case 3:
+		mDraw2DCreatureScale = -(time * 10.0f - mDraw2DCreatureScale);
+		mDraw2DCreatureScale = 0.0f;
+		mDraw2DCreatureScale = 0.0f; // you know, just to be sure
+		mTreasureGetState    = 0;
+		if (moviePlayer) {
+			moviePlayer->unsuspend(1, false);
+		}
+	}
+
+	mTreasureLightMgr->update();
+	Matrixf mtx;
+	PSMTXIdentity(mtx.mMatrix.mtxView);
+	mTreasureLightMgr->set(mtx);
+	mTreasureZoomCamera->update();
+
+	u16 y = sys->getRenderModeObj()->efbHeight;
+	u16 x = sys->getRenderModeObj()->fbWidth;
+	Rectf bounds(0.0f, 0.0f, x, y);
+	gfx.clearZBuffer(bounds);
+
+	Mtx mtx2;
+	PSMTXCopy(j3dSys.mViewMtx, mtx2);
+	Viewport* vp = mTreasureGetViewport;
+	if (mDraw2DCreature) {
+		vp->setJ3DViewMtx(false);
+		Camera* cam = mTreasureZoomCamera;
+		cam->setProjection();
+		Matrixf* cammtx = cam->getViewMatrix(false);
+		PSMTXCopy(cammtx->mMatrix.mtxView, j3dSys.mViewMtx);
+
+		mDraw2DCreature->mLod.setFlag(AILOD_IsVisVP0 | AILOD_IsVisVP1 | AILOD_IsVisible);
+
+		PSMTXIdentity(mDraw2DCreature->mBaseTrMatrix.mMatrix.mtxView);
+		f32 scale = mDraw2DCreatureScale;
+		scale *= scale;
+		Vec scaleVec;
+		scaleVec.x = scale;
+		scaleVec.y = scale;
+		scaleVec.z = scale;
+
+		Vec* vecPtr = &scaleVec;
+
+		Mtx mtx;
+		PSMTXIdentity(mtx);
+		PSMTXCopy(mtx, mDraw2DCreature->mModel->mJ3dModel->mPosMtx);
+		mDraw2DCreature->doSetView(0);
+		mDraw2DCreature->mModel->mJ3dModel->mModelScale = scaleVec;
+		mDraw2DCreature->mModel->mJ3dModel->calc();
+
+		SysShape::Model::setViewCalcModeInd();
+		mDraw2DCreature->doViewCalc();
+		SysShape::Model::setViewCalcModeImm();
+		mDraw2DCreature->doViewCalc();
+		setDrawBuffer(DB_2DLayer);
+		mDraw2DCreature->doEntry();
+		setDrawBuffer(DB_NormalLayer);
+	}
+
+	vp->setViewport();
+	vp->setProjection();
+
+	mOpaqueDrawBuffer->get(DB_2DLayer)->draw();
+	mTransparentDrawBuffer->get(DB_2DLayer)->draw();
+	mOpaqueDrawBuffer->get(DB_2DLayer)->frameInit();
+	mTransparentDrawBuffer->get(DB_2DLayer)->frameInit();
+
+	PSMTXCopy(mtx2, j3dSys.mViewMtx);
+	j3dSys.reinitGX();
 }
 
 } // namespace Game

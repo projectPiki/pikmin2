@@ -23,11 +23,11 @@ struct TColor : public GXColor {
 
 	TColor(GXColor color) { set(color); }
 
-	TColor& operator=(const TColor& other)
-	{
-		((GXColor*)this)->operator=(other);
-		return *this;
-	}
+	// TColor& operator=(const TColor& other)
+	// {
+	// 	((GXColor*)this)->operator=(other);
+	// 	return *this;
+	// }
 
 	/** @fabricated */
 	TColor& operator=(const GXColorS10& other)
@@ -48,7 +48,7 @@ struct TColor : public GXColor {
 	}
 
 	operator u32() const { return toUInt32(); }
-	u32 toUInt32() const { return *(u32*)&r; }
+	u32 toUInt32() const { return GXCOLOR_AS_U32(*this); }
 
 	void set(u8 cR, u8 cG, u8 cB, u8 cA)
 	{
@@ -58,7 +58,10 @@ struct TColor : public GXColor {
 		a = cA;
 	}
 
-	void set(u32 u32Color) { *(u32*)&r = u32Color; }
+	void set(u32 u32Color) 
+	{
+		GXCOLOR_AS_U32(*this) = u32Color; 
+	}
 
 	void setU64(u64 u64Color)
 	{

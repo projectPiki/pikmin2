@@ -94,7 +94,7 @@ PelletConfig* PelletConfigList::getPelletConfig(char* str)
 		PelletConfig* pConfig = &mConfigs[i];
 		u32 len               = strlen(str);
 
-		if (!strncmp(pConfig->mParams.mName.mData, str, len)) {
+		if (IS_SAME_STRING_N(pConfig->mParams.mName.mData, str, len)) {
 			return pConfig;
 		}
 	}

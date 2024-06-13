@@ -249,7 +249,7 @@ void ParticleMgr::setGlobalColor(JPABaseEmitter* emit)
 		return;
 	u32 flag = emit->mResource->getDyn()->getResUserWork();
 
-	Game::GameLightMgr* mgr = mLightMgr;
+	Game::GameLightMgr* mgr = getLightMgr();
 	if (!mgr)
 		return;
 
@@ -258,27 +258,29 @@ void ParticleMgr::setGlobalColor(JPABaseEmitter* emit)
 
 	LightObj* obj = mgr->getMainLight();
 
-	u8 r2, g2, b2, r, g, b;
-	r2 = mgr->mAmbientLight.mColor.r;
-	r  = obj->mColor.r;
-	g2 = mgr->mAmbientLight.mColor.g;
-	b2 = mgr->mAmbientLight.mColor.b;
-	g  = obj->mColor.g;
-	b  = obj->mColor.b;
+	GXColor color2;
+	color2.r = mgr->mAmbientLight.mColor.r;
+	color2.g = mgr->mAmbientLight.mColor.g;
+	color2.b = mgr->mAmbientLight.mColor.b;
 
-	int red = (r + r2) * 2;
+	GXColor color1;
+	color1.r = obj->mColor.r;
+	color1.g = obj->mColor.g;
+	color1.b = obj->mColor.b;
+
+	int red = (color1.r + color2.r) * 2;
 	if (red > 255) {
 		red = 255;
 	}
 	u8 red2 = red;
 
-	int green = (g + g2) * 2;
+	int green = (color1.g + color2.g) * 2;
 	if (green > 255) {
 		green = 255;
 	}
 	u8 green2 = green;
 
-	int blue = (b + b2) * 2;
+	int blue = (color1.b + color2.b) * 2;
 	if (blue > 255) {
 		blue = 255;
 	}
@@ -410,7 +412,7 @@ bool ParticleMgr::cull(Sys::Sphere& bound)
 			break;
 		}
 	}
-	return culled == false;
+	return !culled;
 }
 
 /**
@@ -466,9 +468,10 @@ bool ParticleMgr::cullByResFlg(JPABaseEmitter* emit)
 	}
 
 	Vector3f pos(emit->mGlobalTrs.x, emit->mGlobalTrs.y, emit->mGlobalTrs.z);
+	Vector3f* posPtr = &pos;
 	Sys::Sphere bound(pos, radius);
 
-	bool culled = cull(bound) == false;
+	bool culled = !cull(bound);
 	if (culled) {
 		emit->mFlags &= ~4;
 		emit->mFlags &= ~1;
@@ -477,7 +480,7 @@ bool ParticleMgr::cullByResFlg(JPABaseEmitter* emit)
 		emit->mFlags |= 1;
 	}
 
-	return culled == false;
+	return !culled;
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0

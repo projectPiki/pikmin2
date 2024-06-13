@@ -63,7 +63,7 @@ struct ObjFinalFloor : public ::Screen::ObjBase {
 	{
 		PSStart2DStream(P2_STREAM_SOUND_ID(PSSTR_FINAL_FLOOR));
 		PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-		PSSystem::checkSceneMgr(mgr);
+		PSSystem::validateSceneMgr(mgr);
 		PSM::Scene_Game* scene = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
 		PSSystem::checkGameScene(scene);
 		scene->onStartMainSeq();

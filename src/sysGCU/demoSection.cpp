@@ -122,7 +122,7 @@ bool Section::doUpdate()
 void Section::doExit()
 {
 	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-	PSSystem::checkSceneMgr(mgr);
+	PSSystem::validateSceneMgr(mgr);
 	mgr->deleteCurrentScene();
 
 	if ((s8)(++sMovieIndex) >= (u32)8) {

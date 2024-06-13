@@ -3968,7 +3968,7 @@ void ZukanState::dvdloadA()
 {
 	mMainHeap = JKRExpHeap::create(mParentHeap->getFreeSize(), mParentHeap, true);
 	mMainHeap->becomeCurrentHeap();
-	char path[256]; // 0x160
+	char path[PATH_MAX]; // 0x160
 	sprintf(path, "user/Yamashita/zukan/%s/%s/arc.szs", "us", sDirName[mMapIndex]);
 	JKRArchive* arc = JKRMountArchive(path, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Tail);
 	P2ASSERTLINE(2457, arc);
@@ -4766,7 +4766,7 @@ lbl_802254A0:
 void ZukanState::createTeki(int)
 {
 	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-	PSSystem::checkSceneMgr(mgr);
+	PSSystem::validateSceneMgr(mgr);
 	PSM::Scene_Objects* scene = static_cast<PSM::Scene_Objects*>(mgr->getChildScene());
 	scene->detachObjMgr();
 
@@ -6163,7 +6163,7 @@ void ZukanState::clearHeaps()
 		clearHeapB_common();
 	}
 	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-	PSSystem::checkSceneMgr(mgr);
+	PSSystem::validateSceneMgr(mgr);
 	mgr->deleteCurrentScene();
 	delete PSSystem::SingletonBase<PSM::ObjMgr>::sInstance;
 	PSSystem::SingletonBase<PSM::ObjMgr>::sInstance = nullptr;

@@ -144,6 +144,7 @@ void DynCreature::computeForces(f32 friction)
 			if (!particle->mIsTouching) {
 				continue;
 			}
+
 			Vector3f sep      = particle->mPosition - mTransformedPosition;
 			Vector3f crossVec = mRigid.mConfigs[0].mRotatedMomentum.cross(sep) + mRigid.mConfigs[0].mVelocity;
 
@@ -688,7 +689,6 @@ void DynCreature::simulate(f32 rate)
 		radius += extraRad;
 
 		JUT_ASSERTLINE(497, range_check(particle->mRotation) && range_check(particle->mPosition), "simulate error\n");
-
 		moveSphere.mPosition           = particle->mPosition;
 		moveSphere.mRadius             = radius;
 		mCurrentChildPtcl              = particle;

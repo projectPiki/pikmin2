@@ -26,7 +26,7 @@ struct E2DFullFontColor {
 	inline void applyColorsToPane(J2DTextBox* pane)
 	{
 		pane->setCharColor(mCol1);
-		pane->setGradientColor(mCol2);
+		pane->setGradColor(mCol2);
 		pane->setWhite(mWhite);
 		pane->setBlack(mBlack);
 	}

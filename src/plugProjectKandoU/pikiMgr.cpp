@@ -96,12 +96,15 @@ Piki* PikiMgr::birth()
 	case PikiMgr::PSM_Normal: {
 		int pikiCount   = mActiveCount;
 		int sproutCount = 0;
+
 		if (ItemPikihead::mgr) {
 			sproutCount = ItemPikihead::mgr->mMonoObjectMgr.mActiveCount;
 		}
+
 		if (pikiCount + sproutCount < MAX_PIKI_COUNT) {
 			break;
 		}
+
 		return nullptr;
 	}
 
@@ -111,9 +114,11 @@ Piki* PikiMgr::birth()
 	case PikiMgr::PSM_Replace: {
 		int pikiCount   = mActiveCount;
 		int sproutCount = 0;
+
 		if (ItemPikihead::mgr) {
 			sproutCount = ItemPikihead::mgr->mMonoObjectMgr.mActiveCount;
 		}
+
 		Piki* piki = nullptr;
 		if (pikiCount + sproutCount < MAX_PIKI_COUNT) {
 			piki = MonoObjectMgr::birth();
@@ -137,15 +142,15 @@ Piki* PikiMgr::birth()
 				toKill->kill(&killArg);
 
 				return MonoObjectMgr::birth();
-			} else {
-				return nullptr;
 			}
 
-		} else {
-			return piki;
+			return nullptr;
 		}
+
+		return piki;
 	}
 	}
+
 	return MonoObjectMgr::birth();
 }
 
@@ -177,7 +182,9 @@ void PikiMgr::load(int viewNum)
 	JKRArchive* arc = JKRMountArchive("/user/Kando/piki/pikis.szs", JKRArchive::EMM_Mem, sys->mSysHeap, JKRArchive::EMD_Head);
 	mModelArchive   = arc;
 	heap->getFreeSize();
+
 	JUT_ASSERTLINE(450, arc, "pikis.szs not found !\n");
+
 	loadBmd(Blue, "piki_p2_blue");
 	loadBmd(Red, "piki_p2_red");
 	loadBmd(Yellow, "piki_p2_yellow");
@@ -186,11 +193,12 @@ void PikiMgr::load(int viewNum)
 	loadBmd(Bulbmin, "piki_kochappy");
 	loadBmd(Carrot, "piki_ninjin");
 
-	mHappaModel[Leaf]       = J3DModelLoaderDataBase::load(arc->getResource("happa_model/leaf.bmd"), 0x20000000);
-	mHappaModel[Bud]        = J3DModelLoaderDataBase::load(arc->getResource("happa_model/bud.bmd"), 0x240000);
-	mHappaModel[Flower]     = J3DModelLoaderDataBase::load(arc->getResource("happa_model/flower.bmd"), 0x240000);
-	mHappaModel[Bud_Red]    = J3DModelLoaderDataBase::load(arc->getResource("happa_model/bud_red.bmd"), 0x240000);
-	mHappaModel[Flower_Red] = J3DModelLoaderDataBase::load(arc->getResource("happa_model/flower_red.bmd"), 0x240000);
+	mHappaModel[Leaf]    = J3DModelLoaderDataBase::load(arc->getResource("happa_model/leaf.bmd"), J3DMLF_Material_PE_FogOff);
+	mHappaModel[Bud]     = J3DModelLoaderDataBase::load(arc->getResource("happa_model/bud.bmd"), J3DMLF_UseUniqueMaterials | J3DMLF_19);
+	mHappaModel[Flower]  = J3DModelLoaderDataBase::load(arc->getResource("happa_model/flower.bmd"), J3DMLF_UseUniqueMaterials | J3DMLF_19);
+	mHappaModel[Bud_Red] = J3DModelLoaderDataBase::load(arc->getResource("happa_model/bud_red.bmd"), J3DMLF_UseUniqueMaterials | J3DMLF_19);
+	mHappaModel[Flower_Red]
+	    = J3DModelLoaderDataBase::load(arc->getResource("happa_model/flower_red.bmd"), J3DMLF_UseUniqueMaterials | J3DMLF_19);
 
 	sys->heapStatusStart("pikmin-ModelMgr", nullptr);
 	mModelMgr = new SysShape::ModelMgr(PikiColorCount, &mBluPikiModel, MAX_PIKI_COUNT, 0x20000, viewNum,
@@ -199,7 +207,13 @@ void PikiMgr::load(int viewNum)
 
 	for (int i = 0; i < PikiHappaCount; i++) {
 		J3DModelData* model = mHappaModel[i];
-		model->newSharedDisplayList(0x40000);
+
+		const u32 lightObjNum = 0;
+		const u32 texGenNum   = 0;
+		const u32 texCoordNum = 4;
+		const u32 tevStageNum = 0;
+		u32 dlFlags           = CREATE_DIFF_FLAG(lightObjNum, texGenNum, texCoordNum, tevStageNum);
+		model->newSharedDisplayList(dlFlags);
 		model->simpleCalcMaterial(0, *(Mtx*)j3dDefaultMtx);
 		model->makeSharedDL();
 	}
@@ -211,11 +225,19 @@ void PikiMgr::load(int viewNum)
  */
 void PikiMgr::loadBmd(int id, char* name)
 {
-	char pathbuf[256];
+	char pathbuf[PATH_MAX];
 	sprintf(pathbuf, "piki_model/%s.bmd", name);
 	J3DModelData* data = J3DModelLoaderDataBase::load(mModelArchive->getResource(pathbuf), 0x60010);
-	data->newSharedDisplayList(0x40000);
-	data->makeSharedDL();
+	{
+		const u32 lightObjNum = 0;
+		const u32 texGenNum   = 0;
+		const u32 texCoordNum = 4;
+		const u32 tevStageNum = 0;
+		u32 dlFlags           = CREATE_DIFF_FLAG(lightObjNum, texGenNum, texCoordNum, tevStageNum);
+		data->newSharedDisplayList(dlFlags);
+		data->makeSharedDL();
+	}
+
 	(&mBluPikiModel)[id] = data;
 }
 
@@ -286,40 +308,67 @@ void PikiMgr::debugShapeDL(char* text)
  */
 void PikiMgr::doSimpleDraw(Viewport* vp)
 {
-	int vpid = vp->mVpId;
-	for (int i = 0; i < 5; i++) {
+	int vpId = vp->mVpId;
+	for (int i = 0; i < PikiHappaCount; i++) {
 		J3DModelData& modelData = *mHappaModel[i];
 		J3DMaterial* mat        = (*modelData.mJointTree.mJoints)->mMaterial;
-		j3dSys.mVtxPos          = modelData.getVertexData()->getVtxPosArray();
-		j3dSys.mVtxNorm         = modelData.getVertexData()->getVtxNrmArray();
-		j3dSys.mVtxColor        = modelData.getVertexData()->getVtxColorArray(0);
+
+		j3dSys.mVtxPos   = modelData.getVertexData()->getVtxPosArray();
+		j3dSys.mVtxNorm  = modelData.getVertexData()->getVtxNrmArray();
+		j3dSys.mVtxColor = modelData.getVertexData()->getVtxColorArray(0);
+
 		J3DShape::sOldVcdVatCmd = nullptr;
+
+		// Cycle through every material that needs rendering
 		for (mat; mat != nullptr; mat = mat->mNext) {
 			mat->loadSharedDL();
 			mat->mShape->loadPreDrawSetting();
+
+			// Cycle through every possible Pikmin
 			for (int j = 0; j < mMax; j++) {
-				if (!mOpenIds[j]) {
-					Piki* piki = &mArray[j];
-					if (piki->mLod.isFlag(AILOD_IsVisible)) {
-						if (!piki->doped() && piki->mLod.isVPVisible(vpid)) {
-							int id = piki->getHappa();
-							// make purple and white pikmin use the red flower/bud
-							if ((piki->getKind() == White || piki->getKind() == Purple) && id >= 1) {
-								id += 2;
-							}
-							if (id == i) {
-								Mtx test;
-								Matrixf* mtx = piki->mLeafStemJoint->getWorldMatrix();
-								PSMTXConcat(vp->getMatrix(1)->mMatrix.mtxView, mtx->mMatrix.mtxView, test);
-								GXLoadPosMtxImm(test, 0);
-								GXLoadNrmMtxImm(test, 0);
-								mat->mShape->simpleDrawCache();
-							}
-						}
-					}
+				// Skip open spaces in the array (Pikmin doesn't exist)
+				if (mOpenIds[j]) {
+					continue;
+				}
+
+				// If invisble, don't render
+				Piki* piki = &mArray[j];
+				if (!piki->mLod.isFlag(AILOD_IsVisible)) {
+					continue;
+				}
+
+				// If Pikmin has spicy spray or is out of viewport, don't render
+				if (piki->doped() || !piki->mLod.isVPVisible(vpId)) {
+					continue;
+				}
+
+				int id = piki->getHappa();
+
+				// Make purple and white pikmin use the red flower/bud
+				if ((piki->getKind() == White || piki->getKind() == Purple) && id >= 1) {
+					id += 2;
+				}
+
+				if (id == i) {
+					Mtx test;
+					Matrixf* mtx = piki->mLeafStemJoint->getWorldMatrix();
+					PSMTXConcat(vp->getMatrix(true)->mMatrix.mtxView, mtx->mMatrix.mtxView, test);
+					GXLoadPosMtxImm(test, 0);
+					GXLoadNrmMtxImm(test, 0);
+					mat->mShape->simpleDrawCache();
 				}
 			}
 		}
+	}
+}
+
+inline void PikiMgr::updateArrayAt(int i)
+{
+	mArray[i].mFaceDirOffset = mArray[i].mFaceDir;
+	mArray[i].update();
+
+	if (!mOpenIds[i]) {
+		mArray[i].doAnimation();
 	}
 }
 
@@ -333,31 +382,26 @@ void PikiMgr::doAnimation()
 	mUpdateMgr2->update();
 	if (mFlags[1] & 1) {
 		for (int i = 0; i < mMax; i++) {
-			if (!mOpenIds[i]) {
-				if (mArray[i].isMovieActor()) {
-					mArray[i].mFaceDirOffset = mArray[i].mFaceDir;
-					mArray[i].update();
-					if (!mOpenIds[i]) {
-						mArray[i].doAnimation();
-					}
-				}
+			if (mOpenIds[i] || !mArray[i].isMovieActor()) {
+				continue;
 			}
+
+			updateArrayAt(i);
 		}
 	} else {
 		for (int i = 0; i < mMax; i++) {
-			if (!mOpenIds[i]) {
-				mArray[i].mFaceDirOffset = mArray[i].mFaceDir;
-				mArray[i].update();
-				if (!mOpenIds[i]) {
-					mArray[i].doAnimation();
-				}
+			if (mOpenIds[i]) {
+				continue;
 			}
+
+			updateArrayAt(i);
 		}
 	}
 
 	if (mDopedPikis > 0 && gameSystem && gameSystem->isFlag(GAMESYS_IsGameWorldActive) && moviePlayer->mDemoState == DEMOSTATE_Inactive) {
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_PK_UNDER_DOPING, 0);
 	}
+
 	sys->mTimers->_stop("doaPIKI");
 }
 
@@ -365,16 +409,16 @@ void PikiMgr::doAnimation()
  * @note Address: 0x8015F5F4
  * @note Size: 0x58
  */
-void PikiMgr::setVsXlu(int p1, bool p2)
+void PikiMgr::setVsXlu(int naviIndex, bool ghostIconNotActive)
 {
-	if (p2) {
-		if (p1 == 0) {
+	if (ghostIconNotActive) {
+		if (naviIndex == 0) {
 			mFlags[0] &= ~1;
 		} else {
 			mFlags[0] &= ~2;
 		}
 	} else {
-		if (p1 == 0) {
+		if (naviIndex == 0) {
 			mFlags[0] |= 1;
 		} else {
 			mFlags[0] |= 2;
@@ -391,35 +435,39 @@ void PikiMgr::doEntry()
 	if (gameSystem->isVersusMode()) {
 		u8 flag = mFlags[1] & 1;
 		for (int i = 0; i < mMax; i++) {
-			if (!mOpenIds[i]) {
-				if (flag && !mArray[i].isMovieActor()) {
-					// this should probably reset AILOD_IsMid | AILOD_IsVisibleBoth, idk what it ACTUALLY does
-					mArray[i].mLod.mFlags &= -0x35; // typo? should be ~0x35 not -0x35
-				} else {
-					mArray[i].isMovieActor();
-				}
-
-				// Hide blue or red pikmin if the ghost power is active
-				Piki* piki = &mArray[i];
-				if (piki->getKind() == Blue && mFlags[0] & 1) {
-					piki->mLod.resetFlag(AILOD_IsVisVP0);
-				} else if (piki->getKind() == Red && mFlags[0] & 2) {
-					piki->mLod.resetFlag(AILOD_IsVisVP1);
-				}
-				mArray[i].doEntry();
+			if (mOpenIds[i]) {
+				continue;
 			}
+
+			if (flag && !mArray[i].isMovieActor()) {
+				// Typo in the original code, should be ~ not -
+				mArray[i].mLod.mFlags &= -(AILOD_IsVisibleBoth | AILOD_IsMid);
+			} else {
+				mArray[i].isMovieActor();
+			}
+
+			// Hide blue or red pikmin if the ghost power is active
+			Piki* piki = &mArray[i];
+			if (piki->getKind() == Blue && mFlags[0] & 1) {
+				piki->mLod.resetFlag(AILOD_IsVisVP0);
+			} else if (piki->getKind() == Red && mFlags[0] & 2) {
+				piki->mLod.resetFlag(AILOD_IsVisVP1);
+			}
+			mArray[i].doEntry();
 		}
 	} else {
 		u8 flag = mFlags[1] & 1;
 		for (int i = 0; i < mMax; i++) {
-			if (!mOpenIds[i]) {
-				if (flag && !mArray[i].isMovieActor()) {
-					mArray[i].mLod.mFlags &= -0x35;
-				} else {
-					mArray[i].isMovieActor();
-				}
-				mArray[i].doEntry();
+			if (mOpenIds[i]) {
+				continue;
 			}
+
+			if (flag && !mArray[i].isMovieActor()) {
+				mArray[i].mLod.mFlags &= -0x35;
+			} else {
+				mArray[i].isMovieActor();
+			}
+			mArray[i].doEntry();
 		}
 	}
 }
@@ -494,7 +542,7 @@ void PikiMgr::moveAllPikmins(Vector3f& pos, f32 range, Condition<Piki>* cond)
 	CI_LOOP(iterator)
 	{
 		Piki* piki = *iterator;
-		if (piki->mFlags.isSet(2) && (!cond || cond->satisfy(piki))) {
+		if (piki->mFlags.isSet(CF_IsAlive) && (!cond || cond->satisfy(piki))) {
 			f32 angle = randFloat() * TAU;
 			f32 dist  = randFloat() * range;
 			Vector3f setPos(dist * pikmin2_sinf(angle), 0.0f, dist * pikmin2_cosf(angle));
@@ -548,7 +596,7 @@ void PikiMgr::killDayEndPikmins(PikiContainer& container)
 				// convert offset to demo space
 				offset       = mapMgr->getDemoMatrix()->mtxMult(offset);
 				Vector3f pos = piki->getPosition();
-				if (sqrDistanceXZ(pos, offset) < 139876.0f) {
+				if (sqrDistanceXZ(pos, offset) < SQUARE(374.0f)) {
 					continue;
 				}
 			}

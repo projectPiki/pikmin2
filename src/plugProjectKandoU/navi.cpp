@@ -124,7 +124,7 @@ void Navi::onInit(Game::CreatureInitArg* arg)
 
 	initAnimator();
 
-	mIsAlive             = false;
+	mHideModel           = false;
 	mSceneAnimationTimer = 0.0f;
 
 	mWhistle = new NaviWhistle(this);
@@ -1282,7 +1282,7 @@ f32 Navi::viewGetBaseScale() { return mNaviIndex == NAVIID_Olimar ? 1.3f : 1.5f;
 void Navi::doEntry()
 {
 	FakePiki::doEntry();
-	if (!isAlive() && mIsAlive) {
+	if (!isAlive() && mHideModel) {
 		mLod.resetFlag(AILOD_IsVisibleBoth);
 	}
 
@@ -2472,9 +2472,9 @@ void Navi::setDeadLaydown()
 		offset = newpos;
 		setPosition(offset, false);
 		startMotion(IPikiAnims::DEAD, IPikiAnims::DEAD, nullptr, nullptr);
-		mIsAlive = false;
+		mHideModel = false;
 	} else {
-		mIsAlive = true;
+		mHideModel = true;
 	}
 	setAlive(false);
 	naviMgr->informOrimaDead(id);

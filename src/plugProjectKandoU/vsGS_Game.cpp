@@ -703,7 +703,7 @@ void GameState::onMovieDone(VsGameSection* section, MovieConfig* config, u32 p1,
 	    && (config->is("g2F_appear_hole") || config->is("g30_appear_fountain"))) {
 
 		PSSystem::SceneMgr* sceneMgr = PSSystem::getSceneMgr();
-		checkSceneMgr(sceneMgr);
+		validateSceneMgr(sceneMgr);
 		PSM::Scene_Cave* scene = static_cast<PSM::Scene_Cave*>(sceneMgr->getChildScene());
 		checkGameScene(scene);
 		if (scene->isCave()) {
@@ -713,7 +713,7 @@ void GameState::onMovieDone(VsGameSection* section, MovieConfig* config, u32 p1,
 
 	if (config->is("x19_vs_bedama") && (isLoseCause(VSPLAYER_Red, VSLOSE_Marble) || isLoseCause(VSPLAYER_Blue, VSLOSE_Marble))) {
 		PSSystem::SceneMgr* sceneMgr = PSSystem::getSceneMgr();
-		checkSceneMgr(sceneMgr);
+		validateSceneMgr(sceneMgr);
 		PSM::SceneBase* scene = static_cast<PSM::SceneBase*>(sceneMgr->getChildScene());
 
 		scene = (scene->isGameScene()) ? scene : nullptr;

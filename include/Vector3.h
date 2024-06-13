@@ -121,9 +121,10 @@ typedef Vector3<f32> Vector3f;
 typedef Vector3<int> Vector3i;
 
 inline Vector3f operator+(const Vector3f& a, const Vector3f& b) { return Vector3f(a.x + b.x, a.y + b.y, a.z + b.z); }
-inline Vector3f operator-(const Vector3f& a, const Vector3f& b) { return Vector3f(a.x - b.x, a.y - b.y, a.z - b.z); }
-// i think this ^ should actually be this v, but this breaks _something_ _somewhere_, I'm assuming some delicate inline depth thing
-// inline Vector3f operator-(const Vector3f& a, const Vector3f& b) { return Vector3f::sub2(a, b); }
+
+// Using sub2 here fixes inline depth issues for navi_demoCheck and itemUjamushi
+// (panModokiState has an instance of needing to call sub2 directly because its quirky like that)
+inline Vector3f operator-(const Vector3f& a, const Vector3f& b) { return Vector3f::sub2(a, b); }
 
 inline Vector3f operator*(const Vector3f& a, const f32 b) { return Vector3f(a.x * b, a.y * b, a.z * b); }
 inline Vector3f operator/(const Vector3f& a, const f32 b) { return Vector3f(a.x / b, a.y / b, a.z / b); }

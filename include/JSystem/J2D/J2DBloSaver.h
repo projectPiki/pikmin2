@@ -33,6 +33,8 @@ struct J2DBloSaver {
 			TNC* mNext;              // _08
 		};
 
+		CTextureNameConnect() { mElements = nullptr; }
+
 		~CTextureNameConnect();
 		void set(const ResTIMG* img, const char* name);
 		void clear();
@@ -40,7 +42,7 @@ struct J2DBloSaver {
 		TNC* mElements; // _00
 	};
 
-	static CTextureNameConnect* TextureNameConnect;
+	static CTextureNameConnect TextureNameConnect;
 
 	// unused/stripped functions (to spawn weak functions):
 	void writeMaterialBlock(const MaterialName*, J2DMaterial**, u16, const ResTIMGName*, u16);

@@ -26,7 +26,7 @@ struct Object : public Pellet {
 	virtual void sound_otakaraEventRestart();             // _210
 	virtual void sound_otakaraEventStop();                // _214
 	virtual void sound_otakaraEventFinish();              // _218
-	virtual u8 getKind() { return PELTYPE_TREASURE; }     // _1F4 (weak)
+	virtual u8 getKind() { return PelletType::Treasure; } // _1F4 (weak)
 	virtual s32 getBedamaColor() { return mBedamaColor; } // _1E8 (weak)
 
 	// _00      = VTBL
@@ -41,7 +41,7 @@ struct Mgr : public FixedSizePelletMgr<Object> {
 
 	virtual void setupResources();                                        // _44
 	virtual char* getMgrName() { return "otakara"; }                      // _58 (weak)
-	virtual u8 getMgrID() { return PELTYPE_TREASURE; }                    // _5C (weak)
+	virtual u8 getMgrID() { return PelletType::Treasure; }                // _5C (weak)
 	virtual Pellet* generatorBirth(Vector3f&, Vector3f&, GenPelletParm*); // _70
 	virtual void generatorWrite(Stream&, GenPelletParm*);                 // _74
 	virtual void generatorRead(Stream&, GenPelletParm*, u32);             // _78

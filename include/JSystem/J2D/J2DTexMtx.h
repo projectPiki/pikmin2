@@ -12,6 +12,14 @@ struct J2DTexMtxInfo {
 		DCC_Maya = 1,
 	};
 
+	inline void operator=(const J2DTexMtxInfo& other)
+	{
+		mCenter         = other.mCenter;
+		mTexMtxType     = other.mTexMtxType;
+		mTexMtxDCC      = other.mTexMtxDCC;
+		mTextureSRTInfo = other.mTextureSRTInfo;
+	}
+
 	GXTexMtxType getTexMtxType() const { return (GXTexMtxType)mTexMtxType; }
 
 	u8 mTexMtxType;                    // _00

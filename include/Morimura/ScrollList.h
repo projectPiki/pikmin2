@@ -98,6 +98,7 @@ struct TIndexPane {
 	inline TIconInfo* getIconInfo(int idx) const { return mIconInfos[idx]; }
 
 	inline J2DPane* getMainPane() const { return mPane; }
+	inline J2DPane* getSubPane() const { return mPane2; }
 
 	enum SizeType {
 		Size_Small  = 0, // small icons in piklopedia, supports 3 icons per row

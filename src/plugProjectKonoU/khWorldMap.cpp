@@ -100,7 +100,7 @@ void khUtilColorAnmWM::effect_on(u32 max)
 	mUpdateMode = true;
 	for (int i = 0; i < 4; i++) {
 		if (i % 2 == 0 || max >= 10) {
-			Vector2f pos(getPaneCenterX(mPaneList[i]), getPaneCenterY(mPaneList[i]));
+			Vector3f pos(getPaneCenterX(mPaneList[i]), getPaneCenterY(mPaneList[i]), 0.0f);
 			efx2d::Arg arg(pos);
 			mEfx[i]->create(&arg);
 		}
@@ -3553,10 +3553,10 @@ void WorldMap::rocketUpdate(J2DPane* pane)
 
 	Vector2f sep           = mRocketPosition - mRocketPosition2;
 	J2DPane* shipPane2     = mScreenRocket->search('Procket');
-	JGeometry::TVec3f pos1 = shipPane2->getGlbVtx(0);
-	JGeometry::TVec3f pos2 = shipPane2->getGlbVtx(1);
-	JGeometry::TVec3f pos3 = shipPane2->getGlbVtx(2);
-	JGeometry::TVec3f pos4 = shipPane2->getGlbVtx(3);
+	JGeometry::TVec3f pos1 = shipPane2->getGlbVtx(GLBVTX_BtmLeft);
+	JGeometry::TVec3f pos2 = shipPane2->getGlbVtx(GLBVTX_BtmRight);
+	JGeometry::TVec3f pos3 = shipPane2->getGlbVtx(GLBVTX_TopLeft);
+	JGeometry::TVec3f pos4 = shipPane2->getGlbVtx(GLBVTX_TopRight);
 	f32 factor             = msVal._1C[0];
 	JGeometry::TVec2f mid1((pos1.x + pos2.x) / 2, (pos1.y + pos2.y) / 2);
 	JGeometry::TVec2f mid2((pos3.x + pos4.x) / 2, (pos3.y + pos4.y) / 2);
@@ -5046,8 +5046,8 @@ void WorldMap::effectFirstTime()
 			ID32 caveID(mInitArg.mStages->getCourseInfo(mCurrentCourseIndex)->getCaveID_FromIndex(i));
 			if (Game::playData->isCaveFirstTime(mCurrentCourseIndex, caveID)
 			    != Game::playData->isCaveFirstTime_Old(mCurrentCourseIndex, caveID)) {
-				JGeometry::TVec3f pos1 = mScreenInfo->search(getSerialTagName('Pcave_00', i))->getGlbVtx(0);
-				JGeometry::TVec3f pos2 = mScreenInfo->search(getSerialTagName('Pcave_00', i))->getGlbVtx(3);
+				JGeometry::TVec3f pos1 = mScreenInfo->search(getSerialTagName('Pcave_00', i))->getGlbVtx(GLBVTX_BtmLeft);
+				JGeometry::TVec3f pos2 = mScreenInfo->search(getSerialTagName('Pcave_00', i))->getGlbVtx(GLBVTX_TopRight);
 				f32 x                  = (pos1.y + pos2.y) / 2;
 				for (int j = 0; j < 5; j++) {
 					int k = 4 - j;
@@ -5502,9 +5502,12 @@ Vector2f WorldMap::OnyonDynamics::move(WorldMap* wmap, const JGeometry::TVec2f& 
 	// unused pane
 	u64 tags[4] = { 'Nwait0', 'Nwait1', 'Nwait2', 'Nwait3' };
 	int id      = wmap->mCurrentCourseIndex;
-	wmap->mScreenInfo->search(tags[id]);
+	wmap->mScreenKitagawa->search(tags[id]);
 
-	f32 dist      = pos.distance(mOffset);
+	JGeometry::TVec2f posDiff = pos;
+	posDiff -= mOffset;
+	f32 dist = posDiff.length();
+
 	int prevAngle = mRotateAngle;
 	mRotateAngle += 500;
 	if (dist < 1.0f) {
@@ -5532,9 +5535,9 @@ Vector2f WorldMap::OnyonDynamics::move(WorldMap* wmap, const JGeometry::TVec2f& 
 			mOnyonPane->getParentPane()->appendChild(mOnyonPane);
 		}
 	} else {
-		if (FLT_EPSILON * 32.0f > dist) { }
+		posDiff.normalize();
 		f32 calc  = pikmin2_atan2f(mAngle.x, -mAngle.y);
-		f32 calc2 = pikmin2_atan2f(mAngle.x, -mAngle.y);
+		f32 calc2 = pikmin2_atan2f(posDiff.x, -posDiff.y);
 		if (calc < 0.0f) {
 			calc += TAU;
 		}
@@ -5550,9 +5553,9 @@ Vector2f WorldMap::OnyonDynamics::move(WorldMap* wmap, const JGeometry::TVec2f& 
 		}
 		calc2 = (calc * msVal._44 + (calc2 * (1.0f - msVal._44)));
 		if ((calc2 - calc) < -0.1f) {
-			if ((calc - calc2) > 0.1f) {
-				calc2 = calc + 0.1f;
-			}
+			calc2 = calc - 0.1f;
+		} else if (calc2 > 0.1f) {
+			calc2 = calc + 0.1f;
 		}
 		mAngle.set(pikmin2_sinf(calc2), -pikmin2_cosf(calc2));
 	}

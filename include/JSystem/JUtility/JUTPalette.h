@@ -20,6 +20,7 @@ struct JUTPalette {
 	void storeTLUT(GXTlut, ResTLUT*);
 
 	inline u8 getTlutID() const { return mTlutID; }
+	inline u16 getNumColors() const { return mNumColors; }
 
 	GXTlutObj mTlutObj;   // _00
 	u8 mTlutID;           // _0C

@@ -165,8 +165,8 @@ f32 calcSmooth0to1(f32 start, f32 end)
  */
 void calcGlbCenter(J2DPane* pane, Vector2f* center)
 {
-	JGeometry::TVec3f vec1 = pane->getGlbVtx(0);
-	JGeometry::TVec3f vec2 = pane->getGlbVtx(3);
+	JGeometry::TVec3f vec1 = pane->getGlbVtx(GLBVTX_BtmLeft);
+	JGeometry::TVec3f vec2 = pane->getGlbVtx(GLBVTX_TopRight);
 	center->x              = (vec1.x + vec2.x) / 2;
 	center->y              = (vec1.y + vec2.y) / 2;
 }
@@ -257,7 +257,7 @@ u64 MojiToNum(u64 moji, int length)
 	u64 num = 0;
 	for (int i = 0; i < length; i++) {
 
-		int shift = ((moji >> (i * 8)) & 0xFF) - 0x30;
+		int shift = ((moji >> (i * 8)) & 0xFF) - '0';
 		if ((shift < 0) || (shift > 9)) {
 			TagToName(moji, name2);
 			JUT_PANICLINE(576, "MojiToNum ERR! [%s]\n", name2);

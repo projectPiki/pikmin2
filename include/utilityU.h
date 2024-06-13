@@ -14,14 +14,6 @@
 #include "SoundID.h"
 #include "PSM/Director.h"
 
-// namespace PSM {
-// 	struct DirectorBase;
-// 	f32 sBoss_DistMax = 4000.0f;
-// 	f32 sBoss_ViewDist = 1300.0f;
-// 	f32 sBoss_ViewDistVol = 0.3f;
-// 	f32 sCamFov = 0.25f;
-// }
-
 void* PSChangeBgm_ChallengeGame();
 void PSMCancelToPauseOffMainBgm();
 PSM::ActorDirector_Battle* PSMGetBattleD();

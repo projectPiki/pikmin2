@@ -185,7 +185,7 @@ void SceneWinLoseReason::doCreateObj(JKRArchive* arc)
 		PSStart2DStream(streamID);
 		PSMuteSE_on2D();
 		PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-		PSSystem::checkSceneMgr(mgr);
+		PSSystem::validateSceneMgr(mgr);
 		PSM::Scene_Game* scene = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
 		scene->stopAllSound(2);
 	}

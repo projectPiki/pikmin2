@@ -400,8 +400,8 @@ void MoviePlayer::setContext(MovieContext* context, MovieConfig* config, MoviePl
  */
 void MoviePlayer::loadResource()
 {
-	char path1[256];
-	char path2[256];
+	char path1[PATH_MAX];
+	char path2[PATH_MAX];
 	sprintf(path1, "/user/Mukki/movie/%s/demo.stb", mCurrentConfig->mMovieNameBuffer2);
 	sprintf(path2, "/user/Mukki/movie/%s/demo.szs", mCurrentConfig->mMovieNameBuffer2);
 	sys->startChangeCurrentHeap(mMovieHeap);

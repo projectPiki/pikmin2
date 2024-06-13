@@ -55,6 +55,8 @@ struct Obj : public EnemyBase {
 	// inline
 	void setPomColor(int);
 
+	inline int getPikiKind() const { return mPikiKind; }
+
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
 	FSM* mFsm;                        // _2BC
@@ -64,7 +66,7 @@ struct Obj : public EnemyBase {
 	int mTotalSlotCount;              // _2C8, max conversion slots
 	int mShotMultiplier;              // _2CC, multiplier for # seeds to shoot out
 	MouthSlots mMouthSlots;           // _2D0
-	EPikiKind mPikiKind;              // _2D8, color piki to shoot out
+	int mPikiKind;                    // _2D8, color piki to shoot out
 	J3DGXColorS10 mRgbColor;          // _2DC, red _2DC, green _2DE, blue _2E0, alpha _2E2
 	f32 mSwingTimer;                  // _2E4, how long pom has been open since touch/swallow
 	f32 mQueenColorTimer;             // _2E8, how long queen pom has been on current color

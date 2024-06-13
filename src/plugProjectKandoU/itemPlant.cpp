@@ -2266,7 +2266,7 @@ bool Plant::interactEat(InteractEat& eat)
 
 	if (slot) {
 		Pellet* fruit = slot->mFruit;
-		if (fruit->getKind() == PELTYPE_BERRY) {
+		if (fruit->getKind() == PelletType::Berry) {
 			Vector3f fruitPos = fruit->getPosition();
 			efx::Arg fxArg(fruitPos);
 			if (fruit->mPelletColor == PELCOLOR_SPICY) {
@@ -2509,7 +2509,7 @@ void Fruits::bearAll(u16 plantType)
 
 			pelletArg.mPelletIndex = 0;
 			pelletArg.mState       = PelBirthType_Appear;
-			pelletArg.mPelletType  = PELTYPE_BERRY;
+			pelletArg.mPelletType  = PelletType::Berry;
 
 			Pellet* pellet = pelletMgr->birth(&pelletArg);
 			if (!pellet) {

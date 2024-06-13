@@ -251,7 +251,7 @@ struct Navi : public FakePiki, virtual public PelletView {
 	u8 mStickCount;                         // _259
 	s32 mSprayCounts[2];                    // _25C proven signed by Navi::hasDope
 	u8 _264[4];                             // _264
-	bool mIsAlive;                          // _268
+	bool mHideModel;                        // _268
 	u8 mUnusedFlag;                         // _269
 	u8 mPluckingCounter;                    // _26A
 	PSM::Navi* mSoundObj;                   // _26C

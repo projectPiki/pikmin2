@@ -308,28 +308,24 @@ bool Obj::moveBridgeSide()
 	startPos += zVec;
 
 	if (sqrDistanceXZ(mPosition, startPos) < 250.0f) {
-		f32 speed    = 0.75f * C_GENERALPARMS.mMoveSpeed.mValue;
-		f32 sinTheta = sin(getFaceDir());
-		f32 y        = getTargetVelocity().y;
-		f32 cosTheta = cos(getFaceDir());
+		f32 moveSpeed = getMoveSpeed(0.75f);
+		f32 x         = dolsinf(getFaceDir());
+		f32 y         = getTargetVelocity().y;
+		f32 z         = dolcosf(getFaceDir());
 
-		mTargetVelocity.x = speed * sinTheta;
-		mTargetVelocity.y = y;
-		mTargetVelocity.z = speed * cosTheta;
+		mTargetVelocity = Vector3f(moveSpeed * x, y, moveSpeed * z);
 
 		return true;
 
 	} else {
-		changeFaceDir(startPos);
+		f32 val = turnToTarget2(startPos, C_GENERALPARMS.mTurnSpeed(), C_GENERALPARMS.mMaxTurnAngle());
 
-		f32 speed    = C_GENERALPARMS.mMoveSpeed.mValue;
-		f32 sinTheta = sin(getFaceDir());
-		f32 y        = getTargetVelocity().y;
-		f32 cosTheta = cos(getFaceDir());
+		f32 moveSpeed = getMoveSpeed();
+		f32 x         = dolsinf(getFaceDir());
+		f32 y         = getTargetVelocity().y;
+		f32 z         = dolcosf(getFaceDir());
 
-		mTargetVelocity.x = speed * sinTheta;
-		mTargetVelocity.y = y;
-		mTargetVelocity.z = speed * cosTheta;
+		mTargetVelocity = Vector3f(moveSpeed * x, y, moveSpeed * z);
 
 		return false;
 	}
@@ -529,28 +525,24 @@ bool Obj::moveBridgeCentre()
 	startPos += xVec;
 
 	if (sqrDistanceXZ(mPosition, startPos) < 250.0f) {
-		f32 speed    = 0.75f * C_GENERALPARMS.mMoveSpeed.mValue;
-		f32 sinTheta = sin(getFaceDir());
-		f32 y        = getTargetVelocity().y;
-		f32 cosTheta = cos(getFaceDir());
+		f32 moveSpeed = getMoveSpeed(0.75f);
+		f32 x         = dolsinf(getFaceDir());
+		f32 y         = getTargetVelocity().y;
+		f32 z         = dolcosf(getFaceDir());
 
-		mTargetVelocity.x = speed * sinTheta;
-		mTargetVelocity.y = y;
-		mTargetVelocity.z = speed * cosTheta;
+		mTargetVelocity = Vector3f(moveSpeed * x, y, moveSpeed * z);
 
 		return true;
 
 	} else {
-		changeFaceDir(startPos);
+		f32 val = turnToTarget2(startPos, C_GENERALPARMS.mTurnSpeed(), C_GENERALPARMS.mMaxTurnAngle());
 
-		f32 speed    = C_GENERALPARMS.mMoveSpeed.mValue;
-		f32 sinTheta = sin(getFaceDir());
-		f32 y        = getTargetVelocity().y;
-		f32 cosTheta = cos(getFaceDir());
+		f32 moveSpeed = getMoveSpeed();
+		f32 x         = dolsinf(getFaceDir());
+		f32 y         = getTargetVelocity().y;
+		f32 z         = dolcosf(getFaceDir());
 
-		mTargetVelocity.x = speed * sinTheta;
-		mTargetVelocity.y = y;
-		mTargetVelocity.z = speed * cosTheta;
+		mTargetVelocity = Vector3f(moveSpeed * x, y, moveSpeed * z);
 
 		return false;
 	}
@@ -748,7 +740,7 @@ bool Obj::moveBridgeTop()
 		stagePos += zVec;
 	}
 
-	changeFaceDir(stagePos);
+	f32 val = turnToTarget2(stagePos, C_GENERALPARMS.mTurnSpeed(), C_GENERALPARMS.mMaxTurnAngle());
 
 	f32 dist = sqrDistanceXZ(mPosition, stagePos);
 
@@ -757,231 +749,25 @@ bool Obj::moveBridgeTop()
 		return true;
 
 	} else if (dist < 250.0f) {
-		f32 speed    = C_GENERALPARMS.mMoveSpeed.mValue;
-		f32 sinTheta = sin(getFaceDir());
-		f32 y        = getTargetVelocity().y;
-		f32 cosTheta = cos(getFaceDir());
+		f32 moveSpeed = C_GENERALPARMS.mMoveSpeed();
+		f32 x         = dolsinf(getFaceDir());
+		f32 y         = getTargetVelocity().y;
+		f32 z         = dolcosf(getFaceDir());
 
-		mTargetVelocity.x = speed * sinTheta;
-		mTargetVelocity.y = y;
-		mTargetVelocity.z = speed * cosTheta;
+		mTargetVelocity = Vector3f(moveSpeed * x, y, moveSpeed * z);
 
 		return true;
 
 	} else {
-		f32 speed    = C_GENERALPARMS.mMoveSpeed.mValue;
-		f32 sinTheta = sin(getFaceDir());
-		f32 y        = getTargetVelocity().y;
-		f32 cosTheta = cos(getFaceDir());
+		f32 moveSpeed = C_GENERALPARMS.mMoveSpeed();
+		f32 x         = dolsinf(getFaceDir());
+		f32 y         = getTargetVelocity().y;
+		f32 z         = dolcosf(getFaceDir());
 
-		mTargetVelocity.x = speed * sinTheta;
-		mTargetVelocity.y = y;
-		mTargetVelocity.z = speed * cosTheta;
+		mTargetVelocity = Vector3f(moveSpeed * x, y, moveSpeed * z);
 	}
 
 	return false;
-	/*
-	stwu     r1, -0xb0(r1)
-	mflr     r0
-	stw      r0, 0xb4(r1)
-	stfd     f31, 0xa0(r1)
-	psq_st   f31, 168(r1), 0, qr0
-	stfd     f30, 0x90(r1)
-	psq_st   f30, 152(r1), 0, qr0
-	stfd     f29, 0x80(r1)
-	psq_st   f29, 136(r1), 0, qr0
-	stfd     f28, 0x70(r1)
-	psq_st   f28, 120(r1), 0, qr0
-	stfd     f27, 0x60(r1)
-	psq_st   f27, 104(r1), 0, qr0
-	stw      r31, 0x5c(r1)
-	stw      r30, 0x58(r1)
-	mr       r30, r3
-	addi     r3, r1, 0x44
-	lwz      r4, 0x2c8(r30)
-	lwz      r5, 0x218(r4)
-	addi     r31, r5, -1
-	mr       r5, r31
-	bl       getStagePos__Q34Game10ItemBridge4ItemFi
-	lfs      f31, 0x44(r1)
-	addi     r3, r1, 0x38
-	lfs      f30, 0x4c(r1)
-	lwz      r4, 0x2c8(r30)
-	bl       getBridgeXVec__Q34Game10ItemBridge4ItemFv
-	lfs      f1, 0x38(r1)
-	cmpwi    r31, 0
-	lfs      f0, 0x2cc(r30)
-	lfs      f2, 0x40(r1)
-	fmuls    f1, f1, f0
-	fmuls    f2, f2, f0
-	fadds    f31, f31, f1
-	fadds    f30, f30, f2
-	ble      lbl_802670D0
-	lwz      r4, 0x2c8(r30)
-	addi     r3, r1, 0x2c
-	bl       getBridgeZVec__Q34Game10ItemBridge4ItemFv
-	lfs      f1, 0x2c(r1)
-	lfs      f0, lbl_8051AEB4@sda21(r2)
-	lfs      f2, 0x34(r1)
-	fmuls    f1, f1, f0
-	fmuls    f2, f2, f0
-	fadds    f31, f31, f1
-	fadds    f30, f30, f2
-
-lbl_802670D0:
-	mr       r4, r30
-	lwz      r5, 0xc0(r30)
-	lwz      r12, 0(r30)
-	addi     r3, r1, 8
-	lfs      f28, 0x334(r5)
-	lwz      r12, 8(r12)
-	lfs      f29, 0x30c(r5)
-	mtctr    r12
-	bctrl
-	lfs      f1, 8(r1)
-	lis      r3, atanTable___5JMath@ha
-	lfs      f0, 0x10(r1)
-	addi     r3, r3, atanTable___5JMath@l
-	fsubs    f1, f31, f1
-	fsubs    f2, f30, f0
-	bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
-	bl       roundAng__Ff
-	lwz      r12, 0(r30)
-	fmr      f27, f1
-	mr       r3, r30
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	fmr      f2, f1
-	fmr      f1, f27
-	bl       angDist__Fff
-	fmuls    f29, f1, f29
-	lfs      f0, lbl_8051AEC4@sda21(r2)
-	lfs      f1, lbl_8051AEC0@sda21(r2)
-	fmuls    f0, f0, f28
-	fabs     f2, f29
-	fmuls    f1, f1, f0
-	frsp     f0, f2
-	fcmpo    cr0, f0, f1
-	ble      lbl_80267174
-	lfs      f0, lbl_8051AE7C@sda21(r2)
-	fcmpo    cr0, f29, f0
-	ble      lbl_80267170
-	fmr      f29, f1
-	b        lbl_80267174
-
-lbl_80267170:
-	fneg     f29, f1
-
-lbl_80267174:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	fadds    f1, f29, f1
-	bl       roundAng__Ff
-	stfs     f1, 0x1fc(r30)
-	lfs      f0, lbl_8051AE84@sda21(r2)
-	lfs      f1, 0x1fc(r30)
-	stfs     f1, 0x1a8(r30)
-	lfs      f1, 0x194(r30)
-	lfs      f2, 0x18c(r30)
-	fsubs    f1, f1, f30
-	fsubs    f2, f2, f31
-	fmuls    f1, f1, f1
-	fmadds   f1, f2, f2, f1
-	fcmpo    cr0, f1, f0
-	bge      lbl_802671D8
-	lfs      f0, lbl_8051AE7C@sda21(r2)
-	li       r3, 1
-	stfs     f0, 0x1d4(r30)
-	stfs     f0, 0x1d8(r30)
-	stfs     f0, 0x1dc(r30)
-	b        lbl_802672C8
-
-lbl_802671D8:
-	lfs      f0, lbl_8051AEB8@sda21(r2)
-	fcmpo    cr0, f1, f0
-	bge      lbl_80267258
-	mr       r3, r30
-	lwz      r4, 0xc0(r30)
-	lwz      r12, 0(r30)
-	lfs      f28, 0x2e4(r4)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	bl       sin
-	mr       r3, r30
-	lfs      f2, 0x1d4(r30)
-	lwz      r12, 0(r30)
-	frsp     f27, f1
-	lfs      f30, 0x1d8(r30)
-	lfs      f0, 0x1dc(r30)
-	lwz      r12, 0x64(r12)
-	stfs     f2, 0x20(r1)
-	stfs     f30, 0x24(r1)
-	stfs     f0, 0x28(r1)
-	mtctr    r12
-	bctrl
-	bl       cos
-	fmuls    f0, f28, f27
-	li       r3, 1
-	frsp     f1, f1
-	stfs     f0, 0x1d4(r30)
-	fmuls    f0, f28, f1
-	stfs     f30, 0x1d8(r30)
-	stfs     f0, 0x1dc(r30)
-	b        lbl_802672C8
-
-lbl_80267258:
-	mr       r3, r30
-	lwz      r4, 0xc0(r30)
-	lwz      r12, 0(r30)
-	lfs      f28, 0x2e4(r4)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	bl       sin
-	mr       r3, r30
-	lfs      f2, 0x1d4(r30)
-	lwz      r12, 0(r30)
-	frsp     f27, f1
-	lfs      f30, 0x1d8(r30)
-	lfs      f0, 0x1dc(r30)
-	lwz      r12, 0x64(r12)
-	stfs     f2, 0x14(r1)
-	stfs     f30, 0x18(r1)
-	stfs     f0, 0x1c(r1)
-	mtctr    r12
-	bctrl
-	bl       cos
-	fmuls    f0, f28, f27
-	li       r3, 0
-	frsp     f1, f1
-	stfs     f0, 0x1d4(r30)
-	fmuls    f0, f28, f1
-	stfs     f30, 0x1d8(r30)
-	stfs     f0, 0x1dc(r30)
-
-lbl_802672C8:
-	psq_l    f31, 168(r1), 0, qr0
-	lfd      f31, 0xa0(r1)
-	psq_l    f30, 152(r1), 0, qr0
-	lfd      f30, 0x90(r1)
-	psq_l    f29, 136(r1), 0, qr0
-	lfd      f29, 0x80(r1)
-	psq_l    f28, 120(r1), 0, qr0
-	lfd      f28, 0x70(r1)
-	psq_l    f27, 104(r1), 0, qr0
-	lfd      f27, 0x60(r1)
-	lwz      r31, 0x5c(r1)
-	lwz      r0, 0xb4(r1)
-	lwz      r30, 0x58(r1)
-	mtlr     r0
-	addi     r1, r1, 0xb0
-	blr
-	*/
 }
 
 /**

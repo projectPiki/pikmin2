@@ -23,11 +23,11 @@ namespace PelletNumber {
 struct Object : public Pellet {
 	Object() { }
 
-	virtual void constructor();                     // _02C
-	virtual void do_onInit(CreatureInitArg* arg);   // _1CC
-	virtual u8 getKind() { return PELTYPE_NUMBER; } // _1F4 (weak)
-	virtual void changeMaterial();                  // _1F8
-	virtual void createKiraEffect(Vector3f& pos);   // _1FC
+	virtual void constructor();                         // _02C
+	virtual void do_onInit(CreatureInitArg* arg);       // _1CC
+	virtual u8 getKind() { return PelletType::Number; } // _1F4 (weak)
+	virtual void changeMaterial();                      // _1F8
+	virtual void createKiraEffect(Vector3f& pos);       // _1FC
 
 	// _00      = VTBL
 	// _00-_458 = Pellet
@@ -40,7 +40,7 @@ struct Mgr : public FixedSizePelletMgr<Object> {
 	virtual void setupResources();                                                       // _44
 	virtual void onCreateModel(SysShape::Model* model);                                  // _48
 	virtual char* getMgrName() { return "number"; }                                      // _58 (weak)
-	virtual u8 getMgrID() { return PELTYPE_NUMBER; }                                     // _5C (weak)
+	virtual u8 getMgrID() { return PelletType::Number; }                                 // _5C (weak)
 	virtual Pellet* generatorBirth(Vector3f& pos, Vector3f& angle, GenPelletParm* parm); // _70
 	virtual void generatorWrite(Stream& stream, GenPelletParm* parm);                    // _74
 	virtual void generatorRead(Stream& stream, GenPelletParm* parm, u32 flag);           // _78

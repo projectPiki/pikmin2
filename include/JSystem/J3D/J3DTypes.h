@@ -105,12 +105,12 @@ enum J3DModelFlags {
  * J3DMDF_DiffBlend:        This flag is set if the blend settings are different. It corresponds to the 30th bit.
  *
  * The CREATE_DIFF_FLAG macro is used to create a u32 value with specific flags set.
- * It takes four parameters: lightObjNum, texGenNum, texNoNum, and tevStageNum. Each parameter is expected to be a 4-bit value.
+ * It takes four parameters: lightObjNum, texGenNum, texCoordNum, and tevStageNum. Each parameter is expected to be a 4-bit value.
  * The parameters are shifted to their respective positions in the u32 value and combined using the bitwise OR operator.
  *
  * lightObjNum: This value is shifted to bits 4 - 7.
  * texGenNum:   This value is shifted to bits 8 - 11.
- * texNoNum:    This value is shifted to bits 16 - 19.
+ * texCoordNum:    This value is shifted to bits 16 - 19.
  * tevStageNum: This value is shifted to bits 20 - 23.
  */
 
@@ -136,8 +136,8 @@ enum J3DModelDiffFlags {
 	J3DMDF_DiffBlend            = 0x20000000  // Diff blend settings
 };
 
-#define CREATE_DIFF_FLAG(lightObjNum, texGenNum, texNoNum, tevStageNum) \
-	(((lightObjNum & 0xf) << 4) | ((texGenNum & 0xf) << 8) | ((texNoNum & 0xf) << 16) | ((tevStageNum & 0xf) << 20))
+#define CREATE_DIFF_FLAG(lightObjNum, texGenNum, texCoordNum, tevStageNum) \
+	(((lightObjNum & 0xf) << 4) | ((texGenNum & 0xf) << 8) | ((texCoordNum & 0xf) << 16) | ((tevStageNum & 0xf) << 20))
 
 inline u32 getDiffFlag_LightObjNum(u32 diffFlags) { return (diffFlags & 0xf0) >> 4; }
 inline u32 getDiffFlag_TexGenNum(u32 diffFlags) { return (diffFlags & 0xf00) >> 8; }

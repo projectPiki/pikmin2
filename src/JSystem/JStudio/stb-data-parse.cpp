@@ -64,39 +64,46 @@ void TParse_TParagraph::getData(TParse_TParagraph::TData* data) const
  */
 void TParse_TParagraph_data::getData(TParse_TParagraph_data::TData* data) const
 {
-	u8* set2;
-	int dSize = data->mDataSize = 0;
-	data->_08                   = 0;
-	data->mFileCount            = nullptr;
-	data->_10                   = nullptr;
-	u8* filedata                = (u8*)getRaw();
-	if (!filedata) {
+	u8* currentPtr;
+	int dataSize = data->mDataSize = 0;
+
+	data->mFileCount    = 0;
+	data->mData         = nullptr;
+	data->mDataBlockEnd = nullptr;
+
+	u8* rawData = (u8*)getRaw();
+	if (!rawData) {
 		return;
 	}
 
-	u8 set        = *filedata;
-	data->mStatus = set & ~0x8;
-	if (!set) {
+	u8 statusByte = *rawData;
+	data->mStatus = statusByte & ~0x8;
+	if (!statusByte) {
 		return;
 	}
 
-	int is8;
-	int set3 = 1;
-	is8      = set & 8;
-	// Probably fake match
-	if (set2 = (filedata + 1), is8) {
-		set3 = *set2++;
-	}
-	data->_08        = set3;
-	data->mFileCount = set2;
+	int fileCount    = 1;
+	int hasExtraData = statusByte & 8;
 
-	if (!(set & 7)) {
+	// Adjust pointer based on the presence of extra data
+	if (currentPtr = (rawData + 1), hasExtraData) {
+		fileCount = *currentPtr++;
+	}
+
+	data->mFileCount = fileCount;
+	data->mData      = currentPtr;
+
+	// If the lower 3 bits are zero, return
+	if (!(statusByte & 7)) {
 		return;
 	}
 
-	dSize           = (gauDataSize_TEParagraph_data)[set &= 7];
-	data->mDataSize = dSize;
-	data->_10       = (u8*)set2 + (dSize * set3);
+	// Determine data size based on the lower 3 bits of the status byte
+	dataSize        = (gauDataSize_TEParagraph_data)[statusByte &= 7];
+	data->mDataSize = dataSize;
+
+	// Set data pointer based on the data size and file count
+	data->mDataBlockEnd = &currentPtr[dataSize * fileCount];
 }
 
 } // namespace data

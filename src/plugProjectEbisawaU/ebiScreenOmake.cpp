@@ -497,57 +497,46 @@ void TOmake::doOpenScreen(ArgOpen* arg)
 	P2ASSERTLINE(109, arg);
 
 	ArgOpenOmake* oarg = static_cast<ArgOpenOmake*>(arg);
-	u8 flag1           = oarg->mFlag1;
-	u8 flag2           = oarg->mFlag2;
-	u8 flag3           = oarg->mFlag3;
+	u8 flag1           = oarg->mIsDebtComplete;
+	u8 flag2           = oarg->mIsAllTreasures;
+	u32 flag3          = oarg->mIsLouieDarkSecret;
 
+	// enable all options by default
 	for (int i = 0; i < 7; i++) {
 		mFonts[i].setPaneColors(0);
 		mPaneListMesg[i]->setMsgID(mMesgTags[i]);
 		mPaneListMesgShadow[i]->setMsgID(mMesgTags[i]);
 	}
 
+	// disable both post-debt cutscenes if not viewable
 	if (!flag1) {
-		for (int i = 0; i < 4; i++) {
-			J2DTextBox* pane = mPaneListMesg[i];
-			pane->setCharColor(mColor8);
-			pane->setGradientColor(mColor9);
-			pane->setWhite(mColor10);
-			pane->setBlack(mColor11);
+		for (int i = 1; i <= 3; i++) {
+			// this inline needs adjustment for stack order
+			setMsgColor(mPaneListMesg[i]);
 
 			mPaneListMesg[i]->setMsgID('4844_00');
 			mPaneListMesgShadow[i]->setMsgID('4844_00');
 		}
 	}
 
+	// disable all treasures cutscene if not reached
 	if (!flag2) {
-		J2DTextBox* pane = mPaneListMesg[4];
-		pane->setCharColor(mColor8);
-		pane->setGradientColor(mColor9);
-		pane->setWhite(mColor10);
-		pane->setBlack(mColor11);
-
+		setMsgColor(mPaneListMesg[4]);
 		mPaneListMesg[4]->setMsgID('4844_00');
 		mPaneListMesgShadow[4]->setMsgID('4844_00');
 	}
 
+	// disable louies dark secret if not reached
 	if (!flag3) {
-		J2DTextBox* pane = mPaneListMesg[5];
-		pane->setCharColor(mColor8);
-		pane->setGradientColor(mColor9);
-		pane->setWhite(mColor10);
-		pane->setBlack(mColor11);
+		setMsgColor(mPaneListMesg[5]);
 
 		mPaneListMesg[5]->setMsgID('4844_00');
 		mPaneListMesgShadow[5]->setMsgID('4844_00');
 	}
 
+	// disable e-reader if not on JP version
 	if (sys->mRegion != System::LANG_Japanese) {
-		J2DTextBox* pane = mPaneListMesg[6];
-		pane->setCharColor(mColor8);
-		pane->setGradientColor(mColor9);
-		pane->setWhite(mColor10);
-		pane->setBlack(mColor11);
+		setMsgColor(mPaneListMesg[6]);
 
 		mPaneListMesg[6]->setMsgID('4844_00');       // "?"
 		mPaneListMesgShadow[6]->setMsgID('4844_00'); // "?"
@@ -1038,25 +1027,29 @@ bool TOmake::doUpdateStateWait()
 	case 0:
 		mInput.update();
 		if (mInput.mSelectionChanged) {
+
 			int id = mInput.mLastIndex;
 			if (id >= mCurrSel) {
-				for (int i = 0; i < 7; i++) {
+				for (; mCurrSel < 7; mCurrSel++) {
 					if (mPaneList1[mCurrSel]->mMessageID == '4844_00') {
-						mCurrSel++;
+						break;
 					}
 				}
+				mCurrSel = id;
 			} else {
-				for (int i = 0; i < mCurrSel; i++) {
+				for (; mCurrSel >= 0; mCurrSel--) {
 					if (mPaneList1[mCurrSel]->mMessageID == '4844_00') {
-						mCurrSel++;
+						break;
 					}
 				}
+				mCurrSel = id;
 			}
+
 			if (id != mCurrSel) {
 				JGeometry::TBox2f bounds;
 				bounds           = *mPaneList2[mCurrSel]->getBounds();
 				mCursor.mBounds1 = bounds;
-				mCursor.mBounds2 = bounds;
+				mCursor.mBounds2 = mCursor.mBounds1;
 				mCursor.mCounter = mCursor.mCounterMax;
 				mCursor.mScaleMgr.up(0.1f, 30.0f, 0.6f, 0.0f);
 				mCursor.mWindowPane = mPaneList1[mCurrSel];
@@ -1065,7 +1058,7 @@ bool TOmake::doUpdateStateWait()
 				PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CURSOR, 0);
 			}
 		}
-		if (!mCursor.mIsEnabled) {
+		if (!mCursor.mCounter) {
 			u32 input = mController->getButtonDown();
 			if (input & Controller::PRESS_A) {
 				PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_DECIDE, 0);
@@ -1466,45 +1459,10 @@ bool TOmake::doUpdateStateClose()
 		mCounter--;
 	}
 
-	return !mCounter ? true : false; // write this in such a way to generate a branch instruction.
-
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-lwz      r3, 0x58(r3)
-lwz      r12, 0(r3)
-lwz      r12, 0x30(r12)
-mtctr    r12
-bctrl
-lwz      r0, 0x4c(r31)
-cmpwi    r0, 0
-beq      lbl_803EE6E0
-lwz      r3, 0x50(r31)
-cmplwi   r3, 0
-beq      lbl_803EE6E0
-addi     r0, r3, -1
-stw      r0, 0x50(r31)
-
-lbl_803EE6E0:
-lwz      r0, 0x50(r31)
-cmplwi   r0, 0
-bne      lbl_803EE6F4
-li       r3, 1
-b        lbl_803EE6F8
-
-lbl_803EE6F4:
-li       r3, 0
-
-lbl_803EE6F8:
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	if (isFadeoutFinished())
+		return true;
+	else
+		return false;
 }
 
 /**
@@ -1513,206 +1471,43 @@ blr
  */
 void TOmake::doDraw()
 {
-	Graphics* gfx       = sys->mGfx;
-	J2DPerspGraph* graf = &gfx->mPerspGraph;
+	Graphics* gfx       = sys->getGfx();
+	J2DPerspGraph* graf = sys->getGfx()->getPerspGraph();
 	graf->setPort();
 	mScreenMain->draw(*gfx, *graf);
 
-	if (mState) {
-		f32 factor;
-		graf = &sys->mGfx->mPerspGraph;
-		graf->setPort();
-		JUtility::TColor color(mColor1);
-		switch (mState) {
-		case 1:
-			if (mCounterMax) {
-				factor = (f32)mCounter / (f32)mCounterMax;
-			} else {
-				factor = 0.0f;
-			}
-			color.a = mAlpha * factor;
-			break;
-		case 2:
-			if (mCounterMax) {
-				factor = (f32)mCounter / (f32)mCounterMax;
-			} else {
-				factor = 0.0f;
-			}
-			color.a = mAlpha * (1.0f - factor);
-			break;
-		}
-		graf->setColor(color);
-		u32 y    = System::getRenderModeObj()->efbHeight;
-		u32 x    = System::getRenderModeObj()->fbWidth;
-		f32 zero = 0.0f;
-		JGeometry::TBox2f box(0.0f, zero + x, 0.0f, zero + y);
-		graf->fillBox(box);
+	if (!mState) {
+		return;
 	}
 
-	/*
-stwu     r1, -0x60(r1)
-mflr     r0
-stw      r0, 0x64(r1)
-stw      r31, 0x5c(r1)
-stw      r30, 0x58(r1)
-stw      r29, 0x54(r1)
-mr       r29, r3
-lwz      r4, sys@sda21(r13)
-lwz      r30, 0x24(r4)
-addi     r31, r30, 0x190
-lwz      r12, 0(r31)
-mr       r3, r31
-lwz      r12, 0x14(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x58(r29)
-mr       r4, r30
-mr       r5, r31
-lwz      r12, 0(r3)
-lwz      r12, 0x9c(r12)
-mtctr    r12
-bctrl
-lwz      r0, 0x4c(r29)
-cmpwi    r0, 0
-beq      lbl_803EE934
-lwz      r3, sys@sda21(r13)
-lwz      r3, 0x24(r3)
-addi     r31, r3, 0x190
-mr       r3, r31
-lwz      r12, 0(r31)
-lwz      r12, 0x14(r12)
-mtctr    r12
-bctrl
-lwz      r0, 0x4c(r29)
-lwz      r3, 0x44(r29)
-cmpwi    r0, 2
-stw      r3, 0x18(r1)
-beq      lbl_803EE82C
-bge      lbl_803EE8A8
-cmpwi    r0, 1
-bge      lbl_803EE7B4
-b        lbl_803EE8A8
-
-lbl_803EE7B4:
-lwz      r4, 0x54(r29)
-cmplwi   r4, 0
-beq      lbl_803EE7F4
-lwz      r3, 0x50(r29)
-lis      r0, 0x4330
-stw      r0, 0x30(r1)
-lfd      f2, lbl_8051FE88@sda21(r2)
-stw      r3, 0x34(r1)
-lfd      f0, 0x30(r1)
-stw      r4, 0x3c(r1)
-fsubs    f1, f0, f2
-stw      r0, 0x38(r1)
-lfd      f0, 0x38(r1)
-fsubs    f0, f0, f2
-fdivs    f2, f1, f0
-b        lbl_803EE7F8
-
-lbl_803EE7F4:
-lfs      f2, lbl_8051FE64@sda21(r2)
-
-lbl_803EE7F8:
-lbz      r3, 0x48(r29)
-lis      r0, 0x4330
-stw      r0, 0x40(r1)
-lfd      f1, lbl_8051FE88@sda21(r2)
-stw      r3, 0x44(r1)
-lfd      f0, 0x40(r1)
-fsubs    f0, f0, f1
-fmuls    f0, f0, f2
-fctiwz   f0, f0
-stfd     f0, 0x48(r1)
-lwz      r0, 0x4c(r1)
-stb      r0, 0x1b(r1)
-b        lbl_803EE8A8
-
-lbl_803EE82C:
-lwz      r4, 0x54(r29)
-cmplwi   r4, 0
-beq      lbl_803EE86C
-lwz      r3, 0x50(r29)
-lis      r0, 0x4330
-stw      r0, 0x48(r1)
-lfd      f2, lbl_8051FE88@sda21(r2)
-stw      r3, 0x4c(r1)
-lfd      f0, 0x48(r1)
-stw      r4, 0x44(r1)
-fsubs    f1, f0, f2
-stw      r0, 0x40(r1)
-lfd      f0, 0x40(r1)
-fsubs    f0, f0, f2
-fdivs    f1, f1, f0
-b        lbl_803EE870
-
-lbl_803EE86C:
-lfs      f1, lbl_8051FE64@sda21(r2)
-
-lbl_803EE870:
-lbz      r3, 0x48(r29)
-lis      r0, 0x4330
-lfs      f0, lbl_8051FE60@sda21(r2)
-stw      r3, 0x3c(r1)
-lfd      f2, lbl_8051FE88@sda21(r2)
-fsubs    f0, f0, f1
-stw      r0, 0x38(r1)
-lfd      f1, 0x38(r1)
-fsubs    f1, f1, f2
-fmuls    f0, f1, f0
-fctiwz   f0, f0
-stfd     f0, 0x30(r1)
-lwz      r0, 0x34(r1)
-stb      r0, 0x1b(r1)
-
-lbl_803EE8A8:
-lwz      r0, 0x18(r1)
-mr       r3, r31
-addi     r4, r1, 8
-addi     r5, r1, 0xc
-stw      r0, 0x14(r1)
-addi     r6, r1, 0x10
-addi     r7, r1, 0x14
-stw      r0, 0x10(r1)
-stw      r0, 0xc(r1)
-stw      r0, 8(r1)
-bl
-setColor__14J2DGrafContextFQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor
-bl       getRenderModeObj__6SystemFv
-lhz      r30, 6(r3)
-bl       getRenderModeObj__6SystemFv
-lhz      r4, 4(r3)
-lis      r0, 0x4330
-lfs      f3, lbl_8051FE64@sda21(r2)
-mr       r3, r31
-stw      r4, 0x4c(r1)
-addi     r4, r1, 0x1c
-lfd      f2, lbl_8051FE88@sda21(r2)
-stw      r0, 0x48(r1)
-lfd      f0, 0x48(r1)
-stw      r30, 0x44(r1)
-fsubs    f1, f0, f2
-stw      r0, 0x40(r1)
-lfd      f0, 0x40(r1)
-fadds    f1, f3, f1
-stfs     f3, 0x1c(r1)
-fsubs    f0, f0, f2
-stfs     f3, 0x20(r1)
-fadds    f0, f3, f0
-stfs     f1, 0x24(r1)
-stfs     f0, 0x28(r1)
-bl       "fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2<f>"
-
-lbl_803EE934:
-lwz      r0, 0x64(r1)
-lwz      r31, 0x5c(r1)
-lwz      r30, 0x58(r1)
-lwz      r29, 0x54(r1)
-mtlr     r0
-addi     r1, r1, 0x60
-blr
-	*/
+	f32 factor;
+	graf = sys->getGfx()->getPerspGraph();
+	graf->setPort();
+	JUtility::TColor color(mColorBase);
+	switch (mState) {
+	case 1:
+		if (mCounterMax) {
+			factor = mCounter / (f32)mCounterMax;
+		} else {
+			factor = 0.0f;
+		}
+		color.a = mAlpha * factor;
+		break;
+	case 2:
+		if (mCounterMax) {
+			factor = mCounter / (f32)mCounterMax;
+		} else {
+			factor = 0.0f;
+		}
+		color.a = mAlpha * (1.0f - factor);
+		break;
+	}
+	graf->setColor(color);
+	u32 y    = System::getRenderModeObj()->efbHeight;
+	u32 x    = System::getRenderModeObj()->fbWidth;
+	f32 zero = 0.0f;
+	JGeometry::TBox2f box(0.0f, 0.0f, zero + x, zero + y);
+	graf->fillBox(box);
 }
 
 /**

@@ -5,7 +5,6 @@
 #include "Dolphin/os.h"
 #include "JSystem/JAudio/JAI/JAIBasic.h"
 #include "JSystem/JAudio/JAI/JAIStream.h"
-#include "PSSystem/FxMgr.h"
 #include "JSystem/JKernel/JKRDisposer.h"
 #include "JSystem/JKernel/JKRFileLoader.h"
 #include "P2Macros.h"
@@ -137,6 +136,10 @@ struct SysChecker {
 
 	OSMutex mMutex; // _00
 	int mIsEnabled; // _18
+};
+
+struct FxMgr {
+	FxMgr();
 };
 
 // Size: 0x4C

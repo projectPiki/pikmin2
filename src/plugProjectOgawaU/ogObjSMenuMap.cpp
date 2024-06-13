@@ -13,7 +13,6 @@
 static const u32 padding[] = { 0, 0, 0 };
 
 namespace og {
-
 namespace newScreen {
 
 u64 map_icon_tag[22]
@@ -44,51 +43,45 @@ Game::Navi* getNaviPtr(int index)
  */
 ObjSMenuMap::ObjSMenuMap(char const* name)
 {
-	mMapPosition.x          = 0.0f;
-	mMapPosition.y          = 0.0f;
-	mCurrentZoom            = 1.0f;
-	mMapAngle               = 0.0f;
-	mMapTexScale.x          = 1.0f;
-	mMapTexScale.y          = 1.0f;
-	mMapTextureDimensions.x = 0.0f;
-	mMapTextureDimensions.y = 0.0f;
-	mMapBounds.x            = 0.0f;
-	mMapBounds.y            = 0.0f;
-	_108.x                  = 1.0f;
-	_108.y                  = 1.0f;
-	mMapRotationOrigin.x    = 0.0f;
-	mMapRotationOrigin.y    = 0.0f;
-	mDisp                   = nullptr;
-	mMapCounter             = nullptr;
-	mAnimGroup              = nullptr;
-	mName                   = name;
-	mPane_map               = nullptr;
-	_B8                     = 0;
-	mIconScreen             = nullptr;
-	mRadarMapTexture        = nullptr;
-	mRootPane               = nullptr;
-	mPane_Ncompas           = nullptr;
-	mMapTexPane             = nullptr;
-	mRadarPaneList          = nullptr;
-	mOlimarArrow            = nullptr;
-	mOlimarObj              = nullptr;
-	mLouieArrow             = nullptr;
-	mLouieObj               = nullptr;
-	mMapIconNum             = 0;
-	mUpdateCaveTex          = false;
-	mController             = nullptr;
-	mIconScreen2            = nullptr;
-	mCompassPic             = nullptr;
-	mOlimarGlow             = nullptr;
-	mLouieGlow              = nullptr;
-	mStartZoom              = 1.0f;
-	mZoomCaveTextAlpha      = 255;
-	mCaveLabelCount         = 0;
-	mCaveLabelTextBoxes[0]  = nullptr;
-	mCaveLabelTextBoxes[1]  = nullptr;
-	mCaveLabelTextBoxes[2]  = nullptr;
-	mCaveLabelTextBoxes[3]  = nullptr;
-	mCaveLabelTextBoxes[4]  = nullptr;
+	mMapPosition           = Vector2f(0.0f);
+	mCurrentZoom           = 1.0f;
+	mMapAngle              = 0.0f;
+	mMapTexScale           = Vector2f(1.0f);
+	mMapTextureDimensions  = Vector2f(0.0f);
+	mMapBounds             = Vector2f(0.0f);
+	_108                   = Vector2f(1.0f);
+	mMapRotationOrigin     = Vector2f(0.0f);
+	mDisp                  = nullptr;
+	mMapCounter            = nullptr;
+	mAnimGroup             = nullptr;
+	mName                  = name;
+	mMapAreaPane           = nullptr;
+	_B8                    = 0;
+	mIconScreen            = nullptr;
+	mRadarMapTexture       = nullptr;
+	mIconRootPane          = nullptr;
+	mCompassPane           = nullptr;
+	mMapTexPane            = nullptr;
+	mRadarPaneList         = nullptr;
+	mOlimarArrow           = nullptr;
+	mOlimarObj             = nullptr;
+	mLouieArrow            = nullptr;
+	mLouieObj              = nullptr;
+	mMapIconNum            = 0;
+	mUpdateCaveTex         = false;
+	mController            = nullptr;
+	mIconScreen2           = nullptr;
+	mCompassPic            = nullptr;
+	mOlimarGlow            = nullptr;
+	mLouieGlow             = nullptr;
+	mStartZoom             = 1.0f;
+	mZoomCaveTextAlpha     = 255;
+	mCaveLabelCount        = 0;
+	mCaveLabelTextBoxes[0] = nullptr;
+	mCaveLabelTextBoxes[1] = nullptr;
+	mCaveLabelTextBoxes[2] = nullptr;
+	mCaveLabelTextBoxes[3] = nullptr;
+	mCaveLabelTextBoxes[4] = nullptr;
 }
 
 /**
@@ -141,9 +134,9 @@ void ObjSMenuMap::calcMapPos(Vector2f pos, Vector2f* outPos)
  */
 void ObjSMenuMap::setMapTexture()
 {
-	mMapTexPane = og::Screen::CopyPictureToPane(mPane_map, mRootPane, 0.0f, 0.0f, 'new_map');
+	mMapTexPane = og::Screen::CopyPictureToPane(mMapAreaPane, mIconRootPane, 0.0f, 0.0f, 'new_map');
 	mMapTexPane->setAlpha(255);
-	mPane_map->hide();
+	mMapAreaPane->hide();
 
 	if (mDisp->mInCave && mDisp->mActiveNavi) {
 		if (Game::Cave::randMapMgr) {
@@ -156,16 +149,16 @@ void ObjSMenuMap::setMapTexture()
 		}
 	} else {
 		switch (mDisp->mCourseIndex) {
-		case 0:
+		case og::Screen::DispMemberSMenuMap::COURSE_Tutorial:
 			mMapTexPane->changeTexture("map_tutorial.bti", 0);
 			break;
-		case 1:
+		case og::Screen::DispMemberSMenuMap::COURSE_Forest:
 			mMapTexPane->changeTexture("map_forest.bti", 0);
 			break;
-		case 2:
+		case og::Screen::DispMemberSMenuMap::COURSE_Yakushima:
 			mMapTexPane->changeTexture("map_yakushima.bti", 0);
 			break;
-		case 3:
+		case og::Screen::DispMemberSMenuMap::COURSE_Last:
 			mMapTexPane->changeTexture("map_last.bti", 0);
 			break;
 		}
@@ -218,8 +211,8 @@ void ObjSMenuMap::setMapPos()
  */
 void ObjSMenuMap::setCompass()
 {
-	mPane_Ncompas = mMapCounter->search('Ncompas');
-	mCompassPic   = static_cast<J2DPictureEx*>(mIconScreen2->search('compass'));
+	mCompassPane = mMapCounter->search('Ncompas');
+	mCompassPic  = static_cast<J2DPictureEx*>(mIconScreen2->search('compass'));
 
 	J2DPane* iconPane   = mIconScreen->search('compass');
 	J2DPane* iconParent = iconPane->getParentPane();
@@ -283,15 +276,17 @@ void ObjSMenuMap::initMapIcon(JKRArchive* arc)
 
 	mMapCounter->search('map')->removeFromParent();
 
+	// set up icon screen to manage radar icons
 	mIconScreen = new P2DScreen::Mgr_tuning;
 	mIconScreen->set("map_icon.blo", 0x40000, arc);
 
-	mRootPane = mIconScreen->search('ROOT');
+	mIconRootPane = mIconScreen->search('ROOT'); // pane with all radar map icons as children
 
-	J2DPictureEx* pic = static_cast<J2DPictureEx*>(og::Screen::TagSearch(mIconScreen, 'piki__b'));
-	pic->setWhite(msVal.mTempPikiColorWhite);
-	pic->setBlack(msVal.mTempPikiColorBlack);
+	J2DPictureEx* pikiIcon = static_cast<J2DPictureEx*>(og::Screen::TagSearch(mIconScreen, 'piki__b'));
+	pikiIcon->setWhite(msVal.mTempPikiColorWhite);
+	pikiIcon->setBlack(msVal.mTempPikiColorBlack);
 
+	// set up second copy of icons?
 	mIconScreen2 = new P2DScreen::Mgr_tuning;
 	mIconScreen2->set("map_icon.blo", 0x40000, arc);
 
@@ -299,6 +294,7 @@ void ObjSMenuMap::initMapIcon(JKRArchive* arc)
 	setMapPos();
 	setCompass();
 
+	// set up list of all radar map icon panes
 	mRadarPaneList = new J2DPane**[MAX_RADAR_COUNT];
 	for (int i = 0; i < MAX_RADAR_COUNT; i++) {
 		J2DPane** pane = new J2DPane*;
@@ -311,28 +307,29 @@ void ObjSMenuMap::initMapIcon(JKRArchive* arc)
 	int count       = 0;
 	mCaveLabelCount = 0;
 	if (Radar::mgr) {
+		// why do we not have an active captain? don't worry about it.
 		if (!mDisp->mActiveNavi) {
 			Radar::mgr->ogDummpyInit();
 		}
 
 		FOREACH_NODE(Radar::Point, Radar::mgr->mPointNode1.mChild, cPoint)
 		{
-			int id = cPoint->mObjType;
-			JUT_ASSERTLINE(569, id >= 0 && id < 22, "Radar type ERR!! (%d)\n", id);
+			int objType = cPoint->mObjType;
+			JUT_ASSERTLINE(569, objType >= 0 && objType < 22, "Radar type ERR!! (%d)\n", objType);
 			Vector2f cPos = cPoint->getPosition();
 			Vector2f newPos;
 			calcMapPos(cPos, &newPos);
 
-			u64 tag             = map_icon_tag[id];
+			u64 tag             = map_icon_tag[objType];
 			J2DPictureEx* cPane = static_cast<J2DPictureEx*>(og::Screen::TagSearch(mIconScreen, tag));
-			cPane->getTypeID();
-			char buf[28];
-			og::Screen::TagToName(tag, buf);
+			cPane->getTypeID(); // probably debug
+			char iconName[28];
+			og::Screen::TagToName(tag, iconName); // also probably debug
 
-			switch (id) {
+			// set up relevant map icons
+			switch (objType) {
 			case Radar::MAP_OLIMAR:
-				Game::Navi* olimar = getNaviPtr(NAVIID_Olimar);
-				mOlimarObj         = olimar;
+				mOlimarObj = getNaviPtr(NAVIID_Olimar);
 				if (mOlimarObj) {
 					J2DPictureEx* olimarPane = static_cast<J2DPictureEx*>(og::Screen::TagSearch(mIconScreen, 'orima_l'));
 					mOlimarGlow              = og::Screen::CopyPictureToPane(olimarPane, mMapTexPane, newPos.x, newPos.y, 'ie_Orima');
@@ -341,8 +338,7 @@ void ObjSMenuMap::initMapIcon(JKRArchive* arc)
 				break;
 
 			case Radar::MAP_LOUIE_PRESIDENT:
-				Game::Navi* louie = getNaviPtr(NAVIID_Louie);
-				mLouieObj         = louie;
+				mLouieObj = getNaviPtr(NAVIID_Louie);
 				if (mLouieObj) {
 					J2DPictureEx* louiePane = static_cast<J2DPictureEx*>(og::Screen::TagSearch(mIconScreen, 'luji_l'));
 					mLouieGlow              = og::Screen::CopyPictureToPane(louiePane, mMapTexPane, newPos.x, newPos.y, 'ie_Luji');
@@ -354,15 +350,15 @@ void ObjSMenuMap::initMapIcon(JKRArchive* arc)
 			case Radar::MAP_SWALLOWED_TREASURE:
 			case Radar::MAP_UPGRADE:
 			case Radar::MAP_UNENTERED_CAVE:
-				// don't mark these on the map
+				// don't mark these on the map - there is a rubber duck icon for treasures in mIconScreen though.
 				break;
 
 			default:
 				// mark everything else - pikmin, ship/pod, geyser/hole, complete/incomplete cave
-				u64 tag = '_000' + (((count / 1000) * 0x1000 + ((count / 100) * 0x100 + ((count / 10) * 0x10 + (count % 10)))));
+				u64 tag               = 'icon_000' + (count % 10) + (((count / 10) % 10) * 0x100) + (((count / 100) % 10) * 0x10000);
 				J2DPictureEx* copyPic = og::Screen::CopyPictureToPane(cPane, mMapTexPane, newPos.x, newPos.y, tag);
 				if (copyPic) {
-					if (id == Radar::MAP_UPGRADE) {
+					if (objType == Radar::MAP_UPGRADE) {
 						JUtility::TColor white(msVal.mItemPelletWhiteColor.r, msVal.mItemPelletWhiteColor.g, msVal.mItemPelletWhiteColor.b,
 						                       msVal.mItemPelletWhiteColor.a);
 						JUtility::TColor black(msVal.mItemPelletBlackColor.r, msVal.mItemPelletBlackColor.g, msVal.mItemPelletBlackColor.b,
@@ -370,8 +366,9 @@ void ObjSMenuMap::initMapIcon(JKRArchive* arc)
 						copyPic->setWhite(white);
 						copyPic->setBlack(black);
 					}
-					if (id == Radar::MAP_INCOMPLETE_CAVE || id == Radar::MAP_COMPLETED_CAVE) {
-						appendCaveName(copyPic, (u16)count, og::Screen::maskTag(caveIDtoMsgID(cPoint->mCaveID), 1, 3));
+					if (objType == Radar::MAP_INCOMPLETE_CAVE || objType == Radar::MAP_COMPLETED_CAVE) {
+						u64 caveTag = og::Screen::maskTag(caveIDtoMsgID(cPoint->mCaveID), 1, 3);
+						appendCaveName(copyPic, (u16)count, caveTag);
 					}
 					mRadarPaneList[count][0] = copyPic;
 					count++;
@@ -1288,7 +1285,7 @@ lbl_803109DC:
  */
 void ObjSMenuMap::appendCaveName(J2DPane* parent, u16 caveIndex, u64 tag)
 {
-	char buf[32];
+	char buf[16];
 	u64 newtag = og::Screen::maskTag2('caveTx??', caveIndex);
 	og::Screen::TagToName(tag, buf);
 	const JGeometry::TBox2f box(30.0f, 0.0f, 40.0f, 10.0f);
@@ -1296,9 +1293,13 @@ void ObjSMenuMap::appendCaveName(J2DPane* parent, u16 caveIndex, u64 tag)
 	J2DTextBox* pane = new J2DTextBox(newtag, box, (const ResFONT*)nullptr, "", -1, J2DHBIND_Left, J2DVBIND_Top);
 	pane->mFontSize  = 24.0f;
 
-	pane->setCharColor(JUtility::TColor(255, 255, 255, 255));
-	pane->setGradientColor(JUtility::TColor(255, 255, 255, 255));
-	pane->setBlackWhite(JUtility::TColor(0, 0, 0, 0), JUtility::TColor(255, 255, 255, 255));
+	JUtility::TColor charColor(255, 255, 255, 255);
+	JUtility::TColor gradColor(255, 255, 255, 255);
+	pane->setFontColor(charColor, gradColor);
+
+	JUtility::TColor white(255, 255, 255, 255);
+	JUtility::TColor black(0, 0, 0, 0);
+	pane->setBlackWhite(black, white);
 
 	parent->appendChild(pane);
 	pane->setMsgID(tag);
@@ -1309,147 +1310,16 @@ void ObjSMenuMap::appendCaveName(J2DPane* parent, u16 caveIndex, u64 tag)
 	} else {
 		JUT_PANICLINE(745, "cave name number is overflow!!\n");
 	}
-
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x70(r1)
-	  mflr      r0
-	  lis       r9, 0x5478
-	  lis       r6, 0x6361
-	  stw       r0, 0x74(r1)
-	  stmw      r25, 0x54(r1)
-	  mr        r27, r3
-	  mr        r28, r4
-	  mr        r30, r7
-	  mr        r29, r8
-	  addi      r4, r9, 0x3F3F
-	  addi      r3, r6, 0x7665
-	  bl        -0xE228
-	  mr        r25, r4
-	  mr        r26, r3
-	  mr        r4, r29
-	  mr        r3, r30
-	  addi      r5, r1, 0x40
-	  bl        -0xDE88
-	  lfs       f3, -0xBE8(r2)
-	  li        r3, 0x138
-	  lfs       f2, -0xC20(r2)
-	  lfs       f1, -0xBE4(r2)
-	  lfs       f0, -0xBE0(r2)
-	  stfs      f3, 0x30(r1)
-	  stfs      f2, 0x34(r1)
-	  stfs      f1, 0x38(r1)
-	  stfs      f0, 0x3C(r1)
-	  bl        -0x2ECBD8
-	  mr.       r31, r3
-	  beq-      .loc_0xA8
-	  li        r0, 0x2
-	  mr        r6, r25
-	  stw       r0, 0x8(r1)
-	  mr        r5, r26
-	  addi      r7, r1, 0x30
-	  li        r8, 0
-	  stw       r0, 0xC(r1)
-	  subi      r9, r2, 0xBDC
-	  li        r10, -0x1
-	  bl        -0x2CF5C0
-	  mr        r31, r3
-
-	.loc_0xA8:
-	  li        r8, 0xFF
-	  li        r0, 0
-	  stb       r8, 0x2C(r1)
-	  mr        r3, r31
-	  lfs       f0, -0xBD8(r2)
-	  addi      r4, r1, 0x14
-	  stb       r8, 0x2D(r1)
-	  addi      r5, r1, 0x10
-	  stfs      f0, 0x11C(r31)
-	  stb       r8, 0x2E(r1)
-	  stb       r8, 0x2F(r1)
-	  lwz       r6, 0x2C(r1)
-	  stfs      f0, 0x120(r31)
-	  stw       r6, 0x1C(r1)
-	  lbz       r7, 0x1C(r1)
-	  stb       r8, 0x28(r1)
-	  lbz       r6, 0x1D(r1)
-	  stb       r7, 0x104(r31)
-	  lbz       r7, 0x1E(r1)
-	  stb       r6, 0x105(r31)
-	  lbz       r6, 0x1F(r1)
-	  stb       r7, 0x106(r31)
-	  stb       r8, 0x29(r1)
-	  stb       r8, 0x2A(r1)
-	  stb       r8, 0x2B(r1)
-	  lwz       r7, 0x28(r1)
-	  stb       r6, 0x107(r31)
-	  stw       r7, 0x18(r1)
-	  lbz       r6, 0x18(r1)
-	  lbz       r7, 0x19(r1)
-	  stb       r6, 0x108(r31)
-	  lbz       r6, 0x1A(r1)
-	  stb       r7, 0x109(r31)
-	  lbz       r7, 0x1B(r1)
-	  stb       r6, 0x10A(r31)
-	  stb       r8, 0x24(r1)
-	  stb       r8, 0x25(r1)
-	  stb       r8, 0x26(r1)
-	  stb       r8, 0x27(r1)
-	  stb       r0, 0x20(r1)
-	  lwz       r6, 0x24(r1)
-	  stb       r7, 0x10B(r31)
-	  stb       r0, 0x21(r1)
-	  stb       r0, 0x22(r1)
-	  stb       r0, 0x23(r1)
-	  lwz       r0, 0x20(r1)
-	  stw       r6, 0x10(r1)
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0xAC(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r28
-	  mr        r4, r31
-	  bl        -0x2D94C8
-	  stw       r29, 0x1C(r31)
-	  stw       r30, 0x18(r31)
-	  lwz       r0, 0x154(r27)
-	  cmpwi     r0, 0x5
-	  bge-      .loc_0x1B4
-	  rlwinm    r0,r0,2,0,29
-	  add       r3, r27, r0
-	  stw       r31, 0x140(r3)
-	  lwz       r3, 0x154(r27)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x154(r27)
-	  b         .loc_0x1D0
-
-	.loc_0x1B4:
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  subi      r3, r3, 0x1E4C
-	  li        r4, 0x2E9
-	  subi      r5, r5, 0x1D88
-	  crclr     6, 0x6
-	  bl        -0x2E6598
-
-	.loc_0x1D0:
-	  lmw       r25, 0x54(r1)
-	  lwz       r0, 0x74(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x70
-	  blr
-	*/
 }
 
 // /**
 //  * @note Address: N/A
 //  * @note Size: 0x4
 //  */
-// void ObjSMenuMap::rotateMap()
-// {
-// 	// UNUSED FUNCTION
-// }
+void ObjSMenuMap::rotateMap()
+{
+	// UNUSED FUNCTION
+}
 
 /**
  * @note Address: 0x80310BF0
@@ -1465,288 +1335,67 @@ void ObjSMenuMap::transMap()
 	f32 angle    = (mMapAngle * TAU) / 360.0f;
 	f32 anglecos = cosf(angle);
 	f32 anglesin = sinf(angle);
-	int buttons  = mController->getButton();
-	f32 inputx   = mController->getMainStickX();
-	f32 inputz   = mController->getMainStickY();
+	Vector2f inputs;
+	inputs.x = mController->getMainStickX();
+	inputs.y = mController->getMainStickY();
 
-	if (buttons & JUTGamePad::PRESS_DPAD_UP) {
-		inputz = 1.0f;
+	if (mController->isButtonHeld(JUTGamePad::PRESS_DPAD_UP)) {
+		inputs.y = 1.0f;
 	}
-	if (buttons & JUTGamePad::PRESS_DPAD_DOWN) {
-		inputz = -1.0f;
+	if (mController->isButtonHeld(JUTGamePad::PRESS_DPAD_DOWN)) {
+		inputs.y = -1.0f;
 	}
-	if (buttons & JUTGamePad::PRESS_DPAD_LEFT) {
-		inputx = -1.0f;
+	if (mController->isButtonHeld(JUTGamePad::PRESS_DPAD_LEFT)) {
+		inputs.x = -1.0f;
 	}
-	if (buttons & JUTGamePad::PRESS_DPAD_RIGHT) {
-		inputx = 1.0f;
+	if (mController->isButtonHeld(JUTGamePad::PRESS_DPAD_RIGHT)) {
+		inputs.x = 1.0f;
 	}
-	f32 diff = _sqrtf(inputx * inputx + inputz * inputz);
-	if (diff > 1.0f)
-		diff = 1.0f;
-	diff *= msVal.mMapMoveInputReduction;
+	f32 X   = SQUARE(inputs.x);
+	f32 Y   = SQUARE(inputs.y);
+	f32 mag = _sqrtf(X + Y);
+	if (mag > 1.0f) {
+		mag = 1.0f;
+	}
+	f32 diff = mag * msVal.mMapMoveInputReduction;
 	if (diff < 0.1f)
 		diff = 0.0f;
-	f32 move = factor * diff * (1.0f / mCurrentZoom);
+	f32 move = getMapAdjustVal(diff, factor);
 
-	if (inputx > 0.1f) {
-		mMapPosition.x -= move * anglesin;
-		mMapPosition.y -= move * anglecos;
-		ogSound->setScroll();
-	}
-	if (inputx < -0.1f) {
-		mMapPosition.x += move * anglesin;
-		mMapPosition.y += move * anglecos;
-		ogSound->setScroll();
-	}
-	if (inputz > 0.1f) {
+	if (inputs.x > 0.1f) {
 		mMapPosition.x -= move * anglecos;
-		mMapPosition.y += move * anglesin;
-		ogSound->setScroll();
-	}
-	if (inputx < -0.1f) {
-		mMapPosition.x += move * anglecos;
 		mMapPosition.y -= move * anglesin;
 		ogSound->setScroll();
 	}
+	if (inputs.x < -0.1f) {
+		mMapPosition.x += move * anglecos;
+		mMapPosition.y += move * anglesin;
+		ogSound->setScroll();
+	}
+	if (inputs.y > 0.1f) {
+		mMapPosition.x -= move * anglesin;
+		mMapPosition.y += move * anglecos;
+		ogSound->setScroll();
+	}
+	if (inputs.y < -0.1f) {
+		mMapPosition.x += move * anglesin;
+		mMapPosition.y -= move * anglecos;
+		ogSound->setScroll();
+	}
 
-	if (mMapPosition.x < -mMapTextureDimensions.x)
+	if (mMapPosition.x < -mMapTextureDimensions.x) {
 		mMapPosition.x = -mMapTextureDimensions.x;
-	if (mMapPosition.x > 0.0f)
+	}
+	if (mMapPosition.x > 0.0f) {
 		mMapPosition.x = 0.0f;
+	}
 
-	if (mMapPosition.y < -mMapTextureDimensions.y)
+	if (mMapPosition.y < -mMapTextureDimensions.y) {
 		mMapPosition.y = -mMapTextureDimensions.y;
-	if (mMapPosition.y > 0.0f)
+	}
+	if (mMapPosition.y > 0.0f) {
 		mMapPosition.y = 0.0f;
-	/*
-	stwu     r1, -0x80(r1)
-	mflr     r0
-	stw      r0, 0x84(r1)
-	stfd     f31, 0x70(r1)
-	psq_st   f31, 120(r1), 0, qr0
-	stfd     f30, 0x60(r1)
-	psq_st   f30, 104(r1), 0, qr0
-	stfd     f29, 0x50(r1)
-	psq_st   f29, 88(r1), 0, qr0
-	stfd     f28, 0x40(r1)
-	psq_st   f28, 72(r1), 0, qr0
-	stfd     f27, 0x30(r1)
-	psq_st   f27, 56(r1), 0, qr0
-	stw      r31, 0x2c(r1)
-	mr       r31, r3
-	lis      r3, msVal__Q32og9newScreen11ObjSMenuMap@ha
-	lwz      r0, 0xc0(r31)
-	addi     r3, r3, msVal__Q32og9newScreen11ObjSMenuMap@l
-	lfs      f0, 0x1c(r3)
-	cmplwi   r0, 0
-	beq      lbl_80310C48
-	lfs      f0, 0x20(r3)
-
-lbl_80310C48:
-	lfs      f3, lbl_8051D78C@sda21(r2)
-	lfs      f1, 0xec(r31)
-	lfs      f2, lbl_8051D790@sda21(r2)
-	fmuls    f3, f3, f1
-	lfs      f1, lbl_8051D740@sda21(r2)
-	fdivs    f4, f3, f2
-	fmr      f2, f4
-	fcmpo    cr0, f4, f1
-	bge      lbl_80310C70
-	fneg     f2, f4
-
-lbl_80310C70:
-	lfs      f3, lbl_8051D794@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	lfs      f1, lbl_8051D740@sda21(r2)
-	addi     r4, r3, sincosTable___5JMath@l
-	fmuls    f2, f2, f3
-	fcmpo    cr0, f4, f1
-	fctiwz   f1, f2
-	stfd     f1, 8(r1)
-	lwz      r0, 0xc(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	add      r3, r4, r0
-	lfs      f31, 4(r3)
-	bge      lbl_80310CC8
-	lfs      f1, lbl_8051D798@sda21(r2)
-	fmuls    f1, f4, f1
-	fctiwz   f1, f1
-	stfd     f1, 0x10(r1)
-	lwz      r0, 0x14(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f1, r4, r0
-	fneg     f30, f1
-	b        lbl_80310CE0
-
-lbl_80310CC8:
-	fmuls    f1, f4, f3
-	fctiwz   f1, f1
-	stfd     f1, 0x18(r1)
-	lwz      r0, 0x1c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f30, r4, r0
-
-lbl_80310CE0:
-	lwz      r3, 0x118(r31)
-	lwz      r4, 0x18(r3)
-	lfs      f28, 0x48(r3)
-	rlwinm.  r0, r4, 0, 0x1c, 0x1c
-	lfs      f27, 0x4c(r3)
-	beq      lbl_80310CFC
-	lfs      f27, lbl_8051D744@sda21(r2)
-
-lbl_80310CFC:
-	rlwinm.  r0, r4, 0, 0x1d, 0x1d
-	beq      lbl_80310D08
-	lfs      f27, lbl_8051D79C@sda21(r2)
-
-lbl_80310D08:
-	clrlwi.  r0, r4, 0x1f
-	beq      lbl_80310D14
-	lfs      f28, lbl_8051D79C@sda21(r2)
-
-lbl_80310D14:
-	rlwinm.  r0, r4, 0, 0x1e, 0x1e
-	beq      lbl_80310D20
-	lfs      f28, lbl_8051D744@sda21(r2)
-
-lbl_80310D20:
-	fmuls    f3, f28, f28
-	lfs      f1, lbl_8051D740@sda21(r2)
-	fmuls    f2, f27, f27
-	fadds    f2, f3, f2
-	fcmpo    cr0, f2, f1
-	ble      lbl_80310D48
-	ble      lbl_80310D4C
-	frsqrte  f1, f2
-	fmuls    f2, f1, f2
-	b        lbl_80310D4C
-
-lbl_80310D48:
-	fmr      f2, f1
-
-lbl_80310D4C:
-	lfs      f1, lbl_8051D744@sda21(r2)
-	fmr      f3, f2
-	fcmpo    cr0, f2, f1
-	ble      lbl_80310D60
-	fmr      f3, f1
-
-lbl_80310D60:
-	lis      r3, msVal__Q32og9newScreen11ObjSMenuMap@ha
-	lfs      f1, lbl_8051D7A0@sda21(r2)
-	addi     r3, r3, msVal__Q32og9newScreen11ObjSMenuMap@l
-	lfs      f2, 0x3c(r3)
-	fmuls    f4, f3, f2
-	fcmpo    cr0, f4, f1
-	bge      lbl_80310D80
-	lfs      f4, lbl_8051D740@sda21(r2)
-
-lbl_80310D80:
-	lfs      f3, lbl_8051D744@sda21(r2)
-	lfs      f2, 0xe8(r31)
-	lfs      f1, lbl_8051D7A0@sda21(r2)
-	fdivs    f2, f3, f2
-	fmuls    f0, f0, f2
-	fcmpo    cr0, f28, f1
-	fmuls    f29, f4, f0
-	ble      lbl_80310DC0
-	lfs      f0, 0xe0(r31)
-	fnmsubs  f0, f29, f31, f0
-	stfs     f0, 0xe0(r31)
-	lfs      f0, 0xe4(r31)
-	fnmsubs  f0, f29, f30, f0
-	stfs     f0, 0xe4(r31)
-	lwz      r3, ogSound__2og@sda21(r13)
-	bl       setScroll__Q22og5SoundFv
-
-lbl_80310DC0:
-	lfs      f0, lbl_8051D7A4@sda21(r2)
-	fcmpo    cr0, f28, f0
-	bge      lbl_80310DEC
-	lfs      f0, 0xe0(r31)
-	fmadds   f0, f29, f31, f0
-	stfs     f0, 0xe0(r31)
-	lfs      f0, 0xe4(r31)
-	fmadds   f0, f29, f30, f0
-	stfs     f0, 0xe4(r31)
-	lwz      r3, ogSound__2og@sda21(r13)
-	bl       setScroll__Q22og5SoundFv
-
-lbl_80310DEC:
-	lfs      f0, lbl_8051D7A0@sda21(r2)
-	fcmpo    cr0, f27, f0
-	ble      lbl_80310E18
-	lfs      f0, 0xe0(r31)
-	fnmsubs  f0, f29, f30, f0
-	stfs     f0, 0xe0(r31)
-	lfs      f0, 0xe4(r31)
-	fmadds   f0, f29, f31, f0
-	stfs     f0, 0xe4(r31)
-	lwz      r3, ogSound__2og@sda21(r13)
-	bl       setScroll__Q22og5SoundFv
-
-lbl_80310E18:
-	lfs      f0, lbl_8051D7A4@sda21(r2)
-	fcmpo    cr0, f27, f0
-	bge      lbl_80310E44
-	lfs      f0, 0xe0(r31)
-	fmadds   f0, f29, f30, f0
-	stfs     f0, 0xe0(r31)
-	lfs      f0, 0xe4(r31)
-	fnmsubs  f0, f29, f31, f0
-	stfs     f0, 0xe4(r31)
-	lwz      r3, ogSound__2og@sda21(r13)
-	bl       setScroll__Q22og5SoundFv
-
-lbl_80310E44:
-	lfs      f0, 0xf8(r31)
-	lfs      f1, 0xe0(r31)
-	fneg     f0, f0
-	fcmpo    cr0, f1, f0
-	bge      lbl_80310E5C
-	stfs     f0, 0xe0(r31)
-
-lbl_80310E5C:
-	lfs      f1, 0xe0(r31)
-	lfs      f0, lbl_8051D740@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_80310E70
-	stfs     f0, 0xe0(r31)
-
-lbl_80310E70:
-	lfs      f0, 0xfc(r31)
-	lfs      f1, 0xe4(r31)
-	fneg     f0, f0
-	fcmpo    cr0, f1, f0
-	bge      lbl_80310E88
-	stfs     f0, 0xe4(r31)
-
-lbl_80310E88:
-	lfs      f1, 0xe4(r31)
-	lfs      f0, lbl_8051D740@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_80310E9C
-	stfs     f0, 0xe4(r31)
-
-lbl_80310E9C:
-	psq_l    f31, 120(r1), 0, qr0
-	lfd      f31, 0x70(r1)
-	psq_l    f30, 104(r1), 0, qr0
-	lfd      f30, 0x60(r1)
-	psq_l    f29, 88(r1), 0, qr0
-	lfd      f29, 0x50(r1)
-	psq_l    f28, 72(r1), 0, qr0
-	lfd      f28, 0x40(r1)
-	psq_l    f27, 56(r1), 0, qr0
-	lfd      f27, 0x30(r1)
-	lwz      r0, 0x84(r1)
-	lwz      r31, 0x2c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x80
-	blr
-	*/
+	}
 }
 
 /**
@@ -1755,11 +1404,27 @@ lbl_80310E9C:
  */
 void ObjSMenuMap::scaleMap()
 {
-	// i will fix this sdata2 if it kills me
-	mMapTexScale.x = 0.4f;
-	mMapTexScale.x = -0.4f;
-	mMapTexScale.x = 0.03f;
-	// UNUSED FUNCTION
+	bool isUp   = false;
+	bool isDown = false;
+	f32 cstick  = mController->getSubStickY();
+	if (cstick > 0.4f) {
+		isUp = true;
+	}
+	if (cstick < -0.4f) {
+		isDown = true;
+	}
+
+	if (isUp) {
+		mCurrentZoom += mCurrentZoom * 0.03f;
+		if (mCurrentZoom > msVal.mMaxZoom)
+			mCurrentZoom = msVal.mMaxZoom;
+		ogSound->setZoomIn();
+	} else if (isDown) {
+		mCurrentZoom -= mCurrentZoom * 0.03f;
+		if (mCurrentZoom < msVal.mMinZoom)
+			mCurrentZoom = msVal.mMinZoom;
+		ogSound->setZoomOut();
+	}
 }
 
 /**
@@ -1768,10 +1433,10 @@ void ObjSMenuMap::scaleMap()
  */
 void ObjSMenuMap::setMapColor()
 {
-	JUtility::TColor color(msVal.mMapTexColorWhite.r, msVal.mMapTexColorWhite.g, msVal.mMapTexColorWhite.b, msVal.mMapTexColorWhite.a);
-	JUtility::TColor color2(msVal.mMapTexColorBlack.r, msVal.mMapTexColorBlack.g, msVal.mMapTexColorBlack.b, msVal.mMapTexColorBlack.a);
-	mMapTexPane->setWhite(color);
-	mMapTexPane->setBlack(color2);
+	JUtility::TColor white(msVal.mMapTexColorWhite.r, msVal.mMapTexColorWhite.g, msVal.mMapTexColorWhite.b, msVal.mMapTexColorWhite.a);
+	JUtility::TColor black(msVal.mMapTexColorBlack.r, msVal.mMapTexColorBlack.g, msVal.mMapTexColorBlack.b, msVal.mMapTexColorBlack.a);
+	mMapTexPane->setWhite(white);
+	mMapTexPane->setBlack(black);
 }
 
 /**
@@ -1801,820 +1466,192 @@ void ObjSMenuMap::doCreate(JKRArchive* arc)
 		mDisp    = static_cast<og::Screen::DispMemberSMenuMap*>(dispfull->getSubMember(OWNER_OGA, MEMBER_START_MENU_MAP));
 	}
 
+	// set up MapCounter object
 	mMapCounter = new og::Screen::MapCounter(&mDisp->mDataMap);
 	mMapCounter->set("s_menu_map_l.blo", 0x1040000, arc);
+	// load in animations
 	mAnimGroup = new og::Screen::AnimGroup(3);
 	og::Screen::registAnimGroupScreen(mAnimGroup, arc, mMapCounter, "s_menu_map_l.btk", msBaseVal.mAnimSpeed);
 	og::Screen::registAnimGroupScreen(mAnimGroup, arc, mMapCounter, "s_menu_map_l_02.btk", msBaseVal.mAnimSpeed);
 	og::Screen::registAnimGroupScreen(mAnimGroup, arc, mMapCounter, "s_menu_map_l_03.btk", msBaseVal.mAnimSpeed);
 	mMapCounter->setCallBack(arc);
-	mPane_map = static_cast<J2DPictureEx*>(og::Screen::TagSearch(mMapCounter, 'map_cent'));
 
+	mMapAreaPane = static_cast<J2DPictureEx*>(og::Screen::TagSearch(mMapCounter, 'map_cent')); // rectangular area to display map in
+
+	// change start zoom based on cave or above ground
 	if (mDisp->mInCave && mDisp->mActiveNavi) {
 		mStartZoom = msVal.mCaveZoom;
 	} else {
 		mStartZoom = msVal.mGroundZoom;
 	}
 	mCurrentZoom = mStartZoom;
-	mMapAngle    = 0.0f;
+
+	mMapAngle = 0.0f;
+
+	// set starting map orientation/rotation
 	if (mDisp->mActiveNavi) {
-		Game::Navi* navi = Game::naviMgr->getActiveNavi();
-		Vector3f vec     = Game::cameraMgr->mCameraObjList[navi->mNaviIndex]->getViewVector();
-		mMapAngle        = 180.0f * (JMAAtan2Radian(vec.x, -vec.z) / PI);
+		// Game::Navi* navi = Game::naviMgr->getActiveNavi();
+		Vector3f naviViewVec = Game::cameraMgr->mCameraObjList[Game::naviMgr->getActiveNavi()->mNaviIndex]->getViewVector();
+		mMapAngle            = 180.0f * (JMAAtan2Radian(naviViewVec.x, -naviViewVec.z) / PI); // in degrees
 	}
+
 	initMapIcon(arc);
 	setMapColor();
 
-	u64 tag = 0;
+	// set up textbox above map
+	u64 mapNameTag = 0;
 	if (mDisp->mInCave && mDisp->mActiveNavi) {
 		char buf[20];
-		tag = caveIDtoMsgID(mDisp->mCurrentCave);
-		tag = og::Screen::maskTag(tag, 1, 3);
-		og::Screen::TagToName(tag, buf);
+		mapNameTag = caveIDtoMsgID(mDisp->mCurrentCave);
+		mapNameTag = og::Screen::maskTag(mapNameTag, 1, 3);
+		og::Screen::TagToName(mapNameTag, buf);
 	} else {
 		int stage = mDisp->mCourseIndex;
 		switch (stage) {
-		case 0:
-			tag = '8390_03';
+		case og::Screen::DispMemberSMenuMap::COURSE_Tutorial:
+			mapNameTag = '8390_03'; // "Valley of Repose"
 			break;
-		case 1:
-			tag = '8391_03';
+		case og::Screen::DispMemberSMenuMap::COURSE_Forest:
+			mapNameTag = '8391_03'; // "Awakening Wood"
 			break;
-		case 2:
-			tag = '8392_03';
+		case og::Screen::DispMemberSMenuMap::COURSE_Yakushima:
+			mapNameTag = '8392_03'; // "Perplexing Pool"
 			break;
-		case 3:
-			tag = '8393_03';
+		case og::Screen::DispMemberSMenuMap::COURSE_Last:
+			mapNameTag = '8393_03'; // "Wistful Wild"
 			break;
-		case 4:
-			tag = '8394_03';
+		case og::Screen::DispMemberSMenuMap::COURSE_Test:
+			mapNameTag = '8394_03'; // "Test Area (ID 8394_03)"
 			break;
 		default:
 			break;
 		}
 	}
-	J2DPane* pane    = mMapCounter->search('Tmapti');
-	pane->mMessageID = tag;
+
+	J2DPane* mapName    = mMapCounter->search('Tmapti'); // Course/cave name textbox above map
+	mapName->mMessageID = mapNameTag;
+
 	og::Screen::setCallBackMessage(mIconScreen);
 
-	J2DPane* pane_red    = mMapCounter->search('Npk01');
-	J2DPane* pane_yellow = mMapCounter->search('Npk02');
-	J2DPane* pane_blue   = mMapCounter->search('Npk03');
-	J2DPane* pane_white  = mMapCounter->search('Npk04');
-	J2DPane* pane_purple = mMapCounter->search('Npk05');
+	// set up panes for onion counts
+	J2DPane* paneRedOnyonCnt    = mMapCounter->search('Npk01'); // red pikmin onyon counts
+	J2DPane* paneYellowOnyonCnt = mMapCounter->search('Npk02'); // yellow pikmin onyon counts
+	J2DPane* paneBlueOnyonCnt   = mMapCounter->search('Npk03'); // blue pikmin onyon counts
 
-	J2DPane* pane_red2    = mMapCounter->search('Npk06');
-	J2DPane* pane_yellow2 = mMapCounter->search('Npk07');
-	J2DPane* pane_blue2   = mMapCounter->search('Npk08');
-	J2DPane* pane_white2  = mMapCounter->search('Npk09');
-	J2DPane* pane_purple2 = mMapCounter->search('Npk10');
-	J2DPane* pane_free    = mMapCounter->search('Npk11');
+	// set up panes for rocket counts
+	J2DPane* paneWhiteShipCnt  = mMapCounter->search('Npk04'); // white pikmin rocket counts
+	J2DPane* panePurpleShipCnt = mMapCounter->search('Npk05'); // purple pikmin rocket counts
 
+	// set up panes for leader/in-party/formation counts
+	J2DPane* paneRedParty    = mMapCounter->search('Npk06'); // red pikmin in party counts
+	J2DPane* paneYellowParty = mMapCounter->search('Npk07'); // yellow pikmin in party counts
+	J2DPane* paneBlueParty   = mMapCounter->search('Npk08'); // blue pikmin in party counts
+	J2DPane* paneWhiteParty  = mMapCounter->search('Npk09'); // white pikmin in party counts
+	J2DPane* panePurpleParty = mMapCounter->search('Npk10'); // purple pikmin in party counts
+
+	// set up pane for free pikmin counts
+	J2DPane* paneFreePikis = mMapCounter->search('Npk11'); // red pikmin in party counts
+
+	// toggle off pikmin types that haven't been unlocked
+	// reds
 	if (!mDisp->mUnlockedReds) {
-		pane_red->hide();
-		pane_red2->hide();
+		paneRedOnyonCnt->hide();
+		paneRedParty->hide();
 		mMapCounter->dispRed(false);
 	}
+	// yellows
 	if (!mDisp->mUnlockedYellows) {
-		pane_yellow->hide();
-		pane_yellow2->hide();
+		paneYellowOnyonCnt->hide();
+		paneYellowParty->hide();
 		mMapCounter->dispYellow(false);
 	}
+	// blues
 	if (!mDisp->mUnlockedBlues) {
-		pane_blue->hide();
-		pane_blue2->hide();
+		paneBlueOnyonCnt->hide();
+		paneBlueParty->hide();
 		mMapCounter->dispBlue(false);
 	}
+	// whites
 	if (!mDisp->mUnlockedWhites) {
-		pane_white->hide();
-		pane_white2->hide();
+		paneWhiteShipCnt->hide();
+		paneWhiteParty->hide();
 		mMapCounter->dispWhite(false);
 	}
+	// purples
 	if (!mDisp->mUnlockedPurples) {
-		pane_purple->hide();
-		pane_purple2->hide();
+		panePurpleShipCnt->hide();
+		panePurpleParty->hide();
 		mMapCounter->dispBlack(false);
 	}
+	// need to have unlocked at least one pikmin type to show "free" pikmin pane
 	if (!mDisp->mUnlockedReds && !mDisp->mUnlockedYellows && !mDisp->mUnlockedBlues && !mDisp->mUnlockedWhites
 	    && !mDisp->mUnlockedPurples) {
-		pane_free->hide();
+		paneFreePikis->hide();
 		mMapCounter->dispFree(false);
 	}
 
-	J2DPane* pane_rocket = mMapCounter->search('Nrocket');
+	// set up "Rocket" counts pane
+	J2DPane* paneRocket = mMapCounter->search('Nrocket');
 	if (mDisp->mUnlockedWhites || mDisp->mUnlockedPurples) {
-		pane_rocket->show();
-		J2DPane* pane_rock1 = mMapCounter->search('Nrock_1');
-		J2DPane* pane_rock2 = mMapCounter->search('Nrock_2');
-		pane_rock1->hide();
-		pane_rock2->hide();
+		// display rocket counts if we have whites and/or purples
+		paneRocket->show();
+
+		// show correct rocket icon based on if we've paid off the debt
+		J2DPane* paneRocketOld  = mMapCounter->search('Nrock_1');
+		J2DPane* paneRocketGold = mMapCounter->search('Nrock_2');
+		paneRocketOld->hide();
+		paneRocketGold->hide();
 		og::Screen::DispMemberSMenuPause* disp2
 		    = static_cast<og::Screen::DispMemberSMenuPause*>(dispfull->getSubMember(OWNER_OGA, MEMBER_START_MENU_PAUSE));
-		if (disp2->mPokoCount >= 10000) {
-			pane_rock2->show();
+		if (disp2->mPokoCount >= DEBT_AMOUNT) {
+			// debt is paid!
+			paneRocketGold->show(); // shiny!
 		} else {
-			pane_rock1->show();
+			paneRocketOld->show(); // not shiny.
 		}
 	} else {
-		pane_rocket->hide();
-		pane_rocket = mMapCounter->search('Ntairetu');
-		pane_rocket->add(0.0f, -50.0f);
-	}
-	J2DPane* pane_onyn1 = mMapCounter->search('Nonyn_1');
-	J2DPane* pane_onyn2 = mMapCounter->search('Nonyn_2');
-	J2DPane* pane_onyn3 = mMapCounter->search('Nonyn_3');
-	J2DPane* pane_onyn4 = mMapCounter->search('Nonyn_4');
-	pane_onyn1->hide();
-	pane_onyn2->hide();
-	pane_onyn3->hide();
-	pane_onyn4->hide();
-	if (mDisp->mUnlockedReds && mDisp->mUnlockedYellows && mDisp->mUnlockedBlues) {
-		pane_onyn4->show();
-	} else if (mDisp->mUnlockedReds && mDisp->mUnlockedBlues) {
-		pane_onyn3->show();
-	} else if (mDisp->mUnlockedReds && mDisp->mUnlockedYellows) {
-		pane_onyn2->show();
-	} else if (mDisp->mUnlockedReds) {
-		pane_onyn1->show();
+		// don't display rocket counts if we haven't unlocked whites or purples
+		paneRocket->hide();
+
+		// expand Leader/formation pane to take up the space instead
+		paneRocket = mMapCounter->search('Ntairetu');
+		paneRocket->add(0.0f, -50.0f);
 	}
 
-	J2DPane* pane_ntai1 = mMapCounter->search('Ntai_1');
-	J2DPane* pane_ntai2 = mMapCounter->search('Ntai_2');
-	pane_ntai1->hide();
-	pane_ntai2->hide();
+	// display correct onions in onion icon based on progression
+	J2DPane* paneOnyonRed       = mMapCounter->search('Nonyn_1'); // red onion only
+	J2DPane* paneOnyonRedYellow = mMapCounter->search('Nonyn_2'); // red and yellow onions only (normal progression!)
+	J2DPane* paneOnyonRedBlue   = mMapCounter->search('Nonyn_3'); // red and blue onions only (!! not normal progression !!)
+	J2DPane* paneOnyonAll       = mMapCounter->search('Nonyn_4'); // red, yellow and blue onions
+	paneOnyonRed->hide();
+	paneOnyonRedYellow->hide();
+	paneOnyonRedBlue->hide();
+	paneOnyonAll->hide();
+	if (mDisp->mUnlockedReds && mDisp->mUnlockedYellows && mDisp->mUnlockedBlues) {
+		paneOnyonAll->show();
+	} else if (mDisp->mUnlockedReds && mDisp->mUnlockedBlues) {
+		paneOnyonRedBlue->show();
+	} else if (mDisp->mUnlockedReds && mDisp->mUnlockedYellows) {
+		paneOnyonRedYellow->show();
+	} else if (mDisp->mUnlockedReds) {
+		paneOnyonRed->show();
+	}
+
+	// if we have blues and/or yellows, replace some reds following olimar in the Leader icon with blues/yellows
+	// (last pikmin is always red)
+	J2DPane* paneBlueFollow   = mMapCounter->search('Ntai_1'); // blues, immediately following leader
+	J2DPane* paneYellowFollow = mMapCounter->search('Ntai_2'); // yellows, in middle following leader
+	paneBlueFollow->hide();
+	paneYellowFollow->hide();
 	if (mDisp->mUnlockedBlues) {
-		pane_ntai1->show();
+		paneBlueFollow->show();
 	}
 	if (mDisp->mUnlockedYellows) {
-		pane_ntai2->show();
+		paneYellowFollow->show();
 	}
+
+	// do base start menu pane setup (L/R buttons, etc)
 	doCreateAfter(arc, mMapCounter);
-
-	/*
-	stwu     r1, -0x70(r1)
-	mflr     r0
-	lis      r5, lbl_8048E1A8@ha
-	stw      r0, 0x74(r1)
-	stmw     r18, 0x38(r1)
-	mr       r29, r3
-	mr       r30, r4
-	addi     r18, r5, lbl_8048E1A8@l
-	bl       getDispMember__Q26Screen7ObjBaseFv
-	lis      r4, 0x004F4741@ha
-	lis      r6, 0x5F4D4150@ha
-	li       r5, 0x534d
-	mr       r31, r3
-	addi     r4, r4, 0x004F4741@l
-	addi     r6, r6, 0x5F4D4150@l
-	bl       getSubMember__Q32og6Screen14DispMemberBaseFUlUx
-	stw      r3, 0xa8(r29)
-	lwz      r0, 0xa8(r29)
-	cmplwi   r0, 0
-	bne      lbl_80310F64
-	li       r3, 0xc4
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80310F40
-	bl       __ct__Q32og6Screen18DispMemberSMenuAllFv
-	mr       r0, r3
-
-lbl_80310F40:
-	lis      r4, 0x004F4741@ha
-	lis      r5, 0x5F4D4150@ha
-	mr       r31, r0
-	mr       r3, r0
-	addi     r4, r4, 0x004F4741@l
-	addi     r6, r5, 0x5F4D4150@l
-	li       r5, 0x534d
-	bl       getSubMember__Q32og6Screen14DispMemberBaseFUlUx
-	stw      r3, 0xa8(r29)
-
-lbl_80310F64:
-	li       r3, 0x1a8
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80310F84
-	lwz      r4, 0xa8(r29)
-	addi     r4, r4, 8
-	bl       __ct__Q32og6Screen10MapCounterFPQ32og6Screen7DataMap
-	mr       r0, r3
-
-lbl_80310F84:
-	stw      r0, 0xac(r29)
-	mr       r6, r30
-	addi     r4, r18, 0xf0
-	lis      r5, 0x104
-	lwz      r3, 0xac(r29)
-	bl       set__9J2DScreenFPCcUlP10JKRArchive
-	li       r3, 0x1c
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80310FB8
-	li       r4, 3
-	bl       __ct__Q32og6Screen9AnimGroupFi
-	mr       r0, r3
-
-lbl_80310FB8:
-	stw      r0, 0xb0(r29)
-	lis      r3, msBaseVal__Q32og9newScreen12ObjSMenuBase@ha
-	addi     r7, r3, msBaseVal__Q32og9newScreen12ObjSMenuBase@l
-	mr       r4, r30
-	lwz      r3, 0xb0(r29)
-	addi     r6, r18, 0x104
-	lwz      r5, 0xac(r29)
-	lfs      f1, 0(r7)
-	bl
-registAnimGroupScreen__Q22og6ScreenFPQ32og6Screen9AnimGroupP10JKRArchiveP9J2DScreenPcf
-	lis      r4, msBaseVal__Q32og9newScreen12ObjSMenuBase@ha
-	lwz      r3, 0xb0(r29)
-	lfs      f1, msBaseVal__Q32og9newScreen12ObjSMenuBase@l(r4)
-	mr       r4, r30
-	lwz      r5, 0xac(r29)
-	addi     r6, r18, 0x118
-	bl
-registAnimGroupScreen__Q22og6ScreenFPQ32og6Screen9AnimGroupP10JKRArchiveP9J2DScreenPcf
-	lis      r4, msBaseVal__Q32og9newScreen12ObjSMenuBase@ha
-	lwz      r3, 0xb0(r29)
-	lfs      f1, msBaseVal__Q32og9newScreen12ObjSMenuBase@l(r4)
-	mr       r4, r30
-	lwz      r5, 0xac(r29)
-	addi     r6, r18, 0x12c
-	bl
-registAnimGroupScreen__Q22og6ScreenFPQ32og6Screen9AnimGroupP10JKRArchiveP9J2DScreenPcf
-	lwz      r3, 0xac(r29)
-	mr       r4, r30
-	bl       setCallBack__Q32og6Screen10MapCounterFP10JKRArchive
-	lis      r5, 0x63656E74@ha
-	lis      r4, 0x6D61705F@ha
-	lwz      r3, 0xac(r29)
-	addi     r6, r5, 0x63656E74@l
-	addi     r5, r4, 0x6D61705F@l
-	bl       TagSearch__Q22og6ScreenFP9J2DScreenUx
-	stw      r3, 0xb4(r29)
-	lwz      r3, 0xa8(r29)
-	lbz      r0, 0x49(r3)
-	cmplwi   r0, 0
-	beq      lbl_8031106C
-	lbz      r0, 0x4a(r3)
-	cmplwi   r0, 0
-	beq      lbl_8031106C
-	lis      r3, msVal__Q32og9newScreen11ObjSMenuMap@ha
-	addi     r3, r3, msVal__Q32og9newScreen11ObjSMenuMap@l
-	lfs      f0, 0x30(r3)
-	stfs     f0, 0x138(r29)
-	b        lbl_8031107C
-
-lbl_8031106C:
-	lis      r3, msVal__Q32og9newScreen11ObjSMenuMap@ha
-	addi     r3, r3, msVal__Q32og9newScreen11ObjSMenuMap@l
-	lfs      f0, 0x2c(r3)
-	stfs     f0, 0x138(r29)
-
-lbl_8031107C:
-	lfs      f1, 0x138(r29)
-	lfs      f0, lbl_8051D740@sda21(r2)
-	stfs     f1, 0xe8(r29)
-	stfs     f0, 0xec(r29)
-	lwz      r3, 0xa8(r29)
-	lbz      r0, 0x4a(r3)
-	cmplwi   r0, 0
-	beq      lbl_803110EC
-	lwz      r3, naviMgr__4Game@sda21(r13)
-	bl       getActiveNavi__Q24Game7NaviMgrFv
-	lwz      r4, cameraMgr__4Game@sda21(r13)
-	lhz      r0, 0x2dc(r3)
-	addi     r3, r1, 0x18
-	lwz      r4, 0x24(r4)
-	slwi     r0, r0, 2
-	lwzx     r4, r4, r0
-	bl       getViewVector__11CullFrustumFv
-	lfs      f0, 0x20(r1)
-	lis      r3, atanTable___5JMath@ha
-	lfs      f1, 0x18(r1)
-	addi     r3, r3, atanTable___5JMath@l
-	fneg     f2, f0
-	bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
-	lfs      f0, lbl_8051D7CC@sda21(r2)
-	lfs      f2, lbl_8051D7C8@sda21(r2)
-	fdivs    f0, f1, f0
-	fmuls    f0, f2, f0
-	stfs     f0, 0xec(r29)
-
-lbl_803110EC:
-	mr       r3, r29
-	mr       r4, r30
-	bl       initMapIcon__Q32og9newScreen11ObjSMenuMapFP10JKRArchive
-	lis      r3, msVal__Q32og9newScreen11ObjSMenuMap@ha
-	addi     r4, r1, 0x10
-	addi     r8, r3, msVal__Q32og9newScreen11ObjSMenuMap@l
-	lbz      r3, 0xb(r8)
-	lbz      r6, 0xc(r8)
-	lbz      r5, 0xd(r8)
-	lbz      r0, 0xe(r8)
-	stb      r3, 8(r1)
-	lbz      r3, 0xf(r8)
-	stb      r6, 9(r1)
-	lbz      r7, 0x10(r8)
-	stb      r5, 0xa(r1)
-	lbz      r6, 0x11(r8)
-	stb      r0, 0xb(r1)
-	lbz      r5, 0x12(r8)
-	lwz      r0, 8(r1)
-	stb      r3, 0xc(r1)
-	stw      r0, 0x10(r1)
-	lwz      r3, 0xc8(r29)
-	stb      r7, 0xd(r1)
-	lwz      r12, 0(r3)
-	stb      r6, 0xe(r1)
-	lwz      r12, 0x12c(r12)
-	stb      r5, 0xf(r1)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0xc(r1)
-	addi     r4, r1, 0x14
-	stw      r0, 0x14(r1)
-	lwz      r3, 0xc8(r29)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x128(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0xa8(r29)
-	li       r19, 0
-	mr       r18, r19
-	lbz      r0, 0x49(r3)
-	cmplwi   r0, 0
-	beq      lbl_803111CC
-	lbz      r0, 0x4a(r3)
-	cmplwi   r0, 0
-	beq      lbl_803111CC
-	lwz      r3, 0x40(r3)
-	bl       caveIDtoMsgID__Q22og9newScreenFUl
-	li       r5, 1
-	li       r6, 3
-	bl       maskTag__Q22og6ScreenFUxUsUs
-	mr       r19, r4
-	addi     r5, r1, 0x24
-	mr       r18, r3
-	bl       TagToName__Q22og6ScreenFUxPc
-	b        lbl_8031125C
-
-lbl_803111CC:
-	lwz      r0, 0x3c(r3)
-	cmpwi    r0, 2
-	beq      lbl_80311224
-	bge      lbl_803111EC
-	cmpwi    r0, 0
-	beq      lbl_803111FC
-	bge      lbl_80311210
-	b        lbl_8031125C
-
-lbl_803111EC:
-	cmpwi    r0, 4
-	beq      lbl_8031124C
-	bge      lbl_8031125C
-	b        lbl_80311238
-
-lbl_803111FC:
-	lis      r4, 0x305F3033@ha
-	lis      r3, 0x00383339@ha
-	addi     r19, r4, 0x305F3033@l
-	addi     r18, r3, 0x00383339@l
-	b        lbl_8031125C
-
-lbl_80311210:
-	lis      r4, 0x315F3033@ha
-	lis      r3, 0x00383339@ha
-	addi     r19, r4, 0x315F3033@l
-	addi     r18, r3, 0x00383339@l
-	b        lbl_8031125C
-
-lbl_80311224:
-	lis      r4, 0x325F3033@ha
-	lis      r3, 0x00383339@ha
-	addi     r19, r4, 0x325F3033@l
-	addi     r18, r3, 0x00383339@l
-	b        lbl_8031125C
-
-lbl_80311238:
-	lis      r4, 0x335F3033@ha
-	lis      r3, 0x00383339@ha
-	addi     r19, r4, 0x335F3033@l
-	addi     r18, r3, 0x00383339@l
-	b        lbl_8031125C
-
-lbl_8031124C:
-	lis      r4, 0x345F3033@ha
-	lis      r3, 0x00383339@ha
-	addi     r19, r4, 0x345F3033@l
-	addi     r18, r3, 0x00383339@l
-
-lbl_8031125C:
-	lwz      r3, 0xac(r29)
-	lis      r4, 0x61707469@ha
-	addi     r6, r4, 0x61707469@l
-	li       r5, 0x546d
-	lwz      r12, 0(r3)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	stw      r19, 0x1c(r3)
-	stw      r18, 0x18(r3)
-	lwz      r3, 0xbc(r29)
-	bl       setCallBackMessage__Q22og6ScreenFPQ29P2DScreen3Mgr
-	lwz      r3, 0xac(r29)
-	lis      r4, 0x706B3031@ha
-	addi     r6, r4, 0x706B3031@l
-	li       r5, 0x4e
-	lwz      r12, 0(r3)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	mr       r18, r3
-	lwz      r3, 0xac(r29)
-	lis      r4, 0x706B3032@ha
-	li       r5, 0x4e
-	lwz      r12, 0(r3)
-	addi     r6, r4, 0x706B3032@l
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	mr       r19, r3
-	lwz      r3, 0xac(r29)
-	lis      r4, 0x706B3033@ha
-	li       r5, 0x4e
-	lwz      r12, 0(r3)
-	addi     r6, r4, 0x706B3033@l
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	mr       r20, r3
-	lwz      r3, 0xac(r29)
-	lis      r4, 0x706B3034@ha
-	li       r5, 0x4e
-	lwz      r12, 0(r3)
-	addi     r6, r4, 0x706B3034@l
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	mr       r21, r3
-	lwz      r3, 0xac(r29)
-	lis      r4, 0x706B3035@ha
-	li       r5, 0x4e
-	lwz      r12, 0(r3)
-	addi     r6, r4, 0x706B3035@l
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	mr       r22, r3
-	lwz      r3, 0xac(r29)
-	lis      r4, 0x706B3036@ha
-	li       r5, 0x4e
-	lwz      r12, 0(r3)
-	addi     r6, r4, 0x706B3036@l
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	mr       r23, r3
-	lwz      r3, 0xac(r29)
-	lis      r4, 0x706B3037@ha
-	li       r5, 0x4e
-	lwz      r12, 0(r3)
-	addi     r6, r4, 0x706B3037@l
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	mr       r24, r3
-	lwz      r3, 0xac(r29)
-	lis      r4, 0x706B3038@ha
-	li       r5, 0x4e
-	lwz      r12, 0(r3)
-	addi     r6, r4, 0x706B3038@l
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	mr       r25, r3
-	lwz      r3, 0xac(r29)
-	lis      r4, 0x706B3039@ha
-	li       r5, 0x4e
-	lwz      r12, 0(r3)
-	addi     r6, r4, 0x706B3039@l
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	mr       r26, r3
-	lwz      r3, 0xac(r29)
-	lis      r4, 0x706B3130@ha
-	li       r5, 0x4e
-	lwz      r12, 0(r3)
-	addi     r6, r4, 0x706B3130@l
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	mr       r27, r3
-	lwz      r3, 0xac(r29)
-	lis      r4, 0x706B3131@ha
-	li       r5, 0x4e
-	lwz      r12, 0(r3)
-	addi     r6, r4, 0x706B3131@l
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xa8(r29)
-	mr       r28, r3
-	lbz      r0, 0x44(r4)
-	cmplwi   r0, 0
-	bne      lbl_80311440
-	li       r0, 0
-	li       r4, 0
-	stb      r0, 0xb0(r18)
-	stb      r0, 0xb0(r23)
-	lwz      r3, 0xac(r29)
-	bl       dispRed__Q32og6Screen10MapCounterFb
-
-lbl_80311440:
-	lwz      r3, 0xa8(r29)
-	lbz      r0, 0x45(r3)
-	cmplwi   r0, 0
-	bne      lbl_80311468
-	li       r0, 0
-	li       r4, 0
-	stb      r0, 0xb0(r19)
-	stb      r0, 0xb0(r24)
-	lwz      r3, 0xac(r29)
-	bl       dispYellow__Q32og6Screen10MapCounterFb
-
-lbl_80311468:
-	lwz      r3, 0xa8(r29)
-	lbz      r0, 0x46(r3)
-	cmplwi   r0, 0
-	bne      lbl_80311490
-	li       r0, 0
-	li       r4, 0
-	stb      r0, 0xb0(r20)
-	stb      r0, 0xb0(r25)
-	lwz      r3, 0xac(r29)
-	bl       dispBlue__Q32og6Screen10MapCounterFb
-
-lbl_80311490:
-	lwz      r3, 0xa8(r29)
-	lbz      r0, 0x47(r3)
-	cmplwi   r0, 0
-	bne      lbl_803114B8
-	li       r0, 0
-	li       r4, 0
-	stb      r0, 0xb0(r21)
-	stb      r0, 0xb0(r26)
-	lwz      r3, 0xac(r29)
-	bl       dispWhite__Q32og6Screen10MapCounterFb
-
-lbl_803114B8:
-	lwz      r3, 0xa8(r29)
-	lbz      r0, 0x48(r3)
-	cmplwi   r0, 0
-	bne      lbl_803114E0
-	li       r0, 0
-	li       r4, 0
-	stb      r0, 0xb0(r22)
-	stb      r0, 0xb0(r27)
-	lwz      r3, 0xac(r29)
-	bl       dispBlack__Q32og6Screen10MapCounterFb
-
-lbl_803114E0:
-	lwz      r3, 0xa8(r29)
-	lbz      r0, 0x44(r3)
-	cmplwi   r0, 0
-	bne      lbl_80311534
-	lbz      r0, 0x45(r3)
-	cmplwi   r0, 0
-	bne      lbl_80311534
-	lbz      r0, 0x46(r3)
-	cmplwi   r0, 0
-	bne      lbl_80311534
-	lbz      r0, 0x47(r3)
-	cmplwi   r0, 0
-	bne      lbl_80311534
-	lbz      r0, 0x48(r3)
-	cmplwi   r0, 0
-	bne      lbl_80311534
-	li       r0, 0
-	li       r4, 0
-	stb      r0, 0xb0(r28)
-	lwz      r3, 0xac(r29)
-	bl       dispFree__Q32og6Screen10MapCounterFb
-
-lbl_80311534:
-	lwz      r3, 0xac(r29)
-	lis      r5, 0x636B6574@ha
-	lis      r4, 0x004E726F@ha
-	lwz      r12, 0(r3)
-	addi     r6, r5, 0x636B6574@l
-	addi     r5, r4, 0x004E726F@l
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xa8(r29)
-	lbz      r0, 0x47(r4)
-	cmplwi   r0, 0
-	bne      lbl_80311574
-	lbz      r0, 0x48(r4)
-	cmplwi   r0, 0
-	beq      lbl_8031161C
-
-lbl_80311574:
-	li       r0, 1
-	lis      r5, 0x636B5F31@ha
-	stb      r0, 0xb0(r3)
-	lis      r4, 0x004E726F@ha
-	addi     r6, r5, 0x636B5F31@l
-	lwz      r3, 0xac(r29)
-	addi     r5, r4, 0x004E726F@l
-	lwz      r12, 0(r3)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	mr       r19, r3
-	lwz      r3, 0xac(r29)
-	lis      r5, 0x636B5F32@ha
-	lis      r4, 0x004E726F@ha
-	lwz      r12, 0(r3)
-	addi     r6, r5, 0x636B5F32@l
-	addi     r5, r4, 0x004E726F@l
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 0
-	mr       r18, r3
-	stb      r0, 0xb0(r19)
-	lis      r4, 0x004F4741@ha
-	lis      r6, 0x41555345@ha
-	lis      r5, 0x534D5F50@ha
-	stb      r0, 0xb0(r3)
-	mr       r3, r31
-	addi     r4, r4, 0x004F4741@l
-	addi     r6, r6, 0x41555345@l
-	addi     r5, r5, 0x534D5F50@l
-	bl       getSubMember__Q32og6Screen14DispMemberBaseFUlUx
-	lwz      r0, 0xc(r3)
-	cmplwi   r0, 0x2710
-	blt      lbl_80311610
-	li       r0, 1
-	stb      r0, 0xb0(r18)
-	b        lbl_80311660
-
-lbl_80311610:
-	li       r0, 1
-	stb      r0, 0xb0(r19)
-	b        lbl_80311660
-
-lbl_8031161C:
-	li       r0, 0
-	lis      r5, 0x72657475@ha
-	stb      r0, 0xb0(r3)
-	lis      r4, 0x4E746169@ha
-	addi     r6, r5, 0x72657475@l
-	lwz      r3, 0xac(r29)
-	addi     r5, r4, 0x4E746169@l
-	lwz      r12, 0(r3)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	lfs      f1, lbl_8051D740@sda21(r2)
-	lwz      r12, 0x14(r12)
-	lfs      f2, lbl_8051D7D0@sda21(r2)
-	mtctr    r12
-	bctrl
-
-lbl_80311660:
-	lwz      r3, 0xac(r29)
-	lis      r5, 0x796E5F31@ha
-	lis      r4, 0x004E6F6E@ha
-	lwz      r12, 0(r3)
-	addi     r6, r5, 0x796E5F31@l
-	addi     r5, r4, 0x004E6F6E@l
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	mr       r20, r3
-	lwz      r3, 0xac(r29)
-	lis      r5, 0x796E5F32@ha
-	lis      r4, 0x004E6F6E@ha
-	lwz      r12, 0(r3)
-	addi     r6, r5, 0x796E5F32@l
-	addi     r5, r4, 0x004E6F6E@l
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	mr       r19, r3
-	lwz      r3, 0xac(r29)
-	lis      r5, 0x796E5F33@ha
-	lis      r4, 0x004E6F6E@ha
-	lwz      r12, 0(r3)
-	addi     r6, r5, 0x796E5F33@l
-	addi     r5, r4, 0x004E6F6E@l
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	mr       r18, r3
-	lwz      r3, 0xac(r29)
-	lis      r5, 0x796E5F34@ha
-	lis      r4, 0x004E6F6E@ha
-	lwz      r12, 0(r3)
-	addi     r6, r5, 0x796E5F34@l
-	addi     r5, r4, 0x004E6F6E@l
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 0
-	stb      r0, 0xb0(r20)
-	stb      r0, 0xb0(r19)
-	stb      r0, 0xb0(r18)
-	stb      r0, 0xb0(r3)
-	lwz      r4, 0xa8(r29)
-	lbz      r5, 0x44(r4)
-	cmplwi   r5, 0
-	beq      lbl_80311744
-	lbz      r0, 0x45(r4)
-	cmplwi   r0, 0
-	beq      lbl_80311744
-	lbz      r0, 0x46(r4)
-	cmplwi   r0, 0
-	beq      lbl_80311744
-	li       r0, 1
-	stb      r0, 0xb0(r3)
-	b        lbl_80311794
-
-lbl_80311744:
-	cmplwi   r5, 0
-	beq      lbl_80311764
-	lbz      r0, 0x46(r4)
-	cmplwi   r0, 0
-	beq      lbl_80311764
-	li       r0, 1
-	stb      r0, 0xb0(r18)
-	b        lbl_80311794
-
-lbl_80311764:
-	cmplwi   r5, 0
-	beq      lbl_80311784
-	lbz      r0, 0x45(r4)
-	cmplwi   r0, 0
-	beq      lbl_80311784
-	li       r0, 1
-	stb      r0, 0xb0(r19)
-	b        lbl_80311794
-
-lbl_80311784:
-	cmplwi   r5, 0
-	beq      lbl_80311794
-	li       r0, 1
-	stb      r0, 0xb0(r20)
-
-lbl_80311794:
-	lwz      r3, 0xac(r29)
-	lis      r4, 0x61695F31@ha
-	addi     r6, r4, 0x61695F31@l
-	li       r5, 0x4e74
-	lwz      r12, 0(r3)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	mr       r18, r3
-	lwz      r3, 0xac(r29)
-	lis      r4, 0x61695F32@ha
-	li       r5, 0x4e74
-	lwz      r12, 0(r3)
-	addi     r6, r4, 0x61695F32@l
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 0
-	stb      r0, 0xb0(r18)
-	stb      r0, 0xb0(r3)
-	lwz      r4, 0xa8(r29)
-	lbz      r0, 0x46(r4)
-	cmplwi   r0, 0
-	beq      lbl_803117FC
-	li       r0, 1
-	stb      r0, 0xb0(r18)
-
-lbl_803117FC:
-	lwz      r4, 0xa8(r29)
-	lbz      r0, 0x45(r4)
-	cmplwi   r0, 0
-	beq      lbl_80311814
-	li       r0, 1
-	stb      r0, 0xb0(r3)
-
-lbl_80311814:
-	lwz      r5, 0xac(r29)
-	mr       r3, r29
-	mr       r4, r30
-	bl
-doCreateAfter__Q32og9newScreen12ObjSMenuBaseFP10JKRArchivePQ29P2DScreen3Mgr
-lmw r18, 0x38(r1) lwz      r0, 0x74(r1) mtlr     r0 addi     r1, r1, 0x70
-blr
-	*/
 }
 
 /**
@@ -2632,9 +1669,11 @@ void ObjSMenuMap::updateMap()
 		nv_frame = 0.0f;
 	}
 
-	f32 angle           = TAU * nv_frame;
-	u8 olimarArrowAlpha = ((sinf(angle) + 1.0f) / 2 * 0.6f + 0.4f) * 255.0f;
-	u8 louieArrowAlpha  = ((sinf(angle + PI) + 1.0f) / 2 * 0.6f + 0.4f) * 255.0f;
+	f32 olimarAngle     = TAU * nv_frame;
+	u8 olimarArrowAlpha = ((sinf(olimarAngle) + 1.0f) / 2 * 0.6f + 0.4f) * 255.0f;
+
+	f32 louieAngle     = olimarAngle + PI; // this is a load bearing temp float lol
+	u8 louieArrowAlpha = ((sinf(louieAngle) + 1.0f) / 2 * 0.6f + 0.4f) * 255.0f;
 
 	calcCaveNameAlpha();
 
@@ -2662,7 +1701,6 @@ void ObjSMenuMap::updateMap()
 	}
 
 	if (mOlimarArrow && mOlimarObj) {
-		// f32 factor = (msVal.mMapNaviArrowScaleMod / scale);
 		f32 scaleFactor = msVal.mMapNaviArrowScaleMod * (msVal.mMapIconScaleBase / scale);
 		f32 facedir     = mOlimarObj->getFaceDir();
 		mOlimarArrow->setBasePosition(J2DPOS_Center);
@@ -2717,6 +1755,7 @@ void ObjSMenuMap::commonUpdate()
  */
 void ObjSMenuMap::doUpdateLAction()
 {
+	// LEFT FROM MAP = ITEMS
 	::Screen::SetSceneArg arg(SCENE_PAUSE_MENU_ITEMS, getDispMember());
 	jump_L(arg);
 }
@@ -2727,7 +1766,9 @@ void ObjSMenuMap::doUpdateLAction()
  */
 void ObjSMenuMap::doUpdateRAction()
 {
+	// RIGHT FROM MAP = PAUSE MENU
 	if (mDisp->mInCave) {
+		// pause menu is different in caves (give up, etc)
 		::Screen::SetSceneArg arg(SCENE_PAUSE_MENU_DOUKUTU, getDispMember());
 		jump_R(arg);
 	} else {
@@ -2746,27 +1787,7 @@ bool ObjSMenuMap::doUpdate()
 	mController                = scene->getGamePad();
 	transMap();
 
-	bool isUp   = false;
-	bool isDown = false;
-	f32 cstick  = mController->getSubStickY();
-	if (cstick > 0.4f) {
-		isUp = true;
-	}
-	if (cstick < -0.4f) {
-		isDown = true;
-	}
-
-	if (isUp) {
-		mCurrentZoom += mCurrentZoom * 0.03f;
-		if (mCurrentZoom > msVal.mMaxZoom)
-			mCurrentZoom = msVal.mMaxZoom;
-		ogSound->setZoomIn();
-	} else if (isDown) {
-		mCurrentZoom -= mCurrentZoom * 0.03f;
-		if (mCurrentZoom < msVal.mMinZoom)
-			mCurrentZoom = msVal.mMinZoom;
-		ogSound->setZoomOut();
-	}
+	scaleMap();
 	commonUpdate();
 	return ObjSMenuBase::doUpdate();
 }
@@ -2783,8 +1804,8 @@ void ObjSMenuMap::doDraw(Graphics& gfx)
 	Graphics gfx2;
 	mIconScreen->draw(gfx2, *graf);
 
-	if (mCompassPic && mPane_Ncompas) {
-		PSMTXCopy(mPane_Ncompas->mGlobalMtx, mCompassPic->mPositionMtx);
+	if (mCompassPic && mCompassPane) {
+		PSMTXCopy(mCompassPane->mGlobalMtx, mCompassPic->mPositionMtx);
 	}
 
 	graf->setPort();
@@ -2810,8 +1831,8 @@ void ObjSMenuMap::drawMap(Graphics& gfx)
 		mMapTexScale.y          = mMapBounds.y / mMapTextureDimensions.y;
 	}
 
-	if (mPane_Ncompas) {
-		mPane_Ncompas->setAngle(mMapAngle);
+	if (mCompassPane) {
+		mCompassPane->setAngle(mMapAngle);
 	}
 
 	P2DScreen::Mgr_tuning* scrn = mMapCounter;
@@ -2835,14 +1856,14 @@ void ObjSMenuMap::drawMap(Graphics& gfx)
 	rect.p2.y = 480.0f;
 	Color4 color(200, 10, 200, 155);
 	drawRectZ(*sysGfx, rect, color, 0.999);
-	JGeometry::TVec3f vec1 = mPane_map->getGlbVtx(0);
-	JGeometry::TVec3f vec2 = mPane_map->getGlbVtx(1);
-	JGeometry::TVec3f vec3 = mPane_map->getGlbVtx(2);
-	JGeometry::TVec3f vec4 = mPane_map->getGlbVtx(3);
+	JGeometry::TVec3f btmL = mMapAreaPane->getGlbVtx(GLBVTX_BtmLeft);
+	JGeometry::TVec3f btmR = mMapAreaPane->getGlbVtx(GLBVTX_BtmRight);
+	JGeometry::TVec3f topL = mMapAreaPane->getGlbVtx(GLBVTX_TopLeft);
+	JGeometry::TVec3f topR = mMapAreaPane->getGlbVtx(GLBVTX_TopRight);
 	Color4 color2(100, 0, 0, 155);
-	drawVecZ(*sysGfx, *(Vec*)&vec1, *(Vec*)&vec2, *(Vec*)&vec3, *(Vec*)&vec4, color2, -0.999);
+	drawVecZ(*sysGfx, *(Vec*)&btmL, *(Vec*)&btmR, *(Vec*)&topL, *(Vec*)&topR, color2, -0.999);
 	GXSetColorUpdate(GX_TRUE);
-	PSMTXCopy(mPane_map->mGlobalMtx, mRootPane->mPositionMtx);
+	PSMTXCopy(mMapAreaPane->mGlobalMtx, mIconRootPane->mPositionMtx);
 	graf->setPort();
 	GXSetZCompLoc(GX_TRUE);
 	GXSetZMode(GX_TRUE, GX_LESS, GX_FALSE);
@@ -2888,7 +1909,7 @@ void ObjSMenuMap::drawRectZ(Graphics& gfx, Rectf& rect, Color4& color, f32 z)
  * @note Address: 0x803126F8
  * @note Size: 0x214
  */
-void ObjSMenuMap::drawVecZ(Graphics& gfx, Vec& vec1, Vec& vec2, Vec& vec3, Vec& vec4, Color4& color, f32 z)
+void ObjSMenuMap::drawVecZ(Graphics& gfx, Vec& btmL, Vec& btmR, Vec& topL, Vec& topR, Color4& color, f32 z)
 {
 	u16 wid = System::getRenderModeWidth();
 	u16 hei = System::getRenderModeHeight();
@@ -2907,16 +1928,16 @@ void ObjSMenuMap::drawVecZ(Graphics& gfx, Vec& vec1, Vec& vec2, Vec& vec3, Vec& 
 	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_CLR0, GX_POS_XYZ, GX_RGBA8, 0);
 	GXBegin(GX_QUADS, GX_VTXFMT0, 4);
 
-	GXPosition3f32(vec1.x, vec1.y, z);
+	GXPosition3f32(btmL.x, btmL.y, z);
 	GXColor4u8(color.r, color.g, color.b, color.a);
 
-	GXPosition3f32(vec2.x, vec2.y, z);
+	GXPosition3f32(btmR.x, btmR.y, z);
 	GXColor4u8(color.r, color.g, color.b, color.a);
 
-	GXPosition3f32(vec4.x, vec4.y, z);
+	GXPosition3f32(topR.x, topR.y, z);
 	GXColor4u8(color.r, color.g, color.b, color.a);
 
-	GXPosition3f32(vec3.x, vec3.y, z);
+	GXPosition3f32(topL.x, topL.y, z);
 	GXColor4u8(color.r, color.g, color.b, color.a);
 
 	GXSetZMode(GX_TRUE, GX_LESS, GX_TRUE);
@@ -3008,5 +2029,4 @@ void ObjSMenuMap::out_R()
 ObjSMenuMap::StaticValues ObjSMenuMap::msVal;
 
 } // namespace newScreen
-
 } // namespace og

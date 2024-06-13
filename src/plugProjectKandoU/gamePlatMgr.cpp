@@ -364,9 +364,9 @@ PlatInstance* PlatMgr::addInstance(PlatAddInstanceArg& arg)
 			sphere.mRadius = arg.mRadius;
 		}
 
-		int val;
+		int layerIndex;
 		Recti rect;
-		Game::platCellMgr->calcExtent(sphere, val, rect);
+		Game::platCellMgr->calcExtent(sphere, layerIndex, rect);
 		Game::platCellMgr->entry(instance, sphere);
 
 		if (instance->mItem) {
@@ -419,10 +419,7 @@ void PlatMgr::traceMove(MoveInfo& info, f32 step)
 void PlatMgr::getCurrTri(CurrTriInfo& info)
 {
 	if (mUseCellMgr && platCellMgr) {
-		Sys::Sphere searchSphere;
-		searchSphere.mPosition = info.mPosition;
-		searchSphere.mRadius   = 0.0f;
-
+		Sys::Sphere searchSphere(info.mPosition, 0.0f);
 		CellIteratorArg iterArg(searchSphere);
 		iterArg.mCellMgr  = platCellMgr;
 		iterArg.mOptimise = true;
@@ -435,6 +432,7 @@ void PlatMgr::getCurrTri(CurrTriInfo& info)
 				instance->getCurrTri(info);
 			}
 		}
+
 		return;
 	}
 

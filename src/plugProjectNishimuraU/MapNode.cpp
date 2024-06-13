@@ -556,11 +556,7 @@ f32 MapNode::getBaseGenGlobalDirection(BaseGen* testGen)
 f32 MapNode::getDoorGlobalDirection(int idx)
 {
 	f32 dir = -HALF_PI * getDoorDirect(idx);
-	if (dir < 0.0f) {
-		dir = TAU + dir;
-	} else if (dir >= TAU) {
-		dir -= TAU;
-	}
+	clampAngle(dir);
 
 	return dir;
 }

@@ -214,7 +214,7 @@ void TSaveMenu::loadResource()
 {
 	sys->heapStatusStart("TScreenSaveMenu::loadResource", nullptr);
 
-	char buf[256];
+	char buf[PATH_MAX];
 	og::newScreen::makeLanguageResName(buf, "info_window.szs");
 	JKRArchive* arc = JKRMountArchive(buf, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
 	P2ASSERTLINE(226, arc);

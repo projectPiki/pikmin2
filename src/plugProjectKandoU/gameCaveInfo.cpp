@@ -67,7 +67,7 @@ void TekiInfo::read(Stream& stream)
 	char parsedBuffer[128];
 	char* inputString = stream.readString(nullptr, 0);
 
-	if (*inputString == '$') {
+	if (inputString[0] == '$') {
 		char dropModeChar = inputString[1];
 
 		if (dropModeChar >= '1' && '9' >= dropModeChar) {
@@ -538,6 +538,7 @@ bool FloorInfo::useKaidanBarrel() { return mParms.mIsHoleClogged == 1; }
 /**
  * @note Address: 0x801D70D8
  * @note Size: 0x224
+ * TODO: inline here
  */
 void FloorInfo::read(Stream& input)
 {

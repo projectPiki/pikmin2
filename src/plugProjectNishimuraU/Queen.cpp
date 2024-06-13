@@ -502,7 +502,7 @@ void Obj::releaseJointShadow()
 void Obj::startBossChargeBGM()
 {
 	PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(mSoundObj);
-	PSM::checkBoss(soundObj);
+	PSM::assertIsBoss(soundObj);
 	soundObj->jumpRequest(PSM::EnemyMidBoss::BossBgm_AttackPrep);
 }
 
@@ -515,7 +515,7 @@ void Obj::startBossAttackLoopBGM()
 	if (!mIsAttackLoopBGM) {
 		mIsAttackLoopBGM         = true;
 		PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(mSoundObj);
-		PSM::checkBoss(soundObj);
+		PSM::assertIsBoss(soundObj);
 		soundObj->jumpRequest(PSM::EnemyMidBoss::BossBgm_AttackLong);
 	}
 }
@@ -529,7 +529,7 @@ void Obj::finishBossAttackLoopBGM()
 	if (mIsAttackLoopBGM) {
 		mIsAttackLoopBGM         = false;
 		PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(mSoundObj);
-		PSM::checkBoss(soundObj);
+		PSM::assertIsBoss(soundObj);
 		soundObj->jumpRequest(PSM::EnemyMidBoss::BossBgm_MainLoop);
 	}
 }
@@ -542,7 +542,7 @@ void Obj::startStoneStateBossAttackLoopBGM()
 {
 	if (mIsAttackLoopBGM) {
 		PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(mSoundObj);
-		PSM::checkBoss(soundObj);
+		PSM::assertIsBoss(soundObj);
 		soundObj->jumpRequest(PSM::EnemyMidBoss::BossBgm_MainLoop);
 	}
 }
@@ -555,7 +555,7 @@ void Obj::finishStoneStateBossAttackLoopBGM()
 {
 	if (mIsAttackLoopBGM) {
 		PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(mSoundObj);
-		PSM::checkBoss(soundObj);
+		PSM::assertIsBoss(soundObj);
 		soundObj->jumpRequest(PSM::EnemyMidBoss::BossBgm_AttackLong);
 	}
 }
@@ -567,7 +567,7 @@ void Obj::finishStoneStateBossAttackLoopBGM()
 void Obj::updateBossBGM()
 {
 	PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(mSoundObj);
-	PSM::checkBoss(soundObj);
+	PSM::assertIsBoss(soundObj);
 	if (mStuckPikminCount != 0) {
 		soundObj->postPikiAttack(true);
 	} else {

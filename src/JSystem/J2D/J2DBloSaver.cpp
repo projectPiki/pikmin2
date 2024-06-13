@@ -4,7 +4,7 @@
 #include "JSystem/J2D/J2DTypes.h"
 #include "types.h"
 
-J2DBloSaver::CTextureNameConnect* J2DBloSaver::TextureNameConnect = nullptr;
+J2DBloSaver::CTextureNameConnect J2DBloSaver::TextureNameConnect;
 
 /**
  * @note Address: N/A
@@ -70,15 +70,7 @@ void J2DBloSaver::CTextureNameConnect::clear()
 J2DTevStage::J2DTevStage()
 {
 	setTevStageInfo(j2dDefaultTevStageInfo);
-	u32 flag = _07;
-	flag &= ~0xC;
-	u32 swapMode = j2dDefaultTevSwapMode.mTexSel << 2;
-	_07          = flag | swapMode;
-
-	u32 flag2 = _07;
-	flag2 &= ~0x3;
-	u32 rasSel = j2dDefaultTevSwapMode.mRasSel;
-	_07        = flag2 | rasSel;
+	setTevSwapModeInfo(j2dDefaultTevSwapMode);
 }
 
 /**
@@ -87,32 +79,15 @@ J2DTevStage::J2DTevStage()
  */
 void J2DTevStage::setTevStageInfo(const J2DTevStageInfo& info)
 {
-	_02 = info.mColorA << 4 | info.mColorB;
-	_03 = info.mColorC << 4 | info.mColorD;
-	_01 = info.mCOp % 1;
-	if (info.mCOp < 2) {
-		_05 = info.mCScale;
-		_01 = info.mCBias;
-	} else {
-		_05 = (info.mCOp & 6) / 2;
-		_01 = 3;
-	}
-	_04 = info.mCClamp;
-	_07 = info.mCReg;
-	_04 = info.mAlphaA;
-	_05 = info.mAlphaB;
-	_06 = info.mAlphaC;
-	_07 = info.mAlphaD;
-	_01 = info.mAOp;
-	if (info.mAOp < 2) {
-		_05 = info.mABias;
-		_02 = info.mAScale;
-	} else {
-		_05 = (info.mAOp & 6) / 2;
-		_02 = 3;
-	}
-	_07 = info.mAClamp;
-	_05 = info.mAReg;
+	setTevColorAB(info.mColorA, info.mColorB);
+	setTevColorCD(info.mColorC, info.mColorD);
+	setTevColorOp(info.mCOp, info.mCBias, info.mCScale, info.mCClamp, info.mCReg);
+
+	setTevColorAB(info.mColorA, info.mColorB);
+	setTevColorCD(info.mColorC, info.mColorD);
+	setAlphaABCD(info.mAlphaA, info.mAlphaB, info.mAlphaC, info.mAlphaD);
+	setTevAlphaOp(info.mAOp, info.mABias, info.mAScale, info.mAClamp, info.mAReg);
+
 	/*
 	stwu     r1, -0x10(r1)
 	lbz      r5, 1(r4)

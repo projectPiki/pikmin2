@@ -341,86 +341,10 @@ bool Obj::moveRockScaleUp()
  */
 void Obj::initMoveVelocity()
 {
-	f32 theta    = mFaceDir;
-	f32 cosTheta = cosf(theta);
-	f32 sinTheta = sinf(theta);
-
-	Vector3f vel(sinTheta, 0.0f, cosTheta);
+	Vector3f vel = getDirection(mFaceDir);
 	vel *= C_GENERALPARMS.mMoveSpeed();
 	mTargetVelocity = vel;
 	setVelocity(vel);
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	lfs      f0, lbl_8051ADB0@sda21(r2)
-	stw      r0, 0x34(r1)
-	lfs      f3, 0x1fc(r3)
-	fmr      f1, f3
-	fcmpo    cr0, f3, f0
-	bge      lbl_80263AA4
-	fneg     f1, f3
-
-lbl_80263AA4:
-	lfs      f2, lbl_8051ADE0@sda21(r2)
-	lis      r4, sincosTable___5JMath@ha
-	lfs      f0, lbl_8051ADB0@sda21(r2)
-	addi     r5, r4, sincosTable___5JMath@l
-	fmuls    f1, f1, f2
-	fcmpo    cr0, f3, f0
-	fctiwz   f0, f1
-	stfd     f0, 0x18(r1)
-	lwz      r0, 0x1c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	add      r4, r5, r0
-	lfs      f4, 4(r4)
-	bge      lbl_80263AFC
-	lfs      f0, lbl_8051ADE4@sda21(r2)
-	fmuls    f0, f3, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x20(r1)
-	lwz      r0, 0x24(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r5, r0
-	fneg     f2, f0
-	b        lbl_80263B14
-
-lbl_80263AFC:
-	fmuls    f0, f3, f2
-	fctiwz   f0, f0
-	stfd     f0, 0x28(r1)
-	lwz      r0, 0x2c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f2, r5, r0
-
-lbl_80263B14:
-	lfs      f1, lbl_8051ADB0@sda21(r2)
-	frsp     f0, f2
-	stfs     f2, 8(r1)
-	addi     r4, r1, 8
-	stfs     f1, 0xc(r1)
-	stfs     f4, 0x10(r1)
-	lwz      r5, 0xc0(r3)
-	lfs      f3, 0x2e4(r5)
-	fmuls    f2, f0, f3
-	fmuls    f1, f1, f3
-	fmuls    f0, f4, f3
-	stfs     f2, 8(r1)
-	stfs     f1, 0xc(r1)
-	stfs     f0, 0x10(r1)
-	stfs     f2, 0x1d4(r3)
-	lfs      f0, 0xc(r1)
-	stfs     f0, 0x1d8(r3)
-	lfs      f0, 0x10(r1)
-	stfs     f0, 0x1dc(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x68(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /**
@@ -438,37 +362,30 @@ void Obj::updateMoveVelocity()
 			target = EnemyFunc::getNearestPikminOrNavi(this, 180.0f, C_GENERALPARMS.mSightRadius.mValue, nullptr, nullptr, nullptr);
 		}
 
-		Vector2f XZ;
+		Vector3f targetPos;
 		if (target) {
-			Vector3f targetPos = target->getPosition();
-			XZ.x               = targetPos.x;
-			XZ.y               = targetPos.z;
+			targetPos = target->getPosition();
 		} else {
-			XZ.x = mPosition.x + mTargetVelocity.x;
-			XZ.y = mPosition.z + mTargetVelocity.z;
+			targetPos = mPosition + mTargetVelocity;
 		}
 
-		changeFaceDir(XZ);
+		turnToTarget2(targetPos, C_GENERALPARMS.mTurnSpeed(), C_GENERALPARMS.mMaxTurnAngle());
 
-		f32 homingSpeed = C_PROPERPARMS.mSearchRumbleSpeed.mValue;
-		f32 sinTheta    = sin(getFaceDir());
-		f32 oldY        = getTargetVelocity().y;
-		f32 cosTheta    = cos(getFaceDir());
+		f32 moveSpeed = getMoveSpeed();
+		f32 x         = dolsinf(getFaceDir());
+		f32 y         = getTargetVelocity().y;
+		f32 z         = dolcosf(getFaceDir());
 
-		mTargetVelocity.x = homingSpeed * sinTheta;
-		mTargetVelocity.y = oldY;
-		mTargetVelocity.z = homingSpeed * cosTheta;
+		mTargetVelocity = Vector3f(moveSpeed * x, y, moveSpeed * z);
 
 	} else {
 		mTargetVelocity.x = 0.01f * mCurrentVelocity.x + 0.99f * mTargetVelocity.x;
 		mTargetVelocity.y = 0.01f * mCurrentVelocity.y + 0.99f * mTargetVelocity.y;
 		mTargetVelocity.z = 0.01f * mCurrentVelocity.z + 0.99f * mTargetVelocity.z;
 
-		Vector2f XZ;
-		XZ.x = mPosition.x + mTargetVelocity.x;
-		XZ.y = mPosition.z + mTargetVelocity.z;
+		Vector3f targetPos = mPosition + mTargetVelocity;
 
-		changeFaceDir(XZ);
+		turnToTarget2(targetPos, C_GENERALPARMS.mTurnSpeed(), C_GENERALPARMS.mMaxTurnAngle());
 	}
 	/*
 	stwu     r1, -0xa0(r1)

@@ -48,7 +48,7 @@ struct J2DIndTexMtxInfo {
 				mMtx[i][j] = other.mMtx[i][j];
 			}
 		}
-		mScale = other.mScale;
+		mScale = *(s8*)&other.mScale; // don't even ask.
 		return *this;
 	}
 };

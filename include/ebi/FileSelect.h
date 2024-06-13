@@ -194,7 +194,6 @@ struct TMgr : public JKRDisposer {
 } // namespace FileSelect
 } // namespace ebi
 
-// this is only here because of some dtor inlining bullshit I can't fix - HP
 template <>
 void Game::StateMachine<ebi::FileSelect::TMgr>::start(ebi::FileSelect::TMgr* obj, int stateID, StateArg* stateArg)
 {

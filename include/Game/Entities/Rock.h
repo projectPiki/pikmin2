@@ -31,6 +31,30 @@ struct RockInitialParams : public EnemyInitialParamBase {
 	f32 mScaleUpRate; // _08
 };
 
+struct Parms : public EnemyParmsBase {
+	struct ProperParms : public Parameters {
+		inline ProperParms()
+		    : Parameters(nullptr, "EnemyParmsBase")
+		    , mSearchRumbleSpeed(this, 'fp01', "ÉTÅ[É`ÉSÉçÉSÉçë¨ìx", 150.0f, 0.0f, 1000.0f) // 'search rumble speed'
+		{
+		}
+
+		Parm<f32> mSearchRumbleSpeed; // _804
+	};
+
+	Parms() { }
+
+	virtual void read(Stream& stream) // _08 (weak)
+	{
+		CreatureParms::read(stream);
+		mGeneral.read(stream);
+		mProperParms.read(stream);
+	}
+
+	// _00-_7F8	= EnemyParmsBase
+	ProperParms mProperParms; // _7F8
+};
+
 struct Obj : public EnemyBase {
 	Obj();
 
@@ -75,6 +99,8 @@ struct Obj : public EnemyBase {
 	void effectDrawOn();
 	void effectDrawOff();
 
+	inline f32 getMoveSpeed() { return C_PROPERPARMS.mSearchRumbleSpeed(); }
+
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
 	FSM* mFsm;                           // _2BC
@@ -106,30 +132,6 @@ struct Mgr : public EnemyMgrBase {
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
 	Obj* mObj; // _44, array of Objs
-};
-
-struct Parms : public EnemyParmsBase {
-	struct ProperParms : public Parameters {
-		inline ProperParms()
-		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mSearchRumbleSpeed(this, 'fp01', "ÉTÅ[É`ÉSÉçÉSÉçë¨ìx", 150.0f, 0.0f, 1000.0f) // 'search rumble speed'
-		{
-		}
-
-		Parm<f32> mSearchRumbleSpeed; // _804
-	};
-
-	Parms() { }
-
-	virtual void read(Stream& stream) // _08 (weak)
-	{
-		CreatureParms::read(stream);
-		mGeneral.read(stream);
-		mProperParms.read(stream);
-	}
-
-	// _00-_7F8	= EnemyParmsBase
-	ProperParms mProperParms; // _7F8
 };
 
 struct Generator : public EnemyGeneratorBase {

@@ -1797,10 +1797,7 @@ bool MiniHoudaiShotGunMgr::searchShotGunRotation()
 
 	mAngle = (mAngle < 0.0f) ? TAU + mAngle : (mAngle >= TAU) ? mAngle - TAU : mAngle;
 
-	if (absAng < 0.01f) {
-		return true;
-	}
-	return false;
+	return (absAng < 0.01f);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0

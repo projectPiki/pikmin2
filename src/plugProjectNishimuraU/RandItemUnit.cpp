@@ -249,7 +249,7 @@ MapNode* RandItemUnit::getItemNormalSetMapNode(BaseGen** outGens)
 					}
 				}
 			}
-		} else if (!strncmp(currMapNode->getUnitName(), "item", 4)) {
+		} else if (IS_SAME_STRING_PREFIX(currMapNode->getUnitName(), "item")) {
 			if (!isItemSetDone(currMapNode, nullptr)) {
 				mapNodeList[counter]   = currMapNode;
 				baseGenList[counter]   = nullptr;
@@ -311,7 +311,7 @@ MapNode* RandItemUnit::getItemHardSetMapNode(BaseGen** outGens)
 				}
 			}
 
-		} else if (!strncmp(currMapNode->getUnitName(), "item", 4)) {
+		} else if (IS_SAME_STRING_PREFIX(currMapNode->getUnitName(), "item")) {
 			int currScore = currMapNode->getNodeScore() + 1;
 			if (!isItemSetDone(currMapNode, nullptr)) {
 				if (currScore >= totalScore) {
@@ -437,7 +437,7 @@ void RandItemUnit::getItemDropMapNode(MapNode* targetTile, MapNode** nodeList, i
 	if (unitKind == UNITKIND_Room) {
 		check = true;
 	} else if (unitKind == UNITKIND_Cap) {
-		if (strncmp(targetTile->getUnitName(), "item", 4) == 0) {
+		if (IS_SAME_STRING_PREFIX(targetTile->getUnitName(), "item")) {
 			check = true;
 		}
 	} else if (unitKind == UNITKIND_Corridor) {
@@ -541,7 +541,7 @@ void RandItemUnit::getItemDropList(MapNode* targetTile, MapNode** nodeList, Base
 			}
 		}
 	} else if (unitKind == UNITKIND_Cap) {
-		if (strncmp(targetTile->getUnitName(), "item", 4) == 0) {
+		if (IS_SAME_STRING_PREFIX(targetTile->getUnitName(), "item")) {
 			nodeList[idx] = targetTile;
 			dropList[idx] = nullptr;
 			idx++;

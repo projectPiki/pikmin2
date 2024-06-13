@@ -250,7 +250,7 @@ void FieldVtxColorMgr::updateFieldVtxColorControl(FieldVtxColorControl* control)
 	}
 
 	f32 alphaFlt = 255.0f * control->mCurrentPower;
-	u8 alpha     = (u8)ROUND_F32_TO_U8(alphaFlt);
+	u8 alpha     = ROUND_F32_TO_U8(alphaFlt);
 	for (controlInfo; controlInfo; controlInfo = controlInfo->mNext) {
 		FieldVtxColorInfo* info = controlInfo->mInfo;
 		if (controlInfo->mAlphaThreshold <= alpha) {

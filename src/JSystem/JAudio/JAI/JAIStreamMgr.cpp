@@ -1875,7 +1875,7 @@ void checkEntriedStream()
 
 	char* fileName
 	    = (char*)((size_t)streamList + (streamList[JAIBasic::getInterface()->getSoundOffsetNumberFromID(streamSound->mSoundID) + 2]));
-	char filePath[256];
+	char filePath[PATH_MAX];
 	strcpy(filePath, JAIGlobalParameter::getParamStreamPath());
 	strcat(filePath, fileName);
 	playDirect(filePath);

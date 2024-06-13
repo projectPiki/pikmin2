@@ -16,7 +16,7 @@ J2D_FILES:=\
 	$(BUILD_DIR)/asm/JSystem/J2D/J2DMaterial.o\
 	$(BUILD_DIR)/asm/JSystem/J2D/J2DMaterialFactory.o\
 	$(BUILD_DIR)/asm/JSystem/J2D/J2DPictureEx.o\
-	$(BUILD_DIR)/asm/JSystem/J2D/J2DTevs.o\
+	$(BUILD_DIR)/src/JSystem/J2D/J2DTevs.o\
 	$(BUILD_DIR)/asm/JSystem/J2D/J2DTextBoxEx.o\
 	$(BUILD_DIR)/src/JSystem/J2D/J2DAnimation.o\
 

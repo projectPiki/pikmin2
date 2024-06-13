@@ -18,8 +18,10 @@ struct J2DTexGenBlock {
 	void getTexMtx(u32, J2DTexMtx&);
 
 	u32 getTexGenNum() const { return mTexGenNum; }
+	J2DTexCoord& getTexCoord(u32 i) { return mTexCoords[i]; }
 	void setTexGenNum(u32 num) { mTexGenNum = num; }
 	void setTexCoord(u32 i, J2DTexCoord coord) { mTexCoords[i] = coord; }
+	void setTexCoord(u32 i, const J2DTexCoord* coord) { mTexCoords[i] = *coord; }
 	void setTexMtx(u32 i, J2DTexMtx* mtx) { mTexMtxes[i] = mtx; }
 
 	virtual ~J2DTexGenBlock(); // _08

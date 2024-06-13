@@ -11,13 +11,13 @@ struct TResource;
 struct TControl {
 	TControl();
 
-	virtual ~TControl();      // _08
-	virtual void reset() = 0; // _0C
+	virtual ~TControl(); // _08
 
+	void reset();
 	bool update();
 	void render();
 	bool setMessageCode(u16, u16);
-	bool setMessageID(u32, u32, bool*);
+	bool setMessageID(u32 lowerHalf, u32 upperHalf, bool* isMsgValid);
 	bool setMessageCode_inSequence_(const TProcessor*, u16, u16);
 
 	inline bool isReady_update_() const { return mMessageBegin && mBaseProcSeq; }
@@ -25,9 +25,9 @@ struct TControl {
 
 	inline TProcessor* getProcessor() const { return mBaseProcSeq ? (TProcessor*)mBaseProcSeq : (TProcessor*)mBaseProcRender; }
 
-	inline bool setMessageCode_inReset_(TProcessor* proc, u16 p2, u16 p3)
+	inline bool setMessageCode_inReset_(TProcessor* proc, u16 msgCode, u16 msgIndex)
 	{
-		if (!setMessageCode_inSequence_(proc, p2, p3)) {
+		if (!setMessageCode_inSequence_(proc, msgCode, msgIndex)) {
 			return false;
 		}
 

@@ -1461,7 +1461,7 @@ int Obj::getCurrAnimationIndex()
 void Obj::startBossChargeBGM()
 {
 	PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(mSoundObj);
-	PSM::checkBoss(soundObj);
+	PSM::assertIsBoss(soundObj);
 	soundObj->jumpRequest(PSM::EnemyBigBoss::BigBossBgm_AttackPrep);
 }
 
@@ -1472,7 +1472,7 @@ void Obj::startBossChargeBGM()
 void Obj::startBossAttackBGM()
 {
 	PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(mSoundObj);
-	PSM::checkBoss(soundObj);
+	PSM::assertIsBoss(soundObj);
 
 	int jumpReqIdx = PSM::EnemyBigBoss::BigBossBgm_FlareCannon;
 	switch (mAttackIndex) {
@@ -1500,7 +1500,7 @@ void Obj::startBossAttackBGM()
 void Obj::finishBossAttackBGM()
 {
 	PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(mSoundObj);
-	PSM::checkBoss(soundObj);
+	PSM::assertIsBoss(soundObj);
 
 	int jumpReqIdx = 1;
 	int counter    = 0;
@@ -1538,7 +1538,7 @@ void Obj::finishBossAttackBGM()
 void Obj::startBossFlickBGM()
 {
 	PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(mSoundObj);
-	PSM::checkBoss(soundObj);
+	PSM::assertIsBoss(soundObj);
 	soundObj->jumpRequest(PSM::EnemyBigBoss::BigBossBgm_NoWeaponsFlick);
 }
 
@@ -1549,7 +1549,7 @@ void Obj::startBossFlickBGM()
 void Obj::startBossItemDropBGM()
 {
 	PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(mSoundObj);
-	PSM::checkBoss(soundObj);
+	PSM::assertIsBoss(soundObj);
 
 	int jumpReqIdx = PSM::EnemyBigBoss::BigBossBgm_3Weapons;
 	int counter    = 0;
@@ -1590,7 +1590,7 @@ void Obj::startBossItemDropBGM()
 void Obj::updateBossBGM()
 {
 	PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(mSoundObj);
-	PSM::checkBoss(soundObj);
+	PSM::assertIsBoss(soundObj);
 
 	if (mStuckPikminCount) {
 		soundObj->postPikiAttack(true);
@@ -1606,7 +1606,7 @@ void Obj::updateBossBGM()
 void Obj::resetBossAppearBGM()
 {
 	PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(mSoundObj);
-	PSM::checkBoss(soundObj);
+	PSM::assertIsBoss(soundObj);
 	soundObj->setAppearFlag(false);
 }
 
@@ -1617,7 +1617,7 @@ void Obj::resetBossAppearBGM()
 void Obj::setBossAppearBGM()
 {
 	PSM::EnemyBigBoss* soundObj = static_cast<PSM::EnemyBigBoss*>(mSoundObj);
-	PSM::checkBoss(soundObj);
+	PSM::assertIsBoss(soundObj);
 
 	int counter, jumpReqIdx;
 	jumpReqIdx = 1;

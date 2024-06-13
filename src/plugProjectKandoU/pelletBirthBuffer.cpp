@@ -21,7 +21,7 @@ void PelletBirthBuffer::entry(Game::PelletInitArg& initArg)
 		return;
 	}
 
-	if (initArg.mPelletType != PELTYPE_TREASURE && initArg.mPelletType != PELTYPE_UPGRADE) {
+	if (initArg.mPelletType != PelletType::Treasure && initArg.mPelletType != PelletType::Upgrade) {
 		return;
 	}
 

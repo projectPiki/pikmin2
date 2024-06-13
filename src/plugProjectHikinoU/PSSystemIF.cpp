@@ -66,7 +66,7 @@ SysIF::SysIF(const SetupArg& arg)
 void SysIF::stopSoundSystem()
 {
 	SceneMgr* mgr = getSceneMgr();
-	checkSceneMgr(mgr);
+	validateSceneMgr(mgr);
 	Scene* scene = mgr->mScenes;
 	P2ASSERTLINE(183, scene);
 	scene->stopAllSound(5);

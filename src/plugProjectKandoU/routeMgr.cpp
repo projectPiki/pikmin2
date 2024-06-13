@@ -285,12 +285,12 @@ void WayPoint::write(Stream& output)
 	output.textWriteText("\t# index\r\n");
 
 	output.textWriteTab(output.mTabCount);
-	output.writeShort(mNumFromLinks);
+	output.writeShort(getNumFromLinks());
 	output.textWriteText("\t# numLinks\r\n");
 
-	for (int i = 0; i < mNumFromLinks; i++) {
+	for (int i = 0; i < getNumFromLinks(); i++) {
 		output.textWriteTab(output.mTabCount);
-		output.writeShort(mFromLinks[i]);
+		output.writeShort(getFromLink(i));
 		output.textWriteText("\t# link %d\r\n", i);
 	}
 
@@ -1324,228 +1324,6 @@ void RouteMgr::write(Stream& output)
 
 	Iterator<WayPoint> iter(this);
 	CI_LOOP(iter) { iter.operator*()->write(output); }
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x130(r1)
-	  mflr      r0
-	  lis       r5, 0x8048
-	  stw       r0, 0x134(r1)
-	  stmw      r27, 0x11C(r1)
-	  mr        r30, r4
-	  mr        r27, r3
-	  subi      r31, r5, 0x1AB8
-	  mr        r3, r30
-	  lwz       r4, 0x414(r4)
-	  bl        0x2A0494
-	  lhz       r0, 0x1C(r27)
-	  mr        r3, r30
-	  extsh     r4, r0
-	  bl        0x2A1780
-	  mr        r3, r30
-	  addi      r4, r31, 0xC0
-	  crclr     6, 0x6
-	  bl        0x2A021C
-	  li        r0, 0
-	  lis       r3, 0x804B
-	  addi      r3, r3, 0x2380
-	  stw       r0, 0x14(r1)
-	  cmplwi    r0, 0
-	  stw       r3, 0x8(r1)
-	  stw       r0, 0xC(r1)
-	  stw       r27, 0x10(r1)
-	  bne-      .loc_0x8C
-	  mr        r3, r27
-	  lwz       r12, 0x0(r27)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x2E8
-
-	.loc_0x8C:
-	  mr        r3, r27
-	  lwz       r12, 0x0(r27)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0xFC
-
-	.loc_0xA8:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x2E8
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-
-	.loc_0xFC:
-	  lwz       r12, 0x8(r1)
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0xA8
-	  b         .loc_0x2E8
-
-	.loc_0x11C:
-	  lwz       r3, 0x10(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r28, r3
-	  addi      r3, r1, 0x18
-	  lha       r5, 0x36(r28)
-	  addi      r4, r31, 0x28
-	  crclr     6, 0x6
-	  bl        -0xACC84
-	  mr        r3, r30
-	  addi      r4, r1, 0x18
-	  bl        0x29FF54
-	  lwz       r4, 0x414(r30)
-	  mr        r3, r30
-	  bl        0x2A0360
-	  lha       r4, 0x36(r28)
-	  mr        r3, r30
-	  bl        0x2A1650
-	  mr        r3, r30
-	  addi      r4, r31, 0x34
-	  crclr     6, 0x6
-	  bl        0x2A00EC
-	  lwz       r4, 0x414(r30)
-	  mr        r3, r30
-	  bl        0x2A0338
-	  lha       r4, 0x38(r28)
-	  mr        r3, r30
-	  bl        0x2A1628
-	  mr        r3, r30
-	  addi      r4, r31, 0x40
-	  crclr     6, 0x6
-	  bl        0x2A00C4
-	  mr        r27, r28
-	  li        r29, 0
-	  b         .loc_0x1E4
-
-	.loc_0x1B0:
-	  lwz       r4, 0x414(r30)
-	  mr        r3, r30
-	  bl        0x2A0304
-	  lha       r4, 0x3A(r27)
-	  mr        r3, r30
-	  bl        0x2A15F4
-	  mr        r3, r30
-	  mr        r5, r29
-	  addi      r4, r31, 0x50
-	  crclr     6, 0x6
-	  bl        0x2A008C
-	  addi      r27, r27, 0x2
-	  addi      r29, r29, 0x1
-
-	.loc_0x1E4:
-	  lha       r0, 0x38(r28)
-	  cmpw      r29, r0
-	  blt+      .loc_0x1B0
-	  lwz       r4, 0x414(r30)
-	  mr        r3, r30
-	  bl        0x2A02C4
-	  mr        r4, r30
-	  addi      r3, r28, 0x4C
-	  bl        0x29D86C
-	  lfs       f1, 0x58(r28)
-	  mr        r3, r30
-	  bl        0x2A16C0
-	  mr        r3, r30
-	  subi      r4, r2, 0x595C
-	  crclr     6, 0x6
-	  bl        0x2A0044
-	  mr        r3, r30
-	  bl        0x29FF00
-	  lwz       r0, 0x14(r1)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x258
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x2E8
-
-	.loc_0x258:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x2CC
-
-	.loc_0x278:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x2E8
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-
-	.loc_0x2CC:
-	  lwz       r12, 0x8(r1)
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x278
-
-	.loc_0x2E8:
-	  lwz       r3, 0x10(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r4, 0xC(r1)
-	  cmplw     r4, r3
-	  bne+      .loc_0x11C
-	  lmw       r27, 0x11C(r1)
-	  lwz       r0, 0x134(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x130
-	  blr
-	*/
 }
 
 /**
@@ -1631,11 +1409,7 @@ void* GameRouteMgr::getEnd() { return (void*)mCount; }
  * @note Address: 0x80174590
  * @note Size: 0xAC
  */
-EditorRouteMgr::EditorRouteMgr()
-    : RouteMgr()
-    , mNode()
-{
-}
+EditorRouteMgr::EditorRouteMgr() { }
 
 /**
  * @note Address: 0x8017469C

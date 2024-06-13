@@ -137,7 +137,7 @@ struct GeneratorMgr : public CNode {
 
 struct GenArg : public CreatureInitArg {
 
-	inline GenArg(Vector3f& vec) { mPosition = vec; }
+	inline GenArg(const Vector3f& vec) { mPosition = vec; }
 
 	inline GenArg() { }
 
@@ -264,6 +264,14 @@ struct GenItem : public GenObject {
 	virtual void generatorMakeMatrix(Matrixf& genMatrix, Vector3f& position); // _38
 
 	static void initialise();
+
+	inline Vector3f getRadiansRotation()
+	{
+		f32 z = TORADIANS(mRotation.z);
+		f32 y = TORADIANS(mRotation.y);
+		f32 x = TORADIANS(mRotation.x);
+		return Vector3f(x, y, z);
+	}
 
 	// _0C     = VTBL
 	// _00-_24 = GenObject

@@ -433,7 +433,7 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 		rumbleMgr->startRumble(RUMBLETYPE_Fixed13, pos, RUMBLEID_Both);
 
 		PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(enemy->mSoundObj); // get sound object
-		PSM::checkBoss(soundObj);                                                  // make sure we have sound object
+		PSM::assertIsBoss(soundObj);                                               // make sure we have sound object
 		if (soundObj) {                                                            // REALLY MAKE SURE WE HAVE SOUND OBJECT
 			soundObj->jumpRequest(PSM::EnemyMidBoss::BossBgm_Flick);
 		}
@@ -496,7 +496,7 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 	if (enemy->getEnemyTypeID() == EnemyTypeID::EnemyID_UmiMushi) {
 
 		PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(enemy->mSoundObj); // get sound object
-		PSM::checkBoss(soundObj);                                                  // make sure we have sound object
+		PSM::assertIsBoss(soundObj);                                               // make sure we have sound object
 		if (soundObj) {                                                            // REALLY MAKE SURE WE HAVE SOUND OBJECT
 			soundObj->jumpRequest(PSM::EnemyMidBoss::BossBgm_Attack);
 		}

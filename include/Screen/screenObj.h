@@ -187,7 +187,7 @@ struct SceneBase {
 	inline Mgr* getScreenMgr() { return mScreenMgr; }
 
 	// _00 = VTBL
-	char mName[256];                                                   // _004
+	char mName[PATH_MAX];                                              // _004
 	Controller* mController;                                           // _104
 	Mgr* mScreenMgr;                                                   // _108
 	Delegate1<SceneBase, Resource::MgrCommand*> mUserCallbackDelegate; // _10C

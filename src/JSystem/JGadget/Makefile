@@ -1,8 +1,8 @@
 JGADGET_FILES:=\
 	$(BUILD_DIR)/src/JSystem/JGadget/binary.o\
 	$(BUILD_DIR)/src/JSystem/JGadget/linklist.o\
-	$(BUILD_DIR)/asm/JSystem/JGadget/std-list.o\
-	$(BUILD_DIR)/asm/JSystem/JGadget/std-vector.o\
+	$(BUILD_DIR)/src/JSystem/JGadget/std-list.o\
+	$(BUILD_DIR)/src/JSystem/JGadget/std-vector.o\
 
 DEPENDS += $(JGADGET_FILES:.o=.d)
 

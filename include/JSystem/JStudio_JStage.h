@@ -62,9 +62,10 @@ struct TAdaptor_actor : public JStudio::TAdaptor_actor {
 		typedef f32 (JStage::TActor::*Getter)() const;
 		typedef f32 (JStage::TActor::*MaxGetter)() const;
 
-		TVVOutput_ANIMATION_FRAME_(int valueIndex, Setter setter, Getter getter, MaxGetter maxGetter)
+		TVVOutput_ANIMATION_FRAME_(int valueIndex, u32 val, Setter setter, Getter getter, MaxGetter maxGetter)
 		    : TOutput()
 		    , mValueIndex(valueIndex)
+		    , _08(val)
 		    , mSetter(setter)
 		    , mGetter(getter)
 		    , mMaxGetter(maxGetter)
@@ -74,6 +75,7 @@ struct TAdaptor_actor : public JStudio::TAdaptor_actor {
 		virtual void operator()(f32, JStudio::TAdaptor*) const; // _08
 		virtual ~TVVOutput_ANIMATION_FRAME_() { }               // _0C (weak)
 
+		// _00 = VTBL
 		int mValueIndex;      // _04
 		u32 _08;              // _08
 		Setter mSetter;       // _0C

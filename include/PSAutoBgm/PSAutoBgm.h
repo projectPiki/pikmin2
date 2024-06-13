@@ -47,10 +47,10 @@ struct AutoBgm : public PSSystem::DirectedBgm {
 
 	void setPikiMaskNum(u8* cond)
 	{
-		u8 num = 0;
+		u16 num = 0;
 		for (u8 i = 0; i < 16; i++) {
 			if (cond[i]) {
-				num++;
+				num |= cond[i] << i;
 			}
 		}
 		mMeloArr.mTrackMaskIds = num;

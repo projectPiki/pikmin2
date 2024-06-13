@@ -143,6 +143,8 @@ struct Obj : public EnemyBase {
 	void effectDrawOn();
 	void effectDrawOff();
 
+	inline f32 getMoveSpeed() { return C_PROPERPARMS.mRollingMoveSpeed(); }
+
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
 	FSM* mFsm;                              // _2BC

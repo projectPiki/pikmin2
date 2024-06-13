@@ -120,6 +120,13 @@ struct TVec2 {
 		return *this;
 	}
 
+	TVec2<T>& operator-=(const TVec2<T>& other)
+	{
+		x -= other.x;
+		y -= other.y;
+		return *this;
+	}
+
 	TVec2<T>& operator*=(const TVec2<T>& other)
 	{
 		x *= other.x;
@@ -142,6 +149,12 @@ struct TVec2 {
 	void zero() { x = y = 0.0f; }
 
 	f32 squared() const { return x * x + y * y; }
+
+	T length()
+	{
+		f32 sq = squared();
+		return JGeometry::TUtil<T>::sqrt(sq);
+	}
 
 	void normalize()
 	{
@@ -460,7 +473,17 @@ template <typename T>
 struct TBox2 : TBox<TVec2<T> > {
 	TBox2() {}
 	// TBox2(const TBox2& other) { set(other); }
-	TBox2(const TVec2<T>& i, const TVec2<T> f) { set(i, f); }
+	TBox2(const TVec2<T>& i_, const TVec2<T> f_) 
+	{ 
+		i.set(i_);
+		f.set(f_); 
+	}
+
+	TBox2(const TVec3<T>& i_, const TVec3<T>& f_) 
+	{ 
+		i.set(i_.x, i_.y);
+		f.set(f_.x, f_.y); 
+	}
 	// TBox2(const TVec2<T>& i, T x1, T y1) { set(i, x1, y1); }
 	// TBox2(T x0, T y0, const TVec2<T>& f) { set(x0, y0, f); }
 	TBox2(f32 x0, f32 y0, f32 x1, f32 y1) { set(x0, y0, x1, y1); }
@@ -478,6 +501,18 @@ struct TBox2 : TBox<TVec2<T> > {
 	// 	set(other);
 	// 	return *this;
 	// }
+
+	void setI(TVec2<T>& in)
+	{
+		i.x = in.x;
+		i.y = in.y;
+	}
+
+	void setF(TVec2<T>& in)
+	{
+		f.x = in.x;
+		f.y = in.y;
+	}
 
 	void absolute() {
 		if (!this->isValid()) {

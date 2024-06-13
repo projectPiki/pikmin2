@@ -300,27 +300,26 @@ void Model::jointVisible(bool newVisibility, int jointIndex)
 	if (newVisibility != false) {
 		for (J3DMaterial* material = mJ3dModel->mModelData->mJointTree.mJoints[(u16)jointIndex]->mMaterial; material != nullptr;
 		     material              = material->mNext) {
-			material->mShape->mFlags &= ~J3DShape_Hide;
+			RESET_FLAG(material->mShape->mFlags, J3DShape_Hide);
 		}
-		return;
-	}
-	for (J3DMaterial* material = mJ3dModel->mModelData->mJointTree.mJoints[(u16)jointIndex]->mMaterial; material != nullptr;
-	     material              = material->mNext) {
-		material->mShape->mFlags |= J3DShape_Hide;
+	} else {
+		for (J3DMaterial* material = mJ3dModel->mModelData->mJointTree.mJoints[(u16)jointIndex]->mMaterial; material != nullptr;
+		     material              = material->mNext) {
+			SET_FLAG(material->mShape->mFlags, J3DShape_Hide);
+		}
 	}
 }
 
 /**
  * @note Address: 0x8043E9BC
  * @note Size: 0x58
- * Matching! https://decomp.me/scratch/ZILok
  */
 void Model::hide()
 {
 	for (u16 i = 0; i < mJointCount; i++) {
 		for (J3DMaterial* material = mJ3dModel->mModelData->mJointTree.mJoints[i]->mMaterial; material != nullptr;
 		     material              = material->mNext) {
-			material->mShape->mFlags |= J3DShape_Hide;
+			SET_FLAG(material->mShape->mFlags, J3DShape_Hide);
 		}
 	}
 }
@@ -334,7 +333,7 @@ void Model::show()
 	for (u16 i = 0; i < mJointCount; i++) {
 		for (J3DMaterial* material = mJ3dModel->mModelData->mJointTree.mJoints[i]->mMaterial; material != nullptr;
 		     material              = material->mNext) {
-			material->mShape->mFlags &= ~J3DShape_Hide;
+			RESET_FLAG(material->mShape->mFlags, J3DShape_Hide);
 		}
 	}
 }
@@ -346,7 +345,7 @@ void Model::show()
 void Model::hidePackets()
 {
 	for (u16 i = 0; i < mJ3dModel->getModelData()->getShapeNum(); i++) {
-		mJ3dModel->mShapePackets[i].onFlag(0x10);
+		mJ3dModel->mShapePackets[i].onFlag(J3DShape_Hidden);
 	}
 }
 
@@ -357,7 +356,7 @@ void Model::hidePackets()
 void Model::showPackets()
 {
 	for (u16 i = 0; i < mJ3dModel->getModelData()->getShapeNum(); i++) {
-		getJ3DModel()->getShapePacket(i)->offFlag(0x10);
+		getJ3DModel()->getShapePacket(i)->offFlag(J3DShape_Hidden);
 	}
 }
 

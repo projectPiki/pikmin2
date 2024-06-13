@@ -381,7 +381,7 @@ void Item::doAI()
 {
 	if (mDownFloorType == DFTYPE_PaperBag) {
 		switch (mSoundEvent.update()) {
-		case 2:
+		case TSE_ApplyTransition:
 			P2ASSERTLINE(607, mSoundObj->getCastType() == PSM::CCT_WorkItem);
 			static_cast<PSM::WorkItem*>(mSoundObj)->eventStop();
 			break;
@@ -588,12 +588,15 @@ char* Mgr::getCaveName(int type)
 int Mgr::getCaveID(char* name)
 {
 	int id;
+
 	if (strncmp("DownFloor", name, strlen("DownFloor")) == 0) {
 		return DFMODEL_SmallBlock;
 	}
+
 	if (strncmp("DownFloor2", name, strlen("DownFloor2")) == 0) {
 		return DFMODEL_LargeBlock;
 	}
+
 	if (strncmp("DownFloor3", name, strlen("DownFloor3")) != 0) {
 		return -1;
 	}

@@ -21,7 +21,7 @@ Creature* ObjectSystem::findCreature(const char* query) const
 	char targetChar    = '0';
 	Creature* creature = nullptr;
 	char* queryPtr     = (char*)&query[1];
-	char stringBuffer[256];
+	char stringBuffer[PATH_MAX];
 	char* bufferPtr = stringBuffer;
 
 	int i           = 0;

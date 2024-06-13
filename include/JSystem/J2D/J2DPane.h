@@ -34,6 +34,13 @@ struct ResFONT;
 struct ResTIMG;
 struct ResTLUT;
 
+enum J2DGlbVtxID {
+	GLBVTX_BtmLeft  = 0,
+	GLBVTX_BtmRight = 1,
+	GLBVTX_TopLeft  = 2,
+	GLBVTX_TopRight = 3,
+};
+
 enum J2DPaneTypeID {
 	PANETYPE_Screen  = 0x8,
 	PANETYPE_Pane    = 0x10,
@@ -112,7 +119,7 @@ struct J2DPaneExBlock : J2DScrnBlockHeader {
  * @size{0x30}
  * @fabricated
  */
-struct J2DPictureBlockTrailer {
+struct J2DScrnBlockPictureParameter {
 	u8 _00[2];                           // _00
 	u16 mMaterialNum;                    // _02
 	u16 mMaterialID;                     // _04
@@ -198,7 +205,7 @@ struct J2DPane {
 	void gather(J2DPane** gatheredPanes, u64 minID, u64 maxID, int gatheredLimit, int& gatheredCount);
 
 	JGeometry::TBox2f* getBounds();
-	JGeometry::TVec3f getGlbVtx(u8) const;
+	JGeometry::TVec3f getGlbVtx(u8 idx) const; // see J2DGlbVtxID enum
 	void* getPointer(JSURandomInputStream*, u32, JKRArchive*);
 
 	// Supposed to be weak but refuses to work

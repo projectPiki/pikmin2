@@ -169,10 +169,10 @@ void TRenderingProcessor::setDrawLocateY()
 		mLocate.setY(mFontHeightAdjusted * mParagraphNum + mLineHeight * mPageInfoNum + mFontHeight * mMainFont->getDescent()
 		             + mLocate.f.y);
 	} else if (mFlags.isSet(0x200)) {
-		f32 totalFontHeight         = 0.0f;
-		unsigned char* lineWidthPtr = (mOnePageLines + ((2 * mPageInfoNum) & 0x1FE));
-		int lineWidthIndex          = lineWidthPtr[0];
-		int lineWidthEndIndex       = lineWidthPtr[1] + 1 - lineWidthIndex;
+		f32 totalFontHeight   = 0.0f;
+		u8* lineWidthPtr      = (mOnePageLines + ((2 * mPageInfoNum) & 0x1FE));
+		int lineWidthIndex    = lineWidthPtr[0];
+		int lineWidthEndIndex = lineWidthPtr[1] + 1 - lineWidthIndex;
 
 		while (lineWidthEndIndex > 0) {
 			if (*(mLineWidths + 4 * lineWidthIndex) > 0.0f) {

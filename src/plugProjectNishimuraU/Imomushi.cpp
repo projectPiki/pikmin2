@@ -800,7 +800,7 @@ void Obj::eatTsuyukusa()
 			}
 
 			if (mStateTimer > C_PROPERPARMS.mEatingTime()) {
-				InteractEat eat(this, PELTYPE_BERRY);
+				InteractEat eat(this, PelletType::Berry);
 				plant->stimulate(eat);
 				mStateTimer = 0.0f;
 			}

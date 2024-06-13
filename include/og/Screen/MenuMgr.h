@@ -20,6 +20,13 @@ namespace og {
 namespace Screen {
 // Size: 0x78
 struct MenuMgr {
+	enum CursorState {
+		CURSOR_Inactive   = 0,
+		CURSOR_DelayStart = 1,
+		CURSOR_Start      = 2,
+		CURSOR_Kill       = 3,
+	};
+
 	MenuMgr();
 	void calcCenter(J2DPane*, Vector2f*);
 	void calcPoint(Vector2f&, Vector2f&, f32, Vector2f*);
@@ -44,20 +51,20 @@ struct MenuMgr {
 	u16 mCSelectId;                // _0A
 	f32 mTimer;                    // _0C
 	f32 mTimerMax;                 // _10
-	J2DPane** mPaneList1;          // _14 /* ptr to array of ptrs */
-	J2DPane** mPaneList2;          // _18 /* ptr to array of ptrs */
-	J2DPane** mPaneList3;          // _1C /* ptr to array of ptrs */
-	ScaleMgr* mScaleMgrs;          // _20 /* ptr to array */
-	J2DPane** mPaneList4;          // _24 /* ptr to array of ptrs */
-	J2DPane** mPaneList5;          // _28 /* ptr to array of ptrs */
-	u8 mIsCursorActive;            // _2C
-	u8 mDoNeedMenuOnOff;           // _2D
+	J2DPane** mMainPanes;          // _14, overall panes for each option
+	J2DPane** mTextBoxPanes;       // _18, textboxes for each option
+	J2DPane** mTextBoxTakuPanes;   // _1C, textboxes for each option for taku-type menus (no functional difference)
+	ScaleMgr* mScaleMgrs;          // _20, ptr to array
+	J2DPane** mLeftCursorPanes;    // _24, left circle cursors for each option
+	J2DPane** mRightCursorPanes;   // _28, right circle cursors for each option
+	bool mIsCursorActive;          // _2C
+	bool mDoNeedMenuOnOff;         // _2D, this is always false, but true hides non-selected elements for some menus
 	bool mDoScale;                 // _2E
 	Vector2f mCursorPos1;          // _30
 	Vector2f mCursorPos2;          // _38
 	efx2d::T2DCursor* mEfxCursor1; // _40
 	efx2d::T2DCursor* mEfxCursor2; // _44
-	u8 mIsChangingSelect;          // _48
+	bool mIsChangingSelect;        // _48
 	Vector2f mTransitionPosLeft;   // _48
 	Vector2f mTransitionPosRight;  // _54
 	Vector2f mSelPosLeft;          // _5C

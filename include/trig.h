@@ -144,10 +144,10 @@ inline Vector3f getRotation(f32 angle) { return Vector3f(-sinf(angle), 0.0f, cos
 
 inline f32 clamp(f32 val, f32 limit)
 {
-	// f64 abs = fabs(val);
 	if (absF(val) > limit) {
 		val = (val > 0.0f) ? limit : -limit;
 	}
+
 	return val;
 }
 

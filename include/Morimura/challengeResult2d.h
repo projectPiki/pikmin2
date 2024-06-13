@@ -117,13 +117,6 @@ struct TChallengeResult : public TTestBase {
 		Vector2f _08;
 	};
 
-	inline void loadSaveMgrResources()
-	{
-		ebi::Save::TMgr* saveMgr = mSaveMgr;
-		saveMgr->mSaveMenu.loadResource();
-		saveMgr->doLoadResource(JKRGetCurrentHeap());
-	}
-
 	virtual ~TChallengeResult();                                                                             // _08
 	virtual void doCreate(JKRArchive*);                                                                      // _4C
 	virtual bool doUpdate();                                                                                 // _58

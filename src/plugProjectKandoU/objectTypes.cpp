@@ -42,7 +42,7 @@ namespace ObjType {
 char* getName(u16 type)
 {
 	for (s32 i = 0;; i++) {
-		if (infos[i].mType == 0xFFFF) {
+		if (infos[i].mType == OBJTYPE_End) {
 			return nullptr;
 		}
 

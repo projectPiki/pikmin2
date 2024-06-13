@@ -143,7 +143,7 @@ struct Quat {
 		return result;
 	}
 
-	inline Quat& operator+(const Quat& other)
+	inline Quat operator+(const Quat& other)
 	{
 		Quat result;
 		result.w = w + other.w;

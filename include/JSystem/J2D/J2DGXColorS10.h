@@ -22,10 +22,10 @@ struct J2DGXColorS10 : public GXColorS10 {
 
 	J2DGXColorS10(const J2DGXColorS10& other)
 	{
-		r = other.r;
-		g = other.g;
-		b = other.b;
-		a = other.a;
+		r = (s16)other.r;
+		g = (s16)other.g;
+		b = (s16)other.b;
+		a = (s16)other.a;
 	}
 
 	J2DGXColorS10(const u64& other)
@@ -39,10 +39,10 @@ struct J2DGXColorS10 : public GXColorS10 {
 
 	J2DGXColorS10(const GXColorS10& color)
 	{
-		r = color.r;
-		g = color.g;
-		b = color.b;
-		a = color.a;
+		r = (s16)color.r;
+		g = (s16)color.g;
+		b = (s16)color.b;
+		a = (s16)color.a;
 	}
 
 	inline operator u64() const { return toUInt64(); }
@@ -50,6 +50,16 @@ struct J2DGXColorS10 : public GXColorS10 {
 
 	inline operator JUtility::TColor() const { return toTColor(); }
 	inline JUtility::TColor toTColor() const { return JUtility::TColor(r, g, b, a); }
+
+	inline void operator=(const GXColorS10& other)
+	{
+		r = (s16)other.r;
+		g = (s16)other.g;
+		b = (s16)other.b;
+		a = (s16)other.a;
+	}
+
+	inline void operator=(const J2DGXColorS10& other) { (GXColorS10)* this = (GXColorS10)other; }
 
 	inline void set(u16 _r, u16 _g, u16 _b, u16 _a)
 	{

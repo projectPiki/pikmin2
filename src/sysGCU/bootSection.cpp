@@ -307,7 +307,7 @@ void TinyPikminMgr::loadResource(JKRArchive* arc)
 	char* pikipaths[5]
 	    = { "title_red_5a3.bti", "title_yellow_5a3.bti", "title_blue_5a3.bti", "title_white_5a3.bti", "title_violet_5a3.bti" };
 	for (int i = 0; i < 5; i++) {
-		char buf[256];
+		char buf[PATH_MAX];
 		sprintf(buf, "timg/%s", pikipaths[i]);
 		ResTIMG* file = static_cast<ResTIMG*>(arc->getResource(buf));
 		P2ASSERTLINE(786, file); // 1031 in demo 1?
@@ -1456,7 +1456,7 @@ void BootSection::updateLoadMemoryCard()
 	sys->mCardMgr->update();
 
 	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-	PSSystem::checkSceneMgr(mgr);
+	PSSystem::validateSceneMgr(mgr);
 	PSM::Scene_Global* scene = static_cast<PSM::Scene_Global*>(mgr->mScenes);
 	P2ASSERTLINE(1748, scene);
 	JAISound* handle = *(scene->getGlobalStream()->getHandleP());

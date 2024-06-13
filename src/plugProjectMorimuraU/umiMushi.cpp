@@ -303,7 +303,7 @@ void Obj::doAnimationCullingOff()
 	}
 	if (mBloysterType == EnemyTypeID::EnemyID_UmiMushi) {
 		PSM::EnemyBoss* bossSound = static_cast<PSM::EnemyBoss*>(mSoundObj);
-		checkBoss(bossSound);
+		assertIsBoss(bossSound);
 		if (bossSound) {
 			if (mSticked) {
 				bossSound->postPikiAttack(true);

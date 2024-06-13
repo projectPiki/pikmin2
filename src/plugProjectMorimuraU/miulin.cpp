@@ -707,7 +707,7 @@ void Obj::walkFunc()
 	// check that the mamuta is covering enough distance every 120 frames, if not, make it forget what it was doing
 	mLastPositionCheckTimer++;
 	if (mLastPositionCheckTimer > 120) {
-		if (sqrDistanceXZ(mPosition, mLastPositionCheck) < 900.0f) {
+		if (sqrDistanceXZ(mPosition, mLastPositionCheck) < SQUARE(30.0f)) {
 			mNoSearchCounter = 120;
 			mTargetCreature  = nullptr;
 			mGoalPosition    = mHomePosition;
