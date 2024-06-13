@@ -50,9 +50,11 @@ J2DPicture::J2DPicture(J2DPane* parent, JSURandomInputStream* input, J2DMaterial
 	J2DScrnBlockPictureParameter trailer;
 	input->read(&trailer, sizeof(J2DScrnBlockPictureParameter));
 	u16 v1 = trailer.mMaterialID;
-	for (int i = 0; i < 4; i++) {
+	int i = 0;
+	// matches tp debug
+	for (i = i; i < 4; i++) {
 		mTexCoords[i]    = trailer.mTexCoords[i];
-		mCornerColors[i] = JUtility::TColor(*(u32*)&trailer.mCornerColor[i]); // just need to fix this
+		mCornerColors[i] = JUtility::TColor(GXCOLOR_AS_U32(trailer.mCornerColor[i])); // just need to fix this
 	}
 	input->seek(headerPosition + header.mBlockLength, SEEK_SET);
 
@@ -68,33 +70,23 @@ J2DPicture::J2DPicture(J2DPane* parent, JSURandomInputStream* input, J2DMaterial
 	mBlack        = TCOLOR_BLACK_U32;
 	mWhite        = TCOLOR_WHITE_U32;
 	mTextureCount = 0;
-	if (material != nullptr && material->mTevBlock != nullptr) {
-		u8 texGenNum   = material->mTexGenBlock.mTexGenNum;
-		u8 tevStageNum = material->mTevBlock->getTevStageNum();
+	if (material && material->getTevBlock()) {
+		u8 texGenNum   = material->getTexGenBlock()->getTexGenNum();
+		u8 tevStageNum = material->getTevBlock()->getTevStageNum();
 		if ((texGenNum == 1 && tevStageNum != 1) || (texGenNum != 1 && tevStageNum != texGenNum + 1)) {
-			J2DGXColorS10* blackJ2D = material->getTevBlock()->getTevColor(0);
-			GXColorS10 black;
-			black.r = blackJ2D->r;
-			black.g = blackJ2D->g;
-			black.b = blackJ2D->b;
-			black.a = blackJ2D->a;
+			J2DGXColorS10 black = *material->getTevBlock()->getTevColor(0);
+			J2DGXColorS10 white = *material->getTevBlock()->getTevColor(1);
 
-			J2DGXColorS10* whiteJ2D = material->getTevBlock()->getTevColor(1);
-			GXColorS10 white;
-			white.r = whiteJ2D->r;
-			white.g = whiteJ2D->g;
-			white.b = whiteJ2D->b;
-			white.a = whiteJ2D->a;
 
-			mBlack = JUtility::TColor(((u8)black.r << 0x18) | ((u8)black.g << 0x10) | ((u8)black.b << 8) | (u8)black.a);
-			mWhite = JUtility::TColor(((u8)white.r << 0x18) | ((u8)white.g << 0x10) | ((u8)white.b << 8) | (u8)white.a);
+			mBlack = JUtility::TColor(RGBA_TO_U32(black.r, black.g, black.b, black.a));
+			mWhite = JUtility::TColor(RGBA_TO_U32(white.r, white.g, white.b, white.a));
 		}
 		mTextureCount = (texGenNum <= 4) ? texGenNum : 4;
 	}
 	mUsedTextureFlags = 0;
 	for (u32 i = 0; i < 4; i++) {
 		mTextures[i] = nullptr;
-		if (material != nullptr && material->mTevBlock != nullptr) {
+		if (material && material->getTevBlock()) {
 			JUTTexture* texture = material->mTevBlock->getTexture(i);
 			if (texture != nullptr) {
 				mTextures[i]      = texture;
@@ -102,13 +94,13 @@ J2DPicture::J2DPicture(J2DPane* parent, JSURandomInputStream* input, J2DMaterial
 			}
 		}
 	}
-	if (material != nullptr && material->mTevBlock != nullptr) {
+	if (material && material->getTevBlock()) {
 		material->mTevBlock->setUndeleteFlag(0xF0);
 	}
 	mPalette            = nullptr;
 	JUtility::TColor v2 = 0xFFFFFFFF;
 	JUtility::TColor v3 = 0xFFFFFFFF;
-	if (material != nullptr && material->mTevBlock != nullptr) {
+	if (material && material->getTevBlock()) {
 		v2 = *material->mTevBlock->getTevKColor(3);
 		v3 = *material->mTevBlock->getTevKColor(1);
 	}
