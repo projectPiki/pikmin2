@@ -58,10 +58,7 @@ struct TColor : public GXColor {
 		a = cA;
 	}
 
-	void set(u32 u32Color) 
-	{
-		GXCOLOR_AS_U32(*this) = u32Color; 
-	}
+	void set(u32 u32Color) { GXCOLOR_AS_U32(*this) = u32Color; }
 
 	void setU64(u64 u64Color)
 	{

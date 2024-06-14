@@ -268,6 +268,8 @@ struct FruitSlot : public CNode {
 	void killFruit();
 	void update();
 
+	Pellet* getFruit() const { return mFruit; }
+
 	// _00     = VTBL
 	// _00-_18 = CNode
 	Pellet* mFruit;       // _18
@@ -287,6 +289,9 @@ struct Fruits {
 	int countFruits();
 	void killAll();
 	FruitSlot* getFruit(Vector3f& pos);
+
+	int getSlotCount() const { return mSlotCount; }
+	FruitSlot* getSlot(int i) const { return &mSlots[i]; }
 
 	FruitSlot* mSlots; // _00, array of mSlotCount slots
 	int mSlotCount;    // _04

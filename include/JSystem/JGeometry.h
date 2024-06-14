@@ -14,39 +14,28 @@ inline f32 fsqrt_step(f32 mag)
 namespace JGeometry {
 
 template <typename T>
-struct SMatrix33C{
-	void set(
-		T a11, T a12, T a13,
-		T a21, T a22, T a23,
-		T a31, T a32, T a33
-	)
+struct SMatrix33C {
+	void set(T a11, T a12, T a13, T a21, T a22, T a23, T a31, T a32, T a33)
 	{
-		ref(0,0) = a11;
-		ref(0,1) = a12;
-		ref(0,2) = a13;
-		
-		ref(1,0) = a21;	
-		ref(1,1) = a22;
-		ref(1,2) = a23;
-		
-		ref(2,0) = a31;
-		ref(2,1) = a32;
-		ref(2,2) = a33;
+		ref(0, 0) = a11;
+		ref(0, 1) = a12;
+		ref(0, 2) = a13;
+
+		ref(1, 0) = a21;
+		ref(1, 1) = a22;
+		ref(1, 2) = a23;
+
+		ref(2, 0) = a31;
+		ref(2, 1) = a32;
+		ref(2, 2) = a33;
 	}
 
-	T &ref(u32 r, u32 c)
-	{
-		return v[r][c];
-	}
-	
-	T at(u32 r, u32 c) const
-	{
-		return v[r][c];
-	}
+	T& ref(u32 r, u32 c) { return v[r][c]; }
+
+	T at(u32 r, u32 c) const { return v[r][c]; }
 
 	T v[3][3];
 };
-
 
 template <typename T>
 struct TUtil {
@@ -469,7 +458,8 @@ struct TVec3 {
 
 	bool isZero() const { return squared() <= 32.0f * FLT_EPSILON; }
 
-	TVec3& operator*=(T v) {
+	TVec3& operator*=(T v)
+	{
 		scale(v);
 		return *this;
 	}
@@ -654,29 +644,25 @@ typedef TBox3<f32> TBox3f;
 
 typedef TVec2<s16> TVec2s;
 
-
 template <typename T>
 struct TRotation3 {
-
 };
 
 template <typename T>
-class TRotation3< SMatrix33C<T> > {
-	public:
+// clang-format off
+class TRotation3<SMatrix33C<T> > {
+	// clang-format on
+public:
 	inline void getEulerXYZ(TVec3<T>& vec) const
 	{
-		if (mtx.at(2, 0) - TUtil<T>::one() >= -TUtil<T>::epsilon())
-		{
+		if (mtx.at(2, 0) - TUtil<T>::one() >= -TUtil<T>::epsilon()) {
 			vec.set<T>(TUtil<T>::atan2(-mtx.at(0, 1), mtx.at(1, 1)), -TUtil<T>::halfPI(), 0);
 			return;
 		}
-		
-		if (mtx.at(2, 0) + TUtil<T>::one() <= TUtil<T>::epsilon())
-		{
+
+		if (mtx.at(2, 0) + TUtil<T>::one() <= TUtil<T>::epsilon()) {
 			vec.set<T>(TUtil<T>::atan2(mtx.at(0, 1), mtx.at(1, 1)), TUtil<T>::halfPI(), 0);
-		}
-		else
-		{
+		} else {
 			vec.x = TUtil<T>::atan2(mtx.at(2, 1), mtx.at(2, 2));
 			vec.z = TUtil<T>::atan2(mtx.at(1, 0), mtx.at(0, 0));
 			vec.y = TUtil<T>::asin(-mtx.at(2, 0));
@@ -685,7 +671,9 @@ class TRotation3< SMatrix33C<T> > {
 	SMatrix33C<T> mtx;
 };
 
-typedef TRotation3< SMatrix33C<f64> > TRotation3D;
+// clang-format off
+typedef TRotation3<SMatrix33C<f64> > TRotation3D;
+// clang-format on
 
 } // namespace JGeometry
 

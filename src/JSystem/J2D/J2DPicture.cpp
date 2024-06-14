@@ -50,7 +50,7 @@ J2DPicture::J2DPicture(J2DPane* parent, JSURandomInputStream* input, J2DMaterial
 	J2DScrnBlockPictureParameter trailer;
 	input->read(&trailer, sizeof(J2DScrnBlockPictureParameter));
 	u16 v1 = trailer.mMaterialID;
-	int i = 0;
+	int i  = 0;
 	// matches tp debug
 	for (i = i; i < 4; i++) {
 		mTexCoords[i]    = trailer.mTexCoords[i];
@@ -76,7 +76,6 @@ J2DPicture::J2DPicture(J2DPane* parent, JSURandomInputStream* input, J2DMaterial
 		if ((texGenNum == 1 && tevStageNum != 1) || (texGenNum != 1 && tevStageNum != texGenNum + 1)) {
 			J2DGXColorS10 black = *material->getTevBlock()->getTevColor(0);
 			J2DGXColorS10 white = *material->getTevBlock()->getTevColor(1);
-
 
 			mBlack = JUtility::TColor(RGBA_TO_U32(black.r, black.g, black.b, black.a));
 			mWhite = JUtility::TColor(RGBA_TO_U32(white.r, white.g, white.b, white.a));

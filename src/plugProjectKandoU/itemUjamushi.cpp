@@ -392,7 +392,7 @@ void Uja::update(BoidParms& parms)
 			mPreviousAlignmentDir = alignmentVec * norm;
 
 			seperationVec *= norm;
-			seperationVec -= *this;
+			seperationVec = seperationVec - *this;
 			seperationVec.normalise();
 
 			mPreviousMoveDir = seperationVec;
@@ -417,7 +417,7 @@ void Uja::update(BoidParms& parms)
 			Uja* uja = *iter;
 
 			// If current iteration isn't this, and we aren't STATE_2
-			if (uja != this && uja->mState != STATE_2) {
+			if (uja != this) {
 				// Calculate direction and distance to the other Uja
 				Vector3f ujaSep = *this - *uja; // 0x264
 
@@ -617,6 +617,8 @@ void Uja::update(BoidParms& parms)
 
 	updateScale(alignmentThreshold);
 	makeMatrix();
+
+	FORCE_DONT_INLINE;
 
 	/*
 	stwu     r1, -0x430(r1)

@@ -209,17 +209,16 @@ void CellIterator::calcExtent()
 	f32 sphereRadius         = mArg.mSphere.mRadius;
 
 	// Get the bounds from the cell manager
-	f32 boundsY = cellManager->mBounds.y;
-	f32 boundsX = cellManager->mBounds.x;
+	Vector2f bounds(cellManager->mBounds.x, cellManager->mBounds.y);
 
 	// Calculate the normalization factor
-	f32 normalizationFactor = 1.0f / (cellManager->mScale * cellManager->mLayers[mCurrLayerIdx].mLayerSize);
+	f32 normalizationFactor = 1.0f / (cellManager->mScale * cellManager->getLayer(mCurrLayerIdx)->mLayerSize);
 
 	// Calculate the minimum and maximum x and y values
-	mMinX = (spherePosition.x - sphereRadius - boundsY) * normalizationFactor;
-	mMinY = (spherePosition.z - sphereRadius - boundsX) * normalizationFactor;
-	mMaxX = (spherePosition.x + sphereRadius - boundsY) * normalizationFactor;
-	mMaxY = (spherePosition.z + sphereRadius - boundsX) * normalizationFactor;
+	mMinX = (spherePosition.x - sphereRadius - bounds.x) * normalizationFactor;
+	mMinY = (spherePosition.z - sphereRadius - bounds.y) * normalizationFactor;
+	mMaxX = (spherePosition.x + sphereRadius - bounds.x) * normalizationFactor;
+	mMaxY = (spherePosition.z + sphereRadius - bounds.y) * normalizationFactor;
 
 	if (mMinX > mMaxX) {
 		JUT_PANICLINE(249, "x %f>%f", mMinX, mMaxX);

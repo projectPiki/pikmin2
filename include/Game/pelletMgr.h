@@ -450,7 +450,6 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	}
 
 	inline Vector3f getOffset() { return mConfig->mParams.mOffset.mData; }
-	inline f32 getParticleHeight() { return mConfig->mParams.mHeight.mData / 0.5f; }
 
 	// _00		= VTABLE 1
 	// _04-_314	= DYNCREATURE

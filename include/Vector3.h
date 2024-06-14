@@ -69,7 +69,7 @@ struct Vector3 {
 
 	// Direction Functions
 	static inline T getDirectionFromTo(const Vector3& from, Vector3& to);
-	static inline void getFlatDirectionFromTo(Vector3& from, Vector3& to);
+	static inline T getFlatDirectionFromTo(Vector3& from, Vector3& to);
 	inline T setDirectionFromTo(const Vector3& from, const Vector3& to);
 	inline void setFlatDirectionFromTo(Vector3& from, Vector3& to);
 	inline void toFlatDirection();
@@ -185,11 +185,11 @@ inline T Vector3<T>::getDirectionFromTo(const Vector3& from, Vector3& to)
 }
 
 template <typename T>
-inline void Vector3<T>::getFlatDirectionFromTo(Vector3& from, Vector3& to)
+inline T Vector3<T>::getFlatDirectionFromTo(Vector3& from, Vector3& to)
 {
 	to -= from;
 	to.y = 0.0f;
-	to.normalise();
+	return to.normalise();
 }
 
 template <typename T>

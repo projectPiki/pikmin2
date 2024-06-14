@@ -1830,11 +1830,12 @@ u32 PelletReturnState::execPathfinding(Pellet* pelt)
 u32 PelletReturnState::execMove(Pellet* pelt)
 {
 	WayPoint* currWP = mapMgr->mRouteMgr->getWayPoint(mPathNode->mWpIndex);
-	Vector3f wpPos   = currWP->mPosition; // wpPos is only used for sep calculation
-	Vector3f sep     = wpPos - pelt->getPosition();
-	sep.y            = 0.0f;
-	// not quite right - needs to ignore that sep.y is 0.0f.
-	f32 dist = _normaliseVec(sep);
+	Vector3f wpPos   = currWP->mPosition;
+	// this should be getFlatDirectionFromTo but it wont cooperate
+	Vector3f sep = wpPos - pelt->getPosition();
+	sep.y        = 0.0f;
+	f32 dist     = sep.normalise();
+
 	if (dist < 15.0f) {
 		mPathNode = mPathNode->mNext;
 		if (!mPathNode) {
@@ -1879,7 +1880,7 @@ u32 PelletReturnState::execMove(Pellet* pelt)
 			efx.create(&arg);
 		}
 		mDoEfx       = true;
-		f32 scale    = (mTimer - 0.9f) / 0.1f * PI * 0.5f;
+		f32 scale    = (mTimer - 0.9f) / 0.100000025f * PI * 0.5f;
 		f32 sinTheta = sinf(scale);
 		// again, regswap
 		mPeltYScale = (sinTheta *= 0.3f) + 0.7f;

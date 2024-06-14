@@ -974,7 +974,8 @@ int Pellet::getPelletConfigMax()
 // WIP: https://decomp.me/scratch/SWcqK
 void Pellet::setupParticles()
 {
-	f32 radius       = mConfig->mParams.mRadius.mData;
+	f32 radius = getStickRadius();
+
 	f32 nil          = 0.0f;
 	mRotation        = nil;
 	mMaxCollParticle = mConfig->mParams.mNumParticles.mData;
@@ -995,7 +996,7 @@ void Pellet::setupParticles()
 			createParticles(mMaxCollParticle);
 
 			for (int i = 0; i < particleCount; i++) {
-				f32 mid       = mConfig->mParams.mHeight.mData / 2;
+				f32 mid       = mConfig->mParams.mHeight.mData * 0.5f;
 				f32 midRadius = radius - mid;
 				f32 theta     = (TAU / (f32)particleCount) * (f32)i;
 				f32 cos       = midRadius * cosf(theta);
@@ -1007,9 +1008,9 @@ void Pellet::setupParticles()
 				// mDynParticle->getAt(i)->_18 = mid;
 			}
 
-			Vector3f rotation = Vector3f(0.0f, 0.0f, 0.0f);
-			f32 configHeight  = mConfig->mParams.mHeight.mData / 2;
-			setupDynParticle(particleCount, configHeight, rotation);
+			Vector3f rotation(0.0f);
+			f32 configHeight = mConfig->mParams.mHeight.mData;
+			setupDynParticle(particleCount, configHeight * 0.5f, rotation);
 			// _2F4               = _2F4 + Vector3f(0.0f, 0.0f, 0.0f);
 			// f32 height = configHeight / 2;
 			// mDynParticle->getAt(particleCount)->_00 = Vector3f(0.0f, 0.0f, 0.0f);
@@ -1261,12 +1262,12 @@ lbl_801678C8:
 // WIP: https://decomp.me/scratch/DzVGu
 void Pellet::setupParticles_simple()
 {
-	f32 radius = mConfig->mParams.mRadius.mData;
+	f32 radius = getStickRadius();
 	createParticles(mMaxCollParticle);
 
 	f32 endIndex = (f32)mMaxCollParticle;
 
-	f32 mid = getParticleHeight();
+	f32 mid = mConfig->mParams.mHeight.mData * 2.0f;
 	radius -= mid;
 
 	for (int i = 0; i < mMaxCollParticle; i++) {
@@ -1431,8 +1432,8 @@ lbl_80167AD8:
 // WIP: https://decomp.me/scratch/jVGhn
 void Pellet::setupParticles_tall()
 {
-	f32 radius = mConfig->mParams.mRadius.mData;
-	f32 mid    = getParticleHeight();
+	f32 radius = getStickRadius();
+	f32 mid    = mConfig->mParams.mHeight.mData * 2.0f;
 
 	f32 height = mid;
 	if (mid > 10.0f) {
@@ -1824,6 +1825,8 @@ void Pellet::setOrientation(Matrixf& mat)
 	}
 
 	mFaceDir = roundAng(mFaceDir);
+
+	FORCE_DONT_INLINE;
 }
 
 /**
@@ -4613,12 +4616,8 @@ void BasePelletMgr::setUse(int i)
  */
 bool BasePelletMgr::used(int i)
 {
-	bool validIndex = false;
-	if (i >= 0 && i < mEntries) {
-		validIndex = true;
-	}
-	P2ASSERTBOUNDSLINE(4425, 0, validIndex, mEntries);
-	return validIndex;
+	P2ASSERTBOUNDSLINE(4425, 0, i, mEntries);
+	return mIsUsedList[i] != false;
 }
 
 /**
@@ -4757,9 +4756,7 @@ void BasePelletMgr::load_texArc(char* filename)
 	for (int i = 0; i < mConfigList->mConfigCnt; i++) {
 		PelletConfig* config = &mConfigList->mConfigs[i];
 
-		used(i);
-
-		if (mIsUsedList[i]) {
+		if (used(i)) {
 			config->mParams.mIndex = i;
 
 			JKRArchive* archive = nullptr;
@@ -4820,306 +4817,6 @@ void BasePelletMgr::load_texArc(char* filename)
 		}
 	}
 	closeTextArc(textArc);
-	/*
-	stwu     r1, -0x430(r1)
-	mflr     r0
-	lis      r5, gGameConfig__4Game@ha
-	lis      r6, lbl_8047E318@ha
-	stw      r0, 0x434(r1)
-	addi     r5, r5, gGameConfig__4Game@l
-	stmw     r22, 0x408(r1)
-	mr       r31, r3
-	mr       r22, r4
-	addi     r30, r6, lbl_8047E318@l
-	li       r24, 0
-	lwz      r0, 0x158(r5)
-	cmpwi    r0, 0
-	beq      lbl_8016C190
-	lwz      r3, sys@sda21(r13)
-	lwz      r0, 0xd4(r3)
-	cmpwi    r0, 4
-	beq      lbl_8016C174
-	bge      lbl_8016C130
-	cmpwi    r0, 0
-	beq      lbl_8016C158
-	blt      lbl_8016C194
-	cmpwi    r0, 3
-	bge      lbl_8016C194
-	b        lbl_8016C174
-
-lbl_8016C130:
-	cmpwi    r0, 6
-	beq      lbl_8016C174
-	bge      lbl_8016C194
-	addi     r3, r1, 0x208
-	addi     r4, r30, 0xe0
-	addi     r5, r2, lbl_805189C8@sda21
-	crclr    6
-	bl       sprintf
-	addi     r24, r1, 0x208
-	b        lbl_8016C194
-
-lbl_8016C158:
-	addi     r3, r1, 0x208
-	addi     r4, r30, 0xe0
-	addi     r5, r2, lbl_805189CC@sda21
-	crclr    6
-	bl       sprintf
-	addi     r24, r1, 0x208
-	b        lbl_8016C194
-
-lbl_8016C174:
-	addi     r3, r1, 0x208
-	addi     r4, r30, 0xe0
-	addi     r5, r2, lbl_805189D0@sda21
-	crclr    6
-	bl       sprintf
-	addi     r24, r1, 0x208
-	b        lbl_8016C194
-
-lbl_8016C190:
-	addi     r24, r30, 0xf8
-
-lbl_8016C194:
-	mr       r5, r24
-	mr       r6, r22
-	addi     r3, r1, 8
-	addi     r4, r2, lbl_805189DC@sda21
-	crclr    6
-	bl       sprintf
-	mr       r3, r31
-	addi     r4, r1, 8
-	bl       openTextArc__Q24Game13BasePelletMgrFPc
-	or.      r27, r3, r3
-	bne      lbl_8016C1D8
-	addi     r3, r30, 0x2c
-	addi     r5, r30, 0x128
-	addi     r6, r1, 8
-	li       r4, 0x1278
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8016C1D8:
-	li       r29, 0
-	li       r26, 0
-	mr       r28, r29
-	b        lbl_8016C480
-
-lbl_8016C1E8:
-	lwz      r0, 0x1c(r3)
-	cmpwi    r26, 0
-	li       r3, 0
-	add      r25, r0, r29
-	blt      lbl_8016C20C
-	lwz      r0, 0x50(r31)
-	cmpw     r26, r0
-	bge      lbl_8016C20C
-	li       r3, 1
-
-lbl_8016C20C:
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8016C228
-	addi     r3, r30, 0x2c
-	addi     r5, r30, 0x3c
-	li       r4, 0x1149
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8016C228:
-	lwz      r3, 0x4c(r31)
-	lbzx     r0, r3, r26
-	cmplwi   r0, 0
-	beq      lbl_8016C474
-	sth      r26, 0x258(r25)
-	li       r23, 0
-	addi     r3, r2, lbl_805189D4@sda21
-	lwz      r4, 0x50(r25)
-	bl       strcmp
-	cmpwi    r3, 0
-	beq      lbl_8016C284
-	lwz      r6, 0x50(r25)
-	mr       r5, r24
-	addi     r3, r1, 8
-	addi     r4, r2, lbl_805189DC@sda21
-	crclr    6
-	bl       sprintf
-	addi     r3, r1, 8
-	li       r4, 1
-	li       r5, 0
-	li       r6, 1
-	bl
-mount__10JKRArchiveFPCcQ210JKRArchive10EMountModeP7JKRHeapQ210JKRArchive15EMountDirection
-	mr       r23, r3
-
-lbl_8016C284:
-	lwz      r4, 0x70(r25)
-	li       r22, 0
-	addi     r3, r2, lbl_805189D4@sda21
-	bl       strcmp
-	cmpwi    r3, 0
-	bne      lbl_8016C2AC
-	lwz      r3, 0xc(r31)
-	li       r0, 0
-	stwx     r0, r3, r28
-	b        lbl_8016C3D0
-
-lbl_8016C2AC:
-	cmplwi   r23, 0
-	bne      lbl_8016C2C8
-	addi     r3, r30, 0x2c
-	addi     r5, r30, 0x13c
-	li       r4, 0x12a8
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8016C2C8:
-	lwz      r5, 0x70(r25)
-	addi     r3, r1, 8
-	addi     r4, r2, lbl_805189E4@sda21
-	crclr    6
-	bl       sprintf
-	addi     r3, r1, 8
-	li       r4, 0
-	bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
-	cmplwi   r3, 0
-	mr       r22, r3
-	bne      lbl_8016C32C
-	mr       r3, r23
-	addi     r4, r1, 8
-	lwz      r12, 0(r23)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	mr       r0, r3
-	addi     r3, r30, 0x2c
-	mr       r22, r0
-	addi     r5, r30, 0x150
-	addi     r6, r1, 8
-	li       r4, 0x12b2
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8016C32C:
-	lbz      r0, 0x25a(r25)
-	cmplwi   r0, 0
-	beq      lbl_8016C360
-	lhz      r0, 0x244(r25)
-	lis      r3, 0x21020010@ha
-	addi     r4, r3, 0x21020010@l
-	rlwinm.  r0, r0, 0, 0x1e, 0x1e
-	beq      lbl_8016C350
-	ori      r4, r4, 0x20
-
-lbl_8016C350:
-	mr       r3, r22
-	bl       load__22J3DModelLoaderDataBaseFPCvUl
-	mr       r22, r3
-	b        lbl_8016C384
-
-lbl_8016C360:
-	lhz      r0, 0x244(r25)
-	lis      r3, 0x20020010@ha
-	addi     r4, r3, 0x20020010@l
-	rlwinm.  r0, r0, 0, 0x1e, 0x1e
-	beq      lbl_8016C378
-	ori      r4, r4, 0x20
-
-lbl_8016C378:
-	mr       r3, r22
-	bl       load__22J3DModelLoaderDataBaseFPCvUl
-	mr       r22, r3
-
-lbl_8016C384:
-	lwz      r3, 0xc(r31)
-	stwx     r22, r3, r28
-	lhz      r0, 0x244(r25)
-	rlwinm.  r0, r0, 0, 0x1e, 0x1e
-	beq      lbl_8016C3D0
-	li       r4, 0
-	b        lbl_8016C3C0
-
-lbl_8016C3A0:
-	lwz      r3, 0x80(r22)
-	rlwinm   r0, r4, 2, 0xe, 0x1d
-	addi     r4, r4, 1
-	lwzx     r3, r3, r0
-	lwz      r0, 0xc(r3)
-	rlwinm   r0, r0, 0, 0x14, 0xf
-	ori      r0, r0, 0x2000
-	stw      r0, 0xc(r3)
-
-lbl_8016C3C0:
-	lhz      r0, 0x7c(r22)
-	clrlwi   r3, r4, 0x10
-	cmplw    r3, r0
-	blt      lbl_8016C3A0
-
-lbl_8016C3D0:
-	lwz      r6, 0x80(r25)
-	cmplwi   r6, 0
-	beq      lbl_8016C440
-	lwz      r5, 0x40(r25)
-	addi     r3, r1, 8
-	addi     r4, r2, lbl_805189E8@sda21
-	crclr    6
-	bl       sprintf
-	mr       r3, r27
-	mr       r5, r22
-	mr       r6, r23
-	addi     r4, r1, 8
-	li       r7, 0
-	bl
-load__Q28SysShape7AnimMgrFP13JKRFileLoaderPcP12J3DModelDataP13JKRFileLoaderPc
-	lwz      r4, 0x10(r31)
-	stwx     r3, r4, r28
-	lwz      r3, 0x10(r31)
-	lwzx     r0, r3, r28
-	cmplwi   r0, 0
-	bne      lbl_8016C440
-	mr       r3, r27
-	mr       r5, r22
-	mr       r6, r23
-	addi     r4, r1, 8
-	li       r7, 0
-	bl
-load__Q28SysShape7AnimMgrFP13JKRFileLoaderPcP12J3DModelDataP13JKRFileLoaderPc
-	lwz      r4, 0x10(r31)
-	stwx     r3, r4, r28
-
-lbl_8016C440:
-	lwz      r6, 0x90(r25)
-	cmplwi   r6, 0
-	beq      lbl_8016C474
-	lwz      r5, 0x40(r25)
-	addi     r3, r1, 8
-	addi     r4, r2, lbl_805189E8@sda21
-	crclr    6
-	bl       sprintf
-	mr       r3, r27
-	addi     r4, r1, 8
-	bl       load__15CollPartFactoryFP13JKRFileLoaderPc
-	lwz      r4, 0x14(r31)
-	stwx     r3, r4, r28
-
-lbl_8016C474:
-	addi     r29, r29, 0x260
-	addi     r28, r28, 4
-	addi     r26, r26, 1
-
-lbl_8016C480:
-	lwz      r3, 8(r31)
-	lwz      r0, 0x18(r3)
-	cmpw     r26, r0
-	blt      lbl_8016C1E8
-	mr       r3, r31
-	mr       r4, r27
-	bl       closeTextArc__Q24Game13BasePelletMgrFP10JKRArchive
-	lmw      r22, 0x408(r1)
-	lwz      r0, 0x434(r1)
-	mtlr     r0
-	addi     r1, r1, 0x430
-	blr
-	*/
 }
 
 /**

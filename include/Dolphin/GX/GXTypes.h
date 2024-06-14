@@ -24,7 +24,7 @@ typedef struct _GXColor {
 	u8 r, g, b, a; // _00, _01, _02, _03
 } GXColor;
 
-#define GXCOLOR_AS_U32(color) (*((u32*)&(color)))
+#define GXCOLOR_AS_U32(color)   (*((u32*)&(color)))
 #define RGBA_TO_U32(r, g, b, a) (((u8)(r) << 24) | ((u8)(g) << 16) | ((u8)(b) << 8) | ((u8)(a)))
 
 // Signed 10-bit-component colors for TEV const (konst) colors.

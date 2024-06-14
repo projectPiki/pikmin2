@@ -349,21 +349,19 @@ void NaviWhistle::update(Vector3f& stick, bool active)
 	if (active) {
 		offset = Vector3f(0.0f);
 	} else {
-		offset     = stick;
-		float dist = offset.normalise();
-		offset.scale(mNavi->getParms()->mNaviParms.mCursorMovementSpeed.mValue);
-		offset.scale(sys->getDeltaTime());
-		offset = offset + mNaviOffsetVec;
+		offset = stick;
+		offset.normalise();
 
-		dist = offset.normalise();
-		if (dist < mNavi->getParms()->mNaviParms.mMaxCursorMoveRadius.mValue) {
-			offset.scale(sys->getDeltaTime());
-			offset = offset + mNaviOffsetVec;
+		f32 time = sys->getDeltaTime();
+		offset.scale(mNavi->getParms()->mNaviParms.mCursorMovementSpeed());
+		Vector3f offset2 = offset * time + mNaviOffsetVec;
+
+		if (mNavi->getParms()->mNaviParms.mMaxCursorMoveRadius() >= offset2.length()) {
+			offset2.normalise();
+
+			f32 len = offset2.sqrMagnitude();
+			offset  = (offset2 - offset * len) * time + mNaviOffsetVec;
 		}
-
-		offset.scale(dist);
-		offset = mNaviOffsetVec - offset;
-		offset = offset + mNaviOffsetVec;
 	}
 
 	mNaviOffsetVec = offset;

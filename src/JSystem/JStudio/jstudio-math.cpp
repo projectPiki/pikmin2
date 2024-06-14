@@ -86,15 +86,15 @@ void math::getFromTransformation_T(Vec* v, const Mtx mtx)
 void math::getFromTransformation_SRxyzT(Vec* pS, Vec* pR, Vec* pT, const Mtx mtx)
 {
 	// to match tp debug
-    u8 m[5];
-    m[4] = 0;
-    m[0] = 0;
-    getFromTransformation_S(pS, mtx);
-    getFromTransformation_T(pT, mtx);
-    
-    JGeometry::TRotation3D rotMtx;
-    JGeometry::TVec3<f64> outRot;
-    
+	u8 m[5];
+	m[4] = 0;
+	m[0] = 0;
+	getFromTransformation_S(pS, mtx);
+	getFromTransformation_T(pT, mtx);
+
+	JGeometry::TRotation3D rotMtx;
+	JGeometry::TVec3<f64> outRot;
+
 	f64 invScaleX = 0.0;
 	f64 invScaleY = 0.0;
 	f64 invScaleZ = 0.0;
@@ -111,18 +111,14 @@ void math::getFromTransformation_SRxyzT(Vec* pS, Vec* pR, Vec* pT, const Mtx mtx
 		invScaleZ = 1.0 / pS->z;
 	}
 
-    rotMtx.mtx.set(
-        mtx[0][0] * invScaleX, mtx[0][1] * invScaleY, mtx[0][2] * invScaleZ,
-        mtx[1][0] * invScaleX, mtx[1][1] * invScaleY, mtx[1][2] * invScaleZ,
-        mtx[2][0] * invScaleX, mtx[2][1] * invScaleY, mtx[2][2] * invScaleZ
-    );
+	rotMtx.mtx.set(mtx[0][0] * invScaleX, mtx[0][1] * invScaleY, mtx[0][2] * invScaleZ, mtx[1][0] * invScaleX, mtx[1][1] * invScaleY,
+	               mtx[1][2] * invScaleZ, mtx[2][0] * invScaleX, mtx[2][1] * invScaleY, mtx[2][2] * invScaleZ);
 
+	rotMtx.getEulerXYZ(outRot);
+	outRot *= RAD2DEG_F64;
 
-	rotMtx.getEulerXYZ(outRot);    
-    outRot *= RAD2DEG_F64;
-    
-    pR->x = outRot.x;
-    pR->y = outRot.y;
-    pR->z = outRot.z;
+	pR->x = outRot.x;
+	pR->y = outRot.y;
+	pR->z = outRot.z;
 }
 } // namespace JStudio
