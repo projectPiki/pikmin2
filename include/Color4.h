@@ -38,6 +38,15 @@ struct Color4 {
 		a = _a;
 	}
 
+	inline void interp(f32 rStart, f32 rEnd, f32 gStart, f32 gEnd, f32 bStart, f32 bEnd, f32 aStart, f32 aEnd, f32 rate)
+	{
+		u8 r = rate * rEnd + rStart;
+		u8 g = rate * gEnd + gStart;
+		u8 b = rate * bEnd + bStart;
+		u8 a = rate * aEnd + aStart;
+		set(r, g, b, a);
+	}
+
 	void read(struct Stream&);
 	void write(struct Stream&);
 

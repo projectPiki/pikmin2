@@ -70,8 +70,8 @@
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/cellIterator.cpp">cellIterator.cpp</a> | 7343 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/flockMgr.cpp">flockMgr.cpp</a> | 7479 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/itemWeed.cpp">itemWeed.cpp</a> | 9106 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/creatureLOD.cpp">creatureLOD.cpp</a> | 10130 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/aiEnter.cpp">aiEnter.cpp</a> | 10852 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/naviWhistle.cpp">naviWhistle.cpp</a> | 11938 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/naviWhistle.cpp">naviWhistle.cpp</a> | 8508 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/itemWeed.cpp">itemWeed.cpp</a> | 9106 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/creatureLOD.cpp">creatureLOD.cpp</a> | 10130 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/aiEnter.cpp">aiEnter.cpp</a> | 10852 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/itemHoney.cpp">itemHoney.cpp</a> | 12303 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/aiBreakGate.cpp">aiBreakGate.cpp</a> | 13960 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gameCaveInfo.cpp">gameCaveInfo.cpp</a> | 16165 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/texCaster.cpp">texCaster.cpp</a> | 16211 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/singleGS_CaveResult.cpp">singleGS_CaveResult.cpp</a> | 19814 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/itemCave.cpp">itemCave.cpp</a> | 20306 |

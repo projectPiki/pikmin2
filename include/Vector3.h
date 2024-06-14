@@ -105,6 +105,7 @@ struct Vector3 {
 
 	// Length and Normalise Functions
 	T length() const;
+	T lengthWeird() const;
 	T normalise();
 	T length2D() const;
 	T normalise2D();
@@ -567,6 +568,18 @@ inline f32 Vector3f::length() const
 		Vector3f vec = Vector3f(x, y, z);
 		f32 sqrLen   = SQUARE(vec.x) + SQUARE(y) + SQUARE(z);
 		return sqrtf(sqrLen);
+	} else {
+		return 0.0f;
+	}
+}
+
+template <>
+inline f32 Vector3f::lengthWeird() const
+{
+	if (sqrMagnitude() > 0.0f) {
+		Vector3f vec = Vector3f(x, y, z);
+		f32 sqrLen   = SQUARE(vec.x) + SQUARE(y) + SQUARE(z);
+		return sqrtf2(sqrLen);
 	} else {
 		return 0.0f;
 	}
