@@ -564,7 +564,7 @@ void System::createSoundSystem()
 	P2ASSERTLINE(1158, old);
 	P2ASSERTLINE(1161, gResMgr2D);
 
-	JKRHeap* resHeap    = gResMgr2D->getHeap();
+	JKRHeap* resHeap    = gResMgr2D->mHeap;
 	JKRExpHeap* newheap = makeExpHeap(resHeap->getFreeSize(), resHeap, true);
 
 	P2ASSERTLINE(1165, newheap);
@@ -589,135 +589,10 @@ void System::createSoundSystem()
 	newheap2->adjustSize();
 
 	old->becomeCurrentHeap();
-	resHeap->destroy();
+	newheap->destroy();
 
 	sys->heapStatusEnd("SoundSystem");
 	gResMgr2D->mRemainingSize = gResMgr2D->mHeapSize;
-
-	/*
-	    stwu     r1, -0x20(r1)
-	    mflr     r0
-	    lis      r4, gStrSystem_CPP@ha
-	    li       r5, 0
-	    stw      r0, 0x24(r1)
-	    stmw     r27, 0xc(r1)
-	    addi     r29, r4, gStrSystem_CPP@l
-	    addi     r4, r29, 0x1d4
-	    lwz      r3, sys@sda21(r13)
-	    bl       heapStatusStart__6SystemFPcP7JKRHeap
-	    lwz      r31, sCurrentHeap__7JKRHeap@sda21(r13)
-	    cmplwi   r31, 0
-	    bne      lbl_80422A0C
-	    addi     r3, r29, 0
-	    addi     r5, r29, 0x174
-	    li       r4, 0x486
-	    crclr    6
-	    bl       panic_f__12JUTExceptionFPCciPCce
-
-	lbl_80422A0C:
-	    lwz      r0, gResMgr2D@sda21(r13)
-	    cmplwi   r0, 0
-	    bne      lbl_80422A2C
-	    addi     r3, r29, 0
-	    addi     r5, r29, 0x174
-	    li       r4, 0x489
-	    crclr    6
-	    bl       panic_f__12JUTExceptionFPCciPCce
-
-	lbl_80422A2C:
-	    lwz      r3, gResMgr2D@sda21(r13)
-	    lwz      r27, 4(r3)
-	    mr       r3, r27
-	    bl       getFreeSize__7JKRHeapFv
-	    mr       r4, r27
-	    li       r5, 1
-	    bl       create__10JKRExpHeapFUlP7JKRHeapb
-	    or.      r28, r3, r3
-	    bne      lbl_80422A64
-	    addi     r3, r29, 0
-	    addi     r5, r29, 0x174
-	    li       r4, 0x48d
-	    crclr    6
-	    bl       panic_f__12JUTExceptionFPCciPCce
-
-	lbl_80422A64:
-	    mr       r3, r28
-	    bl       becomeCurrentHeap__7JKRHeapFv
-	    mr       r4, r28
-	    addi     r3, r29, 0x1e0
-	    li       r5, 0
-	    bl       mount__12JKRFileCacheFPCcP7JKRHeapPCc
-	    mr       r4, r3
-	    addi     r3, r29, 0x1ec
-	    bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
-	    or.      r30, r3, r3
-	    bne      lbl_80422AA4
-	    addi     r3, r29, 0
-	    addi     r5, r29, 0x174
-	    li       r4, 0x495
-	    crclr    6
-	    bl       panic_f__12JUTExceptionFPCciPCce
-
-	lbl_80422AA4:
-	    li       r3, 0x1c
-	    bl       __nw__FUl
-	    or.      r27, r3, r3
-	    beq      lbl_80422AC4
-	    bl       __ct__Q26PSGame10SysFactoryFv
-	    lis      r3, __vt__Q23PSM7Factory@ha
-	    addi     r0, r3, __vt__Q23PSM7Factory@l
-	    stw      r0, 0x10(r27)
-
-	lbl_80422AC4:
-	    lis      r3, makeSeSound__Q23PSM7SeSoundFv@ha
-	    lis      r0, 0x90
-	    addi     r4, r3, makeSeSound__Q23PSM7SeSoundFv@l
-	    mr       r3, r27
-	    stw      r4, 0xc(r27)
-	    stw      r31, 0(r27)
-	    stw      r0, 4(r27)
-	    stw      r30, 8(r27)
-	    bl       newSoundSystem__Q26PSGame10SysFactoryFv
-	    mr       r3, r31
-	    bl       getFreeSize__7JKRHeapFv
-	    mr       r4, r31
-	    li       r5, 1
-	    bl       create__12JKRSolidHeapFUlP7JKRHeapb
-	    mr       r27, r3
-	    bl       becomeCurrentHeap__7JKRHeapFv
-	    lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	    cmplwi   r0, 0
-	    bne      lbl_80422B24
-	    addi     r3, r29, 0x1f8
-	    addi     r5, r29, 0x174
-	    li       r4, 0x1d3
-	    crclr    6
-	    bl       panic_f__12JUTExceptionFPCciPCce
-
-	lbl_80422B24:
-	    lwz      r3, spSceneMgr__8PSSystem@sda21(r13)
-	    lwz      r12, 0(r3)
-	    lwz      r12, 0x10(r12)
-	    mtctr    r12
-	    bctrl
-	    mr       r3, r27
-	    bl       adjustSize__12JKRSolidHeapFv
-	    mr       r3, r31
-	    bl       becomeCurrentHeap__7JKRHeapFv
-	    mr       r3, r28
-	    bl       destroy__7JKRHeapFv
-	    lwz      r3, sys@sda21(r13)
-	    addi     r4, r29, 0x1d4
-	    bl       heapStatusEnd__6SystemFPc
-	    lwz      r3, gResMgr2D@sda21(r13)
-	    lwz      r0, 8(r3)
-	    stw      r0, 0xc(r3)
-	    lmw      r27, 0xc(r1)
-	    lwz      r0, 0x24(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x20
-	    blr
-	*/
 }
 
 /**
@@ -726,7 +601,7 @@ void System::createSoundSystem()
  */
 void System::loadSoundResource()
 {
-	JKRHeap* old          = JKRHeap::sCurrentHeap;
+	JKRHeap* old          = JKRGetCurrentHeap();
 	JKRSolidHeap* newheap = makeSolidHeap(old->getFreeSize(), old, true);
 	newheap->becomeCurrentHeap();
 
