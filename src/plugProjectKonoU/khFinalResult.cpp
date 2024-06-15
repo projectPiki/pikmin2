@@ -24,11 +24,11 @@ OneResultData::OneResultData(int score1, int score5, int score2, int score3, int
     : mScore5(score5)
     , mDoDraw(false)
 {
-	mScore1 = score1;
-	mScore2 = score2;
-	mScore3 = score3;
-	mScore4 = score4;
-	mScreen = new P2DScreen::Mgr;
+	mScore[0] = score1;
+	mScore[1] = score2;
+	mScore[2] = score3;
+	mScore[3] = score4;
+	mScreen   = new P2DScreen::Mgr;
 	mScreen->set(bloName, 0x1040000, arc);
 	mScreen->setBasePosition(J2DPOS_Center);
 }
@@ -329,14 +329,12 @@ void ObjFinalResult::doCreate(JKRArchive* arc)
 	mFadePaneAButton = khUtilFadePane::create(mScreen, 'Nabtn', 16);
 	mFadePaneAButton->fadeout();
 
-	u64 tags1[4] = { 'Ptokyop1', 'P1st0_1', 'P2nd0_1', 'P3rd0_1' };
-	u64 tags2[4] = { 'Ptomadp1', 'P1st1_1', 'P2nd1_1', 'P3rd1_1' };
-	u64 tags3[4] = { 'Ptomad11', 'P1stt3', 'P2ndt3', 'P3rdt3' };
-	u64 tags4[4] = { 'Ptomadp9', 'P1stt1', 'P2ndt1', 'P3rdt1' };
+	u64 tags1[8] = { 'Ptokyop1', 'P1st0_1', 'P2nd0_1', 'P3rd0_1', 'Ptomadp1', 'P1st1_1', 'P2nd1_1', 'P3rd1_1' };
+	u64 tags3[8] = { 'Ptomad11', 'P1stt3', 'P2ndt3', 'P3rdt3', 'Ptomadp9', 'P1stt1', 'P2ndt1', 'P3rdt1' };
 
 	for (int i = 0; i < 4; i++) {
 		mCounters1[i] = og::Screen::setCallBack_CounterRV(mScreen, tags1[i], &mCounterData1[i], 9, false, false, arc);
-		mCounters2[i] = og::Screen::setCallBack_CounterRV(mScreen, tags2[i], &mCounterData2[i], 9, false, false, arc);
+		mCounters2[i] = og::Screen::setCallBack_CounterRV(mScreen, tags1[i + 4], &mCounterData2[i], 9, false, false, arc);
 	}
 	mCounterScore1[0] = og::Screen::setCallBack_CounterRV(mScreen, 'Pkon3', 'Pkon4', 'Pkon4', &mCounterDataScore1[0], 3, 2, false, arc);
 	mCounterScore1[1] = og::Screen::setCallBack_CounterRV(mScreen, 'P1stt3', 'P1stt4', 'P1stt4', &mCounterDataScore1[1], 3, 2, false, arc);
@@ -347,33 +345,34 @@ void ObjFinalResult::doCreate(JKRArchive* arc)
 	mCounterScore2[2] = og::Screen::setCallBack_CounterRV(mScreen, 'P2ndt1', 'P2ndt2', 'P2ndt2', &mCounterDataScore2[2], 2, 2, false, arc);
 	mCounterScore2[3] = og::Screen::setCallBack_CounterRV(mScreen, 'P3rdt1', 'P3rdt2', 'P3rdt2', &mCounterDataScore2[3], 2, 2, false, arc);
 
-	mCounterScore1[0]->setZeroAlpha(255);
-	mCounterScore1[1]->setZeroAlpha(255);
-	mCounterScore1[2]->setZeroAlpha(255);
-	mCounterScore1[3]->setZeroAlpha(255);
+	mCounterScore2[0]->setZeroAlpha(255);
+	mCounterScore2[1]->setZeroAlpha(255);
+	mCounterScore2[2]->setZeroAlpha(255);
+	mCounterScore2[3]->setZeroAlpha(255);
 
-	TotalResultData* data = disp->mTotalResultData;
+	// set time scores (15) specially since theres an extra counter
+	OneResultData* time = disp->mTotalResultData->mResults[15];
 	for (int i = 0; i < 4; i++) {
-		int count = data->mResults[0]->mScore1;
-		if (count > 0) {
+		if (time->mScore[i] < 0) {
 			mCounterDataScore1[i] = 0;
 			mCounterDataScore2[i] = 0;
 			mCounterScore1[i]->setBlind(true);
 			mCounterScore2[i]->setBlind(true);
 		} else {
-			mCounterDataScore1[i] = count / 60;
-			mCounterDataScore2[i] = count / 60;
+			mCounterDataScore1[i] = time->mScore[i] / 60;
+			mCounterDataScore2[i] = time->mScore[i] % 60;
 		}
 	}
 
 	mSaveMgr = ebi::Save::TMgr::createInstance();
-	mSaveMgr->mSaveMenu.loadResource();
-	mSaveMgr->doLoadResource(JKRGetCurrentHeap());
+	mSaveMgr->doLoadMenuResource();
 	mSaveMgr->setControllers(getGamePad());
 	mSaveMgr->mSaveType = 1;
 
+	// regswap here (pain)
 	f32 y       = mScreen->search('Nsetp0')->getBounds()->i.y;
 	mScrollMove = (mScreen->search('Nsetp1')->getBounds()->i.y - y) * 2.0f;
+
 	mScreen->search('Ppict0')->hide();
 	mScreen->search('Ppict1')->hide();
 	mScreen->search('Nsetp_c')->show();
@@ -1517,8 +1516,8 @@ void ObjFinalResult::drawReplace(Graphics& gfx, int id)
 {
 	JUT_ASSERTLINE(726, getDispMember()->isID(OWNER_KH, MEMBER_FINAL_RESULT), "disp member err");
 	DispFinalResult* disp = static_cast<DispFinalResult*>(getDispMember());
-	int id2               = id * 2 + 1;
 	TotalResultData* data = disp->mTotalResultData;
+	int id2               = id * 2 + 1;
 
 	u64 mesgIds[16] = {
 		'8452_00', // "Days Spent:"
@@ -1548,21 +1547,21 @@ void ObjFinalResult::drawReplace(Graphics& gfx, int id)
 	}
 
 	for (int i = 0; i < 4; i++) {
-		int count = data->mResults[i]->mScore1;
-		if (count < 0) {
+		OneResultData* result = data->mResults[id];
+		if (result->mScore[i] < 0) {
 			mCounterData1[i] = 0;
 			mCounters1[i]->setBlind(true);
 		} else {
-			mCounterData1[i] = count;
+			mCounterData1[i] = result->mScore[i];
 			mCounters1[i]->setBlind(false);
 		}
 
-		mScreen->search('Ttitl0')->setMsgID(mesgIds[id2]);
-		mScreen->search('Ttitl0s')->setMsgID(mesgIds[id2]);
+		mScreen->search('Ttitl0')->setMsgID(mesgIds[id * 1]);
+		mScreen->search('Ttitl0s')->setMsgID(mesgIds[id * 1]);
 	}
 
 	for (int i = 0; i < 4; i++) {
-		int count = data->mResults[i]->mScore1;
+		int count = data->mResults[id]->mScore[i];
 		if (count < 0) {
 			mCounterData2[i] = 0;
 			mCounters2[i]->setBlind(true);
@@ -1571,8 +1570,9 @@ void ObjFinalResult::drawReplace(Graphics& gfx, int id)
 			mCounters2[i]->setBlind(false);
 		}
 
-		mScreen->search('Ttitle1')->setMsgID(mesgIds[id]);
-		mScreen->search('Ttitle1s')->setMsgID(mesgIds[id]);
+		// some weird shit going on with the id here
+		mScreen->search('Ttitle1')->setMsgID(mesgIds[id2 * 1]);
+		mScreen->search('Ttitle1s')->setMsgID(mesgIds[id2 * 2]);
 	}
 
 	static_cast<J2DPicture*>(mScreen->search('Ptokyop1'))->setBlack(mColor);
@@ -1628,7 +1628,7 @@ void ObjFinalResult::drawReplace(Graphics& gfx, int id)
 	}
 
 	gfx.mOrthoGraph.setPort();
-	GXSetScissor(0, mScissorYPos, sys->getRenderModeHeight(), mScissorBoundsHeight);
+	GXSetScissor(0, mScissorYPos, sys->getRenderModeWidth(), mScissorBoundsHeight);
 
 	mScreen->draw(gfx, gfx.mOrthoGraph);
 

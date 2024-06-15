@@ -19,10 +19,7 @@ struct OneResultData {
 
 	// unknown
 	P2DScreen::Mgr* mScreen; // _00
-	int mScore1;             // _04
-	int mScore2;             // _08
-	int mScore3;             // _0C
-	int mScore4;             // _10
+	int mScore[4];           // _04
 	int mScore5;             // _14
 	u8 mDoDraw;              // _18
 };
