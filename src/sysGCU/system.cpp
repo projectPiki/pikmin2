@@ -30,63 +30,63 @@
 #include "LoadResource.h"
 #include "Dolphin/__start.h"
 
-GXRenderModeObj localNtsc608x448IntDfProg = { VI_TVMODE_NTSC_PROG,
-	                                          608, // fbWidth
-	                                          448, // efbHeight
-	                                          448, // xfbHeight
-	                                          27,  // viXOrigin
-	                                          16,  // viYOrigin
-	                                          666, // viWidth
-	                                          448, // viHeight
-	                                          VI_XFBMODE_SF,
-	                                          0, // field_rendering
-	                                          0, // aa
-	                                          { 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6 },
-	                                          { 0, 0, 21, 22, 21, 0, 0 } };
+static GXRenderModeObj localNtsc608x448IntDfProg = { VI_TVMODE_NTSC_PROG,
+	                                                 608, // fbWidth
+	                                                 448, // efbHeight
+	                                                 448, // xfbHeight
+	                                                 27,  // viXOrigin
+	                                                 16,  // viYOrigin
+	                                                 666, // viWidth
+	                                                 448, // viHeight
+	                                                 VI_XFBMODE_SF,
+	                                                 0, // field_rendering
+	                                                 0, // aa
+	                                                 { 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6 },
+	                                                 { 0, 0, 21, 22, 21, 0, 0 } };
 
-GXRenderModeObj localNtsc608x448IntDf = { VI_TVMODE_NTSC_INT,
-	                                      608, // fbWidth
-	                                      448, // efbHeight
-	                                      448, // xfbHeight
-	                                      27,  // viXOrigin
-	                                      16,  // viYOrigin
-	                                      666, // viWidth
-	                                      448, // viHeight
-	                                      VI_XFBMODE_DF,
-	                                      0, // field_rendering
-	                                      0, // aa
-	                                      { 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6 },
-	                                      { 7, 7, 12, 12, 12, 7, 7 } };
+static GXRenderModeObj localNtsc608x448IntDf = { VI_TVMODE_NTSC_INT,
+	                                             608, // fbWidth
+	                                             448, // efbHeight
+	                                             448, // xfbHeight
+	                                             27,  // viXOrigin
+	                                             16,  // viYOrigin
+	                                             666, // viWidth
+	                                             448, // viHeight
+	                                             VI_XFBMODE_DF,
+	                                             0, // field_rendering
+	                                             0, // aa
+	                                             { 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6 },
+	                                             { 7, 7, 12, 12, 12, 7, 7 } };
 
-GXRenderModeObj localPal608x448IntDf = { VI_TVMODE_PAL_INT,
-	                                     608, // fbWidth
-	                                     448, // efbHeight
-	                                     538, // xfbHeight
-	                                     25,  // viXOrigin
-	                                     18,  // viYOrigin
-	                                     670, // viWidth
-	                                     538, // viHeight
-	                                     VI_XFBMODE_DF,
-	                                     0, // field_rendering
-	                                     0, // aa
-	                                     { 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6 },
-	                                     { 7, 7, 12, 12, 12, 7, 7 } };
+static GXRenderModeObj localPal608x448IntDf = { VI_TVMODE_PAL_INT,
+	                                            608, // fbWidth
+	                                            448, // efbHeight
+	                                            538, // xfbHeight
+	                                            25,  // viXOrigin
+	                                            18,  // viYOrigin
+	                                            670, // viWidth
+	                                            538, // viHeight
+	                                            VI_XFBMODE_DF,
+	                                            0, // field_rendering
+	                                            0, // aa
+	                                            { 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6 },
+	                                            { 7, 7, 12, 12, 12, 7, 7 } };
 
-GXRenderModeObj localPal60608x448IntDf = { VI_TVMODE_EURGB60_INT,
-	                                       608, // fbWidth
-	                                       448, // efbHeight
-	                                       448, // xfbHeight
-	                                       27,  // viXOrigin
-	                                       16,  // viYOrigin
-	                                       666, // viWidth
-	                                       448, // viHeight
-	                                       VI_XFBMODE_DF,
-	                                       0, // field_rendering
-	                                       0, // aa
-	                                       { 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6 },
-	                                       { 7, 7, 12, 12, 12, 7, 7 } };
+static GXRenderModeObj localPal60608x448IntDf = { VI_TVMODE_EURGB60_INT,
+	                                              608, // fbWidth
+	                                              448, // efbHeight
+	                                              448, // xfbHeight
+	                                              27,  // viXOrigin
+	                                              16,  // viYOrigin
+	                                              666, // viWidth
+	                                              448, // viHeight
+	                                              VI_XFBMODE_DF,
+	                                              0, // field_rendering
+	                                              0, // aa
+	                                              { 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6 },
+	                                              { 7, 7, 12, 12, 12, 7, 7 } };
 
-GXRenderModeObj* sRenderModeTable[4]
+static GXRenderModeObj* sRenderModeTable[4]
     = { &localNtsc608x448IntDfProg, &localNtsc608x448IntDf, &localPal608x448IntDf, &localPal60608x448IntDf };
 
 System::ERenderMode System::mRenderMode;
@@ -95,21 +95,16 @@ System::GXVerifyArg System::sVerifyArg;
 
 bool sUseABXCommand = true;
 
-struct CallbackObject {
-	u32* funcPtr;
-	u16 _04;
-	OSContext* _08;
-	u32 _0C;
-	u32 _10;
-};
+static JUTException::ExCallbackObject exCallbackObject;
 
-extern CallbackObject exCallbackObject;
+// pre-declare statics
+static void preUserCallback(u16, OSContext*, u32, u32);
 
 /**
  * @note Address: 0x80421EC4
  * @note Size: 0xA0
  */
-void Pikmin2DefaultMemoryErrorRoutine(void* address, u32 size, int alignment)
+static void Pikmin2DefaultMemoryErrorRoutine(void* address, u32 size, int alignment)
 {
 	JUT_PANICLINE(99, "Memory Alloc Error!\n%x (size %d) align(%d)\nRestTotal=%d\nRestFree =%d\n", address, size, alignment,
 	              static_cast<JKRHeap*>(address)->getTotalFreeSize(), static_cast<JKRHeap*>(address)->getFreeSize());
@@ -121,38 +116,38 @@ void Pikmin2DefaultMemoryErrorRoutine(void* address, u32 size, int alignment)
  * @note Address: 0x80421F64
  * @note Size: 0x188
  */
-void kando_panic_f(bool r3, const char* r4, int line, const char* r6, ...)
+static void kando_panic_f(bool r3, const char* file, int line, const char* format, ...)
 {
 	va_list list;
-	va_start(list, r6);
+	va_start(list, format);
 
-	u32* func            = (u32*)preUserCallback;
 	JUTConsole* console  = JUTException::sConsole;
 	JUTException* except = JUTException::sErrorManager;
+	OSErrorHandler func  = (OSErrorHandler)preUserCallback;
 
-	char buffer[0xFF];
-	vsnprintf(buffer, sizeof(buffer), r6, list);
+	char buffer[260];
+	vsnprintf(buffer, 255, format, list);
 	if (!except) {
-		OSPanic(r4, line, buffer);
+		OSPanic(file, line, buffer);
 	}
 
-	OSContext* thread = &JFWSystem::mainThread->mThread->context;
+	OSContext* context = &JFWSystem::mainThread->mThread->context;
 	char dest[sizeof(OSContext)];
-	memcpy(dest, thread, sizeof(OSContext));
-	except->mStackPointer = thread;
+	memcpy(dest, context, sizeof(OSContext));
+	except->mStackPointer = (void*)((u32*)dest)[1];
 
-	exCallbackObject.funcPtr = func;
-	exCallbackObject._04     = 255;
-	exCallbackObject._08     = thread;
-	exCallbackObject._0C     = 0;
-	exCallbackObject._10     = 0;
+	exCallbackObject.mErrorHandler = func;
+	exCallbackObject.mError        = 255;
+	exCallbackObject.mContext      = context;
+	exCallbackObject._0C           = 0;
+	exCallbackObject._10           = 0;
 
 	if (!console || (console && !(console->mOutput & 2))) {
-		OSReport("%s in \"%s\" on line %d\n", buffer, r4, line);
+		OSReport("%s in \"%s\" on line %d\n", buffer, file, line);
 	}
 
 	if (console) {
-		console->print_f("%s in \"%s\" on\n line %d\n", buffer, r4, line);
+		console->print_f("%s in \"%s\" on\n line %d\n", buffer, file, line);
 	}
 
 	OSSendMessage(&JUTException::sMessageQueue, (OSMessage*)&exCallbackObject, true);
@@ -310,7 +305,7 @@ void preUserCallback(u16, OSContext*, u32, u32)
 		JUTException::sConsole->startPrint(3, "--- Game debug information ---\n");
 		JUTConsoleManager::sManager->drawDirect(true);
 	} else {
-		OSReport("コンソールがありません\n");
+		OSReport("コンソ\ールがありません\n"); // 'no console'
 	}
 }
 
@@ -393,7 +388,7 @@ void retraceCallback(u32)
 	if ((int)sys->mCpuLockCount > 0 && (int)sys->mCpuRetraceCount > (int)sys->mCpuLockCount) {
 		sUseABXCommand = false;
 		OSReport("cpuLockCount %d retraceCount %d\n", sys->mCpuLockCount, sys->mCpuRetraceCount);
-		kando_panic_f(1, "system/retrace", 0, "CPU LOCKED!");
+		kando_panic_f(true, "system/retrace", 0, "CPU LOCKED!");
 	}
 }
 
@@ -1284,7 +1279,7 @@ void System::refreshGenNode() { }
 void System::setFrameRate(int newFactor)
 {
 	JFWDisplay* display = mDisplay;
-	JUT_ASSERTLINE(2343, display, "no display\n");
+	JUT_ASSERTLINE(2343, display, "no display");
 	mFrameRate          = (f32)newFactor;
 	mDeltaTime          = mFrameRate / 60.0f;
 	display->mFrameRate = newFactor;
