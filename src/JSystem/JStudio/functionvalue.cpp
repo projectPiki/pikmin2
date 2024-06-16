@@ -68,21 +68,17 @@ void TFunctionValueAttribute_refer::refer_initialize() { clear(); }
  */
 f64 functionvalue::interpolateValue_hermite(f64 c0, f64 c1, f64 x0, f64 c2, f64 x2, f64 c3, f64 x3)
 {
-	// not correct (yet)
-	f64 a;
-	f64 b;
-	f64 c;
-	f64 d;
 
-	a           = c0 - c1;
-	b           = a * (1.0 / (x2 - c1));      // (a - b) * 1.0 / (c - d)
-	c           = b - 1.0;                    // 1.0
-	d           = (3.0 + -2.0 * b) * (b * b); // 3.0 - 2.0 * b
-	f64 cab     = (c * a * b);
-	f64 coeffx3 = cab * x3;
-	f64 cca     = (c * c * a);
-	f64 coeffc2 = cca * c2;
-	return ((1.0 - d) * x0 + (d * c3)) + coeffc2 + coeffx3;
+    f64 a = c0 - c1;
+    f64 b = (1 / (x2 - c1));
+    f64 ab = a * b;
+    f64 ab_ab =  (ab * ab);
+    f64 e = ab - 1;
+    f64 d = (3 + (-2 * ab)) * ab_ab;
+    f64 f = 1-d;
+    f64 a_ee = a * (e * e);
+    f64 ab_ea = ab * (e * a);
+    return (ab_ea * x3) + ((a_ee * c2) + ((f * x0) + (d * c3)));
 }
 
 /**
@@ -647,7 +643,7 @@ f64 TFunctionValue_transition::getValue(f64 p1)
 		case 3:
 			return _48 + ((dVar3 - range_getBegin()) * data_getDifference()) / range_getDifference();
 		case 2:
-			return functionvalue::interpolateValue_hermite(dVar3, range_getBegin(), _48, 0.0, range_getEnd(), _50, 0.0);
+			return functionvalue::interpolateValue_plateau(dVar3, range_getBegin(), _48, range_getEnd(), _50);
 		}
 	}
 	/*
