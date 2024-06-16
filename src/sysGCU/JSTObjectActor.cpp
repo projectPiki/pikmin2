@@ -20,79 +20,23 @@ namespace P2JST {
  */
 ObjectActor::ObjectActor(char const* name, MoviePlayer* movie)
     : ObjectBase(name, movie)
+    , mModelData(nullptr)
+    , mModel(nullptr)
+    , mAnmTransform(nullptr)
+    , mMtxCalcAnm(nullptr)
+    , mArchive(nullptr)
+    , mTranslation(govNAN_)
+    , mRotation(govNAN_)
+    , mScaling(govNAN_)
+    , mShape(*(u32*)&govNAN_.x) // these should be gu32NAN but it wont cooperate
+    , mAnimation(*(u32*)&govNAN_.x)
+    , mAnimFrame(gfNAN_)
+    , mAnimFrameMax(gfNAN_)
+    , mModelFileId(*(u32*)&govNAN_.x)
+    , mAnimationFileId(*(u32*)&govNAN_.x)
 {
-	u32 nan       = gu32NAN_.a;
-	f32 fnan      = gfNAN_;
-	mModelData    = nullptr;
-	mModel        = nullptr;
-	mAnmTransform = nullptr;
-	mMtxCalcAnm   = nullptr;
-	mArchive      = nullptr;
-	// mTranslation  = Vector3f(0.0f, 0.0f, 0.0f);
-	// mRotation     = Vector3f(0.0f, 0.0f, 0.0f);
-	// mScaling      = Vector3f(0.0f, 0.0f, 0.0f);
-	mShape           = nan;
-	mAnimation       = nan;
-	mAnimFrame       = fnan;
-	mAnimFrameMax    = fnan;
-	mModelFileId     = nan;
-	mAnimationFileId = nan;
 
 	mArchive = MoviePlayer::mArchive;
-	/*
-	lis      r6, __vt__Q26JStage7TObject@ha
-	lis      r8, __vt__Q26JStage6TActor@ha
-	addi     r0, r6, __vt__Q26JStage7TObject@l
-	lis      r7, __vt__Q34Game5P2JST10ObjectBase@ha
-	stw      r0, 0(r3)
-	addi     r0, r8, __vt__Q26JStage6TActor@l
-	lis      r6, __vt__Q34Game5P2JST11ObjectActor@ha
-	li       r11, 0
-	stw      r0, 0(r3)
-	addi     r9, r6, __vt__Q34Game5P2JST11ObjectActor@l
-	addi     r0, r7, __vt__Q34Game5P2JST10ObjectBase@l
-	lis      r6, lbl_804EC018@ha
-	stw      r0, 4(r3)
-	addi     r7, r6, lbl_804EC018@l
-	li       r10, -1
-	addi     r8, r9, 0x8c
-	stw      r5, 8(r3)
-	lwz      r6, 0(r7)
-	stw      r4, 0xc(r3)
-	lwz      r5, 4(r7)
-	stw      r11, 0x10(r3)
-	lwz      r4, 8(r7)
-	stw      r10, 0x14(r3)
-	lwz      r0, lbl_805161D8@sda21(r13)
-	stw      r11, 0x18(r3)
-	lfs      f0, lbl_805161DC@sda21(r13)
-	stw      r11, 0x1c(r3)
-	stw      r9, 0(r3)
-	stw      r8, 4(r3)
-	stw      r11, 0x20(r3)
-	stw      r11, 0x24(r3)
-	stw      r11, 0x28(r3)
-	stw      r11, 0x2c(r3)
-	stw      r11, 0x30(r3)
-	stw      r6, 0x34(r3)
-	stw      r5, 0x38(r3)
-	stw      r4, 0x3c(r3)
-	stw      r6, 0x40(r3)
-	stw      r5, 0x44(r3)
-	stw      r4, 0x48(r3)
-	stw      r6, 0x4c(r3)
-	stw      r5, 0x50(r3)
-	stw      r4, 0x54(r3)
-	stw      r0, 0x58(r3)
-	stw      r0, 0x5c(r3)
-	stfs     f0, 0x60(r3)
-	stfs     f0, 0x64(r3)
-	stw      r0, 0x68(r3)
-	stw      r0, 0x6c(r3)
-	lwz      r0, mArchive__Q24Game11MoviePlayer@sda21(r13)
-	stw      r0, 0x30(r3)
-	blr
-	*/
 }
 
 /**
@@ -107,22 +51,18 @@ ObjectActor::~ObjectActor() { }
  */
 void ObjectActor::reset()
 {
-	Vector3f z;
-	z.x              = govNAN_[0];
-	z.y              = govNAN_[1];
-	z.z              = govNAN_[2];
-	u32 a            = gu32NAN_.a;
-	f32 f            = gfNAN_;
-	mTranslation     = z;
-	mRotation        = z;
-	mScaling         = z;
-	mShape           = a;
-	mAnimation       = a;
-	mAnimFrame       = f;
-	mAnimFrameMax    = f;
-	mModelFileId     = a;
-	mAnimationFileId = a;
-	mScaling         = 1.0f;
+	mTranslation     = govNAN_;
+	mRotation        = govNAN_;
+	mScaling         = govNAN_;
+	mShape           = gu32NAN_.a;
+	mAnimation       = gu32NAN_.a;
+	mAnimFrame       = gfNAN_;
+	mAnimFrameMax    = gfNAN_;
+	mModelFileId     = gu32NAN_.a;
+	mAnimationFileId = gu32NAN_.a;
+	mScaling.z       = 1.0f;
+	mScaling.y       = 1.0f;
+	mScaling.x       = 1.0f;
 	mAnimFrame       = 0.0f;
 	/*
 	lis      r4, lbl_804EC018@ha
@@ -171,7 +111,7 @@ void ObjectActor::update()
 
 	Matrixf mtx;
 	PSMTXIdentity(mtx.mMatrix.mtxView);
-	mtx.setTranslation(mTranslation);
+	mtx.setTranslation(*(Vector3f*)&mTranslation);
 
 	Matrixf mtx2;
 	f32 angle                  = mRotation.z * DEG2RAD;

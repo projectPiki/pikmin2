@@ -3,8 +3,8 @@
 
 #include "types.h"
 #include "math.h"
+#include "Dolphin/vec.h"
 
-// #include "Dolphin/int.h"
 namespace Game {
 namespace P2JST {
 struct _u32FakeMatch {
@@ -17,9 +17,8 @@ struct _u32FakeMatch {
 
 // static u32 gu32NAN = -1;
 const _u32FakeMatch gu32NAN_(-1);
-// static f32 gfNAN = *reinterpret_cast<const f32*>(&__float_nan);
-const f32 gfNAN_     = NAN;
-const f32 govNAN_[3] = { NAN, gfNAN_, NAN };
+const f32 gfNAN_  = NAN;
+const Vec govNAN_ = { NAN, gfNAN_, NAN };
 } // namespace P2JST
 } // namespace Game
 

@@ -12,8 +12,8 @@ static f32 sFovBackup;
  */
 ObjectCamera::ObjectCamera(char const* name, MoviePlayer* movie)
     : ObjectBase(name, movie)
-    , mViewPos(*(const Vec*)govNAN_)
-    , mViewTargetPos(*(const Vec*)govNAN_)
+    , mViewPos(govNAN_)
+    , mViewTargetPos(govNAN_)
     , mViewRoll(gfNAN_)
     , mProjectionNear(gfNAN_)
     , mProjectionFar(gfNAN_)
@@ -101,65 +101,14 @@ ObjectCamera::~ObjectCamera() { }
  */
 void ObjectCamera::reset()
 {
-	Vec set;
-	set.x = govNAN_[0];
-	set.y = govNAN_[1];
-	set.z = govNAN_[2];
+	mViewPos        = govNAN_;
+	mViewTargetPos  = govNAN_;
+	mViewRoll       = gfNAN_;
+	mProjectionNear = gfNAN_;
+	mProjectionFar  = gfNAN_;
 
-	f32 n = gfNAN_;
-
-	mViewPos       = set;
-	mViewTargetPos = set;
-
-	mViewRoll         = n;
-	mProjectionNear   = n;
-	mProjectionFar    = n;
 	mProjectionFovy   = 45.0f;
 	mProjectionAspect = sys->getRenderModeObj()->fbWidth / sys->getRenderModeObj()->efbHeight;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, lbl_804EC110@ha
-	lfs      f1, lbl_805161E4@sda21(r13)
-	stw      r0, 0x24(r1)
-	lfs      f0, lbl_80520698@sda21(r2)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	addi     r3, r4, lbl_804EC110@l
-	lfs      f4, 0(r3)
-	lfs      f3, 4(r3)
-	stfs     f4, 0x90(r30)
-	lfs      f2, 8(r3)
-	stfs     f3, 0x94(r30)
-	stfs     f2, 0x98(r30)
-	stfs     f4, 0x9c(r30)
-	stfs     f3, 0xa0(r30)
-	stfs     f2, 0xa4(r30)
-	stfs     f1, 0xa8(r30)
-	stfs     f1, 0xac(r30)
-	stfs     f1, 0xb0(r30)
-	stfs     f0, 0xb4(r30)
-	bl       getRenderModeObj__6SystemFv
-	lhz      r31, 6(r3)
-	bl       getRenderModeObj__6SystemFv
-	lhz      r3, 4(r3)
-	lis      r0, 0x4330
-	stw      r0, 8(r1)
-	divw     r0, r3, r31
-	lfd      f1, lbl_805206A0@sda21(r2)
-	xoris    r0, r0, 0x8000
-	stw      r0, 0xc(r1)
-	lfd      f0, 8(r1)
-	fsubs    f0, f0, f1
-	stfs     f0, 0xb8(r30)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
@@ -329,6 +278,19 @@ f32 ObjectCamera::JSGGetProjectionAspect() const { return mProjectionAspect; }
  */
 void ObjectCamera::setParms(Camera*)
 {
+	// this might not be right since its not using the camera input, but the size is right and it does get setCamera a bit closer
+
+	Vector3f pos = mCameraObj->getPosition();
+	JSGSetViewPosition(*(Vec*)&pos);
+	pos += mCameraObj->getViewVector() * 200.0f;
+	JSGSetViewTargetPosition(*(Vec*)&pos);
+
+	JSGSetViewRoll(0.0f);
+	JSGSetProjectionNear(mCameraObj->getNear());
+	JSGSetProjectionFar(mCameraObj->getFar());
+	JSGSetProjectionFovy(mCameraObj->mViewAngle);
+	JSGSetProjectionAspect(mCameraObj->mAspectRatio);
+	sFovBackup = mCameraObj->mViewAngle;
 	// UNUSED FUNCTION
 }
 
@@ -342,18 +304,8 @@ void ObjectCamera::setCamera(Camera* cam)
 	mCameraObj             = cam;
 	mCameraObj->mJstObject = this;
 
-	Vector3f pos = mCameraObj->getPosition();
-	JSGSetViewPosition(*(Vec*)&pos);
+	setParms(cam);
 
-	pos += mCameraObj->getViewVector() * 200.0f;
-
-	JSGSetViewTargetPosition(*(Vec*)&pos);
-	JSGSetViewRoll(0.0f);
-	JSGSetProjectionNear(mCameraObj->getNear());
-	JSGSetProjectionFar(mCameraObj->getFar());
-	JSGSetProjectionFovy(mCameraObj->mViewAngle);
-	JSGSetProjectionAspect(mCameraObj->mAspectRatio);
-	sFovBackup = mCameraObj->mViewAngle;
 	mCameraObj2->copyFrom(mCameraObj);
 	mCameraObj->mViewMatrix = &mViewMatrix;
 }

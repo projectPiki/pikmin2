@@ -75,9 +75,9 @@ struct ObjectActor : public JStage::TActor, public ObjectBase {
 	J3DAnmTransform* mAnmTransform; // _28
 	J3DMtxCalcAnmBase* mMtxCalcAnm; // _2C
 	JKRArchive* mArchive;           // _30
-	Vector3f mTranslation;          // _34
-	Vector3f mRotation;             // _40
-	Vector3f mScaling;              // _4C
+	Vec mTranslation;               // _34
+	Vec mRotation;                  // _40
+	Vec mScaling;                   // _4C
 	u32 mShape;                     // _58 (index of the model file within the archive)
 	u32 mAnimation;                 // _5C (index of the animation file within the archive)
 	f32 mAnimFrame;                 // _60
