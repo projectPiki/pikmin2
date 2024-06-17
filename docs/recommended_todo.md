@@ -89,7 +89,7 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/aiPrimitives.cpp">aiPrimitives.cpp</a> | 117085 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/pelletMgr.cpp">pelletMgr.cpp</a> | 134788 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/navi.cpp">navi.cpp</a> | 152313 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/pikiState.cpp">pikiState.cpp</a> | 155487 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/singleGS_Zukan.cpp">singleGS_Zukan.cpp</a> | 163810 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gameMapParts.cpp">gameMapParts.cpp</a> | 164131 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/naviState.cpp">naviState.cpp</a> | 182701 |  |  |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/naviState.cpp">naviState.cpp</a> | 182719 |  |  |
 
 ### <section id="plugProjectKonoU">plugProjectKonoU</section>
 | File | Size (bytes) | File | Size (bytes) |
@@ -144,7 +144,7 @@
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogCopyPane.cpp">ogCopyPane.cpp</a> | 7678 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogCounterSlot.cpp">ogCounterSlot.cpp</a> | 15278 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogMenuMgr.cpp">ogMenuMgr.cpp</a> | 18723 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjContena.cpp">ogObjContena.cpp</a> | 31532 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogMenuMgr.cpp">ogMenuMgr.cpp</a> | 18723 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjContena.cpp">ogObjContena.cpp</a> | 31668 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjVs.cpp">ogObjVs.cpp</a> | 44612 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjSMenuMap.cpp">ogObjSMenuMap.cpp</a> | 53588 |
 
 ### <section id="plugProjectYamashitaU">plugProjectYamashitaU</section>

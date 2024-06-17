@@ -1265,28 +1265,28 @@ bool Game2DMgr::open_Contena(og::Screen::DispMemberContena& disp)
 
 	SceneType id = (SceneType)0;
 	switch (disp.mDataContena.mOnyonID) {
-	case ONYON_TYPE_BLUE:
+	case Game::Blue:
 		id = SCENE_CONTENA_BLUE;
 		break;
-	case ONYON_TYPE_RED:
+	case Game::Red:
 		id = SCENE_CONTENA_RED;
 		break;
-	case ONYON_TYPE_YELLOW:
+	case Game::Yellow:
 		id = SCENE_CONTENA_YELLOW;
 		break;
-	case 4:
+	case Game::White:
 		id = SCENE_CONTENA_WHITE;
 		break;
-	case 3:
+	case Game::Purple:
 		id = SCENE_CONTENA_PURPLE;
 		break;
 	}
 	SetSceneArg arg(id, &disp);
 	if (mScreenMgr->setScene(arg) && mScreenMgr->startScene(nullptr)) {
 		switch (disp.mDataContena.mOnyonID) {
-		case ONYON_TYPE_BLUE:
-		case ONYON_TYPE_RED:
-		case ONYON_TYPE_YELLOW:
+		case Game::Blue:
+		case Game::Red:
+		case Game::Yellow:
 			PSPause_StartMenuOn();
 			break;
 		}

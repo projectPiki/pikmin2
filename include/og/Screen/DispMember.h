@@ -6,6 +6,7 @@
 #include "IDelegate.h"
 #include "id32.h"
 #include "Rect.h"
+#include "Game/Piki.h" // solely for the piki id enum
 
 struct Controller;
 
@@ -667,8 +668,8 @@ struct DispMemberUfoGroup : public DispMemberBase {
 	{
 		mHasWhite                       = false;
 		mHasPurple                      = false;
-		mContena1.mDataContena.mOnyonID = 4;
-		mContena2.mDataContena.mOnyonID = 3;
+		mContena1.mDataContena.mOnyonID = Game::White;
+		mContena2.mDataContena.mOnyonID = Game::Purple;
 		mHasPaidDebt                    = false;
 	}
 

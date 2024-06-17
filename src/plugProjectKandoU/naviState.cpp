@@ -4913,16 +4913,16 @@ void NaviContainerState::exec(Navi* navi)
 			}
 			if (pikiNum < 0) {
 				if (isWhite) {
-					mShipPikiType = 4;
+					mShipPikiType = White;
 				} else {
-					mShipPikiType = 3;
+					mShipPikiType = Purple;
 				}
 				mOnyon->exitPikis(-pikiNum, mShipPikiType);
 			} else if (pikiNum > 0) {
 				if (isWhite) {
-					mShipPikiType = 4;
+					mShipPikiType = White;
 				} else {
-					mShipPikiType = 3;
+					mShipPikiType = Purple;
 				}
 				enterPikis(navi, pikiNum);
 			}

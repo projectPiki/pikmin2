@@ -5,6 +5,7 @@
 #include "og/Screen/StickAnimMgr.h"
 #include "og/Screen/anime.h"
 #include "og/Sound.h"
+#include "Game/Piki.h"
 #include "System.h"
 #include "Controller.h"
 #include "trig.h"
@@ -132,19 +133,19 @@ void ObjContena::doCreate(JKRArchive* arc)
 	mContena                   = new og::Screen::ContenaCounter(mDisp);
 
 	switch (mDisp->mDataContena.mOnyonID) {
-	case 0:
+	case Game::Blue:
 		mContena->setblo("contena_b.blo", arc);
 		break;
-	case 1:
+	case Game::Red:
 		mContena->setblo("contena_r.blo", arc);
 		break;
-	case 2:
+	case Game::Yellow:
 		mContena->setblo("contena_y.blo", arc);
 		break;
-	case 3:
+	case Game::Purple:
 		mContena->setblo("contena_bl.blo", arc);
 		break;
-	case 4:
+	case Game::White:
 		mContena->setblo("contena_w.blo", arc);
 		break;
 	default:
@@ -239,7 +240,7 @@ void ObjContena::doCreate(JKRArchive* arc)
 	mScaleMgr4 = new og::Screen::ScaleMgr;
 
 	int type = mDisp->mDataContena.mOnyonID;
-	if (type == 3 || type == 4) {
+	if (type == Game::Purple || type == Game::White) {
 		J2DPane* pane1 = og::Screen::TagSearch(mContena, 'P1_1');
 		J2DPane* pane2 = og::Screen::TagSearch(mContena, 'P1_2');
 		if (mPayedDebt) {
@@ -460,7 +461,7 @@ bool ObjContena::moveContena()
 			mDispState          = 3;
 			data->mResult       = 0;
 			data->mInTransfer   = 0;
-			if ((data->mOnyonID == 3 || data->mOnyonID == 4) && data->mExitSoundType) {
+			if ((data->mOnyonID == Game::Purple || data->mOnyonID == Game::White) && data->mExitSoundType) {
 				ogSound->setCancel();
 			} else {
 				ogSound->setClose();
@@ -1129,7 +1130,7 @@ bool ObjContena::doUpdateFadeout()
 		og::Screen::DataContena* data = mDisp->getDataContena();
 		data->mState                  = mDispState;
 		if (data->mState == 3 && data->mExitSoundType) {
-			if (data->mOnyonID == 4 || data->mOnyonID == 3) {
+			if (data->mOnyonID == Game::White || data->mOnyonID == Game::Purple) {
 				::Screen::SetSceneArg arg(SCENE_UFO_MENU, getDispMember());
 				arg.mDoCreateBackup = false;
 				if (scene->setScene(arg) && !scene->startScene(nullptr)) {
