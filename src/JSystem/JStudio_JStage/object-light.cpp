@@ -71,8 +71,8 @@ void TAdaptor_light::adaptor_do_begin(const JStudio::TObject* object)
 	f32 atanVal1 = dolatan2f(x, z);
 	f32 atanVal2 = dolatan2f(y, dist);
 
-	adaptor_setVariableValue_immediate(10, 57.29578f * atanVal1);
-	adaptor_setVariableValue_immediate(11, 57.29578f * atanVal2);
+	adaptor_setVariableValue_immediate(10, RAD2DEG * atanVal1);
+	adaptor_setVariableValue_immediate(11, RAD2DEG * atanVal2);
 
 	Vec targetPos;
 	PSVECAdd(&vvVec->mPosition, &vvVec->mDirection, &targetPos);
@@ -334,14 +334,12 @@ void TAdaptor_light::adaptor_do_data(const JStudio::TObject* object, const void*
  * @note Address: 0x80011A2C
  * @note Size: 0x78
  */
-void TAdaptor_light::adaptor_do_FACULTY(JStudio::data::TEOperationData op, const void* data, u32)
+void TAdaptor_light::adaptor_do_FACULTY(JStudio::data::TEOperationData op, const void* data, u32 flag)
 {
 	switch (op) {
 	case JStudio::data::TEOD_Unknown_02:
-		JStage::TELight lightType = JStage::TELIGHT_Unk0;
+		JStage::TELight lightType;
 		switch (((int*)data)[0]) {
-		default:
-			return;
 		case 0x301:
 			lightType = JStage::TELIGHT_Unk1;
 			break;
@@ -351,61 +349,15 @@ void TAdaptor_light::adaptor_do_FACULTY(JStudio::data::TEOperationData op, const
 		case 0x303:
 			lightType = JStage::TELIGHT_Unk3;
 			break;
+		default:
+			goto end; // good luck trying to kill the goto -EpochFlame
+			break;
 		}
 
 		get_pJSG_()->JSGSetLightType(lightType);
-		break;
-	default:
+	end:
 		break;
 	}
-
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  cmpwi     r4, 0x2
-	  stw       r0, 0x14(r1)
-	  beq-      .loc_0x18
-	  b         .loc_0x68
-
-	.loc_0x18:
-	  lwz       r0, 0x0(r5)
-	  cmpwi     r0, 0x302
-	  beq-      .loc_0x48
-	  bge-      .loc_0x34
-	  cmpwi     r0, 0x301
-	  bge-      .loc_0x40
-	  b         .loc_0x68
-
-	.loc_0x34:
-	  cmpwi     r0, 0x304
-	  bge-      .loc_0x68
-	  b         .loc_0x50
-
-	.loc_0x40:
-	  li        r4, 0x1
-	  b         .loc_0x54
-
-	.loc_0x48:
-	  li        r4, 0x2
-	  b         .loc_0x54
-
-	.loc_0x50:
-	  li        r4, 0x3
-
-	.loc_0x54:
-	  lwz       r3, 0x114(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x40(r12)
-	  mtctr     r12
-	  bctrl
-
-	.loc_0x68:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
 }
 
 /**

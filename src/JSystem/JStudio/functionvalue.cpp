@@ -69,16 +69,16 @@ void TFunctionValueAttribute_refer::refer_initialize() { clear(); }
 f64 functionvalue::interpolateValue_hermite(f64 c0, f64 c1, f64 x0, f64 c2, f64 x2, f64 c3, f64 x3)
 {
 
-    f64 a = c0 - c1;
-    f64 b = (1 / (x2 - c1));
-    f64 ab = a * b;
-    f64 ab_ab =  (ab * ab);
-    f64 e = ab - 1;
-    f64 d = (3 + (-2 * ab)) * ab_ab;
-    f64 f = 1-d;
-    f64 a_ee = a * (e * e);
-    f64 ab_ea = ab * (e * a);
-    return (ab_ea * x3) + ((a_ee * c2) + ((f * x0) + (d * c3)));
+	f64 a     = c0 - c1;
+	f64 b     = (1 / (x2 - c1));
+	f64 ab    = a * b;
+	f64 ab_ab = (ab * ab);
+	f64 e     = ab - 1;
+	f64 d     = (3 + (-2 * ab)) * ab_ab;
+	f64 f     = 1 - d;
+	f64 a_ee  = a * (e * e);
+	f64 ab_ea = ab * (e * a);
+	return (ab_ea * x3) + ((a_ee * c2) + ((f * x0) + (d * c3)));
 }
 
 /**
