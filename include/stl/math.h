@@ -33,7 +33,7 @@ extern "C" {
 #define M_SQRT3 1.73205f
 
 #define DEG2RAD            (1.0f / 180.0f)
-#define RAD2DEG            (57.295776f)
+#define RAD2DEG            (180.0f / PI)
 #define RAD2DEG_F64        (57.29577951308232)
 #define TORADIANS(degrees) (PI * (DEG2RAD * degrees))
 #define TODEGREES(radians) (RAD2DEG * radians)

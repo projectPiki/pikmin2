@@ -71,8 +71,8 @@ void TAdaptor_light::adaptor_do_begin(const JStudio::TObject* object)
 	f32 atanVal1 = dolatan2f(x, z);
 	f32 atanVal2 = dolatan2f(y, dist);
 
-	adaptor_setVariableValue_immediate(10, RAD2DEG * atanVal1);
-	adaptor_setVariableValue_immediate(11, RAD2DEG * atanVal2);
+	adaptor_setVariableValue_immediate(10, TODEGREES(atanVal1));
+	adaptor_setVariableValue_immediate(11, TODEGREES(atanVal2));
 
 	Vec targetPos;
 	PSVECAdd(&vvVec->mPosition, &vvVec->mDirection, &targetPos);
