@@ -205,7 +205,7 @@ void PathNode::add(Game::PathNode* newNode)
 	// UNUSED FUNCTION
 	if (mRootNode != nullptr) {
 		PathNode* node;
-		for (node = mSibling; node->mSibling != nullptr;) {
+		for (node = mRootNode; node->mSibling != nullptr;) {
 			node = node->mSibling;
 		}
 		node->mSibling     = newNode;
@@ -289,14 +289,19 @@ void AStarPathfinder::setContext(AStarContext* context) { mContext = context; }
 PathNode* AStarContext::getNode(s16 wpID)
 {
 	// UNUSED FUNCTION
-	PathNode* node;
-	for (int i = 0; i < mUsedNodeCount; i++) {
+	int count = mUsedNodeCount;
+
+	for (int i = 0; i < count; i++) {
 		if (wpID == _58[i].mWpIndex) {
-			return _58 + i;
+			return &_58[i];
 		}
 	}
-	if (mUsedNodeCount < mWpNum) {
-		node = _58 + mUsedNodeCount++;
+
+	PathNode* node;
+	if (count < mWpNum) {
+		node = &_58[count];
+		mUsedNodeCount++;
+
 		node->initNode();
 		node->mWpIndex = wpID;
 		node->_22      = 2;
@@ -332,8 +337,9 @@ void AStarPathfinder::initsearch(Game::AStarContext* context)
 	s16 startID = context->mStartWPID;
 	s16 endID   = context->mEndWPID;
 	setContext(context);
-	mContext->mNodeLists[0].initNode();
-	mContext->mNodeLists[1].initNode();
+	for (int i = 0; i < 2; i++) {
+		mContext->mNodeLists[i].initNode();
+	}
 	mContext->mUsedNodeCount = 0;
 	PathNode* node           = mContext->getNode(startID);
 	node->mWpIndex           = startID;
@@ -341,8 +347,10 @@ void AStarPathfinder::initsearch(Game::AStarContext* context)
 	node->mDistanceToEnd     = estimate(startID, endID);
 	node->mChild             = nullptr;
 	node->_22                = 0;
-	mContext->mNodeLists[0].add(node);
-	node->mParent = mContext->mNodeLists + 0;
+
+	PathNode* parent = &mContext->mNodeLists[0];
+	parent->add(node);
+	node->mParent = parent;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -473,7 +481,7 @@ lbl_801A3D54:
  */
 int AStarPathfinder::search(Game::AStarContext* context, int maxIterations, Game::PathNode** path)
 {
-	mContext   = context;
+	setContext(context);
 	s16 endIdx = context->mEndWPID;
 	for (int i = maxIterations; mContext->mNodeLists[0].mRootNode && i > 0; i--) {
 		f32 minDist          = 1280000.0f;
@@ -532,8 +540,67 @@ int AStarPathfinder::search(Game::AStarContext* context, int maxIterations, Game
 
 				CI_LOOP(iter)
 				{
-					s16 idx          = *iter;
-					WayPoint* currWp = PathfindContext::routeMgr->getWayPoint(idx);
+					s16 idx       = *iter;
+					WayPoint* cWP = PathfindContext::routeMgr->getWayPoint(idx);
+
+					PathNode* node = mContext->getNode(idx);
+					if ((!(mContext->mRequestFlag & 1) || !(cWP->mFlags & 1)) && ((mContext->mRequestFlag & 2) || !(cWP->mFlags & 2))
+					    && ((mContext->mRequestFlag & 0x40) || !(cWP->mFlags & 0x80))
+					    && (!(cWP->mFlags & 2) || !(mContext->mRequestFlag & 4) || !(wp->mFlags & 4))
+					    && (!(mContext->mRequestFlag & 0x20) || !(wp->mFlags & 0x20))
+					    && (!(mContext->mRequestFlag & 0x10) || !(wp->mFlags & 0x10))) {
+						f32 test = estimate(targetNode->mWpIndex, node->mWpIndex);
+						test += node->_00;
+						if (node->_22 == 2 || test <= node->_00) {
+							node->mChild         = targetNode;
+							node->_00            = test;
+							node->mDistanceToEnd = estimate(node->mWpIndex, endIdx);
+							if (node->_22 == 1) {
+								PathNode* parent = node->mParent;
+								if (parent) {
+									PathNode* out = nullptr;
+									for (PathNode* child = parent->mRootNode; child->mSibling != nullptr;) {
+										if (child == node) {
+											if (out) {
+												out->mSibling = child->mSibling;
+												if (child->mSibling) {
+													child->mSibling->mPrevious = out;
+												}
+												node->mPrevious = nullptr;
+												node->mSibling  = nullptr;
+												node->mParent   = nullptr;
+											} else {
+												parent->mSibling = child->mSibling;
+												if (child->mSibling) {
+													child->mSibling->mPrevious = nullptr;
+												}
+												node->mPrevious = nullptr;
+												node->mSibling  = nullptr;
+												node->mParent   = nullptr;
+											}
+											break;
+										}
+									}
+								}
+								node->_22 = 2;
+							}
+							if (node->_22) {
+								node->_22             = 0;
+								AStarContext* context = mContext;
+								PathNode* newnode     = context->mNodeLists[0].mRootNode;
+								if (newnode) {
+									while (newnode->mSibling) {
+										newnode = newnode->mSibling;
+									}
+									newnode->mSibling = node;
+									node->mPrevious   = newnode;
+								} else {
+									context->mNodeLists[0].mRootNode = node;
+								}
+								node->mParent = &context->mNodeLists[0];
+							}
+						}
+					}
 				}
 
 				targetNode->_22 = 1;
