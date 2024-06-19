@@ -718,6 +718,8 @@ struct NaviStuckState : public NaviState {
 };
 
 struct NaviThrowInitArg : public StateArg {
+	NaviThrowInitArg(Piki* piki) { mPiki = piki; }
+
 	Piki* mPiki; // _00
 };
 

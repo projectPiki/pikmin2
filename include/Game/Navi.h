@@ -92,6 +92,8 @@ struct NaviWhistle {
 
 	inline f32 getTimePercentage();
 
+	inline Vector3f getPosition() const { return mPosition; }
+
 	Vector3f mNaviOffsetVec; // _00
 	Vector3f mPosition;      // _0C
 	Vector3f mNormal;        // _18
