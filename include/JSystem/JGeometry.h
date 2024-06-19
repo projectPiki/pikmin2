@@ -40,7 +40,6 @@ struct SMatrix33C {
 template <typename T>
 struct TUtil {
 	static f32 abs(f32 x) { return __fabsf(x); }
-	static f32 atan2(f32 y, f32 x) { return JMAAtan2Radian(y, x); }
 	static const f32 epsilon() { return 32.0f * FLT_EPSILON; }
 
 	static bool epsilonEquals(T a1, T a2, T a3)

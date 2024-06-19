@@ -386,6 +386,13 @@ struct NaviFollowArg : public StateArg {
 };
 
 struct NaviFollowState : public NaviState {
+	enum FollowState {
+		FOLLOW_AlertJump   = 0,
+		FOLLOW_Normal      = 1,
+		FOLLOW_IdleGoof    = 2,
+		FOLLOW_PunchTarget = 3,
+	};
+
 	inline NaviFollowState()
 	    : NaviState(NSID_Follow)
 	{
@@ -399,12 +406,12 @@ struct NaviFollowState : public NaviState {
 
 	// _00     = VTBL
 	// _00-_10 = NaviState
-	Navi* mTargetNavi;   // _10
-	u8 _14;              // _14
-	Creature* mRunEnemy; // _18
-	u8 _1C;              // _1C, counter?
-	u8 mAnimID;          // _1D, motion?
-	u8 _1E;              // _1E, counter 2?
+	Navi* mTargetNavi;      // _10
+	u8 mFollowState;        // _14, see FollowState enum
+	Creature* mTargetEnemy; // _18, enemy leader just punched that we're ALSO gonna punch
+	u8 mIdleCounter;        // _1C, try and do a lil idle goof every 90 frames (3s)
+	u8 mAnimID;             // _1D
+	u8 mPunchSeekCounter;   // _1E, time out seeking punch target after 60 frames (2s)
 };
 
 struct NaviGatherArg : public StateArg {
@@ -632,13 +639,13 @@ struct NaviPressedState : public NaviState {
 
 struct NaviPunchArg : public StateArg {
 	inline NaviPunchArg()
-	    : _00(0)
-	    , _04(0)
+	    : mIsFollowing(false)
+	    , mNextState(NSID_Walk)
 	{
 	}
 
-	u8 _00;  // _00
-	u32 _04; // _04
+	bool mIsFollowing; // _00
+	u32 mNextState;    // _04
 };
 
 struct NaviPunchState : public NaviState {
@@ -653,17 +660,17 @@ struct NaviPunchState : public NaviState {
 
 	// _00     = VTBL
 	// _00-_10 = NaviState
-	u8 _10;            // _10
-	Creature* mTarget; // _14
-	Navi* mNavi;       // _18
-	u8 _1C;            // _1C
-	u8 _1D;            // _1D
-	u8 _1E;            // _1E
-	u8 _1F;            // _1F
-	u8 _20;            // _20
-	u8 _21[0x3];       // _21, unknown/padding
-	u8 _24;            // _24
-	u32 mNextStateID;  // _28
+	bool mIsPunchReady;     // _10, just gets set and unset, doesn't get checked
+	Creature* mTarget;      // _14
+	Navi* mNavi;            // _18
+	u8 mUnused1C;           // _1C, unused, just set to 0, probably some leftover debug thing
+	bool mIsNextPunchReady; // _1D
+	u8 mComboCounter;       // _1E, 0=first punch, 1=second punch, 2=final punch (big one for rocket fist)
+	bool mIsTargetHit;      // _1F, just gets set and unset, doesn't get checked
+	u8 mIdleCounter;        // _20
+	u8 mUnused21[0x3];      // _21, padding
+	bool mIsFollowing;      // _24, is navi following another navi
+	u32 mNextStateID;       // _28
 };
 
 struct NaviSaraiExitState : public NaviState {
