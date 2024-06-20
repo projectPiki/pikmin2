@@ -85,24 +85,24 @@ f64 functionvalue::interpolateValue_hermite(f64 c0, f64 c1, f64 x0, f64 c2, f64 
  * @note Address: N/A
  * @note Size: 0x50
  */
-f64 functionvalue::interpolateValue_BSpline_uniform(f64 f1, f64 f2, f64 f3, f64 f4, f64 f5)
+f64 functionvalue::interpolateValue_BSpline_uniform(f64 t, f64 f2, f64 f3, f64 f4, f64 f5)
 {
-	// not correct (yet)
-	f64 f6   = (1.0 - f1);
-	f64 temp = f6;
-	temp     = (f6 * f6) * temp;
+	f64 inv_t   = (1.0 - t);
+    f64 inv_t_sq = inv_t * inv_t;
+	f64 inv_t_cubed = inv_t_sq * inv_t;
 
-	f64 f0 = f1 * f1;
-	f64 f8 = f0 * f1;
+	f64 t_sq = t * t;
+	f64 t_cubed = t_sq * t;
 
-	f64 temp2 = (0.16666666666666666) * ((f1 + f0) - f8);
-	temp2 += 0.5;
-	f64 temp3 = temp2 * f4;
+    f64 j = inv_t_cubed;
 
-	f64 temp4 = (((0.16666666666666666) * f8 - f0) + (2.0 / 3.0));
-	f64 temp5 = temp4 * f3;
+	f64 temp2 = (16.0/99.0) * t_cubed - t_sq + 0.5;
 
-	return temp5 + (temp * f2 + f8 * f5) * 0.5 + temp3;
+	f64 temp4 = (16.0/99.0) * (t + t_sq - t_cubed) + (2.0/3.0);
+
+    f64 k = t_cubed;
+
+	return ((j * f2) + (k * f5)) * (2.0/3.0) + (temp2 * f3) + (temp4 * f4);
 }
 
 /**
@@ -145,9 +145,33 @@ f64 functionvalue::interpolateValue_BSpline_uniform_last2(f64, f64, f64, f64, f6
  * @note Address: N/A
  * @note Size: 0xE0
  */
-f64 functionvalue::interpolateValue_BSpline_nonuniform(f64, const f64*, const f64*)
+f64 functionvalue::interpolateValue_BSpline_nonuniform(f64 f1, const f64* r3, const f64* r4)
 {
-	// UNUSED/INLINED
+    f64 st[22];
+	st[21] = r4[0];
+	st[20] = r4[1];
+    st[19] = r4[2];
+    st[18] = r4[3];
+    st[17] = r4[4];
+    st[16] = r4[5];
+    st[15] = f1 - st[21];
+    st[14] = f1 - st[20];
+    st[13] = f1 - st[19];
+    st[12] = st[18] - f1;
+    st[11] = st[17] - f1;
+    st[10] = st[16] - f1;
+    st[9] = 1 / (st[18] - st[19]);
+    st[8] = (st[12] * st[9]) / (st[18] - st[20]);
+    st[7] = (st[13] * st[9]) / (st[17] - st[19]);
+    st[6] = (st[12] * st[8]) / (st[18] - st[21]);
+    st[5] = ((st[14] * st[8]) + (st[11] * st[7])) / (st[17] - st[20]);
+    st[4] = (st[13] * st[7]) / (st[16] - st[19]);
+    st[3] = st[12] * st[6];
+    st[2] = (st[15] * st[6]) + (st[11] * st[5]);
+    st[1] = (st[14] * st[5]) + (st[10] * st[4]);
+    st[0] = st[13] * st[4];
+
+    return (st[3] * r3[0]) + (st[2] * r3[1]) + (st[1] * r3[2]) + (st[0] * r3[3]);
 }
 
 /**
@@ -1013,77 +1037,33 @@ f64 TFunctionValue_list::update_INTERPOLATE_PLATEAU_(const TFunctionValue_list& 
  */
 f64 TFunctionValue_list::update_INTERPOLATE_BSPLINE_dataMore3_(const TFunctionValue_list& list, const TIndexData_& data)
 {
-	f64 dVar11 = list._44[data._10];
-	f64 dVar10 = list._44[data._10 + 1];
+	const f32 * l = list._44;
+    f64 dVar11 = l[data._10];
+	f64 dVar10 = l[data._10 + 1];
 	f64 dVar9;
 	f64 dVar8;
-	if (data._10 == 0) {
-		dVar9 = 2.0 * dVar11 - dVar10;
-		dVar8 = list._44[data._10 + 2];
-	} else {
-		if (data._10 == list.mData - 2) {
-			dVar9 = list._44[data._10 - 1];
-			dVar8 = 2.0 * dVar10 - dVar11;
-		} else {
-			dVar9 = list._44[data._10 - 1];
-			dVar8 = list._44[data._10 + 2];
-		}
-	}
-	return functionvalue::interpolateValue_BSpline_uniform(data._00 - data._08, dVar9, dVar11, dVar10, dVar8);
-	/*
-	.loc_0x0:
-	  lwz       r6, 0x10(r4)
-	  lwz       r7, 0x44(r3)
-	  rlwinm    r0,r6,2,0,29
-	  cmplwi    r6, 0
-	  add       r5, r7, r0
-	  lfsx      f8, r7, r0
-	  lfs       f9, 0x4(r5)
-	  bne-      .loc_0x30
-	  lfd       f0, -0x7F88(r2)
-	  lfs       f11, 0x8(r5)
-	  fmsub     f10, f0, f8, f9
-	  b         .loc_0x58
+    
+    if (data._10 == 0)
+    {
+        // JUT_ASSERT(list.mData >= 3);
+        dVar9 = 2.0 * dVar11 - dVar10;
+        dVar8 = l[data._10 + 2];
+    }
+    else if (data._10 == list.mData - 2)
+    {    
+        // JUT_ASSERT(list.mData >= 3);
+        dVar9 = l[data._10 - 1];
+        dVar8 = 2.0 * dVar10 - dVar11;
+    }
+    else 
+    {
+        // JUT_ASSERT(list.mData >= 4);
+        dVar9 = l[data._10 - 1];
+        dVar8 = l[data._10 + 2];
+    }
 
-	.loc_0x30:
-	  lwz       r3, 0x48(r3)
-	  subi      r0, r3, 0x2
-	  cmplw     r6, r0
-	  bne-      .loc_0x50
-	  lfd       f0, -0x7F88(r2)
-	  lfs       f10, -0x4(r5)
-	  fmsub     f11, f0, f9, f8
-	  b         .loc_0x58
-
-	.loc_0x50:
-	  lfs       f10, -0x4(r5)
-	  lfs       f11, 0x8(r5)
-
-	.loc_0x58:
-	  lfd       f2, 0x0(r4)
-	  lfd       f1, 0x8(r4)
-	  lfd       f0, -0x7FB8(r2)
-	  fsub      f12, f2, f1
-	  lfd       f6, -0x7F98(r2)
-	  lfd       f4, -0x7FA0(r2)
-	  lfd       f3, -0x7F90(r2)
-	  fmul      f5, f12, f12
-	  fsub      f2, f0, f12
-	  fmul      f7, f5, f12
-	  fmul      f1, f2, f2
-	  fmul      f0, f7, f11
-	  fmul      f1, f1, f2
-	  fmsub     f2, f6, f7, f5
-	  fmadd     f0, f1, f10, f0
-	  fadd      f5, f12, f5
-	  fadd      f1, f3, f2
-	  fmul      f0, f4, f0
-	  fsub      f2, f5, f7
-	  fmadd     f0, f1, f8, f0
-	  fmadd     f1, f6, f2, f4
-	  fmadd     f1, f1, f9, f0
-	  blr
-	*/
+    f64 j = data._00 - data._08;
+	return functionvalue::interpolateValue_BSpline_uniform(j, dVar9, dVar11, dVar10, dVar8);
 }
 
 /**
@@ -1263,13 +1243,13 @@ f64 TFunctionValue_list_parameter::update_INTERPOLATE_BSPLINE_dataMore3_(const T
 {
 	const f32* pfVar2 = list.mData3.get();
 	f64 local_68[4];
-	f64 local_48[6];
 	local_68[1] = pfVar2[-1];
 	local_68[2] = pfVar2[1];
+	f64 local_48[6];
 	local_48[2] = pfVar2[-2];
 	local_48[3] = pfVar2[0];
-	s32 iVar3   = ((int)list.mData2.get() - (int)pfVar2) / 4;
-	s32 iVar5   = ((int)pfVar2 - (int)list.mData1.get()) / 4;
+	s32 iVar5   = pfVar2 - list.mData1.get();
+	s32 iVar3   = list.mData2.get() - pfVar2;
 	switch (iVar5) {
 	case 2:
 		local_68[0] = 2.0 * local_68[1] - local_68[2];
@@ -1331,7 +1311,7 @@ f64 TFunctionValue_list_parameter::update_INTERPOLATE_BSPLINE_dataMore3_(const T
 		}
 		break;
 	}
-	return functionvalue::interpolateValue_BSpline_nonuniform(p2, (f64*)&local_68, (f64*)&local_48);
+	return functionvalue::interpolateValue_BSpline_nonuniform(p2, local_68, local_48);
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x60(r1)
