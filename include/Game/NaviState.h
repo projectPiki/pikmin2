@@ -778,7 +778,7 @@ struct NaviThrowWaitState : public NaviState, virtual public SysShape::MotionLis
 	bool mHasHeldPiki;                       // _20
 	int _24;                                 // _24
 	f32 mNextPikiTimeLimit;                  // _28
-	f32 mUnusedVal;                          // _2C
+	f32 mInitialSortDelayTimer;              // _2C
 	Delegate<NaviThrowWaitState>* mDelegate; // _30
 	Navi* mNavi;                             // _34
 	int mCurrHappa;                          // _38

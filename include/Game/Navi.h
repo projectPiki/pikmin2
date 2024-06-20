@@ -39,6 +39,9 @@ enum AliveOrimaType {
 
 #define GET_OTHER_NAVI(navi) (1 - (navi)->mNaviIndex)
 
+#define CG_NAVIPARMS(navi) (static_cast<NaviParms*>(navi->mParms)->mNaviParms)
+#define C_NAVIPARMS        (CG_NAVIPARMS(this))
+
 // Louie scale is also used for president
 #define OLIMAR_SCALE 1.3f
 #define LOUIE_SCALE  1.5f

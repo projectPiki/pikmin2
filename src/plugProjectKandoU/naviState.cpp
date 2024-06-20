@@ -4418,14 +4418,13 @@ void NaviThrowWaitState::init(Navi* navi, StateArg* stateArg)
 	Iterator<Creature> iterator(navi->mCPlateMgr);
 	CI_LOOP(iterator)
 	{
-		Creature* obj = *iterator;
-		Piki* piki    = static_cast<Piki*>(obj);
+		Piki* piki = static_cast<Piki*>(*iterator);
 
-		Vector3f diff = navi->getPosition() - obj->getPosition();
-		Vector3f check(sinf(navi->mFaceDir), 0.0f, cosf(navi->mFaceDir));
-		f32 dist = diff.length();
-		if (!(FABS(diff.y) > 15.0f)) {
-			if (diff.dot(check) > -0.1f) {
+		Vector3f diff        = piki->getPosition() - navi->getPosition();
+		Vector3f naviFaceDir = getDirection(navi->mFaceDir);
+		f32 dist             = diff.length();
+		if (!(absF(diff.y) > 15.0f)) {
+			if (diff.dot(naviFaceDir) > -0.1f) {
 				dist += 10.0f;
 			}
 			if (dist < minDist && piki->getStateID() == PIKISTATE_Walk && piki->isThrowable()) {
@@ -4458,15 +4457,12 @@ void NaviThrowWaitState::init(Navi* navi, StateArg* stateArg)
 		mHeldPiki->mFsm->transit(mHeldPiki, PIKISTATE_Hanged, 0);
 		mHasHeldPiki = true;
 	}
-	NaviParms* parms = static_cast<NaviParms*>(navi->mParms);
-	navi->mHoldPikiCharge
-	    = mHoldChargeLevel / 3.0f * (parms->mNaviParms.mThrowDistanceMin.mValue - parms->mNaviParms.mThrowDistanceMax.mValue)
-	    + parms->mNaviParms.mThrowDistanceMax.mValue;
-	parms                  = static_cast<NaviParms*>(navi->mParms);
-	navi->mHoldPikiCharge2 = mHoldChargeLevel / 3.0f * (parms->mNaviParms.mThrowHeightMin.mValue - parms->mNaviParms.mThrowHeightMax.mValue)
-	                       + parms->mNaviParms.mThrowHeightMax.mValue;
-	mNextPikiTimeLimit = 3.0f;
-	mUnusedVal         = 0.1f;
+	navi->mHoldPikiCharge = mHoldChargeLevel / 3.0f * (CG_NAVIPARMS(navi).mThrowDistanceMax() - CG_NAVIPARMS(navi).mThrowDistanceMin())
+	                      + CG_NAVIPARMS(navi).mThrowDistanceMin();
+	navi->mHoldPikiCharge2 = mHoldChargeLevel / 3.0f * (CG_NAVIPARMS(navi).mThrowHeightMax() - CG_NAVIPARMS(navi).mThrowHeightMin())
+	                       + CG_NAVIPARMS(navi).mThrowHeightMin();
+	mNextPikiTimeLimit     = 3.0f;
+	mInitialSortDelayTimer = 0.1f;
 	navi->setDoAnimCallback(mDelegate);
 	/*
 	stwu     r1, -0xb0(r1)
@@ -4915,76 +4911,194 @@ void NaviThrowWaitState::exec(Navi* navi)
 	navi->control();
 
 	if (!mHeldPiki) {
-		if (!mNextPiki) {
+		if (mNextPiki) {
+			mNextPikiTimeLimit -= sys->mDeltaTime;
+			if (mNextPikiTimeLimit < 0.0f) {
+				transit(navi, NSID_Walk, nullptr);
+				return;
+			}
+
+			if (navi->mController1->getButtonDown() & Controller::PRESS_B) {
+				transit(navi, NSID_Walk, nullptr);
+				return;
+			}
+			CollPart* part   = navi->mCollTree->getCollPart('rhnd');
+			Vector3f handPos = part->mPosition;
+			Vector3f pikiPos = mNextPiki->getPosition();
+			f32 dist         = handPos.distance(pikiPos);
+			if (!(dist <= 32.5f))
+				return;
+
+			navi->mAnimSpeed = 30.0f;
+			navi->startMotion(IPikiAnims::THROWWWAIT, IPikiAnims::THROWWWAIT, this, nullptr);
+			navi->enableMotionBlend();
+			mHeldPiki = mNextPiki;
+			mNextPiki = nullptr;
+			rumbleMgr->startRumble(RUMBLETYPE_Nudge, mNavi->mNaviIndex);
+			mHeldPiki->mFsm->transit(mHeldPiki, PIKISTATE_Hanged, nullptr);
+			mHasHeldPiki = true;
+		} else {
+			transit(navi, NSID_Punch, nullptr);
 			return;
 		}
-		mNextPikiTimeLimit -= sys->mDeltaTime;
-		if (mNextPikiTimeLimit < 0.0f) {
+	}
+
+	navi->mNextThrowPiki = mHeldPiki;
+
+	f32 min               = CG_NAVIPARMS(navi).mThrowDistanceMin();
+	f32 max               = CG_NAVIPARMS(navi).mThrowDistanceMax();
+	navi->mHoldPikiCharge = mHoldChargeLevel / 3.0f * (max - min) + min;
+
+	max                    = CG_NAVIPARMS(navi).mThrowHeightMax();
+	min                    = CG_NAVIPARMS(navi).mThrowHeightMin();
+	navi->mHoldPikiCharge2 = mHoldChargeLevel / 3.0f * (max - min) + min;
+
+	if (mHeldPiki && mHasHeldPiki) {
+		int stateID = mHeldPiki->getStateID();
+		if (stateID != PIKISTATE_Hanged && stateID != PIKISTATE_GoHang) {
 			transit(navi, NSID_Walk, nullptr);
 			return;
 		}
-		if (navi->mController1->getButtonDown() & Controller::PRESS_B) {
-			transit(navi, NSID_Walk, nullptr);
+	}
+
+	if (navi->mController1->getButtonDown() & Controller::PRESS_DPAD_RIGHT) {
+		mCurrHappa    = -1;
+		int currColor = mHeldPiki->getKind();
+		int pikisNext[(PikiColorCount - 1)];
+		for (int i = 0; i < (PikiColorCount - 1); i++) {
+			pikisNext[i] = ((currColor + i + 1) % PikiColorCount);
+		}
+
+		Piki* newPiki = nullptr;
+		for (int i = 0; i < (PikiColorCount - 1); i++) {
+			Piki* p = findNearestColorPiki(navi, pikisNext[i]);
+			if (p) {
+				newPiki = p;
+				break;
+			}
+		}
+
+		if (newPiki) {
+			Piki* held = mHeldPiki;
+			if (held->mNavi) {
+				if (currColor == Bulbmin) {
+					held->mNavi->mSoundObj->stopSound(PSSE_PK_HAPPA_THROW_WAIT, 0);
+				} else {
+					held->mNavi->mSoundObj->stopSound(PSSE_PK_VC_THROW_WAIT, 0);
+				}
+			}
+			held->mFsm->transit(held, PIKISTATE_Walk, nullptr);
+			mHeldPiki = newPiki;
+			newPiki->mFsm->transit(newPiki, PIKISTATE_Hanged, nullptr);
+			sortPikis(navi);
+			PSSystem::spSysIF->playSystemSe(PSSE_SY_THROW_PIKI_CHANGE, 0);
+			rumbleMgr->startRumble(RUMBLETYPE_Nudge, navi->mNaviIndex);
 			return;
 		}
-		CollPart* part   = navi->mCollTree->getCollPart('rhnd');
-		Vector3f handPos = part->mPosition;
-		Vector3f pikiPos = mNextPiki->getPosition();
-		f32 dist         = pikiPos.distance(handPos);
-		if (!(dist <= 32.5f)) {
+
+	} else if (navi->mController1->getButtonDown() & Controller::PRESS_DPAD_LEFT) {
+		mCurrHappa    = -1;
+		int currColor = mHeldPiki->getKind();
+		int pikisNext[(PikiColorCount - 1)];
+		for (int i = 0; i < (PikiColorCount - 1); i++) {
+			pikisNext[i] = ((currColor + ((PikiColorCount - 2) - i) + 1) % PikiColorCount);
+		}
+
+		Piki* newPiki = nullptr;
+		for (int i = 0; i < (PikiColorCount - 1); i++) {
+			Piki* p = findNearestColorPiki(navi, pikisNext[i]);
+			if (p) {
+				newPiki = p;
+				break;
+			}
+		}
+		if (newPiki) {
+			Piki* held = mHeldPiki;
+			if (held->mNavi) {
+				if (currColor == Bulbmin) {
+					held->mNavi->mSoundObj->stopSound(PSSE_PK_HAPPA_THROW_WAIT, 0);
+				} else {
+					held->mNavi->mSoundObj->stopSound(PSSE_PK_VC_THROW_WAIT, 0);
+				}
+			}
+			held->mFsm->transit(held, PIKISTATE_Walk, nullptr);
+			mHeldPiki = newPiki;
+			newPiki->mFsm->transit(newPiki, PIKISTATE_Hanged, nullptr);
+			sortPikis(navi);
+			PSSystem::spSysIF->playSystemSe(PSSE_SY_THROW_PIKI_CHANGE, 0);
+			rumbleMgr->startRumble(RUMBLETYPE_Nudge, navi->mNaviIndex);
 			return;
 		}
-		navi->mAnimSpeed = 30.0f;
-		navi->startMotion(IPikiAnims::THROWWWAIT, IPikiAnims::THROWWWAIT, this, nullptr);
-		navi->enableMotionBlend();
-		mHeldPiki = mNextPiki;
-		mNextPiki = nullptr;
-		rumbleMgr->startRumble(RUMBLETYPE_Nudge, mNavi->mNaviIndex);
-		mHeldPiki->mFsm->transit(mHeldPiki, PIKISTATE_Hanged, 0);
-		mHasHeldPiki = true;
-	} else {
-		transit(navi, NSID_Punch, nullptr);
+
+	} else if (navi->mController1->getButtonDown() & Controller::PRESS_DPAD_UP
+	           || navi->mController1->getButtonDown() & Controller::PRESS_DPAD_DOWN) {
+		bool isButton = navi->mController1->isButtonDown(Controller::PRESS_DPAD_DOWN);
+		int currColor = mHeldPiki->mPikiKind;
+		int currHappa = mHeldPiki->mHappaKind;
+		Piki* newPiki;
+		for (int i = 0; i < MaxHappaStage; i++) {
+			if (isButton) {
+				mCurrHappa = (mCurrHappa + (PikiGrowthStageCount - 1)) % PikiGrowthStageCount; // leaf->flower, flower->bud, bud->leaf
+			} else {
+				mCurrHappa = (mCurrHappa + 1) % PikiGrowthStageCount; // leaf->bud, bud->flower, flower->leaf
+			}
+			newPiki = findNearestColorPiki(navi, currColor);
+			if (newPiki) {
+				if (newPiki->getHappa() != currHappa) {
+					break;
+				}
+			}
+			newPiki = nullptr;
+		}
+		if (newPiki) {
+			Piki* held = mHeldPiki;
+			if (held->mNavi) {
+				if (currColor == Bulbmin) {
+					held->mNavi->mSoundObj->stopSound(PSSE_PK_HAPPA_THROW_WAIT, 0);
+				} else {
+					held->mNavi->mSoundObj->stopSound(PSSE_PK_VC_THROW_WAIT, 0);
+				}
+			}
+
+			held->mFsm->transit(held, PIKISTATE_Walk, nullptr);
+			mHeldPiki = newPiki;
+			newPiki->mFsm->transit(newPiki, PIKISTATE_Hanged, nullptr);
+			sortPikis(navi);
+			PSSystem::spSysIF->playSystemSe(PSSE_SY_THROW_PIKI_CHANGE, 0);
+			rumbleMgr->startRumble(RUMBLETYPE_Nudge, navi->mNaviIndex);
+			return;
+		}
+	}
+
+	if (!(navi->mController1->getButton() & Controller::PRESS_A)) {
+		sortPikis(navi);
+		navi->mHoldPikiTimer = mHoldChargeLevel / 3.0f * CG_NAVIPARMS(navi).mTimeLimitForThrowing();
+		NaviThrowInitArg arg(mHeldPiki);
+		transit(navi, NSID_Throw, &arg);
 		return;
 	}
 
-	navi->mNextThrowPiki = mNextPiki;
-	NaviParms* parms     = static_cast<NaviParms*>(navi->mParms);
+	navi->mHoldPikiTimer += sys->mDeltaTime;
 
-	navi->mHoldPikiCharge
-	    = mHoldChargeLevel / 3.0f * (parms->mNaviParms.mMaxCallTime.mValue - parms->mNaviParms.mCircleDisappearTime.mValue)
-	    + parms->mNaviParms.mCircleDisappearTime.mValue;
-	parms = static_cast<NaviParms*>(navi->mParms);
-	navi->mHoldPikiCharge2
-	    = mHoldChargeLevel / 3.0f * (parms->mNaviParms.mMaxCallTime.mValue - parms->mNaviParms.mCircleDisappearTime.mValue)
-	    + parms->mNaviParms.mCircleDisappearTime.mValue;
-
-	// a whole lot more stuff goes here
-
-	if (!(navi->mController1->getButtonDown() & Controller::PRESS_B)) {
-		sortPikis(navi);
-		navi->mHoldPikiTimer = mHoldChargeLevel / 3.0f * navi->getParms()->mNaviParms.mTimeLimitForThrowing();
-		NaviThrowInitArg arg(mHeldPiki);
-		transit(navi, NSID_Throw, &arg);
-	} else {
-		navi->mHoldPikiTimer += sys->getDeltaTime();
-		if (navi->mHoldPikiTimer > navi->getParms()->mNaviParms.mTimeLimitForThrowing()) {
-			navi->mHoldPikiTimer = navi->getParms()->mNaviParms.mTimeLimitForThrowing();
+	if (navi->mHoldPikiTimer > CG_NAVIPARMS(navi).mTimeLimitForThrowing()) {
+		navi->mHoldPikiTimer = CG_NAVIPARMS(navi).mTimeLimitForThrowing();
+	}
+	if (mInitialSortDelayTimer > 0.0f) {
+		mInitialSortDelayTimer -= sys->mDeltaTime;
+		if (mInitialSortDelayTimer <= 0.0f) {
+			sortPikis(navi);
 		}
-		if (mUnusedVal > 0.0f) {
-			mUnusedVal -= sys->getDeltaTime();
-			if (mUnusedVal <= 0.0f) {
-				sortPikis(navi);
-			}
-		} else {
-			if (navi->mCPlateMgr->mActiveGroupSize > 0) {
-				Vector3f dist = navi->mCPlateMgr->mSlots->mPosition - navi->getPosition();
-				if (dist.length() > 30.0f) {
-					Vector3f naviPos  = navi->getPosition();
-					Vector3f velocity = navi->getVelocity();
-					navi->mCPlateMgr->setPos(naviPos, navi->mFaceDir + PI, velocity, 1.0f);
-					sortPikis(navi);
-				}
-			}
+		return;
+	}
+
+	if (navi->mCPlateMgr->mActiveGroupSize > 0) {
+		Vector3f slotPos = navi->mCPlateMgr->mSlots->mPosition;
+		Vector3f naviPos = navi->getPosition();
+		if (slotPos.distance(naviPos) > 30.0f) {
+			Vector3f naviPos = navi->getPosition();
+			Vector3f naviVel = navi->getVelocity();
+			navi->mCPlateMgr->setPos(naviPos, navi->mFaceDir + PI, naviVel, 1.0f);
+			sortPikis(navi);
 		}
 	}
 
@@ -6414,7 +6528,9 @@ bool NaviDemo_HoleInState::execHesitate(Navi* navi)
 		Vector3f diff    = holePos - navi->getPosition();
 		diff.normalise();
 
-		Vector3f velocity(diff.x * 2.0f, 240.0f, diff.z * 2.0f);
+		Vector3f velocity(diff.x, 240.0f, diff.z);
+		velocity.x *= 2.0f;
+		velocity.z *= 2.0f;
 		navi->mVelocity       = velocity;
 		navi->mTargetVelocity = velocity;
 		navi->setMapCollision(false);
@@ -6553,8 +6669,8 @@ void NaviPressedState::init(Navi* navi, StateArg* stateArg)
 	navi->mScale = Vector3f(1.5f, 0.01f, 1.5f);
 	mTimer       = 2.0f;
 	navi->setUpdateTrMatrix(false);
-	Vector3f rot(0.0f, navi->mFaceDir, -1.5707964f);
-	rot.x        = -1.5707964f;
+	Vector3f rot(-HALF_PI, navi->mFaceDir, 0.0f);
+	rot.x        = 0.0f;
 	Vector3f pos = navi->getPosition();
 	pos.y += 2.0f;
 
@@ -6579,7 +6695,7 @@ void NaviPressedState::exec(Navi* navi)
 		return;
 	}
 
-	Vector3f rot(-1.5707964f, navi->mFaceDir, 0.0f);
+	Vector3f rot(-HALF_PI, navi->mFaceDir, 0.0f);
 	Vector3f pos = navi->getPosition();
 	rot.x        = 0.0f;
 
@@ -6594,15 +6710,16 @@ void NaviPressedState::exec(Navi* navi)
 		}
 		break;
 	case 1:
-		f32 y  = 1.0f - mTimer / 0.7f;
-		f32 xz = mTimer * TAU * 4.0f;
-		y      = y + (1.0f - y);
-		y *= 0.5f * sinf(xz);
+		f32 y      = 1.0f - mTimer / 0.7f;
+		f32 xz     = mTimer * TAU * 4.0f;
+		f32 sinVal = (0.5f * (1.0f - y)) * sinf(xz);
+		y += sinVal;
 		if (y < 0.0f) {
 			y = 0.0f;
 		}
-		xz           = y * mScaleBackup.x + (1.0f - y) * 1.5f;
-		navi->mScale = Vector3f(xz, y * mScaleBackup.y + (1.0f - y) * 0.01f, xz);
+
+		Vector3f otherVec(1.5f * (1.0f - y), 0.01f * (1.0f - y), 1.5f * (1.0f - y));
+		navi->mScale = Vector3f(y * mScaleBackup.x + otherVec.x, y * mScaleBackup.y + otherVec.y, y * mScaleBackup.x + otherVec.z);
 		pos.y += 2.0f;
 		navi->mBaseTrMatrix.makeSRT(navi->mScale, rot, pos);
 		if (mTimer <= 0.0f) {
@@ -6613,180 +6730,6 @@ void NaviPressedState::exec(Navi* navi)
 
 	navi->mVelocity       = 0.0f;
 	navi->mTargetVelocity = 0.0f;
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stw      r31, 0x4c(r1)
-	mr       r31, r4
-	stw      r30, 0x48(r1)
-	mr       r30, r3
-	lwz      r5, moviePlayer__4Game@sda21(r13)
-	lwz      r0, 0x1f0(r5)
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_80188D6C
-	lwz      r12, 0(r3)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80188F7C
-
-lbl_80188D6C:
-	lfs      f2, 0x1fc(r31)
-	addi     r3, r1, 8
-	lfs      f1, lbl_80518CF4@sda21(r2)
-	lfs      f0, lbl_80518BE0@sda21(r2)
-	stfs     f1, 0x20(r1)
-	stfs     f2, 0x24(r1)
-	stfs     f0, 0x28(r1)
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 8(r1)
-	lfs      f1, 0xc(r1)
-	lfs      f0, 0x10(r1)
-	lfs      f5, lbl_80518BE0@sda21(r2)
-	stfs     f2, 0x14(r1)
-	lwz      r3, sys@sda21(r13)
-	stfs     f1, 0x18(r1)
-	stfs     f0, 0x1c(r1)
-	stfs     f5, 0x20(r1)
-	lfs      f1, 0x10(r30)
-	lfs      f0, 0x54(r3)
-	fsubs    f0, f1, f0
-	stfs     f0, 0x10(r30)
-	lwz      r0, 0x20(r30)
-	cmpwi    r0, 1
-	beq      lbl_80188E34
-	bge      lbl_80188F60
-	cmpwi    r0, 0
-	bge      lbl_80188DE8
-	b        lbl_80188F60
-
-lbl_80188DE8:
-	lfs      f1, 0x18(r1)
-	addi     r3, r31, 0x138
-	lfs      f0, lbl_80518C3C@sda21(r2)
-	addi     r4, r31, 0x168
-	addi     r5, r1, 0x20
-	addi     r6, r1, 0x14
-	fadds    f0, f1, f0
-	stfs     f0, 0x18(r1)
-	bl       "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>"
-	lfs      f1, 0x10(r30)
-	lfs      f0, lbl_80518BE0@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_80188F60
-	li       r0, 1
-	lfs      f0, lbl_80518CF8@sda21(r2)
-	stw      r0, 0x20(r30)
-	stfs     f0, 0x10(r30)
-	b        lbl_80188F60
-
-lbl_80188E34:
-	lfs      f6, 0x10(r30)
-	lfs      f1, lbl_80518CF8@sda21(r2)
-	lfs      f0, lbl_80518CFC@sda21(r2)
-	fdivs    f2, f6, f1
-	lfs      f4, lbl_80518C48@sda21(r2)
-	lfs      f3, lbl_80518C98@sda21(r2)
-	lfs      f1, lbl_80518C04@sda21(r2)
-	fsubs    f7, f4, f2
-	fmuls    f2, f0, f6
-	fsubs    f0, f4, f7
-	fmuls    f2, f3, f2
-	fmuls    f1, f1, f0
-	fcmpo    cr0, f2, f5
-	bge      lbl_80188E98
-	lfs      f0, lbl_80518BEC@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fmuls    f0, f2, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x30(r1)
-	lwz      r0, 0x34(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r3, r0
-	fneg     f0, f0
-	b        lbl_80188EBC
-
-lbl_80188E98:
-	lfs      f0, lbl_80518BE8@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fmuls    f0, f2, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x38(r1)
-	lwz      r0, 0x3c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r3, r0
-
-lbl_80188EBC:
-	fmuls    f1, f1, f0
-	lfs      f0, lbl_80518BE0@sda21(r2)
-	fadds    f7, f7, f1
-	fcmpo    cr0, f7, f0
-	bge      lbl_80188ED4
-	fmr      f7, f0
-
-lbl_80188ED4:
-	lfs      f0, lbl_80518C48@sda21(r2)
-	addi     r3, r31, 0x138
-	lfs      f3, lbl_80518CD4@sda21(r2)
-	addi     r4, r31, 0x168
-	fsubs    f5, f0, f7
-	lfs      f1, lbl_80518CF0@sda21(r2)
-	lfs      f4, 0x14(r30)
-	addi     r5, r1, 0x20
-	lfs      f2, 0x18(r30)
-	addi     r6, r1, 0x14
-	fmuls    f3, f3, f5
-	lfs      f0, lbl_80518C3C@sda21(r2)
-	fmuls    f1, f1, f5
-	fmadds   f3, f7, f4, f3
-	fmadds   f1, f7, f2, f1
-	stfs     f3, 0x168(r31)
-	stfs     f1, 0x16c(r31)
-	stfs     f3, 0x170(r31)
-	lfs      f1, 0x18(r1)
-	fadds    f0, f1, f0
-	stfs     f0, 0x18(r1)
-	bl       "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>"
-	lfs      f1, 0x10(r30)
-	lfs      f0, lbl_80518BE0@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_80188F60
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80188F60:
-	lfs      f0, lbl_80518BE0@sda21(r2)
-	stfs     f0, 0x200(r31)
-	stfs     f0, 0x204(r31)
-	stfs     f0, 0x208(r31)
-	stfs     f0, 0x1e4(r31)
-	stfs     f0, 0x1e8(r31)
-	stfs     f0, 0x1ec(r31)
-
-lbl_80188F7C:
-	lwz      r0, 0x54(r1)
-	lwz      r31, 0x4c(r1)
-	lwz      r30, 0x48(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
 }
 
 /**
