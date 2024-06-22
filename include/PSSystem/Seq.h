@@ -60,6 +60,8 @@ struct SeqBase : public JSULink<SeqBase> {
 		return (getCastType() == TYPE_DirectedBgm || getCastType() == TYPE_AutoBgm || getCastType() == TYPE_JumpBgmSeq);
 	}
 
+	JAISound* getHandle() { return *getHandleP(); }
+
 	void* getFileEntry();
 
 	// _00-_10  = JSULink<SeqBase>

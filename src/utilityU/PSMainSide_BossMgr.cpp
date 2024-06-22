@@ -112,8 +112,7 @@ void TypedProc_MidBoss::update()
  * @note Size: 0xEC
  */
 Mgr::Mgr()
-    : PSSystem::SingletonBase<Mgr>(this)
-    , mTypedProc(1000.0f, 400.0f)
+    : mTypedProc(1000.0f, 400.0f)
 {
 	mTypedProc.mNeedJump = false;
 }
@@ -130,18 +129,17 @@ void Mgr::appendTarget(JSULink<EnemyBoss>* obj) { mTypedProc.append(obj); }
  */
 void Mgr::exec()
 {
-
 	mTypedProc.update();
-	JAISound* mainSound = *PSGetDirectedMainBgmA()->getHandleP();
+
+	JAISound* mainSound = PSGetDirectedMainBgmA()->getHandle(); // r30
 
 	PSM::MiddleBossSeq* bossSeq = PSMGetMiddleBossSeq();
-	JAISound* bossSound         = (bossSeq) ? *bossSeq->getHandleP() : nullptr;
+	JAISound* bossSound         = (bossSeq) ? bossSeq->getHandle() : nullptr; // r29
 
-	JAISound* chSound = nullptr;
+	JAISound* chSound = nullptr; // r28
 	Scene_Game* scene = PSMGetGameScene();
-	if (scene && scene->getSceneInfoA()->mSceneType == PSGame::SceneInfo::CHALLENGE_MODE) {
-		PSSystem::SeqBase* seq = PSSystemChildSceneData(2);
-		chSound                = (seq) ? *seq->getHandleP() : nullptr;
+	if (scene && scene->getSceneInfoA()->getSceneType() == PSGame::SceneInfo::CHALLENGE_MODE) {
+		chSound = PSSystemChildSceneData(2);
 	}
 
 	if (mTypedProc.mCurrState == 3) {
@@ -227,6 +225,7 @@ void Mgr::exec()
 		}
 		break;
 	}
+
 	mTypedProc.mPrevState = mTypedProc.mCurrState;
 	mTypedProc.mNeedJump  = 0;
 	/*

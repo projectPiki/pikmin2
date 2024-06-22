@@ -368,10 +368,10 @@ inline PSSystem::SeqBase* PSSystemGetSeqCheck(int id)
 	return PSSystem::getSeqDataCheck(mgr, id);
 }
 
-inline PSSystem::SeqBase* PSSystemChildSceneData(int id)
+inline JAISound* PSSystemChildSceneData(int id)
 {
-	PSSystem::SceneMgr* mgr = PSMGetSceneMgrCheck();
-	return mgr->getChildScene()->mSeqMgr.getSeq(id);
+	PSSystem::SeqBase* seq = PSMGetSceneMgrCheck()->getChildScene()->getSeqMgr()->getSeq(id);
+	return (seq) ? seq->getHandle() : nullptr;
 }
 
 inline PSGame::SceneInfo* PSGameGetSceneInfo()

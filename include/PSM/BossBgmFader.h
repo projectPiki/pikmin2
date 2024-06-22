@@ -71,14 +71,6 @@ struct Mgr : ::PSSystem::SingletonBase<Mgr> {
 	void appendTarget(JSULink<EnemyBoss>*);
 	void exec();
 
-	inline void setUpdator(::PSSystem::DirectorBase* director)
-	{
-		u8 count = mTypedProc.mLinkCount;
-		if (count) {
-			mTypedProc.mDirectorUpdator = new DirectorUpdator(director, count, DirectorUpdator::TYPE_0);
-		}
-	}
-
 	inline bool checkBossActive()
 	{
 		bool ret = false;
@@ -93,7 +85,7 @@ struct Mgr : ::PSSystem::SingletonBase<Mgr> {
 	}
 
 	// _00 VTBL
-	TypedProc mTypedProc; // _04
+	TypedProc_MidBoss mTypedProc; // _04
 };
 } // namespace BossBgmFader
 } // namespace PSM

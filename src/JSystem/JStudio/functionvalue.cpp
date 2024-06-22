@@ -87,22 +87,22 @@ f64 functionvalue::interpolateValue_hermite(f64 c0, f64 c1, f64 x0, f64 c2, f64 
  */
 f64 functionvalue::interpolateValue_BSpline_uniform(f64 t, f64 f2, f64 f3, f64 f4, f64 f5)
 {
-	f64 inv_t   = (1.0 - t);
-    f64 inv_t_sq = inv_t * inv_t;
+	f64 inv_t       = (1.0 - t);
+	f64 inv_t_sq    = inv_t * inv_t;
 	f64 inv_t_cubed = inv_t_sq * inv_t;
 
-	f64 t_sq = t * t;
+	f64 t_sq    = t * t;
 	f64 t_cubed = t_sq * t;
 
-    f64 j = inv_t_cubed;
+	f64 j = inv_t_cubed;
 
-	f64 temp2 = (16.0/99.0) * t_cubed - t_sq + 0.5;
+	f64 temp2 = (16.0 / 99.0) * t_cubed - t_sq + 0.5;
 
-	f64 temp4 = (16.0/99.0) * (t + t_sq - t_cubed) + (2.0/3.0);
+	f64 temp4 = (16.0 / 99.0) * (t + t_sq - t_cubed) + (2.0 / 3.0);
 
-    f64 k = t_cubed;
+	f64 k = t_cubed;
 
-	return ((j * f2) + (k * f5)) * (2.0/3.0) + (temp2 * f3) + (temp4 * f4);
+	return ((j * f2) + (k * f5)) * (2.0 / 3.0) + (temp2 * f3) + (temp4 * f4);
 }
 
 /**
@@ -147,31 +147,31 @@ f64 functionvalue::interpolateValue_BSpline_uniform_last2(f64, f64, f64, f64, f6
  */
 f64 functionvalue::interpolateValue_BSpline_nonuniform(f64 f1, const f64* r3, const f64* r4)
 {
-    f64 st[22];
+	f64 st[22];
 	st[21] = r4[0];
 	st[20] = r4[1];
-    st[19] = r4[2];
-    st[18] = r4[3];
-    st[17] = r4[4];
-    st[16] = r4[5];
-    st[15] = f1 - st[21];
-    st[14] = f1 - st[20];
-    st[13] = f1 - st[19];
-    st[12] = st[18] - f1;
-    st[11] = st[17] - f1;
-    st[10] = st[16] - f1;
-    st[9] = 1 / (st[18] - st[19]);
-    st[8] = (st[12] * st[9]) / (st[18] - st[20]);
-    st[7] = (st[13] * st[9]) / (st[17] - st[19]);
-    st[6] = (st[12] * st[8]) / (st[18] - st[21]);
-    st[5] = ((st[14] * st[8]) + (st[11] * st[7])) / (st[17] - st[20]);
-    st[4] = (st[13] * st[7]) / (st[16] - st[19]);
-    st[3] = st[12] * st[6];
-    st[2] = (st[15] * st[6]) + (st[11] * st[5]);
-    st[1] = (st[14] * st[5]) + (st[10] * st[4]);
-    st[0] = st[13] * st[4];
+	st[19] = r4[2];
+	st[18] = r4[3];
+	st[17] = r4[4];
+	st[16] = r4[5];
+	st[15] = f1 - st[21];
+	st[14] = f1 - st[20];
+	st[13] = f1 - st[19];
+	st[12] = st[18] - f1;
+	st[11] = st[17] - f1;
+	st[10] = st[16] - f1;
+	st[9]  = 1 / (st[18] - st[19]);
+	st[8]  = (st[12] * st[9]) / (st[18] - st[20]);
+	st[7]  = (st[13] * st[9]) / (st[17] - st[19]);
+	st[6]  = (st[12] * st[8]) / (st[18] - st[21]);
+	st[5]  = ((st[14] * st[8]) + (st[11] * st[7])) / (st[17] - st[20]);
+	st[4]  = (st[13] * st[7]) / (st[16] - st[19]);
+	st[3]  = st[12] * st[6];
+	st[2]  = (st[15] * st[6]) + (st[11] * st[5]);
+	st[1]  = (st[14] * st[5]) + (st[10] * st[4]);
+	st[0]  = st[13] * st[4];
 
-    return (st[3] * r3[0]) + (st[2] * r3[1]) + (st[1] * r3[2]) + (st[0] * r3[3]);
+	return (st[3] * r3[0]) + (st[2] * r3[1]) + (st[1] * r3[2]) + (st[0] * r3[3]);
 }
 
 /**
@@ -1037,32 +1037,27 @@ f64 TFunctionValue_list::update_INTERPOLATE_PLATEAU_(const TFunctionValue_list& 
  */
 f64 TFunctionValue_list::update_INTERPOLATE_BSPLINE_dataMore3_(const TFunctionValue_list& list, const TIndexData_& data)
 {
-	const f32 * l = list._44;
-    f64 dVar11 = l[data._10];
-	f64 dVar10 = l[data._10 + 1];
+	const f32* l = list._44;
+	f64 dVar11   = l[data._10];
+	f64 dVar10   = l[data._10 + 1];
 	f64 dVar9;
 	f64 dVar8;
-    
-    if (data._10 == 0)
-    {
-        // JUT_ASSERT(list.mData >= 3);
-        dVar9 = 2.0 * dVar11 - dVar10;
-        dVar8 = l[data._10 + 2];
-    }
-    else if (data._10 == list.mData - 2)
-    {    
-        // JUT_ASSERT(list.mData >= 3);
-        dVar9 = l[data._10 - 1];
-        dVar8 = 2.0 * dVar10 - dVar11;
-    }
-    else 
-    {
-        // JUT_ASSERT(list.mData >= 4);
-        dVar9 = l[data._10 - 1];
-        dVar8 = l[data._10 + 2];
-    }
 
-    f64 j = data._00 - data._08;
+	if (data._10 == 0) {
+		// JUT_ASSERT(list.mData >= 3);
+		dVar9 = 2.0 * dVar11 - dVar10;
+		dVar8 = l[data._10 + 2];
+	} else if (data._10 == list.mData - 2) {
+		// JUT_ASSERT(list.mData >= 3);
+		dVar9 = l[data._10 - 1];
+		dVar8 = 2.0 * dVar10 - dVar11;
+	} else {
+		// JUT_ASSERT(list.mData >= 4);
+		dVar9 = l[data._10 - 1];
+		dVar8 = l[data._10 + 2];
+	}
+
+	f64 j = data._00 - data._08;
 	return functionvalue::interpolateValue_BSpline_uniform(j, dVar9, dVar11, dVar10, dVar8);
 }
 

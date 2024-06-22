@@ -108,8 +108,7 @@ void DirectorMgr_Scene::initTrackMap(::PSSystem::DirectedBgm& bgm)
 		actor = new ActorDirector_Kehai("kehaiD   ", trackMap.mKehaiTrackCount, 100, 100, 100);
 		P2ASSERTLINE(188, actor);
 		for (u8 i = 0; i < (int)trackMap.mKehaiTrackCount; i++) {
-			int id = trackMap.mEventTrackCount + trackMap.mBasicTrackCount + trackMap.mOtakaraTrackCount + i;
-			actor->setTrack(i, bgm.getChildTrack(id));
+			actor->setTrack(i, bgm.getChildTrack(i + trackMap.mBasicTrackCount + trackMap.mOtakaraTrackCount + trackMap.mEventTrackCount));
 		}
 		break;
 	}
@@ -117,8 +116,8 @@ void DirectorMgr_Scene::initTrackMap(::PSSystem::DirectedBgm& bgm)
 		actor = new ActorDirector_Battle("battleD  ", trackMap.mBattleTrackCount, 100, 100, 100);
 		P2ASSERTLINE(206, actor);
 		for (u8 i = 0; i < (int)trackMap.mBattleTrackCount; i++) {
-			int id = trackMap.mEventTrackCount + trackMap.mBasicTrackCount + trackMap.mOtakaraTrackCount + trackMap.mKehaiTrackCount + i;
-			actor->setTrack(i, bgm.getChildTrack(id));
+			actor->setTrack(i, bgm.getChildTrack(i + trackMap.mBasicTrackCount + trackMap.mOtakaraTrackCount + trackMap.mKehaiTrackCount
+			                                     + trackMap.mEventTrackCount));
 		}
 		break;
 	}
@@ -126,8 +125,7 @@ void DirectorMgr_Scene::initTrackMap(::PSSystem::DirectedBgm& bgm)
 		actor = new ActorDirector_TrackOn("OtakaraD", trackMap.mOtakaraTrackCount, 100, 100);
 		P2ASSERTLINE(219, actor);
 		for (u8 i = 0; i < (int)trackMap.mOtakaraTrackCount; i++) {
-			int id = trackMap.mEventTrackCount + trackMap.mBasicTrackCount + i;
-			actor->setTrack(i, bgm.getChildTrack(id));
+			actor->setTrack(i, bgm.getChildTrack(i + trackMap.mEventTrackCount + trackMap.mBasicTrackCount));
 		}
 		break;
 	}
@@ -175,7 +173,12 @@ void DirectorMgr_Scene::initTrackMap(::PSSystem::DirectedBgm& bgm)
 
 	// some mess here
 	::PSSystem::DirectorBase* ret = nullptr;
-	ret                           = !actor ? damage ? damage : nullptr : actor ? actor : nullptr;
+	if (actor || (ret = damage, !ret)) {
+		ret = nullptr;
+		if (actor && !damage) {
+			ret = actor;
+		}
+	}
 
 	P2ASSERTLINE(334, ret);
 
@@ -864,221 +867,54 @@ DirectorMgr_Battle::DirectorMgr_Battle()
  */
 ::PSSystem::DirectorBase* DirectorMgr_Battle::newDirector(u8 flag, ::PSSystem::DirectedBgm& bgm)
 {
-	::PSSystem::DirectorBase* director = nullptr;
-	u8 startID                         = 255;
-	u8 tracknum                        = 255;
+	PSSystem::DirectorBase* director = nullptr;
+	u8 trackNum                      = 255;
+	u8 trackID                       = 255;
 
-	bool boss = static_cast<PSGame::PikSceneMgr*>(PSMGetSceneMgrCheck())->curSceneIsBigBossFloor();
+	PSSystem::SceneMgr* mgr = PSMGetSceneMgrCheck();
+	bool boss               = static_cast<PSGame::PikSceneMgr*>(mgr)->curSceneIsBigBossFloor();
 
 	switch (flag) {
 	case 0:
 		if (boss) {
-			tracknum = 14;
-			startID  = 1;
+			trackID  = 14;
+			trackNum = 1;
 		} else {
-			tracknum = 10;
-			startID  = 1;
+			trackID  = 10;
+			trackNum = 1;
 		}
-		director = new PikAttackDirector(tracknum);
-		if (::PSSystem::SingletonBase<BossBgmFader::Mgr>::sInstance) {
-			::PSSystem::SingletonBase<BossBgmFader::Mgr>::getInstance()->setUpdator(director);
+		director = new PikAttackDirector(trackNum);
+
+		BossBgmFader::Mgr* fader = PSSystem::SingletonBase<BossBgmFader::Mgr>::sInstance;
+		if (fader) {
+			u8 count = ::PSSystem::SingletonBase<BossBgmFader::Mgr>::getInstance()->mTypedProc.mLinkCount;
+			if (count) {
+				fader->mTypedProc.mDirectorUpdator = new DirectorUpdator(director, count, DirectorUpdator::TYPE_0);
+			}
 		}
+
 		break;
 	case 1:
 		if (boss) {
-			tracknum = 15;
-			startID  = 1;
+			trackID  = 15;
+			trackNum = 1;
 		} else {
-			tracknum = 11;
-			startID  = 1;
+			trackID  = 11;
+			trackNum = 1;
 		}
-		director = new ExiteDirector(tracknum);
+		director = new ExiteDirector(trackNum);
 		break;
 	}
 
-	P2ASSERTLINE(495, startID != 255);
-	P2ASSERTLINE(496, tracknum != 255);
+	P2ASSERTLINE(495, trackNum != 255);
+	P2ASSERTLINE(496, trackID != 255);
 	P2ASSERTLINE(497, director);
 
-	for (u8 i = 0; i < tracknum; i++) {
-		director->setTrack(i, bgm.getChildTrack(startID + i));
+	for (u8 i = 0; i < trackNum; i++) {
+		int index = trackID + i;
+		director->setTrack(i, bgm.getChildTrack(index));
 	}
 	return director;
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	lis      r3, lbl_8049DA80@ha
-	stw      r0, 0x34(r1)
-	stmw     r25, 0x14(r1)
-	mr       r25, r4
-	mr       r27, r5
-	addi     r31, r3, lbl_8049DA80@l
-	li       r30, 0
-	li       r29, 0xff
-	li       r28, 0xff
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_8047028C
-	addi     r3, r31, 0x14c
-	addi     r5, r31, 0x1c
-	li       r4, 0x1d3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8047028C:
-	lwz      r26, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r26, 0
-	bne      lbl_804702AC
-	addi     r3, r31, 0x14c
-	addi     r5, r31, 0x1c
-	li       r4, 0x1dc
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804702AC:
-	mr       r3, r26
-	lwz      r12, 0(r26)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	clrlwi   r0, r25, 0x18
-	cmpwi    r0, 1
-	beq      lbl_80470378
-	bge      lbl_804703B4
-	cmpwi    r0, 0
-	bge      lbl_804702DC
-	b        lbl_804703B4
-
-lbl_804702DC:
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_804702F0
-	li       r28, 0xe
-	li       r29, 1
-	b        lbl_804702F8
-
-lbl_804702F0:
-	li       r28, 0xa
-	li       r29, 1
-
-lbl_804702F8:
-	li       r3, 0x54
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80470314
-	clrlwi   r4, r29, 0x18
-	bl       __ct__Q23PSM17PikAttackDirectorFi
-	mr       r0, r3
-
-lbl_80470314:
-	lwz      r26,
-"sInstance__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>"@sda21(r13) mr
-r30, r0 cmplwi   r26, 0 beq      lbl_804703B4 bne      lbl_8047033C addi     r3,
-r31, 0x158 addi     r5, r31, 0x1c li       r4, 0x89 crclr    6 bl
-panic_f__12JUTExceptionFPCciPCce
-
-lbl_8047033C:
-	lwz      r3,
-"sInstance__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>"@sda21(r13) lwz
-r0, 0xc(r3) clrlwi.  r25, r0, 0x18 beq      lbl_804703B4 li       r3, 0x10 bl
-__nw__FUl or.      r0, r3, r3 beq      lbl_80470370 mr       r4, r30 mr r5, r25
-	li       r6, 0
-	bl
-__ct__Q23PSM15DirectorUpdatorFPQ28PSSystem12DirectorBaseUcQ33PSM15DirectorUpdator4Type
-	mr       r0, r3
-
-lbl_80470370:
-	stw      r0, 0x34(r26)
-	b        lbl_804703B4
-
-lbl_80470378:
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8047038C
-	li       r28, 0xf
-	li       r29, 1
-	b        lbl_80470394
-
-lbl_8047038C:
-	li       r28, 0xb
-	li       r29, 1
-
-lbl_80470394:
-	li       r3, 0x54
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_804703B0
-	clrlwi   r4, r29, 0x18
-	bl       __ct__Q23PSM13ExiteDirectorFi
-	mr       r0, r3
-
-lbl_804703B0:
-	mr       r30, r0
-
-lbl_804703B4:
-	clrlwi   r0, r29, 0x18
-	cmplwi   r0, 0xff
-	bne      lbl_804703D4
-	addi     r3, r31, 0
-	addi     r5, r31, 0x1c
-	li       r4, 0x1ef
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804703D4:
-	clrlwi   r0, r28, 0x18
-	cmplwi   r0, 0xff
-	bne      lbl_804703F4
-	addi     r3, r31, 0
-	addi     r5, r31, 0x1c
-	li       r4, 0x1f0
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804703F4:
-	cmplwi   r30, 0
-	bne      lbl_80470410
-	addi     r3, r31, 0
-	addi     r5, r31, 0x1c
-	li       r4, 0x1f1
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80470410:
-	clrlwi   r26, r28, 0x18
-	clrlwi   r28, r29, 0x18
-	li       r25, 0
-	b        lbl_80470460
-
-lbl_80470420:
-	clrlwi   r0, r25, 0x18
-	add      r29, r26, r0
-	cmpwi    r29, 0x10
-	blt      lbl_80470444
-	addi     r5, r31, 0x1c
-	addi     r3, r2, lbl_80520D7C@sda21
-	li       r4, 0x1a3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80470444:
-	slwi     r4, r29, 2
-	mr       r3, r30
-	addi     r0, r4, 0x74
-	mr       r4, r25
-	lwzx     r5, r27, r0
-	bl       setTrack__Q28PSSystem12DirectorBaseFUcPQ28PSSystem12SeqTrackBase
-	addi     r25, r25, 1
-
-lbl_80470460:
-	clrlwi   r0, r25, 0x18
-	cmplw    r0, r28
-	blt      lbl_80470420
-	mr       r3, r30
-	lmw      r25, 0x14(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /**
