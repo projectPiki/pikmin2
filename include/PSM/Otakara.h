@@ -56,12 +56,35 @@ struct Otakara : public EventBase {
 		return false;
 	}
 
+	inline bool isTreasure()
+	{
+		return getCastType() == CCT_PelletOtakara || getCastType() == CCT_PelletItem || getCastType() == CCT_Otakara;
+	}
+
+	inline bool canFinish()
+	{
+		bool test = true;
+		u32 type  = mBedamaType;
+		if (type - 2 <= PSMBedama_Cherry || (int)type == PSMBedama_Yellow) {
+			test = true;
+		} else if (type - 1 <= PSMBedama_Red || (int)type == PSMBedama_Yellow) {
+			if (!mOnyon) {
+				test = true;
+			} else {
+				test = false;
+			}
+		} else {
+			test = false;
+		}
+		return test;
+	}
+
 	// _00      = VTABLE
 	// _04-_70  = CreatureObj
 	u32 mBedamaType;             // _70
-	Game::Onyon* mOnyon;         // _74, unknown
+	Game::Onyon* mOnyon;         // _74
 	EventLink mEventLink;        // _78
-	OtakaraEventLink* mOtaEvent; // _8C, probably this? possibly some related pointer
+	OtakaraEventLink* mOtaEvent; // _8C
 };
 
 struct PelletOtakara : public Otakara {

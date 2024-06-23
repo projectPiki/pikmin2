@@ -14,8 +14,8 @@ struct Tsuyukusa : public CreatureObj {
 	// _10     = VTBL 1
 	// _28     = VTBL 2
 	// _00-_70 = CreatureObj
-	BOOL _70;                    // _70
-	JSULink<Game::Creature> _74; // _74
+	BOOL mIsEnabled;               // _70
+	JSULink<Game::Creature> mLink; // _74
 };
 } // namespace PSM
 
