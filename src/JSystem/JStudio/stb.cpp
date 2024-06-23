@@ -5,6 +5,7 @@
 #include "JSystem/JGadget/linklist.h"
 #include "stl/algorithm.h"
 #include "mem.h"
+#include "JSystem/JGadget/enumerator.h"
 
 namespace JStudio {
 namespace stb {
@@ -455,97 +456,35 @@ void TControl::reset()
  */
 bool TControl::forward(u32 time)
 {
-	mSuspend                                       = referObject_control().getSuspend();
-	bool result                                    = referObject_control().forward(time);
-	int statusAnd                                  = 15;
-	int statusOr                                   = 0;
-	JGadget::TLinkList<TObject, -12>::iterator it  = mObjectContainer.begin();
-	JGadget::TLinkList<TObject, -12>::iterator end = mObjectContainer.end();
-	while (it != (end)) {
-		bool check   = false;
-		TObject* obj = (it++).operator->();
-		if (obj->forward(time) || result) {
-			check = true;
-		}
-		result = check;
+    TObject *p;
+    
+	mSuspend                                       = mObject_control.getSuspend();
+	bool result                                    = mObject_control.forward(time);
+	u32 statusAnd                                  = 0x0f;
+	u32 statusOr                                   = 0;
+    
+    for (JGadget::TContainerEnumerator_< JGadget::TLinkList<JStudio::stb::TObject, -12> > it(mObjectContainer); it.enumerator; )
+    {
+		// this sucks, ideally `*it` should return a `TObject&` or `TObject*`, but idk how to set that up
+		p = &**it.enumerator;
+        TObject::TEStatus s;
+        
+        bool v = true;
+        if (!p->forward(time) && !result)
+        {
+            v = false;
+        }
+        result = v;
+        
+        s = p->getStatus();
 
-		statusAnd &= obj->getStatus();
-		statusOr |= obj->getStatus();
-	}
+        statusAnd &= s;
+        statusOr |= s;
+    }
 
 	setStatus(statusAnd | statusOr << 16);
 
 	return result;
-	/*
-	stwu     r1, -0x60(r1)
-	mflr     r0
-	stw      r0, 0x64(r1)
-	stmw     r25, 0x44(r1)
-	mr       r30, r3
-	mr       r31, r4
-	lwz      r0, 0x40(r3)
-	addi     r3, r30, 0x20
-	stw      r0, 0x54(r30)
-	bl       forward__Q37JStudio3stb7TObjectFUl
-	lwz      r0, 0x14(r30)
-	addi     r4, r30, 0x14
-	stw      r4, 0x24(r1)
-	mr       r27, r3
-	li       r26, 0xf
-	li       r25, 0
-	stw      r4, 0x20(r1)
-	stw      r4, 0x34(r1)
-	stw      r4, 0x30(r1)
-	stw      r0, 0x1c(r1)
-	stw      r0, 0x18(r1)
-	stw      r0, 0x2c(r1)
-	stw      r0, 0x28(r1)
-	stw      r0, 0x38(r1)
-	stw      r4, 0x3c(r1)
-	b        lbl_80010BC4
-
-lbl_80010B80:
-	lwz      r3, 0x38(r1)
-	mr       r4, r31
-	li       r29, 0
-	lwz      r0, 0(r3)
-	addi     r28, r3, -12
-	mr       r3, r28
-	stw      r0, 0x38(r1)
-	bl       forward__Q37JStudio3stb7TObjectFUl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80010BB0
-	clrlwi.  r0, r27, 0x18
-	beq      lbl_80010BB4
-
-lbl_80010BB0:
-	li       r29, 1
-
-lbl_80010BB4:
-	lwz      r0, 0x30(r28)
-	mr       r27, r29
-	and      r26, r26, r0
-	or       r25, r25, r0
-
-lbl_80010BC4:
-	lwz      r3, 0x3c(r1)
-	lwz      r0, 0x38(r1)
-	stw      r3, 0x14(r1)
-	cmplw    r0, r3
-	stw      r0, 0x10(r1)
-	stw      r3, 0xc(r1)
-	stw      r0, 8(r1)
-	bne      lbl_80010B80
-	slwi     r0, r25, 0x10
-	mr       r3, r27
-	or       r0, r26, r0
-	stw      r0, 0x1c(r30)
-	lmw      r25, 0x44(r1)
-	lwz      r0, 0x64(r1)
-	mtlr     r0
-	addi     r1, r1, 0x60
-	blr
-	*/
 }
 
 /**
@@ -674,118 +613,14 @@ bool TParse::parseBlock_object(const data::TParse_TBlock_object& object, u32 fla
 
 	TObject* newObj = factory->create(object);
 	if (!newObj) {
-		if (flags & 0x40) {
-			return true;
-		}
-
-		char a5c[8];
-		char t[16];
-		int type = object.getType();
-		data::toString_block(a5c, type);
-		return false;
+		return (flags & 0x40) ? true : false;
 	}
-	control->appendObject(newObj);
+
+	newObj->mControl = control;
+	JGadget::TLinkList<TObject, -12>::iterator i = control->mObjectContainer.end();
+	control->mObjectContainer.Insert(i, newObj);
+	
 	return true;
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  lwz       r6, 0x0(r4)
-	  stw       r0, 0x34(r1)
-	  stw       r31, 0x2C(r1)
-	  stw       r30, 0x28(r1)
-	  mr        r30, r5
-	  stw       r29, 0x24(r1)
-	  mr        r29, r4
-	  lwz       r31, 0x4(r3)
-	  lwz       r3, 0x4(r6)
-	  addis     r0, r3, 0x1
-	  cmplwi    r0, 0xFFFF
-	  bne-      .loc_0x68
-	  lhz       r4, 0xA(r6)
-	  li        r0, 0
-	  li        r3, 0x1
-	  stb       r0, 0x3E(r31)
-	  addi      r4, r4, 0x3
-	  rlwinm    r4,r4,0,0,29
-	  addi      r4, r4, 0xC
-	  stw       r0, 0x50(r31)
-	  add       r4, r6, r4
-	  stw       r4, 0x48(r31)
-	  stw       r0, 0x4C(r31)
-	  b         .loc_0x138
-
-	.loc_0x68:
-	  rlwinm.   r0,r30,0,27,27
-	  beq-      .loc_0xBC
-	  lhz       r5, 0xA(r6)
-	  mr        r3, r31
-	  addi      r4, r6, 0xC
-	  bl        -0x504
-	  cmplwi    r3, 0
-	  beq-      .loc_0xBC
-	  lwz       r6, 0x0(r29)
-	  li        r4, 0
-	  lhz       r5, 0xA(r6)
-	  stb       r4, 0x1E(r3)
-	  addi      r0, r5, 0x3
-	  rlwinm    r5,r0,0,0,29
-	  addi      r0, r5, 0xC
-	  stw       r4, 0x30(r3)
-	  add       r0, r6, r0
-	  stw       r0, 0x28(r3)
-	  stw       r4, 0x2C(r3)
-	  li        r3, 0x1
-	  b         .loc_0x138
-
-	.loc_0xBC:
-	  rlwinm.   r0,r30,0,26,26
-	  beq-      .loc_0xCC
-	  li        r3, 0x1
-	  b         .loc_0x138
-
-	.loc_0xCC:
-	  lwz       r3, 0xC(r31)
-	  cmplwi    r3, 0
-	  bne-      .loc_0xE0
-	  li        r3, 0
-	  b         .loc_0x138
-
-	.loc_0xE0:
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r29
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  mr.       r6, r3
-	  bne-      .loc_0x104
-	  rlwinm    r3,r30,26,31,31
-	  b         .loc_0x138
-
-	.loc_0x104:
-	  stw       r31, 0x14(r6)
-	  addi      r0, r31, 0x14
-	  addi      r3, r1, 0x10
-	  addi      r4, r31, 0x10
-	  stw       r0, 0xC(r1)
-	  addi      r5, r1, 0x14
-	  addi      r6, r6, 0xC
-	  stw       r0, 0x8(r1)
-	  stw       r0, 0x1C(r1)
-	  stw       r0, 0x18(r1)
-	  stw       r0, 0x14(r1)
-	  bl        0x16380
-	  li        r3, 0x1
-
-	.loc_0x138:
-	  lwz       r0, 0x34(r1)
-	  lwz       r31, 0x2C(r1)
-	  lwz       r30, 0x28(r1)
-	  lwz       r29, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
-	*/
 }
 } // namespace stb
 } // namespace JStudio

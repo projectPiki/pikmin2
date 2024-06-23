@@ -89,6 +89,13 @@ struct TContainerEnumerator_const_TVector : public TEnumerator<const T*> {
 
 	// _00-_08 = TEnumerator
 };
+
+template <typename T>
+struct TContainerEnumerator_
+{
+	TContainerEnumerator_(T& a) : enumerator(a.begin(), a.end()) { }
+	JGadget::TEnumerator<T::iterator> enumerator;
+};
 } // namespace JGadget
 
 #endif

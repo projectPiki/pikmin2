@@ -5,7 +5,7 @@
 
 namespace std {
 template <typename InputIterator, typename Predicate>
-InputIterator find_if(InputIterator first, InputIterator last, Predicate p)
+static InputIterator find_if(InputIterator first, InputIterator last, Predicate p)
 {
 	for (; first != last && !p(*first); ++first) { }
 	return first;
