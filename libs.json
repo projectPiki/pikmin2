@@ -989,7 +989,7 @@
       ["plugProjectKandoU/aiBridge", true],
       ["plugProjectKandoU/aiTeki", true],
       ["plugProjectKandoU/singleGS_MainGame", true],
-      ["plugProjectKandoU/singleGS_CaveGame", false],
+      ["plugProjectKandoU/singleGS_CaveGame", true],
       ["plugProjectKandoU/singleGS_MainResult", true],
       ["plugProjectKandoU/singleGS_CaveResult", false],
       ["plugProjectKandoU/singleGS_WorldMap", true],

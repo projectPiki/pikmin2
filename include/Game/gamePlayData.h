@@ -474,6 +474,8 @@ struct PlayData : public CNode {
 
 	inline u8& getDebtProgressFlags(int flagID) { return ((u8*)(&mDebtProgressFlags))[flagID]; }
 
+	inline PelletCropMemory* getCaveCropMemory() const { return mCaveCropMemory; }
+
 	// _00     = VTBL
 	// _00-_18 = CNode
 	bool _18;                               // _18
