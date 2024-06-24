@@ -208,13 +208,20 @@ void GameState::init(SingleGameSection* game, StateArg* arg)
  */
 unknown GameState::gameStart(SingleGameSection*)
 {
-	// Feels like there should be more to this, but the DispObjGround stuff is sometimes before this stuff, sometimes after, idk
 	gameSystem->setFlag(GAMESYS_IsPlaying);
 	if (gameSystem->mTimeMgr->mDayCount != 0) {
-		PSMGetSceneMgr()->mScenes->mChild->startMainSeq();
+		PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
+		mgr->checkScene();
+		mgr->mScenes->mChild->startMainSeq();
 	} else {
-		static_cast<PSM::Scene_Objects*>(PSMGetSceneMgr()->mScenes->mChild)->onStartMainSeq();
-		static_cast<PSM::Scene_Objects*>(PSMGetSceneMgr()->mScenes->mChild)->getEnvSe()->on();
+		// PikSceneMgr cast is solely to fix a regswap, very cool
+		PSGame::PikSceneMgr* mgr = static_cast<PSGame::PikSceneMgr*>(PSSystem::getSceneMgr());
+		mgr->checkScene();
+		static_cast<PSM::Scene_Objects*>(mgr->mScenes->mChild)->onStartMainSeq();
+
+		mgr = static_cast<PSGame::PikSceneMgr*>(PSSystem::getSceneMgr());
+		mgr->checkScene();
+		static_cast<PSM::Scene_Game*>(mgr->mScenes->mChild)->getEnvSe()->on();
 	}
 }
 
@@ -810,13 +817,13 @@ void GameState::onMovieDone(SingleGameSection* game, MovieConfig* config, u32, u
 			return;
 		}
 
-		// @intns: only remaining regswaps are in this loop - Piki* piki should load into r25 not r28.
+		// ground all pikmin when cutscene ends
 		Iterator<Piki> iterator(pikiMgr);
 		CI_LOOP(iterator)
 		{
-			FakePiki* piki = *iterator;
-			Vector3f pos   = piki->getPosition();
-			pos.y          = mapMgr->getMinY(pos);
+			Piki* piki   = *iterator;
+			Vector3f pos = piki->getPosition();
+			pos.y        = mapMgr->getMinY(pos);
 			piki->setPosition(pos, false);
 		}
 

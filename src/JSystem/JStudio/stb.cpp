@@ -456,31 +456,29 @@ void TControl::reset()
  */
 bool TControl::forward(u32 time)
 {
-    TObject *p;
-    
-	mSuspend                                       = mObject_control.getSuspend();
-	bool result                                    = mObject_control.forward(time);
-	u32 statusAnd                                  = 0x0f;
-	u32 statusOr                                   = 0;
-    
-    for (JGadget::TContainerEnumerator_< JGadget::TLinkList<JStudio::stb::TObject, -12> > it(mObjectContainer); it.enumerator; )
-    {
+	TObject* p;
+
+	mSuspend      = mObject_control.getSuspend();
+	bool result   = mObject_control.forward(time);
+	u32 statusAnd = 0x0f;
+	u32 statusOr  = 0;
+
+	for (JGadget::TContainerEnumerator_<JGadget::TLinkList<JStudio::stb::TObject, -12>> it(mObjectContainer); it.enumerator;) {
 		// this sucks, ideally `*it` should return a `TObject&` or `TObject*`, but idk how to set that up
 		p = &**it.enumerator;
-        TObject::TEStatus s;
-        
-        bool v = true;
-        if (!p->forward(time) && !result)
-        {
-            v = false;
-        }
-        result = v;
-        
-        s = p->getStatus();
+		TObject::TEStatus s;
 
-        statusAnd &= s;
-        statusOr |= s;
-    }
+		bool v = true;
+		if (!p->forward(time) && !result) {
+			v = false;
+		}
+		result = v;
+
+		s = p->getStatus();
+
+		statusAnd &= s;
+		statusOr |= s;
+	}
 
 	setStatus(statusAnd | statusOr << 16);
 
@@ -616,10 +614,10 @@ bool TParse::parseBlock_object(const data::TParse_TBlock_object& object, u32 fla
 		return (flags & 0x40) ? true : false;
 	}
 
-	newObj->mControl = control;
+	newObj->mControl                             = control;
 	JGadget::TLinkList<TObject, -12>::iterator i = control->mObjectContainer.end();
 	control->mObjectContainer.Insert(i, newObj);
-	
+
 	return true;
 }
 } // namespace stb

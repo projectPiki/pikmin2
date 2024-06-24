@@ -988,7 +988,7 @@
       ["plugProjectKandoU/itemWeed", false],
       ["plugProjectKandoU/aiBridge", true],
       ["plugProjectKandoU/aiTeki", true],
-      ["plugProjectKandoU/singleGS_MainGame", false],
+      ["plugProjectKandoU/singleGS_MainGame", true],
       ["plugProjectKandoU/singleGS_CaveGame", false],
       ["plugProjectKandoU/singleGS_MainResult", true],
       ["plugProjectKandoU/singleGS_CaveResult", false],
