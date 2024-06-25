@@ -463,7 +463,13 @@ bool TControl::forward(u32 time)
 	u32 statusAnd = 0x0f;
 	u32 statusOr  = 0;
 
-	for (JGadget::TContainerEnumerator_<JGadget::TLinkList<JStudio::stb::TObject, -12>> it(mObjectContainer); it.enumerator;) {
+	// someone typedef JGadget::TLinkList<JStudio::stb::TObject, -12> so we can get rid of this pls
+	// the issue is C++ requires a space between >s in templates but clang-format eats it
+	
+	// clang-format off
+	for (JGadget::TContainerEnumerator_<JGadget::TLinkList<JStudio::stb::TObject, -12> > it(mObjectContainer); it.enumerator;) {
+		// clang-format on
+
 		// this sucks, ideally `*it` should return a `TObject&` or `TObject*`, but idk how to set that up
 		p = &**it.enumerator;
 		TObject::TEStatus s;

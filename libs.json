@@ -1742,7 +1742,7 @@
       ["utilityU/PSMainSide_Scene", false],
       ["utilityU/PSMainSide_BossMgr", false],
       ["utilityU/PSMainSide_Se", false],
-      ["utilityU/PSMainSide_DirectorMgr", false],
+      ["utilityU/PSMainSide_DirectorMgr", true],
       ["utilityU/PSMainSide_Sound", false],
       ["utilityU/PSMainSide_TrackMap", true],
       ["utilityU/PSMainSide_CreaturePrm", false],

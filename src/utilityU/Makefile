@@ -7,7 +7,7 @@ UTILITY_FILES:=\
 	$(BUILD_DIR)/asm/utilityU/PSMainSide_Scene.o\
 	$(BUILD_DIR)/asm/utilityU/PSMainSide_BossMgr.o\
 	$(BUILD_DIR)/asm/utilityU/PSMainSide_Se.o\
-	$(BUILD_DIR)/asm/utilityU/PSMainSide_DirectorMgr.o\
+	$(BUILD_DIR)/src/utilityU/PSMainSide_DirectorMgr.o\
 	$(BUILD_DIR)/asm/utilityU/PSMainSide_Sound.o\
 	$(BUILD_DIR)/src/utilityU/PSMainSide_TrackMap.o\
 	$(BUILD_DIR)/asm/utilityU/PSMainSide_CreaturePrm.o\

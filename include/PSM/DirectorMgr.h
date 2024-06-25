@@ -19,6 +19,7 @@ struct DirectorMgr_Scene : public ::PSSystem::DirectorMgrBase, public JKRDispose
 		Director_Pikmin    = 5, // missing notes when pikmin die
 		Director_Damage    = 6, // distortion when getting hit
 		Director_Tempo     = 7, // slow music when low health
+		Director_COUNT,         // 8
 	};
 
 	DirectorMgr_Scene(DirectorMgr_Scene*, u8);
@@ -50,7 +51,7 @@ struct DirectorMgr_Scene_AutoBgm : public DirectorMgr_Scene {
 	{
 	}
 
-	virtual ~DirectorMgr_Scene_AutoBgm() { }                                                  // _08 (weak)
+	// virtual ~DirectorMgr_Scene_AutoBgm() { }                                                  // _08 (weak)
 	virtual PikminNumberDirector* newPikminNumberDirector(int, u8, ::PSSystem::DirectedBgm&); // _20
 
 	// _00     = VTBL 1
@@ -61,7 +62,7 @@ struct DirectorMgr_Scene_AutoBgm : public DirectorMgr_Scene {
 struct DirectorMgr_Battle : public ::PSSystem::DirectorMgrBase, public JKRDisposer {
 	DirectorMgr_Battle();
 
-	virtual ~DirectorMgr_Battle() { }                                            // _08 (weak)
+	// virtual ~DirectorMgr_Battle() { }                                            // _08 (weak)
 	virtual ::PSSystem::DirectorBase* newDirector(u8, ::PSSystem::DirectedBgm&); // _0C
 
 	// _00     = VTBL 1 (DirectorMgrBase)
@@ -85,7 +86,7 @@ struct DirectorMgr_2PBattle : public ::PSSystem::DirectorMgrBase, public JKRDisp
 
 	DirectorMgr_2PBattle();
 
-	virtual ~DirectorMgr_2PBattle() { }                                          // _08 (weak)
+	// virtual ~DirectorMgr_2PBattle() { }                                          // _08 (weak)
 	virtual ::PSSystem::DirectorBase* newDirector(u8, ::PSSystem::DirectedBgm&); // _0C
 
 	// _00     = VTBL 1 (DirectorMgrBase)
