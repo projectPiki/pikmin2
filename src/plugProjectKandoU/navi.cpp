@@ -3399,10 +3399,10 @@ bool Navi::invincible()
 	if (!gameSystem->isFlag(GAMESYS_IsGameWorldActive)) {
 		return true;
 	}
-	if (!mCurrentState) {
-		return true;
+	if (mCurrentState) {
+		return mCurrentState->invincible();
 	}
-	return mCurrentState->invincible();
+	return true;
 }
 
 /**
@@ -3596,28 +3596,35 @@ void Navi::startDamage(f32 damage)
  */
 void Navi::addDamage(f32 damage, bool flag)
 {
-	if ((moviePlayer && moviePlayer->mDemoState != DEMOSTATE_Inactive) || !gameSystem->isFlag(GAMESYS_IsGameWorldActive)) {
-		return;
-	}
-
-	if (playData->mOlimarData->hasItem(OlimarData::ODII_JusticeAlloy)) {
-		damage *= naviMgr->mNaviParms->mNaviParms.mShieldDamageReductionRate();
-	}
-
-	if (isAlive() && !mCurrentState->invincible() && !invincible()) {
-		mHealth -= damage;
-		if (flag) {
-			mSoundObj->startSound(PSSE_PL_ORIMA_DAMAGE, 0);
-			cameraMgr->startVibration(VIBTYPE_NaviDamage, mNaviIndex);
-			rumbleMgr->startRumble(RUMBLETYPE_NaviDamage, mNaviIndex);
-			mEffectsObj->createOrimadamage_(mEffectsObj->mHeadMtx->mMatrix.mtxView);
-			PSM::DamageDirector* director = PSMGetDamageD();
-			if (director) {
-				director->directOn();
+	if (!moviePlayer || moviePlayer->mDemoState == DEMOSTATE_Inactive) {
+		if (gameSystem->isFlag(GAMESYS_IsGameWorldActive)) {
+			if (playData->mOlimarData->hasItem(OlimarData::ODII_JusticeAlloy)) {
+				damage *= naviMgr->mNaviParms->mNaviParms.mShieldDamageReductionRate();
 			}
-			if (mHealth < 1.0f) {
-				if (getStateID() != NSID_Dead) {
-					mFsm->transit(this, NSID_Dead, nullptr);
+
+			if (!isAlive() || mCurrentState->invincible()) {
+				return;
+			} else {
+				if (!invincible()) {
+					mHealth -= damage;
+					if (flag) {
+						mSoundObj->startSound(PSSE_PL_ORIMA_DAMAGE, 0);
+						cameraMgr->startVibration(VIBTYPE_NaviDamage, mNaviIndex);
+						rumbleMgr->startRumble(RUMBLETYPE_NaviDamage, mNaviIndex);
+						mEffectsObj->createOrimadamage_(mEffectsObj->mHeadMtx->mMatrix.mtxView);
+						PSM::DamageDirector* director = PSMGetDamageD();
+						if (director) {
+							director->directOn();
+						}
+						goto health_check;
+					} else {
+health_check:
+						if (mHealth < 1.0f) {
+							if (getStateID() != NSID_Dead) {
+								mFsm->transit(this, NSID_Dead, nullptr);
+							}
+						}
+					}
 				}
 			}
 		}
