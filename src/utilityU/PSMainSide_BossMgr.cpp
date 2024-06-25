@@ -12,17 +12,17 @@ namespace BossBgmFader {
  * @note Address: N/A
  * @note Size: 0xC8
  */
-TypedProc::TypedProc(f32 farDist, f32 nearDist)
+TypedProc::TypedProc(f32 maxDist, f32 fadeRange)
 {
-	mFarDist     = farDist;
-	mMiddleDist  = (farDist - nearDist);
-	mNearDist    = nearDist;
-	mStopDist    = mMiddleDist / 2.0f;
-	mCurrState   = 0;
-	mPrevState   = 0;
-	mCurrObj     = nullptr;
-	mMaxDistance = 1000000000.0f;
-	P2ASSERTLINE(47, mNearDist > 0.0f);
+	mMaxDist       = maxDist;
+	mFadeDist      = (maxDist - fadeRange);
+	mFadeRange     = fadeRange;
+	mDirectDist    = mFadeDist / 2.0f;
+	mCurrProcState = PROC_None;
+	mPrevProcState = PROC_None;
+	mNearestBoss   = nullptr;
+	mBossDistance  = 1000000000.0f;
+	P2ASSERTLINE(47, mFadeRange > 0.0f);
 }
 
 /**
@@ -31,69 +31,96 @@ TypedProc::TypedProc(f32 farDist, f32 nearDist)
  */
 void TypedProc::update()
 {
-	f32 maxDist     = 1000000000.0f;
-	f32 defaultDist = mMaxDistance;
-	mCurrObj        = nullptr;
+	f32 nearestBossDist = 1000000000.0f;
+	f32 currBossDist    = mBossDistance;
+	mNearestBoss        = nullptr;
 
+	// find closest visible ('appear'ed) boss
 	for (JSULinkIterator<EnemyBoss> iter(getFirst()); iter != nullptr; iter++) {
 		if (iter.getObject()->mAppearFlag) {
 			f32 dist = iter.getObject()->mNaviDistance;
-			if (dist < maxDist) {
-				maxDist  = dist;
-				mCurrObj = iter.getObject();
+			if (dist < nearestBossDist) {
+				nearestBossDist = dist;
+				mNearestBoss    = iter.getObject();
 			}
 		}
 	}
 
-	if (maxDist > 9000000.0f) {
-		maxDist = defaultDist;
+	// closest boss is way too far away, don't update distance
+	if (nearestBossDist > 9000000.0f) {
+		nearestBossDist = currBossDist;
 	}
 
-	f32 maxDist2      = 100000000.0f;
-	EnemyBoss* newObj = nullptr;
+	f32 disappearingDist       = 100000000.0f;
+	EnemyBoss* disappearingObj = nullptr;
+	// find closest disappearing boss
 	FOREACH_NODE(JSULink<EnemyBoss>, getFirst(), link)
 	{
 		link->getObject()->updateDisappearing();
 		if (link->getObject()->isOnDisappearing()) {
 			f32 dist = link->getObject()->mNaviDistance;
-			if (dist <= maxDist2) {
-				maxDist2 = dist;
-				newObj   = link->getObject();
+			if (dist <= disappearingDist) {
+				disappearingDist = dist;
+				disappearingObj  = link->getObject();
 			}
 		}
 	}
 
-	if (mCurrObj) {
-		if (maxDist < mStopDist) {
-			mCurrState = 0;
-			mCurrState |= 3;
-		} else if (maxDist < mMiddleDist) {
-			mCurrState = 0;
-			mCurrState |= 2;
-		} else if (maxDist < mFarDist) {
-			mCurrState = 0;
-			mCurrState |= 1;
+	// if we have a visible boss, set what "range" we're in
+	if (mNearestBoss) {
+		if (nearestBossDist < mDirectDist) {
+			// VERY CLOSE - set both
+			mCurrProcState = PROC_None;
+			mCurrProcState |= PROC_Directed;
+
+		} else if (nearestBossDist < mFadeDist) {
+			// not as close - set 2
+			mCurrProcState = PROC_None;
+			mCurrProcState |= PROC_MainLoop;
+
+		} else if (nearestBossDist < mMaxDist) {
+			// pretty far - set 1
+			mCurrProcState = PROC_None;
+			mCurrProcState |= PROC_Fade;
+
 		} else {
-			mCurrState = 0;
+			// way too far, no procs
+			mCurrProcState = PROC_None;
 		}
 	} else {
-		mCurrState = 0;
+		// no boss, no procs
+		mCurrProcState = PROC_None;
 	}
 
-	if (newObj && maxDist2 < mFarDist && mCurrState == 0) {
-		mCurrState = 0;
-		mCurrState |= 4;
-		mCurrObj = newObj;
-		maxDist  = maxDist2;
+	// if there's a disappearing boss within earshot and we aren't doing anything else, fade all audio to mute
+	if (disappearingObj && disappearingDist < mMaxDist && mCurrProcState == PROC_None) {
+		mCurrProcState = PROC_None;
+		mCurrProcState |= PROC_Disappear;
+		mNearestBoss    = disappearingObj;
+		nearestBossDist = disappearingDist;
 	}
-	mMaxDistance = maxDist;
+
+	mBossDistance = nearestBossDist;
 }
 
 /**
  * @note Address: N/A
  * @note Size: 0x100
  */
-void TypedProc::getBossFadeVolume() { mNearDist = 1.0f; }
+f32 TypedProc::getBossFadeVolume()
+{
+	// calling this at all assumes mMaxDist > mBossDistance >= mFadeDist
+	// (and mFadeRange = mMaxDist - mFadeDist)
+
+	f32 fadeProp = mBossDistance - mFadeDist;
+	P2ASSERTBOUNDSINCLUSIVELINE2(167, 0.0f, fadeProp, mFadeRange);
+
+	// map fade distance to volume value between 1 (fadeProp = 0) and 0 (fadeProp = mFadeRange)
+	f32 bossVolume = JALCalc::linearTransform(fadeProp, 0.0f, mFadeRange, 1.0f, 0.0f, false);
+	P2ASSERTBOUNDSINCLUSIVELINE2(172, 0.0f, bossVolume, 1.0f);
+
+	return bossVolume;
+}
 
 /**
  * @note Address: 0x8046C890
@@ -112,7 +139,7 @@ void TypedProc_MidBoss::update()
  * @note Size: 0xEC
  */
 Mgr::Mgr()
-    : mTypedProc(1000.0f, 400.0f)
+    : mTypedProc(1000.0f, 400.0f) // boss music "radius" is 1000 units, with a fade range of 400 units
 {
 	mTypedProc.mNeedJump = false;
 }
@@ -131,25 +158,27 @@ void Mgr::exec()
 {
 	mTypedProc.update();
 
-	JAISound* mainSound = PSGetDirectedMainBgmA()->getHandle(); // r30
+	JAISound* mainSound = PSGetDirectedMainBgmA()->getHandle();
 
 	PSM::MiddleBossSeq* bossSeq = PSMGetMiddleBossSeq();
-	JAISound* bossSound         = (bossSeq) ? bossSeq->getHandle() : nullptr; // r29
+	JAISound* bossSound         = (bossSeq) ? bossSeq->getHandle() : nullptr;
 
-	JAISound* chSound = nullptr; // r28
-	Scene_Game* scene = PSMGetGameScene();
+	JAISound* chalSound = nullptr;
+	Scene_Game* scene   = PSMGetGameScene();
 	if (scene && scene->getSceneInfoA()->getSceneType() == PSGame::SceneInfo::CHALLENGE_MODE) {
-		chSound = PSSystemChildSceneData(2);
+		chalSound = PSSystemChildSceneData(2);
 	}
 
-	if (mTypedProc.mCurrState == 3) {
-		if (mTypedProc.mPrevState != 3) {
+	if (mTypedProc.mCurrProcState == TypedProc::PROC_Directed) {
+		if (mTypedProc.mPrevProcState != TypedProc::PROC_Directed) {
+			// we're now super close to the boss - start directing battle music
 			PSSystem::DirectorBase* director = PSMGetBattleDirector(1);
 			if (director) {
 				director->directOn();
 			}
 		}
-	} else if (mTypedProc.mPrevState == 3) {
+	} else if (mTypedProc.mPrevProcState == TypedProc::PROC_Directed) {
+		// we're no longer super close to the boss, stop directing battle music
 		PSSystem::DirectorBase* director = PSMGetBattleDirector(1);
 		if (director) {
 			director->directOff();
@@ -157,13 +186,16 @@ void Mgr::exec()
 	}
 
 	if (!mTypedProc.mNeedJump) {
-		int state = mTypedProc.mCurrState;
-		if (state == 0 && mTypedProc.mPrevState) {
+		if (mTypedProc.mCurrProcState == TypedProc::PROC_None && mTypedProc.mPrevProcState != TypedProc::PROC_None) {
+			// we're out of range of a boss, stop the loop
 			MiddleBossSeq* seq = PSMGetMiddleBossSeq();
 			if (seq->mJumpPort._70) {
 				seq->requestJumpBgmOnBeat(PSM::EnemyMidBoss::BossBgm_InactiveLoop);
 			}
-		} else if ((state == 3 || state == 2) && (mTypedProc.mPrevState == 1 || mTypedProc.mPrevState == 0)) {
+		} else if ((mTypedProc.mCurrProcState == TypedProc::PROC_Directed || mTypedProc.mCurrProcState == TypedProc::PROC_MainLoop)
+		           && (mTypedProc.mPrevProcState == TypedProc::PROC_Fade || mTypedProc.mPrevProcState == TypedProc::PROC_None)) {
+
+			// we weren't in loop range before (fadeout or out of range completely), but now we are. start the loop.
 			MiddleBossSeq* seq = PSMGetMiddleBossSeq();
 			if (!seq->mJumpPort._70) {
 				seq->requestJumpBgmOnBeat(PSM::EnemyMidBoss::BossBgm_MainLoop);
@@ -171,54 +203,55 @@ void Mgr::exec()
 		}
 	}
 
-	switch (mTypedProc.mCurrState) {
-	case 2:
-	case 3: // only boss sound
+	switch (mTypedProc.mCurrProcState) {
+	case TypedProc::PROC_MainLoop:
+	case TypedProc::PROC_Directed: // only boss sound
 		if (mainSound) {
 			mainSound->setVolume(0.0f, 40, SOUNDPARAM_Unk0);
 		}
-		if (chSound) {
-			chSound->setVolume(0.0f, 40, SOUNDPARAM_Unk0);
+		if (chalSound) {
+			chalSound->setVolume(0.0f, 40, SOUNDPARAM_Unk0);
 		}
 		if (bossSound) {
 			bossSound->setVolume(1.0f, 40, SOUNDPARAM_Unk0);
 		}
 
 		break;
-	case 1:
-		f32 bossVolume = mTypedProc.mMaxDistance - mTypedProc.mMiddleDist;
-		P2ASSERTBOUNDSINCLUSIVELINE2(167, 0.0f, bossVolume, mTypedProc.mNearDist);
-		bossVolume = JALCalc::linearTransform(bossVolume, 0.0f, mTypedProc.mNearDist, 1.0f, 0.0f, false);
-		P2ASSERTBOUNDSINCLUSIVELINE2(172, 0.0f, bossVolume, 1.0f);
+
+	case TypedProc::PROC_Fade:
+		// fade out boss sound + fade back in other sound
+		f32 bossVolume  = mTypedProc.getBossFadeVolume();
 		f32 otherVolume = 1.0f - bossVolume;
 		if (mainSound) {
 			mainSound->setVolume(otherVolume, 40, SOUNDPARAM_Unk0);
 		}
-		if (chSound) {
-			chSound->setVolume(otherVolume, 40, SOUNDPARAM_Unk0);
+		if (chalSound) {
+			chalSound->setVolume(otherVolume, 40, SOUNDPARAM_Unk0);
 		}
 		if (bossSound) {
 			bossSound->setVolume(bossVolume, 40, SOUNDPARAM_Unk0);
 		}
 
 		break;
-	case 0: // no boss sound
+
+	case TypedProc::PROC_None: // no boss sound
 		if (mainSound) {
 			mainSound->setVolume(1.0f, 40, SOUNDPARAM_Unk0);
 		}
-		if (chSound) {
-			chSound->setVolume(1.0f, 40, SOUNDPARAM_Unk0);
+		if (chalSound) {
+			chalSound->setVolume(1.0f, 40, SOUNDPARAM_Unk0);
 		}
 		if (bossSound) {
 			bossSound->setVolume(0.0f, 40, SOUNDPARAM_Unk0);
 		}
 		break;
-	case 4: // no sound at all
+
+	case TypedProc::PROC_Disappear: // atmospheric beat of silence when boss disappears
 		if (mainSound) {
 			mainSound->setVolume(0.0f, 40, SOUNDPARAM_Unk0);
 		}
-		if (chSound) {
-			chSound->setVolume(0.0f, 40, SOUNDPARAM_Unk0);
+		if (chalSound) {
+			chalSound->setVolume(0.0f, 40, SOUNDPARAM_Unk0);
 		}
 		if (bossSound) {
 			bossSound->setVolume(0.0f, 40, SOUNDPARAM_Unk0);
@@ -226,590 +259,8 @@ void Mgr::exec()
 		break;
 	}
 
-	mTypedProc.mPrevState = mTypedProc.mCurrState;
-	mTypedProc.mNeedJump  = 0;
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stfd     f31, 0x30(r1)
-	psq_st   f31, 56(r1), 0, qr0
-	stfd     f30, 0x20(r1)
-	psq_st   f30, 40(r1), 0, qr0
-	stmw     r26, 8(r1)
-	mr       r27, r3
-	lis      r4, lbl_8049D9A8@ha
-	addi     r3, r27, 4
-	lwz      r12, 0x10(r27)
-	addi     r31, r4, lbl_8049D9A8@l
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	bl       PSGetDirectedMainBgmA__Fv
-	lwz      r12, 0x10(r3)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	lwz      r30, 0(r3)
-	cmplwi   r0, 0
-	bne      lbl_8046CA54
-	addi     r3, r31, 0x24
-	addi     r5, r31, 0x18
-	li       r4, 0x1d3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8046CA54:
-	lwz      r28, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r28, 0
-	bne      lbl_8046CA74
-	addi     r3, r31, 0x24
-	addi     r5, r31, 0x18
-	li       r4, 0x1dc
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8046CA74:
-	lwz      r0, 4(r28)
-	cmplwi   r0, 0
-	bne      lbl_8046CA94
-	addi     r3, r31, 0x30
-	addi     r5, r31, 0x18
-	li       r4, 0xc7
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8046CA94:
-	lwz      r3, 4(r28)
-	lwz      r3, 4(r3)
-	cmplwi   r3, 0
-	bne      lbl_8046CAAC
-	li       r3, 0
-	b        lbl_8046CAB0
-
-lbl_8046CAAC:
-	bl       getMiddleBossBgm__Q26PSGame8PikSceneFv
-
-lbl_8046CAB0:
-	cmplwi   r3, 0
-	beq      lbl_8046CAD0
-	lwz      r12, 0x10(r3)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r29, 0(r3)
-	b        lbl_8046CAD4
-
-lbl_8046CAD0:
-	li       r29, 0
-
-lbl_8046CAD4:
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	li       r28, 0
-	cmplwi   r0, 0
-	bne      lbl_8046CAF8
-	addi     r3, r31, 0x24
-	addi     r5, r31, 0x18
-	li       r4, 0x1d3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8046CAF8:
-	lwz      r26, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r26, 0
-	bne      lbl_8046CB18
-	addi     r3, r31, 0x24
-	addi     r5, r31, 0x18
-	li       r4, 0x1dc
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8046CB18:
-	lwz      r0, 4(r26)
-	cmplwi   r0, 0
-	bne      lbl_8046CB38
-	addi     r3, r31, 0x30
-	addi     r5, r31, 0x18
-	li       r4, 0xcf
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8046CB38:
-	lwz      r3, 4(r26)
-	lwz      r26, 4(r3)
-	cmplwi   r26, 0
-	bne      lbl_8046CB5C
-	addi     r3, r31, 0x30
-	addi     r5, r31, 0x3c
-	li       r4, 0xd1
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8046CB5C:
-	mr       r3, r26
-	lwz      r12, 0(r26)
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8046CB7C
-	b        lbl_8046CB80
-
-lbl_8046CB7C:
-	li       r26, 0
-
-lbl_8046CB80:
-	cmplwi   r26, 0
-	beq      lbl_8046CC54
-	mr       r3, r26
-	bl       getSceneInfoA__Q23PSM9SceneBaseFv
-	lbz      r0, 6(r3)
-	cmplwi   r0, 6
-	bne      lbl_8046CC54
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_8046CBBC
-	addi     r3, r31, 0x24
-	addi     r5, r31, 0x18
-	li       r4, 0x1d3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8046CBBC:
-	lwz      r26, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r26, 0
-	bne      lbl_8046CBDC
-	addi     r3, r31, 0x24
-	addi     r5, r31, 0x18
-	li       r4, 0x1dc
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8046CBDC:
-	lwz      r0, 4(r26)
-	cmplwi   r0, 0
-	bne      lbl_8046CBFC
-	addi     r3, r31, 0x30
-	addi     r5, r31, 0x18
-	li       r4, 0xcf
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8046CBFC:
-	lwz      r3, 4(r26)
-	lwz      r26, 4(r3)
-	cmplwi   r26, 0
-	bne      lbl_8046CC20
-	addi     r3, r31, 0x30
-	addi     r5, r31, 0x3c
-	li       r4, 0xd1
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8046CC20:
-	addi     r3, r26, 0x10
-	li       r4, 2
-	bl       getSeq__Q28PSSystem6SeqMgrFUl
-	cmplwi   r3, 0
-	beq      lbl_8046CC4C
-	lwz      r12, 0x10(r3)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0(r3)
-	b        lbl_8046CC50
-
-lbl_8046CC4C:
-	li       r0, 0
-
-lbl_8046CC50:
-	mr       r28, r0
-
-lbl_8046CC54:
-	lwz      r0, 0x24(r27)
-	cmpwi    r0, 3
-	bne      lbl_8046CC90
-	lwz      r0, 0x28(r27)
-	cmpwi    r0, 3
-	beq      lbl_8046CCBC
-	li       r3, 1
-	bl       PSMGetBattleDirector__FUc
-	cmplwi   r3, 0
-	beq      lbl_8046CCBC
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8046CCBC
-
-lbl_8046CC90:
-	lwz      r0, 0x28(r27)
-	cmpwi    r0, 3
-	bne      lbl_8046CCBC
-	li       r3, 1
-	bl       PSMGetBattleDirector__FUc
-	cmplwi   r3, 0
-	beq      lbl_8046CCBC
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8046CCBC:
-	lbz      r0, 0x38(r27)
-	cmplwi   r0, 0
-	bne      lbl_8046CE40
-	lwz      r3, 0x24(r27)
-	cmpwi    r3, 0
-	bne      lbl_8046CD80
-	lwz      r0, 0x28(r27)
-	cmpwi    r0, 0
-	beq      lbl_8046CD80
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_8046CD00
-	addi     r3, r31, 0x24
-	addi     r5, r31, 0x18
-	li       r4, 0x1d3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8046CD00:
-	lwz      r26, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r26, 0
-	bne      lbl_8046CD20
-	addi     r3, r31, 0x24
-	addi     r5, r31, 0x18
-	li       r4, 0x1dc
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8046CD20:
-	lwz      r0, 4(r26)
-	cmplwi   r0, 0
-	bne      lbl_8046CD40
-	addi     r3, r31, 0x30
-	addi     r5, r31, 0x18
-	li       r4, 0xc7
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8046CD40:
-	lwz      r3, 4(r26)
-	lwz      r3, 4(r3)
-	cmplwi   r3, 0
-	bne      lbl_8046CD58
-	li       r3, 0
-	b        lbl_8046CD5C
-
-lbl_8046CD58:
-	bl       getMiddleBossBgm__Q26PSGame8PikSceneFv
-
-lbl_8046CD5C:
-	lhz      r0, 0x130(r3)
-	cmplwi   r0, 0
-	beq      lbl_8046CE40
-	lwz      r12, 0x10(r3)
-	li       r4, 0
-	lwz      r12, 0x54(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8046CE40
-
-lbl_8046CD80:
-	cmpwi    r3, 3
-	beq      lbl_8046CD90
-	cmpwi    r3, 2
-	bne      lbl_8046CE40
-
-lbl_8046CD90:
-	lwz      r0, 0x28(r27)
-	cmpwi    r0, 1
-	beq      lbl_8046CDA4
-	cmpwi    r0, 0
-	bne      lbl_8046CE40
-
-lbl_8046CDA4:
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_8046CDC4
-	addi     r3, r31, 0x24
-	addi     r5, r31, 0x18
-	li       r4, 0x1d3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8046CDC4:
-	lwz      r26, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r26, 0
-	bne      lbl_8046CDE4
-	addi     r3, r31, 0x24
-	addi     r5, r31, 0x18
-	li       r4, 0x1dc
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8046CDE4:
-	lwz      r0, 4(r26)
-	cmplwi   r0, 0
-	bne      lbl_8046CE04
-	addi     r3, r31, 0x30
-	addi     r5, r31, 0x18
-	li       r4, 0xc7
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8046CE04:
-	lwz      r3, 4(r26)
-	lwz      r3, 4(r3)
-	cmplwi   r3, 0
-	bne      lbl_8046CE1C
-	li       r3, 0
-	b        lbl_8046CE20
-
-lbl_8046CE1C:
-	bl       getMiddleBossBgm__Q26PSGame8PikSceneFv
-
-lbl_8046CE20:
-	lhz      r0, 0x130(r3)
-	cmplwi   r0, 0
-	bne      lbl_8046CE40
-	lwz      r12, 0x10(r3)
-	li       r4, 1
-	lwz      r12, 0x54(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8046CE40:
-	lwz      r0, 0x24(r27)
-	cmpwi    r0, 1
-	beq      lbl_8046CEE4
-	bge      lbl_8046CE5C
-	cmpwi    r0, 0
-	bge      lbl_8046D01C
-	b        lbl_8046D110
-
-lbl_8046CE5C:
-	cmpwi    r0, 4
-	beq      lbl_8046D098
-	bge      lbl_8046D110
-	cmplwi   r30, 0
-	beq      lbl_8046CE90
-	mr       r3, r30
-	lfs      f1, lbl_80520CC0@sda21(r2)
-	lwz      r12, 0x10(r30)
-	li       r4, 0x28
-	li       r5, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8046CE90:
-	cmplwi   r28, 0
-	beq      lbl_8046CEB8
-	mr       r3, r28
-	lfs      f1, lbl_80520CC0@sda21(r2)
-	lwz      r12, 0x10(r28)
-	li       r4, 0x28
-	li       r5, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8046CEB8:
-	cmplwi   r29, 0
-	beq      lbl_8046D110
-	mr       r3, r29
-	lfs      f1, lbl_80520CCC@sda21(r2)
-	lwz      r12, 0x10(r29)
-	li       r4, 0x28
-	li       r5, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8046D110
-
-lbl_8046CEE4:
-	lfs      f2, 0x30(r27)
-	li       r0, 0
-	lfs      f1, 0x18(r27)
-	lfs      f0, lbl_80520CC0@sda21(r2)
-	fsubs    f31, f2, f1
-	fcmpo    cr0, f31, f0
-	cror     2, 1, 2
-	bne      lbl_8046CF18
-	lfs      f0, 0x1c(r27)
-	fcmpo    cr0, f31, f0
-	cror     2, 0, 2
-	bne      lbl_8046CF18
-	li       r0, 1
-
-lbl_8046CF18:
-	clrlwi.  r0, r0, 0x18
-	bne      lbl_8046CF34
-	addi     r3, r31, 0
-	addi     r5, r31, 0x18
-	li       r4, 0xa7
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8046CF34:
-	lfs      f2, lbl_80520CC0@sda21(r2)
-	fmr      f1, f31
-	lfs      f3, 0x1c(r27)
-	li       r3, 0
-	fmr      f5, f2
-	lfs      f4, lbl_80520CCC@sda21(r2)
-	bl       linearTransform__7JALCalcFfffffb
-	fmr      f31, f1
-	lfs      f0, lbl_80520CC0@sda21(r2)
-	li       r0, 0
-	fcmpo    cr0, f31, f0
-	cror     2, 1, 2
-	bne      lbl_8046CF7C
-	lfs      f0, lbl_80520CCC@sda21(r2)
-	fcmpo    cr0, f31, f0
-	cror     2, 0, 2
-	bne      lbl_8046CF7C
-	li       r0, 1
-
-lbl_8046CF7C:
-	clrlwi.  r0, r0, 0x18
-	bne      lbl_8046CF98
-	addi     r3, r31, 0
-	addi     r5, r31, 0x18
-	li       r4, 0xac
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8046CF98:
-	lfs      f0, lbl_80520CCC@sda21(r2)
-	cmplwi   r30, 0
-	fsubs    f30, f0, f31
-	beq      lbl_8046CFC8
-	mr       r3, r30
-	fmr      f1, f30
-	lwz      r12, 0x10(r30)
-	li       r4, 0x28
-	li       r5, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8046CFC8:
-	cmplwi   r28, 0
-	beq      lbl_8046CFF0
-	mr       r3, r28
-	fmr      f1, f30
-	lwz      r12, 0x10(r28)
-	li       r4, 0x28
-	li       r5, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8046CFF0:
-	cmplwi   r29, 0
-	beq      lbl_8046D110
-	mr       r3, r29
-	fmr      f1, f31
-	lwz      r12, 0x10(r29)
-	li       r4, 0x28
-	li       r5, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8046D110
-
-lbl_8046D01C:
-	cmplwi   r30, 0
-	beq      lbl_8046D044
-	mr       r3, r30
-	lfs      f1, lbl_80520CCC@sda21(r2)
-	lwz      r12, 0x10(r30)
-	li       r4, 0x28
-	li       r5, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8046D044:
-	cmplwi   r28, 0
-	beq      lbl_8046D06C
-	mr       r3, r28
-	lfs      f1, lbl_80520CCC@sda21(r2)
-	lwz      r12, 0x10(r28)
-	li       r4, 0x28
-	li       r5, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8046D06C:
-	cmplwi   r29, 0
-	beq      lbl_8046D110
-	mr       r3, r29
-	lfs      f1, lbl_80520CC0@sda21(r2)
-	lwz      r12, 0x10(r29)
-	li       r4, 0x28
-	li       r5, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8046D110
-
-lbl_8046D098:
-	cmplwi   r30, 0
-	beq      lbl_8046D0C0
-	mr       r3, r30
-	lfs      f1, lbl_80520CC0@sda21(r2)
-	lwz      r12, 0x10(r30)
-	li       r4, 0x28
-	li       r5, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8046D0C0:
-	cmplwi   r28, 0
-	beq      lbl_8046D0E8
-	mr       r3, r28
-	lfs      f1, lbl_80520CC0@sda21(r2)
-	lwz      r12, 0x10(r28)
-	li       r4, 0x28
-	li       r5, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8046D0E8:
-	cmplwi   r29, 0
-	beq      lbl_8046D110
-	mr       r3, r29
-	lfs      f1, lbl_80520CC0@sda21(r2)
-	lwz      r12, 0x10(r29)
-	li       r4, 0x28
-	li       r5, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8046D110:
-	lwz      r3, 0x24(r27)
-	li       r0, 0
-	stw      r3, 0x28(r27)
-	stb      r0, 0x38(r27)
-	psq_l    f31, 56(r1), 0, qr0
-	lfd      f31, 0x30(r1)
-	psq_l    f30, 40(r1), 0, qr0
-	lfd      f30, 0x20(r1)
-	lmw      r26, 8(r1)
-	lwz      r0, 0x44(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+	mTypedProc.mPrevProcState = mTypedProc.mCurrProcState;
+	mTypedProc.mNeedJump      = false;
 }
 
 } // namespace BossBgmFader

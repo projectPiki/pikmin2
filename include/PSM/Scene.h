@@ -320,6 +320,13 @@ inline PSSystem::SceneMgr* PSMGetSceneMgrCheck()
 	return mgr;
 }
 
+inline PSGame::PikSceneMgr* PSMGetPikSceneMgrCheck()
+{
+	PSGame::PikSceneMgr* mgr = static_cast<PSGame::PikSceneMgr*>(PSSystem::getSceneMgr());
+	PSSystem::validateSceneMgr(mgr);
+	return mgr;
+}
+
 inline PSSystem::Scene* PSMGetChildScene()
 {
 	PSSystem::SceneMgr* mgr = PSMGetSceneMgrCheck();
@@ -338,9 +345,8 @@ inline PSM::Scene_Game* PSMGetGameScene()
 
 inline PSM::MiddleBossSeq* PSMGetMiddleBossSeq()
 {
-	PSSystem::SceneMgr* mgr = PSMGetSceneMgrCheck();
-	mgr->checkScene();
-	PSM::Scene_Objects* scene = static_cast<PSM::Scene_Objects*>(mgr->mScenes->mChild);
+	PSGame::PikSceneMgr* mgr = PSMGetPikSceneMgrCheck();
+	PSGame::PikScene* scene  = mgr->getChildPikScene();
 	return !scene ? nullptr : scene->getMiddleBossBgm();
 }
 
@@ -370,7 +376,7 @@ inline PSSystem::SeqBase* PSSystemGetSeqCheck(int id)
 
 inline JAISound* PSSystemChildSceneData(int id)
 {
-	PSSystem::SeqBase* seq = PSMGetSceneMgrCheck()->getChildScene()->getSeqMgr()->getSeq(id);
+	PSSystem::SeqBase* seq = PSMGetChildScene()->getSeqMgr()->getSeq(id);
 	return (seq) ? seq->getHandle() : nullptr;
 }
 

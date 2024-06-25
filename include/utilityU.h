@@ -17,7 +17,7 @@
 void* PSChangeBgm_ChallengeGame();
 void PSMCancelToPauseOffMainBgm();
 PSM::ActorDirector_Battle* PSMGetBattleD();
-PSSystem::DirectorBase* PSMGetBattleDirector(u8);
+PSSystem::DirectorBase* PSMGetBattleDirector(u8 directorID);
 PSM::ActorDirector_TrackOn* PSMGetBeedamaForLugieD();
 PSM::ActorDirector_TrackOn* PSMGetBeedamaForOrimerD();
 PSM::DamageDirector* PSMGetDamageD();

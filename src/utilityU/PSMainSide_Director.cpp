@@ -966,7 +966,7 @@ void DirectorUpdator::frameEndWork()
  * @note Address: 0x804586AC
  * @note Size: 0x148
  */
-PSSystem::DirectorBase* PSMGetBattleDirector(u8 flag)
+PSSystem::DirectorBase* PSMGetBattleDirector(u8 directorID)
 {
 	PSM::MiddleBossSeq* seq = PSMGetMiddleBossSeq();
 	if (!seq) {
@@ -974,7 +974,19 @@ PSSystem::DirectorBase* PSMGetBattleDirector(u8 flag)
 	}
 	bool isDirected = seq->getCastType() == PSSystem::SeqBase::TYPE_DirectedBgm || seq->getCastType() == PSSystem::SeqBase::TYPE_JumpBgmSeq;
 	P2ASSERTLINE(810, isDirected);
-	return seq->getDirectorP(flag);
+	return seq->getDirectorP(directorID);
+}
+
+/**
+ * @note Address: N/A
+ * @note Size: 0xD0
+ */
+bool PSIs2PBattleStage()
+{
+	// is2PBattle needs to spawn as a weak function.
+	// this is absolutely not the code that should be here but i'm lazy. -HP
+	PSM::Otakara ota(nullptr);
+	return ota.is2PBattle();
 }
 
 /**
@@ -983,19 +995,23 @@ PSSystem::DirectorBase* PSMGetBattleDirector(u8 flag)
  */
 PSM::ActorDirector_Kehai* PSMGetKehaiD()
 {
+	// kehai = air/presence/hint = enemy near
+
+	// 2P BATTLE
 	if (PSGameGetSceneInfo()->mSceneType == PSGame::SceneInfo::TWO_PLAYER_BATTLE) {
 		PSSystem::DirectedBgm* bgm = PSGetDirectedMainBgm();
 		if (bgm) {
-			return static_cast<PSM::ActorDirector_Kehai*>(bgm->getDirectorP(1));
-		}
-		return nullptr;
-	} else {
-		PSSystem::DirectedBgm* bgm = PSGetDirectedMainBgm();
-		if (bgm) {
-			return static_cast<PSM::ActorDirector_Kehai*>(bgm->getDirectorP(2));
+			return static_cast<PSM::ActorDirector_Kehai*>(bgm->getDirectorP(PSM::DirectorMgr_2PBattle::Director2P_EnemyNear));
 		}
 		return nullptr;
 	}
+
+	// everything else
+	PSSystem::DirectedBgm* bgm = PSGetDirectedMainBgm();
+	if (bgm) {
+		return static_cast<PSM::ActorDirector_Kehai*>(bgm->getDirectorP(PSM::DirectorMgr_Scene::Director_EnemyNear));
+	}
+	return nullptr;
 }
 
 /**
@@ -1007,13 +1023,13 @@ PSM::ActorDirector_Battle* PSMGetBattleD()
 	if (PSGameGetSceneInfo()->mSceneType == PSGame::SceneInfo::TWO_PLAYER_BATTLE) {
 		PSSystem::DirectedBgm* bgm = PSGetDirectedMainBgm();
 		if (bgm) {
-			return static_cast<PSM::ActorDirector_Battle*>(bgm->getDirectorP(2));
+			return static_cast<PSM::ActorDirector_Battle*>(bgm->getDirectorP(PSM::DirectorMgr_2PBattle::Director2P_Battle));
 		}
 		return nullptr;
 	} else {
 		PSSystem::DirectedBgm* bgm = PSGetDirectedMainBgm();
 		if (bgm) {
-			return static_cast<PSM::ActorDirector_Battle*>(bgm->getDirectorP(3));
+			return static_cast<PSM::ActorDirector_Battle*>(bgm->getDirectorP(PSM::DirectorMgr_Scene::Director_Battle));
 		}
 		return nullptr;
 	}
@@ -1028,13 +1044,13 @@ PSM::ActorDirector_Scaled* PSMGetEventD()
 	if (PSGameGetSceneInfo()->mSceneType == PSGame::SceneInfo::TWO_PLAYER_BATTLE) {
 		PSSystem::DirectedBgm* bgm = PSGetDirectedMainBgm();
 		if (bgm) {
-			return static_cast<PSM::ActorDirector_Battle*>(bgm->getDirectorP(0));
+			return static_cast<PSM::ActorDirector_Battle*>(bgm->getDirectorP(PSM::DirectorMgr_2PBattle::Director2P_Working));
 		}
 		return nullptr;
 	} else {
 		PSSystem::DirectedBgm* bgm = PSGetDirectedMainBgm();
 		if (bgm) {
-			return static_cast<PSM::ActorDirector_Battle*>(bgm->getDirectorP(0));
+			return static_cast<PSM::ActorDirector_Battle*>(bgm->getDirectorP(PSM::DirectorMgr_Scene::Director_Working));
 		}
 		return nullptr;
 	}
@@ -1049,7 +1065,7 @@ PSM::ActorDirector_TrackOn* PSMGetOtakaraEventD()
 	if (PSGameGetSceneInfo()->mSceneType != PSGame::SceneInfo::TWO_PLAYER_BATTLE) {
 		PSSystem::DirectedBgm* bgm = PSGetDirectedMainBgm();
 		if (bgm) {
-			return static_cast<PSM::ActorDirector_TrackOn*>(bgm->getDirectorP(1));
+			return static_cast<PSM::ActorDirector_TrackOn*>(bgm->getDirectorP(PSM::DirectorMgr_Scene::Director_Treasure));
 		}
 		return nullptr;
 	}
@@ -1065,7 +1081,7 @@ PSM::ActorDirector_Scaled* PSMGetGroundD()
 	if (PSGameGetSceneInfo()->mSceneType != PSGame::SceneInfo::TWO_PLAYER_BATTLE && !PSGameGetSceneInfo()->isCaveFloor()) {
 		PSSystem::DirectedBgm* bgm = PSGetDirectedMainBgm();
 		if (bgm) {
-			return static_cast<PSM::ActorDirector_Scaled*>(bgm->getDirectorP(4));
+			return static_cast<PSM::ActorDirector_Scaled*>(bgm->getDirectorP(PSM::DirectorMgr_Scene::Director_Ground));
 		}
 		return nullptr;
 	}
@@ -1082,7 +1098,7 @@ PSM::PikminNumberDirector* PSMGetPikminNumD()
 	if (PSGameGetSceneInfo()->mSceneType != PSGame::SceneInfo::TWO_PLAYER_BATTLE) {
 		PSSystem::DirectedBgm* bgm = PSGetDirectedMainBgm();
 		if (bgm) {
-			return static_cast<PSM::PikminNumberDirector*>(bgm->getDirectorP(5));
+			return static_cast<PSM::PikminNumberDirector*>(bgm->getDirectorP(PSM::DirectorMgr_Scene::Director_Pikmin));
 		}
 		return nullptr;
 	}
@@ -1098,7 +1114,7 @@ PSM::DamageDirector* PSMGetDamageD()
 	if (PSGameGetSceneInfo()->mSceneType != PSGame::SceneInfo::TWO_PLAYER_BATTLE) {
 		PSSystem::DirectedBgm* bgm = PSGetDirectedMainBgm();
 		if (bgm) {
-			return static_cast<PSM::DamageDirector*>(bgm->getDirectorP(6));
+			return static_cast<PSM::DamageDirector*>(bgm->getDirectorP(PSM::DirectorMgr_Scene::Director_Damage));
 		}
 		return nullptr;
 	}
@@ -1114,7 +1130,7 @@ PSM::ActorDirector_TempoChange* PSMGetLifeD()
 	if (PSGameGetSceneInfo()->mSceneType != PSGame::SceneInfo::TWO_PLAYER_BATTLE) {
 		PSSystem::DirectedBgm* bgm = PSGetDirectedMainBgm();
 		if (bgm) {
-			return static_cast<PSM::ActorDirector_TempoChange*>(bgm->getDirectorP(7));
+			return static_cast<PSM::ActorDirector_TempoChange*>(bgm->getDirectorP(PSM::DirectorMgr_Scene::Director_Tempo));
 		}
 		return nullptr;
 	}
@@ -1130,7 +1146,7 @@ PSM::ActorDirector_TrackOn* PSMGetBeedamaForOrimerD()
 	if (PSGameGetSceneInfo()->mSceneType == PSGame::SceneInfo::TWO_PLAYER_BATTLE) {
 		PSSystem::DirectedBgm* bgm = PSGetDirectedMainBgm();
 		if (bgm) {
-			return static_cast<PSM::ActorDirector_TrackOn*>(bgm->getDirectorP(3));
+			return static_cast<PSM::ActorDirector_TrackOn*>(bgm->getDirectorP(PSM::DirectorMgr_2PBattle::Director2P_OlimarMarble));
 		}
 		return nullptr;
 	}
@@ -1146,7 +1162,7 @@ PSM::ActorDirector_TrackOn* PSMGetBeedamaForLugieD()
 	if (PSGameGetSceneInfo()->mSceneType == PSGame::SceneInfo::TWO_PLAYER_BATTLE) {
 		PSSystem::DirectedBgm* bgm = PSGetDirectedMainBgm();
 		if (bgm) {
-			return static_cast<PSM::ActorDirector_TrackOn*>(bgm->getDirectorP(4));
+			return static_cast<PSM::ActorDirector_TrackOn*>(bgm->getDirectorP(PSM::DirectorMgr_2PBattle::Director2P_LouieMarble));
 		}
 		return nullptr;
 	}
@@ -1162,7 +1178,7 @@ PSM::ActorDirector_TrackOn* PSMGetIchouForOrimerD()
 	if (PSGameGetSceneInfo()->mSceneType == PSGame::SceneInfo::TWO_PLAYER_BATTLE) {
 		PSSystem::DirectedBgm* bgm = PSGetDirectedMainBgm();
 		if (bgm) {
-			return static_cast<PSM::ActorDirector_TrackOn*>(bgm->getDirectorP(5));
+			return static_cast<PSM::ActorDirector_TrackOn*>(bgm->getDirectorP(PSM::DirectorMgr_2PBattle::Director2P_OlimarIchou));
 		}
 		return nullptr;
 	}
@@ -1178,7 +1194,7 @@ PSM::ActorDirector_TrackOn* PSMGetIchouForLugieD()
 	if (PSGameGetSceneInfo()->mSceneType == PSGame::SceneInfo::TWO_PLAYER_BATTLE) {
 		PSSystem::DirectedBgm* bgm = PSGetDirectedMainBgm();
 		if (bgm) {
-			return static_cast<PSM::ActorDirector_TrackOn*>(bgm->getDirectorP(6));
+			return static_cast<PSM::ActorDirector_TrackOn*>(bgm->getDirectorP(PSM::DirectorMgr_2PBattle::Director2P_LouieIchou));
 		}
 		return nullptr;
 	}
@@ -1194,7 +1210,7 @@ PSM::TrackOnDirector_Voting* PSMGetPikiBattleD()
 	if (PSGameGetSceneInfo()->mSceneType == PSGame::SceneInfo::TWO_PLAYER_BATTLE) {
 		PSSystem::DirectedBgm* bgm = PSGetDirectedMainBgm();
 		if (bgm) {
-			return static_cast<PSM::TrackOnDirector_Voting*>(bgm->getDirectorP(7));
+			return static_cast<PSM::TrackOnDirector_Voting*>(bgm->getDirectorP(PSM::DirectorMgr_2PBattle::Director2P_PikBattle));
 		}
 		return nullptr;
 	}

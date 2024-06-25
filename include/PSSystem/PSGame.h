@@ -7,9 +7,10 @@
 #include "PSSystem/Seq.h"
 #include "PSGame/SeMgr.h"
 #include "PSGame/SoundTable.h"
+#include "PSGame/PikScene.h"
 
 namespace PSSystem {
-inline SceneMgr* getSceneMgr()
+inline PSSystem::SceneMgr* getSceneMgr()
 {
 	P2ASSERTLINE(467, spSceneMgr);
 

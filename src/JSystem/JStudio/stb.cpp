@@ -465,7 +465,7 @@ bool TControl::forward(u32 time)
 
 	// someone typedef JGadget::TLinkList<JStudio::stb::TObject, -12> so we can get rid of this pls
 	// the issue is C++ requires a space between >s in templates but clang-format eats it
-	
+
 	// clang-format off
 	for (JGadget::TContainerEnumerator_<JGadget::TLinkList<JStudio::stb::TObject, -12> > it(mObjectContainer); it.enumerator;) {
 		// clang-format on

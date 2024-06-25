@@ -160,6 +160,12 @@ struct PikSceneMgr : public PSSystem::SceneMgr {
 	 */
 	PSSystem::BgmSeq* initMainBgm(SceneInfo& info, u8* wScene);
 
+	inline PikScene* getChildPikScene()
+	{
+		checkScene();
+		return static_cast<PikScene*>(mScenes->mChild);
+	}
+
 	// _00      = VTBL
 	// _00-_08  = SceneMgr
 	u8 _10; // _10, unknown

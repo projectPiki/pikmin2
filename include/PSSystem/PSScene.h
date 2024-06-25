@@ -108,6 +108,12 @@ struct SceneMgr {
 		mScenes->mChild->startMainSeq();
 	}
 
+	inline Scene* getChild()
+	{
+		checkScene();
+		return mScenes->mChild;
+	}
+
 	// _00	= VTBL
 	Scene* mScenes;   // _04
 	Scene* mEndScene; // _08

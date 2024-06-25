@@ -1740,7 +1740,7 @@
       ["utilityU/PSMainSide_ObjSound", false],
       ["utilityU/PSMainSide_Demo", true],
       ["utilityU/PSMainSide_Scene", false],
-      ["utilityU/PSMainSide_BossMgr", false],
+      ["utilityU/PSMainSide_BossMgr", true],
       ["utilityU/PSMainSide_Se", false],
       ["utilityU/PSMainSide_DirectorMgr", true],
       ["utilityU/PSMainSide_Sound", false],

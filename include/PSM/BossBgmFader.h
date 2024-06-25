@@ -14,7 +14,15 @@ namespace BossBgmFader {
  * @size{0x30}
  */
 struct TypedProc : public JSUList<EnemyBoss> {
-	TypedProc(f32, f32);
+	enum ProcState {
+		PROC_None      = 0, // no boss sound
+		PROC_Fade      = 1, //
+		PROC_MainLoop  = 2,
+		PROC_Directed  = 3,
+		PROC_Disappear = 4,
+	};
+
+	TypedProc(f32 maxDist, f32 fadeRange);
 
 	virtual void update(); // _08
 
@@ -23,29 +31,28 @@ struct TypedProc : public JSUList<EnemyBoss> {
 
 	// inlined/unused:
 	void endUpdate();
-	void getBossFadeVolume();
+	f32 getBossFadeVolume();
 
 	// _00-_0C = JSUList<EnemyBoss>
 	// _0C     = VTBL
-	f32 mFarDist;                      // _10
-	f32 mMiddleDist;                   // _14
-	f32 mNearDist;                     // _18
-	f32 mStopDist;                     // _1C
-	int mCurrState;                    // _20
-	int mPrevState;                    // _24
-	EnemyBoss* mCurrObj;               // _28
-	f32 mMaxDistance;                  // _2C
+	f32 mMaxDist;                      // _10, dist > mMaxDist = no boss sound
+	f32 mFadeDist;                     // _14, mMaxDist > dist > mFadeDist = boss music fades out
+	f32 mFadeRange;                    // _18, distance between mMaxDist and mFadeDist
+	f32 mDirectDist;                   // _1C, dist < mDirectDist = directed boss music; dist > mDirectDist = just main loop
+	int mCurrProcState;                // _20, see ProcState enum
+	int mPrevProcState;                // _24, see ProcState enum
+	EnemyBoss* mNearestBoss;           // _28
+	f32 mBossDistance;                 // _2C, distance to nearest boss
 	DirectorUpdator* mDirectorUpdator; // _30
-	u8 mNeedJump;                      // _34
-	                                   // f32 _38;                           // _38
+	bool mNeedJump;                    // _34
 };
 
 /**
  * @size{0x34}
  */
 struct TypedProc_MidBoss : public TypedProc {
-	inline TypedProc_MidBoss(f32 a1, f32 a2)
-	    : TypedProc(a1, a2)
+	inline TypedProc_MidBoss(f32 maxDist, f32 fadeRange)
+	    : TypedProc(maxDist, fadeRange)
 	{
 		mDirectorUpdator = nullptr;
 	}

@@ -1149,10 +1149,10 @@ void Scene_Game::adaptEnvSe(PSSystem::EnvSeMgr* mgr)
  */
 void Scene_Game::bossAppear(PSM::EnemyBoss* obj, u16 time)
 {
-	if (PSMGetMiddleBossSeq() && (!mBossFaderMgr || mBossFaderMgr->mTypedProc.mCurrState == 0)) {
+	if (PSMGetMiddleBossSeq() && (!mBossFaderMgr || mBossFaderMgr->mTypedProc.mCurrProcState == BossBgmFader::TypedProc::PROC_None)) {
 		obj->jumpRequest(time);
 		if (mBossFaderMgr) {
-			mBossFaderMgr->mTypedProc.mNeedJump = 1;
+			mBossFaderMgr->mTypedProc.mNeedJump = true;
 		}
 	}
 }
