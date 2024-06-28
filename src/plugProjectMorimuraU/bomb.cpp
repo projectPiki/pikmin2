@@ -403,7 +403,18 @@ void Obj::forceBomb()
  */
 bool Obj::isBombStart()
 {
-	// UNUSED FUNCTION
+	if (!mAnimStartDelayTimer) {
+		return false;
+	} 
+	
+	mAnimStartDelayTimer++;
+
+	if (mAnimStartDelayTimer > C_PROPERPARMS.mTriggerLimit.mValue) {
+		mAnimStartDelayTimer = 0;
+		return true;
+	}
+
+	return false;
 }
 
 /**
@@ -431,33 +442,13 @@ bool Obj::canEat()
  */
 bool Obj::isAnimStart()
 {
-	bool check;
-	if (isBirthTypeDropGroup() || !(mFlickTimer >= C_PROPERPARMS.mDamageLimit.mValue)) {
-		if (!mHasEscapedCapture || !mFloorTriangle) {
-			if (!mAnimStartDelayTimer) {
-				check = false;
-			} else {
-
-				mAnimStartDelayTimer++;
-
-				if (mAnimStartDelayTimer > C_PROPERPARMS.mTriggerLimit.mValue) {
-					mAnimStartDelayTimer = 0;
-					check                = true;
-				} else {
-					check = false;
-				}
-			}
-
-			if (check) {
-			yes:
-				return true;
-			}
-		} else {
-			goto yes;
-		}
-	} else {
-		goto yes;
+	if ((!isBirthTypeDropGroup() && (mFlickTimer >= C_PROPERPARMS.mDamageLimit.mValue)) ||
+		(mHasEscapedCapture && mFloorTriangle != 0) ||
+		isBombStart())
+	{
+		return true;
 	}
+
 	return false;
 }
 
