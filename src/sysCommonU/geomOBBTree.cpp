@@ -2566,167 +2566,48 @@ Sys::TriIndexList* OBB::findTriLists(Sys::Sphere& ball)
 
 	if (ballDist > rad) {
 
-		if (!mHalfA) {
-			goto nullreturn;
+		if (mHalfA) {
+			TriIndexList* triListTemp = mHalfA->findTriLists(ball);
+			return (triListTemp) ? triListTemp : nullptr;
 		}
 		
-		TriIndexList* triListTemp = mHalfA->findTriLists(ball);
-
-		return (triListTemp) ? triListTemp : nullptr;
 	} else if (ballDist < -rad) {
 
-		if (!mHalfB) {
-			goto nullreturn;
+		if (mHalfB) {			
+			TriIndexList* triListTemp = mHalfB->findTriLists(ball);
+			return (triListTemp) ? triListTemp : nullptr;
 		} 
 	
-		TriIndexList* triListTemp = mHalfB->findTriLists(ball);
-		return (triListTemp) ? triListTemp : nullptr;
-	}
-
-	if (mHalfA) {
-		TriIndexList* triListTemp1 = mHalfA->findTriLists(ball);
-		if (triListTemp1) {
-			triList = triListTemp1;
-		}
-	}
-
-	if (mHalfB)
-	{
-		TriIndexList* triListTemp2 = mHalfB->findTriLists(ball);
-		if (triListTemp2) {
-			if (triList) {
-				triList->concat(triListTemp2);
-			} else {
-				triList = triListTemp2;
+	} else {
+		
+		if (mHalfA) {
+			TriIndexList* triListTemp1 = mHalfA->findTriLists(ball);
+			if (triListTemp1) {
+				triList = triListTemp1;
 			}
-			return triList;
 		}
+
+		if (mHalfB)
+		{
+			TriIndexList* triListTemp2 = mHalfB->findTriLists(ball);
+			if (triListTemp2) {
+				if (triList) {
+					triList->concat(triListTemp2);
+				} else {
+					triList = triListTemp2;
+				}
+				return triList;
+			}
+		}
+
+		return triList;
 	}
 
-	return triList;
-
+// probably just a sign of an inline
+	goto nullreturn;
 nullreturn:
+
 	return nullptr;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 0
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	li       r4, 0
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lwz      r3, 0xc0(r3)
-	cmplwi   r3, 0
-	bne      lbl_8041F384
-	lwz      r0, 0xc4(r29)
-	cmplwi   r0, 0
-	bne      lbl_8041F384
-	li       r4, 1
-
-lbl_8041F384:
-	clrlwi.  r0, r4, 0x18
-	beq      lbl_8041F3A8
-	li       r0, 0
-	addi     r3, r29, 0xd8
-	stw      r0, 0xe8(r29)
-	stw      r0, 0xe4(r29)
-	stw      r0, 0xe0(r29)
-	stw      r0, 0xdc(r29)
-	b        lbl_8041F49C
-
-lbl_8041F3A8:
-	lfs      f1, 4(r30)
-	lfs      f0, 0xcc(r29)
-	lfs      f2, 0(r30)
-	fmuls    f0, f1, f0
-	lfs      f1, 0xc8(r29)
-	lfs      f4, 8(r30)
-	lfs      f3, 0xd0(r29)
-	fmadds   f1, f2, f1, f0
-	lfs      f0, 0xd4(r29)
-	lfs      f2, 0xc(r30)
-	fmadds   f1, f4, f3, f1
-	fsubs    f1, f1, f0
-	fcmpo    cr0, f1, f2
-	ble      lbl_8041F404
-	cmplwi   r3, 0
-	beq      lbl_8041F498
-	mr       r4, r30
-	bl       findTriLists__Q23Sys3OBBFRQ23Sys6Sphere
-	cmplwi   r3, 0
-	beq      lbl_8041F3FC
-	b        lbl_8041F49C
-
-lbl_8041F3FC:
-	li       r3, 0
-	b        lbl_8041F49C
-
-lbl_8041F404:
-	fneg     f0, f2
-	fcmpo    cr0, f1, f0
-	bge      lbl_8041F438
-	lwz      r3, 0xc4(r29)
-	cmplwi   r3, 0
-	beq      lbl_8041F498
-	mr       r4, r30
-	bl       findTriLists__Q23Sys3OBBFRQ23Sys6Sphere
-	cmplwi   r3, 0
-	beq      lbl_8041F430
-	b        lbl_8041F49C
-
-lbl_8041F430:
-	li       r3, 0
-	b        lbl_8041F49C
-
-lbl_8041F438:
-	cmplwi   r3, 0
-	beq      lbl_8041F454
-	mr       r4, r30
-	bl       findTriLists__Q23Sys3OBBFRQ23Sys6Sphere
-	cmplwi   r3, 0
-	beq      lbl_8041F454
-	mr       r31, r3
-
-lbl_8041F454:
-	lwz      r3, 0xc4(r29)
-	cmplwi   r3, 0
-	beq      lbl_8041F490
-	mr       r4, r30
-	bl       findTriLists__Q23Sys3OBBFRQ23Sys6Sphere
-	or.      r4, r3, r3
-	beq      lbl_8041F490
-	cmplwi   r31, 0
-	beq      lbl_8041F484
-	mr       r3, r31
-	bl       concat__5CNodeFP5CNode
-	b        lbl_8041F488
-
-lbl_8041F484:
-	mr       r31, r4
-
-lbl_8041F488:
-	mr       r3, r31
-	b        lbl_8041F49C
-
-lbl_8041F490:
-	mr       r3, r31
-	b        lbl_8041F49C
-
-lbl_8041F498:
-	li       r3, 0
-
-lbl_8041F49C:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
