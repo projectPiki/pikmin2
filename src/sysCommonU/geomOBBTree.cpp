@@ -2565,26 +2565,22 @@ Sys::TriIndexList* OBB::findTriLists(Sys::Sphere& ball)
 	f32 ballDist = mDivPlane.calcDist(ball.mPosition);
 
 	if (ballDist > rad) {
-		if (mHalfA) {
-			TriIndexList* triListTemp = mHalfA->findTriLists(ball);
-			if (triListTemp) {
-				return triListTemp;
-			}
-		} else {
+
+		if (!mHalfA) {
 			goto nullreturn;
 		}
-		return nullptr;
-	}
-	if (ballDist < -rad) {
-		if (mHalfB) {
-			TriIndexList* triListTemp = mHalfB->findTriLists(ball);
-			if (triListTemp) {
-				return triListTemp;
-			}
-		} else {
+		
+		TriIndexList* triListTemp = mHalfA->findTriLists(ball);
+
+		return (triListTemp) ? triListTemp : nullptr;
+	} else if (ballDist < -rad) {
+
+		if (!mHalfB) {
 			goto nullreturn;
-		}
-		return nullptr;
+		} 
+	
+		TriIndexList* triListTemp = mHalfB->findTriLists(ball);
+		return (triListTemp) ? triListTemp : nullptr;
 	}
 
 	if (mHalfA) {
@@ -2594,7 +2590,8 @@ Sys::TriIndexList* OBB::findTriLists(Sys::Sphere& ball)
 		}
 	}
 
-	if (mHalfB) {
+	if (mHalfB)
+	{
 		TriIndexList* triListTemp2 = mHalfB->findTriLists(ball);
 		if (triListTemp2) {
 			if (triList) {
@@ -2602,16 +2599,10 @@ Sys::TriIndexList* OBB::findTriLists(Sys::Sphere& ball)
 			} else {
 				triList = triListTemp2;
 			}
-		} else {
-			goto trireturn;
+			return triList;
 		}
-		return triList;
-	} else {
-		goto trireturn;
 	}
-	return triList;
 
-trireturn:
 	return triList;
 
 nullreturn:
