@@ -8,7 +8,7 @@ JSTUDIO_FILES:=\
 	$(BUILD_DIR)/src/JSystem/JStudio/jstudio-data.o\
 	$(BUILD_DIR)/asm/JSystem/JStudio/jstudio-object.o\
 	$(BUILD_DIR)/src/JSystem/JStudio/object-id.o\
-	$(BUILD_DIR)/asm/JSystem/JStudio/stb.o\
+	$(BUILD_DIR)/src/JSystem/JStudio/stb.o\
 	$(BUILD_DIR)/src/JSystem/JStudio/stb-data.o\
 	$(BUILD_DIR)/src/JSystem/JStudio/jstudio-math.o\
 

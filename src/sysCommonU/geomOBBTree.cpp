@@ -2570,16 +2570,16 @@ Sys::TriIndexList* OBB::findTriLists(Sys::Sphere& ball)
 			TriIndexList* triListTemp = mHalfA->findTriLists(ball);
 			return (triListTemp) ? triListTemp : nullptr;
 		}
-		
+
 	} else if (ballDist < -rad) {
 
-		if (mHalfB) {			
+		if (mHalfB) {
 			TriIndexList* triListTemp = mHalfB->findTriLists(ball);
 			return (triListTemp) ? triListTemp : nullptr;
-		} 
-	
+		}
+
 	} else {
-		
+
 		if (mHalfA) {
 			TriIndexList* triListTemp1 = mHalfA->findTriLists(ball);
 			if (triListTemp1) {
@@ -2587,8 +2587,7 @@ Sys::TriIndexList* OBB::findTriLists(Sys::Sphere& ball)
 			}
 		}
 
-		if (mHalfB)
-		{
+		if (mHalfB) {
 			TriIndexList* triListTemp2 = mHalfB->findTriLists(ball);
 			if (triListTemp2) {
 				if (triList) {
@@ -2603,7 +2602,7 @@ Sys::TriIndexList* OBB::findTriLists(Sys::Sphere& ball)
 		return triList;
 	}
 
-// probably just a sign of an inline
+	// probably just a sign of an inline
 	goto nullreturn;
 nullreturn:
 

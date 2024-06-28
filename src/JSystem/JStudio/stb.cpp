@@ -416,9 +416,9 @@ void TControl::destroyObject_all()
  */
 TObject* TControl::getObject(void const* id, u32 length)
 {
-	JGadget::TLinkList<TObject, -12>::iterator start = mObjectContainer.begin();
-	JGadget::TLinkList<TObject, -12>::iterator end   = mObjectContainer.end();
-	JGadget::TLinkList<TObject, -12>::iterator bob   = std::find_if(start, end, object::TPRObject_ID_equal(id, length));
+	JGadget::TObjectList::iterator start = mObjectContainer.begin();
+	JGadget::TObjectList::iterator end   = mObjectContainer.end();
+	JGadget::TObjectList::iterator bob   = std::find_if(start, end, object::TPRObject_ID_equal(id, length));
 
 	// this needs to not inline later - probably an inline depth thing with iterators but Not Today :')
 	// clang-format off
@@ -431,6 +431,18 @@ TObject* TControl::getObject(void const* id, u32 length)
 
 	return (bob != end) ? &*bob : nullptr;
 }
+} // namespace stb
+} // namespace JStudio
+template <>
+JGadget::TObjectList::iterator std::find_if(JGadget::TObjectList::iterator first, JGadget::TObjectList::iterator last,
+                                            JStudio::object::TPRObject_ID_equal p)
+{
+	for (; first != last && !p(*first); ++first) { }
+	return first;
+}
+
+namespace JStudio {
+namespace stb {
 
 /**
  * @note Address: N/A
@@ -463,11 +475,8 @@ bool TControl::forward(u32 time)
 	u32 statusAnd = 0x0f;
 	u32 statusOr  = 0;
 
-	// someone typedef JGadget::TLinkList<JStudio::stb::TObject, -12> so we can get rid of this pls
-	// the issue is C++ requires a space between >s in templates but clang-format eats it
-
 	// clang-format off
-	for (JGadget::TContainerEnumerator_<JGadget::TLinkList<JStudio::stb::TObject, -12> > it(mObjectContainer); it.enumerator;) {
+	for (JGadget::TContainerEnumerator_<JGadget::TObjectList> it(mObjectContainer); it.enumerator;) {
 		// clang-format on
 
 		// this sucks, ideally `*it` should return a `TObject&` or `TObject*`, but idk how to set that up
@@ -620,8 +629,8 @@ bool TParse::parseBlock_object(const data::TParse_TBlock_object& object, u32 fla
 		return (flags & 0x40) ? true : false;
 	}
 
-	newObj->mControl                             = control;
-	JGadget::TLinkList<TObject, -12>::iterator i = control->mObjectContainer.end();
+	newObj->mControl                 = control;
+	JGadget::TObjectList::iterator i = control->mObjectContainer.end();
 	control->mObjectContainer.Insert(i, newObj);
 
 	return true;

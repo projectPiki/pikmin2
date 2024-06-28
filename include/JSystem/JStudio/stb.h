@@ -173,4 +173,8 @@ struct TControl {
 } // namespace stb
 } // namespace JStudio
 
+namespace JGadget {
+typedef JGadget::TLinkList<JStudio::stb::TObject, -12> TObjectList;
+} // namespace JGadget
+
 #endif

@@ -405,8 +405,8 @@ bool Obj::isBombStart()
 {
 	if (!mAnimStartDelayTimer) {
 		return false;
-	} 
-	
+	}
+
 	mAnimStartDelayTimer++;
 
 	if (mAnimStartDelayTimer > C_PROPERPARMS.mTriggerLimit.mValue) {
@@ -442,10 +442,8 @@ bool Obj::canEat()
  */
 bool Obj::isAnimStart()
 {
-	if ((!isBirthTypeDropGroup() && (mFlickTimer >= C_PROPERPARMS.mDamageLimit.mValue)) ||
-		(mHasEscapedCapture && mFloorTriangle != 0) ||
-		isBombStart())
-	{
+	if ((!isBirthTypeDropGroup() && (mFlickTimer >= C_PROPERPARMS.mDamageLimit.mValue)) || (mHasEscapedCapture && mFloorTriangle != 0)
+	    || isBombStart()) {
 		return true;
 	}
 

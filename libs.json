@@ -36,7 +36,7 @@
       ["JSystem/JStudio/jstudio-data", true],
       ["JSystem/JStudio/jstudio-object", false],
       ["JSystem/JStudio/object-id", true],
-      ["JSystem/JStudio/stb", false],
+      ["JSystem/JStudio/stb", true],
       ["JSystem/JStudio/stb-data", true],
       ["JSystem/JStudio/jstudio-math", true]
     ]
