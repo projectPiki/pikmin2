@@ -143,11 +143,11 @@ BankRandPrm::BankRandPrm()
  * @note Address: 0x8033EB04
  * @note Size: 0x80
  */
-void TaskEntry_OuterParam::makeEntry(f32 value, u32 length)
+void TaskEntry_OuterParam::makeEntry(f32 value, u32 duration)
 {
 	OSDisableInterrupts();
 	mOuterParamTask.mTargetValue  = value;
-	mOuterParamTask.mFadeDuration = length;
+	mOuterParamTask.mFadeDuration = duration;
 	mOuterParamTask.mEnabled      = true;
 	mOuterParamTask.mCounter      = 0;
 	mOuterParamTask.mCurrTime     = 0.0f;

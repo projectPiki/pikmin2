@@ -163,10 +163,10 @@ void SeqTrackChild::fadeoutAndMute(u32 length, PSSystem::DirectorBase* base)
  * @note Address: 0x80342D48
  * @note Size: 0x78
  */
-void SeqTrackChild::fade(f32 value, u32 length, PSSystem::DirectorBase* base)
+void SeqTrackChild::fade(f32 value, u32 duration, PSSystem::DirectorBase* base)
 {
 	mTaskEntryMgr.removeEntry(&mFadeTask);
-	mFadeTask.makeEntry(value, length);
+	mFadeTask.makeEntry(value, duration);
 	mTaskEntryMgr.appendEntry(&mFadeTask, base);
 }
 

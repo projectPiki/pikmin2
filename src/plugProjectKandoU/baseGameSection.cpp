@@ -2090,7 +2090,6 @@ void BaseGameSection::setupFloatMemory()
 {
 	bool cave = false;
 	gameSystem->mFlags.typeView &= 0xFE; // this matches, but it's a bit odd
-	// gameSystem->resetFlag(0xFFFFFF01); // this matches, but it's extraordinarily stupid
 
 	PSSystem::SingletonBase<PSM::ObjMgr>::newInstance();
 	PSSystem::SingletonBase<PSM::BossBgmFader::Mgr>::newInstance();
@@ -2275,6 +2274,7 @@ void BaseGameSection::setupFloatMemory()
 	if (cave) {
 		static_cast<RoomMapMgr*>(mapMgr)->placeObjects();
 	}
+
 	Graphics& gfx = *sys->getGfx();
 	initViewports(gfx);
 	particleMgr->setViewport(gfx);
@@ -2285,10 +2285,11 @@ void BaseGameSection::setupFloatMemory()
 	itemMgr->initDependency();
 	cameraMgr->init(CAMNAVI_Olimar);
 
-	f32 angle = _aiConstants->mCameraAngle.mData * DEG2RAD * PI;
+	f32 angle = TORADIANS(_aiConstants->mCameraAngle.mData);
 	angle     = roundAng(angle + mapMgr->getMapRotation());
 	mapMgr->getMapRotation();
 	cameraMgr->setCameraAngle(angle, CAMNAVI_Both);
+
 	cameraMgr->controllerUnLock(CAMNAVI_Both);
 	sys->heapStatusEnd("setupFloatMemory");
 

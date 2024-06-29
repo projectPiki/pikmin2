@@ -25,6 +25,7 @@
 #include "Game/CPlate.h"
 #include "Screen/Game2DMgr.h"
 #include "utilityU.h"
+#include "JSystem/JUtility/JUTGamePad.h"
 
 int unusedNaviStateArray[] = { 1, 2, 3, 0 }; // ?
 
@@ -3749,17 +3750,17 @@ void NaviFlickState::bounceCallback(Navi* navi, Sys::Triangle*)
 void NaviKokeDamageState::init(Navi* navi, StateArg* stateArg)
 {
 	if (!stateArg) {
-		mDamage   = 0.0f;
-		mTimer    = 0.0f;
-		mCreature = nullptr;
-		_20       = 0;
+		mDamage            = 0.0f;
+		mTimer             = 0.0f;
+		mCreature          = nullptr;
+		mPlaySoundOnDamage = 0;
 	} else {
 		NaviKokeDamageInitArg* arg = static_cast<NaviKokeDamageInitArg*>(stateArg);
 
-		mDamage   = arg->mDamage;
-		mTimer    = arg->_08;
-		mCreature = arg->mCreature;
-		_20       = arg->_0C;
+		mDamage            = arg->mDamage;
+		mTimer             = arg->mTimer;
+		mCreature          = arg->mCreature;
+		mPlaySoundOnDamage = arg->mPlaySoundOnDamage;
 	}
 
 	navi->startMotion(IPikiAnims::JKOKE, IPikiAnims::JKOKE, navi, nullptr);
@@ -3819,7 +3820,7 @@ void NaviKokeDamageState::onKeyEvent(Navi* navi, SysShape::KeyEvent const& key)
 	if (key.mType == KEYEVENT_END) {
 		if (mState == 0) {
 			mState = 1;
-			navi->addDamage(mDamage, _20);
+			navi->addDamage(mDamage, mPlaySoundOnDamage);
 		} else if (mState == 2) {
 			if (static_cast<NaviFSM*>(mStateMachine)->mBackupStateID == -1) {
 				transit(navi, NSID_Walk, nullptr);
@@ -3837,7 +3838,7 @@ void NaviKokeDamageState::onKeyEvent(Navi* navi, SysShape::KeyEvent const& key)
 void NaviSaraiState::init(Navi* navi, StateArg* stateArg)
 {
 	navi->startMotion(IPikiAnims::FALL, IPikiAnims::FALL, nullptr, nullptr);
-	_10           = 0;
+	mInputFlags   = 0;
 	mEscapeInputs = 0;
 	navi->releasePikis();
 }
@@ -3848,10 +3849,11 @@ void NaviSaraiState::init(Navi* navi, StateArg* stateArg)
  */
 void NaviSaraiState::exec(Navi* navi)
 {
-	if ((_10 & 0x8000000) && mEscapeInputs) {
+	if ((mInputFlags & JUTGamePad::ANALOG_UP) && mEscapeInputs) {
 		mEscapeInputs--;
 	}
-	_10 <<= 1;
+
+	mInputFlags <<= 1;
 	if (!navi->isStickTo()) {
 		navi->endStick();
 		transit(navi, NSID_Walk, nullptr);
@@ -3859,7 +3861,7 @@ void NaviSaraiState::exec(Navi* navi)
 		if (navi->mController1
 		    && navi->mController1->getButtonDown()
 		           & (JUTGamePad::ANALOG_DOWN | JUTGamePad::ANALOG_UP | JUTGamePad::ANALOG_LEFT | JUTGamePad::ANALOG_RIGHT)) {
-			_10 |= 1;
+			mInputFlags |= 1;
 			mEscapeInputs++;
 		}
 	}

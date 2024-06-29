@@ -447,15 +447,15 @@ struct NaviKokeDamageInitArg : public StateArg {
 	inline NaviKokeDamageInitArg(f32 p1, u8 p2, Creature* p3, f32 damage)
 	    : mCreature(p3)
 	    , mDamage(damage)
-	    , _08(p1)
-	    , _0C(p2)
+	    , mTimer(p1)
+	    , mPlaySoundOnDamage(p2)
 	{
 	}
 
-	Creature* mCreature; // _00
-	f32 mDamage;         // _04
-	f32 _08;             // _08
-	bool _0C;            // _0C
+	Creature* mCreature;     // _00
+	f32 mDamage;             // _04
+	f32 mTimer;              // _08
+	bool mPlaySoundOnDamage; // _0C
 };
 
 struct NaviDamageArg : public StateArg {
@@ -483,11 +483,11 @@ struct NaviKokeDamageState : public NaviState {
 
 	// _00     = VTBL
 	// _00-_10 = NaviState
-	f32 mDamage;         // _10
-	f32 mTimer;          // _14
-	int mState;          // _18
-	Creature* mCreature; // _1C
-	bool _20;            // _20
+	f32 mDamage;             // _10
+	f32 mTimer;              // _14
+	int mState;              // _18
+	Creature* mCreature;     // _1C
+	bool mPlaySoundOnDamage; // _20
 };
 
 struct NaviNukuAdjustStateArg : public StateArg {
@@ -702,7 +702,7 @@ struct NaviSaraiState : public NaviState {
 
 	// _00     = VTBL
 	// _00-_10 = NaviState
-	u32 _10;           // _10
+	u32 mInputFlags;   // _10
 	u16 mEscapeInputs; // _14
 };
 

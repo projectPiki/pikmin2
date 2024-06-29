@@ -172,52 +172,55 @@ bool Radar::Mgr::detach(Game::TPositionObject* obj)
  * @note Address: 0x8021E774
  * @note Size: 0x1E0
  */
-int Radar::Mgr::calcNearestTreasure(Vector3f& naviPos, f32 searchDist, Vector3f& treasurePos, f32& dist2)
+int Radar::Mgr::calcNearestTreasure(Vector3f& naviPos, f32 searchDist, Vector3f& treasurePos, f32& nearestDistanceSquared)
 {
 	if (mFuefukiCount > 0) {
 		if (mFuefukiTimer > 0) {
 			mFuefukiTimer--;
-			return 4;
+			return 4; // Fuefuki active, but timer not expired
 		}
 
-		return 3;
+		return 3; // Fuefuki active, timer expired
 	}
 
-	Point* retPoint = nullptr;
-	int ret         = 0;
-	f32 dist        = searchDist;
+	Point* closestPoint = nullptr;
+	int treasureCount   = 0;
+	f32 closestDistance = searchDist;
 	FOREACH_NODE(Point, mPointNode1.mChild, cPoint)
 	{
 		if (cPoint->mObjType != MAP_TREASURE && cPoint->mObjType != MAP_SWALLOWED_TREASURE && cPoint->mObjType != MAP_UPGRADE) {
-			continue;
+			continue; // Skip if not a treasure
 		}
 
-		ret++;
-		Game::Creature* cObj = static_cast<Game::Pellet*>(cPoint->mObject);
-		if (!cObj->isTeki()) {
-			cObj->isPellet();
+		treasureCount++;
+		Game::Creature* currentTreasure = static_cast<Game::Pellet*>(cPoint->mObject);
+
+		// Stripped debug code
+		if (!currentTreasure->isTeki()) {
+			currentTreasure->isPellet();
 		}
-		Vector3f objPos = cObj->getPosition();
-		Sys::Sphere test;
-		Vector2f diff = Vector2f(objPos.x, objPos.z);
+
+		Vector3f nearestTreasurePos = currentTreasure->getPosition();
+		Sys::Sphere boundingSphere;
+		Vector2f diff = Vector2f(nearestTreasurePos.x, nearestTreasurePos.z);
 		diff.x -= naviPos.x;
 		diff.y -= naviPos.z;
-		cObj->getBoundingSphere(test);
+		currentTreasure->getBoundingSphere(boundingSphere);
 
-		f32 cDist = _lenVec2D(diff) - test.mRadius;
-		if (cDist <= dist) {
-			dist        = cDist;
-			retPoint    = cPoint;
-			treasurePos = cObj->getPosition();
-			dist2       = cDist;
+		f32 currentDistance = _lenVec2D(diff) - boundingSphere.mRadius;
+		if (currentDistance <= closestDistance) {
+			closestDistance        = currentDistance;
+			closestPoint           = cPoint;
+			nearestTreasurePos     = currentTreasure->getPosition();
+			nearestDistanceSquared = currentDistance;
 		}
 	}
 
-	if (retPoint != nullptr) {
-		return 2;
+	if (closestPoint != nullptr) {
+		return 2; // Found treasure
 	}
 
-	return ret > 0;
+	return treasureCount > 0; // No treasure found
 }
 
 /**

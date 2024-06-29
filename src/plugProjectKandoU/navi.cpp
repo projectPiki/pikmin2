@@ -3594,7 +3594,7 @@ void Navi::startDamage(f32 damage)
  * @note Address: 0x80144610
  * @note Size: 0x214
  */
-void Navi::addDamage(f32 damage, bool flag)
+void Navi::addDamage(f32 damage, bool playSound)
 {
 	if ((!moviePlayer || moviePlayer->mDemoState == DEMOSTATE_Inactive) && gameSystem->isFlag(GAMESYS_IsGameWorldActive)) {
 		if (playData->mOlimarData->hasItem(OlimarData::ODII_JusticeAlloy)) {
@@ -3609,7 +3609,7 @@ void Navi::addDamage(f32 damage, bool flag)
 
 		mHealth -= damage;
 
-		if (flag) {
+		if (playSound) {
 			mSoundObj->startSound(PSSE_PL_ORIMA_DAMAGE, 0);
 			cameraMgr->startVibration(VIBTYPE_NaviDamage, mNaviIndex);
 			rumbleMgr->startRumble(RUMBLETYPE_NaviDamage, mNaviIndex);

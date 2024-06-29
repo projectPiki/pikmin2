@@ -249,10 +249,10 @@ void TrackOnDirector_Scaled::underDirection()
 	if (!PSSystem::DirectorBase::sToolMode) {
 		rate          = getNearestDistance();
 		mCurrDistance = rate;
-		rate          = JALCalc::linearTransform(mCurrDistance, _58, _54, 0.0f, 1.0f, false);
+		rate          = JALCalc::linearTransform(mCurrDistance, mStartDistance, mEndDistance, 0.0f, 1.0f, false);
 	}
 
-	fadeAllTracks(rate, &_60);
+	fadeAllTracks(rate, &mFadeDuration);
 }
 
 /**
@@ -292,8 +292,9 @@ void ActorDirector_TrackOn::execInner()
  * @note Address: 0x80457758
  * @note Size: 0xF4
  */
-ActorDirector_Scaled::ActorDirector_Scaled(const char* name, int numTracks, f32 p3, f32 p4, s32 fadeIn, s32 fadeOut, u32 p7)
-    : TrackOnDirector_Scaled(name, numTracks, p3, p4, fadeIn, fadeOut, p7)
+ActorDirector_Scaled::ActorDirector_Scaled(const char* name, int trackCount, f32 endDistance, f32 startDistance, s32 fadeIn, s32 fadeOut,
+                                           u32 fadeDuration)
+    : TrackOnDirector_Scaled(name, trackCount, endDistance, startDistance, fadeIn, fadeOut, fadeDuration)
 {
 }
 
@@ -782,8 +783,8 @@ lbl_80457ED8:
  * @note Address: 0x80457F3C
  * @note Size: 0xE4
  */
-ActorDirector_Enemy::ActorDirector_Enemy(const char* name, int p2, s32 p3, s32 p4, u32 p5)
-    : ActorDirector_Scaled(name, p2, 1.0f, 0.0f, p3, p4, p5)
+ActorDirector_Enemy::ActorDirector_Enemy(const char* name, int trackCount, s32 fadeIn, s32 fadeOut, u32 fadeDuration)
+    : ActorDirector_Scaled(name, trackCount, 1.0f, 0.0f, fadeIn, fadeOut, fadeDuration)
     , mGameObject(nullptr)
 {
 }
@@ -814,7 +815,7 @@ void ActorDirector_Enemy::underDirection()
 		}
 	}
 
-	fadeAllTracks(rate, &_60);
+	fadeAllTracks(rate, &mFadeDuration);
 }
 
 /**

@@ -47,11 +47,11 @@ struct DirectorBase : public JADHioNode {
 		return false;
 	}
 
-	inline void fadeAllTracks(f32 rate, u32* a2)
+	inline void fadeAllTracks(f32 rate, u32* duration)
 	{
 		for (u8 i = 0; i < mTrackNum; i++) {
 			P2ASSERTLINE(51, i < mTrackNum);
-			static_cast<PSSystem::SeqTrackChild*>(mTracks[i])->fade(rate, *a2, nullptr);
+			static_cast<PSSystem::SeqTrackChild*>(mTracks[i])->fade(rate, *duration, nullptr);
 		}
 	}
 

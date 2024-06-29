@@ -34,6 +34,7 @@ NaviMgr::~NaviMgr()
 {
 	animMgr = nullptr;
 	naviMgr = nullptr;
+
 	if (mBackupPSMMgr) {
 		delete mBackupPSMMgr;
 		mBackupPSMMgr = nullptr;
@@ -178,6 +179,7 @@ void NaviMgr::loadResources()
 		mNaviParms->read(stream);
 		delete[] parmsFile;
 	}
+
 	load();
 }
 

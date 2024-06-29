@@ -54,8 +54,8 @@ struct DamageDirector : public OneShotDirector {
 };
 
 struct SwitcherDirector : public ::PSSystem::SwitcherDirector {
-	inline SwitcherDirector(int numTracks, const char* name)
-	    : ::PSSystem::SwitcherDirector(numTracks, name)
+	inline SwitcherDirector(int trackCount, const char* name)
+	    : ::PSSystem::SwitcherDirector(trackCount, name)
 	{
 	}
 
@@ -77,7 +77,7 @@ struct CopyActorWrapper {
 };
 
 struct PikminNumberDirector : public SwitcherDirector, public CopyActorWrapper {
-	PikminNumberDirector(int numTracks, u8 mask, ::PSSystem::DirectedBgm& bgm);
+	PikminNumberDirector(int trackCount, u8 mask, ::PSSystem::DirectedBgm& bgm);
 
 	virtual ~PikminNumberDirector() { }                     // _08 (weak)
 	virtual void execInner();                               // _1C
@@ -94,7 +94,7 @@ struct PikminNumberDirector : public SwitcherDirector, public CopyActorWrapper {
  * @size{0x54}
  */
 struct PikminNumberDirector_AutoBgm : public PikminNumberDirector {
-	PikminNumberDirector_AutoBgm(int numTracks, u8 mask, ::PSSystem::DirectedBgm& bgm);
+	PikminNumberDirector_AutoBgm(int trackCount, u8 mask, ::PSSystem::DirectedBgm& bgm);
 
 	virtual ~PikminNumberDirector_AutoBgm() { }             // _08 (weak)
 	virtual void directOnTrack(::PSSystem::SeqTrackBase&);  // _20
@@ -141,7 +141,7 @@ struct ActorDirector_TempoChange : public TempoChangeDirectorBase {
 };
 
 struct TrackOnDirectorBase : public SwitcherDirector {
-	TrackOnDirectorBase(int numTracks, const char* name, s32 fadeIn, s32 fadeOut);
+	TrackOnDirectorBase(int trackCount, const char* name, s32 fadeIn, s32 fadeOut);
 
 	virtual ~TrackOnDirectorBase() { }                      // _08 (weak)
 	virtual void directOnTrack(::PSSystem::SeqTrackBase&);  // _20
@@ -159,7 +159,7 @@ struct TrackOnDirectorBase : public SwitcherDirector {
  * @size{0x54}
  */
 struct PikAttackDirector : public TrackOnDirectorBase {
-	PikAttackDirector(int numTracks);
+	PikAttackDirector(int trackCount);
 
 	virtual ~PikAttackDirector() { } // _08 (weak)
 
@@ -180,12 +180,13 @@ struct ListDirectorActor : public ::PSSystem::DirectorCopyActor, public JSUList<
 };
 
 struct TrackOnDirector_Scaled : public TrackOnDirectorBase {
-	inline TrackOnDirector_Scaled(const char* name, int numTracks, f32 p3, f32 p4, s32 fadeIn, s32 fadeOut, u32 p7)
-	    : TrackOnDirectorBase(numTracks, name, fadeIn, fadeOut)
-	    , _54(p3)
-	    , _58(p4)
+	inline TrackOnDirector_Scaled(const char* name, int trackCount, f32 endDistance, f32 startDistance, s32 fadeIn, s32 fadeOut,
+	                              u32 fadeDuration)
+	    : TrackOnDirectorBase(trackCount, name, fadeIn, fadeOut)
+	    , mEndDistance(endDistance)
+	    , mStartDistance(startDistance)
 	    , mCurrDistance(100000.0f)
-	    , _60(p7)
+	    , mFadeDuration(fadeDuration)
 	{
 		mEnableType = 1;
 		mActor      = nullptr;
@@ -196,10 +197,10 @@ struct TrackOnDirector_Scaled : public TrackOnDirectorBase {
 
 	// _00     = VTBL
 	// _00-_54 = TrackOnDirectorBase
-	f32 _54;                        // _54
-	f32 _58;                        // _58
+	f32 mEndDistance;               // _54
+	f32 mStartDistance;             // _58
 	f32 mCurrDistance;              // _5C
-	u32 _60;                        // _60
+	u32 mFadeDuration;              // _60
 	PSM::ListDirectorActor* mActor; // _64
 };
 
@@ -207,8 +208,8 @@ struct TrackOnDirector_Scaled : public TrackOnDirectorBase {
  * @size{0x58}
  */
 struct TrackOnDirector_Voting : public TrackOnDirectorBase {
-	TrackOnDirector_Voting(int numTracks, const char* name, int fadeIn, int fadeOut)
-	    : TrackOnDirectorBase(numTracks, name, fadeIn, fadeOut)
+	TrackOnDirector_Voting(int trackCount, const char* name, int fadeIn, int fadeOut)
+	    : TrackOnDirectorBase(trackCount, name, fadeIn, fadeOut)
 	{
 		mVoteState = 0;
 	}
@@ -224,7 +225,7 @@ struct TrackOnDirector_Voting : public TrackOnDirectorBase {
  * @size{0x54}
  */
 struct ExiteDirector : public TrackOnDirectorBase {
-	ExiteDirector(int numTracks);
+	ExiteDirector(int trackCount);
 
 	virtual ~ExiteDirector() { } // _08 (weak)
 
@@ -236,7 +237,7 @@ struct ExiteDirector : public TrackOnDirectorBase {
  * @size{0x58}
  */
 struct ActorDirector_TrackOn : public TrackOnDirectorBase, public CopyActorWrapper {
-	ActorDirector_TrackOn(const char* name, int numTracks, s32 fadeIn, s32 fadeOut);
+	ActorDirector_TrackOn(const char* name, int trackCount, s32 fadeIn, s32 fadeOut);
 
 	virtual ~ActorDirector_TrackOn() { } // _08 (weak)
 	virtual void execInner();            // _1C
@@ -250,8 +251,8 @@ struct ActorDirector_TrackOn : public TrackOnDirectorBase, public CopyActorWrapp
  * @size{0x58}
  */
 struct GroundDirector_Cave : public ActorDirector_TrackOn {
-	GroundDirector_Cave(const char* name, int numTracks, s32 fadeIn, s32 fadeOut)
-	    : ActorDirector_TrackOn(name, numTracks, fadeIn, fadeOut)
+	GroundDirector_Cave(const char* name, int trackCount, s32 fadeIn, s32 fadeOut)
+	    : ActorDirector_TrackOn(name, trackCount, fadeIn, fadeOut)
 	{
 	}
 
@@ -267,7 +268,7 @@ struct GroundDirector_Cave : public ActorDirector_TrackOn {
  * @size{0x68}
  */
 struct ActorDirector_Scaled : public TrackOnDirector_Scaled {
-	ActorDirector_Scaled(const char* name, int numTracks, f32 p3, f32 p4, s32 fadeIn, s32 fadeOut, u32 p7);
+	ActorDirector_Scaled(const char* name, int trackCount, f32 endDistance, f32 startDistance, s32 fadeIn, s32 fadeOut, u32 fadeDuration);
 
 	virtual ~ActorDirector_Scaled() { }               // _08 (weak)
 	virtual void execInner();                         // _1C

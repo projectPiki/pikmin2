@@ -92,9 +92,9 @@ void CaveState::init(SingleGameSection* game, StateArg* arg)
 	gameSystem->resetFlag(GAMESYS_IsPlaying);
 
 	game->mTreasureRadarActive = false;
-	Vector3f temp1;
-	f32 temp2;
-	if (!Radar::mgr->calcNearestTreasure(Vector3f::zero, FLOAT_DIST_MAX, temp1, temp2)) {
+	Vector3f treasurePos;
+	f32 treasureDist;
+	if (!Radar::mgr->calcNearestTreasure(Vector3f::zero, FLOAT_DIST_MAX, treasurePos, treasureDist)) {
 		game->mNeedTreasureCalc = true;
 	} else {
 		game->mNeedTreasureCalc = false;
