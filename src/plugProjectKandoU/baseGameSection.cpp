@@ -1999,7 +1999,6 @@ void BaseGameSection::setupFixMemory_dvdload()
 	mMizuTexture  = new JUTTexture(file);
 	sys->heapStatusStart("fbTexture", nullptr);
 
-	// I don't know lmao, also ty https://celestialamber.github.io/rlwinm-clrlwi-decoder/
 	mXfbImage = new JUTTexture((System::getRenderModeWidth() >> 1) & 0x7FFF, (System::getRenderModeHeight() >> 1) & 0x7FFF, GX_TF_RGB565);
 	gameSystem->mXfbTexture = mXfbImage;
 
