@@ -30,8 +30,8 @@ Vector2f Radar::Point::getPosition()
  */
 Radar::Mgr::Mgr()
 {
-	mPointNode1.clear();
-	mPointNode2.clear();
+	mActiveRadarNodes.clear();
+	mInactiveRadarNodes.clear();
 
 	mNumObjects = RADAR_MAX_OBJECTS;
 	mPointList  = new Point[mNumObjects];
@@ -44,8 +44,8 @@ Radar::Mgr::Mgr()
  */
 void Radar::Mgr::clear()
 {
-	mPointNode1.clear();
-	mPointNode2.clear();
+	mActiveRadarNodes.clear();
+	mInactiveRadarNodes.clear();
 
 	for (int i = 0; i < mNumObjects; i++) {
 		Point* pointList = &mPointList[i];
@@ -54,12 +54,12 @@ void Radar::Mgr::clear()
 		pointList->mObjType = MAP_NULL_ICON;
 		pointList->mCaveID  = nullptr;
 
-		mPointNode2.add(&mPointList[i]);
+		mInactiveRadarNodes.add(&mPointList[i]);
 	}
 
-	mOtakaraNum   = 0;
-	mFuefukiCount = 0;
-	mFuefukiTimer = 0;
+	mTreasureCount       = 0;
+	mFuefukiCount        = 0;
+	mFuefukiWhistleTimer = 0;
 }
 
 /**
@@ -83,7 +83,7 @@ void Radar::Mgr::dieFuefuki()
  * @note Address: 0x8021E574
  * @note Size: 0x10
  */
-void Radar::Mgr::fuefuki() { mFuefukiTimer++; }
+void Radar::Mgr::fuefuki() { mFuefukiWhistleTimer++; }
 
 /**
  * @note Address: 0x8021E584
@@ -94,7 +94,7 @@ void Radar::Mgr::entry(Game::TPositionObject* obj, Radar::cRadarType type, u32 f
 	if (mgr) {
 		mgr->attach(obj, type, flag);
 		if (type == MAP_TREASURE || type == MAP_SWALLOWED_TREASURE || type == MAP_UPGRADE) {
-			mgr->mOtakaraNum++;
+			mgr->mTreasureCount++;
 		}
 	}
 }
@@ -118,7 +118,7 @@ bool Radar::Mgr::exit(Game::TPositionObject* obj)
 int Radar::Mgr::getNumOtakaraItems()
 {
 	if (mgr) {
-		return mgr->mOtakaraNum;
+		return mgr->mTreasureCount;
 	}
 	return 0;
 }
@@ -132,12 +132,12 @@ void Radar::Mgr::attach(Game::TPositionObject* obj, Radar::cRadarType type, u32 
 	detach(obj);
 	// DUMB. this is needed to match as an inline in ogDummpyInit.
 	// (just cast to the damn Point and use it smFh.)
-	CNode* cPoint = mPointNode2.mChild;
-	Point* point  = static_cast<Point*>(mPointNode2.mChild);
+	CNode* cPoint = mInactiveRadarNodes.mChild;
+	Point* point  = static_cast<Point*>(mInactiveRadarNodes.mChild);
 	if (cPoint) {
 		cPoint->del();
 		point->setData(obj, type, flag);
-		mPointNode1.add(cPoint);
+		mActiveRadarNodes.add(cPoint);
 	}
 }
 
@@ -147,7 +147,7 @@ void Radar::Mgr::attach(Game::TPositionObject* obj, Radar::cRadarType type, u32 
  */
 bool Radar::Mgr::detach(Game::TPositionObject* obj)
 {
-	FOREACH_NODE(Point, mPointNode1.mChild, point)
+	FOREACH_NODE(Point, mActiveRadarNodes.mChild, point)
 	{
 		if (point->mObject != obj) {
 			continue;
@@ -159,10 +159,10 @@ bool Radar::Mgr::detach(Game::TPositionObject* obj)
 		point->setData(nullptr, MAP_NULL_ICON, 0);
 
 		if (type == MAP_TREASURE || type == MAP_SWALLOWED_TREASURE || type == MAP_UPGRADE) {
-			mgr->mOtakaraNum--;
+			mgr->mTreasureCount--;
 		}
 
-		mPointNode2.add(point);
+		mInactiveRadarNodes.add(point);
 		return true;
 	}
 	return false;
@@ -172,52 +172,58 @@ bool Radar::Mgr::detach(Game::TPositionObject* obj)
  * @note Address: 0x8021E774
  * @note Size: 0x1E0
  */
-int Radar::Mgr::calcNearestTreasure(Vector3f& naviPos, f32 searchDist, Vector3f& treasurePos, f32& dist2)
+Radar::Mgr::RadarSearchResult Radar::Mgr::calcNearestTreasure(Vector3f& naviPos, f32 searchDist, Vector3f& treasurePos,
+                                                              f32& treasureDistance)
 {
+	// If any antennae beetles are alive
 	if (mFuefukiCount > 0) {
-		if (mFuefukiTimer > 0) {
-			mFuefukiTimer--;
-			return 4; // Fuefuki active, but timer not expired
+		if (mFuefukiWhistleTimer > 0) {
+			mFuefukiWhistleTimer--;
+			return Radar::Mgr::WHISTLE_ACTIVE; // Whistle is active, but timer not expired
 		}
 
-		return 3; // Fuefuki active, timer expired
+		return Radar::Mgr::WHISTLE_ACTIVE_TIMER_EXPIRED; // Whistle is active, timer expired
 	}
 
-	Point* retPoint = nullptr;
-	int ret         = 0;
-	f32 dist        = searchDist;
-	FOREACH_NODE(Point, mPointNode1.mChild, cPoint)
+	Point* closestPoint = nullptr;
+	int treasureCount   = 0;
+	f32 closestDistance = searchDist;
+	FOREACH_NODE(Point, mActiveRadarNodes.mChild, cPoint)
 	{
+		// Skip if not a treasure
 		if (cPoint->mObjType != MAP_TREASURE && cPoint->mObjType != MAP_SWALLOWED_TREASURE && cPoint->mObjType != MAP_UPGRADE) {
-			continue; // Skip if not a treasure
+			continue;
 		}
 
-		ret++;
-		Game::Creature* cObj = static_cast<Game::Pellet*>(cPoint->mObject);
-		if (!cObj->isTeki()) {
-			cObj->isPellet();
+		treasureCount++;
+		Game::Creature* creature = static_cast<Game::Pellet*>(cPoint->mObject);
+		if (!creature->isTeki()) {
+			creature->isPellet();
 		}
-		Vector3f objPos = cObj->getPosition();
-		Sys::Sphere test;
-		Vector2f diff = Vector2f(objPos.x, objPos.z);
-		diff.x -= naviPos.x;
-		diff.y -= naviPos.z;
-		cObj->getBoundingSphere(test);
 
-		f32 cDist = _lenVec2D(diff) - test.mRadius;
-		if (cDist <= dist) {
-			dist        = cDist;
-			retPoint    = cPoint;
-			treasurePos = cObj->getPosition();
-			dist2       = cDist;
+		Vector3f objPos = creature->getPosition();
+
+		Sys::Sphere boundingSphere;
+		Vector2f positionOffset = Vector2f(objPos.x, objPos.z);
+		positionOffset.x -= naviPos.x;
+		positionOffset.y -= naviPos.z;
+		creature->getBoundingSphere(boundingSphere);
+
+		// Calculate the distance between the creature and the treasure
+		f32 cDist = _lenVec2D(positionOffset) - boundingSphere.mRadius;
+		if (cDist <= closestDistance) {
+			closestDistance  = cDist;
+			closestPoint     = cPoint;
+			treasurePos      = creature->getPosition();
+			treasureDistance = cDist;
 		}
 	}
 
-	if (retPoint != nullptr) {
-		return 2; // Found treasure
+	if (closestPoint != nullptr) {
+		return Radar::Mgr::CLOSEST_TREASURE_FOUND; // Found treasure
 	}
 
-	return ret > 0; // No treasure found
+	return treasureCount > 0 ? Radar::Mgr::TREASURE_FOUND : Radar::Mgr::NO_TREASURE_FOUND;
 }
 
 /**

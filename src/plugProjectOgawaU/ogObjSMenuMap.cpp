@@ -312,7 +312,7 @@ void ObjSMenuMap::initMapIcon(JKRArchive* arc)
 			Radar::mgr->ogDummpyInit();
 		}
 
-		FOREACH_NODE(Radar::Point, Radar::mgr->mPointNode1.mChild, cPoint)
+		FOREACH_NODE(Radar::Point, Radar::mgr->mActiveRadarNodes.mChild, cPoint)
 		{
 			int objType = cPoint->mObjType;
 			JUT_ASSERTLINE(569, objType >= 0 && objType < 22, "Radar type ERR!! (%d)\n", objType);

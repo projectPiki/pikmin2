@@ -380,7 +380,7 @@ bool Navi::demoCheck()
 
 				// Mark the cave as visited in the pause map screen
 				if (Radar::mgr) {
-					FOREACH_NODE(Radar::Point, Radar::mgr->mPointNode1.mChild, cPoint)
+					FOREACH_NODE(Radar::Point, Radar::mgr->mActiveRadarNodes.mChild, cPoint)
 					{
 						if (cPoint->mObjType == Radar::MAP_UNENTERED_CAVE && targetCave->mCaveID.getID() == cPoint->getCaveID()) {
 							cPoint->mObjType = Radar::MAP_INCOMPLETE_CAVE;

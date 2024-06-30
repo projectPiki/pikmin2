@@ -70,6 +70,18 @@ struct Radar {
 	};
 
 	struct Mgr {
+		enum RadarSearchResult {
+			NO_TREASURE_FOUND      = 0, // No treasure found
+			TREASURE_FOUND         = 1, // At least one treasure found but not the closest
+			CLOSEST_TREASURE_FOUND = 2, // Found a closest treasure
+
+			// For antenna beetles
+			WHISTLE_ACTIVE_TIMER_EXPIRED = 3, // Whistle is active, timer expired
+			WHISTLE_ACTIVE               = 4, // Whistle is active, but timer not expired
+
+			NOT_PROCESSED = 5, // Not yet processed, AKA invalid or default
+		};
+
 		Mgr();
 
 		static void entry(Game::TPositionObject*, Radar::cRadarType, u32);
@@ -77,7 +89,7 @@ struct Radar {
 
 		void attach(Game::TPositionObject*, Radar::cRadarType, u32);
 		void bornFuefuki();
-		int calcNearestTreasure(Vector3f& naviPos, f32 searchDist, Vector3f& treasurePos, f32& nearestDistanceSquared);
+		RadarSearchResult calcNearestTreasure(Vector3f& naviPos, f32 searchDist, Vector3f& treasurePos, f32& nearestDistanceSquared);
 		void clear();
 		bool detach(Game::TPositionObject*);
 		void dieFuefuki();
@@ -86,13 +98,13 @@ struct Radar {
 		static int getNumOtakaraItems();
 		void ogDummpyInit();
 
-		Point mPointNode1; // _00
-		Point mPointNode2; // _24
-		Point* mPointList; // _48
-		int mNumObjects;   // _4C
-		int mOtakaraNum;   // _50
-		int mFuefukiCount; // _54
-		int mFuefukiTimer; // _58
+		Point mActiveRadarNodes;   // _00
+		Point mInactiveRadarNodes; // _24
+		Point* mPointList;         // _48
+		int mNumObjects;           // _4C
+		int mTreasureCount;        // _50
+		int mFuefukiCount;         // _54
+		int mFuefukiWhistleTimer;  // _58
 	};
 
 	static Mgr* mgr;

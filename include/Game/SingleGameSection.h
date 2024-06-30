@@ -6,6 +6,7 @@
 #include "Game/gamePlayData.h"
 #include "Game/gameStages.h"
 #include "efx/TChasePos.h"
+#include "Radar.h"
 #include "id32.h"
 
 namespace og {
@@ -80,7 +81,7 @@ struct SingleGameSection : public BaseGameSection {
 	void drawCaveScreen();
 	void drawMainMapScreen();
 	void setDispMemberNavi(og::Screen::DataNavi& data, int naviID);
-	int calcOtakaraLevel(f32&);
+	Radar::Mgr::RadarSearchResult calcOtakaraLevel(f32&);
 
 	inline void setCurrState(StateType* state) { mCurrentState = state; }
 	inline StateType* getCurrState() { return mCurrentState; }
