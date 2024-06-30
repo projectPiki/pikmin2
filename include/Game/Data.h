@@ -152,7 +152,7 @@ struct Mgr : public PlayCommonData {
 	char padding;        // _21
 	u16 _22;             // _22
 	u32 _24;             // _24
-	u32 _28;             // _28
+	u32 mSaveSlotIndex;  // _28
 	u32 _2C;             // _2C
 	u64 mCardSerialNo;   // _30
 	u8 mSoundMode;       // _38, TODO: Replace with Soundmode enum

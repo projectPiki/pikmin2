@@ -35,8 +35,8 @@ struct State;
 struct VsGameSection : public BaseGameSection {
 	typedef VsGame::State StateType;
 	struct DropCardArg {
-		f32 _00; // _00
-		f32 _04; // _04
+		f32 mDropMinDistance;     // _00
+		f32 mDropMaximumDistance; // _04
 	};
 
 	VsGameSection(JKRHeap*, bool);

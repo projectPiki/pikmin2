@@ -79,14 +79,14 @@ StageList::StageList()
  */
 void StageList::read(Stream& stream)
 {
-	bool b       = (gameSystem) ? gameSystem->mSection->disableAllocHalt() : true;
-	s32 stageNum = stream.readInt();
+	bool isAllocationHalted = (gameSystem) ? gameSystem->mSection->disableAllocHalt() : true;
+	s32 stageNum            = stream.readInt();
 	for (int i = 0; i < stageNum; i++) {
 		StageData* currStageData = new StageData;
 		currStageData->read(stream);
 		mStageData.add(currStageData);
 	}
-	if (gameSystem && b) {
+	if (gameSystem && isAllocationHalted) {
 		gameSystem->mSection->enableAllocHalt();
 	}
 }

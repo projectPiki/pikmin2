@@ -63,7 +63,7 @@ struct EnemyIterator {
 	inline bool satisfy() { return mCondition->satisfy(mContainer->get(mIndex)); }
 
 	// VTBL _00
-	void* mIndex;                 // _04;
+	void* mIndex;                 // _04
 	GenericContainer* mContainer; // _08
 	Condition<T>* mCondition;     // _0C
 };

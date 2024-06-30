@@ -686,8 +686,8 @@ void System::loadSoundResource()
  */
 System::GXVerifyArg::GXVerifyArg()
 {
-	_00 = 1;
-	_04 = 0;
+	mUnused00 = 1;
+	mUnused04 = 0;
 }
 
 /**

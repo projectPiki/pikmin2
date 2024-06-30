@@ -29,7 +29,7 @@ struct KeyEvent : public CNode {
 	inline KeyEvent()
 	{
 		mFrame   = 0;
-		mType    = 0;
+		mType    = KEYEVENT_LOOP_START;
 		mAnimIdx = -1;
 	}
 

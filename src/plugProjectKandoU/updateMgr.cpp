@@ -57,7 +57,7 @@ void UpdateContext::exit()
 			mMgr->removeClient(this);
 			mMgr = nullptr;
 		}
-		_08 = false;
+		mIsActive = false;
 	}
 }
 
@@ -67,11 +67,11 @@ void UpdateContext::exit()
  */
 UpdateMgr::UpdateMgr()
 {
-	mClientListA = nullptr;
-	mClientListB = nullptr;
-	mMaxClientId = 0;
-	_04          = 0;
-	_10          = 0;
+	mClientListA  = nullptr;
+	mClientListB  = nullptr;
+	mMaxClientId  = 0;
+	mClientCount  = 0;
+	mCurrentIndex = 0;
 }
 
 /**
@@ -81,11 +81,13 @@ UpdateMgr::UpdateMgr()
  */
 void UpdateMgr::update()
 {
-	int i = ++_10;
+	int i = ++mCurrentIndex;
+
 	if (i < mMaxClientId) {
 		return;
 	}
-	_10 = 0;
+
+	mCurrentIndex = 0;
 }
 
 /**
@@ -98,7 +100,7 @@ bool UpdateMgr::updatable(UpdateContext* context)
 	if (context == nullptr) {
 		return false;
 	}
-	return (u8)(context->mClientIndex == _10);
+	return (u8)(context->mClientIndex == mCurrentIndex);
 }
 
 /**
@@ -110,11 +112,11 @@ void UpdateMgr::create(int count)
 	if (count <= 0) {
 		count = 1;
 	}
-	mMaxClientId = count;
-	mClientListA = new int[count];
-	mClientListB = new int[count];
-	_04          = 0;
-	_10          = 0;
+	mMaxClientId  = count;
+	mClientListA  = new int[count];
+	mClientListB  = new int[count];
+	mClientCount  = 0;
+	mCurrentIndex = 0;
 	for (int i = 0; i < mMaxClientId; i++) {
 		mClientListA[i] = nullptr;
 		mClientListB[i] = nullptr;
@@ -131,22 +133,24 @@ void UpdateMgr::addClient(UpdateContext* context)
 	if (context->mClientIndex != -1) {
 		removeClient(context);
 	}
-	int v1                 = mMaxClientId;
+
 	int smallestValueIndex = -1;
 	int smallestValue      = 10000;
+
 	for (int i = 0; i < mMaxClientId; i++) {
 		if (mClientListA[i] < smallestValue) {
 			smallestValueIndex = i;
 			smallestValue      = mClientListA[i];
 		}
 	}
+
 	if (smallestValueIndex != -1) {
 		context->mClientIndex = smallestValueIndex;
 		mClientListA[smallestValueIndex]++;
-		if (context->_08) {
+		if (context->mIsActive) {
 			mClientListB[smallestValueIndex]++;
 		}
-		_04++;
+		mClientCount++;
 	}
 }
 
@@ -156,14 +160,16 @@ void UpdateMgr::addClient(UpdateContext* context)
  */
 void UpdateMgr::removeClient(UpdateContext* context)
 {
-	int clientIDMaybe = context->mClientIndex;
-	if (clientIDMaybe != -1) {
-		JUT_ASSERTLINE(155, (clientIDMaybe >= 0 && clientIDMaybe < mMaxClientId), "mail to [%d-%d] %d\n", 0, mMaxClientId, clientIDMaybe);
+	int clientId = context->mClientIndex;
+	if (clientId != -1) {
+		JUT_ASSERTLINE(155, (clientId >= 0 && clientId < mMaxClientId), "mail to [%d-%d] %d\n", 0, mMaxClientId, clientId);
+
 		mClientListA[context->mClientIndex]--;
-		if (context->_08) {
+		if (context->mIsActive) {
 			mClientListB[context->mClientIndex]--;
 		}
-		_04--;
+
+		mClientCount--;
 		context->mClientIndex = -1;
 	}
 }

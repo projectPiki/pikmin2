@@ -83,10 +83,10 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/collinfo.cpp">collinfo.cpp</a> | 43044 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/cellPyramid.cpp">cellPyramid.cpp</a> | 48067 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/fakePiki.cpp">fakePiki.cpp</a> | 50426 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/aiFormation.cpp">aiFormation.cpp</a> | 53253 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/pelletState.cpp">pelletState.cpp</a> | 63252 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/itemUjamushi.cpp">itemUjamushi.cpp</a> | 64495 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/itemPlant.cpp">itemPlant.cpp</a> | 73525 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/baseGameSection.cpp">baseGameSection.cpp</a> | 86433 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/itemPlant.cpp">itemPlant.cpp</a> | 73525 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/baseGameSection.cpp">baseGameSection.cpp</a> | 86375 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/aiPrimitives.cpp">aiPrimitives.cpp</a> | 117085 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/pelletMgr.cpp">pelletMgr.cpp</a> | 134788 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/navi.cpp">navi.cpp</a> | 148896 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/pikiState.cpp">pikiState.cpp</a> | 155487 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/naviState.cpp">naviState.cpp</a> | 163231 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/singleGS_Zukan.cpp">singleGS_Zukan.cpp</a> | 163810 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/naviState.cpp">naviState.cpp</a> | 163290 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/singleGS_Zukan.cpp">singleGS_Zukan.cpp</a> | 163810 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gameMapParts.cpp">gameMapParts.cpp</a> | 164131 |  |  |
 
 ### <section id="plugProjectKonoU">plugProjectKonoU</section>
@@ -143,7 +143,7 @@
 | ---- | ---- | ---- | ---- |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogCopyPane.cpp">ogCopyPane.cpp</a> | 7678 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogCounterSlot.cpp">ogCounterSlot.cpp</a> | 15278 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogMenuMgr.cpp">ogMenuMgr.cpp</a> | 18723 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjContena.cpp">ogObjContena.cpp</a> | 31668 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjVs.cpp">ogObjVs.cpp</a> | 44612 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjSMenuMap.cpp">ogObjSMenuMap.cpp</a> | 53588 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjVs.cpp">ogObjVs.cpp</a> | 44612 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjSMenuMap.cpp">ogObjSMenuMap.cpp</a> | 53594 |
 
 ### <section id="plugProjectYamashitaU">plugProjectYamashitaU</section>
 | File | Size (bytes) | File | Size (bytes) |
@@ -172,9 +172,9 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/sysShapeModel.cpp">sysShapeModel.cpp</a> | 15500 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/titleSection.cpp">titleSection.cpp</a> | 19709 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/JSTObjectActor.cpp">JSTObjectActor.cpp</a> | 20961 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/JSTObjectSystem.cpp">JSTObjectSystem.cpp</a> | 22652 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/matMath.cpp">matMath.cpp</a> | 26236 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/moviePlayer.cpp">moviePlayer.cpp</a> | 26335 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/windowMessage.cpp">windowMessage.cpp</a> | 29493 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/system.cpp">system.cpp</a> | 29872 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/windowMessage.cpp">windowMessage.cpp</a> | 29493 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/system.cpp">system.cpp</a> | 29884 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/memoryCard.cpp">memoryCard.cpp</a> | 31350 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/bootSection.cpp">bootSection.cpp</a> | 38573 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/movieMessage.cpp">movieMessage.cpp</a> | 44324 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/pikmin2MemoryCardMgr.cpp">pikmin2MemoryCardMgr.cpp</a> | 50866 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/movieMessage.cpp">movieMessage.cpp</a> | 44324 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/pikmin2MemoryCardMgr.cpp">pikmin2MemoryCardMgr.cpp</a> | 51339 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/graphics.cpp">graphics.cpp</a> | 76184 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/messageRendering.cpp">messageRendering.cpp</a> | 100334 |
 
 ### <section id="utilityU">utilityU</section>

@@ -80,7 +80,7 @@ Resource::~Resource() { mMgr->destroyResource(); }
  */
 Mgr::Mgr()
     : MemoryCardMgr()
-    , _D8(0)
+    , mErrorCode(0)
     , mBannerImageFile(0)
     , mIconImageFile(0)
 {
@@ -374,7 +374,7 @@ bool Mgr::doCardProc(void*, MemoryCardMgrCommand* command)
 	int heapSize      = JKRHeap::getCurrentHeap()->getTotalFreeSize();
 	JKRHeap* currHeap = JKRHeap::getCurrentHeap();
 
-	_D8 = 0;
+	mErrorCode = 0;
 	switch (command->_00) {
 	case 7:
 		setFlag(MCMFLAG_IsWriting);
@@ -711,47 +711,53 @@ bool Mgr::varifyCardStatus()
  * @note Address: 0x804444CC
  * @note Size: 0x1C0
  */
-bool Mgr::commandSaveGameOption(bool param_1, bool param_2)
+bool Mgr::commandSaveGameOption(bool isForceSave, bool skipReadCheck)
 {
-	bool result = false;
-	if (param_1 || checkSerialNo(false)) {
-		u32* buffer = new (mHeap, -32) u32[0x800];
-		P2ASSERTLINE(1500, buffer);
-		int icheck = -1;
-		bool check = false;
-		if (!param_2) {
+	bool saveSuccessful = false;
+
+	if (isForceSave || checkSerialNo(false)) {
+		u32* optionBuffer = new (mHeap, -32) u32[0x800];
+		P2ASSERTLINE(1500, optionBuffer);
+
+		int selectedSlot    = -1;
+		bool hasWriteFailed = false;
+		if (!skipReadCheck) {
 			for (int i = 0; i < 2; i++) {
-				if (!read(CARDSLOT_Unk0, cFileName, (u8*)buffer, 0x2000, i * 0x2000 + 0x2000)) {
-					check = true;
+				if (!read(CARDSLOT_Unk0, cFileName, (u8*)optionBuffer, 0x2000, i * 0x2000 + 0x2000)) {
+					hasWriteFailed = true;
 					break;
 				}
-				bool checkOption = checkOptionInfo((OptionInfo*)buffer) == 0; // sigh. sure, why not.
+
+				bool checkOption = checkOptionInfo((OptionInfo*)optionBuffer) == 0;
 				if (checkOption) {
-					icheck = i;
+					selectedSlot = i;
 					break;
 				}
 			}
 		}
-		if (icheck == -1) {
-			icheck = sys->mPlayData->_28 + 1 & 1;
+
+		if (selectedSlot == -1) {
+			selectedSlot = sys->mPlayData->mSaveSlotIndex + 1 & 1;
 		}
-		if (!check) {
-			sys->mPlayData->_28++;
-			buffer[0] = 'OpVa';
-			buffer[1] = '0002';
-			buffer[2] = sys->mPlayData->_28;
-			RamStream ramStream(&buffer[3], 0x1C00);
+
+		if (!hasWriteFailed) {
+			sys->mPlayData->mSaveSlotIndex++;
+			optionBuffer[0] = 'OpVa';
+			optionBuffer[1] = '0002';
+			optionBuffer[2] = sys->mPlayData->mSaveSlotIndex;
+
+			RamStream ramStream(&optionBuffer[3], 0x1C00);
 			writeGameOption(ramStream);
-			buffer[0x7FF] = calcCheckSumOptionInfo((OptionInfo*)buffer);
-			check         = write(CARDSLOT_Unk0, cFileName, (u8*)buffer, 0x2000, icheck * 0x2000 + 0x2000);
-			result        = check;
+			optionBuffer[0x7FF] = calcCheckSumOptionInfo((OptionInfo*)optionBuffer);
+			hasWriteFailed      = write(CARDSLOT_Unk0, cFileName, (u8*)optionBuffer, 0x2000, selectedSlot * 0x2000 + 0x2000);
+			saveSuccessful      = hasWriteFailed;
 		}
-		delete (buffer);
+		delete (optionBuffer);
 	}
-	if (result) {
+	if (saveSuccessful) {
 		sys->clearOptionBlockSaveFlag();
 	}
-	return result;
+	return saveSuccessful;
 }
 
 /**
@@ -792,7 +798,7 @@ bool Mgr::commandLoadGameOption()
 			bool check2 = checkOptionInfo(info2);
 			// if both checks pass, pick buffer with higher value at 0xC, or first if equal
 			if (check1 && check2) {
-				if (info1[1]._00 >= info2[1]._00) {
+				if (info1[1].mMagic >= info2[1].mMagic) {
 					optionResult = info1;
 				} else {
 					optionResult = info2;
@@ -809,14 +815,14 @@ bool Mgr::commandLoadGameOption()
 
 			// if none passed, set default
 			if (!optionResult) {
-				_D8 = 1;
+				mErrorCode = 1;
 				sys->mPlayData->setDefault();
 
 				// use buffer info to set playData variable
 			} else {
-				result              = true;
-				sys->mPlayData->_28 = optionResult[1]._00;
-				RamStream ramStream((void*)&optionResult[1]._04, 0x1c00);
+				result                         = true;
+				sys->mPlayData->mSaveSlotIndex = optionResult[1].mMagic;
+				RamStream ramStream((void*)&optionResult[1].mVersionType, 0x1c00);
 				readGameOption(ramStream);
 			}
 
@@ -855,7 +861,7 @@ bool Mgr::checkSerialNo(bool param_1)
 	bool result = false;
 	if (!(sys->mPlayData->mFlags.isSet(1))) {
 		if (param_1) {
-			_D8 = 3;
+			mErrorCode = 3;
 		}
 		result = true;
 	} else {
@@ -1015,8 +1021,8 @@ int Mgr::getIndexPlayerInfo(s8 fileIndex, PlayerInfoHeader* infoHeader, bool* pa
 					doLoop = true;
 					break;
 				} else {
-					index = -1;
-					_D8   = 2;
+					index      = -1;
+					mErrorCode = 2;
 					break;
 				}
 			} else {
@@ -1049,8 +1055,8 @@ bool Mgr::commandLoadPlayer(s8 fileIndex)
 	u64 serial;
 	P2ASSERTBOUNDSLINE(2264, 0, fileIndex, 3);
 	commandLoadGameOption();
-	if ((s32)_D8 == 1)
-		_D8 = 0;
+	if ((s32)mErrorCode == 1)
+		mErrorCode = 0;
 	if (!isErrorOccured()) {
 		if (readCardSerialNo(&serial, CARDSLOT_Unk0)) {
 			u32* buffer = new (mHeap, -32) u32[0x3000];
@@ -1089,28 +1095,29 @@ bool Mgr::loadPlayerForNoCard(s8 fileIndex)
  * @note Address: 0x80445330
  * @note Size: 0x178
  */
-bool Mgr::loadPlayerProc(s8 fileIndex, u8* param_2)
+bool Mgr::loadPlayerProc(s8 fileIndex, u8* playerDataBuffer)
 {
-	bool result = false;
+	bool loadSuccess = false;
 	P2ASSERTBOUNDSLINE(2407, 0, fileIndex, 3);
+
 	PlayerInfoHeader infoHeader;
 	int playerInfo = getIndexPlayerInfo(fileIndex, &infoHeader, nullptr);
 	if (playerInfo >= 0 && playerInfo < 4) {
-		if ((result = read(CARDSLOT_Unk0, cFileName, param_2, 0xC000, playerInfo * 0xC000 + 0x6000), result)
-		    && !checkPlayerInfo((PlayerInfo*)param_2)) {
-			result = false;
-			_D8    = 2;
+		if ((loadSuccess = read(CARDSLOT_Unk0, cFileName, playerDataBuffer, 0xC000, playerInfo * 0xC000 + 0x6000), loadSuccess)
+		    && !checkPlayerInfo((PlayerInfo*)playerDataBuffer)) {
+			loadSuccess = false;
+			mErrorCode  = 2;
 		}
 	} else {
 		if (infoHeader._00 == 'PlIn') {
 			sys->mPlayData->resetPlayer((s8)fileIndex);
 			playData->reset();
 		} else {
-			result = false;
-			_D8    = 2;
+			loadSuccess = false;
+			mErrorCode  = 2;
 		}
 	}
-	return result;
+	return loadSuccess;
 }
 
 /**
@@ -1125,7 +1132,7 @@ bool Mgr::commandDeletePlayer(s8 fileIndex)
 		result = writeInvalidPlayerInfo(playerInfo, (s8)fileIndex);
 	} else {
 		if (!modifyPlayerInfo(fileIndex, nullptr)) {
-			_D8 = 2;
+			mErrorCode = 2;
 		}
 	}
 	return result;
@@ -1144,7 +1151,7 @@ bool Mgr::savePlayerProc(s8 fileIndex, u8* param_2, bool param_3)
 	P2ASSERTBOUNDSLINE(2506, 0, fileIndex, 3);
 	if (getIndexInvalidPlayerInfo(&idx, &tempIndex, fileIndex, ((u32*)param_2)[4], param_3)) {
 		if (idx < 0 || idx >= 4) {
-			_D8 = 2;
+			mErrorCode = 2;
 			modifyPlayerInfo(fileIndex, nullptr);
 		} else {
 			((u32*)param_2)[0x2FFF] = calcCheckSumPlayerInfo((PlayerInfo*)param_2);
@@ -1174,8 +1181,8 @@ bool Mgr::commandCheckSerialNo()
 {
 	bool result = false;
 	if (!(sys->mPlayData->mFlags.isSet(1))) {
-		result = true;
-		_D8    = 3;
+		result     = true;
+		mErrorCode = 3;
 	} else {
 		if (verifyCardSerialNo(&sys->mPlayData->mCardSerialNo, CARDSLOT_Unk0)) {
 			result = true;
@@ -1221,7 +1228,7 @@ void Mgr::readPlayer(Stream& stream) { playData->read(stream); }
  */
 bool Mgr::checkOptionInfo(OptionInfo* optionInfo)
 {
-	return _D0 && testCheckSumOptionInfo(optionInfo) && optionInfo->_00 == 'OpVa' && optionInfo->_04 == '0002';
+	return _D0 && testCheckSumOptionInfo(optionInfo) && optionInfo->mMagic == 'OpVa' && optionInfo->mVersionType == '0002';
 }
 
 /**
@@ -1234,7 +1241,7 @@ u32 Mgr::calcCheckSumOptionInfo(OptionInfo* optionInfo) { return calcCheckSum(op
  * @note Address: 0x804459E8
  * @note Size: 0x40
  */
-bool Mgr::testCheckSumOptionInfo(OptionInfo* optionInfo) { return (calcCheckSum(optionInfo, 0x1FFC) == optionInfo[0x3FF]._04); }
+bool Mgr::testCheckSumOptionInfo(OptionInfo* optionInfo) { return (calcCheckSum(optionInfo, 0x1FFC) == optionInfo[0x3FF].mVersionType); }
 
 /**
  * @note Address: 0x80445A28
@@ -1243,7 +1250,7 @@ bool Mgr::testCheckSumOptionInfo(OptionInfo* optionInfo) { return (calcCheckSum(
 bool Mgr::checkPlayerInfo(PlayerInfo* playerInfo)
 {
 	bool result = false;
-	if (_D0 != 0 && testCheckSumPlayerInfo(playerInfo) && playerInfo->_00 == 'PlVa' && playerInfo->_04 == '0003') {
+	if (_D0 != 0 && testCheckSumPlayerInfo(playerInfo) && playerInfo->mMagic == 'PlVa' && playerInfo->mVersionType == '0003') {
 		result = true;
 	}
 	return result;
@@ -1259,7 +1266,7 @@ u32 Mgr::calcCheckSumPlayerInfo(PlayerInfo* playerInfo) { return calcCheckSum(pl
  * @note Address: 0x80445AC4
  * @note Size: 0x48
  */
-bool Mgr::testCheckSumPlayerInfo(PlayerInfo* playerInfo) { return (calcCheckSum(playerInfo, 0xBFFC) == playerInfo[0x17FF]._04); }
+bool Mgr::testCheckSumPlayerInfo(PlayerInfo* playerInfo) { return (calcCheckSum(playerInfo, 0xBFFC) == playerInfo[0x17FF].mVersionType); }
 
 /**
  * @note Address: 0x80445B0C
@@ -1269,7 +1276,7 @@ u32 Mgr::getCardStatus()
 {
 	u32 result;
 	if (checkStatus() == 2) {
-		switch (_D8) {
+		switch (mErrorCode) {
 		case 0:
 			result = 2;
 			break;
@@ -1391,18 +1398,18 @@ bool Mgr::checkPlayerNoPlayerInfo(int param_1, s8 param_2, PlayerInfoHeader* inf
  * @note Address: 0x80445FA4
  * @note Size: 0x380
  */
-bool Mgr::getIndexInvalidPlayerInfo(int* param_1, s8* param_2, s8 param_3, u32 param_4, bool param_5)
+bool Mgr::getIndexInvalidPlayerInfo(int* playerInfoIndex, s8* playerType, s8 targetType, u32 targetValue, bool checkValue)
 {
-	int array1[4]; // _24
-	int array2[4]; // _14
+	int playerTypes[4];  // _24
+	int playerValues[4]; // _14
 
 	for (int i = 0; i < 4; i++) {
-		array1[i] = -1;
-		array2[i] = 0xCDCDCDCD;
+		playerTypes[i]  = -1;
+		playerValues[i] = 0xCDCDCDCD;
 	}
 
-	bool result = true;
-	int idx     = -1;
+	bool isValid   = true;
+	int foundIndex = -1;
 
 	u32* buffer = new (mHeap, -32) u32[0x80];
 	P2ASSERTLINE(3071, buffer);
@@ -1412,70 +1419,70 @@ bool Mgr::getIndexInvalidPlayerInfo(int* param_1, s8* param_2, s8 param_3, u32 p
 			u32 bufVal = buffer[0];
 			s8 bufByte = ((u8*)buffer)[8];
 
-			array1[i] = bufByte;
+			playerTypes[i] = bufByte;
 
-			array2[i] = bufVal;
-			if (idx == -1 && bufByte == param_3 && bufVal != 'PlVa') {
-				*param_2 = param_3;
-				idx      = i;
+			playerValues[i] = bufVal;
+			if (foundIndex == -1 && bufByte == targetType && bufVal != 'PlVa') {
+				*playerType = targetType;
+				foundIndex  = i;
 			}
-			if (*(s8*)(buffer + 2) == param_3 && buffer[0] == 'PlVa' && param_5 && buffer[4] >= param_4) {
-				JUT_ASSERTLINE(3148, param_4 == 1, "card [%d] memory[%d]\n", buffer[4], param_4);
-				result = false;
-				_D8    = 3;
+			if (*(s8*)(buffer + 2) == targetType && buffer[0] == 'PlVa' && checkValue && buffer[4] >= targetValue) {
+				JUT_ASSERTLINE(3148, targetValue == 1, "card [%d] memory[%d]\n", buffer[4], targetValue);
+				isValid    = false;
+				mErrorCode = 3;
 				break;
 			}
 		} else {
-			result = false;
+			isValid = false;
 			break;
 		}
 	}
 
 	delete (buffer);
 
-	if (result && idx == -1) {
+	if (isValid && foundIndex == -1) {
 		int array3[3];
 		array3[0] = -1;
 		array3[1] = -1;
 		array3[2] = -1;
-		u32 check = idx;
+		u32 check = foundIndex;
 		for (int i = 0; i < 4; i++) {
-			if (array1[i] >= 0 && array1[i] < 3) {
-				if (array3[array1[i]] == -1) {
-					array3[array1[i]] = i;
+			if (playerTypes[i] >= 0 && playerTypes[i] < 3) {
+				if (array3[playerTypes[i]] == -1) {
+					array3[playerTypes[i]] = i;
 					continue;
-				} else if (array2[i] == 'PlVa' && array2[array3[array1[i]]] != 'PlVa') {
-					idx = array3[array1[i]];
-				} else if (array2[i] != 'PlVa' && array2[array3[array1[i]]] == 'PlVa') {
-					idx = i;
-				} else if (array2[i] != 'PlVa' && array2[array3[array1[i]]] != 'PlVa') {
-					idx = i;
+				} else if (playerValues[i] == 'PlVa' && playerValues[array3[playerTypes[i]]] != 'PlVa') {
+					foundIndex = array3[playerTypes[i]];
+				} else if (playerValues[i] != 'PlVa' && playerValues[array3[playerTypes[i]]] == 'PlVa') {
+					foundIndex = i;
+				} else if (playerValues[i] != 'PlVa' && playerValues[array3[playerTypes[i]]] != 'PlVa') {
+					foundIndex = i;
 				}
 
-				if (idx != -1) {
-					param_2[0] = param_3;
+				if (foundIndex != -1) {
+					playerType[0] = targetType;
 					break;
 				}
 			}
 		}
-		if (result && idx == -1) {
+		if (isValid && foundIndex == -1) {
 			for (int i = 0; i < 4; i++) {
-				if (array1[i] < 0 || array1[i] > 2) {
-					idx = i;
-				} else if (array2[i] != 'PlVa' && array2[i] != 'PlIn') {
-					idx = i;
+				if (playerTypes[i] < 0 || playerTypes[i] > 2) {
+					foundIndex = i;
+				} else if (playerValues[i] != 'PlVa' && playerValues[i] != 'PlIn') {
+					foundIndex = i;
 				}
 
-				if (idx != -1) {
-					param_2[0] = param_3;
+				if (foundIndex != -1) {
+					playerType[0] = targetType;
 					break;
 				}
 			}
 		}
 	}
 
-	*param_1 = idx;
-	return result;
+	*playerInfoIndex = foundIndex;
+	return isValid;
 }
 
 inline bool Mgr::checkCheckSum(u32* buffer) { return _D0 && buffer[0x2FFF] == calcCheckSum(buffer, 0xBFFC); }
@@ -1961,7 +1968,7 @@ bool Mgr::verifyCardSerialNo(u64* serial, MemoryCardMgr::ECardSlot cardSlot)
 		if (serialDat == *serial) {
 			result = true;
 		} else {
-			_D8 = 3;
+			mErrorCode = 3;
 		}
 	}
 	return result;
@@ -1975,8 +1982,8 @@ bool Mgr::resetError()
 {
 	bool result;
 	if (CARDProbe(0)) {
-		result = cardMount();
-		_D8    = 0;
+		result     = cardMount();
+		mErrorCode = 0;
 	} else {
 		result = true;
 	}

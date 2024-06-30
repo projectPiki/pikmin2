@@ -23,7 +23,7 @@ void Mgr::setDefault()
 {
 	mFlags.clear();
 	mCardSerialNo  = 0;
-	_28            = 0;
+	mSaveSlotIndex = 0;
 	mSoundMode     = 0;
 	mMusicVol      = 0xFF;
 	mSeVol         = -1;

@@ -14,12 +14,14 @@ struct PlayerFileInfo;
 struct PlayerInfoHeader;
 
 struct PlayerInfo {
-	u32 _00; // _00
-	u32 _04; // _04
+	u32 mMagic;       // _00
+	u32 mVersionType; // _04
 };
+
 struct OptionInfo {
-	u32 _00; // _00
-	u32 _04; // _04
+	u32 mMagic;         // _00
+	u32 mVersionType;   // _04
+	u32 mSaveSlotIndex; // _08
 };
 
 enum MemoryCardMgrFlags {
@@ -127,7 +129,7 @@ struct Mgr : public MemoryCardMgr {
 	inline bool isCardInvalid() { return !mIsCard && checkStatus() != MCS_11; }
 
 	// _00-_E8 = MemoryCardMgr
-	u32 _D8;                // _D8
+	u32 mErrorCode;         // _D8
 	void* mBannerImageFile; // _DC
 	void* mIconImageFile;   // _E0
 	BitFlag<u32> mFlags;    // _E4

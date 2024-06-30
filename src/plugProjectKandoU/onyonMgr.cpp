@@ -442,10 +442,10 @@ bool InteractSuckDone::actOnyon(Onyon* item)
 	}
 
 	if (gameSystem->isVersusMode()) {
-		const char* peltnames[2] = { VsOtakaraName::cBedamaRed, VsOtakaraName::cBedamaBlue };
+		const char* pelletNames[2] = { VsOtakaraName::cBedamaRed, VsOtakaraName::cBedamaBlue };
 
 		for (int i = 0; i < 2; i++) {
-			if (!strcmp(peltnames[i], pellet->mConfig->mParams.mName.mData)) {
+			if (!strcmp(pelletNames[i], pellet->mConfig->mParams.mName.mData)) {
 				if (i == 1 - item->mOnyonType) {
 					_08 = 1;
 

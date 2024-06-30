@@ -127,39 +127,50 @@ int ActWeed::exec()
 	if (!mIsAttacking) {
 		return ACTEXEC_Fail;
 	}
+
 	if (mWeed == nullptr) {
 		return ACTEXEC_Fail;
 	}
+
 	switch (mState) {
 	case WEED_Attack: {
 		int flockAttackResult = mFlockAttack->exec();
+
 		if (flockAttackResult == ACTEXEC_Success) {
 			if (!mWeed->isAlive()) {
 				return ACTEXEC_Success;
 			}
+
 			decideTarget();
 			initAdjust();
 		} else if (flockAttackResult == ACTEXEC_Fail) {
 			decideTarget();
 			initAdjust();
 		}
-	} break;
+
+		break;
+	}
 
 	case WEED_Adjust: {
 		if (mTargetFlockIdx == -1) {
 			decideTarget();
 			initAdjust();
 		}
+
 		if (!mWeed->isAlive()) {
 			return ACTEXEC_Success;
 		}
+
 		calcAttackPos();
 		mApproachPos->mGoalPosition = mAttackPosition;
-		int approachResult          = mApproachPos->exec();
+
+		int approachResult = mApproachPos->exec();
 		if (approachResult == ACTEXEC_Success && mState == WEED_Adjust) {
 			initStickAttack();
 		}
-	} break;
+
+		break;
+	}
 	}
 	return ACTEXEC_Continue;
 }
@@ -210,6 +221,7 @@ void ActFlockAttack::init(ActionArg* arg)
 			isFlockArg = true;
 		}
 	}
+
 	P2ASSERTLINE(276, isFlockArg);
 	FlockAttackActionArg* flockArg = static_cast<FlockAttackActionArg*>(arg);
 
@@ -217,6 +229,7 @@ void ActFlockAttack::init(ActionArg* arg)
 	mTarget     = flockArg->mTarget;
 	mDamage     = flockArg->mDamage;
 	mFlockIndex = flockArg->mFlockIndex;
+
 	if (flockArg->mType == Game::ItemWeed::WEEDTYPE_Grass) {
 		mWeedType = Game::ItemWeed::WEEDTYPE_Grass;
 		mAnimIdx  = Game::IPikiAnims::NUKU;
@@ -224,6 +237,7 @@ void ActFlockAttack::init(ActionArg* arg)
 		mAnimIdx  = Game::IPikiAnims::ATTACK1;
 		mWeedType = Game::ItemWeed::WEEDTYPE_Stone;
 	}
+
 	mParent->startMotion(mAnimIdx, mAnimIdx, this, nullptr);
 	mFlags.clear();
 	mParent->mTargetVelocity = Vector3f(0.0f);
@@ -238,22 +252,28 @@ int ActFlockAttack::exec()
 	if (!mTarget) {
 		return ACTEXEC_Success;
 	}
+
 	if (!mTarget->isAlive()) {
 		return ACTEXEC_Success;
 	}
+
 	if (isFlag(FLOCK_AnimFinished)) {
 		int result = ACTEXEC_Fail;
 		if (isFlag(FLOCK_Dead)) {
 			result = ACTEXEC_Success;
 		}
+
 		return result;
 	}
+
 	if (!mParent->assertMotion(mAnimIdx)) {
 		return ACTEXEC_Fail;
 	}
+
 	if (isFlag(FLOCK_AttackReady) && !isFlag(FLOCK_AttackFinished)) {
 		int idx = mFlockIndex;
 		Game::InteractFlockAttack interaction(mParent, idx, mDamage, false);
+
 		if (mTarget->stimulate(interaction)) {
 			// we're hitting rocks/stone
 			if (mWeedType == Game::ItemWeed::WEEDTYPE_Stone) {
@@ -281,9 +301,11 @@ int ActFlockAttack::exec()
 				wp.create(&arg);
 				mParent->startSound(mTarget, PSSE_PK_SE_PULL_GRASS, true);
 			}
+
 			if (interaction.mIsFlockDead) {
 				setFlag(FLOCK_Dead);
 			}
+
 			setFlag(FLOCK_AttackFinished);
 		}
 	}

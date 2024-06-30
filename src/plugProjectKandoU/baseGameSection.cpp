@@ -657,10 +657,7 @@ void BaseGameSection::initGenerators()
 			void* plantsgenFile = LoadTextFile(filenameCharArr);
 			if (plantsgenFile) {
 				RamStream plantsGenTxt(plantsgenFile, -1);
-				plantsGenTxt.mMode = 1;
-				if (plantsGenTxt.mMode == 1) {
-					plantsGenTxt.mTabCount = 0;
-				}
+				plantsGenTxt.setMode(STREAM_MODE_TEXT, 1);
 				plantsGeneratorMgr->read(plantsGenTxt, false);
 				plantsGeneratorMgr->updateUseList();
 				generatorFiles[fileIdx]    = plantsgenFile;

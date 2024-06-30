@@ -77,9 +77,9 @@ void GameState::init(SingleGameSection* game, StateArg* arg)
 	game->mIsExitingMap   = false;
 
 	if ((playData->mDeadNaviID & 1) == 0) {
-		game->setPlayerMode(0);
+		game->setPlayerMode(NAVIID_Olimar);
 	} else {
-		game->setPlayerMode(1);
+		game->setPlayerMode(NAVIID_Louie);
 	}
 	game->setCamController();
 	if (game->mWeatherEfx) {
@@ -629,11 +629,11 @@ void GameState::onMovieStart(SingleGameSection* game, MovieConfig* config, u32, 
 		Screen::Game2DMgr::GameOverTitle naviType;
 		if (naviID == 0) {
 			naviType = Screen::Game2DMgr::GOTITLE_OlimarDown;
-			game->setPlayerMode(0);
+			game->setPlayerMode(NAVIID_Olimar);
 		} else {
 			naviType = (playData->mStoryFlags & STORY_DebtPaid) ? Screen::Game2DMgr::GOTITLE_PresidentDown
 			                                                    : Screen::Game2DMgr::GOTITLE_LouieDown;
-			game->setPlayerMode(1);
+			game->setPlayerMode(NAVIID_Louie);
 		}
 		Screen::gGame2DMgr->open_GameOver(naviType);
 	}
@@ -867,9 +867,9 @@ void GameState::onMovieDone(SingleGameSection* game, MovieConfig* config, u32, u
 		naviMgr->getAt(id)->setDeadLaydown();
 		if (naviMgr->mDeadNavis != 2) {
 			if ((int)id == NAVIID_Olimar) {
-				gameSystem->mSection->setPlayerMode(1);
+				gameSystem->mSection->setPlayerMode(NAVIID_Louie);
 			} else {
-				gameSystem->mSection->setPlayerMode(0);
+				gameSystem->mSection->setPlayerMode(NAVIID_Olimar);
 			}
 		} else {
 			gameSystem->resetFlag(GAMESYS_IsGameWorldActive);

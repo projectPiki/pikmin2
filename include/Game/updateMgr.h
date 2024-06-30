@@ -17,7 +17,7 @@ struct UpdateContext {
 
 	UpdateMgr* mMgr;     // _00
 	int mClientIndex;    // _04
-	bool _08;            // _08
+	bool mIsActive;      // _08
 	bool mDoForceActive; // _09
 };
 
@@ -35,10 +35,10 @@ struct UpdateMgr {
 	void showInfo(Graphics&, int, int);
 
 	int mMaxClientId;  // _00
-	u32 _04;           // _04
+	u32 mClientCount;  // _04
 	int* mClientListA; // _08
 	int* mClientListB; // _0C
-	u32 _10;           // _10
+	u32 mCurrentIndex; // _10
 	u32 _14;           // _14
 };
 

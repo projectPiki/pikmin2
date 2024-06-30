@@ -828,10 +828,10 @@ bool GameMessageVsRedOrSuckStart::actVs(VsGameSection* section)
 bool GameMessageVsGetOtakara::actVs(VsGameSection* section)
 {
 	if (section->mCurrentState) {
-		section->mYellowMarbleCounts[_04 - 2]++;
-		PSSetLastBeedamaDirection(_04 == 0, section->mYellowMarbleCounts[_04 - 2] == 3);
-		if (section->mYellowMarbleCounts[_04 - 2] >= 4) {
-			section->mCurrentState->onBattleFinished(section, _04, true);
+		section->mYellowMarbleCounts[mOnionType - 2]++;
+		PSSetLastBeedamaDirection(mOnionType == 0, section->mYellowMarbleCounts[mOnionType - 2] == 3);
+		if (section->mYellowMarbleCounts[mOnionType - 2] >= 4) {
+			section->mCurrentState->onBattleFinished(section, mOnionType, true);
 		}
 	}
 
@@ -1158,8 +1158,8 @@ void VsGameSection::updateCardGeneration()
 		if (mSpawnTimer <= 0.0f) {
 			mSpawnTimer = 3.0f * randFloat() + 10.0f;
 			DropCardArg arg;
-			arg._00 = factor1;
-			arg._04 = factor2;
+			arg.mDropMinDistance     = factor1;
+			arg.mDropMaximumDistance = factor2;
 			dropCard(arg);
 		}
 	}
@@ -1179,7 +1179,7 @@ void VsGameSection::useCard()
 void VsGameSection::dropCard(VsGameSection::DropCardArg& arg)
 {
 	Vector3f spawn;
-	Cave::randMapMgr->getItemDropPosition(spawn, arg._00, arg._04);
+	Cave::randMapMgr->getItemDropPosition(spawn, arg.mDropMinDistance, arg.mDropMaximumDistance);
 	f32 radius = (randFloat() * 20.0f);
 	f32 angle  = randFloat() * TAU;
 

@@ -495,11 +495,11 @@ void CaveState::onMovieStart(SingleGameSection* game, MovieConfig* config, u32, 
 		Screen::Game2DMgr::GameOverTitle naviType;
 		if (naviID == 0) {
 			naviType = Screen::Game2DMgr::GOTITLE_OlimarDown;
-			game->setPlayerMode(0);
+			game->setPlayerMode(NAVIID_Olimar);
 		} else {
 			naviType = (playData->mStoryFlags & STORY_DebtPaid) ? Screen::Game2DMgr::GOTITLE_PresidentDown
 			                                                    : Screen::Game2DMgr::GOTITLE_LouieDown;
-			game->setPlayerMode(1);
+			game->setPlayerMode(NAVIID_Louie);
 		}
 		Screen::gGame2DMgr->open_GameOver(naviType);
 	}
@@ -624,9 +624,9 @@ void CaveState::onMovieDone(Game::SingleGameSection* game, Game::MovieConfig* co
 		naviMgr->getAt(naviID)->setDeadLaydown();
 		if (naviMgr->mDeadNavis != 2) {
 			if ((int)naviID == 0) {
-				gameSystem->mSection->setPlayerMode(1);
+				gameSystem->mSection->setPlayerMode(NAVIID_Louie);
 			} else {
-				gameSystem->mSection->setPlayerMode(0);
+				gameSystem->mSection->setPlayerMode(NAVIID_Olimar);
 			}
 		} else {
 			Piki* pikilist[MAX_PIKI_COUNT];

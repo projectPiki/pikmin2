@@ -111,8 +111,8 @@ struct System : public OSMutex {
 	struct GXVerifyArg {
 		GXVerifyArg();
 
-		u32 _00; // _00
-		u8 _04;  // _04
+		u32 mUnused00; // _00
+		u8 mUnused04;  // _04
 	};
 
 	System();

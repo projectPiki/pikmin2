@@ -4180,10 +4180,10 @@ void NaviAbsorbState::exec(Navi* navi)
 void NaviAbsorbState::onKeyEvent(Navi* navi, SysShape::KeyEvent const& key)
 {
 	switch (key.mType) {
-	case 0:
+	case KEYEVENT_LOOP_START:
 		_10 = 1;
 		break;
-	case 1:
+	case KEYEVENT_LOOP_END:
 		P2ASSERTLINE(3956, mDrop->mObjectTypeID == OBJTYPE_Honey);
 		ItemHoney::Item* item = mDrop;
 		if (!mDrop->isAlive() || !item->isShrinking()) {
@@ -4863,9 +4863,9 @@ lbl_80186148:
 void NaviThrowWaitState::onKeyEvent(SysShape::KeyEvent const& key)
 {
 	switch (key.mType) {
-	case 2:
+	case KEYEVENT_2:
 		break;
-	case 1:
+	case KEYEVENT_LOOP_END:
 		if (mHoldChargeLevel < 3) {
 			mHoldChargeLevel++;
 		}

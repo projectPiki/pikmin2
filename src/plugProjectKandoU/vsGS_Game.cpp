@@ -56,11 +56,11 @@ void GameState::init(VsGameSection* section, StateArg* stateArg)
 	section->clearCaveMenus();
 
 	if (!gameSystem->isMultiplayerMode()) {
-		section->setPlayerMode(0);
+		section->setPlayerMode(NAVIID_Olimar);
 	}
 
 	if (gameSystem->isVersusMode()) {
-		section->setPlayerMode(2);
+		section->setPlayerMode(NAVIID_Multiplayer);
 		clearLoseCauses();
 		Screen::gGame2DMgr->startFadeBG_Floor();
 	}
@@ -345,7 +345,7 @@ void GameState::exec(VsGameSection* section)
 
 			int redReason  = -1;
 			int blueReason = -1;
-			if (isLoseCause(VSPLAYER_Red, VSLOSE_Unk3)) {
+			if (isLoseCause(VSPLAYER_Red, VSLOSE_Finished)) {
 				blueReason = 3;
 
 			} else if (isLoseCause(VSPLAYER_Red, VSLOSE_Unk1)) {
@@ -357,7 +357,7 @@ void GameState::exec(VsGameSection* section)
 
 			if (blueReason == 3) {
 
-			} else if (isLoseCause(VSPLAYER_Blue, VSLOSE_Unk3)) {
+			} else if (isLoseCause(VSPLAYER_Blue, VSLOSE_Finished)) {
 				redReason = 3;
 
 			} else if (isLoseCause(VSPLAYER_Blue, VSLOSE_Unk1)) {
@@ -534,13 +534,13 @@ void GameState::cleanup(VsGameSection* section)
  * @note Address: 0x8022A824
  * @note Size: 0x34
  */
-void GameState::onBattleFinished(VsGameSection* section, int winnerMaybe, bool check)
+void GameState::onBattleFinished(VsGameSection* section, int winningPlayerIndex, bool check)
 {
 	if (mSubState) {
 		return;
 	}
 
-	setLoseCause(1 - winnerMaybe, VSLOSE_Unk3);
+	setLoseCause(1 - winningPlayerIndex, VSLOSE_Finished);
 
 	if (check) {
 		mSubState = 1;
@@ -572,7 +572,7 @@ void GameState::onRedOrBlueSuckStart(VsGameSection* section, int player, bool is
 
 	mSubState = 1;
 
-	u8 loseReason = VSLOSE_Unk3;
+	u8 loseReason = VSLOSE_Finished;
 	if (!isYellow) {
 		loseReason |= VSLOSE_Marble;
 	}
@@ -640,12 +640,12 @@ void GameState::onMovieStart(VsGameSection* section, MovieConfig* movie, u32 p1,
 		if (p2 == 0) {
 			gameOverTitle = Screen::Game2DMgr::GOTITLE_OlimarDown;
 			if (!gameSystem->isMultiplayerMode()) {
-				section->setPlayerMode(0);
+				section->setPlayerMode(NAVIID_Olimar);
 			}
 		} else {
 			gameOverTitle = Screen::Game2DMgr::GOTITLE_LouieDown;
 			if (!gameSystem->isMultiplayerMode()) {
-				section->setPlayerMode(1);
+				section->setPlayerMode(NAVIID_Louie);
 			}
 		}
 		Screen::gGame2DMgr->open_GameOver(gameOverTitle);
@@ -691,7 +691,7 @@ void GameState::onMovieStart(VsGameSection* section, MovieConfig* movie, u32 p1,
 void GameState::onMovieDone(VsGameSection* section, MovieConfig* config, u32 p1, u32 p2)
 {
 	if (gameSystem->isMultiplayerMode()) {
-		section->setPlayerMode(2);
+		section->setPlayerMode(NAVIID_Multiplayer);
 	}
 
 	RoomMapMgr* mgr   = static_cast<RoomMapMgr*>(mapMgr);
@@ -755,7 +755,7 @@ void GameState::onMovieDone(VsGameSection* section, MovieConfig* config, u32 p1,
 				if (!gameSystem->isVersusMode()) {
 					MoviePlayArg movieArg("e00_E3_cavestart", nullptr, section->mMovieFinishCallback, 0);
 					if (gameSystem->isMultiplayerMode()) {
-						section->setPlayerMode(0);
+						section->setPlayerMode(NAVIID_Olimar);
 					}
 					section->setCamController();
 					movieArg.mDelegateStart = section->mMovieStartCallback;

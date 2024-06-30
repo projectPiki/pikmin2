@@ -27,7 +27,7 @@ void VSState::do_init(VsGameSection* gameSection)
 {
 	gameSystem->mMode = GSM_VERSUS_MODE;
 
-	gameSection->setPlayerMode(2);
+	gameSection->setPlayerMode(NAVIID_Multiplayer);
 	gameSection->setCamController();
 
 	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
