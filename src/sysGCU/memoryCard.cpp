@@ -34,11 +34,11 @@ MemoryCardMgr::MemoryCardMgr()
  */
 void MemoryCardMgr::resetCommandFlagQueue()
 {
-	mCommands[0]._00   = 0;
-	mCommands[1]._00   = 0;
-	mCommands[2]._00   = 0;
-	mCommands[3]._00   = 0;
-	mCommands[4]._00   = 0;
+	mCommands[0].mFlag = 0;
+	mCommands[1].mFlag = 0;
+	mCommands[2].mFlag = 0;
+	mCommands[3].mFlag = 0;
+	mCommands[4].mFlag = 0;
 	mCurrentCommandIdx = 0;
 	mIsCard            = 0;
 }
@@ -53,10 +53,10 @@ MemoryCardMgrCommand* MemoryCardMgr::getCurrentCommand()
 	// should get used in cardProc()
 	bool check                = false;
 	MemoryCardMgrCommand* cmd = &mCommands[mCurrentCommandIdx];
-	if (cmd->_00 || (!cmd->_00 && (int)mIsCard == 0)) {
+	if (cmd->mFlag || (!cmd->mFlag && (int)mIsCard == 0)) {
 		check = true;
 	}
-	JUT_ASSERTLINE(198, check, "command queue is broken.flag:%d num:%d", cmd->_00, mIsCard == 0);
+	JUT_ASSERTLINE(198, check, "command queue is broken.flag:%d num:%d", cmd->mFlag, mIsCard == 0);
 	return cmd;
 }
 
@@ -64,9 +64,9 @@ MemoryCardMgrCommand* MemoryCardMgr::getCurrentCommand()
  * @note Address: 0x804406B4
  * @note Size: 0x40
  */
-void MemoryCardMgr::setCommand(int param_1)
+void MemoryCardMgr::setCommand(int flags)
 {
-	MemoryCardMgrCommand command(param_1);
+	MemoryCardMgrCommand command(flags);
 	setCommand(&command);
 }
 
@@ -81,7 +81,7 @@ bool MemoryCardMgr::setCommand(MemoryCardMgrCommandBase* command)
 	OSLockMutex(&mOsMutex);
 	u32 i = 0;
 	while (true) {
-		if (!mCommands[i]._00) {
+		if (!mCommands[i].mFlag) {
 			break;
 		}
 
@@ -117,7 +117,7 @@ bool MemoryCardMgr::setCommand(MemoryCardMgrCommandBase* command)
 			// 	P2ASSERTLINE(254, (u32)mIsCard <= 5);
 			// 	break;
 			// }
-			int* dataPtr = &(mCommands[j]._00);
+			int* dataPtr = &(mCommands[j].mFlag);
 			if (*dataPtr == 0) {
 				memcpy(dataPtr, (void*)command, sizeof(MemoryCardMgrCommand));
 				mIsCard++;
@@ -405,12 +405,12 @@ void MemoryCardMgr::cardProc(void* data)
 	while (true) {
 		OSLockMutex(&mOsMutex);
 		MemoryCardMgrCommand* currCmd = getCurrentCommand();
-		while (currCmd->_00 == 0) {
+		while (currCmd->mFlag == 0) {
 			OSWaitCond(&mCond, &mOsMutex);
 			currCmd = getCurrentCommand();
 		}
 
-		switch (currCmd->_00) {
+		switch (currCmd->mFlag) {
 		case 1:
 			format(CARDSLOT_Unk0);
 			break;
@@ -428,7 +428,7 @@ void MemoryCardMgr::cardProc(void* data)
 		}
 
 		memset(&mCommands[mCurrentCommandIdx], 205, sizeof(MemoryCardMgrCommand));
-		mCommands[mCurrentCommandIdx]._00 = 0;
+		mCommands[mCurrentCommandIdx].mFlag = 0;
 		mIsCard--;
 		releaseCurrentCommand();
 		OSUnlockMutex(&mOsMutex);

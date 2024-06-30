@@ -467,23 +467,23 @@ struct InteractSuckFinish : public Interaction {
 };
 
 struct InteractSuikomi_Test : public Interaction {
-	inline InteractSuikomi_Test(Creature* parent, Vector3f* vec, CollPart* p1, CollPart* collpart) // probably
+	inline InteractSuikomi_Test(Creature* parent, Vector3f* direction, CollPart* collpart, CollPart* stomachCollpart)
 	    : Interaction(parent)
 	{
-		_08.x     = vec->x;
-		_08.y     = vec->y;
-		_08.z     = vec->z;
-		_14       = p1;
-		mCollPart = collpart;
+		mUnused08.x      = direction->x;
+		mUnused08.y      = direction->y;
+		mUnused08.z      = direction->z;
+		mCollpart        = collpart;
+		mStomachCollpart = stomachCollpart;
 	}
 
 	virtual bool actPiki(Piki*); // _0C
 
 	// _00 = VTBL
 	// _04 = Creature* (EnemyBase*)
-	Vector3f _08;        // _08
-	CollPart* _14;       // _14, unknown
-	CollPart* mCollPart; // _18
+	Vector3f mUnused08;         // _08, direction
+	CollPart* mCollpart;        // _14
+	CollPart* mStomachCollpart; // _18
 };
 
 ///////////////////////////////////////

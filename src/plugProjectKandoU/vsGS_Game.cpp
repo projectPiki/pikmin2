@@ -688,7 +688,7 @@ void GameState::onMovieStart(VsGameSection* section, MovieConfig* movie, u32 p1,
  * @note Address: 0x8022AFB0
  * @note Size: 0x9D0
  */
-void GameState::onMovieDone(VsGameSection* section, MovieConfig* config, u32 p1, u32 p2)
+void GameState::onMovieDone(VsGameSection* section, MovieConfig* config, u32 unused1, u32 unused2)
 {
 	if (gameSystem->isMultiplayerMode()) {
 		section->setPlayerMode(NAVIID_Multiplayer);
@@ -814,7 +814,7 @@ void GameState::onMovieDone(VsGameSection* section, MovieConfig* config, u32 p1,
 		transit(section, VGS_Title, &arg);
 
 	} else if (config->is("s03_orimadown")) {
-		naviMgr->informOrimaDead(p2);
+		naviMgr->informOrimaDead(unused2);
 		Screen::gGame2DMgr->close_GameOver();
 		if (gameSystem->isVersusMode()) {
 			JUT_PANICLINE(1279, "cannot happen !\n");

@@ -421,14 +421,15 @@ bool InteractSuikomi_Test::actPiki(Game::Piki* piki)
 	if (piki->mCurrentState->invincible(piki)) {
 		return false;
 	}
+
 	if (mCreature->isTeki()) {
 		EnemyBase* teki = static_cast<EnemyBase*>(mCreature);
 		piki->setTekiKillID(teki->getEnemyTypeID());
 	} else {
 		piki->mTekiKillID = -1;
 	}
-	SuikomiStateArg suikomiArg(mCreature, _14, mCollPart);
-	//               gottem
+
+	SuikomiStateArg suikomiArg(mCreature, mCollpart, mStomachCollpart);
 	piki->mFsm->transit(piki, PIKISTATE_Suikomi, &suikomiArg);
 	return true;
 }

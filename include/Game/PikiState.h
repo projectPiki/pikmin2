@@ -770,11 +770,11 @@ struct PikiPressedState : public PikiState {
 
 struct SuikomiStateArg : public StateArg {
 
-	inline SuikomiStateArg(Creature* c, CollPart* p3, CollPart* p2)
+	inline SuikomiStateArg(Creature* creature, CollPart* collpart, CollPart* stomachCollpart)
 	{
-		mCreature        = c;
-		mCollpart        = p3;
-		mStomachCollpart = p2;
+		mCreature        = creature;
+		mCollpart        = collpart;
+		mStomachCollpart = stomachCollpart;
 	}
 
 	Creature* mCreature;        // _00

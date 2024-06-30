@@ -7,12 +7,12 @@
 #include "types.h"
 
 struct MemoryCardMgrCommandBase {
-	inline MemoryCardMgrCommandBase(int val)
-	    : _00(val)
+	inline MemoryCardMgrCommandBase(int flags)
+	    : mFlag(flags)
 	{
 	}
 
-	int _00; // _00
+	int mFlag; // _00
 	// _04 = VTBL
 
 	virtual u32 getClassSize() = 0; // _08

@@ -444,11 +444,11 @@ struct NaviGatherState : public NaviState {
 };
 
 struct NaviKokeDamageInitArg : public StateArg {
-	inline NaviKokeDamageInitArg(f32 p1, u8 p2, Creature* p3, f32 damage)
-	    : mCreature(p3)
+	inline NaviKokeDamageInitArg(f32 timer, bool toPlaySound, Creature* creature, f32 damage)
+	    : mCreature(creature)
 	    , mDamage(damage)
-	    , mTimer(p1)
-	    , mPlaySoundOnDamage(p2)
+	    , mTimer(timer)
+	    , mPlaySoundOnDamage(toPlaySound)
 	{
 	}
 

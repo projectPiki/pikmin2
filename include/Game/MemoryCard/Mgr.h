@@ -136,10 +136,10 @@ struct Mgr : public MemoryCardMgr {
 };
 
 struct MgrCommandCopyPlayer : public MemoryCardMgrCommandBase {
-	MgrCommandCopyPlayer(int val, int p1, int p2)
-	    : MemoryCardMgrCommandBase(val)
-	    , _08(p1)
-	    , _0A(p2)
+	MgrCommandCopyPlayer(int flags, int fileIndex1, int fileIndex2)
+	    : MemoryCardMgrCommandBase(flags)
+	    , mFileIndex1(fileIndex1)
+	    , mFileIndex2(fileIndex2)
 	{
 	}
 
@@ -147,8 +147,8 @@ struct MgrCommandCopyPlayer : public MemoryCardMgrCommandBase {
 
 	// _04     = VTBL
 	// _00-_08 = MemoryCardMgrCommandBase
-	u16 _08; // _08
-	u16 _0A; // _0A
+	u16 mFileIndex1; // _08
+	u16 mFileIndex2; // _0A
 };
 
 struct MgrCommandPlayerNo : public MemoryCardMgrCommandBase {

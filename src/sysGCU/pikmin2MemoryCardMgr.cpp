@@ -375,7 +375,7 @@ bool Mgr::doCardProc(void*, MemoryCardMgrCommand* command)
 	JKRHeap* currHeap = JKRHeap::getCurrentHeap();
 
 	mErrorCode = 0;
-	switch (command->_00) {
+	switch (command->mFlag) {
 	case 7:
 		setFlag(MCMFLAG_IsWriting);
 		result = commandCreateNewFile();

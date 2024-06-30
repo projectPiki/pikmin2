@@ -647,10 +647,10 @@ void VsGameSection::onMovieStart(MovieConfig* movie, u32 unused, u32 naviID)
  * @note Address: 0x801C23D0
  * @note Size: 0x54
  */
-void VsGameSection::onMovieDone(MovieConfig* movie, u32 param_2, u32 param_3)
+void VsGameSection::onMovieDone(MovieConfig* movie, u32 unused1, u32 unused2)
 {
 	if (mCurrentState) {
-		mCurrentState->onMovieDone(this, movie, param_2, param_3);
+		mCurrentState->onMovieDone(this, movie, unused1, unused2);
 	}
 }
 
@@ -658,10 +658,10 @@ void VsGameSection::onMovieDone(MovieConfig* movie, u32 param_2, u32 param_3)
  * @note Address: 0x801C2428
  * @note Size: 0x434
  */
-void VsGameSection::createFallPikmins(PikiContainer& setPikmin, int param_2)
+void VsGameSection::createFallPikmins(PikiContainer& setPikmin, int unused2)
 {
 	Vector3f start;
-	mapMgr->getStartPosition(start, param_2);
+	mapMgr->getStartPosition(start, unused2);
 	setPikmin.dump("createFallPikmins");
 	Navi* orima = naviMgr->getAt(NAVIID_Olimar);
 	start       = orima->getPosition();

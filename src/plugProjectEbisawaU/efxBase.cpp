@@ -54,15 +54,19 @@ void TOneEmitter::del(Context* context)
 void TOneEmitter::executeAfter(JPABaseEmitter* emitter)
 {
 	particleMgr->setGlobalColor(emitter);
-	for (Context* context = (Context*)mContext.mChild; context; context = (Context*)context->mNext) {
-		Vector3f v1 = context->mPosition;
-		if (particleMgr->cullByResFlg(v1, mEffectID) == false) {
-			int createCount = emitter->getCurrentCreateNumber();
-			for (int i = 0; i < createCount; i++) {
-				JPABaseParticle* particle = emitter->createParticle();
-				if (particle) {
-					particle->mOffsetPosition.set(v1.x, v1.y, v1.z);
-				}
+
+	FOREACH_NODE(Context, mContext.mChild, context)
+	{
+		Vector3f contextPos = context->mPosition;
+		if (particleMgr->cullByResFlg(contextPos, mEffectID)) {
+			continue;
+		}
+
+		int createCount = emitter->getCurrentCreateNumber();
+		for (int i = 0; i < createCount; i++) {
+			JPABaseParticle* particle = emitter->createParticle();
+			if (particle) {
+				particle->mOffsetPosition.set(contextPos.x, contextPos.y, contextPos.z);
 			}
 		}
 	}
@@ -78,12 +82,14 @@ bool TOneEmitter::create(Arg*)
 	if (mEmitter) {
 		return false;
 	}
+
 	mEmitter = particleMgr->create(mEffectID, Vector3f::zero, 0);
 	if (mEmitter) {
 		mEmitter->setFlag(JPAEMIT_Immortal);
 		mEmitter->setFlag(JPAEMIT_StopEmitting);
 		mEmitter->mEmitterCallback = this;
 	}
+
 	return (mEmitter);
 }
 
@@ -160,15 +166,19 @@ bool TOneEmitterChasePos::create(Arg* arg)
 void TOneEmitterChasePos::executeAfter(JPABaseEmitter* emitter)
 {
 	particleMgr->setGlobalColor(emitter);
-	for (ContextChasePos* context = (ContextChasePos*)mContext.mChild; context; context = (ContextChasePos*)context->mNext) {
-		Vector3f* v1 = context->mPosition;
-		if (particleMgr->cullByResFlg(*v1, mEffectID) == false) {
-			int createCount = emitter->getCurrentCreateNumber();
-			for (int i = 0; i < createCount; i++) {
-				JPABaseParticle* particle = emitter->createParticle();
-				if (particle) {
-					particle->mOffsetPosition.set(v1->x, v1->y, v1->z);
-				}
+
+	FOREACH_NODE(ContextChasePos, mContext.mChild, context)
+	{
+		Vector3f* contextPos = context->mPosition;
+		if (particleMgr->cullByResFlg(*contextPos, mEffectID)) {
+			continue;
+		}
+
+		int createCount = emitter->getCurrentCreateNumber();
+		for (int i = 0; i < createCount; i++) {
+			JPABaseParticle* particle = emitter->createParticle();
+			if (particle) {
+				particle->mOffsetPosition.set(contextPos->x, contextPos->y, contextPos->z);
 			}
 		}
 	}

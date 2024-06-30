@@ -151,11 +151,11 @@ bool TKouhaiDamage::create(Arg* arg)
 	P2ASSERTLINE(249, argCheck);
 
 	ArgKouhai* argKouhai = static_cast<ArgKouhai*>(arg);
-	int p1               = argKouhai->mSize;
+	int size             = argKouhai->mSize;
 
 	if (TSimple1::create(argKouhai)) {
 		JGeometry::TVec3f scale;
-		switch (p1) {
+		switch (size) {
 		case 0:
 			scale.set(0.35f, 0.35f, 0.35f);
 			break;

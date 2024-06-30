@@ -143,7 +143,7 @@ MapMgr::MapMgr()
  * @note Address: 0x8016267C
  * @note Size: 0x7C
  */
-void MapMgr::getStartPosition(Vector3f& outPosition, int p2)
+void MapMgr::getStartPosition(Vector3f& outPosition, int unused)
 {
 	if (mCourseInfo) {
 		outPosition   = mCourseInfo->mStartPosition;
