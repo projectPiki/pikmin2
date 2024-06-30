@@ -19,13 +19,20 @@ This cheat sheet provides an overview of the game's functions and classes that a
 The Radar class stores this information in structs called `Point`. Each `Point` represents a position on the map and holds details about the object found there, its type (from the `cRadarType` enum), and potentially a cave ID. To manage the radar, use the `Mgr` class by writing `Radar::mgr`. This class lets you add new objects to the radar, calculate the nearest treasure from a position, clear the radar, and remove objects from the radar.
 
 ### Waterbox
-The Game::WaterBox class manages water volumes in the game world. It defines different functions to check for water collision, get water height, and perform water-related actions. There are subclasses that provide specific functionalities:
+The `Game::WaterBox` class is responsible for managing water volumes within the game environment. It offers a variety of functions to handle water collisions, retrieve water heights, and execute water-related operations. The class is further extended by subclasses to cater to specific needs.
 
-AABBWaterBox: This subclass represents a rectangular water volume. It allows you to check for 2D and 3D water collision, get the water level considering a lowering effect, and control the lowering or raising of the water volume.
-Here's a breakdown of some key functions you might use:
+#### AABBWaterBox
 
-inWater(Sys::Sphere&): Checks if a sphere collides with the water.
-getSeaLevel(): Gets the current water surface level.
-update(): Updates the water state (e.g., lowering water in AABBWaterBox).
-startDown(f32): Starts lowering the water volume by a specified amount (AABBWaterBox only).
-startUp(f32): Starts raising the water volume by a specified amount (AABBWaterBox only).
+This subclass is designed to represent a rectangular water volume. It provides functionalities for:
+
+- **2D and 3D Water Collision Checks**: Determines if a given sphere collides with the water volume.
+- **Water Level Management**: Retrieves the water surface level, considering any lowering effects.
+- **Water Volume Control**: Allows for the lowering or raising of the water volume over time.
+
+##### Key Functions
+
+- `inWater(Sys::Sphere&)`: Checks whether a sphere collides with the water.
+- `getSeaLevel()`: Returns the current level of the water surface.
+- `update()`: Performs updates on the water state, such as lowering the water in `AABBWaterBox`.
+- `startDown(f32)`: Initiates the process of lowering the water volume by a specified amount (exclusive to `AABBWaterBox`).
+- `startUp(f32)`: Begins raising the water volume by a specified amount (exclusive to `AABBWaterBox`).
