@@ -311,31 +311,12 @@ struct PlayCamera : public LookAtCamera {
 	PlayCamera(Navi* target);
 
 	virtual ~PlayCamera() { }                                         // _08 (weak)
-	virtual Vector3f getLookAtPosition_() { return mLookAtPosition; } // _58 (weak)
 	virtual bool isSpecialCamera();                                   // _70
 	virtual void updateMatrix();                                      // _74
 	virtual void doUpdate();                                          // _78
-	virtual void startVibration(int) { }                              // _7C (weak)
 	virtual void init();                                              // _80
-
-	inline f32 adjustAngle(f32 in, f32 out)
-	{
-		CameraParms* parms = mCameraParms;
-
-		if (in >= out) {
-			f32 x = in - out;
-			if (TAU - x < x) {
-				in -= TAU;
-			}
-		} else {
-			f32 x = out - in;
-			if (TAU - x < x) {
-				in += TAU;
-			}
-		}
-
-		mCameraAngleCurrent += parms->mRotSpeed.mValue * (in - out);
-	}
+	virtual void startVibration(int) { }                              // _7C (weak)
+	virtual Vector3f getLookAtPosition_() { return mLookAtPosition; } // _58 (weak)
 
 	void setCameraParms(CameraParms* parms);
 	void setVibrationParms(VibrationParms* parms);
