@@ -127,22 +127,22 @@ inline f32 _normaliseAngle(f32 angle)
 	return normalisedAngle;
 }
 
-inline f32 _normaliseAngle(f32 start, f32 angle)
+inline f32 _normaliseAngle(f32 angle, f32 start)
 {
-	// f32 normalisedAngle = start;
-	if (start >= angle) {
-		f32 delta = start - angle;
+	f32 normalisedAngle = start;
+	if (normalisedAngle >= angle) {
+		f32 delta = normalisedAngle - angle;
 		if (TAU - delta < delta) {
-			start -= TAU;
+			normalisedAngle -= TAU;
 		}
 	} else {
-		f32 delta = angle - start;
+		f32 delta = angle - normalisedAngle;
 		if (TAU - delta < delta) {
-			start += TAU;
+			normalisedAngle += TAU;
 		}
 	}
 
-	return start;
+	return normalisedAngle;
 }
 
 inline f32 _clampAngle(f32 angle, f32 difference, f32 limit)

@@ -625,9 +625,9 @@ void PlayCamera::updateParms(int flag)
 
 	CameraParms* parms = mCameraParms;
 
-	f32 targetAngle = _normaliseAngle(mCameraAngleTarget, mCameraAngleCurrent); // this needs fixing
+	f32 targetAngle = _normaliseAngle(mCameraAngleCurrent, mCameraAngleTarget); // this needs fixing
 
-	mCameraAngleCurrent += parms->mRotSpeed.mValue * (targetAngle - mCameraAngleTarget);
+	mCameraAngleCurrent += parms->mRotSpeed.mValue * (targetAngle - mCameraAngleCurrent);
 
 	f32 angle = mCameraAngleCurrent;
 	clampAngle(angle);
