@@ -147,31 +147,30 @@ f64 functionvalue::interpolateValue_BSpline_uniform_last2(f64, f64, f64, f64, f6
  */
 f64 functionvalue::interpolateValue_BSpline_nonuniform(f64 f1, const f64* r3, const f64* r4)
 {
-	f64 st[22];
-	st[21] = r4[0];
-	st[20] = r4[1];
-	st[19] = r4[2];
-	st[18] = r4[3];
-	st[17] = r4[4];
-	st[16] = r4[5];
-	st[15] = f1 - st[21];
-	st[14] = f1 - st[20];
-	st[13] = f1 - st[19];
-	st[12] = st[18] - f1;
-	st[11] = st[17] - f1;
-	st[10] = st[16] - f1;
-	st[9]  = 1 / (st[18] - st[19]);
-	st[8]  = (st[12] * st[9]) / (st[18] - st[20]);
-	st[7]  = (st[13] * st[9]) / (st[17] - st[19]);
-	st[6]  = (st[12] * st[8]) / (st[18] - st[21]);
-	st[5]  = ((st[14] * st[8]) + (st[11] * st[7])) / (st[17] - st[20]);
-	st[4]  = (st[13] * st[7]) / (st[16] - st[19]);
-	st[3]  = st[12] * st[6];
-	st[2]  = (st[15] * st[6]) + (st[11] * st[5]);
-	st[1]  = (st[14] * st[5]) + (st[10] * st[4]);
-	st[0]  = st[13] * st[4];
+	f64 st_21 = r4[0];
+	f64 st_20 = r4[1];
+    f64 st_19 = r4[2];
+    f64 st_18 = r4[3];
+    f64 st_17 = r4[4];
+    f64 st_16 = r4[5];
+    f64 st_15 = f1 - st_21;
+    f64 st_14 = f1 - st_20;
+    f64 st_13 = f1 - st_19;
+    f64 st_12 = st_18 - f1;
+    f64 st_11 = st_17 - f1;
+    f64 st_10 = st_16 - f1;
+    f64 st_9 = 1 / (st_18 - st_19);
+    f64 st_8 = (st_12 * st_9) / (st_18 - st_20);
+    f64 st_7 = (st_13 * st_9) / (st_17 - st_19);
+    f64 st_6 = (st_12 * st_8) / (st_18 - st_21);
+    f64 st_5 = ((st_14 * st_8) + (st_11 * st_7)) / (st_17 - st_20);
+    f64 st_4 = (st_13 * st_7) / (st_16 - st_19);
+    f64 st_3 = st_12 * st_6;
+    f64 st_2 = (st_15 * st_6) + (st_11 * st_5);
+    f64 st_1 = (st_14 * st_5) + (st_10 * st_4);
+    f64 st_0 = st_13 * st_4;
 
-	return (st[3] * r3[0]) + (st[2] * r3[1]) + (st[1] * r3[2]) + (st[0] * r3[3]);
+    return (st_3 * r3[0]) + (st_2 * r3[1]) + (st_1 * r3[2]) + (st_0 * r3[3]);
 }
 
 /**
@@ -1307,193 +1306,6 @@ f64 TFunctionValue_list_parameter::update_INTERPOLATE_BSPLINE_dataMore3_(const T
 		break;
 	}
 	return functionvalue::interpolateValue_BSpline_nonuniform(p2, local_68, local_48);
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x60(r1)
-	  stfd      f31, 0x50(r1)
-	  psq_st    f31,0x58(r1),0,0
-	  stfd      f30, 0x40(r1)
-	  psq_st    f30,0x48(r1),0,0
-	  stfd      f29, 0x30(r1)
-	  psq_st    f29,0x38(r1),0,0
-	  stfd      f28, 0x20(r1)
-	  psq_st    f28,0x28(r1),0,0
-	  stfd      f27, 0x10(r1)
-	  psq_st    f27,0x18(r1),0,0
-	  lwz       r5, 0x54(r3)
-	  lwz       r4, 0x50(r3)
-	  lwz       r0, 0x4C(r3)
-	  sub       r3, r4, r5
-	  lfs       f4, -0x4(r5)
-	  srawi     r3, r3, 0x2
-	  sub       r0, r5, r0
-	  addze     r3, r3
-	  lfs       f5, 0x4(r5)
-	  srawi     r0, r0, 0x2
-	  lfs       f6, -0x8(r5)
-	  addze     r0, r0
-	  lfs       f31, 0x0(r5)
-	  cmpwi     r0, 0x3
-	  beq-      .loc_0x13C
-	  bge-      .loc_0x78
-	  cmpwi     r0, 0x2
-	  bge-      .loc_0x84
-	  b         .loc_0x13C
-
-	.loc_0x78:
-	  cmpwi     r0, 0x5
-	  bge-      .loc_0x13C
-	  b         .loc_0xD4
-
-	.loc_0x84:
-	  lfd       f0, -0x7F88(r2)
-	  cmpwi     r3, 0x3
-	  lfs       f30, 0x8(r5)
-	  fmul      f2, f0, f6
-	  lfs       f8, 0xC(r5)
-	  fmsub     f7, f0, f4, f5
-	  fsub      f27, f2, f31
-	  fsub      f9, f2, f30
-	  beq-      .loc_0xCC
-	  bge-      .loc_0xB8
-	  cmpwi     r3, 0x2
-	  bge-      .loc_0xC0
-	  b         .loc_0xCC
-
-	.loc_0xB8:
-	  cmpwi     r3, 0x5
-	  bge-      .loc_0xCC
-
-	.loc_0xC0:
-	  lfd       f0, -0x7F88(r2)
-	  fmsub     f10, f0, f30, f31
-	  b         .loc_0x1A4
-
-	.loc_0xCC:
-	  lfs       f10, 0x10(r5)
-	  b         .loc_0x1A4
-
-	.loc_0xD4:
-	  lfs       f27, -0x10(r5)
-	  cmpwi     r3, 0x3
-	  lfd       f0, -0x7F88(r2)
-	  lfs       f7, -0xC(r5)
-	  fmsub     f9, f0, f27, f6
-	  beq-      .loc_0x12C
-	  bge-      .loc_0xFC
-	  cmpwi     r3, 0x2
-	  bge-      .loc_0x108
-	  b         .loc_0x12C
-
-	.loc_0xFC:
-	  cmpwi     r3, 0x5
-	  bge-      .loc_0x12C
-	  b         .loc_0x11C
-
-	.loc_0x108:
-	  fmul      f2, f0, f31
-	  fmsub     f8, f0, f5, f4
-	  fsub      f30, f2, f6
-	  fsub      f10, f2, f27
-	  b         .loc_0x1A4
-
-	.loc_0x11C:
-	  lfs       f30, 0x8(r5)
-	  lfs       f8, 0xC(r5)
-	  fmsub     f10, f0, f30, f31
-	  b         .loc_0x1A4
-
-	.loc_0x12C:
-	  lfs       f8, 0xC(r5)
-	  lfs       f30, 0x8(r5)
-	  lfs       f10, 0x10(r5)
-	  b         .loc_0x1A4
-
-	.loc_0x13C:
-	  cmpwi     r3, 0x3
-	  lfs       f7, -0xC(r5)
-	  lfs       f27, -0x10(r5)
-	  lfs       f9, -0x18(r5)
-	  beq-      .loc_0x198
-	  bge-      .loc_0x160
-	  cmpwi     r3, 0x2
-	  bge-      .loc_0x16C
-	  b         .loc_0x198
-
-	.loc_0x160:
-	  cmpwi     r3, 0x5
-	  bge-      .loc_0x198
-	  b         .loc_0x184
-
-	.loc_0x16C:
-	  lfd       f0, -0x7F88(r2)
-	  fmul      f2, f0, f31
-	  fmsub     f8, f0, f5, f4
-	  fsub      f30, f2, f6
-	  fsub      f10, f2, f27
-	  b         .loc_0x1A4
-
-	.loc_0x184:
-	  lfs       f30, 0x8(r5)
-	  lfd       f0, -0x7F88(r2)
-	  lfs       f8, 0xC(r5)
-	  fmsub     f10, f0, f30, f31
-	  b         .loc_0x1A4
-
-	.loc_0x198:
-	  lfs       f8, 0xC(r5)
-	  lfs       f30, 0x8(r5)
-	  lfs       f10, 0x10(r5)
-
-	.loc_0x1A4:
-	  fsub      f3, f31, f6
-	  lfd       f11, -0x7FB8(r2)
-	  fsub      f2, f1, f6
-	  fsub      f0, f31, f1
-	  fdiv      f12, f11, f3
-	  fmul      f11, f2, f12
-	  fsub      f3, f30, f6
-	  fmul      f12, f0, f12
-	  fdiv      f29, f11, f3
-	  fsub      f11, f31, f27
-	  fsub      f28, f30, f1
-	  fsub      f3, f1, f27
-	  fdiv      f13, f12, f11
-	  fmul      f12, f28, f29
-	  fsub      f11, f30, f27
-	  fmul      f30, f0, f13
-	  fmadd     f13, f3, f13, f12
-	  fsub      f31, f31, f9
-	  fmul      f12, f2, f29
-	  fdiv      f13, f13, f11
-	  fdiv      f30, f30, f31
-	  fsub      f11, f10, f6
-	  fmul      f6, f28, f13
-	  fdiv      f11, f12, f11
-	  fsub      f9, f1, f9
-	  fsub      f10, f10, f1
-	  fmul      f1, f0, f30
-	  fmadd     f0, f9, f30, f6
-	  fmul      f6, f10, f11
-	  fmul      f0, f0, f4
-	  fmadd     f3, f3, f13, f6
-	  fmadd     f0, f1, f7, f0
-	  fmul      f1, f2, f11
-	  fmadd     f0, f3, f5, f0
-	  fmadd     f1, f1, f8, f0
-	  psq_l     f31,0x58(r1),0,0
-	  lfd       f31, 0x50(r1)
-	  psq_l     f30,0x48(r1),0,0
-	  lfd       f30, 0x40(r1)
-	  psq_l     f29,0x38(r1),0,0
-	  lfd       f29, 0x30(r1)
-	  psq_l     f28,0x28(r1),0,0
-	  lfd       f28, 0x20(r1)
-	  psq_l     f27,0x18(r1),0,0
-	  lfd       f27, 0x10(r1)
-	  addi      r1, r1, 0x60
-	  blr
-	*/
 }
 
 /**
