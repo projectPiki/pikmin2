@@ -66,43 +66,45 @@ void TFunctionValueAttribute_refer::refer_initialize() { clear(); }
  * @note Address: N/A
  * @note Size: 0x54
  */
-f64 functionvalue::interpolateValue_hermite(f64 c0, f64 c1, f64 x0, f64 c2, f64 x2, f64 c3, f64 x3)
+f64 functionvalue::interpolateValue_hermite(f64 startValue, f64 endValue, f64 startPoint, f64 controlValue1, f64 controlPoint1,
+                                            f64 controlValue2, f64 controlPoint2)
 {
-
-	f64 a     = c0 - c1;
-	f64 b     = (1 / (x2 - c1));
-	f64 ab    = a * b;
-	f64 ab_ab = (ab * ab);
-	f64 e     = ab - 1;
-	f64 d     = (3 + (-2 * ab)) * ab_ab;
-	f64 f     = 1 - d;
-	f64 a_ee  = a * (e * e);
-	f64 ab_ea = ab * (e * a);
-	return (ab_ea * x3) + ((a_ee * c2) + ((f * x0) + (d * c3)));
+	f64 valueDifference         = startValue - endValue;
+	f64 inverseControlSpan      = (1 / (controlPoint1 - endValue));
+	f64 scaledDiff              = valueDifference * inverseControlSpan;
+	f64 squaredScaledDiff       = (scaledDiff * scaledDiff);
+	f64 offset                  = scaledDiff - 1;
+	f64 cubicTerm               = (3 + (-2 * scaledDiff)) * squaredScaledDiff;
+	f64 linearTerm              = 1 - cubicTerm;
+	f64 offsetSquared           = valueDifference * (offset * offset);
+	f64 scaledDiffOffsetProduct = scaledDiff * (offset * valueDifference);
+	return (scaledDiffOffsetProduct * controlPoint2)
+	     + ((offsetSquared * controlValue1) + ((linearTerm * startPoint) + (cubicTerm * controlValue2)));
 }
 
 /**
  * @note Address: N/A
  * @note Size: 0x50
  */
-f64 functionvalue::interpolateValue_BSpline_uniform(f64 t, f64 f2, f64 f3, f64 f4, f64 f5)
+f64 functionvalue::interpolateValue_BSpline_uniform(f64 interpolationFactor, f64 point2, f64 point3, f64 point4, f64 point5)
 {
-	f64 inv_t       = (1.0 - t);
-	f64 inv_t_sq    = inv_t * inv_t;
-	f64 inv_t_cubed = inv_t_sq * inv_t;
+	f64 inverseInterpolationFactor        = (1.0 - interpolationFactor);
+	f64 inverseInterpolationFactorSquared = inverseInterpolationFactor * inverseInterpolationFactor;
+	f64 inverseInterpolationFactorCubed   = inverseInterpolationFactorSquared * inverseInterpolationFactor;
 
-	f64 t_sq    = t * t;
-	f64 t_cubed = t_sq * t;
+	f64 interpolationFactorSquared = interpolationFactor * interpolationFactor;
+	f64 interpolationFactorCubed   = interpolationFactorSquared * interpolationFactor;
 
-	f64 j = inv_t_cubed;
+	f64 coefficient1 = inverseInterpolationFactorCubed;
 
-	f64 temp2 = (16.0 / 99.0) * t_cubed - t_sq + 0.5;
+	f64 blendFactorForPoint3 = (16.0 / 99.0) * interpolationFactorCubed - interpolationFactorSquared + 0.5;
 
-	f64 temp4 = (16.0 / 99.0) * (t + t_sq - t_cubed) + (2.0 / 3.0);
+	f64 blendFactorForPoint4 = (16.0 / 99.0) * (interpolationFactor + interpolationFactorSquared - interpolationFactorCubed) + (2.0 / 3.0);
 
-	f64 k = t_cubed;
+	f64 coefficient2 = interpolationFactorCubed;
 
-	return ((j * f2) + (k * f5)) * (2.0 / 3.0) + (temp2 * f3) + (temp4 * f4);
+	return ((coefficient1 * point2) + (coefficient2 * point5)) * (2.0 / 3.0) + (blendFactorForPoint3 * point3)
+	     + (blendFactorForPoint4 * point4);
 }
 
 /**
@@ -145,32 +147,32 @@ f64 functionvalue::interpolateValue_BSpline_uniform_last2(f64, f64, f64, f64, f6
  * @note Address: N/A
  * @note Size: 0xE0
  */
-f64 functionvalue::interpolateValue_BSpline_nonuniform(f64 f1, const f64* r3, const f64* r4)
+f64 functionvalue::interpolateValue_BSpline_nonuniform(f64 interpolationFactor, const f64* controlPoints, const f64* knotVector)
 {
-	f64 st_21 = r4[0];
-	f64 st_20 = r4[1];
-    f64 st_19 = r4[2];
-    f64 st_18 = r4[3];
-    f64 st_17 = r4[4];
-    f64 st_16 = r4[5];
-    f64 st_15 = f1 - st_21;
-    f64 st_14 = f1 - st_20;
-    f64 st_13 = f1 - st_19;
-    f64 st_12 = st_18 - f1;
-    f64 st_11 = st_17 - f1;
-    f64 st_10 = st_16 - f1;
-    f64 st_9 = 1 / (st_18 - st_19);
-    f64 st_8 = (st_12 * st_9) / (st_18 - st_20);
-    f64 st_7 = (st_13 * st_9) / (st_17 - st_19);
-    f64 st_6 = (st_12 * st_8) / (st_18 - st_21);
-    f64 st_5 = ((st_14 * st_8) + (st_11 * st_7)) / (st_17 - st_20);
-    f64 st_4 = (st_13 * st_7) / (st_16 - st_19);
-    f64 st_3 = st_12 * st_6;
-    f64 st_2 = (st_15 * st_6) + (st_11 * st_5);
-    f64 st_1 = (st_14 * st_5) + (st_10 * st_4);
-    f64 st_0 = st_13 * st_4;
+	f64 knot0              = knotVector[0];
+	f64 knot1              = knotVector[1];
+	f64 knot2              = knotVector[2];
+	f64 knot3              = knotVector[3];
+	f64 knot4              = knotVector[4];
+	f64 knot5              = knotVector[5];
+	f64 diff0              = interpolationFactor - knot0;
+	f64 diff1              = interpolationFactor - knot1;
+	f64 diff2              = interpolationFactor - knot2;
+	f64 diff3              = knot3 - interpolationFactor;
+	f64 diff4              = knot4 - interpolationFactor;
+	f64 diff5              = knot5 - interpolationFactor;
+	f64 inverseDeltaKnot32 = 1 / (knot3 - knot2);
+	f64 blendFactor3       = (diff3 * inverseDeltaKnot32) / (knot3 - knot1);
+	f64 blendFactor2       = (diff2 * inverseDeltaKnot32) / (knot4 - knot2);
+	f64 blendFactor1       = (diff3 * blendFactor3) / (knot3 - knot0);
+	f64 blendFactor4       = ((diff1 * blendFactor3) + (diff4 * blendFactor2)) / (knot4 - knot1);
+	f64 blendFactor5       = (diff2 * blendFactor2) / (knot5 - knot2);
+	f64 term1              = diff3 * blendFactor1;
+	f64 term2              = (diff0 * blendFactor1) + (diff4 * blendFactor4);
+	f64 term3              = (diff1 * blendFactor4) + (diff5 * blendFactor5);
+	f64 term4              = diff2 * blendFactor5;
 
-    return (st_3 * r3[0]) + (st_2 * r3[1]) + (st_1 * r3[2]) + (st_0 * r3[3]);
+	return (term1 * controlPoints[0]) + (term2 * controlPoints[1]) + (term3 * controlPoints[2]) + (term4 * controlPoints[3]);
 }
 
 /**
@@ -303,28 +305,6 @@ TFunctionValue_composite::TFunctionValue_composite()
     : mFunction(nullptr)
     , mData((void*)nullptr)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, __vt__Q27JStudio14TFunctionValue@ha
-	stw      r0, 0x24(r1)
-	addi     r0, r4, __vt__Q27JStudio14TFunctionValue@l
-	addi     r4, r1, 8
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	stw      r0, 0(r3)
-	addi     r3, r31, 4
-	lbz      r0, lbl_80514D88@sda21(r13)
-	stb      r0, 8(r1)
-	bl "__ct__Q27JGadget20TVector_pointer_voidFRCQ27JGadget14TAllocator<Pv>" lis
-	r3, __vt__Q27JStudio24TFunctionValue_composite@ha li       r0, 0 addi r4,
-	r3, __vt__Q27JStudio24TFunctionValue_composite@l mr       r3, r31 stw r4,
-	0(r31) stw      r0, 0x18(r31) stw      r0, 0x20(r31) lwz      r31, 0x1c(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
@@ -391,74 +371,74 @@ f64 TFunctionValue_composite::composite_raw(const JGadget::TVector_pointer<JStud
  * @note Address: 0x80008D6C
  * @note Size: 0x16C
  */
-f64 TFunctionValue_composite::composite_index(const JGadget::TVector_pointer<JStudio::TFunctionValue*>& p1,
-                                              const JStudio::TFunctionValue_composite::TData& p2, f64 p3)
+f64 TFunctionValue_composite::composite_index(const JGadget::TVector_pointer<JStudio::TFunctionValue*>& functionValues,
+                                              const JStudio::TFunctionValue_composite::TData& compositeData, f64 input)
 {
-	s32 size = p1.size();
-	if (size <= 1) {
+	s32 count = functionValues.size();
+	if (count <= 1) {
 		return 0.0;
 	}
-	TFunctionValue** iter = (TFunctionValue**)p1.begin();
-	TFunctionValue* first = *iter;
+	TFunctionValue** currentFunction = (TFunctionValue**)functionValues.begin();
+	TFunctionValue* initialFunction  = *currentFunction;
 
-	f64 dVar4 = first->getValue(p3);
-	s32 index = floor(dVar4);
-	u32 uVar2 = p2.getAsWord();
-	switch (uVar2) {
+	f64 initialOutput = initialFunction->getValue(input);
+	s32 computedIndex = floor(initialOutput);
+	u32 compositeType = compositeData.getAsWord();
+	switch (compositeType) {
 	case 0:
 	case 3:
 	default:
-		if (index < 0) {
-			index = 0;
-		} else if (index >= size - 1) {
-			index = size - 2;
+		if (computedIndex < 0) {
+			computedIndex = 0;
+		} else if (computedIndex >= count - 1) {
+			computedIndex = count - 2;
 		}
 		break;
 	case 1:
-		div_t dt = div(index, size - 1);
-		index    = dt.rem;
-		if (index < 0) {
-			index = size + index;
-			index--;
+		div_t divisionResult = div(computedIndex, count - 1);
+		computedIndex        = divisionResult.rem;
+		if (computedIndex < 0) {
+			computedIndex = count + computedIndex;
+			computedIndex--;
 		}
 		break;
 	case 2:
-		if (size - 1 == 1) {
-			index = 0;
+		if (count - 1 == 1) {
+			computedIndex = 0;
 		} else {
-			u32 uVar3 = (u32)(size - 2) * 2;
-			div_t dt2 = div(index, uVar3);
-			index     = dt2.rem;
-			if (index < 0) {
-				index += uVar3;
+			u32 adjustedSize      = (u32)(count - 2) * 2;
+			div_t divisionResult2 = div(computedIndex, adjustedSize);
+			computedIndex         = divisionResult2.rem;
+			if (computedIndex < 0) {
+				computedIndex += adjustedSize;
 			}
-			if (index >= size - 1) {
-				index = uVar3 - index;
+			if (computedIndex >= count - 1) {
+				computedIndex = adjustedSize - computedIndex;
 			}
 		}
 		break;
 	}
 
-	// std::advance_pointer(local_148, index + 1);
-	iter += index + 1;
-	first = *iter;
-	return first->getValue(p3);
+	currentFunction += computedIndex + 1;
+	initialFunction = *currentFunction;
+	return initialFunction->getValue(input);
 }
 
 /**
  * @note Address: 0x80008ED8
  * @note Size: 0x68
  */
-f64 TFunctionValue_composite::composite_parameter(const JGadget::TVector_pointer<JStudio::TFunctionValue*>& p1, const TData& data, f64 p3)
+f64 TFunctionValue_composite::composite_parameter(const JGadget::TVector_pointer<JStudio::TFunctionValue*>& functionValues,
+                                                  const TData& compositeData, f64 input)
 {
-	f64 value = p3 - data.getAsDouble();
-	JGadget::TContainerEnumerator_const_TVector<TFunctionValue*> container(p1);
-	while (container) {
-		TFunctionValue* const* fvPtr = *container;
-		TFunctionValue* funcVal      = *fvPtr;
-		value                        = funcVal->getValue(value);
+	f64 adjustedInput = input - compositeData.getAsDouble();
+	JGadget::TContainerEnumerator_const_TVector<TFunctionValue*> enumerator(functionValues);
+	while (enumerator) {
+		TFunctionValue* const* functionValuePtr = *enumerator;
+		TFunctionValue* functionValue           = *functionValuePtr;
+		adjustedInput                           = functionValue->getValue(adjustedInput);
 	}
-	return value;
+	return adjustedInput;
 }
 
 /**
@@ -481,27 +461,27 @@ f64 TFunctionValue_composite::composite_add(const JGadget::TVector_pointer<JStud
  * @note Address: 0x80008FC4
  * @note Size: 0xE8
  */
-f64 TFunctionValue_composite::composite_subtract(const JGadget::TVector_pointer<JStudio::TFunctionValue*>& p1, const TData& data, f64 p3)
+f64 TFunctionValue_composite::composite_subtract(const JGadget::TVector_pointer<JStudio::TFunctionValue*>& functionValues,
+                                                 const TData& compositeData, f64 input)
 {
-	u32 size = p1.size();
-	if (size == 0) {
+	u32 numFunctions = functionValues.size();
+	if (numFunctions == 0) {
 		return 0.0;
 	}
 
-	JGadget::TContainerEnumerator_const_TVector<TFunctionValue*> container(p1);
-	TFunctionValue* const* start = *container;
-	TFunctionValue* front        = *start;
-	f64 value                    = front->getValue(p3);
-	while (container) {
-		TFunctionValue* const* fvPtr = *container;
-		TFunctionValue* funcVal      = *fvPtr;
-		value -= funcVal->getValue(p3);
+	JGadget::TContainerEnumerator_const_TVector<TFunctionValue*> enumerator(functionValues);
+	TFunctionValue* const* firstFunctionPtr = *enumerator;
+	TFunctionValue* firstFunction           = *firstFunctionPtr;
+	f64 resultValue                         = firstFunction->getValue(input);
+	while (enumerator) {
+		TFunctionValue* const* currentFunctionPtr = *enumerator;
+		TFunctionValue* currentFunction           = *currentFunctionPtr;
+		resultValue -= currentFunction->getValue(input);
 	}
 
-	value -= data.getAsDouble();
-	return value;
+	resultValue -= compositeData.getAsDouble();
+	return resultValue;
 }
-
 /**
  * @note Address: 0x800090AC
  * @note Size: 0x84
@@ -587,8 +567,8 @@ f64 TFunctionValue_constant::getValue(f64) { return mValue; }
  * @note Size: 0x74
  */
 TFunctionValue_transition::TFunctionValue_transition()
-    : _48(NAN)
-    , _50(_48)
+    : mTransitionLowerBound(NAN)
+    , mTransitionUpperBound(mTransitionLowerBound)
 {
 }
 
@@ -612,8 +592,8 @@ void TFunctionValue_transition::initialize()
 {
 	range_initialize();
 	interpolate_initialize();
-	_48 = NAN;
-	_50 = _48;
+	mTransitionLowerBound = NAN;
+	mTransitionUpperBound = mTransitionLowerBound;
 }
 
 /**
@@ -630,33 +610,33 @@ void TFunctionValue_transition::prepare()
  * @note Address: 0x80009414
  * @note Size: 0x250
  */
-f64 TFunctionValue_transition::getValue(f64 p1)
+f64 TFunctionValue_transition::getValue(f64 inputParameter)
 {
-	f64 progress = range_getParameter_progress(p1);
-	f64 dVar3    = range_getParameter_outside(progress);
+	f64 progressParameter = range_getParameter_progress(inputParameter);
+	f64 adjustedValue     = range_getParameter_outside(progressParameter);
 	switch (range_getAdjust()) {
 	default:
-		if (dVar3 < range_getBegin()) {
-			return _48;
+		if (adjustedValue < range_getBegin()) {
+			return mTransitionLowerBound;
 		}
-		return _50;
+		return mTransitionUpperBound;
 	case TFunctionValue::ADJ_Unk2:
-		if (dVar3 < range_getEnd()) {
-			return _48;
+		if (adjustedValue < range_getEnd()) {
+			return mTransitionLowerBound;
 		}
-		return _50;
+		return mTransitionUpperBound;
 	case TFunctionValue::ADJ_Unk3:
 	ADJ_UNK3_label:
-		if (dVar3 < 0.5 * (range_getBegin() + range_getEnd())) {
-			return _48;
+		if (adjustedValue < 0.5 * (range_getBegin() + range_getEnd())) {
+			return mTransitionLowerBound;
 		}
-		return _50;
+		return mTransitionUpperBound;
 	case TFunctionValue::ADJ_Unk4:
-		if (dVar3 < range_getBegin()) {
-			return _48;
+		if (adjustedValue < range_getBegin()) {
+			return mTransitionLowerBound;
 		}
-		if (dVar3 >= range_getEnd()) {
-			return _50;
+		if (adjustedValue >= range_getEnd()) {
+			return mTransitionUpperBound;
 		}
 		switch (interpolate_get()) {
 		default:
@@ -664,197 +644,12 @@ f64 TFunctionValue_transition::getValue(f64 p1)
 			goto ADJ_UNK3_label;
 		case 1:
 		case 3:
-			return _48 + ((dVar3 - range_getBegin()) * data_getDifference()) / range_getDifference();
+			return mTransitionLowerBound + ((adjustedValue - range_getBegin()) * data_getDifference()) / range_getDifference();
 		case 2:
-			return functionvalue::interpolateValue_plateau(dVar3, range_getBegin(), _48, range_getEnd(), _50);
+			return functionvalue::interpolateValue_plateau(adjustedValue, range_getBegin(), mTransitionLowerBound, range_getEnd(),
+			                                               mTransitionUpperBound);
 		}
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lfd      f0, lbl_805163A0@sda21(r2)
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	lfd      f4, 0x28(r3)
-	lfd      f3, 0x30(r3)
-	fsub     f2, f1, f4
-	lfd      f1, 8(r3)
-	fmadd    f2, f3, f2, f4
-	fsub     f1, f2, f1
-	fcmpo    cr0, f1, f0
-	bge      lbl_80009498
-	lwz      r4, 0x38(r31)
-	li       r0, 0
-	lis      r3,
-"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha cmplwi
-r4, 4 stw      r0, 0xc(r1) slwi     r4, r4, 2 addi     r0, r3,
-"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l add r3,
-r0, r4 blt      lbl_80009474 addi     r3, r1, 0xc
-
-lbl_80009474:
-	lwz      r12, 0(r3)
-	cmplwi   r12, 0
-	bne      lbl_80009488
-	lis      r3,
-"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha lwz
-r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
-
-lbl_80009488:
-	lfd      f2, 0x18(r31)
-	mtctr    r12
-	bctrl
-	b        lbl_800094F0
-
-lbl_80009498:
-	lfd      f0, 0x18(r31)
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_800094F0
-	lwz      r4, 0x3c(r31)
-	li       r0, 0
-	lis      r3,
-"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha cmplwi
-r4, 4 stw      r0, 8(r1) slwi     r4, r4, 2 addi     r0, r3,
-"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l add r3,
-r0, r4 blt      lbl_800094D0 addi     r3, r1, 8
-
-lbl_800094D0:
-	lwz      r12, 0(r3)
-	cmplwi   r12, 0
-	bne      lbl_800094E4
-	lis      r3,
-"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha lwz
-r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
-
-lbl_800094E4:
-	lfd      f2, 0x18(r31)
-	mtctr    r12
-	bctrl
-
-lbl_800094F0:
-	lbz      r0, 0x21(r31)
-	lfd      f3, 8(r31)
-	extsb    r0, r0
-	cmpwi    r0, 3
-	fadd     f1, f1, f3
-	beq      lbl_80009558
-	bge      lbl_80009518
-	cmpwi    r0, 2
-	bge      lbl_8000953C
-	b        lbl_80009524
-
-lbl_80009518:
-	cmpwi    r0, 5
-	bge      lbl_80009524
-	b        lbl_80009580
-
-lbl_80009524:
-	fcmpo    cr0, f1, f3
-	bge      lbl_80009534
-	lfd      f1, 0x48(r31)
-	b        lbl_80009650
-
-lbl_80009534:
-	lfd      f1, 0x50(r31)
-	b        lbl_80009650
-
-lbl_8000953C:
-	lfd      f0, 0x10(r31)
-	fcmpo    cr0, f1, f0
-	bge      lbl_80009550
-	lfd      f1, 0x48(r31)
-	b        lbl_80009650
-
-lbl_80009550:
-	lfd      f1, 0x50(r31)
-	b        lbl_80009650
-
-lbl_80009558:
-	lfd      f0, 0x10(r31)
-	lfd      f2, lbl_805163C8@sda21(r2)
-	fadd     f0, f3, f0
-	fmul     f0, f2, f0
-	fcmpo    cr0, f1, f0
-	bge      lbl_80009578
-	lfd      f1, 0x48(r31)
-	b        lbl_80009650
-
-lbl_80009578:
-	lfd      f1, 0x50(r31)
-	b        lbl_80009650
-
-lbl_80009580:
-	fcmpo    cr0, f1, f3
-	bge      lbl_80009590
-	lfd      f1, 0x48(r31)
-	b        lbl_80009650
-
-lbl_80009590:
-	lfd      f0, 0x10(r31)
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_800095A8
-	lfd      f1, 0x50(r31)
-	b        lbl_80009650
-
-lbl_800095A8:
-	lwz      r0, 0x40(r31)
-	cmpwi    r0, 2
-	beq      lbl_800095F4
-	bge      lbl_800095C8
-	cmpwi    r0, 0
-	beq      lbl_80009558
-	bge      lbl_800095D0
-	b        lbl_80009558
-
-lbl_800095C8:
-	cmpwi    r0, 4
-	bge      lbl_80009558
-
-lbl_800095D0:
-	lfd      f4, 0x48(r31)
-	fsub     f2, f1, f3
-	lfd      f1, 0x50(r31)
-	lfd      f0, 0x18(r31)
-	fsub     f1, f1, f4
-	fmul     f1, f2, f1
-	fdiv     f0, f1, f0
-	fadd     f1, f4, f0
-	b        lbl_80009650
-
-lbl_800095F4:
-	fsub     f0, f0, f3
-	lfd      f6, lbl_805163A8@sda21(r2)
-	fsub     f8, f1, f3
-	lfd      f3, lbl_805163B8@sda21(r2)
-	lfd      f2, lbl_805163B0@sda21(r2)
-	fdiv     f5, f6, f0
-	lfd      f0, 0x50(r31)
-	lfd      f1, 0x48(r31)
-	lfd      f4, lbl_805163A0@sda21(r2)
-	fmul     f7, f8, f5
-	fmadd    f3, f3, f7, f2
-	fmul     f2, f7, f7
-	fsub     f5, f7, f6
-	fmul     f2, f3, f2
-	fmul     f3, f5, f5
-	fmul     f0, f2, f0
-	fsub     f2, f6, f2
-	fmul     f5, f5, f8
-	fmul     f3, f8, f3
-	fmadd    f0, f2, f1, f0
-	fmul     f1, f7, f5
-	fmadd    f0, f3, f4, f0
-	fmadd    f1, f1, f4, f0
-
-lbl_80009650:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
@@ -862,7 +657,7 @@ lbl_80009650:
  * @note Size: 0x78
  */
 TFunctionValue_list::TFunctionValue_list()
-    : _44(nullptr)
+    : mEntries(nullptr)
     , mData(0)
     , _50(NAN)
     , mUpdateFunction(nullptr)
@@ -889,7 +684,7 @@ void TFunctionValue_list::initialize()
 {
 	range_initialize();
 	interpolate_initialize();
-	_44             = nullptr;
+	mEntries        = nullptr;
 	mData           = 0;
 	_50             = NAN;
 	mUpdateFunction = nullptr;
@@ -930,44 +725,46 @@ void TFunctionValue_list::prepare()
  */
 f64 TFunctionValue_list::getValue(f64 p1)
 {
-	f64 dVar9                      = range_getParameter_progress(p1);
-	u32 iVar7                      = mData - 1;
+	f64 progressParameter          = range_getParameter_progress(p1);
+	u32 lastIndex                  = mData - 1;
 	TFunctionValue::TEAdjust iVar5 = range_getAdjust();
-	f64 dVar12                     = iVar7;
+	f64 totalEntries               = lastIndex;
 	TIndexData_ indexData;
-	f64 parOutside;
+	f64 parameterOutside;
 	switch (iVar5) {
 	case 0:
 	default:
-		parOutside    = range_getParameter_outside(dVar9);
-		indexData._00 = parOutside / _50;
+		parameterOutside      = range_getParameter_outside(progressParameter);
+		indexData.mStartValue = parameterOutside / _50;
 		break;
 	case 1:
-		parOutside    = range_getParameter_outside(dVar9 + range_getBegin());
-		indexData._00 = parOutside / _50;
+		parameterOutside      = range_getParameter_outside(progressParameter + range_getBegin());
+		indexData.mStartValue = parameterOutside / _50;
 		break;
 	case 2:
-		parOutside    = range_getParameter_outside(dVar9 + range_getEnd());
-		indexData._00 = parOutside / _50;
+		parameterOutside      = range_getParameter_outside(progressParameter + range_getEnd());
+		indexData.mStartValue = parameterOutside / _50;
 		break;
 	case 3:
-		parOutside    = range_getParameter_outside(dVar9 + 0.5 * (range_getBegin() + range_getEnd()));
-		indexData._00 = parOutside / _50;
+		parameterOutside      = range_getParameter_outside(progressParameter + 0.5 * (range_getBegin() + range_getEnd()));
+		indexData.mStartValue = parameterOutside / _50;
 		break;
 	case 4:
-		parOutside    = range_getParameter_outside(dVar9);
-		indexData._00 = (dVar12 * (parOutside - range_getBegin())) / range_getDifference();
+		parameterOutside      = range_getParameter_outside(progressParameter);
+		indexData.mStartValue = (totalEntries * (parameterOutside - range_getBegin())) / range_getDifference();
 		break;
 	}
 
-	if (indexData._00 < 0.0) {
-		return _44[0];
+	if (indexData.mStartValue < 0.0) {
+		return mEntries[0];
 	}
-	if (indexData._00 >= dVar12) {
-		return _44[iVar7];
+
+	if (indexData.mStartValue >= totalEntries) {
+		return mEntries[lastIndex];
 	}
-	indexData._08 = floor(indexData._00);
-	indexData._10 = indexData._08;
+
+	indexData.mEndValue   = floor(indexData.mStartValue);
+	indexData.mEntryIndex = indexData.mEndValue;
 
 	return mUpdateFunction(*this, indexData);
 }
@@ -976,7 +773,10 @@ f64 TFunctionValue_list::getValue(f64 p1)
  * @note Address: 0x80009DB8
  * @note Size: 0x14
  */
-f64 TFunctionValue_list::update_INTERPOLATE_NONE_(const TFunctionValue_list& list, const TIndexData_& data) { return list._44[data._10]; }
+f64 TFunctionValue_list::update_INTERPOLATE_NONE_(const TFunctionValue_list& list, const TIndexData_& data)
+{
+	return list.mEntries[data.mEntryIndex];
+}
 
 /**
  * @note Address: 0x80009DCC
@@ -984,7 +784,8 @@ f64 TFunctionValue_list::update_INTERPOLATE_NONE_(const TFunctionValue_list& lis
  */
 f64 TFunctionValue_list::update_INTERPOLATE_LINEAR_(const TFunctionValue_list& list, const TIndexData_& data)
 {
-	return functionvalue::interpolateValue_linear_1(data._00, data._08, list._44[data._10], list._44[data._10 + 1]);
+	return functionvalue::interpolateValue_linear_1(data.mStartValue, data.mEndValue, list.mEntries[data.mEntryIndex],
+	                                                list.mEntries[data.mEntryIndex + 1]);
 }
 
 /**
@@ -993,41 +794,8 @@ f64 TFunctionValue_list::update_INTERPOLATE_LINEAR_(const TFunctionValue_list& l
  */
 f64 TFunctionValue_list::update_INTERPOLATE_PLATEAU_(const TFunctionValue_list& list, const TIndexData_& data)
 {
-	return functionvalue::interpolateValue_plateau(data._00, data._08, list._44[data._10], 1.0 + data._08, list._44[data._10 + 1]);
-	/*
-	.loc_0x0:
-	  lfd       f4, 0x8(r4)
-	  lfd       f6, -0x7FB8(r2)
-	  lfd       f1, 0x0(r4)
-	  fadd      f0, f6, f4
-	  lwz       r0, 0x10(r4)
-	  fsub      f8, f1, f4
-	  lfd       f3, -0x7FA8(r2)
-	  lfd       f2, -0x7FB0(r2)
-	  rlwinm    r0,r0,2,0,29
-	  fsub      f0, f0, f4
-	  lwz       r4, 0x44(r3)
-	  lfd       f4, -0x7FC0(r2)
-	  add       r3, r4, r0
-	  lfsx      f1, r4, r0
-	  fdiv      f5, f6, f0
-	  lfs       f0, 0x4(r3)
-	  fmul      f7, f8, f5
-	  fmadd     f3, f3, f7, f2
-	  fmul      f2, f7, f7
-	  fsub      f5, f7, f6
-	  fmul      f2, f3, f2
-	  fmul      f3, f5, f5
-	  fmul      f5, f5, f8
-	  fmul      f0, f2, f0
-	  fsub      f2, f6, f2
-	  fmul      f3, f8, f3
-	  fmadd     f0, f2, f1, f0
-	  fmul      f1, f7, f5
-	  fmadd     f0, f3, f4, f0
-	  fmadd     f1, f1, f4, f0
-	  blr
-	*/
+	return functionvalue::interpolateValue_plateau(data.mStartValue, data.mEndValue, list.mEntries[data.mEntryIndex], 1.0 + data.mEndValue,
+	                                               list.mEntries[data.mEntryIndex + 1]);
 }
 
 /**
@@ -1036,27 +804,27 @@ f64 TFunctionValue_list::update_INTERPOLATE_PLATEAU_(const TFunctionValue_list& 
  */
 f64 TFunctionValue_list::update_INTERPOLATE_BSPLINE_dataMore3_(const TFunctionValue_list& list, const TIndexData_& data)
 {
-	const f32* l = list._44;
-	f64 dVar11   = l[data._10];
-	f64 dVar10   = l[data._10 + 1];
+	const f32* l = list.mEntries;
+	f64 dVar11   = l[data.mEntryIndex];
+	f64 dVar10   = l[data.mEntryIndex + 1];
 	f64 dVar9;
 	f64 dVar8;
 
-	if (data._10 == 0) {
+	if (data.mEntryIndex == 0) {
 		// JUT_ASSERT(list.mData >= 3);
 		dVar9 = 2.0 * dVar11 - dVar10;
-		dVar8 = l[data._10 + 2];
-	} else if (data._10 == list.mData - 2) {
+		dVar8 = l[data.mEntryIndex + 2];
+	} else if (data.mEntryIndex == list.mData - 2) {
 		// JUT_ASSERT(list.mData >= 3);
-		dVar9 = l[data._10 - 1];
+		dVar9 = l[data.mEntryIndex - 1];
 		dVar8 = 2.0 * dVar10 - dVar11;
 	} else {
 		// JUT_ASSERT(list.mData >= 4);
-		dVar9 = l[data._10 - 1];
-		dVar8 = l[data._10 + 2];
+		dVar9 = l[data.mEntryIndex - 1];
+		dVar8 = l[data.mEntryIndex + 2];
 	}
 
-	f64 j = data._00 - data._08;
+	f64 j = data.mStartValue - data.mEndValue;
 	return functionvalue::interpolateValue_BSpline_uniform(j, dVar9, dVar11, dVar10, dVar8);
 }
 
@@ -1394,441 +1162,6 @@ f64 TFunctionValue_hermite::getValue(f64 p1)
 	const f32* pfVar7 = pfVar5 - mSize;
 
 	return functionvalue::interpolateValue_hermite(p1, pfVar7[0], pfVar7[1], pfVar7[mSize - 1], pfVar5[0], pfVar5[1], pfVar5[2]);
-	/*
-	stwu     r1, -0x80(r1)
-	mflr     r0
-	stw      r0, 0x84(r1)
-	stfd     f31, 0x70(r1)
-	psq_st   f31, 120(r1), 0, qr0
-	stfd     f30, 0x60(r1)
-	psq_st   f30, 104(r1), 0, qr0
-	stw      r31, 0x5c(r1)
-	stfd     f1, 8(r1)
-	mr       r31, r3
-	lwz      r3, 0x44(r3)
-	lwz      r0, 0x48(r31)
-	addi     r3, r3, -1
-	lfd      f2, 0x28(r31)
-	mullw    r0, r3, r0
-	lbz      r3, 0x21(r31)
-	fsub     f0, f1, f2
-	lfd      f1, 0x30(r31)
-	extsb    r3, r3
-	lwz      r4, 0x40(r31)
-	slwi     r0, r0, 2
-	fmadd    f3, f1, f0, f2
-	cmpwi    r3, 2
-	lfs      f31, 0(r4)
-	lfsx     f30, r4, r0
-	beq      lbl_8000B09C
-	bge      lbl_8000AF00
-	cmpwi    r3, 0
-	beq      lbl_8000AF10
-	bge      lbl_8000AFD4
-	b        lbl_8000AF10
-
-lbl_8000AF00:
-	cmpwi    r3, 4
-	beq      lbl_8000B23C
-	bge      lbl_8000AF10
-	b        lbl_8000B168
-
-lbl_8000AF10:
-	lfd      f1, 8(r31)
-	lfd      f0, lbl_805163A0@sda21(r2)
-	fsub     f1, f3, f1
-	fcmpo    cr0, f1, f0
-	bge      lbl_8000AF70
-	lwz      r4, 0x38(r31)
-	li       r0, 0
-	lis      r3,
-"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha cmplwi
-r4, 4 stw      r0, 0x34(r1) slwi     r4, r4, 2 addi     r0, r3,
-"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l add r3,
-r0, r4 blt      lbl_8000AF4C addi     r3, r1, 0x34
-
-lbl_8000AF4C:
-	lwz      r12, 0(r3)
-	cmplwi   r12, 0
-	bne      lbl_8000AF60
-	lis      r3,
-"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha lwz
-r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
-
-lbl_8000AF60:
-	lfd      f2, 0x18(r31)
-	mtctr    r12
-	bctrl
-	b        lbl_8000AFC8
-
-lbl_8000AF70:
-	lfd      f0, 0x18(r31)
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_8000AFC8
-	lwz      r4, 0x3c(r31)
-	li       r0, 0
-	lis      r3,
-"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha cmplwi
-r4, 4 stw      r0, 0x30(r1) slwi     r4, r4, 2 addi     r0, r3,
-"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l add r3,
-r0, r4 blt      lbl_8000AFA8 addi     r3, r1, 0x30
-
-lbl_8000AFA8:
-	lwz      r12, 0(r3)
-	cmplwi   r12, 0
-	bne      lbl_8000AFBC
-	lis      r3,
-"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha lwz
-r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
-
-lbl_8000AFBC:
-	lfd      f2, 0x18(r31)
-	mtctr    r12
-	bctrl
-
-lbl_8000AFC8:
-	lfd      f0, 8(r31)
-	fadd     f1, f1, f0
-	b        lbl_8000B314
-
-lbl_8000AFD4:
-	lfd      f2, 8(r31)
-	lfd      f0, lbl_805163A0@sda21(r2)
-	fadd     f1, f3, f2
-	fsub     f1, f1, f2
-	fcmpo    cr0, f1, f0
-	bge      lbl_8000B038
-	lwz      r4, 0x38(r31)
-	li       r0, 0
-	lis      r3,
-"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha cmplwi
-r4, 4 stw      r0, 0x2c(r1) slwi     r4, r4, 2 addi     r0, r3,
-"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l add r3,
-r0, r4 blt      lbl_8000B014 addi     r3, r1, 0x2c
-
-lbl_8000B014:
-	lwz      r12, 0(r3)
-	cmplwi   r12, 0
-	bne      lbl_8000B028
-	lis      r3,
-"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha lwz
-r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
-
-lbl_8000B028:
-	lfd      f2, 0x18(r31)
-	mtctr    r12
-	bctrl
-	b        lbl_8000B090
-
-lbl_8000B038:
-	lfd      f0, 0x18(r31)
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_8000B090
-	lwz      r4, 0x3c(r31)
-	li       r0, 0
-	lis      r3,
-"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha cmplwi
-r4, 4 stw      r0, 0x28(r1) slwi     r4, r4, 2 addi     r0, r3,
-"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l add r3,
-r0, r4 blt      lbl_8000B070 addi     r3, r1, 0x28
-
-lbl_8000B070:
-	lwz      r12, 0(r3)
-	cmplwi   r12, 0
-	bne      lbl_8000B084
-	lis      r3,
-"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha lwz
-r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
-
-lbl_8000B084:
-	lfd      f2, 0x18(r31)
-	mtctr    r12
-	bctrl
-
-lbl_8000B090:
-	lfd      f0, 8(r31)
-	fadd     f1, f1, f0
-	b        lbl_8000B314
-
-lbl_8000B09C:
-	lfd      f0, 0x10(r31)
-	lfd      f2, 8(r31)
-	fadd     f1, f3, f0
-	lfd      f0, lbl_805163A0@sda21(r2)
-	fsub     f1, f1, f2
-	fcmpo    cr0, f1, f0
-	bge      lbl_8000B104
-	lwz      r4, 0x38(r31)
-	li       r0, 0
-	lis      r3,
-"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha cmplwi
-r4, 4 stw      r0, 0x24(r1) slwi     r4, r4, 2 addi     r0, r3,
-"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l add r3,
-r0, r4 blt      lbl_8000B0E0 addi     r3, r1, 0x24
-
-lbl_8000B0E0:
-	lwz      r12, 0(r3)
-	cmplwi   r12, 0
-	bne      lbl_8000B0F4
-	lis      r3,
-"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha lwz
-r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
-
-lbl_8000B0F4:
-	lfd      f2, 0x18(r31)
-	mtctr    r12
-	bctrl
-	b        lbl_8000B15C
-
-lbl_8000B104:
-	lfd      f0, 0x18(r31)
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_8000B15C
-	lwz      r4, 0x3c(r31)
-	li       r0, 0
-	lis      r3,
-"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha cmplwi
-r4, 4 stw      r0, 0x20(r1) slwi     r4, r4, 2 addi     r0, r3,
-"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l add r3,
-r0, r4 blt      lbl_8000B13C addi     r3, r1, 0x20
-
-lbl_8000B13C:
-	lwz      r12, 0(r3)
-	cmplwi   r12, 0
-	bne      lbl_8000B150
-	lis      r3,
-"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha lwz
-r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
-
-lbl_8000B150:
-	lfd      f2, 0x18(r31)
-	mtctr    r12
-	bctrl
-
-lbl_8000B15C:
-	lfd      f0, 8(r31)
-	fadd     f1, f1, f0
-	b        lbl_8000B314
-
-lbl_8000B168:
-	lfd      f4, 8(r31)
-	lfd      f0, 0x10(r31)
-	lfd      f2, lbl_805163C8@sda21(r2)
-	fadd     f1, f4, f0
-	lfd      f0, lbl_805163A0@sda21(r2)
-	fmadd    f1, f2, f1, f3
-	fsub     f1, f1, f4
-	fcmpo    cr0, f1, f0
-	bge      lbl_8000B1D8
-	lwz      r4, 0x38(r31)
-	li       r0, 0
-	lis      r3,
-"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha cmplwi
-r4, 4 stw      r0, 0x1c(r1) slwi     r4, r4, 2 addi     r0, r3,
-"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l add r3,
-r0, r4 blt      lbl_8000B1B4 addi     r3, r1, 0x1c
-
-lbl_8000B1B4:
-	lwz      r12, 0(r3)
-	cmplwi   r12, 0
-	bne      lbl_8000B1C8
-	lis      r3,
-"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha lwz
-r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
-
-lbl_8000B1C8:
-	lfd      f2, 0x18(r31)
-	mtctr    r12
-	bctrl
-	b        lbl_8000B230
-
-lbl_8000B1D8:
-	lfd      f0, 0x18(r31)
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_8000B230
-	lwz      r4, 0x3c(r31)
-	li       r0, 0
-	lis      r3,
-"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha cmplwi
-r4, 4 stw      r0, 0x18(r1) slwi     r4, r4, 2 addi     r0, r3,
-"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l add r3,
-r0, r4 blt      lbl_8000B210 addi     r3, r1, 0x18
-
-lbl_8000B210:
-	lwz      r12, 0(r3)
-	cmplwi   r12, 0
-	bne      lbl_8000B224
-	lis      r3,
-"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha lwz
-r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
-
-lbl_8000B224:
-	lfd      f2, 0x18(r31)
-	mtctr    r12
-	bctrl
-
-lbl_8000B230:
-	lfd      f0, 8(r31)
-	fadd     f1, f1, f0
-	b        lbl_8000B314
-
-lbl_8000B23C:
-	lfd      f1, 8(r31)
-	lfd      f0, lbl_805163A0@sda21(r2)
-	fsub     f1, f3, f1
-	fcmpo    cr0, f1, f0
-	bge      lbl_8000B29C
-	lwz      r4, 0x38(r31)
-	li       r0, 0
-	lis      r3,
-"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha cmplwi
-r4, 4 stw      r0, 0x14(r1) slwi     r4, r4, 2 addi     r0, r3,
-"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l add r3,
-r0, r4 blt      lbl_8000B278 addi     r3, r1, 0x14
-
-lbl_8000B278:
-	lwz      r12, 0(r3)
-	cmplwi   r12, 0
-	bne      lbl_8000B28C
-	lis      r3,
-"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha lwz
-r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
-
-lbl_8000B28C:
-	lfd      f2, 0x18(r31)
-	mtctr    r12
-	bctrl
-	b        lbl_8000B2F4
-
-lbl_8000B29C:
-	lfd      f0, 0x18(r31)
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_8000B2F4
-	lwz      r4, 0x3c(r31)
-	li       r0, 0
-	lis      r3,
-"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha cmplwi
-r4, 4 stw      r0, 0x10(r1) slwi     r4, r4, 2 addi     r0, r3,
-"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l add r3,
-r0, r4 blt      lbl_8000B2D4 addi     r3, r1, 0x10
-
-lbl_8000B2D4:
-	lwz      r12, 0(r3)
-	cmplwi   r12, 0
-	bne      lbl_8000B2E8
-	lis      r3,
-"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha lwz
-r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
-
-lbl_8000B2E8:
-	lfd      f2, 0x18(r31)
-	mtctr    r12
-	bctrl
-
-lbl_8000B2F4:
-	lfd      f3, 8(r31)
-	fsub     f2, f30, f31
-	lfd      f0, 0x18(r31)
-	fadd     f1, f1, f3
-	fsub     f1, f1, f3
-	fmul     f1, f1, f2
-	fdiv     f0, f1, f0
-	fadd     f1, f31, f0
-
-lbl_8000B314:
-	stfd     f1, 8(r1)
-	addi     r3, r1, 0x50
-	addi     r4, r1, 0x48
-	addi     r5, r1, 0x40
-	lwz      r8, 0x5c(r31)
-	addi     r6, r1, 0x38
-	lwz      r0, 0x60(r31)
-	addi     r7, r1, 8
-	stw      r8, 0x38(r1)
-	stw      r0, 0x3c(r1)
-	lwz      r8, 0x54(r31)
-	lwz      r0, 0x58(r31)
-	stw      r8, 0x40(r1)
-	stw      r0, 0x44(r1)
-	lwz      r8, 0x4c(r31)
-	lwz      r0, 0x50(r31)
-	stw      r8, 0x48(r1)
-	stw      r0, 0x4c(r1)
-	bl
-"findUpperBound_binary_current<Q37JStudio22TFunctionValue_hermite15TIterator_data_,d>__7JGadgetFQ37JStudio22TFunctionValue_hermite15TIterator_data_Q37JStudio22TFunctionValue_hermite15TIterator_data_Q37JStudio22TFunctionValue_hermite15TIterator_data_RCd"
-	lwz      r0, 0x50(r1)
-	stw      r0, 0x5c(r31)
-	lwz      r0, 0x54(r1)
-	stw      r0, 0x60(r31)
-	lwz      r4, 0x5c(r31)
-	lwz      r0, 0x4c(r31)
-	cmplw    r4, r0
-	bne      lbl_8000B388
-	lfs      f1, 4(r4)
-	b        lbl_8000B430
-
-lbl_8000B388:
-	lwz      r0, 0x54(r31)
-	cmplw    r4, r0
-	bne      lbl_8000B3B4
-	lwz      r3, 0x60(r31)
-	lwz      r0, 0x5c(r31)
-	slwi     r3, r3, 2
-	subf     r0, r3, r0
-	stw      r0, 0x5c(r31)
-	lwz      r3, 0x5c(r31)
-	lfs      f1, 4(r3)
-	b        lbl_8000B430
-
-lbl_8000B3B4:
-	lwz      r0, 0x48(r31)
-	lfs      f0, 0(r4)
-	slwi     r0, r0, 2
-	lfd      f7, lbl_805163A8@sda21(r2)
-	subf     r5, r0, r4
-	lfd      f1, 8(r1)
-	lfs      f5, 0(r5)
-	add      r3, r5, r0
-	lfd      f4, lbl_805163B8@sda21(r2)
-	fsub     f3, f0, f5
-	lfd      f2, lbl_805163B0@sda21(r2)
-	fsub     f9, f1, f5
-	lfs      f0, 4(r4)
-	lfs      f1, 4(r5)
-	fdiv     f6, f7, f3
-	lfs      f3, -4(r3)
-	lfs      f5, 8(r4)
-	fmul     f8, f9, f6
-	fmadd    f4, f4, f8, f2
-	fmul     f2, f8, f8
-	fsub     f6, f8, f7
-	fmul     f2, f4, f2
-	fmul     f4, f6, f6
-	fmul     f0, f2, f0
-	fsub     f2, f7, f2
-	fmul     f6, f6, f9
-	fmul     f4, f9, f4
-	fmadd    f0, f2, f1, f0
-	fmul     f1, f8, f6
-	fmadd    f0, f4, f3, f0
-	fmadd    f1, f1, f5, f0
-
-lbl_8000B430:
-	psq_l    f31, 120(r1), 0, qr0
-	lfd      f31, 0x70(r1)
-	psq_l    f30, 104(r1), 0, qr0
-	lfd      f30, 0x60(r1)
-	lwz      r0, 0x84(r1)
-	lwz      r31, 0x5c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x80
-	blr
-	*/
 }
 
 } // namespace JStudio

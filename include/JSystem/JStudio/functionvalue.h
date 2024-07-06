@@ -60,11 +60,10 @@ f64 interpolateValue_BSpline_nonuniform(f64, const f64*, const f64*);
 inline f64 interpolateValue_linear(f64 a1, f64 a2, f64 a3, f64 a4, f64 a5) { return a3 + ((a5 - a3) * (a1 - a2)) / (a4 - a2); }
 
 inline f64 interpolateValue_linear_1(f64 a1, f64 a2, f64 a3, f64 a4) { return a3 + (a4 - a3) * (a1 - a2); }
-inline f64 interpolateValue_plateau(f64 a1, f64 a2, f64 a3, f64 a4, f64 a5)
+inline f64 interpolateValue_plateau(f64 startValue, f64 endValue, f64 startPoint, f64 endPoint, f64 fraction)
 {
-	return interpolateValue_hermite(a1, a2, a3, 0.0, a4, a5, 0.0);
+	return interpolateValue_hermite(startValue, endValue, startPoint, 0.0, endPoint, fraction, 0.0);
 }
-
 } // namespace functionvalue
 
 struct TFunctionValue {
@@ -349,24 +348,24 @@ struct TFunctionValue_transition : public TFunctionValue, public TFunctionValueA
 
 	void data_set(f64 a1, f64 a2)
 	{
-		_48 = a1;
-		_50 = a2;
+		mTransitionLowerBound = a1;
+		mTransitionUpperBound = a2;
 	}
 
-	f64 data_getDifference() const { return _50 - _48; }
+	f64 data_getDifference() const { return mTransitionUpperBound - mTransitionLowerBound; }
 
 	// _00 = VTBL (TFunctionValue)
 	// _04-_40 = TFunctionValueAttribute_range
 	// _40-_44 = TFunctionValueAttribute_interpolate
-	f64 _48; // _48
-	f64 _50; // _50
+	f64 mTransitionLowerBound; // _48
+	f64 mTransitionUpperBound; // _50
 };
 
 struct TFunctionValue_list : public TFunctionValue, public TFunctionValueAttribute_range, public TFunctionValueAttribute_interpolate {
 	struct TIndexData_ {
-		f64 _00; // _00
-		f64 _08; // _08
-		u32 _10; // _10
+		f64 mStartValue; // _00
+		f64 mEndValue;   // _08
+		u32 mEntryIndex; // _10
 	};
 
 	typedef f64 (*update_INTERPOLATE)(const TFunctionValue_list&, const TIndexData_&);
@@ -382,8 +381,8 @@ struct TFunctionValue_list : public TFunctionValue, public TFunctionValueAttribu
 
 	void data_set(const f32* ptr, u32 p2)
 	{
-		_44   = ptr;
-		mData = p2;
+		mEntries = ptr;
+		mData    = p2;
 	}
 
 	void data_setInterval(f64 p1) { _50 = p1; }
@@ -401,7 +400,7 @@ struct TFunctionValue_list : public TFunctionValue, public TFunctionValueAttribu
 	// _00     = VTBL (TFunctionValue)
 	// _04-_40 = TFunctionValueAttribute_range
 	// _40-_44 = TFunctionValueAttribute_interpolate
-	const f32* _44;                     // _44
+	const f32* mEntries;                // _44
 	u32 mData;                          // _48
 	f64 _50;                            // _50
 	update_INTERPOLATE mUpdateFunction; // _58
