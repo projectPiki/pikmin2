@@ -744,7 +744,7 @@ void StoneState::updateAlways(EnemyBase* enemy)
 			enemy->disableEvent(0, EB_Untargetable);
 		}
 
-		// dev typo
+		// dev typo- likely should have been bool
 		f32 isBitterFinish = (enemy->mBitterTimer > enemy->getParms().mBitterDuration.mValue);
 		if (isBitterFinish) {
 			if (enemy->mEnemyStoneObj->isFlag(EnemyStone::STONE_Shake)) {
