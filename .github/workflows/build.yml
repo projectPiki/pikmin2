@@ -15,7 +15,7 @@ jobs:
         version: [usa, usa.demo]
     steps:
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
     - name: Git config
       run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
     - name: Build
@@ -31,7 +31,7 @@ jobs:
         python tools/upload-progress.py -b https://progress.decomp.club/ -p pikmin2 -v ${{matrix.version}} \
           build/pikmin2.${{matrix.version}}/main.dol.progress
     - name: Upload map
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: pikmin2UP-${{matrix.version}}.MAP
         path: build/*/pikmin2UP.MAP
@@ -46,7 +46,7 @@ jobs:
         version: [usa, usa.demo]
     steps:
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
     - name: Git config
       run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
     - name: Build
