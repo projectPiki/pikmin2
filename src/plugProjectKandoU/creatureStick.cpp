@@ -1,4 +1,5 @@
 #include "Game/Stickers.h"
+#include "Game/Navi.h" // specifically for the navi scale defines. no other reason to include --EpochFlame
 #include "CollInfo.h"
 
 static const char className[] = "creatureStick";
@@ -222,9 +223,9 @@ void Creature::updateStick(Vector3f& pos)
 			if (isNavi()) {
 				// use olimar/louie's scale
 				if (getCreatureID() == 0) {
-					scale = 1.3f;
+					scale = OLIMAR_SCALE;
 				} else {
-					scale = 1.5f;
+					scale = LOUIE_SCALE;
 				}
 			}
 

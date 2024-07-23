@@ -1271,7 +1271,7 @@ SysShape::Model* Navi::viewGetShape() { return mModel; }
  * @note Address: 0x80141744
  * @note Size: 0x1C
  */
-f32 Navi::viewGetBaseScale() { return mNaviIndex == NAVIID_Olimar ? 1.3f : 1.5f; }
+f32 Navi::viewGetBaseScale() { return mNaviIndex == NAVIID_Olimar ? OLIMAR_SCALE : LOUIE_SCALE; }
 
 /**
  * @note Address: 0x80141760
