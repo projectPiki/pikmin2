@@ -126,7 +126,6 @@ struct TFunctionValue {
 };
 
 struct TFunctionValueAttributeSet_const {
-	TFunctionValueAttributeSet_const(const TFunctionValueAttributeSet_const&); // unused/inlined
 
 	TFunctionValueAttributeSet_const(TFunctionValueAttribute_refer* refer, TFunctionValueAttribute_range* range,
 	                                 TFunctionValueAttribute_interpolate* interp)

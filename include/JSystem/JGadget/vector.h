@@ -253,7 +253,7 @@ struct TVector_pointer : public TVector_pointer_void {
 	const T* end() const { return (const T*)TVector_pointer_void::end(); }
 	T* end() { return (T*)TVector_pointer_void::end(); }
 
-	void push_back(const T& value) { static_cast<TVector_pointer_void*>(this)->push_back((const void*&)value); }
+	void push_back(const T& value) { TVector_pointer_void::push_back((const void*&)value); }
 
 	// _00-_18 = TVector_pointer_void
 };

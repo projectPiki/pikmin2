@@ -32,6 +32,10 @@ void TObject::prepare(const JStudio::fvb::data::TParse_TBlock& block, JStudio::f
 		u32 u32Type          = dat.mType;
 		u32 u32Size          = dat.mSize;
 		const void* pContent = dat.mContent;
+		TFunctionValueAttribute_range* pfvaRange = set.range_get();
+		TFunctionValueAttribute_refer *referGet;
+		TFunctionValueAttribute_interpolate* pfvaInterpolate = set.interpolate_get();
+
 		switch (u32Type) {
 		case 0:
 			// mFVConstant->prepare();
@@ -41,102 +45,111 @@ void TObject::prepare(const JStudio::fvb::data::TParse_TBlock& block, JStudio::f
 			break;
 		case 0x10: {
 
-			TFunctionValueAttribute_refer* pfvaRefer = set.refer_get();
-			if (pfvaRefer) {
-				JGadget::TVector_pointer<TFunctionValue*>& rCnt = pfvaRefer->refer_referContainer();
-				data::TParse_TParagraph::TData** pBegin         = (data::TParse_TParagraph::TData**)rCnt.mBegin;
-				// todo: these definitely use a different struct
-				for (data::TParse_TParagraph::TData* i = *pBegin; i != nullptr; i = *pBegin) {
-					TObject* pObject = control->getObject(pContent, i->mType);
-					if (pObject == nullptr) {
+			referGet = set.refer_get();
 
-					} else {
-						TFunctionValue* const& rfv = pObject->referFunctionValue();
-						rCnt.push_back(rfv);
-					}
-					*pBegin += align_roundUp(i->mType, 4);
-				}
+			if (!referGet) {
+				break;
 			}
+
+			JGadget::TVector_pointer<TFunctionValue*>& rCnt = referGet->refer_referContainer();
+            // data::TParse_TParagraph::TData* i         = *(data::TParse_TParagraph::TData**)rCnt.mBegin;
+
+            const data::TParse_TParagraph::TData** i = (const data::TParse_TParagraph::TData**)pContent;
+            u32 ii = *(u32*)i;
+            const data::TParse_TParagraph::TData**iii = i+1;
+            while (ii) {
+                u32 length = ((const data::TParse_TParagraph::TData*)iii)->mSize;
+
+                TObject* pObject = control->getObject(iii+1, length);
+
+                if (pObject) {
+                    rCnt.push_back(&pObject->referFunctionValue());
+                }
+
+                (u32&)iii += align_roundUp(length, sizeof(u32)) + sizeof(u32);
+                ii -= 1;
+            }
 		} break;
 		case 0x11: {
 
 			TFunctionValueAttribute_refer* pfvaRefer = set.refer_get();
 
-			if (pfvaRefer == nullptr) {
-
-			} else {
-				JGadget::TVector_pointer<TFunctionValue*>& rCnt = pfvaRefer->refer_referContainer();
-				data::TParse_TParagraph::TData** pBegin         = (data::TParse_TParagraph::TData**)rCnt.mBegin;
-				for (data::TParse_TParagraph::TData* i = *pBegin; i != nullptr; i = *pBegin) {
-					TObject* pObject = control->getObject_index(u32Size);
-					if (pObject == nullptr) {
-
-					} else {
-						TFunctionValue* const& rfv = pObject->referFunctionValue();
-						rCnt.push_back(rfv);
-					}
-					*pBegin += align_roundUp(i->mType, 4);
-				}
+			if (!pfvaRefer) {
+				break;
 			}
+
+            JGadget::TVector_pointer<TFunctionValue*>& rCnt = pfvaRefer->refer_referContainer();
+            // data::TParse_TParagraph::TData* i         = *(data::TParse_TParagraph::TData**)rCnt.mBegin;
+
+            const u32 *i = (const u32 *)pContent;
+            u32 ii = *i;
+            // const data::TParse_TParagraph::TData**iii = i;
+            for (;i++, ii != 0; ii--) {
+                u32 length = *i;
+                TObject* pObject = control->getObject_index(length);
+                if (pObject) {
+                    rCnt.push_back(&pObject->referFunctionValue());
+                }
+            }
 		} break;
 		case 0x12: {
-
-			TFunctionValueAttribute_range* pfvaRange = set.range_get();
-
-			if (pfvaRange == nullptr) {
-
-			} else {
-				f64* arr = (f64*)pContent;
-				pfvaRange->range_set(arr[0], arr[1]);
+			if (!pfvaRange) {
+				break;
 			}
+			f32* arr = (f32*)pContent;
+			
+			pfvaRange->range_set(arr[0], arr[1]);
 		} break;
 		case 0x13: {
 
-			TFunctionValueAttribute_range* pfvaRange = set.range_get();
 
-			if (pfvaRange == nullptr) {
-
-			} else {
-				TFunctionValue::TEProgress prog = *(TFunctionValue::TEProgress*)pContent;
-				pfvaRange->range_setProgress(prog);
-			}
+			if (!pfvaRange) {
+				break;
+			} 
+		
+			TFunctionValue::TEProgress prog = *(TFunctionValue::TEProgress*)pContent;
+			pfvaRange->range_setProgress(prog);
+		
 		} break;
 		case 0x14: {
 
-			TFunctionValueAttribute_range* pfvaRange = set.range_get();
 
-			if (pfvaRange == nullptr) {
-
-			} else {
-				TFunctionValue::TEAdjust adjust = *(TFunctionValue::TEAdjust*)pContent;
-				pfvaRange->range_setAdjust(adjust);
+			if (!pfvaRange) {
+				break;
 			}
+			
+			TFunctionValue::TEAdjust adjust = *(TFunctionValue::TEAdjust*)pContent;
+			pfvaRange->range_setAdjust(adjust);
+		
 		} break;
 		case 0x15: {
 
-			TFunctionValueAttribute_range* pfvaRange = set.range_get();
 
-			if (pfvaRange == nullptr) {
+			if (!pfvaRange) {
+				break;
+			} 
+			
+			TFunctionValue::TEOutside a = (TFunctionValue::TEOutside)((u16*)pContent)[0];
+			TFunctionValue::TEOutside b = (TFunctionValue::TEOutside)((u16*)pContent)[1];
 
-			} else {
-				TFunctionValue::TEOutside* out = (TFunctionValue::TEOutside*)pContent;
-				pfvaRange->range_setOutside(out[0], out[1]);
-			}
+			pfvaRange->range_setOutside(a, b);
+		
 		} break;
 		case 0x16: {
 
-			TFunctionValueAttribute_interpolate* pfvaInterpolate = set.interpolate_get();
 
-			if (pfvaInterpolate == nullptr) {
-
-			} else {
-				TFunctionValue::TEInterpolate interp = *(TFunctionValue::TEInterpolate*)pContent;
-				pfvaInterpolate->interpolate_set(interp);
-			}
+			if (!pfvaInterpolate) {
+				break;
+			} 
+			
+			TFunctionValue::TEInterpolate interp = *(TFunctionValue::TEInterpolate*)pContent;
+			pfvaInterpolate->interpolate_set(interp);
+		
 		} break;
 		default:
 			break;
 		}
+		pData = dat.mNext;
 	}
 
 	mBaseFV->prepare();
