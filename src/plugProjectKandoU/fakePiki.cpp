@@ -3,7 +3,6 @@
 #include "Game/gameStat.h"
 #include "Game/Navi.h"
 #include "Game/PikiMgr.h"
-#include "Game/Navi.h"
 #include "Game/AIConstants.h"
 #include "Game/mapParts.h"
 #include "Game/MapMgr.h"
