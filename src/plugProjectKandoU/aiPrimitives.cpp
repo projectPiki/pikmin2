@@ -1737,17 +1737,17 @@ void ActPathMove::initPathfinding(bool resetLinkCount)
 		}
 		mState = PATHMOVE_Pathfinding;
 
-		u8 flag = Game::PATHFLAG_Unk1;
+		u8 flag = Game::PATHFLAG_RequireOpen;
 		if (isAllBlue()) {
 			flag |= Game::PATHFLAG_PathThroughWater;
 		}
 
-		flag |= Game::PATHFLAG_Unk3;
+		flag |= Game::PATHFLAG_DisallowUnfinishedBridges;
 		if (Game::gameSystem && Game::gameSystem->isVersusMode()) {
 			if (mOnyon->mOnyonType == ONYON_TYPE_BLUE) {
-				flag |= (Game::PATHFLAG_VsBlue | Game::PATHFLAG_InVersusMode);
+				flag |= (Game::PATHFLAG_DisallowVsRed | Game::PATHFLAG_AllowUnvisited);
 			} else {
-				flag |= (Game::PATHFLAG_VsRed | Game::PATHFLAG_InVersusMode);
+				flag |= (Game::PATHFLAG_DisallowVsBlue | Game::PATHFLAG_AllowUnvisited);
 			}
 		}
 
@@ -1875,14 +1875,14 @@ int ActPathMove::execPathfinding()
 			Game::testPathfinder->release(mContextHandle);
 		}
 
-		u8 flag = (Game::PATHFLAG_PathThroughWater | Game::PATHFLAG_Unk3);
+		u8 flag = (Game::PATHFLAG_PathThroughWater | Game::PATHFLAG_DisallowUnfinishedBridges);
 		mStartPathFindCounter++;
 		mState = PATHMOVE_Pathfinding;
 		if (Game::gameSystem && Game::gameSystem->isVersusMode()) {
-			flag |= Game::PATHFLAG_InVersusMode;
+			flag |= Game::PATHFLAG_AllowUnvisited;
 		}
 		if (mStartPathFindCounter >= 2) {
-			flag |= Game::PATHFLAG_InVersusMode; // hm
+			flag |= Game::PATHFLAG_AllowUnvisited; // hm
 			if (mStartPathFindCounter >= 3) {
 				mStartPathFindCounter = 3;
 			}
@@ -3098,7 +3098,7 @@ bool ActPathMove::contextCheck(int idx)
 			Game::WayPoint* wp = getWayPoint(nextIdx);
 
 			if (mOnyon->mOnyonType == ONYON_TYPE_BLUE) {
-				if (wp->isFlag(Game::WPF_Unknown6)) {
+				if (wp->isFlag(Game::PATHFLAG_DisallowVsBlue)) {
 					mVsWayPointCounter++;
 					if (mVsWayPointCounter < 2) {
 						return false;
@@ -3106,7 +3106,7 @@ bool ActPathMove::contextCheck(int idx)
 				} else {
 					mVsWayPointCounter = 0;
 				}
-			} else if (wp->isFlag(Game::WPF_Unknown5)) {
+			} else if (wp->isFlag(Game::PATHFLAG_DisallowVsRed)) {
 				mVsWayPointCounter++;
 				if (mVsWayPointCounter < 2) {
 					return false;

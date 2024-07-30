@@ -227,18 +227,32 @@ void WayPoint::setBridge(bool bridge)
  * @note Address: N/A
  * @note Size: 0x28
  */
-void WayPoint::setVisit(bool)
+void WayPoint::setVisit(bool visit)
 {
-	// UNUSED FUNCTION
+	if (visit) {
+		resetFlag(WPF_Unvisited);	
+	}
+	else {
+		setFlag(WPF_Unvisited);
+	}
 }
 
 /**
  * @note Address: N/A
  * @note Size: 0x48
+ * @note Assumed code but size matches. Function is unused
  */
-void WayPoint::setVsColor(int)
+void WayPoint::setVsColor(int color)
 {
-	// UNUSED FUNCTION
+	resetFlag(WPF_VersusBlue);
+	resetFlag(WPF_VersusRed);
+
+	if (color == Blue) {
+		setFlag(WPF_VersusBlue);
+	}
+	else if (color == Red) {
+		setFlag(WPF_VersusRed);
+	}
 }
 
 /**
@@ -247,17 +261,26 @@ void WayPoint::setVsColor(int)
  */
 bool WayPoint::hasLinkTo(s16 idx)
 {
-	// UNUSED FUNCTION
+	for (s16 i = 0; i < mNumToLinks; i++) {
+		if (mToLinks[i] == idx) {
+			return true;
+		}
+	}
+	return false;
 }
 
 /**
  * @note Address: N/A
  * @note Size: 0xB4
  */
-void WayPoint::addLink(s16)
+void WayPoint::addLink(s16 idx)
 {
-	P2ASSERTLINE(300, false);
-	// UNUSED FUNCTION
+	// currently this is 0x4 larger than the given size
+	if (!hasLinkTo(idx)) {
+		P2ASSERTLINE(300, mNumToLinks < ARRAY_SIZE(mToLinks));
+
+		mToLinks[mNumToLinks++] = idx;
+	}
 }
 
 /**
@@ -1280,7 +1303,7 @@ void RouteMgr::setCloseAll()
 	CI_LOOP(iter)
 	{
 		WayPoint* wp = (*iter);
-		wp->setFlag(WPF_Unknown8);
+		wp->setVisit(false);
 	}
 }
 
@@ -1297,7 +1320,7 @@ void RouteMgr::openRoom(s16 roomIdx)
 		FOREACH_NODE(WayPoint::RoomList, wp->mRoomList.mChild, node)
 		{
 			if (node->mRoomIdx == roomIdx) {
-				wp->resetFlag(WPF_Unknown8);
+				wp->setVisit(true);
 			}
 		}
 	}

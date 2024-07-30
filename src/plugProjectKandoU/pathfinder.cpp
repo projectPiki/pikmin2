@@ -494,118 +494,124 @@ int AStarPathfinder::search(Game::AStarContext* context, int maxIterations, Game
 			}
 		}
 
-		if (targetNode) {
-			PathNode* child = targetNode->mParent;
-			if (child) {
-				PathNode* node     = child->mRootNode;
-				PathNode* prevNode = nullptr;
-				while (node) {
-					if (node == targetNode) {
-						if (prevNode) {
-							prevNode->mSibling = node->mSibling;
-							if (node->mSibling) {
-								node->mSibling->mPrevious = prevNode;
-							}
+		if (!targetNode) {
+			continue;
+		}
 
-							targetNode->mPrevious = nullptr;
-							targetNode->mSibling  = nullptr;
-							targetNode->mParent   = nullptr;
-						} else {
-							child->mRootNode = node->mSibling;
-							if (node->mSibling) {
-								node->mSibling->mPrevious = nullptr;
-							}
-
-							targetNode->mPrevious = nullptr;
-							targetNode->mSibling  = nullptr;
-							targetNode->mParent   = nullptr;
-						}
-						break;
+		PathNode* child = targetNode->mParent;
+		if (!child) {
+			continue;
+		}
+			
+		PathNode* node     = child->mRootNode;
+		PathNode* prevNode = nullptr;
+		while (node) {
+			if (node == targetNode) {
+				if (prevNode) {
+					prevNode->mSibling = node->mSibling;
+					if (node->mSibling) {
+						node->mSibling->mPrevious = prevNode;
 					}
 
-					prevNode = node;
-					node     = node->mSibling;
+					targetNode->mPrevious = nullptr;
+					targetNode->mSibling  = nullptr;
+					targetNode->mParent   = nullptr;
+				} else {
+					child->mRootNode = node->mSibling;
+					if (node->mSibling) {
+						node->mSibling->mPrevious = nullptr;
+					}
+
+					targetNode->mPrevious = nullptr;
+					targetNode->mSibling  = nullptr;
+					targetNode->mParent   = nullptr;
 				}
+				break;
+			}
 
-				if (targetNode->mWpIndex == endIdx) {
-					path[0] = targetNode;
-					return 0;
-				}
+			prevNode = node;
+			node     = node->mSibling;
+		}
 
-				WayPoint* wp = PathfindContext::routeMgr->getWayPoint(targetNode->mWpIndex);
+		if (targetNode->mWpIndex == endIdx) {
+			path[0] = targetNode;
+			return 0;
+		}
 
-				WayPointIterator iter(wp, mContext->mRequestFlag & 0x80);
+		WayPoint* wp = PathfindContext::routeMgr->getWayPoint(targetNode->mWpIndex);
 
-				CI_LOOP(iter) { s16 idx = *iter; }
+		WayPointIterator iter(wp, mContext->mRequestFlag & PATHFLAG_TwoWayPathing);
 
-				CI_LOOP(iter)
-				{
-					s16 idx       = *iter;
-					WayPoint* cWP = PathfindContext::routeMgr->getWayPoint(idx);
+		CI_LOOP(iter) { s16 idx = *iter; }
 
-					PathNode* node = mContext->getNode(idx);
-					if ((!(mContext->mRequestFlag & 1) || !(cWP->mFlags & 1)) && ((mContext->mRequestFlag & 2) || !(cWP->mFlags & 2))
-					    && ((mContext->mRequestFlag & 0x40) || !(cWP->mFlags & 0x80))
-					    && (!(cWP->mFlags & 2) || !(mContext->mRequestFlag & 4) || !(wp->mFlags & 4))
-					    && (!(mContext->mRequestFlag & 0x20) || !(wp->mFlags & 0x20))
-					    && (!(mContext->mRequestFlag & 0x10) || !(wp->mFlags & 0x10))) {
-						f32 test = estimate(targetNode->mWpIndex, node->mWpIndex);
-						test += node->_00;
-						if (node->_22 == 2 || test <= node->_00) {
-							node->mChild         = targetNode;
-							node->_00            = test;
-							node->mDistanceToEnd = estimate(node->mWpIndex, endIdx);
-							if (node->_22 == 1) {
-								PathNode* parent = node->mParent;
-								if (parent) {
-									PathNode* out = nullptr;
-									for (PathNode* child = parent->mRootNode; child->mSibling != nullptr;) {
-										if (child == node) {
-											if (out) {
-												out->mSibling = child->mSibling;
-												if (child->mSibling) {
-													child->mSibling->mPrevious = out;
-												}
-												node->mPrevious = nullptr;
-												node->mSibling  = nullptr;
-												node->mParent   = nullptr;
-											} else {
-												parent->mSibling = child->mSibling;
-												if (child->mSibling) {
-													child->mSibling->mPrevious = nullptr;
-												}
-												node->mPrevious = nullptr;
-												node->mSibling  = nullptr;
-												node->mParent   = nullptr;
-											}
-											break;
-										}
+		CI_LOOP(iter)
+		{
+			s16 idx       = *iter;
+			WayPoint* cWP = PathfindContext::routeMgr->getWayPoint(idx);
+
+			PathNode* node = mContext->getNode(idx);
+			if ((((mContext->mRequestFlag & PATHFLAG_RequireOpen) && (cWP->mFlags & WPF_Closed)) 
+				|| (!(mContext->mRequestFlag & PATHFLAG_PathThroughWater) && (cWP->mFlags & WPF_Water))
+				|| (!(mContext->mRequestFlag & PATHFLAG_AllowUnvisited) && (cWP->mFlags & WPF_Unvisited))
+				|| ((cWP->mFlags & WPF_Water) && (mContext->mRequestFlag & PATHFLAG_DisallowUnfinishedBridges) && (wp->mFlags & WPF_Bridge))
+				|| ((mContext->mRequestFlag & PATHFLAG_DisallowVsRed) && (wp->mFlags & WPF_VersusRed))
+				|| ((mContext->mRequestFlag & PATHFLAG_DisallowVsBlue) && (wp->mFlags & WPF_VersusBlue)))) {
+				continue;
+			}
+
+			f32 test = estimate(targetNode->mWpIndex, node->mWpIndex);
+			test += node->_00;
+			if (node->_22 == 2 || test <= node->_00) {
+				node->mChild         = targetNode;
+				node->_00            = test;
+				node->mDistanceToEnd = estimate(node->mWpIndex, endIdx);
+				if (node->_22 == 1) {
+					PathNode* parent = node->mParent;
+					if (parent) {
+						PathNode* out = nullptr;
+						for (PathNode* child = parent->mRootNode; child->mSibling != nullptr;) {
+							if (child == node) {
+								if (out) {
+									out->mSibling = child->mSibling;
+									if (child->mSibling) {
+										child->mSibling->mPrevious = out;
 									}
-								}
-								node->_22 = 2;
-							}
-							if (node->_22) {
-								node->_22             = 0;
-								AStarContext* context = mContext;
-								PathNode* newnode     = context->mNodeLists[0].mRootNode;
-								if (newnode) {
-									while (newnode->mSibling) {
-										newnode = newnode->mSibling;
-									}
-									newnode->mSibling = node;
-									node->mPrevious   = newnode;
+									node->mPrevious = nullptr;
+									node->mSibling  = nullptr;
+									node->mParent   = nullptr;
 								} else {
-									context->mNodeLists[0].mRootNode = node;
+									parent->mSibling = child->mSibling;
+									if (child->mSibling) {
+										child->mSibling->mPrevious = nullptr;
+									}
+									node->mPrevious = nullptr;
+									node->mSibling  = nullptr;
+									node->mParent   = nullptr;
 								}
-								node->mParent = &context->mNodeLists[0];
+								break;
 							}
 						}
 					}
+					node->_22 = 2;
 				}
-
-				targetNode->_22 = 1;
+				if (node->_22) {
+					node->_22             = 0;
+					AStarContext* context = mContext;
+					PathNode* newnode     = context->mNodeLists[0].mRootNode;
+					if (newnode) {
+						while (newnode->mSibling) {
+							newnode = newnode->mSibling;
+						}
+						newnode->mSibling = node;
+						node->mPrevious   = newnode;
+					} else {
+						context->mNodeLists[0].mRootNode = node;
+					}
+					node->mParent = &context->mNodeLists[0];
+				}
 			}
 		}
+		targetNode->_22 = 1;
 	}
 
 	if (!mContext->mNodeLists[0].mRootNode) {

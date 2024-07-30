@@ -44,15 +44,15 @@ struct WayPointLinks {
 
 namespace Game {
 enum WayPointFlags {
-	WPF_Unset    = 0x00,
-	WPF_Closed   = 0x01,
-	WPF_Water    = 0x02,
-	WPF_Bridge   = 0x04,
-	WPF_Unknown4 = 0x08,
-	WPF_Unknown5 = 0x10,
-	WPF_Unknown6 = 0x20,
-	WPF_Unknown7 = 0x40,
-	WPF_Unknown8 = 0x80
+	WPF_Unset      = 0x00,
+	WPF_Closed     = 0x01,
+	WPF_Water      = 0x02,
+	WPF_Bridge     = 0x04,
+	WPF_Unknown4   = 0x08,
+	WPF_VersusBlue = 0x10, // unused
+	WPF_VersusRed  = 0x20, // unused
+	WPF_Unknown7   = 0x40,
+	WPF_Unvisited  = 0x80
 	// There is an additional value for "visited", and probably values for vs
 	// color
 };
@@ -170,7 +170,7 @@ struct WPEdgeSearchArg {
 	inline bool isLinkedTo(s16 idx) { return mLinks ? mLinks->isLinkedTo(idx) : false; }
 
 	Vector3f mStartPosition; // _00
-	bool mInWater;           // _0C
+	u8 mInWater;             // _0C
 	WayPointLinks* mLinks;   // _10
 	s16 mRoomID;             // _14
 	WayPoint* mWp1;          // _18

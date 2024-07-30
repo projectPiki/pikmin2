@@ -1568,7 +1568,8 @@ bool Obj::setPathFinder(bool cond)
 		mWpIndex3 = mWpIndex2;
 		mWpIndex2 = nearIdx;
 
-		int flag = cond != 0 ? 0xC2 : 0xC3;
+		int flag = cond != 0 ? (PATHFLAG_PathThroughWater | PATHFLAG_AllowUnvisited | PATHFLAG_TwoWayPathing) 
+		: (PATHFLAG_RequireOpen | PATHFLAG_PathThroughWater | PATHFLAG_AllowUnvisited | PATHFLAG_TwoWayPathing);
 
 		if (mPathID) {
 			testPathfinder->release(mPathID);
