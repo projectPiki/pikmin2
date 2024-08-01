@@ -54,21 +54,31 @@ void TObject::prepare(const JStudio::fvb::data::TParse_TBlock& block, JStudio::f
 			JGadget::TVector_pointer<TFunctionValue*>& rCnt = referGet->refer_referContainer();
             // data::TParse_TParagraph::TData* i         = *(data::TParse_TParagraph::TData**)rCnt.mBegin;
 
-            const data::TParse_TParagraph::TData** i = (const data::TParse_TParagraph::TData**)pContent;
-            u32 ii = *(u32*)i;
-            const data::TParse_TParagraph::TData**iii = i+1;
-            while (ii) {
-                u32 length = ((const data::TParse_TParagraph::TData*)iii)->mSize;
+			typedef struct {
+				u32 length;
+				const u8 data[];
+			} unkDataHeader;
 
-                TObject* pObject = control->getObject(iii+1, length);
+			typedef struct {
+				u32 count;
+				unkDataHeader dataArray[];
+			} unkDataArray;
+
+			const unkDataArray* i = (const unkDataArray*)pContent;
+            u32 dataCount = i->count;
+			const unkDataHeader* d = i->dataArray;
+
+			for (; dataCount != 0; dataCount--) {
+				u32 length = d->length;
+
+                TObject* pObject = control->getObject(&d->data, length);
 
                 if (pObject) {
                     rCnt.push_back(&pObject->referFunctionValue());
                 }
 
-                (u32&)iii += align_roundUp(length, sizeof(u32)) + sizeof(u32);
-                ii -= 1;
-            }
+				d = (const unkDataHeader*)((const u8*)d + align_roundUp(length, sizeof(u32)) + 4);
+			}
 		} break;
 		case 0x11: {
 
@@ -388,13 +398,28 @@ TObject_composite::TObject_composite(const data::TParse_TBlock& block)
  * @note Size: 0x6C
  */
 
-void TObject_composite::prepare_data_(const data::TParse_TParagraph::TData& data, TControl* control)
+void TObject_composite::prepare_data_(const data::TParse_TParagraph::TData& rData, TControl* control)
 {
-	const void* preContent                  = data.mContent;
-	const TFunctionValue_composite* content = static_cast<const TFunctionValue_composite*>(preContent);
-	const CompositeOperation* ops           = getCompositeOperation_(*(JStudio::fvb::data::TEComposite*)content);
+    typedef struct {
+        JStudio::fvb::data::TEComposite _00;
+        const void* _04;
+    } unkOperation;
+    // JUT_ASSERT(rData.u32Type==data::PARAGRAPH_DATA);
+    
+    u32 u32Size = rData.mSize;
+    
+    const void* pControl_ = rData.mContent;
+    
+    // JGADGET_ASSERTWARN(u32Size==8);
+    // JUT_ASSERT(pControl_!=0);
 
-	mSpecFV.data_set(ops->mSetFunc, ops->mGetFunc(&content->mAllocator));
+    const unkOperation* content = (const unkOperation*)(pControl_);
+    JStudio::fvb::data::TEComposite v = content->_00;
+	const CompositeOperation* res           = getCompositeOperation_(v);
+    GetCompositeFunc pfvaRange = res->mGetFunc;
+    // JUT_ASSERT(pfvaRange!=NULL);
+
+    mSpecFV.data_set(res->mSetFunc, pfvaRange(&content->_04));
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)

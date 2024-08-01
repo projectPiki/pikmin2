@@ -41,7 +41,7 @@ struct TParse_TBlock : public TParseData_aligned<4> {
 	const void* getNext() const
 	{
 		u32 size = getSize();
-		return (const void*)((u8*)getRaw() + size);
+		return ((u8*)getRaw() + size);
 	}
 
 	const void* getBlockEnd() const { return (u8*)getRaw() + sizeof(TBlock); }

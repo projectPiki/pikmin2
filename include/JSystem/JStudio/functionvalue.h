@@ -152,14 +152,6 @@ struct TFunctionValueAttributeSet : public TFunctionValueAttributeSet_const {
 	{
 	}
 
-	TFunctionValueAttribute_refer* refer_get() const { return static_cast<const TFunctionValueAttributeSet_const*>(this)->refer_get(); }
-
-	TFunctionValueAttribute_range* range_get() const { return static_cast<const TFunctionValueAttributeSet_const*>(this)->range_get(); }
-
-	TFunctionValueAttribute_interpolate* interpolate_get() const
-	{
-		return static_cast<const TFunctionValueAttributeSet_const*>(this)->interpolate_get();
-	}
 
 	// _00-_0C = TFunctionValueAttributeSet_const
 };
@@ -283,10 +275,12 @@ struct TFunctionValue_composite : public TFunctionValue, public TFunctionValueAt
 		    : mWordData(data)
 		{
 		}
-		TData(f32 data)
+		TData(f64 data)
 		    : mDoubleData(data)
 		{
 		}
+
+        TData(const TData& other);
 
 		inline void operator=(const TData& other) { mDoubleData = other.mDoubleData; }
 		u32 getAsWord() const { return mWordData; }
