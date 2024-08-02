@@ -20,31 +20,28 @@ TObject::~TObject() { }
  */
 void TObject::prepare(const JStudio::fvb::data::TParse_TBlock& block, JStudio::fvb::TControl* control)
 {
-
 	TFunctionValueAttributeSet set = mBaseFV->getAttributeSet();
 	const void* pNext              = block.getNext();
 	const void* pData              = block.getContent();
-
 	while (pData < pNext) {
 		data::TParse_TParagraph para(pData);
 		data::TParse_TParagraph::TData dat;
 		para.getData(&dat);
-		u32 u32Type          = dat.mType;
-		u32 u32Size          = dat.mSize;
-		const void* pContent = dat.mContent;
-		TFunctionValueAttribute_range* pfvaRange = set.range_get();
-		TFunctionValueAttribute_refer *referGet;
+		u32 u32Type                                          = dat.mType;
+		u32 u32Size                                          = dat.mSize;
+		const void* pContent                                 = dat.mContent;
+		TFunctionValueAttribute_range* pfvaRange             = set.range_get();
+		TFunctionValueAttribute_refer* referGet;
 		TFunctionValueAttribute_interpolate* pfvaInterpolate = set.interpolate_get();
 
 		switch (u32Type) {
 		case 0:
 			// mFVConstant->prepare();
 			// return;
-		case 1:
+		case 1: {
 			prepare_data_(dat, control);
-			break;
+		} break;
 		case 0x10: {
-
 			referGet = set.refer_get();
 
 			if (!referGet) {
@@ -52,19 +49,18 @@ void TObject::prepare(const JStudio::fvb::data::TParse_TBlock& block, JStudio::f
 			}
 
 			JGadget::TVector_pointer<TFunctionValue*>& rCnt = referGet->refer_referContainer();
-            // data::TParse_TParagraph::TData* i         = *(data::TParse_TParagraph::TData**)rCnt.mBegin;
 
 			typedef struct {
 				u32 length;
-				const u8 data[];
+				const u8 data[0];
 			} unkDataHeader;
 
 			typedef struct {
 				u32 count;
-				unkDataHeader dataArray[];
+				unkDataHeader dataArray[0];
 			} unkDataArray;
 
-			const unkDataArray* i = (const unkDataArray*)pContent;
+			const unkDataArray* i = static_cast<const unkDataArray*>(pContent);
             u32 dataCount = i->count;
 			const unkDataHeader* d = i->dataArray;
 
@@ -77,11 +73,14 @@ void TObject::prepare(const JStudio::fvb::data::TParse_TBlock& block, JStudio::f
                     rCnt.push_back(&pObject->referFunctionValue());
                 }
 
-				d = (const unkDataHeader*)((const u8*)d + align_roundUp(length, sizeof(u32)) + 4);
+				#ifdef __MWERKS__ // clang-format off
+                (const u8*)d += align_roundUp(length, sizeof(u32)) + sizeof(u32);
+				#else
+                d = (const unkDataHeader*)(((const u8*)d) + align_roundUp(length, sizeof(u32)) + sizeof(u32));
+				#endif // clang-format on
 			}
 		} break;
 		case 0x11: {
-
 			TFunctionValueAttribute_refer* pfvaRefer = set.refer_get();
 
 			if (!pfvaRefer) {
@@ -89,70 +88,61 @@ void TObject::prepare(const JStudio::fvb::data::TParse_TBlock& block, JStudio::f
 			}
 
             JGadget::TVector_pointer<TFunctionValue*>& rCnt = pfvaRefer->refer_referContainer();
-            // data::TParse_TParagraph::TData* i         = *(data::TParse_TParagraph::TData**)rCnt.mBegin;
 
-            const u32 *i = (const u32 *)pContent;
-            u32 ii = *i;
-            // const data::TParse_TParagraph::TData**iii = i;
-            for (;i++, ii != 0; ii--) {
-                u32 length = *i;
+			const u32* i = static_cast<const u32*>(pContent);
+			u32 ii = *i;
+
+			for (; i++, ii != 0; ii--) {
+				u32 length = *i;
                 TObject* pObject = control->getObject_index(length);
                 if (pObject) {
                     rCnt.push_back(&pObject->referFunctionValue());
                 }
-            }
+			}
 		} break;
 		case 0x12: {
 			if (!pfvaRange) {
 				break;
 			}
-			f32* arr = (f32*)pContent;
-			
+			const f32* arr = static_cast<const f32*>(pContent);
+
 			pfvaRange->range_set(arr[0], arr[1]);
 		} break;
 		case 0x13: {
-
-
 			if (!pfvaRange) {
 				break;
 			} 
 		
-			TFunctionValue::TEProgress prog = *(TFunctionValue::TEProgress*)pContent;
+			TFunctionValue::TEProgress prog = *static_cast<const TFunctionValue::TEProgress*>(pContent);
 			pfvaRange->range_setProgress(prog);
 		
 		} break;
 		case 0x14: {
-
-
 			if (!pfvaRange) {
 				break;
 			}
 			
-			TFunctionValue::TEAdjust adjust = *(TFunctionValue::TEAdjust*)pContent;
+			TFunctionValue::TEAdjust adjust = *static_cast<const TFunctionValue::TEAdjust*>(pContent);
 			pfvaRange->range_setAdjust(adjust);
 		
 		} break;
 		case 0x15: {
-
-
 			if (!pfvaRange) {
 				break;
 			} 
 			
-			TFunctionValue::TEOutside a = (TFunctionValue::TEOutside)((u16*)pContent)[0];
-			TFunctionValue::TEOutside b = (TFunctionValue::TEOutside)((u16*)pContent)[1];
+			TFunctionValue::TEOutside a = (TFunctionValue::TEOutside)(static_cast<const u16*>(pContent))[0];
+			TFunctionValue::TEOutside b = (TFunctionValue::TEOutside)(static_cast<const u16*>(pContent))[1];
 
 			pfvaRange->range_setOutside(a, b);
 		
 		} break;
 		case 0x16: {
-
-
 			if (!pfvaInterpolate) {
 				break;
 			} 
 			
-			TFunctionValue::TEInterpolate interp = *(TFunctionValue::TEInterpolate*)pContent;
+			TFunctionValue::TEInterpolate interp = *static_cast<const TFunctionValue::TEInterpolate*>(pContent);
 			pfvaInterpolate->interpolate_set(interp);
 		
 		} break;
