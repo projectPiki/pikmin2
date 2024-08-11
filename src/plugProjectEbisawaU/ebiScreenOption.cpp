@@ -11,7 +11,7 @@
  * @note Address: N/A
  * @note Size: 0xE4
  */
-void _Print(char* name, ...) { OSReport("ebiScreenOption"); }
+static void _Print(char* name, ...) { OSReport("ebiScreenOption"); }
 
 using namespace Game::CommonSaveData;
 
@@ -237,7 +237,7 @@ bool TOption::doUpdateStateOpen()
 	}
 	mMainScreen->update();
 
-#if VERNUM == 1 // demo
+#if BUILDTARGET == USADEMO1 // demo
 	mOptionPanes[0]->hide();
 #endif
 
@@ -438,7 +438,7 @@ bool TOption::doUpdateStateWait()
 	mPaneDeflickerYes->updateScale(mButtonPuruAnim[5].mScale);
 	mPaneDeflickerNo->updateScale(mButtonPuruAnim[6].mScale);
 
-#if VERNUM == 1 // demo
+#if BUILDTARGET == USADEMO1 // demo
 	mOptionPanes[0]->hide();
 #endif
 
@@ -516,7 +516,7 @@ void TOption::loadResource()
 	sys->heapStatusStart("TOption::loadResource", nullptr);
 	og::newScreen::makeLanguageResName(resName, "option_us.szs");
 	JKRArchive* archive = JKRMountArchive(resName, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
-#if VERNUM == 1 // demo
+#if BUILDTARGET == USADEMO1 // demo
 	P2ASSERTLINE(768, (archive != nullptr));
 #else
 	P2ASSERTLINE(757, (archive != nullptr));

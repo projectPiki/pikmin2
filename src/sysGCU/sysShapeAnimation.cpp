@@ -11,8 +11,12 @@
 #include "nans.h"
 
 namespace SysShape {
-static const char BLAH_[] = "\0\0\0\0\0\0\0\0";
-static const char BLAH[]  = "sysShapeModel";
+
+static void strippedFunc()
+{
+	OSReport("\0\0\0\0\0\0\0\0\0\0\0");
+	OSReport("sysShapeModel");
+}
 
 /**
  * @note Address: 0x8043DCDC

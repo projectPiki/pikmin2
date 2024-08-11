@@ -8,7 +8,10 @@
 #include "Screen/Game2DMgr.h"
 #include "JSystem/J2D/J2DAnmLoader.h"
 
-static const char unused[] = "\0\0\0\0\0\0\0\0";
+static void strippedFunc()
+{
+	OSReport("\0\0\0\0\0\0\0\0\0\0\0");
+}
 
 namespace kh {
 namespace Screen {
