@@ -64,6 +64,7 @@ void checkAllWaveLoadStatus();
 
 extern union Flags {
 	u8 asByte;
+	u16 asShort;
 	struct {
 		bool _7 : 1;
 		bool _6 : 1;
