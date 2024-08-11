@@ -56,7 +56,7 @@ void ObjCourseName::doCreate(JKRArchive* arc)
 		mDisp = new og::Screen::DispMemberCourseName;
 
 	} else {
-		JUT_PANICLINE(101, "ERR! in ObjCourseName Createé∏îsÅI\n");
+		JUT_PANICLINE(101, "ERR! in ObjCourseName CreateÂ§±ÊïóÔºÅ\n");
 	}
 
 	CourseName* owner = static_cast<CourseName*>(getOwner());

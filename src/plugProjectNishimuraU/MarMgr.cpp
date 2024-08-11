@@ -19,7 +19,7 @@ static const char* cMatAnimBrkTexName = "/enemy/data/Mar/fuusen_model.brk";
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "フウセンドックリマネージャ"; // blimp manager
+	mName = "繝輔え繧ｻ繝ｳ繝峨ャ繧ｯ繝ｪ繝槭ロ繝ｼ繧ｸ繝｣"; // blimp manager
 }
 
 /**

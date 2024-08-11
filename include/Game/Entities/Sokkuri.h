@@ -34,16 +34,16 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mMaxTravelTime(this, 'fp01', "ˆÚ“®ŠÔÅ‘å", 1.0f, 0.0f, 10.0f)                   // 'maximum travel time'
-		    , mMinTravelTime(this, 'fp02', "ˆÚ“®ŠÔÅ¬", 0.0f, 0.0f, 10.0f)                   // 'minimum travel time'
-		    , mMaxMoveAngle(this, 'fp03', "ˆÚ“®Šp“xÅ‘å", 90.0f, 0.0f, 180.0f)                  // 'maximum moving angle'
-		    , mMinMoveAngle(this, 'fp04', "ˆÚ“®Šp“xÅ¬", 45.0f, 0.0f, 180.0f)                  // 'minimum moving angle'
-		    , mWaitingProbability(this, 'fp11', "‘Ò‹@Šm—¦", 0.25f, 0.0f, 1.0f)                  // 'waiting probability'
-		    , mMaxWaitingTime(this, 'fp12', "‘Ò‹@ŠÔÅ‘å", 2.0f, 0.0f, 10.0f)                  // 'maximum waiting time'
-		    , mMinWaitingTime(this, 'fp13', "‘Ò‹@ŠÔÅ¬", 1.0f, 0.0f, 10.0f)                  // 'minimum waiting time'
-		    , mUnderwaterMoveSpeed(this, 'fp21', "…’†ˆÚ“®‘¬“x", 25.0f, 0.0f, 1000.0f)          // 'underwater movement speed'
-		    , mUnderwaterRotationRate(this, 'fp22', "…’†‰ñ“]‘¬“x—¦", 0.05f, 0.0f, 1.0f)        // 'underwater rotation rate'
-		    , mUnderwaterRotationMaxSpeed(this, 'fp23', "…’†‰ñ“]Å‘å‘¬“x", 1.0f, 0.0f, 360.0f) // 'underwater rotation maximum speed'
+		    , mMaxTravelTime(this, 'fp01', "ç§»å‹•æ™‚é–“æœ€å¤§", 1.0f, 0.0f, 10.0f)                   // 'maximum travel time'
+		    , mMinTravelTime(this, 'fp02', "ç§»å‹•æ™‚é–“æœ€å°", 0.0f, 0.0f, 10.0f)                   // 'minimum travel time'
+		    , mMaxMoveAngle(this, 'fp03', "ç§»å‹•è§’åº¦æœ€å¤§", 90.0f, 0.0f, 180.0f)                  // 'maximum moving angle'
+		    , mMinMoveAngle(this, 'fp04', "ç§»å‹•è§’åº¦æœ€å°", 45.0f, 0.0f, 180.0f)                  // 'minimum moving angle'
+		    , mWaitingProbability(this, 'fp11', "å¾…æ©Ÿç¢ºç‡", 0.25f, 0.0f, 1.0f)                  // 'waiting probability'
+		    , mMaxWaitingTime(this, 'fp12', "å¾…æ©Ÿæ™‚é–“æœ€å¤§", 2.0f, 0.0f, 10.0f)                  // 'maximum waiting time'
+		    , mMinWaitingTime(this, 'fp13', "å¾…æ©Ÿæ™‚é–“æœ€å°", 1.0f, 0.0f, 10.0f)                  // 'minimum waiting time'
+		    , mUnderwaterMoveSpeed(this, 'fp21', "æ°´ä¸­ç§»å‹•é€Ÿåº¦", 25.0f, 0.0f, 1000.0f)          // 'underwater movement speed'
+		    , mUnderwaterRotationRate(this, 'fp22', "æ°´ä¸­å›è»¢é€Ÿåº¦ç‡", 0.05f, 0.0f, 1.0f)        // 'underwater rotation rate'
+		    , mUnderwaterRotationMaxSpeed(this, 'fp23', "æ°´ä¸­å›è»¢æœ€å¤§é€Ÿåº¦", 1.0f, 0.0f, 360.0f) // 'underwater rotation maximum speed'
 		{
 		}
 

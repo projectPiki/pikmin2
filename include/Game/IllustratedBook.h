@@ -119,17 +119,17 @@ struct CameraParms {
 	struct Parms : public Parameters {
 		Parms()
 		    : Parameters(nullptr, "cameraParms")
-		    , mRadius(this, 'f000', "”¼Œa", 350.0f, 0.0f, 2000.0f)                // 'radius'
-		    , mInitialHeight(this, 'f001', "‚‚³@‰Šú’l", 500.0f, 0.0f, 1000.0f) // 'height initial value'
-		    , mMinHeight(this, 'f002', "‚‚³@Å¬’l", 0.0f, 0.0f, 1000.0f)       // 'height min value'
-		    , mMaxHeight(this, 'f003', "‚‚³@Å‘å’l", 700.0f, 0.0f, 1000.0f)     // 'height max value'
-		    , mOffsetX(this, 'f004', "ƒIƒtƒZƒbƒg@‚˜", 0.0f, -500.0f, 500.0f)     // 'offset X'
-		    , mOffsetY(this, 'f005', "ƒIƒtƒZƒbƒg@‚™", 0.0f, -500.0f, 500.0f)     // 'offset Y'
-		    , mOffsetZ(this, 'f006', "ƒIƒtƒZƒbƒg@‚š", 0.0f, -500.0f, 500.0f)     // 'offset Z'
-		    , mInitialViewAngle(this, 'f009', "‰æŠp@‰Šú’l", 30.0f, 0.0f, 90.0f) // 'view angle initial value'
-		    , mMinViewAngle(this, 'f007', "‰æŠp@Å¬’l", 0.1f, 0.0f, 90.0f)      // 'view angle min value'
-		    , mMaxViewAngle(this, 'f008', "‰æŠp@Å‘å’l", 90.0f, 0.0f, 90.0f)     // 'view angle max value'
-		    , mInitialRotation(this, 'f010', "‰ñ“]@‰Šú’l", 0.0f, 0.0f, 360.0f)  // 'rotation initial value'
+		    , mRadius(this, 'f000', "åŠå¾„", 350.0f, 0.0f, 2000.0f)                // 'radius'
+		    , mInitialHeight(this, 'f001', "é«˜ã•ã€€åˆæœŸå€¤", 500.0f, 0.0f, 1000.0f) // 'height initial value'
+		    , mMinHeight(this, 'f002', "é«˜ã•ã€€æœ€å°å€¤", 0.0f, 0.0f, 1000.0f)       // 'height min value'
+		    , mMaxHeight(this, 'f003', "é«˜ã•ã€€æœ€å¤§å€¤", 700.0f, 0.0f, 1000.0f)     // 'height max value'
+		    , mOffsetX(this, 'f004', "ã‚ªãƒ•ã‚»ãƒƒãƒˆã€€ï½˜", 0.0f, -500.0f, 500.0f)     // 'offset X'
+		    , mOffsetY(this, 'f005', "ã‚ªãƒ•ã‚»ãƒƒãƒˆã€€ï½™", 0.0f, -500.0f, 500.0f)     // 'offset Y'
+		    , mOffsetZ(this, 'f006', "ã‚ªãƒ•ã‚»ãƒƒãƒˆã€€ï½š", 0.0f, -500.0f, 500.0f)     // 'offset Z'
+		    , mInitialViewAngle(this, 'f009', "ç”»è§’ã€€åˆæœŸå€¤", 30.0f, 0.0f, 90.0f) // 'view angle initial value'
+		    , mMinViewAngle(this, 'f007', "ç”»è§’ã€€æœ€å°å€¤", 0.1f, 0.0f, 90.0f)      // 'view angle min value'
+		    , mMaxViewAngle(this, 'f008', "ç”»è§’ã€€æœ€å¤§å€¤", 90.0f, 0.0f, 90.0f)     // 'view angle max value'
+		    , mInitialRotation(this, 'f010', "å›è»¢ã€€åˆæœŸå€¤", 0.0f, 0.0f, 360.0f)  // 'rotation initial value'
 		{
 		}
 
@@ -205,9 +205,9 @@ struct PositionParms : public CNode {
 	struct Parms : public Parameters {
 		inline Parms()
 		    : Parameters(nullptr, "PositionParms")
-		    , mAppearPosX(this, 'f000', "oŒ»ˆÊ’u@‚˜", 0.0f, -10000.0f, 10000.0f) // 'appearance position X'
-		    , mAppearPosY(this, 'f001', "oŒ»ˆÊ’u@‚™", 0.0f, -10000.0f, 10000.0f) // 'appearance position Y'
-		    , mAppearPosZ(this, 'f002', "oŒ»ˆÊ’u@‚š", 0.0f, -10000.0f, 10000.0f) // 'appearance position Z'
+		    , mAppearPosX(this, 'f000', "å‡ºç¾ä½ç½®ã€€ï½˜", 0.0f, -10000.0f, 10000.0f) // 'appearance position X'
+		    , mAppearPosY(this, 'f001', "å‡ºç¾ä½ç½®ã€€ï½™", 0.0f, -10000.0f, 10000.0f) // 'appearance position Y'
+		    , mAppearPosZ(this, 'f002', "å‡ºç¾ä½ç½®ã€€ï½š", 0.0f, -10000.0f, 10000.0f) // 'appearance position Z'
 		{
 		}
 
@@ -242,9 +242,9 @@ struct EnemyParms : public CNode {
 	struct Parms : public Parameters {
 		inline Parms()
 		    : Parameters(nullptr, "enemyParms")
-		    , mSize(this, 'f001', "‘å‚«‚³", 10.0f, 0.0f, 1000.0f)         // 'size'
-		    , mAppearRange(this, 'f000', "oŒ»”ÍˆÍ", 0.0f, 0.0f, 1000.0f) // 'occurence range'
-		    , mAppearNum(this, 'i000', "oŒ»”", 1, 1, 99)
+		    , mSize(this, 'f001', "å¤§ãã•", 10.0f, 0.0f, 1000.0f)         // 'size'
+		    , mAppearRange(this, 'f000', "å‡ºç¾ç¯„å›²", 0.0f, 0.0f, 1000.0f) // 'occurence range'
+		    , mAppearNum(this, 'i000', "å‡ºç¾æ•°", 1, 1, 99)
 		{
 		}
 
@@ -281,9 +281,9 @@ struct ItemParms : public CNode {
 	struct Parms : public Parameters {
 		inline Parms()
 		    : Parameters(nullptr, "enemyParms")
-		    , mOffsetX(this, 'f000', "ƒIƒtƒZƒbƒg‚˜", 0.0f, -10000.0f, 10000.0f)
-		    , mOffsetY(this, 'f001', "ƒIƒtƒZƒbƒg‚™", 0.0f, -10000.0f, 10000.0f)
-		    , mOffsetZ(this, 'f002', "ƒIƒtƒZƒbƒg‚š", 0.0f, -10000.0f, 10000.0f)
+		    , mOffsetX(this, 'f000', "ã‚ªãƒ•ã‚»ãƒƒãƒˆï½˜", 0.0f, -10000.0f, 10000.0f)
+		    , mOffsetY(this, 'f001', "ã‚ªãƒ•ã‚»ãƒƒãƒˆï½™", 0.0f, -10000.0f, 10000.0f)
+		    , mOffsetZ(this, 'f002', "ã‚ªãƒ•ã‚»ãƒƒãƒˆï½š", 0.0f, -10000.0f, 10000.0f)
 		{
 		}
 

@@ -200,7 +200,7 @@ void ObjAnaDemo::doCreate(JKRArchive* arc)
 		mDisp = new og::Screen::DispMemberAnaDemo;
 
 	} else {
-		JUT_PANICLINE(431, "ERR! in ObjAnaDemo Createé∏îsÅI\n");
+		JUT_PANICLINE(431, "ERR! in ObjAnaDemo CreateÂ§±ÊïóÔºÅ\n");
 	}
 
 	mScreen = new P2DScreen::Mgr_tuning;
@@ -698,7 +698,7 @@ void ObjAnaDemo::doUpdateFadeoutFinish()
 		scene->endScene(nullptr);
 	} else {
 		if (scene->setBackupScene() && !scene->startScene(nullptr)) {
-			JUT_PANICLINE(994, "ÇæÇﬂÇ≈Ç∑\n");
+			JUT_PANICLINE(994, "„Å†„ÇÅ„Åß„Åô\n");
 		}
 	}
 }

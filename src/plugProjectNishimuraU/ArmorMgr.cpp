@@ -12,7 +12,7 @@ static const char armorMgrName[] = "246-ArmorMgr";
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "ヨロイムシマネージャ"; // worm manager
+	mName = "繝ｨ繝ｭ繧､繝繧ｷ繝槭ロ繝ｼ繧ｸ繝｣"; // worm manager
 }
 
 /**

@@ -140,7 +140,7 @@ void FSMState_CardRequest::do_exec(TMgr* mgr)
 			do_transitCardPlayerDataBroken(mgr);
 			break;
 		default:
-			JUT_PANICLINE(150, "���������[�J�[�h�G���[:�z��O�̃P�[�X�ł�\n");
+			JUT_PANICLINE(150, "※メモリーカードエラー:想定外のケースです\n");
 			JUT_PANICLINE(151, "P2Assert");
 			break;
 		}
@@ -258,7 +258,7 @@ void FSMState_CardRequest::do_transitCardPlayerDataBroken(TMgr* mgr) { do_transi
  */
 void FSMState_CardRequest::do_transitCardSerialNoError(TMgr* mgr)
 {
-	JUT_PANICLINE(224, "�����[�h�ŃV���A���G���[�͂��肦�Ȃ�\n"); // * There is no serial error during loading
+	JUT_PANICLINE(224, "※ロードでシリアルエラーはありえない\n"); // * There is no serial error during loading
 	JUT_PANICLINE(225, "P2Assert");
 }
 
@@ -358,7 +358,7 @@ void FSMState_CardError::do_exec(TMgr* mgr)
 			mgr->start();
 			break;
 		default:
-			JUT_PANICLINE(342, "���@mgr->mCardErrorMgr->getEnd=%d ���Ă��肦�Ȃ��I\n", mgr->mCardErrorMgr.mEndStat);
+			JUT_PANICLINE(342, "※　mgr->mCardErrorMgr->getEnd=%d ってありえない！\n", mgr->mCardErrorMgr.mEndStat);
 			JUT_PANICLINE(343, "P2Assert");
 		}
 	}

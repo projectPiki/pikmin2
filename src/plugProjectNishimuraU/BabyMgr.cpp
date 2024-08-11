@@ -12,7 +12,7 @@ static const char babyMgrName[] = "246-BabyMgr";
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "ベビーチャッピーマネージャ"; // baby chappy manager
+	mName = "繝吶ン繝ｼ繝√Ε繝�繝斐�ｼ繝槭ロ繝ｼ繧ｸ繝｣"; // baby chappy manager
 }
 
 /**

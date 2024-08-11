@@ -179,7 +179,7 @@ bool ObjUfoMenu::doUpdate()
 			bool check                = base->setScene(arg);
 			if (check) {
 				check = base->startScene(nullptr);
-				JUT_ASSERTLINE(356, check, "ÇæÇﬂÇ≈Ç∑\n");
+				JUT_ASSERTLINE(356, check, "„Å†„ÇÅ„Åß„Åô\n");
 			}
 		} else if (mSelectIndex == 1) {
 			mDisp->mUfoMenu.mContenaType = 2;
@@ -189,7 +189,7 @@ bool ObjUfoMenu::doUpdate()
 			bool check                = base->setScene(arg);
 			if (check) {
 				check = base->startScene(nullptr);
-				JUT_ASSERTLINE(372, check, "ÇæÇﬂÇ≈Ç∑\n");
+				JUT_ASSERTLINE(372, check, "„Å†„ÇÅ„Åß„Åô\n");
 			}
 		}
 	} else if (pad->getButtonDown() & Controller::PRESS_B) {
@@ -212,7 +212,7 @@ void ObjUfoMenu::setBackupScene()
 		::Screen::SceneBase* base = getOwner();
 		if (base->setBackupScene()) {
 			if (!base->startScene(nullptr)) {
-				JUT_PANICLINE(409, "ÇæÇﬂÇ≈Ç∑\n");
+				JUT_PANICLINE(409, "„Å†„ÇÅ„Åß„Åô\n");
 			}
 		}
 		mDoEnd = true;

@@ -12,7 +12,7 @@ static const char kumaChappyMgrName[] = "246-KumaChappyMgr";
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "クマチャッピーマネージャ"; // bear chappy manager
+	mName = "繧ｯ繝槭メ繝｣繝�繝斐�ｼ繝槭ロ繝ｼ繧ｸ繝｣"; // bear chappy manager
 }
 
 /**

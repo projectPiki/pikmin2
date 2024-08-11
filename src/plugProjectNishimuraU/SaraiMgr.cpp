@@ -12,7 +12,7 @@ static const char saraiMgrName[] = "246-SaraiMgr";
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "サライムシマネージャ"; // saraimushi/salamander manager (lol?)
+	mName = "繧ｵ繝ｩ繧､繝繧ｷ繝槭ロ繝ｼ繧ｸ繝｣"; // saraimushi/salamander manager (lol?)
 }
 
 /**

@@ -8,7 +8,7 @@ namespace Game {
 Tanpopo::Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBaseAlwaysMovieActor(objLimit, modelType)
 {
-	mName = "ƒ^ƒ“ƒ|ƒ|ƒ}ƒl[ƒWƒƒ"; // dandelion manager
+	mName = "ã‚¿ãƒ³ãƒãƒãƒãƒãƒ¼ã‚¸ãƒ£"; // dandelion manager
 }
 
 /**
@@ -30,7 +30,7 @@ EnemyBase* Tanpopo::Mgr::birth(EnemyBirthArg& birthArg) { return EnemyMgrBase::b
 Clover::Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBaseAlwaysMovieActor(objLimit, modelType)
 {
-	mName = "ƒNƒ[ƒo[ƒ}ƒl[ƒWƒƒ"; // clover manager
+	mName = "ã‚¯ãƒ­ãƒ¼ãƒãƒ¼ãƒãƒãƒ¼ã‚¸ãƒ£"; // clover manager
 }
 
 /**
@@ -52,7 +52,7 @@ EnemyBase* Clover::Mgr::birth(EnemyBirthArg& birthArg) { return EnemyMgrBase::bi
 HikariKinoko::Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBaseAlwaysMovieActor(objLimit, modelType)
 {
-	mName = "ƒqƒJƒŠƒLƒmƒRƒ}ƒl[ƒWƒƒ"; // hikari mushroom manager
+	mName = "ãƒ’ã‚«ãƒªã‚­ãƒã‚³ãƒãƒãƒ¼ã‚¸ãƒ£"; // hikari mushroom manager
 }
 
 /**
@@ -74,7 +74,7 @@ EnemyBase* HikariKinoko::Mgr::birth(EnemyBirthArg& birthArg) { return EnemyMgrBa
 Ooinu_s::Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBaseAlwaysMovieActor(objLimit, modelType)
 {
-	mName = "‚¨‚¨‚¢‚Ê‚Ó‚®‚èi¬jƒ}ƒl[ƒWƒƒ"; // oinu fuguri (small) manager
+	mName = "ãŠãŠã„ã¬ãµãã‚Šï¼ˆå°ï¼‰ãƒãƒãƒ¼ã‚¸ãƒ£"; // oinu fuguri (small) manager
 }
 
 /**
@@ -96,7 +96,7 @@ EnemyBase* Ooinu_s::Mgr::birth(EnemyBirthArg& birthArg) { return EnemyMgrBase::b
 KareOoinu_s::Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBaseAlwaysMovieActor(objLimit, modelType)
 {
-	mName = "ŒÍ‚ê‚¨‚¨‚¢‚Ê‚Ó‚®‚èi¬jƒ}ƒl[ƒWƒƒ"; // withered dog fuguri (small) manager
+	mName = "æ¯ã‚ŒãŠãŠã„ã¬ãµãã‚Šï¼ˆå°ï¼‰ãƒãƒãƒ¼ã‚¸ãƒ£"; // withered dog fuguri (small) manager
 }
 
 /**
@@ -118,7 +118,7 @@ EnemyBase* KareOoinu_s::Mgr::birth(EnemyBirthArg& birthArg) { return EnemyMgrBas
 Ooinu_l::Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBaseAlwaysMovieActor(objLimit, modelType)
 {
-	mName = "‚¨‚¨‚¢‚Ê‚Ó‚®‚èi‘åjƒ}ƒl[ƒWƒƒ"; // big dog fuguri (large) manager
+	mName = "ãŠãŠã„ã¬ãµãã‚Šï¼ˆå¤§ï¼‰ãƒãƒãƒ¼ã‚¸ãƒ£"; // big dog fuguri (large) manager
 }
 
 /**
@@ -140,7 +140,7 @@ EnemyBase* Ooinu_l::Mgr::birth(EnemyBirthArg& birthArg) { return EnemyMgrBase::b
 KareOoinu_l::Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBaseAlwaysMovieActor(objLimit, modelType)
 {
-	mName = "ŒÍ‚ê‚¨‚¨‚¢‚Ê‚Ó‚®‚èi‘åjƒ}ƒl[ƒWƒƒ"; // withered dog fuguri (large) manager
+	mName = "æ¯ã‚ŒãŠãŠã„ã¬ãµãã‚Šï¼ˆå¤§ï¼‰ãƒãƒãƒ¼ã‚¸ãƒ£"; // withered dog fuguri (large) manager
 }
 
 /**
@@ -162,7 +162,7 @@ EnemyBase* KareOoinu_l::Mgr::birth(EnemyBirthArg& birthArg) { return EnemyMgrBas
 Wakame_s::Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBaseAlwaysMovieActor(objLimit, modelType)
 {
-	mName = "á‰èi¬jƒ}ƒl[ƒWƒƒ"; // sprout (small) manager
+	mName = "è‹¥èŠ½ï¼ˆå°ï¼‰ãƒãƒãƒ¼ã‚¸ãƒ£"; // sprout (small) manager
 }
 
 /**
@@ -184,7 +184,7 @@ EnemyBase* Wakame_s::Mgr::birth(EnemyBirthArg& birthArg) { return EnemyMgrBase::
 Wakame_l::Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBaseAlwaysMovieActor(objLimit, modelType)
 {
-	mName = "á‰èi‘åjƒ}ƒl[ƒWƒƒ"; // sprout (large) manager
+	mName = "è‹¥èŠ½ï¼ˆå¤§ï¼‰ãƒãƒãƒ¼ã‚¸ãƒ£"; // sprout (large) manager
 }
 
 /**
@@ -206,7 +206,7 @@ EnemyBase* Wakame_l::Mgr::birth(EnemyBirthArg& birthArg) { return EnemyMgrBase::
 Tukushi::Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBaseAlwaysMovieActor(objLimit, modelType)
 {
-	mName = "‚Â‚­‚µƒ}ƒl[ƒWƒƒ"; // tsukushi manager
+	mName = "ã¤ãã—ãƒãƒãƒ¼ã‚¸ãƒ£"; // tsukushi manager
 }
 
 /**
@@ -228,7 +228,7 @@ EnemyBase* Tukushi::Mgr::birth(EnemyBirthArg& birthArg) { return EnemyMgrBase::b
 Watage::Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBaseAlwaysMovieActor(objLimit, modelType)
 {
-	mName = "–È–Ñƒ}ƒl[ƒWƒƒ"; // fluff manager
+	mName = "ç¶¿æ¯›ãƒãƒãƒ¼ã‚¸ãƒ£"; // fluff manager
 }
 
 /**
@@ -250,7 +250,7 @@ EnemyBase* Watage::Mgr::birth(EnemyBirthArg& birthArg) { return EnemyMgrBase::bi
 DiodeRed::Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBaseAlwaysMovieActor(objLimit, modelType)
 {
-	mName = "Ôƒ_ƒCƒI[ƒhƒ}ƒl[ƒWƒƒ"; // red diode manager
+	mName = "èµ¤ãƒ€ã‚¤ã‚ªãƒ¼ãƒ‰ãƒãƒãƒ¼ã‚¸ãƒ£"; // red diode manager
 }
 
 /**
@@ -272,7 +272,7 @@ EnemyBase* DiodeRed::Mgr::birth(EnemyBirthArg& birthArg) { return EnemyMgrBase::
 DiodeGreen::Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBaseAlwaysMovieActor(objLimit, modelType)
 {
-	mName = "Âƒ_ƒCƒI[ƒhƒ}ƒl[ƒWƒƒ"; // blue diode manager
+	mName = "é’ãƒ€ã‚¤ã‚ªãƒ¼ãƒ‰ãƒãƒãƒ¼ã‚¸ãƒ£"; // blue diode manager
 }
 
 /**
@@ -294,7 +294,7 @@ EnemyBase* DiodeGreen::Mgr::birth(EnemyBirthArg& birthArg) { return EnemyMgrBase
 Margaret::Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBaseAlwaysMovieActor(objLimit, modelType)
 {
-	mName = "ƒ}[ƒKƒŒƒbƒgƒ}ƒl[ƒWƒƒ"; // margaret manager
+	mName = "ãƒãƒ¼ã‚¬ãƒ¬ãƒƒãƒˆãƒãƒãƒ¼ã‚¸ãƒ£"; // margaret manager
 }
 
 /**
@@ -316,7 +316,7 @@ EnemyBase* Margaret::Mgr::birth(EnemyBirthArg& birthArg) { return EnemyMgrBase::
 Nekojarashi::Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBaseAlwaysMovieActor(objLimit, modelType)
 {
-	mName = "‚Ë‚±‚¶‚á‚ç‚µƒ}ƒl[ƒWƒƒ"; // nekojyarashi manager
+	mName = "ã­ã“ã˜ã‚ƒã‚‰ã—ãƒãƒãƒ¼ã‚¸ãƒ£"; // nekojyarashi manager
 }
 
 /**
@@ -338,7 +338,7 @@ EnemyBase* Nekojarashi::Mgr::birth(EnemyBirthArg& birthArg) { return EnemyMgrBas
 Chiyogami::Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBaseAlwaysMovieActor(objLimit, modelType)
 {
-	mName = "ç‘ã†ƒ}ƒl[ƒWƒƒ"; // chiyogami manager
+	mName = "åƒä»£ç´™ãƒãƒãƒ¼ã‚¸ãƒ£"; // chiyogami manager
 }
 
 /**
@@ -360,7 +360,7 @@ EnemyBase* Chiyogami::Mgr::birth(EnemyBirthArg& birthArg) { return EnemyMgrBase:
 Zenmai::Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBaseAlwaysMovieActor(objLimit, modelType)
 {
-	mName = "‚º‚ñ‚Ü‚¢ƒ}ƒl[ƒWƒƒ"; // mainspring manager
+	mName = "ãœã‚“ã¾ã„ãƒãƒãƒ¼ã‚¸ãƒ£"; // mainspring manager
 }
 
 /**

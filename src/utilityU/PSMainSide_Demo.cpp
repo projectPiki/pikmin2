@@ -37,7 +37,7 @@ inline void DemoInitiator::setDefaultValues()
 	P2ASSERTLINE(41, isInitialized());
 
 	mASTid = -1;
-	strcpy(mBuffer, "");
+	strcpy(mBuffer, "\0");
 	*mByte = -1;
 }
 
@@ -66,7 +66,7 @@ void DemoInitiator::equalSetStream(const char* buffer, u32 AST_ID, u8 byte)
 	P2ASSERTLINE(41, check);
 
 	mASTid = AST_ID;
-	strcpy((char*)buffer, "");
+	strcpy((char*)buffer, "\0");
 	*mByte = byte;
 }
 

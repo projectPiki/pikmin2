@@ -107,7 +107,7 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mPoisonDamage(this, 'fp01', "”’ƒsƒNƒ~ƒ“", 300.0f, 0.0f, 10000.0f) // 'white pikmin'
+		    , mPoisonDamage(this, 'fp01', "ç™½ãƒ”ã‚¯ãƒŸãƒ³", 300.0f, 0.0f, 10000.0f) // 'white pikmin'
 		{
 		}
 

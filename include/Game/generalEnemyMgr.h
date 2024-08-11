@@ -23,7 +23,7 @@ struct CreatureKillArg;
 
 struct EnemyMgrNode : public CNode, GenericObjectMgr {
 	inline EnemyMgrNode()
-	    : CNode("ƒ}ƒl[ƒWƒƒƒm[ƒh")
+	    : CNode("ãƒãƒãƒ¼ã‚¸ãƒ£ãƒãƒ¼ãƒ‰")
 	    , mEnemyID(EnemyTypeID::EnemyID_NULL)
 	    , mMgr(nullptr)
 	{

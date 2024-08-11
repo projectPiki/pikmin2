@@ -18,7 +18,7 @@ Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
 	mJigumoHouseData = nullptr;
-	mName            = "巣マネージャ"; // 'nest manager'
+	mName            = "蟾｣繝槭ロ繝ｼ繧ｸ繝｣"; // 'nest manager'
 	mMatColor.a      = 0xFF;
 	mMatColor.b      = 0xFF;
 	mMatColor.g      = 0xFF;

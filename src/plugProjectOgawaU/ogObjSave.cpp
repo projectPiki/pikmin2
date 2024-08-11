@@ -34,7 +34,7 @@ void ObjSave::doCreate(JKRArchive* arc)
 	if (disp->isID(OWNER_OGA, MEMBER_SAVE)) {
 		mDisp = disp;
 	} else {
-		JUT_PANICLINE(84, "ERR! in ObjSave Createé∏îsÅI\n");
+		JUT_PANICLINE(84, "ERR! in ObjSave CreateÂ§±ÊïóÔºÅ\n");
 	}
 	mState = SAVESTATE_StartDelay;
 	mTimer = 0.0f;

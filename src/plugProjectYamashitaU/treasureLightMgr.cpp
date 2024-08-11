@@ -11,17 +11,17 @@ namespace TreasureLight {
  * @note Size: 0x150
  */
 Mgr::Mgr()
-    : LightMgr("Ç®ïÛÉâÉCÉg")
+    : LightMgr("„ÅäÂÆù„É©„Ç§„Éà")
 {
 	mRotationAngle  = 300.0f;
 	mElevationAngle = 330.0f;
 
-	mMainLight             = new LightObj("ÉÅÉCÉìÉâÉCÉg", GX_LIGHT0, TYPE_Spot, JUtility::TColor(0xFF, 0xFF, 0xFF, 0xFF));
+	mMainLight             = new LightObj("„É°„Ç§„É≥„É©„Ç§„Éà", GX_LIGHT0, TYPE_Spot, JUtility::TColor(0xFF, 0xFF, 0xFF, 0xFF));
 	mMainLight->mSpotFn    = 3;
 	mMainLight->mElevation = Vector3f(0.0f, -1.0f, 0.0f);
 	registLightObj(mMainLight);
 
-	mSpecLight          = new LightObj("ÉXÉyÉLÉÖÉâ-ÉâÉCÉg", GX_LIGHT7, TYPE_Spec, JUtility::TColor(0xFF, 0xFF, 0xFF, 0xFF));
+	mSpecLight          = new LightObj("„Çπ„Éö„Ç≠„É•„É©-„É©„Ç§„Éà", GX_LIGHT7, TYPE_Spec, JUtility::TColor(0xFF, 0xFF, 0xFF, 0xFF));
 	mSpecLight->mKScale = 40.0f;
 	registLightObj(mSpecLight);
 
@@ -60,22 +60,22 @@ void Mgr::set(Matrixf& mtx)
  * Credits: Altafen
  *
  * https://en.wikipedia.org/wiki/Spherical_coordinate_system
- * You can convert an angle É∆ to its position on a circle of radius r:
- * x = r * cos(É∆)
- * y = r * sin(É∆)
+ * You can convert an angle Œ∏ to its position on a circle of radius r:
+ * x = r * cos(Œ∏)
+ * y = r * sin(Œ∏)
  *
  * So now imagine a line going in the direction of the 2D angle
  * where y is now height, x is now how far away it is from the center pole
  *
- * height   = r * sin(É∆)
- * distance = r * cos(É∆)
+ * height   = r * sin(Œ∏)
+ * distance = r * cos(Œ∏)
  *
  * Since the 2D x/y have to shrink a bit as the sphere gets smaller the higher you go,
  * use distance as the radius before putting them in the 2D equations, and you get
  *
- * x = (r * cos(É∆)) * cos(É∆)
- * y = (r * cos(É∆)) * sin(É∆)
- * z = r * sin(É∆)
+ * x = (r * cos(Œ∏)) * cos(Œ∏)
+ * y = (r * cos(Œ∏)) * sin(Œ∏)
+ * z = r * sin(Œ∏)
  */
 void Mgr::setCommonProc()
 {

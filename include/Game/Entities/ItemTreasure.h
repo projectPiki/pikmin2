@@ -103,10 +103,10 @@ struct TreasureParms : public CreatureParms {
 	struct Parms : public Parameters {
 		inline Parms()
 		    : Parameters(nullptr, "Plant::Parms")
-		    , mLife0(this, 'p000', "ƒ‰ƒCƒt(0)", 250.0f, 1.0f, 60000.0f)  // 'life (0)'
-		    , mLife1(this, 'p001', "ƒ‰ƒCƒt(1)", 750.0f, 1.0f, 60000.0f)  // 'life (1)'
-		    , mLife2(this, 'p002', "ƒ‰ƒCƒt(2)", 1200.0f, 1.0f, 60000.0f) // 'life (2)'
-		    , mLife3(this, 'p003', "ƒ‰ƒCƒt(3)", 1500.0f, 1.0f, 60000.0f) // 'life (3)'
+		    , mLife0(this, 'p000', "ãƒ©ã‚¤ãƒ•(0)", 250.0f, 1.0f, 60000.0f)  // 'life (0)'
+		    , mLife1(this, 'p001', "ãƒ©ã‚¤ãƒ•(1)", 750.0f, 1.0f, 60000.0f)  // 'life (1)'
+		    , mLife2(this, 'p002', "ãƒ©ã‚¤ãƒ•(2)", 1200.0f, 1.0f, 60000.0f) // 'life (2)'
+		    , mLife3(this, 'p003', "ãƒ©ã‚¤ãƒ•(3)", 1500.0f, 1.0f, 60000.0f) // 'life (3)'
 		{
 		}
 

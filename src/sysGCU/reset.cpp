@@ -72,26 +72,26 @@ void ResetManager::update()
 
 		} else {
 			if (isWritingMemoryCard()) {
-				OSReport("\tƒƒ‚ƒŠ[ƒJ[ƒh‘‚«ž‚ÝI—¹‘Ò‚¿\n"); // Waiting for memory card write completion
+				OSReport("\tãƒ¡ãƒ¢ãƒªãƒ¼ã‚«ãƒ¼ãƒ‰æ›¸ãè¾¼ã¿çµ‚äº†å¾…ã¡\n"); // Waiting for memory card write completion
 			}
 
 			if (!isSoundSystemStopped()) {
 				if (++mCounter == 3) {
 					THPPlayerStop();
 				}
-				OSReport("\tƒI[ƒfƒBƒII—¹‘Ò‚¿\n"); // Waiting for Audio end
+				OSReport("\tã‚ªãƒ¼ãƒ‡ã‚£ã‚ªçµ‚äº†å¾…ã¡\n"); // Waiting for Audio end
 			}
 
 			if (isFlag(RESETFLAG_GPProcessing)) {
-				OSReport("\tGPˆ—I—¹‘Ò‚¿\n"); // GP processing end waiting
+				OSReport("\tGPå‡¦ç†çµ‚äº†å¾…ã¡\n"); // GP processing end waiting
 			}
 
 			if (OSGetResetSwitchState()) {
-				OSReport("\tƒŠƒZƒbƒgƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚Ä‚¢‚é\n"); // Reset button pressed
+				OSReport("\tãƒªã‚»ãƒƒãƒˆãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚Œã¦ã„ã‚‹\n"); // Reset button pressed
 			}
 
 			if (!check) {
-				OSReport("‹–‰Â‚ªo‚Ä‚¢‚È‚¢\n"); // Permission Denied
+				OSReport("è¨±å¯ãŒå‡ºã¦ã„ãªã„\n"); // Permission Denied
 			}
 		}
 	} else {

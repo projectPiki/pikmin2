@@ -245,22 +245,22 @@ struct Parms : public EnemyParmsBase {
 		ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
 		    // Pod?
-		    , mPodMoveSpeed(this, 'fp01', "ƒ|ƒbƒhˆÚ“®‘¬“x", 10.0f, 0.0f, 100.0f)
+		    , mPodMoveSpeed(this, 'fp01', "ãƒãƒƒãƒ‰ç§»å‹•é€Ÿåº¦", 10.0f, 0.0f, 100.0f)
 		    // Running away (escape)
-		    , mEscapeSpeed(this, 'fp02', "“¦‚°‘¬“x", 10.0f, 0.0f, 1000.0f)
-		    , mEscapeRotationSpeed(this, 'fp03', "“¦‚°‰ñ“]‘¬“x—¦", 0.1f, 0.0f, 1.0f)
-		    , mMaxEscapeRotationStep(this, 'fp04', "“¦‚°‰ñ“]Å‘å‘¬“x", 10.0f, 0.0f, 360.0f)
+		    , mEscapeSpeed(this, 'fp02', "é€ƒã’é€Ÿåº¦", 10.0f, 0.0f, 1000.0f)
+		    , mEscapeRotationSpeed(this, 'fp03', "é€ƒã’å›è»¢é€Ÿåº¦ç‡", 0.1f, 0.0f, 1.0f)
+		    , mMaxEscapeRotationStep(this, 'fp04', "é€ƒã’å›è»¢æœ€å¤§é€Ÿåº¦", 10.0f, 0.0f, 360.0f)
 		    // Normal movement
-		    , mTravelSpeed(this, 'fp05', "2’iŠK‘¬“x", 200.0f, 10.0f, 500.0f)
-		    , mRotationSpeed(this, 'fp06', "2’iŠK‰ñ“]‘¬“x—¦", 0.1f, 0.0f, 1.0f)
-		    , mMaxRotationStep(this, 'fp07', "2’iŠK‰ñ“]Å‘å‘¬“x", 10.0f, 0.0f, 360.0f)
+		    , mTravelSpeed(this, 'fp05', "2æ®µéšé€Ÿåº¦", 200.0f, 10.0f, 500.0f)
+		    , mRotationSpeed(this, 'fp06', "2æ®µéšå›è»¢é€Ÿåº¦ç‡", 0.1f, 0.0f, 1.0f)
+		    , mMaxRotationStep(this, 'fp07', "2æ®µéšå›è»¢æœ€å¤§é€Ÿåº¦", 10.0f, 0.0f, 360.0f)
 		    // Walking speed
-		    , mWalkingSpeed(this, 'fp11', "•à‚«‘¬“x", 10.0f, 0.0f, 100.0f)
-		    , mTimerToTwoStep(this, 'ip01', "2’iŠK‚Ö‚Ìƒ^ƒCƒ}[", 300, 0, 3000)
-		    , mDosinStopTimerLength(this, 'ip03', "ƒhƒVƒ“’â~ƒ^ƒCƒ}[", 200, 0, 600)
-		    , mFreezeTimerLength(this, 'ip04', "“¦‚°’â~ƒ^ƒCƒ}[", 200, 0, 600)
-		    , mContinuousEscapeTimerLength(this, 'ip05', "˜A‘±“¦‚°ƒ^ƒCƒ}[", 200, 0, 600)
-		    , mStandStillTimerLength(this, 'ip06', "‚Â‚©‚ê’â~ƒ^ƒCƒ}[", 200, 0, 600)
+		    , mWalkingSpeed(this, 'fp11', "æ­©ãé€Ÿåº¦", 10.0f, 0.0f, 100.0f)
+		    , mTimerToTwoStep(this, 'ip01', "2æ®µéšã¸ã®ã‚¿ã‚¤ãƒãƒ¼", 300, 0, 3000)
+		    , mDosinStopTimerLength(this, 'ip03', "ãƒ‰ã‚·ãƒ³åœæ­¢ã‚¿ã‚¤ãƒãƒ¼", 200, 0, 600)
+		    , mFreezeTimerLength(this, 'ip04', "é€ƒã’åœæ­¢ã‚¿ã‚¤ãƒãƒ¼", 200, 0, 600)
+		    , mContinuousEscapeTimerLength(this, 'ip05', "é€£ç¶šé€ƒã’ã‚¿ã‚¤ãƒãƒ¼", 200, 0, 600)
+		    , mStandStillTimerLength(this, 'ip06', "ã¤ã‹ã‚Œåœæ­¢ã‚¿ã‚¤ãƒãƒ¼", 200, 0, 600)
 		{
 		}
 

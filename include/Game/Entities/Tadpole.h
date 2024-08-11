@@ -84,7 +84,7 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mPitterPatterMoveSpeed(this, 'fp01', "ピチピチ移動速度", 20.0f, 0.0f,
+		    , mPitterPatterMoveSpeed(this, 'fp01', "繝斐メ繝斐メ遘ｻ蜍暮溷ｺｦ", 20.0f, 0.0f,
 		                             1000.0f) // 'pichipichi movement speed'
 		{
 		}

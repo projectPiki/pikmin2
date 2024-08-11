@@ -216,7 +216,7 @@ void MgrCommand::setModeInvalid()
 void MgrCommand::memoryCallBackFunc()
 {
 	mCommandNode.mNode->mHeap->changeGroupID(mCommandNode.mNode->mHeapGroupID);
-	JUT_PANICLINE(343, "—L‚è‚¦‚È‚¢ó‘Ô‚Å‚²‚´‚¢‚Ü‚· \n"); // This is an impossible situation.
+	JUT_PANICLINE(343, "æœ‰ã‚Šãˆãªã„çŠ¶æ…‹ã§ã”ã–ã„ã¾ã™ \n"); // This is an impossible situation.
 }
 
 /**

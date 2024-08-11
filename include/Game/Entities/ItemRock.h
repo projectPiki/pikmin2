@@ -93,17 +93,17 @@ struct RockParms : public CreatureParms {
 	struct Parms : public Parameters {
 		Parms()
 		    : Parameters(nullptr, "Plant::Parms")
-		    , mHealthMax(this, 'p000', "ƒ‰ƒCƒt(0)", 1500.0f, 1.0f, 60000.0f)        // 'life (0)'
-		    , mHealthMedium(this, 'p001', "ƒ‰ƒCƒt(1)", 1200.0f, 1.0f, 60000.0f)     // 'life (1)'
-		    , mHealthSmall(this, 'p002', "ƒ‰ƒCƒt(2)", 750.0f, 1.0f, 60000.0f)       // 'life (2)'
-		    , mHealthHidden(this, 'p003', "ƒ‰ƒCƒt(3)", 250.0f, 1.0f, 60000.0f)      // 'life (3)'
-		    , mGrowTimeMax(this, 'p004', "Ä¶ŠÔ(0) [•ª]", 1.0f, 0.0f, 150.0f)    // 'play time (0) [minutes]'
-		    , mGrowTimeMedium(this, 'p005', "Ä¶ŠÔ(1) [•ª]", 1.0f, 0.0f, 150.0f) // 'play time (1) [minutes]'
-		    , mGrowTimeSmall(this, 'p006', "Ä¶ŠÔ(2) [•ª]", 1.0f, 0.0f, 150.0f)  // 'play time (2) [minutes]'
-		    , mGrowTimeHidden(this, 'p007', "Ä¶ŠÔ(3) [•ª]", 1.0f, 0.0f, 150.0f) // 'play time (3) [minutes]'
-		    , mWorkRadiusMax(this, 'p008', "d–”¼Œa(0)", 35.0f, 0.0f, 150.0f)      // 'work radius (0)'
-		    , mWorkRadiusMedium(this, 'p009', "d–”¼Œa(0)", 20.0f, 0.0f, 150.0f)   // 'work radius (0)' (should be (1))
-		    , mWorkRadiusSmall(this, 'p010', "d–”¼Œa(0)", 10.0f, 0.0f, 150.0f)    // 'work radius (0)' (should be (2))
+		    , mHealthMax(this, 'p000', "ãƒ©ã‚¤ãƒ•(0)", 1500.0f, 1.0f, 60000.0f)        // 'life (0)'
+		    , mHealthMedium(this, 'p001', "ãƒ©ã‚¤ãƒ•(1)", 1200.0f, 1.0f, 60000.0f)     // 'life (1)'
+		    , mHealthSmall(this, 'p002', "ãƒ©ã‚¤ãƒ•(2)", 750.0f, 1.0f, 60000.0f)       // 'life (2)'
+		    , mHealthHidden(this, 'p003', "ãƒ©ã‚¤ãƒ•(3)", 250.0f, 1.0f, 60000.0f)      // 'life (3)'
+		    , mGrowTimeMax(this, 'p004', "å†ç”Ÿæ™‚é–“(0) [åˆ†]", 1.0f, 0.0f, 150.0f)    // 'play time (0) [minutes]'
+		    , mGrowTimeMedium(this, 'p005', "å†ç”Ÿæ™‚é–“(1) [åˆ†]", 1.0f, 0.0f, 150.0f) // 'play time (1) [minutes]'
+		    , mGrowTimeSmall(this, 'p006', "å†ç”Ÿæ™‚é–“(2) [åˆ†]", 1.0f, 0.0f, 150.0f)  // 'play time (2) [minutes]'
+		    , mGrowTimeHidden(this, 'p007', "å†ç”Ÿæ™‚é–“(3) [åˆ†]", 1.0f, 0.0f, 150.0f) // 'play time (3) [minutes]'
+		    , mWorkRadiusMax(this, 'p008', "ä»•äº‹åŠå¾„(0)", 35.0f, 0.0f, 150.0f)      // 'work radius (0)'
+		    , mWorkRadiusMedium(this, 'p009', "ä»•äº‹åŠå¾„(0)", 20.0f, 0.0f, 150.0f)   // 'work radius (0)' (should be (1))
+		    , mWorkRadiusSmall(this, 'p010', "ä»•äº‹åŠå¾„(0)", 10.0f, 0.0f, 150.0f)    // 'work radius (0)' (should be (2))
 		{
 		}
 

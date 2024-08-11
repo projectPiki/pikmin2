@@ -122,9 +122,9 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "ChappyParms")
-		    , mFootRange(this, 'fp01', "‘«Œ³”ÍˆÍ", 50.0f, 0.0f, 100.0f)             // 'foot range'
-		    , mPoisonDamage(this, 'fp02', "”’ƒsƒNƒ~ƒ““Å", 300.0f, 0.0f, 1000.0f)    // 'white pikmin poison'
-		    , mBulborbWakeRadius(this, 'fp03', "–ÚŠo‚ß‹——£", 400.0f, 0.0f, 1000.0f) // 'awake distance'
+		    , mFootRange(this, 'fp01', "è¶³å…ƒç¯„å›²", 50.0f, 0.0f, 100.0f)             // 'foot range'
+		    , mPoisonDamage(this, 'fp02', "ç™½ãƒ”ã‚¯ãƒŸãƒ³æ¯’", 300.0f, 0.0f, 1000.0f)    // 'white pikmin poison'
+		    , mBulborbWakeRadius(this, 'fp03', "ç›®è¦šã‚è·é›¢", 400.0f, 0.0f, 1000.0f) // 'awake distance'
 		{
 		}
 

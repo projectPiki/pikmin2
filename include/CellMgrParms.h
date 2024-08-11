@@ -7,8 +7,8 @@
 
 struct _CellParms {
 	inline _CellParms(Parameters* parameters)
-	    : mUseBuffer(parameters, 'p000', "ƒoƒbƒtƒ@‚ðŽg‚¤", false, false, true)    // 'use a buffer'
-	    , mMagicNumber(parameters, 'p001', "ƒ}ƒWƒbƒNƒiƒ“ƒo[", true, false, true) // 'magic number'
+	    : mUseBuffer(parameters, 'p000', "ãƒãƒƒãƒ•ã‚¡ã‚’ä½¿ã†", false, false, true)    // 'use a buffer'
+	    , mMagicNumber(parameters, 'p001', "ãƒžã‚¸ãƒƒã‚¯ãƒŠãƒ³ãƒãƒ¼", true, false, true) // 'magic number'
 	    , mHalfG(parameters, 'p002', "G-Half", false, false, true)
 	    , mUpdateMgr(parameters, 'p003', "UpdateMgr", false, false, true)
 	{

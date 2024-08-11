@@ -15,7 +15,7 @@ static const char blackManMgrName[] = "blackManMgr";
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "黒い人マネージャ"; // black man manager
+	mName = "鮟偵＞莠ｺ繝槭ロ繝ｼ繧ｸ繝｣"; // black man manager
 }
 
 /**

@@ -73,20 +73,20 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mDamageRate(this, 'fp01', "ƒ_ƒ[ƒWƒŒ[ƒg", 1.0f, 0.0f, 1.0f)           // 'damage rate'
-		    , mTurnStartAngle(this, 'fp02', "ù‰ñŠJnŠp“x", 60.0f, 0.0f, 180.0f)      // 'turn start angle'
-		    , mTurnEndAngle(this, 'fp03', "ù‰ñI—¹Šp“x", 10.0f, 0.0f, 180.0f)        // 'turn end angle'
-		    , mMoveSpeed(this, 'fp04', "ƒT[ƒ`ˆÚ“®‘¬“x", 10.0f, 0.0f, 100.0f)         // 'search movement speed'
-		    , mRotateSpeed(this, 'fp06', "ƒT[ƒ`‰ñ“]‘¬“x—¦", 0.1f, 0.0f, 1.0f)        // 'search rotation speed rate'
-		    , mRotateSpeedMax(this, 'fp07', "ƒT[ƒ`‰ñ“]Å‘å‘¬“x", 5.0f, 0.0f, 360.0f) // 'search rotation max speed'
-		    , mPurpleDamageRate(this, 'fp09', "•ƒsƒNƒ~ƒ“ƒ_ƒ[ƒWƒŒ[ƒg", 0.0f, 0.0f,
+		    , mDamageRate(this, 'fp01', "ãƒ€ãƒ¡ãƒ¼ã‚¸ãƒ¬ãƒ¼ãƒˆ", 1.0f, 0.0f, 1.0f)           // 'damage rate'
+		    , mTurnStartAngle(this, 'fp02', "æ—‹å›é–‹å§‹è§’åº¦", 60.0f, 0.0f, 180.0f)      // 'turn start angle'
+		    , mTurnEndAngle(this, 'fp03', "æ—‹å›çµ‚äº†è§’åº¦", 10.0f, 0.0f, 180.0f)        // 'turn end angle'
+		    , mMoveSpeed(this, 'fp04', "ã‚µãƒ¼ãƒç§»å‹•é€Ÿåº¦", 10.0f, 0.0f, 100.0f)         // 'search movement speed'
+		    , mRotateSpeed(this, 'fp06', "ã‚µãƒ¼ãƒå›è»¢é€Ÿåº¦ç‡", 0.1f, 0.0f, 1.0f)        // 'search rotation speed rate'
+		    , mRotateSpeedMax(this, 'fp07', "ã‚µãƒ¼ãƒå›è»¢æœ€å¤§é€Ÿåº¦", 5.0f, 0.0f, 360.0f) // 'search rotation max speed'
+		    , mPurpleDamageRate(this, 'fp09', "é»’ãƒ”ã‚¯ãƒŸãƒ³ãƒ€ãƒ¡ãƒ¼ã‚¸ãƒ¬ãƒ¼ãƒˆ", 0.0f, 0.0f,
 		                        1.0f)                                              // 'black pikmin damage rate'
-		    , mCaveTerritory(this, 'fp10', "’n‰ºƒeƒŠƒgƒŠ[", 200.0f, 0.0f, 500.0f) // 'underground territory'
-		    , mWhiteDamage(this, 'fp11', "”’ƒsƒNƒ~ƒ“", 300.0f, 0.0f, 1000.0f)      // 'white pikmin'
-		    , mBlindHealth(this, 'fp12', "‚ß‚­‚çƒ‰ƒCƒt", 1000.0f, 0.0f, 2000.0f)   // 'blind life'
-		    , mBlindWaitTime(this, 'fp13', "‚ß‚­‚ç‘Ò‹@ŠÔŠu", 200.0f, 0.0f, 500.0f) // 'blind wait interval'
-		    , mBlindMoveTime(this, 'fp14', "‚ß‚­‚çˆÚ“®ŠÔŠu", 200.0f, 0.0f, 500.0f) // 'blind movement interval'
-		    , mWaitTimeAfterAttack(this, 'ip01', "UŒ‚Œã‘Ò‹@ŠúŠÔ", 100, 0, 300)    // 'waiting period after attack'
+		    , mCaveTerritory(this, 'fp10', "åœ°ä¸‹ãƒ†ãƒªãƒˆãƒªãƒ¼", 200.0f, 0.0f, 500.0f) // 'underground territory'
+		    , mWhiteDamage(this, 'fp11', "ç™½ãƒ”ã‚¯ãƒŸãƒ³", 300.0f, 0.0f, 1000.0f)      // 'white pikmin'
+		    , mBlindHealth(this, 'fp12', "ã‚ãã‚‰ãƒ©ã‚¤ãƒ•", 1000.0f, 0.0f, 2000.0f)   // 'blind life'
+		    , mBlindWaitTime(this, 'fp13', "ã‚ãã‚‰å¾…æ©Ÿé–“éš”", 200.0f, 0.0f, 500.0f) // 'blind wait interval'
+		    , mBlindMoveTime(this, 'fp14', "ã‚ãã‚‰ç§»å‹•é–“éš”", 200.0f, 0.0f, 500.0f) // 'blind movement interval'
+		    , mWaitTimeAfterAttack(this, 'ip01', "æ”»æ’ƒå¾Œå¾…æ©ŸæœŸé–“", 100, 0, 300)    // 'waiting period after attack'
 		{
 		}
 

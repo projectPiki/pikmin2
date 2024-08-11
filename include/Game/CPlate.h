@@ -33,9 +33,9 @@ struct CPlate : public Container<Creature> {
 	struct Parms : public Parameters {
 		inline Parms()
 		    : Parameters(nullptr, "Navi::Parms")
-		    , mStartingOffset(this, 'p000', "æ“ªƒIƒtƒZƒbƒg", 17.5f, 0.0f, 100.0f)          // 'starting offset'
-		    , mLengthLimit(this, 'p001', "’·‚³ƒŠƒ~ƒbƒg", 130.0f, 10.0f, 1000.0f)            // 'length limit'
-		    , mMaxPositionSize(this, 'p002', "ƒ|ƒWƒVƒ‡ƒ“‚Ì‘å‚«‚³(Å‘å)", 6.0f, 1.0f, 50.0f) // 'position size (max)'
+		    , mStartingOffset(this, 'p000', "å…ˆé ­ã‚ªãƒ•ã‚»ãƒƒãƒˆ", 17.5f, 0.0f, 100.0f)          // 'starting offset'
+		    , mLengthLimit(this, 'p001', "é•·ã•ãƒªãƒŸãƒƒãƒˆ", 130.0f, 10.0f, 1000.0f)            // 'length limit'
+		    , mMaxPositionSize(this, 'p002', "ãƒã‚¸ã‚·ãƒ§ãƒ³ã®å¤§ãã•(æœ€å¤§)", 6.0f, 1.0f, 50.0f) // 'position size (max)'
 		{
 		}
 		Parm<f32> mStartingOffset;  // _0C

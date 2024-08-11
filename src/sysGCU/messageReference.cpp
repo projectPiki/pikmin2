@@ -15,7 +15,7 @@ char* TReference::do_word(u32 arg) const
 	frm++;
 
 	if (arg == 0) {
-		return "ƒeƒXƒg";
+		return "ãƒ†ã‚¹ãƒˆ";
 	}
 	sprintf(str, "%d", frm);
 	return str;

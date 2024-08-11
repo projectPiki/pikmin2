@@ -497,7 +497,7 @@ Mgr::Mgr()
 {
 	setModelSize(1);
 	mObjectPathComponent = "user/Kando/objects/kanketusen";
-	mItemName            = "‹AŠÒŠÔŒ‡ò"; // 'return geyser'
+	mItemName            = "å¸°é‚„é–“æ¬ æ³‰"; // 'return geyser'
 	mParms               = new FountainParms();
 
 	void* data = JKRDvdRipper::loadToMainRAM("user/Abe/item/fountainParms.txt", nullptr, Switch_0, 0, nullptr,

@@ -12,7 +12,7 @@ static const char kurageMgrName[] = "246-KurageMgr";
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "クラゲドックリマネージャ"; // jellyfish manager
+	mName = "繧ｯ繝ｩ繧ｲ繝峨ャ繧ｯ繝ｪ繝槭ロ繝ｼ繧ｸ繝｣"; // jellyfish manager
 }
 
 /**

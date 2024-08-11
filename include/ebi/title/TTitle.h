@@ -23,23 +23,23 @@ struct TTitleParameters : public Parameters {
 	TTitleParameters()
 	    // shoutouts to Scruffys video: https://youtu.be/Z11RFTE_vow
 	    : Parameters(nullptr, "TTitleParameters")
-	    , mBoundsMinX(this, 'tp04', "‰Â‹”ÍˆÍXÅ¬", -400.0f, -2000.0f, 2000.0f)
-	    , mBoundsMaxX(this, 'tp05', "‰Â‹”ÍˆÍXÅ‘å", 400.0f, -2000.0f, 2000.0f)
-	    , mBoundsMinY(this, 'tp06', "‰Â‹”ÍˆÍYÅ¬", -250.0f, -2000.0f, 2000.0f)
-	    , mBoundsMaxY(this, 'tp07', "‰Â‹”ÍˆÍYÅ‘å", 340.0f, -2000.0f, 2000.0f)
-	    , mPikiScatterOriginX(this, 'tp08', "ƒsƒNƒ~ƒ“‰ğU’†SÀ•WX", 0.0f, -640.0f, 640.0f)
-	    , mPikiScatterOriginY(this, 'tp09', "ƒsƒNƒ~ƒ“‰ğU’†SÀ•WY", 0.0f, -480.0f, 480.0f)
-	    , mMinPikminScatterRadius(this, 'tp10', "ƒsƒNƒ~ƒ“‰ğU”¼ŒaÅ¬", 500.0f, 0.0f, 1000.0f)
-	    , mMaxPikminScatterRadius(this, 'tp11', "ƒsƒNƒ~ƒ“‰ğU”¼ŒaÅ‘å(ƒIƒuƒWƒFƒNƒg”z’uŒÀŠE”¼Œa)", 600.0f, 0.0f, 1000.0f)
-	    , mWindProbability(this, 'tp13', "•—‚ ‚½‚è”ÍˆÍ‚Ì—”", 30.0f, 0.0f, 100.0f)
-	    , mPlantMoveDuration(this, 'tp50', "BG•—ó‘ÔŠÔ(•b)", 8.0f, 0.0f, 100.0f)
-	    , mBoidDurationDisperse(this, 'tp15', "BOID1ó‘ÔŠÔ(•b)", 3.0f, 0.0f, 60.0f)
-	    , mBoidDurationRegroup(this, 'tp16', "BOID2ó‘ÔŠÔ(•b)", 3.0f, 0.0f, 60.0f)
-	    , mBoidDurationSwirl(this, 'tp17', "BOID3ó‘ÔŠÔ(•b)", 10.0f, 0.0f, 60.0f)
-	    , mWindMoveDuration(this, 'tp19', "•—ó‘ÔŠÔ(•b)", 3.0f, 0.0f, 60.0f)
-	    , mEnemyStayDuration(this, 'tp20', "“Gó‘ÔŠÔ(•b)", 10.0f, 0.0f, 60.0f)
-	    , mPressStartDelay(this, 'tp21', "PressStartŠJnŠÔ(•b)", 2.0f, 0.0f, 60.0f)
-	    , mCanOpenMenuDelay(this, 'tp22', "ƒL[ó‚¯‚Â‚¯ŠJnŠÔ(•b)", 3.5f, 0.0f, 60.0f)
+	    , mBoundsMinX(this, 'tp04', "å¯è¦–ç¯„å›²Xæœ€å°", -400.0f, -2000.0f, 2000.0f)
+	    , mBoundsMaxX(this, 'tp05', "å¯è¦–ç¯„å›²Xæœ€å¤§", 400.0f, -2000.0f, 2000.0f)
+	    , mBoundsMinY(this, 'tp06', "å¯è¦–ç¯„å›²Yæœ€å°", -250.0f, -2000.0f, 2000.0f)
+	    , mBoundsMaxY(this, 'tp07', "å¯è¦–ç¯„å›²Yæœ€å¤§", 340.0f, -2000.0f, 2000.0f)
+	    , mPikiScatterOriginX(this, 'tp08', "ãƒ”ã‚¯ãƒŸãƒ³è§£æ•£ä¸­å¿ƒåº§æ¨™X", 0.0f, -640.0f, 640.0f)
+	    , mPikiScatterOriginY(this, 'tp09', "ãƒ”ã‚¯ãƒŸãƒ³è§£æ•£ä¸­å¿ƒåº§æ¨™Y", 0.0f, -480.0f, 480.0f)
+	    , mMinPikminScatterRadius(this, 'tp10', "ãƒ”ã‚¯ãƒŸãƒ³è§£æ•£åŠå¾„æœ€å°", 500.0f, 0.0f, 1000.0f)
+	    , mMaxPikminScatterRadius(this, 'tp11', "ãƒ”ã‚¯ãƒŸãƒ³è§£æ•£åŠå¾„æœ€å¤§(ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆé…ç½®é™ç•ŒåŠå¾„)", 600.0f, 0.0f, 1000.0f)
+	    , mWindProbability(this, 'tp13', "é¢¨ã‚ãŸã‚Šç¯„å›²ã®ä¹±æ•°", 30.0f, 0.0f, 100.0f)
+	    , mPlantMoveDuration(this, 'tp50', "BGé¢¨çŠ¶æ…‹æ™‚é–“(ç§’)", 8.0f, 0.0f, 100.0f)
+	    , mBoidDurationDisperse(this, 'tp15', "BOID1çŠ¶æ…‹æ™‚é–“(ç§’)", 3.0f, 0.0f, 60.0f)
+	    , mBoidDurationRegroup(this, 'tp16', "BOID2çŠ¶æ…‹æ™‚é–“(ç§’)", 3.0f, 0.0f, 60.0f)
+	    , mBoidDurationSwirl(this, 'tp17', "BOID3çŠ¶æ…‹æ™‚é–“(ç§’)", 10.0f, 0.0f, 60.0f)
+	    , mWindMoveDuration(this, 'tp19', "é¢¨çŠ¶æ…‹æ™‚é–“(ç§’)", 3.0f, 0.0f, 60.0f)
+	    , mEnemyStayDuration(this, 'tp20', "æ•µçŠ¶æ…‹æ™‚é–“(ç§’)", 10.0f, 0.0f, 60.0f)
+	    , mPressStartDelay(this, 'tp21', "PressStarté–‹å§‹æ™‚é–“(ç§’)", 2.0f, 0.0f, 60.0f)
+	    , mCanOpenMenuDelay(this, 'tp22', "ã‚­ãƒ¼å—ã‘ã¤ã‘é–‹å§‹æ™‚é–“(ç§’)", 3.5f, 0.0f, 60.0f)
 	{
 	}
 
@@ -67,7 +67,7 @@ struct TTitleCameraMgr : public LookAtCamera {
 	struct Parms : public Parameters {
 		Parms()
 		    : Parameters(nullptr, "TTitleCameraParameters")
-		    , mYOffset(this, 'cam1', "ƒJƒƒ‰‹——£ƒƒS", 15.0f, -1000.0f, 10000.0f) // "camera distance logo"
+		    , mYOffset(this, 'cam1', "ã‚«ãƒ¡ãƒ©è·é›¢ãƒ­ã‚´", 15.0f, -1000.0f, 10000.0f) // "camera distance logo"
 		    , mFOVY(this, 'cam4', "Fovy", 35.0f, 1.0f, 180.0f)
 		{
 		}
@@ -93,13 +93,13 @@ struct TTitleFogMgr : public FogMgr {
 	struct Parms : public Parameters {
 		Parms()
 		    : Parameters(nullptr, "TTitleFogParameters")
-		    , mIsFogActive(this, 'fg10', "ƒtƒHƒO—LŒø–³Œø", true, false, true)
+		    , mIsFogActive(this, 'fg10', "ãƒ•ã‚©ã‚°æœ‰åŠ¹ç„¡åŠ¹", true, false, true)
 		    , mStartDist(this, 'fg00', "start z", 100.0f, 0.0f, 1024.0f)
 		    , mEndDist(this, 'fg01', "end z", 2000.0f, 0.0f, 12800.0f)
-		    , mColR(this, 'fg02', "F@R", 255, 0, 255)
-		    , mColG(this, 'fg03', "F@G", 255, 0, 255)
-		    , mColB(this, 'fg04', "F@B", 255, 0, 255)
-		    , mColA(this, 'fg05', "F@A", 255, 0, 255)
+		    , mColR(this, 'fg02', "è‰²ã€€R", 255, 0, 255)
+		    , mColG(this, 'fg03', "è‰²ã€€G", 255, 0, 255)
+		    , mColB(this, 'fg04', "è‰²ã€€B", 255, 0, 255)
+		    , mColA(this, 'fg05', "è‰²ã€€A", 255, 0, 255)
 		{
 		}
 
@@ -130,10 +130,10 @@ struct TTitleLightSetting {
 	struct TAmbParms : public Parameters {
 		inline TAmbParms()
 		    : Parameters(nullptr, "TAmbParms")
-		    , mRed(this, 'tl00', "ƒAƒ“ƒrƒGƒ“ƒgFR", 0, 0, 255)
-		    , mGreen(this, 'tl01', "ƒAƒ“ƒrƒGƒ“ƒgFG", 0, 0, 255)
-		    , mBlue(this, 'tl02', "ƒAƒ“ƒrƒGƒ“ƒgFB", 0, 0, 255)
-		    , mAlpha(this, 'tl03', "ƒAƒ“ƒrƒGƒ“ƒgFA", 0, 0, 255)
+		    , mRed(this, 'tl00', "ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆè‰²R", 0, 0, 255)
+		    , mGreen(this, 'tl01', "ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆè‰²G", 0, 0, 255)
+		    , mBlue(this, 'tl02', "ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆè‰²B", 0, 0, 255)
+		    , mAlpha(this, 'tl03', "ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆè‰²A", 0, 0, 255)
 		{
 		}
 
@@ -146,19 +146,19 @@ struct TTitleLightSetting {
 	struct TMainParms : public Parameters {
 		TMainParms()
 		    : Parameters(nullptr, "TMainParms")
-		    , mLightColR(this, 'tl04', "ƒ‰ƒCƒgFR", 255, 0, 255)
-		    , mLightColG(this, 'tl05', "ƒ‰ƒCƒgFG", 255, 0, 255)
-		    , mLightColB(this, 'tl06', "ƒ‰ƒCƒgFB", 255, 0, 255)
-		    , mLightColA(this, 'tl07', "ƒ‰ƒCƒgFA", 255, 0, 255)
-		    , mPosX(this, 'tl50', "ˆÊ’uX", 0.0f, -10000.0f, 10000.0f)
-		    , mPosY(this, 'tl51', "ˆÊ’uY", 1000.0f, -10000.0f, 50000.0f)
-		    , mPosZ(this, 'tl52', "ˆÊ’uZ", 0.0f, -10000.0f, 10000.0f)
-		    , mRotX(this, 'tl53', "Œü‚«X", 0.0f, -1.0f, 1.0f)
-		    , mRotY(this, 'tl54', "Œü‚«Y", -1.0f, -1.0f, 1.0f)
-		    , mRotZ(this, 'tl55', "Œü‚«Z", 0.0f, -1.0f, 1.0f)
-		    , mLightRange(this, 'tl56', "‹——£Œ¸Š-‹——£", 10000.0f, 1.0f, 50000.0f)
-		    , mLightBrightness(this, 'tl57', "‹——£Œ¸Š-–¾‚é‚³", 1.0f, 0.0f, 1.0f)
-		    , mCutoffAngle(this, 'tl58', "ƒJƒbƒgƒIƒtŠp“x", 25.0f, 1.0f, 180.0f)
+		    , mLightColR(this, 'tl04', "ãƒ©ã‚¤ãƒˆè‰²R", 255, 0, 255)
+		    , mLightColG(this, 'tl05', "ãƒ©ã‚¤ãƒˆè‰²G", 255, 0, 255)
+		    , mLightColB(this, 'tl06', "ãƒ©ã‚¤ãƒˆè‰²B", 255, 0, 255)
+		    , mLightColA(this, 'tl07', "ãƒ©ã‚¤ãƒˆè‰²A", 255, 0, 255)
+		    , mPosX(this, 'tl50', "ä½ç½®X", 0.0f, -10000.0f, 10000.0f)
+		    , mPosY(this, 'tl51', "ä½ç½®Y", 1000.0f, -10000.0f, 50000.0f)
+		    , mPosZ(this, 'tl52', "ä½ç½®Z", 0.0f, -10000.0f, 10000.0f)
+		    , mRotX(this, 'tl53', "å‘ãX", 0.0f, -1.0f, 1.0f)
+		    , mRotY(this, 'tl54', "å‘ãY", -1.0f, -1.0f, 1.0f)
+		    , mRotZ(this, 'tl55', "å‘ãZ", 0.0f, -1.0f, 1.0f)
+		    , mLightRange(this, 'tl56', "è·é›¢æ¸›è¡°-è·é›¢", 10000.0f, 1.0f, 50000.0f)
+		    , mLightBrightness(this, 'tl57', "è·é›¢æ¸›è¡°-æ˜ã‚‹ã•", 1.0f, 0.0f, 1.0f)
+		    , mCutoffAngle(this, 'tl58', "ã‚«ãƒƒãƒˆã‚ªãƒ•è§’åº¦", 25.0f, 1.0f, 180.0f)
 		{
 		}
 
@@ -180,14 +180,14 @@ struct TTitleLightSetting {
 	struct TSpecParms : public Parameters {
 		TSpecParms()
 		    : Parameters(nullptr, "TSpecParms")
-		    , mLightColR(this, 'sp04', "ƒ‰ƒCƒgFR", 255, 0, 255)
-		    , mLightColG(this, 'sp05', "ƒ‰ƒCƒgFG", 255, 0, 255)
-		    , mLightColB(this, 'sp06', "ƒ‰ƒCƒgFB", 255, 0, 255)
-		    , mLightColA(this, 'sp07', "ƒ‰ƒCƒgFA", 255, 0, 255)
-		    , mRotX(this, 'sp53', "Œü‚«X", 0.0f, -1.0f, 1.0f)
-		    , mRotY(this, 'sp54', "Œü‚«Y", -1.0f, -1.0f, 1.0f)
-		    , mRotZ(this, 'sp55', "Œü‚«Z", 0.0f, -1.0f, 1.0f)
-		    , mGlossAmount(this, 'sp56', "Œõ‘ò", 64.0f, 0.0f, 512.0f) // Luster?
+		    , mLightColR(this, 'sp04', "ãƒ©ã‚¤ãƒˆè‰²R", 255, 0, 255)
+		    , mLightColG(this, 'sp05', "ãƒ©ã‚¤ãƒˆè‰²G", 255, 0, 255)
+		    , mLightColB(this, 'sp06', "ãƒ©ã‚¤ãƒˆè‰²B", 255, 0, 255)
+		    , mLightColA(this, 'sp07', "ãƒ©ã‚¤ãƒˆè‰²A", 255, 0, 255)
+		    , mRotX(this, 'sp53', "å‘ãX", 0.0f, -1.0f, 1.0f)
+		    , mRotY(this, 'sp54', "å‘ãY", -1.0f, -1.0f, 1.0f)
+		    , mRotZ(this, 'sp55', "å‘ãZ", 0.0f, -1.0f, 1.0f)
+		    , mGlossAmount(this, 'sp56', "å…‰æ²¢", 64.0f, 0.0f, 512.0f) // Luster?
 		{
 		}
 
@@ -209,8 +209,8 @@ struct TTitleLightSetting {
 struct TTitleLightMgr : public LightMgr {
 	TTitleLightMgr()
 	    : LightMgr("LightMgr")
-	    , mLightObjMain("ƒƒCƒ“ƒ‰ƒCƒg", GX_LIGHT0, TYPE_Spot, JUtility::TColor(255, 255, 255, 255))
-	    , mLightObjSpec("ƒXƒyƒLƒ…ƒ‰ƒ‰ƒCƒg", GX_LIGHT7, TYPE_Spec, JUtility::TColor(255, 255, 255, 255))
+	    , mLightObjMain("ãƒ¡ã‚¤ãƒ³ãƒ©ã‚¤ãƒˆ", GX_LIGHT0, TYPE_Spot, JUtility::TColor(255, 255, 255, 255))
+	    , mLightObjSpec("ã‚¹ãƒšã‚­ãƒ¥ãƒ©ãƒ©ã‚¤ãƒˆ", GX_LIGHT7, TYPE_Spec, JUtility::TColor(255, 255, 255, 255))
 	    , mSetting()
 	{
 		registLightObj(&mLightObjMain);

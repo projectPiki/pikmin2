@@ -211,7 +211,7 @@ MapUnit* MapUnitMgr::findMapUnit(char* unitName)
  */
 void MapUnitMgr::testConstruct()
 {
-	JUT_PANICLINE(500, "Ç‡Ç§égÇÌÇ»Ç¢\n"); // 'don't use it anymore'
+	JUT_PANICLINE(500, "„ÇÇ„ÅÜ‰Ωø„Çè„Å™„ÅÑ\n"); // 'don't use it anymore'
 	JUT_PANICLINE(501, "%s : not found !\n", nullptr);
 	// UNUSED FUNCTION
 }

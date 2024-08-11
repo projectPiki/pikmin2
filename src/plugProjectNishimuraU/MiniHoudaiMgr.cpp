@@ -12,7 +12,7 @@ namespace MiniHoudai {
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "チビホウダイマネージャ"; // little houdai manager
+	mName = "繝√ン繝帙え繝繧､繝槭ロ繝ｼ繧ｸ繝｣"; // little houdai manager
 }
 
 /**

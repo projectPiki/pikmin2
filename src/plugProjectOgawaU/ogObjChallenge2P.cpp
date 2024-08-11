@@ -41,7 +41,7 @@ void ObjChallenge2P::doCreate(JKRArchive* arc)
 		mDisp = new og::Screen::DispMemberChallenge2P;
 
 	} else {
-		JUT_PANICLINE(151, "ERR! in ObjChallenge2P Createé∏îsÅI\n");
+		JUT_PANICLINE(151, "ERR! in ObjChallenge2P CreateÂ§±ÊïóÔºÅ\n");
 	}
 
 	mPokoScreen = new P2DScreen::Mgr_tuning;

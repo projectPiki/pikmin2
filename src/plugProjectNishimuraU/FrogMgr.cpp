@@ -12,7 +12,7 @@ static const char frogMgrName[] = "246-FrogMgr";
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "イモガエルマネージャ"; // tree frog manager
+	mName = "繧､繝｢繧ｬ繧ｨ繝ｫ繝槭ロ繝ｼ繧ｸ繝｣"; // tree frog manager
 }
 
 /**

@@ -14,7 +14,7 @@ static const char tankMgrName[] = "246-TankMgr";
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "ブタドックリマネージャ"; // pig dog manager
+	mName = "繝悶ち繝峨ャ繧ｯ繝ｪ繝槭ロ繝ｼ繧ｸ繝｣"; // pig dog manager
 }
 
 /**

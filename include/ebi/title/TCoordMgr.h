@@ -20,8 +20,8 @@ struct TCoordMgr : public CNode {
 		    : Parameters(nullptr, "TTgaLoadParameters")
 		    , mOffsX(this, 'tga0', "OffsetX", -320.0f, -500.0f, 500.0f)
 		    , mOffsY(this, 'tga1', "OffsetY", -240.0f, -500.0f, 500.0f)
-		    , mIntervalX(this, 'tga2', "X�Ԋu", 1.0f, 0.0f, 100.0f)
-		    , mIntervalY(this, 'tga3', "Y�Ԋu\0\0", 1.0f, 0.0f, 100.0f)
+		    , mIntervalX(this, 'tga2', "X間隔", 1.0f, 0.0f, 100.0f)
+		    , mIntervalY(this, 'tga3', "Y間隔", 1.0f, 0.0f, 100.0f)
 		{
 		}
 

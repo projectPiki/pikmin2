@@ -33,11 +33,11 @@ void calcLightColor(Color4* lightColor, Color4& destColor, Color4& srcColor, f32
 
 namespace {
 const char* GameLightMgrSettinglabel[SUNTIME_Count] = {
-	"–é",     // 'night'
-	"’©",     // 'morning'
-	"’‹",     // 'noon'
-	"—[",     // 'evening'
-	"ƒfƒ‚’†", // 'in demo'
+	"å¤œ",     // 'night'
+	"æœ",     // 'morning'
+	"æ˜¼",     // 'noon'
+	"å¤•",     // 'evening'
+	"ãƒ‡ãƒ¢ä¸­", // 'in demo'
 };
 } // namespace
 
@@ -118,11 +118,11 @@ void GameLightSpotSetting::read(Stream& stream)
  * @note Size: 0x1E0
  */
 GameLightMgrSetting::GameLightMgrSetting()
-    : CNode("Ý’è") // 'setting'
+    : CNode("è¨­å®š") // 'setting'
     , mIsCave(false)
-    , mSunLight("‘¾—zƒ^ƒCƒvÝ’è")
-    , mStellarSpotLight("‰ù’†“d“”ƒAƒŠ") // 'yes flashlight'
-    , mRegularSpotLight("‰ù’†“d“”ƒiƒV") // 'no flashlight'
+    , mSunLight("å¤ªé™½ã‚¿ã‚¤ãƒ—è¨­å®š")
+    , mStellarSpotLight("æ‡ä¸­é›»ç¯ã‚¢ãƒª") // 'yes flashlight'
+    , mRegularSpotLight("æ‡ä¸­é›»ç¯ãƒŠã‚·") // 'no flashlight'
 {
 	updateNode();
 }
@@ -396,19 +396,19 @@ GameLightMgr::GameLightMgr(char* name)
 	start();
 
 	// setup main light
-	mMainLight             = new LightObj("ƒƒCƒ“ƒ‰ƒCƒg", GX_LIGHT0, TYPE_Spot, JUtility::TColor(255, 255, 255, 255)); // 'main light'
+	mMainLight             = new LightObj("ãƒ¡ã‚¤ãƒ³ãƒ©ã‚¤ãƒˆ", GX_LIGHT0, TYPE_Spot, JUtility::TColor(255, 255, 255, 255)); // 'main light'
 	mMainLight->mSpotFn    = GX_SP_OFF;
 	mMainLight->mElevation = Vector3f(0.0f, -1.0f, 0.0f);
 	registLightObj(mMainLight);
 
 	// setup sub light
-	mSubLight             = new LightObj("ƒTƒuƒ‰ƒCƒg", GX_LIGHT1, TYPE_Spot, JUtility::TColor(128, 64, 64, 255)); // 'sub light'
+	mSubLight             = new LightObj("ã‚µãƒ–ãƒ©ã‚¤ãƒˆ", GX_LIGHT1, TYPE_Spot, JUtility::TColor(128, 64, 64, 255)); // 'sub light'
 	mSubLight->mSpotFn    = GX_SP_OFF;
 	mSubLight->mElevation = Vector3f(0.0f, 1.0f, 0.0f);
 	registLightObj(mSubLight);
 
 	// setup specular light
-	mSpecLight          = new LightObj("ƒXƒyƒLƒ…ƒ‰-ƒ‰ƒCƒg", GX_LIGHT7, TYPE_Spec, JUtility::TColor(255, 255, 255, 255)); // 'specular light'
+	mSpecLight          = new LightObj("ã‚¹ãƒšã‚­ãƒ¥ãƒ©-ãƒ©ã‚¤ãƒˆ", GX_LIGHT7, TYPE_Spec, JUtility::TColor(255, 255, 255, 255)); // 'specular light'
 	mSpecLight->mKScale = 40.0f;
 	registLightObj(mSpecLight);
 

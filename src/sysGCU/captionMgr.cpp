@@ -34,7 +34,7 @@ void Caption::Node::read(Stream& input)
  * __ct
  */
 Caption::Mgr::Mgr()
-    : CNode("キャプションマネージャ")
+    : CNode("繧ｭ繝｣繝励す繝ｧ繝ｳ繝槭ロ繝ｼ繧ｸ繝｣")
 {
 	mNode  = nullptr;
 	_20[0] = 0;

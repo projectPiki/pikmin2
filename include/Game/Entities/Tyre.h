@@ -156,7 +156,7 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mTyreRotationSpeed(this, 'fp01', "‰ñ“]ƒXƒs[ƒh", 0.5f, 0.0f, 100.0f) // rotation speed
+		    , mTyreRotationSpeed(this, 'fp01', "å›è»¢ã‚¹ãƒ”ãƒ¼ãƒ‰", 0.5f, 0.0f, 100.0f) // rotation speed
 		{
 		}
 

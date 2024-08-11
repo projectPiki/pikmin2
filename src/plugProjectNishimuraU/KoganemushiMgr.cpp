@@ -15,7 +15,7 @@ static const char* cKoganeChangeTexName = "/enemy/data/Kogane/kogane_s3tc.bti";
 Mgr::Mgr(int objLimit, u8 modelType)
     : Kogane::Mgr(objLimit, modelType)
 {
-	mName = "コガネマネージャ"; // kogane manager
+	mName = "繧ｳ繧ｬ繝阪�槭ロ繝ｼ繧ｸ繝｣"; // kogane manager
 }
 
 /**

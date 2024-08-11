@@ -150,10 +150,10 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "OtakaraBaseParms")
-		    , mOtakaraLife(this, 'fp01', "ƒIƒ^ƒJƒ‰ƒ‰ƒCƒt", 100.0f, 0.0f, 10000.0f) // 'otakara life'
-		    , mNormalAttack(this, 'fp10', "ƒm[ƒ}ƒ‹ƒAƒ^ƒbƒN", 1.0f, 0.0f, 10.0f)   // 'normal attack'
-		    , mOtakaraAttack(this, 'fp11', "ƒIƒ^ƒJƒ‰ƒAƒ^ƒbƒN", 1.25f, 0.0f, 10.0f) // 'otakara attack'
-		    , mTreasureCatch(this, 'fp21', "ƒIƒ^ƒJƒ‰ƒLƒƒƒbƒ`", 2.5f, 0.0f, 10.0f)  // 'treasure catch'
+		    , mOtakaraLife(this, 'fp01', "ã‚ªã‚¿ã‚«ãƒ©ãƒ©ã‚¤ãƒ•", 100.0f, 0.0f, 10000.0f) // 'otakara life'
+		    , mNormalAttack(this, 'fp10', "ãƒãƒ¼ãƒãƒ«ã‚¢ã‚¿ãƒƒã‚¯", 1.0f, 0.0f, 10.0f)   // 'normal attack'
+		    , mOtakaraAttack(this, 'fp11', "ã‚ªã‚¿ã‚«ãƒ©ã‚¢ã‚¿ãƒƒã‚¯", 1.25f, 0.0f, 10.0f) // 'otakara attack'
+		    , mTreasureCatch(this, 'fp21', "ã‚ªã‚¿ã‚«ãƒ©ã‚­ãƒ£ãƒƒãƒ", 2.5f, 0.0f, 10.0f)  // 'treasure catch'
 		{
 		}
 

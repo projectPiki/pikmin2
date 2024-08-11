@@ -19,7 +19,7 @@ static const char* cMatAnimBtkTexName = "/enemy/data/Queen/queenchappy_model.btk
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "クィーンチャッピーマネージャ"; // queen chappy manager
+	mName = "繧ｯ繧｣繝ｼ繝ｳ繝√Ε繝�繝斐�ｼ繝槭ロ繝ｼ繧ｸ繝｣"; // queen chappy manager
 }
 
 /**

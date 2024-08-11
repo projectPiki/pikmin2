@@ -12,7 +12,7 @@ static const char snakeWholeMgrName[] = "246-SnakeWholeMgr";
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "ヘビガラス全身マネージャ"; // snake crow whole body manager
+	mName = "繝倥ン繧ｬ繝ｩ繧ｹ蜈ｨ霄ｫ繝槭ロ繝ｼ繧ｸ繝｣"; // snake crow whole body manager
 }
 
 /**

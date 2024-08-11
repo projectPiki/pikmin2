@@ -836,7 +836,7 @@ void Mgr::generatorWrite(Stream& input, GenItemParm* genParm)
 	P2ASSERTLINE(1246, downParm);
 	input.textWriteTab(input.mTabCount);
 	input.writeShort(downParm->mBagWeight);
-	input.textWriteText("\t#’¾‚Ýl”\r\n"); // '#number of people sinking'
+	input.textWriteText("\t#æ²ˆã¿äººæ•°\r\n"); // '#number of people sinking'
 
 	input.textWriteTab(input.mTabCount);
 	input.writeShort(downParm->mModelType);

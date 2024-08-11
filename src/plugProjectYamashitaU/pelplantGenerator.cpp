@@ -9,7 +9,7 @@ namespace Pelplant {
  * @note Size: 0x98
  */
 Generator::Generator()
-    : EnemyGeneratorBase("ƒyƒŒƒbƒg‘")
+    : EnemyGeneratorBase("ãƒšãƒ¬ãƒƒãƒˆè‰")
 {
 	mInitialParam.mColor        = PELCOLOR_BLUE;
 	mInitialParam.mAmount       = PELLET_NUMBER_ONE;

@@ -59,7 +59,7 @@ void ObjCave::doCreate(JKRArchive* arc)
 		mDisp = new og::Screen::DispMemberCave;
 
 	} else {
-		JUT_PANICLINE(189, "ERR! in ObjCave Createé∏îsÅI\n");
+		JUT_PANICLINE(189, "ERR! in ObjCave CreateÂ§±ÊïóÔºÅ\n");
 	}
 
 	mDoping       = new og::Screen::DopingScreen;

@@ -176,12 +176,12 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mBaseFactor(this, 'fp01', "ƒx[ƒXŒW”", 3.0f, 0.0f, 10.0f)                 // 'base factor'
-		    , mRaiseDecelFactor(this, 'fp02', "ã‚°Œ¸‘¬ŒW”", -0.2f, -5.0f, 5.0f)        // 'raising deceleration factor'
-		    , mDownwardAccelFactor(this, 'fp03', "‰º‚°‰Á‘¬ŒW”", 0.5f, -5.0f, 5.0f)      // 'downward acceleration factor'
-		    , mMinDecelAccelFactor(this, 'fp04', "Å’áŒ¸‰Á‘¬ŒW”", -2.0f, -10.0f, 10.0f) // 'minimum deceleration acceleration factor'
-		    , mMaxDecelAccelFactor(this, 'fp05', "Å‚Œ¸‰Á‘¬ŒW”", 10.0f, -10.0f, 10.0f) // 'maximum deceleration acceleration factor'
-		    , mLegSwing(this, 'fp06', "‘«‚ÌU‚èã‚°", 120.0f, 0.0f, 200.0f)              // 'leg swing'
+		    , mBaseFactor(this, 'fp01', "ãƒ™ãƒ¼ã‚¹ä¿‚æ•°", 3.0f, 0.0f, 10.0f)                 // 'base factor'
+		    , mRaiseDecelFactor(this, 'fp02', "ä¸Šã’æ¸›é€Ÿä¿‚æ•°", -0.2f, -5.0f, 5.0f)        // 'raising deceleration factor'
+		    , mDownwardAccelFactor(this, 'fp03', "ä¸‹ã’åŠ é€Ÿä¿‚æ•°", 0.5f, -5.0f, 5.0f)      // 'downward acceleration factor'
+		    , mMinDecelAccelFactor(this, 'fp04', "æœ€ä½æ¸›åŠ é€Ÿä¿‚æ•°", -2.0f, -10.0f, 10.0f) // 'minimum deceleration acceleration factor'
+		    , mMaxDecelAccelFactor(this, 'fp05', "æœ€é«˜æ¸›åŠ é€Ÿä¿‚æ•°", 10.0f, -10.0f, 10.0f) // 'maximum deceleration acceleration factor'
+		    , mLegSwing(this, 'fp06', "è¶³ã®æŒ¯ã‚Šä¸Šã’", 120.0f, 0.0f, 200.0f)              // 'leg swing'
 		{
 		}
 

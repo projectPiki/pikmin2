@@ -585,7 +585,7 @@ bool Obj::neckJointCallBack(J3DJoint* joint, int p2)
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "ペレット草マネージャ"; // pellet plant manager
+	mName = "繝壹Ξ繝�繝郁拷繝槭ロ繝ｼ繧ｸ繝｣"; // pellet plant manager
 }
 
 /**

@@ -11,10 +11,10 @@ struct GameLightSettingBase {
 	struct Settings : public Parameters {
 		inline Settings()
 		    : Parameters(nullptr, "ColorParms")
-		    , mRed(this, 'u800', "Ô", 127, 0, 255)
-		    , mGreen(this, 'u801', "—Î", 127, 0, 255)
-		    , mBlue(this, 'u802', "Â", 127, 0, 255)
-		    , mAlpha(this, 'u803', "ƒAƒ‹ƒtƒ@", 255, 0, 255)
+		    , mRed(this, 'u800', "èµ¤", 127, 0, 255)
+		    , mGreen(this, 'u801', "ç·‘", 127, 0, 255)
+		    , mBlue(this, 'u802', "é’", 127, 0, 255)
+		    , mAlpha(this, 'u803', "ã‚¢ãƒ«ãƒ•ã‚¡", 255, 0, 255)
 		{
 		}
 
@@ -58,10 +58,10 @@ struct GameFogSetting {
 	struct Settings : public Parameters {
 		inline Settings()
 		    : Parameters(nullptr, "ColorParms")
-		    , mRed(this, 'u800', "Ô", 127, 0, 255)
-		    , mGreen(this, 'u801', "—Î", 127, 0, 255)
-		    , mBlue(this, 'u802', "Â", 127, 0, 255)
-		    , mAlpha(this, 'u803', "ƒAƒ‹ƒtƒ@", 255, 0, 255)
+		    , mRed(this, 'u800', "èµ¤", 127, 0, 255)
+		    , mGreen(this, 'u801', "ç·‘", 127, 0, 255)
+		    , mBlue(this, 'u802', "é’", 127, 0, 255)
+		    , mAlpha(this, 'u803', "ã‚¢ãƒ«ãƒ•ã‚¡", 255, 0, 255)
 		{
 		}
 
@@ -74,8 +74,8 @@ struct GameFogSetting {
 	struct GameFogParms : public Parameters {
 		inline GameFogParms()
 		    : Parameters(nullptr, "GameFogParms")
-		    , mStartZ(this, 'f000', "ŠJnz’l", 1000.0f, 0.0f, 15000.0f)
-		    , mEndZ(this, 'f001', "I—¹z’l", 15000.0f, 0.0f, 15000.0f)
+		    , mStartZ(this, 'f000', "é–‹å§‹zå€¤", 1000.0f, 0.0f, 15000.0f)
+		    , mEndZ(this, 'f001', "çµ‚äº†zå€¤", 15000.0f, 0.0f, 15000.0f)
 		{
 		}
 
@@ -124,10 +124,10 @@ struct GameShadowSetting {
 	struct Settings : public Parameters {
 		inline Settings()
 		    : Parameters(nullptr, "ColorParms")
-		    , mRed(this, 'u800', "Ô", 127, 0, 255)
-		    , mGreen(this, 'u801', "—Î", 127, 0, 255)
-		    , mBlue(this, 'u802', "Â", 127, 0, 255)
-		    , mAlpha(this, 'u803', "ƒAƒ‹ƒtƒ@", 255, 0, 255)
+		    , mRed(this, 'u800', "èµ¤", 127, 0, 255)
+		    , mGreen(this, 'u801', "ç·‘", 127, 0, 255)
+		    , mBlue(this, 'u802', "é’", 127, 0, 255)
+		    , mAlpha(this, 'u803', "ã‚¢ãƒ«ãƒ•ã‚¡", 255, 0, 255)
 		{
 		}
 
@@ -178,7 +178,7 @@ struct GameSpotLightSetting : public GameLightSettingBase {
 	struct SpotParms : public Parameters {
 		inline SpotParms()
 		    : Parameters(nullptr, "SpotParms")
-		    , mCutOff(this, 'f000', "ƒJƒbƒgƒIƒt", 60.0f, 0.0f, 90.0f)
+		    , mCutOff(this, 'f000', "ã‚«ãƒƒãƒˆã‚ªãƒ•", 60.0f, 0.0f, 90.0f)
 		{
 		}
 

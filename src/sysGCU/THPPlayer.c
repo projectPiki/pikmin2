@@ -467,7 +467,7 @@ BOOL THPPlayerPrepare(int frame, u8 flag, int audioTrack)
 
 		OldVIPostCallback = VISetPostRetraceCallback(PlayControl);
 
-		OSReport("THPPlayerPrepare()終了\n"); // 'THPPlayerPrepare end'
+		OSReport("THPPlayerPrepare()邨ゆｺ�\n"); // 'THPPlayerPrepare end'
 
 		return TRUE;
 	}
@@ -515,7 +515,7 @@ void THPPlayerStop()
 			AudioDecodeThreadCancel();
 			audioQuitWithMSound();
 
-			OSReport("オーディオ関係を初期化\n"); // 'initialize audio-related information'
+			OSReport("繧ｪ繝ｼ繝�繧｣繧ｪ髢｢菫ゅｒ蛻晄悄蛹暴n"); // 'initialize audio-related information'
 		}
 
 		while (PopUsedTextureSet() != 0) {

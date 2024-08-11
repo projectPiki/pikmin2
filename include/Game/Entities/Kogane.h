@@ -109,14 +109,14 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : Parameters {
 		ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mMinAppearTime(this, 'fp01', "oŒ»ŠÔ(Min)", 15.0f, 0.0f, 100.0f) // 'appearance time (Min)'
-		    , mMaxAppearTime(this, 'fp02', "oŒ»ŠÔ(Max)", 30.0f, 0.0f, 100.0f) // 'appearance time (Max)'
-		    , mMinTravelTime(this, 'fp10', "ˆÚ“®ŠÔ(Min)", 0.5f, 0.0f, 10.0f)   // 'travel time (Min)'
-		    , mMaxTravelTime(this, 'fp11', "ˆÚ“®ŠÔ(Max)", 2.0f, 0.0f, 10.0f)   // 'travel time (Max)'
-		    , mMinStopTime(this, 'fp20', "’â~ŠÔ(Min)", 0.5f, 0.0f, 10.0f)     // 'stop time (Min)'
-		    , mMaxStopTime(this, 'fp21', "’â~ŠÔ(Max)", 2.0f, 0.0f, 10.0f)     // 'stop time (Max)'
-		    , mTurnAngle(this, 'fp30', "Œü‚«•Ï‚¦Šp“x", 45.0f, 0.0f, 90.0f)       // 'turning angle'
-		    , mScale(this, 'fp40', "ƒXƒP[ƒ‹", 0.8f, 0.0f, 5.0f)                 // 'scale'
+		    , mMinAppearTime(this, 'fp01', "å‡ºç¾æ™‚é–“(Min)", 15.0f, 0.0f, 100.0f) // 'appearance time (Min)'
+		    , mMaxAppearTime(this, 'fp02', "å‡ºç¾æ™‚é–“(Max)", 30.0f, 0.0f, 100.0f) // 'appearance time (Max)'
+		    , mMinTravelTime(this, 'fp10', "ç§»å‹•æ™‚é–“(Min)", 0.5f, 0.0f, 10.0f)   // 'travel time (Min)'
+		    , mMaxTravelTime(this, 'fp11', "ç§»å‹•æ™‚é–“(Max)", 2.0f, 0.0f, 10.0f)   // 'travel time (Max)'
+		    , mMinStopTime(this, 'fp20', "åœæ­¢æ™‚é–“(Min)", 0.5f, 0.0f, 10.0f)     // 'stop time (Min)'
+		    , mMaxStopTime(this, 'fp21', "åœæ­¢æ™‚é–“(Max)", 2.0f, 0.0f, 10.0f)     // 'stop time (Max)'
+		    , mTurnAngle(this, 'fp30', "å‘ãå¤‰ãˆè§’åº¦", 45.0f, 0.0f, 90.0f)       // 'turning angle'
+		    , mScale(this, 'fp40', "ã‚¹ã‚±ãƒ¼ãƒ«", 0.8f, 0.0f, 5.0f)                 // 'scale'
 		{
 		}
 

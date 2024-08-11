@@ -14,7 +14,7 @@ static const char tamagoMushiMgrName[] = "tamagoMushiMgr";
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "タマゴムシマネージャ"; // egg bug manager
+	mName = "繧ｿ繝槭ざ繝繧ｷ繝槭ロ繝ｼ繧ｸ繝｣"; // egg bug manager
 }
 
 /**

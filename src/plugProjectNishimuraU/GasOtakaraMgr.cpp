@@ -15,7 +15,7 @@ static const char* cOtakaraChangeTexName = "/enemy/data/GasOtakara/otakara_purpl
 Mgr::Mgr(int objLimit, u8 modelType)
     : OtakaraBase::Mgr(objLimit, modelType)
 {
-	mName = "ガスオタカラムシマネージャ"; // gas otakara manager
+	mName = "繧ｬ繧ｹ繧ｪ繧ｿ繧ｫ繝ｩ繝繧ｷ繝槭ロ繝ｼ繧ｸ繝｣"; // gas otakara manager
 }
 
 /**

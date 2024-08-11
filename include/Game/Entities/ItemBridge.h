@@ -80,7 +80,7 @@ struct BridgeParms : public CreatureParms {
 	struct Parms : public Parameters {
 		inline Parms()
 		    : Parameters(nullptr, "Bridge::Parms")
-		    , mHealth(this, 'p000', "ƒ‰ƒCƒt", 100.0f, 0.0f, 40000.0f) // 'life'
+		    , mHealth(this, 'p000', "ãƒ©ã‚¤ãƒ•", 100.0f, 0.0f, 40000.0f) // 'life'
 		{
 		}
 

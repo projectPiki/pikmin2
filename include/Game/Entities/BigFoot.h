@@ -184,25 +184,25 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mBaseCoefficient(this, 'fp01', "ƒx[ƒXŒW”", 3.0f, 0.0f, 10.0f)        // 'base factor'
-		    , mRaiseSlowdownFactor(this, 'fp02', "ã‚°Œ¸‘¬ŒW”", -0.2f, -5.0f, 5.0f) // 'raising deceleration factor'
-		    , mDownwardAccelFactor(this, 'fp03', "‰º‚°‰Á‘¬ŒW”", 0.5f, -5.0f, 5.0f)  // 'downward acceleration factor'
-		    , mMinDecelFactor(this, 'fp04', "Å’áŒ¸‰Á‘¬ŒW”", -2.5f, -10.0f,
+		    , mBaseCoefficient(this, 'fp01', "ãƒ™ãƒ¼ã‚¹ä¿‚æ•°", 3.0f, 0.0f, 10.0f)        // 'base factor'
+		    , mRaiseSlowdownFactor(this, 'fp02', "ä¸Šã’æ¸›é€Ÿä¿‚æ•°", -0.2f, -5.0f, 5.0f) // 'raising deceleration factor'
+		    , mDownwardAccelFactor(this, 'fp03', "ä¸‹ã’åŠ é€Ÿä¿‚æ•°", 0.5f, -5.0f, 5.0f)  // 'downward acceleration factor'
+		    , mMinDecelFactor(this, 'fp04', "æœ€ä½æ¸›åŠ é€Ÿä¿‚æ•°", -2.5f, -10.0f,
 		                      10.0f) // 'minimum deceleration acceleration factor'
-		    , mMaxDecelFactor(this, 'fp05', "Å‚Œ¸‰Á‘¬ŒW”", 10.0f, -10.0f,
+		    , mMaxDecelFactor(this, 'fp05', "æœ€é«˜æ¸›åŠ é€Ÿä¿‚æ•°", 10.0f, -10.0f,
 		                      10.0f)                                                           // 'maximum deceleration acceleration factor'
-		    , mLegSwing(this, 'fp06', "‘«‚ÌU‚èã‚°", 120.0f, 0.0f, 200.0f)                    // 'leg swing'
-		    , mEnragedBaseCoefficient(this, 'fp11', "ƒx[ƒXŒW”(s)", 3.0f, 0.0f, 10.0f)        // 'base factor(s)'
-		    , mEnragedRaiseSlowdownFactor(this, 'fp12', "ã‚°Œ¸‘¬ŒW”(s)", -0.2f, -5.0f, 5.0f) // 'raising deceleration factor(s)'
-		    , mEnragedDownwardAccelFactor(this, 'fp13', "‰º‚°‰Á‘¬ŒW”(s)", 0.5f, -5.0f, 5.0f)  // 'downward acceleration factor(s)'
-		    , mEnragedMinDecelFactor(this, 'fp14', "Å’áŒ¸‰Á‘¬ŒW”(s)", -2.0f, -10.0f,
+		    , mLegSwing(this, 'fp06', "è¶³ã®æŒ¯ã‚Šä¸Šã’", 120.0f, 0.0f, 200.0f)                    // 'leg swing'
+		    , mEnragedBaseCoefficient(this, 'fp11', "ãƒ™ãƒ¼ã‚¹ä¿‚æ•°(s)", 3.0f, 0.0f, 10.0f)        // 'base factor(s)'
+		    , mEnragedRaiseSlowdownFactor(this, 'fp12', "ä¸Šã’æ¸›é€Ÿä¿‚æ•°(s)", -0.2f, -5.0f, 5.0f) // 'raising deceleration factor(s)'
+		    , mEnragedDownwardAccelFactor(this, 'fp13', "ä¸‹ã’åŠ é€Ÿä¿‚æ•°(s)", 0.5f, -5.0f, 5.0f)  // 'downward acceleration factor(s)'
+		    , mEnragedMinDecelFactor(this, 'fp14', "æœ€ä½æ¸›åŠ é€Ÿä¿‚æ•°(s)", -2.0f, -10.0f,
 		                             10.0f) // 'minimum deceleration acceleration factor(s)'
-		    , mEnragedMaxDecelFactor(this, 'fp15', "Å‚Œ¸‰Á‘¬ŒW”(s)", 10.0f, -10.0f,
+		    , mEnragedMaxDecelFactor(this, 'fp15', "æœ€é«˜æ¸›åŠ é€Ÿä¿‚æ•°(s)", 10.0f, -10.0f,
 		                             10.0f)                                            // 'maximum deceleration acceleration factor(s)'
-		    , mEnragedLegSwing(this, 'fp16', "‘«‚ÌU‚èã‚°(s)", 120.0f, 0.0f, 200.0f)  // 'leg swing(s)'
-		    , mMovementOffset(this, 'fp17', "ˆÚ“®ƒIƒtƒZƒbƒg(s)", 50.0f, 0.0f, 200.0f)  // 'movement offset(s)'
-		    , mNormalTravelTime(this, 'fp20', "’ÊíˆÚ“®ŠÔ", 10.0f, 0.0f, 100.0f)     // 'normal travel time'
-		    , mPostShakeTravelTime(this, 'fp21', "U•¥ŒãˆÚ“®ŠÔ", 3.0f, 0.0f, 100.0f) // 'post-shakeoff travel time'
+		    , mEnragedLegSwing(this, 'fp16', "è¶³ã®æŒ¯ã‚Šä¸Šã’(s)", 120.0f, 0.0f, 200.0f)  // 'leg swing(s)'
+		    , mMovementOffset(this, 'fp17', "ç§»å‹•ã‚ªãƒ•ã‚»ãƒƒãƒˆ(s)", 50.0f, 0.0f, 200.0f)  // 'movement offset(s)'
+		    , mNormalTravelTime(this, 'fp20', "é€šå¸¸ç§»å‹•æ™‚é–“", 10.0f, 0.0f, 100.0f)     // 'normal travel time'
+		    , mPostShakeTravelTime(this, 'fp21', "æŒ¯æ‰•å¾Œç§»å‹•æ™‚é–“", 3.0f, 0.0f, 100.0f) // 'post-shakeoff travel time'
 		{
 		}
 

@@ -515,7 +515,7 @@ GeneralEnemyMgr::GeneralEnemyMgr()
     , mHeap(nullptr)
 {
 	sys->heapStatusStart("GeneralEnemyMgr", nullptr);
-	mName = "敵マネージャ"; // enemy manager
+	mName = "謨ｵ繝槭ロ繝ｼ繧ｸ繝｣"; // enemy manager
 
 	mEnemyNumInfo.init();
 

@@ -20,20 +20,20 @@ struct TUnit;
 
 struct TParam : public TParamBase {
 	TParam()
-	    : mScale(this, 'b000', "ƒXƒP[ƒ‹", 2.0f, 0.0f, 10.0f)
-	    , mCullRadius(this, 'b001', "ƒJƒŠƒ“ƒO”¼Œa", 100.0f, 0.0f, 500.0f)
-	    , mCollRadius(this, 'b002', "ƒRƒŠƒWƒ‡ƒ“”¼Œa", 150.0f, 0.0f, 500.0f)
-	    , mPikiReactRadius(this, 'b003', "ƒsƒNƒ~ƒ“”½‰”¼Œa", 300.0f, 0.0f, 500.0f)
-	    , mHitOffset(this, 'ch20', "“–‚½‚èOffset", 80.0f, 0.0f, 500.0f)
-	    , mHitRadius(this, 'ch21', "“–‚½‚è”¼Œa", 100.0f, 0.0f, 500.0f)
-	    , mWalkAngleRand(this, 'ch00', "•àsƒ‰ƒ“ƒ_ƒ€Šp“x", 30.0f, 0.0f, 90.0f)
-	    , mWalkSpeed(this, 'ch01', "•às‘¬“x", 8.0f, 0.0f, 100.0f)
-	    , mTurnSpeed(this, 'ch23', "ù‰ñ«”\x5C", 0.05f, 0.0f, 1.0f) // x5C literal required for match
-	    , mMinWaitTime(this, 'ch10', "‘Ò‚¿ŠÔÅ¬(•b)", 0.3f, 0.0f, 10.0f)
-	    , mMaxWaitTime(this, 'ch11', "‘Ò‚¿ŠÔÅ‘å(•b)", 1.0f, 0.0f, 10.0f)
-	    , mMinWalkTime(this, 'ch12', "ˆÚ“®ŠÔÅ¬(•b)", 0.5f, 0.0f, 10.0f)
-	    , mMaxWalkTime(this, 'ch13', "ˆÚ“®ŠÔÅ‘å(•b)", 1.5f, 0.0f, 10.0f)
-	    , mControlledTime(this, 'ch22', "ƒRƒ“ƒgƒ[ƒ‰ó‘ÔŠÔ(•b)", 5.0f, 0.0f, 60.0f)
+	    : mScale(this, 'b000', "ã‚¹ã‚±ãƒ¼ãƒ«", 2.0f, 0.0f, 10.0f)
+	    , mCullRadius(this, 'b001', "ã‚«ãƒªãƒ³ã‚°åŠå¾„", 100.0f, 0.0f, 500.0f)
+	    , mCollRadius(this, 'b002', "ã‚³ãƒªã‚¸ãƒ§ãƒ³åŠå¾„", 150.0f, 0.0f, 500.0f)
+	    , mPikiReactRadius(this, 'b003', "ãƒ”ã‚¯ãƒŸãƒ³åå¿œåŠå¾„", 300.0f, 0.0f, 500.0f)
+	    , mHitOffset(this, 'ch20', "å½“ãŸã‚ŠOffset", 80.0f, 0.0f, 500.0f)
+	    , mHitRadius(this, 'ch21', "å½“ãŸã‚ŠåŠå¾„", 100.0f, 0.0f, 500.0f)
+	    , mWalkAngleRand(this, 'ch00', "æ­©è¡Œãƒ©ãƒ³ãƒ€ãƒ è§’åº¦", 30.0f, 0.0f, 90.0f)
+	    , mWalkSpeed(this, 'ch01', "æ­©è¡Œé€Ÿåº¦", 8.0f, 0.0f, 100.0f)
+	    , mTurnSpeed(this, 'ch23', "æ—‹å›æ€§èƒ½", 0.05f, 0.0f, 1.0f)
+	    , mMinWaitTime(this, 'ch10', "å¾…ã¡æ™‚é–“æœ€å°(ç§’)", 0.3f, 0.0f, 10.0f)
+	    , mMaxWaitTime(this, 'ch11', "å¾…ã¡æ™‚é–“æœ€å¤§(ç§’)", 1.0f, 0.0f, 10.0f)
+	    , mMinWalkTime(this, 'ch12', "ç§»å‹•æ™‚é–“æœ€å°(ç§’)", 0.5f, 0.0f, 10.0f)
+	    , mMaxWalkTime(this, 'ch13', "ç§»å‹•æ™‚é–“æœ€å¤§(ç§’)", 1.5f, 0.0f, 10.0f)
+	    , mControlledTime(this, 'ch22', "ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©çŠ¶æ…‹æ™‚é–“(ç§’)", 5.0f, 0.0f, 60.0f)
 	{
 	}
 

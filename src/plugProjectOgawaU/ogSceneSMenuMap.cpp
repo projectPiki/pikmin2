@@ -105,7 +105,7 @@ bool SMenuMap::doConfirmSetScene(::Screen::SetSceneArg& sceneArg)
  */
 void SMenuMap::doSetBackupScene(::Screen::SetSceneArg& sceneArg) { sceneArg.mDoCreateBackup = false; }
 
-static const char DONOTDOTHAT[] = "ÇæÇﬂÇ≈Ç∑"; // 'do not do that' lmao
+static const char DONOTDOTHAT[] = "„Å†„ÇÅ„Åß„Åô"; // 'do not do that' lmao
 
 } // namespace newScreen
 } // namespace og

@@ -26,13 +26,13 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mSurvivalTime(this, 'fp01', "¶‘¶ŠÔ", 300.0f, 0.0, 2000.0f)    // 'survival time'
-		    , mAppearanceRange(this, 'fp02', "oŒ»”ÍˆÍ", 80.0f, 0.0f, 200.0f)  // 'appearance range'
-		    , mHoneyRate(this, 'fp03', "–¨ƒŒ[ƒg", 1.0f, 0.0f, 1.0f)           // 'honey rate'
-		    , mMinimumWalkTime(this, 'ip01', "•à‚«ŠÔÅ¬", 60, 0, 300)       // 'minimum walking time'
-		    , mMaximumWalkTime(this, 'ip02', "•à‚«ŠÔÅ‘å", 100, 0, 600)      // 'maximum walking time'
-		    , mMinimumAppearanceTime(this, 'ip03', "oŒ»ŠÔÅ¬", 10, 0, 100) // 'minimum appearance time'
-		    , mMaximumAppearanceTime(this, 'ip04', "oŒ»ŠÔÅ‘å", 50, 0, 200) // 'maximum appearance time'
+		    , mSurvivalTime(this, 'fp01', "ç”Ÿå­˜æ™‚é–“", 300.0f, 0.0, 2000.0f)    // 'survival time'
+		    , mAppearanceRange(this, 'fp02', "å‡ºç¾ç¯„å›²", 80.0f, 0.0f, 200.0f)  // 'appearance range'
+		    , mHoneyRate(this, 'fp03', "èœœãƒ¬ãƒ¼ãƒˆ", 1.0f, 0.0f, 1.0f)           // 'honey rate'
+		    , mMinimumWalkTime(this, 'ip01', "æ­©ãæ™‚é–“æœ€å°", 60, 0, 300)       // 'minimum walking time'
+		    , mMaximumWalkTime(this, 'ip02', "æ­©ãæ™‚é–“æœ€å¤§", 100, 0, 600)      // 'maximum walking time'
+		    , mMinimumAppearanceTime(this, 'ip03', "å‡ºç¾æ™‚é–“æœ€å°", 10, 0, 100) // 'minimum appearance time'
+		    , mMaximumAppearanceTime(this, 'ip04', "å‡ºç¾æ™‚é–“æœ€å¤§", 50, 0, 200) // 'maximum appearance time'
 		{
 		}
 

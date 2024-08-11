@@ -23,7 +23,7 @@ void GenObjectNavi::initialise()
 	if (factory->mCount < factory->mLimit) {
 		factory->mFactories[factory->mCount].mTypeID       = 'navi';
 		factory->mFactories[factory->mCount].mMakeFunction = makeObjectNavi;
-		factory->mFactories[factory->mCount].mName         = "ƒiƒr‚ð”­¶"; // generate navi(gation)
+		factory->mFactories[factory->mCount].mName         = "ãƒŠãƒ“ã‚’ç™ºç”Ÿ"; // generate navi(gation)
 		factory->mFactories[factory->mCount].mVersion      = '0000';
 		factory->mCount++;
 	}

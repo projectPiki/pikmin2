@@ -408,28 +408,28 @@ bool TOmakeGame::openMsg(s32 id)
 	case GameDesc:
 		switch (mSelection) {
 		case PikminPluck:
-			tag = '4800_00'; // "ƒIƒŠƒ}[‚Ü‚½‚Íƒ‹[ƒC‚ğ‘€ì‚µ‚ÄAƒsƒNƒ~ƒ“‚½‚¿‚ğ‚·‚×‚Ä‚Ğ‚Á‚±‚Ê‚­ƒQ[ƒ€‚Å‚·B"
+			tag = '4800_00'; // "ã‚ªãƒªãƒãƒ¼ã¾ãŸã¯ãƒ«ãƒ¼ã‚¤ã‚’æ“ä½œã—ã¦ã€ãƒ”ã‚¯ãƒŸãƒ³ãŸã¡ã‚’ã™ã¹ã¦ã²ã£ã“ã¬ãã‚²ãƒ¼ãƒ ã§ã™ã€‚"
 			break;           // translates to "In this game, you control Olimar or Louie and take out all the Pikmin."
 		case PikminPart:
-			tag = '4801_00'; // "“¯‚¶Œü‚«‚É“®‚­ƒsƒNƒ~ƒ“‚½‚¿‚ğ‚ ‚â‚Â‚èA‚¨•ó‚Ì‚ ‚éêŠ‚É˜A‚ê‚Ä‚¢‚­ƒQ[ƒ€‚Å‚·B"
+			tag = '4801_00'; // "åŒã˜å‘ãã«å‹•ããƒ”ã‚¯ãƒŸãƒ³ãŸã¡ã‚’ã‚ã‚„ã¤ã‚Šã€ãŠå®ã®ã‚ã‚‹å ´æ‰€ã«é€£ã‚Œã¦ã„ãã‚²ãƒ¼ãƒ ã§ã™ã€‚"
 			break; // translates to "In this game, you control Pikmin that move in the same direction and lead them to treasure locations."
 		case PikminPath:
-			tag = '4802_00'; // "ƒpƒlƒ‹‚ğ“ü‚ê‚©‚¦‚È‚ª‚çAƒ|ƒbƒh‚Ü‚Å‚Ì“¹‚ğŠ®¬‚³‚¹AƒsƒNƒ~ƒ“‚½‚¿‚ğ‚·‚×‚ÄƒS[ƒ‹‚³‚¹‚éƒQ[ƒ€‚Å‚·B"
+			tag = '4802_00'; // "ãƒ‘ãƒãƒ«ã‚’å…¥ã‚Œã‹ãˆãªãŒã‚‰ã€ãƒãƒƒãƒ‰ã¾ã§ã®é“ã‚’å®Œæˆã•ã›ã€ãƒ”ã‚¯ãƒŸãƒ³ãŸã¡ã‚’ã™ã¹ã¦ã‚´ãƒ¼ãƒ«ã•ã›ã‚‹ã‚²ãƒ¼ãƒ ã§ã™ã€‚"
 			break; // translates to "This is a game where you can complete the path to the pod by replacing the panels and get all the
 			       // Pikmin to the finish line."
 		}
 		break;
 	case Transferring:
-		tag = '4823_00'; // "ƒQ[ƒ€‚ğ“]‘—‚µ‚Ä‚¢‚Ü‚·B‚µ‚Î‚ç‚­‚¨‘Ò‚¿‚­‚¾‚³‚¢B"
+		tag = '4823_00'; // "ã‚²ãƒ¼ãƒ ã‚’è»¢é€ã—ã¦ã„ã¾ã™ã€‚ã—ã°ã‚‰ããŠå¾…ã¡ãã ã•ã„ã€‚"
 		break;           // translates to "Transferring games. Please wait."
 	case TransferFinished:
-		tag = '4824_00'; // "ƒQ[ƒ€‚Ì“]‘—‚ªI‚í‚è‚Ü‚µ‚½BƒP[ƒuƒ‹‚ğ”²‚¢‚Ä‚àƒQ[ƒ€‚Í—V‚×‚Ü‚·B"
+		tag = '4824_00'; // "ã‚²ãƒ¼ãƒ ã®è»¢é€ãŒçµ‚ã‚ã‚Šã¾ã—ãŸã€‚ã‚±ãƒ¼ãƒ–ãƒ«ã‚’æŠœã„ã¦ã‚‚ã‚²ãƒ¼ãƒ ã¯éŠã¹ã¾ã™ã€‚"
 		break;           // translates to "Game transfer finished. You can play the game even if you unplug the cable."
 	case TransferFailed:
-		tag = '4826_00'; // "ƒQ[ƒ€‚ğ“]‘—‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½BÚ‘±‚Ìd•û‚ğŠm”F‚µ‚Ä‚­‚¾‚³‚¢B"
+		tag = '4826_00'; // "ã‚²ãƒ¼ãƒ ã‚’è»¢é€ã§ãã¾ã›ã‚“ã§ã—ãŸã€‚æ¥ç¶šã®ä»•æ–¹ã‚’ç¢ºèªã—ã¦ãã ã•ã„ã€‚"
 		break;           // translates to "Failed to transfer game. Please check how to connect."
 	case TransferUnable:
-		tag = '4825_00'; // "“]‘—‚Å‚«‚Ü‚¹‚ñII ‚Å‚à‚Ç‚Á‚ÄAÚ‘±‚Ìd•û‚â‘€ì‚ğŠm”F‚µ‚Ä‚­‚¾‚³‚¢B"
+		tag = '4825_00'; // "è»¢é€ã§ãã¾ã›ã‚“ï¼ï¼ ã§ã‚‚ã©ã£ã¦ã€æ¥ç¶šã®ä»•æ–¹ã‚„æ“ä½œã‚’ç¢ºèªã—ã¦ãã ã•ã„ã€‚"
 		break;           // translates to "Unable to transfer! ! But go back and check how to connect and how to operate."
 	default:
 		return false;

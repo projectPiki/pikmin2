@@ -10,7 +10,7 @@ namespace Bomb {
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "爆弾マネージャ"; // bomb manager
+	mName = "辷�蠑ｾ繝槭ロ繝ｼ繧ｸ繝｣"; // bomb manager
 }
 
 /**

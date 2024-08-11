@@ -223,7 +223,7 @@ struct CaveInfo : public CNode {
 	struct Parms : Parameters {
 		inline Parms()
 		    : Parameters(nullptr, "CaveInfo")
-		    , mFloorMax(this, 'c000', "ŠK‘w", 1, 1, 128) // 'floor'
+		    , mFloorMax(this, 'c000', "éšŽå±¤", 1, 1, 128) // 'floor'
 		{
 		}
 

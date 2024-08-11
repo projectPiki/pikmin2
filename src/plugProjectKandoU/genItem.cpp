@@ -24,7 +24,7 @@ void GenItem::initialise()
 	}
 	GenObjectFactory::factory->mFactories[GenObjectFactory::factory->mCount].mTypeID = 'item';
 	factory->mFactories[factory->mCount].mMakeFunction                               = makeItem;
-	factory->mFactories[factory->mCount].mName                                       = "ƒAƒCƒeƒ€‚ğ”­¶"; // spawn item
+	factory->mFactories[factory->mCount].mName                                       = "ã‚¢ã‚¤ãƒ†ãƒ ã‚’ç™ºç”Ÿ"; // spawn item
 	factory->mFactories[factory->mCount].mVersion                                    = '0002';
 
 	factory->mCount++;
@@ -174,5 +174,5 @@ Creature* GenItem::birth(Game::GenArg* arg)
 	return baseItem;
 }
 
-static const char unusedGenItemStr[] = "ƒIƒjƒ‡ƒ“‚ğ”­¶";
+static const char unusedGenItemStr[] = "ã‚ªãƒ‹ãƒ§ãƒ³ã‚’ç™ºç”Ÿ";
 } // namespace Game

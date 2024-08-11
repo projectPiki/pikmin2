@@ -35,9 +35,10 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mSearchRumbleSpeed(this, 'fp01', "サーチゴロゴロ速度", 150.0f, 0.0f, 1000.0f) // 'search rumble speed'
-		{
-		}
+		    , mSearchRumbleSpeed(this, 'fp01', "繧ｵ繝ｼ繝√ざ繝ｭ繧ｴ繝ｭ騾溷ｺｦ", 150.0f, 0.0f, 1000.0f) // 'search rumble speed'		
+			{
+				
+			}
 
 		Parm<f32> mSearchRumbleSpeed; // _804
 	};

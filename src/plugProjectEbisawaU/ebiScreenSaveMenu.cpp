@@ -342,7 +342,7 @@ void TSaveMenu::startMsgState_(enumMsgState state)
 			mAnimScreen[2]->close();
 			break;
 		default:
-			JUT_PANICLINE(395, "‚ ‚è‚¦‚È‚¢I‚ ‚è‚¦‚È‚¢I‚½‚Í‚ ‚ÁI\n"); // "Impossible! Impossible! Tahaha"
+			JUT_PANICLINE(395, "ã‚ã‚Šãˆãªã„ï¼ã‚ã‚Šãˆãªã„ï¼ãŸã¯ã‚ã£ï¼\n"); // "Impossible! Impossible! Tahaha"
 		}
 		u32 count2      = 0.5f / sys->mDeltaTime;
 		mTextCounter    = count2;

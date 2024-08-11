@@ -15,7 +15,7 @@ static const char* cOtakaraChangeTexName = "/enemy/data/ElecOtakara/otakara_yell
 Mgr::Mgr(int objLimit, u8 modelType)
     : OtakaraBase::Mgr(objLimit, modelType)
 {
-	mName = "電気オタカラムシマネージャ"; // electric otakara manager
+	mName = "髮ｻ豌励が繧ｿ繧ｫ繝ｩ繝繧ｷ繝槭ロ繝ｼ繧ｸ繝｣"; // electric otakara manager
 }
 
 /**

@@ -46,7 +46,7 @@ void ObjChallenge1P::doCreate(JKRArchive* arc)
 		mDisp = new og::Screen::DispMemberChallenge1P;
 
 	} else {
-		JUT_PANICLINE(122, "ERR! in ObjChallenge1P Createé∏îsÅI\n");
+		JUT_PANICLINE(122, "ERR! in ObjChallenge1P CreateÂ§±ÊïóÔºÅ\n");
 	}
 
 	mDoping      = new og::Screen::DopingScreen;

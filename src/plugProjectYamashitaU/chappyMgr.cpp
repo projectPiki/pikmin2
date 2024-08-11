@@ -18,7 +18,7 @@ static const char* cChappyChangeTexName1 = "/enemy/data/Chappy/swallow_565.1.bti
 Mgr::Mgr(int objLimit, u8 modelType)
     : ChappyBase::Mgr(objLimit, modelType)
 {
-	mName = "赤チャッピーマネージャ"; // chappybase manager
+	mName = "襍､繝√Ε繝�繝斐�ｼ繝槭ロ繝ｼ繧ｸ繝｣"; // chappybase manager
 }
 
 /**

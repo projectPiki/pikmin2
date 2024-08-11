@@ -161,12 +161,12 @@ struct PlantParms : public CreatureParms {
 	struct Parms : public Parameters {
 		Parms()
 		    : Parameters(nullptr, "Plant::Parms")
-		    , mGrowTimeToMedium(this, 'p000', "¬’·ŽžŠÔ(¬¨’†)", 10.0f, 0.0f, 2000.0f)  // 'growth time (small -> medium)'
-		    , mGrowTimeToLarge(this, 'p001', "¬’·ŽžŠÔ(’†¨‘å)", 10.0f, 0.0f, 2000.0f)   // 'growth time (medium -> large)'
-		    , mDamageToDrop(this, 'p002', "ƒhƒƒbƒv‚·‚éƒ_ƒ[ƒW", 300.0f, 0.0f, 2500.0f) // 'damage to drop'
-		    , mBearFruitTime(this, 'p003', "ŽÀ‚ð‚Â‚¯‚é‚Ü‚Å‚ÌŽžŠÔ", 10.0f, 0.0f, 2000.0f) // 'time to bear fruit'
-		    , mActualPlayTime(this, 'p004', "ŽÀÄ¶ŽžŠÔ", 20.0f, 0.0f, 2000.0f)          // 'actual play time'
-		    , mBurstTime(this, 'p005', "•…‚é‚Ü‚Å‚ÌŽžŠÔ", 40.0f, 0.0f, 10000.0f)          // 'time to rot/spoil'
+		    , mGrowTimeToMedium(this, 'p000', "æˆé•·æ™‚é–“(å°â†’ä¸­)", 10.0f, 0.0f, 2000.0f)  // 'growth time (small -> medium)'
+		    , mGrowTimeToLarge(this, 'p001', "æˆé•·æ™‚é–“(ä¸­â†’å¤§)", 10.0f, 0.0f, 2000.0f)   // 'growth time (medium -> large)'
+		    , mDamageToDrop(this, 'p002', "ãƒ‰ãƒ­ãƒƒãƒ—ã™ã‚‹ãƒ€ãƒ¡ãƒ¼ã‚¸", 300.0f, 0.0f, 2500.0f) // 'damage to drop'
+		    , mBearFruitTime(this, 'p003', "å®Ÿã‚’ã¤ã‘ã‚‹ã¾ã§ã®æ™‚é–“", 10.0f, 0.0f, 2000.0f) // 'time to bear fruit'
+		    , mActualPlayTime(this, 'p004', "å®Ÿå†ç”Ÿæ™‚é–“", 20.0f, 0.0f, 2000.0f)          // 'actual play time'
+		    , mBurstTime(this, 'p005', "è…ã‚‹ã¾ã§ã®æ™‚é–“", 40.0f, 0.0f, 10000.0f)          // 'time to rot/spoil'
 		{
 		}
 

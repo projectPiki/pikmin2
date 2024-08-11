@@ -440,7 +440,7 @@ void Generator::write(Stream& output)
 
 	output.textWriteTab(output.mTabCount);
 	output.writeShort(mDaysTillResurrection);
-	output.textWriteText("\t# •œŠˆ“ú”\r\n"); // 'resurrection days'
+	output.textWriteText("\t# å¾©æ´»æ—¥æ•°\r\n"); // 'resurrection days'
 
 	if (ramMode == RM_Disc) {
 		// generator files as stored on disc

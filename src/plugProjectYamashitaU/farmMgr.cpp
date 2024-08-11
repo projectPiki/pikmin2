@@ -18,9 +18,9 @@ namespace Farm {
  */
 FarmMgr::FarmMgr(u32 farmType)
     : GenericObjectMgr()
-    , CNode("”_kƒ}ƒl[ƒWƒƒ")
+    , CNode("è¾²è€•ãƒãƒãƒ¼ã‚¸ãƒ£")
     , mModelType(farmType)
-    , mFarmsRootNode("”_kƒ|ƒCƒ“ƒg")
+    , mFarmsRootNode("è¾²è€•ãƒã‚¤ãƒ³ãƒˆ")
     , mDirectorUpdator(nullptr)
     , mUnused1(0)
     , mUnused2(0)

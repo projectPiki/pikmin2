@@ -261,7 +261,7 @@ void SwitcherDirector::doUpdateRequest()
  * @note Size: 0x88
  */
 DirectorMgrBase::DirectorMgrBase(u8 count)
-    : JADHioNode("ディレクターマネージャ") // "Director Manager"
+    : JADHioNode("繝�繧｣繝ｬ繧ｯ繧ｿ繝ｼ繝槭ロ繝ｼ繧ｸ繝｣") // "Director Manager"
 {
 	mDirectors     = nullptr;
 	mDirectorCount = count;

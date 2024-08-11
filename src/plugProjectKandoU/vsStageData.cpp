@@ -70,7 +70,7 @@ void StageData::read(Stream& stream)
  */
 StageList::StageList()
 {
-	mName = "チャレンジステージ"; // challenge stage
+	mName = "繝√Ε繝ｬ繝ｳ繧ｸ繧ｹ繝�繝ｼ繧ｸ"; // challenge stage
 }
 
 /**
@@ -162,7 +162,7 @@ void StageData::read(Stream& stream)
  */
 StageList::StageList()
 {
-	mName = "対戦用ステージ"; // battle stage
+	mName = "蟇ｾ謌ｦ逕ｨ繧ｹ繝�繝ｼ繧ｸ"; // battle stage
 }
 
 /**

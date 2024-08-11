@@ -12,7 +12,7 @@ static const char miulinMgrName[] = "miulinMgr";
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "ミウリンマネージャ"; // miulin manager
+	mName = "繝溘え繝ｪ繝ｳ繝槭ロ繝ｼ繧ｸ繝｣"; // miulin manager
 }
 
 /**

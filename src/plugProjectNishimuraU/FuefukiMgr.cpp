@@ -12,7 +12,7 @@ static const char fuefukiMgrName[] = "246-FuefukiMgr";
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "フエフキムシマネージャ"; // flute player manager
+	mName = "繝輔お繝輔く繝繧ｷ繝槭ロ繝ｼ繧ｸ繝｣"; // flute player manager
 }
 
 /**

@@ -16,7 +16,7 @@ struct HIORootNode : public Game::HIORootNode {
 	HIORootNode(Section* section)
 	    : Game::HIORootNode(section)
 	{
-		mName = "THPƒZƒNƒVƒ‡ƒ“";
+		mName = "THPã‚»ã‚¯ã‚·ãƒ§ãƒ³";
 	}
 
 	virtual ~HIORootNode() { } // _08 (weak)

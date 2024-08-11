@@ -20,7 +20,7 @@ static const char* cMatAnimBrkTexName = "/enemy/data/DangoMushi/dangomushi.brk";
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "ダンゴムシマネージャ"; // pill bug manager
+	mName = "繝繝ｳ繧ｴ繝繧ｷ繝槭ロ繝ｼ繧ｸ繝｣"; // pill bug manager
 }
 
 /**

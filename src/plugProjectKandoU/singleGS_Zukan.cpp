@@ -46,7 +46,7 @@ namespace IllustratedBook {
  * @note Size: 0x98
  */
 DebugParms::DebugParms()
-    : CNode("}ŠÓƒfƒoƒbƒO") // "Illustrated Book Debugging"
+    : CNode("å›³é‘‘ãƒ‡ãƒãƒƒã‚°") // "Illustrated Book Debugging"
 {
 	mFlags.clear();
 	_18.set(32, 32, 10, 255);
@@ -129,7 +129,7 @@ Camera::Camera(Controller* input)
     , mCameraShakeOffsetPos(Vector3f::zero)
     , mVibrationForce(1.0f, 0.0f, 0.0f)
 {
-	setName("}ŠÓƒJƒƒ‰"); // 'illustrated book camera'
+	setName("å›³é‘‘ã‚«ãƒ¡ãƒ©"); // 'illustrated book camera'
 	move(Vector3f::zero);
 	mCameraShakeFrequency     = 0.5f;
 	mCameraShakeBaseMagnitude = 0.5f;
@@ -4819,9 +4819,9 @@ void ZukanState::dvdloadB_teki()
 {
 	dvdloadB_common();
 	if (mCurrentEnemyIndex == Game::EnemyTypeID::EnemyID_Pelplant) {
-		OSReport("ƒyƒŒƒbƒg‘‚È‚Ì‚ÅƒyƒŒƒbƒg‚ðƒ[ƒh‚µ‚Ü‚· free:%d \n", JKRGetCurrentHeap()->getFreeSize()); // "pellet grass so load pellets"
+		OSReport("ãƒšãƒ¬ãƒƒãƒˆè‰ãªã®ã§ãƒšãƒ¬ãƒƒãƒˆã‚’ãƒ­ãƒ¼ãƒ‰ã—ã¾ã™ free:%d \n", JKRGetCurrentHeap()->getFreeSize()); // "pellet grass so load pellets"
 		PelletNumber::mgr->setupResources();
-		OSReport("‚¾‚µ‚½ free:%d \n", JKRGetCurrentHeap()->getFreeSize()); // "started"
+		OSReport("ã ã—ãŸ free:%d \n", JKRGetCurrentHeap()->getFreeSize()); // "started"
 	}
 	P2ASSERTLINE(2747, !generalEnemyMgr);
 	generalEnemyMgr = new GeneralEnemyMgr;
@@ -4842,7 +4842,7 @@ void ZukanState::dvdloadB_teki()
 		Vector3f posOffset;
 		posOffset.set(posParms->mParms.mAppearPosX(), posParms->mParms.mAppearPosY(), posParms->mParms.mAppearPosZ()); // f30, f29, f28
 
-		OSReport("“G‚ðƒAƒƒbƒN %d•C@free:%d \n", count, JKRGetCurrentHeap()->getFreeSize());
+		OSReport("æ•µã‚’ã‚¢ãƒ­ãƒƒã‚¯ %dåŒ¹ã€€free:%d \n", count, JKRGetCurrentHeap()->getFreeSize());
 		bool makeSpectralids = false;
 		TekiStat::Info* info = playData->mTekiStatMgr.getTekiInfo(mCurrentEnemyIndex);
 		if (info && info->mKilledTekiCount > 16) {
