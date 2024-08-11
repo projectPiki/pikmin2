@@ -113,9 +113,9 @@ def main():
     n.comment("Variables")
     version = args.version.lower()
     if args.version.lower() == "usa":
-        version_num = "2"
+        version_num = "4"
     elif args.version.lower() == "usa.demo":
-        version_num = "1"
+        version_num = "0"
     else:
         sys.exit(f'Invalid version "{args.version}"')
     build_path = args.build_dir / f"pikmin2.{version}"

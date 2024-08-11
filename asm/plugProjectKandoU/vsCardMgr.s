@@ -800,7 +800,7 @@ lbl_constructor:
 /* 80235A7C 002329BC  4E 80 00 20 */	blr 
 .endfn stopSlot__Q34Game6VsGame7CardMgrFi
 
-.if version == 1
+.if version == 0
 .fn usePlayerCard__Q34Game6VsGame7CardMgrFiPQ34Game6VsGame7TekiMgr, global
 /* 80235A80 002329C0  94 21 FE A0 */	stwu r1, -0x160(r1)
 /* 80235A84 002329C4  7C 08 02 A6 */	mflr r0
@@ -2811,7 +2811,7 @@ lbl_constructor:
 /* 80236A1C 0023395C  4E 80 00 20 */	blr 
 .endfn clear__Q44Game6VsGame7CardMgr11SlotMachineFv
 
-.if version == 1
+.if version == 0
 .fn start__Q44Game6VsGame7CardMgr11SlotMachineFv, global
 /* 80236A20 00233960  94 21 FF 40 */	stwu r1, -0xc0(r1)
 /* 80236A24 00233964  7C 08 02 A6 */	mflr r0

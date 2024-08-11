@@ -765,7 +765,7 @@ lbl_constructor:
 .endobj lbl_80520E58
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.if version == 1
+.if version == 0
 .fn __ct__Q24Game15BaseGameSectionFP7JKRHeap, global
 /* 8014ADA0 00147CE0  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8014ADA4 00147CE4  7C 08 02 A6 */	mflr r0
@@ -1149,7 +1149,7 @@ lbl_constructor:
 /* 8014B0F8 00148038  4E 80 00 20 */	blr 
 .endfn __dt__8WipeBaseFv
 
-.if version == 1
+.if version == 0
 .fn useSpecificFBTexture__Q24Game15BaseGameSectionFP10JUTTexture, global
 /* 8014B0FC 0014803C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8014B100 00148040  7C 08 02 A6 */	mflr r0
@@ -1217,7 +1217,7 @@ lbl_constructor:
 .endfn useSpecificFBTexture__Q24Game15BaseGameSectionFP10JUTTexture
 .endif
 
-.if version == 1
+.if version == 0
 .fn restoreFBTexture__Q24Game15BaseGameSectionFv, global
 /* 8014B170 001480B0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8014B174 001480B4  7C 08 02 A6 */	mflr r0
@@ -1281,7 +1281,7 @@ lbl_constructor:
 .endfn restoreFBTexture__Q24Game15BaseGameSectionFv
 .endif
 
-.if version == 1
+.if version == 0
 .fn __dt__Q24Game15BaseGameSectionFv, global
 /* 8014B1DC 0014811C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8014B1E0 00148120  7C 08 02 A6 */	mflr r0
@@ -1435,7 +1435,7 @@ lbl_constructor:
 .endfn __dt__Q24Game15BaseGameSectionFv
 .endif
 
-.if version == 1
+.if version == 0
 .fn loadSync__Q24Game15BaseGameSectionFP9IDelegateb, global
 /* 8014B2F0 00148230  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8014B2F4 00148234  7C 08 02 A6 */	mflr r0
@@ -1483,7 +1483,7 @@ lbl_constructor:
 .endfn loadSync__Q24Game15BaseGameSectionFP9IDelegateb
 .endif
 
-.if version == 1
+.if version == 0
 .fn waitSyncLoad__Q24Game15BaseGameSectionFb, global
 /* 8014B340 00148280  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8014B344 00148284  7C 08 02 A6 */	mflr r0
@@ -1669,7 +1669,7 @@ lbl_constructor:
 /* 8014B4AC 001483EC  4E 80 00 20 */	blr 
 .endfn dvdloadGameSystem__Q24Game15BaseGameSectionFv
 
-.if version == 1
+.if version == 0
 .fn init__Q24Game15BaseGameSectionFv, global
 /* 8014B4B0 001483F0  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 8014B4B4 001483F4  7C 08 02 A6 */	mflr r0
@@ -2172,7 +2172,7 @@ lbl_constructor:
 /* 8014B878 001487B8  4E 80 00 20 */	blr 
 .endfn section_fadeout__Q24Game15BaseGameSectionFv
 
-.if version == 1
+.if version == 0
 .fn doUpdate__Q24Game15BaseGameSectionFv, global
 /* 8014B87C 001487BC  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8014B880 001487C0  7C 08 02 A6 */	mflr r0
@@ -2690,7 +2690,7 @@ lbl_constructor:
 /* 8014BC24 00148B64  4E 80 00 20 */	blr 
 .endfn onUpdate__Q24Game15BaseGameSectionFv
 
-.if version == 1
+.if version == 0
 .fn doDraw__Q24Game15BaseGameSectionFR8Graphics, global
 /* 8014BC28 00148B68  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8014BC2C 00148B6C  7C 08 02 A6 */	mflr r0
@@ -2896,7 +2896,7 @@ lbl_constructor:
 /* 8014BD98 00148CD8  4E 80 00 20 */	blr 
 .endfn pre2dDraw__Q24Game15BaseGameSectionFR8Graphics
 
-.if version == 1
+.if version == 0
 .fn movieDone__Q24Game15BaseGameSectionFPQ24Game11MovieConfigUlUl, global
 /* 8014BD9C 00148CDC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8014BDA0 00148CE0  7C 08 02 A6 */	mflr r0
@@ -3012,7 +3012,7 @@ lbl_constructor:
 /* 8014BEA0 00148DE0  4E 80 00 20 */	blr 
 .endfn onMovieCommand__Q24Game15BaseGameSectionFi
 
-.if version == 1
+.if version == 0
 .fn initJ3D__Q24Game15BaseGameSectionFv, global
 /* 8014BEA4 00148DE4  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8014BEA8 00148DE8  7C 08 02 A6 */	mflr r0
@@ -3592,7 +3592,7 @@ lbl_constructor:
 /* 8014C324 00149264  4E 80 00 20 */	blr 
 .endfn initResources__Q24Game15BaseGameSectionFv
 
-.if version == 1
+.if version == 0
 .fn initViewports__Q24Game15BaseGameSectionFR8Graphics, global
 /* 8014C328 00149268  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8014C32C 0014926C  7C 08 02 A6 */	mflr r0
@@ -3901,7 +3901,7 @@ lbl_constructor:
 /* 8014C5C8 00149508  4E 80 00 20 */	blr 
 .endfn __dt__12LookAtCameraFv
 
-.if version == 1
+.if version == 0
 .fn initGenerators__Q24Game15BaseGameSectionFv, global
 /* 8014C5CC 0014950C  94 21 E3 60 */	stwu r1, -0x1ca0(r1)
 /* 8014C5D0 00149510  7C 08 02 A6 */	mflr r0
@@ -6326,7 +6326,7 @@ lbl_constructor:
 /* 8014D860 0014A7A0  4E 80 00 20 */	blr 
 .endfn saveToGeneratorCache__Q24Game15BaseGameSectionFPQ24Game10CourseInfo
 
-.if version == 1
+.if version == 0
 .fn pmTogglePlayer__Q24Game15BaseGameSectionFv, global
 /* 8014D864 0014A7A4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8014D868 0014A7A8  7C 08 02 A6 */	mflr r0
@@ -6432,7 +6432,7 @@ lbl_constructor:
 /* 8014D914 0014A854  4E 80 00 20 */	blr 
 .endfn onPlayerJoin__Q24Game15BaseGameSectionFv
 
-.if version == 1
+.if version == 0
 .fn setPlayerMode__Q24Game15BaseGameSectionFi, global
 /* 8014D918 0014A858  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8014D91C 0014A85C  7C 08 02 A6 */	mflr r0
@@ -6896,7 +6896,7 @@ lbl_constructor:
 /* 8014DD1C 0014AC5C  4E 80 00 20 */	blr 
 .endfn onCameraBlendFinished__Q24Game15BaseGameSectionFPQ24Game9CameraArg
 
-.if version == 1
+.if version == 0
 .fn setFixNearFar__Q24Game15BaseGameSectionFbff, global
 /* 8014DD20 0014AC60  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8014DD24 0014AC64  7C 08 02 A6 */	mflr r0
@@ -6956,7 +6956,7 @@ lbl_constructor:
 .endfn setFixNearFar__Q24Game15BaseGameSectionFbff
 .endif
 
-.if version == 1
+.if version == 0
 .fn setCamController__Q24Game15BaseGameSectionFv, global
 /* 8014DD88 0014ACC8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8014DD8C 0014ACCC  7C 08 02 A6 */	mflr r0
@@ -7250,7 +7250,7 @@ lbl_constructor:
 /* 8014DF98 0014AED8  4E 80 00 20 */	blr 
 .endfn on_setCamController__Q24Game15BaseGameSectionFi
 
-.if version == 1
+.if version == 0
 .fn setDefaultPSSceneInfo__Q24Game15BaseGameSectionFRQ26PSGame9SceneInfo, global
 /* 8014DF9C 0014AEDC  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8014DFA0 0014AEE0  7C 08 02 A6 */	mflr r0
@@ -8405,7 +8405,7 @@ lbl_constructor:
 /* 8014EECC 0014BE0C  4E 80 00 20 */	blr 
 .endfn "prepareFountainOn__Q24Game15BaseGameSectionFR10Vector3<f>"
 
-.if version == 1
+.if version == 0
 .fn initLights__Q24Game15BaseGameSectionFv, global
 /* 8014EED0 0014BE10  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8014EED4 0014BE14  7C 08 02 A6 */	mflr r0
@@ -8484,7 +8484,7 @@ lbl_constructor:
 /* 8014EF60 0014BEA0  4E 80 00 20 */	blr 
 .endfn draw3D__Q24Game15BaseGameSectionFR8Graphics
 
-.if version == 1
+.if version == 0
 .fn drawParticle__Q24Game15BaseGameSectionFR8Graphicsi, global
 /* 8014EF64 0014BEA4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8014EF68 0014BEA8  7C 08 02 A6 */	mflr r0
@@ -8795,7 +8795,7 @@ lbl_constructor:
 /* 8014F1D8 0014C118  4E 80 00 20 */	blr 
 .endfn test_draw_treasure_detector__Q24Game15BaseGameSectionFv
 
-.if version == 1
+.if version == 0
 .fn draw2D__Q24Game15BaseGameSectionFR8Graphics, global
 /* 8014F1DC 0014C11C  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 8014F1E0 0014C120  7C 08 02 A6 */	mflr r0
@@ -9029,7 +9029,7 @@ lbl_constructor:
 .endfn draw2D__Q24Game15BaseGameSectionFR8Graphics
 .endif
 
-.if version == 1
+.if version == 0
 .fn directDraw__Q24Game15BaseGameSectionFR8GraphicsP8Viewport, global
 /* 8014F398 0014C2D8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8014F39C 0014C2DC  7C 08 02 A6 */	mflr r0
@@ -9420,7 +9420,7 @@ lbl_constructor:
 /* 8014F864 0014C7A4  4E 80 00 20 */	blr 
 .endfn doEntry__Q24Game15BaseGameSectionFv
 
-.if version == 1
+.if version == 0
 .fn doSetView__Q24Game15BaseGameSectionFi, global
 /* 8014F868 0014C7A8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8014F86C 0014C7AC  7C 08 02 A6 */	mflr r0
@@ -9617,7 +9617,7 @@ lbl_constructor:
 /* 8014FA2C 0014C96C  4E 80 00 20 */	blr 
 .endfn doViewCalc__Q24Game15BaseGameSectionFv
 
-.if version == 1
+.if version == 0
 .fn updateBlendCamera__Q24Game15BaseGameSectionFv, global
 /* 8014FA30 0014C970  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8014FA34 0014C974  7C 08 02 A6 */	mflr r0
@@ -9821,7 +9821,7 @@ lbl_constructor:
 .endfn updateBlendCamera__Q24Game15BaseGameSectionFv
 .endif
 
-.if version == 1
+.if version == 0
 .fn setSplitter__Q24Game15BaseGameSectionFb, global
 /* 8014FBA4 0014CAE4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8014FBA8 0014CAE8  7C 08 02 A6 */	mflr r0
@@ -9887,7 +9887,7 @@ lbl_constructor:
 .endfn setSplitter__Q24Game15BaseGameSectionFb
 .endif
 
-.if version == 1
+.if version == 0
 .fn updateSplitter__Q24Game15BaseGameSectionFv, global
 /* 8014FC10 0014CB50  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8014FC14 0014CB54  7C 08 02 A6 */	mflr r0
@@ -10094,7 +10094,7 @@ lbl_constructor:
 /* 8014FDA0 0014CCE0  4E 80 00 20 */	blr 
 .endfn onStartHeap__Q24Game15BaseGameSectionFv
 
-.if version == 1
+.if version == 0
 .fn clearHeap__Q24Game15BaseGameSectionFv, global
 /* 8014FDA4 0014CCE4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8014FDA8 0014CCE8  7C 08 02 A6 */	mflr r0
@@ -10490,7 +10490,7 @@ lbl_constructor:
 /* 801500AC 0014CFEC  4E 80 00 20 */	blr 
 .endfn onClearHeap__Q24Game15BaseGameSectionFv
 
-.if version == 1
+.if version == 0
 .fn startFadeout__Q24Game15BaseGameSectionFf, global
 /* 801500B0 0014CFF0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801500B4 0014CFF4  7C 08 02 A6 */	mflr r0
@@ -10520,7 +10520,7 @@ lbl_constructor:
 .endfn startFadeout__Q24Game15BaseGameSectionFf
 .endif
 
-.if version == 1
+.if version == 0
 .fn startFadein__Q24Game15BaseGameSectionFf, global
 /* 801500DC 0014D01C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801500E0 0014D020  7C 08 02 A6 */	mflr r0
@@ -10550,7 +10550,7 @@ lbl_constructor:
 .endfn startFadein__Q24Game15BaseGameSectionFf
 .endif
 
-.if version == 1
+.if version == 0
 .fn startFadeoutin__Q24Game15BaseGameSectionFf, global
 /* 80150108 0014D048  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8015010C 0014D04C  7C 08 02 A6 */	mflr r0
@@ -10580,7 +10580,7 @@ lbl_constructor:
 .endfn startFadeoutin__Q24Game15BaseGameSectionFf
 .endif
 
-.if version == 1
+.if version == 0
 .fn startFadeblack__Q24Game15BaseGameSectionFv, global
 /* 80150134 0014D074  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80150138 0014D078  7C 08 02 A6 */	mflr r0
@@ -10618,7 +10618,7 @@ lbl_constructor:
 .endfn startFadeblack__Q24Game15BaseGameSectionFv
 .endif
 
-.if version == 1
+.if version == 0
 .fn startFadewhite__Q24Game15BaseGameSectionFv, global
 /* 80150170 0014D0B0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80150174 0014D0B4  7C 08 02 A6 */	mflr r0
@@ -10656,7 +10656,7 @@ lbl_constructor:
 .endfn startFadewhite__Q24Game15BaseGameSectionFv
 .endif
 
-.if version == 1
+.if version == 0
 .fn setupFixMemory__Q24Game15BaseGameSectionFv, global
 /* 801501AC 0014D0EC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801501B0 0014D0F0  7C 08 02 A6 */	mflr r0
@@ -10898,7 +10898,7 @@ lbl_constructor:
 .endfn setupFixMemory__Q24Game15BaseGameSectionFv
 .endif
 
-.if version == 1
+.if version == 0
 .fn setupFixMemory_dvdload__Q24Game15BaseGameSectionFv, global
 /* 8015036C 0014D2AC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80150370 0014D2B0  7C 08 02 A6 */	mflr r0
@@ -11374,7 +11374,7 @@ lbl_constructor:
 /* 8015070C 0014D64C  4E 80 00 20 */	blr 
 .endfn disableAllocHalt__Q24Game15BaseGameSectionFv
 
-.if version == 1
+.if version == 0
 .fn setupFloatMemory__Q24Game15BaseGameSectionFv, global
 /* 80150710 0014D650  94 21 FD 40 */	stwu r1, -0x2c0(r1)
 /* 80150714 0014D654  7C 08 02 A6 */	mflr r0
@@ -13179,7 +13179,7 @@ lbl_constructor:
 /* 80151458 0014E398  4E 80 00 20 */	blr 
 .endfn "__dt__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>Fv"
 
-.if version == 1
+.if version == 0
 .fn setDrawBuffer__Q24Game15BaseGameSectionFi, global
 /* 8015145C 0014E39C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80151460 0014E3A0  7C 08 02 A6 */	mflr r0

@@ -2041,7 +2041,7 @@ lbl_constructor:
 /* 802225D4 0021F514  4E 80 00 20 */	blr 
 .endfn __ct__Q34Game10SingleGame10ZukanStateFv
 
-.if version == 1
+.if version == 0
 .fn init__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSectionPQ24Game8StateArg, global
 /* 802225D8 0021F518  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 802225DC 0021F51C  7C 08 02 A6 */	mflr r0
@@ -4830,7 +4830,7 @@ lbl_constructor:
 /* 80224B48 00221A88  4E 80 00 20 */	blr 
 .endfn drawLightEffect__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSectionR8Graphics
 
-.if version == 1
+.if version == 0
 .fn dvdloadA__Q34Game10SingleGame10ZukanStateFv, global
 /* 80224B4C 00221A8C  94 21 F9 00 */	stwu r1, -0x700(r1)
 /* 80224B50 00221A90  7C 08 02 A6 */	mflr r0
@@ -6211,7 +6211,7 @@ lbl_constructor:
 /* 80225600 00222540  4E 80 00 20 */	blr 
 .endfn createPellet__Q34Game10SingleGame10ZukanStateFi
 
-.if version == 1
+.if version == 0
 .fn dvdloadB_teki__Q34Game10SingleGame10ZukanStateFv, global
 /* 80225604 00222544  94 21 FE 80 */	stwu r1, -0x180(r1)
 /* 80225608 00222548  7C 08 02 A6 */	mflr r0
@@ -7985,7 +7985,7 @@ lbl_constructor:
 .endfn dvdloadB_teki__Q34Game10SingleGame10ZukanStateFv
 .endif
 
-.if version == 1
+.if version == 0
 .fn dvdloadB_pellet__Q34Game10SingleGame10ZukanStateFv, global
 /* 802262E0 00223220  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 802262E4 00223224  7C 08 02 A6 */	mflr r0
@@ -9030,7 +9030,7 @@ lbl_constructor:
 /* 80226D4C 00223C8C  4E 80 00 20 */	blr 
 .endfn clearHeapB_pellet__Q34Game10SingleGame10ZukanStateFv
 
-.if version == 1
+.if version == 0
 .fn clearHeaps__Q34Game10SingleGame10ZukanStateFv, global
 /* 80226D50 00223C90  94 21 FC B0 */	stwu r1, -0x350(r1)
 /* 80226D54 00223C94  7C 08 02 A6 */	mflr r0

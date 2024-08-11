@@ -19,7 +19,6 @@ static u32 sDifferedRegister[7] = { J3DMDF_DiffMatColor, J3DMDF_DiffLight,      
 static u32 sSizeOfDiffered[7]   = { 0xD, 0x15, 0x78, 0x37, 0xF, 0x13, 0x2D };
 
 int J3DDisplayListObj::sInterruptFlag;
-GDCurrentDL J3DDisplayListObj::sGDLObj;
 
 /**
  * @note Address: 0x8005F82C

@@ -26,10 +26,12 @@ NAME := pikmin2
 VERSION ?= usa
 #VERSION := usa.demo
 
+# please for the love of god update this to sync with DTK's versioning. I've fixed usa demo 1 and usa retail. --EpochFlame
+
 ifeq ($(VERSION), usa)
-    VERNUM = 2
+    VERNUM = 4
 else ifeq ($(VERSION), usa.demo)
-    VERNUM = 1
+    VERNUM = 0
 else
     VERNUM = 0
 endif

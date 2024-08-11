@@ -10460,7 +10460,7 @@ lbl_constructor:
 /* 80378E6C 00375DAC  4E 80 00 20 */	blr 
 .endfn getIdMax__Q28Morimura10TItemZukanFv
 
-.if version == 1
+.if version == 0
 .fn doCreate__Q28Morimura10TItemZukanFP10JKRArchive, global
 /* 80378E70 00375DB0  94 21 FF 30 */	stwu r1, -0xd0(r1)
 /* 80378E74 00375DB4  7C 08 02 A6 */	mflr r0
@@ -14052,7 +14052,7 @@ lbl_constructor:
 /* 8037ACB0 00377BF0  4E 80 00 20 */	blr 
 .endfn doDemoDraw__Q28Morimura10TItemZukanFR8Graphics
 
-.if version == 1
+.if version == 0
 .fn setDetail__Q28Morimura10TItemZukanFv, global
 /* 8037ACB4 00377BF4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8037ACB8 00377BF8  7C 08 02 A6 */	mflr r0
@@ -14878,7 +14878,7 @@ lbl_constructor:
 /* 8037B6A0 003785E0  4E 80 00 20 */	blr 
 .endfn __ct__Q28Morimura18TCallbackScrollMsgFv
 
-.if version == 1
+.if version == 0
 .fn doInit__Q28Morimura18TCallbackScrollMsgFv, global
 /* 8037B6A4 003785E4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8037B6A8 003785E8  7C 08 02 A6 */	mflr r0
@@ -15100,7 +15100,7 @@ lbl_constructor:
 /* 8037B930 00378870  4E 80 00 20 */	blr 
 .endfn __ct__Q28Morimura12TZukanWindowFP10JKRArchivei
 
-.if version == 1
+.if version == 0
 .fn create__Q28Morimura12TZukanWindowFPCcUl, global
 /* 8037B934 00378874  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8037B938 00378878  7C 08 02 A6 */	mflr r0
@@ -16270,7 +16270,7 @@ lbl_constructor:
 /* 8037C508 00379448  4E 80 00 20 */	blr 
 .endfn setIconColor__Q28Morimura12TZukanWindowFR13J2DGXColorS10R13J2DGXColorS10
 
-.if version == 1
+.if version == 0
 .fn onIcon__Q28Morimura12TZukanWindowFi, global
 /* 8037C50C 0037944C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8037C510 00379450  7C 08 02 A6 */	mflr r0

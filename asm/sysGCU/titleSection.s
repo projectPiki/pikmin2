@@ -277,7 +277,7 @@ lbl_constructor:
 .endobj lbl_80520AA4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.if version == 1
+.if version == 0
 .fn __ct__Q25Title7SectionFP7JKRHeap, global
 /* 8044A03C 00446F7C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8044A040 00446F80  7C 08 02 A6 */	mflr r0
@@ -631,7 +631,7 @@ lbl_constructor:
 /* 8044A45C 0044739C  4E 80 00 20 */	blr 
 .endfn __dt__Q23ebi13TMainTitleMgrFv
 
-.if version == 1
+.if version == 0
 .fn __dt__Q25Title7SectionFv, global
 /* 8044A460 004473A0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8044A464 004473A4  7C 08 02 A6 */	mflr r0
@@ -725,7 +725,7 @@ lbl_constructor:
 .endfn __dt__Q25Title7SectionFv
 .endif
 
-.if version == 1
+.if version == 0
 .fn doExit__Q25Title7SectionFv, global
 /* 8044A504 00447444  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8044A508 00447448  7C 08 02 A6 */	mflr r0
@@ -837,7 +837,7 @@ lbl_constructor:
 .endfn doExit__Q25Title7SectionFv
 .endif
 
-.if version == 1
+.if version == 0
 .fn loadResident__Q25Title7SectionFv, global
 /* 8044A5C8 00447508  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8044A5CC 0044750C  7C 08 02 A6 */	mflr r0
@@ -981,7 +981,7 @@ lbl_constructor:
 .endfn loadResident__Q25Title7SectionFv
 .endif
 
-.if version == 1
+.if version == 0
 .fn init__Q25Title7SectionFv, global
 /* 8044A6CC 0044760C  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8044A6D0 00447610  7C 08 02 A6 */	mflr r0
@@ -1601,7 +1601,7 @@ lbl_constructor:
 /* 8044AB7C 00447ABC  4E 80 00 20 */	blr 
 .endfn menuSelect__Q25Title7SectionFR4Menu
 
-.if version == 1
+.if version == 0
 .fn doDraw__Q25Title7SectionFR8Graphics, global
 /* 8044AB80 00447AC0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8044AB84 00447AC4  7C 08 02 A6 */	mflr r0
@@ -1759,7 +1759,7 @@ lbl_constructor:
 .endfn doDraw__Q25Title7SectionFR8Graphics
 .endif
 
-.if version == 1
+.if version == 0
 .fn doUpdateMainTitle__Q25Title7SectionFv, global
 /* 8044AC90 00447BD0  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8044AC94 00447BD4  7C 08 02 A6 */	mflr r0
@@ -2687,7 +2687,7 @@ lbl_constructor:
 .endfn doUpdateMainTitle__Q25Title7SectionFv
 .endif
 
-.if version == 1
+.if version == 0
 .fn doUpdateOmake__Q25Title7SectionFv, global
 /* 8044B318 00448258  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8044B31C 0044825C  7C 08 02 A6 */	mflr r0
@@ -3443,7 +3443,7 @@ lbl_constructor:
 /* 8044B8E4 00448824  4E 80 00 20 */	blr 
 .endfn run__Q25Title7SectionFv
 
-.if version == 1
+.if version == 0
 .fn doUpdate__Q25Title7SectionFv, global
 /* 8044B8E8 00448828  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8044B8EC 0044882C  7C 08 02 A6 */	mflr r0
@@ -4255,7 +4255,7 @@ lbl_constructor:
 .endfn doUpdate__Q25Title7SectionFv
 .endif
 
-.if version == 1
+.if version == 0
 .fn isFinishable__Q25Title7SectionFv, global
 /* 8044BEA0 00448DE0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8044BEA4 00448DE4  7C 08 02 A6 */	mflr r0
@@ -4295,7 +4295,7 @@ lbl_constructor:
 .endfn isFinishable__Q25Title7SectionFv
 .endif
 
-.if version == 1
+.if version == 0
 .fn doLoadingStart__Q25Title7SectionFv, global
 /* 8044BEE0 00448E20  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8044BEE4 00448E24  7C 08 02 A6 */	mflr r0
@@ -4375,7 +4375,7 @@ lbl_constructor:
 .endfn doLoadingStart__Q25Title7SectionFv
 .endif
 
-.if version == 1
+.if version == 0
 .fn doLoading__Q25Title7SectionFv, global
 /* 8044BF6C 00448EAC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8044BF70 00448EB0  7C 08 02 A6 */	mflr r0
@@ -4509,7 +4509,7 @@ lbl_constructor:
 .endfn doLoading__Q25Title7SectionFv
 .endif
 
-.if version == 1
+.if version == 0
 .fn loadResource__Q25Title7SectionFv, global
 /* 8044C058 00448F98  94 21 FF 60 */	stwu r1, -0xa0(r1)
 /* 8044C05C 00448F9C  7C 08 02 A6 */	mflr r0

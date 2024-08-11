@@ -8716,7 +8716,7 @@ lbl_constructor:
 /* 8016C5E8 00169528  4E 80 00 20 */	blr 
 .endfn closeTextArc__Q24Game13BasePelletMgrFP10JKRArchive
 
-.if version == 1
+.if version == 0
 .fn useModelMgr__Q24Game13BasePelletMgrFiUl, global
 /* 8016C5EC 0016952C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8016C5F0 00169530  7C 08 02 A6 */	mflr r0
@@ -8862,7 +8862,7 @@ lbl_constructor:
 /* 8016C6FC 0016963C  4E 80 00 20 */	blr 
 .endfn onCreateModel__Q24Game13BasePelletMgrFPQ28SysShape5Model
 
-.if version == 1
+.if version == 0
 .fn createShape__Q24Game13BasePelletMgrFii, global
 /* 8016C700 00169640  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8016C704 00169644  7C 08 02 A6 */	mflr r0
