@@ -1,0 +1,10 @@
+object: orig/GPVE01/sys/main.dol
+hash: 90d328bf8f190c90472e8c19e7e53c6ad0fe0d1a
+
+# Generated from pikmin2UP.MAP
+symbols: config/GPVE01/symbols.txt
+splits: config/GPVE01/splits.txt
+
+mw_comment_version: 10 # GC Linker 2.6
+symbols_known: true # Very fast analysis
+fill_gaps: false # Alignments known
