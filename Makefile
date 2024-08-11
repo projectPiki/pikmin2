@@ -83,7 +83,7 @@ MWCC_VERSION := 2.6
 MWLD_VERSION := 2.6
 
 # Programs
-POWERPC ?= tools/powerpc
+POWERPC ?= build/binutils
 ifeq ($(WINDOWS),1)
   WINE :=
   AS      := $(POWERPC)/powerpc-eabi-as.exe
@@ -100,10 +100,10 @@ else
   AS := $(POWERPC)/powerpc-eabi-as
   PYTHON  := python3
 endif
-COMPILERS ?= tools/mwcc_compiler
+COMPILERS ?= build/compilers/GC
 CC      = $(WINE) $(COMPILERS)/$(MWCC_VERSION)/mwcceppc.exe
 LD      := $(WINE) $(COMPILERS)/$(MWLD_VERSION)/mwldeppc.exe
-DTK     := tools/dtk
+DTK     := build/tools/dtk
 ELF2DOL := $(DTK) elf2dol
 SHASUM  := $(DTK) shasum
 
