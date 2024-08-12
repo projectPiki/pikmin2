@@ -1,77 +1,122 @@
-Pikmin 2 [![Build Status]][actions] ![Code Progress] ![Data Progress]
-========
+Pikmin 2  
+[![Build Status]][actions] ![Code Progress] ![Data Progress] [![Discord Badge]][discord]
+=============
 
 [Build Status]: https://github.com/projectPiki/pikmin2/actions/workflows/build.yml/badge.svg
 [actions]: https://github.com/projectPiki/pikmin2/actions/workflows/build.yml
 [Code Progress]: https://img.shields.io/endpoint?label=Code&url=https%3A%2F%2Fprogress.deco.mp%2Fdata%2Fpikmin2%2Fusa%2Fdol%2F%3Fmode%3Dshield%26measure%3Dcode
 [Data Progress]: https://img.shields.io/endpoint?label=Data&url=https%3A%2F%2Fprogress.deco.mp%2Fdata%2Fpikmin2%2Fusa%2Fdol%2F%3Fmode%3Dshield%26measure%3Ddata
+[Discord Badge]: https://img.shields.io/discord/933849697485983765?color=%237289DA&logo=discord&logoColor=%23FFFFFF
+[discord]: https://discord.gg/CWKqYMePX8
 
-A decompilation of Pikmin 2.
+A work-in-progress decompilation of Pikmin 2.
 
-This repository builds the following DOLs:
+Supported versions:
 
+- `GPVE01`: USA Retail
+- `GPVE01_D17`: USA Demo 17
+
+Index
+-----
+
+- [Dependencies](#dependencies)
+  - [Windows](#windows)
+  - [macOS](#macos)
+  - [Linux](#linux)
+- [Building](#building)
+- [Diffing](#diffing)
+- [Modding](#modding)
+
+Dependencies
+------------
+
+### Windows
+
+On Windows, it's **highly recommended** to use native tooling. WSL or msys2 are **not** required.  
+When running under WSL, [objdiff](#diffing) is unable to get filesystem notifications for automatic rebuilds.
+
+- Install [Python](https://www.python.org/downloads/) and add it to `%PATH%`.
+  - Also available from the [Windows Store](https://apps.microsoft.com/store/detail/python-311/9NRWMJP3717K).
+- Download [ninja](https://github.com/ninja-build/ninja/releases) and add it to `%PATH%`.
+  - Quick install via pip: `pip install ninja`
+
+### macOS
+
+- Install [ninja](https://github.com/ninja-build/ninja/wiki/Pre-built-Ninja-packages):
+
+  ```sh
+  brew install ninja
+  ```
+
+- Install [wine-crossover](https://github.com/Gcenx/homebrew-wine):
+
+  ```sh
+  brew install --cask --no-quarantine gcenx/wine/wine-crossover
+  ```
+
+After OS upgrades, if macOS complains about `Wine Crossover.app` being unverified, you can unquarantine it using:
+
+```sh
+sudo xattr -rd com.apple.quarantine '/Applications/Wine Crossover.app'
 ```
-90d328bf8f190c90472e8c19e7e53c6ad0fe0d1a  build/pikmin2.usa/main.dol
-3730939092688902af4866be66d4a8404ae752c7  build/pikmin2.usa.demo/main.dol
+
+### Linux
+
+- Install [ninja](https://github.com/ninja-build/ninja/wiki/Pre-built-Ninja-packages).
+- For non-x86(_64) platforms: Install wine from your package manager.
+  - For x86(_64), [wibo](https://github.com/decompals/wibo), a minimal 32-bit Windows binary wrapper, will be automatically downloaded and used.
+
+Building
+--------
+
+- Clone the repository:
+
+  ```sh
+  git clone https://github.com/projectPiki/pikmin2.git
+  ```
+
+- Using [Dolphin Emulator](https://dolphin-emu.org/), extract your game's system data to `orig/GPVE01`. (Or `orig/GPVE01_D17` for demo)
+  - Right-click the game in Dolphin's game list and select `Properties`.
+  - Go to the `Filesystem` tab and right-click `Disc` -> `Extract System Data`.
+![Dolphin filesystem extract](assets/dolphin-extract.png)
+  - After extraction, the following file should exist: `orig/GPVE01/sys/main.dol`.
+- Configure:
+
+  ```sh
+  python configure.py
+  ```
+
+  To use the demo version, add `--version GPVE01_D17`. Add `--help` to see all available options.
+- Build:
+
+  ```sh
+  ninja
+  ```
+
+Diffing
+-------
+
+Once the initial build succeeds, an `objdiff.json` should exist in the project root.
+
+Download the latest release from [encounter/objdiff](https://github.com/encounter/objdiff). Under project settings, set `Project directory`. The configuration should be loaded automatically.
+
+Select an object from the left sidebar to begin diffing. Changes to the project will rebuild automatically: changes to source files, headers, `configure.py`, `splits.txt` or `symbols.txt`.
+
+![objdiff project configuration](assets/objdiff.png)
+
+Modding
+-------
+
+To enable modding, run `configure.py` with the `--non-matching` flag:
+
+```sh
+python configure.py --non-matching
 ```
 
-> **Note**
-> The ROM this repository builds can be shifted. You are able to add
-> and remove code as you see fit, for modding or research purposes.
+This:
 
-## Building
+- Disables final hash verification.
+- Builds all assembly files in `asm`.
+- Builds all source files marked as `Equivalent` in `configure.py`.
 
-### Required Tools
-[Python 3.8+](https://www.python.org/downloads/)
-
-### Instructions
-
-1. Clone the repo using `git clone https://github.com/projectPiki/pikmin2/`
-
-2. Run `configure.py` to automatically download/build any other necessary files for the project.
-
-3. Enter `ninja` (recommended) or `make -j` in a command prompt or terminal.
-	- `-j` Allows `make` to use multiple threads, speeding up the process.
-	- `ninja` already implicitly uses the max amount of cores available, only use `-j` to *decrease* the thread count.
-	- If just `-j` gives errors on your setup, try specifying a set number of threads, e.g. `make -j 4`.
-
-* OPTIONAL STEPS:
-	- Obtain a clean DOL of Pikmin 2 USA 1.0 and place it in the base working directory and rename it to `baserom.dol`.
-	- To generate a linker map (takes a considerable amount of time), run `ninja -m` or  `make MAPGENFLAG=1 -j`.
-	- The project uses clang-format for a consistent style. Download the [correct version](https://cdn.discordapp.com/attachments/933849922418126918/1031358615300345856/clang-format.exe) and place in the main repo directory (e.g. `pikmin2/clang-format.exe`).
-
-* See [this video](https://youtu.be/CZXNQagqpkw) for a walkthrough of the steps on Windows (thanks Altafen for making this!).
-
-### Decompilation workflow
-
-- The project is compatible with [objdiff](https://github.com/encounter/objdiff), which is highly recommended for local decompilation testing. Objdiff can be built from source, or the latest stable build obtained from GitHub actions (recommended).
-
-- To obtain the latest stable build:
-	1. Navigate to the `Actions` tab of the objdiff repo.
-	2. Select the latest `main` workflow.
-	3. Scroll to the bottom of the page and download the `stable` release for your platform (Mac, Linux, Windows).
-	4. Extract contents of `.zip` to obtain an executable version.
-
-- To set up objdiff for this project:
-	1. Run `objdiff.exe`.
-	2. Set:
-		- Project dir: `/path/to/cloned/pikmin2`.
-		- Custom make program: `ninja` or `make`, depending on what was used to build previously.
-			- If specifying the name isn't enough, it's likely the program isn't on your `PATH`; try an absolute path instead.
-		- (`make` only) Build config: `None`.
-		- (`make` only) Select target build dir: `/path/to/cloned/pikmin2/build/pikmin2.usa/asm`.
-		- (`make` only) Select base build dir: `/path/to/cloned/pikmin2/build/pikmin2.usa/src`.
-	3. Select desired object file to diff:
-		- With `ninja`, an explorer viewer is provided after applying the previous settings.
-		- With `make`, you must explicitly select the object each time (likely from `pikmin2/build/pikmin2.usa/asm/LIBRARY/OBJECTFILE.o`).
-	4. Decomp it!
-
-### Generating Context for decomp.me Scratches
-
-- [decomp.me](https://decomp.me/) is an online decompilation sharing hub, allowing 'scratches' of functions to be generated and collaborated on.
-- Stand-alone decompilation packages and tools such as decomp.me require information on the functions and structures of the project in order to parse extracted blocks correctly. The easiest way to do this is to pass the tool just the necessary 'context' for the file, i.e. a set of all the headers used by the file that's being worked on.
-- A recursive context processing script is included in the repo ([tools/decompctx.py](https://github.com/projectPiki/pikmin2/tree/main/tools/decompctx.py)), which generates a `ctx.c` file in the root directory.
-	- The contents of this can then be copied and pasted into the 'Context' section of a decomp.me scratch or similar.
-- To use, call the generator via the terminal/command line from the root directory (replacing DIRECTORY and FILE as required):
-	```python tools/decompctx.py src/DIRECTORY/FILE.cpp```
-- Credit to encounter and the [Metroid Prime decomp project](https://github.com/PrimeDecomp/prime) for the script!
+Once built with `ninja`, the new DOL will exist at `build/GPVE01/main.dol`.
