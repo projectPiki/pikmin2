@@ -107,8 +107,9 @@ else
   AS := $(POWERPC)/powerpc-eabi-as
   PYTHON  := python3
 endif
+SJISWRAP := build/tools/sjiswrap
 COMPILERS ?= build/compilers/GC
-CC      = $(WINE) $(COMPILERS)/$(MWCC_VERSION)/mwcceppc.exe
+CC      = $(WINE) $(SJISWRAP) $(COMPILERS)/$(MWCC_VERSION)/mwcceppc.exe
 LD      := $(WINE) $(COMPILERS)/$(MWLD_VERSION)/mwldeppc.exe
 DTK     := build/tools/dtk
 ELF2DOL := $(DTK) elf2dol

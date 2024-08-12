@@ -51,5 +51,9 @@ jobs:
       run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
     - name: Build
       run: |
-        python configure.py --map --compilers /compilers/GC
+        python tools/download_tool.py dtk build/tools/dtk --tag v0.9.2
+        python tools/download_tool.py sjiswrap build/tools/sjiswrap.exe --tag v1.1.1
+        python tools/download_tool.py binutils build/binutils --tag 2.42-1
+        python tools/download_tool.py wibo build/tools/wibo --tag 0.6.15
+        python tools/download_tool.py compilers build/compilers --tag 20231018
         make -j$(nproc) MAPGENFLAG=1 VERSION=${{matrix.version}} COMPILERS=/compilers/GC
