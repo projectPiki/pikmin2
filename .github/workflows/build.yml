@@ -16,25 +16,33 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        submodules: recursive
     - name: Git config
       run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+    - name: Prepare
+      run: cp -R /orig .
     - name: Build
       run: |
-        python configure.py -v ${{matrix.version}} --compilers /compilers/GC
-        ninja
+        python configure.py --map --version ${{ matrix.version }} \
+            --binutils /binutils --compilers /compilers
+        ninja all_source build/${{ matrix.version }}/progress.json
     - name: Upload progress
       if: github.ref == 'refs/heads/main'
       continue-on-error: true
       env:
+        PROGRESS_SLUG: pikmin2
         PROGRESS_API_KEY: ${{secrets.PROGRESS_API_KEY}}
       run: |
-        python tools/upload-progress.py -b https://progress.decomp.club/ -p pikmin2 -v ${{matrix.version}} \
-          build/pikmin2.${{matrix.version}}/main.dol.progress
+        python tools/upload_progress.py -b https://progress.decomp.club/ \
+          -p $PROGRESS_SLUG -v ${{ matrix.version }} \
+          build/${{ matrix.version }}/progress.json
     - name: Upload map
       uses: actions/upload-artifact@v4
       with:
-        name: pikmin2UP-${{matrix.version}}.MAP
-        path: build/*/pikmin2UP.MAP
+        name: ${{ matrix.version }}_maps
+        path: build/${{ matrix.version }}/**/*.MAP
 
   build_make:
     name: Build (legacy)
@@ -47,14 +55,19 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        submodules: recursive
     - name: Git config
       run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
-    - name: Build
+    - name: Download tools
       run: |
         mkdir -p build/tools
-        python tools/download_tool.py dtk build/tools/dtk --tag v0.9.2
+        python tools/download_tool.py dtk build/tools/dtk --tag v0.9.4
         python tools/download_tool.py sjiswrap build/tools/sjiswrap.exe --tag v1.1.1
         python tools/download_tool.py binutils build/binutils --tag 2.42-1
-        python tools/download_tool.py wibo build/tools/wibo --tag 0.6.15
-        python tools/download_tool.py compilers build/compilers --tag 20231018
-        make -j$(nproc) MAPGENFLAG=1 VERSION=${{matrix.version}} COMPILERS=build/compilers
+        python tools/download_tool.py wibo build/tools/wibo --tag 0.6.11
+        python tools/download_tool.py compilers build/compilers --tag 20240706
+    - name: Build
+      run: |
+        make -j$(nproc) MAPGENFLAG=1 VERSION=${{matrix.version}}

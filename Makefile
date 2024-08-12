@@ -96,14 +96,7 @@ ifeq ($(WINDOWS),1)
   AS      := $(POWERPC)/powerpc-eabi-as.exe
   PYTHON  := python
 else
-  WIBO   := $(shell command -v wibo 2> /dev/null)
-  ifdef WIBO
-    WINE ?= wibo
-  else
-    WINE ?= wine
-  endif
-  # Disable wine debug output for cleanliness
-  export WINEDEBUG ?= -all
+  WINE := build/tools/wibo
   AS := $(POWERPC)/powerpc-eabi-as
   PYTHON  := python3
 endif
@@ -135,7 +128,7 @@ ifeq ($(VERBOSE),0)
 LDFLAGS := $(MAPGEN) -fp hard -nodefaults -w off
 endif
 LIBRARY_LDFLAGS := -nodefaults -fp hard -proc gekko
-CFLAGS  := -Cpp_exceptions off -enum int -inline auto -proc gekko -RTTI off -fp hard -fp_contract on -rostr -O4,p -use_lmw_stmw on -common on -sdata 8 -sdata2 8 -nodefaults -MMD -DVERNUM=$(VERNUM) $(INCLUDES)
+CFLAGS  := -Cpp_exceptions off -enum int -inline auto -proc gekko -RTTI off -fp hard -fp_contract on -rostr -O4,p -use_lmw_stmw on -common on -multibyte -sdata 8 -sdata2 8 -nodefaults -MMD -DVERNUM=$(VERNUM) $(INCLUDES)
 
 ifeq ($(VERBOSE),0)
 # this set of ASFLAGS generates no warnings.

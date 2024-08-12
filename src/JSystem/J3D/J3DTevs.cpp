@@ -17,9 +17,10 @@
 #define J3DTEXCOORDTABLE_DIM_3 3
 
 u8 j3dTexCoordTable[J3DTEXCOORDTABLE_DIM_0 * J3DTEXCOORDTABLE_DIM_1 * J3DTEXCOORDTABLE_DIM_2 * J3DTEXCOORDTABLE_DIM_3];
+GDCurrentDL J3DDisplayListObj::sGDLObj;
 u8 j3dTevSwapTableTable[1024];
-u8 j3dAlphaCmpTable[768];
 u8 j3dZModeTable[96];
+u8 j3dAlphaCmpTable[768];
 
 const J3DTexCoordInfo j3dDefaultTexCoordInfo[8] = {
 	// mTexGenType, mTexGenSrc, mTexGenMtx
