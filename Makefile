@@ -107,7 +107,7 @@ else
   AS := $(POWERPC)/powerpc-eabi-as
   PYTHON  := python3
 endif
-SJISWRAP := build/tools/sjiswrap
+SJISWRAP := build/tools/sjiswrap.exe
 COMPILERS ?= build/compilers/GC
 CC      = $(WINE) $(SJISWRAP) $(COMPILERS)/$(MWCC_VERSION)/mwcceppc.exe
 LD      := $(WINE) $(COMPILERS)/$(MWLD_VERSION)/mwldeppc.exe
