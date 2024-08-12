@@ -69,8 +69,11 @@ class ProjectConfig:
         self.wrapper: Optional[Path] = None  # If None, download wibo on Linux
         self.sjiswrap_tag: Optional[str] = None  # Git tag
         self.sjiswrap_path: Optional[Path] = None  # If None, download
+        self.objdiff_tag: Optional[str] = None  # Git tag
+        self.objdiff_path: Optional[Path] = None  # If None, download
 
         # Project config
+        self.non_matching: bool = False
         self.build_rels: bool = True  # Build REL files
         self.check_sha_path: Optional[Path] = None  # Path to version.sha1
         self.config_path: Optional[Path] = None  # Path to config.yml
@@ -84,11 +87,20 @@ class ProjectConfig:
         self.warn_missing_config: bool = False  # Warn on missing unit configuration
         self.warn_missing_source: bool = False  # Warn on missing source file
         self.rel_strip_partial: bool = True  # Generate PLFs with -strip_partial
-        self.rel_empty_file: Optional[
-            str
-        ] = None  # Object name for generating empty RELs
+        self.rel_empty_file: Optional[str] = (
+            None  # Object name for generating empty RELs
+        )
         self.shift_jis = (
             True  # Convert source files from UTF-8 to Shift JIS automatically
+        )
+        self.reconfig_deps: Optional[List[Path]] = (
+            None  # Additional re-configuration dependency files
+        )
+        self.custom_build_rules: Optional[List[Dict[str, Any]]] = (
+            None  # Custom ninja build rules
+        )
+        self.custom_build_steps: Optional[Dict[str, List[Dict[str, Any]]]] = (
+            None  # Custom build steps, types are ["pre-compile", "post-compile", "post-link", "post-build"]
         )
 
         # Progress output and progress.json config
@@ -227,6 +239,7 @@ def generate_build_ninja(
 
     build_path = config.out_path()
     progress_path = build_path / "progress.json"
+    report_path = build_path / "report.json"
     build_tools_path = config.build_dir / "tools"
     download_tool = config.tools_dir / "download_tool.py"
     n.rule(
@@ -244,17 +257,27 @@ def generate_build_ninja(
         deps="gcc",
     )
 
+    cargo_rule_written = False
+
+    def write_cargo_rule():
+        nonlocal cargo_rule_written
+        if not cargo_rule_written:
+            n.pool("cargo", 1)
+            n.rule(
+                name="cargo",
+                command="cargo build --release --manifest-path $in --bin $bin --target-dir $target",
+                description="CARGO $bin",
+                pool="cargo",
+                depfile=Path("$target") / "release" / "$bin.d",
+                deps="gcc",
+            )
+            cargo_rule_written = True
+
     if config.dtk_path is not None and config.dtk_path.is_file():
         dtk = config.dtk_path
     elif config.dtk_path is not None:
         dtk = build_tools_path / "release" / f"dtk{EXE}"
-        n.rule(
-            name="cargo",
-            command="cargo build --release --manifest-path $in --bin $bin --target-dir $target",
-            description="CARGO $bin",
-            depfile=Path("$target") / "release" / "$bin.d",
-            deps="gcc",
-        )
+        write_cargo_rule()
         n.build(
             outputs=dtk,
             rule="cargo",
@@ -278,6 +301,35 @@ def generate_build_ninja(
         )
     else:
         sys.exit("ProjectConfig.dtk_tag missing")
+
+    if config.objdiff_path is not None and config.objdiff_path.is_file():
+        objdiff = config.objdiff_path
+    elif config.objdiff_path is not None:
+        objdiff = build_tools_path / "release" / f"objdiff-cli{EXE}"
+        write_cargo_rule()
+        n.build(
+            outputs=objdiff,
+            rule="cargo",
+            inputs=config.objdiff_path / "Cargo.toml",
+            implicit=config.objdiff_path / "Cargo.lock",
+            variables={
+                "bin": "objdiff-cli",
+                "target": build_tools_path,
+            },
+        )
+    elif config.objdiff_tag:
+        objdiff = build_tools_path / f"objdiff-cli{EXE}"
+        n.build(
+            outputs=objdiff,
+            rule="download_tool",
+            implicit=download_tool,
+            variables={
+                "tool": "objdiff-cli",
+                "tag": config.objdiff_tag,
+            },
+        )
+    else:
+        sys.exit("ProjectConfig.objdiff_tag missing")
 
     if config.sjiswrap_path:
         sjiswrap = config.sjiswrap_path
@@ -364,7 +416,7 @@ def generate_build_ninja(
     n.build(
         outputs="tools",
         rule="phony",
-        inputs=[dtk, sjiswrap, wrapper, compilers, binutils],
+        inputs=[dtk, sjiswrap, wrapper, compilers, binutils, objdiff],
     )
     n.newline()
 
@@ -450,6 +502,49 @@ def generate_build_ninja(
     )
     n.newline()
 
+    if len(config.custom_build_rules or {}) > 0:
+        n.comment("Custom project build rules (pre/post-processing)")
+    for rule in config.custom_build_rules or {}:
+        n.rule(
+            name=rule.get("name"),
+            command=rule.get("command"),
+            description=rule.get("description", None),
+            depfile=rule.get("depfile", None),
+            generator=rule.get("generator", False),
+            pool=rule.get("pool", None),
+            restat=rule.get("restat", False),
+            rspfile=rule.get("rspfile", None),
+            rspfile_content=rule.get("rspfile_content", None),
+            deps=rule.get("deps", None),
+        )
+        n.newline()
+
+    def write_custom_step(step: str) -> List[str]:
+        implicit = []
+        if config.custom_build_steps and step in config.custom_build_steps:
+            n.comment(f"Custom build steps ({step})")
+            for custom_step in config.custom_build_steps[step]:
+                outputs = custom_step.get("outputs")
+
+                if isinstance(outputs, list):
+                    implicit.extend(outputs)
+                else:
+                    implicit.append(outputs)
+
+                n.build(
+                    outputs=outputs,
+                    rule=custom_step.get("rule"),
+                    inputs=custom_step.get("inputs", None),
+                    implicit=custom_step.get("implicit", None),
+                    order_only=custom_step.get("order_only", None),
+                    variables=custom_step.get("variables", None),
+                    implicit_outputs=custom_step.get("implicit_outputs", None),
+                    pool=custom_step.get("pool", None),
+                    dyndep=custom_step.get("dyndep", None),
+                )
+                n.newline()
+        return implicit
+
     n.comment("Host build")
     n.variable("host_cflags", "-I include -Wno-trigraphs")
     n.variable(
@@ -467,6 +562,9 @@ def generate_build_ninja(
         description="CXX $out",
     )
     n.newline()
+
+    # Add all build steps needed before we compile (e.g. processing assets)
+    precompile_implicit = write_custom_step("pre-compile")
 
     ###
     # Source files
@@ -518,15 +616,14 @@ def generate_build_ninja(
                     outputs=elf_path,
                     rule="link",
                     inputs=self.inputs,
-                    implicit=[self.ldscript, *mwld_implicit],
+                    implicit=[
+                        *precompile_implicit,
+                        self.ldscript,
+                        *mwld_implicit,
+                        *postcompile_implicit,
+                    ],
                     implicit_outputs=elf_map,
                     variables={"ldflags": elf_ldflags},
-                )
-                n.build(
-                    outputs=dol_path,
-                    rule="elf2dol",
-                    inputs=elf_path,
-                    implicit=dtk,
                 )
             else:
                 preplf_path = build_path / self.name / f"{self.name}.preplf"
@@ -564,6 +661,7 @@ def generate_build_ninja(
                 )
             n.newline()
 
+    link_outputs: List[Path] = []
     if build_config:
         link_steps: List[LinkStep] = []
         used_compiler_versions: Set[str] = set()
@@ -639,7 +737,11 @@ def generate_build_ninja(
             return src_obj_path
 
         def asm_build(
-            obj: Object, options: Dict[str, Any], lib_name: str, src_path: Path
+            obj: Object,
+            options: Dict[str, Any],
+            lib_name: str,
+            src_path: Path,
+            build_path: Path,
         ) -> Optional[Path]:
             asflags = options["asflags"] or config.asflags
             if asflags is None:
@@ -649,7 +751,7 @@ def generate_build_ninja(
                 extra_asflags_str = make_flags_str(options["extra_asflags"])
                 asflags_str += " " + extra_asflags_str
 
-            asm_obj_path = build_asm_path / f"{obj.base_name}.o"
+            asm_obj_path = build_path / f"{obj.base_name}.o"
 
             # Avoid creating duplicate build rules
             if asm_obj_path in source_added:
@@ -706,7 +808,9 @@ def generate_build_ninja(
                     built_obj_path = c_build(obj, options, lib_name, unit_src_path)
                 elif unit_src_path.suffix == ".s":
                     # Add assembler build rule
-                    built_obj_path = asm_build(obj, options, lib_name, unit_src_path)
+                    built_obj_path = asm_build(
+                        obj, options, lib_name, unit_src_path, build_src_path
+                    )
                 else:
                     sys.exit(f"Unknown source file type {unit_src_path}")
             else:
@@ -717,7 +821,9 @@ def generate_build_ninja(
             # Assembly overrides
             if unit_asm_path is not None and unit_asm_path.exists():
                 link_built_obj = True
-                built_obj_path = asm_build(obj, options, lib_name, unit_asm_path)
+                built_obj_path = asm_build(
+                    obj, options, lib_name, unit_asm_path, build_asm_path
+                )
 
             if link_built_obj and built_obj_path is not None:
                 # Use the source-built object
@@ -766,12 +872,29 @@ def generate_build_ninja(
         if config.compilers_path and not os.path.exists(mw_path):
             sys.exit(f"Linker {mw_path} does not exist")
 
+        # Add all build steps needed before we link and after compiling objects
+        postcompile_implicit = write_custom_step("post-compile")
+
         ###
         # Link
         ###
         for step in link_steps:
             step.write(n)
+            link_outputs.append(step.output())
         n.newline()
+
+        # Add all build steps needed after linking and before GC/Wii native format generation
+        postlink_implicit = write_custom_step("post-link")
+
+        ###
+        # Generate DOL
+        ###
+        n.build(
+            outputs=link_steps[0].output(),
+            rule="elf2dol",
+            inputs=link_steps[0].partial_output(),
+            implicit=[*postlink_implicit, dtk],
+        )
 
         ###
         # Generate RELs
@@ -835,6 +958,9 @@ def generate_build_ninja(
             )
             n.newline()
 
+        # Add all build steps needed post-build (re-building archives and such)
+        postbuild_implicit = write_custom_step("post-build")
+
         ###
         # Helper rule for building all source files
         ###
@@ -872,7 +998,7 @@ def generate_build_ninja(
             outputs=ok_path,
             rule="check",
             inputs=config.check_sha_path,
-            implicit=[dtk, *map(lambda step: step.output(), link_steps)],
+            implicit=[dtk, *link_outputs, *postbuild_implicit],
         )
         n.newline()
 
@@ -889,6 +1015,21 @@ def generate_build_ninja(
             outputs=progress_path,
             rule="progress",
             implicit=[ok_path, configure_script, python_lib, config.config_path],
+        )
+
+        ###
+        # Generate progress report
+        ###
+        n.comment("Generate progress report")
+        n.rule(
+            name="report",
+            command=f"{objdiff} report generate -o $out",
+            description="REPORT",
+        )
+        n.build(
+            outputs=report_path,
+            rule="report",
+            implicit=[objdiff, "all_source"],
         )
 
         ###
@@ -972,6 +1113,7 @@ def generate_build_ninja(
             configure_script,
             python_lib,
             python_lib_dir / "ninja_syntax.py",
+            *(config.reconfig_deps or []),
         ],
     )
     n.newline()
@@ -981,7 +1123,10 @@ def generate_build_ninja(
     ###
     n.comment("Default rule")
     if build_config:
-        n.default(progress_path)
+        if config.non_matching:
+            n.default(link_outputs)
+        else:
+            n.default(progress_path)
     else:
         n.default(build_config_path)
 
@@ -1031,20 +1176,20 @@ def generate_objdiff_config(
         "GC/2.5": "mwcc_247_105",
         "GC/2.6": "mwcc_247_107",
         "GC/2.7": "mwcc_247_108",
-        "GC/3.0": "mwcc_41_60831",
-        # "GC/3.0a3": "mwcc_41_51213",
+        "GC/3.0a3": "mwcc_41_51213",
         "GC/3.0a3.2": "mwcc_41_60126",
-        # "GC/3.0a3.3": "mwcc_41_60209",
-        # "GC/3.0a3.4": "mwcc_42_60308",
-        # "GC/3.0a5": "mwcc_42_60422",
+        "GC/3.0a3.3": "mwcc_41_60209",
+        "GC/3.0a3.4": "mwcc_42_60308",
+        "GC/3.0a5": "mwcc_42_60422",
         "GC/3.0a5.2": "mwcc_41_60831",
+        "GC/3.0": "mwcc_41_60831",
+        "Wii/1.0RC1": "mwcc_42_140",
         "Wii/0x4201_127": "mwcc_42_142",
-        # "Wii/1.0": "mwcc_43_145",
-        # "Wii/1.0RC1": "mwcc_42_140",
         "Wii/1.0a": "mwcc_42_142",
+        "Wii/1.0": "mwcc_43_145",
         "Wii/1.1": "mwcc_43_151",
         "Wii/1.3": "mwcc_43_172",
-        # "Wii/1.5": "mwcc_43_188",
+        "Wii/1.5": "mwcc_43_188",
         "Wii/1.6": "mwcc_43_202",
         "Wii/1.7": "mwcc_43_213",
     }
@@ -1117,10 +1262,14 @@ def generate_objdiff_config(
         if compiler_version is None:
             print(f"Missing scratch compiler mapping for {options['mw_version']}")
         else:
+            cflags_str = make_flags_str(cflags)
+            if options["extra_cflags"] is not None:
+                extra_cflags_str = make_flags_str(options["extra_cflags"])
+                cflags_str += " " + extra_cflags_str
             unit_config["scratch"] = {
                 "platform": "gc_wii",
                 "compiler": compiler_version,
-                "c_flags": make_flags_str(cflags),
+                "c_flags": cflags_str,
                 "ctx_path": src_ctx_path,
                 "build_ctx": True,
             }
