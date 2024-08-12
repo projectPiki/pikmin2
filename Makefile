@@ -23,15 +23,22 @@ endif
 #-------------------------------------------------------------------------------
 
 NAME := pikmin2
-VERSION ?= usa
-#VERSION := usa.demo
+VERSION ?= GPVE01
+#VERSION := GPVE01_D17
 
-# please for the love of god update this to sync with DTK's versioning. I've fixed usa demo 1 and usa retail. --EpochFlame
+# only GPVE01 and GPVE01_D17 are implemented right now --EpochFlame
 
-ifeq ($(VERSION), usa)
+ifeq ($(VERSION), GPVE01)
     VERNUM = 4
-else ifeq ($(VERSION), usa.demo)
+else ifeq ($(VERSION), GPVE01_D17)
     VERNUM = 0
+else ifeq ($(VERSION), GPVE01_D18)
+    VERNUM = 1
+else ifeq ($(VERSION), GPVJ01)
+    VERNUM = 2
+else ifeq ($(VERSION), GPVP01)
+    VERNUM = 3
+# default to usa retail
 else
     VERNUM = 0
 endif
@@ -214,7 +221,7 @@ $(BUILD_DIR)/%.o: %.cpp
 	$(QUIET) $(CC) $(CFLAGS) -c -o $(dir $@) $<
 
 ### Extremely lazy recipes for generating context ###
-# Example usage: make build/pikmin2.usa/src/plugProjectYamashitaU/farmMgr.h
+# Example usage: make build/pikmin2.GPVE01/src/plugProjectYamashitaU/farmMgr.h
 $(BUILD_DIR)/%.h: %.c
 	@echo "Compiling and generating context for " $<
 	$(QUIET) $(CC) $(CFLAGS) -E -c -o $@ $<
