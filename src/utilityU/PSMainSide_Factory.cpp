@@ -2906,7 +2906,7 @@ PSSystem::BgmSeq* SceneMgr::newAutoBgm(const char* conductorFileName, const char
 	scene->initTrackMap(*bgm);
 	scene->initAndAdaptToBgm(*bgm);
 
-	PSAutoBgm::MeloArr_RandomAvoid* melo = new PSAutoBgm::MeloArr_RandomAvoid("—”ˆÊ’uAvoid"); // 'random position Avoid'
+	PSAutoBgm::MeloArr_RandomAvoid* melo = new PSAutoBgm::MeloArr_RandomAvoid("ä¹±æ•°ä½ç½®Avoid"); // 'random position Avoid'
 	melo->_18                            = true;
 	bgm->mMeloArr.mList.append(melo);
 	return bgm;

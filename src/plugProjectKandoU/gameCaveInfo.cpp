@@ -276,7 +276,7 @@ void ItemInfo::read(Stream& input)
 {
 	char* name = input.readString(nullptr, 0);
 	mCaveID    = pelletMgr->getCaveID(name);
-	JUT_ASSERTLINE(659, mCaveID != -1, "•Ï‚ÈƒyƒŒƒbƒgƒl[ƒ€‚Å‚·!\n");
+	JUT_ASSERTLINE(659, mCaveID != -1, "å¤‰ãªãƒšãƒ¬ãƒƒãƒˆãƒãƒ¼ãƒ ã§ã™!\n");
 	mWeight = input.readInt();
 	mName   = name;
 }
@@ -336,9 +336,9 @@ FloorInfo::FloorInfo()
 
 namespace {
 static char* enum_floor_alpha_types[]
-    = { "“y", "ƒƒ^ƒ‹", "ƒRƒ“ƒNƒŠ[ƒc", "ƒ^ƒCƒ‹", nullptr, nullptr };  // 'soil', 'metal', 'concrete', 'tile', -, -
-static char* enum_floor_beta_types[] = { "’Êí", "ƒ{ƒX", "‚â‚·‚ç‚¬" }; // 'normal', 'boss', 'rest'
-static char* enum_floor_hiddens[]    = { "‚È‚µ", "‚ ‚è" };             // 'none', 'available'
+    = { "åœŸ", "ãƒ¡ã‚¿ãƒ«", "ã‚³ãƒ³ã‚¯ãƒªãƒ¼ãƒ„", "ã‚¿ã‚¤ãƒ«", nullptr, nullptr };  // 'soil', 'metal', 'concrete', 'tile', -, -
+static char* enum_floor_beta_types[] = { "é€šå¸¸", "ãƒœã‚¹", "ã‚„ã™ã‚‰ã" }; // 'normal', 'boss', 'rest'
+static char* enum_floor_hiddens[]    = { "ãªã—", "ã‚ã‚Š" };             // 'none', 'available'
 } // namespace
 
 namespace Game {
@@ -350,25 +350,25 @@ namespace Cave {
  */
 FloorInfo::Parms::Parms()
     : Parameters(nullptr, "FloorInfo")
-    , mFloorIndex1(this, 'f000', "ŠK‚Í‚¶‚ß", 0, 0, 127)                          // 'first floor'
-    , mFloorIndex2(this, 'f001', "ŠK‚¨‚í‚è", 1, 0, 127)                          // 'end of floor'
-    , mTekiMax(this, 'f002', "“GÅ‘å”", 0, 0, 128)                              // 'maximum number of enemies'
-    , mItemMax(this, 'f003', "ƒAƒCƒeƒ€Å‘å”", 0, 0, 128)                        // 'maximum number of items'
-    , mGateMax(this, 'f004', "ƒQ[ƒgÅ‘å”", 0, 0, 32)                           // 'maximum number of gates'
-    , mCapMax(this, 'f014', "ƒLƒƒƒbƒvÅ‘å”", 0, 0, 128)                         // 'maximum number of caps'
-    , mRoomCount(this, 'f005', "ƒ‹[ƒ€”", 4, 1, 15)                             // 'number of rooms'
-    , mRouteRatio(this, 'f006', "ƒ‹[ƒg‚ÌŠ„‡", 0.0f, 0.0f, 1.0f)                // 'root percentage'
-    , mHasEscapeFountain(this, 'f007', "‹AŠÒ•¬…(1=‚ ‚è)", 0, 0, 1)              // 'return fountain (1=yes)'
-    , mCaveUnitFile(this, "units.txt", 64, 'f008', "g—pƒ†ƒjƒbƒg")               // 'unit used'
-    , mLightingFile(this, "light.ini", 64, 'f009', "g—pƒ‰ƒCƒg")                 // 'light used'
+    , mFloorIndex1(this, 'f000', "éšã¯ã˜ã‚", 0, 0, 127)                          // 'first floor'
+    , mFloorIndex2(this, 'f001', "éšãŠã‚ã‚Š", 1, 0, 127)                          // 'end of floor'
+    , mTekiMax(this, 'f002', "æ•µæœ€å¤§æ•°", 0, 0, 128)                              // 'maximum number of enemies'
+    , mItemMax(this, 'f003', "ã‚¢ã‚¤ãƒ†ãƒ æœ€å¤§æ•°", 0, 0, 128)                        // 'maximum number of items'
+    , mGateMax(this, 'f004', "ã‚²ãƒ¼ãƒˆæœ€å¤§æ•°", 0, 0, 32)                           // 'maximum number of gates'
+    , mCapMax(this, 'f014', "ã‚­ãƒ£ãƒƒãƒ—æœ€å¤§æ•°", 0, 0, 128)                         // 'maximum number of caps'
+    , mRoomCount(this, 'f005', "ãƒ«ãƒ¼ãƒ æ•°", 4, 1, 15)                             // 'number of rooms'
+    , mRouteRatio(this, 'f006', "ãƒ«ãƒ¼ãƒˆã®å‰²åˆ", 0.0f, 0.0f, 1.0f)                // 'root percentage'
+    , mHasEscapeFountain(this, 'f007', "å¸°é‚„å™´æ°´(1=ã‚ã‚Š)", 0, 0, 1)              // 'return fountain (1=yes)'
+    , mCaveUnitFile(this, "units.txt", 64, 'f008', "ä½¿ç”¨ãƒ¦ãƒ‹ãƒƒãƒˆ")               // 'unit used'
+    , mLightingFile(this, "light.ini", 64, 'f009', "ä½¿ç”¨ãƒ©ã‚¤ãƒˆ")                 // 'light used'
     , mVrBox(this, "test", 64, 'f00A', "VRBOX")                                  // 'VRBOX'
-    , mIsHoleClogged(this, 'f010', "ŠK’i‚ğ‰ó‚·Šâ‚Å‰B‚·(0=ƒIƒt 1=ƒIƒ“)", 0, 0, 1) // 'hide stairs with rocks that break (0=off 1=on)'
-    , mFloorAlphaType(this, enum_floor_alpha_types, 0, 6, 'f011', "ƒ¿‘®«")      // 'alpha attribute'
-    , mFloorBetaType(this, enum_floor_beta_types, 0, 3, 'f012', "ƒÀ‘®«")        // 'beta attribute'
-    , mFloorHidden(this, enum_floor_hiddens, 0, 2, 'f013', "‰B‚µ°")             // 'hidden floor'
+    , mIsHoleClogged(this, 'f010', "éšæ®µã‚’å£Šã™å²©ã§éš ã™(0=ã‚ªãƒ• 1=ã‚ªãƒ³)", 0, 0, 1) // 'hide stairs with rocks that break (0=off 1=on)'
+    , mFloorAlphaType(this, enum_floor_alpha_types, 0, 6, 'f011', "Î±å±æ€§")       // 'alpha attribute'
+    , mFloorBetaType(this, enum_floor_beta_types, 0, 3, 'f012', "Î²å±æ€§")         // 'beta attribute'
+    , mFloorHidden(this, enum_floor_hiddens, 0, 2, 'f013', "éš ã—åºŠ")             // 'hidden floor'
     , mVersion(this, 'f015', "Version", 0, 0, 10000)                             // 'Version'
     , mWaterwraithTimer(this, 'f016', "BlackManTimer", 0.0f, 0.0f, 10000.0f)     // 'BlackManTimer'
-    , mGlitchySeesaw(this, 'f017', "’¾‚Ş•Ç", 0, 0, 1)                            // 'sinking wall'
+    , mGlitchySeesaw(this, 'f017', "æ²ˆã‚€å£", 0, 0, 1)                            // 'sinking wall'
 {
 }
 

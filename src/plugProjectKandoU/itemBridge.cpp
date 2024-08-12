@@ -1167,7 +1167,7 @@ void Mgr::generatorWrite(Stream& output, GenItemParm* genParm)
 	P2ASSERTLINE(940, genBridgeParm);
 	output.textWriteTab(output.mTabCount);
 	output.writeShort(genBridgeParm->mBridgeType);
-	output.textWriteText("\t#‹´ƒ^ƒCƒv\r\n"); // '#Bridge type'
+	output.textWriteText("\t#æ©‹ã‚¿ã‚¤ãƒ—\r\n"); // '#Bridge type'
 }
 
 /**

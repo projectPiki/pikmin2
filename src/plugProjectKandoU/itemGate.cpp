@@ -140,7 +140,7 @@ void ItemGate::doLoad(Stream& stream)
 	mSegmentsDown         = stream.readInt();
 	initMotion();
 	if (mSegmentsDown >= mMaxSegments) {
-		mCentrePlatInstance->setCollision(false); // Centre? ?\_(ãƒ?)_/? British
+		mCentrePlatInstance->setCollision(false); // Centre? ?\_(ï¿½?)_/? British
 		setAlive(false);
 		if (mIsElectric) {
 			mEgateEfxA->forceKill();
@@ -870,7 +870,7 @@ void ItemGateMgr::generatorWrite(Stream& stream, Game::GenItemParm* param)
 	GenGateParm* gateParam = static_cast<GenGateParm*>(param);
 	stream.textWriteTab(stream.mTabCount);
 	stream.writeFloat(gateParam->mLife);
-	stream.textWriteText("\t#ƒ‰ƒCƒt\r\n"); // life
+	stream.textWriteText("\t#ãƒ©ã‚¤ãƒ•\r\n"); // life
 	stream.textWriteTab(stream.mTabCount);
 	stream.writeByte(gateParam->mColor);
 	stream.textWriteText("\t#Color\r\n");
@@ -1091,7 +1091,7 @@ void GateDownState::onKeyEvent(Game::ItemGate* gate, const SysShape::KeyEvent& k
  */
 ItemDengekiGate::Mgr::Mgr()
 {
-	mItemName = "“dŒ‚ƒQ[ƒg"; // electric shock gate
+	mItemName = "é›»æ’ƒã‚²ãƒ¼ãƒˆ"; // electric shock gate
 	sys->heapStatusStart("ItemDengekiGate", nullptr);
 	mObjectPathComponent = "user/Kando/objects/gates";
 	setModelSize(1);
@@ -1170,7 +1170,7 @@ void ItemDengekiGate::Mgr::generatorWrite(Stream& stream, Game::GenItemParm* par
 	GenGateParm* gateParam = static_cast<GenGateParm*>(param);
 	stream.textWriteTab(stream.mTabCount);
 	stream.writeFloat(gateParam->mLife);
-	stream.textWriteText("\t#ƒ‰ƒCƒt\r\n"); // life
+	stream.textWriteText("\t#ãƒ©ã‚¤ãƒ•\r\n"); // life
 }
 
 /**

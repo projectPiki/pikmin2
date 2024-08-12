@@ -136,7 +136,7 @@ void Navi::onInit(Game::CreatureInitArg* arg)
 
 	mCollTree->createFromFactory(mModel, naviMgr->mCollData, nullptr);
 	JUT_ASSERTLINE(838, ((int)mCollTree->mPart) >= 0x80000000,
-	               "ƒUƒ“[[iE„tEj[[ƒlƒ“\n"); // 'disappointttttt D: ?? ment' (lol)
+	               "ã‚¶ãƒ³?[?[ï¼ˆãƒ»Ð´ãƒ»ï¼‰âˆ’âˆ’ãƒãƒ³\n"); // 'disappointttttt D: ?? ment' (lol)
 	mCollTree->attachModel(mModel);
 
 	mFsm->start(this, NSID_Walk, nullptr);

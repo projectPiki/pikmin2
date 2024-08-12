@@ -1544,7 +1544,7 @@ void CellPyramid::entry(CellObject* object, Sys::Sphere& sphere, int& layerIndex
 
 	// Check if layerIndex is out of bounds
 	if ((layerIndex < 0) || (mLayerCount <= layerIndex)) {
-		JUT_PANICLINE(1206, "illegal layerLevel %d : out of bounds 0`%d\n", layerIndex, mLayerCount);
+		JUT_PANICLINE(1206, "illegal layerLevel %d : out of bounds 0ï½ž%d\n", layerIndex, mLayerCount);
 		return;
 	}
 
@@ -1918,7 +1918,7 @@ int CellPyramid::getPikiCount(int layerLevel, Recti& extent)
 	if (disableAICulling) {
 		return 1;
 	}
-	JUT_ASSERTLINE(1565, (layerLevel >= 0) && (layerLevel < mLayerCount), "illegal layerLevel %d : out of bounds 0`%d\n", layerLevel,
+	JUT_ASSERTLINE(1565, (layerLevel >= 0) && (layerLevel < mLayerCount), "illegal layerLevel %d : out of bounds 0ï½ž%d\n", layerLevel,
 	               mLayerCount);
 	CellLayer* layer = &mLayers[layerLevel];
 	int sum          = 0;

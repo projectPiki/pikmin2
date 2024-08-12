@@ -526,7 +526,7 @@ void SceneInfo::setStageFlag(SceneInfo::FlagDef flag, SceneInfo::FlagBitShift sh
 	} else if (flag == 1) {
 		mStageFlags |= (1 << shift);
 	} else {
-		JUT_PANICLINE(906, "flag‚Í0 or1‚Å‚·");
+		JUT_PANICLINE(906, "flagã¯0 or1ã§ã™");
 	}
 }
 
@@ -596,7 +596,7 @@ void PikScene::getJumpMainBgm()
  */
 PSSystem::Scene* PikSceneMgr::newAndSetGlobalScene()
 {
-	JUT_ASSERTLINE(1002, !mScenes, "2d‚ÉƒOƒ[ƒoƒ‹ƒV[ƒ“‚ğì¬‚µ‚æ‚¤‚Æ‚µ‚½"); // 'I tried to create a global scene twice'
+	JUT_ASSERTLINE(1002, !mScenes, "2ï¿½dï¿½ÉƒOï¿½ï¿½ï¿½[ï¿½oï¿½ï¿½ï¿½Vï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ì¬ï¿½ï¿½ï¿½æ‚¤ï¿½Æ‚ï¿½ï¿½ï¿½"); // 'I tried to create a global scene twice'
 	SceneInfo info;
 	info.mSceneType = SceneInfo::SCENE_NULL;
 	info.mCameras   = 0;
@@ -637,11 +637,11 @@ PSSystem::Scene* PikSceneMgr::newAndSetCurrentScene(SceneInfo& info)
 {
 	u8 sceneType = info.getSceneType();
 	P2ASSERTLINE(1093, sceneType != SceneInfo::SCENE_NULL);
-	JUT_ASSERTLINE(1094, sceneType < SceneInfo::SCENE_COUNT, "scene no‚ª•s³"); // 'scene no is invalid'
+	JUT_ASSERTLINE(1094, sceneType < SceneInfo::SCENE_COUNT, "scene noï¿½ï¿½ï¿½sï¿½ï¿½"); // 'scene no is invalid'
 
 	checkScene();
 
-	JUT_ASSERTLINE(1095, !mScenes->mChild, "‘O‰ñ‚ÌmCurrentScene‚ÌŒãˆ—‚ª•s³"); // 'previous mCurrentScene post-processing is invalid
+	JUT_ASSERTLINE(1095, !mScenes->mChild, "ï¿½Oï¿½ï¿½ï¿½mCurrentSceneï¿½ÌŒãˆï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½"); // 'previous mCurrentScene post-processing is invalid
 
 	info.setStageCamera();
 

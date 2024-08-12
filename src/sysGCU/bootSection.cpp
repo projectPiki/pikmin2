@@ -435,7 +435,7 @@ BootSection::BootSection(JKRHeap* heap)
 	sBootSection = this;
 
 	Game::HIORootNode* node = new Game::HIORootNode(this);
-	node->setName("ブートセクション");
+	node->setName("繝悶�ｼ繝医そ繧ｯ繧ｷ繝ｧ繝ｳ");
 	initHIO(node);
 
 	setDisplay(JFWDisplay::createManager(nullptr, mDisplayHeap, JUTXfb::DoubleBuffer, false), 1);

@@ -235,7 +235,7 @@ u32 Track::seqCpuSync_AutoBgm_Track(JASTrack* track1, u16 cmd, u32 p2, JASTrack*
 		if (_13C.mValue != 16) {
 			//"Unison master track must be a lower numbered track than Unison track"
 			JUT_ASSERTLINE(416, _13C.mValue < mIndex,
-			               "ƒ†ƒjƒ]ƒ“ƒ}ƒXƒ^[ƒgƒ‰ƒbƒN‚Íƒ†ƒjƒ]ƒ“ƒgƒ‰ƒbƒN‚æ‚èŽá‚¢”Ô†‚Ìƒgƒ‰ƒbƒN‚Å‚ ‚é•K—v‚ª‚ ‚è‚Ü‚·");
+			               "ãƒ¦ãƒ‹ã‚¾ãƒ³ãƒžã‚¹ã‚¿ãƒ¼ãƒˆãƒ©ãƒƒã‚¯ã¯ãƒ¦ãƒ‹ã‚¾ãƒ³ãƒˆãƒ©ãƒƒã‚¯ã‚ˆã‚Šè‹¥ã„ç•ªå·ã®ãƒˆãƒ©ãƒƒã‚¯ã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™");
 			mUnisonTrack = static_cast<JADUtility::PrmSetRc<Track>*>(mTree.getParent()->getObjectPtr())->getChild(_13C.mValue);
 			P2ASSERTLINE(418, mUnisonTrack);
 		} else {

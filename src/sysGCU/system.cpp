@@ -305,7 +305,7 @@ void preUserCallback(u16, OSContext*, u32, u32)
 		JUTException::sConsole->startPrint(3, "--- Game debug information ---\n");
 		JUTConsoleManager::sManager->drawDirect(true);
 	} else {
-		OSReport("ƒRƒ“ƒ\\[ƒ‹‚ª‚ ‚è‚Ü‚¹‚ñ\n"); // 'no console'
+		OSReport("ã‚³ãƒ³ã‚½ãƒ¼ãƒ«ãŒã‚ã‚Šã¾ã›ã‚“\n"); // 'no console'
 	}
 }
 

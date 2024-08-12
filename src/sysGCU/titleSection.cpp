@@ -110,7 +110,7 @@ void Section::init()
 	sys->heapStatusStart("JMANewSinTable", nullptr);
 	sys->heapStatusEnd("JMANewSinTable");
 
-	initHIO(new HIORootNode(this, "タイトルセクション")); // "Title Section"
+	initHIO(new HIORootNode(this, "繧ｿ繧､繝医Ν繧ｻ繧ｯ繧ｷ繝ｧ繝ｳ")); // "Title Section"
 
 	sys->heapStatusStart("frameBuffer", nullptr);
 	setDisplay(JFWDisplay::createManager(nullptr, mDisplayHeap, JUTXfb::DoubleBuffer, false), 1);

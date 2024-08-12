@@ -105,7 +105,7 @@ void PikiFSM::transit(Piki* piki, int stateID, StateArg* stateArg)
 		if (!currentState->transittable(stateID)) {
 			JUT_PANICLINE(701, "*Transit(%d)(%d)\n(%s)=>(%s)\n", currentState->mId, mIdToIndexArray[stateID], currentState->mName,
 			              static_cast<PikiState*>(mStates[mIdToIndexArray[stateID]])->mName);
-			JUT_PANICLINE(702, "---------- ‚¾‚ß‚¾‚æ?\n");
+			JUT_PANICLINE(702, "---------- ã ã‚ã ã‚ˆï½\n");
 		}
 	}
 
@@ -5612,7 +5612,7 @@ void PikiEmotionState::init(Piki* piki, StateArg* stateArg)
 	}
 
 	case 8:
-		JUT_PANICLINE(4112, "rapCnt ‚Ìg‚¢•û‚ª‚æ‚­‚È‚Ì‚Å“€Œ‹’†! (RAPTURE)\n");
+		JUT_PANICLINE(4112, "rapCnt ã®ä½¿ã„æ–¹ãŒã‚ˆããªã®ã§å‡çµä¸­! (RAPTURE)\n");
 		break;
 	}
 }

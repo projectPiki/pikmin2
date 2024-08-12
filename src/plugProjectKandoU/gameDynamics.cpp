@@ -10,18 +10,18 @@ DynamicsParms* DynamicsParms::mInstance;
  */
 DynamicsParms::DynamicsParms()
     : Parameters(nullptr, "Dynamics")
-    , mNewFriction(this, 'd009', "VƒtƒŠƒNƒVƒ‡ƒ“", true, false, true) // 'new friction'
+    , mNewFriction(this, 'd009', "æ–°ãƒ•ãƒªã‚¯ã‚·ãƒ§ãƒ³", true, false, true) // 'new friction'
     , mStaParm(this, 'd011', "Sta-Parm", 140.0f, 0.0f, 5000.0f)
     , mStatic(this, 'd010', "Static", 10.0f, 0.0f, 5000.0f)
     , mMicroCollision(this, 'd000', "micro collision", 0.015f, 0.0f, 10.0f)
-    , mFrictionDuringResolve(this, 'd001', "Resolve‚Ì–€C", false, false, true) // 'friction during Resolve'
+    , mFrictionDuringResolve(this, 'd001', "Resolveæ™‚ã®æ‘©æ“¦", false, false, true) // 'friction during Resolve'
     , mElasticity(this, 'd002', "elasticity", 0.3f, 0.0f, 1.0f)
-    , mFriction(this, 'd003', "–€C", true, false, true)                          // 'friction'
-    , mFrictionTangentVelocity(this, 'd004', "–€C:tanvel", true, false, true)    // 'friction:tanvel' - tangent velocity?
-    , mFixedFriction(this, 'd005', "ŒÅ’è–€C", true, false, true)                 // 'fixed friction'
-    , mFixedFrictionValue(this, 'd006', "ŒÅ’è–€C’l", 100.0f, 0.0f, 10000.0f)     // 'fixed friction value'
-    , mNoRotationEffect(this, 'd007', "‰ñ“]‰e‹¿‚È‚µ‚É‚·‚é", true, false, true)    // 'no rotation effect'
-    , mRotatingMomentDamp(this, 'd008', "‰ñ“]ƒ‚[ƒƒ“ƒg Damp", 0.05f, 0.0f, 1.0f) // 'rotating moment Damp'
+    , mFriction(this, 'd003', "æ‘©æ“¦", true, false, true)                          // 'friction'
+    , mFrictionTangentVelocity(this, 'd004', "æ‘©æ“¦:tanvel", true, false, true)    // 'friction:tanvel' - tangent velocity?
+    , mFixedFriction(this, 'd005', "å›ºå®šæ‘©æ“¦", true, false, true)                 // 'fixed friction'
+    , mFixedFrictionValue(this, 'd006', "å›ºå®šæ‘©æ“¦å€¤", 100.0f, 0.0f, 10000.0f)     // 'fixed friction value'
+    , mNoRotationEffect(this, 'd007', "å›è»¢å½±éŸ¿ãªã—ã«ã™ã‚‹", true, false, true)    // 'no rotation effect'
+    , mRotatingMomentDamp(this, 'd008', "å›è»¢ãƒ¢ãƒ¼ãƒ¡ãƒ³ãƒˆ Damp", 0.05f, 0.0f, 1.0f) // 'rotating moment Damp'
 {
 	mInstance = this;
 }

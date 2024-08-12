@@ -1727,7 +1727,7 @@ void Pellet::onSetPosition()
 				item->setPosition(mPelletPosition, false);
 				item->setTreasure(this);
 			} else {
-				JUT_PANICLINE(2326, "‚ª‚Á‚©‚è\n"); // 'disappointed' lol
+				JUT_PANICLINE(2326, "ãŒã£ã‹ã‚Š\n"); // 'disappointed' lol
 			}
 		}
 	}
@@ -5042,7 +5042,7 @@ void PelletIterator::setFirst()
  */
 PelletMgr::PelletMgr()
 {
-	mName              = "ƒyƒŒƒbƒgƒ}ƒl[ƒWƒƒ"; // pellet manager
+	mName              = "ãƒšãƒ¬ãƒƒãƒˆãƒžãƒãƒ¼ã‚¸ãƒ£"; // pellet manager
 	mMovieDrawDisabled = false;
 }
 
@@ -5384,7 +5384,7 @@ void PelletMgr::OtakaraItemCode::write(Stream& stream)
 {
 	stream.textWriteTab(stream.mTabCount);
 	stream.writeShort(mValue);
-	stream.textWriteText("# ‚¨•óƒAƒCƒeƒ€ƒR[ƒh\r\n"); // 'treasure item code'
+	stream.textWriteText("# ãŠå®ã‚¢ã‚¤ãƒ†ãƒ ã‚³ãƒ¼ãƒ‰\r\n"); // 'treasure item code'
 }
 
 /**
