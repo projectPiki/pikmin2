@@ -4,8 +4,8 @@ Pikmin 2
 
 [Build Status]: https://github.com/projectPiki/pikmin2/actions/workflows/build.yml/badge.svg
 [actions]: https://github.com/projectPiki/pikmin2/actions/workflows/build.yml
-[Code Progress]: https://img.shields.io/endpoint?label=Code&url=https%3A%2F%2Fprogress.deco.mp%2Fdata%2Fpikmin2%2Fusa%2Fdol%2F%3Fmode%3Dshield%26measure%3Dcode
-[Data Progress]: https://img.shields.io/endpoint?label=Data&url=https%3A%2F%2Fprogress.deco.mp%2Fdata%2Fpikmin2%2Fusa%2Fdol%2F%3Fmode%3Dshield%26measure%3Ddata
+[Code Progress]: https://img.shields.io/endpoint?label=Code&url=https%3A%2F%2Fprogress.deco.mp%2Fdata%2Fpikmin2%2FGPVE01%2Fdol%2F%3Fmode%3Dshield%26measure%3Dcode
+[Data Progress]: https://img.shields.io/endpoint?label=Data&url=https%3A%2F%2Fprogress.deco.mp%2Fdata%2Fpikmin2%2FGPVE01%2Fdol%2F%3Fmode%3Dshield%26measure%3Ddata
 [Discord Badge]: https://img.shields.io/discord/933849697485983765?color=%237289DA&logo=discord&logoColor=%23FFFFFF
 [discord]: https://discord.gg/CWKqYMePX8
 
