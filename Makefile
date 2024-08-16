@@ -226,6 +226,11 @@ $(BUILD_DIR)/%.o: %.c | $(WRAPPER) $(COMPILERS) $(SJISWRAP)
 	$(QUIET) mkdir -p $(dir $@)
 	$(QUIET) $(CC) $(CFLAGS) -c -o $(dir $@) $<
 
+$(BUILD_DIR)/%.o: %.C | $(WRAPPER) $(COMPILERS) $(SJISWRAP)
+	@echo "Compiling " $<
+	$(QUIET) mkdir -p $(dir $@)
+	$(QUIET) $(CC) $(CFLAGS) -c -o $(dir $@) $<
+
 $(BUILD_DIR)/%.o: %.cp | $(WRAPPER) $(COMPILERS) $(SJISWRAP)
 	@echo "Compiling " $<
 	$(QUIET) mkdir -p $(dir $@)
