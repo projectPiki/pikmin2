@@ -1395,7 +1395,7 @@ Dolphin/MSL_C/MSL_Common/direct_io.c:
 Dolphin/MSL_C/MSL_Common/file_io.c:
 	.text       start:0x800C65F0 end:0x800C68E4
 
-Dolphin/MSL_C/MSL_Common/FILE_POS.c:
+Dolphin/MSL_C/MSL_Common/FILE_POS.C:
 	.text       start:0x800C68E4 end:0x800C6CA4
 
 Dolphin/MSL_C/MSL_Common/mbstring.c:

@@ -803,7 +803,7 @@ def generate_build_ninja(
             link_built_obj = obj.completed
             built_obj_path: Optional[Path] = None
             if unit_src_path.exists():
-                if unit_src_path.suffix in (".c", ".cp", ".cpp"):
+                if unit_src_path.suffix in (".c", ".cp", ".cpp", ".C"):
                     # Add MWCC & host build rules
                     built_obj_path = c_build(obj, options, lib_name, unit_src_path)
                 elif unit_src_path.suffix == ".s":

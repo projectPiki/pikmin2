@@ -747,7 +747,7 @@ config.libs = [
             Object(Matching, "Dolphin/MSL_C/MSL_Common/direct_io.c"),
             Object(Matching, "Dolphin/MSL_C/MSL_Common/errno.c"),
             Object(Matching, "Dolphin/MSL_C/MSL_Common/file_io.c"),
-            Object(Matching, "Dolphin/MSL_C/MSL_Common/FILE_POS.c"),
+            Object(Matching, "Dolphin/MSL_C/MSL_Common/FILE_POS.C"),
             Object(
                 Matching,
                 "Dolphin/MSL_C/MSL_Common/locale.c",
