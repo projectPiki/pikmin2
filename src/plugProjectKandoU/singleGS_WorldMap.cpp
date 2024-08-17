@@ -312,9 +312,7 @@ void SelectState::draw(SingleGameSection* game, Graphics& gfx)
  */
 void SelectState::cleanup(SingleGameSection* game)
 {
-	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-	PSSystem::validateSceneMgr(mgr);
-	mgr->deleteCurrentScene();
+	PSMGetSceneMgrCheck()->deleteCurrentScene();
 
 	playData->doneWorldMapEffect();
 	particle2dMgr->killAll();

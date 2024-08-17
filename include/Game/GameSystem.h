@@ -59,7 +59,6 @@ struct GameSystem : public NodeObjectMgr<GenericObjectMgr> {
 	void detachObjectMgr(GenericObjectMgr*);
 	GameLightMgr* getLightMgr();
 	void init();
-	bool isZukanMode() { return mMode == GSM_PIKLOPEDIA; }
 	bool paused_soft();
 	bool paused();
 	void setDrawBuffer(int);
@@ -73,6 +72,7 @@ struct GameSystem : public NodeObjectMgr<GenericObjectMgr> {
 	inline bool isMultiplayerMode() { return (mMode == GSM_VERSUS_MODE || mMode == GSM_TWO_PLAYER_CHALLENGE); }
 	inline bool isChallengeMode() { return (mMode == GSM_ONE_PLAYER_CHALLENGE || mMode == GSM_TWO_PLAYER_CHALLENGE); }
 	inline bool isTwoPlayerMode() { return mMode == GSM_TWO_PLAYER_CHALLENGE; }
+	bool isZukanMode() { return mMode == GSM_PIKLOPEDIA; }
 
 	inline void setFlag(u32 flag) { mFlags.typeView |= flag; }
 	inline void resetFlag(u32 flag) { mFlags.typeView &= ~flag; }

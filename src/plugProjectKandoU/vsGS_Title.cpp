@@ -59,10 +59,10 @@ void TitleState::init(VsGameSection* section, StateArg* arg)
 		section->clearHeap();
 	}
 
-	section->_205           = true;
-	section->mDeadPikiCount = false;
-	mHeap                   = nullptr;
-	mExpHeap                = nullptr;
+	section->mIsChallengePerfect = true;
+	section->mDeadPikiCount      = false;
+	mHeap                        = nullptr;
+	mExpHeap                     = nullptr;
 
 	mTitleStage = VSTITLE_PrepareInfo;
 	_2C         = 0;
@@ -96,15 +96,10 @@ void TitleState::dvdload()
 		scene.mSceneType = PSGame::SceneInfo::VERSUS_MENU;
 	}
 	scene.mCameras = 0;
+
 	static_cast<PSGame::PikSceneMgr*>(PSSystem::getSceneMgr())->newAndSetCurrentScene(scene);
-
-	PSSystem::SceneMgr* sceneMgr = PSSystem::getSceneMgr();
-	sceneMgr->checkScene();
-	sceneMgr->mScenes->mChild->scene1stLoadSync();
-
-	sceneMgr = PSSystem::getSceneMgr();
-	sceneMgr->checkScene();
-	sceneMgr->mScenes->mChild->startMainSeq();
+	PSSystem::getSceneMgr()->doFirstLoad();
+	PSSystem::getSceneMgr()->doStartMainSeq();
 
 	mChallengeTitleInfo = new Challenge2D_TitleInfo(getChallengeStageNum());
 	mVsTitleInfo        = new Vs2D_TitleInfo(getVsStageNum());
@@ -391,9 +386,7 @@ void TitleState::draw(VsGameSection* section, Graphics& gfx)
  */
 void TitleState::cleanup(VsGameSection* section)
 {
-	PSSystem::SceneMgr* sceneMgr = PSSystem::getSceneMgr();
-	PSSystem::validateSceneMgr(sceneMgr);
-	sceneMgr->deleteCurrentScene();
+	PSMGetSceneMgrCheck()->deleteCurrentScene();
 
 	particle2dMgr->killAll();
 

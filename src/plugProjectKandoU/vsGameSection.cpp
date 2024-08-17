@@ -78,7 +78,7 @@ VsGameSection::VsGameSection(JKRHeap* heap, bool gameMode)
     , mMenuFlags(0)
 {
 	mIsVersusMode          = gameMode;
-	_205                   = true;
+	mIsChallengePerfect    = true;
 	mChallengeStageNum     = 0;
 	mVsStageNum            = 0;
 	mVsWinner              = -1;
@@ -959,7 +959,7 @@ bool GameMessageVsBirthTekiTreasure::actVs(VsGameSection* section)
  */
 bool GameMessageVsPikminDead::actVs(VsGameSection* section)
 {
-	section->_205 = false;
+	section->mIsChallengePerfect = false;
 	section->mDeadPikiCount++;
 	return true;
 }

@@ -348,7 +348,7 @@ void GameState::exec(VsGameSection* section)
 			if (isLoseCause(VSPLAYER_Red, VSLOSE_Finished)) {
 				blueReason = 3;
 
-			} else if (isLoseCause(VSPLAYER_Red, VSLOSE_Unk1)) {
+			} else if (isLoseCause(VSPLAYER_Red, VSLOSE_NaviDown)) {
 				redReason = 1;
 
 			} else if (isLoseCause(VSPLAYER_Red, VSLOSE_Extinction)) {
@@ -360,7 +360,7 @@ void GameState::exec(VsGameSection* section)
 			} else if (isLoseCause(VSPLAYER_Blue, VSLOSE_Finished)) {
 				redReason = 3;
 
-			} else if (isLoseCause(VSPLAYER_Blue, VSLOSE_Unk1)) {
+			} else if (isLoseCause(VSPLAYER_Blue, VSLOSE_NaviDown)) {
 				blueReason = 1;
 
 			} else if (isLoseCause(VSPLAYER_Blue, VSLOSE_Extinction)) {
@@ -702,9 +702,7 @@ void GameState::onMovieDone(VsGameSection* section, MovieConfig* config, u32 unu
 	if (gameSystem->isChallengeMode() && Radar::Mgr::getNumOtakaraItems() == 0
 	    && (config->is("g2F_appear_hole") || config->is("g30_appear_fountain"))) {
 
-		PSSystem::SceneMgr* sceneMgr = PSSystem::getSceneMgr();
-		validateSceneMgr(sceneMgr);
-		PSM::Scene_Cave* scene = static_cast<PSM::Scene_Cave*>(sceneMgr->getChildScene());
+		PSM::Scene_Cave* scene = static_cast<PSM::Scene_Cave*>(PSMGetSceneMgrCheck()->getChildScene());
 		checkGameScene(scene);
 		if (scene->isCave()) {
 			scene->startPollutUpSe();
@@ -712,13 +710,7 @@ void GameState::onMovieDone(VsGameSection* section, MovieConfig* config, u32 unu
 	}
 
 	if (config->is("x19_vs_bedama") && (isLoseCause(VSPLAYER_Red, VSLOSE_Marble) || isLoseCause(VSPLAYER_Blue, VSLOSE_Marble))) {
-		PSSystem::SceneMgr* sceneMgr = PSSystem::getSceneMgr();
-		validateSceneMgr(sceneMgr);
-		PSM::SceneBase* scene = static_cast<PSM::SceneBase*>(sceneMgr->getChildScene());
-
-		scene = (scene->isGameScene()) ? scene : nullptr;
-
-		scene->mSeqMgr.stopAllSound(15);
+		PSMGetGameScene()->mSeqMgr.stopAllSound(15);
 	}
 
 	if (config->is("e00_E3_cavestart")) {
@@ -870,7 +862,7 @@ void GameState::onOrimaDown(VsGameSection* section, int naviIdx)
 
 	if (gameSystem->isVersusMode()) {
 		if (!mSubState) {
-			setLoseCause(naviIdx, VSLOSE_Unk1);
+			setLoseCause(naviIdx, VSLOSE_NaviDown);
 		}
 		return;
 	}

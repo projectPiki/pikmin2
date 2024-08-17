@@ -45,7 +45,7 @@ enum VsCaveInfoType {
 };
 
 enum LoseReasonFlags {
-	VSLOSE_Unk1       = 0x1,
+	VSLOSE_NaviDown   = 0x1,
 	VSLOSE_Extinction = 0x2,
 	VSLOSE_Finished   = 0x4,
 	VSLOSE_Marble     = 0x80,

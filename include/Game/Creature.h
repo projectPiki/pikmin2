@@ -353,8 +353,6 @@ struct Creature : public CellObject {
 
 	inline bool isCreatureFlag(u32 flag) const { return mFlags.typeView & flag; }
 
-	inline void killInline(CreatureKillArg* arg);
-
 	/**
 	 * Calculates the angular distance between this creature and another creature.
 	 *

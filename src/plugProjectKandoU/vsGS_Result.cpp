@@ -89,7 +89,7 @@ void ResultState::prepareMorimuraInfo(VsGameSection* section)
 
 	if (isNormalEnd()) {
 		mResultInfo->setDisplayFlag(CHAL2D_SuccessEnd);
-		if (section->_205) {
+		if (section->mIsChallengePerfect) {
 			mResultInfo->setDisplayFlag(CHAL2D_PerfectEnd);
 		}
 	}
@@ -117,7 +117,7 @@ void ResultState::prepareMorimuraInfo(VsGameSection* section)
 			sys->getPlayCommonData()->challenge_setClear(stageIndex);
 		}
 
-		if (section->_205) {
+		if (section->mIsChallengePerfect) {
 			sys->getPlayCommonData()->challenge_setKunsho(stageIndex);
 		}
 	}
@@ -132,15 +132,10 @@ void ResultState::dvdload()
 	PSGame::SceneInfo scene;
 	scene.mSceneType = PSGame::SceneInfo::CHALLENGE_RESULTS;
 	scene.mCameras   = 0;
+
 	static_cast<PSGame::PikSceneMgr*>(PSSystem::getSceneMgr())->newAndSetCurrentScene(scene);
-
-	PSSystem::SceneMgr* sceneMgr = PSSystem::getSceneMgr();
-	sceneMgr->checkScene();
-
-	sceneMgr->mScenes->mChild->scene1stLoadSync();
-	sceneMgr = PSSystem::getSceneMgr();
-	sceneMgr->checkScene();
-	sceneMgr->mScenes->mChild->startMainSeq();
+	PSSystem::getSceneMgr()->doFirstLoad();
+	PSSystem::getSceneMgr()->doStartMainSeq();
 }
 
 /**
@@ -213,9 +208,7 @@ void ResultState::draw(VsGameSection* section, Graphics& gfx)
  */
 void ResultState::cleanup(VsGameSection* section)
 {
-	PSSystem::SceneMgr* sceneMgr = PSSystem::getSceneMgr();
-	PSSystem::validateSceneMgr(sceneMgr);
-	sceneMgr->deleteCurrentScene();
+	PSMGetSceneMgrCheck()->deleteCurrentScene();
 
 	particle2dMgr->killAll();
 

@@ -23,27 +23,6 @@ Creature* Creature::currOp;
 bool Creature::usePacketCulling = true;
 
 /**
- * @brief Kills the creature and performs cleanup actions.
- */
-inline void Creature::killInline(Game::CreatureKillArg* arg)
-{
-	endStick();
-	setAlive(false);
-	Cell::sCurrCellMgr = cellMgr;
-	exitCell();
-	Cell::sCurrCellMgr = nullptr;
-	mUpdateContext.exit();
-	releaseAllStickers();
-	clearCapture();
-	onKill(arg);
-
-	if (mGenerator) {
-		mGenerator->informDeath(this);
-		mGenerator = nullptr;
-	}
-}
-
-/**
  * @note Address: 0x8013AE84
  * @note Size: 0x12C
  */
@@ -99,7 +78,23 @@ void Creature::init(CreatureInitArg* arg)
  * @note Address: 0x8013B0F0
  * @note Size: 0xB4
  */
-void Creature::kill(CreatureKillArg* arg) { killInline(arg); }
+void Creature::kill(CreatureKillArg* arg)
+{
+	endStick();
+	setAlive(false);
+	Cell::sCurrCellMgr = cellMgr;
+	exitCell();
+	Cell::sCurrCellMgr = nullptr;
+	mUpdateContext.exit();
+	releaseAllStickers();
+	clearCapture();
+	onKill(arg);
+
+	if (mGenerator) {
+		mGenerator->informDeath(this);
+		mGenerator = nullptr;
+	}
+}
 
 /**
  * Sets the position of the Creature.
@@ -512,7 +507,7 @@ int Creature::checkHell(Creature::CheckHellArg& hellArg)
 		}
 
 		if (hellArg.mIsKillPiki) {
-			killInline(nullptr);
+			kill(nullptr);
 		}
 
 		return CREATURE_HELL_DEATH;

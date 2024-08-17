@@ -275,7 +275,7 @@ void Creature::updateStick(Vector3f& pos)
 			// Get direction from creature to slot, then calculate the angle on the Y axis
 			Vector3f direction = mSticker->getPosition() - position;
 			_normaliseXZ(direction);
-			f32 angleBetween = JMath::atanTable_.atan2_(direction.x, direction.z);
+			f32 angleBetween = JMAAtan2Radian(direction.x, direction.z);
 
 			setPosition(position, true);
 
