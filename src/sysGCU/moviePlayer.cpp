@@ -150,7 +150,7 @@ int MoviePlayer::play(MovieConfig* config, MoviePlayArg& arg, bool flag)
 		// if a movie is already playing, put the new cutscene in the queue instead
 		MovieContext* context = getNewContext();
 		if (!context) {
-			JUT_PANICLINE(560, "******* šƒLƒ…[‚É‚Í‚¢‚è‚«‚ç‚ñ‚æ`II\n"); // "******* šDon't miss the queue! !"
+			JUT_PANICLINE(560, "******* â˜…ã‚­ãƒ¥ãƒ¼ã«ã¯ã„ã‚Šãã‚‰ã‚“ã‚ˆï½ï¼ï¼\n"); // "******* â˜…It won't fit in the queue!!"
 			return MOVIEPLAY_QUEUEFAIL;
 		} else {
 			setContext(context, config, arg);
@@ -366,7 +366,7 @@ void MoviePlayer::getSuspendedContext()
 			// return false;
 		}
 	} else {
-		JUT_PANICLINE(772, " ƒLƒ…[‚É‚È‚É‚à‚È‚¢‚¼[[(T^T)\n"); // "there's nothing in the queue (T^T)"
+		JUT_PANICLINE(772, " ã‚­ãƒ¥ãƒ¼ã«ãªã«ã‚‚ãªã„ããƒ¼ãƒ¼(T^T)\n"); // "There's nothing in the queue (T^T)\n"
 	}
 }
 
@@ -456,9 +456,9 @@ void MoviePlayer::loadResource()
 	sys->heapStatusStart("stb", nullptr);
 	if (mArchive) {
 		mStbFile = mArchive->getResource("demo.stb");
-		JUT_ASSERTLINE(954, mStbFile, "‚Ü‚À‚©‚—\n"); // "Really? w"
+		JUT_ASSERTLINE(954, mStbFile, "ã¾ã¢ã‹ï½—\n"); // "Seriously?"
 	} else {
-		JUT_PANICLINE(957, "demo.szs ‚ª‚È‚¢‚Æ‚¾‚ß‚¾‚æ‚—\n"); // "It's useless without it w"
+		JUT_PANICLINE(957, "demo.szs ãŒãªã„ã¨ã ã‚ã ã‚ˆï½—\n"); // "It's no good without it lol\n"
 	}
 	JUT_ASSERTLINE(960, mStbFile, "resource open failed!\n");
 	sys->heapStatusEnd("stb");
@@ -486,7 +486,7 @@ bool MoviePlayer::parse(bool flag)
 
 	const void* file = mStbFile;
 	if (!parse.parse_next(&file, test)) {
-		JUT_PANICLINE(1004, "ƒf[ƒ^‚ğ‰ğß‚Å‚«‚Ü‚µ‚¥‚ñ\n"); // "I can interpret the data"
+		JUT_PANICLINE(1004, "ãƒ‡ãƒ¼ã‚¿ã‚’è§£é‡ˆã§ãã¾ã—ã‡ã‚“\n"); // "I can interpret the data\n"
 		return false;
 	} else {
 		mObjectSystem->reset();
@@ -620,7 +620,7 @@ bool MoviePlayer::update(Controller* input1, Controller* input2)
 						return false;
 					}
 				} else {
-					JUT_PANICLINE(772, " ƒLƒ…[‚É‚È‚É‚à‚È‚¢‚¼[[(T^T)\n"); // "there's nothing in the queue (T^T)"
+					JUT_PANICLINE(772, " ã‚­ãƒ¥ãƒ¼ã«ãªã«ã‚‚ãªã„ããƒ¼ãƒ¼(T^T)\n"); // "There's nothing in the queue (T^T)\n"
 				}
 				return false;
 			} else if (mDemoState == DEMOSTATE_Loading || mDemoState == DEMOSTATE_Fadeout) {

@@ -95,12 +95,12 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mCarrySpeed(this, 'fp01', "‰^”À‘¬“x", 100.0f, 0.0f, 300.0f)      // 'transport speed'
-		    , mReturnSpeed(this, 'fp02', "–ß‚è‘¬“x", 100.0f, 0.0f, 300.0f)     // 'return speed'
-		    , mMinScale(this, 'fp03', "ƒXƒP[ƒ‹Å¬", 1.0f, 0.0f, 3.0f)        // 'scale minimum'
-		    , mMaxScale(this, 'fp04', "ƒXƒP[ƒ‹Å‘å", 1.2f, 0.0f, 3.0f)        // 'scale maximum'
-		    , mPoisonDamage(this, 'fp05', "”’ƒsƒNƒ~ƒ“", 300.0f, 0.0f, 1000.0f) // 'white pikmin'
-		    , mHidingTime(this, 'ip01', "‰B‚ê‚Ä‚¢‚éŠÔ", 30, 0, 120)          // 'hiding time'
+		    , mCarrySpeed(this, 'fp01', "é‹æ¬é€Ÿåº¦", 100.0f, 0.0f, 300.0f)      // 'transport speed'
+		    , mReturnSpeed(this, 'fp02', "æˆ»ã‚Šé€Ÿåº¦", 100.0f, 0.0f, 300.0f)     // 'return speed'
+		    , mMinScale(this, 'fp03', "ã‚¹ã‚±ãƒ¼ãƒ«æœ€å°", 1.0f, 0.0f, 3.0f)        // 'scale minimum'
+		    , mMaxScale(this, 'fp04', "ã‚¹ã‚±ãƒ¼ãƒ«æœ€å¤§", 1.2f, 0.0f, 3.0f)        // 'scale maximum'
+		    , mPoisonDamage(this, 'fp05', "ç™½ãƒ”ã‚¯ãƒŸãƒ³", 300.0f, 0.0f, 1000.0f) // 'white pikmin'
+		    , mHidingTime(this, 'ip01', "éš ã‚Œã¦ã„ã‚‹æ™‚é–“", 30, 0, 120)          // 'hiding time'
 		{
 		}
 

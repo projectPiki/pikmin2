@@ -6,7 +6,7 @@
 #include "trig.h"
 #include "nans.h"
 
-static const char idk[]  = "\0\0\0\0\0\0\0\0\0";
+static const char idk[] = "\0\0\0\0\0\0\0\0\0";
 static const char name[] = "ebiP2Title";
 
 namespace ebi {

@@ -58,7 +58,7 @@ void ObjGround::doCreate(JKRArchive* arc)
 		mDisp = new og::Screen::DispMemberGround;
 
 	} else {
-		JUT_PANICLINE(186, "ERR! in ObjCave Createé∏îsÅI\n"); // yes they used the wrong class name - lmao
+		JUT_PANICLINE(186, "ERR! in ObjCave CreateÂ§±ÊïóÔºÅ\n"); // yes they used the wrong class name - lmao
 	}
 
 	mSunMeter     = new og::Screen::SunMeter;

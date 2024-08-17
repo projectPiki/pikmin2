@@ -273,18 +273,18 @@ struct FakePikiParms : public CreatureParms {
 	struct Parms : public Parameters {
 		Parms()
 		    : Parameters(nullptr, "FakePiki::Parms")
-		    , mStepStartSpeed(this, 'fp01', "ASIBUMI ŠJnƒXƒs[ƒh", 5.0f, 0.0f, 500.0f)                 // 'ASIBUMI start speed' (stepping?)
-		    , mWalkStartSpeed(this, 'fp02', "WALK ŠJnƒXƒs[ƒh", 8.0f, 0.0f, 500.0f)                    // 'WALK start speed'
-		    , mRunStartSpeed(this, 'fp03', "RUN ŠJnƒXƒs[ƒh", 20.0f, 0.0f, 500.0f)                     // 'RUN start speed'
-		    , mEscapeStartSpeed(this, 'fp04', "ESCAPE ŠJnƒXƒs[ƒh", 95.0f, 0.0f, 500.0f)               // 'ESCAPE start speed'
-		    , mWalkPlaybackFrameCountMin(this, 'fp04', "WALK Ä¶ƒtƒŒ[ƒ€”(min)", 60.0f, 0.0f, 300.0f) // 'WALK playback frame count (min)'
-		    , mWalkPlaybackFrameCountMax(this, 'fp05', "WALK Ä¶ƒtƒŒ[ƒ€”(max)", 90.0f, 0.0f,
+		    , mStepStartSpeed(this, 'fp01', "ASIBUMI é–‹å§‹ã‚¹ãƒ”ãƒ¼ãƒ‰", 5.0f, 0.0f, 500.0f)                 // 'ASIBUMI start speed' (stepping?)
+		    , mWalkStartSpeed(this, 'fp02', "WALK é–‹å§‹ã‚¹ãƒ”ãƒ¼ãƒ‰", 8.0f, 0.0f, 500.0f)                    // 'WALK start speed'
+		    , mRunStartSpeed(this, 'fp03', "RUN é–‹å§‹ã‚¹ãƒ”ãƒ¼ãƒ‰", 20.0f, 0.0f, 500.0f)                     // 'RUN start speed'
+		    , mEscapeStartSpeed(this, 'fp04', "ESCAPE é–‹å§‹ã‚¹ãƒ”ãƒ¼ãƒ‰", 95.0f, 0.0f, 500.0f)               // 'ESCAPE start speed'
+		    , mWalkPlaybackFrameCountMin(this, 'fp04', "WALK å†ç”Ÿãƒ•ãƒ¬ãƒ¼ãƒ æ•°(min)", 60.0f, 0.0f, 300.0f) // 'WALK playback frame count (min)'
+		    , mWalkPlaybackFrameCountMax(this, 'fp05', "WALK å†ç”Ÿãƒ•ãƒ¬ãƒ¼ãƒ æ•°(max)", 90.0f, 0.0f,
 		                                 300.0f)                                                      // 'WALK  playback frame count (max)'
-		    , mRunPlaybackFrameCountMin(this, 'fp06', "RUN Ä¶ƒtƒŒ[ƒ€”(min)", 40.0f, 0.0f, 300.0f) // 'RUN playback frame count (min)'
-		    , mRunPlaybackFrameCountMax(this, 'fp07', "RUN Ä¶ƒtƒŒ[ƒ€”(max)", 60.0f, 0.0f, 300.0f) // 'RUN playback frame count (max)'
-		    , mEscapePlaybackFrameCountMin(this, 'fp08', "ESCAPE Ä¶ƒtƒŒ[ƒ€”(min)", 60.0f, 0.0f,
+		    , mRunPlaybackFrameCountMin(this, 'fp06', "RUN å†ç”Ÿãƒ•ãƒ¬ãƒ¼ãƒ æ•°(min)", 40.0f, 0.0f, 300.0f) // 'RUN playback frame count (min)'
+		    , mRunPlaybackFrameCountMax(this, 'fp07', "RUN å†ç”Ÿãƒ•ãƒ¬ãƒ¼ãƒ æ•°(max)", 60.0f, 0.0f, 300.0f) // 'RUN playback frame count (max)'
+		    , mEscapePlaybackFrameCountMin(this, 'fp08', "ESCAPE å†ç”Ÿãƒ•ãƒ¬ãƒ¼ãƒ æ•°(min)", 60.0f, 0.0f,
 		                                   300.0f) // 'ESCAPE playback frame count (min)'
-		    , mEscapePlaybackFrameCountMax(this, 'fp09', "ESCAPE Ä¶ƒtƒŒ[ƒ€”(max)", 90.0f, 0.0f,
+		    , mEscapePlaybackFrameCountMax(this, 'fp09', "ESCAPE å†ç”Ÿãƒ•ãƒ¬ãƒ¼ãƒ æ•°(max)", 90.0f, 0.0f,
 		                                   300.0f) // 'ESCAPE playback frame count (max)'
 		{
 		}

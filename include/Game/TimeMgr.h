@@ -27,18 +27,18 @@ struct TimeMgrParms {
 	struct Parms : public Parameters {
 		Parms()
 		    : Parameters(nullptr, "TimeMgrParms")
-		    , mDayStartTime(this, 'fp00', "ƒQ[ƒ€ŠJn", 7.0f, 0.0f, 24.0f)           // 'game start time'
-		    , mDayEndTime(this, 'fp01', "ƒQ[ƒ€I—¹", 19.0f, 0.0f, 24.0f)            // 'game end time'
-		    , mDayLengthSeconds(this, 'fp02', "1“ú‚ÌŠÔ<•bj", 1560.f, 0.0f, 3600.0f)   // '1 day <second)' = 26 minutes
-		    , mMorningStartTime(this, 'fp03', "’©ŠJn", 5.25f, 0.0f, 24.0f)          // 'morning start time'
-		    , mMidMorningTime(this, 'fp04', "’©’†ŠÔ", 7.0f, 0.0f, 24.0f)             // 'mid-morning time'
-		    , mMorningEndTime(this, 'fp05', "’©I—¹", 8.0f, 0.0f, 24.0f)             // 'morning end time'
-		    , mEveningStartTime(this, 'fp06', "—[•ûŠJn", 15.0f, 0.0f, 24.0f)        // 'evening start time'
-		    , mMidEveningStartTime(this, 'fp07', "—[•û’†ŠÔŠJn", 15.5f, 0.0f, 24.0f) // 'mid-evening start time'
-		    , mMidEveningEndTime(this, 'fp11', "—[•û’†ŠÔI—¹", 18.5f, 0.0f, 24.0f)   // 'mid-evening end time'
-		    , mEveningEndTime(this, 'fp08', "—[•ûI—¹", 19.0f, 0.0f, 24.0f)          // 'evening end time'
-		    , mSundownAlertTime(this, 'fp09', "–éŒx", 18.0f, 0.0f, 24.0f)          // 'night warning time'
-		    , mCountdownTime(this, 'fp10', "ƒJƒEƒ“ƒgƒ_ƒEƒ“", 18.5f, 0.0f, 24.0f)         // 'countdown'
+		    , mDayStartTime(this, 'fp00', "ã‚²ãƒ¼ãƒ é–‹å§‹æ™‚åˆ»", 7.0f, 0.0f, 24.0f)           // 'game start time'
+		    , mDayEndTime(this, 'fp01', "ã‚²ãƒ¼ãƒ çµ‚äº†æ™‚åˆ»", 19.0f, 0.0f, 24.0f)            // 'game end time'
+		    , mDayLengthSeconds(this, 'fp02', "1æ—¥ã®æ™‚é–“<ç§’ï¼‰", 1560.f, 0.0f, 3600.0f)   // '1 day <second)' = 26 minutes
+		    , mMorningStartTime(this, 'fp03', "æœé–‹å§‹æ™‚åˆ»", 5.25f, 0.0f, 24.0f)          // 'morning start time'
+		    , mMidMorningTime(this, 'fp04', "æœä¸­é–“æ™‚åˆ»", 7.0f, 0.0f, 24.0f)             // 'mid-morning time'
+		    , mMorningEndTime(this, 'fp05', "æœçµ‚äº†æ™‚åˆ»", 8.0f, 0.0f, 24.0f)             // 'morning end time'
+		    , mEveningStartTime(this, 'fp06', "å¤•æ–¹é–‹å§‹æ™‚åˆ»", 15.0f, 0.0f, 24.0f)        // 'evening start time'
+		    , mMidEveningStartTime(this, 'fp07', "å¤•æ–¹ä¸­é–“é–‹å§‹æ™‚åˆ»", 15.5f, 0.0f, 24.0f) // 'mid-evening start time'
+		    , mMidEveningEndTime(this, 'fp11', "å¤•æ–¹ä¸­é–“çµ‚äº†æ™‚åˆ»", 18.5f, 0.0f, 24.0f)   // 'mid-evening end time'
+		    , mEveningEndTime(this, 'fp08', "å¤•æ–¹çµ‚äº†æ™‚åˆ»", 19.0f, 0.0f, 24.0f)          // 'evening end time'
+		    , mSundownAlertTime(this, 'fp09', "å¤œè­¦å‘Šæ™‚åˆ»", 18.0f, 0.0f, 24.0f)          // 'night warning time'
+		    , mCountdownTime(this, 'fp10', "ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³", 18.5f, 0.0f, 24.0f)         // 'countdown'
 		{
 		} // WEAK - from timeMgr.cpp
 

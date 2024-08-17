@@ -12,7 +12,7 @@ static const char normMiniHoudaiMgrName[] = "246-NormMiniHoudaiMgr";
 Mgr::Mgr(int objLimit, u8 modelType)
     : MiniHoudai::Mgr(objLimit, modelType)
 {
-	mName = "ノーマルチビホウダイマネージャ"; // normal little houdai manager
+	mName = "繝弱�ｼ繝槭Ν繝√ン繝帙え繝繧､繝槭ロ繝ｼ繧ｸ繝｣"; // normal little houdai manager
 }
 
 /**

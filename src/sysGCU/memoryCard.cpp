@@ -1268,7 +1268,7 @@ s32 MemoryCardMgr::checkSpace(ECardSlot cardSlot, int requiredSpace)
 void MemoryCardMgr::doMakeHeader(u8* header)
 {
 	OSCalendarTime calendar;
-	snprintf((char*)header + 0x1c00, 0x20, "ƒsƒNƒ~ƒ“‚Q@ƒZ[ƒuƒf[ƒ^");
+	snprintf((char*)header + 0x1c00, 0x20, "ãƒ”ã‚¯ãƒŸãƒ³ï¼’ã€€ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ ");
 	OSTime osTime = OSGetTime();
 	OSTicksToCalendarTime(osTime, &calendar);
 	snprintf((char*)header + 0x1c20, 0x20, "%04d/%02d/%02d %02d:%02d:%02d", calendar.year, calendar.mon + 1, calendar.mday, calendar.hour,

@@ -19,7 +19,7 @@ static const char* cMatAnimBrkTexName = "/enemy/data/Hanachirashi/hanachirashi_m
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "フウセンハナチラシマネージャ"; // blossom-scattering blimp manager
+	mName = "繝輔え繧ｻ繝ｳ繝上リ繝√Λ繧ｷ繝槭ロ繝ｼ繧ｸ繝｣"; // blossom-scattering blimp manager
 }
 
 /**

@@ -2380,7 +2380,7 @@ void Mgr::generatorWrite(Stream& input, GenItemParm* genParm)
 
 	input.textWriteTab(input.mTabCount);
 	input.writeShort(plantParm->mPlantType);
-	input.textWriteText("\t#ŽÀƒ^ƒCƒv\r\n"); // '#actual type'
+	input.textWriteText("\t#å®Ÿã‚¿ã‚¤ãƒ—\r\n"); // '#actual type'
 }
 
 /**

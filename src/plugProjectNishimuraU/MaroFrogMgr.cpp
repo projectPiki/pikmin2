@@ -10,7 +10,7 @@ namespace MaroFrog {
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "マロガエルマネージャ"; // maro frog manager
+	mName = "繝槭Ο繧ｬ繧ｨ繝ｫ繝槭ロ繝ｼ繧ｸ繝｣"; // maro frog manager
 }
 
 /**

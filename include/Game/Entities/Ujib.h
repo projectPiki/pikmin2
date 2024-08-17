@@ -118,8 +118,8 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mPoisonDamage(this, 'fp01', "白ピクミン", 300.0f, 0.0f, 10000.0f) // 'white pikmin'
-		    , mBridgeDamage(this, 'fp02', "橋食いパワー", 50.0f, 0.0f, 100.0f)  // 'bridge eating power'
+		    , mPoisonDamage(this, 'fp01', "逋ｽ繝斐け繝溘Φ", 300.0f, 0.0f, 10000.0f) // 'white pikmin'
+		    , mBridgeDamage(this, 'fp02', "讖矩｣溘＞繝代Ρ繝ｼ", 50.0f, 0.0f, 100.0f)  // 'bridge eating power'
 		{
 		}
 

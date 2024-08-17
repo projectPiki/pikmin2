@@ -154,9 +154,9 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mHealthGaugeTimer(this, 'fp11', "Ž€–S ` ƒQ[ƒWoŒ»", 30.0f, 1.0f,
+		    , mHealthGaugeTimer(this, 'fp11', "æ­»äº¡ ï½ž ã‚²ãƒ¼ã‚¸å‡ºç¾", 30.0f, 1.0f,
 		                        500.0f) // 'death ~ appearance of gauge' (Time from death -> health gauge)
-		    , mRespawnRate(this, 'fp12', "ƒQ[ƒWoŒ» ` •œŠˆ", 10.0f, 1.0f,
+		    , mRespawnRate(this, 'fp12', "ã‚²ãƒ¼ã‚¸å‡ºç¾ ï½ž å¾©æ´»", 10.0f, 1.0f,
 		                   500.0f) // 'appearance of gauge ~ resurrection' (Time from health gauge -> alive)
 		{
 		}

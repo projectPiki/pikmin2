@@ -1129,7 +1129,7 @@ lbl_constructor:
 /* 801A4D54 001A1C94  4E 80 00 20 */	blr 
 .endfn init__Q24Game15PelletGoalStateFPQ24Game6PelletPQ24Game8StateArg
 
-.if version == 1
+.if version == 0
 .fn checkMovie__Q24Game15PelletGoalStateFPQ24Game6Pellet, global
 /* 801A4D58 001A1C98  94 21 FD 40 */	stwu r1, -0x2c0(r1)
 /* 801A4D5C 001A1C9C  7C 08 02 A6 */	mflr r0

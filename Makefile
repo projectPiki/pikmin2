@@ -23,15 +23,24 @@ endif
 #-------------------------------------------------------------------------------
 
 NAME := pikmin2
-VERSION ?= usa
-#VERSION := usa.demo
+VERSION ?= GPVE01
+#VERSION := GPVE01_D17
 
-ifeq ($(VERSION), usa)
-    VERNUM = 2
-else ifeq ($(VERSION), usa.demo)
-    VERNUM = 1
-else
+# only GPVE01 and GPVE01_D17 are implemented right now --EpochFlame
+
+ifeq ($(VERSION), GPVE01)
+    VERNUM = 4
+else ifeq ($(VERSION), GPVE01_D17)
     VERNUM = 0
+else ifeq ($(VERSION), GPVE01_D18)
+    VERNUM = 1
+else ifeq ($(VERSION), GPVJ01)
+    VERNUM = 2
+else ifeq ($(VERSION), GPVP01)
+    VERNUM = 3
+# default to usa retail
+else
+    VERNUM = 4
 endif
 
 # Use the all-in-one updater after successful build? (Fails on non-windows platforms)
@@ -80,35 +89,35 @@ DEPENDS += $(MAKECMDGOALS:.o=.d)
 MWCC_VERSION := 2.6
 MWLD_VERSION := 2.6
 
+# Tool versions (keep in sync with configure.py)
+BINUTILS_TAG  := 2.42-1
+COMPILERS_TAG := 20240706
+DTK_TAG       := v0.9.4
+SJISWRAP_TAG  := v1.1.1
+WIBO_TAG      := 0.6.11
+
 # Programs
-POWERPC ?= tools/powerpc
+BINUTILS  ?= build/binutils
+COMPILERS ?= build/compilers
+DTK       ?= build/tools/dtk
+SJISWRAP  ?= build/tools/sjiswrap.exe
+WIBO      ?= build/tools/wibo
 ifeq ($(WINDOWS),1)
-  WINE :=
-  AS      := $(POWERPC)/powerpc-eabi-as.exe
+  WRAPPER :=
+  AS      := $(BINUTILS)/powerpc-eabi-as.exe
   PYTHON  := python
 else
-  WIBO   := $(shell command -v wibo 2> /dev/null)
-  ifdef WIBO
-    WINE ?= wibo
-  else
-    WINE ?= wine
-  endif
-  # Disable wine debug output for cleanliness
-  export WINEDEBUG ?= -all
-  AS := $(POWERPC)/powerpc-eabi-as
+  WRAPPER := $(WIBO)
+  AS      := $(BINUTILS)/powerpc-eabi-as
   PYTHON  := python3
 endif
-COMPILERS ?= tools/mwcc_compiler
-CC      = $(WINE) $(COMPILERS)/$(MWCC_VERSION)/mwcceppc.exe
-LD      := $(WINE) $(COMPILERS)/$(MWLD_VERSION)/mwldeppc.exe
-DTK     := tools/dtk
-ELF2DOL := $(DTK) elf2dol
-SHASUM  := $(DTK) shasum
+CC  = $(WRAPPER) $(SJISWRAP) $(COMPILERS)/GC/$(MWCC_VERSION)/mwcceppc.exe
+LD := $(WRAPPER) $(COMPILERS)/GC/$(MWLD_VERSION)/mwldeppc.exe
 
 ifneq ($(WINDOWS),1)
-TRANSFORM_DEP := tools/transform-dep.py
+TRANSFORM_DEP := tools/transform_dep.py
 else
-TRANSFORM_DEP := tools/transform-win.py
+TRANSFORM_DEP := tools/transform_win.py
 endif
 
 # Options
@@ -125,7 +134,7 @@ ifeq ($(VERBOSE),0)
 LDFLAGS := $(MAPGEN) -fp hard -nodefaults -w off
 endif
 LIBRARY_LDFLAGS := -nodefaults -fp hard -proc gekko
-CFLAGS  := -Cpp_exceptions off -enum int -inline auto -proc gekko -RTTI off -fp hard -fp_contract on -rostr -O4,p -use_lmw_stmw on -common on -sdata 8 -sdata2 8 -nodefaults -MMD -DVERNUM=$(VERNUM) $(INCLUDES)
+CFLAGS  := -Cpp_exceptions off -enum int -inline auto -proc gekko -RTTI off -fp hard -fp_contract on -rostr -O4,p -use_lmw_stmw on -common on -multibyte -sdata 8 -sdata2 8 -nodefaults -MMD -DVERNUM=$(VERNUM) $(INCLUDES)
 
 ifeq ($(VERBOSE),0)
 # this set of ASFLAGS generates no warnings.
@@ -152,24 +161,45 @@ DUMMY != mkdir -p $(ALL_DIRS)
 LDSCRIPT := ldscript.lcf
 
 $(DOL): $(ELF) | $(DTK)
-	$(QUIET) $(ELF2DOL) $< $@
-	$(QUIET) $(SHASUM) -c sha1/$(NAME).$(VERSION).sha1
+	$(QUIET) $(DTK) elf2dol $< $@
+	$(QUIET) $(DTK) shasum -c sha1/$(NAME).$(VERSION).sha1
 ifneq ($(findstring -map,$(LDFLAGS)),)
 	$(QUIET) $(PYTHON) tools/calcprogress.py $(DOL) $(MAP)
 endif
 ifeq ($(USE_AOI),1)
-	$(WINE) ./aoi.exe
+	./aoi.exe
 endif
 
 clean:
 	rm -f -d -r build
 
-$(DTK): tools/dtk_version
+$(DTK):
 	@echo "Downloading $@"
-	$(QUIET) $(PYTHON) tools/download_dtk.py $< $@
+	$(QUIET) mkdir -p $(dir $@)
+	$(QUIET) $(PYTHON) tools/download_tool.py dtk $@ --tag $(DTK_TAG)
+
+$(SJISWRAP):
+	@echo "Downloading $@"
+	$(QUIET) mkdir -p $(dir $@)
+	$(QUIET) $(PYTHON) tools/download_tool.py sjiswrap $@ --tag $(SJISWRAP_TAG)
+
+$(BINUTILS):
+	@echo "Downloading $@"
+	$(QUIET) mkdir -p $(dir $@)
+	$(QUIET) $(PYTHON) tools/download_tool.py binutils $@ --tag $(BINUTILS_TAG)
+
+$(COMPILERS):
+	@echo "Downloading $@"
+	$(QUIET) mkdir -p $(dir $@)
+	$(QUIET) $(PYTHON) tools/download_tool.py compilers $@ --tag $(COMPILERS_TAG)
+
+$(WIBO):
+	@echo "Downloading $@"
+	$(QUIET) mkdir -p $(dir $@)
+	$(QUIET) $(PYTHON) tools/download_tool.py wibo $@ --tag $(WIBO_TAG)
 
 # ELF creation makefile instructions
-$(ELF): $(O_FILES) $(LDSCRIPT)
+$(ELF): $(O_FILES) $(LDSCRIPT) $(WRAPPER) $(COMPILERS)
 	@echo Linking ELF $@
 	$(QUIET) @echo $(O_FILES) > build/o_files
 	$(QUIET) $(LD) $(LDFLAGS) -o $@ -lcf $(LDSCRIPT) @build/o_files
@@ -185,45 +215,31 @@ ifneq ($(MAKECMDGOALS), clean)
 -include $(DEPENDS)
 endif
 
-$(BUILD_DIR)/%.o: %.s
+$(BUILD_DIR)/%.o: %.s | $(BINUTILS) $(DTK)
 	@echo Assembling $<
 	$(QUIET) mkdir -p $(dir $@)
 	$(QUIET) $(AS) $(ASFLAGS) -o $@ $<
+	$(QUIET) $(DTK) elf fixup $@ $@
 
-# for files with capitalized .C extension
-$(BUILD_DIR)/%.o: %.C
+$(BUILD_DIR)/%.o: %.c | $(WRAPPER) $(COMPILERS) $(SJISWRAP)
 	@echo "Compiling " $<
 	$(QUIET) mkdir -p $(dir $@)
 	$(QUIET) $(CC) $(CFLAGS) -c -o $(dir $@) $<
 
-$(BUILD_DIR)/%.o: %.c
+$(BUILD_DIR)/%.o: %.C | $(WRAPPER) $(COMPILERS) $(SJISWRAP)
 	@echo "Compiling " $<
 	$(QUIET) mkdir -p $(dir $@)
 	$(QUIET) $(CC) $(CFLAGS) -c -o $(dir $@) $<
 
-$(BUILD_DIR)/%.o: %.cp
+$(BUILD_DIR)/%.o: %.cp | $(WRAPPER) $(COMPILERS) $(SJISWRAP)
 	@echo "Compiling " $<
 	$(QUIET) mkdir -p $(dir $@)
 	$(QUIET) $(CC) $(CFLAGS) -c -o $(dir $@) $<
 
-$(BUILD_DIR)/%.o: %.cpp
+$(BUILD_DIR)/%.o: %.cpp | $(WRAPPER) $(COMPILERS) $(SJISWRAP)
 	@echo "Compiling " $<
 	$(QUIET) mkdir -p $(dir $@)
 	$(QUIET) $(CC) $(CFLAGS) -c -o $(dir $@) $<
-
-### Extremely lazy recipes for generating context ###
-# Example usage: make build/pikmin2.usa/src/plugProjectYamashitaU/farmMgr.h
-$(BUILD_DIR)/%.h: %.c
-	@echo "Compiling and generating context for " $<
-	$(QUIET) $(CC) $(CFLAGS) -E -c -o $@ $<
-
-$(BUILD_DIR)/%.h: %.cp
-	@echo "Compiling and generating context for " $<
-	$(QUIET) $(CC) $(CFLAGS) -E -c -o $@ $<
-
-$(BUILD_DIR)/%.h: %.cpp
-	@echo "Compiling and generating context for " $<
-	$(QUIET) $(CC) $(CFLAGS) -E -c -o $@ $<
 
 ### Debug Print ###
 

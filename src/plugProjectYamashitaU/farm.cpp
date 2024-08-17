@@ -93,7 +93,7 @@ void Obstacle::doDebugDraw(Graphics& gfx)
  * @note Size: 0xBC
  */
 Farm::Farm()
-    : CNode("î_çk")
+    : CNode("Ëæ≤ËÄï")
     , mModelData(nullptr)
     , mModel(nullptr)
     , mObstacleRootNode("ObstacleNode")

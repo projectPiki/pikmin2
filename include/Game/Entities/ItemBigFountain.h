@@ -121,7 +121,7 @@ struct FountainParms : public CreatureParms {
 	struct Parms : public Parameters {
 		inline Parms() // probably
 		    : Parameters(nullptr, "Fountain::Parms")
-		    , mHealth(this, 'p000', "ƒ‰ƒCƒt", 1000.0f, 1.0f, 60000.0f) // 'life'
+		    , mHealth(this, 'p000', "ãƒ©ã‚¤ãƒ•", 1000.0f, 1.0f, 60000.0f) // 'life'
 		{
 		}
 

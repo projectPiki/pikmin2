@@ -209,7 +209,7 @@ void Item::updateBoundSphere()
 {
 	mCollTree->mPart->mRadius = mBoundingSphere.mRadius;
 	mBoundingSphere.mPosition = mPosition;
-	JUT_ASSERTLINE(225, isCollisionFlick() == false, "ƒ_ƒƒbƒN\n"); // 'damek'
+	JUT_ASSERTLINE(225, isCollisionFlick() == false, "ãƒ€ãƒ¡ãƒƒã‚¯\n"); // 'damek'
 }
 
 /**
@@ -273,7 +273,7 @@ void Item::doSimpleDraw(Viewport* viewport) { mFlockMgr->doSimpleDraw(viewport, 
  */
 Mgr::Mgr()
 {
-	mItemName            = "‘‚Æ¬Î";
+	mItemName            = "è‰ã¨å°çŸ³";
 	mObjectPathComponent = "user/Kando/objects/weed";
 	setModelSize(4);
 	loadArchive("arc.szs");
@@ -367,10 +367,10 @@ void Mgr::generatorWrite(Stream& output, GenItemParm* genItemParm)
 	P2ASSERTLINE(460, genWeedParm != nullptr);
 	output.textWriteTab(output.mTabCount);
 	output.writeShort(genWeedParm->mCount);
-	output.textWriteText("\t#‚¤‚¶‚á‰¤”\r\n"); // 'uja-o number'
+	output.textWriteText("\t#ã†ã˜ã‚ƒç‹æ•°\r\n"); // 'uja-o number'
 	output.textWriteTab(output.mTabCount);
 	output.writeShort(genWeedParm->mWeedType);
-	output.textWriteText("\t#Î‚©‘‚©\r\n"); // 'stone or grass'
+	output.textWriteText("\t#çŸ³ã‹è‰ã‹\r\n"); // 'stone or grass'
 }
 
 /**

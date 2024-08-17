@@ -1,5 +1,5 @@
 .include "macros.inc"
-.if version == 2
+.if version == 4
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
 .obj zz_80514788, local
@@ -48,7 +48,7 @@
 	.4byte .L_800A1CB8
 .endobj lbl_804A4394
 
-.if version == 1
+.if version == 0
 .balign 32
 .obj c32, local
 	.float 1.0
@@ -4155,7 +4155,7 @@
 /* 800A2654 0009F594  4E 80 00 20 */	blr 
 .endfn panCalc__8JASTrackFfffUc
 
-.if version == 1
+.if version == 0
 .fn rootCallback__8JASTrackFPv, global
 /* 800A2658 0009F598  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A265C 0009F59C  7C 08 02 A6 */	mflr r0

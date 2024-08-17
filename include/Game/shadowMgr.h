@@ -34,8 +34,8 @@ struct ShadowParam {
 struct ShadowParms : public Parameters {
 	ShadowParms()
 	    : Parameters(nullptr, "ShadowParms")
-	    , mLodNear(this, 'lodn', "LOD NearÅF", 0.1f, 0.0f, 0.2f)
-	    , mLodFar(this, 'lodf', "LOD FarÅF", 0.02f, 0.0f, 0.2f)
+	    , mLodNear(this, 'lodn', "LOD NearÔºö", 0.1f, 0.0f, 0.2f)
+	    , mLodFar(this, 'lodf', "LOD FarÔºö", 0.02f, 0.0f, 0.2f)
 	{
 	}
 

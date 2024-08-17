@@ -12,7 +12,7 @@ static const char tobiMgrName[] = "246-TobiMgr";
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "トビンコマネージャ"; // tobinko manager
+	mName = "繝医ン繝ｳ繧ｳ繝槭ロ繝ｼ繧ｸ繝｣"; // tobinko manager
 }
 
 /**

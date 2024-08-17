@@ -52,7 +52,7 @@ TimerInf::~TimerInf() { sys->mTimers->remove(this); }
  * @note Address: 0x8042AAA0
  * @note Size: 0x38
  */
-void SysTimers::reset() { JUT_PANICLINE(136, "—L‚è‚¦‚È‚¢[@—L‚è‚¦‚È‚¢\\ ƒUƒ}ƒVƒƒbƒNII\n"); }
+void SysTimers::reset() { JUT_PANICLINE(136, "æœ‰ã‚Šãˆãªã„ãƒ¼ã€€æœ‰ã‚Šãˆãªã„â€•\ ã‚¶ãƒã‚·ãƒ¡ãƒƒã‚¯ï¼ï¼\n"); }
 
 /**
  * @note Address: 0x8042AAD8

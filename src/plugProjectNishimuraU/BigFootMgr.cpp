@@ -19,7 +19,7 @@ static const char* cMatAnimBrkTexName = "/enemy/data/BigFoot/ooashi_model.brk";
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "オオアシマネージャ"; // big foot manager
+	mName = "繧ｪ繧ｪ繧｢繧ｷ繝槭ロ繝ｼ繧ｸ繝｣"; // big foot manager
 }
 
 /**

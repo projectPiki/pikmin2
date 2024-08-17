@@ -20,7 +20,7 @@ static const char pomMgrName[]  = "246-PomMgr";
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "ポンガシ草マネージャ"; // pongashi plant manager
+	mName = "繝昴Φ繧ｬ繧ｷ闕峨�槭ロ繝ｼ繧ｸ繝｣"; // pongashi plant manager
 }
 
 /**

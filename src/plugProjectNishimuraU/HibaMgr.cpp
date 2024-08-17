@@ -12,7 +12,7 @@ static const char hibaMgrName[] = "246-HibaMgr";
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBaseAlwaysMovieActor(objLimit, modelType)
 {
-	mName = "ヒバマネージャ"; // hiba manager
+	mName = "繝偵ヰ繝槭ロ繝ｼ繧ｸ繝｣"; // hiba manager
 }
 
 /**

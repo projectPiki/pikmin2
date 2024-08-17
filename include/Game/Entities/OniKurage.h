@@ -147,14 +147,14 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mFlightHeight(this, 'fp01', "”òs‚‚³", 90.0f, 0.0f, 150.0f)     // 'flight height'
-		    , mRiseFactor(this, 'fp02', "ã¸ŒW”", 1.0f, 0.0f, 10.0f)         // 'rise factor'
-		    , mGroundTime(this, 'fp10', "’nãƒEƒFƒCƒgŠÔ", 3.0f, 0.0f, 10.0f) // 'ground wait time'
-		    , mSuckTime(this, 'fp11', "‹z‚¢‚İŠÔ", 5.0f, 0.0f, 10.0f)       // 'suction time'
-		    , mSuckChance(this, 'fp12', "‹z‚¢‚İŠm—¦", 0.025f, 0.0f, 1.0f)    // 'suction probability'
-		    , mShakeTime(this, 'fp04', "U•¥—‰ºŠÔ", 3.0f, 0.0f, 10.0f)      // 'shake off time'
-		    , mMinFallPiki(this, 'ip01', "—‰ºÅ’áƒsƒL”", 10, 1, 50)          // 'falling minimum piki number'
-		    , mMaxSuckPiki(this, 'ip11', "‹z‚¢‚İƒsƒL”", 10, 1, 100)         // 'sucking piki number'
+		    , mFlightHeight(this, 'fp01', "é£›è¡Œé«˜ã•", 90.0f, 0.0f, 150.0f)     // 'flight height'
+		    , mRiseFactor(this, 'fp02', "ä¸Šæ˜‡ä¿‚æ•°", 1.0f, 0.0f, 10.0f)         // 'rise factor'
+		    , mGroundTime(this, 'fp10', "åœ°ä¸Šã‚¦ã‚§ã‚¤ãƒˆæ™‚é–“", 3.0f, 0.0f, 10.0f) // 'ground wait time'
+		    , mSuckTime(this, 'fp11', "å¸ã„è¾¼ã¿æ™‚é–“", 5.0f, 0.0f, 10.0f)       // 'suction time'
+		    , mSuckChance(this, 'fp12', "å¸ã„è¾¼ã¿ç¢ºç‡", 0.025f, 0.0f, 1.0f)    // 'suction probability'
+		    , mShakeTime(this, 'fp04', "æŒ¯æ‰•è½ä¸‹æ™‚é–“", 3.0f, 0.0f, 10.0f)      // 'shake off time'
+		    , mMinFallPiki(this, 'ip01', "è½ä¸‹æœ€ä½ãƒ”ã‚­æ•°", 10, 1, 50)          // 'falling minimum piki number'
+		    , mMaxSuckPiki(this, 'ip11', "å¸ã„è¾¼ã¿ãƒ”ã‚­æ•°", 10, 1, 100)         // 'sucking piki number'
 		{
 		}
 

@@ -9,15 +9,19 @@
 #include "TParticle2dMgr.h"
 #include "nans.h"
 
-static const char idk[] = "\0\0\0\0\0\0\0\0\0";
 TParticle2dMgr* particle2dMgr;
 TParticle2dMgr* TParticle2dMgr::_instance;
+
+static void strippedFunc_1()
+{
+	OSReport("\0\0\0\0\0\0\0\0\0\0\0");
+}
 
 /**
  * @note Address: N/A
  * @note Size: 0xE4
  */
-void _Print(char* name, ...) { OSReport("particle2dMgr"); }
+static void _Print(char* name, ...) { OSReport("particle2dMgr"); }
 
 /**
  * @note Address: 0x803B9064
@@ -270,8 +274,10 @@ void TParticle2dMgr::killAll() { mActiveEmitter->forceDeleteAllEmitter(); }
  */
 void TParticle2dMgr::killGroup(u8 p1) { mActiveEmitter->forceDeleteGroupEmitter((int)p1); }
 
-static const char* dummy = "IP2_dummy";
-
+static void strippedFunc_2()
+{
+	OSReport("IP2_dummy");
+}
 /**
  * @note Address: N/A
  * @note Size: 0x4

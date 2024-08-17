@@ -25,14 +25,14 @@ SeMgr::SeMgr()
 		mSetSeList[i] = nullptr;
 	}
 
-	mSetSeList[0] = new SetSe("ƒsƒLSEŠÔˆø‚«İ’è", 0, 3);               // "Pixel SE thinning setting"
-	mSetSeList[1] = new SetSe("ƒsƒL•¨‰^‚Ñ‰¹", 9, 9);                   // "piki hauling sound"
-	mSetSeList[2] = new SetSe("ƒsƒLd–’@‚«‰¹", 0, 5);                 // "Piki job tapping sound"
-	mSetSeList[4] = new SetSe("ƒsƒL“Û‚İ‚Ü‚ê‚à‚ª‚«º", 20, 20);       // "Piki swallowed and struggle voice"
-	mSetSeList[5] = new SetSe("ƒ`ƒƒƒŒƒ“ƒWƒ‚[ƒh‚Ìƒgƒbƒv‰æ–Ê—p", 0, 2); // "For challenge mode top screen"
-	mSetSeList[6] = new SetSe("ƒsƒL’……‰¹—p", 2, 5);                   // "For Piki landing sound"
-	mSetSeList[7] = new SetSe("ƒsƒLƒpƒjƒbƒNƒ‰ƒ“—p", 4, 10);            // "For Piki Panic Run"
-	mSetSeList[3] = new SetSe("“G”Ä—p", 20, 9);                        // "Enemy General Purpose"
+	mSetSeList[0] = new SetSe("ãƒ”ã‚­SEé–“å¼•ãè¨­å®š", 0, 3);               // "Pixel SE thinning setting"
+	mSetSeList[1] = new SetSe("ãƒ”ã‚­ç‰©é‹ã³éŸ³", 9, 9);                   // "piki hauling sound"
+	mSetSeList[2] = new SetSe("ãƒ”ã‚­ä»•äº‹å©ãéŸ³", 0, 5);                 // "Piki job tapping sound"
+	mSetSeList[4] = new SetSe("ãƒ”ã‚­å‘‘ã¿è¾¼ã¾ã‚Œã‚‚ãŒãå£°", 20, 20);       // "Piki swallowed and struggle voice"
+	mSetSeList[5] = new SetSe("ãƒãƒ£ãƒ¬ãƒ³ã‚¸ãƒ¢ãƒ¼ãƒ‰ã®ãƒˆãƒƒãƒ—ç”»é¢ç”¨", 0, 2); // "For challenge mode top screen"
+	mSetSeList[6] = new SetSe("ãƒ”ã‚­ç€æ°´éŸ³ç”¨", 2, 5);                   // "For Piki landing sound"
+	mSetSeList[7] = new SetSe("ãƒ”ã‚­ãƒ‘ãƒ‹ãƒƒã‚¯ãƒ©ãƒ³ç”¨", 4, 10);            // "For Piki Panic Run"
+	mSetSeList[3] = new SetSe("æ•µæ±ç”¨", 20, 9);                        // "Enemy General Purpose"
 
 	for (u8 i = 0; i < 8; i++) {
 		P2ASSERTLINE(44, mSetSeList[i]);
@@ -777,7 +777,7 @@ void Builder_EvnSe_Perspective::build(f32 p1, PSSystem::EnvSeMgr* mgr)
 
 			// this panic needs to be an inline in PSCommon.h
 			// its also terrible and idk if any of this is right
-			JUT_ASSERTLINE(210, mList.mNextLink, "ƒŠƒ“ƒN‚ª‚ ‚è‚Ü‚¹‚ñ"); // No link
+			JUT_ASSERTLINE(210, mList.mNextLink, "ãƒªãƒ³ã‚¯ãŒã‚ã‚Šã¾ã›ã‚“"); // No link
 			PSSystem::IdLink* link = (PSSystem::IdLink*)mList.mNextLink;
 			mList.mNextLink        = (PSSystem::IdLink*)link->getNext();
 			if (!mList.mNextLink) {

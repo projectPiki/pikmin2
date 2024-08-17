@@ -102,7 +102,7 @@ struct PelletMgr : public NodeObjectMgr<GenericObjectMgr> {
 	virtual void doDirectDraw(Graphics& gfx);   // _78 (weak)
 	virtual char* getMgrName()                  // _80 (weak)
 	{
-		return "ペレットマネージャ"; // pellet manager
+		return "繝壹Ξ繝�繝医�槭ロ繝ｼ繧ｸ繝｣"; // pellet manager
 	}
 	virtual char* getCaveName(int);       // _84
 	virtual int getCaveID(char*);         // _88

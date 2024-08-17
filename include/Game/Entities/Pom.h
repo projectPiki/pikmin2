@@ -97,12 +97,12 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mNormalMaxSlots(this, 'ip01', "‹z‚¢‚İƒsƒL”(pom)", 5, 1, 50)           // 'sucking piki number (pom)'
-		    , mQueenMaxSlots(this, 'ip11', "‹z‚¢‚İƒsƒL”(pop)", 1, 1, 50)            // 'sucking piki number (pop)'
-		    , mQueenShotMultiplier(this, 'ip13', "“f‚«o‚µ”{”(pop)", 5, 1, 50)        // 'spitting multiple (pop)'
-		    , mRemainOpenTime(this, 'fp01', "ŠJ‰ÔŠÔ", 30.0f, 0.0f, 60.0f)            // 'flowering time'
-		    , mColorChangeTime(this, 'fp02', "FŠ·‚¦ŠÔ", 1.25f, 0.0f, 60.0f)         // 'color change time'
-		    , mBlackWhiteAppearanceRate(this, 'fp03', "”’•oŒ»—¦", 0.15f, 0.0f, 1.0f) // 'black and white appearance rate'
+		    , mNormalMaxSlots(this, 'ip01', "å¸ã„è¾¼ã¿ãƒ”ã‚­æ•°(pom)", 5, 1, 50)           // 'sucking piki number (pom)'
+		    , mQueenMaxSlots(this, 'ip11', "å¸ã„è¾¼ã¿ãƒ”ã‚­æ•°(pop)", 1, 1, 50)            // 'sucking piki number (pop)'
+		    , mQueenShotMultiplier(this, 'ip13', "åãå‡ºã—å€æ•°(pop)", 5, 1, 50)        // 'spitting multiple (pop)'
+		    , mRemainOpenTime(this, 'fp01', "é–‹èŠ±æ™‚é–“", 30.0f, 0.0f, 60.0f)            // 'flowering time'
+		    , mColorChangeTime(this, 'fp02', "è‰²æ›ãˆæ™‚é–“", 1.25f, 0.0f, 60.0f)         // 'color change time'
+		    , mBlackWhiteAppearanceRate(this, 'fp03', "ç™½é»’å‡ºç¾ç‡", 0.15f, 0.0f, 1.0f) // 'black and white appearance rate'
 		{
 		}
 

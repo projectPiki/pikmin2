@@ -14,7 +14,7 @@ static const char umiMushiMgrName[] = "umiMushiMgr";
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "ウミムシマネージャ"; // sea worm manager
+	mName = "繧ｦ繝溘Β繧ｷ繝槭ロ繝ｼ繧ｸ繝｣"; // sea worm manager
 }
 
 /**

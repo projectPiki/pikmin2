@@ -65,23 +65,23 @@ bool TControl::setRubyFont(JUTFont* font)
  */
 bool TControl::init()
 {
-	sys->heapStatusStart("JMessageÀ‘•ƒNƒ‰ƒX", nullptr);
+	sys->heapStatusStart("JMessageå®Ÿè£…ã‚¯ãƒ©ã‚¹", nullptr);
 	createReference();
 	createResourceContainer();
 	createSequenceProcessor();
 	createRenderingProcessor();
-	sys->heapStatusEnd("JMessageÀ‘•ƒNƒ‰ƒX");
+	sys->heapStatusEnd("JMessageå®Ÿè£…ã‚¯ãƒ©ã‚¹");
 
 	mReference->mResource = mResContainer;
 	mBaseProcSeq          = mSequenceProc;
 	mBaseProcRender       = mTextRenderProc;
 
-	sys->heapStatusStart("ŒÂ•Ê‰Šú‰»", nullptr); // "Individual Initialization"
+	sys->heapStatusStart("å€‹åˆ¥åˆæœŸåŒ–", nullptr); // "Individual Initialization"
 	bool ret = false;
 	if (onInit()) {
 		ret = true;
 	}
-	sys->heapStatusEnd("ŒÂ•Ê‰Šú‰»");
+	sys->heapStatusEnd("å€‹åˆ¥åˆæœŸåŒ–");
 	return ret;
 }
 

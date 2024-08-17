@@ -10,7 +10,7 @@ static const char qurioneMgrName[] = "246-QurioneMgr";
  * @note Size: 0x94
  */
 Generator::Generator()
-    : EnemyGeneratorBase("クリオネジェネレータ") // clione (sea angel) generator
+    : EnemyGeneratorBase("繧ｯ繝ｪ繧ｪ繝阪ず繧ｧ繝阪Ξ繝ｼ繧ｿ") // clione (sea angel) generator
     , mInitialParam(200.0f, 30.0f)
 {
 }
@@ -71,7 +71,7 @@ void Generator::doReadOldVersion(Stream&) { }
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "クリオネマネージャ"; // clione (sea angel) manager
+	mName = "繧ｯ繝ｪ繧ｪ繝阪�槭ロ繝ｼ繧ｸ繝｣"; // clione (sea angel) manager
 }
 
 /**

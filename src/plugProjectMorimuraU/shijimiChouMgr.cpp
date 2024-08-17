@@ -16,7 +16,7 @@ Mgr::Mgr(int objLimit, u8 modelType)
 {
 	mUpdateMgr   = nullptr;
 	mGroupLeader = nullptr;
-	mName        = "シジミ蝶マネージャ"; // clam butterfly manager
+	mName        = "繧ｷ繧ｸ繝溯攜繝槭ロ繝ｼ繧ｸ繝｣"; // clam butterfly manager
 }
 
 /**

@@ -10,7 +10,7 @@ namespace FixMiniHoudai {
 Mgr::Mgr(int objLimit, u8 modelType)
     : MiniHoudai::Mgr(objLimit, modelType)
 {
-	mName = "固定チビホウダイマネージャ"; // fixed little houdai manager
+	mName = "蝗ｺ螳壹メ繝薙�帙え繝繧､繝槭ロ繝ｼ繧ｸ繝｣"; // fixed little houdai manager
 }
 
 /**

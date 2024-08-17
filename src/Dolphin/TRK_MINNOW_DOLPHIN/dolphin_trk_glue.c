@@ -1,7 +1,9 @@
 #include "PowerPC_EABI_Support/MetroTRK/trk.h"
 #include "Dolphin/os.h"
 
-BOOL _MetroTRK_Has_Framing;
+BOOL _MetroTRK_Has_Framing; // UNUSED 
+// GPVE01     _MetroTRK_Has_Framing = .bss:0x804F4814; // type:object size:0x4 scope:global align:4
+// GPVE01_D17 _MetroTRK_Has_Framing = .bss:0x804F4754; // type:object size:0x4 scope:global align:4
 u8 TRK_Use_BBA;
 
 DBCommTable gDBCommTable = { nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr };

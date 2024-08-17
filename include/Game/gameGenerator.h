@@ -242,7 +242,7 @@ struct GenNumberPelletParm : public GenPelletParm {
  */
 struct GenItem : public GenObject {
 	inline GenItem()
-	    : GenObject('item', "object type", "ITEM ‚ğƒZƒbƒg")
+	    : GenObject('item', "object type", "ITEM ã‚’ã‚»ãƒƒãƒˆ")
 	{
 		mMgrIndex   = -1;
 		mRotation.z = 0.0f;
@@ -283,7 +283,7 @@ struct GenItem : public GenObject {
 
 struct GenPellet : public GenObject {
 	inline GenPellet()
-	    : GenObject('pelt', "object type", "PELLET ‚ğƒZƒbƒg")
+	    : GenObject('pelt', "object type", "PELLET ã‚’ã‚»ãƒƒãƒˆ")
 	{
 		mPelType    = 255;
 		mRotation.z = 0.0f;
@@ -315,10 +315,10 @@ struct GenPellet : public GenObject {
 
 struct GenObjectPiki : public GenObject {
 	GenObjectPiki()
-	    : GenObject('piki', "object type", "PIKMIN ‚ğƒZƒbƒg")
-	    , mColourParm(this, 'p000', "F", 0, 0, PikiColorCount)
-	    , mAmountParm(this, 'p001', "”", 1, 1, 100)
-	    , mIsWildPikminParm(this, 'p002', "©Šˆ(1=yes)", 0, 0, 1)
+	    : GenObject('piki', "object type", "PIKMIN ã‚’ã‚»ãƒƒãƒˆ")
+	    , mColourParm(this, 'p000', "è‰²", 0, 0, PikiColorCount)
+	    , mAmountParm(this, 'p001', "æ•°", 1, 1, 100)
+	    , mIsWildPikminParm(this, 'p002', "è‡ªæ´»(1=yes)", 0, 0, 1)
 	{
 	}
 
@@ -420,8 +420,8 @@ struct GenObjectFactoryFactory {
 
 struct GenObjectNavi : public GenObject {
 	GenObjectNavi()
-	    : GenObject('navi', "object type", "NAVI ‚ğƒZƒbƒg")  // set the NAVI
-	    , mRotation(this, 'p000', "ƒXƒ^[ƒgŒü‚«", 0, 0, 360) // start direction
+	    : GenObject('navi', "object type", "NAVI ã‚’ã‚»ãƒƒãƒˆ")  // set the NAVI
+	    , mRotation(this, 'p000', "ã‚¹ã‚¿ãƒ¼ãƒˆå‘ã", 0, 0, 360) // start direction
 	{
 	}
 

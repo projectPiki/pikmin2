@@ -162,9 +162,9 @@ void Mgr::setupFont(char const* path, JKRExpHeap* heap)
 
 		P2ASSERTLINE(378, mFont->mIsValid);
 		static_cast<JUTCacheFont*>(mFont)->mPagingType = JUTCacheFont::CFPAGETYPE_Unk1;
-		static_cast<JUTCacheFont*>(mFont)->loadCache_string("\t‚ ‚¢‚¤‚¦‚¨‚©‚«‚­‚¯‚±‚³‚µ‚·‚¹‚»‚½‚¿‚·‚Ä‚Æ‚È‚É‚Ê‚Ë‚Ì‚Í‚Ğ‚·‚Ö‚Ù‚Ü‚İ‚Ş‚ß‚à‚â‚ä‚æ"
-		                                                    "‚í‚ñ\tƒAƒCƒEƒGƒIƒJƒLƒNƒPƒRƒTƒVƒXƒZƒ\\ƒ^ƒ`ƒcƒeƒgƒi"
-		                                                    "ƒjƒkƒlƒmƒnƒqƒtƒwƒzƒ}ƒ~ƒ€ƒƒ‚ƒ„ƒ†ƒˆƒƒ“\t",
+		static_cast<JUTCacheFont*>(mFont)->loadCache_string("\tã‚ã„ã†ãˆãŠã‹ããã‘ã“ã•ã—ã™ã›ããŸã¡ã™ã¦ã¨ãªã«ã¬ã­ã®ã¯ã²ã™ã¸ã»ã¾ã¿ã‚€ã‚ã‚‚ã‚„ã‚†ã‚ˆ"
+		                                                    "ã‚ã‚“\tã‚¢ã‚¤ã‚¦ã‚¨ã‚ªã‚«ã‚­ã‚¯ã‚±ã‚³ã‚µã‚·ã‚¹ã‚»ã‚½\ã‚¿ãƒãƒ„ãƒ†ãƒˆãƒŠ"
+		                                                    "ãƒ‹ãƒŒãƒãƒãƒãƒ’ãƒ•ãƒ˜ãƒ›ãƒãƒŸãƒ ãƒ¡ãƒ¢ãƒ¤ãƒ¦ãƒ¨ãƒ¯ãƒ³\t",
 		                                                    true); // this is just all the characters in the japanese font sheet lol
 		delete file;
 		fontarc->unmount();
@@ -233,10 +233,10 @@ void Mgr::setupMessageResource(JKRArchive* arc, char const* path)
 	P2ASSERTLINE(474, file);
 	sys->heapStatusEnd("bmg");
 
-	sys->heapStatusStart("ƒƒbƒZ[ƒW‚Ìƒp[ƒX", nullptr); // "Message Parsing"
+	sys->heapStatusStart("ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®ãƒ‘ãƒ¼ã‚¹", nullptr); // "Message Parsing"
 	JMessage::TParse parse(mResContainer);
 	P2ASSERTLINE(484, parse.parse(file, 0));
-	sys->heapStatusEnd("ƒƒbƒZ[ƒW‚Ìƒp[ƒX"); // "Message Parsing"
+	sys->heapStatusEnd("ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®ãƒ‘ãƒ¼ã‚¹"); // "Message Parsing"
 }
 
 /**
@@ -248,11 +248,11 @@ bool Mgr::setupColor(JKRArchive* arc, char const* path)
 	const void* file = arc->getResource(path);
 	P2ASSERTLINE(501, file);
 
-	sys->heapStatusStart("ƒƒbƒZ[ƒWƒJƒ‰[‚Ìƒp[ƒX", nullptr); // "Message Parsing"
+	sys->heapStatusStart("ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚«ãƒ©ãƒ¼ã®ãƒ‘ãƒ¼ã‚¹", nullptr); // "Message Parsing"
 	JMessage::TParse_color parse(mResContainer);
 	bool success = parse.parse(file, 0x20);
 	P2ASSERTLINE(510, success);
-	sys->heapStatusEnd("ƒƒbƒZ[ƒWƒJƒ‰[‚Ìƒp[ƒX"); // "Message Parsing"
+	sys->heapStatusEnd("ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚«ãƒ©ãƒ¼ã®ãƒ‘ãƒ¼ã‚¹"); // "Message Parsing"
 	return success;
 }
 

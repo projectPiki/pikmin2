@@ -689,7 +689,7 @@ void TNodeItemMgr::killAll()
  */
 ItemMgr::ItemMgr()
 {
-	mName = "アイテムマネージャ"; // "Item Manager"
+	mName = "繧｢繧､繝�繝繝槭ロ繝ｼ繧ｸ繝｣"; // "Item Manager"
 }
 
 /**

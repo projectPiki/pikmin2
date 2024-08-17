@@ -1752,7 +1752,7 @@ Vector3f Onyon::getOutStart_UFO()
 	if (mPikiOutJoint) {
 		return getJointPosition(mPikiOutJoint);
 	} else {
-		JUT_PANICLINE(2569, "ÇæÇﬂÇ≈Ç∑");
+		JUT_PANICLINE(2569, "„Å†„ÇÅ„Åß„Åô");
 		return Vector3f::zero;
 	}
 }

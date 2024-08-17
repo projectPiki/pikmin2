@@ -16,7 +16,7 @@ const char filename[] = "246-KabutoMgr";
 Mgr::Mgr(int p1, u8 p2)
     : EnemyMgrBase(p1, p2)
 {
-	mName = "カブトマネージャ"; // beetle manager
+	mName = "繧ｫ繝悶ヨ繝槭ロ繝ｼ繧ｸ繝｣"; // beetle manager
 }
 
 /**

@@ -126,10 +126,10 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mWaitTime(this, 'fp02', "ƒEƒFƒCƒgŠÔ", 2.5f, 0.0f, 100.0f) // 'wait time'
-		    , mWarningTime(this, 'fp03', "—\\’›ŠÔ", 2.5f, 0.0f, 100.0f) // 'warning time'
-		    , mActiveTime(this, 'fp01', "•ú“dŠÔ", 2.5f, 0.0f, 100.0f)   // 'discharge time'
-		    , mStopTime(this, 'fp04', "’â~ŠÔ", 10.0f, 0.0f, 100.0f)    // 'stop time'
+		    , mWaitTime(this, 'fp02', "ã‚¦ã‚§ã‚¤ãƒˆæ™‚é–“", 2.5f, 0.0f, 100.0f) // 'wait time'
+		    , mWarningTime(this, 'fp03', "äºˆ\å…†æ™‚é–“", 2.5f, 0.0f, 100.0f) // 'warning time'
+		    , mActiveTime(this, 'fp01', "æ”¾é›»æ™‚é–“", 2.5f, 0.0f, 100.0f)   // 'discharge time'
+		    , mStopTime(this, 'fp04', "åœæ­¢æ™‚é–“", 10.0f, 0.0f, 100.0f)    // 'stop time'
 		    , mLodNear(this, 'fp90', "LOD NEAR", 0.085f, 0.0f, 1.0f)
 		    , mLodMiddle(this, 'fp91', "LOD MIDDLE", 0.05f, 0.0f, 1.0f)
 		{

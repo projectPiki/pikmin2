@@ -10,7 +10,7 @@ struct EnemyBase;
 
 struct EnemyEffectNodeBase : public CNode {
 	inline EnemyEffectNodeBase()
-	    : CNode("”g–ä") // ripple
+	    : CNode("æ³¢ç´‹") // ripple
 	{
 	}
 

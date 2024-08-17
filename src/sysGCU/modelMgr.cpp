@@ -9,7 +9,7 @@
  * @note Address: N/A
  * @note Size: 0xE4
  */
-void _Print(char* name, ...) { OSReport("modelMgr"); }
+static void _Print(char* name, ...) { OSReport("modelMgr"); }
 
 namespace SysShape {
 

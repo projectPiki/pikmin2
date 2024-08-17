@@ -128,11 +128,11 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mFlightHeight(this, 'fp01', "”òs‚‚³", 60.0f, 0.0f, 150.0f)  // 'flight height'
-		    , mPitchRate(this, 'fp02', "ã‰º‚Ì—h‚ê‘¬“x", 2.5f, 0.0f, 10.0f) // 'vertical swing speed'
-		    , mPitchAmp(this, 'fp03', "ã‰º‚Ì—h‚ê•", 20.0f, 0.0f, 50.0f)   // 'vertical swing width'
-		    , mDeathRate(this, 'fp04', "€–S‘¬“x", 100.0f, 0.0f, 1000.0f)   // 'death rate'
-		    , mDeathTime(this, 'fp05', "€–SŠÔ", 1.0f, 0.0f, 10.0f)       // 'death time'
+		    , mFlightHeight(this, 'fp01', "é£›è¡Œé«˜ã•", 60.0f, 0.0f, 150.0f)  // 'flight height'
+		    , mPitchRate(this, 'fp02', "ä¸Šä¸‹ã®æºã‚Œé€Ÿåº¦", 2.5f, 0.0f, 10.0f) // 'vertical swing speed'
+		    , mPitchAmp(this, 'fp03', "ä¸Šä¸‹ã®æºã‚Œå¹…", 20.0f, 0.0f, 50.0f)   // 'vertical swing width'
+		    , mDeathRate(this, 'fp04', "æ­»äº¡é€Ÿåº¦", 100.0f, 0.0f, 1000.0f)   // 'death rate'
+		    , mDeathTime(this, 'fp05', "æ­»äº¡æ™‚é–“", 1.0f, 0.0f, 10.0f)       // 'death time'
 		{
 		}
 

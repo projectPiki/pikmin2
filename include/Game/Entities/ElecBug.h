@@ -93,9 +93,9 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mFlipTime(this, 'fp01', "‚Ğ‚Á‚­‚è•Ô‚èŠÔ", 5.0f, 0.0f, 10.0f) // 'flip time'
-		    , mWaitTime(this, 'fp02', "ƒEƒFƒCƒgŠÔ", 1.5f, 0.0f, 10.0f)     // 'wait time'
-		    , mDischargeTime(this, 'fp11', "•ú“dŠÔ", 3.0f, 0.0f, 10.0f)    // 'discharge time'
+		    , mFlipTime(this, 'fp01', "ã²ã£ãã‚Šè¿”ã‚Šæ™‚é–“", 5.0f, 0.0f, 10.0f) // 'flip time'
+		    , mWaitTime(this, 'fp02', "ã‚¦ã‚§ã‚¤ãƒˆæ™‚é–“", 1.5f, 0.0f, 10.0f)     // 'wait time'
+		    , mDischargeTime(this, 'fp11', "æ”¾é›»æ™‚é–“", 3.0f, 0.0f, 10.0f)    // 'discharge time'
 		{
 		}
 

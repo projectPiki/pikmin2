@@ -81,7 +81,7 @@ void TitleState::init(VsGameSection* section, StateArg* arg)
 	section->mVsStageData        = nullptr;
 }
 
-static const char unusedVsTitleString[] = "ƒRƒ“ƒNƒŠ[ƒg"; // 'concrete'
+static const char unusedVsTitleString[] = "ã‚³ãƒ³ã‚¯ãƒªãƒ¼ãƒˆ"; // 'concrete'
 
 /**
  * @note Address: 0x80228554

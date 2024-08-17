@@ -14,7 +14,7 @@ static const char otakaraBaseMgrName[] = "246-OtakaraBaseMgr";
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "オタカラムシマネージャ"; // otakara manager
+	mName = "繧ｪ繧ｿ繧ｫ繝ｩ繝繧ｷ繝槭ロ繝ｼ繧ｸ繝｣"; // otakara manager
 }
 
 /**

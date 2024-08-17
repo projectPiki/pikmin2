@@ -15,7 +15,7 @@ static const char* cOtakaraChangeTexName = "/enemy/data/BombOtakara/otakara_bomb
 Mgr::Mgr(int objLimit, u8 modelType)
     : OtakaraBase::Mgr(objLimit, modelType)
 {
-	mName = "バクダンオタカラムシマネージャ"; // starburst otakara manager
+	mName = "繝舌け繝繝ｳ繧ｪ繧ｿ繧ｫ繝ｩ繝繧ｷ繝槭ロ繝ｼ繧ｸ繝｣"; // starburst otakara manager
 }
 
 /**

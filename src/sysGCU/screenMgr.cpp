@@ -354,7 +354,7 @@ MgrCommand* Mgr::getNewCommand()
 		mAvailableCommands.add(command);
 		OSUnlockMutex(&command->mMutex);
 	} else {
-		JUT_PANICLINE(626, "yƒGƒ‰[zƒRƒ}ƒ“ƒhƒoƒbƒtƒ@‚ª‘«‚è‚Ü‚¹‚ñ\n"); // "[Error] Not enough command buffer"
+		JUT_PANICLINE(626, "ã€ã‚¨ãƒ©ãƒ¼ã€‘ã‚³ãƒžãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ãŒè¶³ã‚Šã¾ã›ã‚“\n"); // "[Error] Not enough command buffer"
 	}
 	return command;
 }
@@ -489,7 +489,7 @@ SceneBase* Mgr::getSceneBase(s32 type)
 	mCurrHeap->becomeCurrentHeap();
 	SceneBase* scene = doGetSceneBase(type);
 	backupheap->becomeCurrentHeap();
-	JUT_ASSERTLINE(843, scene, "ƒV[ƒ“‚Ì¶¬‚ÉŽ¸”s");
+	JUT_ASSERTLINE(843, scene, "ã‚·ãƒ¼ãƒ³ã®ç”Ÿæˆã«å¤±æ•—");
 	scene->mController = mController;
 	return scene;
 }

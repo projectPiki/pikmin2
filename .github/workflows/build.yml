@@ -12,29 +12,43 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        version: [usa, usa.demo]
+        version: [GPVE01, GPVE01_D17]
     steps:
     - name: Checkout
       uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        submodules: recursive
     - name: Git config
       run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+    - name: Prepare
+      run: cp -R /orig .
     - name: Build
       run: |
-        python configure.py -m -v ${{matrix.version}} --compilers /compilers/GC
-        ninja
+        python configure.py --map --version ${{ matrix.version }} \
+            --binutils /binutils --compilers /compilers
+        ninja all_source build/${{ matrix.version }}/progress.json \
+            build/${{ matrix.version }}/report.json
     - name: Upload progress
       if: github.ref == 'refs/heads/main'
       continue-on-error: true
       env:
+        PROGRESS_SLUG: pikmin2
         PROGRESS_API_KEY: ${{secrets.PROGRESS_API_KEY}}
       run: |
-        python tools/upload-progress.py -b https://progress.decomp.club/ -p pikmin2 -v ${{matrix.version}} \
-          build/pikmin2.${{matrix.version}}/main.dol.progress
+        python tools/upload_progress.py -b https://progress.decomp.club/ \
+          -p $PROGRESS_SLUG -v ${{ matrix.version }} \
+          build/${{ matrix.version }}/progress.json
     - name: Upload map
       uses: actions/upload-artifact@v4
       with:
-        name: pikmin2UP-${{matrix.version}}.MAP
-        path: build/*/pikmin2UP.MAP
+        name: ${{ matrix.version }}_maps
+        path: build/${{ matrix.version }}/**/*.MAP
+    - name: Upload report
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ matrix.version }}_report
+        path: build/${{ matrix.version }}/report.json
 
   build_make:
     name: Build (legacy)
@@ -43,13 +57,15 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        version: [usa, usa.demo]
+        version: [GPVE01, GPVE01_D17]
     steps:
     - name: Checkout
       uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        submodules: recursive
     - name: Git config
       run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
     - name: Build
       run: |
-        python configure.py --map --compilers /compilers/GC
-        make -j$(nproc) MAPGENFLAG=1 VERSION=${{matrix.version}} COMPILERS=/compilers/GC
+        make -j$(nproc) MAPGENFLAG=1 VERSION=${{matrix.version}}

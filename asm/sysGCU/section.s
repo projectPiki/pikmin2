@@ -85,7 +85,7 @@ lbl_constructor:
 .obj lbl_80520440, local
 	.float 0.5
 .endobj lbl_80520440
-.if version == 1
+.if version == 0
 .obj lbl_80520444, local
 	.float 0.0
 .endobj lbl_80520444
@@ -109,7 +109,7 @@ lbl_constructor:
 	.asciz "update"
 .endobj lbl_80520454
 .balign 4
-.if version == 1
+.if version == 0
 .obj lbl_8052045C, local
 	.float 180.0
 .endobj lbl_8052045C
@@ -124,7 +124,7 @@ lbl_constructor:
 /* 80423770 004206B0  4E 80 00 20 */	blr 
 .endfn init__7SectionFv
 
-.if version == 1
+.if version == 0
 .fn __ct__7SectionFP10JFWDisplayP7JKRHeapb, global
 /* 804237F0 00420730  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 804237F4 00420734  7C 08 02 A6 */	mflr r0
@@ -507,7 +507,7 @@ lbl_constructor:
 /* 80423AC0 00420A00  4E 80 00 20 */	blr 
 .endfn __dt__7SectionFv
 
-.if version == 1
+.if version == 0
 .fn run__7SectionFv, global
 /* 80423B94 00420AD4  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80423B98 00420AD8  7C 08 02 A6 */	mflr r0

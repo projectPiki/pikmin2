@@ -426,11 +426,11 @@ void GameState::checkSMenu(VsGameSection* section)
 		return;
 
 	case Screen::Game2DMgr::CHECK2D_SMenu_GoToSunset:
-		JUT_PANICLINE(617, "Ç†ÇËÇ¶Ç»Ç¢Ç¡Ç∑\n"); // 'impossible'
+		JUT_PANICLINE(617, "„ÅÇ„Çä„Åà„Å™„ÅÑ„Å£„Åô\n"); // 'impossible'
 		return;
 
 	case Screen::Game2DMgr::CHECK2D_SMenu_ReturnToFileSelect:
-		JUT_PANICLINE(620, "Ç»Ç¢\n"); // 'no'
+		JUT_PANICLINE(620, "„Å™„ÅÑ\n"); // 'no'
 		return;
 
 	case Screen::Game2DMgr::CHECK2D_SMenu_QuitChallenge:

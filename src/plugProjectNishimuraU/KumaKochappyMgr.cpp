@@ -10,7 +10,7 @@ namespace KumaKochappy {
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "チビクママネージャ"; // little bear manager
+	mName = "繝√ン繧ｯ繝槭�槭ロ繝ｼ繧ｸ繝｣"; // little bear manager
 }
 
 /**

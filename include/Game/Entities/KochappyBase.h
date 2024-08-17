@@ -102,9 +102,9 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mAbsentMindedTime(this, 'fp01', "‚Ú‚ñ‚â‚èŠÔ", 2.0f, 0.0f, 100.0f)  // 'absentminded time'
-		    , mPoisonDamage(this, 'fp02', "”’ƒsƒNƒ~ƒ““Å", 300.0f, 0.0f, 1000.0f)   // 'white pikmin poison'
-		    , mRotationEndAngle(this, 'fp03', "‰ñ“]I—¹Šp“x", 90.0f, 0.0f, 180.0f) // 'rotation end angle'
+		    , mAbsentMindedTime(this, 'fp01', "ã¼ã‚“ã‚„ã‚Šæ™‚é–“", 2.0f, 0.0f, 100.0f)  // 'absentminded time'
+		    , mPoisonDamage(this, 'fp02', "ç™½ãƒ”ã‚¯ãƒŸãƒ³æ¯’", 300.0f, 0.0f, 1000.0f)   // 'white pikmin poison'
+		    , mRotationEndAngle(this, 'fp03', "å›è»¢çµ‚äº†è§’åº¦", 90.0f, 0.0f, 180.0f) // 'rotation end angle'
 		{
 		}
 

@@ -22,7 +22,7 @@ void GenObjectPiki::initialise()
 	if (factory->mCount < factory->mLimit) {
 		factory->mFactories[factory->mCount].mTypeID       = 'piki';
 		factory->mFactories[factory->mCount].mMakeFunction = makeObjectPiki;
-		factory->mFactories[factory->mCount].mName         = "ƒsƒNƒ~ƒ“‚ð”­¶"; // generate Pikmin
+		factory->mFactories[factory->mCount].mName         = "ãƒ”ã‚¯ãƒŸãƒ³ã‚’ç™ºç”Ÿ"; // generate Pikmin
 		factory->mFactories[factory->mCount].mVersion      = '0001';
 		factory->mCount++;
 	}

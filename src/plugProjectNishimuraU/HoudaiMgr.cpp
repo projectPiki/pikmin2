@@ -20,7 +20,7 @@ static const char* cMatAnimBrkTexName = "/enemy/data/Houdai/houdai_model.brk";
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "ホウダイマネージャ"; // houdai manager
+	mName = "繝帙え繝繧､繝槭ロ繝ｼ繧ｸ繝｣"; // houdai manager
 }
 
 /**

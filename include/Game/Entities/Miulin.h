@@ -219,13 +219,13 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mReturnTime(this, 'ip01', "ƒŠƒ^[ƒ“ƒJƒEƒ“ƒ^", 100, 0, 1000)                // 'return counter'
-		    , mContinuousPressAngle(this, 'fp03', "˜A‘±ƒvƒŒƒXŠp“x", 20.0f, 0.0f, 180.0f) // 'continuous press angle'
-		    , mDashSpeedMultiplier(this, 'fp04', "ƒ_ƒbƒVƒ…‘¬“x”{—¦", 2.0f, 0.0f, 10.0f)  // 'dash speed multiplier'
-		    , mDashAnimationScale(this, 'fp05', "ƒ_ƒbƒVƒ…ƒAƒjƒ”{—¦", 2.0f, 0.0f, 10.0f) // 'dash animation scale'
-		    , mMaxTurnAngle(this, 'fp06', "ù‰ñI—¹Šp“x", 10.0f, 0.0f, 180.0f)           // 'turning end angle'
-		    , mDashableAngle(this, 'fp07', "ƒ_ƒbƒVƒ…‰Â”\\Šp“x", 30.0f, 0.0f, 180.0f)     // 'possible dash angle'
-		    , mMinAttackRange(this, 'fp08', "UŒ‚”ÍˆÍÅ¬", 25.0f, 0.0f, 100.0f)         // 'minimum attack range'
+		    , mReturnTime(this, 'ip01', "ãƒªã‚¿ãƒ¼ãƒ³ã‚«ã‚¦ãƒ³ã‚¿", 100, 0, 1000)                // 'return counter'
+		    , mContinuousPressAngle(this, 'fp03', "é€£ç¶šãƒ—ãƒ¬ã‚¹è§’åº¦", 20.0f, 0.0f, 180.0f) // 'continuous press angle'
+		    , mDashSpeedMultiplier(this, 'fp04', "ãƒ€ãƒƒã‚·ãƒ¥é€Ÿåº¦å€ç‡", 2.0f, 0.0f, 10.0f)  // 'dash speed multiplier'
+		    , mDashAnimationScale(this, 'fp05', "ãƒ€ãƒƒã‚·ãƒ¥ã‚¢ãƒ‹ãƒ¡å€ç‡", 2.0f, 0.0f, 10.0f) // 'dash animation scale'
+		    , mMaxTurnAngle(this, 'fp06', "æ—‹å›çµ‚äº†è§’åº¦", 10.0f, 0.0f, 180.0f)           // 'turning end angle'
+		    , mDashableAngle(this, 'fp07', "ãƒ€ãƒƒã‚·ãƒ¥å¯èƒ½\è§’åº¦", 30.0f, 0.0f, 180.0f)     // 'possible dash angle'
+		    , mMinAttackRange(this, 'fp08', "æ”»æ’ƒç¯„å›²æœ€å°", 25.0f, 0.0f, 100.0f)         // 'minimum attack range'
 		{
 		}
 

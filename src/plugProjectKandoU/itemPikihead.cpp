@@ -996,7 +996,7 @@ Item* Mgr::birth()
 		break;
 
 	case PikiMgr::PSM_Replace:                      // we should not be entering a cave floor and immediately making a sprout lol
-		JUT_PANICLINE(834, "Ç±ÇÍÇÕÇ†ÇËÇ¶Ç»Ç¢ÇÊ\n"); // 'this is impossible' lol
+		JUT_PANICLINE(834, "„Åì„Çå„ÅØ„ÅÇ„Çä„Åà„Å™„ÅÑ„Çà\n"); // 'this is impossible' lol
 		break;
 	}
 

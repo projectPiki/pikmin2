@@ -51,3 +51,11 @@ __pycache__
 .ninja_log
 newlines.py
 objdiff.json
+
+.idea
+.ninja_*
+.mypy_cache
+
+orig/*/*
+!orig/*/.gitkeep
+/*.txt

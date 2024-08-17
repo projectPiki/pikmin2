@@ -110,9 +110,9 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mPoisonDamage(this, 'fp01', "”’ƒsƒNƒ~ƒ“", 300.0f, 0.0f, 10000.0f)   // 'white pikmin'
-		    , mAttackLoopTimer(this, 'fp11', "UŒ‚ƒ‹[ƒvŠÔ", 0.0f, 0.0f, 10.0f) // 'attack loop time'
-		    , mBridgeDamage(this, 'fp12', "‹´H‚¢ƒpƒ[", 100.0f, 0.0f, 100.0f)   // 'bridge eating power'
+		    , mPoisonDamage(this, 'fp01', "ç™½ãƒ”ã‚¯ãƒŸãƒ³", 300.0f, 0.0f, 10000.0f)   // 'white pikmin'
+		    , mAttackLoopTimer(this, 'fp11', "æ”»æ’ƒãƒ«ãƒ¼ãƒ—æ™‚é–“", 0.0f, 0.0f, 10.0f) // 'attack loop time'
+		    , mBridgeDamage(this, 'fp12', "æ©‹é£Ÿã„ãƒ‘ãƒ¯ãƒ¼", 100.0f, 0.0f, 100.0f)   // 'bridge eating power'
 		{
 		}
 

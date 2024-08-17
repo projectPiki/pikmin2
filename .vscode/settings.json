@@ -1,10 +1,10 @@
 {
     "[c]": {
-        "files.encoding": "shiftjis",
+        "files.encoding": "utf8",
         "editor.defaultFormatter": "ms-vscode.cpptools"
     },
     "[cpp]": {
-        "files.encoding": "shiftjis",
+        "files.encoding": "utf8",
         "editor.defaultFormatter": "ms-vscode.cpptools"
     },
     "editor.tabSize": 4,
@@ -59,7 +59,7 @@
         "ctype.h": "c",
         "mem_funcs.h": "c",
         "card.h": "c",
-        "FILE_POS.C": "cpp",
+        "FILE_POS.c": "cpp",
         "ctype_api.h": "c"
     }
 }

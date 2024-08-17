@@ -12,7 +12,7 @@ static const char elecBugMgrName[] = "246-ElecBugMgr";
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "デンキムシマネージャ"; // electric beetle manager
+	mName = "繝�繝ｳ繧ｭ繝繧ｷ繝槭ロ繝ｼ繧ｸ繝｣"; // electric beetle manager
 }
 
 /**

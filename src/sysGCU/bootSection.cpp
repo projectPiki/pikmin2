@@ -435,7 +435,7 @@ BootSection::BootSection(JKRHeap* heap)
 	sBootSection = this;
 
 	Game::HIORootNode* node = new Game::HIORootNode(this);
-	node->setName("ブートセクション");
+	node->setName("繝悶�ｼ繝医そ繧ｯ繧ｷ繝ｧ繝ｳ");
 	initHIO(node);
 
 	setDisplay(JFWDisplay::createManager(nullptr, mDisplayHeap, JUTXfb::DoubleBuffer, false), 1);
@@ -1438,7 +1438,7 @@ void BootSection::updateLoadResourceFirst()
 		// THIS IS ALL FOR DEMO 1
 #if BUILDTARGET == USADEMO1
 		PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-		PSSystem::checkSceneMgr(mgr);
+		PSSystem::validateSceneMgr(mgr);
 		PSM::Scene_Global* scene = static_cast<PSM::Scene_Global*>(mgr->mScenes);
 		P2ASSERTLINE(1723, scene);
 		scene->startGlobalStream(P2_STREAM_SOUND_ID(PSSTR_PIKMIN_GREET));

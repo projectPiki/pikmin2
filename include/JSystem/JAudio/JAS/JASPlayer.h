@@ -19,7 +19,7 @@ extern s16 CUTOFF_TO_IIR_TABLE[0x200];
 extern s16 sAdsTable[12];
 extern s16 sRelTable[6];
 extern s16 sVibTable[18];
-extern s16 sTreTable[20];
+extern s16 sTreTable[18];
 } // namespace JASPlayer
 
 #endif

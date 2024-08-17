@@ -121,15 +121,15 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mMaxGroundTime(this, 'fp01', "oŒ»ŠÔ(Max)", 30.0f, 0.0f, 100.0f)                   // 'appearance time (max)'
-		    , mMinGroundTime(this, 'fp02', "oŒ»ŠÔ(Min)", 20.0f, 0.0f, 100.0f)                   // 'appearance time (min)'
-		    , mAirborneTime(this, 'fp03', "oŒ»ŠÔŠu", 3.0f, 0.0f, 100.0f)                          // 'appearance interval'
-		    , mMinWhistleTime(this, 'fp11', "ƒtƒGŠÔŠu(1)", 0.0f, 0.0f, 5.0f)                       // 'hue interval (1)
-		    , mMaxWhistleTimeNoSquad(this, 'fp12', "ƒtƒGŠÔŠu(2`:‘à—ñƒiƒV)", 5.0f, 0.0f, 10.0f)    // 'hue interval (2 ~: no formation)'
-		    , mMaxWhistleTimeWithSquad(this, 'fp13', "ƒtƒGŠÔŠu(2`:‘à—ñƒAƒŠ)", 10.0f, 0.0f, 20.0f) // 'hue interval (2 ~: platoon ants)'
-		    , mStruggleTime(this, 'fp21', "‚à‚ª‚«ŠÔ", 3.0f, 0.0f, 10.0f)                         // 'struggling time'
-		    , mJumpTime(this, 'fp22', "“¦‚°ƒWƒƒƒ“ƒvŠÔ", 0.0f, 0.0f, 5.0f)                        // 'escape jump time'
-		    , mNormalLandingChance(this, 'fp31', "’ÊíoŒ»—¦", 0.5f, 0.0f, 1.0f)                   // 'normal appearance rate'
+		    , mMaxGroundTime(this, 'fp01', "å‡ºç¾æ™‚é–“(Max)", 30.0f, 0.0f, 100.0f)                   // 'appearance time (max)'
+		    , mMinGroundTime(this, 'fp02', "å‡ºç¾æ™‚é–“(Min)", 20.0f, 0.0f, 100.0f)                   // 'appearance time (min)'
+		    , mAirborneTime(this, 'fp03', "å‡ºç¾é–“éš”", 3.0f, 0.0f, 100.0f)                          // 'appearance interval'
+		    , mMinWhistleTime(this, 'fp11', "ãƒ•ã‚¨é–“éš”(1)", 0.0f, 0.0f, 5.0f)                       // 'hue interval (1)
+		    , mMaxWhistleTimeNoSquad(this, 'fp12', "ãƒ•ã‚¨é–“éš”(2ï½:éšŠåˆ—ãƒŠã‚·)", 5.0f, 0.0f, 10.0f)    // 'hue interval (2 ~: no formation)'
+		    , mMaxWhistleTimeWithSquad(this, 'fp13', "ãƒ•ã‚¨é–“éš”(2ï½:éšŠåˆ—ã‚¢ãƒª)", 10.0f, 0.0f, 20.0f) // 'hue interval (2 ~: platoon ants)'
+		    , mStruggleTime(this, 'fp21', "ã‚‚ãŒãæ™‚é–“", 3.0f, 0.0f, 10.0f)                         // 'struggling time'
+		    , mJumpTime(this, 'fp22', "é€ƒã’ã‚¸ãƒ£ãƒ³ãƒ—æ™‚é–“", 0.0f, 0.0f, 5.0f)                        // 'escape jump time'
+		    , mNormalLandingChance(this, 'fp31', "é€šå¸¸å‡ºç¾ç‡", 0.5f, 0.0f, 1.0f)                   // 'normal appearance rate'
 		{
 		}
 

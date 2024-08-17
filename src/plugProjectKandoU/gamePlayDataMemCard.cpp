@@ -43,22 +43,22 @@ void PlayData::write(Stream& output)
 	IStack312.write(output);
 	output.textEndGroup();
 
-	output.textBeginGroup("* ‚¨•óŒÂ” *"); // 'number of treasures'
+	output.textBeginGroup("* ãŠå®å€‹æ•° *"); // 'number of treasures'
 	output.writeInt(mTreasureCount);
 	output.textEndGroup();
 
-	output.textBeginGroup("* •ÔÏ“xƒtƒ‰ƒO *"); // 'repayment flag'
+	output.textBeginGroup("* è¿”æ¸ˆåº¦ãƒ•ãƒ©ã‚° *"); // 'repayment flag'
 	u8* flags = &mDebtProgressFlags.typeView;
 	for (u32 i = 0; i < 2; i++) {
 		output.writeByte(flags[i]);
 	}
 	output.textEndGroup();
 
-	output.textBeginGroup("* ƒNƒŠƒAƒtƒ‰ƒO *"); // 'clear flag'
+	output.textBeginGroup("* ã‚¯ãƒªã‚¢ãƒ•ãƒ©ã‚° *"); // 'clear flag'
 	output.writeBytes(&mStoryFlags, 1);
 	output.textEndGroup();
 
-	output.textBeginGroup("* ƒZ[ƒuƒtƒ‰ƒO/ƒIƒjƒ‡ƒ“ƒtƒ‰ƒO *"); // 'save flag/onyon flag'
+	output.textBeginGroup("* ã‚»ãƒ¼ãƒ–ãƒ•ãƒ©ã‚°/ã‚ªãƒ‹ãƒ§ãƒ³ãƒ•ãƒ©ã‚° *"); // 'save flag/onyon flag'
 	output.textWriteTab(output.mTabCount);
 	output.writeByte(mLoadType);
 	output.textWriteText("\r\n");
@@ -73,56 +73,56 @@ void PlayData::write(Stream& output)
 	output.textWriteText("# meet pikmin flag\r\n");
 	output.textEndGroup();
 
-	output.textBeginGroup("* “ú‚É‚¿ *"); // 'date' (?)
+	output.textBeginGroup("* æ—¥ã«ã¡ *"); // 'date' (?)
 	mTekiStatMgr.write(output);
 	output.textEndGroup();
 
-	output.textBeginGroup("* “ú‚É‚¿ *"); // 'date' (?)
+	output.textBeginGroup("* æ—¥ã«ã¡ *"); // 'date' (?)
 	output.textWriteTab(output.mTabCount);
 	output.writeInt(gameSystem->mTimeMgr->mDayCount);
 	output.textWriteText("\r\n");
 	output.textEndGroup();
 
-	output.textBeginGroup("* ƒIƒŠƒ}[‘•”õ‘¼/OlimarData *"); // 'olimar equipment etc./OlimarData'
+	output.textBeginGroup("* ã‚ªãƒªãƒãƒ¼è£…å‚™ä»–/OlimarData *"); // 'olimar equipment etc./OlimarData'
 	mOlimarData[0].write(output);
 	mOlimarData[1].write(output);
 	output.textEndGroup();
 
-	output.textBeginGroup("* “´ŒAó‹µ/CaveSaveData *"); // 'cave situation/CaveSaveData'
+	output.textBeginGroup("* æ´çªŸçŠ¶æ³/CaveSaveData *"); // 'cave situation/CaveSaveData'
 	mCaveSaveData.write(output);
 	output.textEndGroup();
 
-	output.textBeginGroup("* ƒ[ƒ‹/MailSaveData *"); // 'email/MailSaveData'
+	output.textBeginGroup("* ãƒ¡ãƒ¼ãƒ«/MailSaveData *"); // 'email/MailSaveData'
 	mMailSaveData.write(output);
 	output.textEndGroup();
 
-	output.textBeginGroup("* ƒRƒ“ƒeƒi/ContainerPikmin *"); // 'container/ContainerPikmin'
+	output.textBeginGroup("* ã‚³ãƒ³ãƒ†ãƒŠ/ContainerPikmin *"); // 'container/ContainerPikmin'
 	mPikiContainer.write(output);
 	output.textEndGroup();
 
-	output.textBeginGroup("* ƒyƒŒƒbƒg/PelletMemory *"); // 'pellet/PelletMemory'
+	output.textBeginGroup("* ãƒšãƒ¬ãƒƒãƒˆ/PelletMemory *"); // 'pellet/PelletMemory'
 	mZukanStat->write(output);
 	output.textEndGroup();
 
-	output.textBeginGroup("* ƒyƒŒƒbƒg/‚P“ú‚É‚Æ‚Á‚½‚à‚Ì(Main) *"); // 'pellets/taken in 1 day (Main)'
+	output.textBeginGroup("* ãƒšãƒ¬ãƒƒãƒˆ/ï¼‘æ—¥ã«ã¨ã£ãŸã‚‚ã®(Main) *"); // 'pellets/taken in 1 day (Main)'
 	mMainCropMemory->write(output);
 	output.textEndGroup();
 
-	output.textBeginGroup("* ƒyƒŒƒbƒg/’n‰º‚Å‚Æ‚Á‚½‚à‚Ì(Cave) *"); // 'pellets/taken underground (Cave)'
+	output.textBeginGroup("* ãƒšãƒ¬ãƒƒãƒˆ/åœ°ä¸‹ã§ã¨ã£ãŸã‚‚ã®(Cave) *"); // 'pellets/taken underground (Cave)'
 	mCaveCropMemory->write(output);
 	output.textEndGroup();
 
-	output.textBeginGroup("* ƒh[ƒsƒ“ƒOî•ñ/Doping *"); // 'doping information/Doping'
+	output.textBeginGroup("* ãƒ‰ãƒ¼ãƒ”ãƒ³ã‚°æƒ…å ±/Doping *"); // 'doping information/Doping'
 	char textBuffer[256];
 	writeSprayCounts(output, textBuffer);
 	writeBerryCounts(output, textBuffer);
 	output.textEndGroup();
 
-	output.textBeginGroup("* ƒR[ƒXî•ñ *"); // 'course information'
+	output.textBeginGroup("* ã‚³ãƒ¼ã‚¹æƒ…å ± *"); // 'course information'
 	courseCount = stageList->getCourseCount();
 	output.textWriteTab(output.mTabCount);
 	output.writeInt(courseCount);
-	output.textWriteText("\t# ƒR[ƒX”\r\n"); // 'number of courses'
+	output.textWriteText("\t# ã‚³ãƒ¼ã‚¹æ•°\r\n"); // 'number of courses'
 	for (int i = 0; i < courseCount; i++) {
 		output.textWriteTab(output.mTabCount);
 		output.writeByte(mBitfieldPerCourse[i]);
@@ -134,7 +134,7 @@ void PlayData::write(Stream& output)
 	}
 	output.textEndGroup();
 
-	output.textBeginGroup("* “´ŒA’B¬î•ñ *"); // 'cave achievement information'
+	output.textBeginGroup("* æ´çªŸé”æˆæƒ…å ± *"); // 'cave achievement information'
 	write_CaveOtakara(output);
 	output.textEndGroup();
 
@@ -145,22 +145,22 @@ void PlayData::write(Stream& output)
 	}
 	output.textEndGroup();
 
-	output.textBeginGroup("* ‚¨‹à/“´ŒA‚Åæ“¾‚µ‚½ˆê“I‚È‚¨‹à *"); // 'money/temporary money obtained in the cave'
+	output.textBeginGroup("* ãŠé‡‘/æ´çªŸã§å–å¾—ã—ãŸä¸€æ™‚çš„ãªãŠé‡‘ *"); // 'money/temporary money obtained in the cave'
 	output.textWriteTab(output.mTabCount);
 	output.writeInt(mPokoCount);
 	output.writeInt(mCavePokoCount);
 	output.textWriteText("\r\n");
 	output.textEndGroup();
 
-	output.textBeginGroup("* o¶” *"); // 'number of births'
+	output.textBeginGroup("* å‡ºç”Ÿæ•° *"); // 'number of births'
 	Game::BirthMgr::write(output);
 	output.textEndGroup();
 
-	output.textBeginGroup("* €–S” *"); // 'number of deaths'
+	output.textBeginGroup("* æ­»äº¡æ•° *"); // 'number of deaths'
 	Game::DeathMgr::write(output);
 	output.textEndGroup();
 
-	output.textBeginGroup("* ƒIƒŠƒ}[€–Sƒtƒ‰ƒO *"); // 'olimar death flag'
+	output.textBeginGroup("* ã‚ªãƒªãƒãƒ¼æ­»äº¡ãƒ•ãƒ©ã‚° *"); // 'olimar death flag'
 	output.textWriteTab(output.mTabCount);
 	output.writeBytes(&mDeadNaviID, 1);
 	output.textWriteText("\r\n");
@@ -170,7 +170,7 @@ void PlayData::write(Stream& output)
 	output.textWriteText("\r\n");
 	output.textEndGroup();
 
-	output.textBeginGroup("* ƒfƒ‚ƒtƒ‰ƒO/“Áê”­Œ©ƒfƒ‚ƒtƒ‰ƒO *"); // 'demo flag/special discovery demo flag'
+	output.textBeginGroup("* ãƒ‡ãƒ¢ãƒ•ãƒ©ã‚°/ç‰¹æ®Šç™ºè¦‹ãƒ‡ãƒ¢ãƒ•ãƒ©ã‚° *"); // 'demo flag/special discovery demo flag'
 	output.textWriteTab(output.mTabCount);
 	mDemoFlags.write(output);
 	mFindItemFlags.write(output);
@@ -178,7 +178,7 @@ void PlayData::write(Stream& output)
 	output.textEndGroup();
 
 	courseCount = stageList->mCourseCount;
-	output.textBeginGroup("* WorldMap ‰‰o—p *"); //  'WorldMap for performance' [staging?]
+	output.textBeginGroup("* WorldMap æ¼”å‡ºç”¨ *"); //  'WorldMap for performance' [staging?]
 	for (int i = 0; i < courseCount; i++) {
 		output.writeByte(mGroundOtakaraCollectedOld[i]);
 	}
@@ -187,7 +187,7 @@ void PlayData::write(Stream& output)
 	output.textEndGroup();
 
 	int dataSize = getDataSize(output, startPosition);
-	output.textBeginGroup("* DayEndResult—p *"); // 'for DayEndResult'
+	output.textBeginGroup("* DayEndResultç”¨ *"); // 'for DayEndResult'
 	for (int i = FirstPikmin; i < StoredPikiCount + 1; i++) {
 		output.writeInt(mPikminYesterday[i]);
 		output.writeInt(mPikminToday[i]);
@@ -195,7 +195,7 @@ void PlayData::write(Stream& output)
 	}
 	output.textEndGroup();
 
-	output.textBeginGroup("* ƒWƒFƒlƒŒ[ƒ^ƒLƒƒƒbƒVƒ…/GeneratorCache *"); // 'generator cache/GeneratorCache'
+	output.textBeginGroup("* ã‚¸ã‚§ãƒãƒ¬ãƒ¼ã‚¿ã‚­ãƒ£ãƒƒã‚·ãƒ¥/GeneratorCache *"); // 'generator cache/GeneratorCache'
 	generatorCache->write(output);
 	output.textEndGroup();
 

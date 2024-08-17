@@ -136,10 +136,10 @@ void BoidParameter::read(Stream& input)
  */
 UjaParms::UjaParms()
     : Parameters(nullptr, "UjaParms")
-    , mDisplayScale(this, 'u001', "•\\¦ƒXƒP[ƒ‹", 0.3f, 0.1f, 1.0f)    // 'display scale'
-    , mMysteryMultiply(this, 'u002', "“ä Multiply", 1.0f, 0.0f, 200.0f) // 'mystery multiply' (lmao)
-    , mLife(this, 'u003', "ƒ‰ƒCƒt", 0.0f, 0.0f, 600.0f)                 // 'life'
-    , mMotionSpeed(this, 'u004', "ƒ‚[ƒVƒ‡ƒ“‘¬“x", 0.5f, 0.0f, 10.0f)   // 'motion speed'
+    , mDisplayScale(this, 'u001', "è¡¨ç¤ºã‚¹ã‚±ãƒ¼ãƒ«", 0.3f, 0.1f, 1.0f)    // 'display scale'
+    , mMysteryMultiply(this, 'u002', "è¬ Multiply", 1.0f, 0.0f, 200.0f) // 'mystery multiply' (lmao)
+    , mLife(this, 'u003', "ãƒ©ã‚¤ãƒ•", 0.0f, 0.0f, 600.0f)                 // 'life'
+    , mMotionSpeed(this, 'u004', "ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³é€Ÿåº¦", 0.5f, 0.0f, 10.0f)   // 'motion speed'
 {
 }
 
@@ -2278,7 +2278,7 @@ void Item::updateBoundSphere()
 	mCollTree->mPart->mRadius = mBoundingSphere.mRadius;
 	mBoundingSphere.mPosition = mPosition;
 	if (isCollisionFlick()) {
-		JUT_PANICLINE(1137, "ƒ_ƒƒbƒN\n"); // 'damek'
+		JUT_PANICLINE(1137, "ãƒ€ãƒ¡ãƒƒã‚¯\n"); // 'damek'
 	}
 }
 
@@ -2591,7 +2591,7 @@ void Mgr::generatorWrite(Stream& output, GenItemParm* genParm)
 
 	output.textWriteTab(output.mTabCount);
 	output.writeShort(ujaParm->mCount);
-	output.textWriteText("\t#‚¤‚¶‚á‰¤”\r\n"); // 'ujaoh number'
+	output.textWriteText("\t#ã†ã˜ã‚ƒç‹æ•°\r\n"); // 'ujaoh number'
 }
 
 /**

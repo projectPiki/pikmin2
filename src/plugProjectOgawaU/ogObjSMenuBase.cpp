@@ -176,7 +176,7 @@ void ObjSMenuBase::startBackupScene()
 {
 	SceneSMenuBase* scene = static_cast<SceneSMenuBase*>(getOwner());
 	if (scene->setBackupScene() && !scene->startScene(nullptr)) {
-		JUT_PANICLINE(366, "ÇæÇﬂÇ≈Ç∑\n");
+		JUT_PANICLINE(366, "„Å†„ÇÅ„Åß„Åô\n");
 	}
 }
 
@@ -194,7 +194,7 @@ void ObjSMenuBase::jump_LR(::Screen::SetSceneArg& arg, bool flag)
 		sarg.mSceneType = arg.getSceneType();
 		sarg.mFlag      = flag;
 		if (!scene->startScene(&sarg)) {
-			JUT_PANICLINE(394, "ÇæÇﬂÇ≈Ç∑\n");
+			JUT_PANICLINE(394, "„Å†„ÇÅ„Åß„Åô\n");
 		}
 	}
 }

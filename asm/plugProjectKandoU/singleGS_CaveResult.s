@@ -245,7 +245,7 @@ lbl_constructor:
 /* 8021AE38 00217D78  4E 80 00 20 */	blr 
 .endfn init__Q34Game10SingleGame15CaveResultStateFPQ24Game17SingleGameSectionPQ24Game8StateArg
 
-.if version == 1
+.if version == 0
 .fn loadResource__Q34Game10SingleGame15CaveResultStateFv, global
 /* 8021AE3C 00217D7C  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 8021AE40 00217D80  7C 08 02 A6 */	mflr r0
@@ -559,7 +559,7 @@ lbl_constructor:
 .endfn loadResource__Q34Game10SingleGame15CaveResultStateFv
 .endif
 
-.if version == 1
+.if version == 0
 .fn exec__Q34Game10SingleGame15CaveResultStateFPQ24Game17SingleGameSection, global
 /* 8021B07C 00217FBC  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 8021B080 00217FC0  7C 08 02 A6 */	mflr r0
@@ -1013,7 +1013,7 @@ lbl_constructor:
 /* 8021B420 00218360  4E 80 00 20 */	blr 
 .endfn draw__Q34Game10SingleGame15CaveResultStateFPQ24Game17SingleGameSectionR8Graphics
 
-.if version == 1
+.if version == 0
 .fn cleanup__Q34Game10SingleGame15CaveResultStateFPQ24Game17SingleGameSection, global
 /* 8021B424 00218364  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8021B428 00218368  7C 08 02 A6 */	mflr r0
@@ -1123,7 +1123,7 @@ lbl_constructor:
 .endfn cleanup__Q34Game10SingleGame15CaveResultStateFPQ24Game17SingleGameSection
 .endif
 
-.if version == 1
+.if version == 0
 .fn createResultNodes__Q34Game10SingleGame15CaveResultStateFv, global
 /* 8021B4E8 00218428  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8021B4EC 0021842C  7C 08 02 A6 */	mflr r0

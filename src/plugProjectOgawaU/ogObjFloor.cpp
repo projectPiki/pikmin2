@@ -349,7 +349,7 @@ void ObjFloor::doCreate(JKRArchive* arc)
 		mDisp = new og::Screen::DispMemberFloor;
 
 	} else {
-		JUT_PANICLINE(452, "ERR! in ObjFloor Createé∏îsÅI\n");
+		JUT_PANICLINE(452, "ERR! in ObjFloor CreateÂ§±ÊïóÔºÅ\n");
 	}
 
 	mScreenFont = new P2DScreen::Mgr_tuning;

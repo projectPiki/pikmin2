@@ -52,53 +52,53 @@ struct EnemyParmsBase : public CreatureParms {
 	struct Parms : public Parameters {
 		Parms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mHealth(this, 'fp00', "ƒ‰ƒCƒt", 100.0f, 0.0f, 99999.0f)                     // life
-		    , mLifeMeterHeight(this, 'fp27', "ƒ‰ƒCƒt‚Ì‚‚³", 50.0f, 0.0f, 1000.0f)        // height of life
-		    , mRegenerationRate(this, 'fp31', "ƒ‰ƒCƒt‰ñ•œ—¦", 0.01f, 0.0f, 1.0f)          // life recovery rate
-		    , mLifeBeforeAlert(this, 'fp30', "Œx‰úƒ‰ƒCƒt", 30.0f, 0.0f, 99999.0f)         // 'vigilant life'
-		    , mHeightOffsetFromFloor(this, 'fp01', "ƒ}ƒbƒv‚Æ‚Ì“–‚è", 40.0f, 0.0f, 100.0f) // 'match with the map'
-		    , mCellRadius(this, 'fp33', "ƒ}ƒbƒv‚Æ‚Ì‚ ‚½‚èƒ|ƒŠƒSƒ“‚Ì‘I’è", 40.0f, 0.0f,
+		    , mHealth(this, 'fp00', "ãƒ©ã‚¤ãƒ•", 100.0f, 0.0f, 99999.0f)                     // life
+		    , mLifeMeterHeight(this, 'fp27', "ãƒ©ã‚¤ãƒ•ã®é«˜ã•", 50.0f, 0.0f, 1000.0f)        // height of life
+		    , mRegenerationRate(this, 'fp31', "ãƒ©ã‚¤ãƒ•å›å¾©ç‡", 0.01f, 0.0f, 1.0f)          // life recovery rate
+		    , mLifeBeforeAlert(this, 'fp30', "è­¦æˆ’ãƒ©ã‚¤ãƒ•", 30.0f, 0.0f, 99999.0f)         // 'vigilant life'
+		    , mHeightOffsetFromFloor(this, 'fp01', "ãƒãƒƒãƒ—ã¨ã®å½“ã‚Š", 40.0f, 0.0f, 100.0f) // 'match with the map'
+		    , mCellRadius(this, 'fp33', "ãƒãƒƒãƒ—ã¨ã®ã‚ãŸã‚Šãƒãƒªã‚´ãƒ³ã®é¸å®š", 40.0f, 0.0f,
 		                  500.0f)                                                          // 'selection of map-related polygons'
-		    , mPikminDamageRadius(this, 'fp34', "ƒsƒNƒ~ƒ“‚Æ‚Ì‚ ‚½‚è", 40.0f, 0.0f, 500.0f) // 'about pikmin'
-		    , mOffCameraRadius(this, 'fp32', "LOD”¼Œa", 40.0f, 0.0f, 500.0f)               // LOD radius
-		    , mHorizontalDamageScale(this, 'fp02', "ƒ_ƒ[ƒWƒXƒP[ƒ‹XZ", 0.2f, 0.0f, 1.0f) // damage scale XZ
-		    , mVerticalDamageScale(this, 'fp03', "ƒ_ƒ[ƒWƒXƒP[ƒ‹Y", 0.25f, 0.0f, 1.0f)   // damage scale Y
-		    , mDamageScaleDuration(this, 'fp04', "ƒ_ƒ[ƒWƒtƒŒ[ƒ€", 0.35f, 0.0f, 1.0f)    // 'damage frame'
-		    , mMass(this, 'fp05', "¿—Ê", 1.0f, 0.0f, 100.0f)                              // mass
-		    , mMoveSpeed(this, 'fp06', "‘¬“x", 80.0f, 0.0f, 1000.0f)                       // speed
-		    , mTurnSpeed(this, 'fp08', "‰ñ“]‘¬“x—¦", 0.1f, 0.0f, 1.0f)                     // rotation speed rate
-		    , mMaxTurnAngle(this, 'fp28', "‰ñ“]Å‘å‘¬“x", 10.0f, 0.0f, 360.0f)             // maximum rotation speed
-		    , mTerritoryRadius(this, 'fp09', "ƒeƒŠƒgƒŠ[", 200.0f, 1.0f, 1000.0f)          // territory
-		    , mHomeRadius(this, 'fp10', "ƒz[ƒ€”ÍˆÍ", 15.0f, 1.0f, 1000.0f)                // home range
-		    , mPrivateRadius(this, 'fp11', "ƒvƒ‰ƒCƒx[ƒg‹——£", 70.0f, 0.0f, 1000.0f)       // private distance
-		    , mSightRadius(this, 'fp12', "‹ŠE‹——£", 200.0f, 0.0f, 1000.0f)                // sight distance
-		    , mFov(this, 'fp25', "‹ŠE‚", 50.0f, 0.0f, 1000.0f)                           // visibility height
-		    , mViewAngle(this, 'fp13', "‹ŠEŠp“x", 90.0f, 0.0f, 180.0f)                    // view angle
-		    , mSearchDistance(this, 'fp14', "’Tõ‹——£", 200.0f, 0.0f, 1000.0f)             // search distance
-		    , mSearchHeight(this, 'fp26', "’Tõ‚", 50.0f, 0.0f, 1000.0f)                  // search height
-		    , mSearchAngle(this, 'fp15', "’TõŠp“x", 120.0f, 0.0f, 180.0f)                 // search angle
-		    , mShakeKnockback(this, 'fp17', "U‚è•¥‚¢—Í", 300.0f, 0.0f, 1000.0f)           // shake off power
-		    , mShakeDamage(this, 'fp18', "U‚è•¥‚¢ƒ_ƒ[ƒW", 0.0f, 0.0f, 1000.0f)          // shake off damage
-		    , mShakeRange(this, 'fp19', "U‚è•¥‚¢”ÍˆÍ", 120.0f, 0.0f, 1000.0f)             // shake off range
-		    , mShakeChance(this, 'fp16', "U‚è•¥‚¢—¦", 1.0f, 0.0f, 1.0f)                   // shake off rate
-		    , mMaxAttackRange(this, 'fp20', "UŒ‚‰Â”\\”ÍˆÍ", 70.0f, 0.0f, 1000.0f)         // attack range - SHIFT-JIS IS WRONG
-		    , mMaxAttackAngle(this, 'fp21', "UŒ‚‰Â”\\Šp“x", 15.0f, 0.0f,
+		    , mPikminDamageRadius(this, 'fp34', "ãƒ”ã‚¯ãƒŸãƒ³ã¨ã®ã‚ãŸã‚Š", 40.0f, 0.0f, 500.0f) // 'about pikmin'
+		    , mOffCameraRadius(this, 'fp32', "LODåŠå¾„", 40.0f, 0.0f, 500.0f)               // LOD radius
+		    , mHorizontalDamageScale(this, 'fp02', "ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚¹ã‚±ãƒ¼ãƒ«XZ", 0.2f, 0.0f, 1.0f) // damage scale XZ
+		    , mVerticalDamageScale(this, 'fp03', "ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚¹ã‚±ãƒ¼ãƒ«Y", 0.25f, 0.0f, 1.0f)   // damage scale Y
+		    , mDamageScaleDuration(this, 'fp04', "ãƒ€ãƒ¡ãƒ¼ã‚¸ãƒ•ãƒ¬ãƒ¼ãƒ ", 0.35f, 0.0f, 1.0f)    // 'damage frame'
+		    , mMass(this, 'fp05', "è³ªé‡", 1.0f, 0.0f, 100.0f)                              // mass
+		    , mMoveSpeed(this, 'fp06', "é€Ÿåº¦", 80.0f, 0.0f, 1000.0f)                       // speed
+		    , mTurnSpeed(this, 'fp08', "å›è»¢é€Ÿåº¦ç‡", 0.1f, 0.0f, 1.0f)                     // rotation speed rate
+		    , mMaxTurnAngle(this, 'fp28', "å›è»¢æœ€å¤§é€Ÿåº¦", 10.0f, 0.0f, 360.0f)             // maximum rotation speed
+		    , mTerritoryRadius(this, 'fp09', "ãƒ†ãƒªãƒˆãƒªãƒ¼", 200.0f, 1.0f, 1000.0f)          // territory
+		    , mHomeRadius(this, 'fp10', "ãƒ›ãƒ¼ãƒ ç¯„å›²", 15.0f, 1.0f, 1000.0f)                // home range
+		    , mPrivateRadius(this, 'fp11', "ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆè·é›¢", 70.0f, 0.0f, 1000.0f)       // private distance
+		    , mSightRadius(this, 'fp12', "è¦–ç•Œè·é›¢", 200.0f, 0.0f, 1000.0f)                // sight distance
+		    , mFov(this, 'fp25', "è¦–ç•Œé«˜", 50.0f, 0.0f, 1000.0f)                           // visibility height
+		    , mViewAngle(this, 'fp13', "è¦–ç•Œè§’åº¦", 90.0f, 0.0f, 180.0f)                    // view angle
+		    , mSearchDistance(this, 'fp14', "æ¢ç´¢è·é›¢", 200.0f, 0.0f, 1000.0f)             // search distance
+		    , mSearchHeight(this, 'fp26', "æ¢ç´¢é«˜", 50.0f, 0.0f, 1000.0f)                  // search height
+		    , mSearchAngle(this, 'fp15', "æ¢ç´¢è§’åº¦", 120.0f, 0.0f, 180.0f)                 // search angle
+		    , mShakeKnockback(this, 'fp17', "æŒ¯ã‚Šæ‰•ã„åŠ›", 300.0f, 0.0f, 1000.0f)           // shake off power
+		    , mShakeDamage(this, 'fp18', "æŒ¯ã‚Šæ‰•ã„ãƒ€ãƒ¡ãƒ¼ã‚¸", 0.0f, 0.0f, 1000.0f)          // shake off damage
+		    , mShakeRange(this, 'fp19', "æŒ¯ã‚Šæ‰•ã„ç¯„å›²", 120.0f, 0.0f, 1000.0f)             // shake off range
+		    , mShakeChance(this, 'fp16', "æŒ¯ã‚Šæ‰•ã„ç‡", 1.0f, 0.0f, 1.0f)                   // shake off rate
+		    , mMaxAttackRange(this, 'fp20', "æ”»æ’ƒå¯èƒ½\ç¯„å›²", 70.0f, 0.0f, 1000.0f)         // attack range - SHIFT-JIS IS WRONG
+		    , mMaxAttackAngle(this, 'fp21', "æ”»æ’ƒå¯èƒ½\è§’åº¦", 15.0f, 0.0f,
 		                      180.0f)                                              // 'possible attack angle' - SHIFT-JIS IS WRONG
-		    , mAttackRadius(this, 'fp22', "UŒ‚ƒqƒbƒg”ÍˆÍ", 70.0f, 0.0f, 1000.0f)  // attack hit range
-		    , mAttackHitAngle(this, 'fp23', "UŒ‚ƒqƒbƒgŠp“x", 15.0f, 0.0f, 180.0f) // attack hit angle
-		    , mAttackDamage(this, 'fp24', "UŒ‚—Í", 10.0f, 0.0f, 1000.0f)          // attack power
-		    , mAlertDuration(this, 'fp29', "Œx‰úŠÔ", 15.0f, 0.0f, 99.0f)         // alert time
-		    , mBitterDuration(this, 'fp35', "Î‰»ŠÔ", 1.0f, 0.0f, 60.0f)         // stone time
-		    , mPurplePikiStunDamage(this, 'fp36', "ƒqƒbƒvƒhƒƒbƒvƒ_ƒ[ƒW", 10.0f, 0.0f, 1000.0f) // hip drop damage
-		    , mPurplePikiStunChance(this, 'fp37', "’nk‹CâŠm—§", 0.05f, 0.0f, 1.0f)              // earthquake faint probability
-		    , mPurplePikiStunDuration(this, 'fp38', "’nk‹CâŠÔ", 10.0f, 0.0f, 60.0f)           // earthquake faint time
-		    , mShakeOffBlowA(this, 'ip01', "U‚è•¥‚¢‘ÅŒ‚‚`", 3, 0, 200)                           // shake off blow A
-		    , mShakeOffSticking1(this, 'ip02', "U‚è•¥‚¢’£•t‚P", 3, 0, 100)                       // shake off sticking 1
-		    , mShakeOffBlowB(this, 'ip03', "U‚è•¥‚¢‘ÅŒ‚‚a", 8, 0, 200)                           // shake off blow B
-		    , mShakeOffSticking2(this, 'ip04', "U‚è•¥‚¢’£•t‚Q", 5, 0, 100)                       // shake off sticking 2
-		    , mShakeOffBlowC(this, 'ip05', "U‚è•¥‚¢‘ÅŒ‚‚b", 15, 0, 200)                          // shake off blow C
-		    , mShakeOffSticking3(this, 'ip06', "U‚è•¥‚¢’£•t‚R", 10, 0, 100)                      // shake off sticking 3
-		    , mShakeOffBlowD(this, 'ip07', "U‚è•¥‚¢‘ÅŒ‚‚c", 30, 0, 200)                          // shake off blow D
+		    , mAttackRadius(this, 'fp22', "æ”»æ’ƒãƒ’ãƒƒãƒˆç¯„å›²", 70.0f, 0.0f, 1000.0f)  // attack hit range
+		    , mAttackHitAngle(this, 'fp23', "æ”»æ’ƒãƒ’ãƒƒãƒˆè§’åº¦", 15.0f, 0.0f, 180.0f) // attack hit angle
+		    , mAttackDamage(this, 'fp24', "æ”»æ’ƒåŠ›", 10.0f, 0.0f, 1000.0f)          // attack power
+		    , mAlertDuration(this, 'fp29', "è­¦æˆ’æ™‚é–“", 15.0f, 0.0f, 99.0f)         // alert time
+		    , mBitterDuration(this, 'fp35', "çŸ³åŒ–æ™‚é–“", 1.0f, 0.0f, 60.0f)         // stone time
+		    , mPurplePikiStunDamage(this, 'fp36', "ãƒ’ãƒƒãƒ—ãƒ‰ãƒ­ãƒƒãƒ—ãƒ€ãƒ¡ãƒ¼ã‚¸", 10.0f, 0.0f, 1000.0f) // hip drop damage
+		    , mPurplePikiStunChance(this, 'fp37', "åœ°éœ‡æ°—çµ¶ç¢ºç«‹", 0.05f, 0.0f, 1.0f)              // earthquake faint probability
+		    , mPurplePikiStunDuration(this, 'fp38', "åœ°éœ‡æ°—çµ¶æ™‚é–“", 10.0f, 0.0f, 60.0f)           // earthquake faint time
+		    , mShakeOffBlowA(this, 'ip01', "æŒ¯ã‚Šæ‰•ã„æ‰“æ’ƒï¼¡", 3, 0, 200)                           // shake off blow A
+		    , mShakeOffSticking1(this, 'ip02', "æŒ¯ã‚Šæ‰•ã„å¼µä»˜ï¼‘", 3, 0, 100)                       // shake off sticking 1
+		    , mShakeOffBlowB(this, 'ip03', "æŒ¯ã‚Šæ‰•ã„æ‰“æ’ƒï¼¢", 8, 0, 200)                           // shake off blow B
+		    , mShakeOffSticking2(this, 'ip04', "æŒ¯ã‚Šæ‰•ã„å¼µä»˜ï¼’", 5, 0, 100)                       // shake off sticking 2
+		    , mShakeOffBlowC(this, 'ip05', "æŒ¯ã‚Šæ‰•ã„æ‰“æ’ƒï¼£", 15, 0, 200)                          // shake off blow C
+		    , mShakeOffSticking3(this, 'ip06', "æŒ¯ã‚Šæ‰•ã„å¼µä»˜ï¼“", 10, 0, 100)                      // shake off sticking 3
+		    , mShakeOffBlowD(this, 'ip07', "æŒ¯ã‚Šæ‰•ã„æ‰“æ’ƒï¼¤", 30, 0, 200)                          // shake off blow D
 		{
 		}
 

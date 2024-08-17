@@ -122,15 +122,15 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mFlightHeight(this, 'fp01', "”òs‚‚³", 90.0f, 0.0f, 150.0f)      // 'flight height'
-		    , mTransitHeight(this, 'fp03', "ó‘Ô‘JˆÚ‚‚³", 50.0f, 0.0f, 300.0f) // 'state transition height'
-		    , mPitchRate(this, 'fp10', "ã‰º‚Ì—h‚ê‘¬“x", 2.5f, 0.0f, 10.0f)     // 'vertical swing speed'
-		    , mPitchAmp(this, 'fp11', "ã‰º‚Ì—h‚ê•", 20.0f, 0.0f, 50.0f)       // 'width of vertical swing'
-		    , mFreeRiseFactor(this, 'fp21', "ã¸ŒW”(0)", 1.5f, 0.0f, 5.0f)    // 'climbing factor (0)'
-		    , mLadenRiseFactor(this, 'fp22', "ã¸ŒW”(5)", 1.0f, 0.0f, 5.0f)   // 'climbing factor (5)'
-		    , mFreeFlickChance(this, 'fp31', "U•¥Šm—¦(1)", 0.1f, 0.0f, 1.0f)   // 'payoff probability (1)'
-		    , mLadenFlickChance(this, 'fp32', "U•¥Šm—¦(5)", 0.7f, 0.0f, 1.0f)  // 'payoff probability (5)'
-		    , mStruggleTime(this, 'fp40', "‚à‚ª‚«ŠÔ", 3.0f, 0.0f, 10.0f)      // 'struggling time'
+		    , mFlightHeight(this, 'fp01', "é£›è¡Œé«˜ã•", 90.0f, 0.0f, 150.0f)      // 'flight height'
+		    , mTransitHeight(this, 'fp03', "çŠ¶æ…‹é·ç§»é«˜ã•", 50.0f, 0.0f, 300.0f) // 'state transition height'
+		    , mPitchRate(this, 'fp10', "ä¸Šä¸‹ã®æºã‚Œé€Ÿåº¦", 2.5f, 0.0f, 10.0f)     // 'vertical swing speed'
+		    , mPitchAmp(this, 'fp11', "ä¸Šä¸‹ã®æºã‚Œå¹…", 20.0f, 0.0f, 50.0f)       // 'width of vertical swing'
+		    , mFreeRiseFactor(this, 'fp21', "ä¸Šæ˜‡ä¿‚æ•°(0)", 1.5f, 0.0f, 5.0f)    // 'climbing factor (0)'
+		    , mLadenRiseFactor(this, 'fp22', "ä¸Šæ˜‡ä¿‚æ•°(5)", 1.0f, 0.0f, 5.0f)   // 'climbing factor (5)'
+		    , mFreeFlickChance(this, 'fp31', "æŒ¯æ‰•ç¢ºç‡(1)", 0.1f, 0.0f, 1.0f)   // 'payoff probability (1)'
+		    , mLadenFlickChance(this, 'fp32', "æŒ¯æ‰•ç¢ºç‡(5)", 0.7f, 0.0f, 1.0f)  // 'payoff probability (5)'
+		    , mStruggleTime(this, 'fp40', "ã‚‚ãŒãæ™‚é–“", 3.0f, 0.0f, 10.0f)      // 'struggling time'
 		{
 		}
 

@@ -132,11 +132,11 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mPlantClimbingSpeed(this, 'fp01', "‘“o‚è‘¬“x", 2.0f, 0.0f, 10.0f)        // 'plant climbing speed'
-		    , mSeedCirculationSpeed(this, 'fp02', "íü‰ñ‘¬“x", 0.3f, 0.0f, 10.0f)      // 'seed circulation speed'
-		    , mEatingTime(this, 'fp11', "ÀH‚¢ŠÔ", 10.0f, 0.0f, 100.0f)              // 'eating time'
-		    , mTranslationCorrection(this, 'fp90', "Translate•â³", 0.75f, 0.0f, 10.0f) // 'translation correction'
-		    , mRotationCorrection(this, 'fp91', "Rotate•â³", 0.05f, 0.0f, 1.0f)        // 'rotation correction'
+		    , mPlantClimbingSpeed(this, 'fp01', "è‰ç™»ã‚Šé€Ÿåº¦", 2.0f, 0.0f, 10.0f)        // 'plant climbing speed'
+		    , mSeedCirculationSpeed(this, 'fp02', "ç¨®å‘¨å›é€Ÿåº¦", 0.3f, 0.0f, 10.0f)      // 'seed circulation speed'
+		    , mEatingTime(this, 'fp11', "å®Ÿé£Ÿã„æ™‚é–“", 10.0f, 0.0f, 100.0f)              // 'eating time'
+		    , mTranslationCorrection(this, 'fp90', "Translateè£œæ­£", 0.75f, 0.0f, 10.0f) // 'translation correction'
+		    , mRotationCorrection(this, 'fp91', "Rotateè£œæ­£", 0.05f, 0.0f, 1.0f)        // 'rotation correction'
 		{
 		}
 

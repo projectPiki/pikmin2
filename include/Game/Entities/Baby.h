@@ -91,8 +91,8 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mPoisonDamage(this, 'fp01', "”’ƒsƒNƒ~ƒ“", 300.0f, 0.0f, 10000.0f) // 'white pikmin'
-		    , mNectarChance(this, 'fp11', "–¨o‚µŠm—¦", 0.2f, 0.0f, 1.0f)       // 'probability of getting out honey'
+		    , mPoisonDamage(this, 'fp01', "ç™½ãƒ”ã‚¯ãƒŸãƒ³", 300.0f, 0.0f, 10000.0f) // 'white pikmin'
+		    , mNectarChance(this, 'fp11', "èœœå‡ºã—ç¢ºç‡", 0.2f, 0.0f, 1.0f)       // 'probability of getting out honey'
 		{
 		}
 

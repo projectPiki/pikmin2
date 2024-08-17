@@ -22,7 +22,7 @@ void GenPellet::initialise()
 	GenObjectFactoryFactory* obj               = GenObjectFactory::factory;
 	obj->mFactories[obj->mCount].mTypeID       = 'pelt';
 	obj->mFactories[obj->mCount].mMakeFunction = (GenObjectFactory::MakeFunction*)makePellet;
-	obj->mFactories[obj->mCount].mName         = "PELLET�𔭐�";
+	obj->mFactories[obj->mCount].mName         = "PELLETを発生";
 	obj->mFactories[obj->mCount].mVersion      = '0000';
 	obj->mCount++;
 }

@@ -13,7 +13,7 @@ AnaDemo::AnaDemo(s32 sceneType)
 	if (sceneType == SCENE_CAVE_IN_MENU || sceneType == SCENE_KANKETU_MENU || sceneType == SCENE_CAVE_MORE_MENU) {
 		mSceneType = (SceneType)sceneType;
 	} else {
-		JUT_PANICLINE(35, "“´ŒAƒƒjƒ…[‚Å‚Í‚ ‚è‚Ü‚¹‚ñI\n"); // Not a cave menu!
+		JUT_PANICLINE(35, "æ´çªŸãƒ¡ãƒ‹ãƒ¥ãƒ¼ã§ã¯ã‚ã‚Šã¾ã›ã‚“ï¼\n"); // Not a cave menu!
 	}
 }
 

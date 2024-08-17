@@ -12,7 +12,7 @@ static const char ujibMgrName[] = "246-UjibMgr";
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "ƒEƒWƒ“ƒR‰ƒ}ƒl[ƒWƒƒ"; // ujinko ‰ manager
+	mName = "ã‚¦ã‚¸ãƒ³ã‚³â™‚ãƒãƒãƒ¼ã‚¸ãƒ£"; // ujinko â™‚ manager
 }
 
 /**

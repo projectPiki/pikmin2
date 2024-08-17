@@ -115,9 +115,9 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mPoisonDamage(this, 'fp01', "”’ƒsƒNƒ~ƒ“", 300.0f, 0.0f, 10000.0f)          // eat white pikmin damage
-		    , mHealthGaugeTimer(this, 'fp11', "€–S ` ƒQ[ƒWoŒ»", 30.0f, 1.0f, 500.0f) // 'death ~ gauge appears`
-		    , mRespawnRate(this, 'fp12', "ƒQ[ƒWoŒ» ` •œŠˆ", 10.0f, 1.0f, 500.0f)      // 'gauge appears ~ revival'
+		    , mPoisonDamage(this, 'fp01', "ç™½ãƒ”ã‚¯ãƒŸãƒ³", 300.0f, 0.0f, 10000.0f)          // eat white pikmin damage
+		    , mHealthGaugeTimer(this, 'fp11', "æ­»äº¡ ï½ ã‚²ãƒ¼ã‚¸å‡ºç¾", 30.0f, 1.0f, 500.0f) // 'death ~ gauge appears`
+		    , mRespawnRate(this, 'fp12', "ã‚²ãƒ¼ã‚¸å‡ºç¾ ï½ å¾©æ´»", 10.0f, 1.0f, 500.0f)      // 'gauge appears ~ revival'
 		{
 		}
 

@@ -10,7 +10,7 @@ namespace Egg {
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "タマゴマネージャ"; // egg manager
+	mName = "繧ｿ繝槭ざ繝槭ロ繝ｼ繧ｸ繝｣"; // egg manager
 }
 
 /**

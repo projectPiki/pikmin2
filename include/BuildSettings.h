@@ -8,8 +8,8 @@
 #define BUGFIX      false
 #define FOR_MODDING false
 
-#define USADEMO1 1
-#define USAFINAL 2
+#define USADEMO1 0
+#define USAFINAL 4
 
 #if VERNUM == USAFINAL
 #define BUILDTARGET USAFINAL

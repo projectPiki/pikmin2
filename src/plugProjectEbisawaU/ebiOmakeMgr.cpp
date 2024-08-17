@@ -20,7 +20,7 @@ void FSMStateMachine::init(TMgr* mgr)
 	registerState(new FSMState_OmakeScreen);
 	registerState(new FSMState_CardEScreen);
 	registerState(new FSMState_SelectGame);
-	registerState(new FSMState(Movie, "Movieó‘Ô"));
+	registerState(new FSMState(Movie, "MovieçŠ¶æ…‹"));
 }
 
 /**

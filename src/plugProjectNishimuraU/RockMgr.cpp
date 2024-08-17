@@ -11,7 +11,7 @@ static const char rockMgrName[] = "246-RockMgr";
  * @note Size: 0x9C
  */
 Generator::Generator()
-    : EnemyGeneratorBase("落石ジェネレータ") // falling rock generator
+    : EnemyGeneratorBase("關ｽ遏ｳ繧ｸ繧ｧ繝阪Ξ繝ｼ繧ｿ") // falling rock generator
     , mSpeed(100.0f)
     , mOffset(500.0f)
     , mScale(0.4f)
@@ -77,7 +77,7 @@ void Generator::doReadOldVersion(Stream&) { }
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "落石マネージャ"; // rockfall manager
+	mName = "關ｽ遏ｳ繝槭ロ繝ｼ繧ｸ繝｣"; // rockfall manager
 }
 
 /**

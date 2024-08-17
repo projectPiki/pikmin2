@@ -1235,7 +1235,7 @@ void PlayData::read_CaveOtakara(Stream& ram)
  */
 void PlayData::write_CaveOtakara(Stream& ram)
 {
-	ram.textBeginGroup("–“´ŒAî•ñ–");
+	ram.textBeginGroup("ï¼Šæ´žçªŸæƒ…å ±ï¼Š");
 	u16 max = stageList->getCourseCount();
 	for (int i = 0; i < max; i++) {
 		mCaveOtakara[i].write(ram);
@@ -1251,14 +1251,14 @@ void PlayData::CaveOtakara::write(Stream& output)
 {
 	output.textWriteTab(output.mTabCount);
 	output.writeByte(mCaveCount);
-	output.textWriteText("# cave”\r\n");
+	output.textWriteText("# caveæ•°\r\n");
 	for (int i = 0; i < mCaveCount; i++) {
 		output.textWriteTab(output.mTabCount);
 		output.writeByte(mOtakaraCountsOld[i]);
-		output.textWriteText("# ŒÂ”\r\n");
+		output.textWriteText("# å€‹æ•°\r\n");
 		output.textWriteTab(output.mTabCount);
 		output.writeByte(_08[i]);
-		output.textWriteText("# ó‘Ô\r\n");
+		output.textWriteText("# çŠ¶æ…‹\r\n");
 	}
 }
 
@@ -1270,7 +1270,7 @@ void PlayData::CaveOtakara::read(Stream& input)
 {
 	u8 existingCaveCount = mCaveCount;
 	mCaveCount           = input.readByte();
-	JUT_ASSERTLINE(1797, existingCaveCount == mCaveCount, "ƒZ[ƒu‚µ‚½‚Æ‚«‚Æ“´ŒA‚Ì”‚ª‚ ‚¢‚Ü‚¹‚ñ\n");
+	JUT_ASSERTLINE(1797, existingCaveCount == mCaveCount, "ã‚»ãƒ¼ãƒ–ã—ãŸã¨ãã¨æ´žçªŸã®æ•°ãŒã‚ã„ã¾ã›ã‚“\n");
 	for (int i = 0; i < mCaveCount; i++) {
 		mOtakaraCountsOld[i] = input.readByte();
 		_08[i]               = input.readByte();
@@ -1586,8 +1586,8 @@ void PlayData::read_CaveOtakara_Old(Stream& ram)
  */
 void PlayData::write_CaveOtakara_Old(Stream& ram)
 {
-	ram.textBeginGroup("–“´ŒAî•ñ(Old)–");
-	u16 max = stageList->mCourseCount;
+	ram.textBeginGroup("ï¼Šæ´žçªŸæƒ…å ±(Old)ï¼Š");
+	u16 max = stageList->getCourseCount();
 	for (int i = 0; i < max; i++) {
 		CaveOtakara* ota = &mCaveOtakaraOld[i];
 		ota->write(ram);

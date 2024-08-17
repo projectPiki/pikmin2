@@ -124,7 +124,7 @@ void ObjContena::doCreate(JKRArchive* arc)
 		mDisp = new og::Screen::DispMemberContena;
 
 	} else {
-		JUT_PANICLINE(242, "ERR! in ObjContena Createé∏îsÅI\n");
+		JUT_PANICLINE(242, "ERR! in ObjContena CreateÂ§±ÊïóÔºÅ\n");
 	}
 	og::Screen::DispMemberContena* disp2 = mDisp;
 
@@ -1134,7 +1134,7 @@ bool ObjContena::doUpdateFadeout()
 				::Screen::SetSceneArg arg(SCENE_UFO_MENU, getDispMember());
 				arg.mDoCreateBackup = false;
 				if (scene->setScene(arg) && !scene->startScene(nullptr)) {
-					JUT_PANICLINE(944, "ÇæÇﬂÇ≈Ç∑\n");
+					JUT_PANICLINE(944, "„Å†„ÇÅ„Åß„Åô\n");
 				}
 			}
 			return;

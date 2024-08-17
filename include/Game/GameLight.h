@@ -158,7 +158,7 @@ struct GameLightSpotSetting : public CNode {
 	struct MoveParms : public Parameters {
 		inline MoveParms()
 		    : Parameters(nullptr, "MoveParms")
-		    , mDistance(this, 'f000', "ŒõŒ¹‚Ü‚Å‚Ì‹——£", 1000.0f, 0.0f, 30000.0f) // 'distance to light source'
+		    , mDistance(this, 'f000', "å…‰æºã¾ã§ã®è·é›¢", 1000.0f, 0.0f, 30000.0f) // 'distance to light source'
 		{
 		}
 
@@ -202,9 +202,9 @@ struct GameLightSunSetting : public CNode {
 	struct MoveParms : public Parameters {
 		inline MoveParms()
 		    : Parameters(nullptr, "MoveParms")
-		    , mDistance(this, 'f000', "ŒõŒ¹‚Ü‚Å‚Ì‹——£", 20000.0f, 0.0f, 30000.0f) // 'distance to light source'
-		    , mSunriseAngle(this, 'f001', "“ú‚ÌoŠp“x", 20.0f, 0.0f, 360.0f)      // 'sunrise angle'
-		    , mSunsetAngle(this, 'f002', "“ú‚Ì“üŠp“x", 160.0f, 0.0f, 360.0f)      // 'sunset angle'
+		    , mDistance(this, 'f000', "å…‰æºã¾ã§ã®è·é›¢", 20000.0f, 0.0f, 30000.0f) // 'distance to light source'
+		    , mSunriseAngle(this, 'f001', "æ—¥ã®å‡ºè§’åº¦", 20.0f, 0.0f, 360.0f)      // 'sunrise angle'
+		    , mSunsetAngle(this, 'f002', "æ—¥ã®å…¥è§’åº¦", 160.0f, 0.0f, 360.0f)      // 'sunset angle'
 		{
 		}
 

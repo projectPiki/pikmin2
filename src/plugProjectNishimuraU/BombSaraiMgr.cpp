@@ -12,7 +12,7 @@ static const char bombSaraiMgrName[] = "246-BombSaraiMgr";
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "バクダンサライマネージャ"; // bakudan sarai manager
+	mName = "繝舌け繝繝ｳ繧ｵ繝ｩ繧､繝槭ロ繝ｼ繧ｸ繝｣"; // bakudan sarai manager
 }
 
 /**

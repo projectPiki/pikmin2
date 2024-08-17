@@ -3358,7 +3358,7 @@ lbl_constructor:
 /* 8038EBE4 0038BB24  4E 80 00 20 */	blr 
 .endfn __dt__Q28Morimura16TChallengeSelectFv
 
-.if version == 1
+.if version == 0
 .fn doCreate__Q28Morimura16TChallengeSelectFP10JKRArchive, global
 /* 8038EC1C 0038BB5C  94 21 F8 60 */	stwu r1, -0x7a0(r1)
 /* 8038EC20 0038BB60  7C 08 02 A6 */	mflr r0
@@ -7059,7 +7059,7 @@ lbl_constructor:
 .endfn doCreate__Q28Morimura16TChallengeSelectFP10JKRArchive
 .endif
 
-.if version == 1
+.if version == 0
 .fn doUpdate__Q28Morimura16TChallengeSelectFv, global
 /* 803907D0 0038D710  94 21 FF 00 */	stwu r1, -0x100(r1)
 /* 803907D4 0038D714  7C 08 02 A6 */	mflr r0
@@ -10323,7 +10323,7 @@ lbl_constructor:
 /* 8039215C 0038F09C  4E 80 00 20 */	blr 
 .endfn doDraw__Q28Morimura16TChallengeSelectFR8Graphics
 
-.if version == 1
+.if version == 0
 .fn doUpdateFadeoutFinish__Q28Morimura16TChallengeSelectFv, global
 /* 80392160 0038F0A0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80392164 0038F0A4  7C 08 02 A6 */	mflr r0
@@ -10397,7 +10397,7 @@ lbl_constructor:
 .endfn doUpdateFadeoutFinish__Q28Morimura16TChallengeSelectFv
 .endif
 
-.if version == 1
+.if version == 0
 .fn setInfo__Q28Morimura16TChallengeSelectFi, global
 /* 803921D8 0038F118  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 803921DC 0038F11C  7C 08 02 A6 */	mflr r0
@@ -11008,7 +11008,7 @@ lbl_constructor:
 /* 8039269C 0038F5DC  4E 80 00 20 */	blr 
 .endfn setStageName__Q28Morimura16TChallengeSelectFi
 
-.if version == 1
+.if version == 0
 .fn getState__Q28Morimura16TChallengeSelectFi, global
 /* 803926A0 0038F5E0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803926A4 0038F5E4  7C 08 02 A6 */	mflr r0
@@ -11188,7 +11188,7 @@ lbl_constructor:
 .endfn getState__Q28Morimura16TChallengeSelectFi
 .endif
 
-.if version == 1
+.if version == 0
 .fn getAfterState__Q28Morimura16TChallengeSelectFi, global
 /* 803927CC 0038F70C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803927D0 0038F710  7C 08 02 A6 */	mflr r0
@@ -11288,7 +11288,7 @@ lbl_constructor:
 .endfn getAfterState__Q28Morimura16TChallengeSelectFi
 .endif
 
-.if version == 1
+.if version == 0
 .fn isChangeState__Q28Morimura16TChallengeSelectFi, global
 /* 80392870 0038F7B0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80392874 0038F7B4  7C 08 02 A6 */	mflr r0

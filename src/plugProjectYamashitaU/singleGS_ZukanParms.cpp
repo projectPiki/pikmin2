@@ -16,7 +16,7 @@ static const int unusedIllustratedBookArray[] = { 0, 0, 0 };
  * @note Size: 0x1D0
  */
 ColorSetting::ColorSetting()
-    : CNode("Fİ’è")
+    : CNode("è‰²è¨­å®š")
 {
 	mColorListA[0][0] = Color4(88, 91, 153, 255);
 	mColorListA[0][1] = Color4(64, 64, 64, 255);
@@ -721,7 +721,7 @@ lbl_801316B4:
 PositionParms::PositionParms()
     : CNode(mEnemyName)
 {
-	sprintf(mEnemyName, "oŒ»êŠ–¼"); // 'appearance location name'
+	sprintf(mEnemyName, "å‡ºç¾å ´æ‰€å"); // 'appearance location name'
 }
 
 /**
@@ -739,7 +739,7 @@ void PositionParms::read(Stream& stream)
  * @note Size: 0xBC
  */
 PositionParmsList::PositionParmsList()
-    : CNode("oŒ»ˆÊ’uƒŠƒXƒg")
+    : CNode("å‡ºç¾ä½ç½®ãƒªã‚¹ãƒˆ")
 {
 	for (u32 i = 0; i < 10; i++) {
 		add(&mParms[i]);
@@ -788,7 +788,7 @@ void EnemyParms::read(Stream& stream)
  * @note Size: 0xD0
  */
 EnemyModeParms::EnemyModeParms(PositionParmsList* list)
-    : CNode("“G}ŠÓ") // 'enemy encyclopedia'
+    : CNode("æ•µå›³é‘‘") // 'enemy encyclopedia'
 {
 	for (int i = 0; i < EnemyTypeID::EnemyID_COUNT; i++) {
 		mEnemyParms[i].mName         = EnemyInfoFunc::getEnemyName(i, 0xFFFF);
@@ -815,7 +815,7 @@ void EnemyModeParms::read(Stream& stream)
  * @note Size: 0x148
  */
 ItemParms::ItemParms()
-    : CNode("İ’è") // 'setting'
+    : CNode("è¨­å®š") // 'setting'
 {
 	mIndex = -1;
 }
@@ -836,7 +836,7 @@ void ItemParms::read(Stream& stream)
  * @note Size: 0x118
  */
 ItemModeParms::ItemModeParms(PositionParmsList* list)
-    : CNode("‚¨•ó}ŠÓ") // 'treasure book'
+    : CNode("ãŠå®å›³é‘‘") // 'treasure book'
 {
 	mItemCount = SingleGame::ZukanState::getMaxPelletID();
 	mItemParms = new ItemParms[mItemCount];
@@ -866,7 +866,7 @@ void ItemModeParms::read(Stream& stream)
  * @note Size: 0x29C
  */
 Parms::Parms()
-    : CNode("}ŠÓİ’è") // 'picture book setting'
+    : CNode("å›³é‘‘è¨­å®š") // 'picture book setting'
     , mEnemyParms(&mPosParmsList)
     , mItemParms(&mPosParmsList)
 {

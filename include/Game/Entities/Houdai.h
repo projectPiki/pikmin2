@@ -201,16 +201,16 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mBaseFactor(this, 'fp01', "ƒx[ƒXŒW”", 5.0f, 0.0f, 10.0f)                 // 'base factor'
-		    , mRaiseDecelFactor(this, 'fp02', "ã‚°Œ¸‘¬ŒW”", -0.4f, -5.0f, 5.0f)        // 'raising deceleration factor'
-		    , mDownwardAccelFactor(this, 'fp03', "‰º‚°‰Á‘¬ŒW”", 0.5f, -5.0f, 5.0f)      // 'downward acceleration factor'
-		    , mMinDecelAccelFactor(this, 'fp04', "Å’áŒ¸‰Á‘¬ŒW”", -3.0f, -10.0f, 10.0f) // 'minimum deceleration acceleration factor'
-		    , mMaxDecelAccelFactor(this, 'fp05', "Å‚Œ¸‰Á‘¬ŒW”", 10.0f, -10.0f, 10.0f) // 'maximum deceleration acceleration factor'
-		    , mLegSwing(this, 'fp06', "‘«‚ÌU‚èã‚°", 90.0f, 0.0f, 200.0f)               // 'leg swing'
-		    , mMaxShootingOn(this, 'fp10', "ËŒ‚On:Max", 2.0f, 0.0f, 10.0f)              // 'shooting on:max'
-		    , mMinShootingOn(this, 'fp11', "ËŒ‚On:Min", 1.0f, 0.0f, 10.0f)              // 'shooting on:min'
-		    , mMaxShootingOff(this, 'fp12', "ËŒ‚Off:Max", 1.0f, 0.0f, 10.0f)            // 'shooting off:max'
-		    , mMinShootingOff(this, 'fp13', "ËŒ‚Off:Min", 0.5f, 0.0f, 10.0f)            // 'shooting off:min'
+		    , mBaseFactor(this, 'fp01', "ãƒ™ãƒ¼ã‚¹ä¿‚æ•°", 5.0f, 0.0f, 10.0f)                 // 'base factor'
+		    , mRaiseDecelFactor(this, 'fp02', "ä¸Šã’æ¸›é€Ÿä¿‚æ•°", -0.4f, -5.0f, 5.0f)        // 'raising deceleration factor'
+		    , mDownwardAccelFactor(this, 'fp03', "ä¸‹ã’åŠ é€Ÿä¿‚æ•°", 0.5f, -5.0f, 5.0f)      // 'downward acceleration factor'
+		    , mMinDecelAccelFactor(this, 'fp04', "æœ€ä½æ¸›åŠ é€Ÿä¿‚æ•°", -3.0f, -10.0f, 10.0f) // 'minimum deceleration acceleration factor'
+		    , mMaxDecelAccelFactor(this, 'fp05', "æœ€é«˜æ¸›åŠ é€Ÿä¿‚æ•°", 10.0f, -10.0f, 10.0f) // 'maximum deceleration acceleration factor'
+		    , mLegSwing(this, 'fp06', "è¶³ã®æŒ¯ã‚Šä¸Šã’", 90.0f, 0.0f, 200.0f)               // 'leg swing'
+		    , mMaxShootingOn(this, 'fp10', "å°„æ’ƒOn:Max", 2.0f, 0.0f, 10.0f)              // 'shooting on:max'
+		    , mMinShootingOn(this, 'fp11', "å°„æ’ƒOn:Min", 1.0f, 0.0f, 10.0f)              // 'shooting on:min'
+		    , mMaxShootingOff(this, 'fp12', "å°„æ’ƒOff:Max", 1.0f, 0.0f, 10.0f)            // 'shooting off:max'
+		    , mMinShootingOff(this, 'fp13', "å°„æ’ƒOff:Min", 0.5f, 0.0f, 10.0f)            // 'shooting off:min'
 		    , mLastToTerritory(this, 'fp20', "Last 2 Territory", 380.0f, 0.0f, 500.0f)   // 'Last 2 Territory'
 		{
 		}

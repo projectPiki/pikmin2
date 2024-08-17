@@ -12,7 +12,7 @@ static const char jigumoMgrName[] = "jigumoMgr";
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "ジグモマネージャ"; // jigumo manager
+	mName = "繧ｸ繧ｰ繝｢繝槭ロ繝ｼ繧ｸ繝｣"; // jigumo manager
 }
 
 /**

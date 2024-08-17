@@ -43,10 +43,10 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mRollingMoveSpeed(this, 'fp01', "ƒ[ƒŠƒ“ƒOˆÚ“®‘¬“x", 200.0f, 0.0f, 500.0f)    // 'rolling movement speed'
-		    , mRollingTurnAccel(this, 'fp02', "ƒ[ƒŠƒ“ƒO‰ñ“]‘¬“x—¦", 0.1f, 0.0f, 1.0f)      // 'rolling rotation speed rate'
-		    , mRollingTurnSpeed(this, 'fp03', "ƒ[ƒŠƒ“ƒO‰ñ“]Å‘å‘¬“x", 10.0f, 0.0f, 360.0f) // 'rolling rotation maximum speed'
-		    , mFlipTime(this, 'fp10', "‚Ğ‚Á‚­‚è•Ô‚èŠÔ", 7.5f, 0.0f, 30.0f)                 // 'flip time'
+		    , mRollingMoveSpeed(this, 'fp01', "ãƒ­ãƒ¼ãƒªãƒ³ã‚°ç§»å‹•é€Ÿåº¦", 200.0f, 0.0f, 500.0f)    // 'rolling movement speed'
+		    , mRollingTurnAccel(this, 'fp02', "ãƒ­ãƒ¼ãƒªãƒ³ã‚°å›è»¢é€Ÿåº¦ç‡", 0.1f, 0.0f, 1.0f)      // 'rolling rotation speed rate'
+		    , mRollingTurnSpeed(this, 'fp03', "ãƒ­ãƒ¼ãƒªãƒ³ã‚°å›è»¢æœ€å¤§é€Ÿåº¦", 10.0f, 0.0f, 360.0f) // 'rolling rotation maximum speed'
+		    , mFlipTime(this, 'fp10', "ã²ã£ãã‚Šè¿”ã‚Šæ™‚é–“", 7.5f, 0.0f, 30.0f)                 // 'flip time'
 		{
 		}
 

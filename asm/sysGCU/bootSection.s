@@ -134,7 +134,7 @@ lbl_constructor:
 	.4byte .L_8044896C
 	.4byte .L_8044896C
 .endobj lbl_804ED010
-.if version == 1
+.if version == 0
 .obj lbl_804ED03C, local
 	.4byte .L_80449068
 	.4byte .L_80449074
@@ -426,7 +426,7 @@ lbl_constructor:
 .obj lbl_80520A6C, local
 	.float 112.0
 .endobj lbl_80520A6C
-.if version == 2
+.if version == 4
 .obj lbl_80520A70, local
 	.float 608.0
 .endobj lbl_80520A70
@@ -457,7 +457,7 @@ lbl_constructor:
 /* 804473E8 00444328  4E 80 00 20 */	blr 
 .endfn __ct__10TinyPikminFv
 
-.if version == 1
+.if version == 0
 .fn update__10TinyPikminFv, global
 /* 804473EC 0044432C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 804473F0 00444330  7C 08 02 A6 */	mflr r0
@@ -1445,7 +1445,7 @@ lbl_constructor:
 /* 80447D68 00444CA8  4E 80 00 20 */	blr 
 .endfn init__13TinyPikminMgrFv
 
-.if version == 1
+.if version == 0
 .fn __ct__11BootSectionFP7JKRHeap, global
 /* 80447D6C 00444CAC  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80447D70 00444CB0  7C 08 02 A6 */	mflr r0
@@ -1895,7 +1895,7 @@ lbl_constructor:
 .endfn __ct__11BootSectionFP7JKRHeap
 .endif
 
-.if version == 1
+.if version == 0
 .fn __dt__11BootSectionFv, global
 /* 804480B4 00444FF4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804480B8 00444FF8  7C 08 02 A6 */	mflr r0
@@ -1977,7 +1977,7 @@ lbl_constructor:
 /* 80448138 00445078  4E 80 00 20 */	blr 
 .endfn init__11BootSectionFv
 
-.if version == 1
+.if version == 0
 .fn loadBootResource__11BootSectionFv, global
 /* 8044813C 0044507C  94 21 FE C0 */	stwu r1, -0x140(r1)
 /* 80448140 00445080  7C 08 02 A6 */	mflr r0
@@ -2359,7 +2359,7 @@ lbl_constructor:
 .endfn loadBootResource__11BootSectionFv
 .endif
 
-.if version == 1
+.if version == 0
 .fn load2DResource__11BootSectionFv, global
 /* 804483F4 00445334  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804483F8 00445338  7C 08 02 A6 */	mflr r0
@@ -2705,7 +2705,7 @@ lbl_constructor:
 /* 804487F0 00445730  4E 80 00 20 */	blr 
 .endfn loadResident__11BootSectionFv
 
-.if version == 1
+.if version == 0
 .fn doDraw__11BootSectionFR8Graphics, global
 /* 804487F4 00445734  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804487F8 00445738  7C 08 02 A6 */	mflr r0
@@ -2966,7 +2966,7 @@ lbl_constructor:
 /* 804489EC 0044592C  4E 80 00 20 */	blr 
 .endfn drawSetInterlace__11BootSectionFR8Graphics
 
-.if version == 1
+.if version == 0
 .fn drawNintendoLogo__11BootSectionFR8Graphics, global
 /* 804489F0 00445930  94 21 FE 20 */	stwu r1, -0x1e0(r1)
 /* 804489F4 00445934  7C 08 02 A6 */	mflr r0
@@ -3496,7 +3496,7 @@ lbl_constructor:
 .endfn drawNintendoLogo__11BootSectionFR8Graphics
 .endif
 
-.if version == 1
+.if version == 0
 .fn drawDolbyLogo__11BootSectionFR8Graphics, global
 /* 80448DD0 00445D10  94 21 FE 80 */	stwu r1, -0x180(r1)
 /* 80448DD4 00445D14  7C 08 02 A6 */	mflr r0
@@ -3594,7 +3594,7 @@ lbl_constructor:
 .endfn drawDolbyLogo__11BootSectionFR8Graphics
 .endif
 
-.if version == 2
+.if version == 4
 .fn drawEpilepsy__11BootSectionFR8Graphics, global
 /* 80448E84 00445DC4  94 21 FD 00 */	stwu r1, -0x300(r1)
 /* 80448E88 00445DC8  7C 08 02 A6 */	mflr r0
@@ -3701,7 +3701,7 @@ lbl_constructor:
 .endfn drawEpilepsy__11BootSectionFR8Graphics
 .endif
 
-.if version == 1
+.if version == 0
 .fn doUpdate__11BootSectionFv, global
 /* 80448FF4 00445F34  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80448FF8 00445F38  7C 08 02 A6 */	mflr r0
@@ -4522,7 +4522,7 @@ lbl_constructor:
 .endfn doUpdate__11BootSectionFv
 .endif
 
-.if version == 1
+.if version == 0
 .fn updateLoadResourceFirst__11BootSectionFv, global
 /* 804494C8 00446408  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 804494CC 0044640C  7C 08 02 A6 */	mflr r0
@@ -4738,7 +4738,7 @@ lbl_constructor:
 /* 80449874 004467B4  4E 80 00 20 */	blr 
 .endfn updateLoadMemoryCard__11BootSectionFv
 
-.if version == 1
+.if version == 0
 .fn updateNintendoLogo__11BootSectionFv, global
 /* 80449878 004467B8  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8044987C 004467BC  7C 08 02 A6 */	mflr r0
@@ -5098,7 +5098,7 @@ lbl_constructor:
 .endfn updateNintendoLogo__11BootSectionFv
 .endif
 
-.if version == 1
+.if version == 0
 .fn updateProgressive__11BootSectionFv, global
 /* 80449B00 00446A40  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80449B04 00446A44  7C 08 02 A6 */	mflr r0
@@ -5320,7 +5320,7 @@ lbl_constructor:
 .endfn updateProgressive__11BootSectionFv
 .endif
 
-.if version == 1
+.if version == 0
 .fn updateWaitProgressive__11BootSectionFv, global
 /* 80449C80 00446BC0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80449C84 00446BC4  7C 08 02 A6 */	mflr r0
@@ -5380,7 +5380,7 @@ lbl_constructor:
 .endfn updateWaitProgressive__11BootSectionFv
 .endif
 
-.if version == 1
+.if version == 0
 .fn run__11BootSectionFv, global
 /* 80449CE4 00446C24  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80449CE8 00446C28  7C 08 02 A6 */	mflr r0
@@ -5593,7 +5593,7 @@ lbl_constructor:
 /* 80449ECC 00446E0C  4E 80 00 20 */	blr 
 .endfn waitLoadResource__11BootSectionFv
 
-.if version == 1
+.if version == 0
 .fn setMode__11BootSectionFi, global
 /* 80449ED0 00446E10  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80449ED4 00446E14  7C 08 02 A6 */	mflr r0
@@ -5671,7 +5671,7 @@ lbl_constructor:
 .endfn setMode__11BootSectionFi
 .endif
 
-.if version == 1
+.if version == 0
 .fn setModeEpilepsy__11BootSectionFv, global
 /* 80449F54 00446E94  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80449F58 00446E98  7C 08 02 A6 */	mflr r0

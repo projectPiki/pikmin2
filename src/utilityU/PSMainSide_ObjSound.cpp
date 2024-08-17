@@ -605,7 +605,7 @@ void CreatureObj::startSound(u8 id, u32 soundID, u32 a3)
  */
 void CreatureObj::startSound(JAISound** se, u32 soundID, u32 a3)
 {
-	JUT_PANICLINE(395, "使用禁止再生関数"); // "Disabled playback functions"
+	JUT_PANICLINE(395, "菴ｿ逕ｨ遖∵ｭ｢蜀咲函髢｢謨ｰ"); // "Disabled playback functions"
 
 	JAIBasic::msBasic->startSoundVecT(soundID, se, _24, a3, 0, PSSystem::SingletonBase<ObjCalcBase>::sInstance->getPlayerNo(this));
 }
@@ -669,7 +669,7 @@ JAISound* CreatureAnime::startSound(u32 soundID, u32 a2)
  */
 void CreatureAnime::startSound(u8 id, u32 soundID, u32 a3)
 {
-	JUT_PANICLINE(466, "使用禁止再生関数"); // "Disabled playback functions"
+	JUT_PANICLINE(466, "菴ｿ逕ｨ遖∵ｭ｢蜀咲函髢｢謨ｰ"); // "Disabled playback functions"
 
 	JAIBasic::msBasic->startSoundVecT(soundID, &mSounds[id], _24, a3, 0,
 	                                  PSSystem::SingletonBase<ObjCalcBase>::sInstance->getPlayerNo(this));
@@ -681,7 +681,7 @@ void CreatureAnime::startSound(u8 id, u32 soundID, u32 a3)
  */
 void CreatureAnime::startSound(JAISound** se, u32 soundID, u32 a3)
 {
-	JUT_PANICLINE(482, "使用禁止再生関数"); // "Disabled playback functions"
+	JUT_PANICLINE(482, "菴ｿ逕ｨ遖∵ｭ｢蜀咲函髢｢謨ｰ"); // "Disabled playback functions"
 
 	JAIBasic::msBasic->startSoundVecT(soundID, se, _24, a3, 0, PSSystem::SingletonBase<ObjCalcBase>::sInstance->getPlayerNo(this));
 }
@@ -707,7 +707,7 @@ void CreatureAnime::setAnime(JAIAnimeSoundData* data, u32 a1, f32 a2, f32 a3)
  */
 void CreatureAnime::playActorAnimSound(JAInter::Actor* actor, f32 pitchmod, u8 a2)
 {
-	JUT_ASSERTLINE(549, mSoundData->mEntryNum < mAnimID, "JAIAnimeSound::playActorAnimSound  dataCounterが異常です。\n");
+	JUT_ASSERTLINE(549, mSoundData->mEntryNum < mAnimID, "JAIAnimeSound::playActorAnimSound  dataCounter縺檎焚蟶ｸ縺ｧ縺吶�\n");
 	JAIAnimeSoundData* data = &mSoundData[mAnimID];
 	u8 max                  = mHandleCount;
 	for (u8 i = 0; i < max; i++) {

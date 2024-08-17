@@ -12,7 +12,7 @@ static const char sokkuriMgrName[] = "246-SokkuriMgr";
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "ソ\ックリマネージャ"; // look-alike manager
+	mName = "繧ｽ\繝�繧ｯ繝ｪ繝槭ロ繝ｼ繧ｸ繝｣"; // look-alike manager
 }
 
 /**

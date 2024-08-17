@@ -15,7 +15,7 @@
  * @note Size: 0x74
  */
 FogMgr::FogMgr()
-    : CNode("フォグマネージャ")
+    : CNode("繝輔か繧ｰ繝槭ロ繝ｼ繧ｸ繝｣")
     , mType(GX_FOG_LINEAR)
     , mNearZ(640.0f)
     , mFarZ(3024.0f)

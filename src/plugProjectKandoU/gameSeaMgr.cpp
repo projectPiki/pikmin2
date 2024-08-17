@@ -59,7 +59,7 @@ void AABBWaterBox::startDown(f32 diff)
  */
 void AABBWaterBox::startUp(f32)
 {
-	JUT_PANICLINE(167, "�܂�! startUp\n"); // "Manda"
+	JUT_PANICLINE(167, "まんだ! startUp\n"); // "Manda"
 }
 
 /**

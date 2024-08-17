@@ -12,7 +12,7 @@ static const char snakeCrowMgrName[] = "246-SnakeCrowMgr";
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "ヘビガラスマネージャ"; // snake crow manager
+	mName = "繝倥ン繧ｬ繝ｩ繧ｹ繝槭ロ繝ｼ繧ｸ繝｣"; // snake crow manager
 }
 
 /**

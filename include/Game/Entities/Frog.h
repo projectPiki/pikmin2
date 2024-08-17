@@ -117,10 +117,10 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "FrogParms")
-		    , mAirTime(this, 'fp01', "‹ó’†ŠÔ", 1.5f, 0.0f, 5.0f)            // 'air time'
-		    , mJumpSpeed(this, 'fp02', "ƒWƒƒƒ“ƒv‘¬“x", 400.0f, 0.0f, 1000.0f) // 'jump speed'
-		    , mJumpFailChance(this, 'fp03', "¸”sŠm—¦", 0.2f, 0.0f, 1.0f)     // 'probability of failure'
-		    , mFallSpeed(this, 'fp04', "—‰º‰‘¬“x", 300.0f, 0.0f, 500.0f)    // 'initial fall velocity'
+		    , mAirTime(this, 'fp01', "ç©ºä¸­æ™‚é–“", 1.5f, 0.0f, 5.0f)            // 'air time'
+		    , mJumpSpeed(this, 'fp02', "ã‚¸ãƒ£ãƒ³ãƒ—é€Ÿåº¦", 400.0f, 0.0f, 1000.0f) // 'jump speed'
+		    , mJumpFailChance(this, 'fp03', "å¤±æ•—ç¢ºç‡", 0.2f, 0.0f, 1.0f)     // 'probability of failure'
+		    , mFallSpeed(this, 'fp04', "è½ä¸‹åˆé€Ÿåº¦", 300.0f, 0.0f, 500.0f)    // 'initial fall velocity'
 		{
 		}
 

@@ -135,10 +135,10 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mDamageToEnemies(this, 'fp01', "“G‚Ö‚Ìƒ_ƒ[ƒW", 250.0f, 0.0f, 2000.0f) // 'damage to enemies'
-		    , mBlastRangeHeight(this, 'fp02', "”š•—”ÍˆÍ‚‚³+-", 50.0f, 0.0f, 50.0f)   // 'blast range height +-'
-		    , mDamageLimit(this, 'ip01', "ƒ_ƒ[ƒWƒŠƒ~ƒbƒg", 2, 1, 10)                // 'damage limit'
-		    , mTriggerLimit(this, 'ip02', "—U”šƒŠƒ~ƒbƒg", 50, 0, 100)                 // 'induction limit'
+		    , mDamageToEnemies(this, 'fp01', "æ•µã¸ã®ãƒ€ãƒ¡ãƒ¼ã‚¸", 250.0f, 0.0f, 2000.0f) // 'damage to enemies'
+		    , mBlastRangeHeight(this, 'fp02', "çˆ†é¢¨ç¯„å›²é«˜ã•+-", 50.0f, 0.0f, 50.0f)   // 'blast range height +-'
+		    , mDamageLimit(this, 'ip01', "ãƒ€ãƒ¡ãƒ¼ã‚¸ãƒªãƒŸãƒƒãƒˆ", 2, 1, 10)                // 'damage limit'
+		    , mTriggerLimit(this, 'ip02', "èª˜çˆ†ãƒªãƒŸãƒƒãƒˆ", 50, 0, 100)                 // 'induction limit'
 		{
 		}
 

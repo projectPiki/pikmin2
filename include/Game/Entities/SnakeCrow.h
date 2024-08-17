@@ -194,10 +194,10 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mFastAppearChance(this, 'fp01', "’ÊíoŒ»—¦", 0.8f, 0.0f, 1.0f)    // 'normal appearance rate'
-		    , mWaitTime(this, 'fp11', "ö‚é–˜‚ÌŠÔ", 2.0f, 0.0f, 10.0f)         // 'time to dive'
-		    , mUndergroundTime(this, 'fp12', "’n’†‚Å‚ÌŠÔ", 1.0f, 0.0f, 10.0f)  // 'time in the ground'
-		    , mPoisonDamage(this, 'fp21', "”’ƒsƒNƒ~ƒ“", 300.0f, 0.0f, 10000.0f)  // 'white pikmin'
+		    , mFastAppearChance(this, 'fp01', "é€šå¸¸å‡ºç¾ç‡", 0.8f, 0.0f, 1.0f)    // 'normal appearance rate'
+		    , mWaitTime(this, 'fp11', "æ½œã‚‹è¿„ã®æ™‚é–“", 2.0f, 0.0f, 10.0f)         // 'time to dive'
+		    , mUndergroundTime(this, 'fp12', "åœ°ä¸­ã§ã®æ™‚é–“", 1.0f, 0.0f, 10.0f)  // 'time in the ground'
+		    , mPoisonDamage(this, 'fp21', "ç™½ãƒ”ã‚¯ãƒŸãƒ³", 300.0f, 0.0f, 10000.0f)  // 'white pikmin'
 		    , mWFGHealth(this, 'fp31', "Forest 2 Life", 7500.0f, 0.0f, 99999.0f) // (White Flower Garden Life)
 		{
 		}

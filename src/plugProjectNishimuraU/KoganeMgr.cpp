@@ -12,7 +12,7 @@ namespace Kogane {
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "コガネマネージャ"; // kogane manager
+	mName = "繧ｳ繧ｬ繝阪�槭ロ繝ｼ繧ｸ繝｣"; // kogane manager
 }
 
 /**

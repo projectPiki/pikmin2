@@ -106,7 +106,7 @@ BaseGameSection::BaseGameSection(JKRHeap* heap)
  */
 void BaseGameSection::useSpecificFBTexture(JUTTexture* texture)
 {
-	JUT_ASSERTLINE(1523, !mFbTexture, "ÇQâÒÇÕñ≥óùÇó\n"); // 'it's impossible to do twice lol'
+	JUT_ASSERTLINE(1523, !mFbTexture, "ÔºíÂõû„ÅØÁÑ°ÁêÜÔΩó\n"); // 'it's impossible to do twice lol'
 	mFbTexture                    = mXfbImage;
 	mXfbImage                     = texture;
 	Game::gameSystem->mXfbTexture = mXfbImage;
@@ -118,7 +118,7 @@ void BaseGameSection::useSpecificFBTexture(JUTTexture* texture)
  */
 void BaseGameSection::restoreFBTexture()
 {
-	JUT_ASSERTLINE(1533, mFbTexture, "useSpecificFBTexture ÇµÇƒÇ»Ç¢Çó\n"); // 'i haven't used useSpecificFBTexture lol'
+	JUT_ASSERTLINE(1533, mFbTexture, "useSpecificFBTexture „Åó„Å¶„Å™„ÅÑÔΩó\n"); // 'i haven't used useSpecificFBTexture lol'
 	mXfbImage                     = mFbTexture;
 	mFbTexture                    = nullptr;
 	Game::gameSystem->mXfbTexture = mXfbImage;
@@ -597,7 +597,7 @@ void BaseGameSection::initGenerators()
 		addGenNode(limitGeneratorMgr);
 
 		plantsGeneratorMgr        = new GeneratorMgr;
-		plantsGeneratorMgr->mName = "Generator(êAï®)";
+		plantsGeneratorMgr->mName = "Generator(Ê§çÁâ©)";
 		addGenNode(plantsGeneratorMgr);
 
 		dayGeneratorMgr        = new GeneratorMgr;
@@ -1346,7 +1346,7 @@ void BaseGameSection::prepareFountainOn(Vector3f& suroundPos)
  */
 void BaseGameSection::initLights()
 {
-	mLightMgr           = new GameLightMgr("ÉQÅ[ÉÄÉâÉCÉgÉ}ÉlÅ[ÉWÉÉ"); // game light manager
+	mLightMgr           = new GameLightMgr("„Ç≤„Éº„É†„É©„Ç§„Éà„Éû„Éç„Éº„Ç∏„É£"); // game light manager
 	mLightMgr->mTimeMgr = gameSystem->mTimeMgr;
 	addGenNode(mLightMgr);
 	particleMgr->mLightMgr = mLightMgr;
@@ -1449,7 +1449,7 @@ void BaseGameSection::draw2D(Graphics& gfx)
 void BaseGameSection::setupViewportMatrix(Graphics&)
 {
 	JUT_PANICLINE(0, "DON'T USE THIS !\n");
-	JUT_PANICLINE(0, "égÇ¡ÇƒÇ»Ç¢Ç©Ç‡\n");
+	JUT_PANICLINE(0, "‰Ωø„Å£„Å¶„Å™„ÅÑ„Åã„ÇÇ\n");
 	// UNUSED FUNCTION
 }
 

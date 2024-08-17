@@ -15,7 +15,7 @@ static const char* cKoganeChangeTexName = "/enemy/data/Fart/babakogane_s3tc.bti"
 Mgr::Mgr(int objLimit, u8 modelType)
     : Kogane::Mgr(objLimit, modelType)
 {
-	mName = "ババコガネマネージャ"; // baba kogane manager
+	mName = "繝舌ヰ繧ｳ繧ｬ繝阪�槭ロ繝ｼ繧ｸ繝｣"; // baba kogane manager
 }
 
 /**

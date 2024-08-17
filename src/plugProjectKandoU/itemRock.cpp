@@ -625,7 +625,7 @@ f32 Item::getWorkRadius()
 Mgr::Mgr()
     : TNodeItemMgr()
 {
-	mItemName = "r”pƒIƒuƒWƒFƒNƒg"; // 'ruined object'
+	mItemName = "è’å»ƒã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ"; // 'ruined object'
 	setModelSize(1);
 	mObjectPathComponent = "user/Kando/objects/ojamarock";
 	mParms               = new RockParms();

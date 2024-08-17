@@ -10,7 +10,7 @@ namespace Ujia {
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "ƒEƒWƒ“ƒRŠƒ}ƒl[ƒWƒƒ"; // ujinko Š manager
+	mName = "ã‚¦ã‚¸ãƒ³ã‚³â™€ãƒãƒãƒ¼ã‚¸ãƒ£"; // ujinko â™€ manager
 }
 
 /**

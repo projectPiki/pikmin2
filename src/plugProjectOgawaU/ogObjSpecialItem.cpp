@@ -45,7 +45,7 @@ void ObjSpecialItem::doCreate(JKRArchive* arc)
 	} else if (disp->isID(OWNER_OGA, MEMBER_DUMMY)) {
 		mDisp = new og::Screen::DispMemberSpecialItem();
 	} else {
-		JUT_PANICLINE(81, "ERR! in ObjTest Createé∏îsÅI\n");
+		JUT_PANICLINE(81, "ERR! in ObjTest CreateÂ§±ÊïóÔºÅ\n");
 	}
 
 	mScreen = new P2DScreen::Mgr_tuning;

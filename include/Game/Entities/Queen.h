@@ -164,11 +164,11 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "QueenParms")
-		    , mRollingTime(this, 'fp01', "ƒ[ƒŠƒ“ƒOŠÔ", 10.0f, 0.0f, 100.0f)   // 'rolling time'
-		    , mBirthInterval(this, 'fp02', "oYŠÔŠu ( sec )", 0.0f, 0.0f, 10.0f) // 'birth interval ( sec )'
+		    , mRollingTime(this, 'fp01', "ãƒ­ãƒ¼ãƒªãƒ³ã‚°æ™‚é–“", 10.0f, 0.0f, 100.0f)   // 'rolling time'
+		    , mBirthInterval(this, 'fp02', "å‡ºç”£é–“éš” ( sec )", 0.0f, 0.0f, 10.0f) // 'birth interval ( sec )'
 		    , mHoBHealth(this, 'fp11', "Forest 1 Life", 2500.0f, 0.0f, 10000.0f)  // (Hole of Beasts Life)
-		    , mMaxBirths(this, 'ip01', "oY” ( Max )", 50, 0, 50)               // 'number of births ( Max )'
-		    , mMinBirths(this, 'ip02', "oY” ( Min )", 25, 0, 50)               // 'number of births ( Min )'
+		    , mMaxBirths(this, 'ip01', "å‡ºç”£æ•° ( Max )", 50, 0, 50)               // 'number of births ( Max )'
+		    , mMinBirths(this, 'ip02', "å‡ºç”£æ•° ( Min )", 25, 0, 50)               // 'number of births ( Min )'
 		{
 		}
 

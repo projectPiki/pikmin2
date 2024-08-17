@@ -12,7 +12,7 @@ static const char imomushiMgrName[] = "246-ImomushiMgr";
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "イモムシマネージャ"; // caterpillar manager
+	mName = "繧､繝｢繝繧ｷ繝槭ロ繝ｼ繧ｸ繝｣"; // caterpillar manager
 }
 
 /**

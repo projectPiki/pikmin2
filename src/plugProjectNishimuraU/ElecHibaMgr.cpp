@@ -10,7 +10,7 @@ static const char elecHibaMgrName[] = "246-ElecHibaMgr";
  * @note Size: 0x8C
  */
 Generator::Generator()
-    : EnemyGeneratorBase("電撃ヒバジェネレータ") // electric hiba generator
+    : EnemyGeneratorBase("髮ｻ謦�繝偵ヰ繧ｸ繧ｧ繝阪Ξ繝ｼ繧ｿ") // electric hiba generator
     , mDistance(100.0f)
 {
 }
@@ -65,7 +65,7 @@ void Generator::doReadOldVersion(Stream&) { }
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBaseAlwaysMovieActor(objLimit, modelType)
 {
-	mName = "電撃ヒバマネージャ"; // electric hiba manager
+	mName = "髮ｻ謦�繝偵ヰ繝槭ロ繝ｼ繧ｸ繝｣"; // electric hiba manager
 }
 
 /**
