@@ -912,7 +912,7 @@ void Mgr::onLoadResources()
 	JKRArchive* arc = openTextArc("texts.szs");
 	loadAnimMgr(arc, "pikiheadAnimMgr.txt");
 	closeTextArc(arc);
-	createMgr(100, 0x80000);
+	createMgr(MAX_PIKI_COUNT, 0x80000);
 }
 
 /**

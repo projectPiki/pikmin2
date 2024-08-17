@@ -214,7 +214,7 @@ void ObjContena::doCreate(JKRArchive* arc)
 
 	mPikiPaneNum = 0;
 
-	for (int i = 0; i < 100; i++) {
+	for (int i = 0; i < MAX_PIKI_COUNT; i++) {
 		u64 tag = 'Piki_00' + (i % 10) + (i / 10) % 10 * 256;
 		if (!mContena->search(tag))
 			break;

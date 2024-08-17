@@ -2154,7 +2154,7 @@ void BaseGameSection::setupFloatMemory()
 	sys->heapStatusEnd("itemMgr");
 
 	sys->heapStatusStart("Pikmin-PikiClass", nullptr);
-	pikiMgr->alloc(100);
+	pikiMgr->alloc(MAX_PIKI_COUNT);
 	sys->heapStatusEnd("Pikmin-PikiClass");
 
 	generalEnemyMgr = new GeneralEnemyMgr;

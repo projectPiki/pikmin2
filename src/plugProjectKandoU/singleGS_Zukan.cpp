@@ -4806,7 +4806,7 @@ void ZukanState::dvdloadB_common()
 	mCurrObjHeap = JKRExpHeap::create(mMainHeap->getFreeSize(), mMainHeap, true);
 	mCurrObjHeap->becomeCurrentHeap();
 
-	pikiMgr->alloc(100);
+	pikiMgr->alloc(MAX_PIKI_COUNT);
 	particleMgr->mLightMgr = mGameSect->mLightMgr;
 	particleMgr->start();
 }
