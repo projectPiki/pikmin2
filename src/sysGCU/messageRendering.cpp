@@ -14,13 +14,18 @@ namespace P2JME {
 static char sRubyDataBuffer[33];
 
 namespace {
-GXColor cBtnIconColor[22] = {
-	{ 255, 255, 255, 255 }, { 0, 166, 0, 0 },       { 255, 255, 255, 255 }, { 255, 0, 0, 0 },       { 0, 0, 0, 255 },
-	{ 255, 255, 0, 0 },     { 0, 0, 0, 255 },       { 200, 200, 200, 0 },   { 0, 0, 0, 255 },       { 200, 200, 200, 0 },
-	{ 0, 0, 255, 255 },     { 255, 255, 255, 0 },   { 0, 0, 0, 255 },       { 200, 200, 200, 0 },   { 0, 0, 0, 255 },
-	{ 200, 200, 200, 0 },   { 225, 225, 225, 255 }, { 136, 136, 136, 255 }, { 225, 225, 225, 255 }, { 136, 136, 136, 255 },
-	{ 225, 225, 225, 255 }, { 136, 136, 136, 255 },
-};
+	typedef struct {
+		GXColor a;
+		GXColor b;
+	} doubleColorStruct;
+	doubleColorStruct cBtnIconColor[11] = {
+		{{ 255, 255, 255, 255 }, {   0, 166,   0,   0 }}, {{ 255, 255, 255, 255 }, { 255,   0,   0,   0 }},
+		{{   0,   0,   0, 255 }, { 255, 255,   0,   0 }}, {{   0,   0,   0, 255 }, { 200, 200, 200,   0 }},
+		{{   0,   0,   0, 255 }, { 200, 200, 200,   0 }}, {{   0,   0, 255, 255 }, { 255, 255, 255,   0 }},
+		{{   0,   0,   0, 255 }, { 200, 200, 200,   0 }}, {{   0,   0,   0, 255 }, { 200, 200, 200,   0 }},
+		{{ 225, 225, 225, 255 }, { 136, 136, 136, 255 }}, {{ 225, 225, 225, 255 }, { 136, 136, 136, 255 }},
+		{{ 225, 225, 225, 255 }, { 136, 136, 136, 255 }},
+	};
 } // namespace
 
 const u32 TRenderingProcessor::cPageInfoBufferNum = 10;
@@ -529,9 +534,9 @@ void TRenderingProcessor::do_character(int character)
 		if (_F0 == 0) {
 			mColorData1 = _D4;
 		} else {
-			JMessage::TResourceContainer* res      = getResourceContainer();
-			const JMessage::TResource_color* color = res->getResourceColor();
-			mColorData1.set(*(JUtility::TColor*)(((u32)color->mBlock.getRaw() + _F0) + 3)); // something along the lines of this probably
+			u32 f0 = _F0;
+			JUtility::TColor *colorArray = (JUtility::TColor*)getResourceContainer()->getResourceColor()->mBlock.getRaw();
+			mColorData1.set(colorArray[f0 + 3]);
 		}
 
 		mColorData1.a = f32(mColorData1.a) * _78;
@@ -539,9 +544,9 @@ void TRenderingProcessor::do_character(int character)
 		if (_F1 == 0) {
 			mColorData2 = _D8;
 		} else {
-			JMessage::TResourceContainer* res      = getResourceContainer();
-			const JMessage::TResource_color* color = res->getResourceColor();
-			mColorData2.set(*(JUtility::TColor*)(((u32)color->mBlock.getRaw() + _F1) + 3)); // something along the lines of this probably
+			u32 f1 = _F1;
+			JUtility::TColor *colorArray = (JUtility::TColor*)getResourceContainer()->getResourceColor()->mBlock.getRaw();
+			mColorData2.set(colorArray[f1 + 3]);
 		}
 
 		mColorData2.a = f32(mColorData2.a) * _78;
@@ -562,241 +567,6 @@ void TRenderingProcessor::do_character(int character)
 	}
 
 	mCharacterNum++;
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stfd     f31, 0x30(r1)
-	psq_st   f31, 56(r1), 0, qr0
-	stw      r31, 0x2c(r1)
-	stw      r30, 0x28(r1)
-	mr       r31, r4
-	mr       r30, r3
-	cmpwi    r31, 0xa
-	bne      lbl_80439C0C
-	lwz      r12, 0(r3)
-	lwz      r12, 0x70(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80439EA0
-
-lbl_80439C0C:
-	lbz      r4, 0xf0(r30)
-	cmplwi   r4, 0
-	bne      lbl_80439C3C
-	lbz      r0, 0xd4(r30)
-	stb      r0, 0x64(r30)
-	lbz      r0, 0xd5(r30)
-	stb      r0, 0x65(r30)
-	lbz      r0, 0xd6(r30)
-	stb      r0, 0x66(r30)
-	lbz      r0, 0xd7(r30)
-	stb      r0, 0x67(r30)
-	b        lbl_80439CA0
-
-lbl_80439C3C:
-	lwz      r3, 4(r30)
-	cmplwi   r3, 0
-	bne      lbl_80439C50
-	li       r3, 0
-	b        lbl_80439C54
-
-lbl_80439C50:
-	lwz      r3, 4(r3)
-
-lbl_80439C54:
-	lwz      r0, 0x18(r3)
-	cmplwi   r0, 0
-	beq      lbl_80439C68
-	addi     r3, r3, 0x18
-	b        lbl_80439C6C
-
-lbl_80439C68:
-	li       r3, 0
-
-lbl_80439C6C:
-	lwz      r3, 4(r3)
-	slwi     r0, r4, 2
-	add      r3, r3, r0
-	lwz      r0, 0xc(r3)
-	stw      r0, 0xc(r1)
-	lbz      r3, 0xc(r1)
-	lbz      r0, 0xd(r1)
-	stb      r3, 0x64(r30)
-	lbz      r3, 0xe(r1)
-	stb      r0, 0x65(r30)
-	lbz      r0, 0xf(r1)
-	stb      r3, 0x66(r30)
-	stb      r0, 0x67(r30)
-
-lbl_80439CA0:
-	lbz      r3, 0x67(r30)
-	lis      r0, 0x4330
-	stw      r0, 0x10(r1)
-	lfd      f2, lbl_805208D8@sda21(r2)
-	stw      r3, 0x14(r1)
-	lfs      f0, 0x78(r30)
-	lfd      f1, 0x10(r1)
-	fsubs    f1, f1, f2
-	fmuls    f0, f1, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x18(r1)
-	lwz      r0, 0x1c(r1)
-	stb      r0, 0x67(r30)
-	lbz      r4, 0xf1(r30)
-	cmplwi   r4, 0
-	bne      lbl_80439D04
-	lbz      r0, 0xd8(r30)
-	stb      r0, 0x68(r30)
-	lbz      r0, 0xd9(r30)
-	stb      r0, 0x69(r30)
-	lbz      r0, 0xda(r30)
-	stb      r0, 0x6a(r30)
-	lbz      r0, 0xdb(r30)
-	stb      r0, 0x6b(r30)
-	b        lbl_80439D68
-
-lbl_80439D04:
-	lwz      r3, 4(r30)
-	cmplwi   r3, 0
-	bne      lbl_80439D18
-	li       r3, 0
-	b        lbl_80439D1C
-
-lbl_80439D18:
-	lwz      r3, 4(r3)
-
-lbl_80439D1C:
-	lwz      r0, 0x18(r3)
-	cmplwi   r0, 0
-	beq      lbl_80439D30
-	addi     r3, r3, 0x18
-	b        lbl_80439D34
-
-lbl_80439D30:
-	li       r3, 0
-
-lbl_80439D34:
-	lwz      r3, 4(r3)
-	slwi     r0, r4, 2
-	add      r3, r3, r0
-	lwz      r0, 0xc(r3)
-	stw      r0, 8(r1)
-	lbz      r3, 8(r1)
-	lbz      r0, 9(r1)
-	stb      r3, 0x68(r30)
-	lbz      r3, 0xa(r1)
-	stb      r0, 0x69(r30)
-	lbz      r0, 0xb(r1)
-	stb      r3, 0x6a(r30)
-	stb      r0, 0x6b(r30)
-
-lbl_80439D68:
-	lbz      r3, 0x6b(r30)
-	lis      r0, 0x4330
-	stw      r0, 0x18(r1)
-	lfd      f2, lbl_805208D8@sda21(r2)
-	stw      r3, 0x1c(r1)
-	lfs      f0, 0x78(r30)
-	lfd      f1, 0x18(r1)
-	fsubs    f1, f1, f2
-	fmuls    f0, f1, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x10(r1)
-	lwz      r0, 0x14(r1)
-	stb      r0, 0x6b(r30)
-	lwz      r3, 0x4c(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x28(r12)
-	mtctr    r12
-	bctrl
-	xoris    r0, r3, 0x8000
-	lis      r3, 0x4330
-	stw      r0, 0x24(r1)
-	lwz      r0, 0x8c(r30)
-	stw      r3, 0x20(r1)
-	lfd      f2, lbl_805208D0@sda21(r2)
-	clrlwi.  r0, r0, 0x1f
-	lfd      f1, 0x20(r1)
-	lfs      f0, 0xe0(r30)
-	fsubs    f1, f1, f2
-	fmuls    f31, f0, f1
-	beq      lbl_80439E08
-	fmr      f1, f31
-	lwz      r4, 0x4c(r30)
-	mr       r3, r30
-	mr       r5, r31
-	li       r6, 1
-	bl       calcWidth__Q25P2JME19TRenderingProcessorFP7JUTFontifb
-	lfs      f0, 0x90(r30)
-	fadds    f0, f0, f1
-	stfs     f0, 0x90(r30)
-	b        lbl_80439E84
-
-lbl_80439E08:
-	lwz      r3, 0x4c(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x24(r1)
-	fmr      f3, f31
-	lwz      r12, 0(r30)
-	mr       r3, r30
-	stw      r0, 0x20(r1)
-	mr       r4, r31
-	lfd      f2, lbl_805208D0@sda21(r2)
-	lfd      f1, 0x20(r1)
-	li       r5, 1
-	lfs      f0, 0xe4(r30)
-	fsubs    f4, f1, f2
-	lfs      f5, 0x90(r30)
-	lfs      f1, 0x54(r30)
-	lfs      f2, 0x94(r30)
-	fmuls    f4, f0, f4
-	lfs      f0, 0x58(r30)
-	lwz      r12, 0x7c(r12)
-	fadds    f1, f5, f1
-	fadds    f2, f2, f0
-	mtctr    r12
-	bctrl
-	lfs      f0, 0x90(r30)
-	fadds    f0, f0, f1
-	stfs     f0, 0x90(r30)
-
-lbl_80439E84:
-	lfs      f1, 0x90(r30)
-	lfs      f0, 0xc4(r30)
-	fadds    f0, f1, f0
-	stfs     f0, 0x90(r30)
-	lwz      r3, 0x40(r30)
-	addi     r0, r3, 1
-	stw      r0, 0x40(r30)
-
-lbl_80439EA0:
-	lwz      r3, sys@sda21(r13)
-	lwz      r3, 0x60(r3)
-	lbz      r0, 0x3c(r3)
-	cmplwi   r0, 0
-	beq      lbl_80439EBC
-	mr       r3, r30
-	bl       drawRuby__Q25P2JME19TRenderingProcessorFv
-
-lbl_80439EBC:
-	lwz      r3, 0xb8(r30)
-	addi     r0, r3, 1
-	stw      r0, 0xb8(r30)
-	psq_l    f31, 56(r1), 0, qr0
-	lwz      r0, 0x44(r1)
-	lfd      f31, 0x30(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
 }
 
 /**
@@ -1823,8 +1593,8 @@ bool TRenderingProcessor::tagImage(u16 p1, const void* p2, u32 p3)
 			JUtility::TColor color1(_5C);
 			switch (type) {
 			case 0:
-				GXColor* colorA = &cBtnIconColor[firstByte];
-				GXColor* colorB = &cBtnIconColor[firstByte + 1];
+				GXColor* colorA = &cBtnIconColor[firstByte].a;
+				GXColor* colorB = &cBtnIconColor[firstByte].b;
 				if (firstByte < 8) {
 					_60.set(colorA->r, colorA->g, colorA->b, colorA->a);
 					_5C.set(colorB->r, colorB->g, colorB->b, colorB->a);
@@ -1839,19 +1609,17 @@ bool TRenderingProcessor::tagImage(u16 p1, const void* p2, u32 p3)
 				if (_F0 == 0) {
 					mColorData4 = _D4;
 				} else {
-					JMessage::TResourceContainer* res      = getResourceContainer();
-					const JMessage::TResource_color* color = res->getResourceColor();
-					mColorData4.set(
-					    *(JUtility::TColor*)(((u32)color->mBlock.getRaw() + _F0) + 3)); // something along the lines of this probably
+					u32 f0 = _F0;
+					JUtility::TColor *colorArray = (JUtility::TColor*)getResourceContainer()->getResourceColor()->mBlock.getRaw();
+					mColorData4.set(colorArray[f0 + 3]);
 				}
 
 				if (_F1 == 0) {
 					mColorData5 = _D8;
 				} else {
-					JMessage::TResourceContainer* res      = getResourceContainer();
-					const JMessage::TResource_color* color = res->getResourceColor();
-					mColorData5.set(
-					    *(JUtility::TColor*)(((u32)color->mBlock.getRaw() + _F1) + 3)); // something along the lines of this probably
+					u32 f1 = _F1;
+					JUtility::TColor *colorArray = (JUtility::TColor*)getResourceContainer()->getResourceColor()->mBlock.getRaw();
+					mColorData5.set(colorArray[f1 + 3]);
 				}
 				break;
 			}
@@ -1872,320 +1640,6 @@ bool TRenderingProcessor::tagImage(u16 p1, const void* p2, u32 p3)
 	_40++;
 	mMainFont->setGX(_CC, _D0);
 	return true;
-	/*
-	stwu     r1, -0x70(r1)
-	mflr     r0
-	stw      r0, 0x74(r1)
-	stfd     f31, 0x60(r1)
-	psq_st   f31, 104(r1), 0, qr0
-	stfd     f30, 0x50(r1)
-	psq_st   f30, 88(r1), 0, qr0
-	stw      r31, 0x4c(r1)
-	stw      r30, 0x48(r1)
-	stw      r29, 0x44(r1)
-	stw      r28, 0x40(r1)
-	cmplwi   r6, 1
-	mr       r30, r3
-	mr       r28, r4
-	mr       r29, r5
-	beq      lbl_8043AFB0
-	lis      r3, lbl_8049ABE8@ha
-	lis      r5, lbl_8049AC00@ha
-	addi     r3, r3, lbl_8049ABE8@l
-	li       r4, 0x45a
-	addi     r5, r5, lbl_8049AC00@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8043AFB0:
-	clrlwi.  r0, r28, 0x10
-	lbz      r29, 0(r29)
-	beq      lbl_8043AFC0
-	b        lbl_8043AFDC
-
-lbl_8043AFC0:
-	lfs      f2, lbl_805208E0@sda21(r2)
-	li       r31, 0
-	lfs      f1, 0xe0(r30)
-	lfs      f0, 0xe4(r30)
-	fmuls    f31, f2, f1
-	fmuls    f30, f2, f0
-	b        lbl_8043AFF8
-
-lbl_8043AFDC:
-	lis      r3, lbl_8049ABE8@ha
-	lis      r5, lbl_8049AC00@ha
-	addi     r3, r3, lbl_8049ABE8@l
-	li       r4, 0x46e
-	addi     r5, r5, lbl_8049AC00@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8043AFF8:
-	lwz      r3, gP2JMEMgr@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_8043B314
-	mr       r5, r29
-	li       r4, 0
-	bl       getImage__Q25P2JME3MgrFQ35P2JME10ImageGroup3EIDi
-	or.      r4, r3, r3
-	beq      lbl_8043B314
-	lwz      r0, 0x8c(r30)
-	clrlwi.  r0, r0, 0x1f
-	bne      lbl_8043B314
-	lwz      r3, 0x60(r30)
-	cmpwi    r31, 0
-	lwz      r0, 0x5c(r30)
-	stw      r3, 0x1c(r1)
-	stw      r0, 0x18(r1)
-	beq      lbl_8043B040
-	b        lbl_8043B10C
-
-lbl_8043B040:
-	lis      r3, "cBtnIconColor__Q25P2JME30@unnamed@messageRendering_cpp@"@ha
-	cmplwi   r29, 8
-	rlwinm   r5, r29, 3, 0x15, 0x1c
-	addi     r0, r3, "cBtnIconColor__Q25P2JME30@unnamed@messageRendering_cpp@"@l
-	add      r9, r0, r5
-	addi     r10, r9, 4
-	bge      lbl_8043B0C8
-	lbz      r8, 3(r9)
-	li       r3, 0xff
-	lbz      r7, 2(r9)
-	li       r0, 0xcd
-	lbz      r6, 1(r9)
-	lbz      r5, 0(r9)
-	stb      r5, 0x60(r30)
-	stb      r6, 0x61(r30)
-	stb      r7, 0x62(r30)
-	stb      r8, 0x63(r30)
-	lbz      r8, 3(r10)
-	lbz      r7, 2(r10)
-	lbz      r6, 1(r10)
-	lbz      r5, 0(r10)
-	stb      r5, 0x5c(r30)
-	stb      r6, 0x5d(r30)
-	stb      r7, 0x5e(r30)
-	stb      r8, 0x5f(r30)
-	stb      r3, 0x70(r30)
-	stb      r3, 0x71(r30)
-	stb      r3, 0x72(r30)
-	stb      r3, 0x73(r30)
-	stb      r0, 0x74(r30)
-	stb      r0, 0x75(r30)
-	stb      r0, 0x76(r30)
-	stb      r3, 0x77(r30)
-	b        lbl_8043B234
-
-lbl_8043B0C8:
-	lbz      r6, 3(r9)
-	lbz      r5, 2(r9)
-	lbz      r3, 1(r9)
-	lbz      r0, 0(r9)
-	stb      r0, 0x70(r30)
-	stb      r3, 0x71(r30)
-	stb      r5, 0x72(r30)
-	stb      r6, 0x73(r30)
-	lbz      r6, 3(r10)
-	lbz      r5, 2(r10)
-	lbz      r3, 1(r10)
-	lbz      r0, 0(r10)
-	stb      r0, 0x74(r30)
-	stb      r3, 0x75(r30)
-	stb      r5, 0x76(r30)
-	stb      r6, 0x77(r30)
-	b        lbl_8043B234
-
-lbl_8043B10C:
-	lbz      r5, 0xf0(r30)
-	cmplwi   r5, 0
-	bne      lbl_8043B13C
-	lbz      r0, 0xd4(r30)
-	stb      r0, 0x70(r30)
-	lbz      r0, 0xd5(r30)
-	stb      r0, 0x71(r30)
-	lbz      r0, 0xd6(r30)
-	stb      r0, 0x72(r30)
-	lbz      r0, 0xd7(r30)
-	stb      r0, 0x73(r30)
-	b        lbl_8043B1A0
-
-lbl_8043B13C:
-	lwz      r3, 4(r30)
-	cmplwi   r3, 0
-	bne      lbl_8043B150
-	li       r3, 0
-	b        lbl_8043B154
-
-lbl_8043B150:
-	lwz      r3, 4(r3)
-
-lbl_8043B154:
-	lwz      r0, 0x18(r3)
-	cmplwi   r0, 0
-	beq      lbl_8043B168
-	addi     r3, r3, 0x18
-	b        lbl_8043B16C
-
-lbl_8043B168:
-	li       r3, 0
-
-lbl_8043B16C:
-	lwz      r3, 4(r3)
-	slwi     r0, r5, 2
-	add      r3, r3, r0
-	lwz      r0, 0xc(r3)
-	stw      r0, 0x14(r1)
-	lbz      r3, 0x14(r1)
-	lbz      r0, 0x15(r1)
-	stb      r3, 0x70(r30)
-	lbz      r3, 0x16(r1)
-	stb      r0, 0x71(r30)
-	lbz      r0, 0x17(r1)
-	stb      r3, 0x72(r30)
-	stb      r0, 0x73(r30)
-
-lbl_8043B1A0:
-	lbz      r5, 0xf1(r30)
-	cmplwi   r5, 0
-	bne      lbl_8043B1D0
-	lbz      r0, 0xd8(r30)
-	stb      r0, 0x74(r30)
-	lbz      r0, 0xd9(r30)
-	stb      r0, 0x75(r30)
-	lbz      r0, 0xda(r30)
-	stb      r0, 0x76(r30)
-	lbz      r0, 0xdb(r30)
-	stb      r0, 0x77(r30)
-	b        lbl_8043B234
-
-lbl_8043B1D0:
-	lwz      r3, 4(r30)
-	cmplwi   r3, 0
-	bne      lbl_8043B1E4
-	li       r3, 0
-	b        lbl_8043B1E8
-
-lbl_8043B1E4:
-	lwz      r3, 4(r3)
-
-lbl_8043B1E8:
-	lwz      r0, 0x18(r3)
-	cmplwi   r0, 0
-	beq      lbl_8043B1FC
-	addi     r3, r3, 0x18
-	b        lbl_8043B200
-
-lbl_8043B1FC:
-	li       r3, 0
-
-lbl_8043B200:
-	lwz      r3, 4(r3)
-	slwi     r0, r5, 2
-	add      r3, r3, r0
-	lwz      r0, 0xc(r3)
-	stw      r0, 0x10(r1)
-	lbz      r3, 0x10(r1)
-	lbz      r0, 0x11(r1)
-	stb      r3, 0x74(r30)
-	lbz      r3, 0x12(r1)
-	stb      r0, 0x75(r30)
-	lbz      r0, 0x13(r1)
-	stb      r3, 0x76(r30)
-	stb      r0, 0x77(r30)
-
-lbl_8043B234:
-	lbz      r5, 0x73(r30)
-	lis      r0, 0x4330
-	stw      r0, 0x20(r1)
-	fmr      f3, f31
-	lfd      f2, lbl_805208D8@sda21(r2)
-	fmr      f4, f30
-	stw      r5, 0x24(r1)
-	mr       r3, r30
-	lfs      f0, 0x78(r30)
-	lfd      f1, 0x20(r1)
-	stw      r0, 0x30(r1)
-	fsubs    f1, f1, f2
-	fmuls    f0, f1, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x28(r1)
-	lwz      r0, 0x2c(r1)
-	stb      r0, 0x73(r30)
-	lbz      r0, 0x77(r30)
-	lfs      f0, 0x78(r30)
-	stw      r0, 0x34(r1)
-	lfd      f1, 0x30(r1)
-	fsubs    f1, f1, f2
-	fmuls    f0, f1, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x38(r1)
-	lwz      r0, 0x3c(r1)
-	stb      r0, 0x77(r30)
-	lwz      r12, 0(r30)
-	lfs      f5, 0x90(r30)
-	lfs      f1, 0x54(r30)
-	lfs      f2, 0x94(r30)
-	lfs      f0, 0x58(r30)
-	fadds    f1, f5, f1
-	lwz      r12, 0x74(r12)
-	fadds    f2, f2, f0
-	mtctr    r12
-	bctrl
-	cmpwi    r31, 0
-	beq      lbl_8043B2D4
-	b        lbl_8043B314
-
-lbl_8043B2D4:
-	lbz      r3, 0x1c(r1)
-	lbz      r0, 0x1d(r1)
-	stb      r3, 0x60(r30)
-	lbz      r3, 0x1e(r1)
-	stb      r0, 0x61(r30)
-	lbz      r0, 0x1f(r1)
-	stb      r3, 0x62(r30)
-	lbz      r3, 0x18(r1)
-	stb      r0, 0x63(r30)
-	lbz      r0, 0x19(r1)
-	stb      r3, 0x5c(r30)
-	lbz      r3, 0x1a(r1)
-	stb      r0, 0x5d(r30)
-	lbz      r0, 0x1b(r1)
-	stb      r3, 0x5e(r30)
-	stb      r0, 0x5f(r30)
-
-lbl_8043B314:
-	lfs      f0, 0x90(r30)
-	addi     r4, r1, 0xc
-	addi     r5, r1, 8
-	fadds    f0, f0, f31
-	stfs     f0, 0x90(r30)
-	lwz      r3, 0x40(r30)
-	addi     r0, r3, 1
-	stw      r0, 0x40(r30)
-	lwz      r0, 0xd0(r30)
-	stw      r0, 8(r1)
-	lwz      r0, 0xcc(r30)
-	stw      r0, 0xc(r1)
-	lwz      r3, 0x4c(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	li       r3, 1
-	psq_l    f31, 104(r1), 0, qr0
-	lfd      f31, 0x60(r1)
-	psq_l    f30, 88(r1), 0, qr0
-	lfd      f30, 0x50(r1)
-	lwz      r31, 0x4c(r1)
-	lwz      r30, 0x48(r1)
-	lwz      r29, 0x44(r1)
-	lwz      r0, 0x74(r1)
-	lwz      r28, 0x40(r1)
-	mtlr     r0
-	addi     r1, r1, 0x70
-	blr
-	*/
 }
 
 /**
@@ -3260,13 +2714,7 @@ f32 TRenderingProcessor::calcWidth(JUTFont* font, int p2, f32 p3, bool p4)
 	JUTFont::TWidth width;
 	font->getWidthEntry(p2, &width);
 
-	f32 val;
-	if (p4 == false) {
-		val = f32(width.w1 + width.w0) * v1;
-	} else {
-		val = f32(width.w1) * v1;
-	}
-	return val;
+	return (!p4) ? (width.w1 + width.w0) * v1 : (width.w1) * v1;
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
