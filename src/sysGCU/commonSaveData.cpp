@@ -34,7 +34,7 @@ void Mgr::setDefault()
 	_18            = 0;
 	mTime          = 0;
 	mFileIndex     = -1;
-	mChallengeOpen = false;
+	mDoSaveOptions = false;
 	reset();
 }
 

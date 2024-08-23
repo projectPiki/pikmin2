@@ -264,9 +264,7 @@ void Obj::doAnimationUpdateAnimator()
 	static_cast<EnemyBlendAnimatorBase*>(mAnimator)->animate(&func, EnemyAnimatorBase::defaultAnimSpeed * sys->mDeltaTime,
 	                                                         EnemyAnimatorBase::defaultAnimSpeed * sys->mDeltaTime,
 	                                                         EnemyAnimatorBase::defaultAnimSpeed * sys->mDeltaTime);
-	SysShape::Model* model = mModel;
-	model->mJ3dModel->mModelData->mJointTree.mJoints[0]->mMtxCalc
-	    = (J3DMtxCalcAnmBase*)(static_cast<EnemyBlendAnimatorBase*>(mAnimator)->mAnimator.getCalc());
+	static_cast<EnemyBlendAnimatorBase*>(mAnimator)->mAnimator.setModelCalc(mModel, 0);
 }
 
 /**

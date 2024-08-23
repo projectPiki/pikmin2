@@ -3,6 +3,8 @@
 #include "string.h"
 #include "TagParm.h"
 
+const char* className = "pelletConfig";
+
 namespace Game {
 
 /**
@@ -45,7 +47,6 @@ PelletConfig::PelletConfig()
  * @note Address: 0x801B4050
  * @note Size: 0x374
  */
-const char* UNUSED_pelletConfig = "pelletConfig";
 PelletConfig::TParms::TParms()
     : TagParameters("PelletConfig")
     , mName(this, "name")

@@ -10,13 +10,13 @@ namespace title {
 
 void TTitleCameraMgr::update()
 {
-	mPosition.y += mParms.mYOffset.mValue;
-	mLookAtRotation.x = 0.0f;
-	mLookAtRotation.y = 0.0f;
-	mLookAtRotation.z = -1.0f;
-	mLookAtPosition   = mPosition;
+	mPosition.y += mParms.mYOffset();
+	mLookAtRotation.set(0.0f, 0.0f, -1.0f);
+
+	mLookAtPosition = mPosition;
 	mLookAtPosition.y -= 1.0f;
-	mViewAngle = mParms.mFOVY.mValue;
+	mViewAngle = mParms.mFOVY();
+
 	Camera::update();
 }
 

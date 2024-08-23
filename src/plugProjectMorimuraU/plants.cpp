@@ -54,9 +54,8 @@ void Plants::Obj::onInit(CreatureInitArg* initArg)
 
 	startMotion(PLANTANIM_Default, nullptr);
 
-	SysShape::Animator* animator                                  = &mAnimator->getAnimator();
-	SysShape::Model* model                                        = mModel;
-	model->mJ3dModel->mModelData->mJointTree.mJoints[0]->mMtxCalc = static_cast<J3DMtxCalcAnmBase*>(animator->getCalc());
+	SysShape::Animator* animator = &mAnimator->getAnimator();
+	animator->setModelCalc(mModel, 0);
 	PSMTXCopy(mBaseTrMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
 	mModel->mJ3dModel->calc();
 

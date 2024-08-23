@@ -227,7 +227,7 @@ bool PelletGoalState::checkMovie(Pellet* pelt)
 	if (!strcmp(pelt->mConfig->mParams.mName.mData, "key")) {
 		if (!gameSystem->isChallengeMode()) {
 			sys->getPlayCommonData()->enableChallengeGame();
-			sys->mPlayData->mChallengeOpen = true;
+			sys->mPlayData->mDoSaveOptions = true;
 		}
 	} else {
 		if (gameSystem->isChallengeMode()) {
@@ -237,7 +237,7 @@ bool PelletGoalState::checkMovie(Pellet* pelt)
 
 	if (!strcmp(pelt->mConfig->mParams.mName.mData, "loozy")) {
 		sys->getPlayCommonData()->enableLouieRescue();
-		sys->mPlayData->mChallengeOpen = true;
+		sys->mPlayData->mDoSaveOptions = true;
 		playData->mStoryFlags |= STORY_LouieRescued;
 	}
 

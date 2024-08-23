@@ -1471,7 +1471,7 @@ void Plant::onInit(CreatureInitArg* initArg)
 	_254           = 0;
 	mBlendStepTime = 0.0f;
 
-	mBlendAnimator.setModelCalc(mModel);
+	mBlendAnimator.setModelCalc(mModel, 0);
 
 	Matrixf mtx;
 	PSMTXIdentity(mtx.mMatrix.mtxView);
@@ -2162,7 +2162,7 @@ void Plant::doAnimation()
 	mFruits->update();
 	SysShape::BlendQuadraticFunc quadFunc;
 	mBlendAnimator.animate(&quadFunc, 30.0f * sys->mDeltaTime, mAnimSpeed * sys->mDeltaTime, mBlendStepTime * sys->mDeltaTime);
-	mBlendAnimator.setModelCalc(mModel);
+	mBlendAnimator.setModelCalc(mModel, 0);
 
 	if (mModel) {
 		PSMTXCopy(mBaseTrMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);

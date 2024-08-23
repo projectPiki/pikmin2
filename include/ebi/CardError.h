@@ -504,26 +504,28 @@ struct TMgr {
 	typedef FSMState StateType;
 
 	enum enumStart {
-		Start_NoCard,
-		Start_IOError,
-		Start_WrongDevice,
-		Start_WrongSector,
-		Start_DataBrokenAndDoYouFormat,
-		Start_OverCapacity,
-		Start_DoYouCreateNewFile,
-		Start_NoCard2,
-		Start_IOError2,
-		Start_WrongDevice2,
-		Start_WrongSector2,
-		Start_DataBrokenAndDoYouFormat2,
-		Start_OverCapacity2,
-		Start_DoYouCreateNewFile2,
+		Start_NoCard_FS,
+		Start_IOError_FS,
+		Start_WrongDevice_FS,
+		Start_WrongSector_FS,
+		Start_DataBrokenAndDoYouFormat_FS,
+		Start_OverCapacity_FS,
+		Start_DoYouCreateNewFile_FS,
+		Start_NoCard_Save,
+		Start_IOError_Save,
+		Start_WrongDevice_Save,
+		Start_WrongSector_Save,
+		Start_DataBrokenAndDoYouFormat_Save,
+		Start_OverCapacity_Save,
+		Start_DoYouCreateNewFile_Save,
 		Start_SerialNoError,
 		Start_FailToSave_NoCard,
 		Start_FailToSave_IOError
 	};
 
-	enum enumEnd { End_0, End_1, End_2, End_3, End_4 };
+	enum enumEnd { End_0, End_StartWithoutSave, End_OpenFileSelect, End_RestartSaveOption, End_GoToCheckCard };
+
+	enum parentMenuType { Parent_FileSelect, Parent_Save };
 
 	void startSeq(enumStart);
 	void forceQuitSeq();
@@ -545,8 +547,8 @@ struct TMgr {
 	Screen::TMemoryCard mScreen;   // _000
 	u32 mCounter;                  // _298
 	u32 mCounterMax;               // _29C, isnt used for anything
-	u32 mEndStat;                  // _2A0
-	int mIsBroken;                 // _2A4
+	enumEnd mEndStat;              // _2A0
+	int mParentMenuType;           // _2A4, 0 = file select, 1 = save
 	FSMStateMachine mStateMachine; // _2A8
 	FSMState* mCurrentState;       // _2C4
 };

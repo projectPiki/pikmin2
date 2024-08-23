@@ -49,7 +49,7 @@ struct FSMState : public Game::FSMState<TMgr> {
 };
 
 struct CardErrorStateArg : public Game::StateArg {
-	int mOpenType;
+	ebi::CardError::TMgr::enumStart mOpenType;
 };
 
 struct FSMState_CardError : public FSMState {
@@ -152,7 +152,7 @@ struct FSMState_MountCheck : public FSMState_CardRequest {
 
 struct TMgr : public JKRDisposer {
 	typedef FSMState StateType;
-	enum enumEnd { End_0, End_1, End_2, End_3 };
+	enum enumEnd { End_0, End_StartNewGame, End_StartGame, End_ReturnToTitle };
 
 	TMgr();
 	virtual ~TMgr(); // _08
@@ -178,6 +178,24 @@ struct TMgr : public JKRDisposer {
 
 	static TMgr* msInstance;
 
+	inline void doLoadMenuResource()
+	{
+		mMgrFS.mMainScreen.loadResource();
+		doLoadResource(JKRGetCurrentHeap());
+	}
+
+	inline void doLoadResource(JKRHeap* heap)
+	{
+		mCardErrorMgr.mScreen.loadResource(heap);
+		static_cast<Game::MemoryCard::Mgr*>(sys->mCardMgr)->loadResource(heap);
+	}
+
+	inline void setControllers(Controller* pad)
+	{
+		mMgrFS.setController(pad);
+		mCardErrorMgr.mScreen.mController = pad;
+	}
+
 	// _00     = VTBL
 	// _00-_18 = JKRDisposer
 	FS::TMgr mMgrFS;                          // _18
@@ -185,7 +203,7 @@ struct TMgr : public JKRDisposer {
 	u32 mCounter;                             // _F40
 	int mCounterMax;                          // _F44
 	Game::MemoryCard::PlayerFileInfo mPlayer; // _F48
-	int mState;                               // _FE4
+	int mEndState;                            // _FE4
 	bool _FE8;                                // _FE8
 	bool mInError;                            // _FE9
 	FSMStateMachine mFsm;                     // _FEC

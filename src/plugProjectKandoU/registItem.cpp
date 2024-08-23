@@ -1,7 +1,6 @@
 #include "Game/Entities/Item.h"
 #include "System.h"
 #include "nans.h"
-#include "types.h"
 
 namespace Game {
 
@@ -185,7 +184,5 @@ void ItemMgr::killAllExceptOnyonMgr()
 		ItemHoney::mgr = nullptr;
 	}
 }
-
-const char* UNUSED_CreatureKillArg = "CreatureKillArg";
 
 } // namespace Game

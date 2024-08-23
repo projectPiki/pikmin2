@@ -248,17 +248,17 @@ void FSMState_SaveMgr::do_init(TMgr* obj, Game::StateArg* arg)
 void FSMState_SaveMgr::do_exec(TMgr* obj)
 {
 	if (obj->mSaveMgr->isFinish()) {
-		switch (obj->mSaveMgr->mCurrStateID) {
-		case 0:
+		switch (obj->mSaveMgr->mEndState) {
+		case Save::TMgr::End_SaveDone:
 			transit(obj, ScreenClose, nullptr);
 			break;
-		case 1:
+		case Save::TMgr::End_Cancel:
 			transit(obj, ScreenWait, nullptr);
 			break;
-		case 2:
+		case Save::TMgr::End_SelectNoSave:
 			transit(obj, ScreenClose, nullptr);
 			break;
-		case 4:
+		case Save::TMgr::End_Error:
 			transit(obj, ScreenWait, nullptr);
 			break;
 		}

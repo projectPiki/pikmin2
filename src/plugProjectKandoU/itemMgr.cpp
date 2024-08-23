@@ -73,8 +73,7 @@ void BaseItem::doAnimation()
 {
 	if (mAnimator.mAnimMgr) {
 		mAnimator.animate(mAnimSpeed * sys->mDeltaTime);
-		SysShape::Model* model                                        = mModel;
-		model->mJ3dModel->mModelData->mJointTree.mJoints[0]->mMtxCalc = (J3DMtxCalcAnmBase*)mAnimator.getCalc();
+		mAnimator.setModelCalc(mModel, 0);
 		do_doAnimation();
 	}
 	if (mCaptureMatrix == nullptr) {

@@ -54,7 +54,7 @@ void PikiContainer::dump(char* sourceOfCall)
 #endif
 	for (int type = 0; type < PikiColorCount; type++) {
 		int colorTotal = getColorSum(type);
-		int colorHappa[3];
+		int colorHappa[PikiGrowthStageCount];
 		for (int happa = 0; happa < PikiGrowthStageCount; happa++) {
 			colorHappa[happa] = getCount(type, happa);
 		}
@@ -70,8 +70,8 @@ void PikiContainer::dump(char* sourceOfCall)
  */
 int& PikiContainer::getCount(int color, int headType)
 {
-	P2ASSERTBOUNDSLINE(95, 0, color, 7);
-	P2ASSERTBOUNDSLINE(96, 0, headType, 3);
+	P2ASSERTBOUNDSLINE(95, 0, color, PikiColorCount);
+	P2ASSERTBOUNDSLINE(96, 0, headType, PikiGrowthStageCount);
 	return mContainer[headType + color * PikiGrowthStageCount];
 }
 

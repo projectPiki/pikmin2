@@ -293,13 +293,13 @@ bool ObjCaveResult::doUpdate()
 	if (isFlag(CAVERESFLAG_SaveOpen)) {
 		mSaveMgr->update();
 		if (mSaveMgr->isFinish()) {
-			switch (mSaveMgr->mCurrStateID) {
-			case 2:
-			case 0:
+			switch (mSaveMgr->mEndState) {
+			case ebi::Save::TMgr::End_SelectNoSave:
+			case ebi::Save::TMgr::End_SaveDone:
 				disp->mIsFinished = ::Screen::Game2DMgr::CHECK2D_CaveResult_Finished;
 				break;
 
-			case 1:
+			case ebi::Save::TMgr::End_Cancel:
 				resetFlag(CAVERESFLAG_SaveOpen);
 				break;
 			}

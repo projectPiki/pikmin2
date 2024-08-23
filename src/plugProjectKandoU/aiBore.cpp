@@ -197,12 +197,7 @@ int ActRest::exec()
 		mParent->mAnimSpeed = 30.0f;
 	}
 
-	int animIdx;
-	if (mParent->mAnimator.mSelfAnimator.mAnimInfo) {
-		animIdx = mParent->mAnimator.mSelfAnimator.mAnimInfo->mId;
-	} else {
-		animIdx = Game::IPikiAnims::NULLANIM;
-	}
+	int animIdx = mParent->mAnimator.mSelfAnimator.getAnimIndex();
 
 	if (animIdx != Game::IPikiAnims::NERU && animIdx != Game::IPikiAnims::SUWARU) {
 		return ACTEXEC_Fail;

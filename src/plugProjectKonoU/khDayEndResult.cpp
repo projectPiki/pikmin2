@@ -1786,17 +1786,17 @@ bool ObjDayEndResultMail::doUpdate()
 	if (mFlags & 4) {
 		mSaveMgr->update();
 		if (mSaveMgr->isFinish()) {
-			switch (mSaveMgr->mCurrStateID) {
-			case 2:
-			case 0:
+			switch (mSaveMgr->mEndState) {
+			case ebi::Save::TMgr::End_SelectNoSave:
+			case ebi::Save::TMgr::End_SaveDone:
 				dispResult->mMail.mExitStatus = ::Screen::Game2DMgr::CHECK2D_DayResult_SaveFinished;
 				break;
 
-			case 1:
+			case ebi::Save::TMgr::End_Cancel:
 				mFlags &= ~4;
 				break;
 
-			case 3:
+			case ebi::Save::TMgr::End_ReturnToFS:
 				dispResult->mMail.mExitStatus = ::Screen::Game2DMgr::CHECK2D_DayResult_ReturnToFileSelect;
 				break;
 			}

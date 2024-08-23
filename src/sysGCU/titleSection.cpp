@@ -572,7 +572,7 @@ bool Section::doLoading()
 	bool done = sys->dvdLoadSyncNoBlock(&mThreadCommand);
 	if (done) {
 		sys->dvdLoadUseCallBack(&mThreadCommand, mButtonCallback);
-		PSMStartMainSeq();
+		PSMGetSceneMgrCheck()->doStartMainSeq();
 	}
 	return u8(done == 0);
 }

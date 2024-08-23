@@ -3412,22 +3412,12 @@ void Pellet::doAnimation()
 
 		if (mPelletSM->getCurrID(this) == 6) {
 			mCarryAnim.animate(mAnimSpeed);
-
-			SysShape::Model* model  = mModel;
-			J3DMtxCalcAnmBase* calc = static_cast<J3DMtxCalcAnmBase*>(mCarryAnim.getCalc());
-
-			J3DJoint* joint = model->mJ3dModel->mModelData->mJointTree.mJoints[0];
-			joint->mMtxCalc = calc;
+			mCarryAnim.setModelCalc(mModel, 0);
 			update_pmotions();
 		} else if (mCaptureMatrix == nullptr) {
 			if (mPelletView == nullptr && mModel != nullptr && mCarryAnim.mAnimMgr) {
 				mCarryAnim.animate(mAnimSpeed);
-
-				SysShape::Model* model  = mModel;
-				J3DMtxCalcAnmBase* calc = static_cast<J3DMtxCalcAnmBase*>(mCarryAnim.getCalc());
-
-				J3DJoint* joint = model->mJ3dModel->mModelData->mJointTree.mJoints[0];
-				joint->mMtxCalc = calc;
+				mCarryAnim.setModelCalc(mModel, 0);
 				update_pmotions();
 			}
 
@@ -4515,10 +4505,7 @@ void Pellet::onUpdateCapture(Matrixf& matrix)
 
 	SysShape::Model* model = mModel;
 	if (model) {
-		J3DMtxCalcAnmBase* calc = static_cast<J3DMtxCalcAnmBase*>(mCarryAnim.getCalc());
-		J3DJoint* joint         = model->mJ3dModel->mModelData->mJointTree.mJoints[0];
-
-		joint->mMtxCalc = calc;
+		mCarryAnim.setModelCalc(mModel, 0);
 	}
 
 	if (mPelletView == nullptr) {

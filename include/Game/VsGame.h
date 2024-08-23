@@ -262,22 +262,22 @@ struct StageList : public CNode {
 /////////////////////////////////////////////////////////////////
 // STATE MACHINE DEFINITIONS
 enum GameStateFlags {
-	VSGS_Unk1  = 0x1,
-	VSGS_Unk2  = 0x2,
-	VSGS_Unk3  = 0x4,
-	VSGS_Unk4  = 0x8,
-	VSGS_Unk5  = 0x10,
-	VSGS_Unk6  = 0x20,
-	VSGS_Unk7  = 0x40,
-	VSGS_Unk8  = 0x80,
-	VSGS_Unk9  = 0x100,
-	VSGS_Unk10 = 0x200,
-	VSGS_Unk11 = 0x400,
-	VSGS_Unk12 = 0x800,
-	VSGS_Unk13 = 0x1000,
-	VSGS_Unk14 = 0x2000,
-	VSGS_Unk15 = 0x4000,
-	VSGS_Unk16 = 0x8000,
+	VSGS_EnteringCave      = 0x1,
+	VSGS_PikminExtinct     = 0x2,
+	VSGS_IntroDone         = 0x4,
+	VSGS_TimeUp            = 0x8,
+	VSGS_Unk5              = 0x10,
+	VSGS_Unk6              = 0x20,
+	VSGS_Unk7              = 0x40,
+	VSGS_ReadyGoOpen       = 0x80,
+	VSGS_WinLoseReasonOpen = 0x100,
+	VSGS_WinLoseOpen       = 0x200,
+	VSGS_Unk11             = 0x400,
+	VSGS_Unk12             = 0x800,
+	VSGS_Unk13             = 0x1000,
+	VSGS_Unk14             = 0x2000,
+	VSGS_Unk15             = 0x4000,
+	VSGS_IsSectionFadeout  = 0x8000,
 };
 
 struct FSM : public StateMachine<VsGameSection> {
@@ -323,7 +323,7 @@ struct GameState : public State {
 	virtual void onNextFloor(VsGameSection*, ItemHole::Item*);                                  // _34
 	virtual void on_section_fadeout(VsGameSection*)                                             // _38 (weak)
 	{
-		setFlag(VSGS_Unk16);
+		setFlag(VSGS_IsSectionFadeout);
 	}
 	virtual bool goingToCave(VsGameSection*);                     // _3C
 	virtual void onBattleFinished(VsGameSection*, int, bool);     // _40

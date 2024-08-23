@@ -30,7 +30,7 @@ static const char formationName[]      = "actFormation";
  */
 ActFormation::ActFormation(Game::Piki* p)
     : Action(p)
-    , mInitArg(nullptr, 0)
+    , mInitArg(nullptr)
 {
 	mName   = "Formation";
 	mCPlate = nullptr;
@@ -154,8 +154,7 @@ void ActFormation::setFormed()
 		Game::playData->setDemoFlag(Game::DEMO_Meet_Red_Pikmin);
 
 		Game::MoviePlayArg playArg("x02_watch_red_pikmin", nullptr, nullptr, 0);
-		playArg.mOrigin                  = navi->getPosition();
-		playArg.mAngle                   = navi->getFaceDir();
+		playArg.setTarget(navi);
 		Game::moviePlayer->mTargetObject = navi;
 
 		Game::moviePlayer->play(playArg);
@@ -288,13 +287,7 @@ int PikiAI::ActFormation::exec()
 	mOldDistanceType = mDistanceType;
 	mDistanceType    = 5;
 	if (mIsAnimating) {
-		int animId;
-		if (mParent->mAnimator.mSelfAnimator.mAnimInfo) {
-			animId = mParent->mAnimator.mSelfAnimator.mAnimInfo->mId;
-		} else {
-			animId = -1;
-		}
-
+		int animId = mParent->mAnimator.mSelfAnimator.getAnimIndex();
 		if (animId != Game::IPikiAnims::KOROBU) {
 			mIsAnimating = 0;
 			mParent->startMotion(Game::IPikiAnims::WALK, Game::IPikiAnims::WALK, nullptr, nullptr);

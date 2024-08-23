@@ -221,7 +221,7 @@ struct Navi : public FakePiki, virtual public PelletView {
 	{
 		SysShape::Model* model = mModel;
 		model->loopTimer();
-		model->mJ3dModel->mModelData->mJointTree.mJoints[0]->mMtxCalc = static_cast<J3DMtxCalcAnmBase*>(mAnimator.mBoundAnimator.getCalc());
+		mAnimator.mBoundAnimator.setModelCalc(model, 0);
 	}
 
 	inline void setCamera(PlayCamera* cam)

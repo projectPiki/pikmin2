@@ -121,7 +121,7 @@ void GameState::do_init(VsGameSection* section)
 		gameSystem->setPause(false, "vs-readygo", 3);
 		gameSystem->setPause(true, "vs readygo", 6);
 		gameSystem->setMoviePause(true, "vs readygo");
-		setFlag(VSGS_Unk8);
+		setFlag(VSGS_ReadyGoOpen);
 		gameSystem->setFlag(GAMESYS_IsPlaying);
 		section->setCamController();
 	}
@@ -140,7 +140,7 @@ void GameState::do_init(VsGameSection* section)
  * @note Address: 0x802296E8
  * @note Size: 0xC
  */
-bool GameState::goingToCave(VsGameSection* section) { return isFlag(VSGS_Unk1); }
+bool GameState::goingToCave(VsGameSection* section) { return isFlag(VSGS_EnteringCave); }
 
 /**
  * This fake function is here to generate the vtables in the correct order
@@ -155,7 +155,7 @@ static void fakeFuncVsGsGame() { og::Screen::DispMemberChallenge2P disp; }
  */
 void GameState::exec(VsGameSection* section)
 {
-	if (isFlag(VSGS_Unk16)) {
+	if (isFlag(VSGS_IsSectionFadeout)) {
 		return;
 	}
 
@@ -165,12 +165,12 @@ void GameState::exec(VsGameSection* section)
 		return;
 	}
 
-	if (isFlag(VSGS_Unk8)) {
+	if (isFlag(VSGS_ReadyGoOpen)) {
 		switch (Screen::gGame2DMgr->check_ReadyGo()) {
 		case Screen::Game2DMgr::CHECK2D_ReadyGo_Finished:
 			gameSystem->setPause(false, "vs-rg-arr", 3);
 			gameSystem->setMoviePause(false, "vs-rg-arr");
-			resetFlag(VSGS_Unk8);
+			resetFlag(VSGS_ReadyGoOpen);
 			gameSystem->setFlag(GAMESYS_IsPlaying);
 			break;
 
@@ -196,10 +196,10 @@ void GameState::exec(VsGameSection* section)
 			section->mCardMgr->update();
 		}
 
-		if (isFlag(VSGS_Unk9)) {
+		if (isFlag(VSGS_WinLoseReasonOpen)) {
 			if ((u8)Screen::gGame2DMgr->check_WinLoseReason()) {
-				resetFlag(VSGS_Unk9);
-				setFlag(VSGS_Unk10);
+				resetFlag(VSGS_WinLoseReasonOpen);
+				setFlag(VSGS_WinLoseOpen);
 				int outcome;
 				u8 redLost  = getLoseCauses(VSPLAYER_Red);
 				u8 blueLost = getLoseCauses(VSPLAYER_Blue);
@@ -233,7 +233,7 @@ void GameState::exec(VsGameSection* section)
 			}
 		}
 
-		if (isFlag(VSGS_Unk10)) {
+		if (isFlag(VSGS_WinLoseOpen)) {
 			switch (Screen::gGame2DMgr->check_WinLose()) {
 			case Screen::Game2DMgr::CHECK2D_WinLose_NotOpened:
 			case Screen::Game2DMgr::CHECK2D_WinLose_Opened:
@@ -267,7 +267,7 @@ void GameState::exec(VsGameSection* section)
 			pikiDirector->directOff();
 		}
 
-		if (isFlag(VSGS_Unk4)) {
+		if (isFlag(VSGS_TimeUp)) {
 			switch (Screen::gGame2DMgr->check_WinLose()) {
 			case Screen::Game2DMgr::CHECK2D_WinLose_NotOpened:
 			case Screen::Game2DMgr::CHECK2D_WinLose_Opened:
@@ -282,17 +282,17 @@ void GameState::exec(VsGameSection* section)
 			return;
 		}
 
-		if (!gameSystem->paused() && section->mTimeLimit > 0.0f && isFlag(VSGS_Unk3) && !section->mMenuFlags
+		if (!gameSystem->paused() && section->mTimeLimit > 0.0f && isFlag(VSGS_IntroDone) && !section->mMenuFlags
 		    && gameSystem->isFlag(GAMESYS_IsGameWorldActive) && !gameSystem->paused_soft()
 		    && moviePlayer->mDemoState
 		           == DEMOSTATE_Inactive) { // check game is in a state where timer should go down (not paused/menu/CS/etc)
 
 			section->mTimeLimit -= sys->mDeltaTime * 0.5f;
-			if (section->mTimeLimit <= 0.0f && !(isFlag(VSGS_Unk4))) {
+			if (section->mTimeLimit <= 0.0f && !isFlag(VSGS_TimeUp)) {
 				gameSystem->resetFlag(GAMESYS_IsGameWorldActive);
 				gameSystem->setPause(true, "timeup", 3);
 				gameSystem->setMoviePause(true, "timeup");
-				setFlag(VSGS_Unk4);
+				setFlag(VSGS_TimeUp);
 
 				if (!gameSystem->isMultiplayerMode()) {
 					Screen::gGame2DMgr->open_TimeUp1P();
@@ -304,7 +304,7 @@ void GameState::exec(VsGameSection* section)
 		}
 	}
 
-	if (!isFlag(VSGS_Unk1) && section->mHole) {
+	if (!isFlag(VSGS_EnteringCave) && section->mHole) {
 		switch (Screen::gGame2DMgr->check_CaveMoreMenu()) {
 		case Screen::Game2DMgr::CHECK2D_CaveMoreMenu_MenuOpen:
 			break;
@@ -314,7 +314,7 @@ void GameState::exec(VsGameSection* section)
 			gameSystem->setPause(false, "cmore-yes", 3);
 			gameSystem->setMoviePause(false, "cmore-yes");
 			section->goNextFloor(section->mHole);
-			setFlag(VSGS_Unk1);
+			setFlag(VSGS_EnteringCave);
 			return;
 
 		case Screen::Game2DMgr::CHECK2D_CaveMoreMenu_Cancel:
@@ -336,11 +336,11 @@ void GameState::exec(VsGameSection* section)
 		}
 
 		// check we're in VS Mode and that someone needs to lose
-		if (gameSystem->isVersusMode() && !isFlag(VSGS_Unk9) && !isFlag(VSGS_Unk10) && mSubState != 1
+		if (gameSystem->isVersusMode() && !isFlag(VSGS_WinLoseReasonOpen) && !isFlag(VSGS_WinLoseOpen) && mSubState != 1
 		    && (getLoseCauses(VSPLAYER_Red) || getLoseCauses(VSPLAYER_Blue))) {
 
 			gameSystem->resetFlag(GAMESYS_IsGameWorldActive);
-			setFlag(VSGS_Unk9);
+			setFlag(VSGS_WinLoseReasonOpen);
 			gameSystem->setPause(true, nullptr, 3);
 
 			int redReason  = -1;
@@ -443,7 +443,7 @@ void GameState::checkSMenu(VsGameSection* section)
 			transit(section, VGS_Title, &titleArg);
 			return;
 		}
-		if (moviePlayer->mDemoState == DEMOSTATE_Inactive && !isFlag(VSGS_Unk2)) {
+		if (moviePlayer->mDemoState == DEMOSTATE_Inactive && !isFlag(VSGS_PikminExtinct)) {
 			gameSystem->resetFlag(GAMESYS_IsGameWorldActive);
 			MoviePlayArg movieArgs("s12_cv_giveup", 0x0, section->mMovieFinishCallback, 0);
 			movieArgs.mDelegateStart = section->mMovieStartCallback;
@@ -514,7 +514,7 @@ void GameState::pre2dDraw(Graphics& gfx, VsGameSection* section)
  */
 void GameState::draw(VsGameSection* section, Graphics& gfx)
 {
-	if (!isFlag(VSGS_Unk16)) {
+	if (!isFlag(VSGS_IsSectionFadeout)) {
 		section->BaseGameSection::doDraw(gfx);
 	}
 }
@@ -597,7 +597,7 @@ void GameState::onRedOrBlueSuckStart(VsGameSection* section, int player, bool is
  */
 void GameState::checkPikminZero(VsGameSection* section)
 {
-	if (!gameSystem->isVersusMode() && !isFlag(VSGS_Unk2) && GameStat::getAllPikmins(-1) == 0 && !gameSystem->paused_soft()
+	if (!gameSystem->isVersusMode() && !isFlag(VSGS_PikminExtinct) && GameStat::getAllPikmins(-1) == 0 && !gameSystem->paused_soft()
 	    && gameSystem->isFlag(GAMESYS_IsGameWorldActive)) {
 
 		Navi* activeNavi = naviMgr->getActiveNavi();
@@ -609,7 +609,7 @@ void GameState::checkPikminZero(VsGameSection* section)
 			activeNavi = naviMgr->getAt(naviIndex);
 		}
 
-		setFlag(VSGS_Unk2);
+		setFlag(VSGS_PikminExtinct);
 
 		MoviePlayArg movieArg("s05_pikminzero", nullptr, section->mMovieFinishCallback, 0);
 		movieArg.mDelegateStart = section->mMovieStartCallback;
@@ -660,7 +660,7 @@ void GameState::onMovieStart(VsGameSection* section, MovieConfig* movie, u32 p1,
 			if (piki->isAlive() && !piki->isStickTo()) {
 				piki->movie_begin(false);
 				piki->endStick();
-				piki->mBrain->start(1, nullptr);
+				piki->mBrain->start(PikiAI::ACT_Free, nullptr);
 			}
 		}
 	}
@@ -725,7 +725,7 @@ void GameState::onMovieDone(VsGameSection* section, MovieConfig* config, u32 unu
 
 		gameSystem->setPause(true, "readygo", 6);
 		gameSystem->setMoviePause(true, "readygo");
-		setFlag(VSGS_Unk8);
+		setFlag(VSGS_ReadyGoOpen);
 
 	} else if (config->is("s0B_cv_coursein")) {
 		Iterator<Piki> pikiIterator(pikiMgr);
@@ -741,7 +741,7 @@ void GameState::onMovieDone(VsGameSection* section, MovieConfig* config, u32 unu
 		}
 
 		Screen::gGame2DMgr->close_Floor();
-		setFlag(VSGS_Unk3);
+		setFlag(VSGS_IntroDone);
 		if (currFloor == 0) {
 			if (sys->getPlayCommonData()->challenge_is_virgin_check_only()) {
 				if (!gameSystem->isVersusMode()) {
@@ -776,7 +776,7 @@ void GameState::onMovieDone(VsGameSection* section, MovieConfig* config, u32 unu
 
 			gameSystem->setPause(true, "readygo2", 6);
 			gameSystem->setMoviePause(true, "readygo2");
-			setFlag(VSGS_Unk8);
+			setFlag(VSGS_ReadyGoOpen);
 
 		} else if (isFinalFloor) {
 			open_GameChallenge(section, 2);

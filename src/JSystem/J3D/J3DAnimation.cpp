@@ -20,7 +20,7 @@ f32 J3DGetKeyFrameInterpolation(f32, J3DAnmKeyTableBase*, T*);
  */
 void J3DFrameCtrl::init(s16 i_end)
 {
-	mAttribute = 2;
+	mAttribute = J3DAA_UNKNOWN_2;
 	mState     = 0;
 	mStart     = 0;
 	mEnd       = i_end;
@@ -38,7 +38,7 @@ void J3DFrameCtrl::update()
 	mState = 0;
 	mFrame += mRate;
 	switch (mAttribute) {
-	case 0:
+	case J3DAA_UNKNOWN_0:
 		if (mFrame < mStart) {
 			mFrame = mStart;
 			mRate  = 0.0f;
@@ -50,7 +50,7 @@ void J3DFrameCtrl::update()
 			mState |= 1;
 		}
 		break;
-	case 1:
+	case J3DAA_UNKNOWN_1:
 		if (mFrame < mStart) {
 			mFrame = mStart;
 			mRate  = 0.0f;
@@ -62,7 +62,7 @@ void J3DFrameCtrl::update()
 			mState |= 1;
 		}
 		break;
-	case 2:
+	case J3DAA_UNKNOWN_2:
 		while (mFrame < mStart) {
 			mState |= 2;
 			if (mLoop - mStart <= 0.0f) {
@@ -78,7 +78,7 @@ void J3DFrameCtrl::update()
 			mFrame -= mEnd - mLoop;
 		}
 		break;
-	case 3:
+	case J3DAA_UNKNOWN_3:
 		if (mFrame >= mEnd) {
 			mFrame = mEnd - (mFrame - mEnd);
 			mRate  = -mRate;
@@ -89,7 +89,7 @@ void J3DFrameCtrl::update()
 			mState |= 1;
 		}
 		break;
-	case 4:
+	case J3DAA_UNKNOWN_4:
 		if (mFrame >= mEnd - 1.0f) {
 			mFrame = (mEnd - 1.0f) - (mFrame - (mEnd - 1.0f));
 			mRate  = -mRate;

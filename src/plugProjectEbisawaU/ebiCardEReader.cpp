@@ -233,13 +233,13 @@ void CardEReader::TMgr::update()
 		mCounter++;
 		if (mGbaPort != -1) {
 			if (mIsUploading == 0) {
-				goEnd_(Error_0);
+				goEnd_(Error_Success);
 			} else {
 				mCounter = 0;
 				mState   = 2;
 			}
 		} else if (mCounter >= 2) {
-			goEnd_(Error_1);
+			goEnd_(Error_UnableToTransfer);
 		}
 		break;
 	}
@@ -251,7 +251,7 @@ void CardEReader::TMgr::update()
 			mState   = 3;
 		} else {
 			if (mCounter >= 1) {
-				goEnd_(Error_2);
+				goEnd_(Error_TransferFailed);
 			}
 		}
 		break;
@@ -276,9 +276,9 @@ void CardEReader::TMgr::threadProc(void* data)
 		OSLockMutex(&mMutex);
 		OSWaitCond(&mCond, &mMutex);
 		if (CardE_uploadToGBA(mGbaPort, (u8*)mGameDatas[mGameID], mSizes[mGameID])) {
-			goEnd_(Error_0);
+			goEnd_(Error_Success);
 		} else {
-			goEnd_(Error_2);
+			goEnd_(Error_TransferFailed);
 		}
 		OSUnlockMutex(&mMutex);
 	}

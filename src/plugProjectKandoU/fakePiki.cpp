@@ -105,13 +105,7 @@ void FakePiki::initAnimator()
  */
 bool FakePiki::assertMotion(int animIdx)
 {
-	int currIdx;
-	if (mAnimator.mSelfAnimator.mAnimInfo) {
-		currIdx = mAnimator.mSelfAnimator.mAnimInfo->mId;
-	} else {
-		currIdx = IPikiAnims::NULLANIM;
-	}
-
+	int currIdx = mAnimator.mSelfAnimator.getAnimIndex();
 	return (currIdx == animIdx);
 }
 
@@ -121,14 +115,7 @@ bool FakePiki::assertMotion(int animIdx)
  */
 void FakePiki::enableMotionBlend()
 {
-	int currIdx;
-	if (mAnimator.mBoundAnimator.mAnimInfo) {
-		currIdx = mAnimator.mBoundAnimator.mAnimInfo->mId;
-	} else {
-		currIdx = IPikiAnims::NULLANIM;
-	}
-
-	mBoundAnimIdx = currIdx;
+	mBoundAnimIdx = mAnimator.mBoundAnimator.getAnimIndex();
 
 	mAnimator.mBoundAnimator.startAnim(IPikiAnims::NIGERU, this);
 	mAnimator.mBoundAnimator.setCurrFrame(10.0f);
@@ -201,22 +188,10 @@ void FakePiki::updateWalkAnimation()
 	Vector3f sep  = Vector3f(mPosition.x - mPreviousPosition.x, 0.0f, mPosition.z - mPreviousPosition.z);
 	f32 animSpeed = sep.length() / sys->getDeltaTime();
 
-	int boundIdx;
-	if (mAnimator.mBoundAnimator.mAnimInfo) {
-		boundIdx = mAnimator.mBoundAnimator.mAnimInfo->mId;
-	} else {
-		boundIdx = IPikiAnims::NULLANIM;
-	}
+	int boundIdx = mAnimator.mBoundAnimator.getAnimIndex();
 
-	int selfIdx;
 	bool check = false;
-	if (mAnimator.mSelfAnimator.mAnimInfo) {
-		selfIdx = mAnimator.mSelfAnimator.mAnimInfo->mId;
-	} else {
-		selfIdx = IPikiAnims::NULLANIM;
-	}
-
-	if (selfIdx == IPikiAnims::JKOKE) {
+	if (mAnimator.mSelfAnimator.getAnimIndex() == IPikiAnims::JKOKE) {
 		check = true;
 	}
 
@@ -667,14 +642,7 @@ bool FakePiki::sNeckCallback(J3DJoint* joint, int jointIdx)
  */
 void FakePiki::startLookCreature(Creature* creature)
 {
-	int currAnimIdx;
-	if (mAnimator.mSelfAnimator.mAnimInfo) {
-		currAnimIdx = mAnimator.mSelfAnimator.mAnimInfo->mId;
-	} else {
-		currAnimIdx = IPikiAnims::NULLANIM;
-	}
-
-	switch (currAnimIdx) {
+	switch (mAnimator.mSelfAnimator.getAnimIndex()) {
 	default:
 		finishLook();
 		break;
@@ -1420,10 +1388,8 @@ void FakePiki::doAnimation()
 		mModel->getJ3DModel()->getModelData()->getJointTree().getJointNodePointer(0)->setMtxCalc(nullptr);
 		mModel->getJ3DModel()->getModelData()->getJointTree().getJointNodePointer(4)->setMtxCalc(nullptr);
 	} else {
-		SysShape::Model* model1 = mModel;
-		model1->getJ3DModel()->getModelData()->getJointTree().getJointNodePointer(0)->setMtxCalc(mAnimator.mBoundAnimator.getCalc());
-		SysShape::Model* model2 = mModel;
-		model2->getJ3DModel()->getModelData()->getJointTree().getJointNodePointer(4)->setMtxCalc(mAnimator.mSelfAnimator.getCalc());
+		mAnimator.mBoundAnimator.setModelCalc(mModel, 0);
+		mAnimator.mSelfAnimator.setModelCalc(mModel, 4);
 	}
 
 	SysShape::Animator::verbose = false;

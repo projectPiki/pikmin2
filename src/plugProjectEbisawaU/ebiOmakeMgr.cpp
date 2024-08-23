@@ -122,7 +122,7 @@ void FSMState_SelectGame::do_exec(TMgr* mgr)
 		break;
 	case ProbeGBA:
 		if (gCardEMgr->isFinish()) {
-			if (!gCardEMgr->mEndStat) {
+			if (gCardEMgr->mEndStat == CardEReader::TMgr::Error_Success) {
 				gCardEMgr->uploadToGBA(mgr->mOmakeGame.mSelection);
 				mgr->mOmakeGame.openMsg(ebi::Screen::TOmakeGame::Transferring);
 				u32 duration = 3.0f / sys->mDeltaTime;
@@ -146,7 +146,7 @@ void FSMState_SelectGame::do_exec(TMgr* mgr)
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_ACCESS, 0);
 		if (gCardEMgr->isFinish() && !mTimer) {
 			switch (gCardEMgr->mEndStat) {
-			case 0:
+			case CardEReader::TMgr::Error_Success:
 				PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_OK, 0);
 				mgr->mOmakeGame.openMsg(ebi::Screen::TOmakeGame::TransferFinished);
 				u32 duration = 5.0f / sys->mDeltaTime;
@@ -154,7 +154,7 @@ void FSMState_SelectGame::do_exec(TMgr* mgr)
 				mTimerMax    = duration;
 				mStatus      = Finish;
 				break;
-			case 1:
+			case CardEReader::TMgr::Error_UnableToTransfer:
 				PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_ERROR, 0);
 				mgr->mOmakeGame.openMsg(ebi::Screen::TOmakeGame::TransferUnable);
 				duration  = 5.0f / sys->mDeltaTime;
@@ -162,7 +162,7 @@ void FSMState_SelectGame::do_exec(TMgr* mgr)
 				mTimerMax = duration;
 				mStatus   = Error;
 				break;
-			case 2:
+			case CardEReader::TMgr::Error_TransferFailed:
 				PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_ERROR, 0);
 				mgr->mOmakeGame.openMsg(ebi::Screen::TOmakeGame::TransferFailed);
 				duration  = 5.0f / sys->mDeltaTime;

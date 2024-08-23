@@ -1156,14 +1156,14 @@ bool ObjFinalResult::doUpdate()
 		}
 		mSaveMgr->update();
 		if (mSaveMgr->isFinish()) {
-			switch (mSaveMgr->mCurrStateID) {
-			case 0:
-			case 2:
+			switch (mSaveMgr->mEndState) {
+			case ebi::Save::TMgr::End_SaveDone:
+			case ebi::Save::TMgr::End_SelectNoSave:
 				JUT_ASSERTLINE(382, getDispMember()->isID(OWNER_KH, MEMBER_FINAL_RESULT), "disp member err");
 				DispFinalResult* disp = static_cast<DispFinalResult*>(getDispMember());
 				disp->mExitStatus     = ::Screen::Game2DMgr::CHECK2D_FinalResult_Finished;
 				break;
-			case 1:
+			case ebi::Save::TMgr::End_Cancel:
 				mFlags &= ~SaveOpen;
 				break;
 			}

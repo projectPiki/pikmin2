@@ -18,13 +18,15 @@ void CardE_probeAGB();
 bool CardE_uploadToGBA(s32 chan, u8* data, size_t size);
 
 struct TMgr : public JKRDisposer {
-	enum enumErr { Error_0, Error_1, Error_2 };
+
+	// Yes 0 is success even though the enum is named Error
+	enum enumErr { Error_Success, Error_UnableToTransfer, Error_TransferFailed };
 
 	TMgr()
 	{
 		mGameID  = 0;
 		mState   = 0;
-		mEndStat = Error_0;
+		mEndStat = Error_Success;
 		mGbaPort = -1;
 	}
 
@@ -48,7 +50,7 @@ struct TMgr : public JKRDisposer {
 	int mGameID;      // _30
 	int mState;       // _34
 	int mIsUploading; // _38
-	int mEndStat;     // _3C
+	enumErr mEndStat; // _3C
 	int mGbaPort;     // _40
 	int mCounter;     // _44
 	OSMutex mMutex;   // _48

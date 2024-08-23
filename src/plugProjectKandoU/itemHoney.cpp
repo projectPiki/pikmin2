@@ -23,12 +23,12 @@ Mgr* mgr;
 void FSM::init(CFSMItem*)
 {
 	create(HONEY_StateCount);
-	registerState(new FallState());
-	registerState(new BounceState());
-	registerState(new WaitState());
-	registerState(new ShrinkState());
-	registerState(new TouchState());
-	registerState(new DemoState());
+	registerState(new FallState);
+	registerState(new BounceState);
+	registerState(new WaitState);
+	registerState(new ShrinkState);
+	registerState(new TouchState);
+	registerState(new DemoState);
 }
 
 /**

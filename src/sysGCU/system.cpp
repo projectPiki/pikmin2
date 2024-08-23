@@ -790,13 +790,13 @@ void System::checkOptionBlockSaveFlag()
  * @note Address: 0x80422F10
  * @note Size: 0x10
  */
-void System::clearOptionBlockSaveFlag() { mPlayData->mChallengeOpen = false; }
+void System::clearOptionBlockSaveFlag() { mPlayData->mDoSaveOptions = false; }
 
 /**
  * @note Address: 0x80422F20
  * @note Size: 0x10
  */
-void System::setOptionBlockSaveFlag() { mPlayData->mChallengeOpen = true; }
+void System::setOptionBlockSaveFlag() { mPlayData->mDoSaveOptions = true; }
 
 /**
  * @note Address: 0x80422F30

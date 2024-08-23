@@ -78,12 +78,10 @@ void EndingState::dvdload()
 	} else {
 		info.mSceneType = PSGame::SceneInfo::ENDING_DEBTRESULT;
 	}
-	info.mCameras            = 0;
-	PSGame::PikSceneMgr* mgr = static_cast<PSGame::PikSceneMgr*>(PSSystem::getSceneMgr());
-	mgr->newAndSetCurrentScene(info);
-	mgr = static_cast<PSGame::PikSceneMgr*>(PSSystem::getSceneMgr());
-	mgr->checkScene();
-	mgr->mScenes->mChild->scene1stLoadSync();
+	info.mCameras = 0;
+	static_cast<PSGame::PikSceneMgr*>(PSSystem::getSceneMgr())->newAndSetCurrentScene(info);
+	PSSystem::getSceneMgr()->doFirstLoad();
+
 	do_dvdload();
 	if (!(mFlag & Ending_SkipMovie)) {
 		if (!(mFlag & Ending_IsComplete)) {
@@ -196,7 +194,7 @@ void EndingState::exec(SingleGameSection* game)
 					mgr->mScenes->mChild->startMainSeq();
 
 					playData->clearCurrentCave();
-					sys->mPlayData->mChallengeOpen = true;
+					sys->mPlayData->mDoSaveOptions = true;
 					sys->getPlayCommonData()->mChallengeFlags.set(1);
 					if (playData->courseOpen(2)) {
 						playData->openCourse(3);
@@ -218,9 +216,7 @@ void EndingState::exec(SingleGameSection* game)
 			particle2dMgr->update();
 			switch (Screen::gGame2DMgr->check_FinalMessage()) {
 			case Screen::Game2DMgr::CHECK2D_FinalMessage_Continue:
-				PSGame::PikSceneMgr* mgr = static_cast<PSGame::PikSceneMgr*>(PSSystem::getSceneMgr());
-				mgr->checkScene();
-				mgr->mScenes->mChild->stopMainSeq(30);
+				PSSystem::getSceneMgr()->doStopMainSeq(30);
 				Screen::gGame2DMgr->mScreenMgr->reset();
 				mStatus   = EndingStatus_PlayMoviePostDebtStart;
 				mThpState = 1;
@@ -259,12 +255,10 @@ void EndingState::exec(SingleGameSection* game)
 					Screen::gGame2DMgr->setGamePad(mController);
 					Screen::gGame2DMgr->open_FinalResult(disp);
 
-					PSGame::PikSceneMgr* mgr = static_cast<PSGame::PikSceneMgr*>(PSSystem::getSceneMgr());
-					mgr->checkScene();
-					mgr->mScenes->mChild->startMainSeq();
+					PSSystem::getSceneMgr()->doStartMainSeq();
 
 					playData->clearCurrentCave();
-					sys->mPlayData->mChallengeOpen = true;
+					sys->mPlayData->mDoSaveOptions = true;
 					sys->getPlayCommonData()->mChallengeFlags.set(2);
 					playData->mStoryFlags |= STORY_AllTreasuresCollected;
 					mStatus = EndingStatus_ShowFinalResultsComplete;
@@ -286,12 +280,10 @@ void EndingState::exec(SingleGameSection* game)
 					Screen::gGame2DMgr->setGamePad(mController);
 					Screen::gGame2DMgr->open_FinalResult(disp);
 
-					PSGame::PikSceneMgr* mgr = static_cast<PSGame::PikSceneMgr*>(PSSystem::getSceneMgr());
-					mgr->checkScene();
-					mgr->mScenes->mChild->startMainSeq();
+					PSSystem::getSceneMgr()->doStartMainSeq();
 
 					playData->clearCurrentCave();
-					sys->mPlayData->mChallengeOpen = true;
+					sys->mPlayData->mDoSaveOptions = true;
 					sys->getPlayCommonData()->mChallengeFlags.set(2);
 					playData->mStoryFlags |= STORY_AllTreasuresCollected;
 					mStatus = EndingStatus_ShowFinalResultsComplete;
@@ -334,9 +326,7 @@ void EndingState::draw(SingleGameSection* game, Graphics& gfx)
  */
 void EndingState::cleanup(SingleGameSection* game)
 {
-	PSGame::PikSceneMgr* mgr = static_cast<PSGame::PikSceneMgr*>(PSSystem::getSceneMgr());
-	PSSystem::validateSceneMgr(mgr);
-	mgr->deleteCurrentScene();
+	PSMGetSceneMgrCheck()->deleteCurrentScene();
 	if (mTHPPlayer) {
 		mTHPPlayer->stop();
 	}

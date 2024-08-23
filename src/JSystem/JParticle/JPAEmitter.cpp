@@ -113,7 +113,7 @@ void JPABaseEmitter::deleteAllParticle()
  */
 bool JPABaseEmitter::processTillStartFrame()
 {
-	if (mWaitTime >= mResource->mDynamicsBlock->mData->mStartFrame) {
+	if (mWaitTime >= mResource->getDyn()->getStartFrame()) {
 		return true;
 	}
 

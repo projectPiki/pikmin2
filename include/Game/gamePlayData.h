@@ -478,7 +478,7 @@ struct PlayData : public CNode {
 
 	// _00     = VTBL
 	// _00-_18 = CNode
-	bool _18;                               // _18
+	bool mDoAllowDebugPikiSpawn;            // _18
 	u8 mLoadType;                           // _19, see SaveFlags enum
 	void* mBeforeSaveDelegate;              // _1C
 	u8 mDeadNaviID;                         // _20

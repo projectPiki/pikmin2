@@ -2881,7 +2881,7 @@ void JPAResource::drawP(JPAEmitterWorkData* data)
 	data->mEmitter->resetFlag(JPAEMIT_DrawChild);
 	data->mGlobalPtclScl.x = data->mEmitter->mGlobalPScl.x * mBaseShape->mData->mBaseSizeX;
 	data->mGlobalPtclScl.y = data->mEmitter->mGlobalPScl.y * mBaseShape->mData->mBaseSizeY;
-	u32 flag               = mBaseShape->mData->mFlags & 0xf;
+	u32 flag               = mBaseShape->getType();
 	if (flag == 0) {
 		data->mGlobalPtclScl.x *= 1.02f;
 	} else if (flag == 1) {
@@ -2889,7 +2889,7 @@ void JPAResource::drawP(JPAEmitterWorkData* data)
 		data->mGlobalPtclScl.y *= 0.4f;
 	}
 
-	if (mExtraShape && mExtraShape->mData->mFlags & 1) {
+	if (mExtraShape && mExtraShape->isEnableScaleAnm()) {
 		data->mPivot.x = (mExtraShape->mData->mFlags >> 0xc & 3) - 1.0f;
 		data->mPivot.y = (mExtraShape->mData->mFlags >> 0xe & 3) - 1.0f;
 	} else {
@@ -2897,8 +2897,8 @@ void JPAResource::drawP(JPAEmitterWorkData* data)
 		data->mPivot.x = 0.0f;
 	}
 	bool test      = true;
-	data->mDirType = mBaseShape->mData->mFlags >> 4 & 7;
-	data->mRotType = mBaseShape->mData->mFlags >> 7 & 7;
+	data->mDirType = mBaseShape->getDirType();
+	data->mRotType = mBaseShape->getRotType();
 
 	flag = mBaseShape->mData->mFlags & 15;
 	if (flag != 4 && flag != 8) {
@@ -3209,7 +3209,7 @@ lbl_80097508:
 void JPAResource::drawC(JPAEmitterWorkData* data)
 {
 	data->mEmitter->setFlag(JPAEMIT_DrawChild);
-	if (mChildShape->mData->mFlags & 0x10000) {
+	if (mChildShape->isScaleInherited()) {
 		data->mGlobalPtclScl.x = data->mEmitter->mGlobalPScl.x * mBaseShape->mData->mBaseSizeX;
 		data->mGlobalPtclScl.y = data->mEmitter->mGlobalPScl.y * mBaseShape->mData->mBaseSizeY;
 	} else {

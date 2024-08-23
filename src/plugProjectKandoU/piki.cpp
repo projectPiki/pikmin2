@@ -1372,14 +1372,7 @@ void Piki::do_updateLookCreature()
 		}
 
 		if (mPikiUpdateContext.updatable()) {
-			int animIdx;
-			if (mAnimator.mSelfAnimator.mAnimInfo) {
-				animIdx = mAnimator.mSelfAnimator.mAnimInfo->mId;
-			} else {
-				animIdx = IPikiAnims::NULLANIM;
-			}
-
-			switch (animIdx) {
+			switch (mAnimator.mSelfAnimator.getAnimIndex()) {
 			default:
 				finishLook();
 				return;

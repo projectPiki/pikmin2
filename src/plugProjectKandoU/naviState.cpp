@@ -1589,14 +1589,8 @@ void NaviPunchState::hitCallback(CollPart* collpart)
 	if (playData->isDemoFlag(DEMO_Meet_Red_Pikmin) && collpart) {
 		bool isRocketFist = false; // is this the third WHABAM punch from a rocket fist captain
 		f32 damage        = 7.5f;
-		int animIdx;
-		if (mNavi->mAnimator.mSelfAnimator.mAnimInfo) {
-			animIdx = mNavi->mAnimator.mSelfAnimator.mAnimInfo->mId;
-		} else {
-			animIdx = IPikiAnims::NULLANIM;
-		}
 
-		if (animIdx == IPikiAnims::PUNCH3) {
+		if (mNavi->mAnimator.mSelfAnimator.getAnimIndex() == IPikiAnims::PUNCH3) {
 			isRocketFist = true;
 			damage *= 2.5f;
 		}

@@ -164,7 +164,7 @@ struct Mgr : public PlayCommonData {
 	u8 mRegion;          // _3E
 	char _3F;            // _3F
 	BitFlag<u16> mFlags; // _40
-	bool mChallengeOpen; // _42
+	bool mDoSaveOptions; // _42
 	u32 _44;             // _44
 };
 } // namespace CommonSaveData

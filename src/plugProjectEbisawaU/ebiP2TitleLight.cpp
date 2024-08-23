@@ -40,8 +40,8 @@ void TTitleLightMgr::setParam_()
 	mLightObjMain.mElevation = temp;
 
 	setRefValues(mSetting.mMainParms.mLightRange, mSetting.mMainParms.mLightBrightness, mSetting.mMainParms.mCutoffAngle);
-	mLightObjMain.mDistAttnFn = 1;
-	mLightObjMain.mSpotFn     = 3;
+	mLightObjMain.mDistAttnFn = GX_DA_GENTLE;
+	mLightObjMain.mSpotFn     = GX_SP_COS2;
 
 	mLightObjSpec.mColor = Color4(mSetting.mSpecParms.mLightColR, mSetting.mSpecParms.mLightColG, mSetting.mSpecParms.mLightColB,
 	                              mSetting.mSpecParms.mLightColA);

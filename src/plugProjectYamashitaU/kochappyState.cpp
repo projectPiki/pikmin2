@@ -113,7 +113,7 @@ void StateWait::exec(EnemyBase* enemy)
 				Parms* parms = CG_PARMS(enemy);
 				f32 angLimit = parms->mProperParms.mRotationEndAngle.mValue;
 				f32 angDist  = enemy->turnToTarget(enemy->mTargetCreature, CG_GENERALPARMS(enemy).mTurnSpeed(),
-                                                  CG_GENERALPARMS(enemy).mMaxTurnAngle()); // this is wrong?
+				                                   CG_GENERALPARMS(enemy).mMaxTurnAngle()); // this is wrong?
 				if (FABS(angDist) <= TORADIANS(angLimit)) {
 					transit(enemy, KOCHAPPY_Walk, nullptr);
 				} else {
@@ -2777,8 +2777,8 @@ StateDemo::StateDemo(int stateID)
 void StateDemo::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->kill(nullptr);
-	if (gameSystem->mSection->getTimerType() != 3 && !playData->isDemoFlag(DEMO_Unlock_Captain_Switch)) {
-		gameSystem->mSection->enableTimer(5.0f, 3);
+	if (gameSystem->mSection->getTimerType() != DEMOTIMER_Unlock_Switch_To_Louie && !playData->isDemoFlag(DEMO_Unlock_Captain_Switch)) {
+		gameSystem->mSection->enableTimer(5.0f, DEMOTIMER_Unlock_Switch_To_Louie);
 	}
 }
 

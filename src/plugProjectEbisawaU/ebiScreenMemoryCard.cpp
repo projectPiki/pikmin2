@@ -648,10 +648,10 @@ void TMemoryCard::startState(enumState state)
 		mCursor2.mCursor.create(nullptr);
 		mInputDelay    = 20;
 		mInputDelayMax = 20;
-		mAnim2.play(sys->mDeltaTime * 60.0f, (J3DAnmAttr)0, true);
-		mAnim3.play(sys->mDeltaTime * 60.0f, (J3DAnmAttr)0, true);
-		mAnim4.play(sys->mDeltaTime * 60.0f, (J3DAnmAttr)0, true);
-		mAnim5.play(sys->mDeltaTime * 60.0f, (J3DAnmAttr)0, true);
+		mAnim2.play(sys->mDeltaTime * 60.0f, J3DAA_UNKNOWN_0, true);
+		mAnim3.play(sys->mDeltaTime * 60.0f, J3DAA_UNKNOWN_0, true);
+		mAnim4.play(sys->mDeltaTime * 60.0f, J3DAA_UNKNOWN_0, true);
+		mAnim5.play(sys->mDeltaTime * 60.0f, J3DAA_UNKNOWN_0, true);
 		mScreenMain->animation();
 		break;
 
@@ -665,10 +665,10 @@ void TMemoryCard::startState(enumState state)
 		mPaneMsg3->setAlpha(255);
 		mInputDelay    = 20;
 		mInputDelayMax = 20;
-		mAnim2.play(sys->mDeltaTime * 60.0f, (J3DAnmAttr)0, true);
-		mAnim3.play(sys->mDeltaTime * 60.0f, (J3DAnmAttr)0, true);
-		mAnim4.play(sys->mDeltaTime * 60.0f, (J3DAnmAttr)0, true);
-		mAnim5.play(sys->mDeltaTime * 60.0f, (J3DAnmAttr)0, true);
+		mAnim2.play(sys->mDeltaTime * 60.0f, J3DAA_UNKNOWN_0, true);
+		mAnim3.play(sys->mDeltaTime * 60.0f, J3DAA_UNKNOWN_0, true);
+		mAnim4.play(sys->mDeltaTime * 60.0f, J3DAA_UNKNOWN_0, true);
+		mAnim5.play(sys->mDeltaTime * 60.0f, J3DAA_UNKNOWN_0, true);
 		mScreenMain->animation();
 		break;
 	case MEMCARD_Finish:

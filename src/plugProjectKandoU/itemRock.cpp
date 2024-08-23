@@ -40,14 +40,13 @@ void NormalState::init(Item* item, StateArg* stateArg)
  */
 void NormalState::exec(Item* item)
 {
-	ItemRock::Item* rock = static_cast<ItemRock::Item*>(item);
-	f32 changeTime       = rock->mGrowTimes[rock->mSize];
-	if (rock->mSize > Item::SIZE_Max) {
-		rock->mSizeTimer += sys->mDeltaTime;
-		if (rock->mSizeTimer >= changeTime) {
+	f32 changeTime = item->mGrowTimes[item->mSize];
+	if (item->mSize > Item::SIZE_Max) {
+		item->mSizeTimer += sys->mDeltaTime;
+		if (item->mSizeTimer >= changeTime) {
 			mIsFullSize   = 1;
-			rock->mHealth = rock->mHealthLimits[rock->mSize - 1];
-			transit(rock, ITEMROCK_Up, nullptr);
+			item->mHealth = item->mHealthLimits[item->mSize - 1];
+			transit(item, ITEMROCK_Up, nullptr);
 		}
 	}
 }
@@ -64,14 +63,13 @@ void NormalState::cleanup(Item*) { }
  */
 void NormalState::onDamage(Item* item, f32 damage)
 {
-	ItemRock::Item* rock = static_cast<ItemRock::Item*>(item);
-	rock->startDamageMotion();
-	rock->mDamageBuffer += damage;
-	rock->mHealth -= rock->mDamageBuffer;
-	rock->mDamageBuffer = 0.0f;
-	if (rock->mHealth < rock->mHealthLimits[rock->mSize + 1]) {
+	item->startDamageMotion();
+	item->mDamageBuffer += damage;
+	item->mHealth -= item->mDamageBuffer;
+	item->mDamageBuffer = 0.0f;
+	if (item->mHealth < item->mHealthLimits[item->mSize + 1]) {
 		mIsDamaged = 1;
-		transit(rock, ITEMROCK_Down, nullptr);
+		transit(item, ITEMROCK_Down, nullptr);
 	}
 }
 
@@ -81,22 +79,21 @@ void NormalState::onDamage(Item* item, f32 damage)
  */
 void NormalState::onKeyEvent(Item* item, const SysShape::KeyEvent& event)
 {
-	ItemRock::Item* rock = static_cast<ItemRock::Item*>(item);
 	if (event.mType == KEYEVENT_100) {
-		Vector3f rockPos = rock->getPosition();
-		rock->startFukuEffect(rockPos);
+		Vector3f rockPos = item->getPosition();
+		item->startFukuEffect(rockPos);
 	}
 
 	if (mIsFullSize) {
-		rock->mHealth = rock->mHealthLimits[rock->mSize - 1];
-		transit(rock, ITEMROCK_Up, nullptr);
+		item->mHealth = item->mHealthLimits[item->mSize - 1];
+		transit(item, ITEMROCK_Up, nullptr);
 		return;
 	} else if (mIsDamaged) {
-		transit(rock, ITEMROCK_Down, nullptr);
+		transit(item, ITEMROCK_Down, nullptr);
 		return;
 	}
 
-	rock->startWaitMotion();
+	item->startWaitMotion();
 }
 
 /**
@@ -105,7 +102,7 @@ void NormalState::onKeyEvent(Item* item, const SysShape::KeyEvent& event)
  */
 void DownState::init(Item* item, StateArg* stateArg)
 {
-	static_cast<ItemRock::Item*>(item)->startDownMotion();
+	item->startDownMotion();
 	item->startSound(PSSE_EV_RUIN_WITHER);
 }
 
@@ -125,7 +122,7 @@ void DownState::cleanup(Item*) { }
  * @note Address: 0x801E12BC
  * @note Size: 0x10
  */
-void DownState::onDamage(Item* item, f32 damage) { static_cast<ItemRock::Item*>(item)->mDamageBuffer += damage; }
+void DownState::onDamage(Item* item, f32 damage) { item->mDamageBuffer += damage; }
 
 /**
  * @note Address: 0x801E12CC
@@ -133,18 +130,17 @@ void DownState::onDamage(Item* item, f32 damage) { static_cast<ItemRock::Item*>(
  */
 void DownState::onKeyEvent(Item* item, const SysShape::KeyEvent& event)
 {
-	ItemRock::Item* rock = static_cast<ItemRock::Item*>(item);
-	rock->mSizeTimer     = 0.0f;
-	rock->mSize++;
-	if (rock->mSize >= rock->mSizeCount) {
-		rock->mSize = rock->mSizeCount;
-		rock->setAlive(false);
-		rock->finishLoopEffect();
+	item->mSizeTimer = 0.0f;
+	item->mSize++;
+	if (item->mSize >= item->mSizeCount) {
+		item->mSize = item->mSizeCount;
+		item->setAlive(false);
+		item->finishLoopEffect();
 	}
 
-	rock->mObstacle->setPower(1.0f - (f32)rock->mSize / (f32)rock->mSizeCount);
-	rock->startLoopEffect();
-	transit(rock, ITEMROCK_Normal, nullptr);
+	item->mObstacle->setPower(1.0f - (f32)item->mSize / (f32)item->mSizeCount);
+	item->startLoopEffect();
+	transit(item, ITEMROCK_Normal, nullptr);
 }
 
 /**
@@ -153,11 +149,10 @@ void DownState::onKeyEvent(Item* item, const SysShape::KeyEvent& event)
  */
 void UpState::init(Item* item, StateArg* stateArg)
 {
-	ItemRock::Item* rock = static_cast<ItemRock::Item*>(item);
-	rock->startUpMotion();
-	rock->mAnimSpeed = 30.0f;
-	rock->mSizeTimer = 0.0f;
-	rock->startSound(PSSE_EV_RUIN_GROW);
+	item->startUpMotion();
+	item->mAnimSpeed = 30.0f;
+	item->mSizeTimer = 0.0f;
+	item->startSound(PSSE_EV_RUIN_GROW);
 }
 
 /**
@@ -176,7 +171,7 @@ void UpState::cleanup(Item*) { }
  * @note Address: 0x801E141C
  * @note Size: 0x10
  */
-void UpState::onDamage(Item* item, f32 damage) { static_cast<ItemRock::Item*>(item)->mDamageBuffer += damage; }
+void UpState::onDamage(Item* item, f32 damage) { item->mDamageBuffer += damage; }
 
 /**
  * @note Address: 0x801E142C
@@ -184,12 +179,10 @@ void UpState::onDamage(Item* item, f32 damage) { static_cast<ItemRock::Item*>(it
  */
 void UpState::onKeyEvent(Item* item, const SysShape::KeyEvent& event)
 {
-	// sigh - cannot do a cast at the start, doesn't match.
-	static_cast<ItemRock::Item*>(item)->mSize--;
+	item->mSize--;
 	item->setAlive(true);
-	static_cast<ItemRock::Item*>(item)->mObstacle->setPower(
-	    1.0f - (f32) static_cast<ItemRock::Item*>(item)->mSize / (f32) static_cast<ItemRock::Item*>(item)->mSizeCount);
-	static_cast<ItemRock::Item*>(item)->startLoopEffect();
+	item->mObstacle->setPower(1.0f - (f32)item->mSize / (f32)item->mSizeCount);
+	item->startLoopEffect();
 	transit(item, ITEMROCK_Normal, nullptr);
 }
 
@@ -623,14 +616,13 @@ f32 Item::getWorkRadius()
  * @note Size: 0x120
  */
 Mgr::Mgr()
-    : TNodeItemMgr()
 {
 	mItemName = "荒廃オブジェクト"; // 'ruined object'
 	setModelSize(1);
 	mObjectPathComponent = "user/Kando/objects/ojamarock";
-	mParms               = new RockParms();
+	mParms               = new RockParms;
 	void* resource       = JKRDvdRipper::loadToMainRAM("user/Abe/item/rockParms.txt", nullptr, Switch_0, 0, nullptr,
-                                                 JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
+	                                                   JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
 	if (resource) {
 		RamStream stream(resource, -1);
 		stream.setMode(STREAM_MODE_TEXT, 1);

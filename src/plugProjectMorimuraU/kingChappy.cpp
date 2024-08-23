@@ -261,9 +261,7 @@ void Obj::doAnimationUpdateAnimator()
 		frameRate     = EnemyAnimatorBase::defaultAnimSpeed * frameRate;
 		SysShape::BlendLinearFun linearBlend;
 		animator->animate(&linearBlend, 60.0f * sys->mDeltaTime, frameRate, frameRate);
-
-		SysShape::Model* model = mModel;
-		model->mJ3dModel->mModelData->mJointTree.getJointNodePointer(0)->setMtxCalc(animator->mAnimator.getCalc());
+		static_cast<EnemyBlendAnimatorBase*>(animator)->mAnimator.setModelCalc(mModel, 0);
 	} else {
 		EnemyBase::doAnimationUpdateAnimator();
 	}
@@ -2523,12 +2521,7 @@ void Obj::startMotionSelf(int animIdx, SysShape::MotionListener* listener)
 
 		f32 timer = sysAnim.mTimer;
 		if (frame - 1.0f > timer) {
-			int currAnim;
-			if (sysAnim.mAnimInfo) {
-				currAnim = sysAnim.mAnimInfo->mId;
-			} else {
-				currAnim = -1;
-			}
+			int currAnim = sysAnim.getAnimIndex();
 
 			if (animIdx != currAnim) {
 				startBlend(currAnim, animIdx, &EnemyBlendAnimatorBase::sBlendLinearFun, 30.0f, nullptr);
@@ -2551,12 +2544,8 @@ void Obj::startMotionSelf(int animIdx, SysShape::MotionListener* listener)
 void Obj::endBlendAnimation()
 {
 	SysShape::Animator& animator = mAnimator->getAnimator(1);
-	int animIdx;
-	if (animator.mAnimInfo) {
-		animIdx = animator.mAnimInfo->mId;
-	} else {
-		animIdx = -1;
-	}
+
+	int animIdx = animator.getAnimIndex();
 
 	f32 timer = animator.mTimer;
 

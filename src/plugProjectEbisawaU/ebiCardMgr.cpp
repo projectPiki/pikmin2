@@ -239,9 +239,9 @@ void FSMState_CardRequest::do_exec(TMgr* mgr)
  */
 void FSMState_CardRequest::do_transitCardNoCard(TMgr* mgr)
 {
-	if (!mgr->mIsBroken) {
+	if (mgr->mParentMenuType == CardError::TMgr::Parent_FileSelect) {
 		transit(mgr, CARDERROR_NoCard, nullptr);
-	} else if (mgr->mIsBroken == 1) {
+	} else if (mgr->mParentMenuType == CardError::TMgr::Parent_Save) {
 		transit(mgr, CARDERROR_NoCard, nullptr);
 	}
 }
@@ -252,9 +252,9 @@ void FSMState_CardRequest::do_transitCardNoCard(TMgr* mgr)
  */
 void FSMState_CardRequest::do_transitCardIOError(TMgr* mgr)
 {
-	if (!mgr->mIsBroken) {
+	if (mgr->mParentMenuType == CardError::TMgr::Parent_FileSelect) {
 		transit(mgr, CARDERROR_IOError, nullptr);
-	} else if (mgr->mIsBroken == 1) {
+	} else if (mgr->mParentMenuType == CardError::TMgr::Parent_Save) {
 		transit(mgr, CARDERROR_IOError, nullptr);
 	}
 }
@@ -265,9 +265,9 @@ void FSMState_CardRequest::do_transitCardIOError(TMgr* mgr)
  */
 void FSMState_CardRequest::do_transitCardWrongDevice(TMgr* mgr)
 {
-	if (!mgr->mIsBroken) {
+	if (mgr->mParentMenuType == CardError::TMgr::Parent_FileSelect) {
 		transit(mgr, CARDERROR_WrongDevice, nullptr);
-	} else if (mgr->mIsBroken == 1) {
+	} else if (mgr->mParentMenuType == CardError::TMgr::Parent_Save) {
 		transit(mgr, CARDERROR_WrongDevice, nullptr);
 	}
 }
@@ -278,9 +278,9 @@ void FSMState_CardRequest::do_transitCardWrongDevice(TMgr* mgr)
  */
 void FSMState_CardRequest::do_transitCardWrongSector(TMgr* mgr)
 {
-	if (!mgr->mIsBroken) {
+	if (mgr->mParentMenuType == CardError::TMgr::Parent_FileSelect) {
 		transit(mgr, CARDERROR_WrongSector, nullptr);
-	} else if (mgr->mIsBroken == 1) {
+	} else if (mgr->mParentMenuType == CardError::TMgr::Parent_Save) {
 		transit(mgr, CARDERROR_WrongSector, nullptr);
 	}
 }
@@ -291,9 +291,9 @@ void FSMState_CardRequest::do_transitCardWrongSector(TMgr* mgr)
  */
 void FSMState_CardRequest::do_transitCardBroken(TMgr* mgr)
 {
-	if (!mgr->mIsBroken) {
+	if (mgr->mParentMenuType == CardError::TMgr::Parent_FileSelect) {
 		transit(mgr, CARDERROR_DataBrokenAndDoYouFormat, nullptr);
-	} else if (mgr->mIsBroken == 1) {
+	} else if (mgr->mParentMenuType == CardError::TMgr::Parent_Save) {
 		transit(mgr, CARDERROR_DataBrokenAndDoYouFormat, nullptr);
 	}
 }
@@ -304,9 +304,9 @@ void FSMState_CardRequest::do_transitCardBroken(TMgr* mgr)
  */
 void FSMState_CardRequest::do_transitCardEncoding(TMgr* mgr)
 {
-	if (!mgr->mIsBroken) {
+	if (mgr->mParentMenuType == CardError::TMgr::Parent_FileSelect) {
 		transit(mgr, CARDERROR_DataBrokenAndDoYouFormat, nullptr);
-	} else if (mgr->mIsBroken == 1) {
+	} else if (mgr->mParentMenuType == CardError::TMgr::Parent_Save) {
 		transit(mgr, CARDERROR_DataBrokenAndDoYouFormat, nullptr);
 	}
 }
@@ -317,9 +317,9 @@ void FSMState_CardRequest::do_transitCardEncoding(TMgr* mgr)
  */
 void FSMState_CardRequest::do_transitCardNoFileSpace(TMgr* mgr)
 {
-	if (!mgr->mIsBroken) {
+	if (mgr->mParentMenuType == CardError::TMgr::Parent_FileSelect) {
 		transit(mgr, CARDERROR_OverCapacity, nullptr);
-	} else if (mgr->mIsBroken == 1) {
+	} else if (mgr->mParentMenuType == CardError::TMgr::Parent_Save) {
 		transit(mgr, CARDERROR_OverCapacity, nullptr);
 	}
 }
@@ -330,9 +330,9 @@ void FSMState_CardRequest::do_transitCardNoFileSpace(TMgr* mgr)
  */
 void FSMState_CardRequest::do_transitCardNoFileEntry(TMgr* mgr)
 {
-	if (!mgr->mIsBroken) {
+	if (mgr->mParentMenuType == CardError::TMgr::Parent_FileSelect) {
 		transit(mgr, CARDERROR_OverCapacity, nullptr);
-	} else if (mgr->mIsBroken == 1) {
+	} else if (mgr->mParentMenuType == CardError::TMgr::Parent_Save) {
 		transit(mgr, CARDERROR_OverCapacity, nullptr);
 	}
 }
@@ -343,9 +343,9 @@ void FSMState_CardRequest::do_transitCardNoFileEntry(TMgr* mgr)
  */
 void FSMState_CardRequest::do_transitCardFileOpenError(TMgr* mgr)
 {
-	if (!mgr->mIsBroken) {
+	if (mgr->mParentMenuType == CardError::TMgr::Parent_FileSelect) {
 		transit(mgr, CARDERROR_DoYouCreateNewFile, nullptr);
-	} else if (mgr->mIsBroken == 1) {
+	} else if (mgr->mParentMenuType == CardError::TMgr::Parent_Save) {
 		transit(mgr, CARDERROR_DoYouCreateNewFile, nullptr);
 	}
 }
@@ -356,9 +356,9 @@ void FSMState_CardRequest::do_transitCardFileOpenError(TMgr* mgr)
  */
 void FSMState_CardRequest::do_transitCardSerialNoError(TMgr* mgr)
 {
-	if (!mgr->mIsBroken) {
-		JUT_PANICLINE(361, "P2Assert");
-	} else if (mgr->mIsBroken == 1) {
+	if (mgr->mParentMenuType == CardError::TMgr::Parent_FileSelect) {
+		P2ASSERTLINE(361, false);
+	} else if (mgr->mParentMenuType == CardError::TMgr::Parent_Save) {
 		transit(mgr, CARDERROR_SerialNoError, nullptr);
 	}
 }
@@ -444,75 +444,75 @@ namespace CardError {
  */
 void TMgr::startSeq(enumStart id)
 {
-	mEndStat = 0;
+	mEndStat = End_0;
 	P2ASSERTBOUNDSLINE(412, 0, id, 17);
 	switch (id) {
-	case Start_NoCard:
-		mIsBroken = 0;
+	case Start_NoCard_FS:
+		mParentMenuType = Parent_FileSelect;
 		mStateMachine.start(this, CARDERROR_NoCard, nullptr);
 		break;
-	case Start_IOError:
-		mIsBroken = 0;
+	case Start_IOError_FS:
+		mParentMenuType = Parent_FileSelect;
 		mStateMachine.start(this, CARDERROR_IOError, nullptr);
 		break;
-	case Start_WrongDevice:
-		mIsBroken = 0;
+	case Start_WrongDevice_FS:
+		mParentMenuType = Parent_FileSelect;
 		mStateMachine.start(this, CARDERROR_WrongDevice, nullptr);
 		break;
-	case Start_WrongSector:
-		mIsBroken = 0;
+	case Start_WrongSector_FS:
+		mParentMenuType = Parent_FileSelect;
 		mStateMachine.start(this, CARDERROR_WrongSector, nullptr);
 		break;
-	case Start_DataBrokenAndDoYouFormat:
-		mIsBroken = 0;
+	case Start_DataBrokenAndDoYouFormat_FS:
+		mParentMenuType = Parent_FileSelect;
 		mStateMachine.start(this, CARDERROR_DataBrokenAndDoYouFormat, nullptr);
 		break;
-	case Start_OverCapacity:
-		mIsBroken = 0;
+	case Start_OverCapacity_FS:
+		mParentMenuType = Parent_FileSelect;
 		mStateMachine.start(this, CARDERROR_OverCapacity, nullptr);
 		break;
-	case Start_DoYouCreateNewFile:
-		mIsBroken = 0;
+	case Start_DoYouCreateNewFile_FS:
+		mParentMenuType = Parent_FileSelect;
 		mStateMachine.start(this, CARDERROR_DoYouCreateNewFile, nullptr);
 		break;
-	case Start_NoCard2:
-		mIsBroken = 1;
+	case Start_NoCard_Save:
+		mParentMenuType = Parent_Save;
 		mStateMachine.start(this, CARDERROR_NoCard, nullptr);
 		break;
-	case Start_IOError2:
-		mIsBroken = 1;
+	case Start_IOError_Save:
+		mParentMenuType = Parent_Save;
 		mStateMachine.start(this, CARDERROR_IOError, nullptr);
 		break;
-	case Start_WrongDevice2:
-		mIsBroken = 1;
+	case Start_WrongDevice_Save:
+		mParentMenuType = Parent_Save;
 		mStateMachine.start(this, CARDERROR_WrongDevice, nullptr);
 		break;
-	case Start_WrongSector2:
-		mIsBroken = 1;
+	case Start_WrongSector_Save:
+		mParentMenuType = Parent_Save;
 		mStateMachine.start(this, CARDERROR_WrongSector, nullptr);
 		break;
-	case Start_DataBrokenAndDoYouFormat2:
-		mIsBroken = 1;
+	case Start_DataBrokenAndDoYouFormat_Save:
+		mParentMenuType = Parent_Save;
 		mStateMachine.start(this, CARDERROR_DataBrokenAndDoYouFormat, nullptr);
 		break;
-	case Start_OverCapacity2:
-		mIsBroken = 1;
+	case Start_OverCapacity_Save:
+		mParentMenuType = Parent_Save;
 		mStateMachine.start(this, CARDERROR_OverCapacity, nullptr);
 		break;
-	case Start_DoYouCreateNewFile2:
-		mIsBroken = 1;
+	case Start_DoYouCreateNewFile_Save:
+		mParentMenuType = Parent_Save;
 		mStateMachine.start(this, CARDERROR_DoYouCreateNewFile, nullptr);
 		break;
 	case Start_SerialNoError:
-		mIsBroken = 1;
+		mParentMenuType = Parent_Save;
 		mStateMachine.start(this, CARDERROR_SerialNoError, nullptr);
 		break;
 	case Start_FailToSave_NoCard:
-		mIsBroken = 1;
+		mParentMenuType = Parent_Save;
 		mStateMachine.start(this, CARDERROR_FailToSave_NoCard, nullptr);
 		break;
 	case Start_FailToSave_IOError:
-		mIsBroken = 1;
+		mParentMenuType = Parent_Save;
 		mStateMachine.start(this, CARDERROR_FailToSave_IOError, nullptr);
 		break;
 	}
@@ -552,9 +552,9 @@ void TMgr::checkAndTransitNoCard_()
 	}
 
 	if (check) {
-		if (mIsBroken == 0) {
+		if (mParentMenuType == Parent_FileSelect) {
 			mStateMachine.transit(this, CARDERROR_NoCard, nullptr);
-		} else if (mIsBroken == 1) {
+		} else if (mParentMenuType == Parent_Save) {
 			mStateMachine.transit(this, CARDERROR_NoCard, nullptr);
 		}
 	}

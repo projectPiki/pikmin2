@@ -431,14 +431,14 @@ PlayData::~PlayData() { playData = nullptr; }
  */
 void PlayData::reset()
 {
-	mNaviLifeMax[1] = 0.0f;
-	mNaviLifeMax[0] = 0.0f;
-	mDeadNaviID     = 0;
-	u64 osTime      = OSGetTime();
-	mOsTime         = osTime;
-	_18             = false;
-	mLoadType       = 0;
-	mStoryFlags     = 0;
+	mNaviLifeMax[1]        = 0.0f;
+	mNaviLifeMax[0]        = 0.0f;
+	mDeadNaviID            = 0;
+	u64 osTime             = OSGetTime();
+	mOsTime                = osTime;
+	mDoAllowDebugPikiSpawn = false;
+	mLoadType              = 0;
+	mStoryFlags            = 0;
 	mDebtProgressFlags.clear();
 	mBackupDebtProgressFlags.clear();
 	for (int i = 0; i <= -1; i++) {
@@ -488,10 +488,10 @@ void PlayData::reset()
  * @note Address: 0x801E6E90
  * @note Size: 0xC8
  */
-void PlayData::setDevelopSetting(bool p1, bool p2)
+void PlayData::setDevelopSetting(bool isDevelop, bool setDemos)
 {
-	_18 = p1;
-	if (p1) {
+	mDoAllowDebugPikiSpawn = isDevelop;
+	if (isDevelop) {
 		initCourses(true);
 		debugSetContainerFlagOn();
 		mDemoFlags.all_one();
@@ -499,7 +499,7 @@ void PlayData::setDevelopSetting(bool p1, bool p2)
 		mOlimarData[0].mFlags[0] |= 4;
 		playData->openCourse(1);
 		initCourses(true);
-		if (!p2) {
+		if (!setDemos) {
 			mDemoFlags.resetFlag(DEMO_Waterwraith_Appears);
 			mDemoFlags.resetFlag(DEMO_First_Spicy_Berry);
 			mDemoFlags.resetFlag(DEMO_First_Bitter_Berry);

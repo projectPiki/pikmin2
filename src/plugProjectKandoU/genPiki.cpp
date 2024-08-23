@@ -49,11 +49,13 @@ Creature* GenObjectPiki::generate(Generator* gen)
 
 	Vector3f pos = gen->mPosition + gen->mOffset;
 
-	for (int i = 0; i < mAmountParm.mValue; i++) {
+	for (int i = 0; i < mAmountParm(); i++) {
 		f32 randRot    = TAU * randFloat();
 		f32 randRadius = 10.0f * randFloat();
 
-		if (mColourParm.mValue == Yellow && mIsWildPikminParm.mValue == 1) {
+		// For wild yellow pikmin, dont allow any random spawn offset
+		// This is done so they stay on the tree in Perplexing Pool
+		if (mColourParm() == Yellow && mIsWildPikminParm() == 1) {
 			randRadius = 0.0f;
 		}
 
@@ -74,8 +76,8 @@ static const char unusedGenPikiArray[] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
  */
 Creature* GenObjectPiki::birth(GenArg* arg)
 {
-	if (mIsWildPikminParm.mValue == 1) {
-		int color = mColourParm.mValue;
+	if (mIsWildPikminParm() == 1) {
+		int color = mColourParm();
 
 		if (playData->hasBootContainer(color)) {
 			return nullptr;
@@ -95,12 +97,14 @@ Creature* GenObjectPiki::birth(GenArg* arg)
 		}
 
 		return newPiki;
-	} else if (!playData->_18) {
+	}
+
+	if (!playData->mDoAllowDebugPikiSpawn) {
 		return nullptr;
 	}
 
 	getLatestVersion();
-	int color = mColourParm.mValue;
+	int color = mColourParm();
 
 	Piki* newPiki = pikiMgr->birth();
 	if (newPiki) {

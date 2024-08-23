@@ -103,7 +103,6 @@ void TScreenBase::update()
 		}
 		break;
 	case TSB_US_Finish:
-	default:
 		break;
 	}
 }

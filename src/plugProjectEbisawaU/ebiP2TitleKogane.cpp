@@ -69,7 +69,7 @@ void TAnimator::setArchive(JKRArchive* arc)
 	mModelData = J3DModelLoaderDataBase::load(file, 0x240030);
 
 	for (u16 i = 0; i < mModelData->getShapeNum(); i++) {
-		mModelData->mShapeTable.mItems[i]->mFlags = (mModelData->mShapeTable.mItems[i]->mFlags & 0xFFFF0FFF) | 0x2000;
+		mModelData->getShapeNodePointer(i)->setTexMtxLoadType(0x2000);
 	}
 
 	mModelData->newSharedDisplayList(0x40000);
@@ -100,11 +100,11 @@ void TUnit::init(TMgr* mgr)
 	mAnim.setAnimFolder(&mManager->mAnimator->mAnimFolder);
 
 	mPosition = titleMgr->getPosOutOfViewField();
-	mParms[0] = mManager->mParams.mWalkSpeed.mValue;
-	mParms[1] = mManager->mParams.mScale.mValue;
-	mParms[4] = mManager->mParams.mCullRadius.mValue;
-	mParms[2] = mManager->mParams.mCollRadius.mValue;
-	mParms[3] = mManager->mParams.mPikiReactRadius.mValue;
+	mParms[0] = mManager->mParams.mWalkSpeed();
+	mParms[1] = mManager->mParams.mScale();
+	mParms[4] = mManager->mParams.mCullRadius();
+	mParms[2] = mManager->mParams.mCollRadius();
+	mParms[3] = mManager->mParams.mPikiReactRadius();
 }
 
 /**

@@ -56,7 +56,7 @@ void Onyon::movieUserCommand(u32 code, MoviePlayer* player)
 
 		// This whole section of code is almost entirely redundant, it spawns a new sprout,
 		// kills it, then spawns the actual sprout it uses, WTF?
-		if (code == 105 || !GameStat::checkZikatu(static_cast<EPikiKind>(mOnyonType))) {
+		if (code == CC_MovieCommand6 || !GameStat::checkZikatu(static_cast<EPikiKind>(mOnyonType))) {
 			playData->setContainer(mOnyonType);
 
 			// Generate new sprout and play cutscene
@@ -458,8 +458,7 @@ bool InteractSuckDone::actOnyon(Onyon* item)
 					pellet->setAlive(true);
 					pellet->finish_carrymotion();
 
-					// TODO: define when pellet states
-					pellet->mPelletSM->transit(pellet, 5, nullptr);
+					pellet->mPelletSM->transit(pellet, PELSTATE_ScaleAppear, nullptr);
 				} else {
 					GameMessageVsBattleFinished msg;
 					msg.mWinningSide = 1 - i;
@@ -590,7 +589,7 @@ void Onyon::doDirectDraw(Graphics& gfx)
 Onyon::Onyon()
     : BaseItem(OBJTYPE_Onyon)
 {
-	mCollTree      = new CollTree();
+	mCollTree      = new CollTree;
 	mMass          = 0.0f;
 	mGoalWayPoint  = nullptr;
 	mFaceDir       = 0.0f;
@@ -798,15 +797,7 @@ Vector3f Onyon::getGoalPos()
  */
 void Onyon::doAI()
 {
-	SysShape::AnimInfo* info = mAnimator.mAnimInfo;
-	int animid;
-	if (!info) {
-		animid = -1;
-	} else {
-		animid = info->mId;
-	}
-
-	if (animid == 2 && mOnyonType <= ONYON_TYPE_YELLOW) {
+	if (mAnimator.getAnimIndex() == 2 && mOnyonType <= ONYON_TYPE_YELLOW) {
 		PSM::SeSound* sound = static_cast<PSM::SeSound*>(mSoundObj->startSound(PSSE_PK_SE_INSIDE_ONYON, 0));
 		if (sound) {
 			PSGame::SoundTable::SePerspInfo persp;
@@ -848,7 +839,7 @@ void Onyon::doAI()
 void Onyon::forceClose()
 {
 	if (mOnyonType == ONYON_TYPE_SHIP) {
-		mAnimator.setFrameByKeyType(1000);
+		mAnimator.setFrameByKeyType(KEYEVENT_END);
 		mAnimSpeed = 0.0f;
 		mUfoPodOpenSuck->fade();
 		mSuckState = SUCKSTATE_IdleClosed;
@@ -1028,12 +1019,7 @@ void Onyon::startWaitMotion()
 			mAnimator.startAnim(0, 0);
 		} else {
 			if (getStoreCount() > 0) {
-				int animid;
-				if (!mAnimator.mAnimInfo) {
-					animid = -1;
-				} else {
-					animid = mAnimator.mAnimInfo->mId;
-				}
+				int animid = mAnimator.getAnimIndex();
 				if (animid <= (u32)1 || animid == 3) {
 					mAnimator.startAnim(2, this);
 				}
@@ -1109,13 +1095,7 @@ void Onyon::vsChargePikmin()
 	P2ASSERTLINE(1791, gameSystem->isVersusMode());
 	mPikminType = mOnyonType;
 	mToBirth++;
-	SysShape::AnimInfo* info = mAnimator.mAnimInfo;
-	int animid;
-	if (!info) {
-		animid = -1;
-	} else {
-		animid = info->mId;
-	}
+	int animid = mAnimator.getAnimIndex();
 	if (animid == 0 || animid == 2) {
 		SysShape::MotionListener* mlisten = this;
 		mAnimator.startAnim(1, mlisten);
@@ -1128,13 +1108,7 @@ void Onyon::vsChargePikmin()
  */
 void Onyon::onKeyEvent_Onyon(SysShape::KeyEvent const& event)
 {
-	SysShape::AnimInfo* info = mAnimator.mAnimInfo;
-	int animid;
-	if (!info) {
-		animid = -1;
-	} else {
-		animid = info->mId;
-	}
+	int animid = mAnimator.getAnimIndex();
 
 	switch (event.mType) {
 	case KEYEVENT_END:
@@ -1200,8 +1174,7 @@ void Onyon::onKeyEvent_Onyon(SysShape::KeyEvent const& event)
 							}
 
 							mPikminType = mOnyonType;
-							int& count  = playData->mPikiContainer.getCount(mPikminType, Leaf);
-							count++;
+							playData->mPikiContainer.getCount(mPikminType, Leaf)++;
 							BirthMgr::inc(mOnyonType);
 							mToBirth--;
 						}
@@ -1216,9 +1189,6 @@ void Onyon::onKeyEvent_Onyon(SysShape::KeyEvent const& event)
 				break;
 			}
 		}
-		break;
-
-	default:
 		break;
 	}
 }
@@ -1322,12 +1292,7 @@ void Onyon::makeTrMatrix()
 void Onyon::changeMaterial()
 {
 	if (mOnyonType <= ONYON_TYPE_YELLOW) {
-		int animid;
-		if (!mAnimator.mAnimInfo) {
-			animid = -1;
-		} else {
-			animid = mAnimator.mAnimInfo->mId;
-		}
+		int animid = mAnimator.getAnimIndex();
 
 		f32 mattime, anmtime;
 		Sys::MatBaseAnimation* anim = mMatAnim1->mAnimation;
@@ -1511,12 +1476,7 @@ void Onyon::enterPiki(Piki* piki)
 	piki->kill(&killarg);
 
 	if (mOnyonType <= ONYON_TYPE_YELLOW && mToBirth) {
-		int animid;
-		if (!mAnimator.mAnimInfo) {
-			animid = -1;
-		} else {
-			animid = mAnimator.mAnimInfo->mId;
-		}
+		int animid = mAnimator.getAnimIndex();
 		if (animid != 1) {
 			mAnimator.startAnim(1, this);
 		}
@@ -1617,9 +1577,9 @@ Creature* Onyon::exitPiki()
 				if (navi) {
 					piki->mNavi = navi;
 					PikiAI::ActFormationInitArg arg(navi);
-					piki->mBrain->start(0, &arg);
+					piki->mBrain->start(PikiAI::ACT_Formation, &arg);
 				} else {
-					piki->mBrain->start(1, 0);
+					piki->mBrain->start(PikiAI::ACT_Free, nullptr);
 				}
 
 				int whites = playData->mPikiContainer.getColorSum(White);
@@ -1632,7 +1592,7 @@ Creature* Onyon::exitPiki()
 
 			} else {
 				PikiAI::CreatureActionArg arg(this);
-				piki->mBrain->start(3, &arg);
+				piki->mBrain->start(PikiAI::ACT_Exit, &arg);
 			}
 		}
 	}
@@ -1829,10 +1789,7 @@ void Onyon::update_pmotions()
 			panim.animate(time * getPMotionSpeed(i));
 			SysShape::Joint* jnt = mModel->getJoint(names[i]);
 			if (jnt) {
-				u16 id                                                         = jnt->mJointIndex;
-				SysShape::Model* model                                         = mModel;
-				J3DMtxCalc* calc                                               = static_cast<SysShape::BaseAnimator*>(&panim)->getCalc();
-				model->mJ3dModel->mModelData->mJointTree.mJoints[id]->mMtxCalc = static_cast<J3DMtxCalcAnmBase*>(calc);
+				panim.setModelCalc(mModel, jnt->mJointIndex);
 			} else {
 				JUT_PANICLINE(2643, "no joint (%s)\n", names[i]);
 			}
@@ -1961,13 +1918,8 @@ void Onyon::on_movie_end(bool)
 		mAnimSpeed = 30.0f;
 	}
 
-	if (mOnyonType <= ONYON_TYPE_YELLOW) {
-
-		int animid = (mAnimator.mAnimInfo) ? mAnimator.mAnimInfo->mId : -1;
-
-		if (animid == 1) {
-			return;
-		}
+	if (mOnyonType <= ONYON_TYPE_YELLOW && mAnimator.getAnimIndex() == 1) {
+		return;
 	}
 
 	startWaitMotion();

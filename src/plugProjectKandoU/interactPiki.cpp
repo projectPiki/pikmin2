@@ -106,9 +106,9 @@ bool InteractFue::actPiki(Game::Piki* piki)
 		} else if (!(moviePlayer->mDemoState != DEMOSTATE_Inactive || (u32)pikiKind - 1 > Red && pikiKind != Blue)) {
 			piki->setZikatu(false);
 			GameStat::zikatuPikis.dec(piki->getKind());
-			if (!playData->isDemoFlag(DEMO_Meet_Red_Pikmin) && (piki->getKind() == Red)) {
-				if (gameSystem->mSection->getTimerType() != 4) {
-					gameSystem->mSection->enableTimer(1.2f, 4);
+			if (!playData->isDemoFlag(DEMO_Meet_Red_Pikmin) && piki->getKind() == Red) {
+				if (gameSystem->mSection->getTimerType() != DEMOTIMER_Meet_Red_Pikmin) {
+					gameSystem->mSection->enableTimer(1.2f, DEMOTIMER_Meet_Red_Pikmin);
 				}
 			}
 			if (!playData->hasBootContainer(piki->getKind())) {

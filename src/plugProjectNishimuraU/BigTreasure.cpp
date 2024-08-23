@@ -142,10 +142,7 @@ void Obj::doAnimationUpdateAnimator()
 	SysShape::BlendLinearFun linearBlend;
 	f32 animTime = EnemyAnimatorBase::defaultAnimSpeed * sys->mDeltaTime;
 	static_cast<ProperAnimator*>(mAnimator)->animate(&linearBlend, 60.0f * sys->mDeltaTime, animTime, animTime);
-
-	SysShape::Model* model = mModel;
-	model->mJ3dModel->mModelData->mJointTree.mJoints[0]->mMtxCalc
-	    = static_cast<J3DMtxCalcAnmBase*>(static_cast<ProperAnimator*>(mAnimator)->mAnimator.getCalc());
+	static_cast<ProperAnimator*>(mAnimator)->mAnimator.setModelCalc(mModel, 0);
 }
 
 /**
@@ -1398,12 +1395,7 @@ void Obj::startBlendAnimation(int animIdx, bool doBlendAnim)
 		f32 currFrame = animator.mTimer;
 
 		if (time - 1.0f > currFrame) {
-			int newIdx;
-			if (animInfo) {
-				newIdx = animInfo->mId;
-			} else {
-				newIdx = BIGTREASUREANIM_NULL;
-			}
+			int newIdx = animator.getAnimIndex();
 
 			if (animIdx != newIdx) {
 				startBlend(newIdx, animIdx, &EnemyBlendAnimatorBase::sBlendLinearFun, 30.0f, nullptr);

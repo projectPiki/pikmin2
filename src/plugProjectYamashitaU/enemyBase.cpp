@@ -1612,10 +1612,7 @@ void EnemyBase::doAnimationUpdateAnimator()
 	mAnimator->animate(mAnimator->mSpeed * sys->mDeltaTime);
 
 	SysShape::Animator* animator = &mAnimator->getAnimator();
-	SysShape::Model* model       = mModel;
-	J3DMtxCalc* calc             = static_cast<SysShape::BaseAnimator*>(animator)->getCalc();
-
-	model->mJ3dModel->mModelData->mJointTree.mJoints[0]->mMtxCalc = static_cast<J3DMtxCalcAnmBase*>(calc);
+	animator->setModelCalc(mModel, 0);
 }
 
 /**

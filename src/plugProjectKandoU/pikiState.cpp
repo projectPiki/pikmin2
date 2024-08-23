@@ -3,6 +3,7 @@
 #include "Game/PikiParms.h"
 #include "Game/PikiMgr.h"
 #include "Game/Navi.h"
+#include "Game/NaviState.h"
 #include "Game/NaviParms.h"
 #include "Game/MapMgr.h"
 #include "Game/rumble.h"
@@ -539,7 +540,7 @@ void PikiSwallowedState::exec(Piki* piki)
 void PikiSwallowedState::cleanup(Piki* piki)
 {
 	piki->endStick();
-	piki->mBrain->start(1, nullptr);
+	piki->mBrain->start(PikiAI::ACT_Free, nullptr);
 	piki->getCreatureID();
 }
 
@@ -1246,7 +1247,7 @@ void PikiTaneState::cleanup(Piki* piki) { piki->setCollisionFlick(true); }
  */
 void PikiTaneState::bounceCallback(Piki* piki, Sys::Triangle*)
 {
-	piki->mBrain->start(1, nullptr);
+	piki->mBrain->start(PikiAI::ACT_Free, nullptr);
 	transit(piki, PIKISTATE_Walk, nullptr);
 }
 
@@ -1272,6 +1273,10 @@ void PikiNukareState::init(Piki* piki, StateArg* stateArg)
 
 	piki->startMotion(mAnimIdx, mAnimIdx, piki, nullptr);
 	mDoFinish = false;
+
+	// Stop time from advancing and disallow pausing when a new type starts to be plucked,
+	// so the player can't avoid the new pikmin cutscene (this flag is reset after any cutscene finishes)
+	// (Note that this isn't set when using pluckaphone on the Pikmin)
 	if (!playData->hasMetPikmin(piki->mPikiKind)) {
 		gameSystem->setFlag(GAMESYS_DisablePause);
 	}
@@ -1300,7 +1305,7 @@ void PikiNukareState::exec(Piki* piki)
 		piki->setPosition(position, false);
 
 		PikiAI::ActFormationInitArg initArg(piki->mNavi);
-		piki->mBrain->start(0, &initArg);
+		piki->mBrain->start(PikiAI::ACT_Formation, &initArg);
 
 		int pikiType = piki->mPikiKind;
 		if (pikiType >= 0 && pikiType <= 4) {
@@ -1406,7 +1411,7 @@ void PikiDopeState::exec(Piki* piki)
 		if (mNavi) {
 			piki->mNavi = mNavi;
 			PikiAI::ActFormationInitArg initArg(piki->mNavi);
-			piki->mBrain->start(0, &initArg);
+			piki->mBrain->start(PikiAI::ACT_Formation, &initArg);
 		}
 
 		transit(piki, PIKISTATE_Walk, nullptr);
@@ -1427,7 +1432,7 @@ void PikiDopeState::onKeyEvent(Piki* piki, SysShape::KeyEvent const& keyEvent)
 		if (mNavi) {
 			piki->mNavi = mNavi;
 			PikiAI::ActFormationInitArg initArg(piki->mNavi);
-			piki->mBrain->start(0, &initArg);
+			piki->mBrain->start(PikiAI::ACT_Formation, &initArg);
 		}
 
 		transit(piki, PIKISTATE_Walk, nullptr);
@@ -2031,7 +2036,7 @@ void PikiLookAtState::exec(Piki* piki)
 		if (piki->mNavi) {
 			PikiAI::ActFormationInitArg initArg(piki->mNavi);
 			initArg.mDoUseTouchCooldown = true;
-			piki->mBrain->start(0, &initArg);
+			piki->mBrain->start(PikiAI::ACT_Formation, &initArg);
 			transit(piki, PIKISTATE_Walk, nullptr);
 
 		} else {
@@ -2138,10 +2143,10 @@ void PikiAutoNukiState::exec(Piki* piki)
 		if (piki->mNavi) {
 			PikiAI::ActFormationInitArg initArg(piki->mNavi);
 			initArg.mDoUseTouchCooldown = true;
-			piki->mBrain->start(0, &initArg);
+			piki->mBrain->start(PikiAI::ACT_Formation, &initArg);
 
 		} else {
-			piki->mBrain->start(1, nullptr);
+			piki->mBrain->start(PikiAI::ACT_Free, nullptr);
 		}
 
 		transit(piki, PIKISTATE_Walk, nullptr);
@@ -2162,10 +2167,10 @@ void PikiAutoNukiState::exec(Piki* piki)
 void PikiAutoNukiState::onKeyEvent(Piki* piki, SysShape::KeyEvent const& keyEvent)
 {
 	switch (keyEvent.mType) {
-	case 1000:
+	case KEYEVENT_END:
 		mState = 2;
 		break;
-	case 2:
+	case KEYEVENT_2:
 		break;
 	}
 }
@@ -2210,7 +2215,7 @@ void PikiGoHangState::exec(Piki* piki)
 	f32 dist              = naviPos.length();
 	piki->mTargetVelocity = diff * (factor + dist);
 
-	if (piki->mNavi->getStateID() != 6) {
+	if (piki->mNavi->getStateID() != NSID_ThrowWait) {
 		transit(piki, PIKISTATE_Walk, nullptr);
 	}
 	/*
@@ -2439,11 +2444,11 @@ void PikiWaterHangedState::init(Piki* piki, StateArg* stateArg)
  */
 void PikiWaterHangedState::exec(Piki* piki)
 {
-	if (mPiki != 0) {
+	if (mPiki) {
 		int currActID   = mPiki->getCurrActionID();
 		int currStateID = mPiki->getStateID();
 
-		if (currActID != 12 || currStateID != PIKISTATE_Walk) {
+		if (currActID != PikiAI::ACT_Rescue || currStateID != PIKISTATE_Walk) {
 			transit(piki, PIKISTATE_Walk, nullptr);
 		}
 	} else {
@@ -2551,7 +2556,7 @@ void PikiHipDropState::exec(Piki* piki)
 		if (mWaitTimer <= 0.0f) {
 			transit(piki, PIKISTATE_Walk, nullptr);
 			if (!piki->invokeAI()) {
-				piki->mBrain->start(1, nullptr);
+				piki->mBrain->start(PikiAI::ACT_Free, nullptr);
 			}
 		}
 	}
@@ -2892,7 +2897,7 @@ void PikiHipDropState::collisionCallback(Piki* piki, CollEvent& collEvent)
 		if (piki->getStateID() == PIKISTATE_HipDrop) {
 			transit(piki, PIKISTATE_Walk, nullptr);
 			if (!piki->invokeAI(&collEvent, true)) {
-				piki->mBrain->start(1, nullptr);
+				piki->mBrain->start(PikiAI::ACT_Free, nullptr);
 			}
 		}
 	}
@@ -3846,7 +3851,7 @@ void PikiFlyingState::bounceCallback(Piki* piki, Sys::Triangle* triangle)
 {
 	transit(piki, PIKISTATE_Walk, nullptr);
 	if (!piki->invokeAI()) {
-		piki->mBrain->start(1, nullptr);
+		piki->mBrain->start(PikiAI::ACT_Free, nullptr);
 	}
 
 	piki->mSoundObj->startFreePikiSound(PSSE_PK_VC_LAND, 90, 0);
@@ -4659,18 +4664,14 @@ void PikiKokeState::onFlute(Piki* piki, Navi* navi) { mTimer = 0; }
  */
 void PikiKokeState::exec(Piki* piki)
 {
-	int animIdx;
-	if (piki->mAnimator.mSelfAnimator.mAnimInfo) {
-		animIdx = piki->mAnimator.mSelfAnimator.mAnimInfo->mId;
-	} else {
-		animIdx = IPikiAnims::NULLANIM;
-	}
+	int animIdx = piki->mAnimator.mSelfAnimator.getAnimIndex();
 
 	if (animIdx != IPikiAnims::KOROBU && animIdx != IPikiAnims::KOROBU2) {
 		transit(piki, PIKISTATE_Walk, nullptr);
 	}
 
-	piki->mTargetVelocity *= 0.955f;
+	// *= doesnt work here
+	piki->mTargetVelocity = piki->mTargetVelocity * 0.955f;
 }
 
 /**
@@ -4722,14 +4723,7 @@ void PikiDrownState::init(Piki* piki, StateArg* stateArg)
 	piki->mBrain->start(PikiAI::ACT_Free, nullptr);
 	piki->startMotion(IPikiAnims::TYAKUSUI, IPikiAnims::TYAKUSUI, piki, nullptr);
 
-	int animIdx;
-	if (piki->mAnimator.mSelfAnimator.mAnimInfo) {
-		animIdx = piki->mAnimator.mSelfAnimator.mAnimInfo->mId;
-	} else {
-		animIdx = IPikiAnims::NULLANIM;
-	}
-
-	if (animIdx == IPikiAnims::TYAKUSUI) {
+	if (piki->mAnimator.mSelfAnimator.getAnimIndex() == IPikiAnims::TYAKUSUI) {
 		mSubState = 0;
 	} else {
 		mSubState = 1;

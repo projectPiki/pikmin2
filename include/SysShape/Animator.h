@@ -12,6 +12,11 @@ struct MotionListener;
 
 struct BaseAnimator {
 	virtual J3DMtxCalc* getCalc() = 0; // _08
+
+	void setModelCalc(SysShape::Model* model, int jointId)
+	{
+		model->getJ3DModel()->getModelData()->getJointNodePointer(jointId)->setMtxCalc(getCalc());
+	}
 };
 
 /**
@@ -123,8 +128,6 @@ struct BlendAnimator : public BaseAnimator {
 
 	// unused/inlined:
 	void setWeight(f32);
-
-	void setModelCalc(SysShape::Model* model) { model->mJ3dModel->mModelData->mJointTree.mJoints[0]->mMtxCalc = getCalc(); }
 
 	Animator mAnimators[2];          // _04
 	f32 mTimer;                      // _3C

@@ -1408,7 +1408,7 @@ bool TChallengeResult::doUpdate()
 	mScissorPic->mBounds = box;
 
 	if (mIsSaveOpen && mSaveMgr->isFinish()) {
-		if (mSaveMgr->mCurrStateID == 1) {
+		if (mSaveMgr->mEndState == ebi::Save::TMgr::End_Cancel) {
 			if (mComplete) {
 				u16 y = sys->getRenderModeObj()->efbHeight;
 				u16 x = sys->getRenderModeObj()->fbWidth;

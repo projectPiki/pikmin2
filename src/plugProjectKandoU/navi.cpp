@@ -1358,8 +1358,7 @@ void Navi::doAnimation()
 
 		updateTrMatrix();
 
-		SysShape::Model* model                                        = mModel;
-		model->mJ3dModel->mModelData->mJointTree.mJoints[0]->mMtxCalc = mAnimator.mBoundAnimator.getCalc();
+		mAnimator.mBoundAnimator.setModelCalc(mModel, 0);
 		PSMTXCopy(mBaseTrMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
 		mModel->mJ3dModel->calc();
 
@@ -2294,8 +2293,7 @@ void Navi::movieStartDemoAnimation(SysShape::AnimInfo* info)
 
 	mModel->clearAnimatorAll();
 
-	SysShape::Model* model                                        = mModel;
-	model->mJ3dModel->mModelData->mJointTree.mJoints[0]->mMtxCalc = (J3DMtxCalcAnmBase*)mAnimator.mBoundAnimator.getCalc();
+	mAnimator.mBoundAnimator.setModelCalc(mModel, 0);
 }
 
 /**
@@ -4124,7 +4122,7 @@ bool Navi::releasePikis()
 		Piki* piki = buffer[i];
 		PikiAI::ActFreeArg arg(distList[piki->getKind()], position[piki->getKind()], true);
 		buffer[i]->mSoundObj->startFreePikiSound(PSSE_PK_VC_BREAKUP, 0x5a, 0);
-		buffer[i]->mBrain->start(1, &arg);
+		buffer[i]->mBrain->start(PikiAI::ACT_Free, &arg);
 	}
 	mDisbandTimer = 60;
 	return true;

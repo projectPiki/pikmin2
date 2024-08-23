@@ -160,7 +160,7 @@ void GameState::init(SingleGameSection* game, StateArg* arg)
 	}
 
 	sys->heapStatusDump(true);
-	gameSystem->mTimeMgr->mFlags.unset(TIMEFLAG_Stopped);
+	gameSystem->mTimeMgr->resetFlag(TIMEFLAG_Stopped);
 	if (startType != MapEnter_CaveExtinction) {
 		// Check if any pikmin types are extinct, if they are, the post-extinction cutscene is needed
 		bool noPikisLeft = false;
@@ -210,9 +210,7 @@ unknown GameState::gameStart(SingleGameSection*)
 {
 	gameSystem->setFlag(GAMESYS_IsPlaying);
 	if (gameSystem->mTimeMgr->mDayCount != 0) {
-		PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-		mgr->checkScene();
-		mgr->mScenes->mChild->startMainSeq();
+		PSSystem::getSceneMgr()->doStartMainSeq();
 	} else {
 		// PikSceneMgr cast is solely to fix a regswap, very cool
 		PSGame::PikSceneMgr* mgr = static_cast<PSGame::PikSceneMgr*>(PSSystem::getSceneMgr());

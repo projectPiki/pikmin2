@@ -14,12 +14,12 @@ namespace title {
  */
 void TTitleFogMgr::setGX(Camera& camera)
 {
-	if (mParms.mIsFogActive.mValue) {
-		Color4 color4_local(mParms.mColR.mValue, mParms.mColG.mValue, mParms.mColB.mValue, mParms.mColA.mValue);
+	if (mParms.mIsFogActive()) {
+		Color4 color4_local(mParms.mColR(), mParms.mColG(), mParms.mColB(), mParms.mColA());
 		GXColor color_local = color4_local.toGXColor();
 
-		f32 startDist = mParms.mStartDist.mValue;
-		f32 endDist   = mParms.mEndDist.mValue;
+		f32 startDist = mParms.mStartDist();
+		f32 endDist   = mParms.mEndDist();
 
 		GXSetFog(GX_FOG_LINEAR, startDist, endDist, camera.getNear(), camera.getFar(), color_local);
 
