@@ -14,18 +14,18 @@ namespace P2JME {
 static char sRubyDataBuffer[33];
 
 namespace {
-	typedef struct {
-		GXColor a;
-		GXColor b;
-	} doubleColorStruct;
-	doubleColorStruct cBtnIconColor[11] = {
-		{{ 255, 255, 255, 255 }, {   0, 166,   0,   0 }}, {{ 255, 255, 255, 255 }, { 255,   0,   0,   0 }},
-		{{   0,   0,   0, 255 }, { 255, 255,   0,   0 }}, {{   0,   0,   0, 255 }, { 200, 200, 200,   0 }},
-		{{   0,   0,   0, 255 }, { 200, 200, 200,   0 }}, {{   0,   0, 255, 255 }, { 255, 255, 255,   0 }},
-		{{   0,   0,   0, 255 }, { 200, 200, 200,   0 }}, {{   0,   0,   0, 255 }, { 200, 200, 200,   0 }},
-		{{ 225, 225, 225, 255 }, { 136, 136, 136, 255 }}, {{ 225, 225, 225, 255 }, { 136, 136, 136, 255 }},
-		{{ 225, 225, 225, 255 }, { 136, 136, 136, 255 }},
-	};
+typedef struct {
+	GXColor a;
+	GXColor b;
+} doubleColorStruct;
+doubleColorStruct cBtnIconColor[11] = {
+	{ { 255, 255, 255, 255 }, { 0, 166, 0, 0 } },       { { 255, 255, 255, 255 }, { 255, 0, 0, 0 } },
+	{ { 0, 0, 0, 255 }, { 255, 255, 0, 0 } },           { { 0, 0, 0, 255 }, { 200, 200, 200, 0 } },
+	{ { 0, 0, 0, 255 }, { 200, 200, 200, 0 } },         { { 0, 0, 255, 255 }, { 255, 255, 255, 0 } },
+	{ { 0, 0, 0, 255 }, { 200, 200, 200, 0 } },         { { 0, 0, 0, 255 }, { 200, 200, 200, 0 } },
+	{ { 225, 225, 225, 255 }, { 136, 136, 136, 255 } }, { { 225, 225, 225, 255 }, { 136, 136, 136, 255 } },
+	{ { 225, 225, 225, 255 }, { 136, 136, 136, 255 } },
+};
 } // namespace
 
 const u32 TRenderingProcessor::cPageInfoBufferNum = 10;
@@ -534,8 +534,8 @@ void TRenderingProcessor::do_character(int character)
 		if (_F0 == 0) {
 			mColorData1 = _D4;
 		} else {
-			u32 f0 = _F0;
-			JUtility::TColor *colorArray = (JUtility::TColor*)getResourceContainer()->getResourceColor()->mBlock.getRaw();
+			u32 f0                       = _F0;
+			JUtility::TColor* colorArray = (JUtility::TColor*)getResourceContainer()->getResourceColor()->mBlock.getRaw();
 			mColorData1.set(colorArray[f0 + 3]);
 		}
 
@@ -544,8 +544,8 @@ void TRenderingProcessor::do_character(int character)
 		if (_F1 == 0) {
 			mColorData2 = _D8;
 		} else {
-			u32 f1 = _F1;
-			JUtility::TColor *colorArray = (JUtility::TColor*)getResourceContainer()->getResourceColor()->mBlock.getRaw();
+			u32 f1                       = _F1;
+			JUtility::TColor* colorArray = (JUtility::TColor*)getResourceContainer()->getResourceColor()->mBlock.getRaw();
 			mColorData2.set(colorArray[f1 + 3]);
 		}
 
@@ -1609,16 +1609,16 @@ bool TRenderingProcessor::tagImage(u16 p1, const void* p2, u32 p3)
 				if (_F0 == 0) {
 					mColorData4 = _D4;
 				} else {
-					u32 f0 = _F0;
-					JUtility::TColor *colorArray = (JUtility::TColor*)getResourceContainer()->getResourceColor()->mBlock.getRaw();
+					u32 f0                       = _F0;
+					JUtility::TColor* colorArray = (JUtility::TColor*)getResourceContainer()->getResourceColor()->mBlock.getRaw();
 					mColorData4.set(colorArray[f0 + 3]);
 				}
 
 				if (_F1 == 0) {
 					mColorData5 = _D8;
 				} else {
-					u32 f1 = _F1;
-					JUtility::TColor *colorArray = (JUtility::TColor*)getResourceContainer()->getResourceColor()->mBlock.getRaw();
+					u32 f1                       = _F1;
+					JUtility::TColor* colorArray = (JUtility::TColor*)getResourceContainer()->getResourceColor()->mBlock.getRaw();
 					mColorData5.set(colorArray[f1 + 3]);
 				}
 				break;

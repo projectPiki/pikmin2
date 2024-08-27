@@ -152,7 +152,6 @@ struct TFunctionValueAttributeSet : public TFunctionValueAttributeSet_const {
 	{
 	}
 
-
 	// _00-_0C = TFunctionValueAttributeSet_const
 };
 
@@ -280,7 +279,7 @@ struct TFunctionValue_composite : public TFunctionValue, public TFunctionValueAt
 		{
 		}
 
-        TData(const TData& other);
+		TData(const TData& other);
 
 		inline void operator=(const TData& other) { mDoubleData = other.mDoubleData; }
 		u32 getAsWord() const { return mWordData; }

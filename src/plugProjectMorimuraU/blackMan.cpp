@@ -3798,9 +3798,9 @@ bool BlackMan::Obj::setPathFinder(bool check)
 		mPreviousWaypointIndex = mCurrentWaypointIndex;
 		mCurrentWaypointIndex  = idx1;
 
-		int flag = (check) ? (PATHFLAG_PathThroughWater | PATHFLAG_AllowUnvisited | PATHFLAG_TwoWayPathing) 
-		: (PATHFLAG_RequireOpen | PATHFLAG_PathThroughWater | PATHFLAG_AllowUnvisited | PATHFLAG_TwoWayPathing);
-		
+		int flag = (check) ? (PATHFLAG_PathThroughWater | PATHFLAG_AllowUnvisited | PATHFLAG_TwoWayPathing)
+		                   : (PATHFLAG_RequireOpen | PATHFLAG_PathThroughWater | PATHFLAG_AllowUnvisited | PATHFLAG_TwoWayPathing);
+
 		if (mPathFindingHandle) {
 			testPathfinder->release(mPathFindingHandle);
 		}

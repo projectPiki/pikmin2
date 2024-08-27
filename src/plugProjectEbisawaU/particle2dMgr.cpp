@@ -12,10 +12,7 @@
 TParticle2dMgr* particle2dMgr;
 TParticle2dMgr* TParticle2dMgr::_instance;
 
-static void strippedFunc_1()
-{
-	OSReport("\0\0\0\0\0\0\0\0\0\0\0");
-}
+static void strippedFunc_1() { OSReport("\0\0\0\0\0\0\0\0\0\0\0"); }
 
 /**
  * @note Address: N/A
@@ -274,10 +271,7 @@ void TParticle2dMgr::killAll() { mActiveEmitter->forceDeleteAllEmitter(); }
  */
 void TParticle2dMgr::killGroup(u8 p1) { mActiveEmitter->forceDeleteGroupEmitter((int)p1); }
 
-static void strippedFunc_2()
-{
-	OSReport("IP2_dummy");
-}
+static void strippedFunc_2() { OSReport("IP2_dummy"); }
 /**
  * @note Address: N/A
  * @note Size: 0x4

@@ -502,7 +502,7 @@ int AStarPathfinder::search(Game::AStarContext* context, int maxIterations, Game
 		if (!child) {
 			continue;
 		}
-			
+
 		PathNode* node     = child->mRootNode;
 		PathNode* prevNode = nullptr;
 		while (node) {
@@ -550,12 +550,13 @@ int AStarPathfinder::search(Game::AStarContext* context, int maxIterations, Game
 			WayPoint* cWP = PathfindContext::routeMgr->getWayPoint(idx);
 
 			PathNode* node = mContext->getNode(idx);
-			if ((((mContext->mRequestFlag & PATHFLAG_RequireOpen) && (cWP->mFlags & WPF_Closed)) 
-				|| (!(mContext->mRequestFlag & PATHFLAG_PathThroughWater) && (cWP->mFlags & WPF_Water))
-				|| (!(mContext->mRequestFlag & PATHFLAG_AllowUnvisited) && (cWP->mFlags & WPF_Unvisited))
-				|| ((cWP->mFlags & WPF_Water) && (mContext->mRequestFlag & PATHFLAG_DisallowUnfinishedBridges) && (wp->mFlags & WPF_Bridge))
-				|| ((mContext->mRequestFlag & PATHFLAG_DisallowVsRed) && (wp->mFlags & WPF_VersusRed))
-				|| ((mContext->mRequestFlag & PATHFLAG_DisallowVsBlue) && (wp->mFlags & WPF_VersusBlue)))) {
+			if ((((mContext->mRequestFlag & PATHFLAG_RequireOpen) && (cWP->mFlags & WPF_Closed))
+			     || (!(mContext->mRequestFlag & PATHFLAG_PathThroughWater) && (cWP->mFlags & WPF_Water))
+			     || (!(mContext->mRequestFlag & PATHFLAG_AllowUnvisited) && (cWP->mFlags & WPF_Unvisited))
+			     || ((cWP->mFlags & WPF_Water) && (mContext->mRequestFlag & PATHFLAG_DisallowUnfinishedBridges)
+			         && (wp->mFlags & WPF_Bridge))
+			     || ((mContext->mRequestFlag & PATHFLAG_DisallowVsRed) && (wp->mFlags & WPF_VersusRed))
+			     || ((mContext->mRequestFlag & PATHFLAG_DisallowVsBlue) && (wp->mFlags & WPF_VersusBlue)))) {
 				continue;
 			}
 

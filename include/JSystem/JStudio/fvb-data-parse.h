@@ -38,10 +38,7 @@ struct TParse_TBlock : public TParseData_aligned<4> {
 	u16 getType() const { return get()->mType; }
 	u32 getIDSize() const { return get()->mIDSize; }
 
-	const void* getNext() const
-	{
-		return getSize() + ((u8*)getRaw());
-	}
+	const void* getNext() const { return getSize() + ((u8*)getRaw()); }
 
 	const void* getBlockEnd() const { return (u8*)getRaw() + sizeof(TBlock); }
 
@@ -54,10 +51,7 @@ struct TParse_TBlock : public TParseData_aligned<4> {
 		return ret;
 	}
 
-	const void* getContent() const
-	{
-	    return align_roundUp(getIDSize(), 4) + (const u8*)getBlockEnd();
-	}
+	const void* getContent() const { return align_roundUp(getIDSize(), 4) + (const u8*)getBlockEnd(); }
 
 	// _00-_04 = TParseData_aligned
 };

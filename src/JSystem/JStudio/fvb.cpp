@@ -27,10 +27,10 @@ void TObject::prepare(const JStudio::fvb::data::TParse_TBlock& block, JStudio::f
 		data::TParse_TParagraph para(pData);
 		data::TParse_TParagraph::TData dat;
 		para.getData(&dat);
-		u32 u32Type                                          = dat.mType;
-		u32 u32Size                                          = dat.mSize;
-		const void* pContent                                 = dat.mContent;
-		TFunctionValueAttribute_range* pfvaRange             = set.range_get();
+		u32 u32Type                              = dat.mType;
+		u32 u32Size                              = dat.mSize;
+		const void* pContent                     = dat.mContent;
+		TFunctionValueAttribute_range* pfvaRange = set.range_get();
 		TFunctionValueAttribute_refer* referGet;
 		TFunctionValueAttribute_interpolate* pfvaInterpolate = set.interpolate_get();
 
@@ -60,20 +60,20 @@ void TObject::prepare(const JStudio::fvb::data::TParse_TBlock& block, JStudio::f
 				unkDataHeader dataArray[0];
 			} unkDataArray;
 
-			const unkDataArray* i = static_cast<const unkDataArray*>(pContent);
-            u32 dataCount = i->count;
+			const unkDataArray* i  = static_cast<const unkDataArray*>(pContent);
+			u32 dataCount          = i->count;
 			const unkDataHeader* d = i->dataArray;
 
 			for (; dataCount != 0; dataCount--) {
 				u32 length = d->length;
 
-                TObject* pObject = control->getObject(&d->data, length);
+				TObject* pObject = control->getObject(&d->data, length);
 
-                if (pObject) {
-                    rCnt.push_back(&pObject->referFunctionValue());
-                }
+				if (pObject) {
+					rCnt.push_back(&pObject->referFunctionValue());
+				}
 
-				#ifdef __MWERKS__ // clang-format off
+#ifdef __MWERKS__ // clang-format off
                 (const u8*)d += align_roundUp(length, sizeof(u32)) + sizeof(u32);
 				#else
                 d = (const unkDataHeader*)(((const u8*)d) + align_roundUp(length, sizeof(u32)) + sizeof(u32));
@@ -87,17 +87,17 @@ void TObject::prepare(const JStudio::fvb::data::TParse_TBlock& block, JStudio::f
 				break;
 			}
 
-            JGadget::TVector_pointer<TFunctionValue*>& rCnt = pfvaRefer->refer_referContainer();
+			JGadget::TVector_pointer<TFunctionValue*>& rCnt = pfvaRefer->refer_referContainer();
 
 			const u32* i = static_cast<const u32*>(pContent);
-			u32 ii = *i;
+			u32 ii       = *i;
 
 			for (; i++, ii != 0; ii--) {
-				u32 length = *i;
-                TObject* pObject = control->getObject_index(length);
-                if (pObject) {
-                    rCnt.push_back(&pObject->referFunctionValue());
-                }
+				u32 length       = *i;
+				TObject* pObject = control->getObject_index(length);
+				if (pObject) {
+					rCnt.push_back(&pObject->referFunctionValue());
+				}
 			}
 		} break;
 		case 0x12: {
@@ -111,40 +111,40 @@ void TObject::prepare(const JStudio::fvb::data::TParse_TBlock& block, JStudio::f
 		case 0x13: {
 			if (!pfvaRange) {
 				break;
-			} 
-		
+			}
+
 			TFunctionValue::TEProgress prog = *static_cast<const TFunctionValue::TEProgress*>(pContent);
 			pfvaRange->range_setProgress(prog);
-		
+
 		} break;
 		case 0x14: {
 			if (!pfvaRange) {
 				break;
 			}
-			
+
 			TFunctionValue::TEAdjust adjust = *static_cast<const TFunctionValue::TEAdjust*>(pContent);
 			pfvaRange->range_setAdjust(adjust);
-		
+
 		} break;
 		case 0x15: {
 			if (!pfvaRange) {
 				break;
-			} 
-			
+			}
+
 			TFunctionValue::TEOutside a = (TFunctionValue::TEOutside)(static_cast<const u16*>(pContent))[0];
 			TFunctionValue::TEOutside b = (TFunctionValue::TEOutside)(static_cast<const u16*>(pContent))[1];
 
 			pfvaRange->range_setOutside(a, b);
-		
+
 		} break;
 		case 0x16: {
 			if (!pfvaInterpolate) {
 				break;
-			} 
-			
+			}
+
 			TFunctionValue::TEInterpolate interp = *static_cast<const TFunctionValue::TEInterpolate*>(pContent);
 			pfvaInterpolate->interpolate_set(interp);
-		
+
 		} break;
 		default:
 			break;
@@ -390,26 +390,26 @@ TObject_composite::TObject_composite(const data::TParse_TBlock& block)
 
 void TObject_composite::prepare_data_(const data::TParse_TParagraph::TData& rData, TControl* control)
 {
-    typedef struct {
-        JStudio::fvb::data::TEComposite _00;
-        const void* _04;
-    } unkOperation;
-    // JUT_ASSERT(rData.u32Type==data::PARAGRAPH_DATA);
-    
-    u32 u32Size = rData.mSize;
-    
-    const void* pControl_ = rData.mContent;
-    
-    // JGADGET_ASSERTWARN(u32Size==8);
-    // JUT_ASSERT(pControl_!=0);
+	typedef struct {
+		JStudio::fvb::data::TEComposite _00;
+		const void* _04;
+	} unkOperation;
+	// JUT_ASSERT(rData.u32Type==data::PARAGRAPH_DATA);
 
-    const unkOperation* content = (const unkOperation*)(pControl_);
-    JStudio::fvb::data::TEComposite v = content->_00;
-	const CompositeOperation* res           = getCompositeOperation_(v);
-    GetCompositeFunc pfvaRange = res->mGetFunc;
-    // JUT_ASSERT(pfvaRange!=NULL);
+	u32 u32Size = rData.mSize;
 
-    mSpecFV.data_set(res->mSetFunc, pfvaRange(&content->_04));
+	const void* pControl_ = rData.mContent;
+
+	// JGADGET_ASSERTWARN(u32Size==8);
+	// JUT_ASSERT(pControl_!=0);
+
+	const unkOperation* content       = (const unkOperation*)(pControl_);
+	JStudio::fvb::data::TEComposite v = content->_00;
+	const CompositeOperation* res     = getCompositeOperation_(v);
+	GetCompositeFunc pfvaRange        = res->mGetFunc;
+	// JUT_ASSERT(pfvaRange!=NULL);
+
+	mSpecFV.data_set(res->mSetFunc, pfvaRange(&content->_04));
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)

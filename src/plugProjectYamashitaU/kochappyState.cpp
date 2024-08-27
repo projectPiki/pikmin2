@@ -113,7 +113,7 @@ void StateWait::exec(EnemyBase* enemy)
 				Parms* parms = CG_PARMS(enemy);
 				f32 angLimit = parms->mProperParms.mRotationEndAngle.mValue;
 				f32 angDist  = enemy->turnToTarget(enemy->mTargetCreature, CG_GENERALPARMS(enemy).mTurnSpeed(),
-				                                   CG_GENERALPARMS(enemy).mMaxTurnAngle()); // this is wrong?
+                                                  CG_GENERALPARMS(enemy).mMaxTurnAngle()); // this is wrong?
 				if (FABS(angDist) <= TORADIANS(angLimit)) {
 					transit(enemy, KOCHAPPY_Walk, nullptr);
 				} else {

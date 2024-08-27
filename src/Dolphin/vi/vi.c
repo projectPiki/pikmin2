@@ -79,7 +79,7 @@ static VITimingInfo timing[10] = {
 };
 // clang-format on
 
-static u16 taps[25] = { 496, 476, 430, 372, 297, 219, 142, 70, 12, 226, 203, 192, 196, 207, 222, 236, 252, 8, 15, 19, 19, 15, 12, 8, 1};
+static u16 taps[25] = { 496, 476, 430, 372, 297, 219, 142, 70, 12, 226, 203, 192, 196, 207, 222, 236, 252, 8, 15, 19, 19, 15, 12, 8, 1 };
 
 // forward declaring statics
 static u32 getCurrentFieldEvenOdd();

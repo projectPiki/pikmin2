@@ -230,9 +230,8 @@ void WayPoint::setBridge(bool bridge)
 void WayPoint::setVisit(bool visit)
 {
 	if (visit) {
-		resetFlag(WPF_Unvisited);	
-	}
-	else {
+		resetFlag(WPF_Unvisited);
+	} else {
 		setFlag(WPF_Unvisited);
 	}
 }
@@ -249,8 +248,7 @@ void WayPoint::setVsColor(int color)
 
 	if (color == Blue) {
 		setFlag(WPF_VersusBlue);
-	}
-	else if (color == Red) {
+	} else if (color == Red) {
 		setFlag(WPF_VersusRed);
 	}
 }

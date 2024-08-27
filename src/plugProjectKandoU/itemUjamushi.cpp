@@ -136,7 +136,7 @@ void BoidParameter::read(Stream& input)
  */
 UjaParms::UjaParms()
     : Parameters(nullptr, "UjaParms")
-    , mDisplayScale(this, 'u001', "表示スケール", 0.3f, 0.1f, 1.0f)    // 'display scale'
+    , mDisplayScale(this, 'u001', "表示スケール", 0.3f, 0.1f, 1.0f)     // 'display scale'
     , mMysteryMultiply(this, 'u002', "謎 Multiply", 1.0f, 0.0f, 200.0f) // 'mystery multiply' (lmao)
     , mLife(this, 'u003', "ライフ", 0.0f, 0.0f, 600.0f)                 // 'life'
     , mMotionSpeed(this, 'u004', "モーション速度", 0.5f, 0.0f, 10.0f)   // 'motion speed'
