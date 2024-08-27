@@ -30,7 +30,7 @@ static const char formationName[]      = "actFormation";
  */
 ActFormation::ActFormation(Game::Piki* p)
     : Action(p)
-    , mInitArg(nullptr)
+    , mInitArg(static_cast<Game::Creature*>(nullptr))
 {
 	mName   = "Formation";
 	mCPlate = nullptr;

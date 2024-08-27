@@ -751,10 +751,20 @@ struct ActFormationInitArg : public CreatureActionArg {
 	{
 	}
 
-	inline ActFormationInitArg(Game::Creature* navi)
+	inline ActFormationInitArg(Game::FakePiki* navi)
 	    : CreatureActionArg(navi)
 	    , mIsDemoFollow(false)
 	    , mDoUseTouchCooldown(false)
+	{
+	}
+
+	/*
+	used to match ActFormation::ActFormation(Game::Piki*)
+	if unnecessary, change the above inline back to Game::Creature* for the argument
+	*/
+	inline ActFormationInitArg(Game::Creature* navi) // used to match ActFormation::ActFormation(Game::Piki*)
+	    : CreatureActionArg(navi)
+	    , mIsDemoFollow(false)
 	{
 	}
 
