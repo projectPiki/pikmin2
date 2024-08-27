@@ -4084,7 +4084,7 @@ void NaviContainerState::exec(Navi* navi)
  */
 void NaviContainerState::enterPikis(Navi* navi, int maxPikis)
 {
-	Piki* pikis[100];
+	Piki* pikis[MAX_PIKI_COUNT];
 	int pikiNum = 0;
 	Iterator<Creature> iterator(navi->mCPlateMgr);
 

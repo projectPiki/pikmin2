@@ -81,7 +81,7 @@ Navi::Navi()
 	mFsm = new NaviFSM;
 	mFsm->init(this);
 
-	mCPlateMgr = new CPlate(100);
+	mCPlateMgr = new CPlate(MAX_PIKI_COUNT);
 	mMass      = 1.0f;
 
 	mFootmarks = new Footmarks;
@@ -3634,7 +3634,7 @@ void Navi::enterAllPikis()
 {
 	Iterator<Piki> iterator(pikiMgr);
 	int pikis = 0;
-	Piki* buffer[100];
+	Piki* buffer[MAX_PIKI_COUNT];
 	Piki** list = buffer;
 	CI_LOOP(iterator)
 	{
@@ -3920,7 +3920,7 @@ void Navi::clearThrowDisable() { mThrowTimer = 0; }
 void Navi::holeinAllPikis(Vector3f& pos)
 {
 	naviMgr->getAliveOrima(ALIVEORIMA_Active);
-	Piki* buffer[100];
+	Piki* buffer[MAX_PIKI_COUNT];
 	int pikis = 0;
 
 	Iterator<Creature> iterator(mCPlateMgr);
@@ -3952,7 +3952,7 @@ void Navi::holeinAllPikis(Vector3f& pos)
  */
 void Navi::fountainonAllPikis(Vector3f& pos)
 {
-	Piki* buffer[100];
+	Piki* buffer[MAX_PIKI_COUNT];
 	int pikis = 0;
 
 	Iterator<Creature> iterator(mCPlateMgr);
@@ -3984,7 +3984,7 @@ void Navi::fountainonAllPikis(Vector3f& pos)
  */
 void Navi::demowaitAllPikis()
 {
-	Piki* buffer[100];
+	Piki* buffer[MAX_PIKI_COUNT];
 	int pikis = 0;
 
 	Iterator<Creature> iterator(mCPlateMgr);
@@ -4029,7 +4029,7 @@ bool Navi::releasePikis()
 	loozy->stimulate(act);
 
 	s32 pikis = 0;
-	Piki* buffer[100];
+	Piki* buffer[MAX_PIKI_COUNT];
 	Iterator<Creature> iterator(mCPlateMgr);
 	CI_LOOP(iterator)
 	{

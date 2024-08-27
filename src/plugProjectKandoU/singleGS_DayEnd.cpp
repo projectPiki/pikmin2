@@ -193,7 +193,7 @@ void DayEndState::onMovieStart(SingleGameSection* game, MovieConfig* movie, u32,
 		if (mapMgr->getDemoMatrix()) {
 			origin = mapMgr->getDemoMatrix()->mtxMult(origin);
 
-			Piki* pikiBuffer[100];
+			Piki* pikiBuffer[MAX_PIKI_COUNT];
 			int i = 0;
 			Iterator<Piki> iterator(pikiMgr);
 			CI_LOOP(iterator)
