@@ -49,7 +49,7 @@ struct Obj : public EnemyBase {
 	//////////////// VTABLE
 	virtual void onInit(CreatureInitArg* settings);                // _30
 	virtual void doDirectDraw(Graphics& gfx);                      // _50
-	virtual bool isUnderground();                                  // _D0 (weak)
+	virtual bool isUnderground() { return mIsUnderground; }        // _D0 (weak)
 	virtual void getShadowParam(ShadowParam& settings);            // _134
 	virtual ~Obj() { }                                             // _1BC (weak)
 	virtual void setInitialSetting(EnemyInitialParamBase* params); // _1C4
@@ -62,21 +62,21 @@ struct Obj : public EnemyBase {
 	{
 		return EnemyTypeID::EnemyID_Kabuto;
 	}
-	virtual void doStartStoneState();     // _2A4
-	virtual void doFinishStoneState();    // _2A8
-	virtual void startCarcassMotion();    // _2C4
-	virtual f32 getDownSmokeScale();      // _2EC (weak)
-	virtual void doStartMovie();          // _2F0
-	virtual void doEndMovie();            // _2F4
-	virtual void setFSM(FSM* fsm);        // _2F8
-	virtual void createEffect() { }       // _2FC (weak)
-	virtual void setupEffect() { }        // _300 (weak)
-	virtual void startRotateEffect() { }  // _304 (weak)
-	virtual void finishRotateEffect() { } // _308 (weak)
-	virtual void startWaitEffect() { }    // _30C (weak)
-	virtual void finishWaitEffect() { }   // _310 (weak)
-	virtual void effectDrawOn() { }       // _314 (weak)
-	virtual void effectDrawOff() { }      // _318 (weak)
+	virtual void doStartStoneState();                // _2A4
+	virtual void doFinishStoneState();               // _2A8
+	virtual void startCarcassMotion();               // _2C4
+	virtual f32 getDownSmokeScale() { return 0.9f; } // _2EC (weak)
+	virtual void doStartMovie();                     // _2F0
+	virtual void doEndMovie();                       // _2F4
+	virtual void setFSM(FSM* fsm);                   // _2F8
+	virtual void createEffect() { }                  // _2FC (weak)
+	virtual void setupEffect() { }                   // _300 (weak)
+	virtual void startRotateEffect() { }             // _304 (weak)
+	virtual void finishRotateEffect() { }            // _308 (weak)
+	virtual void startWaitEffect() { }               // _30C (weak)
+	virtual void finishWaitEffect() { }              // _310 (weak)
+	virtual void effectDrawOn() { }                  // _314 (weak)
+	virtual void effectDrawOff() { }                 // _318 (weak)
 	//////////////// VTABLE END
 
 	void setRandTarget();

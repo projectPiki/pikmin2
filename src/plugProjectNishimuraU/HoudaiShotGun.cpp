@@ -1154,8 +1154,7 @@ void HoudaiShotGunMgr::emitShotGun()
 
 	Game::EnemyParmsBase::Parms& parms = CG_GENERALPARMS(mOwner);
 
-	f32 attackHit = parms.mAttackHitAngle.mValue;
-	f32 factor    = attackHit * 2.0f;
+	const f32 factor = parms.mAttackHitAngle.mValue * 2.0f;
 	xVec.x += randWeightFloat(factor) - parms.mAttackHitAngle.mValue;
 	xVec.y += randWeightFloat(factor) - parms.mAttackHitAngle.mValue;
 	xVec.z += randWeightFloat(factor) - parms.mAttackHitAngle.mValue;
@@ -1551,11 +1550,11 @@ bool HoudaiShotGunMgr::searchShotGunRotation()
  */
 bool HoudaiShotGunMgr::returnShotGunRotation()
 {
-	f32 yawDifference = _normaliseAngle(mYaw);
-	mYaw              = _clampAngle(mYaw, yawDifference, 0.025f);
+	const f32 yawDifference = _normaliseAngle(mYaw);
+	mYaw                    = _clampAngle(mYaw, yawDifference, 0.025f);
 
-	f32 pitchDifference = _normaliseAngle(mPitch);
-	mPitch              = _clampAngle(mPitch, pitchDifference, 0.025f);
+	const f32 pitchDifference = _normaliseAngle(mPitch);
+	mPitch                    = _clampAngle(mPitch, pitchDifference, 0.025f);
 
 	if (absVal(mYaw - yawDifference) < 0.01f && absVal(mPitch - pitchDifference) < 0.01f) {
 		return true;
