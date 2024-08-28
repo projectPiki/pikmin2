@@ -1092,7 +1092,9 @@ void CollPart::calcPoseMatrix(Vector3f& input, Matrixf& poseMatrix)
 		Matrixf mtx;
 		makeMatrixTo(mtx);
 
-		Vector3f pos = mtx.getTranslation();
+		Vector3f pos;
+		mtx.getTranslation(pos);
+
 		pos -= input;
 		f32 len = pos.normalise();
 

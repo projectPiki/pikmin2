@@ -345,6 +345,7 @@ struct Matrixf {
 	 * Returns the translation vector of the matrix.
 	 *
 	 * @return The translation vector.
+	 * @note Is this even used? Most calls seem to use the above return-through-parameter. This isn't even in the map.
 	 */
 	inline Vector3f getTranslation() { return getColumn(3); }
 
