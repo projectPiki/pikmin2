@@ -162,16 +162,10 @@ void ObjContena::doCreate(JKRArchive* arc)
 	mSpotX = mPaneSpot->mOffset.x;
 	mSpotY = mPaneSpot->mOffset.y;
 	og::Screen::setCallBackMessage(mContena);
-	mAnimList[0] = nullptr;
-	mAnimList[1] = nullptr;
-	mAnimList[2] = nullptr;
-	mAnimList[3] = nullptr;
-	mAnimList[4] = nullptr;
-	mAnimList[5] = nullptr;
-	mAnimList[6] = nullptr;
-	mAnimList[7] = nullptr;
-	mAnimList[8] = nullptr;
-	mAnimList[9] = nullptr;
+	
+    for (int i = 0; i < 10; i++) {
+        mAnimList[i] = nullptr;
+    };
 
 	if (mContena->search('sh_color')) {
 		og::Screen::setCallBackMessage(mContena);
