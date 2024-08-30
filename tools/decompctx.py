@@ -20,6 +20,7 @@ root_dir = os.path.abspath(os.path.join(script_dir, ".."))
 src_dir = os.path.join(root_dir, "src")
 include_dirs = [
     os.path.join(root_dir, "include"),
+    os.path.join(root_dir, "include/stl"),
     # Add additional include directories here
 ]
 

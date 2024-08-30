@@ -6,7 +6,8 @@
 #include "IDelegate.h"
 #include "id32.h"
 #include "Rect.h"
-#include "Game/Piki.h" // solely for the piki id enum
+// solely for the piki id enum
+#include "Game/Piki.h"
 
 struct Controller;
 
