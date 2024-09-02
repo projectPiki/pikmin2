@@ -114,6 +114,14 @@ struct SceneMgr {
 		mScenes->mChild->stopMainSeq(time);
 	}
 
+	inline void doStopMainSeqCheck(u32 time)
+	{
+		checkScene();
+		Scene* scene = mScenes->mChild;
+		if (scene)
+			scene->stopMainSeq(time);
+	}
+
 	inline Scene* getChild()
 	{
 		checkScene();

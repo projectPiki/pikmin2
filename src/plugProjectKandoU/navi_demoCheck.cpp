@@ -257,7 +257,7 @@ bool Navi::demoCheck()
 
 						Vector3f forwardVec;
 						currentPellet->mBaseTrMatrix.getBasis(2, forwardVec);
-						arg.mAngle                 = JMath::atanTable_.atan2_(forwardVec.x, forwardVec.z);
+						arg.mAngle                 = JMAAtan2Radian(forwardVec.x, forwardVec.z);
 						moviePlayer->mTargetObject = currentPellet;
 						moviePlayer->play(arg);
 						playData->setDemoFlag(DEMO_Discover_Treasure);
@@ -303,7 +303,7 @@ bool Navi::demoCheck()
 
 						Vector3f forwardVec;
 						currentItem->mBaseTrMatrix.getBasis(2, forwardVec);
-						arg.mAngle                 = JMath::atanTable_.atan2_(forwardVec.x, forwardVec.z);
+						arg.mAngle                 = JMAAtan2Radian(forwardVec.x, forwardVec.z);
 						moviePlayer->mTargetObject = currentItem;
 						moviePlayer->play(arg);
 						playData->setFindItemDemoFlag(itemIndex);

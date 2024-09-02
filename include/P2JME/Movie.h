@@ -49,9 +49,9 @@ struct AbtnPane : public P2DScreen::CallBackNode {
 
 	// _00     = VTBL
 	// _00-_1C = P2DScreen::CallBackNode
-	u32 mState;  // _1C
-	f32 mTimer1; // _20
-	f32 mTimer2; // _24
+	u32 mState;       // _1C, 0 = inactive, 1 = active
+	f32 mAnimAlpha;   // _20, used to make button alpha change over time
+	f32 mAppearAlpha; // _24, goes from 0 to 1 when the button should be visible
 };
 
 struct MessageWindowScreen : P2DScreen::Mgr_tuning {
@@ -121,6 +121,8 @@ struct TControl : public P2JME::Window::TControl {
 		MODEFLAG_Finish   = 3,
 	};
 
+	enum ControlFlag { ControlFlag_UnsuspendOnFinish = 1 };
+
 	TControl();
 
 	virtual ~TControl() { }                        // _08 (weak)
@@ -138,11 +140,8 @@ struct TControl : public P2JME::Window::TControl {
 	J2DPane* mPaneMgDemo;                // _64
 	bool mIsActive;                      // _68
 	EModeFlag mModeFlag;                 // _6C
-	union {
-		u8 bytesView[4];
-		u32 dwordView;
-	} mFlags;     // _70
-	u8 mIsPaused; // _74
+	BitFlag<u32> mFlags;                 // _70
+	u8 mIsPaused;                        // _74
 };
 } // namespace Movie
 } // namespace P2JME

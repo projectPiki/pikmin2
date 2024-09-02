@@ -193,12 +193,15 @@ void PikiMgr::load(int viewNum)
 	loadBmd(Bulbmin, "piki_kochappy");
 	loadBmd(Carrot, "piki_ninjin");
 
-	mHappaModel[Leaf]    = J3DModelLoaderDataBase::load(arc->getResource("happa_model/leaf.bmd"), J3DMLF_Material_PE_FogOff);
-	mHappaModel[Bud]     = J3DModelLoaderDataBase::load(arc->getResource("happa_model/bud.bmd"), J3DMLF_UseUniqueMaterials | J3DMLF_19);
-	mHappaModel[Flower]  = J3DModelLoaderDataBase::load(arc->getResource("happa_model/flower.bmd"), J3DMLF_UseUniqueMaterials | J3DMLF_19);
-	mHappaModel[Bud_Red] = J3DModelLoaderDataBase::load(arc->getResource("happa_model/bud_red.bmd"), J3DMLF_UseUniqueMaterials | J3DMLF_19);
-	mHappaModel[Flower_Red]
-	    = J3DModelLoaderDataBase::load(arc->getResource("happa_model/flower_red.bmd"), J3DMLF_UseUniqueMaterials | J3DMLF_19);
+	mHappaModel[Leaf] = J3DModelLoaderDataBase::load(arc->getResource("happa_model/leaf.bmd"), J3DMLF_Material_PE_FogOff);
+	mHappaModel[Bud]
+	    = J3DModelLoaderDataBase::load(arc->getResource("happa_model/bud.bmd"), J3DMLF_UseUniqueMaterials | J3DMLF_UseSingleSharedDL);
+	mHappaModel[Flower]
+	    = J3DModelLoaderDataBase::load(arc->getResource("happa_model/flower.bmd"), J3DMLF_UseUniqueMaterials | J3DMLF_UseSingleSharedDL);
+	mHappaModel[Bud_Red]
+	    = J3DModelLoaderDataBase::load(arc->getResource("happa_model/bud_red.bmd"), J3DMLF_UseUniqueMaterials | J3DMLF_UseSingleSharedDL);
+	mHappaModel[Flower_Red] = J3DModelLoaderDataBase::load(arc->getResource("happa_model/flower_red.bmd"),
+	                                                       J3DMLF_UseUniqueMaterials | J3DMLF_UseSingleSharedDL);
 
 	sys->heapStatusStart("pikmin-ModelMgr", nullptr);
 	mModelMgr = new SysShape::ModelMgr(PikiColorCount, &mBluPikiModel, MAX_PIKI_COUNT, 0x20000, viewNum,
@@ -227,7 +230,8 @@ void PikiMgr::loadBmd(int id, char* name)
 {
 	char pathbuf[PATH_MAX];
 	sprintf(pathbuf, "piki_model/%s.bmd", name);
-	J3DModelData* data = J3DModelLoaderDataBase::load(mModelArchive->getResource(pathbuf), 0x60010);
+	J3DModelData* data
+	    = J3DModelLoaderDataBase::load(mModelArchive->getResource(pathbuf), J3DMLF_UseSingleSharedDL | J3DMLF_18 | J3DMLF_UseImmediateMtx);
 	{
 		const u32 lightObjNum = 0;
 		const u32 texGenNum   = 0;

@@ -153,7 +153,7 @@ void TitleState::dvdload()
 		Vs2D_TitleInfo::Info* displayData = (*mVsTitleInfo)(i);
 		VsGame::StageData* fileData       = mSection->mVsStageList->getStageData(i);
 		if (fileData) {
-			displayData->mInfo = fileData->mIndex2D;
+			displayData->mIndex = fileData->mIndex2D;
 		}
 	}
 }

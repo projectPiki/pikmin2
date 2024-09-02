@@ -57,7 +57,7 @@ struct TControl : public P2JME::Window::TControl {
 	f32 mCurrentTextHeight; // _60
 	J2DTextBox* mTextBox;   // _64
 	f32 mMaxScroll;         // _68
-	f32 _6C;                // _6C
+	f32 mScrollVal;         // _6C
 	f32 mScrollSpeed;       // _70
 };
 

@@ -88,7 +88,7 @@ void ObjectGameActor::update()
 		SysShape::Joint* joint = mGameObject->mModel->mJoints;
 		if (joint) {
 			Matrixf* mtx   = joint->getWorldMatrix();
-			mObjectFaceDir = JMath::atanTable_.atan2_(mtx->mMatrix.structView.zx, mtx->mMatrix.structView.zz);
+			mObjectFaceDir = JMAAtan2Radian(mtx->mMatrix.structView.zx, mtx->mMatrix.structView.zz);
 			if (mGameObject->isNavi()) {
 				mGameObject->getCreatureID();
 			}

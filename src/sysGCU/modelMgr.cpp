@@ -31,7 +31,7 @@ ModelMgr::ModelMgr(int modelDataLimit, J3DModelData** modelData, int heapLimit, 
 	mHeaps      = new JKRSolidHeap*[heapLimit];
 	int maxSize = calcMaximumModelSize();
 	for (int i = 0; i < heapLimit; i++) {
-		mHeaps[i] = JKRSolidHeap::create((maxSize + 0x1FU) & ~0x1F, JKRHeap::sCurrentHeap, true);
+		mHeaps[i] = JKRSolidHeap::create(OSRoundUp32B(maxSize), JKRHeap::sCurrentHeap, true);
 		JUT_ASSERTLINE(82, mHeaps[i] != nullptr, "solid heap creation failed !\n");
 	}
 }

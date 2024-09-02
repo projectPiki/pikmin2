@@ -104,7 +104,7 @@ void Mgr::setupResources()
  */
 void Mgr::onCreateModel(SysShape::Model* model)
 {
-	model->mJ3dModel->newDifferedDisplayList(0x1000000);
+	model->mJ3dModel->newDifferedDisplayList(J3DMDF_DiffColorReg);
 	model->mJ3dModel->calc();
 	model->mJ3dModel->calcMaterial();
 	model->mJ3dModel->makeDL();

@@ -17,7 +17,7 @@ namespace Window {
 DrawInfo::DrawInfo()
     : CNode("")
 {
-	_18        = -1;
+	mIndex     = -1;
 	mTimer     = 0.0f;
 	mTimeLimit = 0.5f;
 }
@@ -66,7 +66,7 @@ void DrawInfoMgr::reset()
 	while (node) {
 		DrawInfo* next = (DrawInfo*)node->mNext;
 		P2ASSERTLINE(253, node);
-		node->_18    = -1;
+		node->mIndex = -1;
 		node->mTimer = 0.0f;
 		node->del();
 		mInfoList2.add(node);
@@ -83,7 +83,7 @@ DrawInfo* DrawInfoMgr::searchDrawInfo(int id)
 	DrawInfo* ret = nullptr;
 	FOREACH_NODE(DrawInfo, mInfoList1.mChild, node)
 	{
-		if (id == (int)node->_18) {
+		if (id == (int)node->mIndex) {
 			ret = node;
 			break;
 		}
@@ -99,7 +99,7 @@ DrawInfo* DrawInfoMgr::getDrawInfo(int id)
 {
 	DrawInfo* node = static_cast<DrawInfo*>(mInfoList2.mChild);
 	if (node) {
-		node->_18    = id;
+		node->mIndex = id;
 		node->mTimer = 0.0f;
 		node->del();
 		mInfoList1.add(node);
@@ -131,7 +131,7 @@ TSequenceProcessor::TSequenceProcessor(JMessage::TReference* ref, JMessage::TCon
  */
 void TSequenceProcessor::doCharacterSE(int)
 {
-	if (((!Game::moviePlayer) || (Game::moviePlayer && !(Game::moviePlayer->isFlag(Game::MVP_IsFinished)))) && !mFlags.isSet(8)) {
+	if ((!Game::moviePlayer || (Game::moviePlayer && !Game::moviePlayer->isFlag(Game::MVP_IsFinished))) && !isFlag(SeqProc_IsForceFinish)) {
 		bool isfast        = isFastSE();
 		PSGame::SeMgr* mgr = PSSystem::getSeMgrInstance();
 		mgr->playMessageVoice(PSSE_MP_VOX_BODY_MN, isfast);
@@ -144,7 +144,7 @@ void TSequenceProcessor::doCharacterSE(int)
  */
 void TSequenceProcessor::doCharacterSEStart()
 {
-	if (((!Game::moviePlayer) || (Game::moviePlayer && !(Game::moviePlayer->isFlag(Game::MVP_IsFinished)))) && !mFlags.isSet(8)) {
+	if ((!Game::moviePlayer || (Game::moviePlayer && !Game::moviePlayer->isFlag(Game::MVP_IsFinished))) && !isFlag(SeqProc_IsForceFinish)) {
 		PSGame::SeMgr* mgr = PSSystem::getSeMgrInstance();
 		mgr->playMessageVoice(PSSE_MP_VOX_HEAD_A_FLAT, false);
 	}
@@ -156,7 +156,7 @@ void TSequenceProcessor::doCharacterSEStart()
  */
 void TSequenceProcessor::doCharacterSEEnd()
 {
-	if (((!Game::moviePlayer) || (Game::moviePlayer && !(Game::moviePlayer->isFlag(Game::MVP_IsFinished)))) && !mFlags.isSet(8)) {
+	if ((!Game::moviePlayer || (Game::moviePlayer && !Game::moviePlayer->isFlag(Game::MVP_IsFinished))) && !isFlag(SeqProc_IsForceFinish)) {
 		PSGame::SeMgr* mgr = PSSystem::getSeMgrInstance();
 		mgr->playMessageVoice(PSSE_MP_VOX_FOOT_A_UP, false);
 	}
@@ -197,7 +197,7 @@ BOOL TRenderingProcessor::doDrawCommon(f32 a1, f32 a2, Matrixf* mtx1, Matrixf* m
 {
 	u8 ret = 255;
 
-	DrawInfo* info = mDrawInfo.searchDrawInfo(_40);
+	DrawInfo* info = mDrawInfo.searchDrawInfo(mInfoIndex);
 	f32 speed      = mSpeed;
 	if (-speed >= a2) {
 		f32 speed2 = mTextBoxHeight;
@@ -212,22 +212,21 @@ BOOL TRenderingProcessor::doDrawCommon(f32 a1, f32 a2, Matrixf* mtx1, Matrixf* m
 					if (a2 > 0.0f) {
 						calc2 = a2 - speed2;
 					}
-					speed2   = 0.0f;
-					speed2   = speed * speed - calc2 * calc2;
-					speed2   = _sqrtf(speed2);
-					speed2   = -speed2;
-					speed    = JMath::atanTable_.atan2_(speed2, calc2);
-					calc     = speed + HALF_PI;
-					f32 what = calc2 / mSpeed * 255.0f;
-					calc     = (what >= 0.0f) ? what + 0.5f : what - 0.5f;
-					ret      = 255 - (u8)calc;
-					calc2    = speed2 + mSpeed;
+					speed2 = 0.0f;
+					speed2 = speed * speed - calc2 * calc2;
+					speed2 = _sqrtf(speed2);
+					speed2 = -speed2;
+					speed  = JMAAtan2Radian(speed2, calc2);
+					calc   = speed + HALF_PI;
+					calc   = ROUND_F32_TO_U8(calc2 / mSpeed * 255.0f);
+					ret    = 255 - (u8)calc;
+					calc2  = speed2 + mSpeed;
 				}
 			}
 			if (!info) {
 				info = (DrawInfo*)mDrawInfo.mInfoList1.mChild;
 				if (info) {
-					info->_18    = _40;
+					info->mIndex = mInfoIndex;
 					info->mTimer = 0.0f;
 					info->del();
 					mDrawInfo.mInfoList1.add(info);
@@ -264,7 +263,7 @@ BOOL TRenderingProcessor::doDrawCommon(f32 a1, f32 a2, Matrixf* mtx1, Matrixf* m
 		ret = 0;
 	}
 
-	return (int)(ret * _78);
+	return (int)(ret * mBaseAlphaModifier);
 
 	/*
 	stwu     r1, -0xe0(r1)
@@ -883,7 +882,7 @@ f32 TRenderingProcessor::doDrawRuby(f32 x0, f32 y0, f32 x, f32 y, int a1, bool f
 		color.a = ret;
 		mRubyFont->setCharColor(color);
 
-		GXColor col(_CC);
+		GXColor col(mDefaultWhite);
 		col.r = col.r >> 1;
 		col.g = col.g >> 1;
 		col.b = col.b >> 1;
@@ -891,7 +890,7 @@ f32 TRenderingProcessor::doDrawRuby(f32 x0, f32 y0, f32 x, f32 y, int a1, bool f
 		GXSetTevColor(GX_TEVREG0, col);
 		wid = mRubyFont->drawChar_scale(0.0f, 0.0f, x, y, a1, flag);
 
-		GXColor col2(_CC);
+		GXColor col2(mDefaultWhite);
 		GXSetTevColor(GX_TEVREG0, col2);
 	} else {
 		wid = calcWidth(mRubyFont, a1, x, flag);
@@ -1201,23 +1200,22 @@ bool TControl::update(Controller* control1, Controller* control2)
 	P2JME::TSequenceProcessor* proc = mSequenceProc;
 	if (proc) {
 		u32 flag = proc->mFlags.typeView;
-		if (flag & 4) {
-
-			if (!(flag & 1)) {
-				proc->mFlags.set(1);
-				mTimer1 = mTextRenderProc->_58;
+		if (flag & P2JME::TSequenceProcessor::SeqProc_IsWriting) {
+			if (!(flag & P2JME::TSequenceProcessor::SeqProc_IsActive)) {
+				proc->setFlag(P2JME::TSequenceProcessor::SeqProc_IsActive);
+				mTimer1 = mTextRenderProc->mYOffset;
 				mTimer2 = mTimer1 - mTextRenderProc->mTextBoxHeight;
 				mTimer  = 0.0f;
 			} else {
 				f32 calc  = 1.0f;
 				f32 calc2 = mTimer / 0.5f;
 				if (calc2 > 1.0f) {
-					proc->mFlags.unset(1);
-					mSequenceProc->mFlags.unset(4);
+					proc->resetFlag(P2JME::TSequenceProcessor::SeqProc_IsActive);
+					mSequenceProc->resetFlag(P2JME::TSequenceProcessor::SeqProc_IsWriting);
 				} else {
 					calc = (1.0f - cosf(calc2 * PI)) * 0.5f;
 				}
-				mTextRenderProc->_58 = calc * (mTimer2 - mTimer1) + mTimer1;
+				mTextRenderProc->mYOffset = calc * (mTimer2 - mTimer1) + mTimer1;
 
 				// I would imagine the second of these was supposed to be for controller 2, but very cool
 				if ((control1 && control1->getButton() & Controller::PRESS_B)

@@ -99,62 +99,6 @@ GameConfig::GameConfig()
 }
 
 /**
- * @note Address: 0x804322A0
- * @note Size: 0x70
- */
-// WEAK - in header.
-// GameConfig::Parms::~Parms() { }
-
-/**
- * __ct__Q34Game10GameConfig5ParmsFv
- * @note Address: 0x80432310
- * @note Size: 0x460
- */
-// WEAK - in header.
-// GameConfig::Parms::Parms()
-//     : TagParameters("GameConfig")
-//     , mGamePrint(this, "gamePrint")
-//     , mPrint(this, "Print")
-//     , mOgawaPrint(this, "ogawaPrint")
-//     , mShimizuPrint(this, "shimizuPrint")
-//     , mYamashitaPrint(this, "yamashitaPrint")
-//     , mKandoPrint(this, "kandoPrint")
-//     , mNishimuraPrint(this, "nishimuraPrint")
-//     , mEbisawaPrint(this, "ebisawaPrint")
-//     , mMorimuraPrint(this, "morimuraPrint")
-//     , mKonoPrint(this, "konoPrint")
-//     , mFujinoPrint(this, "fujinoPrint")
-//     , mPsoundPrint(this, "psoundPrint")
-//     , mShortCutUp(this, "shortCutUp")
-//     , mShortCutDown(this, "shortCutDown")
-//     , mShortCutLeft(this, "shortCutLeft")
-//     , mShortCutRight(this, "shortCutRight")
-//     , mAllocAllEnemy(this, "allocAllEnemy")
-//     , mMapparts_path(this, "mapparts_path")
-//     , mPublicity(this, "publicity")
-//     , mPelletMultiLang(this, "pelletMultiLang")
-//     , mAI(this, "AI")
-//     , mTimers(this, "timers")
-//     , mVsTest(this, "vsTest")
-//     , mVsDeathType(this, "vsDeathType")
-//     , mVsHiba(this, "vsHiba")
-//     , mVsY(this, "vsY")
-//     , mE3version(this, "E3version")
-//     , mMukki_cherry(this, "mukki_cherry")
-//     , mMarioClubDevelop(this, "marioClubDevelop")
-//     , mHeapStatusPrint(this, "heapStatusPrint")
-//     , mHeapFreeSize(this, "heapFreeSize")
-//     , mBaseGameNewCheck(this, "baseGameNewCheck")
-//     , mKFesVersion(this, "KFesVersion")
-//     , mNintendoVersion(this, "nintendoVersion")
-//     , mLanguage(this, "language")
-//     , mAutosaveOff(this, "autosaveOff")
-//     , mVsDebugSelectPattern(this, "vsDebugSelectPattern")
-//     , mVsFifo(this, "vsFifo")
-// {
-// }
-
-/**
  * @note Address: 0x80432770
  * @note Size: 0x128
  */

@@ -330,7 +330,7 @@ void Obj::getTargetPosition()
 			} else if (sqrDistanceXZ(mPosition, mTargetPosition) < 625.0f) {
 				f32 range    = (C_GENERALPARMS.mTerritoryRadius.mValue - C_GENERALPARMS.mHomeRadius.mValue);
 				f32 randDist = C_GENERALPARMS.mHomeRadius.mValue + randWeightFloat(range);
-				f32 ang2     = JMath::atanTable_.atan2_(mPosition.x - mHomePosition.x, mPosition.z - mHomePosition.z);
+				f32 ang2     = JMAAtan2Radian(mPosition.x - mHomePosition.x, mPosition.z - mHomePosition.z);
 				f32 ang1     = randWeightFloat(PI);
 
 				f32 ang3      = HALF_PI;

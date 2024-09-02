@@ -405,7 +405,7 @@ void Obj::setTargetPosition(bool check)
 		f32 range = (C_GENERALPARMS.mTerritoryRadius.mValue - C_GENERALPARMS.mHomeRadius.mValue);
 		randDist  = C_GENERALPARMS.mHomeRadius.mValue + randWeightFloat(range);
 		f32 ang1  = randWeightFloat(PI);
-		f32 ang2  = JMath::atanTable_.atan2_(mPosition.x - mHomePosition.x, mPosition.z - mHomePosition.z);
+		f32 ang2  = JMAAtan2Radian(mPosition.x - mHomePosition.x, mPosition.z - mHomePosition.z);
 		f32 ang3  = HALF_PI;
 		randAngle = ang2 + ang1 + ang3; // dumb fix for regswap
 	}

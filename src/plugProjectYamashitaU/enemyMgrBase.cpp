@@ -578,13 +578,16 @@ void EnemyMgrBase::loadTexData()
  * @note Address: 0x80130394
  * @note Size: 0x2C
  */
-J3DModelData* EnemyMgrBase::doLoadBmd(void* bmd) { return J3DModelLoaderDataBase::load(bmd, 0x240010); }
+J3DModelData* EnemyMgrBase::doLoadBmd(void* bmd)
+{
+	return J3DModelLoaderDataBase::load(bmd, J3DMLF_UseUniqueMaterials | J3DMLF_UseSingleSharedDL | J3DMLF_UseImmediateMtx);
+}
 
 /**
  * @note Address: 0x801303C0
  * @note Size: 0x28
  */
-J3DModelData* EnemyMgrBase::doLoadBdl(void* bdl) { return J3DModelLoaderDataBase::loadBinaryDisplayList(bdl, 0x2000); }
+J3DModelData* EnemyMgrBase::doLoadBdl(void* bdl) { return J3DModelLoaderDataBase::loadBinaryDisplayList(bdl, J3DMLF_DoBdlMaterialCalc); }
 
 /**
  * @note Address: 0x801303E8

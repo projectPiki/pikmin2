@@ -634,10 +634,7 @@ void BaseGameSection::initGenerators()
 
 		if (defaultGenFile) {
 			RamStream defaultGenTxt(defaultGenFile, -1);
-			defaultGenTxt.mMode = 1;
-			if (defaultGenTxt.mMode == 1) {
-				defaultGenTxt.mTabCount = 0;
-			}
+			defaultGenTxt.setMode(STREAM_MODE_TEXT, 1);
 			generatorMgr->read(defaultGenTxt, false);
 			generatorMgr->updateUseList();
 
@@ -680,10 +677,7 @@ void BaseGameSection::initGenerators()
 			void* initgenFile = LoadTextFile(filenameCharArr);
 			if (initgenFile) {
 				RamStream initgenTxt(initgenFile, -1);
-				initgenTxt.mMode = 1;
-				if (initgenTxt.mMode == 1) {
-					initgenTxt.mTabCount = 0;
-				}
+				initgenTxt.setMode(STREAM_MODE_TEXT, 1);
 				onceGeneratorMgr->read(initgenTxt, false);
 				onceGeneratorMgr->updateUseList();
 				generatorFiles[fileIdx]    = initgenFile;
@@ -711,10 +705,7 @@ void BaseGameSection::initGenerators()
 
 				if (nonLoopFile) {
 					RamStream noonloopTxt(nonLoopFile, -1);
-					noonloopTxt.mMode = 1;
-					if (noonloopTxt.mMode == 1) {
-						noonloopTxt.mTabCount = 0;
-					}
+					noonloopTxt.setMode(STREAM_MODE_TEXT, 1);
 
 					GeneratorMgr* currentNonloopMgr = new GeneratorMgr;
 					currentNonloopMgr->mUnusedFlag  = true; // is nonrepeating?
@@ -765,10 +756,7 @@ void BaseGameSection::initGenerators()
 					void* loopFile = LoadTextFile(filenameCharArr);
 					if (loopFile) {
 						RamStream loopTxt(loopFile, -1);
-						loopTxt.mMode = 1;
-						if (loopTxt.mMode == 1) {
-							loopTxt.mTabCount = 0;
-						}
+						loopTxt.setMode(STREAM_MODE_TEXT, 1);
 
 						GeneratorMgr* currentLoopMgr = new GeneratorMgr;
 						currentLoopMgr->mUnusedFlag  = true; // is nonrepeating?
@@ -796,10 +784,7 @@ void BaseGameSection::initGenerators()
 				void* dayFile = LoadTextFile(filenameCharArr);
 				if (dayFile) {
 					RamStream dayTxt(dayFile, -1);
-					dayTxt.mMode = 1;
-					if (dayTxt.mMode == 1) {
-						dayTxt.mTabCount = 0;
-					}
+					dayTxt.setMode(STREAM_MODE_TEXT, 1);
 					dayGeneratorMgr->read(dayTxt, false);
 					dayGeneratorMgr->updateUseList();
 					generatorFiles[fileIdx]    = dayFile;
@@ -2086,7 +2071,7 @@ bool BaseGameSection::isAllocHalt()
 void BaseGameSection::setupFloatMemory()
 {
 	bool cave = false;
-	gameSystem->mFlags.typeView &= 0xFE; // this matches, but it's a bit odd
+	gameSystem->resetFlag(GAMESYS_IsSoundSceneActive);
 
 	PSSystem::SingletonBase<PSM::ObjMgr>::newInstance();
 	PSSystem::SingletonBase<PSM::BossBgmFader::Mgr>::newInstance();
@@ -2296,7 +2281,7 @@ void BaseGameSection::setupFloatMemory()
 	pelletMgr->setupSoundViewerAndBas();
 
 	onSetSoundScene();
-	gameSystem->setFlag(GAMESYS_IsSoundFXActive);
+	gameSystem->setFlag(GAMESYS_IsSoundSceneActive);
 	if (Farm::farmMgr) {
 		Farm::farmMgr->setupSound();
 	}

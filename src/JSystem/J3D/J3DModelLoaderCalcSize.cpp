@@ -344,10 +344,10 @@ int J3DModelLoader::calcLoadBinaryDisplayListSize(const void* stream, u32 flags)
 		case J3DFBT_Material:
 			mMaterialBlock = (const J3DMaterialBlock*)nextBlock;
 			matFlags |= (J3DMLF_21 | J3DMLF_Material_PE_Full | J3DMLF_Material_Color_LightOn);
-			if ((flags & (J3DMLF_13 | J3DMLF_14)) == 0) {
+			if ((flags & (J3DMLF_13 | J3DMLF_DoBdlMaterialCalc)) == 0) {
 				_18 = 1;
 				size += calcSizeMaterial((const J3DMaterialBlock*)nextBlock, matFlags);
-			} else if ((flags & (J3DMLF_13 | J3DMLF_14)) == J3DMLF_14) {
+			} else if ((flags & (J3DMLF_13 | J3DMLF_DoBdlMaterialCalc)) == J3DMLF_DoBdlMaterialCalc) {
 				_18 = 1;
 				size += calcSizePatchedMaterial((const J3DMaterialBlock*)nextBlock, matFlags);
 			}

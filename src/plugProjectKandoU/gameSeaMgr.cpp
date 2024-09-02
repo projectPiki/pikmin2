@@ -472,9 +472,10 @@ SeaMgr::SeaMgr()
 
 	u32 flags;
 	if (Game::gameSystem && Game::gameSystem->isMultiplayerMode()) {
-		flags = 0x20240010;
+		flags = J3DMLF_Material_PE_FogOff | J3DMLF_UseUniqueMaterials | J3DMLF_UseSingleSharedDL | J3DMLF_UseImmediateMtx;
 	} else {
-		flags = 0x21240010;
+		flags = J3DMLF_Material_PE_FogOff | J3DMLF_Material_UseIndirect | J3DMLF_UseUniqueMaterials | J3DMLF_UseSingleSharedDL
+		      | J3DMLF_UseImmediateMtx;
 	}
 
 	mModelData[0] = J3DModelLoaderDataBase::load(file, flags);

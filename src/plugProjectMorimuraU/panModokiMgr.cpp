@@ -58,7 +58,11 @@ EnemyBase* Mgr::birth(EnemyBirthArg& birthArg) { return EnemyMgrBase::birth(birt
  * @note Address: 0x8034EE48
  * @note Size: 0x2C
  */
-J3DModelData* Mgr::doLoadBmd(void* filename) { return J3DModelLoaderDataBase::load(filename, 0x00240030); }
+J3DModelData* Mgr::doLoadBmd(void* filename)
+{
+	return J3DModelLoaderDataBase::load(filename, J3DMLF_UseUniqueMaterials | J3DMLF_UseSingleSharedDL | J3DMLF_UsePostTexMtx
+	                                                  | J3DMLF_UseImmediateMtx);
+}
 
 /**
  * @note Address: 0x8034EE74

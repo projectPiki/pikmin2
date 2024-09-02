@@ -4423,7 +4423,7 @@ void PikiBlowState::init(Piki* piki, StateArg* stateArg)
 	mState = 0;
 
 	piki->mVelocity.y = mBlowDirection.y * (0.1f * randFloat() + 1.0f);
-	piki->mFaceDir    = roundAng(JMath::atanTable_.atan2_(mBlowDirection.x, mBlowDirection.z) + PI);
+	piki->mFaceDir    = roundAng(JMAAtan2Radian(mBlowDirection.x, mBlowDirection.z) + PI);
 
 	if (mFlags & 0x4) {
 		if (piki->getHappa() >= Bud) {
@@ -4804,7 +4804,7 @@ void PikiDrownState::exec(Piki* piki)
 		if (mNavi) {
 			Vector3f naviPos = mNavi->getPosition();
 			Vector3f pikiPos = piki->getPosition();
-			piki->mFaceDir   = JMath::atanTable_.atan2_(naviPos.x - pikiPos.x, naviPos.z - pikiPos.z);
+			piki->mFaceDir   = JMAAtan2Radian(naviPos.x - pikiPos.x, naviPos.z - pikiPos.z);
 		}
 
 		piki->mVelocity = Vector3f(100.0f * sinf(piki->mFaceDir), 160.0f, 100.0f * cosf(piki->mFaceDir));

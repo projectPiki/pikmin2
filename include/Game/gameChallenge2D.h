@@ -56,7 +56,7 @@ struct Challenge2D_ResultInfo {
 struct Vs2D_TitleInfo {
 	struct Info {
 		Info();
-		u32 mInfo; // _00
+		u32 mIndex; // _00
 	};
 
 	Vs2D_TitleInfo(int stageNum);

@@ -46,7 +46,8 @@ void Mgr::loadModelData()
  */
 J3DModelData* Mgr::doLoadBmd(void* file)
 {
-	return J3DModelLoaderDataBase::load(file, 0x21240030); // flags should really be OR'd together
+	return J3DModelLoaderDataBase::load(file, J3DMLF_Material_PE_FogOff | J3DMLF_Material_UseIndirect | J3DMLF_UseUniqueMaterials
+	                                              | J3DMLF_UseSingleSharedDL | J3DMLF_UsePostTexMtx | J3DMLF_UseImmediateMtx);
 }
 
 } // namespace Tyre

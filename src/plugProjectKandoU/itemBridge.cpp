@@ -87,9 +87,9 @@ void Item::onInit(CreatureInitArg* settings)
 		mStageHealths[i] = stageLength;
 	}
 
-	mEndWP    = nullptr;
-	mBridgeWP = nullptr;
-	_1F8      = 0;
+	mEndWP      = nullptr;
+	mBridgeWP   = nullptr;
+	mBreakDelay = 0;
 }
 
 /**
@@ -274,9 +274,9 @@ void Item::doAI()
 		break;
 	}
 
-	if (_1F8 != 0) {
-		_1F8--;
-		if (_1F8 == 0) {
+	if (mBreakDelay != 0) {
+		mBreakDelay--;
+		if (mBreakDelay == 0) {
 			setCurrStage(mCurrStageIdx + 1);
 			if (mCurrStageIdx == mStageCount) {
 				setAlive(false);
@@ -1073,7 +1073,7 @@ bool Item::interactAttack(InteractAttack& attack)
 		break;
 	}
 
-	if (_1F8) {
+	if (mBreakDelay) {
 		return true;
 	}
 
@@ -1104,7 +1104,7 @@ bool Item::interactAttack(InteractAttack& attack)
 		nextSetFX.create(nullptr);
 		mMabiki.mBuffer += 60;
 
-		_1F8 = 40;
+		mBreakDelay = 40;
 
 		startSound(PSSE_EV_WORK_BRIDGE_EXTEND);
 	}
@@ -1118,7 +1118,7 @@ bool Item::interactAttack(InteractAttack& attack)
  */
 bool Item::interactBreakBridge(InteractBreakBridge& breakBridge)
 {
-	if (_1F8 || mCurrStageIdx == 0) {
+	if (mBreakDelay || mCurrStageIdx == 0) {
 		return false;
 	}
 
@@ -1193,7 +1193,7 @@ Mgr::Mgr()
     : TNodeItemMgr()
 {
 	mItemName = "Bridge";
-	setModelSize(3);
+	setModelSize(BRIDGETYPE_COUNT);
 	mObjectPathComponent = "user/Kando/objects/bridge";
 	mParms               = new BridgeParms();
 	DVDConvertPathToEntrynum("/user/Abe/item/bridgeParms.txt");
@@ -1362,7 +1362,7 @@ void Mgr::createBridgeInfo(int type)
  */
 void Mgr::setupPlatInstanceAttacher(Item* bridge, PlatInstanceAttacher& attacher)
 {
-	P2ASSERTLINE(1186, bridge->mBridgeType < 3);
+	P2ASSERTLINE(1186, bridge->mBridgeType < BRIDGETYPE_COUNT);
 	BridgeInfo* info = getBridgeInfo(bridge->mBridgeType);
 	ID32 id('none');
 	attacher.addToMgr(bridge, id, mPlatAttachers[bridge->mBridgeType], false);

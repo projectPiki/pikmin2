@@ -92,7 +92,7 @@ void WindowPane::moveWindow(bool flag)
 
 	mPane->setOffset(mNewPosition.x, mNewPosition.y);
 
-	f32 newangle = JMath::atanTable_.atan2_(mNewPosition.x - startPosition.x, mNewPosition.y - startPosition.y);
+	f32 newangle = JMAAtan2Radian(mNewPosition.x - startPosition.x, mNewPosition.y - startPosition.y);
 	f32 scale    = roundAng(mCurrAngle);
 	f64 newScale = fabs((scale - 270.0f) / 180.f);
 	scale        = (f32)newScale + 1.0f;
@@ -133,10 +133,10 @@ void WindowPane::close(f32 duration)
  */
 AbtnPane::AbtnPane(u8 state)
 {
-	mState  = state;
-	mTimer1 = 0.0f;
-	mTimer2 = 0.0f;
-	mTimer1 = -0.0f;
+	mState       = state;
+	mAnimAlpha   = 0.0f;
+	mAppearAlpha = 0.0f;
+	mAnimAlpha   = -0.0f;
 }
 
 /**
@@ -157,31 +157,31 @@ void AbtnPane::doInit()
 void AbtnPane::update()
 {
 	f32 one   = 1.0f;
-	f32 alpha = (mTimer1 * TAU) / one;
+	f32 alpha = (mAnimAlpha * TAU) / one;
 	alpha     = cosf(alpha);
 	alpha     = (1.0f - alpha) * 0.5f;
 	switch (mState) {
 	case 0:
-		mTimer2 += -(sys->mDeltaTime * 2.0f);
-		if (mTimer2 < 0.0f) {
-			mTimer2 = 0.0f;
+		mAppearAlpha += -(sys->mDeltaTime * 2.0f);
+		if (mAppearAlpha < 0.0f) {
+			mAppearAlpha = 0.0f;
 		}
 		break;
 	case 1:
-		mTimer2 += sys->mDeltaTime * 2.0f;
-		if (mTimer2 > 1.0f) {
-			mTimer2 = 1.0f;
+		mAppearAlpha += sys->mDeltaTime * 2.0f;
+		if (mAppearAlpha > 1.0f) {
+			mAppearAlpha = 1.0f;
 		}
 		break;
 	}
 
-	mTimer1 += sys->mDeltaTime;
-	if (mTimer1 > 1.0f) {
-		mTimer1 = 0.0f;
+	mAnimAlpha += sys->mDeltaTime;
+	if (mAnimAlpha > 1.0f) {
+		mAnimAlpha = 0.0f;
 	}
 
 	J2DPane* pane = mPane;
-	alpha         = alpha * 255.0f * mTimer2;
+	alpha         = alpha * 255.0f * mAppearAlpha;
 	pane->setAlphaFromFloat(alpha);
 }
 
@@ -202,8 +202,7 @@ PodIconScreen::PodIconScreen()
 	u16 x = sys->getRenderModeWidth();
 	mInitialPos.set(x * 0.75f, y, 100.0f);
 	reset();
-
-	mIsVisible = false;
+	hide();
 }
 
 /**
@@ -672,21 +671,14 @@ void MessageWindowScreen::set(JKRArchive* arc)
  * @note Size: 0x80
  */
 TControl::TControl()
+    : mMessageWindow(nullptr)
+    , mPodIcon(nullptr)
+    , mPaneMgDemo(nullptr)
+    , mIsActive(false)
+    , mModeFlag(MODEFLAG_Inactive)
 {
-	mMessageWindow      = nullptr;
-	mPodIcon            = nullptr;
-	mPaneMgDemo         = nullptr;
-	mIsActive           = false;
-	mModeFlag           = MODEFLAG_Inactive;
-	mFlags.bytesView[0] = 0;
-	mFlags.bytesView[1] = 0;
-	mFlags.bytesView[2] = 0;
-	mFlags.bytesView[3] = 0;
-	mFlags.bytesView[0] = 0;
-	mFlags.bytesView[1] = 0;
-	mFlags.bytesView[2] = 0;
-	mFlags.bytesView[3] = 0;
-	mFlags.dwordView |= 1;
+	mFlags.clear();
+	mFlags.set(ControlFlag_UnsuspendOnFinish);
 }
 
 /**
@@ -731,10 +723,10 @@ bool TControl::onInit()
 	sys->heapStatusEnd("podIcon");
 	sys->heapStatusEnd("PMT_onInit_arc");
 	sys->heapStatusStart("PMT_onInit_initRenderingProcessor", nullptr);
-	initRenderingProcessor(0x400);
+	initRenderingProcessor(1024); // max 1024 characters can be animated at once
 	sys->heapStatusEnd("PMT_onInit_initRenderingProcessor");
 	sys->heapStatusEnd("P2JME::Movie::TControl::onInit");
-	// return 1;
+	return 1;
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -1305,16 +1297,16 @@ TControl::EModeFlag TControl::setMode(EModeFlag mode)
 	case MODEFLAG_Inactive:
 		mIsActive = false;
 		mMessageWindow->mWindowPane->mPane->hide();
-		mSequenceProc->mFlags.set(1);
+		mSequenceProc->setFlag(TSequenceProcessor::SeqProc_IsActive);
 		break;
 	case MODEFLAG_Start:
 		PSSystem::spSysIF->playSystemSe(PSSE_MP_SHIP_CALLING_01, 0);
 		mMessageWindow->open(0.5f);
 		mPodIcon->appear();
-		mSequenceProc->mFlags.set(1);
+		mSequenceProc->setFlag(TSequenceProcessor::SeqProc_IsActive);
 		break;
 	case MODEFLAG_Writing:
-		mSequenceProc->mFlags.unset(1);
+		mSequenceProc->resetFlag(TSequenceProcessor::SeqProc_IsActive);
 		break;
 	case MODEFLAG_Finish:
 		PSSystem::spSysIF->playSystemSe(PSSE_MP_SHIP_PERIOD_01, 0);
@@ -1713,7 +1705,7 @@ void MessageWindowScreen::open(f32 duration) { mWindowPane->open(duration); }
 bool TControl::update(Controller* pad1, Controller* pad2)
 {
 	bool ret = Window::TControl::update(pad1, pad2); // matching bs when this is bool
-	if (mFlags.dwordView & 1 && Game::moviePlayer && (Game::moviePlayer->mFlags.isSet(2))) {
+	if (mFlags.isSet(ControlFlag_UnsuspendOnFinish) && Game::moviePlayer && Game::moviePlayer->isFlag(Game::MVP_IsFinished)) {
 		if (mIsActive) {
 			reset();
 			Game::moviePlayer->unsuspend(1, false);
@@ -1745,20 +1737,20 @@ bool TControl::update(Controller* pad1, Controller* pad2)
 			}
 			break;
 		case MODEFLAG_Writing:
-			if (mStatus.typeView & 2) {
+			if (mStatus.isSet(2)) {
 				setMode(MODEFLAG_Finish);
 			}
 			break;
 		case MODEFLAG_Finish:
 			if (mMessageWindow->mWindowPane->mState == 4 && mPodIcon->mState == 3) {
 				reset();
-				if ((mFlags.dwordView & 1) && Game::moviePlayer) {
+				if (mFlags.isSet(ControlFlag_UnsuspendOnFinish) && Game::moviePlayer) {
 					Game::moviePlayer->unsuspend(1, true);
 				}
 			}
 		}
 
-		if (mSequenceProc->mFlags.isSet(2)) { // done writing, can press A
+		if (mSequenceProc->isFlag(TSequenceProcessor::SeqProc_IsWaitingPressA)) { // done writing, can press A
 			MessageWindowScreen* window = mMessageWindow;
 			window->mAButton->mState    = 1;
 			window->mArrowPane->mState  = 1;

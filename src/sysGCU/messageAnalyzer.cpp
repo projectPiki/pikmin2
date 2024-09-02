@@ -32,9 +32,9 @@ void Analyzer::exec(char* msg)
 
 	convertCharToMessageID(msg, &msgID1, &msgID2);
 	setIDs(msgID1, msgID2, &beginID1, &beginID2);
-	reset_(0);
+	reset_(nullptr);
 	setBegin_messageID(beginID1, beginID2, 0);
-	process(0);
+	process(nullptr);
 }
 
 /**

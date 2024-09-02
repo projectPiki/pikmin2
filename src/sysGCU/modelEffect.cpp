@@ -53,7 +53,7 @@ void ParticleMgr::entryModelEffect(ModelEffectData* data) { mModelEffectDataRoot
  */
 ModelEffectData* ParticleMgr::getModelEffectData(u64 id)
 {
-	FOREACH_NODE(ModelEffectData, mModelEffectDataRoot.mChild, node)
+	FOREACH_NODE(ModelEffectData, mModelEffectDataRoot.getChild(), node)
 	{
 		if (node->getID() == id) {
 			return node;
@@ -90,11 +90,11 @@ void ParticleMgr::testCreateModelEffect(int, int, Vector3f&)
  */
 void ModelEffect::doAnimation()
 {
-	PSMTXCopy(mMtx.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
+	PSMTXCopy(mMtx.mMatrix.mtxView, mModel->mJ3dModel->getBaseTRMtx());
 	mModel->mJ3dModel->calc();
 
 	if (mCulled) {
-		for (int i = 0; i < sys->mGfx->mActiveViewports; i++) {
+		for (int i = 0; i < sys->mGfx->getViewportNum(); i++) {
 			mViewportVisibleFlag[i] = 0;
 		}
 	} else {
@@ -102,7 +102,7 @@ void ModelEffect::doAnimation()
 		getLODSphere(bounds);
 
 		Graphics* gfx = sys->mGfx;
-		for (int i = 0; i < gfx->mActiveViewports; i++) {
+		for (int i = 0; i < gfx->getViewportNum(); i++) {
 			Viewport* vp = gfx->getViewport(i);
 
 			if (!vp->viewable()) {

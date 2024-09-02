@@ -38,8 +38,8 @@ struct Arg {
 	int mAramID;                             // _20
 	int* mDvdFileCompression;                // _24
 	u32* mNewSize;                           // _28
-	u8 mUseAram;                             // _2C
-	u8 mUseDVD;                              // _2D
+	bool mUseAram;                           // _2C
+	bool mUseDVD;                            // _2D
 };
 
 struct ArgAramOnly : Arg {

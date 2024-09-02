@@ -319,7 +319,7 @@ void NaviStuckState::exec(Navi* navi)
 							f32 knockback = 120.0f + 100.0f * randFloat();
 							f32 angle     = FLICK_BACKWARD_ANGLE;
 							if (randFloat() > 0.1f) {
-								angle = JMath::atanTable_.atan2_(stickVals.x, stickVals.z);
+								angle = JMAAtan2Radian(stickVals.x, stickVals.z);
 								angle = roundAng(0.9424779f * (randFloat() - 0.5f) + angle);
 							}
 
@@ -3671,9 +3671,9 @@ void NaviFlickState::init(Navi* navi, StateArg* stateArg)
 		mFlicker   = flickArg->mCreature;
 	}
 	navi->startMotion(IPikiAnims::JHIT, IPikiAnims::JHIT, navi, nullptr);
-	_10               = 0;
+	mSubState         = 0;
 	navi->mVelocity.y = 0.0f;
-	navi->mFaceDir    = roundAng(JMath::atanTable_.atan2_(mDirection.x, mDirection.z) + PI);
+	navi->mFaceDir    = roundAng(JMAAtan2Radian(mDirection.x, mDirection.z) + PI);
 	navi->mSoundObj->startSound(PSSE_PL_ORIMA_DAMAGE, 0);
 	navi->mEffectsObj->createOrimadamage_(navi->mEffectsObj->mHeadMtx->mMatrix.mtxView);
 	PSM::DamageDirector* director = PSMGetDamageD();
@@ -3688,7 +3688,7 @@ void NaviFlickState::init(Navi* navi, StateArg* stateArg)
  */
 void NaviFlickState::exec(Navi* navi)
 {
-	switch (_10) {
+	switch (mSubState) {
 	case 0:
 		navi->mVelocity.x = mDirection.x;
 		navi->mVelocity.z = mDirection.z;
@@ -3720,8 +3720,8 @@ void NaviFlickState::cleanup(Navi* navi) { }
  */
 void NaviFlickState::onKeyEvent(Navi* navi, SysShape::KeyEvent const& keyEvent)
 {
-	if (keyEvent.mType == KEYEVENT_END && _10 == 0) {
-		_10 = 1;
+	if (keyEvent.mType == KEYEVENT_END && mSubState == 0) {
+		mSubState = 1;
 		navi->startMotion(IPikiAnims::JKOKE, IPikiAnims::JKOKE, nullptr, nullptr);
 	}
 }

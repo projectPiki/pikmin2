@@ -94,7 +94,7 @@ void TMapBase::setArchive(JKRArchive* arc)
 {
 	void* file = arc->getResource("opening.bmd");
 	P2ASSERTLINE(96, file);
-	mMainModelData = J3DModelLoaderDataBase::load(file, 0x20100000);
+	mMainModelData = J3DModelLoaderDataBase::load(file, J3DMLF_Material_PE_FogOff | J3DMLF_21);
 
 	file = arc->getResource("opening_wait.bck");
 	P2ASSERTLINE(106, file);
@@ -191,7 +191,7 @@ void TBGEnemyBase::setArchive(JKRArchive* arc)
 {
 	void* file = arc->getResource("enemy.bmd");
 	P2ASSERTLINE(199, file);
-	mMainModelData = J3DModelLoaderDataBase::load(file, 0x20100000);
+	mMainModelData = J3DModelLoaderDataBase::load(file, J3DMLF_Material_PE_FogOff | J3DMLF_21);
 
 	file = arc->getResource("enemy.bck");
 	P2ASSERTLINE(209, file);
@@ -243,7 +243,7 @@ void TBlackPlane::setArchive(JKRArchive* arc)
 {
 	void* file = arc->getResource("cam.bmd");
 	P2ASSERTLINE(258, file);
-	mMainModelData = J3DModelLoaderDataBase::load(file, 0x10100000);
+	mMainModelData = J3DModelLoaderDataBase::load(file, J3DMLF_Material_PE_Full | J3DMLF_21);
 
 	file = arc->getResource("cam.bck");
 	P2ASSERTLINE(268, file);
@@ -264,7 +264,7 @@ void TBlackPlane::setArchive(JKRArchive* arc)
 	for (u16 i = 0; i < mModel->getModelData()->getMaterialNum(); i++) {
 		J3DMaterialAnm* anm = new J3DMaterialAnm;
 		mModel->mModelData->getMaterialNodePointer(i)->change();
-		mModel->mModelData->getMaterialNodePointer(i)->mMaterialAnm = anm;
+		mModel->mModelData->getMaterialNodePointer(i)->setMaterialAnm(anm);
 	}
 
 	j3dSys.ErrorReport(mModel->mModelData->getMaterialTable().entryTevRegAnimator(mAnimColor));

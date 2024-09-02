@@ -154,7 +154,7 @@ struct ItemGate : public WorkItem<ItemGate, GateFSM, GateState> {
 	efx::TEgateA* mEgateEfxA;           // _21C
 	efx::TEgateBC* mEgateEfxBC;         // _220
 	Plane mPlanes[4];                   // _224
-	Vector3f _264;                      // _264
+	Vector3f mGateDirection;            // _264
 	Vector3f _270;                      // _270
 	u8 mColor;                          // _27C
 	Sys::MatBaseAnimator* mMatAnimator; // _280

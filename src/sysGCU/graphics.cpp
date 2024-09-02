@@ -2868,13 +2868,13 @@ void Graphics::perspPrintf(PerspPrintfInfo& info, Vector3f& position, char* form
 
 	case 2: {
 		f32 width = printer.getWidth(buf);
-		f32 val   = (width >= 0.0f) ? 0.5f + width : width - 0.5f;
+		f32 val   = ROUND_F32_TO_U8(width);
 		int x     = info.mPerspectiveOffsetX - (int)val;
 		printer.print(x, (f32)info.mPerspectiveOffsetY, buf);
 	} break;
 	default: {
 		f32 width = 0.5f * printer.getWidth(buf);
-		f32 val   = (width >= 0.0f) ? 0.5f + width : width - 0.5f;
+		f32 val   = ROUND_F32_TO_U8(width);
 		int x     = info.mPerspectiveOffsetX - (int)val;
 		printer.print(x, (f32)info.mPerspectiveOffsetY, buf);
 	} break;

@@ -69,8 +69,8 @@ void CallBack_Message::draw(Graphics& gfx, J2DGrafContext& graf)
 		mWidth                           = x2;
 		mHeight                          = y2;
 		P2JME::TRenderingProcessor* proc = mMessage->mProcessor;
-		proc->_54                        = -mWidth;
-		proc->_58                        = -mHeight;
+		proc->mXOffset                   = -mWidth;
+		proc->mYOffset                   = -mHeight;
 		proc->setTextBoxInfo(mPane);
 
 		mMessage->mProcessor->mMesgBounds.set(mMinX, mMinY, mMaxX, mMaxY);

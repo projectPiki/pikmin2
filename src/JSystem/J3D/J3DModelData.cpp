@@ -38,7 +38,7 @@ void J3DModelData::newSharedDisplayList(u32 flags)
 {
 	const u16 count = mMaterialTable.getMaterialNum();
 	for (u16 i = 0; i < count; i++) {
-		if (flags & J3DMLF_19) {
+		if (flags & J3DMLF_UseSingleSharedDL) {
 			mMaterialTable.getMaterialNodePointer(i)->newSingleSharedDisplayList(mMaterialTable.getMaterialNodePointer(i)->countDLSize());
 		} else {
 			mMaterialTable.getMaterialNodePointer(i)->newSharedDisplayList(mMaterialTable.getMaterialNodePointer(i)->countDLSize());
@@ -107,7 +107,7 @@ void J3DModelData::simpleCalcMaterial(u16 jointIndex, Mtx mtx)
  */
 void J3DModelData::syncJ3DSysFlags() const
 {
-	if (mModelLoaderFlags & J3DMLF_06) {
+	if (mModelLoaderFlags & J3DMLF_UsePostTexMtx) {
 		j3dSys.mFlags |= 0x40000000;
 	} else {
 		j3dSys.mFlags &= ~0x40000000;

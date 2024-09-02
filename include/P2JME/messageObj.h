@@ -81,7 +81,7 @@ struct DrawInfo : public CNode {
 
 	// _00     = VTBL
 	// _00-_18 = CNode
-	u32 _18;        // _18
+	u32 mIndex;     // _18
 	f32 mTimer;     // _1C
 	f32 mTimeLimit; // _20
 };
@@ -133,7 +133,7 @@ struct TSequenceProcessor : public P2JME::TSequenceProcessor {
 	inline bool isFastSE()
 	{
 		bool ret = false;
-		switch (_6C) {
+		switch (mFastSeType) {
 		case 0:
 			break;
 		case 1:
@@ -169,7 +169,8 @@ struct TControl : public P2JME::TControl {
 	{
 		mSequenceProc = new TSequenceProcessor(getReference(), this);
 	}
-	void initRenderingProcessor(u32);
+
+	void initRenderingProcessor(u32 animCount);
 
 	// _00     = VTBL
 	// _00-_50 = P2JME::TControl

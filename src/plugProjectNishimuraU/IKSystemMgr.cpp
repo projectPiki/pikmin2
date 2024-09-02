@@ -113,7 +113,7 @@ void IKSystemMgr::startProgramedIK()
 		bottomJointPos = mIKSystems[i].getBottomJointPosition();
 
 		// Calculate difference in angle between the owner's position and the current foot's position
-		f32 diff = JMath::atanTable_.atan2_(bottomJointPos.x - objectPos.x, bottomJointPos.z - objectPos.z);
+		f32 diff = JMAAtan2Radian(bottomJointPos.x - objectPos.x, bottomJointPos.z - objectPos.z);
 
 		mLegHeight[i] = diff - mOwner->getFaceDir();
 	}
@@ -390,12 +390,11 @@ void IKSystemMgr::calcFaceDir()
 {
 	if (mIsIKActive) {
 		Vector3f pos0, pos1;
-		pos0 = mIKSystems[0].getBottomJointPosition();
-		pos1 = mIKSystems[1].getBottomJointPosition();
-		// this feels wrong
-		f32 angle = JMath::atanTable_.atan2_((pos0.x + pos1.x) / 2 - mCentrePosition.x, (pos0.z + pos1.z) / 2 - mCentrePosition.z);
-		mFaceDir  = angle;
-		angle     = mFaceDir;
+		pos0     = mIKSystems[0].getBottomJointPosition();
+		pos1     = mIKSystems[1].getBottomJointPosition();
+		mFaceDir = JMAAtan2Radian((pos0.x + pos1.x) / 2 - mCentrePosition.x, (pos0.z + pos1.z) / 2 - mCentrePosition.z);
+
+		f32 angle = mFaceDir;
 		clampAngle(angle);
 		mFaceDir = angle;
 

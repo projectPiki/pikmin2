@@ -46,8 +46,9 @@ J3DModelData* Mgr::loadModelData(JKRArchive* archive)
 	void* enemyBMD = JKRFileLoader::getGlbResource("enemy.bmd", archive);
 
 	if (enemyBMD) {
-		mModelData = J3DModelLoaderDataBase::load(enemyBMD, 0x20240010);
-		mModelData->newSharedDisplayList(0x40000);
+		mModelData = J3DModelLoaderDataBase::load(enemyBMD, J3DMLF_Material_PE_FogOff | J3DMLF_UseUniqueMaterials | J3DMLF_UseSingleSharedDL
+		                                                        | J3DMLF_UseImmediateMtx);
+		mModelData->newSharedDisplayList(J3DMLF_UseSingleSharedDL);
 		mModelData->simpleCalcMaterial(0, *(Mtx*)(&j3dDefaultMtx));
 		mModelData->makeSharedDL();
 	}
@@ -61,8 +62,9 @@ J3DModelData* Mgr::loadModelData(JKRArchive* archive)
 
 	enemyBMD = JKRFileLoader::getGlbResource("enemy.bmd", jigumoArc);
 	if (enemyBMD) {
-		mJigumoHouseData = J3DModelLoaderDataBase::load(enemyBMD, 0x20240010);
-		mJigumoHouseData->newSharedDisplayList(0x40000);
+		mJigumoHouseData = J3DModelLoaderDataBase::load(enemyBMD, J3DMLF_Material_PE_FogOff | J3DMLF_UseUniqueMaterials
+		                                                              | J3DMLF_UseSingleSharedDL | J3DMLF_UseImmediateMtx);
+		mJigumoHouseData->newSharedDisplayList(J3DMLF_UseSingleSharedDL);
 		mJigumoHouseData->simpleCalcMaterial(0, *(Mtx*)(&j3dDefaultMtx));
 		mJigumoHouseData->makeSharedDL();
 	}

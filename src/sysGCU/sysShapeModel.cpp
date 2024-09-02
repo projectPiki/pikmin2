@@ -16,7 +16,7 @@ int Model::cullCount;
 Model::Model(J3DModelData* data, u32 flags, u32 viewNum)
 {
 	mJ3dModel   = new J3DModel(data, flags, viewNum);
-	mJointCount = mJ3dModel->mModelData->getJointNum();
+	mJointCount = mJ3dModel->getModelData()->getJointNum();
 	initJoints();
 	_05          = 1;
 	mIsAnimating = false;
@@ -50,7 +50,7 @@ void Model::enableMaterialAnim(int type)
 {
 	switch (type) {
 	case 0:
-		J3DModelData* data = mJ3dModel->mModelData;
+		J3DModelData* data = mJ3dModel->getModelData();
 		for (u16 i = 0; i < data->getMaterialNum(); i++) {
 			J3DMaterialAnm* anm = new J3DMaterialAnm;
 			data->getMaterialNodePointer(i)->change();
@@ -280,7 +280,7 @@ void Model::entry(Sys::Sphere&)
 bool Model::isVisible(Sys::Sphere& sphere)
 {
 	Graphics* gfx = sys->mGfx;
-	for (int i = 0; i < gfx->mActiveViewports; i++) {
+	for (int i = 0; i < gfx->getViewportNum(); i++) {
 		Viewport* viewport = gfx->getViewport(i);
 		if (viewport->viewable() && viewport->mCamera->isVisible(sphere)) {
 			mIsVisible = true;
@@ -298,14 +298,14 @@ bool Model::isVisible(Sys::Sphere& sphere)
 void Model::jointVisible(bool newVisibility, int jointIndex)
 {
 	if (newVisibility != false) {
-		for (J3DMaterial* material = mJ3dModel->mModelData->mJointTree.mJoints[(u16)jointIndex]->mMaterial; material != nullptr;
-		     material              = material->mNext) {
-			RESET_FLAG(material->mShape->mFlags, J3DShape_Hide);
+		for (J3DMaterial* material = mJ3dModel->getModelData()->getJointNodePointer(jointIndex)->getMesh(); material != nullptr;
+		     material              = material->getNext()) {
+			material->getShape()->offFlag(J3DShape_Hide);
 		}
 	} else {
-		for (J3DMaterial* material = mJ3dModel->mModelData->mJointTree.mJoints[(u16)jointIndex]->mMaterial; material != nullptr;
-		     material              = material->mNext) {
-			SET_FLAG(material->mShape->mFlags, J3DShape_Hide);
+		for (J3DMaterial* material = mJ3dModel->getModelData()->getJointNodePointer(jointIndex)->getMesh(); material != nullptr;
+		     material              = material->getNext()) {
+			material->getShape()->onFlag(J3DShape_Hide);
 		}
 	}
 }
@@ -317,9 +317,9 @@ void Model::jointVisible(bool newVisibility, int jointIndex)
 void Model::hide()
 {
 	for (u16 i = 0; i < mJointCount; i++) {
-		for (J3DMaterial* material = mJ3dModel->mModelData->mJointTree.mJoints[i]->mMaterial; material != nullptr;
-		     material              = material->mNext) {
-			SET_FLAG(material->mShape->mFlags, J3DShape_Hide);
+		for (J3DMaterial* material = mJ3dModel->getModelData()->getJointNodePointer(i)->getMesh(); material != nullptr;
+		     material              = material->getNext()) {
+			material->getShape()->onFlag(J3DShape_Hide);
 		}
 	}
 }
@@ -331,9 +331,9 @@ void Model::hide()
 void Model::show()
 {
 	for (u16 i = 0; i < mJointCount; i++) {
-		for (J3DMaterial* material = mJ3dModel->mModelData->mJointTree.mJoints[i]->mMaterial; material != nullptr;
+		for (J3DMaterial* material = mJ3dModel->getModelData()->getJointNodePointer(i)->getMesh(); material != nullptr;
 		     material              = material->mNext) {
-			RESET_FLAG(material->mShape->mFlags, J3DShape_Hide);
+			material->getShape()->offFlag(J3DShape_Hide);
 		}
 	}
 }
@@ -345,7 +345,7 @@ void Model::show()
 void Model::hidePackets()
 {
 	for (u16 i = 0; i < mJ3dModel->getModelData()->getShapeNum(); i++) {
-		mJ3dModel->mShapePackets[i].onFlag(J3DShape_Hidden);
+		mJ3dModel->getShapePacket(i)->onFlag(J3DShape_Hidden);
 	}
 }
 
@@ -633,7 +633,7 @@ lbl_8043EF88:
  * @note Address: 0x8043EFB4
  * @note Size: 0x30
  */
-u16 Model::getJointIndex(char* name) { return mJ3dModel->mModelData->mJointTree.mNametab->getIndex(name); }
+u16 Model::getJointIndex(char* name) { return mJ3dModel->getModelData()->getJointName()->getIndex(name); }
 
 /**
  * @note Address: 0x8043EFE4
@@ -690,7 +690,6 @@ bool Model::needViewCalc()
  */
 void Model::viewCalc()
 {
-
 	if (needViewCalc()) {
 		mJ3dModel->viewCalc();
 	}
@@ -703,7 +702,7 @@ void Model::viewCalc()
 void Model::setCurrentViewNo(u32 viewportNumber)
 {
 	if (!isMtxImmediate()) {
-		mJ3dModel->mMtxBuffer->mCurrentViewNumber = viewportNumber;
+		mJ3dModel->getMtxBuffer()->mCurrentViewNumber = viewportNumber;
 	}
 }
 
@@ -711,7 +710,7 @@ void Model::setCurrentViewNo(u32 viewportNumber)
  * @note Address: 0x8043F10C
  * @note Size: 0x14
  */
-bool Model::isMtxImmediate() { return mJ3dModel->mModelData->mModelLoaderFlags >> 4 & 1; }
+bool Model::isMtxImmediate() { return mJ3dModel->getModelData()->getFlag() >> 4 & 1; }
 
 /**
  * @note Address: 0x8043F130

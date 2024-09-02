@@ -76,8 +76,8 @@ void Chappy::TAnimator::setArchive(JKRArchive* arc)
 	void* file = arc->getResource("chappy/swallow_model.bmd");
 	P2ASSERTLINE(122, file);
 
-	mModelData = J3DModelLoaderDataBase::load(file, 0x100000);
-	mModelData->newSharedDisplayList(0x40000);
+	mModelData = J3DModelLoaderDataBase::load(file, J3DMLF_21);
+	mModelData->newSharedDisplayList(J3DMLF_UseSingleSharedDL);
 	mModelData->makeSharedDL();
 
 	mAnimFolder.load(mModelData, arc);
@@ -202,7 +202,7 @@ void Chappy::TUnit::startAIState_(enumAIState state)
 
 	case CHAPPYAI_Turn: {
 		f32 angle           = mManager->mParams.mWalkAngleRand.mValue;
-		f32 angleBetweenPos = JMath::atanTable_.atan2_(mTargetPos.y - mPosition.y, mTargetPos.x - mPosition.x);
+		f32 angleBetweenPos = JMAAtan2Radian(mTargetPos.y - mPosition.y, mTargetPos.x - mPosition.x);
 		f32 final           = angle * DEG2RAD * PI * (randEbisawaFloat() * 2.0f + -1.0f) + angleBetweenPos;
 		mTargetAngle        = Vector2f(cosf(final), sinf(final));
 		break;
@@ -328,8 +328,8 @@ void Chappy::TUnit::update()
 		break;
 
 	case CHAPPYAI_Turn:
-		f32 initAngle = JMath::atanTable_.atan2_(mAngle.y, mAngle.x);
-		f32 angle     = initAngle - JMath::atanTable_.atan2_(mTargetAngle.y, mTargetAngle.x);
+		f32 initAngle = JMAAtan2Radian(mAngle.y, mAngle.x);
+		f32 angle     = initAngle - JMAAtan2Radian(mTargetAngle.y, mTargetAngle.x);
 		while (angle < -PI) {
 			angle += TAU;
 		}

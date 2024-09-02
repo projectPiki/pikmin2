@@ -639,7 +639,7 @@ bool InteractSwallow::actPiki(Game::Piki* piki)
 		posDiff.z = pikiPos.z - enemyPos.z;
 		posDiff.y = pikiPos.y - enemyPos.y;
 		_normaliseXZ(posDiff); // nearly every normalize function works
-		f32 angle = JMath::atanTable_.atan2_(posDiff.x, posDiff.z);
+		f32 angle = JMAAtan2Radian(posDiff.x, posDiff.z);
 		InteractFlick swallowFlick(mCreature, 50.0f, 0.0f, -angle);
 		piki->stimulate(swallowFlick);
 		return;

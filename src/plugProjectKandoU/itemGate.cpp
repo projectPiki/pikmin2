@@ -286,18 +286,18 @@ bool ItemGate::getVectorField(Sys::Sphere& sphere, Vector3f& vectorField)
 {
 	if (mPlanes[0].calcDist(sphere.mPosition) >= -sphere.mRadius) {
 		if (mPlanes[2].calcDist(sphere.mPosition) >= -sphere.mRadius) {
-			vectorField = Vector3f(-_264.x, -_264.y, -_264.z);
+			vectorField = Vector3f(-mGateDirection.x, -mGateDirection.y, -mGateDirection.z);
 		} else if (mPlanes[3].calcDist(sphere.mPosition) >= -sphere.mRadius) {
-			vectorField = _264;
+			vectorField = mGateDirection;
 		} else {
 			vectorField = Vector3f(-_270.x, -_270.y, -_270.z);
 		}
 
 	} else if (mPlanes[1].calcDist(sphere.mPosition) >= -sphere.mRadius) {
 		if (mPlanes[2].calcDist(sphere.mPosition) >= -sphere.mRadius) {
-			vectorField = Vector3f(-_264.x, -_264.y, -_264.z);
+			vectorField = Vector3f(-mGateDirection.x, -mGateDirection.y, -mGateDirection.z);
 		} else if (mPlanes[3].calcDist(sphere.mPosition) >= -sphere.mRadius) {
-			vectorField = _264;
+			vectorField = mGateDirection;
 		} else {
 			vectorField = _270;
 		}
@@ -442,8 +442,8 @@ lbl_801C8454:
  */
 void ItemGate::initPlanes()
 {
-	_270 = getDirection(mFaceDir);
-	_264 = getPerpDirection(mFaceDir);
+	_270           = getDirection(mFaceDir);
+	mGateDirection = getPerpDirection(mFaceDir);
 
 	Vector3f pos = getPosition();
 
@@ -460,13 +460,13 @@ void ItemGate::initPlanes()
 	mPlanes[1].mNormal.z = vec2.z;
 	mPlanes[1].mOffset   = vec2.dot(plane1vec);
 
-	Vector3f plane2vec   = pos + (_264 * 76.5f);
-	mPlanes[2].mNormal.x = _264.x;
-	mPlanes[2].mNormal.y = _264.y;
-	mPlanes[2].mNormal.z = _264.z;
-	mPlanes[2].mOffset   = _264.dot(plane2vec);
+	Vector3f plane2vec   = pos + (mGateDirection * 76.5f);
+	mPlanes[2].mNormal.x = mGateDirection.x;
+	mPlanes[2].mNormal.y = mGateDirection.y;
+	mPlanes[2].mNormal.z = mGateDirection.z;
+	mPlanes[2].mOffset   = mGateDirection.dot(plane2vec);
 
-	Vector3f vec3        = (-_264.x, -_264.y, _264.z);
+	Vector3f vec3        = (-mGateDirection.x, -mGateDirection.y, mGateDirection.z);
 	Vector3f plane3vec   = pos + (vec3 * 76.5f);
 	mPlanes[3].mNormal.x = vec3.x;
 	mPlanes[3].mNormal.y = vec3.y;

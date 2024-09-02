@@ -45,8 +45,8 @@ void Node::dump() { }
  * @note Address: 0x8044C5D8
  * @note Size: 0x44
  */
-Arg::Arg(char const* p1)
-    : mPath(p1)
+Arg::Arg(char const* filePath)
+    : mPath(filePath)
     , mBuffer(nullptr)
     , mAddress(0)
     , mOffset(0)
@@ -57,8 +57,8 @@ Arg::Arg(char const* p1)
     , mAramID(-1)
     , mDvdFileCompression(nullptr)
     , mNewSize(nullptr)
-    , mUseAram(1)
-    , mUseDVD(1)
+    , mUseAram(true)
+    , mUseDVD(true)
 {
 }
 
@@ -67,10 +67,11 @@ Arg::Arg(char const* p1)
  * @note Address: 0x8044C61C
  * @note Size: 0x48
  */
-ArgAramOnly::ArgAramOnly(char const* p1)
-    : Arg(p1)
+ArgAramOnly::ArgAramOnly(char const* filePath)
+    : Arg(filePath)
 {
-	mUseDVD = 0;
+	// Disallow loading directly from the disc, file MUST be loaded into ARAM
+	mUseDVD = false;
 }
 
 /**

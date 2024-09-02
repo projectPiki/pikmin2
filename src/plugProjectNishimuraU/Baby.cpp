@@ -242,7 +242,7 @@ void Obj::moveNoTarget()
 	if (gameSystem && gameSystem->isZukanMode()) {
 		if (sqrDistanceXZ(mPosition, mTargetPos) < 500.0f) {
 			f32 randomAngle = randWeightFloat(100.0f) + 50.0f;
-			f32 angleToHome = JMath::atanTable_.atan2_(mPosition.x - mHomePosition.x, mPosition.z - mHomePosition.z);
+			f32 angleToHome = JMAAtan2Radian(mPosition.x - mHomePosition.x, mPosition.z - mHomePosition.z);
 			angleToHome     = randWeightFloat(PI) + angleToHome + HALF_PI;
 
 			mTargetPos.x = randomAngle * sinf(angleToHome) + mHomePosition.x;

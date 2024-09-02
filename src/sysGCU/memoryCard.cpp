@@ -312,21 +312,14 @@ void MemoryCardMgr::update()
 {
 	if (checkStatus() != 11 && !sys->isResetActive()) {
 		if (CARDProbe(0) && checkStatus() == 0) {
-			bool check = false;
-			if ((int)mIsCard == 0 && checkStatus() != 11) {
-				check = true;
-			}
-			if (check) {
+
+			if (isSaveInvalid()) {
 				MemoryCardMgrCommand cmd(3);
 				setCommand(&cmd);
 			}
 
 		} else if (!CARDProbe(0) && checkStatus()) {
-			bool check = false;
-			if ((int)mIsCard == 0 && checkStatus() != 11) {
-				check = true;
-			}
-			if (check) {
+			if (isSaveInvalid()) {
 				MemoryCardMgrCommand cmd(4);
 				setCommand(&cmd);
 			}
@@ -1366,18 +1359,18 @@ bool MemoryCardMgr::readCardSerialNo(u64* serial, ECardSlot cardSlot)
 	bool result = false;
 	s32 cardRes = CARDGetSerialNo(cardSlot, serial);
 	switch (cardRes) {
-	case -2:
+	case CARD_RESULT_WRONGDEVICE:
 		break;
-	case 0:
+	case CARD_RESULT_READY:
 		result = true;
 		break;
-	case -0x80:
+	case CARD_RESULT_FATAL_ERROR:
 		setInsideStatusFlag(INSIDESTATUS_Unk10);
 		break;
-	case -3:
+	case CARD_RESULT_NOCARD:
 		setInsideStatusFlag(INSIDESTATUS_Unk);
 		break;
-	case -1:
+	case CARD_RESULT_BUSY:
 		P2ASSERTLINE(1234, false);
 		break;
 	}

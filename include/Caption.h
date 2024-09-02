@@ -2,6 +2,7 @@
 #define _CAPTION_H
 
 #include "CNode.h"
+#include "BitFlag.h"
 
 struct Graphics;
 struct Stream;
@@ -47,7 +48,7 @@ struct Mgr : public CNode {
 
 	P2JME::Caption::TControl* mControls; // _18
 	Node* mNode;                         // _1C
-	u8 _20[4];                           // _20
+	BitFlag<u32> mUnusedFlags;           // _20
 };
 } // namespace Caption
 

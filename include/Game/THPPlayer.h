@@ -47,7 +47,7 @@ struct THPPlayer : public JKRDisposer, public CNode {
 	struct THPPlayerFileSettingTable {
 		const char* mThpFilePath; // _00
 		const char* mIniFilePath; // _04
-		u8 _08;                   // _08, unknown
+		u8 mDrawPosType;          // _08
 		EMovieIndex mThpID;       // _0C
 	};
 
@@ -89,7 +89,7 @@ struct THPPlayer : public JKRDisposer, public CNode {
 	DvdThreadCommand mThreadCommand;      // _5C
 	Delegate<THPPlayer> _C8;              // _C8
 	THPPlayerLoadResourceArg mLoadResArg; // _DC
-	u8 _E4;                               // _E4
+	u8 mDrawPosType;                      // _E4
 	u32 : 0;                              // reset alignment
 	u8 _E8;                               // _E8
 };

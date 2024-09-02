@@ -1997,7 +1997,7 @@ Onyon* ItemOnyon::Mgr::birth(int objType, int onyonType)
 		onyon->mObjectTypeID = OBJTYPE_Ufo;
 		onyon->mModel        = new SysShape::Model(mModelData[objType], J3DMODEL_ShareDL, 2);
 
-		onyon->mModel->mJ3dModel->newDifferedDisplayList(0x1000000);
+		onyon->mModel->mJ3dModel->newDifferedDisplayList(J3DMDF_DiffColorReg);
 		onyon->mModel->mJ3dModel->calc();
 		onyon->mModel->mJ3dModel->calcMaterial();
 		onyon->mModel->mJ3dModel->makeDL();
@@ -2060,7 +2060,7 @@ void ItemOnyon::Mgr::load()
 
 	void* file = JKRFileLoader::getGlbResource("goal.bmd", nullptr);
 	JUT_ASSERTLINE(2966, file, "goal.bmd not found !!\n");
-	mModelData[0] = J3DModelLoaderDataBase::load(file, 0x240000);
+	mModelData[0] = J3DModelLoaderDataBase::load(file, J3DMLF_UseUniqueMaterials | J3DMLF_UseSingleSharedDL);
 
 	JKRArchive* podarc = nullptr;
 	if ((gameSystem->isChallengeMode() || gameSystem->mIsInCave) && !gameSystem->isVersusMode()) {
@@ -2075,13 +2075,12 @@ void ItemOnyon::Mgr::load()
 
 		file = JKRFileLoader::getGlbResource("pot.bmd", nullptr);
 		JUT_ASSERTLINE(2998, file, "pot.bmd not found !!\n");
-		J3DModelData* modelDataPod = J3DModelLoaderDataBase::load(file, 0x00000030);
+		J3DModelData* modelDataPod = J3DModelLoaderDataBase::load(file, J3DMLF_UsePostTexMtx | J3DMLF_UseImmediateMtx);
 		mModelData[1]              = modelDataPod;
-		mModelData[1]->newSharedDisplayList(0x40000);
+		mModelData[1]->newSharedDisplayList(J3DMLF_UseSingleSharedDL);
 		mModelData[1]->makeSharedDL();
-		for (u16 i = 0; i < modelDataPod->mShapeTable.mCount; i++) {
-			u32 flags                                   = modelDataPod->mShapeTable.mItems[i]->mFlags & 0xFFFF0FFF;
-			modelDataPod->mShapeTable.mItems[i]->mFlags = flags | 0x2000;
+		for (u16 i = 0; i < modelDataPod->getShapeNum(); i++) {
+			modelDataPod->getShapeNodePointer(i)->setTexMtxLoadType(0x2000);
 		}
 
 	} else {
@@ -2131,13 +2130,14 @@ void ItemOnyon::Mgr::load()
 	}
 	file = JKRFileLoader::getGlbResource("ufo.bmd", nullptr);
 	JUT_ASSERTLINE(3123, file, "ufo.bmd not found!\n");
-	J3DModelData* modelDataUfo = J3DModelLoaderDataBase::load(file, 0x21020030);
+	J3DModelData* modelDataUfo = J3DModelLoaderDataBase::load(file, J3DMLF_Material_PE_FogOff | J3DMLF_Material_UseIndirect | J3DMLF_18
+	                                                                    | J3DMLF_UsePostTexMtx | J3DMLF_UseImmediateMtx);
 	mModelData[2]              = modelDataUfo;
-	mModelData[2]->newSharedDisplayList(0x40000);
+	mModelData[2]->newSharedDisplayList(J3DMLF_UseSingleSharedDL);
 	mModelData[2]->makeSharedDL();
-	for (u16 i = 0; i < modelDataUfo->mShapeTable.mCount; i++) {
-		u32 flags                                   = modelDataUfo->mShapeTable.mItems[i]->mFlags & 0xFFFF0FFF;
-		modelDataUfo->mShapeTable.mItems[i]->mFlags = flags | 0x2000;
+
+	for (u16 i = 0; i < modelDataUfo->getShapeNum(); i++) {
+		modelDataUfo->getShapeNodePointer(i)->setTexMtxLoadType(0x2000);
 	}
 
 	SysShape::Model::enableMaterialAnim(mModelData[2], 0);

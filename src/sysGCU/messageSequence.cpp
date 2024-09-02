@@ -13,16 +13,16 @@ namespace P2JME {
  */
 TSequenceProcessor::TSequenceProcessor(const JMessage::TReference* ref, JMessage::TControl* control)
     : JMessage::TSequenceProcessor(ref, control)
-    , _50(0.0f)
-    , mController1(0)
-    , mController2(0)
-    , _5C(0)
-    , _60(0)
-    , _64(0)
+    , mPageFinishWaitTimer(0.0f)
+    , mController1(nullptr)
+    , mController2(nullptr)
+    , mCharactersWritten(0)
+    , mUnused0(0)
+    , mUnused1(0)
 {
 	mFlags.clear();
 
-	_4C = 0.11f;
+	mPageFinishWaitDuration = 0.11f;
 }
 
 /**
@@ -31,13 +31,13 @@ TSequenceProcessor::TSequenceProcessor(const JMessage::TReference* ref, JMessage
  */
 void TSequenceProcessor::do_begin(const void* arg0, const char* arg1)
 {
-	mFlags.unset(8);
-	_4C = 0.11f;
-	_50 = _4C;
-	_5C = 0;
-	_60 = 0;
-	_64 = 0;
-	_6C = false;
+	resetFlag(SeqProc_IsForceFinish);
+	mPageFinishWaitDuration = 0.11f;
+	mPageFinishWaitTimer    = mPageFinishWaitDuration;
+	mCharactersWritten      = 0;
+	mUnused0                = 0;
+	mUnused1                = 0;
+	mFastSeType             = false;
 }
 
 /**
@@ -134,37 +134,37 @@ bool TSequenceProcessor::do_isReady()
 {
 	bool check = false;
 
-	if (mFlags.isSet(1)) {
+	if (isFlag(SeqProc_IsActive)) {
 		return false;
 	}
 
-	if (mFlags.isSet(2)) {
-		_50 -= sys->mDeltaTime;
-		if (_50 <= 0.0f) {
+	if (isFlag(SeqProc_IsWaitingPressA)) {
+		mPageFinishWaitTimer -= sys->mDeltaTime;
+		if (mPageFinishWaitTimer <= 0.0f) {
 			bool checkVars = (mController1 || mController2);
 			P2ASSERTLINE(381, checkVars);
 
-			if ((mController1 && (mController1->getButtonDown() & PAD_BUTTON_A))
-			    || (mController2 && (mController2->getButtonDown() & PAD_BUTTON_A))) {
+			if ((mController1 && (mController1->getButtonDown() & Controller::PRESS_A))
+			    || (mController2 && (mController2->getButtonDown() & Controller::PRESS_A))) {
 				resetAbtnWait();
-				mFlags.unset(8);
+				resetFlag(SeqProc_IsForceFinish);
 			}
 		}
 	} else {
 		f32 frameCount = 1.0f;
-		if (mFlags.isSet(8)) {
+		if (isFlag(SeqProc_IsForceFinish)) {
 			frameCount = 10.0f;
-		} else if ((mController1 && (mController1->getButtonDown() & PAD_BUTTON_B))
-		           || (mController2 && (mController2->getButtonDown() & PAD_BUTTON_B))) {
+		} else if ((mController1 && (mController1->getButtonDown() & Controller::PRESS_B))
+		           || (mController2 && (mController2->getButtonDown() & Controller::PRESS_B))) {
 			doFastForwardSE();
-			mFlags.set(8);
-		} else if ((mController1 && (mController1->getButton() & PAD_BUTTON_A))
-		           || (mController2 && (mController2->getButton() & PAD_BUTTON_A))) {
+			setFlag(SeqProc_IsForceFinish);
+		} else if ((mController1 && (mController1->getButton() & Controller::PRESS_A))
+		           || (mController2 && (mController2->getButton() & Controller::PRESS_A))) {
 			frameCount = 2.5f;
 		}
 
-		_50 = -((frameCount * sys->mDeltaTime) - _50);
-		if (_50 <= 0.0f) {
+		mPageFinishWaitTimer = -((frameCount * sys->mDeltaTime) - mPageFinishWaitTimer);
+		if (mPageFinishWaitTimer <= 0.0f) {
 			check = true;
 		}
 	}
@@ -181,7 +181,7 @@ bool TSequenceProcessor::do_jump_isReady() { return false; }
  * @note Address: 0x80437B90
  * @note Size: 0xC
  */
-void TSequenceProcessor::do_jump(const void* arg0, const char* arg1) { _50 = _4C; }
+void TSequenceProcessor::do_jump(const void* arg0, const char* arg1) { mPageFinishWaitTimer = mPageFinishWaitDuration; }
 
 /**
  * @note Address: 0x80437B9C
@@ -199,7 +199,7 @@ int TSequenceProcessor::do_branch_queryResult() { return -1; }
  * @note Address: 0x80437BA8
  * @note Size: 0xC
  */
-void TSequenceProcessor::do_branch(const void* arg0, const char* arg1) { _50 = _4C; }
+void TSequenceProcessor::do_branch(const void* arg0, const char* arg1) { mPageFinishWaitTimer = mPageFinishWaitDuration; }
 
 /**
  * @note Address: 0x80437BB4
@@ -216,14 +216,14 @@ void TSequenceProcessor::do_character(int arg0)
 		}
 	}
 
-	_50 += _4C;
+	mPageFinishWaitTimer += mPageFinishWaitDuration;
 	if (argCheck) {
-		if (_5C == 0) {
+		if (mCharactersWritten == 0) {
 			doCharacterSEStart();
 		} else {
 			doCharacterSE(arg0);
 		}
-		_5C += 1;
+		mCharactersWritten++;
 	}
 }
 
@@ -241,17 +241,17 @@ bool TSequenceProcessor::tagControl(u16 arg0, const void* arg1, u32 arg2)
 	case 1:
 		u8 byte = (s8) * ((s8*)arg1);
 		if (byte == 0xFF) {
-			_4C = 0.11f;
+			mPageFinishWaitDuration = 0.11f;
 		} else {
-			_4C = (f32)byte / 100.0f;
+			mPageFinishWaitDuration = (f32)byte / 100.0f;
 		}
-		_50 = _4C;
+		mPageFinishWaitTimer = mPageFinishWaitDuration;
 		break;
 	case 2:
-		_6C = *(s8*)arg1;
+		mFastSeType = *(s8*)arg1;
 		break;
 	default:
-		P2ASSERTLINE(633, 0);
+		P2ASSERTLINE(633, false);
 		break;
 	}
 
@@ -264,9 +264,9 @@ bool TSequenceProcessor::tagControl(u16 arg0, const void* arg1, u32 arg2)
  */
 void TSequenceProcessor::setAbtnWait()
 {
-	mFlags.set(2);
-	_50 = 0.5f;
-	mFlags.unset(4);
+	setFlag(SeqProc_IsWaitingPressA);
+	mPageFinishWaitTimer = 0.5f;
+	resetFlag(SeqProc_IsWriting);
 	doCharacterSEEnd();
 }
 
@@ -277,10 +277,10 @@ void TSequenceProcessor::setAbtnWait()
 void TSequenceProcessor::resetAbtnWait()
 {
 	doResetAbtnWaitSE();
-	mFlags.unset(2);
-	_50 = _4C;
-	mFlags.set(4);
-	_5C = 0;
+	resetFlag(SeqProc_IsWaitingPressA);
+	mPageFinishWaitTimer = mPageFinishWaitDuration;
+	setFlag(SeqProc_IsWriting);
+	mCharactersWritten = 0;
 }
 
 /**
@@ -293,11 +293,6 @@ void TSequenceProcessor::doResetAbtnWaitSE() { PSSystem::spSysIF->playSystemSe(P
  * @note Address: 0x80437E34
  * @note Size: 0x18
  */
-void TSequenceProcessor::reset()
-{
-	for (int i = 0; i < 4; i++) {
-		mFlags.byteView[i] = 0;
-	}
-}
+void TSequenceProcessor::reset() { mFlags.clear(); }
 
 } // namespace P2JME

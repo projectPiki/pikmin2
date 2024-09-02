@@ -197,9 +197,10 @@ void NaviMgr::load()
 	JKRArchive* arc = JKRMountArchive("/user/Kando/piki/pikis.szs", JKRArchive::EMM_Mem, sys->mSysHeap, JKRArchive::EMD_Head);
 	sys->heapStatusEnd("NaviMgr::Archive");
 
-	J3DModelData* model = J3DModelLoaderDataBase::load(arc->getResource("orima_model/orima1.bmd"), 0x20000030);
-	for (u16 j = 0; j < model->getShapeNum(); j++) {
-		model->mShapeTable.mItems[j]->setTexMtxLoadType(0x2000);
+	J3DModelData* model = J3DModelLoaderDataBase::load(arc->getResource("orima_model/orima1.bmd"),
+	                                                   J3DMLF_Material_PE_FogOff | J3DMLF_UsePostTexMtx | J3DMLF_UseImmediateMtx);
+	for (u16 i = 0; i < model->getShapeNum(); i++) {
+		model->mShapeTable.mItems[i]->setTexMtxLoadType(0x2000);
 	}
 
 	mOlimarModel = model;
@@ -209,9 +210,11 @@ void NaviMgr::load()
 	}
 	mCollData = CollPartFactory::load(texts, "naviColl.txt");
 
-	mCursorModelData = J3DModelLoaderDataBase::load(arc->getResource("cursor/cursor.bmd"), 0x240000);
-	mMarkerModelData = J3DModelLoaderDataBase::load(arc->getResource("cursor/marker.bmd"), 0x240000);
-	mMarkerModelData->newSharedDisplayList(0x40000);
+	mCursorModelData
+	    = J3DModelLoaderDataBase::load(arc->getResource("cursor/cursor.bmd"), J3DMLF_UseUniqueMaterials | J3DMLF_UseSingleSharedDL);
+	mMarkerModelData
+	    = J3DModelLoaderDataBase::load(arc->getResource("cursor/marker.bmd"), J3DMLF_UseUniqueMaterials | J3DMLF_UseSingleSharedDL);
+	mMarkerModelData->newSharedDisplayList(J3DMLF_UseSingleSharedDL);
 
 	SysShape::Model::enableMaterialAnim(mCursorModelData, 0);
 	mCursorAnims[0].attachResource(arc->getResource("cursor/wakka_orima.brk"), mCursorModelData);
@@ -241,10 +244,9 @@ void NaviMgr::loadResources_float()
 	void* file
 	    = playData->isStoryFlag(STORY_DebtPaid) ? arc->getResource("orima_model/syatyou.bmd") : arc->getResource("orima_model/orima3.bmd");
 
-	J3DModelData* model = J3DModelLoaderDataBase::load(file, 0x20000030);
-	for (u16 j = 0; j < model->getShapeNum(); j++) {
-		J3DShape* shape = model->mShapeTable.mItems[j];
-		shape->setTexMtxLoadType(0x2000);
+	J3DModelData* model = J3DModelLoaderDataBase::load(file, J3DMLF_Material_PE_FogOff | J3DMLF_UsePostTexMtx | J3DMLF_UseImmediateMtx);
+	for (u16 i = 0; i < model->getShapeNum(); i++) {
+		model->getShapeNodePointer(i)->setTexMtxLoadType(0x2000);
 	}
 
 	mLouieModel = model;

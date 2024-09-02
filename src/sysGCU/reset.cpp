@@ -155,7 +155,7 @@ void ResetManager::draw()
 		graf.setPort();
 
 		f32 alpha = (mFadeTimer * 255.0f) / 0.25f;
-		alpha     = (alpha >= 0.0f) ? alpha + 0.5f : alpha - 0.5f;
+		alpha     = ROUND_F32_TO_U8(alpha);
 
 		J2DFillBox(0.0f, 0.0f, (f32)JUTVideo::sManager->mRenderModeObj->fbWidth, (f32)JUTVideo::sManager->mRenderModeObj->efbHeight,
 		           JUtility::TColor(0, 0, 0, alpha));

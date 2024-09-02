@@ -101,35 +101,35 @@ TRenderingProcessor::TRenderingProcessor(JMessage::TReference const* ref)
     , mMtx2(nullptr)
     , mMainFont(nullptr)
     , mRubyFont(nullptr)
-    , _54(0.0f)
-    , _58(0.0f)
-    , _5C(0)
-    , _60(0xFFFFFFFF)
+    , mXOffset(0.0f)
+    , mYOffset(0.0f)
+    , mImageColorA(0)
+    , mImageColorB(0xFFFFFFFF)
     , mColorData1(255, 255, 255, 255)
     , mColorData2(255, 255, 255, 255)
     , mColorData3(255, 255, 255, 255)
     , mColorData4(255, 255, 255, 255)
     , mColorData5(255, 255, 255, 255)
-    , _78(1.0f)
+    , mBaseAlphaModifier(1.0f)
     , mMesgBounds(1.0f, 1.0f, 1.0f, 1.0f)
     , mLocate(0.0f, 0.0f, 0.0f, 0.0f)
     , mCurrLine(0)
     , mParagraphNum(0)
     , mPageInfoNum(0)
-    , _BC(0.0f)
-    , _C0(42.0f)
-    , _C4(0.0f)
+    , mActiveCharWidth(0.0f)
+    , mActiveLineHeight(42.0f)
+    , mCharacterWidth(0.0f)
     , mLineHeight(42.0f)
-    , _CC(0, 0, 0, 0)
-    , _D0(255, 255, 255, 255)
-    , _D4(255, 255, 255, 255)
-    , _D8(255, 255, 255, 255)
+    , mDefaultWhite(0, 0, 0, 0)
+    , mDefaultBlack(255, 255, 255, 255)
+    , mDefaultCharColor(255, 255, 255, 255)
+    , mDefaultGradColor(255, 255, 255, 255)
     , mFontWidthAdjusted(1.0f)
     , mFontHeightAdjusted(1.0f)
     , mFontWidth(1.0f)
     , mFontHeight(1.0f)
-    , _F2(0)
-    , _10C(0.5f)
+    , mDoDrawRuby(false)
+    , mRubyWidthModifier(0.5f)
 {
 	mFlags.clear();
 	mFlags.unset(0x70);
@@ -142,7 +142,7 @@ TRenderingProcessor::TRenderingProcessor(JMessage::TReference const* ref)
 	mOnePageLines = new u8[0x40];
 	resetOnePageLine();
 	mRubyBuffer     = P2JME::sRubyDataBuffer;
-	mPageInfoCounts = new u8[0x14];
+	mPageInfoCounts = new u8[20];
 }
 
 /**
@@ -201,24 +201,24 @@ void TRenderingProcessor::setDrawLocateY()
  */
 void TRenderingProcessor::do_begin(const void* p1, char const* p2)
 {
-	mFontWidthAdjusted  = mFontWidth;
-	mFontHeightAdjusted = mFontHeight;
-	_F0                 = 0;
-	_F1                 = 0;
-	mCharacterNum       = 0;
-	_40                 = 0;
+	mFontWidthAdjusted   = mFontWidth;
+	mFontHeightAdjusted  = mFontHeight;
+	mCurrColorIndex      = 0;
+	mSecondaryColorIndex = 0;
+	mCharacterNum        = 0;
+	mInfoIndex           = 0;
 	initRuby();
-	f32 v1      = static_cast<const char*>(p1)[4];
-	_BC         = v1;
-	_C4         = v1;
-	mLineHeight = _C0;
+	f32 wid          = static_cast<const char*>(p1)[4];
+	mActiveCharWidth = wid;
+	mCharacterWidth  = wid;
+	mLineHeight      = mActiveLineHeight;
 	mFlags.unset(0x10000000);
 	mPageInfoNum  = 0;
 	mCurrLine     = 0;
 	mParagraphNum = 0;
 	setDrawLocate();
 	mMatrixType = 0;
-	mMainFont->setGX(_CC, _D0);
+	mMainFont->setGX(mDefaultWhite, mDefaultBlack);
 }
 
 /**
@@ -531,35 +531,35 @@ void TRenderingProcessor::do_character(int character)
 	if (character == '\n') {
 		newParagraph();
 	} else {
-		if (_F0 == 0) {
-			mColorData1 = _D4;
+		if (mCurrColorIndex == 0) {
+			mColorData1 = mDefaultCharColor;
 		} else {
-			u32 f0                       = _F0;
+			u32 f0                       = mCurrColorIndex;
 			JUtility::TColor* colorArray = (JUtility::TColor*)getResourceContainer()->getResourceColor()->mBlock.getRaw();
 			mColorData1.set(colorArray[f0 + 3]);
 		}
 
-		mColorData1.a = f32(mColorData1.a) * _78;
+		mColorData1.a = f32(mColorData1.a) * mBaseAlphaModifier;
 
-		if (_F1 == 0) {
-			mColorData2 = _D8;
+		if (mSecondaryColorIndex == 0) {
+			mColorData2 = mDefaultGradColor;
 		} else {
-			u32 f1                       = _F1;
+			u32 f1                       = mSecondaryColorIndex;
 			JUtility::TColor* colorArray = (JUtility::TColor*)getResourceContainer()->getResourceColor()->mBlock.getRaw();
 			mColorData2.set(colorArray[f1 + 3]);
 		}
 
-		mColorData2.a = f32(mColorData2.a) * _78;
+		mColorData2.a = f32(mColorData2.a) * mBaseAlphaModifier;
 
 		f32 xScale = mFontWidthAdjusted * (f32)mMainFont->getWidth();
 		if (mFlags.isSet(1)) {
 			mLocate.i.x += calcWidth(mMainFont, character, xScale, true);
 		} else {
-			mLocate.i.x += doDrawLetter(mLocate.i.x + _54, mLocate.i.y + _58, xScale, mFontHeightAdjusted * (f32)mMainFont->getHeight(),
-			                            character, true);
+			mLocate.i.x += doDrawLetter(mLocate.i.x + mXOffset, mLocate.i.y + mYOffset, xScale,
+			                            mFontHeightAdjusted * (f32)mMainFont->getHeight(), character, true);
 		}
-		mLocate.i.x += _C4;
-		_40++;
+		mLocate.i.x += mCharacterWidth;
+		mInfoIndex++;
 	}
 
 	if (sys->mPlayData->mIsRubyFont) {
@@ -584,9 +584,9 @@ void TRenderingProcessor::mf()
  */
 void TRenderingProcessor::do_select_begin(u32)
 {
-	_A0         = 0;
-	mLocate.i.x = mLocate.f.x + mMainFont->getWidth() * 3;
-	mLocate.i.y = mLocate.f.y + (mMainFont->getHeight() * int(_A0 + 3));
+	mSelectSeparateNum = 0;
+	mLocate.i.x        = mLocate.f.x + mMainFont->getWidth() * 3;
+	mLocate.i.y        = mLocate.f.y + (mMainFont->getHeight() * int(mSelectSeparateNum + 3));
 }
 
 /**
@@ -605,9 +605,9 @@ void TRenderingProcessor::do_select_end()
  */
 void TRenderingProcessor::do_select_separate()
 {
-	_A0++;
+	mSelectSeparateNum++;
 	mLocate.i.x = mLocate.f.x + mMainFont->getWidth() * 3;
-	mLocate.i.y = mLocate.f.y + (mMainFont->getHeight() * int(_A0 + 3));
+	mLocate.i.y = mLocate.f.y + (mMainFont->getHeight() * int(mSelectSeparateNum + 3));
 }
 
 /**
@@ -630,11 +630,11 @@ bool TRenderingProcessor::tagColor(const void* p1, u32 p2)
 {
 	u8 v1 = *static_cast<const char*>(p1);
 	if (v1 == 0) {
-		_F0 = v1;
-		_F1 = v1;
+		mCurrColorIndex      = v1;
+		mSecondaryColorIndex = v1;
 	} else {
-		_F0 = v1;
-		_F1 = v1 + 1;
+		mCurrColorIndex      = v1;
+		mSecondaryColorIndex = v1 + 1;
 	}
 	return true;
 }
@@ -663,15 +663,15 @@ bool TRenderingProcessor::tagRuby(const void* data, u32 size)
 		strncpy(mRubyBuffer, (char*)data + 1, size - 1);
 
 		mRubyBuffer[size - 1] = 0;
-		_F2                   = 1;
-		_F4                   = mCharacterNum - 1;
-		_F8                   = ((u8*)data)[0];
-		_FC                   = size - 1;
-		_104                  = mLocate.i.x;
 
-		f32 y = mFontHeightAdjusted * mMainFont->getAscent();
-		y     = (y >= 0.0f) ? y + 0.5f : y - 0.5f;
-		_108  = mLocate.i.y - (int)y;
+		mDoDrawRuby            = true;
+		mRubyStartCharIndex    = mCharacterNum - 1;
+		mRubyCurrentStringSize = ((u8*)data)[0];
+		mRubyBufferCurrentSize = size - 1;
+
+		mRubyCurrentXPos = mLocate.i.x;
+		f32 y            = mFontHeightAdjusted * mMainFont->getAscent();
+		mRubyCurrentYPos = mLocate.i.y - ROUND_F32_TO_U8(y);
 	}
 
 	return true;
@@ -692,8 +692,8 @@ bool TRenderingProcessor::tagColorEX(u16 id, const void* p1, u32)
 	u8* data = (u8*)p1;
 	switch (id) {
 	case 0:
-		_F0 = data[0];
-		_F1 = data[1];
+		mCurrColorIndex      = data[0];
+		mSecondaryColorIndex = data[1];
 		break;
 	}
 	return true;
@@ -737,13 +737,13 @@ bool TRenderingProcessor::tagPosition(u16 type, const void* data, u32)
 {
 	switch (type) {
 	case 0:
-		_C4 = _BC;
+		mCharacterWidth = mActiveCharWidth;
 		break;
 	case 1:
-		_C4 = *(u8*)data;
+		mCharacterWidth = *(u8*)data;
 		break;
 	case 2:
-		mLineHeight = _C0;
+		mLineHeight = mActiveLineHeight;
 		setDrawLocateY();
 		break;
 	case 3:
@@ -1255,10 +1255,10 @@ bool TRenderingProcessor::tagPosition(u16 type, const void* data, u32)
  */
 void TRenderingProcessor::initRuby()
 {
-	_F2          = 0;
-	_F4          = 0;
-	_F8          = 0;
-	*mRubyBuffer = 0;
+	mDoDrawRuby            = false;
+	mRubyStartCharIndex    = 0;
+	mRubyCurrentStringSize = 0;
+	*mRubyBuffer           = 0;
 }
 
 /**
@@ -1267,33 +1267,33 @@ void TRenderingProcessor::initRuby()
  */
 void TRenderingProcessor::drawRuby()
 {
-	if (!_F2) {
+	if (!mDoDrawRuby) {
 		return;
 	}
 
 	if (mFlags.isSet(1)) {
-		_F2 = false;
+		mDoDrawRuby = false;
 		return;
 	}
 
 	f32 height = mFontHeightAdjusted * f32(mMainFont->getAscent());
 	f32 scale  = mLocate.i.y - (int)(f32(ROUND_F32_TO_U8(height)));
-	if (_108 > scale) {
-		_108 = scale;
+	if (mRubyCurrentYPos > scale) {
+		mRubyCurrentYPos = scale;
 	}
 
-	if (mCharacterNum != (int)(_F4 + _F8)) {
+	if (mCharacterNum != (int)(mRubyStartCharIndex + mRubyCurrentStringSize)) {
 		return;
 	}
 
 	int msgBuffer[33];
-	f32 val31 = _10C;
+	f32 val31 = mRubyWidthModifier;
 	f32 val30 = val31 * f32(mRubyFont->getWidth());
 	f32 val28 = 0.0f;
-	f32 val27 = (mLocate.i.x - _C4) - _104;
+	f32 val27 = (mLocate.i.x - mCharacterWidth) - mRubyCurrentXPos;
 
 	int msgLen = 0;
-	for (int i = 0; i < _FC; i++, msgLen++) {
+	for (int i = 0; i < mRubyBufferCurrentSize; i++, msgLen++) {
 		int byte = mRubyBuffer[i];
 		if (mRubyFont->isLeadByte(byte)) {
 			byte >>= 4;
@@ -1308,18 +1308,20 @@ void TRenderingProcessor::drawRuby()
 
 	f32 len   = f32(msgLen + 1);
 	f32 val29 = (val27 - val28) / len;
-	if (val29 < _C4 * val31) {
-		val29 = _C4 * val31;
+	if (val29 < mCharacterWidth * val31) {
+		val29 = mCharacterWidth * val31;
 	}
 
-	_104 += val29 + 0.5f * (val27 - (val29 * len + val28));
+	mRubyCurrentXPos += val29 + 0.5f * (val27 - (val29 * len + val28));
 
 	for (int i = 0; i < msgLen; i++) {
-		_104 += doDrawRuby(_104 + _54, _108 + _58, val30, val31 * f32(mRubyFont->getHeight()), msgBuffer[i], true);
-		_104 += val29;
-		_40++;
+		mRubyCurrentXPos += doDrawRuby(mRubyCurrentXPos + mXOffset, mRubyCurrentYPos + mYOffset, val30, val31 * f32(mRubyFont->getHeight()),
+		                               msgBuffer[i], true);
+		mRubyCurrentXPos += val29;
+		mInfoIndex++;
 	}
-	_F2 = false;
+	mDoDrawRuby = false;
+
 	/*
 	stwu     r1, -0x110(r1)
 	mflr     r0
@@ -1589,15 +1591,15 @@ bool TRenderingProcessor::tagImage(u16 p1, const void* p2, u32 p3)
 	if (gP2JMEMgr) {
 		JUTTexture* img = gP2JMEMgr->getImage(ImageGroup::ID0, firstByte);
 		if (img && !mFlags.isSet(0x1)) {
-			JUtility::TColor color2(_60);
-			JUtility::TColor color1(_5C);
+			JUtility::TColor color2(mImageColorB);
+			JUtility::TColor color1(mImageColorA);
 			switch (type) {
 			case 0:
 				GXColor* colorA = &cBtnIconColor[firstByte].a;
 				GXColor* colorB = &cBtnIconColor[firstByte].b;
 				if (firstByte < 8) {
-					_60.set(colorA->r, colorA->g, colorA->b, colorA->a);
-					_5C.set(colorB->r, colorB->g, colorB->b, colorB->a);
+					mImageColorB.set(colorA->r, colorA->g, colorA->b, colorA->a);
+					mImageColorA.set(colorB->r, colorB->g, colorB->b, colorB->a);
 					mColorData4.set(255, 255, 255, 255);
 					mColorData5.set(205, 205, 205, 255);
 				} else {
@@ -1606,39 +1608,39 @@ bool TRenderingProcessor::tagImage(u16 p1, const void* p2, u32 p3)
 				}
 				break;
 			default:
-				if (_F0 == 0) {
-					mColorData4 = _D4;
+				if (mCurrColorIndex == 0) {
+					mColorData4 = mDefaultCharColor;
 				} else {
-					u32 f0                       = _F0;
+					u32 f0                       = mCurrColorIndex;
 					JUtility::TColor* colorArray = (JUtility::TColor*)getResourceContainer()->getResourceColor()->mBlock.getRaw();
 					mColorData4.set(colorArray[f0 + 3]);
 				}
 
-				if (_F1 == 0) {
-					mColorData5 = _D8;
+				if (mSecondaryColorIndex == 0) {
+					mColorData5 = mDefaultGradColor;
 				} else {
-					u32 f1                       = _F1;
+					u32 f1                       = mSecondaryColorIndex;
 					JUtility::TColor* colorArray = (JUtility::TColor*)getResourceContainer()->getResourceColor()->mBlock.getRaw();
 					mColorData5.set(colorArray[f1 + 3]);
 				}
 				break;
 			}
 
-			mColorData4.a = f32(mColorData4.a) * _78;
-			mColorData5.a = f32(mColorData5.a) * _78;
-			doDrawImage(img, mLocate.i.x + _54, mLocate.i.y + _58, width, height);
+			mColorData4.a = f32(mColorData4.a) * mBaseAlphaModifier;
+			mColorData5.a = f32(mColorData5.a) * mBaseAlphaModifier;
+			doDrawImage(img, mLocate.i.x + mXOffset, mLocate.i.y + mYOffset, width, height);
 			switch (type) {
 			case 0:
-				_60 = color2;
-				_5C = color1;
+				mImageColorB = color2;
+				mImageColorA = color1;
 				break;
 			}
 		}
 	}
 
 	mLocate.i.x += width;
-	_40++;
-	mMainFont->setGX(_CC, _D0);
+	mInfoIndex++;
+	mMainFont->setGX(mDefaultWhite, mDefaultBlack);
 	return true;
 }
 
@@ -2025,7 +2027,7 @@ lbl_8043B728:
 f32 TRenderingProcessor::doDrawRuby(f32 p1, f32 p2, f32 p3, f32 p4, int p5, bool p6)
 {
 	JUtility::TColor charColor;
-	mColorData3.a = 255.0f * _78;
+	mColorData3.a = 255.0f * mBaseAlphaModifier;
 	calcColorCoe(mColorData3, &charColor);
 	mRubyFont->setCharColor(charColor);
 	mRubyFont->drawChar_scale(p1, p2, p3, p4, p5, p6);
@@ -2240,7 +2242,7 @@ void TRenderingProcessor::doDrawImage(JUTTexture* texture, f32 p2, f32 p3, f32 p
  */
 void TRenderingProcessor::setImageGX()
 {
-	if (*(u32*)&_5C == 0 && *(u32*)&_60 == -1) {
+	if (mImageColorA.toUInt32() == 0 && mImageColorB.toUInt32() == -1) {
 		GXSetNumChans(1);
 		GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_VTX, GX_SRC_VTX, 1, GX_DF_CLAMP, GX_AF_NONE);
 		GXClearVtxDesc();
@@ -2266,8 +2268,8 @@ void TRenderingProcessor::setImageGX()
 	GXSetNumTexGens(1);
 	GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR_NULL);
 	GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_REG, GX_SRC_VTX, 0, GX_DF_NONE, GX_AF_NONE);
-	GXSetTevColor(GX_TEVREG0, *(GXColor*)&_5C);
-	GXSetTevColor(GX_TEVREG1, *(GXColor*)&_60);
+	GXSetTevColor(GX_TEVREG0, *(GXColor*)&mImageColorA);
+	GXSetTevColor(GX_TEVREG1, *(GXColor*)&mImageColorB);
 	GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_C0, GX_CC_C2, GX_CC_TEXC, GX_CC_ZERO);
 	GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_A0, GX_CA_A1, GX_CA_TEXA, GX_CA_ZERO);
 	GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
@@ -2697,8 +2699,8 @@ lbl_8043C1E4:
  */
 void TRenderingProcessor::reset()
 {
-	_54 = 0.0f;
-	_58 = 0.0f;
+	mXOffset = 0.0f;
+	mYOffset = 0.0f;
 }
 
 /**
@@ -3474,20 +3476,20 @@ void TRenderingProcessor::setTextBoxInfo(J2DPane* pane)
 	JUtility::TColor chrcolor  = text->mCharColor;
 	JUtility::TColor gradcolor = text->mGradientColor;
 
-	_78 = (f32)text->mColorAlpha / 255.0f;
-	_60 = black;
-	_5C = white;
-	_D4 = chrcolor;
-	_D8 = gradcolor;
-	_CC = white;
-	_D0 = black;
+	mBaseAlphaModifier = (f32)text->mColorAlpha / 255.0f;
+	mImageColorB       = black;
+	mImageColorA       = white;
+	mDefaultCharColor  = chrcolor;
+	mDefaultGradColor  = gradcolor;
+	mDefaultWhite      = white;
+	mDefaultBlack      = black;
 
-	_BC            = text->mCharSpacing;
-	_C4            = text->mCharSpacing;
-	_C0            = text->mLineSpacing;
-	mLineHeight    = text->mLineSpacing;
-	mTextBoxWidth  = text->getWidth();
-	mTextBoxHeight = text->getHeight();
+	mActiveCharWidth  = text->mCharSpacing;
+	mCharacterWidth   = text->mCharSpacing;
+	mActiveLineHeight = text->mLineSpacing;
+	mLineHeight       = text->mLineSpacing;
+	mTextBoxWidth     = text->getWidth();
+	mTextBoxHeight    = text->getHeight();
 
 	mFontWidth  = text->mFontSize.x / mMainFont->getWidth();
 	mFontHeight = text->mFontSize.y / mMainFont->getHeight();

@@ -11,7 +11,7 @@ namespace Caption {
 TRenderingProcessor::TRenderingProcessor(JMessage::TReference* ref)
     : Window::TRenderingProcessor(ref)
 {
-	_144 = 1.0f;
+	mDrawAlphaLevel = 1.0f;
 }
 
 /**
@@ -26,11 +26,11 @@ void TRenderingProcessor::doGetDrawInfo(Window::DrawInfo* info) { info->mTimeLim
  */
 BOOL TRenderingProcessor::doDrawCommon(f32 x, f32 y, Matrixf* mtx1, Matrixf* mtx2)
 {
-	f32 ret = _144 * 255.0f;
+	f32 ret = mDrawAlphaLevel * 255.0f;
 	Matrixf mtx;
-	Window::DrawInfo* info = mDrawInfo.searchDrawInfo(_40);
+	Window::DrawInfo* info = mDrawInfo.searchDrawInfo(mInfoIndex);
 	if (!info) {
-		info = mDrawInfo.getDrawInfo(_40);
+		info = mDrawInfo.getDrawInfo(mInfoIndex);
 		doGetDrawInfo(info);
 	}
 
@@ -46,10 +46,10 @@ BOOL TRenderingProcessor::doDrawCommon(f32 x, f32 y, Matrixf* mtx1, Matrixf* mtx
 	if (mtx2) {
 		PSMTXCopy(mtx.mMatrix.mtxView, mtx2->mMatrix.mtxView);
 
-		Vector3f translation = mtx2->getColumn(3);
+		Vector3f translation = mtx2->getTranslation();
 		translation.x += 10.0f;
 		translation.y += 5.0f;
-		mtx2->setColumn(3, translation.x, translation.y, translation.z);
+		mtx2->setTranslation(translation);
 
 		PSMTXConcat(mMtx1->mMatrix.mtxView, mtx2->mMatrix.mtxView, mtx2->mMatrix.mtxView);
 		PSMTXConcat(mMtx2->mMatrix.mtxView, mtx2->mMatrix.mtxView, mtx2->mMatrix.mtxView);
@@ -63,7 +63,7 @@ BOOL TRenderingProcessor::doDrawCommon(f32 x, f32 y, Matrixf* mtx1, Matrixf* mtx
 		GXLoadPosMtxImm(mtx.mMatrix.mtxView, 0);
 	}
 
-	return (u8)((ret >= 0.0f) ? ret + 0.5f : ret - 0.5f);
+	return (u8)(ROUND_F32_TO_U8(ret));
 }
 
 /**
@@ -72,10 +72,10 @@ BOOL TRenderingProcessor::doDrawCommon(f32 x, f32 y, Matrixf* mtx1, Matrixf* mtx
  */
 TControl::TControl()
 {
-	mState      = 0;
-	mStartFrame = 0;
-	mEndFrame   = 0;
-	_68         = 6;
+	mState              = 0;
+	mStartFrame         = 0;
+	mEndFrame           = 0;
+	mFadeoutFrameLength = 6;
 }
 
 /**
@@ -88,7 +88,7 @@ bool TControl::onInit()
 		setFont(gP2JMEMgr->mFont);
 		setRubyFont(gP2JMEMgr->mFont);
 	}
-	initRenderingProcessor(0x100);
+	initRenderingProcessor(256); // max 256 characters can be animated at once
 	_50 = 3.0f;
 	setLocate(0, 0);
 	mTextRenderProc->mTextBoxWidth  = sys->getRenderModeObj()->fbWidth;
@@ -116,21 +116,22 @@ void TControl::reset()
 bool TControl::updateSetFrame(s32 frame)
 {
 	bool ret = false;
-	if (mState == 0 && frame >= mStartFrame && frame <= mEndFrame + _68) {
+	if (mState == 0 && frame >= mStartFrame && frame <= mEndFrame + mFadeoutFrameLength) {
 		mState = 1;
 	}
 
 	if (mState != 0) {
-		if (frame < mStartFrame || frame > mEndFrame + _68) {
+		if (frame < mStartFrame || frame > mEndFrame + mFadeoutFrameLength) {
 			mState = 0;
 		} else {
 			ret = P2JME::TControl::update();
 			if (frame > mEndFrame) {
-				mState                                                            = 2;
-				static_cast<Caption::TRenderingProcessor*>(mTextRenderProc)->_144 = 1.0f - f32(frame - mEndFrame) / f32(_68);
+				mState = 2;
+				static_cast<Caption::TRenderingProcessor*>(mTextRenderProc)->mDrawAlphaLevel
+				    = 1.0f - f32(frame - mEndFrame) / f32(mFadeoutFrameLength);
 			} else {
-				static_cast<Caption::TRenderingProcessor*>(mTextRenderProc)->_144 = 1.0f;
-				mState                                                            = 1;
+				static_cast<Caption::TRenderingProcessor*>(mTextRenderProc)->mDrawAlphaLevel = 1.0f;
+				mState                                                                       = 1;
 			}
 		}
 	}

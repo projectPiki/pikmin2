@@ -370,7 +370,7 @@ struct NaviFlickState : public NaviState {
 
 	// _00     = VTBL
 	// _00-_10 = NaviState
-	s32 _10;             // _10
+	s32 mSubState;       // _10
 	Creature* mFlicker;  // _14
 	Vector3f mDirection; // _18
 	f32 mDamage;         // _24

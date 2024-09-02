@@ -57,7 +57,7 @@ THPPlayer::THPPlayer()
     , mHeap(nullptr)
     , _C8(this, &loadResource)
     , mLoadResArg()
-    , _E4(0)
+    , mDrawPosType(0)
     , _E8(1)
 {
 	mCaptionMgr = new Caption::Mgr;
@@ -95,7 +95,7 @@ void THPPlayer::load(EMovieIndex movieIdx)
 	const THPPlayerFileSettingTable* data = &sTHPPlayerFileSettingTable[movieIdx];
 	mLoadResArg.mThpFileName              = data->mThpFilePath;
 	mLoadResArg.mCaptionFileName          = data->mIniFilePath;
-	_E4                                   = data->_08;
+	mDrawPosType                          = data->mDrawPosType;
 
 	load();
 
@@ -342,7 +342,7 @@ void THPPlayer::update()
  */
 void THPPlayer::draw(Graphics& gfx)
 {
-	switch (_E4) {
+	switch (mDrawPosType) {
 	case 1:
 		draw(gfx, (int)(System::getRenderModeObj()->fbWidth - mVideoInfo.mXSize) / 2, 20, mVideoInfo.mXSize, mVideoInfo.mYSize);
 		break;

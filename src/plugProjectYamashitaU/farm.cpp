@@ -111,7 +111,7 @@ void Farm::loadResource(u32 modelType, void* mdlData)
 {
 	sys->heapStatusStart("Farm resource", nullptr);
 	sys->heapStatusStart("mdlData", nullptr);
-	mModelData = J3DModelLoaderDataBase::load(mdlData, 0x20000000);
+	mModelData = J3DModelLoaderDataBase::load(mdlData, J3DMLF_Material_PE_FogOff);
 	sys->heapStatusEnd("mdlData");
 	mPosition = Vector3f(0.0f);
 

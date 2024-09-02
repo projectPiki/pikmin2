@@ -403,7 +403,7 @@ f32 TMovePane::getAngDist()
 	if (distY == 0.0f) {
 		distY = 0.1f;
 	}
-	f32 angle = JMath::atanTable_.atan2_(distX, -distY);
+	f32 angle = JMAAtan2Radian(distX, -distY);
 	return angDist(roundAng(angle), mAngle);
 }
 

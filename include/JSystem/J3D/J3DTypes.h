@@ -25,7 +25,7 @@ enum J3DModelLoaderFlagTypes {
 	= J3DMLF_MtxSoftImageCalc | J3DMLF_MtxMayaCalc | J3DMLF_MtxBasicCalc | J3DMLF_04, // 0 - 2 (0 = Basic, 1 = SoftImage, 2 = Maya)
 
 	J3DMLF_UseImmediateMtx          = 0x00000010,
-	J3DMLF_06                       = 0x00000020,
+	J3DMLF_UsePostTexMtx            = 0x00000020,
 	J3DMLF_07                       = 0x00000040,
 	J3DMLF_08                       = 0x00000080,
 	J3DMLF_NoMatrixTransform        = 0x00000100,
@@ -33,12 +33,12 @@ enum J3DModelLoaderFlagTypes {
 	J3DMLF_11                       = 0x00000400,
 	J3DMLF_12                       = 0x00000800,
 	J3DMLF_13                       = 0x00001000,
-	J3DMLF_14                       = 0x00002000,
+	J3DMLF_DoBdlMaterialCalc        = 0x00002000,
 	J3DMLF_15                       = 0x00004000,
 	J3DMLF_16                       = 0x00008000,
 	J3DMLF_TevNumShift              = 0x00010000,
 	J3DMLF_18                       = 0x00020000,
-	J3DMLF_19                       = 0x00040000,
+	J3DMLF_UseSingleSharedDL        = 0x00040000,
 	J3DMLF_20                       = 0x00080000,
 	J3DMLF_21                       = 0x00100000,
 	J3DMLF_UseUniqueMaterials       = 0x00200000,

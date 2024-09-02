@@ -15,7 +15,7 @@ struct TRenderingProcessor : public P2JME::Window::TRenderingProcessor {
 
 	// _00      = VTBL
 	// _00-_144 = P2JME::Window::TRenderingProcessor
-	f32 _144; // _144
+	f32 mDrawAlphaLevel; // _144 0 to 1, used for telling when fade out is done
 };
 
 struct TSequenceProcessor : public P2JME::Window::TSequenceProcessor {
@@ -50,10 +50,10 @@ struct TControl : public P2JME::Window::TControl {
 
 	// _00     = VTBL
 	// _00-_5C = P2JME::Window::TControl
-	int mState;      // _5C
-	int mStartFrame; // _60
-	int mEndFrame;   // _64
-	int _68;         // _68, unknown
+	int mState;              // _5C
+	int mStartFrame;         // _60
+	int mEndFrame;           // _64
+	int mFadeoutFrameLength; // _68
 };
 
 } // namespace Caption

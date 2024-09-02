@@ -31,7 +31,7 @@ void Mgr::setDefault()
 	mIsRubyFont    = true;
 	mUseDeflicker  = true;
 	mRegion        = (u8)sys->mRegion;
-	_18            = 0;
+	mSaveCount     = 0;
 	mTime          = 0;
 	mFileIndex     = -1;
 	mDoSaveOptions = false;
@@ -45,7 +45,7 @@ void Mgr::setDefault()
 void Mgr::setCardSerialNo(u64 tag)
 {
 	mCardSerialNo = tag;
-	mFlags.set(1);
+	mFlags.set(SaveFlag_SerialNoSet);
 }
 
 /**
@@ -55,7 +55,7 @@ void Mgr::setCardSerialNo(u64 tag)
 void Mgr::resetCardSerialNo()
 {
 	mCardSerialNo = 0xcdcdcdcdcdcdcdcd;
-	mFlags.unset(1);
+	mFlags.unset(SaveFlag_SerialNoSet);
 }
 
 /**
@@ -138,7 +138,7 @@ void Mgr::resetPlayer(s8 fileIndex)
 {
 	mFileIndex = fileIndex;
 	mTime      = 0;
-	_18        = 0;
+	mSaveCount = 0;
 }
 
 /**
@@ -156,7 +156,7 @@ void Mgr::setDeflicker(bool deflicker)
 	_GXRenderModeObj* obj = System::getRenderModeObj();
 	mUseDeflicker         = deflicker;
 
-	if ((u32)OSGetProgressiveMode() == 1) {
+	if (OSGetProgressiveMode() == OS_PROGRESSIVE_MODE_ON) {
 		obj->vfilter[0] = 0;
 		obj->vfilter[1] = 0;
 		obj->vfilter[2] = 21;
@@ -193,7 +193,7 @@ void Mgr::setSoundModeMono()
 {
 	mSoundMode = SM_Mono;
 	JAIGlobalParameter::setParamSoundOutputMode(SM_Mono);
-	OSSetSoundMode(false);
+	OSSetSoundMode(OS_SOUND_MODE_MONO);
 }
 
 /**
@@ -204,7 +204,7 @@ void Mgr::setSoundModeStereo()
 {
 	mSoundMode = SM_Stereo;
 	JAIGlobalParameter::setParamSoundOutputMode(SM_Stereo);
-	OSSetSoundMode(true);
+	OSSetSoundMode(OS_SOUND_MODE_STEREO);
 }
 
 /**
@@ -215,7 +215,7 @@ void Mgr::setSoundModeSurround()
 {
 	mSoundMode = SM_SurroundSound;
 	JAIGlobalParameter::setParamSoundOutputMode(SM_SurroundSound);
-	OSSetSoundMode(true);
+	OSSetSoundMode(OS_SOUND_MODE_STEREO);
 }
 
 /**
@@ -227,25 +227,14 @@ void Mgr::setBgmVolume(f32 volume)
 	bool temp = OSDisableInterrupts();
 	OSDisableScheduler();
 
-	bool volumeCheck = false;
-	if (volume >= 0.0f && volume <= 1.0f) {
-		volumeCheck = true;
-	}
 #if BUILDTARGET == USADEMO1
-	P2ASSERTLINE(392, volumeCheck);
+	P2ASSERTBOOLLINE(392, volume >= 0.0f && volume <= 1.0f);
 #else
-	P2ASSERTLINE(389, volumeCheck);
+	P2ASSERTBOOLLINE(389, volume >= 0.0f && volume <= 1.0f);
 #endif
 
 	if (PSSystem::spSysIF) {
-		f32 calc = volume * 255.0f;
-		f32 newCalc;
-		if (calc >= 0.0f) {
-			newCalc = 0.5f + calc;
-		} else {
-			newCalc = calc - 0.5f;
-		}
-		mMusicVol = newCalc;
+		mMusicVol = ROUND_F32_TO_U8(volume * 255.0f);
 		PSGetSystemIFA()->setConfigVol_Bgm(volume);
 	}
 	OSEnableScheduler();
@@ -261,25 +250,14 @@ void Mgr::setSeVolume(f32 volume)
 	bool temp = OSDisableInterrupts();
 	OSDisableScheduler();
 
-	bool volumeCheck = false;
-	if (volume >= 0.0f && volume <= 1.0f) {
-		volumeCheck = true;
-	}
 #if BUILDTARGET == USADEMO1
-	P2ASSERTLINE(410, volumeCheck);
+	P2ASSERTBOOLLINE(410, volume >= 0.0f && volume <= 1.0f);
 #else
-	P2ASSERTLINE(407, volumeCheck);
+	P2ASSERTBOOLLINE(407, volume >= 0.0f && volume <= 1.0f);
 #endif
 
 	if (PSSystem::spSysIF) {
-		f32 calc = volume * 255.0f;
-		f32 newCalc;
-		if (calc >= 0.0f) {
-			newCalc = 0.5f + calc;
-		} else {
-			newCalc = calc - 0.5f;
-		}
-		mSeVol = newCalc;
+		mSeVol = ROUND_F32_TO_U8(volume * 255.0f);
 		PSGetSystemIFA()->setConfigVol_Se(volume);
 	}
 

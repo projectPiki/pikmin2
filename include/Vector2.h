@@ -35,7 +35,7 @@ struct Vector2 {
 
 	inline f32 angleBetween(Vector2& other)
 	{
-		f32 angle = JMath::atanTable_.atan2_((this->y - other.y), -(this->x - other.x));
+		f32 angle = JMAAtan2Radian((this->y - other.y), -(this->x - other.x));
 		return angle;
 	}
 

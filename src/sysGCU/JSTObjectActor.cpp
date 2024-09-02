@@ -51,49 +51,22 @@ ObjectActor::~ObjectActor() { }
  */
 void ObjectActor::reset()
 {
+	// this probably shouldnt be needed but it matches here (not in the ctor above)
+	u32 test = gu32NAN_.a;
+
 	mTranslation     = govNAN_;
 	mRotation        = govNAN_;
 	mScaling         = govNAN_;
-	mShape           = gu32NAN_.a;
-	mAnimation       = gu32NAN_.a;
+	mShape           = test;
+	mAnimation       = test;
 	mAnimFrame       = gfNAN_;
 	mAnimFrameMax    = gfNAN_;
-	mModelFileId     = gu32NAN_.a;
-	mAnimationFileId = gu32NAN_.a;
+	mModelFileId     = test;
+	mAnimationFileId = test;
 	mScaling.z       = 1.0f;
 	mScaling.y       = 1.0f;
 	mScaling.x       = 1.0f;
 	mAnimFrame       = 0.0f;
-	/*
-	lis      r4, lbl_804EC018@ha
-	lfsu     f5, lbl_804EC018@l(r4)
-	lwz      r0, lbl_805161D8@sda21(r13)
-	lfs      f4, 4(r4)
-	stfs     f5, 0x34(r3)
-	lfs      f3, 8(r4)
-	stfs     f4, 0x38(r3)
-	lfs      f2, lbl_805161DC@sda21(r13)
-	stfs     f3, 0x3c(r3)
-	lfs      f1, lbl_80520678@sda21(r2)
-	stfs     f5, 0x40(r3)
-	lfs      f0, lbl_8052067C@sda21(r2)
-	stfs     f4, 0x44(r3)
-	stfs     f3, 0x48(r3)
-	stfs     f5, 0x4c(r3)
-	stfs     f4, 0x50(r3)
-	stfs     f3, 0x54(r3)
-	stw      r0, 0x58(r3)
-	stw      r0, 0x5c(r3)
-	stfs     f2, 0x60(r3)
-	stfs     f2, 0x64(r3)
-	stw      r0, 0x68(r3)
-	stw      r0, 0x6c(r3)
-	stfs     f1, 0x54(r3)
-	stfs     f1, 0x50(r3)
-	stfs     f1, 0x4c(r3)
-	stfs     f0, 0x60(r3)
-	blr
-	*/
 }
 
 /**
@@ -114,7 +87,7 @@ void ObjectActor::update()
 	mtx.setTranslation(*(Vector3f*)&mTranslation);
 
 	Matrixf mtx2;
-	f32 angle                  = mRotation.z * DEG2RAD;
+	f32 angle                  = MTXDegToRad(mRotation.z);
 	f32 sinAngle               = sin(angle);
 	f32 cosAngle               = cos(angle);
 	mtx2.mMatrix.structView.xx = cosAngle;
@@ -134,7 +107,7 @@ void ObjectActor::update()
 	Mtx out;
 	PSMTXConcat(mtx.mMatrix.mtxView, mtx2.mMatrix.mtxView, out);
 
-	angle                      = mRotation.y * DEG2RAD;
+	angle                      = MTXDegToRad(mRotation.y);
 	sinAngle                   = sin(angle);
 	cosAngle                   = cos(angle);
 	mtx2.mMatrix.structView.xx = cosAngle;
@@ -152,7 +125,7 @@ void ObjectActor::update()
 	mtx2.setTranslation(pos2);
 	PSMTXConcat(out, mtx2.mMatrix.mtxView, mtx.mMatrix.mtxView);
 
-	angle                      = mRotation.x * DEG2RAD;
+	angle                      = MTXDegToRad(mRotation.x);
 	sinAngle                   = sin(angle);
 	cosAngle                   = cos(angle);
 	mtx2.mMatrix.structView.xx = cosAngle;
@@ -170,37 +143,39 @@ void ObjectActor::update()
 	mtx2.setTranslation(pos3);
 	PSMTXConcat(mtx.mMatrix.mtxView, mtx2.mMatrix.mtxView, out);
 
-	if (mModel) {
-		PSMTXCopy(out, mModel->mPosMtx);
-		mModel->setBaseScale(mScaling.x, mScaling.y, mScaling.z);
-		if (mAnmTransform) {
-			mAnimFrame += 1.0f;
-			if (mAnimFrame > mAnimFrameMax) {
-				mAnimFrame = mAnimFrameMax;
-			}
-			mAnmTransform->setFrame(mAnimFrame);
-		}
-		SysShape::Model::setViewCalcModeInd();
-		Viewport* vp = moviePlayer->mViewport;
-		if (vp) {
-			vp->setJ3DViewMtx(false);
-			vp->setViewport();
-			vp->setProjection();
-		}
-
-		Matrixf mtx;
-		Vector3f pos(mTranslation);
-		Vector3f rot(mRotation * DEG2RAD * PI);
-		mtx.makeTR(pos, rot);
-		PSMTXCopy(mtx.mMatrix.mtxView, mModel->mPosMtx);
-
-		Vector3f scale(1.0f, 1.0f, 1.0f);
-		mModel->setBaseScale(scale);
-
-		mModel->calc();
-		mModel->mMtxBuffer->mCurrentViewNumber = 0;
-		mModel->viewCalc();
+	if (!mModel) {
+		return;
 	}
+
+	PSMTXCopy(out, mModel->mPosMtx);
+	mModel->setBaseScale(mScaling.x, mScaling.y, mScaling.z);
+	if (mAnmTransform) {
+		mAnimFrame += 1.0f;
+		if (mAnimFrame > mAnimFrameMax) {
+			mAnimFrame = mAnimFrameMax;
+		}
+		mAnmTransform->setFrame(mAnimFrame);
+	}
+	SysShape::Model::setViewCalcModeInd();
+	Viewport* vp = moviePlayer->mViewport;
+	if (vp) {
+		vp->setJ3DViewMtx(false);
+		vp->setViewport();
+		vp->setProjection();
+	}
+
+	Matrixf mtx3;
+	Vector3f pos4(mTranslation);
+	Vector3f rot(mRotation * PI * DEG2RAD);
+	mtx3.makeTR(pos4, rot);
+	PSMTXCopy(mtx3.mMatrix.mtxView, mModel->mPosMtx);
+
+	Vector3f scale(1.0f, 1.0f, 1.0f);
+	mModel->setBaseScale(scale);
+
+	mModel->calc();
+	mModel->mMtxBuffer->mCurrentViewNumber = 0;
+	mModel->viewCalc();
 
 	/*
 	stwu     r1, -0x120(r1)
@@ -465,43 +440,49 @@ void ObjectActor::entry()
  */
 bool ObjectActor::setShape()
 {
-	if (!(moviePlayer->isFlag(MVP_IsFinished))) {
-		sys->startChangeCurrentHeap(moviePlayer->mMovieHeap);
-		int id = mShape;
-		if (id == gu32NAN_.a) {
-			sys->endChangeCurrentHeap();
-			return false;
-		} else if (id == mModelFileId) {
-			sys->endChangeCurrentHeap();
-			return true;
-		} else {
-			void* file = mArchive->getIdxResource(id);
-			if (!file) {
-				sys->endChangeCurrentHeap();
-				return false;
-			} else {
-				u32 flag = 0x240000;
-				// use different flags for the day results background model (makes it ignore fog)
-				if (strcmp(mName, "bg")) {
-					flag |= 0x20000000;
-				} else {
-					flag |= 0x10000000;
-				}
-				mModelData = J3DModelLoaderDataBase::load(file, flag);
-				JUT_ASSERTLINE(281, mModelData, "ModelData null");
-				if (!mModelData) {
-					sys->endChangeCurrentHeap();
-					return false;
-				} else {
-					mModel = new J3DModel(mModelData, 0, 1);
-					JUT_ASSERTLINE(290, mModel, "pModel_ null");
-					mModelFileId = mShape;
-					sys->endChangeCurrentHeap();
-					return true;
-				}
-			}
-		}
+	if (moviePlayer->isFlag(MVP_IsFinished)) {
+		return; // doesnt specify true or false
 	}
+
+	sys->startChangeCurrentHeap(moviePlayer->mMovieHeap);
+
+	int id = mShape;
+	if (id == gu32NAN_.a) {
+		sys->endChangeCurrentHeap();
+		return false;
+	}
+
+	if (id == mModelFileId) {
+		sys->endChangeCurrentHeap();
+		return true;
+	}
+
+	void* file = mArchive->getIdxResource(id);
+	if (!file) {
+		sys->endChangeCurrentHeap();
+		return false;
+	}
+
+	u32 flag = 0x240000;
+	// use different flags for the day results background model (makes it ignore fog)
+	if (strcmp(mName, "bg")) {
+		flag |= J3DMLF_Material_PE_FogOff;
+	} else {
+		flag |= J3DMLF_Material_PE_Full;
+	}
+	mModelData = J3DModelLoaderDataBase::load(file, flag);
+	JUT_ASSERTLINE(281, mModelData, "ModelData null");
+
+	if (!mModelData) {
+		sys->endChangeCurrentHeap();
+		return false;
+	}
+
+	mModel = new J3DModel(mModelData, 0, 1);
+	JUT_ASSERTLINE(290, mModel, "pModel_ null");
+	mModelFileId = mShape;
+	sys->endChangeCurrentHeap();
+	return true;
 }
 
 /**
@@ -510,36 +491,41 @@ bool ObjectActor::setShape()
  */
 bool ObjectActor::setAnim()
 {
-	if (!(moviePlayer->isFlag(MVP_IsFinished))) {
-		sys->startChangeCurrentHeap(moviePlayer->mMovieHeap);
-		int id = mAnimation;
-		if (id == gu32NAN_.a) {
-			sys->endChangeCurrentHeap();
-			return false;
-		} else if (id == mAnimationFileId) {
-			sys->endChangeCurrentHeap();
-			return true;
-		} else {
-			void* file = mArchive->getIdxResource(id);
-			if (!file) {
-				sys->endChangeCurrentHeap();
-				return false;
-			} else {
-				mAnmTransform = static_cast<J3DAnmTransform*>(J3DAnmLoaderDataBase::load(file));
-				if (!mAnmTransform) {
-					sys->endChangeCurrentHeap();
-					return false;
-				} else {
-					mMtxCalcAnm = J3DNewMtxCalcAnm(mModelData->mJointTree.mFlags & J3DMLF_MtxTypeMask, mAnmTransform);
-					mModelData->mJointTree.mJoints[0]->mMtxCalc = mMtxCalcAnm;
-					mAnimFrameMax                               = mAnmTransform->mTotalFrameCount;
-					mAnimationFileId                            = mAnimation;
-					sys->endChangeCurrentHeap();
-					return true;
-				}
-			}
-		}
+	if (moviePlayer->isFlag(MVP_IsFinished)) {
+		return; // doesnt specify true or false
 	}
+
+	sys->startChangeCurrentHeap(moviePlayer->mMovieHeap);
+
+	int id = mAnimation;
+	if (id == gu32NAN_.a) {
+		sys->endChangeCurrentHeap();
+		return false;
+	}
+
+	if (id == mAnimationFileId) {
+		sys->endChangeCurrentHeap();
+		return true;
+	}
+
+	void* file = mArchive->getIdxResource(id);
+	if (!file) {
+		sys->endChangeCurrentHeap();
+		return false;
+	}
+
+	mAnmTransform = static_cast<J3DAnmTransform*>(J3DAnmLoaderDataBase::load(file));
+	if (!mAnmTransform) {
+		sys->endChangeCurrentHeap();
+		return false;
+	}
+
+	mMtxCalcAnm = J3DNewMtxCalcAnm(mModelData->mJointTree.mFlags & J3DMLF_MtxTypeMask, mAnmTransform);
+	mModelData->getJointNodePointer(0)->setMtxCalc(mMtxCalcAnm);
+	mAnimFrameMax    = mAnmTransform->getTotalFrameCount();
+	mAnimationFileId = mAnimation;
+	sys->endChangeCurrentHeap();
+	return true;
 }
 
 /**
@@ -754,7 +740,7 @@ lbl_8042F448:
 int ObjectActor::JSGFindNodeID(char const* name) const
 {
 	P2ASSERTLINE(428, mModelData);
-	return mModelData->mJointTree.mNametab->getIndex(name);
+	return mModelData->getJointName()->getIndex(name);
 }
 
 /**

@@ -35,7 +35,7 @@ TControl::TControl()
 	mCurrentScroll     = 0.0f;
 	mCurrentTextHeight = 0.0f;
 	mTextBox           = nullptr;
-	_6C                = 3.5f;
+	mScrollVal         = 3.5f;
 	mScrollSpeed       = 0.08f;
 }
 
@@ -46,7 +46,7 @@ TControl::TControl()
 bool TControl::onInit()
 {
 	Window::TControl::onInit();
-	initRenderingProcessor(0x200);
+	initRenderingProcessor(512); // max 512 characters can be animated at once
 	return true;
 }
 
@@ -81,14 +81,14 @@ f32 TControl::getScrollPosition()
 void TControl::scroll(f32 rate)
 {
 	if (rate != 0.0f) {
-		mCurrentScroll += rate * _6C * 60.0f * sys->getDeltaTime();
+		mCurrentScroll += rate * mScrollVal * 60.0f * sys->getDeltaTime();
 		if (mCurrentScroll < mMaxScroll) {
 			mCurrentScroll = mMaxScroll;
 		}
 		if (mCurrentScroll > 0.0f) {
 			mCurrentScroll = 0.0f;
 		}
-		f32 calc = mTextRenderProc->_C0;
+		f32 calc = mTextRenderProc->mActiveLineHeight;
 		int dir;
 		if (rate > 0.0f) {
 			dir = 0;
@@ -115,15 +115,15 @@ void TControl::scroll(f32 rate)
 bool TControl::update(Controller* control1, Controller* control2)
 {
 	P2JME::TControl::update();
-	mMaxScroll = mTextRenderProc->mTextBoxHeight - mTextRenderProc->_C0 * (f32)(mTextRenderProc->mCurrLine + 1);
+	mMaxScroll = mTextRenderProc->mTextBoxHeight - mTextRenderProc->mActiveLineHeight * (f32)(mTextRenderProc->mCurrLine + 1);
 
-	f32 calc   = mTextRenderProc->_C0;
+	f32 calc   = mTextRenderProc->mActiveLineHeight;
 	f32 scroll = (int)(mMaxScroll / calc);
 	mMaxScroll = scroll * calc;
 
-	f32 calc2            = mTextRenderProc->_58;
-	f32 val              = mScrollSpeed * (mCurrentScroll - calc2) * 60.0f * sys->getDeltaTime();
-	mTextRenderProc->_58 = val + mTextRenderProc->_58;
+	f32 calc2                 = mTextRenderProc->mYOffset;
+	f32 val                   = mScrollSpeed * (mCurrentScroll - calc2) * 60.0f * sys->getDeltaTime();
+	mTextRenderProc->mYOffset = val + mTextRenderProc->mYOffset;
 }
 
 /**

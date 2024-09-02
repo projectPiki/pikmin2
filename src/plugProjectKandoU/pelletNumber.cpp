@@ -63,8 +63,8 @@ void Object::changeMaterial()
 		break;
 	}
 
-	u16 id           = mModel->mJ3dModel->mModelData->mMaterialTable.mMaterialNames->getIndex("bpel1");
-	J3DMaterial* mat = mModel->mJ3dModel->mModelData->mMaterialTable.mMaterials[id];
+	u16 id           = mModel->mJ3dModel->mModelData->getMaterialName()->getIndex("bpel1");
+	J3DMaterial* mat = mModel->mJ3dModel->mModelData->getMaterialNodePointer(id);
 	mat->mTevBlock->setTevColor(0, color);
 	mModel->mJ3dModel->calcMaterial();
 	mModel->mJ3dModel->diff();
@@ -109,7 +109,7 @@ void Mgr::setupResources()
 void Mgr::onCreateModel(SysShape::Model* model)
 {
 	model->mJ3dModel->newDifferedTexMtx(TEXDIFF_Material);
-	model->mJ3dModel->newDifferedDisplayList(0x1000200);
+	model->mJ3dModel->newDifferedDisplayList(J3DMDF_DiffColorReg | 0x200);
 	model->mJ3dModel->calc();
 	model->mJ3dModel->calcMaterial();
 	model->mJ3dModel->makeDL();

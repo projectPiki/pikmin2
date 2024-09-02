@@ -558,7 +558,7 @@ f32 TVsSelectOnyon::getAngDist()
 		y = 0.1f;
 	}
 
-	f32 angle = JMath::atanTable_.atan2_(x, -y);
+	f32 angle = JMAAtan2Radian(x, -y);
 	return angDist(roundAng(angle), mGoalAngle);
 }
 
@@ -6741,8 +6741,7 @@ int TVsSelect::getIdMax() { return mStageCount; }
 int TVsSelect::getCourseID(int id)
 {
 	if (!mIsSection) {
-		Game::Vs2D_TitleInfo::Info* info = (*mDispMember->mTitleInfo)(id);
-		id                               = info->mInfo;
+		id = (*mDispMember->mTitleInfo)(id)->mIndex;
 	}
 	return id;
 }

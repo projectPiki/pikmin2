@@ -241,9 +241,8 @@ void MapUnitMgr::makeUnit(MapUnit* unit, char* folder)
 	void* viewModelData = archive->getResource("view.bmd");
 	P2ASSERTLINE(657, viewModelData);
 
-	unit->mModelData = J3DModelLoaderDataBase::load(viewModelData,
-	                                                0x20000000); // 0x20000000 is some flag
-	unit->mModelData->newSharedDisplayList(0x40000);
+	unit->mModelData = J3DModelLoaderDataBase::load(viewModelData, J3DMLF_Material_PE_FogOff);
+	unit->mModelData->newSharedDisplayList(J3DMLF_UseSingleSharedDL);
 	unit->mModelData->makeSharedDL();
 
 	void* textureData = archive->getResource("texture.bti");
@@ -554,7 +553,7 @@ void MapRoom::placeObjects(Cave::FloorInfo* floorInfo, bool isFinalFloor)
 					}
 					RoomDoorInfo* doorinfo = &mDoorInfos[doorIdx];
 					Vector3f birthPos      = Vector3f(doorinfo->mWaypoint->mPosition);
-					f32 dir                = JMath::atanTable_.atan2_(doorinfo->mLookAtPos.x, doorinfo->mLookAtPos.z);
+					f32 dir                = JMAAtan2Radian(doorinfo->mLookAtPos.x, doorinfo->mLookAtPos.z);
 					ItemGateInitArg gateArg;
 					gateArg.mFaceDir = dir;
 
@@ -803,8 +802,8 @@ void CaveVRBox::create(char* name)
 		if (vrBoxArc) {
 			void* res = vrBoxArc->getResource("model.bmd");
 			if (res) {
-				J3DModelData* model = J3DModelLoaderDataBase::load(res, 0x20000000);
-				model->newSharedDisplayList(0x40000);
+				J3DModelData* model = J3DModelLoaderDataBase::load(res, J3DMLF_Material_PE_FogOff);
+				model->newSharedDisplayList(J3DMLF_UseSingleSharedDL);
 				model->makeSharedDL();
 				mModel = new SysShape::Model(model, 0, 2);
 				Matrixf mtx;

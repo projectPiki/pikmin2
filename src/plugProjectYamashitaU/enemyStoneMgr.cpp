@@ -50,7 +50,7 @@ void Mgr::loadResource()
 
 	for (int i = 0; i < 2; i++) {
 		modDat        = (J3DModelData*)archive->getResource(sStoneMdlName[i]);
-		loadModDat    = J3DModelLoaderDataBase::load(modDat, 0x240000 | 0x240000);
+		loadModDat    = J3DModelLoaderDataBase::load(modDat, J3DMLF_UseUniqueMaterials | J3DMLF_UseSingleSharedDL);
 		mModelData[i] = loadModDat;
 		mModelData[i]->newSharedDisplayList(0x40000);
 		mModelData[i]->simpleCalcMaterial(0, *(Mtx*)(&j3dDefaultMtx));

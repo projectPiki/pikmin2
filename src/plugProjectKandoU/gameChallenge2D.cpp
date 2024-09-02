@@ -54,7 +54,7 @@ Vs2D_TitleInfo::Vs2D_TitleInfo(int count)
  * @note Address: 0x80235214
  * @note Size: 0xC
  */
-Vs2D_TitleInfo::Info::Info() { mInfo = 0; }
+Vs2D_TitleInfo::Info::Info() { mIndex = 0; }
 
 /**
  * @note Address: 0x80235220
@@ -62,8 +62,7 @@ Vs2D_TitleInfo::Info::Info() { mInfo = 0; }
  */
 Vs2D_TitleInfo::Info* Vs2D_TitleInfo::operator()(int infoIndex)
 {
-	bool amLegal = ((infoIndex >= 0));
-	JUT_ASSERTLINE(52, (amLegal && (infoIndex < mInfoCount)), "ZANNEN\n");
+	JUT_ASSERTLINE(52, infoIndex >= 0 && infoIndex < mInfoCount, "ZANNEN\n");
 	P2ASSERTBOUNDSLINE(54, 0, infoIndex, mInfoCount);
 	return &pInfoArray[infoIndex];
 }

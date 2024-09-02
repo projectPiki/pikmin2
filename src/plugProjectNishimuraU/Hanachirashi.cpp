@@ -279,7 +279,7 @@ void Obj::setRandTarget()
 	Vector3f position  = getPosition();
 	Vector3f homePos   = mHomePosition;
 	Vector3f atanInput = position - homePos;
-	f32 aboutTheta     = JMath::atanTable_.atan2_(atanInput.x, atanInput.z);
+	f32 aboutTheta     = JMAAtan2Radian(atanInput.x, atanInput.z);
 
 	f32 theta = aboutTheta + randWeightFloat(PI) + HALF_PI;
 

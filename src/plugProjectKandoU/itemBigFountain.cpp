@@ -146,7 +146,7 @@ void OutState::init(Item* item, StateArg* arg)
 	item->mEfxGeyserSet->fade();
 	efx::Arg effectArg(item->mPosition);
 	item->mEfxGeyserAct->create(&effectArg);
-	if (gameSystem->isFlag(GAMESYS_IsSoundFXActive)) {
+	if (gameSystem->isFlag(GAMESYS_IsSoundSceneActive)) {
 		item->mSoundEvent.finish();
 		P2ASSERTLINE(248, item->mSoundObj->getCastType() == PSM::CCT_WorkItem);
 		static_cast<PSM::WorkItem*>(item->mSoundObj)->eventFinish();

@@ -80,27 +80,6 @@ struct GameFlow : public ISectionMgr {
 	~GameFlow();
 
 	/**
-	 * @brief Runs the game.
-	 */
-	inline void runGame()
-	{
-		JKRExpHeap* expHeap;
-		JKRHeap* parentHeap;
-		JKRHeap::TState state(parentHeap = JKRHeap::sCurrentHeap);
-		parentHeap->state_register(&state, -1);
-		expHeap = makeExpHeap(parentHeap->getFreeSize(), parentHeap, true);
-
-		setSection();
-
-		mSection->init();
-		mSection->run();
-		mSection->exit();
-
-		expHeap->destroy();
-		parentHeap->becomeCurrentHeap();
-	}
-
-	/**
 	 * @brief Loops infinitely, calling runGame() each time.
 	 */
 	virtual void run();

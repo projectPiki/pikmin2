@@ -4524,12 +4524,12 @@ void TCallbackScrollMsg::reset()
 
 		P2JME::Window::TRenderingProcessor* proc = static_cast<P2JME::Window::TRenderingProcessor*>(mControl->mTextRenderProc);
 		proc->setTextBoxInfo(mPane);
-		f32 space              = TZukanBase::mLineSpace;
-		proc->_C0              = space;
-		proc->mLineHeight      = space;
-		proc->mSpeed           = TZukanBase::mWarpRadius;
-		mControl->_6C          = TZukanBase::mScrollValueCoe;
-		mControl->mScrollSpeed = TZukanBase::mScrollSpeedCoe;
+		f32 space               = TZukanBase::mLineSpace;
+		proc->mActiveLineHeight = space;
+		proc->mLineHeight       = space;
+		proc->mSpeed            = TZukanBase::mWarpRadius;
+		mControl->mScrollVal    = TZukanBase::mScrollValueCoe;
+		mControl->mScrollSpeed  = TZukanBase::mScrollSpeedCoe;
 	}
 }
 

@@ -204,7 +204,7 @@ void Obj::setRandTarget()
 	}
 
 	// Get the direction from the home position towards our position
-	f32 dirToSarai = JMath::atanTable_.atan2_(mPosition.x - mHomePosition.x, mPosition.z - mHomePosition.z);
+	f32 dirToSarai = JMAAtan2Radian(mPosition.x - mHomePosition.x, mPosition.z - mHomePosition.z);
 
 	// Randomise the angle a bit and set the target position
 	f32 rngAngle = HALF_PI + (dirToSarai + randWeightFloat(PI));

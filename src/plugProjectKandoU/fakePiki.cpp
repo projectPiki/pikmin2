@@ -1078,7 +1078,7 @@ void FakePiki::turnTo(Vector3f& targetPos)
 {
 	Vector3f diff = targetPos - mPosition;
 	if (diff.z != 0.0f) {
-		mFaceDir = roundAng(JMath::atanTable_.atan2_(diff.x, diff.z));
+		mFaceDir = roundAng(JMAAtan2Radian(diff.x, diff.z));
 	}
 }
 
@@ -1160,7 +1160,7 @@ void FakePiki::moveRotation()
 		f32 X     = mTargetVelocity.x * mTargetVelocity.x;
 		f32 Z     = mTargetVelocity.z * mTargetVelocity.z;
 		if (X + Z > 1.0f) {
-			f32 dist = angDist(JMath::atanTable_.atan2_(mTargetVelocity.x, mTargetVelocity.z), mFaceDir);
+			f32 dist = angDist(JMAAtan2Radian(mTargetVelocity.x, mTargetVelocity.z), mFaceDir);
 			mFaceDir += 10.0f * (delta * (0.8f * dist));
 			mFaceDir = roundAng(mFaceDir);
 		}

@@ -207,7 +207,7 @@ void Obj::doUpdateCarcass()
 				f32 z = mBaseTrMatrix.mMatrix.structView.zz;
 				EnemyBirthArg arg;
 				arg.mPosition        = mPosition;
-				arg.mFaceDir         = JMath::atanTable_.atan2_(x, z);
+				arg.mFaceDir         = JMAAtan2Radian(x, z);
 				arg.mExistenceLength = mExistDuration;
 				arg.mIsInPiklopedia  = (u8)mInPiklopedia;
 				EnemyBase* obj       = generalEnemyMgr->birth(getEnemyTypeID(), arg);

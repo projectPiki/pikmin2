@@ -297,8 +297,8 @@ void ShapeMapMgr::load(LoadArg& arg)
 	sys->heapStatusStart("map model", nullptr);
 	void* file = JKRFileLoader::getGlbResource("model.bmd", nullptr);
 	P2ASSERTBOOLLINE(729, file && arg.mFolder);
-	J3DModelData* model = J3DModelLoaderDataBase::load(file, 0x20040000);
-	model->newSharedDisplayList(0x40000);
+	J3DModelData* model = J3DModelLoaderDataBase::load(file, J3DMLF_Material_PE_FogOff | J3DMLF_UseSingleSharedDL);
+	model->newSharedDisplayList(J3DMLF_UseSingleSharedDL);
 	model->makeSharedDL();
 	mMapModel = new SysShape::Model(model, J3DMODEL_CreateNewDL, 2);
 	mMapModel->getJ3DModel()->newDifferedDisplayList(0x200);

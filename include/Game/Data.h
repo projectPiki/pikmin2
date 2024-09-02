@@ -125,6 +125,9 @@ struct PlayCommonData {
 namespace CommonSaveData {
 // Size: 0x48
 struct Mgr : public PlayCommonData {
+
+	enum Flags { SaveFlag_SerialNoSet = 1 };
+
 	enum SoundMode { SM_Mono = 0, SM_Stereo = 1, SM_SurroundSound = 2 };
 	Mgr();
 
@@ -146,7 +149,7 @@ struct Mgr : public PlayCommonData {
 	void setDeflicker();
 	void setDeflicker(bool);
 
-	int _18;             // _18
+	int mSaveCount;      // _18, how many times the game has been saved, doesn't seem to have a purpose
 	u32 mTime;           // _1C
 	char mFileIndex;     // _20
 	char padding;        // _21

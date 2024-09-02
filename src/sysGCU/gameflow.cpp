@@ -75,8 +75,24 @@ GameFlow::~GameFlow() { }
  */
 void GameFlow::run()
 {
+	JKRExpHeap* expHeap;
+	JKRHeap* parentHeap;
+
 	while (true) {
-		runGame();
+		parentHeap = JKRGetCurrentHeap();
+
+		JKRHeap::TState state(parentHeap);
+		parentHeap->state_register(&state, -1);
+		expHeap = makeExpHeap(parentHeap->getFreeSize(), parentHeap, true);
+
+		setSection();
+
+		mSection->init();
+		mSection->run();
+		mSection->exit();
+
+		expHeap->destroy();
+		parentHeap->becomeCurrentHeap();
 	}
 }
 
@@ -90,11 +106,11 @@ void GameFlow::setSection()
 
 	switch (mActiveSectionFlag) {
 	case SN_Boot:
-		mSection           = new BootSection(JKRHeap::sCurrentHeap);
+		mSection           = new BootSection(JKRGetCurrentHeap());
 		mActiveSectionFlag = SN_RootMenu;
 		break;
 	case SN_RootMenu:
-		mSection           = new RootMenuSection(JKRHeap::sCurrentHeap);
+		mSection           = new RootMenuSection(JKRGetCurrentHeap());
 		mActiveSectionFlag = SN_MainTitle;
 		break;
 	default:

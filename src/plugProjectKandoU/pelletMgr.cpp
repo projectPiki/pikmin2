@@ -3400,7 +3400,7 @@ void Pellet::updateTrMatrix()
 void Pellet::doAnimation()
 {
 	if (!pelletMgr->mMovieDrawDisabled || isMovieActor()) {
-		if (gameSystem != nullptr && gameSystem->mFlags.isSet(0x20)) {
+		if (gameSystem != nullptr && gameSystem->isFlag(GAMESYS_IsGameWorldActive)) {
 			update();
 		} else {
 			if (mCollTree) {
@@ -4673,16 +4673,15 @@ void BasePelletMgr::load()
 				JUT_PANICLINE(4560, "meck ** %s : is not foun !\n", buffer2);
 			}
 
-			u32 flags = 0x21020010;
+			u32 flags = J3DMLF_Material_PE_FogOff | J3DMLF_Material_UseIndirect | J3DMLF_18 | J3DMLF_UseImmediateMtx;
 			if (config->mParams.mCode.mData & 2) {
-				flags |= 0x20;
+				flags |= J3DMLF_UsePostTexMtx;
 			}
-
 			data = J3DModelLoaderDataBase::load(resource, flags);
 
 			if (config->mParams.mCode.mData & 2) {
-				for (u16 i = 0; i < data->mShapeTable.mCount; i++) {
-					data->mShapeTable.mItems[i]->mFlags = data->mShapeTable.mItems[i]->mFlags & 0xFFFF0FFF | 0x2000;
+				for (u16 i = 0; i < data->getShapeNum(); i++) {
+					data->getShapeNodePointer(i)->setTexMtxLoadType(0x2000);
 				}
 			}
 
@@ -4767,15 +4766,15 @@ void BasePelletMgr::load_texArc(char* filename)
 				}
 
 				if (config->mParams.mIndirectState != PelletConfig::Indirect_No) {
-					u32 flags = 0x21020010;
+					u32 flags = J3DMLF_Material_PE_FogOff | J3DMLF_Material_UseIndirect | J3DMLF_18 | J3DMLF_UseImmediateMtx;
 					if (config->mParams.mCode.mData & 2) {
-						flags |= 0x20;
+						flags |= J3DMLF_UsePostTexMtx;
 					}
 					data = J3DModelLoaderDataBase::load(resource, flags);
 				} else {
-					u32 flags = 0x20020010;
+					u32 flags = J3DMLF_Material_PE_FogOff | J3DMLF_18 | J3DMLF_UseImmediateMtx;
 					if (config->mParams.mCode.mData & 2) {
-						flags |= 0x20;
+						flags |= J3DMLF_UsePostTexMtx;
 					}
 					data = J3DModelLoaderDataBase::load(resource, flags);
 				}
@@ -4783,8 +4782,8 @@ void BasePelletMgr::load_texArc(char* filename)
 				mModelData[i] = data;
 
 				if (config->mParams.mCode.mData & 2) {
-					for (u16 i = 0; i < data->mShapeTable.mCount; i++) {
-						data->mShapeTable.mItems[i]->mFlags = data->mShapeTable.mItems[i]->mFlags & 0xFFFF0FFF | 0x2000;
+					for (u16 i = 0; i < data->getShapeNum(); i++) {
+						data->getShapeNodePointer(i)->setTexMtxLoadType(0x2000);
 					}
 				}
 			}

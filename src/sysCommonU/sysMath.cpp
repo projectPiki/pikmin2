@@ -69,7 +69,7 @@ const f32 pikmin2_asinf(f32 x)
  * @note Address: 0x804117DC
  * @note Size: 0x28
  */
-f32 pikmin2_atan2f(f32 x, f32 y) { return JMath::atanTable_.atan2_(x, y); }
+f32 pikmin2_atan2f(f32 x, f32 y) { return JMAAtan2Radian(x, y); }
 
 /**
  * @note Address: 0x80411804

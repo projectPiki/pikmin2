@@ -2041,7 +2041,7 @@ void Plant::doAI()
 {
 	mFsm->exec(this);
 
-	if (gameSystem->isFlag(GAMESYS_IsPlaying) && gameSystem->isFlag(GAMESYS_IsSoundFXActive)) {
+	if (gameSystem->isFlag(GAMESYS_IsPlaying) && gameSystem->isFlag(GAMESYS_IsSoundSceneActive)) {
 		if (mGrowState != PLANTGROW_Mold) {
 			// if no mold, add "near spiderwort" sound mix
 			static_cast<PSM::Tsuyukusa*>(mSoundObj)->noukouFrameWork(true);
@@ -2108,7 +2108,7 @@ void Plant::startMotion(int motionState)
 
 		startColorMotion(PLANTCOLOR_Disappear);
 
-		if (gameSystem->isFlag(GAMESYS_IsSoundFXActive)) {
+		if (gameSystem->isFlag(GAMESYS_IsSoundSceneActive)) {
 			mSoundObj->startSound(PSSE_EV_TSUYUKUSA_WITHER, 0);
 		}
 		break;

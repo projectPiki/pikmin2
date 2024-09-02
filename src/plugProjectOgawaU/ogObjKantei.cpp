@@ -182,7 +182,7 @@ void ObjKantei::doCreate(JKRArchive* arc)
 
 	mTControl = new P2JME::Movie::TControl;
 	mTControl->init();
-	mTControl->mFlags.dwordView &= 0xfffffffe;
+	mTControl->mFlags.unset(P2JME::Movie::TControl::ControlFlag_UnsuspendOnFinish);
 	mInTextBox = false;
 
 	og::Screen::CallBack_Picture* pic = og::Screen::setCallBack_3DStick(arc, mScreenButton, 'ota3dl');

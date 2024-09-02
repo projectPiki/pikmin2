@@ -399,7 +399,7 @@ void GameState::checkFindKeyDemo(VsGameSection* section)
 						arg.mDelegateStart = section->mMovieStartCallback;
 						arg.mOrigin        = obj->getPosition();
 
-						arg.mAngle = JMath::atanTable_.atan2_(obj->mBaseTrMatrix(0, 2), obj->mBaseTrMatrix(2, 2));
+						arg.mAngle = JMAAtan2Radian(obj->mBaseTrMatrix(0, 2), obj->mBaseTrMatrix(2, 2));
 
 						moviePlayer->mTargetObject = obj;
 						moviePlayer->play(arg);

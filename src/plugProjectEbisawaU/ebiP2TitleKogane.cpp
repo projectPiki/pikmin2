@@ -66,13 +66,14 @@ void TAnimator::setArchive(JKRArchive* arc)
 {
 	void* file = arc->getResource("kogane/kogane_title.bmd");
 	P2ASSERTLINE(0x75, file);
-	mModelData = J3DModelLoaderDataBase::load(file, 0x240030);
+	mModelData = J3DModelLoaderDataBase::load(file, J3DMLF_UseUniqueMaterials | J3DMLF_UseSingleSharedDL | J3DMLF_UsePostTexMtx
+	                                                    | J3DMLF_UseImmediateMtx);
 
 	for (u16 i = 0; i < mModelData->getShapeNum(); i++) {
 		mModelData->getShapeNodePointer(i)->setTexMtxLoadType(0x2000);
 	}
 
-	mModelData->newSharedDisplayList(0x40000);
+	mModelData->newSharedDisplayList(J3DMLF_UseSingleSharedDL);
 	mModelData->makeSharedDL();
 	mAnimFolder.load(mModelData, arc);
 }
@@ -175,7 +176,7 @@ void TUnit::startState(enumState state)
 		break;
 	case KSTATE_Turn:
 		f32 angle    = mManager->mParams.mWalkRandomAngle.mValue;
-		f32 line     = JMath::atanTable_.atan2_(mTargetPos.y - mPosition.y, mTargetPos.x - mPosition.x);
+		f32 line     = JMAAtan2Radian(mTargetPos.y - mPosition.y, mTargetPos.x - mPosition.x);
 		f32 test     = angle * DEG2RAD * PI * (randEbisawaFloat() * 2.0f + -1.0f) + line;
 		mTargetAngle = Vector2f(cosf(test), sinf(test));
 		break;

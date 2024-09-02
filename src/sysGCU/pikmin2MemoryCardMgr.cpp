@@ -859,7 +859,7 @@ void Mgr::readGameOption(Stream& stream) { sys->mPlayData->read(stream); }
 bool Mgr::checkSerialNo(bool param_1)
 {
 	bool result = false;
-	if (!(sys->mPlayData->mFlags.isSet(1))) {
+	if (!(sys->mPlayData->mFlags.isSet(CommonSaveData::Mgr::SaveFlag_SerialNoSet))) {
 		if (param_1) {
 			mErrorCode = 3;
 		}
@@ -899,10 +899,10 @@ bool Mgr::commandSavePlayerNoCheckSerialNo(s8 fileIndex, bool param_2)
 	if (readCardSerialNo(&serial, CARDSLOT_Unk0)) {
 		u32* buffer = new (mHeap, -32) u32[0x3000];
 		P2ASSERTLINE(1939, buffer);
-		sys->mPlayData->_18++;
+		sys->mPlayData->mSaveCount++;
 		buffer[0]                   = 'PlVa'; // Magic Word
 		buffer[1]                   = '0003'; // Version
-		buffer[4]                   = sys->mPlayData->_18;
+		buffer[4]                   = sys->mPlayData->mSaveCount;
 		((u8*)buffer)[8]            = fileIndex; // File Index
 		((u8*)buffer)[12]           = 0;
 		((u8*)buffer)[13]           = param_2;
@@ -1067,7 +1067,7 @@ bool Mgr::commandLoadPlayer(s8 fileIndex)
 				readPlayer(ramStream);
 				CommonSaveData::Mgr* saveMgr = sys->mPlayData;
 				saveMgr->mFileIndex          = fileIndex;
-				saveMgr->_18                 = buffer[4];
+				saveMgr->mSaveCount          = buffer[4];
 				saveMgr->mTime               = buffer[0xF];
 				saveMgr->_22                 = *(u16*)&((u8*)buffer)[0xE]; // hmm.
 			}
@@ -1180,7 +1180,7 @@ bool Mgr::savePlayerProc(s8 fileIndex, u8* param_2, bool param_3)
 bool Mgr::commandCheckSerialNo()
 {
 	bool result = false;
-	if (!(sys->mPlayData->mFlags.isSet(1))) {
+	if (!(sys->mPlayData->mFlags.isSet(CommonSaveData::Mgr::SaveFlag_SerialNoSet))) {
 		result     = true;
 		mErrorCode = 3;
 	} else {

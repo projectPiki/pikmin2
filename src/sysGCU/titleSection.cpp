@@ -124,8 +124,9 @@ void Section::init()
 	// this entire menu class seems to be for a scrapped debug menu
 	mMenu      = new Menu(mController1, JFWSystem::systemFont, false);
 	mMenu->_48 = 260;
-	mMenu->addKeyEvent(Menu::KeyEvent::U6, PAD_BUTTON_B, new Delegate1<Section, Menu&>(this, &menuCancel));
-	mMenu->addKeyEvent(Menu::KeyEvent::INVOKE_ACTION_ON_BUTTON_PRESS, PAD_BUTTON_A, new Delegate1<Section, Menu&>(this, &menuSelect));
+	mMenu->addKeyEvent(Menu::KeyEvent::U6, Controller::PRESS_B, new Delegate1<Section, Menu&>(this, &menuCancel));
+	mMenu->addKeyEvent(Menu::KeyEvent::INVOKE_ACTION_ON_BUTTON_PRESS, Controller::PRESS_A,
+	                   new Delegate1<Section, Menu&>(this, &menuSelect));
 	int sects = 0;
 	for (int i = 0; i < GameFlow::SN_SECTION_COUNT; i++) {
 		SectionInfo* data = GameFlow::getSectionInfo(i);
@@ -295,8 +296,9 @@ void Section::doUpdateMainTitle()
 		PSSystem::validateSceneMgr(mgr);
 		mgr->checkScene();
 		PSSystem::SeqBase* seq = PSSystem::getSeqData(mgr, BGM_MainTheme);
-		f32 rate               = (ebi::TMainTitleMgr::kFadeOutTime / sys->mDeltaTime);
-		rate                   = (rate >= 0.0f) ? rate + 0.5f : rate - 0.5f;
+
+		f32 rate = (ebi::TMainTitleMgr::kFadeOutTime / sys->mDeltaTime);
+		rate     = ROUND_F32_TO_U8(rate);
 		seq->stopSeq((int)rate);
 	}
 
@@ -402,8 +404,8 @@ void Section::doUpdateOmake()
 		PSSystem::validateSceneMgr(mgr);
 		mgr->checkScene();
 		PSSystem::SeqBase* seq = PSSystem::getSeqData(mgr, BGM_Bonus);
-		f32 rate               = ebi::E2DFader::kFadeTime / sys->mDeltaTime;
-		rate                   = (rate >= 0.0f) ? rate + 0.5f : rate - 0.5f;
+		f32 rate               = (ebi::TMainTitleMgr::kFadeOutTime / sys->mDeltaTime);
+		rate                   = ROUND_F32_TO_U8(rate);
 		seq->stopSeq((int)rate);
 	}
 
@@ -464,8 +466,8 @@ void Section::doUpdateOption()
 	if (mOptionMgr.mIsFinished) {
 
 		PSSystem::SeqBase* seq = PSSystemGetSeqCheck(BGM_Options);
-		f32 rate               = ebi::E2DFader::kFadeTime / sys->mDeltaTime;
-		rate                   = (rate >= 0.0f) ? rate + 0.5f : rate - 0.5f;
+		f32 rate               = (ebi::TMainTitleMgr::kFadeOutTime / sys->mDeltaTime);
+		rate                   = ROUND_F32_TO_U8(rate);
 		seq->stopSeq((int)rate);
 	}
 	if (mOptionMgr.isFinish()) {

@@ -6,6 +6,7 @@
 #include "JSystem/JFramework/JFWDisplay.h"
 #include "Game/MemoryCard/Mgr.h"
 #include "PSSystem/PSGame.h"
+#include "PSM/Scene.h"
 #include "THP/THPRead.h"
 #include "System.h"
 #include "Graphics.h"
@@ -105,18 +106,6 @@ Section::~Section()
 	sys->mGfx = nullptr;
 }
 
-inline f32 getX(f32 x)
-{
-	// 0.5 / (1 / 60) == 30
-	f32 y = x / SINGLE_FRAME_LENGTH;
-
-	if (y >= 0.0f) {
-		return y + 0.5f;
-	} else {
-		return y - 0.5f;
-	}
-}
-
 /**
  * @note Address: N/A
  * @note Size: 0x90
@@ -145,7 +134,7 @@ void Section::fadeIn()
 {
 	drawInit(*mGraphics, Section::Zero);
 
-	s32 fadeTimer = getX(mTimeStep);
+	s32 fadeTimer = ROUND_F32_TO_U8(mTimeStep / SINGLE_FRAME_LENGTH);
 	if (mDisplay->mFader) {
 		mDisplay->mFader->startFadeIn(fadeTimer);
 	}
@@ -212,16 +201,8 @@ void Section::main()
 	} while (!mIsLoadingDVD && mIsMainActive);
 	// Don't draw or render while loading from DVD
 
-	s32 timer = getX(mTimeStep);
-
-	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-	PSSystem::validateSceneMgr(mgr);
-	mgr->checkScene();
-
-	PSSystem::Scene* scene = mgr->mScenes->mChild;
-	if (scene) {
-		scene->stopMainSeq(timer);
-	}
+	s32 timer = ROUND_F32_TO_U8(mTimeStep / SINGLE_FRAME_LENGTH);
+	PSMGetSceneMgrCheck()->doStopMainSeqCheck(timer);
 
 	if (mDisplay->mFader) {
 		mDisplay->mFader->startFadeOut(timer);

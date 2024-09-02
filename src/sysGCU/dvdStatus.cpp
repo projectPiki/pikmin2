@@ -1,19 +1,10 @@
-#include "Dolphin/dvd.h"
-#include "Dolphin/pad.h"
 #include "DvdStatus.h"
-#include "JSystem/JUtility/JUTException.h"
 #include "JSystem/JFramework/JFWDisplay.h"
-#include "System.h"
-#include "types.h"
-#include "Graphics.h"
-#include "JSystem/JUtility/JUTVideo.h"
 #include "JSystem/J2D/J2DPrint.h"
-#include "P2JME/P2JME.h"
 #include "Game/MemoryCard/Mgr.h"
+#include "P2JME/P2JME.h"
 
 extern P2JME::Mgr* gP2JMEMgr;
-
-enum LanguageID { LANG_ENGLISH = 0, LANG_FRENCH, LANG_GERMAN, LANG_HOL_UNUSED, LANG_ITALIAN, LANG_JAPANESE, LANG_SPANISH };
 
 const char* filler1 = "dvdStatus";
 
@@ -31,14 +22,7 @@ DvdStatus::DvdStatus()
  * @note Address: 0x8042A328
  * @note Size: 0x2C
  */
-bool DvdStatus::isErrorOccured()
-{
-	bool retval = false;
-	if (!((mFader == nullptr) || (sys->mCardMgr->isFlag(Game::MemoryCard::MCMFLAG_IsWriting)))) {
-		retval = true;
-	}
-	return retval;
-}
+bool DvdStatus::isErrorOccured() { return mFader && !sys->mCardMgr->isFlag(Game::MemoryCard::MCMFLAG_IsWriting); }
 
 /**
  * @note Address: 0x8042A354
@@ -120,28 +104,28 @@ void DvdStatus::draw()
 		} else if (sys->mRomFont) {
 			print.setFont(sys->mRomFont);
 		} else {
-			JUT_ASSERTLINE(279, false, "no ROM font\n");
+			JUT_PANICLINE(279, "no ROM font\n");
 		}
 
 		char** errorMsgSet;
 		if (print.mFont) {
 			switch (sys->mRegion) {
-			case LANG_ENGLISH:
+			case System::LANG_English:
 				errorMsgSet = DvdError::gMessage_eng;
 				break;
-			case LANG_FRENCH:
+			case System::LANG_French:
 				errorMsgSet = DvdError::gMessage_fra;
 				break;
-			case LANG_GERMAN:
+			case System::LANG_German:
 				errorMsgSet = DvdError::gMessage_ger;
 				break;
-			case LANG_ITALIAN:
+			case System::LANG_Italian:
 				errorMsgSet = DvdError::gMessage_ita;
 				break;
-			case LANG_JAPANESE:
+			case System::LANG_Japanese:
 				errorMsgSet = DvdError::gMessage_jpn;
 				break;
-			case LANG_SPANISH:
+			case System::LANG_Spanish:
 				errorMsgSet = DvdError::gMessage_spa;
 				break;
 			default:

@@ -8,6 +8,7 @@
 #include "JSystem/JFramework/JFWDisplay.h"
 #include "JSystem/J2D/J2DPicture.h"
 #include "JSystem/JUtility/JUTProcBar.h"
+#include "PSM/Scene.h"
 
 static void _Print(char* format, ...) { OSReport(format, __FILE__); }
 
@@ -23,8 +24,7 @@ struct LogoLocation {
 };
 
 static LogoLocation sLogoLocate[] = {
-	{ 0x0172, 0x000F }, { 0x0172, 0x000F }, { 0x0172, 0x000F }, { 0x0172, 0x0028 },
-	{ 0x0172, 0x000F }, { 0x0172, 0x000F }, { 0x0172, 0x000F }, { 0x0172, 0x0028 },
+	{ 370, 15 }, { 370, 15 }, { 370, 15 }, { 370, 40 }, { 370, 15 }, { 370, 15 }, { 370, 15 }, { 370, 40 },
 };
 } // namespace
 
@@ -121,11 +121,10 @@ bool Section::doUpdate()
  */
 void Section::doExit()
 {
-	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-	PSSystem::validateSceneMgr(mgr);
-	mgr->deleteCurrentScene();
+	PSMGetSceneMgrCheck()->deleteCurrentScene();
 
-	if ((s8)(++sMovieIndex) >= (u32)8) {
+	u32 max = 8;
+	if (++sMovieIndex >= max) {
 		sMovieIndex = 0;
 	}
 

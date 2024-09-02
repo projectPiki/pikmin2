@@ -68,7 +68,11 @@ void Mgr::loadTexData()
  * @note Address: 0x803A5A24
  * @note Size: 0x2C
  */
-J3DModelData* Mgr::doLoadBmd(void* filename) { return J3DModelLoaderDataBase::load(filename, 0x21300030); }
+J3DModelData* Mgr::doLoadBmd(void* filename)
+{
+	return J3DModelLoaderDataBase::load(filename, J3DMLF_Material_PE_FogOff | J3DMLF_Material_UseIndirect | J3DMLF_UseUniqueMaterials
+	                                                  | J3DMLF_21 | J3DMLF_UsePostTexMtx | J3DMLF_UseImmediateMtx);
+}
 
 /**
  * @note Address: 0x803A5A50
