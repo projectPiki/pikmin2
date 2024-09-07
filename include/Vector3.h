@@ -849,11 +849,7 @@ inline void addAccel(Vector3f& outputVec, const Vector3f& inputVec, f32 massRati
 
 inline Vector3f cross(Vector3f& vec1, Vector3f& vec2)
 {
-	Vector3f outVec;
-	outVec.x = vec1.y * vec2.z - vec1.z * vec2.y;
-	outVec.y = vec1.z * vec2.x - vec1.x * vec2.z;
-	outVec.z = vec1.x * vec2.y - vec1.y * vec2.x;
-	return outVec;
+	return Vector3f(vec1.y * vec2.z - vec1.z * vec2.y, vec1.z * vec2.x - vec1.x * vec2.z, vec1.x * vec2.y - vec1.y * vec2.x);
 }
 
 inline Vector3f scaleAndTranslate(const Vector3f& vec1, const Vector3f& vec2, f32 scale)
