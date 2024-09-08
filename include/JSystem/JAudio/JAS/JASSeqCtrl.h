@@ -17,11 +17,15 @@ struct JASSeqCtrl {
 	u16 get16(u32 offset) const;
 	u32 get24(u32 offset) const;
 	u32 get32(u32 offset) const;
-	u32 read16();
+	u16 read16();
 	u32 read24();
 
 	// unused/inlined
 	u32 read32();
+
+	u8 readByte() { return *mCurrentFilePtr++; }
+	u8* getAddr(u32 offset) { return mRawFilePtr + offset; }
+	void jump(u32 offset) { mCurrentFilePtr = mRawFilePtr + offset; }
 
 	u8* mRawFilePtr;            // _00
 	u8* mCurrentFilePtr;        // _04

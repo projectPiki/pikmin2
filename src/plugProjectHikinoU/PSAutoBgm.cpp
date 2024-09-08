@@ -40,7 +40,7 @@ Conductor::Conductor(AutoBgm* autoBgm, int p2)
  * @note Address: 0x80339024
  * @note Size: 0x290
  */
-Conductor::~Conductor() { }
+Conductor::~Conductor() {}
 
 /**
  * @note Address: N/A
@@ -211,7 +211,7 @@ void Track::afterGetFromFree()
  * @note Address: 0x803397D8
  * @note Size: 0x3DC
  */
-Track::~Track() { }
+Track::~Track() {}
 
 /**
  * @note Address: 0x80339BB4
@@ -726,7 +726,7 @@ void Module::setTableAddress(JASTrack* track)
 	u16 bnkVal      = _184.mValue;
 	PSBankData& bnk = bnkCdtr->mBankData[bnkVal];
 	mBankData       = (PSBankData*)(bnk.mData[2] | (bnk.mData[1] << 16 | bnk.mData[0] << 8));
-	mBankData       = (PSBankData*)(track->getCtrl()->mRawFilePtr + (u32)mBankData);
+	mBankData       = (PSBankData*)(track->getSeq()->mRawFilePtr + (u32)mBankData);
 
 	Track* wsTrk      = (Track*)mTree.getParent()->getObjectPtr();
 	Conductor* wsCdtr = (Conductor*)wsTrk->mTree.getParent()->getObjectPtr();
@@ -734,7 +734,7 @@ void Module::setTableAddress(JASTrack* track)
 	u16 wsVal      = _1B4.mValue;
 	PSBankData* ws = (PSBankData*)&wsCdtr->mWsData[wsVal];
 	mWsData        = (PSWsData*)(ws->mData[2] | (ws->mData[1] << 16 | ws->mData[0] << 8));
-	mWsData        = (PSWsData*)(track->getCtrl()->mRawFilePtr + (u32)mWsData);
+	mWsData        = (PSWsData*)(track->getSeq()->mRawFilePtr + (u32)mWsData);
 
 	u8 count = 0;
 	u8* ptr  = (u8*)mBankData;

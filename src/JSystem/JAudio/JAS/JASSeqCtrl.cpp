@@ -149,9 +149,9 @@ u32 JASSeqCtrl::get32(u32 offset) const
  * @note Address: 0x8009CA4C
  * @note Size: 0x28
  */
-u32 JASSeqCtrl::read16()
+u16 JASSeqCtrl::read16()
 {
-	u32 result = *(mCurrentFilePtr++) << 8;
+	u16 result = *(mCurrentFilePtr++) << 8;
 	result |= *(mCurrentFilePtr++);
 	return result;
 }

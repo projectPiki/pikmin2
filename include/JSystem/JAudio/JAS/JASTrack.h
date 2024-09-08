@@ -226,7 +226,7 @@ struct JASTrack : public JSUList<JASChannel> {
 	};
 
 	union TimedParam_ {
-		TimedParam_() { }
+		TimedParam_() {}
 
 		AInnerParam_ mInnerParam;            // get individual params by member name
 		MoveParam_ mMoveParams[TIMED_Count]; // get individual params by index
@@ -319,7 +319,7 @@ struct JASTrack : public JSUList<JASChannel> {
 	int getChannelCount() const;
 	int getReleaseChannelCount() const;
 
-	inline JASSeqCtrl* getCtrl() { return &mSeqCtrl; }
+	inline JASSeqCtrl* getSeq() { return &mSeqCtrl; }
 	inline JASOuterParam* getExtBuffer() const { return mExtBuffer; }
 
 	inline void initOscillators()
