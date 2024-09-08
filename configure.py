@@ -426,7 +426,7 @@ config.libs = [
             Object(Matching, "JSystem/J2D/J2DPerspGraph.cpp"),
             Object(Matching, "JSystem/J2D/J2DGrafContext.cpp"),
             Object(Matching, "JSystem/J2D/J2DPane.cpp"),
-            Object(NonMatching, "JSystem/J2D/J2DPicture.cpp"),
+            Object(Matching, "JSystem/J2D/J2DPicture.cpp"),
             Object(Matching, "JSystem/J2D/J2DPrint.cpp"),
             Object(NonMatching, "JSystem/J2D/J2DScreen.cpp"),
             Object(Matching, "JSystem/J2D/J2DTextBox.cpp"),
