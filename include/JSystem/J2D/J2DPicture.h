@@ -7,7 +7,7 @@
 // Size: 0x168
 struct J2DPicture : public J2DPane {
 	struct TCornerColor {
-		TCornerColor() { }
+		TCornerColor() {}
 
 		TCornerColor(u32 col1, u32 col2, u32 col3, u32 col4)
 		{
@@ -43,9 +43,6 @@ struct J2DPicture : public J2DPane {
 	virtual u16 getTypeID() const { return PANETYPE_Picture; };                                                          // _0C (weak)
 	virtual void drawSelf(f32 x, f32 y);                                                                                 // _34
 	virtual void drawSelf(f32 x, f32 y, Mtx* texMtx);                                                                    // _38
-	virtual bool isUsed(const ResTIMG* resource);                                                                        // _4C
-	virtual bool isUsed(const ResFONT* resource) { return J2DPane::isUsed(resource); }                                   // _50 (weak)
-	virtual void rewriteAlpha() { }                                                                                      // _58 (weak)
 	virtual void initiate(const ResTIMG* img, const ResTLUT* lut);                                                       // _94
 	virtual bool prepareTexture(u8);                                                                                     // _98
 	virtual bool append(const ResTIMG* resource, f32 blendRatio) { return insert(resource, mTextureCount, blendRatio); } // _9C (weak)
@@ -143,6 +140,9 @@ struct J2DPicture : public J2DPane {
 	virtual void drawTexCoord(f32 x, f32 y, f32 width, f32 height, s16 btmLeftS, s16 btmLeftT, s16 btmRightS, s16 btmRightT, s16 topLeftS,
 	                          s16 topLeftT, s16 topRightS, s16 topRightT, Mtx* texMtx); // _144
 	virtual u8 getUsableTlut(u8 id);                                                    // _148
+	virtual bool isUsed(const ResTIMG* resource);                                       // _4C
+	virtual bool isUsed(const ResFONT* resource) { return J2DPane::isUsed(resource); }  // _50 (weak)
+	virtual void rewriteAlpha() {}                                                      // _58 (weak)
 
 	void initinfo();
 	void private_readStream(J2DPane* parent, JSURandomInputStream* input, JKRArchive* arc);
