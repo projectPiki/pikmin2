@@ -3,8 +3,12 @@
 
 #include "types.h"
 
+struct JASTrack;
+
 struct JASSeqParser {
-	int parseSeq(struct JASTrack*);
+	typedef int (JASSeqParser::*CmdFunc)(JASTrack*, u32*);
+
+	int parseSeq(JASTrack*);
 	int cmdOpenTrack(JASTrack*, u32*);
 	int cmdOpenTrackBros(JASTrack*, u32*);
 	int cmdCall(JASTrack*, u32*);
@@ -38,12 +42,12 @@ struct JASSeqParser {
 	int cmdRetI(JASTrack*, u32*);
 	int cmdIntTimer(JASTrack*, u32*);
 	int cmdSyncCPU(JASTrack*, u32*);
-	u32 cmdFlushAll(JASTrack*, u32*);
-	u32 cmdFlushRelease(JASTrack*, u32*);
+	int cmdFlushAll(JASTrack*, u32*);
+	int cmdFlushRelease(JASTrack*, u32*);
 	int cmdTimeBase(JASTrack*, u32*);
 	int cmdTempo(JASTrack*, u32*);
-	u32 cmdFinish(JASTrack*, u32*);
-	u32 cmdNop(JASTrack*, u32*);
+	int cmdFinish(JASTrack*, u32*);
+	int cmdNop(JASTrack*, u32*);
 	int cmdPanPowSet(JASTrack*, u32*);
 	int cmdFIRSet(JASTrack*, u32*);
 	int cmdEXTSet(JASTrack*, u32*);
@@ -64,8 +68,10 @@ struct JASSeqParser {
 
 	bool conditionCheck(JASTrack*, u8);
 
-	void Cmd_Process(JASTrack*, u8, u16);
-	void RegCmd_Process(JASTrack*, int, int);
+	int Cmd_Process(JASTrack*, u8, u16);
+	int RegCmd_Process(JASTrack*, int, int);
+
+	static CmdFunc sCmdPList[];
 };
 
 #endif

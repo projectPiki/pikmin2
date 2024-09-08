@@ -2,6 +2,146 @@
 #include "JSystem/JAudio/JAS/JASTrack.h"
 #include "JSystem/JAudio/JAS/JASPlayer.h"
 
+JASSeqParser::CmdFunc JASSeqParser::sCmdPList[64] = {
+	nullptr,
+	&JASSeqParser::cmdOpenTrack,
+	&JASSeqParser::cmdOpenTrackBros,
+	nullptr,
+	&JASSeqParser::cmdCall,
+	nullptr,
+	&JASSeqParser::cmdRet,
+	nullptr,
+	&JASSeqParser::cmdJmp,
+	&JASSeqParser::cmdLoopS,
+	&JASSeqParser::cmdLoopE,
+	&JASSeqParser::cmdReadPort,
+	&JASSeqParser::cmdWritePort,
+	&JASSeqParser::cmdCheckPortImport,
+	&JASSeqParser::cmdCheckPortExport,
+	&JASSeqParser::cmdWait,
+	nullptr,
+	&JASSeqParser::cmdParentWritePort,
+	&JASSeqParser::cmdChildWritePort,
+	nullptr,
+	&JASSeqParser::cmdSetLastNote,
+	&JASSeqParser::cmdTimeRelate,
+	&JASSeqParser::cmdSimpleOsc,
+	&JASSeqParser::cmdSimpleEnv,
+	&JASSeqParser::cmdSimpleADSR,
+	&JASSeqParser::cmdTranspose,
+	&JASSeqParser::cmdCloseTrack,
+	&JASSeqParser::cmdOutSwitch,
+	&JASSeqParser::cmdUpdateSync,
+	&JASSeqParser::cmdBusConnect,
+	&JASSeqParser::cmdPauseStatus,
+	&JASSeqParser::cmdSetInterrupt,
+	&JASSeqParser::cmdDisInterrupt,
+	&JASSeqParser::cmdClrI,
+	&JASSeqParser::cmdSetI,
+	&JASSeqParser::cmdRetI,
+	&JASSeqParser::cmdIntTimer,
+	&JASSeqParser::cmdVibDepth,
+	&JASSeqParser::cmdVibDepthMidi,
+	&JASSeqParser::cmdSyncCPU,
+	&JASSeqParser::cmdFlushAll,
+	&JASSeqParser::cmdFlushRelease,
+	&JASSeqParser::cmdWait,
+	&JASSeqParser::cmdPanPowSet,
+	&JASSeqParser::cmdIIRSet,
+	&JASSeqParser::cmdFIRSet,
+	&JASSeqParser::cmdEXTSet,
+	&JASSeqParser::cmdPanSwSet,
+	&JASSeqParser::cmdOscRoute,
+	&JASSeqParser::cmdIIRCutOff,
+	&JASSeqParser::cmdOscFull,
+	&JASSeqParser::cmdVolumeMode,
+	&JASSeqParser::cmdVibPitch,
+	nullptr,
+	nullptr,
+	nullptr,
+	nullptr,
+	nullptr,
+	&JASSeqParser::cmdCheckWave,
+	&JASSeqParser::cmdPrintf,
+	&JASSeqParser::cmdNop,
+	&JASSeqParser::cmdTempo,
+	&JASSeqParser::cmdTimeBase,
+	&JASSeqParser::cmdFinish,
+};
+
+struct Arg_s { // @fabricatedName
+	u16 m00;
+	u16 m02;
+};
+// clang-format off
+const Arg_s Arglist[0x40] = {
+	{0x0000, 0x0000},
+	{0x0002, 0x0008},
+	{0x0002, 0x0008},
+	{0x0001, 0x0002},
+	{0x0000, 0x0000},
+	{0x0000, 0x0000},
+	{0x0001, 0x0000},
+	{0x0001, 0x0002},
+	{0x0000, 0x0000},
+	{0x0001, 0x0001},
+	{0x0000, 0x0000},
+	{0x0002, 0x0000},
+	{0x0002, 0x000C},
+	{0x0001, 0x0000},
+	{0x0001, 0x0000},
+	{0x0001, 0x0003},
+	{0x0000, 0x0000},
+	{0x0002, 0x000C},
+	{0x0002, 0x000C},
+	{0x0000, 0x0000},
+	{0x0001, 0x0000},
+	{0x0001, 0x0000},
+	{0x0001, 0x0000},
+	{0x0002, 0x0008},
+	{0x0005, 0x0155},
+	{0x0001, 0x0000},
+	{0x0001, 0x0000},
+	{0x0001, 0x0000},
+	{0x0001, 0x0001},
+	{0x0002, 0x0004},
+	{0x0001, 0x0000},
+	{0x0002, 0x0008},
+	{0x0001, 0x0000},
+	{0x0000, 0x0000},
+	{0x0000, 0x0000},
+	{0x0000, 0x0000},
+	{0x0002, 0x0004},
+	{0x0001, 0x0000},
+	{0x0001, 0x0001},
+	{0x0001, 0x0001},
+	{0x0000, 0x0000},
+	{0x0000, 0x0000},
+	{0x0001, 0x0002},
+	{0x0005, 0x0000},
+	{0x0004, 0x0055},
+	{0x0001, 0x0002},
+	{0x0001, 0x0002},
+	{0x0003, 0x0000},
+	{0x0001, 0x0000},
+	{0x0001, 0x0000},
+	{0x0003, 0x0028},
+	{0x0001, 0x0000},
+	{0x0001, 0x0000},
+	{0x0000, 0x0000},
+	{0x0000, 0x0000},
+	{0x0000, 0x0000},
+	{0x0000, 0x0000},
+	{0x0000, 0x0000},
+	{0x0001, 0x0001},
+	{0x0000, 0x0000},
+	{0x0000, 0x0000},
+	{0x0001, 0x0001},
+	{0x0001, 0x0001},
+	{0x0000, 0x0000},
+};
+// clang-format on
+
 /**
  * @note Address: 0x8009CAB8
  * @note Size: 0x58
@@ -10,7 +150,7 @@ int JASSeqParser::cmdOpenTrack(JASTrack* track, u32* args)
 {
 	u32 addr        = args[1];
 	JASTrack* child = track->openChild(args[0] & 0xf, (args[0] >> 6) & 3);
-	child->start(track->mSeqCtrl.mRawFilePtr, addr);
+	child->start(track->getSeq()->mRawFilePtr, addr);
 	return 0;
 }
 
@@ -26,7 +166,7 @@ int JASSeqParser::cmdOpenTrackBros(JASTrack* track, u32* args)
 
 	u32 addr        = args[1];
 	JASTrack* child = track->mParentTrack->openChild(args[0] & 0xf, (args[0] >> 6) & 3);
-	child->start(track->mSeqCtrl.mRawFilePtr, addr);
+	child->start(track->getSeq()->mRawFilePtr, addr);
 	return 0;
 }
 
@@ -36,19 +176,19 @@ int JASSeqParser::cmdOpenTrackBros(JASTrack* track, u32* args)
  */
 int JASSeqParser::cmdCall(JASTrack* track, u32* args)
 {
-	JASSeqCtrl* ctrl = &track->mSeqCtrl;
-	u8 flag          = *track->mSeqCtrl.mCurrentFilePtr++;
+	JASSeqCtrl* ctrl = track->getSeq();
+	u8 flag          = ctrl->readByte();
 
 	u32 data;
 	if (flag & 0x80) {
-		u8 cData = *ctrl->mCurrentFilePtr++;
-		data     = track->readReg16(cData) & 0xffff;
+		u8 cData = ctrl->readByte();
+		data     = track->readReg16(cData);
 
 		if (flag & 0x40) {
 			u32 offs;
 			if (flag & 0x20) {
-				cData = *ctrl->mCurrentFilePtr++;
-				offs  = track->readReg16(cData) & 0xffff;
+				cData = ctrl->readByte();
+				offs  = track->readReg16(cData);
 			} else {
 				offs = ctrl->read24();
 			}
@@ -96,21 +236,21 @@ int JASSeqParser::cmdRet(JASTrack* track, u32* args)
  */
 int JASSeqParser::cmdJmp(JASTrack* track, u32* args)
 {
-	JASSeqCtrl* ctrl = &track->mSeqCtrl;
-	u8 flag          = *ctrl->mCurrentFilePtr++;
+	JASSeqCtrl* ctrl = track->getSeq();
+	u8 flag          = ctrl->readByte();
 	bool usetrackptr = false;
 	int trackptr     = 0;
 	u32 data;
 
 	if (flag & 0x80) {
-		u8 cData = *ctrl->mCurrentFilePtr++;
+		u8 cData = ctrl->readByte();
 
 		if (flag & 0x40) {
 			data = track->readReg16(cData) & 0xffff;
 			u32 offs;
 			if (flag & 0x20) {
-				cData = *ctrl->mCurrentFilePtr++;
-				offs  = track->readReg16(cData) & 0xffff;
+				cData = ctrl->readByte();
+				offs  = track->readReg16(cData);
 			} else {
 				offs = ctrl->read24();
 			}
@@ -131,110 +271,10 @@ int JASSeqParser::cmdJmp(JASTrack* track, u32* args)
 		if (usetrackptr) {
 			ctrl->start((void*)trackptr, 0);
 		} else {
-			ctrl->mCurrentFilePtr = ctrl->mRawFilePtr + data;
+			ctrl->jump(data);
 		}
 	}
 	return 0;
-
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stmw     r25, 0x14(r1)
-	mr       r26, r3
-	mr       r27, r4
-	li       r29, 0
-	addi     r31, r27, 0xc
-	li       r28, 0
-	lwz      r3, 0x10(r4)
-	addi     r0, r3, 1
-	stw      r0, 0x10(r4)
-	lbz      r30, 0(r3)
-	rlwinm.  r0, r30, 0, 0x18, 0x18
-	beq      lbl_8009CDE4
-	lwz      r3, 4(r31)
-	rlwinm.  r0, r30, 0, 0x19, 0x19
-	addi     r0, r3, 1
-	stw      r0, 4(r31)
-	lbz      r4, 0(r3)
-	beq      lbl_8009CDB0
-	mr       r3, r27
-	bl       readReg16__8JASTrackFUc
-	rlwinm.  r0, r30, 0, 0x1a, 0x1a
-	clrlwi   r25, r3, 0x10
-	beq      lbl_8009CD8C
-	lwz      r4, 4(r31)
-	mr       r3, r27
-	addi     r0, r4, 1
-	stw      r0, 4(r31)
-	lbz      r4, 0(r4)
-	bl       readReg16__8JASTrackFUc
-	clrlwi   r4, r3, 0x10
-	b        lbl_8009CD98
-
-lbl_8009CD8C:
-	mr       r3, r31
-	bl       read24__10JASSeqCtrlFv
-	mr       r4, r3
-
-lbl_8009CD98:
-	mulli    r0, r25, 3
-	mr       r3, r31
-	add      r4, r4, r0
-	bl       get24__10JASSeqCtrlCFUl
-	mr       r25, r3
-	b        lbl_8009CDF0
-
-lbl_8009CDB0:
-	cmplwi   r4, 0x28
-	blt      lbl_8009CDD4
-	cmplwi   r4, 0x2b
-	bgt      lbl_8009CDD4
-	mr       r3, r27
-	bl       readReg32__8JASTrackFUc
-	li       r29, 1
-	mr       r28, r3
-	b        lbl_8009CDF0
-
-lbl_8009CDD4:
-	mr       r3, r27
-	bl       readReg32__8JASTrackFUc
-	mr       r25, r3
-	b        lbl_8009CDF0
-
-lbl_8009CDE4:
-	mr       r3, r31
-	bl       read24__10JASSeqCtrlFv
-	mr       r25, r3
-
-lbl_8009CDF0:
-	mr       r3, r26
-	mr       r4, r27
-	mr       r5, r30
-	bl       conditionCheck__12JASSeqParserFP8JASTrackUc
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8009CE30
-	clrlwi.  r0, r29, 0x18
-	beq      lbl_8009CE24
-	mr       r3, r31
-	mr       r4, r28
-	li       r5, 0
-	bl       start__10JASSeqCtrlFPvUl
-	b        lbl_8009CE30
-
-lbl_8009CE24:
-	lwz      r0, 0(r31)
-	add      r0, r0, r25
-	stw      r0, 4(r31)
-
-lbl_8009CE30:
-	lmw      r25, 0x14(r1)
-	li       r3, 0
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /**
@@ -257,7 +297,7 @@ int JASSeqParser::cmdLoopS(JASTrack* track, u32* args)
  */
 int JASSeqParser::cmdLoopE(JASTrack* track, u32* args)
 {
-	track->mSeqCtrl.loopEnd();
+	track->getSeq()->loopEnd();
 	return 0;
 }
 
@@ -280,21 +320,6 @@ int JASSeqParser::cmdWritePort(JASTrack* track, u32* args)
 {
 	track->writeSelfPort(args[0], args[1]);
 	return 0;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	lwz      r0, 4(r5)
-	lwz      r4, 0(r5)
-	clrlwi   r5, r0, 0x10
-	bl       writeSelfPort__8JASTrackFiUs
-	lwz      r0, 0x14(r1)
-	li       r3, 0
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /**
@@ -342,7 +367,7 @@ int JASSeqParser::cmdCheckPortExport(JASTrack* track, u32* args)
  * @note Address: 0x8009CFE4
  * @note Size: 0x18
  */
-int JASSeqParser::cmdWait(JASTrack* track, u32* args) { return (track->mSeqCtrl.mWaitTimer = args[0]) != 0; }
+int JASSeqParser::cmdWait(JASTrack* track, u32* args) { return (track->getSeq()->mWaitTimer = args[0]) != 0; }
 
 /**
  * @note Address: 0x8009CFFC
@@ -488,7 +513,7 @@ int JASSeqParser::cmdVolumeMode(JASTrack* track, u32* args)
  */
 int JASSeqParser::cmdSetInterrupt(JASTrack* track, u32* args)
 {
-	track->mIntrMgr.setIntr(args[0], track->mSeqCtrl.mRawFilePtr + args[1]);
+	track->mIntrMgr.setIntr(args[0], track->getSeq()->mRawFilePtr + args[1]);
 	return 0;
 }
 
@@ -508,8 +533,8 @@ int JASSeqParser::cmdDisInterrupt(JASTrack* track, u32* args)
  */
 int JASSeqParser::cmdClrI(JASTrack* track, u32* args)
 {
-	track->mIntrMgr.mIsActive        = true;
-	track->mSeqCtrl.mPreviousFilePtr = nullptr;
+	track->mIntrMgr.mIsActive         = true;
+	track->getSeq()->mPreviousFilePtr = nullptr;
 	return 0;
 }
 
@@ -530,9 +555,9 @@ int JASSeqParser::cmdSetI(JASTrack* track, u32* args)
 int JASSeqParser::cmdRetI(JASTrack* track, u32* args)
 {
 	track->mIntrMgr.mIsActive = true;
-	track->mSeqCtrl.retIntr();
+	track->getSeq()->retIntr();
 	track->tryInterrupt();
-	return track->mSeqCtrl.mWaitTimer > 0;
+	return track->getSeq()->mWaitTimer > 0;
 }
 
 /**
@@ -566,13 +591,13 @@ int JASSeqParser::cmdSyncCPU(JASTrack* track, u32* args)
  * @note Address: 0x8009D3B8
  * @note Size: 0x8
  */
-u32 JASSeqParser::cmdFlushAll(JASTrack*, u32*) { return 0x0; }
+int JASSeqParser::cmdFlushAll(JASTrack*, u32*) { return 0x0; }
 
 /**
  * @note Address: 0x8009D3C0
  * @note Size: 0x8
  */
-u32 JASSeqParser::cmdFlushRelease(JASTrack*, u32*) { return 0x0; }
+int JASSeqParser::cmdFlushRelease(JASTrack*, u32*) { return 0x0; }
 
 /**
  * @note Address: 0x8009D3C8
@@ -598,13 +623,13 @@ int JASSeqParser::cmdTempo(JASTrack* track, u32* args)
  * @note Address: 0x8009D428
  * @note Size: 0x8
  */
-u32 JASSeqParser::cmdFinish(JASTrack*, u32*) { return 0x3; }
+int JASSeqParser::cmdFinish(JASTrack*, u32*) { return 0x3; }
 
 /**
  * @note Address: 0x8009D430
  * @note Size: 0x8
  */
-u32 JASSeqParser::cmdNop(JASTrack*, u32*) { return 0x0; }
+int JASSeqParser::cmdNop(JASTrack*, u32*) { return 0x0; }
 
 /**
  * @note Address: 0x8009D438
@@ -626,7 +651,7 @@ int JASSeqParser::cmdPanPowSet(JASTrack* track, u32* args)
  */
 int JASSeqParser::cmdFIRSet(JASTrack* track, u32* args)
 {
-	track->mExtBuffer->setFirFilter((s16*)((u32)track->mSeqCtrl.mRawFilePtr + args[0]));
+	track->mExtBuffer->setFirFilter((s16*)((u32)track->getSeq()->getAddr(args[0])));
 	return 0;
 }
 
@@ -636,7 +661,7 @@ int JASSeqParser::cmdFIRSet(JASTrack* track, u32* args)
  */
 int JASSeqParser::cmdEXTSet(JASTrack* track, u32* args)
 {
-	JASOuterParam* param = (JASOuterParam*)(track->mSeqCtrl.mRawFilePtr + args[0]);
+	JASOuterParam* param = (JASOuterParam*)(track->getSeq()->getAddr(args[0]));
 	param->initExtBuffer();
 	track->assignExtBuffer(param);
 	return 0;
@@ -780,20 +805,21 @@ int JASSeqParser::cmdPrintf(JASTrack* track, u32* args)
 	u32 count = 0;
 
 	for (u32 i = 0; i < 128; i++) {
-		buf[i] = *track->mSeqCtrl.mCurrentFilePtr++;
+		buf[i] = *track->getSeq()->mCurrentFilePtr++;
 		if (!buf[i]) {
 			break;
 		}
 		if (buf[i] == '\\') {
-			buf[i] = *track->mSeqCtrl.mCurrentFilePtr++;
+			buf[i] = *track->getSeq()->mCurrentFilePtr++;
 			if (!buf[i]) {
 				break;
 			}
 
-			if (buf[i] != 'n') {
+			switch (buf[i]) {
+			case 'n':
+				buf[i] = '\r';
 				continue;
-			} else {
-				buf[i] = 13;
+			default:
 				continue;
 			}
 		}
@@ -802,7 +828,7 @@ int JASSeqParser::cmdPrintf(JASTrack* track, u32* args)
 			continue;
 		}
 
-		buf[++i] = *track->mSeqCtrl.mCurrentFilePtr++;
+		buf[++i] = *track->getSeq()->mCurrentFilePtr++;
 		if (!buf[i]) {
 			break;
 		}
@@ -834,9 +860,9 @@ int JASSeqParser::cmdPrintf(JASTrack* track, u32* args)
 	}
 
 	for (u32 i = 0; i < count; i++) {
-		registers[i] = *track->mSeqCtrl.mCurrentFilePtr++;
+		registers[i] = *track->getSeq()->mCurrentFilePtr++;
 		if (byteArray[i] == 2) {
-			registers[i] = (int)&track->mSeqCtrl.mRawFilePtr[registers[i]];
+			registers[i] = (int)&track->getSeq()->mRawFilePtr[registers[i]];
 		} else if (byteArray[i] == 5) {
 			registers[i] = track->_348;
 		} else if (byteArray[i] >= 3) {
@@ -845,197 +871,67 @@ int JASSeqParser::cmdPrintf(JASTrack* track, u32* args)
 	}
 
 	return 0;
-	/*
-	stwu     r1, -0xc0(r1)
-	mflr     r0
-	li       r5, 0
-	stw      r0, 0xc4(r1)
-	stmw     r27, 0xac(r1)
-	addi     r31, r1, 8
-	mr       r29, r4
-	addi     r4, r1, 0x1c
-	mr       r3, r31
-	li       r30, 0
-	b        lbl_8009DAC8
-
-lbl_8009D984:
-	lwz      r6, 0x10(r29)
-	addi     r0, r6, 1
-	stw      r0, 0x10(r29)
-	lbz      r0, 0(r6)
-	stbx     r0, r4, r5
-	lbzx     r6, r4, r5
-	extsb.   r0, r6
-	beq      lbl_8009DAD0
-	extsb    r0, r6
-	cmpwi    r0, 0x5c
-	bne      lbl_8009D9EC
-	lwz      r6, 0x10(r29)
-	addi     r0, r6, 1
-	stw      r0, 0x10(r29)
-	lbz      r0, 0(r6)
-	stbx     r0, r4, r5
-	lbzx     r6, r4, r5
-	extsb.   r0, r6
-	beq      lbl_8009DAD0
-	extsb    r0, r6
-	cmpwi    r0, 0x6e
-	beq      lbl_8009D9E0
-	b        lbl_8009DAC4
-
-lbl_8009D9E0:
-	li       r0, 0xd
-	stbx     r0, r4, r5
-	b        lbl_8009DAC4
-
-lbl_8009D9EC:
-	cmpwi    r0, 0x25
-	bne      lbl_8009DAC4
-	lwz      r6, 0x10(r29)
-	addi     r7, r1, 0x1c
-	addi     r5, r5, 1
-	addi     r0, r6, 1
-	stw      r0, 0x10(r29)
-	lbz      r0, 0(r6)
-	stbx     r0, r7, r5
-	lbzx     r6, r7, r5
-	extsb.   r0, r6
-	beq      lbl_8009DAD0
-	extsb    r0, r6
-	cmpwi    r0, 0x72
-	beq      lbl_8009DA84
-	bge      lbl_8009DA44
-	cmpwi    r0, 0x64
-	beq      lbl_8009DA60
-	bge      lbl_8009DABC
-	cmpwi    r0, 0x52
-	beq      lbl_8009DA98
-	b        lbl_8009DABC
-
-lbl_8009DA44:
-	cmpwi    r0, 0x78
-	beq      lbl_8009DA6C
-	bge      lbl_8009DABC
-	cmpwi    r0, 0x74
-	beq      lbl_8009DAAC
-	bge      lbl_8009DABC
-	b        lbl_8009DA78
-
-lbl_8009DA60:
-	li       r0, 0
-	stb      r0, 0(r3)
-	b        lbl_8009DABC
-
-lbl_8009DA6C:
-	li       r0, 1
-	stb      r0, 0(r3)
-	b        lbl_8009DABC
-
-lbl_8009DA78:
-	li       r0, 2
-	stb      r0, 0(r3)
-	b        lbl_8009DABC
-
-lbl_8009DA84:
-	li       r6, 3
-	li       r0, 0x64
-	stb      r6, 0(r3)
-	stbx     r0, r7, r5
-	b        lbl_8009DABC
-
-lbl_8009DA98:
-	li       r6, 4
-	li       r0, 0x78
-	stb      r6, 0(r3)
-	stbx     r0, r7, r5
-	b        lbl_8009DABC
-
-lbl_8009DAAC:
-	li       r6, 5
-	li       r0, 0x78
-	stb      r6, 0(r3)
-	stbx     r0, r7, r5
-
-lbl_8009DABC:
-	addi     r3, r3, 1
-	addi     r30, r30, 1
-
-lbl_8009DAC4:
-	addi     r5, r5, 1
-
-lbl_8009DAC8:
-	cmplwi   r5, 0x80
-	blt      lbl_8009D984
-
-lbl_8009DAD0:
-	addi     r28, r1, 0xc
-	li       r27, 0
-	b        lbl_8009DB4C
-
-lbl_8009DADC:
-	lwz      r3, 0x10(r29)
-	lbz      r4, 0(r31)
-	addi     r0, r3, 1
-	stw      r0, 0x10(r29)
-	cmplwi   r4, 2
-	lbz      r0, 0(r3)
-	stw      r0, 0(r28)
-	bne      lbl_8009DB10
-	lwz      r3, 0xc(r29)
-	lwz      r0, 0(r28)
-	add      r0, r3, r0
-	stw      r0, 0(r28)
-	b        lbl_8009DB40
-
-lbl_8009DB10:
-	cmplwi   r4, 5
-	bne      lbl_8009DB24
-	lwz      r0, 0x348(r29)
-	stw      r0, 0(r28)
-	b        lbl_8009DB40
-
-lbl_8009DB24:
-	cmplwi   r4, 3
-	blt      lbl_8009DB40
-	lwz      r0, 0(r28)
-	mr       r3, r29
-	clrlwi   r4, r0, 0x18
-	bl       exchangeRegisterValue__8JASTrackFUc
-	stw      r3, 0(r28)
-
-lbl_8009DB40:
-	addi     r28, r28, 4
-	addi     r31, r31, 1
-	addi     r27, r27, 1
-
-lbl_8009DB4C:
-	cmplw    r27, r30
-	blt      lbl_8009DADC
-	lmw      r27, 0xac(r1)
-	li       r3, 0
-	lwz      r0, 0xc4(r1)
-	mtlr     r0
-	addi     r1, r1, 0xc0
-	blr
-	*/
 }
 
 /**
  * @note Address: N/A
  * @note Size: 0x14C
  */
-void JASSeqParser::Cmd_Process(JASTrack*, u8, u16)
+int JASSeqParser::Cmd_Process(JASTrack* track, u8 r5, u16 r6)
 {
-	// UNUSED FUNCTION
+	Arg_s sp08       = Arglist[r5 - 0xC0];
+	JASSeqCtrl* ctrl = track->getSeq();
+	u16 r29          = sp08.m02;
+	r29 |= r6;
+	u32 sp18[8];
+	for (int i = 0; i < sp08.m00; i++) {
+		u32 r3 = 0;
+		switch (r29 & 0x3) {
+		case 0:
+			r3 = ctrl->readByte();
+			break;
+		case 1:
+			r3 = ctrl->read16();
+			break;
+		case 2:
+			r3 = ctrl->read24();
+			break;
+		case 3:
+			r3 = track->exchangeRegisterValue(ctrl->readByte());
+			break;
+		}
+		sp18[i] = r3;
+		r29 >>= 2;
+	}
+
+	JASSeqParser::CmdFunc cmdFunc = sCmdPList[r5 - 0xC0];
+	return cmdFunc == nullptr ? 0 : (this->*cmdFunc)(track, sp18);
 }
 
 /**
  * @note Address: N/A
  * @note Size: 0x1CC
  */
-void JASSeqParser::RegCmd_Process(JASTrack*, int, int)
+int JASSeqParser::RegCmd_Process(JASTrack* track, int r30, int r31)
 {
-	// UNUSED FUNCTION
+	JASSeqCtrl* ctrl = track->getSeq();
+	u8 r5            = ctrl->readByte();
+	if (r30 != 0) {
+		r5 = track->exchangeRegisterValue(r5);
+	}
+	u16 r6 = 0;
+	if (r30 == 0 || r31 != 0) {
+		u8 r3  = ctrl->readByte();
+		u16 r4 = 3;
+		for (int i = 0; i < (u32)r31 + 1; i++) {
+			if (r3 & 0x80) {
+				r6 |= r4;
+			}
+			r3 <<= 1;
+			r4 <<= 2;
+		}
+	}
+	return Cmd_Process(track, r5, r6);
 }
 
 /**
@@ -1044,19 +940,19 @@ void JASSeqParser::RegCmd_Process(JASTrack*, int, int)
  */
 int JASSeqParser::cmdSetParam(JASTrack* track, u8 p2)
 {
-	JASSeqCtrl* ctrl = track->getCtrl();
-	u8 flag          = *track->mSeqCtrl.mCurrentFilePtr++;
+	JASSeqCtrl* ctrl = track->getSeq();
+	u8 flag          = ctrl->readByte();
 
 	s16 data;
 	switch (p2 & 0xC) {
 	case 0:
-		data = track->readReg16(*ctrl->mCurrentFilePtr++);
+		data = track->readReg16(ctrl->readByte());
 		break;
 	case 4:
-		data = *ctrl->mCurrentFilePtr++;
+		data = ctrl->readByte();
 		break;
 	case 8:
-		u8 byte = *ctrl->mCurrentFilePtr++;
+		u8 byte = ctrl->readByte();
 		if (byte & 0x80) {
 			data = byte << 8;
 		} else {
@@ -1074,167 +970,68 @@ int JASSeqParser::cmdSetParam(JASTrack* track, u8 p2)
 		val = -1;
 		break;
 	case 1:
-		val = track->readReg16(*ctrl->mCurrentFilePtr++) & 0xFFFF;
+		val = track->readReg16(ctrl->readByte());
 		break;
 	case 2:
-		val = *ctrl->mCurrentFilePtr++;
+		val = ctrl->readByte();
 		break;
 	case 3:
-		val = ctrl->read16() & 0xFFFF;
+		val = ctrl->read16();
 		break;
 	}
 
 	track->setParam(flag, (int)data / 32767.0f, val);
 	return 0;
-	// return 0;
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	rlwinm   r0, r5, 0, 0x1c, 0x1d
-	cmplwi   r0, 0xc
-	stmw     r27, 0x1c(r1)
-	mr       r27, r4
-	addi     r31, r27, 0xc
-	clrlwi   r29, r5, 0x18
-	lwz      r4, 0x10(r4)
-	addi     r3, r4, 1
-	stw      r3, 0x10(r27)
-	lbz      r30, 0(r4)
-	bgt      lbl_8009DC34
-	lis      r3, lbl_804A42E4@ha
-	slwi     r0, r0, 2
-	addi     r3, r3, lbl_804A42E4@l
-	lwzx     r0, r3, r0
-	mtctr    r0
-	bctr
-	.global  lbl_8009DBBC
-
-lbl_8009DBBC:
-	lwz      r4, 4(r31)
-	mr       r3, r27
-	addi     r0, r4, 1
-	stw      r0, 4(r31)
-	lbz      r4, 0(r4)
-	bl       readReg16__8JASTrackFUc
-	extsh    r28, r3
-	b        lbl_8009DC34
-	.global  lbl_8009DBDC
-
-lbl_8009DBDC:
-	lwz      r3, 4(r31)
-	addi     r0, r3, 1
-	stw      r0, 4(r31)
-	lbz      r28, 0(r3)
-	b        lbl_8009DC34
-	.global  lbl_8009DBF0
-
-lbl_8009DBF0:
-	lwz      r3, 4(r31)
-	addi     r0, r3, 1
-	stw      r0, 4(r31)
-	lbz      r4, 0(r3)
-	rlwinm.  r0, r4, 0, 0x18, 0x18
-	beq      lbl_8009DC14
-	slwi     r0, r4, 8
-	extsh    r28, r0
-	b        lbl_8009DC34
-
-lbl_8009DC14:
-	slwi     r3, r4, 8
-	slwi     r0, r4, 1
-	or       r0, r3, r0
-	extsh    r28, r0
-	b        lbl_8009DC34
-	.global  lbl_8009DC28
-
-lbl_8009DC28:
-	mr       r3, r31
-	bl       read16__10JASSeqCtrlFv
-	extsh    r28, r3
-	.global  lbl_8009DC34
-
-lbl_8009DC34:
-	clrlwi   r0, r29, 0x1e
-	li       r5, 0
-	cmpwi    r0, 2
-	beq      lbl_8009DC8C
-	bge      lbl_8009DC58
-	cmpwi    r0, 0
-	beq      lbl_8009DC64
-	bge      lbl_8009DC6C
-	b        lbl_8009DCAC
-
-lbl_8009DC58:
-	cmpwi    r0, 4
-	bge      lbl_8009DCAC
-	b        lbl_8009DCA0
-
-lbl_8009DC64:
-	li       r5, -1
-	b        lbl_8009DCAC
-
-lbl_8009DC6C:
-	lwz      r4, 4(r31)
-	mr       r3, r27
-	addi     r0, r4, 1
-	stw      r0, 4(r31)
-	lbz      r4, 0(r4)
-	bl       readReg16__8JASTrackFUc
-	clrlwi   r5, r3, 0x10
-	b        lbl_8009DCAC
-
-lbl_8009DC8C:
-	lwz      r3, 4(r31)
-	addi     r0, r3, 1
-	stw      r0, 4(r31)
-	lbz      r5, 0(r3)
-	b        lbl_8009DCAC
-
-lbl_8009DCA0:
-	mr       r3, r31
-	bl       read16__10JASSeqCtrlFv
-	clrlwi   r5, r3, 0x10
-
-lbl_8009DCAC:
-	extsh    r3, r28
-	lis      r0, 0x4330
-	xoris    r4, r3, 0x8000
-	stw      r0, 8(r1)
-	lfd      f2, lbl_80516D58@sda21(r2)
-	mr       r3, r27
-	stw      r4, 0xc(r1)
-	mr       r4, r30
-	lfs      f0, lbl_80516D70@sda21(r2)
-	lfd      f1, 8(r1)
-	fsubs    f1, f1, f2
-	fdivs    f1, f1, f0
-	bl       setParam__8JASTrackFifi
-	lmw      r27, 0x1c(r1)
-	li       r3, 0
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /**
  * @note Address: N/A
  * @note Size: 0x14C
  */
-int JASSeqParser::cmdWait(JASTrack*, u8)
+int JASSeqParser::cmdWait(JASTrack* track, u8 flag)
 {
-	// UNUSED FUNCTION
+	int end = flag == 0x80 ? 1 : 2;
+	int val = 0;
+	for (int i = 0; i < end; i++) {
+		val <<= 8;
+		val |= track->getSeq()->readByte();
+	}
+	track->getSeq()->mWaitTimer = val;
+	if (val != 0) {
+		return 1;
+	} else {
+		return 0;
+	}
 }
 
 /**
  * @note Address: N/A
  * @note Size: 0xB4
  */
-int JASSeqParser::cmdNoteOff(JASTrack*, u8)
+int JASSeqParser::cmdNoteOff(JASTrack* track, u8 flag)
 {
-	// UNUSED FUNCTION
+	if (flag == 0xF9) {
+		u32 r30    = track->getSeq()->readByte();
+		u32 rdata2 = (track->exchangeRegisterValue(r30 & 0x7) & 0xFF);
+		// JUT_ASSERT(0x496, rdata2 >= 1);
+		// JUT_ASSERT(0x497, rdata2 <= 7);
+
+		flag = rdata2;
+		flag += 0x80;
+		if (r30 & 0x80) {
+			flag |= 0x08;
+		}
+	}
+
+	int r6 = 0;
+	if ((s32)flag & 0x08) {
+		r6 = track->getSeq()->readByte();
+		if (r6 > 100) {
+			r6 = (r6 - 98) * 20;
+		}
+	}
+	track->noteOff(flag & 0x7, r6);
+	return 0;
 }
 
 /**
@@ -1243,21 +1040,22 @@ int JASSeqParser::cmdNoteOff(JASTrack*, u8)
  */
 int JASSeqParser::cmdNoteOn(JASTrack* track, u8 note)
 {
-	s32 flag = *track->mSeqCtrl.mCurrentFilePtr++;
+	JASSeqCtrl* ctrl = track->getSeq();
+	u32 flag         = ctrl->readByte();
 	if (flag & 0x80) {
 		note = track->exchangeRegisterValue(note);
 	}
 
 	note += track->getTranspose();
 
-	int val28 = (flag >> 5) & 0x3;
+	u8 val28 = (flag >> 5) & 0x3;
 	u8 val27;
 	if ((flag >> 5) & 0x2) {
 		val27 = note;
 		note  = track->_E5;
 	}
 
-	u8 val26 = *track->mSeqCtrl.mCurrentFilePtr++;
+	u8 val26 = ctrl->readByte();
 	if (val26 & 0x80) {
 		val26 = track->exchangeRegisterValue(val26 & 0x7F);
 	}
@@ -1265,7 +1063,7 @@ int JASSeqParser::cmdNoteOn(JASTrack* track, u8 note)
 	u8 val24  = flag & 0x7;
 	int val23 = 0;
 	if (!val24) {
-		val25 = *track->mSeqCtrl.mCurrentFilePtr++;
+		val25 = ctrl->readByte();
 		if (val25 & 0x80) {
 			val25 = track->exchangeRegisterValue(val25 & 0x7F);
 		}
@@ -1273,7 +1071,7 @@ int JASSeqParser::cmdNoteOn(JASTrack* track, u8 note)
 		flag      = 0;
 		for (int i = 0; i < count; i++) {
 			flag <<= 8;
-			flag |= *track->mSeqCtrl.mCurrentFilePtr++;
+			flag |= ctrl->readByte();
 		}
 
 		if ((u32)count == 1 && flag & 0x80) {
@@ -1284,8 +1082,8 @@ int JASSeqParser::cmdNoteOn(JASTrack* track, u8 note)
 			val24 = track->exchangeRegisterValue(val24 - 1);
 		}
 		if (val28 & 1) {
-			val23 = track->exchangeRegisterValue(*track->mSeqCtrl.mCurrentFilePtr++);
-			val28 = (val28 ^ 1) & 0xFF;
+			val23 = track->exchangeRegisterValue(*ctrl->mCurrentFilePtr++);
+			val28 ^= 1;
 		}
 
 		flag  = -1;
@@ -1306,7 +1104,7 @@ int JASSeqParser::cmdNoteOn(JASTrack* track, u8 note)
 			track->gateOn(val24, note, val26, time);
 		}
 	} else {
-		if (flag != -1) {
+		if ((s32)flag != -1) {
 			time = track->seqTimeToDspTime(flag, val25);
 		}
 		if (track->_E4 & 1) {
@@ -1338,308 +1136,9 @@ int JASSeqParser::cmdNoteOn(JASTrack* track, u8 note)
 		return 0;
 	}
 
-	track->mSeqCtrl.mWaitTimer = ((u32)flag) ? flag : -1;
+	ctrl->mWaitTimer = flag ? flag : -1;
 
 	return 1;
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stmw     r23, 0xc(r1)
-	mr       r30, r4
-	mr       r31, r5
-	lwz      r3, 0x10(r4)
-	addi     r0, r3, 1
-	stw      r0, 0x10(r4)
-	lbz      r29, 0(r3)
-	rlwinm.  r0, r29, 0, 0x18, 0x18
-	beq      lbl_8009DD38
-	mr       r3, r30
-	mr       r4, r31
-	bl       exchangeRegisterValue__8JASTrackFUc
-	clrlwi   r31, r3, 0x18
-
-lbl_8009DD38:
-	mr       r3, r30
-	bl       getTranspose__8JASTrackCFv
-	rlwinm.  r0, r29, 0x1b, 0x1e, 0x1e
-	add      r3, r31, r3
-	rlwinm   r0, r29, 0x1b, 0x1e, 0x1f
-	clrlwi   r31, r3, 0x18
-	mr       r28, r0
-	beq      lbl_8009DD60
-	mr       r27, r31
-	lbz      r31, 0xe5(r30)
-
-lbl_8009DD60:
-	lwz      r3, 0x10(r30)
-	addi     r0, r3, 1
-	stw      r0, 0x10(r30)
-	lbz      r3, 0(r3)
-	rlwinm.  r0, r3, 0, 0x18, 0x18
-	mr       r26, r3
-	beq      lbl_8009DD8C
-	clrlwi   r4, r3, 0x19
-	mr       r3, r30
-	bl       exchangeRegisterValue__8JASTrackFUc
-	clrlwi   r26, r3, 0x18
-
-lbl_8009DD8C:
-	clrlwi.  r3, r29, 0x1d
-	li       r23, 0
-	mr       r24, r3
-	bne      lbl_8009DF10
-	lwz      r3, 0x10(r30)
-	addi     r0, r3, 1
-	stw      r0, 0x10(r30)
-	lbz      r3, 0(r3)
-	rlwinm.  r0, r3, 0, 0x18, 0x18
-	mr       r25, r3
-	beq      lbl_8009DDC8
-	clrlwi   r4, r3, 0x19
-	mr       r3, r30
-	bl       exchangeRegisterValue__8JASTrackFUc
-	clrlwi   r25, r3, 0x18
-
-lbl_8009DDC8:
-	rlwinm.  r3, r29, 0x1d, 0x1e, 0x1f
-	li       r29, 0
-	li       r4, 0
-	ble      lbl_8009DEEC
-	cmpwi    r3, 8
-	addi     r5, r3, -8
-	ble      lbl_8009DEC0
-	addi     r0, r5, 7
-	srwi     r0, r0, 3
-	mtctr    r0
-	cmpwi    r5, 0
-	ble      lbl_8009DEC0
-
-lbl_8009DDF8:
-	lwz      r6, 0x10(r30)
-	slwi     r29, r29, 8
-	addi     r4, r4, 8
-	addi     r0, r6, 1
-	stw      r0, 0x10(r30)
-	lwz      r5, 0x10(r30)
-	lbz      r6, 0(r6)
-	addi     r0, r5, 1
-	stw      r0, 0x10(r30)
-	or       r29, r29, r6
-	slwi     r29, r29, 8
-	lwz      r6, 0x10(r30)
-	lbz      r5, 0(r5)
-	addi     r0, r6, 1
-	stw      r0, 0x10(r30)
-	or       r29, r29, r5
-	slwi     r29, r29, 8
-	lwz      r5, 0x10(r30)
-	lbz      r6, 0(r6)
-	addi     r0, r5, 1
-	stw      r0, 0x10(r30)
-	or       r29, r29, r6
-	slwi     r29, r29, 8
-	lwz      r6, 0x10(r30)
-	lbz      r5, 0(r5)
-	addi     r0, r6, 1
-	stw      r0, 0x10(r30)
-	or       r29, r29, r5
-	slwi     r29, r29, 8
-	lwz      r5, 0x10(r30)
-	lbz      r6, 0(r6)
-	addi     r0, r5, 1
-	stw      r0, 0x10(r30)
-	or       r29, r29, r6
-	slwi     r29, r29, 8
-	lwz      r6, 0x10(r30)
-	lbz      r5, 0(r5)
-	addi     r0, r6, 1
-	stw      r0, 0x10(r30)
-	or       r29, r29, r5
-	slwi     r29, r29, 8
-	lwz      r5, 0x10(r30)
-	lbz      r6, 0(r6)
-	addi     r0, r5, 1
-	stw      r0, 0x10(r30)
-	or       r29, r29, r6
-	slwi     r29, r29, 8
-	lbz      r0, 0(r5)
-	or       r29, r29, r0
-	bdnz     lbl_8009DDF8
-
-lbl_8009DEC0:
-	subf     r0, r4, r3
-	mtctr    r0
-	cmpw     r4, r3
-	bge      lbl_8009DEEC
-
-lbl_8009DED0:
-	lwz      r4, 0x10(r30)
-	slwi     r29, r29, 8
-	addi     r0, r4, 1
-	stw      r0, 0x10(r30)
-	lbz      r0, 0(r4)
-	or       r29, r29, r0
-	bdnz     lbl_8009DED0
-
-lbl_8009DEEC:
-	cmplwi   r3, 1
-	bne      lbl_8009DF60
-	rlwinm.  r0, r29, 0, 0x18, 0x18
-	beq      lbl_8009DF60
-	clrlwi   r4, r29, 0x19
-	mr       r3, r30
-	bl       exchangeRegisterValue__8JASTrackFUc
-	mr       r29, r3
-	b        lbl_8009DF60
-
-lbl_8009DF10:
-	rlwinm.  r0, r29, 0x1d, 0x1e, 0x1f
-	beq      lbl_8009DF2C
-	addi     r0, r3, -1
-	mr       r3, r30
-	clrlwi   r4, r0, 0x18
-	bl       exchangeRegisterValue__8JASTrackFUc
-	clrlwi   r24, r3, 0x18
-
-lbl_8009DF2C:
-	clrlwi.  r0, r28, 0x1f
-	beq      lbl_8009DF58
-	lwz      r4, 0x10(r30)
-	mr       r3, r30
-	addi     r0, r4, 1
-	stw      r0, 0x10(r30)
-	lbz      r4, 0(r4)
-	bl       exchangeRegisterValue__8JASTrackFUc
-	xori     r0, r28, 1
-	mr       r23, r3
-	clrlwi   r28, r0, 0x18
-
-lbl_8009DF58:
-	li       r29, -1
-	li       r25, 0x64
-
-lbl_8009DF60:
-	stb      r28, 0xe4(r30)
-	mr       r28, r29
-	lbz      r0, 0xe6(r30)
-	cmplwi   r0, 0
-	beq      lbl_8009DFD4
-	lbz      r0, 0xe4(r30)
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_8009DF84
-	li       r28, -1
-
-lbl_8009DF84:
-	cmpwi    r28, -1
-	beq      lbl_8009DFA0
-	mr       r3, r30
-	mr       r4, r28
-	mr       r5, r25
-	bl       seqTimeToDspTime__8JASTrackFlUc
-	mr       r28, r3
-
-lbl_8009DFA0:
-	lbz      r0, 0x362(r30)
-	cmplwi   r0, 0
-	beq      lbl_8009DFB8
-	lbz      r0, 0x358(r30)
-	rlwinm.  r0, r0, 0, 0x1b, 0x1b
-	bne      lbl_8009E034
-
-lbl_8009DFB8:
-	mr       r3, r30
-	mr       r4, r24
-	mr       r7, r28
-	clrlwi   r5, r31, 0x18
-	clrlwi   r6, r26, 0x18
-	bl       gateOn__8JASTrackFUclll
-	b        lbl_8009E034
-
-lbl_8009DFD4:
-	cmpwi    r29, -1
-	beq      lbl_8009DFF0
-	mr       r3, r30
-	mr       r4, r29
-	mr       r5, r25
-	bl       seqTimeToDspTime__8JASTrackFlUc
-	mr       r28, r3
-
-lbl_8009DFF0:
-	lbz      r0, 0xe4(r30)
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_8009E000
-	li       r28, -1
-
-lbl_8009E000:
-	lbz      r0, 0x362(r30)
-	cmplwi   r0, 0
-	beq      lbl_8009E018
-	lbz      r0, 0x358(r30)
-	rlwinm.  r0, r0, 0, 0x1b, 0x1b
-	bne      lbl_8009E034
-
-lbl_8009E018:
-	mr       r3, r30
-	mr       r4, r24
-	mr       r7, r28
-	mr       r8, r23
-	clrlwi   r5, r31, 0x18
-	clrlwi   r6, r26, 0x18
-	bl       noteOn__8JASTrackFUclllUl
-
-lbl_8009E034:
-	stw      r29, 0xe0(r30)
-	lbz      r0, 0xe4(r30)
-	clrlwi   r0, r0, 0x1f
-	stb      r0, 0xe6(r30)
-	lbz      r0, 0xe4(r30)
-	rlwinm.  r0, r0, 0, 0x1e, 0x1e
-	beq      lbl_8009E088
-	cmpwi    r28, -1
-	mr       r5, r28
-	bne      lbl_8009E070
-	mr       r3, r30
-	mr       r4, r29
-	mr       r5, r25
-	bl       seqTimeToDspTime__8JASTrackFlUc
-	mr       r5, r3
-
-lbl_8009E070:
-	lwz      r3, 0xc0(r30)
-	cmplwi   r3, 0
-	beq      lbl_8009E084
-	mr       r4, r27
-	bl       setKeySweepTarget__10JASChannelFUcUl
-
-lbl_8009E084:
-	mr       r31, r27
-
-lbl_8009E088:
-	addis    r0, r29, 1
-	stb      r31, 0xe5(r30)
-	cmplwi   r0, 0xffff
-	bne      lbl_8009E0A0
-	li       r3, 0
-	b        lbl_8009E0B8
-
-lbl_8009E0A0:
-	cmplwi   r29, 0
-	li       r0, -1
-	beq      lbl_8009E0B0
-	mr       r0, r29
-
-lbl_8009E0B0:
-	stw      r0, 0x14(r30)
-	li       r3, 1
-
-lbl_8009E0B8:
-	lmw      r23, 0xc(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /**
@@ -1675,37 +1174,15 @@ int JASSeqParser::parseSeq(JASTrack* track)
 {
 	while (true) {
 		u32 val23 = 0;
-		s32 flag  = *track->mSeqCtrl.mCurrentFilePtr++; // r26
+		u8 flag   = track->getSeq()->readByte(); // r26
 		if (!(flag & 0x80)) {
 			val23 = cmdNoteOn(track, flag);
-		} else if (((flag & 0xF0) == 128) && !(flag & 0x3)) {
-			int val = 0;
-			for (int i = 0; i < (128 - flag); i++) {
-				val <<= 8;
-				val |= *track->mSeqCtrl.mCurrentFilePtr++;
-			}
-			track->mSeqCtrl.mWaitTimer = val;
-			val23                      = val != 0;
+		} else if (((flag & 0xF0) == 128) && !(flag & 0x07)) {
+			val23 = cmdWait(track, flag);
 		} else if (((flag & 0xF0) == 128) || flag == (u32)0xF9) {
-			if (flag == (u32)0xF9) {
-				val23 = *track->mSeqCtrl.mCurrentFilePtr++;
-				flag  = (track->exchangeRegisterValue(val23 & 0x7) & 0xFF) + 128;
-				if (val23 & 0x80) {
-					flag = (flag | 8) & 0xFF;
-				}
-			}
-
-			int val5 = 0;
-			if (flag & 0x10) {
-				val5 = *track->mSeqCtrl.mCurrentFilePtr++;
-				if (val5 > 100) {
-					val5 = (val5 - 98) * 20;
-				}
-			}
-			track->noteOff(flag & 0x7, val5);
-			val23 = 0;
+			val23 = cmdNoteOff(track, flag);
 		} else {
-			switch (flag & 0xF0) {
+			switch ((s32)flag & 0xF0) {
 			case 0x90:
 				val23 = cmdSetParam(track, flag & 0xF);
 				break;
@@ -1713,10 +1190,12 @@ int JASSeqParser::parseSeq(JASTrack* track)
 				track->writeRegParam(flag & 0xF);
 				break;
 			case 0xB0:
-				// something involving Arglist
+				u8 temp1 = (flag >> 3) & 1;
+				u8 temp2 = flag & 7;
+				val23    = RegCmd_Process(track, temp1, temp2);
 				break;
 			default:
-				// something involving Arglist
+				val23 = Cmd_Process(track, flag, 0);
 				break;
 			}
 		}
@@ -1735,560 +1214,4 @@ int JASSeqParser::parseSeq(JASTrack* track)
 	}
 
 	return 0;
-	/*
-	stwu     r1, -0xa0(r1)
-	mflr     r0
-	stw      r0, 0xa4(r1)
-	stmw     r23, 0x7c(r1)
-	mr       r29, r3
-	mr       r31, r4
-
-lbl_8009E198:
-	lwz      r3, 0x10(r31)
-	li       r23, 0
-	addi     r0, r3, 1
-	stw      r0, 0x10(r31)
-	lbz      r26, 0(r3)
-	rlwinm.  r0, r26, 0, 0x18, 0x18
-	bne      lbl_8009E1CC
-	mr       r3, r29
-	mr       r4, r31
-	mr       r5, r26
-	bl       cmdNoteOn__12JASSeqParserFP8JASTrackUc
-	mr       r23, r3
-	b        lbl_8009E81C
-
-lbl_8009E1CC:
-	rlwinm   r3, r26, 0, 0x18, 0x1b
-	cmpwi    r3, 0x80
-	bne      lbl_8009E32C
-	clrlwi.  r0, r26, 0x1d
-	bne      lbl_8009E32C
-	addi     r3, r26, -128
-	subfic   r0, r26, 0x80
-	nor      r3, r3, r0
-	srawi    r3, r3, 0x1f
-	li       r0, 0
-	addic.   r6, r3, 2
-	mr       r7, r0
-	ble      lbl_8009E318
-	cmpwi    r6, 8
-	addi     r4, r6, -8
-	ble      lbl_8009E2E8
-	addi     r3, r4, 7
-	srwi     r3, r3, 3
-	mtctr    r3
-	cmpwi    r4, 0
-	ble      lbl_8009E2E8
-
-lbl_8009E220:
-	lwz      r5, 0x10(r31)
-	slwi     r0, r0, 8
-	addi     r7, r7, 8
-	addi     r3, r5, 1
-	stw      r3, 0x10(r31)
-	lwz      r4, 0x10(r31)
-	lbz      r5, 0(r5)
-	addi     r3, r4, 1
-	stw      r3, 0x10(r31)
-	or       r0, r0, r5
-	slwi     r0, r0, 8
-	lwz      r5, 0x10(r31)
-	lbz      r4, 0(r4)
-	addi     r3, r5, 1
-	stw      r3, 0x10(r31)
-	or       r0, r0, r4
-	slwi     r0, r0, 8
-	lwz      r4, 0x10(r31)
-	lbz      r5, 0(r5)
-	addi     r3, r4, 1
-	stw      r3, 0x10(r31)
-	or       r0, r0, r5
-	slwi     r0, r0, 8
-	lwz      r5, 0x10(r31)
-	lbz      r4, 0(r4)
-	addi     r3, r5, 1
-	stw      r3, 0x10(r31)
-	or       r0, r0, r4
-	slwi     r0, r0, 8
-	lwz      r4, 0x10(r31)
-	lbz      r5, 0(r5)
-	addi     r3, r4, 1
-	stw      r3, 0x10(r31)
-	or       r0, r0, r5
-	slwi     r0, r0, 8
-	lwz      r5, 0x10(r31)
-	lbz      r4, 0(r4)
-	addi     r3, r5, 1
-	stw      r3, 0x10(r31)
-	or       r0, r0, r4
-	slwi     r0, r0, 8
-	lwz      r4, 0x10(r31)
-	lbz      r5, 0(r5)
-	addi     r3, r4, 1
-	stw      r3, 0x10(r31)
-	or       r0, r0, r5
-	slwi     r0, r0, 8
-	lbz      r3, 0(r4)
-	or       r0, r0, r3
-	bdnz     lbl_8009E220
-
-lbl_8009E2E8:
-	subf     r3, r7, r6
-	mtctr    r3
-	cmpw     r7, r6
-	bge      lbl_8009E318
-
-lbl_8009E2F8:
-	lwz      r4, 0x10(r31)
-	slwi     r0, r0, 8
-	addi     r7, r7, 1
-	addi     r3, r4, 1
-	stw      r3, 0x10(r31)
-	lbz      r3, 0(r4)
-	or       r0, r0, r3
-	bdnz     lbl_8009E2F8
-
-lbl_8009E318:
-	neg      r3, r0
-	stw      r0, 0x14(r31)
-	or       r0, r3, r0
-	srwi     r23, r0, 0x1f
-	b        lbl_8009E81C
-
-lbl_8009E32C:
-	cmpwi    r3, 0x80
-	beq      lbl_8009E33C
-	cmplwi   r26, 0xf9
-	bne      lbl_8009E3BC
-
-lbl_8009E33C:
-	cmplwi   r26, 0xf9
-	bne      lbl_8009E378
-	lwz      r4, 0x10(r31)
-	mr       r3, r31
-	addi     r0, r4, 1
-	stw      r0, 0x10(r31)
-	lbz      r23, 0(r4)
-	clrlwi   r4, r23, 0x1d
-	bl       exchangeRegisterValue__8JASTrackFUc
-	rlwinm.  r0, r23, 0, 0x18, 0x18
-	clrlwi   r3, r3, 0x18
-	addi     r26, r3, 0x80
-	beq      lbl_8009E378
-	ori      r0, r26, 8
-	clrlwi   r26, r0, 0x18
-
-lbl_8009E378:
-	rlwinm.  r0, r26, 0, 0x1c, 0x1c
-	li       r5, 0
-	beq      lbl_8009E3A4
-	lwz      r3, 0x10(r31)
-	addi     r0, r3, 1
-	stw      r0, 0x10(r31)
-	lbz      r5, 0(r3)
-	cmpwi    r5, 0x64
-	ble      lbl_8009E3A4
-	addi     r0, r5, -98
-	mulli    r5, r0, 0x14
-
-lbl_8009E3A4:
-	clrlwi   r4, r26, 0x1d
-	mr       r3, r31
-	clrlwi   r5, r5, 0x10
-	bl       noteOff__8JASTrackFUcUs
-	li       r23, 0
-	b        lbl_8009E81C
-
-lbl_8009E3BC:
-	rlwinm   r0, r26, 0, 0x18, 0x1b
-	cmpwi    r0, 0xa0
-	beq      lbl_8009E54C
-	bge      lbl_8009E3D8
-	cmpwi    r0, 0x90
-	beq      lbl_8009E3E4
-	b        lbl_8009E700
-
-lbl_8009E3D8:
-	cmpwi    r0, 0xb0
-	beq      lbl_8009E55C
-	b        lbl_8009E700
-
-lbl_8009E3E4:
-	addi     r27, r31, 0xc
-	rlwinm   r0, r26, 0, 0x1c, 0x1d
-	lwz      r4, 0x10(r31)
-	cmplwi   r0, 0xc
-	clrlwi   r28, r26, 0x1c
-	addi     r3, r4, 1
-	stw      r3, 0x10(r31)
-	lbz      r26, 0(r4)
-	bgt      lbl_8009E498
-	lis      r3, lbl_804A4318@ha
-	slwi     r0, r0, 2
-	addi     r3, r3, lbl_804A4318@l
-	lwzx     r0, r3, r0
-	mtctr    r0
-	bctr
-	.global  lbl_8009E420
-
-lbl_8009E420:
-	lwz      r4, 4(r27)
-	mr       r3, r31
-	addi     r0, r4, 1
-	stw      r0, 4(r27)
-	lbz      r4, 0(r4)
-	bl       readReg16__8JASTrackFUc
-	extsh    r30, r3
-	b        lbl_8009E498
-	.global  lbl_8009E440
-
-lbl_8009E440:
-	lwz      r3, 4(r27)
-	addi     r0, r3, 1
-	stw      r0, 4(r27)
-	lbz      r30, 0(r3)
-	b        lbl_8009E498
-	.global  lbl_8009E454
-
-lbl_8009E454:
-	lwz      r3, 4(r27)
-	addi     r0, r3, 1
-	stw      r0, 4(r27)
-	lbz      r4, 0(r3)
-	rlwinm.  r0, r4, 0, 0x18, 0x18
-	beq      lbl_8009E478
-	slwi     r0, r4, 8
-	extsh    r30, r0
-	b        lbl_8009E498
-
-lbl_8009E478:
-	slwi     r3, r4, 8
-	slwi     r0, r4, 1
-	or       r0, r3, r0
-	extsh    r30, r0
-	b        lbl_8009E498
-	.global  lbl_8009E48C
-
-lbl_8009E48C:
-	mr       r3, r27
-	bl       read16__10JASSeqCtrlFv
-	extsh    r30, r3
-	.global  lbl_8009E498
-
-lbl_8009E498:
-	clrlwi   r0, r28, 0x1e
-	li       r5, 0
-	cmpwi    r0, 2
-	beq      lbl_8009E4F0
-	bge      lbl_8009E4BC
-	cmpwi    r0, 0
-	beq      lbl_8009E4C8
-	bge      lbl_8009E4D0
-	b        lbl_8009E510
-
-lbl_8009E4BC:
-	cmpwi    r0, 4
-	bge      lbl_8009E510
-	b        lbl_8009E504
-
-lbl_8009E4C8:
-	li       r5, -1
-	b        lbl_8009E510
-
-lbl_8009E4D0:
-	lwz      r4, 4(r27)
-	mr       r3, r31
-	addi     r0, r4, 1
-	stw      r0, 4(r27)
-	lbz      r4, 0(r4)
-	bl       readReg16__8JASTrackFUc
-	clrlwi   r5, r3, 0x10
-	b        lbl_8009E510
-
-lbl_8009E4F0:
-	lwz      r3, 4(r27)
-	addi     r0, r3, 1
-	stw      r0, 4(r27)
-	lbz      r5, 0(r3)
-	b        lbl_8009E510
-
-lbl_8009E504:
-	mr       r3, r27
-	bl       read16__10JASSeqCtrlFv
-	clrlwi   r5, r3, 0x10
-
-lbl_8009E510:
-	extsh    r3, r30
-	lis      r0, 0x4330
-	xoris    r4, r3, 0x8000
-	stw      r0, 0x68(r1)
-	lfd      f2, lbl_80516D58@sda21(r2)
-	mr       r3, r31
-	stw      r4, 0x6c(r1)
-	mr       r4, r26
-	lfs      f0, lbl_80516D70@sda21(r2)
-	lfd      f1, 0x68(r1)
-	fsubs    f1, f1, f2
-	fdivs    f1, f1, f0
-	bl       setParam__8JASTrackFifi
-	li       r23, 0
-	b        lbl_8009E81C
-
-lbl_8009E54C:
-	clrlwi   r4, r26, 0x1c
-	mr       r3, r31
-	bl       writeRegParam__8JASTrackFUc
-	b        lbl_8009E81C
-
-lbl_8009E55C:
-	lwz      r3, 0x10(r31)
-	rlwinm.  r23, r26, 0x1d, 0x1f, 0x1f
-	clrlwi   r24, r26, 0x1d
-	addi     r0, r3, 1
-	stw      r0, 0x10(r31)
-	lbz      r4, 0(r3)
-	beq      lbl_8009E584
-	mr       r3, r31
-	bl       exchangeRegisterValue__8JASTrackFUc
-	clrlwi   r4, r3, 0x18
-
-lbl_8009E584:
-	cmpwi    r23, 0
-	li       r6, 0
-	beq      lbl_8009E598
-	cmpwi    r24, 0
-	beq      lbl_8009E5D8
-
-lbl_8009E598:
-	lwz      r3, 0x10(r31)
-	addi     r7, r24, 1
-	li       r5, 3
-	addi     r0, r3, 1
-	stw      r0, 0x10(r31)
-	lbz      r3, 0(r3)
-	mtctr    r7
-	cmplwi   r7, 0
-	ble      lbl_8009E5D8
-
-lbl_8009E5BC:
-	rlwinm.  r0, r3, 0, 0x18, 0x18
-	beq      lbl_8009E5CC
-	or       r0, r6, r5
-	clrlwi   r6, r0, 0x10
-
-lbl_8009E5CC:
-	rlwinm   r3, r3, 1, 0x18, 0x1e
-	rlwinm   r5, r5, 2, 0x10, 0x1d
-	bdnz     lbl_8009E5BC
-
-lbl_8009E5D8:
-	lis      r3, Arglist@ha
-	rlwinm   r5, r4, 2, 0x16, 0x1d
-	addi     r0, r3, Arglist@l
-	clrlwi   r23, r4, 0x18
-	add      r3, r0, r5
-	addi     r26, r31, 0xc
-	lwz      r0, -0x300(r3)
-	addi     r25, r1, 0x28
-	li       r27, 0
-	stw      r0, 8(r1)
-	lhz      r28, 0xa(r1)
-	lhz      r24, 8(r1)
-	or       r28, r28, r6
-	b        lbl_8009E698
-
-lbl_8009E610:
-	clrlwi   r0, r28, 0x1e
-	li       r3, 0
-	cmpwi    r0, 2
-	beq      lbl_8009E664
-	bge      lbl_8009E634
-	cmpwi    r0, 0
-	beq      lbl_8009E640
-	bge      lbl_8009E654
-	b        lbl_8009E688
-
-lbl_8009E634:
-	cmpwi    r0, 4
-	bge      lbl_8009E688
-	b        lbl_8009E670
-
-lbl_8009E640:
-	lwz      r3, 4(r26)
-	addi     r0, r3, 1
-	stw      r0, 4(r26)
-	lbz      r3, 0(r3)
-	b        lbl_8009E688
-
-lbl_8009E654:
-	mr       r3, r26
-	bl       read16__10JASSeqCtrlFv
-	clrlwi   r3, r3, 0x10
-	b        lbl_8009E688
-
-lbl_8009E664:
-	mr       r3, r26
-	bl       read24__10JASSeqCtrlFv
-	b        lbl_8009E688
-
-lbl_8009E670:
-	lwz      r4, 4(r26)
-	mr       r3, r31
-	addi     r0, r4, 1
-	stw      r0, 4(r26)
-	lbz      r4, 0(r4)
-	bl       exchangeRegisterValue__8JASTrackFUc
-
-lbl_8009E688:
-	stw      r3, 0(r25)
-	rlwinm   r28, r28, 0x1e, 0x12, 0x1f
-	addi     r25, r25, 4
-	addi     r27, r27, 1
-
-lbl_8009E698:
-	cmpw     r27, r24
-	blt      lbl_8009E610
-	mulli    r5, r23, 0xc
-	lis      r4, sCmdPList__12JASSeqParser@ha
-	addi     r3, r1, 0x10
-	addi     r0, r4, sCmdPList__12JASSeqParser@l
-	add      r6, r0, r5
-	lwz      r5, -0x900(r6)
-	lwz      r4, -0x8fc(r6)
-	lwz      r0, -0x8f8(r6)
-	stw      r5, 0x10(r1)
-	stw      r4, 0x14(r1)
-	stw      r0, 0x18(r1)
-	bl       __ptmf_test
-	cmpwi    r3, 0
-	bne      lbl_8009E6E0
-	li       r3, 0
-	b        lbl_8009E6F8
-
-lbl_8009E6E0:
-	mr       r3, r29
-	mr       r4, r31
-	addi     r5, r1, 0x28
-	addi     r12, r1, 0x10
-	bl       __ptmf_scall
-	nop
-
-lbl_8009E6F8:
-	mr       r23, r3
-	b        lbl_8009E81C
-
-lbl_8009E700:
-	lis      r3, Arglist@ha
-	slwi     r4, r26, 2
-	addi     r0, r3, Arglist@l
-	addi     r25, r31, 0xc
-	add      r3, r0, r4
-	addi     r24, r1, 0x48
-	lwz      r0, -0x300(r3)
-	li       r28, 0
-	stw      r0, 0xc(r1)
-	lhz      r27, 0xe(r1)
-	lhz      r23, 0xc(r1)
-	b        lbl_8009E7B8
-
-lbl_8009E730:
-	clrlwi   r0, r27, 0x1e
-	li       r3, 0
-	cmpwi    r0, 2
-	beq      lbl_8009E784
-	bge      lbl_8009E754
-	cmpwi    r0, 0
-	beq      lbl_8009E760
-	bge      lbl_8009E774
-	b        lbl_8009E7A8
-
-lbl_8009E754:
-	cmpwi    r0, 4
-	bge      lbl_8009E7A8
-	b        lbl_8009E790
-
-lbl_8009E760:
-	lwz      r3, 4(r25)
-	addi     r0, r3, 1
-	stw      r0, 4(r25)
-	lbz      r3, 0(r3)
-	b        lbl_8009E7A8
-
-lbl_8009E774:
-	mr       r3, r25
-	bl       read16__10JASSeqCtrlFv
-	clrlwi   r3, r3, 0x10
-	b        lbl_8009E7A8
-
-lbl_8009E784:
-	mr       r3, r25
-	bl       read24__10JASSeqCtrlFv
-	b        lbl_8009E7A8
-
-lbl_8009E790:
-	lwz      r4, 4(r25)
-	mr       r3, r31
-	addi     r0, r4, 1
-	stw      r0, 4(r25)
-	lbz      r4, 0(r4)
-	bl       exchangeRegisterValue__8JASTrackFUc
-
-lbl_8009E7A8:
-	stw      r3, 0(r24)
-	rlwinm   r27, r27, 0x1e, 0x12, 0x1f
-	addi     r24, r24, 4
-	addi     r28, r28, 1
-
-lbl_8009E7B8:
-	cmpw     r28, r23
-	blt      lbl_8009E730
-	mulli    r5, r26, 0xc
-	lis      r4, sCmdPList__12JASSeqParser@ha
-	addi     r3, r1, 0x1c
-	addi     r0, r4, sCmdPList__12JASSeqParser@l
-	add      r6, r0, r5
-	lwz      r5, -0x900(r6)
-	lwz      r4, -0x8fc(r6)
-	lwz      r0, -0x8f8(r6)
-	stw      r5, 0x1c(r1)
-	stw      r4, 0x20(r1)
-	stw      r0, 0x24(r1)
-	bl       __ptmf_test
-	cmpwi    r3, 0
-	bne      lbl_8009E800
-	li       r3, 0
-	b        lbl_8009E818
-
-lbl_8009E800:
-	mr       r3, r29
-	mr       r4, r31
-	addi     r5, r1, 0x48
-	addi     r12, r1, 0x1c
-	bl       __ptmf_scall
-	nop
-
-lbl_8009E818:
-	mr       r23, r3
-
-lbl_8009E81C:
-	cmplwi   r23, 0
-	beq      lbl_8009E198
-	cmplwi   r23, 1
-	beq      lbl_8009E83C
-	cmplwi   r23, 3
-	bne      lbl_8009E198
-	li       r3, -1
-	b        lbl_8009E840
-
-lbl_8009E83C:
-	li       r3, 0
-
-lbl_8009E840:
-	lmw      r23, 0x7c(r1)
-	lwz      r0, 0xa4(r1)
-	mtlr     r0
-	addi     r1, r1, 0xa0
-	blr
-	*/
 }
