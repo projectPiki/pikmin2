@@ -87,6 +87,39 @@ struct TControl : public stb::TControl {
 
 	f64 getSecondsPerFrame() const { return mSecondsPerFrame; }
 
+	bool transformOnSet_isEnabled() const { return mTransformOnSet; }
+	void transformOnSet_enable(bool param_0) { mTransformOnSet = param_0; }
+	bool transformOnGet_isEnabled() const { return mTransformOnGet; }
+	void transformOnGet_enable(bool param_0) { mTransformOnGet = param_0; }
+
+	f32 transformOnSet_getRotationY() const { return mTransformOnSet_RotY; }
+	CMtxP transformOnSet_getMatrix() const { return mTransformOnSet_Mtx; }
+	CMtxP transformOnGet_getMatrix() const { return mTransformOnGet_Mtx; }
+
+	const TTransform_position_direction* transformOnGet_transform_ifEnabled(const TTransform_position_direction& posDir,
+	                                                                        TTransform_position_direction* transformedPosDir) const
+	{
+		if (!transformOnGet_isEnabled()) {
+			return &posDir;
+		} else {
+			transformOnGet_transform(posDir, transformedPosDir);
+			return transformedPosDir;
+		}
+	}
+	void transformOnGet_transform(const TTransform_position_direction& posDir, TTransform_position_direction* transformedPosDir) const
+	{
+		transformOnGet_transformTranslation(posDir.mPosition, &transformedPosDir->mPosition);
+		transformOnGet_transformDirection(posDir.mDirection, &transformedPosDir->mDirection);
+	}
+	void transformOnGet_transformTranslation(const Vec& pos, Vec* transformedPos) const
+	{
+		PSMTXMultVec(transformOnGet_getMatrix(), &pos, transformedPos);
+	}
+	void transformOnGet_transformDirection(const Vec& dir, Vec* transformedDir) const
+	{
+		PSMTXMultVecSR(transformOnGet_getMatrix(), &dir, transformedDir);
+	}
+
 	// _00     = VTBL
 	// _00-_58 = stb::TControl
 	f64 mSecondsPerFrame;       // _58

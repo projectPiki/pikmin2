@@ -278,7 +278,7 @@ config.libs = [
         "mw_version": "GC/2.6",
         "host": True,
         "objects": [
-            Object(NonMatching, "JSystem/JStudio_JStage/object-light.cpp"),
+            Object(Matching, "JSystem/JStudio_JStage/object-light.cpp"),
             Object(Matching, "JSystem/JStudio_JStage/object.cpp"),
             Object(Matching, "JSystem/JStudio_JStage/object-actor.cpp"),
             Object(Matching, "JSystem/JStudio_JStage/object-ambientlight.cpp"),
