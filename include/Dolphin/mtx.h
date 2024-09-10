@@ -18,6 +18,7 @@ typedef f32 Mtx33[3][3];
 typedef f32 Mtx44[4][4];
 typedef f32 (*MtxP)[4];
 typedef f32 (*Mtx3P)[3];
+typedef const f32 (*CMtxP)[4]; // Change name later?
 typedef f32 PSQuaternion[4];
 
 typedef struct Quaternion {
