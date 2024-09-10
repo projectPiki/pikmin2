@@ -19,7 +19,7 @@ JAUDIO_JAS_FILES:=\
 	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JASPlayer_impl.o\
 	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JASRegisterParam.o\
 	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JASSeqCtrl.o\
-	$(BUILD_DIR)/asm/JSystem/JAudio/JAS/JASSeqParser.o\
+	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JASSeqParser.o\
 	$(BUILD_DIR)/asm/JSystem/JAudio/JAS/JASTrack.o\
 	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JASTrackInterrupt.o\
 	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JASOscillator.o\
