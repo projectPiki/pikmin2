@@ -41,7 +41,7 @@ void PSPauseOff();
 void PSPauseOn(u8, u8);
 void PSPlayCaveHoleSound(::PSM::Creature*);
 void PSSetCurCameraNo(u8);
-void PSSetLastBeedamaDirection(bool, bool);
+void PSSetLastBeedamaDirection(bool isOlimar, bool isOn);
 void PSStart2DStream(u32);
 void PSStartChallengeTimeUpStream();
 JAISound* PSStartEnemyDownSmokeSE(Game::EnemyBase*, f32);

@@ -1063,11 +1063,11 @@ f32 Item::getWorkDistance(Sys::Sphere& sphere)
 bool Item::interactAttack(InteractAttack& attack)
 {
 	switch (mSoundEvent.event()) {
-	case 1:
+	case TSE_Active:
 		P2ASSERTLINE(825, mSoundObj->getCastType() == PSM::CCT_WorkItem);
 		static_cast<PSM::WorkItem*>(mSoundObj)->eventStart();
 		break;
-	case 3:
+	case TSE_Apply:
 		P2ASSERTLINE(832, mSoundObj->getCastType() == PSM::CCT_WorkItem);
 		static_cast<PSM::WorkItem*>(mSoundObj)->eventRestart();
 		break;
@@ -1251,15 +1251,15 @@ void Mgr::onLoadResources()
 
 	mObjectPathComponent = "user/Kando/bridge/s_bridge";
 	loadArchive("arc.szs");
-	loadBmd("s_bridge.bmd", BRIDGETYPE_Short, 0x20000);
+	loadBmd("s_bridge.bmd", BRIDGETYPE_Short, J3DMODEL_CreateNewDL);
 
 	mObjectPathComponent = "user/Kando/bridge/slope_u";
 	loadArchive("arc.szs");
-	loadBmd("slope_u.bmd", BRIDGETYPE_Sloped, 0x20000);
+	loadBmd("slope_u.bmd", BRIDGETYPE_Sloped, J3DMODEL_CreateNewDL);
 
 	mObjectPathComponent = "user/Kando/bridge/l_bridge";
 	loadArchive("arc.szs");
-	loadBmd("l_bridge.bmd", BRIDGETYPE_Long, 0x20000);
+	loadBmd("l_bridge.bmd", BRIDGETYPE_Long, J3DMODEL_CreateNewDL);
 
 	for (int i = 0; i < BRIDGETYPE_COUNT; i++) {
 		mModelData[i]->newSharedDisplayList(0x40000);

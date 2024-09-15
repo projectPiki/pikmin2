@@ -107,7 +107,7 @@ void Game2DMgr::setToumeiBG() { mScreenMgr->mBackupScene->setColorBG(0, 0, 0, 0)
  */
 bool Game2DMgr::open_GameGround(og::Screen::DispMemberGround& disp)
 {
-	if (Game::playData->mStoryFlags & Game::STORY_DebtPaid) {
+	if (Game::playData->isStoryFlag(Game::STORY_DebtPaid)) {
 		disp.mPayDebt = true;
 	}
 	disp.mDataGame.mPokoCount = Game::playData->mPokoCount;
@@ -138,7 +138,7 @@ bool Game2DMgr::is_GameGround()
  */
 bool Game2DMgr::open_GameCave(og::Screen::DispMemberCave& disp, int type)
 {
-	if (Game::playData->mStoryFlags & Game::STORY_DebtPaid) {
+	if (Game::playData->isStoryFlag(Game::STORY_DebtPaid)) {
 		disp.mPayDebt = true;
 	}
 	disp.mDataGame.mPokoCount = Game::playData->mCavePokoCount;

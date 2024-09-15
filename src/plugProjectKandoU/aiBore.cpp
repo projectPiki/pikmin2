@@ -138,7 +138,7 @@ void ActRest::init(ActionArg* arg)
 {
 	mState = REST_Start;
 	sitDown();
-	mTimer = randFloat() * 4.0f + 5.0f; // 4-9s
+	mTimer = randFloat() * 4.0f + 5.0f; // 5-9s
 	mFlag.clear();
 	mParent->mAnimSpeed = 30.0f;
 }

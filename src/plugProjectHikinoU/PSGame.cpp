@@ -596,7 +596,7 @@ void PikScene::getJumpMainBgm()
  */
 PSSystem::Scene* PikSceneMgr::newAndSetGlobalScene()
 {
-	JUT_ASSERTLINE(1002, !mScenes, "2�d�ɃO���[�o���V�[�����쐬���悤�Ƃ���"); // 'I tried to create a global scene twice'
+	JUT_ASSERTLINE(1002, !mScenes, "2重にグローバルシーンを作成しようとした"); // 'I tried to create a global scene twice'
 	SceneInfo info;
 	info.mSceneType = SceneInfo::SCENE_NULL;
 	info.mCameras   = 0;
@@ -637,11 +637,11 @@ PSSystem::Scene* PikSceneMgr::newAndSetCurrentScene(SceneInfo& info)
 {
 	u8 sceneType = info.getSceneType();
 	P2ASSERTLINE(1093, sceneType != SceneInfo::SCENE_NULL);
-	JUT_ASSERTLINE(1094, sceneType < SceneInfo::SCENE_COUNT, "scene no���s��"); // 'scene no is invalid'
+	JUT_ASSERTLINE(1094, sceneType < SceneInfo::SCENE_COUNT, "scene noが不正"); // 'scene no is invalid'
 
 	checkScene();
 
-	JUT_ASSERTLINE(1095, !mScenes->mChild, "�O���mCurrentScene�̌㏈�����s��"); // 'previous mCurrentScene post-processing is invalid
+	JUT_ASSERTLINE(1095, !mScenes->mChild, "前回のmCurrentSceneの後処理が不正"); // 'previous mCurrentScene post-processing is invalid
 
 	info.setStageCamera();
 
@@ -2073,7 +2073,7 @@ u16 seqCpuSync(JASTrack* track, u16 command)
 		P2ASSERTLINE(1887, Rappa::getRappa(1));
 		return Rappa::getRappa(1)->syncCpu_WaitChk(track);
 	case 0x5000:
-		return Game::playData->mStoryFlags & Game::STORY_DebtPaid;
+		return Game::playData->isStoryFlag(Game::STORY_DebtPaid);
 	case 0:
 		u16 ret = 0;
 		u8 com  = command;

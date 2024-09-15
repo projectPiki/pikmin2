@@ -257,7 +257,7 @@ void BaseGameSection::init()
 	mXfbBoundsX = 0;
 	onInit();
 	sys->heapStatusEnd("baseGameSection::init");
-	mTreasureGetState = false;
+	mTreasureGetState = 0;
 }
 
 /**
@@ -512,7 +512,7 @@ void BaseGameSection::initJ3D()
 		Sys::DrawBuffer::CreateArg drawArg;
 		drawArg.mSortType = J3DDrawBuffer::J3DSORT_Mat;
 		drawArg.mDrawType = J3DDrawBuffer::J3DDRAW_Head;
-		drawArg.mFlags.typeView |= 1;
+		drawArg.mFlags.set(Sys::DrawBuffer::DRAWBUFF_Unk1);
 		j3dStuff(mTransparentDrawBuffer, drawArg, false);
 	}
 
@@ -817,28 +817,28 @@ void BaseGameSection::initGenerators()
 	CI_LOOP(iNavi) { naviCount++; }
 	switch (naviCount) {
 	case 0: {
-		bool olimarAlive    = false;
-		Vector3f vec_0x1c30 = Vector3f(0.0f);
+		bool olimarAlive  = false;
+		Vector3f velocity = Vector3f(0.0f);
 
 		f32 mapRotation = mapMgr->getMapRotation();
-		Vector3f vec_0x1c24(-40.0f, 0.0f, 2.0f);
+		Vector3f position(-40.0f, 0.0f, 2.0f);
 		if (gameSystem->isVersusMode()) {
 			Onyon* redOnyon = ItemOnyon::mgr->getOnyon(Red);
 			P2ASSERTLINE(2739, redOnyon);
-			vec_0x1c24 = redOnyon->getPosition();
+			position = redOnyon->getPosition();
 		} else {
 			if (!mapMgr->getDemoMatrix()) {
-				mapMgr->getStartPosition(vec_0x1c24, 0);
-				vec_0x1c24.y = mapMgr->getMinY(vec_0x1c24) + 8.5f;
-				vec_0x1c24.x += -4.526f;
-				vec_0x1c24.z += 7.453f;
+				mapMgr->getStartPosition(position, 0);
+				position.y = mapMgr->getMinY(position) + 8.5f;
+				position.x += -4.526f;
+				position.z += 7.453f;
 			} else {
 				Matrixf* demoMtx = mapMgr->getDemoMatrix();
 				Vector3f vec_0x1c78;
-				PSMTXMultVec((PSQuaternion*)demoMtx, (Vec*)&vec_0x1c24, (Vec*)&vec_0x1c78);
-				vec_0x1c24   = vec_0x1c78;
-				vec_0x1c24.y = mapMgr->getMinY(vec_0x1c24);
-				vec_0x1c30   = Vector3f(0.0f);
+				PSMTXMultVec((PSQuaternion*)demoMtx, (Vec*)&position, (Vec*)&vec_0x1c78);
+				position   = vec_0x1c78;
+				position.y = mapMgr->getMinY(position);
+				velocity.set(0.0f);
 			}
 		}
 		Navi* olimar = naviMgr->birth();
@@ -846,8 +846,8 @@ void BaseGameSection::initGenerators()
 		olimar->mFaceDir = roundAng(mapRotation);
 		olimar->setCamera(mOlimarCamera);
 		olimar->setController(mControllerP1);
-		olimar->setPosition(vec_0x1c24, false);
-		olimar->setVelocity(vec_0x1c30);
+		olimar->setPosition(position, false);
+		olimar->setVelocity(velocity);
 
 		if (playData->mDeadNaviID & 1) {
 
@@ -858,24 +858,24 @@ void BaseGameSection::initGenerators()
 		}
 
 		mapRotation = mapMgr->getMapRotation();
-		vec_0x1c24  = Vector3f(-60.0f, 0.0f, -10.0f);
+		position    = Vector3f(-60.0f, 0.0f, -10.0f);
 		if (gameSystem->isVersusMode()) {
 			Onyon* blueOnyon = ItemOnyon::mgr->getOnyon(Blue);
 			P2ASSERTLINE(2791, blueOnyon);
-			vec_0x1c24 = blueOnyon->getPosition();
+			position = blueOnyon->getPosition();
 		} else {
 			if (!mapMgr->getDemoMatrix()) {
-				mapMgr->getStartPosition(vec_0x1c24, 0);
-				vec_0x1c24.y = mapMgr->getMinY(vec_0x1c24) + 8.5f;
-				vec_0x1c24.x += 18.082f;
-				vec_0x1c24.z += -11.428f;
+				mapMgr->getStartPosition(position, 0);
+				position.y = mapMgr->getMinY(position) + 8.5f;
+				position.x += 18.082f;
+				position.z += -11.428f;
 			} else {
 				Matrixf* demoMtx = mapMgr->getDemoMatrix();
 				Vector3f vec_0x1c78;
-				PSMTXMultVec((PSQuaternion*)demoMtx, (Vec*)&vec_0x1c24, (Vec*)&vec_0x1c78);
-				vec_0x1c24   = vec_0x1c78;
-				vec_0x1c24.y = mapMgr->getMinY(vec_0x1c24);
-				vec_0x1c30   = Vector3f(0.0f);
+				PSMTXMultVec((PSQuaternion*)demoMtx, (Vec*)&position, (Vec*)&vec_0x1c78);
+				position   = vec_0x1c78;
+				position.y = mapMgr->getMinY(position);
+				velocity   = Vector3f(0.0f);
 			}
 		}
 		Navi* louie = naviMgr->birth();
@@ -885,8 +885,8 @@ void BaseGameSection::initGenerators()
 
 		louie->setController(mControllerP2);
 		louie->mFaceDir = roundAng(mapRotation);
-		louie->setPosition(vec_0x1c24, false);
-		louie->setVelocity(vec_0x1c30);
+		louie->setPosition(position, false);
+		louie->setVelocity(velocity);
 		if (!(playData->mDeadNaviID >> 1 & 1)) {
 			louie->mHealth = playData->mNaviLifeMax[1];
 		}

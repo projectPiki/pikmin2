@@ -110,7 +110,7 @@ void SelectState::initNext(SingleGameSection* section)
 	section->mWipeInFader->start(1.0f);
 
 	section->refreshHIO();
-	mController->setButtonRepeat(0x3000000, 0x1E, 1);
+	mController->setButtonRepeat((Controller::ANALOG_LEFT | Controller::ANALOG_RIGHT), 30, 1);
 	sys->dvdLoadUseCallBack(&section->mDvdThread, mDvdLoadCallback);
 }
 

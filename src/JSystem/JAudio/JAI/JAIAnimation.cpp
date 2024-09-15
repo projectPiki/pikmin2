@@ -979,7 +979,7 @@ void JAIAnimeSound::startAnimSound(u32 id, JAISound** handlePtr, JAInter::Actor*
 {
 	JAIBasic::msBasic->startSoundActorT(id, handlePtr, actor, 0, p4);
 	if (*handlePtr) {
-		(*handlePtr)->_1A = 1;
+		(*handlePtr)->mIsPlayingWithActor = true;
 	}
 }
 

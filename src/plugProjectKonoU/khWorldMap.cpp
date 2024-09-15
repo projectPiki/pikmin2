@@ -412,7 +412,7 @@ void WorldMap::loadResource()
 	const char** usePath;
 
 	usePath = paths[0]; // normal ship
-	if (Game::playData->mStoryFlags & Game::STORY_DebtPaid) {
+	if (Game::playData->isStoryFlag(Game::STORY_DebtPaid)) {
 		usePath = paths[1]; // gold ship
 	}
 
@@ -490,7 +490,7 @@ void WorldMap::loadResource()
 	og::Screen::setCallBack_CounterDay(mScreenInfo, 'Pday_r', 'Pday_l', 'Pday_c', &mInitArg.mCurrentDay, 3, arc);
 
 	int money = ::Game::playData->mPokoCount;
-	if (::Game::playData->mStoryFlags & ::Game::STORY_DebtPaid) {
+	if (Game::playData->isStoryFlag(Game::STORY_DebtPaid)) {
 		// debt is paid
 		mScreenInfo->search('Nfinal_f')->hide(); // hide the debt amount
 		mScreenInfo->search('Ncomp_f')->show();  // show complete amount across screen
@@ -626,24 +626,24 @@ void WorldMap::loadResource()
  */
 void WorldMap::update(Game::WorldMap::UpdateArg& arg)
 {
-	arg.mCourseInfo           = mInitArg.mStages->getCourseInfo(mCurrentCourseIndex);
-	mKitaAnim1->mCurrentFrame = mAnimTimers[0];
-	mKitaAnim3->mCurrentFrame = mAnimTimers[2];
-	mKitaAnim4->mCurrentFrame = mAnimTimers[3];
-	mKitaAnim5->mCurrentFrame = mAnimTimers[4];
+	arg.mCourseInfo = mInitArg.mStages->getCourseInfo(mCurrentCourseIndex);
+	mKitaAnim1->setFrame(mAnimTimers[0]);
+	mKitaAnim3->setFrame(mAnimTimers[2]);
+	mKitaAnim4->setFrame(mAnimTimers[3]);
+	mKitaAnim5->setFrame(mAnimTimers[4]);
 
-	mRocketAnim1->mCurrentFrame = mAnimTimers[5];
-	mRocketAnim2->mCurrentFrame = mAnimTimers[6];
+	mRocketAnim1->setFrame(mAnimTimers[5]);
+	mRocketAnim2->setFrame(mAnimTimers[6]);
 
-	mInfoAnim1->mCurrentFrame = mAnimTimers[7];
-	mInfoAnim2->mCurrentFrame = mAnimTimers[8];
-	mInfoAnim3->mCurrentFrame = mAnimTimers[9];
+	mInfoAnim1->setFrame(mAnimTimers[7]);
+	mInfoAnim2->setFrame(mAnimTimers[8]);
+	mInfoAnim3->setFrame(mAnimTimers[9]);
 
 	mScreenKitagawa->animation();
 	mScreenRocket->animation();
 	mScreenInfo->animation();
 
-	mKitaAnim2->mCurrentFrame = mAnimTimers[1];
+	mKitaAnim2->setFrame(mAnimTimers[1]);
 
 	for (int i = 0; i < 4; i++) {
 		mScreenKitagawa->search(getSerialTagName('Pland0', i))->animationTransform();
@@ -651,47 +651,47 @@ void WorldMap::update(Game::WorldMap::UpdateArg& arg)
 	}
 
 	mAnimTimers[2] += 1.0f;
-	if (mAnimTimers[2] >= mKitaAnim3->mTotalFrameCount) {
+	if (mAnimTimers[2] >= mKitaAnim3->getFrameMax()) {
 		mAnimTimers[2] = 0.0f;
 	}
 
 	mAnimTimers[3] += 1.0f;
-	if (mAnimTimers[3] >= mKitaAnim4->mTotalFrameCount) {
+	if (mAnimTimers[3] >= mKitaAnim4->getFrameMax()) {
 		mAnimTimers[3] = 0.0f;
 	}
 
 	mAnimTimers[4] += 1.0f;
-	if (mAnimTimers[4] >= mKitaAnim5->mTotalFrameCount) {
+	if (mAnimTimers[4] >= mKitaAnim5->getFrameMax()) {
 		mAnimTimers[4] = 0.0f;
 	}
 
 	mAnimTimers[5] += 1.0f;
-	if (mAnimTimers[5] >= mRocketAnim1->mTotalFrameCount) {
+	if (mAnimTimers[5] >= mRocketAnim1->getFrameMax()) {
 		mAnimTimers[5] = 0.0f;
 	}
 
 	mAnimTimers[6] += 1.0f;
-	if (mAnimTimers[6] >= mRocketAnim2->mTotalFrameCount) {
+	if (mAnimTimers[6] >= mRocketAnim2->getFrameMax()) {
 		mAnimTimers[6] = 0.0f;
 	}
 
 	mAnimTimers[7] += 0.5f;
-	if (mAnimTimers[7] >= mInfoAnim1->mTotalFrameCount) {
+	if (mAnimTimers[7] >= mInfoAnim1->getFrameMax()) {
 		mAnimTimers[7] = 0.0f;
 	}
 
 	mAnimTimers[8] += 0.5f;
-	if (mAnimTimers[8] >= mInfoAnim2->mTotalFrameCount) {
+	if (mAnimTimers[8] >= mInfoAnim2->getFrameMax()) {
 		mAnimTimers[8] = 0.0f;
 	}
 
 	mAnimTimers[9] += 0.5f;
-	if (mAnimTimers[9] >= mInfoAnim3->mTotalFrameCount) {
+	if (mAnimTimers[9] >= mInfoAnim3->getFrameMax()) {
 		mAnimTimers[9] = 0.0f;
 	}
 
 	mAnimTimers[1] += 1.0f;
-	if (mAnimTimers[1] >= mKitaAnim2->mTotalFrameCount) {
+	if (mAnimTimers[1] >= mKitaAnim2->getFrameMax()) {
 		mAnimTimers[1] = 0.0f;
 	}
 
@@ -4216,7 +4216,7 @@ void WorldMap::changeInfo()
 		mScreenInfo->search('Ngr_fl0')->hide();
 	}
 
-	if (Game::playData->mStoryFlags & Game::STORY_DebtPaid || mGroundTreasureMax == mGroundTreasureCount) {
+	if (Game::playData->isStoryFlag(Game::STORY_DebtPaid) || mGroundTreasureMax == mGroundTreasureCount) {
 		mGroundTreasureCounterMax->getMotherPane()->show();
 		mScreenInfo->search('Pg_sra')->show();
 		mGroundTreasureCounterCollected->getMotherPane()->move(0.0f, 0.0f);
@@ -4248,7 +4248,7 @@ void WorldMap::changeInfo()
 			mCaveOtaNum[i] = Game::playData->getOtakaraNum_Course_CaveID(mCurrentCourseIndex, caveID);
 			mCaveOtaMax[i] = Game::playData->getOtakaraMax_Course_CaveID(mCurrentCourseIndex, caveID);
 			if (Game::playData->isCaveFirstTime(mCurrentCourseIndex, caveID)) {
-				if (Game::playData->mStoryFlags & Game::STORY_DebtPaid) {
+				if (Game::playData->isStoryFlag(Game::STORY_DebtPaid)) {
 					mCaveTreasureCounterCollected[i]->setBlind(true);
 					mCaveTreasureCounterMax[i]->setBlind(true);
 				} else {
@@ -4264,7 +4264,7 @@ void WorldMap::changeInfo()
 				mScreenInfo->search(getSerialTagName('Pcave_00', i))->setMsgID('8419_01'); // "???"
 				mScreenInfo->search(floTags[i])->hide();
 			} else {
-				if (!(Game::playData->mStoryFlags & Game::STORY_DebtPaid) && mCaveOtaMax[i] != mCaveOtaNum[i]) {
+				if (!Game::playData->isStoryFlag(Game::STORY_DebtPaid) && mCaveOtaMax[i] != mCaveOtaNum[i]) {
 					f32 x = msVal._68;
 					if (mCaveOtaMax[i] >= 10) {
 						x += 12.5f;
@@ -5048,11 +5048,10 @@ void WorldMap::effectFirstTime()
 			    != Game::playData->isCaveFirstTime_Old(mCurrentCourseIndex, caveID)) {
 				JGeometry::TVec3f pos1 = mScreenInfo->search(getSerialTagName('Pcave_00', i))->getGlbVtx(GLBVTX_BtmLeft);
 				JGeometry::TVec3f pos2 = mScreenInfo->search(getSerialTagName('Pcave_00', i))->getGlbVtx(GLBVTX_TopRight);
-				f32 x                  = (pos1.y + pos2.y) / 2;
+				f32 y                  = (pos1.y + pos2.y) * 0.5f;
 				for (int j = 0; j < 5; j++) {
-					int k = 4 - j;
-					Vector2f pos(x, ((pos1.z * k) + (pos2.z * j)) / 4);
-					efx2d::Arg arg(pos);
+					f32 x = (pos1.x * (4 - j) + pos2.x * j) * 0.25f;
+					efx2d::Arg arg(Vector2f(x, y));
 					efx2d::T2DChangesmoke efx;
 					efx.create(&arg);
 				}
@@ -5090,378 +5089,6 @@ void WorldMap::effectFirstTime()
 		PSSystem::spSysIF->playSystemSe(soundID, 0);
 	}
 	resetFlag(WMAPFLAG_IsFirstTimeEffect);
-	/*
-stwu     r1, -0x1b0(r1)
-mflr     r0
-stw      r0, 0x1b4(r1)
-stfd     f31, 0x1a0(r1)
-psq_st   f31, 424(r1), 0, qr0
-stfd     f30, 0x190(r1)
-psq_st   f30, 408(r1), 0, qr0
-stfd     f29, 0x180(r1)
-psq_st   f29, 392(r1), 0, qr0
-stfd     f28, 0x170(r1)
-psq_st   f28, 376(r1), 0, qr0
-stfd     f27, 0x160(r1)
-psq_st   f27, 360(r1), 0, qr0
-stmw     r15, 0x11c(r1)
-mr       r29, r3
-lis      r3, lbl_80497C70@ha
-lwz      r0, 0x17c(r29)
-addi     r7, r3, lbl_80497C70@l
-rlwinm.  r0, r0, 0, 0x1d, 0x1d
-beq      lbl_803F79C8
-lfd      f29, 0x588(r7)
-addi     r6, r1, 0xe0
-lfd      f28, 0x590(r7)
-addi     r5, r1, 0xc0
-lfd      f13, 0x598(r7)
-addi     r4, r1, 0xa0
-lfd      f12, 0x5a0(r7)
-addi     r0, r1, 0x80
-lfd      f11, 0x5a8(r7)
-li       r22, 0
-lfd      f10, 0x5b0(r7)
-li       r31, 0
-lfd      f9, 0x5b8(r7)
-li       r30, 0
-lfd      f8, 0x5c0(r7)
-li       r17, 0
-lfd      f7, 0x5c8(r7)
-lfd      f6, 0x5d0(r7)
-lfd      f5, 0x5d8(r7)
-lfd      f4, 0x5e0(r7)
-lfd      f3, 0x5e8(r7)
-lfd      f2, 0x5f0(r7)
-lfd      f1, 0x5f8(r7)
-lfd      f0, 0x600(r7)
-lwz      r3, 0x608(r7)
-lwz      r9, 0x60c(r7)
-lwz      r8, 0x610(r7)
-stw      r3, 0x70(r1)
-lwz      r7, 0x614(r7)
-stw      r9, 0x74(r1)
-lwz      r3, playData__4Game@sda21(r13)
-stw      r8, 0x78(r1)
-stw      r7, 0x7c(r1)
-stfd     f29, 0xe0(r1)
-stfd     f28, 0xe8(r1)
-stfd     f13, 0xf0(r1)
-stfd     f12, 0xf8(r1)
-stfd     f11, 0xc0(r1)
-stfd     f10, 0xc8(r1)
-stfd     f9, 0xd0(r1)
-stfd     f8, 0xd8(r1)
-stfd     f7, 0xa0(r1)
-stfd     f6, 0xa8(r1)
-stfd     f5, 0xb0(r1)
-stfd     f4, 0xb8(r1)
-stfd     f3, 0x80(r1)
-stfd     f2, 0x88(r1)
-stfd     f1, 0x90(r1)
-stfd     f0, 0x98(r1)
-stw      r6, 0x70(r1)
-lwz      r15, 0xe8(r3)
-stw      r5, 0x74(r1)
-stw      r4, 0x78(r1)
-stw      r0, 0x7c(r1)
-bl       getMoney_Old__Q24Game8PlayDataFv
-cmpw     r15, r3
-beq      lbl_803F75F8
-lwz      r3, 0x100(r29)
-lfs      f1, lbl_8051FEF0@sda21(r2)
-bl       startPuyoUp__Q32og6Screen18CallBack_CounterRVFf
-li       r22, 1
-
-lbl_803F75F8:
-lwz      r3, playData__4Game@sda21(r13)
-lwz      r4, 0xf8(r29)
-bl       getGroundOtakaraNum_Old__Q24Game8PlayDataFi
-mr       r15, r3
-lwz      r3, playData__4Game@sda21(r13)
-lwz      r4, 0xf8(r29)
-bl       getGroundOtakaraNum__Q24Game8PlayDataFi
-cmpw     r3, r15
-beq      lbl_803F7654
-lwz      r3, 0x104(r29)
-lfs      f1, lbl_8051FEF0@sda21(r2)
-bl       startPuyoUp__Q32og6Screen18CallBack_CounterRVFf
-lwz      r3, playData__4Game@sda21(r13)
-li       r31, 1
-lwz      r4, 0xf8(r29)
-bl       getGroundOtakaraMax__Q24Game8PlayDataFi
-mr       r15, r3
-lwz      r3, playData__4Game@sda21(r13)
-lwz      r4, 0xf8(r29)
-bl       getGroundOtakaraNum__Q24Game8PlayDataFi
-cmpw     r3, r15
-bne      lbl_803F7654
-li       r30, 1
-
-lbl_803F7654:
-lis      r4, 0x64617461@ha
-lis      r3, 0x006E6F5F@ha
-mr       r24, r29
-addi     r26, r1, 0x70
-addi     r27, r4, 0x64617461@l
-addi     r28, r3, 0x006E6F5F@l
-li       r23, 0
-li       r25, 0
-
-lbl_803F7674:
-lwz      r4, 0xf8(r29)
-slwi     r0, r4, 2
-lwzx     r0, r26, r0
-add      r3, r0, r25
-lwz      r0, 0(r3)
-lwz      r3, 4(r3)
-xor      r0, r0, r28
-xor      r3, r3, r27
-or.      r0, r3, r0
-beq      lbl_803F7908
-lwz      r3, 0x1c(r29)
-bl       getCourseInfo__Q24Game6StagesFi
-mr       r4, r23
-bl       getCaveID_FromIndex__Q24Game10CourseInfoFi
-mr       r4, r3
-addi     r3, r1, 0x64
-bl       __ct__4ID32FUl
-lwz      r3, playData__4Game@sda21(r13)
-addi     r5, r1, 0x64
-lwz      r4, 0xf8(r29)
-bl       isCaveFirstTime_Old__Q24Game8PlayDataFiR4ID32
-clrlwi   r15, r3, 0x18
-lwz      r3, playData__4Game@sda21(r13)
-lwz      r4, 0xf8(r29)
-addi     r5, r1, 0x64
-bl       isCaveFirstTime__Q24Game8PlayDataFiR4ID32
-clrlwi   r0, r3, 0x18
-cmplw    r0, r15
-beq      lbl_803F789C
-lis      r4, 0x655F3030@ha
-lis      r3, 0x50636176@ha
-mr       r5, r23
-addi     r4, r4, 0x655F3030@l
-addi     r3, r3, 0x50636176@l
-bl       getSerialTagName__Q22kh6ScreenFUxi
-mr       r5, r3
-lwz      r3, 0x54(r29)
-mr       r6, r4
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-mr       r4, r3
-addi     r3, r1, 0x24
-li       r5, 0
-bl       getGlbVtx__7J2DPaneCFUc
-lwz      r7, 0x24(r1)
-lis      r4, 0x655F3030@ha
-lwz      r6, 0x28(r1)
-lis      r3, 0x50636176@ha
-lwz      r0, 0x2c(r1)
-mr       r5, r23
-stw      r7, 0x58(r1)
-addi     r4, r4, 0x655F3030@l
-addi     r3, r3, 0x50636176@l
-stw      r6, 0x5c(r1)
-stw      r0, 0x60(r1)
-bl       getSerialTagName__Q22kh6ScreenFUxi
-mr       r5, r3
-lwz      r3, 0x54(r29)
-mr       r6, r4
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-mr       r4, r3
-addi     r3, r1, 0x18
-li       r5, 3
-bl       getGlbVtx__7J2DPaneCFUc
-lwz      r0, 0x1c(r1)
-lis      r7, __vt__Q25efx2d3Arg@ha
-lwz      r8, 0x18(r1)
-lis      r6, __vt__Q25efx2d7TBaseIF@ha
-stw      r0, 0x50(r1)
-lis      r5, __vt__Q25efx2d5TBase@ha
-lwz      r0, 0x20(r1)
-lis      r4, __vt__Q25efx2d8TSimple1@ha
-lfs      f1, 0x5c(r1)
-lis      r3, __vt__Q25efx2d14T2DChangesmoke@ha
-lfs      f0, 0x50(r1)
-addi     r18, r7, __vt__Q25efx2d3Arg@l
-stw      r8, 0x4c(r1)
-addi     r19, r6, __vt__Q25efx2d7TBaseIF@l
-fadds    f0, f1, f0
-lfs      f1, lbl_8051FF14@sda21(r2)
-stw      r0, 0x54(r1)
-addi     r20, r5, __vt__Q25efx2d5TBase@l
-lfs      f28, lbl_8051FF70@sda21(r2)
-addi     r21, r4, __vt__Q25efx2d8TSimple1@l
-fmuls    f27, f1, f0
-lfs      f29, 0x58(r1)
-lfd      f30, lbl_8051FF40@sda21(r2)
-addi     r15, r3, __vt__Q25efx2d14T2DChangesmoke@l
-lfs      f31, 0x4c(r1)
-li       r16, 0
-lis      r17, 0x4330
-
-lbl_803F77F4:
-xoris    r0, r16, 0x8000
-li       r5, 0
-stw      r0, 0x10c(r1)
-subfic   r0, r16, 4
-xoris    r6, r0, 0x8000
-li       r0, 7
-stw      r17, 0x108(r1)
-addi     r3, r1, 0x30
-addi     r4, r1, 0x40
-lfd      f0, 0x108(r1)
-stw      r6, 0x104(r1)
-fsubs    f0, f0, f30
-stw      r17, 0x100(r1)
-lfd      f1, 0x100(r1)
-fmuls    f0, f31, f0
-stfs     f27, 0xc(r1)
-fsubs    f1, f1, f30
-stw      r19, 0x30(r1)
-lwz      r6, 0xc(r1)
-fmadds   f0, f29, f1, f0
-stw      r20, 0x30(r1)
-stw      r6, 0x14(r1)
-fmuls    f1, f28, f0
-stw      r21, 0x30(r1)
-lfs      f0, 0x14(r1)
-stfs     f1, 8(r1)
-lwz      r6, 8(r1)
-stw      r18, 0x48(r1)
-stw      r6, 0x10(r1)
-lfs      f1, 0x10(r1)
-stfs     f0, 0x44(r1)
-stfs     f1, 0x40(r1)
-stb      r5, 0x34(r1)
-stb      r5, 0x35(r1)
-sth      r0, 0x38(r1)
-stw      r5, 0x3c(r1)
-stw      r15, 0x30(r1)
-bl       create__Q25efx2d8TSimple1FPQ25efx2d3Arg
-addi     r16, r16, 1
-cmpwi    r16, 5
-blt      lbl_803F77F4
-li       r17, 1
-
-lbl_803F789C:
-lwz      r3, playData__4Game@sda21(r13)
-addi     r5, r1, 0x64
-lwz      r4, 0xf8(r29)
-bl       getOtakaraNum_Course_CaveID_Old__Q24Game8PlayDataFiR4ID32
-mr       r16, r3
-lwz      r3, playData__4Game@sda21(r13)
-lwz      r4, 0xf8(r29)
-addi     r5, r1, 0x64
-bl       getOtakaraNum_Course_CaveID__Q24Game8PlayDataFiR4ID32
-cmpw     r3, r16
-beq      lbl_803F7908
-lwz      r3, 0x10c(r24)
-lfs      f1, lbl_8051FEF0@sda21(r2)
-bl       startPuyoUp__Q32og6Screen18CallBack_CounterRVFf
-lwz      r3, playData__4Game@sda21(r13)
-addi     r5, r1, 0x64
-lwz      r4, 0xf8(r29)
-li       r31, 1
-bl       getOtakaraMax_Course_CaveID__Q24Game8PlayDataFiR4ID32
-mr       r16, r3
-lwz      r3, playData__4Game@sda21(r13)
-lwz      r4, 0xf8(r29)
-addi     r5, r1, 0x64
-bl       getOtakaraNum_Course_CaveID__Q24Game8PlayDataFiR4ID32
-cmpw     r3, r16
-bne      lbl_803F7908
-li       r30, 1
-
-lbl_803F7908:
-addi     r23, r23, 1
-addi     r24, r24, 4
-cmpwi    r23, 4
-addi     r25, r25, 8
-blt      lbl_803F7674
-clrlwi.  r0, r17, 0x18
-li       r4, -1
-beq      lbl_803F7938
-clrlwi.  r0, r30, 0x18
-beq      lbl_803F7938
-li       r4, 0x1843
-b        lbl_803F79A4
-
-lbl_803F7938:
-clrlwi.  r0, r17, 0x18
-beq      lbl_803F7950
-clrlwi.  r0, r31, 0x18
-beq      lbl_803F7950
-li       r4, 0x1842
-b        lbl_803F79A4
-
-lbl_803F7950:
-clrlwi.  r0, r17, 0x18
-beq      lbl_803F7968
-clrlwi.  r0, r22, 0x18
-beq      lbl_803F7968
-li       r4, 0x1841
-b        lbl_803F79A4
-
-lbl_803F7968:
-clrlwi.  r0, r17, 0x18
-beq      lbl_803F7978
-li       r4, 0x1840
-b        lbl_803F79A4
-
-lbl_803F7978:
-clrlwi.  r0, r30, 0x18
-beq      lbl_803F7988
-li       r4, 0x183f
-b        lbl_803F79A4
-
-lbl_803F7988:
-clrlwi.  r0, r31, 0x18
-beq      lbl_803F7998
-li       r4, 0x183e
-b        lbl_803F79A4
-
-lbl_803F7998:
-clrlwi.  r0, r22, 0x18
-beq      lbl_803F79A4
-li       r4, 0x183d
-
-lbl_803F79A4:
-addis    r0, r4, 1
-cmplwi   r0, 0xffff
-beq      lbl_803F79BC
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-
-lbl_803F79BC:
-lwz      r0, 0x17c(r29)
-rlwinm   r0, r0, 0, 0x1e, 0x1c
-stw      r0, 0x17c(r29)
-
-lbl_803F79C8:
-psq_l    f31, 424(r1), 0, qr0
-lfd      f31, 0x1a0(r1)
-psq_l    f30, 408(r1), 0, qr0
-lfd      f30, 0x190(r1)
-psq_l    f29, 392(r1), 0, qr0
-lfd      f29, 0x180(r1)
-psq_l    f28, 376(r1), 0, qr0
-lfd      f28, 0x170(r1)
-psq_l    f27, 360(r1), 0, qr0
-lfd      f27, 0x160(r1)
-lmw      r15, 0x11c(r1)
-lwz      r0, 0x1b4(r1)
-mtlr     r0
-addi     r1, r1, 0x1b0
-blr
-	*/
 }
 
 /**
@@ -5530,9 +5157,9 @@ Vector2f WorldMap::OnyonDynamics::move(WorldMap* wmap, const JGeometry::TVec2f& 
 		}
 		mAngle.set(pikmin2_sinf(calc2), -pikmin2_cosf(calc2));
 		if (prevAngle < -0x4000 && mRotateAngle > -0x4000) {
-			mOnyonPane->getParentPane()->prependChild(mOnyonPane);
-		} else if (prevAngle < 0x4000 && mRotateAngle > 0x4000) {
 			mOnyonPane->getParentPane()->appendChild(mOnyonPane);
+		} else if (prevAngle < 0x4000 && mRotateAngle > 0x4000) {
+			mOnyonPane->getParentPane()->prependChild(mOnyonPane);
 		}
 	} else {
 		posDiff.normalize();

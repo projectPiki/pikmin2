@@ -226,7 +226,7 @@ struct JASTrack : public JSUList<JASChannel> {
 	};
 
 	union TimedParam_ {
-		TimedParam_() {}
+		TimedParam_() { }
 
 		AInnerParam_ mInnerParam;            // get individual params by member name
 		MoveParam_ mMoveParams[TIMED_Count]; // get individual params by index

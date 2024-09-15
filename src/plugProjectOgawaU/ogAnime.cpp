@@ -66,7 +66,7 @@ void AnimBaseBase::init(JKRArchive* archive, char* resourcePath)
 	JUT_ASSERTLINE(87, resource, "no name resource (%s) \n", resourcePath);
 	mAnm = J2DAnmLoaderDataBase::load(resource);
 
-	mLastFrame      = mAnm->mTotalFrameCount - 1;
+	mLastFrame      = mAnm->getFrameMax() - 1;
 	mMinFrame       = 0.0f;
 	mArea           = mLastFrame;
 	mLength         = mArea - mMinFrame;
@@ -216,7 +216,7 @@ void AnimScreen::start()
  */
 void AnimScreen::moveAnim()
 {
-	mAnm->mCurrentFrame = mCurrentFrame;
+	mAnm->setFrame(mCurrentFrame);
 	mScreen->animation();
 	if (mDoSetAlpha != 0) {
 		mScreen->setAlpha(mAlpha);
@@ -271,7 +271,7 @@ void AnimPane::start()
  */
 void AnimPane::moveAnim()
 {
-	mAnm->mCurrentFrame = mCurrentFrame;
+	mAnm->setFrame(mCurrentFrame);
 	mPane->animationTransform();
 	if (mDoSetAlpha != 0) {
 		mPane->setAlpha(mAlpha);

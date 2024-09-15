@@ -251,12 +251,12 @@ bool InteractFue::actNavi(Game::Navi* navi)
 		NaviFollowArg followArg(mIsNewToParty);
 		navi->transit(NSID_Follow, &followArg);
 
-		Navi* otherNavi = naviMgr->getAt(1 - navi->mNaviIndex);
+		Navi* otherNavi = naviMgr->getAt(GET_OTHER_NAVI(navi));
 		InteractFue fue(otherNavi, true, true); // DO combine parties, is new to party
 
 		Iterator<Creature> cellIt((Container<Creature>*)navi->mCPlateMgr);
 
-		Creature* entities[110];
+		Creature* entities[MAX_PIKI_COUNT + 10];
 
 		int index = 0;
 		CI_LOOP(cellIt) { entities[index++] = *cellIt; }

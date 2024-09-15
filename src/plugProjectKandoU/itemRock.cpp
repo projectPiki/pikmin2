@@ -29,9 +29,9 @@ void FSM::init(Item*)
  */
 void NormalState::init(Item* item, StateArg* stateArg)
 {
-	static_cast<ItemRock::Item*>(item)->startWaitMotion();
-	mIsDamaged  = 0;
-	mIsFullSize = 0;
+	item->startWaitMotion();
+	mIsDamaged  = false;
+	mIsFullSize = false;
 }
 
 /**
@@ -44,7 +44,7 @@ void NormalState::exec(Item* item)
 	if (item->mSize > Item::SIZE_Max) {
 		item->mSizeTimer += sys->mDeltaTime;
 		if (item->mSizeTimer >= changeTime) {
-			mIsFullSize   = 1;
+			mIsFullSize   = true;
 			item->mHealth = item->mHealthLimits[item->mSize - 1];
 			transit(item, ITEMROCK_Up, nullptr);
 		}
@@ -68,7 +68,7 @@ void NormalState::onDamage(Item* item, f32 damage)
 	item->mHealth -= item->mDamageBuffer;
 	item->mDamageBuffer = 0.0f;
 	if (item->mHealth < item->mHealthLimits[item->mSize + 1]) {
-		mIsDamaged = 1;
+		mIsDamaged = true;
 		transit(item, ITEMROCK_Down, nullptr);
 	}
 }
@@ -277,7 +277,7 @@ void Item::emitDamageEffect()
 		efx::ArgKouhai fxArg(mPosition, type);
 		damageFX.create(&fxArg);
 
-		mMakeEffectDelay = (int)(randFloat() * 5.0f) + 6;
+		mMakeEffectDelay = randInt(5) + 6;
 	}
 }
 
@@ -661,8 +661,8 @@ BaseItem* Mgr::generatorBirth(Vector3f& pos, Vector3f& rot, GenItemParm* parm)
 void Mgr::onLoadResources()
 {
 	loadArchive("arc.szs");
-	loadBmd("rock.bmd", 0, 0x20020000);
-	mModelData[0]->newSharedDisplayList(0x40000);
+	loadBmd("rock.bmd", 0, J3DMODEL_Unk30 | J3DMODEL_CreateNewDL);
+	mModelData[0]->newSharedDisplayList(J3DMODEL_UseSingleSharedDL);
 	mModelData[0]->makeSharedDL();
 
 	JKRArchive* textArc = openTextArc("texts.szs");

@@ -223,7 +223,7 @@ void ObjDayEndResultBase::doUpdateFinish()
 bool ObjDayEndResultBase::doUpdateFadein()
 {
 	updateCommon();
-	mMainAnimTrans1->mCurrentFrame = mMainAnimTimer1;
+	mMainAnimTrans1->setFrame(mMainAnimTimer1);
 	mScreenMain->search('NitemW')->animationTransform();
 
 	mMainAnimTimer1 += msVal.mAnimRate;
@@ -250,7 +250,7 @@ void ObjDayEndResultBase::doUpdateFadeinFinish()
 bool ObjDayEndResultBase::doUpdateFadeout()
 {
 	updateCommon();
-	mMainAnimTrans1->mCurrentFrame = mMainAnimTimer1;
+	mMainAnimTrans1->setFrame(mMainAnimTimer1);
 	mScreenMain->search('NitemW')->animationTransform();
 
 	mMainAnimTimer1 += msVal.mAnimRate;
@@ -284,51 +284,51 @@ void ObjDayEndResultBase::doDraw(Graphics& gfx)
  */
 void ObjDayEndResultBase::updateCommon()
 {
-	mTitleAnmTransform->mCurrentFrame = mTitleAnimTransformTimer;
-	mTitleAnmColor->mCurrentFrame     = mTitleAnimColorTimer;
+	mTitleAnmTransform->setFrame(mTitleAnimTransformTimer);
+	mTitleAnmColor->setFrame(mTitleAnimColorTimer);
 	mScreenTitle->animation();
 
 	mTitleAnimTransformTimer += 1.0f;
 	mTitleAnimColorTimer += 1.0f;
 
-	if (mTitleAnimTransformTimer >= mTitleAnmTransform->mTotalFrameCount) {
+	if (mTitleAnimTransformTimer >= mTitleAnmTransform->getFrameMax()) {
 		mTitleAnimTransformTimer = 0.0f;
 	}
 
-	if (mTitleAnimColorTimer >= mTitleAnmColor->mTotalFrameCount) {
+	if (mTitleAnimColorTimer >= mTitleAnmColor->getFrameMax()) {
 		mTitleAnimColorTimer = 0.0f;
 	}
 
-	mMainAnimSRT->mCurrentFrame = mMainAnimTimer3;
-	mMainAnimTev->mCurrentFrame = mMainAnimTimer4;
+	mMainAnimSRT->setFrame(mMainAnimTimer3);
+	mMainAnimTev->setFrame(mMainAnimTimer4);
 	mScreenMain->animation();
 
 	mMainAnimTimer3 += 1.0f;
 	mMainAnimTimer4 += 1.0f;
 
-	if (mMainAnimTimer3 >= mMainAnimSRT->mTotalFrameCount) {
+	if (mMainAnimTimer3 >= mMainAnimSRT->getFrameMax()) {
 		mMainAnimTimer3 = 0.0f;
 	}
 
-	if (mMainAnimTimer4 >= mMainAnimTev->mTotalFrameCount) {
+	if (mMainAnimTimer4 >= mMainAnimTev->getFrameMax()) {
 		mMainAnimTimer4 = 0.0f;
 	}
 
-	mMainAnimTrans2->mCurrentFrame = mMainAnimTimer2;
+	mMainAnimTrans2->setFrame(mMainAnimTimer2);
 	mScreenMain->search('Ntitle')->animationTransform();
 
 	mMainAnimTimer2 += 1.0f;
 
-	if (mMainAnimTimer2 >= mMainAnimTrans2->mTotalFrameCount) {
+	if (mMainAnimTimer2 >= mMainAnimTrans2->getFrameMax()) {
 		mMainAnimTimer2 = 0.0f;
 	}
 
-	mStarsAnimColor->mCurrentFrame = mStarsAnimTimer1;
+	mStarsAnimColor->setFrame(mStarsAnimTimer1);
 	mScreenStars->animation();
 
 	mStarsAnimTimer1 += 1.0f;
 
-	if (mStarsAnimTimer1 >= mStarsAnimColor->mTotalFrameCount) {
+	if (mStarsAnimTimer1 >= mStarsAnimColor->getFrameMax()) {
 		mStarsAnimTimer1 = 0.0f;
 	}
 
@@ -550,7 +550,7 @@ bool ObjDayEndResultItem::doStart(const ::Screen::StartSceneArg* sceneArg)
 bool ObjDayEndResultItem::doUpdateFadein()
 {
 	updateCommon();
-	mMainAnimTrans1->mCurrentFrame = mMainAnimTimer1;
+	mMainAnimTrans1->setFrame(mMainAnimTimer1);
 	mScreenMain->search('NitemW')->animationTransform();
 
 	mMainAnimTimer1 += ObjDayEndResultBase::msVal.mAnimRate;
@@ -645,7 +645,7 @@ bool ObjDayEndResultItem::doUpdate()
 bool ObjDayEndResultItem::doUpdateFadeout()
 {
 	updateCommon();
-	mMainAnimTrans1->mCurrentFrame = mMainAnimTimer1;
+	mMainAnimTrans1->setFrame(mMainAnimTimer1);
 	mScreenMain->search('NitemW')->animationTransform();
 
 	mMainAnimTimer1 += ObjDayEndResultBase::msVal.mAnimRate;
@@ -938,11 +938,11 @@ void ObjDayEndResultItem::updateCommon()
 
 	mScreenMain->animation();
 
-	mMainAnimTrans3->mCurrentFrame = mMainAnimTimer5;
+	mMainAnimTrans3->setFrame(mMainAnimTimer5);
 	mScreenMain->search('N_3d')->animationTransform();
 
 	mMainAnimTimer5++;
-	if (mMainAnimTimer5 >= mMainAnimTrans3->mTotalFrameCount) {
+	if (mMainAnimTimer5 >= mMainAnimTrans3->getFrameMax()) {
 		mMainAnimTimer5 = 0.0f;
 	}
 }
@@ -1216,7 +1216,7 @@ void ObjDayEndResultIncP::doCreate(JKRArchive* arc)
 bool ObjDayEndResultIncP::doUpdateFadein()
 {
 	updateCommon();
-	mMainAnimTrans1->mCurrentFrame = mMainAnimTimer1;
+	mMainAnimTrans1->setFrame(mMainAnimTimer1);
 	mScreenMain->search('NitemW')->animationTransform();
 
 	mMainAnimTimer1 += ObjDayEndResultBase::msVal.mAnimRate;
@@ -1336,7 +1336,7 @@ bool ObjDayEndResultIncP::doUpdate()
 bool ObjDayEndResultIncP::doUpdateFadeout()
 {
 	updateCommon();
-	mMainAnimTrans1->mCurrentFrame = mMainAnimTimer1;
+	mMainAnimTrans1->setFrame(mMainAnimTimer1);
 	mScreenMain->search('NitemW')->animationTransform();
 
 	mMainAnimTimer1 += ObjDayEndResultBase::msVal.mAnimRate;
@@ -1382,13 +1382,13 @@ void ObjDayEndResultIncP::statusNormal()
  */
 void ObjDayEndResultIncP::statusFadeout()
 {
-	mMainAnimTrans3->mCurrentFrame = mMainAnimTimer5;
+	mMainAnimTrans3->setFrame(mMainAnimTimer5);
 	if (mMainAnimTimer5 < 404.0f) {
 		mMainAnimTimer5 += 1.0f;
 		return;
 	}
 
-	mMainAnimTrans4->mCurrentFrame = mMainAnimTimer6;
+	mMainAnimTrans4->setFrame(mMainAnimTimer6);
 	if (mMainAnimTimer6 < 409.0f) {
 		mMainAnimTimer6 += 1.0f;
 		return;
@@ -1425,13 +1425,13 @@ void ObjDayEndResultIncP::statusDecP()
  */
 void ObjDayEndResultIncP::statusFadein()
 {
-	mMainAnimTrans4->mCurrentFrame = mMainAnimTimer6;
+	mMainAnimTrans4->setFrame(mMainAnimTimer6);
 	if (mMainAnimTimer6 > 404.0f) {
 		mMainAnimTimer6--;
 		return;
 	}
 
-	mMainAnimTrans3->mCurrentFrame = mMainAnimTimer5;
+	mMainAnimTrans3->setFrame(mMainAnimTimer5);
 	if (mMainAnimTimer5 > 399.0f) {
 		mMainAnimTimer5--;
 		return;
@@ -1750,9 +1750,9 @@ bool ObjDayEndResultMail::doStart(const ::Screen::StartSceneArg* arg)
  */
 bool ObjDayEndResultMail::doUpdateFadein()
 {
-	mMainAnimTrans4->mCurrentFrame = mMainAnimTimer1;
+	mMainAnimTrans4->setFrame(mMainAnimTimer1);
 	updateCommon();
-	mMainAnimTrans1->mCurrentFrame = mMainAnimTimer1;
+	mMainAnimTrans1->setFrame(mMainAnimTimer1);
 	mScreenMain->search('NitemW')->animationTransform();
 
 	mMainAnimTimer1 += msVal.mAnimRate;
@@ -1765,7 +1765,7 @@ bool ObjDayEndResultMail::doUpdateFadein()
 	} else {
 		result = false;
 	}
-	mCharacterAnimTrans->mCurrentFrame = mMainAnimTimer1;
+	mCharacterAnimTrans->setFrame(mMainAnimTimer1);
 	mScreenCharacter->search('NitemW')->animationTransform();
 	mScreenMain->search('NitemW0')->updateScale(mCharacterIconScaleX, mCharacterIconScaleY);
 	mScreenMain->update();
@@ -1850,7 +1850,7 @@ bool ObjDayEndResultMail::doUpdate()
 bool ObjDayEndResultMail::doUpdateFadeout()
 {
 	updateCommon();
-	mMainAnimTrans1->mCurrentFrame = mMainAnimTimer1;
+	mMainAnimTrans1->setFrame(mMainAnimTimer1);
 	mScreenMain->search('NitemW')->animationTransform();
 
 	mMainAnimTimer1 += msVal.mAnimRate;
@@ -1864,7 +1864,7 @@ bool ObjDayEndResultMail::doUpdateFadeout()
 	} else {
 		result = false;
 	}
-	mCharacterAnimTrans->mCurrentFrame = mMainAnimTimer1;
+	mCharacterAnimTrans->setFrame(mMainAnimTimer1);
 	mScreenCharacter->search('NitemW')->animationTransform();
 	mScreenMain->search('NitemW0')->updateScale(mCharacterIconScaleX, mCharacterIconScaleY);
 	mScreenMain->update();
@@ -1915,7 +1915,7 @@ void ObjDayEndResultMail::statusNormal()
  */
 void ObjDayEndResultMail::statusFadeoutToLeft()
 {
-	mMainAnimTrans3->mCurrentFrame = mSideMoveTimer;
+	mMainAnimTrans3->setFrame(mSideMoveTimer);
 	if (mSideMoveTimer > 344.0f) {
 		mSideMoveTimer -= 1.0f;
 	} else {
@@ -1939,7 +1939,7 @@ void ObjDayEndResultMail::statusFadeoutToLeft()
  */
 void ObjDayEndResultMail::statusFadeinFromLeft()
 {
-	mMainAnimTrans3->mCurrentFrame = mSideMoveTimer;
+	mMainAnimTrans3->setFrame(mSideMoveTimer);
 	if (mSideMoveTimer > 399.0f) {
 		mSideMoveTimer -= 1.0f;
 	} else {
@@ -1953,7 +1953,7 @@ void ObjDayEndResultMail::statusFadeinFromLeft()
  */
 void ObjDayEndResultMail::statusFadeoutToRight()
 {
-	mMainAnimTrans3->mCurrentFrame = mSideMoveTimer;
+	mMainAnimTrans3->setFrame(mSideMoveTimer);
 	if (mSideMoveTimer < 404.0f) {
 		mSideMoveTimer += 1.0f;
 	} else {
@@ -1977,7 +1977,7 @@ void ObjDayEndResultMail::statusFadeoutToRight()
  */
 void ObjDayEndResultMail::statusFadeinFromRight()
 {
-	mMainAnimTrans3->mCurrentFrame = mSideMoveTimer;
+	mMainAnimTrans3->setFrame(mSideMoveTimer);
 	if (mSideMoveTimer < 349.0f) {
 		mSideMoveTimer += 1.0f;
 	} else {
@@ -2304,17 +2304,17 @@ void ObjDayEndResultTitl::doDraw(Graphics& gfx)
  */
 void ObjDayEndResultTitl::updateCommon()
 {
-	mMainAnimTrans->mCurrentFrame = mAnimTimer1;
-	mMainAnimSRT->mCurrentFrame   = mAnimTimer2;
+	mMainAnimTrans->setFrame(mAnimTimer1);
+	mMainAnimSRT->setFrame(mAnimTimer2);
 	mScreenMain->animation();
 
 	mAnimTimer1 += 1.0f;
-	if (mAnimTimer1 >= mMainAnimTrans->mTotalFrameCount) {
+	if (mAnimTimer1 >= mMainAnimTrans->getFrameMax()) {
 		mAnimTimer1 = 0.0f;
 	}
 
 	mAnimTimer2 += 1.0f;
-	if (mAnimTimer2 >= mMainAnimSRT->mTotalFrameCount) {
+	if (mAnimTimer2 >= mMainAnimSRT->getFrameMax()) {
 		mAnimTimer2 = 0.0f;
 	}
 }

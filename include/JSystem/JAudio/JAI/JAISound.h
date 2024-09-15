@@ -145,7 +145,7 @@ struct JAISound : public JSULink<JAISound> {
 	u8 _17;                         // _17
 	u8 _18;                         // _18
 	u8 mDistanceParameterMoveTime;  // _19
-	u8 _1A;                         // _1A
+	u8 mIsPlayingWithActor;         // _1A
 	u8 _1B;                         // _1B
 	s16 mAdjustPriority;            // _1C
 	u32 mSoundID;                   // _20

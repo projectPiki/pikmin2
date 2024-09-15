@@ -32,9 +32,9 @@ Mgr* mgr;
 void FSM::init(Item*)
 {
 	create(BARREL_StateCount);
-	registerState(new NormalState());
-	registerState(new DamagedState());
-	registerState(new DeadState());
+	registerState(new NormalState);
+	registerState(new DamagedState);
+	registerState(new DeadState);
 }
 
 /**
@@ -292,9 +292,8 @@ f32 Item::getWorkRadius()
 	if (isAlive()) {
 		mCollTree->getBoundingSphere(bounds);
 		return bounds.mRadius;
-	} else {
-		return 0.0f;
 	}
+	return 0.0f;
 }
 
 /**
@@ -331,13 +330,13 @@ bool Item::interactAttack(InteractAttack& interaction)
 	if (mCurrentState) {
 		mCurrentState->onDamage(this, interaction.mDamage);
 		switch (mSoundEvent.event()) {
-		case 1:
+		case TSE_Active:
 			P2ASSERTLINE(361, mSoundObj->getCastType() == PSM::CCT_WorkItem);
 			static_cast<PSM::WorkItem*>(mSoundObj)->eventStart();
 			break;
-		case 2:
+		case TSE_ApplyTransition:
 			break;
-		case 3:
+		case TSE_Apply:
 			P2ASSERTLINE(368, mSoundObj->getCastType() == PSM::CCT_WorkItem);
 			static_cast<PSM::WorkItem*>(mSoundObj)->eventRestart();
 			break;
@@ -376,7 +375,7 @@ Mgr::Mgr()
  */
 BaseItem* Mgr::birth()
 {
-	Item* item = new Item();
+	Item* item = new Item;
 	entry(item);
 	return item;
 }
@@ -401,7 +400,7 @@ BaseItem* Mgr::generatorBirth(Vector3f& position, Vector3f& p2, GenItemParm* par
 void Mgr::onLoadResources()
 {
 	loadArchive("arc.szs");
-	loadBmd("model.bmd", 0, 0x20000);
+	loadBmd("model.bmd", 0, J3DMODEL_CreateNewDL);
 	mModelData[0]->newSharedDisplayList(0x40000);
 	mModelData[0]->makeSharedDL();
 	JKRArchive* arc = openTextArc("texts.szs");

@@ -1648,7 +1648,7 @@ void TEnemyZukan::doCreate(JKRArchive* arc)
 		mIsPreDebt = false;
 	}
 
-	if (Game::playData && Game::playData->mStoryFlags & Game::STORY_DebtPaid) {
+	if (Game::playData && Game::playData->isStoryFlag(Game::STORY_DebtPaid)) {
 		mIsPreDebt = false;
 	}
 
@@ -3265,7 +3265,7 @@ void TItemZukan::doCreate(JKRArchive* arc)
 		mIsPreDebt = false;
 	}
 
-	if (Game::playData && Game::playData->mStoryFlags & Game::STORY_DebtPaid) {
+	if (Game::playData && Game::playData->isStoryFlag(Game::STORY_DebtPaid)) {
 		mIsPreDebt = false;
 	}
 	mCanComplete = true;
@@ -3485,7 +3485,7 @@ void TItemZukan::doCreate(JKRArchive* arc)
 	mYajiScreen = new TScreenBase(arc, 0);
 	mYajiScreen->create("new_otakarazukan_yajirusi.blo", 0x20000);
 
-	if (mShowAllObjects || (Game::playData && Game::playData->mStoryFlags & Game::STORY_DebtPaid)) {
+	if (mShowAllObjects || (Game::playData && Game::playData->isStoryFlag(Game::STORY_DebtPaid))) {
 		mCurrCharacterIconID = 0;
 		mWindow->setWindowColor(mMessageWindowColor[1]);
 		mWindow->onIcon(1);

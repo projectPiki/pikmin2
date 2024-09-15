@@ -7,8 +7,8 @@
 namespace kh {
 namespace Screen {
 enum LostItemFlags {
-	LOSTITEM_Unk1 = 0x1,
-	LOSTITEM_Unk2 = 0x2,
+	LOSTITEM_IsActive = 0x1,
+	LOSTITEM_Unk2     = 0x2,
 };
 
 struct LostItem {
@@ -16,13 +16,13 @@ struct LostItem {
 
 	bool update();
 
-	Rectf mRect; // _00
-	f32 _10;     // _10
-	u32 _14;     // _14
-	u16 mAngle;  // _18
-	u16 _1A;     // _1A
-	u8 mAlpha;   // _1C
-	u8 mCounter; // _1D
+	Rectf mRect;           // _00
+	f32 mFallSpeed;        // _10
+	u32 mAlphaChangeSpeed; // _14
+	u16 mAngle;            // _18
+	u16 mAngleChangeSpeed; // _1A
+	u8 mAlpha;             // _1C
+	u8 mCounter;           // _1D
 };
 
 struct LostItemMgr {

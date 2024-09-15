@@ -1314,7 +1314,7 @@ void JAISe::setSeDistanceVolume(u8 moveTime)
 void JAISe::setSeDistancePan(u8 moveTime)
 {
 	f32 pan = 0.5f;
-	if (!_1A) {
+	if (!mIsPlayingWithActor) {
 		pan = setDistancePanCommon();
 	} else if (mCreatureObj) {
 		pan = static_cast<JAInter::Object*>(mCreatureObj)->mPan;
@@ -1488,7 +1488,7 @@ void JAISe::setSeDistanceFir(u8) { }
 void JAISe::setSeDistanceDolby(u8 moveTime)
 {
 	f32 dolby = 0.0f;
-	if (!_1A) {
+	if (!mIsPlayingWithActor) {
 		dolby = setDistanceDolbyCommon();
 	} else if (mCreatureObj) {
 		dolby = static_cast<JAInter::Object*>(mCreatureObj)->mDolby;
@@ -2152,12 +2152,12 @@ void JAISound::initParameter(void* handlePtr, JAInter::Actor* actor, u32 soundID
 			_3C = nullptr;
 			_30 = actor->mUnk;
 		}
-		_1A = actor->mFlag.boolView[0];
+		mIsPlayingWithActor = actor->mFlag.boolView[0];
 	} else {
-		mCreatureObj = nullptr;
-		_3C          = nullptr;
-		_1A          = 0;
-		_30          = 0;
+		mCreatureObj        = nullptr;
+		_3C                 = nullptr;
+		mIsPlayingWithActor = false;
+		_30                 = 0;
 	}
 	mMainSoundPPointer         = (void**)handlePtr;
 	mFadeCounter               = fadeTime;

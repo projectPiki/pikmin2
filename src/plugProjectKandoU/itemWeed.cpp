@@ -277,10 +277,10 @@ Mgr::Mgr()
 	mObjectPathComponent = "user/Kando/objects/weed";
 	setModelSize(4);
 	loadArchive("arc.szs");
-	loadBmd("weed1.bmd", 0, 0x20000);
-	loadBmd("stone1.bmd", 1, 0x20000);
-	loadBmd("stone2.bmd", 2, 0x20000);
-	loadBmd("stone3.bmd", 3, 0x20000);
+	loadBmd("weed1.bmd", 0, J3DMODEL_CreateNewDL);
+	loadBmd("stone1.bmd", 1, J3DMODEL_CreateNewDL);
+	loadBmd("stone2.bmd", 2, J3DMODEL_CreateNewDL);
+	loadBmd("stone3.bmd", 3, J3DMODEL_CreateNewDL);
 	for (int i = 0; i < 4; i++) {
 		J3DModelData* modelData = getModelData(i);
 		modelData->newSharedDisplayList(0x40000);

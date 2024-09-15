@@ -2105,7 +2105,7 @@ void ItemOnyon::Mgr::load()
 	closeTextArc(onyontextarc);
 
 	if ((gameSystem->isChallengeMode() || gameSystem->mIsInCave) && !gameSystem->isVersusMode()) {
-		if (playData->mStoryFlags & STORY_DebtPaid) {
+		if (playData->isStoryFlag(STORY_DebtPaid)) {
 			mObjectPathComponent = "user/Kando/pod_gold";
 		} else {
 			mObjectPathComponent = "user/Kando/pod";
@@ -2150,7 +2150,7 @@ void ItemOnyon::Mgr::load()
 	P2ASSERTLINE(3156, file);
 	mUfoTevAnim[1].attachResource(file, mModelData[2]);
 
-	if (playData->mStoryFlags & STORY_DebtPaid) {
+	if (playData->isStoryFlag(STORY_DebtPaid)) {
 		mObjectPathComponent = "user/Kando/ufo_gold";
 	} else {
 		mObjectPathComponent = "user/Kando/ufo";

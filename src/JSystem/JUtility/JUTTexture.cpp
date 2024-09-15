@@ -30,8 +30,8 @@ JUTTexture::JUTTexture(int sizeX, int sizeY, GXTexFmt textureFormat)
 	img->mDoEdgeLOD         = GX_FALSE;
 	img->mIsBiasClamp       = GX_FALSE;
 	img->mIsMaxAnisotropy   = GX_FALSE;
-	img->mMinFilterType     = 1;
-	img->mMagFilterType     = 1;
+	img->mMinFilterType     = GX_LINEAR;
+	img->mMagFilterType     = GX_LINEAR;
 	img->mMinLOD            = 0;
 	img->mMaxLOD            = 0;
 	img->mTotalImageCount   = 1;

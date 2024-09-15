@@ -51,6 +51,7 @@ struct State : public ItemState<Item> {
 
 	// _00     = VTBL
 	// _00-_0C = ItemState
+	u32 _0C; // _0C
 };
 
 struct AppearState : public State {
@@ -64,9 +65,8 @@ struct AppearState : public State {
 	virtual void cleanup(Item* item);                  // _10
 
 	// _00     = VTBL
-	// _00-_0C = State
-	u32 _0C; // _0C
-	f32 _10; // _10
+	// _00-_10 = State
+	f32 mAppearTimer; // _10
 };
 
 struct CloseState : public State {
@@ -80,8 +80,7 @@ struct CloseState : public State {
 	virtual void cleanup(Item* item);                  // _10
 
 	// _00     = VTBL
-	// _00-_0C = State
-	u32 _0C; // _0C
+	// _00-_10 = State
 };
 
 struct OutState : public State {
@@ -96,8 +95,7 @@ struct OutState : public State {
 	virtual bool canRide() { return true; }            // _34 (weak)
 
 	// _00     = VTBL
-	// _00-_0C = State
-	u32 _0C; // _0C
+	// _00-_10 = State
 };
 
 struct WaitState : public State {
@@ -113,8 +111,7 @@ struct WaitState : public State {
 	virtual void onKeyEvent(Item* item, const SysShape::KeyEvent& keyEvent); // _24
 
 	// _00     = VTBL
-	// _00-_0C = State
-	u32 _0C; // _0C
+	// _00-_10 = State
 };
 
 struct FountainParms : public CreatureParms {

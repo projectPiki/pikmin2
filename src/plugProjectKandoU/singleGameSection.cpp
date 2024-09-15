@@ -642,15 +642,14 @@ void SingleGameSection::saveMainMapSituation(bool isSubmergedCastle)
 {
 	if (isSubmergedCastle) {
 		Iterator<Piki> iterator(pikiMgr, 0, nullptr);
-		iterator.first();
-		while (!iterator.isDone()) {
+		CI_LOOP(iterator)
+		{
 			Piki* piki = (*iterator);
 			if (piki->isAlive() && piki->getKind() != Blue) {
 				playData->mPikiContainer.getCount(piki->getKind(), piki->getHappa())++;
 				PikiKillArg killArg(CKILL_DontCountAsDeath | CKILL_Unk17);
 				piki->kill(&killArg);
 			}
-			iterator.next();
 		}
 	}
 	pikiMgr->caveSaveFormationPikmins(false);
@@ -695,7 +694,7 @@ void SingleGameSection::openCaveInMenu(ItemCave::Item* cave, int naviID)
 		disp.mUnusedValue    = 0;
 		disp.mCaveOtakaraNum = cave->getCaveOtakaraNum();
 		disp.mCaveOtakaraMax = cave->getCaveOtakaraMax();
-		disp.mPayedDebt      = playData->mStoryFlags & STORY_DebtPaid;
+		disp.mPayedDebt      = playData->isStoryFlag(STORY_DebtPaid);
 		disp.mPikisField     = GameStat::getMapPikmins(AllPikminCalcs) - GameStat::getZikatuPikmins(AllPikminCalcs);
 
 		int enteringPikiCount = 0;
@@ -716,7 +715,7 @@ void SingleGameSection::openCaveInMenu(ItemCave::Item* cave, int naviID)
 		disp.mPikis  = enteringPikiCount;
 		disp.mCaveID = mCaveIndex;
 		if (Screen::gGame2DMgr->open_CaveInMenu(disp)) {
-			playData->setSaveFlag(3, nullptr);
+			playData->setSaveFlag(STORYSAVE_Cave, nullptr);
 			playData->setCurrentCourse(getCurrentCourseInfo()->mCourseIndex);
 			playData->setCurrentCave(cave->mCaveID, 0);
 			getCurrentCourseInfo()->getCaveinfoFilename_FromID(cave->mCaveID);
@@ -752,7 +751,7 @@ void SingleGameSection::openCaveMoreMenu(ItemHole::Item* hole, Controller* input
 		}
 
 		if (Screen::gGame2DMgr->open_CaveMoreMenu(disp)) {
-			playData->setSaveFlag(3, nullptr);
+			playData->setSaveFlag(STORYSAVE_Cave, nullptr);
 			mHole = hole;
 			mOpenMenuFlags |= 2;
 			gameSystem->setPause(true, "openCaveMore", 3);
@@ -1005,9 +1004,10 @@ void SingleGameSection::setDispMemberSMenu(og::Screen::DispMemberSMenuAll& disp)
 	disp.mSMenuMap.mDataMap.mCurrentPikminCounts[og::Screen::MAPPIKI_White]  = GameStat::formationPikis.getCount(id, White);
 	disp.mSMenuMap.mDataMap.mCurrentPikminCounts[og::Screen::MAPPIKI_Purple] = GameStat::formationPikis.getCount(id, Purple);
 
-	int form                            = GameStat::formationPikis;
-	int work                            = GameStat::workPikis;
-	int alive                           = GameStat::alivePikis;
+	int form  = GameStat::formationPikis;
+	int work  = GameStat::workPikis;
+	int alive = GameStat::alivePikis;
+
 	disp.mSMenuMap.mDataMap.mFreePikmin = alive - form - work;
 	disp.mSMenuMap.mDataMap.mPokos      = _aiConstants->mDebt.mData - playData->mPokoCount;
 	disp.mSMenuMap.mInCave              = gameSystem->mIsInCave;
@@ -1154,7 +1154,7 @@ void SingleGameSection::updateMainMapScreen()
 		disp.mHasSpicy = false;
 	}
 
-	if (playData->mStoryFlags & STORY_DebtPaid) {
+	if (playData->isStoryFlag(STORY_DebtPaid)) {
 		disp.mPayDebt = true;
 	}
 
@@ -1246,7 +1246,7 @@ void SingleGameSection::updateCaveScreen()
 
 	disp.mDataGame.mPokoCount = playData->getPokoCount() + playData->getCavePokoCount();
 
-	if (playData->mStoryFlags & STORY_DebtPaid) {
+	if (playData->isStoryFlag(STORY_DebtPaid)) {
 		disp.mPayDebt = true;
 	}
 

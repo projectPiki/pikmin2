@@ -10,6 +10,24 @@
 #include "Game/Entities/ItemBigFountain.h"
 #include "Game/Entities/ItemHole.h"
 
+#define VS_YELLOW_MARLBE_NUM 7
+
+#define VS_CHERRY_MAX_COUNT 10
+
+#define VS_CHERRY_MIN_WEIGHT 1
+#define VS_CHERRY_MAX_WEIGHT 1
+
+#define VS_MARBLE_MIN_WEIGHT 1
+#define VS_MARBLE_MAX_WEIGHT 8
+
+#define VS_WIN_YELLOW_MARBLE_NUM 4
+
+#define VS_PIKMIN_HANDICAP_MULTIPLIER    5
+#define VS_PIKMIN_HANDICAP_DEFAULT_VALUE 2
+
+#define VS_SHEARWIG_SPAWN_RADIUS      20.0f
+#define VS_CHERRY_SPAWN_RANDOM_OFFSET 20.0f
+
 struct Controller;
 
 namespace Game {
@@ -37,6 +55,11 @@ struct VsGameSection : public BaseGameSection {
 	struct DropCardArg {
 		f32 mDropMinDistance;     // _00
 		f32 mDropMaximumDistance; // _04
+	};
+
+	enum MenuFlags {
+		VsSection_MenuCaveMoreOpen = 2,
+		VsSection_MenuKanketuOpen  = 4,
 	};
 
 	VsGameSection(JKRHeap*, bool);
@@ -103,7 +126,7 @@ struct VsGameSection : public BaseGameSection {
 	VsGame::State* mCurrentState;                  // _180
 	DvdThreadCommand mDvdThreadCommand;            // _184
 	f32 mGhostIconTimers[2];                       // _1F0
-	u8 mMenuFlags;                                 // _1F8
+	BitFlag<u8> mMenuFlags;                        // _1F8
 	struct ItemHole::Item* mHole;                  // _1FC
 	struct ItemBigFountain::Item* mFountain;       // _200
 	bool mIsMenuRunning;                           // _204
@@ -134,7 +157,7 @@ struct VsGameSection : public BaseGameSection {
 	f32 mYellowScore[2];                           // _370
 	f32 mRedBlueScore[2];                          // _378
 	Pellet* mMarbleRedBlue[2];                     // _380
-	Pellet* mMarbleYellow[7];                      // _388
+	Pellet* mMarbleYellow[VS_YELLOW_MARLBE_NUM];   // _388
 	int mDopeCounts[2][2];                         // _3A4
 	int mPlayer2Cherries;                          // _3B4
 	int mPlayer1Cherries;                          // _3B8
@@ -144,8 +167,7 @@ struct VsGameSection : public BaseGameSection {
 	f32 mSpawnTimer;                               // _3C8
 	int mMaxCherries;                              // _3CC
 	Pellet** mCherryArray;                         // _3D0
-	int mMarbleCountP1;                            // _3D4
-	int mMarbleCountP2;                            // _3D8
+	int mMarbleCount[2];                           // _3D4
 	int mYellowMarbleCounts[2];                    // _3DC
 };
 } // namespace Game

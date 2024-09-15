@@ -88,8 +88,8 @@ struct GameMessageVsGetDoping : public GameMessage {
 };
 
 struct GameMessageVsGetOtakara : public GameMessage {
-	inline GameMessageVsGetOtakara(u32 onyonType)
-	    : mOnionType(onyonType)
+	inline GameMessageVsGetOtakara(u32 playerID)
+	    : mPlayerID(playerID)
 	    , mUnused08(1)
 	{
 	}
@@ -97,8 +97,8 @@ struct GameMessageVsGetOtakara : public GameMessage {
 	virtual bool actVs(VsGameSection*); // _10
 
 	// _00 = VTBL
-	u32 mOnionType; // _04, onyon type according to ghidra, but that enum is meant to be a short
-	int mUnused08;  // _08
+	u32 mPlayerID; // _04
+	int mUnused08; // _08
 };
 
 struct GameMessageVsGotCard : public GameMessage {

@@ -3,6 +3,10 @@
 
 struct Stream;
 
+#define GAME_HIGHSCORE_COUNT 16
+
+#define GAME_HIGHSCORE_RANK_NUM 3
+
 namespace Game {
 // Size: 0xC
 struct Highscore {

@@ -43,9 +43,9 @@ Mgr* mgr;
 void FSM::init(Game::CFSMItem*)
 {
 	create(HOLE_StateCount);
-	registerState(new NormalState());
-	registerState(new AppearState());
-	registerState(new CloseState());
+	registerState(new NormalState);
+	registerState(new AppearState);
+	registerState(new CloseState);
 }
 
 /**
@@ -392,8 +392,8 @@ Mgr::Mgr()
 void Mgr::onLoadResources()
 {
 	loadArchive("arc.szs");
-	loadBmd("dungeon_hole.bmd", 0, 0x20000);
-	mModelData[0]->newSharedDisplayList(0x40000);
+	loadBmd("dungeon_hole.bmd", 0, J3DMODEL_CreateNewDL);
+	mModelData[0]->newSharedDisplayList(J3DMODEL_UseSingleSharedDL);
 	mModelData[0]->makeSharedDL();
 	JKRArchive* archive = openTextArc("texts.szs");
 	mCapPlatform        = loadPlatform(archive, "cap_platform.bin");

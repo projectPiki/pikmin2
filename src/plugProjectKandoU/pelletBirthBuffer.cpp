@@ -9,7 +9,7 @@ PelletInitArg PelletBirthBuffer::sArgs[MAX_PELLET_COUNT];
  * @note Address: 0x8023D41C
  * @note Size: 0xC
  */
-void PelletBirthBuffer::clear() { PelletBirthBuffer::sNum = 0; }
+void PelletBirthBuffer::clear() { sNum = 0; }
 
 /**
  * @note Address: 0x8023D428
@@ -25,8 +25,8 @@ void PelletBirthBuffer::entry(Game::PelletInitArg& initArg)
 		return;
 	}
 
-	if (PelletBirthBuffer::sNum < MAX_PELLET_COUNT) {
-		PelletBirthBuffer::sArgs[PelletBirthBuffer::sNum++] = initArg;
+	if (sNum < MAX_PELLET_COUNT) {
+		sArgs[sNum++] = initArg;
 	} else {
 		JUT_PANICLINE(31, "too many birthbuffer\n");
 	}
@@ -42,15 +42,15 @@ void PelletBirthBuffer::birthAll()
 		return;
 	}
 
-	for (int i = 0; i < PelletBirthBuffer::sNum; i++) {
-		Pellet* newPel = pelletMgr->birth(&PelletBirthBuffer::sArgs[i]);
+	for (int i = 0; i < sNum; i++) {
+		Pellet* newPel = pelletMgr->birth(&sArgs[i]);
 		if (newPel) {
 			newPel->kill(nullptr);
 			newPel->mMgr->setFromTeki(newPel);
 		}
 	}
 
-	PelletBirthBuffer::sNum = 0;
+	sNum = 0;
 }
 
 } // namespace Game

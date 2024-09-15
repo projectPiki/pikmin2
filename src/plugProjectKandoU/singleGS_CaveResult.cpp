@@ -89,8 +89,8 @@ void CaveResultState::loadResource()
 	mResultTextures->create(arg);
 
 	JUTTexture* texture     = new JUTTexture(sys->getRenderModeWidth(), sys->getRenderModeHeight(), GX_TF_RGB565);
-	texture->mMinFilter     = 0;
-	texture->mMagFilter     = 0;
+	texture->mMinFilter     = GX_NEAR;
+	texture->mMagFilter     = GX_NEAR;
 	mSection->mXfbTexture2d = texture;
 
 	createResultNodes();

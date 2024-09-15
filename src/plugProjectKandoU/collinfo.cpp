@@ -182,6 +182,7 @@ Platform* PlatAttacher::getPlatform(int i)
 AgePlatform::AgePlatform()
 {
 	mTriDivider = new Sys::OBBTree[2]; // something here has to generate four weak dtors
+	new Sys::GridDivider;
 }
 
 /**
@@ -244,7 +245,6 @@ void CollTree::release()
  * @note Address: 0x801341F8
  * @note Size: 0x348
  */
-// matches so long as kill isn't in the header........
 void CollTree::releaseRec(CollPart* part)
 {
 	CollPart* next  = part->getNext();
@@ -1687,10 +1687,7 @@ CollPartFactory* CollPartFactory::load(char* path)
 		return nullptr;
 	} else {
 		RamStream input(data, -1);
-		input.mMode = STREAM_MODE_TEXT;
-		if (input.mMode == STREAM_MODE_TEXT) {
-			input.mTabCount = 0;
-		}
+		input.setMode(STREAM_MODE_TEXT, 1);
 		factory = new CollPartFactory(input);
 		delete[] data;
 	}

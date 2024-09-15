@@ -49,7 +49,7 @@ struct khUtilFadePane : public P2DScreen::CallBackNode {
 	void fadeout();
 	void set_init_alpha(u8);
 
-	static khUtilFadePane* create(P2DScreen::Mgr*, u64, u8);
+	static khUtilFadePane* create(P2DScreen::Mgr* screen, u64 tag, u8 changeSpeed);
 
 	inline void createNode(J2DPane* pane)
 	{
@@ -68,7 +68,7 @@ struct khUtilFadePane : public P2DScreen::CallBackNode {
 	khPaneNode mPaneNode; // _1C
 	int mState;           // _28
 	u8 mCurrentAlpha;     // _2C
-	u8 mChangeAlpha;      // _2D
+	u8 mChangeSpeed;      // _2D
 };
 
 struct khUtilFadePaneWM : public khUtilFadePane {

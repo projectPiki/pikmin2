@@ -91,7 +91,7 @@ unknown MainResultState::open2D(SingleGameSection* game)
 {
 	mStatus = Result_ScreenActive;
 	playData->clearCurrentCave();
-	playData->setSaveFlag(1, mBeforeSaveDelegate);
+	playData->setSaveFlag(STORYSAVE_WorldMap, mBeforeSaveDelegate);
 	int pokos = playData->mPokoCount;
 	kh::Screen::MailCategory mailtype;
 	if (pokos < 3000) {
@@ -102,15 +102,15 @@ unknown MainResultState::open2D(SingleGameSection* game)
 		mailtype = kh::Screen::PokoUnder8000;
 	} else if (pokos < 10000) {
 		mailtype = kh::Screen::PokoUnder10000;
-	} else if (playData->mStoryFlags & STORY_AllTreasuresCollected) {
+	} else if (playData->isStoryFlag(STORY_AllTreasuresCollected)) {
 		mailtype = kh::Screen::AllTreasures;
-	} else if (playData->mStoryFlags & STORY_LouieRescued) {
+	} else if (playData->isStoryFlag(STORY_LouieRescued)) {
 		mailtype = kh::Screen::SavedLouie;
 	} else {
 		mailtype = kh::Screen::PayDebt;
 	}
 
-	kh::Screen::DispDayEndResult disp(&mResultNode, playData->mTreasureCount, pokos, playData->mStoryFlags & STORY_DebtPaid, mIncP,
+	kh::Screen::DispDayEndResult disp(&mResultNode, playData->mTreasureCount, pokos, playData->isStoryFlag(STORY_DebtPaid), mIncP,
 	                                  theTekiHeap, mailtype);
 	Screen::gGame2DMgr->open_DayEndResult(disp);
 }

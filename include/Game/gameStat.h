@@ -80,7 +80,7 @@ int getZikatuPikmins(int);
 extern PikiNaviCounter workPikis;
 extern PikiNaviCounter formationPikis;
 extern PikiCounter zikatuPikis; // Wild pikis, that you find & whistle to unlock the type
-extern PikiCounter mePikis;
+extern PikiCounter mePikis;     // Counter for the number of active Pikmin seeds (PikiHead)
 extern PikiCounter alivePikis;
 
 /// @brief Checks for wild Pikmin

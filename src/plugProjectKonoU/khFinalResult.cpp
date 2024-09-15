@@ -39,13 +39,14 @@ OneResultData::OneResultData(int score1, int score5, int score2, int score3, int
  */
 TotalResultData::TotalResultData(const int* p1, const int* p2, Game::Highscore** scores)
 {
-	JKRArchive* arc    = nullptr;
-	char* bloNames[16] = { "result_final_image00.blo", "result_final_image01.blo", "result_final_image02.blo", "result_final_image03.blo",
-		                   "result_final_image04.blo", "result_final_image05.blo", "result_final_image06.blo", "result_final_image07.blo",
-		                   "result_final_image08.blo", "result_final_image09.blo", "result_final_image10.blo", "result_final_image11.blo",
-		                   "result_final_image12.blo", "result_final_image13.blo", "result_final_image14.blo", "result_final_image15.blo" };
+	JKRArchive* arc = nullptr;
+	char* bloNames[GAME_HIGHSCORE_COUNT]
+	    = { "result_final_image00.blo", "result_final_image01.blo", "result_final_image02.blo", "result_final_image03.blo",
+		    "result_final_image04.blo", "result_final_image05.blo", "result_final_image06.blo", "result_final_image07.blo",
+		    "result_final_image08.blo", "result_final_image09.blo", "result_final_image10.blo", "result_final_image11.blo",
+		    "result_final_image12.blo", "result_final_image13.blo", "result_final_image14.blo", "result_final_image15.blo" };
 
-	int scoreIDs[16] = { 0, 8, 1, 2, 3, 4, 5, 6, 7, 14, 10, 11, 9, 13, 12, 15 };
+	int scoreIDs[GAME_HIGHSCORE_COUNT] = { 0, 8, 1, 2, 3, 4, 5, 6, 7, 14, 10, 11, 9, 13, 12, 15 };
 
 	LoadResource::Arg arg("/new_screen/cmn/result_final_image.szs");
 	LoadResource::Node* node = gLoadResourceMgr->mountArchive(arg);
@@ -56,8 +57,8 @@ TotalResultData::TotalResultData(const int* p1, const int* p2, Game::Highscore**
 		JUT_PANICLINE(107, "failed");
 	}
 
-	mResults = new OneResultData*[16];
-	for (int i = 0; i < 16; i++) {
+	mResults = new OneResultData*[GAME_HIGHSCORE_COUNT];
+	for (int i = 0; i < GAME_HIGHSCORE_COUNT; i++) {
 		mResults[i] = new OneResultData(p1[scoreIDs[i]], p2[scoreIDs[i]], scores[scoreIDs[i]]->getScore(0),
 		                                scores[scoreIDs[i]]->getScore(1), scores[scoreIDs[i]]->getScore(2), bloNames[i], arc);
 	}
@@ -78,7 +79,7 @@ void TotalResultData::init()
  */
 void TotalResultData::draw(Graphics& gfx, u32 yPos, u32 height)
 {
-	for (int i = 0; i < 16; i++) {
+	for (int i = 0; i < GAME_HIGHSCORE_COUNT; i++) {
 		if (mResults[i]->mDoDraw == true) {
 			gfx.mOrthoGraph.setPort();
 			GXSetScissor(0, yPos, sys->getRenderModeWidth(), height);
@@ -137,13 +138,13 @@ ObjFinalResult::ObjFinalResult()
 	mCurrentPage        = 1;
 	mScrollTargetPos    = msVal._04;
 	mScrollMoveProgress = 0;
-	mAutoScrollDelay    = msVal._08;
+	mAutoScrollDelay    = msVal.mAutoScrollInterval;
 	mState              = StatusForceScroll;
 	mRandAnimCounter2   = -1;
 	mRandAnimCounter1   = -1;
 
 	mFlags = 0;
-	mFlags |= 8;
+	mFlags |= FinalResult_NeedScrollSe;
 	mFadeAlpha = 0;
 	/*
 	stwu     r1, -0x10(r1)
@@ -306,8 +307,8 @@ void ObjFinalResult::doCreate(JKRArchive* arc)
 	setInfAlpha(mScreen->search('NICON'));
 
 	for (int i = 0; i <= 7; i++) {
-		mScreen->search(getSerialTagName('Nsel00', i))->setAlpha(msVal._21);
-		mScreen->search(getSerialTagName('Nicon00', i))->setAlpha(msVal._21);
+		mScreen->search(getSerialTagName('Nsel00', i))->setAlpha(msVal.mSelectionAlpha);
+		mScreen->search(getSerialTagName('Nicon00', i))->setAlpha(msVal.mSelectionAlpha);
 	}
 	JKRHeap* oldHeap = JKRGetCurrentHeap();
 	if (disp->mHeap) {
@@ -1150,9 +1151,9 @@ lbl_8040CF1C:
 bool ObjFinalResult::doUpdate()
 {
 	updateCommon();
-	if (mFlags & SaveOpen) {
-		if (mFadeAlpha < msVal._1F) {
-			mFadeAlpha += msVal._20;
+	if (mFlags & FinalResult_SaveOpen) {
+		if (mFadeAlpha < msVal.mSaveOpenGoalAlpha) {
+			mFadeAlpha += msVal.mSaveOpenAlphaRate;
 		}
 		mSaveMgr->update();
 		if (mSaveMgr->isFinish()) {
@@ -1164,7 +1165,7 @@ bool ObjFinalResult::doUpdate()
 				disp->mExitStatus     = ::Screen::Game2DMgr::CHECK2D_FinalResult_Finished;
 				break;
 			case ebi::Save::TMgr::End_Cancel:
-				mFlags &= ~SaveOpen;
+				mFlags &= ~FinalResult_SaveOpen;
 				break;
 			}
 		}
@@ -1187,12 +1188,12 @@ bool ObjFinalResult::doUpdate()
 		if (mState == StatusNormal && mCurrentPage == 7) {
 			Controller* pad = getGamePad();
 			if (pad->getButtonDown() & Controller::PRESS_A) {
-				mFlags |= SaveOpen;
+				mFlags |= FinalResult_SaveOpen;
 				mSaveMgr->start();
 			}
 		}
 		if (mFadeAlpha) {
-			mFadeAlpha -= msVal._20;
+			mFadeAlpha -= msVal.mSaveOpenAlphaRate;
 		}
 	}
 	return false;
@@ -1258,7 +1259,7 @@ void ObjFinalResult::doDraw(Graphics& gfx)
 	JUT_ASSERTLINE(479, getDispMember()->isID(OWNER_KH, MEMBER_FINAL_RESULT), "disp member err");
 	DispFinalResult* disp = static_cast<DispFinalResult*>(getDispMember());
 	TotalResultData* data = disp->mTotalResultData;
-	for (int i = 0; i < 16; i++) {
+	for (int i = 0; i < GAME_HIGHSCORE_COUNT; i++) {
 		data->mResults[i]->mDoDraw = false;
 	}
 
@@ -1296,7 +1297,7 @@ void ObjFinalResult::doDraw(Graphics& gfx)
 		gfx.mOrthoGraph.fillBox(JGeometry::TBox2f(0.0f, 0.0f, zero + x, zero + y));
 	}
 
-	if (mFlags & SaveOpen) {
+	if (mFlags & FinalResult_SaveOpen) {
 		gfx.mPerspGraph.setPort();
 		mSaveMgr->draw();
 	}
@@ -1313,64 +1314,64 @@ void ObjFinalResult::updateCommon()
 	mScissorYPos           = pos1.y + 0.5f;
 	mScissorBoundsHeight   = pos2.y - pos1.y;
 
-	mAnmTrans5->mCurrentFrame = mAnimTimers[2];
+	mAnmTrans5->setFrame(mAnimTimers[2]);
 	mAnimTimers[2] += 1.0f;
-	if (mAnimTimers[2] >= mAnmTrans5->mTotalFrameCount) {
+	if (mAnimTimers[2] >= mAnmTrans5->getFrameMax()) {
 		mAnimTimers[2] = 0.0f;
 	}
 
-	mAnmTrans1->mCurrentFrame = mAnimTimers[3];
-	mAnmCol1->mCurrentFrame   = mAnimTimers[3];
+	mAnmTrans1->setFrame(mAnimTimers[3]);
+	mAnmCol1->setFrame(mAnimTimers[3]);
 	mAnimTimers[3] += 1.0f;
 	if (mAnimTimers[3] >= 99.0f) {
 		mAnimTimers[3] = 0.0f;
 	}
 
-	mAnmTrans4->mCurrentFrame = mAnimTimers[4];
-	mAnmCol2->mCurrentFrame   = mAnimTimers[4];
+	mAnmTrans4->setFrame(mAnimTimers[4]);
+	mAnmCol2->setFrame(mAnimTimers[4]);
 	mAnimTimers[4] += 1.0f;
 	if (mAnimTimers[4] >= 59.0f) {
 		mAnimTimers[4] = 0.0f;
 	}
 
-	mAnmTrans6->mCurrentFrame = mAnimTimers[5];
-	mAnmCol3->mCurrentFrame   = mAnimTimers[5];
-	mAnmSRT->mCurrentFrame    = mAnimTimers[6];
-	mAnmTev->mCurrentFrame    = mAnimTimers[7];
+	mAnmTrans6->setFrame(mAnimTimers[5]);
+	mAnmCol3->setFrame(mAnimTimers[5]);
+	mAnmSRT->setFrame(mAnimTimers[6]);
+	mAnmTev->setFrame(mAnimTimers[7]);
 	mAnimTimers[5] += 1.0f;
-	if (mAnimTimers[5] >= mAnmCol3->mTotalFrameCount) {
+	if (mAnimTimers[5] >= mAnmCol3->getFrameMax()) {
 		mAnimTimers[5] = 0.0f;
 	}
 
 	mAnimTimers[6] += 1.0f;
-	if (mAnimTimers[6] >= mAnmSRT->mTotalFrameCount) {
+	if (mAnimTimers[6] >= mAnmSRT->getFrameMax()) {
 		mAnimTimers[6] = 0.0f;
 	}
 
 	mAnimTimers[7] += 1.0f;
-	if (mAnimTimers[7] >= mAnmTev->mTotalFrameCount) {
+	if (mAnimTimers[7] >= mAnmTev->getFrameMax()) {
 		mAnimTimers[7] = 0.0f;
 	}
 
-	mAnmTrans2->mCurrentFrame = mAnimTimers[0];
+	mAnmTrans2->setFrame(mAnimTimers[0]);
 
 	if (mRandAnimCounter1 == 0) {
 		mAnimTimers[0] += msVal.mAnimSpeed;
 		if (mAnimTimers[0] >= 40.0f) {
 			mAnimTimers[0]    = 0.0f;
-			mRandAnimCounter1 = (f32)msVal._1D * randFloat() + (f32)msVal._1C;
+			mRandAnimCounter1 = (f32)msVal.mRandAnimRandRange * randFloat() + (f32)msVal.mRandAnimMinInterval;
 		}
 	} else {
 		mRandAnimCounter1--;
 	}
 
-	mAnmTrans3->mCurrentFrame = mAnimTimers[1];
+	mAnmTrans3->setFrame(mAnimTimers[1]);
 
 	if (mRandAnimCounter2 == 0) {
 		mAnimTimers[1] += msVal.mAnimSpeed;
 		if (mAnimTimers[1] >= 49.0f) {
 			mAnimTimers[1]    = 0.0f;
-			mRandAnimCounter2 = (f32)msVal._1D * randFloat() + (f32)msVal._1C;
+			mRandAnimCounter2 = (f32)msVal.mRandAnimRandRange * randFloat() + (f32)msVal.mRandAnimMinInterval;
 		}
 	} else {
 		mRandAnimCounter2--;
@@ -1388,7 +1389,7 @@ void ObjFinalResult::updateCommon()
 		mColor = getClr(msVal.mColors[1], msVal.mColors[0], time - 3.0f);
 	}
 
-	mTimer += msVal._0C;
+	mTimer += msVal.mColorChangeSpeed;
 	if (mTimer >= 4.0f) {
 		mTimer -= 4.0f;
 	}
@@ -1422,9 +1423,9 @@ void ObjFinalResult::statusNormal()
 	if (pad->getButton() & Controller::PRESS_UP) {
 		if (mCurrentPage) {
 			mCurrentPage--;
-			mScreen->search(getSerialTagName('Nsel00', mCurrentPage + 1))->setAlpha(msVal._21);
+			mScreen->search(getSerialTagName('Nsel00', mCurrentPage + 1))->setAlpha(msVal.mSelectionAlpha);
 			mScreen->search(getSerialTagName('Nsel00', mCurrentPage))->setAlpha(255);
-			mScreen->search(getSerialTagName('Nicon00', mCurrentPage + 1))->setAlpha(msVal._21);
+			mScreen->search(getSerialTagName('Nicon00', mCurrentPage + 1))->setAlpha(msVal.mSelectionAlpha);
 			mScreen->search(getSerialTagName('Nicon00', mCurrentPage))->setAlpha(255);
 			mState = StatusScrollUp;
 			statusScrollUp();
@@ -1435,9 +1436,9 @@ void ObjFinalResult::statusNormal()
 	if (pad->getButton() & Controller::PRESS_DOWN) {
 		if (mCurrentPage != 7) {
 			mCurrentPage++;
-			mScreen->search(getSerialTagName('Nsel00', mCurrentPage - 1))->setAlpha(msVal._21);
+			mScreen->search(getSerialTagName('Nsel00', mCurrentPage - 1))->setAlpha(msVal.mSelectionAlpha);
 			mScreen->search(getSerialTagName('Nsel00', mCurrentPage))->setAlpha(255);
-			mScreen->search(getSerialTagName('Nicon00', mCurrentPage - 1))->setAlpha(msVal._21);
+			mScreen->search(getSerialTagName('Nicon00', mCurrentPage - 1))->setAlpha(msVal.mSelectionAlpha);
 			mScreen->search(getSerialTagName('Nicon00', mCurrentPage))->setAlpha(255);
 			mState = StatusScrollDown;
 			statusScrollDown();
@@ -1483,9 +1484,9 @@ void ObjFinalResult::statusScrollDown()
 void ObjFinalResult::statusForceScroll()
 {
 	if (!mAutoScrollDelay) {
-		if (mFlags & 8) {
+		if (mFlags & FinalResult_NeedScrollSe) {
 			PSSystem::spSysIF->playSystemSe(PSSE_SY_MESSAGE_EXIT, 0);
-			mFlags &= ~8;
+			mFlags &= ~FinalResult_NeedScrollSe;
 		}
 		mScrollYPos = -mScrollMove - (mScrollMove * (f32)(mScrollMoveProgress - mScrollTargetPos)) / (f32)mScrollTargetPos;
 		if (mScrollMoveProgress++ == mScrollTargetPos) {
@@ -1500,8 +1501,8 @@ void ObjFinalResult::statusForceScroll()
 			}
 			mScrollMoveProgress = 1;
 			mScrollYPos         = 0.0f;
-			mAutoScrollDelay    = msVal._08;
-			mFlags |= 8;
+			mAutoScrollDelay    = msVal.mAutoScrollInterval;
+			mFlags |= FinalResult_NeedScrollSe;
 		}
 	} else {
 		mAutoScrollDelay--;
@@ -1519,7 +1520,7 @@ void ObjFinalResult::drawReplace(Graphics& gfx, int id)
 	TotalResultData* data = disp->mTotalResultData;
 	int id2               = id * 2 + 1;
 
-	u64 mesgIds[16] = {
+	u64 mesgIds[GAME_HIGHSCORE_COUNT] = {
 		'8452_00', // "Days Spent:"
 		'8453_00', // "Pikmin Lost:"
 		'8454_00', // "Pikmin Lost in Battle:"

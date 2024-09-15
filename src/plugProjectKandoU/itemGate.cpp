@@ -222,11 +222,11 @@ bool ItemGate::interactAttack(Game::InteractAttack& attack)
 	if (mCurrentState) {
 		mCurrentState->onDamage(this, attack.mDamage);
 		switch (mSoundEvent.event()) {
-		case 1:
+		case TSE_Active:
 			P2ASSERTLINE(380, mSoundObj->getCastType() == PSM::CCT_WorkItem);
 			static_cast<PSM::WorkItem*>(mSoundObj)->eventStart();
 			break;
-		case 3:
+		case TSE_Apply:
 			P2ASSERTLINE(386, mSoundObj->getCastType() == PSM::CCT_WorkItem);
 			static_cast<PSM::WorkItem*>(mSoundObj)->eventRestart();
 			break;
@@ -768,7 +768,7 @@ ItemGateMgr::ItemGateMgr()
 	mObjectPathComponent = "user/Kando/objects/gates";
 	setModelSize(1);
 	loadArchive("gate-arc.szs");
-	loadBmd("gate_soft.bmd", 0, 0x20000000);
+	loadBmd("gate_soft.bmd", 0, J3DMODEL_Unk30);
 	JKRArchive* arc = openTextArc("gate-texts.szs");
 	loadAnimMgr(arc, "gateAnimMgr.txt");
 	loadCollision(arc, "gateColl.txt");
@@ -1096,7 +1096,7 @@ ItemDengekiGate::Mgr::Mgr()
 	mObjectPathComponent = "user/Kando/objects/gates";
 	setModelSize(1);
 	loadArchive("e-gate-arc.szs");
-	loadBmd("e-gate.bmd", 0, 0x21000000);
+	loadBmd("e-gate.bmd", 0, J3DMODEL_Unk30 | J3DMODEL_Unk25);
 	JKRArchive* texts = openTextArc("e-gate-texts.szs");
 	loadAnimMgr(texts, "e-animmgr.txt");
 	loadCollision(texts, "e-coll.txt");

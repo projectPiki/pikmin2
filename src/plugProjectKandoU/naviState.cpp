@@ -1450,7 +1450,7 @@ void NaviFollowState::exec(Navi* navi)
 			// get right id for each navi for sounds
 			// 0 for olimar, 1 for louie, or 2 for president
 			int naviID = navi->mNaviIndex;
-			if (naviID == NAVIID_Louie && gameSystem->isStoryMode() && playData->mStoryFlags & STORY_DebtPaid) {
+			if (naviID == NAVIID_Louie && gameSystem->isStoryMode() && playData->isStoryFlag(STORY_DebtPaid)) {
 				naviID++;
 			}
 
@@ -3972,7 +3972,7 @@ void NaviContainerState::init(Navi* navi, StateArg* stateArg)
 
 		disp.mHasWhite    = playData->hasContainer(White);
 		disp.mHasPurple   = playData->hasContainer(Purple);
-		disp.mHasPaidDebt = playData->mStoryFlags & STORY_DebtPaid;
+		disp.mHasPaidDebt = playData->isStoryFlag(STORY_DebtPaid);
 		if (!disp.mHasWhite && !disp.mHasPurple) {
 			mIsScreenOpen = false;
 		} else {
@@ -6009,7 +6009,7 @@ void NaviPelletState::init(Navi* navi, StateArg* stateArg)
 
 	if (navi->mNaviIndex == NAVIID_Olimar) {
 		navi->mSoundObj->startSound(PSSE_PL_SLEEP_ORIMA, 0);
-	} else if (playData->mStoryFlags & STORY_DebtPaid) {
+	} else if (playData->isStoryFlag(STORY_DebtPaid)) {
 		navi->mSoundObj->startSound(PSSE_PL_SLEEP_SHACHO, 0);
 	} else {
 		navi->mSoundObj->startSound(PSSE_PL_SLEEP_LUGI, 0);
@@ -6063,8 +6063,8 @@ void NaviPelletState::exec(Navi* navi)
 		}
 
 		if (mState == 1 || mState == 0) {
-			// probably a combination of enums
-			if (navi->mController1 && navi->mController1->getButtonDown() & 0x70f) {
+			if (navi->mController1
+			    && navi->mController1->getButtonDown() & (Controller::PRESS_Z | Controller::PRESS_R | Controller::PRESS_L)) {
 				if (mDoForceWakeup) {
 					navi->mAnimSpeed = 60.0f;
 					navi->finishMotion();
@@ -6072,7 +6072,7 @@ void NaviPelletState::exec(Navi* navi)
 					navi->startMotion(IPikiAnims::GETUP, IPikiAnims::GETUP, navi, nullptr);
 					if (navi->mNaviIndex == NAVIID_Olimar) {
 						navi->mSoundObj->startSound(PSSE_PL_WAKEUP_ORIMA, 0);
-					} else if (playData->mStoryFlags & STORY_DebtPaid) {
+					} else if (playData->isStoryFlag(STORY_DebtPaid)) {
 						navi->mSoundObj->startSound(PSSE_PL_WAKEUP_SHACHO, 0);
 					} else {
 						navi->mSoundObj->startSound(PSSE_PL_WAKEUP_LUGI, 0);
@@ -6109,7 +6109,7 @@ void NaviPelletState::onKeyEvent(Navi* navi, SysShape::KeyEvent const& key)
 	if (mDoForceWakeup) {
 		if (key.mType == 1) {
 			if (navi->mAnimator.mSelfAnimator.isFlag(SysShape::Animator::AnimFinishMotion)) {
-				if (playData->mStoryFlags & STORY_DebtPaid) {
+				if (playData->isStoryFlag(STORY_DebtPaid)) {
 					navi->mSoundObj->startSound(PSSE_PL_WAKEUP_SHACHO, 0);
 				} else {
 					navi->mSoundObj->startSound(PSSE_PL_WAKEUP_LUGI, 0);

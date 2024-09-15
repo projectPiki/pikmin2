@@ -3985,11 +3985,11 @@ void ZukanState::dvdloadA()
 	mCameraAspect = 0.0f;
 
 	mTexture2             = new JUTTexture((int)getWindowWidth(), (int)getWindowHeight(), GX_TF_RGB565);
-	mTexture2->mMinFilter = 0;
-	mTexture2->mMagFilter = 0;
+	mTexture2->mMinFilter = GX_NEAR;
+	mTexture2->mMagFilter = GX_NEAR;
 	mTexture              = new JUTTexture((int)getWindowWidth() / 2, (int)getWindowHeight() / 2, GX_TF_RGB565);
-	mTexture->mMinFilter  = 0;
-	mTexture->mMagFilter  = 0;
+	mTexture->mMinFilter  = GX_NEAR;
+	mTexture->mMagFilter  = GX_NEAR;
 	mGameSect->useSpecificFBTexture(mTexture);
 	mGameSect->setXfbBounds(mCameraAspect.x, mCameraAspect.y);
 

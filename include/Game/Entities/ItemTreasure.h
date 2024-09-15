@@ -18,6 +18,11 @@ struct Pellet;
 namespace ItemTreasure {
 struct Item;
 
+enum StateID {
+	ITEMTREASURE_Normal = 0,
+	ITEMTREASURE_StateCount, // 1
+};
+
 struct FSM : public ItemFSM<Item> {
 	virtual void init(Item*); // _08
 

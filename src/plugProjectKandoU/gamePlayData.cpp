@@ -1100,7 +1100,7 @@ bool PlayData::isCaveFirstTime(int courseIndex, ID32& caveID)
 		int id           = info->getCaveIndex_FromID(caveID);
 		if (id != -1) {
 			if (id >= 0 && id < ota->mCaveCount) {
-				return ota->_08[id] == 0;
+				return ota->mVisitStatus[id] == 0;
 			}
 			return false;
 		}
@@ -1128,11 +1128,11 @@ void PlayData::setCaveVisit(int courseIndex, ID32& caveID)
 		CaveOtakara* ota = &mCaveOtakara[courseIndex];
 		int id           = info->getCaveIndex_FromID(caveID);
 		if (id != -1) {
-			if (ota->_08[id] == 0) {
-				ota->_08[id] = 1;
+			if (ota->mVisitStatus[id] == 0) {
+				ota->mVisitStatus[id] = 1;
 				return;
 			}
-			ota->_08[id] = 2;
+			ota->mVisitStatus[id] = 2;
 			return;
 		}
 	}
@@ -1257,7 +1257,7 @@ void PlayData::CaveOtakara::write(Stream& output)
 		output.writeByte(mOtakaraCountsOld[i]);
 		output.textWriteText("# 個数\r\n");
 		output.textWriteTab(output.mTabCount);
-		output.writeByte(_08[i]);
+		output.writeByte(mVisitStatus[i]);
 		output.textWriteText("# 状態\r\n");
 	}
 }
@@ -1273,7 +1273,7 @@ void PlayData::CaveOtakara::read(Stream& input)
 	JUT_ASSERTLINE(1797, existingCaveCount == mCaveCount, "セーブしたときと洞窟の数があいません\n");
 	for (int i = 0; i < mCaveCount; i++) {
 		mOtakaraCountsOld[i] = input.readByte();
-		_08[i]               = input.readByte();
+		mVisitStatus[i]      = input.readByte();
 	}
 }
 
@@ -1504,7 +1504,7 @@ bool PlayData::doneWorldMapEffect()
 		data->mCaveCount     = datanew->mCaveCount;
 		for (int j = 0; j < datanew->mCaveCount; j++) {
 			data->mOtakaraCountsOld[j] = datanew->mOtakaraCountsOld[j];
-			data->_08[j]               = datanew->_08[j];
+			data->mVisitStatus[j]      = datanew->mVisitStatus[j];
 		}
 	}
 }
@@ -1559,7 +1559,7 @@ bool PlayData::isCaveFirstTime_Old(int courseIndex, ID32& caveID)
 		int caveIndex        = info->getCaveIndex_FromID(caveID);
 		if (caveIndex != -1) {
 			if (0 <= caveIndex && caveIndex < otakara->mCaveCount) {
-				return otakara->_08[caveIndex] == 0;
+				return otakara->mVisitStatus[caveIndex] == 0;
 			}
 			return false;
 		}

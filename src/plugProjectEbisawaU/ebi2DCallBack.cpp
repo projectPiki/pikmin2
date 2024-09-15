@@ -306,8 +306,8 @@ void E2DCallBack_AnmBase::loadAnm(char* path, JKRArchive* archive, s32 frame, s3
 	mFrameCtrl.mFrame = (s16)frame;
 	mFrameCtrl.mLoop  = (s16)frame;
 
-	if (mAnim->mTotalFrameCount < maxFrame) {
-		maxFrame = mAnim->mTotalFrameCount;
+	if (mAnim->getFrameMax() < maxFrame) {
+		maxFrame = mAnim->getFrameMax();
 	}
 	mFrameCtrl.mEnd = maxFrame;
 }
@@ -329,8 +329,8 @@ void E2DCallBack_AnmBase::play(f32 speed, J3DAnmAttr attr, bool doPlayFromStart)
 		mFrameCtrl.mFrame = mFrameCtrl.mStart;
 	}
 
-	mAnim->mCurrentFrame = mFrameCtrl.mFrame;
-	mIsFinished          = false;
+	mAnim->setFrame(mFrameCtrl.mFrame);
+	mIsFinished = false;
 }
 
 /**
@@ -349,8 +349,8 @@ void E2DCallBack_AnmBase::playBack(f32 speed, bool doPlayFromEnd)
 		mFrameCtrl.mFrame = mFrameCtrl.mEnd;
 	}
 
-	mAnim->mCurrentFrame = mFrameCtrl.mFrame;
-	mIsFinished          = false;
+	mAnim->setFrame(mFrameCtrl.mFrame);
+	mIsFinished = false;
 }
 
 /**
@@ -378,8 +378,8 @@ void E2DCallBack_AnmBase::disconnect()
  */
 void E2DCallBack_AnmBase::setStartFrame()
 {
-	mFrameCtrl.mFrame    = mFrameCtrl.mStart;
-	mAnim->mCurrentFrame = mFrameCtrl.mFrame;
+	mFrameCtrl.mFrame = mFrameCtrl.mStart;
+	mAnim->setFrame(mFrameCtrl.mFrame);
 }
 
 /**
@@ -388,8 +388,8 @@ void E2DCallBack_AnmBase::setStartFrame()
  */
 void E2DCallBack_AnmBase::setEndFrame()
 {
-	mFrameCtrl.mFrame    = mFrameCtrl.mEnd;
-	mAnim->mCurrentFrame = mFrameCtrl.mFrame;
+	mFrameCtrl.mFrame = mFrameCtrl.mEnd;
+	mAnim->setFrame(mFrameCtrl.mFrame);
 }
 
 /**
@@ -398,10 +398,10 @@ void E2DCallBack_AnmBase::setEndFrame()
  */
 void E2DCallBack_AnmBase::setRandFrame()
 {
-	f32 startFrame       = mFrameCtrl.mStart;
-	f32 endFrame         = mFrameCtrl.mEnd;
-	mFrameCtrl.mFrame    = randEbisawaFloat() * (endFrame - startFrame) + startFrame;
-	mAnim->mCurrentFrame = mFrameCtrl.mFrame;
+	f32 startFrame    = mFrameCtrl.mStart;
+	f32 endFrame      = mFrameCtrl.mEnd;
+	mFrameCtrl.mFrame = randEbisawaFloat() * (endFrame - startFrame) + startFrame;
+	mAnim->setFrame(mFrameCtrl.mFrame);
 }
 
 /**
@@ -423,7 +423,7 @@ void E2DCallBack_AnmBase::do_update()
 {
 	if (mPane) {
 		mFrameCtrl.update();
-		mAnim->mCurrentFrame = mFrameCtrl.mFrame;
+		mAnim->setFrame(mFrameCtrl.mFrame);
 	}
 	if (mFrameCtrl.mState & 1) {
 		mIsFinished = true;

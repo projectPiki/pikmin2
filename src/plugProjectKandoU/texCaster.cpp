@@ -674,11 +674,7 @@ void Mgr::drawInit(Graphics& gfx)
 void Mgr::draw(Graphics& gfx)
 {
 	drawInit(gfx);
-
-	Caster* child = static_cast<Caster*>(mCaster.mChild);
-	for (child; child; child = static_cast<Caster*>(child->mNext)) {
-		child->draw(gfx);
-	}
+	FOREACH_NODE(Caster, mCaster.mChild, child) { child->draw(gfx); }
 }
 
 } // namespace TexCaster

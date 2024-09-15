@@ -383,7 +383,7 @@ void Item::onInit(CreatureInitArg* settings)
 		mHeadType         = itemInitArg->mHeadType;
 		mAutopluckedTimer = itemInitArg->mAutopluckTimer;
 	} else {
-		mColor            = randFloat() * 5.0f;
+		mColor            = randInt(5);
 		mHeadType         = Leaf;
 		mAutopluckedTimer = -1.0f;
 	}
@@ -907,7 +907,7 @@ Mgr::Mgr()
 void Mgr::onLoadResources()
 {
 	loadArchive("arc.szs");
-	loadBmd("pikihead.bmd", 0, 0x20000);
+	loadBmd("pikihead.bmd", 0, J3DMODEL_CreateNewDL);
 	(*mModelData)->newSharedDisplayList(0x40000);
 	JKRArchive* arc = openTextArc("texts.szs");
 	loadAnimMgr(arc, "pikiheadAnimMgr.txt");

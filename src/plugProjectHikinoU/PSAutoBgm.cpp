@@ -40,7 +40,7 @@ Conductor::Conductor(AutoBgm* autoBgm, int p2)
  * @note Address: 0x80339024
  * @note Size: 0x290
  */
-Conductor::~Conductor() {}
+Conductor::~Conductor() { }
 
 /**
  * @note Address: N/A
@@ -211,7 +211,7 @@ void Track::afterGetFromFree()
  * @note Address: 0x803397D8
  * @note Size: 0x3DC
  */
-Track::~Track() {}
+Track::~Track() { }
 
 /**
  * @note Address: 0x80339BB4

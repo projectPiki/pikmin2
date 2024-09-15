@@ -139,8 +139,8 @@ bool ObjFinalFloor::updateAnimation()
 	// Update the animation for each viewport
 	for (int i = 0; i < mViewportCount; i++) {
 		// Set the current frame for each animation and update the screen manager
-		mAnim1[i]->mCurrentFrame = mAnimTime1[i];
-		mAnim2[i]->mCurrentFrame = mAnimTime2[i];
+		mAnim1[i]->setFrame(mAnimTime1[i]);
+		mAnim2[i]->setFrame(mAnimTime2[i]);
 		mScreen[i]->animation();
 
 		// Check if the game is in demo mode
@@ -148,9 +148,9 @@ bool ObjFinalFloor::updateAnimation()
 			mScreen[i]->hide();
 
 			// Reset animation if current frame is >75% of the length.
-			if (mAnimTime1[i] > (mAnim1[i]->mTotalFrameCount * 3) >> 2) {
-				mAnimTime1[i] = mAnim1[i]->mTotalFrameCount;
-				mAnimTime2[i] = mAnim2[i]->mTotalFrameCount;
+			if (mAnimTime1[i] > (mAnim1[i]->getFrameMax() * 3) >> 2) {
+				mAnimTime1[i] = mAnim1[i]->getFrameMax();
+				mAnimTime2[i] = mAnim2[i]->getFrameMax();
 			} else {
 				mAnimTime2[i] = 0.0f;
 				mAnimTime1[i] = 0.0f;
@@ -163,7 +163,7 @@ bool ObjFinalFloor::updateAnimation()
 		// Update the animation times and check if the animation has finished
 		mAnimTime1[i] += msVal.mAnimSpeed;
 		mAnimTime2[i] += msVal.mAnimSpeed;
-		if (mAnimTime1[i] >= mAnim1[i]->mTotalFrameCount || mAnimTime2[i] >= mAnim2[i]->mTotalFrameCount) {
+		if (mAnimTime1[i] >= mAnim1[i]->getFrameMax() || mAnimTime2[i] >= mAnim2[i]->getFrameMax()) {
 			ret = true;
 		}
 	}
@@ -189,7 +189,7 @@ void ObjFinalFloor::stopSound()
  */
 void ObjFinalFloor::restartSound()
 {
-	if (mAnimTime1[0] <= (mAnim1[0]->mTotalFrameCount * 3) >> 2) {
+	if (mAnimTime1[0] <= (mAnim1[0]->getFrameMax() * 3) >> 2) {
 		PSSystem::spSysIF->playSystemSe(PSSE_FINALLEVEL_COME, &mSound, 0);
 		startBGM();
 	}

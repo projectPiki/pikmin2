@@ -16,6 +16,9 @@
 #include "efx/TNaviEffect.h"
 #include "efx/TPk.h"
 
+#define CH_SCORE_POKO_MULTIPLIER   10
+#define CH_SCORE_PIKMIN_MULTIPLIER 10
+
 struct JUTTexture;
 struct LightObj;
 
@@ -533,8 +536,6 @@ struct TitleState : public State {
 	void dvdload();
 	void execChallenge(VsGameSection*);
 	void execVs(VsGameSection*);
-
-	inline int getChallengeStageNum() { return 30; }
 
 	inline int getVsStageNum() { return mSection->mVsStageList->mStageData.getChildCount(); }
 

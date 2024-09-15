@@ -238,7 +238,7 @@ bool PelletGoalState::checkMovie(Pellet* pelt)
 	if (!strcmp(pelt->mConfig->mParams.mName.mData, "loozy")) {
 		sys->getPlayCommonData()->enableLouieRescue();
 		sys->mPlayData->mDoSaveOptions = true;
-		playData->mStoryFlags |= STORY_LouieRescued;
+		playData->setStoryFlag(STORY_LouieRescued);
 	}
 
 	bool draw2d = false;

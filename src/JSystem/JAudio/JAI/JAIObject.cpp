@@ -280,7 +280,7 @@ JAISound* JAInter::Object::startSound(u32 id, u32 p2)
 		JAInter::Actor actor((this == nullptr) ? (void*)vec : (void*)this, vec, nullptr, 0);
 		JAIBasic::msBasic->startSoundActorT(id, mSounds + handleNo, &actor, p2, 4);
 		if (mSounds[handleNo]) {
-			mSounds[handleNo]->_1A = 1;
+			mSounds[handleNo]->mIsPlayingWithActor = true;
 		}
 
 		return mSounds[handleNo];
@@ -307,15 +307,15 @@ void JAInter::Object::disable()
 			}
 
 			if (handlePtr) {
-				Vec* vec                       = _24;
-				handlePtr->_0C.x               = vec->x;
-				handlePtr->_0C.y               = vec->y;
-				handlePtr->_0C.z               = vec->z;
-				handlePtr->mSound              = mSounds[i];
-				mSounds[i]->_1A                = 0;
-				mSounds[i]->_3C                = &handlePtr->_0C;
-				mSounds[i]->mMainSoundPPointer = (void**)&handlePtr->mSound;
-				mSounds[i]                     = nullptr;
+				Vec* vec                        = _24;
+				handlePtr->_0C.x                = vec->x;
+				handlePtr->_0C.y                = vec->y;
+				handlePtr->_0C.z                = vec->z;
+				handlePtr->mSound               = mSounds[i];
+				mSounds[i]->mIsPlayingWithActor = false;
+				mSounds[i]->_3C                 = &handlePtr->_0C;
+				mSounds[i]->mMainSoundPPointer  = (void**)&handlePtr->mSound;
+				mSounds[i]                      = nullptr;
 				continue;
 			}
 

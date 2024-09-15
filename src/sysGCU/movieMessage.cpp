@@ -211,7 +211,7 @@ PodIconScreen::PodIconScreen()
  */
 void PodIconScreen::setTrans()
 {
-	if (Game::playData->mStoryFlags & Game::STORY_DebtPaid) {
+	if (Game::playData->isStoryFlag(Game::STORY_DebtPaid)) {
 		setXY(mInitialPos.x - 250.0f, mInitialPos.y - 25.0f);
 	} else {
 		setXY(mInitialPos.x - 250.0f, mInitialPos.y - 10.0f);
@@ -266,22 +266,22 @@ void PodIconScreen::update()
 {
 	if (mState != -1) {
 		mAnmTexPatternTimer += 1.0f;
-		if (mAnmTexPatternTimer >= mAnmTexPattern->mTotalFrameCount) {
-			mAnmTexPatternTimer -= mAnmTexPattern->mTotalFrameCount;
+		if (mAnmTexPatternTimer >= mAnmTexPattern->getFrameMax()) {
+			mAnmTexPatternTimer -= mAnmTexPattern->getFrameMax();
 		}
-		mAnmTexPattern->mCurrentFrame = mAnmTexPatternTimer;
+		mAnmTexPattern->setFrame(mAnmTexPatternTimer);
 
 		mAnmTransTimer += 1.0f;
-		if (mAnmTransTimer >= mAnmTrans->mTotalFrameCount) {
-			mAnmTransTimer -= mAnmTrans->mTotalFrameCount;
+		if (mAnmTransTimer >= mAnmTrans->getFrameMax()) {
+			mAnmTransTimer -= mAnmTrans->getFrameMax();
 		}
-		mAnmTrans->mCurrentFrame = mAnmTransTimer;
+		mAnmTrans->setFrame(mAnmTransTimer);
 
 		mAnmColorTimer += 1.0f;
-		if (mAnmColorTimer >= mAnmColor->mTotalFrameCount) {
-			mAnmColorTimer -= mAnmColor->mTotalFrameCount;
+		if (mAnmColorTimer >= mAnmColor->getFrameMax()) {
+			mAnmColorTimer -= mAnmColor->getFrameMax();
 		}
-		mAnmColor->mCurrentFrame = mAnmColorTimer;
+		mAnmColor->setFrame(mAnmColorTimer);
 
 		animation();
 
@@ -709,7 +709,7 @@ bool TControl::onInit()
 	sys->heapStatusStart("podIcon", nullptr);
 
 	char* path = "new_screen/cmn/pod_for_message_window.szs";
-	if (Game::playData->mStoryFlags & Game::STORY_DebtPaid) {
+	if (Game::playData->isStoryFlag(Game::STORY_DebtPaid)) {
 		path = "new_screen/cmn/gold_pod_for_message_window.szs";
 	}
 	arc = JKRMountArchive(path, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);

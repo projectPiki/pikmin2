@@ -131,7 +131,7 @@ Piki* PikiMgr::birth()
 			CI_LOOP(iter)
 			{
 				Piki* currPiki = *iter;
-				if ((int)currPiki->mPikiKind == Bulbmin && currPiki->isAlive() && currPiki->isTekiFollowAI()) {
+				if (currPiki->getKind() == Bulbmin && currPiki->isAlive() && currPiki->isTekiFollowAI()) {
 					toKill = currPiki;
 					break;
 				}

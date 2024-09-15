@@ -165,13 +165,13 @@ void ObjPayDept::doDraw(Graphics& gfx)
  */
 bool ObjPayDept::updateAnimation()
 {
-	bool ret              = false;
-	mAnim1->mCurrentFrame = mAnimTime1;
-	mAnim2->mCurrentFrame = mAnimTime2;
+	bool ret = false;
+	mAnim1->setFrame(mAnimTime1);
+	mAnim2->setFrame(mAnimTime2);
 	mScreen->animation();
 	mAnimTime1 += msVal.mAnimSpeed;
 	mAnimTime2 += msVal.mAnimSpeed;
-	if (mAnimTime1 >= mAnim1->mTotalFrameCount || mAnimTime2 >= mAnim2->mTotalFrameCount) {
+	if (mAnimTime1 >= mAnim1->getFrameMax() || mAnimTime2 >= mAnim2->getFrameMax()) {
 		ret = true;
 	}
 	return ret;

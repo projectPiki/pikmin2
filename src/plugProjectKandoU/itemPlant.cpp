@@ -2343,7 +2343,7 @@ BaseItem* Mgr::birth()
 void Mgr::onLoadResources()
 {
 	loadArchive("arc.szs");
-	loadBmd("model.bmd", 0, 0x20020000);
+	loadBmd("model.bmd", 0, J3DMODEL_Unk26 | J3DMODEL_CreateNewDL);
 	mAnmColor = static_cast<J3DAnmColor*>(J3DAnmLoaderDataBase ::load(JKRFileLoader::getGlbResource("model.bpk", nullptr)));
 
 	JKRArchive* textArc = openTextArc("texts.szs");

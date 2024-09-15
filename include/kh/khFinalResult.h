@@ -58,7 +58,10 @@ struct ObjFinalResult : public ::Screen::ObjBase {
 
 	enum ObjState { StatusNormal, StatusScrollUp, StatusScrollDown, StatusForceScroll };
 
-	enum ObjFlag { SaveOpen = 4 };
+	enum ObjFlag {
+		FinalResult_SaveOpen     = 4,
+		FinalResult_NeedScrollSe = 8,
+	};
 
 	virtual ~ObjFinalResult() { }       // _08 (weak)
 	virtual void doCreate(JKRArchive*); // _4C
@@ -124,16 +127,16 @@ struct ObjFinalResult : public ::Screen::ObjBase {
 	static struct StaticValues {
 		inline StaticValues()
 		{
-			mAnimSpeed     = 1.0f;
-			_04            = 16;
-			_08            = 90;
-			_1C            = 30;
-			_1D            = 100;
-			mFadeAlphaRate = 10;
-			_1F            = 160;
-			_20            = 32;
-			_21            = 80;
-			_0C            = 0.05f;
+			mAnimSpeed           = 1.0f;
+			_04                  = 16;
+			mAutoScrollInterval  = 90;
+			mRandAnimMinInterval = 30;
+			mRandAnimRandRange   = 100;
+			mFadeAlphaRate       = 10;
+			mSaveOpenGoalAlpha   = 160;
+			mSaveOpenAlphaRate   = 32;
+			mSelectionAlpha      = 80;
+			mColorChangeSpeed    = 0.05f;
 			mColors[0].set(255, 0, 64, 0);
 			mColors[1].set(255, 255, 0, 0);
 			mColors[2].set(255, 48, 80, 0);
@@ -141,15 +144,15 @@ struct ObjFinalResult : public ::Screen::ObjBase {
 
 		f32 mAnimSpeed;              // _00
 		int _04;                     // _04
-		int _08;                     // _08
-		f32 _0C;                     // _0C
+		int mAutoScrollInterval;     // _08
+		f32 mColorChangeSpeed;       // _0C
 		JUtility::TColor mColors[3]; // _10
-		u8 _1C;                      // _1C
-		u8 _1D;                      // _1D
+		u8 mRandAnimMinInterval;     // _1C
+		u8 mRandAnimRandRange;       // _1D
 		u8 mFadeAlphaRate;           // _1E
-		u8 _1F;                      // _1F
-		u8 _20;                      // _20
-		u8 _21;                      // _21
+		u8 mSaveOpenGoalAlpha;       // _1F
+		u8 mSaveOpenAlphaRate;       // _20
+		u8 mSelectionAlpha;          // _21
 	} msVal;
 };
 

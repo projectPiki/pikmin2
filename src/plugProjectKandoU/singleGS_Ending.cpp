@@ -88,16 +88,16 @@ void EndingState::dvdload()
 			BirthMgr::account_today();
 			DeathMgr::account_today();
 			int day = gameSystem->mTimeMgr->mDayCount;
-			int bufferA[16];
-			int bufferB[16];
+			int bufferA[GAME_HIGHSCORE_COUNT];
+			int bufferB[GAME_HIGHSCORE_COUNT];
 			sys->getPlayCommonData()->entryHighscores_clear(day, bufferA, bufferB);
 			mResultData = kh::Screen::SceneFinalResult::createDispMember(bufferA, bufferB, sys->getPlayCommonData()->mHiScoreClear);
 		} else {
 			BirthMgr::account_today();
 			DeathMgr::account_today();
 			int day = gameSystem->mTimeMgr->mDayCount;
-			int bufferA[16];
-			int bufferB[16];
+			int bufferA[GAME_HIGHSCORE_COUNT];
+			int bufferB[GAME_HIGHSCORE_COUNT];
 			sys->getPlayCommonData()->entryHighscores_complete(day, bufferA, bufferB);
 			mResultData = kh::Screen::SceneFinalResult::createDispMember(bufferA, bufferB, sys->getPlayCommonData()->mHiScoreComplete);
 		}
@@ -139,9 +139,7 @@ void EndingState::exec(SingleGameSection* game)
 					mStatus = EndingStatus_ShowContinueMesg;
 					og::Screen::DispMemberFinalMessage disp;
 					Screen::gGame2DMgr->open_FinalMessage(disp);
-					PSGame::PikSceneMgr* mgr = static_cast<PSGame::PikSceneMgr*>(PSSystem::getSceneMgr());
-					mgr->checkScene();
-					mgr->mScenes->mChild->startMainSeq();
+					PSSystem::getSceneMgr()->doStartMainSeq();
 				} else {
 					mStatus = EndingStatus_LoadFirstMovie;
 				}
@@ -189,18 +187,17 @@ void EndingState::exec(SingleGameSection* game)
 					Screen::gGame2DMgr->setGamePad(mController);
 					Screen::gGame2DMgr->open_FinalResult(disp);
 
-					PSGame::PikSceneMgr* mgr = static_cast<PSGame::PikSceneMgr*>(PSSystem::getSceneMgr());
-					mgr->checkScene();
-					mgr->mScenes->mChild->startMainSeq();
+					PSSystem::getSceneMgr()->doStartMainSeq();
 
 					playData->clearCurrentCave();
 					sys->mPlayData->mDoSaveOptions = true;
 					sys->getPlayCommonData()->mChallengeFlags.set(1);
+					// Only open Wistful Wild if Perplexing Pool is opened
 					if (playData->courseOpen(2)) {
 						playData->openCourse(3);
 					}
-					playData->mStoryFlags |= STORY_DebtPaid;
-					playData->setSaveFlag(4, nullptr);
+					playData->setStoryFlag(STORY_DebtPaid);
+					playData->setSaveFlag(STORYSAVE_DebtPaid, nullptr);
 				}
 			}
 			break;
@@ -248,22 +245,20 @@ void EndingState::exec(SingleGameSection* game)
 					mThpState = 0;
 					mTHPPlayer->play();
 				}
-			} else {
-				if (mTHPPlayer->isFinishPlaying()) {
-					mTHPPlayer->stop();
-					kh::Screen::DispFinalResult disp(mResultData, kh::Screen::DispFinalResult::Complete, mMainHeap);
-					Screen::gGame2DMgr->setGamePad(mController);
-					Screen::gGame2DMgr->open_FinalResult(disp);
+			} else if (mTHPPlayer->isFinishPlaying()) {
+				mTHPPlayer->stop();
+				kh::Screen::DispFinalResult disp(mResultData, kh::Screen::DispFinalResult::Complete, mMainHeap);
+				Screen::gGame2DMgr->setGamePad(mController);
+				Screen::gGame2DMgr->open_FinalResult(disp);
 
-					PSSystem::getSceneMgr()->doStartMainSeq();
+				PSSystem::getSceneMgr()->doStartMainSeq();
 
-					playData->clearCurrentCave();
-					sys->mPlayData->mDoSaveOptions = true;
-					sys->getPlayCommonData()->mChallengeFlags.set(2);
-					playData->mStoryFlags |= STORY_AllTreasuresCollected;
-					mStatus = EndingStatus_ShowFinalResultsComplete;
-					playData->setSaveFlag(1, nullptr);
-				}
+				playData->clearCurrentCave();
+				sys->mPlayData->mDoSaveOptions = true;
+				sys->getPlayCommonData()->mChallengeFlags.set(2);
+				playData->setStoryFlag(STORY_AllTreasuresCollected);
+				mStatus = EndingStatus_ShowFinalResultsComplete;
+				playData->setSaveFlag(STORYSAVE_WorldMap, nullptr);
 			}
 			break;
 		case EndingStatus_Unused9:
@@ -285,9 +280,9 @@ void EndingState::exec(SingleGameSection* game)
 					playData->clearCurrentCave();
 					sys->mPlayData->mDoSaveOptions = true;
 					sys->getPlayCommonData()->mChallengeFlags.set(2);
-					playData->mStoryFlags |= STORY_AllTreasuresCollected;
+					playData->setStoryFlag(STORY_AllTreasuresCollected);
 					mStatus = EndingStatus_ShowFinalResultsComplete;
-					playData->setSaveFlag(1, nullptr);
+					playData->setSaveFlag(STORYSAVE_WorldMap, nullptr);
 				}
 			}
 			break;

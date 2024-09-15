@@ -74,8 +74,8 @@ void GameState::init(VsGameSection* section, StateArg* stateArg)
 		section->mTimeLimit += mFloorExtendTimer;
 	}
 
-	section->mMarbleCountP2         = 0;
-	section->mMarbleCountP1         = 0;
+	section->mMarbleCount[1]        = 0;
+	section->mMarbleCount[0]        = 0;
 	section->mYellowMarbleCounts[1] = 0;
 	section->mYellowMarbleCounts[0] = 0;
 	section->mGhostIconTimers[1]    = 0.0f;
@@ -161,7 +161,7 @@ void GameState::exec(VsGameSection* section)
 
 	section->BaseGameSection::doUpdate();
 
-	if (section->mCurrentState->mId != VGS_Game) {
+	if (section->getCurrState()->mId != VGS_Game) {
 		return;
 	}
 
@@ -282,7 +282,7 @@ void GameState::exec(VsGameSection* section)
 			return;
 		}
 
-		if (!gameSystem->paused() && section->mTimeLimit > 0.0f && isFlag(VSGS_IntroDone) && !section->mMenuFlags
+		if (!gameSystem->paused() && section->mTimeLimit > 0.0f && isFlag(VSGS_IntroDone) && !section->mMenuFlags.typeView
 		    && gameSystem->isFlag(GAMESYS_IsGameWorldActive) && !gameSystem->paused_soft()
 		    && moviePlayer->mDemoState
 		           == DEMOSTATE_Inactive) { // check game is in a state where timer should go down (not paused/menu/CS/etc)
@@ -329,7 +329,7 @@ void GameState::exec(VsGameSection* section)
 		}
 	}
 
-	if (!section->mMenuFlags || section->updateCaveMenus()) {
+	if (!section->mMenuFlags.typeView || section->updateCaveMenus()) {
 		update_GameChallenge(section);
 		if (mSubState == 0) {
 			checkSMenu(section);
@@ -561,7 +561,7 @@ void GameState::onRedOrBlueSuckStart(VsGameSection* section, int player, bool is
 {
 	if (isYellow) {
 		section->mYellowMarbleCounts[player]++;
-		if (isYellow && section->mYellowMarbleCounts[player] < 4) {
+		if (isYellow && section->mYellowMarbleCounts[player] < VS_WIN_YELLOW_MARBLE_NUM) {
 			return;
 		}
 	}
@@ -995,15 +995,15 @@ void GameState::update_GameChallenge(VsGameSection* section)
 		disp.mGhostIconTimerP1 = section->mGhostIconTimers[0];
 		disp.mGhostIconTimerP2 = section->mGhostIconTimers[1];
 
-		int marbleCountP1 = section->mMarbleCountP1;
-		int marbleCountP2 = section->mMarbleCountP2;
+		int marbleCountP1 = section->mMarbleCount[0];
+		int marbleCountP2 = section->mMarbleCount[1];
 
-		if (section->mMarbleCountP1 == 4 && moviePlayer->isFlag(MVP_IsActive)) {
-			marbleCountP1 = section->mMarbleCountP1 - 1;
+		if (section->mMarbleCount[0] == VS_WIN_YELLOW_MARBLE_NUM && moviePlayer->isFlag(MVP_IsActive)) {
+			marbleCountP1 = section->mMarbleCount[0] - 1;
 		}
 
-		if (section->mMarbleCountP2 == 4 && moviePlayer->isFlag(MVP_IsActive)) {
-			marbleCountP2 = section->mMarbleCountP2 - 1;
+		if (section->mMarbleCount[1] == VS_WIN_YELLOW_MARBLE_NUM && moviePlayer->isFlag(MVP_IsActive)) {
+			marbleCountP2 = section->mMarbleCount[1] - 1;
 		}
 
 		disp.mMarbleCountP1 = marbleCountP1;

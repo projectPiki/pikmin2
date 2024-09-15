@@ -549,7 +549,7 @@ void Mgr::onLoadResources()
 {
 	sys->heapStatusStart("itemHoney", nullptr);
 	loadArchive("arc.szs");
-	loadBmd("mitu.bmd", 0, 0x20000);
+	loadBmd("mitu.bmd", 0, J3DMODEL_CreateNewDL);
 	(*mModelData)->newSharedDisplayList(0x40000);
 	JKRArchive* arc = openTextArc("texts.szs");
 	loadAnimMgr(arc, "honeyAnimMgr.txt");

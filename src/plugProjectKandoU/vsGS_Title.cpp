@@ -101,14 +101,14 @@ void TitleState::dvdload()
 	PSSystem::getSceneMgr()->doFirstLoad();
 	PSSystem::getSceneMgr()->doStartMainSeq();
 
-	mChallengeTitleInfo = new Challenge2D_TitleInfo(getChallengeStageNum());
+	mChallengeTitleInfo = new Challenge2D_TitleInfo(CHALLENGE_COURSE_COUNT);
 	mVsTitleInfo        = new Vs2D_TitleInfo(getVsStageNum());
 
 	for (int i = 0; i < 5; i++) {
 		sys->getPlayCommonData()->challenge_get_CourseState(i);
 	}
 
-	for (int i = 0; i < getChallengeStageNum(); i++) {
+	for (int i = 0; i < CHALLENGE_COURSE_COUNT; i++) {
 		PlayChallengeGameData::CourseState* scores = sys->getPlayCommonData()->challenge_get_CourseState(i);
 		Challenge2D_TitleInfo::Info* displayData   = (*mChallengeTitleInfo)(i);
 		ChallengeGame::StageData* fileData         = mSection->mChallengeStageList->getStageData(i);

@@ -84,12 +84,12 @@ f32 getPaneCenterY(J2DPane* pane)
  * @note Address: 0x8040BAE4
  * @note Size: 0xA4
  */
-khUtilFadePane* khUtilFadePane::create(P2DScreen::Mgr* mgr, u64 tag, u8 c)
+khUtilFadePane* khUtilFadePane::create(P2DScreen::Mgr* mgr, u64 tag, u8 changeSpeed)
 {
 	if (mgr == nullptr) {
 		return nullptr;
 	}
-	khUtilFadePane* pane = new khUtilFadePane(c);
+	khUtilFadePane* pane = new khUtilFadePane(changeSpeed);
 	P2ASSERTLINE(146, pane != nullptr);
 	pane->add(mgr->addCallBack(tag, pane));
 	return pane;
@@ -99,12 +99,12 @@ khUtilFadePane* khUtilFadePane::create(P2DScreen::Mgr* mgr, u64 tag, u8 c)
  * @note Address: 0x8040BB88
  * @note Size: 0x88
  */
-khUtilFadePane::khUtilFadePane(u8 c)
+khUtilFadePane::khUtilFadePane(u8 changeSpeed)
     : CallBackNode()
     , mPaneNode(nullptr)
     , mState(0)
-    , mCurrentAlpha('\0')
-    , mChangeAlpha(c)
+    , mCurrentAlpha(0)
+    , mChangeSpeed(changeSpeed)
 {
 }
 
@@ -116,21 +116,21 @@ void khUtilFadePane::update()
 {
 	switch (mState) {
 	case 0:
-		if (mCurrentAlpha > 255 - mChangeAlpha) {
+		if (mCurrentAlpha > 255 - mChangeSpeed) {
 			mCurrentAlpha = 255;
 			mState        = 1;
 			fadein_finish();
 		} else {
-			mCurrentAlpha += mChangeAlpha;
+			mCurrentAlpha += mChangeSpeed;
 		}
 		break;
 	case 2:
-		if (mCurrentAlpha < mChangeAlpha) {
+		if (mCurrentAlpha < mChangeSpeed) {
 			mCurrentAlpha = 0;
 			mState        = 3;
 			fadeout_finish();
 		} else {
-			mCurrentAlpha -= mChangeAlpha;
+			mCurrentAlpha -= mChangeSpeed;
 		}
 		break;
 	}

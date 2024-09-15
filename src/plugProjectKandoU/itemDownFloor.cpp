@@ -422,11 +422,11 @@ void Item::platCallback(PlatEvent& event)
 
 		if (mDownFloorType == DFTYPE_PaperBag && mWeightBuffer > 0) {
 			switch (mSoundEvent.event()) {
-			case 1:
+			case TSE_Active:
 				P2ASSERTLINE(731, mSoundObj->getCastType() == PSM::CCT_WorkItem);
 				static_cast<PSM::WorkItem*>(mSoundObj)->eventStart();
 				break;
-			case 3:
+			case TSE_Apply:
 				P2ASSERTLINE(738, mSoundObj->getCastType() == PSM::CCT_WorkItem);
 				static_cast<PSM::WorkItem*>(mSoundObj)->eventRestart();
 				break;
@@ -474,9 +474,9 @@ Mgr::Mgr()
 
 	JKRArchive* textArc = openTextArc("texts.szs");
 	loadArchive("arc.szs");
-	loadBmd("down_floor_1.bmd", 0, 0x20000);
-	loadBmd("down_floor_2.bmd", 1, 0x20000);
-	loadBmd("down_floor_3.bmd", 2, 0x20020000);
+	loadBmd("down_floor_1.bmd", 0, J3DMODEL_CreateNewDL);
+	loadBmd("down_floor_2.bmd", 1, J3DMODEL_CreateNewDL);
+	loadBmd("down_floor_3.bmd", 2, J3DMODEL_Unk30 | J3DMODEL_CreateNewDL);
 
 	loadAnimMgr(textArc, "animmgr.txt");
 	mPlatforms = new Platform*[3];

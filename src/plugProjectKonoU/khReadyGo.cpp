@@ -148,14 +148,14 @@ bool ObjReadyGo::updateAnimation()
 
 	// Update animations for each screen
 	for (int i = 0; i < mScreenNum; i++) {
-		mAnim1[i]->mCurrentFrame = mAnimTime1[i];
-		mAnim2[i]->mCurrentFrame = mAnimTime2[i];
+		mAnim1[i]->setFrame(mAnimTime1[i]);
+		mAnim2[i]->setFrame(mAnimTime2[i]);
 		mScreen[i]->animation();
 		mAnimTime1[i] += msVal.mAnimSpeed;
 		mAnimTime2[i] += msVal.mAnimSpeed;
 
 		// Check if the animation is complete
-		if (mAnimTime1[i] >= mAnim1[i]->mTotalFrameCount - 2 || mAnimTime2[i] >= mAnim2[i]->mTotalFrameCount - 2) {
+		if (mAnimTime1[i] >= mAnim1[i]->getFrameMax() - 2 || mAnimTime2[i] >= mAnim2[i]->getFrameMax() - 2) {
 			done = true;
 		}
 

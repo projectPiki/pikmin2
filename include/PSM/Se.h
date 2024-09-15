@@ -104,7 +104,7 @@ struct SeSound : public JAISe {
 	inline SeSound()
 	    : mPerspInfo()
 	    , mPlayerNum(0)
-	    , _4A0(1.0f)
+	    , mDistanceModifier(1.0f)
 	{
 	}
 
@@ -127,7 +127,7 @@ struct SeSound : public JAISe {
 	// _00-_484 = JAISe
 	PSGame::SoundTable::SePerspInfo mPerspInfo; // _484
 	u8 mPlayerNum;                              // _49C
-	f32 _4A0;                                   // _4A0
+	f32 mDistanceModifier;                      // _4A0
 
 	static f32 cDol_0Rad;
 	static f32 cDol_HalfRad;

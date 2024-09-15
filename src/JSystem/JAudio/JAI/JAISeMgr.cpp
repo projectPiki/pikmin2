@@ -159,7 +159,7 @@ void checkNextFrameSe()
 					soundObj->mPosition = JAInter::Const::dummyZeroVec;
 					soundObj->_0C       = soundObj->mPosition;
 					soundObj->mDistance = 0.0f;
-				} else if (sound->_1A == 0) {
+				} else if (sound->mIsPlayingWithActor == false) {
 					soundObj->_0C = soundObj->mPosition;
 					u8 val3       = sound->_18;
 					if (val3 == 4) {

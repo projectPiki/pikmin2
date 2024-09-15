@@ -5,7 +5,6 @@
 #include "System.h"
 
 static const char className[] = "gamePelletList";
-#define CONFIG_COUNT 5 // should match mConfigCnt
 
 namespace Game {
 namespace PelletList {
@@ -18,7 +17,7 @@ Mgr* Mgr::mInstance;
  */
 PelletConfigList* Mgr::getConfigList(cKind kind)
 {
-	P2ASSERTBOUNDSLINE(16, 0, kind, CONFIG_COUNT);
+	P2ASSERTBOUNDSLINE(16, 0, kind, PLK_Size);
 	return &mInstance->mConfigList[kind];
 }
 
@@ -38,7 +37,7 @@ PelletConfig* Mgr::getConfigAndKind(char* config, cKind& kind)
 	bool isValid;
 	cKind kindCopy;
 
-	for (int i = 0; i < CONFIG_COUNT; i++) {
+	for (int i = 0; i < PLK_Size; i++) {
 		kind               = (cKind)i;
 		PelletConfig* list = getConfigList(kind)->getPelletConfig(config);
 		if (list) {
@@ -55,7 +54,7 @@ PelletConfig* Mgr::getConfigAndKind(char* config, cKind& kind)
  */
 Mgr::Mgr()
 {
-	mConfigList = new PelletConfigList[CONFIG_COUNT];
+	mConfigList = new PelletConfigList[PLK_Size];
 	loadResource();
 }
 
@@ -101,9 +100,9 @@ void Mgr::loadResource()
 
 	JUT_ASSERTLINE(154, archive, "no pelletlist.szs\n");
 
-	const char* configs[CONFIG_COUNT]
+	const char* configs[PLK_Size]
 	    = { "numberpellet_config.txt", "carcass_config.txt", "fruit_config.txt", "otakara_config.txt", "item_config.txt" };
-	for (int i = 0; i < CONFIG_COUNT; i++) {
+	for (int i = 0; i < PLK_Size; i++) {
 		void* data = archive->getResource(configs[i]);
 		JUT_ASSERTLINE(168, data, "no config file [%s]\n", configs[i]);
 		RamStream stream(data, -1);

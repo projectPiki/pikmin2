@@ -97,8 +97,8 @@ void ResultState::prepareMorimuraInfo(VsGameSection* section)
 	mResultInfo->mDisplayIndex = stageData->mStageIndex;
 	mResultInfo->mStageIndex   = stageIndex;
 	mResultInfo->mTimeLeft     = (int)section->mTimeLimit;
-	mResultInfo->mPokos        = section->mPokoCount * 10;
-	mResultInfo->mPikminLeft   = mPikminLeft * 10;
+	mResultInfo->mPokos        = section->mPokoCount * CH_SCORE_POKO_MULTIPLIER;
+	mResultInfo->mPikminLeft   = mPikminLeft * CH_SCORE_PIKMIN_MULTIPLIER;
 	mResultInfo->mScore        = mResultInfo->mPokos + mResultInfo->mTimeLeft + mResultInfo->mPikminLeft;
 	mResultInfo->mHighScore    = highScore;
 

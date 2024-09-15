@@ -5,7 +5,6 @@
 #include "Game/gamePlayData.h"
 #include "P2Macros.h"
 #include "System.h"
-#include "types.h"
 
 namespace Game {
 
@@ -14,16 +13,14 @@ namespace Game {
  * @note Size: 0xFC
  */
 PlayCommonData::PlayCommonData()
-    : mChallengeFlags()
-    , mChallengeData()
 {
-	mHiScoreClear    = new Highscore*[16];
-	mHiScoreComplete = new Highscore*[16];
-	for (int i = 0; i < 0x10; i++) {
+	mHiScoreClear    = new Highscore*[GAME_HIGHSCORE_COUNT];
+	mHiScoreComplete = new Highscore*[GAME_HIGHSCORE_COUNT];
+	for (int i = 0; i < GAME_HIGHSCORE_COUNT; i++) {
 		mHiScoreClear[i]    = new Lowscore();
 		mHiScoreComplete[i] = new Lowscore();
-		mHiScoreClear[i]->allocate(3);
-		mHiScoreComplete[i]->allocate(3);
+		mHiScoreClear[i]->allocate(GAME_HIGHSCORE_RANK_NUM);
+		mHiScoreComplete[i]->allocate(GAME_HIGHSCORE_RANK_NUM);
 	}
 	reset();
 }
@@ -36,7 +33,7 @@ void PlayCommonData::reset()
 {
 	mChallengeFlags.clear();
 	mChallengeData.reset();
-	for (int i = 0; i < 0x10; i++) {
+	for (int i = 0; i < GAME_HIGHSCORE_COUNT; i++) {
 		mHiScoreClear[i]->clear();
 		mHiScoreComplete[i]->clear();
 	}
@@ -67,7 +64,7 @@ void PlayCommonData::write(Stream& output)
 {
 	output.writeInt(2);
 	output.writeBytes(&mChallengeFlags.typeView, 1);
-	for (int i = 0; i < 0x10; i++) {
+	for (int i = 0; i < GAME_HIGHSCORE_COUNT; i++) {
 		mHiScoreClear[i]->write(output);
 		mHiScoreComplete[i]->write(output);
 	}
@@ -85,13 +82,13 @@ void PlayCommonData::read(Stream& stream)
 	u8 fileByte              = stream.readByte();
 	mChallengeFlags.typeView = fileByte;
 	if (fileInt >= 2) {
-		for (int i = 0; i < 0x10; i++) {
+		for (int i = 0; i < GAME_HIGHSCORE_COUNT; i++) {
 			mHiScoreClear[i]->read(stream);
 			mHiScoreComplete[i]->read(stream);
 		}
 	} else {
 		if (fileInt <= 1) {
-			for (int i = 0; i < 0xf; i++) {
+			for (int i = 0; i < (GAME_HIGHSCORE_COUNT - 1); i++) {
 				mHiScoreClear[i]->read(stream);
 				mHiScoreComplete[i]->read(stream);
 			}
@@ -106,11 +103,7 @@ void PlayCommonData::read(Stream& stream)
  */
 Highscore* PlayCommonData::getHighscore_clear(int index)
 {
-	bool isValidIndex = false;
-	if (0 <= index && index < 0x10) {
-		isValidIndex = true;
-	}
-	P2ASSERTLINE(155, isValidIndex);
+	P2ASSERTBOUNDSLINE(155, 0, index, GAME_HIGHSCORE_COUNT);
 	return mHiScoreClear[index];
 }
 
@@ -120,11 +113,7 @@ Highscore* PlayCommonData::getHighscore_clear(int index)
  */
 Highscore* PlayCommonData::getHighscore_complete(int index)
 {
-	bool isValidIndex = false;
-	if (0 <= index && index < 0x10) {
-		isValidIndex = true;
-	}
-	P2ASSERTLINE(162, isValidIndex);
+	P2ASSERTBOUNDSLINE(162, 0, index, GAME_HIGHSCORE_COUNT);
 	return mHiScoreComplete[index];
 }
 
@@ -155,7 +144,7 @@ void PlayCommonData::entryHighscores_common(Game::Highscore** highscores, int ne
 	Highscore* startHighScore = highscores[0];
 	totals[0]                 = newTotal;
 	scores[0]                 = startHighScore->entryScore(newTotal);
-	for (int i = 0; i < 8; i++) {
+	for (int i = 0; i < DeathCounter::COD_SourceCount + 1; i++) {
 		int j                    = i + 1;
 		Highscore* currHighScore = highscores[j];
 		totals[j]                = DeathMgr::get_total(i);
@@ -168,12 +157,12 @@ void PlayCommonData::entryHighscores_common(Game::Highscore** highscores, int ne
 		scores[j]                = currHighScore->entryScore(totals[j]);
 	}
 
-	Highscore* finalHighScore           = highscores[15];
+	Highscore* timeScore                = highscores[15];
 	CommonSaveData::Mgr* playCommonData = sys->getCommonDataMgr();
 	int timeTotal                       = playData->calcPlayMinutes();
 	timeTotal += playCommonData->mTime;
 	totals[15] = timeTotal;
-	scores[15] = finalHighScore->entryScore(timeTotal);
+	scores[15] = timeScore->entryScore(timeTotal);
 }
 
 /**
@@ -391,11 +380,7 @@ void PlayCommonData::challenge_setKunsho(int index)
 Highscore* PlayCommonData::challenge_getHighscore(int courseIndex, int scoreType)
 {
 	PlayChallengeGameData::CourseState* state = mChallengeData.getState(courseIndex);
-	bool isValidScoreType                     = false;
-	if (0 <= scoreType && scoreType <= 1) {
-		isValidScoreType = true;
-	}
-	P2ASSERTLINE(401, isValidScoreType);
+	P2ASSERTBOUNDSINCLUSIVELINE(401, 0, scoreType, 1);
 	return &state->mHighscores[scoreType];
 }
 

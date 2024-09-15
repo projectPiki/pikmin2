@@ -36,7 +36,7 @@ void FSM::init(Item* item)
 void AppearState::init(Item* item, StateArg* arg)
 {
 	item->mBuryDepth = 45.0f;
-	_10              = 0.0f;
+	mAppearTimer     = 0.0f;
 	item->setAlive(true);
 }
 
@@ -46,9 +46,9 @@ void AppearState::init(Item* item, StateArg* arg)
  */
 void AppearState::exec(Item* item)
 {
-	_10 += sys->mDeltaTime;
+	mAppearTimer += sys->mDeltaTime;
 
-	f32 timeRemaining = 1.0f - 0.8333333f * _10;
+	f32 timeRemaining = 1.0f - 0.8333333f * mAppearTimer;
 
 	if (timeRemaining <= 0.0f) {
 		timeRemaining = 0.0f;
@@ -437,11 +437,11 @@ bool Item::interactAttack(InteractAttack& attack)
 	if (mCurrentState) {
 		mCurrentState->onDamage(this, attack.mDamage);
 		switch (mSoundEvent.event()) {
-		case 1:
+		case TSE_Active:
 			P2ASSERTLINE(559, mSoundObj->getCastType() == PSM::CCT_WorkItem);
 			static_cast<PSM::WorkItem*>(mSoundObj)->eventStart();
 			break;
-		case 3:
+		case TSE_Apply:
 			P2ASSERTLINE(566, mSoundObj->getCastType() == PSM::CCT_WorkItem);
 			static_cast<PSM::WorkItem*>(mSoundObj)->eventRestart();
 			break;
@@ -498,7 +498,7 @@ Mgr::Mgr()
 	setModelSize(1);
 	mObjectPathComponent = "user/Kando/objects/kanketusen";
 	mItemName            = "帰還間欠泉"; // 'return geyser'
-	mParms               = new FountainParms();
+	mParms               = new FountainParms;
 
 	void* data = JKRDvdRipper::loadToMainRAM("user/Abe/item/fountainParms.txt", nullptr, Switch_0, 0, nullptr,
 	                                         JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
@@ -517,7 +517,7 @@ Mgr::Mgr()
 void Mgr::onLoadResources()
 {
 	loadArchive("arc.szs");
-	loadBmd("kanketusen.bmd", 0, 0x20020000);
+	loadBmd("kanketusen.bmd", 0, J3DMODEL_Unk30 | J3DMODEL_CreateNewDL);
 	mModelData[0]->newSharedDisplayList(0x40000);
 	mModelData[0]->makeSharedDL();
 

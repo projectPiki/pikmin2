@@ -13,6 +13,7 @@
 #include "Game/gameStat.h"
 #include "Game/GameSystem.h"
 #include "Game/MoviePlayer.h"
+#include "Game/PikiState.h"
 #include "Game/Navi.h"
 #include "Game/NaviParms.h"
 #include "Game/PikiMgr.h"
@@ -75,17 +76,16 @@ int VsGameSection::mDrawCount;
 
 VsGameSection::VsGameSection(JKRHeap* heap, bool gameMode)
     : BaseGameSection(heap)
-    , mMenuFlags(0)
 {
 	mIsVersusMode          = gameMode;
 	mIsChallengePerfect    = true;
 	mChallengeStageNum     = 0;
 	mVsStageNum            = 0;
 	mVsWinner              = -1;
-	mLouieHandicap         = 2;
-	mOlimarHandicap        = 2;
-	mMarbleCountP2         = 0;
-	mMarbleCountP1         = 0;
+	mLouieHandicap         = VS_PIKMIN_HANDICAP_DEFAULT_VALUE;
+	mOlimarHandicap        = VS_PIKMIN_HANDICAP_DEFAULT_VALUE;
+	mMarbleCount[1]        = 0;
+	mMarbleCount[0]        = 0;
 	mYellowMarbleCounts[1] = 0;
 	mYellowMarbleCounts[0] = 0;
 	mEditNumber            = -2;
@@ -141,12 +141,7 @@ void VsGameSection::section_fadeout() { mCurrentState->on_section_fadeout(this);
  * @note Address: 0x801C1148
  * @note Size: 0x90
  */
-void VsGameSection::startMainBgm()
-{
-	PSSystem::SceneMgr* sceneMgr = PSSystem::getSceneMgr();
-	sceneMgr->checkScene();
-	sceneMgr->mScenes->mChild->startMainSeq();
-}
+void VsGameSection::startMainBgm() { PSSystem::getSceneMgr()->doStartMainSeq(); }
 
 /**
  * @note Address: 0x801C11D8
@@ -178,19 +173,20 @@ void VsGameSection::onInit()
 	sprintf(mEditFilename, "random");
 	setupFixMemory();
 
-	mChallengeStageList = new ChallengeGame::StageList();
+	mChallengeStageList = new ChallengeGame::StageList;
 	addGenNode(mChallengeStageList);
-	mVsStageList = new VsGame::StageList();
+	mVsStageList = new VsGame::StageList;
 	addGenNode(mVsStageList);
 	loadChallengeStageList();
 	loadVsStageList();
 
-	mFsm = new VsGame::FSM();
+	mFsm = new VsGame::FSM;
 	static_cast<VsGame::FSM*>(mFsm)->init(this);
 	initPlayData();
 	mFsm->start(this, VsGame::VGS_Title, nullptr);
 
-	mCurrentFloor          = 0;
+	mCurrentFloor = 0;
+
 	mRedBlueYellowScore[1] = 0.0f;
 	mRedBlueYellowScore[0] = 0.0f;
 	mYellowScore[1]        = 0.0f;
@@ -204,22 +200,12 @@ void VsGameSection::onInit()
 	mMarbleRedBlue[1]      = nullptr;
 	mMarbleRedBlue[0]      = nullptr;
 
-	Radar::mgr = new Radar::Mgr();
+	Radar::mgr = new Radar::Mgr;
 
-	for (int i = 0; i < 7; i++) {
+	for (int i = 0; i < VS_YELLOW_MARLBE_NUM; i++) {
 		mMarbleYellow[i] = nullptr;
 	}
 }
-
-/**
- * @note Address: 0x801C13E4
- * @note Size: 0x34
- */
-// void StateMachine<VsGameSection>::start(VsGameSection* section, int stateID, StateArg* arg)
-// {
-// 	section->mCurrentState = nullptr;
-// 	transit(section, stateID, arg);
-// }
 
 /**
  * @note Address: 0x801C1418
@@ -314,7 +300,7 @@ void VsGameSection::onSetSoundScene()
 	}
 
 	floorInfo.mAlphaType = static_cast<RoomMapMgr*>(mapMgr)->mFloorInfo->mParms.mFloorAlphaType.mValue;
-	floorInfo.mBetaType  = 0; // hardcoded mBetaType to 0; ignores floorinfo f012 setting
+	floorInfo.mBetaType  = PSGame::CaveFloorInfo::BetaType_Normal; // hardcoded mBetaType to 0; ignores floorinfo f012 setting
 
 	if (!gameSystem->isMultiplayerMode()) {
 		floorInfo.setStageFlag(PSGame::SceneInfo::SCENEFLAG_Unk0, PSGame::SceneInfo::SFBS_1);
@@ -323,11 +309,8 @@ void VsGameSection::onSetSoundScene()
 	}
 
 	setDefaultPSSceneInfo(floorInfo);
-	PSSystem::SceneMgr* sceneMgr = PSSystem::getSceneMgr();
-	static_cast<PSGame::PikSceneMgr*>(sceneMgr)->newAndSetCurrentScene(floorInfo);
-	sceneMgr = PSSystem::getSceneMgr();
-	sceneMgr->checkScene();
-	sceneMgr->mScenes->mChild->scene1stLoadSync();
+	PSMSetSceneInfo(floorInfo);
+	PSSystem::getSceneMgr()->doFirstLoad();
 	naviMgr->createPSMDirectorUpdator();
 }
 
@@ -339,8 +322,8 @@ void VsGameSection::initPlayData()
 {
 	playData->reset();
 	playData->setDevelopSetting(true, true);
-	playData->mNaviLifeMax[NAVIID_Olimar] = naviMgr->mNaviParms->mNaviParms.mMaxHealth.mValue;
-	playData->mNaviLifeMax[NAVIID_Louie]  = naviMgr->mNaviParms->mNaviParms.mMaxHealth.mValue;
+	playData->mNaviLifeMax[NAVIID_Olimar] = naviMgr->mNaviParms->mNaviParms.mMaxHealth();
+	playData->mNaviLifeMax[NAVIID_Louie]  = naviMgr->mNaviParms->mNaviParms.mMaxHealth();
 }
 
 /**
@@ -351,7 +334,7 @@ void VsGameSection::initPlayData()
 void VsGameSection::onSetupFloatMemory()
 {
 	Farm::farmMgr = nullptr;
-	mTekiMgr      = new VsGame::TekiMgr();
+	mTekiMgr      = new VsGame::TekiMgr;
 	mCardMgr      = new VsGame::CardMgr(this, mTekiMgr);
 	mCardMgr->loadResource();
 	const char* marbles[3] = { VsOtakaraName::cBedamaRed, VsOtakaraName::cBedamaBlue, VsOtakaraName::cBedamaYellow };
@@ -386,11 +369,11 @@ void VsGameSection::postSetupFloatMemory()
 		Vector3f position      = Vector3f(0.0f);
 		createRedBlueBedamas(position);
 
-		for (int i = 0; i < 7; i++) {
+		for (int i = 0; i < VS_YELLOW_MARLBE_NUM; i++) {
 			mMarbleYellow[i] = nullptr;
 		}
 
-		createYellowBedamas(7);
+		createYellowBedamas(VS_YELLOW_MARLBE_NUM);
 		initCardPellets();
 	}
 
@@ -415,17 +398,18 @@ void VsGameSection::onClearHeap()
  */
 void VsGameSection::loadChallengeStageList()
 {
-	JKRDvdRipper::EAllocDirection EAlloc = JKRDvdRipper::ALLOC_DIR_BOTTOM;
-	JKRExpandSwitch expandSwitch         = JKRExpandSwitch();
-	void* loadRam                        = JKRDvdRipper::loadToMainRAM(
-        ((gGameConfig.mParms.mKFesVersion.mData) ? "/user/Matoba/challenge/kfes-stages.txt" : "/user/Matoba/challenge/stages.txt"), nullptr,
-        expandSwitch, nullptr, nullptr, EAlloc, nullptr, nullptr, nullptr);
-	if (!loadRam) {
+	// If KFesVersion is enabled, use the alternate stage list config
+	void* file = JKRDvdRipper::loadToMainRAM(
+	    gGameConfig.mParms.mKFesVersion() ? "/user/Matoba/challenge/kfes-stages.txt" : "/user/Matoba/challenge/stages.txt", nullptr,
+	    Switch_0, nullptr, nullptr, JKRDvdRipper::ALLOC_DIR_BOTTOM, nullptr, nullptr, nullptr);
+
+	if (!file) {
 		return;
 	}
-	RamStream ram(loadRam, -1);
-	ram.setMode(STREAM_MODE_TEXT, 1);
-	mChallengeStageList->read(ram);
+
+	RamStream stream(file, -1);
+	stream.setMode(STREAM_MODE_TEXT, 1);
+	mChallengeStageList->read(stream);
 }
 
 /**
@@ -434,17 +418,15 @@ void VsGameSection::loadChallengeStageList()
  */
 void VsGameSection::loadVsStageList()
 {
-	JKRDvdRipper::EAllocDirection EAlloc = JKRDvdRipper::ALLOC_DIR_BOTTOM;
-	JKRExpandSwitch expandSwitch         = JKRExpandSwitch();
-	void* loadRam = JKRDvdRipper::loadToMainRAM("/user/abe/vs/stages.txt", nullptr, expandSwitch, nullptr, nullptr, EAlloc, nullptr,
-	                                            nullptr, nullptr);
-	if (!loadRam) {
+	void* file = JKRDvdRipper::loadToMainRAM("/user/abe/vs/stages.txt", nullptr, Switch_0, nullptr, nullptr, JKRDvdRipper::ALLOC_DIR_BOTTOM,
+	                                         nullptr, nullptr, nullptr);
+	if (!file) {
 		return;
 	}
 
-	RamStream ram(loadRam, -1);
-	ram.setMode(STREAM_MODE_TEXT, 1);
-	mVsStageList->read(ram);
+	RamStream stream(file, -1);
+	stream.setMode(STREAM_MODE_TEXT, 1);
+	mVsStageList->read(stream);
 }
 
 /**
@@ -471,38 +453,48 @@ void VsGameSection::gmPikminZero() { }
 void VsGameSection::goNextFloor(ItemHole::Item* hole) { mCurrentState->onNextFloor(this, hole); }
 
 /**
+ * This function attempts to open the "Do you want to delve deeper?" message box upon interacting with a Hole object.
+ * If it opens succesfully, gameplay will be paused, and the active Hole object will be set.
+ *
  * @note Address: 0x801C1C9C
  * @note Size: 0x1D8
  */
 void VsGameSection::openCaveMoreMenu(ItemHole::Item* hole, Controller* controller)
 {
+	// Abort function if entering a cave was already confirmed.
 	if (mCurrentState->goingToCave(this)) {
 		return;
 	}
 
+	// In a multiplayer mode, set the menu to use the controller given to the function, otherwise always use the Player 1 controller.
 	if (gameSystem->isMultiplayerMode() && controller) {
 		Screen::gGame2DMgr->setGamePad(controller);
 	} else {
 		Screen::gGame2DMgr->setGamePad(mControllerP1);
 	}
 
+	// This cave ID isn't used for anything (2p_c isn't even in the list of valid cave IDs)
 	og::Screen::DispMemberCaveMore cave;
 	cave.mCaveID = '2p_c';
-	int mePikis  = GameStat::mePikis;
+
+	// If there are any Pikmin seeds in the map, enable the warning
+	int mePikis = GameStat::mePikis;
 	if (mePikis > 0) {
 		cave.mPikiInDanger = true;
-		int map_pikis      = GameStat::getMapPikmins(AllPikminCalcs);
-		if (mePikis == map_pikis) {
+
+		// If the number of Pikmin seeds in the map equals the total Pikmin count in the map,
+		// set the screen to say you are unable to proceed, because all Pikmin are buried.
+		if (mePikis == GameStat::getMapPikmins(AllPikminCalcs)) {
 			cave.mCantProceed = true;
 		} else {
 			cave.mCantProceed = false;
 		}
-
 	} else {
 		cave.mCantProceed  = false;
 		cave.mPikiInDanger = false;
 	}
 
+	// Open the cave menu UI, only pause gameplay and set the active hole object if the screen was loaded successfully.
 	bool open = Screen::gGame2DMgr->open_CaveMoreMenu(cave);
 	if (open) {
 		mHole = hole;
@@ -517,6 +509,7 @@ void VsGameSection::openCaveMoreMenu(ItemHole::Item* hole, Controller* controlle
  */
 void VsGameSection::openKanketuMenu(ItemBigFountain::Item* fountain, Controller* controller)
 {
+	// In a multiplayer mode, set the menu to use the controller given to the function, otherwise always use the Player 1 controller.
 	if (gameSystem->isMultiplayerMode() && controller) {
 		Screen::gGame2DMgr->setGamePad(controller);
 	} else {
@@ -524,25 +517,29 @@ void VsGameSection::openKanketuMenu(ItemBigFountain::Item* fountain, Controller*
 	}
 
 	og::Screen::DispMemberKanketuMenu cave;
+
+	// If there are any Pikmin seeds in the map, enable the warning
 	int mePikis = GameStat::mePikis;
 	if (mePikis > 0) {
 		cave.mPikiInDanger = true;
-		int map_pikis      = GameStat::getMapPikmins(AllPikminCalcs);
-		if (mePikis == map_pikis) {
+
+		// If the number of Pikmin seeds in the map equals the total Pikmin count in the map,
+		// set the screen to say you are unable to proceed, because all Pikmin are buried.
+		if (mePikis == GameStat::getMapPikmins(AllPikminCalcs)) {
 			cave.mCantProceed = true;
 		} else {
 			cave.mCantProceed = false;
 		}
-
 	} else {
 		cave.mCantProceed  = false;
 		cave.mPikiInDanger = false;
 	}
 
+	// Open the geyser menu UI, only pause gameplay and set the active geyser object if the screen was loaded successfully.
 	bool open = Screen::gGame2DMgr->open_ChallengeKanketuMenu(cave);
 	if (open) {
 		mFountain = fountain;
-		mMenuFlags |= 4;
+		mMenuFlags.set(VsSection_MenuKanketuOpen);
 		gameSystem->setPause(true, "op-kk", 3);
 		gameSystem->setMoviePause(true, "op-kk");
 	}
@@ -554,9 +551,9 @@ void VsGameSection::openKanketuMenu(ItemBigFountain::Item* fountain, Controller*
  */
 void VsGameSection::clearCaveMenus()
 {
-	mMenuFlags = 0;
-	mHole      = nullptr;
-	mFountain  = nullptr;
+	mMenuFlags.clear();
+	mHole     = nullptr;
+	mFountain = nullptr;
 }
 
 /**
@@ -565,7 +562,7 @@ void VsGameSection::clearCaveMenus()
  */
 bool VsGameSection::updateCaveMenus()
 {
-	if (mMenuFlags & 2) {
+	if (mMenuFlags.isSet(VsSection_MenuCaveMoreOpen)) {
 		switch (Screen::gGame2DMgr->check_CaveMoreMenu()) {
 		case Screen::Game2DMgr::CHECK2D_CaveMoreMenu_MenuOpen:
 			break;
@@ -575,14 +572,14 @@ bool VsGameSection::updateCaveMenus()
 			playData->mNaviLifeMax[NAVIID_Louie]  = naviMgr->getAt(NAVIID_Louie)->mHealth;
 			gameSystem->setPause(false, "more-yes", 3);
 			gameSystem->setMoviePause(false, "more-yes");
-			mMenuFlags &= ~2;
+			mMenuFlags.unset(VsSection_MenuCaveMoreOpen);
 			goNextFloor(mHole);
 			return true;
 
 		case Screen::Game2DMgr::CHECK2D_CaveMoreMenu_Cancel:
 			gameSystem->setPause(false, "more-no", 3);
 			gameSystem->setMoviePause(false, "more-no");
-			mMenuFlags &= ~2;
+			mMenuFlags.unset(VsSection_MenuCaveMoreOpen);
 			break;
 
 		case Screen::Game2DMgr::CHECK2D_CaveMoreMenu_Unused:
@@ -590,7 +587,7 @@ bool VsGameSection::updateCaveMenus()
 			break;
 		}
 
-	} else if (mMenuFlags & 4) {
+	} else if (mMenuFlags.isSet(VsSection_MenuKanketuOpen)) {
 		switch (Screen::gGame2DMgr->check_KanketuMenu()) {
 		case Screen::Game2DMgr::CHECK2D_KanketuMenu_MenuOpen:
 			break;
@@ -598,7 +595,7 @@ bool VsGameSection::updateCaveMenus()
 		case Screen::Game2DMgr::CHECK2D_KanketuMenu_Confirm:
 			gameSystem->setPause(false, "kk-yes", 3);
 			gameSystem->setMoviePause(false, "kk-yes");
-			mMenuFlags &= ~4;
+			mMenuFlags.unset(VsSection_MenuKanketuOpen);
 			MoviePlayArg arg("s0C_cv_escape", nullptr, mMovieFinishCallback, 0);
 			arg.mOrigin        = mFountain->getPosition();
 			arg.mAngle         = mFountain->getFaceDir();
@@ -611,7 +608,7 @@ bool VsGameSection::updateCaveMenus()
 		case Screen::Game2DMgr::CHECK2D_KanketuMenu_Cancel:
 			gameSystem->setPause(false, "kk-no", 3);
 			gameSystem->setMoviePause(false, "kk-no");
-			mMenuFlags &= ~4;
+			mMenuFlags.unset(VsSection_MenuKanketuOpen);
 			break;
 
 		case Screen::Game2DMgr::CHECK2D_KanketuMenu_Unused:
@@ -679,7 +676,7 @@ void VsGameSection::createFallPikmins(PikiContainer& setPikmin, int unused2)
 				Piki* piki = pikiMgr->birth();
 				spawn += start;
 				if (piki) {
-					PikiInitArg arg(15);
+					PikiInitArg arg(PIKISTATE_Tane);
 					piki->init(&arg);
 					piki->mFaceDir = randFloat() * TAU;
 					piki->setPosition(spawn, false);
@@ -712,9 +709,9 @@ void VsGameSection::createVsPikmins()
 	pikmin->clear();
 
 	int& reds  = pikmin->getCount(Red, Leaf);
-	reds       = mOlimarHandicap * 5;
+	reds       = mOlimarHandicap * VS_PIKMIN_HANDICAP_MULTIPLIER;
 	int& blues = pikmin->getCount(Blue, Leaf);
-	blues      = mLouieHandicap * 5;
+	blues      = mLouieHandicap * VS_PIKMIN_HANDICAP_MULTIPLIER;
 	Vector3f spawnOnyonPos;
 
 	for (int color = FirstPikmin; color < PikiColorCount; color++) {
@@ -737,7 +734,7 @@ void VsGameSection::createVsPikmins()
 				spawn += spawnOnyonPos;
 
 				if (piki) {
-					PikiInitArg arg(-1);
+					PikiInitArg arg(PIKISTATE_NULL);
 					piki->init(&arg);
 					piki->setPosition(spawn, false);
 					piki->changeShape(color);
@@ -746,22 +743,22 @@ void VsGameSection::createVsPikmins()
 			}
 		}
 	}
+
 	const char* marbles[2] = { VsOtakaraName::cBedamaRed, VsOtakaraName::cBedamaBlue };
 	for (int onyonType = 0; onyonType < 2; onyonType++) {
 		Onyon* currentOnyon = ItemOnyon::mgr->getOnyon(1 - onyonType);
 		PelletIterator pelletIter;
-		pelletIter.first();
-		while (!pelletIter.isDone()) {
+		CI_LOOP(pelletIter)
+		{
 			Pellet* pellet = *pelletIter;
-			int i          = strcmp(marbles[onyonType], pellet->mConfig->mParams.mName.mData);
-			if (i == 0) {
+			if (!strcmp(marbles[onyonType], pellet->mConfig->mParams.mName.mData)) {
 				Vector3f flagPos = currentOnyon->getFlagSetPos();
 				flagPos.y += pellet->getCylinderHeight() * 0.5f;
 				pellet->setPosition(flagPos, false);
 			}
-			pelletIter.next();
 		}
 	}
+
 	Navi* orima            = naviMgr->getAt(NAVIID_Olimar);
 	orima->mSprayCounts[0] = mVsStageData->mStartNumSpicy;
 	orima->mSprayCounts[1] = mVsStageData->mStartNumBitter;
@@ -828,10 +825,15 @@ bool GameMessageVsRedOrSuckStart::actVs(VsGameSection* section)
 bool GameMessageVsGetOtakara::actVs(VsGameSection* section)
 {
 	if (section->mCurrentState) {
-		section->mYellowMarbleCounts[mOnionType - 2]++;
-		PSSetLastBeedamaDirection(mOnionType == 0, section->mYellowMarbleCounts[mOnionType - 2] == 3);
-		if (section->mYellowMarbleCounts[mOnionType - 2] >= 4) {
-			section->mCurrentState->onBattleFinished(section, mOnionType, true);
+		// increase the players marble count
+		section->mMarbleCount[mPlayerID]++;
+
+		// update the 1 away bgm mix
+		PSSetLastBeedamaDirection(mPlayerID == 0, section->mMarbleCount[mPlayerID] == (VS_WIN_YELLOW_MARBLE_NUM - 1));
+
+		// If the player has 4 marbles, end the game
+		if (section->mMarbleCount[mPlayerID] >= VS_WIN_YELLOW_MARBLE_NUM) {
+			section->mCurrentState->onBattleFinished(section, mPlayerID, true);
 		}
 	}
 
@@ -855,12 +857,12 @@ bool GameMessageVsAddEnemy::actVs(VsGameSection* section)
 bool GameMessagePelletBorn::actVs(VsGameSection* section)
 {
 	if (mPellet->mPelletFlag == Pellet::FLAG_VS_BEDAMA_YELLOW) { // is yellow bedama
-		for (int i = 0; i < 7; i++) {
+		for (int i = 0; i < VS_YELLOW_MARLBE_NUM; i++) {
 			if (section->mMarbleYellow[i] == mPellet) {
 				return false;
 			}
 		}
-		for (int i = 0; i < 7; i++) {
+		for (int i = 0; i < VS_YELLOW_MARLBE_NUM; i++) {
 			if (!section->mMarbleYellow[i]) {
 				section->mMarbleYellow[i] = mPellet;
 				return true;
@@ -878,7 +880,7 @@ bool GameMessagePelletBorn::actVs(VsGameSection* section)
 bool GameMessagePelletDead::actVs(VsGameSection* section)
 {
 	if (mPellet->mPelletFlag == Pellet::FLAG_VS_BEDAMA_YELLOW) { // is yellow bedama
-		for (int i = 0; i < 7; i++) {
+		for (int i = 0; i < VS_YELLOW_MARLBE_NUM; i++) {
 			if (section->mMarbleYellow[i] == mPellet) {
 				section->mMarbleYellow[i] = nullptr;
 				return true;
@@ -897,7 +899,7 @@ bool GameMessagePelletDead::actVs(VsGameSection* section)
 bool GameMessageVsBirthTekiTreasure::actVs(VsGameSection* section)
 {
 	// This function spawns the shearwigs (suprise maggots)
-	Sys::Sphere sphere(mPosition, 20.0f);
+	Sys::Sphere sphere(mPosition, VS_SHEARWIG_SPAWN_RADIUS);
 	int target            = 0;
 	int redPikis          = 0;
 	int bluePikis         = 0;
@@ -1015,8 +1017,8 @@ Pellet* VsGameSection::createCardPellet()
 	pelletArg.mTextIdentifier    = config->mParams.mName.mData;
 	pelletArg.mPelletType        = kind;
 	pelletArg.mDoSkipCreateModel = true;
-	pelletArg.mMinCarriers       = 1;
-	pelletArg.mMaxCarriers       = 1;
+	pelletArg.mMinCarriers       = VS_CHERRY_MIN_WEIGHT;
+	pelletArg.mMaxCarriers       = VS_CHERRY_MAX_WEIGHT;
 
 	for (int i = 0; i < mMaxCherries; i++) {
 		Pellet* pellet = mCherryArray[i];
@@ -1035,7 +1037,7 @@ Pellet* VsGameSection::createCardPellet()
  */
 void VsGameSection::initCardPellets()
 {
-	mMaxCherries = 10;
+	mMaxCherries = VS_CHERRY_MAX_COUNT;
 	mCherryArray = new Pellet*[mMaxCherries];
 
 	char* name = const_cast<char*>(VsOtakaraName::cCoin);
@@ -1047,8 +1049,8 @@ void VsGameSection::initCardPellets()
 	arg.mPelletIndex    = config->mParams.mIndex;
 	arg.mTextIdentifier = config->mParams.mName.mData;
 	arg.mPelletType     = kind;
-	arg.mMinCarriers    = 1;
-	arg.mMaxCarriers    = 1;
+	arg.mMinCarriers    = VS_CHERRY_MIN_WEIGHT;
+	arg.mMaxCarriers    = VS_CHERRY_MAX_WEIGHT;
 
 	for (int j = 0; j < mMaxCherries; j++) {
 		Pellet* pellet = pelletMgr->birth(&arg);
@@ -1180,7 +1182,7 @@ void VsGameSection::dropCard(VsGameSection::DropCardArg& arg)
 {
 	Vector3f spawn;
 	Cave::randMapMgr->getItemDropPosition(spawn, arg.mDropMinDistance, arg.mDropMaximumDistance);
-	f32 radius = (randFloat() * 20.0f);
+	f32 radius = (randFloat() * VS_CHERRY_SPAWN_RANDOM_OFFSET);
 	f32 angle  = randFloat() * TAU;
 
 	spawn += Vector3f(radius * sinf(angle), 0.0f, radius * cosf(angle));
@@ -1217,8 +1219,8 @@ void VsGameSection::createYellowBedamas(int bedamas)
 		if (bedamas == 0) {
 			return;
 		}
-		if (bedamas >= 7) {
-			bedamas = 7;
+		if (bedamas >= VS_YELLOW_MARLBE_NUM) {
+			bedamas = VS_YELLOW_MARLBE_NUM;
 		}
 	}
 
@@ -1233,8 +1235,8 @@ void VsGameSection::createYellowBedamas(int bedamas)
 
 	pelletArg.mTextIdentifier = config->mParams.mName.mData;
 	pelletArg.mPelletType     = kind;
-	pelletArg.mMinCarriers    = 1;
-	pelletArg.mMaxCarriers    = 8;
+	pelletArg.mMinCarriers    = VS_MARBLE_MIN_WEIGHT;
+	pelletArg.mMaxCarriers    = VS_MARBLE_MAX_WEIGHT;
 	JUT_ASSERTLINE(2163, bedamas <= 50, "oosugi %d\n", bedamas);
 
 	Vector3f positions[50];
@@ -1260,8 +1262,8 @@ void VsGameSection::createRedBlueBedamas(Vector3f& pos)
 		pelletArg.mPelletIndex    = config->mParams.mIndex;
 		pelletArg.mTextIdentifier = config->mParams.mName.mData;
 		pelletArg.mPelletType     = kind;
-		pelletArg.mMinCarriers    = 1;
-		pelletArg.mMaxCarriers    = 8;
+		pelletArg.mMinCarriers    = VS_MARBLE_MIN_WEIGHT;
+		pelletArg.mMaxCarriers    = VS_MARBLE_MAX_WEIGHT;
 		Pellet* pellet            = pelletMgr->birth(&pelletArg);
 		Vector3f position;
 		Cave::randMapMgr->getItemDropPosition(position, 0.2f, 0.8f);
@@ -1276,14 +1278,13 @@ void VsGameSection::createRedBlueBedamas(Vector3f& pos)
  */
 void VsGameSection::calcVsScores()
 {
-
-	f32 yellowMarbleRedDist[7];
-	f32 yellowMarbleBlueDist[7];
+	f32 yellowMarbleRedDist[VS_YELLOW_MARLBE_NUM];
+	f32 yellowMarbleBlueDist[VS_YELLOW_MARLBE_NUM];
 	Onyon* onyons[2];
 	onyons[0] = ItemOnyon::mgr->getOnyon(ONYON_TYPE_RED);
 	onyons[1] = ItemOnyon::mgr->getOnyon(ONYON_TYPE_BLUE);
 
-	for (int i = 0; i < 7; i++) {
+	for (int i = 0; i < VS_YELLOW_MARLBE_NUM; i++) {
 		Pellet* marble = mMarbleYellow[i];
 
 		if (marble && marble->isAlive() && marble->getStateID() == 0) {
@@ -1336,7 +1337,7 @@ void VsGameSection::calcVsScores()
 	f32 yellowScore[2];
 	for (int i = 0; i < 2; i++) {
 		f32 count = mYellowMarbleCounts[i];
-		for (int j = 0; j < 7; j++) {
+		for (int j = 0; j < VS_YELLOW_MARLBE_NUM; j++) {
 			if (i == 0 && yellowMarbleRedDist[j] >= 0.0f) {
 				count += yellowMarbleRedDist[j];
 			}
@@ -1373,9 +1374,9 @@ void VsGameSection::calcVsScores()
 	mRedBlueYellowScore[1] = redBlueScore[0] + ((yellowScore[1] - yellowScore[0]) - redBlueScore[1]);
 
 	f32 cherryValue;
-	f32 cherryRedDist[10];
-	f32 cherryBlueDist[10];
-	for (int i = 0; i < 10; i++) {
+	f32 cherryRedDist[VS_CHERRY_MAX_COUNT];
+	f32 cherryBlueDist[VS_CHERRY_MAX_COUNT];
+	for (int i = 0; i < VS_CHERRY_MAX_COUNT; i++) {
 		Pellet* cherry = mCherryArray[i];
 		if (cherry->isAlive() && cherry->getStateID() == 0) {
 			int cherryCarryFactor = -1;
@@ -1427,7 +1428,7 @@ void VsGameSection::calcVsScores()
 	for (int i = 0; i < 2; i++) {
 		mMaxCherryScore[i] = 0.0f;
 		f32 count          = 0.0f;
-		for (int j = 0; j < 10; j++) {
+		for (int j = 0; j < VS_CHERRY_MAX_COUNT; j++) {
 			f32 miniCount = 0.0f;
 			if (i == 0 && cherryRedDist[j] >= 0.0f) {
 				count += cherryRedDist[j];
@@ -1478,84 +1479,5 @@ void VsGameSection::clearGetCherryCount()
 	mPlayer1Cherries = 0;
 	mPlayer2Cherries = 0;
 }
-
-/**
- * @note Address: 0x801C49E0
- * @note Size: 0x4
- */
-// void StateMachine<VsGameSection>::init(VsGameSection*) { }
-
-/**
- * @note Address: 0x801C49E4
- * @note Size: 0x64
- */
-// void StateMachine<VsGameSection>::create(int states)
-// {
-// 	mLimit          = states;
-// 	mCount          = 0;
-// 	mStates         = new FSMState<VsGameSection>*[mLimit];
-// 	mIndexToIDArray = new int[mLimit];
-// 	mIdToIndexArray = new int[mLimit];
-// }
-
-/**
- * @note Address: 0x801C4A48
- * @note Size: 0x9C
- */
-// void StateMachine<VsGameSection>::transit(VsGameSection* section, int stateID, StateArg* arg)
-// {
-
-// 	int stateIndex              = mIdToIndexArray[stateID];
-// 	VsGame::State* currentState = section->mCurrentState;
-// 	if (currentState) {
-// 		currentState->cleanup(section);
-// 		mCurrentID = currentState->mId;
-// 	}
-// 	if (stateIndex >= mLimit) {
-// 		while (true)
-// 			;
-// 	}
-// 	VsGame::State* state   = static_cast<VsGame::State*>(mStates[stateIndex]);
-// 	section->mCurrentState = state;
-// 	state->init(section, arg);
-// }
-
-/**
- * @note Address: 0x801C4AEC
- * @note Size: 0x84
- */
-// void StateMachine<VsGameSection>::registerState(FSMState<VsGameSection>* state)
-// {
-// 	if (mCount >= mLimit) {
-// 		return;
-// 	}
-// 	mStates[mCount] = state;
-// 	bool inBounds;
-// 	if (state->mId < 0 || state->mId >= mLimit) {
-// 		inBounds = false;
-// 	} else {
-// 		inBounds = true;
-// 	}
-
-// 	if (!inBounds) {
-// 		return;
-// 	}
-
-// 	state->mStateMachine        = this;
-// 	mIndexToIDArray[mCount]     = state->mId;
-// 	mIdToIndexArray[state->mId] = mCount;
-// 	mCount++;
-// }
-
-/**
- * @note Address: 0x801C4B70
- * @note Size: 0x38
- */
-// void StateMachine<VsGameSection>::exec(VsGameSection* section)
-// {
-// 	if (section->mCurrentState) {
-// 		section->mCurrentState->exec(section);
-// 	}
-// }
 
 } // namespace Game

@@ -207,7 +207,7 @@ void DayEndState::onMovieStart(SingleGameSection* game, MovieConfig* movie, u32,
 				PikiKillArg arg(CKILL_DontCountAsDeath);
 				pikiBuffer[j]->kill(&arg);
 			}
-			pikiMgr->moveAllPikmins(*(Vector3f*)&origin, 50.0f, nullptr);
+			pikiMgr->moveAllPikmins(origin, 50.0f, nullptr);
 
 			Iterator<Piki> iterator2(pikiMgr);
 			CI_LOOP(iterator2)

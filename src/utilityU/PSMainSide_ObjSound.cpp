@@ -315,7 +315,7 @@ JAISound* Creature::startSoundInner(PSM::StartSoundArg& arg)
 		JAIBasic::msBasic->startSoundActorT(sound, temp, &actor, unk, players);
 		onPlayingSe(sound, *temp);
 		if (*temp) {
-			(*temp)->_1A = true;
+			(*temp)->mIsPlayingWithActor = true;
 		}
 		return *temp;
 	} else {
@@ -339,7 +339,7 @@ JAISound* Creature::startSoundInner(PSM::StartSoundArg& arg)
 		onPlayingSe(sound, *getHandleArea(id));
 		JAISound* se = jai->mSounds[id];
 		if (se) {
-			(se)->_1A = true;
+			se->mIsPlayingWithActor = true;
 		}
 		return se;
 	}

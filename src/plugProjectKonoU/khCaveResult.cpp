@@ -726,7 +726,7 @@ void ObjCaveResult::statusForceScroll()
 	FOREACH_NODE(Game::Result::TNode, mResultNode->mChild, cNode)
 	{
 		LostItemMgr* mgr = cNode->mItemMgr;
-		if (i == mScrollSelIndex + 2 && (mgr->mFlags & LOSTITEM_Unk1) != 1) {
+		if (i == mScrollSelIndex + 2 && (mgr->mFlags & LOSTITEM_IsActive) != 1) {
 			cNode->mItemMgr->init(pos, i % 2); // is i odd
 		}
 		i++;
@@ -861,30 +861,30 @@ void ObjCaveResult::updateAnimation()
 	mScissorMin            = vec1.y + 0.5f;
 	mScissorMax            = vec2.y - yoffs;
 
-	mMainAnim->mCurrentFrame      = mAnimTimers[0];
-	mMainAnimColor->mCurrentFrame = mAnimTimers[2];
-	mAnimTexSRT->mCurrentFrame    = mAnimTimers[4];
-	mAnimTevReg->mCurrentFrame    = mAnimTimers[5];
+	mMainAnim->setFrame(mAnimTimers[0]);
+	mMainAnimColor->setFrame(mAnimTimers[2]);
+	mAnimTexSRT->setFrame(mAnimTimers[4]);
+	mAnimTevReg->setFrame(mAnimTimers[5]);
 	mScreenMain->animation();
 
 	if (!isFlag(CAVERESFLAG_SaveOpen)) {
 		mAnimTimers[0] += 1.0f;
-		if (mAnimTimers[0] >= mMainAnim->mTotalFrameCount) {
+		if (mAnimTimers[0] >= mMainAnim->getFrameMax()) {
 			mAnimTimers[0] = 0.0f;
 		}
 
 		mAnimTimers[2] += 1.0f;
-		if (mAnimTimers[2] >= mMainAnimColor->mTotalFrameCount) {
+		if (mAnimTimers[2] >= mMainAnimColor->getFrameMax()) {
 			mAnimTimers[2] = 0.0f;
 		}
 
 		mAnimTimers[4] += 1.0f;
-		if (mAnimTimers[4] >= mAnimTexSRT->mTotalFrameCount) {
+		if (mAnimTimers[4] >= mAnimTexSRT->getFrameMax()) {
 			mAnimTimers[4] = 0.0f;
 		}
 
 		mAnimTimers[5] += 1.0f;
-		if (mAnimTimers[5] >= mAnimTevReg->mTotalFrameCount) {
+		if (mAnimTimers[5] >= mAnimTevReg->getFrameMax()) {
 			mAnimTimers[5] = 0.0f;
 		}
 	}
@@ -893,8 +893,8 @@ void ObjCaveResult::updateAnimation()
 	mScreenMain->search('Panacomp')->updateScale(mScaleMgr->calc());
 
 	if (isFlag(CAVERESFLAG_DrawComp)) {
-		mCompleteAnim->mCurrentFrame      = mAnimTimers[1];
-		mCompleteAnimColor->mCurrentFrame = mAnimTimers[3];
+		mCompleteAnim->setFrame(mAnimTimers[1]);
+		mCompleteAnimColor->setFrame(mAnimTimers[3]);
 		mScreenComplete->animation();
 		if (mAnimTimers[1] >= 30.0f && !isFlag(CAVERESFLAG_MakeEfx)) {
 			u16 y = System::getRenderModeObj()->efbHeight;
@@ -956,15 +956,15 @@ void ObjCaveResult::pikminSE()
  */
 LostItem::LostItem()
 {
-	mRect.p1.y = 0.0f;
-	mRect.p1.x = 0.0f;
-	mRect.p2.y = 0.0f;
-	mRect.p2.x = 0.0f;
-	mAlpha     = 255;
-	_14        = -40;
-	_1A        = 0;
-	mAngle     = 0;
-	mCounter   = false;
+	mRect.p1.y        = 0.0f;
+	mRect.p1.x        = 0.0f;
+	mRect.p2.y        = 0.0f;
+	mRect.p2.x        = 0.0f;
+	mAlpha            = 255;
+	mAlphaChangeSpeed = -40;
+	mAngleChangeSpeed = 0;
+	mAngle            = 0;
+	mCounter          = false;
 }
 
 /**
@@ -973,30 +973,29 @@ LostItem::LostItem()
  */
 bool LostItem::update()
 {
-	bool flag;
+	bool finished;
 	if (mAlpha == 0) {
-		flag = true;
-
+		finished = true;
 	} else {
 		if (mCounter == 0) {
-			mAlpha += _14;
-			if (mAlpha < (int)-_14) {
+			mAlpha += mAlphaChangeSpeed;
+			if (mAlpha < (int)-mAlphaChangeSpeed) {
 				mAlpha = 0;
 			}
 		} else {
 			mCounter--;
 		}
 
-		flag = false;
-		mRect.p2.y += _10;
+		finished = false;
+		mRect.p2.y += mFallSpeed;
 		mRect.p2.x *= 0.85f;
 		mRect.p2.y *= 0.85f;
 		mRect.p1.x += mRect.p2.x;
 		mRect.p1.y += mRect.p2.y;
-		mAngle += _1A;
+		mAngle += mAngleChangeSpeed;
 	}
 
-	return flag;
+	return finished;
 }
 
 /**
@@ -1021,49 +1020,52 @@ LostItemMgr::LostItemMgr(int count)
  */
 void LostItemMgr::init(const JGeometry::TVec2f& pos, bool isOdd)
 {
-	if (mMaxPanes) {
-		f32 x = pos.x;
-		f32 y = pos.y;
-		if (isOdd) {
-			x += 60.0f;
-		}
-
-		for (int i = 0; i < mMaxPanes; i++) {
-			f32 x1   = randFloat();
-			f32 x2   = randFloat();
-			f32 y1   = randFloat();
-			f32 y2   = randFloat();
-			f32 test = randFloat();
-
-			LostItem* item   = &mItemList[i];
-			item->mRect.p1.x = x;
-			item->mRect.p1.y = y;
-			item->mRect.p2.x = 40.0f * test - 20.0f;
-			item->mRect.p2.y = 32.0f * y2 - 30.0f;
-
-			item->_10      = (4.0f * y1 + 2.0f);
-			item->_1A      = (10000.0f * x2 - 5000.0f);
-			item->mCounter = (10.0f * x1 + 8.0f);
-		}
-
-		f32 xoffs[5] = { kh::Screen::ObjCaveResult::msVal.mLostItemSmokeOffsetX1, kh::Screen::ObjCaveResult::msVal.mLostItemSmokeOffsetX2,
-			             kh::Screen::ObjCaveResult::msVal.mLostItemSmokeOffsetX3, kh::Screen::ObjCaveResult::msVal.mLostItemSmokeOffsetX4,
-			             kh::Screen::ObjCaveResult::msVal.mLostItemSmokeOffsetX5 };
-
-		if (isOdd) {
-			xoffs[0] += 60.0f;
-		}
-		f32 efxY = pos.y - 10.0f;
-		f32 efxX = pos.x;
-		for (int i = 0; i < 5; i++) {
-			efx2d::T2DChangesmoke efx;
-			Vector2f pos(efxX + xoffs[i], efxY);
-			efx2d::Arg arg(pos);
-			efx.create(&arg);
-		}
-		PSSystem::spSysIF->playSystemSe(PSSE_SY_PIKI_DECREMENT, 0);
-		setFlag(0x1 + 0x2);
+	if (mMaxPanes == 0) {
+		return;
 	}
+
+	f32 x = pos.x;
+	f32 y = pos.y;
+	if (isOdd) {
+		x += 60.0f;
+	}
+
+	for (int i = 0; i < mMaxPanes; i++) {
+		f32 x1   = randFloat();
+		f32 x2   = randFloat();
+		f32 y1   = randFloat();
+		f32 y2   = randFloat();
+		f32 test = randFloat();
+
+		LostItem* item   = &mItemList[i];
+		item->mRect.p1.x = x;
+		item->mRect.p1.y = y;
+		item->mRect.p2.x = 40.0f * test - 20.0f;
+		item->mRect.p2.y = 32.0f * y2 - 30.0f;
+
+		item->mFallSpeed        = (4.0f * y1 + 2.0f);
+		item->mAngleChangeSpeed = (10000.0f * x2 - 5000.0f);
+		item->mCounter          = (10.0f * x1 + 8.0f);
+	}
+
+	f32 xoffs[5] = { kh::Screen::ObjCaveResult::msVal.mLostItemSmokeOffsetX1, kh::Screen::ObjCaveResult::msVal.mLostItemSmokeOffsetX2,
+		             kh::Screen::ObjCaveResult::msVal.mLostItemSmokeOffsetX3, kh::Screen::ObjCaveResult::msVal.mLostItemSmokeOffsetX4,
+		             kh::Screen::ObjCaveResult::msVal.mLostItemSmokeOffsetX5 };
+
+	if (isOdd) {
+		xoffs[0] += 60.0f;
+	}
+	f32 efxY = pos.y - 10.0f;
+	f32 efxX = pos.x;
+	for (int i = 0; i < 5; i++) {
+		efx2d::T2DChangesmoke efx;
+		Vector2f pos(efxX + xoffs[i], efxY);
+		efx2d::Arg arg(pos);
+		efx.create(&arg);
+	}
+
+	PSSystem::spSysIF->playSystemSe(PSSE_SY_PIKI_DECREMENT, 0);
+	setFlag(LOSTITEM_IsActive | 0x2);
 }
 
 /**
@@ -1072,17 +1074,17 @@ void LostItemMgr::init(const JGeometry::TVec2f& pos, bool isOdd)
  */
 void LostItemMgr::update()
 {
-	if (!isFlag(0x1)) {
+	if (!isFlag(LOSTITEM_IsActive)) {
 		return;
 	}
 
 	bool doend = true;
-	for (int i = 0; i < (int)mMaxPanes; i++) {
+	for (int i = 0; i < mMaxPanes; i++) {
 		doend &= mItemList[i].update();
 	}
 
 	if (doend) {
-		resetFlag(0x1);
+		resetFlag(LOSTITEM_IsActive);
 	}
 }
 
@@ -1092,10 +1094,10 @@ void LostItemMgr::update()
  */
 void LostItemMgr::draw(P2DScreen::Mgr_tuning* screen, u64 tag, const ResTIMG* timg, Graphics& gfx)
 {
-	if (isFlag(0x1)) {
+	if (isFlag(LOSTITEM_IsActive)) {
 		kh::Screen::setTex(screen, tag, timg);
 		J2DPane* pane = screen->search(tag);
-		for (int i = 0; i < (int)mMaxPanes; i++) {
+		for (int i = 0; i < mMaxPanes; i++) {
 			pane->mOffset = JGeometry::TVec2f(mItemList[i].mRect.p1.x, mItemList[i].mRect.p1.y);
 			pane->calcMtx();
 

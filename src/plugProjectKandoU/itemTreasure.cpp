@@ -29,7 +29,7 @@ Mgr* mgr;
  */
 void FSM::init(Item* item)
 {
-	create(1);
+	create(ITEMTREASURE_StateCount);
 	registerState(new NormalState);
 }
 
@@ -108,41 +108,48 @@ void NormalState::onDamage(Item* item, f32 damage)
 void Item::releasePellet()
 {
 	if (mPellet) {
+		// Detach the pellet object from the Item
 		mPellet->endCapture();
+
+		// spawn the stain texture in the pellet's spot
 		TexCaster::Caster* caster = mPellet->mCaster;
 		if (caster) {
 			caster->fadein(0.5f);
 		}
 
+		// create appear dust, change size with size of the pellet
 		f32 scale = mPellet->getPickRadius();
-
 		efx::ArgScale arg(mPosition, scale);
 		efx::TOtakaraAp efx;
 		efx.create(&arg);
 
+		// Play the spawn sound effect
 		mSoundObj->startSound(PSSE_EV_TREASURE_JUMP_OUT, 0);
 
+		// Give an initial x and z velocity between -5.0 and +5.0
 		Vector3f velocity;
 		velocity.x = 10.0f * (randFloat() - 0.5f);
 		velocity.z = 10.0f * (randFloat() - 0.5f);
 		velocity.y = 150.0f;
-
 		mPellet->setVelocity(velocity);
 
+		// spawn between 1-4 enemies in versus mode
 		if (gameSystem->isVersusMode()) {
-			f32 test = randFloat() * 3.0f;
+			int num = randInt(3);
+
 			GameMessageVsBirthTekiTreasure mesg;
 			mesg.mPosition       = mPosition;
 			mesg.mDoSetExitTimer = false;
-			mesg.mTekiBirthNum   = (int)test + 1;
+			mesg.mTekiBirthNum   = num + 1;
 			gameSystem->mSection->sendMessage(mesg);
 		}
 
+		// stop the working music mix
 		mSoundEvent.finish();
-
 		P2ASSERTLINE(327, mSoundObj->getCastType() == PSM::CCT_WorkItem);
 		static_cast<PSM::WorkItem*>(mSoundObj)->eventFinish();
 
+		// mark the item as dead
 		setAlive(false);
 		mPellet = nullptr;
 	}
@@ -173,7 +180,7 @@ void Item::constructor() { mSoundObj = new PSM::WorkItem(this); }
 void Item::onInit(CreatureInitArg*)
 {
 	mModel = nullptr;
-	mFsm->start(this, 0, nullptr);
+	mFsm->start(this, ITEMTREASURE_Normal, nullptr);
 	setAlive(true);
 	mCollTree->createSingleSphere(&mDummyShape, 0, mBoundingSphere, nullptr);
 }
@@ -212,9 +219,11 @@ void Item::doAI()
 	part->mRadius  = getWorkRadius();
 
 	if (mPellet) {
+		// Use a matrix to offset the pellet such that it appears in the ground while buried
+		// The math here is way more involved than it really needs to be, but thats just the
+		// nature of how the pellet height value works
 		f32 halfMax = (mPellet->getBuryDepthMax() * 0.5f);
 		f32 depth   = halfMax - mTotalLife;
-
 		Matrixf mtx;
 		PSMTXCopy(mPellet->mBaseTrMatrix.mMatrix.mtxView, mtx.mMatrix.mtxView);
 		mtx.mMatrix.structView.ty = depth;
@@ -222,12 +231,14 @@ void Item::doAI()
 		mtx.mMatrix.structView.tz = 0.0f;
 		mPellet->updateCapture(mtx);
 
+		// force hide pellet if not visible
 		if (mTotalLife >= mPellet->getBuryDepthMax()) {
 			mPellet->mLod.resetFlag(AILOD_IsVisible | AILOD_IsVisVP0 | AILOD_IsVisVP1);
 		}
 		mPellet->mDepth = mTotalLife;
 	}
 
+	// if still alive, update the bgm working mix for this item
 	if (isAlive()) {
 		int state = mSoundEvent.update();
 		switch (state) {
@@ -282,12 +293,15 @@ f32 Item::getWorkDistance(Sys::Sphere& bounds)
  */
 void Item::setTreasure(Pellet* pelt)
 {
+	// Assign the pellet object to the Item, including setting the health
 	Vector3f pos = mPosition;
 	mMatrix.makeT(pos);
 	mPellet = pelt;
 	if (mPellet) {
 		mPellet->startCapture(&mMatrix);
 		mTotalLife = mPellet->getBuryDepth();
+
+		// In versus, overwrite the depth value of yellow marbles
 		if (gameSystem->isVersusMode() && mPellet->mPelletFlag == Pellet::FLAG_VS_BEDAMA_YELLOW) {
 			mTotalLife = VsOtakaraName::cBedamaYellowDepth;
 		}
@@ -345,11 +359,11 @@ bool Item::interactAttack(InteractAttack& act)
 
 		int id = mSoundEvent.event();
 		switch (id) {
-		case 1:
+		case TSE_Active:
 			P2ASSERTLINE(555, mSoundObj->getCastType() == PSM::CCT_WorkItem);
 			static_cast<PSM::WorkItem*>(mSoundObj)->eventStart();
 			break;
-		case 3:
+		case TSE_Apply:
 			P2ASSERTLINE(561, mSoundObj->getCastType() == PSM::CCT_WorkItem);
 			static_cast<PSM::WorkItem*>(mSoundObj)->eventRestart();
 			break;
@@ -383,6 +397,7 @@ bool Item::isVisible() { return (!mPellet) ? false : !(mTotalLife / mPellet->get
  */
 bool Item::ignoreAtari(Creature* obj)
 {
+	// this should definitely be an inlined isVisible but it isn't cooperating here
 	bool check;
 	if (!mPellet) {
 		check = false;
@@ -396,11 +411,8 @@ bool Item::ignoreAtari(Creature* obj)
 		Piki* piki = static_cast<Piki*>(obj);
 		if (piki->isPiki() && piki->getKind() == White) {
 			return false;
-		} else {
-			return true;
 		}
-	} else {
-		return false;
+		return true;
 	}
 	return false;
 }

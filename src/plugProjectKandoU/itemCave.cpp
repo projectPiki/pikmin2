@@ -754,7 +754,7 @@ Mgr::Mgr()
 void Mgr::onLoadResources()
 {
 	loadArchive("arc.szs");
-	loadBmd("dungeon_hole.bmd", 0, 0x20000);
+	loadBmd("dungeon_hole.bmd", 0, J3DMODEL_CreateNewDL);
 	JKRArchive* arc = openTextArc("texts.szs");
 	mPlatformA      = loadPlatform(arc, "cap_platform.bin");
 	mPlatformB      = loadPlatform(arc, "side_platform.bin");

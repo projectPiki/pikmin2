@@ -151,7 +151,7 @@ void GameState::init(SingleGameSection* game, StateArg* arg)
 				}
 			}
 		}
-		if (startType == 1) {
+		if (startType == MapEnter_CaveGeyser) {
 			gameSystem->mTimeMgr->setTime(playData->mCaveSaveData.mTime);
 		}
 	} break;
@@ -629,8 +629,8 @@ void GameState::onMovieStart(SingleGameSection* game, MovieConfig* config, u32, 
 			naviType = Screen::Game2DMgr::GOTITLE_OlimarDown;
 			game->setPlayerMode(NAVIID_Olimar);
 		} else {
-			naviType = (playData->mStoryFlags & STORY_DebtPaid) ? Screen::Game2DMgr::GOTITLE_PresidentDown
-			                                                    : Screen::Game2DMgr::GOTITLE_LouieDown;
+			naviType
+			    = playData->isStoryFlag(STORY_DebtPaid) ? Screen::Game2DMgr::GOTITLE_PresidentDown : Screen::Game2DMgr::GOTITLE_LouieDown;
 			game->setPlayerMode(NAVIID_Louie);
 		}
 		Screen::gGame2DMgr->open_GameOver(naviType);
@@ -758,7 +758,7 @@ void GameState::onMovieDone(SingleGameSection* game, MovieConfig* config, u32, u
 	// Regular/first time course landing, check usual stuff after it
 	if (config->is("s00_coursein") || config->is("x01_coursein_forest") || config->is("x01_coursein_yakushima")
 	    || config->is("x01_coursein_last")) {
-		if ((playData->mStoryFlags & STORY_DebtPaid) && !playData->isDemoFlag(DEMO_President_Start)) {
+		if (playData->isStoryFlag(STORY_DebtPaid) && !playData->isDemoFlag(DEMO_President_Start)) {
 			playData->setDemoFlag(DEMO_President_Start);
 			char* name = const_cast<char*>(game->mCurrentCourseInfo->mName);
 			MoviePlayArg moviePlayArg("g35_president_gamestart", name, game->mMovieFinishCallback, 0);

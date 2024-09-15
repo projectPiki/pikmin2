@@ -497,8 +497,8 @@ void CaveState::onMovieStart(SingleGameSection* game, MovieConfig* config, u32, 
 			naviType = Screen::Game2DMgr::GOTITLE_OlimarDown;
 			game->setPlayerMode(NAVIID_Olimar);
 		} else {
-			naviType = (playData->mStoryFlags & STORY_DebtPaid) ? Screen::Game2DMgr::GOTITLE_PresidentDown
-			                                                    : Screen::Game2DMgr::GOTITLE_LouieDown;
+			naviType
+			    = playData->isStoryFlag(STORY_DebtPaid) ? Screen::Game2DMgr::GOTITLE_PresidentDown : Screen::Game2DMgr::GOTITLE_LouieDown;
 			game->setPlayerMode(NAVIID_Louie);
 		}
 		Screen::gGame2DMgr->open_GameOver(naviType);

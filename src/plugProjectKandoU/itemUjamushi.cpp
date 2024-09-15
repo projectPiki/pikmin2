@@ -2418,8 +2418,8 @@ Mgr::Mgr()
 	mObjectPathComponent = "user/Kando/objects/ujamushi";
 	setModelSize(2);
 	loadArchive("arc.szs");
-	loadBmd("ujamushi_poly.bmd", 0, 0x20000);
-	loadBmd("ujamushi_bill.bmd", 1, 0x20020000);
+	loadBmd("ujamushi_poly.bmd", 0, J3DMODEL_CreateNewDL);
+	loadBmd("ujamushi_bill.bmd", 1, J3DMODEL_Unk26 | J3DMODEL_CreateNewDL);
 	_308                   = 0;
 	_304                   = 0;
 	_30C                   = 0.0f;
