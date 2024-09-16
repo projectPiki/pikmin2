@@ -4257,7 +4257,7 @@ void WorldMap::changeInfo()
 					mScreenInfo->search(floTags[i])->hide();
 					f32 x = msVal._68;
 					if (mCaveOtaNum[i] >= 10) {
-						x += 12.5f;
+						x += 11.5f;
 					}
 					mCaveTreasureCounterCollected[i]->getMotherPane()->move(x, 0.0f);
 				}
@@ -4267,7 +4267,7 @@ void WorldMap::changeInfo()
 				if (!Game::playData->isStoryFlag(Game::STORY_DebtPaid) && mCaveOtaMax[i] != mCaveOtaNum[i]) {
 					f32 x = msVal._68;
 					if (mCaveOtaMax[i] >= 10) {
-						x += 12.5f;
+						x += 11.5f;
 					}
 					mCaveTreasureCounterCollected[i]->getMotherPane()->move(x, 0.0f);
 					mCaveTreasureCounterMax[i]->getMotherPane()->hide();

@@ -78,8 +78,8 @@ void Obj::doAnimationStick()
 
 		mClimbRotation += sep;
 
-		crossVec        = cross(mClimbRotation, mClimbDirection);
-		mClimbDirection = cross(crossVec, mClimbRotation);
+		crossVec        = mClimbRotation.cross(mClimbDirection);
+		mClimbDirection = crossVec.cross(mClimbRotation);
 	} else {
 		Vector3f sep = mClimbAxis - mClimbDirection;
 		sep *= C_PROPERPARMS.mRotationCorrection.mValue;

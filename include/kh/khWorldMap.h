@@ -262,7 +262,7 @@ struct WorldMap : public Game::WorldMap::Base {
 		inline StaticValues()
 		{
 			_00      = 4500.0f;
-			_04      = 0.01f;
+			_04      = 0.001f;
 			_08      = 0.92f;
 			_0C      = 800.0f;
 			_10      = 0.97f;
