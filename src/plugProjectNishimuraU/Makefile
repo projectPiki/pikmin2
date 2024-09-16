@@ -196,7 +196,7 @@ NISHIMURA_FILES:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/KabutoState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/KabutoAnimator.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/KabutoMgr.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/Kabuto.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/Kabuto.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/KumaKochappyState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/KumaKochappyAnimator.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/KumaKochappyMgr.o\

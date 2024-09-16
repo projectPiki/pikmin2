@@ -206,18 +206,16 @@ Creature* Obj::getSearchedTarget()
  */
 bool Obj::isAttackableTarget()
 {
-	Vector3f angles(-sinf(mFaceDir), 0.0f, cosf(mFaceDir));
+	Vector3f dir(sinf(mFaceDir), 0.0f, cosf(mFaceDir));
+	Vector3f orthoDir(-dir.z, 0.0f, dir.x);
 	f32 scale = 0.5f * C_GENERALPARMS.mSightRadius();
 
-	Vector3f pos(angles.x * scale + mPosition.x, angles.y * scale + mPosition.y, angles.z * scale + mPosition.z);
+	Vector3f pos(dir.x * scale + mPosition.x, dir.y * scale + mPosition.y, dir.z * scale + mPosition.z);
 	Sys::Sphere sphere(pos, 0.75f * C_GENERALPARMS.mSightRadius());
 	CellIteratorArg iterArg(sphere);
 	iterArg.mOptimise = true;
 
 	CellIterator iter(iterArg);
-
-	// this is probably wrong but an extra vector3 needs to exist
-	Vector3f inv(angles.x, 0.0f, -angles.z);
 
 	CI_LOOP(iter)
 	{
@@ -231,8 +229,8 @@ bool Obj::isAttackableTarget()
 				Vector3f diff = creature->getPosition();
 				diff -= mPosition;
 
-				if (absVal(diff.y) < C_GENERALPARMS.mFov() && absVal(inv.dot(diff)) < 15.0f) {
-					f32 dist = angles.dot(diff);
+				if (absVal(diff.y) < C_GENERALPARMS.mFov() && absVal(orthoDir.dot(diff)) < 15.0f) {
+					f32 dist = dir.dot(diff);
 					if (dist > 15.0f && dist < C_GENERALPARMS.mSightRadius()) {
 						return true;
 					}
@@ -242,208 +240,6 @@ bool Obj::isAttackableTarget()
 	}
 
 	return false;
-
-	/*
-	stwu     r1, -0xf0(r1)
-	mflr     r0
-	stw      r0, 0xf4(r1)
-	stfd     f31, 0xe0(r1)
-	psq_st   f31, 232(r1), 0, qr0
-	stfd     f30, 0xd0(r1)
-	psq_st   f30, 216(r1), 0, qr0
-	stfd     f29, 0xc0(r1)
-	psq_st   f29, 200(r1), 0, qr0
-	stw      r31, 0xbc(r1)
-	stw      r30, 0xb8(r1)
-	stw      r29, 0xb4(r1)
-	mr       r31, r3
-	lfs      f0, lbl_8051CDCC@sda21(r2)
-	lfs      f3, 0x1fc(r3)
-	fmr      f1, f3
-	fcmpo    cr0, f3, f0
-	bge      lbl_802E4998
-	fneg     f1, f3
-
-	lbl_802E4998:
-	lfs      f2, lbl_8051CE24@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	lfs      f0, lbl_8051CDCC@sda21(r2)
-	addi     r4, r3, sincosTable___5JMath@l
-	fmuls    f1, f1, f2
-	fcmpo    cr0, f3, f0
-	fctiwz   f0, f1
-	stfd     f0, 0x90(r1)
-	lwz      r0, 0x94(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	add      r3, r4, r0
-	lfs      f30, 4(r3)
-	bge      lbl_802E49F0
-	lfs      f0, lbl_8051CE28@sda21(r2)
-	fmuls    f0, f3, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x98(r1)
-	lwz      r0, 0x9c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r4, r0
-	fneg     f29, f0
-	b        lbl_802E4A08
-
-	lbl_802E49F0:
-	fmuls    f0, f3, f2
-	fctiwz   f0, f0
-	stfd     f0, 0xa0(r1)
-	lwz      r0, 0xa4(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f29, r4, r0
-
-	lbl_802E4A08:
-	lwz      r4, 0xc0(r31)
-	fneg     f31, f30
-	lfs      f0, lbl_8051CE38@sda21(r2)
-	addi     r3, r1, 0x24
-	lfs      f2, 0x3d4(r4)
-	addi     r4, r1, 0x14
-	lfs      f1, lbl_8051CE3C@sda21(r2)
-	fmuls    f5, f0, f2
-	lfs      f3, 0x194(r31)
-	lfs      f0, 0x18c(r31)
-	fmuls    f4, f1, f2
-	lfs      f1, 0x190(r31)
-	lfs      f2, lbl_8051CDCC@sda21(r2)
-	fmadds   f3, f30, f5, f3
-	stfs     f4, 0x20(r1)
-	fmadds   f1, f2, f5, f1
-	fmadds   f0, f29, f5, f0
-	stfs     f3, 0x1c(r1)
-	stfs     f0, 0x14(r1)
-	stfs     f1, 0x18(r1)
-	bl       __ct__Q24Game15CellIteratorArgFRQ23Sys6Sphere
-	li       r0, 1
-	addi     r3, r1, 0x44
-	stb      r0, 0x40(r1)
-	addi     r4, r1, 0x24
-	bl       __ct__Q24Game12CellIteratorFRQ24Game15CellIteratorArg
-	addi     r3, r1, 0x44
-	bl       first__Q24Game12CellIteratorFv
-	b        lbl_802E4BC0
-
-	lbl_802E4A7C:
-	addi     r3, r1, 0x44
-	bl       __ml__Q24Game12CellIteratorFv
-	lwz      r12, 0(r3)
-	mr       r30, r3
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802E4BB8
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	mr       r29, r3
-	bne      lbl_802E4AFC
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802E4AFC
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x1c0(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802E4AFC
-	li       r29, 1
-
-	lbl_802E4AFC:
-	clrlwi.  r0, r29, 0x18
-	beq      lbl_802E4BB8
-	mr       r4, r30
-	addi     r3, r1, 8
-	lwz      r12, 0(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f3, 0xc(r1)
-	lfs      f0, 0x190(r31)
-	lfs      f2, 8(r1)
-	lfs      f1, 0x18c(r31)
-	fsubs    f3, f3, f0
-	lfs      f0, lbl_8051CDCC@sda21(r2)
-	lfs      f4, 0x10(r1)
-	fsubs    f2, f2, f1
-	lfs      f1, 0x194(r31)
-	fcmpo    cr0, f3, f0
-	lwz      r3, 0xc0(r31)
-	fsubs    f4, f4, f1
-	ble      lbl_802E4B58
-	fmr      f1, f3
-	b        lbl_802E4B5C
-
-	lbl_802E4B58:
-	fneg     f1, f3
-
-	lbl_802E4B5C:
-	lfs      f0, 0x3fc(r3)
-	fcmpo    cr0, f1, f0
-	bge      lbl_802E4BB8
-	lfs      f1, lbl_8051CDCC@sda21(r2)
-	fmuls    f3, f1, f3
-	fmadds   f0, f31, f2, f3
-	fmadds   f0, f29, f4, f0
-	fcmpo    cr0, f0, f1
-	ble      lbl_802E4B84
-	b        lbl_802E4B88
-
-	lbl_802E4B84:
-	fneg     f0, f0
-
-	lbl_802E4B88:
-	lfs      f1, lbl_8051CE40@sda21(r2)
-	fcmpo    cr0, f0, f1
-	bge      lbl_802E4BB8
-	fmadds   f0, f29, f2, f3
-	fmadds   f2, f30, f4, f0
-	fcmpo    cr0, f2, f1
-	ble      lbl_802E4BB8
-	lfs      f0, 0x3d4(r3)
-	fcmpo    cr0, f2, f0
-	bge      lbl_802E4BB8
-	li       r3, 1
-	b        lbl_802E4BD4
-
-	lbl_802E4BB8:
-	addi     r3, r1, 0x44
-	bl       next__Q24Game12CellIteratorFv
-
-	lbl_802E4BC0:
-	addi     r3, r1, 0x44
-	bl       isDone__Q24Game12CellIteratorFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802E4A7C
-	li       r3, 0
-
-	lbl_802E4BD4:
-	psq_l    f31, 232(r1), 0, qr0
-	lfd      f31, 0xe0(r1)
-	psq_l    f30, 216(r1), 0, qr0
-	lfd      f30, 0xd0(r1)
-	psq_l    f29, 200(r1), 0, qr0
-	lfd      f29, 0xc0(r1)
-	lwz      r31, 0xbc(r1)
-	lwz      r30, 0xb8(r1)
-	lwz      r0, 0xf4(r1)
-	lwz      r29, 0xb4(r1)
-	mtlr     r0
-	addi     r1, r1, 0xf0
-	blr
-	*/
 }
 
 /**
