@@ -3247,8 +3247,7 @@ f32 WorldMap::rocketMove(J2DPane* pane, bool flag)
 	f32 factor      = msVal._08;
 	f32 otherFactor = msVal._4C;
 
-	// something weird going on here
-	for (int i = mRocketMoveCounter; i > 90; i--) {
+	for (int i = mRocketMoveCounter; i > 90; i -= 5) {
 		factor *= 0.99f;
 	}
 
@@ -3542,13 +3541,14 @@ blr
  */
 void WorldMap::rocketUpdate(J2DPane* pane)
 {
-	J2DPane* shipPane = mScreenRocket->search('NROCKET');
+	J2DPane* shipPane = mScreenRocket->search('NROCKET'); // r30
 	shipPane->setOffset(mRocketPosition.x, mRocketPosition.y);
-	shipPane->setAngle(TODEGREES(JMAAtan2Radian(-mRocketAngle.x, -mRocketAngle.y)));
+	shipPane->setAngle(JMAAtan2Radian(-mRocketAngle.x, -mRocketAngle.y) * JMath::TAngleConstant_<f32>::RADIAN_TO_DEGREE_FACTOR());
 
 	mRocketScale = mRocketScale * msVal._08 + (1.0f - msVal._08) * tag2num(pane->mMessageID);
 
-	f32 scale2 = msVal._1C[mOpenCourses] * mRocketScale;
+	f32* courseScales = &msVal._1C;
+	f32 scale2        = courseScales[mOpenCourses] * mRocketScale;
 	shipPane->updateScale(scale2);
 
 	Vector2f sep           = mRocketPosition - mRocketPosition2;
@@ -3557,7 +3557,7 @@ void WorldMap::rocketUpdate(J2DPane* pane)
 	JGeometry::TVec3f pos2 = shipPane2->getGlbVtx(GLBVTX_BtmRight);
 	JGeometry::TVec3f pos3 = shipPane2->getGlbVtx(GLBVTX_TopLeft);
 	JGeometry::TVec3f pos4 = shipPane2->getGlbVtx(GLBVTX_TopRight);
-	f32 factor             = msVal._1C[0];
+	f32 factor             = msVal._1C;
 	JGeometry::TVec2f mid1((pos1.x + pos2.x) / 2, (pos1.y + pos2.y) / 2);
 	JGeometry::TVec2f mid2((pos3.x + pos4.x) / 2, (pos3.y + pos4.y) / 2);
 	// f32 inv                = 1.0f - msVal._1C[0];
@@ -4418,40 +4418,43 @@ Vector2f WorldMap::OnyonDynamics::move(WorldMap* wmap, const JGeometry::TVec2f& 
 	int id      = wmap->mCurrentCourseIndex;
 	wmap->mScreenKitagawa->search(tags[id]);
 
-	JGeometry::TVec2f posDiff = pos;
-	posDiff -= mOffset;
+	JGeometry::TVec2f posDiff(pos.x - mOffset.x, pos.y - mOffset.y);
 	f32 dist = posDiff.length();
 
 	int prevAngle = mRotateAngle;
 	mRotateAngle += 500;
 	if (dist < 1.0f) {
-		mVelocity += msVal._3C + mOffset;
+		mVelocity.x += msVal._3C * (wmap->mRocketPosition.x - mOffset.x);
+		mVelocity.y += msVal._3C * (wmap->mRocketPosition.y - mOffset.y);
 		mVelocity *= msVal._40;
 		mOffset += mVelocity;
 	} else {
-		mVelocity += msVal._3C + mOffset;
-		mVelocity *= (f32)mRotateAngle * 0.05f + msVal._40;
+		mVelocity.x += msVal._3C * (pos.x - mOffset.x);
+		mVelocity.y += msVal._3C * (pos.y - mOffset.y);
+		mVelocity *= 0.05f * JMASinShort(mRotateAngle) + msVal._40;
 		mOffset += mVelocity;
 	}
 
 	if (dist < 20.0f) {
 		f32 calc  = pikmin2_atan2f(mAngle.x, -mAngle.y);
 		f32 calc2 = calc * msVal._44;
-		if (calc - calc2 < -0.1f) {
+		if (calc2 - calc < -0.1f) {
 			calc2 = calc - 0.1f;
-		} else if (calc - calc2 > 0.1f) {
+		} else if (calc2 - calc > 0.1f) {
 			calc2 = calc + 0.1f;
 		}
 		mAngle.set(pikmin2_sinf(calc2), -pikmin2_cosf(calc2));
 		if (prevAngle < -0x4000 && mRotateAngle > -0x4000) {
-			mOnyonPane->getParentPane()->appendChild(mOnyonPane);
+			J2DPane* parentPane = mOnyonPane->getParentPane();
+			parentPane->appendChild(mOnyonPane);
 		} else if (prevAngle < 0x4000 && mRotateAngle > 0x4000) {
-			mOnyonPane->getParentPane()->prependChild(mOnyonPane);
+			J2DPane* parentPane = mOnyonPane->getParentPane();
+			parentPane->prependChild(mOnyonPane);
 		}
 	} else {
 		posDiff.normalize();
-		f32 calc  = pikmin2_atan2f(mAngle.x, -mAngle.y);
-		f32 calc2 = pikmin2_atan2f(posDiff.x, -posDiff.y);
+		f32 calc  = pikmin2_atan2f(mAngle.x, -mAngle.y);   // f30
+		f32 calc2 = pikmin2_atan2f(posDiff.x, -posDiff.y); // f1
 		if (calc < 0.0f) {
 			calc += TAU;
 		}
@@ -4459,16 +4462,16 @@ Vector2f WorldMap::OnyonDynamics::move(WorldMap* wmap, const JGeometry::TVec2f& 
 			calc2 += TAU;
 		}
 		if (calc < calc2) {
-			if (PI > (calc2 - calc)) {
-				calc2 += TAU;
+			if ((calc2 - calc) > PI) {
+				calc += TAU;
 			}
-		} else if (PI > (calc - calc2)) {
-			calc += TAU;
+		} else if ((calc - calc2) > PI) {
+			calc2 += TAU;
 		}
 		calc2 = (calc * msVal._44 + (calc2 * (1.0f - msVal._44)));
 		if ((calc2 - calc) < -0.1f) {
 			calc2 = calc - 0.1f;
-		} else if (calc2 > 0.1f) {
+		} else if ((calc2 - calc) > 0.1f) {
 			calc2 = calc + 0.1f;
 		}
 		mAngle.set(pikmin2_sinf(calc2), -pikmin2_cosf(calc2));
@@ -4476,325 +4479,6 @@ Vector2f WorldMap::OnyonDynamics::move(WorldMap* wmap, const JGeometry::TVec2f& 
 
 	update(wmap);
 	return mOffset;
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x60(r1)
-	  mflr      r0
-	  stw       r0, 0x64(r1)
-	  stfd      f31, 0x50(r1)
-	  psq_st    f31,0x58(r1),0,0
-	  stfd      f30, 0x40(r1)
-	  psq_st    f30,0x48(r1),0,0
-	  stmw      r27, 0x2C(r1)
-	  lis       r7, 0x804A
-	  mr        r31, r5
-	  subi      r5, r7, 0x7CD8
-	  mr        r29, r3
-	  lfd       f3, 0x0(r5)
-	  addi      r0, r1, 0x8
-	  lfd       f2, 0x8(r5)
-	  mr        r27, r6
-	  lfd       f1, 0x10(r5)
-	  mr        r30, r4
-	  lfd       f0, 0x18(r5)
-	  stfd      f3, 0x8(r1)
-	  stfd      f2, 0x10(r1)
-	  stfd      f1, 0x18(r1)
-	  stfd      f0, 0x20(r1)
-	  lwz       r3, 0x30(r31)
-	  lwz       r4, 0xF8(r31)
-	  lwz       r12, 0x0(r3)
-	  rlwinm    r4,r4,3,0,28
-	  add       r6, r0, r4
-	  lwz       r12, 0x3C(r12)
-	  lwz       r5, 0x0(r6)
-	  lwz       r6, 0x4(r6)
-	  mtctr     r12
-	  bctrl
-	  lfs       f1, 0x4(r27)
-	  lfs       f0, 0x8(r30)
-	  lfs       f2, 0x0(r27)
-	  fsubs     f30, f1, f0
-	  lfs       f1, 0x4(r30)
-	  lfs       f0, 0x1B94(r2)
-	  fsubs     f31, f2, f1
-	  fmuls     f1, f30, f30
-	  fmadds    f1, f31, f31, f1
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0xBC
-	  fmr       f0, f1
-	  b         .loc_0xE0
-
-	.loc_0xBC:
-	  fsqrte    f4, f1
-	  lfs       f3, 0x1BB4(r2)
-	  lfs       f0, 0x1BC4(r2)
-	  frsp      f4, f4
-	  fmuls     f2, f4, f4
-	  fmuls     f3, f3, f4
-	  fnmsubs   f0, f1, f2, f0
-	  fmuls     f0, f3, f0
-	  fmuls     f0, f1, f0
-
-	.loc_0xE0:
-	  lha       r28, 0x30(r30)
-	  lfs       f2, 0x1B90(r2)
-	  addi      r0, r28, 0x1F4
-	  fcmpo     cr0, f0, f2
-	  sth       r0, 0x30(r30)
-	  bge-      .loc_0x178
-	  lfs       f3, 0x9C(r31)
-	  lis       r3, 0x8051
-	  lfs       f2, 0x4(r30)
-	  addi      r3, r3, 0x4058
-	  lfs       f4, 0x3C(r3)
-	  fsubs     f3, f3, f2
-	  lfs       f2, 0xC(r30)
-	  fmadds    f2, f4, f3, f2
-	  stfs      f2, 0xC(r30)
-	  lfs       f3, 0xA0(r31)
-	  lfs       f2, 0x8(r30)
-	  lfs       f4, 0x3C(r3)
-	  fsubs     f3, f3, f2
-	  lfs       f2, 0x10(r30)
-	  fmadds    f2, f4, f3, f2
-	  stfs      f2, 0x10(r30)
-	  lfs       f3, 0x40(r3)
-	  lfs       f2, 0xC(r30)
-	  fmuls     f2, f2, f3
-	  stfs      f2, 0xC(r30)
-	  lfs       f2, 0x10(r30)
-	  fmuls     f2, f2, f3
-	  stfs      f2, 0x10(r30)
-	  lfs       f3, 0x4(r30)
-	  lfs       f2, 0xC(r30)
-	  fadds     f2, f3, f2
-	  stfs      f2, 0x4(r30)
-	  lfs       f3, 0x8(r30)
-	  lfs       f2, 0x10(r30)
-	  fadds     f2, f3, f2
-	  stfs      f2, 0x8(r30)
-	  b         .loc_0x210
-
-	.loc_0x178:
-	  lfs       f3, 0x0(r27)
-	  lis       r3, 0x8051
-	  lfs       f2, 0x4(r30)
-	  addi      r4, r3, 0x4058
-	  lis       r3, 0x8050
-	  lfs       f6, 0x3C(r4)
-	  fsubs     f4, f3, f2
-	  lfs       f2, 0xC(r30)
-	  lfs       f3, 0x4(r27)
-	  addi      r3, r3, 0x71A0
-	  lfs       f5, 0x1C00(r2)
-	  fmadds    f2, f6, f4, f2
-	  stfs      f2, 0xC(r30)
-	  lfs       f2, 0x8(r30)
-	  lfs       f4, 0x3C(r4)
-	  fsubs     f3, f3, f2
-	  lfs       f2, 0x10(r30)
-	  fmadds    f2, f4, f3, f2
-	  stfs      f2, 0x10(r30)
-	  lha       r0, 0x30(r30)
-	  lfs       f3, 0x40(r4)
-	  rlwinm    r0,r0,30,18,28
-	  lfs       f2, 0xC(r30)
-	  lfsx      f4, r3, r0
-	  fmadds    f3, f5, f4, f3
-	  fmuls     f2, f2, f3
-	  stfs      f2, 0xC(r30)
-	  lfs       f2, 0x10(r30)
-	  fmuls     f2, f2, f3
-	  stfs      f2, 0x10(r30)
-	  lfs       f3, 0x4(r30)
-	  lfs       f2, 0xC(r30)
-	  fadds     f2, f3, f2
-	  stfs      f2, 0x4(r30)
-	  lfs       f3, 0x8(r30)
-	  lfs       f2, 0x10(r30)
-	  fadds     f2, f3, f2
-	  stfs      f2, 0x8(r30)
-
-	.loc_0x210:
-	  lfs       f2, 0x1C14(r2)
-	  fcmpo     cr0, f0, f2
-	  bge-      .loc_0x2D4
-	  lfs       f0, 0x18(r30)
-	  lfs       f1, 0x14(r30)
-	  fneg      f2, f0
-	  bl        0x19A74
-	  lis       r3, 0x8051
-	  lfs       f0, 0x1BBC(r2)
-	  addi      r3, r3, 0x4058
-	  lfs       f2, 0x44(r3)
-	  fmuls     f31, f1, f2
-	  fsubs     f2, f31, f1
-	  fcmpo     cr0, f2, f0
-	  bge-      .loc_0x258
-	  lfs       f0, 0x1BA4(r2)
-	  fsubs     f31, f1, f0
-	  b         .loc_0x268
-
-	.loc_0x258:
-	  lfs       f0, 0x1BA4(r2)
-	  fcmpo     cr0, f2, f0
-	  ble-      .loc_0x268
-	  fadds     f31, f0, f1
-
-	.loc_0x268:
-	  fmr       f1, f31
-	  bl        0x199EC
-	  fneg      f30, f1
-	  fmr       f1, f31
-	  bl        0x19978
-	  stfs      f1, 0x14(r30)
-	  cmpwi     r28, -0x4000
-	  stfs      f30, 0x18(r30)
-	  bge-      .loc_0x2AC
-	  lha       r0, 0x30(r30)
-	  cmpwi     r0, -0x4000
-	  ble-      .loc_0x2AC
-	  lwz       r3, 0x0(r30)
-	  bl        -0x3BECFC
-	  lwz       r4, 0x0(r30)
-	  bl        -0x3C0720
-	  b         .loc_0x418
-
-	.loc_0x2AC:
-	  cmpwi     r28, 0x4000
-	  bge-      .loc_0x418
-	  lha       r0, 0x30(r30)
-	  cmpwi     r0, 0x4000
-	  ble-      .loc_0x418
-	  lwz       r3, 0x0(r30)
-	  bl        -0x3BED24
-	  lwz       r4, 0x0(r30)
-	  bl        -0x3C0690
-	  b         .loc_0x418
-
-	.loc_0x2D4:
-	  lis       r3, 0x8051
-	  lfs       f2, 0x1BC0(r2)
-	  lfs       f0, 0x48DC(r3)
-	  fmuls     f0, f2, f0
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  beq-      .loc_0x32C
-	  lfs       f0, 0x1B94(r2)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x304
-	  b         .loc_0x324
-
-	.loc_0x304:
-	  fsqrte    f4, f1
-	  lfs       f3, 0x1BB4(r2)
-	  lfs       f0, 0x1BC4(r2)
-	  frsp      f4, f4
-	  fmuls     f2, f4, f4
-	  fmuls     f3, f3, f4
-	  fnmsubs   f0, f1, f2, f0
-	  fmuls     f1, f3, f0
-
-	.loc_0x324:
-	  fmuls     f31, f31, f1
-	  fmuls     f30, f30, f1
-
-	.loc_0x32C:
-	  lfs       f0, 0x18(r30)
-	  lfs       f1, 0x14(r30)
-	  fneg      f2, f0
-	  bl        0x19964
-	  fmr       f0, f1
-	  fmr       f1, f31
-	  fneg      f2, f30
-	  fmr       f30, f0
-	  bl        0x19950
-	  lfs       f0, 0x1B94(r2)
-	  fcmpo     cr0, f30, f0
-	  bge-      .loc_0x364
-	  lfs       f0, 0x1BC8(r2)
-	  fadds     f30, f30, f0
-
-	.loc_0x364:
-	  lfs       f0, 0x1B94(r2)
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x378
-	  lfs       f0, 0x1BC8(r2)
-	  fadds     f1, f1, f0
-
-	.loc_0x378:
-	  fcmpo     cr0, f30, f1
-	  bge-      .loc_0x39C
-	  fsubs     f2, f1, f30
-	  lfs       f0, 0x1BF4(r2)
-	  fcmpo     cr0, f2, f0
-	  ble-      .loc_0x3B4
-	  lfs       f0, 0x1BC8(r2)
-	  fadds     f30, f30, f0
-	  b         .loc_0x3B4
-
-	.loc_0x39C:
-	  fsubs     f2, f30, f1
-	  lfs       f0, 0x1BF4(r2)
-	  fcmpo     cr0, f2, f0
-	  ble-      .loc_0x3B4
-	  lfs       f0, 0x1BC8(r2)
-	  fadds     f1, f1, f0
-
-	.loc_0x3B4:
-	  lis       r3, 0x8051
-	  lfs       f2, 0x1B90(r2)
-	  addi      r3, r3, 0x4058
-	  lfs       f0, 0x1BBC(r2)
-	  lfs       f3, 0x44(r3)
-	  fsubs     f2, f2, f3
-	  fmuls     f1, f1, f2
-	  fmadds    f31, f30, f3, f1
-	  fsubs     f1, f31, f30
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x3EC
-	  lfs       f0, 0x1BA4(r2)
-	  fsubs     f31, f30, f0
-	  b         .loc_0x3FC
-
-	.loc_0x3EC:
-	  lfs       f0, 0x1BA4(r2)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x3FC
-	  fadds     f31, f0, f30
-
-	.loc_0x3FC:
-	  fmr       f1, f31
-	  bl        0x19858
-	  fneg      f30, f1
-	  fmr       f1, f31
-	  bl        0x197E4
-	  stfs      f1, 0x14(r30)
-	  stfs      f30, 0x18(r30)
-
-	.loc_0x418:
-	  mr        r3, r30
-	  mr        r4, r31
-	  bl        .loc_0x458
-	  lfs       f0, 0x4(r30)
-	  stfs      f0, 0x0(r29)
-	  lfs       f0, 0x8(r30)
-	  stfs      f0, 0x4(r29)
-	  psq_l     f31,0x58(r1),0,0
-	  lfd       f31, 0x50(r1)
-	  psq_l     f30,0x48(r1),0,0
-	  lfd       f30, 0x40(r1)
-	  lmw       r27, 0x2C(r1)
-	  lwz       r0, 0x64(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x60
-	  blr
-
-	.loc_0x458:
-	*/
 }
 
 /**
