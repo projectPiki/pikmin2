@@ -12,6 +12,7 @@
 #include "Screen/Game2DMgr.h"
 #include "PSSystem/PSSystemIF.h"
 #include "efx2d/T2DChangesmoke.h"
+#include "Controller.h"
 
 static void _Print(char* format, ...) { OSReport(format, __FILE__); }
 
@@ -3156,7 +3157,7 @@ void WorldMap::update(Game::WorldMap::UpdateArg& arg)
 	*/
 }
 
-const static int testdata[6] = { 0 };
+// const static int testdata[6] = { 0 };
 
 /**
  * @note Address: 0x803F53F4
@@ -3297,242 +3298,6 @@ f32 WorldMap::rocketMove(J2DPane* pane, bool flag)
 	mRocketPosition.y += (mRocketAngle.y * calc) * msVal._04;
 
 	return dist;
-	/*
-stwu     r1, -0x70(r1)
-mflr     r0
-stw      r0, 0x74(r1)
-stfd     f31, 0x60(r1)
-psq_st   f31, 104(r1), 0, qr0
-stfd     f30, 0x50(r1)
-psq_st   f30, 88(r1), 0, qr0
-stfd     f29, 0x40(r1)
-psq_st   f29, 72(r1), 0, qr0
-stfd     f28, 0x30(r1)
-psq_st   f28, 56(r1), 0, qr0
-stfd     f27, 0x20(r1)
-psq_st   f27, 40(r1), 0, qr0
-stw      r31, 0x1c(r1)
-stw      r30, 0x18(r1)
-stw      r29, 0x14(r1)
-mr       r31, r3
-mr       r29, r4
-lwz      r4, 0xfc(r3)
-mr       r30, r5
-mr       r3, r29
-addi     r0, r4, 1
-stw      r0, 0xfc(r31)
-lfs      f0, 0xac(r31)
-stfs     f0, 8(r1)
-lfs      f0, 0xb0(r31)
-stfs     f0, 0xc(r1)
-bl       getPaneCenterY__Q22kh6ScreenFP7J2DPane
-lfs      f0, 0xa0(r31)
-mr       r3, r29
-fsubs    f30, f1, f0
-bl       getPaneCenterX__Q22kh6ScreenFP7J2DPane
-lwz      r5, 0xfc(r31)
-lis      r3, msVal__Q32kh6Screen8WorldMap@ha
-addi     r4, r3, msVal__Q32kh6Screen8WorldMap@l
-lfs      f0, 0x9c(r31)
-addi     r3, r5, -86
-li       r0, 5
-divwu    r3, r3, r0
-fsubs    f31, f1, f0
-fmuls    f0, f30, f30
-cmpwi    r5, 0x5a
-lfs      f28, 8(r4)
-lfs      f27, 0x4c(r4)
-fmadds   f4, f31, f31, f0
-lfs      f0, lbl_8051FF50@sda21(r2)
-fmr      f29, f4
-ble      lbl_803F5AA4
-rlwinm.  r0, r3, 0x1d, 3, 0x1f
-mtctr    r0
-beq      lbl_803F5A98
-
-lbl_803F5A6C:
-fmuls    f28, f28, f0
-fmuls    f28, f28, f0
-fmuls    f28, f28, f0
-fmuls    f28, f28, f0
-fmuls    f28, f28, f0
-fmuls    f28, f28, f0
-fmuls    f28, f28, f0
-fmuls    f28, f28, f0
-bdnz     lbl_803F5A6C
-andi.    r3, r3, 7
-beq      lbl_803F5AA4
-
-lbl_803F5A98:
-mtctr    r3
-
-lbl_803F5A9C:
-fmuls    f28, f28, f0
-bdnz     lbl_803F5A9C
-
-lbl_803F5AA4:
-lis      r3, __float_epsilon@ha
-lfs      f1, lbl_8051FF20@sda21(r2)
-lfs      f0, __float_epsilon@l(r3)
-fmuls    f0, f1, f0
-fcmpo    cr0, f4, f0
-cror     2, 0, 2
-beq      lbl_803F5AFC
-lfs      f0, lbl_8051FEF4@sda21(r2)
-fcmpo    cr0, f4, f0
-cror     2, 0, 2
-bne      lbl_803F5AD4
-b        lbl_803F5AF4
-
-lbl_803F5AD4:
-frsqrte  f3, f4
-lfs      f2, lbl_8051FF14@sda21(r2)
-lfs      f0, lbl_8051FF24@sda21(r2)
-frsp     f3, f3
-fmuls    f1, f3, f3
-fmuls    f2, f2, f3
-fnmsubs  f0, f4, f1, f0
-fmuls    f4, f2, f0
-
-lbl_803F5AF4:
-fmuls    f31, f31, f4
-fmuls    f30, f30, f4
-
-lbl_803F5AFC:
-lfs      f0, 0xb0(r31)
-lfs      f1, 0xac(r31)
-fneg     f2, f0
-bl       pikmin2_atan2f__Fff
-fmr      f0, f1
-fmr      f1, f31
-fneg     f2, f30
-fmr      f30, f0
-bl       pikmin2_atan2f__Fff
-fmr      f3, f1
-lfs      f0, 0xb8(r31)
-lfs      f1, 0xb4(r31)
-fneg     f2, f0
-fmr      f31, f3
-bl       pikmin2_atan2f__Fff
-lfs      f0, lbl_8051FEF4@sda21(r2)
-fcmpo    cr0, f30, f0
-bge      lbl_803F5B4C
-lfs      f0, lbl_8051FF28@sda21(r2)
-fadds    f30, f30, f0
-
-lbl_803F5B4C:
-lfs      f0, lbl_8051FEF4@sda21(r2)
-fcmpo    cr0, f31, f0
-bge      lbl_803F5B60
-lfs      f0, lbl_8051FF28@sda21(r2)
-fadds    f31, f31, f0
-
-lbl_803F5B60:
-fcmpo    cr0, f30, f31
-bge      lbl_803F5B84
-fsubs    f2, f31, f30
-lfs      f0, lbl_8051FF54@sda21(r2)
-fcmpo    cr0, f2, f0
-ble      lbl_803F5B9C
-lfs      f0, lbl_8051FF28@sda21(r2)
-fadds    f30, f30, f0
-b        lbl_803F5B9C
-
-lbl_803F5B84:
-fsubs    f2, f30, f31
-lfs      f0, lbl_8051FF54@sda21(r2)
-fcmpo    cr0, f2, f0
-ble      lbl_803F5B9C
-lfs      f0, lbl_8051FF28@sda21(r2)
-fadds    f31, f31, f0
-
-lbl_803F5B9C:
-lfs      f0, lbl_8051FEF0@sda21(r2)
-fsubs    f0, f0, f28
-fmuls    f0, f31, f0
-fmadds   f0, f30, f28, f0
-fmadds   f31, f1, f27, f0
-fsubs    f28, f31, f30
-fmr      f1, f28
-bl       pikmin2_cosf__Ff
-fneg     f27, f1
-fmr      f1, f28
-bl       pikmin2_sinf__Ff
-lfs      f0, lbl_8051FF1C@sda21(r2)
-stfs     f1, 0xb4(r31)
-fcmpo    cr0, f28, f0
-stfs     f27, 0xb8(r31)
-bge      lbl_803F5BE8
-lfs      f0, lbl_8051FF04@sda21(r2)
-fsubs    f31, f30, f0
-b        lbl_803F5BF8
-
-lbl_803F5BE8:
-lfs      f0, lbl_8051FF04@sda21(r2)
-fcmpo    cr0, f28, f0
-ble      lbl_803F5BF8
-fadds    f31, f0, f30
-
-lbl_803F5BF8:
-fmr      f1, f31
-bl       pikmin2_cosf__Ff
-fneg     f27, f1
-fmr      f1, f31
-bl       pikmin2_sinf__Ff
-stfs     f1, 0xac(r31)
-mr       r3, r31
-lfs      f1, lbl_8051FF58@sda21(r2)
-addi     r4, r1, 8
-stfs     f27, 0xb0(r31)
-bl       "getRotDir__Q32kh6Screen8WorldMapFRCQ29JGeometry8TVec2<f>f"
-clrlwi.  r0, r30, 0x18
-fmr      f4, f29
-bne      lbl_803F5C3C
-lis      r3, msVal__Q32kh6Screen8WorldMap@ha
-lfs      f4, msVal__Q32kh6Screen8WorldMap@l(r3)
-b        lbl_803F5C50
-
-lbl_803F5C3C:
-lis      r3, msVal__Q32kh6Screen8WorldMap@ha
-lfs      f0, msVal__Q32kh6Screen8WorldMap@l(r3)
-fcmpo    cr0, f29, f0
-ble      lbl_803F5C50
-fmr      f4, f0
-
-lbl_803F5C50:
-lfs      f1, 0xac(r31)
-lis      r3, msVal__Q32kh6Screen8WorldMap@ha
-addi     r3, r3, msVal__Q32kh6Screen8WorldMap@l
-lfs      f0, 0x9c(r31)
-fmuls    f2, f1, f4
-lfs      f3, 4(r3)
-fmr      f1, f29
-fmadds   f0, f3, f2, f0
-stfs     f0, 0x9c(r31)
-lfs      f0, 0xb0(r31)
-lfs      f3, 4(r3)
-fmuls    f2, f0, f4
-lfs      f0, 0xa0(r31)
-fmadds   f0, f3, f2, f0
-stfs     f0, 0xa0(r31)
-psq_l    f31, 104(r1), 0, qr0
-lfd      f31, 0x60(r1)
-psq_l    f30, 88(r1), 0, qr0
-lfd      f30, 0x50(r1)
-psq_l    f29, 72(r1), 0, qr0
-lfd      f29, 0x40(r1)
-psq_l    f28, 56(r1), 0, qr0
-lfd      f28, 0x30(r1)
-psq_l    f27, 40(r1), 0, qr0
-lfd      f27, 0x20(r1)
-lwz      r31, 0x1c(r1)
-lwz      r30, 0x18(r1)
-lwz      r0, 0x74(r1)
-lwz      r29, 0x14(r1)
-mtlr     r0
-addi     r1, r1, 0x70
-blr
-	*/
 }
 
 /**
@@ -3547,22 +3312,35 @@ void WorldMap::rocketUpdate(J2DPane* pane)
 
 	mRocketScale = mRocketScale * msVal._08 + (1.0f - msVal._08) * tag2num(pane->mMessageID);
 
-	f32* courseScales = &msVal._1C;
-	f32 scale2        = courseScales[mOpenCourses] * mRocketScale;
+	f32 scale2 = msVal._1C[mOpenCourses] * mRocketScale;
 	shipPane->updateScale(scale2);
 
-	Vector2f sep           = mRocketPosition - mRocketPosition2;
+	Vector2f sep = mRocketPosition;
+	sep -= mRocketPosition2;
 	J2DPane* shipPane2     = mScreenRocket->search('Procket');
 	JGeometry::TVec3f pos1 = shipPane2->getGlbVtx(GLBVTX_BtmLeft);
 	JGeometry::TVec3f pos2 = shipPane2->getGlbVtx(GLBVTX_BtmRight);
 	JGeometry::TVec3f pos3 = shipPane2->getGlbVtx(GLBVTX_TopLeft);
 	JGeometry::TVec3f pos4 = shipPane2->getGlbVtx(GLBVTX_TopRight);
-	f32 factor             = msVal._1C;
-	JGeometry::TVec2f mid1((pos1.x + pos2.x) / 2, (pos1.y + pos2.y) / 2);
-	JGeometry::TVec2f mid2((pos3.x + pos4.x) / 2, (pos3.y + pos4.y) / 2);
+	// f32 factor             = msVal._1C;
+	JGeometry::TVec3f mid1;
+	mid1.set((pos1.x + pos2.x) / 2, (pos1.y + pos2.y) / 2, (pos1.z + pos2.z) / 2);
+	JGeometry::TVec3f mid2;
+	mid2.set((pos3.x + pos4.x) / 2, (pos3.y + pos4.y) / 2, (pos3.z + pos4.z) / 2);
 	// f32 inv                = 1.0f - msVal._1C[0];
-	mEffectPos = sep + Vector2f(mid1.x * (1.0f - factor) + mid2.x * factor, mid1.y * (1.0f - factor) + mid2.y * factor);
+	mEffectPos
+	    = sep + Vector2f(mid1.x * (1.0f - msVal._1C[0]) + mid2.x * msVal._1C[0], mid1.y * (1.0f - msVal._1C[0]) + mid2.y * msVal._1C[0]);
 	mEffectDir = Vector2f(-mRocketAngle.x, -mRocketAngle.y);
+
+	JGeometry::TVec3f vec;
+	vec.set((JGeometry::TVec3f) { 0.0f, 0.0f, 0.0f });
+	JGeometry::TVec3f vec2;
+	vec2.set((JGeometry::TVec3f) { 0.0f, 0.0f, 0.0f });
+	vec.set(mid1);
+	vec2.set(mid2);
+
+	JGeometry::TVec3f* vecPtr  = &vec;
+	JGeometry::TVec3f* vec2Ptr = &vec2;
 
 	efx2d::WorldMap::ArgDirScale arg(mEffectPos, mEffectDir, scale2);
 	efx2d::WorldMap::T2DRocketA efx;
@@ -3972,67 +3750,21 @@ bool WorldMap::changeState()
  */
 f32 WorldMap::tag2num(u64 tag)
 {
-	u32 id1 = (u32)tag & 0xff;
-	u32 id2 = (tag & 0xff00) >> 8;
-	u32 id3 = (tag & 0xff0000) >> 16;
-	f32 ret = int(u8(id3 - '0') * 100 + u8(id2 - '0') * 10 + u8(id1 - '0')) * 0.01f;
+	int id1 = tag & 0xff;
+	int t0  = id1 != 0 ? id1 - '0' : 0;
+
+	int id2 = (tag & 0xff00) >> 8;
+	int t1  = id2 != 0 ? id2 - '0' : 0;
+
+	int id3 = (tag & 0xff0000) >> 16;
+	int t2  = id3 != 0 ? id3 - '0' : 0;
+
+	f32 ret = int(t2 * 100 + t1 * 10 + t0) * 0.01f;
 
 	if (ret == 0.0f) {
 		ret = 0.2f;
 	}
 	return ret;
-	/*
-lis      r3, 0x0000FF00@ha
-li       r0, 0xff
-li       r4, 0
-stwu     r1, -0x10(r1)
-and      r10, r6, r0
-addi     r3, r3, 0x0000FF00@l
-and      r8, r5, r4
-lis      r0, 0xff
-and      r4, r6, r3
-neg      r5, r10
-and      r3, r6, r0
-lis      r0, 0x4330
-or       r7, r5, r10
-rotlwi   r6, r4, 0x18
-rlwimi   r6, r8, 0x18, 0, 7
-rotlwi   r5, r3, 0x10
-neg      r4, r6
-srawi    r9, r7, 0x1f
-or       r3, r4, r6
-rlwimi   r5, r8, 0x10, 0, 0xf
-neg      r4, r5
-addi     r6, r6, -48
-srawi    r7, r3, 0x1f
-addi     r3, r5, -48
-or       r4, r4, r5
-stw      r0, 8(r1)
-srawi    r0, r4, 0x1f
-addi     r8, r10, -48
-and      r3, r3, r0
-and      r6, r6, r7
-mulli    r0, r6, 0xa
-and      r5, r8, r9
-lfd      f2, lbl_8051FF40@sda21(r2)
-lfs      f3, lbl_8051FF30@sda21(r2)
-mulli    r3, r3, 0x64
-lfs      f0, lbl_8051FEF4@sda21(r2)
-add      r0, r0, r5
-add      r0, r3, r0
-xoris    r0, r0, 0x8000
-stw      r0, 0xc(r1)
-lfd      f1, 8(r1)
-fsubs    f1, f1, f2
-fmuls    f1, f3, f1
-fcmpu    cr0, f0, f1
-bne      lbl_803F66A8
-lfs      f1, lbl_8051FF64@sda21(r2)
-
-lbl_803F66A8:
-addi     r1, r1, 0x10
-blr
-	*/
 }
 
 /**

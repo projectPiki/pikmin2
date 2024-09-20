@@ -31,6 +31,7 @@ struct TSimple_ArgDirScale : public TSimple1 {
 	inline TSimple_ArgDirScale(u16 effectID)
 	    : TSimple1(effectID)
 	{
+		mResMgrId = 0;
 	}
 
 	virtual bool create(Arg*); // _08
