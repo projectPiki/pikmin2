@@ -906,7 +906,7 @@ void StateFlick::exec(EnemyBase* enemy)
 				EnemyFunc::flickNearbyNavi(enemy, range, knockback, damage, FLICK_BACKWARD_ANGLE, nullptr);
 			}
 			enemy->mFlickTimer = 0.0f;
-			if (!enemy->isEvent(0, EB_PS3)) {
+			if (!enemy->isEvent(0, EB_IsBlendAnimated)) {
 				enemy->disableEvent(0, EB_NoInterrupt);
 			}
 			break;
