@@ -1465,7 +1465,7 @@ void Obj::finishAnimationJointCallBack() { mSnakeJointMgr->finishAnimation(); }
 void Obj::startJointCallBack()
 {
 	f32 y                     = mAttackPositions[mAttackAnimIdx].y - mPosition.y;
-	SysShape::KeyEvent* event = mAnimator->getAnimator().mAnimInfo->getAnimKeyByType(3);
+	SysShape::KeyEvent* event = mAnimator->getAnimator().mAnimInfo->getAnimKeyByType(KEYEVENT_3);
 	f32 frame                 = getMotionFrame();
 	mSnakeJointMgr->startModify(y, (f32)event->mFrame - frame);
 }
@@ -1476,7 +1476,7 @@ void Obj::startJointCallBack()
  */
 void Obj::returnJointCallBack()
 {
-	SysShape::KeyEvent* event = mAnimator->getAnimator().mAnimInfo->getAnimKeyByType(4);
+	SysShape::KeyEvent* event = mAnimator->getAnimator().mAnimInfo->getAnimKeyByType(KEYEVENT_4);
 	f32 frame                 = getMotionFrame();
 	mSnakeJointMgr->returnModify((f32)event->mFrame - frame);
 }

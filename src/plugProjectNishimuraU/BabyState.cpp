@@ -159,28 +159,16 @@ void StateMove::exec(EnemyBase* enemy)
 		// Vector3f targetPos = creature->getPosition();
 		f32 angleDist = baby->turnToTarget(creature, CG_GENERALPARMS(baby).mTurnSpeed(), CG_GENERALPARMS(baby).mMaxTurnAngle());
 
-		f32 limit   = PI * (DEG2RAD * CG_GENERALPARMS(baby).mMaxAttackAngle());
-		f32 absDist = FABS(angleDist);
+		f32 limit = PI * (DEG2RAD * CG_GENERALPARMS(baby).mMaxAttackAngle());
 
-		if (absDist <= limit) {
-			f32 speed    = baby->getMoveSpeed();
-			f32 sintheta = dolsinf(baby->getFaceDir());
-			f32 y        = baby->getTargetVelocity().y;
-			f32 costheta = dolcosf(baby->getFaceDir());
-
-			baby->mTargetVelocity = Vector3f(speed * sintheta, y, speed * costheta);
-
+		if (FABS(angleDist) <= limit) {
+			baby->setTargetVelocity();
 		} else {
-			f32 speed    = baby->getMoveSpeed(0.25f);
-			f32 sintheta = dolsinf(baby->getFaceDir());
-			f32 y        = baby->getTargetVelocity().y;
-			f32 costheta = dolcosf(baby->getFaceDir());
-
-			baby->mTargetVelocity = Vector3f(speed * sintheta, y, speed * costheta);
+			baby->setTargetVelocity(0.25f);
 		}
 
-		if (baby->isTargetAttackable(creature, angleDist, CG_GENERALPARMS(baby).mMaxAttackRange.mValue,
-		                             CG_GENERALPARMS(baby).mMaxAttackAngle.mValue)) {
+		if (baby->isTargetAttackable(creature, angleDist, CG_GENERALPARMS(baby).mMaxAttackRange(),
+		                             CG_GENERALPARMS(baby).mMaxAttackAngle())) {
 			transit(baby, BABY_Attack, nullptr);
 		}
 

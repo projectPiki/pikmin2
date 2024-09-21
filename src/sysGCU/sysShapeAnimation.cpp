@@ -126,7 +126,7 @@ void AnimMgr::connectBasArc(char* a2, char* a3, JKRFileLoader* a4)
 
 		void* basFile = a4->getResource(path);
 		if (basFile) {
-			c->mBasFile = (JAIAnimeFrameSoundData*)basFile;
+			c->mBasFile = (JAIAnimeSoundData*)basFile;
 		}
 	}
 }

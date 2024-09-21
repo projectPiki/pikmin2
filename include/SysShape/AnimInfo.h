@@ -7,7 +7,7 @@ struct J3DAnmBase;
 struct J3DAnmTransform;
 struct J3DMtxCalc;
 struct J3DModelData;
-struct JAIAnimeFrameSoundData;
+struct JAIAnimeSoundData;
 struct Stream;
 
 namespace SysShape {
@@ -61,13 +61,15 @@ struct AnimInfo : public CNode {
 	void dump();
 	void getLastLoopStart(f32);
 
-	J3DAnmTransform* mAnm;            // _18
-	J3DMtxCalc* mCalc;                // _1C
-	s16 mId;                          // _20, anim ID
-	JAIAnimeFrameSoundData* mBasFile; // _24
-	KeyEvent mKeyEvent;               // _28
-	char* mDevelopPath;               // _4C
-	AnimMgr* mMgr;                    // _50
+	inline JAIAnimeSoundData* getData() const { return mBasFile; }
+
+	J3DAnmTransform* mAnm;       // _18
+	J3DMtxCalc* mCalc;           // _1C
+	s16 mId;                     // _20, anim ID
+	JAIAnimeSoundData* mBasFile; // _24
+	KeyEvent mKeyEvent;          // _28
+	char* mDevelopPath;          // _4C
+	AnimMgr* mMgr;               // _50
 };
 } // namespace SysShape
 

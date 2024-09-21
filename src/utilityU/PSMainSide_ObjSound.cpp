@@ -690,14 +690,14 @@ void CreatureAnime::startSound(JAISound** se, u32 soundID, u32 a3)
  * @note Address: 0x8045DDE0
  * @note Size: 0x40
  */
-void CreatureAnime::setAnime(JAIAnimeSoundData* data, u32 a1, f32 a2, f32 a3)
+void CreatureAnime::setAnime(JAIAnimeSoundData* data, u32 flag, f32 loopStartFrame, f32 loopEndFrame)
 {
 	if (data != mSoundData) {
 
 		if ((int)data == 0xffffffff) {
 			data = nullptr;
 		}
-		initActorAnimSound(data, a1, a2, a3);
+		initActorAnimSound(data, flag, loopStartFrame, loopEndFrame);
 	}
 }
 
