@@ -59,6 +59,7 @@ struct PelletConfig : public CNode {
 	virtual ~PelletConfig() { }
 
 	inline int getPokoValue() const { return mParams.mMoney.mData; }
+	inline char* getName() const { return mParams.mName.mData; }
 
 	// _00     = VTBL
 	// _00-_18 = CNode

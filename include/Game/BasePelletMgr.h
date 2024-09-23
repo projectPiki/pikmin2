@@ -13,6 +13,7 @@
 namespace Game {
 struct PelletConfig;
 struct GenPelletParm;
+struct Pellet;
 
 // BasePelletMgr inherits something virtual, but I cannot work out what
 // it seems like all these BaseXMgrs are inheriting something virtual....
@@ -69,6 +70,7 @@ struct BasePelletMgr : public GenericObjectMgr, virtual public _BasePelletMgrPar
 	void setCollTree(Pellet*, int);
 
 	bool used(int);
+	void setUseFlagAll(bool);
 
 	// _00 VTBL
 	// _04 = ptr to NotSure/vtable for NotSure?
