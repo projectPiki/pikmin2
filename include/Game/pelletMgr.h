@@ -415,7 +415,7 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 		}
 	}
 
-	inline bool isTreasurePosition() // this probably needs a better name; used in Pellet::onSetPosition
+	inline bool doSpawnBuried()
 	{
 		bool check = false;
 		if ((mCaptureMatrix == nullptr) && (PelletMgr::mDebug == false) && (mConfig->mParams.mDepth.mData > 0.0f) && (mIsCaptured == 0)) {

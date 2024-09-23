@@ -220,12 +220,7 @@ void JStudio_JParticle::TAdaptor_particle::adaptor_do_PARENT_ENABLE(JStudio::dat
  */
 void JStudio_JParticle::TAdaptor_particle::TJPACallback_::execute(JPABaseEmitter* emitter)
 {
-	bool check = false;
-	if (emitter->isFlag(JPAEMIT_EnableDeleteEmitter) && (emitter->mAlivePtclBase.getNum() + emitter->mAlivePtclChld.getNum()) == 0) {
-		check = true;
-	}
-
-	if (check) {
+	if (emitter->isEnableDeleteEmitter()) {
 		mAdaptor->mEmitterManager->forceDeleteEmitter(emitter);
 		mAdaptor->mEmitter = nullptr;
 		mAdaptor->_18C     = 0;
@@ -247,43 +242,45 @@ void JStudio_JParticle::TAdaptor_particle::TJPACallback_::execute(JPABaseEmitter
 		break;
 	}
 
-	JStudio::TControl* ctrl = static_cast<JStudio::TControl*>(mObject->mControl); // r28
+	const JStudio::TObject* object = adaptor_getObject();
+	JStudio::TControl* ctrl        = object->getControl();
 
-	Vec srts[3]; // 0x64
-	mAdaptor->adaptor_getVariableValue_Vec(&srts[2], sauVariableValue_3_TRANSLATION_XYZ);
-	mAdaptor->adaptor_getVariableValue_Vec(&srts[1], sauVariableValue_3_ROTATION_XYZ);
-	mAdaptor->adaptor_getVariableValue_Vec(&srts[0], sauVariableValue_3_SCALING_XYZ);
+	TJPAEmitter_stopDrawParticle_ stopper(emitter);
+	JStudio::TControl::TTransform_translation_rotation_scaling srts;
+	JStudio::TControl::TTransform_translation_rotation_scaling outVec;
 
-	Vec* pos; // r29
+	mAdaptor->adaptor_getVariableValue_Vec(&srts.getTranslation(), sauVariableValue_3_TRANSLATION_XYZ);
+	mAdaptor->adaptor_getVariableValue_Vec(&srts.getRotation(), sauVariableValue_3_ROTATION_XYZ);
+	mAdaptor->adaptor_getVariableValue_Vec(&srts.getScaling(), sauVariableValue_3_SCALING_XYZ);
 
 	if (!mAdaptor->_1A4) {
-		if (!ctrl->mTransformOnSet) {
-			pos = srts;
-		} else {
-			Vec outVec[3];
-			PSMTXMultVec(ctrl->mTransformOnSet_Mtx, &srts[2], &outVec[0]);
-			outVec[1].x = srts[1].x;
-			outVec[1].y = ctrl->mTransformOnSet_RotY + srts[1].y;
-			outVec[1].z = srts[1].z;
-			pos         = outVec;
-		}
-		emitter->mGlobalTrs = ((JGeometry::TVec3f*)pos)[0];
+		JStudio::TControl::TTransform_translation_rotation_scaling* useSRT; // r29
 
-		JPAGetXYZRotateMtx(65536.0 * (pos[1].x / 360.0), 65536.0 * (pos[1].y / 360.0), 65536.0 * (pos[1].z / 360.0), emitter->mGlobalRot);
-		JGeometry::TVec3f scaleVec(((JGeometry::TVec3f*)pos)[2]);
-		emitter->setScale(scaleVec);
+		if (!ctrl->mTransformOnSet) {
+			useSRT = &srts;
+		} else {
+			PSMTXMultVec(ctrl->mTransformOnSet_Mtx, &srts.getTranslation(), &outVec.getTranslation());
+			useSRT                 = &outVec;
+			outVec.getRotation().x = srts.getRotation().x;
+			outVec.getRotation().y = ctrl->mTransformOnSet_RotY + srts.getRotation().y;
+			outVec.getRotation().z = srts.getRotation().z;
+		}
+
+		emitter->setGlobalTranslation(useSRT->getTranslation().x, useSRT->getTranslation().y, useSRT->getTranslation().z);
+
+		s16 rotx = 65536.0 * (useSRT->getRotation().x / 360.0);
+		s16 roty = 65536.0 * (useSRT->getRotation().y / 360.0);
+		s16 rotz = 65536.0 * (useSRT->getRotation().z / 360.0);
+		emitter->setGlobalRotation(rotx, roty, rotz);
+
+		// this is not cooperating
+		emitter->setScale(*(JGeometry::TVec3f*)&useSRT->getScaling());
 	} else {
 		Mtx mtx;
-		if (!JStudio_JStage::transform_toGlobalFromLocal(mtx, *(JStudio::TControl::TTransform_position*)(&srts[0]), mAdaptor->_19C,
-		                                                 mAdaptor->_1A0)) {
-			if (emitter) {
-				emitter->setFlag(JPAEMIT_StopDraw);
-			}
+		if (!JStudio_JStage::transform_toGlobalFromLocal(mtx, srts, mAdaptor->_19C, mAdaptor->_1A0)) {
 			return;
 		}
-
-		JPASetRMtxSTVecfromMtx(mtx, emitter->mGlobalRot, &emitter->mGlobalScl, &emitter->mGlobalTrs);
-		emitter->setGlobalScale(emitter->mGlobalScl.x, emitter->mGlobalScl.y);
+		emitter->setGlobalSRTMatrix(mtx);
 	}
 
 	GXColor color;
@@ -293,13 +290,13 @@ void JStudio_JParticle::TAdaptor_particle::TJPACallback_::execute(JPABaseEmitter
 	u8 emitAlpha = 255;
 	alpha *= (f64)color.a;
 	if (alpha < 255.0) {
-		emitAlpha = (u8)alpha;
+		emitAlpha = alpha;
 	}
-
-	emitter->mGlobalPrmClr.a = emitAlpha;
+	emitter->setGlobalAlpha(emitAlpha);
 
 	mAdaptor->adaptor_getVariableValue_GXColor(&color, sauVariableValue_4_COLOR1_RGBA);
 	emitter->setGlobalEnvColor(color.r, color.g, color.b);
+	stopper.set(nullptr);
 	/*
 	.loc_0x0:
 	  stwu      r1, -0xC0(r1)

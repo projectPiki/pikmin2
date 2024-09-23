@@ -1717,8 +1717,7 @@ void Pellet::allocateTexCaster()
 void Pellet::onSetPosition()
 {
 	if (!gameSystem->isZukanMode()) {
-		// this probably needs a better name
-		if (isTreasurePosition()) {
+		if (doSpawnBuried()) {
 			ItemTreasure::Item* item = (ItemTreasure::Item*)ItemTreasure::mgr->birth();
 			if (item) {
 				mPelletPosition.y = mapMgr->getMinY(mPelletPosition);

@@ -129,6 +129,7 @@ struct JPABaseEmitter {
 	void loadTexture(u8, _GXTexMapID);
 
 	u32 getParticleNumber() { return mAlivePtclBase.getNum() + mAlivePtclChld.getNum(); }
+	bool isEnableDeleteEmitter() { return isFlag(JPAEMIT_EnableDeleteEmitter) && getParticleNumber() == 0; }
 
 	void initFlag(u32 flag) { mFlags = flag; }
 	void setFlag(u32 flag) { mFlags |= flag; }
@@ -293,6 +294,7 @@ struct JPABaseEmitter {
 	void setGlobalTranslation(JGeometry::TVec3f& vec) { mGlobalTrs.set(vec); }
 	void getLocalTranslation(JGeometry::TVec3f& vec) { vec.set(mLocalTrs); }
 	void setGlobalRotation(const JGeometry::TVec3<s16>& rot) { JPAGetXYZRotateMtx(rot.x, rot.y, rot.z, mGlobalRot); }
+	void setGlobalRotation(s16 x, s16 y, s16 z) { JPAGetXYZRotateMtx(x, y, z, mGlobalRot); }
 	void setGlobalAlpha(u8 alpha) { mGlobalPrmClr.a = alpha; }
 	u8 getGlobalAlpha() { return mGlobalPrmClr.a; }
 	void getGlobalPrmColor(GXColor& color) { color = mGlobalPrmClr; }
@@ -311,11 +313,22 @@ struct JPABaseEmitter {
 	void setVolumeSize(u16 size) { mVolumeSize = size; }
 	void setLifeTime(s16 lifetime) { mLifeTime = lifetime; }
 	u32 getAge() const { return mCurrentFrame; }
+	void setGlobalSRTMatrix(const Mtx m)
+	{
+		JPASetRMtxSTVecfromMtx(m, mGlobalRot, &mGlobalScl, &mGlobalTrs);
+		mGlobalPScl.set(mGlobalScl.x, mGlobalScl.y);
+	}
 
 	f32 getRandF32() { return mRandom.getRandF32(); }
 	f32 getRandZP() { return mRandom.getRandZP(); }
 	f32 getRandZH() { return mRandom.getRandZH(); }
 	s16 getRandS16() { return mRandom.getRandS16(); }
+
+	void quitImmortalEmitter() { resetFlag(JPAEMIT_Immortal); }
+	void stopCalcEmitter() { setFlag(JPAEMIT_StopCalc); }
+	void playCalcEmitter() { resetFlag(JPAEMIT_StopCalc); }
+	void stopDrawParticle() { setFlag(JPAEMIT_StopDraw); }
+	void playDrawParticle() { resetFlag(JPAEMIT_StopDraw); }
 
 	JGeometry::TVec3f mLocalScl;             // _00
 	JGeometry::TVec3f mLocalTrs;             // _0C
