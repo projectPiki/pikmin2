@@ -103,12 +103,11 @@ Creature* GenObjectEnemy::generate(Game::Generator* gen)
 		// If teki is Type 1, don't do any random adjustments
 		if (mSpawnType == 1) {
 			posVector[i] = startpos;
-			// copy(&posVector[i], &startpos);
 			continue;
 		}
 		// If teki isn't Type 1, jiggle it a bit
 		oa   = TAU * randFloat();           // random angle between 0 and 360 degrees
-		offR = mAppearRadius * randFloat(); // random distance between 0 and m_appearRadius
+		offR = mAppearRadius * randFloat(); // random distance between 0 and mAppearRadius
 		oz   = offR * pikmin2_cosf(oa);
 		ox   = offR * pikmin2_sinf(oa);
 
@@ -121,7 +120,7 @@ Creature* GenObjectEnemy::generate(Game::Generator* gen)
 		posVector[i] = vector;
 	}
 
-	// Default enemy territory size is 35 units, unless overwritten by m_enemySize
+	// Default enemy territory size is 35 units, unless overwritten by mEnemySize
 	// f32 enemy_territory = 35.0f;
 	// f32 dz, dx, dy;
 	f32 dx, dy, dz;

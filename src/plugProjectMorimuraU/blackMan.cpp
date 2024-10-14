@@ -1205,12 +1205,12 @@ bool BlackMan::Obj::earthquakeCallBack(Game::Creature* creature, f32 bounceFacto
 void BlackMan::Obj::doEntry()
 {
 	if (C_PARMS->mUseDrawBuffer8) {
-		gameSystem->setDrawBuffer(8);
+		gameSystem->setDrawBuffer(DB_ObjectLastLayer);
 	} else {
-		gameSystem->setDrawBuffer(4);
+		gameSystem->setDrawBuffer(DB_PostRenderLayer);
 	}
 	EnemyBase::doEntry();
-	gameSystem->setDrawBuffer(0);
+	gameSystem->setDrawBuffer(DB_NormalLayer);
 }
 
 /**

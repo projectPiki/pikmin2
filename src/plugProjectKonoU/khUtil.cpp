@@ -187,14 +187,14 @@ void khUtilFadePane::set_init_alpha(u8 a)
  * @note Address: 0x8040BE70
  * @note Size: 0x158
  */
-khUtilColorAnm::khUtilColorAnm(P2DScreen::Mgr* screen, u64 tag, int panes, int frames)
+khUtilColorAnm::khUtilColorAnm(P2DScreen::Mgr* screen, u64 tag, int colors, int frames)
 {
-	mPaneNum = panes;
-	mLength  = frames;
-	mFrame   = 0;
+	mColorCount = colors;
+	mLength     = frames;
+	mFrame      = 0;
 	mColor.set(0, 0, 0, 0);
-	mColorList = new JUtility::TColor[mPaneNum];
-	for (int i = 0; i < mPaneNum; i++) {
+	mColorList = new JUtility::TColor[mColorCount];
+	for (int i = 0; i < mColorCount; i++) {
 		mColorList[i].set(0, 0, 0, 0);
 	}
 	mDisabledColor.setRGBA(mColor);
@@ -219,7 +219,7 @@ void khUtilColorAnm::update()
 		f32 inverseT;
 
 		// Calculate the animation position between start and end
-		f32 t = (mFrame * (mPaneNum - 1)) / (f32)mLength;
+		f32 t = (mFrame * (mColorCount - 1)) / (f32)mLength;
 
 		// Get the two colors to interpolate between
 		JUtility::TColor src  = getColor((int)t);

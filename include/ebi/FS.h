@@ -377,7 +377,6 @@ struct TMgr {
 	bool mInSeq;                                 // _C3C
 	FSMStateMachine mStateMachine;               // _C40
 	FSMState* mCurrentState;                     // _C5C
-	                                             // TODO: members
 };
 } // namespace FS
 } // namespace ebi

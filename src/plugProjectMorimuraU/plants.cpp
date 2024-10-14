@@ -66,7 +66,7 @@ void Plants::Obj::onInit(CreatureInitArg* initArg)
 	}
 
 	mSpawnsSpectralids = false;
-	if (mPelletInfo.mColor == 0 && mPelletInfo.mSize == 1) {
+	if (mPelletInfo.mColor == PELCOLOR_SPECTRALID && mPelletInfo.mSize == PELSIZE_SPECTRALID) {
 		mSpawnsSpectralids = true;
 	}
 }
@@ -219,9 +219,9 @@ void HikariKinoko::Obj::touchedSE(Navi* navi)
  */
 void Watage::Obj::doEntry()
 {
-	gameSystem->setDrawBuffer(7);
+	gameSystem->setDrawBuffer(DB_PostShadowLayer);
 	EnemyBase::doEntry();
-	gameSystem->setDrawBuffer(0);
+	gameSystem->setDrawBuffer(DB_NormalLayer);
 }
 
 /**
@@ -230,18 +230,7 @@ void Watage::Obj::doEntry()
  */
 void Watage::Obj::touched()
 {
-	if (mSpawnsSpectralids) {
-		mSpawnsSpectralids    = false;
-		ShijimiChou::Mgr* mgr = static_cast<ShijimiChou::Mgr*>(generalEnemyMgr->getEnemyMgr(EnemyTypeID::EnemyID_ShijimiChou));
-		if (mgr) {
-			EnemyBirthArg birthArg;
-			birthArg.mPosition   = mPosition;
-			birthArg.mPosition.y = mPosition.y + static_cast<EnemyParmsBase*>(mParms)->mGeneral.mLifeMeterHeight.mValue;
-			birthArg.mFaceDir    = 0.0f;
-
-			mgr->createGroupByPlants(birthArg, 5);
-		}
-	}
+	Plants::Obj::touched();
 
 	efx::TWatage watageEFX;
 	efx::Arg arg(mPosition);
@@ -255,9 +244,9 @@ void Watage::Obj::touched()
  */
 void Nekojarashi::Obj::doEntry()
 {
-	gameSystem->setDrawBuffer(7);
+	gameSystem->setDrawBuffer(DB_PostShadowLayer);
 	EnemyBase::doEntry();
-	gameSystem->setDrawBuffer(0);
+	gameSystem->setDrawBuffer(DB_NormalLayer);
 }
 
 /**
@@ -277,9 +266,9 @@ void DiodeRed::Obj::touchedSE(Navi* navi)
  */
 void DiodeRed::Obj::doEntry()
 {
-	gameSystem->setDrawBuffer(7);
+	gameSystem->setDrawBuffer(DB_PostShadowLayer);
 	EnemyBase::doEntry();
-	gameSystem->setDrawBuffer(0);
+	gameSystem->setDrawBuffer(DB_NormalLayer);
 }
 
 /**
@@ -299,9 +288,9 @@ void DiodeGreen::Obj::touchedSE(Navi* navi)
  */
 void DiodeGreen::Obj::doEntry()
 {
-	gameSystem->setDrawBuffer(7);
+	gameSystem->setDrawBuffer(DB_PostShadowLayer);
 	EnemyBase::doEntry();
-	gameSystem->setDrawBuffer(0);
+	gameSystem->setDrawBuffer(DB_NormalLayer);
 }
 
 } // namespace Game

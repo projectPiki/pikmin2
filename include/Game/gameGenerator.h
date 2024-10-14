@@ -66,6 +66,16 @@ struct Generator : public CNode {
 		return count;
 	}
 
+	// These represent the "reserved" value from the gen file entry
+	enum ReservedFlag {
+		Reserved_Null            = 0, // This value should always be used in defaultgen, plantgen, or day gens
+		Reserved_doSaveGen       = 1, // needed to save gen info, such as object type and pellet info
+		Reserved_doSaveCreature  = 2, // needed to save creature info, mostly needed for position and item specific properties
+		Reserved_doTrackDeath    = 4, // needed for respawn days to take effect? This ones weird, but enemies that respawn use it
+		Reserved_doTrackPosition = 8, // used for pellets to save current position between loads, might work for enemies
+	};
+	inline bool isReservedFlag(u8 flag) { return mReservedNum & flag; }
+
 	GenObject* mObject;        // _18
 	u32 mId;                   // _1C /* Initialized to '____' */
 	char mGenObjName[32];      // _20 /* shift-jis name given in generator files */
@@ -86,12 +96,12 @@ struct Generator : public CNode {
 	u8 _88[12];                // _88
 	Vector3f mPosition;        // _94
 	Vector3f mOffset;          // _A0
-	u8 mIsInactive;            // _AC
+	u8 mIsInactive;            // _AC, if true, the object wont spawn or need its assets loaded
 	int mIndex;                // _B0
 
 	enum RamMode {
-		RM_Disc = 0,
-		RM_MemoryCache,
+		RM_Disc        = 0,
+		RM_MemoryCache = 1,
 	};
 	static u8 ramMode;
 };

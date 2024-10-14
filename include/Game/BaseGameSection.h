@@ -67,16 +67,16 @@ enum DemoTimers {
 };
 
 enum DrawBufferType {
-	DB_NormalLayer = 0,
-	DB_NormalFogOffLayer,
-	DB_MapLayer,
-	DB_PikiLayer,
-	DB_PostRenderLayer,
-	DB_2DLayer,
-	DB_FirstLayer,
-	DB_PostShadowLayer,
-	DB_ObjectLastLayer,
-	DB_FarmLayer,
+	DB_NormalLayer       = 0,
+	DB_NormalFogOffLayer = 1,
+	DB_MapLayer          = 2,
+	DB_PikiLayer         = 3,
+	DB_PostRenderLayer   = 4,
+	DB_2DLayer           = 5,
+	DB_FirstLayer        = 6,
+	DB_PostShadowLayer   = 7,
+	DB_ObjectLastLayer   = 8,
+	DB_FarmLayer         = 9,
 };
 
 struct BaseGameSection : public BaseHIOSection {

@@ -1860,7 +1860,7 @@ void TEnemyZukan::doCreate(JKRArchive* arc)
 
 	TZukanBase::doCreate(arc);
 
-	f32 yoffs = mIndexPaneList[1]->getPaneOffsetY() - mIndexPaneList[0]->getPaneOffsetY();
+	f32 yoffs = getHeight();
 
 	if (mIsPreDebt && mMaxSelectZukan <= (mNumActiveRows - 1) * 3) {
 		mCanScroll = false;
@@ -1869,9 +1869,8 @@ void TEnemyZukan::doCreate(JKRArchive* arc)
 	f32 xoffs = 0.0f;
 	for (int i = 0; i < 6; i++) {
 		for (int j = 0; j < mNumActiveRows; j++) {
-			f32 y = mIndexPaneList[j]->mYOffset;
-			mIndexPaneList[j]->mPane->setOffsetY(y + yoffs);
-			mIndexPaneList[j]->mYOffset = mIndexPaneList[j]->mPane->mOffset.y;
+			mIndexPaneList[j]->setOffset(yoffs);
+			mIndexPaneList[j]->mYOffset = mIndexPaneList[j]->getPaneOffsetY();
 		}
 		updateIndex(false);
 		TIndexGroup* grp   = mIndexGroup;
@@ -1899,17 +1898,12 @@ void TEnemyZukan::doCreate(JKRArchive* arc)
 
 	if (index >= 0) {
 		int backupindex = index;
-		int max2        = mMaxSelectZukan;
 		if (mIsPreDebt) {
 			for (int i = 0; i < mMaxPane; i++) {
-				// backupindex = i;
 				if (index == mViewablePanelIDList[i]) {
 					index = i;
 					break;
 				}
-				// 	break;
-				// max2--;
-				// backupindex = index;
 			}
 		}
 		if (index > 2) {
@@ -1926,7 +1920,8 @@ void TEnemyZukan::doCreate(JKRArchive* arc)
 					if (mIndexPaneList[mCurrActiveRowSel]->mSizeType != TIndexPane::Size_Small) {
 						yoffs = -yoffs * 0.5f;
 						for (int j = 0; j < mNumActiveRows; j++) {
-							updateIDPaneYOffset(j, yoffs);
+							mIndexPaneList[j]->setOffset(yoffs);
+							mIndexPaneList[j]->mYOffset = mIndexPaneList[j]->getPaneOffsetY();
 						}
 						mRightOffset = 1;
 					} else {
@@ -1938,7 +1933,8 @@ void TEnemyZukan::doCreate(JKRArchive* arc)
 				}
 
 				for (int j = 0; j < mNumActiveRows; j++) {
-					updateIDPaneYOffset(j, -yoffs);
+					mIndexPaneList[j]->setOffset(-yoffs);
+					mIndexPaneList[j]->mYOffset = mIndexPaneList[j]->getPaneOffsetY();
 				}
 				updateIndex(true);
 				TIndexGroup* grp   = mIndexGroup;
@@ -3525,7 +3521,7 @@ void TItemZukan::doCreate(JKRArchive* arc)
 
 	TZukanBase::doCreate(arc);
 
-	f32 yoffs       = mIndexPaneList[1]->mPane->getOffsetY() - mIndexPaneList[0]->mPane->getOffsetY();
+	f32 yoffs       = getHeight();
 	mMaxSelectZukan = mMaxPane;
 
 	if (!mIsPreDebt) {
@@ -3535,7 +3531,8 @@ void TItemZukan::doCreate(JKRArchive* arc)
 	f32 xoffs = 0.0f;
 	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j < mNumActiveRows; j++) {
-			updateIDPaneYOffset(j, yoffs);
+			mIndexPaneList[j]->setOffset(yoffs);
+			mIndexPaneList[j]->mYOffset = mIndexPaneList[j]->getPaneOffsetY();
 		}
 		updateIndex(false);
 		TIndexGroup* grp   = mIndexGroup;
@@ -3581,7 +3578,8 @@ void TItemZukan::doCreate(JKRArchive* arc)
 		if (index > 2) {
 			for (int i = 0; i < index / 3; i++) {
 				for (int j = 0; j < mNumActiveRows; j++) {
-					updateIDPaneYOffset(j, -yoffs);
+					mIndexPaneList[j]->setOffset(-yoffs);
+					mIndexPaneList[j]->mYOffset = mIndexPaneList[j]->getPaneOffsetY();
 				}
 				updateIndex(true);
 				TIndexGroup* grp   = mIndexGroup;
@@ -3597,8 +3595,7 @@ void TItemZukan::doCreate(JKRArchive* arc)
 	mCurrIndex = mIndexPaneList[mCurrActiveRowSel]->getIndex();
 	if (mCurrIndex >= 0) {
 		J2DPane* pane = mPaneMessageDemo;
-		u64 tag       = getXMsgID(mCurrIndex);
-		pane->setMsgID(tag);
+		pane->setMsgID(getXMsgID(mCurrIndex));
 	}
 
 	backup->becomeCurrentHeap();
@@ -3641,7 +3638,7 @@ void TItemZukan::doDemoDraw(Graphics& gfx)
 
 	for (int i = 0; i < mNumActiveRows; i++) {
 		for (int j = 0; j < 3; j++) {
-			TIconInfo* icon = mIndexPaneList[i]->mIconInfos[j];
+			TIconInfo* icon = getIndexPane(i)->getIconInfo(j);
 			if (mSelection == icon->mCategoryID && icon->mPane->isVisible()) {
 				u8 alpha = mMessageBoxBGAlpha * mCategoryAlphaRate;
 				J2DPictureEx* pane2;
@@ -3654,7 +3651,7 @@ void TItemZukan::doDemoDraw(Graphics& gfx)
 				pane1->calcMtx();
 				pane1->setAlpha(oldalpha);
 
-				pane2    = static_cast<J2DPictureEx*>(mIndexPaneList[i]->mIconInfos[j]->mPane);
+				pane2    = static_cast<J2DPictureEx*>(getIndexPane(i)->getIconInfo(j)->mPane);
 				oldalpha = pane2->mAlpha;
 				pane2->setAlpha(mMessageBoxBGAlpha);
 				pane2->draw(pane2->getGlbVtx(GLBVTX_BtmLeft).x, pane2->getGlbVtx(GLBVTX_BtmLeft).y, pane2->getWidth(), pane2->getHeight(),
@@ -3662,7 +3659,7 @@ void TItemZukan::doDemoDraw(Graphics& gfx)
 				pane2->calcMtx();
 				pane2->setAlpha(oldalpha);
 
-				pane3    = static_cast<J2DPictureEx*>(mIndexPaneList[i]->mIconInfos[j]->mPane2);
+				pane3    = static_cast<J2DPictureEx*>(getIndexPane(i)->getIconInfo(j)->mPane2);
 				oldalpha = pane3->mAlpha;
 				pane3->setAlpha(mMessageBoxBGAlpha);
 				pane3->draw(pane3->getGlbVtx(GLBVTX_BtmLeft).x, pane3->getGlbVtx(GLBVTX_BtmLeft).y, pane3->getWidth(), pane3->getHeight(),
@@ -3687,13 +3684,13 @@ void TItemZukan::doDemoDraw(Graphics& gfx)
 		mIconScreen->draw(gfx, *graf);
 
 		for (int i = 0; i < mNumActiveRows; i++) {
-			if (mIndexPaneList[i]->mPane->isVisible()) {
+			if (getIndexPane(i)->mPane->isVisible()) {
 				for (int j = 0; j < 3; j++) {
-					TIconInfo* icon = mIndexPaneList[i]->mIconInfos[j];
+					TIconInfo* icon = getIndexPane(i)->getIconInfo(j);
 					if (mSelection == icon->mCategoryID) {
 						if (mSelection == icon->mCategoryID && icon->mParentIndex) {
-							mPaneNew1->mGlobalMtx[0][3] = mNewOffset.x + mIndexPaneList[i]->mIconInfos[j]->mPane->mGlobalMtx[0][3];
-							mPaneNew1->mGlobalMtx[1][3] = mNewOffset.y + mIndexPaneList[i]->mIconInfos[j]->mPane->mGlobalMtx[1][3];
+							mPaneNew1->mGlobalMtx[0][3] = mNewOffset.x + getIndexPane(i)->getIconInfo(j)->mPane->mGlobalMtx[0][3];
+							mPaneNew1->mGlobalMtx[1][3] = mNewOffset.y + getIndexPane(i)->getIconInfo(j)->mPane->mGlobalMtx[1][3];
 							mMessageNew->draw(gfx, *graf);
 						}
 					}
@@ -4701,13 +4698,12 @@ void TZukanWindow::update()
 			                     y * sinf(mIconYHeightSin) + (mScrollPosition + mPaneIcon->getOffsetY()));
 		}
 	}
-	JGeometry::TVec3f pos1 = mPaneWinCap->getGlbVtx(GLBVTX_BtmLeft);
-	JGeometry::TVec3f pos2 = mPaneWinCap->getGlbVtx(GLBVTX_TopRight);
-	pos1.x += 10.0f;
-	pos1.y += 5.0f;
-	pos2.x -= 10.0f;
-	pos2.y -= 10.0f;
-	JGeometry::TBox2f box(pos1.x, pos1.y, pos2.x, pos2.y);
+
+	JGeometry::TBox2f box(mPaneWinCap->getGlbVtx(GLBVTX_TopRight), mPaneWinCap->getGlbVtx(GLBVTX_BtmLeft));
+	box.i.x += 10.0f;
+	box.i.y += 5.0f;
+	box.f.x -= 10.0f;
+	box.f.y -= 10.0f;
 	mScissor->mBounds = box;
 }
 
@@ -4800,23 +4796,25 @@ void TZukanWindow::onIcon(int id)
  */
 void TZukanWindow::moveIcon(f32 x)
 {
-	if (TZukanBase::mIconMove) {
-		if (FABS(x) < 0.1f) {
-			x = 0.0f;
-		}
-		if (FABS(mScrollPosition) < 1.0f) {
-			mScrollPosition = 0.0f;
-		}
-		if (mScrollPosition == 0.0f && x != 0.0f) {
-			mScaleMgr->up(0.05f, 1.0f, 0.2f, 0.0f);
-		}
-
-		f32 test = 0.1f;
-		if (x == 0.0f) {
-			test = 0.15f;
-		}
-		mScrollPosition += test * (x * 5.0f - mScrollPosition);
+	if (!TZukanBase::mIconMove) {
+		return;
 	}
+
+	if (FABS(x) < 0.1f) {
+		x = 0.0f;
+	}
+	if (FABS(mScrollPosition) < 1.0f) {
+		mScrollPosition = 0.0f;
+	}
+	if (mScrollPosition == 0.0f && x != 0.0f) {
+		mScaleMgr->up(0.05f, 1.0f, 0.2f, 0.0f);
+	}
+
+	f32 test = 0.1f;
+	if (x == 0.0f) {
+		test = 0.15f;
+	}
+	mScrollPosition += test * (x * 5.0f - mScrollPosition);
 }
 
 /**

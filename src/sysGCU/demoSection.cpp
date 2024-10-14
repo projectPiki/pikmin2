@@ -15,8 +15,11 @@ static void _Print(char* format, ...) { OSReport(format, __FILE__); }
 namespace Demo {
 namespace {
 
-static u8 sMovieIndexTable[8] = { 5, 6, 7, 0, 8, 9, 10, 0 };
-static s8 sMovieIndex         = -1;
+static u8 sMovieIndexTable[8] = {
+	Game::THPPlayer::PLAY_1, Game::THPPlayer::PLAY_2, Game::THPPlayer::PLAY_3, Game::THPPlayer::OPENING_GameStart,
+	Game::THPPlayer::PLAY_4, Game::THPPlayer::PLAY_5, Game::THPPlayer::PLAY_6, Game::THPPlayer::OPENING_GameStart,
+};
+static s8 sMovieIndex = -1;
 
 struct LogoLocation {
 	u16 x;
@@ -73,7 +76,7 @@ void Section::init()
 	JUTProcBar::sManager->setVisible(false);
 	JUTProcBar::sManager->setVisibleHeapBar(false);
 	if (sMovieIndex == -1) {
-		sMovieIndex = randInt(8);
+		sMovieIndex = randInt(sizeof(sMovieIndexTable));
 	}
 }
 
@@ -123,7 +126,7 @@ void Section::doExit()
 {
 	PSMGetSceneMgrCheck()->deleteCurrentScene();
 
-	u32 max = 8;
+	u32 max = sizeof(sMovieIndexTable);
 	if (++sMovieIndex >= max) {
 		sMovieIndex = 0;
 	}

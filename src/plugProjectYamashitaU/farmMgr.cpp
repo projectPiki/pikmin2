@@ -82,11 +82,11 @@ void FarmMgr::doAnimation()
  */
 void FarmMgr::doEntry()
 {
-	gameSystem->setDrawBuffer(9);
+	gameSystem->setDrawBuffer(DB_FarmLayer);
 	if (mFarmsRootNode.mChild) {
 		FOREACH_NODE(Farm, mFarmsRootNode.mChild, farm) { farm->doEntry(); }
 	}
-	gameSystem->setDrawBuffer(0);
+	gameSystem->setDrawBuffer(DB_NormalLayer);
 }
 
 /**

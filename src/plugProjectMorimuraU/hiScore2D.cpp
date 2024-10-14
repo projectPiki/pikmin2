@@ -617,9 +617,8 @@ void THiScore::doCreate(JKRArchive* arc)
 	f32 yoffs = mIndexGroup->mHeight;
 	for (int i = 0; i < 2; i++) {
 		for (int j = 0; j < mNumActiveRows; j++) {
-			TIndexPane* IDPane = mIndexPaneList[j];
-			IDPane->mPane->setOffset(IDPane->mPane->mOffset.x, IDPane->mYOffset + yoffs);
-			mIndexPaneList[j]->mYOffset = mIndexPaneList[j]->mPane->mOffset.y;
+			mIndexPaneList[j]->setOffset(yoffs);
+			mIndexPaneList[j]->mYOffset = mIndexPaneList[j]->getPaneOffsetY();
 		}
 		updateIndex(0);
 		TIndexGroup* grp   = mIndexGroup;
@@ -2812,17 +2811,18 @@ void THiScore::changeColorBlock(J2DColorBlock* colorB, J2DColorBlock* colorA)
  */
 void THiScore::updateLayout()
 {
-	f32 ydiff       = mIndexPaneList[0]->mPane->mOffset.y - mIndexPaneList[1]->mPane->mOffset.y;
-	mPaneHeightDiff = ydiff * 2.0f;
+	f32 ydiff       = getHeight();
+	mPaneHeightDiff = getHeight() * 2.0f;
 
 	if (mIsAllTreasures) {
 		for (int i = 0; i < mNumActiveRows; i++) {
-			updateIDPaneYOffset(i, (ydiff * mClearListHeightRate) * f32(i - mCurrActiveRowSel));
+			mIndexPaneList[i]->setOffset((ydiff * mClearListHeightRate) * f32(i - mCurrActiveRowSel));
+			mIndexPaneList[i]->mYOffset = mIndexPaneList[i]->getPaneOffsetY();
 		}
 
-		ydiff          = mIndexPaneList[0]->mPane->mOffset.y - mIndexPaneList[1]->mPane->mOffset.y;
-		mMinSelYOffset = mIndexPaneList[mCurrMinActiveRow]->mPane->mOffset.y;
-		mMaxSelYOffset = mIndexPaneList[mCurrMaxActiveRow]->mPane->mOffset.y;
+		ydiff          = getHeight();
+		mMinSelYOffset = mIndexPaneList[mCurrMinActiveRow]->getPaneOffsetY();
+		mMaxSelYOffset = mIndexPaneList[mCurrMaxActiveRow]->getPaneOffsetY();
 	}
 	mIndexGroup->mHeight = ydiff;
 	/*

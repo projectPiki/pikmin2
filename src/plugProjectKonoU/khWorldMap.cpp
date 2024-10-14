@@ -45,10 +45,7 @@ khUtilFadePaneWM* khUtilFadePaneWM::create(P2DScreen::Mgr* mgr, u64 tag, u8)
  * @note Address: N/A
  * @note Size: 0xB8
  */
-void khUtilFadePaneWM::create(P2DScreen::Mgr*, J2DPane*, u8)
-{
-	// UNUSED FUNCTION
-}
+khUtilFadePaneWM* khUtilFadePaneWM::create(P2DScreen::Mgr* screen, J2DPane* pane, u8 a) { return create(screen, pane->mTag, a); }
 
 /**
  * @note Address: 0x803F1BA0
@@ -558,7 +555,7 @@ void WorldMap::loadResource()
 	mEfxMapFlare->create(nullptr);
 	mEfxShstar1->create(nullptr);
 
-	mCaveFadePane = khUtilFadePaneWM::create(mScreenInfo, mScreenInfo->search('Ncave0')->mTag, 0);
+	mCaveFadePane = khUtilFadePaneWM::create(mScreenInfo, mScreenInfo->search('Ncave0'), 0);
 
 	mCaveFadePane->add(mScreenInfo->search('Ncave1'));
 	mCaveFadePane->add(mScreenInfo->search('Ncave2'));

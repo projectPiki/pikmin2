@@ -581,9 +581,9 @@ void ShapeMapMgr::doEntry()
 		if (mSeaMgr != nullptr) {
 			mSeaMgr->doEntry();
 		}
-		gameSystem->setDrawBuffer(2);
+		gameSystem->setDrawBuffer(DB_MapLayer);
 		mMapModel->getJ3DModel()->entry();
-		gameSystem->setDrawBuffer(0);
+		gameSystem->setDrawBuffer(DB_NormalLayer);
 	} else {
 		mMapModel->getJ3DModel()->entry();
 	}

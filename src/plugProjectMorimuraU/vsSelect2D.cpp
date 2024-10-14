@@ -1172,9 +1172,8 @@ void TVsSelect::doCreate(JKRArchive* arc)
 	int max = (mStageCount - something) + 2;
 	for (int i = 0; i < max; i++) {
 		for (int j = 0; j < mNumActiveRows; j++) {
-			TIndexPane* indpane = mIndexPaneList[j];
-			indpane->mPane->setOffsetY(indpane->mYOffset + calc);
-			mIndexPaneList[j]->mYOffset = mIndexPaneList[j]->mPane->mOffset.y;
+			mIndexPaneList[j]->setOffset(calc);
+			mIndexPaneList[j]->mYOffset = mIndexPaneList[j]->getPaneOffsetY();
 		}
 		updateIndex(0);
 		mIndexGroup->reset();

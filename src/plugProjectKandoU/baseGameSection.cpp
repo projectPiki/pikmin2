@@ -950,13 +950,13 @@ void BaseGameSection::saveToGeneratorCache(CourseInfo* courseinfo)
 	generatorCache->beginSave(courseinfo->mCourseIndex);
 	FOREACH_NODE(Generator, generatorCache->getFirstGenerator(), node)
 	{
-		if (node->mReservedNum & 1) {
+		if (node->isReservedFlag(Generator::Reserved_doSaveGen)) {
 			generatorCache->saveGenerator(node);
 		}
 	}
 	FOREACH_NODE(Generator, generatorCache->getFirstGenerator(), node)
 	{
-		if (node->mReservedNum & 1 && node->mReservedNum & 2) {
+		if (node->isReservedFlag(Generator::Reserved_doSaveGen) && node->isReservedFlag(Generator::Reserved_doSaveCreature)) {
 			generatorCache->saveCreature(node);
 		}
 	}

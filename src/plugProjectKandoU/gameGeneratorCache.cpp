@@ -314,7 +314,7 @@ void GeneratorCache::updateUseList()
 void GeneratorCache::createNumberGenerators()
 {
 	for (Generator* gen = getFirstGenerator(); gen != nullptr; gen = (Generator*)gen->mNext) {
-		if (gen->mIsInactive == FALSE && (gen->mReservedNum & 4U) != 0) {
+		if (gen->mIsInactive == FALSE && gen->isReservedFlag(Generator::Reserved_doTrackDeath)) {
 			Generator::ramMode = Generator::RM_MemoryCache;
 			gen->generate();
 			Generator::ramMode = Generator::RM_Disc;

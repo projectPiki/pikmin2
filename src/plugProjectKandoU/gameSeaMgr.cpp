@@ -184,7 +184,7 @@ void AABBWaterBox::doEntry()
 	if (gameSystem && !gameSystem->isStoryMode() && !gameSystem->isZukanMode()
 	    && (!gameSystem->isChallengeMode() || gameSystem->isMultiplayerMode())) {
 		if (gameSystem) {
-			gameSystem->setDrawBuffer(4);
+			gameSystem->setDrawBuffer(DB_PostRenderLayer);
 			mModel->mJ3dModel->calcMaterial();
 			mModel->mJ3dModel->entry();
 		}
@@ -195,7 +195,7 @@ void AABBWaterBox::doEntry()
 		BaseGameSection* section = gameSystem->getSection();
 		if (section->mPrevNaviIdx == NAVIID_Multiplayer) {
 			if (gameSystem) {
-				gameSystem->setDrawBuffer(4);
+				gameSystem->setDrawBuffer(DB_PostRenderLayer);
 				Mtx copyMatrix;
 				PSMTXIdentity(copyMatrix);
 				J3DTexMtx* texMtx = mModel->mJ3dModel->mModelData->mMaterialTable.mMaterials[0]->mTexGenBlock->getTexMtx(3); // good lord
@@ -244,7 +244,7 @@ void AABBWaterBox::doEntry()
 	}
 
 	if (gameSystem) {
-		gameSystem->setDrawBuffer(4);
+		gameSystem->setDrawBuffer(DB_PostRenderLayer);
 		mModel->mJ3dModel->calcMaterial();
 
 		if (mFbTexture) {
