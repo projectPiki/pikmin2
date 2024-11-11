@@ -48,7 +48,7 @@ void Obj::onInit(CreatureInitArg* initArg)
 	mEfxMatrix          = mModel->getJoint("hana3")->getWorldMatrix();
 	setupEffect();
 
-	mCurrentAttackRadius = 0.0f;
+	mWindScaleTimer = 0.0f;
 
 	mFsm->start(this, HANACHIRASHI_Wait, nullptr);
 
@@ -727,47 +727,46 @@ Vector3f Obj::getAttackPosition()
 bool Obj::windTarget()
 {
 	bool isHitPiki = false;
-	if (mCurrentAttackRadius < 1.0f) {
-		mCurrentAttackRadius += 3.0f * sys->mDeltaTime;
-		if (mCurrentAttackRadius > 1.0f) {
-			mCurrentAttackRadius = 1.0f;
+	if (mWindScaleTimer < 1.0f) {
+		mWindScaleTimer += 3.0f * sys->mDeltaTime;
+		if (mWindScaleTimer > 1.0f) {
+			mWindScaleTimer = 1.0f;
 		}
 	}
 
-	f32 radius       = mCurrentAttackRadius * C_GENERALPARMS.mAttackRadius();
-	Vector3f efxPos  = mEfxPosition;                                     // f16
-	Vector3f faceDir = mFaceDirection;                                   // f29
-	f32 slope        = tan(TORADIANS(C_GENERALPARMS.mAttackHitAngle())); // f20
+	f32 radius              = mWindScaleTimer * C_GENERALPARMS.mAttackRadius();
+	Vector3f attackStartPos = mEfxPosition;                                     // f16
+	Vector3f faceDirection  = mFaceDirection;                                   // f29
+	f32 slope               = tan(TORADIANS(C_GENERALPARMS.mAttackHitAngle())); // f20
 
-	Vector3f flatDir = Vector3f(-faceDir.z, faceDir.y, faceDir.x);
-	flatDir.toFlatDirection();
+	Vector3f attackNormal = Vector3f(-faceDirection.z, 0.0f, faceDirection.x);
+	attackNormal.normalise();
 
-	Vector3f crossDir = flatDir.cross(faceDir);
+	Vector3f crossDir = attackNormal.cross(faceDirection);
 	crossDir.normalise();
 
-	Vector3f normFaceDir = faceDir;
-	normFaceDir.toFlatDirection();
+	Vector3f attackDirection2D = faceDirection;
+	attackDirection2D.toFlatDirection();
 
 	Iterator<Navi> iterNavi(naviMgr);
 	CI_LOOP(iterNavi)
 	{
 		Navi* navi = *iterNavi;
 		if (navi->isAlive()) {
-			Vector3f naviPos = navi->getPosition();
-			Vector3f sep     = naviPos - efxPos;
-			f32 dotProd      = faceDir.dot(sep);
-			if (dotProd < radius && dotProd > 0.0f) {
-				f32 r         = dotProd * slope;
-				f32 crossDot  = crossDir.dot(sep);
-				f32 flatDot   = flatDir.dot(sep);
-				Vector3f dots = Vector3f(flatDot, 0.0f, crossDot);
-				f32 sqrMag    = dots.sqrMagnitude2D();
-				if (sqrMag < SQUARE(r)) {
-					f32 normMag = dots.length2D() / r;
+			Vector3f naviPosition  = navi->getPosition();
+			Vector3f separationVec = naviPosition - attackStartPos;
 
-					f32 lineEq = normMag * 0.2f + (1.0f - normMag);
-					Vector3f direction(lineEq * (normFaceDir.x * crossDot + flatDir.x * flatDot), 0.0f,
-					                   lineEq * (normFaceDir.z * crossDot + flatDir.z * flatDot));
+			f32 dotProduct = faceDirection.dot(separationVec);
+			if (dotProduct < radius && dotProduct > 0.0f) {
+				f32 attackRadius = dotProduct * slope;
+
+				Vector2f dots = Vector2f(attackNormal.dot(separationVec), crossDir.dot(separationVec));
+				if (dots.sqrMagnitude() < SQUARE(attackRadius)) {
+					f32 slideFactor = dots.length() / attackRadius;
+
+					f32 windStrength = slideFactor * 0.2f + (1.0f - slideFactor);
+					Vector3f direction(windStrength * (attackDirection2D.x * dots.y + attackNormal.x * dots.x), 0.0f,
+					                   windStrength * (attackDirection2D.z * dots.y + attackNormal.z * dots.x));
 
 					InteractWind wind(this, C_GENERALPARMS.mAttackDamage(), &direction); // not vec2
 					navi->stimulate(wind);
@@ -781,25 +780,23 @@ bool Obj::windTarget()
 	{
 		Piki* piki = *iterPiki;
 		if (piki->isAlive() && piki->isPikmin()) {
-			Vector3f pikiPos = piki->getPosition();
-			Vector3f sep     = pikiPos - efxPos;
-			f32 dotProd      = faceDir.dot(sep);
-			if (dotProd < radius && dotProd > 0.0f) {
-				f32 r         = dotProd * slope;
-				f32 crossDot  = crossDir.dot(sep);
-				f32 flatDot   = flatDir.dot(sep);
-				Vector3f dots = Vector3f(flatDot, 0.0f, crossDot);
-				f32 sqrMag    = dots.sqrMagnitude2D();
-				if (sqrMag < SQUARE(r)) {
-					f32 normMag = dots.length2D() / r;
+			Vector3f pikiPos       = piki->getPosition();
+			Vector3f separationVec = pikiPos - attackStartPos;
 
-					f32 lineEq = (1.0f - normMag) * 5.0f + normMag;
-					Vector3f velocity;
-					velocity.x = lineEq * (normFaceDir.x * crossDot + flatDir.z * flatDot);
-					velocity.y = (1.0f - normMag) * 50.0f + normMag * 10.0f;
-					velocity.z = lineEq * (normFaceDir.z * crossDot + flatDir.x * flatDot);
+			f32 dotProduct = faceDirection.dot(separationVec);
+			if (dotProduct < radius && dotProduct > 0.0f) {
+				f32 attackRadius = dotProduct * slope;
 
-					InteractHanaChirashi wind(this, C_GENERALPARMS.mAttackDamage(), &velocity); // not vec2
+				Vector2f dots = Vector2f(attackNormal.dot(separationVec), crossDir.dot(separationVec));
+				if (dots.sqrMagnitude() < SQUARE(attackRadius)) {
+					f32 slideFactor = dots.length() / attackRadius;
+
+					f32 windStrength = (1.0f - slideFactor) * 5.0f + slideFactor;
+					Vector3f direction(windStrength * (attackDirection2D.x * dots.y + attackNormal.x * dots.x),
+					                   (1.0f - slideFactor) * 50.0f + slideFactor * 10.0f,
+					                   windStrength * (attackDirection2D.z * dots.y + attackNormal.z * dots.x));
+
+					InteractHanaChirashi wind(this, C_GENERALPARMS.mAttackDamage(), &direction); // not vec2
 					isHitPiki = piki->stimulate(wind);
 				}
 			}

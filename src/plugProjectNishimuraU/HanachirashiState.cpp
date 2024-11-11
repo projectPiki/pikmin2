@@ -854,7 +854,7 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 	hanachirashi->startMotion(HANACHIANIM_Attack, nullptr);
 	hanachirashi->mNextState           = HANACHIRASHI_NULL;
 	hanachirashi->mIsWindAttackActive  = false;
-	hanachirashi->mCurrentAttackRadius = 0.0f;
+	hanachirashi->mWindScaleTimer = 0.0f;
 	hanachirashi->createSuckEffect();
 }
 
@@ -901,7 +901,7 @@ void StateAttack::cleanup(EnemyBase* enemy)
 	hanachirashi->enableEvent(0, EB_Cullable);
 	hanachirashi->setEmotionCaution();
 	hanachirashi->mIsWindAttackActive  = false;
-	hanachirashi->mCurrentAttackRadius = 0.0f;
+	hanachirashi->mWindScaleTimer = 0.0f;
 	hanachirashi->finishWindEffect();
 }
 
