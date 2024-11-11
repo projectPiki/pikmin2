@@ -925,8 +925,11 @@ bool Obj::checkRestOn()
 	Sys::Sphere collSphere;
 	static_cast<CollPart*>(mSpawningEnemy->mCollTree->mPart->mChild)->getSphere(collSphere);
 
-	f32 rad              = collSphere.mRadius;
-	Vector3f positionSep = mPosition - collSphere.mPosition;
+	f32 rad = collSphere.mRadius;
+
+	Vector3f positionSep = mPosition;
+	positionSep.sub(collSphere.mPosition);
+
 	f32 dist             = positionSep.sqrMagnitude();
 	mRestEnemyCollSphere = collSphere;
 	if (dist < SQUARE(1.2f * rad)) {
@@ -940,31 +943,30 @@ bool Obj::checkRestOn()
 
 			mPosition += collSphere.mPosition;
 			// more float math
+		}
 
-			// guh??
-			f32 xRotVelocity = PI * ((collSphere.mPosition.y + collSphere.mRadius) - mPosition.y) / (-collSphere.mRadius * 2.0f);
+		f32 xRotVelocity = PI * ((collSphere.mPosition.y + collSphere.mRadius) - mPosition.y) / (-collSphere.mRadius * 2.0f);
 
-			if (collSphere.mPosition.y + collSphere.mRadius < mPosition.y) {
-				xRotVelocity = 0.0f;
+		if (collSphere.mPosition.y + collSphere.mRadius < mPosition.y) {
+			xRotVelocity = 0.0f;
+		}
+
+		if (collSphere.mPosition.y - collSphere.mRadius > mPosition.y) {
+			xRotVelocity = PI;
+		}
+
+		mRotation.x += 0.3f * (xRotVelocity - mRotation.x);
+
+		if (dist < SQUARE(rad) && FABS(xRotVelocity - mRotation.x) < 0.01f) {
+			if (mRotation.x > TAU) {
+				mRotation.x -= TAU;
 			}
 
-			if (collSphere.mPosition.y - collSphere.mRadius > mPosition.y) {
-				xRotVelocity = PI;
+			if (mRotation.x < 0.0f) {
+				mRotation.x += TAU;
 			}
 
-			mRotation.x += 0.3f * (xRotVelocity - mRotation.x);
-
-			if (dist < SQUARE(rad) && FABS(xRotVelocity - mRotation.x) < 0.01f) {
-				if (mRotation.x > TAU) {
-					mRotation.x -= TAU;
-				}
-
-				if (mRotation.x < 0.0f) {
-					mRotation.x += TAU;
-				}
-
-				return true;
-			}
+			return true;
 		}
 
 		f32 angleDist = getAngDist2(collSphere.mPosition);
