@@ -117,7 +117,7 @@ struct Obj : public EnemyBase {
 	Vector3f mEfxPosition;               // _2E8
 	Vector3f mFaceDirection;             // _2F4
 	Vector3f mAttackPosition;            // _300
-	f32 mCurrentAttackRadius;            // _30C
+	f32 mWindScaleTimer;            // _30C
 	bool mIsWindAttackActive;            // _310
 	f32 mPitchRatio;                     // _314
 	efx::TFusenDead* mEfxDead;           // _318
