@@ -649,8 +649,7 @@ Creature* Obj::isAttackable()
 {
 	const f32 faceDir = getFaceDir();
 	Parms* parms      = C_PARMS;
-	Vector3f vec
-	    = Vector3f(parms->mGeneral.mMaxAttackRange() * sinf(faceDir), 0.0f, parms->mGeneral.mMaxAttackRange() * cosf(faceDir));
+	Vector3f vec = Vector3f(parms->mGeneral.mMaxAttackRange() * sinf(faceDir), 0.0f, parms->mGeneral.mMaxAttackRange() * cosf(faceDir));
 	vec += getPosition();
 	f32 radius = SQUARE(C_GENERALPARMS.mMaxAttackAngle());
 
