@@ -650,9 +650,9 @@ Creature* Obj::isAttackable()
 	const f32 faceDir = getFaceDir();
 	Parms* parms      = C_PARMS;
 	Vector3f vec
-	    = Vector3f(parms->mGeneral.mMaxAttackRange.mValue * sinf(faceDir), 0.0f, parms->mGeneral.mMaxAttackRange.mValue * cosf(faceDir));
+	    = Vector3f(parms->mGeneral.mMaxAttackRange() * sinf(faceDir), 0.0f, parms->mGeneral.mMaxAttackRange() * cosf(faceDir));
 	vec += getPosition();
-	f32 radius = SQUARE(C_GENERALPARMS.mMaxAttackAngle.mValue);
+	f32 radius = SQUARE(C_GENERALPARMS.mMaxAttackAngle());
 
 	Iterator<Piki> iter(pikiMgr);
 	CI_LOOP(iter)
@@ -989,8 +989,8 @@ void Obj::windTarget()
 	}
 
 	f32 radius                   = mWindScaleTimer * C_GENERALPARMS.mAttackRadius();
-	Vector3f attackStartPosition = mAttackStartPos;                                       // f16
-	Vector3f attackDirection     = mAttackDirection;                                      // f29
+	Vector3f attackStartPosition = mAttackStartPos;                                  // f16
+	Vector3f attackDirection     = mAttackDirection;                                 // f29
 	f32 slope                    = tan(TORADIANS(C_GENERALPARMS.mAttackHitAngle())); // f20
 
 	// this is probably a new vector
