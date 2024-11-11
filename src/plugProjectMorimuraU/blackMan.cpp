@@ -316,7 +316,7 @@ Obj::Obj()
  * @note Address: 0x803A6C48
  * @note Size: 0x6C4
  */
-void BlackMan::Obj::doUpdate()
+void Obj::doUpdate()
 {
 	getStateID();
 	isStopMotion();
@@ -359,8 +359,8 @@ void BlackMan::Obj::doUpdate()
 				Navi* activeNavi = naviMgr->getActiveNavi();
 				if (!mIsFallStart && activeNavi && activeNavi->isAlive()) {
 
-					// regswaps here
-					Vector3f pos     = Vector3f(mPosition.x, 0.0f, mPosition.z);
+					Vector3f pos;
+					getPosition2D(pos);
 					Vector3f naviPos = Vector3f(activeNavi->getPosition().x, 0.0f, activeNavi->getPosition().z);
 
 					f32 sqrDist = sqrDistanceXZ(naviPos, pos);
@@ -903,19 +903,19 @@ lbl_803A72D0:
  * @note Address: 0x803A730C
  * @note Size: 0x4
  */
-void BlackMan::Obj::doDirectDraw(Graphics&) { }
+void Obj::doDirectDraw(Graphics&) { }
 
 /**
  * @note Address: 0x803A7310
  * @note Size: 0x20
  */
-void BlackMan::Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
+void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
 
 /**
  * @note Address: 0x803A7330
  * @note Size: 0x174
  */
-void BlackMan::Obj::doSimulation(f32 speed)
+void Obj::doSimulation(f32 speed)
 {
 	if (mTyre) {
 		mTyre->mWraithPosition = mPosition;
@@ -951,7 +951,7 @@ void BlackMan::Obj::doSimulation(f32 speed)
  * @note Address: 0x803A74A4
  * @note Size: 0x238
  */
-void BlackMan::Obj::doAnimationCullingOff()
+void Obj::doAnimationCullingOff()
 {
 	Color4 efxColor(0xff, 0xff, 0xff, 0xff);
 
@@ -998,7 +998,7 @@ void BlackMan::Obj::doAnimationCullingOff()
  * @note Address: 0x803A76DC
  * @note Size: 0x3C
  */
-void BlackMan::Obj::onKill(Game::CreatureKillArg* arg)
+void Obj::onKill(Game::CreatureKillArg* arg)
 {
 	EnemyBase::onKill(arg);
 	releasePathFinder();
@@ -1009,7 +1009,7 @@ void BlackMan::Obj::onKill(Game::CreatureKillArg* arg)
  * @note Address: 0x803A7718
  * @note Size: 0xDC
  */
-void BlackMan::Obj::doStartStoneState()
+void Obj::doStartStoneState()
 {
 	EnemyBase::doStartStoneState();
 	if (getStateID() != WRAITH_Fall) {
@@ -1034,7 +1034,7 @@ void BlackMan::Obj::doStartStoneState()
  * @note Address: 0x803A77F4
  * @note Size: 0xBC
  */
-void BlackMan::Obj::doFinishStoneState()
+void Obj::doFinishStoneState()
 {
 	EnemyBase::doFinishStoneState();
 
@@ -1053,7 +1053,7 @@ void BlackMan::Obj::doFinishStoneState()
  * @note Address: 0x803A78B0
  * @note Size: 0x58
  */
-bool BlackMan::Obj::isUnderground()
+bool Obj::isUnderground()
 {
 	// (u32)stateID - 2 <= 1 || stateID == WRAITH_Tired || isEvent(0, EB_IsBittered)
 
@@ -1069,7 +1069,7 @@ bool BlackMan::Obj::isUnderground()
  * @note Address: 0x803A7908
  * @note Size: 0xA4
  */
-void BlackMan::Obj::doGetLifeGaugeParam(Game::LifeGaugeParam& param)
+void Obj::doGetLifeGaugeParam(Game::LifeGaugeParam& param)
 {
 	EnemyBase::doGetLifeGaugeParam(param);
 
@@ -1087,7 +1087,7 @@ void BlackMan::Obj::doGetLifeGaugeParam(Game::LifeGaugeParam& param)
  * @note Address: 0x803A79AC
  * @note Size: 0x1B8
  */
-void BlackMan::Obj::collisionCallback(Game::CollEvent& collEvent)
+void Obj::collisionCallback(Game::CollEvent& collEvent)
 {
 	Creature* collCreature = collEvent.mCollidingCreature;
 	int stateID            = getStateID();
@@ -1123,7 +1123,7 @@ void BlackMan::Obj::collisionCallback(Game::CollEvent& collEvent)
  * @note Address: 0x803A7B64
  * @note Size: 0x16C
  */
-bool BlackMan::Obj::damageCallBack(Game::Creature* creature, f32 damage, CollPart* part)
+bool Obj::damageCallBack(Game::Creature* creature, f32 damage, CollPart* part)
 {
 	int stateID = getStateID();
 	if (stateID == WRAITH_Tired && creature->isPiki()) {
@@ -1152,7 +1152,7 @@ bool BlackMan::Obj::damageCallBack(Game::Creature* creature, f32 damage, CollPar
  * @note Address: 0x803A7CD0
  * @note Size: 0x134
  */
-bool BlackMan::Obj::hipdropCallBack(Game::Creature* creature, f32 damage, CollPart* part)
+bool Obj::hipdropCallBack(Game::Creature* creature, f32 damage, CollPart* part)
 {
 	int stateID = getStateID();
 	if (stateID == WRAITH_Tired) {
@@ -1183,7 +1183,7 @@ bool BlackMan::Obj::hipdropCallBack(Game::Creature* creature, f32 damage, CollPa
  * @note Address: 0x803A7E04
  * @note Size: 0xDC
  */
-bool BlackMan::Obj::earthquakeCallBack(Game::Creature* creature, f32 bounceFactor)
+bool Obj::earthquakeCallBack(Game::Creature* creature, f32 bounceFactor)
 {
 	if (mTyre) {
 		mTyre->earthquakeCallBack(creature, bounceFactor);
@@ -1202,7 +1202,7 @@ bool BlackMan::Obj::earthquakeCallBack(Game::Creature* creature, f32 bounceFacto
  * @note Address: 0x803A7EE0
  * @note Size: 0x68
  */
-void BlackMan::Obj::doEntry()
+void Obj::doEntry()
 {
 	if (C_PARMS->mUseDrawBuffer8) {
 		gameSystem->setDrawBuffer(DB_ObjectLastLayer);
@@ -1217,7 +1217,7 @@ void BlackMan::Obj::doEntry()
  * @note Address: 0x803A7F48
  * @note Size: 0x31C
  */
-void BlackMan::Obj::changeMaterial()
+void Obj::changeMaterial()
 {
 	// not matching due to regswaps
 
@@ -1474,7 +1474,7 @@ lbl_803A8234:
  * @note Address: 0x803A8264
  * @note Size: 0x50
  */
-void BlackMan::Obj::getShadowParam(ShadowParam& shadowParam)
+void Obj::getShadowParam(ShadowParam& shadowParam)
 {
 	shadowParam.mPosition                 = mChestJointPosition;
 	shadowParam.mPosition.y               = mPosition.y + 2.0f;
@@ -1487,7 +1487,7 @@ void BlackMan::Obj::getShadowParam(ShadowParam& shadowParam)
  * @note Address: 0x803A82B4
  * @note Size: 0x64
  */
-void BlackMan::Obj::initWalkSmokeEffect()
+void Obj::initWalkSmokeEffect()
 {
 	mWalkSmokeMgr.alloc(2);
 	mWalkSmokeMgr.setup(0, mModel, "footR", 10.0f);
@@ -1498,7 +1498,7 @@ void BlackMan::Obj::initWalkSmokeEffect()
  * @note Address: 0x803A8318
  * @note Size: 0x1C
  */
-WalkSmokeEffect::Mgr* BlackMan::Obj::getWalkSmokeEffectMgr()
+WalkSmokeEffect::Mgr* Obj::getWalkSmokeEffectMgr()
 {
 	if (mTyre) {
 		return nullptr;
@@ -1510,7 +1510,7 @@ WalkSmokeEffect::Mgr* BlackMan::Obj::getWalkSmokeEffectMgr()
  * @note Address: 0x803A8334
  * @note Size: 0x848
  */
-void BlackMan::Obj::walkFunc()
+void Obj::walkFunc()
 {
 	if (mTyre && mTyre->isEvent(0, EB_Bittered)) {
 		return;
@@ -2343,13 +2343,13 @@ lbl_803A8B4C:
  * @note Address: 0x803A8B7C
  * @note Size: 0x34
  */
-bool BlackMan::Obj::isReachToGoal(f32 rad) { return (u8)(sqrDistanceXZ(mPosition, mTargetPosition) < SQUARE(rad)); }
+bool Obj::isReachToGoal(f32 rad) { return (u8)(sqrDistanceXZ(mPosition, mTargetPosition) < SQUARE(rad)); }
 
 /**
  * @note Address: 0x803A8BB0
  * @note Size: 0xED0
  */
-void BlackMan::Obj::findNextRoutePoint()
+void Obj::findNextRoutePoint()
 {
 	if (mFoundPath || mEscapePhase == 4) {
 		findNextTraceRoutePoint();
@@ -2414,8 +2414,8 @@ void BlackMan::Obj::findNextRoutePoint()
 	{
 		s16 index        = *wpIter;
 		WayPoint* wp     = routeMgr->getWayPoint(index);
-		Vector3f pos     = wp->mPosition;
-		Vector3f* posPtr = &pos;
+
+		Vector3f* posPtr = &wp->getPosition();
 
 		if (wp && !wp->isFlag(WPF_Closed) && wp->mNumToLinks + wp->mNumFromLinks > 1) {
 			indices[counter] = index;
@@ -2464,11 +2464,9 @@ void BlackMan::Obj::findNextRoutePoint()
 				{
 					Piki* piki = *iter;
 					if (piki->isAlive() && piki->isStickTo()) {
-						Vector3f wpPos      = Vector3f(wp->mPosition);
-						Vector3f wpPos1     = wpPos;
-						Vector3f* wpPosPtr  = &wpPos1;
-						Vector3f wpPos2     = wpPos;
-						Vector3f* wpPosPtr2 = &wpPos2;
+						Vector3f wpPos      = wp->mPosition;
+						Vector3f* wpPosPtr  = &wp->getPosition();
+						Vector3f* wpPosPtr2 = &wp->getPosition();
 						Vector3f pikiPos    = Vector3f(piki->getPosition().x, 0.0f, piki->getPosition().z);
 
 						f32 sqrDist = sqrDistanceXZ(pikiPos, wpPos);
@@ -3704,7 +3702,7 @@ lbl_803A9A3C:
  * @note Address: 0x803A9A80
  * @note Size: 0xD0
  */
-void BlackMan::Obj::findNextTraceRoutePoint()
+void Obj::findNextTraceRoutePoint()
 {
 	if (!mPath) {
 		return;
@@ -3735,7 +3733,7 @@ void BlackMan::Obj::findNextTraceRoutePoint()
  * @note Address: 0x803A9B50
  * @note Size: 0x114
  */
-bool BlackMan::Obj::isEndPathFinder()
+bool Obj::isEndPathFinder()
 {
 	if (mFoundPath) {
 		return true;
@@ -3771,7 +3769,7 @@ bool BlackMan::Obj::isEndPathFinder()
  * @note Address: 0x803A9C64
  * @note Size: 0x1D8
  */
-bool BlackMan::Obj::setPathFinder(bool check)
+bool Obj::setPathFinder(bool check)
 {
 	releasePathFinder();
 	WPEdgeSearchArg edgeArg(mPosition);
@@ -3951,7 +3949,7 @@ lbl_803A9E28:
  * @note Address: 0x803A9E3C
  * @note Size: 0x44
  */
-void BlackMan::Obj::releasePathFinder()
+void Obj::releasePathFinder()
 {
 	mFoundPath = 0;
 	if (testPathfinder && mPathFindingHandle) {
@@ -3963,7 +3961,7 @@ void BlackMan::Obj::releasePathFinder()
  * @note Address: 0x803A9E80
  * @note Size: 0x590
  */
-void BlackMan::Obj::jointMtxCalc(int jointIdx)
+void Obj::jointMtxCalc(int jointIdx)
 {
 	int stateID = getStateID();
 	if (jointIdx < 2 && (stateID == WRAITH_Flick || stateID == WRAITH_Recover)) {
@@ -4468,7 +4466,7 @@ lbl_803AA39C:
  * @note Address: 0x803AA410
  * @note Size: 0x28C
  */
-void BlackMan::Obj::bodyMtxCalc()
+void Obj::bodyMtxCalc()
 {
 	if (!C_PARMS->mUseTyreForJointCalc) {
 		return;
@@ -4694,7 +4692,7 @@ lbl_803AA684:
  * @note Address: 0x803AA69C
  * @note Size: 0x40
  */
-bool BlackMan::Obj::isTyreFreeze()
+bool Obj::isTyreFreeze()
 {
 	if (mTyre && mTyre->isFreeze()) {
 		return true;
@@ -4707,7 +4705,7 @@ bool BlackMan::Obj::isTyreFreeze()
  * @note Address: 0x803AA6DC
  * @note Size: 0x9C
  */
-bool BlackMan::Obj::isTyreDead()
+bool Obj::isTyreDead()
 {
 	if (mTyre && mTyre->mHealth <= 0.0f) {
 		if (mAnimator->getAnimator().isFlag(SysShape::Animator::AnimCompleted)) {
@@ -4727,7 +4725,7 @@ bool BlackMan::Obj::isTyreDead()
  * @note Address: 0x803AA778
  * @note Size: 0x74
  */
-bool BlackMan::Obj::isFallEnd()
+bool Obj::isFallEnd()
 {
 	bool result = false;
 	if (mFloorTriangle) {
@@ -4745,7 +4743,7 @@ bool BlackMan::Obj::isFallEnd()
  * @note Address: 0x803AA7EC
  * @note Size: 0x1D4
  */
-void BlackMan::Obj::moveRestart()
+void Obj::moveRestart()
 {
 	if (!mTyre) {
 		return;
@@ -4775,25 +4773,25 @@ void BlackMan::Obj::moveRestart()
  * @note Address: 0x803AA9C0
  * @note Size: 0x4
  */
-void BlackMan::Obj::escape() { }
+void Obj::escape() { }
 
 /**
  * @note Address: 0x803AA9C4
  * @note Size: 0x8
  */
-void BlackMan::Obj::setTimer(f32 time) { mWraithFallTimer = time; }
+void Obj::setTimer(f32 time) { mWraithFallTimer = time; }
 
 /**
  * @note Address: 0x803AA9CC
  * @note Size: 0x8
  */
-f32 BlackMan::Obj::getTimer() { return mWraithFallTimer; }
+f32 Obj::getTimer() { return mWraithFallTimer; }
 
 /**
  * @note Address: 0x803AA9D4
  * @note Size: 0xA0
  */
-void BlackMan::Obj::collisionStOn()
+void Obj::collisionStOn()
 {
 	mCollTree->getCollPart('kosi')->mSpecialID = 'st__';
 	mCollTree->getCollPart('mune')->mSpecialID = 'st__';
@@ -4808,7 +4806,7 @@ void BlackMan::Obj::collisionStOn()
  * @note Address: 0x803AAA74
  * @note Size: 0x98
  */
-void BlackMan::Obj::collisionStOff()
+void Obj::collisionStOff()
 {
 	mCollTree->getCollPart('kosi')->mSpecialID = '____';
 	mCollTree->getCollPart('mune')->mSpecialID = '____';
@@ -4822,7 +4820,7 @@ void BlackMan::Obj::collisionStOff()
  * @note Address: 0x803AAB0C
  * @note Size: 0x4C
  */
-void BlackMan::Obj::flick()
+void Obj::flick()
 {
 	EnemyFunc::flickStickPikmin(this, C_GENERALPARMS.mShakeChance(), C_GENERALPARMS.mShakeKnockback(), C_GENERALPARMS.mShakeDamage(),
 	                            FLICK_BACKWARD_ANGLE, nullptr);
@@ -4833,7 +4831,7 @@ void BlackMan::Obj::flick()
  * @note Address: 0x803AAB58
  * @note Size: 0x150
  */
-void BlackMan::Obj::recover()
+void Obj::recover()
 {
 	if (!mTyre) {
 		return;
@@ -4871,7 +4869,7 @@ void BlackMan::Obj::recover()
  * @note Address: 0x803AACA8
  * @note Size: 0xF8
  */
-void BlackMan::Obj::recoverFlick()
+void Obj::recoverFlick()
 {
 	f32 chance    = C_GENERALPARMS.mShakeChance();
 	f32 knockback = C_GENERALPARMS.mShakeKnockback();
@@ -4891,7 +4889,7 @@ void BlackMan::Obj::recoverFlick()
  * @note Address: 0x803AADA0
  * @note Size: 0x2C
  */
-void BlackMan::Obj::tyreFlick()
+void Obj::tyreFlick()
 {
 	if (mTyre) {
 		mTyre->flick();
@@ -4902,7 +4900,7 @@ void BlackMan::Obj::tyreFlick()
  * @note Address: 0x803AADCC
  * @note Size: 0xD0
  */
-void BlackMan::Obj::deadEffect()
+void Obj::deadEffect()
 {
 	EnemyBase::createDeadBombEffect();
 	throwupItem();
@@ -4916,13 +4914,13 @@ void BlackMan::Obj::deadEffect()
  * @note Address: 0x803AAE9C
  * @note Size: 0x34
  */
-void BlackMan::Obj::deadTraceEffect() { mEfxDead->create(nullptr); }
+void Obj::deadTraceEffect() { mEfxDead->create(nullptr); }
 
 /**
  * @note Address: 0x803AAED0
  * @note Size: 0x74
  */
-void BlackMan::Obj::tyreUpEffect()
+void Obj::tyreUpEffect()
 {
 	if (mTyre && (isEvent(0, EB_Bittered) || !mTyre->isEvent(0, EB_Bittered))) {
 		mTyre->fadeEfxHamon();
@@ -4934,7 +4932,7 @@ void BlackMan::Obj::tyreUpEffect()
  * @note Address: 0x803AAF44
  * @note Size: 0x50
  */
-void BlackMan::Obj::tyreDownEffect()
+void Obj::tyreDownEffect()
 {
 	if (mTyre) {
 		mTyre->landEffect(mLandPosition);
@@ -4946,7 +4944,7 @@ void BlackMan::Obj::tyreDownEffect()
  * @note Address: 0x803AAF94
  * @note Size: 0x94
  */
-void BlackMan::Obj::bendEffect()
+void Obj::bendEffect()
 {
 	if (mTyre) {
 		efx::TKageBend1 bendFX(mModel->getJoint("head")->getWorldMatrix());
@@ -4958,7 +4956,7 @@ void BlackMan::Obj::bendEffect()
  * @note Address: 0x803AB028
  * @note Size: 0x5C
  */
-void BlackMan::Obj::createTraceEffect()
+void Obj::createTraceEffect()
 {
 	if (mTyre) {
 		mEfxMove->create(nullptr);
@@ -4971,7 +4969,7 @@ void BlackMan::Obj::createTraceEffect()
  * @note Address: 0x803AB084
  * @note Size: 0x50
  */
-void BlackMan::Obj::fadeTraceEffect()
+void Obj::fadeTraceEffect()
 {
 	mEfxMove->fade();
 	mEfxRun->fade();
@@ -4981,7 +4979,7 @@ void BlackMan::Obj::fadeTraceEffect()
  * @note Address: 0x803AB0D4
  * @note Size: 0x58
  */
-void BlackMan::Obj::createFlickEffect()
+void Obj::createFlickEffect()
 {
 	mEfxFrontFlick->create(nullptr);
 	mEfxBackFlick->create(nullptr);
@@ -4991,7 +4989,7 @@ void BlackMan::Obj::createFlickEffect()
  * @note Address: 0x803AB12C
  * @note Size: 0x50
  */
-void BlackMan::Obj::fadeFlickEffect()
+void Obj::fadeFlickEffect()
 {
 	mEfxFrontFlick->fade();
 	mEfxBackFlick->fade();
@@ -5001,7 +4999,7 @@ void BlackMan::Obj::fadeFlickEffect()
  * @note Address: 0x803AB17C
  * @note Size: 0xC4
  */
-bool BlackMan::Obj::isFinalFloor()
+bool Obj::isFinalFloor()
 {
 	if (gameSystem && gameSystem->isZukanMode()) {
 		return false;
@@ -5023,7 +5021,7 @@ bool BlackMan::Obj::isFinalFloor()
  * @note Address: 0x803AB240
  * @note Size: 0x1C0
  */
-void BlackMan::Obj::appearFanfare()
+void Obj::appearFanfare()
 {
 	if (!moviePlayer->isFlag(MVP_IsActive)) {
 		return;
