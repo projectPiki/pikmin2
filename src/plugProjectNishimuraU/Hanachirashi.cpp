@@ -440,10 +440,7 @@ bool Obj::isTargetLost()
 		f32 privRad   = C_GENERALPARMS.mPrivateRadius.mValue;
 		f32 sightDiff = getCreatureViewAngle(target);
 
-		bool checkDist = isTargetAttackable(target, sightDiff, privRad, sightRad);
-		if (!checkDist && !(FABS(sightDiff) <= viewAngle * DEG2RAD * PI)) {
-			return false;
-		}
+		return isTargetWithinRange(target, sightDiff, privRad, sightRad, FLOAT_DIST_MAX, viewAngle);
 	}
 
 	return true;
@@ -997,17 +994,19 @@ bool Obj::windTarget()
 		}
 	}
 
-	f32 radius    = mCurrentAttackRadius * C_GENERALPARMS.mAttackRadius.mValue;
-	Vector3f vec1 = mEfxPosition;                                                     // f16
-	Vector3f vec2 = mFaceDirection;                                                   // f29
-	f32 slope     = (f32)tan(PI * (DEG2RAD * C_GENERALPARMS.mAttackHitAngle.mValue)); // f20
+	f32 radius       = mCurrentAttackRadius * C_GENERALPARMS.mAttackRadius();
+	Vector3f efxPos  = mEfxPosition;                                          // f16
+	Vector3f faceDir = mFaceDirection;                                        // f29
+	f32 slope        = (f32)tan(TORADIANS(C_GENERALPARMS.mAttackHitAngle())); // f20
 
-	// this is probably a new vector
-	vec2.z = -vec2.z;
+	Vector3f flatDir = Vector3f(faceDir.x, faceDir.y, -faceDir.z);
+	flatDir.toFlatDirection();
 
-	f32 len2 = _normalise2(vec2);
+	Vector3f crossDir = cross(flatDir, faceDir);
+	crossDir.normalise();
 
-	// more vector manip.
+	Vector3f normFaceDir = faceDir;
+	normFaceDir.toFlatDirection();
 
 	Iterator<Navi> iterNavi(naviMgr);
 	CI_LOOP(iterNavi)
@@ -1015,12 +1014,25 @@ bool Obj::windTarget()
 		Navi* navi = *iterNavi;
 		if (navi->isAlive()) {
 			Vector3f naviPos = navi->getPosition();
-			Vector3f sep     = naviPos - vec1;
-			f32 dotProd      = sep.dot(vec2);
+			Vector3f sep     = naviPos - efxPos;
+			f32 dotProd      = sep.dot(faceDir);
 			if (dotProd < radius && dotProd > 0.0f) {
 				// more vector math here.
-				InteractWind wind(this, 0.0f, &vec2); // not vec2
-				navi->stimulate(wind);
+				f32 r        = dotProd * slope;
+				Vector3f idk = Vector3f(crossDir.dot(sep), 0.0f, flatDir.dot(sep));
+				f32 sqrMag   = idk.sqrMagnitude2D();
+				if (sqrMag < SQUARE(r)) {
+					f32 normMag = idk.length2D() / r;
+
+					f32 lineEq = normMag * 0.2f + (1.0f - normMag);
+					Vector3f direction;
+					direction.x = lineEq * (normFaceDir.x * idk.z + flatDir.z * idk.x);
+					direction.y = 0.0f;
+					direction.z = lineEq * (normFaceDir.z * idk.z + flatDir.x * idk.x);
+
+					InteractWind wind(this, C_GENERALPARMS.mAttackDamage(), &direction); // not vec2
+					navi->stimulate(wind);
+				}
 			}
 		}
 	}
@@ -1029,14 +1041,27 @@ bool Obj::windTarget()
 	CI_LOOP(iterPiki)
 	{
 		Piki* piki = *iterPiki;
-		if (piki->isAlive()) {
+		if (piki->isAlive() && piki->isPikmin()) {
 			Vector3f pikiPos = piki->getPosition();
-			Vector3f sep     = pikiPos - vec1;
-			f32 dotProd      = sep.dot(vec2);
+			Vector3f sep     = pikiPos - efxPos;
+			f32 dotProd      = sep.dot(faceDir);
 			if (dotProd < radius && dotProd > 0.0f) {
 				// more vector math here.
-				InteractWind wind(this, 0.0f, &vec2); // not vec2
-				isHitPiki = piki->stimulate(wind);
+				f32 r        = dotProd * slope;
+				Vector3f idk = Vector3f(crossDir.dot(sep), 0.0f, flatDir.dot(sep));
+				f32 sqrMag   = idk.sqrMagnitude2D();
+				if (sqrMag < SQUARE(r)) {
+					f32 normMag = idk.length2D() / r;
+
+					f32 lineEq = (1.0f - normMag) * 5.0f + normMag;
+					Vector3f velocity;
+					velocity.x = lineEq * (normFaceDir.x * idk.z + flatDir.z * idk.x);
+					velocity.y = (1.0f - normMag) * 50.0f + normMag * 10.0f;
+					velocity.z = lineEq * (normFaceDir.z * idk.z + flatDir.x * idk.x);
+
+					InteractHanaChirashi wind(this, C_GENERALPARMS.mAttackDamage(), &velocity); // not vec2
+					isHitPiki = piki->stimulate(wind);
+				}
 			}
 		}
 	}
