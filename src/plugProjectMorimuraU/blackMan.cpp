@@ -2412,8 +2412,8 @@ void Obj::findNextRoutePoint()
 	WayPointIterator wpIter(currWP, true);
 	CI_LOOP(wpIter)
 	{
-		s16 index        = *wpIter;
-		WayPoint* wp     = routeMgr->getWayPoint(index);
+		s16 index    = *wpIter;
+		WayPoint* wp = routeMgr->getWayPoint(index);
 
 		Vector3f* posPtr = &wp->getPosition();
 

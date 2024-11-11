@@ -431,16 +431,13 @@ bool Obj::isTargetLost()
 {
 	Creature* target = mTargetCreature;
 	if (target && target->isAlive() && !target->isStickToMouth() && target->mSticker != this) {
-		f32 viewAngle = C_GENERALPARMS.mViewAngle.mValue;
+		f32 viewAngle = C_GENERALPARMS.mViewAngle();
 		if (mStuckPikminCount) {
 			viewAngle = 180.0f;
 		}
 
-		f32 sightRad  = C_GENERALPARMS.mSightRadius.mValue;
-		f32 privRad   = C_GENERALPARMS.mPrivateRadius.mValue;
-		f32 sightDiff = getCreatureViewAngle(target);
-
-		return isTargetWithinRange(target, sightDiff, privRad, sightRad, FLOAT_DIST_MAX, viewAngle);
+		return isTargetWithinRange(target, getCreatureViewAngle(target), C_GENERALPARMS.mPrivateRadius(), C_GENERALPARMS.mSightRadius(),
+		                           12800.0f, viewAngle);
 	}
 
 	return true;
@@ -653,11 +650,9 @@ lbl_802A2E34:
 Creature* Obj::isAttackable()
 {
 	const f32 faceDir = getFaceDir();
-	Parms* parms      = C_PARMS;
-	Vector3f vec
-	    = Vector3f(parms->mGeneral.mMaxAttackRange.mValue * sinf(faceDir), 0.0f, parms->mGeneral.mMaxAttackRange.mValue * cosf(faceDir));
+	Vector3f vec = Vector3f(C_PARMS->mGeneral.mMaxAttackRange() * sinf(faceDir), 0.0f, C_PARMS->mGeneral.mMaxAttackRange() * cosf(faceDir));
 	vec += getPosition();
-	f32 radius = SQUARE(C_GENERALPARMS.mMaxAttackAngle.mValue);
+	f32 radius = SQUARE(C_GENERALPARMS.mMaxAttackAngle());
 
 	Iterator<Piki> iter(pikiMgr);
 	CI_LOOP(iter)
@@ -672,261 +667,6 @@ Creature* Obj::isAttackable()
 	}
 
 	return nullptr;
-	/*
-	stwu     r1, -0x80(r1)
-	mflr     r0
-	stw      r0, 0x84(r1)
-	stfd     f31, 0x70(r1)
-	psq_st   f31, 120(r1), 0, qr0
-	stfd     f30, 0x60(r1)
-	psq_st   f30, 104(r1), 0, qr0
-	stfd     f29, 0x50(r1)
-	psq_st   f29, 88(r1), 0, qr0
-	stw      r31, 0x4c(r1)
-	stw      r30, 0x48(r1)
-	lwz      r12, 0(r3)
-	mr       r31, r3
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	fmr      f2, f1
-	lfs      f0, lbl_8051BDB8@sda21(r2)
-	lwz      r5, 0xc0(r31)
-	fcmpo    cr0, f2, f0
-	bge      lbl_802A2EDC
-	fneg     f2, f2
-
-lbl_802A2EDC:
-	lfs      f3, lbl_8051BDF4@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	lfs      f0, lbl_8051BDB8@sda21(r2)
-	addi     r4, r3, sincosTable___5JMath@l
-	fmuls    f2, f2, f3
-	lfs      f4, 0x564(r5)
-	fcmpo    cr0, f1, f0
-	fctiwz   f0, f2
-	stfd     f0, 0x30(r1)
-	lwz      r0, 0x34(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	add      r3, r4, r0
-	lfs      f0, 4(r3)
-	fmuls    f31, f4, f0
-	bge      lbl_802A2F3C
-	lfs      f0, lbl_8051BDF0@sda21(r2)
-	fmuls    f0, f1, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x38(r1)
-	lwz      r0, 0x3c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r4, r0
-	fneg     f0, f0
-	b        lbl_802A2F54
-
-lbl_802A2F3C:
-	fmuls    f0, f1, f3
-	fctiwz   f0, f0
-	stfd     f0, 0x40(r1)
-	lwz      r0, 0x44(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r4, r0
-
-lbl_802A2F54:
-	mr       r4, r31
-	fmuls    f30, f4, f0
-	lwz      r12, 0(r31)
-	addi     r3, r1, 0x14
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xc0(r31)
-	lis      r3, "__vt__22Iterator<Q24Game4Piki>"@ha
-	lfs      f2, 0x14(r1)
-	li       r0, 0
-	lfs      f0, 0x58c(r4)
-	addi     r4, r3, "__vt__22Iterator<Q24Game4Piki>"@l
-	lfs      f1, 0x1c(r1)
-	cmplwi   r0, 0
-	lwz      r3, pikiMgr__4Game@sda21(r13)
-	fadds    f30, f30, f2
-	fadds    f31, f31, f1
-	stw      r4, 0x20(r1)
-	fmuls    f29, f0, f0
-	stw      r0, 0x2c(r1)
-	stw      r0, 0x24(r1)
-	stw      r3, 0x28(r1)
-	bne      lbl_802A2FCC
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x24(r1)
-	b        lbl_802A31BC
-
-lbl_802A2FCC:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x24(r1)
-	b        lbl_802A3038
-
-lbl_802A2FE4:
-	lwz      r3, 0x28(r1)
-	lwz      r4, 0x24(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x2c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_802A31BC
-	lwz      r3, 0x28(r1)
-	lwz      r4, 0x24(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x24(r1)
-
-lbl_802A3038:
-	lwz      r12, 0x20(r1)
-	addi     r3, r1, 0x20
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802A2FE4
-	b        lbl_802A31BC
-
-lbl_802A3058:
-	lwz      r3, 0x28(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	mr       r30, r3
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802A3100
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x1c0(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802A3100
-	mr       r3, r30
-	bl       isStickToMouth__Q24Game8CreatureFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_802A3100
-	lwz      r0, 0xf4(r30)
-	cmplw    r0, r31
-	beq      lbl_802A3100
-	mr       r4, r30
-	addi     r3, r1, 8
-	lwz      r12, 0(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0x10(r1)
-	lfs      f1, 8(r1)
-	fsubs    f0, f0, f31
-	fsubs    f1, f1, f30
-	fmuls    f0, f0, f0
-	fmadds   f0, f1, f1, f0
-	fcmpo    cr0, f0, f29
-	bge      lbl_802A3100
-	mr       r3, r30
-	b        lbl_802A31E0
-
-lbl_802A3100:
-	lwz      r0, 0x2c(r1)
-	cmplwi   r0, 0
-	bne      lbl_802A312C
-	lwz      r3, 0x28(r1)
-	lwz      r4, 0x24(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x24(r1)
-	b        lbl_802A31BC
-
-lbl_802A312C:
-	lwz      r3, 0x28(r1)
-	lwz      r4, 0x24(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x24(r1)
-	b        lbl_802A31A0
-
-lbl_802A314C:
-	lwz      r3, 0x28(r1)
-	lwz      r4, 0x24(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x2c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_802A31BC
-	lwz      r3, 0x28(r1)
-	lwz      r4, 0x24(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x24(r1)
-
-lbl_802A31A0:
-	lwz      r12, 0x20(r1)
-	addi     r3, r1, 0x20
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802A314C
-
-lbl_802A31BC:
-	lwz      r3, 0x28(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x24(r1)
-	cmplw    r4, r3
-	bne      lbl_802A3058
-	li       r3, 0
-
-lbl_802A31E0:
-	psq_l    f31, 120(r1), 0, qr0
-	lfd      f31, 0x70(r1)
-	psq_l    f30, 104(r1), 0, qr0
-	lfd      f30, 0x60(r1)
-	psq_l    f29, 88(r1), 0, qr0
-	lfd      f29, 0x50(r1)
-	lwz      r31, 0x4c(r1)
-	lwz      r0, 0x84(r1)
-	lwz      r30, 0x48(r1)
-	mtlr     r0
-	addi     r1, r1, 0x80
-	blr
-	*/
 }
 
 /**
@@ -995,14 +735,14 @@ bool Obj::windTarget()
 	}
 
 	f32 radius       = mCurrentAttackRadius * C_GENERALPARMS.mAttackRadius();
-	Vector3f efxPos  = mEfxPosition;                                          // f16
-	Vector3f faceDir = mFaceDirection;                                        // f29
-	f32 slope        = (f32)tan(TORADIANS(C_GENERALPARMS.mAttackHitAngle())); // f20
+	Vector3f efxPos  = mEfxPosition;                                     // f16
+	Vector3f faceDir = mFaceDirection;                                   // f29
+	f32 slope        = tan(TORADIANS(C_GENERALPARMS.mAttackHitAngle())); // f20
 
-	Vector3f flatDir = Vector3f(faceDir.x, faceDir.y, -faceDir.z);
+	Vector3f flatDir = Vector3f(-faceDir.z, faceDir.y, faceDir.x);
 	flatDir.toFlatDirection();
 
-	Vector3f crossDir = cross(flatDir, faceDir);
+	Vector3f crossDir = flatDir.cross(faceDir);
 	crossDir.normalise();
 
 	Vector3f normFaceDir = faceDir;
@@ -1015,20 +755,19 @@ bool Obj::windTarget()
 		if (navi->isAlive()) {
 			Vector3f naviPos = navi->getPosition();
 			Vector3f sep     = naviPos - efxPos;
-			f32 dotProd      = sep.dot(faceDir);
+			f32 dotProd      = faceDir.dot(sep);
 			if (dotProd < radius && dotProd > 0.0f) {
-				// more vector math here.
-				f32 r        = dotProd * slope;
-				Vector3f idk = Vector3f(crossDir.dot(sep), 0.0f, flatDir.dot(sep));
-				f32 sqrMag   = idk.sqrMagnitude2D();
+				f32 r         = dotProd * slope;
+				f32 crossDot  = crossDir.dot(sep);
+				f32 flatDot   = flatDir.dot(sep);
+				Vector3f dots = Vector3f(flatDot, 0.0f, crossDot);
+				f32 sqrMag    = dots.sqrMagnitude2D();
 				if (sqrMag < SQUARE(r)) {
-					f32 normMag = idk.length2D() / r;
+					f32 normMag = dots.length2D() / r;
 
 					f32 lineEq = normMag * 0.2f + (1.0f - normMag);
-					Vector3f direction;
-					direction.x = lineEq * (normFaceDir.x * idk.z + flatDir.z * idk.x);
-					direction.y = 0.0f;
-					direction.z = lineEq * (normFaceDir.z * idk.z + flatDir.x * idk.x);
+					Vector3f direction(lineEq * (normFaceDir.x * crossDot + flatDir.x * flatDot), 0.0f,
+					                   lineEq * (normFaceDir.z * crossDot + flatDir.z * flatDot));
 
 					InteractWind wind(this, C_GENERALPARMS.mAttackDamage(), &direction); // not vec2
 					navi->stimulate(wind);
@@ -1044,20 +783,21 @@ bool Obj::windTarget()
 		if (piki->isAlive() && piki->isPikmin()) {
 			Vector3f pikiPos = piki->getPosition();
 			Vector3f sep     = pikiPos - efxPos;
-			f32 dotProd      = sep.dot(faceDir);
+			f32 dotProd      = faceDir.dot(sep);
 			if (dotProd < radius && dotProd > 0.0f) {
-				// more vector math here.
-				f32 r        = dotProd * slope;
-				Vector3f idk = Vector3f(crossDir.dot(sep), 0.0f, flatDir.dot(sep));
-				f32 sqrMag   = idk.sqrMagnitude2D();
+				f32 r         = dotProd * slope;
+				f32 crossDot  = crossDir.dot(sep);
+				f32 flatDot   = flatDir.dot(sep);
+				Vector3f dots = Vector3f(flatDot, 0.0f, crossDot);
+				f32 sqrMag    = dots.sqrMagnitude2D();
 				if (sqrMag < SQUARE(r)) {
-					f32 normMag = idk.length2D() / r;
+					f32 normMag = dots.length2D() / r;
 
 					f32 lineEq = (1.0f - normMag) * 5.0f + normMag;
 					Vector3f velocity;
-					velocity.x = lineEq * (normFaceDir.x * idk.z + flatDir.z * idk.x);
+					velocity.x = lineEq * (normFaceDir.x * crossDot + flatDir.z * flatDot);
 					velocity.y = (1.0f - normMag) * 50.0f + normMag * 10.0f;
-					velocity.z = lineEq * (normFaceDir.z * idk.z + flatDir.x * idk.x);
+					velocity.z = lineEq * (normFaceDir.z * crossDot + flatDir.x * flatDot);
 
 					InteractHanaChirashi wind(this, C_GENERALPARMS.mAttackDamage(), &velocity); // not vec2
 					isHitPiki = piki->stimulate(wind);
