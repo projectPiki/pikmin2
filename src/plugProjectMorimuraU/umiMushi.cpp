@@ -1707,8 +1707,8 @@ bool Obj::outMove()
 		f32 moveSpeed   = 0.5f * C_PROPERPARMS.mMoveSpeed(); // f28
 		mTargetPosition = mHomePosition + (dir * rad);
 
-		f32 angle1 = roundAng(JMAAtan2Radian(mTargetPosition.x - mPosition.x, mTargetPosition.z - mPosition.z));
-		f32 angle2 = roundAng(JMAAtan2Radian(naviPos.x - mPosition.x, naviPos.z - mPosition.z));
+		f32 angle1 = angXZ(mTargetPosition.x - mPosition.x, mTargetPosition.z - mPosition.z);
+		f32 angle2 = angXZ(naviPos.x - mPosition.x, naviPos.z - mPosition.z);
 
 		f32 angleDist = angDist(angle2, angle1);
 
@@ -2234,7 +2234,9 @@ void Obj::eyeScaleMtxCalc()
 
 	f32 y = mtx->mMatrix.structView.ty; // f30
 
-	f32 y2 = mModel->mJ3dModel->mMtxBuffer->getWorldMatrix(mModel->getJointIndex("kuti_joint1"))->mMatrix.structView.ty; // f29
+	u16 mouthJointIdx      = mModel->getJointIndex("kuti_joint1");
+	Matrixf* mouthWorldMtx = (Matrixf*)mModel->mJ3dModel->mMtxBuffer->mWorldMatrices[mouthJointIdx];
+	f32 y2                 = mouthWorldMtx->mMatrix.structView.ty; // f29
 
 	Matrixf* mtx2 = mModel->mJ3dModel->mMtxBuffer->getWorldMatrix(mModel->getJointIndex("kuti_joint1"));
 
