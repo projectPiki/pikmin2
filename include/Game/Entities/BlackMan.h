@@ -134,13 +134,13 @@ struct Obj : public EnemyBase {
 	inline void xfbUpdate(J3DModel* j3dModel, J3DModelData* modelData)
 	{
 		J3DTexture* wraithMain = modelData->getTexture();
-		JUTTexture* xfbTex     = gameSystem->getXfbTexture();
+		ResTIMG* xfbTex     = gameSystem->getXfbTexture()->mTexInfo;
 		ResTIMG* img           = wraithMain->mRes;
 
-		*img = *xfbTex->mTexInfo;
+		*img = *xfbTex;
 
-		wraithMain->setImageOffset((int)img, 0);
-		wraithMain->setPaletteOffset((int)img, 0);
+		wraithMain->setImageOffset((u32)xfbTex, 0);
+		wraithMain->setPaletteOffset((u32)xfbTex, 0);
 	}
 
 	inline bool isOnTyres()

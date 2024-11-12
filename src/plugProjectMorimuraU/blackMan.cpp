@@ -1259,7 +1259,7 @@ void Obj::changeMaterial()
 	xfbUpdate(j3dModel, modelData);
 
 	for (u16 i = 0; i < modelData->mMaterialTable.mMaterialNum; i++) {
-		j3dSys.mMatPacket = &j3dModel->mMatPackets[i];
+		j3dSys.mMatPacket = j3dModel->getMatPacket(i);
 		modelData->mMaterialTable.mMaterials[i]->diff(j3dSys.mMatPacket->mShapePacket->mDiffFlag);
 	}
 
