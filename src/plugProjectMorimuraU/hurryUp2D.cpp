@@ -210,6 +210,8 @@ void THurryUp2D::doDraw(Graphics& gfx)
 	gfx.mPerspGraph.setPort();
 	mScreen->draw(gfx, gfx.mPerspGraph);
 	if (mState == 3 && mDoDraw) {
+		f32 width  = mPaneSunW->getWidth();
+		f32 height = mPaneSunW->getHeight();
 
 		GXClearVtxDesc();
 		GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
@@ -230,6 +232,35 @@ void THurryUp2D::doDraw(Graphics& gfx)
 		GXLoadPosMtxImm(mWhitePane->mMatrix.mMatrix.mtxView, 0);
 
 		GXBegin(GX_TRIANGLES, GX_VTXFMT0, 216);
+		for (int i = 0; i < 26; i++) {
+			// this is just a bunch of nonsense guessing
+			f32 y        = mWhitePane->_1A8.y;
+			f32 test0    = (56.0f - mWhitePane->_1A8.x);
+			f32 test     = 80.0f - test0;
+			f32 test1    = cosf(-test);
+			f32 test2    = sinf(-test);
+			f32 zero     = 0.0f;
+			f32 minusone = -1.0f;
+
+			GX_WRITE_F32(test0);
+			GX_WRITE_F32(y);
+			GX_WRITE_F32(zero);
+			GX_WRITE_F32(test);
+			GX_WRITE_F32(test1);
+			GX_WRITE_F32(zero);
+			GX_WRITE_F32(test2);
+			GX_WRITE_F32(test);
+			GX_WRITE_F32(zero);
+			GX_WRITE_F32(width);
+			GX_WRITE_F32(height);
+			GX_WRITE_F32(minusone);
+			GX_WRITE_F32(test);
+			GX_WRITE_F32(test1);
+			GX_WRITE_F32(zero);
+			GX_WRITE_F32(test2);
+			GX_WRITE_F32(test);
+			GX_WRITE_F32(zero);
+		}
 	}
 	/*
 	stwu     r1, -0xa0(r1)

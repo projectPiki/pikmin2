@@ -107,12 +107,13 @@ void TTitleMgr::init()
 {
 	sys->heapStatusStart("J3DDrawBuffer", nullptr);
 
-	mDrawBufferA          = new J3DDrawBuffer(0x400);
-	j3dSys.mDrawBuffer[0] = mDrawBufferA;
+	mDrawBufferA = new J3DDrawBuffer(0x400);
+	j3dSys.setDrawBuffer(mDrawBufferA, J3DSys::SYSDRAW_Opa);
 
-	mDrawBufferB                     = new J3DDrawBuffer(0x400);
-	j3dSys.mDrawBuffer[1]            = mDrawBufferB;
-	j3dSys.mDrawBuffer[1]->mSortType = J3DDrawBuffer::J3DSORT_Z;
+	mDrawBufferB = new J3DDrawBuffer(0x400);
+	j3dSys.setDrawBuffer(mDrawBufferB, J3DSys::SYSDRAW_Xlu);
+	j3dSys.getDrawBuffer(J3DSys::SYSDRAW_Xlu)->setZSort();
+
 	mDrawBufferA->frameInit();
 	mDrawBufferB->frameInit();
 
@@ -890,7 +891,7 @@ void TTitleMgr::updateState()
 
 	mLightMgr.update();
 	updateCameras();
-	PSMTXCopy(mCameraMgr.mLookMatrix.mMatrix.mtxView, j3dSys.mViewMtx);
+	j3dSys.setViewMtx(mCameraMgr.mLookMatrix.mMatrix.mtxView);
 	mBlackPlane.updateAfterCamera();
 	mPikminMgr.update();
 	mKoganeMgr.mObject->update();

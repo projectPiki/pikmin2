@@ -400,7 +400,7 @@ bool InteractBury::actPiki(Game::Piki* piki)
 		pikiPos.y                    = minY;
 		if (pikiHead) {
 			efx::createSimplePkAp(pikiPos);
-			ItemPikihead::InitArg pikiHeadInit((EPikiKind)piki->getKind(), Vector3f::zero, 1, 2, -1.0f);
+			ItemPikihead::InitArg pikiHeadInit((EPikiKind)piki->getKind(), Vector3f::zero, true, Flower, -1.0f);
 			pikiHead->init(&pikiHeadInit);
 			pikiHead->setPosition(pikiPos, false);
 			CreatureKillArg pikiCleanup(CKILL_DontCountAsDeath);

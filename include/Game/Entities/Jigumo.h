@@ -130,8 +130,8 @@ struct Parms : public EnemyParmsBase {
 		mPauseSpeedModifier    = 0.15f;
 		_91C                   = 1.0f;
 		_920                   = 0.15f;
-		_924                   = 13.0f;
-		mMouthSlotSizeModifier = 18.0f;
+		mSAttackActiveFrame    = 13.0f;
+		mMouthSlotBaseSize     = 18.0f;
 		mMouthMtxScale         = 1.4f;
 		mLifeGaugeOffset       = 20.0f;
 	}
@@ -161,8 +161,8 @@ struct Parms : public EnemyParmsBase {
 	f32 mPauseSpeedModifier;     // _918, alters walk speed when 'pausing' while carrying piki
 	f32 _91C;                    // _91C
 	f32 _920;                    // _920
-	f32 _924;                    // _924
-	f32 mMouthSlotSizeModifier;  // _928
+	f32 mSAttackActiveFrame;     // _924, frame where short attack hitbox becomes active
+	f32 mMouthSlotBaseSize;      // _928
 	f32 mMouthMtxScale;          // _92C
 	f32 mLifeGaugeOffset;        // _930
 };

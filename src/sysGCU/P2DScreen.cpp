@@ -83,10 +83,10 @@ const f32 Mgr_tuning::mstTuningTransY = -15.2f;
  * @note Size: 0x88
  */
 Mgr_tuning::Mgr_tuning()
-    : mScreenScaleX(0.95f)
-    , mScreenScaleY(0.95f)
-    , mTranslationX(-15.2f)
-    , mTranslationY(-15.2f)
+    : mScreenScaleX(mstTuningScaleX)
+    , mScreenScaleY(mstTuningScaleY)
+    , mTranslationX(mstTuningTransX)
+    , mTranslationY(mstTuningTransY)
 {
 }
 

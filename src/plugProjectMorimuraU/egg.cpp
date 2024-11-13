@@ -35,7 +35,7 @@ void Obj::onInit(CreatureInitArg* initArg)
 	setEmotionNone();
 	enableEvent(0, EB_BitterImmune);
 	mIsFalling = false;
-	mFsm->start(this, 0, nullptr);
+	mFsm->start(this, EGG_Wait, nullptr);
 
 	if (!isBirthTypeDropGroup()) {
 		enableEvent(0, EB_Constrained);
@@ -164,7 +164,8 @@ void Obj::bounceCallback(Sys::Triangle* triangle)
 void Obj::collisionCallback(CollEvent& collEvent)
 {
 	EnemyBase::collisionCallback(collEvent);
-	if (isBirthTypeDropGroup() && collEvent.mCollidingCreature != nullptr && !collEvent.mCollidingCreature->isTeki() && getStateID() == 0) {
+	if (isBirthTypeDropGroup() && collEvent.mCollidingCreature != nullptr && !collEvent.mCollidingCreature->isTeki()
+	    && getStateID() == EGG_Wait) {
 		enableEvent(0, EB_LifegaugeVisible);
 		mHealth = 0.0f;
 	}
@@ -277,14 +278,14 @@ void Obj::genItem()
 	Pellet* pellet;
 	switch (dropType) {
 	case EGGDROP_1Pellets:
-		PelletNumberInitArg initArg0(PELLET_NUMBER_ONE, (int)3.0f * randFloat());
+		PelletNumberInitArg initArg0(PELLET_NUMBER_ONE, randInt(3));
 		pellet = pelletMgr->birth(&initArg0);
 		pellet->setPosition(position, false);
 		pellet->setVelocity(velocity);
 		break;
 
 	case EGGDROP_5Pellets:
-		PelletNumberInitArg initArg1(PELLET_NUMBER_FIVE, (int)3.0f * randFloat());
+		PelletNumberInitArg initArg1(PELLET_NUMBER_FIVE, randInt(3));
 		pellet = pelletMgr->birth(&initArg1);
 		pellet->setPosition(position, false);
 		pellet->setVelocity(velocity);

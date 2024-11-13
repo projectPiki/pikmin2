@@ -791,7 +791,7 @@ void StateSAttack::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateSAttack::exec(EnemyBase* enemy)
 {
-	if (enemy->getMotionFrame() == CG_PARMS(enemy)->_924) {
+	if (enemy->getMotionFrame() == CG_PARMS(enemy)->mSAttackActiveFrame) {
 		mIsAttackActive = 1;
 		enemy->setAtari(true);
 		enemy->setAlive(true);

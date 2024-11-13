@@ -89,13 +89,6 @@ struct ObjCaveResult : public ::Screen::ObjBase {
 	void setAlpha(int, u8);
 	void pikminSE();
 
-	inline void loadSaveMgrResources()
-	{
-		ebi::Save::TMgr* saveMgr = mSaveMgr;
-		saveMgr->mSaveMenu.loadResource();
-		saveMgr->doLoadResource(JKRGetCurrentHeap());
-	}
-
 	inline bool isFlag(u32 flag) const { return mFlag & flag; }
 
 	inline void setFlag(u32 flag) { mFlag |= flag; }

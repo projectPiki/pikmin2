@@ -20,25 +20,18 @@ void Obj::changeMaterial()
 {
 	J3DModelData* modelData;
 	J3DModel* j3dModel = mModel->mJ3dModel;
-	modelData          = j3dModel->mModelData;
+	modelData          = j3dModel->getModelData();
 	ResTIMG* texture   = C_MGR->getChangeTexture();
 
 	j3dModel->calcMaterial();
 
-	ResTIMG* newTexture;
-	J3DTexture* j3dTexture = mModel->mJ3dModel->mModelData->mMaterialTable.mTextures;
-	newTexture             = j3dTexture->mRes;
+	mModel->mJ3dModel->mModelData->getTexture()->changeImage(texture, 0);
 
-	*newTexture = *texture;
-
-	j3dTexture->setImageOffset((u32)texture, 0);
-	j3dTexture->setPaletteOffset((u32)texture, 0);
-
-	for (u16 i = 0; i < modelData->mMaterialTable.mMaterialNum; i++) {
-		J3DMatPacket* packet  = &j3dModel->mMatPackets[i];
-		j3dSys.mMatPacket     = packet;
-		J3DMaterial* material = modelData->mMaterialTable.mMaterials[i];
-		material->diff(packet->mShapePacket->mDiffFlag);
+	for (u16 i = 0; i < modelData->getMaterialNum(); i++) {
+		J3DMatPacket* packet = j3dModel->getMatPacket(i);
+		j3dSys.setMatPacket(packet);
+		J3DMaterial* material = modelData->getMaterialNodePointer(i);
+		material->diff(packet->getShapePacket()->mDiffFlag);
 	}
 }
 } // namespace YellowKochappy

@@ -923,12 +923,12 @@ void Mgr::doSimpleDraw(Viewport* vp)
 {
 	// loop through head types (leaf, bud, flower, red bud, red flower)
 	for (int i = 0; i < PikiHappaCount; i++) {
-		J3DModelData* model     = pikiMgr->mHappaModel[i];
-		J3DMaterial* mat        = model->mJointTree.mJoints[0]->mMaterial;
-		j3dSys.mVtxPos          = model->mVertexData.mVtxPos;
-		j3dSys.mVtxNorm         = model->mVertexData.mVtxNorm;
-		j3dSys.mVtxColor        = model->mVertexData.mVtxColor[0];
-		J3DShape::sOldVcdVatCmd = nullptr;
+		J3DModelData* model = pikiMgr->mHappaModel[i];
+		J3DMaterial* mat    = model->getJointNodePointer(0)->getMesh();
+		j3dSys.setVtxPos(model->getVtxPosArray());
+		j3dSys.setVtxNrm(model->getVtxNrmArray());
+		j3dSys.setVtxCol(model->getVtxColorArray(0));
+		J3DShape::resetVcdVatCache();
 
 		while (mat) {
 			mat->loadSharedDL();

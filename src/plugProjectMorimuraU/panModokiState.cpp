@@ -562,7 +562,7 @@ void StateStick::init(EnemyBase* enemy, StateArg* stateArg)
 	if (!target || !OBJ(enemy)->isTargetable(target) || !target->isSlotFree(9999)) {
 		transit(enemy, PANMODOKI_Walk, nullptr);
 	} else {
-		_10                    = 0;
+		mMoveToTargetTimer     = 0;
 		OBJ(enemy)->mNextState = PANMODOKI_Walk;
 	}
 }
@@ -608,9 +608,9 @@ void StateStick::exec(EnemyBase* enemy)
 
 		enemy->turnToTarget2(targetPos, CG_PROPERPARMS(enemy).mFastTurnSpeed(), CG_PROPERPARMS(enemy).mMaxFastTurnAngle());
 
-		_10++;
+		mMoveToTargetTimer++;
 		f32 rad = 2.5f * OBJ(enemy)->mCarrySizeDiff;
-		if (_10 > 200 || dist > SQUARE(rad) || !target || !OBJ(enemy)->isTargetable(target)) {
+		if (mMoveToTargetTimer > 200 || dist > SQUARE(rad) || !target || !OBJ(enemy)->isTargetable(target)) {
 			transit(enemy, OBJ(enemy)->mNextState, nullptr);
 		}
 	}
@@ -666,7 +666,7 @@ StateCarryEnd::StateCarryEnd(int stateID)
 void StateCarryEnd::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->hardConstraintOn();
-	_10 = enemy->getPosition();
+	mStartPosition = enemy->getPosition();
 }
 
 /**
@@ -688,7 +688,7 @@ void StateCarryEnd::exec(EnemyBase* enemy)
 			}
 
 		} else {
-			enemy->turnToTarget2(_10, CG_GENERALPARMS(enemy).mTurnSpeed(), CG_GENERALPARMS(enemy).mMaxTurnAngle());
+			enemy->turnToTarget2(mStartPosition, CG_GENERALPARMS(enemy).mTurnSpeed(), CG_GENERALPARMS(enemy).mMaxTurnAngle());
 			diff *= 0.05f;
 			enemy->forceMovePosition(diff);
 		}

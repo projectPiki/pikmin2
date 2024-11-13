@@ -316,25 +316,25 @@ void Obj::doSimulation(f32 simSpeed)
 void Obj::changeMaterial()
 {
 	if (mSpecType == SHIJIMITYPE_Yellow) {
-		mMaterial->mTevBlock->setTevColor(0, mMatColorY0);
-		mMaterial->mTevBlock->setTevKColor(0, mMatKColorY);
+		mMaterial->getTevBlock()->setTevColor(0, mMatColorY0);
+		mMaterial->getTevBlock()->setTevKColor(0, mMatKColorY);
 	} else if (mSpecType == SHIJIMITYPE_Red) {
-		mMaterial->mTevBlock->setTevColor(0, mMatColorR0);
-		mMaterial->mTevBlock->setTevKColor(0, mMatKColorR);
+		mMaterial->getTevBlock()->setTevColor(0, mMatColorR0);
+		mMaterial->getTevBlock()->setTevKColor(0, mMatKColorR);
 	} else {
-		mMaterial->mTevBlock->setTevColor(0, mMatColorB0);
-		mMaterial->mTevBlock->setTevKColor(0, mMatKColorB);
+		mMaterial->getTevBlock()->setTevColor(0, mMatColorB0);
+		mMaterial->getTevBlock()->setTevKColor(0, mMatKColorB);
 	}
 
 	J3DModel* j3dModel      = mModel->mJ3dModel;
 	J3DModelData* modelData = j3dModel->getModelData();
 	j3dModel->calcMaterial();
 
-	for (u16 i = 0; i < modelData->mMaterialTable.mMaterialNum; i++) {
-		J3DMatPacket* packet  = &j3dModel->mMatPackets[i];
-		j3dSys.mMatPacket     = packet;
-		J3DMaterial* material = modelData->mMaterialTable.mMaterials[i];
-		material->diff(packet->mShapePacket->mDiffFlag);
+	for (u16 i = 0; i < modelData->getMaterialNum(); i++) {
+		J3DMatPacket* packet = j3dModel->getMatPacket(i);
+		j3dSys.setMatPacket(packet);
+		J3DMaterial* material = modelData->getMaterialNodePointer(i);
+		material->diff(packet->getShapePacket()->mDiffFlag);
 	}
 }
 

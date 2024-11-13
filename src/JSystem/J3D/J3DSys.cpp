@@ -30,7 +30,7 @@ J3DSys::J3DSys()
 
 	mFlags = 0;
 	PSMTXIdentity(mViewMtx);
-	mDrawMode     = SYSDRAW_Xlu;
+	setDrawModeXlu();
 	mMaterialMode = 0;
 	mModel        = nullptr;
 	mShape        = nullptr;

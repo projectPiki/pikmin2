@@ -313,12 +313,7 @@ int SceneBase::getFinishState() { return (mStateID == SB_Unknown4) ? doGetFinish
  * @note Address: 0x80452230
  * @note Size: 0x54
  */
-Controller* SceneBase::getGamePad() const
-{
-	Mgr* mgr = mScreenMgr;
-	mgr->checkController();
-	return mgr->mController;
-}
+Controller* SceneBase::getGamePad() const { return mScreenMgr->getGamePad(); }
 
 /**
  * @note Address: 0x80452284

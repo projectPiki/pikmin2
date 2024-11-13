@@ -152,6 +152,7 @@ bool TDayEndCount::doUpdate()
 		mDoPlaySE = true;
 	}
 
+	u32 alpha = mAlphaMax;
 	f32 scale = 1.0f;
 	f32 calc3 = 1.0f - (calc2 - id);
 	if (calc3 > 0.3f) {
@@ -162,8 +163,8 @@ bool TDayEndCount::doUpdate()
 			mCurrNumberPane->setOffset(mNumberPanePos.x, mNumberPanePos.y + mOffsetY);
 		}
 	} else {
-		u32 alpha = mCurrNumberPane->getAlpha();
-		scale     = mCurrNumberPane->mScale.x;
+		alpha = mCurrNumberPane->getAlpha();
+		scale = mCurrNumberPane->mScale.x;
 		if (mMode) {
 			mCurrNumberPane->add((mNumberPanePos.x - mCurrNumberPane->mOffset.x) * scale,
 			                     (mNumberPanePos.y - mCurrNumberPane->mOffset.y) * scale + mOffsetY);
@@ -178,17 +179,62 @@ bool TDayEndCount::doUpdate()
 		mDoPlaySE = false;
 	}
 
+	if (id >= 0 && (u8)alpha <= 100) {
+		alpha = 100;
+	}
+
+	JUtility::TColor color;
+	if (alpha < mAlphaMax && !mColorTest) {
+		switch (id) {
+		case 0:
+		case 1:
+		case 2:
+			mColor.r = 255;
+			mColor.g = 100;
+			mColor.b = 0;
+			break;
+		case 3:
+		case 4:
+		case 5:
+			mColor.r = 255;
+			mColor.g = 255;
+			mColor.b = 0;
+			break;
+		default:
+			mColor.r = 255;
+			mColor.g = 100;
+			mColor.b = 255;
+			break;
+		}
+		color = mColor;
+		mTextPane->setWhite(color);
+	} else {
+		color = mColor;
+		mTextPane->setWhite(color);
+	}
+
+	mTexCoords1[0] = mTexCoords2[0];
+	mTexCoords1[1] = mTexCoords2[1];
+	mTexCoords1[2] = mTexCoords2[2];
+	mTexCoords1[3] = mTexCoords2[3];
+	mCurrNumberPane->setTexCoord(mTexCoords1);
+
 	if (mMode) {
 		u8 alpha = mFadeFraction * mWaitAlpha;
 		for (int i = 0; i < mCurrNumberValue; i++) {
 			mNumberPaneList[i]->setAlpha(alpha);
 		}
 	}
+
 	mScreenObj->scaleScreen(mScale);
 	if (mIsChallenge || mTestChangeColor) {
 		mCurrNumberPane->setWhite(mNumberColor);
 	}
 
+	mCurrNumberPane->setAlpha(alpha * mFadeFraction);
+	mCurrNumberPane->updateScale(scale * mScale);
+	mTextPane->setOffset(mTextPanePos.x, mTextPanePos.y + mOffsetY);
+	mTextPane->setAlpha(alpha * mFadeFraction);
 	mScreenObj->update();
 	return false;
 

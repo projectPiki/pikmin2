@@ -53,6 +53,27 @@ struct J3DTexMtxInfo {
 		mSRT        = other.mSRT;
 	}
 
+	void setMtx(Mtx44 copyMatrix)
+	{
+		mEffectMtx[0][0] = copyMatrix[0][0];
+		mEffectMtx[0][1] = copyMatrix[0][1];
+		mEffectMtx[0][2] = copyMatrix[0][2];
+		mEffectMtx[0][3] = copyMatrix[0][3];
+
+		mEffectMtx[1][0] = copyMatrix[1][0];
+		mEffectMtx[1][1] = copyMatrix[1][1];
+		mEffectMtx[1][2] = copyMatrix[1][2];
+		mEffectMtx[1][3] = copyMatrix[1][3];
+
+		mEffectMtx[2][0] = copyMatrix[2][0];
+		mEffectMtx[2][1] = copyMatrix[2][1];
+		mEffectMtx[2][2] = copyMatrix[2][2];
+		mEffectMtx[2][3] = copyMatrix[2][3];
+
+		mEffectMtx[3][0] = mEffectMtx[3][1] = mEffectMtx[3][2] = 0.0f;
+		mEffectMtx[3][3]                                       = 1.0f;
+	}
+
 	// void setEffectMtx(Mtx);
 
 	u8 mProjection;         // _00
@@ -61,7 +82,7 @@ struct J3DTexMtxInfo {
 	Vec mCenter;            // _04
 	J3DTextureSRTInfo mSRT; // _10
 	Mtx44 mEffectMtx;       // _24
-};                          // Size: 0x64
+}; // Size: 0x64
 extern const J3DTexMtxInfo j3dDefaultTexMtxInfo;
 
 struct J3DTexMtx {

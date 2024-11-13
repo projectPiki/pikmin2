@@ -191,7 +191,7 @@ void Item::initDependency()
 	}
 
 	if (!complete()) {
-		efx::Arg arg(Vector3f::zero);
+		efx::Arg arg;
 		arg.mPosition = mPosition;
 		mEfxWarpZone->create(&arg);
 	}
@@ -358,7 +358,7 @@ void Item::doAI()
 	if (mBarrel && !mBarrel->isAlive()) {
 		mBarrel = nullptr;
 		if (!complete()) {
-			efx::Arg arg(Vector3f::zero);
+			efx::Arg arg;
 			arg.mPosition = mPosition;
 			mEfxWarpZone->create(&arg);
 		}

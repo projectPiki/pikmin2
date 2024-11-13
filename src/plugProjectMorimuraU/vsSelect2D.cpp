@@ -1137,7 +1137,7 @@ void TVsSelect::doCreate(JKRArchive* arc)
 		mIndexPaneList[i]->mPane->show();
 	}
 
-	f32 calc = mIndexPaneList[0]->mPane->mOffset.y - mIndexPaneList[1]->mPane->mOffset.y;
+	f32 calc = getHeight();
 
 	mIndexGroup               = new TIndexGroup;
 	mIndexGroup->mHeight      = calc;

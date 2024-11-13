@@ -293,7 +293,7 @@ void J3DMatPacket::draw()
 		}
 		packet->drawFast();
 	}
-	J3DShape::sOldVcdVatCmd = nullptr;
+	J3DShape::resetVcdVatCache();
 }
 
 /**

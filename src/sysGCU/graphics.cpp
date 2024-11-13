@@ -347,7 +347,7 @@ void Viewport::setOrthoGraph2d(J2DOrthoGraph&)
 SysShape::Model* Viewport::setJ3DViewMtx(bool flag)
 {
 	Matrixf* mtx = getMatrix(flag);
-	PSMTXCopy(mtx->mMatrix.mtxView, j3dSys.mViewMtx);
+	j3dSys.setViewMtx(mtx->mMatrix.mtxView);
 }
 
 /**

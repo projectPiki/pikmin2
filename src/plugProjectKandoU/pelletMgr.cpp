@@ -1716,17 +1716,15 @@ void Pellet::allocateTexCaster()
  */
 void Pellet::onSetPosition()
 {
-	if (!gameSystem->isZukanMode()) {
-		if (doSpawnBuried()) {
-			ItemTreasure::Item* item = (ItemTreasure::Item*)ItemTreasure::mgr->birth();
-			if (item) {
-				mPelletPosition.y = mapMgr->getMinY(mPelletPosition);
-				item->init(nullptr);
-				item->setPosition(mPelletPosition, false);
-				item->setTreasure(this);
-			} else {
-				JUT_PANICLINE(2326, "がっかり\n"); // 'disappointed' lol
-			}
+	if (!gameSystem->isZukanMode() && doSpawnBuried()) {
+		ItemTreasure::Item* item = (ItemTreasure::Item*)ItemTreasure::mgr->birth();
+		if (item) {
+			mPelletPosition.y = mapMgr->getMinY(mPelletPosition);
+			item->init(nullptr);
+			item->setPosition(mPelletPosition, false);
+			item->setTreasure(this);
+		} else {
+			JUT_PANICLINE(2326, "がっかり\n"); // 'disappointed' lol
 		}
 	}
 

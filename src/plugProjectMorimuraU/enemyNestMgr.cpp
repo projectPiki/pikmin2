@@ -118,7 +118,8 @@ void Mgr::doSimpleDraw(Viewport* viewport)
 			j3dSys.setVtxPos(vtxData->getVtxPosArray());
 			j3dSys.setVtxNrm(vtxData->getVtxNrmArray());
 			j3dSys.setVtxCol(vtxData->getVtxColorArray(0));
-			J3DShape::sOldVcdVatCmd = nullptr;
+			J3DShape::resetVcdVatCache();
+
 			material->loadSharedDL();
 			material->mShape->loadPreDrawSetting();
 			material->calc(matMtx);

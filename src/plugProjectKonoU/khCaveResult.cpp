@@ -269,7 +269,7 @@ void ObjCaveResult::doCreate(JKRArchive* arc)
 	mScreenMain->search('Piname01')->setMsgID('0101_00');
 
 	mSaveMgr = ebi::Save::TMgr::createInstance();
-	loadSaveMgrResources();
+	mSaveMgr->doLoadMenuResource();
 	mSaveMgr->setControllers(getGamePad());
 	mSaveMgr->mSaveType = 1;
 	mEfxComp            = new efx2d::T2DCavecompLoop;

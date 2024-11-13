@@ -519,8 +519,8 @@ void BaseGameSection::initJ3D()
 	addGenNode(mOpaqueDrawBuffer);
 	addGenNode(mTransparentDrawBuffer);
 
-	j3dSys.mDrawBuffer[0] = mOpaqueDrawBuffer->get(DB_NormalLayer)->mBuffer;
-	j3dSys.mDrawBuffer[1] = mTransparentDrawBuffer->get(DB_NormalLayer)->mBuffer;
+	j3dSys.setDrawBuffer(mOpaqueDrawBuffer->get(DB_NormalLayer)->mBuffer, J3DSys::SYSDRAW_Opa);
+	j3dSys.setDrawBuffer(mTransparentDrawBuffer->get(DB_NormalLayer)->mBuffer, J3DSys::SYSDRAW_Xlu);
 
 	System::FragmentationChecker frag("poyol", false);
 }

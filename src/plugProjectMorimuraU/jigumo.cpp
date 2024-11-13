@@ -54,7 +54,7 @@ void Obj::setParameters()
 	// Scale mouth collision and ensure minimum size
 	// There is one mouth slot though, so this is a bit overkill
 	for (int i = 0; i < mMouthSlots.getMax(); i++) {
-		f32 radius = C_PARMS->mMouthSlotSizeModifier * mScaleModifier;
+		f32 radius = C_PARMS->mMouthSlotBaseSize * mScaleModifier;
 		if (radius < 25.0f) {
 			radius = 25.0f;
 		}
@@ -99,7 +99,7 @@ void Obj::birth(Vector3f& position, f32 faceDir)
 
 	// Set the mouth slot's radius to the proper size, ensure 25.0f minimum
 	for (int i = 0; i < mMouthSlots.getMax(); i++) {
-		f32 radius = C_PARMS->mMouthSlotSizeModifier * mScaleModifier;
+		f32 radius = C_PARMS->mMouthSlotBaseSize * mScaleModifier;
 		if (radius < 25.0f) {
 			radius = 25.0f;
 		}
@@ -255,7 +255,7 @@ void Obj::initMouthSlots()
 	mMouthSlots.setup(0, mModel, "kamu_joint1");
 
 	for (int i = 0; i < mMouthSlots.getMax(); i++) {
-		f32 radius = C_PARMS->mMouthSlotSizeModifier * mScaleModifier;
+		f32 radius = C_PARMS->mMouthSlotBaseSize * mScaleModifier;
 		if (radius < 25.0f) {
 			radius = 25.0f;
 		}

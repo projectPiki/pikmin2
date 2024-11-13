@@ -134,7 +134,6 @@ struct THiScore : public TScrollList {
 	Vector2f mPaneIconPos;                       // _208
 
 	static bool mForceClear;
-	static bool mForceResetParm;
 	static bool mChangeAlpha;
 	static bool mForceClear2;
 	static bool mLoopDrum;

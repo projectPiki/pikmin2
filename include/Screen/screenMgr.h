@@ -79,10 +79,10 @@ struct Mgr : public MgrBase {
 	SceneBase* getSceneBase(s32);
 	void createNewBackupSceneInfo(SceneBase* scene);
 
-	inline void checkController()
+	inline Controller* getGamePad()
 	{
-		Controller* controller = mController;
-		P2ASSERTLINE(280, controller);
+		P2ASSERTLINE(280, mController);
+		return mController;
 	}
 
 	static Mgr* sScreenMgr;

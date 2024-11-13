@@ -33,8 +33,6 @@ struct Save : public ::Screen::SceneBase {
 
 	void doCreateObjUserCallBackFunc(JKRArchive*);
 
-	inline ebi::Save::TMgr* getSaveMgr() { return mSaveMgr; }
-
 	// _00      = VTBL
 	// _00-_220 = Screen::SceneBase
 	ebi::Save::TMgr* mSaveMgr; // _220

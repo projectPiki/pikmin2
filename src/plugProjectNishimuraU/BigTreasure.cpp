@@ -174,21 +174,21 @@ void Obj::changeMaterial()
 	J3DModel* j3dModel      = mModel->mJ3dModel;
 	J3DModelData* modelData = j3dModel->getModelData();
 
-	u16 bodyIdx          = modelData->mMaterialTable.mMaterialNames->getIndex("mat_body");
-	J3DMaterial* bodyMat = modelData->mMaterialTable.mMaterials[bodyIdx];
-	bodyMat->mTevBlock->setTevColor(0, mCurrMatBodyColor);
+	u16 bodyIdx          = modelData->getMaterialName()->getIndex("mat_body");
+	J3DMaterial* bodyMat = modelData->getMaterialNodePointer(bodyIdx);
+	bodyMat->getTevBlock()->setTevColor(0, mCurrMatBodyColor);
 
 	J3DGXColorS10 color1(mCurrClusterEyeColor.mRgb[0], mCurrClusterEyeColor.mRgb[1], mCurrClusterEyeColor.mRgb[2], 255);
 
-	u16 eyeIdx1          = modelData->mMaterialTable.mMaterialNames->getIndex("mat_eye1");
-	J3DMaterial* eyeMat1 = modelData->mMaterialTable.mMaterials[eyeIdx1];
-	eyeMat1->mTevBlock->setTevColor(0, color1);
+	u16 eyeIdx1          = modelData->getMaterialName()->getIndex("mat_eye1");
+	J3DMaterial* eyeMat1 = modelData->getMaterialNodePointer(eyeIdx1);
+	eyeMat1->getTevBlock()->setTevColor(0, color1);
 
 	J3DGXColorS10 color2(mCurrSideEyeColor.mRgb[0], mCurrSideEyeColor.mRgb[1], mCurrSideEyeColor.mRgb[2], 255);
 
-	u16 eyeIdx2          = modelData->mMaterialTable.mMaterialNames->getIndex("mat_eye2");
-	J3DMaterial* eyeMat2 = modelData->mMaterialTable.mMaterials[eyeIdx2];
-	eyeMat2->mTevBlock->setTevColor(0, color2);
+	u16 eyeIdx2          = modelData->getMaterialName()->getIndex("mat_eye2");
+	J3DMaterial* eyeMat2 = modelData->getMaterialNodePointer(eyeIdx2);
+	eyeMat2->getTevBlock()->setTevColor(0, color2);
 
 	j3dModel->calcMaterial();
 }

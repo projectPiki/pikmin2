@@ -304,7 +304,7 @@ struct StateCarryEnd : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
-	Vector3f _10; // _10, position maybe?
+	Vector3f mStartPosition; // _10
 };
 
 struct StateDamage : public State {
@@ -357,7 +357,7 @@ struct StateStick : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
-	int _10; // _10, unknown
+	int mMoveToTargetTimer; // _10
 };
 
 struct StateSucked : public State {

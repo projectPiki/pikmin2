@@ -371,8 +371,7 @@ void ObjFinalResult::doCreate(JKRArchive* arc)
 	mSaveMgr->mSaveType = 1;
 
 	// regswap here (pain)
-	f32 y       = mScreen->search('Nsetp0')->getBounds()->i.y;
-	mScrollMove = (mScreen->search('Nsetp1')->getBounds()->i.y - y) * 2.0f;
+	mScrollMove = (mScreen->search('Nsetp1')->getBounds()->i.y - mScreen->search('Nsetp0')->getBounds()->i.y) * 2.0f;
 
 	mScreen->search('Ppict0')->hide();
 	mScreen->search('Ppict1')->hide();

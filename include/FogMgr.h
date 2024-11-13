@@ -3,7 +3,7 @@
 
 #include "CNode.h"
 #include "Color4.h"
-#include "Dolphin/gx.h"
+#include "JSystem/JUtility/TColor.h"
 
 struct Graphics;
 
@@ -20,10 +20,10 @@ struct FogMgr : public CNode {
 
 	// _00 		= VTBL
 	// _00-_18  = CNode
-	GXFogType mType; // _18
-	f32 mNearZ;      // _1C
-	f32 mFarZ;       // _20
-	u_color mColor;  // _24
+	GXFogType mType;         // _18
+	f32 mNearZ;              // _1C
+	f32 mFarZ;               // _20
+	JUtility::TColor mColor; // _24
 };
 
 #endif

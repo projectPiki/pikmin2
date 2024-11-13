@@ -71,7 +71,7 @@ struct Obj : public EnemyBase {
 		mFSM = fsm;
 		mFSM->init(this);
 		mCurrentLifecycleState = nullptr;
-	};                                                                // _2F8 (weak)
+	}; // _2F8 (weak)
 	virtual void setInitialSetting(EnemyInitialParamBase* params) { } // _1C4 (weak)
 	virtual void throwupItemInDeathProcedure() { }                    // _270 (weak)
 	virtual void createEfxHamon()                                     // _250 (weak)
@@ -131,18 +131,6 @@ struct Obj : public EnemyBase {
 
 	inline Parms* getParms() { return C_PARMS; }
 
-	inline void xfbUpdate(J3DModel* j3dModel, J3DModelData* modelData)
-	{
-		J3DTexture* wraithMain = modelData->getTexture();
-		ResTIMG* xfbTex     = gameSystem->getXfbTexture()->mTexInfo;
-		ResTIMG* img           = wraithMain->mRes;
-
-		*img = *xfbTex;
-
-		wraithMain->setImageOffset((u32)xfbTex, 0);
-		wraithMain->setPaletteOffset((u32)xfbTex, 0);
-	}
-
 	inline bool isOnTyres()
 	{ // unsure of name
 		if (!mTyre || mEscapePhase == 2) {
@@ -191,7 +179,7 @@ struct Obj : public EnemyBase {
 	u16 mRightFootJointIndex;               // _372
 	f32 mEscapeMoveSpeed;                   // _374
 	f32 mFadeTimer;                         // _378
-	J3DMaterial* _37C;                      // _37C
+	J3DMaterial* mBodyMaterial;             // _37C
 	Color4 mActiveColor;                    // _380
 	Color4 mTargetColor;                    // _384
 	Color4 mUnusedColor;                    // _388
@@ -479,7 +467,7 @@ struct StateTired : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
-	int _10; // _10
+	int mTiredCounter; // _10
 };
 
 struct StateWalk : public State {

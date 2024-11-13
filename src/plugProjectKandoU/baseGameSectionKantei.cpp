@@ -313,14 +313,14 @@ void BaseGameSection::do_drawOtakaraWindow(Graphics& gfx)
 	gfx.clearZBuffer(bounds);
 
 	Mtx mtx2;
-	PSMTXCopy(j3dSys.mViewMtx, mtx2);
+	PSMTXCopy(*j3dSys.getViewMtx(), mtx2);
 	Viewport* vp = mTreasureGetViewport;
 	if (mDraw2DCreature) {
 		vp->setJ3DViewMtx(false);
 		Camera* cam = mTreasureZoomCamera;
 		cam->setProjection();
 		Matrixf* cammtx = cam->getViewMatrix(false);
-		PSMTXCopy(cammtx->mMatrix.mtxView, j3dSys.mViewMtx);
+		j3dSys.setViewMtx(cammtx->mMatrix.mtxView);
 
 		mDraw2DCreature->mLod.setFlag(AILOD_IsVisVP0 | AILOD_IsVisVP1 | AILOD_IsVisible);
 

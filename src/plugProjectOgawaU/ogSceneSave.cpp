@@ -19,11 +19,7 @@ Save::Save() { }
 void Save::doUserCallBackFunc(Resource::MgrCommand*)
 {
 	mSaveMgr = ebi::Save::TMgr::createInstance();
-
-	ebi::Save::TMgr* saveMgr = getSaveMgr();
-	saveMgr->mSaveMenu.loadResource();
-	saveMgr->doLoadResource(JKRHeap::sCurrentHeap);
-
+	mSaveMgr->doLoadMenuResource();
 	doCreateObjUserCallBackFunc(nullptr);
 }
 

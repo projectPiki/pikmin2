@@ -9,6 +9,9 @@
 #include "Matrixf.h"
 #include "types.h"
 
+#define ENEMY_STONE_MODEL_NUM    2
+#define ENEMY_STONE_DRAWINFO_NUM 256
+
 namespace Game {
 struct EnemyBase;
 
@@ -115,10 +118,10 @@ struct Obj : public CNode {
 
 	// _00		= VTABLE
 	// _04-_18	= CNode
-	Info* mInfo;         // _18
-	CNode mNodeArray[2]; // _1C
-	EnemyBase* mEnemy;   // _4C
-	u8 mFlags;           // _50
+	Info* mInfo;                             // _18
+	CNode mNodeArray[ENEMY_STONE_MODEL_NUM]; // _1C
+	EnemyBase* mEnemy;                       // _4C
+	u8 mFlags;                               // _50
 };
 
 /**

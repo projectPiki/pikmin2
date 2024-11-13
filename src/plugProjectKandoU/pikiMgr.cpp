@@ -314,14 +314,13 @@ void PikiMgr::doSimpleDraw(Viewport* vp)
 {
 	int vpId = vp->mVpId;
 	for (int i = 0; i < PikiHappaCount; i++) {
-		J3DModelData& modelData = *mHappaModel[i];
-		J3DMaterial* mat        = (*modelData.mJointTree.mJoints)->mMaterial;
+		J3DModelData* modelData = mHappaModel[i];
+		J3DMaterial* mat        = modelData->getJointNodePointer(0)->getMesh();
 
-		j3dSys.mVtxPos   = modelData.getVertexData()->getVtxPosArray();
-		j3dSys.mVtxNorm  = modelData.getVertexData()->getVtxNrmArray();
-		j3dSys.mVtxColor = modelData.getVertexData()->getVtxColorArray(0);
-
-		J3DShape::sOldVcdVatCmd = nullptr;
+		j3dSys.setVtxPos(modelData->getVtxPosArray());
+		j3dSys.setVtxNrm(modelData->getVtxNrmArray());
+		j3dSys.setVtxCol(modelData->getVtxColorArray(0));
+		J3DShape::resetVcdVatCache();
 
 		// Cycle through every material that needs rendering
 		for (mat; mat != nullptr; mat = mat->mNext) {

@@ -28,7 +28,7 @@ void TTitleFogMgr::setGX(Camera& camera)
 		GXInitFogAdjTable(&table, width, camera.mProjectionMtx);
 		GXSetFogRangeAdj(GX_TRUE, (u16)(System::getRenderModeObj()->fbWidth) / 2, &table);
 	} else {
-		GXSetFog(GX_FOG_NONE, 0.0f, 0.0f, 0.0f, 0.0f, mColor.GXColorView);
+		GXSetFog(GX_FOG_NONE, 0.0f, 0.0f, 0.0f, 0.0f, mColor);
 	}
 }
 

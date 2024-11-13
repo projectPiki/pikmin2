@@ -1693,7 +1693,7 @@ void PikiDenkiDyingState::exec(Piki* piki)
 
 	if (mWaitTime <= 0.0f) {
 		efx::TPkKanden kandenFx;
-		efx::Arg fxArg(Vector3f::zero);
+		efx::Arg fxArg;
 		fxArg.mPosition = piki->getPosition(); // why do this differently, smh.
 		kandenFx.create(&fxArg);
 
@@ -2996,7 +2996,7 @@ bool PikiFallMeckState::becomePikihead(Piki* piki)
 				piki->startSound(PSSE_PK_SE_ONY_SEED_GROUND, true);
 			}
 
-			ItemPikihead::InitArg initArg((EPikiKind)piki->mPikiKind, Vector3f::zero, 1, 0, -1.0f);
+			ItemPikihead::InitArg initArg((EPikiKind)piki->mPikiKind, Vector3f::zero, true, Leaf, -1.0f);
 
 			if (mDoAutoPluck) {
 				initArg.mAutopluckTimer = 10.0f + 3.0f * sys->mDeltaTime;

@@ -1,4 +1,3 @@
-#include "types.h"
 #include "Game/EnemyStone.h"
 #include "Game/EnemyBase.h"
 #include "JSystem/J3D/J3DSys.h"
@@ -10,7 +9,7 @@
 #include "System.h"
 
 namespace {
-static const char* sStoneMdlName[2] = { "sekikaobj_large.bmd", "sekikaobj_small.bmd" };
+static const char* sStoneMdlName[ENEMY_STONE_MODEL_NUM] = { "sekikaobj_large.bmd", "sekikaobj_small.bmd" };
 } // namespace
 
 namespace Game {
@@ -38,19 +37,18 @@ void Mgr::loadResource()
 
 	sys->heapStatusStart("EnemyStone::Mgr::stoneModel", nullptr);
 
-	mModelData = new J3DModelData*[2];
+	mModelData = new J3DModelData*[ENEMY_STONE_MODEL_NUM];
 
 	LoadResource::ArgAramOnly argAram("/enemy/common/enemyCommon.szs");
 
 	LoadResource::Node* resourceNode = gLoadResourceMgr->mountArchive(argAram);
-	JKRArchive* archive              = resourceNode->getArchive();
 
-	J3DModelData* modDat;
-	J3DModelData* loadModDat;
+	JKRArchive* archive = resourceNode->getArchive();
 
-	for (int i = 0; i < 2; i++) {
-		modDat        = (J3DModelData*)archive->getResource(sStoneMdlName[i]);
-		loadModDat    = J3DModelLoaderDataBase::load(modDat, J3DMLF_UseUniqueMaterials | J3DMLF_UseSingleSharedDL);
+	for (int i = 0; i < ENEMY_STONE_MODEL_NUM; i++) {
+		J3DModelData* loadModDat
+		    = J3DModelLoaderDataBase::load(archive->getResource(sStoneMdlName[i]), J3DMLF_UseUniqueMaterials | J3DMLF_UseSingleSharedDL);
+
 		mModelData[i] = loadModDat;
 		mModelData[i]->newSharedDisplayList(0x40000);
 		mModelData[i]->simpleCalcMaterial(0, *(Mtx*)(&j3dDefaultMtx));
@@ -60,10 +58,10 @@ void Mgr::loadResource()
 
 	sys->heapStatusStart("EnemyStone::Mgr::DrawInfo_buffer", nullptr);
 
-	DrawInfo* infoArray = new DrawInfo[256];
+	DrawInfo* infoArray = new DrawInfo[ENEMY_STONE_DRAWINFO_NUM];
 
-	for (int i = 0; i < (u32)256; i++) {
-		mDrawInfo.add((CNode*)&infoArray[i]);
+	for (int i = 0; i < (u32)ENEMY_STONE_DRAWINFO_NUM; i++) {
+		mDrawInfo.add(&infoArray[i]);
 	}
 
 	sys->heapStatusEnd("EnemyStone::Mgr::DrawInfo_buffer");
@@ -79,7 +77,7 @@ bool Mgr::regist(Obj* obj)
 {
 	bool validCount = true;
 
-	if (!(obj->isFlag(STONE_Registered))) {
+	if (!obj->isFlag(STONE_Registered)) {
 
 		if (obj->getInfoCount() <= mDrawInfo.getChildCount()) {
 
@@ -118,7 +116,7 @@ void Mgr::release(Obj* obj)
 		obj->resetFlag(STONE_Registered);
 
 		Obj* currObj = obj;
-		for (int i = 0; i < 2; i++) {
+		for (int i = 0; i < ENEMY_STONE_MODEL_NUM; i++) {
 			DrawInfo* child = (DrawInfo*)currObj->mNodeArray[0].mChild;
 			while (child) {
 				DrawInfo* nextChild = (DrawInfo*)child->mNext;
@@ -138,7 +136,7 @@ void Mgr::release(Obj* obj)
  */
 void Mgr::draw(Viewport* viewport)
 {
-	for (int i = 0; i < 2; i++) {
+	for (int i = 0; i < ENEMY_STONE_MODEL_NUM; i++) {
 		Obj* obj = (Obj*)mObj.mChild;
 		if (!obj) {
 			continue;
@@ -151,15 +149,15 @@ void Mgr::draw(Viewport* viewport)
 				FOREACH_NODE(DrawInfo, static_cast<DrawInfo*>(baseInfo->mChild), drawInfo)
 				{
 					J3DModelData* modelData = mModelData[i];
-					J3DMaterial* material   = modelData->mJointTree.mJoints[0]->mMaterial;
-					j3dSys.mVtxPos          = modelData->mVertexData.mVtxPos;
-					j3dSys.mVtxNorm         = modelData->mVertexData.mVtxNorm;
-					j3dSys.mVtxColor        = modelData->mVertexData.mVtxColor[0];
-					J3DShape::sOldVcdVatCmd = 0;
+					J3DMaterial* material   = modelData->getJointNodePointer(0)->getMesh();
+					j3dSys.setVtxPos(modelData->getVtxPosArray());
+					j3dSys.setVtxNrm(modelData->getVtxNrmArray());
+					j3dSys.setVtxCol(modelData->getVtxColorArray(0));
+					J3DShape::resetVcdVatCache();
 
 					for (material; material != nullptr; material = material->mNext) {
 						material->loadSharedDL();
-						material->mShape->loadPreDrawSetting();
+						material->getShape()->loadPreDrawSetting();
 
 						Matrixf drawMtx;
 						drawInfo->makeMatrix(&drawMtx, true);
@@ -177,7 +175,7 @@ void Mgr::draw(Viewport* viewport)
 
 						GXLoadPosMtxImm(combined.mMatrix.mtxView, 0);
 						GXLoadNrmMtxImm(transpose.mMatrix.mtxView, 0);
-						material->mShape->simpleDrawCache();
+						material->getShape()->simpleDrawCache();
 					}
 				}
 			}

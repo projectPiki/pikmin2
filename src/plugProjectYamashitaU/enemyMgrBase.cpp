@@ -347,9 +347,9 @@ SysShape::Model* EnemyMgrBase::createModel()
 {
 	SysShape::Model* model = new SysShape::Model(mModelData, J3DMODEL_CreateNewDL, mMtxBufferSize);
 
-	Matrixf identity;
-	PSMTXIdentity(identity.mMatrix.mtxView);
-	PSMTXCopy(identity.mMatrix.mtxView, j3dSys.mViewMtx);
+	Mtx mtx;
+	PSMTXIdentity(mtx);
+	j3dSys.setViewMtx(mtx);
 
 	J3DModel* j3dModel = model->mJ3dModel;
 	j3dModel->calc();

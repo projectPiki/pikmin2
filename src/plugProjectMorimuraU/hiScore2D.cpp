@@ -14,9 +14,9 @@ namespace Morimura {
 bool THiScore::mForceClear  = false;
 bool THiScore::mForceClear2 = false;
 bool THiScore::mLoopDrum    = false;
+bool THiScore::mChangeAlpha = true;
 
 f32 THiScore::mPictureOffsetY      = -8.0f;
-bool THiScore::mChangeAlpha        = true;
 f32 THiScore::mListOffsetY         = 25.0f;
 f32 THiScore::mClearListHeightRate = 1.55f;
 ResTIMG* THiScore::mPicTexture[16] = { nullptr };
@@ -456,12 +456,12 @@ void THiScore::doCreate(JKRArchive* arc)
 	}
 
 	mController = getGamePad();
-	// clang-format off
-	const char* timgname[16] = {"timg/hi_score_00.bti", "timg/hi_score_01.bti", "timg/hi_score_02.bti", "timg/hi_score_03.bti",
-								"timg/hi_score_04.bti", "timg/hi_score_05.bti", "timg/hi_score_06.bti", "timg/hi_score_07.bti",
-								"timg/hi_score_08.bti", "timg/hi_score_09.bti", "timg/hi_score_10.bti", "timg/hi_score_11.bti",
-								"timg/hi_score_12.bti", "timg/hi_score_13.bti", "timg/hi_score_14.bti", "timg/hi_score_15.bti"};
-	// clang-format on
+
+	const char* timgname[GAME_HIGHSCORE_COUNT]
+	    = { "timg/hi_score_00.bti", "timg/hi_score_01.bti", "timg/hi_score_02.bti", "timg/hi_score_03.bti",
+		    "timg/hi_score_04.bti", "timg/hi_score_05.bti", "timg/hi_score_06.bti", "timg/hi_score_07.bti",
+		    "timg/hi_score_08.bti", "timg/hi_score_09.bti", "timg/hi_score_10.bti", "timg/hi_score_11.bti",
+		    "timg/hi_score_12.bti", "timg/hi_score_13.bti", "timg/hi_score_14.bti", "timg/hi_score_15.bti" };
 
 	// if the image archive was found, use it to get the images, otherwise get default from the main screen archive
 	if (mDisp->mImageArchive) {
@@ -668,7 +668,7 @@ bool THiScore::doUpdate()
 				if (mIndPaneXDirection == 0.0f) {
 					mIndPaneXDirection = -1.0f;
 				}
-				mIndexGroup->downIndex();
+				mIndexGroup->mCurrActiveRowSel();
 			} else {
 				if (mIndexGroup->isState(0) && mErrorSoundCounter == 0) {
 					mErrorSoundCounter = 1;
@@ -745,7 +745,7 @@ bool THiScore::doUpdate()
 		if (alpha > 1.0f) {
 			alpha = 1.0f;
 		}
-		if (alpha == 0.0f) {
+		if (invAlpha == 0.0f) {
 			if (mIndPaneType) {
 				alpha = mPaneAngle;
 				mIndPane->setRadius(-6, alpha);
@@ -769,7 +769,7 @@ bool THiScore::doUpdate()
 		grp->mInitialRollSpeed    = mScrollParm._10;
 	}
 
-	mHighScorePic->addOffsetY(mPictureOffsetY);
+	mHighScorePic->setOffset(mHighScorePic->mOffset.x, mHighScorePic->getOffsetY() + mPictureOffsetY);
 
 	if (mScaleMgrList) {
 		for (int i = 0; i < mNumActiveRows; i++) {
@@ -794,15 +794,16 @@ bool THiScore::doUpdate()
 			mCornerAnimTimer -= TAU;
 		}
 		mCornerSelScale = mCornerSelScaleModifier * sinf(mCornerAnimTimer) + 0.85f;
-		f32 paneHeight  = 0.0f;
-		J2DPane* pane   = mIndexPaneList[mCurrActiveRowSel]->mPane->getFirstChildPane();
+
+		f32 paneHeight = 0.0f;
+		J2DPane* pane  = mIndexPaneList[mCurrActiveRowSel]->mPane->getFirstChildPane();
 		if (mIsAllTreasures) {
 			paneHeight = -mPaneHeightDiff * 0.5f;
 			pane       = mIndexPaneList[mCurrActiveRowSel]->mPane2;
 		}
 		pane->setBasePosition(J2DPOS_Center);
 		for (u8 i = 0; i < 4; i++) {
-			f32 x, y;
+			f32 y, x;
 			switch (i) {
 			case 0:
 				x = -20.0f;
@@ -1593,7 +1594,7 @@ void THiScore::doDraw(Graphics& gfx)
 		Graphics::dirtyInitGX();
 		mIndPane->draw();
 		mIndPane->mTexture3->capture(0, 0, GX_CTF_R4, false, 0);
-		graf->setPort();
+		gfx.getPerspGraph()->setPort();
 	}
 
 	mListScreen->draw(gfx, graf);
@@ -1747,8 +1748,11 @@ void THiScore::changePaneInfo()
 				mScaleCounter2[i]->setBlind(true);
 				mScaleCounter3[i]->setBlind(true);
 			}
-			mCurrScore1[i] = score / 60;
-			mCurrScore2[i] = score % 60;
+
+			// weird way to do the time calc but it works
+			int hours      = score / 60;
+			mCurrScore1[i] = hours;
+			mCurrScore2[i] = score - hours * 60;
 		} else {
 			mScaleCounter2[i]->getMotherPane()->hide();
 			mScaleCounter3[i]->getMotherPane()->hide();
@@ -1792,8 +1796,8 @@ void THiScore::changePaneInfo()
 		}
 
 		for (int i = 0; i < mNumActiveRows; i++) {
-			mIndexPaneList[i]->mPane->show();
-			mIndexPaneList[i]->mPane2->show();
+			mIndexPaneList[i]->getMainPane()->show();
+			mIndexPaneList[i]->getSubPane()->show();
 			if (mIndexPaneList[i]->getIndex() != id3) {
 				TIndexPane* pane = mIndexPaneList[i];
 				f32 y2           = pane->getPaneYOffset();
@@ -2236,96 +2240,18 @@ lbl_8037F6CC:
  */
 void THiScore::setPaneCharacter(int id)
 {
-	int index = getIndexPane(id)->getIndex();
-	u64 tag   = getNameID(index);
-	getIndexPane(id)->mPane2->setMsgID(tag);
+	int index = mIndexPaneList[id]->getIndex();
+	mIndexPaneList[id]->getSubPane()->setMsgID(getNameID(index));
 
-	J2DPane* pane = getIndexPane(id)->mPane2->getFirstChildPane();
+	J2DPane* pane = mIndexPaneList[id]->getSubPane()->getFirstChildPane();
 	P2ASSERTLINE(1031, pane);
 	pane->setMsgID(getNameID(index));
 
 	if (mIsAllTreasures && mPicTexture[index]) {
-		static_cast<J2DPictureEx*>(getIndexPane(id)->mPane->getFirstChildPane())->changeTexture(mPicTexture[index], 0);
+		J2DPictureEx* pic = static_cast<J2DPictureEx*>(mIndexPaneList[id]->getMainPane()->getFirstChildPane());
+
+		pic->changeTexture(mPicTexture[index], 0);
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	slwi     r31, r4, 2
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	stw      r29, 0x14(r1)
-	stw      r28, 0x10(r1)
-	lwz      r3, 0x88(r3)
-	lwzx     r3, r3, r31
-	bl       getIndex__Q28Morimura10TIndexPaneFv
-	mr       r0, r3
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	mr       r29, r0
-	mr       r4, r29
-	lwz      r12, 0x8c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r5, 0x88(r30)
-	lwzx     r5, r5, r31
-	lwz      r5, 8(r5)
-	stw      r4, 0x1c(r5)
-	stw      r3, 0x18(r5)
-	lwz      r3, 0x88(r30)
-	lwzx     r3, r3, r31
-	lwz      r3, 8(r3)
-	bl       getFirstChildPane__7J2DPaneFv
-	or.      r28, r3, r3
-	bne      lbl_8037F788
-	lis      r3, lbl_804935F0@ha
-	lis      r5, lbl_80493600@ha
-	addi     r3, r3, lbl_804935F0@l
-	li       r4, 0x407
-	addi     r5, r5, lbl_80493600@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8037F788:
-	mr       r3, r30
-	mr       r4, r29
-	lwz      r12, 0(r30)
-	lwz      r12, 0x8c(r12)
-	mtctr    r12
-	bctrl
-	stw      r4, 0x1c(r28)
-	stw      r3, 0x18(r28)
-	lbz      r0, 0x174(r30)
-	cmplwi   r0, 0
-	beq      lbl_8037F7F4
-	lis      r3, mPicTexture__Q28Morimura8THiScore@ha
-	slwi     r28, r29, 2
-	addi     r29, r3, mPicTexture__Q28Morimura8THiScore@l
-	lwzx     r0, r29, r28
-	cmplwi   r0, 0
-	beq      lbl_8037F7F4
-	lwz      r3, 0x88(r30)
-	lwzx     r3, r3, r31
-	lwz      r3, 4(r3)
-	bl       getFirstChildPane__7J2DPaneFv
-	lwz      r12, 0(r3)
-	li       r5, 0
-	lwzx     r4, r29, r28
-	lwz      r12, 0x110(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8037F7F4:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
@@ -2413,11 +2339,11 @@ int THiScore::getRecord(int type, int id)
  * @note Address: 0x8037FC60
  * @note Size: 0x43C
  */
-void THiScore::changeTextTevBlock(int p1)
+void THiScore::changeTextTevBlock(int id)
 {
-	J2DTextBox* textbox  = static_cast<J2DTextBox*>(getIndexPane(p1)->getSubPane()->getFirstChildPane()); // r29
-	f32 val              = getIndexPane(p1)->getPaneYOffset() + mIndexGroup->mScrollOffset;
-	J2DTextBox* startBox = static_cast<J2DTextBox*>(getIndexPane(p1)->getSubPane()); // r28
+	J2DTextBox* textbox  = static_cast<J2DTextBox*>(mIndexPaneList[id]->getSubPane()->getFirstChildPane()); // r29
+	f32 val              = mIndexGroup->mScrollOffset + mIndexPaneList[id]->mYOffset;
+	J2DTextBox* startBox = static_cast<J2DTextBox*>(mIndexPaneList[id]->getSubPane()); // r28
 
 	if (mIndexGroup->mStateID == TIndexGroup::IDGroup_Idle && val < mCursorSelectionYOffset && val > mSelectionYOffset) {
 		changeTevBlock(mTevBlock[0], textbox->getMaterial()->getTevBlock());
@@ -2811,20 +2737,21 @@ void THiScore::changeColorBlock(J2DColorBlock* colorB, J2DColorBlock* colorA)
  */
 void THiScore::updateLayout()
 {
-	f32 ydiff       = getHeight();
-	mPaneHeightDiff = getHeight() * 2.0f;
+	f32 height = getHeight();
+
+	mPaneHeightDiff = height * 2.0f;
 
 	if (mIsAllTreasures) {
 		for (int i = 0; i < mNumActiveRows; i++) {
-			mIndexPaneList[i]->setOffset((ydiff * mClearListHeightRate) * f32(i - mCurrActiveRowSel));
+			mIndexPaneList[i]->setOffset((height * mClearListHeightRate) * f32(i - mCurrActiveRowSel));
 			mIndexPaneList[i]->mYOffset = mIndexPaneList[i]->getPaneOffsetY();
 		}
 
-		ydiff          = getHeight();
+		height         = getHeight();
 		mMinSelYOffset = mIndexPaneList[mCurrMinActiveRow]->getPaneOffsetY();
 		mMaxSelYOffset = mIndexPaneList[mCurrMaxActiveRow]->getPaneOffsetY();
 	}
-	mIndexGroup->mHeight = ydiff;
+	mIndexGroup->mHeight = height;
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
