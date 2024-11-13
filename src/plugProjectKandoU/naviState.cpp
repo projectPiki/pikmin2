@@ -6063,8 +6063,7 @@ void NaviPelletState::exec(Navi* navi)
 		}
 
 		if (mState == 1 || mState == 0) {
-			if (navi->mController1
-			    && navi->mController1->isButtonDown(Controller::PRESS_ABX | Controller::PRESS_DPAD)) {
+			if (navi->mController1 && navi->mController1->isButtonDown(Controller::PRESS_ABX | Controller::PRESS_DPAD)) {
 				if (mDoForceWakeup) {
 					navi->mAnimSpeed = 60.0f;
 					navi->finishMotion();
