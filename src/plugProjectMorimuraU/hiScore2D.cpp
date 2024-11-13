@@ -668,7 +668,7 @@ bool THiScore::doUpdate()
 				if (mIndPaneXDirection == 0.0f) {
 					mIndPaneXDirection = -1.0f;
 				}
-				mIndexGroup->mCurrActiveRowSel();
+				mIndexGroup->downIndex();
 			} else {
 				if (mIndexGroup->isState(0) && mErrorSoundCounter == 0) {
 					mErrorSoundCounter = 1;
