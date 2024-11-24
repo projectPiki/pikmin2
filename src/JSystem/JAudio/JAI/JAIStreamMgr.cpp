@@ -294,7 +294,7 @@ lbl_800B7954:
  * @note Address: 0x800B7968
  * @note Size: 0x358
  */
-void storeStreamBuffer(JAIStream** soundHandlePtr, JAInter::Actor* actor, u32 soundID, u32 p4, u8 p5, JAInter::SoundInfo* info)
+void storeStreamBuffer(JAIStream** soundHandlePtr, JAInter::Actor* actor, u32 soundID, u32 fadeTime, u8 camId, JAInter::SoundInfo* info)
 {
 	if (soundHandlePtr != nullptr && *soundHandlePtr != nullptr && (*soundHandlePtr)->checkSoundHandle(soundID, info)) {
 		return;
@@ -341,10 +341,10 @@ void storeStreamBuffer(JAIStream** soundHandlePtr, JAInter::Actor* actor, u32 so
 	stream->mStreamParameter.mChannelDolbyFlags  = 0;
 
 	stream->mState                            = SOUNDSTATE_Stored;
-	stream->_16                               = 10;
+	stream->mFinishWaitTimer                  = 10;
 	streamUpdate->mPrepareFlag                = 0;
 	streamSound->mStreamParameter.mUpdateData = streamUpdate;
-	stream->initParameter(soundHandlePtr, actor, soundID, p4, p5, info);
+	stream->initParameter(soundHandlePtr, actor, soundID, fadeTime, camId, info);
 	if (soundHandlePtr) {
 		*soundHandlePtr = stream;
 	}
@@ -699,8 +699,8 @@ void PlayingStream()
 			return;
 		}
 
-		if (streamSound->_16 != 0) {
-			streamSound->_16--;
+		if (streamSound->mFinishWaitTimer != 0) {
+			streamSound->mFinishWaitTimer--;
 		}
 
 		if ((data->mActiveTrackFlag & SOUNDACTIVE_DoFadeout) != 0) {
@@ -761,7 +761,7 @@ void PlayingStream()
 
 	if (streamSound->mState == SOUNDSTATE_Fadeout) {
 		if (streamSound->getVolume(SOUNDPARAM_Fadeout) == 0.0f || streamSound->mFadeCounter == 0) {
-			if (streamSound->_16 == 0) {
+			if (streamSound->mFinishWaitTimer == 0) {
 				streamSystem->stop(0);
 				streamSound->mState                                         = SOUNDSTATE_Inactive;
 				streamSound->mStreamParameter.mUpdateData->mStream          = nullptr;
@@ -968,7 +968,7 @@ void PlayingStream()
 		OSRestoreInterrupts(interrupts);
 	}
 
-	streamSound->_2C++;
+	streamSound->mActiveTimer++;
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0

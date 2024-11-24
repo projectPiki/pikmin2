@@ -28,8 +28,8 @@ struct MeloArrBase : public JSULink<MeloArrBase>, JADHioNode {
 	    : JSULink<MeloArrBase>(this)
 	    , JADHioNode(name)
 	{
-		_18        = 1;
-		mIsEnabled = false;
+		mDoDirectSubTracks = 1;
+		mIsEnabled         = false;
 	}
 	// JADHioNode vtable:
 	// virtual void ~MeloArrBase() = 0;     // _08
@@ -47,8 +47,8 @@ struct MeloArrBase : public JSULink<MeloArrBase>, JADHioNode {
 	// _00-_10  = JSUPtrLink
 	// _10 		= JADHioNode vtable
 	// _14      = MeloArrBase vtable
-	u8 _18;          // _18
-	bool mIsEnabled; // _19
+	u8 mDoDirectSubTracks; // _18
+	bool mIsEnabled;       // _19
 };
 
 /**

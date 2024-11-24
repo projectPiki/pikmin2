@@ -25,35 +25,6 @@ struct MoveParamSet {
 	u8 mSoundType;  // _0C, see JAISoundType enum
 };
 
-struct IdLink : public JSULink<IdLink> {
-	IdLink(u32 id)
-	    : JSULink(this)
-	    , mId(id)
-	{
-	}
-
-	~IdLink() { }
-
-	// _00-_10 = JSULink
-	u32 mId; // _10
-};
-
-struct IdList : public JSUList<IdLink> {
-	IdList() { }
-
-	~IdList()
-	{
-		JSULink<IdLink>* link;
-		while (link = (JSULink<IdLink>*)mHead) {
-			remove(link);
-			delete (IdLink*)link->getObjectPtr();
-		}
-	}
-
-	// _00-_0C = JSUList
-	IdLink* mNextLink; // _0C, I have no idea if this should actually exist or not
-};
-
 struct EnvSeBase : public JSULink<EnvSeBase> {
 	EnvSeBase(u32 soundID, f32 volume);
 

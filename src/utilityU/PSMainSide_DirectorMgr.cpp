@@ -11,8 +11,8 @@ namespace PSM {
  * @note Address: 0x8046F2BC
  * @note Size: 0x2D8
  */
-DirectorMgr_Scene::DirectorMgr_Scene(DirectorMgr_Scene* owner, u8 type)
-    : PSSystem::DirectorMgrBase(type)
+DirectorMgr_Scene::DirectorMgr_Scene(DirectorMgr_Scene* owner, u8 directorCount)
+    : PSSystem::DirectorMgrBase(directorCount)
     , mOwner(owner)
 {
 	if (!isSlave()) {
@@ -257,7 +257,7 @@ PikminNumberDirector* DirectorMgr_Scene_AutoBgm::newPikminNumberDirector(int pik
  * @note Size: 0x50
  */
 DirectorMgr_Battle::DirectorMgr_Battle()
-    : PSSystem::DirectorMgrBase(2)
+    : PSSystem::DirectorMgrBase(DirectorBoss_Count)
 {
 }
 
@@ -275,7 +275,7 @@ PSSystem::DirectorBase* DirectorMgr_Battle::newDirector(u8 flag, PSSystem::Direc
 	bool boss               = static_cast<PSGame::PikSceneMgr*>(mgr)->curSceneIsBigBossFloor();
 
 	switch (flag) {
-	case 0:
+	case DirectorBoss_PikminAttack:
 		if (boss) {
 			trackID  = 14;
 			trackNum = 1;
@@ -294,7 +294,7 @@ PSSystem::DirectorBase* DirectorMgr_Battle::newDirector(u8 flag, PSSystem::Direc
 		}
 
 		break;
-	case 1:
+	case DirectorBoss_Excite:
 		if (boss) {
 			trackID  = 15;
 			trackNum = 1;
@@ -322,7 +322,7 @@ PSSystem::DirectorBase* DirectorMgr_Battle::newDirector(u8 flag, PSSystem::Direc
  * @note Size: 0x50
  */
 DirectorMgr_2PBattle::DirectorMgr_2PBattle()
-    : PSSystem::DirectorMgrBase(8)
+    : PSSystem::DirectorMgrBase(Director2P_Count)
 {
 }
 

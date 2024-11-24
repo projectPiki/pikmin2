@@ -95,8 +95,8 @@ void setParamInitFileLoadSwitch(u8 value)
  */
 void setParamInitDataPointer(void* value)
 {
-	JAInter::InitData::aafPointer = (u32*)value;
-	JAIBasic::msBasic->_0C        = 4;
+	JAInter::InitData::aafPointer    = (u32*)value;
+	JAIBasic::msBasic->mFileLoadType = 4;
 }
 
 /**

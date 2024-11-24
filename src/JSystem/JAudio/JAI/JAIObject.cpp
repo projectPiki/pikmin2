@@ -313,7 +313,7 @@ void JAInter::Object::disable()
 				handlePtr->_0C.z                = vec->z;
 				handlePtr->mSound               = mSounds[i];
 				mSounds[i]->mIsPlayingWithActor = false;
-				mSounds[i]->_3C                 = &handlePtr->_0C;
+				mSounds[i]->mPosition           = &handlePtr->_0C;
 				mSounds[i]->mMainSoundPPointer  = (void**)&handlePtr->mSound;
 				mSounds[i]                      = nullptr;
 				continue;

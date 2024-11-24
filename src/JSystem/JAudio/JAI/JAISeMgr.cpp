@@ -141,31 +141,31 @@ void checkNextFrameSe()
 			bool check   = false; // r23
 			JAISe* sound = static_cast<JAISe*>(link->getObject());
 			if (sound->mState == SOUNDSTATE_Stored && sound->mSoundID & 0xC00) {
-				sound->_16--;
+				sound->mFinishWaitTimer--;
 			} else if (!(sound->mSoundID & 0xC00) && sound->mState == SOUNDSTATE_Fadeout) {
 				link  = link->getNext();
 				check = true;
 				releaseSeRegist(sound);
 			}
 
-			if (sound->_16 == 0) {
+			if (sound->mFinishWaitTimer == 0) {
 				link  = link->getNext();
 				check = true;
 				releaseSeRegist(sound);
 			} else if (sound->mState != SOUNDSTATE_Inactive) {
 				f32 val2                = 2147483600.0f;
 				JAISound_0x34* soundObj = sound->getSoundObj();
-				if (!sound->_3C) {
+				if (!sound->mPosition) {
 					soundObj->mPosition = JAInter::Const::dummyZeroVec;
 					soundObj->_0C       = soundObj->mPosition;
 					soundObj->mDistance = 0.0f;
 				} else if (sound->mIsPlayingWithActor == false) {
 					soundObj->_0C = soundObj->mPosition;
-					u8 val3       = sound->_18;
-					if (val3 == 4) {
-						val3 = 0;
+					u8 camID      = sound->mCameraIndex;
+					if (camID == 4) {
+						camID = 0;
 					}
-					PSMTXMultVec(*JAIBasic::getInterface()->mCameras[val3].mMtx, sound->_3C, &soundObj->mPosition);
+					PSMTXMultVec(*JAIBasic::getInterface()->mCameras[camID].mMtx, sound->mPosition, &soundObj->mPosition);
 
 					soundObj->mDistance
 					    = dolsqrtfull(SQUARE(soundObj->mPosition.x) + SQUARE(soundObj->mPosition.y) + SQUARE(soundObj->mPosition.z));
@@ -957,7 +957,7 @@ void checkPlayingSe()
 			if (!currSound) {
 				continue;
 			}
-			currSound->_2C++;
+			currSound->mActiveTimer++;
 			u32 val0 = (((count >> 4) & 0xF) + 0x20000000) + ((count << 4) & 0xF0);
 			u16 portApp0;
 			JASTrack* track = &seHandle->mSeqParameter.mTrack; // r31
@@ -975,16 +975,16 @@ void checkPlayingSe()
 					int randInt = 255.0f * JAInter::Const::random.nextFloat_0_1(); // random number between 0 and 255
 					switch (swBit & (SOUNDFLAG_Unk6 | SOUNDFLAG_Unk7)) {
 					case 0x40:
-						currSound->_17 = randInt & 0x0F;
+						currSound->mRandPitchModifier = randInt & 0x0F;
 						break;
 					case 0x80:
-						currSound->_17 = randInt & 0x1F;
+						currSound->mRandPitchModifier = randInt & 0x1F;
 						break;
 					case 0xC0:
-						currSound->_17 = randInt & 0x3F;
+						currSound->mRandPitchModifier = randInt & 0x3F;
 						break;
 					default:
-						currSound->_17 = 0;
+						currSound->mRandPitchModifier = 0;
 						break;
 					}
 				}
@@ -1006,7 +1006,7 @@ void checkPlayingSe()
 				u16 offset = JAIBasic::getInterface()->getSoundOffsetNumberFromID(currSound->mSoundID);
 
 				if (currSound->checkSwBit(0x800)) {
-					offset += JAIBasic::getInterface()->getMapInfoGround(currSound->_30);
+					offset += JAIBasic::getInterface()->getMapInfoGround(currSound->mMapInfoIndex);
 				}
 
 				u16 waitTime;
@@ -1022,7 +1022,7 @@ void checkPlayingSe()
 					waitTime = 0;
 				}
 				track->writePortApp(val0 + 0x30000, waitTime);
-				track->writePortApp(val0 + 0x60000, JAIBasic::getInterface()->getMapInfoFxline(currSound->_30));
+				track->writePortApp(val0 + 0x60000, JAIBasic::getInterface()->getMapInfoFxline(currSound->mMapInfoIndex));
 				track->writePortApp(val0 + 0x40000, offset);
 				track->writePortApp(val0, 1);
 
@@ -1732,7 +1732,7 @@ lbl_800AF9D0:
  * @note Address: 0x800AFA24
  * @note Size: 0x6EC
  */
-void storeSeBuffer(JAISe** soundHandlePtr, JAInter::Actor* actor, u32 soundID, u32 p4, u8 p5, JAInter::SoundInfo* soundInfo)
+void storeSeBuffer(JAISe** soundHandlePtr, JAInter::Actor* actor, u32 soundID, u32 fadeTime, u8 camId, JAInter::SoundInfo* soundInfo)
 {
 	bool check = false;
 	if (soundHandlePtr && *soundHandlePtr == (JAISe*)1) {
@@ -1856,7 +1856,7 @@ void storeSeBuffer(JAISe** soundHandlePtr, JAInter::Actor* actor, u32 soundID, u
 			se->mState         = SOUNDSTATE_Stored;
 			se->_14            = 0xFF;
 
-			se->initParameter(soundHandlePtr, usableActor, soundID, p4, p5, soundInfo);
+			se->initParameter(soundHandlePtr, usableActor, soundID, fadeTime, camId, soundInfo);
 			if (soundHandlePtr) {
 				*soundHandlePtr = se;
 			}

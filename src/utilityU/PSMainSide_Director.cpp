@@ -140,7 +140,7 @@ void PikminNumberDirector_AutoBgm::directOnTrack(PSSystem::SeqTrackBase& track)
 
 	for (link = bgm->mMeloArr.mList.getFirst(); link; link = link->getNext()) {
 		PSAutoBgm::MeloArrBase* melo = link->getObject();
-		bool valid                   = (bool)melo->_18 == 1;
+		bool valid                   = (bool)melo->mDoDirectSubTracks == 1;
 		if (valid) {
 			melo->directOn(subtrack);
 		}
@@ -160,7 +160,7 @@ void PikminNumberDirector_AutoBgm::directOffTrack(PSSystem::SeqTrackBase& track)
 
 	for (link = bgm->mMeloArr.mList.getFirst(); link; link = link->getNext()) {
 		PSAutoBgm::MeloArrBase* melo = link->getObject();
-		bool valid                   = (bool)melo->_18 == 1;
+		bool valid                   = (bool)melo->mDoDirectSubTracks == 1;
 		if (valid) {
 			melo->directOff(subtrack);
 		}

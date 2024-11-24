@@ -566,11 +566,11 @@ void EnvSe_AutoPan::setPanAndDolby(JAISound* sound)
  * @note Size: 0x21C
  */
 Builder_EvnSe_Perspective::Builder_EvnSe_Perspective(JGeometry::TBox3f box)
-    : _18(0)
-    , _1C(0)
-    , _20(0)
+    : mDoSkipSizeCheck(false)
+    , mGridSizeX(0)
+    , mGridSizeZ(0)
     , mBox(box)
-    , _3C(0.0f)
+    , mYPosition(0.0f)
 {
 	mBox.absolute();
 	/*
@@ -742,53 +742,40 @@ lbl_80340310:
  * @note Address: 0x8034032C
  * @note Size: 0x2D0
  */
-void Builder_EvnSe_Perspective::build(f32 p1, PSSystem::EnvSeMgr* mgr)
+void Builder_EvnSe_Perspective::build(f32 volume, PSSystem::EnvSeMgr* mgr)
 {
 	P2ASSERTLINE(596, mgr);
-	f32 sizeX = mBox.mMax.x - mBox.mMin.x;
-	f32 sizeZ = mBox.mMax.z - mBox.mMin.z;
+	f32 totalSizeX = mBox.mMax.x - mBox.mMin.x;
+	f32 totalSizeZ = mBox.mMax.z - mBox.mMin.z;
 
-	if (!_18) {
-		f32* temp = &sizeX;
-		int* val  = &_1C;
-		while (true) {
-			*val = *temp / 1000.0f;
-			if (val == &_20) {
-				temp = &sizeZ;
-				val  = &_20;
-				break;
-			}
+	if (!mDoSkipSizeCheck) {
+		f32* temp = &totalSizeX;
+		int* val  = &mGridSizeX;
+		while (*val = *temp / 1000.0f, val != &mGridSizeZ) {
+			temp = &totalSizeZ;
+			val  = &mGridSizeZ;
 		}
 	} else {
-		P2ASSERTBOOLLINE(639, _1C > 0 && _20 > 0);
+		P2ASSERTBOOLLINE(639, mGridSizeX > 0 && mGridSizeZ > 0);
 	}
 
-	f32 thingA = sizeX / f32(_1C);
-	f32 thingB = thingA / 2 + mBox.mMin.x;
+	Vec pos;
+	pos.y = mYPosition;
 
-	f32 thingC = sizeZ / f32(_20);
-	f32 thingD = thingC / 2 + mBox.mMin.y;
+	f32 unitSizeX = totalSizeX / f32(mGridSizeX);
+	f32 startPosX = mBox.mMin.x + unitSizeX / 2;
 
-	for (int i = 0; i < _1C; i++) {
+	f32 unitSizeZ = totalSizeZ / f32(mGridSizeZ);
+	f32 startPosZ = mBox.mMin.z + unitSizeZ / 2;
 
-		f32 outX = thingA * f32(i) + thingB;
-		for (int j = 0; j < _20; j++) {
-			f32 outZ = thingC * f32(j) + thingD;
+	for (int x = 0; x < mGridSizeX; x++) {
+		pos.x = unitSizeX * f32(x) + startPosX;
+		for (int z = 0; z < mGridSizeZ; z++) {
+			pos.z = unitSizeZ * f32(z) + startPosZ;
 
-			// this panic needs to be an inline in PSCommon.h
-			// its also terrible and idk if any of this is right
-			JUT_ASSERTLINE(210, mList.mNextLink, "リンクがありません"); // No link
-			PSSystem::IdLink* link = (PSSystem::IdLink*)mList.mNextLink;
-			mList.mNextLink        = (PSSystem::IdLink*)link->getNext();
-			if (!mList.mNextLink) {
-				mList.mNextLink = (PSSystem::IdLink*)mList.mHead;
-			}
+			mList.setNextLink();
 
-			Vec pos;
-			pos.x                 = outX;
-			pos.y                 = _3C;
-			pos.z                 = outZ;
-			EnvSe_Perspective* se = newSeObj(mList.mNextLink->mId, p1, pos);
+			EnvSe_Perspective* se = newSeObj(mList.mNextLink->mId, volume, pos);
 			P2ASSERTLINE(662, se);
 			onBuild(se);
 			mgr->mEnvList.append(se);

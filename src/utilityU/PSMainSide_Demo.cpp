@@ -204,7 +204,7 @@ PSSystem::BgmSeq* Demo::initiate(DemoArg demoArg, u8* unk)
 	PSSystem::BgmSeq* seq;
 	u32 AST_ID;
 	char bmsFilePath[32];
-	JAInter::SoundInfo audio_info = { 0, 127, 3, 0, 0x3F800000, 0x3C000000 };
+	JAInter::SoundInfo audio_info = { 0, 127, 3, 0, 1.0f, 60, 0 };
 
 	seq            = nullptr;
 	bmsFilePath[0] = '\0';
@@ -354,7 +354,7 @@ PSSystem::BgmSeq* Demo::initiate(DemoArg demoArg, u8* unk)
 	init.setDefault("x03_find_red_onyon", P2_STREAM_SOUND_ID(PSSTR_RED_ONYON));
 
 	if (streq("s02_dayend_result", init.mName)) {
-		audio_info.mVolume.byteView[0] -= 15;
+		audio_info.mVolume -= 15;
 	}
 	// clang-format off
 	if (streq("s10_suck_treasure",        init.mName) ||

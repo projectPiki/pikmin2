@@ -115,10 +115,10 @@ struct JAISound : public JSULink<JAISound> {
 	virtual f32 setDistanceVolumeCommon(f32 value, u8 moveTime);                                             // _BC
 	virtual f32 setDistancePanCommon();                                                                      // _C0
 	virtual f32 setDistanceDolbyCommon();                                                                    // _C4
-	virtual void initParameter(void*, JAInter::Actor*, u32, u32, u8,
-	                           JAInter::SoundInfo*); // _C8
-	virtual void onGet();                            // _CC (weak)
-	virtual void onRelease();                        // _D0 (weak)
+	virtual void initParameter(void* handlePtr, JAInter::Actor* actor, u32 soundID, u32 fadeTime, u8 camId,
+	                           JAInter::SoundInfo* info); // _C8
+	virtual void onGet();                                 // _CC (weak)
+	virtual void onRelease();                             // _D0 (weak)
 
 	~JAISound();
 	void initMultiMoveParameter(JAInter::MoveParaSet*, u8, u32, f32, f32, u32);
@@ -141,21 +141,20 @@ struct JAISound : public JSULink<JAISound> {
 	// VTBL _10
 	u8 _14;                         // _14
 	u8 mState;                      // _15
-	u8 _16;                         // _16
-	u8 _17;                         // _17
-	u8 _18;                         // _18
+	u8 mFinishWaitTimer;            // _16
+	u8 mRandPitchModifier;          // _17
+	u8 mCameraIndex;                // _18, 0-3 cam id, 4 = use other game logic
 	u8 mDistanceParameterMoveTime;  // _19
 	u8 mIsPlayingWithActor;         // _1A
-	u8 _1B;                         // _1B
 	s16 mAdjustPriority;            // _1C
 	u32 mSoundID;                   // _20
 	u32 _24;                        // _24
 	u32 mFadeCounter;               // _28
-	u32 _2C;                        // _2C
-	u32 _30;                        // _30
+	u32 mActiveTimer;               // _2C
+	u32 mMapInfoIndex;              // _30
 	JAISound_0x34* mSoundObj;       // _34
 	void* mCreatureObj;             // _38
-	Vec* _3C;                       // _3C
+	Vec* mPosition;                 // _3C
 	void** mMainSoundPPointer;      // _40, ptr to main sound ptr
 	JAInter::SoundInfo* mSoundInfo; // _44
 };

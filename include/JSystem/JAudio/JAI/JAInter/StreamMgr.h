@@ -50,7 +50,7 @@ typedef void (*ExternalAramBufferCallback)(JASHeap*);
 typedef void (*MgrCallback)();
 
 void init();
-void storeStreamBuffer(JAIStream**, JAInter::Actor*, u32, u32, u8, JAInter::SoundInfo*);
+void storeStreamBuffer(JAIStream** soundHandlePtr, JAInter::Actor* actor, u32 soundID, u32 fadeTime, u8 camId, JAInter::SoundInfo* info);
 void releaseStreamBuffer(JAIStream* stream, u32 fadeTime);
 void checkSystem();
 void PlayingStream();

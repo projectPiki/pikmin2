@@ -22,7 +22,7 @@
 JAISound::JAISound()
     : JSULink<JAISound>(this)
     , mState(SOUNDSTATE_Inactive)
-    , _16(10)
+    , mFinishWaitTimer(10)
     , mCreatureObj(nullptr)
 {
 	// UNUSED FUNCTION
@@ -194,8 +194,8 @@ void JAISound::checkReady()
 f32 JAISound::setDistanceVolumeCommon(f32 p1, u8 p2)
 {
 	f32 dist;
-	if (_18 != 4) {
-		dist = mSoundObj[_18].mDistance;
+	if (mCameraIndex != 4) {
+		dist = mSoundObj[mCameraIndex].mDistance;
 	} else { // _18 == 4
 		dist = mSoundObj[0].mDistance;
 		for (u8 i = 1; i < JAIGlobalParameter::audioCameraMax; i++) {
@@ -264,8 +264,8 @@ f32 JAISound::setDistancePanCommon()
 	}
 
 	// audioCameraMax != 1
-	if (_18 != 4) {
-		return _18 & 1;
+	if (mCameraIndex != 4) {
+		return mCameraIndex & 1;
 	}
 	return 0.5f;
 	/*
@@ -620,7 +620,7 @@ lbl_800B42A0:
 f32 JAISound::setDistanceDolbyCommon()
 {
 	JAISound_0x34* obj = mSoundObj;
-	if (_3C == 0 || obj->mPosition.z < JAIGlobalParameter::seDolbyFrontDistanceMax) {
+	if (!mPosition || obj->mPosition.z < JAIGlobalParameter::seDolbyFrontDistanceMax) {
 		return 0.0f;
 	}
 	if (obj->mPosition.z < 0.0f) {
@@ -1292,7 +1292,7 @@ void JAISe::setSeDistanceParameters()
 	setSeDistanceFxmix(moveTime);
 	setSeDistanceFir(moveTime);
 	if (checkSwBit(0x400) == 0) {
-		setFxmix(JAIBasic::msBasic->getMapInfoFxParameter(_30), 0, SOUNDPARAM_Unk3);
+		setFxmix(JAIBasic::msBasic->getMapInfoFxParameter(mMapInfoIndex), 0, SOUNDPARAM_Unk3);
 	}
 	setSeDistanceDolby(moveTime);
 }
@@ -1347,7 +1347,7 @@ void JAISe::setSeDistancePitch(u8 moveTime)
 		}
 	}
 	if (checkSwBit(0x40 | 0x80) != 0) {
-		pitch += _17 / 192.0f;
+		pitch += mRandPitchModifier / 192.0f;
 	}
 	mSeParam.mPitches[SOUNDPARAM_Distance].set(pitch, moveTime);
 	/*
@@ -2140,34 +2140,34 @@ u32 JAIStream::getFadeCounter()
  * @note Address: 0x800B5614
  * @note Size: 0xE8
  */
-void JAISound::initParameter(void* handlePtr, JAInter::Actor* actor, u32 soundID, u32 fadeTime, u8 p5, JAInter::SoundInfo* info)
+void JAISound::initParameter(void* handlePtr, JAInter::Actor* actor, u32 soundID, u32 fadeTime, u8 camId, JAInter::SoundInfo* info)
 {
 	mSoundID = soundID;
 	if (actor) {
 		mCreatureObj = actor->mObj;
 		if (actor->mObj) {
-			_3C = actor->mVec2;
-			_30 = actor->mUnk;
+			mPosition     = actor->mVec2;
+			mMapInfoIndex = actor->mInfoIndex;
 		} else {
-			_3C = nullptr;
-			_30 = actor->mUnk;
+			mPosition     = nullptr;
+			mMapInfoIndex = actor->mInfoIndex;
 		}
 		mIsPlayingWithActor = actor->mFlag.boolView[0];
 	} else {
 		mCreatureObj        = nullptr;
-		_3C                 = nullptr;
+		mPosition           = nullptr;
 		mIsPlayingWithActor = false;
-		_30                 = 0;
+		mMapInfoIndex       = 0;
 	}
 	mMainSoundPPointer         = (void**)handlePtr;
 	mFadeCounter               = fadeTime;
-	_18                        = p5;
+	mCameraIndex               = camId;
 	mSoundInfo                 = info;
-	_16                        = 10;
+	mFinishWaitTimer           = 10;
 	mDistanceParameterMoveTime = JAIGlobalParameter::getParamDistanceParameterMoveTime();
 	mAdjustPriority            = 0;
-	_2C                        = 0;
-	if (_3C) {
+	mActiveTimer               = 0;
+	if (mPosition) {
 		mSoundObj->mDistance = JAIGlobalParameter::getParamDistanceMax() * 10.0f;
 	} else {
 		mSoundObj->mDistance = 0.0f;

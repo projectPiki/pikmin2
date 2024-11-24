@@ -260,11 +260,11 @@ void SwitcherDirector::doUpdateRequest()
  * @note Address: 0x80343848
  * @note Size: 0x88
  */
-DirectorMgrBase::DirectorMgrBase(u8 count)
+DirectorMgrBase::DirectorMgrBase(u8 directorCount)
     : JADHioNode("ディレクターマネージャ") // "Director Manager"
 {
 	mDirectors     = nullptr;
-	mDirectorCount = count;
+	mDirectorCount = directorCount;
 	P2ASSERTLINE(394, mDirectorCount != 0);
 }
 

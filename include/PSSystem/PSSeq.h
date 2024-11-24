@@ -96,7 +96,7 @@ struct JumpBgmPort {
 	u16 _64;             // _64
 	JumpBgmSeq* mOwner;  // _68
 	u32 mAvoidJumpTimer; // _6C
-	u16 _70;             // _70
+	u16 mCurrentTrackId; // _70, which "state" the bgm is in for bosses
 };
 
 /**

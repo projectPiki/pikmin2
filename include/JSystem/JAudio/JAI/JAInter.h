@@ -71,11 +71,9 @@ struct SoundInfo {
 	u8 mPriority;  // _04
 	u8 _05;        // _05
 	u16 mOffsetNo; // _06
-	u32 mPitch;    // _08
-	union Volume {
-		u32 typeView;
-		u8 byteView[4];
-	} mVolume; // _0C
+	f32 mPitch;    // _08
+	u8 mVolume;    // _0C
+	u8 mFxMix;     // _0D
 };
 
 struct LinkSound {
@@ -150,10 +148,10 @@ struct Actor {
 		// mUnk              = 0;
 		// mFlag.boolView[0] = true;
 
-		mObj  = vec1;
-		mVec2 = vec2;
-		mVec3 = vec3;
-		mUnk  = unk;
+		mObj       = vec1;
+		mVec2      = vec2;
+		mVec3      = vec3;
+		mInfoIndex = unk;
 		if (mVec2 == nullptr) {
 			mFlag.boolView[0] = true;
 		} else {
@@ -163,10 +161,10 @@ struct Actor {
 
 	inline Actor(void* vec1, u32 unk)
 	{
-		mObj  = vec1;
-		mVec2 = (Vec*)vec1;
-		mVec3 = (Vec*)vec1;
-		mUnk  = unk;
+		mObj       = vec1;
+		mVec2      = (Vec*)vec1;
+		mVec3      = (Vec*)vec1;
+		mInfoIndex = unk;
 		if (mVec2 == nullptr || (u32)vec1 == 0xFFFFFFFF) {
 			mFlag.boolView[0] = true;
 		} else {
@@ -174,10 +172,10 @@ struct Actor {
 		}
 	}
 
-	void* mObj; // _00
-	Vec* mVec2; // _04
-	Vec* mVec3; // _08
-	u32 mUnk;   // _0C (might be a pointer?)
+	void* mObj;     // _00
+	Vec* mVec2;     // _04
+	Vec* mVec3;     // _08
+	u32 mInfoIndex; // _0C (might be a pointer?)
 	// bool mFlag; // _10
 	union {
 		bool boolView[4];
@@ -237,13 +235,13 @@ struct HeapBlock {
 	void setUsedHeapID(u32 id) { mUsedHeapID = id; }
 
 	// need better names
-	u32 get0C() { return _0C; }
-	void set0C(u32 c) { _0C = c; }
+	u32 getHeapCount() { return mHeapCount; }
+	void setHeapCount(u32 c) { mHeapCount = c; }
 
 	u8 mStatus;      // _00
 	void* mPointer;  // _04
 	u32 mSoundID;    // _08
-	u32 _0C;         // _0C
+	u32 mHeapCount;  // _0C
 	u32 mUsedHeapID; // _10
 };
 

@@ -189,7 +189,7 @@ void Mgr::exec()
 		if (mTypedProc.mCurrProcState == TypedProc::PROC_None && mTypedProc.mPrevProcState != TypedProc::PROC_None) {
 			// we're out of range of a boss, stop the loop
 			MiddleBossSeq* seq = PSMGetMiddleBossSeq();
-			if (seq->mJumpPort._70) {
+			if (seq->mJumpPort.mCurrentTrackId != PSM::EnemyMidBoss::BossBgm_InactiveLoop) {
 				seq->requestJumpBgmOnBeat(PSM::EnemyMidBoss::BossBgm_InactiveLoop);
 			}
 		} else if ((mTypedProc.mCurrProcState == TypedProc::PROC_Directed || mTypedProc.mCurrProcState == TypedProc::PROC_MainLoop)
@@ -197,7 +197,7 @@ void Mgr::exec()
 
 			// we weren't in loop range before (fadeout or out of range completely), but now we are. start the loop.
 			MiddleBossSeq* seq = PSMGetMiddleBossSeq();
-			if (!seq->mJumpPort._70) {
+			if (seq->mJumpPort.mCurrentTrackId == PSM::EnemyMidBoss::BossBgm_InactiveLoop) {
 				seq->requestJumpBgmOnBeat(PSM::EnemyMidBoss::BossBgm_MainLoop);
 			}
 		}

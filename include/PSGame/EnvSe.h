@@ -3,6 +3,7 @@
 
 #include "Dolphin/vec.h"
 #include "PSSystem/EnvSeBase.h"
+#include "PSSystem/PSCommon.h"
 #include "types.h"
 #include "Vector3.h"
 
@@ -165,11 +166,11 @@ struct Builder_EvnSe_Perspective : public JKRDisposer {
 	 */
 	void build(f32 volume, PSSystem::EnvSeMgr* envSeMgr);
 
-	u8 _18;                 // _18
-	int _1C;                // _1C, unknown
-	int _20;                // _20, unknown
+	u8 mDoSkipSizeCheck;    // _18
+	int mGridSizeX;         // _1C
+	int mGridSizeZ;         // _20
 	JGeometry::TBox3f mBox; // _24
-	f32 _3C;                // _3C
+	f32 mYPosition;         // _3C
 	PSSystem::IdList mList; // _40
 };
 } // namespace PSGame

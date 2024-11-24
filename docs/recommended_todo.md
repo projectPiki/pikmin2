@@ -23,10 +23,10 @@
 ### <section id="JSystem">JSystem</section>
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JAudio/JSystem/JAI/JAISoundTable.cpp">JAudio//JAI/JAISoundTable.cpp</a> | 4382 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J2D/J2DBloSaver.cpp">J2D/J2DBloSaver.cpp</a> | 5301 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JAudio/JSystem/JAI/JAISoundTable.cpp">JAudio//JAI/JAISoundTable.cpp</a> | 4416 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J2D/J2DBloSaver.cpp">J2D/J2DBloSaver.cpp</a> | 5301 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JAudio/JSystem/JAI/JAIFx.cpp">JAudio//JAI/JAIFx.cpp</a> | 6025 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JParticle/JPAMath.cpp">JParticle/JPAMath.cpp</a> | 6293 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JParticle/JPAResourceLoader.cpp">JParticle/JPAResourceLoader.cpp</a> | 9831 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JAudio/JSystem/JAI/JAISequenceHeap.cpp">JAudio//JAI/JAISequenceHeap.cpp</a> | 10033 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JAudio/JSystem/JAI/JAIInitData.cpp">JAudio//JAI/JAIInitData.cpp</a> | 10317 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JAudio/JSystem/JAS/JASDSPChannel.cpp">JAudio//JAS/JASDSPChannel.cpp</a> | 11896 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JAudio/JSystem/JAI/JAIInitData.cpp">JAudio//JAI/JAIInitData.cpp</a> | 9236 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JParticle/JPAResourceLoader.cpp">JParticle/JPAResourceLoader.cpp</a> | 9831 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JAudio/JSystem/JAI/JAISequenceHeap.cpp">JAudio//JAI/JAISequenceHeap.cpp</a> | 10072 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JAudio/JSystem/JAS/JASDSPChannel.cpp">JAudio//JAS/JASDSPChannel.cpp</a> | 11896 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JAudio/JSystem/JAS/JASTaskThread.cpp">JAudio//JAS/JASTaskThread.cpp</a> | 12200 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JAudio/JSystem/JAS/JASWSParser.cpp">JAudio//JAS/JASWSParser.cpp</a> | 12435 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JParticle/JPADynamicsBlock.cpp">JParticle/JPADynamicsBlock.cpp</a> | 12718 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JMessage/resource.cpp">JMessage/resource.cpp</a> | 13104 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DJoint.cpp">J3D/J3DJoint.cpp</a> | 13741 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JAudio/JSystem/JAS/JASAiCtrl.cpp">JAudio//JAS/JASAiCtrl.cpp</a> | 14267 |
@@ -38,13 +38,13 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DMtxBuffer.cpp">J3D/J3DMtxBuffer.cpp</a> | 20816 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DModelLoaderCalcSize.cpp">J3D/J3DModelLoaderCalcSize.cpp</a> | 21358 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DMaterial.cpp">J3D/J3DMaterial.cpp</a> | 21616 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JAudio/JSystem/JAI/JAIAnimation.cpp">JAudio//JAI/JAIAnimation.cpp</a> | 22734 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J2D/J2DWindow.cpp">J2D/J2DWindow.cpp</a> | 23735 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DGD.cpp">J3D/J3DGD.cpp</a> | 24264 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DModel.cpp">J3D/J3DModel.cpp</a> | 25170 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JAudio/JSystem/JAI/JAIBasic.cpp">JAudio//JAI/JAIBasic.cpp</a> | 29235 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DModel.cpp">J3D/J3DModel.cpp</a> | 25170 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JAudio/JSystem/JAI/JAIBasic.cpp">JAudio//JAI/JAIBasic.cpp</a> | 29322 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DMaterialAttach.cpp">J3D/J3DMaterialAttach.cpp</a> | 29965 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J2D/J2DScreen.cpp">J2D/J2DScreen.cpp</a> | 30766 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JStudio/functionvalue.cpp">JStudio/functionvalue.cpp</a> | 31270 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DMaterialFactory_v21.cpp">J3D/J3DMaterialFactory_v21.cpp</a> | 35247 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JMessage/processor.cpp">JMessage/processor.cpp</a> | 35777 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JAudio/JSystem/JAS/JASAramStream.cpp">JAudio//JAS/JASAramStream.cpp</a> | 47117 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J2D/J2DWindowEx.cpp">J2D/J2DWindowEx.cpp</a> | 47225 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JAudio/JSystem/JAI/JAISound.cpp">JAudio//JAI/JAISound.cpp</a> | 51880 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JAudio/JSystem/JAI/JAIStreamMgr.cpp">JAudio//JAI/JAIStreamMgr.cpp</a> | 53015 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JAudio/JSystem/JAI/JAISeMgr.cpp">JAudio//JAI/JAISeMgr.cpp</a> | 64969 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JAudio/JSystem/JAI/JAISequenceMgr.cpp">JAudio//JAI/JAISequenceMgr.cpp</a> | 68811 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JAudio/JSystem/JAS/JASTrack.cpp">JAudio//JAS/JASTrack.cpp</a> | 72438 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J2D/J2DWindowEx.cpp">J2D/J2DWindowEx.cpp</a> | 47225 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JAudio/JSystem/JAI/JAISound.cpp">JAudio//JAI/JAISound.cpp</a> | 52020 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JAudio/JSystem/JAI/JAIStreamMgr.cpp">JAudio//JAI/JAIStreamMgr.cpp</a> | 53081 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JAudio/JSystem/JAI/JAISeMgr.cpp">JAudio//JAI/JAISeMgr.cpp</a> | 65126 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JAudio/JSystem/JAI/JAISequenceMgr.cpp">JAudio//JAI/JAISequenceMgr.cpp</a> | 68853 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JAudio/JSystem/JAS/JASTrack.cpp">JAudio//JAS/JASTrack.cpp</a> | 72438 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DMaterialFactory.cpp">J3D/J3DMaterialFactory.cpp</a> | 75581 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J2D/J2DPictureEx.cpp">J2D/J2DPictureEx.cpp</a> | 90428 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JParticle/JPAResource.cpp">JParticle/JPAResource.cpp</a> | 95931 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JParticle/JPABaseShape.cpp">JParticle/JPABaseShape.cpp</a> | 96437 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JStudio/jstudio-object.cpp">JStudio/jstudio-object.cpp</a> | 104283 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J2D/J2DMatBlock.cpp">J2D/J2DMatBlock.cpp</a> | 127713 |
@@ -60,9 +60,9 @@
 ### <section id="plugProjectHikinoU">plugProjectHikinoU</section>
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectHikinoU/PSBnkMgr.cpp">PSBnkMgr.cpp</a> | 10222 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectHikinoU/PSSe.cpp">PSSe.cpp</a> | 22235 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectHikinoU/PSSeq.cpp">PSSeq.cpp</a> | 27178 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectHikinoU/PSAutoBgm.cpp">PSAutoBgm.cpp</a> | 53629 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectHikinoU/PSGame.cpp">PSGame.cpp</a> | 75694 |  |  |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectHikinoU/PSBnkMgr.cpp">PSBnkMgr.cpp</a> | 10222 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectHikinoU/PSSe.cpp">PSSe.cpp</a> | 21901 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectHikinoU/PSSeq.cpp">PSSeq.cpp</a> | 27166 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectHikinoU/PSAutoBgm.cpp">PSAutoBgm.cpp</a> | 53629 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectHikinoU/PSGame.cpp">PSGame.cpp</a> | 75604 |  |  |
 
 ### <section id="plugProjectKandoU">plugProjectKandoU</section>
 | File | Size (bytes) | File | Size (bytes) |
@@ -85,7 +85,7 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/itemPlant.cpp">itemPlant.cpp</a> | 73568 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/baseGameSection.cpp">baseGameSection.cpp</a> | 86206 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/aiPrimitives.cpp">aiPrimitives.cpp</a> | 117179 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/pelletMgr.cpp">pelletMgr.cpp</a> | 130644 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/pikiState.cpp">pikiState.cpp</a> | 140987 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/navi.cpp">navi.cpp</a> | 148740 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/naviState.cpp">naviState.cpp</a> | 163223 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/singleGS_Zukan.cpp">singleGS_Zukan.cpp</a> | 163886 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/naviState.cpp">naviState.cpp</a> | 163215 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/singleGS_Zukan.cpp">singleGS_Zukan.cpp</a> | 163886 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gameMapParts.cpp">gameMapParts.cpp</a> | 164114 |  |  |
 
 ### <section id="plugProjectKonoU">plugProjectKonoU</section>
@@ -104,7 +104,7 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/umiMushi.cpp">umiMushi.cpp</a> | 60218 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/kingChappy.cpp">kingChappy.cpp</a> | 64498 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/hiScore2D.cpp">hiScore2D.cpp</a> | 74682 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/blackMan.cpp">blackMan.cpp</a> | 105322 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/zukan2D.cpp">zukan2D.cpp</a> | 134332 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/challengeResult2D.cpp">challengeResult2D.cpp</a> | 139077 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/challengeSelect2D.cpp">challengeSelect2D.cpp</a> | 139179 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/vsSelect2D.cpp">vsSelect2D.cpp</a> | 196267 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/challengeSelect2D.cpp">challengeSelect2D.cpp</a> | 139187 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/vsSelect2D.cpp">vsSelect2D.cpp</a> | 196267 |
 
 ### <section id="plugProjectNishimuraU">plugProjectNishimuraU</section>
 | File | Size (bytes) | File | Size (bytes) |
@@ -124,7 +124,7 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/BigTreasureShadow.cpp">BigTreasureShadow.cpp</a> | 25799 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/ArmorState.cpp">ArmorState.cpp</a> | 26549 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/TobiState.cpp">TobiState.cpp</a> | 27052 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/SaraiState.cpp">SaraiState.cpp</a> | 27370 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/MarState.cpp">MarState.cpp</a> | 28356 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/FrogState.cpp">FrogState.cpp</a> | 30811 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/SnakeCrowState.cpp">SnakeCrowState.cpp</a> | 32065 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/HanachirashiState.cpp">HanachirashiState.cpp</a> | 32827 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/SnakeCrowState.cpp">SnakeCrowState.cpp</a> | 32065 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/HanachirashiState.cpp">HanachirashiState.cpp</a> | 32832 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/KabutoState.cpp">KabutoState.cpp</a> | 32923 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/TankState.cpp">TankState.cpp</a> | 33069 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/playCamera.cpp">playCamera.cpp</a> | 33865 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Hanachirashi.cpp">Hanachirashi.cpp</a> | 35431 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/BombSaraiState.cpp">BombSaraiState.cpp</a> | 36432 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/DangoMushi.cpp">DangoMushi.cpp</a> | 36905 |
@@ -179,8 +179,8 @@
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/PSMainSide_CreaturePrm.cpp">PSMainSide_CreaturePrm.cpp</a> | 2600 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/PSMainSide_ObjCalc.cpp">PSMainSide_ObjCalc.cpp</a> | 7695 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/PSMainSide_Sound.cpp">PSMainSide_Sound.cpp</a> | 11860 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/PSMainSide_Director.cpp">PSMainSide_Director.cpp</a> | 29610 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/PSMainSide_Se.cpp">PSMainSide_Se.cpp</a> | 45016 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/PSMainSide_Scene.cpp">PSMainSide_Scene.cpp</a> | 49638 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/PSMainSide_ObjSound.cpp">PSMainSide_ObjSound.cpp</a> | 74785 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/PSMainSide_Factory.cpp">PSMainSide_Factory.cpp</a> | 88161 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/PSMainSide_Sound.cpp">PSMainSide_Sound.cpp</a> | 11860 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/PSMainSide_Director.cpp">PSMainSide_Director.cpp</a> | 29640 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/PSMainSide_Se.cpp">PSMainSide_Se.cpp</a> | 45016 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/PSMainSide_Scene.cpp">PSMainSide_Scene.cpp</a> | 49961 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/PSMainSide_ObjSound.cpp">PSMainSide_ObjSound.cpp</a> | 74828 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/PSMainSide_Factory.cpp">PSMainSide_Factory.cpp</a> | 80342 |
 
 

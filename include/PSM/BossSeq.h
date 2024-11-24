@@ -20,9 +20,9 @@ struct MiddleBossSeq : public PSSystem::JumpBgmSeq {
 	// _10      = VTBL
 	// _00-_134 = PSSystem::JumpBgmSeq
 	EnemyBoss* mCurrBossObj; // _134
-	u32 _138;                // _138
-	u16 _13C;                // _13C
-	u16 _13E;                // _13E
+	u32 mAvoidJumpMaxTime;   // _138
+	u16 mCurrentAttackMixId; // _13C
+	u16 mAvoidJumpTimer;     // _13E
 	u8 _140;                 // _140
 };
 

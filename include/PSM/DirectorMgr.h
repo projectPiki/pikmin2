@@ -40,9 +40,9 @@ struct DirectorMgr_Scene : public ::PSSystem::DirectorMgrBase, public JKRDispose
 	// _0C     = VTBL 2 (JKRDisposer + Self)
 	// _00-_0C = PSSystem::DirectorMgrBase
 	// _0C-_24 = JKRDisposer
-	::PSSystem::DirectorCopyActor* mCopyActorList[8]; // _24
-	DirectorMgr_Scene* mOwner;                        // _44
-	BgmTrackMap mBgmTrackMap;                         // _48
+	::PSSystem::DirectorCopyActor* mCopyActorList[Director_COUNT]; // _24
+	DirectorMgr_Scene* mOwner;                                     // _44
+	BgmTrackMap mBgmTrackMap;                                      // _48
 };
 
 struct DirectorMgr_Scene_AutoBgm : public DirectorMgr_Scene {
@@ -60,6 +60,13 @@ struct DirectorMgr_Scene_AutoBgm : public DirectorMgr_Scene {
 };
 
 struct DirectorMgr_Battle : public ::PSSystem::DirectorMgrBase, public JKRDisposer {
+
+	enum DirectorType {
+		DirectorBoss_PikminAttack = 0,
+		DirectorBoss_Excite       = 1,
+		DirectorBoss_Count        = 2,
+	};
+
 	DirectorMgr_Battle();
 
 	// virtual ~DirectorMgr_Battle() { }                                            // _08 (weak)
@@ -82,6 +89,7 @@ struct DirectorMgr_2PBattle : public ::PSSystem::DirectorMgrBase, public JKRDisp
 		Director2P_OlimarIchou  = 5,
 		Director2P_LouieIchou   = 6,
 		Director2P_PikBattle    = 7,
+		Director2P_Count        = 8,
 	};
 
 	DirectorMgr_2PBattle();

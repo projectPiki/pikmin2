@@ -565,19 +565,19 @@ void checkPlayingSeqTrack(u32 playTrackNo)
 	if (data->mSequence && data->mSequence->mCreatureObj) {
 		u32 startIdx;
 		u32 cameraMax;
-		if (data->mSequence->_18 == 4) {
+		if (data->mSequence->mCameraIndex == 4) {
 			startIdx  = 0;
 			cameraMax = JAIGlobalParameter::getParamAudioCameraMax();
 		} else {
-			startIdx  = data->mSequence->_18;
-			cameraMax = data->mSequence->_18 + 1;
+			startIdx  = data->mSequence->mCameraIndex;
+			cameraMax = data->mSequence->mCameraIndex + 1;
 		}
 
 		for (u32 i = startIdx; i < cameraMax; i++) {
 			JAISound_0x34* soundObj = &data->mSequence->mSoundObj[i];
 			soundObj->_0C           = soundObj->mPosition;
 
-			PSMTXMultVec(*JAIBasic::getInterface()->mCameras[i].mMtx, data->mSequence->_3C, &soundObj->mPosition);
+			PSMTXMultVec(*JAIBasic::getInterface()->mCameras[i].mMtx, data->mSequence->mPosition, &soundObj->mPosition);
 			soundObj->mDistance
 			    = dolsqrtfull(SQUARE(soundObj->mPosition.x) + SQUARE(soundObj->mPosition.y) + SQUARE(soundObj->mPosition.z));
 
@@ -593,7 +593,7 @@ void checkPlayingSeqTrack(u32 playTrackNo)
 	}
 
 	if (data->mSequence) {
-		data->mSequence->_2C++;
+		data->mSequence->mActiveTimer++;
 	}
 
 	if (!data->mActiveTrackFlag) {

@@ -438,7 +438,7 @@ void SeqBase::init()
 {
 	if (mBmsFileName) {
 		if (SeqDataList::sInstance) {
-			mSoundInfo.mVolume.byteView[0] = SeqDataList::sInstance->getSeqVolume(mBmsFileName);
+			mSoundInfo.mVolume = SeqDataList::sInstance->getSeqVolume(mBmsFileName);
 		}
 		mSeqHeap = new SeqHeap(((int*)getFileEntry())[3], this);
 	}
@@ -703,7 +703,7 @@ void StreamBgm::setId(u32 a1) { mId = a1; }
 void StreamBgm::startSeq()
 {
 	if (StreamDataList::sInstance) {
-		mSoundInfo.mVolume.byteView[0] = StreamDataList::sInstance->getStreamVolume(mId);
+		mSoundInfo.mVolume = StreamDataList::sInstance->getStreamVolume(mId);
 	}
 	OSLockMutex(&mMutex);
 	JAIBasic::msBasic->startSoundBasic(mId, &mJaiSound, nullptr, 0, 0, &mSoundInfo);
@@ -926,7 +926,7 @@ JumpBgmPort::JumpBgmPort(JumpBgmSeq* owner)
 
 	mOwner          = owner;
 	mAvoidJumpTimer = 0;
-	_70             = 0;
+	mCurrentTrackId = 0;
 }
 
 /**
@@ -1021,7 +1021,7 @@ u16 JumpBgmPort::output()
 	}
 
 	if (track != 0xffff) {
-		_70 = track;
+		mCurrentTrackId = track;
 	}
 	return track;
 }

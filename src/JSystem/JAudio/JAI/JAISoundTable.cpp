@@ -126,13 +126,13 @@ u32 JAInter::SoundTable::getInfoFormat(u32 id)
 {
 	u32 retval = 0;
 	switch (id & JAISoundID_TypeMask) {
-	case 0x00000000:
+	case JAISoundID_Type_Se:
 		retval = mAddress[0];
 		break;
-	case 0x80000000:
+	case JAISoundID_Type_Sequence:
 		retval = mAddress[1];
 		break;
-	case 0xC0000000:
+	case JAISoundID_Type_Stream:
 		retval = mAddress[2];
 		break;
 	}

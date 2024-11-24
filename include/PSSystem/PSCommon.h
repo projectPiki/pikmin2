@@ -50,6 +50,46 @@ struct SingletonBase {
 // {
 // 	sInstance = nullptr;
 // }
+
+struct IdLink : public JSULink<IdLink> {
+	IdLink(u32 id)
+	    : JSULink(this)
+	    , mId(id)
+	{
+	}
+
+	~IdLink() { }
+
+	// _00-_10 = JSULink
+	u32 mId; // _10
+};
+
+struct IdList : public JSUList<IdLink> {
+	IdList() { }
+
+	~IdList()
+	{
+		JSULink<IdLink>* link;
+		while (link = (JSULink<IdLink>*)mHead) {
+			remove(link);
+			delete (IdLink*)link->getObjectPtr();
+		}
+	}
+
+	inline void setNextLink()
+	{
+		JUT_ASSERTLINE(210, mNextLink, "リンクがありません"); // No link
+
+		mNextLink = (PSSystem::IdLink*)mNextLink->getNext();
+		if (!mNextLink) {
+			mNextLink = (PSSystem::IdLink*)mHead;
+		}
+	}
+
+	// _00-_0C = JSUList
+	IdLink* mNextLink; // _0C
+};
+
 } // namespace PSSystem
 
 #endif
