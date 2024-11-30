@@ -119,8 +119,8 @@ void ObjSMenuMap::calcMapPos(Vector2f pos, Vector2f* outPos)
 			xOffset = (mMapTextureDimensions.x * 1400.0f) / 4705.6f;
 		}
 		Vector2f offset;
-		offset.x = 24.5f + (mMapTextureDimensions.x / 2 + pos.x * 0.058f) + xOffset;
-		offset.y = -8.85f + (mMapTextureDimensions.y / 2 + pos.y * 0.058f);
+		offset.x = 24.5f + (mMapTextureDimensions.x / 2 + pos.y * 0.058f) + xOffset;
+		offset.y = -8.85f + (mMapTextureDimensions.y / 2 + pos.x * 0.058f);
 		newPos.x += offset.x;
 		newPos.y += offset.y;
 	}

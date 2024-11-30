@@ -59,10 +59,10 @@ void TScreenProgre::setArchive(JKRArchive* arc)
 	mPaneWin00->setAlpha(0);
 
 	J2DTextBox* color = static_cast<J2DTextBox*>(E2DScreen_searchAssert(mScreenObj, 's_color'));
-	mBlinkFont[0].set(mPaneNo, color);
-	mBlinkFont[1].set(mPaneNo, color);
-	mScreenObj->addCallBackPane(mPaneYes, &mBlinkFont[0]);
-	mScreenObj->addCallBackPane(mPaneNo, &mBlinkFont[1]);
+	mBlinkFontYes.set(mPaneNo, color);
+	mBlinkFontNo.set(mPaneNo, color);
+	mScreenObj->addCallBackPane(mPaneYes, &mBlinkFontYes);
+	mScreenObj->addCallBackPane(mPaneNo, &mBlinkFontNo);
 	E2DPane_setTreeShow(mScreenObj);
 	color->hide();
 	mPane_il00->setAlpha(0);
@@ -73,8 +73,8 @@ void TScreenProgre::setArchive(JKRArchive* arc)
 	mCounterFadeinMax  = 0;
 	mCounterFadeout    = 0;
 	mCounterFadeoutMax = 0;
-	mCursor[0].setPanes(mPane_il00, mPane_il01);
-	mCursor[1].setPanes(mPane_ir00, mPane_ir01);
+	mCursor1.setPanes(mPane_il00, mPane_il01);
+	mCursor2.setPanes(mPane_ir00, mPane_ir01);
 
 	sys->heapStatusEnd("TScreenProgre::setArchive");
 }
@@ -94,20 +94,20 @@ void TScreenProgre::startScreen(s32 state, u32 timer)
 		mPaneMg02->setAlpha(0);
 		mPaneWin00->setAlpha(0);
 		if (mSelect == 1) {
-			mBlinkFont[0].enable();
-			mBlinkFont[1].setPaneColors(0);
-			mCursor[0].start();
-			mCursor[1].start();
+			mBlinkFontYes.enable();
+			mBlinkFontNo.setPaneColors(0);
+			mCursor1.start();
+			mCursor2.start();
 		} else {
-			mBlinkFont[0].setPaneColors(0);
-			mBlinkFont[1].enable();
-			mCursor[0].stop();
-			mCursor[1].stop();
+			mBlinkFontYes.setPaneColors(0);
+			mBlinkFontNo.enable();
+			mCursor1.stop();
+			mCursor2.stop();
 		}
-		mCursor[0].update();
-		mCursor[1].update();
-		mCursor[0].mCursor.create(nullptr);
-		mCursor[1].mCursor.create(nullptr);
+		mCursor1.update();
+		mCursor2.update();
+		mCursor1.mCursor.create(nullptr);
+		mCursor2.mCursor.create(nullptr);
 		break;
 	case ProgreScreen_Msg01:
 		mSelected = false;
@@ -174,8 +174,8 @@ void TScreenProgre::startState(enumState state, u32 timer)
 	mState = state;
 	switch (mState) {
 	case Progre_NULL:
-		mCursor[0].mCursor.fade();
-		mCursor[1].mCursor.fade();
+		mCursor1.mCursor.fade();
+		mCursor2.mCursor.fade();
 		break;
 	case Progre_Fadein:
 		mCounterFadein    = timer;
@@ -184,8 +184,8 @@ void TScreenProgre::startState(enumState state, u32 timer)
 	case Progre_Fadeout:
 		mCounterFadeout    = timer;
 		mCounterFadeoutMax = timer;
-		mCursor[0].mCursor.fade();
-		mCursor[1].mCursor.fade();
+		mCursor1.mCursor.fade();
+		mCursor2.mCursor.fade();
 		break;
 	}
 }
@@ -213,8 +213,8 @@ void TScreenProgre::update()
 			u8 alpha = (1.0f - calc) * 255.0f;
 			mPaneMg00->setAlpha(alpha);
 			mPaneWin00->setAlpha(alpha);
-			mCursor[0].update();
-			mCursor[1].update();
+			mCursor1.update();
+			mCursor2.update();
 			break;
 		case ProgreScreen_Msg01:
 			f32 calc2;
@@ -250,19 +250,19 @@ void TScreenProgre::update()
 				if (mController->isMoveRight()) {
 					if (mSelect == 1) {
 						mSelect = 0;
-						mBlinkFont[0].disable();
-						mBlinkFont[1].enable();
-						mCursor[0].mIsLeft = false;
-						mCursor[1].mIsLeft = false;
+						mBlinkFontYes.disable();
+						mBlinkFontNo.enable();
+						mCursor1.mIsLeft = false;
+						mCursor2.mIsLeft = false;
 						PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CURSOR, 0);
 					}
 				} else if (mController->isMoveLeft()) {
 					if (mSelect == 0) {
 						mSelect = 1;
-						mBlinkFont[0].enable();
-						mBlinkFont[1].disable();
-						mCursor[0].mIsLeft = true;
-						mCursor[1].mIsLeft = true;
+						mBlinkFontYes.enable();
+						mBlinkFontNo.disable();
+						mCursor1.mIsLeft = true;
+						mCursor2.mIsLeft = true;
 						PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CURSOR, 0);
 					}
 				} else if (mController->getButtonDown() & Controller::PRESS_A) {
@@ -270,8 +270,8 @@ void TScreenProgre::update()
 					return;
 				}
 			}
-			mCursor[0].update();
-			mCursor[1].update();
+			mCursor1.update();
+			mCursor2.update();
 			break;
 		default:
 			mSelected = true;
@@ -325,11 +325,11 @@ void TScreenProgre::draw()
 void TScreenProgre::setDecide()
 {
 	if (mSelect == 1) {
-		mBlinkFont[0].setPaneColors(1);
-		mBlinkFont[1].setPaneColors(0);
+		mBlinkFontYes.setPaneColors(1);
+		mBlinkFontNo.setPaneColors(0);
 	} else {
-		mBlinkFont[0].setPaneColors(0);
-		mBlinkFont[1].setPaneColors(1);
+		mBlinkFontYes.setPaneColors(0);
+		mBlinkFontNo.setPaneColors(1);
 	}
 	PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_DECIDE, 0);
 	mSelected = true;

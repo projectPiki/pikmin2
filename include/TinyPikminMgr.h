@@ -29,6 +29,14 @@ struct TinyPikminMgr {
 	bool _08;
 	bool mDoSlamPikmin; // _09
 
+	inline TinyPikmin* getPiki(int i)
+	{
+		if (i < sTinyPikminNum) {
+			return &mPikis[i];
+		}
+		return nullptr;
+	}
+
 	static u32 sTinyPikminNum;
 	static J2DPicture* sPikminTex[6];
 };

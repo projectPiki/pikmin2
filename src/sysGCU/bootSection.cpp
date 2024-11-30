@@ -37,8 +37,8 @@ TinyPikmin::TinyPikmin()
 {
 	mState          = 0;
 	mColor          = 0;
-	mUnused0        = 0.0f;
-	mUnused1        = 0.0f;
+	mOffsetX        = 0.0f;
+	mOffsetY        = 0.0f;
 	mPositionY      = 0.0f;
 	mScaleAnimTimer = 1.0f;
 	mWaitTimer      = 0.0f;
@@ -53,8 +53,8 @@ void TinyPikmin::init(int color, f32 delay, f32 u2, f32 x)
 {
 	mState          = INACTIVE;
 	mColor          = color;
-	mUnused0        = delay + u2;
-	mUnused1        = 166.0f;
+	mOffsetX        = delay + u2;
+	mOffsetY        = u2;
 	mPositionX      = 0.0f;
 	mPositionY      = 70.0f;
 	mScaleAnimTimer = randFloat();
@@ -114,6 +114,14 @@ void TinyPikmin::appear()
  */
 void TinyPikmin::disappear()
 {
+	// this is just guessing for sdata2 to be correct, The code prior to the TinyPikmin::init in
+	// TinyPikminMgr::init seems to belong here, but how exactly, I havent figured out
+
+	int color = 4.0f * randFloat();
+	mColor    = color;
+	color     = 5.0f * randFloat();
+	mColor    = color;
+
 	// UNUSED FUNCTION
 }
 
@@ -142,20 +150,15 @@ void TinyPikmin::update()
 			if (sTinyPikminMgr->mDoSlamPikmin && mColor == Purple && mVelocityY > 10.0f) {
 				// Trigger slam effect
 				for (int i = 0; i < TinyPikminMgr::sTinyPikminNum; i++) {
-					TinyPikmin* piki;
-					if (i < TinyPikminMgr::sTinyPikminNum) {
-						piki = &sTinyPikminMgr->mPikis[i];
-					} else {
-						piki = nullptr;
-					}
+					TinyPikmin* piki = sTinyPikminMgr->getPiki(i);
 
 					if (piki != this) {
-						Vector2f vec(piki->mVelocityX - mVelocityX, piki->mVelocityY - mVelocityY);
+						Vector2f vec(piki->mOffsetX - mOffsetX, piki->mOffsetY - mOffsetY);
 						f32 dist = _lenVec2D(vec);
 						if (dist < 300.0f) {
 							f32 x   = (1.0f - dist / 300.0f) * 20.0f;
 							f32 dir = 1.0f;
-							if (piki->mVelocityX < mVelocityX) {
+							if (piki->mOffsetX < mOffsetX) {
 								dir = -1.0f;
 							}
 							x *= dir;
@@ -170,22 +173,22 @@ void TinyPikmin::update()
 			mWaitTimer += sys->mDeltaTime;
 			if (sTinyPikminMgr->_08 && mWaitTimer > 1.0f) {
 				mState     = FALLING;
-				mVelocityY = randFloat() * -4.0f + 4.0f;
+				mVelocityY = randFloat() * -4.0f + -4.0f;
 			}
 			if (randFloat() > 0.9f) {
 				f32 weight;
 				switch (mColor) {
-				case Purple:
-					weight = 0.5f;
-					break;
 				case White:
 					weight = 2.0f;
+					break;
+				case Purple:
+					weight = 0.5f;
 					break;
 				default:
 					weight = 1.0f;
 					break;
 				}
-				mVelocityY = weight * randFloat() * -4.0f + -1.0f;
+				mVelocityY = randWeightFloat(weight) * -4.0f + -1.0f;
 			}
 		}
 		break;
@@ -232,13 +235,13 @@ void TinyPikmin::draw()
 	if (mState != INACTIVE) {
 		f32 xScale, yScale;
 		if (mPositionY < 0.0f) {
-			yScale = FABS(mPositionY / 10.0f);
-			if (yScale > 1.0f) {
-				yScale = 1.0f;
+			xScale = FABS(mPositionY / 10.0f);
+			if (xScale > 1.0f) {
+				xScale = 1.0f;
 			}
 
-			yScale *= xScale * 0.2f + 1.0f;
-			xScale = (1.0f - xScale) * 0.2f + 0.8f;
+			yScale = (1.0f - xScale) * 0.2f + 0.8f;
+			xScale = xScale * 0.2f + 1.0f;
 		} else {
 			yScale = 1.0f;
 			xScale = 1.0f;
@@ -247,8 +250,8 @@ void TinyPikmin::draw()
 		f32 angle = mScaleAnimTimer * TAU;
 		xScale *= sinf(angle) * 0.1f + 1.0f;     // [0.9, 1.1]
 		yScale *= -(sinf(angle) * 0.08f - 1.0f); // [1.08, 0.92]
-		f32 yPosition = mVelocityY + mPositionY;
-		f32 xPosition = mVelocityX + mPositionX;
+		f32 yPosition = mOffsetY + mPositionY;
+		f32 xPosition = mOffsetX + mPositionX;
 		drawPikmin(xScale, yScale, xPosition, yPosition);
 	}
 }
@@ -262,7 +265,7 @@ void TinyPikmin::drawPikmin(f32 xScale, f32 yScale, f32 xPosition, f32 yPosition
 	J2DPicture* pic = sTinyPikminMgr->sPikminTex[mColor];
 	pic->updateScale(xScale, yScale);
 	pic->rotate(pic->getWidth() / 2, pic->getHeight() / 2, J2DROTATE_Z, mAngle);
-	pic->draw(pic->getWidth() / 2 - xPosition, pic->getHeight() / 2 - yPosition, false, false, false);
+	pic->draw(-(pic->getWidth() / 2 - xPosition), yPosition - pic->getHeight(), false, false, false);
 }
 
 /**
@@ -326,19 +329,18 @@ void TinyPikminMgr::init()
 	f32 interval = 1.5f / sTinyPikminNum;
 	f32 maxTime  = 274.0f / sTinyPikminNum;
 
-	// !!! timeValues doesn't ever get used. It's created to be ignored. (in TinyPikmin::init as argument 3)
-
 	// Create a list of random time values
 	f32* timeValues = new (-0x20) f32[sTinyPikminNum];
 	for (int i = 0; i < sTinyPikminNum; i++) {
-		timeValues[i] = (maxTime * (f32)i) + (0.75f * maxTime * randFloat() - 0.5f);
+		timeValues[i] = (maxTime * i) + (0.75f * (maxTime * (randFloat() - 0.5f)));
 	}
 
 	// Randomly swap around times
 	for (int i = 0; i < sTinyPikminNum; i++) {
-		int id          = randInt(sTinyPikminNum);
-		f32 temp        = timeValues[id];
-		int id2         = randInt(sTinyPikminNum);
+		int id   = randInt(sTinyPikminNum);
+		f32 temp = timeValues[id];
+		int id2  = randInt(sTinyPikminNum);
+
 		timeValues[id]  = timeValues[id2];
 		timeValues[id2] = temp;
 	}
@@ -353,12 +355,14 @@ void TinyPikminMgr::init()
 
 	f32 delay = maxTime * 0.5f + 175.0f;
 	for (int i = 0; i < sTinyPikminNum; i++) {
+
+		// these rand calls belong in TinyPikmin::disappear based on sdata2, but I dont know how that works yet
 		if (!mDoSlamPikmin || i == sTinyPikminNum - 1) {
 			color = TinyPikmin::Purple;
 		} else if (!changecolor) {
-			color = randInt(4);
+			color = 4.0f * randFloat();
 		} else if (!changecolor) {
-			color = randInt(5);
+			color = 5.0f * randFloat();
 		}
 
 		f32 x;
@@ -368,7 +372,8 @@ void TinyPikminMgr::init()
 			x = ((f32)i * interval) + (interval * randFloat());
 		}
 
-		mPikis[i].init(color, delay, timeValues[i], x);
+		// the + 166.0f is definitely wrong, but the value has to go somewhere around here
+		mPikis[i].init(color, delay, timeValues[i] + 166.0f, x);
 	}
 
 	delete[] timeValues;
@@ -423,7 +428,7 @@ void TinyPikminMgr::disappear()
 BootSection::BootSection(JKRHeap* heap)
     : BaseHIOSection(heap)
     , mStateID(SID_NullState)
-    , mChangeStateID(SID_FirstState)
+    , mChangeStateID(SID_NullState)
     , mFadeTimer(0.0f)
     , mNintendoLogoTexture(nullptr)
     , mController(nullptr)
@@ -479,7 +484,7 @@ void BootSection::init() { }
 void BootSection::loadBootResource()
 {
 	mDisplayHeap->becomeCurrentHeap();
-	JKRArchive* arc = JKRMountArchive("/user/yamashita/arc/boot_us.szs", JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
+	JKRArchive* arc = JKRArchive::mount("/user/yamashita/arc/boot_us.szs", JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
 	P2ASSERTLINE(1025, arc);
 
 	ResTIMG* file = JKRGetImageResource("/data/timg/nintendo_376x104.bti");
@@ -567,7 +572,7 @@ void BootSection::doDraw(Graphics& gfx)
 	case SID_LoadResourceFirst:
 	case SID_LoadMemoryCard:
 	case SID_InitNintendoLogo:
-	case SID_Unused3:
+	case SID_FadeInNintendoLogo:
 		drawEpilepsy(gfx); // drawNintendoLogo in USA Demo 1
 		break;
 	case SID_NintendoLogo:
@@ -663,127 +668,23 @@ void BootSection::drawDolbyLogo(Graphics& gfx)
  */
 void BootSection::drawEpilepsy(Graphics& gfx)
 {
-	// uhhhh something like this probably (demo 1 moment)
+	// Note: This function is completely missing in all(?) versions of the game besides USA final
+
 	gfx.mOrthoGraph.setPort();
 
 	J2DPicture pic(mWarningTexture);
-	pic.draw(189.0f, 150.0f, -2.5f, -3.5f, false, false, false);
+	pic.draw(0.0f, 0.0f, 608.0f, 448.0f, false, false, false);
 
-	f32 calc = sinf(1.00f);
-	u8 alpha = calc * 255.0f;
+	if (mFadeTimer > 1.5f) {
+		JUtility::TColor color(255, 255, 255, 255);
 
-	J2DPicture pic2(mWarningPressStartTexture);
-	JUtility::TColor color(255, 255, 255, alpha);
-	pic2.setWhite(color);
-	pic2.draw(189.0f, 150.0f, 232.0f, 112.0f, false, false, false);
-	/*
-	stwu     r1, -0x300(r1)
-	mflr     r0
-	stw      r0, 0x304(r1)
-	stw      r31, 0x2fc(r1)
-	mr       r31, r3
-	addi     r3, r4, 0xbc
-	lwz      r12, 0xbc(r4)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x54(r31)
-	addi     r3, r1, 0x178
-	bl       __ct__10J2DPictureFP10JUTTexture
-	lfs      f1, lbl_805209A0@sda21(r2)
-	addi     r3, r1, 0x178
-	lfs      f3, lbl_80520A70@sda21(r2)
-	li       r4, 0
-	fmr      f2, f1
-	lfs      f4, lbl_80520A08@sda21(r2)
-	li       r5, 0
-	li       r6, 0
-	bl       draw__10J2DPictureFffffbbb
-	lfs      f1, 0x50(r31)
-	lfs      f0, lbl_805209B8@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_80448FEC
-	fsubs    f1, f1, f0
-	li       r0, 0xff
-	lfs      f2, lbl_80520A14@sda21(r2)
-	lfs      f0, lbl_805209A0@sda21(r2)
-	fmuls    f1, f2, f1
-	stb      r0, 0xc(r1)
-	stb      r0, 0xd(r1)
-	fcmpo    cr0, f1, f0
-	stb      r0, 0xe(r1)
-	stb      r0, 0xf(r1)
-	bge      lbl_80448F1C
-	fneg     f1, f1
+		f32 calc = (1.0f - cosf(TAU * (mFadeTimer - 1.5f))) * 127.5f;
+		color.a  = ROUND_F32_TO_U8(calc);
 
-lbl_80448F1C:
-	lfs      f0, lbl_80520A20@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	lfs      f2, lbl_805209A4@sda21(r2)
-	fmuls    f1, f1, f0
-	lfs      f3, lbl_80520A74@sda21(r2)
-	lfs      f0, lbl_805209A0@sda21(r2)
-	fctiwz   f1, f1
-	stfd     f1, 0x2e0(r1)
-	lwz      r0, 0x2e4(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	add      r3, r3, r0
-	lfs      f1, 4(r3)
-	fsubs    f1, f2, f1
-	fmuls    f1, f3, f1
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_80448F70
-	lfs      f0, lbl_805209F8@sda21(r2)
-	fadds    f0, f0, f1
-	b        lbl_80448F78
-
-lbl_80448F70:
-	lfs      f0, lbl_805209F8@sda21(r2)
-	fsubs    f0, f1, f0
-
-lbl_80448F78:
-	fctiwz   f0, f0
-	lwz      r4, 0x58(r31)
-	addi     r3, r1, 0x10
-	stfd     f0, 0x2e8(r1)
-	lwz      r0, 0x2ec(r1)
-	stb      r0, 0xf(r1)
-	bl       __ct__10J2DPictureFP10JUTTexture
-	lwz      r0, 0xc(r1)
-	addi     r3, r1, 0x10
-	lfs      f1, lbl_805209A0@sda21(r2)
-	li       r4, 0
-	stw      r0, 8(r1)
-	li       r5, 0
-	lfs      f2, lbl_80520A04@sda21(r2)
-	li       r6, 0
-	lbz      r9, 8(r1)
-	lbz      r8, 9(r1)
-	lbz      r7, 0xa(r1)
-	lbz      r0, 0xb(r1)
-	stb      r9, 0x158(r1)
-	lfs      f3, lbl_80520A70@sda21(r2)
-	stb      r8, 0x159(r1)
-	lfs      f4, lbl_80520A78@sda21(r2)
-	stb      r7, 0x15a(r1)
-	stb      r0, 0x15b(r1)
-	bl       draw__10J2DPictureFffffbbb
-	addi     r3, r1, 0x10
-	li       r4, -1
-	bl       __dt__10J2DPictureFv
-
-lbl_80448FEC:
-	addi     r3, r1, 0x178
-	li       r4, -1
-	bl       __dt__10J2DPictureFv
-	lwz      r0, 0x304(r1)
-	lwz      r31, 0x2fc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x300
-	blr
-	*/
+		J2DPicture pic2(mWarningPressStartTexture);
+		pic2.setWhite(color);
+		pic2.draw(0.0f, 360.0f, 608.0f, 48.0f, false, false, false);
+	}
 }
 
 /**
@@ -810,10 +711,6 @@ bool BootSection::doUpdate()
 	case SID_LoadMemoryCard:
 		updateLoadMemoryCard();
 		break;
-	case SID_InitNintendoLogo:
-		// setMode(SID_NINTENDO_LOGO);
-		// mPikiMgr->appear();
-		break;
 	case SID_NintendoLogo:
 		updateNintendoLogo();
 		break;
@@ -826,6 +723,17 @@ bool BootSection::doUpdate()
 	case SID_UpdateSetInterlace:
 		fader = mDisplay->mFader;
 		switch (fader->mStatus) {
+		case JUTFader::Status_In:
+			mFadeTimer += sys->mDeltaTime;
+			if (mController->getButtonDown() & Controller::PRESS_A || mFadeTimer > 2.0f) {
+				gPikmin2AramMgr->setLoadPermission(false);
+			}
+			if (mFadeTimer > 1.0f && !waitLoadResource()) {
+				if (mProgressiveScreen->fadeout(getFadeSpeed())) {
+					mDisplay->mFader->startFadeOut(getFadeSpeed());
+				}
+			}
+			break;
 		case JUTFader::Status_Out:
 			if (mProgressiveScreen->isFinish()) {
 				mFadeTimer = 0.0f;
@@ -837,6 +745,11 @@ bool BootSection::doUpdate()
 				sys->changeRenderMode(System::RM_NTSC_Progressive);
 			}
 			break;
+		}
+		break;
+	case SID_SetInterlace:
+		fader = mDisplay->mFader;
+		switch (fader->mStatus) {
 		case JUTFader::Status_In:
 			mFadeTimer += sys->mDeltaTime;
 			if (mController->getButtonDown() & Controller::PRESS_A || mFadeTimer > 2.0f) {
@@ -844,15 +757,10 @@ bool BootSection::doUpdate()
 			}
 			if (mFadeTimer > 1.0f && !waitLoadResource()) {
 				if (mProgressiveScreen->fadeout(getFadeSpeed())) {
-					fader->startFadeOut(getFadeSpeed());
+					mDisplay->mFader->startFadeOut(getFadeSpeed());
 				}
 			}
 			break;
-		}
-		break;
-	case SID_SetInterlace:
-		fader = mDisplay->mFader;
-		switch (fader->mStatus) {
 		case JUTFader::Status_Out:
 			if (mProgressiveScreen->isFinish()) {
 				mFadeTimer = 0.0f;
@@ -860,17 +768,43 @@ bool BootSection::doUpdate()
 				sys->changeRenderMode(System::RM_NTSC_Standard);
 			}
 			break;
+		}
+		break;
+	case SID_InitNintendoLogo:
+		if ((mController->getButton() & Controller::PRESS_B) && VIGetDTVStatus() == 1) {
+			mDoOpenProgressive = true;
+		}
+		fader = mDisplay->mFader;
+		switch (fader->mStatus) {
+		case JUTFader::Status_Out:
+			fader->startFadeIn(0.5f / sys->getDeltaTime());
+			mFadeTimer = 0.0f;
+			break;
 		case JUTFader::Status_In:
+			bool dofadeout = false;
 			mFadeTimer += sys->mDeltaTime;
-			if (mController->getButtonDown() & Controller::PRESS_A || mFadeTimer > 2.0f) {
-				gPikmin2AramMgr->setLoadPermission(false);
+			if (mController->getButtonDown() == 0 || mFadeTimer > 2.0f) {
+				PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_DECIDE, 0);
+				dofadeout = true;
+			} else if (mFadeTimer > 60.0f) {
+				dofadeout = true;
 			}
-			if (mFadeTimer > 1.0f && !waitLoadResource()) {
-				if (mProgressiveScreen->fadeout(getFadeSpeed())) {
-					fader->startFadeOut(getFadeSpeed());
-				}
+
+			if (dofadeout) {
+				mDisplay->mFader->startFadeOut(getFadeSpeed());
+				setMode(SID_FadeInNintendoLogo);
 			}
 			break;
+		}
+		break;
+	case SID_FadeInNintendoLogo:
+		if (mDisplay->mFader->mStatus == 0) {
+			setMode(SID_NintendoLogo);
+			mPikiMgr->appear();
+
+			PSM::Scene_Global* scene = static_cast<PSM::Scene_Global*>(PSMGetSceneMgrCheck()->mScenes);
+			P2ASSERTLINE(1638, scene);
+			scene->startGlobalStream(P2_STREAM_SOUND_ID(PSSTR_PIKMIN_GREET));
 		}
 		break;
 	case SID_DolbyLogo:
@@ -903,523 +837,6 @@ bool BootSection::doUpdate()
 	}
 	BaseHIOSection::doUpdate();
 	return mIsMainActive;
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stmw     r27, 0x1c(r1)
-	mr       r31, r3
-	lis      r3, lbl_8049AF08@ha
-	li       r29, 0
-	mr       r27, r29
-	addi     r30, r3, lbl_8049AF08@l
-	lwz      r28, 0xe0(r31)
-	b        lbl_8044904C
-
-lbl_80449038:
-	lwz      r0, 0(r28)
-	add      r3, r0, r27
-	bl       update__10TinyPikminFv
-	addi     r27, r27, 0x34
-	addi     r29, r29, 1
-
-lbl_8044904C:
-	lwz      r0, sTinyPikminNum__13TinyPikminMgr@sda21(r13)
-	cmplw    r29, r0
-	blt      lbl_80449038
-	lwz      r0, 0x48(r31)
-	cmplwi   r0, 0xa
-	bgt      lbl_8044963C
-	lis      r3, lbl_804ED03C@ha
-	slwi     r0, r0, 2
-	addi     r3, r3, lbl_804ED03C@l
-	lwzx     r0, r3, r0
-	mtctr    r0
-	bctr
-
-lbl_8044907C:
-	mr       r3, r31
-	bl       updateLoadResourceFirst__11BootSectionFv
-	b        lbl_8044963C
-
-lbl_80449088:
-	mr       r3, r31
-	bl       updateLoadMemoryCard__11BootSectionFv
-	b        lbl_8044963C
-
-lbl_80449094:
-	mr       r3, r31
-	bl       updateNintendoLogo__11BootSectionFv
-	b        lbl_8044963C
-
-lbl_804490A0:
-	mr       r3, r31
-	bl       updateProgressive__11BootSectionFv
-	b        lbl_8044963C
-
-lbl_804490AC:
-	mr       r3, r31
-	bl       updateWaitProgressive__11BootSectionFv
-	b        lbl_8044963C
-
-lbl_804490B8:
-	lwz      r3, 0x24(r31)
-	lwz      r3, 4(r3)
-	lwz      r0, 4(r3)
-	cmpwi    r0, 1
-	beq      lbl_804490DC
-	bge      lbl_8044963C
-	cmpwi    r0, 0
-	bge      lbl_804491D8
-	b        lbl_8044963C
-
-lbl_804490DC:
-	lwz      r3, sys@sda21(r13)
-	lfs      f1, 0x50(r31)
-	lfs      f0, 0x54(r3)
-	fadds    f0, f1, f0
-	stfs     f0, 0x50(r31)
-	lwz      r3, 0xd4(r31)
-	lwz      r0, 0x1c(r3)
-	rlwinm.  r0, r0, 0, 0x17, 0x17
-	bne      lbl_80449110
-	lfs      f1, 0x50(r31)
-	lfs      f0, lbl_805209B0@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_8044911C
-
-lbl_80449110:
-	lwz      r3, gPikmin2AramMgr@sda21(r13)
-	li       r4, 0
-	bl       setLoadPermission__Q211Pikmin2ARAM3MgrFb
-
-lbl_8044911C:
-	lfs      f1, 0x50(r31)
-	lfs      f0, lbl_805209A4@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_8044963C
-	mr       r3, r31
-	bl       waitLoadResource__11BootSectionFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8044963C
-	lwz      r3, sys@sda21(r13)
-	lfs      f2, lbl_805209F8@sda21(r2)
-	lfs      f1, 0x54(r3)
-	lfs      f0, lbl_805209A0@sda21(r2)
-	fdivs    f1, f2, f1
-	lwz      r3, 0xd8(r31)
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_80449168
-	fadds    f0, f2, f1
-	b        lbl_8044916C
-
-lbl_80449168:
-	fsubs    f0, f1, f2
-
-lbl_8044916C:
-	fctiwz   f0, f0
-	stfd     f0, 8(r1)
-	lwz      r4, 0xc(r1)
-	bl       fadeout__Q23ebi13TScreenProgreFUl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8044963C
-	lwz      r4, sys@sda21(r13)
-	lwz      r3, 0x24(r31)
-	lfs      f2, lbl_805209F8@sda21(r2)
-	lfs      f1, 0x54(r4)
-	lfs      f0, lbl_805209A0@sda21(r2)
-	fdivs    f1, f2, f1
-	lwz      r3, 4(r3)
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_804491B4
-	fadds    f0, f2, f1
-	b        lbl_804491B8
-
-lbl_804491B4:
-	fsubs    f0, f1, f2
-
-lbl_804491B8:
-	fctiwz   f0, f0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	stfd     f0, 8(r1)
-	lwz      r4, 0xc(r1)
-	mtctr    r12
-	bctrl
-	b        lbl_8044963C
-
-lbl_804491D8:
-	lwz      r3, 0xd8(r31)
-	bl       isFinish__Q23ebi13TScreenProgreFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8044963C
-	lfs      f0, lbl_805209A0@sda21(r2)
-	mr       r3, r31
-	li       r4, 6
-	stfs     f0, 0x50(r31)
-	bl       setMode__11BootSectionFi
-	li       r3, 1
-	bl       VISetBlack
-	bl       VIFlush
-	bl       VIWaitForRetrace
-	bl       VIWaitForRetrace
-	lwz      r3, sys@sda21(r13)
-	li       r4, 1
-	bl       changeRenderMode__6SystemFQ26System11ERenderMode
-	b        lbl_8044963C
-
-lbl_80449220:
-	lwz      r3, 0x24(r31)
-	lwz      r3, 4(r3)
-	lwz      r0, 4(r3)
-	cmpwi    r0, 1
-	beq      lbl_80449244
-	bge      lbl_8044963C
-	cmpwi    r0, 0
-	bge      lbl_80449340
-	b        lbl_8044963C
-
-lbl_80449244:
-	lwz      r3, sys@sda21(r13)
-	lfs      f1, 0x50(r31)
-	lfs      f0, 0x54(r3)
-	fadds    f0, f1, f0
-	stfs     f0, 0x50(r31)
-	lwz      r3, 0xd4(r31)
-	lwz      r0, 0x1c(r3)
-	rlwinm.  r0, r0, 0, 0x17, 0x17
-	bne      lbl_80449278
-	lfs      f1, 0x50(r31)
-	lfs      f0, lbl_805209B0@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_80449284
-
-lbl_80449278:
-	lwz      r3, gPikmin2AramMgr@sda21(r13)
-	li       r4, 0
-	bl       setLoadPermission__Q211Pikmin2ARAM3MgrFb
-
-lbl_80449284:
-	lfs      f1, 0x50(r31)
-	lfs      f0, lbl_805209A4@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_8044963C
-	mr       r3, r31
-	bl       waitLoadResource__11BootSectionFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8044963C
-	lwz      r3, sys@sda21(r13)
-	lfs      f2, lbl_805209F8@sda21(r2)
-	lfs      f1, 0x54(r3)
-	lfs      f0, lbl_805209A0@sda21(r2)
-	fdivs    f1, f2, f1
-	lwz      r3, 0xd8(r31)
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_804492D0
-	fadds    f0, f2, f1
-	b        lbl_804492D4
-
-lbl_804492D0:
-	fsubs    f0, f1, f2
-
-lbl_804492D4:
-	fctiwz   f0, f0
-	stfd     f0, 8(r1)
-	lwz      r4, 0xc(r1)
-	bl       fadeout__Q23ebi13TScreenProgreFUl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8044963C
-	lwz      r4, sys@sda21(r13)
-	lwz      r3, 0x24(r31)
-	lfs      f2, lbl_805209F8@sda21(r2)
-	lfs      f1, 0x54(r4)
-	lfs      f0, lbl_805209A0@sda21(r2)
-	fdivs    f1, f2, f1
-	lwz      r3, 4(r3)
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_8044931C
-	fadds    f0, f2, f1
-	b        lbl_80449320
-
-lbl_8044931C:
-	fsubs    f0, f1, f2
-
-lbl_80449320:
-	fctiwz   f0, f0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	stfd     f0, 8(r1)
-	lwz      r4, 0xc(r1)
-	mtctr    r12
-	bctrl
-	b        lbl_8044963C
-
-lbl_80449340:
-	lwz      r3, 0xd8(r31)
-	bl       isFinish__Q23ebi13TScreenProgreFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8044963C
-	lfs      f0, lbl_805209A0@sda21(r2)
-	mr       r3, r31
-	li       r4, 9
-	stfs     f0, 0x50(r31)
-	bl       setMode__11BootSectionFi
-	lwz      r3, sys@sda21(r13)
-	li       r4, 0
-	bl       changeRenderMode__6SystemFQ26System11ERenderMode
-	b        lbl_8044963C
-
-lbl_80449374:
-	lwz      r3, 0xd4(r31)
-	lwz      r0, 0x18(r3)
-	rlwinm.  r0, r0, 0, 0x16, 0x16
-	beq      lbl_80449398
-	bl       VIGetDTVStatus
-	cmplwi   r3, 1
-	bne      lbl_80449398
-	li       r0, 1
-	stb      r0, 0xdd(r31)
-
-lbl_80449398:
-	lwz      r3, 0x24(r31)
-	lwz      r3, 4(r3)
-	lwz      r0, 4(r3)
-	cmpwi    r0, 1
-	beq      lbl_804493F4
-	bge      lbl_8044963C
-	cmpwi    r0, 0
-	bge      lbl_804493BC
-	b        lbl_8044963C
-
-lbl_804493BC:
-	lwz      r4, sys@sda21(r13)
-	lwz      r12, 0(r3)
-	lfs      f1, lbl_805209F8@sda21(r2)
-	lfs      f0, 0x54(r4)
-	lwz      r12, 0xc(r12)
-	fdivs    f0, f1, f0
-	fctiwz   f0, f0
-	stfd     f0, 8(r1)
-	lwz      r4, 0xc(r1)
-	mtctr    r12
-	bctrl
-	lfs      f0, lbl_805209A0@sda21(r2)
-	stfs     f0, 0x50(r31)
-	b        lbl_8044963C
-
-lbl_804493F4:
-	lwz      r3, sys@sda21(r13)
-	li       r4, 0
-	lfs      f1, 0x50(r31)
-	lfs      f0, 0x54(r3)
-	fadds    f0, f1, f0
-	stfs     f0, 0x50(r31)
-	lwz      r3, 0xd4(r31)
-	lwz      r0, 0x1c(r3)
-	rotlwi.  r0, r0, 0
-	beq      lbl_80449444
-	lfs      f1, 0x50(r31)
-	lfs      f0, lbl_805209B8@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_80449444
-	lwz      r3, spSysIF__8PSSystem@sda21(r13)
-	li       r4, 0x1800
-	li       r5, 0
-	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-	li       r4, 1
-	b        lbl_80449458
-
-lbl_80449444:
-	lfs      f1, 0x50(r31)
-	lfs      f0, zz_80520a7c@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_80449458
-	li       r4, 1
-
-lbl_80449458:
-	clrlwi.  r0, r4, 0x18
-	beq      lbl_8044963C
-	lwz      r4, sys@sda21(r13)
-	lwz      r3, 0x24(r31)
-	lfs      f2, lbl_805209F8@sda21(r2)
-	lfs      f1, 0x54(r4)
-	lfs      f0, lbl_805209A0@sda21(r2)
-	fdivs    f1, f2, f1
-	lwz      r3, 4(r3)
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_80449490
-	fadds    f0, f2, f1
-	b        lbl_80449494
-
-lbl_80449490:
-	fsubs    f0, f1, f2
-
-lbl_80449494:
-	fctiwz   f0, f0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	stfd     f0, 8(r1)
-	lwz      r4, 0xc(r1)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	li       r4, 3
-	bl       setMode__11BootSectionFi
-	b        lbl_8044963C
-
-lbl_804494C0:
-	lwz      r3, 0x24(r31)
-	lwz      r3, 4(r3)
-	lwz      r0, 4(r3)
-	cmpwi    r0, 0
-	bne      lbl_8044963C
-	mr       r3, r31
-	li       r4, 4
-	bl       setMode__11BootSectionFi
-	li       r4, 0
-	lwz      r5, 0xe0(r31)
-	lfs      f0, lbl_805209A0@sda21(r2)
-	mr       r7, r4
-	li       r3, 1
-	b        lbl_8044951C
-
-lbl_804494F8:
-	lwz      r0, 0(r5)
-	add      r6, r0, r7
-	lwz      r0, 0(r6)
-	cmpwi    r0, 1
-	beq      lbl_80449514
-	stfs     f0, 0x20(r6)
-	stw      r3, 0(r6)
-
-lbl_80449514:
-	addi     r7, r7, 0x34
-	addi     r4, r4, 1
-
-lbl_8044951C:
-	lwz      r0, sTinyPikminNum__13TinyPikminMgr@sda21(r13)
-	cmplw    r4, r0
-	blt      lbl_804494F8
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_80449548
-	addi     r3, r30, 0x1ec
-	addi     r5, r30, 0x1c
-	li       r4, 0x1d3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80449548:
-	lwz      r28, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r28, 0
-	bne      lbl_80449568
-	addi     r3, r30, 0x1ec
-	addi     r5, r30, 0x1c
-	li       r4, 0x1dc
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80449568:
-	lwz      r27, 4(r28)
-	cmplwi   r27, 0
-	bne      lbl_80449588
-	addi     r3, r30, 0xc
-	addi     r5, r30, 0x1c
-	li       r4, 0x666
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80449588:
-	lis      r4, 0xC001101F@ha
-	mr       r3, r27
-	addi     r4, r4, 0xC001101F@l
-	bl       startGlobalStream__Q23PSM12Scene_GlobalFUl
-	b        lbl_8044963C
-
-lbl_8044959C:
-	lwz      r3, 0x24(r31)
-	lwz      r3, 4(r3)
-	lwz      r0, 4(r3)
-	cmpwi    r0, 1
-	beq      lbl_804495F8
-	bge      lbl_8044963C
-	cmpwi    r0, 0
-	bge      lbl_804495C0
-	b        lbl_8044963C
-
-lbl_804495C0:
-	lwz      r4, sys@sda21(r13)
-	lwz      r12, 0(r3)
-	lfs      f1, lbl_805209F8@sda21(r2)
-	lfs      f0, 0x54(r4)
-	lwz      r12, 0xc(r12)
-	fdivs    f0, f1, f0
-	fctiwz   f0, f0
-	stfd     f0, 8(r1)
-	lwz      r4, 0xc(r1)
-	mtctr    r12
-	bctrl
-	lfs      f0, lbl_805209A0@sda21(r2)
-	stfs     f0, 0x50(r31)
-	b        lbl_8044963C
-
-lbl_804495F8:
-	lwz      r3, sys@sda21(r13)
-	lfs      f2, 0x50(r31)
-	lfs      f1, 0x54(r3)
-	lfs      f0, lbl_805209A4@sda21(r2)
-	fadds    f1, f2, f1
-	stfs     f1, 0x50(r31)
-	lfs      f1, 0x50(r31)
-	fcmpo    cr0, f1, f0
-	ble      lbl_8044963C
-	mr       r3, r31
-	li       r4, 0xa
-	bl       setMode__11BootSectionFi
-	b        lbl_8044963C
-
-lbl_8044962C:
-	li       r0, 0
-	lfs      f0, lbl_805209F8@sda21(r2)
-	stb      r0, 0x34(r31)
-	stfs     f0, 0x30(r31)
-
-lbl_8044963C:
-	lbz      r0, 0xdc(r31)
-	cmplwi   r0, 0
-	beq      lbl_80449680
-	lwz      r3, 0xd8(r31)
-	cmplwi   r3, 0
-	beq      lbl_80449658
-	bl       update__Q23ebi13TScreenProgreFv
-
-lbl_80449658:
-	lwz      r3, sys@sda21(r13)
-	lwz      r3, 0x5c(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, particle2dMgr@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_80449680
-	bl       update__14TParticle2dMgrFv
-
-lbl_80449680:
-	mr       r3, r31
-	bl       doUpdate__Q24Game14BaseHIOSectionFv
-	lbz      r3, 0x34(r31)
-	lmw      r27, 0x1c(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /**
@@ -1478,10 +895,10 @@ void BootSection::updateNintendoLogo()
 {
 	int lastMode = mStateID;
 	if (!Game::gGameConfig.mParms.mNintendoVersion.mData && sys->mRenderMode != System::RM_NTSC_Progressive) {
-		if ((OSGetProgressiveMode() == 1 || mController->getButton() & Controller::PRESS_B) && VIGetDTVStatus() == 1) {
+		if ((OSGetProgressiveMode() == OS_PROGRESSIVE_MODE_ON || mController->getButton() & Controller::PRESS_B) && VIGetDTVStatus() == 1) {
 			mDoOpenProgressive = true;
 		} else if (VIGetDTVStatus() != 1) {
-			OSSetProgressiveMode(0);
+			OSSetProgressiveMode(OS_PROGRESSIVE_MODE_OFF);
 		}
 	}
 
@@ -1510,9 +927,8 @@ void BootSection::updateNintendoLogo()
 			}
 		} else {
 			setMode(mChangeStateID);
-			mFadeTimer                 = 0.0f;
-			ebi::TScreenProgre* screen = mProgressiveScreen;
-			screen->startScreen(0, getFadeSpeed());
+			mFadeTimer = 0.0f;
+			mProgressiveScreen->startScreen(0, getFadeSpeed());
 			mProgressiveScreen->mSelect = 1;
 		}
 	}

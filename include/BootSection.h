@@ -11,8 +11,8 @@
 #define NINTENDOLOGO_HEIGHT 104.0f
 
 // Nintendo logo is blue in japanese, red elsewhere
-#define NINTENDOLOGO_COLOR_JP (0, 70, 255, 255)
-#define NINTENDOLOGO_COLOR_US (220, 0, 0, 255)
+#define NINTENDOLOGO_COLOR_JP 0, 70, 255, 255
+#define NINTENDOLOGO_COLOR_US 220, 0, 0, 255
 
 #define DOLBYLOGO_XPOS   189.0f
 #define DOLBYLOGO_YPOS   150.0f
@@ -51,7 +51,7 @@ struct BootSection : public Game::BaseHIOSection {
 		SID_LoadResourceFirst     = 0,  /**< State ID for loading resources first */
 		SID_LoadMemoryCard        = 1,  /**< State ID for loading memory card */
 		SID_InitNintendoLogo      = 2,  /**< State ID for initializing Nintendo logo */
-		SID_Unused3               = 3,  /**< Unused state ID */
+		SID_FadeInNintendoLogo    = 3,  /**< State ID for fade in Nintendo Logo */
 		SID_NintendoLogo          = 4,  /**< State ID for displaying Nintendo logo */
 		SID_WaitProgressive       = 5,  /**< State ID for waiting for progressive scan */
 		SID_UpdateWaitProgressive = 6,  /**< State ID for updating wait for progressive scan */
