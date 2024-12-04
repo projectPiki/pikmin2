@@ -129,7 +129,6 @@ struct Item : public FSMItem<Item, FSM, State> {
 	}
 
 	virtual void onInit(CreatureInitArg* initArg);            // _30
-	virtual bool isCollisionFlick();                          // _B0 (weak)
 	virtual bool ignoreAtari(Creature* toIgnore);             // _190
 	virtual void doAI();                                      // _1C8
 	virtual bool interactFlockAttack(InteractFlockAttack&);   // _1EC

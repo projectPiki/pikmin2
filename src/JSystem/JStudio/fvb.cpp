@@ -146,8 +146,6 @@ void TObject::prepare(const JStudio::fvb::data::TParse_TBlock& block, JStudio::f
 			pfvaInterpolate->interpolate_set(interp);
 
 		} break;
-		default:
-			break;
 		}
 		pData = dat.mNext;
 	}
@@ -394,52 +392,16 @@ void TObject_composite::prepare_data_(const data::TParse_TParagraph::TData& rDat
 		JStudio::fvb::data::TEComposite _00;
 		const void* _04;
 	} unkOperation;
-	// JUT_ASSERT(rData.u32Type==data::PARAGRAPH_DATA);
 
 	u32 u32Size = rData.mSize;
 
-	const void* pControl_ = rData.mContent;
-
-	// JGADGET_ASSERTWARN(u32Size==8);
-	// JUT_ASSERT(pControl_!=0);
-
+	const void* pControl_             = rData.mContent;
 	const unkOperation* content       = (const unkOperation*)(pControl_);
 	JStudio::fvb::data::TEComposite v = content->_00;
 	const CompositeOperation* res     = getCompositeOperation_(v);
 	GetCompositeFunc pfvaRange        = res->mGetFunc;
-	// JUT_ASSERT(pfvaRange!=NULL);
 
 	mSpecFV.data_set(res->mSetFunc, pfvaRange(&content->_04));
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lwz       r5, 0x8(r4)
-	  lis       r4, 0x8047
-	  stw       r0, 0x24(r1)
-	  addi      r0, r4, 0x3300
-	  addi      r4, r5, 0x4
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  mr        r30, r3
-	  addi      r3, r1, 0x8
-	  lwz       r6, 0x0(r5)
-	  rlwinm    r5,r6,3,0,28
-	  add       r31, r0, r5
-	  lwz       r12, 0x4(r31)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x0(r31)
-	  stw       r0, 0x30(r30)
-	  lfd       f0, 0x8(r1)
-	  stfd      f0, 0x38(r30)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
 }
 
 /**
@@ -729,92 +691,6 @@ bool TParse::parseBlock_next(const void** dataPtr, u32* size, u32 flag)
 	object->prepare(block, control);
 	control->appendObject(object);
 	return true;
-	/*
-stwu     r1, -0x40(r1)
-mflr     r0
-stw      r0, 0x44(r1)
-rlwinm.  r0, r6, 0, 0x1b, 0x1b
-stw      r31, 0x3c(r1)
-stw      r30, 0x38(r1)
-stw      r29, 0x34(r1)
-mr       r29, r6
-lwz      r7, 0(r4)
-stw      r7, 0x20(r1)
-lwz      r0, 0(r7)
-add      r0, r7, r0
-stw      r0, 0(r4)
-lwz      r4, 0x20(r1)
-lwz      r0, 0(r4)
-stw      r0, 0(r5)
-lwz      r30, 4(r3)
-beq      lbl_8000C638
-lwz      r3, 0x20(r1)
-li       r4, 0
-lhz      r5, 6(r3)
-cmplwi   r5, 0
-beq      lbl_8000C620
-addi     r4, r3, 8
-
-lbl_8000C620:
-mr       r3, r30
-bl       getObject__Q37JStudio3fvb8TControlFPCvUl
-cmplwi   r3, 0
-beq      lbl_8000C638
-li       r3, 1
-b        lbl_8000C6BC
-
-lbl_8000C638:
-rlwinm.  r0, r29, 0, 0x1a, 0x1a
-beq      lbl_8000C648
-li       r3, 1
-b        lbl_8000C6BC
-
-lbl_8000C648:
-lwz      r3, 4(r30)
-cmplwi   r3, 0
-bne      lbl_8000C65C
-li       r3, 0
-b        lbl_8000C6BC
-
-lbl_8000C65C:
-lwz      r12, 0(r3)
-addi     r4, r1, 0x20
-lwz      r12, 0xc(r12)
-mtctr    r12
-bctrl
-or.      r31, r3, r3
-bne      lbl_8000C680
-rlwinm   r3, r29, 0x1a, 0x1f, 0x1f
-b        lbl_8000C6BC
-
-lbl_8000C680:
-mr       r5, r30
-addi     r4, r1, 0x20
-bl
-prepare__Q37JStudio3fvb7TObjectFRCQ47JStudio3fvb4data13TParse_TBlockPQ37JStudio3fvb8TControl
-addi     r0, r30, 0xc
-addi     r3, r1, 0x10
-stw      r0, 0xc(r1)
-addi     r4, r30, 8
-addi     r5, r1, 0x14
-addi     r6, r31, 0xc
-stw      r0, 8(r1)
-stw      r0, 0x1c(r1)
-stw      r0, 0x18(r1)
-stw      r0, 0x14(r1)
-bl
-Insert__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iteratorPQ27JGadget13TLinkListNode
-li       r3, 1
-
-lbl_8000C6BC:
-lwz      r0, 0x44(r1)
-lwz      r31, 0x3c(r1)
-lwz      r30, 0x38(r1)
-lwz      r29, 0x34(r1)
-mtlr     r0
-addi     r1, r1, 0x40
-blr
-	*/
 }
 
 } // namespace fvb

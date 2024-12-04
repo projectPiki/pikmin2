@@ -15,7 +15,7 @@ static const u32 padding[] = { 0, 0, 0 };
  * @note Address: N/A
  * @note Size: 0xE4
  */
-void _Print(char* name, ...) { OSReport("particleMgr"); }
+static void _Print(char* name, ...) { OSReport("particleMgr"); }
 
 ParticleMgr* particleMgr;
 bool ParticleMgr::disableCulling;

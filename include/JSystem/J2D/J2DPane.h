@@ -387,6 +387,47 @@ struct J2DPane {
 		}
 	}
 
+	void operator=(const J2DPane& other)
+	{
+		mAnimPaneIndex = other.mAnimPaneIndex;
+		mBloBlockType  = other.mBloBlockType;
+		mTag           = other.mTag;
+		mMessageID     = other.mMessageID;
+		mBounds        = other.mBounds;
+		mGlobalBounds  = other.mGlobalBounds;
+		mClipRect      = other.mClipRect;
+
+		// these are probably supposed to be some sort of Mtx inline (not PSMTXCopy because that would make sense)
+		for (int x = 0; x < 3; x++) {
+			for (int y = 0; y < 4; y++) {
+				mPositionMtx[x][y] = other.mPositionMtx[x][y];
+			}
+		}
+
+		for (int x = 0; x < 3; x++) {
+			for (int y = 0; y < 4; y++) {
+				mGlobalMtx[x][y] = other.mGlobalMtx[x][y];
+			}
+		}
+
+		mIsVisible         = other.mIsVisible;
+		mCullMode          = other.mCullMode;
+		mAlpha             = other.mAlpha;
+		mColorAlpha        = other.mColorAlpha;
+		mIsInfluencedAlpha = other.mIsInfluencedAlpha;
+		mIsConnected       = other.mIsConnected;
+		mRotationAxis      = other.mRotationAxis;
+		mBasePosition      = other.mBasePosition;
+		mAngleX            = other.mAngleX;
+		mAngleY            = other.mAngleY;
+		mAngleZ            = other.mAngleZ;
+		mAnchorPoint       = other.mAnchorPoint;
+		mScale             = other.mScale;
+		mOffset            = other.mOffset;
+		mTree              = other.mTree;
+		mTransform         = other.mTransform;
+	}
+
 	bool appendChild(J2DPane* child);
 	bool prependChild(J2DPane* child);
 	bool removeChild(J2DPane* child);

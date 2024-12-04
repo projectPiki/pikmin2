@@ -13,7 +13,6 @@
 #include "PSM/EnemyBase.h"
 #include "PSM/BossSeq.h"
 #include "PSM/CreaturePrm.h"
-#include "utilityU.h"
 
 namespace PSM {
 

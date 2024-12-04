@@ -82,9 +82,9 @@ struct J2DPerspGraph : public J2DGrafContext {
 	// _00 		= VTBL
 	// _00-_BC	= J2DGrafContext
 	f32 mFovY; // _BC
-	f32 _C0;   // _C0
-	f32 _C4;   // _C4
-	f32 _C8;   // _C8
+	f32 mNear; // _C0
+	f32 mFar;  // _C4
+	f32 mZPos; // _C8
 };
 
 struct J2DOrthoGraph : public J2DGrafContext {

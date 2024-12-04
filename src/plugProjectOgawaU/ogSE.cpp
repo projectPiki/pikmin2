@@ -30,9 +30,9 @@ void Sound::setChimeNoon()
 
 	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
 	PSSystem::validateSceneMgr(mgr);
-	PSM::Scene_Ground* scene = static_cast<PSM::Scene_Ground*>(mgr->getChildScene());
-	scene                    = (scene->isGameScene()) ? scene : nullptr;
-	scene->changeEnvSE_Noon();
+	PSM::SceneBase* scene = static_cast<PSM::SceneBase*>(mgr->getChildScene());
+	scene                 = (scene->isGameScene()) ? scene : nullptr;
+	static_cast<PSM::Scene_Ground*>(scene)->changeEnvSE_Noon();
 }
 
 /**

@@ -12,6 +12,12 @@ struct PSWsData {
 	u8 mData[2]; // _00
 };
 
+struct PSInstData {
+	u32 _00;
+	u32 _04;
+	u32 mIndex;
+};
+
 namespace PSSystem {
 struct BankMgr : public JKRDisposer {
 	BankMgr();
@@ -36,12 +42,12 @@ struct BankMgr : public JKRDisposer {
 	static void firstLoadS() { }
 	static void secondLoadS() { }
 
-	u8 mIsPreInitialized; // _18
-	u8 mIsInitialized;    // _19
-	u8 mInstBankNum;      // _1A, number of instrument banks
-	u32** mBankData;      // _1C, array of u32* ptrs, in groups of 3
-	u8 mWaveBankNum;      // _20, number of wave banks
-	u32** mWsData;        // _24, array of u32* ptrs, in groups of 3
+	u8 mIsPreInitialized;  // _18
+	u8 mIsInitialized;     // _19
+	u8 mInstBankNum;       // _1A, number of instrument banks
+	PSInstData* mBankData; // _1C, array of u32* ptrs, in groups of 3
+	u8 mWaveBankNum;       // _20, number of wave banks
+	PSInstData* mWsData;   // _24, array of u32* ptrs, in groups of 3
 
 	static BankMgr* sBankMgr;
 };

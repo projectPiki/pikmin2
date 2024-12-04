@@ -466,27 +466,27 @@ struct TFunctionValue_hermite : public TFunctionValue, public TFunctionValueAttr
 	struct TIterator_data_ {
 		TIterator_data_(const TFunctionValue_hermite& rParent, const f32* value)
 		{
-			value_ = value;
+			mValue = value;
 			size_  = rParent.data_getSize();
 		}
 
-		const f32* get() { return value_; }
+		const f32* get() { return mValue; }
 
 		void set(const f32* value, u32 size)
 		{
-			value_ = value;
+			mValue = value;
 			size_  = size;
 		}
 
-		friend bool operator==(const TIterator_data_& lhs, const TIterator_data_& rhs) { return lhs.value_ == rhs.value_; }
+		friend bool operator==(const TIterator_data_& lhs, const TIterator_data_& rhs) { return lhs.mValue == rhs.mValue; }
 
 		TIterator_data_& operator--()
 		{
-			value_ -= size_;
+			mValue -= size_;
 			return *this;
 		}
 
-		/* 0x00 */ const f32* value_;
+		/* 0x00 */ const f32* mValue;
 		/* 0x04 */ u32 size_;
 	};
 

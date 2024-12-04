@@ -214,7 +214,7 @@ void J2DAnmKeyLoader_v15::setAnmTextureSRT(J2DAnmTextureSRTKey* anm, const J3DAn
 	anm->mUpdateMaterialNum = data->mExtraInfo1;
 	anm->mTotalFrameCount   = data->mTotalFrameCount;
 	anm->mAttribute         = data->mAttribute;
-	anm->_10                = data->mRotationScale;
+	anm->mRotationScale     = data->mRotationScale;
 	anm->mCurrentFrame      = 0;
 	anm->mUpdateMaterialNum = data->mExtraInfo1;
 	anm->_1C                = data->mExtraInfo2;

@@ -437,7 +437,7 @@ struct J2DAnmTexPattern : public J2DAnmBase {
 struct J2DAnmTextureSRTKey : public J2DAnmBase {
 	J2DAnmTextureSRTKey()
 	{ // taken from TP - may need tweaking for P2 given different sized struct?
-		_10                = 0;
+		mRotationScale     = 0;
 		_20                = 0;
 		_1E                = 0;
 		_1C                = 0;
@@ -473,7 +473,7 @@ struct J2DAnmTextureSRTKey : public J2DAnmBase {
 
 	// _00     = VTBL
 	// _00-_10 = J2DAnmBase
-	u32 _10;                             // _10
+	u32 mRotationScale;                  // _10
 	u16 mUpdateMaterialNum;              // _14
 	J3DAnmTransformKeyTable* mInfoTable; // _18
 	u16 _1C;                             // _1C

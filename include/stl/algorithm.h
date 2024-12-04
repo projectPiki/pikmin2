@@ -5,7 +5,11 @@
 
 namespace std {
 template <typename InputIterator, typename Predicate>
-static InputIterator find_if(InputIterator first, InputIterator last, Predicate p);
+static InputIterator find_if(InputIterator first, InputIterator last, Predicate p)
+{
+	for (; first != last && !p(*first); ++first) { }
+	return first;
+}
 
 template <typename ForwardIterator, typename Element, typename Predicate>
 ForwardIterator upper_bound(ForwardIterator first, ForwardIterator last, const Element& value, Predicate predicate);

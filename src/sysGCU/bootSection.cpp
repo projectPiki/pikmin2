@@ -21,7 +21,7 @@
 #include "ebi/Progre.h"
 #include "trig.h"
 
-u32 unused[4] = { 1, 2, 3, 0 }; // has to be generated before nans
+static u32 unused[4] = { 1, 2, 3, 0 }; // has to be generated before nans
 #include "nans.h"
 #include "Game/Piki.h"
 
@@ -783,7 +783,7 @@ bool BootSection::doUpdate()
 		case JUTFader::Status_In:
 			bool dofadeout = false;
 			mFadeTimer += sys->mDeltaTime;
-			if (mController->getButtonDown() == 0 || mFadeTimer > 2.0f) {
+			if (mController->getButtonDown() && mFadeTimer > 1.5f) {
 				PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_DECIDE, 0);
 				dofadeout = true;
 			} else if (mFadeTimer > 60.0f) {

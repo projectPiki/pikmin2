@@ -325,7 +325,7 @@ bool J2DPane::removeChild(J2DPane* child)
 void J2DPane::draw(f32 x, f32 y, const J2DGrafContext* grafContext, bool isOrthoGraf, bool check)
 {
 	bool unkBool = check && mIsVisible;
-	if (grafContext->getGrafType() != 1) {
+	if (grafContext->getGrafType() != J2DGraf_Ortho) {
 		isOrthoGraf = false;
 	}
 
@@ -780,97 +780,6 @@ JGeometry::TVec3f J2DPane::getGlbVtx(u8 idx) const
 		out.z = x * mGlobalMtx[2][0] + y * mGlobalMtx[2][1] + mGlobalMtx[2][3];
 		return out;
 	}
-	// JGeometry::TVec3f out;
-	// if (idx >= 4) {
-	// 	out = JGeometry::TVec3f(0.0f);
-	// 	return out;
-	// } else {
-	// 	f32 x, y;
-	// 	if (idx & 1) {
-	// 		x = mBounds.f.x;
-	// 	} else {
-	// 		x = mBounds.i.x;
-	// 	}
-
-	// 	if (idx & 2) {
-	// 		y = mBounds.f.y;
-	// 	} else {
-	// 		y = mBounds.i.y;
-	// 	}
-
-	// 	out.x = x * mGlobalMtx[0][0] + y * mGlobalMtx[0][1] + mGlobalMtx[0][3];
-	// 	out.y = x * mGlobalMtx[1][0] + y * mGlobalMtx[1][1] + mGlobalMtx[1][3];
-	// 	out.z = x * mGlobalMtx[2][0] + y * mGlobalMtx[2][1] + mGlobalMtx[2][3];
-	// 	return out;
-	// }
-	/*
-	clrlwi   r6, r5, 0x18
-	stwu     r1, -0x20(r1)
-	cmplwi   r6, 4
-	blt      lbl_80038FD4
-	lfs      f0, lbl_805167C0@sda21(r2)
-	stfs     f0, 8(r1)
-	stfs     f0, 0xc(r1)
-	lwz      r0, 8(r1)
-	stfs     f0, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	stw      r0, 0(r3)
-	lwz      r0, 0x10(r1)
-	stw      r4, 4(r3)
-	stw      r0, 8(r3)
-	b        lbl_80039068
-
-lbl_80038FD4:
-	clrlwi.  r0, r5, 0x1f
-	beq      lbl_80038FE4
-	lfs      f6, 0x28(r4)
-	b        lbl_80038FE8
-
-lbl_80038FE4:
-	lfs      f6, 0x20(r4)
-
-lbl_80038FE8:
-	rlwinm.  r0, r6, 0, 0x1e, 0x1e
-	beq      lbl_80038FF8
-	lfs      f7, 0x2c(r4)
-	b        lbl_80038FFC
-
-lbl_80038FF8:
-	lfs      f7, 0x24(r4)
-
-lbl_80038FFC:
-	lfs      f0, 0x84(r4)
-	lfs      f1, 0x94(r4)
-	fmuls    f4, f7, f0
-	lfs      f5, 0x80(r4)
-	lfs      f0, 0xa4(r4)
-	fmuls    f2, f7, f1
-	lfs      f3, 0x90(r4)
-	fmadds   f4, f6, f5, f4
-	lfs      f5, 0x8c(r4)
-	fmuls    f0, f7, f0
-	lfs      f1, 0xa0(r4)
-	fmadds   f2, f6, f3, f2
-	fadds    f4, f5, f4
-	lfs      f3, 0x9c(r4)
-	fmadds   f0, f6, f1, f0
-	lfs      f1, 0xac(r4)
-	fadds    f2, f3, f2
-	stfs     f4, 8(r1)
-	fadds    f0, f1, f0
-	lwz      r0, 8(r1)
-	stfs     f2, 0xc(r1)
-	stfs     f0, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	stw      r0, 0(r3)
-	lwz      r0, 0x10(r1)
-	stw      r4, 4(r3)
-	stw      r0, 8(r3)
-
-lbl_80039068:
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
@@ -994,17 +903,17 @@ s16 J2DPane::J2DCast_F32_to_S16(f32 value, u8 cutoff)
  * @note Address: 0x800393C0
  * @note Size: 0x14C
  */
-void* J2DPane::getPointer(JSURandomInputStream* stream, u32 p1, JKRArchive* archive)
+void* J2DPane::getPointer(JSURandomInputStream* stream, u32 resType, JKRArchive* archive)
 {
 	JUTResReference resRef;
 
 	void* pointer;
 	if (archive == nullptr) {
 		if (J2DScreen::getDataManage() == nullptr) {
-			pointer = resRef.getResource(stream, p1, nullptr);
+			pointer = resRef.getResource(stream, resType, nullptr);
 		} else {
 			s32 prevPos = stream->getPosition();
-			pointer     = resRef.getResource(stream, p1, nullptr);
+			pointer     = resRef.getResource(stream, resType, nullptr);
 			if (pointer == nullptr) {
 				stream->seek(prevPos, SEEK_SET);
 				pointer = J2DScreen::getDataManage()->get(stream);
@@ -1012,10 +921,10 @@ void* J2DPane::getPointer(JSURandomInputStream* stream, u32 p1, JKRArchive* arch
 		}
 	} else {
 		s32 prevPos = stream->getPosition();
-		pointer     = resRef.getResource(stream, p1, archive);
+		pointer     = resRef.getResource(stream, resType, archive);
 		if (pointer == nullptr) {
 			stream->seek(prevPos, SEEK_SET);
-			pointer = resRef.getResource(stream, p1, nullptr);
+			pointer = resRef.getResource(stream, resType, nullptr);
 		}
 
 		if (pointer == nullptr) {

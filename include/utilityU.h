@@ -48,7 +48,6 @@ JAISound* PSStartEnemyDownSmokeSE(Game::EnemyBase*, f32);
 JAIStream* PSStartEnemyDownWatSE(f64, Game::EnemyBase*);
 JAISound* PSStartEnemyFatalHitSE(Game::EnemyBase*, f32);
 JAISound* PSStartEnemyGhostSE(Game::EnemyBase*, f32);
-JAISound* PSStartSoundVec(SoundID, Vec*);
 JAISe* PSStartTreasureLaderSE(f32);
 JAISe* PSStartTreasureLaderNoiseSE(u8, f32, f32);
 u8 PSStop2DStream();

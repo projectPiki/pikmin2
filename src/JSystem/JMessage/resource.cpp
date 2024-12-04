@@ -87,43 +87,7 @@ u16 JMessage::TResource::toMessageIndex_messageID(u32 lowerHalf, u32 upperHalf, 
  * @note Address: 0x800065A8
  * @note Size: 0x74
  */
-JMessage::TResourceContainer::TCResource::~TCResource()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80006600
-	lis      r4, __vt__Q38JMessage18TResourceContainer10TCResource@ha
-	addi     r0, r4, __vt__Q38JMessage18TResourceContainer10TCResource@l
-	stw      r0, 0xc(r30)
-	beq      lbl_800065F0
-	lis      r4,
-"__vt__Q27JGadget42TLinkList_factory<Q28JMessage9TResource,0>"@ha addi     r0,
-r4, "__vt__Q27JGadget42TLinkList_factory<Q28JMessage9TResource,0>"@l stw r0,
-0xc(r30) beq      lbl_800065F0 li       r4, 0 bl
-__dt__Q27JGadget13TNodeLinkListFv
-
-lbl_800065F0:
-	extsh.   r0, r31
-	ble      lbl_80006600
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80006600:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+JMessage::TResourceContainer::TCResource::~TCResource() { }
 
 /**
  * @note Address: 0x8000661C

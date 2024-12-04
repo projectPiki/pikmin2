@@ -120,8 +120,8 @@ struct PrmDataMgrNode : public DataMgrNode {
 	}
 
 	virtual ~PrmDataMgrNode<A, B>() { } // _08 (weak)
-	virtual JKRHeap* getObjHeap();      // _14 (weak)
-	virtual JKRHeap* getDataHeap();     // _18 (weak)
+	virtual JKRHeap* getObjHeap()  = 0; // _14 (weak)
+	virtual JKRHeap* getDataHeap() = 0; // _18 (weak)
 	virtual bool initInstance(void* buffer, s32 bufferLength)
 	{
 		if (initInstance()) {

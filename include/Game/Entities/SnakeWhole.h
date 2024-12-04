@@ -84,7 +84,6 @@ struct Obj : public EnemyBase {
 	virtual void doAnimationCullingOff();                                      // _1DC
 	virtual void doDebugDraw(Graphics& gfx);                                   // _1EC
 	virtual Vector3f* getFitEffectPos();                                       // _208
-	virtual void setParameters();                                              // _228
 	virtual void initMouthSlots();                                             // _22C
 	virtual void createEfxHamon();                                             // _250
 	virtual void getThrowupItemPosition(Vector3f* itemPos);                    // _268

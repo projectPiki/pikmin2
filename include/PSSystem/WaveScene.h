@@ -77,7 +77,7 @@ struct WaveScene : public JKRDisposer {
 
 		virtual ~WaveArea() { deleteWave(); } // _08 (weak)
 
-		bool loadWave(u16 bankIdx, u16 arcIdx, TaskChecker* checker);
+		u8 loadWave(u16 bankIdx, u16 arcIdx, TaskChecker* checker);
 		void deleteWave();
 		static void waveLoadCallback(u32);
 

@@ -702,10 +702,10 @@ void GameState::onMovieDone(VsGameSection* section, MovieConfig* config, u32 unu
 	if (gameSystem->isChallengeMode() && Radar::Mgr::getNumOtakaraItems() == 0
 	    && (config->is("g2F_appear_hole") || config->is("g30_appear_fountain"))) {
 
-		PSM::Scene_Cave* scene = static_cast<PSM::Scene_Cave*>(PSMGetSceneMgrCheck()->getChildScene());
+		PSM::Scene_Game* scene = static_cast<PSM::Scene_Game*>(PSMGetSceneMgrCheck()->getChildScene());
 		checkGameScene(scene);
 		if (scene->isCave()) {
-			scene->startPollutUpSe();
+			static_cast<PSM::Scene_Cave*>(scene)->startPollutUpSe();
 		}
 	}
 

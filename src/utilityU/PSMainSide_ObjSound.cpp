@@ -14,10 +14,8 @@
 
 namespace PSM {
 
-f32 sBoss_ViewDist    = 1300.0f;
-f32 sBoss_ViewDistVol = 0.3f;
-f32 sBoss_DistMax     = 4000.0f;
 EnemyBigBoss* EnemyBigBoss::sBigBoss;
+u8 Piki::sDopedPikminNum = 0;
 
 /**
  * @note Address: N/A

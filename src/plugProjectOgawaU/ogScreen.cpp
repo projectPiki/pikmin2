@@ -11,7 +11,7 @@ namespace Screen {
 
 ResTIMG* PikiIconTextureResTIMG[19];
 
-void _Print(char* format, ...)
+static void _Print(char* format, ...)
 {
 	OSReport("ogScreen");
 	char buffer[512];

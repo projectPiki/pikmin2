@@ -30,19 +30,19 @@ JASBasicBank* JASBNKParser::createBasicBank(void* stream)
 		return nullptr;
 	}
 
-	bank->setInstCount(0x100);
+	bank->setInstCount(JASBank_INSTRUMENT_SLOTS);
 
 	/// Populate insts:
-	for (int i = 0; i < 0x80; i++) {
-		TInst* instRaw = JSUConvertOffsetToPtr<TInst>(header, header->mInstOffsets[i + 1]); // problem with mInstOffsets again
+	for (int i = 0; i < JASBank_MAX_INSTRUMENT; i++) {
+		TInst* instRaw = JSUConvertOffsetToPtr<TInst>(header, header->mInstOffsets[i]);
 		if (instRaw) {
 			JASBasicInst* inst = new (heap, 0) JASBasicInst;
 			inst->mVolume      = instRaw->mVolume;
 			inst->mPitch       = instRaw->mPitch;
 
 			/// Populate inst oscillators:
-			inst->setOscCount(2);
-			for (int oscIndex = 0, j = 0; j < 2; j++) {
+			inst->setOscCount(TInst_MAX_OSCILLATORS);
+			for (int oscIndex = 0, j = 0; j < TInst_MAX_OSCILLATORS; j++) {
 				TOsc* oscRaw = JSUConvertOffsetToPtr<TOsc>(header, instRaw->mOscOffsets[j]);
 				if (oscRaw != nullptr) {
 					JASOscillator::Data* oscData = findOscPtr(bank, header, oscRaw);
@@ -76,9 +76,9 @@ JASBasicBank* JASBNKParser::createBasicBank(void* stream)
 				}
 			}
 
-			/// Populate inst effects:
-			inst->setEffectCount(4);
-			for (int j = 0; j < 2; j++) {
+			/// Populate inst effects (2 rand + 2 sense)
+			inst->setEffectCount(TInst_MAX_RAND + TInst_MAX_SENSE);
+			for (int j = 0; j < TInst_MAX_RAND; j++) {
 				TRand* randRaw = JSUConvertOffsetToPtr<TRand>(header, instRaw->mRandOffsets[j]);
 				if (randRaw != nullptr) {
 					JASInstRand* rand = new (heap, 0) JASInstRand;
@@ -88,13 +88,14 @@ JASBasicBank* JASBNKParser::createBasicBank(void* stream)
 					inst->setEffect(j, rand);
 				}
 			}
-			for (int j = 0; j < 2; j++) {
+
+			for (int j = 0; j < TInst_MAX_SENSE; j++) {
 				TSense* senseRaw = JSUConvertOffsetToPtr<TSense>(header, instRaw->mSenseOffsets[j]);
 				if (senseRaw != nullptr) {
 					JASInstSense* sense = new (heap, 0) JASInstSense;
 					sense->setTarget(senseRaw->mTarget);
 					sense->setParams(senseRaw->mRegister, senseRaw->mKey, senseRaw->mFloor, senseRaw->mCeiling);
-					inst->setEffect(j + 2, sense);
+					inst->setEffect(j + TInst_MAX_RAND, sense);
 				}
 			}
 
@@ -118,11 +119,11 @@ JASBasicBank* JASBNKParser::createBasicBank(void* stream)
 		}
 	}
 
-	for (int i = 0; i < 12; i++) {
-		TPerc* percRaw = JSUConvertOffsetToPtr<TPerc>(header, header->mPercOffsets[i + 1]);
+	for (int i = 0; i < JASBank_MAX_PERCUSSION; i++) {
+		TPerc* percRaw = JSUConvertOffsetToPtr<TPerc>(header, header->mPercOffsets[i]);
 		if (percRaw != nullptr) {
 			JASDrumSet* drumSet = new (heap, 0) JASDrumSet;
-			for (int j = 0; j < 0x80; j++) {
+			for (int j = 0; j < TPerc_MAX_ENTRIES; j++) {
 				TPmap* pmapRaw = JSUConvertOffsetToPtr<TPmap>(header, percRaw->mPmapOffsets[j]);
 				if (pmapRaw != nullptr) {
 					JASDrumSet::TPerc* drumSetPerc = drumSet->getPerc(j);
@@ -130,10 +131,10 @@ JASBasicBank* JASBNKParser::createBasicBank(void* stream)
 					drumSetPerc->mVolume           = pmapRaw->mVolume;
 					if (percRaw->mMagic == 'PER2') {
 						drumSetPerc->mPanning = percRaw->mPanning[j] / 127.0f;
-						drumSetPerc->setRelease(percRaw->_308[j]);
+						drumSetPerc->setRelease(percRaw->mRelease[j]);
 					}
-					drumSetPerc->setEffectCount(2);
-					for (int effectIndex = 0, k = 0; k < 2; k++) {
+					drumSetPerc->setEffectCount(TPerc_MAX_RAND);
+					for (int effectIndex = 0, k = 0; k < TPerc_MAX_RAND; k++) {
 						TRand* randRaw = JSUConvertOffsetToPtr<TRand>(header, pmapRaw->mRandOffsets[k]);
 						if (randRaw != nullptr) {
 							JASInstRand* rand = new (heap, 0) JASInstRand;
@@ -676,11 +677,11 @@ lbl_8009AE98:
 JASOscillator::Data* JASBNKParser::findOscPtr(JASBasicBank* bank, JASBNKParser::THeader* header, JASBNKParser::TOsc* oscPtr)
 {
 	u32* instOffsets = header->mInstOffsets;
-	for (int i = 0; i < 128; i++) {
-		TInst* instRaw = JSUConvertOffsetToPtr<TInst>(header, instOffsets[i + 1]); // first inst offset is always 0
+	for (int i = 0; i < TPerc_MAX_ENTRIES; i++) {
+		TInst* instRaw = JSUConvertOffsetToPtr<TInst>(header, instOffsets[i]);
 		if (instRaw) {
 			// look through both oscillators
-			for (int j = 0; j < 2; j++) {
+			for (int j = 0; j < TInst_MAX_OSCILLATORS; j++) {
 				TOsc* oscRaw = JSUConvertOffsetToPtr<TOsc>(header, instRaw->mOscOffsets[j]);
 				if (oscRaw == oscPtr) {
 					JASInst* inst = bank->getInst(i);

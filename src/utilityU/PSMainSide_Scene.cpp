@@ -32,6 +32,9 @@ static const u32 padding[] = { 0, 0, 0 };
 
 namespace PSM {
 
+int Scene_Ground::cEvenning_fadeOuTime = 150;
+int Scene_Ground::cEvenning_fadeInTime = 150;
+
 /**
  * @note Address: 0x80467630
  * @note Size: 0x84
@@ -1556,7 +1559,7 @@ void Scene_Ground::changeEnvSE_Noon()
 Scene_Cave::Scene_Cave(u8 p1, PSGame::SceneInfo* info)
     : Scene_Game(p1, info)
     , mPollutUpTimer(-1)
-    , _5C(false)
+    , mHasStartedBossBgm(false)
 {
 	PSGame::CaveFloorInfo* floorInfo = static_cast<PSGame::CaveFloorInfo*>(info);
 	switch (floorInfo->mAlphaType) {
@@ -1862,7 +1865,7 @@ void Scene_Cave::init()
 void Scene_Cave::bossAppear(PSM::EnemyBoss* obj, u16 flag)
 {
 	if (isBossFloor()) {
-		if (_5C) {
+		if (mHasStartedBossBgm) {
 			return;
 		}
 		MiddleBossSeq* seq = PSMGetMiddleBossSeq();
@@ -1870,7 +1873,7 @@ void Scene_Cave::bossAppear(PSM::EnemyBoss* obj, u16 flag)
 			seq->startSeq(flag);
 			seq->setAvoidJumpTimer_Checked(180);
 		}
-		_5C = 1;
+		mHasStartedBossBgm = true;
 	} else {
 		Scene_Game::bossAppear(obj, flag);
 	}

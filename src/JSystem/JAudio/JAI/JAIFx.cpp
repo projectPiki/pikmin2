@@ -26,7 +26,8 @@ void JAInter::Fx::init()
 		JKRHeap* heap = JAIGetCurrentHeap();
 		setTablePointer(new (heap, 0x20) void*[getSceneMax()]);
 		for (u8 i = 0; i < getSceneMax(); i++) {
-			setScenePointer(i, (reinterpret_cast<u8*>(initOnCodeFxScene) + init->mScenePointerOffsets[i]));
+			// Very questionable, but it works
+			setScenePointer(i, (reinterpret_cast<u8*>(initOnCodeFxScene) + *(int*)((u8*)(&init->mScenePointerOffsets + i))));
 		}
 		for (u8 i = 0; i < 4; i++) {
 			if (getBufferSizeMax(i) != 0) {

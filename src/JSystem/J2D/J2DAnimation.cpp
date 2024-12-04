@@ -531,12 +531,12 @@ void J2DAnmTextureSRTKey::calcTransform(f32 frame, u16 inputIdx, J3DTextureSRTIn
 		texInfo->mRotation = 0;
 		break;
 	case 1:
-		texInfo->mRotation = mRotationVals[zInf->mRotationInfo.mOffset] << _10;
+		texInfo->mRotation = mRotationVals[zInf->mRotationInfo.mOffset] << mRotationScale;
 		break;
 	default:
 		texInfo->mRotation
 		    = static_cast<s32>(J2DGetKeyFrameInterpolation<s16>(frame, &zInf->mRotationInfo, &mRotationVals[zInf->mRotationInfo.mOffset]))
-		   << _10;
+		   << mRotationScale;
 	}
 
 	switch (xInf->mTranslationInfo.mMaxFrame) {

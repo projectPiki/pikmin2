@@ -1673,26 +1673,39 @@ bool JASTrack::start(void* file, u32 offset)
  * @note Address: 0x800A155C
  * @note Size: 0x1DC
  */
-JASTrack* JASTrack::openChild(u8 p1, u8 p2)
+JASTrack* JASTrack::openChild(u8 index, u8 p2)
 {
-	if (mChildList[p1]) {
-		mChildList[p1]->close();
-		mChildList[p1] = nullptr;
+	if (mChildList[index]) {
+		mChildList[index]->close();
+		mChildList[index] = nullptr;
 	}
 
 	// what is UP with these sFreeList things????
-	JASTrack* newTrack = sFreeList;
-	if (newTrack == nullptr) {
-		newTrack = nullptr;
+	JASTrack** link = (JASTrack**)sFreeList;
+	JASTrack* newTrack;
+	if (link == nullptr) {
+		newTrack = 0;
 	} else {
+		newTrack  = *link;
+		sFreeList = newTrack;
+		if (!newTrack) {
+			sFreeListEnd = nullptr;
+		}
+	}
+
+	if (newTrack) {
+		// JASTrack(newTrack); how does this even work
+	}
+	if (!newTrack) {
+		return nullptr;
 	}
 
 	newTrack->init();
 	newTrack->_366         = 1;
 	newTrack->mParentTrack = this;
 	newTrack->_357         = p2;
-	newTrack->_348         = (((_348 << 4) | (p1 & 0xFF)) & ~0xF0000000) | ((_348 & 0xF0000000) + 0x10000000);
-	mChildList[p1]         = newTrack;
+	newTrack->_348         = (((_348 << 4) | (index & 0xFF)) & ~0xF0000000) | ((_348 & 0xF0000000) + 0x10000000);
+	mChildList[index]      = newTrack;
 	newTrack->inherit();
 	return newTrack;
 	/*

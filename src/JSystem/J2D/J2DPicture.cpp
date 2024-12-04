@@ -50,11 +50,10 @@ J2DPicture::J2DPicture(J2DPane* parent, JSURandomInputStream* input, J2DMaterial
 	J2DScrnBlockPictureParameter trailer;
 	input->read(&trailer, sizeof(J2DScrnBlockPictureParameter));
 	u16 v1 = trailer.mMaterialID;
-	int i  = 0;
-	// matches tp debug
-	for (i = i; i < 4; i++) {
+
+	for (int i = 0; i < 4; i++) {
 		mTexCoords[i]    = trailer.mTexCoords[i];
-		mCornerColors[i] = JUtility::TColor(GXCOLOR_AS_U32(trailer.mCornerColor[i])); // just need to fix this
+		mCornerColors[i] = JUtility::TColor(GXCOLOR_AS_U32(trailer.mCornerColor[i]));
 	}
 	input->seek(headerPosition + header.mBlockLength, SEEK_SET);
 
@@ -65,7 +64,7 @@ J2DPicture::J2DPicture(J2DPane* parent, JSURandomInputStream* input, J2DMaterial
 
 	mAlpha = 0xFF;
 	if (material != nullptr) {
-		mAlpha = material->mColorBlock.mColors[0].a;
+		mAlpha = material->getColorBlock()->getMatColor(0)->a;
 	}
 	mBlack        = TCOLOR_BLACK_U32;
 	mWhite        = TCOLOR_WHITE_U32;
@@ -98,9 +97,9 @@ J2DPicture::J2DPicture(J2DPane* parent, JSURandomInputStream* input, J2DMaterial
 	if (material && material->getTevBlock()) {
 		material->mTevBlock->setUndeleteFlag(0xF0);
 	}
-	mPalette            = nullptr;
-	JUtility::TColor v2 = 0xFFFFFFFF;
-	JUtility::TColor v3 = 0xFFFFFFFF;
+	mPalette = nullptr;
+	JUtility::TColor v2;
+	JUtility::TColor v3;
 	if (material && material->getTevBlock()) {
 		v2 = *material->mTevBlock->getTevKColor(3);
 		v3 = *material->mTevBlock->getTevKColor(1);
@@ -1013,58 +1012,6 @@ void J2DPicture::setTexCoord(const JGeometry::TVec2<s16>* coords)
 void J2DPicture::setTexCoord(const JUTTexture* texture, J2DBinding binding, J2DMirror mirror, bool doRotate90)
 {
 	setTexCoord(mTexCoords, texture, binding, mirror, doRotate90);
-}
-
-static inline bool unkInline(J2DBinding binding, bool doRotate90, J2DMirror mirror, bool& bindLeft, bool& bindRight, bool& bindTop,
-                             bool& bindBottom)
-{
-	if (!doRotate90) {
-		if (mirror & J2DMIRROR_X) {
-			bindLeft = binding & J2DBIND_Right;
-		} else {
-			bindLeft = binding & J2DBIND_Left;
-		}
-		if (mirror & J2DMIRROR_X) {
-			bindRight = binding & J2DBIND_Left;
-		} else {
-			bindRight = binding & J2DBIND_Right;
-		}
-		if (mirror & J2DMIRROR_Y) {
-			bindTop = binding & J2DBIND_Bottom;
-		} else {
-			bindTop = binding & J2DBIND_Top;
-		}
-		if (mirror & J2DMIRROR_Y) {
-			bindBottom = binding & J2DBIND_Top;
-		} else {
-			bindBottom = binding & J2DBIND_Bottom;
-		}
-
-		return mirror & J2DMIRROR_Y;
-	} else {
-		if (mirror & J2DMIRROR_X) {
-			bindLeft = binding & J2DBIND_Bottom;
-		} else {
-			bindLeft = binding & J2DBIND_Top;
-		}
-		if (mirror & J2DMIRROR_X) {
-			bindRight = binding & J2DBIND_Top;
-		} else {
-			bindRight = binding & J2DBIND_Bottom;
-		}
-		if (mirror & J2DMIRROR_Y) {
-			bindTop = binding & J2DBIND_Left;
-		} else {
-			bindTop = binding & J2DBIND_Right;
-		}
-		if (mirror & J2DMIRROR_Y) {
-			bindBottom = binding & J2DBIND_Right;
-		} else {
-			bindBottom = binding & J2DBIND_Left;
-		}
-
-		return mirror & J2DMIRROR_Y;
-	}
 }
 
 /**

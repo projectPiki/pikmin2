@@ -14,7 +14,7 @@
  * @note Address: N/A
  * @note Size: 0xE4
  */
-void _Print(char* name, ...) { OSReport("PlayData"); }
+static void _Print(char* name, ...) { OSReport("PlayData"); }
 
 namespace Game {
 

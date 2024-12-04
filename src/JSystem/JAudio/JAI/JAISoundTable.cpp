@@ -17,15 +17,15 @@ u8* JAInter::SoundTable::mAddress;
  */
 void JAInter::SoundTable::init(u8* data, u32 dataSize)
 {
-	mVersion         = data[3];
-	mDatasize        = dataSize;
-	mAddress         = data;
+	mDatasize = dataSize;
+	mAddress  = data;
+	mVersion  = data[3];
+
 	mSoundMax        = new (JAIBasic::msCurrentHeap, 4) u16[0x12];
 	mPointerCategory = new (JAIBasic::msCurrentHeap, 4) SoundInfo*[0x12];
 	for (u8 i = 0; i < 0x12; i++) {
-		mSoundMax[i]        = *reinterpret_cast<u16**>(&mAddress[6])[i];
-		mPointerCategory[i] = reinterpret_cast<SoundInfo**>(&mAddress[0x50])[reinterpret_cast<u16*>(&mAddress[8])[i]];
-		// mPointerCategory[i] = *(SoundInfo**)(mAddress + *(u16*)(mAddress + (i * 4) + 8) * 0x10 + 0x50);
+		mSoundMax[i]        = reinterpret_cast<u16*>(&mAddress[6])[i * 2];
+		mPointerCategory[i] = reinterpret_cast<SoundInfo*>(&mAddress[0x50] + reinterpret_cast<u16*>(&mAddress[8])[i] * sizeof(SoundInfo));
 		if (i < 0x10 && mSoundMax[i] != 0) {
 			mCategotyMax = i + 1;
 		}

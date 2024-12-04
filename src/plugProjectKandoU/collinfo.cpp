@@ -19,6 +19,8 @@
 #include "types.h"
 #include "Vector3.h"
 
+bool CollTree::mDebug;
+
 /**
  * __ct__8PlatformFv
  * @note Address: 0x801336A8

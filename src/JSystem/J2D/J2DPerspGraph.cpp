@@ -19,11 +19,11 @@ J2DPerspGraph::J2DPerspGraph()
  * @note Address: 0x80035E14
  * @note Size: 0x60
  */
-void J2DPerspGraph::set(f32 fovY, f32 f2, f32 f3)
+void J2DPerspGraph::set(f32 fovY, f32 near, f32 far)
 {
 	setFovy(fovY);
-	_C0 = f2;
-	_C4 = f3;
+	mNear = near;
+	mFar  = far;
 	setLookat();
 }
 
@@ -48,7 +48,7 @@ void J2DPerspGraph::setFovy(f32 fovY)
 void J2DPerspGraph::setPort()
 {
 	J2DGrafContext::setPort();
-	C_MTXPerspective(mMtx44, mFovY, mBounds.getWidth() / mBounds.getHeight(), _C0, _C4);
+	C_MTXPerspective(mMtx44, mFovY, mBounds.getWidth() / mBounds.getHeight(), mNear, mFar);
 	GXSetProjection(mMtx44, GX_PERSPECTIVE);
 }
 
@@ -59,7 +59,7 @@ void J2DPerspGraph::setPort()
 void J2DPerspGraph::setLookat()
 {
 	f32 tanTheta = tan(mFovY * PI / 360.0f);
-	_C8          = (mBounds.getHeight() / 2) / tanTheta;
+	mZPos        = (mBounds.getHeight() / 2) / tanTheta;
 	makeLookat();
 }
 
@@ -75,7 +75,7 @@ void J2DPerspGraph::makeLookat()
 	Vec pos;
 	pos.x = width;
 	pos.y = height;
-	pos.z = -(_C8);
+	pos.z = -(mZPos);
 
 	Vec dest;
 	dest.x = width;

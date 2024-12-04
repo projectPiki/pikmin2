@@ -1,6 +1,8 @@
 #include "JSystem/JAudio/JAS/JASWave.h"
 #include "JSystem/JSupport/JSU.h"
 
+size_t JASWSParser::sUsedHeapSize;
+
 /**
  * @note Address: 0x80098A68
  * @note Size: 0x28

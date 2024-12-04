@@ -939,7 +939,7 @@ void Onyon::do_doAnimation()
 				PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
 				PSSystem::validateSceneMgr(mgr);
 				PSM::Scene_Game* scene = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
-				scene                  = (scene->isGameScene()) ? scene : nullptr;
+				scene                  = (static_cast<PSM::SceneBase*>(scene)->isGameScene()) ? scene : nullptr;
 
 				if (scene) {
 					if (scene->_4C < 390) {

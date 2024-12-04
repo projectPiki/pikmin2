@@ -144,7 +144,7 @@ struct Scene_Game : public Scene_Objects {
 	virtual void stopAllSound(u32);                     // _24
 	virtual PSSystem::EnvSeMgr* getEnvSe();             // _2C
 	virtual bool isDemoScene() { return false; }        // _34 (weak)
-	virtual bool isGameScene();                         // { return true; }      // _40 (weak)
+	virtual bool isGameScene() { return true; }         // _40 (weak)
 	virtual void pauseOn_2D(u8, u8);                    // _44
 	virtual void pauseOff_2D();                         // _48
 	virtual void pauseOn_Demo();                        // _4C
@@ -222,7 +222,7 @@ struct Scene_Cave : public Scene_Game {
 	virtual void exec();                                            // _18
 	virtual void startMainSeq();                                    // _1C
 	virtual f32 getSceneFx();                                       // _30
-	virtual bool isCave();                                          // { return true; }                       // _58 (weak)
+	virtual bool isCave() { return true; }                          // _58 (weak)
 	virtual void bossAppear(EnemyBoss*, u16);                       // _5C
 	virtual void bossKilled(EnemyBoss*);                            // _60
 	virtual bool isBossFloor();                                     // _64
@@ -235,9 +235,9 @@ struct Scene_Cave : public Scene_Game {
 
 	// _00      = VTBL
 	// _00-_5C  = Scene_Game
-	bool _5C;           // _5C
-	f32 mSceneFx;       // _60
-	int mPollutUpTimer; // _64
+	bool mHasStartedBossBgm; // _5C
+	f32 mSceneFx;            // _60
+	int mPollutUpTimer;      // _64
 };
 
 /**

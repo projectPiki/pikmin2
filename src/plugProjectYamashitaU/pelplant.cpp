@@ -16,7 +16,7 @@ static f32 sLODRadius[4] = { 45.0f, 60.0f, 103.0f, 133.0f }; // one, five, ten, 
 } // namespace Pelplant
 } // namespace Game
 
-const char* unused[] = { __FILE__, "/enemy/data/pelplant", "/enemy/parm/pelplant" };
+static const char* unused[] = { __FILE__, "/enemy/data/pelplant", "/enemy/parm/pelplant" };
 
 static f32 negSin(f32 x) { return -JMath::sincosTable_.mTable[((int)(x *= -325.9493f) & 0x7ffU)].first; }
 static f32 posSin(f32 x) { return JMath::sincosTable_.mTable[((int)(x *= 325.9493f) & 0x7ffU)].first; }

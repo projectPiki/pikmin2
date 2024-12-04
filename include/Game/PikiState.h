@@ -431,13 +431,12 @@ struct PikiFlickState : public PikiState, virtual SysShape::MotionListener {
 	{
 	}
 
-	virtual void init(Piki*, StateArg*);                       // _08
-	virtual void exec(Piki*);                                  // _0C
-	virtual void cleanup(Piki*);                               // _10
-	virtual void onKeyEvent(Piki*, const SysShape::KeyEvent&); // _30
-	virtual bool callable() { return false; }                  // _44 (weak)
-	virtual void onFlute(Piki*, Navi*);                        // _6C
-	virtual void onKeyEvent(const SysShape::KeyEvent& event);  // _74 (weak)
+	virtual void init(Piki*, StateArg*);                      // _08
+	virtual void exec(Piki*);                                 // _0C
+	virtual void cleanup(Piki*);                              // _10
+	virtual bool callable() { return false; }                 // _44 (weak)
+	virtual void onFlute(Piki*, Navi*);                       // _6C
+	virtual void onKeyEvent(const SysShape::KeyEvent& event); // _74 (weak)
 
 	// _00     = VTBL
 	// _00-_10 = PikiState
