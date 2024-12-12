@@ -52,9 +52,9 @@ struct TColor : public GXColor {
 
 	void set(u8 cR, u8 cG, u8 cB, u8 cA)
 	{
-		r = cR;
-		g = cG;
 		b = cB;
+		g = cG;
+		r = cR;
 		a = cA;
 	}
 

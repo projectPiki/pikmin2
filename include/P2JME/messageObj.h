@@ -79,6 +79,14 @@ struct DrawInfo : public CNode {
 		return calc;
 	}
 
+	f32 getCalc2() 
+	{
+		f32 calc = mTimer / mTimeLimit;
+		calc *= TAU;
+		calc *= 2.0f;
+		return calc;
+	}
+
 	// _00     = VTBL
 	// _00-_18 = CNode
 	u32 mIndex;     // _18
