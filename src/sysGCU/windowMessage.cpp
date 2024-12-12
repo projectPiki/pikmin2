@@ -750,7 +750,10 @@ f32 TRenderingProcessor::doDrawLetter(f32 x0, f32 y0, f32 x, f32 y, int a1, bool
 	if (ret) {
 		GXLoadPosMtxImm(mtx2.mMatrix.mtxView, 0);
 		JUtility::TColor color;
-		color.set(0, 0, 0, ret >> 1);
+		color.b = 0; // This actually assigns in BGRA order, weird!
+		color.g = 0;
+		color.r = 0;
+		color.a = ret >> 1;
 		mMainFont->setGradColor(color, color);
 		mMainFont->drawChar_scale(0.0f, 0.0f, x, y, a1, flag);
 
