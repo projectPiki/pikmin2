@@ -776,49 +776,63 @@ void CPlate::refreshSlot(f32 p1)
 	Vector3f scale(1.0f);
 	rotationMtx.makeSR(scale, rotation);
 
-	f32 maxPositionSize = mParms.mMaxPositionSize();
+	f32 maxPositionSize = mParms.mMaxPositionSize;
 
 	// This is probably an INLINE!!!
-	f32 maxSize = maxPositionSize * (mShrinkTimer ? 0.5f : 1.0f); // f25
+	f32 shrinkModifier = mShrinkTimer ? 0.5f : 1.0f;
+	f32 maxSize        = maxPositionSize * shrinkModifier; // f25
 
 	Vector3f vec(0.0f);
 	mUnused = rotationMtx.mtxMult(vec);
 
-	int direction = 1;              // r30
-	int row       = 0;              // r26
-	f32 x         = 2.0f * maxSize; // f27
+	int direction = 1; // r30
+	int row       = 0; // r26
 
 	while (slotCount < mActiveGroupSize) {
-		f32 sqrBase  = mBaseRadius * mBaseRadius;
-		f32 sqrRad   = radius * radius;
-		f32 rootDiff = _sqrtf(sqrBase - sqrRad);
-		int val      = (mMoveStickRadius * rootDiff) / radius / x;
+		f32 sqrBase          = mBaseRadius * mBaseRadius;
+		f32 sqrRad           = radius * radius;
+		f32 radiusDifference = sqrBase - sqrRad;
+
+		if (radiusDifference > 0.0f) {
+			f32 areaDifference = sqrRad * sqrRad - mBaseRadius;
+			radiusDifference   = sqrtf(areaDifference);
+		} else {
+			radiusDifference = 0.0f;
+		}
+
+		f32 movestickScaled = mMoveStickRadius * radiusDifference;
+		int val             = static_cast<int>(movestickScaled / sqrRad / (2.0f * maxSize));
 		if (val < 0) {
 			val = 0;
 		}
 
-		if (p1 < 0.1f && val == 0 && mActiveGroupSize - slotCount > 1) {
-			val = 1;
-		}
+		if (p1 < 0.1f && val == 0) {
+			int group = mActiveGroupSize - slotCount;
 
-		f32 fVal = (f32)val * maxSize;
-		fVal *= 2.0f;
-
-		f32 step = ((f32)direction * maxSize); // f23
-		step *= 2.0f;
-
-		f32 fCounter = (f32)direction * fVal; // f22
-
-		for (int i = val * 2 + 1; i > 0; i--, fCounter -= step) {
-			if (slotCount < mActiveGroupSize) {
-				mSlots[row].mRelativePosition = Vector3f(fCounter, 0.0f, radius);
-				mSlots[row].mPosition         = rotationMtx.mtxMult(mSlots[row].mRelativePosition);
-				row++;
-				slotCount++;
+			if (group > 1) {
+				val = 1;
 			}
 		}
 
-		radius += x;
+		f32 maxSizeScaled = val * maxSize * 2.0f;
+		f32 fCounter      = (f32)direction * maxSizeScaled; // f22
+		f32 stepDistance  = direction * maxSize * 2.0f;     // f23
+
+		int i = val * 2 + 1;
+		while (i > 0) {
+			if (slotCount < mActiveGroupSize) {
+				mSlots[row].mRelativePosition = Vector3f(fCounter, 0.0f, radius);
+				mSlots[row].mPosition         = rotationMtx.mtxMult(mSlots[row].mRelativePosition);
+
+				row++;
+				slotCount++;
+			}
+
+			fCounter -= stepDistance;
+			i--;
+		}
+
+		radius += maxSize * 2.0f;
 		direction *= -1;
 	}
 	/*
