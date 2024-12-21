@@ -249,7 +249,7 @@ void ParticleMgr::setGlobalColor(JPABaseEmitter* emit)
 		return;
 	u32 flag = emit->mResource->getDyn()->getResUserWork();
 
-	Game::GameLightMgr* mgr = getLightMgr();
+	Game::GameLightMgr* mgr = mLightMgr;
 	if (!mgr)
 		return;
 
@@ -258,20 +258,9 @@ void ParticleMgr::setGlobalColor(JPABaseEmitter* emit)
 
 	LightObj* obj = mgr->getMainLight();
 
-	GXColor color2;
-	color2.r = mgr->mAmbientLight.mColor.r;
-	color2.g = mgr->mAmbientLight.mColor.g;
-	color2.b = mgr->mAmbientLight.mColor.b;
 
-	GXColor color1;
-	color1.r = obj->mColor.r;
-	color1.g = obj->mColor.g;
-	color1.b = obj->mColor.b;
-
-	int red = (color1.r + color2.r) * 2;
 	Color4 c2 = mgr->mAmbientLight.mColor;
 	Color4 c1 = obj->mColor;
-	u8 r2, g2, b2, r, g, b;
 
 	int red = (c1.r + c2.r) * 2;
 	if (red > 255) {
@@ -279,14 +268,12 @@ void ParticleMgr::setGlobalColor(JPABaseEmitter* emit)
 	}
 	u8 red2 = red;
 
-	int green = (color1.g + color2.g) * 2;
 	int green = (c1.g + c2.g) * 2;
 	if (green > 255) {
 		green = 255;
 	}
 	u8 green2 = green;
 
-	int blue = (color1.b + color2.b) * 2;
 	int blue = (c1.b + c2.b) * 2;
 	if (blue > 255) {
 		blue = 255;
@@ -423,8 +410,7 @@ bool ParticleMgr::cullByResFlg(JPABaseEmitter* emit)
 		return false;
 	}
 
-	Vector3f pos(emit->mGlobalTrs.x, emit->mGlobalTrs.y, emit->mGlobalTrs.z);
-	// It is a crime against humanity that this code matches
+	// It is a crime against humanity that this code matches lolol
 	Vector3f pos;
 	pos.x            = emit->mGlobalTrs.x;
 	pos.y            = emit->mGlobalTrs.y;
