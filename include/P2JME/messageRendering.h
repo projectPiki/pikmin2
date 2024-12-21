@@ -15,6 +15,20 @@ struct J2DPane;
 
 namespace P2JME {
 
+enum TRenderingFlags {
+	TProcFlag_Unk0 = 1 << 0, // 0x1
+	// ...
+	TProcFlag_Unk4 = 1 << 4, // 0x10
+	TProcFlag_Unk5 = 1 << 5, // 0x20
+	TProcFlag_Unk6 = 1 << 6, // 0x40
+	// ...
+	TProcFlag_Unk8  = 1 << 8,  // 0x100
+	TProcFlag_Unk9  = 1 << 9,  // 0x200
+	TProcFlag_Unk10 = 1 << 10, // 0x400
+	// ...
+	TProcFlag_PageFinished = 1 << 28, // 0x10000000
+};
+
 struct TRenderingProcessorBase : public JMessage::TRenderingProcessor {
 	TRenderingProcessorBase(const JMessage::TReference* ref);
 
@@ -35,11 +49,12 @@ struct TRenderingProcessorBase : public JMessage::TRenderingProcessor {
 };
 
 struct TRenderingProcessor : public TRenderingProcessorBase {
-	TRenderingProcessor(JMessage::TReference const* ref);
-
-	enum Flags {
-		TProcFlag_PageFinished = 0x10000000,
+	struct LineWidthInfo {
+		u8 mStartIndex; // _00
+		u8 mEndIndex;   // _01
 	};
+
+	TRenderingProcessor(JMessage::TReference const* ref);
 
 	virtual ~TRenderingProcessor() { }                         // _08 (weak)
 	virtual void do_character(int);                            // _10
@@ -65,7 +80,6 @@ struct TRenderingProcessor : public TRenderingProcessorBase {
 	virtual f32 doDrawLetter(f32, f32, f32, f32, int, bool);   // _7C
 	virtual bool doTagControlAbtnWait();                       // _80 (weak)
 
-	void setDrawLocate();
 	void initRuby();
 	void drawRuby();
 	void setImageGX();
@@ -83,18 +97,24 @@ struct TRenderingProcessor : public TRenderingProcessorBase {
 	void setFont(JUTFont* font);
 	void setTextBoxInfo(J2DPane*);
 
+	void setDrawLocate() // weak function
+	{
+		setDrawLocateX();
+		setDrawLocateY();
+	}
+
 	// these are used for Caption::onInit
 	inline void initFlagsA()
 	{
-		mFlags.typeView &= 0xffffff8f;
-		mFlags.typeView |= 0x20;
+		mFlags.typeView &= ~(TProcFlag_Unk4 | TProcFlag_Unk5 | TProcFlag_Unk6);
+		mFlags.typeView |= TProcFlag_Unk5;
 	}
 
 	inline void initFlagsB()
 	{
 		// not cooperating with set/unset
-		mFlags.typeView &= 0xfffff8ff;
-		mFlags.typeView |= 0x200;
+		mFlags.typeView &= ~(TProcFlag_Unk8 | TProcFlag_Unk9 | TProcFlag_Unk10);
+		mFlags.typeView |= TProcFlag_Unk9;
 	}
 
 	// unused/inlined:
@@ -117,6 +137,8 @@ struct TRenderingProcessor : public TRenderingProcessorBase {
 	static const u32 cPageInfoBufferNum;
 
 	inline void checkPageInfoNum() { P2ASSERTLINE(490, mPageInfoNum < cPageInfoBufferNum); }
+
+	inline u8 getParagraphNum() { return mParagraphNum; }
 
 	// _00     = VTBL
 	// _00-_38 = JMessage::TRenderingProcessor
@@ -146,7 +168,7 @@ struct TRenderingProcessor : public TRenderingProcessorBase {
 	u8 mPageInfoNum;                    // _A6
 	f32* mLineWidths;                   // _A8
 	u8* mOnePageLines;                  // _AC
-	u8* mPageInfoCounts;                // _B0
+	LineWidthInfo* mLineWidthInfos;     // _B0
 	f32 _B4;                            // _B4
 	s32 mCharacterNum;                  // _B8
 	f32 mActiveCharWidth;               // _BC
