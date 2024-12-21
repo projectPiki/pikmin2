@@ -356,15 +356,15 @@ void TProcessor::on_tag_()
 {
 	// this is very funky and wrong
 	u8* psz = (u8*)getCurrent();
-	u8 size = mCurrent[0];
+	u8 size = mCurrent[1];
 
-	mCurrent = size + (char*)psz + -1;
+	mCurrent = size + (char*)psz;
 
-	u32 tag = (psz[1] << 0x8) | psz[2];
-	tag <<= 8;
-	tag |= psz[3];
+	u32 tag = (psz[2] << 0x10) | (psz[3] << 0x8) | psz[4];
+	//tag <<= 8;
+	//tag |= psz[3];
 
-	on_tag(tag, &psz[4], size - 5);
+	on_tag(tag, &psz[5], size - 5);
 }
 
 /**
