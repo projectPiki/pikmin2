@@ -361,8 +361,8 @@ void TProcessor::on_tag_()
 	mCurrent = size + (char*)psz;
 
 	u32 tag = (psz[2] << 0x10) | (psz[3] << 0x8) | psz[4];
-	//tag <<= 8;
-	//tag |= psz[3];
+	// tag <<= 8;
+	// tag |= psz[3];
 
 	on_tag(tag, &psz[5], size - 5);
 }

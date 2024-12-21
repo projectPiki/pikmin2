@@ -132,17 +132,17 @@ TRenderingProcessor::TRenderingProcessor(JMessage::TReference const* ref)
     , mRubyWidthModifier(0.5f)
 {
 	mFlags.clear();
-	mFlags.unset(0x70);
-	mFlags.set(0x10);
-	mFlags.unset(0x700);
-	mFlags.set(0x100);
+	mFlags.unset(TProcFlag_Unk4 | TProcFlag_Unk5 | TProcFlag_Unk6);
+	mFlags.set(TProcFlag_Unk4);
+	mFlags.unset(TProcFlag_Unk8 | TProcFlag_Unk9 | TProcFlag_Unk10);
+	mFlags.set(TProcFlag_Unk8);
 
 	mLineWidths = new f32[0x40];
 	resetLineWidth();
 	mOnePageLines = new u8[0x40];
 	resetOnePageLine();
 	mRubyBuffer     = P2JME::sRubyDataBuffer;
-	mPageInfoCounts = new u8[20];
+	mLineWidthInfos = new LineWidthInfo[10];
 }
 
 /**
@@ -151,17 +151,22 @@ TRenderingProcessor::TRenderingProcessor(JMessage::TReference const* ref)
  */
 void TRenderingProcessor::setDrawLocateX()
 {
-	if (mFlags.isSet(1)) {
+	if (mFlags.isSet(TProcFlag_Unk0)) {
 		mLocate.i.x = mLocate.f.x;
-	} else if (mFlags.isSet(0x20)) {
-		mLocate.i.x = 0.5f * (mTextBoxWidth - mLineWidths[mCurrLine]);
-	} else if (mFlags.isSet(0x40)) {
-		mLocate.i.x = (mTextBoxWidth - mLineWidths[mCurrLine]);
-	} else {
-		mLocate.i.x = mLocate.f.x;
+		return;
 	}
 
-	//mLocate.setX(mLocate.i.x);
+	if (mFlags.isSet(TProcFlag_Unk5)) {
+		mLocate.i.x = 0.5f * (mTextBoxWidth - mLineWidths[mCurrLine]);
+		return;
+	}
+
+	if (mFlags.isSet(TProcFlag_Unk6)) {
+		mLocate.i.x = (mTextBoxWidth - mLineWidths[mCurrLine]);
+		return;
+	}
+
+	mLocate.i.x = mLocate.f.x;
 }
 
 /**
@@ -170,37 +175,44 @@ void TRenderingProcessor::setDrawLocateX()
  */
 void TRenderingProcessor::setDrawLocateY()
 {
-	if (mFlags.isSet(1)) {
-		mLocate.i.y = (mLineHeight * mParagraphNum) + (mTextBoxHeight * mPageInfoNum) + (mFontHeight * mMainFont->getAscent()) 
-					+ mLocate.f.y;
-	} else if (mFlags.isSet(0x200)) {
-		f32 totalFontHeight   = 0.0f;
-		u8* lineWidthPtr      = mPageInfoCounts + (2 * mPageInfoNum);
-		int lineWidthIndex    = lineWidthPtr[0];
-		int lineWidthEndIndex = lineWidthPtr[1];
-		int lineWidthIndexLen = (lineWidthEndIndex + 1) - lineWidthIndex;
-		int something = lineWidthIndex << 2;
+	if (mFlags.isSet(TProcFlag_Unk0)) {
+		mLocate.i.y = (mLineHeight * getParagraphNum())
+		            + ((mTextBoxHeight * mPageInfoNum) + ((mFontHeight * mMainFont->getAscent()) + mLocate.f.y));
+		return;
+	}
 
-		if (lineWidthIndex <= lineWidthEndIndex) {
-			while (lineWidthIndexLen > 0) {
-				if ((*mLineWidths + something) > 0.0f) {
-					totalFontHeight += mLineHeight;
-				}
-				something += 4;
-				lineWidthIndexLen--;
+	if (mFlags.isSet(TProcFlag_Unk9)) {
+		u8 pageInfoNum              = mPageInfoNum;
+		LineWidthInfo* lineWidthPtr = &mLineWidthInfos[pageInfoNum];
+		f32 totalFontHeight         = 0.0f;
+
+		for (int i = lineWidthPtr->mStartIndex; i <= lineWidthPtr->mEndIndex; i++) {
+			if (mLineWidths[i] > 0.0f) {
+				totalFontHeight += mLineHeight;
 			}
 		}
-		mLocate.i.y = (mLineHeight * mParagraphNum) + ((mTextBoxHeight - totalFontHeight) * 0.5)
-						+ (mTextBoxHeight * mPageInfoNum) + -(mFontHeight * (something - mLineHeight) * 0.5)
-						+ (mFontHeight * mMainFont->getAscent() + mLocate.f.y);
-	} else if (mFlags.isSet(0x400)) {
-		f32 paragraphNumFloat = mOnePageLines[mCurrLine] - (mParagraphNum + 1);
-		mLocate.i.y = -(mLineHeight * paragraphNumFloat) - ((mFontHeight * mMainFont->getDescent()) 
-					+ (mTextBoxHeight * (mPageInfoNum + 1.0f)));
-	} else {
-		mLocate.i.y = (mLineHeight * mParagraphNum) + (mTextBoxHeight * mPageInfoNum) + (mFontHeight * mMainFont->getAscent()) 
-					+ mLocate.f.y;
+
+		f32 height  = 0.5f * (mTextBoxHeight - totalFontHeight);
+		u8 paraNum  = mParagraphNum;
+		f32 x       = ((mTextBoxHeight * pageInfoNum)
+                 + (0.5f * (mLineHeight - mFontHeight * mMainFont->getHeight()) + (mFontHeight * mMainFont->getAscent() + mLocate.f.y)));
+		f32 y       = (mLineHeight * paraNum + height);
+		mLocate.i.y = y + x;
+
+		return;
 	}
+
+	if (mFlags.isSet(TProcFlag_Unk10)) {
+		// equivalent but regswaps
+		f32 descent = -mMainFont->getDescent();
+		mLocate.i.y = (mFontHeight * descent + (mTextBoxHeight * (1.0f + mPageInfoNum)))
+		            - (mLineHeight * (mOnePageLines[mCurrLine] - (mParagraphNum + 1)));
+
+		return;
+	}
+
+	mLocate.i.y
+	    = (mLineHeight * getParagraphNum()) + ((mTextBoxHeight * mPageInfoNum) + ((mFontHeight * mMainFont->getAscent()) + mLocate.f.y));
 }
 
 /**
@@ -220,284 +232,13 @@ void TRenderingProcessor::do_begin(const void* p1, char const* p2)
 	mActiveCharWidth = wid;
 	mCharacterWidth  = wid;
 	mLineHeight      = mActiveLineHeight;
-	mFlags.unset(0x10000000);
+	mFlags.unset(TProcFlag_PageFinished);
 	mPageInfoNum  = 0;
 	mCurrLine     = 0;
 	mParagraphNum = 0;
 	setDrawLocate();
 	mMatrixType = 0;
 	mMainFont->setGX(mDefaultWhite, mDefaultBlack);
-}
-
-/**
- * @note Address: 0x80439740
- * @note Size: 0x3B0
- */
-void TRenderingProcessor::setDrawLocate()
-{
-	setDrawLocateX();
-	setDrawLocateY();
-
-	/*
-	stwu     r1, -0x60(r1)
-	mflr     r0
-	stw      r0, 0x64(r1)
-	stfd     f31, 0x50(r1)
-	psq_st   f31, 88(r1), 0, qr0
-	stfd     f30, 0x40(r1)
-	psq_st   f30, 72(r1), 0, qr0
-	stw      r31, 0x3c(r1)
-	stw      r30, 0x38(r1)
-	stw      r29, 0x34(r1)
-	mr       r31, r3
-	lwz      r3, 0x8c(r3)
-	clrlwi.  r0, r3, 0x1f
-	beq      lbl_80439784
-	lfs      f0, 0x98(r31)
-	stfs     f0, 0x90(r31)
-	b        lbl_804397E4
-
-lbl_80439784:
-	rlwinm.  r0, r3, 0, 0x1a, 0x1a
-	beq      lbl_804397B4
-	lbz      r0, 0xa4(r31)
-	lwz      r3, 0xa8(r31)
-	slwi     r0, r0, 2
-	lfs      f1, 0x38(r31)
-	lfsx     f0, r3, r0
-	lfs      f2, lbl_805208CC@sda21(r2)
-	fsubs    f0, f1, f0
-	fmuls    f0, f2, f0
-	stfs     f0, 0x90(r31)
-	b        lbl_804397E4
-
-lbl_804397B4:
-	rlwinm.  r0, r3, 0, 0x19, 0x19
-	beq      lbl_804397DC
-	lbz      r0, 0xa4(r31)
-	lwz      r3, 0xa8(r31)
-	slwi     r0, r0, 2
-	lfs      f1, 0x38(r31)
-	lfsx     f0, r3, r0
-	fsubs    f0, f1, f0
-	stfs     f0, 0x90(r31)
-	b        lbl_804397E4
-
-lbl_804397DC:
-	lfs      f0, 0x98(r31)
-	stfs     f0, 0x90(r31)
-
-lbl_804397E4:
-	lwz      r3, 0x8c(r31)
-	clrlwi.  r0, r3, 0x1f
-	beq      lbl_80439870
-	lwz      r3, 0x4c(r31)
-	lbz      r30, 0xa5(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lis      r4, 0x4330
-	xoris    r0, r3, 0x8000
-	stw      r0, 0xc(r1)
-	lbz      r0, 0xa6(r31)
-	stw      r4, 8(r1)
-	lfd      f1, lbl_805208D0@sda21(r2)
-	lfd      f0, 8(r1)
-	stw      r0, 0x14(r1)
-	fsubs    f4, f0, f1
-	lfs      f2, 0xec(r31)
-	stw      r4, 0x10(r1)
-	lfs      f1, 0x9c(r31)
-	lfd      f3, lbl_805208D8@sda21(r2)
-	lfd      f0, 0x10(r1)
-	fmadds   f5, f2, f4, f1
-	stw      r30, 0x1c(r1)
-	fsubs    f2, f0, f3
-	lfs      f4, 0x3c(r31)
-	stw      r4, 0x18(r1)
-	lfs      f1, 0xc8(r31)
-	lfd      f0, 0x18(r1)
-	fmadds   f2, f4, f2, f5
-	fsubs    f0, f0, f3
-	fmadds   f0, f1, f0, f2
-	stfs     f0, 0x94(r31)
-	b        lbl_80439AC4
-
-lbl_80439870:
-	rlwinm.  r0, r3, 0, 0x16, 0x16
-	beq      lbl_804399A0
-	lbz      r29, 0xa6(r31)
-	lwz      r3, 0xb0(r31)
-	rlwinm   r0, r29, 1, 0x17, 0x1e
-	lfs      f2, lbl_805208C0@sda21(r2)
-	add      r3, r3, r0
-	lbz      r5, 1(r3)
-	fmr      f1, f2
-	lbz      r3, 0(r3)
-	addi     r0, r5, 1
-	subf     r0, r3, r0
-	slwi     r4, r3, 2
-	mtctr    r0
-	cmpw     r3, r5
-	bgt      lbl_804398D0
-
-lbl_804398B0:
-	lwz      r3, 0xa8(r31)
-	lfsx     f0, r3, r4
-	fcmpo    cr0, f0, f1
-	ble      lbl_804398C8
-	lfs      f0, 0xc8(r31)
-	fadds    f2, f2, f0
-
-lbl_804398C8:
-	addi     r4, r4, 4
-	bdnz     lbl_804398B0
-
-lbl_804398D0:
-	lfs      f0, 0x3c(r31)
-	lwz      r3, 0x4c(r31)
-	fsubs    f0, f0, f2
-	lfs      f1, lbl_805208CC@sda21(r2)
-	lwz      r12, 0(r3)
-	lbz      r30, 0xa5(r31)
-	lwz      r12, 0x1c(r12)
-	fmuls    f31, f1, f0
-	mtctr    r12
-	bctrl
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x1c(r1)
-	lwz      r3, 0x4c(r31)
-	stw      r0, 0x18(r1)
-	lfd      f1, lbl_805208D0@sda21(r2)
-	lfd      f0, 0x18(r1)
-	lwz      r12, 0(r3)
-	fsubs    f2, f0, f1
-	lfs      f1, 0xec(r31)
-	lfs      f0, 0x9c(r31)
-	lwz      r12, 0x24(r12)
-	fmadds   f30, f1, f2, f0
-	mtctr    r12
-	bctrl
-	lis      r0, 0x4330
-	xoris    r3, r3, 0x8000
-	stw      r3, 0x14(r1)
-	lfd      f2, lbl_805208D0@sda21(r2)
-	stw      r0, 0x10(r1)
-	lfs      f0, 0xec(r31)
-	lfd      f1, 0x10(r1)
-	lfs      f5, 0xc8(r31)
-	fsubs    f2, f1, f2
-	stw      r29, 0xc(r1)
-	lfs      f1, lbl_805208CC@sda21(r2)
-	stw      r0, 8(r1)
-	fnmsubs  f3, f0, f2, f5
-	lfd      f2, lbl_805208D8@sda21(r2)
-	lfd      f0, 8(r1)
-	stw      r30, 0x24(r1)
-	fmadds   f4, f1, f3, f30
-	lfs      f3, 0x3c(r31)
-	stw      r0, 0x20(r1)
-	fsubs    f1, f0, f2
-	lfd      f0, 0x20(r1)
-	fmadds   f1, f3, f1, f4
-	fsubs    f0, f0, f2
-	fmadds   f0, f5, f0, f31
-	fadds    f0, f0, f1
-	stfs     f0, 0x94(r31)
-	b        lbl_80439AC4
-
-lbl_804399A0:
-	rlwinm.  r0, r3, 0, 0x15, 0x15
-	beq      lbl_80439A48
-	lwz      r3, 0x4c(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lbz      r0, 0xa6(r31)
-	lis      r5, 0x4330
-	neg      r4, r3
-	lbz      r3, 0xa5(r31)
-	stw      r0, 0x1c(r1)
-	xoris    r6, r4, 0x8000
-	lfd      f1, lbl_805208D8@sda21(r2)
-	addi     r4, r3, 1
-	stw      r5, 0x18(r1)
-	lwz      r3, 0xac(r31)
-	lfd      f0, 0x18(r1)
-	lbz      r0, 0xa4(r31)
-	fsubs    f0, f0, f1
-	lfs      f1, lbl_805208C4@sda21(r2)
-	lbzx     r0, r3, r0
-	stw      r6, 0x24(r1)
-	subf     r0, r4, r0
-	fadds    f0, f1, f0
-	stw      r5, 0x20(r1)
-	xoris    r0, r0, 0x8000
-	lfs      f1, 0x3c(r31)
-	lfd      f5, lbl_805208D0@sda21(r2)
-	lfd      f3, 0x20(r1)
-	fmuls    f2, f1, f0
-	stw      r0, 0x14(r1)
-	fsubs    f4, f3, f5
-	lfs      f3, 0xec(r31)
-	stw      r5, 0x10(r1)
-	lfs      f1, 0xc8(r31)
-	lfd      f0, 0x10(r1)
-	fmadds   f2, f3, f4, f2
-	fsubs    f0, f0, f5
-	fnmsubs  f0, f1, f0, f2
-	stfs     f0, 0x94(r31)
-	b        lbl_80439AC4
-
-lbl_80439A48:
-	lwz      r3, 0x4c(r31)
-	lbz      r30, 0xa5(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lis      r4, 0x4330
-	xoris    r0, r3, 0x8000
-	stw      r0, 0x24(r1)
-	lbz      r0, 0xa6(r31)
-	stw      r4, 0x20(r1)
-	lfd      f1, lbl_805208D0@sda21(r2)
-	lfd      f0, 0x20(r1)
-	stw      r0, 0x1c(r1)
-	fsubs    f4, f0, f1
-	lfs      f2, 0xec(r31)
-	stw      r4, 0x18(r1)
-	lfs      f1, 0x9c(r31)
-	lfd      f3, lbl_805208D8@sda21(r2)
-	lfd      f0, 0x18(r1)
-	fmadds   f5, f2, f4, f1
-	stw      r30, 0x14(r1)
-	fsubs    f2, f0, f3
-	lfs      f4, 0x3c(r31)
-	stw      r4, 0x10(r1)
-	lfs      f1, 0xc8(r31)
-	lfd      f0, 0x10(r1)
-	fmadds   f2, f4, f2, f5
-	fsubs    f0, f0, f3
-	fmadds   f0, f1, f0, f2
-	stfs     f0, 0x94(r31)
-
-lbl_80439AC4:
-	psq_l    f31, 88(r1), 0, qr0
-	lfd      f31, 0x50(r1)
-	psq_l    f30, 72(r1), 0, qr0
-	lfd      f30, 0x40(r1)
-	lwz      r31, 0x3c(r1)
-	lwz      r30, 0x38(r1)
-	lwz      r0, 0x64(r1)
-	lwz      r29, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x60
-	blr
-	*/
 }
 
 /**
@@ -560,7 +301,7 @@ void TRenderingProcessor::do_character(int character)
 		mColorData2.a = f32(mColorData2.a) * mBaseAlphaModifier;
 
 		f32 xScale = mFontWidthAdjusted * (f32)mMainFont->getWidth();
-		if (mFlags.isSet(1)) {
+		if (mFlags.isSet(TProcFlag_Unk0)) {
 			mLocate.i.x += calcWidth(mMainFont, character, xScale, true);
 		} else {
 			mLocate.i.x += doDrawLetter(mLocate.i.x + mXOffset, mLocate.i.y + mYOffset, xScale,
@@ -665,7 +406,7 @@ bool TRenderingProcessor::tagSize(const void* p1, u32 p2)
  */
 bool TRenderingProcessor::tagRuby(const void* data, u32 size)
 {
-	if (sys->mPlayData->mIsRubyFont && !mFlags.isSet(1)) {
+	if (sys->mPlayData->mIsRubyFont && !mFlags.isSet(TProcFlag_Unk0)) {
 
 		P2ASSERTLINE(839, size < 33);
 		strncpy(mRubyBuffer, (char*)data + 1, size - 1);
@@ -679,7 +420,7 @@ bool TRenderingProcessor::tagRuby(const void* data, u32 size)
 
 		mRubyCurrentXPos = mLocate.i.x;
 		f32 y            = mFontHeightAdjusted * mMainFont->getAscent();
-		mRubyCurrentYPos = mLocate.i.y - ROUND_F32_TO_U8(y);
+		mRubyCurrentYPos = mLocate.i.y - int(ROUND_F32_TO_U8(y));
 	}
 
 	return true;
@@ -748,513 +489,31 @@ bool TRenderingProcessor::tagPosition(u16 type, const void* data, u32)
 		mCharacterWidth = mActiveCharWidth;
 		break;
 	case 1:
-		mCharacterWidth = *(u8*)data;
+		mCharacterWidth = *(char*)data;
 		break;
 	case 2:
 		mLineHeight = mActiveLineHeight;
 		setDrawLocateY();
 		break;
 	case 3:
-		mLineHeight = *(u8*)data;
+		mLineHeight = *(char*)data;
 		setDrawLocateY();
 		break;
 	case 4:
 		mFontHeightAdjusted = mFontHeight;
 		break;
 	case 5:
-		mFontHeightAdjusted = (f32)(*(u32*)data) / 100.0f;
+		mFontHeightAdjusted = (f32)(*(u16*)data) / 100.0f;
 		break;
 	case 6:
 		mFontWidthAdjusted = mFontWidth;
 		break;
 	case 7:
-		mFontWidthAdjusted = (f32)(*(u32*)data) / 100.0f;
+		mFontWidthAdjusted = (f32)(*(u16*)data) / 100.0f;
 		break;
 	}
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x60(r1)
-	  mflr      r0
-	  stw       r0, 0x64(r1)
-	  stfd      f31, 0x50(r1)
-	  psq_st    f31,0x58(r1),0,0
-	  stfd      f30, 0x40(r1)
-	  psq_st    f30,0x48(r1),0,0
-	  stw       r31, 0x3C(r1)
-	  stw       r30, 0x38(r1)
-	  stw       r29, 0x34(r1)
-	  rlwinm    r0,r4,0,16,31
-	  mr        r31, r3
-	  cmplwi    r0, 0x7
-	  bgt-      .loc_0x6EC
-	  lis       r3, 0x804F
-	  rlwinm    r0,r0,2,0,29
-	  subi      r3, r3, 0x3570
-	  lwzx      r0, r3, r0
-	  mtctr     r0
-	  bctr
-	  lfs       f0, 0xBC(r31)
-	  stfs      f0, 0xC4(r31)
-	  b         .loc_0x6EC
-	  lbz       r3, 0x0(r5)
-	  lis       r0, 0x4330
-	  stw       r0, 0x8(r1)
-	  extsb     r0, r3
-	  lfd       f1, 0x2570(r2)
-	  xoris     r0, r0, 0x8000
-	  stw       r0, 0xC(r1)
-	  lfd       f0, 0x8(r1)
-	  fsubs     f0, f0, f1
-	  stfs      f0, 0xC4(r31)
-	  b         .loc_0x6EC
-	  lfs       f0, 0xC0(r31)
-	  stfs      f0, 0xC8(r31)
-	  lwz       r3, 0x8C(r31)
-	  rlwinm.   r0,r3,0,31,31
-	  beq-      .loc_0x11C
-	  lwz       r3, 0x4C(r31)
-	  lbz       r30, 0xA5(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lis       r4, 0x4330
-	  xoris     r0, r3, 0x8000
-	  stw       r0, 0xC(r1)
-	  lbz       r0, 0xA6(r31)
-	  stw       r4, 0x8(r1)
-	  lfd       f1, 0x2570(r2)
-	  lfd       f0, 0x8(r1)
-	  stw       r0, 0x14(r1)
-	  fsubs     f4, f0, f1
-	  lfs       f2, 0xEC(r31)
-	  stw       r4, 0x10(r1)
-	  lfs       f1, 0x9C(r31)
-	  lfd       f3, 0x2578(r2)
-	  lfd       f0, 0x10(r1)
-	  fmadds    f5, f2, f4, f1
-	  stw       r30, 0x1C(r1)
-	  fsubs     f2, f0, f3
-	  lfs       f4, 0x3C(r31)
-	  stw       r4, 0x18(r1)
-	  lfs       f1, 0xC8(r31)
-	  lfd       f0, 0x18(r1)
-	  fmadds    f2, f4, f2, f5
-	  fsubs     f0, f0, f3
-	  fmadds    f0, f1, f0, f2
-	  stfs      f0, 0x94(r31)
-	  b         .loc_0x6EC
 
-	.loc_0x11C:
-	  rlwinm.   r0,r3,0,22,22
-	  beq-      .loc_0x24C
-	  lbz       r29, 0xA6(r31)
-	  lwz       r3, 0xB0(r31)
-	  rlwinm    r0,r29,1,23,30
-	  lfs       f2, 0x2560(r2)
-	  add       r3, r3, r0
-	  lbz       r5, 0x1(r3)
-	  fmr       f1, f2
-	  lbz       r3, 0x0(r3)
-	  addi      r0, r5, 0x1
-	  sub       r0, r0, r3
-	  rlwinm    r4,r3,2,0,29
-	  mtctr     r0
-	  cmpw      r3, r5
-	  bgt-      .loc_0x17C
-
-	.loc_0x15C:
-	  lwz       r3, 0xA8(r31)
-	  lfsx      f0, r3, r4
-	  fcmpo     cr0, f0, f1
-	  ble-      .loc_0x174
-	  lfs       f0, 0xC8(r31)
-	  fadds     f2, f2, f0
-
-	.loc_0x174:
-	  addi      r4, r4, 0x4
-	  bdnz+     .loc_0x15C
-
-	.loc_0x17C:
-	  lfs       f0, 0x3C(r31)
-	  lwz       r3, 0x4C(r31)
-	  fsubs     f0, f0, f2
-	  lfs       f1, 0x256C(r2)
-	  lwz       r12, 0x0(r3)
-	  lbz       r30, 0xA5(r31)
-	  lwz       r12, 0x1C(r12)
-	  fmuls     f31, f1, f0
-	  mtctr     r12
-	  bctrl
-	  xoris     r3, r3, 0x8000
-	  lis       r0, 0x4330
-	  stw       r3, 0x1C(r1)
-	  lwz       r3, 0x4C(r31)
-	  stw       r0, 0x18(r1)
-	  lfd       f1, 0x2570(r2)
-	  lfd       f0, 0x18(r1)
-	  lwz       r12, 0x0(r3)
-	  fsubs     f2, f0, f1
-	  lfs       f1, 0xEC(r31)
-	  lfs       f0, 0x9C(r31)
-	  lwz       r12, 0x24(r12)
-	  fmadds    f30, f1, f2, f0
-	  mtctr     r12
-	  bctrl
-	  lis       r0, 0x4330
-	  xoris     r3, r3, 0x8000
-	  stw       r3, 0x14(r1)
-	  lfd       f2, 0x2570(r2)
-	  stw       r0, 0x10(r1)
-	  lfs       f0, 0xEC(r31)
-	  lfd       f1, 0x10(r1)
-	  lfs       f5, 0xC8(r31)
-	  fsubs     f2, f1, f2
-	  stw       r29, 0xC(r1)
-	  lfs       f1, 0x256C(r2)
-	  stw       r0, 0x8(r1)
-	  fnmsubs   f3, f0, f2, f5
-	  lfd       f2, 0x2578(r2)
-	  lfd       f0, 0x8(r1)
-	  stw       r30, 0x24(r1)
-	  fmadds    f4, f1, f3, f30
-	  lfs       f3, 0x3C(r31)
-	  stw       r0, 0x20(r1)
-	  fsubs     f1, f0, f2
-	  lfd       f0, 0x20(r1)
-	  fmadds    f1, f3, f1, f4
-	  fsubs     f0, f0, f2
-	  fmadds    f0, f5, f0, f31
-	  fadds     f0, f0, f1
-	  stfs      f0, 0x94(r31)
-	  b         .loc_0x6EC
-
-	.loc_0x24C:
-	  rlwinm.   r0,r3,0,21,21
-	  beq-      .loc_0x2F4
-	  lwz       r3, 0x4C(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lbz       r0, 0xA6(r31)
-	  lis       r5, 0x4330
-	  neg       r4, r3
-	  lbz       r3, 0xA5(r31)
-	  stw       r0, 0x1C(r1)
-	  xoris     r6, r4, 0x8000
-	  lfd       f1, 0x2578(r2)
-	  addi      r4, r3, 0x1
-	  stw       r5, 0x18(r1)
-	  lwz       r3, 0xAC(r31)
-	  lfd       f0, 0x18(r1)
-	  lbz       r0, 0xA4(r31)
-	  fsubs     f0, f0, f1
-	  lfs       f1, 0x2564(r2)
-	  lbzx      r0, r3, r0
-	  stw       r6, 0x24(r1)
-	  sub       r0, r0, r4
-	  fadds     f0, f1, f0
-	  stw       r5, 0x20(r1)
-	  xoris     r0, r0, 0x8000
-	  lfs       f1, 0x3C(r31)
-	  lfd       f5, 0x2570(r2)
-	  lfd       f3, 0x20(r1)
-	  fmuls     f2, f1, f0
-	  stw       r0, 0x14(r1)
-	  fsubs     f4, f3, f5
-	  lfs       f3, 0xEC(r31)
-	  stw       r5, 0x10(r1)
-	  lfs       f1, 0xC8(r31)
-	  lfd       f0, 0x10(r1)
-	  fmadds    f2, f3, f4, f2
-	  fsubs     f0, f0, f5
-	  fnmsubs   f0, f1, f0, f2
-	  stfs      f0, 0x94(r31)
-	  b         .loc_0x6EC
-
-	.loc_0x2F4:
-	  lwz       r3, 0x4C(r31)
-	  lbz       r30, 0xA5(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lis       r4, 0x4330
-	  xoris     r0, r3, 0x8000
-	  stw       r0, 0x24(r1)
-	  lbz       r0, 0xA6(r31)
-	  stw       r4, 0x20(r1)
-	  lfd       f1, 0x2570(r2)
-	  lfd       f0, 0x20(r1)
-	  stw       r0, 0x1C(r1)
-	  fsubs     f4, f0, f1
-	  lfs       f2, 0xEC(r31)
-	  stw       r4, 0x18(r1)
-	  lfs       f1, 0x9C(r31)
-	  lfd       f3, 0x2578(r2)
-	  lfd       f0, 0x18(r1)
-	  fmadds    f5, f2, f4, f1
-	  stw       r30, 0x14(r1)
-	  fsubs     f2, f0, f3
-	  lfs       f4, 0x3C(r31)
-	  stw       r4, 0x10(r1)
-	  lfs       f1, 0xC8(r31)
-	  lfd       f0, 0x10(r1)
-	  fmadds    f2, f4, f2, f5
-	  fsubs     f0, f0, f3
-	  fmadds    f0, f1, f0, f2
-	  stfs      f0, 0x94(r31)
-	  b         .loc_0x6EC
-	  lbz       r3, 0x0(r5)
-	  lis       r0, 0x4330
-	  stw       r0, 0x20(r1)
-	  extsb     r0, r3
-	  lfd       f1, 0x2570(r2)
-	  xoris     r0, r0, 0x8000
-	  stw       r0, 0x24(r1)
-	  lfd       f0, 0x20(r1)
-	  fsubs     f0, f0, f1
-	  stfs      f0, 0xC8(r31)
-	  lwz       r3, 0x8C(r31)
-	  rlwinm.   r0,r3,0,31,31
-	  beq-      .loc_0x428
-	  lwz       r3, 0x4C(r31)
-	  lbz       r30, 0xA5(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lis       r4, 0x4330
-	  xoris     r0, r3, 0x8000
-	  stw       r0, 0x24(r1)
-	  lbz       r0, 0xA6(r31)
-	  stw       r4, 0x20(r1)
-	  lfd       f1, 0x2570(r2)
-	  lfd       f0, 0x20(r1)
-	  stw       r0, 0x1C(r1)
-	  fsubs     f4, f0, f1
-	  lfs       f2, 0xEC(r31)
-	  stw       r4, 0x18(r1)
-	  lfs       f1, 0x9C(r31)
-	  lfd       f3, 0x2578(r2)
-	  lfd       f0, 0x18(r1)
-	  fmadds    f5, f2, f4, f1
-	  stw       r30, 0x14(r1)
-	  fsubs     f2, f0, f3
-	  lfs       f4, 0x3C(r31)
-	  stw       r4, 0x10(r1)
-	  lfs       f1, 0xC8(r31)
-	  lfd       f0, 0x10(r1)
-	  fmadds    f2, f4, f2, f5
-	  fsubs     f0, f0, f3
-	  fmadds    f0, f1, f0, f2
-	  stfs      f0, 0x94(r31)
-	  b         .loc_0x6EC
-
-	.loc_0x428:
-	  rlwinm.   r0,r3,0,22,22
-	  beq-      .loc_0x558
-	  lbz       r29, 0xA6(r31)
-	  lwz       r3, 0xB0(r31)
-	  rlwinm    r0,r29,1,23,30
-	  lfs       f2, 0x2560(r2)
-	  add       r3, r3, r0
-	  lbz       r5, 0x1(r3)
-	  fmr       f1, f2
-	  lbz       r3, 0x0(r3)
-	  addi      r0, r5, 0x1
-	  sub       r0, r0, r3
-	  rlwinm    r4,r3,2,0,29
-	  mtctr     r0
-	  cmpw      r3, r5
-	  bgt-      .loc_0x488
-
-	.loc_0x468:
-	  lwz       r3, 0xA8(r31)
-	  lfsx      f0, r3, r4
-	  fcmpo     cr0, f0, f1
-	  ble-      .loc_0x480
-	  lfs       f0, 0xC8(r31)
-	  fadds     f2, f2, f0
-
-	.loc_0x480:
-	  addi      r4, r4, 0x4
-	  bdnz+     .loc_0x468
-
-	.loc_0x488:
-	  lfs       f0, 0x3C(r31)
-	  lwz       r3, 0x4C(r31)
-	  fsubs     f0, f0, f2
-	  lfs       f1, 0x256C(r2)
-	  lwz       r12, 0x0(r3)
-	  lbz       r30, 0xA5(r31)
-	  lwz       r12, 0x1C(r12)
-	  fmuls     f31, f1, f0
-	  mtctr     r12
-	  bctrl
-	  xoris     r3, r3, 0x8000
-	  lis       r0, 0x4330
-	  stw       r3, 0x24(r1)
-	  lwz       r3, 0x4C(r31)
-	  stw       r0, 0x20(r1)
-	  lfd       f1, 0x2570(r2)
-	  lfd       f0, 0x20(r1)
-	  lwz       r12, 0x0(r3)
-	  fsubs     f2, f0, f1
-	  lfs       f1, 0xEC(r31)
-	  lfs       f0, 0x9C(r31)
-	  lwz       r12, 0x24(r12)
-	  fmadds    f30, f1, f2, f0
-	  mtctr     r12
-	  bctrl
-	  lis       r0, 0x4330
-	  xoris     r3, r3, 0x8000
-	  stw       r3, 0x1C(r1)
-	  lfd       f2, 0x2570(r2)
-	  stw       r0, 0x18(r1)
-	  lfs       f0, 0xEC(r31)
-	  lfd       f1, 0x18(r1)
-	  lfs       f5, 0xC8(r31)
-	  fsubs     f2, f1, f2
-	  stw       r29, 0x14(r1)
-	  lfs       f1, 0x256C(r2)
-	  stw       r0, 0x10(r1)
-	  fnmsubs   f3, f0, f2, f5
-	  lfd       f2, 0x2578(r2)
-	  lfd       f0, 0x10(r1)
-	  stw       r30, 0xC(r1)
-	  fmadds    f4, f1, f3, f30
-	  lfs       f3, 0x3C(r31)
-	  stw       r0, 0x8(r1)
-	  fsubs     f1, f0, f2
-	  lfd       f0, 0x8(r1)
-	  fmadds    f1, f3, f1, f4
-	  fsubs     f0, f0, f2
-	  fmadds    f0, f5, f0, f31
-	  fadds     f0, f0, f1
-	  stfs      f0, 0x94(r31)
-	  b         .loc_0x6EC
-
-	.loc_0x558:
-	  rlwinm.   r0,r3,0,21,21
-	  beq-      .loc_0x600
-	  lwz       r3, 0x4C(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lbz       r0, 0xA6(r31)
-	  lis       r5, 0x4330
-	  neg       r4, r3
-	  lbz       r3, 0xA5(r31)
-	  stw       r0, 0x1C(r1)
-	  xoris     r6, r4, 0x8000
-	  lfd       f1, 0x2578(r2)
-	  addi      r4, r3, 0x1
-	  stw       r5, 0x18(r1)
-	  lwz       r3, 0xAC(r31)
-	  lfd       f0, 0x18(r1)
-	  lbz       r0, 0xA4(r31)
-	  fsubs     f0, f0, f1
-	  lfs       f1, 0x2564(r2)
-	  lbzx      r0, r3, r0
-	  stw       r6, 0x24(r1)
-	  sub       r0, r0, r4
-	  fadds     f0, f1, f0
-	  stw       r5, 0x20(r1)
-	  xoris     r0, r0, 0x8000
-	  lfs       f1, 0x3C(r31)
-	  lfd       f5, 0x2570(r2)
-	  lfd       f3, 0x20(r1)
-	  fmuls     f2, f1, f0
-	  stw       r0, 0x14(r1)
-	  fsubs     f4, f3, f5
-	  lfs       f3, 0xEC(r31)
-	  stw       r5, 0x10(r1)
-	  lfs       f1, 0xC8(r31)
-	  lfd       f0, 0x10(r1)
-	  fmadds    f2, f3, f4, f2
-	  fsubs     f0, f0, f5
-	  fnmsubs   f0, f1, f0, f2
-	  stfs      f0, 0x94(r31)
-	  b         .loc_0x6EC
-
-	.loc_0x600:
-	  lwz       r3, 0x4C(r31)
-	  lbz       r30, 0xA5(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lis       r4, 0x4330
-	  xoris     r0, r3, 0x8000
-	  stw       r0, 0x24(r1)
-	  lbz       r0, 0xA6(r31)
-	  stw       r4, 0x20(r1)
-	  lfd       f1, 0x2570(r2)
-	  lfd       f0, 0x20(r1)
-	  stw       r0, 0x1C(r1)
-	  fsubs     f4, f0, f1
-	  lfs       f2, 0xEC(r31)
-	  stw       r4, 0x18(r1)
-	  lfs       f1, 0x9C(r31)
-	  lfd       f3, 0x2578(r2)
-	  lfd       f0, 0x18(r1)
-	  fmadds    f5, f2, f4, f1
-	  stw       r30, 0x14(r1)
-	  fsubs     f2, f0, f3
-	  lfs       f4, 0x3C(r31)
-	  stw       r4, 0x10(r1)
-	  lfs       f1, 0xC8(r31)
-	  lfd       f0, 0x10(r1)
-	  fmadds    f2, f4, f2, f5
-	  fsubs     f0, f0, f3
-	  fmadds    f0, f1, f0, f2
-	  stfs      f0, 0x94(r31)
-	  b         .loc_0x6EC
-	  lfs       f0, 0xEC(r31)
-	  stfs      f0, 0xE4(r31)
-	  b         .loc_0x6EC
-	  lhz       r3, 0x0(r5)
-	  lis       r0, 0x4330
-	  stw       r0, 0x20(r1)
-	  lfd       f2, 0x2578(r2)
-	  stw       r3, 0x24(r1)
-	  lfs       f0, 0x255C(r2)
-	  lfd       f1, 0x20(r1)
-	  fsubs     f1, f1, f2
-	  fdivs     f0, f1, f0
-	  stfs      f0, 0xE4(r31)
-	  b         .loc_0x6EC
-	  lfs       f0, 0xE8(r31)
-	  stfs      f0, 0xE0(r31)
-	  b         .loc_0x6EC
-	  lhz       r3, 0x0(r5)
-	  lis       r0, 0x4330
-	  stw       r0, 0x20(r1)
-	  lfd       f2, 0x2578(r2)
-	  stw       r3, 0x24(r1)
-	  lfs       f0, 0x255C(r2)
-	  lfd       f1, 0x20(r1)
-	  fsubs     f1, f1, f2
-	  fdivs     f0, f1, f0
-	  stfs      f0, 0xE0(r31)
-
-	.loc_0x6EC:
-	  li        r3, 0x1
-	  psq_l     f31,0x58(r1),0,0
-	  lfd       f31, 0x50(r1)
-	  psq_l     f30,0x48(r1),0,0
-	  lfd       f30, 0x40(r1)
-	  lwz       r31, 0x3C(r1)
-	  lwz       r30, 0x38(r1)
-	  lwz       r0, 0x64(r1)
-	  lwz       r29, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x60
-	  blr
-	*/
+	return true;
 }
 
 /**
@@ -1279,7 +538,7 @@ void TRenderingProcessor::drawRuby()
 		return;
 	}
 
-	if (mFlags.isSet(1)) {
+	if (mFlags.isSet(TProcFlag_Unk0)) {
 		mDoDrawRuby = false;
 		return;
 	}
@@ -1294,24 +553,28 @@ void TRenderingProcessor::drawRuby()
 		return;
 	}
 
-	int msgBuffer[33];
 	f32 val31 = mRubyWidthModifier;
 	f32 val30 = val31 * f32(mRubyFont->getWidth());
-	f32 val28 = 0.0f;
-	f32 val27 = (mLocate.i.x - mCharacterWidth) - mRubyCurrentXPos;
+	int msgBuffer[33];
+	int* msgBuffPtr2 = msgBuffer;
+	int* msgBuffPtr  = msgBuffer;
+	f32 val28        = 0.0f;
+	f32 val27        = (mLocate.i.x - mCharacterWidth) - mRubyCurrentXPos;
 
 	int msgLen = 0;
 	for (int i = 0; i < mRubyBufferCurrentSize; i++, msgLen++) {
-		int byte = mRubyBuffer[i];
-		if (mRubyFont->isLeadByte(byte)) {
-			byte >>= 4;
-			byte |= (mRubyBuffer[++msgLen] >> 8);   // idk what this is meant to be
-		} else if (byte <= 255 && !isspace(byte)) { // some ctype inline we don't have
+		int byte = *((u8*)mRubyBuffer + i);
+		if (mRubyFont->isLeadByte(((u8*)mRubyBuffer)[i])) {
+			byte = (byte << 8) & 0xFF00;
+			FAST_FLAG_SET(byte, *((u8*)mRubyBuffer + i++ + 1), 0, 8);
+			// byte |= ((((u8*)mRubyBuffer)[i + 1] & 0xFF)) | byte & 0xFFFFFF00;   // idk what this is meant to be
+		} else if (byte <= 255 && !isprintable(byte)) { // some ctype inline we don't have
 			byte = '?';
 		}
 
 		val28 += calcWidth(mRubyFont, byte, val30, true);
-		msgBuffer[i] = byte;
+		*msgBuffPtr = byte;
+		msgBuffPtr++;
 	}
 
 	f32 len   = f32(msgLen + 1);
@@ -1320,13 +583,14 @@ void TRenderingProcessor::drawRuby()
 		val29 = mCharacterWidth * val31;
 	}
 
-	mRubyCurrentXPos += val29 + 0.5f * (val27 - (val29 * len + val28));
+	mRubyCurrentXPos = val29 + (0.5f * (val27 - (val29 * len + val28)) + mRubyCurrentXPos);
 
 	for (int i = 0; i < msgLen; i++) {
 		mRubyCurrentXPos += doDrawRuby(mRubyCurrentXPos + mXOffset, mRubyCurrentYPos + mYOffset, val30, val31 * f32(mRubyFont->getHeight()),
-		                               msgBuffer[i], true);
+		                               *msgBuffPtr2, true);
 		mRubyCurrentXPos += val29;
 		mInfoIndex++;
+		msgBuffPtr2++;
 	}
 	mDoDrawRuby = false;
 
@@ -1598,7 +862,7 @@ bool TRenderingProcessor::tagImage(u16 p1, const void* p2, u32 p3)
 
 	if (gP2JMEMgr) {
 		JUTTexture* img = gP2JMEMgr->getImage(ImageGroup::ID0, firstByte);
-		if (img && !mFlags.isSet(0x1)) {
+		if (img && !mFlags.isSet(TProcFlag_Unk0)) {
 			JUtility::TColor color2(mImageColorB);
 			JUtility::TColor color1(mImageColorA);
 			switch (type) {
@@ -2815,7 +2079,7 @@ lbl_8043C418:
  */
 void TRenderingProcessor::setLineWidth()
 {
-	if (mFlags.isSet(1) == 0) {
+	if (mFlags.isSet(TProcFlag_Unk0) == 0) {
 		return;
 	}
 	mLineWidths[mCurrLine] = mLocate.i.x;
@@ -2838,7 +2102,7 @@ void TRenderingProcessor::resetLineWidth()
  */
 void TRenderingProcessor::setOnePageLine()
 {
-	if (mFlags.isSet(1) == 0) {
+	if (mFlags.isSet(TProcFlag_Unk0) == 0) {
 		return;
 	}
 	for (int i = 0; i < mCurrLine; i++) {
@@ -2875,9 +2139,9 @@ void TRenderingProcessor::resetPageInfo()
 void TRenderingProcessor::setPageInfo()
 {
 	P2ASSERTLINE(1573, mPageInfoNum < 10);
-	mPageInfoCounts[mPageInfoNum * 2 + 1] = mCurrLine - 1;
+	mLineWidthInfos[mPageInfoNum].mEndIndex = mCurrLine - 1;
 	if (mPageInfoNum < 9) {
-		mPageInfoCounts[mPageInfoNum * 2 + 2] = mCurrLine;
+		mLineWidthInfos[mPageInfoNum + 1].mStartIndex = mCurrLine;
 	}
 }
 
@@ -2900,7 +2164,7 @@ void TRenderingProcessor::preProcID(uint p1, uint p2) { preProcCenteringID(p1, p
 void TRenderingProcessor::preProcCenteringPre()
 {
 	// UNUSED FUNCTION
-	mFlags.set(1);
+	mFlags.set(TProcFlag_Unk0);
 	mCurrLine = 0;
 	resetLineWidth();
 	resetOnePageLine();
@@ -2923,7 +2187,7 @@ void TRenderingProcessor::preProcCenteringPost()
 	if (mFlags.isSet(TProcFlag_PageFinished) == 0) {
 		setPageInfo();
 	}
-	mFlags.unset(1);
+	mFlags.unset(TProcFlag_Unk0);
 	_B4 = mLocate.i.y;
 }
 
