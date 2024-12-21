@@ -1770,7 +1770,7 @@ config.libs = [
             Object(Matching, "plugProjectEbisawaU/particle2dMgr.cpp"),
             Object(Matching, "plugProjectEbisawaU/efx2dBase.cpp"),
             Object(Matching, "plugProjectEbisawaU/efx2dEffect.cpp"),
-            Object(NonMatching, "plugProjectEbisawaU/particleMgr.cpp"),
+            Object(Matching, "plugProjectEbisawaU/particleMgr.cpp"),
             Object(NonMatching, "plugProjectEbisawaU/ebiP2Title.cpp"),
             Object(Matching, "plugProjectEbisawaU/ebiP2TitleUnit.cpp"),
             Object(Matching, "plugProjectEbisawaU/ebiUtility.cpp"),

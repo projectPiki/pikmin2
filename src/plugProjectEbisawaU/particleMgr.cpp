@@ -18,7 +18,7 @@ static const u32 padding[] = { 0, 0, 0 };
 static void _Print(char* name, ...) { OSReport("particleMgr"); }
 
 ParticleMgr* particleMgr;
-bool ParticleMgr::disableCulling;
+volatile bool ParticleMgr::disableCulling;
 f32 ParticleMgr::mClipRadiusS = 10.0f;
 f32 ParticleMgr::mClipRadiusM = 30.0f;
 f32 ParticleMgr::mClipRadiusL = 100.0f;
@@ -269,18 +269,25 @@ void ParticleMgr::setGlobalColor(JPABaseEmitter* emit)
 	color1.b = obj->mColor.b;
 
 	int red = (color1.r + color2.r) * 2;
+	Color4 c2 = mgr->mAmbientLight.mColor;
+	Color4 c1 = obj->mColor;
+	u8 r2, g2, b2, r, g, b;
+
+	int red = (c1.r + c2.r) * 2;
 	if (red > 255) {
 		red = 255;
 	}
 	u8 red2 = red;
 
 	int green = (color1.g + color2.g) * 2;
+	int green = (c1.g + c2.g) * 2;
 	if (green > 255) {
 		green = 255;
 	}
 	u8 green2 = green;
 
 	int blue = (color1.b + color2.b) * 2;
+	int blue = (c1.b + c2.b) * 2;
 	if (blue > 255) {
 		blue = 255;
 	}
@@ -288,57 +295,6 @@ void ParticleMgr::setGlobalColor(JPABaseEmitter* emit)
 
 	emit->setColorRGB(red2, green2, blue2);
 	emit->setGlobalEnvColor(red2, green2, blue2);
-
-	/*
-	cmplwi   r4, 0
-	beqlr
-	lwz      r5, 0xe8(r4)
-	lwz      r7, 0x18(r3)
-	lwz      r3, 0x2c(r5)
-	cmplwi   r7, 0
-	lwz      r3, 0(r3)
-	lwz      r0, 0xc(r3)
-	beqlr
-	rlwinm.  r0, r0, 0, 0x1e, 0x1e
-	beqlr
-	lwz      r5, 0x50(r7)
-	lbz      r0, 0x30(r7)
-	lbz      r3, 0x34(r5)
-	lbz      r6, 0x31(r7)
-	add      r0, r3, r0
-	lbz      r3, 0x32(r7)
-	slwi     r7, r0, 1
-	lbz      r0, 0x35(r5)
-	cmpwi    r7, 0xff
-	lbz      r5, 0x36(r5)
-	ble      lbl_803BBA34
-	li       r7, 0xff
-
-lbl_803BBA34:
-	add      r0, r0, r6
-	clrlwi   r6, r7, 0x18
-	slwi     r7, r0, 1
-	cmpwi    r7, 0xff
-	ble      lbl_803BBA4C
-	li       r7, 0xff
-
-lbl_803BBA4C:
-	add      r0, r5, r3
-	clrlwi   r3, r7, 0x18
-	slwi     r0, r0, 1
-	cmpwi    r0, 0xff
-	ble      lbl_803BBA64
-	li       r0, 0xff
-
-lbl_803BBA64:
-	stb      r6, 0xb8(r4)
-	stb      r3, 0xb9(r4)
-	stb      r0, 0xba(r4)
-	stb      r6, 0xbc(r4)
-	stb      r3, 0xbd(r4)
-	stb      r0, 0xbe(r4)
-	blr
-	*/
 }
 
 /**
@@ -468,6 +424,11 @@ bool ParticleMgr::cullByResFlg(JPABaseEmitter* emit)
 	}
 
 	Vector3f pos(emit->mGlobalTrs.x, emit->mGlobalTrs.y, emit->mGlobalTrs.z);
+	// It is a crime against humanity that this code matches
+	Vector3f pos;
+	pos.x            = emit->mGlobalTrs.x;
+	pos.y            = emit->mGlobalTrs.y;
+	pos.z            = emit->mGlobalTrs.z;
 	Vector3f* posPtr = &pos;
 	Sys::Sphere bound(pos, radius);
 
@@ -481,130 +442,6 @@ bool ParticleMgr::cullByResFlg(JPABaseEmitter* emit)
 	}
 
 	return !culled;
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stmw     r26, 0x28(r1)
-	mr       r30, r3
-	mr       r31, r4
-	lbz      r0, disableCulling__11ParticleMgr@sda21(r13)
-	cmplwi   r0, 0
-	beq      lbl_803BBD10
-	li       r3, 0
-	b        lbl_803BBE48
-
-lbl_803BBD10:
-	lwz      r3, 0xe8(r31)
-	lwz      r3, 0x2c(r3)
-	lwz      r3, 0(r3)
-	lwz      r3, 0xc(r3)
-	rlwinm.  r0, r3, 0, 0x1a, 0x1a
-	beq      lbl_803BBD40
-	rlwinm.  r0, r3, 0, 0x1b, 0x1b
-	beq      lbl_803BBD38
-	lfs      f3, mClipRadiusL__11ParticleMgr@sda21(r13)
-	b        lbl_803BBD58
-
-lbl_803BBD38:
-	lfs      f3, mClipRadiusM__11ParticleMgr@sda21(r13)
-	b        lbl_803BBD58
-
-lbl_803BBD40:
-	rlwinm.  r0, r3, 0, 0x1b, 0x1b
-	beq      lbl_803BBD50
-	lfs      f3, mClipRadiusS__11ParticleMgr@sda21(r13)
-	b        lbl_803BBD58
-
-lbl_803BBD50:
-	li       r3, 0
-	b        lbl_803BBE48
-
-lbl_803BBD58:
-	lbz      r0, disableCulling__11ParticleMgr@sda21(r13)
-	lfs      f2, 0xa4(r31)
-	lfs      f1, 0xa8(r31)
-	cmplwi   r0, 0
-	lfs      f0, 0xac(r31)
-	stfs     f2, 0x18(r1)
-	stfs     f1, 0x1c(r1)
-	stfs     f0, 0x20(r1)
-	stfs     f2, 8(r1)
-	stfs     f1, 0xc(r1)
-	stfs     f0, 0x10(r1)
-	stfs     f3, 0x14(r1)
-	beq      lbl_803BBD94
-	li       r0, 0
-	b        lbl_803BBDF4
-
-lbl_803BBD94:
-	li       r28, 0
-	mr       r26, r30
-	mr       r29, r28
-	b        lbl_803BBDDC
-
-lbl_803BBDA4:
-	lwz      r3, 0x84(r26)
-	lwz      r27, 0x44(r3)
-	bl       viewable__8ViewportFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803BBDD4
-	mr       r3, r27
-	addi     r4, r1, 8
-	bl       isVisible__9CullPlaneFRQ23Sys6Sphere
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803BBDD4
-	li       r28, 1
-	b        lbl_803BBDE8
-
-lbl_803BBDD4:
-	addi     r26, r26, 4
-	addi     r29, r29, 1
-
-lbl_803BBDDC:
-	lwz      r0, 0x80(r30)
-	cmpw     r29, r0
-	blt      lbl_803BBDA4
-
-lbl_803BBDE8:
-	clrlwi   r0, r28, 0x18
-	cntlzw   r0, r0
-	srwi     r0, r0, 5
-
-lbl_803BBDF4:
-	clrlwi   r0, r0, 0x18
-	cntlzw   r3, r0
-	rlwinm.  r0, r3, 0x1b, 0x18, 0x1f
-	srwi     r3, r3, 5
-	beq      lbl_803BBE24
-	lwz      r0, 0xf4(r31)
-	rlwinm   r0, r0, 0, 0x1e, 0x1c
-	stw      r0, 0xf4(r31)
-	lwz      r0, 0xf4(r31)
-	rlwinm   r0, r0, 0, 0, 0x1e
-	stw      r0, 0xf4(r31)
-	b        lbl_803BBE3C
-
-lbl_803BBE24:
-	lwz      r0, 0xf4(r31)
-	ori      r0, r0, 4
-	stw      r0, 0xf4(r31)
-	lwz      r0, 0xf4(r31)
-	ori      r0, r0, 1
-	stw      r0, 0xf4(r31)
-
-lbl_803BBE3C:
-	clrlwi   r0, r3, 0x18
-	cntlzw   r0, r0
-	srwi     r3, r0, 5
-
-lbl_803BBE48:
-	lmw      r26, 0x28(r1)
-	lwz      r0, 0x44(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
 }
 
 /**

@@ -79,7 +79,7 @@ struct ParticleMgr : public CNode {
 	JKRHeap* mModelEffectHeap;                  // _A4
 	int mUnusedVal;                             // _A8
 
-	static bool disableCulling;
+	static volatile bool disableCulling;
 	static f32 mClipRadiusS; // = 10.0f;
 	static f32 mClipRadiusM; // = 30.0f;
 	static f32 mClipRadiusL; // = 100.0f;
