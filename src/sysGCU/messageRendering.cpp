@@ -161,7 +161,7 @@ void TRenderingProcessor::setDrawLocateX()
 		mLocate.i.x = mLocate.f.x;
 	}
 
-	mLocate.setX(mLocate.i.x);
+	//mLocate.setX(mLocate.i.x);
 }
 
 /**
@@ -171,27 +171,35 @@ void TRenderingProcessor::setDrawLocateX()
 void TRenderingProcessor::setDrawLocateY()
 {
 	if (mFlags.isSet(1)) {
-		mLocate.setY(mFontHeightAdjusted * mParagraphNum + mLineHeight * mPageInfoNum + mFontHeight * mMainFont->getDescent()
-		             + mLocate.f.y);
+		mLocate.i.y = (mLineHeight * mParagraphNum) + (mTextBoxHeight * mPageInfoNum) + (mFontHeight * mMainFont->getAscent()) 
+					+ mLocate.f.y;
 	} else if (mFlags.isSet(0x200)) {
 		f32 totalFontHeight   = 0.0f;
-		u8* lineWidthPtr      = (mOnePageLines + ((2 * mPageInfoNum) & 0x1FE));
+		u8* lineWidthPtr      = mPageInfoCounts + (2 * mPageInfoNum);
 		int lineWidthIndex    = lineWidthPtr[0];
-		int lineWidthEndIndex = lineWidthPtr[1] + 1 - lineWidthIndex;
+		int lineWidthEndIndex = lineWidthPtr[1];
+		int lineWidthIndexLen = (lineWidthEndIndex + 1) - lineWidthIndex;
+		int something = lineWidthIndex << 2;
 
-		while (lineWidthEndIndex > 0) {
-			if (*(mLineWidths + 4 * lineWidthIndex) > 0.0f) {
-				totalFontHeight += mFontHeightAdjusted;
+		if (lineWidthIndex <= lineWidthEndIndex) {
+			while (lineWidthIndexLen > 0) {
+				if ((*mLineWidths + something) > 0.0f) {
+					totalFontHeight += mLineHeight;
+				}
+				something += 4;
+				lineWidthIndexLen--;
 			}
-			lineWidthIndex++;
-			lineWidthEndIndex--;
 		}
+		mLocate.i.y = (mLineHeight * mParagraphNum) + ((mTextBoxHeight - totalFontHeight) * 0.5)
+						+ (mTextBoxHeight * mPageInfoNum) + -(mFontHeight * (something - mLineHeight) * 0.5)
+						+ (mFontHeight * mMainFont->getAscent() + mLocate.f.y);
 	} else if (mFlags.isSet(0x400)) {
-		f32 paragraphNumFloat = mOnePageLines[mParagraphNum] - (mPageInfoNum + 1);
-		mLocate.setY(
-		    -((mFontHeightAdjusted * paragraphNumFloat) - (mFontHeight * mMainFont->getDescent() + mLineHeight * (1.0f + mPageInfoNum))));
+		f32 paragraphNumFloat = mOnePageLines[mCurrLine] - (mParagraphNum + 1);
+		mLocate.i.y = -(mLineHeight * paragraphNumFloat) - ((mFontHeight * mMainFont->getDescent()) 
+					+ (mTextBoxHeight * (mPageInfoNum + 1.0f)));
 	} else {
-		mLocate.setY(mFontHeightAdjusted * mParagraphNum + mLineHeight * mPageInfoNum + mFontHeight * mMainFont->getAscent() + mLocate.f.y);
+		mLocate.i.y = (mLineHeight * mParagraphNum) + (mTextBoxHeight * mPageInfoNum) + (mFontHeight * mMainFont->getAscent()) 
+					+ mLocate.f.y;
 	}
 }
 
