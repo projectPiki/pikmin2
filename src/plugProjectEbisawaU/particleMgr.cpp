@@ -258,7 +258,6 @@ void ParticleMgr::setGlobalColor(JPABaseEmitter* emit)
 
 	LightObj* obj = mgr->getMainLight();
 
-
 	Color4 c2 = mgr->mAmbientLight.mColor;
 	Color4 c1 = obj->mColor;
 
