@@ -1980,9 +1980,8 @@ void PikiGoHangState::exec(Piki* piki)
 	}
 
 	CollPart* collpart = piki->mNavi->mCollTree->getCollPart('rhnd');
-	Vector3f position  = piki->getPosition();
-	Vector3f diff      = collpart->mPosition - position;
-	f32 length         = _normalise2(diff); // can't use this bc no second round of fmadds - has to use a different normalise.
+	Vector3f diff      = collpart->mPosition - piki->getPosition();
+	f32 length         = diff.normalise(); // can't use this bc no second round of fmadds - has to use a different normalise.
 	f32 scale          = 1.0f;
 	if (length > 2.0f * naviMgr->mNaviParms->mNaviParms.mGrabPikiRange.mValue) {
 		scale = 2.0f;
@@ -3722,9 +3721,8 @@ void PikiFlyingState::exec(Piki* piki)
 		return;
 	}
 
-	f32 gravityFactor = 0.8f * _aiConstants->mGravity.mData; // f30
-	f32 flowerFallFactor
-	    = _aiConstants->mGravity.mData * static_cast<PikiParms*>(piki->mParms)->mPikiParms.mFlowerPikiGravity.mValue; // f29
+	f32 gravityFactor    = _aiConstants->mGravity() * 0.8f;                                              // f30
+	f32 flowerFallFactor = _aiConstants->mGravity() * piki->getParms()->mPikiParms.mFlowerPikiGravity(); // f29
 
 	f32 fallDiff   = gravityFactor - flowerFallFactor;
 	f32 fallFactor = (gravityFactor * 0.15f - 0.075f * fallDiff) - flowerFallFactor * 0.15f; // f28
@@ -3735,39 +3733,41 @@ void PikiFlyingState::exec(Piki* piki)
 
 		f32 throwHeight;
 		if (piki->getKind() == Yellow) {
-			throwHeight = naviMgr->mNaviParms->mNaviParms.mThrowHeightYellow.mValue;
+			throwHeight = naviMgr->mNaviParms->mNaviParms.mThrowHeightYellow();
 		} else {
-			throwHeight = naviMgr->mNaviParms->mNaviParms.mThrowHeightMax.mValue;
+			throwHeight = naviMgr->mNaviParms->mNaviParms.mThrowHeightMax();
 		}
 
-		f32 sqrVal = fallFactor * fallFactor + (2.0f * throwHeight) * flowerFallFactor;
-		sqrVal     = _sqrtf(sqrVal);
+		f32 heightOffset = _sqrtf(SQUARE(fallFactor) + throwHeight * 2.0f * flowerFallFactor);
+		f32 landingTime  = naviMgr->mNaviParms->mNaviParms.mLandingTime();
 
 		mVelocityDirection.x = piki->mVelocity.x;
 		mVelocityDirection.y = 0.0f;
 		mVelocityDirection.z = piki->mVelocity.z;
 
+		f32 throwMagnitude = landingTime * 0.5f / (-fallFactor + heightOffset) / flowerFallFactor;
+
 		mVelocityDirection.normalise();
 
-		f32 xSpeed            = piki->mVelocity.x * piki->mVelocity.x;
-		f32 zSpeed            = piki->mVelocity.z * piki->mVelocity.z;
-		f32 totalXZSpeed      = xSpeed + zSpeed;
-		totalXZSpeed          = _sqrtf(totalXZSpeed);
-		mDirectionalSpeed     = totalXZSpeed;
-		mHalfDirectionalSpeed = 0.5f * totalXZSpeed;
+		f32 speed             = piki->mVelocity.length2D();
+		mDirectionalSpeed     = speed;
+		mHalfDirectionalSpeed = 0.5f * speed;
+
+		piki->mVelocity.scale2D(throwMagnitude);
+		piki->mTargetVelocity.set2D(piki->mVelocity);
 
 		piki->mVelocity.y       = 0.0f;
-		piki->mTargetVelocity.x = piki->mVelocity.x;
-		piki->mTargetVelocity.z = piki->mVelocity.z;
-		piki->mTargetVelocity   = 0.0f;
+		piki->mTargetVelocity.y = 0.0f;
 		mSlowFallWaitTimer      = 0.0f;
 	} else if (mIsFlowerPiki) {
 		piki->mFaceDir = roundAng(piki->mFaceDir + PI * sys->mDeltaTime / 0.42f);
 		mSlowFallWaitTimer += sys->mDeltaTime;
 
-		if (mSlowFallWaitTimer < randFloat() - 0.5f) {
-			piki->mVelocity += sys->mDeltaTime;
-		}
+		f32 randRange    = ((randFloat() - 0.5f) * 0.01f);
+		flowerFallFactor = mSlowFallWaitTimer < 0.15f ? gravityFactor - fallDiff / 0.15f * mSlowFallWaitTimer : flowerFallFactor;
+
+		f32 flowerGravity = _aiConstants->mGravity() - flowerFallFactor;
+		piki->mVelocity.y += (randRange + 1.0f) * flowerGravity * sys->mDeltaTime;
 	}
 	/*
 	stwu     r1, -0x60(r1)
@@ -4682,17 +4682,17 @@ void PikiDrownState::exec(Piki* piki)
 			Vector3f sep = navi->getPosition() - piki->getPosition();
 			_normalise2(sep);
 
-			mMoveVelocity = sep * piki->getSpeed(1.0f);
+			mMoveVelocity = sep * piki->getSpeed(0.5f);
 
 			Vector3f oldVel = piki->mTargetVelocity;
 			Vector3f newSep = mMoveVelocity - piki->mTargetVelocity;
 			f32 speedDiff   = _normalise2(newSep);
 			f32 modifier    = 15.0f;
 			if (mIsCalled) {
-				speedDiff *= 2.0f;
+				modifier *= 2.0f;
 			}
 
-			if (speedDiff > speedDiff * sys->mDeltaTime) {
+			if (speedDiff > modifier * sys->mDeltaTime) {
 				piki->mTargetVelocity = newSep * speedDiff * sys->mDeltaTime + oldVel;
 			} else {
 				piki->mTargetVelocity = newSep * sys->mDeltaTime + oldVel;
