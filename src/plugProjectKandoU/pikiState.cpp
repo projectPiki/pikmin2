@@ -850,16 +850,14 @@ void PikiFountainonState::exec(Piki* piki)
 
 	// regswaps here
 	f32 p1          = mTargetDist * 0.4f;
-	f32 val         = p1 * mTimer * mTimer;
 	f32 p2          = -50.0f / SQUARE(mTargetDist);
-	f32 otherFactor = 50.0f + val;
+	f32 otherFactor = 50.0f + p2 * SQUARE(mTimer);
 
 	if (mTimer >= p1) {
-		f32 factor = 50.0f + p2 * p1 * p1 + (mTimer - p1);
+		f32 factor = 50.0f + p2 * SQUARE(p1) + (mTimer - p1);
 		position   = mPosDiff * p1 + mAvgPosition;
 		position.y += factor;
 		mTimer += sys->mDeltaTime * 400.0f;
-
 	} else {
 		position = mPosDiff * mTimer + mAvgPosition;
 		position.y += otherFactor;
@@ -3745,7 +3743,8 @@ void PikiFlyingState::exec(Piki* piki)
 		mVelocityDirection.y = 0.0f;
 		mVelocityDirection.z = piki->mVelocity.z;
 
-		f32 throwMagnitude = landingTime * 0.5f / (-fallFactor + heightOffset) / flowerFallFactor;
+		f32 heightFactor   = -fallFactor + heightOffset;
+		f32 throwMagnitude = landingTime * 0.5f / (heightFactor / flowerFallFactor);
 
 		mVelocityDirection.normalise();
 
