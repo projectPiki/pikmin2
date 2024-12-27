@@ -241,7 +241,7 @@ void Obj::updateCaptureMatrix()
 		// diff.y        = 0.0f;
 		f32 dist2D = 0.0f;
 		if (dist > dist2D) {
-			dist2D = getPositionTo(slotPos);
+			dist2D = pellet->getPositionTo(slotPos);
 			// f32 z = pellet->getPosition().z;
 			// f32 x = pellet->getPosition().x;
 			// f32 slotX = slotPos.x;
