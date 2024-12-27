@@ -837,20 +837,19 @@ s32 JASAramStream::dvdErrorCheck(void*)
 {
 	u32 status = DVDGetDriveStatus();
 
-	// WHY WILL THIS NOT SPAWN A JUMP TABLE
 	switch (status) {
 	case DVD_STATE_END:
 		sSystemPauseFlag = false;
 		break;
 	case DVD_STATE_WAITING:
 	case DVD_STATE_COVER_CLOSED:
-	case DVD_STATE_NO_DISK:
+	// case DVD_STATE_NO_DISK:
 	case DVD_STATE_COVER_OPEN:
-	case DVD_STATE_WRONG_DISK:
-	case DVD_STATE_MOTOR_STOPPED:
-	case DVD_STATE_PAUSING:
-	case DVD_STATE_IGNORED:
-	case DVD_STATE_CANCELED:
+	// case DVD_STATE_WRONG_DISK:
+	// case DVD_STATE_MOTOR_STOPPED:
+	// case DVD_STATE_PAUSING:
+	// case DVD_STATE_IGNORED:
+	// case DVD_STATE_CANCELED:
 	case DVD_STATE_RETRY:
 	case 0xFFFFFFFF:
 	default:
@@ -860,40 +859,6 @@ s32 JASAramStream::dvdErrorCheck(void*)
 		break;
 	}
 	return 0;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       DVDGetDriveStatus
-	addi     r0, r3, 1
-	cmplwi   r0, 0xc
-	bgt      lbl_800A9AF8
-	lis      r3, lbl_804A44A0@ha
-	slwi     r0, r0, 2
-	addi     r3, r3, lbl_804A44A0@l
-	lwzx     r0, r3, r0
-	mtctr    r0
-	bctr
-	.global  lbl_800A9AEC
-
-lbl_800A9AEC:
-	li       r0, 0
-	stb      r0, sSystemPauseFlag__13JASAramStream@sda21(r13)
-	b        lbl_800A9B00
-	.global  lbl_800A9AF8
-
-lbl_800A9AF8:
-	li       r0, 1
-	stb      r0, sSystemPauseFlag__13JASAramStream@sda21(r13)
-	.global  lbl_800A9B00
-
-lbl_800A9B00:
-	lwz      r0, 0x14(r1)
-	li       r3, 0
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /**

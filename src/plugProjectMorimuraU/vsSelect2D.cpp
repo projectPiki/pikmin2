@@ -80,7 +80,7 @@ void TVsSelectIndPane::draw()
 		indMtx[1][1] = mMtxYOffset;
 		indMtx[1][2] = 0.0f;
 	} else {
-		PSMTXRotRad(mtx, J2DROTATE_Z, mRotation * 0.01745329f);
+		PSMTXRotRad(mtx, J2DROTATE_Z, MTXDegToRad(mRotation));
 		indMtx[0][0] = mtx[0][0] * 0.5f;
 		indMtx[0][1] = mtx[0][1] * 0.5f;
 		indMtx[0][2] = 0.0f;

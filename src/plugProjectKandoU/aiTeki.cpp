@@ -46,13 +46,13 @@ void ActTeki::init(PikiAI::ActionArg* arg)
 
 	mMoveSpeed = 0.0f;
 
-	mToPanicFinish = false;
+	mIsLeafChappy = false;
 	if (mFollowingTeki->isTeki() && mFollowingTeki->getEnemyTypeID() == Game::EnemyTypeID::EnemyID_LeafChappy) {
-		mToPanicFinish = true;
+		mIsLeafChappy = true;
 	}
 
 	mToEmote = false;
-	mParent->startMotion(30, 30, nullptr, nullptr);
+	mParent->startMotion(Game::IPikiAnims::WALK, Game::IPikiAnims::WALK, nullptr, nullptr);
 }
 
 /**
@@ -63,8 +63,8 @@ int ActTeki::exec()
 {
 	// Panic after parent death
 	if (!mFollowingTeki->isAlive()) {
-		if (mToPanicFinish) {
-			mToPanicFinish = false;
+		if (mIsLeafChappy) {
+			mIsLeafChappy = false;
 
 			if (!Game::BaseHIOParms::sTekiChappyFlag) {
 				Game::GameStat::alivePikis.inc(mParent);
@@ -232,9 +232,6 @@ void ActTeki::test_0()
 		mParent->setSpeed(mMoveSpeed, dirToFootprint);
 		break;
 	}
-
-	default:
-		break;
 	}
 }
 

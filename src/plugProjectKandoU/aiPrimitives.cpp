@@ -109,8 +109,8 @@ void ActApproachPos::init(ActionArg* settings)
 int ActApproachPos::exec()
 {
 	Vector3f dir = mGoalPosition - mParent->getPosition();
+	f32 dist     = dir.length2D();
 	f32 y        = dir.y;
-	f32 dist     = dir.length();
 	dir.normalise();
 
 	f32 angleDist = angDist(JMAAtan2Radian(dir.x, dir.z), mParent->getFaceDir());
@@ -173,241 +173,6 @@ int ActApproachPos::exec()
 	}
 
 	return ACTEXEC_Continue;
-
-	/*
-	stwu     r1, -0x60(r1)
-	mflr     r0
-	stw      r0, 0x64(r1)
-	stfd     f31, 0x50(r1)
-	psq_st   f31, 88(r1), 0, qr0
-	stfd     f30, 0x40(r1)
-	psq_st   f30, 72(r1), 0, qr0
-	stfd     f29, 0x30(r1)
-	psq_st   f29, 56(r1), 0, qr0
-	stw      r31, 0x2c(r1)
-	mr       r31, r3
-	addi     r3, r1, 8
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f3, 0x18(r31)
-	lfs      f2, 0x10(r1)
-	lfs      f1, 0x10(r31)
-	lfs      f0, 8(r1)
-	fsubs    f4, f3, f2
-	lfs      f3, 0x14(r31)
-	fsubs    f2, f1, f0
-	lfs      f1, 0xc(r1)
-	fmuls    f5, f4, f4
-	lfs      f0, lbl_80518F60@sda21(r2)
-	fsubs    f1, f3, f1
-	stfs     f4, 0x1c(r1)
-	fmuls    f3, f2, f2
-	stfs     f2, 0x14(r1)
-	stfs     f1, 0x18(r1)
-	fadds    f1, f3, f5
-	fcmpo    cr0, f1, f0
-	ble      lbl_80197694
-	fmadds   f30, f2, f2, f5
-	fcmpo    cr0, f30, f0
-	ble      lbl_80197698
-	frsqrte  f0, f30
-	fmuls    f30, f0, f30
-	b        lbl_80197698
-
-lbl_80197694:
-	fmr      f30, f0
-
-lbl_80197698:
-	lfs      f29, 0x18(r1)
-	lfs      f1, lbl_80518F60@sda21(r2)
-	fmuls    f4, f29, f29
-	fadds    f0, f3, f4
-	fadds    f0, f5, f0
-	fcmpo    cr0, f0, f1
-	ble      lbl_801976D0
-	fmadds   f0, f2, f2, f4
-	fadds    f3, f5, f0
-	fcmpo    cr0, f3, f1
-	ble      lbl_801976D4
-	frsqrte  f0, f3
-	fmuls    f3, f0, f3
-	b        lbl_801976D4
-
-lbl_801976D0:
-	fmr      f3, f1
-
-lbl_801976D4:
-	lfs      f0, lbl_80518F60@sda21(r2)
-	fcmpo    cr0, f3, f0
-	ble      lbl_8019770C
-	lfs      f0, lbl_80518F64@sda21(r2)
-	lfs      f2, 0x14(r1)
-	fdivs    f3, f0, f3
-	lfs      f1, 0x18(r1)
-	lfs      f0, 0x1c(r1)
-	fmuls    f2, f2, f3
-	fmuls    f1, f1, f3
-	fmuls    f0, f0, f3
-	stfs     f2, 0x14(r1)
-	stfs     f1, 0x18(r1)
-	stfs     f0, 0x1c(r1)
-
-lbl_8019770C:
-	lis      r3, atanTable___5JMath@ha
-	lfs      f1, 0x14(r1)
-	lfs      f2, 0x1c(r1)
-	addi     r3, r3, atanTable___5JMath@l
-	bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
-	lwz      r3, 4(r31)
-	fmr      f31, f1
-	lwz      r12, 0(r3)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	fmr      f2, f1
-	fmr      f1, f31
-	bl       angDist__Fff
-	lfs      f2, 0x1c(r31)
-	fmr      f31, f1
-	lfs      f0, lbl_80518F60@sda21(r2)
-	fcmpo    cr0, f2, f0
-	ble      lbl_80197788
-	lwz      r3, sys@sda21(r13)
-	lfs      f1, 0x20(r31)
-	lfs      f0, 0x54(r3)
-	fadds    f0, f1, f0
-	stfs     f0, 0x20(r31)
-	lfs      f1, 0x20(r31)
-	lfs      f0, 0x1c(r31)
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_80197788
-	li       r3, 0
-	b        lbl_801978EC
-
-lbl_80197788:
-	lbz      r0, 0x25(r31)
-	cmplwi   r0, 0
-	beq      lbl_801977B0
-	fabs     f1, f29
-	lfs      f0, lbl_80518F68@sda21(r2)
-	frsp     f1, f1
-	fcmpo    cr0, f1, f0
-	ble      lbl_801977B0
-	li       r3, 2
-	b        lbl_801978EC
-
-lbl_801977B0:
-	lfs      f1, 0xc(r31)
-	fcmpo    cr0, f30, f1
-	bge      lbl_801977EC
-	lwz      r3, 4(r31)
-	li       r4, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1d8(r12)
-	mtctr    r12
-	bctrl
-	fmr      f2, f30
-	lwz      r3, 4(r31)
-	lfs      f1, lbl_80518F6C@sda21(r2)
-	addi     r4, r1, 0x14
-	bl       "setSpeed__Q24Game4PikiFfR10Vector3<f>f"
-	b        lbl_801978E8
-
-lbl_801977EC:
-	lfs      f0, lbl_80518F70@sda21(r2)
-	fadds    f0, f0, f1
-	fcmpo    cr0, f30, f0
-	ble      lbl_80197868
-	lwz      r3, 4(r31)
-	li       r4, 1
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1d8(r12)
-	mtctr    r12
-	bctrl
-	lbz      r0, 0x24(r31)
-	cmplwi   r0, 0
-	beq      lbl_80197854
-	lfs      f1, lbl_80518F74@sda21(r2)
-	lfs      f0, lbl_80518F64@sda21(r2)
-	fmuls    f1, f1, f30
-	fcmpo    cr0, f1, f0
-	ble      lbl_80197838
-	fmr      f1, f0
-
-lbl_80197838:
-	lfs      f0, lbl_80518F78@sda21(r2)
-	addi     r4, r1, 0x14
-	lwz      r3, 4(r31)
-	fmuls    f1, f1, f0
-	fadds    f1, f0, f1
-	bl       "setSpeed__Q24Game4PikiFfR10Vector3<f>"
-	b        lbl_801978E8
-
-lbl_80197854:
-	lwz      r3, 4(r31)
-	addi     r4, r1, 0x14
-	lfs      f1, lbl_80518F78@sda21(r2)
-	bl       "setSpeed__Q24Game4PikiFfR10Vector3<f>"
-	b        lbl_801978E8
-
-lbl_80197868:
-	lwz      r3, 4(r31)
-	lis      r4, "zero__10Vector3<f>"@ha
-	addi     r4, r4, "zero__10Vector3<f>"@l
-	lwz      r12, 0(r3)
-	lwz      r12, 0x68(r12)
-	mtctr    r12
-	bctrl
-	fabs     f1, f31
-	lfs      f0, lbl_80518F7C@sda21(r2)
-	frsp     f1, f1
-	fcmpo    cr0, f1, f0
-	bge      lbl_801978CC
-	lbz      r0, 0x25(r31)
-	cmplwi   r0, 0
-	beq      lbl_801978C4
-	lfs      f1, 0x18(r1)
-	lfs      f0, lbl_80518F80@sda21(r2)
-	fabs     f1, f1
-	frsp     f1, f1
-	fcmpo    cr0, f1, f0
-	ble      lbl_801978C4
-	li       r3, 1
-	b        lbl_801978EC
-
-lbl_801978C4:
-	li       r3, 0
-	b        lbl_801978EC
-
-lbl_801978CC:
-	lwz      r3, 4(r31)
-	lfs      f1, lbl_80518F84@sda21(r2)
-	lfs      f0, 0x1fc(r3)
-	fmadds   f1, f1, f31, f0
-	bl       roundAng__Ff
-	lwz      r3, 4(r31)
-	stfs     f1, 0x1fc(r3)
-
-lbl_801978E8:
-	li       r3, 1
-
-lbl_801978EC:
-	psq_l    f31, 88(r1), 0, qr0
-	lfd      f31, 0x50(r1)
-	psq_l    f30, 72(r1), 0, qr0
-	lfd      f30, 0x40(r1)
-	psq_l    f29, 56(r1), 0, qr0
-	lfd      f29, 0x30(r1)
-	lwz      r0, 0x64(r1)
-	lwz      r31, 0x2c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x60
-	blr
-	*/
 }
 
 /**
@@ -598,8 +363,8 @@ int ActGotoSlot::exec()
 
 	// direction to goal
 	Vector3f dir = slotPos - pikiPos; // 0x5c
-	f32 absY     = FABS(dir.y);
-	f32 dist     = dir.length();
+	f32 absY     = (dir.y);
+	f32 dist     = dir.length2D();
 	dir.normalise();
 
 	// if we're within 100 units but we're stuck, get a new slot
@@ -1745,9 +1510,9 @@ void ActPathMove::initPathfinding(bool resetLinkCount)
 		flag |= Game::PATHFLAG_DisallowUnfinishedBridges;
 		if (Game::gameSystem && Game::gameSystem->isVersusMode()) {
 			if (mOnyon->mOnyonType == ONYON_TYPE_BLUE) {
-				flag |= (Game::PATHFLAG_DisallowVsRed | Game::PATHFLAG_AllowUnvisited);
-			} else {
 				flag |= (Game::PATHFLAG_DisallowVsBlue | Game::PATHFLAG_AllowUnvisited);
+			} else {
+				flag |= (Game::PATHFLAG_DisallowVsRed | Game::PATHFLAG_AllowUnvisited);
 			}
 		}
 
@@ -1863,11 +1628,10 @@ int ActPathMove::execPathfinding()
 		crInit();
 
 		// debug
-		Game::PathNode* startNode = mStartNode;
-		s16 endIdx                = -1;
-		FOREACH_NODE(Game::PathNode, startNode, node) { endIdx = node->mWpIndex; }
+		int endIdx = -1;
+		FOREACH_NODE(Game::PathNode, mStartNode, node) { endIdx = node->mWpIndex; }
 		char buf[256];
-		sprintf(buf, "%d->%d->...->%d", startNode->mWpIndex, (startNode->mNext) ? (char*)startNode->mNext->mWpIndex : "...", endIdx);
+		sprintf(buf, "%d->%d->...->%d", mStartNode->mWpIndex, (mStartNode->mNext) ? (char*)mStartNode->mNext->mWpIndex : "...", endIdx);
 		return ACTEXEC_Continue;
 
 	case Game::PATHFIND_Start: // make a new context and start a path
@@ -1906,214 +1670,6 @@ int ActPathMove::execPathfinding()
 	}
 
 	return ACTEXEC_Continue;
-	/*
-	stwu     r1, -0x130(r1)
-	mflr     r0
-	stw      r0, 0x134(r1)
-	stw      r31, 0x12c(r1)
-	stw      r30, 0x128(r1)
-	mr       r30, r3
-	lis      r3, lbl_8047F070@ha
-	stw      r29, 0x124(r1)
-	addi     r31, r3, lbl_8047F070@l
-	lwz      r29, 0x30(r30)
-	cmplwi   r29, 0
-	beq      lbl_80198D9C
-	mr       r3, r29
-	bl       getTotalCarryPikmins__Q24Game6PelletFv
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x114(r1)
-	lis      r3, "zero__10Vector3<f>"@ha
-	addi     r5, r3, "zero__10Vector3<f>"@l
-	lfd      f1, lbl_80518FA8@sda21(r2)
-	stw      r0, 0x110(r1)
-	li       r4, 0
-	lwz      r3, 0x334(r29)
-	lfd      f0, 0x110(r1)
-	fsubs    f1, f0, f1
-	bl       "pull__Q24Game11PelletCarryFUsR10Vector3<f>f"
-
-lbl_80198D9C:
-	lwz      r3, 0x20(r30)
-	cmplwi   r3, 0
-	bne      lbl_80198DB0
-	li       r3, 2
-	b        lbl_80198FC8
-
-lbl_80198DB0:
-	addis    r0, r3, 1
-	cmplwi   r0, 0xffff
-	bne      lbl_80198DC4
-	li       r3, 2
-	b        lbl_80198FC8
-
-lbl_80198DC4:
-	lwz      r3, 0x40(r30)
-	addi     r0, r3, 1
-	stw      r0, 0x40(r30)
-	lwz      r3, 0x30(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x80(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80198E54
-	lwz      r29, 0x30(r30)
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	lwz      r12, 0x208(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80198E54
-	lwz      r3, 0x30(r30)
-	lis      r4, "zero__10Vector3<f>"@ha
-	addi     r4, r4, "zero__10Vector3<f>"@l
-	lwz      r12, 0(r3)
-	lwz      r12, 0x68(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, lbl_80518F60@sda21(r2)
-	mr       r3, r29
-	stfs     f0, 0x1c8(r29)
-	stfs     f0, 0x1cc(r29)
-	stfs     f0, 0x1d0(r29)
-	bl       getSpeicalSlot__Q24Game6PelletFv
-	extsh    r0, r3
-	cmpwi    r0, -1
-	bne      lbl_80198E54
-	lwz      r3, 0x334(r29)
-	bl       reset__Q24Game11PelletCarryFv
-
-lbl_80198E54:
-	lwz      r3, testPathfinder__4Game@sda21(r13)
-	lwz      r4, 0x20(r30)
-	bl       check__Q24Game10PathfinderFUl
-	cmpwi    r3, 2
-	beq      lbl_80198FC4
-	bge      lbl_80198E7C
-	cmpwi    r3, 0
-	beq      lbl_80198E88
-	bge      lbl_80198F08
-	b        lbl_80198FC4
-
-lbl_80198E7C:
-	cmpwi    r3, 4
-	bge      lbl_80198FC4
-	b        lbl_80198FAC
-
-lbl_80198E88:
-	lwz      r3, testPathfinder__4Game@sda21(r13)
-	addi     r5, r30, 0x44
-	lwz      r4, 0x20(r30)
-	bl       makepath__Q24Game10PathfinderFUlPPQ24Game8PathNode
-	stw      r3, 0x4c(r30)
-	li       r0, 1
-	mr       r3, r30
-	lwz      r4, 0x44(r30)
-	stw      r4, 0x48(r30)
-	sth      r0, 0x1e(r30)
-	bl       crInit__Q26PikiAI11ActPathMoveFv
-	lwz      r3, 0x44(r30)
-	li       r7, -1
-	mr       r4, r3
-	b        lbl_80198ECC
-
-lbl_80198EC4:
-	lha      r7, 0x20(r4)
-	lwz      r4, 0xc(r4)
-
-lbl_80198ECC:
-	cmplwi   r4, 0
-	bne      lbl_80198EC4
-	lwz      r4, 0xc(r3)
-	cmplwi   r4, 0
-	beq      lbl_80198EE8
-	lha      r6, 0x20(r4)
-	b        lbl_80198EEC
-
-lbl_80198EE8:
-	addi     r6, r2, lbl_80518FB0@sda21
-
-lbl_80198EEC:
-	lha      r5, 0x20(r3)
-	addi     r3, r1, 0x10
-	addi     r4, r31, 0xa0
-	crclr    6
-	bl       sprintf
-	li       r3, 1
-	b        lbl_80198FC8
-
-lbl_80198F08:
-	lwz      r4, 0x20(r30)
-	cmplwi   r4, 0
-	beq      lbl_80198F1C
-	lwz      r3, testPathfinder__4Game@sda21(r13)
-	bl       release__Q24Game10PathfinderFUl
-
-lbl_80198F1C:
-	lwz      r3, 0x50(r30)
-	li       r0, 0
-	li       r6, 6
-	addi     r3, r3, 1
-	stw      r3, 0x50(r30)
-	sth      r0, 0x1e(r30)
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_80198F54
-	lwz      r0, 0x44(r3)
-	cmpwi    r0, 1
-	bne      lbl_80198F54
-	ori      r0, r6, 0x40
-	clrlwi   r6, r0, 0x18
-
-lbl_80198F54:
-	lwz      r0, 0x50(r30)
-	cmpwi    r0, 2
-	blt      lbl_80198F78
-	cmpwi    r0, 3
-	ori      r0, r6, 0x40
-	clrlwi   r6, r0, 0x18
-	blt      lbl_80198F78
-	li       r0, 3
-	stw      r0, 0x50(r30)
-
-lbl_80198F78:
-	lha      r5, 0x56(r30)
-	addi     r4, r1, 8
-	lha      r0, 0x54(r30)
-	lwz      r3, testPathfinder__4Game@sda21(r13)
-	sth      r0, 8(r1)
-	sth      r5, 0xa(r1)
-	stb      r6, 0xc(r1)
-	bl       start__Q24Game10PathfinderFRQ24Game15PathfindRequest
-	stw      r3, 0x20(r30)
-	li       r0, 0
-	li       r3, 1
-	stw      r0, 0x40(r30)
-	b        lbl_80198FC8
-
-lbl_80198FAC:
-	lwz      r6, 0x20(r30)
-	addi     r3, r31, 0x34
-	addi     r5, r31, 0xb0
-	li       r4, 0x4b1
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80198FC4:
-	li       r3, 1
-
-lbl_80198FC8:
-	lwz      r0, 0x134(r1)
-	lwz      r31, 0x12c(r1)
-	lwz      r30, 0x128(r1)
-	lwz      r29, 0x124(r1)
-	mtlr     r0
-	addi     r1, r1, 0x130
-	blr
-	*/
 }
 
 /**
@@ -4954,7 +4510,7 @@ ActClimb::ActClimb(Game::Piki* p)
  */
 void ActClimb::init(ActionArg* settings)
 {
-	mParent->startMotion(20, 20, nullptr, nullptr);
+	mParent->startMotion(Game::IPikiAnims::HNOBORU, Game::IPikiAnims::HNOBORU, nullptr, nullptr);
 	ClimbActionArg* climbArg = static_cast<ClimbActionArg*>(settings);
 	mCollPart                = climbArg->mCollPart;
 	mSpeed                   = climbArg->mSpeed;

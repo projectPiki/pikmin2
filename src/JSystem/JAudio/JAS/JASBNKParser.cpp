@@ -676,9 +676,9 @@ lbl_8009AE98:
  */
 JASOscillator::Data* JASBNKParser::findOscPtr(JASBasicBank* bank, JASBNKParser::THeader* header, JASBNKParser::TOsc* oscPtr)
 {
-	u32* instOffsets = header->mInstOffsets;
+	u32* instOffsets = header->mInstOffsets - 1;
 	for (int i = 0; i < TPerc_MAX_ENTRIES; i++) {
-		TInst* instRaw = JSUConvertOffsetToPtr<TInst>(header, instOffsets[i]);
+		TInst* instRaw = JSUConvertOffsetToPtr<TInst>(header, instOffsets[i + 1]);
 		if (instRaw) {
 			// look through both oscillators
 			for (int j = 0; j < TInst_MAX_OSCILLATORS; j++) {

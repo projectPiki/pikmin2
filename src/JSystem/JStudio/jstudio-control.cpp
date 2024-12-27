@@ -42,7 +42,7 @@ void TControl::transformOnSet_setOrigin(const Vec& origin, f32 yRot)
 	mTransformOnSet_Origin = origin;
 	mTransformOnSet_RotY   = yRot;
 	Mtx mtx;
-	PSMTXRotRad(mtx, 'y', yRot * 0.017453292f);
+	PSMTXRotRad(mtx, 'y', MTXDegToRad(yRot));
 	PSMTXTransApply(mtx, mTransformOnSet_Mtx, origin.x, origin.y, origin.z);
 }
 
@@ -57,7 +57,7 @@ void TControl::transformOnGet_setOrigin(const Vec& origin, f32 yRot)
 	Mtx transMtx;
 	PSMTXTrans(transMtx, -origin.x, -origin.y, -origin.z);
 	Mtx rotMtx;
-	PSMTXRotRad(rotMtx, 'y', -yRot * 0.017453292f);
+	PSMTXRotRad(rotMtx, 'y', MTXDegToRad(-yRot));
 	PSMTXConcat(rotMtx, transMtx, mTransformOnGet_Mtx);
 }
 

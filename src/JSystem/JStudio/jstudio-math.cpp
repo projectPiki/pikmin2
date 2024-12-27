@@ -11,12 +11,12 @@ namespace JStudio {
  */
 void math::getRotation_xyz(MtxP mtx, f32 x, f32 y, f32 z)
 {
-	f32 cosx     = dolcosf(x * 0.017453292f);
-	f32 sinx     = dolsinf(x * 0.017453292f);
-	f32 cosy     = dolcosf(y * 0.017453292f);
-	f32 siny     = dolsinf(y * 0.017453292f);
-	f32 cosz     = dolcosf(z * 0.017453292f);
-	f32 sinz     = dolsinf(z * 0.017453292f);
+	f32 cosx     = dolcosf(MTXDegToRad(x));
+	f32 sinx     = dolsinf(MTXDegToRad(x));
+	f32 cosy     = dolcosf(MTXDegToRad(y));
+	f32 siny     = dolsinf(MTXDegToRad(y));
+	f32 cosz     = dolcosf(MTXDegToRad(z));
+	f32 sinz     = dolsinf(MTXDegToRad(z));
 	f32 cosxcosz = cosx * cosz;
 	f32 cosxsinz = cosx * sinz;
 	f32 sinxcosz = sinx * cosz;

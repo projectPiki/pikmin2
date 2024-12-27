@@ -197,58 +197,7 @@ void JASBasicWaveBank::TWaveGroup::setWaveInfo(int infoIndex, u32 waveID, const 
  * @note Address: 0x8009A5F0
  * @note Size: 0xA0
  */
-void JASBasicWaveBank::TWaveGroup::onLoadDone()
-{
-	mBank->incWaveTable(this);
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stmw     r27, 0x1c(r1)
-	mr       r27, r3
-	lwz      r29, 0x5c(r3)
-	addi     r3, r29, 4
-	stw      r3, 8(r1)
-	bl       OSLockMutex
-	li       r30, 0
-	mr       r28, r30
-	mr       r31, r30
-	b        lbl_8009A668
-
-lbl_8009A624:
-	mr       r3, r27
-	mr       r4, r30
-	bl       getWaveID__Q216JASBasicWaveBank10TWaveGroupCFi
-	lwz      r0, 0x60(r27)
-	slwi     r4, r3, 2
-	lwz      r3, 0x1c(r29)
-	add      r5, r0, r28
-	stw      r31, 0x38(r5)
-	lwzx     r0, r3, r4
-	stw      r0, 0x34(r5)
-	lwzx     r6, r3, r4
-	cmplwi   r6, 0
-	beq      lbl_8009A65C
-	stw      r5, 0x38(r6)
-
-lbl_8009A65C:
-	stwx     r5, r3, r4
-	addi     r28, r28, 0x3c
-	addi     r30, r30, 1
-
-lbl_8009A668:
-	lwz      r0, 0x64(r27)
-	cmplw    r30, r0
-	blt      lbl_8009A624
-	lwz      r3, 8(r1)
-	bl       OSUnlockMutex
-	lmw      r27, 0x1c(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
-}
+void JASBasicWaveBank::TWaveGroup::onLoadDone() { mBank->incWaveTable(this); }
 
 /**
  * @note Address: 0x8009A690
