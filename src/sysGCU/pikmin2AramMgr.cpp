@@ -180,7 +180,7 @@ void Mgr::load2D()
 	JKRAram::sAramObject->mAramHeap->getFreeSize();
 
 	for (u32 i = 0; i < 13; i++) {
-		char langResName[0x100];
+		char langResName[PATH_MAX];
 		og::newScreen::makeLanguageResName(langResName, sAramResName2D[i]);
 		gAramMgr->dvdToAram(langResName, !mLoadPermission);
 	}

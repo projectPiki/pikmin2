@@ -79,11 +79,11 @@ struct DataLoadMgrNode : virtual public DataMgrBase {
 
 	// _00 = DataMgrBase*
 	// _04 = VTABLE
-	int mFlagState;        // _08
-	char mPath[0x100];     // _0C
-	char mLoadPath[0x100]; // _10C, best guess as to name
-	u32 _20C;              // _20C
-	u32 _210;              // _210
+	int mFlagState;           // _08
+	char mPath[PATH_MAX];     // _0C
+	char mLoadPath[PATH_MAX]; // _10C, best guess as to name
+	u32 _20C;                 // _20C
+	u32 _210;                 // _210
 
 	// _214 - _234 = DataMgrBase (virtual)
 };
@@ -131,7 +131,7 @@ struct PrmDataMgrNode : public DataMgrNode {
 			return true;
 		}
 		return false;
-	}                           // _1C (weak)
+	} // _1C (weak)
 	virtual bool initInstance() // _20 (weak)
 	{
 		if (!mPrmSetRc) {

@@ -399,32 +399,32 @@ inline void Stages::draw2d()
  */
 void Stages::createMapMgr(Game::CourseInfo* info, Game::RouteMgr* routeMgr)
 {
-	char modelPathTxt[0x100];
+	char modelPathTxt[PATH_MAX];
 	if (info->mModelPath) {
 		sprintf(modelPathTxt, "%s/%s", info->mFolder, info->mModelPath);
 	}
 
-	char collPathTxt[0x100];
+	char collPathTxt[PATH_MAX];
 	if (info->mCollisionPath) {
 		sprintf(collPathTxt, "%s/%s", info->mFolder, info->mCollisionPath);
 	}
 
-	char wboxPathTxt[0x100];
+	char wboxPathTxt[PATH_MAX];
 	if (info->mWaterboxPath) {
 		sprintf(wboxPathTxt, "%s/%s", info->mFolder, info->mWaterboxPath);
 	}
 
-	char codePathTxt[0x100];
+	char codePathTxt[PATH_MAX];
 	if (info->mMapcodePath) {
 		sprintf(codePathTxt, "%s/%s", info->mFolder, info->mMapcodePath);
 	}
 
-	char farmPathTxt[0x100];
+	char farmPathTxt[PATH_MAX];
 	if (info->mFarmPath) {
 		sprintf(farmPathTxt, "%s/%s", info->mFolder, info->mFarmPath);
 	}
 
-	char routePathTxt[0x100];
+	char routePathTxt[PATH_MAX];
 	if (info->mRoutePath) {
 		sprintf(routePathTxt, "%s/%s", info->mAbeFolder, info->mRoutePath);
 	}
