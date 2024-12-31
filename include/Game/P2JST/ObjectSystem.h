@@ -30,6 +30,11 @@ struct ObjectSystem : public JStage::TSystem, public ObjectBase {
 	JStage::TObject* findObject(const char*, JStage::TEObject) const;
 	Creature* findCreature(const char*) const;
 
+	void erase(JGadget::TList<void*, JGadget::TVoidAllocator>::TNode_* node)
+	{
+		mObjListPointer.erase(JGadget::TList_pointer<JStudio::TObject*>::iterator(node));
+	}
+
 	// _00     = VTABLE (JStage::TSystem)
 	// _04     = VTABLE2 (ObjectBase)
 	// _04-_20 = ObjectBase

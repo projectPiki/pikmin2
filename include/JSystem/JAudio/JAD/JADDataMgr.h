@@ -131,7 +131,7 @@ struct PrmDataMgrNode : public DataMgrNode {
 			return true;
 		}
 		return false;
-	} // _1C (weak)
+	}                           // _1C (weak)
 	virtual bool initInstance() // _20 (weak)
 	{
 		if (!mPrmSetRc) {
