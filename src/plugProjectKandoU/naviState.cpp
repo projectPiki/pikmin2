@@ -1850,7 +1850,7 @@ int NaviPathMoveState::initPathfinding(Navi* navi)
 	if (searchResult == nullptr) {
 		return 2;
 	}
-	PathfindRequest request(wp->mIndex, searchResult->mIndex, 1);
+	PathfindRequest request(wp->mIndex, searchResult->mIndex, PATHFLAG_RequireOpen);
 	mPathfinderContextID = testPathfinder->start(request);
 	_10                  = 0;
 	return 1;
