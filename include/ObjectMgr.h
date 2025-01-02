@@ -133,10 +133,7 @@ struct NodeObjectMgr : public ObjectMgr<T> {
 	void delNode(T* obj);
 
 	// second VTBL:
-	virtual void resetMgr() // _20
-	{
-		mNode.clearRelations();
-	}
+	virtual void resetMgr(); // _20
 
 	// _00     = VTBL
 	// _00-_20 = ObjectMgr
@@ -153,6 +150,12 @@ void NodeObjectMgr<T>::delNode(T* obj)
 			return;
 		}
 	}
+}
+
+template <typename T>
+void NodeObjectMgr<T>::resetMgr()
+{
+	mNode.clearRelations();
 }
 
 #endif
