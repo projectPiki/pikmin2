@@ -925,26 +925,21 @@ void TTitleMgr::checkEncounter_()
 			f32 distmax = 1000.0f;
 
 			if (mKoganeMgr.mObject->isCalc()) {
-				piki->checkClosestEnemy(mKoganeMgr.mObject, distmax);
+				// just using operator- isn't how ebisawa rolls
+				Vector2f dist(mKoganeMgr.mObject->mPosition.x - piki->mPosition.x, mKoganeMgr.mObject->mPosition.y - piki->mPosition.y);
+				if (dist.length() < distmax) {
+					distmax         = dist.length();
+					piki->mEnemyObj = mKoganeMgr.mObject;
+				}
 			}
-			if (mChappyMgr.mObject->isCalc()) {
-				piki->checkClosestEnemy(mChappyMgr.mObject, distmax);
-			}
-			// if (mKoganeMgr.mObject->isCalc()) {
-			// 	Vector2f dist = mKoganeMgr.mObject->mPosition - piki->mPosition;
-			// 	if (dist.length() < distmax) {
-			// 		distmax         = dist.length();
-			// 		piki->mEnemyObj = mKoganeMgr.mObject;
-			// 	}
-			// }
 
-			// if (mChappyMgr.mObject->isCalc()) {
-			// 	Vector2f dist = mChappyMgr.mObject->mPosition - piki->mPosition;
-			// 	if (dist.length() < distmax) {
-			// 		distmax         = dist.length();
-			// 		piki->mEnemyObj = mChappyMgr.mObject;
-			// 	}
-			// }
+			if (mChappyMgr.mObject->isCalc()) {
+				Vector2f dist(mChappyMgr.mObject->mPosition.x - piki->mPosition.x, mChappyMgr.mObject->mPosition.y - piki->mPosition.y);
+				if (dist.length() < distmax) {
+					distmax         = dist.length();
+					piki->mEnemyObj = mChappyMgr.mObject;
+				}
+			}
 		}
 	}
 }

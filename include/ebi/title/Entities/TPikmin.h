@@ -188,15 +188,6 @@ struct TUnit : public TObjBase {
 	void updateSmoothWalk_(Vector2f&);
 	void updateEnemyReaction_();
 
-	inline void checkClosestEnemy(TObjBase* enemy, f32& distmax)
-	{
-		Vector2f dist = enemy->mPosition - mPosition;
-		if (dist.length() < distmax) {
-			distmax   = dist.length();
-			mEnemyObj = enemy;
-		}
-	}
-
 	// _00     = VTBL
 	// _00-_2C = TObjBase
 	Vector2f mDestPos;            // _2C
