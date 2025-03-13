@@ -197,7 +197,7 @@ struct PrmSetRc : public PrmSetBase {
 			}
 		}
 		currentHeap->becomeCurrentHeap();
-	}                                                    // _10 (weak)
+	} // _10 (weak)
 	virtual JKRHeap* getPrmObjHeap() { return nullptr; } // _24 (weak)
 
 	T* getChild(u8 n);

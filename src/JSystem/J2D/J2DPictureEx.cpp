@@ -2539,7 +2539,7 @@ void J2DPictureEx::setStage(J2DTevStage* tevStage, J2DPictureEx::stage_enum i)
 	u8 alphaABCDs[8][4] = { { 7, 4, 5, 7 }, { 5, 7, 7, 7 }, { 7, 4, 6, 7 }, { 7, 4, 6, 0 },
 		                    { 7, 5, 0, 7 }, { 1, 2, 4, 7 }, { 7, 7, 7, 2 }, { 1, 2, 0, 7 } };
 	u8 ops[8][5]        = { { 0, 0, 0, 1, 0 }, { 0, 0, 0, 1, 0 }, { 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0 },
-                     { 0, 0, 0, 1, 0 }, { 0, 0, 0, 1, 0 }, { 0, 0, 0, 1, 0 }, { 0, 0, 0, 0, 0 } };
+		                    { 0, 0, 0, 1, 0 }, { 0, 0, 0, 1, 0 }, { 0, 0, 0, 1, 0 }, { 0, 0, 0, 0, 0 } };
 
 	tevStage->setColorABCD(colorABCDs[i][0], colorABCDs[i][1], colorABCDs[i][2], colorABCDs[i][3]);
 	tevStage->setTevColorOp(ops[i][0], ops[i][1], ops[i][2], ops[i][3], ops[i][4]);

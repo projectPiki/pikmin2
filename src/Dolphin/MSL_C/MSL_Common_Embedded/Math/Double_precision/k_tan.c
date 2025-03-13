@@ -5,7 +5,7 @@
 //      Part of the standard mathematical function library
 //
 //===========================================================================
-//####ECOSGPLCOPYRIGHTBEGIN####
+// ####ECOSGPLCOPYRIGHTBEGIN####
 // -------------------------------------------
 // This file is part of eCos, the Embedded Configurable Operating System.
 // Copyright (C) 1998, 1999, 2000, 2001, 2002 Red Hat, Inc.
@@ -36,9 +36,9 @@
 // Alternative licenses for eCos may be arranged by contacting Red Hat, Inc.
 // at http://sources.redhat.com/ecos/ecos-license/
 // -------------------------------------------
-//####ECOSGPLCOPYRIGHTEND####
+// ####ECOSGPLCOPYRIGHTEND####
 //===========================================================================
-//#####DESCRIPTIONBEGIN####
+// #####DESCRIPTIONBEGIN####
 //
 // Author(s):   jlarmour
 // Contributors:  jlarmour
@@ -47,7 +47,7 @@
 // Description:
 // Usage:
 //
-//####DESCRIPTIONEND####
+// ####DESCRIPTIONEND####
 //
 //===========================================================================
 

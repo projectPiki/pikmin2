@@ -38,7 +38,7 @@ struct AnaDemo : public ::Screen::SceneBase {
 			break;
 		}
 		return id;
-	}                                                       // _10 (weak)
+	} // _10 (weak)
 	virtual bool isUseBackupSceneInfo() { return true; }    // _14 (weak)
 	virtual void doCreateObj(JKRArchive*);                  // _20
 	virtual void doUserCallBackFunc(Resource::MgrCommand*); // _24

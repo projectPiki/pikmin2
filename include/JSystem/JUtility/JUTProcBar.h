@@ -127,6 +127,6 @@ public:
 	int mDisableHeapBar;  // _128
 	JKRHeap* mWatchHeap;  // _12C
 	bool mHeapBarVisible; // _130
-};                        // 0x134 size
+}; // 0x134 size
 
 #endif

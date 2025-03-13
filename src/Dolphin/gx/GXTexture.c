@@ -159,7 +159,7 @@ void GXInitTexObj(GXTexObj* obj, void* imagePtr, u16 width, u16 height, GXTexFmt
 
 		maxDimSize = width > height ? 31 - __cntlzw(width) : 31 - __cntlzw(height);
 
-		GX_SET_REG(internal->mode1, (maxDimSize)*16.f, 16, 23);
+		GX_SET_REG(internal->mode1, (maxDimSize) * 16.f, 16, 23);
 	} else {
 		GX_SET_REG(internal->mode0, 4, 24, 26);
 	}

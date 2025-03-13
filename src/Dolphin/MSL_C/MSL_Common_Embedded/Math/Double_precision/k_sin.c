@@ -58,7 +58,8 @@ static f64
 #ifdef __STDC__
 f64 __kernel_sin(f64 x, f64 y, int iy)
 #else
-f64 __kernel_sin(x, y, iy) f64 x, y;
+f64 __kernel_sin(x, y, iy)
+f64 x, y;
 int iy; /* iy=0 if y is zero */
 #endif
 {

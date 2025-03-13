@@ -644,8 +644,7 @@ typedef TBox3<f32> TBox3f;
 typedef TVec2<s16> TVec2s;
 
 template <typename T>
-struct TRotation3 {
-};
+struct TRotation3 { };
 
 template <typename T>
 // clang-format off

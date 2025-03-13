@@ -147,7 +147,7 @@ struct TGameOverScene : public TGameOverSceneBase {
 		TGameOver2D* obj = new TGameOver2D;
 		registObj(obj, arc);
 		mObject = obj;
-	}                                                                    // _20 (weak)
+	} // _20 (weak)
 	virtual bool isUseBackupSceneInfo() { return false; }                // _14 (weak)
 	virtual SceneType getSceneType() { return SCENE_GAME_OVER_GENERAL; } // _08 (weak)
 	virtual ScreenOwnerID getOwnerID() { return OWNER_MRMR; }            // _0C (weak)
@@ -165,7 +165,7 @@ struct TLujiDownScene : public TGameOverSceneBase {
 		TLujiDown2D* obj = new TLujiDown2D;
 		registObj(obj, arc);
 		mObject = obj;
-	}                                                                 // _20 (weak)
+	} // _20 (weak)
 	virtual SceneType getSceneType() { return SCENE_LUJI_DOWN; }      // _08 (weak)
 	virtual ScreenOwnerID getOwnerID() { return OWNER_MRMR; }         // _0C (weak)
 	virtual ScreenMemberID getMemberID() { return MEMBER_GAME_OVER; } // _10 (weak)
@@ -182,7 +182,7 @@ struct TOrimaDownScene : public TGameOverSceneBase {
 		TOrimaDown2D* obj = new TOrimaDown2D;
 		registObj(obj, arc);
 		mObject = obj;
-	}                                                                 // _20 (weak)
+	} // _20 (weak)
 	virtual SceneType getSceneType() { return SCENE_ORIMA_DOWN; }     // _08 (weak)
 	virtual ScreenOwnerID getOwnerID() { return OWNER_MRMR; }         // _0C (weak)
 	virtual ScreenMemberID getMemberID() { return MEMBER_GAME_OVER; } // _10 (weak)
@@ -199,7 +199,7 @@ struct TPikminDownScene : public TGameOverSceneBase {
 		TPikminDown2D* obj = new TPikminDown2D;
 		registObj(obj, arc);
 		mObject = obj;
-	}                                                                    // _20 (weak)
+	} // _20 (weak)
 	virtual bool isUseBackupSceneInfo() { return false; }                // _14 (weak)
 	virtual SceneType getSceneType() { return SCENE_GAME_OVER_GENERAL; } // _08 (weak)
 	virtual ScreenOwnerID getOwnerID() { return OWNER_MRMR; }            // _0C (weak)
@@ -217,7 +217,7 @@ struct TPresidentDownScene : public TGameOverSceneBase {
 		TPresidentDown2D* obj = new TPresidentDown2D;
 		registObj(obj, arc);
 		mObject = obj;
-	}                                                                 // _20 (weak)
+	} // _20 (weak)
 	virtual SceneType getSceneType() { return SCENE_PRESIDENT_DOWN; } // _08 (weak)
 	virtual ScreenOwnerID getOwnerID() { return OWNER_MRMR; }         // _0C (weak)
 	virtual ScreenMemberID getMemberID() { return MEMBER_GAME_OVER; } // _10 (weak)

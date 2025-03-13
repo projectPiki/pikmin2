@@ -3,11 +3,11 @@
 
 #include "types.h"
 
-#define FRSQRTE(input, output)                   \
-	{                                            \
-		register f32 __frsqrte_v = input;        \
+#define FRSQRTE(input, output)                \
+	{                                         \
+		register f32 __frsqrte_v = input;     \
 		asm { frsqrte __frsqrte_v, __frsqrte_v } \
-		*output = __frsqrte_v;                   \
+		*output = __frsqrte_v;                \
 	}
 
 inline f32 sqrtf(f32& __sqrtf_g)

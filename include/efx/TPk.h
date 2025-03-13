@@ -158,8 +158,7 @@ struct TPkNageBlur : public TChaseMtx {
 };
 
 // Needed for dtor
-struct PtrlistContext : public JSUPtrList {
-};
+struct PtrlistContext : public JSUPtrList { };
 
 struct TPkOneEmitterSimple : public TBase, public JPAEmitterCallBack {
 	// vtable 1 (TBase)

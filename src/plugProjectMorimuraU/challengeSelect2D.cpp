@@ -73,9 +73,9 @@ void TChallengePiki::reset()
 void TChallengePiki::jumpStart(f32 time)
 {
 	mVec[0]  = Vector2f(mPanes[0]->getGlbVtx(GLBVTX_BtmLeft).x - mPanes[1]->getGlbVtx(GLBVTX_BtmRight).x,
-                       mPanes[0]->getGlbVtx(GLBVTX_BtmLeft).y - mPanes[1]->getGlbVtx(GLBVTX_BtmRight).y);
+	                    mPanes[0]->getGlbVtx(GLBVTX_BtmLeft).y - mPanes[1]->getGlbVtx(GLBVTX_BtmRight).y);
 	mVec[1]  = Vector2f(mPanes[0]->getGlbVtx(GLBVTX_BtmLeft).x - mPanes[2]->getGlbVtx(GLBVTX_BtmLeft).x,
-                       mPanes[0]->getGlbVtx(GLBVTX_BtmLeft).y - mPanes[2]->getGlbVtx(GLBVTX_BtmLeft).y);
+	                    mPanes[0]->getGlbVtx(GLBVTX_BtmLeft).y - mPanes[2]->getGlbVtx(GLBVTX_BtmLeft).y);
 	mYOffset = -500.0f;
 	for (int i = 0; i < 50; i++) {
 		mPosInfo[i].mTimer      = (0.1f * randFloat()) + -(0.1f * (f32)i - time);
@@ -1125,7 +1125,7 @@ void TChallengeScreen::create(char const* path, u32 flags)
 void TChallengeScreen::createAnimPane(char* path)
 {
 	u64 tags[16]   = { 'Nhl_00', 'Nhl_01', 'Nhl_02', 'Nhl_03', 'Nhl_04', 'Nhl_05', 'Nhl_06', 'Nhl_07',
-                     'Nhl_08', 'Nhl_09', 'Nhl_10', 'Nhl_11', 'Nhl_12', 'Nhl_13', 'Nhl_14', 'NULL_001' };
+		               'Nhl_08', 'Nhl_09', 'Nhl_10', 'Nhl_11', 'Nhl_12', 'Nhl_13', 'Nhl_14', 'NULL_001' };
 	mAnimPaneCount = 15;
 	mAnimPanes     = new og::Screen::AnimPane*[mAnimPaneCount];
 	for (int i = 0; i < mAnimPaneCount; i++) {

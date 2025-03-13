@@ -120,7 +120,7 @@ struct TChallengeSelect : public TTestBase {
 			mDebugHeap->destroy();
 		}
 		mDebugHeap = nullptr;
-	}                                                                                                        // _08 (weak)
+	} // _08 (weak)
 	virtual void doCreate(JKRArchive*);                                                                      // _4C
 	virtual bool doUpdate();                                                                                 // _58
 	virtual void doUpdateFadeoutFinish();                                                                    // _64

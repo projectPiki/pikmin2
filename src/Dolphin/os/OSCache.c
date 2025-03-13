@@ -294,8 +294,7 @@ ASM void ICFlashInvalidate(void) {
  * @note Address: 0x800EC840
  * @note Size: 0x14
  */
-ASM void ICEnable(void)
-{
+ASM void ICEnable(void) {
 #ifdef __MWERKS__ // clang-format off
 	nofralloc
 

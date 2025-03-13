@@ -165,7 +165,7 @@ struct FakePiki : public Creature, public SysShape::MotionListener {
 	virtual bool isZikatu()
 	{
 		return isFPFlag(FPFLAGS_Zikatu);
-	}                                       // _1F4 (weak), is this a Wild Piki? (before type discovery, useless Pikmin)
+	} // _1F4 (weak), is this a Wild Piki? (before type discovery, useless Pikmin)
 	virtual void setZikatu(bool makeZikatu) // _1F8 (weak)
 	{
 		if (makeZikatu) {

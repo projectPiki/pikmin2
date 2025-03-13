@@ -69,7 +69,8 @@ static f64
 #ifdef __STDC__
 f64 __ieee754_asin(f64 x)
 #else
-f64 __ieee754_asin(x) f64 x;
+f64 __ieee754_asin(x)
+f64 x;
 #endif
 {
 	f64 t, w, p, q, c, r, s;

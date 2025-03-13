@@ -139,31 +139,31 @@ JAISe* WorldMapRocket::startRocketSE(f32 posX, f32 posY)
 		switch (mState) {
 		case PSMRocket_Appear:
 			se->setVolume(1.0f, 2, SOUNDPARAM_Unk0);
-			se->setPitch(2.0f, 2, SOUNDPARAM_Unk0);
+			se->setPitch(2.01f, 2, SOUNDPARAM_Unk0);
 			if (se->getPitch(SOUNDPARAM_Unk0) >= 2.0f) {
 				mState = PSMRocket_4;
 			}
 			break;
 		case PSMRocket_2:
 			se->setVolume(1.0f, 2, SOUNDPARAM_Unk0);
-			se->setPitch(2.0f, 2, SOUNDPARAM_Unk0);
+			se->setPitch(2.01f, 2, SOUNDPARAM_Unk0);
 			if (se->getPitch(SOUNDPARAM_Unk0) >= 2.0f) {
 				mState = PSMRocket_4;
 			}
 			break;
 		case PSMRocket_3:
 			se->setVolume(1.0f, 5, SOUNDPARAM_Unk0);
-			se->setPitch(2.0f, 5, SOUNDPARAM_Unk0);
-			if (se->getPitch(SOUNDPARAM_Unk0) >= 3.0f) {
+			se->setPitch(2.5f, 5, SOUNDPARAM_Unk0);
+			if (se->getPitch(SOUNDPARAM_Unk0) >= 2.3f) {
 				mState = PSMRocket_4;
 			}
 			break;
 		case PSMRocket_4:
 			se->setVolume(0.5f, 30, SOUNDPARAM_Unk0);
-			se->setPitch(1.0f, 30, SOUNDPARAM_Unk0);
+			se->setPitch(1.5f, 30, SOUNDPARAM_Unk0);
 			break;
 		case PSMRocket_Idle:
-			se->setVolume(0.5f, 10, SOUNDPARAM_Unk0);
+			se->setVolume(0.3f, 10, SOUNDPARAM_Unk0);
 			se->setPitch(1.0f, 10, SOUNDPARAM_Unk0);
 			break;
 		case PSMRocket_6:
@@ -194,7 +194,7 @@ JAISe* WorldMapRocket::startRocketSE(f32 posX, f32 posY)
 } // namespace PSM
 
 static u16 sLaderNoiseTimer   = 0;
-static int sLaderNoiseWait    = 0;
+static s16 sLaderNoiseWait    = 0;
 f32 sLaderNoiseFuefukiSensMin = 0.0f;
 
 f32 sTreasureLader_PitchDistance  = 0.77f;
@@ -221,43 +221,57 @@ void WorldMapRocket::stateChange(rocketState a1) { mState = a1; }
  */
 PikiHumming::PikiHumming() { }
 
+void PikiHumming::init(HumType type, u32 sound, int a, int b)
+{
+	mHumType    = type;
+	mSoundID    = (SoundID)sound;
+	mCounterMax = a;
+	_0C         = b;
+
+	_00       = 0;
+	mIsActive = 0;
+	mCounter  = -1;
+}
+
 /**
  * @note Address: 0x8046D8D0
  * @note Size: 0xFC
  */
 PikiHummingMgr::PikiHummingMgr()
 {
-	_00     = 10;
-	mState  = 0;
-	mCurrID = 0;
+	_00          = 10;
+	mCurrentType = HumType_Shout;
+	mCurrID      = 0;
 
-	mHummingArray         = new PikiHumming[3];
-	PikiHumming* shouting = &mHummingArray[0];
-	shouting->mActiveID   = 0;
-	shouting->mSoundID    = PSSE_PK_SHOUT01;
-	shouting->mCounterMax = 72;
-	shouting->_0C         = 4;
-	shouting->_00         = 0;
-	shouting->mIsActive   = 0;
-	shouting->mCounter    = -1;
+	mHummingArray = new PikiHumming[HumType_Count];
+	mHummingArray[0].init(HumType_Shout, PSSE_PK_SHOUT01, 72, 4);
+	mHummingArray[1].init(HumType_AiNoUta, PSSE_PK_AINOUTA_RU, 300, 2);
+	mHummingArray[2].init(HumType_Clear, PSSE_PK_HUMING01, 160, 3);
+}
 
-	PikiHumming* ainoutaRU = &mHummingArray[1];
-	ainoutaRU->mActiveID   = 1;
-	ainoutaRU->mSoundID    = PSSE_PK_AINOUTA_RU;
-	ainoutaRU->mCounterMax = 300;
-	ainoutaRU->_0C         = 2;
-	ainoutaRU->_00         = 0;
-	ainoutaRU->mIsActive   = 0;
-	ainoutaRU->mCounter    = -1;
-
-	PikiHumming* humming = &mHummingArray[2];
-	humming->mActiveID   = 2;
-	humming->mSoundID    = PSSE_PK_HUMING01;
-	humming->mCounterMax = 160;
-	humming->_0C         = 3;
-	humming->_00         = 0;
-	humming->mIsActive   = 0;
-	humming->mCounter    = -1;
+void PikiHumming::exec(HumType type, bool doPlay)
+{
+	bool test = true;
+	if ((type == mHumType) || !doPlay) {
+		if (mCounter == -1) {
+			_00 = 0;
+		}
+		test = false;
+	}
+	mIsActive = false;
+	if (test) {
+		if (_00 - (_00 / mCounterMax) * mCounterMax == 0) {
+			mIsActive = true;
+			_00       = 0;
+		}
+		_00++;
+	}
+	if (mCounter >= 0) {
+		mCounter++;
+		if (mCounter >= mCounterMax) {
+			mCounter = -1;
+		}
+	}
 }
 
 /**
@@ -277,7 +291,7 @@ void PikiHummingMgr::exec()
 		}
 	}
 
-	int newState     = 0;
+	int newState     = HumType_Shout;
 	Game::Navi* navi = Game::naviMgr->getActiveNavi();
 	if (navi) {
 		int id = navi->mNaviIndex;
@@ -286,14 +300,14 @@ void PikiHummingMgr::exec()
 		    && Game::GameStat::formationPikis.getCount(id, Game::Yellow) == 20
 		    && Game::GameStat::formationPikis.getCount(id, Game::Purple) == 20
 		    && Game::GameStat::formationPikis.getCount(id, Game::White) == 20) {
-			newState = 1;
+			newState = HumType_AiNoUta;
 		}
 	}
 
-	if (newState != 1) {
+	if (newState != HumType_AiNoUta) {
 		Scene_Game* scene = PSMGetGameScene();
 		if (scene->isPollutUp() && (u32)scene->getPollutUpTimer() > 60) {
-			newState = 2;
+			newState = HumType_Clear;
 		}
 	}
 
@@ -302,31 +316,11 @@ void PikiHummingMgr::exec()
 	} else {
 		mDoAiNoUta = false;
 	}
-	mState = newState;
-	for (u8 i = 0; i < 3; i++) {
-		bool test        = true;
-		PikiHumming* hum = &mHummingArray[i];
-		u8 doPlay        = mDoAiNoUta;
-		if ((mState == hum->mActiveID) || !doPlay) {
-			if (hum->mCounter == -1) {
-				hum->_00 = 0;
-			}
-			test = false;
-		}
-		hum->mIsActive = false;
-		if (test) {
-			if (hum->_00 - (hum->_00 / hum->mCounterMax) * hum->mCounterMax == 0) {
-				hum->mIsActive = true;
-				hum->_00       = 0;
-			}
-			hum->_00++;
-		}
-		if (hum->mCounter >= 0) {
-			hum->mCounter++;
-			if (hum->mCounter >= hum->mCounterMax) {
-				hum->mCounter = -1;
-			}
-		}
+
+	mCurrentType = newState;
+	for (u8 i = 0; i < HumType_Count; i++) {
+		u8 doPlay = mDoAiNoUta;
+		mHummingArray[i].exec((HumType)mCurrentType, doPlay);
 	}
 	mCurrID = 0;
 	/*
@@ -806,6 +800,15 @@ lbl_8046DFC8:
 	*/
 }
 
+void PikiHumming::play(PSM::Piki* piki)
+{
+	u32 id = static_cast<Game::Piki*>(piki->mGameObj)->getFormationSlotID();
+
+	u32 test = mSoundID + (id - (id / _0C) * _0C);
+	piki->startPikiSound(piki, test, 0);
+	mCounter = 0;
+}
+
 /**
  * @note Address: 0x8046DFF0
  * @note Size: 0xC4
@@ -814,13 +817,8 @@ void PikiHummingMgr::play(PSM::Piki* piki)
 {
 	if (mDoAiNoUta && (piki->mHummingCounter >= _00)) {
 		mCurrID++;
-		if (mCurrID < 4 && mHummingArray[mState].mIsActive) {
-			PikiHumming* hum = &mHummingArray[mState];
-			u32 id           = static_cast<Game::Piki*>(piki->mGameObj)->getFormationSlotID();
-			u32 test         = hum->_0C;
-			test             = hum->mSoundID + (id - (id / hum->_0C) * test);
-			piki->startPikiSound(piki, test, 0);
-			hum->mCounter = 0;
+		if (mCurrID < 4 && mHummingArray[mCurrentType].mIsActive) {
+			mHummingArray[mCurrentType].play(piki);
 		}
 	}
 	/*
@@ -990,15 +988,15 @@ JAISound* PSStartEnemyGhostSE(Game::EnemyBase* enemy, f32)
 		case Game::EnemyTypeID::EnemyID_UjiB:
 		case Game::EnemyTypeID::EnemyID_Tobi:
 		case Game::EnemyTypeID::EnemyID_TamagoMushi:
-			volume = 0.5f;
-			pitch  = 2.0f;
+			volume = 0.6f;
+			pitch  = 1.8f;
 			break;
 		case Game::EnemyTypeID::EnemyID_FireOtakara:
 		case Game::EnemyTypeID::EnemyID_WaterOtakara:
 		case Game::EnemyTypeID::EnemyID_GasOtakara:
 		case Game::EnemyTypeID::EnemyID_ElecOtakara:
-			volume = 0.6f;
-			pitch  = 1.8f;
+			volume = 0.5f;
+			pitch  = 2.0f;
 			break;
 		case Game::EnemyTypeID::EnemyID_ShijimiChou:
 			volume = 0.4f;
@@ -1239,10 +1237,10 @@ JAISe* PSStartTreasureLaderSE(f32 rate)
 	if (sound) {
 		f32 calc;
 		if (rate < sTreasureLader_PitchDistance) {
-			calc = JALCalc::getParamByExp(rate, 0.0f, 0.77f, sTreasureLader_DistanceExp, sTreasureLader_MinimumVolume, 1.0f,
-			                              JALCalc::CS_POSITIVE_CURVE);
+			calc = JALCalc::getParamByExp(rate, 0.0f, sTreasureLader_PitchDistance, sTreasureLader_DistanceExp,
+			                              sTreasureLader_MinimumVolume, 1.0f, JALCalc::CS_POSITIVE_CURVE);
 		} else {
-			calc = JALCalc::linearTransform(rate, 0.77f, 1.0f, 1.0f, 0.7f, false);
+			calc = JALCalc::linearTransform(rate, sTreasureLader_PitchDistance, 1.0f, 1.0f, 0.7f, false);
 		}
 		u16 calc2 = JALCalc::linearTransform(rate, 0.3f, 1.0f, 0.0f, 127.0f, false);
 		if (calc2 > 128) {
@@ -1262,180 +1260,6 @@ JAISe* PSStartTreasureLaderSE(f32 rate)
 		}
 	}
 	return sound;
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stfd     f31, 0x30(r1)
-	psq_st   f31, 56(r1), 0, qr0
-	stfd     f30, 0x20(r1)
-	psq_st   f30, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	fmr      f30, f1
-	lis      r4, lbl_8049DA08@ha
-	lwz      r3, spSysIF__8PSSystem@sda21(r13)
-	addi     r31, r4, lbl_8049DA08@l
-	li       r4, 0x1874
-	li       r5, 0
-	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-	or.      r29, r3, r3
-	beq      lbl_8046EC70
-	lfs      f0, sTreasureLader_PitchDistance@sda21(r13)
-	fcmpo    cr0, f30, f0
-	bge      lbl_8046EABC
-	fmr      f1, f30
-	lfs      f2, lbl_80520CE0@sda21(r2)
-	fmr      f3, f0
-	lfs      f4, sTreasureLader_DistanceExp@sda21(r13)
-	lfs      f5, sTreasureLader_MinimumVolume@sda21(r13)
-	li       r3, 1
-	lfs      f6, lbl_80520CF4@sda21(r2)
-	bl       getParamByExp__7JALCalcFffffffQ27JALCalc9CurveSign
-	b        lbl_8046EAD8
-
-lbl_8046EABC:
-	lfs      f3, lbl_80520CF4@sda21(r2)
-	fmr      f1, f30
-	fmr      f2, f0
-	lfs      f5, lbl_80520D30@sda21(r2)
-	fmr      f4, f3
-	li       r3, 0
-	bl       linearTransform__7JALCalcFfffffb
-
-lbl_8046EAD8:
-	fmr      f31, f1
-	lfs      f2, lbl_80520D10@sda21(r2)
-	fmr      f1, f30
-	lfs      f3, lbl_80520CF4@sda21(r2)
-	lfs      f4, lbl_80520CE0@sda21(r2)
-	li       r3, 0
-	lfs      f5, lbl_80520D50@sda21(r2)
-	bl       linearTransform__7JALCalcFfffffb
-	fctiwz   f0, f1
-	stfd     f0, 8(r1)
-	lwz      r5, 0xc(r1)
-	clrlwi   r0, r5, 0x10
-	cmplwi   r0, 0x80
-	ble      lbl_8046EB14
-	li       r5, 0x7f
-
-lbl_8046EB14:
-	lwz      r12, 0x10(r29)
-	mr       r3, r29
-	li       r4, 0xc
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_8046EB4C
-	addi     r3, r31, 0x2c
-	addi     r5, r31, 0x14
-	li       r4, 0x1d3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8046EB4C:
-	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r30, 0
-	bne      lbl_8046EB6C
-	addi     r3, r31, 0x2c
-	addi     r5, r31, 0x14
-	li       r4, 0x1dc
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8046EB6C:
-	lwz      r0, 4(r30)
-	cmplwi   r0, 0
-	bne      lbl_8046EB8C
-	addi     r3, r31, 0x38
-	addi     r5, r31, 0x14
-	li       r4, 0xc7
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8046EB8C:
-	lwz      r3, 4(r30)
-	lwz      r3, 4(r3)
-	cmplwi   r3, 0
-	bne      lbl_8046EBA4
-	li       r31, 0
-	b        lbl_8046EBAC
-
-lbl_8046EBA4:
-	bl       getMiddleBossBgm__Q26PSGame8PikSceneFv
-	mr       r31, r3
-
-lbl_8046EBAC:
-	cmplwi   r31, 0
-	beq      lbl_8046EC24
-	mr       r3, r31
-	lwz      r12, 0x10(r31)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0(r3)
-	cmplwi   r0, 0
-	beq      lbl_8046EC24
-	mr       r3, r31
-	lwz      r12, 0x10(r31)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0(r3)
-	li       r4, 0
-	lwz      r12, 0x10(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, lbl_80520CE0@sda21(r2)
-	fcmpo    cr0, f1, f2
-	ble      lbl_8046EC24
-	lfs      f3, lbl_80520CF4@sda21(r2)
-	li       r3, 1
-	lfs      f5, lbl_80520D54@sda21(r2)
-	fmr      f4, f3
-	bl       linearTransform__7JALCalcFfffffb
-	fmuls    f31, f31, f1
-
-lbl_8046EC24:
-	mr       r3, r29
-	fmr      f1, f31
-	lwz      r12, 0x10(r29)
-	li       r4, 0
-	li       r5, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, sTreasureLader_PitchDistance@sda21(r13)
-	fcmpo    cr0, f30, f0
-	ble      lbl_8046EC70
-	mr       r3, r29
-	lfs      f1, sTreasureLader_Pitch@sda21(r13)
-	lwz      r12, 0x10(r29)
-	li       r4, 0
-	li       r5, 0
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8046EC70:
-	mr       r3, r29
-	psq_l    f31, 56(r1), 0, qr0
-	lfd      f31, 0x30(r1)
-	psq_l    f30, 40(r1), 0, qr0
-	lfd      f30, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r0, 0x44(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
 }
 
 /**
@@ -1453,19 +1277,20 @@ JAISe* PSStartTresureLaderNoiseSE(u8 state, f32 a1, f32)
 			f32 delay        = JALCalc::getRandom(sLaderNoiseFuefukiTimerRandam, JALCalc::cEqualCSlope, JALCalc::cEqualPSlope);
 			sLaderNoiseTimer = 0;
 			sLaderNoiseWait  = sLaderNoiseFuefukiTimerCenter + delay;
-			if (sound) {
-				f32 calc = JALCalc::getParamByExp(a1, sLaderNoiseFuefukiSensMin, sLaderNoiseFuefukiSensMax, sLaderNoiseVolumeExp,
-				                                  sLaderNoiseFuefukiVolumeMin, sLaderNoiseFuefukiVolumeMax, JALCalc::CS_POSITIVE_CURVE);
-				PSM::MiddleBossSeq* seq = PSMGetMiddleBossSeq();
-				if (seq && *seq->getHandleP()) {
-					f32 vol = (*seq->getHandleP())->getVolume(SOUNDPARAM_Unk0);
-					if (vol > 0.0f) {
-						calc *= JALCalc::linearTransform(vol, 0.0f, 1.0f, 1.0f, 0.2f, true);
-					}
-				}
-				sound->setVolume(calc, 0, SOUNDPARAM_Unk0);
-			}
 		}
+		if (sound) {
+			f32 calc                = JALCalc::getParamByExp(a1, sLaderNoiseFuefukiSensMin, sLaderNoiseFuefukiSensMax, sLaderNoiseVolumeExp,
+			                                                 sLaderNoiseFuefukiVolumeMin, sLaderNoiseFuefukiVolumeMax, JALCalc::CS_POSITIVE_CURVE);
+			PSM::MiddleBossSeq* seq = PSMGetMiddleBossSeq();
+			if (seq && *seq->getHandleP()) {
+				f32 vol = (*seq->getHandleP())->getVolume(SOUNDPARAM_Unk0);
+				if (vol > 0.0f) {
+					calc *= JALCalc::linearTransform(vol, 0.0f, 1.0f, 1.0f, 0.2f, true);
+				}
+			}
+			sound->setVolume(calc, 0, SOUNDPARAM_Unk0);
+		}
+
 		break;
 	case 4:
 		sLaderNoiseTimer++;
@@ -1473,19 +1298,21 @@ JAISe* PSStartTresureLaderNoiseSE(u8 state, f32 a1, f32)
 			sound            = PSSystem::spSysIF->playSystemSe(PSSE_SY_LADER_NOISE_SINGLE, 0);
 			f32 delay        = JALCalc::getRandom(sLaderNoiseFuefukiTimerRandam / 6, JALCalc::cEqualCSlope, JALCalc::cEqualPSlope);
 			sLaderNoiseTimer = 0;
-			sLaderNoiseWait  = sLaderNoiseFuefukiTimerRandam / 6 + delay;
-			if (sound) {
-				PSM::MiddleBossSeq* seq = PSMGetMiddleBossSeq();
-				if (seq && *seq->getHandleP()) {
-					f32 vol = (*seq->getHandleP())->getVolume(SOUNDPARAM_Unk0);
-					if (vol > 0.0f) {
-						f32 calc = JALCalc::linearTransform(vol, 0.0f, 1.0f, 1.0f, 0.2f, true);
-						sound->setVolume(calc, 0, SOUNDPARAM_Unk0);
-					}
-				}
-				sound->setPitch(1.2f, 0, SOUNDPARAM_Unk0);
-			}
+			sLaderNoiseWait  = sLaderNoiseFuefukiTimerCenter / 6 + delay;
 		}
+		if (sound) {
+			PSM::MiddleBossSeq* seq = PSMGetMiddleBossSeq();
+			if (seq && *seq->getHandleP()) {
+				f32 vol = (*seq->getHandleP())->getVolume(SOUNDPARAM_Unk0);
+				if (vol > 0.0f) {
+					f32 calc = JALCalc::linearTransform(vol, 0.0f, 1.0f, 1.0f, 0.2f, true);
+					sound->setVolume(calc, 0, SOUNDPARAM_Unk0);
+				}
+			}
+			sound->setPitch(1.2f, 0, SOUNDPARAM_Unk0);
+		}
+		break;
+	case 5:
 		break;
 	}
 	return sound;

@@ -202,7 +202,7 @@ BOOL TRenderingProcessor::doDrawCommon(f32 a1, f32 a2, Matrixf* mtx1, Matrixf* m
 	if (a2 >= -speed) {
 		f32 speed2 = mTextBoxHeight;
 		if (a2 < (speed2 + speed)) {
-			f32 calc   = 0.0f;
+			f32 calc = 0.0f;
 			f32 calc2;
 			if (a2 <= 0.0f) {
 				if (a2 < speed2) {
@@ -223,7 +223,7 @@ BOOL TRenderingProcessor::doDrawCommon(f32 a1, f32 a2, Matrixf* mtx1, Matrixf* m
 			calc2  = speed2 + mSpeed;
 
 			if (!info) {
-				info = (DrawInfo*)mDrawInfo.mInfoList2.mChild;
+				info      = (DrawInfo*)mDrawInfo.mInfoList2.mChild;
 				int index = mInfoIndex;
 				if (info) {
 					info->mIndex = index;
@@ -246,10 +246,10 @@ BOOL TRenderingProcessor::doDrawCommon(f32 a1, f32 a2, Matrixf* mtx1, Matrixf* m
 
 			if (mtx2) {
 				PSMTXCopy(mtx.mMatrix.mtxView, mtx2->mMatrix.mtxView);
-				f32 tx = mtx2->mMatrix.structView.tx;
-				f32 ty = mtx2->mMatrix.structView.ty;
-				ty = ty + 5.0f;
-				tx = tx + 10.0f;
+				f32 tx                      = mtx2->mMatrix.structView.tx;
+				f32 ty                      = mtx2->mMatrix.structView.ty;
+				ty                          = ty + 5.0f;
+				tx                          = tx + 10.0f;
 				mtx2->mMatrix.structView.tx = tx;
 				mtx2->mMatrix.structView.ty = ty;
 				PSMTXConcat(mMtx1->mMatrix.mtxView, mtx2->mMatrix.mtxView, mtx2->mMatrix.mtxView);

@@ -81,7 +81,7 @@ struct TOneEmitterChasePos : public TBase, public JPAEmitterCallBack {
 		}
 
 		mEmitter->resetFlag(JPAEMIT_StopDraw);
-	}                                  // _38 (weak)
+	} // _38 (weak)
 	virtual ~TOneEmitterChasePos() { } // _3C (weak)
 
 	void add(ContextChasePos*);

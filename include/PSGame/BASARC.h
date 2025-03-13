@@ -6,8 +6,7 @@
 
 namespace PSGame {
 
-struct BASARC : public JKRArchive {
-};
+struct BASARC : public JKRArchive { };
 
 } // namespace PSGame
 

@@ -36,7 +36,7 @@ struct TDayEndCount : public TTestBase {
 		TTestBase::doStart(arg);
 		reset();
 		return true;
-	}                                   // _44 (weak)
+	} // _44 (weak)
 	virtual void doCreate(JKRArchive*); // _4C
 	virtual bool doUpdate();            // _58
 	virtual void doDraw(Graphics& gfx); // _68

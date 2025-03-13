@@ -214,7 +214,7 @@ struct TVsSelect : public TScrollList {
 			mDebugHeap->destroy();
 		}
 		mDebugHeap = nullptr;
-	}                                                                                                              // _08 (weak)
+	} // _08 (weak)
 	virtual void doCreate(JKRArchive*);                                                                            // _4C
 	virtual void doUpdateFadeinFinish();                                                                           // _54
 	virtual bool doUpdate();                                                                                       // _58

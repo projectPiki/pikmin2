@@ -8,8 +8,7 @@ template <typename T>
 struct StateMachine;
 
 // if it gets used, it's a derived struct.
-struct StateArg {
-};
+struct StateArg { };
 
 template <typename T>
 struct FSMState {

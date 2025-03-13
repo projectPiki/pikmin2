@@ -77,7 +77,8 @@ static f64
 #ifdef __STDC__
 int __ieee754_rem_pio2(f64 x, f64* y)
 #else
-int __ieee754_rem_pio2(x, y) f64 x, y[];
+int __ieee754_rem_pio2(x, y)
+f64 x, y[];
 #endif
 {
 	f64 z, w, t, r, fn;

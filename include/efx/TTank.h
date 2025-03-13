@@ -101,7 +101,7 @@ struct TTankFire : public TBase {
 	{
 		mEfxABC.forceKill();
 		mEfxIND.forceKill();
-	}                   // _0C (weak)
+	} // _0C (weak)
 	virtual void fade() // _10 (weak)
 	{
 		mEfxABC.fade();
@@ -173,7 +173,7 @@ struct TTankWat : public TChaseMtx4 {
 		if (mParticleCallBack.mEfxHit != nullptr) {
 			mParticleCallBack.mEfxHit->forceKill();
 		}
-	}                   // _0C (weak)
+	} // _0C (weak)
 	virtual void fade() // _10 (weak)
 	{
 		TChaseMtx4::fade();

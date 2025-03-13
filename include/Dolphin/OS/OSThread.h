@@ -131,8 +131,8 @@ enum OS_THREAD_STATE {
 #define OS_THREAD_ATTR_DETACH 0x1U
 
 // Thread priority.
-#define OS_PRIORITY_MIN  (0) // highest prio
-#define OS_PRIORITY_MAX  (31) // lowest prio
+#define OS_PRIORITY_MIN  (0)               // highest prio
+#define OS_PRIORITY_MAX  (31)              // lowest prio
 #define OS_PRIORITY_IDLE (OS_PRIORITY_MAX) // idle = lowest prio
 
 //////////////////////////////////

@@ -174,7 +174,7 @@ struct Obj : public EnemyBase {
 	virtual bool eatWhitePikminCallBack(Creature* creature, f32 f)
 	{
 		return EnemyBase::eatWhitePikminCallBack(creature, C_PROPERPARMS.mWhiteDamage);
-	}                                                                            // _298 (weak)
+	} // _298 (weak)
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() { return mBloysterType; } // _258 (weak)
 	virtual MouthSlots* getMouthSlots() { return &mMouthSlots; }                 // _25C (weak)
 	virtual void doGetLifeGaugeParam(LifeGaugeParam&);                           // _260

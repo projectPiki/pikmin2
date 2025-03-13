@@ -91,7 +91,8 @@ static f64 zero = 0.0;
 #ifdef __STDC__
 f64 __ieee754_log(f64 x)
 #else
-f64 __ieee754_log(x) f64 x;
+f64 __ieee754_log(x)
+f64 x;
 #endif
 {
 	f64 hfsq, f, s, z, R, w, t1, t2, dk;

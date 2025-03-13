@@ -28,8 +28,7 @@ struct BaseItem;
 struct WayPoint;
 struct ItemMgr;
 
-struct _BaseItemMgrParent2 {
-};
+struct _BaseItemMgrParent2 { };
 
 struct BaseItemMgr : public GenericObjectMgr, virtual public _BaseItemMgrParent2 {
 	BaseItemMgr(int);

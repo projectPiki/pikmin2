@@ -47,7 +47,8 @@
 #ifdef __STDC__
 f64 sin(f64 x)
 #else
-f64 sin(x) f64 x;
+f64 sin(x)
+f64 x;
 #endif
 {
 	f64 y[2], z = 0.0;

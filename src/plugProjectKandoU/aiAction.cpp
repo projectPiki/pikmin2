@@ -206,7 +206,7 @@ Game::Navi* Brain::searchOrima()
 		if (curCreature->isNavi() && curCreature->isAlive()) {
 			Vector3f naviPos = curCreature->getPosition();
 			Vector3f sep     = Vector3f(itSettings.mSphere.mPosition.y - naviPos.y, itSettings.mSphere.mPosition.z - naviPos.z,
-                                    itSettings.mSphere.mPosition.x - naviPos.x);
+			                            itSettings.mSphere.mPosition.x - naviPos.x);
 			f32 distToPlayer = _length2(sep);
 			if (distToPlayer < searchRadius) {
 				Game::Navi* currentPlayer = static_cast<Game::Navi*>(curCreature);

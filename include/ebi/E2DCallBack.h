@@ -29,7 +29,7 @@ struct E2DCallBack_Base : public P2DScreen::CallBackNode {
 		if (mIsEnabled) {
 			do_draw(gfx, graf);
 		}
-	}                                                    // _14 (weak)
+	} // _14 (weak)
 	virtual void do_update() { }                         // _1C (weak)
 	virtual void do_draw(Graphics&, J2DGrafContext&) { } // _20 (weak)
 

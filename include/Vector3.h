@@ -29,8 +29,8 @@ struct Vector3 {
 
 	// Assignment Operators
 	inline Vector3& operator=(const Vector3& other);
-	inline void operator    =(Vector3& other);
-	inline void operator    =(const Vec& other);
+	inline void operator=(Vector3& other);
+	inline void operator=(const Vec& other);
 
 	// Conversion Operators
 	inline operator Vector2<T>() const;

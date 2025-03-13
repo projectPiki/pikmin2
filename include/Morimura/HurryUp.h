@@ -119,7 +119,7 @@ struct THurryUpScene : public THIOScene {
 		THurryUp2D* obj = new THurryUp2D;
 		registObj(obj, arc);
 		mObject = obj;
-	}                                                                // _20 (weak)
+	} // _20 (weak)
 	virtual SceneType getSceneType() { return SCENE_HURRY_UP; }      // _08 (weak)
 	virtual ScreenOwnerID getOwnerID() { return OWNER_MRMR; }        // _0C (weak)
 	virtual ScreenMemberID getMemberID() { return MEMBER_HURRY_UP; } // _10 (weak)

@@ -22,7 +22,8 @@
 #ifdef __STDC__
 f64 copysign(f64 x, f64 y)
 #else
-f64 copysign(x, y) f64 x, y;
+f64 copysign(x, y)
+f64 x, y;
 #endif
 {
 	__HI(x) = (__HI(x) & 0x7fffffff) | (__HI(y) & 0x80000000);

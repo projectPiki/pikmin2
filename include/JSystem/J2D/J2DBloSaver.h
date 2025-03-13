@@ -15,12 +15,9 @@ struct J2DMaterial_SaveBlock {
 
 struct J2DBloSaver {
 	// NB: almost all of this is stripped
-	struct ResFONTName {
-	};
-	struct ResTIMGName {
-	};
-	struct MaterialName {
-	};
+	struct ResFONTName { };
+	struct ResTIMGName { };
+	struct MaterialName { };
 
 	struct CTextureNameConnect {
 		struct TNC {

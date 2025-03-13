@@ -53,7 +53,7 @@ struct PelletConfig : public CNode {
 		PrimTagParm<u16> mDictionary;     // _248
 		s16 mIndex;                       // _25C
 		u8 mIndirectState;                // _25A
-	};                                    // struct TParms
+	}; // struct TParms
 
 	PelletConfig();
 	virtual ~PelletConfig() { }

@@ -7,8 +7,12 @@
 namespace PSM {
 struct Piki;
 
-struct HumType {
-	// probably unused if init and exec are unused
+enum HumType {
+	HumType_Shout, // default
+	HumType_AiNoUta,
+	HumType_Clear, // all treasures
+
+	HumType_Count // 3
 };
 
 /**
@@ -27,7 +31,7 @@ struct PikiHumming {
 	int mCounterMax;  // _08
 	int _0C;          // _0C
 	int mCounter;     // _10
-	int mActiveID;    // _14
+	int mHumType;     // _14
 	bool mIsActive;   // _18
 };
 
@@ -44,7 +48,7 @@ struct PikiHummingMgr {
 	void entryRequest();
 
 	u32 _00;                    // _00
-	u32 mState;                 // _04
+	u32 mCurrentType;           // _04
 	int mCurrID;                // _08
 	PikiHumming* mHummingArray; // _0C, ptr to array of 3 PikiHummings
 	u8 mDoAiNoUta;              // _10

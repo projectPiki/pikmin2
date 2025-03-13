@@ -20,7 +20,7 @@ extern "C" {
 // Useful macros.
 #define EXI_0CR(tstart, dma, rw, tlen) ((((u32)(tstart)) << 0) | (((u32)(dma)) << 1) | (((u32)(rw)) << 2) | (((u32)(tlen)) << 4))
 
-#define EXIREG(chan, idx) (__EXIRegs[((chan)*EXI_REG_MAX) + (idx)])
+#define EXIREG(chan, idx) (__EXIRegs[((chan) * EXI_REG_MAX) + (idx)])
 
 #define EXI_CPR_CS(x)  ((1u << (x)) << 7)
 #define EXI_CPR_CLK(x) ((x) << 4)

@@ -86,7 +86,8 @@ static f64
 #ifdef __STDC__
 f64 atan(f64 x)
 #else
-f64 atan(x) f64 x;
+f64 atan(x)
+f64 x;
 #endif
 {
 	f64 w, s1, s2, z;

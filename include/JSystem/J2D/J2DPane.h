@@ -158,7 +158,7 @@ struct J2DPane {
 			cullMode = GX_CULL_BACK;
 		}
 		setCullBack((GXCullMode)cullMode);
-	}                                                   // _1C (weak)
+	} // _1C (weak)
 	virtual void setCullBack(GXCullMode cullMode);      // _20
 	virtual void setAlpha(u8 alpha) { mAlpha = alpha; } // _24 (weak)
 	virtual bool setConnectParent(bool connectParent)
@@ -171,7 +171,7 @@ struct J2DPane {
 		if (mTree.getList()) {
 			makeMatrix(mOffset.x, mOffset.y);
 		}
-	}                                                                                             // _2C (weak)
+	} // _2C (weak)
 	virtual void update() { }                                                                     // _30 (weak)
 	virtual void drawSelf(f32, f32) { }                                                           // _34 (weak)
 	virtual void drawSelf(f32, f32, Mtx*) { }                                                     // _38 (weak)

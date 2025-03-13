@@ -157,7 +157,8 @@ ivln2_l  =  1.92596299112661746887e-08; /* 0x3E54AE0B, 0xF85DDF44 =1/ln2 tail*/
 #ifdef __STDC__
 f64 __ieee754_pow(f64 x, f64 y)
 #else
-f64 __ieee754_pow(x, y) f64 x, y;
+f64 __ieee754_pow(x, y)
+f64 x, y;
 #endif
 {
 	f64 z, ax, z_h, z_l, p_h, p_l;

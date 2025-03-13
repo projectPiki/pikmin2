@@ -24,8 +24,7 @@ struct J3DUShadowInfo {
 	void getTexMtxForGX(f32 (*)[4]) const;
 };
 
-struct J3DUShadowTextureSizeRatioCalcBase {
-};
+struct J3DUShadowTextureSizeRatioCalcBase { };
 
 struct J3DUShadowTextureSizeRatioCalcDefault : J3DUShadowTextureSizeRatioCalcBase {
 	void operator()(const Vec&, J3DUShadowInfo*);

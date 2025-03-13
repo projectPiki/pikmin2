@@ -4188,7 +4188,7 @@ void NaviAbsorbState::onKeyEvent(Navi* navi, SysShape::KeyEvent const& key)
 	case KEYEVENT_END:
 		if (_18) {
 			P2ASSERTLINE(3968, mDrop->mObjectTypeID == OBJTYPE_Honey);
-			navi->incDopeCount(mDrop->mHoneyType != 1);
+			navi->incDopeCount(mDrop->mHoneyType != HONEY_R);
 			transit(navi, NSID_Walk, nullptr);
 		} else {
 			transit(navi, NSID_Walk, nullptr);

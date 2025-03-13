@@ -217,8 +217,7 @@ struct DummyObjectMgr {
 	static DummyObject* deadObjectObject;
 };
 
-struct DummyVec {
-};
+struct DummyVec { };
 
 struct HeapBlock {
 	HeapBlock();
@@ -475,8 +474,8 @@ void* getDvdThreadPointer();
 void setAudioThreadPauseFlag(bool);
 }; // namespace JAInterface
 
-#define IsJAISoundIDInUse(id)    (((id)&0x800) == 0)
-#define IsJAISoundIDFree(id)     (((id)&0x800) == 1)
+#define IsJAISoundIDInUse(id)    (((id) & 0x800) == 0)
+#define IsJAISoundIDFree(id)     (((id) & 0x800) == 1)
 #define JAISoundID_TypeMask      0xC0000000
 #define JAISoundID_Type_Se       0x00000000
 #define JAISoundID_Type_Sequence 0x80000000

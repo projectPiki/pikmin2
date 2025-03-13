@@ -120,8 +120,8 @@ TRenderingProcessor::TRenderingProcessor(JMessage::TReference const* ref)
     , mActiveLineHeight(42.0f)
     , mCharacterWidth(0.0f)
     , mLineHeight(42.0f)
-    , mDefaultWhite(0, 0, 0, 0)
-    , mDefaultBlack(255, 255, 255, 255)
+    , mDefaultBlack(0, 0, 0, 0)
+    , mDefaultWhite(255, 255, 255, 255)
     , mDefaultCharColor(255, 255, 255, 255)
     , mDefaultGradColor(255, 255, 255, 255)
     , mFontWidthAdjusted(1.0f)
@@ -238,7 +238,7 @@ void TRenderingProcessor::do_begin(const void* p1, char const* p2)
 	mParagraphNum = 0;
 	setDrawLocate();
 	mMatrixType = 0;
-	mMainFont->setGX(mDefaultWhite, mDefaultBlack);
+	mMainFont->setGX(mDefaultBlack, mDefaultWhite);
 }
 
 /**
@@ -912,7 +912,7 @@ bool TRenderingProcessor::tagImage(u16 p1, const void* p2, u32 p3)
 
 	mLocate.i.x += width;
 	mInfoIndex++;
-	mMainFont->setGX(mDefaultWhite, mDefaultBlack);
+	mMainFont->setGX(mDefaultBlack, mDefaultWhite);
 	return true;
 }
 
@@ -942,17 +942,8 @@ void TRenderingProcessor::calcColorCoe(JUtility::TColor const& colorData, JUtili
 		bottomAF = 255.0f;
 	}
 
-	u8 bottomR = u8(ROUND_F32_TO_U8(bottomRF)) & 0xFF;
-	u8 bottomG = u8(ROUND_F32_TO_U8(bottomGF)) & 0xFF;
-	u8 bottomB = u8(ROUND_F32_TO_U8(bottomBF)) & 0xFF;
-	u8 bottomA = u8(ROUND_F32_TO_U8(bottomAF)) & 0xFF;
-
-	outColor->r = bottomR;
-	outColor->g = bottomG;
-	outColor->b = bottomB;
-	outColor->a = bottomA;
-	// outColor->set(bottomR, bottomG, bottomB, bottomA);
-	// UNUSED FUNCTION
+	*outColor = JUtility::TColor(u8(ROUND_F32_TO_U8(bottomRF)) & 0xFF, u8(ROUND_F32_TO_U8(bottomGF)) & 0xFF,
+	                             u8(ROUND_F32_TO_U8(bottomBF)) & 0xFF, u8(ROUND_F32_TO_U8(bottomAF)) & 0xFF);
 }
 
 /**
@@ -968,328 +959,6 @@ f32 TRenderingProcessor::doDrawLetter(f32 p1, f32 p2, f32 p3, f32 p4, int p5, bo
 
 	mMainFont->setGradColor(bottomColor, topColor);
 	mMainFont->drawChar_scale(p1, p2, p3, p4, p5, p6);
-	/*
-	stwu     r1, -0xf0(r1)
-	mflr     r0
-	stw      r0, 0xf4(r1)
-	stfd     f31, 0xe0(r1)
-	psq_st   f31, 232(r1), 0, qr0
-	stfd     f30, 0xd0(r1)
-	psq_st   f30, 216(r1), 0, qr0
-	stfd     f29, 0xc0(r1)
-	psq_st   f29, 200(r1), 0, qr0
-	stfd     f28, 0xb0(r1)
-	psq_st   f28, 184(r1), 0, qr0
-	stw      r31, 0xac(r1)
-	stw      r30, 0xa8(r1)
-	stw      r29, 0xa4(r1)
-	mr       r29, r3
-	li       r6, -1
-	lbz      r3, 0x64(r3)
-	lis      r0, 0x4330
-	stw      r0, 0x18(r1)
-	fmr      f28, f1
-	lfd      f5, lbl_805208D8@sda21(r2)
-	fmr      f29, f2
-	stw      r3, 0x1c(r1)
-	fmr      f30, f3
-	lfs      f0, 0x7c(r29)
-	lfd      f2, 0x18(r1)
-	fmr      f31, f4
-	lfs      f1, lbl_805208E4@sda21(r2)
-	mr       r30, r4
-	fsubs    f2, f2, f5
-	stw      r6, 0x14(r1)
-	mr       r31, r5
-	stw      r6, 0x10(r1)
-	fmuls    f0, f2, f0
-	fcmpo    cr0, f0, f1
-	ble      lbl_8043B420
-	fmr      f0, f1
-
-lbl_8043B420:
-	lbz      r3, 0x65(r29)
-	lis      r0, 0x4330
-	stw      r0, 0x20(r1)
-	lfd      f4, lbl_805208D8@sda21(r2)
-	stw      r3, 0x24(r1)
-	lfs      f2, 0x80(r29)
-	lfd      f3, 0x20(r1)
-	lfs      f1, lbl_805208E4@sda21(r2)
-	fsubs    f3, f3, f4
-	fmuls    f6, f3, f2
-	fcmpo    cr0, f6, f1
-	ble      lbl_8043B454
-	fmr      f6, f1
-
-lbl_8043B454:
-	lbz      r3, 0x66(r29)
-	lis      r0, 0x4330
-	stw      r0, 0x28(r1)
-	lfd      f4, lbl_805208D8@sda21(r2)
-	stw      r3, 0x2c(r1)
-	lfs      f2, 0x84(r29)
-	lfd      f3, 0x28(r1)
-	lfs      f1, lbl_805208E4@sda21(r2)
-	fsubs    f3, f3, f4
-	fmuls    f5, f3, f2
-	fcmpo    cr0, f5, f1
-	ble      lbl_8043B488
-	fmr      f5, f1
-
-lbl_8043B488:
-	lbz      r3, 0x67(r29)
-	lis      r0, 0x4330
-	stw      r0, 0x30(r1)
-	lfd      f4, lbl_805208D8@sda21(r2)
-	stw      r3, 0x34(r1)
-	lfs      f2, 0x88(r29)
-	lfd      f3, 0x30(r1)
-	lfs      f1, lbl_805208E4@sda21(r2)
-	fsubs    f3, f3, f4
-	fmuls    f2, f3, f2
-	fcmpo    cr0, f2, f1
-	ble      lbl_8043B4BC
-	fmr      f2, f1
-
-lbl_8043B4BC:
-	lfs      f1, lbl_805208C0@sda21(r2)
-	fcmpo    cr0, f2, f1
-	cror     2, 1, 2
-	bne      lbl_8043B4D8
-	lfs      f1, lbl_805208CC@sda21(r2)
-	fadds    f1, f1, f2
-	b        lbl_8043B4E0
-
-lbl_8043B4D8:
-	lfs      f1, lbl_805208CC@sda21(r2)
-	fsubs    f1, f2, f1
-
-lbl_8043B4E0:
-	fctiwz   f2, f1
-	lfs      f1, lbl_805208C0@sda21(r2)
-	fcmpo    cr0, f5, f1
-	stfd     f2, 0x38(r1)
-	lwz      r0, 0x3c(r1)
-	clrlwi   r6, r0, 0x18
-	cror     2, 1, 2
-	bne      lbl_8043B50C
-	lfs      f1, lbl_805208CC@sda21(r2)
-	fadds    f1, f1, f5
-	b        lbl_8043B514
-
-lbl_8043B50C:
-	lfs      f1, lbl_805208CC@sda21(r2)
-	fsubs    f1, f5, f1
-
-lbl_8043B514:
-	fctiwz   f2, f1
-	lfs      f1, lbl_805208C0@sda21(r2)
-	fcmpo    cr0, f6, f1
-	stfd     f2, 0x40(r1)
-	lwz      r0, 0x44(r1)
-	clrlwi   r5, r0, 0x18
-	cror     2, 1, 2
-	bne      lbl_8043B540
-	lfs      f1, lbl_805208CC@sda21(r2)
-	fadds    f1, f1, f6
-	b        lbl_8043B548
-
-lbl_8043B540:
-	lfs      f1, lbl_805208CC@sda21(r2)
-	fsubs    f1, f6, f1
-
-lbl_8043B548:
-	fctiwz   f2, f1
-	lfs      f1, lbl_805208C0@sda21(r2)
-	fcmpo    cr0, f0, f1
-	stfd     f2, 0x48(r1)
-	lwz      r0, 0x4c(r1)
-	clrlwi   r4, r0, 0x18
-	cror     2, 1, 2
-	bne      lbl_8043B574
-	lfs      f1, lbl_805208CC@sda21(r2)
-	fadds    f0, f1, f0
-	b        lbl_8043B57C
-
-lbl_8043B574:
-	lfs      f1, lbl_805208CC@sda21(r2)
-	fsubs    f0, f0, f1
-
-lbl_8043B57C:
-	lbz      r3, 0x68(r29)
-	fctiwz   f3, f0
-	lis      r0, 0x4330
-	lfd      f2, lbl_805208D8@sda21(r2)
-	stw      r0, 0x58(r1)
-	lfs      f0, 0x7c(r29)
-	stw      r3, 0x5c(r1)
-	lfd      f1, 0x58(r1)
-	stfd     f3, 0x50(r1)
-	fsubs    f2, f1, f2
-	lfs      f1, lbl_805208E4@sda21(r2)
-	lwz      r0, 0x54(r1)
-	stb      r4, 0x15(r1)
-	fmuls    f0, f2, f0
-	stb      r0, 0x14(r1)
-	fcmpo    cr0, f0, f1
-	stb      r5, 0x16(r1)
-	stb      r6, 0x17(r1)
-	ble      lbl_8043B5CC
-	fmr      f0, f1
-
-lbl_8043B5CC:
-	lbz      r3, 0x69(r29)
-	lis      r0, 0x4330
-	stw      r0, 0x60(r1)
-	lfd      f4, lbl_805208D8@sda21(r2)
-	stw      r3, 0x64(r1)
-	lfs      f2, 0x80(r29)
-	lfd      f3, 0x60(r1)
-	lfs      f1, lbl_805208E4@sda21(r2)
-	fsubs    f3, f3, f4
-	fmuls    f6, f3, f2
-	fcmpo    cr0, f6, f1
-	ble      lbl_8043B600
-	fmr      f6, f1
-
-lbl_8043B600:
-	lbz      r3, 0x6a(r29)
-	lis      r0, 0x4330
-	stw      r0, 0x68(r1)
-	lfd      f4, lbl_805208D8@sda21(r2)
-	stw      r3, 0x6c(r1)
-	lfs      f2, 0x84(r29)
-	lfd      f3, 0x68(r1)
-	lfs      f1, lbl_805208E4@sda21(r2)
-	fsubs    f3, f3, f4
-	fmuls    f5, f3, f2
-	fcmpo    cr0, f5, f1
-	ble      lbl_8043B634
-	fmr      f5, f1
-
-lbl_8043B634:
-	lbz      r3, 0x6b(r29)
-	lis      r0, 0x4330
-	stw      r0, 0x70(r1)
-	lfd      f4, lbl_805208D8@sda21(r2)
-	stw      r3, 0x74(r1)
-	lfs      f2, 0x88(r29)
-	lfd      f3, 0x70(r1)
-	lfs      f1, lbl_805208E4@sda21(r2)
-	fsubs    f3, f3, f4
-	fmuls    f2, f3, f2
-	fcmpo    cr0, f2, f1
-	ble      lbl_8043B668
-	fmr      f2, f1
-
-lbl_8043B668:
-	lfs      f1, lbl_805208C0@sda21(r2)
-	fcmpo    cr0, f2, f1
-	cror     2, 1, 2
-	bne      lbl_8043B684
-	lfs      f1, lbl_805208CC@sda21(r2)
-	fadds    f1, f1, f2
-	b        lbl_8043B68C
-
-lbl_8043B684:
-	lfs      f1, lbl_805208CC@sda21(r2)
-	fsubs    f1, f2, f1
-
-lbl_8043B68C:
-	fctiwz   f2, f1
-	lfs      f1, lbl_805208C0@sda21(r2)
-	fcmpo    cr0, f5, f1
-	stfd     f2, 0x78(r1)
-	lwz      r0, 0x7c(r1)
-	clrlwi   r7, r0, 0x18
-	cror     2, 1, 2
-	bne      lbl_8043B6B8
-	lfs      f1, lbl_805208CC@sda21(r2)
-	fadds    f1, f1, f5
-	b        lbl_8043B6C0
-
-lbl_8043B6B8:
-	lfs      f1, lbl_805208CC@sda21(r2)
-	fsubs    f1, f5, f1
-
-lbl_8043B6C0:
-	fctiwz   f2, f1
-	lfs      f1, lbl_805208C0@sda21(r2)
-	fcmpo    cr0, f6, f1
-	stfd     f2, 0x80(r1)
-	lwz      r0, 0x84(r1)
-	clrlwi   r6, r0, 0x18
-	cror     2, 1, 2
-	bne      lbl_8043B6EC
-	lfs      f1, lbl_805208CC@sda21(r2)
-	fadds    f1, f1, f6
-	b        lbl_8043B6F4
-
-lbl_8043B6EC:
-	lfs      f1, lbl_805208CC@sda21(r2)
-	fsubs    f1, f6, f1
-
-lbl_8043B6F4:
-	fctiwz   f2, f1
-	lfs      f1, lbl_805208C0@sda21(r2)
-	fcmpo    cr0, f0, f1
-	stfd     f2, 0x88(r1)
-	lwz      r0, 0x8c(r1)
-	clrlwi   r3, r0, 0x18
-	cror     2, 1, 2
-	bne      lbl_8043B720
-	lfs      f1, lbl_805208CC@sda21(r2)
-	fadds    f0, f1, f0
-	b        lbl_8043B728
-
-lbl_8043B720:
-	lfs      f1, lbl_805208CC@sda21(r2)
-	fsubs    f0, f0, f1
-
-lbl_8043B728:
-	fctiwz   f0, f0
-	lwz      r0, 0x14(r1)
-	stb      r3, 0x11(r1)
-	addi     r4, r1, 0xc
-	addi     r5, r1, 8
-	stfd     f0, 0x90(r1)
-	lwz      r3, 0x94(r1)
-	stb      r6, 0x12(r1)
-	stb      r3, 0x10(r1)
-	stb      r7, 0x13(r1)
-	lwz      r3, 0x10(r1)
-	stw      r0, 0xc(r1)
-	stw      r3, 8(r1)
-	lwz      r3, 0x4c(r29)
-	bl       setGradColor__7JUTFontFQ28JUtility6TColorQ28JUtility6TColor
-	lwz      r3, 0x4c(r29)
-	fmr      f1, f28
-	fmr      f2, f29
-	mr       r4, r30
-	lwz      r12, 0(r3)
-	fmr      f3, f30
-	fmr      f4, f31
-	lwz      r12, 0x14(r12)
-	mr       r5, r31
-	mtctr    r12
-	bctrl
-	psq_l    f31, 232(r1), 0, qr0
-	lfd      f31, 0xe0(r1)
-	psq_l    f30, 216(r1), 0, qr0
-	lfd      f30, 0xd0(r1)
-	psq_l    f29, 200(r1), 0, qr0
-	lfd      f29, 0xc0(r1)
-	psq_l    f28, 184(r1), 0, qr0
-	lfd      f28, 0xb0(r1)
-	lwz      r31, 0xac(r1)
-	lwz      r30, 0xa8(r1)
-	lwz      r0, 0xf4(r1)
-	lwz      r29, 0xa4(r1)
-	mtlr     r0
-	addi     r1, r1, 0xf0
-	blr
-	*/
 }
 
 /**
@@ -1303,199 +972,6 @@ f32 TRenderingProcessor::doDrawRuby(f32 p1, f32 p2, f32 p3, f32 p4, int p5, bool
 	calcColorCoe(mColorData3, &charColor);
 	mRubyFont->setCharColor(charColor);
 	mRubyFont->drawChar_scale(p1, p2, p3, p4, p5, p6);
-	/*
-	stwu     r1, -0xb0(r1)
-	mflr     r0
-	stw      r0, 0xb4(r1)
-	stfd     f31, 0xa0(r1)
-	psq_st   f31, 168(r1), 0, qr0
-	stfd     f30, 0x90(r1)
-	psq_st   f30, 152(r1), 0, qr0
-	stfd     f29, 0x80(r1)
-	psq_st   f29, 136(r1), 0, qr0
-	stfd     f28, 0x70(r1)
-	psq_st   f28, 120(r1), 0, qr0
-	stw      r31, 0x6c(r1)
-	stw      r30, 0x68(r1)
-	stw      r29, 0x64(r1)
-	mr       r29, r3
-	lis      r0, 0x4330
-	lfs      f5, lbl_805208E4@sda21(r2)
-	li       r3, -1
-	lfs      f0, 0x78(r29)
-	fmr      f28, f1
-	stw      r0, 0x18(r1)
-	fmr      f29, f2
-	fmuls    f0, f5, f0
-	lfd      f2, lbl_805208D8@sda21(r2)
-	fmr      f30, f3
-	fmr      f31, f4
-	stw      r3, 0xc(r1)
-	fctiwz   f0, f0
-	mr       r30, r4
-	mr       r31, r5
-	stfd     f0, 0x10(r1)
-	lwz      r0, 0x14(r1)
-	stb      r0, 0x6f(r29)
-	lbz      r0, 0x6c(r29)
-	lfs      f0, 0x7c(r29)
-	stw      r0, 0x1c(r1)
-	lfd      f1, 0x18(r1)
-	fsubs    f1, f1, f2
-	fmuls    f0, f1, f0
-	fcmpo    cr0, f0, f5
-	ble      lbl_8043B874
-	fmr      f0, f5
-
-lbl_8043B874:
-	lbz      r3, 0x6d(r29)
-	lis      r0, 0x4330
-	stw      r0, 0x20(r1)
-	lfd      f4, lbl_805208D8@sda21(r2)
-	stw      r3, 0x24(r1)
-	lfs      f2, 0x80(r29)
-	lfd      f3, 0x20(r1)
-	lfs      f1, lbl_805208E4@sda21(r2)
-	fsubs    f3, f3, f4
-	fmuls    f6, f3, f2
-	fcmpo    cr0, f6, f1
-	ble      lbl_8043B8A8
-	fmr      f6, f1
-
-lbl_8043B8A8:
-	lbz      r3, 0x6e(r29)
-	lis      r0, 0x4330
-	stw      r0, 0x28(r1)
-	lfd      f4, lbl_805208D8@sda21(r2)
-	stw      r3, 0x2c(r1)
-	lfs      f2, 0x84(r29)
-	lfd      f3, 0x28(r1)
-	lfs      f1, lbl_805208E4@sda21(r2)
-	fsubs    f3, f3, f4
-	fmuls    f5, f3, f2
-	fcmpo    cr0, f5, f1
-	ble      lbl_8043B8DC
-	fmr      f5, f1
-
-lbl_8043B8DC:
-	lbz      r3, 0x6f(r29)
-	lis      r0, 0x4330
-	stw      r0, 0x30(r1)
-	lfd      f4, lbl_805208D8@sda21(r2)
-	stw      r3, 0x34(r1)
-	lfs      f2, 0x88(r29)
-	lfd      f3, 0x30(r1)
-	lfs      f1, lbl_805208E4@sda21(r2)
-	fsubs    f3, f3, f4
-	fmuls    f2, f3, f2
-	fcmpo    cr0, f2, f1
-	ble      lbl_8043B910
-	fmr      f2, f1
-
-lbl_8043B910:
-	lfs      f1, lbl_805208C0@sda21(r2)
-	fcmpo    cr0, f2, f1
-	cror     2, 1, 2
-	bne      lbl_8043B92C
-	lfs      f1, lbl_805208CC@sda21(r2)
-	fadds    f1, f1, f2
-	b        lbl_8043B934
-
-lbl_8043B92C:
-	lfs      f1, lbl_805208CC@sda21(r2)
-	fsubs    f1, f2, f1
-
-lbl_8043B934:
-	fctiwz   f2, f1
-	lfs      f1, lbl_805208C0@sda21(r2)
-	fcmpo    cr0, f5, f1
-	stfd     f2, 0x38(r1)
-	lwz      r0, 0x3c(r1)
-	clrlwi   r5, r0, 0x18
-	cror     2, 1, 2
-	bne      lbl_8043B960
-	lfs      f1, lbl_805208CC@sda21(r2)
-	fadds    f1, f1, f5
-	b        lbl_8043B968
-
-lbl_8043B960:
-	lfs      f1, lbl_805208CC@sda21(r2)
-	fsubs    f1, f5, f1
-
-lbl_8043B968:
-	fctiwz   f2, f1
-	lfs      f1, lbl_805208C0@sda21(r2)
-	fcmpo    cr0, f6, f1
-	stfd     f2, 0x40(r1)
-	lwz      r0, 0x44(r1)
-	clrlwi   r3, r0, 0x18
-	cror     2, 1, 2
-	bne      lbl_8043B994
-	lfs      f1, lbl_805208CC@sda21(r2)
-	fadds    f1, f1, f6
-	b        lbl_8043B99C
-
-lbl_8043B994:
-	lfs      f1, lbl_805208CC@sda21(r2)
-	fsubs    f1, f6, f1
-
-lbl_8043B99C:
-	fctiwz   f2, f1
-	lfs      f1, lbl_805208C0@sda21(r2)
-	fcmpo    cr0, f0, f1
-	stfd     f2, 0x48(r1)
-	lwz      r0, 0x4c(r1)
-	clrlwi   r0, r0, 0x18
-	cror     2, 1, 2
-	bne      lbl_8043B9C8
-	lfs      f1, lbl_805208CC@sda21(r2)
-	fadds    f0, f1, f0
-	b        lbl_8043B9D0
-
-lbl_8043B9C8:
-	lfs      f1, lbl_805208CC@sda21(r2)
-	fsubs    f0, f0, f1
-
-lbl_8043B9D0:
-	fctiwz   f0, f0
-	stb      r0, 0xd(r1)
-	addi     r4, r1, 8
-	stb      r3, 0xe(r1)
-	stfd     f0, 0x50(r1)
-	lwz      r0, 0x54(r1)
-	stb      r5, 0xf(r1)
-	stb      r0, 0xc(r1)
-	lwz      r0, 0xc(r1)
-	stw      r0, 8(r1)
-	lwz      r3, 0x50(r29)
-	bl       setCharColor__7JUTFontFQ28JUtility6TColor
-	lwz      r3, 0x50(r29)
-	fmr      f1, f28
-	fmr      f2, f29
-	mr       r4, r30
-	lwz      r12, 0(r3)
-	fmr      f3, f30
-	fmr      f4, f31
-	lwz      r12, 0x14(r12)
-	mr       r5, r31
-	mtctr    r12
-	bctrl
-	psq_l    f31, 168(r1), 0, qr0
-	lfd      f31, 0xa0(r1)
-	psq_l    f30, 152(r1), 0, qr0
-	lfd      f30, 0x90(r1)
-	psq_l    f29, 136(r1), 0, qr0
-	lfd      f29, 0x80(r1)
-	psq_l    f28, 120(r1), 0, qr0
-	lfd      f28, 0x70(r1)
-	lwz      r31, 0x6c(r1)
-	lwz      r30, 0x68(r1)
-	lwz      r0, 0xb4(r1)
-	lwz      r29, 0x64(r1)
-	mtlr     r0
-	addi     r1, r1, 0xb0
-	blr
-	*/
 }
 
 /**
@@ -2747,18 +2223,18 @@ void TRenderingProcessor::setTextBoxInfo(J2DPane* pane)
 	// There is more to this than what we have right now.
 	JUtility::TColor chrcolor  = text->mCharColor;
 	JUtility::TColor gradcolor = text->mGradientColor;
-	JUtility::TColor something = JUtility::TColor(255, 255, 255, 255);
-	JUtility::TColor black     = JUtility::TColor(255, 255, 255, 255);
-	black     = text->getBlack();
-	JUtility::TColor white     = text->getWhite();
+
+	JUtility::TColor black, white;
+	black = text->getBlack();
+	white = text->getWhite();
 
 	mBaseAlphaModifier = (f32)text->mColorAlpha / 255.0f;
 	mImageColorB       = white;
 	mImageColorA       = black;
 	mDefaultCharColor  = chrcolor;
 	mDefaultGradColor  = gradcolor;
-	mDefaultWhite      = white;
 	mDefaultBlack      = black;
+	mDefaultWhite      = white;
 
 	mActiveCharWidth  = text->mCharSpacing;
 	mCharacterWidth   = text->mCharSpacing;
@@ -2770,35 +2246,33 @@ void TRenderingProcessor::setTextBoxInfo(J2DPane* pane)
 	mFontWidth  = text->mFontSize.x / mMainFont->getWidth();
 	mFontHeight = text->mFontSize.y / mMainFont->getHeight();
 
-
-	switch((text->mFlags) >> 2 & 3) {
-		case 1:
-			mFlags.typeView &= ~0x700;
-			mFlags.typeView |= 0x40;
-			break;
-		case 0:
-			mFlags.typeView &= ~0x700;
-			mFlags.typeView |= 0x20;
-			break;
-		case 2:
-			mFlags.typeView &= ~0x700;
-			mFlags.typeView |= 0x10;
-			break;
+	switch ((text->mFlags) >> 2 & 3) {
+	case 0:
+		mFlags.typeView &= ~0x70;
+		mFlags.typeView |= 0x20;
+		break;
+	case 2:
+		mFlags.typeView &= ~0x70;
+		mFlags.typeView |= 0x10;
+		break;
+	case 1:
+		mFlags.typeView &= ~0x70;
+		mFlags.typeView |= 0x40;
+		break;
 	}
-	switch ((text->mFlags) & 3)
-	{
-		case 1:
-			mFlags.typeView &= ~0x700;
-			mFlags.typeView |= 0x400;
-			break;
-		case 0:
-			mFlags.typeView &= ~0x700;
-			mFlags.typeView |= 0x200;
-			break;
-		case 2:
-			mFlags.typeView &= ~0x700;
-			mFlags.typeView |= 0x100;
-			break;
+	switch ((text->mFlags) & 3) {
+	case 0:
+		mFlags.typeView &= ~0x700;
+		mFlags.typeView |= 0x200;
+		break;
+	case 1:
+		mFlags.typeView &= ~0x700;
+		mFlags.typeView |= 0x400;
+		break;
+	case 2:
+		mFlags.typeView &= ~0x700;
+		mFlags.typeView |= 0x100;
+		break;
 	}
 	/*
 stwu     r1, -0x90(r1)

@@ -2819,7 +2819,7 @@ void GameLightMgr::updateSpotType()
 	mFogMgr->mNearZ = complement<f32>(mSettings.mRegularSpotLight.mFog.mFogParms.mStartZ.mValue,
 	                                  mSettings.mStellarSpotLight.mFog.mFogParms.mStartZ.mValue, mStellarColorRatio);
 	mFogMgr->mFarZ  = complement<f32>(mSettings.mRegularSpotLight.mFog.mFogParms.mEndZ.mValue,
-                                     mSettings.mStellarSpotLight.mFog.mFogParms.mEndZ.mValue, mStellarColorRatio);
+	                                  mSettings.mStellarSpotLight.mFog.mFogParms.mEndZ.mValue, mStellarColorRatio);
 
 	// Shadow
 	mSettings.mStellarSpotLight.mShadow.getColor(mShadowColor);
@@ -2899,7 +2899,7 @@ void GameLightMgr::updatePosition(Viewport* viewport)
 		                                           mSettings.mStellarSpotLight.mMainLight.mSpotParms.mCutOff.mValue, mStellarColorRatio);
 		mSubLight->mSpotFn       = GX_SP_COS2;
 		mSubLight->mCutoffAngle  = complement<f32>(mSettings.mRegularSpotLight.mSubLight.mSpotParms.mCutOff.mValue,
-                                                  mSettings.mStellarSpotLight.mSubLight.mSpotParms.mCutOff.mValue, mStellarColorRatio);
+		                                           mSettings.mStellarSpotLight.mSubLight.mSpotParms.mCutOff.mValue, mStellarColorRatio);
 
 		int viewportID = viewport->mVpId;
 		if (viewportID < 0 || viewportID > 1) {

@@ -8,8 +8,8 @@ static BOOL OnReset(BOOL final);
 static OSResetFunctionInfo ResetFunctionInfo = { OnReset, OS_RESET_PRIO_MEM };
 
 // useful macros.
-#define TRUNC(n, a) (((u32)(n)) & ~((a)-1))
-#define ROUND(n, a) (((u32)(n) + (a)-1) & ~((a)-1))
+#define TRUNC(n, a) (((u32)(n)) & ~((a) - 1))
+#define ROUND(n, a) (((u32)(n) + (a) - 1) & ~((a) - 1))
 
 /**
  * @note Address: N/A

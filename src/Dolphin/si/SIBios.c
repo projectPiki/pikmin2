@@ -28,7 +28,7 @@ static BOOL SIGetResponseRaw(s32 chan);
 static void GetTypeCallback(s32 chan, u32 error, OSContext* context);
 
 // useful macros.
-#define ROUND(n, a) (((u32)(n) + (a)-1) & ~((a)-1))
+#define ROUND(n, a) (((u32)(n) + (a) - 1) & ~((a) - 1))
 
 /**
  * @note Address: 0x800F4EFC

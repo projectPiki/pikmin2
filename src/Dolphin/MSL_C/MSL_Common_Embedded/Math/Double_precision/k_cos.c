@@ -65,7 +65,8 @@ static f64
 #ifdef __STDC__
 f64 __kernel_cos(f64 x, f64 y)
 #else
-f64 __kernel_cos(x, y) f64 x, y;
+f64 __kernel_cos(x, y)
+f64 x, y;
 #endif
 {
 	f64 a, hz, z, r, qx;

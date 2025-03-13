@@ -142,13 +142,13 @@ struct TZukanBase : public TScrollList {
 	{
 		mCanInput = true;
 		mPaneSelectIcon->show();
-	}                        // _54 (weak)
+	} // _54 (weak)
 	virtual bool doUpdate(); // _58
 	virtual bool doUpdateFadeout()
 	{
 		mCanInput = false;
 		return TTestBase::doUpdateFadeout();
-	}                                                     // _60 (weak)
+	} // _60 (weak)
 	virtual void doUpdateFadeoutFinish();                 // _64
 	virtual void doDraw(Graphics& gfx);                   // _68
 	virtual void paneInit();                              // _80
@@ -445,7 +445,7 @@ struct TEnemyZukan : public TZukanBase {
 		} else {
 			return getDispMember();
 		}
-	}                                                                      // _78 (weak)
+	} // _78 (weak)
 	virtual bool isListShow(int);                                          // _7C
 	virtual int getIdMax() { return ENEMY_ZUKAN_COUNT; }                   // _88 (weak)
 	virtual u64 getNameID(int);                                            // _8C
@@ -506,7 +506,7 @@ struct TItemZukan : public TZukanBase {
 		} else {
 			return getDispMember();
 		}
-	}                                                                     // _78 (weak)
+	} // _78 (weak)
 	virtual bool isListShow(int);                                         // _7C
 	virtual int getIdMax();                                               // _88
 	virtual u64 getNameID(int);                                           // _8C

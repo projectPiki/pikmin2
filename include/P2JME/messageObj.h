@@ -79,7 +79,7 @@ struct DrawInfo : public CNode {
 		return calc;
 	}
 
-	f32 getCalc2() 
+	f32 getCalc2()
 	{
 		f32 calc = mTimer / mTimeLimit;
 		calc *= TAU;

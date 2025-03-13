@@ -293,9 +293,29 @@ void MoviePlayer::clearContexts()
  * @note Address: N/A
  * @note Size: 0xF0
  */
-void MoviePlayer::playSuspended()
+bool MoviePlayer::playSuspended()
 {
-	// UNUSED FUNCTION
+	MovieContext* context = getSuspendedContext();
+	if (context) {
+		mTargetNavi   = context->mNavi;
+		mActingCamera = context->mCamera;
+		mTargetObject = context->mTargetObject;
+		int flag      = play(context->mConfig, context->mArg, true);
+		switch (flag) {
+		case MOVIEPLAY_SUCCESS:
+			return true;
+		case MOVIEPLAY_NOCONFIG:
+			return false;
+		case MOVIEPLAY_INQUEUE:
+			return true;
+		case MOVIEPLAY_QUEUEFAIL:
+			JUT_PANICLINE(767, "[QUE_FAILED] %s\n", context->mArg.mMovieName);
+			return false;
+		}
+	} else {
+		JUT_PANICLINE(772, " キューになにもないぞーー(T^T)\n"); // "There's nothing in the queue (T^T)\n"
+	}
+	return false;
 }
 
 /**
@@ -341,33 +361,15 @@ void MoviePlayer::hasSuspendedContext()
  * @note Address: N/A
  * @note Size: 0x6C
  */
-void MoviePlayer::getSuspendedContext()
+MovieContext* MoviePlayer::getSuspendedContext()
 {
-	// this is used in update I think? or it might be one of the above functions
-	// it needs to exist for rodata either way
 	MovieContext* context = mStoreContextActive.getChild();
 	if (context) {
 		context->del();
 		mStoreContextInactive.add(context);
 		mActiveContextNum--;
-		mTargetNavi   = context->mNavi;
-		mActingCamera = context->mCamera;
-		mTargetObject = context->mTargetObject;
-		u8 flag       = play(context->mConfig, context->mArg, true);
-		switch (flag) {
-		case MOVIEPLAY_SUCCESS:
-			// return true;
-		case MOVIEPLAY_NOCONFIG:
-			// return false;
-		case MOVIEPLAY_INQUEUE:
-			// return true;
-		case MOVIEPLAY_QUEUEFAIL:
-			JUT_PANICLINE(767, "[QUE_FAILED] %s\n", context->mArg.mMovieName);
-			// return false;
-		}
-	} else {
-		JUT_PANICLINE(772, " キューになにもないぞーー(T^T)\n"); // "There's nothing in the queue (T^T)\n"
 	}
+	return context;
 }
 
 /**
@@ -596,33 +598,7 @@ bool MoviePlayer::update(Controller* input1, Controller* input2)
 			gameSystem->startFadein(1.0f);
 			if (mStoreContextActive.getChild()) {
 				PSMCancelToPauseOffMainBgm();
-				// this whole part is an unused function from this file, but the returns need to be handled correctly so idk
-				MovieContext* context = mStoreContextActive.getChild();
-				if (context) {
-					context->del();
-					mStoreContextInactive.add(context);
-					mActiveContextNum--;
-				}
-				if (context) {
-					mTargetNavi   = context->mNavi;
-					mActingCamera = context->mCamera;
-					mTargetObject = context->mTargetObject;
-					int flag      = play(context->mConfig, context->mArg, true);
-					switch (flag) {
-					case MOVIEPLAY_SUCCESS:
-						return true;
-					case MOVIEPLAY_NOCONFIG:
-						return false;
-					case MOVIEPLAY_INQUEUE:
-						return true;
-					case MOVIEPLAY_QUEUEFAIL:
-						JUT_PANICLINE(767, "[QUE_FAILED] %s\n", context->mArg.mMovieName);
-						return false;
-					}
-				} else {
-					JUT_PANICLINE(772, " キューになにもないぞーー(T^T)\n"); // "There's nothing in the queue (T^T)\n"
-				}
-				return false;
+				return playSuspended();
 			} else if (mDemoState == DEMOSTATE_Loading || mDemoState == DEMOSTATE_Fadeout) {
 				PSMCancelToPauseOffMainBgm();
 			}
@@ -651,9 +627,7 @@ bool MoviePlayer::update(Controller* input1, Controller* input2)
 				if (norm > 10.0f) {
 					norm = 10.0f;
 				}
-				test *= norm;
-				test += offset;
-				mCameraPosition = test;
+				mCameraPosition = offset + (test * norm);
 				setTransform(mCameraPosition, mCameraAngle);
 			}
 		}

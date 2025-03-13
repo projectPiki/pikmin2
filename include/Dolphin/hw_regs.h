@@ -91,20 +91,20 @@ vu32 __PIRegs[12] AT_ADDRESS(0xCC003000);
 #define PI_RESETCODE (9) // reset code, used by OSReset
 
 // PI Interrupt causes.
-#define PI_INTRPT_ERR       (0x1) // GP runtime error
-#define PI_INTRPT_RSW       (0x2) // reset switch
-#define PI_INTRPT_DVD       (0x4) // DVD/DI interrupt
-#define PI_INTRPT_SI        (0x8) // serial/controller interrupt
-#define PI_INTRPT_EXI       (0x10) // external mem interrupt
-#define PI_INTRPT_AI        (0x20) // audio streaming interrupt
-#define PI_INTRPT_DSP       (0x40) // digital signal proc interrupt
-#define PI_INTRPT_MEM       (0x80) // memory interface interrupt
-#define PI_INTRPT_VI        (0x100) // video interface interrupt
-#define PI_INTRPT_PE_TOKEN  (0x200) // pixel engine token
-#define PI_INTRPT_PE_FINISH (0x400) // pixel engine finish
-#define PI_INTRPT_CP        (0x800) // command FIFO
-#define PI_INTRPT_DEBUG     (0x1000) // external debugger
-#define PI_INTRPT_HSP       (0x2000) // high speed port
+#define PI_INTRPT_ERR       (0x1)     // GP runtime error
+#define PI_INTRPT_RSW       (0x2)     // reset switch
+#define PI_INTRPT_DVD       (0x4)     // DVD/DI interrupt
+#define PI_INTRPT_SI        (0x8)     // serial/controller interrupt
+#define PI_INTRPT_EXI       (0x10)    // external mem interrupt
+#define PI_INTRPT_AI        (0x20)    // audio streaming interrupt
+#define PI_INTRPT_DSP       (0x40)    // digital signal proc interrupt
+#define PI_INTRPT_MEM       (0x80)    // memory interface interrupt
+#define PI_INTRPT_VI        (0x100)   // video interface interrupt
+#define PI_INTRPT_PE_TOKEN  (0x200)   // pixel engine token
+#define PI_INTRPT_PE_FINISH (0x400)   // pixel engine finish
+#define PI_INTRPT_CP        (0x800)   // command FIFO
+#define PI_INTRPT_DEBUG     (0x1000)  // external debugger
+#define PI_INTRPT_HSP       (0x2000)  // high speed port
 #define PI_INTRPT_RSWST     (0x10000) // reset switch state (1 when pressed)
 
 // Memory Interface registers.
@@ -184,7 +184,7 @@ vu32 __SIRegs[64] AT_ADDRESS(0xCC006400);
 #define SI_CHAN_2_BTN_1 (7) // button 1
 #define SI_CHAN_2_BTN_2 (8) // button 2
 // Channel 3/Joy-channel 4
-#define SI_CHAN_3_BUF   (9) // output buffer
+#define SI_CHAN_3_BUF   (9)  // output buffer
 #define SI_CHAN_3_BTN_1 (10) // button 1
 #define SI_CHAN_3_BTN_2 (11) // button 2
 

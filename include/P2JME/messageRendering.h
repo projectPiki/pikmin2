@@ -175,8 +175,8 @@ struct TRenderingProcessor : public TRenderingProcessorBase {
 	f32 mActiveLineHeight;              // _C0
 	f32 mCharacterWidth;                // _C4
 	f32 mLineHeight;                    // _C8
-	JUtility::TColor mDefaultWhite;     // _CC
-	JUtility::TColor mDefaultBlack;     // _D0
+	JUtility::TColor mDefaultBlack;     // _CC
+	JUtility::TColor mDefaultWhite;     // _D0
 	JUtility::TColor mDefaultCharColor; // _D4
 	JUtility::TColor mDefaultGradColor; // _D8
 	u8 mMatrixType;                     // _DC

@@ -27,24 +27,24 @@ static struct DummyPlayer {
 
 static int idk[4]                    = { 1, 2, 3, 0 };
 const char* opening_strings[]        = { "Opening Movie",
-                                  "",
-                                  "",
-                                  "-- Director --",
-                                  "Geshifumi Hino",
-                                  "Mamamichi Abe",
-                                  "",
-                                  "",
-                                  "-- Main Programmer --",
-                                  "Tepen-kei",
-                                  "",
-                                  "",
-                                  "",
-                                  "",
-                                  "",
-                                  "",
-                                  "",
-                                  "(C) Nintendo",
-                                  nullptr };
+	                                     "",
+	                                     "",
+	                                     "-- Director --",
+	                                     "Geshifumi Hino",
+	                                     "Mamamichi Abe",
+	                                     "",
+	                                     "",
+	                                     "-- Main Programmer --",
+	                                     "Tepen-kei",
+	                                     "",
+	                                     "",
+	                                     "",
+	                                     "",
+	                                     "",
+	                                     "",
+	                                     "",
+	                                     "(C) Nintendo",
+	                                     nullptr };
 const char* ending_strings[]         = { "Ending Movie", "", "", "", "", "", "(C) Ninteno" };
 const char* endingcomplete_strings[] = { "Ending(Complete) Movie", "", "", "", "", "", "(C) Ninteno" };
 const char* staffroll_strings[]

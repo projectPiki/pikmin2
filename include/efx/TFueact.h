@@ -59,7 +59,7 @@ struct TFueactCircle : public TBase, public JPAEmitterCallBack, public JPAPartic
 	{
 		particleMgr->fade(mEmitter);
 		mEmitter = nullptr;
-	}                                                        // _10 (weak)
+	} // _10 (weak)
 	virtual void execute(JPABaseEmitter*);                   // _44 (weak)
 	virtual void execute(JPABaseEmitter*, JPABaseParticle*); // _48 (weak)
 	virtual void executeAfter(JPABaseEmitter*);              // _4C (weak)

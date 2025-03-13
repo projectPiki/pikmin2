@@ -713,7 +713,7 @@ DSError TRKTargetSupportRequest()
 	} else {
 		length = (size_t*)gTRKCPUState.Default.GPR[5];
 		error  = TRKSuppAccessFile(gTRKCPUState.Default.GPR[4], (u8*)gTRKCPUState.Default.GPR[6], length, &ioResult, TRUE,
-                                  commandId == DSMSG_ReadFile);
+		                           commandId == DSMSG_ReadFile);
 
 		if (ioResult == DS_IONoError && error != DS_NoError) {
 			ioResult = DS_IOError;

@@ -71,7 +71,7 @@ struct Obj : public EnemyBase {
 		mFSM = fsm;
 		mFSM->init(this);
 		mCurrentLifecycleState = nullptr;
-	};                                                                // _2F8 (weak)
+	}; // _2F8 (weak)
 	virtual void setInitialSetting(EnemyInitialParamBase* params) { } // _1C4 (weak)
 	virtual void throwupItemInDeathProcedure() { }                    // _270 (weak)
 	virtual void createEfxHamon()                                     // _250 (weak)

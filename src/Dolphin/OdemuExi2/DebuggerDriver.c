@@ -17,7 +17,7 @@ static u8 SendCount = 0x80;
 
 #define IS_TRUE(x)         ((x) != FALSE)
 #define IS_FALSE(x)        !IS_TRUE(x)
-#define ROUND_UP(x, align) (((x) + (align)-1) & (-(align)))
+#define ROUND_UP(x, align) (((x) + (align) - 1) & (-(align)))
 
 /**
  * @note Address: N/A

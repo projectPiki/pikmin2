@@ -80,7 +80,7 @@ JAInter::SeqUpdateData::SeqUpdateData()
     , _03(0)
     , mActiveTrackFlag(0)
     , mSequence(nullptr)
-    , mPlayerParams(new (JAIBasic::getCurrentJAIHeap(), 0x20) PlayerParameter[33])
+    , mPlayerParams(new(JAIBasic::getCurrentJAIHeap(), 0x20) PlayerParameter[33])
 {
 	mTrackVolumes = new (JAIBasic::getCurrentJAIHeap(), 0x20) f32[JAIGlobalParameter::getParamSeqTrackMax()];
 	mTrackPans    = new (JAIBasic::getCurrentJAIHeap(), 0x20) f32[JAIGlobalParameter::getParamSeqTrackMax()];

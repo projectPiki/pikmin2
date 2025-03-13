@@ -49,23 +49,23 @@ struct J2DPicture : public J2DPane {
 	virtual bool append(const ResTIMG* resource, JUTPalette* palette, f32 blendRatio)
 	{
 		return insert(resource, palette, mTextureCount, blendRatio);
-	}                                                                                                                 // _A0 (weak)
+	} // _A0 (weak)
 	virtual bool append(const char* fileName, f32 blendRatio) { return insert(fileName, mTextureCount, blendRatio); } // _A4 (weak)
 	virtual bool append(const char* fileName, JUTPalette* palette, f32 blendRatio)
 	{
 		return insert(fileName, palette, mTextureCount, blendRatio);
-	}                                                                                                               // _A8 (weak)
+	} // _A8 (weak)
 	virtual bool append(JUTTexture* texture, f32 blendRatio) { return insert(texture, mTextureCount, blendRatio); } // _AC (weak)
 	virtual bool prepend(const ResTIMG* resource, f32 blendRatio) { return insert(resource, 0, blendRatio); }       // _B0 (weak)
 	virtual bool prepend(const ResTIMG* resource, JUTPalette* palette, f32 blendRatio)
 	{
 		return insert(resource, palette, 0, blendRatio);
-	}                                                                                                      // _B4 (weak)
+	} // _B4 (weak)
 	virtual bool prepend(const char* fileName, f32 blendRatio) { return insert(fileName, 0, blendRatio); } // _B8 (weak)
 	virtual bool prepend(const char* fileName, JUTPalette* palette, f32 blendRatio)
 	{
 		return insert(fileName, palette, 0, blendRatio);
-	}                                                                                                                         // _BC (weak)
+	} // _BC (weak)
 	virtual bool prepend(JUTTexture* texture, f32 blendRatio) { return insert(texture, 0, blendRatio); }                      // _C0 (weak)
 	virtual bool insert(const ResTIMG* resource, u8 id, f32 blendRatio) { return insert(resource, nullptr, id, blendRatio); } // _C4 (weak)
 	virtual bool insert(const ResTIMG*, JUTPalette*, u8, f32);                                                                // _C8
@@ -108,7 +108,7 @@ struct J2DPicture : public J2DPane {
 	{
 		setBlendColorRatio(p1, p2, p3, p4, p5, p6, p7, p8);
 		setBlendAlphaRatio(p1, p2, p3, p4, p5, p6, p7, p8);
-	}                                                                                          // _104 (weak)
+	} // _104 (weak)
 	virtual void setBlendColorRatio(f32, f32, f32, f32, f32, f32, f32, f32);                   // _108
 	virtual void setBlendAlphaRatio(f32, f32, f32, f32, f32, f32, f32, f32);                   // _10C
 	virtual ResTIMG* changeTexture(const ResTIMG* img, u8 id);                                 // _110
@@ -294,12 +294,12 @@ struct J2DPictureEx : public J2DPicture {
 	virtual bool prepend(const ResTIMG* resource, JUTPalette* palette, f32 blendRatio)
 	{
 		return insert(resource, palette, 0, blendRatio);
-	}                                                                                                      // _B4 (weak)
+	} // _B4 (weak)
 	virtual bool prepend(const char* fileName, f32 blendRatio) { return insert(fileName, 0, blendRatio); } // _B8 (weak)
 	virtual bool prepend(const char* fileName, JUTPalette* palette, f32 blendRatio)
 	{
 		return insert(fileName, palette, 0, blendRatio);
-	}                                                                                                                         // _BC (weak)
+	} // _BC (weak)
 	virtual bool prepend(JUTTexture* texture, f32 blendRatio) { return insert(texture, 0, blendRatio); }                      // _C0 (weak)
 	virtual bool insert(const ResTIMG* resource, u8 id, f32 blendRatio) { return insert(resource, nullptr, id, blendRatio); } // _C4 (weak)
 	virtual bool insert(const ResTIMG* resource, JUTPalette* palette, u8 id, f32 blendRatio);                                 // _C8

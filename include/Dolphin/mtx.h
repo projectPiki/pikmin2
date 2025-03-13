@@ -10,7 +10,7 @@ extern "C" {
 #include "Dolphin/vec.h"
 
 /////////////// TYPE DEFINES ///////////////
-#define MTXDegToRad(a) ((a)*0.01745329252f)
+#define MTXDegToRad(a) ((a) * 0.01745329252f)
 
 typedef f32 Mtx[3][4];
 typedef f32 Mtx23[2][3];

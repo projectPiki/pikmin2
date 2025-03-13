@@ -25,7 +25,7 @@ struct J2DGrafContext {
 	{
 		JGeometry::TBox2f box(x, y, x + width, y + height);
 		place(box);
-	}                                                                // _10 (weak)
+	} // _10 (weak)
 	virtual void setPort();                                          // _14
 	virtual void setup2D();                                          // _18
 	virtual void setScissor();                                       // _1C
