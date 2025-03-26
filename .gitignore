@@ -53,6 +53,7 @@ sheet.py
 sheet.tsv
 tools/mwcc_compiler/
 tools/powerpc/
+compile_commands.json
 
 !aoi.exe
 !clang-format.exe
