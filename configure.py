@@ -242,7 +242,7 @@ config.libs = [
         "lib": "JStudio_JParticle",
         "cflags": cflags_pikmin,
         "mw_version": "GC/2.6",
-        "progress_category" : "jstudio",
+        "progress_category" : "jsystem",
 
         "host": True,
         "objects": [
@@ -254,7 +254,7 @@ config.libs = [
         "lib": "JMessage",
         "cflags": cflags_pikmin,
         "mw_version": "GC/2.6",
-        "progress_category" : "jstudio",
+        "progress_category" : "jsystem",
         "host": True,
         "objects": [
             Object(NonMatching, "JSystem/JMessage/resource.cpp"),
@@ -267,7 +267,7 @@ config.libs = [
         "lib": "JStudio",
         "cflags": cflags_pikmin,
         "mw_version": "GC/2.6",
-        "progress_category" : "jstudio",
+        "progress_category" : "jsystem",
         "host": True,
         "objects": [
             Object(Matching, "JSystem/JStudio/stb-data-parse.cpp"),
@@ -288,7 +288,7 @@ config.libs = [
         "lib": "JStudio_JStage",
         "cflags": cflags_pikmin,
         "mw_version": "GC/2.6",
-        "progress_category" : "jstudio",
+        "progress_category" : "jsystem",
         "host": True,
         "objects": [
             Object(Matching, "JSystem/JStudio_JStage/object-light.cpp"),
@@ -304,7 +304,7 @@ config.libs = [
         "lib": "JStudio_JMessage",
         "cflags": cflags_pikmin,
         "mw_version": "GC/2.6",
-        "progress_category" : "jstudio",
+        "progress_category" : "jsystem",
         "host": True,
         "objects": [
             Object(Matching, "JSystem/JStudio_JMessage/object-message.cpp"),
@@ -315,7 +315,7 @@ config.libs = [
         "lib": "JStudio_JAudio",
         "cflags": cflags_pikmin,
         "mw_version": "GC/2.6",
-        "progress_category" : "jstudio",
+        "progress_category" : "jsystem",
         "host": True,
         "objects": [
             Object(Matching, "JSystem/JStudio_JAudio/object-sound.cpp"),
@@ -326,7 +326,7 @@ config.libs = [
         "lib": "J3DU",
         "cflags": cflags_pikmin,
         "mw_version": "GC/2.6",
-        "progress_category" : "jstudio",
+        "progress_category" : "jsystem",
         "host": True,
         "objects": [
             Object(Matching, "JSystem/J3DU/J3DUDL.cpp"),
@@ -339,7 +339,7 @@ config.libs = [
         "lib": "JKernel",
         "cflags": cflags_pikmin,
         "mw_version": "GC/2.6",
-        "progress_category" : "jstudio",
+        "progress_category" : "jsystem",
         "host": True,
         "objects": [
             Object(Matching, "JSystem/JKernel/JKRAram.cpp"),
@@ -372,7 +372,7 @@ config.libs = [
         "lib": "JSupport",
         "cflags": cflags_pikmin,
         "mw_version": "GC/2.6",
-        "progress_category" : "jstudio",
+        "progress_category" : "jsystem",
         "host": True,
         "objects": [
             Object(Matching, "JSystem/JSupport/JSUOutputStream.cpp"),
@@ -386,7 +386,7 @@ config.libs = [
         "lib": "JGadget",
         "cflags": cflags_pikmin,
         "mw_version": "GC/2.6",
-        "progress_category" : "jstudio",
+        "progress_category" : "jsystem",
         "host": True,
         "objects": [
             Object(Matching, "JSystem/JGadget/binary.cpp"),
@@ -399,7 +399,7 @@ config.libs = [
         "lib": "JUtility",
         "cflags": cflags_pikmin,
         "mw_version": "GC/2.6",
-        "progress_category" : "jstudio",
+        "progress_category" : "jsystem",
         "host": True,
         "objects": [
             Object(Matching, "JSystem/JUtility/JUTAssert.cpp"),
@@ -429,7 +429,7 @@ config.libs = [
         "lib": "JMath",
         "cflags": cflags_pikmin,
         "mw_version": "GC/2.6",
-        "progress_category" : "jstudio",
+        "progress_category" : "jsystem",
         "host": True,
         "objects": [
             Object(Matching, "JSystem/JMath/JMath.cpp"),
@@ -441,7 +441,7 @@ config.libs = [
         "lib": "J2D",
         "cflags": cflags_pikmin,
         "mw_version": "GC/2.6",
-        "progress_category" : "jstudio",
+        "progress_category" : "jsystem",
         "host": True,
         "objects": [
             Object(Matching, "JSystem/J2D/J2DOrthoGraph.cpp"),
@@ -470,7 +470,7 @@ config.libs = [
         "lib": "J3D",
         "cflags": cflags_pikmin,
         "mw_version": "GC/2.6",
-        "progress_category" : "jstudio",
+        "progress_category" : "jsystem",
         "host": True,
         "objects": [
             Object(Matching, "JSystem/J3D/J3DSys.cpp"),
@@ -511,7 +511,7 @@ config.libs = [
         "lib": "JFramework",
         "cflags": cflags_pikmin,
         "mw_version": "GC/2.6",
-        "progress_category" : "jstudio",
+        "progress_category" : "jsystem",
         "host": True,
         "objects": [
             Object(Matching, "JSystem/JFramework/JFWSystem.cpp"),
@@ -522,7 +522,7 @@ config.libs = [
         "lib": "JParticle",
         "cflags": cflags_pikmin,
         "mw_version": "GC/2.6",
-        "progress_category" : "jstudio",
+        "progress_category" : "jsystem",
         "host": True,
         "objects": [
             Object(NonMatching, "JSystem/JParticle/JPABaseShape.cpp"),
@@ -546,7 +546,7 @@ config.libs = [
         "lib": "JStage",
         "cflags": cflags_pikmin,
         "mw_version": "GC/2.6",
-        "progress_category" : "jstudio",
+        "progress_category" : "jsystem",
         "host": True,
         "objects": [
             Object(Matching, "JSystem/JStage/JSGSystem.cpp"),
@@ -559,7 +559,7 @@ config.libs = [
         "lib": "JAudio_JAS",
         "cflags": cflags_pikmin,
         "mw_version": "GC/2.6",
-        "progress_category" : "jstudio",
+        "progress_category" : "jsystem",
         "host": True,
         "objects": [
             Object(NonMatching, "JSystem/JAudio/JAS/JASWSParser.cpp"),
@@ -617,7 +617,7 @@ config.libs = [
             "-O4,s",
         ],
         "mw_version": "GC/2.6",
-        "progress_category" : "jstudio",
+        "progress_category" : "jsystem",
         "host": True,
         "objects": [
             Object(Matching, "JSystem/JAudio/dsp/dspproc.c"),
@@ -630,7 +630,7 @@ config.libs = [
         "lib": "JAudio_JAI",
         "cflags": cflags_pikmin,
         "mw_version": "GC/2.6",
-        "progress_category" : "jstudio",
+        "progress_category" : "jsystem",
         "host": True,
         "objects": [
             Object(NonMatching, "JSystem/JAudio/JAI/JAIAnimation.cpp"),
@@ -655,7 +655,7 @@ config.libs = [
         "lib": "JAudio_JAD",
         "cflags": cflags_pikmin,
         "mw_version": "GC/2.6",
-        "progress_category" : "jstudio",
+        "progress_category" : "jsystem",
         "host": True,
         "objects": [Object(Matching, "JSystem/JAudio/JAD/JADHioNode.cpp")],
     },
@@ -663,7 +663,7 @@ config.libs = [
         "lib": "JAudio_JAL",
         "cflags": cflags_pikmin,
         "mw_version": "GC/2.6",
-        "progress_category" : "jstudio",
+        "progress_category" : "jsystem",
         "host": True,
         "objects": [Object(Matching, "JSystem/JAudio/JAL/JALCalc.cpp")],
     },
@@ -671,7 +671,7 @@ config.libs = [
         "lib": "JAudio_JAU",
         "cflags": cflags_pikmin,
         "mw_version": "GC/2.6",
-        "progress_category" : "jstudio",
+        "progress_category" : "jsystem",
         "host": True,
         "objects": [
             Object(Matching, "JSystem/JAudio/JAU/JAUData.cpp"),
@@ -2121,7 +2121,7 @@ config.link_order_callback = link_order_callback
 config.progress_categories = [
     ProgressCategory("game", "Game Code"),
     ProgressCategory("sdk", "SDK Code"),
-    ProgressCategory("jstudio", "JStudio Code"),
+    ProgressCategory("jsystem", "JSystem Code"),
 ]
 config.progress_each_module = args.verbose
 

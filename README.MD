@@ -119,6 +119,12 @@ This:
 
 - Disables final hash verification.
 - Builds all assembly files in `asm`.
-- Builds all source files marked as `Equivalent` in `configure.py`.
+- Builds all source files marked as `Matching` and `Equivalent` in `configure.py`.
+
+To add new source files to the DOL:
+
+- Uncomment the final `"lib": "moddingU"` bracket in `configure.py` - change the name to whatever you like, and feel free to add more than one new lib using this as a template.
+- Add any new files along with their paths as `Object(Matching, folder/file.cpp)` where indicated.
+- Within the `link_order_callback` function below the object configuration, uncomment and add each new file with its path within `src`, as indicated.
 
 Once built with `ninja`, the new DOL will exist at `build/GPVE01/main.dol`.

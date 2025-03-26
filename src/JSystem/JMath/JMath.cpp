@@ -167,9 +167,9 @@ void JMAVECLerp(register const Vec* vec1, register const Vec* vec2, register Vec
 		stfs v2z, 8(dst)
 	}
 #endif // clang-format on
-	   /*dst->x = (vec2->x - vec1->x) * t + vec1->x;
-	   dst->y = (vec2->y - vec1->y) * t + vec1->y;
-	   dst->z = (vec2->z - vec1->z) * t + vec1->z;*/
+	/*dst->x = (vec2->x - vec1->x) * t + vec1->x;
+	dst->y = (vec2->y - vec1->y) * t + vec1->y;
+	dst->z = (vec2->z - vec1->z) * t + vec1->z;*/
 }
 
 /**
@@ -208,7 +208,9 @@ void JMAMTXApplyScale(register const Mtx src, register Mtx dst, register f32 xSc
 	}
 #endif // clang-format on
 
-	/*dst[0][0] = src[0][0] * xScale;
+	/*
+
+	dst[0][0] = src[0][0] * xScale;
 	dst[0][1] = src[0][1] * yScale;
 	dst[0][2] = src[0][2] * zScale;
 
@@ -222,7 +224,9 @@ void JMAMTXApplyScale(register const Mtx src, register Mtx dst, register f32 xSc
 
 	dst[3][0] = src[3][0] * normal;
 	dst[3][1] = src[3][1] * normal;
-	dst[3][2] = src[3][2] * normal;*/
+	dst[3][2] = src[3][2] * normal;
+
+	*/
 }
 
 /**
