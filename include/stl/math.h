@@ -21,6 +21,7 @@ extern "C" {
 #define NAN      (*(f32*)__float_nan)
 #define HUGE_VAL (*(f64*)__double_huge)
 
+#define LONG_PI     3.1415926535897932
 #define LONG_TAU    6.2831854820251465
 #define TAU         6.2831855f
 #define PI          3.1415927f

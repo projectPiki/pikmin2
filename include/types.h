@@ -48,6 +48,8 @@ typedef u16 wchar_t;
 #define SHORT_FLOAT_MAX (32768.0f)
 #define SHORT_FLOAT_MIN (-32768.0f)
 
+#define USHORT_MAX (65535)
+
 // Basic defines to allow newer-like C++ code to be written
 #define TRUE    1
 #define FALSE   0
