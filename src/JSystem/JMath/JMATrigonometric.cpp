@@ -4,18 +4,22 @@
 
 namespace JMath {
 
+// not sure why this file gets specifications, ¯\_(ツ)_/¯
 f32 TAtanTable<1024, f32>::atan_(f32 v) const
 {
+	
 	if (v >= 0.0f) {
-		if (v > TAngleConstant_<f32>::RADIAN_DEG090()) { // this really should be 1.0f but go figure
-			return TAngleConstant_<f32>::RADIAN_DEG090() - mTable[round_nearest(1024 / v)];
+		f32 pi_2 = TAngleConstant_<f32>::RADIAN_DEG090();
+		if (v > 1.0f) {
+			return pi_2 - mTable[round_nearest(1024 / v)];
 		} else {
 			return mTable[round_nearest(v * 1024)];
 		}
 	} else {
 		v = -v;
-		if (v > TAngleConstant_<f32>::RADIAN_DEG090()) {
-			return -TAngleConstant_<f32>::RADIAN_DEG090() + mTable[round_nearest(1024 / v)];
+		f32 pi_2 = -TAngleConstant_<f32>::RADIAN_DEG090();
+		if (v > 1.0f) {
+			return pi_2 + mTable[round_nearest(1024 / v)];
 		} else {
 			return -mTable[round_nearest(v * 1024)];
 		}

@@ -93,6 +93,34 @@ struct TAtanTable {
 };
 
 template <int LENGTH, typename T>
+T TAtanTable<LENGTH, T>::atan_(T v) const
+{
+
+	if (v >= 0.0f) {
+		T pi_2 = TAngleConstant_<T>::RADIAN_DEG090();
+		if (v > 1.0f) {
+			return pi_2 - mTable[round_nearest(1024 / v)];
+		} else {
+			return mTable[round_nearest(v * 1024)];
+		}
+	} else {
+		v = -v;
+		T pi_2 = -TAngleConstant_<T>::RADIAN_DEG090();
+		if (v > 1.0f) {
+			return pi_2 + mTable[round_nearest(1024 / v)];
+		} else {
+			return -mTable[round_nearest(v * 1024)];
+		}
+	}
+}
+
+template <int LENGTH, typename T>
+T TAtanTable<LENGTH, T>::atan2_(T y, T x) const
+{
+	return (y >= 0.0f ? calc(y, x) : calcInverse(y, x));
+}
+
+template <int LENGTH, typename T>
 struct TAsinAcosTable {
 	TAsinAcosTable() { init(); }
 
