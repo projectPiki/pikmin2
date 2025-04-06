@@ -79,8 +79,8 @@ struct TAtanTable {
 		}
 	}
 
-	inline T atanRadian(T y, T x) const { return atan2_(y, x); }
-	inline T atanDegree(T y, T x) const { return atan2_(y, x) * TAngleConstant_<f32>::RADIAN_TO_DEGREE_FACTOR(); }
+	inline T atanRadian(T v) const { return atan_(v); }
+	inline T atanDegree(T v) const { return atan_(v) * TAngleConstant_<f32>::RADIAN_TO_DEGREE_FACTOR(); }
 
 	inline T atan2Radian(T y, T x) const { return atan2_(y, x); }
 	inline T atan2Degree(T y, T x) const { return atan2_(y, x) * TAngleConstant_<f32>::RADIAN_TO_DEGREE_FACTOR(); }
