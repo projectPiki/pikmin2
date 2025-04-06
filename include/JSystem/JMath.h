@@ -10,7 +10,7 @@
 
 namespace JMath {
 
-inline u32 round_nearest(f32 flt) { return (u32)(flt + 0.5f); }
+inline int round_nearest(f32 flt) { return (int)(flt + 0.5f); }
 
 template <typename T>
 struct TAngleConstant_ {
@@ -28,13 +28,13 @@ struct TAngleConstant_<f32> {
 	static const f32 RADIAN_TO_DEGREE_FACTOR() { return 180.0f / RADIAN_DEG180(); }
 };
 
-template <u32 LENGTH, typename T>
+template <int LENGTH, typename T>
 struct TAtanTable {
 	inline TAtanTable() { init(); }
 
 	inline void init()
 	{
-		for (int i = 0; i < LENGTH; i++) {
+		for (int i = 0; i < (u32)LENGTH; i++) {
 			mTable[i] = atan(i / (f64)LENGTH);
 		}
 		mTable[0] = 0.0f;
@@ -91,31 +91,6 @@ struct TAtanTable {
 	T mTable[LENGTH];
 	T mDebugUnitCircle[8];
 };
-
-template <u32 LENGHT, typename T>
-T TAtanTable<LENGHT, T>::atan2_(T y, T x) const
-{
-	return (y >= 0.0f ? calc(y, x) : calcInverse(y, x));
-}
-
-template <u32 LENGHT, typename T>
-T TAtanTable<LENGHT, T>::atan_(T v) const
-{
-	if (v >= 0.0f) {
-		if (v <= 1.0f) {
-			return mTable[round_nearest(v * LENGTH)];
-		} else {
-			return TAngleConstant_<f32>::RADIAN_DEG090() - mTable[round_nearest(LENGTH / v)];
-		}
-	} else {
-		v = -v;
-		if (v <= 1.0f) {
-			return -mTable[round_nearest(v * LENGTH)];
-		} else {
-			return -TAngleConstant_<f32>::RADIAN_DEG90() + mTable[round_nearest(LENGTH / v)];
-		}
-	}
-}
 
 template <int LENGTH, typename T>
 struct TAsinAcosTable {
