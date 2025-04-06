@@ -59,10 +59,10 @@ f32 pikmin2_acosf(f32 x)
  */
 const f32 pikmin2_asinf(f32 x)
 {
-	// if (x < -1.0f || x > 1.0f) {
-	// 	JUT_PANICLINE(65, "acosf %f\n", x);
-	// }
-	// return JMath::asinAcosTable_.asin_(x);
+	if (x < -1.0f || x > 1.0f) {
+		JUT_PANICLINE(65, "asin %f\n", x);
+	}
+	return JMath::asinAcosTable_.asin_(x);
 }
 
 /**
@@ -585,7 +585,7 @@ void Quat::slerp(Quat& q1, f32 t, Quat& qout)
 	// [ISSUE HERE] ----------------------------------------------------------------=-=-=-=-=-=-=-=-=-=-HEREHERHEHERHERHE
 	// I negated to fix the resgwaps below, which indicates some weirdness
 	// Regswaps happen inside this function but once fixed I think it'll solve the ones below
-	f32 newOmega = -pikmin2_acosf(cos_omega);
+	f32 newOmega = pikmin2_acosf(cos_omega);
 
 	// calculate sin(omega)
 	f32 sinOmega = pikmin2_sinf(newOmega);

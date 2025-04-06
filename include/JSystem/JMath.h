@@ -11,173 +11,258 @@
 namespace JMath {
 
 template <typename T>
+inline int round_nearest(T flt) { return (int)(flt + 0.5); }
+
+template <>
+inline int round_nearest<f32>(f32 flt) { return (int)(flt + 0.5f); }
+
+template <typename T>
 struct TAngleConstant_ {
+	static const T RADIAN_DEG090();
+	static const T RADIAN_DEG180();
+	static const T RADIAN_DEG360();
+	static const T RADIAN_TO_DEGREE_FACTOR();
+};
+
+template <>
+struct TAngleConstant_<f32> {
 	static const f32 RADIAN_DEG090() { return HALF_PI; }
 	static const f32 RADIAN_DEG180() { return PI; }
 	static const f32 RADIAN_DEG360() { return TAU; }
 	static const f32 RADIAN_TO_DEGREE_FACTOR() { return 180.0f / RADIAN_DEG180(); }
 };
 
-template <int length, typename T>
+template <int LENGTH, typename T>
 struct TAtanTable {
-	T atan2_(T, T) const;
-	T atan_(T) const;
-	T mTable[length];
-};
+	inline TAtanTable() { init(); }
 
-template <>
-struct TAtanTable<1024, f32> {
-	TAtanTable() { init(); }
-
-	void init()
+	inline void init()
 	{
-		for (int i = 0; i < (u32)1024; i++) {
-			mTable[i] = atan(i / 1024.0);
+		for (int i = 0; i < (u32)LENGTH; i++) {
+			mTable[i] = atan(i / (f64)LENGTH);
 		}
-		mTable[0]  = 0.0f;
-		mTable2[0] = TAngleConstant_<f32>::RADIAN_DEG180() / 4;
+		mTable[0] = 0.0f;
+		// seems to be a remenent of older debug code, is unused elsewhere
+		mDebugUnitCircle[0] = TAngleConstant_<T>::RADIAN_DEG180() / 4;
 	}
-	f32 atan2_(f32, f32) const;
-	f32 atan_(f32) const;
-	f32 atan2Radian(f32 y, f32 x) const { return atan2_(y, x); }
 
-	f32 calc(f32 y, f32 x) const
+	inline T calc(T y, T x) const
 	{
 		if (x >= 0.0f) {
 			if (x >= y) {
-				return (0.0f == x ? 0.0f : mTable[(int)((y * 1024.0f) / x + 0.5f)]);
+				return 0.0f == x ? 0.0f : mTable[round_nearest((y * LENGTH) / x)];
 			} else {
-				return HALF_PI - (y == 0.0f ? 0.0f : mTable[(int)((x * 1024.0f) / y + 0.5f)]);
+				return HALF_PI - (y == 0.0f ? 0.0f : mTable[round_nearest((x * LENGTH) / y)]);
 			}
 		} else {
 			x = -x;
 			if (x < y) {
-				return (y == 0.0f ? 0.0f : mTable[(int)((x * 1024.0f) / y + 0.5f)]) + HALF_PI;
+				return (y == 0.0f ? 0.0f : mTable[round_nearest((x * LENGTH) / y)]) + HALF_PI;
 			} else {
-				return PI - (x == 0.0f ? 0.0f : mTable[(int)((y * 1024.0f) / x + 0.5f)]);
+				return PI - (x == 0.0f ? 0.0f : mTable[round_nearest((y * LENGTH) / x)]);
 			}
 		}
 	}
 
-	f32 calcInverse(f32 y, f32 x) const
+	inline T calcInverse(T y, T x) const
 	{
 		y = -y;
 		if (x < 0.0f) {
 			x = -x;
 			if (x >= y) {
-				return (x == 0.0f ? 0.0f : mTable[(int)((y * 1024.0f) / x + 0.5f)]) + -PI;
+				return (x == 0.0f ? 0.0f : mTable[round_nearest((y * LENGTH) / x)]) + -TAngleConstant_<T>::RADIAN_DEG180();
 			} else {
-				return -HALF_PI - (y == 0.0f ? 0.0f : mTable[(int)((x * 1024.0f) / y + 0.5f)]);
+				return -TAngleConstant_<T>::RADIAN_DEG090() - (y == 0.0f ? 0.0f : mTable[round_nearest((x * LENGTH) / y)]);
 			}
 		} else {
 			if (x < y) {
-				return (y == 0.0f ? 0.0f : mTable[(int)((x * 1024.0f) / y + 0.5f)]) + -HALF_PI;
+				return (y == 0.0f ? 0.0f : mTable[round_nearest((x * LENGTH) / y)]) + -TAngleConstant_<T>::RADIAN_DEG090();
 			} else {
-				return -(x == 0.0f ? 0.0f : mTable[(int)((y * 1024.0f) / x + 0.5f)]);
+				return -(x == 0.0f ? 0.0f : mTable[round_nearest((y * LENGTH) / x)]);
 			}
 		}
 	}
 
-	f32 mTable[1024];
-	f32 mTable2[8];
+	inline T atanRadian(T v) const { return atan_(v); }
+	inline T atanDegree(T v) const { return atan_(v) * TAngleConstant_<T>::RADIAN_TO_DEGREE_FACTOR(); }
+
+	inline T atan2Radian(T y, T x) const { return atan2_(y, x); }
+	inline T atan2Degree(T y, T x) const { return atan2_(y, x) * TAngleConstant_<T>::RADIAN_TO_DEGREE_FACTOR(); }
+
+	T atan2_(T y, T x) const;
+	T atan_(T v) const;
+
+	T mTable[LENGTH];
+	T mDebugUnitCircle[8];
 };
 
-template <int length, typename T>
+template <int LENGTH, typename T>
+T TAtanTable<LENGTH, T>::atan_(T v) const
+{
+
+	if (v >= 0.0f) {
+		T pi_2 = TAngleConstant_<T>::RADIAN_DEG090();
+		if (v > 1.0f) {
+			return pi_2 - mTable[round_nearest(1024 / v)];
+		} else {
+			return mTable[round_nearest(v * 1024)];
+		}
+	} else {
+		v = -v;
+		T pi_2 = -TAngleConstant_<T>::RADIAN_DEG090();
+		if (v > 1.0f) {
+			return pi_2 + mTable[round_nearest(1024 / v)];
+		} else {
+			return -mTable[round_nearest(v * 1024)];
+		}
+	}
+}
+
+template <int LENGTH, typename T>
+T TAtanTable<LENGTH, T>::atan2_(T y, T x) const
+{
+	return (y >= 0.0f ? calc(y, x) : calcInverse(y, x));
+}
+
+template <int LENGTH, typename T>
 struct TAsinAcosTable {
-	T acos2_(T, T) const;
-	T acos_(T) const;
-	T mTable[length];
-};
-
-template <>
-struct TAsinAcosTable<1024, f32> {
 	TAsinAcosTable() { init(); }
+
 	void init()
 	{
-		for (int i = 0; i < 1024; i++) {
-			mTable[i] = asin(i / 1024.0);
+		for (int i = 0; i < LENGTH; i++) {
+			mTable[i] = asin(i / (f64)LENGTH);
 		}
-		mTable[0]  = 0.0f;
-		mTable2[0] = TAngleConstant_<f32>::RADIAN_DEG180() / 4;
+		mTable[0]           = 0.0f;
+		mDebugUnitCircle[0] = TAngleConstant_<T>::RADIAN_DEG180() / 4;
 	}
 
-	inline f32 acosDegree(f32 value) const { return acos_(value) * TAngleConstant_<f32>::RADIAN_TO_DEGREE_FACTOR(); }
+	T acosRadian(T v) const { return acos_(v); }
+	T acosDegree(T v) const { return acos_(v) * TAngleConstant_<T>::RADIAN_TO_DEGREE_FACTOR(); }
 
-	f32 acos2_(f32, f32) const;
-	f32 acos_(f32 value) const
+	T asinRadian(T v) const { return asin_(v); }
+	T asinDegree(T v) const { return asin_(v) * TAngleConstant_<T>::RADIAN_TO_DEGREE_FACTOR(); }
+
+	T acos2Radian(T y, T x) const { return acos2_(y, x); }
+	T acos2Degree(T y, T x) const { return acos2_(y, x) * TAngleConstant_<T>::RADIAN_TO_DEGREE_FACTOR(); }
+
+	T acos_(T value) const
 	{
 		if (value >= 1.0f) {
 			return 0.0f;
 		}
 
 		if (value <= -1.0f) {
-			return TAngleConstant_<f32>::RADIAN_DEG180();
+			return TAngleConstant_<T>::RADIAN_DEG180();
 		}
 
 		if (value < 0.0f) {
-			return mTable[(u32)(-value * 1023.5f)] + TAngleConstant_<f32>::RADIAN_DEG090();
+			value = -value;
+			return mTable[(u32)(value * (LENGTH - 0.5f))] + TAngleConstant_<T>::RADIAN_DEG090();
 		}
 
-		return TAngleConstant_<f32>::RADIAN_DEG090() - mTable[(u32)(value * 1023.5f)];
+		return TAngleConstant_<T>::RADIAN_DEG090() - mTable[(u32)(value * (LENGTH - 0.5f))];
 	}
 
-	f32 asin_(f32 value) const;
+	T asin_(T value) const
+	{
+		if (value >= 1.0f) {
+			return TAngleConstant_<T>::RADIAN_DEG090();
+		}
 
-	f32 mTable[1024];
-	f32 mTable2[8];
+		if (value <= -1.0f) {
+			return -TAngleConstant_<T>::RADIAN_DEG090();
+		}
+
+		if (value < 0.0f) {
+			return -mTable[(u32)(-value * (LENGTH - 0.5f))];
+		}
+
+		return mTable[(u32)(value * (LENGTH - 0.5f))];
+	}
+
+	// used for pitch, not dissimilar to atan2, please prefer atan2(y, sqrt(x^2 + z^2))
+	T acos2_(T y, T x) const
+	{
+		T len = JMAFastSqrt(x * x + y * y);
+
+		if (len == 0.0f)
+			return 0.0f;
+
+		T cos_ang = x / len;
+		T ang     = acos_(cos_ang);
+
+		if (y < 0.0f) {
+			return TAngleConstant_<T>::RADIAN_DEG360() - ang;
+		}
+		return ang;
+	}
+
+	T mTable[LENGTH];
+	T mDebugUnitCircle[8];
 };
 
 /**
  * @fabricatedName
  */
-template <int length, typename T>
+template <int LENGTH, typename T>
 struct TSinCosTable {
 
 	TSinCosTable() { init(); }
 
 	void init()
 	{
-		for (int i = 0; i < 2048; i++) {
-			mTable[i].first  = ::sin(((f64)i * TAngleConstant_<f32>::RADIAN_DEG360()) / 2048.0);
-			mTable[i].second = ::cos(((f64)i * TAngleConstant_<f32>::RADIAN_DEG360()) / 2048.0);
+		for (int i = 0; i < LENGTH; i++) {
+			mTable[i].first  = ::sin(((f64)i * TAngleConstant_<T>::RADIAN_DEG360()) / LENGTH);
+			mTable[i].second = ::cos(((f64)i * TAngleConstant_<T>::RADIAN_DEG360()) / LENGTH);
 		}
 	}
 
-	inline f32 radsToLUT() const
+	inline T radsToLUT() const
 	{
 		// inline f32 radsToLUTConstant() const {
-		return ((f32)length) / TAU;
+		return ((T)LENGTH) / TAngleConstant_<T>::RADIAN_DEG360();
 	}
 
 	// inline int radsToLUT(f32 theta) {
 	//     return theta < 0.0f ? theta *
 	// }
 
-	inline T sin(f32 x) const
+	inline T sin(T x) const
 	{
-		return (x < 0.0f) ? -mTable[(int)(x * -radsToLUT()) & 0x7FF].first : mTable[(int)(x * radsToLUT()) & 0x7FF].first;
+		return (x < 0.0f) ? -mTable[(u32)(x * -radsToLUT()) % LENGTH].first : mTable[(u32)(x * radsToLUT()) % LENGTH].first;
 		// return (x < 0.0f) ? -mTable[(int)-(x * (((T)length)/TAU)) & 0x7FF].first : mTable[(int)(x * ((T)length)/TAU) & 0x7FF].first;
 		// return (x < 0.0f) ? -mTable[(int)-(x * kRadsToLUT) & 0x7FF].first : mTable[(int)(x * kRadsToLUT) & 0x7FF].first;
 	}
-	inline T cos(f32 x) const
+	inline T cos(T x) const
 	{
 		// x = (x < 0.0f) ? -(int)(x * 325.9493f) % 2048 : (int)(x * 325.9493f) % 2048;
 		// x = (x < 0.0f) ? -(x * kRadsToLUT) : (x * kRadsToLUT);
 		// x = (x < 0.0f) ? -(x * radsToLUT()) : (x * radsToLUT());
 		// return mTable[(int)x & 0x7FF].second;
 		// x = (x < 0.0f) ? -x : x;
-		return mTable[(int)(((x < 0.0f) ? -x : x) * radsToLUT()) & 0x7FF].second;
+		return mTable[(u32)(((x < 0.0f) ? -x : x) * radsToLUT()) % LENGTH].second;
 		// return (x < 0.0f) ? mTable[(int)-(x * 325.9493f) % 2048].second : mTable[(int)(x * 325.9493f) % 2048].second;
 	}
 
-	f32 sinShort(s16 v) const { return mTable[static_cast<u16>(v) >> 5].first; }
-	f32 cosShort(s16 v) const { return mTable[static_cast<u16>(v) >> 5].second; }
+	T sinShort(s16 v) const { return mTable[static_cast<u16>(v * LENGTH / (USHORT_MAX))].first; };
+	T cosShort(s16 v) const { return mTable[static_cast<u16>(v * LENGTH / (USHORT_MAX))].second; };
 
 	/**
 	 * elements are pairs of {sine, cosine}
 	 */
-	std::pair<T, T> mTable[length];
+	std::pair<T, T> mTable[LENGTH];
 };
+
+// 16 /*ushort bits*/ - log2(length)
+f32 TSinCosTable<2048, f32>::sinShort(s16 v) const { return mTable[static_cast<u16>(v) >> 5].first; }
+f32 TSinCosTable<2048, f32>::cosShort(s16 v) const { return mTable[static_cast<u16>(v) >> 5].second; }
+
+f32 TSinCosTable<5096, f32>::sinShort(s16 v) const { return mTable[static_cast<u16>(v) >> 4].first; }
+f32 TSinCosTable<5096, f32>::cosShort(s16 v) const { return mTable[static_cast<u16>(v) >> 4].second; }
+
+f32 TSinCosTable<1024, f32>::sinShort(s16 v) const { return mTable[static_cast<u16>(v) >> 6].first; }
+f32 TSinCosTable<1024, f32>::cosShort(s16 v) const { return mTable[static_cast<u16>(v) >> 6].second; }
 
 #define JMASINE(x)
 
