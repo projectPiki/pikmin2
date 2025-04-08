@@ -117,56 +117,6 @@ JGadget::TList_pointer_void::iterator JGadget::TList_pointer_void::insert(JGadge
 	prevNode->mNext = newNode;
 	mSize++;
 	return iterator(newNode);
-
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stmw      r27, 0x1C(r1)
-	  mr        r27, r3
-	  lwz       r31, 0x0(r5)
-	  mr        r28, r4
-	  mr        r29, r6
-	  li        r3, 0xC
-	  stw       r31, 0x8(r1)
-	  lwz       r30, 0x4(r31)
-	  bl        -0x36EC
-	  cmplwi    r3, 0
-	  bne-      .loc_0x40
-	  li        r3, 0
-	  b         .loc_0x58
-
-	.loc_0x40:
-	  stw       r31, 0x0(r3)
-	  addic.    r4, r3, 0x8
-	  stw       r30, 0x4(r3)
-	  beq-      .loc_0x58
-	  lwz       r0, 0x0(r29)
-	  stw       r0, 0x0(r4)
-
-	.loc_0x58:
-	  cmplwi    r3, 0
-	  bne-      .loc_0x6C
-	  addi      r0, r28, 0x8
-	  stw       r0, 0x0(r27)
-	  b         .loc_0x84
-
-	.loc_0x6C:
-	  stw       r3, 0x4(r31)
-	  stw       r3, 0x0(r30)
-	  lwz       r4, 0x4(r28)
-	  addi      r0, r4, 0x1
-	  stw       r0, 0x4(r28)
-	  stw       r3, 0x0(r27)
-
-	.loc_0x84:
-	  lmw       r27, 0x1C(r1)
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
-	*/
 }
 
 /**
@@ -185,51 +135,6 @@ void JGadget::TList_pointer_void::insert(JGadget::TList_pointer_void::iterator, 
 JGadget::TList_pointer_void::iterator JGadget::TList_pointer_void::erase(JGadget::TList_pointer_void::iterator it)
 {
 	return TList::erase(it);
-	// TNode_** element = reinterpret_cast<TNode_**>(it.mNode);
-	// TNode_* next     = (*element)->mNext;
-	// TNode_* prev     = (*element)->mPrev;
-
-	// // Update the next and previous elements to skip over the element being erased
-	// prev->mNext = next;
-	// next->mPrev = prev;
-
-	// // Delete the element
-	// delete *element;
-
-	// mSize--;
-
-	// mNode.mNext = next;
-	/*
-.loc_0x0:
-  stwu      r1, -0x20(r1)
-  mflr      r0
-  lwz       r5, 0x0(r5)
-  stw       r0, 0x24(r1)
-  stw       r31, 0x1C(r1)
-  stw       r30, 0x18(r1)
-  mr        r30, r4
-  stw       r29, 0x14(r1)
-  mr        r29, r3
-  mr        r3, r5
-  lwz       r31, 0x0(r5)
-  lwz       r4, 0x4(r5)
-  stw       r5, 0x8(r1)
-  stw       r31, 0x0(r4)
-  lwz       r0, 0x4(r5)
-  stw       r0, 0x4(r31)
-  bl        -0x3588
-  lwz       r3, 0x4(r30)
-  subi      r0, r3, 0x1
-  stw       r0, 0x4(r30)
-  stw       r31, 0x0(r29)
-  lwz       r0, 0x24(r1)
-  lwz       r31, 0x1C(r1)
-  lwz       r30, 0x18(r1)
-  lwz       r29, 0x14(r1)
-  mtlr      r0
-  addi      r1, r1, 0x20
-  blr
-*/
 }
 
 /**

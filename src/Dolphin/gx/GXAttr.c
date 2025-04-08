@@ -142,62 +142,6 @@ void __GXSetVCD(void)
 	GX_CP_LOAD_REG(GX_CP_REG_VCD_HI, gx->vcdHi);
 
 	__GXXfVtxSpecs();
-	/*
-	.loc_0x0:
-	  li        r6, 0x8
-	  lwz       r4, -0x6D70(r2)
-	  lis       r5, 0xCC01
-	  stb       r6, -0x8000(r5)
-	  li        r3, 0x50
-	  li        r0, 0x60
-	  stb       r3, -0x8000(r5)
-	  lwz       r3, 0x14(r4)
-	  stw       r3, -0x8000(r5)
-	  stb       r6, -0x8000(r5)
-	  stb       r0, -0x8000(r5)
-	  lwz       r0, 0x18(r4)
-	  stw       r0, -0x8000(r5)
-	  lbz       r0, 0x4D5(r4)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x48
-	  li        r7, 0x2
-	  b         .loc_0x60
-
-	.loc_0x48:
-	  lbz       r0, 0x4D4(r4)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x5C
-	  li        r7, 0x1
-	  b         .loc_0x60
-
-	.loc_0x5C:
-	  li        r7, 0
-
-	.loc_0x60:
-	  lwz       r5, -0x6D70(r2)
-	  li        r0, 0x10
-	  lwz       r6, 0x14(r4)
-	  lis       r4, 0xCC01
-	  lwz       r3, 0x18(r5)
-	  rlwinm    r6,r6,19,28,31
-	  cntlzw    r6, r6
-	  stb       r0, -0x8000(r4)
-	  rlwinm    r3,r3,0,16,31
-	  subfic    r6, r6, 0x21
-	  cntlzw    r0, r3
-	  subfic    r3, r0, 0x21
-	  li        r0, 0x1008
-	  stw       r0, -0x8000(r4)
-	  rlwinm    r6,r6,31,1,31
-	  rlwinm    r0,r7,2,0,29
-	  rlwinm    r3,r3,3,0,27
-	  or        r0, r6, r0
-	  or        r0, r3, r0
-	  stw       r0, -0x8000(r4)
-	  li        r0, 0x1
-	  sth       r0, 0x2(r5)
-	  blr
-	*/
 }
 
 /**

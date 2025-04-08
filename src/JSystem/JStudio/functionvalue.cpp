@@ -975,36 +975,6 @@ f64 TFunctionValue_list_parameter::update_INTERPOLATE_PLATEAU_(const TFunctionVa
 {
 	const f32* data = list.mData3.get();
 	return functionvalue::interpolateValue_plateau(p2, data[-2], data[-1], data[0], data[1]);
-	/*
-	.loc_0x0:
-	  lwz       r3, 0x54(r3)
-	  lfd       f6, -0x7FB8(r2)
-	  lfs       f2, -0x8(r3)
-	  lfs       f0, 0x0(r3)
-	  fsub      f8, f1, f2
-	  lfd       f3, -0x7FA8(r2)
-	  fsub      f4, f0, f2
-	  lfd       f2, -0x7FB0(r2)
-	  lfs       f0, 0x4(r3)
-	  lfs       f1, -0x4(r3)
-	  fdiv      f5, f6, f4
-	  lfd       f4, -0x7FC0(r2)
-	  fmul      f7, f8, f5
-	  fmadd     f3, f3, f7, f2
-	  fmul      f2, f7, f7
-	  fsub      f5, f7, f6
-	  fmul      f2, f3, f2
-	  fmul      f3, f5, f5
-	  fmul      f0, f2, f0
-	  fsub      f2, f6, f2
-	  fmul      f5, f5, f8
-	  fmul      f3, f8, f3
-	  fmadd     f0, f2, f1, f0
-	  fmul      f1, f7, f5
-	  fmadd     f0, f3, f4, f0
-	  fmadd     f1, f1, f4, f0
-	  blr
-	*/
 }
 
 /**
