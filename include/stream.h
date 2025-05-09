@@ -50,8 +50,10 @@ struct Stream {
 	int readInt();
 	f32 readFloat();
 	char* readString(char*, int);
+	char* readFixedString(); // UNUSED
 
 	void writeString(char*);
+	void writeFixedString(char*); // UNUSED
 	void writeByte(u8);
 	void _writeByte(u8);
 	void writeShort(s16);
