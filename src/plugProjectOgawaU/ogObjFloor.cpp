@@ -362,7 +362,7 @@ void ObjFloor::doCreate(JKRArchive* arc)
 	mScreenName = new P2DScreen::Mgr_tuning;
 	mScreenName->set("font_name.blo", 0x1040000, arc);
 
-	if (isVS()) { // needs fixing
+	if (isVS()) {
 		mScreenRules = new P2DScreen::Mgr_tuning;
 		mScreenRules->set("vs_title_rule_window.blo", 0x1040000, arc);
 		mRuleMesgPane = og::Screen::TagSearch(mScreenRules, 'Trule_m5');
