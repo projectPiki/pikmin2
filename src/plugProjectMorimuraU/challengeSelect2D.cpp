@@ -4328,24 +4328,24 @@ void TChallengeSelect::doDraw(Graphics& gfx)
 		if (rulestate) {
 			drawBg = true;
 			if (rulestate == 3) {
-				mBgAlpha += 20;
-				if (mBgAlpha > 200) {
-					mBgAlpha = 200;
-				}
-			} else {
 				if (mBgAlpha > 25) {
 					mBgAlpha -= 25;
 				} else {
 					mBgAlpha = 0;
 				}
+			} else {
+				mBgAlpha += 20;
+			}
+			if (mBgAlpha > 200) {
+				mBgAlpha = 200;
 			}
 		} else {
 			rulestate = mPlayModeScreen->mState;
 			if (!mPlayModeScreen->isState(0)) {
 				drawBg = true;
 				if (rulestate == 3) {
-					if (mBgAlpha > 25) {
-						mBgAlpha -= 25;
+					if (mBgAlpha > 30) {
+						mBgAlpha -= 30;
 					} else {
 						mBgAlpha = 0;
 					}
@@ -4364,8 +4364,8 @@ void TChallengeSelect::doDraw(Graphics& gfx)
 
 	if (drawBg) {
 		JUtility::TColor color1;
-		color1.set(50, 0, 0, 0);
-		color1.a = 255 - mBgAlpha;
+		color1.set(0, 0, 80, 0);
+		color1.a = mBgAlpha;
 		graf->setColor(color1);
 		GXSetAlphaUpdate(GX_FALSE);
 		u32 y    = System::getRenderModeObj()->efbHeight;

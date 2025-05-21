@@ -2816,7 +2816,6 @@ void Navi::control()
  */
 void Navi::makeVelocity()
 {
-
 	if (mController1
 	    && ((mController1->getButton() & Controller::PRESS_A) || (mController1->getButton() & Controller::PRESS_B)
 	        || (mController1->getButton() & Controller::PRESS_X) || (mController1->getButton() & Controller::PRESS_Y)
@@ -2865,8 +2864,6 @@ void Navi::makeVelocity()
 		speed = naviMgr->mNaviParms->mNaviParms.mRushBootSpeed();
 	} else {
 		speed = naviMgr->mNaviParms->mNaviParms.mMoveSpeed();
-		// speed *= naviPowers->speedAdjust();
-		// speed *= 1.5f;
 	}
 	f32 dist = result.qLength();
 	if (dist > naviMgr->mNaviParms->mNaviParms.mNeutralStickThreshold()) {

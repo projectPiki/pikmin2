@@ -48,10 +48,9 @@ void ObjectGameActor::reset()
  */
 void ObjectGameActor::stop()
 {
-	SysShape::Model* mdl = mGameObject->mModel;
-	if (mdl) {
+	if (mGameObject->mModel) {
 		for (int i = 0; i < mGameObject->mModel->mJointCount; i++) {
-			mdl->getJ3DModel()->getModelData()->getJointNodePointer(i)->setMtxCalc(nullptr);
+			mGameObject->mModel->getJ3DModel()->getModelData()->getJointNodePointer(i)->setMtxCalc(nullptr);
 		}
 		mGameObject->setMovieMotion(false);
 	}

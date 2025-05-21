@@ -253,41 +253,18 @@ void StateMove::exec(EnemyBase* enemy)
 	} else {
 		Creature* target = uji->mTargetCreature;
 		if (target && target->isAlive()) {
-			f32 rotSpeed = CG_GENERALPARMS(uji).mMaxTurnAngle();
-			f32 rotAccel = CG_GENERALPARMS(uji).mTurnSpeed();
 
-			Vector3f ujiPos    = uji->getPosition();
-			Vector3f targetPos = target->getPosition();
-
-			f32 angBetween = roundAng(JMAAtan2Radian(ujiPos.x - targetPos.x, ujiPos.z - targetPos.z));
-			f32 angleDist  = angDist(angBetween, uji->getFaceDir());
-
-			f32 limit     = TORADIANS(rotSpeed);
-			f32 turnSpeed = angleDist * rotAccel;
-			if (absF(turnSpeed) > limit) {
-				turnSpeed = (turnSpeed > 0.0f) ? limit : -limit;
-			}
-
-			uji->mFaceDir    = roundAng(turnSpeed + uji->getFaceDir());
-			uji->mRotation.y = uji->mFaceDir;
-			// uji->turnToTarget(target, CG_GENERALPARMS(uji).mTurnSpeed.mValue,
-			// CG_GENERALPARMS(uji).mMaxTurnAngle.mValue); uji->changeFaceDir(target);
-			f32 speed = CG_GENERALPARMS(uji).mMoveSpeed.mValue;
-
-			f32 sinTheta = sinf_kludge(uji->getFaceDir());
-			f32 y        = uji->getTargetVelocity().y;
-			f32 cosTheta = cosf_kludge(uji->getFaceDir());
-
-			uji->mTargetVelocity = Vector3f(speed * sinTheta, y, speed * cosTheta);
+			f32 angleDist = uji->changeFaceDir(target);
+			uji->setTargetVelocity();
 
 			if (uji->isTargetWithinRange(target, angleDist, CG_GENERALPARMS(uji).mPrivateRadius(), CG_GENERALPARMS(uji).mSightRadius(),
-			                             CG_GENERALPARMS(uji).mFov(), uji->mFaceDir)) {
+			                             CG_GENERALPARMS(uji).mFov(), angleDist)) {
 				uji->mTargetCreature = nullptr;
 			} else {
-				Vector3f deltaPosition = uji->getPosition() - uji->mHomePosition;
-				f32 distance           = deltaPosition.length();
-				f32 radius             = CG_GENERALPARMS(uji).mTerritoryRadius();
-				if (distance > radius) {
+				Vector3f deltaPosition = uji->mHomePosition;
+				deltaPosition -= uji->getPosition();
+				f32 distance = deltaPosition.length();
+				if (distance > CG_GENERALPARMS(uji).mTerritoryRadius()) {
 					uji->mTargetCreature = nullptr;
 				}
 			}

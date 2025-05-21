@@ -511,12 +511,14 @@ char* Stream::readString(char* str, int strLength)
 /**
  * @note Address: N/A
  * @note Size: 0x64C
+ * @note Note: This function is an unimplemented stub. Judging by its name, it may have been used for de-serializing Pascal Strings.
  */
-const char UNUSED_readFixedString[] = "can not use readFixedString in text mode\n";
-// void Stream::readFixedString()
-// {
-//
-// }
+char* Stream::readFixedString()
+{
+	if (mMode == STREAM_MODE_TEXT) {
+		JUT_PANIC("can not use readFixedString in text mode\n");
+	}
+}
 
 /**
  * @note Address: 0x804155CC
@@ -539,12 +541,14 @@ void Stream::writeString(char* inputStr)
 /**
  * @note Address: N/A
  * @note Size: 0xBC
+ * @note Note: This function is an unimplemented stub. Judging by its name, it may have been used for serializing Pascal Strings.
  */
-const char UNUSED_writeFixedString[] = "can not use writeFixedString in text mode\n";
-// void Stream::writeFixedString(char*)
-// {
-// 	// UNUSED FUNCTION
-// }
+void Stream::writeFixedString(char*)
+{
+	if (mMode == STREAM_MODE_TEXT) {
+		JUT_PANIC("can not use writeFixedString in text mode\n");
+	}
+}
 
 /**
  * @note Address: 0x80415670

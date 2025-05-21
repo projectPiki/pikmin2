@@ -1028,28 +1028,35 @@ bool TOmake::doUpdateStateWait()
 		mInput.update();
 		if (mInput.mSelectionChanged) {
 
+			// this whole thing is wrong, the flow is wack
 			int id = mInput.mLastIndex;
-			if (id >= mCurrSel) {
-				for (; mCurrSel < 7; mCurrSel++) {
-					if (mPaneList1[mCurrSel]->mMessageID == '4844_00') {
-						break;
-					}
+			if (id < mCurrSel) {
+				for (; mCurrSel < 7;) {
+					mCurrSel++;
 				}
 				mCurrSel = id;
 			} else {
-				for (; mCurrSel >= 0; mCurrSel--) {
-					if (mPaneList1[mCurrSel]->mMessageID == '4844_00') {
+				do {
+					if (mPaneListMesg[mCurrSel]->getUserInfo() == '4844_00') {
+						break;
+					}
+					mCurrSel--;
+				} while (mCurrSel >= 0);
+				mCurrSel = id;
+
+				while (true) {
+					u64 tag = mPaneListMesg[mCurrSel]->getUserInfo();
+					if (tag != '4844_00') {
 						break;
 					}
 				}
-				mCurrSel = id;
 			}
 
-			if (id != mCurrSel) {
+			if (mCurrSel != id) {
 				JGeometry::TBox2f bounds;
 				bounds           = *mPaneList2[mCurrSel]->getBounds();
-				mCursor.mBounds1 = bounds;
-				mCursor.mBounds2 = mCursor.mBounds1;
+				mCursor.mBounds1 = mCursor.mBounds2;
+				mCursor.mBounds2 = bounds;
 				mCursor.mCounter = mCursor.mCounterMax;
 				mCursor.mScaleMgr.up(0.1f, 30.0f, 0.6f, 0.0f);
 				mCursor.mWindowPane = mPaneList1[mCurrSel];
@@ -1062,15 +1069,18 @@ bool TOmake::doUpdateStateWait()
 			u32 input = mController->getButtonDown();
 			if (input & Controller::PRESS_A) {
 				PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_DECIDE, 0);
-				if (mCurrSel == 6) {
+				switch (mCurrSel) {
+				case 6:
 					mAnims2.play(sys->mDeltaTime * 60.0f, J3DAA_UNKNOWN_0, true);
 					mState2 = 2;
-				} else {
-					u32 count   = 0.5f / sys->mDeltaTime;
+					break;
+				default:
+					u32 count   = ebi::E2DFader::kFadeTime / sys->mDeltaTime;
 					mCounter    = count;
 					mCounterMax = count;
 					mState      = 2;
 					mState2     = 5;
+					break;
 				}
 			} else if (input & Controller::PRESS_B) {
 				PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CANCEL, 0);

@@ -466,7 +466,7 @@ void Section::doUpdateOption()
 	if (mOptionMgr.mIsFinished) {
 
 		PSSystem::SeqBase* seq = PSSystemGetSeqCheck(BGM_Options);
-		f32 rate               = (ebi::TMainTitleMgr::kFadeOutTime / sys->mDeltaTime);
+		f32 rate               = (ebi::E2DFader::kFadeTime / sys->mDeltaTime);
 		rate                   = ROUND_F32_TO_U8(rate);
 		seq->stopSeq((int)rate);
 	}

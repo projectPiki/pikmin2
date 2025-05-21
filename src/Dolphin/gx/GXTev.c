@@ -215,41 +215,6 @@ void GXSetTevColorS10(GXTevRegID reg, GXColorS10 color)
 	GX_BP_LOAD_REG(bg);
 
 	gx->bpSentNot = GX_FALSE;
-
-	/*
-	.loc_0x0:
-	  lha       r0, 0x0(r4)
-	  rlwinm    r8,r3,1,0,30
-	  li        r5, 0
-	  lha       r3, 0x6(r4)
-	  rlwimi    r5,r0,0,21,31
-	  addi      r9, r5, 0
-	  lha       r6, 0x4(r4)
-	  lha       r0, 0x2(r4)
-	  li        r5, 0x61
-	  lis       r4, 0xCC01
-	  rlwimi    r9,r3,12,9,19
-	  stb       r5, -0x8000(r4)
-	  addi      r7, r8, 0xE0
-	  lwz       r3, -0x6D70(r2)
-	  rlwimi    r9,r7,24,0,7
-	  stw       r9, -0x8000(r4)
-	  li        r7, 0
-	  rlwimi    r7,r6,0,21,31
-	  addi      r6, r7, 0
-	  stb       r5, -0x8000(r4)
-	  rlwimi    r6,r0,12,9,19
-	  addi      r0, r8, 0xE1
-	  rlwimi    r6,r0,24,0,7
-	  stw       r6, -0x8000(r4)
-	  li        r0, 0
-	  stb       r5, -0x8000(r4)
-	  stw       r6, -0x8000(r4)
-	  stb       r5, -0x8000(r4)
-	  stw       r6, -0x8000(r4)
-	  sth       r0, 0x2(r3)
-	  blr
-	*/
 }
 
 /**

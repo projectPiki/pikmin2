@@ -987,7 +987,7 @@ Item* Mgr::birth()
 {
 	switch (PikiMgr::mBirthMode) {
 	case PikiMgr::PSM_Normal: // don't make a sprout if we're at or over 100 pikmin on the field
-		if (pikiMgr->mActiveCount + mMonoObjectMgr.mActiveCount >= 100) {
+		if (pikiMgr->mActiveCount + mMonoObjectMgr.mActiveCount >= MAX_PIKI_COUNT) {
 			return nullptr;
 		}
 		break;
