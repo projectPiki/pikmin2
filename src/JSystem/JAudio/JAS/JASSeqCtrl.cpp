@@ -151,8 +151,8 @@ u32 JASSeqCtrl::get32(u32 offset) const
  */
 u16 JASSeqCtrl::read16()
 {
-	u16 result = *(mCurrentFilePtr++) << 8;
-	result |= *(mCurrentFilePtr++);
+	u16 result = readByte() << 8;
+	result |= readByte();
 	return result;
 }
 
@@ -162,10 +162,10 @@ u16 JASSeqCtrl::read16()
  */
 u32 JASSeqCtrl::read24()
 {
-	u32 result = *(mCurrentFilePtr++) << 8;
-	result |= *(mCurrentFilePtr++);
+	u32 result = readByte() << 8;
+	result |= readByte();
 	result <<= 8;
-	result |= *(mCurrentFilePtr++);
+	result |= readByte();
 	return result;
 }
 
@@ -175,5 +175,11 @@ u32 JASSeqCtrl::read24()
  */
 u32 JASSeqCtrl::read32()
 {
-	// UNUSED FUNCTION
+	// UNUSED FUNCTION speculation (size matches)
+	u32 result = readByte() << 8;
+	result |= readByte();
+	result <<= 16;
+	result |= readByte() << 8;
+	result |= readByte();
+	return result;
 }

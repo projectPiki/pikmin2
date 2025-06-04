@@ -310,7 +310,7 @@ struct JASTrack : public JSUList<JASChannel> {
 	void getDolby() const;
 	void updateOscParam(int, f32);
 	void muteChildTracks(u16);
-	void loadTbl(u32, u32, u32);
+	u32 loadTbl(u32, u32, u32);
 	JASTrack* routeTrack(u32 count);
 	void routeTrack(u32) const;
 	void checkExportApp(u32) const;
