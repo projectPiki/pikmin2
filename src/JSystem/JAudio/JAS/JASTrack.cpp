@@ -1849,9 +1849,30 @@ lbl_800A1724:
  * @note Address: N/A
  * @note Size: 0xB8
  */
-void JASTrack::loadTbl(u32, u32, u32)
+u32 JASTrack::loadTbl(u32 ofs, u32 idx, u32 param_4)
 {
-	// UNUSED FUNCTION
+	u32 result;
+	switch (param_4) {
+	case 4:
+		result = mSeqCtrl.mRawFilePtr[ofs + idx];
+		break;
+	case 5:
+		idx    = idx * 2;
+		result = mSeqCtrl.get16(ofs + idx);
+		break;
+	case 6:
+		idx    = idx * 2 + idx; // Roundabout way to multiply by 3.
+		result = mSeqCtrl.get24(ofs + idx);
+		break;
+	case 7:
+		idx    = idx * 4;
+		result = mSeqCtrl.get32(ofs + idx);
+		break;
+	case 8:
+		result = mSeqCtrl.get32(ofs + idx);
+		break;
+	}
+	return result;
 }
 
 /**
@@ -2266,13 +2287,13 @@ void JASTrack::writeRegParam(u8 p1)
 		val26 = 11;
 		break;
 	case 10: {
-		u8 currByte = *mSeqCtrl.mCurrentFilePtr++;
+		u8 currByte = mSeqCtrl.readByte();
 		val26       = 10;
 		val27       = currByte & 0xC;
 		val25       = (currByte >> 4) + 4;
 	} break;
 	case 9: {
-		u8 currByte = *mSeqCtrl.mCurrentFilePtr++;
+		u8 currByte = mSeqCtrl.readByte();
 		val27       = currByte & 0xC;
 		val26       = currByte & 0xF0;
 		if (val27 == 8) {
@@ -2285,25 +2306,25 @@ void JASTrack::writeRegParam(u8 p1)
 		break;
 	}
 
-	u8 nextByte = *mSeqCtrl.mCurrentFilePtr++;
+	u8 nextByte = mSeqCtrl.readByte();
 
 	if (val26 == 10) {
-		u8 nextNextByte = *mSeqCtrl.mCurrentFilePtr++;
+		u8 nextNextByte = mSeqCtrl.readByte();
 		val24           = readReg32(nextNextByte);
 	}
 
 	switch (val27) {
 	case 0:
-		val23 = readReg16(*mSeqCtrl.mCurrentFilePtr++);
+		val23 = readReg16(mSeqCtrl.readByte());
 		break;
 	case 4:
-		val23 = *mSeqCtrl.mCurrentFilePtr++;
+		val23 = mSeqCtrl.readByte();
 		break;
 	case 12:
 		val23 = mSeqCtrl.read16();
 		break;
 	case 8:
-		u32 byte = *mSeqCtrl.mCurrentFilePtr++;
+		u32 byte = mSeqCtrl.readByte();
 		if (byte & 0x80) {
 			val23 = byte << 8;
 		} else {
@@ -2374,27 +2395,7 @@ void JASTrack::writeRegParam(u8 p1)
 		val23 = val28 % (u16)val23;
 	} break;
 	case 0xA:
-		// this is probably an inline/some stripped function above
-		u32 interVal;
-		u32 new23 = val23;
-		switch (val25) {
-		case 4:
-			interVal = mSeqCtrl.mRawFilePtr[val24 + new23];
-			break;
-		case 5:
-			interVal = mSeqCtrl.get16(val24 + (new23 << 1));
-			break;
-		case 6:
-			interVal = mSeqCtrl.get24(val24 + val23 + (new23 << 1));
-			break;
-		case 7:
-			interVal = mSeqCtrl.get32(val24 + (new23 << 2));
-			break;
-		case 8:
-			interVal = mSeqCtrl.get32(val24 + new23);
-			break;
-		}
-		val23 = (u16)interVal;
+		val23 = (u16)loadTbl(val24, val23, val25);
 		break;
 	}
 
