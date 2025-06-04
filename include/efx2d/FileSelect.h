@@ -39,7 +39,7 @@ struct T2DFilecopyBase : public TForever {
 
 struct T2DFilecopy : public T2DFilecopyBase {
 	inline T2DFilecopy()
-	    : T2DFilecopyBase(0)
+	    : T2DFilecopyBase(PID_FS_Filecopy)
 	{
 		mResMgrId = 1;
 	}
@@ -52,7 +52,7 @@ struct T2DFilecopy : public T2DFilecopyBase {
 
 struct T2DFilecopyM : public T2DFilecopyBase {
 	inline T2DFilecopyM()
-	    : T2DFilecopyBase(1)
+	    : T2DFilecopyBase(PID_FS_FilecopyM)
 	{
 		mResMgrId = 1;
 	}
@@ -65,7 +65,7 @@ struct T2DFilecopyM : public T2DFilecopyBase {
 
 struct T2DFilecopied : public TSimple1 {
 	inline T2DFilecopied()
-	    : TSimple1(9)
+	    : TSimple1(PID_FS_Filecopied)
 	{
 		mResMgrId = 1;
 	}
@@ -78,7 +78,7 @@ struct T2DFilecopied : public TSimple1 {
 
 struct T2DFiledecide : public TSimple2 {
 	inline T2DFiledecide()
-	    : TSimple2(2, 3)
+	    : TSimple2(PID_FS_Filedecide_1, PID_FS_Filedecide_2)
 	{
 		mResMgrId = 1;
 	}
@@ -89,7 +89,7 @@ struct T2DFiledecide : public TSimple2 {
 
 struct T2DFiledelete : public TSimple1 {
 	inline T2DFiledelete()
-	    : TSimple1(4)
+	    : TSimple1(PID_FS_Filedelete)
 	{
 		mResMgrId = 1;
 	}
@@ -102,7 +102,7 @@ struct T2DFiledelete : public TSimple1 {
 
 struct T2DFiledeleteM : public TSimple1 {
 	inline T2DFiledeleteM()
-	    : TSimple1(5)
+	    : TSimple1(PID_FS_FiledeleteM)
 	{
 		mResMgrId = 1;
 	}
@@ -115,7 +115,7 @@ struct T2DFiledeleteM : public TSimple1 {
 
 struct T2DFiledeleting : public TForever {
 	inline T2DFiledeleting()
-	    : TForever(10)
+	    : TForever(PID_FS_Filedeleting)
 	{
 		mResMgrId = 1;
 	}
@@ -128,7 +128,7 @@ struct T2DFiledeleting : public TForever {
 
 struct T2DFiledeletingM : public TForever {
 	inline T2DFiledeletingM()
-	    : TForever(11)
+	    : TForever(PID_FS_FiledeletingM)
 	{
 		mResMgrId = 1;
 	}
@@ -141,7 +141,7 @@ struct T2DFiledeletingM : public TForever {
 
 struct T2DFilesel : public TChasePos {
 	inline T2DFilesel(Vector2f* pos)
-	    : TChasePos(6, pos)
+	    : TChasePos(PID_FS_Filesel, pos)
 	{
 		mResMgrId = 1;
 	}
@@ -154,7 +154,7 @@ struct T2DFilesel : public TChasePos {
 
 struct T2DFileselM : public TChasePos {
 	inline T2DFileselM(Vector2f* pos)
-	    : TChasePos(7, pos)
+	    : TChasePos(PID_FS_FileselM, pos)
 	{
 		mResMgrId = 1;
 	}

@@ -60,6 +60,7 @@
         "mem_funcs.h": "c",
         "card.h": "c",
         "FILE_POS.c": "cpp",
-        "ctype_api.h": "c"
+        "ctype_api.h": "c",
+        "fdlibm.h": "c"
     }
 }

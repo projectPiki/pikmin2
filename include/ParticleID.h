@@ -8,61 +8,72 @@
  */
 
 /////////////////////////////////////////
-// 2D EFFECTS
-#define PID_2DCursor (0x00)
-
-#define PID_RocketA (0x01)
-
-#define PID_BattleDive_1 (0x02)
-#define PID_BattleDive_2 (0x03)
-#define PID_BattleDive_3 (0x04)
-
-#define PID_ChalDive    (0x05)
-#define PID_ChalDiveEnd (0x06)
-
-#define PID_Changesmoke (0x07)
-
-#define PID_ExtractUp (0x09)
-
-#define PID_Cavecomp_1 (0x0A)
-#define PID_Cavecomp_2 (0x0B)
-
-#define PID_Cavecomp_Loop (0x0C)
-
-#define PID_GoBatl_1 (0x0D)
-#define PID_GoBatl_2 (0x0E)
-#define PID_GoBatl_3 (0x0F)
-
-#define PID_GoChal_1 (0x10)
-#define PID_GoChal_2 (0x11)
-
+// 2D EFFECTS (eff2d_game2d.jpc)
+#define PID_2DCursor_1     (0x00)
+#define PID_2DCursor_2     (0x01)
+#define PID_BattleDive_1   (0x02)
+#define PID_BattleDive_2   (0x03)
+#define PID_BattleDive_3   (0x04)
+#define PID_ChalDive       (0x05)
+#define PID_ChalDiveEnd    (0x06)
+#define PID_Changesmoke    (0x07)
+#define PID_2DCountKira    (0x08)
+#define PID_ExtractUp      (0x09)
+#define PID_Cavecomp_1     (0x0A)
+#define PID_Cavecomp_2     (0x0B)
+#define PID_Cavecomp_Loop  (0x0C)
+#define PID_GoBatl_1       (0x0D)
+#define PID_GoBatl_2       (0x0E)
+#define PID_GoBatl_3       (0x0F)
+#define PID_GoChal_1       (0x10)
+#define PID_GoChal_2       (0x11)
 #define PID_2DCvnameCave_1 (0x12)
 #define PID_2DCvnameCave_2 (0x13)
 #define PID_2DCvnameCave_3 (0x14)
+#define PID_2DCvnameChal   (0x15)
+#define PID_2DCvnameVs_1   (0x16)
+#define PID_2DCvnameVs_2   (0x17)
+#define PID_SensorAct_1    (0x18)
+#define PID_SensorAct_2    (0x19)
+#define PID_SensorGet_1    (0x1A)
+#define PID_SensorGet_2    (0x1B)
+#define PID_SensorGet_3    (0x1C)
+#define PID_OtaKantei_1    (0x1D)
+#define PID_OtaKantei_2    (0x1E)
+#define PID_OtaKantei_3    (0x1F)
+#define PID_OtaKantei_4    (0x20)
+#define PID_OtaKantei_5    (0x21)
+#define PID_SpraySet_1     (0x22)
+#define PID_SpraySet_2     (0x23)
+#define PID_SensorComp_1   (0x24)
+#define PID_SensorComp_2   (0x25)
 
-#define PID_2DCvnameChal (0x15)
+/////////////////////////////////////////
+// WORLD MAP JPC (eff2d_world_map.jpc)
+#define PID_WMap_OnyonKira     (0x00)
+#define PID_WMap_RocketSmoke   (0x01)
+#define PID_WMap_RocketSparks  (0x02)
+#define PID_WMap_RocketGlow    (0x03)
+#define PID_WMap_LensFlare     (0x04)
+#define PID_WMap_NewMap1       (0x05)
+#define PID_WMap_NewMap2       (0x06)
+#define PID_WMap_ShootingStar1 (0x07)
+#define PID_WMap_ShootingStar  (0x08)
 
-#define PID_2DCvnameVs_1 (0x16)
-#define PID_2DCvnameVs_2 (0x17)
-
-#define PID_SensorAct_1 (0x18)
-#define PID_SensorAct_2 (0x19)
-
-#define PID_SensorGet_1 (0x1A)
-#define PID_SensorGet_2 (0x1B)
-#define PID_SensorGet_3 (0x1C)
-
-#define PID_OtaKantei_1 (0x1D)
-#define PID_OtaKantei_2 (0x1E)
-#define PID_OtaKantei_3 (0x1F)
-#define PID_OtaKantei_4 (0x20)
-#define PID_OtaKantei_5 (0x21)
-
-#define PID_SpraySet_1 (0x22)
-#define PID_SpraySet_2 (0x23)
-
-#define PID_SensorComp_1 (0x24)
-#define PID_SensorComp_2 (0x25)
+/////////////////////////////////////////
+// FILE SELECT JPC (eff2d_file_select.jpc)
+#define PID_FS_Filecopy      (0x00)
+#define PID_FS_FilecopyM     (0x01)
+#define PID_FS_Filedecide_1  (0x02)
+#define PID_FS_Filedecide_2  (0x03)
+#define PID_FS_Filedelete    (0x04)
+#define PID_FS_FiledeleteM   (0x05)
+#define PID_FS_Filesel       (0x06)
+#define PID_FS_FileselM      (0x07)
+#define PID_FS_CursorBubble  (0x08) // Unused?
+#define PID_FS_Filecopied    (0x09)
+#define PID_FS_Filedeleting  (0x0A)
+#define PID_FS_FiledeletingM (0x0B)
 
 /////////////////////////////////////////
 // 3D EFFECTS
@@ -900,14 +911,5 @@
 #define PID_GasuHiba_4 (0x2B5) // gas pipe 4
 
 #define PID_SyncDefault (0x2B2) // default TSync PID
-
-// WORLD MAP JPC
-#define PID_WMap_RocketSparks  (2)
-#define PID_WMap_RocketGlow    (3)
-#define PID_WMap_LensFlare     (4)
-#define PID_WMap_NewMap1       (5)
-#define PID_WMap_NewMap2       (6)
-#define PID_WMap_ShootingStar1 (7)
-#define PID_WMap_ShootingStar  (8)
 
 #endif

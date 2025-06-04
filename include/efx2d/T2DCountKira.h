@@ -2,12 +2,13 @@
 #define _EFX2D_T2DCOUNTKIRA_H
 
 #include "types.h"
+#include "ParticleID.h"
 #include "efx2d/TForever.h"
 
 namespace efx2d {
 struct T2DCountKira : public TForever {
 	T2DCountKira()
-	    : TForever(8)
+	    : TForever(PID_2DCountKira)
 	{
 		mScale = 1.0f;
 	}
