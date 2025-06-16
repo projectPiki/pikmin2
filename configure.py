@@ -1932,7 +1932,7 @@ config.libs = [
         "progress_category" : "game",
         "host": True,
         "objects": [
-            Object(NonMatching, "plugProjectKonoU/khWorldMap.cpp"),
+            Object(Equivalent, "plugProjectKonoU/khWorldMap.cpp"),
             Object(Matching, "plugProjectKonoU/khCaveResult.cpp"),
             Object(Matching, "plugProjectKonoU/khSceneLoader.cpp"),
             Object(Matching, "plugProjectKonoU/newGame2DMgr.cpp"),

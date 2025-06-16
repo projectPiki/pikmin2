@@ -31,7 +31,8 @@ struct TSimple_ArgDirScale : public TSimple1 {
 	inline TSimple_ArgDirScale(u16 effectID)
 	    : TSimple1(effectID)
 	{
-		mResMgrId = 0;
+		mGroup    = 0;
+		mResMgrId = 1;
 	}
 
 	virtual bool create(Arg*); // _08
@@ -94,6 +95,7 @@ struct T2DRocketA : public TSimple_ArgDirScale {
 	    : TSimple_ArgDirScale(PID_WMap_RocketSmoke)
 	{
 		mResMgrId = 1;
+		mGroup    = 3;
 	}
 
 	// _00		= VTBL

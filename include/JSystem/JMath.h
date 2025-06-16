@@ -11,10 +11,16 @@
 namespace JMath {
 
 template <typename T>
-inline int round_nearest(T flt) { return (int)(flt + 0.5); }
+inline int round_nearest(T flt)
+{
+	return (int)(flt + 0.5);
+}
 
 template <>
-inline int round_nearest<f32>(f32 flt) { return (int)(flt + 0.5f); }
+inline int round_nearest<f32>(f32 flt)
+{
+	return (int)(flt + 0.5f);
+}
 
 template <typename T>
 struct TAngleConstant_ {
@@ -108,7 +114,7 @@ T TAtanTable<LENGTH, T>::atan_(T v) const
 			return mTable[round_nearest(v * 1024)];
 		}
 	} else {
-		v = -v;
+		v      = -v;
 		T pi_2 = -TAngleConstant_<T>::RADIAN_DEG090();
 		if (v > 1.0f) {
 			return pi_2 + mTable[round_nearest(1024 / v)];
