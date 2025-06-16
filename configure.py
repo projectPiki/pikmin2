@@ -1851,7 +1851,7 @@ config.libs = [
             Object(Matching, "plugProjectEbisawaU/ebiScreenFramework.cpp"),
             Object(Matching, "plugProjectEbisawaU/ebiScreenPushStart.cpp"),
             Object(
-                NonMatching,
+                Equivalent,
                 "plugProjectEbisawaU/ebiScreenFileSelect.cpp",
                 extra_cflags=["-sym on"],
             ),
