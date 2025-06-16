@@ -81,9 +81,7 @@ void JASIntrMgr::timerProcess()
 	}
 
 	// timer is newly 0
-	if (mIntrFlag & 0x40) {
-		mRequestFlag |= 0x40;
-	}
+	request(6);
 	if (mTimerCount) {
 		mTimerCount--;
 		if (mTimerCount == 0) {

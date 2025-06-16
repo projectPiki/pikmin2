@@ -635,9 +635,28 @@ void JASTrack::oscSetupSimpleEnv(u8 setupType, u32 offset)
  * @note Address: N/A
  * @note Size: 0x64
  */
-void JASTrack::updateOscParam(int, f32)
+void JASTrack::updateOscParam(int id, f32 value)
 {
-	// UNUSED FUNCTION
+	switch (id) {
+	case TIMED_Osc0_Width:
+		mOscData[0].mWidth = value;
+		break;
+	case TIMED_Osc0_Rate:
+		mOscData[0].mRate = value;
+		break;
+	case TIMED_Osc0_Vertex:
+		mOscData[0].mVertex = value;
+		break;
+	case TIMED_Osc1_Width:
+		mOscData[1].mWidth = value;
+		break;
+	case TIMED_Osc1_Rate:
+		mOscData[1].mRate = value;
+		break;
+	case TIMED_Osc1_Vertex:
+		mOscData[1].mVertex = value;
+		break;
+	}
 }
 
 /**
@@ -676,27 +695,7 @@ void JASTrack::updateTimedParam()
 				mUpdateFlags |= (1 << i);
 				continue;
 			}
-			f32 value = mTimedParam.mMoveParams[i].mCurrentValue;
-			switch (i) {
-			case TIMED_Osc0_Width:
-				mOscData[0].mWidth = value;
-				break;
-			case TIMED_Osc0_Rate:
-				mOscData[0].mRate = value;
-				break;
-			case TIMED_Osc0_Vertex:
-				mOscData[0].mVertex = value;
-				break;
-			case TIMED_Osc1_Width:
-				mOscData[1].mWidth = value;
-				break;
-			case TIMED_Osc1_Rate:
-				mOscData[1].mRate = value;
-				break;
-			case TIMED_Osc1_Vertex:
-				mOscData[1].mVertex = value;
-				break;
-			}
+			updateOscParam(i, mTimedParam.mMoveParams[i].mCurrentValue);
 		}
 	}
 	mUpdateFlags |= OUTERPARAM_Pitch;
