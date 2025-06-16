@@ -6,8 +6,8 @@
 #include "JSystem/JStudio/TObject.h"
 
 namespace JStage {
-enum TECameraProjection { };
-enum TECameraView { };
+enum TECameraProjection {};
+enum TECameraView {};
 struct TCamera : public TObject {
 	typedef JStudio::TObject_camera StudioObject;
 

@@ -61,7 +61,7 @@ enum VSPlayerColor {
 
 struct TekiNode : public CNode {
 	inline TekiNode() { }
-	virtual ~TekiNode() { }; // _08 (weak)
+	virtual ~TekiNode() {}; // _08 (weak)
 
 	// _00 		= VTBL
 	// _00-_18	= CNode

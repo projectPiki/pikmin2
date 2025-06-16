@@ -25,7 +25,7 @@ struct DispPayDept : public og::Screen::DispMemberBase {
 struct ObjPayDept : public ::Screen::ObjBase {
 	ObjPayDept();
 
-	virtual ~ObjPayDept() { };            // _08 (weak)
+	virtual ~ObjPayDept() {};             // _08 (weak)
 	virtual void doCreate(JKRArchive*);   // _4C
 	virtual bool doUpdateFadein();        // _50
 	virtual bool doUpdate();              // _58

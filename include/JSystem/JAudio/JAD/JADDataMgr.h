@@ -37,7 +37,7 @@ struct DataMgrBase : public JKRDisposer {
  * @size = 0x234 - could be wrong, inheritance is confusing
  */
 struct DataLoadMgrNode : virtual public DataMgrBase {
-	enum ObjStatus { };
+	enum ObjStatus {};
 
 	DataLoadMgrNode();
 

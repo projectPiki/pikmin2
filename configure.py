@@ -1320,7 +1320,7 @@ config.libs = [
             Object(Matching, "plugProjectKandoU/aiBreakRock.cpp"),
             Object(Matching, "plugProjectKandoU/aiCrop.cpp"),
             Object(Matching, "plugProjectKandoU/registItem.cpp"),
-            Object(NonMatching, "plugProjectKandoU/gamePlayData.cpp"),
+            Object(Equivalent, "plugProjectKandoU/gamePlayData.cpp"),
             Object(NonMatching, "plugProjectKandoU/itemCave.cpp"),
             Object(Matching, "plugProjectKandoU/itemBigFountain.cpp"),
             Object(NonMatching, "plugProjectKandoU/itemBridge.cpp"),

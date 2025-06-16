@@ -23,7 +23,7 @@ struct TPodKira : public TChaseMtx {
 	{
 	}
 
-	virtual ~TPodKira() { }; // _48 (weak)
+	virtual ~TPodKira() {}; // _48 (weak)
 
 	// _00     = VTBL
 	// _00-_14 = TChaseMtx
@@ -47,7 +47,7 @@ struct TPodOpenB : public TChaseMtx {
 	{
 	}
 
-	virtual ~TPodOpenB() { }; // _48 (weak)
+	virtual ~TPodOpenB() {}; // _48 (weak)
 
 	// _00     = VTBL
 	// _00-_14 = TChaseMtx

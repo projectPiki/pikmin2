@@ -47,7 +47,7 @@ struct Obj : public EnemyBase {
 	virtual void collisionCallback(CollEvent& event);                          // _EC
 	virtual void getShadowParam(ShadowParam& settings);                        // _134
 	virtual bool needShadow();                                                 // _138
-	virtual ~Obj() { };                                                        // _1BC (weak)
+	virtual ~Obj() {};                                                         // _1BC (weak)
 	virtual void setInitialSetting(EnemyInitialParamBase* params);             // _1C4
 	virtual void doUpdate();                                                   // _1CC
 	virtual void doUpdateCommon();                                             // _1D0
@@ -245,7 +245,7 @@ enum AnimID {
 };
 
 struct ProperAnimator : public EnemyAnimatorBase {
-	virtual ~ProperAnimator() { };                                   // _08 (weak)
+	virtual ~ProperAnimator() {};                                    // _08 (weak)
 	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                 // _0C
 	virtual SysShape::Animator& getAnimator() { return mAnimator; }; // _10 (weak)
 	virtual SysShape::Animator& getAnimator(int idx);                // _14

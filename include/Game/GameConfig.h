@@ -92,7 +92,7 @@ struct GameConfig {
 	};
 
 	GameConfig();
-	~GameConfig() { };
+	~GameConfig() {};
 
 	bool load(char*);
 

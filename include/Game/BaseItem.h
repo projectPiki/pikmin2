@@ -68,7 +68,7 @@ struct BaseItem : public Creature, public SysShape::MotionListener {
 	virtual void makeTrMatrix();                                                      // _1C4
 	virtual void doAI() { }                                                           // _1C8 (weak)
 	virtual void move(f32);                                                           // _1CC
-	virtual void changeMaterial() { };                                                // _1D0 (weak)
+	virtual void changeMaterial() {};                                                 // _1D0 (weak)
 	virtual void do_updateLOD();                                                      // _1D4
 	virtual void do_setLODParm(AILODParm&) { }                                        // _1D8 (weak)
 	virtual f32 getMapCollisionRadius() { return mBoundingSphere.mRadius; }           // _1DC (weak)

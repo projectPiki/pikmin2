@@ -23,7 +23,7 @@ struct TOEContextS : public TOEContextBase {
 	{
 	}
 
-	~TOEContextS() { };
+	~TOEContextS() {};
 
 	Vector3f mPosition; // _10
 

@@ -23,7 +23,7 @@ struct J3DJointTree {
 	 * @reifiedAddress{80083874}
 	 * @reifiedFile{JSystem/J3D/J3DModelData.cpp}
 	 */
-	virtual ~J3DJointTree() { }; // _0C (weak)
+	virtual ~J3DJointTree() {}; // _0C (weak)
 
 	void findImportantMtxIndex();
 	void makeHierarchy(J3DJoint*, const J3DModelHierarchy**, J3DMaterialTable*, J3DShapeTable*);

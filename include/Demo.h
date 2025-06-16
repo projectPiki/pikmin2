@@ -9,7 +9,7 @@
 
 struct JUTTexture;
 
-enum EDrawInitMode { };
+enum EDrawInitMode {};
 
 namespace Demo {
 struct HIORootNode : public Game::HIORootNode {

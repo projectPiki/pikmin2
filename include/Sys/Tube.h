@@ -6,7 +6,7 @@
 namespace Sys {
 struct Sphere;
 struct Tube {
-	inline Tube() { };
+	inline Tube() {};
 	Tube(Vector3f& pos1, Vector3f& pos2, f32 rad1, f32 rad2)
 	    : mStartPos(pos1)
 	    , mEndPos(pos2)

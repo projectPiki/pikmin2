@@ -312,7 +312,7 @@ struct Parms : EnemyParmsBase {
 struct Generator : public EnemyGeneratorBase {
 	Generator();
 
-	virtual ~Generator() { };                                   // _08
+	virtual ~Generator() {};                                    // _08
 	virtual void doWrite(Stream&);                              // _10
 	virtual void doRead(Stream&);                               // _14
 	virtual u32 getLatestVersion() { return '0001'; };          // _18
