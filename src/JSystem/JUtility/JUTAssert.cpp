@@ -20,7 +20,9 @@ static bool sVisible = true;
  * @note Address: 0x80027DC0
  * @note Size: 0x4
  */
-void create() { }
+void create()
+{
+}
 
 /**
  * @note Address: N/A
@@ -87,6 +89,9 @@ void flushMessage_dbPrint()
  * @note Address: 0x800280C4
  * @note Size: 0x18
  */
-void setMessageCount(int messageCount) { sMessageLife = messageCount <= 0 ? 0 : messageCount; }
+void setMessageCount(int messageCount)
+{
+	sMessageLife = messageCount <= 0 ? 0 : messageCount;
+}
 
 } // namespace JUTAssertion

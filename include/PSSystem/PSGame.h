@@ -17,7 +17,10 @@ inline PSSystem::SceneMgr* getSceneMgr()
 	return spSceneMgr;
 }
 
-inline void validateSceneMgr(SceneMgr* mgr) { P2ASSERTLINE(476, mgr); }
+inline void validateSceneMgr(SceneMgr* mgr)
+{
+	P2ASSERTLINE(476, mgr);
+}
 
 inline Scene* getChildScene(SceneMgr* mgr)
 {
@@ -33,7 +36,10 @@ inline SeqBase* getSeqFromScene(Scene* scene, u32 id)
 	return seq;
 }
 
-inline SeqBase* getSeqData(SceneMgr* mgr, int id) { return getSeqFromScene(getChildScene(mgr), id); }
+inline SeqBase* getSeqData(SceneMgr* mgr, int id)
+{
+	return getSeqFromScene(getChildScene(mgr), id);
+}
 
 inline SeqBase* getSeqDataCheck(SceneMgr* mgr, int id)
 {

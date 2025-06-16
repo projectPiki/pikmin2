@@ -110,7 +110,10 @@ BOOL OSTryLockMutex(OSMutex* mutex)
  * @note Address: 0x800EFE38
  * @note Size: 0x20
  */
-void OSInitCond(OSCond* cond) { OSInitThreadQueue(&cond->queue); }
+void OSInitCond(OSCond* cond)
+{
+	OSInitThreadQueue(&cond->queue);
+}
 
 /**
  * @note Address: 0x800EFE58
@@ -147,4 +150,7 @@ void OSWaitCond(OSCond* cond, OSMutex* mutex)
  * @note Address: 0x800EFF2C
  * @note Size: 0x20
  */
-void OSSignalCond(OSCond* cond) { OSWakeupThread(&cond->queue); }
+void OSSignalCond(OSCond* cond)
+{
+	OSWakeupThread(&cond->queue);
+}

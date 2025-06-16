@@ -274,13 +274,19 @@ void AStarContext::init(RouteMgr* mgr, int wpNum)
  * @note Address: 0x801A3BE0
  * @note Size: 0xC
  */
-AStarPathfinder::AStarPathfinder() { mContext = nullptr; }
+AStarPathfinder::AStarPathfinder()
+{
+	mContext = nullptr;
+}
 
 /**
  * @note Address: 0x801A3BEC
  * @note Size: 0x8
  */
-void AStarPathfinder::setContext(AStarContext* context) { mContext = context; }
+void AStarPathfinder::setContext(AStarContext* context)
+{
+	mContext = context;
+}
 
 /**
  * @note Address: N/A
@@ -542,7 +548,10 @@ int AStarPathfinder::search(Game::AStarContext* context, int maxIterations, Game
 
 		WayPointIterator iter(wp, mContext->mRequestFlag & PATHFLAG_TwoWayPathing);
 
-		CI_LOOP(iter) { s16 idx = *iter; }
+		CI_LOOP(iter)
+		{
+			s16 idx = *iter;
+		}
 
 		CI_LOOP(iter)
 		{

@@ -26,7 +26,10 @@ int ddh_cc_initialize(void* inputPendingPtrRef, AmcEXICallback monitorCallback)
  * @note Address: 0x800C0F04
  * @note Size: 0x8
  */
-int ddh_cc_shutdown() { return 0; }
+int ddh_cc_shutdown()
+{
+	return 0;
+}
 
 /**
  * @note Address: 0x800C0EE0
@@ -46,7 +49,10 @@ int ddh_cc_open()
  * @note Address: 0x800C0ED8
  * @note Size: 0x8
  */
-int ddh_cc_close() { return 0; }
+int ddh_cc_close()
+{
+	return 0;
+}
 
 /**
  * @note Address: 0x800C0DEC

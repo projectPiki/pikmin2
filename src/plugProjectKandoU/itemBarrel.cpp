@@ -41,19 +41,26 @@ void FSM::init(Item*)
  * @note Address: 0x801F7AA4
  * @note Size: 0xC
  */
-void NormalState::init(Item* item, StateArg* arg) { item->mAnimSpeed = 0.0f; }
+void NormalState::init(Item* item, StateArg* arg)
+{
+	item->mAnimSpeed = 0.0f;
+}
 
 /**
  * @note Address: 0x801F7AB0
  * @note Size: 0x4
  */
-void NormalState::exec(Item*) { }
+void NormalState::exec(Item*)
+{
+}
 
 /**
  * @note Address: 0x801F7AB4
  * @note Size: 0x4
  */
-void NormalState::cleanup(Item*) { }
+void NormalState::cleanup(Item*)
+{
+}
 
 /**
  * @note Address: 0x801F7AB8
@@ -73,7 +80,9 @@ void NormalState::onDamage(Item* item, f32 damage)
  * @note Address: 0x801F7B4C
  * @note Size: 0x4
  */
-void NormalState::onKeyEvent(Item*, SysShape::KeyEvent const&) { }
+void NormalState::onKeyEvent(Item*, SysShape::KeyEvent const&)
+{
+}
 
 /**
  * @note Address: 0x801F7B50
@@ -101,19 +110,25 @@ void DeadState::init(Item* item, StateArg* stateArg)
  * @note Address: 0x801F7CC0
  * @note Size: 0x4
  */
-void DeadState::exec(Item*) { }
+void DeadState::exec(Item*)
+{
+}
 
 /**
  * @note Address: 0x801F7CC4
  * @note Size: 0x4
  */
-void DeadState::cleanup(Item*) { }
+void DeadState::cleanup(Item*)
+{
+}
 
 /**
  * @note Address: 0x801F7CC8
  * @note Size: 0x4
  */
-void DeadState::onDamage(Item*, f32) { }
+void DeadState::onDamage(Item*, f32)
+{
+}
 
 /**
  * @note Address: 0x801F7CCC
@@ -138,37 +153,51 @@ void DeadState::onKeyEvent(Item* item, SysShape::KeyEvent const& event)
  * @note Address: 0x801F7E14
  * @note Size: 0x4
  */
-void DamagedState::init(Item*, StateArg*) { }
+void DamagedState::init(Item*, StateArg*)
+{
+}
 
 /**
  * @note Address: 0x801F7E18
  * @note Size: 0x4
  */
-void DamagedState::exec(Item*) { }
+void DamagedState::exec(Item*)
+{
+}
 
 /**
  * @note Address: 0x801F7E1C
  * @note Size: 0x4
  */
-void DamagedState::cleanup(Item*) { }
+void DamagedState::cleanup(Item*)
+{
+}
 
 /**
  * @note Address: 0x801F7E20
  * @note Size: 0x10
  */
-void DamagedState::onDamage(Item* item, f32 damage) { item->mStoredDamage += damage; }
+void DamagedState::onDamage(Item* item, f32 damage)
+{
+	item->mStoredDamage += damage;
+}
 
 /**
  * @note Address: 0x801F7E30
  * @note Size: 0x4
  */
-void DamagedState::onKeyEvent(Item*, SysShape::KeyEvent const&) { }
+void DamagedState::onKeyEvent(Item*, SysShape::KeyEvent const&)
+{
+}
 
 /**
  * @note Address: 0x801F7E34
  * @note Size: 0x44
  */
-void Item::doSave(Stream& output) { output.writeByte(isAlive()); }
+void Item::doSave(Stream& output)
+{
+	output.writeByte(isAlive());
+}
 
 /**
  * @note Address: 0x801F7E78
@@ -203,7 +232,10 @@ Item::Item()
  * @note Address: 0x801F7F34
  * @note Size: 0x48
  */
-void Item::constructor() { mSoundObj = new PSM::WorkItem(this); }
+void Item::constructor()
+{
+	mSoundObj = new PSM::WorkItem(this);
+}
 
 /**
  * @note Address: 0x801F7F7C

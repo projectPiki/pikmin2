@@ -931,7 +931,10 @@ lbl_800673F4:
  * @note Address: 0x80067410
  * @note Size: 0x24
  */
-void J3DModel::calcNrmMtx() { mMtxBuffer->calcNrmMtx(); }
+void J3DModel::calcNrmMtx()
+{
+	mMtxBuffer->calcNrmMtx();
+}
 
 /**
  * @note Address: 0x80067434

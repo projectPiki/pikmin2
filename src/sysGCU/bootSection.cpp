@@ -468,13 +468,18 @@ BootSection::BootSection(JKRHeap* heap)
  * @note Address: 0x804480B4
  * @note Size: 0x84
  */
-BootSection::~BootSection() { sys->destroyRomFont(); }
+BootSection::~BootSection()
+{
+	sys->destroyRomFont();
+}
 
 /**
  * @note Address: 0x80448138
  * @note Size: 0x4
  */
-void BootSection::init() { }
+void BootSection::init()
+{
+}
 
 /**
  * @note Address: 0x8044813C
@@ -609,19 +614,28 @@ void BootSection::drawDebugInfo(Graphics&)
  * @note Address: 0x80448990
  * @note Size: 0x20
  */
-void BootSection::drawProgressive(Graphics& gfx) { drawNintendoLogo(gfx); }
+void BootSection::drawProgressive(Graphics& gfx)
+{
+	drawNintendoLogo(gfx);
+}
 
 /**
  * @note Address: 0x804489B0
  * @note Size: 0x20
  */
-void BootSection::drawSetProgressive(Graphics& gfx) { drawNintendoLogo(gfx); }
+void BootSection::drawSetProgressive(Graphics& gfx)
+{
+	drawNintendoLogo(gfx);
+}
 
 /**
  * @note Address: 0x804489D0
  * @note Size: 0x20
  */
-void BootSection::drawSetInterlace(Graphics& gfx) { drawNintendoLogo(gfx); }
+void BootSection::drawSetInterlace(Graphics& gfx)
+{
+	drawNintendoLogo(gfx);
+}
 
 /**
  * @note Address: 0x804489F0
@@ -1042,7 +1056,10 @@ void BootSection::waitSystemDvdLoad()
  * @note Address: 0x80449EA0
  * @note Size: 0x30
  */
-bool BootSection::waitLoadResource() { return sys->dvdLoadSyncAllNoBlock() != 0; }
+bool BootSection::waitLoadResource()
+{
+	return sys->dvdLoadSyncAllNoBlock() != 0;
+}
 
 /**
  * @note Address: 0x80449ED0
@@ -1074,4 +1091,7 @@ void BootSection::getModeEpilepsy()
  * @note Address: 0x80449F54
  * @note Size: 0x88
  */
-void BootSection::setModeEpilepsy() { setMode(SID_InitNintendoLogo); }
+void BootSection::setModeEpilepsy()
+{
+	setMode(SID_InitNintendoLogo);
+}

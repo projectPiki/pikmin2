@@ -13,7 +13,10 @@
  * @note Address: N/A
  * @note Size: 0xE4
  */
-static void _Print(char* format, ...) { OSReport(format, __FILE__); }
+static void _Print(char* format, ...)
+{
+	OSReport(format, __FILE__);
+}
 
 namespace og {
 namespace newScreen {
@@ -94,7 +97,9 @@ ObjSMenuPause::ObjSMenuPause(char const* name)
  * @note Address: 0x803144FC
  * @note Size: 0xC4
  */
-ObjSMenuPause::~ObjSMenuPause() { }
+ObjSMenuPause::~ObjSMenuPause()
+{
+}
 
 /**
  * @note Address: 0x803145C0
@@ -360,7 +365,10 @@ void ObjSMenuPause::doUpdateRAction()
  * @note Address: 0x80314D1C
  * @note Size: 0x10
  */
-void ObjSMenuPause::doUpdateCancelAction() { mDisp->mExitStatus = 2; }
+void ObjSMenuPause::doUpdateCancelAction()
+{
+	mDisp->mExitStatus = 2;
+}
 
 /**
  * @note Address: 0x80314D2C
@@ -432,7 +440,10 @@ bool ObjSMenuPause::doStart(::Screen::StartSceneArg const* arg)
  * @note Address: 0x80314F9C
  * @note Size: 0x8
  */
-bool ObjSMenuPause::doEnd(::Screen::EndSceneArg const*) { return true; }
+bool ObjSMenuPause::doEnd(::Screen::EndSceneArg const*)
+{
+	return true;
+}
 
 /**
  * @note Address: 0x80314FA4

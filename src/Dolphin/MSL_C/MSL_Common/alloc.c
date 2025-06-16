@@ -366,7 +366,10 @@ void FixBlock_construct(void)
  * @note Address: N/A
  * @note Size: 0x28
  */
-void __init_pool_obj(__mem_pool* pool_obj) { memset(pool_obj, 0, sizeof(__mem_pool_obj)); }
+void __init_pool_obj(__mem_pool* pool_obj)
+{
+	memset(pool_obj, 0, sizeof(__mem_pool_obj));
+}
 
 /**
  * @note Address: N/A

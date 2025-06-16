@@ -103,7 +103,9 @@ WorldMapRocket::WorldMapRocket()
  * @note Address: 0x8046D3D4
  * @note Size: 0x60
  */
-WorldMapRocket::~WorldMapRocket() { }
+WorldMapRocket::~WorldMapRocket()
+{
+}
 
 /**
  * @note Address: 0x8046D434
@@ -213,13 +215,18 @@ namespace PSM {
  * @note Address: 0x8046D8C4
  * @note Size: 0x8
  */
-void WorldMapRocket::stateChange(rocketState a1) { mState = a1; }
+void WorldMapRocket::stateChange(rocketState a1)
+{
+	mState = a1;
+}
 
 /**
  * @note Address: 0x8046D8CC
  * @note Size: 0x4
  */
-PikiHumming::PikiHumming() { }
+PikiHumming::PikiHumming()
+{
+}
 
 void PikiHumming::init(HumType type, u32 sound, int a, int b)
 {

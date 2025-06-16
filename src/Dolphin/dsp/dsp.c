@@ -10,19 +10,28 @@ char* __DSPVersion = "<< Dolphin SDK - DSP\trelease build: Apr 17 2003 12:34:16 
  * @note Address: 0x800DACB0
  * @note Size: 0x10
  */
-u32 DSPCheckMailToDSP() { return __DSPRegs[DSP_MAILBOX_IN_HI] >> 0xF & 1; }
+u32 DSPCheckMailToDSP()
+{
+	return __DSPRegs[DSP_MAILBOX_IN_HI] >> 0xF & 1;
+}
 
 /**
  * @note Address: 0x800DACC0
  * @note Size: 0x10
  */
-u32 DSPCheckMailFromDSP() { return __DSPRegs[DSP_MAILBOX_OUT_HI] >> 0xF & 1; }
+u32 DSPCheckMailFromDSP()
+{
+	return __DSPRegs[DSP_MAILBOX_OUT_HI] >> 0xF & 1;
+}
 
 /**
  * @note Address: 0x800DACD0
  * @note Size: 0x18
  */
-u32 DSPReadMailFromDSP() { return (__DSPRegs[DSP_MAILBOX_OUT_HI] << 0x10) | __DSPRegs[DSP_MAILBOX_OUT_LO]; }
+u32 DSPReadMailFromDSP()
+{
+	return (__DSPRegs[DSP_MAILBOX_OUT_HI] << 0x10) | __DSPRegs[DSP_MAILBOX_OUT_LO];
+}
 
 /**
  * @note Address: 0x800DACE8

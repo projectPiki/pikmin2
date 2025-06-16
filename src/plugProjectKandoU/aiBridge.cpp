@@ -207,12 +207,16 @@ void ActBridge::platCallback(Game::Piki* p, Game::PlatEvent& platEvent)
  * @note Address: 0x8021293C
  * @note Size: 0x4
  */
-void ActBridge::collisionCallback(Game::Piki*, Game::CollEvent&) { }
+void ActBridge::collisionCallback(Game::Piki*, Game::CollEvent&)
+{
+}
 
 /**
  * @note Address: 0x80212940
  * @note Size: 0x4
  */
-void ActBridge::bounceCallback(Game::Piki*, Sys::Triangle*) { }
+void ActBridge::bounceCallback(Game::Piki*, Sys::Triangle*)
+{
+}
 
 } // namespace PikiAI

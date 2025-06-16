@@ -26,7 +26,10 @@ f32 TAtanTable<1024, f32>::atan_(f32 v) const
 	}
 }
 
-f32 TAtanTable<1024, f32>::atan2_(f32 y, f32 x) const { return (y >= 0.0f ? calc(y, x) : calcInverse(y, x)); }
+f32 TAtanTable<1024, f32>::atan2_(f32 y, f32 x) const
+{
+	return (y >= 0.0f ? calc(y, x) : calcInverse(y, x));
+}
 
 const TSinCosTable<2048, f32> sincosTable_;
 const TAtanTable<1024, f32> atanTable_;

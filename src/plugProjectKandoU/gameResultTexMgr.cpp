@@ -30,7 +30,9 @@ ResultTexMgr::Mgr::Mgr()
  * @note Address: 0x80227468
  * @note Size: 0x60
  */
-ResultTexMgr::Mgr::~Mgr() { }
+ResultTexMgr::Mgr::~Mgr()
+{
+}
 
 /**
  * @note Address: 0x802274C8
@@ -168,19 +170,28 @@ JUTTexture* ResultTexMgr::Mgr::getOtakaraItemTexture(int index)
  * @note Address: 0x802278C0
  * @note Size: 0x24
  */
-JUTTexture* ResultTexMgr::Mgr::getOtakaraTexture(int otakaraIndex) { return mOtakaraTextures.getTexture(otakaraIndex); }
+JUTTexture* ResultTexMgr::Mgr::getOtakaraTexture(int otakaraIndex)
+{
+	return mOtakaraTextures.getTexture(otakaraIndex);
+}
 
 /**
  * @note Address: 0x802278E4
  * @note Size: 0x24
  */
-JUTTexture* ResultTexMgr::Mgr::getItemTexture(int itemIndex) { return mItemTextures.getTexture(itemIndex); }
+JUTTexture* ResultTexMgr::Mgr::getItemTexture(int itemIndex)
+{
+	return mItemTextures.getTexture(itemIndex);
+}
 
 /**
  * @note Address: 0x80227908
  * @note Size: 0x28
  */
-JUTTexture* ResultTexMgr::Mgr::getCarcassTexture() { return mCarcassTextures.getTexture(0); }
+JUTTexture* ResultTexMgr::Mgr::getCarcassTexture()
+{
+	return mCarcassTextures.getTexture(0);
+}
 
 /**
  * @note Address: 0x80227930
@@ -313,7 +324,10 @@ void DNode::concat(Game::DNode*)
  * @note Address: 0x80227C28
  * @note Size: 0x68
  */
-DNode::~DNode() { del(); }
+DNode::~DNode()
+{
+	del();
+}
 
 /**
  * @note Address: 0x80227C90

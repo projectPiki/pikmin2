@@ -190,7 +190,9 @@ void StateMove::exec(EnemyBase* enemy)
  * @note Address: 0x8025F8A0
  * @note Size: 0x4
  */
-void StateMove::cleanup(EnemyBase* enemy) { }
+void StateMove::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x8025F8A4
@@ -225,7 +227,10 @@ void StateDrop::exec(EnemyBase* enemy)
  * @note Address: 0x8025F968
  * @note Size: 0x10
  */
-void StateDrop::cleanup(EnemyBase* enemy) { enemy->enableEvent(0, EB_Cullable); }
+void StateDrop::cleanup(EnemyBase* enemy)
+{
+	enemy->enableEvent(0, EB_Cullable);
+}
 
 /**
  * @note Address: 0x8025F978
@@ -264,7 +269,9 @@ void StateDead::exec(EnemyBase* enemy)
  * @note Address: 0x8025FA88
  * @note Size: 0x4
  */
-void StateDead::cleanup(EnemyBase* enemy) { }
+void StateDead::cleanup(EnemyBase* enemy)
+{
+}
 
 } // namespace Qurione
 } // namespace Game

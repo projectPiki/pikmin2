@@ -82,7 +82,10 @@ void EnemyNode::setGlobalData(Vector3f& pos, f32 direction)
  * @note Address: 0x80244424
  * @note Size: 0x8
  */
-void EnemyNode::setBirthDoorIndex(int idx) { mBirthDoorIndex = idx; }
+void EnemyNode::setBirthDoorIndex(int idx)
+{
+	mBirthDoorIndex = idx;
+}
 
 /**
  * @note Address: 0x8024442C
@@ -128,7 +131,10 @@ u32 EnemyNode::getObjectType()
  * @note Address: 0x8024448C
  * @note Size: 0x8
  */
-int EnemyNode::getBirthCount() { return mBirthCount; }
+int EnemyNode::getBirthCount()
+{
+	return mBirthCount;
+}
 
 /**
  * @note Address: 0x80244494
@@ -144,12 +150,18 @@ void EnemyNode::getBirthPosition(f32& x, f32& y)
  * @note Address: 0x802444A8
  * @note Size: 0x8
  */
-f32 EnemyNode::getDirection() { return mDirection; }
+f32 EnemyNode::getDirection()
+{
+	return mDirection;
+}
 
 /**
  * @note Address: 0x802444B0
  * @note Size: 0x8
  */
-int EnemyNode::getBirthDoorIndex() { return mBirthDoorIndex; }
+int EnemyNode::getBirthDoorIndex()
+{
+	return mBirthDoorIndex;
+}
 } // namespace Cave
 } // namespace Game

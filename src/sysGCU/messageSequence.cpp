@@ -44,7 +44,9 @@ void TSequenceProcessor::do_begin(const void* arg0, const char* arg1)
  * @note Address: 0x804378FC
  * @note Size: 0x4
  */
-void TSequenceProcessor::do_end() { }
+void TSequenceProcessor::do_end()
+{
+}
 
 /**
  * @note Address: N/A
@@ -124,7 +126,10 @@ bool TSequenceProcessor::do_tag(u32 arg0, const void* arg1, u32 arg2)
  * @note Address: 0x804379A4
  * @note Size: 0x8
  */
-bool TSequenceProcessor::do_systemTagCode(u16, const void*, u32) { return false; }
+bool TSequenceProcessor::do_systemTagCode(u16, const void*, u32)
+{
+	return false;
+}
 
 /**
  * @note Address: 0x804379AC
@@ -175,31 +180,45 @@ bool TSequenceProcessor::do_isReady()
  * @note Address: 0x80437B88
  * @note Size: 0x8
  */
-bool TSequenceProcessor::do_jump_isReady() { return false; }
+bool TSequenceProcessor::do_jump_isReady()
+{
+	return false;
+}
 
 /**
  * @note Address: 0x80437B90
  * @note Size: 0xC
  */
-void TSequenceProcessor::do_jump(const void* arg0, const char* arg1) { mPageFinishWaitTimer = mPageFinishWaitDuration; }
+void TSequenceProcessor::do_jump(const void* arg0, const char* arg1)
+{
+	mPageFinishWaitTimer = mPageFinishWaitDuration;
+}
 
 /**
  * @note Address: 0x80437B9C
  * @note Size: 0x4
  */
-void TSequenceProcessor::do_branch_query(u16) { }
+void TSequenceProcessor::do_branch_query(u16)
+{
+}
 
 /**
  * @note Address: 0x80437BA0
  * @note Size: 0x8
  */
-int TSequenceProcessor::do_branch_queryResult() { return -1; }
+int TSequenceProcessor::do_branch_queryResult()
+{
+	return -1;
+}
 
 /**
  * @note Address: 0x80437BA8
  * @note Size: 0xC
  */
-void TSequenceProcessor::do_branch(const void* arg0, const char* arg1) { mPageFinishWaitTimer = mPageFinishWaitDuration; }
+void TSequenceProcessor::do_branch(const void* arg0, const char* arg1)
+{
+	mPageFinishWaitTimer = mPageFinishWaitDuration;
+}
 
 /**
  * @note Address: 0x80437BB4
@@ -287,12 +306,18 @@ void TSequenceProcessor::resetAbtnWait()
  * @note Address: 0x80437E08
  * @note Size: 0x2C
  */
-void TSequenceProcessor::doResetAbtnWaitSE() { PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_DECIDE, 0); }
+void TSequenceProcessor::doResetAbtnWaitSE()
+{
+	PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_DECIDE, 0);
+}
 
 /**
  * @note Address: 0x80437E34
  * @note Size: 0x18
  */
-void TSequenceProcessor::reset() { mFlags.clear(); }
+void TSequenceProcessor::reset()
+{
+	mFlags.clear();
+}
 
 } // namespace P2JME

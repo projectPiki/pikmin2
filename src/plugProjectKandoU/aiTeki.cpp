@@ -272,7 +272,9 @@ void ActTeki::setTimer()
  * @note Address: 0x802134A0
  * @note Size: 0x4
  */
-void ActTeki::cleanup() { }
+void ActTeki::cleanup()
+{
+}
 
 /**
  * @note Address: 0x802134A4
@@ -296,5 +298,7 @@ void ActTeki::collisionCallback(Game::Piki* piki, Game::CollEvent& event)
 	}
 }
 
-void ActTeki::onKeyEvent(const SysShape::KeyEvent& event) { }
+void ActTeki::onKeyEvent(const SysShape::KeyEvent& event)
+{
+}
 } // namespace PikiAI

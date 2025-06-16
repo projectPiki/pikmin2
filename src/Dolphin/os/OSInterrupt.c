@@ -99,7 +99,10 @@ __OSInterruptHandler __OSSetInterruptHandler(__OSInterrupt interrupt, __OSInterr
  * @note Address: 0x800EECA0
  * @note Size: 0x14
  */
-__OSInterruptHandler __OSGetInterruptHandler(__OSInterrupt interrupt) { return InterruptHandlerTable[interrupt]; }
+__OSInterruptHandler __OSGetInterruptHandler(__OSInterrupt interrupt)
+{
+	return InterruptHandlerTable[interrupt];
+}
 
 /**
  * @note Address: 0x800EECB4

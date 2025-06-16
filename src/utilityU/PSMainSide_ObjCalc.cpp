@@ -8,25 +8,37 @@ namespace PSM {
  * @note Address: 0x804728A4
  * @note Size: 0x60
  */
-void ObjCalc_SingleGame::newInstance_SingleGame() { new ObjCalc_SingleGame; }
+void ObjCalc_SingleGame::newInstance_SingleGame()
+{
+	new ObjCalc_SingleGame;
+}
 
 /**
  * @note Address: 0x80472904
  * @note Size: 0x8
  */
-u8 ObjCalc_SingleGame::getPlayerNo(PSM::Creature*) { return mPlayerNum; }
+u8 ObjCalc_SingleGame::getPlayerNo(PSM::Creature*)
+{
+	return mPlayerNum;
+}
 
 /**
  * @note Address: 0x8047290C
  * @note Size: 0x8
  */
-u8 ObjCalc_SingleGame::getPlayerNo(Vec&) { return mPlayerNum; }
+u8 ObjCalc_SingleGame::getPlayerNo(Vec&)
+{
+	return mPlayerNum;
+}
 
 /**
  * @note Address: 0x80472914
  * @note Size: 0x5C
  */
-void ObjCalc_2PGame::newInstance_2PGame() { new ObjCalc_2PGame; }
+void ObjCalc_2PGame::newInstance_2PGame()
+{
+	new ObjCalc_2PGame;
+}
 
 /**
  * @note Address: 0x80472970

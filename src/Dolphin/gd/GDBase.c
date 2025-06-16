@@ -21,7 +21,10 @@ void GDInitGDLObj(GDCurrentDL* GDL_Obj, u8* start, s32 len)
  * @note Address: 0x800E1B1C
  * @note Size: 0x2C
  */
-void GDFlushCurrToMem() { DCFlushRange(__GDCurrentDL->begin, __GDCurrentDL->length); }
+void GDFlushCurrToMem()
+{
+	DCFlushRange(__GDCurrentDL->begin, __GDCurrentDL->length);
+}
 
 /**
  * @note Address: 0x800E1B48
@@ -52,10 +55,16 @@ void GDOverflowed(void)
  * @note Address: N/A
  * @note Size: 0x8
  */
-void GDSetOverflowCallback(GDOverflowCallback cb) { overflowcb = cb; }
+void GDSetOverflowCallback(GDOverflowCallback cb)
+{
+	overflowcb = cb;
+}
 
 /**
  * @note Address: N/A
  * @note Size: 0x8
  */
-GDOverflowCallback GDGetOverflowCallback(void) { return overflowcb; }
+GDOverflowCallback GDGetOverflowCallback(void)
+{
+	return overflowcb;
+}

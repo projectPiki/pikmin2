@@ -142,7 +142,9 @@ void ActFree::cleanup()
  * @note Address: 0x801A03B4
  * @note Size: 0x4
  */
-void ActFree::onKeyEvent(SysShape::KeyEvent const&) { }
+void ActFree::onKeyEvent(SysShape::KeyEvent const&)
+{
+}
 
 /**
  * @note Address: 0x801A03B8

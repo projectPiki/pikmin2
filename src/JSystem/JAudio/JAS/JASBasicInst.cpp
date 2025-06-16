@@ -102,7 +102,10 @@ bool JASBasicInst::getParam(int p1, int p2, JASInstParam* param) const
  * @note Address: 0x80099B88
  * @note Size: 0x8
  */
-int JASBasicInst::getKeymapIndex(int index) const { return index; }
+int JASBasicInst::getKeymapIndex(int index) const
+{
+	return index;
+}
 
 /**
  * @note Address: 0x80099B90
@@ -147,7 +150,10 @@ void JASBasicInst::setEffectCount(u32 count)
  * @note Size: 0x10
  * setEffect__12JASBasicInstFiP13JASInstEffect
  */
-void JASBasicInst::setEffect(int index, JASInstEffect* effect) { mEffects[index] = effect; }
+void JASBasicInst::setEffect(int index, JASInstEffect* effect)
+{
+	mEffects[index] = effect;
+}
 
 /**
  * @note Address: N/A
@@ -180,7 +186,10 @@ void JASBasicInst::setOscCount(u32 count)
  * @note Size: 0x10
  * setOsc__12JASBasicInstFiPQ213JASOscillator4Data
  */
-void JASBasicInst::setOsc(int index, JASOscillator::Data* osc) { mOscData[index] = osc; }
+void JASBasicInst::setOsc(int index, JASOscillator::Data* osc)
+{
+	mOscData[index] = osc;
+}
 
 /**
  * @note Address: N/A
@@ -197,7 +206,10 @@ JASOscillator::Data* JASBasicInst::getOsc(int index)
  * @note Size: 0x24
  * getKeyRegion__12JASBasicInstFi
  */
-JASBasicInst::TKeymap* JASBasicInst::getKeyRegion(int index) { return (index >= mKeymapCount) ? nullptr : mKeymap + index; }
+JASBasicInst::TKeymap* JASBasicInst::getKeyRegion(int index)
+{
+	return (index >= mKeymapCount) ? nullptr : mKeymap + index;
+}
 
 /**
  * @note Address: N/A
@@ -215,7 +227,10 @@ JASBasicInst::TKeymap* JASBasicInst::getKeyRegion(int index) const
  * @note Size: 0x54
  * __dt__Q212JASBasicInst7TKeymapFv
  */
-JASBasicInst::TKeymap::~TKeymap() { delete[] mVeloRegions; }
+JASBasicInst::TKeymap::~TKeymap()
+{
+	delete[] mVeloRegions;
+}
 
 /**
  * @note Address: 0x80099DB4

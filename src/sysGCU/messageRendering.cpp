@@ -363,13 +363,19 @@ void TRenderingProcessor::do_select_separate()
  * @note Address: 0x8043A0C8
  * @note Size: 0x174
  */
-bool TRenderingProcessor::do_tag(u32 type, const void* a1, u32 a2) { return TRenderingProcessorBase::do_tag(type, a1, a2); }
+bool TRenderingProcessor::do_tag(u32 type, const void* a1, u32 a2)
+{
+	return TRenderingProcessorBase::do_tag(type, a1, a2);
+}
 
 /**
  * @note Address: 0x8043A23C
  * @note Size: 0x8
  */
-bool TRenderingProcessor::do_systemTagCode(u16, const void*, u32) { return false; }
+bool TRenderingProcessor::do_systemTagCode(u16, const void*, u32)
+{
+	return false;
+}
 
 /**
  * @note Address: 0x8043A244
@@ -430,7 +436,10 @@ bool TRenderingProcessor::tagRuby(const void* data, u32 size)
  * @note Address: 0x8043A410
  * @note Size: 0x8
  */
-bool TRenderingProcessor::tagFont(const void*, u32) { return true; }
+bool TRenderingProcessor::tagFont(const void*, u32)
+{
+	return true;
+}
 
 /**
  * @note Address: 0x8043A418
@@ -1625,13 +1634,19 @@ void TRenderingProcessor::setPageInfo()
  * @note Address: 0x8043C6DC
  * @note Size: 0x20
  */
-void TRenderingProcessor::preProcCode(uint p1) { preProcCenteringCode(p1); }
+void TRenderingProcessor::preProcCode(uint p1)
+{
+	preProcCenteringCode(p1);
+}
 
 /**
  * @note Address: 0x8043C6FC
  * @note Size: 0x20
  */
-void TRenderingProcessor::preProcID(uint p1, uint p2) { preProcCenteringID(p1, p2); }
+void TRenderingProcessor::preProcID(uint p1, uint p2)
+{
+	preProcCenteringID(p1, p2);
+}
 
 /**
  * @note Address: N/A
@@ -2203,7 +2218,10 @@ lbl_8043CE34:
  * @note Address: 0x8043CE64
  * @note Size: 0x8
  */
-void TRenderingProcessor::setFont(JUTFont* font) { mMainFont = font; }
+void TRenderingProcessor::setFont(JUTFont* font)
+{
+	mMainFont = font;
+}
 
 /**
  * @note Address: 0x8043CE6C

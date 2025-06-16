@@ -99,35 +99,45 @@ J3DAnmBase* J3DAnmLoaderDataBase::load(const void* stream)
  * @note Size: 0x1C
  * __ct__20J3DAnmFullLoader_v15Fv
  */
-J3DAnmFullLoader_v15::J3DAnmFullLoader_v15() { }
+J3DAnmFullLoader_v15::J3DAnmFullLoader_v15()
+{
+}
 
 /**
  * @note Address: 0x80072E80
  * @note Size: 0x48
  * __dt__12J3DAnmLoaderFv
  */
-J3DAnmLoader::~J3DAnmLoader() { }
+J3DAnmLoader::~J3DAnmLoader()
+{
+}
 
 /**
  * @note Address: 0x80072EC8
  * @note Size: 0x5C
  * __dt__20J3DAnmFullLoader_v15Fv
  */
-J3DAnmFullLoader_v15::~J3DAnmFullLoader_v15() { }
+J3DAnmFullLoader_v15::~J3DAnmFullLoader_v15()
+{
+}
 
 /**
  * @note Address: 0x80072F24
  * @note Size: 0x1C
  * __ct__19J3DAnmKeyLoader_v15Fv
  */
-J3DAnmKeyLoader_v15::J3DAnmKeyLoader_v15() { }
+J3DAnmKeyLoader_v15::J3DAnmKeyLoader_v15()
+{
+}
 
 /**
  * @note Address: 0x80072F40
  * @note Size: 0x5C
  * __dt__19J3DAnmKeyLoader_v15Fv
  */
-J3DAnmKeyLoader_v15::~J3DAnmKeyLoader_v15() { }
+J3DAnmKeyLoader_v15::~J3DAnmKeyLoader_v15()
+{
+}
 
 /**
  * @note Address: 0x80072F9C
@@ -232,7 +242,10 @@ void J3DAnmFullLoader_v15::setAnmTransform(J3DAnmTransformFull* animation, const
  * @note Address: 0x800732C0
  * @note Size: 0x28
  */
-void J3DAnmFullLoader_v15::readAnmColor(const J3DAnmColorFullData* data) { setAnmColor((J3DAnmColorFull*)mAnimation, data); }
+void J3DAnmFullLoader_v15::readAnmColor(const J3DAnmColorFullData* data)
+{
+	setAnmColor((J3DAnmColorFull*)mAnimation, data);
+}
 
 /**
  * @note Address: 0x800732E8
@@ -310,7 +323,10 @@ void J3DAnmFullLoader_v15::setAnmVisibility(J3DAnmVisibilityFull* animation, con
  * @note Address: 0x80073524
  * @note Size: 0x28
  */
-void J3DAnmFullLoader_v15::readAnmCluster(const J3DAnmClusterFullData* data) { setAnmCluster((J3DAnmClusterFull*)mAnimation, data); }
+void J3DAnmFullLoader_v15::readAnmCluster(const J3DAnmClusterFullData* data)
+{
+	setAnmCluster((J3DAnmClusterFull*)mAnimation, data);
+}
 
 /**
  * @note Address: 0x8007354C
@@ -330,7 +346,10 @@ void J3DAnmFullLoader_v15::setAnmCluster(J3DAnmClusterFull* animation, const J3D
  * @note Address: 0x800735B8
  * @note Size: 0x28
  */
-void J3DAnmFullLoader_v15::readAnmVtxColor(const J3DAnmVtxColorFullData* data) { setAnmVtxColor((J3DAnmVtxColorFull*)mAnimation, data); }
+void J3DAnmFullLoader_v15::readAnmVtxColor(const J3DAnmVtxColorFullData* data)
+{
+	setAnmVtxColor((J3DAnmVtxColorFull*)mAnimation, data);
+}
 
 /**
  * @note Address: 0x800735E0
@@ -442,7 +461,10 @@ void J3DAnmKeyLoader_v15::setResource(J3DAnmBase* resource, const void* stream)
  * @note Size: 0x28
  * readAnmTransform__19J3DAnmKeyLoader_v15FPC22J3DAnmTransformKeyData
  */
-void J3DAnmKeyLoader_v15::readAnmTransform(const J3DAnmTransformKeyData* data) { setAnmTransform((J3DAnmTransformKey*)mAnimation, data); }
+void J3DAnmKeyLoader_v15::readAnmTransform(const J3DAnmTransformKeyData* data)
+{
+	setAnmTransform((J3DAnmTransformKey*)mAnimation, data);
+}
 
 /**
  * @note Address: 0x800739E0
@@ -528,7 +550,10 @@ void J3DAnmKeyLoader_v15::setAnmTextureSRT(J3DAnmTextureSRTKey* animation, const
  * @note Size: 0x28
  * readAnmColor__19J3DAnmKeyLoader_v15FPC18J3DAnmColorKeyData
  */
-void J3DAnmKeyLoader_v15::readAnmColor(const J3DAnmColorKeyData* data) { setAnmColor((J3DAnmColorKey*)mAnimation, data); }
+void J3DAnmKeyLoader_v15::readAnmColor(const J3DAnmColorKeyData* data)
+{
+	setAnmColor((J3DAnmColorKey*)mAnimation, data);
+}
 
 /**
  * @note Address: 0x80073CA4
@@ -560,7 +585,10 @@ void J3DAnmKeyLoader_v15::setAnmColor(J3DAnmColorKey* animation, const J3DAnmCol
  * @note Size: 0x28
  * readAnmCluster__19J3DAnmKeyLoader_v15FPC20J3DAnmClusterKeyData
  */
-void J3DAnmKeyLoader_v15::readAnmCluster(const J3DAnmClusterKeyData* data) { setAnmCluster((J3DAnmClusterKey*)mAnimation, data); }
+void J3DAnmKeyLoader_v15::readAnmCluster(const J3DAnmClusterKeyData* data)
+{
+	setAnmCluster((J3DAnmClusterKey*)mAnimation, data);
+}
 
 /**
  * @note Address: 0x80073DB8
@@ -581,7 +609,10 @@ void J3DAnmKeyLoader_v15::setAnmCluster(J3DAnmClusterKey* animation, const J3DAn
  * @note Size: 0x28
  * readAnmTevReg__19J3DAnmKeyLoader_v15FPC19J3DAnmTevRegKeyData
  */
-void J3DAnmKeyLoader_v15::readAnmTevReg(const J3DAnmTevRegKeyData* data) { setAnmTevReg((J3DAnmTevRegKey*)mAnimation, data); }
+void J3DAnmKeyLoader_v15::readAnmTevReg(const J3DAnmTevRegKeyData* data)
+{
+	setAnmTevReg((J3DAnmTevRegKey*)mAnimation, data);
+}
 
 /**
  * @note Address: 0x80073E4C
@@ -624,7 +655,10 @@ void J3DAnmKeyLoader_v15::setAnmTevReg(J3DAnmTevRegKey* animation, const J3DAnmT
  * @note Size: 0x28
  * readAnmVtxColor__19J3DAnmKeyLoader_v15FPC21J3DAnmVtxColorKeyData
  */
-void J3DAnmKeyLoader_v15::readAnmVtxColor(const J3DAnmVtxColorKeyData* data) { setAnmVtxColor((J3DAnmVtxColorKey*)mAnimation, data); }
+void J3DAnmKeyLoader_v15::readAnmVtxColor(const J3DAnmVtxColorKeyData* data)
+{
+	setAnmVtxColor((J3DAnmVtxColorKey*)mAnimation, data);
+}
 
 /**
  * @note Address: 0x80074000

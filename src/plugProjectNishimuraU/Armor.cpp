@@ -25,7 +25,9 @@ Obj::Obj()
  * @note Address: 0x8027D7DC
  * @note Size: 0x4
  */
-void Obj::setInitialSetting(EnemyInitialParamBase*) { }
+void Obj::setInitialSetting(EnemyInitialParamBase*)
+{
+}
 
 /**
  * @note Address: 0x8027D7E0
@@ -58,13 +60,18 @@ void Obj::doUpdate()
  * @note Address: 0x8027D8C0
  * @note Size: 0x4
  */
-void Obj::doDirectDraw(Graphics&) { }
+void Obj::doDirectDraw(Graphics&)
+{
+}
 
 /**
  * @note Address: 0x8027D8C4
  * @note Size: 0x20
  */
-void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
+void Obj::doDebugDraw(Graphics& gfx)
+{
+	EnemyBase::doDebugDraw(gfx);
+}
 
 /**
  * @note Address: 0x8027D8E4
@@ -168,19 +175,28 @@ void Obj::doFinishStoneState()
  * @note Address: 0x8027DDAC
  * @note Size: 0x28
  */
-void Obj::startCarcassMotion() { startMotion(ARMORANIM_Carry, nullptr); }
+void Obj::startCarcassMotion()
+{
+	startMotion(ARMORANIM_Carry, nullptr);
+}
 
 /**
  * @note Address: 0x8027DDD4
  * @note Size: 0x20
  */
-void Obj::doStartMovie() { effectDrawOff(); }
+void Obj::doStartMovie()
+{
+	effectDrawOff();
+}
 
 /**
  * @note Address: 0x8027DDF4
  * @note Size: 0x20
  */
-void Obj::doEndMovie() { effectDrawOn(); }
+void Obj::doEndMovie()
+{
+	effectDrawOn();
+}
 
 /**
  * @note Address: 0x8027DE14
@@ -267,7 +283,10 @@ int Obj::getSlotPikiNum()
  * @note Address: 0x8027E350
  * @note Size: 0x2C
  */
-void Obj::killSlotPiki() { Game::EnemyFunc::swallowPikmin(this, CG_PROPERPARMS(this).mPoisonDamage.mValue, nullptr); }
+void Obj::killSlotPiki()
+{
+	Game::EnemyFunc::swallowPikmin(this, CG_PROPERPARMS(this).mPoisonDamage.mValue, nullptr);
+}
 
 /**
  * @note Address: 0x8027E37C
@@ -332,7 +351,9 @@ void Obj::setNearestBridge()
  * @note Address: 0x8027E6A4
  * @note Size: 0x4
  */
-void Obj::setCullingCheck() { }
+void Obj::setCullingCheck()
+{
+}
 
 /**
  * @note Address: 0x8027E6A8
@@ -884,19 +905,28 @@ void Obj::breakTargetBridge()
  * @note Address: 0x8027F12C
  * @note Size: 0xB0
  */
-void Obj::createEffect() { mEfxYoroiAttack = new efx::TYoroiAttack; }
+void Obj::createEffect()
+{
+	mEfxYoroiAttack = new efx::TYoroiAttack;
+}
 
 /**
  * @note Address: 0x8027F1DC
  * @note Size: 0x40
  */
-void Obj::setupEffect() { mEfxYoroiAttack->mMtx = mModel->getJoint("kamujnt")->getWorldMatrix(); }
+void Obj::setupEffect()
+{
+	mEfxYoroiAttack->mMtx = mModel->getJoint("kamujnt")->getWorldMatrix();
+}
 
 /**
  * @note Address: 0x8027F21C
  * @note Size: 0x34
  */
-void Obj::createAttackEffect() { mEfxYoroiAttack->create(nullptr); }
+void Obj::createAttackEffect()
+{
+	mEfxYoroiAttack->create(nullptr);
+}
 
 /**
  * @note Address: 0x8027F250
@@ -940,13 +970,19 @@ void Obj::createBridgeEffect()
  * @note Address: 0x8027F3F8
  * @note Size: 0x30
  */
-void Obj::effectDrawOn() { mEfxYoroiAttack->endDemoDrawOn(); }
+void Obj::effectDrawOn()
+{
+	mEfxYoroiAttack->endDemoDrawOn();
+}
 
 /**
  * @note Address: 0x8027F428
  * @note Size: 0x30
  */
-void Obj::effectDrawOff() { mEfxYoroiAttack->startDemoDrawOff(); }
+void Obj::effectDrawOff()
+{
+	mEfxYoroiAttack->startDemoDrawOff();
+}
 
 } // namespace Armor
 } // namespace Game

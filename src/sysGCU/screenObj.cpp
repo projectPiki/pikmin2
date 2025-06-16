@@ -19,7 +19,10 @@ ObjBase::ObjBase()
  * @note Address: 0x80453B78
  * @note Size: 0x2C
  */
-void ObjBase::create(JKRArchive* archive) { doCreate(archive); }
+void ObjBase::create(JKRArchive* archive)
+{
+	doCreate(archive);
+}
 
 /**
  * @note Address: 0x80453BA4
@@ -147,31 +150,46 @@ void ObjBase::doDraw(Graphics& gfx)
  * @note Address: 0x80453FA8
  * @note Size: 0xC
  */
-og::Screen::DispMemberBase* ObjBase::getDispMember() { return mOwner->mDispMember; }
+og::Screen::DispMemberBase* ObjBase::getDispMember()
+{
+	return mOwner->mDispMember;
+}
 
 /**
  * @note Address: 0x80453FB4
  * @note Size: 0x2C
  */
-bool ObjBase::confirmSetScene(SetSceneArg& arg) { return doConfirmSetScene(arg); }
+bool ObjBase::confirmSetScene(SetSceneArg& arg)
+{
+	return doConfirmSetScene(arg);
+}
 
 /**
  * @note Address: 0x80453FE0
  * @note Size: 0x2C
  */
-bool ObjBase::confirmStartScene(StartSceneArg* arg) { return doConfirmStartScene(arg); }
+bool ObjBase::confirmStartScene(StartSceneArg* arg)
+{
+	return doConfirmStartScene(arg);
+}
 
 /**
  * @note Address: 0x8045400C
  * @note Size: 0x34
  */
-bool ObjBase::confirmEndScene(EndSceneArg* arg) { return doConfirmEndScene(arg); }
+bool ObjBase::confirmEndScene(EndSceneArg* arg)
+{
+	return doConfirmEndScene(arg);
+}
 
 /**
  * @note Address: 0x80454040
  * @note Size: 0x30
  */
-Controller* ObjBase::getGamePad() const { return getOwner()->getGamePad(); }
+Controller* ObjBase::getGamePad() const
+{
+	return getOwner()->getGamePad();
+}
 
 /**
  * @note Address: 0x80454070

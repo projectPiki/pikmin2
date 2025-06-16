@@ -48,7 +48,9 @@ void StateDead::exec(EnemyBase* enemy)
  * @note Address: 0x8027411C
  * @note Size: 0x4
  */
-void StateDead::cleanup(EnemyBase*) { }
+void StateDead::cleanup(EnemyBase*)
+{
+}
 
 /**
  * @note Address: 0x80274120

@@ -43,7 +43,9 @@ Obj::Obj()
  * @note Address: 0x8029C35C
  * @note Size: 0x4
  */
-void Obj::setInitialSetting(EnemyInitialParamBase*) { }
+void Obj::setInitialSetting(EnemyInitialParamBase*)
+{
+}
 
 /**
  * @note Address: 0x8029C360
@@ -109,13 +111,18 @@ void Obj::doUpdate()
  * @note Address: 0x8029C4E4
  * @note Size: 0x4
  */
-void Obj::doDirectDraw(Graphics&) { }
+void Obj::doDirectDraw(Graphics&)
+{
+}
 
 /**
  * @note Address: 0x8029C4E8
  * @note Size: 0x20
  */
-void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
+void Obj::doDebugDraw(Graphics& gfx)
+{
+	EnemyBase::doDebugDraw(gfx);
+}
 
 /**
  * @note Address: 0x8029C508
@@ -249,19 +256,28 @@ void Obj::doFinishWaitingBirthTypeDrop()
  * @note Address: 0x8029C840
  * @note Size: 0x28
  */
-void Obj::startCarcassMotion() { startMotion(FUEFUKIANIM_Carry, nullptr); }
+void Obj::startCarcassMotion()
+{
+	startMotion(FUEFUKIANIM_Carry, nullptr);
+}
 
 /**
  * @note Address: 0x8029C868
  * @note Size: 0x20
  */
-void Obj::doStartMovie() { effectDrawOff(); }
+void Obj::doStartMovie()
+{
+	effectDrawOff();
+}
 
 /**
  * @note Address: 0x8029C888
  * @note Size: 0x20
  */
-void Obj::doEndMovie() { effectDrawOn(); }
+void Obj::doEndMovie()
+{
+	effectDrawOn();
+}
 
 /**
  * @note Address: 0x8029C8A8

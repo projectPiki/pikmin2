@@ -30,7 +30,9 @@ Obj::Obj()
  * @note Address: 0x802FC4F0
  * @note Size: 0x4
  */
-void Obj::setInitialSetting(EnemyInitialParamBase*) { }
+void Obj::setInitialSetting(EnemyInitialParamBase*)
+{
+}
 
 /**
  * @note Address: 0x802FC4F4
@@ -135,13 +137,18 @@ void Obj::changeMaterial()
  * @note Address: 0x802FC854
  * @note Size: 0x4
  */
-void Obj::doDirectDraw(Graphics& gfx) { }
+void Obj::doDirectDraw(Graphics& gfx)
+{
+}
 
 /**
  * @note Address: 0x802FC858
  * @note Size: 0x20
  */
-void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
+void Obj::doDebugDraw(Graphics& gfx)
+{
+	EnemyBase::doDebugDraw(gfx);
+}
 
 /**
  * @note Address: 0x802FC878
@@ -217,7 +224,10 @@ bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* part)
  * @note Address: 0x802FCAD8
  * @note Size: 0x8
  */
-bool Obj::earthquakeCallBack(Creature*, f32) { return false; }
+bool Obj::earthquakeCallBack(Creature*, f32)
+{
+	return false;
+}
 
 /**
  * @note Address: 0x802FCAE0
@@ -289,19 +299,28 @@ void Obj::doFinishStoneState()
  * @note Address: 0x802FCD9C
  * @note Size: 0x28
  */
-void Obj::startCarcassMotion() { startMotion(DANGOANIM_Carry, nullptr); }
+void Obj::startCarcassMotion()
+{
+	startMotion(DANGOANIM_Carry, nullptr);
+}
 
 /**
  * @note Address: 0x802FCDC4
  * @note Size: 0x20
  */
-void Obj::doStartMovie() { effectDrawOff(); }
+void Obj::doStartMovie()
+{
+	effectDrawOff();
+}
 
 /**
  * @note Address: 0x802FCDE4
  * @note Size: 0x20
  */
-void Obj::doEndMovie() { effectDrawOn(); }
+void Obj::doEndMovie()
+{
+	effectDrawOn();
+}
 
 /**
  * @note Address: 0x802FCE04
@@ -317,7 +336,10 @@ void Obj::initWalkSmokeEffect()
  * @note Address: 0x802FCE50
  * @note Size: 0x8
  */
-WalkSmokeEffect::Mgr* Obj::getWalkSmokeEffectMgr() { return &mWalkSmokeMgr; }
+WalkSmokeEffect::Mgr* Obj::getWalkSmokeEffectMgr()
+{
+	return &mWalkSmokeMgr;
+}
 
 /**
  * @note Address: 0x802FCE58
@@ -369,7 +391,10 @@ void Obj::setRandTarget()
  * @note Address: 0x802FD064
  * @note Size: 0x34
  */
-bool Obj::isReachedTarget() { return sqrDistanceXZ(mPosition, mTargetPosition) < 625.0f; }
+bool Obj::isReachedTarget()
+{
+	return sqrDistanceXZ(mPosition, mTargetPosition) < 625.0f;
+}
 
 /**
  * @note Address: 0x802FD098
@@ -1409,7 +1434,10 @@ void Obj::createWallBreakEffect()
  * @note Address: 0x802FF094
  * @note Size: 0x34
  */
-void Obj::createFlickAttackEffect() { mEfxAttack2->create(nullptr); }
+void Obj::createFlickAttackEffect()
+{
+	mEfxAttack2->create(nullptr);
+}
 
 /**
  * @note Address: 0x802FF0C8
@@ -1448,19 +1476,28 @@ void Obj::createBodyWallCrashEffect(Vector3f vec)
  * @note Address: 0x802FF210
  * @note Size: 0x34
  */
-void Obj::startRollingMoveEffect() { mEfxRun->create(nullptr); }
+void Obj::startRollingMoveEffect()
+{
+	mEfxRun->create(nullptr);
+}
 
 /**
  * @note Address: 0x802FF244
  * @note Size: 0x30
  */
-void Obj::finishRollingMoveEffect() { mEfxRun->fade(); }
+void Obj::finishRollingMoveEffect()
+{
+	mEfxRun->fade();
+}
 
 /**
  * @note Address: 0x802FF274
  * @note Size: 0x44
  */
-void Obj::createEnemyBounceEffect() { createBounceEffect(mPosition, getDownSmokeScale()); }
+void Obj::createEnemyBounceEffect()
+{
+	createBounceEffect(mPosition, getDownSmokeScale());
+}
 
 /**
  * @note Address: 0x802FF2C0

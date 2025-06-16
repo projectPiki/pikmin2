@@ -3,7 +3,10 @@
 #include "string.h"
 #include "P2Macros.h"
 
-static void _Print(char* format, ...) { OSReport(format, __FILE__); }
+static void _Print(char* format, ...)
+{
+	OSReport(format, __FILE__);
+}
 LoadResource::Mgr* gLoadResourceMgr;
 
 namespace LoadResource {
@@ -38,7 +41,9 @@ Node::~Node()
  * @note Address: N/A
  * @note Size: 0x4
  */
-void Node::dump() { }
+void Node::dump()
+{
+}
 
 /**
  * __ct__Q212LoadResource3ArgFPCc
@@ -91,7 +96,10 @@ Mgr::Mgr()
  * @note Address: 0x8044C664
  * @note Size: 0xB0
  */
-void Mgr::init() { new Mgr(); }
+void Mgr::init()
+{
+	new Mgr();
+}
 
 /**
  * @note Address: N/A

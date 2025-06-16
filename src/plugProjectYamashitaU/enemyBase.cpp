@@ -65,7 +65,10 @@ static const int _UNUSED[3] = { 0, 0, 0 };
  * @note Address: N/A
  * @note Size: 0xe4
  */
-static void _Print(char* format, ...) { OSReport(format, "enemyBase"); }
+static void _Print(char* format, ...)
+{
+	OSReport(format, "enemyBase");
+}
 
 namespace EnemyBaseFSM {
 /**
@@ -207,7 +210,10 @@ void BirthTypeDropState::update(EnemyBase* enemy)
  * @note Address: 0x800FF764
  * @note Size: 0x30
  */
-void BirthTypeDropState::cleanup(EnemyBase* enemy) { enemy->finishWaitingBirthTypeDrop(); }
+void BirthTypeDropState::cleanup(EnemyBase* enemy)
+{
+	enemy->finishWaitingBirthTypeDrop();
+}
 
 /**
  * Checks if the BirthTypeDropPikminState is finishable for waiting birth type drop.
@@ -316,13 +322,19 @@ bool BirthTypeDropTreasureState::isFinishableWaitingBirthTypeDrop(EnemyBase* ene
  * @note Address: 0x800FFCA8
  * @note Size: 0x8
  */
-bool BirthTypeDropEarthquakeState::isFinishableWaitingBirthTypeDrop(EnemyBase*) { return false; }
+bool BirthTypeDropEarthquakeState::isFinishableWaitingBirthTypeDrop(EnemyBase*)
+{
+	return false;
+}
 
 /**
  * @note Address: 0x800FFCB0
  * @note Size: 0x24
  */
-void AppearState::entry(EnemyBase* enemy) { enemy->doEntryLiving(); }
+void AppearState::entry(EnemyBase* enemy)
+{
+	enemy->doEntryLiving();
+}
 
 /**
  * Initializes the AppearState of an enemy.
@@ -449,7 +461,10 @@ void LivingState::entry(EnemyBase* enemy)
  * @note Address: 0x801000C4
  * @note Size: 0x30
  */
-void LivingState::updateCullingOff(EnemyBase* enemy) { enemy->doUpdate(); }
+void LivingState::updateCullingOff(EnemyBase* enemy)
+{
+	enemy->doUpdate();
+}
 
 /**
  * @note Address: 0x801000F4
@@ -794,19 +809,28 @@ void StateMachine::init(EnemyBase* enemy)
  * @note Address: 0x80101304
  * @note Size: 0x30
  */
-void StateMachine::update(EnemyBase* enemy) { mState->update(enemy); }
+void StateMachine::update(EnemyBase* enemy)
+{
+	mState->update(enemy);
+}
 
 /**
  * @note Address: 0x80101338
  * @note Size: 0x30
  */
-void StateMachine::entry(EnemyBase* enemy) { mState->entry(enemy); }
+void StateMachine::entry(EnemyBase* enemy)
+{
+	mState->entry(enemy);
+}
 
 /**
  * @note Address: 0x8010136C
  * @note Size: 0x30
  */
-void StateMachine::simulation(EnemyBase* enemy, f32 frameRate) { mState->simulation(enemy, frameRate); }
+void StateMachine::simulation(EnemyBase* enemy, f32 frameRate)
+{
+	mState->simulation(enemy, frameRate);
+}
 } // namespace EnemyBaseFSM
 
 /**
@@ -1214,13 +1238,18 @@ void EnemyBase::becomeCarcass()
  * @note Address: 0x80101EDC
  * @note Size: 0x8
  */
-bool EnemyBase::doBecomeCarcass() { return true; }
+bool EnemyBase::doBecomeCarcass()
+{
+	return true;
+}
 
 /**
  * @note Address: 0x80101EE4
  * @note Size: 0x4
  */
-void EnemyBase::doUpdateCarcass() { }
+void EnemyBase::doUpdateCarcass()
+{
+}
 
 void EnemyBase::deathMethod()
 {
@@ -1500,7 +1529,10 @@ void EnemyBase::setParameters()
  * @note Address: 0x80102C50
  * @note Size: 0x34
  */
-void EnemyBase::update() { static_cast<EnemyBaseFSM::StateMachine*>(mLifecycleFSM)->update(this); }
+void EnemyBase::update()
+{
+	static_cast<EnemyBaseFSM::StateMachine*>(mLifecycleFSM)->update(this);
+}
 
 /**
  * Checks if the EnemyBase is in a finishable state for the waiting birth type drop.
@@ -1564,13 +1596,18 @@ void EnemyBase::startStoneState()
  * @note Address: 0x80102EF4
  * @note Size: 0x14
  */
-void EnemyBase::doStartStoneState() { mTargetVelocity = Vector3f(0.0f); }
+void EnemyBase::doStartStoneState()
+{
+	mTargetVelocity = Vector3f(0.0f);
+}
 
 /**
  * @note Address: 0x80102F08
  * @note Size: 0x4
  */
-void EnemyBase::doFinishStoneState() { }
+void EnemyBase::doFinishStoneState()
+{
+}
 
 void EnemyBase::updateEffects()
 {
@@ -1598,7 +1635,10 @@ void EnemyBase::doUpdateCommon()
  * @note Address: 0x80102F94
  * @note Size: 0x34
  */
-void EnemyBase::doAnimation() { static_cast<EnemyBaseFSM::StateMachine*>(mLifecycleFSM)->animation(this); }
+void EnemyBase::doAnimation()
+{
+	static_cast<EnemyBaseFSM::StateMachine*>(mLifecycleFSM)->animation(this);
+}
 
 /**
  * Updates the animator of the EnemyBase object by animating it based on the current speed and delta time.
@@ -1676,7 +1716,10 @@ void EnemyBase::doAnimationStick()
  * @note Address: N/A
  * @note Size: 0x20
  */
-void EnemyBase::doAnimationCullingOn() { mModel->mJ3dModel->mModelData->mJointTree.mJoints[0]->mMtxCalc = nullptr; }
+void EnemyBase::doAnimationCullingOn()
+{
+	mModel->mJ3dModel->mModelData->mJointTree.mJoints[0]->mMtxCalc = nullptr;
+}
 
 /**
  * @note Address: 0x80103338
@@ -1753,13 +1796,19 @@ void EnemyBase::doEntryLiving()
  * @note Address: 0x8010364C
  * @note Size: 0x34
  */
-void EnemyBase::doEntry() { mLifecycleFSM->entry(this); }
+void EnemyBase::doEntry()
+{
+	mLifecycleFSM->entry(this);
+}
 
 /**
  * @note Address: 0x80103680
  * @note Size: 0x28
  */
-void EnemyBase::doSetView(int viewportNumber) { mModel->setCurrentViewNo((u16)viewportNumber); }
+void EnemyBase::doSetView(int viewportNumber)
+{
+	mModel->setCurrentViewNo((u16)viewportNumber);
+}
 
 /**
  * @note Address: 0x801036A8
@@ -2101,13 +2150,19 @@ void EnemyBase::collisionMapAndPlat(f32 frameRate)
  * @note Address: 0x80104A38
  * @note Size: 0x20
  */
-void EnemyBase::doSimulationCarcass(f32 frameRate) { updateWaterBox(); }
+void EnemyBase::doSimulationCarcass(f32 frameRate)
+{
+	updateWaterBox();
+}
 
 /**
  * @note Address: 0x80104A58
  * @note Size: 0x34
  */
-void EnemyBase::doSimulation(f32 frameRate) { mLifecycleFSM->simulation(this, frameRate); }
+void EnemyBase::doSimulation(f32 frameRate)
+{
+	mLifecycleFSM->simulation(this, frameRate);
+}
 
 /**
  * @note Address: 0x80104A8C
@@ -2153,7 +2208,10 @@ void EnemyBase::gotoHell()
  * @note Address: 0x80104BD4
  * @note Size: 0x30
  */
-void EnemyBase::setAnimMgr(SysShape::AnimMgr* mgr) { mAnimator->setAnimMgr(mgr); }
+void EnemyBase::setAnimMgr(SysShape::AnimMgr* mgr)
+{
+	mAnimator->setAnimMgr(mgr);
+}
 
 /**
  * Sets the anime for the enemy base based on the current event.
@@ -2268,19 +2326,28 @@ void EnemyBase::startMotion(int id, SysShape::MotionListener* inputListener)
  * @note Address: 0x80105228
  * @note Size: 0x44
  */
-void EnemyBase::setMotionFrame(f32 frame) { mAnimator->getAnimator().setCurrFrame(frame); }
+void EnemyBase::setMotionFrame(f32 frame)
+{
+	mAnimator->getAnimator().setCurrFrame(frame);
+}
 
 /**
  * @note Address: 0x8010526C
  * @note Size: 0x34
  */
-f32 EnemyBase::getMotionFrame() { return mAnimator->getAnimator().mTimer; }
+f32 EnemyBase::getMotionFrame()
+{
+	return mAnimator->getAnimator().mTimer;
+}
 
 /**
  * @note Address: 0x801052A0
  * @note Size: 0x40
  */
-void EnemyBase::finishMotion() { mAnimator->getAnimator(0).setFlag(SysShape::Animator::AnimFinishMotion); }
+void EnemyBase::finishMotion()
+{
+	mAnimator->getAnimator(0).setFlag(SysShape::Animator::AnimFinishMotion);
+}
 
 /**
  * @note Address: 0x801052E0
@@ -2478,7 +2545,10 @@ void EnemyBase::getThrowupItemPosition(Vector3f* throwupItemPosition)
  * @note Address: 0x801059A0
  * @note Size: 0x18
  */
-void EnemyBase::getThrowupItemVelocity(Vector3f* throwupItemVelocity) { *throwupItemVelocity = Vector3f(0.0f, 200.0f, 0.0f); }
+void EnemyBase::getThrowupItemVelocity(Vector3f* throwupItemVelocity)
+{
+	*throwupItemVelocity = Vector3f(0.0f, 200.0f, 0.0f);
+}
 
 /**
  * @note Address: 0x801059B8
@@ -2573,7 +2643,9 @@ void EnemyBase::throwupItem()
  * @note Address: 0x80105E6C
  * @note Size: 0x4
  */
-void EnemyBase::doDebugDraw(Graphics&) { }
+void EnemyBase::doDebugDraw(Graphics&)
+{
+}
 
 /**
  * @note Address: 0x80105E70
@@ -2682,13 +2754,19 @@ bool EnemyBase::damageCallBack(Creature* sourceCreature, f32 damage, CollPart* p
  * @note Address: 0x801060B4
  * @note Size: 0x8
  */
-bool EnemyBase::pressCallBack(Creature*, f32, CollPart*) { return false; }
+bool EnemyBase::pressCallBack(Creature*, f32, CollPart*)
+{
+	return false;
+}
 
 /**
  * @note Address: 0x801060BC
  * @note Size: 0x8
  */
-bool EnemyBase::flyCollisionCallBack(Creature*, f32, CollPart*) { return false; }
+bool EnemyBase::flyCollisionCallBack(Creature*, f32, CollPart*)
+{
+	return false;
+}
 
 /**
  * @note Address: 0x801060C4
@@ -2710,13 +2788,19 @@ bool EnemyBase::hipdropCallBack(Creature* sourceCreature, f32 damage, CollPart* 
  * @note Address: 0x8010630C
  * @note Size: 0x8
  */
-bool EnemyBase::dropCallBack(Creature*) { return false; }
+bool EnemyBase::dropCallBack(Creature*)
+{
+	return false;
+}
 
 /**
  * @note Address: 0x80106314
  * @note Size: 0x40
  */
-bool EnemyBase::isBeforeAppearState() { return mLifecycleFSM->getCurrID(this) < EnemyBaseFSM::EBS_Appear; }
+bool EnemyBase::isBeforeAppearState()
+{
+	return mLifecycleFSM->getCurrID(this) < EnemyBaseFSM::EBS_Appear;
+}
 
 /**
  * @note Address: 0x80106354
@@ -2779,7 +2863,10 @@ bool EnemyBase::dopeCallBack(Creature* creature, int sprayType)
  * @note Address: 0x801065C0
  * @note Size: 0x8
  */
-bool EnemyBase::farmCallBack(Creature*, f32 power) { return false; }
+bool EnemyBase::farmCallBack(Creature*, f32 power)
+{
+	return false;
+}
 
 /**
  * @note Address: 0x801065C8
@@ -2815,25 +2902,36 @@ void EnemyBase::setCollEvent(CollEvent& event)
  * @note Address: 0x8010668C
  * @note Size: 0x10
  */
-void EnemyBase::resetCollEvent() { disableEvent(0, EB_Colliding); }
+void EnemyBase::resetCollEvent()
+{
+	disableEvent(0, EB_Colliding);
+}
 
 /**
  * @note Address: 0x8010669C
  * @note Size: 0x4
  */
-void EnemyBase::changeMaterial() { }
+void EnemyBase::changeMaterial()
+{
+}
 
 /**
  * @note Address: 0x801066A0
  * @note Size: 0x8
  */
-SysShape::Model* EnemyBase::viewGetShape() { return mModel; }
+SysShape::Model* EnemyBase::viewGetShape()
+{
+	return mModel;
+}
 
 /**
  * @note Address: 0x801066A8
  * @note Size: 0x20
  */
-void EnemyBase::viewStartCarryMotion() { startMotion(); }
+void EnemyBase::viewStartCarryMotion()
+{
+	startMotion();
+}
 
 /**
  * @note Address: 0x801066C8
@@ -2881,13 +2979,19 @@ void EnemyBase::viewOnPelletKilled()
  * @note Address: 0x80106A4C
  * @note Size: 0x2C
  */
-void EnemyBase::view_start_carrymotion() { startCarcassMotion(); }
+void EnemyBase::view_start_carrymotion()
+{
+	startCarcassMotion();
+}
 
 /**
  * @note Address: 0x80106A78
  * @note Size: 0x40
  */
-void EnemyBase::view_finish_carrymotion() { mAnimator->getAnimator(0).setFlag(SysShape::Animator::AnimFinishMotion); }
+void EnemyBase::view_finish_carrymotion()
+{
+	mAnimator->getAnimator(0).setFlag(SysShape::Animator::AnimFinishMotion);
+}
 
 /**
  * @note Address: 0x80106AB8
@@ -3011,7 +3115,10 @@ void EnemyBase::startMotion()
  * @note Address: 0x80107220
  * @note Size: 0x58
  */
-f32 EnemyBase::getMotionFrameMax() { return mAnimator->getAnimator().mAnimInfo->mAnm->mTotalFrameCount; }
+f32 EnemyBase::getMotionFrameMax()
+{
+	return mAnimator->getAnimator().mAnimInfo->mAnm->mTotalFrameCount;
+}
 
 /**
  * @note Address: 0x80107278
@@ -3042,13 +3149,19 @@ void EnemyBase::stopMotion()
  * @note Address: 0x80107300
  * @note Size: 0x38
  */
-bool EnemyBase::isFinishMotion() { return mAnimator->getAnimator().isFlag(SysShape::Animator::AnimFinishMotion); }
+bool EnemyBase::isFinishMotion()
+{
+	return mAnimator->getAnimator().isFlag(SysShape::Animator::AnimFinishMotion);
+}
 
 /**
  * @note Address: 0x80107338
  * @note Size: 0x10
  */
-bool EnemyBase::isStopMotion() { return mAnimator->mFlags.isSet(SysShape::Animator::AnimCompleted); }
+bool EnemyBase::isStopMotion()
+{
+	return mAnimator->mFlags.isSet(SysShape::Animator::AnimCompleted);
+}
 
 /**
  * @note Address: 0x80107348
@@ -3068,25 +3181,37 @@ int EnemyBase::getCurrAnimIndex()
  * @note Address: 0x80107390
  * @note Size: 0xC
  */
-void EnemyBase::setAnimSpeed(f32 speed) { mAnimator->mSpeed = speed; }
+void EnemyBase::setAnimSpeed(f32 speed)
+{
+	mAnimator->mSpeed = speed;
+}
 
 /**
  * @note Address: 0x8010739C
  * @note Size: 0x30
  */
-void EnemyBase::resetAnimSpeed() { mAnimator->resetAnimSpeed(); }
+void EnemyBase::resetAnimSpeed()
+{
+	mAnimator->resetAnimSpeed();
+}
 
 /**
  * @note Address: 0x801073D8
  * @note Size: 0x14
  */
-JAInter::Object* EnemyBase::getJAIObject() { return static_cast<JAInter::Object*>(mSoundObj); }
+JAInter::Object* EnemyBase::getJAIObject()
+{
+	return static_cast<JAInter::Object*>(mSoundObj);
+}
 
 /**
  * @note Address: 0x801073EC
  * @note Size: 0x8
  */
-PSM::Creature* EnemyBase::getPSCreature() { return static_cast<PSM::Creature*>(mSoundObj); }
+PSM::Creature* EnemyBase::getPSCreature()
+{
+	return static_cast<PSM::Creature*>(mSoundObj);
+}
 
 /**
  * @note Address: 0x801073F4
@@ -3172,13 +3297,19 @@ bool EnemyBase::eatWhitePikminCallBack(Creature* creature, f32 damage)
  * @note Address: 0x80107764
  * @note Size: 0x8
  */
-f32 EnemyBase::getDownSmokeScale() { return 0.0f; }
+f32 EnemyBase::getDownSmokeScale()
+{
+	return 0.0f;
+}
 
 /**
  * @note Address: 0x8010776C
  * @note Size: 0x10
  */
-void EnemyBase::constraintOff() { disableEvent(0, EB_Constrained); }
+void EnemyBase::constraintOff()
+{
+	disableEvent(0, EB_Constrained);
+}
 
 /**
  * @note Address: 0x8010777C
@@ -3248,37 +3379,51 @@ void EnemyBase::doStartEarthquakeState(f32 yVelocityScale)
  * @note Address: 0x80107960
  * @note Size: 0x4
  */
-void EnemyBase::doFinishEarthquakeState() { }
+void EnemyBase::doFinishEarthquakeState()
+{
+}
 
 /**
  * @note Address: 0x80107964
  * @note Size: 0x4
  */
-void EnemyBase::doStartEarthquakeFitState() { }
+void EnemyBase::doStartEarthquakeFitState()
+{
+}
 
 /**
  * @note Address: 0x80107968
  * @note Size: 0x4
  */
-void EnemyBase::doFinishEarthquakeFitState() { }
+void EnemyBase::doFinishEarthquakeFitState()
+{
+}
 
 /**
  * @note Address: 0x8010796C
  * @note Size: 0x2C
  */
-void EnemyBase::startWaitingBirthTypeDrop() { doStartWaitingBirthTypeDrop(); }
+void EnemyBase::startWaitingBirthTypeDrop()
+{
+	doStartWaitingBirthTypeDrop();
+}
 
 /**
  * @note Address: 0x80107998
  * @note Size: 0x4
  */
-void EnemyBase::doStartWaitingBirthTypeDrop() { }
+void EnemyBase::doStartWaitingBirthTypeDrop()
+{
+}
 
 /**
  * @note Address: 0x8010799C
  * @note Size: 0x2C
  */
-void EnemyBase::finishWaitingBirthTypeDrop() { doFinishWaitingBirthTypeDrop(); }
+void EnemyBase::finishWaitingBirthTypeDrop()
+{
+	doFinishWaitingBirthTypeDrop();
+}
 
 /**
  * @note Address: 0x801079C8
@@ -3307,7 +3452,10 @@ bool EnemyBase::isBirthTypeDropGroup()
  * @note Address: 0x80107A68
  * @note Size: 0x8
  */
-Vector3f* EnemyBase::getFitEffectPos() { return &mBoundingSphere.mPosition; }
+Vector3f* EnemyBase::getFitEffectPos()
+{
+	return &mBoundingSphere.mPosition;
+}
 
 /**
  * @note Address: 0x80107A70

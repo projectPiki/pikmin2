@@ -59,7 +59,9 @@ void StateDead::exec(EnemyBase* enemy)
  * @note Address: 0x80256828
  * @note Size: 0x4
  */
-void StateDead::cleanup(EnemyBase* enemy) { }
+void StateDead::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x8025682C
@@ -421,7 +423,9 @@ lbl_80256CBC:
  * @note Address: 0x80256D10
  * @note Size: 0x4
  */
-void StateWait::cleanup(EnemyBase* enemy) { }
+void StateWait::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x80256D14
@@ -1004,7 +1008,10 @@ void StateFail::exec(EnemyBase* enemy)
  * @note Address: 0x80257A58
  * @note Size: 0x24
  */
-void StateFail::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
+void StateFail::cleanup(EnemyBase* enemy)
+{
+	enemy->setEmotionCaution();
+}
 
 /**
  * @note Address: 0x80257A7C

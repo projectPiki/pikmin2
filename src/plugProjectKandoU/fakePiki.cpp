@@ -82,7 +82,10 @@ void FakePiki::initFakePiki()
  * @note Address: 0x8013CE4C
  * @note Size: 0x28
  */
-void FakePiki::killFakePiki() { shadowMgr->delShadow(this); }
+void FakePiki::killFakePiki()
+{
+	shadowMgr->delShadow(this);
+}
 
 /**
  * @note Address: 0x8013CE74
@@ -165,19 +168,28 @@ void FakePiki::finishMotion()
  * @note Address: 0x8013D0DC
  * @note Size: 0x8
  */
-void FakePiki::movieSetFaceDir(f32 faceDir) { mFaceDir = faceDir; }
+void FakePiki::movieSetFaceDir(f32 faceDir)
+{
+	mFaceDir = faceDir;
+}
 
 /**
  * @note Address: 0x8013D0E4
  * @note Size: 0x8
  */
-void FakePiki::setDoAnimCallback(IDelegate* callback) { mDoAnimCallback = callback; }
+void FakePiki::setDoAnimCallback(IDelegate* callback)
+{
+	mDoAnimCallback = callback;
+}
 
 /**
  * @note Address: 0x8013D0EC
  * @note Size: 0xC
  */
-void FakePiki::clearDoAnimCallback() { mDoAnimCallback = nullptr; }
+void FakePiki::clearDoAnimCallback()
+{
+	mDoAnimCallback = nullptr;
+}
 
 /**
  * @note Address: 0x8013D0F8
@@ -687,7 +699,9 @@ void FakePiki::updateLookCreature()
  * @note Address: 0x8013D820
  * @note Size: 0x4
  */
-void FakePiki::do_updateLookCreature() { }
+void FakePiki::do_updateLookCreature()
+{
+}
 
 /**
  * @note Address: 0x8013D824
@@ -1560,19 +1574,28 @@ void FakePiki::doSimulation(f32 rate)
  * @note Address: 0x8013F358
  * @note Size: 0xC
  */
-void FakePiki::initCaptureStomach() { mTargetCollObj = nullptr; }
+void FakePiki::initCaptureStomach()
+{
+	mTargetCollObj = nullptr;
+}
 
 /**
  * @note Address: 0x8013F364
  * @note Size: 0x8
  */
-void FakePiki::startCaptureStomach(CollPart* collPart) { mTargetCollObj = collPart; }
+void FakePiki::startCaptureStomach(CollPart* collPart)
+{
+	mTargetCollObj = collPart;
+}
 
 /**
  * @note Address: 0x8013F36C
  * @note Size: 0xC
  */
-void FakePiki::endCaptureStomach() { mTargetCollObj = nullptr; }
+void FakePiki::endCaptureStomach()
+{
+	mTargetCollObj = nullptr;
+}
 
 /**
  * @note Address: 0x8013F378
@@ -1605,6 +1628,9 @@ void FakePiki::updateStomach()
  * @note Address: 0x8013F4D0
  * @note Size: 0x8
  */
-bool FakePiki::debugShapeDL(char*) { return true; }
+bool FakePiki::debugShapeDL(char*)
+{
+	return true;
+}
 
 } // namespace Game

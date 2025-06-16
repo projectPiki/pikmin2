@@ -7,13 +7,17 @@ namespace newScreen {
  * @note Address: 0x80327C5C
  * @note Size: 0x3C
  */
-Vs::Vs() { }
+Vs::Vs()
+{
+}
 
 /**
  * @note Address: 0x80327C98
  * @note Size: 0x4
  */
-void Vs::doUserCallBackFunc(Resource::MgrCommand*) { }
+void Vs::doUserCallBackFunc(Resource::MgrCommand*)
+{
+}
 
 /**
  * @note Address: 0x80327C9C

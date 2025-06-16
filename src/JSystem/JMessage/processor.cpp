@@ -11,19 +11,26 @@ namespace JMessage {
  * @note Address: 0x80006D0C
  * @note Size: 0x48
  */
-TReference::~TReference() { }
+TReference::~TReference()
+{
+}
 
 /**
  * @note Address: 0x80006D54
  * @note Size: 0x8
  */
-char* TReference::do_word(u32) const { return nullptr; }
+char* TReference::do_word(u32) const
+{
+	return nullptr;
+}
 
 /**
  * @note Address: 0x80006D5C
  * @note Size: 0x48
  */
-TProcessor::~TProcessor() { }
+TProcessor::~TProcessor()
+{
+}
 
 /**
  * @note Address: 0x80006DA4
@@ -295,43 +302,59 @@ unknown TProcessor::on_select_separate()
  * @note Address: 0x80007134
  * @note Size: 0x4
  */
-void TProcessor::do_reset() { }
+void TProcessor::do_reset()
+{
+}
 
 /**
  * @note Address: 0x80007138
  * @note Size: 0x4
  */
-void TProcessor::do_character(int) { }
+void TProcessor::do_character(int)
+{
+}
 
 /**
  * @note Address: 0x8000713C
  * @note Size: 0x8
  */
-bool TProcessor::do_tag(u32, const void*, u32) { return false; }
+bool TProcessor::do_tag(u32, const void*, u32)
+{
+	return false;
+}
 
 /**
  * @note Address: 0x80007144
  * @note Size: 0x8
  */
-bool TProcessor::do_systemTagCode(u16, const void*, u32) { return false; }
+bool TProcessor::do_systemTagCode(u16, const void*, u32)
+{
+	return false;
+}
 
 /**
  * @note Address: 0x8000714C
  * @note Size: 0x4
  */
-void TProcessor::do_select_begin(u32) { }
+void TProcessor::do_select_begin(u32)
+{
+}
 
 /**
  * @note Address: 0x80007150
  * @note Size: 0x4
  */
-void TProcessor::do_select_end() { }
+void TProcessor::do_select_end()
+{
+}
 
 /**
  * @note Address: 0x80007154
  * @note Size: 0x4
  */
-void TProcessor::do_select_separate() { }
+void TProcessor::do_select_separate()
+{
+}
 
 /**
  * @note Address: 0x80007158
@@ -371,7 +394,10 @@ void TProcessor::on_tag_()
  * @note Address: 0x800071BC
  * @note Size: 0x8
  */
-bool TProcessor::do_setBegin_isReady_() const { return true; }
+bool TProcessor::do_setBegin_isReady_() const
+{
+	return true;
+}
 
 /**
  * @note Address: 0x800071C4
@@ -587,7 +613,10 @@ lbl_80007404:
  * @note Address: 0x80007424
  * @note Size: 0x50
  */
-const char* TProcessor::on_message_limited(u16 messageIndex) const { return mResourceCache->getMessageText_messageIndex(messageIndex); }
+const char* TProcessor::on_message_limited(u16 messageIndex) const
+{
+	return mResourceCache->getMessageText_messageIndex(messageIndex);
+}
 
 /**
  * @note Address: 0x80007474
@@ -611,7 +640,10 @@ void TProcessor::do_systemTagCode_(u16 p1, const void* p2, u32 p3)
  * @note Size: 0x20
  * on_message__Q28JMessage10TProcessorCFUl
  */
-const char* TProcessor::on_message(u32 code) const { return getMessageText_messageCode(code); }
+const char* TProcessor::on_message(u32 code) const
+{
+	return getMessageText_messageCode(code);
+}
 
 /**
  * @note Address: 0x80007564
@@ -781,7 +813,9 @@ TSequenceProcessor::TSequenceProcessor(const TReference* ref, TControl* control)
  * @note Address: 0x80007828
  * @note Size: 0x5C
  */
-TSequenceProcessor::~TSequenceProcessor() { }
+TSequenceProcessor::~TSequenceProcessor()
+{
+}
 
 /**
  * @note Address: 0x80007884
@@ -1040,7 +1074,10 @@ lbl_80007AE8:
  * @note Address: 0x80007AFC
  * @note Size: 0x2C
  */
-bool TSequenceProcessor::on_isReady() { return do_isReady(); }
+bool TSequenceProcessor::on_isReady()
+{
+	return do_isReady();
+}
 
 /**
  * @note Address: N/A
@@ -1056,7 +1093,10 @@ unknown TSequenceProcessor::on_jump_register(OnJumpRegisterCallBack*, const void
  * @note Address: 0x80007B28
  * @note Size: 0x2C
  */
-bool TSequenceProcessor::on_jump_isReady() { return do_jump_isReady(); }
+bool TSequenceProcessor::on_jump_isReady()
+{
+	return do_jump_isReady();
+}
 
 /**
  * @note Address: 0x80007B54
@@ -1097,7 +1137,10 @@ unknown TSequenceProcessor::on_branch_query(u16)
  * @note Address: 0x80007BF0
  * @note Size: 0x2C
  */
-int TSequenceProcessor::on_branch_queryResult() { return do_branch_queryResult(); }
+int TSequenceProcessor::on_branch_queryResult()
+{
+	return do_branch_queryResult();
+}
 
 /**
  * @note Address: 0x80007C1C
@@ -1118,49 +1161,68 @@ void TSequenceProcessor::on_branch(const void* p1, const char* p2)
  * @note Address: 0x80007CB8
  * @note Size: 0x4
  */
-void TSequenceProcessor::do_begin(const void*, const char*) { }
+void TSequenceProcessor::do_begin(const void*, const char*)
+{
+}
 
 /**
  * @note Address: 0x80007CBC
  * @note Size: 0x4
  */
-void TSequenceProcessor::do_end() { }
+void TSequenceProcessor::do_end()
+{
+}
 
 /**
  * @note Address: 0x80007CC0
  * @note Size: 0x8
  */
-bool TSequenceProcessor::do_isReady() { return true; }
+bool TSequenceProcessor::do_isReady()
+{
+	return true;
+}
 
 /**
  * @note Address: 0x80007CC8
  * @note Size: 0x8
  */
-bool TSequenceProcessor::do_jump_isReady() { return true; }
+bool TSequenceProcessor::do_jump_isReady()
+{
+	return true;
+}
 
 /**
  * @note Address: 0x80007CD0
  * @note Size: 0x4
  */
-void TSequenceProcessor::do_jump(const void*, const char*) { }
+void TSequenceProcessor::do_jump(const void*, const char*)
+{
+}
 
 /**
  * @note Address: 0x80007CD4
  * @note Size: 0x4
  */
-void TSequenceProcessor::do_branch_query(u16) { }
+void TSequenceProcessor::do_branch_query(u16)
+{
+}
 
 /**
  * @note Address: 0x80007CD8
  * @note Size: 0x8
  */
-int TSequenceProcessor::do_branch_queryResult() { return -0x2; }
+int TSequenceProcessor::do_branch_queryResult()
+{
+	return -0x2;
+}
 
 /**
  * @note Address: 0x80007CE0
  * @note Size: 0x4
  */
-void TSequenceProcessor::do_branch(const void*, const char*) { }
+void TSequenceProcessor::do_branch(const void*, const char*)
+{
+}
 
 /**
  * @note Address: 0x80007CE4
@@ -1179,14 +1241,20 @@ void TSequenceProcessor::do_reset_(const char* p1)
  * @note Size: 0x10
  * do_setBegin_isReady___Q28JMessage18TSequenceProcessorCFv
  */
-bool TSequenceProcessor::do_setBegin_isReady_() const { return mStatus == STATUS_Ready; }
+bool TSequenceProcessor::do_setBegin_isReady_() const
+{
+	return mStatus == STATUS_Ready;
+}
 
 /**
  * @note Address: 0x80007D10
  * @note Size: 0x2C
  * do_begin___Q28JMessage18TSequenceProcessorFPCvPCc
  */
-void TSequenceProcessor::do_begin_(const void* p1, const char* p2) { do_begin(p1, p2); }
+void TSequenceProcessor::do_begin_(const void* p1, const char* p2)
+{
+	do_begin(p1, p2);
+}
 
 /**
  * @note Address: 0x80007D3C
@@ -1407,7 +1475,9 @@ TRenderingProcessor::TRenderingProcessor(const TReference* ref)
  * @note Address: 0x800080FC
  * @note Size: 0x5C
  */
-TRenderingProcessor::~TRenderingProcessor() { }
+TRenderingProcessor::~TRenderingProcessor()
+{
+}
 
 /**
  * @note Address: 0x80008158
@@ -1542,33 +1612,45 @@ lbl_800082B8:
  * @note Address: 0x800082CC
  * @note Size: 0x4
  */
-void TRenderingProcessor::do_begin(const void*, const char*) { }
+void TRenderingProcessor::do_begin(const void*, const char*)
+{
+}
 
 /**
  * @note Address: 0x800082D0
  * @note Size: 0x4
  */
-void TRenderingProcessor::do_end() { }
+void TRenderingProcessor::do_end()
+{
+}
 
 /**
  * @note Address: 0x800082D4
  * @note Size: 0x4
  */
-void TRenderingProcessor::do_reset_(const char*) { }
+void TRenderingProcessor::do_reset_(const char*)
+{
+}
 
 /**
  * @note Address: 0x800082D8
  * @note Size: 0x2C
  * do_begin___Q28JMessage19TRenderingProcessorFPCvPCc
  */
-void TRenderingProcessor::do_begin_(const void* p1, const char* p2) { do_begin(p1, p2); }
+void TRenderingProcessor::do_begin_(const void* p1, const char* p2)
+{
+	do_begin(p1, p2);
+}
 
 /**
  * @note Address: 0x80008304
  * @note Size: 0x2C
  * do_end___Q28JMessage19TRenderingProcessorFv
  */
-void TRenderingProcessor::do_end_() { do_end(); }
+void TRenderingProcessor::do_end_()
+{
+	do_end();
+}
 
 /**
  * @note Address: 0x80008330

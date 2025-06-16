@@ -14,13 +14,19 @@ namespace Egg {
  * @note Address: 0x8034BB30
  * @note Size: 0x20
  */
-void Obj::setParameters() { EnemyBase::setParameters(); }
+void Obj::setParameters()
+{
+	EnemyBase::setParameters();
+}
 
 /**
  * @note Address: 0x8034BB50
  * @note Size: 0x20
  */
-void Obj::birth(Vector3f& position, f32 p1) { EnemyBase::birth(position, p1); }
+void Obj::birth(Vector3f& position, f32 p1)
+{
+	EnemyBase::birth(position, p1);
+}
 
 /**
  * @note Address: 0x8034BB70
@@ -85,13 +91,18 @@ void Obj::doUpdate()
  * @note Address: 0x8034BEB0
  * @note Size: 0x4
  */
-void Obj::doDirectDraw(Graphics&) { }
+void Obj::doDirectDraw(Graphics&)
+{
+}
 
 /**
  * @note Address: 0x8034BEB4
  * @note Size: 0x20
  */
-void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
+void Obj::doDebugDraw(Graphics& gfx)
+{
+	EnemyBase::doDebugDraw(gfx);
+}
 
 /**
  * @note Address: 0x8034BED4
@@ -143,7 +154,10 @@ void Obj::doAnimationCullingOff()
  * @note Address: 0x8034C048
  * @note Size: 0x8
  */
-bool Obj::pressCallBack(Creature*, f32, CollPart*) { return false; }
+bool Obj::pressCallBack(Creature*, f32, CollPart*)
+{
+	return false;
+}
 
 /**
  * @note Address: 0x8034C050

@@ -348,7 +348,10 @@ lbl_8010FEC0:
  * @note Address: 0x8010FEF8
  * @note Size: 0x24
  */
-void StateWait::cleanup(EnemyBase* enemy) { enemy->constraintOff(); }
+void StateWait::cleanup(EnemyBase* enemy)
+{
+	enemy->constraintOff();
+}
 
 /**
  * @note Address: 0x8010FF1C
@@ -385,7 +388,9 @@ void StateDead::exec(EnemyBase* enemy)
  * @note Address: 0x8010FFE8
  * @note Size: 0x4
  */
-void StateDead::cleanup(EnemyBase* enemy) { }
+void StateDead::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x8010FFEC
@@ -971,7 +976,10 @@ lbl_8011072C:
  * @note Address: 0x8011078C
  * @note Size: 0x24
  */
-void StateTurn::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
+void StateTurn::cleanup(EnemyBase* enemy)
+{
+	enemy->setEmotionCaution();
+}
 
 /**
  * @note Address: 0x801107B0
@@ -1930,7 +1938,10 @@ lbl_801113C4:
  * @note Address: 0x80111414
  * @note Size: 0x24
  */
-void StateAttack::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
+void StateAttack::cleanup(EnemyBase* enemy)
+{
+	enemy->setEmotionCaution();
+}
 
 /**
  * @note Address: 0x80111438
@@ -2389,7 +2400,9 @@ lbl_80111C54:
  * @note Address: 0x80111CA4
  * @note Size: 0x4
  */
-void StateTurnToHome::cleanup(EnemyBase* enemy) { }
+void StateTurnToHome::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x80111CA8

@@ -93,7 +93,10 @@ JUTConsole::JUTConsole(uint bufferSize, uint maxLines, bool unused)
  * @note Address: 0x800282FC
  * @note Size: 0x70
  */
-JUTConsole::~JUTConsole() { JUTConsoleManager::sManager->JUTConsoleManager::removeConsole(this); };
+JUTConsole::~JUTConsole()
+{
+	JUTConsoleManager::sManager->JUTConsoleManager::removeConsole(this);
+};
 
 /**
  * @note Address: 0x8002836C
@@ -107,7 +110,10 @@ size_t JUTConsole::getObjectSizeFromBufferSize(uint bufferSize, uint bufferCount
  * @note Address: 0x8002837C
  * @note Size: 0x10
  */
-size_t JUTConsole::getLineFromObjectSize(u32 objectSize, uint bufferSize) { return (objectSize - sizeof(JUTConsole)) / (bufferSize + 2); }
+size_t JUTConsole::getLineFromObjectSize(u32 objectSize, uint bufferSize)
+{
+	return (objectSize - sizeof(JUTConsole)) / (bufferSize + 2);
+}
 /**
  * @note Address: 0x8002838C
  * @note Size: 0x5C
@@ -564,25 +570,37 @@ void JUTConsoleManager::setDirectConsole(JUTConsole* console)
  * @note Address: 0x800292A4
  * @note Size: 0x8
  */
-void JUTSetReportConsole(JUTConsole* console) { sReportConsole = console; }
+void JUTSetReportConsole(JUTConsole* console)
+{
+	sReportConsole = console;
+}
 
 /**
  * @note Address: 0x800292AC
  * @note Size: 0x8
  */
-JUTConsole* JUTGetReportConsole() { return sReportConsole; }
+JUTConsole* JUTGetReportConsole()
+{
+	return sReportConsole;
+}
 
 /**
  * @note Address: 0x800292B4
  * @note Size: 0x8
  */
-void JUTSetWarningConsole(JUTConsole* console) { sWarningConsole = console; }
+void JUTSetWarningConsole(JUTConsole* console)
+{
+	sWarningConsole = console;
+}
 
 /**
  * @note Address: 0x800292BC
  * @note Size: 0x8
  */
-JUTConsole* JUTGetWarningConsole() { return sWarningConsole; }
+JUTConsole* JUTGetWarningConsole()
+{
+	return sWarningConsole;
+}
 
 /**
  * @note Address: N/A
@@ -617,7 +635,10 @@ void JUTReportConsole_f(char const* fmt, ...)
  * @note Address: 0x800293A0
  * @note Size: 0x2C
  */
-void JUTReportConsole(char const* str) { JUTReportConsole_f("%s", str); }
+void JUTReportConsole(char const* str)
+{
+	JUTReportConsole_f("%s", str);
+}
 
 /**
  * @note Address: 0x800293CC
@@ -637,4 +658,7 @@ void JUTWarningConsole_f(char const* fmt, ...)
  * @note Size: 0x2C
  * @warning This does not actually use the warning console.
  */
-void JUTWarningConsole(char const* str) { JUTReportConsole_f("%s", str); }
+void JUTWarningConsole(char const* str)
+{
+	JUTReportConsole_f("%s", str);
+}

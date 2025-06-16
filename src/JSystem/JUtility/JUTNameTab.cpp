@@ -6,13 +6,19 @@
  * @note Address: 0x8002ECCC
  * @note Size: 0x40
  */
-JUTNameTab::JUTNameTab() { setResource(nullptr); }
+JUTNameTab::JUTNameTab()
+{
+	setResource(nullptr);
+}
 
 /**
  * @note Address: 0x8002ED0C
  * @note Size: 0x3C
  */
-JUTNameTab::JUTNameTab(const ResNTAB* pNameTable) { setResource(pNameTable); }
+JUTNameTab::JUTNameTab(const ResNTAB* pNameTable)
+{
+	setResource(pNameTable);
+}
 
 /**
  * @note Address: 0x8002ED48

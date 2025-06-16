@@ -8,19 +8,28 @@
  * @note Address: N/A
  * @note Size: 0x2C
  */
-void TagParm::read(Stream& input) { doRead(input); }
+void TagParm::read(Stream& input)
+{
+	doRead(input);
+}
 
 /**
  * @note Address: N/A
  * @note Size: 0x84
  */
-void TagParm::write(Stream& output) { doWrite(output); }
+void TagParm::write(Stream& output)
+{
+	doWrite(output);
+}
 
 /**
  * @note Address: N/A
  * @note Size: 0x2C
  */
-void TagParm::dump() { doDump(); }
+void TagParm::dump()
+{
+	doDump();
+}
 
 /**
  * @note Address: 0x8041BD38
@@ -188,25 +197,35 @@ StringTagParm::StringTagParm(TagParameters* params, char* name)
  * @note Address: 0x8041BFD8
  * @note Size: 0x4
  */
-void StringTagParm::flushValue() { }
+void StringTagParm::flushValue()
+{
+}
 
 /**
  * @note Address: 0x8041BFDC
  * @note Size: 0x3C
  */
-void StringTagParm::doRead(Stream& stream) { mData = stream.readString(nullptr, 0); }
+void StringTagParm::doRead(Stream& stream)
+{
+	mData = stream.readString(nullptr, 0);
+}
 
 /**
  * @note Address: 0x8041C018
  * @note Size: 0x2C
  */
-void StringTagParm::doWrite(Stream& stream) { stream.writeString(mData); }
+void StringTagParm::doWrite(Stream& stream)
+{
+	stream.writeString(mData);
+}
 
 /**
  * @note Address: 0x8041C044
  * @note Size: 0x4
  */
-void StringTagParm::doDump() { }
+void StringTagParm::doDump()
+{
+}
 
 /**
  * @note Address: 0x8041C048

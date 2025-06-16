@@ -39,7 +39,10 @@ void Chappy::TMgr::setArchive(JKRArchive* arc)
  * @note Address: 0x803E8778
  * @note Size: 0x28
  */
-void Chappy::TMgr::initUnit() { mObject->init(this); }
+void Chappy::TMgr::initUnit()
+{
+	mObject->init(this);
+}
 
 /**
  * @note Address: N/A
@@ -65,7 +68,10 @@ void Chappy::TAnimFolder::load(J3DModelData* data, JKRArchive* arc)
  * @note Address: 0x803E87A0
  * @note Size: 0x68
  */
-Chappy::TAnimator::TAnimator() { mModelData = nullptr; }
+Chappy::TAnimator::TAnimator()
+{
+	mModelData = nullptr;
+}
 
 /**
  * @note Address: 0x803E8808
@@ -87,13 +93,19 @@ void Chappy::TAnimator::setArchive(JKRArchive* arc)
  * @note Address: N/A
  * @note Size: 0x78
  */
-J3DModel* Chappy::TAnimator::newJ3DModel() { return new J3DModel(mModelData, 0x20000, 1); }
+J3DModel* Chappy::TAnimator::newJ3DModel()
+{
+	return new J3DModel(mModelData, 0x20000, 1);
+}
 
 /**
  * @note Address: 0x803E8930
  * @note Size: 0x8
  */
-void Chappy::TUnit::setController(Controller* control) { mController = control; }
+void Chappy::TUnit::setController(Controller* control)
+{
+	mController = control;
+}
 
 /**
  * @note Address: 0x803E8938
@@ -143,19 +155,28 @@ void Chappy::TUnit::goHome()
  * @note Address: 0x803E8AB0
  * @note Size: 0x24
  */
-void Chappy::TUnit::outOfCalc() { startAIState_(CHAPPYAI_Inactive); }
+void Chappy::TUnit::outOfCalc()
+{
+	startAIState_(CHAPPYAI_Inactive);
+}
 
 /**
  * @note Address: 0x803E8AD4
  * @note Size: 0x14
  */
-bool Chappy::TUnit::isCalc() { return mStateID != CHAPPYAI_Inactive; }
+bool Chappy::TUnit::isCalc()
+{
+	return mStateID != CHAPPYAI_Inactive;
+}
 
 /**
  * @note Address: 0x803E8AE8
  * @note Size: 0x14
  */
-bool Chappy::TUnit::isController() { return (u8)(mStateID == CHAPPYAI_Controlled); }
+bool Chappy::TUnit::isController()
+{
+	return (u8)(mStateID == CHAPPYAI_Controlled);
+}
 
 /**
  * @note Address: 0x803E8AFC

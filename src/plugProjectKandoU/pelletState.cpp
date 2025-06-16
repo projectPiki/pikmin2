@@ -46,19 +46,25 @@ void PelletFSM::init(Pellet* obj)
  * @note Address: 0x801A45BC
  * @note Size: 0x4
  */
-void PelletNormalState::init(Pellet*, StateArg*) { }
+void PelletNormalState::init(Pellet*, StateArg*)
+{
+}
 
 /**
  * @note Address: 0x801A45C0
  * @note Size: 0x4
  */
-void PelletNormalState::exec(Pellet*) { }
+void PelletNormalState::exec(Pellet*)
+{
+}
 
 /**
  * @note Address: 0x801A45C4
  * @note Size: 0x4
  */
-void PelletNormalState::cleanup(Pellet*) { }
+void PelletNormalState::cleanup(Pellet*)
+{
+}
 
 /**
  * @note Address: 0x801A45C8
@@ -100,7 +106,9 @@ void PelletGoalWaitState::exec(Pellet* pelt)
  * @note Address: 0x801A46D4
  * @note Size: 0x4
  */
-void PelletGoalWaitState::cleanup(Pellet*) { }
+void PelletGoalWaitState::cleanup(Pellet*)
+{
+}
 
 /**
  * @note Address: 0x801A46D8
@@ -1424,7 +1432,9 @@ lbl_801A65C0:
  * @note Address: 0x801A65F8
  * @note Size: 0x4
  */
-void PelletGoalState::cleanup(Pellet*) { }
+void PelletGoalState::cleanup(Pellet*)
+{
+}
 
 /**
  * @note Address: 0x801A65FC
@@ -1490,7 +1500,9 @@ void PelletAppearState::exec(Pellet* pelt)
  * @note Address: 0x801A6980
  * @note Size: 0x4
  */
-void PelletAppearState::cleanup(Pellet*) { }
+void PelletAppearState::cleanup(Pellet*)
+{
+}
 
 /**
  * @note Address: 0x801A6984
@@ -1552,25 +1564,35 @@ void PelletScaleAppearState::exec(Pellet* pelt)
  * @note Address: 0x801A6C70
  * @note Size: 0x34
  */
-void PelletScaleAppearState::cleanup(Pellet* pelt) { pelt->setCollisionFlick(true); }
+void PelletScaleAppearState::cleanup(Pellet* pelt)
+{
+	pelt->setCollisionFlick(true);
+}
 
 /**
  * @note Address: 0x801A6CA4
  * @note Size: 0x24
  */
-void PelletBuryState::init(Pellet* pelt, StateArg*) { pelt->clearClaim(); }
+void PelletBuryState::init(Pellet* pelt, StateArg*)
+{
+	pelt->clearClaim();
+}
 
 /**
  * @note Address: 0x801A6CC8
  * @note Size: 0x4
  */
-void PelletBuryState::exec(Pellet*) { }
+void PelletBuryState::exec(Pellet*)
+{
+}
 
 /**
  * @note Address: 0x801A6CCC
  * @note Size: 0x4
  */
-void PelletBuryState::cleanup(Pellet*) { }
+void PelletBuryState::cleanup(Pellet*)
+{
+}
 
 /**
  * @note Address: 0x801A6CD0
@@ -1600,25 +1622,34 @@ void PelletZukanState::exec(Pellet* pelt)
  * @note Address: 0x801A6D9C
  * @note Size: 0x4
  */
-void PelletZukanState::cleanup(Pellet*) { }
+void PelletZukanState::cleanup(Pellet*)
+{
+}
 
 /**
  * @note Address: 0x801A6DA0
  * @note Size: 0x24
  */
-void PelletUpState::init(Pellet* pelt, StateArg*) { pelt->clearClaim(); }
+void PelletUpState::init(Pellet* pelt, StateArg*)
+{
+	pelt->clearClaim();
+}
 
 /**
  * @note Address: 0x801A6DC4
  * @note Size: 0x4
  */
-void PelletUpState::exec(Pellet*) { }
+void PelletUpState::exec(Pellet*)
+{
+}
 
 /**
  * @note Address: 0x801A6DC8
  * @note Size: 0x4
  */
-void PelletUpState::cleanup(Pellet*) { }
+void PelletUpState::cleanup(Pellet*)
+{
+}
 
 /**
  * @note Address: 0x801A6DCC
@@ -2506,7 +2537,10 @@ lbl_801A7D8C:
  * @note Address: 0x801A7DE4
  * @note Size: 0x8
  */
-u32 PelletReturnState::execMoveGoal(Pellet*) { return 0; }
+u32 PelletReturnState::execMoveGoal(Pellet*)
+{
+	return 0;
+}
 
 /**
  * @note Address: N/A

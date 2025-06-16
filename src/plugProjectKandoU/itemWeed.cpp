@@ -44,7 +44,10 @@ void Weed::init(WeedMgr* mgr, Vector3f& vec)
  * @note Address: 0x8020F2B8
  * @note Size: 0x8
  */
-bool Weed::damaged(f32) { return true; }
+bool Weed::damaged(f32)
+{
+	return true;
+}
 
 /**
  * @note Address: N/A
@@ -72,7 +75,9 @@ void Weed::makeMatrix()
  * @note Address: N/A
  * @note Size: 0x4
  */
-void Weed::update() { }
+void Weed::update()
+{
+}
 
 /**
  * @note Address: N/A
@@ -125,7 +130,9 @@ void WeedMgr::createWeeds(cWeedType weedType)
  * @note Address: 0x8020F584
  * @note Size: 0x4
  */
-void WeedMgr::do_update_boundSphere() { }
+void WeedMgr::do_update_boundSphere()
+{
+}
 
 /**
  * @note Address: 0x8020F588
@@ -199,7 +206,10 @@ void Item::onSetPosition()
  * @note Address: 0x8020FA1C
  * @note Size: 0x3C
  */
-bool Item::ignoreAtari(Creature* other) { return !other->isPiki(); }
+bool Item::ignoreAtari(Creature* other)
+{
+	return !other->isPiki();
+}
 
 /**
  * @note Address: 0x8020FA58
@@ -265,7 +275,10 @@ void Item::doAI()
  * @note Address: 0x8020FE78
  * @note Size: 0x3C
  */
-void Item::doSimpleDraw(Viewport* viewport) { mFlockMgr->doSimpleDraw(viewport, mgr->mModelData, mgr->mModelDataMax); }
+void Item::doSimpleDraw(Viewport* viewport)
+{
+	mFlockMgr->doSimpleDraw(viewport, mgr->mModelData, mgr->mModelDataMax);
+}
 
 /**
  * @note Address: 0x8020FEB4
@@ -296,14 +309,19 @@ Mgr::Mgr()
 void Mgr::doSimpleDraw(Viewport* viewport)
 {
 	Iterator<BaseItem> iter(this);
-	CI_LOOP(iter) { static_cast<Item*>(*iter)->doSimpleDraw(viewport); }
+	CI_LOOP(iter)
+	{
+		static_cast<Item*>(*iter)->doSimpleDraw(viewport);
+	}
 }
 
 /**
  * @note Address: 0x802101F0
  * @note Size: 0x4
  */
-void Mgr::onLoadResources() { }
+void Mgr::onLoadResources()
+{
+}
 
 /**
  * @note Address: N/A
@@ -318,7 +336,10 @@ Item* Mgr::birth()
  * @note Address: 0x802101F4
  * @note Size: 0x8
  */
-char* Mgr::getCaveName(int) { return "weed"; }
+char* Mgr::getCaveName(int)
+{
+	return "weed";
+}
 
 /**
  * @note Address: 0x802101FC
@@ -337,25 +358,34 @@ int Mgr::getCaveID(char* name)
  * @note Address: 0x80210248
  * @note Size: 0x4
  */
-void WaitState::init(Item*, StateArg*) { }
+void WaitState::init(Item*, StateArg*)
+{
+}
 
 /**
  * @note Address: 0x8021024C
  * @note Size: 0x4
  */
-void WaitState::exec(Item*) { }
+void WaitState::exec(Item*)
+{
+}
 
 /**
  * @note Address: 0x80210250
  * @note Size: 0x4
  */
-void WaitState::cleanup(Item*) { }
+void WaitState::cleanup(Item*)
+{
+}
 
 /**
  * @note Address: 0x80210254
  * @note Size: 0x54
  */
-GenItemParm* Mgr::generatorNewItemParm() { return new GenWeedParm; }
+GenItemParm* Mgr::generatorNewItemParm()
+{
+	return new GenWeedParm;
+}
 
 /**
  * @note Address: 0x802102A8

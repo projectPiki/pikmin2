@@ -13,7 +13,10 @@ namespace LeafChappy {
  * @note Address: 0x802C5C18
  * @note Size: 0x98
  */
-Obj::Obj() { createFootmarks(); }
+Obj::Obj()
+{
+	createFootmarks();
+}
 
 /**
  * @note Address: 0x802C5CB0
@@ -37,7 +40,9 @@ void Obj::doUpdate()
  * @note Address: 0x802C5D70
  * @note Size: 0x4
  */
-void Obj::doDirectDraw(Graphics&) { }
+void Obj::doDirectDraw(Graphics&)
+{
+}
 
 /**
  * @note Address: 0x802C5D74
@@ -96,19 +101,28 @@ void Obj::initWalkSmokeEffect()
  * @note Address: 0x802C5F50
  * @note Size: 0x20
  */
-bool Obj::doBecomeCarcass() { return EnemyBase::doBecomeCarcass(); }
+bool Obj::doBecomeCarcass()
+{
+	return EnemyBase::doBecomeCarcass();
+}
 
 /**
  * @note Address: 0x802C5F70
  * @note Size: 0x20
  */
-void Obj::doUpdateCarcass() { EnemyBase::doUpdateCarcass(); }
+void Obj::doUpdateCarcass()
+{
+	EnemyBase::doUpdateCarcass();
+}
 
 /**
  * @note Address: 0x802C5F90
  * @note Size: 0x20
  */
-void Obj::doGetLifeGaugeParam(LifeGaugeParam& param) { EnemyBase::doGetLifeGaugeParam(param); }
+void Obj::doGetLifeGaugeParam(LifeGaugeParam& param)
+{
+	EnemyBase::doGetLifeGaugeParam(param);
+}
 
 /**
  * @note Address: 0x802C5FB0

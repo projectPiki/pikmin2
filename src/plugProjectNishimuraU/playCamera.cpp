@@ -61,13 +61,19 @@ PlayCamera::PlayCamera(Navi* target)
  * @note Address: 0x8023F528
  * @note Size: 0x8
  */
-void PlayCamera::setCameraParms(CameraParms* parms) { mCameraParms = parms; }
+void PlayCamera::setCameraParms(CameraParms* parms)
+{
+	mCameraParms = parms;
+}
 
 /**
  * @note Address: 0x8023F530
  * @note Size: 0x8
  */
-void PlayCamera::setVibrationParms(VibrationParms* parms) { mVibrationParms = parms; }
+void PlayCamera::setVibrationParms(VibrationParms* parms)
+{
+	mVibrationParms = parms;
+}
 
 /**
  * @note Address: 0x8023F538
@@ -355,7 +361,10 @@ void PlayCamera::startDemoCamera(int type)
  * @note Address: 0x8023FDBC
  * @note Size: 0x20
  */
-void PlayCamera::finishDemoCamera() { setTargetParms(); }
+void PlayCamera::finishDemoCamera()
+{
+	setTargetParms();
+}
 
 /**
  * @note Address: 0x8023FDDC
@@ -537,7 +546,10 @@ void PlayCamera::setTargetThetaToWhistle()
  * @note Address: 0x80240334
  * @note Size: 0x10
  */
-void PlayCamera::setFollowTime() { mFollowTime = mCameraParms->mRotFollowTime; }
+void PlayCamera::setFollowTime()
+{
+	mFollowTime = mCameraParms->mRotFollowTime;
+}
 
 /**
  * @note Address: 0x80240344

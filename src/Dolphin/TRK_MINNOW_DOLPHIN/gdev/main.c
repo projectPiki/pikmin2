@@ -26,7 +26,10 @@ int gdev_cc_initialize(void* inputPendingPtrRef, AmcEXICallback monitorCallback)
  * @note Address: 0x800C14B8
  * @note Size: 0x8
  */
-int gdev_cc_shutdown() { return 0; }
+int gdev_cc_shutdown()
+{
+	return 0;
+}
 
 /**
  * @note Address: 0x800C1494
@@ -46,7 +49,10 @@ int gdev_cc_open()
  * @note Address: 0x800C148C
  * @note Size: 0x8
  */
-int gdev_cc_close() { return 0; }
+int gdev_cc_close()
+{
+	return 0;
+}
 
 /**
  * @note Address: 0x800C1398

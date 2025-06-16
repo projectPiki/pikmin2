@@ -27,13 +27,19 @@ void OutputData(void* data, int length)
  * @note Address: 0x800BD53C
  * @note Size: 0x10
  */
-int GetTRKConnected(void) { return IsTRKConnected; }
+int GetTRKConnected(void)
+{
+	return IsTRKConnected;
+}
 
 /**
  * @note Address: 0x800BD530
  * @note Size: 0xC
  */
-void SetTRKConnected(int isConnected) { IsTRKConnected = isConnected; }
+void SetTRKConnected(int isConnected)
+{
+	IsTRKConnected = isConnected;
+}
 
 /**
  * @note Address: N/A
@@ -142,13 +148,19 @@ DSError TRKDoOverride(MessageBuffer* buffer)
  * @note Address: 0x800BD39C
  * @note Size: 0x8
  */
-DSError TRKDoVersions(MessageBuffer*) { return DS_NoError; }
+DSError TRKDoVersions(MessageBuffer*)
+{
+	return DS_NoError;
+}
 
 /**
  * @note Address: 0x800BD394
  * @note Size: 0x8
  */
-DSError TRKDoSupportMask(MessageBuffer*) { return DS_NoError; }
+DSError TRKDoSupportMask(MessageBuffer*)
+{
+	return DS_NoError;
+}
 
 /**
  * @note Address: N/A

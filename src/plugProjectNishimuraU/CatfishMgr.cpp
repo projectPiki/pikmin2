@@ -18,19 +18,28 @@ Mgr::Mgr(int p1, u8 p2)
  * @note Address: 0x80276DA4
  * @note Size: 0x48
  */
-void Mgr::doAlloc() { init(new KochappyBase::Parms); }
+void Mgr::doAlloc()
+{
+	init(new KochappyBase::Parms);
+}
 
 /**
  * @note Address: 0x80276DEC
  * @note Size: 0x60
  */
-void Mgr::createObj(int count) { mObj = new Obj[count]; }
+void Mgr::createObj(int count)
+{
+	mObj = new Obj[count];
+}
 
 /**
  * @note Address: 0x80276F38
  * @note Size: 0x10
  */
-EnemyBase* Mgr::getEnemy(int idx) { return &mObj[idx]; }
+EnemyBase* Mgr::getEnemy(int idx)
+{
+	return &mObj[idx];
+}
 
 } // namespace Catfish
 } // namespace Game

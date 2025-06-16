@@ -40,22 +40,34 @@ void MoviePlayer::clearPauseAndDraw()
 	}
 
 	Iterator<Piki> itPiki(pikiMgr);
-	CI_LOOP(itPiki) { (*itPiki)->movie_end(false); }
+	CI_LOOP(itPiki)
+	{
+		(*itPiki)->movie_end(false);
+	}
 
 	if (generalEnemyMgr) {
 		GeneralMgrIterator<EnemyBase> itEnemy(generalEnemyMgr);
 
-		CI_LOOP(itEnemy) { itEnemy.getObject()->movie_end(false); }
+		CI_LOOP(itEnemy)
+		{
+			itEnemy.getObject()->movie_end(false);
+		}
 	}
 
 	if (ItemOnyon::mgr) {
 		Iterator<Onyon> itOnyon(ItemOnyon::mgr);
-		CI_LOOP(itOnyon) { (*itOnyon)->movie_end(false); }
+		CI_LOOP(itOnyon)
+		{
+			(*itOnyon)->movie_end(false);
+		}
 	}
 
 	if (pelletMgr) {
 		PelletIterator itPellet;
-		CI_LOOP(itPellet) { (*itPellet)->movie_end(false); }
+		CI_LOOP(itPellet)
+		{
+			(*itPellet)->movie_end(false);
+		}
 	}
 }
 

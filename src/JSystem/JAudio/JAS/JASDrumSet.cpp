@@ -76,7 +76,10 @@ bool JASDrumSet::getParam(int percIndex, int p2, JASInstParam* instParam) const
  * @note Size: 0x14
  * getPerc__10JASDrumSetFi
  */
-JASDrumSet::TPerc* JASDrumSet::getPerc(int index) { return mPercs + index; }
+JASDrumSet::TPerc* JASDrumSet::getPerc(int index)
+{
+	return mPercs + index;
+}
 
 /**
  * @note Address: 0x8009B2C8
@@ -138,17 +141,26 @@ void JASDrumSet::TPerc::setVeloRegionCount(u32 count)
  * @note Size: 0x10
  * getVeloRegion__Q210JASDrumSet5TPercFi
  */
-JASInst::TVeloRegion* JASDrumSet::TPerc::getVeloRegion(int index) { return mVeloRegions + index; }
+JASInst::TVeloRegion* JASDrumSet::TPerc::getVeloRegion(int index)
+{
+	return mVeloRegions + index;
+}
 
 /**
  * @note Address: 0x8009B438
  * @note Size: 0x10
  * setEffect__Q210JASDrumSet5TPercFiP13JASInstEffect
  */
-void JASDrumSet::TPerc::setEffect(int index, JASInstEffect* effect) { mEffects[index] = effect; }
+void JASDrumSet::TPerc::setEffect(int index, JASInstEffect* effect)
+{
+	mEffects[index] = effect;
+}
 
 /**
  * @note Address: 0x8009B448
  * @note Size: 0x8
  */
-void JASDrumSet::TPerc::setRelease(u32 release) { mRelease = release; }
+void JASDrumSet::TPerc::setRelease(u32 release)
+{
+	mRelease = release;
+}

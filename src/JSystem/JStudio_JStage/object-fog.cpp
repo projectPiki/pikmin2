@@ -26,7 +26,10 @@ TAdaptor_fog::TAdaptor_fog(const JStage::TSystem* system, JStage::TFog* fog)
  * @note Size: 0x78
  * __dt
  */
-TAdaptor_fog::~TAdaptor_fog() { adaptor_do_end(nullptr); }
+TAdaptor_fog::~TAdaptor_fog()
+{
+	adaptor_do_end(nullptr);
+}
 
 /**
  * @note Address: 0x8001424C
@@ -56,7 +59,10 @@ void TAdaptor_fog::adaptor_do_begin(const JStudio::TObject*)
  * @note Address: 0x80014388
  * @note Size: 0x54
  */
-void TAdaptor_fog::adaptor_do_end(const JStudio::TObject*) { mObject->setFlagOff(1); }
+void TAdaptor_fog::adaptor_do_end(const JStudio::TObject*)
+{
+	mObject->setFlagOff(1);
+}
 
 /**
  * @note Address: 0x800143DC

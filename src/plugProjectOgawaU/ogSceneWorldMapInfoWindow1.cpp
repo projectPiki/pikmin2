@@ -8,7 +8,9 @@ namespace newScreen {
  * @note Address: 0x8032C208
  * @note Size: 0x3C
  */
-WorldMapInfoWindow1::WorldMapInfoWindow1() { }
+WorldMapInfoWindow1::WorldMapInfoWindow1()
+{
+}
 
 /**
  * @note Address: 0x8032C244
@@ -28,7 +30,10 @@ void WorldMapInfoWindow1::doCreateObj(JKRArchive* archive)
  * @note Address: 0x8032C2E8
  * @note Size: 0x8
  */
-bool WorldMapInfoWindow1::doConfirmSetScene(::Screen::SetSceneArg&) { return true; }
+bool WorldMapInfoWindow1::doConfirmSetScene(::Screen::SetSceneArg&)
+{
+	return true;
+}
 
 /**
  * @note Address: 0x8032C2F0

@@ -591,7 +591,10 @@ void JFWDisplay::clearEfb_init()
  * @note Address: N/A
  * @note Size: 0x2C
  */
-void JFWDisplay::clearEfb() { clearEfb(mClearColor); }
+void JFWDisplay::clearEfb()
+{
+	clearEfb(mClearColor);
+}
 
 /**
  * @note Address: 0x8008A8B8

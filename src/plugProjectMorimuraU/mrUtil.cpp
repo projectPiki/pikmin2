@@ -194,7 +194,10 @@ void TIndPane::createIndTexture(char const* name)
  * @note Address: 0x803A1798
  * @note Size: 0x74
  */
-void TIndPane::createCaptureTexture(_GXTexFmt fmt) { mTexture3 = new JUTTexture(mMaxPos.x, mMaxPos.y, fmt); }
+void TIndPane::createCaptureTexture(_GXTexFmt fmt)
+{
+	mTexture3 = new JUTTexture(mMaxPos.x, mMaxPos.y, fmt);
+}
 
 /**
  * @note Address: 0x803A180C

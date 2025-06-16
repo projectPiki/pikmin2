@@ -15,7 +15,10 @@ namespace Miulin {
  * @note Address: 0x80364454
  * @note Size: 0x20
  */
-void Obj::setParameters() { EnemyBase::setParameters(); }
+void Obj::setParameters()
+{
+	EnemyBase::setParameters();
+}
 
 /**
  * @note Address: 0x80364474
@@ -80,13 +83,18 @@ void Obj::doUpdate()
  * @note Address: 0x803647E4
  * @note Size: 0x4
  */
-void Obj::doDirectDraw(Graphics&) { }
+void Obj::doDirectDraw(Graphics&)
+{
+}
 
 /**
  * @note Address: 0x803647E8
  * @note Size: 0x20
  */
-void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
+void Obj::doDebugDraw(Graphics& gfx)
+{
+	EnemyBase::doDebugDraw(gfx);
+}
 
 /**
  * @note Address: 0x80364808
@@ -130,7 +138,10 @@ void Obj::wallCallback(MoveInfo const& moveInfo)
  * @note Address: 0x803648FC
  * @note Size: 0x28
  */
-void Obj::startCarcassMotion() { startMotion(MIULINANIM_Carry, nullptr); }
+void Obj::startCarcassMotion()
+{
+	startMotion(MIULINANIM_Carry, nullptr);
+}
 
 /**
  * @note Address: 0x80364924
@@ -147,7 +158,10 @@ void Obj::initWalkSmokeEffect()
  * @note Address: 0x80364990
  * @note Size: 0x8
  */
-Game::WalkSmokeEffect::Mgr* Obj::getWalkSmokeEffectMgr() { return &mWalkSmokeMgr; }
+Game::WalkSmokeEffect::Mgr* Obj::getWalkSmokeEffectMgr()
+{
+	return &mWalkSmokeMgr;
+}
 
 /**
  * @note Address: 0x80364998
@@ -619,7 +633,10 @@ bool Obj::isFindTarget()
  * @note Address: 0x80365370
  * @note Size: 0x3C
  */
-bool Obj::isOutOfTerritory() { return sqrDistanceXZ(mHomePosition, mPosition) > SQUARE(C_GENERALPARMS.mTerritoryRadius.mValue); }
+bool Obj::isOutOfTerritory()
+{
+	return sqrDistanceXZ(mHomePosition, mPosition) > SQUARE(C_GENERALPARMS.mTerritoryRadius.mValue);
+}
 
 /**
  * @note Address: 0x803653AC
@@ -1201,7 +1218,10 @@ bool Obj::isNowCaution()
  * @note Address: 0x80365E54
  * @note Size: 0x28
  */
-void Obj::landEffect() { EnemyBase::createBounceEffect(mPosition, 0.9f); }
+void Obj::landEffect()
+{
+	EnemyBase::createBounceEffect(mPosition, 0.9f);
+}
 
 /**
  * @note Address: 0x80365E7C

@@ -29,7 +29,9 @@ ObjectCamera::ObjectCamera(char const* name, MoviePlayer* movie)
  * @note Address: 0x8042F7D4
  * @note Size: 0x68
  */
-ObjectCamera::~ObjectCamera() { }
+ObjectCamera::~ObjectCamera()
+{
+}
 
 /**
  * @note Address: 0x8042F83C
@@ -51,13 +53,18 @@ void ObjectCamera::reset()
  * @note Address: 0x8042F8E4
  * @note Size: 0x4
  */
-void ObjectCamera::update() { }
+void ObjectCamera::update()
+{
+}
 
 /**
  * @note Address: 0x8042F8E8
  * @note Size: 0x24
  */
-void ObjectCamera::setProjection() { mCameraObj->setProjection(); }
+void ObjectCamera::setProjection()
+{
+	mCameraObj->setProjection();
+}
 
 /**
  * @note Address: 0x8042F90C
@@ -96,19 +103,28 @@ void ObjectCamera::updateCamera()
  * @note Address: 0x8042F9F4
  * @note Size: 0x8
  */
-char const* ObjectCamera::JSGGetName() const { return mName; }
+char const* ObjectCamera::JSGGetName() const
+{
+	return mName;
+}
 
 /**
  * @note Address: 0x8042F9FC
  * @note Size: 0x8
  */
-void ObjectCamera::JSGSetFlag(u32 a1) { mFlags = a1; }
+void ObjectCamera::JSGSetFlag(u32 a1)
+{
+	mFlags = a1;
+}
 
 /**
  * @note Address: 0x8042FA04
  * @note Size: 0x8
  */
-u32 ObjectCamera::JSGGetFlag() const { return mFlags; }
+u32 ObjectCamera::JSGGetFlag() const
+{
+	return mFlags;
+}
 
 /**
  * @note Address: 0x8042FA0C
@@ -125,73 +141,109 @@ void ObjectCamera::JSGSetData(u32 a1, void const* a2, u32 a3)
  * @note Address: 0x8042FA1C
  * @note Size: 0x1C
  */
-void ObjectCamera::JSGSetViewPosition(Vec const& pos) { mViewPos = pos; }
+void ObjectCamera::JSGSetViewPosition(Vec const& pos)
+{
+	mViewPos = pos;
+}
 
 /**
  * @note Address: 0x8042FA38
  * @note Size: 0x1C
  */
-void ObjectCamera::JSGGetViewPosition(Vec* pos) const { *pos = mViewPos; }
+void ObjectCamera::JSGGetViewPosition(Vec* pos) const
+{
+	*pos = mViewPos;
+}
 
 /**
  * @note Address: 0x8042FA54
  * @note Size: 0x1C
  */
-void ObjectCamera::JSGSetViewTargetPosition(Vec const& pos) { mViewTargetPos = pos; }
+void ObjectCamera::JSGSetViewTargetPosition(Vec const& pos)
+{
+	mViewTargetPos = pos;
+}
 
 /**
  * @note Address: 0x8042FA70
  * @note Size: 0x1C
  */
-void ObjectCamera::JSGGetViewTargetPosition(Vec* pos) const { *pos = mViewTargetPos; }
+void ObjectCamera::JSGGetViewTargetPosition(Vec* pos) const
+{
+	*pos = mViewTargetPos;
+}
 
 /**
  * @note Address: 0x8042FA8C
  * @note Size: 0x8
  */
-void P2JST::ObjectCamera::JSGSetViewRoll(f32 roll) { mViewRoll = roll; }
+void P2JST::ObjectCamera::JSGSetViewRoll(f32 roll)
+{
+	mViewRoll = roll;
+}
 
 /**
  * @note Address: 0x8042FA94
  * @note Size: 0x8
  */
-f32 ObjectCamera::JSGGetViewRoll() const { return mViewRoll; }
+f32 ObjectCamera::JSGGetViewRoll() const
+{
+	return mViewRoll;
+}
 
 /**
  * @note Address: 0x8042FA9C
  * @note Size: 0x8
  */
-void ObjectCamera::JSGSetProjectionNear(f32 near) { mProjectionNear = near; }
+void ObjectCamera::JSGSetProjectionNear(f32 near)
+{
+	mProjectionNear = near;
+}
 
 /**
  * @note Address: 0x8042FAA4
  * @note Size: 0x8
  */
-f32 ObjectCamera::JSGGetProjectionNear() const { return mProjectionNear; }
+f32 ObjectCamera::JSGGetProjectionNear() const
+{
+	return mProjectionNear;
+}
 
 /**
  * @note Address: 0x8042FAAC
  * @note Size: 0x8
  */
-void ObjectCamera::JSGSetProjectionFar(f32 far) { mProjectionFar = far; }
+void ObjectCamera::JSGSetProjectionFar(f32 far)
+{
+	mProjectionFar = far;
+}
 
 /**
  * @note Address: 0x8042FAB4
  * @note Size: 0x8
  */
-f32 ObjectCamera::JSGGetProjectionFar() const { return mProjectionFar; }
+f32 ObjectCamera::JSGGetProjectionFar() const
+{
+	return mProjectionFar;
+}
 
 /**
  * @note Address: 0x8042FABC
  * @note Size: 0x8
  */
-void ObjectCamera::JSGSetProjectionFovy(f32 fovy) { mProjectionFovy = fovy; }
+void ObjectCamera::JSGSetProjectionFovy(f32 fovy)
+{
+	mProjectionFovy = fovy;
+}
 
 /**
  * @note Address: 0x8042FAC4
  * @note Size: 0x8
  */
-f32 ObjectCamera::JSGGetProjectionFovy() const { return mProjectionFovy; }
+f32 ObjectCamera::JSGGetProjectionFovy() const
+{
+	return mProjectionFovy;
+}
 
 /**
  * @note Address: 0x8042FACC
@@ -206,7 +258,10 @@ void ObjectCamera::JSGSetProjectionAspect(f32 aspect)
  * @note Address: 0x8042FB30
  * @note Size: 0x8
  */
-f32 ObjectCamera::JSGGetProjectionAspect() const { return mProjectionAspect; }
+f32 ObjectCamera::JSGGetProjectionAspect() const
+{
+	return mProjectionAspect;
+}
 
 /**
  * @note Address: N/A

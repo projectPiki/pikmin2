@@ -390,7 +390,10 @@ int addrToXPos(void* baseAddress, int xPosMultiplier)
  * @note Address: N/A
  * @note Size: 0x68
  */
-int byteToXLen(int byteCount, int xLenMultiplier) { return xLenMultiplier * (byteCount / (f32)JKRHeap::getMemorySize()); }
+int byteToXLen(int byteCount, int xLenMultiplier)
+{
+	return xLenMultiplier * (byteCount / (f32)JKRHeap::getMemorySize());
+}
 /**
  * @note Address: N/A
  * @note Size: 0x264

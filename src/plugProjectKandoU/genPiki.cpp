@@ -9,7 +9,10 @@
  * @note Address: 0x801AC3C0
  * @note Size: 0x128
  */
-Game::GenObject* makeObjectPiki() { return new Game::GenObjectPiki(); }
+Game::GenObject* makeObjectPiki()
+{
+	return new Game::GenObjectPiki();
+}
 
 namespace Game {
 /**
@@ -32,13 +35,19 @@ void GenObjectPiki::initialise()
  * @note Address: 0x801AC574
  * @note Size: 0x2C
  */
-void GenObjectPiki::ramSaveParameters(Stream& stream) { stream.writeByte(mColourParm.mValue); }
+void GenObjectPiki::ramSaveParameters(Stream& stream)
+{
+	stream.writeByte(mColourParm.mValue);
+}
 
 /**
  * @note Address: 0x801AC5A0
  * @note Size: 0x38
  */
-void GenObjectPiki::ramLoadParameters(Stream& stream) { mColourParm.mValue = stream.readByte(); }
+void GenObjectPiki::ramLoadParameters(Stream& stream)
+{
+	mColourParm.mValue = stream.readByte();
+}
 
 /**
  * @note Address: 0x801AC5D8

@@ -18,7 +18,10 @@ inline Lib2D::Lib2D()
  * @note Address: 0x8030F600
  * @note Size: 0x68
  */
-Lib2D::~Lib2D() { gLib2D = nullptr; }
+Lib2D::~Lib2D()
+{
+	gLib2D = nullptr;
+}
 
 /**
  * @note Address: 0x8030F668

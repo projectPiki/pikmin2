@@ -121,7 +121,9 @@ void StateDead::exec(EnemyBase* enemy)
  * @note Address: 0x802D79A8
  * @note Size: 0x4
  */
-void StateDead::cleanup(EnemyBase* enemy) { }
+void StateDead::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x802D79AC
@@ -177,7 +179,9 @@ void StateStay::exec(EnemyBase* enemy)
  * @note Address: 0x802D7B28
  * @note Size: 0x4
  */
-void StateStay::cleanup(EnemyBase* enemy) { }
+void StateStay::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x802D7B2C
@@ -780,7 +784,9 @@ void StateWalk::exec(EnemyBase* enemy)
  * @note Address: 0x802D8E20
  * @note Size: 0x4
  */
-void StateWalk::cleanup(EnemyBase* enemy) { }
+void StateWalk::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x802D8E24
@@ -863,7 +869,9 @@ void StateItemWalk::exec(EnemyBase* enemy)
  * @note Address: 0x802D90B8
  * @note Size: 0x4
  */
-void StateItemWalk::cleanup(EnemyBase* enemy) { }
+void StateItemWalk::cleanup(EnemyBase* enemy)
+{
+}
 
 } // namespace BigTreasure
 } // namespace Game

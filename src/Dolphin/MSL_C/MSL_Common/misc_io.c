@@ -42,4 +42,7 @@ void perror(void)
  * @note Address: 0x800C7428
  * @note Size: 0x10
  */
-void __stdio_atexit(void) { __stdio_exit = __close_all; }
+void __stdio_atexit(void)
+{
+	__stdio_exit = __close_all;
+}

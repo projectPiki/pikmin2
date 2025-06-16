@@ -28,7 +28,10 @@ RandCapEnemyUnit::RandCapEnemyUnit(MapUnitGenerator* mapUnitGenerator)
  * @note Address: 0x80300E94
  * @note Size: 0x8
  */
-void RandCapEnemyUnit::setManageClassPtr(RandItemUnit* randItemUnit) { mRandItemUnit = randItemUnit; }
+void RandCapEnemyUnit::setManageClassPtr(RandItemUnit* randItemUnit)
+{
+	mRandItemUnit = randItemUnit;
+}
 
 /**
  * Sets ground and falling teki slots in caps.

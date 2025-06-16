@@ -148,7 +148,10 @@ Mgr::Mgr()
  * @note Address: 0x8046C9B8
  * @note Size: 0x24
  */
-void Mgr::appendTarget(JSULink<EnemyBoss>* obj) { mTypedProc.append(obj); }
+void Mgr::appendTarget(JSULink<EnemyBoss>* obj)
+{
+	mTypedProc.append(obj);
+}
 
 /**
  * @note Address: 0x8046C9DC

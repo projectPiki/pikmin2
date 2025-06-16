@@ -116,13 +116,18 @@ void Obj::setupEffect()
  * @note Address: 0x8012C820
  * @note Size: 0x28
  */
-void Obj::doStartMovie() { mEfxTest->setGlobalAlpha(0); }
+void Obj::doStartMovie()
+{
+	mEfxTest->setGlobalAlpha(0);
+}
 
 /**
  * @note Address: 0x8012C848
  * @note Size: 0x4
  */
-void Obj::doEndMovie() { }
+void Obj::doEndMovie()
+{
+}
 
 /**
  * @note Address: 0x8012C84C

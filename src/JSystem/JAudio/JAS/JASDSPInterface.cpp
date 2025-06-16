@@ -78,19 +78,28 @@ void boot(DSPCallback callback)
  * @note Address: 0x800A535C
  * @note Size: 0x20
  */
-void releaseHalt(u32 msg) { DSPReleaseHalt2(msg); }
+void releaseHalt(u32 msg)
+{
+	DSPReleaseHalt2(msg);
+}
 
 /**
  * @note Address: 0x800A537C
  * @note Size: 0x20
  */
-void finishWork(u16 p1) { DspFinishWork(p1); }
+void finishWork(u16 p1)
+{
+	DspFinishWork(p1);
+}
 
 /**
  * @note Address: 0x800A539C
  * @note Size: 0x20
  */
-void syncFrame(u32 p1, u32 p2, u32 p3) { DsyncFrame2(p1, p2, p3); }
+void syncFrame(u32 p1, u32 p2, u32 p3)
+{
+	DsyncFrame2(p1, p2, p3);
+}
 
 /**
  * @note Address: 0x800A53BC
@@ -106,13 +115,19 @@ void setDSPMixerLevel(f32 dspMixerLevel)
  * @note Address: 0x800A53E0
  * @note Size: 0x8
  */
-f32 getDSPMixerLevel() { return sDSPVolume; }
+f32 getDSPMixerLevel()
+{
+	return sDSPVolume;
+}
 
 /**
  * @note Address: 0x800A53E8
  * @note Size: 0x10
  */
-TChannel* getDSPHandle(int index) { return &CH_BUF[index]; }
+TChannel* getDSPHandle(int index)
+{
+	return &CH_BUF[index];
+}
 
 /**
  * @note Address: N/A
@@ -163,7 +178,10 @@ void cacheChannelAll()
  * @note Address: 0x800A53F8
  * @note Size: 0x28
  */
-void invalChannelAll() { DCInvalidateRange(CH_BUF, sizeof(TChannel) * 64); }
+void invalChannelAll()
+{
+	DCInvalidateRange(CH_BUF, sizeof(TChannel) * 64);
+}
 
 /**
  * @note Address: 0x800A5420
@@ -297,7 +315,10 @@ void TChannel::playStart()
  * @note Address: 0x800A5714
  * @note Size: 0xC
  */
-void TChannel::playStop() { mIsActive = false; }
+void TChannel::playStop()
+{
+	mIsActive = false;
+}
 
 /**
  * @note Address: 0x800A5720
@@ -313,19 +334,28 @@ void TChannel::replyFinishRequest()
  * @note Address: 0x800A5730
  * @note Size: 0xC
  */
-void TChannel::forceStop() { mForcedStop = true; }
+void TChannel::forceStop()
+{
+	mForcedStop = true;
+}
 
 /**
  * @note Address: N/A
  * @note Size: 0x14
  */
-bool TChannel::isActive() const { return mIsActive; }
+bool TChannel::isActive() const
+{
+	return mIsActive;
+}
 
 /**
  * @note Address: 0x800A573C
  * @note Size: 0x14
  */
-bool TChannel::isFinish() const { return mIsFinished; }
+bool TChannel::isFinish() const
+{
+	return mIsFinished;
+}
 
 /**
  * @note Address: N/A
@@ -483,7 +513,10 @@ void TChannel::setPitch(u16 pitch)
  * @note Address: 0x800A5928
  * @note Size: 0xC
  */
-void TChannel::setMixerInitDelayMax(u8 mixerInitDelayMax) { mMixerInitDelayMax = mixerInitDelayMax; }
+void TChannel::setMixerInitDelayMax(u8 mixerInitDelayMax)
+{
+	mMixerInitDelayMax = mixerInitDelayMax;
+}
 
 /**
  * @note Address: 0x800A5934
@@ -534,13 +567,19 @@ void TChannel::setMixerVolume(u8 index, s16 volume)
  * @note Address: 0x800A59B8
  * @note Size: 0xC
  */
-void TChannel::setPauseFlag(u8 pauseFlag) { mPauseFlag = pauseFlag; }
+void TChannel::setPauseFlag(u8 pauseFlag)
+{
+	mPauseFlag = pauseFlag;
+}
 
 /**
  * @note Address: 0x800A59C4
  * @note Size: 0x24
  */
-void TChannel::flush() { DCFlushRange(this, sizeof(TChannel)); }
+void TChannel::flush()
+{
+	DCFlushRange(this, sizeof(TChannel));
+}
 
 /**
  * @note Address: 0x800A59E8
@@ -604,7 +643,10 @@ void TChannel::setFIR8FilterParam(s16* params)
  * @note Address: 0x800A5AD0
  * @note Size: 0x8
  */
-void TChannel::setDistFilter(s16 distFilter) { mDistFilter = distFilter; }
+void TChannel::setDistFilter(s16 distFilter)
+{
+	mDistFilter = distFilter;
+}
 
 /**
  * @note Address: 0x800A5AD8

@@ -11,7 +11,9 @@
  * @note Address: N/A
  * @note Size: 0x3C
  */
-JKRMemArchive::JKRMemArchive() { }
+JKRMemArchive::JKRMemArchive()
+{
+}
 
 /**
  * @note Address: 0x80024644

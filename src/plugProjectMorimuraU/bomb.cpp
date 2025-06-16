@@ -11,7 +11,10 @@ namespace Bomb {
  * @note Address: 0x8034A21C
  * @note Size: 0x20
  */
-void Obj::setParameters() { EnemyBase::setParameters(); }
+void Obj::setParameters()
+{
+	EnemyBase::setParameters();
+}
 
 /**
  * @note Address: 0x8034A23C
@@ -52,7 +55,10 @@ void Obj::onEndCapture()
  * @note Address: 0x8034A370
  * @note Size: 0x20
  */
-void Obj::birth(Vector3f& position, f32 p1) { EnemyBase::birth(position, p1); }
+void Obj::birth(Vector3f& position, f32 p1)
+{
+	EnemyBase::birth(position, p1);
+}
 
 /**
  * @note Address: 0x8034A390
@@ -141,13 +147,17 @@ void Obj::doUpdate()
  * @note Address: 0x8034A7F4
  * @note Size: 0x4
  */
-void Obj::doDirectDraw(Graphics&) { }
+void Obj::doDirectDraw(Graphics&)
+{
+}
 
 /**
  * @note Address: 0x8034A7F8
  * @note Size: 0x4
  */
-void Obj::doDebugDraw(Graphics&) { }
+void Obj::doDebugDraw(Graphics&)
+{
+}
 
 /**
  * @note Address: 0x8034A7FC
@@ -246,7 +256,10 @@ void Obj::getShadowParam(ShadowParam& param)
  * @note Address: 0x8034ABEC
  * @note Size: 0x48
  */
-bool Obj::needShadow() { return (!EnemyBase::needShadow()) ? false : mCaptureMatrix == nullptr; }
+bool Obj::needShadow()
+{
+	return (!EnemyBase::needShadow()) ? false : mCaptureMatrix == nullptr;
+}
 
 /**
  * @note Address: 0x8034AC34
@@ -292,13 +305,19 @@ void Obj::onKill(CreatureKillArg* killArg)
  * @note Address: 0x8034AD80
  * @note Size: 0x30
  */
-void Obj::doStartMovie() { mEfxLight->startDemoDrawOff(); }
+void Obj::doStartMovie()
+{
+	mEfxLight->startDemoDrawOff();
+}
 
 /**
  * @note Address: 0x8034ADB0
  * @note Size: 0x30
  */
-void Obj::doEndMovie() { mEfxLight->endDemoDrawOn(); }
+void Obj::doEndMovie()
+{
+	mEfxLight->endDemoDrawOn();
+}
 
 /**
  * @note Address: 0x8034ADE0
@@ -352,7 +371,10 @@ bool Obj::bombCallBack(Creature* creature, Vector3f& direction, f32 damage)
  * @note Address: 0x8034AFB4
  * @note Size: 0x8
  */
-bool Obj::pressCallBack(Creature*, f32, CollPart*) { return false; }
+bool Obj::pressCallBack(Creature*, f32, CollPart*)
+{
+	return false;
+}
 
 /**
  * @note Address: 0x8034AFBC
@@ -421,7 +443,10 @@ bool Obj::isBombStart()
  * @note Address: 0x8034B130
  * @note Size: 0x28
  */
-void Obj::bombEffInWater() { EnemyBase::createSplashDownEffect(mPosition, 1.3f); }
+void Obj::bombEffInWater()
+{
+	EnemyBase::createSplashDownEffect(mPosition, 1.3f);
+}
 
 /**
  * @note Address: 0x8034B158

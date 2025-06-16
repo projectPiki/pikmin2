@@ -40,7 +40,10 @@ void Mgr::loadTexData()
  * @note Address: 0x8012C0B4
  * @note Size: 0x48
  */
-void Mgr::doAlloc() { init(new ChappyBase::Parms); }
+void Mgr::doAlloc()
+{
+	init(new ChappyBase::Parms);
+}
 
 /**
  * @note Address: 0x8012C0FC

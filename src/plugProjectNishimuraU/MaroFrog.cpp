@@ -9,7 +9,10 @@ namespace MaroFrog {
  * @note Address: 0x802617E0
  * @note Size: 0x98
  */
-Obj::Obj() { createEffect(); }
+Obj::Obj()
+{
+	createEffect();
+}
 
 /**
  * @note Address: 0x80261878
@@ -46,7 +49,10 @@ void Obj::attackNaviPosition()
  * @note Address: 0x80261CD4
  * @note Size: 0xB0
  */
-void Obj::createEffect() { mEfxPota = new efx::TFrogPota; }
+void Obj::createEffect()
+{
+	mEfxPota = new efx::TFrogPota;
+}
 
 } // namespace MaroFrog
 } // namespace Game

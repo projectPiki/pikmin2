@@ -7,7 +7,9 @@ namespace P2JME {
  * @note Address: 0x8043DBEC
  * @note Size: 0x4
  */
-SimpleMessage::SimpleMessage() { }
+SimpleMessage::SimpleMessage()
+{
+}
 
 /**
  * @note Address: 0x8043DBF0

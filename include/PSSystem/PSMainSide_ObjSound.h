@@ -18,7 +18,10 @@ inline void assertIsBoss(PSM::EnemyBase* soundObj)
 	P2ASSERTLINE(1108, isBoss);
 }
 
-inline void checkMidBoss(PSM::EnemyBase* soundObj) { P2ASSERTLINE(1114, soundObj->getCastType() == CCT_EnemyMidBoss); }
+inline void checkMidBoss(PSM::EnemyBase* soundObj)
+{
+	P2ASSERTLINE(1114, soundObj->getCastType() == CCT_EnemyMidBoss);
+}
 
 inline void disableAppearFlag(PSM::EnemyBase* soundObj)
 {
@@ -30,7 +33,10 @@ inline void disableAppearFlag(PSM::EnemyBase* soundObj)
 	}
 }
 
-inline void otakaraCheckEvent(Otakara* item) { P2ASSERTLINE(884, item->mOtaEvent); }
+inline void otakaraCheckEvent(Otakara* item)
+{
+	P2ASSERTLINE(884, item->mOtaEvent);
+}
 
 }; // namespace PSM
 

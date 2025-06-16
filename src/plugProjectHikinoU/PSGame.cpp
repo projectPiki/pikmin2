@@ -347,7 +347,9 @@ CameraMgr::CameraMgr()
  * @note Address: 0x80334D70
  * @note Size: 0x60
  */
-CameraMgr::~CameraMgr() { }
+CameraMgr::~CameraMgr()
+{
+}
 
 /**
  * @note Address: 0x80334DD0
@@ -377,7 +379,10 @@ void CameraMgr::update(u8 id, f32 distance)
  * @note Address: 0x80334E40
  * @note Size: 0x10
  */
-f32 CameraMgr::getCurrentCamDistVol(u8 id) { return mCamDistVolume[id]; }
+f32 CameraMgr::getCurrentCamDistVol(u8 id)
+{
+	return mCamDistVolume[id];
+}
 
 /**
  * @note Address: 0x80334E50
@@ -534,7 +539,10 @@ void SceneInfo::setStageFlag(SceneInfo::FlagDef flag, SceneInfo::FlagBitShift sh
  * @note Address: 0x80335560
  * @note Size: 0x10
  */
-SceneInfo::FlagDef SceneInfo::getFlag(SceneInfo::FlagBitShift shift) const { return (SceneInfo::FlagDef)(mStageFlags >> shift & 1); }
+SceneInfo::FlagDef SceneInfo::getFlag(SceneInfo::FlagBitShift shift) const
+{
+	return (SceneInfo::FlagDef)(mStageFlags >> shift & 1);
+}
 
 /**
  * @note Address: 0x80335570
@@ -560,7 +568,9 @@ PikScene::PikScene(u8 id)
  * @note Address: 0x80335620
  * @note Size: 0x60
  */
-PikScene::~PikScene() { }
+PikScene::~PikScene()
+{
+}
 
 /**
  * @note Address: 0x80335680
@@ -3048,4 +3058,7 @@ PSSystem::DirectedBgm* PSGetDirectedMainBgmA()
  * @note Address: N/A
  * @note Size: 0xC
  */
-void PSSetBgmSelectAsToolMode() { PSSystem::DirectorBase::sToolMode = true; }
+void PSSetBgmSelectAsToolMode()
+{
+	PSSystem::DirectorBase::sToolMode = true;
+}

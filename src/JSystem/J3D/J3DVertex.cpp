@@ -91,7 +91,9 @@ void J3DVertexBuffer::init()
  * @note Address: 0x8005ECA0
  * @note Size: 0x3C
  */
-J3DVertexBuffer::~J3DVertexBuffer() { }
+J3DVertexBuffer::~J3DVertexBuffer()
+{
+}
 
 /**
  * @note Address: 0x8005ECDC
@@ -145,4 +147,6 @@ J3DDrawMtxData::J3DDrawMtxData()
  * @note Address: 0x8005EE3C
  * @note Size: 0x3C
  */
-J3DDrawMtxData::~J3DDrawMtxData() { }
+J3DDrawMtxData::~J3DDrawMtxData()
+{
+}

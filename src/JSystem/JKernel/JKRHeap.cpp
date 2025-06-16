@@ -138,7 +138,10 @@ JKRHeap* JKRHeap::becomeCurrentHeap()
  * @note Address: 0x800235B4
  * @note Size: 0x2C
  */
-void JKRHeap::destroy() { do_destroy(); }
+void JKRHeap::destroy()
+{
+	do_destroy();
+}
 
 /**
  * @note Address: 0x800235E0
@@ -161,7 +164,10 @@ void* JKRHeap::alloc(u32 byteCount, int padding, JKRHeap* heap)
  * @note Address: 0x80023640
  * @note Size: 0x2C
  */
-void* JKRHeap::alloc(u32 byteCount, int padding) { return do_alloc(byteCount, padding); }
+void* JKRHeap::alloc(u32 byteCount, int padding)
+{
+	return do_alloc(byteCount, padding);
+}
 
 /**
  * @note Address: 0x8002366C
@@ -178,7 +184,10 @@ void JKRHeap::free(void* memory, JKRHeap* heap)
  * @note Address: 0x800236B4
  * @note Size: 0x2C
  */
-void JKRHeap::free(void* memory) { do_free(memory); }
+void JKRHeap::free(void* memory)
+{
+	do_free(memory);
+}
 
 /**
  * @note Address: 0x800236E0
@@ -196,49 +205,73 @@ void JKRHeap::callAllDisposer()
  * @note Address: 0x80023730
  * @note Size: 0x2C
  */
-void JKRHeap::freeAll() { do_freeAll(); }
+void JKRHeap::freeAll()
+{
+	do_freeAll();
+}
 
 /**
  * @note Address: 0x8002375C
  * @note Size: 0x2C
  */
-void JKRHeap::freeTail() { do_freeTail(); }
+void JKRHeap::freeTail()
+{
+	do_freeTail();
+}
 
 /**
  * @note Address: 0x80023788
  * @note Size: 0x2C
  */
-int JKRHeap::resize(void* memoryBlock, u32 newSize) { do_resize(memoryBlock, newSize); }
+int JKRHeap::resize(void* memoryBlock, u32 newSize)
+{
+	do_resize(memoryBlock, newSize);
+}
 
 /**
  * @note Address: 0x800237B4
  * @note Size: 0x2C
  */
-u32 JKRHeap::getFreeSize() { return do_getFreeSize(); }
+u32 JKRHeap::getFreeSize()
+{
+	return do_getFreeSize();
+}
 
 /**
  * @note Address: N/A
  * @note Size: 0x2C
  */
-void* JKRHeap::getMaxFreeBlock() { return do_getMaxFreeBlock(); }
+void* JKRHeap::getMaxFreeBlock()
+{
+	return do_getMaxFreeBlock();
+}
 
 /**
  * @note Address: 0x800237E0
  * @note Size: 0x2C
  */
-u32 JKRHeap::getTotalFreeSize() { return do_getTotalFreeSize(); }
+u32 JKRHeap::getTotalFreeSize()
+{
+	return do_getTotalFreeSize();
+}
 
 /**
  * @note Address: 0x8002380C
  * @note Size: 0x2C
  */
-u8 JKRHeap::changeGroupID(u8 newGroupID) { return do_changeGroupID(newGroupID); }
+u8 JKRHeap::changeGroupID(u8 newGroupID)
+{
+	return do_changeGroupID(newGroupID);
+}
 
 /**
  * @note Address: 0x80023840
  * @note Size: 0x2C
  */
-u8 JKRHeap::getCurrentGroupId() { return do_getCurrentGroupId(); }
+u8 JKRHeap::getCurrentGroupId()
+{
+	return do_getCurrentGroupId();
+}
 
 /**
  * TODO: What does p1 mean? Alignment?
@@ -258,7 +291,10 @@ u32 JKRHeap::getMaxAllocatableSize(int alignment)
  * @note Address: 0x800238F4
  * @note Size: 0x3C
  */
-JKRHeap* JKRHeap::findFromRoot(void* memory) { return (sRootHeap) ? sRootHeap->find(memory) : nullptr; }
+JKRHeap* JKRHeap::findFromRoot(void* memory)
+{
+	return (sRootHeap) ? sRootHeap->find(memory) : nullptr;
+}
 
 /**
  * @note Address: 0x80023930
@@ -326,7 +362,10 @@ u32 JKRHeap::dispose(void* memory, u32 size)
  * @note Address: 0x80023CD0
  * @note Size: 0xA4
  */
-void JKRHeap::dispose(void* begin, void* end) { dispose_subroutine((u32)begin, (u32)end); }
+void JKRHeap::dispose(void* begin, void* end)
+{
+	dispose_subroutine((u32)begin, (u32)end);
+}
 
 /**
  * @note Address: 0x80023D74
@@ -363,7 +402,10 @@ void JKRHeap::copyMemory(void* dst, void* src, u32 size)
  * @note Address: 0x80023E50
  * @note Size: 0x34
  */
-static void JKRDefaultMemoryErrorRoutine(void* heap, u32 size, int alignment) { OSErrorLine(791, "abort\n"); }
+static void JKRDefaultMemoryErrorRoutine(void* heap, u32 size, int alignment)
+{
+	OSErrorLine(791, "abort\n");
+}
 
 /**
  * @note Address: 0x80023E84
@@ -384,14 +426,20 @@ JKRHeapErrorHandler* JKRHeap::setErrorHandler(JKRHeapErrorHandler* newHandler)
  * @note Size: 0x4C
  * __nw__FUl
  */
-void* operator new(u32 byteCount) { return (JKRHeap::sCurrentHeap) ? JKRHeap::sCurrentHeap->do_alloc(byteCount, 4) : nullptr; }
+void* operator new(u32 byteCount)
+{
+	return (JKRHeap::sCurrentHeap) ? JKRHeap::sCurrentHeap->do_alloc(byteCount, 4) : nullptr;
+}
 
 /**
  * @note Address: 0x80023EF0
  * @note Size: 0x50
  * __nw__FUli
  */
-void* operator new(u32 byteCount, int p2) { return (JKRHeap::sCurrentHeap) ? JKRHeap::sCurrentHeap->do_alloc(byteCount, p2) : nullptr; }
+void* operator new(u32 byteCount, int p2)
+{
+	return (JKRHeap::sCurrentHeap) ? JKRHeap::sCurrentHeap->do_alloc(byteCount, p2) : nullptr;
+}
 
 /**
  * @note Address: 0x80023F40
@@ -412,14 +460,20 @@ void* operator new(u32 byteCount, JKRHeap* heap, int p3)
  * @note Size: 0x4C
  * __nwa__FUl
  */
-void* operator new[](u32 byteCount) { return (JKRHeap::sCurrentHeap) ? JKRHeap::sCurrentHeap->do_alloc(byteCount, 4) : nullptr; }
+void* operator new[](u32 byteCount)
+{
+	return (JKRHeap::sCurrentHeap) ? JKRHeap::sCurrentHeap->do_alloc(byteCount, 4) : nullptr;
+}
 
 /**
  * @note Address: 0x80023FF8
  * @note Size: 0x50
  * __nwa__FUli
  */
-void* operator new[](u32 byteCount, int p2) { return (JKRHeap::sCurrentHeap) ? JKRHeap::sCurrentHeap->do_alloc(byteCount, p2) : nullptr; }
+void* operator new[](u32 byteCount, int p2)
+{
+	return (JKRHeap::sCurrentHeap) ? JKRHeap::sCurrentHeap->do_alloc(byteCount, p2) : nullptr;
+}
 
 /**
  * @note Address: 0x80024048
@@ -440,14 +494,20 @@ void* operator new[](u32 byteCount, JKRHeap* heap, int p3)
  * @note Size: 0x24
  * __dl__FPv
  */
-void operator delete(void* memory) { JKRHeap::free(memory, nullptr); }
+void operator delete(void* memory)
+{
+	JKRHeap::free(memory, nullptr);
+}
 
 /**
  * @note Address: 0x800240D8
  * @note Size: 0x24
  * __dla__FPv
  */
-void operator delete[](void* memory) { JKRHeap::free(memory, nullptr); }
+void operator delete[](void* memory)
+{
+	JKRHeap::free(memory, nullptr);
+}
 
 JKRHeap::TState::TState(const JKRHeap::TState::TArgument& arg, const JKRHeap::TState::TLocation& location)
     : mArgument(arg)
@@ -516,22 +576,31 @@ JKRHeap::TState::~TState()
  * @note Address: 0x80024618
  * @note Size: 0x4
  */
-void JKRHeap::state_register(TState*, u32) const { }
+void JKRHeap::state_register(TState*, u32) const
+{
+}
 
 /**
  * @note Address: 0x8002461C
  * @note Size: 0x18
  */
-bool JKRHeap::state_compare(const TState& state1, const TState& state2) const { return state1.getCheckCode() == state2.getCheckCode(); }
+bool JKRHeap::state_compare(const TState& state1, const TState& state2) const
+{
+	return state1.getCheckCode() == state2.getCheckCode();
+}
 
 /**
  * @note Address: 0x80024634
  * @note Size: 0x4
  */
-void JKRHeap::state_dumpDifference(const TState&, const TState&) { }
+void JKRHeap::state_dumpDifference(const TState&, const TState&)
+{
+}
 
 /**
  * @note Address: 0x80024634
  * @note Size: 0x4
  */
-void JKRHeap::state_dump(const TState&) const { }
+void JKRHeap::state_dump(const TState&) const
+{
+}

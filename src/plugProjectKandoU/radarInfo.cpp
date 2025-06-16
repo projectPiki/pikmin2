@@ -66,7 +66,10 @@ void Radar::Mgr::clear()
  * @note Address: 0x8021E54C
  * @note Size: 0x10
  */
-void Radar::Mgr::bornFuefuki() { mFuefukiCount++; }
+void Radar::Mgr::bornFuefuki()
+{
+	mFuefukiCount++;
+}
 
 /**
  * @note Address: 0x8021E55C
@@ -83,7 +86,10 @@ void Radar::Mgr::dieFuefuki()
  * @note Address: 0x8021E574
  * @note Size: 0x10
  */
-void Radar::Mgr::fuefuki() { mFuefukiWhistleTimer++; }
+void Radar::Mgr::fuefuki()
+{
+	mFuefukiWhistleTimer++;
+}
 
 /**
  * @note Address: 0x8021E584

@@ -68,7 +68,9 @@ void StateDead::exec(EnemyBase* enemy)
  * @note Address: 0x802A4778
  * @note Size: 0x4
  */
-void StateDead::cleanup(EnemyBase* enemy) { }
+void StateDead::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x802A477C
@@ -114,7 +116,9 @@ void StateStay::exec(EnemyBase* enemy)
  * @note Address: 0x802A48B8
  * @note Size: 0x4
  */
-void StateStay::cleanup(EnemyBase* enemy) { }
+void StateStay::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x802A48BC
@@ -244,7 +248,9 @@ void StateWait::exec(EnemyBase* enemy)
  * @note Address: 0x802A4D40
  * @note Size: 0x4
  */
-void StateWait::cleanup(EnemyBase* enemy) { }
+void StateWait::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x802A4D44
@@ -341,7 +347,9 @@ void StateWalk::exec(EnemyBase* enemy)
  * @note Address: 0x802A502C
  * @note Size: 0x4
  */
-void StateWalk::cleanup(EnemyBase* enemy) { }
+void StateWalk::cleanup(EnemyBase* enemy)
+{
+}
 
 } // namespace Damagumo
 } // namespace Game

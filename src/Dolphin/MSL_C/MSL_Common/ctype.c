@@ -157,7 +157,10 @@ u8 __upper_map[256] = {
  * @note Address: 0x800C6264
  * @note Size: 0x24
  */
-WEAKFUNC int tolower(int __c) { return _tolower(__c); }
+WEAKFUNC int tolower(int __c)
+{
+	return _tolower(__c);
+}
 
 /**
  * @note Address: N/A

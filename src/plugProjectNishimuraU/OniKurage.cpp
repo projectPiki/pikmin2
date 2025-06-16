@@ -32,7 +32,9 @@ Obj::Obj()
  * @note Address: 0x802D40C4
  * @note Size: 0x4
  */
-void Obj::setInitialSetting(EnemyInitialParamBase*) { }
+void Obj::setInitialSetting(EnemyInitialParamBase*)
+{
+}
 
 /**
  * @note Address: 0x802D40C8
@@ -107,13 +109,18 @@ void Obj::doUpdateCommon()
  * @note Address: 0x802D4308
  * @note Size: 0x4
  */
-void Obj::doDirectDraw(Graphics&) { }
+void Obj::doDirectDraw(Graphics&)
+{
+}
 
 /**
  * @note Address: 0x802D430C
  * @note Size: 0x20
  */
-void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
+void Obj::doDebugDraw(Graphics& gfx)
+{
+	EnemyBase::doDebugDraw(gfx);
+}
 
 /**
  * @note Address: 0x802D432C
@@ -223,13 +230,19 @@ void Obj::doFinishWaitingBirthTypeDrop()
  * @note Address: 0x802D4620
  * @note Size: 0x20
  */
-void Obj::doStartMovie() { effectDrawOff(); }
+void Obj::doStartMovie()
+{
+	effectDrawOff();
+}
 
 /**
  * @note Address: 0x802D4640
  * @note Size: 0x20
  */
-void Obj::doEndMovie() { effectDrawOn(); }
+void Obj::doEndMovie()
+{
+	effectDrawOn();
+}
 
 /**
  * @note Address: 0x802D4660
@@ -1880,7 +1893,10 @@ void Obj::finishEyeBodyEffect()
  * @note Address: 0x802D6C58
  * @note Size: 0x24
  */
-void Obj::setHireEffectLife(s16 lifeTime) { mEfxHire->setLifeTime(lifeTime); }
+void Obj::setHireEffectLife(s16 lifeTime)
+{
+	mEfxHire->setLifeTime(lifeTime);
+}
 
 /**
  * @note Address: 0x802D6C7C
@@ -1906,19 +1922,28 @@ void Obj::startSuckEffect(Vector3f& pos)
  * @note Address: 0x802D6D24
  * @note Size: 0x24
  */
-void Obj::updateSuckEffect(Vector3f& pos) { mEfxSui->setGlobalTranslation(pos); }
+void Obj::updateSuckEffect(Vector3f& pos)
+{
+	mEfxSui->setGlobalTranslation(pos);
+}
 
 /**
  * @note Address: 0x802D6D48
  * @note Size: 0x30
  */
-void Obj::finishSuckEffect() { mEfxSui->fade(); }
+void Obj::finishSuckEffect()
+{
+	mEfxSui->fade();
+}
 
 /**
  * @note Address: 0x802D6D78
  * @note Size: 0x34
  */
-void Obj::createFlickNaviEffect() { mEfxGepu->create(nullptr); }
+void Obj::createFlickNaviEffect()
+{
+	mEfxGepu->create(nullptr);
+}
 
 /**
  * @note Address: 0x802D6DAC
@@ -1939,7 +1964,10 @@ void Obj::createBodyBombEffect()
  * @note Address: 0x802D6E48
  * @note Size: 0x44
  */
-void Obj::createDownEffect() { createBounceEffect(mPosition, getDownSmokeScale()); }
+void Obj::createDownEffect()
+{
+	createBounceEffect(mPosition, getDownSmokeScale());
+}
 
 /**
  * @note Address: 0x802D6E94

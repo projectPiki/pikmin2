@@ -78,7 +78,10 @@ void HoudaiShadowMgr::init()
  * @note Address: 0x802BF8A8
  * @note Size: 0x18
  */
-void HoudaiShadowMgr::setJointPosPtr(int p1, int p2, Vector3f* posPtr) { mJointPosPtrs[p1][p2] = posPtr; }
+void HoudaiShadowMgr::setJointPosPtr(int p1, int p2, Vector3f* posPtr)
+{
+	mJointPosPtrs[p1][p2] = posPtr;
+}
 
 /**
  * @note Address: 0x802BF8C0

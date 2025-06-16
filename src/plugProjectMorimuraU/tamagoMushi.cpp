@@ -16,13 +16,19 @@ static const char unusedName[] = "tamagoMushi";
  * @note Address: 0x8036EBA8
  * @note Size: 0x20
  */
-void Obj::setParameters() { EnemyBase::setParameters(); }
+void Obj::setParameters()
+{
+	EnemyBase::setParameters();
+}
 
 /**
  * @note Address: 0x8036EBC8
  * @note Size: 0x20
  */
-void Obj::birth(Vector3f& pos, f32 faceDir) { EnemyBase::birth(pos, faceDir); }
+void Obj::birth(Vector3f& pos, f32 faceDir)
+{
+	EnemyBase::birth(pos, faceDir);
+}
 
 /**
  * @note Address: 0x8036EBE8
@@ -134,13 +140,18 @@ void Obj::doAnimationCullingOff()
  * @note Address: 0x8036F238
  * @note Size: 0x4
  */
-void Obj::doDirectDraw(Graphics&) { }
+void Obj::doDirectDraw(Graphics&)
+{
+}
 
 /**
  * @note Address: 0x8036F23C
  * @note Size: 0x20
  */
-void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
+void Obj::doDebugDraw(Graphics& gfx)
+{
+	EnemyBase::doDebugDraw(gfx);
+}
 
 /**
  * @note Address: 0x8036F25C
@@ -269,13 +280,19 @@ void Obj::bounceCallback(Sys::Triangle* tri)
  * @note Address: 0x8036F798
  * @note Size: 0x2C
  */
-bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* part) { return pressCallBack(creature, damage, part); }
+bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* part)
+{
+	return pressCallBack(creature, damage, part);
+}
 
 /**
  * @note Address: 0x8036F7C4
  * @note Size: 0x30
  */
-bool Obj::earthquakeCallBack(Creature* creature, f32 damage) { return pressCallBack(creature, damage, nullptr); }
+bool Obj::earthquakeCallBack(Creature* creature, f32 damage)
+{
+	return pressCallBack(creature, damage, nullptr);
+}
 
 /**
  * @note Address: 0x8036F7F4
@@ -446,7 +463,10 @@ bool Obj::turnFunc()
  * @note Address: 0x80370160
  * @note Size: 0x34
  */
-bool Obj::isReachToGoal(f32 goalRadius) { return (u8)(sqrDistanceXZ(mPosition, mGoalPosition) < SQUARE(goalRadius)); }
+bool Obj::isReachToGoal(f32 goalRadius)
+{
+	return (u8)(sqrDistanceXZ(mPosition, mGoalPosition) < SQUARE(goalRadius));
+}
 
 /**
  * @note Address: 0x80370194
@@ -465,7 +485,10 @@ void Obj::resetWalkParm()
  * @note Address: 0x803701C0
  * @note Size: 0x28
  */
-void Obj::startCarcassMotion() { startMotion(TAMAGOANIM_Carry, nullptr); }
+void Obj::startCarcassMotion()
+{
+	startMotion(TAMAGOANIM_Carry, nullptr);
+}
 
 /**
  * @note Address: 0x803701E8

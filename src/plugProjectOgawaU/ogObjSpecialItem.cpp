@@ -31,7 +31,9 @@ ObjSpecialItem::ObjSpecialItem(const char* name)
  * @note Address: 0x80319D4C
  * @note Size: 0xAC
  */
-ObjSpecialItem::~ObjSpecialItem() { }
+ObjSpecialItem::~ObjSpecialItem()
+{
+}
 
 /**
  * @note Address: 0x80319DF8
@@ -140,19 +142,26 @@ bool ObjSpecialItem::doEnd(::Screen::EndSceneArg const*)
  * @note Address: 0x8031A1EC
  * @note Size: 0x4
  */
-void ObjSpecialItem::doUpdateFadeinFinish() { }
+void ObjSpecialItem::doUpdateFadeinFinish()
+{
+}
 
 /**
  * @note Address: 0x8031A1F0
  * @note Size: 0xC
  */
-void ObjSpecialItem::doUpdateFinish() { mFadeTimer1 = 0.0f; }
+void ObjSpecialItem::doUpdateFinish()
+{
+	mFadeTimer1 = 0.0f;
+}
 
 /**
  * @note Address: 0x8031A1FC
  * @note Size: 0x4
  */
-void ObjSpecialItem::doUpdateFadeoutFinish() { }
+void ObjSpecialItem::doUpdateFadeoutFinish()
+{
+}
 
 /**
  * @note Address: 0x8031A200

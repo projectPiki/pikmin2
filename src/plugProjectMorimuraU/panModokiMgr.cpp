@@ -21,13 +21,19 @@ Mgr::Mgr(int objLimit, u8 modelType)
  * @note Address: 0x8034EA10
  * @note Size: 0x48
  */
-void Mgr::doAlloc() { init(new PanModokiBase::Parms); }
+void Mgr::doAlloc()
+{
+	init(new PanModokiBase::Parms);
+}
 
 /**
  * @note Address: 0x8034ED70
  * @note Size: 0x20
  */
-EnemyBase* Mgr::birth(EnemyBirthArg& birthArg) { return EnemyMgrBase::birth(birthArg); }
+EnemyBase* Mgr::birth(EnemyBirthArg& birthArg)
+{
+	return EnemyMgrBase::birth(birthArg);
+}
 
 } // namespace PanModoki
 
@@ -46,13 +52,19 @@ Mgr::Mgr(int objLimit, u8 modelType)
  * @note Address: 0x8034EDE0
  * @note Size: 0x48
  */
-void Mgr::doAlloc() { init(new PanModokiBase::Parms); }
+void Mgr::doAlloc()
+{
+	init(new PanModokiBase::Parms);
+}
 
 /**
  * @note Address: 0x8034EE28
  * @note Size: 0x20
  */
-EnemyBase* Mgr::birth(EnemyBirthArg& birthArg) { return EnemyMgrBase::birth(birthArg); }
+EnemyBase* Mgr::birth(EnemyBirthArg& birthArg)
+{
+	return EnemyMgrBase::birth(birthArg);
+}
 
 /**
  * @note Address: 0x8034EE48

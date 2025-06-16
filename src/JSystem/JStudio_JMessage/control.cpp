@@ -74,11 +74,16 @@ bool JStudio_JMessage::TCreateObject_base::create(JStudio::TObject** newObject, 
  * @note Address: 0x80014F60
  * @note Size: 0x70
  */
-JStudio_JMessage::TCreateObject::~TCreateObject() { }
+JStudio_JMessage::TCreateObject::~TCreateObject()
+{
+}
 
 /**
  * @note Address: 0x80014FD0
  * @note Size: 0x8
  */
-JMessage::TControl* JStudio_JMessage::TCreateObject::find(JStudio::stb::data::TParse_TBlock_object const&) { return mControl; }
+JMessage::TControl* JStudio_JMessage::TCreateObject::find(JStudio::stb::data::TParse_TBlock_object const&)
+{
+	return mControl;
+}
 } // namespace JStudio_JMessage

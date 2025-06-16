@@ -4,7 +4,10 @@
 #include "PSSystem/PSSystemIF.h"
 #include "og/newScreen/ogUtil.h"
 
-static void _Print(char* format, ...) { OSReport(format, __FILE__); }
+static void _Print(char* format, ...)
+{
+	OSReport(format, __FILE__);
+}
 
 namespace ebi {
 namespace Omake {
@@ -27,13 +30,19 @@ void FSMStateMachine::init(TMgr* mgr)
  * @note Address: 0x803EEDB8
  * @note Size: 0x2C
  */
-void FSMState::init(TMgr* mgr, Game::StateArg* arg) { do_init(mgr, arg); }
+void FSMState::init(TMgr* mgr, Game::StateArg* arg)
+{
+	do_init(mgr, arg);
+}
 
 /**
  * @note Address: 0x803EEDE4
  * @note Size: 0x2C
  */
-void FSMState::exec(TMgr* mgr) { do_exec(mgr); }
+void FSMState::exec(TMgr* mgr)
+{
+	do_exec(mgr);
+}
 
 /**
  * @note Address: 0x803EEE10
@@ -76,7 +85,10 @@ void FSMState_OmakeScreen::do_exec(TMgr* mgr)
  * @note Address: 0x803EEF94
  * @note Size: 0x34
  */
-void FSMState_CardEScreen::do_init(TMgr* mgr, Game::StateArg* arg) { mgr->mOmakeCardE.openScreen(nullptr); }
+void FSMState_CardEScreen::do_init(TMgr* mgr, Game::StateArg* arg)
+{
+	mgr->mOmakeCardE.openScreen(nullptr);
+}
 
 /**
  * @note Address: 0x803EEFC8
@@ -248,13 +260,19 @@ void TMgr::newCardEMgrAndTask()
  * @note Address: 0x803EF614
  * @note Size: 0x3C
  */
-void TMgr::start() { mStateMachine.transit(this, OmakeScreen, nullptr); }
+void TMgr::start()
+{
+	mStateMachine.transit(this, OmakeScreen, nullptr);
+}
 
 /**
  * @note Address: 0x803EF650
  * @note Size: 0x3C
  */
-void TMgr::goEnd_() { mStateMachine.transit(this, Standby, nullptr); }
+void TMgr::goEnd_()
+{
+	mStateMachine.transit(this, Standby, nullptr);
+}
 
 /**
  * @note Address: N/A
@@ -269,7 +287,10 @@ void TMgr::forceQuit()
  * @note Address: 0x803EF68C
  * @note Size: 0x28
  */
-bool TMgr::isFinish() { return u8(getStateID() == Standby); }
+bool TMgr::isFinish()
+{
+	return u8(getStateID() == Standby);
+}
 
 /**
  * @note Address: 0x803EF6B4
@@ -310,7 +331,10 @@ void TMgr::draw()
  * @note Address: 0x803EF814
  * @note Size: 0x2C
  */
-bool TMgr::isMovieState() { return u8(getStateID() == Movie); }
+bool TMgr::isMovieState()
+{
+	return u8(getStateID() == Movie);
+}
 
 /**
  * @note Address: 0x803EF840
@@ -327,7 +351,10 @@ void TMgr::restartFromMovieState()
  * @note Address: 0x803EF894
  * @note Size: 0x8
  */
-int TMgr::getMovieID() { return mOmake.mCurrSel; }
+int TMgr::getMovieID()
+{
+	return mOmake.mCurrSel;
+}
 
 /**
  * @note Address: N/A

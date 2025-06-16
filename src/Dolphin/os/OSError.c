@@ -28,7 +28,10 @@ WEAKFUNC void OSReport(const char* msg, ...)
  * @note Size: 0x20
  * same as OSReport but without va start/end
  */
-WEAKFUNC void OSVReport(const char* msg, va_list list) { vprintf(msg, list); }
+WEAKFUNC void OSVReport(const char* msg, va_list list)
+{
+	vprintf(msg, list);
+}
 
 /**
  * @note Address: 0x800ED76C

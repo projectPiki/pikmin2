@@ -43,7 +43,9 @@ ObjectActor::ObjectActor(char const* name, MoviePlayer* movie)
  * @note Address: 0x8042EA30
  * @note Size: 0x68
  */
-ObjectActor::~ObjectActor() { }
+ObjectActor::~ObjectActor()
+{
+}
 
 /**
  * @note Address: 0x8042EA98
@@ -308,7 +310,10 @@ bool ObjectActor::setAnim()
  * @note Address: 0x8042F1CC
  * @note Size: 0x38
  */
-void ObjectActor::mountArchive() { JUT_PANICLINE(359, "DON\'T CALL THIS !\n"); }
+void ObjectActor::mountArchive()
+{
+	JUT_PANICLINE(359, "DON\'T CALL THIS !\n");
+}
 
 /**
  * @note Address: 0x8042F204
@@ -545,19 +550,28 @@ bool ObjectActor::JSGGetNodeTransformation(u32 id, Mtx mtx) const
  * @note Address: 0x8042F55C
  * @note Size: 0x8
  */
-char const* ObjectActor::JSGGetName() const { return mName; }
+char const* ObjectActor::JSGGetName() const
+{
+	return mName;
+}
 
 /**
  * @note Address: 0x8042F564
  * @note Size: 0x8
  */
-void ObjectActor::JSGSetFlag(u32 a1) { mFlags = a1; }
+void ObjectActor::JSGSetFlag(u32 a1)
+{
+	mFlags = a1;
+}
 
 /**
  * @note Address: 0x8042F56C
  * @note Size: 0x8
  */
-u32 ObjectActor::JSGGetFlag() const { return mFlags; }
+u32 ObjectActor::JSGGetFlag() const
+{
+	return mFlags;
+}
 
 /**
  * @note Address: 0x8042F574
@@ -575,7 +589,10 @@ void ObjectActor::JSGSetData(u32 data1, void const* data2, u32 data3)
  * @note Address: 0x8042F5AC
  * @note Size: 0x1C
  */
-void ObjectActor::JSGSetTranslation(Vec const& translate) { mTranslation = translate; }
+void ObjectActor::JSGSetTranslation(Vec const& translate)
+{
+	mTranslation = translate;
+}
 
 /**
  * @note Address: 0x8042F5C8
@@ -592,7 +609,10 @@ void ObjectActor::JSGGetTranslation(Vec* translate) const
  * @note Address: 0x8042F5E4
  * @note Size: 0x1C
  */
-void ObjectActor::JSGSetRotation(Vec const& rotate) { mRotation = rotate; }
+void ObjectActor::JSGSetRotation(Vec const& rotate)
+{
+	mRotation = rotate;
+}
 
 /**
  * @note Address: 0x8042F600
@@ -609,7 +629,10 @@ void ObjectActor::JSGGetRotation(Vec* rotate) const
  * @note Address: 0x8042F61C
  * @note Size: 0x1C
  */
-void ObjectActor::JSGSetScaling(Vec const& scale) { mScaling = scale; }
+void ObjectActor::JSGSetScaling(Vec const& scale)
+{
+	mScaling = scale;
+}
 
 /**
  * @note Address: 0x8042F638
@@ -626,43 +649,63 @@ void ObjectActor::JSGGetScaling(Vec* scale) const
  * @note Address: 0x8042F654
  * @note Size: 0x8
  */
-void ObjectActor::JSGSetShape(u32 a1) { mShape = a1; }
+void ObjectActor::JSGSetShape(u32 a1)
+{
+	mShape = a1;
+}
 
 /**
  * @note Address: 0x8042F65C
  * @note Size: 0x8
  */
-int ObjectActor::JSGGetShape() const { return mShape; }
+int ObjectActor::JSGGetShape() const
+{
+	return mShape;
+}
 
 /**
  * @note Address: 0x8042F664
  * @note Size: 0x8
  */
-void ObjectActor::JSGSetAnimation(u32 a1) { mAnimation = a1; }
+void ObjectActor::JSGSetAnimation(u32 a1)
+{
+	mAnimation = a1;
+}
 
 /**
  * @note Address: 0x8042F66C
  * @note Size: 0x8
  */
-int ObjectActor::JSGGetAnimation() const { return mAnimation; }
+int ObjectActor::JSGGetAnimation() const
+{
+	return mAnimation;
+}
 
 /**
  * @note Address: 0x8042F674
  * @note Size: 0x8
  */
-f32 ObjectActor::JSGGetAnimationFrameMax() const { return mAnimFrameMax; }
+f32 ObjectActor::JSGGetAnimationFrameMax() const
+{
+	return mAnimFrameMax;
+}
 
 /**
  * @note Address: 0x8042F67C
  * @note Size: 0x4
  */
-void ObjectActor::JSGSetAnimationFrame(f32) { }
+void ObjectActor::JSGSetAnimationFrame(f32)
+{
+}
 
 /**
  * @note Address: 0x8042F680
  * @note Size: 0x8
  */
-f32 ObjectActor::JSGGetAnimationFrame() const { return mAnimFrame; }
+f32 ObjectActor::JSGGetAnimationFrame() const
+{
+	return mAnimFrame;
+}
 
 } // namespace P2JST
 } // namespace Game

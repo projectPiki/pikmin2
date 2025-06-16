@@ -31,7 +31,10 @@ RandItemUnit::RandItemUnit(MapUnitGenerator* generator)
  * @note Address: 0x8024E3F0
  * @note Size: 0x8
  */
-void RandItemUnit::setManageClassPtr(RandMapScore* ptr) { mMapScore = ptr; }
+void RandItemUnit::setManageClassPtr(RandMapScore* ptr)
+{
+	mMapScore = ptr;
+}
 
 /**
  * @note Address: 0x8024E3F8
@@ -192,7 +195,10 @@ void RandItemUnit::getItemDropPosition(Vector3f& position, f32 weight, int floor
 	if (floorIndex < 0) {
 		int dropIndex = 1280000;
 		for (int i = 0; i < 2; i++) {
-			FOREACH_NODE(MapNode, nodes[i]->mChild, mapNode) { getItemDropMapNode(mapNode, &dropNode, score, dropIndex); }
+			FOREACH_NODE(MapNode, nodes[i]->mChild, mapNode)
+			{
+				getItemDropMapNode(mapNode, &dropNode, score, dropIndex);
+			}
 		}
 
 		if (dropNode) {
@@ -205,7 +211,10 @@ void RandItemUnit::getItemDropPosition(Vector3f& position, f32 weight, int floor
 		int dropIndex = 0;
 		BaseGen* basegen[256];
 		for (int i = 0; i < 2; i++) {
-			FOREACH_NODE(MapNode, nodes[i]->mChild, mapNode) { getItemDropList(mapNode, dropList, basegen, dropIndex); }
+			FOREACH_NODE(MapNode, nodes[i]->mChild, mapNode)
+			{
+				getItemDropList(mapNode, dropList, basegen, dropIndex);
+			}
 		}
 
 		if (floorIndex < dropIndex) {

@@ -237,7 +237,10 @@ void MoviePlayer::doStartMovie()
  * @note Address: 0x8042CD6C
  * @note Size: 0x24
  */
-MovieConfig* MoviePlayer::findConfig(char* demoName, char* courseName) { return movieList->findConfig(demoName, courseName); }
+MovieConfig* MoviePlayer::findConfig(char* demoName, char* courseName)
+{
+	return movieList->findConfig(demoName, courseName);
+}
 
 /**
  * @note Address: 0x8042CD90
@@ -322,7 +325,10 @@ bool MoviePlayer::playSuspended()
  * @note Address: 0x8042CF88
  * @note Size: 0xAC
  */
-void MoviePlayer::clearSuspendedDemo() { clearContexts(); }
+void MoviePlayer::clearSuspendedDemo()
+{
+	clearContexts();
+}
 
 /**
  * @note Address: N/A

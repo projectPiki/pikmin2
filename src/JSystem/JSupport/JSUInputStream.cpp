@@ -5,7 +5,9 @@
  * @note Address: 0x80026378
  * @note Size: 0x5C
  */
-JSUInputStream::~JSUInputStream() { }
+JSUInputStream::~JSUInputStream()
+{
+}
 
 /**
  * @note Address: 0x800263D4

@@ -32,19 +32,25 @@ void FSM::init(Item* item)
  * @note Address: 0x801EDFF8
  * @note Size: 0x4
  */
-void NormalState::init(Item*, StateArg*) { }
+void NormalState::init(Item*, StateArg*)
+{
+}
 
 /**
  * @note Address: 0x801EDFFC
  * @note Size: 0x4
  */
-void NormalState::exec(Item*) { }
+void NormalState::exec(Item*)
+{
+}
 
 /**
  * @note Address: 0x801EE000
  * @note Size: 0x4
  */
-void NormalState::cleanup(Item*) { }
+void NormalState::cleanup(Item*)
+{
+}
 
 /**
  * @note Address: N/A
@@ -161,13 +167,18 @@ void Item::do_updateLOD()
  * @note Address: 0x801EE4C0
  * @note Size: 0x4
  */
-void Item::doDirectDraw(Graphics&) { }
+void Item::doDirectDraw(Graphics&)
+{
+}
 
 /**
  * @note Address: 0x801EE4C4
  * @note Size: 0x48
  */
-void Item::constructor() { mSoundObj = new PSM::WorkItem(this); }
+void Item::constructor()
+{
+	mSoundObj = new PSM::WorkItem(this);
+}
 
 /**
  * @note Address: 0x801EE50C
@@ -443,7 +454,10 @@ f32 Item::getStageDepth()
  * @note Address: 0x801EF030
  * @note Size: 0x8
  */
-f32 Item::getStageWidth() { return 150.0f; }
+f32 Item::getStageWidth()
+{
+	return 150.0f;
+}
 
 // need to increase the inline depth enough that this doesn't auto-inline anymore
 #pragma dont_inline on
@@ -452,7 +466,10 @@ f32 Item::getStageWidth() { return 150.0f; }
  * @note Size: 0xA4
  * Returns unit vector in direction of bridge unfurling (level with ground).
  */
-Vector3f Item::getBridgeZVec() { return getDirection(mFaceDir); }
+Vector3f Item::getBridgeZVec()
+{
+	return getDirection(mFaceDir);
+}
 #pragma dont_inline reset
 
 /**
@@ -460,7 +477,10 @@ Vector3f Item::getBridgeZVec() { return getDirection(mFaceDir); }
  * @note Size: 0xB8
  * Returns unit vector perpendicular to bridge unfurling (level with ground).
  */
-Vector3f Item::getBridgeXVec() { return getPerpDirection(mFaceDir); }
+Vector3f Item::getBridgeXVec()
+{
+	return getPerpDirection(mFaceDir);
+}
 
 /**
  * @note Address: 0x801EF194
@@ -1155,7 +1175,10 @@ f32 Item::getWorkRadius()
  * @note Address: 0x801EFF6C
  * @note Size: 0x4C
  */
-GenItemParm* Mgr::generatorNewItemParm() { return new GenBridgeParm(); }
+GenItemParm* Mgr::generatorNewItemParm()
+{
+	return new GenBridgeParm();
+}
 
 /**
  * @note Address: 0x801EFFB8

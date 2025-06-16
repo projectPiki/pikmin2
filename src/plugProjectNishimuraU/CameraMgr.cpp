@@ -16,7 +16,10 @@ CameraMgr* cameraMgr;
  * @note Address: 0x80250988
  * @note Size: 0x48
  */
-CameraMgr::CameraMgr() { setName("CameraMgr"); }
+CameraMgr::CameraMgr()
+{
+	setName("CameraMgr");
+}
 
 /**
  * @note Address: 0x802509D0

@@ -23,7 +23,10 @@ CallBack_Screen::CallBack_Screen(P2DScreen::Mgr* mgr, u64 tag)
  * @note Address: 0x8030B414
  * @note Size: 0x8
  */
-P2DScreen::Mgr* CallBack_Screen::getPartsScreen() { return mPartsScreen; }
+P2DScreen::Mgr* CallBack_Screen::getPartsScreen()
+{
+	return mPartsScreen;
+}
 
 /**
  * @note Address: 0x8030B41C

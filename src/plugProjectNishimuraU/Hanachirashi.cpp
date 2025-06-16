@@ -24,7 +24,9 @@ Obj::Obj()
  * @note Address: 0x802A1C44
  * @note Size: 0x4
  */
-void Obj::setInitialSetting(EnemyInitialParamBase*) { }
+void Obj::setInitialSetting(EnemyInitialParamBase*)
+{
+}
 
 /**
  * @note Address: 0x802A1C48
@@ -114,13 +116,18 @@ void Obj::setFSM(FSM* fsm)
  * @note Address: 0x802A1EF0
  * @note Size: 0x4
  */
-void Obj::doDirectDraw(Graphics&) { }
+void Obj::doDirectDraw(Graphics&)
+{
+}
 
 /**
  * @note Address: 0x802A1EF4
  * @note Size: 0x20
  */
-void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
+void Obj::doDebugDraw(Graphics& gfx)
+{
+	EnemyBase::doDebugDraw(gfx);
+}
 
 /**
  * @note Address: 0x802A1F14
@@ -194,13 +201,19 @@ void Obj::doFinishWaitingBirthTypeDrop()
  * @note Address: 0x802A219C
  * @note Size: 0x20
  */
-void Obj::doStartMovie() { effectDrawOff(); }
+void Obj::doStartMovie()
+{
+	effectDrawOff();
+}
 
 /**
  * @note Address: 0x802A21BC
  * @note Size: 0x20
  */
-void Obj::doEndMovie() { effectDrawOn(); }
+void Obj::doEndMovie()
+{
+	effectDrawOn();
+}
 
 /**
  * @note Address: 0x802A21DC
@@ -246,7 +259,10 @@ void Obj::getThrowupItemVelocity(Vector3f* velocity)
  * @note Address: 0x802A22D0
  * @note Size: 0x50
  */
-Vector3f Obj::getHeadJointPos() { return mModel->getJoint("head")->getWorldMatrix()->getTranslation(); }
+Vector3f Obj::getHeadJointPos()
+{
+	return mModel->getJoint("head")->getWorldMatrix()->getTranslation();
+}
 
 /**
  * @note Address: 0x802A2320
@@ -290,13 +306,19 @@ void Obj::setRandTarget()
  * @note Address: 0x802A2614
  * @note Size: 0xC
  */
-void Obj::resetShadowOffset() { mShadowOffset = -5.0f; }
+void Obj::resetShadowOffset()
+{
+	mShadowOffset = -5.0f;
+}
 
 /**
  * @note Address: 0x802A2620
  * @note Size: 0xC
  */
-void Obj::setShadowOffsetMax() { mShadowOffset = 5.0f; }
+void Obj::setShadowOffsetMax()
+{
+	mShadowOffset = 5.0f;
+}
 
 /**
  * @note Address: 0x802A262C
@@ -326,7 +348,10 @@ void Obj::subShadowOffset()
  * @note Address: 0x802A267C
  * @note Size: 0xC
  */
-void Obj::resetShadowRadius() { mShadowRadius = 20.0f; }
+void Obj::resetShadowRadius()
+{
+	mShadowRadius = 20.0f;
+}
 
 /**
  * @note Address: 0x802A2688
@@ -1491,7 +1516,10 @@ void Obj::startDeadEffect()
  * @note Address: 0x802A40C8
  * @note Size: 0x34
  */
-void Obj::createSuckEffect() { mEfxSui->create(nullptr); }
+void Obj::createSuckEffect()
+{
+	mEfxSui->create(nullptr);
+}
 
 /**
  * @note Address: 0x802A40FC

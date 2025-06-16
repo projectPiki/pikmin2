@@ -2020,13 +2020,19 @@ void TMainScreen::createFiledecide(s32 id)
  * @note Address: 0x803D78A8
  * @note Size: 0x30
  */
-bool TMainScreen::isFinishOutDataBall(s32 fileID) { return mAnimFileBallOut[fileID].isFinish(); }
+bool TMainScreen::isFinishOutDataBall(s32 fileID)
+{
+	return mAnimFileBallOut[fileID].isFinish();
+}
 
 /**
  * @note Address: 0x803D78D8
  * @note Size: 0x30
  */
-bool TMainScreen::isFinishDecideDataBall(s32 fileID) { return mAnimFileBallDecide[fileID].isFinish(); }
+bool TMainScreen::isFinishDecideDataBall(s32 fileID)
+{
+	return mAnimFileBallDecide[fileID].isFinish();
+}
 
 /**
  * @note Address: 0x803D7908
@@ -2233,7 +2239,10 @@ void TMainScreen::decideDataWindow()
  * @note Address: 0x803D8204
  * @note Size: 0x24
  */
-bool TMainScreen::isFinishCloseDataWindow() { return mAnimCloseDataWindow.isFinish(); }
+bool TMainScreen::isFinishCloseDataWindow()
+{
+	return mAnimCloseDataWindow.isFinish();
+}
 
 /**
  * @note Address: 0x803D8228

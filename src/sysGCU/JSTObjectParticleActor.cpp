@@ -68,7 +68,10 @@ void ObjectParticleActor::reset()
  * @note Address: 0x80454664
  * @note Size: 0x20
  */
-void ObjectParticleActor::stop() { killEmitter(); }
+void ObjectParticleActor::stop()
+{
+	killEmitter();
+}
 
 /**
  * @note Address: 0x80454684
@@ -153,7 +156,10 @@ void ObjectParticleActor::parseUserData_(u32 p1, void const* rawData)
  * @note Address: 0x804548F8
  * @note Size: 0x1C
  */
-void ObjectParticleActor::JSGSetTranslation(Vec const& pos) { mTranslation2 = pos; }
+void ObjectParticleActor::JSGSetTranslation(Vec const& pos)
+{
+	mTranslation2 = pos;
+}
 
 /**
  * @note Address: 0x80454914

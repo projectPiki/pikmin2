@@ -72,7 +72,10 @@ TTitleMgr::~TTitleMgr()
  * @note Address: 0x803BE774
  * @note Size: 0x24
  */
-void TTitleMgr::globalInstance() { titleMgr = Instance(); }
+void TTitleMgr::globalInstance()
+{
+	titleMgr = Instance();
+}
 
 /**
  * @note Address: 0x803BE798

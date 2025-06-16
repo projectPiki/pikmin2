@@ -9,6 +9,9 @@
 
 namespace P2DScreen {
 
-static void fakeInfoWindowFunc(Mgr* mgr) { mgr->~Mgr(); }
+static void fakeInfoWindowFunc(Mgr* mgr)
+{
+	mgr->~Mgr();
+}
 
 } // namespace P2DScreen

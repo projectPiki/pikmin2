@@ -11,7 +11,10 @@
  * @note Address: N/A
  * @note Size: 0xE4
  */
-static void _Print(char* name, ...) { OSReport("ebiScreenOption"); }
+static void _Print(char* name, ...)
+{
+	OSReport("ebiScreenOption");
+}
 
 using namespace Game::CommonSaveData;
 
@@ -224,7 +227,10 @@ void TOption::doCloseScreen(ArgClose*)
  * @note Address: 0x803CBA3C
  * @note Size: 0x24
  */
-void TOption::doInitWaitState() { mAnimOpenScreen.stop(); }
+void TOption::doInitWaitState()
+{
+	mAnimOpenScreen.stop();
+}
 
 /**
  * @note Address: 0x803CBA60

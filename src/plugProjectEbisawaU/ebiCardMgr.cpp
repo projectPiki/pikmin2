@@ -49,13 +49,19 @@ void FSMStateMachine::init(TMgr* mgr)
  * @note Address: 0x803D1B30
  * @note Size: 0x2C
  */
-void FSMState::init(TMgr* mgr, Game::StateArg* arg) { do_init(mgr, arg); }
+void FSMState::init(TMgr* mgr, Game::StateArg* arg)
+{
+	do_init(mgr, arg);
+}
 
 /**
  * @note Address: 0x803D1B60
  * @note Size: 0x2C
  */
-void FSMState::exec(TMgr* mgr) { do_exec(mgr); }
+void FSMState::exec(TMgr* mgr)
+{
+	do_exec(mgr);
+}
 
 /**
  * @note Address: 0x803D1B90
@@ -414,7 +420,9 @@ namespace Screen {
  * @note Address: 0x803D2718
  * @note Size: 0x460
  */
-TMemoryCard::~TMemoryCard() { }
+TMemoryCard::~TMemoryCard()
+{
+}
 
 /**
  * @note Address: 0x803D2B78

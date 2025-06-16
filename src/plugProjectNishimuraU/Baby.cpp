@@ -25,7 +25,9 @@ Obj::Obj()
  * @note Address: 0x8028D5B0
  * @note Size: 0x4
  */
-void Obj::setInitialSetting(EnemyInitialParamBase*) { }
+void Obj::setInitialSetting(EnemyInitialParamBase*)
+{
+}
 
 /**
  * @note Address: 0x8028D5B4
@@ -61,13 +63,18 @@ void Obj::doUpdate()
  * @note Address: 0x8028D6B4
  * @note Size: 0x4
  */
-void Obj::doDirectDraw(Graphics&) { }
+void Obj::doDirectDraw(Graphics&)
+{
+}
 
 /**
  * @note Address: 0x8028D6B8
  * @note Size: 0x20
  */
-void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
+void Obj::doDebugDraw(Graphics& gfx)
+{
+	EnemyBase::doDebugDraw(gfx);
+}
 
 /**
  * @note Address: 0x8028D6D8
@@ -133,7 +140,10 @@ bool Obj::hipdropCallBack(Creature* obj, f32 damage, CollPart* part)
  * @note Address: 0x8028D874
  * @note Size: 0x20
  */
-void Obj::doStartStoneState() { EnemyBase::doStartStoneState(); }
+void Obj::doStartStoneState()
+{
+	EnemyBase::doStartStoneState();
+}
 
 /**
  * @note Address: 0x8028D894
@@ -171,13 +181,19 @@ void Obj::doFinishWaitingBirthTypeDrop()
  * @note Address: 0x8028D958
  * @note Size: 0x20
  */
-void Obj::doStartMovie() { effectDrawOff(); }
+void Obj::doStartMovie()
+{
+	effectDrawOff();
+}
 
 /**
  * @note Address: 0x8028D978
  * @note Size: 0x20
  */
-void Obj::doEndMovie() { effectDrawOn(); }
+void Obj::doEndMovie()
+{
+	effectDrawOn();
+}
 
 /**
  * @note Address: 0x8028D998
@@ -215,13 +231,19 @@ int Obj::getSlotPikiNum()
  * @note Address: 0x8028DAB0
  * @note Size: 0x8
  */
-MouthSlots* Obj::getMouthSlots() { return &mMouthSlots; }
+MouthSlots* Obj::getMouthSlots()
+{
+	return &mMouthSlots;
+}
 
 /**
  * @note Address: 0x8028DAB8
  * @note Size: 0x1C
  */
-void Obj::resetRandTargetPosition() { mTargetPos = mPosition; }
+void Obj::resetRandTargetPosition()
+{
+	mTargetPos = mPosition;
+}
 
 /**
  * @note Address: 0x8028DAD4
@@ -281,31 +303,45 @@ void Obj::createHoney()
  * @note Address: 0x8028DE48
  * @note Size: 0xB4
  */
-void Obj::createEffect() { mEfxBabyBorn = new efx::TBabyBorn(&mPosition); }
+void Obj::createEffect()
+{
+	mEfxBabyBorn = new efx::TBabyBorn(&mPosition);
+}
 
 /**
  * @note Address: 0x8028DEFC
  * @note Size: 0x4
  */
-void Obj::setupEffect() { }
+void Obj::setupEffect()
+{
+}
 
 /**
  * @note Address: 0x8028DF00
  * @note Size: 0x34
  */
-void Obj::createBornEffect() { mEfxBabyBorn->create(nullptr); }
+void Obj::createBornEffect()
+{
+	mEfxBabyBorn->create(nullptr);
+}
 
 /**
  * @note Address: 0x8028DF34
  * @note Size: 0x30
  */
-void Obj::effectDrawOn() { mEfxBabyBorn->endDemoDrawOn(); }
+void Obj::effectDrawOn()
+{
+	mEfxBabyBorn->endDemoDrawOn();
+}
 
 /**
  * @note Address: 0x8028DF64
  * @note Size: 0x30
  */
-void Obj::effectDrawOff() { mEfxBabyBorn->startDemoDrawOff(); }
+void Obj::effectDrawOff()
+{
+	mEfxBabyBorn->startDemoDrawOff();
+}
 
 } // namespace Baby
 } // namespace Game

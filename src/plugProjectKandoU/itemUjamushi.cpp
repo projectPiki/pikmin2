@@ -2095,7 +2095,10 @@ void UjaMgr::test_createUjas()
  * @note Address: 0x80208690
  * @note Size: 0x24
  */
-void UjaMgr::do_update_boundSphere() { mActivationSpherePosition = mBoundSphere; }
+void UjaMgr::do_update_boundSphere()
+{
+	mActivationSpherePosition = mBoundSphere;
+}
 
 /**
  * @note Address: 0x802086B4
@@ -2267,7 +2270,10 @@ void Item::setBoidTimer()
  * @note Address: 0x80208F9C
  * @note Size: 0x3C
  */
-bool Item::ignoreAtari(Creature* creature) { return !creature->isPiki(); }
+bool Item::ignoreAtari(Creature* creature)
+{
+	return !creature->isPiki();
+}
 
 /**
  * @note Address: 0x80208FD8
@@ -2459,14 +2465,19 @@ Mgr::Mgr()
 void Mgr::doSimpleDraw(Viewport* vp)
 {
 	Iterator<Item> iter(this);
-	CI_LOOP(iter) { (*iter)->doSimpleDraw(vp); }
+	CI_LOOP(iter)
+	{
+		(*iter)->doSimpleDraw(vp);
+	}
 }
 
 /**
  * @note Address: 0x80209DF4
  * @note Size: 0x4
  */
-void Mgr::onLoadResources() { }
+void Mgr::onLoadResources()
+{
+}
 
 /**
  * @note Address: N/A
@@ -2481,7 +2492,10 @@ Item* Mgr::birth()
  * @note Address: 0x80209DF8
  * @note Size: 0xC
  */
-char* Mgr::getCaveName(int) { return "ujamushi"; }
+char* Mgr::getCaveName(int)
+{
+	return "ujamushi";
+}
 
 /**
  * @note Address: 0x80209E04
@@ -2522,7 +2536,9 @@ void WaitState::exec(Item* item)
  * @note Address: 0x80209F74
  * @note Size: 0x4
  */
-void WaitState::cleanup(Item*) { }
+void WaitState::cleanup(Item*)
+{
+}
 
 /**
  * @note Address: 0x80209F78
@@ -2538,13 +2554,17 @@ void ActiveState::init(Item* item, StateArg* stateArg)
  * @note Address: 0x8020A03C
  * @note Size: 0x4
  */
-void ActiveState::exec(Item*) { }
+void ActiveState::exec(Item*)
+{
+}
 
 /**
  * @note Address: 0x8020A040
  * @note Size: 0x4
  */
-void ActiveState::cleanup(Item*) { }
+void ActiveState::cleanup(Item*)
+{
+}
 
 /**
  * @note Address: 0x8020A044
@@ -2572,13 +2592,18 @@ void DigState::exec(Item* item)
  * @note Address: 0x8020A130
  * @note Size: 0x4
  */
-void DigState::cleanup(Item*) { }
+void DigState::cleanup(Item*)
+{
+}
 
 /**
  * @note Address: 0x8020A134
  * @note Size: 0x4C
  */
-GenItemParm* Mgr::generatorNewItemParm() { return new GenUjamushiParm(); }
+GenItemParm* Mgr::generatorNewItemParm()
+{
+	return new GenUjamushiParm();
+}
 
 /**
  * @note Address: 0x8020A180

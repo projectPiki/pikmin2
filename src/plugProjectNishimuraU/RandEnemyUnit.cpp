@@ -34,7 +34,10 @@ RandEnemyUnit::RandEnemyUnit(MapUnitGenerator* generator, bool isVersusHiba)
  * @note Address: 0x802489BC
  * @note Size: 0x8
  */
-void RandEnemyUnit::setManageClassPtr(RandMapScore* score) { mMapScore = score; }
+void RandEnemyUnit::setManageClassPtr(RandMapScore* score)
+{
+	mMapScore = score;
+}
 
 /**
  * @note Address: 0x802489C4

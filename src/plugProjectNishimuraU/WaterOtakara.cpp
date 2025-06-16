@@ -7,7 +7,10 @@ namespace WaterOtakara {
  * @note Address: 0x802B8A38
  * @note Size: 0xA4
  */
-Obj::Obj() { createEffect(); }
+Obj::Obj()
+{
+	createEffect();
+}
 
 /**
  * @note Address: 0x802B8ADC
@@ -47,7 +50,10 @@ void Obj::interactCreature(Creature* creature)
  * @note Address: 0x802B8CE0
  * @note Size: 0x60
  */
-void Obj::createEffect() { mEfxChargeWater = new efx::TOtaChargewat; }
+void Obj::createEffect()
+{
+	mEfxChargeWater = new efx::TOtaChargewat;
+}
 
 /**
  * @note Address: 0x802B8D40
@@ -63,13 +69,19 @@ void Obj::setupEffect()
  * @note Address: 0x802B8D88
  * @note Size: 0x34
  */
-void Obj::startChargeEffect() { mEfxChargeWater->create(nullptr); }
+void Obj::startChargeEffect()
+{
+	mEfxChargeWater->create(nullptr);
+}
 
 /**
  * @note Address: 0x802B8DBC
  * @note Size: 0x30
  */
-void Obj::finishChargeEffect() { mEfxChargeWater->fade(); }
+void Obj::finishChargeEffect()
+{
+	mEfxChargeWater->fade();
+}
 
 /**
  * @note Address: 0x802B8DEC
@@ -86,18 +98,27 @@ void Obj::createDisChargeEffect()
  * @note Address: 0x802B8E90
  * @note Size: 0x30
  */
-void Obj::effectDrawOn() { mEfxChargeWater->endDemoDrawOn(); }
+void Obj::effectDrawOn()
+{
+	mEfxChargeWater->endDemoDrawOn();
+}
 
 /**
  * @note Address: 0x802B8EC0
  * @note Size: 0x30
  */
-void Obj::effectDrawOff() { mEfxChargeWater->startDemoDrawOff(); }
+void Obj::effectDrawOff()
+{
+	mEfxChargeWater->startDemoDrawOff();
+}
 
 /**
  * @note Address: 0x802B8EF0
  * @note Size: 0x44
  */
-void Obj::startDisChargeSE() { getJAIObject()->startSound(PSSE_EN_OTAKARA_ATK_WATER, 0); }
+void Obj::startDisChargeSE()
+{
+	getJAIObject()->startSound(PSSE_EN_OTAKARA_ATK_WATER, 0);
+}
 } // namespace WaterOtakara
 } // namespace Game

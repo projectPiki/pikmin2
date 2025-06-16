@@ -50,37 +50,54 @@ Game2DMgr::Game2DMgr()
  * @note Address: 0x803FBFA4
  * @note Size: 0x68
  */
-Game2DMgr::~Game2DMgr() { gGame2DMgr = nullptr; }
+Game2DMgr::~Game2DMgr()
+{
+	gGame2DMgr = nullptr;
+}
 
 /**
  * @note Address: 0x803FC00C
  * @note Size: 0x20
  */
-void Game2DMgr::initInCourse() { og::newScreen::initGround(); }
+void Game2DMgr::initInCourse()
+{
+	og::newScreen::initGround();
+}
 
 /**
  * @note Address: 0x803FC02C
  * @note Size: 0x24
  */
-void Game2DMgr::update() { mScreenMgr->update(); }
+void Game2DMgr::update()
+{
+	mScreenMgr->update();
+}
 
 /**
  * @note Address: 0x803FC050
  * @note Size: 0x24
  */
-void Game2DMgr::draw(Graphics& gfx) { mScreenMgr->draw(gfx); }
+void Game2DMgr::draw(Graphics& gfx)
+{
+	mScreenMgr->draw(gfx);
+}
 
 /**
  * @note Address: 0x803FC074
  * @note Size: 0x4
  */
-void Game2DMgr::drawIndirect(Graphics&) { }
+void Game2DMgr::drawIndirect(Graphics&)
+{
+}
 
 /**
  * @note Address: 0x803FC078
  * @note Size: 0x24
  */
-void Game2DMgr::setGamePad(Controller* cont) { mScreenMgr->setGamePad(cont); }
+void Game2DMgr::setGamePad(Controller* cont)
+{
+	mScreenMgr->setGamePad(cont);
+}
 
 /**
  * @note Address: 0x803FC09C
@@ -99,7 +116,10 @@ bool Game2DMgr::setDispMember(og::Screen::DispMemberBase* disp)
  * @note Address: 0x803FC0D0
  * @note Size: 0x38
  */
-void Game2DMgr::setToumeiBG() { mScreenMgr->mBackupScene->setColorBG(0, 0, 0, 0); }
+void Game2DMgr::setToumeiBG()
+{
+	mScreenMgr->mBackupScene->setColorBG(0, 0, 0, 0);
+}
 
 /**
  * @note Address: 0x803FC108
@@ -1504,13 +1524,19 @@ bool Game2DMgr::open_ZukanItem(Morimura::DispMemberZukanItem& disp)
  * @note Address: 0x803FF604
  * @note Size: 0x30
  */
-bool Game2DMgr::isZukanEnemy() { return (mScreenMgr->getSceneType() == SCENE_ZUKAN_ENEMY); }
+bool Game2DMgr::isZukanEnemy()
+{
+	return (mScreenMgr->getSceneType() == SCENE_ZUKAN_ENEMY);
+}
 
 /**
  * @note Address: 0x803FF634
  * @note Size: 0x30
  */
-bool Game2DMgr::isZukanItem() { return (mScreenMgr->getSceneType() == SCENE_ZUKAN_ITEM); }
+bool Game2DMgr::isZukanItem()
+{
+	return (mScreenMgr->getSceneType() == SCENE_ZUKAN_ITEM);
+}
 
 /**
  * @note Address: 0x803FF664

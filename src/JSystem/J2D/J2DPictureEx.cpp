@@ -3565,7 +3565,10 @@ void J2DPictureEx::setAnimation(J2DAnmTevRegKey* animation)
  * @note Address: 0x80058BF8
  * @note Size: 0x8
  */
-void J2DPictureEx::setAnimation(J2DAnmVisibilityFull* animation) { mAnmVisibility = animation; }
+void J2DPictureEx::setAnimation(J2DAnmVisibilityFull* animation)
+{
+	mAnmVisibility = animation;
+}
 
 /**
  * @note Address: 0x80058C00

@@ -195,7 +195,9 @@ void ActWeed::cleanup()
  * @note Address: 0x8020E53C
  * @note Size: 0x4
  */
-void ActWeed::collisionCallback(Game::Piki*, Game::CollEvent&) { }
+void ActWeed::collisionCallback(Game::Piki*, Game::CollEvent&)
+{
+}
 
 /**
  * @note Address: 0x8020E540
@@ -338,6 +340,9 @@ void ActFlockAttack::onKeyEvent(SysShape::KeyEvent const& keyEvent)
  * @note Address: 0x8020EA88
  * @note Size: 0xC
  */
-void ActFlockAttack::cleanup() { mTarget = nullptr; }
+void ActFlockAttack::cleanup()
+{
+	mTarget = nullptr;
+}
 
 } // namespace PikiAI

@@ -123,7 +123,7 @@ struct JASInst {
 	 * @reifiedAddress{800998CC}
 	 * @reifiedFile{JSystem/JAS/JASBasicInst.cpp}
 	 */
-	virtual ~JASInst() {};                                    // _08 (weak)
+	virtual ~JASInst() { };                                   // _08 (weak)
 	virtual bool getParam(int, int, JASInstParam*) const = 0; // _0C
 	virtual u32 getType() const                          = 0; // _10
 };

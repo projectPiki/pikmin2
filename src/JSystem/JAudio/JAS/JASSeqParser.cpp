@@ -367,7 +367,10 @@ int JASSeqParser::cmdCheckPortExport(JASTrack* track, u32* args)
  * @note Address: 0x8009CFE4
  * @note Size: 0x18
  */
-int JASSeqParser::cmdWait(JASTrack* track, u32* args) { return (track->getSeq()->mWaitTimer = args[0]) != 0; }
+int JASSeqParser::cmdWait(JASTrack* track, u32* args)
+{
+	return (track->getSeq()->mWaitTimer = args[0]) != 0;
+}
 
 /**
  * @note Address: 0x8009CFFC
@@ -591,13 +594,19 @@ int JASSeqParser::cmdSyncCPU(JASTrack* track, u32* args)
  * @note Address: 0x8009D3B8
  * @note Size: 0x8
  */
-int JASSeqParser::cmdFlushAll(JASTrack*, u32*) { return 0x0; }
+int JASSeqParser::cmdFlushAll(JASTrack*, u32*)
+{
+	return 0x0;
+}
 
 /**
  * @note Address: 0x8009D3C0
  * @note Size: 0x8
  */
-int JASSeqParser::cmdFlushRelease(JASTrack*, u32*) { return 0x0; }
+int JASSeqParser::cmdFlushRelease(JASTrack*, u32*)
+{
+	return 0x0;
+}
 
 /**
  * @note Address: 0x8009D3C8
@@ -623,13 +632,19 @@ int JASSeqParser::cmdTempo(JASTrack* track, u32* args)
  * @note Address: 0x8009D428
  * @note Size: 0x8
  */
-int JASSeqParser::cmdFinish(JASTrack*, u32*) { return 0x3; }
+int JASSeqParser::cmdFinish(JASTrack*, u32*)
+{
+	return 0x3;
+}
 
 /**
  * @note Address: 0x8009D430
  * @note Size: 0x8
  */
-int JASSeqParser::cmdNop(JASTrack*, u32*) { return 0x0; }
+int JASSeqParser::cmdNop(JASTrack*, u32*)
+{
+	return 0x0;
+}
 
 /**
  * @note Address: 0x8009D438

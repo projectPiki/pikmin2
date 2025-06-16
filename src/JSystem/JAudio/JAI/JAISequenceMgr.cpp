@@ -108,19 +108,28 @@ void getArchiveName(char* path)
  * @note Address: 0x800B1094
  * @note Size: 0x8
  */
-void setArchivePointer(JKRArchive* archive) { arcPointer = archive; }
+void setArchivePointer(JKRArchive* archive)
+{
+	arcPointer = archive;
+}
 
 /**
  * @note Address: 0x800B109C
  * @note Size: 0x8
  */
-JKRArchive* getArchivePointer() { return arcPointer; }
+JKRArchive* getArchivePointer()
+{
+	return arcPointer;
+}
 
 /**
  * @note Address: 0x800B10A4
  * @note Size: 0x8
  */
-void setCustomHeapCallback(CustomHeapCallback callback) { customHeapCallback = callback; }
+void setCustomHeapCallback(CustomHeapCallback callback)
+{
+	customHeapCallback = callback;
+}
 
 /**
  * @note Address: 0x800B10AC
@@ -1976,13 +1985,19 @@ lbl_800B2B5C:
  * @note Address: 0x800B2B90
  * @note Size: 0x2C
  */
-void JAISequence::setPitch(f32 value, u32 moveTime, u8 type) { setSeqInterPitch(type, value, moveTime); }
+void JAISequence::setPitch(f32 value, u32 moveTime, u8 type)
+{
+	setSeqInterPitch(type, value, moveTime);
+}
 
 /**
  * @note Address: 0x800B2BBC
  * @note Size: 0x2C
  */
-void JAISequence::setPan(f32 value, u32 moveTime, u8 type) { setSeqInterPan(type, value, moveTime); }
+void JAISequence::setPan(f32 value, u32 moveTime, u8 type)
+{
+	setSeqInterPan(type, value, moveTime);
+}
 
 /**
  * @note Address: 0x800B2BE8
@@ -2563,7 +2578,10 @@ void checkPlayingSoundTrack(u32)
  * @note Address: 0x800B3828
  * @note Size: 0x10
  */
-JAInter::SeqUpdateData* getPlayTrackInfo(u32 index) { return &seqTrackInfo[index]; }
+JAInter::SeqUpdateData* getPlayTrackInfo(u32 index)
+{
+	return &seqTrackInfo[index];
+}
 
 /**
  * @note Address: N/A

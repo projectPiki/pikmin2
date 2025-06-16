@@ -5,7 +5,10 @@
 
 // TODO: How is this string actually (not) used?
 DEFINE__PRINT("gameConfig");
-static void fakeMatch_printGameConfig() { printf("gameConfig"); }
+static void fakeMatch_printGameConfig()
+{
+	printf("gameConfig");
+}
 
 namespace Game {
 

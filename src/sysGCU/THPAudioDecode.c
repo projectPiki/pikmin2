@@ -158,7 +158,10 @@ void* PopFreeAudioBuffer()
  * @note Address: 0x8044D5E0
  * @note Size: 0x30
  */
-void PushFreeAudioBuffer(void* buf) { OSSendMessage(&FreeAudioBufferQueue, buf, OS_MESSAGE_NOBLOCK); }
+void PushFreeAudioBuffer(void* buf)
+{
+	OSSendMessage(&FreeAudioBufferQueue, buf, OS_MESSAGE_NOBLOCK);
+}
 
 /**
  * @note Address: 0x8044D610
@@ -178,4 +181,7 @@ void* PopDecodedAudioBuffer(s32 flags)
  * @note Address: 0x8044D654
  * @note Size: 0x30
  */
-void PushDecodedAudioBuffer(void* buf) { OSSendMessage(&DecodedAudioBufferQueue, buf, 1); }
+void PushDecodedAudioBuffer(void* buf)
+{
+	OSSendMessage(&DecodedAudioBufferQueue, buf, 1);
+}

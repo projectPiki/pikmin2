@@ -83,7 +83,10 @@ EnemyBase* Mgr::birth(EnemyBirthArg& birthArg)
  * @note Address: 0x802540D0
  * @note Size: 0x48
  */
-void Mgr::doAlloc() { init(new Parms); }
+void Mgr::doAlloc()
+{
+	init(new Parms);
+}
 
 /**
  * @note Address: 0x802542E0
@@ -109,7 +112,10 @@ void Mgr::createObj(int count)
  * @note Address: 0x80254524
  * @note Size: 0x10
  */
-EnemyBase* Mgr::getEnemy(int index) { return &mObj[index]; }
+EnemyBase* Mgr::getEnemy(int index)
+{
+	return &mObj[index];
+}
 
 /**
  * @note Address: 0x80254534

@@ -6,7 +6,10 @@ namespace FireOtakara {
  * @note Address: 0x802B81C8
  * @note Size: 0xA4
  */
-Obj::Obj() { createEffect(); }
+Obj::Obj()
+{
+	createEffect();
+}
 
 /**
  * @note Address: 0x802B826C
@@ -46,7 +49,10 @@ void Obj::interactCreature(Creature* creature)
  * @note Address: 0x802B8470
  * @note Size: 0x60
  */
-void Obj::createEffect() { mEfxChargeFire = new efx::TOtaChargefire; }
+void Obj::createEffect()
+{
+	mEfxChargeFire = new efx::TOtaChargefire;
+}
 
 /**
  * @note Address: 0x802B84D0
@@ -62,13 +68,19 @@ void Obj::setupEffect()
  * @note Address: 0x802B8518
  * @note Size: 0x34
  */
-void Obj::startChargeEffect() { mEfxChargeFire->create(nullptr); }
+void Obj::startChargeEffect()
+{
+	mEfxChargeFire->create(nullptr);
+}
 
 /**
  * @note Address: 0x802B854C
  * @note Size: 0x30
  */
-void Obj::finishChargeEffect() { mEfxChargeFire->fade(); }
+void Obj::finishChargeEffect()
+{
+	mEfxChargeFire->fade();
+}
 
 /**
  * @note Address: 0x802B857C
@@ -85,18 +97,27 @@ void Obj::createDisChargeEffect()
  * @note Address: 0x802B862C
  * @note Size: 0x30
  */
-void Obj::effectDrawOn() { mEfxChargeFire->endDemoDrawOn(); }
+void Obj::effectDrawOn()
+{
+	mEfxChargeFire->endDemoDrawOn();
+}
 
 /**
  * @note Address: 0x802B865C
  * @note Size: 0x30
  */
-void Obj::effectDrawOff() { mEfxChargeFire->startDemoDrawOff(); }
+void Obj::effectDrawOff()
+{
+	mEfxChargeFire->startDemoDrawOff();
+}
 
 /**
  * @note Address: 0x802B868C
  * @note Size: 0x44
  */
-void Obj::startDisChargeSE() { getJAIObject()->startSound(PSSE_EN_OTAKARA_ATTACK_FIRE, 0); }
+void Obj::startDisChargeSE()
+{
+	getJAIObject()->startSound(PSSE_EN_OTAKARA_ATTACK_FIRE, 0);
+}
 } // namespace FireOtakara
 } // namespace Game

@@ -88,14 +88,18 @@ J2DAnmBase* J2DAnmLoaderDataBase::load(const void* data)
  * @note Size: 0x1C
  * __ct__19J2DAnmKeyLoader_v15Fv
  */
-J2DAnmKeyLoader_v15::J2DAnmKeyLoader_v15() { }
+J2DAnmKeyLoader_v15::J2DAnmKeyLoader_v15()
+{
+}
 
 /**
  * @note Address: 0x80048290
  * @note Size: 0x5C
  * __dt__19J2DAnmKeyLoader_v15Fv
  */
-J2DAnmKeyLoader_v15::~J2DAnmKeyLoader_v15() { }
+J2DAnmKeyLoader_v15::~J2DAnmKeyLoader_v15()
+{
+}
 
 /**
  * @note Address: 0x800482EC
@@ -262,7 +266,10 @@ void J2DAnmKeyLoader_v15::setAnmTextureSRT(J2DAnmTextureSRTKey* anm, const J3DAn
  * @note Address: 0x8004881C
  * @note Size: 0x28
  */
-void J2DAnmKeyLoader_v15::readAnmColor(const J3DAnmColorKeyData* data) { setAnmColor(static_cast<J2DAnmColorKey*>(mResource), data); }
+void J2DAnmKeyLoader_v15::readAnmColor(const J3DAnmColorKeyData* data)
+{
+	setAnmColor(static_cast<J2DAnmColorKey*>(mResource), data);
+}
 
 /**
  * @note Address: 0x80048844
@@ -392,14 +399,18 @@ void J2DAnmFullLoader_v15::setResource(J2DAnmBase* anm, const void* data)
  * @note Size: 0x1C
  * __ct__20J2DAnmFullLoader_v15Fv
  */
-J2DAnmFullLoader_v15::J2DAnmFullLoader_v15() { }
+J2DAnmFullLoader_v15::J2DAnmFullLoader_v15()
+{
+}
 
 /**
  * @note Address: 0x80048CC8
  * @note Size: 0x5C
  * __dt__20J2DAnmFullLoader_v15Fv
  */
-J2DAnmFullLoader_v15::~J2DAnmFullLoader_v15() { }
+J2DAnmFullLoader_v15::~J2DAnmFullLoader_v15()
+{
+}
 
 /**
  * @note Address: 0x80048D24
@@ -433,7 +444,10 @@ void J2DAnmFullLoader_v15::setAnmTransform(J2DAnmTransformFull* anm, const J3DAn
  * @note Size: 0x28
  * readAnmColor__20J2DAnmFullLoader_v15FPC19J3DAnmColorFullData
  */
-void J2DAnmFullLoader_v15::readAnmColor(const J3DAnmColorFullData* data) { setAnmColor(static_cast<J2DAnmColorFull*>(mResource), data); }
+void J2DAnmFullLoader_v15::readAnmColor(const J3DAnmColorFullData* data)
+{
+	setAnmColor(static_cast<J2DAnmColorFull*>(mResource), data);
+}
 
 /**
  * @note Address: 0x80048E08
@@ -485,7 +499,10 @@ void J2DAnmFullLoader_v15::setAnmTexPattern(J2DAnmTexPattern* anm, const J3DAnmT
  * @note Address: 0x80048FA0
  * @note Size: 0x28
  */
-void J2DAnmKeyLoader_v15::readAnmTevReg(const J3DAnmTevRegKeyData* data) { setAnmTevReg(static_cast<J2DAnmTevRegKey*>(mResource), data); }
+void J2DAnmKeyLoader_v15::readAnmTevReg(const J3DAnmTevRegKeyData* data)
+{
+	setAnmTevReg(static_cast<J2DAnmTevRegKey*>(mResource), data);
+}
 
 /**
  * @note Address: 0x80048FC8

@@ -623,7 +623,10 @@ inline static void L2Init(void)
  * @note Address: N/A
  * @note Size: 0x2C
  */
-inline void L2Enable(void) { PPCMtl2cr((PPCMfl2cr() | L2CR_L2E) & ~L2CR_L2I); }
+inline void L2Enable(void)
+{
+	PPCMtl2cr((PPCMfl2cr() | L2CR_L2E) & ~L2CR_L2I);
+}
 
 /**
  * @note Address: N/A

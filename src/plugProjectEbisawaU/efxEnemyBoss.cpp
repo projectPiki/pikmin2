@@ -399,7 +399,9 @@ void TKchDeadHana::setGlobalScale(f32 scale)
  * @note Address: 0x803EC130
  * @note Size: 0x4
  */
-void TParticleCallBack_KchYodare::init(JPABaseEmitter*, JPABaseParticle*) { }
+void TParticleCallBack_KchYodare::init(JPABaseEmitter*, JPABaseParticle*)
+{
+}
 
 /**
  * @note Address: 0x803EC134

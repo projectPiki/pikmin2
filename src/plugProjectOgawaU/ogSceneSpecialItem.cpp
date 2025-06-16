@@ -7,19 +7,26 @@ namespace newScreen {
  * @note Address: 0x8031A2A0
  * @note Size: 0x3C
  */
-SpecialItem::SpecialItem() { }
+SpecialItem::SpecialItem()
+{
+}
 
 /**
  * @note Address: 0x8031A2DC
  * @note Size: 0x4
  */
-void SpecialItem::doUserCallBackFunc(Resource::MgrCommand*) { }
+void SpecialItem::doUserCallBackFunc(Resource::MgrCommand*)
+{
+}
 
 /**
  * @note Address: 0x8031A2E0
  * @note Size: 0x60
  */
-void SpecialItem::doCreateObj(JKRArchive* archive) { registObj(new ObjSpecialItem("special item screen"), archive); }
+void SpecialItem::doCreateObj(JKRArchive* archive)
+{
+	registObj(new ObjSpecialItem("special item screen"), archive);
+}
 
 /**
  * @note Address: 0x8031A340

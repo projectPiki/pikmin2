@@ -23,7 +23,10 @@ bool DispMemberBase::isID(u32 ownerID, u64 memberID)
  * @note Address: 0x8030F39C
  * @note Size: 0x40
  */
-void DispMemberBase::getMemberName(char* outName) { og::Screen::TagToName(getMemberID(), outName); }
+void DispMemberBase::getMemberName(char* outName)
+{
+	og::Screen::TagToName(getMemberID(), outName);
+}
 
 /**
  * @note Address: 0x8030F3DC

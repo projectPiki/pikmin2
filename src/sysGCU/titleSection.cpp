@@ -54,7 +54,10 @@ Section::Section(JKRHeap* heap)
  * @note Address: 0x8044A460
  * @note Size: 0xA4
  */
-Section::~Section() { ebi::title::TTitleMgr::deleteInstance(); }
+Section::~Section()
+{
+	ebi::title::TTitleMgr::deleteInstance();
+}
 
 /**
  * @note Address: 0x8044A504
@@ -164,7 +167,10 @@ void Section::init()
  * @note Address: 0x8044AB00
  * @note Size: 0x2C
  */
-void Section::menuCancel(Menu&) { PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CANCEL, 0); }
+void Section::menuCancel(Menu&)
+{
+	PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CANCEL, 0);
+}
 
 /**
  * @note Address: 0x8044AB2C
@@ -563,7 +569,10 @@ bool Section::isFinishable()
  * @note Address: 0x8044BEE0
  * @note Size: 0x8C
  */
-void Section::doLoadingStart() { sys->dvdLoadUseCallBack(&mThreadCommand, new Delegate<Section>(this, loadResource)); }
+void Section::doLoadingStart()
+{
+	sys->dvdLoadUseCallBack(&mThreadCommand, new Delegate<Section>(this, loadResource));
+}
 
 /**
  * @note Address: 0x8044BF6C

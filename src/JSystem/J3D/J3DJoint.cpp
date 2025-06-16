@@ -359,7 +359,9 @@ J3DMtxCalcAnmBase* J3DNewMtxCalcAnm(u32 type, J3DAnmTransform* p2)
  * @note Size: 0x5C
  * __dt__17J3DMtxCalcAnmBaseFv
  */
-J3DMtxCalcAnmBase::~J3DMtxCalcAnmBase() { }
+J3DMtxCalcAnmBase::~J3DMtxCalcAnmBase()
+{
+}
 
 /**
  * @note Address: 0x8006B888

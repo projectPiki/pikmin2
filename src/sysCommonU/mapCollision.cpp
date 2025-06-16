@@ -4,7 +4,10 @@
  * @note Address: 0x8041A030
  * @note Size: 0x30
  */
-void MapCollision::getCurrTri(Game::CurrTriInfo& info) { mDivider->getCurrTri(info); }
+void MapCollision::getCurrTri(Game::CurrTriInfo& info)
+{
+	mDivider->getCurrTri(info);
+}
 
 /**
  * @note Address: 0x8041A060

@@ -26,7 +26,10 @@ TAdaptor_light::TAdaptor_light(const JStage::TSystem* sys, JStage::TLight* light
  * @note Address: 0x80011470
  * @note Size: 0x78
  */
-TAdaptor_light::~TAdaptor_light() { adaptor_do_end(nullptr); }
+TAdaptor_light::~TAdaptor_light()
+{
+	adaptor_do_end(nullptr);
+}
 
 /**
  * @note Address: 0x800114E8
@@ -79,7 +82,10 @@ void TAdaptor_light::adaptor_do_begin(const JStudio::TObject* object)
  * @note Address: 0x800117DC
  * @note Size: 0x54
  */
-void TAdaptor_light::adaptor_do_end(const JStudio::TObject*) { mObject->setFlagOff(1); }
+void TAdaptor_light::adaptor_do_end(const JStudio::TObject*)
+{
+	mObject->setFlagOff(1);
+}
 
 /**
  * @note Address: 0x80011830
@@ -181,6 +187,9 @@ void TAdaptor_light::adaptor_do_ENABLE(JStudio::data::TEOperationData op, const 
  * @note Address: 0x80011AC8
  * @note Size: 0xC
  */
-void TAdaptor_light::TVVOutput_direction_::operator()(f32, JStudio::TAdaptor* adaptor) const { ((TAdaptor_light*)adaptor)->_118 = _08; }
+void TAdaptor_light::TVVOutput_direction_::operator()(f32, JStudio::TAdaptor* adaptor) const
+{
+	((TAdaptor_light*)adaptor)->_118 = _08;
+}
 
 } // namespace JStudio_JStage

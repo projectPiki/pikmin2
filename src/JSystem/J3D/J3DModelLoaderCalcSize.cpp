@@ -585,7 +585,10 @@ int J3DModelLoader::calcSizeEnvelope(const J3DEnvelopeBlock* block)
  * @note Address: 0x80087E98
  * @note Size: 0x14
  */
-int J3DModelLoader::calcSizeDraw(const J3DDrawBlock* block) { return (block->mCount - _1A) * 2; }
+int J3DModelLoader::calcSizeDraw(const J3DDrawBlock* block)
+{
+	return (block->mCount - _1A) * 2;
+}
 
 /**
  * @note Address: 0x80087EAC

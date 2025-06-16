@@ -4,7 +4,9 @@
  * @note Address: 0x8013364C
  * @note Size: 0x50
  */
-PikiAnimator::PikiAnimator() { }
+PikiAnimator::PikiAnimator()
+{
+}
 
 /**
  * @note Address: 0x8013369C

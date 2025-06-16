@@ -52,7 +52,10 @@ void IconTexture::Loader::loadResource(char* path)
  * @note Address: 0x802335DC
  * @note Size: 0x30
  */
-ResTIMG* IconTexture::Loader::getResTIMG(char* path) { return (ResTIMG*)mArchive->getResource(path); }
+ResTIMG* IconTexture::Loader::getResTIMG(char* path)
+{
+	return (ResTIMG*)mArchive->getResource(path);
+}
 
 /**
  * @note Address: 0x8023360C

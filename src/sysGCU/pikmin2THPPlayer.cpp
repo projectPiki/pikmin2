@@ -140,7 +140,10 @@ void THPPlayer::reset()
  * @note Address: 0x804500D8
  * @note Size: 0x24
  */
-void THPPlayer::loadResource() { loadResource(mLoadResArg); }
+void THPPlayer::loadResource()
+{
+	loadResource(mLoadResArg);
+}
 
 /**
  * @note Address: 0x804500FC
@@ -358,7 +361,10 @@ void THPPlayer::draw(Graphics& gfx)
  * @note Address: 0x804506F4
  * @note Size: 0xBC
  */
-void THPPlayer::draw(Graphics& gfx, s32 x, s32 y, f32 factor) { draw(gfx, x, y, factor * mVideoInfo.mXSize, factor * mVideoInfo.mYSize); }
+void THPPlayer::draw(Graphics& gfx, s32 x, s32 y, f32 factor)
+{
+	draw(gfx, x, y, factor * mVideoInfo.mXSize, factor * mVideoInfo.mYSize);
+}
 
 /**
  * @note Address: 0x804507B0
@@ -392,6 +398,9 @@ bool THPPlayer::isFinishLoading()
  * @note Address: 0x80450894
  * @note Size: 0x1C
  */
-bool THPPlayer::isFinishPlaying() { return ActivePlayer.mState == 3; }
+bool THPPlayer::isFinishPlaying()
+{
+	return ActivePlayer.mState == 3;
+}
 
 } // namespace Game

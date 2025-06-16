@@ -30,7 +30,10 @@ EnvSeBase::EnvSeBase(u32 soundID, f32 volume)
  * @note Address: N/A
  * @note Size: 0x24
  */
-void EnvSeBase::requestMoveParam(MoveParamSet param) { mMoveParam = param; }
+void EnvSeBase::requestMoveParam(MoveParamSet param)
+{
+	mMoveParam = param;
+}
 
 /**
  * @note Address: N/A
@@ -193,7 +196,10 @@ void EnvSeMgr::off(u32 soundID, bool p2)
  * @note Address: 0x80340D94
  * @note Size: 0xC
  */
-void EnvSeMgr::reservePauseOff() { mReservator.mState = 31; }
+void EnvSeMgr::reservePauseOff()
+{
+	mReservator.mState = 31;
+}
 
 /**
  * @note Address: 0x80340DA0
@@ -230,7 +236,10 @@ void EnvSeMgr::exec()
  * @note Address: 0x80340E90
  * @note Size: 0x38
  */
-void EnvSe_PauseOffReservator::reservatorTask() { mMgr->setAllPauseFlag(0); }
+void EnvSe_PauseOffReservator::reservatorTask()
+{
+	mMgr->setAllPauseFlag(0);
+}
 
 /**
  * @note Address: 0x80340EC8
@@ -312,7 +321,10 @@ void ClusterSe::Part::play(u8 count, JAInter::Object* obj)
  * @note Address: 0x80340F14
  * @note Size: 0x3C
  */
-JAISound* ClusterSe::Part::callSe(JAInter::Object* obj) { obj->startSound(mInitArg.mSoundID, 0); }
+JAISound* ClusterSe::Part::callSe(JAInter::Object* obj)
+{
+	obj->startSound(mInitArg.mSoundID, 0);
+}
 
 /**
  * @note Address: 0x80340F50

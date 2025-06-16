@@ -371,7 +371,7 @@ struct JUTGamePadRecord : public JUTGamePadRecordBase {
 
 // entirely unused/inlined. May or may not extend JUTGamePadRecord instead of JUTGamePadRecordBase directly
 struct JUTGamePadRecordFixed : public JUTGamePadRecordBase {
-	enum EOrigin {};
+	enum EOrigin { };
 
 	JUTGamePadRecordFixed();
 	virtual ~JUTGamePadRecordFixed(); // _08

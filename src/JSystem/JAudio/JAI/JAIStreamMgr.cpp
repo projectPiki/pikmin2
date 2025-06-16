@@ -2019,13 +2019,19 @@ void initChannel()
  * @note Address: 0x800B8EAC
  * @note Size: 0x8
  */
-JASAramStream* getStreamObjectPointer() { return streamSystem; }
+JASAramStream* getStreamObjectPointer()
+{
+	return streamSystem;
+}
 
 /**
  * @note Address: 0x800B8EB4
  * @note Size: 0x8
  */
-u32 getSystemStatus() { return systemStatus; }
+u32 getSystemStatus()
+{
+	return systemStatus;
+}
 
 /**
  * @note Address: N/A
@@ -2058,7 +2064,10 @@ void setDeallockCallback(DeallocCallback)
  * @note Address: 0x800B8EBC
  * @note Size: 0x8
  */
-u32 getDecodedBufferBlocks() { return decodedBufferBlocks; }
+u32 getDecodedBufferBlocks()
+{
+	return decodedBufferBlocks;
+}
 
 /**
  * @note Address: N/A
@@ -2074,7 +2083,10 @@ void setDecodedBufferBlocks(u32 count)
  * @note Address: 0x800B8EC4
  * @note Size: 0x18
  */
-u32 getDecodedBufferSize(u32 p1) { return decodedBufferBlocks * p1 * sChannelMax >> 1; }
+u32 getDecodedBufferSize(u32 p1)
+{
+	return decodedBufferBlocks * p1 * sChannelMax >> 1;
+}
 
 /**
  * @note Address: N/A
@@ -2100,7 +2112,10 @@ void setChannelMax(u32 max)
  * @note Address: 0x800B8EDC
  * @note Size: 0x8
  */
-u32 getChannelMax() { return sChannelMax; }
+u32 getChannelMax()
+{
+	return sChannelMax;
+}
 
 /**
  * @note Address: N/A

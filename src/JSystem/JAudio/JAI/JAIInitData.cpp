@@ -16,13 +16,19 @@ JAInter::InitData::InitCallback JAInter::InitData::bnkInitCallback = initBnkList
  * @note Address: 0x800ADBA4
  * @note Size: 0x8
  */
-void JAInter::InitData::setWsInitCallback(void (*callback)(u32*)) { wsInitCallback = callback; }
+void JAInter::InitData::setWsInitCallback(void (*callback)(u32*))
+{
+	wsInitCallback = callback;
+}
 
 /**
  * @note Address: 0x800ADBAC
  * @note Size: 0x8
  */
-void JAInter::InitData::setBnkInitCallback(void (*callback)(u32*)) { bnkInitCallback = callback; }
+void JAInter::InitData::setBnkInitCallback(void (*callback)(u32*))
+{
+	bnkInitCallback = callback;
+}
 
 /**
  * @note Address: 0x800ADBB4

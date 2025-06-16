@@ -112,7 +112,10 @@ void EnableEXI2Interrupts(void)
  * @note Address: 0x800C0650
  * @note Size: 0x30
  */
-int TRKPollUART(void) { return gDBCommTable.peek_func(); }
+int TRKPollUART(void)
+{
+	return gDBCommTable.peek_func();
+}
 
 /**
  * @note Address: 0x800C0614
@@ -165,19 +168,28 @@ void TRKReadUARTPoll(void)
  * @note Address: 0x800C05A8
  * @note Size: 0x30
  */
-void ReserveEXI2Port(void) { gDBCommTable.post_stop_func(); }
+void ReserveEXI2Port(void)
+{
+	gDBCommTable.post_stop_func();
+}
 
 /**
  * @note Address: 0x800C0578
  * @note Size: 0x30
  */
-void UnreserveEXI2Port(void) { gDBCommTable.pre_continue_func(); }
+void UnreserveEXI2Port(void)
+{
+	gDBCommTable.pre_continue_func();
+}
 
 /**
  * @note Address: 0x800C0548
  * @note Size: 0x30
  */
-void TRK_board_display(char* str) { OSReport("%s\n", str); }
+void TRK_board_display(char* str)
+{
+	OSReport("%s\n", str);
+}
 
 /**
  * @note Address: 0x800C04F0
@@ -198,7 +210,9 @@ DSError InitializeProgramEndTrap(void)
  * @note Address: 0x800C04EC
  * @note Size: 0x4
  */
-void TRKUARTInterruptHandler(void) { }
+void TRKUARTInterruptHandler(void)
+{
+}
 
 /**
  * @note Address: 0x800C0464

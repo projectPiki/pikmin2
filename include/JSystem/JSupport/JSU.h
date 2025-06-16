@@ -4,7 +4,10 @@
 #include "types.h"
 
 // TODO: This is probably used all over the place...
-inline u8 JSULoByte(u16 data) { return data & 0xFF; }
+inline u8 JSULoByte(u16 data)
+{
+	return data & 0xFF;
+}
 
 inline u8 JSUHiByte(u16 data)
 {

@@ -93,7 +93,9 @@ ObjContena::ObjContena(char const* name)
  * @note Address: 0x80320104
  * @note Size: 0xAC
  */
-ObjContena::~ObjContena() { }
+ObjContena::~ObjContena()
+{
+}
 
 /**
  * @note Address: 0x803201B0
@@ -1070,25 +1072,35 @@ bool ObjContena::doStart(::Screen::StartSceneArg const*)
  * @note Address: 0x80321BB8
  * @note Size: 0x8
  */
-bool ObjContena::doEnd(::Screen::EndSceneArg const*) { return true; }
+bool ObjContena::doEnd(::Screen::EndSceneArg const*)
+{
+	return true;
+}
 
 /**
  * @note Address: 0x80321BC0
  * @note Size: 0x4
  */
-void ObjContena::doUpdateFadeinFinish() { }
+void ObjContena::doUpdateFadeinFinish()
+{
+}
 
 /**
  * @note Address: 0x80321BC4
  * @note Size: 0xC
  */
-void ObjContena::doUpdateFinish() { mFadeLevel = 0.0f; }
+void ObjContena::doUpdateFinish()
+{
+	mFadeLevel = 0.0f;
+}
 
 /**
  * @note Address: 0x80321BD0
  * @note Size: 0x4
  */
-void ObjContena::doUpdateFadeoutFinish() { }
+void ObjContena::doUpdateFadeoutFinish()
+{
+}
 
 /**
  * @note Address: 0x80321BD4

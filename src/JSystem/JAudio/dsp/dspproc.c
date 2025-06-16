@@ -111,7 +111,10 @@ void DsaveBuffer(u16 p1, u32 p2, u32 p3)
  * @note Address: 0x800AA7C0
  * @note Size: 0xC
  */
-static void setup_callback(u16 p1) { flag = 0; }
+static void setup_callback(u16 p1)
+{
+	flag = 0;
+}
 
 /**
  * @note Address: 0x800AA7E0
@@ -135,7 +138,10 @@ void DsetupTable(u32 p1, u32 p2, u32 p3, u32 p4, u32 p5)
  * @note Address: 0x800AA860
  * @note Size: 0x24
  */
-void DsetMixerLevel(f32 mixerLevel) { DSP_MIXERLEVEL = 4096.0f * mixerLevel; }
+void DsetMixerLevel(f32 mixerLevel)
+{
+	DSP_MIXERLEVEL = 4096.0f * mixerLevel;
+}
 
 /**
  * @note Address: 0x800AA8A0

@@ -212,7 +212,10 @@ void AnimText_Screen::update()
  * @note Address: 0x80309418
  * @note Size: 0x8
  */
-void AnimText_Screen::setAnimScreen(AnimScreen* screen) { mAnmScreen = screen; }
+void AnimText_Screen::setAnimScreen(AnimScreen* screen)
+{
+	mAnmScreen = screen;
+}
 
 /**
  * @note Address: 0x80309420

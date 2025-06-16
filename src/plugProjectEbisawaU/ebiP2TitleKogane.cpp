@@ -38,7 +38,10 @@ void TMgr::setArchive(JKRArchive* arc)
  * @note Address: 0x803E74F0
  * @note Size: 0x28
  */
-void TMgr::initUnit() { mObject->init(this); }
+void TMgr::initUnit()
+{
+	mObject->init(this);
+}
 
 /**
  * @note Address: N/A
@@ -56,7 +59,10 @@ void TAnimFolder::load(J3DModelData* modelData, JKRArchive* arc)
  * @note Address: 0x803E7518
  * @note Size: 0x68
  */
-TAnimator::TAnimator() { mModelData = nullptr; }
+TAnimator::TAnimator()
+{
+	mModelData = nullptr;
+}
 
 /**
  * @note Address: 0x803E7580
@@ -82,13 +88,19 @@ void TAnimator::setArchive(JKRArchive* arc)
  * @note Address: N/A
  * @note Size: 0x78
  */
-J3DModel* TAnimator::newJ3DModel() { return new J3DModel(mModelData, 0x20000, 1); }
+J3DModel* TAnimator::newJ3DModel()
+{
+	return new J3DModel(mModelData, 0x20000, 1);
+}
 
 /**
  * @note Address: 0x803E769C
  * @note Size: 0x8
  */
-void TUnit::setController(Controller* ctrl) { mControl = ctrl; }
+void TUnit::setController(Controller* ctrl)
+{
+	mControl = ctrl;
+}
 
 /**
  * @note Address: 0x803E76A4
@@ -135,19 +147,28 @@ void TUnit::goHome()
  * @note Address: 0x803E7814
  * @note Size: 0x24
  */
-void TUnit::outOfCalc() { startState(KSTATE_Inactive); }
+void TUnit::outOfCalc()
+{
+	startState(KSTATE_Inactive);
+}
 
 /**
  * @note Address: 0x803E7838
  * @note Size: 0x14
  */
-bool TUnit::isCalc() { return (bool)mStateID != 0; }
+bool TUnit::isCalc()
+{
+	return (bool)mStateID != 0;
+}
 
 /**
  * @note Address: 0x803E784C
  * @note Size: 0x14
  */
-bool TUnit::isController() { return (u8)(mStateID == KSTATE_Controlled); };
+bool TUnit::isController()
+{
+	return (u8)(mStateID == KSTATE_Controlled);
+};
 
 /**
  * @note Address: 0x803E7860

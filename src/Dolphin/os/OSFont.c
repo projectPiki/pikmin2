@@ -213,7 +213,10 @@ static BOOL IsSjisLeadByte(u8 letter)
  * @note Address: N/A
  * @note Size: 0x40
  */
-static BOOL IsSjisTrailByte(u8 letter) { return (letter >= 0x40 && letter <= 0xFC && letter != 0x7F); }
+static BOOL IsSjisTrailByte(u8 letter)
+{
+	return (letter >= 0x40 && letter <= 0xFC && letter != 0x7F);
+}
 
 /**
  * @note Address: 0x800EDD98

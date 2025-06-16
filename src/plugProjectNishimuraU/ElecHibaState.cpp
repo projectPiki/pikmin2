@@ -74,13 +74,17 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
  * @note Address: 0x8026E428
  * @note Size: 0x4
  */
-void StateDead::exec(EnemyBase* enemy) { }
+void StateDead::exec(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x8026E42C
  * @note Size: 0x4
  */
-void StateDead::cleanup(EnemyBase* enemy) { }
+void StateDead::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x8026E430
@@ -130,7 +134,9 @@ void StateWait::exec(EnemyBase* enemy)
  * @note Address: 0x8026E584
  * @note Size: 0x4
  */
-void StateWait::cleanup(EnemyBase* enemy) { }
+void StateWait::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x8026E588

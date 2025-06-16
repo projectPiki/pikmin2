@@ -126,7 +126,10 @@ void BigTreasure::BigTreasureShadowMgr::init()
  * @note Address: 0x802DAC94
  * @note Size: 0x8
  */
-void BigTreasureShadowMgr::setKosiJointPosPtr(Vector3f* posPtr) { mKosiPosition = posPtr; }
+void BigTreasureShadowMgr::setKosiJointPosPtr(Vector3f* posPtr)
+{
+	mKosiPosition = posPtr;
+}
 
 /**
  * @note Address: 0x802DAC9C

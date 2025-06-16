@@ -21,7 +21,9 @@ Obj::Obj()
  * @note Address: 0x802BC270
  * @note Size: 0x4
  */
-void Obj::setInitialSetting(EnemyInitialParamBase*) { }
+void Obj::setInitialSetting(EnemyInitialParamBase*)
+{
+}
 
 /**
  * @note Address: 0x802BC274
@@ -61,7 +63,10 @@ void Obj::onKill(CreatureKillArg* killArg)
  * @note Address: 0x802BC3A0
  * @note Size: 0x34
  */
-void Obj::doUpdate() { mFsm->exec(this); }
+void Obj::doUpdate()
+{
+	mFsm->exec(this);
+}
 
 /**
  * @note Address: 0x802BC3D4
@@ -494,13 +499,18 @@ lbl_802BC870:
  * @note Address: 0x802BC8A4
  * @note Size: 0x4
  */
-void Obj::doDirectDraw(Graphics&) { }
+void Obj::doDirectDraw(Graphics&)
+{
+}
 
 /**
  * @note Address: 0x802BC8A8
  * @note Size: 0x20
  */
-void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
+void Obj::doDebugDraw(Graphics& gfx)
+{
+	EnemyBase::doDebugDraw(gfx);
+}
 
 /**
  * @note Address: 0x802BC8C8
@@ -640,19 +650,28 @@ void Obj::doFinishEarthquakeFitState()
  * @note Address: 0x802BCC48
  * @note Size: 0x28
  */
-void Obj::startCarcassMotion() { startMotion(IMOMUSHIANIM_Carry, nullptr); }
+void Obj::startCarcassMotion()
+{
+	startMotion(IMOMUSHIANIM_Carry, nullptr);
+}
 
 /**
  * @note Address: 0x802BCC70
  * @note Size: 0x20
  */
-void Obj::doStartMovie() { effectDrawOff(); }
+void Obj::doStartMovie()
+{
+	effectDrawOff();
+}
 
 /**
  * @note Address: 0x802BCC90
  * @note Size: 0x20
  */
-void Obj::doEndMovie() { effectDrawOn(); }
+void Obj::doEndMovie()
+{
+	effectDrawOn();
+}
 
 /**
  * @note Address: 0x802BCCB0
@@ -857,7 +876,10 @@ void Obj::setZukanTargetPosition()
  * @note Address: 0x802BD670
  * @note Size: 0x34
  */
-bool Obj::isInZukanTargetArea() { return (sqrDistanceXZ(mPosition, mZukanTargetPosition) < 500.0f); }
+bool Obj::isInZukanTargetArea()
+{
+	return (sqrDistanceXZ(mPosition, mZukanTargetPosition) < 500.0f);
+}
 
 /**
  * @note Address: 0x802BD6A4
@@ -873,7 +895,10 @@ void Obj::createEffect()
  * @note Address: 0x802BD7E0
  * @note Size: 0x40
  */
-void Obj::setupEffect() { mEfxEat->mMtx = mModel->getJoint("headjnt")->getWorldMatrix(); }
+void Obj::setupEffect()
+{
+	mEfxEat->mMtx = mModel->getJoint("headjnt")->getWorldMatrix();
+}
 
 /**
  * @note Address: 0x802BD820
@@ -909,7 +934,10 @@ void Obj::startMoveTraceEffect()
  * @note Address: 0x802BD9BC
  * @note Size: 0x30
  */
-void Obj::finishMoveTraceEffect() { mEfxSmoke->fade(); }
+void Obj::finishMoveTraceEffect()
+{
+	mEfxSmoke->fade();
+}
 
 /**
  * @note Address: 0x802BD9EC

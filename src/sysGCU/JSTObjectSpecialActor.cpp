@@ -36,7 +36,9 @@ void ObjectSpecialActor::reset()
  * @note Address: 0x804374B4
  * @note Size: 0x4
  */
-void ObjectSpecialActor::stop() { }
+void ObjectSpecialActor::stop()
+{
+}
 
 /**
  * @note Address: 0x804374B8
@@ -126,7 +128,9 @@ void ObjectSpecialActor::JSGSetAnimation(u32 commandID)
  * @note Address: 0x80437790
  * @note Size: 0x4
  */
-void ObjectSpecialActor::parseUserData_(u32, const void*) { }
+void ObjectSpecialActor::parseUserData_(u32, const void*)
+{
+}
 
 } // namespace P2JST
 } // namespace Game

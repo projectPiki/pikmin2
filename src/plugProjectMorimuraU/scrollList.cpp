@@ -226,7 +226,10 @@ int TIndexPane::getIndex()
  * @note Address: 0x803A2614
  * @note Size: 0x8
  */
-int TIndexPane::getListIndex() { return mIndex; }
+int TIndexPane::getListIndex()
+{
+	return mIndex;
+}
 
 /**
  * @note Address: 0x803A261C

@@ -76,13 +76,19 @@ void BitFlags::reset()
  * @note Address: 0x8041C34C
  * @note Size: 0x28
  */
-void BitFlags::all_zero() { set_all(0); }
+void BitFlags::all_zero()
+{
+	set_all(0);
+}
 
 /**
  * @note Address: 0x8041C374
  * @note Size: 0x28
  */
-void BitFlags::all_one() { set_all(0xFF); }
+void BitFlags::all_one()
+{
+	set_all(0xFF);
+}
 
 /**
  * @note Address: 0x8041C39C

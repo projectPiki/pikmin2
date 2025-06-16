@@ -4,7 +4,10 @@
  * @note Address: 0x800C6150
  * @note Size: 0x10
  */
-int abs(int x) { return x > 0 ? x : -x; }
+int abs(int x)
+{
+	return x > 0 ? x : -x;
+}
 
 /**
  * @note Address: N/A

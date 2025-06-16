@@ -19,7 +19,10 @@ void getFromTransformation_T(Vec*, const Mtx mtx);
 void getRotation_xyz(MtxP, f32, f32, f32);
 void transform_SRxyzT(MtxP, const Mtx, const Vec&, const Vec&, const Vec&);
 
-inline void getRotation_y(Mtx mtx, f32 yRot) { PSMTXRotRad(mtx, 'y', MTXDegToRad(yRot)); }
+inline void getRotation_y(Mtx mtx, f32 yRot)
+{
+	PSMTXRotRad(mtx, 'y', MTXDegToRad(yRot));
+}
 
 inline void getTransformation_RyT(Mtx outMtx, const Vec& translation, f32 yRot)
 {
@@ -42,7 +45,10 @@ inline void rotate_xyz(Mtx inMtx, Mtx outMtx, f32 x, f32 y, f32 z)
 	PSMTXConcat(temp, inMtx, outMtx);
 }
 
-inline void rotate_xyz(Mtx inMtx, Mtx outMtx, const Vec& rotation) { rotate_xyz(inMtx, outMtx, rotation.x, rotation.y, rotation.z); }
+inline void rotate_xyz(Mtx inMtx, Mtx outMtx, const Vec& rotation)
+{
+	rotate_xyz(inMtx, outMtx, rotation.x, rotation.y, rotation.z);
+}
 
 // inline f32 getFromTransformation_Sn(CMtxP param_1, u32 param_2) {
 //     Vec local_18;

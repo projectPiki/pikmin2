@@ -62,7 +62,10 @@ static inline s16 __OSf32tos16(register f32 inF)
 	return out;
 }
 
-static inline void OSf32tos16(f32* f, s16* out) { *out = __OSf32tos16(*f); }
+static inline void OSf32tos16(f32* f, s16* out)
+{
+	*out = __OSf32tos16(*f);
+}
 
 static inline u8 __OSf32tou8(register f32 inF)
 {
@@ -79,7 +82,10 @@ static inline u8 __OSf32tou8(register f32 inF)
 	return out;
 }
 
-static inline void OSf32tou8(f32* f, u8* out) { *out = __OSf32tou8(*f); }
+static inline void OSf32tou8(f32* f, u8* out)
+{
+	*out = __OSf32tou8(*f);
+}
 
 static inline s8 __OSf32tos8(register f32 inF)
 {
@@ -97,7 +103,10 @@ static inline s8 __OSf32tos8(register f32 inF)
 	return out;
 }
 
-static inline void OSf32tos8(f32* f, s8* out) { *out = __OSf32tos8(*f); }
+static inline void OSf32tos8(f32* f, s8* out)
+{
+	*out = __OSf32tos8(*f);
+}
 
 // Int to float.
 // NB: should have these for u8/u16/s8/s16 eventually.

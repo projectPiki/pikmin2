@@ -151,7 +151,10 @@ struct VibrationObj : public Obj {
  * @note Address: N/A
  * @note Size: 0x44
  */
-ObjMgr::ObjMgr() { mNodes.clearRelations(); }
+ObjMgr::ObjMgr()
+{
+	mNodes.clearRelations();
+}
 
 /**
  * @note Address: N/A
@@ -159,7 +162,10 @@ ObjMgr::ObjMgr() { mNodes.clearRelations(); }
  */
 void ObjMgr::update(efx::TKechappyTest* testFX, f32 keyFrame)
 {
-	FOREACH_NODE(Obj, mNodes.mChild, obj) { obj->update(testFX, keyFrame); }
+	FOREACH_NODE(Obj, mNodes.mChild, obj)
+	{
+		obj->update(testFX, keyFrame);
+	}
 }
 
 /**
@@ -185,7 +191,10 @@ void ObjMgr::setup(ObjMgrData* mgrData)
  * @note Address: 0x80133010
  * @note Size: 0xC
  */
-Mgr::Mgr() { mMgrs = nullptr; }
+Mgr::Mgr()
+{
+	mMgrs = nullptr;
+}
 
 /**
  * @note Address: 0x8013301C

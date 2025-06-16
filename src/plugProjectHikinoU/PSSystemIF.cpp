@@ -91,7 +91,10 @@ JAISe* SysIF::playSystemSe(u32 soundID, u32 flag)
  * @note Address: 0x80338670
  * @note Size: 0x2C
  */
-void SysIF::playSystemSe(u32 soundID, JAISound** handles, u32 flag) { startSoundActorT(soundID, handles, nullptr, flag, 4); }
+void SysIF::playSystemSe(u32 soundID, JAISound** handles, u32 flag)
+{
+	startSoundActorT(soundID, handles, nullptr, flag, 4);
+}
 
 /**
  * @note Address: 0x8033869C
@@ -177,7 +180,9 @@ void SysIF::setConfigVol_Bgm(f32 volume)
  * @note Address: 0x8033897C
  * @note Size: 0x4
  */
-FxMgr::FxMgr() { }
+FxMgr::FxMgr()
+{
+}
 
 /**
  * @note Address: 0x80338980
@@ -192,7 +197,10 @@ TextDataBase::TextDataBase()
  * @note Address: 0x803389C4
  * @note Size: 0x70
  */
-TextDataBase::~TextDataBase() { JKRHeap::free(mFile, nullptr); }
+TextDataBase::~TextDataBase()
+{
+	JKRHeap::free(mFile, nullptr);
+}
 
 /**
  * @note Address: 0x80338A34

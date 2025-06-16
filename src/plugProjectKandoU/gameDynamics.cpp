@@ -30,7 +30,10 @@ DynamicsParms::DynamicsParms()
  * @note Address: 0x80139F94
  * @note Size: 0x74
  */
-DynamicsParms::~DynamicsParms() { mInstance = nullptr; }
+DynamicsParms::~DynamicsParms()
+{
+	mInstance = nullptr;
+}
 
 /**
  * @note Address: 0x8013A008
@@ -47,7 +50,10 @@ void DynamicsParms::globalInstance()
  * @note Address: 0x8013A050
  * @note Size: 0x54
  */
-Game::Rigid::Rigid() { mFlags.clear(); }
+Game::Rigid::Rigid()
+{
+	mFlags.clear();
+}
 
 /**
  * @note Address: 0x8013A0D8

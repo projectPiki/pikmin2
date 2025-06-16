@@ -10,7 +10,10 @@
 #include "JSystem/JUtility/JUTProcBar.h"
 #include "PSM/Scene.h"
 
-static void _Print(char* format, ...) { OSReport(format, __FILE__); }
+static void _Print(char* format, ...)
+{
+	OSReport(format, __FILE__);
+}
 
 namespace Demo {
 namespace {
@@ -45,7 +48,9 @@ Section::Section(JKRHeap* heap)
  * @note Address: 0x8044CC0C
  * @note Size: 0x88
  */
-Section::~Section() { }
+Section::~Section()
+{
+}
 
 /**
  * @note Address: 0x8044CC94
@@ -150,7 +155,10 @@ void Section::doLoadingStart()
  * @note Address: 0x8044D11C
  * @note Size: 0x38
  */
-bool Section::doLoading() { return sys->dvdLoadSyncNoBlock(&mThreadCommand) == 0; }
+bool Section::doLoading()
+{
+	return sys->dvdLoadSyncNoBlock(&mThreadCommand) == 0;
+}
 
 /**
  * @note Address: 0x8044D154

@@ -20,13 +20,19 @@ namespace Houdai {
  * @note Address: 0x802BFCB0
  * @note Size: 0x24
  */
-void HoudaiGroundCallBack::invokeOnGround(int footIdx, WaterBox* wbox) { mObj->createOnGroundEffect(footIdx, wbox); }
+void HoudaiGroundCallBack::invokeOnGround(int footIdx, WaterBox* wbox)
+{
+	mObj->createOnGroundEffect(footIdx, wbox);
+}
 
 /**
  * @note Address: 0x802BFCD4
  * @note Size: 0x24
  */
-void HoudaiGroundCallBack::invokeOffGround(int footIdx, WaterBox* wbox) { mObj->createOffGroundEffect(footIdx, wbox); }
+void HoudaiGroundCallBack::invokeOffGround(int footIdx, WaterBox* wbox)
+{
+	mObj->createOffGroundEffect(footIdx, wbox);
+}
 
 /**
  * @note Address: 0x802BFCF8
@@ -47,7 +53,9 @@ Obj::Obj()
  * @note Address: 0x802BFE64
  * @note Size: 0x4
  */
-void Obj::setInitialSetting(EnemyInitialParamBase*) { }
+void Obj::setInitialSetting(EnemyInitialParamBase*)
+{
+}
 
 /**
  * @note Address: 0x802BFE68
@@ -172,13 +180,18 @@ void Obj::doAnimationCullingOff()
  * @note Address: 0x802C0218
  * @note Size: 0x4
  */
-void Obj::doDirectDraw(Graphics& gfx) { }
+void Obj::doDirectDraw(Graphics& gfx)
+{
+}
 
 /**
  * @note Address: 0x802C021C
  * @note Size: 0x20
  */
-void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
+void Obj::doDebugDraw(Graphics& gfx)
+{
+	EnemyBase::doDebugDraw(gfx);
+}
 
 /**
  * @note Address: 0x802C023C
@@ -255,19 +268,28 @@ void Obj::doFinishStoneState()
  * @note Address: 0x802C0444
  * @note Size: 0x20
  */
-void Obj::doStartMovie() { effectDrawOff(); }
+void Obj::doStartMovie()
+{
+	effectDrawOff();
+}
 
 /**
  * @note Address: 0x802C0464
  * @note Size: 0x20
  */
-void Obj::doEndMovie() { effectDrawOn(); }
+void Obj::doEndMovie()
+{
+	effectDrawOn();
+}
 
 /**
  * @note Address: 0x802C0484
  * @note Size: 0x50
  */
-void Obj::getThrowupItemPosition(Vector3f* position) { *position = mModel->getJoint("kosi")->getWorldMatrix()->getColumn(3); }
+void Obj::getThrowupItemPosition(Vector3f* position)
+{
+	*position = mModel->getJoint("kosi")->getWorldMatrix()->getColumn(3);
+}
 
 /**
  * @note Address: 0x802C04D4
@@ -418,7 +440,10 @@ void Obj::setIKParameter()
  * @note Address: 0x802C0D3C
  * @note Size: 0x20
  */
-void Obj::setIKSystemTargetPosition(Vector3f& targetpos) { mIkSystemMgr->mTargetPosition = targetpos; }
+void Obj::setIKSystemTargetPosition(Vector3f& targetpos)
+{
+	mIkSystemMgr->mTargetPosition = targetpos;
+}
 
 /**
  * @note Address: 0x802C0D5C
@@ -447,61 +472,91 @@ void Obj::doAnimationIKSystem()
  * @note Address: 0x802C0E1C
  * @note Size: 0x24
  */
-void Obj::finishAnimationIKSystem() { mIkSystemMgr->resetAnimationCallBack(); }
+void Obj::finishAnimationIKSystem()
+{
+	mIkSystemMgr->resetAnimationCallBack();
+}
 
 /**
  * @note Address: 0x802C0E40
  * @note Size: 0x24
  */
-void Obj::startProgramedIK() { mIkSystemMgr->startProgramedIK(); }
+void Obj::startProgramedIK()
+{
+	mIkSystemMgr->startProgramedIK();
+}
 
 /**
  * @note Address: 0x802C0E64
  * @note Size: 0x24
  */
-void Obj::startIKMotion() { mIkSystemMgr->startIKMotion(); }
+void Obj::startIKMotion()
+{
+	mIkSystemMgr->startIKMotion();
+}
 
 /**
  * @note Address: 0x802C0E88
  * @note Size: 0x24
  */
-void Obj::finishIKMotion() { mIkSystemMgr->finishIKMotion(); }
+void Obj::finishIKMotion()
+{
+	mIkSystemMgr->finishIKMotion();
+}
 
 /**
  * @note Address: 0x802C0EAC
  * @note Size: 0x24
  */
-void Obj::forceFinishIKMotion() { mIkSystemMgr->forceFinishIKMotion(); }
+void Obj::forceFinishIKMotion()
+{
+	mIkSystemMgr->forceFinishIKMotion();
+}
 
 /**
  * @note Address: 0x802C0ED0
  * @note Size: 0x24
  */
-bool Obj::isFinishIKMotion() { return mIkSystemMgr->isFinishIKMotion(); }
+bool Obj::isFinishIKMotion()
+{
+	return mIkSystemMgr->isFinishIKMotion();
+}
 
 /**
  * @note Address: 0x802C0EF4
  * @note Size: 0x24
  */
-void Obj::startBlendMotion() { mIkSystemMgr->startBlendMotion(); }
+void Obj::startBlendMotion()
+{
+	mIkSystemMgr->startBlendMotion();
+}
 
 /**
  * @note Address: 0x802C0F18
  * @note Size: 0x24
  */
-void Obj::finishBlendMotion() { mIkSystemMgr->finishBlendMotion(); }
+void Obj::finishBlendMotion()
+{
+	mIkSystemMgr->finishBlendMotion();
+}
 
 /**
  * @note Address: 0x802C0F3C
  * @note Size: 0x20
  */
-Vector3f Obj::getTraceCentrePosition() { return mIkSystemMgr->mTraceCentrePosition; }
+Vector3f Obj::getTraceCentrePosition()
+{
+	return mIkSystemMgr->mTraceCentrePosition;
+}
 
 /**
  * @note Address: 0x802C0F5C
  * @note Size: 0x48
  */
-void Obj::createShadowSystem() { mShadowMgr = new HoudaiShadowMgr(this); }
+void Obj::createShadowSystem()
+{
+	mShadowMgr = new HoudaiShadowMgr(this);
+}
 
 /**
  * @note Address: 0x802C0FA4
@@ -521,7 +576,10 @@ void Obj::setupShadowSystem()
  * @note Address: 0x802C1018
  * @note Size: 0x24
  */
-void Obj::doAnimationShadowSystem() { mShadowMgr->update(); }
+void Obj::doAnimationShadowSystem()
+{
+	mShadowMgr->update();
+}
 
 /**
  * @note Address: 0x802C103C
@@ -560,79 +618,118 @@ void Obj::updateShotGunTimer()
  * @note Address: 0x802C115C
  * @note Size: 0x1C
  */
-bool Obj::isTransitShotGunState() { return (mShotGunBurstTimer > C_GENERALPARMS.mSearchHeight.mValue); }
+bool Obj::isTransitShotGunState()
+{
+	return (mShotGunBurstTimer > C_GENERALPARMS.mSearchHeight.mValue);
+}
 
 /**
  * @note Address: 0x802C1178
  * @note Size: 0x48
  */
-void Obj::createShotGun() { mShotGunMgr = new HoudaiShotGunMgr(this); }
+void Obj::createShotGun()
+{
+	mShotGunMgr = new HoudaiShotGunMgr(this);
+}
 
 /**
  * @note Address: 0x802C11C0
  * @note Size: 0x24
  */
-void Obj::setupShotGun() { mShotGunMgr->setupShotGun(); }
+void Obj::setupShotGun()
+{
+	mShotGunMgr->setupShotGun();
+}
 
 /**
  * @note Address: 0x802C11E4
  * @note Size: 0x24
  */
-void Obj::setShotGunTarget(Vector3f& target) { mShotGunMgr->setShotGunTarget(target); }
+void Obj::setShotGunTarget(Vector3f& target)
+{
+	mShotGunMgr->setShotGunTarget(target);
+}
 
 /**
  * @note Address: 0x802C1208
  * @note Size: 0x24
  */
-void Obj::resetShotGunCallBack() { mShotGunMgr->resetCallBack(); }
+void Obj::resetShotGunCallBack()
+{
+	mShotGunMgr->resetCallBack();
+}
 
 /**
  * @note Address: 0x802C122C
  * @note Size: 0x24
  */
-void Obj::setShotGunCallBack() { mShotGunMgr->setCallBack(); }
+void Obj::setShotGunCallBack()
+{
+	mShotGunMgr->setCallBack();
+}
 
 /**
  * @note Address: 0x802C1250
  * @note Size: 0x24
  */
-void Obj::doUpdateShotGun() { mShotGunMgr->doUpdate(); }
+void Obj::doUpdateShotGun()
+{
+	mShotGunMgr->doUpdate();
+}
 
 /**
  * @note Address: 0x802C1274
  * @note Size: 0x24
  */
-void Obj::doUpdateCommonShotGun() { mShotGunMgr->doUpdateCommon(); }
+void Obj::doUpdateCommonShotGun()
+{
+	mShotGunMgr->doUpdateCommon();
+}
 
 /**
  * @note Address: 0x802C1298
  * @note Size: 0x24
  */
-void Obj::startShotGunRotation() { mShotGunMgr->startRotation(); }
+void Obj::startShotGunRotation()
+{
+	mShotGunMgr->startRotation();
+}
 
 /**
  * @note Address: 0x802C12BC
  * @note Size: 0x24
  */
-void Obj::finishShotGunRotation() { mShotGunMgr->finishRotation(); }
+void Obj::finishShotGunRotation()
+{
+	mShotGunMgr->finishRotation();
+}
 
 /**
  * @note Address: 0x802C12E0
  * @note Size: 0x24
  */
-bool Obj::isShotGunRotation() { return mShotGunMgr->isShotGunRotation(); }
+bool Obj::isShotGunRotation()
+{
+	return mShotGunMgr->isShotGunRotation();
+}
 
 /**
  * @note Address: 0x802C1304
  * @note Size: 0x24
  */
-bool Obj::isShotGunLockOn() { return mShotGunMgr->isShotGunLockOn(); }
+bool Obj::isShotGunLockOn()
+{
+	return mShotGunMgr->isShotGunLockOn();
+}
 
 /**
  * @note Address: 0x802C1328
  * @note Size: 0x24
  */
-bool Obj::isFinishShotGun() { return mShotGunMgr->isFinishShotGun(); }
+bool Obj::isFinishShotGun()
+{
+	return mShotGunMgr->isFinishShotGun();
+}
 
 /**
  * @note Address: 0x802C134C
@@ -648,7 +745,10 @@ void Obj::emitShotGun()
  * @note Address: 0x802C13A8
  * @note Size: 0x24
  */
-void Obj::forceFinishShotGun() { return mShotGunMgr->forceFinishShotGun(); }
+void Obj::forceFinishShotGun()
+{
+	return mShotGunMgr->forceFinishShotGun();
+}
 
 /**
  * @note Address: 0x802C13CC
@@ -1029,13 +1129,19 @@ void Obj::createAppearEffect()
  * @note Address: 0x802C2C1C
  * @note Size: 0x34
  */
-void Obj::createAppearHahenEffect() { mAppearHahenFX->create(nullptr); }
+void Obj::createAppearHahenEffect()
+{
+	mAppearHahenFX->create(nullptr);
+}
 
 /**
  * @note Address: 0x802C2C50
  * @note Size: 0x3C
  */
-void Obj::createAppearFootEffect(int footIdx) { mAppearHahenFootFX[footIdx]->create(nullptr); }
+void Obj::createAppearFootEffect(int footIdx)
+{
+	mAppearHahenFootFX[footIdx]->create(nullptr);
+}
 
 /**
  * @note Address: 0x802C2C8C

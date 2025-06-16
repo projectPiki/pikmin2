@@ -15,7 +15,10 @@ static const u32 padding[] = { 0, 0, 0 };
  * @note Address: N/A
  * @note Size: 0xE4
  */
-static void _Print(char* name, ...) { OSReport("particleMgr"); }
+static void _Print(char* name, ...)
+{
+	OSReport("particleMgr");
+}
 
 ParticleMgr* particleMgr;
 volatile bool ParticleMgr::disableCulling;
@@ -113,13 +116,19 @@ void ParticleMgr::createMgr(char* path, u32 flag1, u32 flag2, u32)
  * @note Address: 0x803BB688
  * @note Size: 0x20
  */
-void ParticleMgr::Instance_TPkEffectMgr() { efx::TPkEffectMgr::globalInstance(); }
+void ParticleMgr::Instance_TPkEffectMgr()
+{
+	efx::TPkEffectMgr::globalInstance();
+}
 
 /**
  * @note Address: 0x803BB6A8
  * @note Size: 0x20
  */
-void ParticleMgr::deleteInstance_TPkEffectMgr() { efx::TPkEffectMgr::deleteInstance(); }
+void ParticleMgr::deleteInstance_TPkEffectMgr()
+{
+	efx::TPkEffectMgr::deleteInstance();
+}
 
 /**
  * @note Address: N/A
@@ -146,13 +155,19 @@ void ParticleMgr::beginEntryModelEffect()
  * @note Address: 0x803BB6F4
  * @note Size: 0x24
  */
-void ParticleMgr::endEntryModelEffect() { mModelEffectHeap->becomeCurrentHeap(); }
+void ParticleMgr::endEntryModelEffect()
+{
+	mModelEffectHeap->becomeCurrentHeap();
+}
 
 /**
  * @note Address: 0x803BB718
  * @note Size: 0x24
  */
-void ParticleMgr::start() { pkEffectMgr->startMgr(); }
+void ParticleMgr::start()
+{
+	pkEffectMgr->startMgr();
+}
 
 /**
  * @note Address: 0x803BB73C
@@ -171,7 +186,10 @@ void ParticleMgr::reset()
  * @note Address: 0x803BB794
  * @note Size: 0x24
  */
-void ParticleMgr::killAll() { mEmitterManager->forceDeleteAllEmitter(); }
+void ParticleMgr::killAll()
+{
+	mEmitterManager->forceDeleteAllEmitter();
+}
 
 /**
  * @note Address: 0x803BB7B8
@@ -187,7 +205,10 @@ void ParticleMgr::update()
  * @note Address: 0x803BB7E4
  * @note Size: 0x2C
  */
-void ParticleMgr::setXfb(const ResTIMG* tex) { mResourceManager->swapTexture(tex, "IP2_dummy"); }
+void ParticleMgr::setXfb(const ResTIMG* tex)
+{
+	mResourceManager->swapTexture(tex, "IP2_dummy");
+}
 
 /**
  * @note Address: 0x803BB810
@@ -312,13 +333,19 @@ void ParticleMgr::fade(JPABaseEmitter* emit)
  * @note Address: 0x803BBAD8
  * @note Size: 0x28
  */
-void ParticleMgr::setDemoResourceManager(JPAResourceManager* mgr) { mEmitterManager->entryResourceManager(mgr, 7); }
+void ParticleMgr::setDemoResourceManager(JPAResourceManager* mgr)
+{
+	mEmitterManager->entryResourceManager(mgr, 7);
+}
 
 /**
  * @note Address: 0x803BBB00
  * @note Size: 0x28
  */
-void ParticleMgr::clearDemoResourceManager() { mEmitterManager->clearResourceManager(7); }
+void ParticleMgr::clearDemoResourceManager()
+{
+	mEmitterManager->clearResourceManager(7);
+}
 
 /**
  * @note Address: 0x803BBB28

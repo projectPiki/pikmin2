@@ -40,7 +40,10 @@ void Mgr::loadTexData()
  * @note Address: 0x8012B968
  * @note Size: 0x48
  */
-void Mgr::doAlloc() { init(new ChappyBase::Parms); }
+void Mgr::doAlloc()
+{
+	init(new ChappyBase::Parms);
+}
 
 } // namespace BlueChappy
 } // namespace Game

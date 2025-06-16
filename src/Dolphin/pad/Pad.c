@@ -592,7 +592,10 @@ void PADSetSpec(u32 spec)
  * @note Address: N/A
  * @note Size: 0x8
  */
-u32 PADGetSpec(void) { return Spec; }
+u32 PADGetSpec(void)
+{
+	return Spec;
+}
 
 /**
  * @note Address: 0x800F4544
@@ -801,7 +804,10 @@ BOOL PADGetType(s32 chan, u32* type)
  * @note Address: N/A
  * @note Size: 0x64
  */
-BOOL PADSync(void) { return ResettingBits == 0 && ResettingChan == 32 && !SIBusy(); }
+BOOL PADSync(void)
+{
+	return ResettingBits == 0 && ResettingChan == 32 && !SIBusy();
+}
 
 /**
  * @note Address: 0x800F4C9C
@@ -855,7 +861,10 @@ static BOOL OnReset(BOOL f)
  * @note Address: N/A
  * @note Size: 0xC
  */
-void __PADDisableXPatch(void) { XPatchBits = 0; }
+void __PADDisableXPatch(void)
+{
+	XPatchBits = 0;
+}
 
 /**
  * @note Address: 0x800F4DCC

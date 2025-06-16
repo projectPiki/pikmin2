@@ -206,7 +206,10 @@ bool InteractBubble::actNavi(Game::Navi* navi)
  * @note Address: 0x801D85F0
  * @note Size: 0x8
  */
-bool InteractGas::actNavi(Game::Navi*) { return false; }
+bool InteractGas::actNavi(Game::Navi*)
+{
+	return false;
+}
 
 /**
  * @note Address: 0x801D85F8
@@ -259,7 +262,10 @@ bool InteractFue::actNavi(Game::Navi* navi)
 		Creature* entities[MAX_PIKI_COUNT + 10];
 
 		int index = 0;
-		CI_LOOP(cellIt) { entities[index++] = *cellIt; }
+		CI_LOOP(cellIt)
+		{
+			entities[index++] = *cellIt;
+		}
 
 		for (int i = 0; i < index; i++) {
 			entities[i]->stimulate(fue);

@@ -11,10 +11,22 @@ extern "C" {
 #define RAND_MAX         (SHORT_FLOAT_MAX)
 #define RAND_EBISAWA_MAX (32767.0f)
 
-inline f32 randEbisawaFloat() { return (f32)rand() / RAND_EBISAWA_MAX; }
-inline f32 randFloat() { return (f32)rand() / RAND_MAX; }
-inline int randInt(int multiplier) { return multiplier * randFloat(); }
-inline f32 randWeightFloat(f32 range) { return (range * (f32)rand()) / RAND_MAX; }
+inline f32 randEbisawaFloat()
+{
+	return (f32)rand() / RAND_EBISAWA_MAX;
+}
+inline f32 randFloat()
+{
+	return (f32)rand() / RAND_MAX;
+}
+inline int randInt(int multiplier)
+{
+	return multiplier * randFloat();
+}
+inline f32 randWeightFloat(f32 range)
+{
+	return (range * (f32)rand()) / RAND_MAX;
+}
 
 #define RAND_FLOAT_RANGE(origin, deviation) (origin - randFloat() * deviation)
 #define RAND_FLOAT_BETWEEN(min, max)        (min + randFloat() * (max - min))

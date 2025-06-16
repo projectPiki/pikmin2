@@ -7,26 +7,37 @@ namespace Game {
  * @note Address: 0x8012E0E8
  * @note Size: 0x44
  */
-EnemyBlendAnimatorBase::EnemyBlendAnimatorBase() { }
+EnemyBlendAnimatorBase::EnemyBlendAnimatorBase()
+{
+}
 
 /**
  * @note Address: 0x8012E12C
  * @note Size: 0x24
  */
-void EnemyBlendAnimatorBase::setAnimMgr(SysShape::AnimMgr* mgr) { mAnimator.setAnimMgr(mgr); }
+void EnemyBlendAnimatorBase::setAnimMgr(SysShape::AnimMgr* mgr)
+{
+	mAnimator.setAnimMgr(mgr);
+}
 
 /**
  * @note Address: 0x8012E150
  * @note Size: 0x8
  */
-SysShape::Animator& EnemyBlendAnimatorBase::getAnimator() { return *mAnimator.mAnimators; }
+SysShape::Animator& EnemyBlendAnimatorBase::getAnimator()
+{
+	return *mAnimator.mAnimators;
+}
 
 /**
  * getAnimator__Q24Game22EnemyBlendAnimatorBaseFi
  * @note Address: 0x8012E158
  * @note Size: 0x14
  */
-SysShape::Animator& EnemyBlendAnimatorBase::getAnimator(int index) { return mAnimator.mAnimators[index]; }
+SysShape::Animator& EnemyBlendAnimatorBase::getAnimator(int index)
+{
+	return mAnimator.mAnimators[index];
+}
 
 /**
  * @note Address: 0x8012E16C
@@ -44,7 +55,10 @@ void EnemyBlendAnimatorBase::startBlend(int startAnim, int endAnim, SysShape::Bl
  * @note Address: 0x8012E208
  * @note Size: 0x24
  */
-void EnemyBlendAnimatorBase::endBlend() { mAnimator.endBlend(); }
+void EnemyBlendAnimatorBase::endBlend()
+{
+	mAnimator.endBlend();
+}
 
 /**
  * animate__Q24Game22EnemyBlendAnimatorBaseFPQ28SysShape13BlendFunctionfff

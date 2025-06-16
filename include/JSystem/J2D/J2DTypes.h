@@ -38,7 +38,10 @@ struct J2DAlphaCompInfo {
 	u8 _07;   // _07
 };
 
-inline u16 J2DCalcAlphaCmp(s32 param_1, u32 param_2, u32 param_3) { return ((param_1) << 5) | ((param_2) << 3) | (param_3 & 0xff); }
+inline u16 J2DCalcAlphaCmp(s32 param_1, u32 param_2, u32 param_3)
+{
+	return ((param_1) << 5) | ((param_2) << 3) | (param_3 & 0xff);
+}
 
 struct J2DAlphaComp {
 	J2DAlphaComp()
@@ -190,7 +193,10 @@ struct J2DColorChanInfo {
 	u8 _03; // _03, padding?
 };
 
-inline u8 J2DCalcColorChanID(u8 id) { return id; }
+inline u8 J2DCalcColorChanID(u8 id)
+{
+	return id;
+}
 extern const J2DColorChanInfo j2dDefaultColorChanInfo;
 
 /**
@@ -294,7 +300,10 @@ struct J2DTevSwapModeTableInfo {
 	u8 mA; // _03
 };
 
-inline u8 J2DCalcTevSwapTable(u32 r, u32 g, u32 b, u32 a) { return (r << 6) + (g << 4) + (b << 2) + a; }
+inline u8 J2DCalcTevSwapTable(u32 r, u32 g, u32 b, u32 a)
+{
+	return (r << 6) + (g << 4) + (b << 2) + a;
+}
 
 extern const J2DTevSwapModeInfo j2dDefaultTevSwapMode;
 extern const J2DTevSwapModeTableInfo j2dDefaultTevSwapModeTable;

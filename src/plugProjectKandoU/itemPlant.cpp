@@ -54,7 +54,10 @@ void FSM::init(Item* item)
  * @note Address: 0x801DCFB4
  * @note Size: 0x34
  */
-void NormalState::init(Item* item, StateArg* stateArg) { item->startMotion(PLANTMOTION_Normal); }
+void NormalState::init(Item* item, StateArg* stateArg)
+{
+	item->startMotion(PLANTMOTION_Normal);
+}
 
 /**
  * Normal (default) state loop. Advances grow timer and executes behaviour based on current growth size.
@@ -104,7 +107,9 @@ void NormalState::exec(Item* item)
  * @note Address: 0x801DD148
  * @note Size: 0x4
  */
-void NormalState::cleanup(Item* item) { }
+void NormalState::cleanup(Item* item)
+{
+}
 
 /**
  * Triggered on mold growth. Transitions to Kareru (under mold) state (without waiting).
@@ -114,7 +119,10 @@ void NormalState::cleanup(Item* item) { }
  * @note Address: 0x801DD14C
  * @note Size: 0x34
  */
-void NormalState::eventKarero(Item* item) { transit(item, ITEMPLANT_Kareru, nullptr); }
+void NormalState::eventKarero(Item* item)
+{
+	transit(item, ITEMPLANT_Kareru, nullptr);
+}
 
 /**
  * Triggered on damage. Adds damage and transitions to Damaged state.
@@ -154,7 +162,9 @@ void DamagedState::init(Item* item, StateArg* stateArg)
  * @note Address: 0x801DD224
  * @note Size: 0x4
  */
-void DamagedState::exec(Item* item) { }
+void DamagedState::exec(Item* item)
+{
+}
 
 /**
  * Post-Damaged state. Trivial.
@@ -164,7 +174,9 @@ void DamagedState::exec(Item* item) { }
  * @note Address: 0x801DD228
  * @note Size: 0x4
  */
-void DamagedState::cleanup(Item* item) { }
+void DamagedState::cleanup(Item* item)
+{
+}
 
 /**
  * Triggered on mold growth. Sets trigger for mold state transition.
@@ -174,7 +186,10 @@ void DamagedState::cleanup(Item* item) { }
  * @note Address: 0x801DD22C
  * @note Size: 0xC
  */
-void DamagedState::eventKarero(Item* item) { mHasMold = true; }
+void DamagedState::eventKarero(Item* item)
+{
+	mHasMold = true;
+}
 
 /**
  * On animation trigger. Transitions to Kareru (under mold) state if trigger is primed.
@@ -205,7 +220,10 @@ void DamagedState::onKeyEvent(Item* item, const SysShape::KeyEvent& event)
  * @note Address: 0x801DD294
  * @note Size: 0x24
  */
-void DamagedState::onDamage(Item* item, f32 damage) { item->addDamage(damage); }
+void DamagedState::onDamage(Item* item, f32 damage)
+{
+	item->addDamage(damage);
+}
 
 /**
  * Starts GrowUp state. Plays growing animation and efx based on growth size.
@@ -233,7 +251,9 @@ void GrowUpState::init(Item* item, StateArg* stateArg)
  * @note Address: 0x801DD32C
  * @note Size: 0x4
  */
-void GrowUpState::exec(Item* item) { }
+void GrowUpState::exec(Item* item)
+{
+}
 
 /**
  * Post-GrowUp state. Trivial.
@@ -243,7 +263,9 @@ void GrowUpState::exec(Item* item) { }
  * @note Address: 0x801DD330
  * @note Size: 0x4
  */
-void GrowUpState::cleanup(Item* item) { }
+void GrowUpState::cleanup(Item* item)
+{
+}
 
 /**
  * Triggered on mold growth. Sets trigger for mold state transition.
@@ -253,7 +275,10 @@ void GrowUpState::cleanup(Item* item) { }
  * @note Address: 0x801DD334
  * @note Size: 0xC
  */
-void GrowUpState::eventKarero(Item*) { mHasMold = true; }
+void GrowUpState::eventKarero(Item*)
+{
+	mHasMold = true;
+}
 
 /**
  * On animation trigger. Advance growth state.
@@ -304,7 +329,10 @@ void GrowUpState::onKeyEvent(Item* item, const SysShape::KeyEvent& event)
  * @note Address: 0x801DD460
  * @note Size: 0x24
  */
-void GrowUpState::onDamage(Item* item, f32 damage) { item->addDamage(damage); }
+void GrowUpState::onDamage(Item* item, f32 damage)
+{
+	item->addDamage(damage);
+}
 
 /**
  * Starts Kareru (under mold) state. Plays (blended) withering animation and withering sound effect.
@@ -353,7 +381,9 @@ void KareruState::exec(Item* item)
  * @note Address: 0x801DD590
  * @note Size: 0x4
  */
-void KareruState::cleanup(Item* item) { }
+void KareruState::cleanup(Item* item)
+{
+}
 
 /**
  * Triggered on mold destruction. If not already proceeding to end of state, prime escape trigger.
@@ -411,7 +441,9 @@ void KareruState::onKeyEvent(Item* item, const SysShape::KeyEvent& event)
  * @note Address: 0x801DD650
  * @note Size: 0x4
  */
-void KareruState::onDamage(Item* item, f32 damage) { }
+void KareruState::onDamage(Item* item, f32 damage)
+{
+}
 
 /*********************************
  * BASE CLASS (ITEM) DEFINITIONS *
@@ -423,7 +455,10 @@ void KareruState::onDamage(Item* item, f32 damage) { }
  * @note Address: 0x801DD654
  * @note Size: 0x48
  */
-void Item::constructor() { mSoundObj = new PSM::Tsuyukusa(this); }
+void Item::constructor()
+{
+	mSoundObj = new PSM::Tsuyukusa(this);
+}
 
 /**
  * Constructor for base Item class. Resets growth timer and damage, and starts as small size.
@@ -501,7 +536,10 @@ void Item::onStickEnd(Creature* stuck)
  * @note Address: 0x801DD758
  * @note Size: 0x28
  */
-void Item::onSetPosition() { Farm::farmMgr->addPlant(this); }
+void Item::onSetPosition()
+{
+	Farm::farmMgr->addPlant(this);
+}
 
 /**
  * Reconstructs main object matrix using current position and face direction (about Y axis).
@@ -575,7 +613,10 @@ void Item::updateColorMotion(f32 rate)
  * @note Address: 0x801DD87C
  * @note Size: 0x34
  */
-void Item::doAI() { mFsm->exec(this); }
+void Item::doAI()
+{
+	mFsm->exec(this);
+}
 
 /**
  * Passes damage from attack to current state machine state damage handler function.
@@ -867,7 +908,9 @@ void ProcAnimator::calcDists()
  * @note Address: N/A
  * @note Size: 0x30
  */
-void ProcAnimator::force(f32) { }
+void ProcAnimator::force(f32)
+{
+}
 
 /**
  * Updates angle variables (`_24` and `_28`) and each matrix (aside from base matrix at index 0).
@@ -1344,7 +1387,10 @@ Plant::Plant()
  * @note Address: 0x801DE524
  * @note Size: 0x34
  */
-void Plant::onKill(CreatureKillArg* killArg) { mgr->kill(this); }
+void Plant::onKill(CreatureKillArg* killArg)
+{
+	mgr->kill(this);
+}
 
 /**
  * Finds fruit (pellet) nearest given position.
@@ -2148,7 +2194,10 @@ void Plant::setColor(f32 frame)
  * @note Address: 0x801DF348
  * @note Size: 0x20
  */
-void Plant::do_updateLOD() { BaseItem::do_updateLOD(); }
+void Plant::do_updateLOD()
+{
+	BaseItem::do_updateLOD();
+}
 
 /**
  * Updates visible (blend) animations and model calcs. If Plant is visible and at max size, also
@@ -2196,7 +2245,10 @@ void Plant::doAnimation()
  * @note Address: 0x801DF618
  * @note Size:	0x2C
  */
-void Plant::bearFruits() { mFruits->bearAll(mPlantType); }
+void Plant::bearFruits()
+{
+	mFruits->bearAll(mPlantType);
+}
 
 /**
  * Kills all berries.
@@ -2204,7 +2256,10 @@ void Plant::bearFruits() { mFruits->bearAll(mPlantType); }
  * @note Address: 0x801DF644
  * @note Size: 0x24
  */
-void Plant::killFruits() { mFruits->killAll(); }
+void Plant::killFruits()
+{
+	mFruits->killAll();
+}
 
 /**
  * Drops `num` amount of berries, starting at one closest to origin of map.
@@ -2235,7 +2290,10 @@ void Plant::dropFruit(int num)
  * @note Address: 0x801DF6E8
  * @note Size: 0x24
  */
-bool Plant::hasFruits() { return mFruits->hasFruits(); }
+bool Plant::hasFruits()
+{
+	return mFruits->hasFruits();
+}
 
 /**
  * Checks how many berries Plant has.
@@ -2245,7 +2303,10 @@ bool Plant::hasFruits() { return mFruits->hasFruits(); }
  * @note Address: 0x801DF70C
  * @note Size: 0x24
  */
-int Plant::getFruitsNum() { return mFruits->countFruits(); }
+int Plant::getFruitsNum()
+{
+	return mFruits->countFruits();
+}
 
 /**
  * Bursts closest berry to enemy (whiskerpillar) when 'eaten'.
@@ -2360,7 +2421,10 @@ void Mgr::onLoadResources()
  * @note Address: 0x801DFF40
  * @note Size: 0x4C
  */
-GenItemParm* Mgr::generatorNewItemParm() { return new GenPlantParm(); }
+GenItemParm* Mgr::generatorNewItemParm()
+{
+	return new GenPlantParm();
+}
 
 /**
  * Writes current generator parameter to stream. Writes plant type and comment.

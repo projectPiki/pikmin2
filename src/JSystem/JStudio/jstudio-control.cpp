@@ -31,7 +31,9 @@ TControl::TControl()
  * @note Size: 0x70
  * __dt
  */
-TControl::~TControl() { }
+TControl::~TControl()
+{
+}
 
 /**
  * @note Address: 0x8000CBA4
@@ -75,20 +77,27 @@ void TControl::forward_value(u32)
  * @note Size: 0x48
  * __dt__Q27JStudio13TCreateObjectFv
  */
-TCreateObject::~TCreateObject() { }
+TCreateObject::~TCreateObject()
+{
+}
 
 /**
  * @note Address: 0x8000CD00
  * @note Size: 0x84
  * __dt__Q27JStudio8TFactoryFv
  */
-TFactory::~TFactory() { }
+TFactory::~TFactory()
+{
+}
 
 /**
  * @note Address: 0x8000CD84
  * @note Size: 0x50
  */
-void TFactory::appendCreateObject(JStudio::TCreateObject* object) { mList.Push_back(object); }
+void TFactory::appendCreateObject(JStudio::TCreateObject* object)
+{
+	mList.Push_back(object);
+}
 
 /**
  * @note Address: N/A
@@ -143,7 +152,9 @@ TParse::TParse(JStudio::TControl* control)
  * @note Size: 0x70
  * __dt__Q27JStudio6TParseFv
  */
-TParse::~TParse() { }
+TParse::~TParse()
+{
+}
 
 /**
  * @note Address: 0x8000CF4C

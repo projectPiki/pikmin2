@@ -56,13 +56,19 @@ void FSM::init(VsGameSection* section)
  * @note Size: 0x38
  * --UNUSED--
  */
-void FSM::draw(VsGameSection* section, Graphics& gfx) { static_cast<State*>(mStates[0])->draw(section, gfx); }
+void FSM::draw(VsGameSection* section, Graphics& gfx)
+{
+	static_cast<State*>(mStates[0])->draw(section, gfx);
+}
 
 /**
  * @note Address: 0x801C0ECC
  * @note Size: 0x20
  */
-void FSM::transit(VsGameSection* section, int state, StateArg* arg) { StateMachine<VsGameSection>::transit(section, state, arg); }
+void FSM::transit(VsGameSection* section, int state, StateArg* arg)
+{
+	StateMachine<VsGameSection>::transit(section, state, arg);
+}
 } // namespace VsGame
 
 int VsGameSection::mRedWinCount;
@@ -135,13 +141,19 @@ namespace Game {
  * @note Address: 0x801C1110
  * @note Size: 0x34
  */
-void VsGameSection::section_fadeout() { mCurrentState->on_section_fadeout(this); }
+void VsGameSection::section_fadeout()
+{
+	mCurrentState->on_section_fadeout(this);
+}
 
 /**
  * @note Address: 0x801C1148
  * @note Size: 0x90
  */
-void VsGameSection::startMainBgm() { PSSystem::getSceneMgr()->doStartMainSeq(); }
+void VsGameSection::startMainBgm()
+{
+	PSSystem::getSceneMgr()->doStartMainSeq();
+}
 
 /**
  * @note Address: 0x801C11D8
@@ -211,7 +223,10 @@ void VsGameSection::onInit()
  * @note Address: 0x801C1418
  * @note Size: 0x8
  */
-int VsGameSection::getCurrFloor() { return mCurrentFloor; }
+int VsGameSection::getCurrFloor()
+{
+	return mCurrentFloor;
+}
 
 /**
  * @note Address: 0x801C1420
@@ -444,13 +459,18 @@ void VsGameSection::gmOrimaDown(int arg)
  * @note Address: 0x801C1C58
  * @note Size: 0x4
  */
-void VsGameSection::gmPikminZero() { }
+void VsGameSection::gmPikminZero()
+{
+}
 
 /**
  * @note Address: 0x801C1C5C
  * @note Size: 0x3C
  */
-void VsGameSection::goNextFloor(ItemHole::Item* hole) { mCurrentState->onNextFloor(this, hole); }
+void VsGameSection::goNextFloor(ItemHole::Item* hole)
+{
+	mCurrentState->onNextFloor(this, hole);
+}
 
 /**
  * This function attempts to open the "Do you want to delve deeper?" message box upon interacting with a Hole object.
@@ -771,7 +791,10 @@ void VsGameSection::createVsPikmins()
  * @note Address: 0x801C2DC0
  * @note Size: 0x10
  */
-void VsGameSection::addChallengeScore(int score) { mPokoCount += score; }
+void VsGameSection::addChallengeScore(int score)
+{
+	mPokoCount += score;
+}
 
 /**
  * @note Address: 0x801C2DD0

@@ -25,7 +25,9 @@ VSFifo::VSFifo(size_t size)
  * @note Address: 0x8023D6DC
  * @note Size: 0x48
  */
-VSFifo::~VSFifo() { }
+VSFifo::~VSFifo()
+{
+}
 
 /**
  * @note Address: 0x8023D724

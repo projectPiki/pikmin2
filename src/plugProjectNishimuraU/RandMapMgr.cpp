@@ -99,7 +99,10 @@ void RandMapMgr::create()
  * @note Address: 0x80244858
  * @note Size: 0x34
  */
-int RandMapMgr::getNumRooms() { return mGenerator->mPlacedMapNodes->getChildCount(); }
+int RandMapMgr::getNumRooms()
+{
+	return mGenerator->mPlacedMapNodes->getChildCount();
+}
 
 /**
  * @note Address: 0x8024488C
@@ -245,7 +248,10 @@ void RandMapMgr::setUnitTexture(int idx, JUTTexture* texture)
  * @note Address: 0x80244DAC
  * @note Size: 0xC
  */
-void RandMapMgr::setCaptureOn() { mIsCaptureOn = true; }
+void RandMapMgr::setCaptureOn()
+{
+	mIsCaptureOn = true;
+}
 
 /**
  * @note Address: 0x80244DB8
@@ -282,19 +288,28 @@ bool RandMapMgr::isLastFloor()
  * @note Address: 0x80244EB0
  * @note Size: 0x8
  */
-bool RandMapMgr::isVersusHiba() { return mIsVersusHiba; }
+bool RandMapMgr::isVersusHiba()
+{
+	return mIsVersusHiba;
+}
 
 /**
  * @note Address: 0x80244EB8
  * @note Size: 0x8
  */
-JUTTexture* RandMapMgr::getRadarMapTexture() { return mRadarMapTexture; }
+JUTTexture* RandMapMgr::getRadarMapTexture()
+{
+	return mRadarMapTexture;
+}
 
 /**
  * @note Address: 0x80244EC0
  * @note Size: 0x24
  */
-void RandMapMgr::radarMapPartsOpen(Vector3f& pos) { mRandMapDraw->radarMapPartsOpen(pos); }
+void RandMapMgr::radarMapPartsOpen(Vector3f& pos)
+{
+	mRandMapDraw->radarMapPartsOpen(pos);
+}
 
 /**
  * @note Address: 0x80244EE4

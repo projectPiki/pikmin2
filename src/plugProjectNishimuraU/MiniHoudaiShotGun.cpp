@@ -48,13 +48,19 @@ void MiniHoudaiShotGunNode::create()
  * @note Address: N/A
  * @note Size: 0x1C
  */
-void MiniHoudaiShotGunNode::setPosition(Vector3f& pos) { mPosition = pos; }
+void MiniHoudaiShotGunNode::setPosition(Vector3f& pos)
+{
+	mPosition = pos;
+}
 
 /**
  * @note Address: N/A
  * @note Size: 0x1C
  */
-void MiniHoudaiShotGunNode::setVelocity(Vector3f& vel) { mVelocity = vel; }
+void MiniHoudaiShotGunNode::setVelocity(Vector3f& vel)
+{
+	mVelocity = vel;
+}
 
 /**
  * @note Address: N/A
@@ -1257,13 +1263,19 @@ void MiniHoudaiShotGunMgr::setupShotGun()
  * @note Address: 0x802EEC3C
  * @note Size: 0xC
  */
-void MiniHoudaiShotGunMgr::resetCallBack() { sMiniHoudaiShotGunMgr = nullptr; }
+void MiniHoudaiShotGunMgr::resetCallBack()
+{
+	sMiniHoudaiShotGunMgr = nullptr;
+}
 
 /**
  * @note Address: 0x802EEC48
  * @note Size: 0x8
  */
-void MiniHoudaiShotGunMgr::setCallBack() { sMiniHoudaiShotGunMgr = this; }
+void MiniHoudaiShotGunMgr::setCallBack()
+{
+	sMiniHoudaiShotGunMgr = this;
+}
 
 /**
  * @note Address: 0x802EEC50
@@ -1292,25 +1304,37 @@ void MiniHoudaiShotGunMgr::finishRotation()
  * @note Address: 0x802EEC88
  * @note Size: 0x8
  */
-bool MiniHoudaiShotGunMgr::isShotGunRotation() { return mIsShotGunRotation; }
+bool MiniHoudaiShotGunMgr::isShotGunRotation()
+{
+	return mIsShotGunRotation;
+}
 
 /**
  * @note Address: 0x802EEC90
  * @note Size: 0x8
  */
-bool MiniHoudaiShotGunMgr::isShotGunLockOn() { return mIsShotGunLockedOn; }
+bool MiniHoudaiShotGunMgr::isShotGunLockOn()
+{
+	return mIsShotGunLockedOn;
+}
 
 /**
  * @note Address: 0x802EEC98
  * @note Size: 0x8
  */
-bool MiniHoudaiShotGunMgr::isFinishShotGun() { return mIsShotGunFinished; }
+bool MiniHoudaiShotGunMgr::isFinishShotGun()
+{
+	return mIsShotGunFinished;
+}
 
 /**
  * @note Address: 0x802EECA0
  * @note Size: 0x1C
  */
-void MiniHoudaiShotGunMgr::setShotGunTarget(Vector3f& targetPos) { mTargetPosition = targetPos; }
+void MiniHoudaiShotGunMgr::setShotGunTarget(Vector3f& targetPos)
+{
+	mTargetPosition = targetPos;
+}
 
 /**
  * @note Address: 0x802EECBC
@@ -1756,7 +1780,10 @@ void MiniHoudaiShotGunMgr::forceFinishShotGun()
  * @note Address: 0x802EF2E8
  * @note Size: 0x20
  */
-Vector3f MiniHoudaiShotGunMgr::getShotGunPosition() { return mHeadMtx->getColumn(3); }
+Vector3f MiniHoudaiShotGunMgr::getShotGunPosition()
+{
+	return mHeadMtx->getColumn(3);
+}
 
 /**
  * @note Address: 0x802EF308
@@ -2089,9 +2116,15 @@ void MiniHoudaiShotGunMgr::rotateVertical(J3DJoint* joint)
  */
 void MiniHoudaiShotGunMgr::effectDrawOn()
 {
-	FOREACH_NODE(MiniHoudaiShotGunNode, mActiveNodes->mChild, node) { node->mEfxShell->endDemoDrawOn(); }
+	FOREACH_NODE(MiniHoudaiShotGunNode, mActiveNodes->mChild, node)
+	{
+		node->mEfxShell->endDemoDrawOn();
+	}
 
-	FOREACH_NODE(MiniHoudaiShotGunNode, mInactiveNodes->mChild, node) { node->mEfxShell->endDemoDrawOn(); }
+	FOREACH_NODE(MiniHoudaiShotGunNode, mInactiveNodes->mChild, node)
+	{
+		node->mEfxShell->endDemoDrawOn();
+	}
 }
 
 /**
@@ -2100,9 +2133,15 @@ void MiniHoudaiShotGunMgr::effectDrawOn()
  */
 void MiniHoudaiShotGunMgr::effectDrawOff()
 {
-	FOREACH_NODE(MiniHoudaiShotGunNode, mActiveNodes->mChild, node) { node->mEfxShell->startDemoDrawOff(); }
+	FOREACH_NODE(MiniHoudaiShotGunNode, mActiveNodes->mChild, node)
+	{
+		node->mEfxShell->startDemoDrawOff();
+	}
 
-	FOREACH_NODE(MiniHoudaiShotGunNode, mInactiveNodes->mChild, node) { node->mEfxShell->startDemoDrawOff(); }
+	FOREACH_NODE(MiniHoudaiShotGunNode, mInactiveNodes->mChild, node)
+	{
+		node->mEfxShell->startDemoDrawOff();
+	}
 }
 
 /**

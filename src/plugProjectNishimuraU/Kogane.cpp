@@ -23,7 +23,9 @@ Kogane::Obj::Obj()
  * @note Address: 0x8025DDBC
  * @note Size: 0x4
  */
-void Kogane::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
+void Kogane::Obj::setInitialSetting(Game::EnemyInitialParamBase*)
+{
+}
 
 /**
  * @note Address: 0x8025DDC0
@@ -57,7 +59,9 @@ void Kogane::Obj::onInit(Game::CreatureInitArg* arg)
  * @note Address: 0x8025DEF0
  * @note Size: 0x4
  */
-void Kogane::Obj::resetFartTimer() { }
+void Kogane::Obj::resetFartTimer()
+{
+}
 
 /**
  * @note Address: 0x8025DEF4
@@ -73,25 +77,36 @@ void Kogane::Obj::onKill(Game::CreatureKillArg* arg)
  * @note Address: 0x8025DF44
  * @note Size: 0x34
  */
-void Kogane::Obj::doUpdate() { mFsm->exec(this); }
+void Kogane::Obj::doUpdate()
+{
+	mFsm->exec(this);
+}
 
 /**
  * @note Address: 0x8025DF78
  * @note Size: 0x20
  */
-void Kogane::Obj::doUpdateCommon() { EnemyBase::doUpdateCommon(); }
+void Kogane::Obj::doUpdateCommon()
+{
+	EnemyBase::doUpdateCommon();
+}
 
 /**
  * @note Address: 0x8025DF98
  * @note Size: 0x4
  */
-void Kogane::Obj::doDirectDraw(Graphics&) { }
+void Kogane::Obj::doDirectDraw(Graphics&)
+{
+}
 
 /**
  * @note Address: 0x8025DF9C
  * @note Size: 0x20
  */
-void Kogane::Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
+void Kogane::Obj::doDebugDraw(Graphics& gfx)
+{
+	EnemyBase::doDebugDraw(gfx);
+}
 
 /**
  * @note Address: 0x8025DFBC
@@ -194,13 +209,19 @@ void Kogane::Obj::doFinishStoneState()
  * @note Address: 0x8025E2BC
  * @note Size: 0x2C
  */
-void Kogane::Obj::doStartMovie() { effectDrawOff(); }
+void Kogane::Obj::doStartMovie()
+{
+	effectDrawOff();
+}
 
 /**
  * @note Address: 0x8025E2EC
  * @note Size: 0x2C
  */
-void Kogane::Obj::doEndMovie() { effectDrawOn(); }
+void Kogane::Obj::doEndMovie()
+{
+	effectDrawOn();
+}
 
 /**
  * @note Address: 0x8025E31C

@@ -42,7 +42,10 @@ void Mgr::loadTexData()
  * @note Address: 0x801198F0
  * @note Size: 0x48
  */
-void Mgr::doAlloc() { init(new ChappyBase::Parms); }
+void Mgr::doAlloc()
+{
+	init(new ChappyBase::Parms);
+}
 
 } // namespace Chappy
 } // namespace Game

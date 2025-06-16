@@ -62,19 +62,28 @@ s32 JAInter::BankWave::getWsLoadStatus(s32 index)
  * @note Address: 0x800ABE44
  * @note Size: 0x8
  */
-void JAInter::BankWave::setInitCallback(JAInter::BankWave::InitCallback callback) { initCallback = callback; }
+void JAInter::BankWave::setInitCallback(JAInter::BankWave::InitCallback callback)
+{
+	initCallback = callback;
+}
 
 /**
  * @note Address: 0x800ABE4C
  * @note Size: 0x8
  */
-void JAInter::BankWave::setFirstLoadCallback(JAInter::BankWave::LoadCallback callback) { firstLoadCallback = callback; }
+void JAInter::BankWave::setFirstLoadCallback(JAInter::BankWave::LoadCallback callback)
+{
+	firstLoadCallback = callback;
+}
 
 /**
  * @note Address: 0x800ABE54
  * @note Size: 0x8
  */
-void JAInter::BankWave::setSecondLoadCallback(JAInter::BankWave::LoadCallback callback) { secondLoadCallback = callback; }
+void JAInter::BankWave::setSecondLoadCallback(JAInter::BankWave::LoadCallback callback)
+{
+	secondLoadCallback = callback;
+}
 
 /**
  * @note Address: 0x800ABE5C

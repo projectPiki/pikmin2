@@ -308,7 +308,10 @@ static BOOL DVDConvertEntrynumToPath(s32 entrynum, char* path, u32 maxlen)
  * @note Address: 0x800DC86C
  * @note Size: 0xC4
  */
-BOOL DVDGetCurrentDir(char* path, u32 maxlen) { return DVDConvertEntrynumToPath((s32)currentDirectory, path, maxlen); }
+BOOL DVDGetCurrentDir(char* path, u32 maxlen)
+{
+	return DVDConvertEntrynumToPath((s32)currentDirectory, path, maxlen);
+}
 
 /**
  * @note Address: 0x800DC930
@@ -419,7 +422,10 @@ s32 DVDReadPrio(DVDFileInfo* fileInfo, void* addr, s32 length, s32 offset, s32 p
  * @note Address: 0x800DCB98
  * @note Size: 0x24
  */
-static void cbForReadSync(s32 result, DVDCommandBlock* block) { OSWakeupThread(&__DVDThreadQueue); }
+static void cbForReadSync(s32 result, DVDCommandBlock* block)
+{
+	OSWakeupThread(&__DVDThreadQueue);
+}
 
 /**
  * @note Address: N/A
@@ -525,19 +531,28 @@ BOOL DVDReadDir(DVDDir* dir, DVDDirEntry* dirent)
  * @note Address: 0x800DCD20
  * @note Size: 0x8
  */
-BOOL DVDCloseDir(DVDDir* dir) { return TRUE; }
+BOOL DVDCloseDir(DVDDir* dir)
+{
+	return TRUE;
+}
 
 /**
  * @note Address: N/A
  * @note Size: 0x10
  */
-void DVDRewindDir(DVDDir* dir) { dir->location = dir->entryNum + 1; }
+void DVDRewindDir(DVDDir* dir)
+{
+	dir->location = dir->entryNum + 1;
+}
 
 /**
  * @note Address: N/A
  * @note Size: 0xC
  */
-void* DVDGetFSTLocation() { return BootInfo->FSTLocation; }
+void* DVDGetFSTLocation()
+{
+	return BootInfo->FSTLocation;
+}
 
 /**
  * @note Address: N/A

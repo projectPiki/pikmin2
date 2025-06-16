@@ -47,7 +47,9 @@ namespace Game {
  * @note Address: 0x8017D44C
  * @note Size: 0x4
  */
-void NaviState::draw2d(J2DGrafContext& graf, int& a2) { }
+void NaviState::draw2d(J2DGrafContext& graf, int& a2)
+{
+}
 
 // /**
 //  * @note Address: N/A
@@ -348,7 +350,9 @@ void NaviStuckState::exec(Navi* navi)
  * @note Address: 0x8017E84C
  * @note Size: 0x4
  */
-void NaviStuckState::cleanup(Navi* navi) { }
+void NaviStuckState::cleanup(Navi* navi)
+{
+}
 
 /**
  * @note Address: 0x8017E850
@@ -500,7 +504,9 @@ void NaviWalkState::exec(Navi* navi)
  * @note Address: 0x8017EF68
  * @note Size: 0x4
  */
-void NaviWalkState::cleanup(Navi* navi) { }
+void NaviWalkState::cleanup(Navi* navi)
+{
+}
 
 /**
  * @note Address: 0x8017EF6C
@@ -1202,7 +1208,10 @@ lbl_8017FF50:
  * @note Address: 0x8017FF80
  * @note Size: 0x34
  */
-void NaviWalkState::blendVelocity(Navi* navi, Vector3f& targetVel) { navi->mTargetVelocity += targetVel; }
+void NaviWalkState::blendVelocity(Navi* navi, Vector3f& targetVel)
+{
+	navi->mTargetVelocity += targetVel;
+}
 
 /**
  * @note Address: 0x8017FFB4
@@ -1250,7 +1259,9 @@ void NaviChangeState::exec(Navi* navi)
  * @note Address: 0x80180160
  * @note Size: 0x4
  */
-void NaviChangeState::cleanup(Navi* navi) { }
+void NaviChangeState::cleanup(Navi* navi)
+{
+}
 
 /**
  * @note Address: 0x80180164
@@ -1529,7 +1540,9 @@ void NaviFollowState::exec(Navi* navi)
  * @note Address: 0x80180DE4
  * @note Size: 0x4
  */
-void NaviFollowState::cleanup(Navi* navi) { }
+void NaviFollowState::cleanup(Navi* navi)
+{
+}
 
 /**
  * @note Address: 0x80180DE8
@@ -1762,7 +1775,9 @@ void NaviPunchState::exec(Navi* navi)
  * @note Address: 0x8018171C
  * @note Size: 0x4
  */
-void NaviPunchState::cleanup(Navi* navi) { }
+void NaviPunchState::cleanup(Navi* navi)
+{
+}
 
 /**
  * @note Address: 0x80181720
@@ -1820,7 +1835,10 @@ void NaviPathMoveState::exec(Navi* navi)
  * @note Address: 0x80181898
  * @note Size: 0x44
  */
-void NaviPathMoveState::cleanup(Navi* navi) { releasePathfinder(); }
+void NaviPathMoveState::cleanup(Navi* navi)
+{
+	releasePathfinder();
+}
 
 /**
  * @note Address: 0x801818DC
@@ -1906,7 +1924,10 @@ int NaviPathMoveState::execMove(Navi* navi)
  * @note Address: 0x80181C84
  * @note Size: 0x8
  */
-int NaviPathMoveState::execMoveGoal(Navi* navi) { return 0; }
+int NaviPathMoveState::execMoveGoal(Navi* navi)
+{
+	return 0;
+}
 
 // /**
 //  * @note Address: N/A
@@ -2218,7 +2239,10 @@ lbl_80182208:
  * @note Address: 0x801822E0
  * @note Size: 0x10
  */
-void NaviNukuAdjustState::wallCallback(Navi* navi, Vector3f&) { mWallHitCounter++; }
+void NaviNukuAdjustState::wallCallback(Navi* navi, Vector3f&)
+{
+	mWallHitCounter++;
+}
 
 /**
  * @note Address: 0x801822F0
@@ -3457,7 +3481,9 @@ void NaviDopeState::exec(Navi* navi)
  * @note Address: 0x80183278
  * @note Size: 0x4
  */
-void NaviDopeState::cleanup(Navi* navi) { }
+void NaviDopeState::cleanup(Navi* navi)
+{
+}
 
 /**
  * @note Address: 0x8018327C
@@ -3558,7 +3584,10 @@ void NaviClimbState::exec(Navi* navi)
  * @note Address: 0x80183720
  * @note Size: 0x24
  */
-void NaviClimbState::cleanup(Navi* navi) { navi->endStick(); }
+void NaviClimbState::cleanup(Navi* navi)
+{
+	navi->endStick();
+}
 
 /**
  * @note Address: 0x80183744
@@ -3602,7 +3631,9 @@ void NaviFallMeckState::exec(Navi* navi)
  * @note Address: 0x80183898
  * @note Size: 0x4
  */
-void NaviFallMeckState::cleanup(Navi* navi) { }
+void NaviFallMeckState::cleanup(Navi* navi)
+{
+}
 
 /**
  * @note Address: 0x8018389C
@@ -3712,7 +3743,9 @@ void NaviFlickState::exec(Navi* navi)
  * @note Address: 0x80183DE4
  * @note Size: 0x4
  */
-void NaviFlickState::cleanup(Navi* navi) { }
+void NaviFlickState::cleanup(Navi* navi)
+{
+}
 
 /**
  * @note Address: 0x80183DE8
@@ -3803,7 +3836,9 @@ void NaviKokeDamageState::exec(Navi* navi)
  * @note Address: 0x80184184
  * @note Size: 0x4
  */
-void NaviKokeDamageState::cleanup(Navi* navi) { }
+void NaviKokeDamageState::cleanup(Navi* navi)
+{
+}
 
 /**
  * @note Address: 0x80184188
@@ -3892,7 +3927,10 @@ void NaviSaraiState::exec(Navi* navi)
  * @note Address: 0x80184610
  * @note Size: 0xC
  */
-void NaviSaraiState::cleanup(Navi* navi) { navi->mAnimSpeed = 30.0f; }
+void NaviSaraiState::cleanup(Navi* navi)
+{
+	navi->mAnimSpeed = 30.0f;
+}
 
 /**
  * @note Address: 0x8018461C
@@ -3920,13 +3958,19 @@ void NaviSaraiExitState::exec(Navi* navi)
  * @note Address: 0x801846D4
  * @note Size: 0x34
  */
-void NaviSaraiExitState::cleanup(Navi* navi) { navi->setAtari(true); }
+void NaviSaraiExitState::cleanup(Navi* navi)
+{
+	navi->setAtari(true);
+}
 
 /**
  * @note Address: 0x80184708
  * @note Size: 0x34
  */
-void NaviSaraiExitState::bounceCallback(Navi* navi, Sys::Triangle*) { transit(navi, NSID_Walk, nullptr); }
+void NaviSaraiExitState::bounceCallback(Navi* navi, Sys::Triangle*)
+{
+	transit(navi, NSID_Walk, nullptr);
+}
 
 /**
  * @note Address: 0x8018473C
@@ -4237,7 +4281,10 @@ void NaviDamagedState::exec(Navi* navi)
  * @note Address: 0x8018578C
  * @note Size: 0x28
  */
-void NaviDamagedState::cleanup(Navi* navi) { navi->setInvincibleTimer(60); }
+void NaviDamagedState::cleanup(Navi* navi)
+{
+	navi->setInvincibleTimer(60);
+}
 
 /**
  * @note Address: 0x801857B4
@@ -4278,7 +4325,9 @@ void NaviDeadState::exec(Navi* navi)
  * @note Address: 0x80185898
  * @note Size: 0x4
  */
-void NaviDeadState::cleanup(Navi* navi) { }
+void NaviDeadState::cleanup(Navi* navi)
+{
+}
 
 /**
  * @note Address: 0x8018589C
@@ -4383,19 +4432,27 @@ NaviThrowWaitState::NaviThrowWaitState()
  * @note Address: 0x80185C54
  * @note Size: 0x4
  */
-void NaviThrowWaitState::draw2d(J2DGrafContext&, int&) { }
+void NaviThrowWaitState::draw2d(J2DGrafContext&, int&)
+{
+}
 
 /**
  * @note Address: 0x80185C58
  * @note Size: 0x2C
  */
-void NaviThrowWaitState::resume(Navi* navi) { cleanup(navi); }
+void NaviThrowWaitState::resume(Navi* navi)
+{
+	cleanup(navi);
+}
 
 /**
  * @note Address: 0x80185C84
  * @note Size: 0x34
  */
-void NaviThrowWaitState::restart(Navi* navi) { transit(navi, NSID_Walk, nullptr); }
+void NaviThrowWaitState::restart(Navi* navi)
+{
+	transit(navi, NSID_Walk, nullptr);
+}
 
 /**
  * @note Address: 0x80185CB8
@@ -4872,7 +4929,10 @@ void NaviThrowWaitState::onKeyEvent(SysShape::KeyEvent const& key)
  * @note Address: 0x8018624C
  * @note Size: 0x24
  */
-void NaviThrowWaitState::doAnimCallback() { lockHangPiki(mNavi); }
+void NaviThrowWaitState::doAnimCallback()
+{
+	lockHangPiki(mNavi);
+}
 
 /**
  * @note Address: 0x80186270
@@ -5996,7 +6056,9 @@ void NaviThrowState::exec(Navi* navi)
  * @note Address: 0x80187634
  * @note Size: 0x4
  */
-void NaviThrowState::cleanup(Navi* navi) { }
+void NaviThrowState::cleanup(Navi* navi)
+{
+}
 
 /**
  * @note Address: 0x80187638
@@ -6197,7 +6259,9 @@ void NaviDemo_UfoState::exec(Navi* navi)
  * @note Address: 0x80187E94
  * @note Size: 0x4
  */
-void NaviDemo_UfoState::cleanup(Navi* navi) { }
+void NaviDemo_UfoState::cleanup(Navi* navi)
+{
+}
 
 /**
  * @note Address: 0x80187E98
@@ -6474,13 +6538,18 @@ void NaviDemo_HoleInState::exec(Navi* navi)
  * @note Address: 0x80188880
  * @note Size: 0xC
  */
-void NaviDemo_HoleInState::onKeyEvent(Navi* navi, SysShape::KeyEvent const&) { _12 = 1; }
+void NaviDemo_HoleInState::onKeyEvent(Navi* navi, SysShape::KeyEvent const&)
+{
+	_12 = 1;
+}
 
 /**
  * @note Address: 0x8018888C
  * @note Size: 0x4
  */
-void NaviDemo_HoleInState::cleanup(Navi* navi) { }
+void NaviDemo_HoleInState::cleanup(Navi* navi)
+{
+}
 
 /**
  * @note Address: 0x80188890
@@ -6645,13 +6714,18 @@ lbl_80188BA8:
  * @note Address: 0x80188BD4
  * @note Size: 0x4
  */
-void NaviDemo_HoleInState::initFall(Navi* navi) { }
+void NaviDemo_HoleInState::initFall(Navi* navi)
+{
+}
 
 /**
  * @note Address: 0x80188BD8
  * @note Size: 0x8
  */
-bool NaviDemo_HoleInState::execFall(Navi* navi) { return false; }
+bool NaviDemo_HoleInState::execFall(Navi* navi)
+{
+	return false;
+}
 
 /**
  * @note Address: 0x80188BE0

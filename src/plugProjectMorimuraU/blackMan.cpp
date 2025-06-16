@@ -135,7 +135,10 @@ void Obj::setParameters()
  * @note Address: 0x803A5FC8
  * @note Size: 0x20
  */
-void Obj::birth(Vector3f& position, f32 faceDirection) { EnemyBase::birth(position, faceDirection); }
+void Obj::birth(Vector3f& position, f32 faceDirection)
+{
+	EnemyBase::birth(position, faceDirection);
+}
 
 /**
  * @note Address: 0x803A5FE8
@@ -425,13 +428,18 @@ void Obj::doUpdate()
  * @note Address: 0x803A730C
  * @note Size: 0x4
  */
-void Obj::doDirectDraw(Graphics&) { }
+void Obj::doDirectDraw(Graphics&)
+{
+}
 
 /**
  * @note Address: 0x803A7310
  * @note Size: 0x20
  */
-void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
+void Obj::doDebugDraw(Graphics& gfx)
+{
+	EnemyBase::doDebugDraw(gfx);
+}
 
 /**
  * @note Address: 0x803A7330
@@ -1649,7 +1657,10 @@ lbl_803A8B4C:
  * @note Address: 0x803A8B7C
  * @note Size: 0x34
  */
-bool Obj::isReachToGoal(f32 rad) { return (u8)(sqrDistanceXZ(mPosition, mTargetPosition) < SQUARE(rad)); }
+bool Obj::isReachToGoal(f32 rad)
+{
+	return (u8)(sqrDistanceXZ(mPosition, mTargetPosition) < SQUARE(rad));
+}
 
 /**
  * @note Address: 0x803A8BB0
@@ -4079,19 +4090,27 @@ void Obj::moveRestart()
  * @note Address: 0x803AA9C0
  * @note Size: 0x4
  */
-void Obj::escape() { }
+void Obj::escape()
+{
+}
 
 /**
  * @note Address: 0x803AA9C4
  * @note Size: 0x8
  */
-void Obj::setTimer(f32 time) { mWraithFallTimer = time; }
+void Obj::setTimer(f32 time)
+{
+	mWraithFallTimer = time;
+}
 
 /**
  * @note Address: 0x803AA9CC
  * @note Size: 0x8
  */
-f32 Obj::getTimer() { return mWraithFallTimer; }
+f32 Obj::getTimer()
+{
+	return mWraithFallTimer;
+}
 
 /**
  * @note Address: 0x803AA9D4
@@ -4220,7 +4239,10 @@ void Obj::deadEffect()
  * @note Address: 0x803AAE9C
  * @note Size: 0x34
  */
-void Obj::deadTraceEffect() { mEfxDead->create(nullptr); }
+void Obj::deadTraceEffect()
+{
+	mEfxDead->create(nullptr);
+}
 
 /**
  * @note Address: 0x803AAED0

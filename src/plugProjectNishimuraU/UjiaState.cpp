@@ -53,7 +53,9 @@ void StateDead::exec(EnemyBase* enemy)
  * @note Address: 0x80264B90
  * @note Size: 0x4
  */
-void StateDead::cleanup(EnemyBase* enemy) { }
+void StateDead::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x80264B94
@@ -83,7 +85,9 @@ void StatePress::exec(EnemyBase* enemy)
  * @note Address: 0x80264C3C
  * @note Size: 0x4
  */
-void StatePress::cleanup(EnemyBase* enemy) { }
+void StatePress::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x80264C40
@@ -625,7 +629,9 @@ lbl_8026558C:
  * @note Address: 0x802655E0
  * @note Size: 0x4
  */
-void StateMove::cleanup(EnemyBase* enemy) { }
+void StateMove::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x802655E4
@@ -671,7 +677,9 @@ void StateMoveSide::exec(EnemyBase* enemy)
  * @note Address: 0x8026570C
  * @note Size: 0x4
  */
-void StateMoveSide::cleanup(EnemyBase* enemy) { }
+void StateMoveSide::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x80265710
@@ -717,7 +725,9 @@ void StateMoveCentre::exec(EnemyBase* enemy)
  * @note Address: 0x80265838
  * @note Size: 0x4
  */
-void StateMoveCentre::cleanup(EnemyBase* enemy) { }
+void StateMoveCentre::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x8026583C
@@ -763,7 +773,9 @@ void StateMoveTop::exec(EnemyBase* enemy)
  * @note Address: 0x80265964
  * @note Size: 0x4
  */
-void StateMoveTop::cleanup(EnemyBase* enemy) { }
+void StateMoveTop::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x80265968
@@ -811,7 +823,9 @@ void StateGoHome::exec(EnemyBase* enemy)
  * @note Address: 0x80265B34
  * @note Size: 0x4
  */
-void StateGoHome::cleanup(EnemyBase* enemy) { }
+void StateGoHome::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x80265B38
@@ -864,7 +878,9 @@ void StateAttack1::exec(EnemyBase* enemy)
  * @note Address: 0x80265C9C
  * @note Size: 0x4
  */
-void StateAttack1::cleanup(EnemyBase* enemy) { }
+void StateAttack1::cleanup(EnemyBase* enemy)
+{
+}
 
 } // namespace Ujia
 } // namespace Game

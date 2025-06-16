@@ -34,13 +34,19 @@ static void GetTypeCallback(s32 chan, u32 error, OSContext* context);
  * @note Address: 0x800F4EFC
  * @note Size: 0x20
  */
-BOOL SIBusy() { return Si.chan != -1 ? TRUE : FALSE; }
+BOOL SIBusy()
+{
+	return Si.chan != -1 ? TRUE : FALSE;
+}
 
 /**
  * @note Address: 0x800F4F1C
  * @note Size: 0x3C
  */
-BOOL SIIsChanBusy(s32 chan) { return Packet[chan].chan != -1 || Si.chan == chan; }
+BOOL SIIsChanBusy(s32 chan)
+{
+	return Packet[chan].chan != -1 || Si.chan == chan;
+}
 
 /**
  * @note Address: N/A
@@ -430,19 +436,28 @@ u32 SIGetStatus(s32 chan)
  * @note Address: 0x800F5B2C
  * @note Size: 0x14
  */
-void SISetCommand(s32 chan, u32 command) { __SIRegs[3 * chan] = command; }
+void SISetCommand(s32 chan, u32 command)
+{
+	__SIRegs[3 * chan] = command;
+}
 
 /**
  * @note Address: N/A
  * @note Size: 0x14
  */
-u32 SIGetCommand(s32 chan) { return __SIRegs[3 * chan]; }
+u32 SIGetCommand(s32 chan)
+{
+	return __SIRegs[3 * chan];
+}
 
 /**
  * @note Address: 0x800F5B40
  * @note Size: 0x10
  */
-void SITransferCommands(void) { __SIRegs[SI_STAT] = 0x80000000; }
+void SITransferCommands(void)
+{
+	__SIRegs[SI_STAT] = 0x80000000;
+}
 
 /**
  * @note Address: 0x800F5B50
@@ -859,7 +874,10 @@ u32 SIDecodeType(u32 type)
  * @note Address: 0x800F6738
  * @note Size: 0x24
  */
-u32 SIProbe(s32 chan) { return SIDecodeType(SIGetType(chan)); }
+u32 SIProbe(s32 chan)
+{
+	return SIDecodeType(SIGetType(chan));
+}
 
 /**
  * @note Address: N/A

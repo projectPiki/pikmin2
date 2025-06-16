@@ -9,7 +9,9 @@ namespace P2DScreen {
  * @note Address: 0x80434AC0
  * @note Size: 0x64
  */
-Mgr::Mgr() { }
+Mgr::Mgr()
+{
+}
 
 /**
  * Adds a callback function to the Mgr object.
@@ -60,7 +62,10 @@ void Mgr::addCallBackPane(J2DPane* pane, Node* newNode)
  */
 void Mgr::update()
 {
-	FOREACH_NODE(Node, mScreenNode.mChild, node) { node->update(); }
+	FOREACH_NODE(Node, mScreenNode.mChild, node)
+	{
+		node->update();
+	}
 }
 
 /**
@@ -70,7 +75,10 @@ void Mgr::update()
 void Mgr::draw(Graphics& gfx, J2DGrafContext& context)
 {
 	J2DScreen::draw(0.0f, 0.0f, &context);
-	FOREACH_NODE(Node, mScreenNode.mChild, node) { node->draw(gfx, context); }
+	FOREACH_NODE(Node, mScreenNode.mChild, node)
+	{
+		node->draw(gfx, context);
+	}
 }
 
 const f32 Mgr_tuning::mstTuningScaleX = 0.95f;

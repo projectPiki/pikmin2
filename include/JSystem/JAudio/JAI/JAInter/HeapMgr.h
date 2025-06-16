@@ -36,8 +36,14 @@ extern HeapBlock* sStayHeap;
 extern u32 sAutoHeapCount;
 extern u32 sStayHeapCount;
 
-static inline HeapBlock* getAutoHeap(int i) { return &sAutoHeap[i]; }
-static inline HeapBlock* getStayHeap(int i) { return &sStayHeap[i]; }
+static inline HeapBlock* getAutoHeap(int i)
+{
+	return &sAutoHeap[i];
+}
+static inline HeapBlock* getStayHeap(int i)
+{
+	return &sStayHeap[i];
+}
 
 } // namespace HeapMgr
 } // namespace JAInter

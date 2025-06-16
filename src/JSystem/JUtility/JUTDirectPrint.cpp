@@ -305,7 +305,10 @@ void JUTDirectPrint::printSub(u16 positionX, u16 positionY, const char* format, 
  * @note Address: 0x80029FC0
  * @note Size: 0x2C
  */
-void JUTDirectPrint::drawString(u16 x, u16 y, char* str) { drawString_f(x, y, "%s", str); }
+void JUTDirectPrint::drawString(u16 x, u16 y, char* str)
+{
+	drawString_f(x, y, "%s", str);
+}
 
 /**
  * @note Address: 0x80029FEC
@@ -325,7 +328,10 @@ void JUTDirectPrint::drawString_f(u16 x, u16 y, const char* format, ...)
  * @note Address: 0x8002A160
  * @note Size: 0x30
  */
-void JUTDirectPrint::setCharColor(JUtility::TColor color) { setCharColor(color.r, color.g, color.b); }
+void JUTDirectPrint::setCharColor(JUtility::TColor color)
+{
+	setCharColor(color.r, color.g, color.b);
+}
 
 /**
  * @note Address: 0x8002A190

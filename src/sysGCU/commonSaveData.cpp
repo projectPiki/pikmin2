@@ -13,7 +13,10 @@ namespace CommonSaveData {
  * @note Address: 0x80446C68
  * @note Size: 0x44
  */
-Mgr::Mgr() { setDefault(); }
+Mgr::Mgr()
+{
+	setDefault();
+}
 
 /**
  * @note Address: 0x80446CAC
@@ -145,7 +148,10 @@ void Mgr::resetPlayer(s8 fileIndex)
  * @note Address: 0x80446FC8
  * @note Size: 0x30
  */
-void Mgr::setDeflicker() { setDeflicker(mUseDeflicker); }
+void Mgr::setDeflicker()
+{
+	setDeflicker(mUseDeflicker);
+}
 
 /**
  * @note Address: 0x80446FF8

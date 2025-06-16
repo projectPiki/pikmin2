@@ -383,7 +383,10 @@ void TTitleMenu::doDraw()
  * @note Address: 0x803DB094
  * @note Size: 0x8
  */
-void TTitleMenu::setController(Controller* a1) { mController = a1; }
+void TTitleMenu::setController(Controller* a1)
+{
+	mController = a1;
+}
 
 /**
  * @note Address: 0x803DB09C
@@ -402,13 +405,19 @@ bool TTitleMenu::openMenuSet(ArgOpen* arg)
  * @note Address: 0x803DB0FC
  * @note Size: 0x8
  */
-bool TTitleMenu::isDecide() { return mDecidedMenuOption; }
+bool TTitleMenu::isDecide()
+{
+	return mDecidedMenuOption;
+}
 
 /**
  * @note Address: 0x803DB104
  * @note Size: 0x8
  */
-bool TTitleMenu::isCancel() { return mDoCloseMenu; }
+bool TTitleMenu::isCancel()
+{
+	return mDoCloseMenu;
+}
 
 /**
  * @note Address: 0x803DB10C

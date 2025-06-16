@@ -12,7 +12,10 @@
 #define STREAM_LITTLE_ENDIAN 0
 #define STREAM_BIG_ENDIAN    1
 
-static inline u16 bswap16(u16 x) { return ((x << 8) & 0xff00) | ((x >> 8) & 0x00ff); }
+static inline u16 bswap16(u16 x)
+{
+	return ((x << 8) & 0xff00) | ((x >> 8) & 0x00ff);
+}
 
 struct Stream {
 	Stream()

@@ -85,7 +85,9 @@ void ActTransport::emotion_success()
  * @note Address: 0x801A1C08
  * @note Size: 0x4
  */
-void ActTransport::emotion_fail() { }
+void ActTransport::emotion_fail()
+{
+}
 
 /**
  * @note Address: 0x801A1C0C

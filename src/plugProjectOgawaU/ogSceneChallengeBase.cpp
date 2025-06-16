@@ -7,13 +7,18 @@ namespace newScreen {
  * @note Address: 0x8032CD30
  * @note Size: 0x44
  */
-ChallengeBase::ChallengeBase() { isCountingDown = false; }
+ChallengeBase::ChallengeBase()
+{
+	isCountingDown = false;
+}
 
 /**
  * @note Address: N/A
  * @note Size: 0x74
  */
-ChallengeBase::~ChallengeBase() { }
+ChallengeBase::~ChallengeBase()
+{
+}
 
 /**
  * @note Address: 0x8032CD74

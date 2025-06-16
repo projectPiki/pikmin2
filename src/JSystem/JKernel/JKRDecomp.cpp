@@ -36,7 +36,9 @@ JKRDecomp::JKRDecomp(s32 priority)
  * @note Address: 0x8001C9E4
  * @note Size: 0x60
  */
-JKRDecomp::~JKRDecomp() { }
+JKRDecomp::~JKRDecomp()
+{
+}
 
 /**
  * @note Address: 0x8001CA44
@@ -79,7 +81,10 @@ void* JKRDecomp::run()
  * @note Address: 0x8001CB0C
  * @note Size: 0x30
  */
-BOOL JKRDecomp::sendCommand(JKRDecompCommand* command) { return OSSendMessage(&sMessageQueue, command, OS_MESSAGE_BLOCK); }
+BOOL JKRDecomp::sendCommand(JKRDecompCommand* command)
+{
+	return OSSendMessage(&sMessageQueue, command, OS_MESSAGE_BLOCK);
+}
 
 /**
  * @note Address: 0x8001CB3C
@@ -295,4 +300,6 @@ JKRDecompCommand::JKRDecompCommand()
  * @note Address: 0x8001CF90
  * @note Size: 0x3C
  */
-JKRDecompCommand::~JKRDecompCommand() { }
+JKRDecompCommand::~JKRDecompCommand()
+{
+}

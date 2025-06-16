@@ -115,7 +115,10 @@ BOOL JKRThread::setCommon_heapSpecified(JKRHeap* heap, u32 stackSize, int thread
  * @note Address: 0x80025A10
  * @note Size: 0x2C
  */
-void* JKRThread::start(void* thread) { return static_cast<JKRThread*>(thread)->run(); }
+void* JKRThread::start(void* thread)
+{
+	return static_cast<JKRThread*>(thread)->run();
+}
 
 /**
  * @note Address: N/A
@@ -195,7 +198,10 @@ JKRTask::JKRTask(int msgCount, int threadPriority, size_t stackSize)
  * @note Size: 0x110
  * __dt__7JKRTaskFv
  */
-JKRTask::~JKRTask() { sTaskList.remove(&_7C); }
+JKRTask::~JKRTask()
+{
+	sTaskList.remove(&_7C);
+}
 
 /**
  * @note Address: 0x80025CD8

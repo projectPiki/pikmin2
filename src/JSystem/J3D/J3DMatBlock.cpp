@@ -126,7 +126,10 @@ void J3DTexGenBlockBasic::initialize()
  * @note Size: 0xC
  * initialize__15J3DTevBlockNullFv
  */
-void J3DTevBlockNull::initialize() { mTexNoOffset = 0; }
+void J3DTevBlockNull::initialize()
+{
+	mTexNoOffset = 0;
+}
 
 /**
  * @note Address: 0x800773AC
@@ -277,7 +280,10 @@ void J3DTevBlock16::initialize()
  * @note Address: 0x800779FC
  * @note Size: 0xC
  */
-void J3DIndBlockFull::initialize() { mIndTexStageNum = 0; }
+void J3DIndBlockFull::initialize()
+{
+	mIndTexStageNum = 0;
+}
 
 /**
  * @note Address: 0x80077A08
@@ -308,103 +314,154 @@ void J3DPEBlockFull::initialize()
  * @note Address: 0x80077A58
  * @note Size: 0x8
  */
-u32 J3DColorBlockLightOff::countDLSize() { return 0x22; }
+u32 J3DColorBlockLightOff::countDLSize()
+{
+	return 0x22;
+}
 
 /**
  * @note Address: 0x80077A60
  * @note Size: 0x8
  */
-u32 J3DColorBlockAmbientOn::countDLSize() { return 0x2F; }
+u32 J3DColorBlockAmbientOn::countDLSize()
+{
+	return 0x2F;
+}
 
 /**
  * @note Address: 0x80077A68
  * @note Size: 0x8
  */
-u32 J3DColorBlockLightOn::countDLSize() { return 0x26F; }
+u32 J3DColorBlockLightOn::countDLSize()
+{
+	return 0x26F;
+}
 
 /**
  * @note Address: 0x80077A70
  * @note Size: 0x8
  */
-u32 J3DTexGenBlockPatched::countDLSize() { return 0x1A8; }
+u32 J3DTexGenBlockPatched::countDLSize()
+{
+	return 0x1A8;
+}
 
 /**
  * @note Address: 0x80077A78
  * @note Size: 0x8
  */
-u32 J3DTexGenBlock4::countDLSize() { return 0xFE; }
+u32 J3DTexGenBlock4::countDLSize()
+{
+	return 0xFE;
+}
 
 /**
  * @note Address: 0x80077A80
  * @note Size: 0x8
  */
-u32 J3DTexGenBlockBasic::countDLSize() { return 0x1F2; }
+u32 J3DTexGenBlockBasic::countDLSize()
+{
+	return 0x1F2;
+}
 
 /**
  * @note Address: 0x80077A88
  * @note Size: 0x8
  */
-u32 J3DTevBlockPatched::countDLSize() { return 0x230; }
+u32 J3DTevBlockPatched::countDLSize()
+{
+	return 0x230;
+}
 
 /**
  * @note Address: 0x80077A90
  * @note Size: 0x8
  */
-u32 J3DTevBlock1::countDLSize() { return 0x69; }
+u32 J3DTevBlock1::countDLSize()
+{
+	return 0x69;
+}
 
 /**
  * @note Address: 0x80077A98
  * @note Size: 0x8
  */
-u32 J3DTevBlock2::countDLSize() { return 0x14F; }
+u32 J3DTevBlock2::countDLSize()
+{
+	return 0x14F;
+}
 
 /**
  * @note Address: 0x80077AA0
  * @note Size: 0x8
  */
-u32 J3DTevBlock4::countDLSize() { return 0x244; }
+u32 J3DTevBlock4::countDLSize()
+{
+	return 0x244;
+}
 
 /**
  * @note Address: 0x80077AA8
  * @note Size: 0x8
  */
-u32 J3DTevBlock16::countDLSize() { return 1000; }
+u32 J3DTevBlock16::countDLSize()
+{
+	return 1000;
+}
 
 /**
  * @note Address: 0x80077AB0
  * @note Size: 0x8
  */
-u32 J3DIndBlockFull::countDLSize() { return 0x8C; }
+u32 J3DIndBlockFull::countDLSize()
+{
+	return 0x8C;
+}
 
 /**
  * @note Address: 0x80077AB8
  * @note Size: 0x8
  */
-u32 J3DPEBlockOpa::countDLSize() { return 0x1E; }
+u32 J3DPEBlockOpa::countDLSize()
+{
+	return 0x1E;
+}
 
 /**
  * @note Address: 0x80077AC0
  * @note Size: 0x8
  */
-u32 J3DPEBlockTexEdge::countDLSize() { return 0x1E; }
+u32 J3DPEBlockTexEdge::countDLSize()
+{
+	return 0x1E;
+}
 
 /**
  * @note Address: 0x80077AC8
  * @note Size: 0x8
  */
-u32 J3DPEBlockXlu::countDLSize() { return 0x1E; }
+u32 J3DPEBlockXlu::countDLSize()
+{
+	return 0x1E;
+}
 
 /**
  * @note Address: 0x80077AD0
  * @note Size: 0x8
  */
-u32 J3DPEBlockFogOff::countDLSize() { return 0x1E; }
+u32 J3DPEBlockFogOff::countDLSize()
+{
+	return 0x1E;
+}
 
 /**
  * @note Address: 0x80077AD8
  * @note Size: 0x8
  */
-u32 J3DPEBlockFull::countDLSize() { return 0x55; }
+u32 J3DPEBlockFull::countDLSize()
+{
+	return 0x55;
+}
 
 /**
  * @note Address: 0x80077AE0
@@ -4173,7 +4230,9 @@ void J3DTevBlock1::patchTexNo()
  * @note Address: 0x8007BF48
  * @note Size: 0x4
  */
-void J3DTevBlock1::patchTevReg() { }
+void J3DTevBlock1::patchTevReg()
+{
+}
 
 /**
  * @note Address: 0x8007BF4C
@@ -4203,7 +4262,10 @@ void J3DTevBlock1::patchTexNoAndTexCoordScale()
  * @note Size: 0x2C
  * patch__12J3DTevBlock1Fv
  */
-void J3DTevBlock1::patch() { patchTexNo(); }
+void J3DTevBlock1::patch()
+{
+	patchTexNo();
+}
 
 /**
  * @note Address: 0x8007C05C
@@ -4740,7 +4802,9 @@ void J3DTevBlock1::diffTexNo()
  * @note Address: 0x8007CE20
  * @note Size: 0x4
  */
-void J3DTevBlock1::diffTevReg() { }
+void J3DTevBlock1::diffTevReg()
+{
+}
 
 /**
  * @note Address: 0x8007CE24

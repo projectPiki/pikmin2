@@ -654,7 +654,10 @@ J2DAnmTexPattern::J2DAnmTexPatternTIMGPointer::J2DAnmTexPatternTIMGPointer()
  * @note Size: 0x54
  * __dt__Q216J2DAnmTexPattern27J2DAnmTexPatternTIMGPointerFv
  */
-J2DAnmTexPattern::J2DAnmTexPatternTIMGPointer::~J2DAnmTexPatternTIMGPointer() { delete mPalette; }
+J2DAnmTexPattern::J2DAnmTexPatternTIMGPointer::~J2DAnmTexPatternTIMGPointer()
+{
+	delete mPalette;
+}
 
 /**
  * @note Address: 0x8005C8E8

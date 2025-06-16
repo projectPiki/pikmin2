@@ -32,7 +32,9 @@ Mgr::Mgr()
  * @note Address: 0x801329BC
  * @note Size: 0x4
  */
-void Mgr::update() { }
+void Mgr::update()
+{
+}
 
 /**
  * @note Address: 0x801329C0
@@ -103,5 +105,8 @@ void Mgr::setCommonProc()
  * @note Address: 0x80132BCC
  * @note Size: 0x20
  */
-void Mgr::drawDebugInfo(Graphics& gfx) { LightMgr::drawDebugInfo(gfx); }
+void Mgr::drawDebugInfo(Graphics& gfx)
+{
+	LightMgr::drawDebugInfo(gfx);
+}
 } // namespace TreasureLight

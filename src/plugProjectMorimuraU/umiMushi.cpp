@@ -81,7 +81,10 @@ f32 Obj::getBodyRadius()
  * @note Address: 0x80383254
  * @note Size: 0x20
  */
-void Obj::birth(Vector3f& position, f32 faceDirection) { EnemyBase::birth(position, faceDirection); }
+void Obj::birth(Vector3f& position, f32 faceDirection)
+{
+	EnemyBase::birth(position, faceDirection);
+}
 
 /**
  * @note Address: 0x80383274
@@ -370,13 +373,18 @@ void Obj::doAnimationCullingOn()
  * @note Address: 0x80384204
  * @note Size: 0x4
  */
-void Obj::doDirectDraw(Graphics& gfx) { }
+void Obj::doDirectDraw(Graphics& gfx)
+{
+}
 
 /**
  * @note Address: 0x80384208
  * @note Size: 0x20
  */
-void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
+void Obj::doDebugDraw(Graphics& gfx)
+{
+	EnemyBase::doDebugDraw(gfx);
+}
 
 /**
  * @note Address: 0x80384228
@@ -532,7 +540,10 @@ bool Obj::earthquakeCallBack(Creature* creature, f32 damage)
  * @note Address: 0x803848D0
  * @note Size: 0x20
  */
-void Obj::collisionCallback(CollEvent& event) { EnemyBase::collisionCallback(event); }
+void Obj::collisionCallback(CollEvent& event)
+{
+	EnemyBase::collisionCallback(event);
+}
 
 /**
  * @note Address: 0x803848F0
@@ -589,7 +600,10 @@ void Obj::doFinishStoneState()
  * @note Address: 0x80384B70
  * @note Size: 0x28
  */
-void Obj::startCarcassMotion() { EnemyBase::startMotion(UMIANIM_Carry, nullptr); }
+void Obj::startCarcassMotion()
+{
+	EnemyBase::startMotion(UMIANIM_Carry, nullptr);
+}
 
 /**
  * @note Address: 0x80384B98
@@ -2199,7 +2213,10 @@ void Obj::bubbleEffect()
  * @note Address: 0x80387098
  * @note Size: 0x28
  */
-void Obj::delShadow() { shadowMgr->delNormalShadow(this); }
+void Obj::delShadow()
+{
+	shadowMgr->delNormalShadow(this);
+}
 
 /**
  * @note Address: 0x803870C0

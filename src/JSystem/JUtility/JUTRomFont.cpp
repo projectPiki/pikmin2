@@ -13,13 +13,18 @@ JUTRomFont::AboutEncoding JUTRomFont::saoAboutEncoding_[2]
  * @note Address: N/A
  * @note Size: 0x3C
  */
-JUTRomFont::JUTRomFont() { }
+JUTRomFont::JUTRomFont()
+{
+}
 
 /**
  * @note Address: 0x8003264C
  * @note Size: 0x54
  */
-JUTRomFont::JUTRomFont(JKRHeap* heap) { initiate(heap); }
+JUTRomFont::JUTRomFont(JKRHeap* heap)
+{
+	initiate(heap);
+}
 
 /**
  * @note Address: 0x800326A0
@@ -199,4 +204,7 @@ void JUTRomFont::getWidthEntry(int chr, JUTFont::TWidth* width) const
  * @note Address: 0x80032EC0
  * @note Size: 0x30
  */
-bool JUTRomFont::isLeadByte(int chr) const { return spAboutEncoding_->mIsLeadByteFunction(chr); }
+bool JUTRomFont::isLeadByte(int chr) const
+{
+	return spAboutEncoding_->mIsLeadByteFunction(chr);
+}

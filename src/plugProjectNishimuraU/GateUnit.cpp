@@ -42,24 +42,36 @@ int GateNode::getObjectId()
  * @note Address: 0x8024FDE0
  * @note Size: 0x8
  */
-u32 GateNode::getObjectType() { return OBJLAYOUT_Gate; }
+u32 GateNode::getObjectType()
+{
+	return OBJLAYOUT_Gate;
+}
 
 /**
  * @note Address: 0x8024FDE8
  * @note Size: 0x8
  */
-int GateNode::getBirthCount() { return 1; }
+int GateNode::getBirthCount()
+{
+	return 1;
+}
 
 /**
  * @note Address: 0x8024FDF0
  * @note Size: 0x8
  */
-f32 GateNode::getDirection() { return mDirection; }
+f32 GateNode::getDirection()
+{
+	return mDirection;
+}
 
 /**
  * @note Address: 0x8024FDF8
  * @note Size: 0x8
  */
-int GateNode::getBirthDoorIndex() { return mIndex; }
+int GateNode::getBirthDoorIndex()
+{
+	return mIndex;
+}
 } // namespace Cave
 } // namespace Game

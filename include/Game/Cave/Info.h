@@ -178,7 +178,7 @@ struct FloorInfo : public CNode {
 
 	FloorInfo();
 
-	virtual ~FloorInfo() {};          // _08 (weak)
+	virtual ~FloorInfo() { };         // _08 (weak)
 	virtual void read(Stream& input); // _10
 
 	int getTekiMax();
@@ -232,7 +232,7 @@ struct CaveInfo : public CNode {
 
 	CaveInfo();
 
-	virtual ~CaveInfo() {};           // _08 (weak)
+	virtual ~CaveInfo() { };          // _08 (weak)
 	virtual void read(Stream& input); // _10
 
 	void disablePelplant();

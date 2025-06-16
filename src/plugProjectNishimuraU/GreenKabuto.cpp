@@ -9,7 +9,9 @@ namespace GreenKabuto {
  * @note Address: 0x802FFBC8
  * @note Size: 0x90
  */
-Obj::Obj() { }
+Obj::Obj()
+{
+}
 
 /**
  * @note Address: 0x802FFC58

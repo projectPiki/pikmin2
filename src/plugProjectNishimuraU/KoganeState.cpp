@@ -117,7 +117,9 @@ void StateDisappear::exec(EnemyBase* enemy)
  * @note Address: 0x8025D364
  * @note Size: 0x4
  */
-void StateDisappear::cleanup(EnemyBase* enemy) { }
+void StateDisappear::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x8025D368
@@ -169,7 +171,9 @@ void StateMove::exec(EnemyBase* enemy)
  * @note Address: 0x8025D510
  * @note Size: 0x4
  */
-void StateMove::cleanup(EnemyBase* enemy) { }
+void StateMove::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x8025D514
@@ -211,7 +215,9 @@ void StateWait::exec(EnemyBase* enemy)
  * @note Address: 0x8025D62C
  * @note Size: 0x4
  */
-void StateWait::cleanup(EnemyBase* enemy) { }
+void StateWait::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x8025D630
@@ -265,7 +271,10 @@ void StatePress::exec(EnemyBase* enemy)
  * @note Address: 0x8025D888
  * @note Size: 0x10
  */
-void StatePress::cleanup(EnemyBase* enemy) { enemy->disableEvent(0, EB_NoInterrupt); }
+void StatePress::cleanup(EnemyBase* enemy)
+{
+	enemy->disableEvent(0, EB_NoInterrupt);
+}
 
 } // namespace Kogane
 } // namespace Game

@@ -219,7 +219,10 @@ void GXTexModeSync(void)
  * @note Address: 0x800E55E0
  * @note Size: 0x14
  */
-void GXPokeAlphaMode(GXCompare func, u8 threshold) { GX_SET_PE_REG(3, func << 8 | threshold); }
+void GXPokeAlphaMode(GXCompare func, u8 threshold)
+{
+	GX_SET_PE_REG(3, func << 8 | threshold);
+}
 
 /**
  * @note Address: 0x800E55F4

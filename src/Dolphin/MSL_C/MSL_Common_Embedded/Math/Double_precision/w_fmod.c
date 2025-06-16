@@ -7,7 +7,10 @@ extern f64 __ieee754_fmod();
  * @note Size: 0x20
  */
 
-f64 fmod(f64 __x, f64 __y) { return (f64)__ieee754_fmod(); }
+f64 fmod(f64 __x, f64 __y)
+{
+	return (f64)__ieee754_fmod();
+}
 
 /*
 .loc_0x0:

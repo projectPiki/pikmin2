@@ -41,7 +41,10 @@ void Obj::setParameters()
  * @note Address: 0x803896D8
  * @note Size: 0x20
  */
-void Obj::birth(Vector3f& pos, f32 faceDir) { EnemyBase::birth(pos, faceDir); }
+void Obj::birth(Vector3f& pos, f32 faceDir)
+{
+	EnemyBase::birth(pos, faceDir);
+}
 
 /**
  * @note Address: 0x803896F8
@@ -153,19 +156,27 @@ void Obj::doUpdate()
  * @note Address: 0x80389C8C
  * @note Size: 0x4
  */
-void Obj::doDirectDraw(Graphics&) { }
+void Obj::doDirectDraw(Graphics&)
+{
+}
 
 /**
  * @note Address: 0x80389C90
  * @note Size: 0x20
  */
-void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
+void Obj::doDebugDraw(Graphics& gfx)
+{
+	EnemyBase::doDebugDraw(gfx);
+}
 
 /**
  * @note Address: 0x80389CB0
  * @note Size: 0x20
  */
-void Obj::doAnimation() { EnemyBase::doAnimation(); }
+void Obj::doAnimation()
+{
+	EnemyBase::doAnimation();
+}
 
 /**
  * @note Address: 0x80389CD0
@@ -342,13 +353,19 @@ void Obj::changeMaterial()
  * @note Address: 0x8038A69C
  * @note Size: 0x30
  */
-void Obj::doStartMovie() { mEfxDown->startDemoDrawOff(); }
+void Obj::doStartMovie()
+{
+	mEfxDown->startDemoDrawOff();
+}
 
 /**
  * @note Address: 0x8038A6CC
  * @note Size: 0x30
  */
-void Obj::doEndMovie() { mEfxDown->endDemoDrawOn(); }
+void Obj::doEndMovie()
+{
+	mEfxDown->endDemoDrawOn();
+}
 
 /**
  * @note Address: 0x8038A6FC
@@ -364,7 +381,10 @@ void Obj::doStartStoneState()
  * @note Address: 0x8038A730
  * @note Size: 0x8
  */
-bool Obj::damageCallBack(Creature*, f32, CollPart*) { return false; }
+bool Obj::damageCallBack(Creature*, f32, CollPart*)
+{
+	return false;
+}
 
 /**
  * @note Address: 0x8038A738
@@ -444,7 +464,10 @@ void Obj::collisionCallback(CollEvent& event)
  * @note Address: 0x8038A830
  * @note Size: 0x28
  */
-void Obj::startCarcassMotion() { startMotion(SHIJIMIANIM_Carry, nullptr); }
+void Obj::startCarcassMotion()
+{
+	startMotion(SHIJIMIANIM_Carry, nullptr);
+}
 
 /**
  * @note Address: 0x8038A858
@@ -1765,7 +1788,10 @@ bool Obj::isFallEnd()
  * @note Address: 0x8038BF58
  * @note Size: 0x28
  */
-void Obj::deadEffect() { createBounceEffect(mPosition, 0.35f); }
+void Obj::deadEffect()
+{
+	createBounceEffect(mPosition, 0.35f);
+}
 
 /**
  * @note Address: 0x8038BF80
@@ -1875,7 +1901,10 @@ void Obj::createAppearEffect()
  * @note Address: 0x8038C328
  * @note Size: 0x30
  */
-void Obj::fadeAppearEffect() { mEfxDown->fade(); }
+void Obj::fadeAppearEffect()
+{
+	mEfxDown->fade();
+}
 
 } // namespace ShijimiChou
 } // namespace Game

@@ -620,7 +620,10 @@ lbl_80441304:
  * @note Address: 0x80441318
  * @note Size: 0x110
  */
-bool MemoryCardMgr::isErrorOccured() { return (checkStatus() != 2); }
+bool MemoryCardMgr::isErrorOccured()
+{
+	return (checkStatus() != 2);
+}
 
 inline void checkSlot(MemoryCardMgr::ECardSlot cardSlot)
 {
@@ -1393,4 +1396,7 @@ void MemoryCardMgr::setInsideStatusFlag(EInsideStatusFlag status)
  * @note Address: 0x80442854
  * @note Size: 0x8
  */
-void MemoryCardMgr::resetInsideStatusFlag(EInsideStatusFlag flag) { mStatusFlag = flag; }
+void MemoryCardMgr::resetInsideStatusFlag(EInsideStatusFlag flag)
+{
+	mStatusFlag = flag;
+}

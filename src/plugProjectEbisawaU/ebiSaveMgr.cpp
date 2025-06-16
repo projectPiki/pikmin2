@@ -32,13 +32,19 @@ void FSMStateMachine::init(TMgr*)
  * @note Address: 0x803DB4DC
  * @note Size: 0x2C
  */
-void FSMState::init(TMgr* mgr, Game::StateArg* arg) { do_init(mgr, arg); }
+void FSMState::init(TMgr* mgr, Game::StateArg* arg)
+{
+	do_init(mgr, arg);
+}
 
 /**
  * @note Address: 0x803DB50C
  * @note Size: 0x2C
  */
-void FSMState::exec(TMgr* mgr) { do_exec(mgr); }
+void FSMState::exec(TMgr* mgr)
+{
+	do_exec(mgr);
+}
 
 /**
  * @note Address: 0x803DB53C
@@ -87,7 +93,10 @@ void FSMState_DoYouSave::do_exec(TMgr* mgr)
  * @note Address: 0x803DB6FC
  * @note Size: 0x28
  */
-void FSMState_DoYouContinue::do_init(TMgr* mgr, Game::StateArg*) { mgr->mSaveMenu.openMsg(Screen::TSaveMenu::MESSAGE_NoSaveOption); }
+void FSMState_DoYouContinue::do_init(TMgr* mgr, Game::StateArg*)
+{
+	mgr->mSaveMenu.openMsg(Screen::TSaveMenu::MESSAGE_NoSaveOption);
+}
 
 /**
  * @note Address: 0x803DB724
@@ -122,7 +131,10 @@ void FSMState_DoYouContinue::do_exec(TMgr* mgr)
  * @note Address: 0x803DB838
  * @note Size: 0xC
  */
-void FSMState_CardRequest::do_init(TMgr*, Game::StateArg*) { mState = 0; }
+void FSMState_CardRequest::do_init(TMgr*, Game::StateArg*)
+{
+	mState = 0;
+}
 
 /**
  * @note Address: 0x803DB844
@@ -311,25 +323,37 @@ void FSMState_CardRequest::do_transitCardSerialNoError(TMgr* mgr)
  * @note Address: 0x803DBD00
  * @note Size: 0x2C
  */
-void FSMState_CardRequest::do_transitCardPlayerDataBroken(TMgr* mgr) { do_transitCardReady(mgr); }
+void FSMState_CardRequest::do_transitCardPlayerDataBroken(TMgr* mgr)
+{
+	do_transitCardReady(mgr);
+}
 
 /**
  * @note Address: 0x803DBD2C
  * @note Size: 0x28
  */
-bool FSMState_MountCheck::do_cardRequest(TMgr*) { return sys->mCardMgr->resetError(); }
+bool FSMState_MountCheck::do_cardRequest(TMgr*)
+{
+	return sys->mCardMgr->resetError();
+}
 
 /**
  * @note Address: 0x803DBD54
  * @note Size: 0x34
  */
-void FSMState_MountCheck::do_transitCardReady(TMgr* mgr) { transit(mgr, GetPlayerHeader, nullptr); }
+void FSMState_MountCheck::do_transitCardReady(TMgr* mgr)
+{
+	transit(mgr, GetPlayerHeader, nullptr);
+}
 
 /**
  * @note Address: 0x803DBD88
  * @note Size: 0x2C
  */
-bool FSMState_GetPlayerHeader::do_cardRequest(TMgr* mgr) { return sys->mCardMgr->getPlayerHeader(&mgr->mPlayerFileInfo); }
+bool FSMState_GetPlayerHeader::do_cardRequest(TMgr* mgr)
+{
+	return sys->mCardMgr->getPlayerHeader(&mgr->mPlayerFileInfo);
+}
 
 /**
  * @note Address: 0x803DBDB4
@@ -351,13 +375,19 @@ void FSMState_GetPlayerHeader::do_transitCardReady(TMgr* mgr)
  * @note Address: 0x803DBEAC
  * @note Size: 0x38
  */
-void FSMState_GetPlayerHeader::do_transitCardSerialNoError(TMgr* mgr) { JUT_PANICLINE(349, "P2Assert"); }
+void FSMState_GetPlayerHeader::do_transitCardSerialNoError(TMgr* mgr)
+{
+	JUT_PANICLINE(349, "P2Assert");
+}
 
 /**
  * @note Address: 0x803DBEE4
  * @note Size: 0x28
  */
-bool FSMState_CheckBeforeSave::do_cardRequest(TMgr*) { return sys->mCardMgr->checkBeforeSave(); }
+bool FSMState_CheckBeforeSave::do_cardRequest(TMgr*)
+{
+	return sys->mCardMgr->checkBeforeSave();
+}
 
 /**
  * @note Address: 0x803DBF0C
@@ -568,14 +598,19 @@ void FSMState_CardError::do_exec(TMgr* mgr)
  * @note Address: 0x803DC6D0
  * @note Size: 0x14C
  */
-TMgr::~TMgr() { msInstance = nullptr; }
+TMgr::~TMgr()
+{
+	msInstance = nullptr;
+}
 } // namespace Save
 
 /**
  * @note Address: 0x803DC6D0
  * @note Size: 0x14C
  */
-CardError::TMgr::~TMgr() { } // TODO: this should be weak as per map, but inlines in above dtor if made weak
+CardError::TMgr::~TMgr()
+{
+} // TODO: this should be weak as per map, but inlines in above dtor if made weak
 
 namespace Save {
 /**
@@ -605,7 +640,10 @@ void TMgr::deleteInstance()
  * @note Address: N/A
  * @note Size: 0x8
  */
-TMgr* TMgr::getInstance() { return msInstance; }
+TMgr* TMgr::getInstance()
+{
+	return msInstance;
+}
 
 /**
  * @note Address: 0x803DC8B8

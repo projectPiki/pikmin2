@@ -17,7 +17,9 @@ JStudio_JMessage::TAdaptor_message::TAdaptor_message(JMessage::TControl* control
  * @note Size: 0x60
  * __dt__
  */
-JStudio_JMessage::TAdaptor_message::~TAdaptor_message() { }
+JStudio_JMessage::TAdaptor_message::~TAdaptor_message()
+{
+}
 
 /**
  * @note Address: 0x80014DBC

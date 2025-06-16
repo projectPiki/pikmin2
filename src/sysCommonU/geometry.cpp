@@ -631,7 +631,10 @@ bool Sphere::intersect(Edge& edge, f32& t, Vector3f& repulsionVec, f32& strength
  * @note Address: 0x804168F0
  * @note Size: 0x68
  */
-Triangle::Triangle() { mCode.mContents = (bool)0; }
+Triangle::Triangle()
+{
+	mCode.mContents = (bool)0;
+}
 
 /**
  * @note Address: N/A
@@ -3824,13 +3827,17 @@ void TriIndexList::makeCovarianceMatrix(Sys::VertexTable& vertTable, Sys::Triang
  * @note Address: 0x80419978
  * @note Size: 0x4
  */
-void TriIndexList::draw(Graphics&, Sys::VertexTable&, Sys::TriangleTable&, bool) { }
+void TriIndexList::draw(Graphics&, Sys::VertexTable&, Sys::TriangleTable&, bool)
+{
+}
 
 /**
  * @note Address: 0x8041997C
  * @note Size: 0x7C
  */
-TriangleTable::TriangleTable() { }
+TriangleTable::TriangleTable()
+{
+}
 
 /**
  * @note Address: N/A
@@ -3881,6 +3888,9 @@ void VertexTable::write(Stream& output)
  * @note Address: 0x80419CF8
  * @note Size: 0x24
  */
-void VertexTable::writeObject(Stream& output, Vector3f& vertex) { vertex.write(output); }
+void VertexTable::writeObject(Stream& output, Vector3f& vertex)
+{
+	vertex.write(output);
+}
 
 } // namespace Sys

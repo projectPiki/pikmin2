@@ -27,13 +27,19 @@ static const char bigTreasureName[]       = "246-BigTreasure";
  * @note Address: 0x802DBBB4
  * @note Size: 0x24
  */
-void BigTreasureGroundCallBack::invokeOnGround(int footIdx, WaterBox* wbox) { mObj->createOnGroundEffect(footIdx, wbox); }
+void BigTreasureGroundCallBack::invokeOnGround(int footIdx, WaterBox* wbox)
+{
+	mObj->createOnGroundEffect(footIdx, wbox);
+}
 
 /**
  * @note Address: 0x802DBBD8
  * @note Size: 0x24
  */
-void BigTreasureGroundCallBack::invokeOffGround(int footIdx, WaterBox* wbox) { mObj->createOffGroundEffect(footIdx, wbox); }
+void BigTreasureGroundCallBack::invokeOffGround(int footIdx, WaterBox* wbox)
+{
+	mObj->createOffGroundEffect(footIdx, wbox);
+}
 
 /**
  * @note Address: 0x802DBBFC
@@ -54,7 +60,9 @@ Obj::Obj()
  * @note Address: 0x802DBD38
  * @note Size: 0x4
  */
-void Obj::setInitialSetting(EnemyInitialParamBase*) { }
+void Obj::setInitialSetting(EnemyInitialParamBase*)
+{
+}
 
 /**
  * @note Address: 0x802DBD3C
@@ -197,13 +205,18 @@ void Obj::changeMaterial()
  * @note Address: 0x802DC230
  * @note Size: 0x4
  */
-void Obj::doDirectDraw(Graphics&) { }
+void Obj::doDirectDraw(Graphics&)
+{
+}
 
 /**
  * @note Address: 0x802DC234
  * @note Size: 0x20
  */
-void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
+void Obj::doDebugDraw(Graphics& gfx)
+{
+	EnemyBase::doDebugDraw(gfx);
+}
 
 /**
  * @note Address: 0x802DC254
@@ -274,7 +287,10 @@ bool BigTreasure::Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart*
  * @note Address: 0x802DC414
  * @note Size: 0x20
  */
-void Obj::doStartStoneState() { EnemyBase::doStartStoneState(); }
+void Obj::doStartStoneState()
+{
+	EnemyBase::doStartStoneState();
+}
 
 /**
  * @note Address: 0x802DC434
@@ -290,19 +306,28 @@ void Obj::doFinishStoneState()
  * @note Address: 0x802DC47C
  * @note Size: 0x20
  */
-void Obj::doStartMovie() { effectDrawOff(); }
+void Obj::doStartMovie()
+{
+	effectDrawOff();
+}
 
 /**
  * @note Address: 0x802DC49C
  * @note Size: 0x20
  */
-void Obj::doEndMovie() { effectDrawOn(); }
+void Obj::doEndMovie()
+{
+	effectDrawOn();
+}
 
 /**
  * @note Address: 0x802DC4BC
  * @note Size: 0x50
  */
-void Obj::getThrowupItemPosition(Vector3f* position) { *position = mModel->getJoint("kosi")->getWorldMatrix()->getColumn(3); }
+void Obj::getThrowupItemPosition(Vector3f* position)
+{
+	*position = mModel->getJoint("kosi")->getWorldMatrix()->getColumn(3);
+}
 
 /**
  * @note Address: 0x802DC50C
@@ -319,7 +344,10 @@ void Obj::getThrowupItemVelocity(Vector3f* velocity)
  * @note Address: 0x802DC520
  * @note Size: 0x5C
  */
-void Obj::resetAttackLimitTimer() { mAttackLimitTimer = randWeightFloat(2.0f); }
+void Obj::resetAttackLimitTimer()
+{
+	mAttackLimitTimer = randWeightFloat(2.0f);
+}
 
 /**
  * @note Address: 0x802DC57C
@@ -460,7 +488,10 @@ void Obj::setIKParameter()
  * @note Address: 0x802DCCF0
  * @note Size: 0x20
  */
-void Obj::setIKSystemTargetPosition(Vector3f& targetPos) { mIkSystemMgr->mTargetPosition = targetPos; }
+void Obj::setIKSystemTargetPosition(Vector3f& targetPos)
+{
+	mIkSystemMgr->mTargetPosition = targetPos;
+}
 
 /**
  * @note Address: 0x802DCD10
@@ -489,73 +520,109 @@ void Obj::doAnimationIKSystem()
  * @note Address: 0x802DCDD0
  * @note Size: 0x24
  */
-void Obj::finishAnimationIKSystem() { mIkSystemMgr->resetAnimationCallBack(); }
+void Obj::finishAnimationIKSystem()
+{
+	mIkSystemMgr->resetAnimationCallBack();
+}
 
 /**
  * @note Address: 0x802DCDF4
  * @note Size: 0x24
  */
-void Obj::startProgramedIK() { mIkSystemMgr->startProgramedIK(); }
+void Obj::startProgramedIK()
+{
+	mIkSystemMgr->startProgramedIK();
+}
 
 /**
  * @note Address: 0x802DCE18
  * @note Size: 0x24
  */
-void Obj::startIKMotion() { mIkSystemMgr->startIKMotion(); }
+void Obj::startIKMotion()
+{
+	mIkSystemMgr->startIKMotion();
+}
 
 /**
  * @note Address: 0x802DCE3C
  * @note Size: 0x24
  */
-void Obj::finishIKMotion() { mIkSystemMgr->finishIKMotion(); }
+void Obj::finishIKMotion()
+{
+	mIkSystemMgr->finishIKMotion();
+}
 
 /**
  * @note Address: 0x802DCE60
  * @note Size: 0x24
  */
-void Obj::forceFinishIKMotion() { mIkSystemMgr->forceFinishIKMotion(); }
+void Obj::forceFinishIKMotion()
+{
+	mIkSystemMgr->forceFinishIKMotion();
+}
 
 /**
  * @note Address: 0x802DCE84
  * @note Size: 0x24
  */
-bool Obj::isFinishIKMotion() { return mIkSystemMgr->isFinishIKMotion(); }
+bool Obj::isFinishIKMotion()
+{
+	return mIkSystemMgr->isFinishIKMotion();
+}
 
 /**
  * @note Address: 0x802DCEA8
  * @note Size: 0x24
  */
-void Obj::startBlendMotion() { mIkSystemMgr->startBlendMotion(); }
+void Obj::startBlendMotion()
+{
+	mIkSystemMgr->startBlendMotion();
+}
 
 /**
  * @note Address: 0x802DCECC
  * @note Size: 0x24
  */
-void Obj::finishBlendMotion() { mIkSystemMgr->finishBlendMotion(); }
+void Obj::finishBlendMotion()
+{
+	mIkSystemMgr->finishBlendMotion();
+}
 
 /**
  * @note Address: 0x802DCEF0
  * @note Size: 0x24
  */
-void Obj::checkJointScaleOn() { mIkSystemMgr->checkJointScaleOn(); }
+void Obj::checkJointScaleOn()
+{
+	mIkSystemMgr->checkJointScaleOn();
+}
 
 /**
  * @note Address: 0x802DCF14
  * @note Size: 0x20
  */
-Vector3f Obj::getTraceCentrePosition() { return mIkSystemMgr->mTraceCentrePosition; }
+Vector3f Obj::getTraceCentrePosition()
+{
+	return mIkSystemMgr->mTraceCentrePosition;
+}
 
 /**
  * @note Address: 0x802DCF34
  * @note Size: 0x1C
  */
-Vector3f* Obj::getJointPositionPtr(int jointIndex, int positionIndex) { return &mJointPositions[jointIndex][positionIndex]; }
+Vector3f* Obj::getJointPositionPtr(int jointIndex, int positionIndex)
+{
+	return &mJointPositions[jointIndex][positionIndex];
+}
 
 /**
  * @note Address: 0x802DCF50
  * @note Size: 0x48
  */
-void Obj::createShadowSystem() { mShadowMgr = new BigTreasureShadowMgr(this); }
+void Obj::createShadowSystem()
+{
+	mShadowMgr = new BigTreasureShadowMgr(this);
+}
 
 /**
  * @note Address: 0x802DCF98
@@ -576,7 +643,10 @@ void Obj::setupShadowSystem()
  * @note Address: 0x802DD018
  * @note Size: 0x24
  */
-void Obj::doAnimationShadowSystem() { mShadowMgr->update(); }
+void Obj::doAnimationShadowSystem()
+{
+	mShadowMgr->update();
+}
 
 /**
  * @note Address: 0x802DD03C
@@ -766,7 +836,10 @@ bool Obj::isCapturedTreasure()
  * @note Address: 0x802DD834
  * @note Size: 0x1C
  */
-bool Obj::isCapturedTreasure(int idx) { return mTreasures[idx]; }
+bool Obj::isCapturedTreasure(int idx)
+{
+	return mTreasures[idx];
+}
 
 /**
  * @note Address: 0x802DD850
@@ -850,19 +923,28 @@ void Obj::releaseItemLoozy()
  * @note Address: 0x802DDC2C
  * @note Size: 0x48
  */
-void Obj::createAttack() { mAttackMgr = new BigTreasureAttackMgr(this); }
+void Obj::createAttack()
+{
+	mAttackMgr = new BigTreasureAttackMgr(this);
+}
 
 /**
  * @note Address: 0x802DDC74
  * @note Size: 0x24
  */
-void Obj::setupAttack() { mAttackMgr->init(); }
+void Obj::setupAttack()
+{
+	mAttackMgr->init();
+}
 
 /**
  * @note Address: 0x802DDC98
  * @note Size: 0x24
  */
-void Obj::updateAttack() { mAttackMgr->update(); }
+void Obj::updateAttack()
+{
+	mAttackMgr->update();
+}
 
 /**
  * @note Address: 0x802DDCBC
@@ -890,7 +972,10 @@ void Obj::startAttack()
  * @note Address: 0x802DDD30
  * @note Size: 0x24
  */
-void Obj::finishAttack() { mAttackMgr->finishAttack(); }
+void Obj::finishAttack()
+{
+	mAttackMgr->finishAttack();
+}
 
 /**
  * @note Address: 0x802DDD54
@@ -1112,7 +1197,10 @@ f32 Obj::getAttackTimeMax()
  * @note Address: 0x802DE2DC
  * @note Size: 0x20
  */
-bool Obj::isNormalAttack(int idx) { return (mTreasureHealth[idx] > 3000.0f); }
+bool Obj::isNormalAttack(int idx)
+{
+	return (mTreasureHealth[idx] > 3000.0f);
+}
 
 /**
  * @note Address: 0x802DE2FC
@@ -1152,7 +1240,10 @@ void Obj::resetTargetMatBodyColor(bool isVisible)
  * @note Address: 0x802DE3E4
  * @note Size: 0x24
  */
-void Obj::resetCurrentMatBodyColor() { mCurrMatBodyColor = mTargetMatBodyColor; }
+void Obj::resetCurrentMatBodyColor()
+{
+	mCurrMatBodyColor = mTargetMatBodyColor;
+}
 
 /**
  * @note Address: 0x802DE408
@@ -1766,13 +1857,19 @@ void Obj::createOffGroundEffect(int footIdx, WaterBox* wbox)
  * @note Address: 0x802E0558
  * @note Size: 0x3C
  */
-void Obj::startTreasurePinchSmoke(int treasureIdx) { mTreasureSmokeFX[treasureIdx]->create(nullptr); }
+void Obj::startTreasurePinchSmoke(int treasureIdx)
+{
+	mTreasureSmokeFX[treasureIdx]->create(nullptr);
+}
 
 /**
  * @note Address: 0x802E0594
  * @note Size: 0x38
  */
-void Obj::finishTreasurePinchSmoke(int treasureIdx) { mTreasureSmokeFX[treasureIdx]->fade(); }
+void Obj::finishTreasurePinchSmoke(int treasureIdx)
+{
+	mTreasureSmokeFX[treasureIdx]->fade();
+}
 
 /**
  * @note Address: 0x802E05CC
@@ -1883,25 +1980,37 @@ void Obj::finishDeadBubbleLegEffect(int idx)
  * @note Address: 0x802E0B5C
  * @note Size: 0x34
  */
-void Obj::startDeadBubbleBodyEffect() { mDeadBodyFX->create(nullptr); }
+void Obj::startDeadBubbleBodyEffect()
+{
+	mDeadBodyFX->create(nullptr);
+}
 
 /**
  * @note Address: 0x802E0B90
  * @note Size: 0x30
  */
-void Obj::finishDeadBubbleBodyEffect() { mDeadBodyFX->fade(); }
+void Obj::finishDeadBubbleBodyEffect()
+{
+	mDeadBodyFX->fade();
+}
 
 /**
  * @note Address: 0x802E0BC0
  * @note Size: 0x34
  */
-void Obj::startDeadBubbleMouthEffect() { mDeadAwaFX->create(nullptr); }
+void Obj::startDeadBubbleMouthEffect()
+{
+	mDeadAwaFX->create(nullptr);
+}
 
 /**
  * @note Address: 0x802E0BF4
  * @note Size: 0x30
  */
-void Obj::finishDeadBubbleMouthEffect() { mDeadAwaFX->fade(); }
+void Obj::finishDeadBubbleMouthEffect()
+{
+	mDeadAwaFX->fade();
+}
 
 /**
  * @note Address: 0x802E0C24
@@ -1937,13 +2046,19 @@ void Obj::createDeadBombFootEffect()
  * @note Address: 0x802E0D7C
  * @note Size: 0x34
  */
-void Obj::startShineParticleEffect() { mShineParticleFX->create(nullptr); }
+void Obj::startShineParticleEffect()
+{
+	mShineParticleFX->create(nullptr);
+}
 
 /**
  * @note Address: 0x802E0DB0
  * @note Size: 0x30
  */
-void Obj::finishShineParticleEffect() { mShineParticleFX->fade(); }
+void Obj::finishShineParticleEffect()
+{
+	mShineParticleFX->fade();
+}
 
 /**
  * @note Address: 0x802E0DE0

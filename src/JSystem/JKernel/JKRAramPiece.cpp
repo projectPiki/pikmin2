@@ -12,7 +12,10 @@ OSMutex JKRAramPiece::mMutex;
  * @note Address: 0x80019AD8
  * @note Size: 0x20
  */
-void JKRAramPiece::sendCommand(JKRAMCommand* command) { startDMA(command); }
+void JKRAramPiece::sendCommand(JKRAMCommand* command)
+{
+	startDMA(command);
+}
 
 struct OrderSyncMsg {
 	int _00;

@@ -93,7 +93,9 @@ void StateDead::exec(EnemyBase* enemy)
  * @note Address: 0x802CBFA0
  * @note Size: 0x4
  */
-void StateDead::cleanup(EnemyBase* enemy) { }
+void StateDead::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x802CBFA4
@@ -542,7 +544,9 @@ void StateWait::exec(EnemyBase* enemy)
  * @note Address: 0x802CD4F8
  * @note Size: 0x4
  */
-void StateWait::cleanup(EnemyBase* enemy) { }
+void StateWait::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x802CD4FC
@@ -625,7 +629,10 @@ void StateWalk::exec(EnemyBase* enemy)
  * @note Address: 0x802CD7CC
  * @note Size: 0x10
  */
-void StateWalk::cleanup(EnemyBase* enemy) { enemy->disableEvent(0, EB_NoInterrupt); }
+void StateWalk::cleanup(EnemyBase* enemy)
+{
+	enemy->disableEvent(0, EB_NoInterrupt);
+}
 
 /**
  * @note Address: 0x802CD7DC
@@ -691,7 +698,10 @@ void StateHome::exec(EnemyBase* enemy)
  * @note Address: 0x802CD9C8
  * @note Size: 0x10
  */
-void StateHome::cleanup(EnemyBase* enemy) { enemy->disableEvent(0, EB_NoInterrupt); }
+void StateHome::cleanup(EnemyBase* enemy)
+{
+	enemy->disableEvent(0, EB_NoInterrupt);
+}
 
 /**
  * @note Address: 0x802CD9D8
@@ -810,7 +820,10 @@ void StateAttack::exec(EnemyBase* enemy)
  * @note Address: 0x802CDDF4
  * @note Size: 0x10
  */
-void StateAttack::cleanup(EnemyBase* enemy) { enemy->enableEvent(0, EB_Cullable); }
+void StateAttack::cleanup(EnemyBase* enemy)
+{
+	enemy->enableEvent(0, EB_Cullable);
+}
 
 /**
  * @note Address: 0x802CDE04
@@ -877,7 +890,9 @@ void StateEat::exec(EnemyBase* enemy)
  * @note Address: 0x802CE030
  * @note Size: 0x4
  */
-void StateEat::cleanup(EnemyBase* enemy) { }
+void StateEat::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x802CE034
@@ -939,7 +954,9 @@ void StateStruggle::exec(EnemyBase* enemy)
  * @note Address: 0x802CE23C
  * @note Size: 0x4
  */
-void StateStruggle::cleanup(EnemyBase* enemy) { }
+void StateStruggle::cleanup(EnemyBase* enemy)
+{
+}
 
 } // namespace SnakeWhole
 } // namespace Game

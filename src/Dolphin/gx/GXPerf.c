@@ -307,7 +307,10 @@ void GXReadGPMetric(u32* count0, u32* count1)
  * @note Address: 0x800EA1CC
  * @note Size: 0x10
  */
-void GXClearGPMetric(void) { GX_SET_CP_REG(2, 4); }
+void GXClearGPMetric(void)
+{
+	GX_SET_CP_REG(2, 4);
+}
 
 /**
  * @note Address: N/A

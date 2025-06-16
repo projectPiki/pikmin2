@@ -21,7 +21,9 @@ Obj::Obj()
  * @note Address: 0x802F1394
  * @note Size: 0x4
  */
-void Obj::setInitialSetting(EnemyInitialParamBase*) { }
+void Obj::setInitialSetting(EnemyInitialParamBase*)
+{
+}
 
 /**
  * @note Address: 0x802F1398
@@ -43,19 +45,27 @@ void Obj::onInit(CreatureInitArg* initArg)
  * @note Address: 0x802F1424
  * @note Size: 0x34
  */
-void Obj::doUpdate() { mFsm->exec(this); }
+void Obj::doUpdate()
+{
+	mFsm->exec(this);
+}
 
 /**
  * @note Address: 0x802F1458
  * @note Size: 0x4
  */
-void Obj::doDirectDraw(Graphics&) { }
+void Obj::doDirectDraw(Graphics&)
+{
+}
 
 /**
  * @note Address: 0x802F145C
  * @note Size: 0x20
  */
-void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
+void Obj::doDebugDraw(Graphics& gfx)
+{
+	EnemyBase::doDebugDraw(gfx);
+}
 
 /**
  * @note Address: 0x802F147C
@@ -155,13 +165,19 @@ void Obj::doStartStoneState()
  * @note Address: 0x802F185C
  * @note Size: 0x20
  */
-void Obj::doFinishStoneState() { EnemyBase::doFinishStoneState(); }
+void Obj::doFinishStoneState()
+{
+	EnemyBase::doFinishStoneState();
+}
 
 /**
  * @note Address: 0x802F187C
  * @note Size: 0x28
  */
-void Obj::startCarcassMotion() { startMotion(SOKKURIANIM_Carry, nullptr); }
+void Obj::startCarcassMotion()
+{
+	startMotion(SOKKURIANIM_Carry, nullptr);
+}
 
 /**
  * @note Address: 0x802F18A4

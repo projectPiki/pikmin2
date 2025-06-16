@@ -32,7 +32,9 @@ ObjSMenuPauseVS::ObjSMenuPauseVS(char const* name)
  * @note Address: 0x80329210
  * @note Size: 0xC4
  */
-ObjSMenuPauseVS::~ObjSMenuPauseVS() { }
+ObjSMenuPauseVS::~ObjSMenuPauseVS()
+{
+}
 
 /**
  * @note Address: 0x803292D4
@@ -205,7 +207,10 @@ void ObjSMenuPauseVS::out_menu_1()
  * @note Address: 0x80329A1C
  * @note Size: 0x10
  */
-void ObjSMenuPauseVS::doUpdateCancelAction() { mDisp->mState = 2; }
+void ObjSMenuPauseVS::doUpdateCancelAction()
+{
+	mDisp->mState = 2;
+}
 
 /**
  * @note Address: 0x80329A2C
@@ -236,7 +241,10 @@ bool ObjSMenuPauseVS::doStart(::Screen::StartSceneArg const*)
  * @note Address: 0x80329AD0
  * @note Size: 0x8
  */
-bool ObjSMenuPauseVS::doEnd(::Screen::EndSceneArg const*) { return true; }
+bool ObjSMenuPauseVS::doEnd(::Screen::EndSceneArg const*)
+{
+	return true;
+}
 
 /**
  * @note Address: 0x80329AD8
@@ -301,7 +309,10 @@ void ObjSMenuPauseVS::doUpdateFadeoutFinish()
  * @note Address: 0x80329CAC
  * @note Size: 0xC
  */
-int ObjSMenuPauseVS::getResult() { return mDisp->mState; }
+int ObjSMenuPauseVS::getResult()
+{
+	return mDisp->mState;
+}
 
 /**
  * @note Address: 0x80329CB8
@@ -317,37 +328,51 @@ void ObjSMenuPauseVS::in_L()
  * @note Address: 0x80329CCC
  * @note Size: 0xC
  */
-void ObjSMenuPauseVS::wait() { mState = MENUSTATE_Default; }
+void ObjSMenuPauseVS::wait()
+{
+	mState = MENUSTATE_Default;
+}
 
 /**
  * @note Address: 0x80329CD8
  * @note Size: 0xC
  */
-void ObjSMenuPauseVS::out_L() { mState = MENUSTATE_CloseL; }
+void ObjSMenuPauseVS::out_L()
+{
+	mState = MENUSTATE_CloseL;
+}
 
 /**
  * @note Address: 0x80329CE4
  * @note Size: 0x4
  */
-void ObjSMenuPauseVS::doUpdateRAction() { }
+void ObjSMenuPauseVS::doUpdateRAction()
+{
+}
 
 /**
  * @note Address: 0x80329CE8
  * @note Size: 0x4
  */
-void ObjSMenuPauseVS::doUpdateLAction() { }
+void ObjSMenuPauseVS::doUpdateLAction()
+{
+}
 
 /**
  * @note Address: 0x80329CEC
  * @note Size: 0x4
  */
-void ObjSMenuPauseVS::in_R() { }
+void ObjSMenuPauseVS::in_R()
+{
+}
 
 /**
  * @note Address: 0x80329CF0
  * @note Size: 0x4
  */
-void ObjSMenuPauseVS::out_R() { }
+void ObjSMenuPauseVS::out_R()
+{
+}
 
 } // namespace newScreen
 } // namespace og

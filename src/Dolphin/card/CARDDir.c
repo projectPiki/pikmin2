@@ -4,7 +4,10 @@
  * @note Address: 0x800D7168
  * @note Size: 0x8
  */
-CARDDirectoryBlock* __CARDGetDirBlock(CARDControl* card) { return card->currentDir; }
+CARDDirectoryBlock* __CARDGetDirBlock(CARDControl* card)
+{
+	return card->currentDir;
+}
 
 /**
  * @note Address: 0x800D7170

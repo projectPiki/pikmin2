@@ -20,7 +20,9 @@ Obj::Obj()
  * @note Address: 0x8027ADC0
  * @note Size: 0x4
  */
-void Obj::setInitialSetting(EnemyInitialParamBase*) { }
+void Obj::setInitialSetting(EnemyInitialParamBase*)
+{
+}
 
 /**
  * @note Address: 0x8027ADC4
@@ -61,13 +63,18 @@ void Obj::doUpdate()
  * @note Address: 0x8027AEF4
  * @note Size: 0x4
  */
-void Obj::doDirectDraw(Graphics& gfx) { }
+void Obj::doDirectDraw(Graphics& gfx)
+{
+}
 
 /**
  * @note Address: 0x8027AEF8
  * @note Size: 0x20
  */
-void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
+void Obj::doDebugDraw(Graphics& gfx)
+{
+	EnemyBase::doDebugDraw(gfx);
+}
 
 /**
  * @note Address: 0x8027AF18
@@ -153,7 +160,10 @@ bool Obj::pressCallBack(Creature* source, f32 damage, CollPart* part)
  * @note Address: 0x8027B384
  * @note Size: 0x2C
  */
-bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* collpart) { return pressCallBack(creature, damage, collpart); }
+bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* collpart)
+{
+	return pressCallBack(creature, damage, collpart);
+}
 
 /**
  * @note Address: 0x8027B3B0
@@ -218,19 +228,28 @@ void Obj::doFinishWaitingBirthTypeDrop()
  * @note Address: 0x8027B558
  * @note Size: 0x28
  */
-void Obj::startCarcassMotion() { startMotion(ELECBUGANIM_Carry, nullptr); }
+void Obj::startCarcassMotion()
+{
+	startMotion(ELECBUGANIM_Carry, nullptr);
+}
 
 /**
  * @note Address: 0x8027B580
  * @note Size: 0x20
  */
-void Obj::doStartMovie() { effectDrawOff(); }
+void Obj::doStartMovie()
+{
+	effectDrawOff();
+}
 
 /**
  * @note Address: 0x8027B5A0
  * @note Size: 0x20
  */
-void Obj::doEndMovie() { effectDrawOn(); }
+void Obj::doEndMovie()
+{
+	effectDrawOn();
+}
 
 /**
  * @note Address: 0x8027B5C0
@@ -330,19 +349,28 @@ lbl_8027B890:
  * @note Address: 0x8027BC50
  * @note Size: 0x10
  */
-void Obj::setupEffect() { mEffectObj->mPosition = &mPosition; }
+void Obj::setupEffect()
+{
+	mEffectObj->mPosition = &mPosition;
+}
 
 /**
  * @note Address: 0x8027BC60
  * @note Size: 0x40
  */
-void Obj::startChargeEffect() { mEffectObj->startCharge(); }
+void Obj::startChargeEffect()
+{
+	mEffectObj->startCharge();
+}
 
 /**
  * @note Address: 0x8027BCA0
  * @note Size: 0xC0
  */
-void Obj::startDischargeEffect(Obj* partner) { mEffectObj->startDischarge(&partner->mPosition); }
+void Obj::startDischargeEffect(Obj* partner)
+{
+	mEffectObj->startDischarge(&partner->mPosition);
+}
 
 /**
  * @note Address: 0x8027BD60
@@ -362,13 +390,19 @@ void Obj::finishPartnerAndEffect()
  * @note Address: 0x8027BE04
  * @note Size: 0x8C
  */
-void Obj::effectDrawOn() { mEffectObj->effectDrawOn(); }
+void Obj::effectDrawOn()
+{
+	mEffectObj->effectDrawOn();
+}
 
 /**
  * @note Address: 0x8027BE90
  * @note Size: 0x8C
  */
-void Obj::effectDrawOff() { mEffectObj->effectDrawOff(); }
+void Obj::effectDrawOff()
+{
+	mEffectObj->effectDrawOff();
+}
 
 /**
  * @note Address: 0x8027BF1C

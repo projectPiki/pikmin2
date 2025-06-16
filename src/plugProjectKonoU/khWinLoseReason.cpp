@@ -7,7 +7,10 @@
 #include "PSSystem/PSMainSide_Scene.h"
 #include "JSystem/J2D/J2DAnmLoader.h"
 
-static void _Print(char* format, ...) { OSReport(format, __FILE__); }
+static void _Print(char* format, ...)
+{
+	OSReport(format, __FILE__);
+}
 
 namespace kh {
 namespace Screen {
@@ -32,13 +35,18 @@ void ObjWinLoseReason::doCreate(JKRArchive* arc)
  * @note Address: 0x804107E0
  * @note Size: 0x8
  */
-bool ObjWinLoseReason::doUpdate() { return false; }
+bool ObjWinLoseReason::doUpdate()
+{
+	return false;
+}
 
 /**
  * @note Address: 0x804107E8
  * @note Size: 0x4
  */
-void ObjWinLoseReason::doDraw(Graphics& gfx) { }
+void ObjWinLoseReason::doDraw(Graphics& gfx)
+{
+}
 
 /**
  * @note Address: 0x804107EC
@@ -218,7 +226,10 @@ void SceneWinLoseReason::doUpdateActive()
  * @note Address: 0x80410EA0
  * @note Size: 0x20
  */
-bool SceneWinLoseReason::doEnd(::Screen::EndSceneArg* arg) { return SceneBase::doEnd(arg); }
+bool SceneWinLoseReason::doEnd(::Screen::EndSceneArg* arg)
+{
+	return SceneBase::doEnd(arg);
+}
 
 ObjWinLoseReason::StaticValues ObjWinLoseReason::msVal;
 

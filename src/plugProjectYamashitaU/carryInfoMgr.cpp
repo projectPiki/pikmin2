@@ -56,7 +56,10 @@ void CarryInfo::appear()
  * @note Address: 0x8011AFD0
  * @note Size: 0xC
  */
-void CarryInfo::disappear() { mState = CINFO_Disappear; }
+void CarryInfo::disappear()
+{
+	mState = CINFO_Disappear;
+}
 
 /**
  * @note Address: 0x8011AFDC
@@ -331,7 +334,9 @@ void CarryInfo::drawNumberPrim(Graphics& gfx, f32 x, f32 y, int digit, Color4& c
  * @note Address: 0x8011BBC8
  * @note Size: 0x4
  */
-void CarryInfoList::init() { }
+void CarryInfoList::init()
+{
+}
 
 /**
  * @note Address: 0x8011BBCC
@@ -347,7 +352,10 @@ void CarryInfoList::update()
  * @note Address: 0x8011BC18
  * @note Size: 0x2C
  */
-void CarryInfoList::draw(Graphics& gfx) { mParam.mCarryInfo.draw(gfx, mParam); }
+void CarryInfoList::draw(Graphics& gfx)
+{
+	mParam.mCarryInfo.draw(gfx, mParam);
+}
 
 /**
  * @note Address: 0x8011BC44
@@ -366,7 +374,10 @@ void PokoInfoOwner::getCarryInfoParam(CarryInfoParam& param)
  * @note Address: N/A
  * @note Size: 0x9C
  */
-void PokoInfoOwner::start(CarryInfoList* list, const Vector3f&, int) { list->InfoListBase::init(); }
+void PokoInfoOwner::start(CarryInfoList* list, const Vector3f&, int)
+{
+	list->InfoListBase::init();
+}
 
 /**
  * @note Address: N/A
@@ -407,7 +418,10 @@ CarryInfoMgr::CarryInfoMgr(int a)
  * @note Address: 0x8011BF88
  * @note Size: 0x170
  */
-CarryInfoMgr::~CarryInfoMgr() { carryInfoMgr = nullptr; }
+CarryInfoMgr::~CarryInfoMgr()
+{
+	carryInfoMgr = nullptr;
+}
 
 /**
  * @note Address: 0x8011C0F8

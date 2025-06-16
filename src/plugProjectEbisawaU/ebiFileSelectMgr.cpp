@@ -29,25 +29,35 @@ void FSMStateMachine::init(TMgr* mgr)
  * @note Address: 0x803E1528
  * @note Size: 0x2C
  */
-void FSMState::init(TMgr* mgr, Game::StateArg* arg) { do_init(mgr, arg); }
+void FSMState::init(TMgr* mgr, Game::StateArg* arg)
+{
+	do_init(mgr, arg);
+}
 
 /**
  * @note Address: 0x803E1554
  * @note Size: 0x4
  */
-void FSMState::do_init(TMgr*, Game::StateArg*) { }
+void FSMState::do_init(TMgr*, Game::StateArg*)
+{
+}
 
 /**
  * @note Address: 0x803E1558
  * @note Size: 0x2C
  */
-void FSMState::exec(TMgr* mgr) { do_exec(mgr); }
+void FSMState::exec(TMgr* mgr)
+{
+	do_exec(mgr);
+}
 
 /**
  * @note Address: 0x803E1584
  * @note Size: 0x4
  */
-void FSMState::do_exec(TMgr*) { }
+void FSMState::do_exec(TMgr*)
+{
+}
 
 /**
  * @note Address: 0x803E1588
@@ -77,7 +87,10 @@ void FSMState_EmptyUpdate::do_exec(TMgr* mgr)
  * @note Address: 0x803E161C
  * @note Size: 0xC
  */
-void FSMState_CardRequest::do_init(TMgr* mgr, Game::StateArg* arg) { mState = 0; }
+void FSMState_CardRequest::do_init(TMgr* mgr, Game::StateArg* arg)
+{
+	mState = 0;
+}
 
 /**
  * @note Address: 0x803E1628
@@ -248,7 +261,10 @@ void FSMState_CardRequest::do_transitCardFileOpenError(TMgr* mgr)
  * @note Address: 0x803E1ABC
  * @note Size: 0x2C
  */
-void FSMState_CardRequest::do_transitCardPlayerDataBroken(TMgr* mgr) { do_transitCardReady(mgr); }
+void FSMState_CardRequest::do_transitCardPlayerDataBroken(TMgr* mgr)
+{
+	do_transitCardReady(mgr);
+}
 
 /**
  * @note Address: 0x803E1AE8
@@ -264,13 +280,19 @@ void FSMState_CardRequest::do_transitCardSerialNoError(TMgr* mgr)
  * @note Address: 0x803E1B3C
  * @note Size: 0x28
  */
-bool FSMState_MountCheck::do_cardRequest(TMgr* mgr) { return static_cast<Game::MemoryCard::Mgr*>(sys->mCardMgr)->resetError(); }
+bool FSMState_MountCheck::do_cardRequest(TMgr* mgr)
+{
+	return static_cast<Game::MemoryCard::Mgr*>(sys->mCardMgr)->resetError();
+}
 
 /**
  * @note Address: 0x803E1B64
  * @note Size: 0x34
  */
-void FSMState_MountCheck::do_transitCardReady(TMgr* mgr) { transit(mgr, FSState_GetPlayerHeader, nullptr); }
+void FSMState_MountCheck::do_transitCardReady(TMgr* mgr)
+{
+	transit(mgr, FSState_GetPlayerHeader, nullptr);
+}
 
 /**
  * @note Address: 0x803E1B98
@@ -285,13 +307,19 @@ bool FSMState_GetPlayerHeader::do_cardRequest(TMgr* mgr)
  * @note Address: 0x803E1BC4
  * @note Size: 0x34
  */
-void FSMState_GetPlayerHeader::do_transitCardReady(TMgr* mgr) { transit(mgr, FSState_ScreenFileSelect, nullptr); }
+void FSMState_GetPlayerHeader::do_transitCardReady(TMgr* mgr)
+{
+	transit(mgr, FSState_ScreenFileSelect, nullptr);
+}
 
 /**
  * @note Address: 0x803E1BF8
  * @note Size: 0x38
  */
-void FSMState_GetPlayerHeader::do_transitCardSerialNoError(TMgr* mgr) { JUT_PANICLINE(261, "P2Assert"); }
+void FSMState_GetPlayerHeader::do_transitCardSerialNoError(TMgr* mgr)
+{
+	JUT_PANICLINE(261, "P2Assert");
+}
 
 /**
  * @note Address: 0x803E1C30
@@ -381,7 +409,10 @@ TMgr::TMgr()
  * @note Address: 0x803E1ED8
  * @note Size: 0x84
  */
-TMgr::~TMgr() { msInstance = nullptr; }
+TMgr::~TMgr()
+{
+	msInstance = nullptr;
+}
 #pragma pop
 
 /**
@@ -400,13 +431,19 @@ TMgr* TMgr::createInstance()
  * @note Address: N/A
  * @note Size: 0x48
  */
-void TMgr::deleteInstance() { delete msInstance; }
+void TMgr::deleteInstance()
+{
+	delete msInstance;
+}
 
 /**
  * @note Address: N/A
  * @note Size: 0x8
  */
-TMgr* TMgr::getInstance() { return msInstance; }
+TMgr* TMgr::getInstance()
+{
+	return msInstance;
+}
 
 /**
  * @note Address: 0x803E2038
@@ -491,7 +528,9 @@ void TMgr::draw()
  * @note Address: 0x803E2248
  * @note Size: 0x4
  */
-void TMgr::showInfo() { }
+void TMgr::showInfo()
+{
+}
 
 /**
  * @note Address: 0x803E224C

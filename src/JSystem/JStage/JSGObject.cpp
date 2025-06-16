@@ -7,67 +7,93 @@ namespace JStage {
  * @note Address: 0x800988D4
  * @note Size: 0x48
  */
-TObject::~TObject() { }
+TObject::~TObject()
+{
+}
 
 /**
  * @note Address: 0x8009891C
  * @note Size: 0x8
  */
-char const* TObject::JSGGetName() const { return nullptr; }
+char const* TObject::JSGGetName() const
+{
+	return nullptr;
+}
 
 /**
  * @note Address: 0x80098924
  * @note Size: 0x4
  */
-void TObject::JSGUpdate() { }
+void TObject::JSGUpdate()
+{
+}
 
 /**
  * @note Address: 0x80098928
  * @note Size: 0x8
  */
-u32 TObject::JSGGetFlag() const { return 0; }
+u32 TObject::JSGGetFlag() const
+{
+	return 0;
+}
 
 /**
  * @note Address: 0x80098930
  * @note Size: 0x4
  */
-void TObject::JSGSetFlag(u32) { }
+void TObject::JSGSetFlag(u32)
+{
+}
 
 /**
  * @note Address: 0x80098934
  * @note Size: 0x8
  */
-void* TObject::JSGGetData(u32, void*, u32) const { return nullptr; }
+void* TObject::JSGGetData(u32, void*, u32) const
+{
+	return nullptr;
+}
 
 /**
  * @note Address: 0x8009893C
  * @note Size: 0x4
  */
-void TObject::JSGSetData(u32, void const*, u32) { }
+void TObject::JSGSetData(u32, void const*, u32)
+{
+}
 
 /**
  * @note Address: 0x80098940
  * @note Size: 0x4
  */
-void TObject::JSGGetParent(TObject**, u32*) const { }
+void TObject::JSGGetParent(TObject**, u32*) const
+{
+}
 
 /**
  * @note Address: 0x80098944
  * @note Size: 0x4
  */
-void TObject::JSGSetParent(TObject*, u32) { }
+void TObject::JSGSetParent(TObject*, u32)
+{
+}
 
 /**
  * @note Address: 0x80098948
  * @note Size: 0x4
  */
-void TObject::JSGSetRelation(bool, TObject*, u32) { }
+void TObject::JSGSetRelation(bool, TObject*, u32)
+{
+}
 
 /**
  * @note Address: 0x8009894C
  * @note Size: 0x8
  */
-int TObject::JSGFindNodeID(const char*) const { return -1; }
+int TObject::JSGFindNodeID(const char*) const
+{
+	return -1;
+}
 
 /**
  * @note Address: 0x80098954

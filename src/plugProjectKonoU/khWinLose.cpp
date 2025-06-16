@@ -6,7 +6,10 @@
 #include "JSystem/J2D/J2DAnmLoader.h"
 #include "Screen/Game2DMgr.h"
 
-static void _Print(char* format, ...) { OSReport(format, __FILE__); }
+static void _Print(char* format, ...)
+{
+	OSReport(format, __FILE__);
+}
 
 namespace kh {
 namespace Screen {
@@ -131,7 +134,10 @@ void ObjWinLose::doCreate(JKRArchive* arc)
  * @note Address: 0x804101B8
  * @note Size: 0x20
  */
-bool ObjWinLose::doUpdate() { return updateAnimation(); }
+bool ObjWinLose::doUpdate()
+{
+	return updateAnimation();
+}
 
 /**
  * @note Address: 0x804101D8

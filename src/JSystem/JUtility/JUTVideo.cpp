@@ -165,7 +165,10 @@ void JUTVideo::drawDoneStart()
  * @note Address: 0x80033B90
  * @note Size: 0xC
  */
-void JUTVideo::dummyNoDrawWait() { sDrawWaiting = false; }
+void JUTVideo::dummyNoDrawWait()
+{
+	sDrawWaiting = false;
+}
 
 /**
  * @note Address: 0x80033B9C
@@ -227,7 +230,9 @@ void JUTVideo::setRenderMode(const GXRenderModeObj* newRenderModeObj)
  * @note Address: 0x80033CE8
  * @note Size: 0x4
  */
-void JUTVideo::waitRetraceIfNeed() { }
+void JUTVideo::waitRetraceIfNeed()
+{
+}
 
 /**
  * @note Address: N/A

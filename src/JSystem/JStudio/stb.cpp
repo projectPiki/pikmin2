@@ -73,7 +73,9 @@ TObject::TObject(data::TParse_TBlock_object const& object)
  * @note Size: 0x48
  * __dt__Q37JStudio3stb7TObjectFv
  */
-TObject::~TObject() { }
+TObject::~TObject()
+{
+}
 
 /**
  * @note Address: N/A
@@ -199,31 +201,41 @@ bool TObject::forward(u32 time)
  * @note Address: 0x80010568
  * @note Size: 0x4
  */
-void TObject::do_begin() { }
+void TObject::do_begin()
+{
+}
 
 /**
  * @note Address: 0x8001056C
  * @note Size: 0x4
  */
-void TObject::do_end() { }
+void TObject::do_end()
+{
+}
 
 /**
  * @note Address: 0x80010570
  * @note Size: 0x4
  */
-void TObject::do_paragraph(u32, void const*, u32) { }
+void TObject::do_paragraph(u32, void const*, u32)
+{
+}
 
 /**
  * @note Address: 0x80010574
  * @note Size: 0x4
  */
-void TObject::do_wait(u32) { }
+void TObject::do_wait(u32)
+{
+}
 
 /**
  * @note Address: 0x80010578
  * @note Size: 0x4
  */
-void TObject::do_data(void const*, u32, void const*, u32) { }
+void TObject::do_data(void const*, u32, void const*, u32)
+{
+}
 
 /**
  * @note Address: 0x8001057C
@@ -363,7 +375,10 @@ TControl::TControl()
  * @note Size: 0x9C
  * __dt__Q37JStudio3stb8TControlFv
  */
-TControl::~TControl() { mObject_control.mControl = nullptr; }
+TControl::~TControl()
+{
+	mObject_control.mControl = nullptr;
+}
 
 /**
  * @note Address: N/A
@@ -505,20 +520,28 @@ bool TControl::forward(u32 time)
  * @note Size: 0x48
  * __dt__Q37JStudio3stb8TFactoryFv
  */
-TFactory::~TFactory() { }
+TFactory::~TFactory()
+{
+}
 
 /**
  * @note Address: 0x80010C50
  * @note Size: 0x8
  */
-JStudio::TObject* TFactory::create(data::TParse_TBlock_object const&) { return nullptr; }
+JStudio::TObject* TFactory::create(data::TParse_TBlock_object const&)
+{
+	return nullptr;
+}
 
 /**
  * @note Address: 0x80010C58
  * @note Size: 0x3C
  * destroy__Q37JStudio3stb8TFactoryFPQ37JStudio3stb7TObject
  */
-void TFactory::destroy(TObject* object) { delete object; }
+void TFactory::destroy(TObject* object)
+{
+	delete object;
+}
 
 /**
  * @note Address: 0x80010C94
@@ -536,7 +559,9 @@ TParse::TParse(TControl* control)
  * @note Size: 0x60
  * __dt__Q37JStudio3stb6TParseFv
  */
-TParse::~TParse() { }
+TParse::~TParse()
+{
+}
 
 /**
  * @note Address: 0x80010D14
@@ -585,13 +610,19 @@ bool TParse::parseBlock_next(const void** dat, u32* size, u32 flags)
  * @note Address: 0x80010E30
  * @note Size: 0x8
  */
-bool TParse::parseHeader(data::TParse_THeader const&, u32) { return true; }
+bool TParse::parseHeader(data::TParse_THeader const&, u32)
+{
+	return true;
+}
 
 /**
  * @note Address: 0x80010E38
  * @note Size: 0x38
  */
-bool TParse::parseBlock_block(const data::TParse_TBlock& block, u32 flags) { return parseBlock_object(block.get(), flags); }
+bool TParse::parseBlock_block(const data::TParse_TBlock& block, u32 flags)
+{
+	return parseBlock_object(block.get(), flags);
+}
 
 /**
  * @note Address: 0x80010E70

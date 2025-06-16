@@ -26,7 +26,10 @@
 
 namespace efx {
 
-static void _Print(char* format, ...) { OSReport(format, __FILE__); }
+static void _Print(char* format, ...)
+{
+	OSReport(format, __FILE__);
+}
 
 /**
  * @note Address: 0x803B2D84
@@ -722,7 +725,9 @@ bool TKoganeDive::create(Arg* arg)
  * @note Address: 0x803B43A8
  * @note Size: 0x4
  */
-void TParticleCallBack_TankFire::init(JPABaseEmitter*, JPABaseParticle*) { }
+void TParticleCallBack_TankFire::init(JPABaseEmitter*, JPABaseParticle*)
+{
+}
 
 /**
  * @note Address: 0x803B43AC

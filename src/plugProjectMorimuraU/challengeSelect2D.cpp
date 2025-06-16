@@ -1066,7 +1066,10 @@ lbl_8038CB44:
  * @note Address: N/A
  * @note Size: 0x34
  */
-void TChallengePanel::startScaleUp() { mScaleMgr->up(0.3f, 30.0f, 0.6f, 0.0f); }
+void TChallengePanel::startScaleUp()
+{
+	mScaleMgr->up(0.3f, 30.0f, 0.6f, 0.0f);
+}
 
 /**
  * @note Address: 0x8038CCC8
@@ -1186,7 +1189,10 @@ void TChallengeScreen::updateBckPane()
  * @note Address: 0x8038D43C
  * @note Size: 0x20
  */
-bool TChallengeScreen::isRandAnimStart() { return mAnimPanes[0]->mCurrentFrame == 2.0f; }
+bool TChallengeScreen::isRandAnimStart()
+{
+	return mAnimPanes[0]->mCurrentFrame == 2.0f;
+}
 
 /**
  * @note Address: 0x8038D45C
@@ -2027,7 +2033,9 @@ void TChallengeSelectExplanationWindow::create(char const* path, u32 flags)
  * @note Address: 0x8038E9B4
  * @note Size: 0x4
  */
-void TChallengeSelectExplanationWindow::screenScaleUp() { }
+void TChallengeSelectExplanationWindow::screenScaleUp()
+{
+}
 
 /**
  * @note Address: 0x8038E9B8
@@ -2087,7 +2095,10 @@ TChallengeSelect::TChallengeSelect()
  * @note Size: 0x44
  * Probably something like this
  */
-void TChallengeSelect::setDebugHeapParent(JKRHeap* heap) { mDebugHeap = static_cast<JKRExpHeap*>(heap); }
+void TChallengeSelect::setDebugHeapParent(JKRHeap* heap)
+{
+	mDebugHeap = static_cast<JKRExpHeap*>(heap);
+}
 
 /**
  * @note Address: 0x8038EBE8
@@ -4984,13 +4995,19 @@ int TChallengeSelect::getIndexMax()
  * @note Address: 0x80392B20
  * @note Size: 0x24
  */
-void TChallengeSelect::openWindow() { mRulesScreen->openWindow(); }
+void TChallengeSelect::openWindow()
+{
+	mRulesScreen->openWindow();
+}
 
 /**
  * @note Address: 0x80392B44
  * @note Size: 0x24
  */
-void TChallengeSelect::closeWindow() { mRulesScreen->closeWindow(); }
+void TChallengeSelect::closeWindow()
+{
+	mRulesScreen->closeWindow();
+}
 
 /**
  * @note Address: 0x80392B68

@@ -41,7 +41,10 @@ const int cRandArray[] = { 0, 1, 2, 0, 2, 1, 1, 0, 2, 1, 2, 0, 2, 1, 0, 2, 0, 1,
  * @note Address: 0x80393348
  * @note Size: 0x20
  */
-void TChallengeResultScreen::create(char const* path, u32 flag) { TScreenBase::create(path, flag); }
+void TChallengeResultScreen::create(char const* path, u32 flag)
+{
+	TScreenBase::create(path, flag);
+}
 
 /**
  * @note Address: 0x80393368
@@ -129,7 +132,10 @@ void TChallengeResultDemoScreen::draw(Graphics& gfx, J2DPerspGraph* graf)
  * @note Address: N/A
  * @note Size: 0x3C
  */
-void TChallengeResultDemoScreen::startDemo() { setComplete(false); }
+void TChallengeResultDemoScreen::startDemo()
+{
+	setComplete(false);
+}
 
 /**
  * @note Address: N/A

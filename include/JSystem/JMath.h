@@ -261,14 +261,32 @@ struct TSinCosTable {
 };
 
 // 16 /*ushort bits*/ - log2(length)
-f32 TSinCosTable<2048, f32>::sinShort(s16 v) const { return mTable[static_cast<u16>(v) >> 5].first; }
-f32 TSinCosTable<2048, f32>::cosShort(s16 v) const { return mTable[static_cast<u16>(v) >> 5].second; }
+f32 TSinCosTable<2048, f32>::sinShort(s16 v) const
+{
+	return mTable[static_cast<u16>(v) >> 5].first;
+}
+f32 TSinCosTable<2048, f32>::cosShort(s16 v) const
+{
+	return mTable[static_cast<u16>(v) >> 5].second;
+}
 
-f32 TSinCosTable<5096, f32>::sinShort(s16 v) const { return mTable[static_cast<u16>(v) >> 4].first; }
-f32 TSinCosTable<5096, f32>::cosShort(s16 v) const { return mTable[static_cast<u16>(v) >> 4].second; }
+f32 TSinCosTable<5096, f32>::sinShort(s16 v) const
+{
+	return mTable[static_cast<u16>(v) >> 4].first;
+}
+f32 TSinCosTable<5096, f32>::cosShort(s16 v) const
+{
+	return mTable[static_cast<u16>(v) >> 4].second;
+}
 
-f32 TSinCosTable<1024, f32>::sinShort(s16 v) const { return mTable[static_cast<u16>(v) >> 6].first; }
-f32 TSinCosTable<1024, f32>::cosShort(s16 v) const { return mTable[static_cast<u16>(v) >> 6].second; }
+f32 TSinCosTable<1024, f32>::sinShort(s16 v) const
+{
+	return mTable[static_cast<u16>(v) >> 6].first;
+}
+f32 TSinCosTable<1024, f32>::cosShort(s16 v) const
+{
+	return mTable[static_cast<u16>(v) >> 6].second;
+}
 
 #define JMASINE(x)
 
@@ -281,7 +299,10 @@ extern const TAsinAcosTable<1024, f32> asinAcosTable_ ATTRIBUTE_ALIGN(32);
 /**
  * @fabricated
  */
-inline const TSinCosTable<2048, f32>* getSinCosTable() { return &sincosTable_; }
+inline const TSinCosTable<2048, f32>* getSinCosTable()
+{
+	return &sincosTable_;
+}
 
 // from twilight princess repo
 struct TRandom_fast_ {
@@ -342,11 +363,20 @@ struct TRandom_fast_ {
 	void setSeed(u32 seed) { value = seed; }
 };
 
-inline f32 JMAFastReciprocal(f32 value) { return __fres(value); }
+inline f32 JMAFastReciprocal(f32 value)
+{
+	return __fres(value);
+}
 
-inline f32 fastReciprocal(f32 value) { return JMAFastReciprocal(value); }
+inline f32 fastReciprocal(f32 value)
+{
+	return JMAFastReciprocal(value);
+}
 
-inline f32 acosDegree(f32 value) { return JMath::asinAcosTable_.acosDegree(value); }
+inline f32 acosDegree(f32 value)
+{
+	return JMath::asinAcosTable_.acosDegree(value);
+}
 
 } // namespace JMath
 
@@ -360,18 +390,42 @@ void JMAVECLerp(const Vec*, const Vec*, Vec*, f32);
 void JMAMTXApplyScale(const Mtx, Mtx, f32, f32, f32);
 void JMAMTXScaleApply(const Mtx, Mtx, f32, f32, f32);
 
-inline f32 JMAAbs(f32 input) { return __fabsf(input); }
+inline f32 JMAAbs(f32 input)
+{
+	return __fabsf(input);
+}
 
-inline f32 JMAAtan2Radian(f32 y, f32 x) { return JMath::atanTable_.atan2Radian(y, x); };
+inline f32 JMAAtan2Radian(f32 y, f32 x)
+{
+	return JMath::atanTable_.atan2Radian(y, x);
+};
 
-inline f32 JMASCosShort(s16 v) { return JMath::sincosTable_.cosShort(v); }
-inline f32 JMASinShort(s16 v) { return JMath::sincosTable_.sinShort(v); }
+inline f32 JMASCosShort(s16 v)
+{
+	return JMath::sincosTable_.cosShort(v);
+}
+inline f32 JMASinShort(s16 v)
+{
+	return JMath::sincosTable_.sinShort(v);
+}
 
-inline f32 JMASCos(s16 v) { return JMASCosShort(v); }
-inline f32 JMASSin(s16 v) { return JMASinShort(v); }
+inline f32 JMASCos(s16 v)
+{
+	return JMASCosShort(v);
+}
+inline f32 JMASSin(s16 v)
+{
+	return JMASinShort(v);
+}
 
-inline f32 JMACos(f32 v) { return JMath::sincosTable_.cos(v); }
-inline f32 JMASin(f32 v) { return JMath::sincosTable_.sin(v); }
+inline f32 JMACos(f32 v)
+{
+	return JMath::sincosTable_.cos(v);
+}
+inline f32 JMASin(f32 v)
+{
+	return JMath::sincosTable_.sin(v);
+}
 
 inline f32 JMAFastSqrt(register f32 x)
 {

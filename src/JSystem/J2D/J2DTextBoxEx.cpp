@@ -793,7 +793,10 @@ void J2DTextBoxEx::setAnimation(J2DAnmTevRegKey* anim)
  * @note Address: 0x8005ADDC
  * @note Size: 0x8
  */
-void J2DTextBoxEx::setAnimation(J2DAnmVisibilityFull* anim) { mAnmVisibility = anim; }
+void J2DTextBoxEx::setAnimation(J2DAnmVisibilityFull* anim)
+{
+	mAnmVisibility = anim;
+}
 
 /**
  * @note Address: 0x8005ADE4

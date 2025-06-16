@@ -24,7 +24,9 @@ Obj::Obj()
  * @note Address: 0x802EC140
  * @note Size: 0x4
  */
-void Obj::setInitialSetting(EnemyInitialParamBase*) { }
+void Obj::setInitialSetting(EnemyInitialParamBase*)
+{
+}
 
 /**
  * @note Address: 0x802EC144
@@ -100,13 +102,18 @@ void Obj::doAnimationCullingOff()
  * @note Address: 0x802EC31C
  * @note Size: 0x4
  */
-void Obj::doDirectDraw(Graphics&) { }
+void Obj::doDirectDraw(Graphics&)
+{
+}
 
 /**
  * @note Address: 0x802EC320
  * @note Size: 0x20
  */
-void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
+void Obj::doDebugDraw(Graphics& gfx)
+{
+	EnemyBase::doDebugDraw(gfx);
+}
 
 /**
  * @note Address: 0x802EC340
@@ -176,7 +183,10 @@ void Obj::doStartStoneState()
  * @note Address: 0x802EC4E4
  * @note Size: 0x20
  */
-void Obj::doFinishStoneState() { EnemyBase::doFinishStoneState(); }
+void Obj::doFinishStoneState()
+{
+	EnemyBase::doFinishStoneState();
+}
 
 /**
  * @note Address: 0x802EC504
@@ -192,7 +202,10 @@ void Obj::doStartEarthquakeFitState()
  * @note Address: 0x802EC538
  * @note Size: 0x20
  */
-void Obj::doFinishEarthquakeFitState() { EnemyBase::doFinishEarthquakeFitState(); }
+void Obj::doFinishEarthquakeFitState()
+{
+	EnemyBase::doFinishEarthquakeFitState();
+}
 
 /**
  * @note Address: 0x802EC558
@@ -218,19 +231,28 @@ void Obj::doFinishWaitingBirthTypeDrop()
  * @note Address: 0x802EC5C0
  * @note Size: 0x28
  */
-void Obj::startCarcassMotion() { startMotion(MINIHOUDAIANIM_Carry, nullptr); }
+void Obj::startCarcassMotion()
+{
+	startMotion(MINIHOUDAIANIM_Carry, nullptr);
+}
 
 /**
  * @note Address: 0x802EC5E8
  * @note Size: 0x20
  */
-void Obj::doStartMovie() { effectDrawOff(); }
+void Obj::doStartMovie()
+{
+	effectDrawOff();
+}
 
 /**
  * @note Address: 0x802EC608
  * @note Size: 0x20
  */
-void Obj::doEndMovie() { effectDrawOn(); }
+void Obj::doEndMovie()
+{
+	effectDrawOn();
+}
 
 /**
  * @note Address: 0x802EC628
@@ -247,7 +269,10 @@ void Obj::initWalkSmokeEffect()
  * @note Address: 0x802EC68C
  * @note Size: 0x8
  */
-WalkSmokeEffect::Mgr* Obj::getWalkSmokeEffectMgr() { return &mWalkSmokeMgr; }
+WalkSmokeEffect::Mgr* Obj::getWalkSmokeEffectMgr()
+{
+	return &mWalkSmokeMgr;
+}
 
 /**
  * @note Address: 0x802EC694
@@ -335,7 +360,10 @@ void Obj::updateCaution()
  * @note Address: 0x802EC958
  * @note Size: 0x24
  */
-f32 Obj::getViewAngle() { return (mHealthGaugeTimer < C_GENERALPARMS.mAlertDuration()) ? 180.0f : C_GENERALPARMS.mViewAngle(); }
+f32 Obj::getViewAngle()
+{
+	return (mHealthGaugeTimer < C_GENERALPARMS.mAlertDuration()) ? 180.0f : C_GENERALPARMS.mViewAngle();
+}
 
 /**
  * @note Address: 0x802EC97C
@@ -561,97 +589,145 @@ bool Obj::isAttackableTarget()
  * @note Address: 0x802ED218
  * @note Size: 0x48
  */
-void Obj::createShotGun() { mShotgunMgr = new MiniHoudaiShotGunMgr(this); }
+void Obj::createShotGun()
+{
+	mShotgunMgr = new MiniHoudaiShotGunMgr(this);
+}
 
 /**
  * @note Address: 0x802ED260
  * @note Size: 0x24
  */
-void Obj::setupShotGun() { mShotgunMgr->setupShotGun(); }
+void Obj::setupShotGun()
+{
+	mShotgunMgr->setupShotGun();
+}
 
 /**
  * @note Address: N/A
  * @note Size: 0x24
  */
-void Obj::setShotGunTarget(Vector3f& pos) { mShotgunMgr->setShotGunTarget(pos); }
+void Obj::setShotGunTarget(Vector3f& pos)
+{
+	mShotgunMgr->setShotGunTarget(pos);
+}
 
 /**
  * @note Address: 0x802ED284
  * @note Size: 0x24
  */
-void Obj::resetShotGunCallBack() { mShotgunMgr->resetCallBack(); }
+void Obj::resetShotGunCallBack()
+{
+	mShotgunMgr->resetCallBack();
+}
 
 /**
  * @note Address: 0x802ED2A8
  * @note Size: 0x24
  */
-void Obj::setShotGunCallBack() { mShotgunMgr->setCallBack(); }
+void Obj::setShotGunCallBack()
+{
+	mShotgunMgr->setCallBack();
+}
 
 /**
  * @note Address: 0x802ED2CC
  * @note Size: 0x24
  */
-void Obj::doUpdateShotGun() { mShotgunMgr->doUpdate(); }
+void Obj::doUpdateShotGun()
+{
+	mShotgunMgr->doUpdate();
+}
 
 /**
  * @note Address: 0x802ED2F0
  * @note Size: 0x24
  */
-void Obj::doUpdateCommonShotGun() { mShotgunMgr->doUpdateCommon(); }
+void Obj::doUpdateCommonShotGun()
+{
+	mShotgunMgr->doUpdateCommon();
+}
 
 /**
  * @note Address: 0x802ED314
  * @note Size: 0x24
  */
-void Obj::startShotGunRotation() { mShotgunMgr->startRotation(); }
+void Obj::startShotGunRotation()
+{
+	mShotgunMgr->startRotation();
+}
 
 /**
  * @note Address: 0x802ED338
  * @note Size: 0x24
  */
-void Obj::finishShotGunRotation() { mShotgunMgr->finishRotation(); }
+void Obj::finishShotGunRotation()
+{
+	mShotgunMgr->finishRotation();
+}
 
 /**
  * @note Address: 0x802ED35C
  * @note Size: 0x24
  */
-bool Obj::isShotGunRotation() { return mShotgunMgr->isShotGunRotation(); }
+bool Obj::isShotGunRotation()
+{
+	return mShotgunMgr->isShotGunRotation();
+}
 
 /**
  * @note Address: 0x802ED380
  * @note Size: 0x24
  */
-bool Obj::isShotGunLockOn() { return mShotgunMgr->isShotGunLockOn(); }
+bool Obj::isShotGunLockOn()
+{
+	return mShotgunMgr->isShotGunLockOn();
+}
 
 /**
  * @note Address: 0x802ED3A4
  * @note Size: 0x24
  */
-bool Obj::isFinishShotGun() { return mShotgunMgr->isFinishShotGun(); }
+bool Obj::isFinishShotGun()
+{
+	return mShotgunMgr->isFinishShotGun();
+}
 
 /**
  * @note Address: 0x802ED3C8
  * @note Size: 0x24
  */
-void Obj::emitShotGun() { mShotgunMgr->emitShotGun(); }
+void Obj::emitShotGun()
+{
+	mShotgunMgr->emitShotGun();
+}
 
 /**
  * @note Address: 0x802ED3EC
  * @note Size: 0x2C
  */
-void Obj::setShotGunTargetPosition() { mShotgunMgr->setShotGunTarget(mTargetPosition); }
+void Obj::setShotGunTargetPosition()
+{
+	mShotgunMgr->setShotGunTarget(mTargetPosition);
+}
 
 /**
  * @note Address: N/A
  * @note Size: 0x24
  */
-void Obj::shotGunDoDebugDraw(Graphics& gfx) { mShotgunMgr->doDebugDraw(gfx); }
+void Obj::shotGunDoDebugDraw(Graphics& gfx)
+{
+	mShotgunMgr->doDebugDraw(gfx);
+}
 
 /**
  * @note Address: 0x802ED418
  * @note Size: 0x24
  */
-void Obj::forceFinishShotGun() { mShotgunMgr->forceFinishShotGun(); }
+void Obj::forceFinishShotGun()
+{
+	mShotgunMgr->forceFinishShotGun();
+}
 
 /**
  * @note Address: 0x802ED43C
@@ -706,25 +782,37 @@ void Obj::createSmokeLargeEffect()
  * @note Address: 0x802ED754
  * @note Size: 0x24
  */
-void Obj::createDownEffect(f32 scale) { EnemyBase::createBounceEffect(mPosition, scale); }
+void Obj::createDownEffect(f32 scale)
+{
+	EnemyBase::createBounceEffect(mPosition, scale);
+}
 
 /**
  * @note Address: 0x802ED778
  * @note Size: 0x34
  */
-void Obj::startChargeEffect() { mEfxCharge->create(nullptr); }
+void Obj::startChargeEffect()
+{
+	mEfxCharge->create(nullptr);
+}
 
 /**
  * @note Address: 0x802ED7AC
  * @note Size: 0x30
  */
-void Obj::finishChargeEffect() { mEfxCharge->fade(); }
+void Obj::finishChargeEffect()
+{
+	mEfxCharge->fade();
+}
 
 /**
  * @note Address: 0x802ED7DC
  * @note Size: 0x34
  */
-void Obj::createDeadLightEffect() { mEfxDeadLight->create(nullptr); }
+void Obj::createDeadLightEffect()
+{
+	mEfxDeadLight->create(nullptr);
+}
 
 /**
  * @note Address: 0x802ED810

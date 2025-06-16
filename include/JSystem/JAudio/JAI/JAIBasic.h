@@ -182,6 +182,9 @@ void JAIBasic::prepareSoundVecT(u32 soundID, T** handlePtr, Vec* position, u32 f
 	}
 }
 
-static inline JKRHeap* JAIGetCurrentHeap() { return JAIBasic::msCurrentHeap; }
+static inline JKRHeap* JAIGetCurrentHeap()
+{
+	return JAIBasic::msCurrentHeap;
+}
 
 #endif

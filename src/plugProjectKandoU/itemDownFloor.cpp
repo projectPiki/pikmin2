@@ -58,7 +58,10 @@ Item::Item()
  * @note Address: 0x801F4EC0
  * @note Size: 0x48
  */
-void Item::constructor() { mSoundObj = new PSM::WorkItem(this); }
+void Item::constructor()
+{
+	mSoundObj = new PSM::WorkItem(this);
+}
 
 /**
  * @note Address: 0x801F4F08
@@ -151,7 +154,10 @@ void Item::onSetPosition()
  * @note Address: 0x801F5424
  * @note Size: 0x1C
  */
-void Item::updateBoundSphere() { mBoundingSphere.mPosition = mPosition; }
+void Item::updateBoundSphere()
+{
+	mBoundingSphere.mPosition = mPosition;
+}
 
 /**
  * @note Address: 0x801F5440
@@ -168,7 +174,10 @@ void Item::onKeyEvent(SysShape::KeyEvent const& keyEvent)
  * @note Address: N/A
  * @note Size: 0x68
  */
-void Item::initMotion() { FSMItem::doAI(); }
+void Item::initMotion()
+{
+	FSMItem::doAI();
+}
 
 /**
  * @note Address: 0x801F5488
@@ -329,7 +338,9 @@ void Item::startUpMotion()
  * @note Address: 0x801F5DE0
  * @note Size: 0x4
  */
-void Item::changeMaterial() { }
+void Item::changeMaterial()
+{
+}
 
 /**
  * @note Address: 0x801F5DE4
@@ -549,7 +560,9 @@ void Mgr::setupPlatform(Item* item)
  * @note Address: 0x801F6680
  * @note Size: 0x4
  */
-void Mgr::onLoadResources() { }
+void Mgr::onLoadResources()
+{
+}
 
 /**
  * @note Address: 0x801F6684
@@ -634,13 +647,17 @@ void WaitState::exec(Item* item)
  * @note Address: 0x801F69E4
  * @note Size: 0x4
  */
-void WaitState::cleanup(Item*) { }
+void WaitState::cleanup(Item*)
+{
+}
 
 /**
  * @note Address: 0x801F69E8
  * @note Size: 0x4
  */
-void WaitState::onKeyEvent(Item*, SysShape::KeyEvent const&) { }
+void WaitState::onKeyEvent(Item*, SysShape::KeyEvent const&)
+{
+}
 
 /**
  * @note Address: 0x801F69EC
@@ -688,19 +705,26 @@ void DamagedState::exec(Item* item)
  * @note Address: 0x801F6B28
  * @note Size: 0x4
  */
-void DamagedState::cleanup(Item*) { }
+void DamagedState::cleanup(Item*)
+{
+}
 
 /**
  * @note Address: 0x801F6B2C
  * @note Size: 0xC
  */
-void DamagedState::onKeyEvent(Item*, SysShape::KeyEvent const&) { mIsReady = true; }
+void DamagedState::onKeyEvent(Item*, SysShape::KeyEvent const&)
+{
+	mIsReady = true;
+}
 
 /**
  * @note Address: 0x801F6B38
  * @note Size: 0x4
  */
-void DamagedState::onPlat(Item*) { }
+void DamagedState::onPlat(Item*)
+{
+}
 
 /**
  * @note Address: 0x801F6B3C
@@ -725,13 +749,17 @@ void DownState::init(Item* item, StateArg* stateArg)
  * @note Address: 0x801F6BD8
  * @note Size: 0x4
  */
-void DownState::exec(Item*) { }
+void DownState::exec(Item*)
+{
+}
 
 /**
  * @note Address: 0x801F6BDC
  * @note Size: 0x4
  */
-void DownState::cleanup(Item*) { }
+void DownState::cleanup(Item*)
+{
+}
 
 /**
  * @note Address: 0x801F6BE0
@@ -784,25 +812,34 @@ void DownState::onKeyEvent(Item* item, SysShape::KeyEvent const&)
  * @note Address: 0x801F6E00
  * @note Size: 0x4
  */
-void DownState::onPlat(Item*) { }
+void DownState::onPlat(Item*)
+{
+}
 
 /**
  * @note Address: 0x801F6E04
  * @note Size: 0x24
  */
-void UpState::init(Item* item, StateArg*) { item->startUpMotion(); }
+void UpState::init(Item* item, StateArg*)
+{
+	item->startUpMotion();
+}
 
 /**
  * @note Address: 0x801F6E28
  * @note Size: 0x4
  */
-void UpState::exec(Item*) { }
+void UpState::exec(Item*)
+{
+}
 
 /**
  * @note Address: 0x801F6E2C
  * @note Size: 0x4
  */
-void UpState::cleanup(Item*) { }
+void UpState::cleanup(Item*)
+{
+}
 
 /**
  * @note Address: 0x801F6E30
@@ -818,13 +855,18 @@ void UpState::onKeyEvent(Item* item, SysShape::KeyEvent const&)
  * @note Address: 0x801F6E6C
  * @note Size: 0x4
  */
-void UpState::onPlat(Item*) { }
+void UpState::onPlat(Item*)
+{
+}
 
 /**
  * @note Address: 0x801F6E70
  * @note Size: 0x7C
  */
-GenItemParm* Mgr::generatorNewItemParm() { return new GenDownFloorParm(); }
+GenItemParm* Mgr::generatorNewItemParm()
+{
+	return new GenDownFloorParm();
+}
 
 /**
  * @note Address: 0x801F6EEC

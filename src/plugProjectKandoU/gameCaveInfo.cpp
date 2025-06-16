@@ -53,7 +53,9 @@ void BaseGen::read(Stream& stream)
  * @note Address: 0x801D6208
  * @note Size: 0x4
  */
-void BaseGen::draw(Graphics&, Matrixf*) { }
+void BaseGen::draw(Graphics&, Matrixf*)
+{
+}
 
 /**
  * read__Q34Game4Cave8TekiInfoFR6Stream
@@ -295,7 +297,10 @@ void GateInfo::read(Stream& input)
  * @note Address: 0x801D64E8
  * @note Size: 0x1C
  */
-TekiInfo* CapInfo::getTekiInfo() { return (!mIsTekiEmpty) ? mTekiInfo : nullptr; }
+TekiInfo* CapInfo::getTekiInfo()
+{
+	return (!mIsTekiEmpty) ? mTekiInfo : nullptr;
+}
 
 /**
  * @note Address: 0x801D6504
@@ -373,19 +378,28 @@ FloorInfo::Parms::Parms()
  * @note Address: 0x801D6CD0
  * @note Size: 0x14
  */
-bool FloorInfo::hasHiddenCollision() { return mParms.mFloorHidden == TRUE; }
+bool FloorInfo::hasHiddenCollision()
+{
+	return mParms.mFloorHidden == TRUE;
+}
 
 /**
  * @note Address: 0x801D6CE4
  * @note Size: 0x8
  */
-int FloorInfo::getTekiMax() { return mParms.mTekiMax; }
+int FloorInfo::getTekiMax()
+{
+	return mParms.mTekiMax;
+}
 
 /**
  * @note Address: 0x801D6CEC
  * @note Size: 0x2C
  */
-int FloorInfo::getTekiInfoNum() { return mTekiInfo.getChildCount(); }
+int FloorInfo::getTekiInfoNum()
+{
+	return mTekiInfo.getChildCount();
+}
 
 /**
  * @note Address: 0x801D6D18
@@ -404,7 +418,10 @@ TekiInfo* FloorInfo::getTekiInfo(int index)
 int FloorInfo::getTekiWeightSum()
 {
 	int total = 0;
-	FOREACH_NODE(TekiInfo, mTekiInfo.mChild, node) { total += node->mWeight; }
+	FOREACH_NODE(TekiInfo, mTekiInfo.mChild, node)
+	{
+		total += node->mWeight;
+	}
 	return total;
 }
 
@@ -412,13 +429,19 @@ int FloorInfo::getTekiWeightSum()
  * @note Address: 0x801D6DD0
  * @note Size: 0x8
  */
-int FloorInfo::getItemMax() { return mParms.mItemMax; }
+int FloorInfo::getItemMax()
+{
+	return mParms.mItemMax;
+}
 
 /**
  * @note Address: 0x801D6DD8
  * @note Size: 0x2C
  */
-int FloorInfo::getItemInfoNum() { return mItemInfo.getChildCount(); }
+int FloorInfo::getItemInfoNum()
+{
+	return mItemInfo.getChildCount();
+}
 
 /**
  * @note Address: 0x801D6E04
@@ -437,7 +460,10 @@ ItemInfo* FloorInfo::getItemInfo(int index)
 int FloorInfo::getItemWeightSum()
 {
 	int total = 0;
-	FOREACH_NODE(ItemInfo, mItemInfo.mChild, node) { total += node->mWeight; }
+	FOREACH_NODE(ItemInfo, mItemInfo.mChild, node)
+	{
+		total += node->mWeight;
+	}
 	return total;
 }
 
@@ -445,13 +471,19 @@ int FloorInfo::getItemWeightSum()
  * @note Address: 0x801D6EBC
  * @note Size: 0x8
  */
-int FloorInfo::getGateMax() { return mParms.mGateMax; }
+int FloorInfo::getGateMax()
+{
+	return mParms.mGateMax;
+}
 
 /**
  * @note Address: 0x801D6EC4
  * @note Size: 0x2C
  */
-int FloorInfo::getGateInfoNum() { return mGateInfo.getChildCount(); }
+int FloorInfo::getGateInfoNum()
+{
+	return mGateInfo.getChildCount();
+}
 
 /**
  * @note Address: 0x801D6EF0
@@ -470,7 +502,10 @@ GateInfo* FloorInfo::getGateInfo(int index)
 int FloorInfo::getGateWeightSum()
 {
 	int total = 0;
-	FOREACH_NODE(GateInfo, mGateInfo.mChild, node) { total += node->mWeight; }
+	FOREACH_NODE(GateInfo, mGateInfo.mChild, node)
+	{
+		total += node->mWeight;
+	}
 	return total;
 }
 
@@ -478,13 +513,19 @@ int FloorInfo::getGateWeightSum()
  * @note Address: 0x801D6FA8
  * @note Size: 0x8
  */
-int FloorInfo::getCapMax() { return mParms.mCapMax; }
+int FloorInfo::getCapMax()
+{
+	return mParms.mCapMax;
+}
 
 /**
  * @note Address: 0x801D6FB0
  * @note Size: 0x2C
  */
-int FloorInfo::getCapInfoNum() { return mCapInfo.getChildCount(); }
+int FloorInfo::getCapInfoNum()
+{
+	return mCapInfo.getChildCount();
+}
 
 /**
  * @note Address: 0x801D6FDC
@@ -500,13 +541,19 @@ CapInfo* FloorInfo::getCapInfo(int index)
  * @note Address: 0x801D7070
  * @note Size: 0x8
  */
-int FloorInfo::getRoomNum() { return mParms.mRoomCount; }
+int FloorInfo::getRoomNum()
+{
+	return mParms.mRoomCount;
+}
 
 /**
  * @note Address: 0x801D7078
  * @note Size: 0x8
  */
-f32 FloorInfo::getRouteRatio() { return mParms.mRouteRatio; }
+f32 FloorInfo::getRouteRatio()
+{
+	return mParms.mRouteRatio;
+}
 
 /**
  * @note Address: 0x801D7080
@@ -530,7 +577,10 @@ bool FloorInfo::hasEscapeFountain(int floorIndex)
  * @note Address: 0x801D70C4
  * @note Size: 0x14
  */
-bool FloorInfo::useKaidanBarrel() { return mParms.mIsHoleClogged == 1; }
+bool FloorInfo::useKaidanBarrel()
+{
+	return mParms.mIsHoleClogged == 1;
+}
 
 /**
  * @note Address: 0x801D70D8
@@ -601,7 +651,10 @@ void CaveInfo::disablePelplant()
  * @note Address: 0x801D74F0
  * @note Size: 0x8
  */
-int CaveInfo::getFloorMax() { return mParms.mFloorMax; }
+int CaveInfo::getFloorMax()
+{
+	return mParms.mFloorMax;
+}
 
 /**
  * @note Address: 0x801D74F8

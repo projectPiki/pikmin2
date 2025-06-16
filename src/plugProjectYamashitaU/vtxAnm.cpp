@@ -276,7 +276,10 @@ void FieldVtxColorMgr::initVtxColor()
 		mInfo[i].mAlpha = 0;
 	}
 
-	FOREACH_NODE(FieldVtxColorControl, mControl, currControl) { updateFieldVtxColorControl(currControl); }
+	FOREACH_NODE(FieldVtxColorControl, mControl, currControl)
+	{
+		updateFieldVtxColorControl(currControl);
+	}
 
 	GXColor newColor;
 	newColor.b     = 255;
@@ -457,7 +460,10 @@ void FieldVtxColorMgr::calc(J3DVertexBuffer* buffer)
 			mInfo[i].mAlpha = 0;
 		}
 
-		FOREACH_NODE(FieldVtxColorControl, mControl, currControl) { updateFieldVtxColorControl(currControl); }
+		FOREACH_NODE(FieldVtxColorControl, mControl, currControl)
+		{
+			updateFieldVtxColorControl(currControl);
+		}
 
 		for (int i = 0; i < mInfoCount; i++) {
 			int idx  = mInfo[i].mColorIdx;

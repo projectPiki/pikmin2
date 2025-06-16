@@ -218,7 +218,10 @@ void DopingScreen::openDopingDown()
  * @note Address: 0x80303CF8
  * @note Size: 0xC
  */
-void DopingScreen::openDopingKey() { mHasGotCenterDpad = true; }
+void DopingScreen::openDopingKey()
+{
+	mHasGotCenterDpad = true;
+}
 
 /**
  * @note Address: 0x80303D04
@@ -343,12 +346,18 @@ void DopingCheck::startGetEff(J2DPane* pane)
  * @note Address: 0x80303FC8
  * @note Size: 0xD0
  */
-void DopingCheck::startGetEff_Up() { startGetEff(mSpicyPane); }
+void DopingCheck::startGetEff_Up()
+{
+	startGetEff(mSpicyPane);
+}
 
 /**
  * @note Address: 0x80304098
  * @note Size: 0xD0
  */
-void DopingCheck::startGetEff_Down() { startGetEff(mBitterPane); }
+void DopingCheck::startGetEff_Down()
+{
+	startGetEff(mBitterPane);
+}
 } // namespace Screen
 } // namespace og

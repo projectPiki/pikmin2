@@ -57,8 +57,11 @@ typedef __builtin_va_list va_list;
  * @note Address: N/A
  * @note Size: 0xE0 or 0xE4, depending on param.
  */
-#define DEFINE__PRINT(unit) \
-	inline static void _Print(char*, ...) { printf(unit); }
+#define DEFINE__PRINT(unit)               \
+	inline static void _Print(char*, ...) \
+	{                                     \
+		printf(unit);                     \
+	}
 
 int printf(const char*, ...);
 int vprintf(const char*, va_list);

@@ -5,4 +5,6 @@
  * @note Size: 0x50
  */
 
-void MWTRACE(u8, char*, ...) { }
+void MWTRACE(u8, char*, ...)
+{
+}

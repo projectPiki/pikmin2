@@ -230,7 +230,9 @@ void StateDead::exec(EnemyBase* enemy)
  * @note Address: 0x80116C34
  * @note Size: 0x4
  */
-void StateDead::cleanup(EnemyBase* enemy) { }
+void StateDead::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: N/A
@@ -2153,13 +2155,18 @@ lbl_80118480:
  * @note Address: 0x801184D0
  * @note Size: 0x24
  */
-void StateAttack::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
+void StateAttack::cleanup(EnemyBase* enemy)
+{
+	enemy->setEmotionCaution();
+}
 
 /**
  * @note Address: 0x801184F4
  * @note Size: 0x4
  */
-void StateAttack::doDirectDraw(EnemyBase* enemy, Graphics&) { }
+void StateAttack::doDirectDraw(EnemyBase* enemy, Graphics&)
+{
+}
 
 /**
  * @note Address: 0x801184F8
@@ -2800,7 +2807,9 @@ lbl_80119064:
  * @note Address: 0x801190B4
  * @note Size: 0x4
  */
-void StateTurnToHome::cleanup(EnemyBase* enemy) { }
+void StateTurnToHome::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x801190B8
@@ -2816,7 +2825,10 @@ StateGoHome::StateGoHome(int stateID)
  * @note Address: 0x8011910C
  * @note Size: 0x2C
  */
-void StateGoHome::init(EnemyBase* enemy, StateArg* stateArg) { enemy->startMotion(CHAPPYANIM_Move1, nullptr); }
+void StateGoHome::init(EnemyBase* enemy, StateArg* stateArg)
+{
+	enemy->startMotion(CHAPPYANIM_Move1, nullptr);
+}
 
 /**
  * @note Address: 0x80119138
@@ -3296,6 +3308,9 @@ lbl_801196AC:
  * @note Address: 0x801196FC
  * @note Size: 0x14
  */
-void StateGoHome::cleanup(EnemyBase* enemy) { enemy->mTargetVelocity = Vector3f(0.0f); }
+void StateGoHome::cleanup(EnemyBase* enemy)
+{
+	enemy->mTargetVelocity = Vector3f(0.0f);
+}
 } // namespace ChappyBase
 } // namespace Game

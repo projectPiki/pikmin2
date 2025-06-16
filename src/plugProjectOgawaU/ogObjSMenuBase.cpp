@@ -10,7 +10,10 @@
  * @note Address: N/A
  * @note Size: 0xE4
  */
-static void _Print(char* format, ...) { OSReport(format, __FILE__); }
+static void _Print(char* format, ...)
+{
+	OSReport(format, __FILE__);
+}
 
 namespace og {
 namespace newScreen {
@@ -103,7 +106,10 @@ void ObjSMenuBase::doCreateAfter(JKRArchive* arc, P2DScreen::Mgr* scrn)
  * @note Address: 0x8031653C
  * @note Size: 0x20
  */
-void ObjSMenuBase::commonUpdateBase() { updateYaji(); }
+void ObjSMenuBase::commonUpdateBase()
+{
+	updateYaji();
+}
 
 /**
  * @note Address: 0x8031655C
@@ -213,13 +219,19 @@ void ObjSMenuBase::close_L()
  * @note Address: 0x803167F8
  * @note Size: 0xE4
  */
-void ObjSMenuBase::jump_L(::Screen::SetSceneArg& arg) { jump_LR(arg, false); }
+void ObjSMenuBase::jump_L(::Screen::SetSceneArg& arg)
+{
+	jump_LR(arg, false);
+}
 
 /**
  * @note Address: 0x803168DC
  * @note Size: 0xE4
  */
-void ObjSMenuBase::jump_R(::Screen::SetSceneArg& arg) { jump_LR(arg, true); }
+void ObjSMenuBase::jump_R(::Screen::SetSceneArg& arg)
+{
+	jump_LR(arg, true);
+}
 
 /**
  * @note Address: 0x803169C0
@@ -270,19 +282,27 @@ void ObjSMenuBase::setYajiName(u64 tag1, u64 tag2, u64 tag3)
  * @note Address: 0x80316B78
  * @note Size: 0x4
  */
-void ObjSMenuBase::loop() { }
+void ObjSMenuBase::loop()
+{
+}
 
 /**
  * @note Address: N/A
  * @note Size: 0xC
  */
-void ObjSMenuBase::startYaji() { mEnableYaji = true; }
+void ObjSMenuBase::startYaji()
+{
+	mEnableYaji = true;
+}
 
 /**
  * @note Address: 0x80316B7C
  * @note Size: 0xC
  */
-void ObjSMenuBase::stopYaji() { mEnableYaji = false; }
+void ObjSMenuBase::stopYaji()
+{
+	mEnableYaji = false;
+}
 
 /**
  * @note Address: 0x80316B88
@@ -357,7 +377,10 @@ void ObjSMenuBase::updateYaji()
  * @note Address: 0x80316E8C
  * @note Size: 0x34
  */
-void ObjSMenuBase::drawYaji(Graphics& gfx) { mScreenLR->draw(gfx, gfx.mPerspGraph); }
+void ObjSMenuBase::drawYaji(Graphics& gfx)
+{
+	mScreenLR->draw(gfx, gfx.mPerspGraph);
+}
 
 /**
  * @note Address: 0x80316EC0

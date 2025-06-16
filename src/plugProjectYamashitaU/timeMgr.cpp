@@ -180,7 +180,10 @@ void TimeMgr::update()
  * @note Address: 0x80127398
  * @note Size: 0x18
  */
-bool TimeMgr::isDayOver() { return mCurrentTimeOfDay > mParms.mParms.mDayEndTime.mValue; }
+bool TimeMgr::isDayOver()
+{
+	return mCurrentTimeOfDay > mParms.mParms.mDayEndTime.mValue;
+}
 
 /**
  * @note Address: 0x801273B0

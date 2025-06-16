@@ -63,7 +63,10 @@ static int is_utf8_complete(const char* s, size_t n)
  * @note Address: 0x800C6DDC
  * @note Size: 0x120
  */
-int mbtowc(wchar_t* pwc, const char* s, size_t n) { return mbstowcs(pwc, s, n); }
+int mbtowc(wchar_t* pwc, const char* s, size_t n)
+{
+	return mbstowcs(pwc, s, n);
+}
 
 /**
  * @note Address: N/A
@@ -107,7 +110,10 @@ inline static int unicode_to_UTF8(char* s, wchar_t wchar)
  * @note Address: N/A
  * @note Size: 0xA4
  */
-inline int wctomb(char* s, wchar_t wchar) { return (unicode_to_UTF8(s, wchar)); }
+inline int wctomb(char* s, wchar_t wchar)
+{
+	return (unicode_to_UTF8(s, wchar));
+}
 
 /**
  * @note Address: N/A

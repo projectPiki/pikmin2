@@ -41,7 +41,9 @@ JStudio::TObject_particle* createObject_PARTICLE_JPA_(const JStudio::stb::data::
  * @note Address: 0x800062EC
  * @note Size: 0x60
  */
-TCreateObject::~TCreateObject() { }
+TCreateObject::~TCreateObject()
+{
+}
 
 /**
  * @note Address: 0x8000634C

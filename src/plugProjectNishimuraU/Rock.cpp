@@ -109,7 +109,10 @@ void Obj::onKill(CreatureKillArg* arg)
  * @note Address: 0x802633E8
  * @note Size: 0x34
  */
-void Obj::doUpdate() { mFsm->exec(this); }
+void Obj::doUpdate()
+{
+	mFsm->exec(this);
+}
 
 /**
  * @note Address: 0x8026341C
@@ -126,13 +129,18 @@ void Obj::setFSM(FSM* fsm)
  * @note Address: 0x80263468
  * @note Size: 0x4
  */
-void Obj::doDirectDraw(Graphics& gfx) { }
+void Obj::doDirectDraw(Graphics& gfx)
+{
+}
 
 /**
  * @note Address: 0x8026346C
  * @note Size: 0x20
  */
-void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
+void Obj::doDebugDraw(Graphics& gfx)
+{
+	EnemyBase::doDebugDraw(gfx);
+}
 
 /**
  * @note Address: 0x8026348C
@@ -269,13 +277,19 @@ void Obj::outWaterCallback()
  * @note Address: 0x8026391C
  * @note Size: 0x20
  */
-void Obj::doStartMovie() { effectDrawOff(); }
+void Obj::doStartMovie()
+{
+	effectDrawOff();
+}
 
 /**
  * @note Address: 0x8026393C
  * @note Size: 0x20
  */
-void Obj::doEndMovie() { effectDrawOn(); }
+void Obj::doEndMovie()
+{
+	effectDrawOn();
+}
 
 /**
  * @note Address: 0x8026395C
@@ -673,25 +687,37 @@ void Obj::setupEffect()
  * @note Address: 0x802640DC
  * @note Size: 0x34
  */
-void Obj::startFallEffect() { mEfxRun->create(nullptr); }
+void Obj::startFallEffect()
+{
+	mEfxRun->create(nullptr);
+}
 
 /**
  * @note Address: 0x80264110
  * @note Size: 0x30
  */
-void Obj::finishFallEffect() { mEfxRun->fade(); }
+void Obj::finishFallEffect()
+{
+	mEfxRun->fade();
+}
 
 /**
  * @note Address: 0x80264140
  * @note Size: 0x34
  */
-void Obj::startRollingGroundEffect() { mEfxGroundRun->create(nullptr); }
+void Obj::startRollingGroundEffect()
+{
+	mEfxGroundRun->create(nullptr);
+}
 
 /**
  * @note Address: 0x80264174
  * @note Size: 0x30
  */
-void Obj::finishRollingGroundEffect() { mEfxGroundRun->fade(); }
+void Obj::finishRollingGroundEffect()
+{
+	mEfxGroundRun->fade();
+}
 
 /**
  * @note Address: 0x802641A4
@@ -724,7 +750,10 @@ void Obj::startRollingWaterEffect()
  * @note Address: 0x8026429C
  * @note Size: 0x30
  */
-void Obj::finishRollingWaterEffect() { mEfxWaterRun->fade(); }
+void Obj::finishRollingWaterEffect()
+{
+	mEfxWaterRun->fade();
+}
 
 /**
  * @note Address: 0x80264310

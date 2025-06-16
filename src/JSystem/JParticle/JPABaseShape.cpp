@@ -92,13 +92,19 @@ GXTevAlphaArg JPABaseShape::st_aa[2][4] = {
  * @note Address: 0x8008B114
  * @note Size: 0x3C
  */
-void JPASetPointSize(JPAEmitterWorkData* workData) { GXSetPointSize(workData->mGlobalPtclScl.x * 25.0f, GX_TO_ONE); }
+void JPASetPointSize(JPAEmitterWorkData* workData)
+{
+	GXSetPointSize(workData->mGlobalPtclScl.x * 25.0f, GX_TO_ONE);
+}
 
 /**
  * @note Address: 0x8008B150
  * @note Size: 0x3C
  */
-void JPASetLineWidth(JPAEmitterWorkData* workData) { GXSetLineWidth(workData->mGlobalPtclScl.x * 25.0f, GX_TO_ONE); }
+void JPASetLineWidth(JPAEmitterWorkData* workData)
+{
+	GXSetLineWidth(workData->mGlobalPtclScl.x * 25.0f, GX_TO_ONE);
+}
 
 /**
  * @note Address: 0x8008B18C
@@ -347,7 +353,10 @@ void JPACalcClrIdxReverse(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
  * @note Address: 0x8008B9D4
  * @note Size: 0xC
  */
-void JPACalcClrIdxMerge(JPAEmitterWorkData* workData) { workData->mClrKeyFrame = 0; }
+void JPACalcClrIdxMerge(JPAEmitterWorkData* workData)
+{
+	workData->mClrKeyFrame = 0;
+}
 
 /**
  * @note Address: 0x8008B9E0
@@ -365,7 +374,10 @@ void JPACalcClrIdxMerge(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
  * @note Address: 0x8008BA50
  * @note Size: 0xC
  */
-void JPACalcClrIdxRandom(JPAEmitterWorkData* workData) { workData->mClrKeyFrame = 0; }
+void JPACalcClrIdxRandom(JPAEmitterWorkData* workData)
+{
+	workData->mClrKeyFrame = 0;
+}
 
 /**
  * @note Address: 0x8008BA5C
@@ -383,7 +395,10 @@ void JPACalcClrIdxRandom(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
  * @note Address: 0x8008BA90
  * @note Size: 0x40
  */
-void JPACalcPrm(JPAEmitterWorkData* work) { work->mResource->getBsp()->getPrmClr(work->mClrKeyFrame, &work->mEmitter->mPrmClr); }
+void JPACalcPrm(JPAEmitterWorkData* work)
+{
+	work->mResource->getBsp()->getPrmClr(work->mClrKeyFrame, &work->mEmitter->mPrmClr);
+}
 
 /**
  * @note Address: 0x8008BAD0
@@ -398,7 +413,10 @@ void JPACalcPrm(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
  * @note Address: 0x8008BB0C
  * @note Size: 0x40
  */
-void JPACalcEnv(JPAEmitterWorkData* work) { work->mResource->getBsp()->getEnvClr(work->mClrKeyFrame, &work->mEmitter->mEnvClr); }
+void JPACalcEnv(JPAEmitterWorkData* work)
+{
+	work->mResource->getBsp()->getEnvClr(work->mClrKeyFrame, &work->mEmitter->mEnvClr);
+}
 
 /**
  * @note Address: 0x8008BB4C
@@ -877,7 +895,10 @@ void JPACalcTexIdxReverse(JPAEmitterWorkData* workData, JPABaseParticle* particl
  * @note Address: 0x8008C20C
  * @note Size: 0x1C
  */
-void JPACalcTexIdxMerge(JPAEmitterWorkData* workData) { workData->mEmitter->mTexAnmIdx = workData->mResource->mBaseShape->getTexIdx(); }
+void JPACalcTexIdxMerge(JPAEmitterWorkData* workData)
+{
+	workData->mEmitter->mTexAnmIdx = workData->mResource->mBaseShape->getTexIdx();
+}
 
 /**
  * @note Address: 0x8008C228
@@ -895,7 +916,10 @@ void JPACalcTexIdxMerge(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
  * @note Address: 0x8008C2A0
  * @note Size: 0x1C
  */
-void JPACalcTexIdxRandom(JPAEmitterWorkData* work) { work->mEmitter->mTexAnmIdx = work->mResource->getBsp()->getTexIdx(); }
+void JPACalcTexIdxRandom(JPAEmitterWorkData* work)
+{
+	work->mEmitter->mTexAnmIdx = work->mResource->getBsp()->getTexIdx();
+}
 
 /**
  * @note Address: 0x8008C2BC
@@ -911,13 +935,18 @@ void JPACalcTexIdxRandom(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
  * @note Address: 0x8008C2F8
  * @note Size: 0x28
  */
-void JPALoadPosMtxCam(JPAEmitterWorkData* work) { GXLoadPosMtxImm(work->mPosCamMtx, GX_PNMTX0); }
+void JPALoadPosMtxCam(JPAEmitterWorkData* work)
+{
+	GXLoadPosMtxImm(work->mPosCamMtx, GX_PNMTX0);
+}
 
 /**
  * @note Address: 0x8008C320
  * @note Size: 0x4
  */
-void noLoadPrj(const JPAEmitterWorkData* workData, const Mtx mtx) { }
+void noLoadPrj(const JPAEmitterWorkData* workData, const Mtx mtx)
+{
+}
 
 /**
  * @note Address: 0x8008C324
@@ -1745,13 +1774,19 @@ void JPADrawLine(JPAEmitterWorkData* work, JPABaseParticle* particle)
  * @note Address: 0x8008D9A4
  * @note Size: 0x8
  */
-static JPANode<JPABaseParticle>* getNext(JPANode<JPABaseParticle>* node) { return node->getNext(); }
+static JPANode<JPABaseParticle>* getNext(JPANode<JPABaseParticle>* node)
+{
+	return node->getNext();
+}
 
 /**
  * @note Address: 0x8008D9AC
  * @note Size: 0x8
  */
-static JPANode<JPABaseParticle>* getPrev(JPANode<JPABaseParticle>* node) { return node->getPrev(); }
+static JPANode<JPABaseParticle>* getPrev(JPANode<JPABaseParticle>* node)
+{
+	return node->getPrev();
+}
 
 /**
  * @note Address: 0x8008D9B4

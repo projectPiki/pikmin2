@@ -61,7 +61,10 @@ bool TParamBase::loadSettingFile(JKRArchive* arc, char* path)
  * @note Address: 0x803C0B80
  * @note Size: 0xB0
  */
-void TObjBase::calcModelBaseMtx_() { E3DModel_set2DCoordToBaseTRMatrix_(mModel, mPosition, mAngle, mParms[1]); }
+void TObjBase::calcModelBaseMtx_()
+{
+	E3DModel_set2DCoordToBaseTRMatrix_(mModel, mPosition, mAngle, mParms[1]);
+}
 
 /**
  * @note Address: N/A

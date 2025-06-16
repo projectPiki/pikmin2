@@ -9,7 +9,9 @@ namespace Demon {
  * @note Address: 0x8028E394
  * @note Size: 0x90
  */
-Obj::Obj() { }
+Obj::Obj()
+{
+}
 
 /**
  * @note Address: 0x8028E424

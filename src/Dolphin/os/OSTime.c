@@ -64,7 +64,10 @@ OSTime __OSGetSystemTime()
  * @note Address: N/A
  * @note Size: 0x88
  */
-static BOOL IsLeapYear(s32 year) { return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0); }
+static BOOL IsLeapYear(s32 year)
+{
+	return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+}
 
 /**
  * @note Address: N/A

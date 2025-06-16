@@ -196,13 +196,18 @@ void Obj::doUpdate()
  * @note Address: 0x80369874
  * @note Size: 0x4
  */
-void Obj::doDirectDraw(Graphics&) { }
+void Obj::doDirectDraw(Graphics&)
+{
+}
 
 /**
  * @note Address: 0x80369878
  * @note Size: 0x20
  */
-void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
+void Obj::doDebugDraw(Graphics& gfx)
+{
+	EnemyBase::doDebugDraw(gfx);
+}
 
 /**
  * @note Address: 0x80369898
@@ -243,7 +248,10 @@ void Obj::doAnimationCullingOff()
  * @note Address: 0x803699E4
  * @note Size: 0x28
  */
-void Obj::startCarcassMotion() { startMotion(JIGUMOANIM_Carry, nullptr); }
+void Obj::startCarcassMotion()
+{
+	startMotion(JIGUMOANIM_Carry, nullptr);
+}
 
 /**
  * @note Address: 0x80369A0C
@@ -523,7 +531,10 @@ void Obj::onKill(CreatureKillArg* killArg)
  * @note Address: 0x8036A49C
  * @note Size: 0x8
  */
-bool Obj::isLivingThing() { return true; }
+bool Obj::isLivingThing()
+{
+	return true;
+}
 
 /**
  * @note Address: 0x8036A4A4
@@ -596,7 +607,10 @@ void Obj::doFinishStoneState()
  * @note Address: 0x8036A77C
  * @note Size: 0x34
  */
-f32 Obj::getGoalDist() { return mPosition.sqrDistance(mGoalPosition); }
+f32 Obj::getGoalDist()
+{
+	return mPosition.sqrDistance(mGoalPosition);
+}
 
 /**
  * @note Address: 0x8036A7B0
@@ -1664,7 +1678,10 @@ void Obj::appearEffectStop()
  * @note Address: 0x8036BD88
  * @note Size: 0x28
  */
-void Obj::boundEffect() { createBounceEffect(mPosition, 0.75f); }
+void Obj::boundEffect()
+{
+	createBounceEffect(mPosition, 0.75f);
+}
 
 /**
  * @note Address: 0x8036BDB0

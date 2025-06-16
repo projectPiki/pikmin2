@@ -63,7 +63,9 @@ void Kabuto::StateDead::exec(EnemyBase* enemy)
  * @note Address: 0x802E1DA4
  * @note Size: 0x4
  */
-void Kabuto::StateDead::cleanup(EnemyBase* enemy) { }
+void Kabuto::StateDead::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x802E1DA8
@@ -111,7 +113,10 @@ void Kabuto::StateWait::exec(EnemyBase* enemy)
  * @note Address: 0x802E1F20
  * @note Size: 0x24
  */
-void Kabuto::StateWait::cleanup(EnemyBase* enemy) { enemy->constraintOff(); }
+void Kabuto::StateWait::cleanup(EnemyBase* enemy)
+{
+	enemy->constraintOff();
+}
 
 /**
  * @note Address: 0x802E1F44
@@ -400,7 +405,10 @@ lbl_802E22A0:
  * @note Address: 0x802E22D8
  * @note Size: 0x24
  */
-void Kabuto::StateTurn::cleanup(EnemyBase* enemy) { enemy->constraintOff(); }
+void Kabuto::StateTurn::cleanup(EnemyBase* enemy)
+{
+	enemy->constraintOff();
+}
 
 /**
  * @note Address: 0x802E22FC
@@ -743,7 +751,10 @@ lbl_802E26A0:
  * @note Address: 0x802E26D8
  * @note Size: 0x24
  */
-void Kabuto::StateMove::cleanup(EnemyBase* enemy) { enemy->constraintOff(); }
+void Kabuto::StateMove::cleanup(EnemyBase* enemy)
+{
+	enemy->constraintOff();
+}
 
 /**
  * @note Address: 0x802E26FC
@@ -987,7 +998,10 @@ void Kabuto::StateFixAppear::exec(EnemyBase* enemy)
  * @note Address: 0x802E30E0
  * @note Size: 0x10
  */
-void Kabuto::StateFixAppear::cleanup(EnemyBase* enemy) { enemy->disableEvent(0, EB_NoInterrupt); }
+void Kabuto::StateFixAppear::cleanup(EnemyBase* enemy)
+{
+	enemy->disableEvent(0, EB_NoInterrupt);
+}
 
 /**
  * @note Address: 0x802E30F0
@@ -1094,7 +1108,9 @@ void Kabuto::StateFixWait::exec(EnemyBase* enemy)
  * @note Address: 0x802E3530
  * @note Size: 0x4
  */
-void Kabuto::StateFixWait::cleanup(EnemyBase* enemy) { }
+void Kabuto::StateFixWait::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x802E3534
@@ -1225,7 +1241,9 @@ void Kabuto::StateFixAttack::exec(EnemyBase* enemy)
  * @note Address: 0x802E3B2C
  * @note Size: 0x4
  */
-void Kabuto::StateFixAttack::cleanup(EnemyBase* enemy) { }
+void Kabuto::StateFixAttack::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x802E3B30
@@ -1273,7 +1291,9 @@ void Kabuto::StateFixFlick::exec(EnemyBase* enemy)
  * @note Address: 0x802E3CF0
  * @note Size: 0x4
  */
-void Kabuto::StateFixFlick::cleanup(EnemyBase* enemy) { }
+void Kabuto::StateFixFlick::cleanup(EnemyBase* enemy)
+{
+}
 
 } // namespace Kabuto
 } // namespace Game

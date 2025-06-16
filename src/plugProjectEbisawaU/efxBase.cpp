@@ -137,7 +137,10 @@ void TOneEmitterChasePos::add(ContextChasePos* context)
  * @note Address: 0x803AEB94
  * @note Size: 0x24
  */
-void TOneEmitterChasePos::del(ContextChasePos* context) { context->del(); }
+void TOneEmitterChasePos::del(ContextChasePos* context)
+{
+	context->del();
+}
 
 /**
  * create__Q23efx19TOneEmitterChasePosFPQ23efx3Arg

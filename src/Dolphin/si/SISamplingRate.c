@@ -73,4 +73,7 @@ void SISetSamplingRate(u32 msec)
  * @note Address: 0x800F6840
  * @note Size: 0x24
  */
-void SIRefreshSamplingRate(void) { SISetSamplingRate(SamplingRate); }
+void SIRefreshSamplingRate(void)
+{
+	SISetSamplingRate(SamplingRate);
+}

@@ -55,7 +55,9 @@ void StateDead::exec(EnemyBase* enemy)
  * @note Address: 0x8025B6C0
  * @note Size: 0x4
  */
-void StateDead::cleanup(EnemyBase* enemy) { }
+void StateDead::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x8025B6C4
@@ -85,7 +87,9 @@ void StatePress::exec(EnemyBase* enemy)
  * @note Address: 0x8025B76C
  * @note Size: 0x4
  */
-void StatePress::cleanup(EnemyBase* enemy) { }
+void StatePress::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x8025B770
@@ -630,7 +634,9 @@ void StateMove::exec(EnemyBase* enemy)
  * @note Address: 0x8025C090
  * @note Size: 0x4
  */
-void StateMove::cleanup(EnemyBase* enemy) { }
+void StateMove::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x8025C094
@@ -681,7 +687,9 @@ void StateMoveSide::exec(EnemyBase* enemy)
  * @note Address: 0x8025C1F8
  * @note Size: 0x4
  */
-void StateMoveSide::cleanup(EnemyBase* enemy) { }
+void StateMoveSide::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x8025C1FC
@@ -732,7 +740,9 @@ void StateMoveCentre::exec(EnemyBase* enemy)
  * @note Address: 0x8025C360
  * @note Size: 0x4
  */
-void StateMoveCentre::cleanup(EnemyBase* enemy) { }
+void StateMoveCentre::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x8025C364
@@ -783,7 +793,9 @@ void StateMoveTop::exec(EnemyBase* enemy)
  * @note Address: 0x8025C4C8
  * @note Size: 0x4
  */
-void StateMoveTop::cleanup(EnemyBase* enemy) { }
+void StateMoveTop::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x8025C4CC
@@ -838,7 +850,9 @@ void StateGoHome::exec(EnemyBase* enemy)
  * @note Address: 0x8025C6DC
  * @note Size: 0x4
  */
-void StateGoHome::cleanup(EnemyBase* enemy) { }
+void StateGoHome::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x8025C6E0
@@ -894,7 +908,9 @@ void StateAttack1::exec(EnemyBase* enemy)
  * @note Address: 0x8025C878
  * @note Size: 0x4
  */
-void StateAttack1::cleanup(EnemyBase* enemy) { }
+void StateAttack1::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x8025C87C
@@ -958,7 +974,10 @@ void StateAttack2::exec(EnemyBase* enemy)
  * @note Address: 0x8025CADC
  * @note Size: 0x10
  */
-void StateAttack2::cleanup(EnemyBase* enemy) { enemy->disableEvent(0, EB_NoInterrupt); }
+void StateAttack2::cleanup(EnemyBase* enemy)
+{
+	enemy->disableEvent(0, EB_NoInterrupt);
+}
 
 /**
  * @note Address: 0x8025CAEC
@@ -1009,7 +1028,9 @@ void StateEat::exec(EnemyBase* enemy)
  * @note Address: 0x8025CCD0
  * @note Size: 0x4
  */
-void StateEat::cleanup(EnemyBase* enemy) { }
+void StateEat::cleanup(EnemyBase* enemy)
+{
+}
 
 } // namespace Ujib
 } // namespace Game

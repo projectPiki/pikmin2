@@ -17,7 +17,10 @@ namespace VsGame {
  * @note Address: 0x8022EA94
  * @note Size: 0x44
  */
-VSState::VSState() { mId = VGS_VS; }
+VSState::VSState()
+{
+	mId = VGS_VS;
+}
 
 /**
  * @note Address: 0x8022EAD8

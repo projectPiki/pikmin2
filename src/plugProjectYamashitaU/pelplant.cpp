@@ -18,8 +18,14 @@ static f32 sLODRadius[4] = { 45.0f, 60.0f, 103.0f, 133.0f }; // one, five, ten, 
 
 static const char* unused[] = { __FILE__, "/enemy/data/pelplant", "/enemy/parm/pelplant" };
 
-static f32 negSin(f32 x) { return -JMath::sincosTable_.mTable[((int)(x *= -325.9493f) & 0x7ffU)].first; }
-static f32 posSin(f32 x) { return JMath::sincosTable_.mTable[((int)(x *= 325.9493f) & 0x7ffU)].first; }
+static f32 negSin(f32 x)
+{
+	return -JMath::sincosTable_.mTable[((int)(x *= -325.9493f) & 0x7ffU)].first;
+}
+static f32 posSin(f32 x)
+{
+	return JMath::sincosTable_.mTable[((int)(x *= 325.9493f) & 0x7ffU)].first;
+}
 
 // Custom version of pikmin2_sinf from trig.h
 inline f32 pikmin2_sinf_(f32 x)
@@ -164,7 +170,10 @@ Obj::Obj()
  * @note Address: 0x801088C4
  * @note Size: 0x34
  */
-void Pelplant::Obj::doUpdate() { mFsm->exec(this); }
+void Pelplant::Obj::doUpdate()
+{
+	mFsm->exec(this);
+}
 
 /**
  * @note Address: 0x801088F8
@@ -196,7 +205,9 @@ void Pelplant::Obj::updateLODSphereRadius(int size)
  * @note Address: 0x80108980
  * @note Size: 0x4
  */
-void Obj::doDirectDraw(Graphics&) { }
+void Obj::doDirectDraw(Graphics&)
+{
+}
 
 /**
  * @note Address: 0x80108984
@@ -299,7 +310,10 @@ f32 Obj::getHeadScale()
  * @note Address: N/A
  * @note Size: 0x9C
  */
-void Obj::getNeckScale(Vector3f* scale) { *scale = Vector3f(1.5f, 0.85f, 0.75f); }
+void Obj::getNeckScale(Vector3f* scale)
+{
+	*scale = Vector3f(1.5f, 0.85f, 0.75f);
+}
 
 /**
  * doAnimation__Q34Game8Pelplant3ObjFv
@@ -352,7 +366,9 @@ void Obj::doAnimation()
  * @note Address: 0x80108E50
  * @note Size: 0x4
  */
-void Obj::doSimulation(f32) { }
+void Obj::doSimulation(f32)
+{
+}
 
 /**
  * @note Address: 0x80108E54
@@ -590,14 +606,20 @@ Mgr::Mgr(int objLimit, u8 modelType)
  * @note Address: 0x8010963C
  * @note Size: 0x48
  */
-void Mgr::doAlloc() { init(new Parms); }
+void Mgr::doAlloc()
+{
+	init(new Parms);
+}
 
 /**
  * birth__Q34Game8Pelplant3MgrFRQ24Game13EnemyBirthArg
  * @note Address: 0x8010A460
  * @note Size: 0x20
  */
-EnemyBase* Mgr::birth(EnemyBirthArg& arg) { return EnemyMgrBase::birth(arg); }
+EnemyBase* Mgr::birth(EnemyBirthArg& arg)
+{
+	return EnemyMgrBase::birth(arg);
+}
 
 /**
  * @note Address: 0x8010A480

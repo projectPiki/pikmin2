@@ -250,7 +250,10 @@ void StateLeave::init(EnemyBase* enemy, StateArg* stateArg)
  * @note Address: 0x80387FE4
  * @note Size: 0x24
  */
-void StateLeave::exec(EnemyBase* enemy) { OBJ(enemy)->leave(); }
+void StateLeave::exec(EnemyBase* enemy)
+{
+	OBJ(enemy)->leave();
+}
 
 /**
  * @note Address: 0x80388008

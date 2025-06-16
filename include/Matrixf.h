@@ -530,6 +530,9 @@ struct Matrixf {
  *
  * @param other The Matrixf object to multiply with.
  */
-inline void Vector3f::operator*=(Matrixf& other) { *this = other * *this; }
+inline void Vector3f::operator*=(Matrixf& other)
+{
+	*this = other * *this;
+}
 
 #endif

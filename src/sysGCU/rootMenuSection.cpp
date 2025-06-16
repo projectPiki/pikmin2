@@ -14,16 +14,23 @@ RootMenuSection::RootMenuSection(JKRHeap* heap)
  * @note Address: 0x8044CB14
  * @note Size: 0x70
  */
-RootMenuSection::~RootMenuSection() { }
+RootMenuSection::~RootMenuSection()
+{
+}
 
 /**
  * @note Address: 0x8044CB84
  * @note Size: 0x24
  */
-ISection* RootMenuSection::setChildSection(JKRHeap* heap) { return GameFlow::createSection(heap); }
+ISection* RootMenuSection::setChildSection(JKRHeap* heap)
+{
+	return GameFlow::createSection(heap);
+}
 
 /**
  * @note Address: 0x8044CBA8
  * @note Size: 0x4
  */
-void RootMenuSection::drawInit(Graphics&) { }
+void RootMenuSection::drawInit(Graphics&)
+{
+}

@@ -158,7 +158,10 @@ bool MgrCommand::isFinish()
  * @note Address: 0x8043349C
  * @note Size: 0xC
  */
-void* MgrCommand::getResource() { return mCommandNode.mNode->mResource; }
+void* MgrCommand::getResource()
+{
+	return mCommandNode.mNode->mResource;
+}
 
 /**
  * @note Address: N/A
@@ -344,7 +347,9 @@ void Mgr::dump()
  * @note Address: 0x804337DC
  * @note Size: 0x4
  */
-void Mgr::drawDump(Graphics&, int, int) { }
+void Mgr::drawDump(Graphics&, int, int)
+{
+}
 
 /**
  * @note Address: 0x804337E0
@@ -435,7 +440,10 @@ void Mgr::loadResource(MgrCommand* command, char const* path, bool)
  * @note Address: 0x80433B1C
  * @note Size: 0x70
  */
-bool Mgr::destroy(MgrCommand* command) { return command->destroy(); }
+bool Mgr::destroy(MgrCommand* command)
+{
+	return command->destroy();
+}
 
 /**
  * @note Address: 0x80433B8C

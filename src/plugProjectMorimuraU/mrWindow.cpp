@@ -51,7 +51,10 @@ void TConfirmEndWindow::doUpdateFadeinFinish()
  * @note Address: 0x803A3728
  * @note Size: 0x20
  */
-bool TConfirmEndWindow::doUpdateFadein() { return og::newScreen::ObjWorldMapInfoWindow0::doUpdateFadein(); }
+bool TConfirmEndWindow::doUpdateFadein()
+{
+	return og::newScreen::ObjWorldMapInfoWindow0::doUpdateFadein();
+}
 
 /**
  * @note Address: 0x803A3748
@@ -91,7 +94,10 @@ void TConfirmEndWindow::doDraw(Graphics& gfx)
  * @note Address: 0x803A37E8
  * @note Size: 0x24
  */
-void TConfirmEndWindow::setRetireMsg(u64 msgID) { mAnimText2->setText(msgID); }
+void TConfirmEndWindow::setRetireMsg(u64 msgID)
+{
+	mAnimText2->setText(msgID);
+}
 
 /**
  * @note Address: 0x803A380C

@@ -64,13 +64,19 @@ void initAI(AIDCallback callback)
  * @note Address: 0x800A7AA4
  * @note Size: 0x20
  */
-void startDMA() { AIStartDMA(); }
+void startDMA()
+{
+	AIStartDMA();
+}
 
 /**
  * @note Address: 0x800A7AC4
  * @note Size: 0x20
  */
-void stopDMA() { AIStopDMA(); }
+void stopDMA()
+{
+	AIStopDMA();
+}
 
 /**
  * @note Address: N/A
@@ -468,25 +474,37 @@ void registDSPBufCallback(void (*)(s16*, u32))
  * @note Address: 0x800A81F0
  * @note Size: 0x8
  */
-f32 getDacRate() { return sDacRate; }
+f32 getDacRate()
+{
+	return sDacRate;
+}
 
 /**
  * @note Address: 0x800A81F8
  * @note Size: 0x8
  */
-u32 getSubFrames() { return sSubFrames; }
+u32 getSubFrames()
+{
+	return sSubFrames;
+}
 
 /**
  * @note Address: 0x800A8200
  * @note Size: 0xC
  */
-static int getDacSize() { return sSubFrames * 0xA0; }
+static int getDacSize()
+{
+	return sSubFrames * 0xA0;
+}
 
 /**
  * @note Address: 0x800A820C
  * @note Size: 0xC
  */
-static int getFrameSamples() { return sSubFrames * 0x50; }
+static int getFrameSamples()
+{
+	return sSubFrames * 0x50;
+}
 
 /**
  * @note Address: 0x800A8218

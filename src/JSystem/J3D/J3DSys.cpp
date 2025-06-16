@@ -396,4 +396,6 @@ static void fakeFunc()
  * @note Address: 0x8005EB54
  * @note Size: 0x4
  */
-void J3DSys::ErrorReport(J3DErrType) const { }
+void J3DSys::ErrorReport(J3DErrType) const
+{
+}

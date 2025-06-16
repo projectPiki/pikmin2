@@ -87,7 +87,9 @@ void StateDead::exec(EnemyBase* enemy)
  * @note Address: 0x802B02BC
  * @note Size: 0x4
  */
-void StateDead::cleanup(EnemyBase* enemy) { }
+void StateDead::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x802B02C0
@@ -208,7 +210,9 @@ void StateWait::exec(EnemyBase* enemy)
  * @note Address: 0x802B06F0
  * @note Size: 0x4
  */
-void StateWait::cleanup(EnemyBase* enemy) { }
+void StateWait::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x802B06F4
@@ -656,7 +660,9 @@ void StateMove::exec(EnemyBase* enemy)
  * @note Address: 0x802B0E24
  * @note Size: 0x4
  */
-void StateMove::cleanup(EnemyBase* enemy) { }
+void StateMove::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x802B0E28
@@ -1317,7 +1323,10 @@ void StateTakeOff1::exec(EnemyBase* enemy)
  * @note Address: 0x802B1C74
  * @note Size: 0x24
  */
-void StateTakeOff1::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
+void StateTakeOff1::cleanup(EnemyBase* enemy)
+{
+	enemy->setEmotionCaution();
+}
 
 /**
  * @note Address: 0x802B1C98
@@ -1363,7 +1372,10 @@ void StateTakeOff2::exec(EnemyBase* enemy)
  * @note Address: 0x802B1DFC
  * @note Size: 0x24
  */
-void StateTakeOff2::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
+void StateTakeOff2::cleanup(EnemyBase* enemy)
+{
+	enemy->setEmotionCaution();
+}
 
 /**
  * @note Address: 0x802B1E20
@@ -1407,7 +1419,10 @@ void StateFlick::exec(EnemyBase* enemy)
  * @note Address: 0x802B1F4C
  * @note Size: 0x24
  */
-void StateFlick::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
+void StateFlick::cleanup(EnemyBase* enemy)
+{
+	enemy->setEmotionCaution();
+}
 
 /**
  * @note Address: 0x802B1F70

@@ -87,7 +87,9 @@ u16 JMessage::TResource::toMessageIndex_messageID(u32 lowerHalf, u32 upperHalf, 
  * @note Address: 0x800065A8
  * @note Size: 0x74
  */
-JMessage::TResourceContainer::TCResource::~TCResource() { }
+JMessage::TResourceContainer::TCResource::~TCResource()
+{
+}
 
 /**
  * @note Address: 0x8000661C
@@ -108,13 +110,19 @@ JMessage::TResource* JMessage::TResourceContainer::TCResource::Get_groupID(u16 g
  * @note Address: 0x800066A0
  * @note Size: 0x4C
  */
-JMessage::TResource* JMessage::TResourceContainer::TCResource::Do_create() { return new JMessage::TResource; }
+JMessage::TResource* JMessage::TResourceContainer::TCResource::Do_create()
+{
+	return new JMessage::TResource;
+}
 
 /**
  * @note Address: 0x800066EC
  * @note Size: 0x24
  */
-void JMessage::TResourceContainer::TCResource::Do_destroy(JMessage::TResource* res) { delete res; }
+void JMessage::TResourceContainer::TCResource::Do_destroy(JMessage::TResource* res)
+{
+	delete res;
+}
 
 /**
  * @note Address: 0x80006710
@@ -147,7 +155,9 @@ JMessage::TParse::TParse(JMessage::TResourceContainer* container)
  * @note Address: 0x800067C0
  * @note Size: 0x60
  */
-JMessage::TParse::~TParse() { }
+JMessage::TParse::~TParse()
+{
+}
 
 /**
  * @note Address: 0x80006820
@@ -476,13 +486,18 @@ bool JMessage::TParse::parseBlock_next(const void** dataPtr, u32* outSize, u32 f
  * @note Address: 0x80006B28
  * @note Size: 0x20
  */
-JMessage::TParse_color::TParse_color(JMessage::TResourceContainer* container) { mResourceContainer = container; }
+JMessage::TParse_color::TParse_color(JMessage::TResourceContainer* container)
+{
+	mResourceContainer = container;
+}
 
 /**
  * @note Address: 0x80006B48
  * @note Size: 0x60
  */
-JMessage::TParse_color::~TParse_color() { }
+JMessage::TParse_color::~TParse_color()
+{
+}
 
 /**
  * @note Address: 0x80006BA8

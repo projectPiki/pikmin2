@@ -41,7 +41,9 @@ J2DPrint::J2DPrint(JUTFont* font, f32 width, f32 height, JUtility::TColor charCo
  * @note Address: 0x8003D910
  * @note Size: 0x48
  */
-J2DPrint::~J2DPrint() { }
+J2DPrint::~J2DPrint()
+{
+}
 
 /**
  * @note Address: 0x8003D958

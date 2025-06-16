@@ -47,7 +47,9 @@ void StateDead::exec(EnemyBase* enemy)
  * @note Address: 0x802E51F8
  * @note Size: 0x4
  */
-void StateDead::cleanup(EnemyBase* enemy) { }
+void StateDead::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x802E51FC
@@ -76,7 +78,9 @@ void StatePress::exec(EnemyBase* enemy)
  * @note Address: 0x802E5298
  * @note Size: 0x4
  */
-void StatePress::cleanup(EnemyBase* enemy) { }
+void StatePress::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x802E529C
@@ -819,7 +823,10 @@ lbl_802E5BA8:
  * @note Address: 0x802E5BF8
  * @note Size: 0x24
  */
-void StateAttack::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
+void StateAttack::cleanup(EnemyBase* enemy)
+{
+	enemy->setEmotionCaution();
+}
 
 /**
  * @note Address: 0x802E5C1C
@@ -1236,7 +1243,9 @@ lbl_802E60E0:
  * @note Address: 0x802E6130
  * @note Size: 0x4
  */
-void StateFlick::cleanup(EnemyBase* enemy) { }
+void StateFlick::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x802E6134
@@ -1689,7 +1698,10 @@ lbl_802E665C:
  * @note Address: 0x802E66A0
  * @note Size: 0x28
  */
-void StateWalk::cleanup(EnemyBase* enemy) { enemy->setAnimSpeed(30.0f); }
+void StateWalk::cleanup(EnemyBase* enemy)
+{
+	enemy->setAnimSpeed(30.0f);
+}
 
 /**
  * @note Address: 0x802E66C8
@@ -2131,6 +2143,9 @@ lbl_802E6BF8:
  * @note Address: 0x802E6C48
  * @note Size: 0x28
  */
-void StateWalkPath::cleanup(EnemyBase* enemy) { enemy->setAnimSpeed(30.0f); }
+void StateWalkPath::cleanup(EnemyBase* enemy)
+{
+	enemy->setAnimSpeed(30.0f);
+}
 } // namespace KumaKochappy
 } // namespace Game

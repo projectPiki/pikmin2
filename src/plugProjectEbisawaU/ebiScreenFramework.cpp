@@ -58,26 +58,38 @@ void TScreenBase::killScreen()
  * @note Address: 0x803D3988
  * @note Size: 0x10
  */
-u8 TScreenBase::isFinishScreen() { return mState == TSB_US_Finish; }
+u8 TScreenBase::isFinishScreen()
+{
+	return mState == TSB_US_Finish;
+}
 
 /**
  * @note Address: N/A
  * @note Size: 0x14
  */
 // unused function
-u8 TScreenBase::isOpenScreen() { return mState == TSB_US_Open; }
+u8 TScreenBase::isOpenScreen()
+{
+	return mState == TSB_US_Open;
+}
 
 /**
  * @note Address: 0x803D3998
  * @note Size: 0x14
  */
-u8 TScreenBase::isWaitScreen() { return mState == TSB_US_Wait; }
+u8 TScreenBase::isWaitScreen()
+{
+	return mState == TSB_US_Wait;
+}
 
 /**
  * @note Address: 0x803D39AC
  * @note Size: 0x14
  */
-u8 TScreenBase::isCloseScreen() { return mState == TSB_US_Close; }
+u8 TScreenBase::isCloseScreen()
+{
+	return mState == TSB_US_Close;
+}
 
 /**
  * @note Address: 0x803D39C0

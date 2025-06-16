@@ -7,7 +7,10 @@ extern f64 __ieee754_asin();
  * @note Size: 0x20
  */
 
-f64 asin(f64 __x) { return (f64)__ieee754_asin(); }
+f64 asin(f64 __x)
+{
+	return (f64)__ieee754_asin();
+}
 
 /*
 .loc_0x0:

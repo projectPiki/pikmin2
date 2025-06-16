@@ -152,13 +152,19 @@ void JAInter::SoundTable::setInfoTrack(u32, u8)
  * @note Address: 0x800B7634
  * @note Size: 0x8
  */
-u8 JAInter::SoundTable::getCategotyMax() { return mCategotyMax; }
+u8 JAInter::SoundTable::getCategotyMax()
+{
+	return mCategotyMax;
+}
 
 /**
  * @note Address: 0x800B763C
  * @note Size: 0x10
  */
-u16 JAInter::SoundTable::getSoundMax(u8 cat) { return mSoundMax[cat]; }
+u16 JAInter::SoundTable::getSoundMax(u8 cat)
+{
+	return mSoundMax[cat];
+}
 
 /**
  * @note Address: N/A

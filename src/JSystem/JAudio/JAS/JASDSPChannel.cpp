@@ -32,7 +32,10 @@ void JASDSPChannel::free()
  * @note Address: 0x800A4B84
  * @note Size: 0x10
  */
-void JASDSPChannel::start() { SET_FLAG(mFlags, 1); }
+void JASDSPChannel::start()
+{
+	SET_FLAG(mFlags, 1);
+}
 
 /**
  * @note Address: 0x800A4B94
@@ -106,7 +109,10 @@ JASDSPChannel* JASDSPChannel::allocForce(u8 index, s32 (*cb)(u32, JASDsp::TChann
  * @note Address: 0x800A4E60
  * @note Size: 0xC
  */
-void JASDSPChannel::setPriority(u8 priority) { mPriority = priority; }
+void JASDSPChannel::setPriority(u8 priority)
+{
+	mPriority = priority;
+}
 
 /**
  * @note Address: 0x800A4E6C
@@ -581,7 +587,10 @@ lbl_800A52EC:
  * @note Address: 0x800A5300
  * @note Size: 0x10
  */
-JASDSPChannel* JASDSPChannel::getHandle(u32 index) { return sDspChannels + index; }
+JASDSPChannel* JASDSPChannel::getHandle(u32 index)
+{
+	return sDspChannels + index;
+}
 
 /**
  * @note Address: N/A

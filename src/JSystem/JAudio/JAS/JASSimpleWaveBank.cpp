@@ -19,14 +19,19 @@ JASSimpleWaveBank::JASSimpleWaveBank()
  * @note Size: 0xD4
  * __dt__17JASSimpleWaveBankFv
  */
-JASSimpleWaveBank::~JASSimpleWaveBank() { delete[] mHandles; }
+JASSimpleWaveBank::~JASSimpleWaveBank()
+{
+	delete[] mHandles;
+}
 
 /**
  * @note Address: 0x8009B7F8
  * @note Size: 0x5C
  * __dt__Q217JASSimpleWaveBank11TWaveHandleFv
  */
-JASSimpleWaveBank::TWaveHandle::~TWaveHandle() { }
+JASSimpleWaveBank::TWaveHandle::~TWaveHandle()
+{
+}
 
 /**
  * @note Address: 0x8009B854
@@ -44,7 +49,10 @@ void JASSimpleWaveBank::setWaveTableSize(u32 tableSize)
  * @note Size: 0x24
  * __ct__Q217JASSimpleWaveBank11TWaveHandleFv
  */
-JASSimpleWaveBank::TWaveHandle::TWaveHandle() { mHeap = nullptr; }
+JASSimpleWaveBank::TWaveHandle::TWaveHandle()
+{
+	mHeap = nullptr;
+}
 
 /**
  * @note Address: 0x8009B8FC
@@ -85,7 +93,10 @@ JASWaveArc* JASSimpleWaveBank::getWaveArc(int arcIndex)
  * @note Address: 0x8009B9D4
  * @note Size: 0x8
  */
-const JASWaveInfo* JASSimpleWaveBank::TWaveHandle::getWaveInfo() const { return &mInfo; }
+const JASWaveInfo* JASSimpleWaveBank::TWaveHandle::getWaveInfo() const
+{
+	return &mInfo;
+}
 
 /**
  * @note Address: 0x8009B9DC
@@ -103,10 +114,14 @@ void* JASSimpleWaveBank::TWaveHandle::getWavePtr() const
  * @note Address: 0x8009BA00
  * @note Size: 0x4
  */
-void JASWaveArc::onLoadDone() { }
+void JASWaveArc::onLoadDone()
+{
+}
 
 /**
  * @note Address: 0x8009BA04
  * @note Size: 0x4
  */
-void JASWaveArc::onEraseDone() { }
+void JASWaveArc::onEraseDone()
+{
+}

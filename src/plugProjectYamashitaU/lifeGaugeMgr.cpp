@@ -6,7 +6,10 @@
 #include "nans.h"
 
 // i'd put this in Vector3f but i really dont wanna include all of GX in that - HP.
-inline void GXDrawVector3f(Vector3f& vec) { GXPosition3f32(vec.x, vec.y, vec.z); }
+inline void GXDrawVector3f(Vector3f& vec)
+{
+	GXPosition3f32(vec.x, vec.y, vec.z);
+}
 
 LifeGaugeMgr* lifeGaugeMgr;
 
@@ -14,7 +17,10 @@ LifeGaugeMgr* lifeGaugeMgr;
  * @note Address: 0x80119BFC
  * @note Size: 0x34
  */
-LifeGauge::LifeGauge() { init(MAX_LIFEGAUGE_SEGMENTS); }
+LifeGauge::LifeGauge()
+{
+	init(MAX_LIFEGAUGE_SEGMENTS);
+}
 
 /**
  * @note Address: 0x80119C30
@@ -242,7 +248,9 @@ void LifeGaugeList::draw(Graphics& gfx)
  * @note Address: 0x8011A7D0
  * @note Size: 0xDC
  */
-LifeGaugeMgr::LifeGaugeMgr() { }
+LifeGaugeMgr::LifeGaugeMgr()
+{
+}
 
 /**
  * @note Address: 0x8011A944

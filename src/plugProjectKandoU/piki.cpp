@@ -101,19 +101,28 @@ int Piki::getFormationSlotID()
  * @note Address: 0x80147E14
  * @note Size: 0x24
  */
-PikiAI::Action* Piki::getCurrAction() { return mBrain->getCurrAction(); }
+PikiAI::Action* Piki::getCurrAction()
+{
+	return mBrain->getCurrAction();
+}
 
 /**
  * @note Address: 0x80147E38
  * @note Size: 0x10
  */
-void Piki::clearCurrAction() { mBrain->mActionId = PikiAI::ACT_NULL; }
+void Piki::clearCurrAction()
+{
+	mBrain->mActionId = PikiAI::ACT_NULL;
+}
 
 /**
  * @note Address: 0x80147E48
  * @note Size: 0xC
  */
-int Piki::getCurrActionID() { return mBrain->mActionId; }
+int Piki::getCurrActionID()
+{
+	return mBrain->mActionId;
+}
 
 /**
  * @note Address: 0x80147E54
@@ -253,7 +262,10 @@ void Piki::onKill(CreatureKillArg* killArg)
  * @note Address: 0x80148498
  * @note Size: 0x1C
  */
-void Piki::onSetPosition() { mBoundingSphere.mPosition = mPosition; }
+void Piki::onSetPosition()
+{
+	mBoundingSphere.mPosition = mPosition;
+}
 
 /**
  * @note Address: 0x801484B4
@@ -318,7 +330,9 @@ bool Piki::isAlive()
  * @note Address: 0x80148748
  * @note Size: 0x4
  */
-void Piki::on_movie_begin(bool) { }
+void Piki::on_movie_begin(bool)
+{
+}
 
 /**
  * @note Address: 0x8014874C
@@ -336,13 +350,18 @@ void Piki::on_movie_end(bool shouldResetAnims)
  * @note Address: 0x801487B8
  * @note Size: 0x4
  */
-void Piki::movieUserCommand(u32, Game::MoviePlayer*) { }
+void Piki::movieUserCommand(u32, Game::MoviePlayer*)
+{
+}
 
 /**
  * @note Address: 0x801487BC
  * @note Size: 0x38
  */
-void Piki::movieStartAnimation(u32 animIdx) { startMotion(animIdx, animIdx, nullptr, nullptr); }
+void Piki::movieStartAnimation(u32 animIdx)
+{
+	startMotion(animIdx, animIdx, nullptr, nullptr);
+}
 
 /**
  * @note Address: 0x801487F4
@@ -372,7 +391,10 @@ void Piki::movieSetTranslation(Vector3f& position, f32 faceDir)
  * @note Address: 0x801488C4
  * @note Size: 0x8
  */
-bool Piki::movieGotoPosition(Vector3f&) { return false; }
+bool Piki::movieGotoPosition(Vector3f&)
+{
+	return false;
+}
 
 /**
  * @note Address: 0x801488CC
@@ -434,19 +456,28 @@ void Piki::startSound(Creature* creature, u32 id, PSGame::SeMgr::SetSeId setSeId
  * @note Address: 0x80148A90
  * @note Size: 0x14
  */
-JAInter::Object* Piki::getJAIObject() { return mSoundObj; }
+JAInter::Object* Piki::getJAIObject()
+{
+	return mSoundObj;
+}
 
 /**
  * @note Address: 0x80148AA4
  * @note Size: 0x8
  */
-PSM::Creature* Piki::getPSCreature() { return mSoundObj; }
+PSM::Creature* Piki::getPSCreature()
+{
+	return mSoundObj;
+}
 
 /**
  * @note Address: 0x80148AAC
  * @note Size: 0x30
  */
-bool Piki::canVsBattle() { return mCurrentState->battleOK(); }
+bool Piki::canVsBattle()
+{
+	return mCurrentState->battleOK();
+}
 
 /**
  * @note Address: 0x80148AE4
@@ -648,7 +679,10 @@ bool Piki::might_bury()
  * @note Address: 0x80148ED8
  * @note Size: 0x14
  */
-bool Piki::surviveDayEnd() { return (u8)(getCurrActionID() == PikiAI::ACT_Formation); }
+bool Piki::surviveDayEnd()
+{
+	return (u8)(getCurrActionID() == PikiAI::ACT_Formation);
+}
 
 /**
  * @note Address: 0x80148EEC
@@ -795,13 +829,19 @@ int Piki::getDownfloorMass()
  * @note Address: 0x801494B8
  * @note Size: 0x14
  */
-bool Piki::gasInvicible() { return mGasInvincible; }
+bool Piki::gasInvicible()
+{
+	return mGasInvincible;
+}
 
 /**
  * @note Address: 0x801494CC
  * @note Size: 0x8
  */
-void Piki::setGasInvincible(u8 invincibleTime) { mGasInvincible = invincibleTime; }
+void Piki::setGasInvincible(u8 invincibleTime)
+{
+	mGasInvincible = invincibleTime;
+}
 
 /**
  * @note Address: 0x801494D4
@@ -900,7 +940,9 @@ f32 Piki::getPelletCarryPower()
  * @note Address: 0x80149768
  * @note Size: 0x4
  */
-void Piki::onStickStartSelf(Game::Creature*) { }
+void Piki::onStickStartSelf(Game::Creature*)
+{
+}
 
 /**
  * @note Address: 0x8014976C
@@ -1066,7 +1108,10 @@ void Piki::clearDope()
  * @note Address: 0x80149E30
  * @note Size: 0x14
  */
-void Piki::extendDopeTime() { mDopeTime = pikiMgr->mParms->mPikiParms.mDopeMaxDuration.mValue; }
+void Piki::extendDopeTime()
+{
+	mDopeTime = pikiMgr->mParms->mPikiParms.mDopeMaxDuration.mValue;
+}
 
 /**
  * @note Address: 0x80149E44
@@ -1103,7 +1148,10 @@ bool Piki::startDope(int isDoped)
  * @note Address: 0x80149FE0
  * @note Size: 0x18
  */
-bool Piki::doped() { return mIsDoped != -1; }
+bool Piki::doped()
+{
+	return mIsDoped != -1;
+}
 
 /**
  * @note Address: N/A
@@ -1194,7 +1242,10 @@ bool Piki::isMyPikmin(Creature* creature)
  * @note Address: 0x8014A288
  * @note Size: 0x18
  */
-bool Piki::isTekiFollowAI() { return (u8)(mBrain->mActionId == PikiAI::ACT_Teki); }
+bool Piki::isTekiFollowAI()
+{
+	return (u8)(mBrain->mActionId == PikiAI::ACT_Teki);
+}
 
 /**
  * @note Address: 0x8014A2A0
@@ -1283,7 +1334,9 @@ void Piki::doAnimation()
  * @note Address: 0x8014A594
  * @note Size: 0x4
  */
-void Piki::doDirectDraw(Graphics&) { }
+void Piki::doDirectDraw(Graphics&)
+{
+}
 
 /**
  * @note Address: 0x8014A598
@@ -1342,7 +1395,10 @@ void Piki::changeShape(int color)
  * @note Address: 0x8014A770
  * @note Size: 0x8
  */
-void Piki::changeHappa(int newHappa) { mHappaKind = newHappa; }
+void Piki::changeHappa(int newHappa)
+{
+	mHappaKind = newHappa;
+}
 
 /**
  * @note Address: 0x8014A778
@@ -1455,7 +1511,9 @@ void MonoObjectMgr<Game::Piki>::kill(Game::Piki* piki)
  * @note Address: 0x8014AB34
  * @note Size: 0x4
  */
-void Game::StateMachine<Game::Piki>::init(Game::Piki*) { }
+void Game::StateMachine<Game::Piki>::init(Game::Piki*)
+{
+}
 
 /**
  * @note Address: 0x8014AB38

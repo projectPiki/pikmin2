@@ -133,7 +133,10 @@ inline void JKRDecompress(u8* srcBuffer, u8* dstBuffer, u32 srcLength, u32 dstLe
 	JKRDecomp::orderSync(srcBuffer, dstBuffer, srcLength, dstLength);
 }
 
-inline JKRDecomp* JKRCreateDecompManager(s32 priority) { return JKRDecomp::create(priority); }
+inline JKRDecomp* JKRCreateDecompManager(s32 priority)
+{
+	return JKRDecomp::create(priority);
+}
 
 inline int JKRCheckCompressed_noASR(u8* buf)
 {
@@ -149,6 +152,9 @@ inline JKRCompression JKRCheckCompressed(u8* buffer)
 	return compression;
 }
 
-inline u32 JKRDecompExpandSize(u8* buffer) { return (buffer[4] << 0x18) | (buffer[5] << 0x10) | (buffer[6] << 8) | buffer[7]; }
+inline u32 JKRDecompExpandSize(u8* buffer)
+{
+	return (buffer[4] << 0x18) | (buffer[5] << 0x10) | (buffer[6] << 8) | buffer[7];
+}
 
 #endif

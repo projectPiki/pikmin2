@@ -60,7 +60,10 @@ void LoadState::init(Game::VsGameSection* section, StateArg* args)
  * @note Address: 0x8022D2A8
  * @note Size: 0x24
  */
-void LoadState::dvdLoad() { mSection->setupFloatMemory(); }
+void LoadState::dvdLoad()
+{
+	mSection->setupFloatMemory();
+}
 
 /**
  * @note Address: 0x8022D2CC
@@ -135,7 +138,9 @@ void LoadState::draw(VsGameSection* section, Graphics& graphic)
  * @note Address: 0x8022D60C
  * @note Size: 0x4
  */
-void LoadState::cleanup(VsGameSection*) { }
+void LoadState::cleanup(VsGameSection*)
+{
+}
 
 } // namespace VsGame
 } // namespace Game

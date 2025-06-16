@@ -69,7 +69,9 @@ const void* parseVariableUInt_16_32_following(void const* inputBuffer, u32* outp
  * @note Address: 0x80027190
  * @note Size: 0x48
  */
-TParse_header_block::~TParse_header_block() { }
+TParse_header_block::~TParse_header_block()
+{
+}
 
 /**
  * @note Address: 0x800271D8

@@ -84,7 +84,10 @@ J2DScreen::J2DScreen()
  * @note Size: 0x68
  * __dt__9J2DScreenFv
  */
-J2DScreen::~J2DScreen() { clean(); }
+J2DScreen::~J2DScreen()
+{
+	clean();
+}
 
 /**
  * @note Address: 0x8003F584
@@ -126,7 +129,10 @@ bool J2DScreen::set(const char* name, u32 flags, JKRArchive* archive)
  * @note Size: 0x24
  * set__9J2DScreenFP20JSURandomInputStreamUl
  */
-bool J2DScreen::set(JSURandomInputStream* stream, u32 flags) { private_set(stream, flags, nullptr); }
+bool J2DScreen::set(JSURandomInputStream* stream, u32 flags)
+{
+	private_set(stream, flags, nullptr);
+}
 
 /**
  * @note Address: 0x8003F74C
@@ -768,7 +774,10 @@ void J2DScreen::draw(f32 x, f32 y, const J2DGrafContext* graf)
  * @note Address: 0x80040478
  * @note Size: 0x40
  */
-J2DPane* J2DScreen::search(u64 id) { return (id == 0) ? nullptr : J2DPane::search(id); }
+J2DPane* J2DScreen::search(u64 id)
+{
+	return (id == 0) ? nullptr : J2DPane::search(id);
+}
 
 /**
  * @note Address: 0x800404B8
@@ -785,7 +794,10 @@ u32 J2DScreen::gather(J2DPane** p1, u64 p2, u64 p3, int p4)
  * @note Address: 0x800404E8
  * @note Size: 0x40
  */
-J2DPane* J2DScreen::searchUserInfo(u64 p1) { return (p1 == 0) ? nullptr : J2DPane::searchUserInfo(p1); }
+J2DPane* J2DScreen::searchUserInfo(u64 p1)
+{
+	return (p1 == 0) ? nullptr : J2DPane::searchUserInfo(p1);
+}
 
 /**
  * @note Address: 0x80040528
@@ -1225,13 +1237,19 @@ J2DMaterial* J2DScreen::getMaterial(u16 index)
  * @note Address: 0x80040A9C
  * @note Size: 0x20
  */
-bool J2DScreen::isUsed(const ResTIMG* resource) { return J2DPane::isUsed(resource); }
+bool J2DScreen::isUsed(const ResTIMG* resource)
+{
+	return J2DPane::isUsed(resource);
+}
 
 /**
  * @note Address: 0x80040ABC
  * @note Size: 0x20
  */
-bool J2DScreen::isUsed(const ResFONT* resource) { return J2DPane::isUsed(resource); }
+bool J2DScreen::isUsed(const ResFONT* resource)
+{
+	return J2DPane::isUsed(resource);
+}
 
 /**
  * @note Address: 0x80040ADC
@@ -1328,22 +1346,34 @@ void J2DScreen::setAnimation(J2DAnmTevRegKey* animation)
  * @note Address: 0x80040E90
  * @note Size: 0x20
  */
-void J2DScreen::setAnimation(J2DAnmVtxColor* animation) { J2DPane::setVtxColorAnimation(animation); }
+void J2DScreen::setAnimation(J2DAnmVtxColor* animation)
+{
+	J2DPane::setVtxColorAnimation(animation);
+}
 
 /**
  * @note Address: 0x80040EB0
  * @note Size: 0x20
  */
-void J2DScreen::setAnimation(J2DAnmVisibilityFull* animation) { J2DPane::setVisibileAnimation(animation); }
+void J2DScreen::setAnimation(J2DAnmVisibilityFull* animation)
+{
+	J2DPane::setVisibileAnimation(animation);
+}
 
 /**
  * @note Address: 0x80040F0C
  * @note Size: 0x20
  */
-void J2DScreen::setAnimation(J2DAnmTransform* animation) { J2DPane::setAnimation(animation); }
+void J2DScreen::setAnimation(J2DAnmTransform* animation)
+{
+	J2DPane::setAnimation(animation);
+}
 
 /**
  * @note Address: 0x80040F2C
  * @note Size: 0x20
  */
-void J2DScreen::setAnimation(J2DAnmBase* animation) { J2DPane::setAnimation(animation); }
+void J2DScreen::setAnimation(J2DAnmBase* animation)
+{
+	J2DPane::setAnimation(animation);
+}

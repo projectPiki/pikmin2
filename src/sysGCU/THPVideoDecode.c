@@ -219,7 +219,10 @@ OSMessage PopFreeTextureSet()
  * @note Address: 0x8044FD4C
  * @note Size: 0x30
  */
-BOOL PushFreeTextureSet(OSMessage* msg) { OSSendMessage(&FreeTextureSetQueue, msg, 0); }
+BOOL PushFreeTextureSet(OSMessage* msg)
+{
+	OSSendMessage(&FreeTextureSetQueue, msg, 0);
+}
 
 /**
  * @note Address: 0x8044FD7C
@@ -238,4 +241,7 @@ OSMessage PopDecodedTextureSet(s32 flags)
  * @note Address: 0x8044FDC0
  * @note Size: 0x30
  */
-BOOL PushDecodedTextureSet(OSMessage* msg) { OSSendMessage(&DecodedTextureSetQueue, msg, OS_MESSAGE_BLOCK); }
+BOOL PushDecodedTextureSet(OSMessage* msg)
+{
+	OSSendMessage(&DecodedTextureSetQueue, msg, OS_MESSAGE_BLOCK);
+}

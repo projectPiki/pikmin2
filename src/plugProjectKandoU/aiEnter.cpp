@@ -142,7 +142,9 @@ void ActEnter::cleanup()
  * @note Address: 0x801A2DD0
  * @note Size: 0x4
  */
-void ActEnter::onKeyEvent(SysShape::KeyEvent const&) { }
+void ActEnter::onKeyEvent(SysShape::KeyEvent const&)
+{
+}
 
 /**
  * @note Address: 0x801A2DD4

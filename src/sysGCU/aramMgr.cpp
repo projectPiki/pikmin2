@@ -72,13 +72,18 @@ void* Node::aramToMainRam(u8* buf, u32 address, u32 offset, JKRExpandSwitch expa
  * @note Address: N/A
  * @note Size: 0x4
  */
-inline void Node::dump() { }
+inline void Node::dump()
+{
+}
 
 /**
  * @note Address: 0x80432B18
  * @note Size: 0x30
  */
-void Mgr::init() { new Mgr(); }
+void Mgr::init()
+{
+	new Mgr();
+}
 
 /**
  * @note Address: 0x80432B48

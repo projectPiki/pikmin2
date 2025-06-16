@@ -68,7 +68,10 @@ void BigFootShadowMgr::init()
  * @note Address: 0x802C7B68
  * @note Size: 0x18
  */
-void BigFootShadowMgr::setJointPosPtr(int p1, int p2, Vector3f* posPtr) { mJointPosPtrs[p1][p2] = posPtr; }
+void BigFootShadowMgr::setJointPosPtr(int p1, int p2, Vector3f* posPtr)
+{
+	mJointPosPtrs[p1][p2] = posPtr;
+}
 
 /**
  * @note Address: 0x802C7B80

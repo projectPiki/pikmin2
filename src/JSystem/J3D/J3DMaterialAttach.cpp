@@ -26,14 +26,19 @@ void J3DMaterialTable::clear()
  * @note Size: 0x34
  * __ct
  */
-J3DMaterialTable::J3DMaterialTable() { clear(); }
+J3DMaterialTable::J3DMaterialTable()
+{
+	clear();
+}
 
 /**
  * @note Address: 0x80083CA8
  * @note Size: 0x48
  * __dt
  */
-J3DMaterialTable::~J3DMaterialTable() { }
+J3DMaterialTable::~J3DMaterialTable()
+{
+}
 
 /**
  * @note Address: 0x80083CF0

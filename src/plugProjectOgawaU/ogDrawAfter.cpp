@@ -24,7 +24,9 @@ CallBack_DrawAfter::CallBack_DrawAfter(P2DScreen::Mgr* mgr, u64 tag)
  * @note Address: 0x8032D684
  * @note Size: 0x4
  */
-void CallBack_DrawAfter::update() { }
+void CallBack_DrawAfter::update()
+{
+}
 
 /**
  * @note Address: 0x8032D688

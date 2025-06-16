@@ -31,7 +31,10 @@ WindowPane::WindowPane()
  * @note Address: 0x80434F5C
  * @note Size: 0x20
  */
-void WindowPane::doInit() { mInitialPosition = Vector3f(mPane->mOffset.x, mPane->mOffset.y, 0.0f); }
+void WindowPane::doInit()
+{
+	mInitialPosition = Vector3f(mPane->mOffset.x, mPane->mOffset.y, 0.0f);
+}
 
 /**
  * @note Address: 0x80434F7C
@@ -1696,7 +1699,10 @@ lbl_80436728:
  * @note Address: 0x80436754
  * @note Size: 0x24
  */
-void MessageWindowScreen::open(f32 duration) { mWindowPane->open(duration); }
+void MessageWindowScreen::open(f32 duration)
+{
+	mWindowPane->open(duration);
+}
 
 /**
  * @note Address: 0x80436778

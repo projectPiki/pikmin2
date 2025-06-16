@@ -113,7 +113,10 @@ u32 InitializeUART(u32 baudRate)
  * @note Address: N/A
  * @note Size: 0x8
  */
-u32 ReadUARTN(void* bytes, u32 len) { return 4; }
+u32 ReadUARTN(void* bytes, u32 len)
+{
+	return 4;
+}
 
 /**
  * @note Address: N/A

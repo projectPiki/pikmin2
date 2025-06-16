@@ -25,7 +25,10 @@ PelletConfigList* Mgr::getConfigList(cKind kind)
  * @note Address: 0x80227DCC
  * @note Size: 0x74
  */
-int Mgr::getCount(cKind kind) { return getConfigList(kind)->mConfigCnt; }
+int Mgr::getCount(cKind kind)
+{
+	return getConfigList(kind)->mConfigCnt;
+}
 
 /**
  * @note Address: 0x80227E40

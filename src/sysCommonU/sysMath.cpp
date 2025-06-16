@@ -15,13 +15,19 @@ Vector3f Vector3f::zero(0.0f);
  * @note Address: 0x80411730
  * @note Size: 0x68
  */
-f32 pikmin2_sinf(f32 x) { return sinf(x); }
+f32 pikmin2_sinf(f32 x)
+{
+	return sinf(x);
+}
 
 /**
  * @note Address: 0x80411798
  * @note Size: 0x44
  */
-f32 pikmin2_cosf(f32 x) { return cosf(x); }
+f32 pikmin2_cosf(f32 x)
+{
+	return cosf(x);
+}
 
 f32 acosfDumb(f32 x)
 {
@@ -69,7 +75,10 @@ const f32 pikmin2_asinf(f32 x)
  * @note Address: 0x804117DC
  * @note Size: 0x28
  */
-f32 pikmin2_atan2f(f32 x, f32 y) { return JMAAtan2Radian(x, y); }
+f32 pikmin2_atan2f(f32 x, f32 y)
+{
+	return JMAAtan2Radian(x, y);
+}
 
 /**
  * @note Address: 0x80411804
@@ -474,7 +483,10 @@ void Quat::set(f32 a, f32 b, f32 c, f32 d)
  * @note Address: N/A
  * @note Size: 0x20
  */
-void Quat::set(f32 w, Vector3f& xyz) { set(w, xyz.x, xyz.y, xyz.z); }
+void Quat::set(f32 w, Vector3f& xyz)
+{
+	set(w, xyz.x, xyz.y, xyz.z);
+}
 
 /**
  * @note Address: N/A

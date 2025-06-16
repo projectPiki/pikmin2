@@ -134,7 +134,9 @@ void LoadState::draw(SingleGameSection* game, Graphics& gfx)
  * @note Address: 0x8023A200
  * @note Size: 0x4
  */
-void LoadState::cleanup(SingleGameSection*) { }
+void LoadState::cleanup(SingleGameSection*)
+{
+}
 
 } // namespace SingleGame
 } // namespace Game

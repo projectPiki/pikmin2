@@ -22,7 +22,10 @@ Generator::Generator()
  * @note Address: 0x8026298C
  * @note Size: 0xC
  */
-u32 Generator::getLatestVersion() { return '0000'; }
+u32 Generator::getLatestVersion()
+{
+	return '0000';
+}
 
 /**
  * @note Address: 0x80262998
@@ -68,7 +71,9 @@ void Generator::doReadLatestVersion(Stream& stream)
  * @note Address: 0x80262B08
  * @note Size: 0x4
  */
-void Generator::doReadOldVersion(Stream&) { }
+void Generator::doReadOldVersion(Stream&)
+{
+}
 
 /**
  * @note Address: 0x80262B0C
@@ -84,7 +89,10 @@ Mgr::Mgr(int objLimit, u8 modelType)
  * @note Address: 0x80262B5C
  * @note Size: 0x48
  */
-void Mgr::doAlloc() { init(new Parms); }
+void Mgr::doAlloc()
+{
+	init(new Parms);
+}
 
 /**
  * @note Address: 0x80262C3C
@@ -110,7 +118,10 @@ void Mgr::createObj(int count)
  * @note Address: 0x80262E58
  * @note Size: 0x10
  */
-EnemyBase* Mgr::getEnemy(int index) { return &mObj[index]; }
+EnemyBase* Mgr::getEnemy(int index)
+{
+	return &mObj[index];
+}
 
 } // namespace Rock
 } // namespace Game

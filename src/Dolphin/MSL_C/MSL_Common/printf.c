@@ -1285,7 +1285,10 @@ int vsnprintf(char* s, size_t n, const char* format, va_list arg)
  * @note Address: 0x800C75EC
  * @note Size: 0x78
  */
-int vsprintf(char* s, const char* format, va_list arg) { return vsnprintf(s, 0xFFFFFFFF, format, arg); }
+int vsprintf(char* s, const char* format, va_list arg)
+{
+	return vsnprintf(s, 0xFFFFFFFF, format, arg);
+}
 
 /**
  * @note Address: 0x800C7518

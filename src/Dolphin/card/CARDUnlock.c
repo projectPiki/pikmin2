@@ -48,7 +48,10 @@ int CARDRand()
  * makes the inlined versions of this not match (:
  * LOVE this compiler.
  */
-void CARDSrand(uint seed) { next = seed; }
+void CARDSrand(uint seed)
+{
+	next = seed;
+}
 
 /**
  * @note Address: N/A

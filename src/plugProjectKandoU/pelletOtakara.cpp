@@ -59,7 +59,10 @@ void Object::do_onInit(CreatureInitArg*)
  * @note Address: 0x801FFFEC
  * @note Size: 0x20
  */
-void Object::getShadowParam(ShadowParam& shadowParam) { Pellet::getShadowParam(shadowParam); }
+void Object::getShadowParam(ShadowParam& shadowParam)
+{
+	Pellet::getShadowParam(shadowParam);
+}
 
 /**
  * @note Address: 0x8020000C
@@ -265,7 +268,10 @@ void Mgr::setupResources()
  * @note Address: 0x80200B44
  * @note Size: 0x24
  */
-GenPelletParm* Mgr::generatorNewPelletParm() { return new GenPelletParm; }
+GenPelletParm* Mgr::generatorNewPelletParm()
+{
+	return new GenPelletParm;
+}
 
 /**
  * @note Address: 0x80200B68
@@ -298,13 +304,19 @@ Pellet* Mgr::generatorBirth(Vector3f& pos, Vector3f& rot, GenPelletParm* genParm
  * @note Address: 0x80200CB0
  * @note Size: 0x30
  */
-void Mgr::generatorWrite(Stream& data, GenPelletParm* parm) { data.writeShort((u16)parm->mIndex); }
+void Mgr::generatorWrite(Stream& data, GenPelletParm* parm)
+{
+	data.writeShort((u16)parm->mIndex);
+}
 
 /**
  * @note Address: 0x80200CE0
  * @note Size: 0x38
  */
-void Mgr::generatorRead(Stream& data, GenPelletParm* parm, u32 flag) { parm->mIndex = (u16)data.readShort(); }
+void Mgr::generatorRead(Stream& data, GenPelletParm* parm, u32 flag)
+{
+	parm->mIndex = (u16)data.readShort();
+}
 
 } // namespace PelletOtakara
 } // namespace Game

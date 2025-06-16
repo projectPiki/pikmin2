@@ -8,7 +8,9 @@ namespace RedKabuto {
  * @note Address: 0x80300158
  * @note Size: 0x90
  */
-Obj::Obj() { }
+Obj::Obj()
+{
+}
 
 /**
  * @note Address: 0x803001E8

@@ -16,4 +16,7 @@ void SetUseSerialIO(u8 sio)
  * @note Address: 0x800C09F0
  * @note Size: 0x10
  */
-u8 GetUseSerialIO(void) { return bUseSerialIO; }
+u8 GetUseSerialIO(void)
+{
+	return bUseSerialIO;
+}

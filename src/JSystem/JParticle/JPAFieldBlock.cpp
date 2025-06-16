@@ -69,7 +69,10 @@ void JPAFieldGravity::prepare(JPAEmitterWorkData* workData, JPAFieldBlock* block
  * @note Address: 0x80091648
  * @note Size: 0x1BC
  */
-void JPAFieldGravity::calc(JPAEmitterWorkData* workData, JPAFieldBlock* block, JPABaseParticle* particle) { calcAffect(block, particle); }
+void JPAFieldGravity::calc(JPAEmitterWorkData* workData, JPAFieldBlock* block, JPABaseParticle* particle)
+{
+	calcAffect(block, particle);
+}
 
 /**
  * @note Address: 0x80091804

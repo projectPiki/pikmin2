@@ -63,13 +63,19 @@ int ItemNode::getObjectId()
  * @note Address: 0x8024E2F0
  * @note Size: 0x8
  */
-u32 ItemNode::getObjectType() { return OBJLAYOUT_Item; }
+u32 ItemNode::getObjectType()
+{
+	return OBJLAYOUT_Item;
+}
 
 /**
  * @note Address: 0x8024E2F8
  * @note Size: 0x8
  */
-int ItemNode::getBirthCount() { return mBirthCount; }
+int ItemNode::getBirthCount()
+{
+	return mBirthCount;
+}
 
 /**
  * @note Address: 0x8024E300
@@ -85,6 +91,9 @@ void ItemNode::getBirthPosition(f32& x, f32& y)
  * @note Address: 0x8024E314
  * @note Size: 0x8
  */
-f32 ItemNode::getDirection() { return mDirection; }
+f32 ItemNode::getDirection()
+{
+	return mDirection;
+}
 } // namespace Cave
 } // namespace Game

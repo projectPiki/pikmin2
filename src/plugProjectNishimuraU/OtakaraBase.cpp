@@ -22,7 +22,9 @@ Obj::Obj()
  * @note Address: 0x802B637C
  * @note Size: 0x4
  */
-void Obj::setInitialSetting(EnemyInitialParamBase*) { }
+void Obj::setInitialSetting(EnemyInitialParamBase*)
+{
+}
 
 /**
  * @note Address: 0x802B6380
@@ -71,7 +73,10 @@ void Obj::onKill(CreatureKillArg* killArg)
  * @note Address: 0x802B64EC
  * @note Size: 0x34
  */
-void Obj::doUpdate() { mFsm->exec(this); }
+void Obj::doUpdate()
+{
+	mFsm->exec(this);
+}
 
 /**
  * @note Address: 0x802B6520
@@ -125,13 +130,18 @@ void Obj::doAnimationCullingOff()
  * @note Address: 0x802B6690
  * @note Size: 0x4
  */
-void Obj::doDirectDraw(Graphics&) { }
+void Obj::doDirectDraw(Graphics&)
+{
+}
 
 /**
  * @note Address: 0x802B6694
  * @note Size: 0x20
  */
-void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
+void Obj::doDebugDraw(Graphics& gfx)
+{
+	EnemyBase::doDebugDraw(gfx);
+}
 
 /**
  * @note Address: 0x802B66B4
@@ -321,19 +331,28 @@ void Obj::doFinishWaitingBirthTypeDrop()
  * @note Address: 0x802B6BA0
  * @note Size: 0x28
  */
-void Obj::startCarcassMotion() { EnemyBase::startMotion(OTAKARAANIM_Carry, nullptr); }
+void Obj::startCarcassMotion()
+{
+	EnemyBase::startMotion(OTAKARAANIM_Carry, nullptr);
+}
 
 /**
  * @note Address: 0x802B6BC8
  * @note Size: 0x2C
  */
-void Obj::doStartMovie() { effectDrawOff(); }
+void Obj::doStartMovie()
+{
+	effectDrawOff();
+}
 
 /**
  * @note Address: 0x802B6BF4
  * @note Size: 0x2C
  */
-void Obj::doEndMovie() { effectDrawOn(); }
+void Obj::doEndMovie()
+{
+	effectDrawOn();
+}
 
 /**
  * @note Address: 0x802B6C20

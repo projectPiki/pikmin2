@@ -23,7 +23,9 @@ static OSTime sPlayTime = OS_TIMER_CLOCK * 300;
  * @note Address: 0x80423770
  * @note Size: 0x4
  */
-void Section::init() { }
+void Section::init()
+{
+}
 
 /**
  * @note Address: 0x80423774
@@ -283,19 +285,28 @@ void Section::exit()
  * @note Address: 0x80423FCC
  * @note Size: 0x24
  */
-bool Section::beginFrame() { return sys->beginFrame(); }
+bool Section::beginFrame()
+{
+	return sys->beginFrame();
+}
 
 /**
  * @note Address: 0x80423FF0
  * @note Size: 0x24
  */
-void Section::endFrame() { sys->endFrame(); }
+void Section::endFrame()
+{
+	sys->endFrame();
+}
 
 /**
  * @note Address: 0x80424014
  * @note Size: 0x24
  */
-void Section::beginRender() { sys->beginRender(); }
+void Section::beginRender()
+{
+	sys->beginRender();
+}
 
 /**
  * @note Address: 0x80424038

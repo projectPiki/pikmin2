@@ -16,13 +16,19 @@ static const char className[] = "ebiScreenMemoryCard";
  * @note Address: N/A
  * @note Size: 0x4C
  */
-TResourceObserver::TResourceObserver(TMemoryCard* owner) { mOwner = owner; }
+TResourceObserver::TResourceObserver(TMemoryCard* owner)
+{
+	mOwner = owner;
+}
 
 /**
  * @note Address: 0x803C2244
  * @note Size: 0x6C
  */
-TResourceObserver::~TResourceObserver() { mOwner->destroyResource(); }
+TResourceObserver::~TResourceObserver()
+{
+	mOwner->destroyResource();
+}
 
 /**
  * @note Address: 0x803C22B0
@@ -564,7 +570,10 @@ void TMemoryCard::close()
  * @note Address: 0x803C3B30
  * @note Size: 0x24
  */
-void TMemoryCard::killScreen() { startState(MEMCARD_Disabled); }
+void TMemoryCard::killScreen()
+{
+	startState(MEMCARD_Disabled);
+}
 
 /**
  * @note Address: 0x803C3B54

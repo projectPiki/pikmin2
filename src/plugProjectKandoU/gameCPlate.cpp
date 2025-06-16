@@ -10,7 +10,10 @@ namespace Game {
  * @note Address: 0x80194FF4
  * @note Size: 0x14
  */
-Creature* CPlate::get(void* index) { return mSlots[(int)index].mCreature; }
+Creature* CPlate::get(void* index)
+{
+	return mSlots[(int)index].mCreature;
+}
 
 /**
  * @note Address: 0x80195008
@@ -26,19 +29,28 @@ void* CPlate::getNext(void* index)
  * @note Address: 0x80195044
  * @note Size: 0x8
  */
-void* CPlate::getStart() { return nullptr; }
+void* CPlate::getStart()
+{
+	return nullptr;
+}
 
 /**
  * @note Address: 0x8019504C
  * @note Size: 0x8
  */
-void* CPlate::getEnd() { return (void*)mSlotCount; }
+void* CPlate::getEnd()
+{
+	return (void*)mSlotCount;
+}
 
 /**
  * @note Address: 0x80195054
  * @note Size: 0xC
  */
-void CPlate::shrink() { mShrinkTimer = 10; }
+void CPlate::shrink()
+{
+	mShrinkTimer = 10;
+}
 
 /**
  * @note Address: N/A

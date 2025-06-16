@@ -6,7 +6,10 @@
 #include "Game/gamePlayData.h"
 #include "trig.h"
 
-static void _Print(char* format, ...) { OSReport(format, __FILE__); }
+static void _Print(char* format, ...)
+{
+	OSReport(format, __FILE__);
+}
 
 namespace Game {
 namespace Equip {
@@ -63,7 +66,9 @@ ObjSMenuItem::ObjSMenuItem(char const* name)
  * @note Address: 0x80312F74
  * @note Size: 0xC4
  */
-ObjSMenuItem::~ObjSMenuItem() { }
+ObjSMenuItem::~ObjSMenuItem()
+{
+}
 
 /**
  * @note Address: 0x80313038
@@ -310,7 +315,10 @@ void ObjSMenuItem::in_R()
  * @note Address: 0x80313D28
  * @note Size: 0xC
  */
-void ObjSMenuItem::wait() { mState = MENUSTATE_Default; }
+void ObjSMenuItem::wait()
+{
+	mState = MENUSTATE_Default;
+}
 
 /**
  * @note Address: 0x80313D34
@@ -357,13 +365,19 @@ bool ObjSMenuItem::doStart(::Screen::StartSceneArg const* arg)
  * @note Address: 0x80313E5C
  * @note Size: 0x8
  */
-bool ObjSMenuItem::doEnd(::Screen::EndSceneArg const*) { return true; }
+bool ObjSMenuItem::doEnd(::Screen::EndSceneArg const*)
+{
+	return true;
+}
 
 /**
  * @note Address: 0x80313E64
  * @note Size: 0x20
  */
-void ObjSMenuItem::doUpdateFinish() { ObjSMenuBase::doUpdateFinish(); }
+void ObjSMenuItem::doUpdateFinish()
+{
+	ObjSMenuBase::doUpdateFinish();
+}
 
 /**
  * @note Address: 0x80313E84

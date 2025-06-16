@@ -30,7 +30,10 @@ ObjectSystem::ObjectSystem(char const* name, MoviePlayer* player)
  * @note Address: 0x804309F4
  * @note Size: 0x84
  */
-ObjectSystem::~ObjectSystem() { destroyObjectAll(); }
+ObjectSystem::~ObjectSystem()
+{
+	destroyObjectAll();
+}
 
 /**
  * @note Address: 0x80430A78
@@ -982,19 +985,28 @@ int ObjectSystem::JSGFindObject(JStage::TObject** outObject, const char* name, J
  * @note Address: 0x80431348
  * @note Size: 0x8
  */
-char* ObjectSystem::JSGGetName() const { return const_cast<char*>(mName); }
+char* ObjectSystem::JSGGetName() const
+{
+	return const_cast<char*>(mName);
+}
 
 /**
  * @note Address: 0x80431350
  * @note Size: 0x8
  */
-void ObjectSystem::JSGSetFlag(u32 flag) { mFlags = flag; }
+void ObjectSystem::JSGSetFlag(u32 flag)
+{
+	mFlags = flag;
+}
 
 /**
  * @note Address: 0x80431358
  * @note Size: 0x8
  */
-u32 ObjectSystem::JSGGetFlag() const { return mFlags; }
+u32 ObjectSystem::JSGGetFlag() const
+{
+	return mFlags;
+}
 
 /**
  * @note Address: 0x80431360

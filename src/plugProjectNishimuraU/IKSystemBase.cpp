@@ -44,13 +44,19 @@ void IKSystemBase::init()
  * @note Address: 0x802A9EFC
  * @note Size: 0x10
  */
-void IKSystemBase::setLegJointMatrix(int index, Matrixf* jointMtx) { mLegJointMatrices[index] = jointMtx; }
+void IKSystemBase::setLegJointMatrix(int index, Matrixf* jointMtx)
+{
+	mLegJointMatrices[index] = jointMtx;
+}
 
 /**
  * @note Address: 0x802A9F0C
  * @note Size: 0x8
  */
-void IKSystemBase::setParameters(IKSystemParms* params) { mParams = params; }
+void IKSystemBase::setParameters(IKSystemParms* params)
+{
+	mParams = params;
+}
 
 /**
  * @note Address: 0x802A9F14
@@ -110,19 +116,28 @@ void IKSystemBase::startMovePosition(Vector3f& targetMove)
  * @note Address: 0x802AA0F8
  * @note Size: 0xC
  */
-void IKSystemBase::startBlendMotion() { mIsBlendMotionActive = true; }
+void IKSystemBase::startBlendMotion()
+{
+	mIsBlendMotionActive = true;
+}
 
 /**
  * @note Address: 0x802AA104
  * @note Size: 0xC
  */
-void IKSystemBase::finishBlendMotion() { mIsBlendMotionActive = false; }
+void IKSystemBase::finishBlendMotion()
+{
+	mIsBlendMotionActive = false;
+}
 
 /**
  * @note Address: 0x802AA110
  * @note Size: 0xC
  */
-void IKSystemBase::checkJointScaleOn() { mScaleJoints = true; }
+void IKSystemBase::checkJointScaleOn()
+{
+	mScaleJoints = true;
+}
 
 /**
  * @note Address: 0x802AA11C
@@ -191,13 +206,19 @@ void IKSystemBase::moveBottomJointPosition()
  * @note Address: 0x802AA354
  * @note Size: 0x8
  */
-bool IKSystemBase::onGround() { return mIsOnGround; }
+bool IKSystemBase::onGround()
+{
+	return mIsOnGround;
+}
 
 /**
  * @note Address: 0x802AA35C
  * @note Size: 0x1C
  */
-Vector3f IKSystemBase::getBottomJointPosition() { return mTargetPosition; }
+Vector3f IKSystemBase::getBottomJointPosition()
+{
+	return mTargetPosition;
+}
 
 /**
  * @note Address: 0x802AA378
@@ -217,7 +238,10 @@ Vector3f IKSystemBase::getCollisionCentre()
  * @note Address: 0x802AA3C4
  * @note Size: 0x8
  */
-f32 IKSystemBase::getMoveRatio() { return mMoveRatio; }
+f32 IKSystemBase::getMoveRatio()
+{
+	return mMoveRatio;
+}
 
 /**
  * @note Address: 0x802AA3CC

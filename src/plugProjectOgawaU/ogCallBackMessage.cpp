@@ -4,7 +4,10 @@
 #include "og/Screen/ogScreen.h"
 #include "trig.h"
 
-inline u64 J2DPane::getTagName() const { return mTag; }
+inline u64 J2DPane::getTagName() const
+{
+	return mTag;
+}
 
 namespace og {
 namespace Screen {
@@ -84,7 +87,9 @@ void CallBack_Message::draw(Graphics& gfx, J2DGrafContext& graf)
  * @note Size: 0xE4
  * NB: this never gets used, but it has to be here to generate the weak CallBack_Message dtor in the right spot
  */
-CallBack_MessageAndShadow::CallBack_MessageAndShadow(f32, f32, J2DPane*) { }
+CallBack_MessageAndShadow::CallBack_MessageAndShadow(f32, f32, J2DPane*)
+{
+}
 
 /**
  * @note Address: 0x803098E0
@@ -128,6 +133,9 @@ void setCallBackMessageSub(P2DScreen::Mgr* mgr, J2DPane* pane)
  * @note Address: 0x80309E00
  * @note Size: 0x24
  */
-void setCallBackMessage(P2DScreen::Mgr* mgr) { setCallBackMessageSub(mgr, mgr); }
+void setCallBackMessage(P2DScreen::Mgr* mgr)
+{
+	setCallBackMessageSub(mgr, mgr);
+}
 } // namespace Screen
 } // namespace og

@@ -353,7 +353,9 @@ TitleMsgWave::TitleMsgWave(J2DScreen* screen, J2DPane* pane, char* str)
  * @note Address: 0x8032FA1C
  * @note Size: 0x4
  */
-void TitleMsgWave::init() { }
+void TitleMsgWave::init()
+{
+}
 
 /**
  * @note Address: 0x8032FA20

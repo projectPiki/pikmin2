@@ -15,13 +15,19 @@ static OSResetFunctionInfo ResetFunctionInfo = { OnReset, OS_RESET_PRIO_MEM };
  * @note Address: N/A
  * @note Size: 0xC
  */
-static u32 OSGetPhysicalMemSize() { return *(u32*)(OSPhysicalToCached(0x28)); }
+static u32 OSGetPhysicalMemSize()
+{
+	return *(u32*)(OSPhysicalToCached(0x28));
+}
 
 /**
  * @note Address: N/A
  * @note Size: 0xC
  */
-static u32 OSGetConsoleSimulatedMemSize() { return *(u32*)(OSPhysicalToCached(0xF0)); }
+static u32 OSGetConsoleSimulatedMemSize()
+{
+	return *(u32*)(OSPhysicalToCached(0xF0));
+}
 
 /**
  * @note Address: 0x800EF794

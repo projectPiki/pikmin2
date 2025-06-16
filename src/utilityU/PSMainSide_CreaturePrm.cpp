@@ -69,7 +69,10 @@ f32 THPDinamicsProc::dinamics(f32 input)
 	return volume * mDemoInfo->mBaseVolumeModifier;
 }
 
-CreaturePrm::CreaturePrm() { mPersp.set(1.0f, 400.0f, 0.8f, 700.0f, 0.0f); }
+CreaturePrm::CreaturePrm()
+{
+	mPersp.set(1.0f, 400.0f, 0.8f, 700.0f, 0.0f);
+}
 
 const f32 PSM::CreaturePrm::cNoukouDistance = 300.0f;
 const f32 PSM::CreaturePrm::cSeFxMix        = 0.07f;

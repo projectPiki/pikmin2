@@ -5,25 +5,37 @@ static void* __OSArenaLo = (void*)0xffffffff;
  * @note Address: 0x800EC424
  * @note Size: 0x8
  */
-void* OSGetArenaHi(void) { return __OSArenaHi; }
+void* OSGetArenaHi(void)
+{
+	return __OSArenaHi;
+}
 
 /**
  * @note Address: 0x800EC42C
  * @note Size: 0x8
  */
-void* OSGetArenaLo(void) { return __OSArenaLo; }
+void* OSGetArenaLo(void)
+{
+	return __OSArenaLo;
+}
 
 /**
  * @note Address: 0x800EC434
  * @note Size: 0x8
  */
-void OSSetArenaHi(void* arena_hi) { __OSArenaHi = arena_hi; }
+void OSSetArenaHi(void* arena_hi)
+{
+	__OSArenaHi = arena_hi;
+}
 
 /**
  * @note Address: 0x800EC43C
  * @note Size: 0x8
  */
-void OSSetArenaLo(void* arena_lo) { __OSArenaLo = arena_lo; }
+void OSSetArenaLo(void* arena_lo)
+{
+	__OSArenaLo = arena_lo;
+}
 
 /**
  * @note Address: N/A

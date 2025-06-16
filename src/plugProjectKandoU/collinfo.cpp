@@ -26,19 +26,28 @@ bool CollTree::mDebug;
  * @note Address: 0x801336A8
  * @note Size: 0x44
  */
-Platform::Platform() { mTriDivider = nullptr; }
+Platform::Platform()
+{
+	mTriDivider = nullptr;
+}
 
 /**
  * @note Address: N/A
  * @note Size: 0x8
  */
-void Platform::setTriDivider(Sys::TriDivider* triDivider) { mTriDivider = (Sys::OBBTree*)triDivider; }
+void Platform::setTriDivider(Sys::TriDivider* triDivider)
+{
+	mTriDivider = (Sys::OBBTree*)triDivider;
+}
 
 /**
  * @note Address: 0x801336EC
  * @note Size: 0x8
  */
-Sys::OBBTree* Platform::getTriDivider() { return mTriDivider; }
+Sys::OBBTree* Platform::getTriDivider()
+{
+	return mTriDivider;
+}
 
 /**
  * read__8PlatformFR6Stream
@@ -155,7 +164,10 @@ void PlatAttacher::read(Stream& input)
  * @note Address: 0x80133CD4
  * @note Size: 0x8
  */
-int PlatAttacher::getNumShapes() { return mNumShapes; }
+int PlatAttacher::getNumShapes()
+{
+	return mNumShapes;
+}
 
 /**
  * @note Address: 0x80133CDC
@@ -513,7 +525,10 @@ void CollPart::attachModel(SysShape::MtxObject* mtxObject)
  * @note Address: 0x80135E44
  * @note Size: 0x34
  */
-CollPart* CollTree::getCollPart(u32 partID) { return (mPart != nullptr) ? mPart->getCollPart(partID) : nullptr; }
+CollPart* CollTree::getCollPart(u32 partID)
+{
+	return (mPart != nullptr) ? mPart->getCollPart(partID) : nullptr;
+}
 
 /**
  * getCollPart__8CollPartFUl
@@ -750,14 +765,20 @@ void CollTree::getBoundingSphere(Sys::Sphere& sphere)
  * @note Address: 0x80136C74
  * @note Size: 0x64
  */
-CollPart::CollPart(SysShape::MtxObject* mtxObject) { init(mtxObject); }
+CollPart::CollPart(SysShape::MtxObject* mtxObject)
+{
+	init(mtxObject);
+}
 
 /**
  * __ct__8CollPartFv
  * @note Address: 0x80136CD8
  * @note Size: 0x58
  */
-CollPart::CollPart() { init(nullptr); }
+CollPart::CollPart()
+{
+	init(nullptr);
+}
 
 /**
  * @note Address: 0x80136D30
@@ -782,7 +803,10 @@ void CollPart::init(SysShape::MtxObject* mtxObject)
  * @note Address: 0x80136DB0
  * @note Size: 0x30
  */
-bool CollPart::isStickable() { return mSpecialID.match('s***', '*'); }
+bool CollPart::isStickable()
+{
+	return mSpecialID.match('s***', '*');
+}
 
 /**
  * update__8CollPartFv
@@ -1566,7 +1590,9 @@ void CollPart::getTube(Sys::Tube& tube)
  * @note Address: 0x80138330
  * @note Size: 0x4
  */
-void CollPart::draw(Graphics&) { }
+void CollPart::draw(Graphics&)
+{
+}
 
 /**
  * __ct__13MouthCollPartFv
@@ -1612,13 +1638,19 @@ inline void MouthCollPart::setup(SysShape::Model* model, char* jointName, Vector
  * @note Address: 0x801384C8
  * @note Size: 0x48
  */
-void MouthCollPart::getPosition(Vector3f& outPosition) { mMouthJoint->getWorldMatrix()->getTranslation(outPosition); }
+void MouthCollPart::getPosition(Vector3f& outPosition)
+{
+	mMouthJoint->getWorldMatrix()->getTranslation(outPosition);
+}
 
 /**
  * @note Address: 0x80138510
  * @note Size: 0x38
  */
-void MouthCollPart::copyMatrixTo(Matrixf& outMtx) { PSMTXCopy(mMouthJoint->getWorldMatrix()->mMatrix.mtxView, outMtx.mMatrix.mtxView); }
+void MouthCollPart::copyMatrixTo(Matrixf& outMtx)
+{
+	PSMTXCopy(mMouthJoint->getWorldMatrix()->mMatrix.mtxView, outMtx.mMatrix.mtxView);
+}
 
 /**
  * __ct__10MouthSlotsFv
@@ -1722,7 +1754,10 @@ CollPartFactory* CollPartFactory::load(JKRFileLoader* loader, char* path)
  * @note Address: 0x80138A6C
  * @note Size: 0x20
  */
-CollPart* CollPartFactory::createInstance(SysShape::MtxObject* mtxObject, CollPartMgr* mgr) { return clone(mtxObject, mgr); }
+CollPart* CollPartFactory::createInstance(SysShape::MtxObject* mtxObject, CollPartMgr* mgr)
+{
+	return clone(mtxObject, mgr);
+}
 
 /**
  * @note Address: 0x80138A8C

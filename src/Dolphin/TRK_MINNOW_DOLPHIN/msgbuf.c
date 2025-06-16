@@ -6,7 +6,10 @@ MessageBuffer gTRKMsgBufs[3];
  * @note Address: N/A
  * @note Size: 0x8
  */
-void TRKSetBufferUsed(MessageBuffer* msg, BOOL state) { msg->isInUse = state; }
+void TRKSetBufferUsed(MessageBuffer* msg, BOOL state)
+{
+	msg->isInUse = state;
+}
 
 /**
  * @note Address: 0x800BC054
@@ -324,7 +327,10 @@ void TRKAppendBuffer_ui128(void)
  * @note Address: N/A
  * @note Size: 0x80
  */
-DSError TRKReadBuffer1_ui8(MessageBuffer* buffer, u8* data) { return TRKReadBuffer(buffer, (void*)data, 1); }
+DSError TRKReadBuffer1_ui8(MessageBuffer* buffer, u8* data)
+{
+	return TRKReadBuffer(buffer, (void*)data, 1);
+}
 
 /**
  * @note Address: N/A

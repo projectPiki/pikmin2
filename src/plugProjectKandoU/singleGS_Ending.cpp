@@ -108,7 +108,9 @@ void EndingState::dvdload()
  * @note Address: 0x80232A24
  * @note Size: 0x4
  */
-void EndingState::do_dvdload() { }
+void EndingState::do_dvdload()
+{
+}
 
 /**
  * @note Address: 0x80232A28

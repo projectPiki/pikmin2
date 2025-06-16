@@ -144,7 +144,10 @@ void StateDropWait::init(EnemyBase* enemy, StateArg* stateArg)
  * @note Address: 0x8026238C
  * @note Size: 0x34
  */
-void StateDropWait::exec(EnemyBase* enemy) { transit(enemy, ROCK_Fall, nullptr); }
+void StateDropWait::exec(EnemyBase* enemy)
+{
+	transit(enemy, ROCK_Fall, nullptr);
+}
 
 /**
  * @note Address: 0x802623C0
@@ -286,7 +289,9 @@ void StateDead::exec(EnemyBase* enemy)
  * @note Address: 0x80262850
  * @note Size: 0x4
  */
-void StateDead::cleanup(EnemyBase* enemy) { }
+void StateDead::cleanup(EnemyBase* enemy)
+{
+}
 
 } // namespace Rock
 } // namespace Game

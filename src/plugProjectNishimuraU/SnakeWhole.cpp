@@ -34,7 +34,9 @@ Obj::Obj()
  * @note Address: 0x802CE904
  * @note Size: 0x4
  */
-void Obj::setInitialSetting(EnemyInitialParamBase*) { }
+void Obj::setInitialSetting(EnemyInitialParamBase*)
+{
+}
 
 /**
  * @note Address: 0x802CE908
@@ -107,13 +109,18 @@ void Obj::doAnimationCullingOff()
  * @note Address: 0x802CEAC8
  * @note Size: 0x4
  */
-void Obj::doDirectDraw(Graphics&) { }
+void Obj::doDirectDraw(Graphics&)
+{
+}
 
 /**
  * @note Address: 0x802CEACC
  * @note Size: 0x20
  */
-void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
+void Obj::doDebugDraw(Graphics& gfx)
+{
+	EnemyBase::doDebugDraw(gfx);
+}
 
 /**
  * @note Address: 0x802CEAEC
@@ -164,7 +171,10 @@ bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* part)
  * @note Address: 0x802CEC80
  * @note Size: 0x20
  */
-void Obj::doStartStoneState() { EnemyBase::doStartStoneState(); }
+void Obj::doStartStoneState()
+{
+	EnemyBase::doStartStoneState();
+}
 
 /**
  * @note Address: 0x802CECA0
@@ -180,19 +190,28 @@ void Obj::doFinishStoneState()
  * @note Address: 0x802CECE8
  * @note Size: 0x28
  */
-void Obj::startCarcassMotion() { startMotion(SNAKEWHOLEANIM_Carry, nullptr); }
+void Obj::startCarcassMotion()
+{
+	startMotion(SNAKEWHOLEANIM_Carry, nullptr);
+}
 
 /**
  * @note Address: 0x802CED10
  * @note Size: 0x20
  */
-void Obj::doStartMovie() { effectDrawOff(); }
+void Obj::doStartMovie()
+{
+	effectDrawOff();
+}
 
 /**
  * @note Address: 0x802CED30
  * @note Size: 0x20
  */
-void Obj::doEndMovie() { effectDrawOn(); }
+void Obj::doEndMovie()
+{
+	effectDrawOn();
+}
 
 /**
  * @note Address: 0x802CED50
@@ -214,19 +233,28 @@ void Obj::initMouthSlots()
  * @note Address: 0x802CEE0C
  * @note Size: 0x58
  */
-void Obj::getThrowupItemPosition(Vector3f* pos) { *pos = mModel->getJoint("kutijnt1")->getWorldMatrix()->getColumn(3); }
+void Obj::getThrowupItemPosition(Vector3f* pos)
+{
+	*pos = mModel->getJoint("kutijnt1")->getWorldMatrix()->getColumn(3);
+}
 
 /**
  * @note Address: 0x802CEE64
  * @note Size: 0x3C
  */
-bool Obj::isOutTerritory() { return (u8)(sqrDistanceXZ(mPosition, mHomePosition) > SQUARE(C_GENERALPARMS.mTerritoryRadius())); }
+bool Obj::isOutTerritory()
+{
+	return (u8)(sqrDistanceXZ(mPosition, mHomePosition) > SQUARE(C_GENERALPARMS.mTerritoryRadius()));
+}
 
 /**
  * @note Address: 0x802CEEA0
  * @note Size: 0x3C
  */
-bool Obj::isInHomeRange() { return (u8)(sqrDistanceXZ(mPosition, mHomePosition) < SQUARE(C_GENERALPARMS.mHomeRadius())); }
+bool Obj::isInHomeRange()
+{
+	return (u8)(sqrDistanceXZ(mPosition, mHomePosition) < SQUARE(C_GENERALPARMS.mHomeRadius()));
+}
 
 /**
  * @note Address: 0x802CEEDC
@@ -1859,25 +1887,37 @@ int Obj::getStickHeadPikmin()
  * @note Address: 0x802D08E8
  * @note Size: 0x48
  */
-void Obj::createJointCallBack() { mSnakeJointMgr = new SnakeJointMgr(this); }
+void Obj::createJointCallBack()
+{
+	mSnakeJointMgr = new SnakeJointMgr(this);
+}
 
 /**
  * @note Address: 0x802D0930
  * @note Size: 0x24
  */
-void Obj::setupJointCallBack() { mSnakeJointMgr->setupCallBackJoint(); }
+void Obj::setupJointCallBack()
+{
+	mSnakeJointMgr->setupCallBackJoint();
+}
 
 /**
  * @note Address: 0x802D0954
  * @note Size: 0x24
  */
-void Obj::doAnimationJointCallBack() { mSnakeJointMgr->doAnimation(); }
+void Obj::doAnimationJointCallBack()
+{
+	mSnakeJointMgr->doAnimation();
+}
 
 /**
  * @note Address: 0x802D0978
  * @note Size: 0x24
  */
-void Obj::finishAnimationJointCallBack() { mSnakeJointMgr->finishAnimation(); }
+void Obj::finishAnimationJointCallBack()
+{
+	mSnakeJointMgr->finishAnimation();
+}
 
 /**
  * @note Address: 0x802D099C
@@ -1906,7 +1946,10 @@ void Obj::returnJointCallBack()
  * @note Address: 0x802D0ADC
  * @note Size: 0x24
  */
-void Obj::finishJointCallBack() { mSnakeJointMgr->finishModify(); }
+void Obj::finishJointCallBack()
+{
+	mSnakeJointMgr->finishModify();
+}
 
 /**
  * @note Address: 0x802D0B00
@@ -1939,31 +1982,46 @@ void Obj::lifeIncrement()
  * @note Address: 0x802D0B78
  * @note Size: 0x48
  */
-void Obj::createShadowSystem() { mShadowMgr = new SnakeWholeShadowMgr(this); }
+void Obj::createShadowSystem()
+{
+	mShadowMgr = new SnakeWholeShadowMgr(this);
+}
 
 /**
  * @note Address: 0x802D0BC0
  * @note Size: 0x24
  */
-void Obj::setupShadowSystem() { mShadowMgr->init(); }
+void Obj::setupShadowSystem()
+{
+	mShadowMgr->init();
+}
 
 /**
  * @note Address: 0x802D0BE4
  * @note Size: 0x24
  */
-void Obj::doAnimationShadowSystem() { mShadowMgr->update(); }
+void Obj::doAnimationShadowSystem()
+{
+	mShadowMgr->update();
+}
 
 /**
  * @note Address: 0x802D0C08
  * @note Size: 0x24
  */
-void Obj::startJointShadow() { mShadowMgr->startJointShadow(); }
+void Obj::startJointShadow()
+{
+	mShadowMgr->startJointShadow();
+}
 
 /**
  * @note Address: 0x802D0C2C
  * @note Size: 0x24
  */
-void Obj::finishJointShadow() { mShadowMgr->finishJointShadow(); }
+void Obj::finishJointShadow()
+{
+	mShadowMgr->finishJointShadow();
+}
 
 /**
  * @note Address: 0x802D0C50
@@ -2048,7 +2106,10 @@ void Obj::setBossAppearBGM()
  * @note Address: 0x802D10D0
  * @note Size: 0x68
  */
-void Obj::createEffect() { mEfxDead = new efx::TCphebiDead; }
+void Obj::createEffect()
+{
+	mEfxDead = new efx::TCphebiDead;
+}
 
 /**
  * @note Address: 0x802D1138
@@ -2089,7 +2150,10 @@ void Obj::createAppearEffect(int effectID)
  * @note Address: 0x802D1384
  * @note Size: 0x34
  */
-void Obj::createDeadStartEffect() { mEfxDead->create(nullptr); }
+void Obj::createDeadStartEffect()
+{
+	mEfxDead->create(nullptr);
+}
 
 /**
  * @note Address: 0x802D13B8
@@ -2120,13 +2184,19 @@ void Obj::createWalkSmokeEffect(f32 scale)
  * @note Address: 0x802D1488
  * @note Size: 0x30
  */
-void Obj::effectDrawOn() { mEfxDead->endDemoDrawOn(); }
+void Obj::effectDrawOn()
+{
+	mEfxDead->endDemoDrawOn();
+}
 
 /**
  * @note Address: 0x802D14B8
  * @note Size: 0x30
  */
-void Obj::effectDrawOff() { mEfxDead->startDemoDrawOff(); }
+void Obj::effectDrawOff()
+{
+	mEfxDead->startDemoDrawOff();
+}
 
 /**
  * @note Address: 0x802D14E8

@@ -111,7 +111,10 @@ void StateWalk::exec(EnemyBase* enemy)
  * @note Address: 0x80359620
  * @note Size: 0x28
  */
-void StateWalk::cleanup(EnemyBase* enemy) { enemy->setAnimSpeed(EnemyAnimatorBase::defaultAnimSpeed); }
+void StateWalk::cleanup(EnemyBase* enemy)
+{
+	enemy->setAnimSpeed(EnemyAnimatorBase::defaultAnimSpeed);
+}
 
 /**
  * @note Address: 0x80359648
@@ -798,7 +801,10 @@ void StateDead::exec(EnemyBase* enemy)
  * @note Address: 0x80359FBC
  * @note Size: 0x28
  */
-void StateDead::cleanup(EnemyBase* enemy) { OBJ(enemy)->fadeEffect(Obj::KingEfx_Dead); }
+void StateDead::cleanup(EnemyBase* enemy)
+{
+	OBJ(enemy)->fadeEffect(Obj::KingEfx_Dead);
+}
 
 /**
  * @note Address: 0x80359FE4
@@ -1560,7 +1566,10 @@ lbl_8035A91C:
  * @note Address: 0x8035A96C
  * @note Size: 0x10
  */
-void StateFlick::cleanup(EnemyBase* enemy) { enemy->disableEvent(0, EB_NoInterrupt); }
+void StateFlick::cleanup(EnemyBase* enemy)
+{
+	enemy->disableEvent(0, EB_NoInterrupt);
+}
 
 /**
  * @note Address: 0x8035A97C
@@ -2112,7 +2121,10 @@ StateCaution::StateCaution(int stateID)
  * @note Address: 0x8035C0C8
  * @note Size: 0x2C
  */
-void StateCaution::init(EnemyBase* enemy, StateArg* stateArg) { OBJ(enemy)->startMotionSelf(KINGANIM_Caution, nullptr); }
+void StateCaution::init(EnemyBase* enemy, StateArg* stateArg)
+{
+	OBJ(enemy)->startMotionSelf(KINGANIM_Caution, nullptr);
+}
 
 /**
  * @note Address: 0x8035C0F4
@@ -2144,7 +2156,10 @@ StateSwallow::StateSwallow(int stateID)
  * @note Address: 0x8035C194
  * @note Size: 0x2C
  */
-void StateSwallow::init(EnemyBase* enemy, StateArg* stateArg) { OBJ(enemy)->startMotionSelf(KINGANIM_Swallow, nullptr); }
+void StateSwallow::init(EnemyBase* enemy, StateArg* stateArg)
+{
+	OBJ(enemy)->startMotionSelf(KINGANIM_Swallow, nullptr);
+}
 
 /**
  * @note Address: 0x8035C1C0

@@ -7,13 +7,17 @@ namespace newScreen {
  * @note Address: 0x8031CC90
  * @note Size: 0x3C
  */
-Cave::Cave() { }
+Cave::Cave()
+{
+}
 
 /**
  * @note Address: 0x8031CCCC
  * @note Size: 0x4
  */
-void Cave::doUserCallBackFunc(Resource::MgrCommand*) { }
+void Cave::doUserCallBackFunc(Resource::MgrCommand*)
+{
+}
 
 /**
  * @note Address: 0x8031CCD0

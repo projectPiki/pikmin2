@@ -22,7 +22,9 @@ ObjChallenge2P::ObjChallenge2P(const char* name)
  * @note Address: 0x8031EC4C
  * @note Size: 0x68
  */
-ObjChallenge2P::~ObjChallenge2P() { }
+ObjChallenge2P::~ObjChallenge2P()
+{
+}
 
 /**
  * @note Address: 0x8031ECB4
@@ -223,19 +225,26 @@ void ObjChallenge2P::doDraw(Graphics& gfx)
  * @note Address: 0x8031FAB0
  * @note Size: 0x4
  */
-void ObjChallenge2P::doUpdateFadeinFinish() { }
+void ObjChallenge2P::doUpdateFadeinFinish()
+{
+}
 
 /**
  * @note Address: 0x8031FAB4
  * @note Size: 0xC
  */
-void ObjChallenge2P::doUpdateFinish() { mFadeLevel = 0.0f; }
+void ObjChallenge2P::doUpdateFinish()
+{
+	mFadeLevel = 0.0f;
+}
 
 /**
  * @note Address: 0x8031FAC0
  * @note Size: 0x4
  */
-void ObjChallenge2P::doUpdateFadeoutFinish() { }
+void ObjChallenge2P::doUpdateFadeoutFinish()
+{
+}
 
 /**
  * @note Address: 0x8031FAC4

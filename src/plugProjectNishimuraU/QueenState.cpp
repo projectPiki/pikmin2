@@ -59,7 +59,9 @@ void StateDead::exec(EnemyBase* enemy)
  * @note Address: 0x80287EF8
  * @note Size: 0x4
  */
-void StateDead::cleanup(EnemyBase* enemy) { }
+void StateDead::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x80287EFC
@@ -184,7 +186,10 @@ void StateWait::exec(EnemyBase* enemy)
  * @note Address: 0x802882AC
  * @note Size: 0x24
  */
-void StateWait::cleanup(EnemyBase* enemy) { enemy->hardConstraintOff(); }
+void StateWait::cleanup(EnemyBase* enemy)
+{
+	enemy->hardConstraintOff();
+}
 
 /**
  * @note Address: 0x802882D0

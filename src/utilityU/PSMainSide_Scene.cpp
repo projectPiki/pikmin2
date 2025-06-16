@@ -51,7 +51,10 @@ SceneBase::SceneBase(u8 p1, PSGame::SceneInfo* info)
  * @note Address: 0x804676B4
  * @note Size: 0x8
  */
-f32 SceneBase::getSceneFx() { return 0.08f; }
+f32 SceneBase::getSceneFx()
+{
+	return 0.08f;
+}
 
 /**
  * @note Address: 0x804676BC
@@ -77,25 +80,35 @@ PSGame::SceneInfo* SceneBase::getSceneInfoA()
  * @note Address: 0x80467768
  * @note Size: 0x28
  */
-void SceneBase::pauseOn_2D(u8 p1, u8 p2) { mSeqMgr.pauseOnAllSeq(PSSystem::SeqBase::PauseMode(p1)); }
+void SceneBase::pauseOn_2D(u8 p1, u8 p2)
+{
+	mSeqMgr.pauseOnAllSeq(PSSystem::SeqBase::PauseMode(p1));
+}
 
 /**
  * @note Address: 0x80467790
  * @note Size: 0x24
  */
-void SceneBase::pauseOff_2D() { mSeqMgr.pauseOffAllSeq(); }
+void SceneBase::pauseOff_2D()
+{
+	mSeqMgr.pauseOffAllSeq();
+}
 
 /**
  * @note Address: 0x804677B4
  * @note Size: 0x4
  */
-void SceneBase::pauseOn_Demo() { }
+void SceneBase::pauseOn_Demo()
+{
+}
 
 /**
  * @note Address: 0x804677B8
  * @note Size: 0x4
  */
-void SceneBase::pauseOff_Demo() { }
+void SceneBase::pauseOff_Demo()
+{
+}
 
 /**
  * @note Address: 0x804677BC
@@ -122,7 +135,10 @@ Scene_Global::~Scene_Global()
  * @note Address: 0x80467914
  * @note Size: 0x8
  */
-f32 Scene_Global::getCamDistVol(u8) { return 0.0f; }
+f32 Scene_Global::getCamDistVol(u8)
+{
+	return 0.0f;
+}
 
 /**
  * @note Address: 0x8046791C
@@ -182,7 +198,10 @@ bool Scene_Demo::getSeSceneGate(PSM::ObjBase* obj, u32 p2)
  * @note Address: 0x80467B88
  * @note Size: 0x8
  */
-f32 Scene_Demo::getCamDistVol(u8) { return PSGame::CameraMgr::sDefaultVol; }
+f32 Scene_Demo::getCamDistVol(u8)
+{
+	return PSGame::CameraMgr::sDefaultVol;
+}
 
 /**
  * @note Address: 0x80467B90
@@ -273,13 +292,19 @@ void Scene_Objects::onStartMainSeq()
  * @note Address: 0x80467EE0
  * @note Size: 0x14
  */
-bool Scene_Objects::getSeSceneGate(PSM::ObjBase*, u32) { return _30; }
+bool Scene_Objects::getSeSceneGate(PSM::ObjBase*, u32)
+{
+	return _30;
+}
 
 /**
  * @note Address: 0x80467EF4
  * @note Size: 0x24
  */
-f32 Scene_Objects::getCamDistVol(u8 p1) { return mCameraMgr->getCurrentCamDistVol(p1); }
+f32 Scene_Objects::getCamDistVol(u8 p1)
+{
+	return mCameraMgr->getCurrentCamDistVol(p1);
+}
 
 /**
  * @note Address: 0x80467F18
@@ -504,7 +529,10 @@ Scene_Game::~Scene_Game()
  * @note Address: 0x80468454
  * @note Size: 0x58
  */
-void Scene_Game::attachBossFaderMgr() { mBossFaderMgr = BossBgmFader::Mgr::getInstance(); }
+void Scene_Game::attachBossFaderMgr()
+{
+	mBossFaderMgr = BossBgmFader::Mgr::getInstance();
+}
 
 /**
  * @note Address: 0x804684AC
@@ -790,7 +818,10 @@ lbl_80468764:
 void Scene_Game::stopMainSeq(u32 time)
 {
 	if (mBossFaderMgr) {
-		FOREACH_NODE(JSULink<PSSystem::SeqBase>, mSeqMgr.getFirst(), seq) { seq->getObject()->stopSeq(time); }
+		FOREACH_NODE(JSULink<PSSystem::SeqBase>, mSeqMgr.getFirst(), seq)
+		{
+			seq->getObject()->stopSeq(time);
+		}
 	} else {
 		PSSystem::Scene::stopMainSeq(time);
 	}
@@ -1136,7 +1167,10 @@ lbl_80468C00:
  * @note Address: 0x80468C28
  * @note Size: 0x8
  */
-PSSystem::EnvSeMgr* Scene_Game::getEnvSe() { return mEnvSeMgr; }
+PSSystem::EnvSeMgr* Scene_Game::getEnvSe()
+{
+	return mEnvSeMgr;
+}
 
 /**
  * @note Address: 0x80468C30
@@ -1264,7 +1298,9 @@ void Scene_Game::pauseOn_Demo()
  * @note Address: 0x80469888
  * @note Size: 0x4
  */
-void Scene_Game::pauseOff_Demo() { }
+void Scene_Game::pauseOff_Demo()
+{
+}
 
 /**
  * @note Address: 0x8046988C
@@ -1310,7 +1346,10 @@ void Scene_Ground::exec()
  * @note Address: 0x80469B08
  * @note Size: 0xC
  */
-void Scene_Ground::setPollutUp() { mPollutUpTimer = 0; }
+void Scene_Ground::setPollutUp()
+{
+	mPollutUpTimer = 0;
+}
 
 /**
  * @note Address: 0x80469B14
@@ -1728,7 +1767,10 @@ lbl_8046A060:
  * @note Address: 0x8046A078
  * @note Size: 0x8
  */
-f32 Scene_Cave::getSceneFx() { return mSceneFx; }
+f32 Scene_Cave::getSceneFx()
+{
+	return mSceneFx;
+}
 
 /**
  * @note Address: 0x8046A080
@@ -1935,7 +1977,10 @@ Scene_Challenge::Scene_Challenge(u8 p1, PSGame::SceneInfo* info)
  * @note Address: 0x8046AEE8
  * @note Size: 0x24C
  */
-void Scene_Challenge::init() { Scene_Cave::init(); }
+void Scene_Challenge::init()
+{
+	Scene_Cave::init();
+}
 
 /**
  * @note Address: 0x8046B134
@@ -1975,7 +2020,10 @@ bool Scene_Challenge::akubiOK()
  * @note Address: 0x8046B3A8
  * @note Size: 0x8
  */
-f32 Scene_Zukan::getCamDistVol(u8) { return 0.8f; }
+f32 Scene_Zukan::getCamDistVol(u8)
+{
+	return 0.8f;
+}
 
 /**
  * @note Address: 0x8046B3B0
@@ -2005,7 +2053,10 @@ Scene_WorldMap::Scene_WorldMap(u8 p1, PSGame::SceneInfo* info)
  * @note Address: 0x8046B5B0
  * @note Size: 0x8
  */
-f32 Scene_NoObjects::getCamDistVol(u8) { return PSGame::CameraMgr::sDefaultVol; }
+f32 Scene_NoObjects::getCamDistVol(u8)
+{
+	return PSGame::CameraMgr::sDefaultVol;
+}
 
 } // namespace PSM
 
@@ -2208,19 +2259,28 @@ void PSPause_StartMenuOn()
  * @note Address: 0x8046BB48
  * @note Size: 0x20
  */
-void PSPause_StartMenuOff() { PSPauseOff(); }
+void PSPause_StartMenuOff()
+{
+	PSPauseOff();
+}
 
 /**
  * @note Address: 0x8046BB68
  * @note Size: 0xEC
  */
-void PSPauseOn(u8 a1, u8 a2) { static_cast<PSM::Scene_Game*>(PSMGetChildScene())->pauseOn_2D(a1, a2); }
+void PSPauseOn(u8 a1, u8 a2)
+{
+	static_cast<PSM::Scene_Game*>(PSMGetChildScene())->pauseOn_2D(a1, a2);
+}
 
 /**
  * @note Address: 0x8046BC54
  * @note Size: 0xCC
  */
-void PSPauseOff() { static_cast<PSM::Scene_Game*>(PSMGetChildScene())->pauseOff_2D(); }
+void PSPauseOff()
+{
+	static_cast<PSM::Scene_Game*>(PSMGetChildScene())->pauseOff_2D();
+}
 
 /**
  * @note Address: 0x8046BD20

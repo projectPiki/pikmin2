@@ -21,7 +21,9 @@ Obj::Obj()
  * @note Address: 0x802699E4
  * @note Size: 0x4
  */
-void Obj::setInitialSetting(EnemyInitialParamBase*) { }
+void Obj::setInitialSetting(EnemyInitialParamBase*)
+{
+}
 
 /**
  * @note Address: 0x802699E8
@@ -54,13 +56,18 @@ void Obj::doUpdate()
  * @note Address: 0x80269AC8
  * @note Size: 0x4
  */
-void Obj::doDirectDraw(Graphics&) { }
+void Obj::doDirectDraw(Graphics&)
+{
+}
 
 /**
  * @note Address: 0x80269ACC
  * @note Size: 0x20
  */
-void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
+void Obj::doDebugDraw(Graphics& gfx)
+{
+	EnemyBase::doDebugDraw(gfx);
+}
 
 /**
  * @note Address: 0x80269AEC
@@ -119,7 +126,10 @@ bool Obj::pressCallBack(Creature* creature, f32 damage, CollPart* part)
  * @note Address: 0x80269CBC
  * @note Size: 0x2C
  */
-bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* part) { return pressCallBack(creature, damage, part); }
+bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* part)
+{
+	return pressCallBack(creature, damage, part);
+}
 
 /**
  * @note Address: 0x80269CE8
@@ -184,7 +194,10 @@ void Obj::doFinishEarthquakeFitState()
  * @note Address: 0x80269EA4
  * @note Size: 0x28
  */
-void Obj::startCarcassMotion() { startMotion(TOBIANIM_Carry, nullptr); }
+void Obj::startCarcassMotion()
+{
+	startMotion(TOBIANIM_Carry, nullptr);
+}
 
 /**
  * @note Address: 0x80269ECC
@@ -406,7 +419,10 @@ lbl_8026A1BC:
  * @note Address: 0x8026A224
  * @note Size: 0x24
  */
-bool Obj::isFlyingLife() { return ((mHealth / C_GENERALPARMS.mHealth.mValue) < C_PROPERPARMS.mTakeOffHealthRatio.mValue); }
+bool Obj::isFlyingLife()
+{
+	return ((mHealth / C_GENERALPARMS.mHealth.mValue) < C_PROPERPARMS.mTakeOffHealthRatio.mValue);
+}
 
 /**
  * @note Address: 0x8026A248
@@ -513,7 +529,9 @@ void Obj::setNearestBridge()
  * @note Address: 0x8026A6A0
  * @note Size: 0x4
  */
-void Obj::setCullingCheck() { }
+void Obj::setCullingCheck()
+{
+}
 
 /**
  * @note Address: 0x8026A6A4

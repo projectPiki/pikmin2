@@ -187,7 +187,10 @@ TRenderingProcessor::TRenderingProcessor(JMessage::TReference* ref)
  * @note Address: N/A
  * @note Size: 0x100
  */
-void TRenderingProcessor::initDrawInfoMgr(u32 count) { mDrawInfo.init(count); }
+void TRenderingProcessor::initDrawInfoMgr(u32 count)
+{
+	mDrawInfo.init(count);
+}
 
 /**
  * @note Address: 0x8043F55C
@@ -1042,7 +1045,10 @@ void TRenderingProcessor::doDrawImage(JUTTexture* tex, f32 x0, f32 y0, f32 x, f3
  * @note Address: 0x80440008
  * @note Size: 0x40
  */
-void TRenderingProcessor::update() { mDrawInfo.update(); }
+void TRenderingProcessor::update()
+{
+	mDrawInfo.update();
+}
 
 /**
  * @note Address: 0x80440048
@@ -1069,7 +1075,10 @@ TControl::TControl()
  * @note Address: 0x8044013C
  * @note Size: 0x100
  */
-void TControl::initRenderingProcessor(u32 count) { static_cast<Window::TRenderingProcessor*>(mTextRenderProc)->initDrawInfoMgr(count); }
+void TControl::initRenderingProcessor(u32 count)
+{
+	static_cast<Window::TRenderingProcessor*>(mTextRenderProc)->initDrawInfoMgr(count);
+}
 
 /**
  * @note Address: 0x8044023C
@@ -1117,7 +1126,10 @@ bool TControl::update(Controller* control1, Controller* control2)
  * @note Address: 0x804403C4
  * @note Size: 0x20
  */
-void TControl::reset() { P2JME::TControl::reset(); }
+void TControl::reset()
+{
+	P2JME::TControl::reset();
+}
 
 /**
  * @note Address: 0x804403E4

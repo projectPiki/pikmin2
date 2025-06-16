@@ -42,7 +42,9 @@ void Obj::birth(Vector3f& position, f32 faceDirection)
  * @note Address: 0x8012AAF0
  * @note Size: 0x4
  */
-void Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
+void Obj::setInitialSetting(Game::EnemyInitialParamBase*)
+{
+}
 
 /**
  * Initializes the chappy with the given CreatureInitArg.
@@ -72,19 +74,27 @@ void Obj::onInit(CreatureInitArg* initArg)
  * @note Address: 0x8012AB74
  * @note Size: 0x34
  */
-void Obj::doUpdate() { mFsm->exec(this); }
+void Obj::doUpdate()
+{
+	mFsm->exec(this);
+}
 
 /**
  * @note Address: 0x8012ABA8
  * @note Size: 0x4
  */
-void Obj::doDirectDraw(Graphics&) { }
+void Obj::doDirectDraw(Graphics&)
+{
+}
 
 /**
  * @note Address: 0x8012ABAC
  * @note Size: 0x20
  */
-void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
+void Obj::doDebugDraw(Graphics& gfx)
+{
+	EnemyBase::doDebugDraw(gfx);
+}
 
 /**
  * @note Address: 0x8012ABCC
@@ -182,7 +192,9 @@ void Obj::doStartStoneState()
  * @note Address: 0x8012AE74
  * @note Size: 0x4
  */
-void Obj::doFinishStoneState() { }
+void Obj::doFinishStoneState()
+{
+}
 
 /**
  * @note Address: 0x8012AE78
@@ -208,7 +220,10 @@ Vector3f Obj::getOffsetForMapCollision()
  * @note Address: 0x8012AEDC
  * @note Size: 0x28
  */
-void Obj::startCarcassMotion() { startMotion(CHAPPYANIM_Carry, nullptr); }
+void Obj::startCarcassMotion()
+{
+	startMotion(CHAPPYANIM_Carry, nullptr);
+}
 
 /**
  * @note Address: 0x8012AF04
@@ -243,7 +258,10 @@ void Obj::initWalkSmokeEffect()
  * @note Address: 0x8012B044
  * @note Size: 0x8
  */
-WalkSmokeEffect::Mgr* Obj::getWalkSmokeEffectMgr() { return &mWalkSmokeMgr; }
+WalkSmokeEffect::Mgr* Obj::getWalkSmokeEffectMgr()
+{
+	return &mWalkSmokeMgr;
+}
 
 /**
  * Checks if the object should wake up based on its enemy type and nearby creatures.
@@ -362,13 +380,19 @@ void Obj::flickAttackFail()
  * @note Address: 0x8012B5C8
  * @note Size: 0x24
  */
-int Obj::eatAttackPikmin() { return EnemyFunc::eatPikmin(this, nullptr); }
+int Obj::eatAttackPikmin()
+{
+	return EnemyFunc::eatPikmin(this, nullptr);
+}
 
 /**
  * @note Address: 0x8012B5EC
  * @note Size: 0xB0
  */
-void Obj::createEffect() { mEfxHanacho = new efx::THanachoN; }
+void Obj::createEffect()
+{
+	mEfxHanacho = new efx::THanachoN;
+}
 
 /**
  * @note Address: 0x8012B720
@@ -389,13 +413,19 @@ void Obj::setupEffect()
  * @note Address: 0x8012B770
  * @note Size: 0x34
  */
-void Obj::startSleepEffect() { static_cast<efx::THanachoN*>(mEfxHanacho)->create(nullptr); }
+void Obj::startSleepEffect()
+{
+	static_cast<efx::THanachoN*>(mEfxHanacho)->create(nullptr);
+}
 
 /**
  * @note Address: 0x8012B7A4
  * @note Size: 0x30
  */
-void Obj::finishSleepEffect() { static_cast<efx::THanachoN*>(mEfxHanacho)->fade(); }
+void Obj::finishSleepEffect()
+{
+	static_cast<efx::THanachoN*>(mEfxHanacho)->fade();
+}
 
 } // namespace ChappyBase
 } // namespace Game

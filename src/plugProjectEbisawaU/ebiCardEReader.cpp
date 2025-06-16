@@ -26,7 +26,10 @@ void gCardEMgr_ThreadFunc(void* data)
  * @note Address: N/A
  * @note Size: 0x18
  */
-u32 CardEReader::changeEndian(u32 x) { return ((x & 0xFF00) << 8) | (((x >> 24) & 0xFF) | ((x >> 8) & 0xFF00)) | ((x & 0xFF) << 24); }
+u32 CardEReader::changeEndian(u32 x)
+{
+	return ((x & 0xFF00) << 8) | (((x >> 24) & 0xFF) | ((x >> 8) & 0xFF00)) | ((x & 0xFF) << 24);
+}
 
 /**
  * @note Address: N/A
@@ -128,7 +131,10 @@ bool CardEReader::CardE_uploadToGBA(s32 chan, u8* data, size_t size)
  * @note Address: 0x803ECE10
  * @note Size: 0x68
  */
-CardEReader::TMgr::~TMgr() { gCardEMgr = nullptr; }
+CardEReader::TMgr::~TMgr()
+{
+	gCardEMgr = nullptr;
+}
 
 /**
  * @note Address: 0x803ECE78
@@ -264,7 +270,10 @@ void CardEReader::TMgr::update()
  * @note Address: 0x803ED1C0
  * @note Size: 0x10
  */
-bool CardEReader::TMgr::isFinish() { return (u8)(mState == 0); }
+bool CardEReader::TMgr::isFinish()
+{
+	return (u8)(mState == 0);
+}
 
 /**
  * @note Address: 0x803ED1D0

@@ -52,7 +52,10 @@ loop:
  * @note Address: 0x800F2FB4
  * @note Size: 0x20
  */
-void __init_user() { __init_cpp(); }
+void __init_user()
+{
+	__init_cpp();
+}
 
 /**
  * @note Address: 0x800F2FD4
@@ -82,7 +85,10 @@ void __fini_cpp()
  * @note Address: 0x800F3028
  * @note Size: 0x20
  */
-void _ExitProcess() { PPCHalt(); }
+void _ExitProcess()
+{
+	PPCHalt();
+}
 #ifdef __cplusplus
 }
 #endif

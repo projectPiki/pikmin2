@@ -30,7 +30,10 @@ SysTimers::SysTimers()
  * @note Address: 0x8042A948
  * @note Size: 0x68
  */
-SysTimers::~SysTimers() { reset(); }
+SysTimers::~SysTimers()
+{
+	reset();
+}
 
 /**
  * @note Address: 0x8042A9B0
@@ -46,34 +49,50 @@ TimerInf* SysTimers::get(int idx)
  * @note Address: 0x8042AA2C
  * @note Size: 0x74
  */
-TimerInf::~TimerInf() { sys->mTimers->remove(this); }
+TimerInf::~TimerInf()
+{
+	sys->mTimers->remove(this);
+}
 
 /**
  * @note Address: 0x8042AAA0
  * @note Size: 0x38
  */
-void SysTimers::reset() { JUT_PANICLINE(136, "有りえないー　有りえない―\ ザマシメック！！\n"); }
+void SysTimers::reset()
+{
+	JUT_PANICLINE(136, "有りえないー　有りえない―\ ザマシメック！！\n");
+}
 
 /**
  * @note Address: 0x8042AAD8
  * @note Size: 0x10
  */
-void SysTimers::newFrame() { mFrameCount++; }
+void SysTimers::newFrame()
+{
+	mFrameCount++;
+}
 
 /**
  * @note Address: 0x8042AAE8
  * @note Size: 0x10
  */
-void SysTimers::remove(TimerInf* timer) { timer->mState |= 1; }
+void SysTimers::remove(TimerInf* timer)
+{
+	timer->mState |= 1;
+}
 
 /**
  * @note Address: 0x8042AAF8
  * @note Size: 0x4
  */
-void SysTimers::_start(char*, bool) { }
+void SysTimers::_start(char*, bool)
+{
+}
 
 /**
  * @note Address: 0x8042AAFC
  * @note Size: 0x4
  */
-void SysTimers::_stop(char*) { }
+void SysTimers::_stop(char*)
+{
+}

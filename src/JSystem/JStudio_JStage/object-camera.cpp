@@ -35,7 +35,10 @@ JStudio_JStage::TAdaptor_camera::TAdaptor_camera(const JStage::TSystem* system, 
  * @note Size: 0x78
  * __dt
  */
-JStudio_JStage::TAdaptor_camera::~TAdaptor_camera() { adaptor_do_end(nullptr); }
+JStudio_JStage::TAdaptor_camera::~TAdaptor_camera()
+{
+	adaptor_do_end(nullptr);
+}
 
 /**
  * @note Address: 0x80013564
@@ -67,7 +70,10 @@ void JStudio_JStage::TAdaptor_camera::adaptor_do_begin(const JStudio::TObject* o
  * @note Address: 0x80013694
  * @note Size: 0x54
  */
-void JStudio_JStage::TAdaptor_camera::adaptor_do_end(const JStudio::TObject*) { mObject->setFlagOff(1); }
+void JStudio_JStage::TAdaptor_camera::adaptor_do_end(const JStudio::TObject*)
+{
+	mObject->setFlagOff(1);
+}
 
 /**
  * @note Address: 0x800136E8

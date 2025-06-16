@@ -53,7 +53,10 @@ JAInter::Object* BaseItem::getJAIObject()
  * @note Address: 0x801CC148
  * @note Size: 0x8
  */
-PSM::Creature* BaseItem::getPSCreature() { return mSoundObj; }
+PSM::Creature* BaseItem::getPSCreature()
+{
+	return mSoundObj;
+}
 
 /**
  * @note Address: 0x801CC150
@@ -90,7 +93,10 @@ void BaseItem::doAnimation()
  * @note Address: 0x801CC2E4
  * @note Size: 0x2C
  */
-void BaseItem::updateTrMatrix() { makeTrMatrix(); }
+void BaseItem::updateTrMatrix()
+{
+	makeTrMatrix();
+}
 
 /**
  * @note Address: 0x801CC310
@@ -130,19 +136,27 @@ void BaseItem::doEntry()
  * @note Address: 0x801CC40C
  * @note Size: 0x74
  */
-bool BaseItem::stimulate(Game::Interaction& interaction) { return (interaction.actCommon(this) ? interaction.actItem(this) : false); }
+bool BaseItem::stimulate(Game::Interaction& interaction)
+{
+	return (interaction.actCommon(this) ? interaction.actItem(this) : false);
+}
 
 /**
  * @note Address: 0x801CC480
  * @note Size: 0x4
  */
-void BaseItem::doSimulation(f32) { }
+void BaseItem::doSimulation(f32)
+{
+}
 
 /**
  * @note Address: 0x801CC484
  * @note Size: 0x2C
  */
-void BaseItem::makeTrMatrix() { mBaseTrMatrix.makeT(mPosition); }
+void BaseItem::makeTrMatrix()
+{
+	mBaseTrMatrix.makeT(mPosition);
+}
 
 /**
  * update__
@@ -257,13 +271,19 @@ void BaseItem::movieStartDemoAnimation(SysShape::AnimInfo* animInfo)
  * @note Address: 0x801CC910
  * @note Size: 0x24
  */
-void BaseItem::movieSetAnimationLastFrame() { mAnimator.setLastFrame(); }
+void BaseItem::movieSetAnimationLastFrame()
+{
+	mAnimator.setLastFrame();
+}
 
 /**
  * @note Address: 0x801CC934
  * @note Size: 0x1C
  */
-void BaseItem::movieSetTranslation(Vector3f& dest, f32 faceDir) { mPosition = dest; }
+void BaseItem::movieSetTranslation(Vector3f& dest, f32 faceDir)
+{
+	mPosition = dest;
+}
 
 /**
  * constructor__Q24Game8CFSMItemFv
@@ -291,19 +311,28 @@ void CFSMItem::initFSM()
  * @note Address: 0x801CC9F8
  * @note Size: 0x34
  */
-void CFSMItem::doAI() { mFsm->exec(this); }
+void CFSMItem::doAI()
+{
+	mFsm->exec(this);
+}
 
 /**
  * @note Address: 0x801CCA2C
  * @note Size: 0x8
  */
-void CFSMItem::setCurrState(FSMState<CFSMItem>* state) { mCurrentState = state; }
+void CFSMItem::setCurrState(FSMState<CFSMItem>* state)
+{
+	mCurrentState = state;
+}
 
 /**
  * @note Address: 0x801CCA34
  * @note Size: 0x8
  */
-FSMState<CFSMItem>* CFSMItem::getCurrState() { return mCurrentState; }
+FSMState<CFSMItem>* CFSMItem::getCurrState()
+{
+	return mCurrentState;
+}
 
 /**
  * @note Address: 0x801CCA3C
@@ -366,63 +395,90 @@ void CFSMItem::onKeyEvent(const SysShape::KeyEvent& event)
  * @note Address: 0x801CCB78
  * @note Size: 0x38
  */
-bool InteractAttack::actItem(Game::BaseItem* item) { return item->interactAttack(*this); }
+bool InteractAttack::actItem(Game::BaseItem* item)
+{
+	return item->interactAttack(*this);
+}
 
 /**
  * actItem__Q24Game19InteractBreakBridgeFPQ24Game8BaseItem
  * @note Address: 0x801CCBB0
  * @note Size: 0x38
  */
-bool InteractBreakBridge::actItem(Game::BaseItem* item) { return item->interactBreakBridge(*this); }
+bool InteractBreakBridge::actItem(Game::BaseItem* item)
+{
+	return item->interactBreakBridge(*this);
+}
 
 /**
  * actItem__Q24Game14InteractGotKeyFPQ24Game8BaseItem
  * @note Address: 0x801CCBE8
  * @note Size: 0x38
  */
-bool InteractGotKey::actItem(Game::BaseItem* item) { return item->interactGotKey(*this); }
+bool InteractGotKey::actItem(Game::BaseItem* item)
+{
+	return item->interactGotKey(*this);
+}
 
 /**
  * actItem__Q24Game11InteractEatFPQ24Game8BaseItem
  * @note Address: 0x801CCC20
  * @note Size: 0x38
  */
-bool InteractEat::actItem(Game::BaseItem* item) { return item->interactEat(*this); }
+bool InteractEat::actItem(Game::BaseItem* item)
+{
+	return item->interactEat(*this);
+}
 
 /**
  * actItem__Q24Game19InteractFlockAttackFPQ24Game8BaseItem
  * @note Address: 0x801CCC58
  * @note Size: 0x38
  */
-bool InteractFlockAttack::actItem(Game::BaseItem* item) { return item->interactFlockAttack(*this); }
+bool InteractFlockAttack::actItem(Game::BaseItem* item)
+{
+	return item->interactFlockAttack(*this);
+}
 
 /**
  * actItem__Q24Game14InteractAbsorbFPQ24Game8BaseItem
  * @note Address: 0x801CCC90
  * @note Size: 0x38
  */
-bool InteractAbsorb::actItem(Game::BaseItem* item) { return item->interactAbsorb(*this); }
+bool InteractAbsorb::actItem(Game::BaseItem* item)
+{
+	return item->interactAbsorb(*this);
+}
 
 /**
  * actItem__Q24Game11InteractFueFPQ24Game8BaseItem
  * @note Address: 0x801CCCC8
  * @note Size: 0x38
  */
-bool InteractFue::actItem(Game::BaseItem* item) { return item->interactFue(*this); }
+bool InteractFue::actItem(Game::BaseItem* item)
+{
+	return item->interactFue(*this);
+}
 
 /**
  * actItem__Q24Game18InteractFarmKareroFPQ24Game8BaseItem
  * @note Address: 0x801CCD00
  * @note Size: 0x38
  */
-bool InteractFarmKarero::actItem(Game::BaseItem* item) { return item->interactFarmKarero(*this); }
+bool InteractFarmKarero::actItem(Game::BaseItem* item)
+{
+	return item->interactFarmKarero(*this);
+}
 
 /**
  * actItem__Q24Game17InteractFarmHaeroFPQ24Game8BaseItem
  * @note Address: 0x801CCD38
  * @note Size: 0x38
  */
-bool InteractFarmHaero::actItem(Game::BaseItem* item) { return item->interactFarmHaero(*this); }
+bool InteractFarmHaero::actItem(Game::BaseItem* item)
+{
+	return item->interactFarmHaero(*this);
+}
 
 /**
  * @note Address: 0x801CCD70
@@ -499,13 +555,19 @@ void BaseItemMgr::loadAnimMgr(JKRFileLoader* loader, char* path)
  * @note Address: 0x801CD07C
  * @note Size: 0x38
  */
-void BaseItemMgr::loadCollision(JKRFileLoader* loader, char* path) { mCollPartFactory = CollPartFactory::load(loader, path); }
+void BaseItemMgr::loadCollision(JKRFileLoader* loader, char* path)
+{
+	mCollPartFactory = CollPartFactory::load(loader, path);
+}
 
 /**
  * @note Address: 0x801CD0B4
  * @note Size: 0x38
  */
-GenItemParm* BaseItemMgr::generatorNewItemParm() { return new GenItemParm(); }
+GenItemParm* BaseItemMgr::generatorNewItemParm()
+{
+	return new GenItemParm();
+}
 
 /**
  * @note Address: 0x801CD0EC
@@ -596,19 +658,27 @@ PlatAttacher* BaseItemMgr::loadPlatAttacher(JKRFileLoader* loader, char* path)
  * @note Address: 0x801CD3C4
  * @note Size: 0x2C
  */
-void BaseItemMgr::updateUseList(Game::GenItemParm* p1, int p2) { onUpdateUseList(p1, p2); }
+void BaseItemMgr::updateUseList(Game::GenItemParm* p1, int p2)
+{
+	onUpdateUseList(p1, p2);
+}
 
 /**
  * @note Address: 0x801CD3F0
  * @note Size: 0x2C
  */
-void BaseItemMgr::loadResources() { onLoadResources(); }
+void BaseItemMgr::loadResources()
+{
+	onLoadResources();
+}
 
 /**
  * @note Address: 0x801CD41C
  * @note Size: 0x4
  */
-void BaseItemMgr::setupSoundViewerAndBas() { }
+void BaseItemMgr::setupSoundViewerAndBas()
+{
+}
 
 /**
  * @note Address: 0x801CD420
@@ -696,7 +766,10 @@ ItemMgr::ItemMgr()
  * @note Address: 0x801CDC00
  * @note Size: 0xE8
  */
-ItemMgr::~ItemMgr() { clearGlobalPointers(); }
+ItemMgr::~ItemMgr()
+{
+	clearGlobalPointers();
+}
 
 /**
  * @note Address: 0x801CDCE8
@@ -803,7 +876,9 @@ void ItemMgr::doSimulation(f32 p1)
  * @note Address: 0x801CE8CC
  * @note Size: 0x4
  */
-void ItemMgr::doDirectDraw(Graphics&) { }
+void ItemMgr::doDirectDraw(Graphics&)
+{
+}
 
 /**
  * doSimpleDraw__Q24Game7ItemMgrFP8Viewport
