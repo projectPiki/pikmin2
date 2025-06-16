@@ -9,13 +9,17 @@ namespace newScreen {
  * @note Address: 0x8031FD04
  * @note Size: 0x3C
  */
-Challenge2P::Challenge2P() { }
+Challenge2P::Challenge2P()
+{
+}
 
 /**
  * @note Address: 0x8031FD40
  * @note Size: 0x4
  */
-void Challenge2P::doUserCallBackFunc(Resource::MgrCommand*) { }
+void Challenge2P::doUserCallBackFunc(Resource::MgrCommand*)
+{
+}
 
 /**
  * @note Address: 0x8031FD44

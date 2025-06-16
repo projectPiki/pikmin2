@@ -10,9 +10,15 @@ void __check_pad3(void)
 	return;
 }
 
-void __set_debug_bba(void) { Debug_BBA = 1; }
+void __set_debug_bba(void)
+{
+	Debug_BBA = 1;
+}
 
-u8 __get_debug_bba(void) { return Debug_BBA; }
+u8 __get_debug_bba(void)
+{
+	return Debug_BBA;
+}
 
 WEAKFUNC ASM void __start(void)
 {

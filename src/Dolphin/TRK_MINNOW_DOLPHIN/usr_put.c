@@ -70,7 +70,9 @@ void usr_puts_ram(void)
  * @note Address: 0x800BC380
  * @note Size: 0x4
  */
-void usr_put_initialize(void) { }
+void usr_put_initialize(void)
+{
+}
 
 /**
  * @note Address: N/A

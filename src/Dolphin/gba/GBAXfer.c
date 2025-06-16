@@ -40,7 +40,10 @@ static void __GBAHandler(s32 chan, u32 flag, OSContext* context)
  * @note Address: 0x800FF034
  * @note Size: 0x34
  */
-void __GBASyncCallback(s32 chan, int ret) { OSWakeupThread(&__GBA[chan].threadQueue); }
+void __GBASyncCallback(s32 chan, int ret)
+{
+	OSWakeupThread(&__GBA[chan].threadQueue);
+}
 
 /**
  * @note Address: 0x800FF068

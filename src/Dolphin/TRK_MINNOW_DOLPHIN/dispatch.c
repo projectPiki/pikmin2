@@ -4,7 +4,10 @@
  * @note Address: 0x800BC57C
  * @note Size: 0x8
  */
-DSError TRKInitializeDispatcher(void) { return DS_NoError; }
+DSError TRKInitializeDispatcher(void)
+{
+	return DS_NoError;
+}
 
 /**
  * @note Address: 0x800BC40C

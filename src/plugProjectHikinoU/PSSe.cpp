@@ -166,7 +166,10 @@ lbl_8033F578:
  * @note Address: 0x8033F5B4
  * @note Size: 0x8
  */
-void Rappa::setId(u32 id) { mId = id; }
+void Rappa::setId(u32 id)
+{
+	mId = id;
+}
 
 /**
  * @note Address: 0x8033F5BC
@@ -343,7 +346,10 @@ u16 Rappa::syncCpu_WaitChk(JASTrack* track)
  * @note Address: 0x8033F800
  * @note Size: 0x8
  */
-u16 Rappa::syncCpu_TblNo(JASTrack* track) { return mTableIndex; }
+u16 Rappa::syncCpu_TblNo(JASTrack* track)
+{
+	return mTableIndex;
+}
 
 /**
  * @note Address: 0x8033F808
@@ -427,7 +433,10 @@ void SetSe::startCounter(u32 id)
  * @note Address: 0x8033FA94
  * @note Size: 0xC
  */
-RandId::RandId() { mId = cNotUsingMasterIdRatio; }
+RandId::RandId()
+{
+	mId = cNotUsingMasterIdRatio;
+}
 
 /**
  * @note Address: N/A
@@ -1003,6 +1012,8 @@ EnvSe_Perspective* Builder_EvnSe_Perspective::newSeObj(u32 soundID, f32 volume, 
  * @note Address: 0x803406A8
  * @note Size: 0xC8
  */
-Builder_EvnSe_Perspective::~Builder_EvnSe_Perspective() { }
+Builder_EvnSe_Perspective::~Builder_EvnSe_Perspective()
+{
+}
 
 } // namespace PSGame

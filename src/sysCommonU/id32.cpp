@@ -6,19 +6,28 @@ ID32 ID32::eof('_eof');
  * @note Address: 0x80413254
  * @note Size: 0x1C
  */
-bool ID32::isEof() { return mId.mIntView == '_eof'; }
+bool ID32::isEof()
+{
+	return mId.mIntView == '_eof';
+}
 
 /**
  * @note Address: 0x80413270
  * @note Size: 0x38
  */
-ID32::ID32() { setID('none'); }
+ID32::ID32()
+{
+	setID('none');
+}
 
 /**
  * @note Address: 0x804132A8
  * @note Size: 0x30
  */
-ID32::ID32(u32 id) { setID(id); }
+ID32::ID32(u32 id)
+{
+	setID(id);
+}
 
 /**
  * @note Address: 0x804132D8
@@ -95,13 +104,19 @@ void ID32::operator=(u32 id)
  * @note Address: 0x80413434
  * @note Size: 0x14
  */
-bool ID32::operator==(u32 id) { return mId.mIntView == id; }
+bool ID32::operator==(u32 id)
+{
+	return mId.mIntView == id;
+}
 
 /**
  * @note Address: 0x80413448
  * @note Size: 0x18
  */
-bool ID32::operator!=(u32 id) { return mId.mIntView != id; }
+bool ID32::operator!=(u32 id)
+{
+	return mId.mIntView != id;
+}
 
 /**
  * @brief Writes the ID32 object to the given stream.
@@ -161,7 +176,9 @@ void ID32::read(Stream& stream)
  * @note Address: 0x804135DC
  * @note Size: 0x4
  */
-void ID32::print() { }
+void ID32::print()
+{
+}
 
 /**
  * @brief Converts the ID32 value to a string representation.

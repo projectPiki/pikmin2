@@ -180,13 +180,18 @@ int ActBattle::exec()
  * @note Address: 0x8022F19C
  * @note Size: 0xC
  */
-void ActBattle::cleanup() { mOther = nullptr; }
+void ActBattle::cleanup()
+{
+	mOther = nullptr;
+}
 
 /**
  * @note Address: 0x8022F1A8
  * @note Size: 0x4
  */
-void ActBattle::collisionCallback(Game::Piki*, Game::CollEvent&) { }
+void ActBattle::collisionCallback(Game::Piki*, Game::CollEvent&)
+{
+}
 
 /**
  * @note Address: 0x8022F1AC

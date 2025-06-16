@@ -24,7 +24,9 @@ Obj::Obj()
  * @note Address: 0x80272CFC
  * @note Size: 0x4
  */
-void Obj::setInitialSetting(EnemyInitialParamBase*) { }
+void Obj::setInitialSetting(EnemyInitialParamBase*)
+{
+}
 
 /**
  * @note Address: 0x80272D00
@@ -67,13 +69,18 @@ void Obj::setFSM(FSM* fsm)
  * @note Address: 0x80272E0C
  * @note Size: 0x4
  */
-void Obj::doDirectDraw(Graphics&) { }
+void Obj::doDirectDraw(Graphics&)
+{
+}
 
 /**
  * @note Address: 0x80272E10
  * @note Size: 0x20
  */
-void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
+void Obj::doDebugDraw(Graphics& gfx)
+{
+	EnemyBase::doDebugDraw(gfx);
+}
 
 /**
  * @note Address: 0x80272E30
@@ -134,7 +141,10 @@ void Obj::doFinishStoneState()
  * @note Address: 0x80273000
  * @note Size: 0x28
  */
-void Obj::startCarcassMotion() { EnemyBase::startMotion(SARAIANIM_Carry, nullptr); }
+void Obj::startCarcassMotion()
+{
+	EnemyBase::startMotion(SARAIANIM_Carry, nullptr);
+}
 
 /**
  * @note Address: 0x80273028
@@ -325,7 +335,10 @@ void Obj::flickStickTarget()
  * @note Address: 0x8027390C
  * @note Size: 0x80
  */
-int Obj::getStickPikminNum() { return mStuckPikminCount - getCatchTargetNum(); }
+int Obj::getStickPikminNum()
+{
+	return mStuckPikminCount - getCatchTargetNum();
+}
 
 /**
  * @note Address: 0x8027398C
@@ -363,12 +376,18 @@ FakePiki* Obj::getAttackableTarget()
  * @note Address: 0x80273D5C
  * @note Size: 0x24
  */
-int Obj::catchTarget() { EnemyFunc::eatPikmin(this, nullptr); }
+int Obj::catchTarget()
+{
+	EnemyFunc::eatPikmin(this, nullptr);
+}
 
 /**
  * @note Address: 0x80273D80
  * @note Size: 0x44
  */
-void Obj::createDownEffect() { EnemyBase::createBounceEffect(mPosition, getDownSmokeScale()); }
+void Obj::createDownEffect()
+{
+	EnemyBase::createBounceEffect(mPosition, getDownSmokeScale());
+}
 } // namespace Sarai
 } // namespace Game

@@ -42,13 +42,19 @@ ActFormation::ActFormation(Game::Piki* p)
  * @note Address: 0x8019CE68
  * @note Size: 0x8
  */
-void ActFormation::inform(int slotID) { mSlotID = slotID; }
+void ActFormation::inform(int slotID)
+{
+	mSlotID = slotID;
+}
 
 /**
  * @note Address: 0x8019CE70
  * @note Size: 0xC
  */
-void ActFormation::startSort() { mSortState = 2; }
+void ActFormation::startSort()
+{
+	mSortState = 2;
+}
 
 /**
  * @note Address: 0x8019CE7C
@@ -2248,12 +2254,18 @@ void ActFormation::platCallback(Game::Piki* p, Game::PlatEvent& platEvent)
  * @note Address: 0x8019EE34
  * @note Size: 0x8
  */
-bool ActFormation::resumable() { return true; }
+bool ActFormation::resumable()
+{
+	return true;
+}
 
 /**
  * @note Address: 0x8019EE3C
  * @note Size: 0x8
  */
-u32 ActFormation::getNextAIType() { return mNextAIType; }
+u32 ActFormation::getNextAIType()
+{
+	return mNextAIType;
+}
 
 } // namespace PikiAI

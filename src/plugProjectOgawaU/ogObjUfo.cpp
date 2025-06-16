@@ -11,7 +11,10 @@
 namespace og {
 namespace newScreen {
 
-static void _Print(char* format, ...) { OSReport(format, __FILE__); }
+static void _Print(char* format, ...)
+{
+	OSReport(format, __FILE__);
+}
 
 /**
  * @note Address: 0x80323798
@@ -46,7 +49,9 @@ ObjUfoMenu::ObjUfoMenu(char const* name)
  * @note Address: 0x80323848
  * @note Size: 0xAC
  */
-ObjUfoMenu::~ObjUfoMenu() { }
+ObjUfoMenu::~ObjUfoMenu()
+{
+}
 
 /**
  * @note Address: 0x803238F4
@@ -251,7 +256,10 @@ bool ObjUfoMenu::doStart(::Screen::StartSceneArg const*)
  * @note Address: 0x80324504
  * @note Size: 0x8
  */
-bool ObjUfoMenu::doEnd(::Screen::EndSceneArg const*) { return true; }
+bool ObjUfoMenu::doEnd(::Screen::EndSceneArg const*)
+{
+	return true;
+}
 
 /**
  * @note Address: 0x8032450C
@@ -277,7 +285,10 @@ void ObjUfoMenu::doUpdateFinish()
  * @note Address: 0x8032457C
  * @note Size: 0x24
  */
-void ObjUfoMenu::doUpdateFadeoutFinish() { mMenu->killCursor(); }
+void ObjUfoMenu::doUpdateFadeoutFinish()
+{
+	mMenu->killCursor();
+}
 
 /**
  * @note Address: 0x803245A0

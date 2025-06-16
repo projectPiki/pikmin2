@@ -7,7 +7,10 @@ extern f64 __ieee754_sqrt();
  * @note Size: 0x20
  */
 
-f64 sqrt(f64 __x) { return (f64)__ieee754_sqrt(); }
+f64 sqrt(f64 __x)
+{
+	return (f64)__ieee754_sqrt();
+}
 
 /*
 .loc_0x0:

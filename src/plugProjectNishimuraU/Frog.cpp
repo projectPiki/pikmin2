@@ -25,7 +25,9 @@ Obj::Obj()
  * @note Address: 0x80258680
  * @note Size: 0x4
  */
-void Obj::setInitialSetting(EnemyInitialParamBase*) { }
+void Obj::setInitialSetting(EnemyInitialParamBase*)
+{
+}
 
 /**
  * @note Address: 0x80258684
@@ -106,13 +108,18 @@ void Obj::doSimulationFlying(f32 step)
  * @note Address: 0x80258A04
  * @note Size: 0x4
  */
-void Obj::doDirectDraw(Graphics& gfx) { }
+void Obj::doDirectDraw(Graphics& gfx)
+{
+}
 
 /**
  * @note Address: 0x80258A08
  * @note Size: 0x20
  */
-void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
+void Obj::doDebugDraw(Graphics& gfx)
+{
+	EnemyBase::doDebugDraw(gfx);
+}
 
 /**
  * @note Address: 0x80258A28
@@ -252,25 +259,37 @@ void Obj::doFinishWaitingBirthTypeDrop()
  * @note Address: 0x80258E18
  * @note Size: 0x28
  */
-void Obj::startCarcassMotion() { EnemyBase::startMotion(FROGANIM_Carry, nullptr); }
+void Obj::startCarcassMotion()
+{
+	EnemyBase::startMotion(FROGANIM_Carry, nullptr);
+}
 
 /**
  * @note Address: 0x80258E18
  * @note Size: 0x28
  */
-Vector3f Obj::viewGetCollTreeOffset() { return Vector3f(20.0f, -15.0f, 0.0f); }
+Vector3f Obj::viewGetCollTreeOffset()
+{
+	return Vector3f(20.0f, -15.0f, 0.0f);
+}
 
 /**
  * @note Address: 0x80258E5C
  * @note Size: 0x20
  */
-void Obj::doStartMovie() { effectDrawOff(); }
+void Obj::doStartMovie()
+{
+	effectDrawOff();
+}
 
 /**
  * @note Address: 0x80258E7C
  * @note Size: 0x20
  */
-void Obj::doEndMovie() { effectDrawOn(); }
+void Obj::doEndMovie()
+{
+	effectDrawOn();
+}
 
 /**
  * @note Address: 0x80258E9C
@@ -402,25 +421,37 @@ void Obj::pressOnGround()
  * @note Address: 0x802593E8
  * @note Size: 0xB0
  */
-void Obj::createEffect() { mEfxPota = new efx::TFrogPota; }
+void Obj::createEffect()
+{
+	mEfxPota = new efx::TFrogPota;
+}
 
 /**
  * @note Address: 0x80259498
  * @note Size: 0x10
  */
-void Obj::setupEffect() { mEfxPota->mPosition = &mPosition; }
+void Obj::setupEffect()
+{
+	mEfxPota->mPosition = &mPosition;
+}
 
 /**
  * @note Address: 0x802594A8
  * @note Size: 0x34
  */
-void Obj::startJumpEffect() { mEfxPota->create(nullptr); }
+void Obj::startJumpEffect()
+{
+	mEfxPota->create(nullptr);
+}
 
 /**
  * @note Address: 0x802594DC
  * @note Size: 0x30
  */
-void Obj::finishJumpEffect() { mEfxPota->fade(); }
+void Obj::finishJumpEffect()
+{
+	mEfxPota->fade();
+}
 
 /**
  * @note Address: 0x8025950C
@@ -445,13 +476,19 @@ void Obj::createDownEffect(f32 scale)
  * @note Address: 0x802595CC
  * @note Size: 0x30
  */
-void Obj::effectDrawOn() { mEfxPota->endDemoDrawOn(); }
+void Obj::effectDrawOn()
+{
+	mEfxPota->endDemoDrawOn();
+}
 
 /**
  * @note Address: 0x802595FC
  * @note Size: 0x30
  */
-void Obj::effectDrawOff() { mEfxPota->startDemoDrawOff(); }
+void Obj::effectDrawOff()
+{
+	mEfxPota->startDemoDrawOff();
+}
 
 } // namespace Frog
 } // namespace Game

@@ -145,7 +145,10 @@ lbl_800AD810:
  * @note Address: 0x800AD82C
  * @note Size: 0x8
  */
-void JAInter::Fx::setSceneMax(u8 sceneMax) { mSceneMax = sceneMax; }
+void JAInter::Fx::setSceneMax(u8 sceneMax)
+{
+	mSceneMax = sceneMax;
+}
 
 /**
  * @note Address: 0x800AD834
@@ -163,13 +166,19 @@ void JAInter::Fx::setBufferMax(u32 max1, u32 max2, u32 max3, u32 max4)
  * @note Address: 0x800AD858
  * @note Size: 0x8
  */
-void JAInter::Fx::setTablePointer(void** tablePointer) { mFxconfigTable = reinterpret_cast<JASDsp::FxlineConfig_**>(tablePointer); }
+void JAInter::Fx::setTablePointer(void** tablePointer)
+{
+	mFxconfigTable = reinterpret_cast<JASDsp::FxlineConfig_**>(tablePointer);
+}
 
 /**
  * @note Address: 0x800AD860
  * @note Size: 0x10
  */
-void JAInter::Fx::setBufferPointer(u8 index, s16* bufferPointer) { mBufferPointer[index] = bufferPointer; }
+void JAInter::Fx::setBufferPointer(u8 index, s16* bufferPointer)
+{
+	mBufferPointer[index] = bufferPointer;
+}
 
 /**
  * @note Address: 0x800AD870
@@ -184,25 +193,37 @@ void JAInter::Fx::setScenePointer(u8 index, void* scenePointer)
  * @note Address: 0x800AD880
  * @note Size: 0x8
  */
-u8 JAInter::Fx::getSceneMax() { return mSceneMax; }
+u8 JAInter::Fx::getSceneMax()
+{
+	return mSceneMax;
+}
 
 /**
  * @note Address: 0x800AD888
  * @note Size: 0x10
  */
-u32 JAInter::Fx::getBufferSizeMax(u8 index) { return mBufferSizeMax[index]; }
+u32 JAInter::Fx::getBufferSizeMax(u8 index)
+{
+	return mBufferSizeMax[index];
+}
 
 /**
  * @note Address: 0x800AD898
  * @note Size: 0x10
  */
-s16* JAInter::Fx::getBufferPointer(u8 index) { return mBufferPointer[index]; }
+s16* JAInter::Fx::getBufferPointer(u8 index)
+{
+	return mBufferPointer[index];
+}
 
 /**
  * @note Address: 0x800AD8A8
  * @note Size: 0x8
  */
-JASDsp::FxlineConfig_** JAInter::Fx::getFxconfigTable() { return mFxconfigTable; }
+JASDsp::FxlineConfig_** JAInter::Fx::getFxconfigTable()
+{
+	return mFxconfigTable;
+}
 
 /**
  * @note Address: N/A

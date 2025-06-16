@@ -915,7 +915,10 @@ void ObjCaveResult::updateAnimation()
 			resetFlag(CAVERESFLAG_DrawComp);
 		}
 	}
-	FOREACH_NODE(Game::Result::TNode, mResultNode->mChild, cNode) { cNode->mItemMgr->update(); }
+	FOREACH_NODE(Game::Result::TNode, mResultNode->mChild, cNode)
+	{
+		cNode->mItemMgr->update();
+	}
 }
 
 /**

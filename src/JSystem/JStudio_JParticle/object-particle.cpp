@@ -61,7 +61,9 @@ void JStudio_JParticle::TAdaptor_particle::adaptor_do_prepare(const JStudio::TOb
  * @note Address: 0x800059FC
  * @note Size: 0x4
  */
-void JStudio_JParticle::TAdaptor_particle::adaptor_do_end(const JStudio::TObject*) { }
+void JStudio_JParticle::TAdaptor_particle::adaptor_do_end(const JStudio::TObject*)
+{
+}
 
 /**
  * @note Address: 0x80005A00

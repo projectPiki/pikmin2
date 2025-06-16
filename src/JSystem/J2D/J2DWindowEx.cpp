@@ -1708,7 +1708,10 @@ bool J2DWindowEx::isNeedSetAnm(u8 frameMaterialIndex)
  * @note Size: 0x8
  * setAnimation__11J2DWindowExFP20J2DAnmVisibilityFull
  */
-void J2DWindowEx::setAnimation(J2DAnmVisibilityFull* animation) { mAnmVisibility = animation; }
+void J2DWindowEx::setAnimation(J2DAnmVisibilityFull* animation)
+{
+	mAnmVisibility = animation;
+}
 
 /**
  * @note Address: 0x8004756C

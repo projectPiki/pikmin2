@@ -56,7 +56,10 @@ ItemGate::ItemGate()
  * @note Address: 0x801C7738
  * @note Size: 0x48
  */
-void ItemGate::constructor() { mSoundObj = new PSM::WorkItem(this); }
+void ItemGate::constructor()
+{
+	mSoundObj = new PSM::WorkItem(this);
+}
 
 /**
  * @note Address: 0x801C7780
@@ -168,7 +171,10 @@ void ItemGate::doSave(Stream& stream)
  * @note Address: 0x801C7D14
  * @note Size: 0x1C
  */
-void ItemGate::updateBoundSphere() { mBoundingSphere.mPosition = mPosition; }
+void ItemGate::updateBoundSphere()
+{
+	mBoundingSphere.mPosition = mPosition;
+}
 
 /**
  * @note Address: 0x801C7D30
@@ -740,7 +746,10 @@ void ItemGate::changeMaterial()
 	}
 }
 
-inline f32 ItemGate::getGateHealth() { return (mMaxSegments - mSegmentsDown - 1) * mMaxSegmentHealth + mCurrentSegmentHealth; }
+inline f32 ItemGate::getGateHealth()
+{
+	return (mMaxSegments - mSegmentsDown - 1) * mMaxSegmentHealth + mCurrentSegmentHealth;
+}
 
 /**
  * @note Address: 0x801C88D8
@@ -858,7 +867,10 @@ void ItemGateMgr::initDependency()
  * @note Address: 0x801C9348
  * @note Size: 0x54
  */
-GenItemParm* ItemGateMgr::generatorNewItemParm() { return new GenGateParm(); }
+GenItemParm* ItemGateMgr::generatorNewItemParm()
+{
+	return new GenGateParm();
+}
 
 /**
  * @note Address: 0x801C939C
@@ -928,25 +940,34 @@ char* ItemGateMgr::getCaveName(int outsideCave)
  * @note Address: 0x801C9730
  * @note Size: 0x4C
  */
-int ItemGateMgr::getCaveID(char* cave) { return -(strncmp("gate", cave, strlen("gate")) != 0); }
+int ItemGateMgr::getCaveID(char* cave)
+{
+	return -(strncmp("gate", cave, strlen("gate")) != 0);
+}
 
 /**
  * @note Address: 0x801C977C
  * @note Size: 0x4
  */
-void GateWaitState::init(Game::ItemGate*, Game::StateArg*) { }
+void GateWaitState::init(Game::ItemGate*, Game::StateArg*)
+{
+}
 
 /**
  * @note Address: 0x801C9780
  * @note Size: 0x4
  */
-void GateWaitState::exec(Game::ItemGate*) { }
+void GateWaitState::exec(Game::ItemGate*)
+{
+}
 
 /**
  * @note Address: 0x801C9784
  * @note Size: 0x4
  */
-void GateWaitState::cleanup(Game::ItemGate*) { }
+void GateWaitState::cleanup(Game::ItemGate*)
+{
+}
 
 /**
  * @note Address: 0x801C9788
@@ -962,7 +983,9 @@ void GateWaitState::onDamage(Game::ItemGate* item, f32 damage)
  * @note Address: 0x801C97F8
  * @note Size: 0x4
  */
-void GateWaitState::onKeyEvent(Game::ItemGate*, const SysShape::KeyEvent&) { }
+void GateWaitState::onKeyEvent(Game::ItemGate*, const SysShape::KeyEvent&)
+{
+}
 
 /**
  * @note Address: 0x801C97FC
@@ -1000,19 +1023,27 @@ void GateDamagedState::exec(Game::ItemGate* gate)
  * @note Address: 0x801C9918
  * @note Size: 0x4
  */
-void GateDamagedState::cleanup(Game::ItemGate*) { }
+void GateDamagedState::cleanup(Game::ItemGate*)
+{
+}
 
 /**
  * @note Address: 0x801C991C
  * @note Size: 0x10
  */
-void GateDamagedState::onDamage(Game::ItemGate* gate, f32 damage) { gate->mDamage += damage; }
+void GateDamagedState::onDamage(Game::ItemGate* gate, f32 damage)
+{
+	gate->mDamage += damage;
+}
 
 /**
  * @note Address: 0x801C992C
  * @note Size: 0xC
  */
-void GateDamagedState::onKeyEvent(Game::ItemGate*, const SysShape::KeyEvent&) { mNotInAnim = true; }
+void GateDamagedState::onKeyEvent(Game::ItemGate*, const SysShape::KeyEvent&)
+{
+	mNotInAnim = true;
+}
 
 /**
  * @note Address: 0x801C9938
@@ -1037,25 +1068,35 @@ void GateDownState::init(Game::ItemGate* gate, Game::StateArg* arg)
  * @note Address: 0x801C9B5C
  * @note Size: 0x8
  */
-f32 ItemGate::getFaceDir() { return mFaceDir; }
+f32 ItemGate::getFaceDir()
+{
+	return mFaceDir;
+}
 
 /**
  * @note Address: 0x801C9B64
  * @note Size: 0x4
  */
-void GateDownState::exec(Game::ItemGate*) { }
+void GateDownState::exec(Game::ItemGate*)
+{
+}
 
 /**
  * @note Address: 0x801C9B68
  * @note Size: 0x4
  */
-void GateDownState::cleanup(Game::ItemGate*) { }
+void GateDownState::cleanup(Game::ItemGate*)
+{
+}
 
 /**
  * @note Address: 0x801C9B6C
  * @note Size: 0x10
  */
-void GateDownState::onDamage(Game::ItemGate* gate, f32 damage) { gate->mDamage += damage; }
+void GateDownState::onDamage(Game::ItemGate* gate, f32 damage)
+{
+	gate->mDamage += damage;
+}
 
 /**
  * @note Address: 0x801C9B7C
@@ -1158,7 +1199,10 @@ void ItemDengekiGate::Mgr::setupPlatform(Game::ItemGate* gate)
  * @note Address: 0x801CA17C
  * @note Size: 0x54
  */
-GenItemParm* ItemDengekiGate::Mgr::generatorNewItemParm() { return new GenGateParm; }
+GenItemParm* ItemDengekiGate::Mgr::generatorNewItemParm()
+{
+	return new GenGateParm;
+}
 
 /**
  * @note Address: 0x801CA1D0
@@ -1218,92 +1262,137 @@ char* ItemDengekiGate::Mgr::getCaveName(int outsideCave)
  * @note Address: 0x801CA380
  * @note Size: 0x4C
  */
-int ItemDengekiGate::Mgr::getCaveID(char* cave) { return -(strncmp("e-gate", cave, strlen("e-gate")) != 0); }
+int ItemDengekiGate::Mgr::getCaveID(char* cave)
+{
+	return -(strncmp("e-gate", cave, strlen("e-gate")) != 0);
+}
 
 /**
  * @note Address: 0x801CA3CC
  * @note Size: 0x134
  */
-ItemDengekiGate::Mgr::~Mgr() { }
+ItemDengekiGate::Mgr::~Mgr()
+{
+}
 
 /**
  * @note Address: 0x801CA500
  * @note Size: 0xC
  */
-u32 ItemDengekiGate::Mgr::generatorGetID() { return 'dgat'; }
+u32 ItemDengekiGate::Mgr::generatorGetID()
+{
+	return 'dgat';
+}
 
 /**
  * @note Address: 0x801CA50C
  * @note Size: 0xC
  */
-u32 ItemDengekiGate::Mgr::generatorLocalVersion() { return '0000'; }
+u32 ItemDengekiGate::Mgr::generatorLocalVersion()
+{
+	return '0000';
+}
 
 /**
  * @note Address: 0x801CA518
  * @note Size: 0xC
  */
-u32 ItemGateMgr::generatorGetID() { return 'gate'; }
+u32 ItemGateMgr::generatorGetID()
+{
+	return 'gate';
+}
 
 /**
  * @note Address: 0x801CA524
  * @note Size: 0xC
  */
-u32 ItemGateMgr::generatorLocalVersion() { return '0002'; }
+u32 ItemGateMgr::generatorLocalVersion()
+{
+	return '0002';
+}
 
 /**
  * @note Address: 0x801CA530
  * @note Size: 0x2C
  */
-void ItemGateMgr::doAnimation() { mNodeObjectMgr.doAnimation(); }
+void ItemGateMgr::doAnimation()
+{
+	mNodeObjectMgr.doAnimation();
+}
 
 /**
  * @note Address: 0x801CA55C
  * @note Size: 0x2C
  */
-void ItemGateMgr::doEntry() { mNodeObjectMgr.doEntry(); }
+void ItemGateMgr::doEntry()
+{
+	mNodeObjectMgr.doEntry();
+}
 
 /**
  * @note Address: 0x801CA588
  * @note Size: 0x2C
  */
-void ItemGateMgr::doSetView(int viewportNumber) { mNodeObjectMgr.doSetView(viewportNumber); }
+void ItemGateMgr::doSetView(int viewportNumber)
+{
+	mNodeObjectMgr.doSetView(viewportNumber);
+}
 
 /**
  * @note Address: 0x801CA5B4
  * @note Size: 0x2C
  */
-void ItemGateMgr::doViewCalc() { mNodeObjectMgr.doViewCalc(); }
+void ItemGateMgr::doViewCalc()
+{
+	mNodeObjectMgr.doViewCalc();
+}
 
 /**
  * @note Address: 0x801CA5E0
  * @note Size: 0x2C
  */
-void ItemGateMgr::doSimulation(f32 val) { mNodeObjectMgr.doSimulation(val); }
+void ItemGateMgr::doSimulation(f32 val)
+{
+	mNodeObjectMgr.doSimulation(val);
+}
 
 /**
  * @note Address: 0x801CA60C
  * @note Size: 0x2C
  */
-void ItemGateMgr::doDirectDraw(Graphics& gfx) { mNodeObjectMgr.doDirectDraw(gfx); }
+void ItemGateMgr::doDirectDraw(Graphics& gfx)
+{
+	mNodeObjectMgr.doDirectDraw(gfx);
+}
 
-efx::TEgateA::~TEgateA() { }
+efx::TEgateA::~TEgateA()
+{
+}
 
 /**
  * @note Address: 0x801CA6DC
  * @note Size: 0x8
  */
-char* ItemGate::getCreatureName() { return "Gate"; }
+char* ItemGate::getCreatureName()
+{
+	return "Gate";
+}
 
 /**
  * @note Address: 0x801CA6E4
  * @note Size: 0x8
  */
-Mabiki* ItemGate::getMabiki() { return &mMabiki; }
+Mabiki* ItemGate::getMabiki()
+{
+	return &mMabiki;
+}
 
 /**
  * @note Address: 0x801CA6EC
  * @note Size: 0x4
  */
-void ItemGate::makeTrMatrix() { }
+void ItemGate::makeTrMatrix()
+{
+}
 
 } // namespace Game

@@ -83,7 +83,10 @@ int GBAGetStatus(s32 portIndex, u8* p2);
 int GBARead(s32 portIndex, u8* p2, u8* p3);
 int GBAWrite(s32 portIndex, u8* p2, u8* p3);
 
-static inline GBAProcHandler getGBAHandler(GBAControl* gba) { return gba->proc; }
+static inline GBAProcHandler getGBAHandler(GBAControl* gba)
+{
+	return gba->proc;
+}
 
 //////////////////////////////////
 

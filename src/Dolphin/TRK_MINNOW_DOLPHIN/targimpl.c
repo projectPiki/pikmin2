@@ -494,7 +494,10 @@ DSError TRKTargetInterrupt(TRKEvent* event)
  * @note Address: 0x800BE788
  * @note Size: 0x8C
  */
-u32* ConvertAddress(u32 addr) { return (u32*)(addr | 0x80000000); }
+u32* ConvertAddress(u32 addr)
+{
+	return (u32*)(addr | 0x80000000);
+}
 DSError TRKTargetAddStopInfo(MessageBuffer* b)
 {
 	DSError error;
@@ -661,7 +664,10 @@ DSError TRKTargetStepOutOfRange(u32 rangeStart, u32 rangeEnd, BOOL stepOver)
  * @note Address: 0x800BE590
  * @note Size: 0x10
  */
-u32 TRKTargetGetPC(void) { return gTRKCPUState.Default.PC; }
+u32 TRKTargetGetPC(void)
+{
+	return gTRKCPUState.Default.PC;
+}
 
 /**
  * @note Address: 0x800BE390
@@ -743,13 +749,19 @@ void TRKTargetFlushCache(void)
  * @note Address: 0x800BE380
  * @note Size: 0x10
  */
-BOOL TRKTargetStopped(void) { return gTRKState.isStopped; }
+BOOL TRKTargetStopped(void)
+{
+	return gTRKState.isStopped;
+}
 
 /**
  * @note Address: 0x800BE370
  * @note Size: 0x10
  */
-void TRKTargetSetStopped(uint stopped) { gTRKState.isStopped = stopped; }
+void TRKTargetSetStopped(uint stopped)
+{
+	gTRKState.isStopped = stopped;
+}
 
 /**
  * @note Address: 0x800BE358
@@ -929,7 +941,10 @@ DSError TRKPPCAccessSpecialReg(void* value, u32* access_func, BOOL read)
  * @note Address: 0x800BE348
  * @note Size: 0x10
  */
-void TRKTargetSetInputPendingPtr(void* ptr) { gTRKState.inputPendingPtr = ptr; }
+void TRKTargetSetInputPendingPtr(void* ptr)
+{
+	gTRKState.inputPendingPtr = ptr;
+}
 
 /**
  * @note Address: N/A

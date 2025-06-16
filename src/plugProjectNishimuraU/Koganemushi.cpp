@@ -12,7 +12,9 @@ namespace Game {
  * @note Address: 0x8029DD44
  * @note Size: 0x90
  */
-Koganemushi::Obj::Obj() { }
+Koganemushi::Obj::Obj()
+{
+}
 
 /**
  * @note Address: 0x8029DDD4
@@ -105,5 +107,8 @@ void Koganemushi::Obj::createItem()
  * @note Address: 0x8029E0E0
  * @note Size: 0x44
  */
-void Koganemushi::Obj::createPressSENormal() { getJAIObject()->startSound(PSSE_EN_KOGANE_HIT, 0); }
+void Koganemushi::Obj::createPressSENormal()
+{
+	getJAIObject()->startSound(PSSE_EN_KOGANE_HIT, 0);
+}
 } // namespace Game

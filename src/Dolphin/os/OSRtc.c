@@ -199,13 +199,19 @@ static void* LockSram(u32 offset)
  * @note Address: 0x800F0D30
  * @note Size: 0x5C
  */
-OSSram* __OSLockSram() { return LockSram(0); }
+OSSram* __OSLockSram()
+{
+	return LockSram(0);
+}
 
 /**
  * @note Address: 0x800F0D8C
  * @note Size: 0x5C
  */
-OSSramEx* __OSLockSramEx() { return LockSram(sizeof(OSSram)); }
+OSSramEx* __OSLockSramEx()
+{
+	return LockSram(sizeof(OSSram));
+}
 
 /**
  * @note Address: 0x800F0DE8
@@ -259,19 +265,28 @@ static BOOL UnlockSram(BOOL commit, u32 offset)
  * @note Address: 0x800F1124
  * @note Size: 0x24
  */
-BOOL __OSUnlockSram(BOOL commit) { return UnlockSram(commit, 0); }
+BOOL __OSUnlockSram(BOOL commit)
+{
+	return UnlockSram(commit, 0);
+}
 
 /**
  * @note Address: 0x800F1148
  * @note Size: 0x24
  */
-BOOL __OSUnlockSramEx(BOOL commit) { return UnlockSram(commit, sizeof(OSSram)); }
+BOOL __OSUnlockSramEx(BOOL commit)
+{
+	return UnlockSram(commit, sizeof(OSSram));
+}
 
 /**
  * @note Address: 0x800F116C
  * @note Size: 0x10
  */
-BOOL __OSSyncSram() { return Scb.sync; }
+BOOL __OSSyncSram()
+{
+	return Scb.sync;
+}
 
 /**
  * @note Address: 0x800F117C

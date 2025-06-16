@@ -13,7 +13,10 @@
 
 static const int padding[] = { 0, 0, 0 };
 
-static void _Print(char* format, ...) { OSReport("mapMgr"); }
+static void _Print(char* format, ...)
+{
+	OSReport("mapMgr");
+}
 
 namespace Game {
 
@@ -170,7 +173,10 @@ f32 MapMgr::getMapRotation()
  * @note Address: 0x80162724
  * @note Size: 0x1C
  */
-Matrixf* MapMgr::getDemoMatrix() { return (mCourseInfo) ? &mCourseInfo->mDemoMatrix : nullptr; }
+Matrixf* MapMgr::getDemoMatrix()
+{
+	return (mCourseInfo) ? &mCourseInfo->mDemoMatrix : nullptr;
+}
 
 /**
  * @note Address: 0x80162740
@@ -439,7 +445,10 @@ void ShapeMapMgr::load(LoadArg& arg)
  * @note Address: 0x80163928
  * @note Size: 0x34
  */
-WaterBox* MapMgr::findWater(::Sys::Sphere& boundingSphere) { return (mSeaMgr != nullptr) ? mSeaMgr->findWater(boundingSphere) : nullptr; }
+WaterBox* MapMgr::findWater(::Sys::Sphere& boundingSphere)
+{
+	return (mSeaMgr != nullptr) ? mSeaMgr->findWater(boundingSphere) : nullptr;
+}
 
 /**
  * @note Address: 0x8016395C
@@ -512,7 +521,10 @@ void ShapeMapMgr::drawCollision(Graphics& gfx, ::Sys::Sphere& boundingSphere)
  * @note Address: 0x80163B10
  * @note Size: 0x2C
  */
-void ShapeMapMgr::createTriangles(::Sys::CreateTriangleArg& arg) { mMapCollision.createTriangles(arg); }
+void ShapeMapMgr::createTriangles(::Sys::CreateTriangleArg& arg)
+{
+	mMapCollision.createTriangles(arg);
+}
 
 /**
  * @note Address: 0x80163B70
@@ -532,7 +544,10 @@ f32 ShapeMapMgr::getMinY(Vector3f& pos)
  * @note Address: 0x80163BFC
  * @note Size: 0x2C
  */
-void ShapeMapMgr::getCurrTri(CurrTriInfo& info) { mMapCollision.getCurrTri(info); }
+void ShapeMapMgr::getCurrTri(CurrTriInfo& info)
+{
+	mMapCollision.getCurrTri(info);
+}
 
 /**
  * @note Address: 0x80163C28

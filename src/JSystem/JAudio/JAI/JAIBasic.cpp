@@ -66,13 +66,19 @@ JAIBasic::JAIBasic()
  * @note Address: 0x800AC1D4
  * @note Size: 0x20
  */
-void JAIBasic::initDriver(JKRSolidHeap* heap, u32 p2, u8 p3) { initAudioThread(heap, p2, p3); }
+void JAIBasic::initDriver(JKRSolidHeap* heap, u32 p2, u8 p3)
+{
+	initAudioThread(heap, p2, p3);
+}
 
 /**
  * @note Address: 0x800AC1F4
  * @note Size: 0x20
  */
-void JAIBasic::initInterface(u8) { initInterfaceMain(); }
+void JAIBasic::initInterface(u8)
+{
+	initInterfaceMain();
+}
 
 /**
  * @note Address: N/A
@@ -232,7 +238,10 @@ void JAIBasic::setCameraInfo(Vec* p1, Vec* p2, f32 (*p3)[4], u32 index)
  * @note Address: 0x800AC478
  * @note Size: 0x28
  */
-void JAIBasic::setRegisterTrackCallback() { JASTrack::registerSeqCallback(setParameterSeqSync); }
+void JAIBasic::setRegisterTrackCallback()
+{
+	JASTrack::registerSeqCallback(setParameterSeqSync);
+}
 
 /**
  * @note Address: 0x800AC4A0
@@ -384,7 +393,10 @@ lbl_800AC678:
  * @note Address: 0x800AC6A4
  * @note Size: 0x8
  */
-void JAIBasic::setInitFileLoadSwitch(u8 a1) { mFileLoadType = a1; }
+void JAIBasic::setInitFileLoadSwitch(u8 a1)
+{
+	mFileLoadType = a1;
+}
 
 /**
  * @note Address: 0x800AC6AC
@@ -692,19 +704,28 @@ void JAIBasic::changeSoundScene(u32)
  * @note Address: 0x800ACA94
  * @note Size: 0x10
  */
-u16 JAIBasic::getMapInfoFxline(u32 p1) { return p1 != 0; }
+u16 JAIBasic::getMapInfoFxline(u32 p1)
+{
+	return p1 != 0;
+}
 
 /**
  * @note Address: 0x800ACAA4
  * @note Size: 0x10
  */
-BOOL JAIBasic::getMapInfoGround(u32 p1) { return p1 != 0; }
+BOOL JAIBasic::getMapInfoGround(u32 p1)
+{
+	return p1 != 0;
+}
 
 /**
  * @note Address: 0x800ACAB4
  * @note Size: 0x18
  */
-f32 JAIBasic::getMapInfoFxParameter(u32 p1) { return (p1 == 0) ? 0.0f : 1.0f; }
+f32 JAIBasic::getMapInfoFxParameter(u32 p1)
+{
+	return (p1 == 0) ? 0.0f : 1.0f;
+}
 
 /**
  * @note Address: 0x800ACACC

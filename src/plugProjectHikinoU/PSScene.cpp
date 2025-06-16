@@ -47,7 +47,10 @@ Scene::Scene(u8 id)
  * @note Address: 0x80341650
  * @note Size: 0xC4
  */
-Scene::~Scene() { delete mWaveLoader; }
+Scene::~Scene()
+{
+	delete mWaveLoader;
+}
 
 /**
  * @note Address: 0x80341714
@@ -128,7 +131,10 @@ void Scene::stopMainSeq(u32 time)
  * @note Address: 0x80341970
  * @note Size: 0x24
  */
-void Scene::stopAllSound(u32 time) { mSeqMgr.stopAllSound(time); }
+void Scene::stopAllSound(u32 time)
+{
+	mSeqMgr.stopAllSound(time);
+}
 
 /**
  * @note Address: 0x80341994

@@ -7,7 +7,10 @@ namespace Ftank {
  * @note Address: 0x8029E484
  * @note Size: 0xA4
  */
-Obj::Obj() { createEffect(); }
+Obj::Obj()
+{
+	createEffect();
+}
 
 /**
  * @note Address: 0x8029E528
@@ -36,7 +39,10 @@ void Obj::changeMaterial()
  * @note Address: 0x8029E6CC
  * @note Size: 0x48
  */
-void Obj::createEffect() { mTankEffect = new efx::TTankEffect(nullptr); }
+void Obj::createEffect()
+{
+	mTankEffect = new efx::TTankEffect(nullptr);
+}
 
 /**
  * @note Address: 0x8029EAF0
@@ -57,7 +63,10 @@ void Obj::setupEffect()
  * @note Address: 0x8029EB44
  * @note Size: 0x34
  */
-void Obj::startEffect() { mTankEffect->mEfxFire.create(nullptr); }
+void Obj::startEffect()
+{
+	mTankEffect->mEfxFire.create(nullptr);
+}
 
 /**
  * @note Address: 0x8029EB78
@@ -130,13 +139,19 @@ void Obj::stopEffectRadius(f32 radius)
  * @note Address: 0x8029EE6C
  * @note Size: 0x44
  */
-void Obj::createChargeSE() { getJAIObject()->startSound(PSSE_EN_TANK_BREATH, 0); }
+void Obj::createChargeSE()
+{
+	getJAIObject()->startSound(PSSE_EN_TANK_BREATH, 0);
+}
 
 /**
  * @note Address: 0x8029EEB0
  * @note Size: 0x44
  */
-void Obj::createDisChargeSE() { getJAIObject()->startSound(PSSE_EN_TANK_FIRE, 0); }
+void Obj::createDisChargeSE()
+{
+	getJAIObject()->startSound(PSSE_EN_TANK_FIRE, 0);
+}
 
 } // namespace Ftank
 } // namespace Game

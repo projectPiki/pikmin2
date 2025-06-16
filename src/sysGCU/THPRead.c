@@ -122,7 +122,10 @@ OSMessage PopReadedBuffer()
  * @note Address: 0x8044F7BC
  * @note Size: 0x30
  */
-BOOL PushReadedBuffer(OSMessage* msg) { return OSSendMessage(&ReadedBufferQueue, msg, OS_MESSAGE_BLOCK); }
+BOOL PushReadedBuffer(OSMessage* msg)
+{
+	return OSSendMessage(&ReadedBufferQueue, msg, OS_MESSAGE_BLOCK);
+}
 
 /**
  * @note Address: 0x8044F7EC
@@ -139,7 +142,10 @@ OSMessage PopFreeReadBuffer()
  * @note Address: 0x8044F820
  * @note Size: 0x30
  */
-BOOL PushFreeReadBuffer(OSMessage* msg) { return OSSendMessage(&FreeReadBufferQueue, msg, OS_MESSAGE_BLOCK); }
+BOOL PushFreeReadBuffer(OSMessage* msg)
+{
+	return OSSendMessage(&FreeReadBufferQueue, msg, OS_MESSAGE_BLOCK);
+}
 
 /**
  * @note Address: 0x8044F850
@@ -156,4 +162,7 @@ OSMessage PopReadedBuffer2()
  * @note Address: 0x8044F884
  * @note Size: 0x30
  */
-BOOL PushReadedBuffer2(OSMessage* msg) { return OSSendMessage(&ReadedBufferQueue2, msg, OS_MESSAGE_BLOCK); }
+BOOL PushReadedBuffer2(OSMessage* msg)
+{
+	return OSSendMessage(&ReadedBufferQueue2, msg, OS_MESSAGE_BLOCK);
+}

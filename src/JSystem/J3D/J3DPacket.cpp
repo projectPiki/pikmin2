@@ -88,7 +88,10 @@ void J3DDisplayListObj::swapBuffer()
  * @note Address: 0x8005F96C
  * @note Size: 0x2C
  */
-void J3DDisplayListObj::callDL() const { GXCallDisplayList(mDisplayList[0], mSize); }
+void J3DDisplayListObj::callDL() const
+{
+	GXCallDisplayList(mDisplayList[0], mSize);
+}
 
 /**
  * @note Address: 0x8005F998
@@ -120,7 +123,10 @@ u32 J3DDisplayListObj::endDL()
  * @note Address: 0x8005FA54
  * @note Size: 0x60
  */
-void J3DDisplayListObj::beginPatch() { beginDL(); }
+void J3DDisplayListObj::beginPatch()
+{
+	beginDL();
+}
 
 /**
  * @note Address: 0x8005FAB4
@@ -137,7 +143,10 @@ u32 J3DDisplayListObj::endPatch()
  * @note Address: 0x8005FAF0
  * @note Size: 0x8
  */
-bool J3DPacket::entry(J3DDrawBuffer*) { return true; }
+bool J3DPacket::entry(J3DDrawBuffer*)
+{
+	return true;
+}
 
 /**
  * @note Address: 0x8005FAF8
@@ -188,7 +197,9 @@ J3DDrawPacket::J3DDrawPacket()
  * @note Size: 0x5C
  * __dt__13J3DDrawPacketFv
  */
-J3DDrawPacket::~J3DDrawPacket() { }
+J3DDrawPacket::~J3DDrawPacket()
+{
+}
 
 /**
  * @note Address: 0x8005FBC0
@@ -217,7 +228,10 @@ J3DErrType J3DDrawPacket::newSingleDisplayList(u32 size)
  * @note Size: 0x2C
  * draw__13J3DDrawPacketFv
  */
-void J3DDrawPacket::draw() { mDisplayList->callDL(); }
+void J3DDrawPacket::draw()
+{
+	mDisplayList->callDL();
+}
 
 /**
  * @note Address: 0x8005FD2C
@@ -239,7 +253,9 @@ J3DMatPacket::J3DMatPacket()
  * @note Size: 0x6C
  * __dt__12J3DMatPacketFv
  */
-J3DMatPacket::~J3DMatPacket() { }
+J3DMatPacket::~J3DMatPacket()
+{
+}
 
 /**
  * @note Address: 0x8005FDF4
@@ -259,20 +275,29 @@ void J3DMatPacket::addShapePacket(J3DShapePacket* shapePacket)
  * @note Address: 0x8005FE14
  * @note Size: 0x64
  */
-void J3DMatPacket::beginDiff() { mInitShapePacket->mDisplayList->beginDL(); }
+void J3DMatPacket::beginDiff()
+{
+	mInitShapePacket->mDisplayList->beginDL();
+}
 
 /**
  * @note Address: 0x8005FE78
  * @note Size: 0x60
  */
-u32 J3DMatPacket::endDiff() { return mInitShapePacket->mDisplayList->endDL(); }
+u32 J3DMatPacket::endDiff()
+{
+	return mInitShapePacket->mDisplayList->endDL();
+}
 
 /**
  * @note Address: 0x8005FED8
  * @note Size: 0x24
  * isSame__12J3DMatPacketCFP12J3DMatPacket
  */
-bool J3DMatPacket::isSame(J3DMatPacket* other) const { return !(mDiffFlag != other->mDiffFlag || mDiffFlag >> 31); }
+bool J3DMatPacket::isSame(J3DMatPacket* other) const
+{
+	return !(mDiffFlag != other->mDiffFlag || mDiffFlag >> 31);
+}
 
 /**
  * @note Address: 0x8005FEFC
@@ -316,7 +341,9 @@ J3DShapePacket::J3DShapePacket()
  * @note Size: 0x6C
  * __dt__14J3DShapePacketFv
  */
-J3DShapePacket::~J3DShapePacket() { }
+J3DShapePacket::~J3DShapePacket()
+{
+}
 
 /**
  * @note Address: 0x80060054

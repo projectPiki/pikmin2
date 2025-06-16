@@ -88,7 +88,9 @@ ObjSMenuMap::ObjSMenuMap(char const* name)
  * @note Address: 0x8030F8B0
  * @note Size: 0xC4
  */
-ObjSMenuMap::~ObjSMenuMap() { }
+ObjSMenuMap::~ObjSMenuMap()
+{
+}
 
 /**
  * @note Address: N/A
@@ -1962,13 +1964,19 @@ bool ObjSMenuMap::doStart(::Screen::StartSceneArg const* arg)
  * @note Address: 0x803129B0
  * @note Size: 0x8
  */
-bool ObjSMenuMap::doEnd(::Screen::EndSceneArg const*) { return true; }
+bool ObjSMenuMap::doEnd(::Screen::EndSceneArg const*)
+{
+	return true;
+}
 
 /**
  * @note Address: 0x803129B8
  * @note Size: 0x20
  */
-void ObjSMenuMap::doUpdateFinish() { ObjSMenuBase::doUpdateFinish(); }
+void ObjSMenuMap::doUpdateFinish()
+{
+	ObjSMenuBase::doUpdateFinish();
+}
 
 /**
  * @note Address: 0x803129D8
@@ -2004,7 +2012,10 @@ void ObjSMenuMap::in_R()
  * @note Address: 0x80312A4C
  * @note Size: 0xC
  */
-void ObjSMenuMap::wait() { mState = MENUSTATE_Default; }
+void ObjSMenuMap::wait()
+{
+	mState = MENUSTATE_Default;
+}
 
 /**
  * @note Address: 0x80312A58

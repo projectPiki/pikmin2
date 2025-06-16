@@ -146,7 +146,10 @@ Obj::Obj()
  * @note Address: 0x8034FC54
  * @note Size: 0x34
  */
-void Obj::doUpdate() { mFsm->exec(this); }
+void Obj::doUpdate()
+{
+	mFsm->exec(this);
+}
 
 /**
  * @note Address: 0x8034FC88
@@ -444,13 +447,18 @@ lbl_80350298:
  * @note Address: 0x803502D0
  * @note Size: 0x4
  */
-void Obj::doDirectDraw(Graphics&) { }
+void Obj::doDirectDraw(Graphics&)
+{
+}
 
 /**
  * @note Address: 0x803502D4
  * @note Size: 0x20
  */
-void Obj::doDebugDraw(Graphics& graphics) { EnemyBase::doDebugDraw(graphics); }
+void Obj::doDebugDraw(Graphics& graphics)
+{
+	EnemyBase::doDebugDraw(graphics);
+}
 
 /**
  * @note Address: 0x803502F4
@@ -527,7 +535,10 @@ bool Obj::pressCallBack(Creature* creature, f32 damage, CollPart* part)
  * @note Address: 0x803504E0
  * @note Size: 0x2C
  */
-bool Obj::hipdropCallBack(Creature* source, f32 damage, CollPart* part) { pressCallBack(source, damage, part); }
+bool Obj::hipdropCallBack(Creature* source, f32 damage, CollPart* part)
+{
+	pressCallBack(source, damage, part);
+}
 
 /**
  * @note Address: 0x8035050C
@@ -666,7 +677,10 @@ bool Obj::needShadow()
  * @note Address: 0x803509D0
  * @note Size: 0x28
  */
-void Obj::startCarcassMotion() { EnemyBase::startMotion(PANMODOKIANIM_Carry, nullptr); }
+void Obj::startCarcassMotion()
+{
+	EnemyBase::startMotion(PANMODOKIANIM_Carry, nullptr);
+}
 
 /**
  * @note Address: 0x803509F8
@@ -758,7 +772,10 @@ void Obj::initWalkSmokeEffect()
  * @note Address: 0x80350CCC
  * @note Size: 0x8
  */
-WalkSmokeEffect::Mgr* Obj::getWalkSmokeEffectMgr() { return &mWalkSmokeMgr; }
+WalkSmokeEffect::Mgr* Obj::getWalkSmokeEffectMgr()
+{
+	return &mWalkSmokeMgr;
+}
 
 /**
  * @note Address: 0x80350CD4
@@ -1553,7 +1570,10 @@ void Obj::calcSlotGlobalPos(Vector3f& pos)
  * @note Address: 0x803535A8
  * @note Size: 0x28
  */
-void Obj::boundEffect() { createBounceEffect(mPosition, mBounceEffectSize); }
+void Obj::boundEffect()
+{
+	createBounceEffect(mPosition, mBounceEffectSize);
+}
 
 /**
  * @note Address: 0x803535D0
@@ -1590,7 +1610,10 @@ void Obj::createHideEffect()
  * @note Address: 0x80353798
  * @note Size: 0x30
  */
-void Obj::fadeHideEffect() { mEfxHide->fade(); }
+void Obj::fadeHideEffect()
+{
+	mEfxHide->fade();
+}
 
 /**
  * @note Address: 0x803537C8
@@ -1606,7 +1629,10 @@ void Obj::createPulledSmokeEffect()
  * @note Address: 0x8035384C
  * @note Size: 0x30
  */
-void Obj::fadePulledSmokeEffect() { mEfxSmoke->fade(); }
+void Obj::fadePulledSmokeEffect()
+{
+	mEfxSmoke->fade();
+}
 
 /**
  * @note Address: 0x8035387C
@@ -1673,13 +1699,19 @@ Obj::Obj()
  * @note Address: 0x80353C00
  * @note Size: 0x34
  */
-void Obj::appearRumble() { rumbleMgr->startRumble(RUMBLETYPE_Fixed11, mPosition, RUMBLEID_Both); }
+void Obj::appearRumble()
+{
+	rumbleMgr->startRumble(RUMBLETYPE_Fixed11, mPosition, RUMBLEID_Both);
+}
 
 /**
  * @note Address: 0x80353C34
  * @note Size: 0x34
  */
-void Obj::hideRumble() { rumbleMgr->startRumble(RUMBLETYPE_Fixed10, mPosition, RUMBLEID_Both); }
+void Obj::hideRumble()
+{
+	rumbleMgr->startRumble(RUMBLETYPE_Fixed10, mPosition, RUMBLEID_Both);
+}
 
 /**
  * @note Address: 0x80353C68

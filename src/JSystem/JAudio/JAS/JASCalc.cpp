@@ -167,7 +167,10 @@ void hannWindow(s16*, u32 x)
 }
 
 // required to get clamp to generate
-void fake(s32 x) { clamp<s16, s32>(x); }
+void fake(s32 x)
+{
+	clamp<s16, s32>(x);
+}
 
 /**
  * @note Address: N/A

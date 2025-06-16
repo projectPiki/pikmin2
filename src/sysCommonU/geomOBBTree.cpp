@@ -1777,13 +1777,19 @@ void OBBTree::readWithoutVerts(Stream& input, Sys::VertexTable& vertTable)
  * @note Address: 0x8041EA10
  * @note Size: 0x24
  */
-void OBBTree::traceMove(Matrixf& mat1, Matrixf& mat2, Game::MoveInfo& info, f32) { traceMove_new(mat1, mat2, info, 0.0f); }
+void OBBTree::traceMove(Matrixf& mat1, Matrixf& mat2, Game::MoveInfo& info, f32)
+{
+	traceMove_new(mat1, mat2, info, 0.0f);
+}
 
 /**
  * @note Address: 0x8041EA34
  * @note Size: 0x24
  */
-void OBBTree::traceMove_global(Game::MoveInfo& info, f32) { traceMove_new_global(info, 0.0f); }
+void OBBTree::traceMove_global(Game::MoveInfo& info, f32)
+{
+	traceMove_new_global(info, 0.0f);
+}
 
 /**
  * @note Address: N/A
@@ -2613,7 +2619,10 @@ nullreturn:
  * @note Address: 0x8041F4B8
  * @note Size: 0x2C
  */
-f32 OBBTree::getMinY(Vector3f& pos) { getOBB()->getMinY(pos, *mTriangleTable, FLOAT_DIST_MIN); }
+f32 OBBTree::getMinY(Vector3f& pos)
+{
+	getOBB()->getMinY(pos, *mTriangleTable, FLOAT_DIST_MIN);
+}
 
 /**
  * @note Address: 0x8041F4E4

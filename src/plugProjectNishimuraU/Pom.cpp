@@ -27,7 +27,9 @@ Obj::Obj()
  * @note Address: 0x802548DC
  * @note Size: 0x4
  */
-void Obj::setInitialSetting(EnemyInitialParamBase*) { }
+void Obj::setInitialSetting(EnemyInitialParamBase*)
+{
+}
 
 /**
  * @note Address: 0x802548E0
@@ -107,13 +109,18 @@ void Obj::changeMaterial()
  * @note Address: 0x80254B8C
  * @note Size: 0x4
  */
-void Obj::doDirectDraw(Graphics&) { }
+void Obj::doDirectDraw(Graphics&)
+{
+}
 
 /**
  * @note Address: 0x80254B90
  * @note Size: 0x20
  */
-void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
+void Obj::doDebugDraw(Graphics& gfx)
+{
+	EnemyBase::doDebugDraw(gfx);
+}
 
 /**
  * @note Address: 0x80254BB0
@@ -165,7 +172,10 @@ bool Obj::pressCallBack(Creature* creature, f32 damage, CollPart* collpart)
  * @note Address: 0x80254D6C
  * @note Size: 0x2C
  */
-bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* collpart) { return pressCallBack(creature, damage, collpart); }
+bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* collpart)
+{
+	return pressCallBack(creature, damage, collpart);
+}
 
 /**
  * @note Address: 0x80254D98

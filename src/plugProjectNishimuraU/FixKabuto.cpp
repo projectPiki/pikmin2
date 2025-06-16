@@ -8,7 +8,10 @@ namespace FixKabuto {
  * @note Address: 0x803006EC
  * @note Size: 0xA4
  */
-Obj::Obj() { createEffect(); }
+Obj::Obj()
+{
+	createEffect();
+}
 
 /**
  * @note Address: 0x80300790
@@ -78,7 +81,10 @@ void Obj::startRotateEffect()
  * @note Address: 0x80300B48
  * @note Size: 0x30
  */
-void Obj::finishRotateEffect() { mEfxRot->fade(); }
+void Obj::finishRotateEffect()
+{
+	mEfxRot->fade();
+}
 
 /**
  * @note Address: 0x80300B78
@@ -94,7 +100,10 @@ void Obj::startWaitEffect()
  * @note Address: 0x80300BD0
  * @note Size: 0x30
  */
-void Obj::finishWaitEffect() { mEfxWait->fade(); }
+void Obj::finishWaitEffect()
+{
+	mEfxWait->fade();
+}
 
 /**
  * @note Address: 0x80300C00

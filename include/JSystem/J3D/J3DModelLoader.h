@@ -79,7 +79,7 @@ struct J3DModelLoader_v21 : public J3DModelLoader {
 	 * @reifiedAddress{8006FA44}
 	 * @reifiedFile{JSystem/J3D/J3DModelLoader.cpp}
 	 */
-	virtual ~J3DModelLoader_v21() {};                                     // _28 (weak)
+	virtual ~J3DModelLoader_v21() { };                                    // _28 (weak)
 	virtual void readMaterial_v21(const J3DMaterialBlock_v21*, u32);      // _30
 	virtual void readMaterialTable_v21(const J3DMaterialBlock_v21*, u32); // _38
 };
@@ -91,19 +91,37 @@ struct J3DModelLoader_v26 : public J3DModelLoader {
 	 * @reifiedAddress{8006F9E8}
 	 * @reifiedFile{JSystem/J3D/J3DModelLoader.cpp}
 	 */
-	virtual ~J3DModelLoader_v26() {};                                   // _28 (weak)
+	virtual ~J3DModelLoader_v26() { };                                  // _28 (weak)
 	virtual void readMaterial(const J3DMaterialBlock*, u32);            // _2C
 	virtual void readMaterialTable(const J3DMaterialBlock*, u32);       // _34
 	virtual size_t calcSizeMaterial(const J3DMaterialBlock*, u32);      // _3C
 	virtual size_t calcSizeMaterialTable(const J3DMaterialBlock*, u32); // _40
 };
 
-inline u32 getMdlDataFlag_TevStageNum(u32 flag) { return (flag >> 16) & 0x1F; }
-inline u32 getMdlDataFlag_TexGenFlag(u32 flag) { return flag & 0x0C000000; }
-inline u32 getMdlDataFlag_PEFlag(u32 flag) { return flag & 0x30000000; }
-inline u32 getMdlDataFlag_ColorFlag(u32 flag) { return flag & 0xC0000000; }
-inline u32 getMdlDataFlag_MtxLoadType(u32 flag) { return flag & 0x10; }
+inline u32 getMdlDataFlag_TevStageNum(u32 flag)
+{
+	return (flag >> 16) & 0x1F;
+}
+inline u32 getMdlDataFlag_TexGenFlag(u32 flag)
+{
+	return flag & 0x0C000000;
+}
+inline u32 getMdlDataFlag_PEFlag(u32 flag)
+{
+	return flag & 0x30000000;
+}
+inline u32 getMdlDataFlag_ColorFlag(u32 flag)
+{
+	return flag & 0xC0000000;
+}
+inline u32 getMdlDataFlag_MtxLoadType(u32 flag)
+{
+	return flag & 0x10;
+}
 
-inline u32 getBdlFlag_MaterialType(u32 flag) { return flag & 0x3000; }
+inline u32 getBdlFlag_MaterialType(u32 flag)
+{
+	return flag & 0x3000;
+}
 
 #endif

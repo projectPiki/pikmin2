@@ -34,11 +34,17 @@ bool InteractAttack::actCommon(Creature* creature)
  * @note Address: 0x8019FF28
  * @note Size: 0x8
  */
-bool InteractSwallow::actCommon(Game::Creature* creature) { return true; }
+bool InteractSwallow::actCommon(Game::Creature* creature)
+{
+	return true;
+}
 
 /**
  * @note Address: 0x8019FF30
  * @note Size: 0x8
  */
-bool InteractKill::actCommon(Game::Creature* creature) { return true; }
+bool InteractKill::actCommon(Game::Creature* creature)
+{
+	return true;
+}
 }; // namespace Game

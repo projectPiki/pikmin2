@@ -407,7 +407,9 @@ void AABBWaterBox::globalise(Game::AABBWaterBox* other, Matrixf& globalMatrix)
  * @note Address: 0x801AF34C
  * @note Size: 0x4
  */
-void AABBWaterBox::directDraw(Graphics&) { }
+void AABBWaterBox::directDraw(Graphics&)
+{
+}
 
 /**
  * __ct__Q24Game6SeaMgrFv

@@ -14,7 +14,10 @@ namespace Hana {
  * @note Address: 0x802F3138
  * @note Size: 0xA4
  */
-Obj::Obj() { createEffect(); }
+Obj::Obj()
+{
+	createEffect();
+}
 
 /**
  * @note Address: 0x802F31E0
@@ -32,7 +35,9 @@ void Obj::onInit(CreatureInitArg* arg)
  * @note Address: 0x802F3248
  * @note Size: 0x4
  */
-void Obj::doDirectDraw(Graphics&) { }
+void Obj::doDirectDraw(Graphics&)
+{
+}
 
 /**
  * @note Address: 0x802F324C

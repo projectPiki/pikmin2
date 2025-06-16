@@ -93,7 +93,10 @@ J2DPane::J2DPane(u64 tag, const JGeometry::TBox2f& box)
  * @note Size: 0xF4
  * initialize__7J2DPaneFUxRCQ29JGeometry8TBox2<f>
  */
-void J2DPane::initialize(u64 tag, const JGeometry::TBox2f& box) { initialize(nullptr, true, tag, box); }
+void J2DPane::initialize(u64 tag, const JGeometry::TBox2f& box)
+{
+	initialize(nullptr, true, tag, box);
+}
 
 /**
  * __ct__7J2DPaneFP7J2DPaneP20JSURandomInputStreamUc
@@ -810,7 +813,10 @@ J2DPane* J2DPane::getNextChildPane()
  * @note Address: 0x800390E0
  * @note Size: 0x1C
  */
-J2DPane* J2DPane::getParentPane() { return (mTree.getParent() == nullptr) ? nullptr : mTree.getParent()->getObject(); }
+J2DPane* J2DPane::getParentPane()
+{
+	return (mTree.getParent() == nullptr) ? nullptr : mTree.getParent()->getObject();
+}
 
 /**
  * @note Address: 0x800390FC
@@ -978,7 +984,10 @@ void J2DPane::setAnimation(J2DAnmBase* animation)
  * @note Address: 0x800395F4
  * @note Size: 0x8
  */
-void J2DPane::setAnimation(J2DAnmTransform* animation) { mTransform = animation; }
+void J2DPane::setAnimation(J2DAnmTransform* animation)
+{
+	mTransform = animation;
+}
 
 /**
  * @note Address: 0x800395FC

@@ -138,7 +138,9 @@ WayPoint::WayPoint()
  * @note Address: 0x8017276C
  * @note Size: 0x84
  */
-WayPoint::~WayPoint() { }
+WayPoint::~WayPoint()
+{
+}
 
 /**
  * @note Address: N/A
@@ -342,13 +344,17 @@ void WayPoint::read(Stream& input)
  * @note Address: 0x801728EC
  * @note Size: 0x4
  */
-void WayPoint::directDraw(Graphics&) { }
+void WayPoint::directDraw(Graphics&)
+{
+}
 
 /**
  * @note Address: 0x801728F0
  * @note Size: 0x4
  */
-void WayPoint::directDraw_Simple(Graphics&) { }
+void WayPoint::directDraw_Simple(Graphics&)
+{
+}
 
 /**
  * @note Address: N/A
@@ -374,7 +380,9 @@ RouteMgr::RouteMgr()
  * @note Address: 0x80172964
  * @note Size: 0x80
  */
-RouteMgr::~RouteMgr() { }
+RouteMgr::~RouteMgr()
+{
+}
 
 /**
  * @note Address: 0x801729E4
@@ -1344,7 +1352,10 @@ void RouteMgr::write(Stream& output)
 	output.textWriteText("\t# numWayPoints\r\n");
 
 	Iterator<WayPoint> iter(this);
-	CI_LOOP(iter) { iter.operator*()->write(output); }
+	CI_LOOP(iter)
+	{
+		iter.operator*()->write(output);
+	}
 }
 
 /**
@@ -1406,31 +1417,45 @@ WayPoint* GameRouteMgr::getWayPoint(s16 index)
  * @note Address: 0x80174548
  * @note Size: 0x30
  */
-WayPoint* GameRouteMgr::get(void* index) { return getWayPoint((s16)index); }
+WayPoint* GameRouteMgr::get(void* index)
+{
+	return getWayPoint((s16)index);
+}
 
 /**
  * @note Address: 0x80174578
  * @note Size: 0x8
  */
-void* GameRouteMgr::getNext(void* index) { return (void*)((int)index + 1); }
+void* GameRouteMgr::getNext(void* index)
+{
+	return (void*)((int)index + 1);
+}
 
 /**
  * @note Address: 0x80174580
  * @note Size: 0x8
  */
-void* GameRouteMgr::getStart() { return 0; }
+void* GameRouteMgr::getStart()
+{
+	return 0;
+}
 
 /**
  * @note Address: 0x80174588
  * @note Size: 0x8
  */
-void* GameRouteMgr::getEnd() { return (void*)mCount; }
+void* GameRouteMgr::getEnd()
+{
+	return (void*)mCount;
+}
 
 /**
  * @note Address: 0x80174590
  * @note Size: 0xAC
  */
-EditorRouteMgr::EditorRouteMgr() { }
+EditorRouteMgr::EditorRouteMgr()
+{
+}
 
 /**
  * @note Address: 0x8017469C
@@ -1438,7 +1463,10 @@ EditorRouteMgr::EditorRouteMgr() { }
  */
 void EditorRouteMgr::read(Stream& input)
 {
-	FOREACH_NODE(WPNode, mNode.mChild, node) { delWayPoint(node->mWayPoint); }
+	FOREACH_NODE(WPNode, mNode.mChild, node)
+	{
+		delWayPoint(node->mWayPoint);
+	}
 
 	u16 count = input.readShort();
 	WayPoint* wp;
@@ -1628,24 +1656,36 @@ WayPoint* EditorRouteMgr::getWayPoint(s16 index)
  * @note Address: 0x80174994
  * @note Size: 0x8
  */
-WayPoint* EditorRouteMgr::get(void* node) { return static_cast<WPNode*>(node)->mWayPoint; }
+WayPoint* EditorRouteMgr::get(void* node)
+{
+	return static_cast<WPNode*>(node)->mWayPoint;
+}
 
 /**
  * @note Address: 0x8017499C
  * @note Size: 0x8
  */
-void* EditorRouteMgr::getNext(void* node) { return (void*)(static_cast<WPNode*>(node)->mNext); }
+void* EditorRouteMgr::getNext(void* node)
+{
+	return (void*)(static_cast<WPNode*>(node)->mNext);
+}
 
 /**
  * @note Address: 0x801749A4
  * @note Size: 0x8
  */
-void* EditorRouteMgr::getStart() { return (void*)(mNode.mChild); }
+void* EditorRouteMgr::getStart()
+{
+	return (void*)(mNode.mChild);
+}
 
 /**
  * @note Address: 0x801749AC
  * @note Size: 0x8
  */
-void* EditorRouteMgr::getEnd() { return nullptr; }
+void* EditorRouteMgr::getEnd()
+{
+	return nullptr;
+}
 
 } // namespace Game

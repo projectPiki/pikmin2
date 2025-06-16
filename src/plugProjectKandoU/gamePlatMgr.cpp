@@ -53,7 +53,10 @@ Vector3f PlatInstance::getPosition()
  * @note Address: 0x801C4C1C
  * @note Size: 0x50
  */
-void PlatInstance::getBoundingSphere(Sys::Sphere& sphere) { sphere = mPlatform->getTriDivider()->mRoot.mSphere; }
+void PlatInstance::getBoundingSphere(Sys::Sphere& sphere)
+{
+	sphere = mPlatform->getTriDivider()->mRoot.mSphere;
+}
 
 /**
  * @note Address: 0x801C4C6C
@@ -308,7 +311,9 @@ void PlatInstanceAttacher::setShapeVisibility()
  * @note Address: 0x801C55E8
  * @note Size: 0xB8
  */
-PlatMgr::PlatMgr() { }
+PlatMgr::PlatMgr()
+{
+}
 
 /**
  * @note Address: 0x801C58C0
@@ -380,7 +385,10 @@ PlatInstance* PlatMgr::addInstance(PlatAddInstanceArg& arg)
  * @note Address: 0x801C5B98
  * @note Size: 0x20
  */
-void PlatMgr::delInstance(PlatInstance* instance) { NodeObjectMgr::delNode(instance); }
+void PlatMgr::delInstance(PlatInstance* instance)
+{
+	NodeObjectMgr::delNode(instance);
+}
 
 /**
  * @note Address: 0x801C5BB8
@@ -500,13 +508,18 @@ bool PlatMgr::findRayIntersection(Sys::RayIntersectInfo& info)
 void PlatMgr::resetOnCount()
 {
 	Iterator<PlatInstance> iter(this);
-	CI_LOOP(iter) { (*iter)->mOnCount = 0; }
+	CI_LOOP(iter)
+	{
+		(*iter)->mOnCount = 0;
+	}
 }
 
 /**
  * @note Address: 0x801C666C
  * @note Size: 0x4
  */
-void PlatMgr::doDirectDraw(Graphics&) { }
+void PlatMgr::doDirectDraw(Graphics&)
+{
+}
 
 } // namespace Game

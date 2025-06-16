@@ -8,19 +8,26 @@ namespace newScreen {
  * @note Address: 0x80323584
  * @note Size: 0x50
  */
-SMenuPauseDoukutu::SMenuPauseDoukutu() { }
+SMenuPauseDoukutu::SMenuPauseDoukutu()
+{
+}
 
 /**
  * @note Address: 0x803235D4
  * @note Size: 0x4
  */
-void SMenuPauseDoukutu::doUserCallBackFunc(Resource::MgrCommand*) { }
+void SMenuPauseDoukutu::doUserCallBackFunc(Resource::MgrCommand*)
+{
+}
 
 /**
  * @note Address: 0x803235D8
  * @note Size: 0x60
  */
-void SMenuPauseDoukutu::doCreateObj(JKRArchive* archive) { registObj(new ObjSMenuPauseDoukutu("SMenuPauseDoukutu screen"), archive); }
+void SMenuPauseDoukutu::doCreateObj(JKRArchive* archive)
+{
+	registObj(new ObjSMenuPauseDoukutu("SMenuPauseDoukutu screen"), archive);
+}
 
 /**
  * @note Address: 0x80323638
@@ -46,7 +53,9 @@ int SMenuPauseDoukutu::doGetFinishState()
  * @note Address: 0x803236C8
  * @note Size: 0x4
  */
-void SMenuPauseDoukutu::doUpdateActive() { }
+void SMenuPauseDoukutu::doUpdateActive()
+{
+}
 
 /**
  * @note Address: 0x803236CC

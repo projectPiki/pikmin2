@@ -18,7 +18,10 @@ namespace Screen {
 
 u64 arrow[6] = { 'Nyaji01', 'Nyaji02', 'Nyaji03', 'Nyaji04', 'Nyaji05', 'Nyaji06' };
 
-static void _Printf(char* format) { OSReport(format, __FILE__); }
+static void _Printf(char* format)
+{
+	OSReport(format, __FILE__);
+}
 
 /**
  * @note Address: 0x8040284C
@@ -2103,7 +2106,10 @@ void ObjDayEndResultMail::changeMail()
  * @note Address: 0x80409908
  * @note Size: 0x64
  */
-void ObjDayEndResultMail::changeAlpha() { mScreenCharacter->search('NitemW')->setAlpha(255 - mAlpha); }
+void ObjDayEndResultMail::changeAlpha()
+{
+	mScreenCharacter->search('NitemW')->setAlpha(255 - mAlpha);
+}
 
 /**
  * @note Address: 0x8040996C
@@ -2136,7 +2142,10 @@ void ObjDayEndResultMail::updateCommon()
 	mScreenMain->animation();
 }
 
-inline u64 J2DPane::getTagName() const { return mTag; }
+inline u64 J2DPane::getTagName() const
+{
+	return mTag;
+}
 
 /**
  * @note Address: 0x80409DB8
@@ -2166,7 +2175,10 @@ void ObjDayEndResultMail::setCallBackMessage(P2DScreen::Mgr* mgr, J2DPane* pane)
  * @note Address: 0x8040A174
  * @note Size: 0x24
  */
-void ObjDayEndResultMail::setCallBackMessage(P2DScreen::Mgr* mgr) { setCallBackMessage(mgr, mgr); }
+void ObjDayEndResultMail::setCallBackMessage(P2DScreen::Mgr* mgr)
+{
+	setCallBackMessage(mgr, mgr);
+}
 
 /**
  * @note Address: 0x8040A198

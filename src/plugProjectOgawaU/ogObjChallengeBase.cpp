@@ -29,7 +29,9 @@ ObjChallengeBase::ObjChallengeBase()
  * @note Address: 0x8032C938
  * @note Size: 0xAC
  */
-ObjChallengeBase::~ObjChallengeBase() { }
+ObjChallengeBase::~ObjChallengeBase()
+{
+}
 
 /**
  * @note Address: 0x8032C9E4
@@ -109,7 +111,10 @@ void ObjChallengeBase::updateTimer(f32 set, f32 dec)
  * @note Address: 0x8032CC78
  * @note Size: 0x8
  */
-void ObjChallengeBase::setSubLevel(u32 a1) { mSubLevel = a1; }
+void ObjChallengeBase::setSubLevel(u32 a1)
+{
+	mSubLevel = a1;
+}
 
 ObjChallengeBase::StaticValues ObjChallengeBase::msBaseVal;
 

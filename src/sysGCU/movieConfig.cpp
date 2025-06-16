@@ -35,7 +35,9 @@ MovieConfig::MovieConfig()
  * @note Address: 0x804318A0
  * @note Size: 0x4
  */
-void MovieConfig::dump() { }
+void MovieConfig::dump()
+{
+}
 
 /**
  * @note Address: 0x804318A4
@@ -54,13 +56,19 @@ bool MovieConfig::isSkippable()
  * @note Address: 0x804318C0
  * @note Size: 0xC
  */
-bool MovieConfig::isNeverSkippable() { return mFlags >> 1 & 1; }
+bool MovieConfig::isNeverSkippable()
+{
+	return mFlags >> 1 & 1;
+}
 
 /**
  * @note Address: 0x804318CC
  * @note Size: 0x54
  */
-bool MovieConfig::is(char* name) { return IS_SAME_STRING_N(mMovieNameBuffer2, name, strlen(name)); }
+bool MovieConfig::is(char* name)
+{
+	return IS_SAME_STRING_N(mMovieNameBuffer2, name, strlen(name));
+}
 
 /**
  * @note Address: 0x80431920
@@ -123,7 +131,10 @@ void MovieConfig::read(Stream& data)
  * @note Address: 0x80431BF4
  * @note Size: 0x38
  */
-void MovieList::construct() { movieList = new MovieList; }
+void MovieList::construct()
+{
+	movieList = new MovieList;
+}
 
 /**
  * @note Address: 0x80431C2C
@@ -168,7 +179,10 @@ MovieConfig* MovieList::findConfig(char* movieName, char* mapName)
  * @note Size: 0x94
  * this is just here to get the rodata to line up.
  */
-void MovieList::getConfig(int i) { P2ASSERTLINE(100, i > 0); }
+void MovieList::getConfig(int i)
+{
+	P2ASSERTLINE(100, i > 0);
+}
 
 /**
  * @note Address: 0x80431F30

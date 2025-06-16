@@ -25,13 +25,19 @@ void DispMemberCpy(u8*, og::Screen::DispMemberBase*)
  * @note Address: N/A
  * @note Size: 0x48
  */
-ScreenOwnerID getSceneOwnerName(SceneBase* scene) { return scene->getOwnerID(); }
+ScreenOwnerID getSceneOwnerName(SceneBase* scene)
+{
+	return scene->getOwnerID();
+}
 
 /**
  * @note Address: N/A
  * @note Size: 0x40
  */
-ScreenMemberID getSceneMemberName(SceneBase* scene) { return scene->getMemberID(); }
+ScreenMemberID getSceneMemberName(SceneBase* scene)
+{
+	return scene->getMemberID();
+}
 
 /**
  * @note Address: 0x80452300
@@ -179,7 +185,10 @@ void MgrCommand::setTypeEndScene(SceneArgBase* arg)
  * @note Address: N/A
  * @note Size: 0x8C
  */
-void MgrCommand::setTypeInvalid() { setTypeEndScene(nullptr); }
+void MgrCommand::setTypeInvalid()
+{
+	setTypeEndScene(nullptr);
+}
 
 /**
  * @note Address: 0x80452354
@@ -335,7 +344,10 @@ bool Mgr::endScene(Screen::EndSceneArg* arg)
  * @note Address: 0x80452A60
  * @note Size: 0x8
  */
-MgrCommand* Mgr::getCurrentCommand() { return (MgrCommand*)mAvailableCommands.mChild; }
+MgrCommand* Mgr::getCurrentCommand()
+{
+	return (MgrCommand*)mAvailableCommands.mChild;
+}
 
 /**
  * @note Address: 0x80452A68
@@ -477,7 +489,10 @@ void Mgr::draw(Graphics& gfx)
  * @note Address: 0x80452EF8
  * @note Size: 0x8
  */
-SceneBase* Mgr::doGetSceneBase(s32) { return nullptr; }
+SceneBase* Mgr::doGetSceneBase(s32)
+{
+	return nullptr;
+}
 
 /**
  * @note Address: N/A
@@ -622,7 +637,10 @@ bool Mgr::setScene(SetSceneArg& arg)
  * @note Address: 0x8045375C
  * @note Size: 0x24
  */
-bool Mgr::isCurrentSceneLoading() { return mBackupScene && mBackupScene->mStateID == 1; }
+bool Mgr::isCurrentSceneLoading()
+{
+	return mBackupScene && mBackupScene->mStateID == 1;
+}
 
 /**
  * @note Address: 0x80453780

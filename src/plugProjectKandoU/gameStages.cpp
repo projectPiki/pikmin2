@@ -36,7 +36,9 @@ inline CaveOtakaraInfo::CaveOtakaraInfo()
  * @note Size: 0x60
  * AUTOGEN
  */
-CaveOtakara::~CaveOtakara() { }
+CaveOtakara::~CaveOtakara()
+{
+}
 
 /**
  * @note Address: N/A
@@ -125,7 +127,9 @@ inline LimitGenInfo::LimitGenInfo()
  * @note Size: 0x60
  * AUTOGEN
  */
-LimitGen::~LimitGen() { }
+LimitGen::~LimitGen()
+{
+}
 
 /**
  * @note Address: N/A
@@ -174,20 +178,26 @@ CourseInfo::CourseInfo()
  * @note Size: 0x6C
  * AUTOGEN
  */
-inline CaveOtakaraInfo::~CaveOtakaraInfo() { }
+inline CaveOtakaraInfo::~CaveOtakaraInfo()
+{
+}
 
 /**
  * @note Address: N/A
  * @note Size: 0x6C
  * AUTOGEN
  */
-inline LimitGenInfo::~LimitGenInfo() { }
+inline LimitGenInfo::~LimitGenInfo()
+{
+}
 
 /**
  * @note Address: 0x801AD58C
  * @note Size: 0x4
  */
-void CourseInfo::dump() { }
+void CourseInfo::dump()
+{
+}
 
 /**
  * @note Address: 0x801AD590
@@ -292,7 +302,10 @@ int CourseInfo::getOtakaraNum(int childIdx)
  * @note Address: 0x801ADB14
  * @note Size: 0x8C
  */
-int CourseInfo::getCaveIndex_FromID(ID32& id) { return mCaveOtakaraInfo.getCaveIndex_FromID(id); }
+int CourseInfo::getCaveIndex_FromID(ID32& id)
+{
+	return mCaveOtakaraInfo.getCaveIndex_FromID(id);
+}
 
 /**
  * @note Address: 0x801ADBA0
@@ -324,7 +337,10 @@ u32 CourseInfo::getCaveID_FromIndex(int childIdx)
  * @note Address: 0x801ADC78
  * @note Size: 0x8
  */
-int CourseInfo::getCaveNum() { return mCaveOtakaraInfo.mCount; }
+int CourseInfo::getCaveNum()
+{
+	return mCaveOtakaraInfo.mCount;
+}
 
 /**
  * @note Address: 0x801ADC80
@@ -345,7 +361,9 @@ Stages::Stages()
  * @note Address: 0x801ADE6C
  * @note Size: 0xD0
  */
-CourseInfo::~CourseInfo() { }
+CourseInfo::~CourseInfo()
+{
+}
 
 /**
  * @note Address: N/A

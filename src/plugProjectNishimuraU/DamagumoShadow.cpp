@@ -68,7 +68,10 @@ void DamagumoShadowMgr::init()
  * @note Address: 0x802AB0EC
  * @note Size: 0x18
  */
-void DamagumoShadowMgr::setJointPosPtr(int p1, int p2, Vector3f* posPtr) { mJointPosPtrs[p1][p2] = posPtr; }
+void DamagumoShadowMgr::setJointPosPtr(int p1, int p2, Vector3f* posPtr)
+{
+	mJointPosPtrs[p1][p2] = posPtr;
+}
 
 /**
  * @note Address: 0x802AB104

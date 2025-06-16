@@ -91,7 +91,9 @@ JStudio::TObject* createObject_JSG_(const JStudio::stb::data::TParse_TBlock_obje
  * @note Address: 0x80014734
  * @note Size: 0x60
  */
-TCreateObject::~TCreateObject() { }
+TCreateObject::~TCreateObject()
+{
+}
 
 // not thrilled with this solution for weak function ordering but It's A Solution
 static void fakeFunc(JStudio::TObject** newObject, JStudio::stb::data::TParse_TBlock_object const& data)

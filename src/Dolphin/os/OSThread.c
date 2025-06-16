@@ -14,7 +14,10 @@ static OSSwitchThreadCallback SwitchThreadCallback = DefaultSwitchThreadCallback
 
 // Fabricated helper inlines.
 // Initialise mutex queue (mutex equiv. to OSInitThreadQueue below).
-static inline void InitMutexQueue(OSMutexQueue* queue) { queue->head = queue->tail = NULL; }
+static inline void InitMutexQueue(OSMutexQueue* queue)
+{
+	queue->head = queue->tail = NULL;
+}
 
 // Set current thread.
 static inline void SetCurrentThread(OSThread* thread)
@@ -27,7 +30,9 @@ static inline void SetCurrentThread(OSThread* thread)
  * @note Address: 0x800F1858
  * @note Size: 0x4
  */
-static void DefaultSwitchThreadCallback(OSThread* from, OSThread* to) { }
+static void DefaultSwitchThreadCallback(OSThread* from, OSThread* to)
+{
+}
 
 /**
  * @note Address: 0x800F185C
@@ -74,13 +79,19 @@ void __OSThreadInit()
  * @note Address: 0x800F19B4
  * @note Size: 0x10
  */
-void OSInitThreadQueue(OSThreadQueue* threadQueue) { threadQueue->head = threadQueue->tail = nullptr; }
+void OSInitThreadQueue(OSThreadQueue* threadQueue)
+{
+	threadQueue->head = threadQueue->tail = nullptr;
+}
 
 /**
  * @note Address: 0x800F19C4
  * @note Size: 0xC
  */
-OSThread* OSGetCurrentThread() { return __OSCurrentThread; }
+OSThread* OSGetCurrentThread()
+{
+	return __OSCurrentThread;
+}
 
 /**
  * @note Address: N/A
@@ -614,7 +625,10 @@ void OSWakeupThread(OSThreadQueue* threadQueue)
  * @note Address: 0x800F2ADC
  * @note Size: 0x8
  */
-OSPriority OSGetThreadPriority(OSThread* thread) { return thread->base; }
+OSPriority OSGetThreadPriority(OSThread* thread)
+{
+	return thread->base;
+}
 
 /**
  * @note Address: 0x800F2AE4

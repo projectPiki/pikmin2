@@ -170,13 +170,19 @@ void TMainTitleMgr::startMenuSet(s32, s32 select)
  * @note Address: 0x803EA9AC
  * @note Size: 0xC
  */
-void TMainTitleMgr::forceQuit() { mState = Standby; }
+void TMainTitleMgr::forceQuit()
+{
+	mState = Standby;
+}
 
 /**
  * @note Address: 0x803EA9B8
  * @note Size: 0x10
  */
-bool TMainTitleMgr::isFinish() { return u8(mState == Standby); }
+bool TMainTitleMgr::isFinish()
+{
+	return u8(mState == Standby);
+}
 
 /**
  * @note Address: N/A
@@ -191,7 +197,10 @@ bool TMainTitleMgr::isAnyKey()
  * @note Address: 0x803EA9C8
  * @note Size: 0x8
  */
-int TMainTitleMgr::getSelectedMenu() { return mSelectedMenuOption; }
+int TMainTitleMgr::getSelectedMenu()
+{
+	return mSelectedMenuOption;
+}
 
 /**
  * @note Address: 0x803EA9D0

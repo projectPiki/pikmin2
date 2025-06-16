@@ -82,7 +82,10 @@ void Obj::onKill(CreatureKillArg* killArg)
  * @note Address: 0x80260484
  * @note Size: 0x34
  */
-void Obj::doUpdate() { mFsm->exec(this); }
+void Obj::doUpdate()
+{
+	mFsm->exec(this);
+}
 
 /**
  * @note Address: 0x802604B8
@@ -99,13 +102,18 @@ void Obj::setFSM(FSM* fsm)
  * @note Address: 0x80260504
  * @note Size: 0x4
  */
-void Obj::doDirectDraw(Graphics&) { }
+void Obj::doDirectDraw(Graphics&)
+{
+}
 
 /**
  * @note Address: 0x80260508
  * @note Size: 0x20
  */
-void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
+void Obj::doDebugDraw(Graphics& gfx)
+{
+	EnemyBase::doDebugDraw(gfx);
+}
 
 /**
  * @note Address: 0x80260528
@@ -159,13 +167,19 @@ void Obj::doFinishWaitingBirthTypeDrop()
  * @note Address: 0x80260674
  * @note Size: 0x20
  */
-void Obj::doStartMovie() { effectDrawOff(); }
+void Obj::doStartMovie()
+{
+	effectDrawOff();
+}
 
 /**
  * @note Address: 0x80260694
  * @note Size: 0x20
  */
-void Obj::doEndMovie() { effectDrawOn(); }
+void Obj::doEndMovie()
+{
+	effectDrawOn();
+}
 
 /**
  * @note Address: 0x802606B4
@@ -375,25 +389,37 @@ void Obj::startGlowEffect()
  * @note Address: 0x80260F4C
  * @note Size: 0x2C
  */
-void Obj::setGlowEffectScale() { mEfxGlow->setGlobalScale(mQurioneScale); }
+void Obj::setGlowEffectScale()
+{
+	mEfxGlow->setGlobalScale(mQurioneScale);
+}
 
 /**
  * @note Address: 0x80260F78
  * @note Size: 0x30
  */
-void Obj::finishGlowEffect() { mEfxGlow->forceKill(); }
+void Obj::finishGlowEffect()
+{
+	mEfxGlow->forceKill();
+}
 
 /**
  * @note Address: 0x80260FA8
  * @note Size: 0x34
  */
-void Obj::createAppearEffect() { mEfxAppear->create(nullptr); }
+void Obj::createAppearEffect()
+{
+	mEfxAppear->create(nullptr);
+}
 
 /**
  * @note Address: 0x80260FDC
  * @note Size: 0x34
  */
-void Obj::createDisppearEffect() { mEfxDisappear->create(nullptr); }
+void Obj::createDisppearEffect()
+{
+	mEfxDisappear->create(nullptr);
+}
 
 /**
  * @note Address: 0x80261010

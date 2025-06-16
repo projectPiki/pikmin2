@@ -55,7 +55,9 @@ TVariableValue::TOutput_none_ TVariableValue::soOutput_none_;
  * @note Size: 0x48
  * __dt__Q37JStudio14TVariableValue7TOutputFv
  */
-TVariableValue::TOutput::~TOutput() { }
+TVariableValue::TOutput::~TOutput()
+{
+}
 
 /**
  * @note Address: N/A
@@ -83,26 +85,36 @@ void TVariableValue::update_immediate_(TVariableValue* p1, f64 p2)
  * @note Address: 0x8000D0C4
  * @note Size: 0x3C
  */
-void TVariableValue::update_time_(TVariableValue* p1, f64 p2) { p1->mValue = (f64)p1->_0C.val * ((f64)p1->_04 * p2); }
+void TVariableValue::update_time_(TVariableValue* p1, f64 p2)
+{
+	p1->mValue = (f64)p1->_0C.val * ((f64)p1->_04 * p2);
+}
 
 /**
  * @note Address: 0x8000D100
  * @note Size: 0x64
  */
-void TVariableValue::update_functionValue_(TVariableValue* p1, f64 p2) { p1->mValue = p1->_0C.fv->getValue(p1->_04 * p2); }
+void TVariableValue::update_functionValue_(TVariableValue* p1, f64 p2)
+{
+	p1->mValue = p1->_0C.fv->getValue(p1->_04 * p2);
+}
 
 /**
  * @note Address: 0x8000D164
  * @note Size: 0x5C
  * __dt__Q37JStudio14TVariableValue13TOutput_none_Fv
  */
-TVariableValue::TOutput_none_::~TOutput_none_() { }
+TVariableValue::TOutput_none_::~TOutput_none_()
+{
+}
 
 /**
  * @note Address: 0x8000D1C0
  * @note Size: 0x4
  */
-void TVariableValue::TOutput_none_::operator()(f32, JStudio::TAdaptor*) const { }
+void TVariableValue::TOutput_none_::operator()(f32, JStudio::TAdaptor*) const
+{
+}
 
 /**
  * @note Address: N/A
@@ -117,31 +129,41 @@ TAdaptor::~TAdaptor()
  * @note Address: 0x8000D1C4
  * @note Size: 0x4
  */
-void TAdaptor::adaptor_do_prepare(JStudio::TObject const*) { }
+void TAdaptor::adaptor_do_prepare(JStudio::TObject const*)
+{
+}
 
 /**
  * @note Address: 0x8000D1C8
  * @note Size: 0x4
  */
-void TAdaptor::adaptor_do_begin(JStudio::TObject const*) { }
+void TAdaptor::adaptor_do_begin(JStudio::TObject const*)
+{
+}
 
 /**
  * @note Address: 0x8000D1CC
  * @note Size: 0x4
  */
-void TAdaptor::adaptor_do_end(JStudio::TObject const*) { }
+void TAdaptor::adaptor_do_end(JStudio::TObject const*)
+{
+}
 
 /**
  * @note Address: 0x8000D1D0
  * @note Size: 0x4
  */
-void TAdaptor::adaptor_do_update(JStudio::TObject const*, u32) { }
+void TAdaptor::adaptor_do_update(JStudio::TObject const*, u32)
+{
+}
 
 /**
  * @note Address: 0x8000D1D4
  * @note Size: 0x4
  */
-void TAdaptor::adaptor_do_data(JStudio::TObject const*, void const*, u32, void const*, u32) { }
+void TAdaptor::adaptor_do_data(JStudio::TObject const*, void const*, u32, void const*, u32)
+{
+}
 
 /**
  * @note Address: 0x8000D1D8
@@ -589,7 +611,9 @@ TObject::TObject(JStudio::data::TE32Block, void const*, u32, JStudio::TAdaptor*)
  * @note Size: 0x5C
  * __dt__Q27JStudio14TAdaptor_actorFv
  */
-TAdaptor_actor::~TAdaptor_actor() { }
+TAdaptor_actor::~TAdaptor_actor()
+{
+}
 
 /**
  * @note Address: N/A
@@ -1266,7 +1290,9 @@ lbl_8000DDC0:
  * @note Size: 0x5C
  * __dt__Q27JStudio21TAdaptor_ambientLightFv
  */
-TAdaptor_ambientLight::~TAdaptor_ambientLight() { }
+TAdaptor_ambientLight::~TAdaptor_ambientLight()
+{
+}
 
 /**
  * @note Address: N/A
@@ -1502,7 +1528,9 @@ multi:
  * @note Size: 0x5C
  * __dt__Q27JStudio15TAdaptor_cameraFv
  */
-TAdaptor_camera::~TAdaptor_camera() { }
+TAdaptor_camera::~TAdaptor_camera()
+{
+}
 
 /**
  * @note Address: N/A
@@ -2107,7 +2135,9 @@ lbl_8000E4FC:
  * @note Size: 0x5C
  * __dt__Q27JStudio12TAdaptor_fogFv
  */
-TAdaptor_fog::~TAdaptor_fog() { }
+TAdaptor_fog::~TAdaptor_fog()
+{
+}
 
 /**
  * @note Address: N/A
@@ -2429,7 +2459,9 @@ lbl_8000E798:
  * @note Size: 0x5C
  * __dt__Q27JStudio14TAdaptor_lightFv
  */
-TAdaptor_light::~TAdaptor_light() { }
+TAdaptor_light::~TAdaptor_light()
+{
+}
 
 /**
  * @note Address: N/A
@@ -2966,7 +2998,9 @@ lbl_8000EBBC:
  * @note Size: 0x5C
  * __dt__Q27JStudio16TAdaptor_messageFv
  */
-TAdaptor_message::~TAdaptor_message() { }
+TAdaptor_message::~TAdaptor_message()
+{
+}
 
 /**
  * @note Address: N/A
@@ -3066,7 +3100,9 @@ lbl_8000ED04:
  * @note Size: 0x5C
  * __dt__Q27JStudio17TAdaptor_particleFv
  */
-TAdaptor_particle::~TAdaptor_particle() { }
+TAdaptor_particle::~TAdaptor_particle()
+{
+}
 
 /**
  * @note Address: N/A
@@ -3744,7 +3780,9 @@ lbl_8000F20C:
  * @note Size: 0x5C
  * __dt__Q27JStudio14TAdaptor_soundFv
  */
-TAdaptor_sound::~TAdaptor_sound() { }
+TAdaptor_sound::~TAdaptor_sound()
+{
+}
 
 /**
  * @note Address: N/A

@@ -21,7 +21,9 @@ DrawBuffer::DrawBuffer()
  * @note Address: 0x8045575C
  * @note Size: 0x60
  */
-DrawBuffer::~DrawBuffer() { }
+DrawBuffer::~DrawBuffer()
+{
+}
 
 /**
  * @note Address: 0x804557BC
@@ -83,7 +85,9 @@ DrawBuffers::DrawBuffers()
  * @note Address: 0x804559CC
  * @note Size: 0x60
  */
-DrawBuffers::~DrawBuffers() { }
+DrawBuffers::~DrawBuffers()
+{
+}
 
 /**
  * @note Address: 0x80455A2C

@@ -37,7 +37,7 @@ struct CreatureProperty {
 };
 
 struct CreatureParms {
-	CreatureParms() {};
+	CreatureParms() { };
 
 	// _D8 = VTBL (i.e. after mCreatureProps)
 	CreatureProperty mCreatureProps; // _00

@@ -10,7 +10,10 @@ namespace Cave {
  * @note Size: 0x8
  * Matches!
  */
-RandMapChecker::RandMapChecker(MapNode* mapnode) { mMapNode = mapnode; }
+RandMapChecker::RandMapChecker(MapNode* mapnode)
+{
+	mMapNode = mapnode;
+}
 
 /**
  * @note Address: 0x8024566C

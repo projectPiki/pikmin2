@@ -19,7 +19,10 @@ typedef f64 (*ExtrapolateParameter)(f64 value, f64 max);
 namespace functionvalue {
 // this is just for interpolation and extrapolation functions
 // EXTRAPOLATION
-inline f64 extrapolateParameter_raw(f64 value, f64 max) { return value; }
+inline f64 extrapolateParameter_raw(f64 value, f64 max)
+{
+	return value;
+}
 
 inline f64 extrapolateParameter_repeat(f64 value, f64 max)
 {
@@ -57,9 +60,15 @@ f64 interpolateValue_BSpline_uniform_last1(f64, f64, f64, f64, f64);
 f64 interpolateValue_BSpline_nonuniform(f64, const f64*, const f64*);
 
 // fabricated/taken from wind waker
-inline f64 interpolateValue_linear(f64 a1, f64 a2, f64 a3, f64 a4, f64 a5) { return a3 + ((a5 - a3) * (a1 - a2)) / (a4 - a2); }
+inline f64 interpolateValue_linear(f64 a1, f64 a2, f64 a3, f64 a4, f64 a5)
+{
+	return a3 + ((a5 - a3) * (a1 - a2)) / (a4 - a2);
+}
 
-inline f64 interpolateValue_linear_1(f64 a1, f64 a2, f64 a3, f64 a4) { return a3 + (a4 - a3) * (a1 - a2); }
+inline f64 interpolateValue_linear_1(f64 a1, f64 a2, f64 a3, f64 a4)
+{
+	return a3 + (a4 - a3) * (a1 - a2);
+}
 inline f64 interpolateValue_plateau(f64 startValue, f64 endValue, f64 startPoint, f64 endPoint, f64 fraction)
 {
 	return interpolateValue_hermite(startValue, endValue, startPoint, 0.0, endPoint, fraction, 0.0);

@@ -7,7 +7,10 @@ namespace JGadget {
  * @note Address: 0x8002766C
  * @note Size: 0x8
  */
-u32 vector::extend_default(u32 capacity, u32 oldSize, u32 count) { return oldSize * 2; }
+u32 vector::extend_default(u32 capacity, u32 oldSize, u32 count)
+{
+	return oldSize * 2;
+}
 
 /**
  * @note Address: 0x80027674
@@ -72,7 +75,10 @@ TVector_pointer_void::~TVector_pointer_void()
  * @note Address: 0x80027C90
  * @note Size: 0x20
  */
-void TVector_pointer_void::insert(void** position, void* const& value) { TVector::insert(position, value); }
+void TVector_pointer_void::insert(void** position, void* const& value)
+{
+	TVector::insert(position, value);
+}
 
 // /**
 //  * @note Address: N/A

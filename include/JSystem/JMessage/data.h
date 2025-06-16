@@ -81,8 +81,14 @@ struct TParse_TBlock_color : public TParse_TBlock {
 	// _00-_04 = TParse_TBlock
 };
 
-inline u32 getTagCode(u32 tag) { return tag & 0xFFFF; }
-inline u32 getTagGroup(u32 tag) { return (tag >> 0x10) & 0xFF; }
+inline u32 getTagCode(u32 tag)
+{
+	return tag & 0xFFFF;
+}
+inline u32 getTagGroup(u32 tag)
+{
+	return (tag >> 0x10) & 0xFF;
+}
 
 } // namespace data
 } // namespace JMessage

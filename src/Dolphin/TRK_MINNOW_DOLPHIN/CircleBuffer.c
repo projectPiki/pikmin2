@@ -4,13 +4,19 @@
  * @note Address: 0x800C11F4
  * @note Size: 0x8
  */
-u32 CBGetBytesAvailableForRead(CircleBuffer* cb) { return cb->mBytesToRead; }
+u32 CBGetBytesAvailableForRead(CircleBuffer* cb)
+{
+	return cb->mBytesToRead;
+}
 
 /**
  * @note Address: N/A
  * @note Size: 0x8
  */
-u32 CBGetBytesAvailableForWrite(CircleBuffer* cb) { return cb->mBytesToWrite; }
+u32 CBGetBytesAvailableForWrite(CircleBuffer* cb)
+{
+	return cb->mBytesToWrite;
+}
 
 /**
  * @note Address: 0x800C11A4

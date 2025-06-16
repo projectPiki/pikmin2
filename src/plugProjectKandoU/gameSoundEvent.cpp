@@ -40,7 +40,10 @@ u32 TSoundEvent::event()
  * @note Address: 0x8022EC30
  * @note Size: 0x10
  */
-void TSoundEvent::finish() { mState |= TSE_Finish; }
+void TSoundEvent::finish()
+{
+	mState |= TSE_Finish;
+}
 
 /**
  * @note Address: 0x8022EC40

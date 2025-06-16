@@ -96,7 +96,10 @@ void TOmakeCardE::doCloseScreen(ArgClose*)
  * @note Address: 0x803F08F4
  * @note Size: 0x3C
  */
-void TOmakeCardE::doInitWaitState() { mAnimationIdle.play(sys->mDeltaTime * 60.0f, J3DAA_UNKNOWN_2, true); }
+void TOmakeCardE::doInitWaitState()
+{
+	mAnimationIdle.play(sys->mDeltaTime * 60.0f, J3DAA_UNKNOWN_2, true);
+}
 
 /**
  * @note Address: 0x803F0930

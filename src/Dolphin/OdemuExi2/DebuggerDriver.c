@@ -250,7 +250,10 @@ inline static BOOL _DBGReadStatus(u32* p1)
 	return IS_FALSE(total);
 }
 #pragma dont_inline on
-static BOOL DBGReadStatus(u32* p1) { return _DBGReadStatus(p1); }
+static BOOL DBGReadStatus(u32* p1)
+{
+	return _DBGReadStatus(p1);
+}
 #pragma dont_inline reset
 
 /**
@@ -407,10 +410,16 @@ BOOL DBWrite(void* src, u32 size)
  * @note Address: 0x800CFD6C
  * @note Size: 0x4
  */
-void DBOpen(void) { return; }
+void DBOpen(void)
+{
+	return;
+}
 
 /**
  * @note Address: 0x800CFD68
  * @note Size: 0x4
  */
-void DBClose(void) { return; }
+void DBClose(void)
+{
+	return;
+}

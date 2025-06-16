@@ -244,24 +244,32 @@ void ActRescue::onKeyEvent(SysShape::KeyEvent const& event)
  * @note Address: 0x8023988C
  * @note Size: 0x4
  */
-void ActRescue::emotion_success() { }
+void ActRescue::emotion_success()
+{
+}
 
 /**
  * @note Address: 0x80239890
  * @note Size: 0x4
  */
-void ActRescue::doDirectDraw(Graphics&) { }
+void ActRescue::doDirectDraw(Graphics&)
+{
+}
 
 /**
  * @note Address: 0x80239894
  * @note Size: 0x4
  */
-void ActRescue::cleanup() { }
+void ActRescue::cleanup()
+{
+}
 
 /**
  * @note Address: 0x80239898
  * @note Size: 0x4
  */
-void ActRescue::collisionCallback(Game::Piki* piki, Game::CollEvent& event) { }
+void ActRescue::collisionCallback(Game::Piki* piki, Game::CollEvent& event)
+{
+}
 
 } // namespace PikiAI

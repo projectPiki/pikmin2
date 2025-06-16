@@ -93,25 +93,37 @@ void JAISound::initMultiMoveParameter(JAInter::MoveParaSet*, u8, u32, f32, f32, 
  * @note Address: 0x800B3B24
  * @note Size: 0x24
  */
-u8 JAISe::getSeCategoryNumber() { return JAInter::SeMgr::changeIDToCategory(mSoundID); }
+u8 JAISe::getSeCategoryNumber()
+{
+	return JAInter::SeMgr::changeIDToCategory(mSoundID);
+}
 
 /**
  * @note Address: 0x800B3B48
  * @note Size: 0xC
  */
-u32 JAISound::getSwBit() { return mSoundInfo->mFlag; }
+u32 JAISound::getSwBit()
+{
+	return mSoundInfo->mFlag;
+}
 
 /**
  * @note Address: 0x800B3B54
  * @note Size: 0x10
  */
-u32 JAISound::checkSwBit(u32 flag) { return flag & getSwBit(); }
+u32 JAISound::checkSwBit(u32 flag)
+{
+	return flag & getSwBit();
+}
 
 /**
  * @note Address: 0x800B3B64
  * @note Size: 0xC
  */
-u8 JAISound::getInfoPriority() { return mSoundInfo->mPriority; }
+u8 JAISound::getInfoPriority()
+{
+	return mSoundInfo->mPriority;
+}
 
 /**
  * @note Address: 0x800B3B70
@@ -149,7 +161,10 @@ void JAISound::start(u32 fadeTime)
  * @note Address: 0x800B3BE8
  * @note Size: 0x30
  */
-void JAISound::stop(u32 fadeTime) { JAIBasic::msBasic->stopSoundHandle(this, fadeTime); }
+void JAISound::stop(u32 fadeTime)
+{
+	JAIBasic::msBasic->stopSoundHandle(this, fadeTime);
+}
 
 /**
  * @note Address: 0x800B3C18
@@ -1479,7 +1494,9 @@ void JAISe::setSeDistanceFxmix(u8 moveTime)
  * @note Address: 0x800B4F24
  * @note Size: 0x4
  */
-void JAISe::setSeDistanceFir(u8) { }
+void JAISe::setSeDistanceFir(u8)
+{
+}
 
 /**
  * @note Address: 0x800B4F28
@@ -1554,7 +1571,10 @@ void JAIStream::setStreamInterDolby(u8, f32, u32)
  * @note Address: 0x800B4FCC
  * @note Size: 0xC
  */
-void JAIStream::setStreamPrepareFlag(u8 flag) { JAInter::StreamMgr::streamUpdate->mPrepareFlag = flag; }
+void JAIStream::setStreamPrepareFlag(u8 flag)
+{
+	JAInter::StreamMgr::streamUpdate->mPrepareFlag = flag;
+}
 
 /**
  * @note Address: 0x800B4FD8
@@ -1883,7 +1903,10 @@ lbl_800B5328:
  * @note Size: 0xC
  * setSeqPrepareFlag__11JAISequenceFUc
  */
-void JAISequence::setSeqPrepareFlag(u8 seqPrepareFlag) { mSeqParameter.mUpdateData->mPrepareFlag = seqPrepareFlag; }
+void JAISequence::setSeqPrepareFlag(u8 seqPrepareFlag)
+{
+	mSeqParameter.mUpdateData->mPrepareFlag = seqPrepareFlag;
+}
 
 /**
  * @note Address: 0x800B547C
@@ -2121,7 +2144,10 @@ u32 JAISequence::getFadeCounter()
  * @note Size: 0xC
  * getFadeCounter__5JAISeFv
  */
-u32 JAISe::getFadeCounter() { return mSeParam.mVolumes[SOUNDPARAM_Direct].mMoveCounter - 1; }
+u32 JAISe::getFadeCounter()
+{
+	return mSeParam.mVolumes[SOUNDPARAM_Direct].mMoveCounter - 1;
+}
 
 /**
  * @note Address: 0x800B55F0
@@ -2206,7 +2232,9 @@ JAISound* JAInter::LinkSound::getSound()
  * @note Address: 0x800B57E8
  * @note Size: 0x4
  */
-void JAISound::onGet() { }
+void JAISound::onGet()
+{
+}
 
 /**
  * @note Address: 0x800B57EC
@@ -2227,7 +2255,9 @@ void JAInter::LinkSound::releaseSound(JAISound* sound)
  * @note Address: 0x800B5854
  * @note Size: 0x4
  */
-void JAISound::onRelease() { }
+void JAISound::onRelease()
+{
+}
 
 /**
  * @note Address: N/A

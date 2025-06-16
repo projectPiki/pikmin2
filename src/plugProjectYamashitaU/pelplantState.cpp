@@ -124,7 +124,10 @@ void StateWither::exec(EnemyBase* enemy)
  * @note Address: 0x8010AF54
  * @note Size: 0x28
  */
-void StateWither::cleanup(EnemyBase* enemy) { OBJ(enemy)->updateLODSphereRadius(PELPLANTSIZE_Small); }
+void StateWither::cleanup(EnemyBase* enemy)
+{
+	OBJ(enemy)->updateLODSphereRadius(PELPLANTSIZE_Small);
+}
 
 /**
  * @note Address: 0x8010AF7C
@@ -257,7 +260,9 @@ void StateWait::exec(EnemyBase* enemy)
  * @note Address: 0x8010B3C0
  * @note Size: 0x4
  */
-void StateWait::cleanup(EnemyBase*) { }
+void StateWait::cleanup(EnemyBase*)
+{
+}
 
 /**
  * @note Address: 0x8010B3C4
@@ -341,7 +346,9 @@ void StateGrow::exec(EnemyBase* enemy)
  * @note Address: 0x8010B748
  * @note Size: 0x4
  */
-void StateGrow::cleanup(Game::EnemyBase*) { }
+void StateGrow::cleanup(Game::EnemyBase*)
+{
+}
 
 /**
  * @note Address: 0x8010B74C
@@ -389,7 +396,10 @@ void StateDamage::exec(Game::EnemyBase* enemy)
  * @note Address: 0x8010B880
  * @note Size: 0x10
  */
-void StateDamage::cleanup(EnemyBase* enemy) { enemy->enableEvent(0, EB_Invulnerable); }
+void StateDamage::cleanup(EnemyBase* enemy)
+{
+	enemy->enableEvent(0, EB_Invulnerable);
+}
 
 /**
  * @note Address: 0x8010B890
@@ -445,7 +455,9 @@ void StateDead::exec(EnemyBase* enemy)
  * @note Address: 0x8010B9EC
  * @note Size: 0x4
  */
-void StateDead::cleanup(Game::EnemyBase*) { }
+void StateDead::cleanup(Game::EnemyBase*)
+{
+}
 
 } // namespace Pelplant
 } // namespace Game

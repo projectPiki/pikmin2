@@ -24,7 +24,9 @@ BombSarai::Obj::Obj()
  * @note Address: 0x802B2904
  * @note Size: 0x4
  */
-void BombSarai::Obj::setInitialSetting(EnemyInitialParamBase*) { }
+void BombSarai::Obj::setInitialSetting(EnemyInitialParamBase*)
+{
+}
 
 /**
  * @note Address: 0x802B2908
@@ -74,13 +76,18 @@ void BombSarai::Obj::doUpdate()
  * @note Address: 0x802B2A94
  * @note Size: 0x4
  */
-void BombSarai::Obj::doDirectDraw(Graphics&) { }
+void BombSarai::Obj::doDirectDraw(Graphics&)
+{
+}
 
 /**
  * @note Address: 0x802B2A98
  * @note Size: 0x20
  */
-void BombSarai::Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
+void BombSarai::Obj::doDebugDraw(Graphics& gfx)
+{
+	EnemyBase::doDebugDraw(gfx);
+}
 
 /**
  * @note Address: 0x802B2AB8
@@ -165,19 +172,28 @@ void BombSarai::Obj::doFinishWaitingBirthTypeDrop()
  * @note Address: 0x802B2D08
  * @note Size: 0x28
  */
-void BombSarai::Obj::startCarcassMotion() { startMotion(BOMBSARAIANIM_Carry, nullptr); }
+void BombSarai::Obj::startCarcassMotion()
+{
+	startMotion(BOMBSARAIANIM_Carry, nullptr);
+}
 
 /**
  * @note Address: 0x802B2D30
  * @note Size: 0x20
  */
-void BombSarai::Obj::doStartMovie() { effectDrawOff(); }
+void BombSarai::Obj::doStartMovie()
+{
+	effectDrawOff();
+}
 
 /**
  * @note Address: 0x802B2D50
  * @note Size: 0x20
  */
-void BombSarai::Obj::doEndMovie() { effectDrawOn(); }
+void BombSarai::Obj::doEndMovie()
+{
+	effectDrawOn();
+}
 
 /**
  * @note Address: 0x802B2D70
@@ -327,19 +343,28 @@ BombSarai::StateID BombSarai::Obj::getNextStateOnHeight()
  * @note Address: 0x802B3424
  * @note Size: 0xB0
  */
-void BombSarai::Obj::createEffect() { mEfxSupli = new efx::TBsaraiSupli(); }
+void BombSarai::Obj::createEffect()
+{
+	mEfxSupli = new efx::TBsaraiSupli();
+}
 
 /**
  * @note Address: 0x802B34D4
  * @note Size: 0x44
  */
-void BombSarai::Obj::setupEffect() { mEfxSupli->mMtx = mModel->getJoint("kuti_joint1")->getWorldMatrix(); }
+void BombSarai::Obj::setupEffect()
+{
+	mEfxSupli->mMtx = mModel->getJoint("kuti_joint1")->getWorldMatrix();
+}
 
 /**
  * @note Address: 0x802B3518
  * @note Size: 0x34
  */
-void BombSarai::Obj::createSupliEffect() { mEfxSupli->create(nullptr); }
+void BombSarai::Obj::createSupliEffect()
+{
+	mEfxSupli->create(nullptr);
+}
 
 /**
  * @note Address: 0x802B354C
@@ -379,18 +404,27 @@ void BombSarai::Obj::createBalloonEffect(int balloon)
  * @note Address: 0x802B3668
  * @note Size: 0x24
  */
-void BombSarai::Obj::createDownEffect(f32 p1) { createBounceEffect(mPosition, p1); }
+void BombSarai::Obj::createDownEffect(f32 p1)
+{
+	createBounceEffect(mPosition, p1);
+}
 
 /**
  * @note Address: 0x802B368C
  * @note Size: 0x30
  */
-void BombSarai::Obj::effectDrawOn() { mEfxSupli->endDemoDrawOn(); }
+void BombSarai::Obj::effectDrawOn()
+{
+	mEfxSupli->endDemoDrawOn();
+}
 
 /**
  * @note Address: 0x802B36BC
  * @note Size: 0x30
  */
-void BombSarai::Obj::effectDrawOff() { mEfxSupli->startDemoDrawOff(); }
+void BombSarai::Obj::effectDrawOff()
+{
+	mEfxSupli->startDemoDrawOff();
+}
 
 } // namespace Game

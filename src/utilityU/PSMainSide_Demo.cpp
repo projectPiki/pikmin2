@@ -41,7 +41,10 @@ inline void DemoInitiator::setDefaultValues()
 	*mByte = -1;
 }
 
-inline bool DemoInitiator::isInitialized() { return mByte && mName; }
+inline bool DemoInitiator::isInitialized()
+{
+	return mByte && mName;
+}
 
 /**
  * @note Address: N/A

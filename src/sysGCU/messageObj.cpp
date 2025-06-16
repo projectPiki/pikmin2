@@ -122,7 +122,9 @@ bool TControl::update()
  * @note Address: 0x80438ED8
  * @note Size: 0x4
  */
-void TRenderingProcessor::update() { }
+void TRenderingProcessor::update()
+{
+}
 
 /**
  * @note Address: N/A
@@ -137,7 +139,10 @@ void TControl::drawCommon()
  * @note Address: 0x80438EDC
  * @note Size: 0x20
  */
-void TControl::draw(Graphics& gfx) { JMessage::TControl::render(); }
+void TControl::draw(Graphics& gfx)
+{
+	JMessage::TControl::render();
+}
 
 /**
  * @note Address: 0x80438EFC
@@ -155,7 +160,10 @@ void TControl::draw(Mtx a, Mtx b)
  * @note Address: 0x80438F7C
  * @note Size: 0x50
  */
-void TControl::setLocate(int x, int y) { mTextRenderProc->setLocate(x, y); }
+void TControl::setLocate(int x, int y)
+{
+	mTextRenderProc->setLocate(x, y);
+}
 
 /**
  * @note Address: 0x80438FCC

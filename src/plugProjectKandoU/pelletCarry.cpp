@@ -6,7 +6,10 @@ namespace Game {
  * @note Address: 0x80234EF8
  * @note Size: 0x30
  */
-PelletCarry::PelletCarry() { reset(); }
+PelletCarry::PelletCarry()
+{
+	reset();
+}
 
 /**
  * @note Address: 0x80234F28

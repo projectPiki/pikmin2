@@ -226,12 +226,16 @@ void ActCrop::cleanup()
  * @note Address: 0x801E4B74
  * @note Size: 0x4
  */
-void ActCrop::collisionCallback(Game::Piki*, Game::CollEvent&) { }
+void ActCrop::collisionCallback(Game::Piki*, Game::CollEvent&)
+{
+}
 
 /**
  * @note Address: 0x801E4B78
  * @note Size: 0x4
  */
-void ActCrop::onKeyEvent(const SysShape::KeyEvent&) { }
+void ActCrop::onKeyEvent(const SysShape::KeyEvent&)
+{
+}
 
 } // namespace PikiAI

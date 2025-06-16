@@ -105,4 +105,7 @@ DSError TRKInitializeSerialHandler()
  * @note Address: 0x800BC0C8
  * @note Size: 0x8
  */
-DSError TRKTerminateSerialHandler(void) { return DS_NoError; }
+DSError TRKTerminateSerialHandler(void)
+{
+	return DS_NoError;
+}

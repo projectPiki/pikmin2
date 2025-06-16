@@ -27,7 +27,9 @@ BloGroup::BloGroup(u16 count)
  * @note Address: N/A
  * @note Size: 0xB4
  */
-BloGroup::~BloGroup() { }
+BloGroup::~BloGroup()
+{
+}
 
 /**
  * @note Address: 0x8030F020

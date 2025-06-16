@@ -260,13 +260,19 @@ void PikiMgr::createModelCallback(SysShape::Model* model)
  * @note Address: 0x8015EF54
  * @note Size: 0x24
  */
-SysShape::Model* PikiMgr::createModel(int id, int num) { return mModelMgr->createModel(id, num); }
+SysShape::Model* PikiMgr::createModel(int id, int num)
+{
+	return mModelMgr->createModel(id, num);
+}
 
 /**
  * @note Address: 0x8015EF78
  * @note Size: 0x8
  */
-SysShape::Model* PikiMgr::createLeafModel(int id, int num) { return nullptr; }
+SysShape::Model* PikiMgr::createLeafModel(int id, int num)
+{
+	return nullptr;
+}
 
 /**
  * @note Address: 0x8015EF80
@@ -479,7 +485,9 @@ void PikiMgr::doEntry()
  * @note Address: 0x8015F848
  * @note Size: 0x4
  */
-void PikiMgr::setupSoundViewerAndBas() { }
+void PikiMgr::setupSoundViewerAndBas()
+{
+}
 
 /**
  * @note Address: 0x8015F84C

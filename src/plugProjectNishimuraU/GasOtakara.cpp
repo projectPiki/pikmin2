@@ -6,7 +6,10 @@ namespace GasOtakara {
  * @note Address: 0x802B9294
  * @note Size: 0xA4
  */
-Obj::Obj() { createEffect(); }
+Obj::Obj()
+{
+	createEffect();
+}
 
 /**
  * @note Address: 0x802B9338
@@ -46,7 +49,10 @@ void Obj::interactCreature(Creature* creature)
  * @note Address: 0x802B953C
  * @note Size: 0x60
  */
-void Obj::createEffect() { mEfxChargeGas = new efx::TOtaChargegas; }
+void Obj::createEffect()
+{
+	mEfxChargeGas = new efx::TOtaChargegas;
+}
 
 /**
  * @note Address: 0x802B959C
@@ -62,13 +68,19 @@ void Obj::setupEffect()
  * @note Address: 0x802B95E4
  * @note Size: 0x34
  */
-void Obj::startChargeEffect() { mEfxChargeGas->create(nullptr); }
+void Obj::startChargeEffect()
+{
+	mEfxChargeGas->create(nullptr);
+}
 
 /**
  * @note Address: 0x802B9618
  * @note Size: 0x30
  */
-void Obj::finishChargeEffect() { mEfxChargeGas->fade(); }
+void Obj::finishChargeEffect()
+{
+	mEfxChargeGas->fade();
+}
 
 /**
  * @note Address: 0x802B9648
@@ -85,18 +97,27 @@ void Obj::createDisChargeEffect()
  * @note Address: 0x802B96D4
  * @note Size: 0x30
  */
-void Obj::effectDrawOn() { mEfxChargeGas->endDemoDrawOn(); }
+void Obj::effectDrawOn()
+{
+	mEfxChargeGas->endDemoDrawOn();
+}
 
 /**
  * @note Address: 0x802B9704
  * @note Size: 0x30
  */
-void Obj::effectDrawOff() { mEfxChargeGas->startDemoDrawOff(); }
+void Obj::effectDrawOff()
+{
+	mEfxChargeGas->startDemoDrawOff();
+}
 
 /**
  * @note Address: 0x802B9734
  * @note Size: 0x44
  */
-void Obj::startDisChargeSE() { getJAIObject()->startSound(PSSE_EN_OTAKARA_ATK_GAS, 0); }
+void Obj::startDisChargeSE()
+{
+	getJAIObject()->startSound(PSSE_EN_OTAKARA_ATK_GAS, 0);
+}
 } // namespace GasOtakara
 } // namespace Game

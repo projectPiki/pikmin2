@@ -106,25 +106,35 @@ void BaseHIOSection::initHIO(Game::HIORootNode* node)
  * @note Address: 0x80164FA4
  * @note Size: 0x4
  */
-void BaseHIOSection::createScreenRootNode() { }
+void BaseHIOSection::createScreenRootNode()
+{
+}
 
 /**
  * @note Address: 0x80164FA8
  * @note Size: 0x8
  */
-bool BaseHIOSection::doUpdate() { return true; }
+bool BaseHIOSection::doUpdate()
+{
+	return true;
+}
 
 /**
  * @note Address: 0x80164FB0
  * @note Size: 0x24
  */
-void BaseHIOSection::addGenNode(CNode* node) { mRootNode->add(node); }
+void BaseHIOSection::addGenNode(CNode* node)
+{
+	mRootNode->add(node);
+}
 
 /**
  * @note Address: 0x80164FD4
  * @note Size: 0x4
  */
-void BaseHIOSection::refreshHIO() { }
+void BaseHIOSection::refreshHIO()
+{
+}
 
 /**
  * @note Address: 0x80164FD8

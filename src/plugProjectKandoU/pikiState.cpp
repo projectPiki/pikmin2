@@ -37,13 +37,18 @@ static const char fileName[]  = "pikiState";
  * @note Address: 0x80189378
  * @note Size: 0x4
  */
-void PikiState::dump() { }
+void PikiState::dump()
+{
+}
 
 /**
  * @note Address: 0x8018937C
  * @note Size: 0x30
  */
-void PikiState::getInfo(char* string) { sprintf(string, "%s", mName); }
+void PikiState::getInfo(char* string)
+{
+	sprintf(string, "%s", mName);
+}
 
 /**
  * @note Address: 0x801893AC
@@ -132,37 +137,53 @@ void PikiFSM::transitForce(Piki* piki, int stateID, StateArg* stateArg)
  * @note Address: 0x8018A080
  * @note Size: 0x40
  */
-void PikiWalkState::init(Piki* piki, StateArg* stateArg) { piki->startMotion(IPikiAnims::WAIT, IPikiAnims::WAIT, nullptr, nullptr); }
+void PikiWalkState::init(Piki* piki, StateArg* stateArg)
+{
+	piki->startMotion(IPikiAnims::WAIT, IPikiAnims::WAIT, nullptr, nullptr);
+}
 
 /**
  * @note Address: 0x8018A0C0
  * @note Size: 0x24
  */
-void PikiWalkState::exec(Piki* piki) { piki->mBrain->exec(); }
+void PikiWalkState::exec(Piki* piki)
+{
+	piki->mBrain->exec();
+}
 
 /**
  * @note Address: 0x8018A0E4
  * @note Size: 0x4
  */
-void PikiWalkState::cleanup(Piki* piki) { }
+void PikiWalkState::cleanup(Piki* piki)
+{
+}
 
 /**
  * @note Address: 0x8018A0E8
  * @note Size: 0x40
  */
-void PikiDemoWaitState::init(Piki* piki, StateArg* stateArg) { piki->startMotion(IPikiAnims::WAIT, IPikiAnims::WAIT, nullptr, nullptr); }
+void PikiDemoWaitState::init(Piki* piki, StateArg* stateArg)
+{
+	piki->startMotion(IPikiAnims::WAIT, IPikiAnims::WAIT, nullptr, nullptr);
+}
 
 /**
  * @note Address: 0x8018A128
  * @note Size: 0x24
  */
-void PikiDemoWaitState::exec(Piki* piki) { piki->mBrain->exec(); }
+void PikiDemoWaitState::exec(Piki* piki)
+{
+	piki->mBrain->exec();
+}
 
 /**
  * @note Address: 0x8018A14C
  * @note Size: 0x4
  */
-void PikiDemoWaitState::cleanup(Piki* piki) { }
+void PikiDemoWaitState::cleanup(Piki* piki)
+{
+}
 
 /**
  * @note Address: 0x8018A150
@@ -266,7 +287,9 @@ void PikiCarrotState::bounceCallback(Piki* piki, Sys::Triangle* triangle)
  * @note Address: 0x8018A780
  * @note Size: 0x4
  */
-void PikiCarrotState::collisionCallback(Piki* piki, Game::CollEvent&) { }
+void PikiCarrotState::collisionCallback(Piki* piki, Game::CollEvent&)
+{
+}
 
 /**
  * @note Address: 0x8018A784
@@ -666,7 +689,9 @@ lbl_8018AD08:
  * @note Address: 0x8018AD20
  * @note Size: 0x4
  */
-void PikiHoleinState::cleanup(Piki* piki) { }
+void PikiHoleinState::cleanup(Piki* piki)
+{
+}
 
 /**
  * @note Address: 0x8018AD24
@@ -989,7 +1014,9 @@ lbl_8018B0A4:
  * @note Address: 0x8018B0B8
  * @note Size: 0x4
  */
-void PikiFountainonState::cleanup(Piki* piki) { }
+void PikiFountainonState::cleanup(Piki* piki)
+{
+}
 
 /**
  * @note Address: 0x8018B0BC
@@ -1008,13 +1035,19 @@ void PikiTaneState::init(Piki* piki, StateArg* stateArg)
  * @note Address: 0x8018B184
  * @note Size: 0x38
  */
-void PikiTaneState::exec(Piki* piki) { piki->applyAirDrag(sys->mDeltaTime, mHorizontalDrag, mVerticalDrag); }
+void PikiTaneState::exec(Piki* piki)
+{
+	piki->applyAirDrag(sys->mDeltaTime, mHorizontalDrag, mVerticalDrag);
+}
 
 /**
  * @note Address: 0x8018B1BC
  * @note Size: 0x34
  */
-void PikiTaneState::cleanup(Piki* piki) { piki->setCollisionFlick(true); }
+void PikiTaneState::cleanup(Piki* piki)
+{
+	piki->setCollisionFlick(true);
+}
 
 /**
  * @note Address: 0x8018B1F0
@@ -1061,7 +1094,10 @@ void PikiNukareState::init(Piki* piki, StateArg* stateArg)
  * @note Address: 0x8018B368
  * @note Size: 0xC
  */
-bool PikiNukareState::soft_transittable(int stateID) { return (stateID == PIKISTATE_Walk); }
+bool PikiNukareState::soft_transittable(int stateID)
+{
+	return (stateID == PIKISTATE_Walk);
+}
 
 /**
  * @note Address: 0x8018B374
@@ -1137,7 +1173,10 @@ void PikiNukareState::onKeyEvent(Piki* piki, SysShape::KeyEvent const& keyEvent)
  * @note Address: 0x8018B6D0
  * @note Size: 0x10
  */
-void PikiNukareState::cleanup(Piki* piki) { piki->resetFPFlag(FPFLAGS_PikiBeingPlucked); }
+void PikiNukareState::cleanup(Piki* piki)
+{
+	piki->resetFPFlag(FPFLAGS_PikiBeingPlucked);
+}
 
 /**
  * @note Address: 0x8018B6E0
@@ -1158,7 +1197,10 @@ void PikiDopeState::init(Piki* piki, StateArg* stateArg)
  * @note Address: 0x8018B798
  * @note Size: 0x8
  */
-void PikiDopeState::onFlute(Piki* piki, Navi* navi) { mNavi = navi; }
+void PikiDopeState::onFlute(Piki* piki, Navi* navi)
+{
+	mNavi = navi;
+}
 
 /**
  * @note Address: 0x8018B7A0
@@ -1219,7 +1261,9 @@ void PikiDopeState::onKeyEvent(Piki* piki, SysShape::KeyEvent const& keyEvent)
  * @note Address: 0x8018BA04
  * @note Size: 0x4
  */
-void PikiDopeState::cleanup(Piki* piki) { }
+void PikiDopeState::cleanup(Piki* piki)
+{
+}
 
 /**
  * @note Address: 0x8018BA08
@@ -1535,7 +1579,10 @@ void PikiPanicState::cleanup(Piki* piki)
  * @note Address: 0x8018C638
  * @note Size: 0xC
  */
-void PikiPanicState::bounceCallback(Piki* piki, Sys::Triangle*) { mIsLobsterLanded = true; }
+void PikiPanicState::bounceCallback(Piki* piki, Sys::Triangle*)
+{
+	mIsLobsterLanded = true;
+}
 
 /**
  * @note Address: 0x8018C644
@@ -1581,19 +1628,26 @@ void PikiPanicState::onFlute(Piki* piki, Game::Navi*)
  * @note Address: 0x8018C760
  * @note Size: 0x4
  */
-void PikiDeadState::init(Piki* piki, StateArg* stateArg) { }
+void PikiDeadState::init(Piki* piki, StateArg* stateArg)
+{
+}
 
 /**
  * @note Address: 0x8018C764
  * @note Size: 0x4
  */
-void PikiDeadState::exec(Piki* piki) { }
+void PikiDeadState::exec(Piki* piki)
+{
+}
 
 /**
  * @note Address: 0x8018C768
  * @note Size: 0x10
  */
-bool PikiDyingState::transittable(int stateID) { return (u8)(stateID == PIKISTATE_Dead); }
+bool PikiDyingState::transittable(int stateID)
+{
+	return (u8)(stateID == PIKISTATE_Dead);
+}
 
 /**
  * @note Address: 0x8018C778
@@ -1639,7 +1693,9 @@ void PikiDyingState::exec(Piki* piki)
  * @note Address: 0x8018C908
  * @note Size: 0x4
  */
-void PikiDyingState::cleanup(Piki* piki) { }
+void PikiDyingState::cleanup(Piki* piki)
+{
+}
 
 /**
  * @note Address: 0x8018C90C
@@ -1659,13 +1715,19 @@ void PikiDyingState::onKeyEvent(Piki* piki, SysShape::KeyEvent const& keyEvent)
  * @note Address: 0x8018C970
  * @note Size: 0x10
  */
-bool PikiDenkiDyingState::soft_transittable(int stateID) { return (u8)(stateID == PIKISTATE_Dead); }
+bool PikiDenkiDyingState::soft_transittable(int stateID)
+{
+	return (u8)(stateID == PIKISTATE_Dead);
+}
 
 /**
  * @note Address: 0x8018C980
  * @note Size: 0x10
  */
-bool PikiDenkiDyingState::transittable(int stateID) { return (u8)(stateID == PIKISTATE_Dead); }
+bool PikiDenkiDyingState::transittable(int stateID)
+{
+	return (u8)(stateID == PIKISTATE_Dead);
+}
 
 /**
  * @note Address: 0x8018C990
@@ -1705,19 +1767,27 @@ void PikiDenkiDyingState::exec(Piki* piki)
  * @note Address: 0x8018CB4C
  * @note Size: 0x4
  */
-void PikiDenkiDyingState::cleanup(Piki* piki) { }
+void PikiDenkiDyingState::cleanup(Piki* piki)
+{
+}
 
 /**
  * @note Address: 0x8018CB50
  * @note Size: 0x10
  */
-bool PikiPressedState::soft_transittable(int stateID) { return (stateID == PIKISTATE_Dead); }
+bool PikiPressedState::soft_transittable(int stateID)
+{
+	return (stateID == PIKISTATE_Dead);
+}
 
 /**
  * @note Address: 0x8018CB60
  * @note Size: 0x10
  */
-bool PikiPressedState::transittable(int stateID) { return (u8)(stateID == PIKISTATE_Dead); }
+bool PikiPressedState::transittable(int stateID)
+{
+	return (u8)(stateID == PIKISTATE_Dead);
+}
 
 /**
  * @note Address: 0x8018CB70
@@ -1765,7 +1835,10 @@ void PikiPressedState::exec(Piki* piki)
  * @note Address: 0x8018CD44
  * @note Size: 0x34
  */
-void PikiPressedState::cleanup(Piki* piki) { piki->setUpdateTrMatrix(true); }
+void PikiPressedState::cleanup(Piki* piki)
+{
+	piki->setUpdateTrMatrix(true);
+}
 
 /**
  * @note Address: 0x8018CD78
@@ -1782,7 +1855,9 @@ void PikiLookAtState::init(Piki* piki, StateArg* stateArg)
  * @note Address: 0x8018CDFC
  * @note Size: 0x4
  */
-void PikiLookAtState::onFlute(Piki* piki, Game::Navi*) { }
+void PikiLookAtState::onFlute(Piki* piki, Game::Navi*)
+{
+}
 
 /**
  * @note Address: 0x8018CE00
@@ -1843,7 +1918,9 @@ void PikiLookAtState::onKeyEvent(SysShape::KeyEvent const& keyEvent)
  * @note Address: 0x8018CFA8
  * @note Size: 0x4
  */
-void PikiLookAtState::cleanup(Piki* piki) { }
+void PikiLookAtState::cleanup(Piki* piki)
+{
+}
 
 /**
  * @note Address: 0x8018CFAC
@@ -1954,7 +2031,9 @@ void PikiAutoNukiState::onKeyEvent(Piki* piki, SysShape::KeyEvent const& keyEven
  * @note Address: 0x8018D4D0
  * @note Size: 0x4
  */
-void PikiAutoNukiState::cleanup(Piki* piki) { }
+void PikiAutoNukiState::cleanup(Piki* piki)
+{
+}
 
 /**
  * @note Address: 0x8018D4D4
@@ -2132,13 +2211,18 @@ lbl_8018D6E4:
  * @note Address: 0x8018D700
  * @note Size: 0x34
  */
-void PikiGoHangState::cleanup(Piki* piki) { piki->setCollisionFlick(true); }
+void PikiGoHangState::cleanup(Piki* piki)
+{
+	piki->setCollisionFlick(true);
+}
 
 /**
  * @note Address: 0x8018D734
  * @note Size: 0x4
  */
-void PikiHangedState::onKeyEvent(SysShape::KeyEvent const& keyEvent) { }
+void PikiHangedState::onKeyEvent(SysShape::KeyEvent const& keyEvent)
+{
+}
 
 /**
  * @note Address: 0x8018D738
@@ -2172,7 +2256,10 @@ void PikiHangedState::exec(Piki* piki)
  * @note Address: 0x8018D868
  * @note Size: 0x34
  */
-void PikiHangedState::cleanup(Piki* piki) { piki->setAtari(true); }
+void PikiHangedState::cleanup(Piki* piki)
+{
+	piki->setAtari(true);
+}
 
 /**
  * @note Address: 0x8018D89C
@@ -2190,7 +2277,9 @@ bool PikiHangedState::ignoreAtari(Piki* piki, Creature* creature)
  * @note Address: 0x8018D908
  * @note Size: 0x4
  */
-void PikiWaterHangedState::onKeyEvent(SysShape::KeyEvent const&) { }
+void PikiWaterHangedState::onKeyEvent(SysShape::KeyEvent const&)
+{
+}
 
 /**
  * @note Address: 0x8018D90C
@@ -2234,7 +2323,10 @@ void PikiWaterHangedState::exec(Piki* piki)
  * @note Address: 0x8018DA78
  * @note Size: 0x34
  */
-void PikiWaterHangedState::cleanup(Piki* piki) { piki->setAtari(true); }
+void PikiWaterHangedState::cleanup(Piki* piki)
+{
+	piki->setAtari(true);
+}
 
 /**
  * @note Address: 0x8018DAAC
@@ -2614,7 +2706,9 @@ void PikiHipDropState::cleanup(Piki* piki)
  * @note Address: 0x8018DF88
  * @note Size: 0x4
  */
-void PikiHipDropState::onKeyEvent(Piki* piki, SysShape::KeyEvent const&) { }
+void PikiHipDropState::onKeyEvent(Piki* piki, SysShape::KeyEvent const&)
+{
+}
 
 /**
  * @note Address: 0x8018DF8C
@@ -2952,19 +3046,26 @@ void PikiFallMeckState::exec(Piki* piki)
  * @note Address: 0x8018E548
  * @note Size: 0x4
  */
-void PikiFallMeckState::cleanup(Piki* piki) { }
+void PikiFallMeckState::cleanup(Piki* piki)
+{
+}
 
 /**
  * @note Address: 0x8018E54C
  * @note Size: 0x4
  */
-void PikiFallMeckState::collisionCallback(Piki* piki, Game::CollEvent&) { }
+void PikiFallMeckState::collisionCallback(Piki* piki, Game::CollEvent&)
+{
+}
 
 /**
  * @note Address: 0x8018E550
  * @note Size: 0x34
  */
-void PikiFallMeckState::platCallback(Piki* piki, PlatEvent& platEvent) { transit(piki, PIKISTATE_Walk, nullptr); }
+void PikiFallMeckState::platCallback(Piki* piki, PlatEvent& platEvent)
+{
+	transit(piki, PIKISTATE_Walk, nullptr);
+}
 
 /**
  * @note Address: N/A
@@ -3519,7 +3620,10 @@ void PikiSuikomiState::execString(Piki* piki)
  * @note Address: 0x8018EF98
  * @note Size: 0x14
  */
-bool PikiSuikomiState::ignoreAtari(Piki* piki, Creature* creature) { return (u8)(mCreature == creature); }
+bool PikiSuikomiState::ignoreAtari(Piki* piki, Creature* creature)
+{
+	return (u8)(mCreature == creature);
+}
 
 /**
  * @note Address: 0x8018EFAC
@@ -3575,13 +3679,17 @@ void PikiSuikomiState::cleanup(Piki* piki)
  * @note Address: 0x8018F1B4
  * @note Size: 0x4
  */
-void PikiFlyingState::stopEffect() { }
+void PikiFlyingState::stopEffect()
+{
+}
 
 /**
  * @note Address: 0x8018F1B8
  * @note Size: 0x4
  */
-void PikiFlyingState::restartEffect() { }
+void PikiFlyingState::restartEffect()
+{
+}
 
 /**
  * @note Address: 0x8018F1BC
@@ -4250,7 +4358,9 @@ void PikiBlowState::exec(Piki* piki)
  * @note Address: 0x80190360
  * @note Size: 0x4
  */
-void PikiBlowState::cleanup(Piki* piki) { }
+void PikiBlowState::cleanup(Piki* piki)
+{
+}
 
 /**
  * @note Address: 0x80190364
@@ -4430,7 +4540,10 @@ void PikiKokeState::init(Piki* piki, StateArg* stateArg)
  * @note Address: 0x801909AC
  * @note Size: 0xC
  */
-void PikiKokeState::onFlute(Piki* piki, Navi* navi) { mTimer = 0; }
+void PikiKokeState::onFlute(Piki* piki, Navi* navi)
+{
+	mTimer = 0;
+}
 
 /**
  * @note Address: 0x801909B8
@@ -4486,7 +4599,9 @@ void PikiKokeState::onKeyEvent(Piki* piki, SysShape::KeyEvent const& event)
  * @note Address: 0x80190B3C
  * @note Size: 0x4
  */
-void PikiKokeState::cleanup(Piki* piki) { }
+void PikiKokeState::cleanup(Piki* piki)
+{
+}
 
 /**
  * @note Address: 0x80190B40
@@ -4566,7 +4681,10 @@ void PikiDrownState::onFlute(Piki* piki, Navi* navi)
  * @note Address: 0x80190D90
  * @note Size: 0xC
  */
-void PikiDrownState::outWaterCallback(Piki* piki) { mIsEscaped = true; }
+void PikiDrownState::outWaterCallback(Piki* piki)
+{
+	mIsEscaped = true;
+}
 
 /**
  * @note Address: 0x80190D9C
@@ -5250,7 +5368,9 @@ lbl_801914BC:
  * @note Address: 0x801914E8
  * @note Size: 0x4
  */
-void PikiDrownState::cleanup(Piki* piki) { }
+void PikiDrownState::cleanup(Piki* piki)
+{
+}
 
 /**
  * @note Address: 0x801914EC
@@ -5403,7 +5523,9 @@ void PikiEmotionState::exec(Piki* piki)
  * @note Address: 0x80191A0C
  * @note Size: 0x4
  */
-void PikiEmotionState::cleanup(Piki* piki) { }
+void PikiEmotionState::cleanup(Piki* piki)
+{
+}
 
 /**
  * @note Address: 0x80191A10
@@ -5525,7 +5647,9 @@ void PikiAbsorbState::onKeyEvent(Piki* piki, SysShape::KeyEvent const& event)
  * @note Address: 0x80191EC0
  * @note Size: 0x4
  */
-void PikiAbsorbState::cleanup(Piki* piki) { }
+void PikiAbsorbState::cleanup(Piki* piki)
+{
+}
 
 /**
  * @note Address: 0x80191EC4
@@ -5600,13 +5724,18 @@ void PikiGrowupState::onKeyEvent(Piki* piki, SysShape::KeyEvent const& event)
  * @note Address: 0x801921BC
  * @note Size: 0x4
  */
-void PikiGrowupState::cleanup(Piki* piki) { }
+void PikiGrowupState::cleanup(Piki* piki)
+{
+}
 
 /**
  * @note Address: 0x801921C0
  * @note Size: 0x20
  */
-void PikiEscapeState::init(Piki* piki, StateArg* stateArg) { initRun(piki); }
+void PikiEscapeState::init(Piki* piki, StateArg* stateArg)
+{
+	initRun(piki);
+}
 
 /**
  * @note Address: 0x801921E0
@@ -5776,7 +5905,9 @@ void PikiEscapeState::onKeyEvent(Piki* piki, SysShape::KeyEvent const& event)
  * @note Address: 0x80192998
  * @note Size: 0x4
  */
-void PikiEscapeState::cleanup(Piki* piki) { }
+void PikiEscapeState::cleanup(Piki* piki)
+{
+}
 
 /**
  * @note Address: 0x80192B24

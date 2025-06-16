@@ -49,7 +49,10 @@ void GeneratorCache::clearCache()
  * @note Address: 0x801F1A88
  * @note Size: 0x18
  */
-void GeneratorCache::clearGeneratorList() { mGenerator.clearRelations(); }
+void GeneratorCache::clearGeneratorList()
+{
+	mGenerator.clearRelations();
+}
 
 /**
  * @note Address: 0x801F1AA0
@@ -75,7 +78,10 @@ void GeneratorCache::addGenerator(Game::Generator* newGenerator)
  * @note Address: 0x801F1B18
  * @note Size: 0x8
  */
-Generator* GeneratorCache::getFirstGenerator() { return (Generator*)mGenerator.mChild; }
+Generator* GeneratorCache::getFirstGenerator()
+{
+	return (Generator*)mGenerator.mChild;
+}
 
 /**
  * @note Address: N/A
@@ -100,7 +106,10 @@ Generator* GeneratorCache::findRamGenerator(int index)
 int GeneratorCache::getTotalMePikmins()
 {
 	int count = 0;
-	FOREACH_NODE(CourseCache, mRootCache.mChild, cache) { count += cache->mPikiheadCount; }
+	FOREACH_NODE(CourseCache, mRootCache.mChild, cache)
+	{
+		count += cache->mPikiheadCount;
+	}
 	return count;
 }
 
@@ -111,7 +120,10 @@ int GeneratorCache::getTotalMePikmins()
 int GeneratorCache::getColorMePikmins(int pikminType)
 {
 	int count = 0;
-	FOREACH_NODE(CourseCache, mRootCache.mChild, cache) { count += cache->getColorMePikmins(mHeapBuffer, pikminType); }
+	FOREACH_NODE(CourseCache, mRootCache.mChild, cache)
+	{
+		count += cache->getColorMePikmins(mHeapBuffer, pikminType);
+	}
 	return count;
 }
 

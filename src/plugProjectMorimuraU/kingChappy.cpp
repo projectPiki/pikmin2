@@ -76,7 +76,10 @@ void Obj::setParameters()
  * @note Address: 0x8035CDFC
  * @note Size: 0x20
  */
-void Obj::birth(Vector3f& position, f32 faceDir) { EnemyBase::birth(position, faceDir); }
+void Obj::birth(Vector3f& position, f32 faceDir)
+{
+	EnemyBase::birth(position, faceDir);
+}
 
 /**
  * @note Address: 0x8035CE1C
@@ -241,13 +244,18 @@ void Obj::doUpdate()
  * @note Address: 0x8035E2C0
  * @note Size: 0x4
  */
-void Obj::doDirectDraw(Graphics&) { }
+void Obj::doDirectDraw(Graphics&)
+{
+}
 
 /**
  * @note Address: 0x8035E2C4
  * @note Size: 0x20
  */
-void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
+void Obj::doDebugDraw(Graphics& gfx)
+{
+	EnemyBase::doDebugDraw(gfx);
+}
 
 /**
  * @note Address: 0x8035E2E4
@@ -844,7 +852,10 @@ bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* collpart)
  * @note Address: 0x8035EB88
  * @note Size: 0x30
  */
-void Obj::collisionCallback(CollEvent& event) { event.mHitPart->mCurrentID == ('kuti'); }
+void Obj::collisionCallback(CollEvent& event)
+{
+	event.mHitPart->mCurrentID == ('kuti');
+}
 
 /**
  * @note Address: 0x8035EBB8
@@ -881,7 +892,10 @@ void Obj::inWaterCallback(WaterBox* wbox)
  * @note Address: 0x8035EC5C
  * @note Size: 0x28
  */
-void Obj::startCarcassMotion() { startMotion(KINGANIM_Carry, nullptr); }
+void Obj::startCarcassMotion()
+{
+	startMotion(KINGANIM_Carry, nullptr);
+}
 
 /**
  * @note Address: 0x8035EC84
@@ -898,7 +912,10 @@ void Obj::initWalkSmokeEffect()
  * @note Address: 0x8035ECE8
  * @note Size: 0x8
  */
-WalkSmokeEffect::Mgr* Obj::getWalkSmokeEffectMgr() { return &mWalkSmokeMgr; }
+WalkSmokeEffect::Mgr* Obj::getWalkSmokeEffectMgr()
+{
+	return &mWalkSmokeMgr;
+}
 
 /**
  * @note Address: 0x8035ECF0
@@ -1027,7 +1044,10 @@ int Obj::eatBomb()
  * @note Address: 0x8035F40C
  * @note Size: 0x8
  */
-MouthSlots* Obj::getMouthSlots() { return &mMouthSlots; }
+MouthSlots* Obj::getMouthSlots()
+{
+	return &mMouthSlots;
+}
 
 /**
  * @note Address: 0x8035F414
@@ -1553,7 +1573,10 @@ bool Obj::forceTransit(int stateID)
  * @note Address: 0x80360004
  * @note Size: 0x30
  */
-void Obj::requestTransit(int stateID) { C_MGR->requestState(this, stateID); }
+void Obj::requestTransit(int stateID)
+{
+	C_MGR->requestState(this, stateID);
+}
 
 /**
  * @note Address: 0x80360034

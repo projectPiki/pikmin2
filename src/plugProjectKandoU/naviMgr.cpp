@@ -231,7 +231,10 @@ void NaviMgr::load()
  * @note Address: 0x8015B02C
  * @note Size: 0x64
  */
-SysShape::Model* NaviMgr::createModel(int naviID) { return new SysShape::Model((&mOlimarModel)[naviID], 0, 2); }
+SysShape::Model* NaviMgr::createModel(int naviID)
+{
+	return new SysShape::Model((&mOlimarModel)[naviID], 0, 2);
+}
 
 /**
  * @note Address: 0x8015B090
@@ -473,6 +476,8 @@ void NaviMgr::doSimulation(f32 rate)
  * @note Address: 0x8015BA20
  * @note Size: 0x4
  */
-void NaviMgr::setupSoundViewerAndBas() { }
+void NaviMgr::setupSoundViewerAndBas()
+{
+}
 
 } // namespace Game

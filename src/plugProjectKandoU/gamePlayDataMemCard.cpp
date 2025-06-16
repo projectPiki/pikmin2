@@ -11,7 +11,10 @@
  * @note Address: N/A
  * @note Size: 0xE4
  */
-static void _Print(char* name, ...) { OSReport("PlayDataMemCard"); }
+static void _Print(char* name, ...)
+{
+	OSReport("PlayDataMemCard");
+}
 
 namespace Game {
 

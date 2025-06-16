@@ -7,7 +7,10 @@ extern f64 __ieee754_atan2();
  * @note Size: 0x20
  */
 
-f64 atan2(f64 __x, f64 __y) { return (f64)__ieee754_atan2(); }
+f64 atan2(f64 __x, f64 __y)
+{
+	return (f64)__ieee754_atan2();
+}
 
 /*
 .loc_0x0:

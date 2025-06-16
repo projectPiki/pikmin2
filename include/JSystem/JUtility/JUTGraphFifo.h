@@ -37,6 +37,9 @@ struct JUTGraphFifo {
 	u8 _10[0xC];      // _10
 };
 
-inline void JUTCreateFifo(u32 bufSize) { new JUTGraphFifo(bufSize); }
+inline void JUTCreateFifo(u32 bufSize)
+{
+	new JUTGraphFifo(bufSize);
+}
 
 #endif

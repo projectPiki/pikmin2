@@ -45,7 +45,10 @@ void ModelEffectData::allocModelData(int count)
  * @note Address: 0x8043D614
  * @note Size: 0x24
  */
-void ParticleMgr::entryModelEffect(ModelEffectData* data) { mModelEffectDataRoot.add(data); }
+void ParticleMgr::entryModelEffect(ModelEffectData* data)
+{
+	mModelEffectDataRoot.add(data);
+}
 
 /**
  * @note Address: N/A
@@ -133,13 +136,18 @@ void ModelEffect::doAnimation()
  * @note Address: 0x8043D8FC
  * @note Size: 0x4
  */
-void ModelEffect::getLODCylinder(Sys::Cylinder&) { }
+void ModelEffect::getLODCylinder(Sys::Cylinder&)
+{
+}
 
 /**
  * @note Address: 0x8043D900
  * @note Size: 0x8
  */
-bool ModelEffect::useCylinderLOD() { return false; }
+bool ModelEffect::useCylinderLOD()
+{
+	return false;
+}
 
 /**
  * @note Address: 0x8043D908
@@ -160,7 +168,9 @@ void ModelEffect::doEntry()
  * @note Address: 0x8043D9A0
  * @note Size: 0x4
  */
-void ModelEffect::changeMaterial() { }
+void ModelEffect::changeMaterial()
+{
+}
 
 /**
  * @note Address: 0x8043D9A4
@@ -180,28 +190,43 @@ void ModelEffect::doSetView(int viewportNumber)
  * @note Address: 0x8043DA1C
  * @note Size: 0x24
  */
-void ModelEffect::doViewCalc() { mModel->viewCalc(); }
+void ModelEffect::doViewCalc()
+{
+	mModel->viewCalc();
+}
 
 /**
  * @note Address: 0x8043DA40
  * @note Size: 0x2C
  */
-void ParticleMgr::doAnimation() { mModelEffectMgr.doAnimation(); }
+void ParticleMgr::doAnimation()
+{
+	mModelEffectMgr.doAnimation();
+}
 
 /**
  * @note Address: 0x8043DA6C
  * @note Size: 0x2C
  */
-void ParticleMgr::doEntry() { mModelEffectMgr.doEntry(); }
+void ParticleMgr::doEntry()
+{
+	mModelEffectMgr.doEntry();
+}
 
 /**
  * @note Address: 0x8043DA98
  * @note Size: 0x2C
  */
-void ParticleMgr::doSetView(int viewportNumber) { mModelEffectMgr.doSetView(viewportNumber); }
+void ParticleMgr::doSetView(int viewportNumber)
+{
+	mModelEffectMgr.doSetView(viewportNumber);
+}
 
 /**
  * @note Address: 0x8043DAC4
  * @note Size: 0x2C
  */
-void ParticleMgr::doViewCalc() { mModelEffectMgr.doViewCalc(); }
+void ParticleMgr::doViewCalc()
+{
+	mModelEffectMgr.doViewCalc();
+}

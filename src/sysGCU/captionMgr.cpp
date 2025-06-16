@@ -58,7 +58,10 @@ void Caption::Mgr::read(Stream& input)
 		add(node);
 	}
 
-	FOREACH_NODE(Node, mChild, node) { node->read(input); }
+	FOREACH_NODE(Node, mChild, node)
+	{
+		node->read(input);
+	}
 }
 
 /**
@@ -67,7 +70,10 @@ void Caption::Mgr::read(Stream& input)
  */
 void Caption::Mgr::reset()
 {
-	FOREACH_NODE(Node, mChild, node) { node->del(); }
+	FOREACH_NODE(Node, mChild, node)
+	{
+		node->del();
+	}
 
 	del();
 	mChild = nullptr;

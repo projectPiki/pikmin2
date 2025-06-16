@@ -52,7 +52,9 @@ void StateDead::exec(EnemyBase* enemy)
  * @note Address: 0x8029AA00
  * @note Size: 0x4
  */
-void StateDead::cleanup(EnemyBase* enemy) { }
+void StateDead::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x8029AA04
@@ -91,7 +93,9 @@ void StateStay::exec(EnemyBase* enemy)
  * @note Address: 0x8029AB00
  * @note Size: 0x4
  */
-void StateStay::cleanup(EnemyBase* enemy) { }
+void StateStay::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x8029AB04
@@ -258,7 +262,10 @@ void StateJump::exec(EnemyBase* enemy)
  * @note Address: 0x8029B16C
  * @note Size: 0x10
  */
-void StateJump::cleanup(EnemyBase* enemy) { enemy->disableEvent(0, EB_BitterImmune); }
+void StateJump::cleanup(EnemyBase* enemy)
+{
+	enemy->disableEvent(0, EB_BitterImmune);
+}
 
 /**
  * @note Address: 0x8029B17C
@@ -313,7 +320,10 @@ void StateWait::exec(EnemyBase* enemy)
  * @note Address: 0x8029B2F8
  * @note Size: 0x24
  */
-void StateWait::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
+void StateWait::cleanup(EnemyBase* enemy)
+{
+	enemy->setEmotionCaution();
+}
 
 /**
  * @note Address: 0x8029B31C
@@ -373,7 +383,10 @@ void StateTurn::exec(EnemyBase* enemy)
  * @note Address: 0x8029B5C4
  * @note Size: 0x24
  */
-void StateTurn::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
+void StateTurn::cleanup(EnemyBase* enemy)
+{
+	enemy->setEmotionCaution();
+}
 
 /**
  * @note Address: 0x8029B5E8

@@ -77,7 +77,10 @@ struct TParseValue : public Parser<T> {
 
 extern const void* parseVariableUInt_16_32_following(const void*, u32*, u32*, TEBit*);
 
-inline uint align_roundUp(uint value, uint uAlign) { return (value + uAlign - 1) & ~(uAlign - 1); }
+inline uint align_roundUp(uint value, uint uAlign)
+{
+	return (value + uAlign - 1) & ~(uAlign - 1);
+}
 
 } // namespace binary
 } // namespace JGadget

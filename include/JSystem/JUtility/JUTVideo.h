@@ -75,6 +75,9 @@ struct JUTVideo {
 	OSMessageQueue mMessageQueue;                   // _38
 };
 
-inline JUTVideo* JUTGetVideoManager() { return JUTVideo::getManager(); }
+inline JUTVideo* JUTGetVideoManager()
+{
+	return JUTVideo::getManager();
+}
 
 #endif

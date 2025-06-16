@@ -108,7 +108,10 @@ void TOmakeGame::doOpenScreen(ArgOpen*)
  * @note Address: 0x803F14F4
  * @note Size: 0x3C
  */
-void TOmakeGame::doCloseScreen(ArgClose*) { mAnimationExit.play(sys->mDeltaTime * 60.0f, J3DAA_UNKNOWN_0, true); }
+void TOmakeGame::doCloseScreen(ArgClose*)
+{
+	mAnimationExit.play(sys->mDeltaTime * 60.0f, J3DAA_UNKNOWN_0, true);
+}
 
 /**
  * @note Address: 0x803F1530

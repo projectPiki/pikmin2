@@ -609,7 +609,10 @@ __OSExceptionHandler __OSSetExceptionHandler(__OSException exception, __OSExcept
  * @note Address: 0x800EB918
  * @note Size: 0x14
  */
-__OSExceptionHandler __OSGetExceptionHandler(__OSException exception) { return OSExceptionTable[exception]; }
+__OSExceptionHandler __OSGetExceptionHandler(__OSException exception)
+{
+	return OSExceptionTable[exception];
+}
 
 /**
  * @note Address: 0x800EB92C
@@ -750,10 +753,16 @@ void __OSPSInit(void)
  */
 #define DI_CONFIG_IDX         0x9
 #define DI_CONFIG_CONFIG_MASK 0xFF
-u32 __OSGetDIConfig(void) { return (__DIRegs[DI_CONFIG_IDX] & DI_CONFIG_CONFIG_MASK); }
+u32 __OSGetDIConfig(void)
+{
+	return (__DIRegs[DI_CONFIG_IDX] & DI_CONFIG_CONFIG_MASK);
+}
 
 /**
  * @note Address: 0x800EBA88
  * @note Size: 0x2C
  */
-void OSRegisterVersion(const char* id) { OSReport("%s\n", id); }
+void OSRegisterVersion(const char* id)
+{
+	OSReport("%s\n", id);
+}

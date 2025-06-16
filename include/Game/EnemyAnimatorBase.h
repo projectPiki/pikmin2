@@ -73,7 +73,10 @@ struct EnemyBlendAnimatorBase : public EnemyAnimatorBase {
 	SysShape::BlendAnimator mAnimator; // _10
 };
 
-inline f32 getReverseAnimSpeed(f32 scale) { return EnemyAnimatorBase::defaultAnimSpeed * -scale; }
+inline f32 getReverseAnimSpeed(f32 scale)
+{
+	return EnemyAnimatorBase::defaultAnimSpeed * -scale;
+}
 
 } // namespace Game
 

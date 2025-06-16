@@ -22,7 +22,9 @@ Obj::Obj()
  * @note Address: 0x8026D284
  * @note Size: 0x4
  */
-void Obj::setInitialSetting(EnemyInitialParamBase*) { }
+void Obj::setInitialSetting(EnemyInitialParamBase*)
+{
+}
 
 /**
  * @note Address: 0x8026D288
@@ -54,19 +56,27 @@ void Obj::onInit(CreatureInitArg* args)
  * @note Address: 0x8026D388
  * @note Size: 0x34
  */
-void Obj::doUpdate() { mFsm->exec(this); }
+void Obj::doUpdate()
+{
+	mFsm->exec(this);
+}
 
 /**
  * @note Address: 0x8026D3BC
  * @note Size: 0x4
  */
-void Obj::doDirectDraw(Graphics&) { }
+void Obj::doDirectDraw(Graphics&)
+{
+}
 
 /**
  * @note Address: 0x8026D3C0
  * @note Size: 0x20
  */
-void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
+void Obj::doDebugDraw(Graphics& gfx)
+{
+	EnemyBase::doDebugDraw(gfx);
+}
 
 /**
  * @note Address: 0x8026D3E0
@@ -300,13 +310,19 @@ void Obj::setupLodParms()
  * @note Address: 0x8026DE20
  * @note Size: 0x2C
  */
-void Obj::updateEfxLod() { mEfxGas->setRateLOD(mLod.isFlag(AILOD_IsMid | AILOD_IsFar)); }
+void Obj::updateEfxLod()
+{
+	mEfxGas->setRateLOD(mLod.isFlag(AILOD_IsMid | AILOD_IsFar));
+}
 
 /**
  * @note Address: 0x8026DE4C
  * @note Size: 0x5C
  */
-void Obj::createEffect() { mEfxGas = new efx::TGasuHiba; }
+void Obj::createEffect()
+{
+	mEfxGas = new efx::TGasuHiba;
+}
 
 /**
  * @note Address: 0x8026DEA8
@@ -327,7 +343,10 @@ void Obj::startGasEffect()
  * @note Address: 0x8026DF48
  * @note Size: 0x30
  */
-void Obj::finishGasEffect() { mEfxGas->fade(); }
+void Obj::finishGasEffect()
+{
+	mEfxGas->fade();
+}
 
 /**
  * @note Address: 0x8026DF78

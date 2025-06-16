@@ -7,7 +7,10 @@
 #include "Vector3.h"
 
 // necessary for weak function generation unfortunately
-inline u64 J2DPane::getTagName() const { return mTag; }
+inline u64 J2DPane::getTagName() const
+{
+	return mTag;
+}
 
 namespace ebi {
 

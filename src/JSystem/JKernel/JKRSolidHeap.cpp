@@ -66,7 +66,10 @@ JKRSolidHeap::JKRSolidHeap(void* start, u32 size, JKRHeap* heap, bool useErrorHa
  * @note Size: 0x68
  * __dt__12JKRSolidHeapFv
  */
-JKRSolidHeap::~JKRSolidHeap() { dispose(); }
+JKRSolidHeap::~JKRSolidHeap()
+{
+	dispose();
+}
 
 /**
  * @note Address: 0x80024F48
@@ -167,7 +170,10 @@ void* JKRSolidHeap::allocFromTail(u32 size, int alignment)
  * @note Address: 0x80025264
  * @note Size: 0x2C
  */
-void JKRSolidHeap::do_free(void* block) { JUTWarningConsole_f("free: cannot free memory block (%08x)\n", block); }
+void JKRSolidHeap::do_free(void* block)
+{
+	JUTWarningConsole_f("free: cannot free memory block (%08x)\n", block);
+}
 
 /**
  * @note Address: 0x80025290
@@ -211,7 +217,9 @@ void JKRSolidHeap::do_freeTail()
  * @note Address: 0x8002537C
  * @note Size: 0x4
  */
-void JKRSolidHeap::do_fillFreeArea() { }
+void JKRSolidHeap::do_fillFreeArea()
+{
+}
 
 /**
  * @note Address: 0x80025380

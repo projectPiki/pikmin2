@@ -260,7 +260,10 @@ int BirthMgr::get_today(int pikiColor)
  * @note Address: 0x8023042C
  * @note Size: 0x70
  */
-int BirthMgr::get_total(int pikiColor) { return mTotal(pikiColor); }
+int BirthMgr::get_total(int pikiColor)
+{
+	return mTotal(pikiColor);
+}
 
 /**
  * @note Address: 0x8023049C
@@ -449,21 +452,30 @@ void DeathMgr::account_today()
  * @note Size: 0xE8
  * get_cave__Q24Game8DeathMgrFi
  */
-int DeathMgr::get_cave(int cod) { return mCave(cod); }
+int DeathMgr::get_cave(int cod)
+{
+	return mCave(cod);
+}
 
 /**
  * @note Address: 0x80230E4C
  * @note Size: 0xE8
  * get_today__Q24Game8DeathMgrFi
  */
-int DeathMgr::get_today(int cod) { return mToday(cod); }
+int DeathMgr::get_today(int cod)
+{
+	return mToday(cod);
+}
 
 /**
  * @note Address: 0x80230F34
  * @note Size: 0xE8
  * get_total__Q24Game8DeathMgrFi
  */
-int DeathMgr::get_total(int cod) { return mTotal(cod); }
+int DeathMgr::get_total(int cod)
+{
+	return mTotal(cod);
+}
 
 /**
  * @note Address: 0x8023101C

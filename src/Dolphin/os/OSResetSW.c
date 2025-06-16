@@ -94,4 +94,7 @@ BOOL OSGetResetButtonState()
  * @note Address: 0x800F0A5C
  * @note Size: 0x20
  */
-BOOL OSGetResetSwitchState() { return OSGetResetButtonState(); }
+BOOL OSGetResetSwitchState()
+{
+	return OSGetResetButtonState();
+}

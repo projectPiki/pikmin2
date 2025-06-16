@@ -63,7 +63,10 @@ static void __DBExceptionDestination(void)
  * @note Address: 0x800DAC44
  * @note Size: 0x1C
  */
-int __DBIsExceptionMarked(u8 a) { return __DBInterface->unk4 & (1 << a); }
+int __DBIsExceptionMarked(u8 a)
+{
+	return __DBInterface->unk4 & (1 << a);
+}
 
 /**
  * @note Address: N/A
@@ -88,4 +91,6 @@ void __DBSetPresent(void)
  * @note Size: 0x50
  */
 
-void DBPrintf(const char*, ...) { }
+void DBPrintf(const char*, ...)
+{
+}

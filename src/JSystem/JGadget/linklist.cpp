@@ -17,7 +17,9 @@ struct TPRIsEqual_pointer_ {
  * @note Address: 0x800272E4
  * @note Size: 0x3C
  */
-TNodeLinkList::~TNodeLinkList() { }
+TNodeLinkList::~TNodeLinkList()
+{
+}
 
 /**
  * @note Address: N/A
@@ -144,6 +146,9 @@ TNodeLinkList::iterator TNodeLinkList::Erase(TLinkListNode* node)
  * @note Address: 0x80027370
  * @note Size: 0x2C
  */
-void TNodeLinkList::Remove(TLinkListNode* node) { remove_if((TPRIsEqual_pointer_<TLinkListNode>)(node)); }
+void TNodeLinkList::Remove(TLinkListNode* node)
+{
+	remove_if((TPRIsEqual_pointer_<TLinkListNode>)(node));
+}
 
 } // namespace JGadget

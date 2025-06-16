@@ -212,7 +212,10 @@ bool Onyon::isSuckReady()
  * @note Address: 0x80175590
  * @note Size: 0x28
  */
-BOOL Onyon::isSuckArriveWait() { return mOnyonType == ONYON_TYPE_SHIP ? mSuckState == SUCKSTATE_Closing : FALSE; }
+BOOL Onyon::isSuckArriveWait()
+{
+	return mOnyonType == ONYON_TYPE_SHIP ? mSuckState == SUCKSTATE_Closing : FALSE;
+}
 
 /**
  * @note Address: 0x801755B8
@@ -286,7 +289,10 @@ void Onyon::setupTevRegAnim(int type)
  * @note Address: 0x80175E1C
  * @note Size: 0x74
  */
-bool Onyon::stimulate(Interaction& act) { return act.actCommon(this) ? act.actOnyon(this) : false; }
+bool Onyon::stimulate(Interaction& act)
+{
+	return act.actCommon(this) ? act.actOnyon(this) : false;
+}
 
 /**
  * @note Address: 0x80175E90
@@ -331,7 +337,10 @@ bool InteractSuckArrive::actOnyon(Onyon* item)
  * @note Address: 0x80175FE8
  * @note Size: 0x8
  */
-bool Onyon::needShadow() { return false; }
+bool Onyon::needShadow()
+{
+	return false;
+}
 
 /**
  * @note Address: 0x80175FF0
@@ -354,7 +363,10 @@ void Onyon::getShadowParam(ShadowParam& param)
  * @note Address: 0x80176094
  * @note Size: 0x34
  */
-bool Onyon::sound_culling() { return (mOnyonType <= ONYON_TYPE_YELLOW) ? Creature::sound_culling() : false; }
+bool Onyon::sound_culling()
+{
+	return (mOnyonType <= ONYON_TYPE_YELLOW) ? Creature::sound_culling() : false;
+}
 
 /**
  * @note Address: 0x801760C8
@@ -547,13 +559,19 @@ bool InteractSuckDone::actOnyon(Onyon* item)
  * @note Address: 0x80176E84
  * @note Size: 0xC
  */
-void Onyon::startPropera() { mPropera = 20.0f; }
+void Onyon::startPropera()
+{
+	mPropera = 20.0f;
+}
 
 /**
  * @note Address: 0x80176E90
  * @note Size: 0xC
  */
-void Onyon::stopPropera() { mPropera = -20.0f; }
+void Onyon::stopPropera()
+{
+	mPropera = -20.0f;
+}
 
 /**
  * @note Address: 0x80176E9C
@@ -619,7 +637,9 @@ void Onyon::onInit(CreatureInitArg*)
  * @note Address: 0x8017703C
  * @note Size: 0x4
  */
-void Onyon::onKill(Game::CreatureKillArg*) { }
+void Onyon::onKill(Game::CreatureKillArg*)
+{
+}
 
 /**
  * @note Address: 0x80177040
@@ -1461,7 +1481,10 @@ void Onyon::efxPafuKira()
  * @note Address: 0x8017959C
  * @note Size: 0x2C
  */
-int Onyon::getStoreCount() { return playData->mPikiContainer.getColorSum(mOnyonType); }
+int Onyon::getStoreCount()
+{
+	return playData->mPikiContainer.getColorSum(mOnyonType);
+}
 
 /**
  * @note Address: 0x801795C8
@@ -1672,7 +1695,9 @@ BaseItem* ItemOnyon::Mgr::generatorBirth(Vector3f& pos, Vector3f& angle, GenItem
  * @note Address: 0x80179E7C
  * @note Size: 0x4
  */
-void ItemOnyon::Mgr::setupSoundViewerAndBas() { }
+void ItemOnyon::Mgr::setupSoundViewerAndBas()
+{
+}
 
 /**
  * @note Address: 0x80179E80
@@ -1841,7 +1866,10 @@ J3DModelData* ItemOnyon::Mgr::generatorGetShape(GenItemParm* parm)
  * @note Address: 0x8017A66C
  * @note Size: 0x54
  */
-GenItemParm* ItemOnyon::Mgr::generatorNewItemParm() { return new GenOnyonParm(); }
+GenItemParm* ItemOnyon::Mgr::generatorNewItemParm()
+{
+	return new GenOnyonParm();
+}
 
 /**
  * @note Address: 0x8017A6C0
@@ -1895,7 +1923,9 @@ ItemOnyon::Mgr::Mgr()
  * @note Address: 0x8017A7C4
  * @note Size: 0x188
  */
-ItemOnyon::Mgr::~Mgr() { }
+ItemOnyon::Mgr::~Mgr()
+{
+}
 
 /**
  * @note Address: 0x8017AC88
@@ -2039,7 +2069,10 @@ Onyon* ItemOnyon::Mgr::getOnyon(int i)
  * @note Address: 0x8017BAFC
  * @note Size: 0x20
  */
-void ItemOnyon::Mgr::init() { load(); }
+void ItemOnyon::Mgr::init()
+{
+	load();
+}
 
 /**
  * @note Address: 0x8017BB1C

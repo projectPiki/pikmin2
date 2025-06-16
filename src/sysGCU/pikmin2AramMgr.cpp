@@ -7,7 +7,10 @@
 
 Pikmin2ARAM::Mgr* gPikmin2AramMgr;
 
-static void _Print(char* format, ...) { OSReport(format, __FILE__); }
+static void _Print(char* format, ...)
+{
+	OSReport(format, __FILE__);
+}
 
 namespace Pikmin2ARAM {
 
@@ -88,13 +91,19 @@ void Mgr::init()
  * @note Address: 0x80455C90
  * @note Size: 0x18
  */
-Mgr::Mgr() { mLoadPermission = false; }
+Mgr::Mgr()
+{
+	mLoadPermission = false;
+}
 
 /**
  * @note Address: 0x80455CA8
  * @note Size: 0x8
  */
-void Mgr::setLoadPermission(bool loadPermission) { mLoadPermission = loadPermission; }
+void Mgr::setLoadPermission(bool loadPermission)
+{
+	mLoadPermission = loadPermission;
+}
 
 /**
  * @note Address: N/A
@@ -124,7 +133,10 @@ void Mgr::load()
  * @note Address: 0x80455D10
  * @note Size: 0x24
  */
-void Mgr::dump() { gAramMgr->dump(); }
+void Mgr::dump()
+{
+	gAramMgr->dump();
+}
 
 /**
  * @note Address: 0x80455D34

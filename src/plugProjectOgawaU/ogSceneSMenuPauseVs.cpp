@@ -9,13 +9,17 @@ namespace newScreen {
  * @note Address: 0x80329CFC
  * @note Size: 0x3C
  */
-SMenuPauseVS::SMenuPauseVS() { }
+SMenuPauseVS::SMenuPauseVS()
+{
+}
 
 /**
  * @note Address: 0x80329D38
  * @note Size: 0x4
  */
-void SMenuPauseVS::doUserCallBackFunc(Resource::MgrCommand*) { }
+void SMenuPauseVS::doUserCallBackFunc(Resource::MgrCommand*)
+{
+}
 
 /**
  * @note Address: 0x80329D3C
@@ -49,7 +53,9 @@ int SMenuPauseVS::doGetFinishState()
  * @note Address: 0x80329E3C
  * @note Size: 0x4
  */
-void SMenuPauseVS::doUpdateActive() { }
+void SMenuPauseVS::doUpdateActive()
+{
+}
 
 /**
  * @note Address: 0x80329E40
@@ -71,7 +77,10 @@ bool SMenuPauseVS::doConfirmSetScene(::Screen::SetSceneArg& arg)
  * @note Address: 0x80329EA8
  * @note Size: 0xC
  */
-void SMenuPauseVS::doSetBackupScene(::Screen::SetSceneArg& arg) { arg.mDoCreateBackup = false; }
+void SMenuPauseVS::doSetBackupScene(::Screen::SetSceneArg& arg)
+{
+	arg.mDoCreateBackup = false;
+}
 
 } // namespace newScreen
 } // namespace og

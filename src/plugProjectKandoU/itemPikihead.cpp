@@ -52,19 +52,28 @@ void FallState::init(Item* item, StateArg* arg)
  * @note Address: 0x801D8DE8
  * @note Size: 0x38
  */
-void FallState::exec(Item* item) { item->applyAirDrag(sys->getDeltaTime(), mHorizontalDrag, mVerticalDrag); }
+void FallState::exec(Item* item)
+{
+	item->applyAirDrag(sys->getDeltaTime(), mHorizontalDrag, mVerticalDrag);
+}
 
 /**
  * @note Address: 0x801D8E20
  * @note Size: 0x24
  */
-void FallState::cleanup(Item* item) { item->mEfxTane->killTanekira_(); }
+void FallState::cleanup(Item* item)
+{
+	item->mEfxTane->killTanekira_();
+}
 
 /**
  * @note Address: 0x801D8E44
  * @note Size: 0x28
  */
-void FallState::onPlatCollision(Item* item, PlatEvent& event) { item->kill(nullptr); }
+void FallState::onPlatCollision(Item* item, PlatEvent& event)
+{
+	item->kill(nullptr);
+}
 
 /**
  * @note Address: 0x801D8E6C
@@ -147,13 +156,18 @@ void BuryState::exec(Item* item)
  * @note Address: 0x801D9280
  * @note Size: 0x4
  */
-void BuryState::cleanup(Item* item) { }
+void BuryState::cleanup(Item* item)
+{
+}
 
 /**
  * @note Address: 0x801D9284
  * @note Size: 0xC
  */
-void BuryState::onKeyEvent(Item* item, const SysShape::KeyEvent& keyEvent) { mAnimDone = true; }
+void BuryState::onKeyEvent(Item* item, const SysShape::KeyEvent& keyEvent)
+{
+	mAnimDone = true;
+}
 
 /**
  * @note Address: 0x801D9290
@@ -185,13 +199,18 @@ void TaneState::exec(Item* item)
  * @note Address: 0x801D9384
  * @note Size: 0x4
  */
-void TaneState::cleanup(Item* item) { }
+void TaneState::cleanup(Item* item)
+{
+}
 
 /**
  * @note Address: 0x801D9388
  * @note Size: 0xC
  */
-void TaneState::onKeyEvent(Item* item, const SysShape::KeyEvent& keyEvent) { mAnimDone = true; }
+void TaneState::onKeyEvent(Item* item, const SysShape::KeyEvent& keyEvent)
+{
+	mAnimDone = true;
+}
 
 /**
  * @note Address: 0x801D9394
@@ -207,19 +226,26 @@ void HatugaState::init(Item* item, StateArg* arg)
  * @note Address: 0x801D93EC
  * @note Size: 0x4
  */
-void HatugaState::exec(Item* item) { }
+void HatugaState::exec(Item* item)
+{
+}
 
 /**
  * @note Address: 0x801D93F0
  * @note Size: 0x4
  */
-void HatugaState::cleanup(Item* item) { }
+void HatugaState::cleanup(Item* item)
+{
+}
 
 /**
  * @note Address: 0x801D93F4
  * @note Size: 0x34
  */
-void HatugaState::onKeyEvent(Item* item, const SysShape::KeyEvent& keyEvent) { transit(item, PIKIHEAD_Wait, nullptr); }
+void HatugaState::onKeyEvent(Item* item, const SysShape::KeyEvent& keyEvent)
+{
+	transit(item, PIKIHEAD_Wait, nullptr);
+}
 
 /**
  * @note Address: 0x801D9428
@@ -259,13 +285,19 @@ void WaitState::exec(Item* item)
  * @note Address: 0x801D95B0
  * @note Size: 0x24
  */
-void WaitState::cleanup(Item* item) { item->mEfxTane->killKourin_(); }
+void WaitState::cleanup(Item* item)
+{
+	item->mEfxTane->killKourin_();
+}
 
 /**
  * @note Address: 0x801D95D4
  * @note Size: 0x38
  */
-void WaitState::onKeyEvent(Item* item, const SysShape::KeyEvent& keyEvent) { item->mAnimator.startAnim(0, item); }
+void WaitState::onKeyEvent(Item* item, const SysShape::KeyEvent& keyEvent)
+{
+	item->mAnimator.startAnim(0, item);
+}
 
 /**
  * @note Address: 0x801D960C
@@ -281,13 +313,17 @@ void GrowState::init(Item* item, StateArg* arg)
  * @note Address: 0x801D9658
  * @note Size: 0x4
  */
-void GrowState::exec(Item* item) { }
+void GrowState::exec(Item* item)
+{
+}
 
 /**
  * @note Address: 0x801D965C
  * @note Size: 0x4
  */
-void GrowState::cleanup(Item* item) { }
+void GrowState::cleanup(Item* item)
+{
+}
 
 /**
  * @note Address: 0x801D9660
@@ -338,7 +374,9 @@ void SioreState::exec(Item* item)
  * @note Address: 0x801D9840
  * @note Size: 0x4
  */
-void SioreState::cleanup(Item* item) { }
+void SioreState::cleanup(Item* item)
+{
+}
 
 /**
  * @note Address: 0x801D9844
@@ -426,7 +464,10 @@ void Item::onKill(CreatureKillArg* settings)
  * @note Address: 0x801D9DD0
  * @note Size: 0x2C
  */
-bool Item::needSave() { return getStateID() != PIKIHEAD_Fall; }
+bool Item::needSave()
+{
+	return getStateID() != PIKIHEAD_Fall;
+}
 
 /**
  * @note Address: 0x801D9DFC
@@ -801,7 +842,9 @@ void Item::onKeyEvent(const SysShape::KeyEvent& keyEvent)
  * @note Address: 0x801DA3CC
  * @note Size: 0x4
  */
-void State::onKeyEvent(Item* item, const SysShape::KeyEvent& keyEvent) { }
+void State::onKeyEvent(Item* item, const SysShape::KeyEvent& keyEvent)
+{
+}
 
 /**
  * @note Address: 0x801DA3D0
@@ -827,7 +870,9 @@ void Item::getLODSphere(Sys::Sphere& lodSphere)
  * @note Address: 0x801DA418
  * @note Size: 0x4
  */
-void Item::onSetPosition() { }
+void Item::onSetPosition()
+{
+}
 
 /**
  * @note Address: 0x801DA41C

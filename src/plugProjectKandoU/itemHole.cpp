@@ -62,13 +62,17 @@ void NormalState::init(Game::CFSMItem* item, Game::StateArg* arg)
  * @note Address: 0x801D18A8
  * @note Size: 0x4
  */
-void NormalState::exec(Game::CFSMItem*) { }
+void NormalState::exec(Game::CFSMItem*)
+{
+}
 
 /**
  * @note Address: 0x801D18AC
  * @note Size: 0x4
  */
-void NormalState::cleanup(Game::CFSMItem*) { }
+void NormalState::cleanup(Game::CFSMItem*)
+{
+}
 
 /**
  * @note Address: 0x801D18B0
@@ -103,7 +107,9 @@ void AppearState::exec(Game::CFSMItem* item)
  * @note Address: 0x801D1A54
  * @note Size: 0x4
  */
-void AppearState::cleanup(Game::CFSMItem*) { }
+void AppearState::cleanup(Game::CFSMItem*)
+{
+}
 
 /**
  * @note Address: 0x801D1A58
@@ -120,13 +126,18 @@ void CloseState::init(Game::CFSMItem* item, Game::StateArg* arg)
  * @note Size: 0x14
  * exec__Q34Game8ItemHole10CloseStateFPQ24Game8CFSMItem
  */
-void CloseState::exec(Game::CFSMItem* item) { item->mLod.resetFlag(AILOD_IsVisibleBoth); }
+void CloseState::exec(Game::CFSMItem* item)
+{
+	item->mLod.resetFlag(AILOD_IsVisibleBoth);
+}
 
 /**
  * @note Address: 0x801D1AA8
  * @note Size: 0x4
  */
-void CloseState::cleanup(Game::CFSMItem*) { }
+void CloseState::cleanup(Game::CFSMItem*)
+{
+}
 
 /**
  * @note Address: 0x801D1AAC
@@ -215,7 +226,10 @@ void Item::onInit(Game::CreatureInitArg* arg)
  * @note Address: 0x801D1F50
  * @note Size: 0x50
  */
-void Item::changeMaterial() { mModel->jointVisible(false, mModel->getJoint("flag")->mJointIndex); }
+void Item::changeMaterial()
+{
+	mModel->jointVisible(false, mModel->getJoint("flag")->mJointIndex);
+}
 
 /**
  * @note Address: 0x801D1FA0
@@ -304,7 +318,10 @@ void Item::makeTrMatrix()
  * @note Address: 0x801D24F8
  * @note Size: 0x30
  */
-bool Item::canRide() { return static_cast<State*>(getCurrState())->canRide(); }
+bool Item::canRide()
+{
+	return static_cast<State*>(getCurrState())->canRide();
+}
 
 /**
  * @note Address: 0x801D2530
@@ -320,7 +337,10 @@ void Item::do_setLODParm(Game::AILODParm& parm)
  * @note Address: 0x801D2544
  * @note Size: 0x8
  */
-bool Item::sound_culling() { return false; }
+bool Item::sound_culling()
+{
+	return false;
+}
 
 /**
  * @note Address: 0x801D254C
@@ -370,7 +390,10 @@ void Item::doDirectDraw(Graphics& gfx)
  * @note Address: 0x801D26EC
  * @note Size: 0x58
  */
-CItemFSM* Item::createFSM() { return new FSM(); }
+CItemFSM* Item::createFSM()
+{
+	return new FSM();
+}
 
 /**
  * @note Address: 0x801D2744

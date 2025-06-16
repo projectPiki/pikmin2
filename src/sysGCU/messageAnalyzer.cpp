@@ -17,7 +17,9 @@ Analyzer::Analyzer(JMessage::TReference const* ref)
  * @note Address: 0x80456104
  * @note Size: 0x4
  */
-void Analyzer::do_character(int) { }
+void Analyzer::do_character(int)
+{
+}
 
 /**
  * @note Address: 0x80456108

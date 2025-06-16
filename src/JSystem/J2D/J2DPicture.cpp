@@ -696,7 +696,10 @@ void J2DPicture::draw(f32 x, f32 y, f32 width, f32 height, bool a1, bool a2, boo
  * @note Size: 0x34
  * load__10J2DPictureFUc
  */
-void J2DPicture::load(u8 p1) { load((GXTexMapID)p1, p1); }
+void J2DPicture::load(u8 p1)
+{
+	load((GXTexMapID)p1, p1);
+}
 
 /**
  * @note Address: 0x8003BF28

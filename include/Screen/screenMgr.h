@@ -103,7 +103,10 @@ struct Mgr : public MgrBase {
 	CNode mSceneInfoList;     // _78, treat as SceneInfoList
 };
 
-inline void checkSceneList(SceneInfoList* list) { P2ASSERTLINE(329, list); }
+inline void checkSceneList(SceneInfoList* list)
+{
+	P2ASSERTLINE(329, list);
+}
 
 struct DispMemberCpy {
 	DispMemberCpy(u8*, og::Screen::DispMemberBase*);

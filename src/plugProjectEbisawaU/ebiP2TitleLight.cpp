@@ -56,7 +56,10 @@ void TTitleLightMgr::setParam_()
  * @note Address: 0x803C2168
  * @note Size: 0x20
  */
-void TTitleLightMgr::update() { setParam_(); }
+void TTitleLightMgr::update()
+{
+	setParam_();
+}
 
 /**
  * @note Address: 0x803C2188
@@ -69,7 +72,10 @@ void TTitleLightMgr::setCameraMtx(Mtx mtx)
 	GXColor col = mAmbientLight.mColor.toGXColor();
 	GXSetChanAmbColor(GX_COLOR0A0, col);
 
-	FOREACH_NODE(LightObj, mLightObjChain.mChild, node) { node->set(mtx2); }
+	FOREACH_NODE(LightObj, mLightObjChain.mChild, node)
+	{
+		node->set(mtx2);
+	}
 }
 
 } // namespace title

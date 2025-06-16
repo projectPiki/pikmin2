@@ -37,19 +37,26 @@ void FSM::init(Item* item)
  * @note Address: 0x801F31F0
  * @note Size: 0xC
  */
-void NormalState::init(Item* item, StateArg*) { item->mAnimSpeed = 0.0f; }
+void NormalState::init(Item* item, StateArg*)
+{
+	item->mAnimSpeed = 0.0f;
+}
 
 /**
  * @note Address: 0x801F31FC
  * @note Size: 0x4
  */
-void NormalState::exec(Item*) { }
+void NormalState::exec(Item*)
+{
+}
 
 /**
  * @note Address: 0x801F3200
  * @note Size: 0x4
  */
-void NormalState::cleanup(Item*) { }
+void NormalState::cleanup(Item*)
+{
+}
 
 /**
  * @note Address: 0x801F3204
@@ -171,7 +178,10 @@ Item::Item()
  * @note Address: 0x801F3864
  * @note Size: 0x48
  */
-void Item::constructor() { mSoundObj = new PSM::WorkItem(this); }
+void Item::constructor()
+{
+	mSoundObj = new PSM::WorkItem(this);
+}
 
 /**
  * @note Address: 0x801F38AC
@@ -314,7 +324,10 @@ void Item::setTreasure(Pellet* pelt)
  * @note Address: 0x801F3E18
  * @note Size: 0x30
  */
-void Item::setLife() { mCurrStageLife = getCurrMaxLife(); }
+void Item::setLife()
+{
+	mCurrStageLife = getCurrMaxLife();
+}
 
 /**
  * @note Address: 0x801F3E48
@@ -389,7 +402,10 @@ f32 Item::getWorkRadius()
  * @note Address: 0x801F4058
  * @note Size: 0x60
  */
-bool Item::isVisible() { return (!mPellet) ? false : !(mTotalLife / mPellet->getBuryDepthMax() > 0.85f); }
+bool Item::isVisible()
+{
+	return (!mPellet) ? false : !(mTotalLife / mPellet->getBuryDepthMax() > 0.85f);
+}
 
 /**
  * @note Address: 0x801F40B8
@@ -464,6 +480,8 @@ BaseItem* Mgr::generatorBirth(Vector3f& pos, Vector3f&, GenItemParm*)
  * @note Address: 0x801F46D0
  * @note Size: 0x4
  */
-void Mgr::onLoadResources() { }
+void Mgr::onLoadResources()
+{
+}
 } // namespace ItemTreasure
 } // namespace Game

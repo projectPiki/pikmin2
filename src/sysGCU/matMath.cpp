@@ -301,7 +301,9 @@ lbl_80428280:
  * @note Address: 0x804282D4
  * @note Size: 0x4
  */
-void Matrixf::print(char*) { }
+void Matrixf::print(char*)
+{
+}
 
 /**
  * @note Address: 0x804282D8

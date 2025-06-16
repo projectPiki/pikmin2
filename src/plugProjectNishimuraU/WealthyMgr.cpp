@@ -24,19 +24,28 @@ Mgr::Mgr(int objLimit, u8 modelType)
  * @note Address: 0x802844C0
  * @note Size: 0x48
  */
-void Mgr::doAlloc() { init(new Kogane::Parms); }
+void Mgr::doAlloc()
+{
+	init(new Kogane::Parms);
+}
 
 /**
  * @note Address: 0x8028478C
  * @note Size: 0x60
  */
-void Mgr::createObj(int count) { mObj = new Obj[count]; }
+void Mgr::createObj(int count)
+{
+	mObj = new Obj[count];
+}
 
 /**
  * @note Address: 0x802848DC
  * @note Size: 0x10
  */
-EnemyBase* Mgr::getEnemy(int index) { return &mObj[index]; }
+EnemyBase* Mgr::getEnemy(int index)
+{
+	return &mObj[index];
+}
 
 /**
  * @note Address: 0x802848EC

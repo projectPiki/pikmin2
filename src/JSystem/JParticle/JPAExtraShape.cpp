@@ -48,7 +48,10 @@ void JPACalcScaleCopy(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
  * @note Address: 0x8009111C
  * @note Size: 0xC
  */
-void JPACalcScaleAnmNormal(JPAEmitterWorkData* work, JPABaseParticle* ptcl) { work->mScaleAnm = ptcl->mTime; }
+void JPACalcScaleAnmNormal(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
+{
+	work->mScaleAnm = ptcl->mTime;
+}
 
 /**
  * @note Address: 0x80091128

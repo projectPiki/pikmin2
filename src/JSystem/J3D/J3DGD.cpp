@@ -47,7 +47,10 @@ inline u16 __GDLightID2Index(GXLightID id)
 	return lightIdx;
 }
 
-inline u16 __GDLightID2Offset(GXLightID id) { return __GDLightID2Index(id) * 0x10; }
+inline u16 __GDLightID2Offset(GXLightID id)
+{
+	return __GDLightID2Index(id) * 0x10;
+}
 
 /**
  * @note Address: 0x8007470C
@@ -577,7 +580,10 @@ void J3DGDSetTexImgAttr(GXTexMapID id, u16 w, u16 h, GXTexFmt fmt)
  * @note Address: 0x80075A74
  * @note Size: 0x90
  */
-void J3DGDSetTexImgPtr(GXTexMapID id, void* tex) { J3DGDWriteBPCmd((OSCachedToPhysical(tex) >> 5) | (J3DGDTexImage3Ids[id] << 24)); }
+void J3DGDSetTexImgPtr(GXTexMapID id, void* tex)
+{
+	J3DGDWriteBPCmd((OSCachedToPhysical(tex) >> 5) | (J3DGDTexImage3Ids[id] << 24));
+}
 
 /**
  * @note Address: 0x80075B04

@@ -1428,7 +1428,10 @@ void TZukanBase::windowOpenClose(u64 mesg)
  * @note Address: 0x80374824
  * @note Size: 0x74
  */
-bool TZukanBase::isPanelExist() { return (u8)((mIndexPaneList[mCurrActiveRowSel]->getIndex() + mRightOffset) < getIdMax()); }
+bool TZukanBase::isPanelExist()
+{
+	return (u8)((mIndexPaneList[mCurrActiveRowSel]->getIndex() + mRightOffset) < getIdMax());
+}
 
 /**
  * @note Address: 0x80374898
@@ -1445,7 +1448,10 @@ void TZukanBase::requireRequest()
  * @note Address: 0x803748B0
  * @note Size: 0xC
  */
-void TZukanBase::requireEffectOff() { mIsEffectRequired = true; }
+void TZukanBase::requireEffectOff()
+{
+	mIsEffectRequired = true;
+}
 
 /**
  * @note Address: 0x803748BC
@@ -1565,7 +1571,10 @@ TEnemyZukan::TEnemyZukan()
  * @note Address: 0x80374A94
  * @note Size: 0x124
  */
-TEnemyZukan::~TEnemyZukan() { mDispEnemy->mDebugExpHeap->freeAll(); }
+TEnemyZukan::~TEnemyZukan()
+{
+	mDispEnemy->mDebugExpHeap->freeAll();
+}
 
 /**
  * @note Address: 0x80374BB8
@@ -2581,25 +2590,37 @@ void TEnemyZukan::getUpdateIndex(int& id, bool flag)
  * @note Address: 0x803776B8
  * @note Size: 0x24
  */
-u64 TEnemyZukan::getNameID(int id) { return mOffsetMsgNames->getMsgID(id); }
+u64 TEnemyZukan::getNameID(int id)
+{
+	return mOffsetMsgNames->getMsgID(id);
+}
 
 /**
  * @note Address: 0x803776DC
  * @note Size: 0x24
  */
-u64 TEnemyZukan::getXMsgID(int id) { return mOffsetMsg_XDesc->getMsgID(id); }
+u64 TEnemyZukan::getXMsgID(int id)
+{
+	return mOffsetMsg_XDesc->getMsgID(id);
+}
 
 /**
  * @note Address: 0x80377700
  * @note Size: 0x24
  */
-u64 TEnemyZukan::getYMsgID(int id) { return mOffsetMsg_YDesc->getMsgID(id); }
+u64 TEnemyZukan::getYMsgID(int id)
+{
+	return mOffsetMsg_YDesc->getMsgID(id);
+}
 
 /**
  * @note Address: 0x80377724
  * @note Size: 0x50
  */
-int TEnemyZukan::getModelIndex(int index) { return TEnemyZukanIndex::getIndexInfo(index).mEnemyID; }
+int TEnemyZukan::getModelIndex(int index)
+{
+	return TEnemyZukanIndex::getIndexInfo(index).mEnemyID;
+}
 
 /**
  * @note Address: 0x80377774
@@ -2629,7 +2650,10 @@ void TEnemyZukan::setYWindow()
  * @note Address: 0x80377834
  * @note Size: 0x34
  */
-bool TEnemyZukan::isOpenConfirmWindow() { return static_cast<TDEnemyScene*>(getOwner())->mConfirmEndWindow->mHasDrawn; }
+bool TEnemyZukan::isOpenConfirmWindow()
+{
+	return static_cast<TDEnemyScene*>(getOwner())->mConfirmEndWindow->mHasDrawn;
+}
 
 /**
  * @note Address: 0x80377868
@@ -2775,7 +2799,10 @@ u32 TEnemyZukan::getKilledNum(int index)
  * @note Address: 0x80377DEC
  * @note Size: 0x54
  */
-TDEnemyScene::TDEnemyScene() { mConfirmEndWindow = nullptr; }
+TDEnemyScene::TDEnemyScene()
+{
+	mConfirmEndWindow = nullptr;
+}
 
 /**
  * @note Address: 0x80377E40
@@ -2849,7 +2876,10 @@ TItemZukan::TItemZukan()
  * @note Address: 80377F78
  * @note Size: 0x124
  */
-TItemZukan::~TItemZukan() { mDispItem->mDebugExpHeap->freeAll(); }
+TItemZukan::~TItemZukan()
+{
+	mDispItem->mDebugExpHeap->freeAll();
+}
 
 /**
  * @note Address: 0x8037809C
@@ -3165,19 +3195,28 @@ void TItemZukan::getUpdateIndex(int& id, bool flag)
  * @note Address: 0x80378D68
  * @note Size: 0x3C
  */
-u64 TItemZukan::getNameID(int id) { return mOffsetMsgNames->getMsgID(Game::PelletList::Mgr::getOffsetFromDictionaryNo(id)); }
+u64 TItemZukan::getNameID(int id)
+{
+	return mOffsetMsgNames->getMsgID(Game::PelletList::Mgr::getOffsetFromDictionaryNo(id));
+}
 
 /**
  * @note Address: 0x80378DA4
  * @note Size: 0x3C
  */
-u64 TItemZukan::getXMsgID(int id) { return mOffsetMsg_XDesc->getMsgID(Game::PelletList::Mgr::getOffsetFromDictionaryNo(id)); }
+u64 TItemZukan::getXMsgID(int id)
+{
+	return mOffsetMsg_XDesc->getMsgID(Game::PelletList::Mgr::getOffsetFromDictionaryNo(id));
+}
 
 /**
  * @note Address: 0x80378DE0
  * @note Size: 0x3C
  */
-u64 TItemZukan::getYMsgID(int id) { return mOffsetMsg_YDesc->getMsgID(Game::PelletList::Mgr::getOffsetFromDictionaryNo(id)); }
+u64 TItemZukan::getYMsgID(int id)
+{
+	return mOffsetMsg_YDesc->getMsgID(Game::PelletList::Mgr::getOffsetFromDictionaryNo(id));
+}
 
 /**
  * @note Address: 0x80378E1C
@@ -3195,7 +3234,10 @@ int TItemZukan::getModelIndex(int id)
  * @note Address: 0x80378E50
  * @note Size: 0x20
  */
-int TItemZukan::getIdMax() { return Game::PelletList::Mgr::getDictionaryNum(); }
+int TItemZukan::getIdMax()
+{
+	return Game::PelletList::Mgr::getDictionaryNum();
+}
 
 /**
  * @note Address: 0x80378E70
@@ -4422,7 +4464,10 @@ bool TItemZukan::isPanelExist()
  * @note Address: 0x8037B32C
  * @note Size: 0x34
  */
-bool TItemZukan::isOpenConfirmWindow() { return static_cast<TDItemScene*>(getOwner())->mConfirmEndWindow->mHasDrawn; }
+bool TItemZukan::isOpenConfirmWindow()
+{
+	return static_cast<TDItemScene*>(getOwner())->mConfirmEndWindow->mHasDrawn;
+}
 
 /**
  * @note Address: 0x8037B360
@@ -4438,7 +4483,10 @@ void TItemZukan::openConfirmWindow()
  * @note Address: 0x8037B3AC
  * @note Size: 0x54
  */
-TDItemScene::TDItemScene() { mConfirmEndWindow = nullptr; }
+TDItemScene::TDItemScene()
+{
+	mConfirmEndWindow = nullptr;
+}
 
 /**
  * @note Address: 0x8037B400
@@ -4505,7 +4553,10 @@ void TCallbackScrollMsg::doInit()
  * @note Address: 0x8037B714
  * @note Size: 0x38
  */
-void TCallbackScrollMsg::update() { mControl->update(nullptr, nullptr); }
+void TCallbackScrollMsg::update()
+{
+	mControl->update(nullptr, nullptr);
+}
 
 /**
  * @note Address: 0x8037B74C
@@ -4555,7 +4606,10 @@ void TCallbackScrollMsg::draw(Graphics& gfx, J2DGrafContext& graf)
  * @note Address: 0x8037B890
  * @note Size: 0x24
  */
-f32 TCallbackScrollMsg::getPosRate() { return mControl->getScrollPosition(); }
+f32 TCallbackScrollMsg::getPosRate()
+{
+	return mControl->getScrollPosition();
+}
 
 /**
  * @note Address: 0x8037B8B4
@@ -4746,14 +4800,20 @@ void TZukanWindow::windowClose()
  * @note Address: 0x8037C348
  * @note Size: 0x38
  */
-void TZukanWindow::msgScroll(f32 scroll) { mMsgCallback->scroll(scroll); }
+void TZukanWindow::msgScroll(f32 scroll)
+{
+	mMsgCallback->scroll(scroll);
+}
 
 /**
  * @note Address: 0x8037C380
  * @note Size: 0x30
  * Returns a ratio of how far through the message box you are
  */
-f32 TZukanWindow::getPosRate() { return 1.0f - mMsgCallback->mControl->getScrollPosition(); }
+f32 TZukanWindow::getPosRate()
+{
+	return 1.0f - mMsgCallback->mControl->getScrollPosition();
+}
 
 /**
  * @note Address: 0x8037C3B0
@@ -4821,7 +4881,10 @@ void TZukanWindow::moveIcon(f32 x)
  * @note Address: 0x8037C66C
  * @note Size: 0x40
  */
-void TZukanWindow::changeIconTexture(int id, ResTIMG* file) { mCharacterIcon[id]->changeTexture(file, 0); }
+void TZukanWindow::changeIconTexture(int id, ResTIMG* file)
+{
+	mCharacterIcon[id]->changeTexture(file, 0);
+}
 
 TZukanBase::StaticValues TZukanBase::mScrollParm;
 

@@ -241,6 +241,9 @@ inline u32 isValidSeType(u32 soundID)
 	return 0;
 }
 
-inline PSSystem::SysIF* PSGetSystemIF() { return PSSystem::spSysIF; }
+inline PSSystem::SysIF* PSGetSystemIF()
+{
+	return PSSystem::spSysIF;
+}
 
 #endif

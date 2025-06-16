@@ -139,22 +139,49 @@ enum J3DModelDiffFlags {
 #define CREATE_DIFF_FLAG(lightObjNum, texGenNum, texCoordNum, tevStageNum) \
 	(((lightObjNum & 0xf) << 4) | ((texGenNum & 0xf) << 8) | ((texCoordNum & 0xf) << 16) | ((tevStageNum & 0xf) << 20))
 
-inline u32 getDiffFlag_LightObjNum(u32 diffFlags) { return (diffFlags & 0xf0) >> 4; }
-inline u32 getDiffFlag_TexGenNum(u32 diffFlags) { return (diffFlags & 0xf00) >> 8; }
-inline u32 getDiffFlag_TexNoNum(u32 diffFlags) { return (diffFlags & 0xf0000) >> 16; }
-inline u32 getDiffFlag_TevStageNum(u32 diffFlags) { return (diffFlags & 0xf00000) >> 20; }
+inline u32 getDiffFlag_LightObjNum(u32 diffFlags)
+{
+	return (diffFlags & 0xf0) >> 4;
+}
+inline u32 getDiffFlag_TexGenNum(u32 diffFlags)
+{
+	return (diffFlags & 0xf00) >> 8;
+}
+inline u32 getDiffFlag_TexNoNum(u32 diffFlags)
+{
+	return (diffFlags & 0xf0000) >> 16;
+}
+inline u32 getDiffFlag_TevStageNum(u32 diffFlags)
+{
+	return (diffFlags & 0xf00000) >> 20;
+}
 
-inline int calcDifferedBufferSize_TexMtxSize(int diffFlags) { return diffFlags * 53; }
-inline int calcDifferedBufferSize_TexGenSize(int diffFlags) { return diffFlags * 61 + 10; }
-inline int calcDifferedBufferSize_TexNoSize(int diffFlags) { return diffFlags * 55; }
+inline int calcDifferedBufferSize_TexMtxSize(int diffFlags)
+{
+	return diffFlags * 53;
+}
+inline int calcDifferedBufferSize_TexGenSize(int diffFlags)
+{
+	return diffFlags * 61 + 10;
+}
+inline int calcDifferedBufferSize_TexNoSize(int diffFlags)
+{
+	return diffFlags * 55;
+}
 inline u32 calcDifferedBufferSize_TexNoAndTexCoordScaleSize(u32 diffFlags)
 {
 	u32 res = diffFlags * 55;
 	res += ((diffFlags + 1) >> 1) * 55;
 	return res;
 }
-inline int calcDifferedBufferSize_TevStageSize(int diffFlags) { return diffFlags * 10; }
-inline int calcDifferedBufferSize_TevStageDirectSize(int diffFlags) { return diffFlags * 5; }
+inline int calcDifferedBufferSize_TevStageSize(int diffFlags)
+{
+	return diffFlags * 10;
+}
+inline int calcDifferedBufferSize_TevStageDirectSize(int diffFlags)
+{
+	return diffFlags * 5;
+}
 
 enum JBlockType {
 	JBT_ColorAmbientOn = 'CLAB',
@@ -230,7 +257,10 @@ struct J3DAlphaCompInfo {
 	u8 _07;    // _07
 };
 
-inline u16 calcAlphaCmpID(u32 comp0, u32 op, u32 comp1) { return (comp0 << 5) + (op << 3) + (comp1 & 0xFF); }
+inline u16 calcAlphaCmpID(u32 comp0, u32 op, u32 comp1)
+{
+	return (comp0 << 5) + (op << 3) + (comp1 & 0xFF);
+}
 
 extern const u16 j3dDefaultAlphaCmpID;
 extern u8 j3dAlphaCmpTable[768];
@@ -315,7 +345,10 @@ struct J3DZModeInfo {
 	u8 _03;            // _03, padding
 };
 
-inline u16 calcZModeID(u32 param_0, u32 param_1, u32 param_2) { return (param_1 * 2) + (param_0 * 0x10) + param_2; }
+inline u16 calcZModeID(u32 param_0, u32 param_1, u32 param_2)
+{
+	return (param_1 * 2) + (param_0 * 0x10) + param_2;
+}
 
 extern u8 j3dZModeTable[96];
 
@@ -814,11 +847,20 @@ inline void loadTexCoordScale(GXTexCoordID coord, const J3DTexCoordScaleInfo& in
 	J3DGDSetTexCoordScale2(coord, info.mScaleS, info.mBiasS == 1, 0, info.mScaleT, info.mBiasT == 1, 0);
 }
 
-inline void loadTevColor(u32 reg, const J3DGXColorS10& color) { J3DGDSetTevColorS10(GXTevRegID(reg + 1), (GXColorS10)color); }
+inline void loadTevColor(u32 reg, const J3DGXColorS10& color)
+{
+	J3DGDSetTevColorS10(GXTevRegID(reg + 1), (GXColorS10)color);
+}
 
-inline void loadTevKColor(u32 reg, const J3DGXColor& color) { J3DGDSetTevKColor(GXTevKColorID(reg), (GXColor)color); }
+inline void loadTevKColor(u32 reg, const J3DGXColor& color)
+{
+	J3DGDSetTevKColor(GXTevKColorID(reg), (GXColor)color);
+}
 
-inline void loadZCompLoc(u8 compLoc) { J3DGDSetZCompLoc(compLoc); }
+inline void loadZCompLoc(u8 compLoc)
+{
+	J3DGDSetZCompLoc(compLoc);
+}
 
 enum J3DTexDiffFlag {
 	TEXDIFF_Material = 0,

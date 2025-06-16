@@ -855,7 +855,10 @@ void StateSAttack::exec(EnemyBase* enemy)
  * @note Address: 0x80368664
  * @note Size: 0x24
  */
-void StateSAttack::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
+void StateSAttack::cleanup(EnemyBase* enemy)
+{
+	enemy->setEmotionCaution();
+}
 
 /**
  * @note Address: 0x80368688
@@ -871,7 +874,10 @@ StateSMiss::StateSMiss(int stateID)
  * @note Address: 0x803686C4
  * @note Size: 0x2C
  */
-void StateSMiss::init(EnemyBase* enemy, StateArg* stateArg) { enemy->startMotion(JIGUMOANIM_SMiss, nullptr); }
+void StateSMiss::init(EnemyBase* enemy, StateArg* stateArg)
+{
+	enemy->startMotion(JIGUMOANIM_SMiss, nullptr);
+}
 
 /**
  * @note Address: 0x803686F0

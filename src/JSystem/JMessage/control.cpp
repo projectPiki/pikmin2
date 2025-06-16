@@ -27,7 +27,9 @@ TControl::TControl()
  * @note Address: 0x800083E8
  * @note Size: 0x48
  */
-TControl::~TControl() { }
+TControl::~TControl()
+{
+}
 
 /**
  * @note Address: 0x80008430
@@ -89,7 +91,10 @@ void TControl::render()
  * @note Address: 0x8000867C
  * @note Size: 0xDC
  */
-bool TControl::setMessageCode(u16 msgCode, u16 msgIndex) { return setMessageCode_inReset_(getProcessor(), msgCode, msgIndex); }
+bool TControl::setMessageCode(u16 msgCode, u16 msgIndex)
+{
+	return setMessageCode_inReset_(getProcessor(), msgCode, msgIndex);
+}
 
 /**
  * @note Address: 0x80008758

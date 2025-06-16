@@ -63,7 +63,9 @@ void StateDead::exec(EnemyBase* enemy)
  * @note Address: 0x802BA640
  * @note Size: 0x4
  */
-void StateDead::cleanup(EnemyBase* enemy) { }
+void StateDead::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x802BA644
@@ -104,7 +106,9 @@ void StateFallDive::exec(EnemyBase* enemy)
  * @note Address: 0x802BA7D0
  * @note Size: 0x4
  */
-void StateFallDive::cleanup(EnemyBase* enemy) { }
+void StateFallDive::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x802BA7D4
@@ -147,7 +151,9 @@ void StateFallMove::exec(EnemyBase* enemy)
  * @note Address: 0x802BA998
  * @note Size: 0x4
  */
-void StateFallMove::cleanup(EnemyBase* enemy) { }
+void StateFallMove::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x802BA99C

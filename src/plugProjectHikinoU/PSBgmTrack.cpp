@@ -30,13 +30,19 @@ u16 SeqTrackBase::update()
  * @note Address: 0x803422FC
  * @note Size: 0x8
  */
-void SeqTrackBase::init(JASTrack* track) { mTaskEntryMgr.mTrack = track; }
+void SeqTrackBase::init(JASTrack* track)
+{
+	mTaskEntryMgr.mTrack = track;
+}
 
 /**
  * @note Address: 0x80342304
  * @note Size: 0x8
  */
-TaskEntryMgr* SeqTrackBase::getTaskEntryList() { return &mTaskEntryMgr; }
+TaskEntryMgr* SeqTrackBase::getTaskEntryList()
+{
+	return &mTaskEntryMgr;
+}
 
 /**
  * @note Address: 0x8034230C
@@ -101,7 +107,10 @@ void SeqTrackRoot::tempoChange(f32 tempo, u32 arg, PSSystem::DirectorBase* base)
  * @note Address: 0x803428A4
  * @note Size: 0x24
  */
-void SeqTrackRoot::onStopSeq() { mTaskEntryMgr.removeAllEntry(); }
+void SeqTrackRoot::onStopSeq()
+{
+	mTaskEntryMgr.removeAllEntry();
+}
 
 /**
  * @note Address: 0x803428C8
@@ -185,5 +194,8 @@ void SeqTrackChild::setIdMask(u8 mask, PSSystem::DirectorBase* base)
  * @note Address: 0x80342E28
  * @note Size: 0x24
  */
-void SeqTrackChild::onStopSeq() { mTaskEntryMgr.removeAllEntry(); }
+void SeqTrackChild::onStopSeq()
+{
+	mTaskEntryMgr.removeAllEntry();
+}
 } // namespace PSSystem

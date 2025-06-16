@@ -231,7 +231,10 @@ struct FixedSizeItemMgr : public BaseItemMgr, public Container<T> {
 	virtual void initDependency() // _38 (weak)
 	{
 		Iterator<T> iter(&mMonoObjectMgr);
-		CI_LOOP(iter) { (*iter)->initDependency(); }
+		CI_LOOP(iter)
+		{
+			(*iter)->initDependency();
+		}
 	}
 	virtual T* get(void* idx); // _AC (weak, thunk at _94)
 	virtual void* getEnd();    // _B8 (weak, thunk at _90)
@@ -295,7 +298,10 @@ template <typename T>
 void NodeItemMgr<T>::initDependency()
 {
 	Iterator<T> iter(&mNodeObjectMgr);
-	CI_LOOP(iter) { (*iter)->initDependency(); }
+	CI_LOOP(iter)
+	{
+		(*iter)->initDependency();
+	}
 }
 
 template <typename T>

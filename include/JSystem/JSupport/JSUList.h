@@ -223,7 +223,7 @@ template <typename T>
 struct JSUTree : public JSUList<T>, public JSULink<T> {
 	inline JSUTree(T* owner)
 	    : JSUList<T>()
-	    , JSULink<T>(owner) {};
+	    , JSULink<T>(owner) { };
 
 	bool appendChild(JSUTree<T>* child) { return this->append(child); }
 	bool prependChild(JSUTree<T>* child) { return this->prepend(child); }

@@ -7,7 +7,9 @@
  * @note Address: 0x80411204
  * @note Size: 0x4
  */
-void Node::init() { }
+void Node::init()
+{
+}
 
 /**
  * @note Address: 0x80411208
@@ -178,7 +180,9 @@ void CNode::concat(CNode* newEnd)
  * @note Address: 0x80411588
  * @note Size: 0x48
  */
-CNode::~CNode() { }
+CNode::~CNode()
+{
+}
 
 /**
  * @brief Deletes the current node from its parent's child list.

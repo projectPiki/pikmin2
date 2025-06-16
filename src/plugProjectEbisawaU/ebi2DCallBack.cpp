@@ -434,7 +434,10 @@ void E2DCallBack_AnmBase::do_update()
  * @note Address: 0x803D0FB0
  * @note Size: 0x8
  */
-bool E2DCallBack_AnmBase::isFinish() { return mIsFinished; }
+bool E2DCallBack_AnmBase::isFinish()
+{
+	return mIsFinished;
+}
 
 /**
  * @note Address: 0x803D0FB8

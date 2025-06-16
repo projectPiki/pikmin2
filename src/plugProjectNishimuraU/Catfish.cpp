@@ -10,7 +10,9 @@ namespace Catfish {
  * @note Address: 0x80277008
  * @note Size: 0x90
  */
-Obj::Obj() { }
+Obj::Obj()
+{
+}
 
 /**
  * Performs base initialisation and sets shadow joint.
@@ -110,7 +112,10 @@ void Obj::resetEnemyNonStone()
  * @note Address: 0x802772C0
  * @note Size: 0x28
  */
-void Obj::createDownEffect() { EnemyBase::createBounceEffect(mPosition, 0.5f); }
+void Obj::createDownEffect()
+{
+	EnemyBase::createBounceEffect(mPosition, 0.5f);
+}
 
 } // namespace Catfish
 } // namespace Game

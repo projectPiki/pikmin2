@@ -6,7 +6,10 @@ static const char name[] = "genPellet";
  * @note Address: 0x8020278C
  * @note Size: 0x9C
  */
-Game::GenPellet* makePellet() { return new Game::GenPellet; }
+Game::GenPellet* makePellet()
+{
+	return new Game::GenPellet;
+}
 
 namespace Game {
 
@@ -130,13 +133,17 @@ void GenPellet::doRead(Stream& data)
  * @note Address: 0x80202C28
  * @note Size: 0x4
  */
-void GenPellet::ramSaveParameters(Stream&) { }
+void GenPellet::ramSaveParameters(Stream&)
+{
+}
 
 /**
  * @note Address: 0x80202C2C
  * @note Size: 0x4
  */
-void GenPellet::ramLoadParameters(Stream&) { }
+void GenPellet::ramLoadParameters(Stream&)
+{
+}
 
 /**
  * @note Address: 0x80202C30
@@ -168,7 +175,10 @@ Creature* GenPellet::generate(Generator* gen)
  * @note Address: 0x80202D00
  * @note Size: 0x40
  */
-void GenPellet::getDebugInfo(char* str) { sprintf(str, "mgr%d:%d", mPelType, mGenParm->mIndex); }
+void GenPellet::getDebugInfo(char* str)
+{
+	sprintf(str, "mgr%d:%d", mPelType, mGenParm->mIndex);
+}
 
 /**
  * @note Address: 0x80202D40

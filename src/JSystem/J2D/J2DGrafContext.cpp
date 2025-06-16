@@ -113,7 +113,10 @@ void J2DGrafContext::setScissor()
  * @note Address: 0x80036634
  * @note Size: 0x24
  */
-void J2DGrafContext::scissor(const JGeometry::TBox2f& bounds) { mScissorBounds = bounds; }
+void J2DGrafContext::scissor(const JGeometry::TBox2f& bounds)
+{
+	mScissorBounds = bounds;
+}
 
 /**
  * @note Address: 0x80036658

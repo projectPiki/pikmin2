@@ -398,7 +398,10 @@ void Graphics::addViewport(Viewport* vp)
  * @note Address: 0x804255F0
  * @note Size: 0x10
  */
-Viewport* Graphics::getViewport(int id) { return mViewports[id]; }
+Viewport* Graphics::getViewport(int id)
+{
+	return mViewports[id];
+}
 
 /**
  * @note Address: 0x80425600
@@ -446,7 +449,10 @@ void Graphics::updateJ3D()
  * @note Address: 0x804256E0
  * @note Size: 0x30
  */
-static void graphicsTokenCallback(u16 id) { Graphics::lastTokenName = sys->mGfx->getTokenName(id); }
+static void graphicsTokenCallback(u16 id)
+{
+	Graphics::lastTokenName = sys->mGfx->getTokenName(id);
+}
 
 /**
  * @note Address: 0x80425710
@@ -470,7 +476,10 @@ void Graphics::setToken(char* tok)
  * @note Address: 0x80425788
  * @note Size: 0x10
  */
-char* Graphics::getTokenName(u16 id) { return mTokens[id]; }
+char* Graphics::getTokenName(u16 id)
+{
+	return mTokens[id];
+}
 
 /**
  * @note Address: N/A
@@ -785,7 +794,10 @@ void Graphics::drawRect(Rectf&, JUTTexture*)
  * @note Address: 0x804268C4
  * @note Size: 0x24
  */
-void Graphics::clearZBuffer(Rectf& bounds) { fillZBuffer(bounds, -0.999f); }
+void Graphics::clearZBuffer(Rectf& bounds)
+{
+	fillZBuffer(bounds, -0.999f);
+}
 
 /**
  * @note Address: 0x804268E8
@@ -1904,13 +1916,19 @@ void Graphics::setupJ2DPerspGraphDefault()
  * @note Address: 0x804276F0
  * @note Size: 0x20
  */
-void Graphics::clearVtxDesc() { GXClearVtxDesc(); }
+void Graphics::clearVtxDesc()
+{
+	GXClearVtxDesc();
+}
 
 /**
  * @note Address: 0x80427710
  * @note Size: 0x28
  */
-void Graphics::setVtxDesc(_GXAttr attr, _GXAttrType type) { GXSetVtxDesc(attr, type); }
+void Graphics::setVtxDesc(_GXAttr attr, _GXAttrType type)
+{
+	GXSetVtxDesc(attr, type);
+}
 
 /**
  * @note Address: 0x80427738
@@ -1934,7 +1952,10 @@ void Graphics::drawRectangle(Rectf&, bool)
  * @note Address: 0x8042776C
  * @note Size: 0x3C
  */
-void Graphics::disableLight() { GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_VTX, GX_SRC_VTX, GX_LIGHT0, GX_DF_CLAMP, GX_AF_NONE); }
+void Graphics::disableLight()
+{
+	GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_VTX, GX_SRC_VTX, GX_LIGHT0, GX_DF_CLAMP, GX_AF_NONE);
+}
 
 /**
  * @note Address: N/A
@@ -2329,10 +2350,15 @@ void Graphics::initGX()
  * @note Address: 0x80427F00
  * @note Size: 0x4
  */
-void Graphics::dirtyInitGX() { }
+void Graphics::dirtyInitGX()
+{
+}
 
 /**
  * @note Address: 0x80427F04
  * @note Size: 0x60
  */
-void Graphics::clearInitGX() { initGX(); }
+void Graphics::clearInitGX()
+{
+	initGX();
+}

@@ -17,7 +17,10 @@ static const int unusedArray[] = { 0, 0, 0 };
  * @note Address: N/A
  * @note Size: 0xE4
  */
-static void _Print(char* name, ...) { OSReport("generator"); }
+static void _Print(char* name, ...)
+{
+	OSReport("generator");
+}
 
 namespace Game {
 GenObjectFactoryFactory* GenObjectFactory::factory;
@@ -81,13 +84,19 @@ void GenBase::write(Stream& output)
  * @note Address: 0x801AA744
  * @note Size: 0x20
  */
-void GenBase::ramSaveParameters(Stream& output) { Parameters::write(output); }
+void GenBase::ramSaveParameters(Stream& output)
+{
+	Parameters::write(output);
+}
 
 /**
  * @note Address: 0x801AA764
  * @note Size: 0x20
  */
-void GenBase::ramLoadParameters(Stream& input) { Parameters::read(input); }
+void GenBase::ramLoadParameters(Stream& input)
+{
+	Parameters::read(input);
+}
 
 /**
  * @note Address: N/A
@@ -124,7 +133,10 @@ void GenBase::read(Stream& input)
  * @note Address: 0x801AA788
  * @note Size: 0x50
  */
-u32 GenObject::getLatestVersion() { return GenObjectFactory::factory->checkVersion(mTypeID); }
+u32 GenObject::getLatestVersion()
+{
+	return GenObjectFactory::factory->checkVersion(mTypeID);
+}
 
 /**
  * @note Address: N/A
@@ -139,7 +151,10 @@ void GenObjectFactory::createInstance()
  * @note Address: 0x801AA7D8
  * @note Size: 0xC
  */
-void Generator::initialiseSystem() { GenObjectFactory::factory = nullptr; }
+void Generator::initialiseSystem()
+{
+	GenObjectFactory::factory = nullptr;
+}
 
 /**
  * __ct__Q24Game9GeneratorFv
@@ -183,7 +198,10 @@ Generator::Generator(int)
  * @note Address: 0x801AA8C0
  * @note Size: 0x68
  */
-Generator::~Generator() { mNextGenerator = nullptr; }
+Generator::~Generator()
+{
+	mNextGenerator = nullptr;
+}
 
 /**
  * updateUseList__Q24Game9GeneratorFv

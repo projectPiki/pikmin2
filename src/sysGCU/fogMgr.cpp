@@ -27,7 +27,10 @@ FogMgr::FogMgr()
  * @note Address: 0x804329BC
  * @note Size: 0x40
  */
-void FogMgr::off(Graphics&) { GXSetFog(GX_FOG_NONE, 0.0f, 0.0f, 0.0f, 0.0f, mColor); }
+void FogMgr::off(Graphics&)
+{
+	GXSetFog(GX_FOG_NONE, 0.0f, 0.0f, 0.0f, 0.0f, mColor);
+}
 
 /**
  * @note Address: 0x804329FC

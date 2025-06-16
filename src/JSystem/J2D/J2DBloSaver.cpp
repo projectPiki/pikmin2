@@ -46,7 +46,10 @@ void J2DMaterial_SaveBlock::setOffset(J2DMaterial**, u16, JUTNameTab*)
  * @note Address: 0x80049518
  * @note Size: 0x50
  */
-J2DBloSaver::CTextureNameConnect::~CTextureNameConnect() { clear(); }
+J2DBloSaver::CTextureNameConnect::~CTextureNameConnect()
+{
+	clear();
+}
 
 /**
  * @note Address: 0x80049568

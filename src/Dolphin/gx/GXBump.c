@@ -215,7 +215,9 @@ void GXSetTevIndWarp(GXTevStageID stage, GXIndTexStageID indStage, GXBool doSign
  * @note Address: 0x800E8424
  * @note Size: 0x4
  */
-void __GXUpdateBPMask() { }
+void __GXUpdateBPMask()
+{
+}
 
 /**
  * @note Address: 0x800E8428

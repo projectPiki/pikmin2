@@ -20,7 +20,7 @@ struct JASBank {
 	 * @reifiedAddress{80099728}
 	 * @reifiedFile{JSystem/JAS/JASBasicBank.cpp}
 	 */
-	virtual ~JASBank() {};                   // _08 (weak)
+	virtual ~JASBank() { };                  // _08 (weak)
 	virtual JASInst* getInst(int) const = 0; // _0C
 	virtual u32 getType() const         = 0; // _10
 

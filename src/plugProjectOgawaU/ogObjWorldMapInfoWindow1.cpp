@@ -80,7 +80,10 @@ bool ObjWorldMapInfoWindow1::doStart(::Screen::StartSceneArg const*)
  * @note Address: 0x8032C024
  * @note Size: 0x20
  */
-void ObjWorldMapInfoWindow1::commonUpdate() { ObjSMenuPauseVS::commonUpdate(); }
+void ObjWorldMapInfoWindow1::commonUpdate()
+{
+	ObjSMenuPauseVS::commonUpdate();
+}
 
 /**
  * @note Address: 0x8032C044
@@ -116,7 +119,10 @@ void ObjWorldMapInfoWindow1::out_menu_1()
  * @note Address: 0x8032C0EC
  * @note Size: 0xC
  */
-void ObjWorldMapInfoWindow1::out_L() { mState = ObjSMenuBase::MENUSTATE_CloseL; }
+void ObjWorldMapInfoWindow1::out_L()
+{
+	mState = ObjSMenuBase::MENUSTATE_CloseL;
+}
 
 /**
  * @note Address: 0x8032C0F8
@@ -132,7 +138,10 @@ void ObjWorldMapInfoWindow1::doUpdateFadeoutFinish()
  * @note Address: 0x8032C164
  * @note Size: 0xC
  */
-int ObjWorldMapInfoWindow1::getResult() { return mDispWmap->mResult; }
+int ObjWorldMapInfoWindow1::getResult()
+{
+	return mDispWmap->mResult;
+}
 
 } // namespace newScreen
 } // namespace og

@@ -18,7 +18,10 @@ TRenderingProcessor::TRenderingProcessor(JMessage::TReference* ref)
  * @note Address: 0x80450FC0
  * @note Size: 0xC
  */
-void TRenderingProcessor::doGetDrawInfo(Window::DrawInfo* info) { info->mTimeLimit = 0.26666669f; }
+void TRenderingProcessor::doGetDrawInfo(Window::DrawInfo* info)
+{
+	info->mTimeLimit = 0.26666669f;
+}
 
 /**
  * @note Address: 0x80450FCC

@@ -9,7 +9,10 @@
  * @note Address: 0x801ACA08
  * @note Size: 0xB8
  */
-Game::GenObject* makeObjectNavi() { return new Game::GenObjectNavi(); }
+Game::GenObject* makeObjectNavi()
+{
+	return new Game::GenObjectNavi();
+}
 
 namespace Game {
 /**
@@ -33,13 +36,17 @@ void GenObjectNavi::initialise()
  * @note Address: 0x801ACB4C
  * @note Size: 0x4
  */
-void GenObjectNavi::ramSaveParameters(Stream&) { }
+void GenObjectNavi::ramSaveParameters(Stream&)
+{
+}
 
 /**
  * @note Address: 0x801ACB50
  * @note Size: 0x4
  */
-void GenObjectNavi::ramLoadParameters(Stream&) { }
+void GenObjectNavi::ramLoadParameters(Stream&)
+{
+}
 
 /**
  * @note Address: 0x801ACB54

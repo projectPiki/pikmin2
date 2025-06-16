@@ -68,7 +68,7 @@ struct PelletConfig : public CNode {
 
 struct PelletConfigList : public CNode {
 	PelletConfigList();
-	virtual ~PelletConfigList() {};
+	virtual ~PelletConfigList() { };
 
 	PelletConfig* getPelletConfig(char* name);
 	PelletConfig* getPelletConfig(int index);

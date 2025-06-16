@@ -156,7 +156,10 @@ bool Pellet::needShadow()
  * @note Address: 0x80165B44
  * @note Size: 0x8
  */
-u8 Pellet::getWallTimer() { return mWallTimer; }
+u8 Pellet::getWallTimer()
+{
+	return mWallTimer;
+}
 
 /**
  * @note Address: 0x80165B4C
@@ -386,7 +389,10 @@ void PelletView::viewMakeMatrix(Matrixf& outMat)
  * @note Address: 0x80165E24
  * @note Size: 0xC
  */
-void Pellet::clearClaim() { mClaim = 0; }
+void Pellet::clearClaim()
+{
+	mClaim = 0;
+}
 
 /**
  * @note Address: 0x80165E30
@@ -440,13 +446,19 @@ void Pellet::updateClaim()
  * @note Address: 0x8016623C
  * @note Size: 0xC
  */
-f32 Pellet::getBuryDepthMax() { return mConfig->mParams.mDepthMax.mData; }
+f32 Pellet::getBuryDepthMax()
+{
+	return mConfig->mParams.mDepthMax.mData;
+}
 
 /**
  * @note Address: 0x80166248
  * @note Size: 0xC
  */
-f32 Pellet::getBuryDepth() { return mConfig->mParams.mDepth.mData; }
+f32 Pellet::getBuryDepth()
+{
+	return mConfig->mParams.mDepth.mData;
+}
 
 /**
  * @note Address: 0x80166254
@@ -542,7 +554,9 @@ bool InteractSuck::actPellet(Pellet* pellet)
  * @note Address: 0x8016667C
  * @note Size: 0x4
  */
-void Pellet::doDirectDraw(Graphics&) { }
+void Pellet::doDirectDraw(Graphics&)
+{
+}
 
 /**
  * @note Address: 0x80166680
@@ -569,7 +583,10 @@ Pellet::Pellet()
  * @note Address: 0x80166830
  * @note Size: 0x6C
  */
-void Pellet::constructor() { mSoundMgr = new PSM::EventBase(this, 2); }
+void Pellet::constructor()
+{
+	mSoundMgr = new PSM::EventBase(this, 2);
+}
 
 /**
  * @note Address: 0x80166938
@@ -597,31 +614,46 @@ void Pellet::shadowOff()
  * @note Address: 0x801669A0
  * @note Size: 0x14
  */
-JAInter::Object* Pellet::getJAIObject() { return mSoundMgr; }
+JAInter::Object* Pellet::getJAIObject()
+{
+	return mSoundMgr;
+}
 
 /**
  * @note Address: 0x801669B4
  * @note Size: 0x8
  */
-PSM::Creature* Pellet::getPSCreature() { return mSoundMgr; }
+PSM::Creature* Pellet::getPSCreature()
+{
+	return mSoundMgr;
+}
 
 /**
  * @note Address: 0x801669BC
  * @note Size: 0xC
  */
-f32 Pellet::getBottomRadius() { return mConfig->mParams.mRadius.mData; }
+f32 Pellet::getBottomRadius()
+{
+	return mConfig->mParams.mRadius.mData;
+}
 
 /**
  * @note Address: 0x801669C8
  * @note Size: 0xC
  */
-f32 Pellet::getPickRadius() { return mConfig->mParams.mPRadius.mData; }
+f32 Pellet::getPickRadius()
+{
+	return mConfig->mParams.mPRadius.mData;
+}
 
 /**
  * @note Address: 0x801669D4
  * @note Size: 0xC
  */
-f32 Pellet::getCylinderHeight() { return mConfig->mParams.mHeight.mData; }
+f32 Pellet::getCylinderHeight()
+{
+	return mConfig->mParams.mHeight.mData;
+}
 
 /**
  * @note Address: 0x801669E0
@@ -637,7 +669,10 @@ int Pellet::getConfigIndex()
  * @note Address: 0x80166A38
  * @note Size: 0xC
  */
-char* Pellet::getConfigName() { return mConfig->mParams.mName.mData; }
+char* Pellet::getConfigName()
+{
+	return mConfig->mParams.mName.mData;
+}
 
 /**
  * @note Address: 0x80166A44
@@ -1610,7 +1645,10 @@ lbl_80167D10:
  * @note Address: 0x80167D74
  * @note Size: 0x18
  */
-bool Pellet::panmodokiCarryable() { return !(mConfig->mParams.mCode.mData & 1); }
+bool Pellet::panmodokiCarryable()
+{
+	return !(mConfig->mParams.mCode.mData & 1);
+}
 
 /**
  * @note Address: 0x80167D8C
@@ -1675,19 +1713,28 @@ void Pellet::setCarryColor(int color)
  * @note Address: 0x80167F34
  * @note Size: 0xC
  */
-void Pellet::clearCarryColor() { mCarryColor = CINFOCOLOR_Struggle; }
+void Pellet::clearCarryColor()
+{
+	mCarryColor = CINFOCOLOR_Struggle;
+}
 
 /**
  * @note Address: 0x80167F40
  * @note Size: 0x1C
  */
-Vector3f Pellet::getVelocity() { return mRigid.mConfigs[0].mVelocity; }
+Vector3f Pellet::getVelocity()
+{
+	return mRigid.mConfigs[0].mVelocity;
+}
 
 /**
  * @note Address: 0x80167F5C
  * @note Size: 0x1C
  */
-void Pellet::setVelocity(Vector3f& velocity) { mRigid.mConfigs[0].mVelocity = velocity; }
+void Pellet::setVelocity(Vector3f& velocity)
+{
+	mRigid.mConfigs[0].mVelocity = velocity;
+}
 
 /**
  * @note Address: 0x80167F78
@@ -1829,7 +1876,10 @@ void Pellet::setOrientation(Matrixf& mat)
  * @note Address: 0x8016879C
  * @note Size: 0x28
  */
-int Pellet::getStateID() { return mPelletSM->getCurrID(this); }
+int Pellet::getStateID()
+{
+	return mPelletSM->getCurrID(this);
+}
 
 /**
  * @note Address: 0x801687C4
@@ -3336,7 +3386,10 @@ void Pellet::getPikiBirthCount(int& min, int& max)
  * @note Address: 0x801699D4
  * @note Size: 0x14
  */
-void PelletMgr::setMovieDraw(bool check) { mMovieDrawDisabled = !check; }
+void PelletMgr::setMovieDraw(bool check)
+{
+	mMovieDrawDisabled = !check;
+}
 
 /**
  * @note Address: 0x801699E8
@@ -3465,13 +3518,19 @@ void Pellet::doEntry()
  * @note Address: 0x80169F98
  * @note Size: 0x20
  */
-void Pellet::doSetView(int viewportNumber) { Creature::doSetView(viewportNumber); }
+void Pellet::doSetView(int viewportNumber)
+{
+	Creature::doSetView(viewportNumber);
+}
 
 /**
  * @note Address: 0x80169FB8
  * @note Size: 0x20
  */
-void Pellet::doViewCalc() { Creature::doViewCalc(); }
+void Pellet::doViewCalc()
+{
+	Creature::doViewCalc();
+}
 
 /**
  * @note Address: 0x80169FD8
@@ -3515,7 +3574,10 @@ void Pellet::entryShape()
  * @note Address: 0x8016A150
  * @note Size: 0x24
  */
-void Pellet::getBoundingSphere(Sys::Sphere& sphere) { sphere = mLodSphere; }
+void Pellet::getBoundingSphere(Sys::Sphere& sphere)
+{
+	sphere = mLodSphere;
+}
 
 /**
  * @note Address: 0x8016A174
@@ -3589,7 +3651,10 @@ void Pellet::start_carrymotion()
  * @note Address: 0x8016A300
  * @note Size: 0xC
  */
-void Pellet::stop_carrymotion() { mAnimSpeed = 0.0f; }
+void Pellet::stop_carrymotion()
+{
+	mAnimSpeed = 0.0f;
+}
 
 /**
  * @note Address: 0x8016A30C
@@ -4370,13 +4435,19 @@ void Pellet::endPick(bool b)
  * @note Address: 0x8016B4C4
  * @note Size: 0xC
  */
-void Pellet::clearDiscoverDisable() { mDiscoverDisable = 0; }
+void Pellet::clearDiscoverDisable()
+{
+	mDiscoverDisable = 0;
+}
 
 /**
  * @note Address: 0x8016B4D0
  * @note Size: 0x8
  */
-void Pellet::startDiscoverDisable(u8 start) { mDiscoverDisable = start; }
+void Pellet::startDiscoverDisable(u8 start)
+{
+	mDiscoverDisable = start;
+}
 
 /**
  * @note Address: 0x8016B4D8
@@ -4406,7 +4477,10 @@ bool Pellet::discoverDisabled()
  * @note Address: 0x8016B51C
  * @note Size: 0x2C
  */
-void Pellet::doSave(Stream& stream) { stream.writeByte((u8)mIsCaptured); }
+void Pellet::doSave(Stream& stream)
+{
+	stream.writeByte((u8)mIsCaptured);
+}
 
 /**
  * @note Address: 0x8016B548
@@ -4837,7 +4911,10 @@ JKRArchive* BasePelletMgr::openTextArc(char* arc)
  * @note Address: 0x8016C5BC
  * @note Size: 0x30
  */
-void BasePelletMgr::closeTextArc(JKRArchive* archive) { archive->unmount(); }
+void BasePelletMgr::closeTextArc(JKRArchive* archive)
+{
+	archive->unmount();
+}
 
 /**
  * @note Address: 0x8016C5EC
@@ -4911,13 +4988,19 @@ void BasePelletMgr::setCollTree(Pellet* pellet, int partIndex)
  * @note Address: 0x8016C93C
  * @note Size: 0x24
  */
-GenPelletParm* BasePelletMgr::generatorNewPelletParm() { return new GenPelletParm; }
+GenPelletParm* BasePelletMgr::generatorNewPelletParm()
+{
+	return new GenPelletParm;
+}
 
 /**
  * @note Address: 0x8016C960
  * @note Size: 0x8
  */
-J3DModelData* BasePelletMgr::generatorGetShape(GenPelletParm*) { return nullptr; }
+J3DModelData* BasePelletMgr::generatorGetShape(GenPelletParm*)
+{
+	return nullptr;
+}
 
 /**
  * @note Address: 0x8016C968
@@ -4983,7 +5066,10 @@ void PelletIterator::next()
  * @note Address: 0x8016CAF4
  * @note Size: 0x10
  */
-bool PelletIterator::isDone() { return mMgr == nullptr; }
+bool PelletIterator::isDone()
+{
+	return mMgr == nullptr;
+}
 
 /**
  * @note Address: 0x8016CB04
@@ -5098,9 +5184,13 @@ void PelletMgr::calcNearestTreasure(Vector3f&, f32)
 {
 	// these are here to spawn the weak functions from these templates
 	Iterator<PelletOtakara::Object> iterOta(PelletOtakara::mgr);
-	CI_LOOP(iterOta) { }
+	CI_LOOP(iterOta)
+	{
+	}
 	Iterator<PelletItem::Object> iterItem(PelletItem::mgr);
-	CI_LOOP(iterItem) { }
+	CI_LOOP(iterItem)
+	{
+	}
 	// UNUSED FUNCTION
 }
 
@@ -5352,7 +5442,10 @@ void PelletMgr::makeOtakaraItemCode(char* configName, OtakaraItemCode& code)
  * @note Address: 0x8016DEDC
  * @note Size: 0x34
  */
-void PelletMgr::OtakaraItemCode::read(Stream& stream) { mValue = stream.readShort(); }
+void PelletMgr::OtakaraItemCode::read(Stream& stream)
+{
+	mValue = stream.readShort();
+}
 
 /**
  * @note Address: 0x8016DF10
@@ -5383,7 +5476,10 @@ void PelletMgr::addMgr(BasePelletMgr* mgr)
 void PelletMgr::doAnimation()
 {
 	Iterator<GenericObjectMgr> iter(this);
-	CI_LOOP(iter) { (*iter)->doAnimation(); }
+	CI_LOOP(iter)
+	{
+		(*iter)->doAnimation();
+	}
 }
 
 /**
@@ -5393,7 +5489,10 @@ void PelletMgr::doAnimation()
 void PelletMgr::doEntry()
 {
 	Iterator<GenericObjectMgr> iter(this);
-	CI_LOOP(iter) { (*iter)->doEntry(); }
+	CI_LOOP(iter)
+	{
+		(*iter)->doEntry();
+	}
 }
 
 /**
@@ -5403,7 +5502,10 @@ void PelletMgr::doEntry()
 void PelletMgr::doSetView(int viewportNumber)
 {
 	Iterator<GenericObjectMgr> iter(this);
-	CI_LOOP(iter) { (*iter)->doSetView(viewportNumber); }
+	CI_LOOP(iter)
+	{
+		(*iter)->doSetView(viewportNumber);
+	}
 }
 
 /**
@@ -5413,7 +5515,10 @@ void PelletMgr::doSetView(int viewportNumber)
 void PelletMgr::doViewCalc()
 {
 	Iterator<GenericObjectMgr> iter(this);
-	CI_LOOP(iter) { (*iter)->doViewCalc(); }
+	CI_LOOP(iter)
+	{
+		(*iter)->doViewCalc();
+	}
 }
 
 /**
@@ -5423,14 +5528,19 @@ void PelletMgr::doViewCalc()
 void PelletMgr::doSimulation(f32 constraint)
 {
 	Iterator<GenericObjectMgr> iter(this);
-	CI_LOOP(iter) { (*iter)->doSimulation(constraint); }
+	CI_LOOP(iter)
+	{
+		(*iter)->doSimulation(constraint);
+	}
 }
 
 /**
  * @note Address: 0x8016E9BC
  * @note Size: 0x4
  */
-void PelletMgr::doDirectDraw(Graphics&) { }
+void PelletMgr::doDirectDraw(Graphics&)
+{
+}
 
 /**
  * @note Address: 0x8016E9C0
@@ -5439,7 +5549,10 @@ void PelletMgr::doDirectDraw(Graphics&) { }
 void PelletMgr::doSimpleDraw(Viewport* viewport)
 {
 	Iterator<GenericObjectMgr> iter(this);
-	CI_LOOP(iter) { (*iter)->doSimpleDraw(viewport); }
+	CI_LOOP(iter)
+	{
+		(*iter)->doSimpleDraw(viewport);
+	}
 }
 
 /**
@@ -5449,7 +5562,10 @@ void PelletMgr::doSimpleDraw(Viewport* viewport)
 void PelletMgr::setupSoundViewerAndBas()
 {
 	Iterator<GenericObjectMgr> iter(this);
-	CI_LOOP(iter) { *iter; }
+	CI_LOOP(iter)
+	{
+		*iter;
+	}
 }
 
 /**
@@ -5466,7 +5582,10 @@ void PelletMgr::decode(s32 index, u8& pelletType, int& code)
  * @note Address: 0x8016ED9C
  * @note Size: 0xC
  */
-int PelletMgr::encode(u8 pelletType, int code) { return (pelletType << 24) | code; }
+int PelletMgr::encode(u8 pelletType, int code)
+{
+	return (pelletType << 24) | code;
+}
 
 /**
  * @note Address: 0x8016EDA8

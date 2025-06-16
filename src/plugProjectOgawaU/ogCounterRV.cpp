@@ -94,19 +94,28 @@ J2DPane* CallBack_CounterRV::getMotherPane()
  * @note Address: 0x8030B7D8
  * @note Size: 0x8
  */
-void CallBack_CounterRV::setPuyoAnim(bool isPuyoAnim) { mIsPuyoAnim = isPuyoAnim; }
+void CallBack_CounterRV::setPuyoAnim(bool isPuyoAnim)
+{
+	mIsPuyoAnim = isPuyoAnim;
+}
 
 /**
  * @note Address: 0x8030B7E0
  * @note Size: 0x8
  */
-void CallBack_CounterRV::setPuyoAnimZero(bool isPuyoAnimZero) { mIsPuyoAnimZero = isPuyoAnimZero; }
+void CallBack_CounterRV::setPuyoAnimZero(bool isPuyoAnimZero)
+{
+	mIsPuyoAnimZero = isPuyoAnimZero;
+}
 
 /**
  * @note Address: 0x8030B7E8
  * @note Size: 0x8
  */
-void CallBack_CounterRV::setBlind(bool isBlind) { mIsBlind = isBlind; }
+void CallBack_CounterRV::setBlind(bool isBlind)
+{
+	mIsBlind = isBlind;
+}
 
 /**
  * @note Address: N/A
@@ -131,7 +140,10 @@ void CallBack_CounterRV::setValPtr(u32*)
  * @note Address: 0x8030B7F0
  * @note Size: 0x8
  */
-void CallBack_CounterRV::setZeroAlpha(u8 alpha) { mZeroAlpha = alpha; }
+void CallBack_CounterRV::setZeroAlpha(u8 alpha)
+{
+	mZeroAlpha = alpha;
+}
 
 /**
  * @note Address: 0x8030B7F8
@@ -154,7 +166,10 @@ void CallBack_CounterRV::startPuyoUp(f32 scaleDelayFactor)
  * @note Address: 0x8030B8DC
  * @note Size: 0x8
  */
-void CallBack_CounterRV::setCenteringMode(EnumCenteringMode centeringMode) { mCenteringMode = centeringMode; }
+void CallBack_CounterRV::setCenteringMode(EnumCenteringMode centeringMode)
+{
+	mCenteringMode = centeringMode;
+}
 
 /**
  * @note Address: 0x8030B8E4
@@ -416,7 +431,9 @@ void CallBack_CounterRV::update()
  * @note Address: 0x8030C52C
  * @note Size: 0x4
  */
-void CallBack_CounterRV::draw(Graphics&, J2DGrafContext&) { }
+void CallBack_CounterRV::draw(Graphics&, J2DGrafContext&)
+{
+}
 
 /**
  * @note Address: 0x8030C530

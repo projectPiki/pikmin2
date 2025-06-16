@@ -31,7 +31,9 @@ ObjBase::ObjBase()
  * @note Address: 0x8045CE64
  * @note Size: 0x80
  */
-ObjBase::~ObjBase() { }
+ObjBase::~ObjBase()
+{
+}
 
 /**
  * @note Address: 0x8045CEE4
@@ -39,7 +41,10 @@ ObjBase::~ObjBase() { }
  */
 void ObjMgr::frameEnd_onPlaySe()
 {
-	FOREACH_NODE(JSULink<ObjBase>, mHead, link) { link->getObject()->frameEnd_onPlaySe(); }
+	FOREACH_NODE(JSULink<ObjBase>, mHead, link)
+	{
+		link->getObject()->frameEnd_onPlaySe();
+	}
 }
 
 /**
@@ -565,7 +570,9 @@ lbl_8045D78C:
  * @note Address: 0x8045D7A0
  * @note Size: 0x4
  */
-void Creature::onPlayingSe(u32, JAISound*) { }
+void Creature::onPlayingSe(u32, JAISound*)
+{
+}
 
 /**
  * @note Address: 0x8045D7A4
@@ -1072,13 +1079,18 @@ r3 lwz      r3, 0x2c(r30) lwz      r12, 0(r3) lwz      r12, 0x10c(r12) mtctr r12
  * @note Address: 0x8045E2A0
  * @note Size: 0x24
  */
-void CreatureAnime::onCalcTurnOn() { static_cast<Game::EnemyBase*>(mGameObj)->setPSEnemyBaseAnime(); }
+void CreatureAnime::onCalcTurnOn()
+{
+	static_cast<Game::EnemyBase*>(mGameObj)->setPSEnemyBaseAnime();
+}
 
 /**
  * @note Address: 0x8045E2C4
  * @note Size: 0x4
  */
-void CreatureAnime::onCalcTurnOff() { }
+void CreatureAnime::onCalcTurnOff()
+{
+}
 
 /**
  * @note Address: 0x8045E2C8
@@ -1877,13 +1889,19 @@ void EnemyBoss::onPlayingSe(u32, JAISound* sound)
  * @note Address: 0x8045F4CC
  * @note Size: 0x14
  */
-bool EnemyBoss::judgeNearWithPlayer(const Vec&, const Vec&, f32 min, f32) { return mNaviDistance < min; }
+bool EnemyBoss::judgeNearWithPlayer(const Vec&, const Vec&, f32 min, f32)
+{
+	return mNaviDistance < min;
+}
 
 /**
  * @note Address: 0x8045F4E0
  * @note Size: 0xB4
  */
-void EnemyBoss::exec() { EnemyBase::exec(); }
+void EnemyBoss::exec()
+{
+	EnemyBase::exec();
+}
 
 /**
  * @note Address: 0x8045F594
@@ -2252,7 +2270,10 @@ void EnemyBoss::setKilled()
  * @note Address: 0x8045FF1C
  * @note Size: 0x24
  */
-bool EnemyBoss::isOnDisappearing() { return mDisappearTimer != 0xffff; }
+bool EnemyBoss::isOnDisappearing()
+{
+	return mDisappearTimer != 0xffff;
+}
 
 /**
  * @note Address: 0x8045FF40
@@ -2291,7 +2312,9 @@ EnemyMidBoss::EnemyMidBoss(Game::EnemyBase* gameObj)
  * @note Address: 0x804601D0
  * @note Size: 0x1A8
  */
-EnemyBoss::~EnemyBoss() { }
+EnemyBoss::~EnemyBoss()
+{
+}
 
 /**
  * @note Address: 0x80460378
@@ -2377,13 +2400,18 @@ EnemyBigBoss::EnemyBigBoss(Game::EnemyBase* gameObj)
  * @note Address: 0x80460854
  * @note Size: 0x1F0
  */
-EnemyMidBoss::~EnemyMidBoss() { }
+EnemyMidBoss::~EnemyMidBoss()
+{
+}
 
 /**
  * @note Address: 0x80460A44
  * @note Size: 0x88
  */
-EnemyBigBoss::~EnemyBigBoss() { sBigBoss = nullptr; }
+EnemyBigBoss::~EnemyBigBoss()
+{
+	sBigBoss = nullptr;
+}
 
 /**
  * @note Address: 0x80460ACC
@@ -2445,7 +2473,10 @@ void Enemy_SpecialChappy::onPlayingSe(u32 soundID, JAISound* sound)
  * @note Address: 0x80460DB4
  * @note Size: 0x2C
  */
-void DirectorLink::eventStart() { eventRestart(); }
+void DirectorLink::eventStart()
+{
+	eventRestart();
+}
 
 /**
  * @note Address: 0x80460DE0
@@ -2475,7 +2506,10 @@ void DirectorLink::eventStop()
  * @note Address: 0x80460E78
  * @note Size: 0x2C
  */
-void DirectorLink::eventFinish() { eventStop(); }
+void DirectorLink::eventFinish()
+{
+	eventStop();
+}
 
 /**
  * @note Address: 0x80460EA4
@@ -2507,7 +2541,9 @@ ListDirectorActor* OtakaraEventLink::getListDirectorActor()
  * @note Address: 0x80460F0C
  * @note Size: 0x4
  */
-void OtakaraEventLink::eventFinish() { }
+void OtakaraEventLink::eventFinish()
+{
+}
 
 /**
  * @note Address: 0x80460F10
@@ -2586,7 +2622,10 @@ void OtakaraEventLink_2PBattle::eventStart()
  * @note Address: 0x804612F4
  * @note Size: 0x2C
  */
-void OtakaraEventLink_2PBattle::eventRestart() { eventStart(); }
+void OtakaraEventLink_2PBattle::eventRestart()
+{
+	eventStart();
+}
 
 /**
  * @note Address: 0x80461320
@@ -2613,7 +2652,10 @@ void OtakaraEventLink_2PBattle::eventStop()
  * @note Address: 0x804614B4
  * @note Size: 0x2C
  */
-void OtakaraEventLink_2PBattle::eventFinish() { eventStop(); }
+void OtakaraEventLink_2PBattle::eventFinish()
+{
+	eventStop();
+}
 
 /**
  * @note Address: 0x804614E0
@@ -2647,25 +2689,37 @@ WorkItem::WorkItem(Game::BaseItem* gameObj)
  * @note Address: 0x80461790
  * @note Size: 0x30
  */
-void WorkItem::eventStart() { mLink.eventStart(); }
+void WorkItem::eventStart()
+{
+	mLink.eventStart();
+}
 
 /**
  * @note Address: 0x804617C0
  * @note Size: 0x30
  */
-void WorkItem::eventRestart() { mLink.eventRestart(); }
+void WorkItem::eventRestart()
+{
+	mLink.eventRestart();
+}
 
 /**
  * @note Address: 0x804617F0
  * @note Size: 0x30
  */
-void WorkItem::eventStop() { mLink.eventStop(); }
+void WorkItem::eventStop()
+{
+	mLink.eventStop();
+}
 
 /**
  * @note Address: 0x80461820
  * @note Size: 0x30
  */
-void WorkItem::eventFinish() { mLink.eventFinish(); }
+void WorkItem::eventFinish()
+{
+	mLink.eventFinish();
+}
 
 /**
  * @note Address: 0x80461850
@@ -2778,7 +2832,9 @@ PelletOtakara::PelletOtakara(Game::PelletOtakara::Object* gameObj, bool is2PBatt
  * @note Address: 0x80461F84
  * @note Size: 0x148
  */
-Otakara::~Otakara() { }
+Otakara::~Otakara()
+{
+}
 
 /**
  * @note Address: 0x804620CC
@@ -2833,13 +2889,19 @@ void Piki::onCalcOn()
  * @note Address: 0x80462568
  * @note Size: 0xC
  */
-void Piki::becomeFree() { mFreeCounter = 0; }
+void Piki::becomeFree()
+{
+	mFreeCounter = 0;
+}
 
 /**
  * @note Address: 0x80462574
  * @note Size: 0xC
  */
-void Piki::becomeNotFree() { mFreeCounter = -1; }
+void Piki::becomeNotFree()
+{
+	mFreeCounter = -1;
+}
 
 /**
  * @note Address: 0x80462580
@@ -3024,13 +3086,19 @@ Navi::Navi(Game::Navi* gameObj)
  * @note Address: 0x80462BF8
  * @note Size: 0x24
  */
-void Navi::init(u16 rappa) { mRappa.init(rappa); }
+void Navi::init(u16 rappa)
+{
+	mRappa.init(rappa);
+}
 
 /**
  * @note Address: 0x80462C1C
  * @note Size: 0x28
  */
-void Navi::setShacho() { mRappa.setId(137); }
+void Navi::setShacho()
+{
+	mRappa.setId(137);
+}
 
 /**
  * @note Address: 0x80462C44
@@ -3459,7 +3527,10 @@ void PSSetCurCameraNo(u8 cams)
  * @note Address: 0x80463244
  * @note Size: 0x8
  */
-f32 PSMGetNoukouDist() { return PSM::CreaturePrm::cNoukouDistance; }
+f32 PSMGetNoukouDist()
+{
+	return PSM::CreaturePrm::cNoukouDistance;
+}
 
 /**
  * @note Address: 0x8046324C

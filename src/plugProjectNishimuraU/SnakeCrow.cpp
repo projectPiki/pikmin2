@@ -47,7 +47,9 @@ void Obj::constructor()
  * @note Address: 0x80293244
  * @note Size: 0x4
  */
-void Obj::setInitialSetting(EnemyInitialParamBase*) { }
+void Obj::setInitialSetting(EnemyInitialParamBase*)
+{
+}
 
 /**
  * @note Address: 0x80293248
@@ -147,13 +149,18 @@ void Obj::doAnimationCullingOff()
  * @note Address: 0x802934E8
  * @note Size: 0x4
  */
-void Obj::doDirectDraw(Graphics&) { }
+void Obj::doDirectDraw(Graphics&)
+{
+}
 
 /**
  * @note Address: 0x802934EC
  * @note Size: 0x20
  */
-void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
+void Obj::doDebugDraw(Graphics& gfx)
+{
+	EnemyBase::doDebugDraw(gfx);
+}
 
 /**
  * @note Address: 0x8029350C
@@ -226,19 +233,28 @@ void Obj::doFinishStoneState()
  * @note Address: 0x80293724
  * @note Size: 0x28
  */
-void Obj::startCarcassMotion() { startMotion(SNAKECROWANIM_Carry, nullptr); }
+void Obj::startCarcassMotion()
+{
+	startMotion(SNAKECROWANIM_Carry, nullptr);
+}
 
 /**
  * @note Address: 0x8029374C
  * @note Size: 0x20
  */
-void Obj::doStartMovie() { effectDrawOff(); }
+void Obj::doStartMovie()
+{
+	effectDrawOff();
+}
 
 /**
  * @note Address: 0x8029376C
  * @note Size: 0x20
  */
-void Obj::doEndMovie() { effectDrawOn(); }
+void Obj::doEndMovie()
+{
+	effectDrawOn();
+}
 
 /**
  * @note Address: 0x8029378C
@@ -260,13 +276,19 @@ void Obj::initMouthSlots()
  * @note Address: 0x80293848
  * @note Size: 0x58
  */
-void Obj::getThrowupItemPosition(Vector3f* pos) { *pos = mModel->getJoint("kutijnt1")->getWorldMatrix()->getColumn(3); }
+void Obj::getThrowupItemPosition(Vector3f* pos)
+{
+	*pos = mModel->getJoint("kutijnt1")->getWorldMatrix()->getColumn(3);
+}
 
 /**
  * @note Address: 0x802938A0
  * @note Size: 0x58
  */
-void Obj::getCommonEffectPos(Vector3f& pos) { pos = mModel->getJoint("kutijnt1")->getWorldMatrix()->getColumn(3); }
+void Obj::getCommonEffectPos(Vector3f& pos)
+{
+	pos = mModel->getJoint("kutijnt1")->getWorldMatrix()->getColumn(3);
+}
 
 /**
  * @note Address: 0x802938F8
@@ -1438,25 +1460,37 @@ int Obj::getStickHeadPikmin()
  * @note Address: 0x80294D18
  * @note Size: 0x48
  */
-void Obj::createJointCallBack() { mSnakeJointMgr = new SnakeJointMgr(this); }
+void Obj::createJointCallBack()
+{
+	mSnakeJointMgr = new SnakeJointMgr(this);
+}
 
 /**
  * @note Address: 0x80294D60
  * @note Size: 0x24
  */
-void Obj::setupJointCallBack() { mSnakeJointMgr->setupCallBackJoint(); }
+void Obj::setupJointCallBack()
+{
+	mSnakeJointMgr->setupCallBackJoint();
+}
 
 /**
  * @note Address: 0x80294D84
  * @note Size: 0x24
  */
-void Obj::doAnimationJointCallBack() { mSnakeJointMgr->doAnimation(); }
+void Obj::doAnimationJointCallBack()
+{
+	mSnakeJointMgr->doAnimation();
+}
 
 /**
  * @note Address: 0x80294DA8
  * @note Size: 0x24
  */
-void Obj::finishAnimationJointCallBack() { mSnakeJointMgr->finishAnimation(); }
+void Obj::finishAnimationJointCallBack()
+{
+	mSnakeJointMgr->finishAnimation();
+}
 
 /**
  * @note Address: 0x80294DCC
@@ -1485,7 +1519,10 @@ void Obj::returnJointCallBack()
  * @note Address: 0x80294F0C
  * @note Size: 0x24
  */
-void Obj::finishJointCallBack() { mSnakeJointMgr->finishModify(); }
+void Obj::finishJointCallBack()
+{
+	mSnakeJointMgr->finishModify();
+}
 
 /**
  * @note Address: 0x80294F30
@@ -1518,31 +1555,46 @@ void Obj::lifeIncrement()
  * @note Address: 0x80294FA8
  * @note Size: 0x48
  */
-void Obj::createShadowSystem() { mShadowMgr = new SnakeCrowShadowMgr(this); }
+void Obj::createShadowSystem()
+{
+	mShadowMgr = new SnakeCrowShadowMgr(this);
+}
 
 /**
  * @note Address: 0x80294FF0
  * @note Size: 0x24
  */
-void Obj::setupShadowSystem() { mShadowMgr->init(); }
+void Obj::setupShadowSystem()
+{
+	mShadowMgr->init();
+}
 
 /**
  * @note Address: 0x80295014
  * @note Size: 0x24
  */
-void Obj::doAnimationShadowSystem() { mShadowMgr->update(); }
+void Obj::doAnimationShadowSystem()
+{
+	mShadowMgr->update();
+}
 
 /**
  * @note Address: 0x80295038
  * @note Size: 0x24
  */
-void Obj::startJointShadow() { mShadowMgr->startJointShadow(); }
+void Obj::startJointShadow()
+{
+	mShadowMgr->startJointShadow();
+}
 
 /**
  * @note Address: 0x8029505C
  * @note Size: 0x24
  */
-void Obj::finishJointShadow() { mShadowMgr->finishJointShadow(); }
+void Obj::finishJointShadow()
+{
+	mShadowMgr->finishJointShadow();
+}
 
 /**
  * @note Address: 0x80295080
@@ -1681,7 +1733,10 @@ void Obj::startRotateEffect()
  * @note Address: 0x802958D8
  * @note Size: 0x30
  */
-void Obj::finishRotateEffect() { mEfxRotate->fade(); }
+void Obj::finishRotateEffect()
+{
+	mEfxRotate->fade();
+}
 
 /**
  * @note Address: 0x80295908
@@ -1697,13 +1752,19 @@ void Obj::startWaitEffect()
  * @note Address: 0x80295960
  * @note Size: 0x30
  */
-void Obj::finishWaitEffect() { mEfxWait->fade(); }
+void Obj::finishWaitEffect()
+{
+	mEfxWait->fade();
+}
 
 /**
  * @note Address: 0x80295990
  * @note Size: 0x34
  */
-void Obj::createDeadStartEffect() { mEfxDead->create(nullptr); }
+void Obj::createDeadStartEffect()
+{
+	mEfxDead->create(nullptr);
+}
 
 /**
  * @note Address: 0x802959C4

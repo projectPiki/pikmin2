@@ -345,7 +345,10 @@ void StatePulled::exec(EnemyBase* enemy)
  * @note Address: 0x8034D99C
  * @note Size: 0x24
  */
-void StatePulled::cleanup(EnemyBase* enemy) { OBJ(enemy)->fadePulledSmokeEffect(); }
+void StatePulled::cleanup(EnemyBase* enemy)
+{
+	OBJ(enemy)->fadePulledSmokeEffect();
+}
 
 /**
  * @note Address: 0x8034D9C0
@@ -647,7 +650,10 @@ void StateSucked::init(EnemyBase* enemy, StateArg* stateArg)
  * @note Address: 0x8034E5A4
  * @note Size: 0xC
  */
-void StateSucked::exec(EnemyBase* enemy) { OBJ(enemy)->mCanReactToPress = 1; }
+void StateSucked::exec(EnemyBase* enemy)
+{
+	OBJ(enemy)->mCanReactToPress = 1;
+}
 
 /**
  * @note Address: 0x8034E5B0

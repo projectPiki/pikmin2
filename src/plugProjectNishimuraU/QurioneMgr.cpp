@@ -19,7 +19,10 @@ Generator::Generator()
  * @note Address: 0x8025FB20
  * @note Size: 0xC
  */
-u32 Generator::getLatestVersion() { return '0000'; }
+u32 Generator::getLatestVersion()
+{
+	return '0000';
+}
 
 /**
  * @note Address: 0x8025FB2C
@@ -62,7 +65,9 @@ void Generator::doReadLatestVersion(Stream& stream)
  * @note Address: 0x8025FC6C
  * @note Size: 0x4
  */
-void Generator::doReadOldVersion(Stream&) { }
+void Generator::doReadOldVersion(Stream&)
+{
+}
 
 /**
  * @note Address: 0x8025FC70
@@ -78,19 +83,28 @@ Mgr::Mgr(int objLimit, u8 modelType)
  * @note Address: 0x8025FCC0
  * @note Size: 0x48
  */
-void Mgr::doAlloc() { init(new Parms); }
+void Mgr::doAlloc()
+{
+	init(new Parms);
+}
 
 /**
  * @note Address: 0x8025FE98
  * @note Size: 0x60
  */
-void Mgr::createObj(int count) { mObj = new Obj[count]; }
+void Mgr::createObj(int count)
+{
+	mObj = new Obj[count];
+}
 
 /**
  * @note Address: 0x8025FFB4
  * @note Size: 0x10
  */
-EnemyBase* Mgr::getEnemy(int index) { return &mObj[index]; }
+EnemyBase* Mgr::getEnemy(int index)
+{
+	return &mObj[index];
+}
 
 } // namespace Qurione
 } // namespace Game

@@ -58,7 +58,10 @@ JKRDvdFile::JKRDvdFile(s32 entryNum)
  * @note Address: 0x8001D28C
  * @note Size: 0x9C
  */
-JKRDvdFile::~JKRDvdFile() { close(); }
+JKRDvdFile::~JKRDvdFile()
+{
+	close();
+}
 
 /**
  * @note Address: 0x8001D328
@@ -155,7 +158,10 @@ int JKRDvdFile::readData(void* addr, s32 length, s32 offset)
  * @note Address: 0x8001D5C4
  * @note Size: 0x8
  */
-int JKRDvdFile::writeData(const void* addr, s32 length, s32 offset) { return writeDataAsync(addr, length, offset); }
+int JKRDvdFile::writeData(const void* addr, s32 length, s32 offset)
+{
+	return writeDataAsync(addr, length, offset);
+}
 
 /**
  * @note Address: 0x8001D5CC

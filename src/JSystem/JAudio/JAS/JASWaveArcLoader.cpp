@@ -232,7 +232,10 @@ bool JASWaveArc::loadBlockTail(JASHeap*)
  * @note Size: 0x24
  * erase__10JASWaveArcFv
  */
-bool JASWaveArc::erase() { return mHeap.free(); }
+bool JASWaveArc::erase()
+{
+	return mHeap.free();
+}
 
 /**
  * @note Address: 0x8009BEB4

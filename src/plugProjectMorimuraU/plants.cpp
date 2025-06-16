@@ -26,7 +26,10 @@ void Plants::Obj::setParameters()
  * @note Address: 0x8035841C
  * @note Size: 0x20
  */
-void Plants::Obj::birth(Vector3f& position, f32 faceDir) { EnemyBase::birth(position, faceDir); }
+void Plants::Obj::birth(Vector3f& position, f32 faceDir)
+{
+	EnemyBase::birth(position, faceDir);
+}
 
 /**
  * @note Address: 0x8035843C
@@ -75,7 +78,10 @@ void Plants::Obj::onInit(CreatureInitArg* initArg)
  * @note Address: 0x803585E4
  * @note Size: 0xEC
  */
-Plants::Obj::Obj() { mAnimator = new ProperAnimator; }
+Plants::Obj::Obj()
+{
+	mAnimator = new ProperAnimator;
+}
 
 /**
  * @note Address: 0x803586D0
@@ -123,7 +129,10 @@ void Plants::Obj::doAnimationCullingOff()
  * @note Address: 0x80358820
  * @note Size: 0x20
  */
-void Plants::Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
+void Plants::Obj::doDebugDraw(Graphics& gfx)
+{
+	EnemyBase::doDebugDraw(gfx);
+}
 
 /**
  * @note Address: 0x80358840

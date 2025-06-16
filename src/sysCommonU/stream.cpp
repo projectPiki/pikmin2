@@ -65,7 +65,10 @@ char Stream::skipSpace()
  * @note Address: 0x80413DEC
  * @note Size: 0x8
  */
-bool Stream::eof() { return false; }
+bool Stream::eof()
+{
+	return false;
+}
 
 /**
  * Copies the contents of the stream to the text buffer.
@@ -704,4 +707,7 @@ bool RamStream::eof()
  * @note Address: 0x80415A9C
  * @note Size: 0x8
  */
-u32 Stream::getPending() { return 0; }
+u32 Stream::getPending()
+{
+	return 0;
+}

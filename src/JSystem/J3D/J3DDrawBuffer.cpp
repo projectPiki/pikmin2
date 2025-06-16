@@ -16,7 +16,10 @@ drawFunc J3DDrawBuffer::drawFuncTable[2] = {
 	&J3DDrawBuffer::drawTail,
 };
 
-void J3DDrawBuffer::calcZRatio() { mRatioZ = (mFarZ - mNearZ) / (f32)mBufferSize; }
+void J3DDrawBuffer::calcZRatio()
+{
+	mRatioZ = (mFarZ - mNearZ) / (f32)mBufferSize;
+}
 
 int J3DDrawBuffer::entryNum;
 

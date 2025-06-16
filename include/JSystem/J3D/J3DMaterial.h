@@ -23,7 +23,10 @@ struct J3DTexMtxAnm;
 struct J3DTexture;
 struct JUTNameTab;
 
-static inline void J3DFifoWriteCPCmd(u8 cmd, u32 param) { GX_CP_LOAD_REG(cmd, param); }
+static inline void J3DFifoWriteCPCmd(u8 cmd, u32 param)
+{
+	GX_CP_LOAD_REG(cmd, param);
+}
 
 static inline void J3DFifoWriteXFCmd(u16 cmd, u16 len)
 {

@@ -17,13 +17,19 @@ Mgr::Mgr(int objLimit, u8 modelType)
  * @note Address: 0x803ABEB0
  * @note Size: 0x48
  */
-void Mgr::doAlloc() { init(new Parms); }
+void Mgr::doAlloc()
+{
+	init(new Parms);
+}
 
 /**
  * @note Address: 0x803ABFD4
  * @note Size: 0x20
  */
-EnemyBase* Mgr::birth(EnemyBirthArg& arg) { return EnemyMgrBase::birth(arg); }
+EnemyBase* Mgr::birth(EnemyBirthArg& arg)
+{
+	return EnemyMgrBase::birth(arg);
+}
 
 /**
  * @note Address: 0x803ABFF4

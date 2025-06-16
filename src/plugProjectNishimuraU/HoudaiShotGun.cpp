@@ -58,13 +58,19 @@ void HoudaiShotGunNode::create()
  * @note Address: N/A
  * @note Size: 0x1C
  */
-void HoudaiShotGunNode::setPosition(Vector3f& pos) { mPosition = pos; }
+void HoudaiShotGunNode::setPosition(Vector3f& pos)
+{
+	mPosition = pos;
+}
 
 /**
  * @note Address: N/A
  * @note Size: 0x1C
  */
-void HoudaiShotGunNode::setVelocity(Vector3f& vel) { mVelocity = vel; }
+void HoudaiShotGunNode::setVelocity(Vector3f& vel)
+{
+	mVelocity = vel;
+}
 
 /**
  * @note Address: N/A
@@ -1081,13 +1087,19 @@ void HoudaiShotGunMgr::setupShotGun()
  * @note Address: 0x802C47C8
  * @note Size: 0xC
  */
-void HoudaiShotGunMgr::resetCallBack() { sHoudaiShotGunMgr = nullptr; }
+void HoudaiShotGunMgr::resetCallBack()
+{
+	sHoudaiShotGunMgr = nullptr;
+}
 
 /**
  * @note Address: 0x802C47D4
  * @note Size: 0x8
  */
-void HoudaiShotGunMgr::setCallBack() { sHoudaiShotGunMgr = this; }
+void HoudaiShotGunMgr::setCallBack()
+{
+	sHoudaiShotGunMgr = this;
+}
 
 /**
  * @note Address: 0x802C47DC
@@ -1116,25 +1128,37 @@ void HoudaiShotGunMgr::finishRotation()
  * @note Address: 0x802C4814
  * @note Size: 0x8
  */
-bool HoudaiShotGunMgr::isShotGunRotation() { return mIsShotGunRotation; }
+bool HoudaiShotGunMgr::isShotGunRotation()
+{
+	return mIsShotGunRotation;
+}
 
 /**
  * @note Address: 0x802C481C
  * @note Size: 0x8
  */
-bool HoudaiShotGunMgr::isShotGunLockOn() { return mIsShotGunLockedOn; }
+bool HoudaiShotGunMgr::isShotGunLockOn()
+{
+	return mIsShotGunLockedOn;
+}
 
 /**
  * @note Address: 0x802C4824
  * @note Size: 0x8
  */
-bool HoudaiShotGunMgr::isFinishShotGun() { return mIsShotGunFinished; }
+bool HoudaiShotGunMgr::isFinishShotGun()
+{
+	return mIsShotGunFinished;
+}
 
 /**
  * @note Address: 0x802C482C
  * @note Size: 0x1C
  */
-void HoudaiShotGunMgr::setShotGunTarget(Vector3f& pos) { mTargetPosition = pos; }
+void HoudaiShotGunMgr::setShotGunTarget(Vector3f& pos)
+{
+	mTargetPosition = pos;
+}
 
 /**
  * @note Address: 0x802C4848
@@ -1764,7 +1788,10 @@ void HoudaiShotGunMgr::rotateVertical(J3DJoint* joint)
  * @note Address: 0x802C53F4
  * @note Size: 0x30
  */
-void HoudaiShotGunMgr::finishLockOnEffect() { mEfxSight->fade(); }
+void HoudaiShotGunMgr::finishLockOnEffect()
+{
+	mEfxSight->fade();
+}
 
 /**
  * @note Address: 0x802C5424
@@ -1868,13 +1895,19 @@ void HoudaiShotGunMgr::effectDrawOff()
  * @note Address: 0x802C57AC
  * @note Size: 0x30
  */
-void HoudaiShotGunMgr::startStoneStateEffectOff() { mEfxSight->startDemoDrawOff(); }
+void HoudaiShotGunMgr::startStoneStateEffectOff()
+{
+	mEfxSight->startDemoDrawOff();
+}
 
 /**
  * @note Address: 0x802C57DC
  * @note Size: 0x30
  */
-void HoudaiShotGunMgr::finishStoneStateEffectOn() { mEfxSight->endDemoDrawOn(); }
+void HoudaiShotGunMgr::finishStoneStateEffectOn()
+{
+	mEfxSight->endDemoDrawOn();
+}
 
 } // namespace Houdai
 } // namespace Game

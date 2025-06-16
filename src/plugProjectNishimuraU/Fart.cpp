@@ -12,7 +12,10 @@ namespace Fart {
  * @note Address: 0x80285448
  * @note Size: 0x98
  */
-Obj::Obj() { createEffect(); }
+Obj::Obj()
+{
+	createEffect();
+}
 
 /**
  * @note Address: 0x802854E0
@@ -61,7 +64,10 @@ void Obj::changeMaterial()
  * @note Address: 0x80285740
  * @note Size: 0x20
  */
-void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
+void Obj::doDebugDraw(Graphics& gfx)
+{
+	EnemyBase::doDebugDraw(gfx);
+}
 
 /**
  * @note Address: 0x80285760
@@ -195,7 +201,10 @@ void Obj::startBodyEffect()
  * @note Address: 0x80285BF8
  * @note Size: 0x30
  */
-void Obj::finishBodyEffect() { mBodyEffect->fade(); }
+void Obj::finishBodyEffect()
+{
+	mBodyEffect->fade();
+}
 
 /**
  * @note Address: 0x80285C28
@@ -224,19 +233,28 @@ void Obj::createFartEffect()
  * @note Address: 0x80285E2C
  * @note Size: 0x30
  */
-void Obj::effectDrawOn() { mBodyEffect->endDemoDrawOn(); }
+void Obj::effectDrawOn()
+{
+	mBodyEffect->endDemoDrawOn();
+}
 
 /**
  * @note Address: 0x80285E5C
  * @note Size: 0x30
  */
-void Obj::effectDrawOff() { mBodyEffect->startDemoDrawOff(); }
+void Obj::effectDrawOff()
+{
+	mBodyEffect->startDemoDrawOff();
+}
 
 /**
  * @note Address: 0x80285E8C
  * @note Size: 0x44
  */
-void Obj::createPressSESpecial() { getJAIObject()->startSound(PSSE_EN_FART_HIT, 0); }
+void Obj::createPressSESpecial()
+{
+	getJAIObject()->startSound(PSSE_EN_FART_HIT, 0);
+}
 
 } // namespace Fart
 } // namespace Game

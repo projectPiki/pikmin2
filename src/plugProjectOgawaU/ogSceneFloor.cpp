@@ -26,7 +26,9 @@ namespace newScreen {
  * @note Address: 0x8031BE60
  * @note Size: 0x3C
  */
-Floor::Floor() { }
+Floor::Floor()
+{
+}
 
 /**
  * @note Address: 0x8031BE9C
@@ -64,7 +66,9 @@ void Floor::doUserCallBackFunc(Resource::MgrCommand*)
  * @note Address: 0x8031BFD8
  * @note Size: 0x4
  */
-void Floor::doCreateObj(JKRArchive*) { }
+void Floor::doCreateObj(JKRArchive*)
+{
+}
 
 } // namespace newScreen
 } // namespace og

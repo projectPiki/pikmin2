@@ -583,13 +583,19 @@ JKRSolidHeap* getRootHeap()
  * @note Address: 0x800A73BC
  * @note Size: 0x8
  */
-JKRExpHeap* getSystemHeap() { return sSystemHeap; }
+JKRExpHeap* getSystemHeap()
+{
+	return sSystemHeap;
+}
 
 /**
  * @note Address: 0x800A73C4
  * @note Size: 0x8
  */
-JASCmdHeap* getCommandHeap() { return sCommandHeap; }
+JASCmdHeap* getCommandHeap()
+{
+	return sCommandHeap;
+}
 
 /**
  * @note Address: 0x800A73CC
@@ -608,7 +614,10 @@ void setupAramHeap(u32 aramBase, u32 aramSize)
  * @note Address: 0x800A7448
  * @note Size: 0xC
  */
-JASHeap* getAramHeap() { return &audioAramHeap; }
+JASHeap* getAramHeap()
+{
+	return &audioAramHeap;
+}
 
 /**
  * @note Address: N/A

@@ -79,7 +79,10 @@ JASBank* getBank(int bankIndex)
  * @note Address: 0x800990D4
  * @note Size: 0x10
  */
-u16 getPhysicalNumber(u16 virtualNumber) { return sVir2PhyTable[virtualNumber]; }
+u16 getPhysicalNumber(u16 virtualNumber)
+{
+	return sVir2PhyTable[virtualNumber];
+}
 
 /**
  * @note Address: 0x800990E4

@@ -5,7 +5,9 @@
  * @note Size: 0x50
  */
 
-void __DSP_debug_printf(const char* format, ...) { }
+void __DSP_debug_printf(const char* format, ...)
+{
+}
 
 /**
  * @note Address: N/A

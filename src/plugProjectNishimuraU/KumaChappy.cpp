@@ -27,7 +27,9 @@ Obj::Obj()
  * @note Address: 0x802997F4
  * @note Size: 0x4
  */
-void Obj::setInitialSetting(EnemyInitialParamBase*) { }
+void Obj::setInitialSetting(EnemyInitialParamBase*)
+{
+}
 
 /**
  * @note Address: 0x802997F8
@@ -61,13 +63,18 @@ void Obj::doUpdate()
  * @note Address: 0x802998D4
  * @note Size: 0x4
  */
-void Obj::doDirectDraw(Graphics&) { }
+void Obj::doDirectDraw(Graphics&)
+{
+}
 
 /**
  * @note Address: 0x802998D8
  * @note Size: 0x20
  */
-void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
+void Obj::doDebugDraw(Graphics& gfx)
+{
+	EnemyBase::doDebugDraw(gfx);
+}
 
 /**
  * @note Address: 0x802998F8
@@ -121,7 +128,10 @@ bool Obj::damageCallBack(Creature*, f32 dmg, CollPart* part)
  * @note Address: 0x80299A40
  * @note Size: 0x28
  */
-void Obj::startCarcassMotion() { startMotion(KUMACHAPPYANIM_Carry, nullptr); }
+void Obj::startCarcassMotion()
+{
+	startMotion(KUMACHAPPYANIM_Carry, nullptr);
+}
 
 /**
  * @note Address: 0x80299A68
@@ -173,7 +183,10 @@ void Obj::initWalkSmokeEffect()
  * @note Address: 0x80299C50
  * @note Size: 0x8
  */
-WalkSmokeEffect::Mgr* Obj::getWalkSmokeEffectMgr() { return &mWalkSmokeMgr; }
+WalkSmokeEffect::Mgr* Obj::getWalkSmokeEffectMgr()
+{
+	return &mWalkSmokeMgr;
+}
 
 /**
  * @note Address: 0x80299C58

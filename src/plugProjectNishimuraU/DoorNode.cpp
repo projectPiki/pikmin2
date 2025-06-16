@@ -17,13 +17,19 @@ Adjust::Adjust()
  * @note Address: 0x8024B888
  * @note Size: 0x44
  */
-AdjustNode::AdjustNode() { mAdjust = nullptr; }
+AdjustNode::AdjustNode()
+{
+	mAdjust = nullptr;
+}
 
 /**
  * @note Address: 0x8024B8CC
  * @note Size: 0x4C
  */
-AdjustNode::AdjustNode(Adjust* adj) { mAdjust = adj; }
+AdjustNode::AdjustNode(Adjust* adj)
+{
+	mAdjust = adj;
+}
 
 /**
  * @note Address: 0x8024B918
@@ -39,7 +45,10 @@ Door::Door()
  * @note Address: 0x8024B928
  * @note Size: 0x50
  */
-DoorNode::DoorNode() { reset(); }
+DoorNode::DoorNode()
+{
+	reset();
+}
 
 /**
  * @note Address: 0x8024B978

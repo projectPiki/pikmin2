@@ -153,13 +153,19 @@ CylinderBase::CylinderBase()
  * @note Address: 0x8023DF0C
  * @note Size: 0x8
  */
-void CylinderBase::setColor(Color4* color) { mColor = color; }
+void CylinderBase::setColor(Color4* color)
+{
+	mColor = color;
+}
 
 /**
  * @note Address: 0x8023DF14
  * @note Size: 0x24
  */
-void CylinderBase::setShadowRect(Rectf& rect) { mScreenBounds = rect; }
+void CylinderBase::setShadowRect(Rectf& rect)
+{
+	mScreenBounds = rect;
+}
 
 /**
  * @note Address: 0x8023DF38
@@ -242,25 +248,33 @@ int CylinderBase::getCylinderType(Game::ShadowParam& param, int camID)
  * @note Address: 0x8023E15C
  * @note Size: 0x4
  */
-void CylinderBase::setFilterTextureID(int) { }
+void CylinderBase::setFilterTextureID(int)
+{
+}
 
 /**
  * @note Address: 0x8023E160
  * @note Size: 0x4
  */
-void CylinderBase::drawInit() { }
+void CylinderBase::drawInit()
+{
+}
 
 /**
  * @note Address: 0x8023E164
  * @note Size: 0x4
  */
-void CylinderBase::drawCylinder(Matrixf&, int) { }
+void CylinderBase::drawCylinder(Matrixf&, int)
+{
+}
 
 /**
  * @note Address: 0x8023E168
  * @note Size: 0x4
  */
-void CylinderBase::drawFinish() { }
+void CylinderBase::drawFinish()
+{
+}
 
 /**
  * @note Address: N/A

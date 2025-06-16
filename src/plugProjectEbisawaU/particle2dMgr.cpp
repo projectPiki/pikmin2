@@ -12,13 +12,19 @@
 TParticle2dMgr* particle2dMgr;
 TParticle2dMgr* TParticle2dMgr::_instance;
 
-static void strippedFunc_1() { OSReport("\0\0\0\0\0\0\0\0\0\0\0"); }
+static void strippedFunc_1()
+{
+	OSReport("\0\0\0\0\0\0\0\0\0\0\0");
+}
 
 /**
  * @note Address: N/A
  * @note Size: 0xE4
  */
-static void _Print(char* name, ...) { OSReport("particle2dMgr"); }
+static void _Print(char* name, ...)
+{
+	OSReport("particle2dMgr");
+}
 
 /**
  * @note Address: 0x803B9064
@@ -34,7 +40,10 @@ TParticle2dMgr::~TParticle2dMgr()
  * @note Address: 0x803B90E8
  * @note Size: 0x24
  */
-void TParticle2dMgr::globalInstance() { particle2dMgr = Instance(); }
+void TParticle2dMgr::globalInstance()
+{
+	particle2dMgr = Instance();
+}
 
 /**
  * @note Address: 0x803B910C
@@ -180,13 +189,19 @@ void TParticle2dMgr::setSceneResourceManager(JPAResourceManager* resourceManager
  * @note Address: 0x803B9588
  * @note Size: 0x28
  */
-void TParticle2dMgr::clearSceneResourceManager() { mActiveEmitter->clearResourceManager(1); }
+void TParticle2dMgr::clearSceneResourceManager()
+{
+	mActiveEmitter->clearResourceManager(1);
+}
 
 /**
  * @note Address: 0x803B95B0
  * @note Size: 0x24
  */
-void TParticle2dMgr::update() { mActiveEmitter->calc(); }
+void TParticle2dMgr::update()
+{
+	mActiveEmitter->calc();
+}
 
 /**
  * @note Address: 0x803B95D4
@@ -263,15 +278,24 @@ void TParticle2dMgr::fade(JPABaseEmitter* emitter)
  * @note Address: 0x803B97B4
  * @note Size: 0x24
  */
-void TParticle2dMgr::killAll() { mActiveEmitter->forceDeleteAllEmitter(); }
+void TParticle2dMgr::killAll()
+{
+	mActiveEmitter->forceDeleteAllEmitter();
+}
 
 /**
  * @note Address: 0x803B97D8
  * @note Size: 0x28
  */
-void TParticle2dMgr::killGroup(u8 p1) { mActiveEmitter->forceDeleteGroupEmitter((int)p1); }
+void TParticle2dMgr::killGroup(u8 p1)
+{
+	mActiveEmitter->forceDeleteGroupEmitter((int)p1);
+}
 
-static void strippedFunc_2() { OSReport("IP2_dummy"); }
+static void strippedFunc_2()
+{
+	OSReport("IP2_dummy");
+}
 /**
  * @note Address: N/A
  * @note Size: 0x4

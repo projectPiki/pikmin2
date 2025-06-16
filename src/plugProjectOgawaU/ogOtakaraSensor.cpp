@@ -159,13 +159,19 @@ f32 OtakaraSensor::calcLevel(f32 distance)
  * @note Address: 0x8032DC7C
  * @note Size: 0x10
  */
-void OtakaraSensor::show() { mPane2->show(); }
+void OtakaraSensor::show()
+{
+	mPane2->show();
+}
 
 /**
  * @note Address: 0x8032DC8C
  * @note Size: 0x10
  */
-void OtakaraSensor::hide() { mPane2->hide(); }
+void OtakaraSensor::hide()
+{
+	mPane2->hide();
+}
 
 /**
  * @note Address: 0x8032DC9C
@@ -195,7 +201,10 @@ void OtakaraSensor::adjPos(f32 x, f32 y)
  * @note Address: 0x8032DD88
  * @note Size: 0x8
  */
-void OtakaraSensor::adjScale(f32 scale) { mScale = scale; }
+void OtakaraSensor::adjScale(f32 scale)
+{
+	mScale = scale;
+}
 
 /**
  * @note Address: 0x8032DD90
@@ -470,7 +479,9 @@ void OtakaraSensor::calcReaction()
  * @note Address: 0x8032EA4C
  * @note Size: 0x4
  */
-void OtakaraSensor::draw(J2DGrafContext&) { }
+void OtakaraSensor::draw(J2DGrafContext&)
+{
+}
 
 } // namespace Screen
 } // namespace og

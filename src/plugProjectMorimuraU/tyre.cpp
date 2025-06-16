@@ -47,14 +47,20 @@ bool rearTyreCallBack(J3DJoint* jnt, int a)
  * @note Address: 0x803AC360
  * @note Size: 0x20
  */
-void Obj::setParameters() { EnemyBase::setParameters(); }
+void Obj::setParameters()
+{
+	EnemyBase::setParameters();
+}
 
 /**
  * @note Address: 0x803AC380
  * @note Size: 0x20
  */
 // void birth__Q34Game4Tyre3ObjFR10Vector3f f()
-void Obj::birth(Vector3f& pos, f32 angle) { EnemyBase::birth(pos, angle); }
+void Obj::birth(Vector3f& pos, f32 angle)
+{
+	EnemyBase::birth(pos, angle);
+}
 
 /**
  * @note Address: 0x803AC3A0
@@ -174,19 +180,27 @@ void Obj::doAnimationCullingOff()
  * @note Address: 0x803ACA3C
  * @note Size: 0x4
  */
-void Obj::doDirectDraw(Graphics&) { }
+void Obj::doDirectDraw(Graphics&)
+{
+}
 
 /**
  * @note Address: 0x803ACA40
  * @note Size: 0x20
  */
-void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
+void Obj::doDebugDraw(Graphics& gfx)
+{
+	EnemyBase::doDebugDraw(gfx);
+}
 
 /**
  * @note Address: 0x803ACA60
  * @note Size: 0x20
  */
-void Obj::doSimulation(f32 rate) { EnemyBase::doSimulation(rate); }
+void Obj::doSimulation(f32 rate)
+{
+	EnemyBase::doSimulation(rate);
+}
 
 /**
  * @note Address: 0x803ACA80

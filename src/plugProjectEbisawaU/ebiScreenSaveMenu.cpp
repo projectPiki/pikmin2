@@ -268,7 +268,10 @@ void TSaveMenu::noMsg()
  * @note Address: 0x803DDB88
  * @note Size: 0x10
  */
-bool TSaveMenu::isFinishMsg() { return u8(mStateID == MSG_Kill); }
+bool TSaveMenu::isFinishMsg()
+{
+	return u8(mStateID == MSG_Kill);
+}
 
 /**
  * @note Address: 0x803DDB98

@@ -124,7 +124,10 @@ void CaveState::gameStart(SingleGameSection* game)
  * @note Address: 0x80217A64
  * @note Size: 0xC
  */
-void CaveState::on_section_fadeout(SingleGameSection*) { mFadeout = true; }
+void CaveState::on_section_fadeout(SingleGameSection*)
+{
+	mFadeout = true;
+}
 
 /**
  * @note Address: 0x80217A70

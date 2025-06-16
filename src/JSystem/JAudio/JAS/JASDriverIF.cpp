@@ -82,25 +82,37 @@ void setChannelLevel(f32 channelLevel)
  * @note Address: 0x800A4894
  * @note Size: 0x24
  */
-void setAutoLevel(f32 autoMixerLevel) { MAX_AUTOMIXERLEVEL = autoMixerLevel * 16383.5f; }
+void setAutoLevel(f32 autoMixerLevel)
+{
+	MAX_AUTOMIXERLEVEL = autoMixerLevel * 16383.5f;
+}
 
 /**
  * @note Address: 0x800A48B8
  * @note Size: 0x20
  */
-void setDSPLevel(f32 dspMixerLevel) { JASDsp::setDSPMixerLevel(dspMixerLevel); }
+void setDSPLevel(f32 dspMixerLevel)
+{
+	JASDsp::setDSPMixerLevel(dspMixerLevel);
+}
 
 /**
  * @note Address: 0x800A48D8
  * @note Size: 0x8
  */
-u16 getChannelLevel() { return MAX_MIXERLEVEL; }
+u16 getChannelLevel()
+{
+	return MAX_MIXERLEVEL;
+}
 
 /**
  * @note Address: 0x800A48E0
  * @note Size: 0x8
  */
-u16 getAutoLevel() { return MAX_AUTOMIXERLEVEL; }
+u16 getAutoLevel()
+{
+	return MAX_AUTOMIXERLEVEL;
+}
 
 /**
  * @note Address: N/A
@@ -125,25 +137,37 @@ f32 getChannelLevel_f32()
  * @note Address: 0x800A48E8
  * @note Size: 0x30
  */
-f32 getAutoLevel_f32() { return MAX_AUTOMIXERLEVEL / 16383.5f; }
+f32 getAutoLevel_f32()
+{
+	return MAX_AUTOMIXERLEVEL / 16383.5f;
+}
 
 /**
  * @note Address: 0x800A4918
  * @note Size: 0x20
  */
-f32 getDSPLevel_f32() { return JASDsp::getDSPMixerLevel(); }
+f32 getDSPLevel_f32()
+{
+	return JASDsp::getDSPMixerLevel();
+}
 
 /**
  * @note Address: 0x800A4938
  * @note Size: 0x8
  */
-void setOutputMode(u32 outputMode) { JAS_SYSTEM_OUTPUT_MODE = outputMode; }
+void setOutputMode(u32 outputMode)
+{
+	JAS_SYSTEM_OUTPUT_MODE = outputMode;
+}
 
 /**
  * @note Address: 0x800A4940
  * @note Size: 0x8
  */
-u32 getOutputMode() { return JAS_SYSTEM_OUTPUT_MODE; }
+u32 getOutputMode()
+{
+	return JAS_SYSTEM_OUTPUT_MODE;
+}
 
 /**
  * @note Address: 0x800A4948
@@ -161,13 +185,19 @@ bool rejectCallback(s32 (*callback)(void*), void* argument)
  * @note Address: 0x800A49D8
  * @note Size: 0x34
  */
-bool registerDspSyncCallback(s32 (*callback)(void*), void* p2) { return sDspSyncCallback.regist(callback, p2); }
+bool registerDspSyncCallback(s32 (*callback)(void*), void* p2)
+{
+	return sDspSyncCallback.regist(callback, p2);
+}
 
 /**
  * @note Address: 0x800A4A0C
  * @note Size: 0x34
  */
-bool registerSubFrameCallback(s32 (*callback)(void*), void* p2) { return sSubFrameCallback.regist(callback, p2); }
+bool registerSubFrameCallback(s32 (*callback)(void*), void* p2)
+{
+	return sSubFrameCallback.regist(callback, p2);
+}
 
 /**
  * @note Address: N/A
@@ -183,18 +213,27 @@ bool registerUpdateDacCallback(s32 (*callback)(void*), void* p2)
  * @note Address: 0x800A4A40
  * @note Size: 0x28
  */
-void subframeCallback() { sSubFrameCallback.callback(); }
+void subframeCallback()
+{
+	sSubFrameCallback.callback();
+}
 
 /**
  * @note Address: 0x800A4A68
  * @note Size: 0x28
  */
-void DSPSyncCallback() { sDspSyncCallback.callback(); }
+void DSPSyncCallback()
+{
+	sDspSyncCallback.callback();
+}
 
 /**
  * @note Address: 0x800A4A90
  * @note Size: 0x28
  */
-void updateDacCallback() { sUpdateDacCallback.callback(); }
+void updateDacCallback()
+{
+	sUpdateDacCallback.callback();
+}
 
 } // namespace JASDriver

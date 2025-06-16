@@ -37,7 +37,10 @@ const f32 SeSound::smACosPrm[101] = {
  * @note Address: 0x80470F0C
  * @note Size: 0x78
  */
-SeSound* SeSound::makeSeSound() { return new SeSound; }
+SeSound* SeSound::makeSeSound()
+{
+	return new SeSound;
+}
 
 /**
  * @note Address: N/A
@@ -58,7 +61,9 @@ f32 SeSound::psACos(f32 val)
  * @note Address: 0x80470F84
  * @note Size: 0x4
  */
-void SeSound::onGet() { }
+void SeSound::onGet()
+{
+}
 
 /**
  * @note Address: 0x80470F88

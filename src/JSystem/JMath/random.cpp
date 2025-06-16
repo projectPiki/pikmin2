@@ -7,7 +7,10 @@ namespace JMath {
  * @note Address: 0x80035100
  * @note Size: 0x8
  */
-TRandom_fast_::TRandom_fast_(u32 param_0) { value = param_0; }
+TRandom_fast_::TRandom_fast_(u32 param_0)
+{
+	value = param_0;
+}
 
 /**
  * @note Address: N/A

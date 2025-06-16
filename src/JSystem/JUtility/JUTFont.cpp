@@ -7,7 +7,10 @@
  * @note Size: 0x2C
  * Matches
  */
-JUTFont::JUTFont() { mIsValid = false; }
+JUTFont::JUTFont()
+{
+	mIsValid = false;
+}
 
 /**
  * @note Address: 0x8002D170

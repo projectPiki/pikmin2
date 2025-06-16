@@ -57,7 +57,9 @@ void StateDead::exec(EnemyBase* enemy)
  * @note Address: 0x802792B4
  * @note Size: 0x4
  */
-void StateDead::cleanup(EnemyBase* enemy) { }
+void StateDead::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x802792B8
@@ -92,7 +94,9 @@ void StateWait::exec(EnemyBase* enemy)
  * @note Address: 0x802793A4
  * @note Size: 0x4
  */
-void StateWait::cleanup(EnemyBase* enemy) { }
+void StateWait::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x802793A8
@@ -143,7 +147,9 @@ void StateTurn::exec(EnemyBase* enemy)
  * @note Address: 0x80279604
  * @note Size: 0x4
  */
-void StateTurn::cleanup(EnemyBase* enemy) { }
+void StateTurn::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x80279608
@@ -189,7 +195,9 @@ void StateMove::exec(EnemyBase* enemy)
  * @note Address: 0x80279780
  * @note Size: 0x4
  */
-void StateMove::cleanup(EnemyBase* enemy) { }
+void StateMove::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x80279784
@@ -477,7 +485,10 @@ void StateReverse::exec(EnemyBase* enemy)
  * @note Address: 0x8027A584
  * @note Size: 0x10
  */
-void StateReverse::cleanup(EnemyBase* enemy) { enemy->enableEvent(0, EB_Invulnerable); }
+void StateReverse::cleanup(EnemyBase* enemy)
+{
+	enemy->enableEvent(0, EB_Invulnerable);
+}
 
 /**
  * @note Address: 0x8027A594
@@ -506,7 +517,9 @@ void StateReturn::exec(EnemyBase* enemy)
  * @note Address: 0x8027A62C
  * @note Size: 0x4
  */
-void StateReturn::cleanup(EnemyBase* enemy) { }
+void StateReturn::cleanup(EnemyBase* enemy)
+{
+}
 
 } // namespace ElecBug
 } // namespace Game

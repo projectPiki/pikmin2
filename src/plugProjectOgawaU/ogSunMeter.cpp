@@ -93,13 +93,19 @@ void CallBack_SunMeter::update()
  * @note Address: 0x803074D0
  * @note Size: 0x34
  */
-void CallBack_SunMeter::startEffectChime() { mScaleMgr->up(0.3f, 30.0f, 0.7f, 0.0f); }
+void CallBack_SunMeter::startEffectChime()
+{
+	mScaleMgr->up(0.3f, 30.0f, 0.7f, 0.0f);
+}
 
 /**
  * @note Address: 0x80307504
  * @note Size: 0x44
  */
-SunMeter::SunMeter() { mCurrentTime = 0.0f; }
+SunMeter::SunMeter()
+{
+	mCurrentTime = 0.0f;
+}
 
 /**
  * @note Address: 0x80307548

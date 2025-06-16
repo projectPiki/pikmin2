@@ -113,7 +113,10 @@ void setParamInterfaceHeapSize(u32 value)
  * @note Address: 0x800AD964
  * @note Size: 0x8
  */
-void setParamSoundSceneMax(u32 value) { soundSceneMax = value; }
+void setParamSoundSceneMax(u32 value)
+{
+	soundSceneMax = value;
+}
 
 /**
  * @note Address: N/A
@@ -129,7 +132,10 @@ void setParamSeRegistMax(u32 value)
  * @note Address: 0x800AD96C
  * @note Size: 0x8
  */
-void setParamSeTrackMax(u32 value) { seTrackMax = value; }
+void setParamSeTrackMax(u32 value)
+{
+	seTrackMax = value;
+}
 
 /**
  * @note Address: N/A
@@ -155,7 +161,10 @@ void setParamSeqPlayTrackMax(u32 value)
  * @note Address: 0x800AD984
  * @note Size: 0x8
  */
-void setParamSeqControlBufferMax(u32 value) { seqControlBufferMax = value; }
+void setParamSeqControlBufferMax(u32 value)
+{
+	seqControlBufferMax = value;
+}
 
 /**
  * @note Address: N/A
@@ -181,13 +190,19 @@ void setParamStreamParameterBufferMax(u32 value)
  * @note Address: 0x800AD98C
  * @note Size: 0x8
  */
-void setParamAutoHeapMax(u32 value) { autoHeapMax = value; }
+void setParamAutoHeapMax(u32 value)
+{
+	autoHeapMax = value;
+}
 
 /**
  * @note Address: 0x800AD994
  * @note Size: 0x8
  */
-void setParamStayHeapMax(u32 value) { stayHeapMax = value; }
+void setParamStayHeapMax(u32 value)
+{
+	stayHeapMax = value;
+}
 
 /**
  * @note Address: N/A
@@ -213,19 +228,28 @@ void setParamOutputGainUp(f32 value)
  * @note Address: 0x800AD99C
  * @note Size: 0x8
  */
-void setParamDistanceMax(f32 value) { distanceMax = value; }
+void setParamDistanceMax(f32 value)
+{
+	distanceMax = value;
+}
 
 /**
  * @note Address: 0x800AD9A4
  * @note Size: 0x8
  */
-void setParamMaxVolumeDistance(f32 value) { maxVolumeDistance = value; }
+void setParamMaxVolumeDistance(f32 value)
+{
+	maxVolumeDistance = value;
+}
 
 /**
  * @note Address: 0x800AD9AC
  * @note Size: 0x8
  */
-void setParamMinDistanceVolume(f32 value) { minDistanceVolume = value; }
+void setParamMinDistanceVolume(f32 value)
+{
+	minDistanceVolume = value;
+}
 
 /**
  * @note Address: N/A
@@ -268,19 +292,28 @@ void setParamStreamDecodedBufferBlocks(u32 value)
  * @note Address: 0x800AD9B4
  * @note Size: 0x14
  */
-void setParamStreamInsideBufferCut(bool value) { JAIBasic::getInterface()->mFlags._04 = value; }
+void setParamStreamInsideBufferCut(bool value)
+{
+	JAIBasic::getInterface()->mFlags._04 = value;
+}
 
 /**
  * @note Address: 0x800AD9C8
  * @note Size: 0x8
  */
-void setParamAutoHeapRoomSize(u32 value) { autoHeapRoomSize = value; }
+void setParamAutoHeapRoomSize(u32 value)
+{
+	autoHeapRoomSize = value;
+}
 
 /**
  * @note Address: 0x800AD9D0
  * @note Size: 0x8
  */
-void setParamStayHeapSize(u32 value) { stayHeapSize = value; }
+void setParamStayHeapSize(u32 value)
+{
+	stayHeapSize = value;
+}
 
 /**
  * @note Address: N/A
@@ -316,7 +349,10 @@ void setParamSeDolbyBehindDistanceMax(f32 value)
  * @note Address: 0x800AD9D8
  * @note Size: 0x8
  */
-void setParamInitDataFileName(char* value) { initDataFileName = value; }
+void setParamInitDataFileName(char* value)
+{
+	initDataFileName = value;
+}
 
 /**
  * @note Address: N/A
@@ -371,7 +407,10 @@ void setParamAudioResPath(char* value)
  * @note Address: 0x800AD9E0
  * @note Size: 0x8
  */
-void setParamSequenceArchivesFileName(char* value) { sequenceArchivesFileName = value; }
+void setParamSequenceArchivesFileName(char* value)
+{
+	sequenceArchivesFileName = value;
+}
 
 /**
  * @note Address: N/A
@@ -405,7 +444,10 @@ void setParamDopplarMoveTime(u32 value)
  * @note Address: 0x800AD9E8
  * @note Size: 0x8
  */
-void setParamDistanceParameterMoveTime(u8 value) { distanceParameterMoveTime = value; }
+void setParamDistanceParameterMoveTime(u8 value)
+{
+	distanceParameterMoveTime = value;
+}
 
 /**
  * @note Address: N/A
@@ -451,19 +493,28 @@ void setParamSeqMuteMoveSpeedSePlay(u32 value)
  * @note Address: 0x800AD9F0
  * @note Size: 0x8
  */
-void setParamAudioCameraMax(u32 value) { audioCameraMax = value; }
+void setParamAudioCameraMax(u32 value)
+{
+	audioCameraMax = value;
+}
 
 /**
  * @note Address: 0x800AD9F8
  * @note Size: 0x8
  */
-void setParamSystemTrackMax(s32 value) { systemTrackMax = value; }
+void setParamSystemTrackMax(s32 value)
+{
+	systemTrackMax = value;
+}
 
 /**
  * @note Address: 0x800ADA00
  * @note Size: 0x8
  */
-void setParamSystemRootTrackMax(s32 value) { systemRootTrackMax = value; }
+void setParamSystemRootTrackMax(s32 value)
+{
+	systemRootTrackMax = value;
+}
 
 /**
  * @note Address: N/A
@@ -606,37 +657,55 @@ u32 getParamInterfaceHeapSize()
  * @note Address: 0x800ADA70
  * @note Size: 0x24
  */
-u32 getParamSeCategoryMax() { return JAInter::SoundTable::getCategotyMax(); }
+u32 getParamSeCategoryMax()
+{
+	return JAInter::SoundTable::getCategotyMax();
+}
 
 /**
  * @note Address: 0x800ADA94
  * @note Size: 0x8
  */
-u32 getParamSoundSceneMax() { return soundSceneMax; }
+u32 getParamSoundSceneMax()
+{
+	return soundSceneMax;
+}
 
 /**
  * @note Address: 0x800ADA9C
  * @note Size: 0x8
  */
-u32 getParamSeRegistMax() { return seRegistMax; }
+u32 getParamSeRegistMax()
+{
+	return seRegistMax;
+}
 
 /**
  * @note Address: 0x800ADAA4
  * @note Size: 0x8
  */
-u32 getParamSeTrackMax() { return seTrackMax; }
+u32 getParamSeTrackMax()
+{
+	return seTrackMax;
+}
 
 /**
  * @note Address: 0x800ADAAC
  * @note Size: 0x8
  */
-u32 getParamSeqTrackMax() { return seqTrackMax; }
+u32 getParamSeqTrackMax()
+{
+	return seqTrackMax;
+}
 
 /**
  * @note Address: 0x800ADAB4
  * @note Size: 0x8
  */
-u32 getParamSeqControlBufferMax() { return seqControlBufferMax; }
+u32 getParamSeqControlBufferMax()
+{
+	return seqControlBufferMax;
+}
 
 /**
  * @note Address: N/A
@@ -662,19 +731,28 @@ u32 getParamStreamParameterBufferMax()
  * @note Address: 0x800ADABC
  * @note Size: 0x8
  */
-u32 getParamAutoHeapMax() { return autoHeapMax; }
+u32 getParamAutoHeapMax()
+{
+	return autoHeapMax;
+}
 
 /**
  * @note Address: 0x800ADAC4
  * @note Size: 0x8
  */
-u32 getParamStayHeapMax() { return stayHeapMax; }
+u32 getParamStayHeapMax()
+{
+	return stayHeapMax;
+}
 
 /**
  * @note Address: 0x800ADACC
  * @note Size: 0x8
  */
-u32 getParamSeqPlayTrackMax() { return seqPlayTrackMax; }
+u32 getParamSeqPlayTrackMax()
+{
+	return seqPlayTrackMax;
+}
 
 /**
  * @note Address: N/A
@@ -700,19 +778,28 @@ f32 getParamOutputGainUp()
  * @note Address: 0x800ADAD4
  * @note Size: 0x8
  */
-f32 getParamDistanceMax() { return distanceMax; }
+f32 getParamDistanceMax()
+{
+	return distanceMax;
+}
 
 /**
  * @note Address: 0x800ADADC
  * @note Size: 0x8
  */
-f32 getParamMaxVolumeDistance() { return maxVolumeDistance; }
+f32 getParamMaxVolumeDistance()
+{
+	return maxVolumeDistance;
+}
 
 /**
  * @note Address: 0x800ADAE4
  * @note Size: 0x8
  */
-f32 getParamMinDistanceVolume() { return minDistanceVolume; }
+f32 getParamMinDistanceVolume()
+{
+	return minDistanceVolume;
+}
 
 /**
  * @note Address: N/A
@@ -755,25 +842,37 @@ bool getParamStreamUseOffFlag()
  * @note Address: 0x800ADAEC
  * @note Size: 0x20
  */
-u32 getParamStreamDecodedBufferBlocks() { return JAInter::StreamMgr::getDecodedBufferBlocks(); }
+u32 getParamStreamDecodedBufferBlocks()
+{
+	return JAInter::StreamMgr::getDecodedBufferBlocks();
+}
 
 /**
  * @note Address: 0x800ADB0C
  * @note Size: 0x8
  */
-u32 getParamAutoHeapRoomSize() { return autoHeapRoomSize; }
+u32 getParamAutoHeapRoomSize()
+{
+	return autoHeapRoomSize;
+}
 
 /**
  * @note Address: 0x800ADB14
  * @note Size: 0x8
  */
-u32 getParamStayHeapSize() { return stayHeapSize; }
+u32 getParamStayHeapSize()
+{
+	return stayHeapSize;
+}
 
 /**
  * @note Address: 0x800ADB1C
  * @note Size: 0x8
  */
-f32 getParamSeDolbyCenterValue() { return seDolbyCenterValue; }
+f32 getParamSeDolbyCenterValue()
+{
+	return seDolbyCenterValue;
+}
 
 /**
  * @note Address: N/A
@@ -799,7 +898,10 @@ f32 getParamSeDolbyBehindDistanceMax()
  * @note Address: 0x800ADB24
  * @note Size: 0x8
  */
-char* getParamInitDataFileName() { return initDataFileName; }
+char* getParamInitDataFileName()
+{
+	return initDataFileName;
+}
 
 /**
  * @note Address: N/A
@@ -815,31 +917,46 @@ char* getParamSoundTableFileName()
  * @note Address: 0x800ADB2C
  * @note Size: 0x8
  */
-char* getParamWavePath() { return wavePath; }
+char* getParamWavePath()
+{
+	return wavePath;
+}
 
 /**
  * @note Address: 0x800ADB34
  * @note Size: 0x8
  */
-char* getParamSequenceArchivesPath() { return sequenceArchivesPath; }
+char* getParamSequenceArchivesPath()
+{
+	return sequenceArchivesPath;
+}
 
 /**
  * @note Address: 0x800ADB3C
  * @note Size: 0x8
  */
-char* getParamStreamPath() { return streamPath; }
+char* getParamStreamPath()
+{
+	return streamPath;
+}
 
 /**
  * @note Address: 0x800ADB44
  * @note Size: 0x8
  */
-char* getParamAudioResPath() { return audioResPath; }
+char* getParamAudioResPath()
+{
+	return audioResPath;
+}
 
 /**
  * @note Address: 0x800ADB4C
  * @note Size: 0x8
  */
-char* getParamSequenceArchivesFileName() { return sequenceArchivesFileName; }
+char* getParamSequenceArchivesFileName()
+{
+	return sequenceArchivesFileName;
+}
 
 /**
  * @note Address: N/A
@@ -863,7 +980,10 @@ bool getParamStreamEntryCancelFlag()
  * @note Address: 0x800ADB54
  * @note Size: 0x8
  */
-u32 getParamDopplarMoveTime() { return dopplarMoveTime; }
+u32 getParamDopplarMoveTime()
+{
+	return dopplarMoveTime;
+}
 
 /**
  * @note Address: N/A
@@ -879,37 +999,55 @@ f32 getParamDopplarParameter()
  * @note Address: 0x800ADB5C
  * @note Size: 0x8
  */
-u8 getParamDistanceParameterMoveTime() { return distanceParameterMoveTime; }
+u8 getParamDistanceParameterMoveTime()
+{
+	return distanceParameterMoveTime;
+}
 
 /**
  * @note Address: 0x800ADB64
  * @note Size: 0x8
  */
-u32 getParamDummyObjectLifeTime() { return dummyObjectLifeTime; }
+u32 getParamDummyObjectLifeTime()
+{
+	return dummyObjectLifeTime;
+}
 
 /**
  * @note Address: 0x800ADB6C
  * @note Size: 0x8
  */
-u32 getParamDummyObjectMax() { return dummyObjectMax; }
+u32 getParamDummyObjectMax()
+{
+	return dummyObjectMax;
+}
 
 /**
  * @note Address: 0x800ADB74
  * @note Size: 0x8
  */
-u8 getParamSeqMuteVolumeSePlay() { return seqMuteVolumeSePlay; }
+u8 getParamSeqMuteVolumeSePlay()
+{
+	return seqMuteVolumeSePlay;
+}
 
 /**
  * @note Address: 0x800ADB7C
  * @note Size: 0x8
  */
-u32 getParamSeqMuteMoveSpeedSePlay() { return seqMuteMoveSpeedSePlay; }
+u32 getParamSeqMuteMoveSpeedSePlay()
+{
+	return seqMuteMoveSpeedSePlay;
+}
 
 /**
  * @note Address: 0x800ADB84
  * @note Size: 0x8
  */
-u32 getParamAudioCameraMax() { return audioCameraMax; }
+u32 getParamAudioCameraMax()
+{
+	return audioCameraMax;
+}
 
 /**
  * @note Address: N/A
@@ -935,18 +1073,27 @@ s32 getParamSystemRootTrackMax()
  * @note Address: 0x800ADB8C
  * @note Size: 0x8
  */
-u8 getParamSeqParameterLines() { return seqParameterLines; }
+u8 getParamSeqParameterLines()
+{
+	return seqParameterLines;
+}
 
 /**
  * @note Address: 0x800ADB94
  * @note Size: 0x8
  */
-u8 getParamStreamParameterLines() { return streamParameterLines; }
+u8 getParamStreamParameterLines()
+{
+	return streamParameterLines;
+}
 
 /**
  * @note Address: 0x800ADB9C
  * @note Size: 0x8
  */
-u16 getParamSeDistanceWaitMax() { return seDistanceWaitMax; }
+u16 getParamSeDistanceWaitMax()
+{
+	return seDistanceWaitMax;
+}
 
 } // namespace JAIGlobalParameter

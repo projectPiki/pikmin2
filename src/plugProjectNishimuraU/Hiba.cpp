@@ -20,7 +20,9 @@ Obj::Obj()
  * @note Address: 0x8026BFC4
  * @note Size: 0x4
  */
-void Obj::setInitialSetting(EnemyInitialParamBase*) { }
+void Obj::setInitialSetting(EnemyInitialParamBase*)
+{
+}
 
 /**
  * @note Address: 0x8026BFC8
@@ -51,19 +53,27 @@ void Obj::onInit(CreatureInitArg* args)
  * @note Address: 0x8026C0C0
  * @note Size: 0x34
  */
-void Obj::doUpdate() { mFsm->exec(this); }
+void Obj::doUpdate()
+{
+	mFsm->exec(this);
+}
 
 /**
  * @note Address: 0x8026C0F4
  * @note Size: 0x4
  */
-void Obj::doDirectDraw(Graphics&) { }
+void Obj::doDirectDraw(Graphics&)
+{
+}
 
 /**
  * @note Address: 0x8026C0F8
  * @note Size: 0x20
  */
-void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
+void Obj::doDebugDraw(Graphics& gfx)
+{
+	EnemyBase::doDebugDraw(gfx);
+}
 
 /**
  * @note Address: 0x8026C118
@@ -182,13 +192,19 @@ void Obj::setupLodParms()
  * @note Address: 0x8026C4A0
  * @note Size: 0x2C
  */
-void Obj::updateEfxLod() { mEfxFire->setRateLOD(mLod.isFlag(AILOD_IsMid | AILOD_IsFar)); }
+void Obj::updateEfxLod()
+{
+	mEfxFire->setRateLOD(mLod.isFlag(AILOD_IsMid | AILOD_IsFar));
+}
 
 /**
  * @note Address: 0x8026C4CC
  * @note Size: 0x64
  */
-void Obj::createEffect() { mEfxFire = new efx::THibaFire; }
+void Obj::createEffect()
+{
+	mEfxFire = new efx::THibaFire;
+}
 
 /**
  * @note Address: 0x8026C530
@@ -204,7 +220,10 @@ void Obj::startFireEffect()
  * @note Address: 0x8026C588
  * @note Size: 0x30
  */
-void Obj::finishFireEffect() { mEfxFire->fade(); }
+void Obj::finishFireEffect()
+{
+	mEfxFire->fade();
+}
 
 /**
  * @note Address: 0x8026C5B8

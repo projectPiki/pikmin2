@@ -632,7 +632,10 @@ void THiScore::doCreate(JKRArchive* arc)
  * @note Address: 0x8037E178
  * @note Size: 0x1C
  */
-u64 THiScore::getNameID(int id) { return mNameID[id]; }
+u64 THiScore::getNameID(int id)
+{
+	return mNameID[id];
+}
 
 /**
  * @note Address: 0x8037E194
@@ -1580,7 +1583,10 @@ lbl_8037EB44:
  * @note Address: 0x8037EB84
  * @note Size: 0x30
  */
-void THiScoreListScreen::update() { mScreenObj->update(); }
+void THiScoreListScreen::update()
+{
+	mScreenObj->update();
+}
 
 /**
  * @note Address: 0x8037EBB4
@@ -2862,7 +2868,9 @@ lbl_8038071C:
  * @note Address: 0x80380754
  * @note Size: 0x50
  */
-THiScoreScene::THiScoreScene() { }
+THiScoreScene::THiScoreScene()
+{
+}
 
 /**
  * @note Address: 0x803807B0

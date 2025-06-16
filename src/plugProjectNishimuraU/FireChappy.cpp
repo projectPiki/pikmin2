@@ -41,13 +41,18 @@ void Obj::onKill(CreatureKillArg* killArg)
  * @note Address: 0x8028F778
  * @note Size: 0x4
  */
-void Obj::doDirectDraw(Graphics& gfx) { }
+void Obj::doDirectDraw(Graphics& gfx)
+{
+}
 
 /**
  * @note Address: 0x8028F77C
  * @note Size: 0x20
  */
-void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
+void Obj::doDebugDraw(Graphics& gfx)
+{
+	EnemyBase::doDebugDraw(gfx);
+}
 
 /**
  * @note Address: 0x8028F79C
@@ -137,13 +142,19 @@ void Obj::doFinishWaitingBirthTypeDrop()
  * @note Address: 0x8028FA78
  * @note Size: 0x20
  */
-void Obj::doStartMovie() { effectDrawOff(); }
+void Obj::doStartMovie()
+{
+	effectDrawOff();
+}
 
 /**
  * @note Address: 0x8028FA98
  * @note Size: 0x20
  */
-void Obj::doEndMovie() { effectDrawOn(); }
+void Obj::doEndMovie()
+{
+	effectDrawOn();
+}
 
 /**
  * @note Address: 0x8028FAB8
@@ -209,7 +220,10 @@ void Obj::updateFireState()
  * @note Address: 0x8028FCA0
  * @note Size: 0x4C
  */
-void Obj::createMaterialAnimation() { mLoopAnimators = new Sys::MatLoopAnimator[2]; }
+void Obj::createMaterialAnimation()
+{
+	mLoopAnimators = new Sys::MatLoopAnimator[2];
+}
 
 /**
  * @note Address: 0x8028FCEC
@@ -265,7 +279,10 @@ void Obj::updateMaterialAnimation()
  * @note Address: 0x8028FE54
  * @note Size: 0x2C
  */
-void Obj::updateEfxLod() { mEfxBody->setRateLOD(mLod.isFlag(AILOD_IsMid | AILOD_IsFar)); }
+void Obj::updateEfxLod()
+{
+	mEfxBody->setRateLOD(mLod.isFlag(AILOD_IsMid | AILOD_IsFar));
+}
 
 /**
  * @note Address: 0x8028FE80
@@ -300,25 +317,37 @@ void Obj::setupEffect()
  * @note Address: 0x8029018C
  * @note Size: 0x34
  */
-void Obj::startSleepEffect() { mEfxHanacho->create(nullptr); }
+void Obj::startSleepEffect()
+{
+	mEfxHanacho->create(nullptr);
+}
 
 /**
  * @note Address: 0x802901C0
  * @note Size: 0x30
  */
-void Obj::finishSleepEffect() { mEfxHanacho->fade(); }
+void Obj::finishSleepEffect()
+{
+	mEfxHanacho->fade();
+}
 
 /**
  * @note Address: 0x802901F0
  * @note Size: 0x34
  */
-void Obj::startBodyEffect() { mEfxBody->create(nullptr); }
+void Obj::startBodyEffect()
+{
+	mEfxBody->create(nullptr);
+}
 
 /**
  * @note Address: 0x80290224
  * @note Size: 0x30
  */
-void Obj::finishBodyEffect() { mEfxBody->fade(); }
+void Obj::finishBodyEffect()
+{
+	mEfxBody->fade();
+}
 
 /**
  * @note Address: 0x80290254
@@ -335,13 +364,19 @@ void Obj::createFlickEffect()
  * @note Address: 0x80290294
  * @note Size: 0x34
  */
-void Obj::createDeadSmokeEffect() { mEfxDeadsmoke->create(nullptr); }
+void Obj::createDeadSmokeEffect()
+{
+	mEfxDeadsmoke->create(nullptr);
+}
 
 /**
  * @note Address: 0x802902C8
  * @note Size: 0x34
  */
-void Obj::createDeadSteamEffect() { mEfxSteam->create(nullptr); }
+void Obj::createDeadSteamEffect()
+{
+	mEfxSteam->create(nullptr);
+}
 
 /**
  * @note Address: 0x802902FC

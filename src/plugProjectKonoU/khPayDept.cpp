@@ -8,7 +8,10 @@
 #include "kh/khUtil.h"
 #include "JSystem/J2D/J2DAnmLoader.h"
 
-static void _Print(char* format, ...) { OSReport(format, __FILE__); }
+static void _Print(char* format, ...)
+{
+	OSReport(format, __FILE__);
+}
 
 namespace kh {
 namespace Screen {
@@ -127,7 +130,10 @@ bool ObjPayDept::doUpdateFadein()
  * @note Address: 0x8040F534
  * @note Size: 0x20
  */
-bool ObjPayDept::doUpdate() { return updateAnimation(); }
+bool ObjPayDept::doUpdate()
+{
+	return updateAnimation();
+}
 
 /**
  * @note Address: 0x8040F554
@@ -177,7 +183,10 @@ bool ObjPayDept::updateAnimation()
 	return ret;
 }
 
-inline u64 J2DPane::getTagName() const { return mTag; }
+inline u64 J2DPane::getTagName() const
+{
+	return mTag;
+}
 
 /**
  * @note Address: 0x8040F754

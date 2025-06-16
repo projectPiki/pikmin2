@@ -43,7 +43,10 @@ void StateMachine::makeMatrix(DrawInfo* drawInfo, Matrixf* mtx)
  * @note Address: 0x8012858C
  * @note Size: 0x24
  */
-void FSMState::makeMatrix(DrawInfo* drawInfo, Matrixf* mtx) { PSMTXIdentity(mtx->mMatrix.mtxView); }
+void FSMState::makeMatrix(DrawInfo* drawInfo, Matrixf* mtx)
+{
+	PSMTXIdentity(mtx->mMatrix.mtxView);
+}
 
 /**
  * @note Address: 0x801285B0
@@ -94,7 +97,9 @@ void FSMStateExpansion::exec(DrawInfo* drawInfo)
  * @note Address: 0x801287B0
  * @note Size: 0x4
  */
-void FSMStateExpansion::cleanup(DrawInfo* drawInfo) { }
+void FSMStateExpansion::cleanup(DrawInfo* drawInfo)
+{
+}
 
 // these are necessary to make the floats line up in makeMatrix smh
 void boundAngle(f32& angle)
@@ -166,7 +171,9 @@ void FSMStateFit::exec(DrawInfo* drawInfo)
  * @note Address: 0x80128A04
  * @note Size: 0x4
  */
-void FSMStateFit::cleanup(DrawInfo* drawInfo) { }
+void FSMStateFit::cleanup(DrawInfo* drawInfo)
+{
+}
 
 /**
  * @note Address: 0x80128A08
@@ -257,7 +264,9 @@ void FSMStateShake::exec(DrawInfo* drawInfo)
  * @note Address: 0x80128D80
  * @note Size: 0x4
  */
-void FSMStateShake::cleanup(DrawInfo* drawInfo) { }
+void FSMStateShake::cleanup(DrawInfo* drawInfo)
+{
+}
 
 /**
  * @note Address: 0x80128D84
@@ -540,13 +549,19 @@ void FSMStateBreakable::makeMatrix(DrawInfo* drawInfo, Matrixf* mtx)
  * @note Address: 0x80129184
  * @note Size: 0xC
  */
-void FSMStateBreakable::init(DrawInfo* drawInfo, StateArg* stateArg) { drawInfo->mDrawTimer = 0.0f; }
+void FSMStateBreakable::init(DrawInfo* drawInfo, StateArg* stateArg)
+{
+	drawInfo->mDrawTimer = 0.0f;
+}
 
 /**
  * @note Address: 0x80129190
  * @note Size: 0x18
  */
-void FSMStateBreakable::exec(DrawInfo* drawInfo) { drawInfo->mDrawTimer += sys->mDeltaTime; }
+void FSMStateBreakable::exec(DrawInfo* drawInfo)
+{
+	drawInfo->mDrawTimer += sys->mDeltaTime;
+}
 
 /**
  * @note Address: 0x801291A8
@@ -580,19 +595,26 @@ void FSMStateDisappear::init(DrawInfo* drawInfo, StateArg* stateArg)
  * @note Address: 0x801292EC
  * @note Size: 0x4
  */
-void FSMStateDisappear::cleanup(DrawInfo* drawInfo) { }
+void FSMStateDisappear::cleanup(DrawInfo* drawInfo)
+{
+}
 
 /**
  * @note Address: 0x801292F0
  * @note Size: 0x4
  */
-void FSMStateDisappear::exec(DrawInfo* drawInfo) { }
+void FSMStateDisappear::exec(DrawInfo* drawInfo)
+{
+}
 
 /**
  * @note Address: 0x801292F4
  * @note Size: 0x24
  */
-void FSMStateDisappear::makeMatrix(DrawInfo* drawInfo, Matrixf* mtx) { PSMTXIdentity(mtx->mMatrix.mtxView); }
+void FSMStateDisappear::makeMatrix(DrawInfo* drawInfo, Matrixf* mtx)
+{
+	PSMTXIdentity(mtx->mMatrix.mtxView);
+}
 
 /**
  * @note Address: 0x80129318
@@ -626,7 +648,10 @@ void FSMStateDead::init(DrawInfo* drawInfo, StateArg* stateArg)
  * @note Address: 0x8012945C
  * @note Size: 0x24
  */
-void FSMStateDead::makeMatrix(DrawInfo* drawInfo, Matrixf* mtx) { PSMTXIdentity(mtx->mMatrix.mtxView); }
+void FSMStateDead::makeMatrix(DrawInfo* drawInfo, Matrixf* mtx)
+{
+	PSMTXIdentity(mtx->mMatrix.mtxView);
+}
 
 /**
  * @note Address: 0x80129480
@@ -696,7 +721,10 @@ bool DrawInfo::makeMatrix(Matrixf* mtx, bool doFSMMatrix)
  * @note Address: 0x801296C0
  * @note Size: 0xC
  */
-int DrawInfo::getStateID() { return mCurrentState->mId; }
+int DrawInfo::getStateID()
+{
+	return mCurrentState->mId;
+}
 
 /**
  * @note Address: 0x801296CC

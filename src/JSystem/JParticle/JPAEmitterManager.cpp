@@ -240,7 +240,10 @@ void JPAEmitterManager::forceDeleteEmitter(JPABaseEmitter* emit)
  * @note Address: 0x80090D6C
  * @note Size: 0x10
  */
-void JPAEmitterManager::entryResourceManager(JPAResourceManager* mgr, u8 grpID) { mResMgrAry[grpID] = mgr; }
+void JPAEmitterManager::entryResourceManager(JPAResourceManager* mgr, u8 grpID)
+{
+	mResMgrAry[grpID] = mgr;
+}
 
 /**
  * @note Address: 0x80090D7C

@@ -14,7 +14,10 @@
 #include "efx2d/T2DChangesmoke.h"
 #include "Controller.h"
 
-static void _Print(char* format, ...) { OSReport(format, __FILE__); }
+static void _Print(char* format, ...)
+{
+	OSReport(format, __FILE__);
+}
 
 namespace kh {
 
@@ -45,7 +48,10 @@ khUtilFadePaneWM* khUtilFadePaneWM::create(P2DScreen::Mgr* mgr, u64 tag, u8)
  * @note Address: N/A
  * @note Size: 0xB8
  */
-khUtilFadePaneWM* khUtilFadePaneWM::create(P2DScreen::Mgr* screen, J2DPane* pane, u8 a) { return create(screen, pane->mTag, a); }
+khUtilFadePaneWM* khUtilFadePaneWM::create(P2DScreen::Mgr* screen, J2DPane* pane, u8 a)
+{
+	return create(screen, pane->mTag, a);
+}
 
 /**
  * @note Address: 0x803F1BA0
@@ -1842,7 +1848,10 @@ void WorldMap::OnyonDynamics::update(WorldMap* map)
  * @note Address: 0x803F80C4
  * @note Size: 0x30
  */
-void WorldMap::OnyonDynamics::kill() { mOnyonKira->kill(); }
+void WorldMap::OnyonDynamics::kill()
+{
+	mOnyonKira->kill();
+}
 
 WorldMap::StaticValues WorldMap::msVal;
 

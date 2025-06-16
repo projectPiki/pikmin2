@@ -145,7 +145,9 @@ ObjAnaDemo::ObjAnaDemo(const char* name)
  * @note Address: 0x8031CED8
  * @note Size: 0xAC
  */
-ObjAnaDemo::~ObjAnaDemo() { }
+ObjAnaDemo::~ObjAnaDemo()
+{
+}
 
 /**
  * @note Address: N/A
@@ -673,19 +675,27 @@ bool ObjAnaDemo::doStart(::Screen::StartSceneArg const*)
  * @note Address: 0x8031E818
  * @note Size: 0x8
  */
-bool ObjAnaDemo::doEnd(::Screen::EndSceneArg const*) { return true; }
+bool ObjAnaDemo::doEnd(::Screen::EndSceneArg const*)
+{
+	return true;
+}
 
 /**
  * @note Address: 0x8031E820
  * @note Size: 0x4
  */
-void ObjAnaDemo::doUpdateFadeinFinish() { }
+void ObjAnaDemo::doUpdateFadeinFinish()
+{
+}
 
 /**
  * @note Address: 0x8031E824
  * @note Size: 0xC
  */
-void ObjAnaDemo::doUpdateFinish() { mCloseTimer = 0.0f; }
+void ObjAnaDemo::doUpdateFinish()
+{
+	mCloseTimer = 0.0f;
+}
 
 /**
  * @note Address: 0x8031E830

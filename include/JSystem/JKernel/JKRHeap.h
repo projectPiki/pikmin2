@@ -362,7 +362,10 @@ struct JKRSolidHeap : public JKRHeap {
 	SolidList* mList; // _78
 };
 
-inline void* operator new(size_t size, void* mem) { return mem; } // fabricated?
+inline void* operator new(size_t size, void* mem)
+{
+	return mem;
+} // fabricated?
 void* operator new(size_t, JKRHeap*, int);
 void* operator new(size_t byteCount, int p2);
 void* operator new[](size_t, JKRHeap*, int);
@@ -370,7 +373,10 @@ void* operator new[](size_t byteCount, int p2);
 
 static void JKRDefaultMemoryErrorRoutine(void* heap, u32 size, int alignment);
 
-inline void* JKRAllocFromHeap(JKRHeap* heap, u32 size, int alignment) { return JKRHeap::alloc(size, alignment, heap); }
+inline void* JKRAllocFromHeap(JKRHeap* heap, u32 size, int alignment)
+{
+	return JKRHeap::alloc(size, alignment, heap);
+}
 
 inline void* JKRAllocFromSysHeap(u32 size, int alignment)
 {
@@ -378,7 +384,10 @@ inline void* JKRAllocFromSysHeap(u32 size, int alignment)
 	return systemHeap->alloc(size, alignment);
 }
 
-inline void JKRFreeToHeap(JKRHeap* heap, void* ptr) { JKRHeap::free(ptr, heap); }
+inline void JKRFreeToHeap(JKRHeap* heap, void* ptr)
+{
+	JKRHeap::free(ptr, heap);
+}
 
 inline void JKRFreeToSysHeap(void* ptr)
 {
@@ -386,15 +395,33 @@ inline void JKRFreeToSysHeap(void* ptr)
 	systemHeap->free(ptr);
 }
 
-inline void i_JKRFree(void* ptr) { JKRHeap::free(ptr, nullptr); }
+inline void i_JKRFree(void* ptr)
+{
+	JKRHeap::free(ptr, nullptr);
+}
 
-inline void JKRFree(void* pBuf) { JKRHeap::free(pBuf, nullptr); } // official inline
+inline void JKRFree(void* pBuf)
+{
+	JKRHeap::free(pBuf, nullptr);
+} // official inline
 
-inline JKRHeap* JKRGetSystemHeap() { return JKRHeap::getSystemHeap(); }
+inline JKRHeap* JKRGetSystemHeap()
+{
+	return JKRHeap::getSystemHeap();
+}
 
-inline JKRHeap* JKRGetCurrentHeap() { return JKRHeap::getCurrentHeap(); }
+inline JKRHeap* JKRGetCurrentHeap()
+{
+	return JKRHeap::getCurrentHeap();
+}
 
-inline JKRExpHeap* makeExpHeap(size_t size, JKRHeap* heap, bool a) { return JKRExpHeap::create(size, heap, a); }
-inline JKRSolidHeap* makeSolidHeap(size_t size, JKRHeap* heap, bool a) { return JKRSolidHeap::create(size, heap, a); }
+inline JKRExpHeap* makeExpHeap(size_t size, JKRHeap* heap, bool a)
+{
+	return JKRExpHeap::create(size, heap, a);
+}
+inline JKRSolidHeap* makeSolidHeap(size_t size, JKRHeap* heap, bool a)
+{
+	return JKRSolidHeap::create(size, heap, a);
+}
 
 #endif

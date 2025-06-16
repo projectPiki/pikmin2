@@ -45,7 +45,10 @@ extern GDOverflowCallback overflowcb;
 
 /////////// GD HELPER FUNCTIONS ////////////
 
-static inline void __GDWrite(u8 data) { *__GDCurrentDL->data++ = data; }
+static inline void __GDWrite(u8 data)
+{
+	*__GDCurrentDL->data++ = data;
+}
 
 static inline void __GDCheckOverflowed(size_t size)
 {
@@ -54,7 +57,10 @@ static inline void __GDCheckOverflowed(size_t size)
 	}
 }
 
-static inline void __GDSetCurrent(GDCurrentDL* obj) { __GDCurrentDL = obj; }
+static inline void __GDSetCurrent(GDCurrentDL* obj)
+{
+	__GDCurrentDL = obj;
+}
 
 static inline void __GDWriteU32(u32 data)
 {
@@ -70,7 +76,10 @@ static inline void __GDWriteU16(u16 data)
 	__GDWrite((data >> 0) & 0xFF);
 }
 
-static inline void __GDWriteU8(u8 data) { __GDWrite((data >> 0) & 0xFF); }
+static inline void __GDWriteU8(u8 data)
+{
+	__GDWrite((data >> 0) & 0xFF);
+}
 
 static inline void __GDWriteF32(f32 data)
 {
@@ -89,16 +98,28 @@ static inline void GDOverflowCheck(u32 len)
 }
 
 // get current data pointer
-static inline u8* GDGetCurrPointer() { return __GDCurrentDL->data; }
+static inline u8* GDGetCurrPointer()
+{
+	return __GDCurrentDL->data;
+}
 
 // how far from the start is the current data pointer?
-static inline s32 GDGetCurrOffset() { return __GDCurrentDL->data - __GDCurrentDL->begin; }
+static inline s32 GDGetCurrOffset()
+{
+	return __GDCurrentDL->data - __GDCurrentDL->begin;
+}
 
 // track to set offset
-static inline void GDSetCurrOffset(s32 offs) { __GDCurrentDL->data = __GDCurrentDL->begin + offs; }
+static inline void GDSetCurrOffset(s32 offs)
+{
+	__GDCurrentDL->data = __GDCurrentDL->begin + offs;
+}
 
 // forward a set distance
-static inline void GDAdvCurrOffset(s32 distance) { __GDCurrentDL->data += distance; }
+static inline void GDAdvCurrOffset(s32 distance)
+{
+	__GDCurrentDL->data += distance;
+}
 
 ////////////////////////////////////////////
 

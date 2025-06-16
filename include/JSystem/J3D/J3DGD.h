@@ -38,7 +38,10 @@ void J3DFifoLoadNrmMtxImm3x3(Mtx33, u32);
 void J3DFifoLoadNrmMtxToTexMtx(Mtx, u32);
 void J3DFifoLoadNrmMtxToTexMtx3x3(Mtx33, u32);
 
-inline void J3DGDWrite_u8(u8 param) { __GDWrite(param); }
+inline void J3DGDWrite_u8(u8 param)
+{
+	__GDWrite(param);
+}
 
 inline void J3DGDWrite_u16(u16 param)
 {
@@ -97,9 +100,15 @@ static inline void J3DFifoLoadIndx(u8 cmd, u16 indx, u16 addr)
 	GX_WRITE_U16(addr);
 }
 
-inline void J3DGDSetNumChans(u8 numChans) { J3DGDWriteXFCmd(0x1009, numChans); }
+inline void J3DGDSetNumChans(u8 numChans)
+{
+	J3DGDWriteXFCmd(0x1009, numChans);
+}
 
-inline void J3DGDSetNumTexGens(u8 numTexGens) { J3DGDWriteXFCmd(0x103f, numTexGens); }
+inline void J3DGDSetNumTexGens(u8 numTexGens)
+{
+	J3DGDWriteXFCmd(0x103f, numTexGens);
+}
 
 inline void J3DGDSetAlphaCompare(GXCompare cmp0, u8 ref0, GXAlphaOp op, GXCompare cmp1, u8 ref1)
 {

@@ -721,7 +721,10 @@ void FSMState_Q05_GameCantSave::do_transitNo(TMgr* mgr)
  * @note Address: 0x803E374C
  * @note Size: 0x28
  */
-bool FSMState_WN0_NowFormat::do_cardRequest() { return static_cast<Game::MemoryCard::Mgr*>(sys->mCardMgr)->format(); }
+bool FSMState_WN0_NowFormat::do_cardRequest()
+{
+	return static_cast<Game::MemoryCard::Mgr*>(sys->mCardMgr)->format();
+}
 
 /**
  * @note Address: 0x803E3774
@@ -740,19 +743,28 @@ void FSMState_WN0_NowFormat::do_open(TMgr* mgr)
  * @note Address: 0x803E37C0
  * @note Size: 0x34
  */
-void FSMState_WN0_NowFormat::do_transitCardReady(TMgr* mgr) { transit(mgr, CARDERROR_FinishFormat, nullptr); }
+void FSMState_WN0_NowFormat::do_transitCardReady(TMgr* mgr)
+{
+	transit(mgr, CARDERROR_FinishFormat, nullptr);
+}
 
 /**
  * @note Address: 0x803E37F4
  * @note Size: 0x34
  */
-void FSMState_WN0_NowFormat::do_transitCardNoCard(TMgr* mgr) { transit(mgr, CARDERROR_FailToFormat_NoCard, nullptr); }
+void FSMState_WN0_NowFormat::do_transitCardNoCard(TMgr* mgr)
+{
+	transit(mgr, CARDERROR_FailToFormat_NoCard, nullptr);
+}
 
 /**
  * @note Address: 0x803E3828
  * @note Size: 0x34
  */
-void FSMState_WN0_NowFormat::do_transitCardIOError(TMgr* mgr) { transit(mgr, CARDERROR_FailToFormat_IOError, nullptr); }
+void FSMState_WN0_NowFormat::do_transitCardIOError(TMgr* mgr)
+{
+	transit(mgr, CARDERROR_FailToFormat_IOError, nullptr);
+}
 
 /**
  * @note Address: 0x803E385C
@@ -771,25 +783,37 @@ void FSMState_WN1_NowCreateNewFile::do_open(TMgr* mgr)
  * @note Address: 0x803E38A8
  * @note Size: 0x28
  */
-bool FSMState_WN1_NowCreateNewFile::do_cardRequest() { return static_cast<Game::MemoryCard::Mgr*>(sys->mCardMgr)->createNewFile(); }
+bool FSMState_WN1_NowCreateNewFile::do_cardRequest()
+{
+	return static_cast<Game::MemoryCard::Mgr*>(sys->mCardMgr)->createNewFile();
+}
 
 /**
  * @note Address: 0x803E38D0
  * @note Size: 0x34
  */
-void FSMState_WN1_NowCreateNewFile::do_transitCardReady(TMgr* mgr) { transit(mgr, CARDERROR_FinishCreateNewFile, nullptr); }
+void FSMState_WN1_NowCreateNewFile::do_transitCardReady(TMgr* mgr)
+{
+	transit(mgr, CARDERROR_FinishCreateNewFile, nullptr);
+}
 
 /**
  * @note Address: 0x803E3904
  * @note Size: 0x34
  */
-void FSMState_WN1_NowCreateNewFile::do_transitCardNoCard(TMgr* mgr) { transit(mgr, CARDERROR_FailToCreateNewFile_NoCard, nullptr); }
+void FSMState_WN1_NowCreateNewFile::do_transitCardNoCard(TMgr* mgr)
+{
+	transit(mgr, CARDERROR_FailToCreateNewFile_NoCard, nullptr);
+}
 
 /**
  * @note Address: 0x803E3938
  * @note Size: 0x34
  */
-void FSMState_WN1_NowCreateNewFile::do_transitCardIOError(TMgr* mgr) { transit(mgr, CARDERROR_FailToCreateNewFile_IOError, nullptr); }
+void FSMState_WN1_NowCreateNewFile::do_transitCardIOError(TMgr* mgr)
+{
+	transit(mgr, CARDERROR_FailToCreateNewFile_IOError, nullptr);
+}
 
 } // namespace CardError
 } // namespace ebi

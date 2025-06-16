@@ -32,7 +32,10 @@ void WorldMapInfoWindow0::doCreateObj(JKRArchive* archive)
  * @note Address: 0x8032BB84
  * @note Size: 0x8
  */
-bool WorldMapInfoWindow0::doConfirmSetScene(::Screen::SetSceneArg&) { return true; }
+bool WorldMapInfoWindow0::doConfirmSetScene(::Screen::SetSceneArg&)
+{
+	return true;
+}
 
 /**
  * @note Address: 0x8032BB8C

@@ -73,7 +73,10 @@ bool TTestBase::doUpdateFadein()
  * @note Address: 0x8034932C
  * @note Size: 0xC
  */
-void TTestBase::doUpdateFinish() { mTimer = 0.0f; }
+void TTestBase::doUpdateFinish()
+{
+	mTimer = 0.0f;
+}
 
 /**
  * @note Address: 0x80349338

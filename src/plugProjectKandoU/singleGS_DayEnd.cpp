@@ -298,7 +298,10 @@ void DayEndState::onMovieCommand(SingleGameSection* game, int id)
  * @note Address: 0x8023B468
  * @note Size: 0x28
  */
-void DayEndState::draw(SingleGameSection* game, Graphics& gfx) { game->BaseGameSection::doDraw(gfx); }
+void DayEndState::draw(SingleGameSection* game, Graphics& gfx)
+{
+	game->BaseGameSection::doDraw(gfx);
+}
 
 /**
  * @note Address: 0x8023B490

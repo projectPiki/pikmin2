@@ -48,7 +48,10 @@ extern void GXGetViewportv(f32* viewport);
 #define GX_PROJECTION_SZ 7
 #define GX_VIEWPORT_SZ   6
 
-static inline void GXSetViewportv(f32* port) { GXSetViewport(port[0], port[1], port[2], port[3], port[4], port[5]); }
+static inline void GXSetViewportv(f32* port)
+{
+	GXSetViewport(port[0], port[1], port[2], port[3], port[4], port[5]);
+}
 
 ////////////////////////////////////////////
 

@@ -22,7 +22,10 @@ Mgr::Mgr(int objLimit, u8 modelType)
  * @note Address: 0x8012CC6C
  * @note Size: 0x48
  */
-void Mgr::doAlloc() { init(new KochappyBase::Parms); }
+void Mgr::doAlloc()
+{
+	init(new KochappyBase::Parms);
+}
 
 /**
  * @note Address: 0x8012CCB4

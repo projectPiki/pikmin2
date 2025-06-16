@@ -18,4 +18,6 @@ JPATexture::JPATexture(const u8* p1)
  * @note Address: 0x80098708
  * @note Size: 0x64
  */
-JPATexture::~JPATexture() { }
+JPATexture::~JPATexture()
+{
+}

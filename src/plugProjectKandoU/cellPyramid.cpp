@@ -173,13 +173,18 @@ void Cell::resolveCollision()
  * @note Address: 0x80156D44
  * @note Size: 0x4
  */
-void CellPyramid::initFrame() { }
+void CellPyramid::initFrame()
+{
+}
 
 /**
  * @note Address: N/A
  * @note Size: 0x8
  */
-u32 CellPyramid::getCheckCount() { return mPassID; }
+u32 CellPyramid::getCheckCount()
+{
+	return mPassID;
+}
 
 // /**
 //  * @note Address: N/A
@@ -262,7 +267,10 @@ f32 CellObject::calcCollisionDistance(CellObject* them)
  * @note Address: 0x80156D48
  * @note Size: 0xD0
  */
-void CellObject::updateCollisionBuffer(CellObject* them) { mCollisionBuffer.insert(them, calcCollisionDistance(them)); }
+void CellObject::updateCollisionBuffer(CellObject* them)
+{
+	mCollisionBuffer.insert(them, calcCollisionDistance(them));
+}
 
 /**
  * @note Address: N/A

@@ -60,13 +60,19 @@ void WipeBase::draw()
  * @note Address: 0x8042BE88
  * @note Size: 0x18
  */
-bool WipeInFader::isWhite() { return mTimer > 0.5f; }
+bool WipeInFader::isWhite()
+{
+	return mTimer > 0.5f;
+}
 
 /**
  * @note Address: 0x8042BEA0
  * @note Size: 0x18
  */
-bool WipeInFader::isBlack() { return mTimer < 0.5f; }
+bool WipeInFader::isBlack()
+{
+	return mTimer < 0.5f;
+}
 
 /**
  * __ct__11WipeInFaderFv
@@ -120,21 +126,29 @@ WipeOutFader::WipeOutFader()
  * @note Address: 0x8042C0EC
  * @note Size: 0x4
  */
-void WipeOutFader::on_start() { }
+void WipeOutFader::on_start()
+{
+}
 
 /**
  * isWhite__12WipeOutFaderFv
  * @note Address: 0x8042C0F0
  * @note Size: 0x18
  */
-bool WipeOutFader::isWhite() { return mTimer < 0.5f; }
+bool WipeOutFader::isWhite()
+{
+	return mTimer < 0.5f;
+}
 
 /**
  * isBlack__12WipeOutFaderFv
  * @note Address: 0x8042C108
  * @note Size: 0x18
  */
-bool WipeOutFader::isBlack() { return mTimer > 0.5f; }
+bool WipeOutFader::isBlack()
+{
+	return mTimer > 0.5f;
+}
 
 /**
  * doDraw__12WipeOutFaderFf
@@ -184,9 +198,15 @@ void WipeOutInFader::on_start()
  * @note Address: 0x8042C2A8
  * @note Size: 0x3C
  */
-bool WipeOutInFader::isWhite() { return (mState ? mTimer < 0.5f : mTimer > 0.5f); }
+bool WipeOutInFader::isWhite()
+{
+	return (mState ? mTimer < 0.5f : mTimer > 0.5f);
+}
 
-bool WipeOutInFader::isBlack() { return !isWhite(); }
+bool WipeOutInFader::isBlack()
+{
+	return !isWhite();
+}
 
 /**
  * do_draw__14WipeOutInFaderFf
@@ -226,14 +246,20 @@ BlackFader::BlackFader()
  * @note Address: 0x8042C440
  * @note Size: 0x10
  */
-bool BlackFader::isWhite() { return !mIsBlack; }
+bool BlackFader::isWhite()
+{
+	return !mIsBlack;
+}
 
 /**
  * isBlack__10BlackFaderFv
  * @note Address: 0x8042C450
  * @note Size: 0x8
  */
-bool BlackFader::isBlack() { return mIsBlack; }
+bool BlackFader::isBlack()
+{
+	return mIsBlack;
+}
 
 /**
  * do_draw__10BlackFaderFf

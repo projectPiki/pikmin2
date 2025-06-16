@@ -22,7 +22,9 @@ ObjSave::ObjSave(const char* name)
  * @note Address: 0x80324AB4
  * @note Size: 0xAC
  */
-ObjSave::~ObjSave() { }
+ObjSave::~ObjSave()
+{
+}
 
 /**
  * @note Address: 0x80324B60
@@ -97,43 +99,62 @@ void ObjSave::doDraw(Graphics& gfx)
  * @note Address: 0x80324D50
  * @note Size: 0x8
  */
-bool ObjSave::doStart(::Screen::StartSceneArg const*) { return true; }
+bool ObjSave::doStart(::Screen::StartSceneArg const*)
+{
+	return true;
+}
 
 /**
  * @note Address: 0x80324D58
  * @note Size: 0x8
  */
-bool ObjSave::doEnd(::Screen::EndSceneArg const*) { return true; }
+bool ObjSave::doEnd(::Screen::EndSceneArg const*)
+{
+	return true;
+}
 
 /**
  * @note Address: 0x80324D60
  * @note Size: 0x4
  */
-void ObjSave::doUpdateFadeinFinish() { }
+void ObjSave::doUpdateFadeinFinish()
+{
+}
 
 /**
  * @note Address: 0x80324D64
  * @note Size: 0x4
  */
-void ObjSave::doUpdateFinish() { }
+void ObjSave::doUpdateFinish()
+{
+}
 
 /**
  * @note Address: 0x80324D68
  * @note Size: 0x34
  */
-void ObjSave::doUpdateFadeoutFinish() { getOwner()->endScene(nullptr); }
+void ObjSave::doUpdateFadeoutFinish()
+{
+	getOwner()->endScene(nullptr);
+}
 
 /**
  * @note Address: 0x80324D9C
  * @note Size: 0x8
  */
-bool ObjSave::doUpdateFadein() { return true; }
+bool ObjSave::doUpdateFadein()
+{
+	return true;
+}
 
 /**
  * @note Address: 0x80324DA4
  * @note Size: 0x8
  */
-bool ObjSave::doUpdateFadeout() { return true; }
+bool ObjSave::doUpdateFadeout()
+{
+	return true;
+}
 
 } // namespace newScreen
 } // namespace og

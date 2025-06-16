@@ -484,7 +484,10 @@ void PPCEnableSpeculation(void)
  * @note Address: 0x800D463C
  * @note Size: 0x28
  */
-void PPCDisableSpeculation(void) { PPCMthid0(PPCMfhid0() | HID0_SPD); }
+void PPCDisableSpeculation(void)
+{
+	PPCMthid0(PPCMfhid0() | HID0_SPD);
+}
 
 /**
  * @note Address: N/A

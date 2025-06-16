@@ -21,7 +21,9 @@ Obj::Obj()
  * @note Address: 0x80259C84
  * @note Size: 0x4
  */
-void Obj::setInitialSetting(EnemyInitialParamBase*) { }
+void Obj::setInitialSetting(EnemyInitialParamBase*)
+{
+}
 
 /**
  * @note Address: 0x80259C88
@@ -54,13 +56,18 @@ void Obj::doUpdate()
  * @note Address: 0x80259D68
  * @note Size: 0x4
  */
-void Obj::doDirectDraw(Graphics&) { }
+void Obj::doDirectDraw(Graphics&)
+{
+}
 
 /**
  * @note Address: 0x80259D6C
  * @note Size: 0x20
  */
-void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
+void Obj::doDebugDraw(Graphics& gfx)
+{
+	EnemyBase::doDebugDraw(gfx);
+}
 
 /**
  * @note Address: 0x80259D8C
@@ -110,13 +117,19 @@ bool Obj::pressCallBack(Creature* creature, f32 damage, CollPart* part)
  * @note Address: 0x80259F14
  * @note Size: 0x2C
  */
-bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* part) { return pressCallBack(creature, damage, part); }
+bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* part)
+{
+	return pressCallBack(creature, damage, part);
+}
 
 /**
  * @note Address: 0x80259F40
  * @note Size: 0x28
  */
-void Obj::startCarcassMotion() { startMotion(UJIBANIM_Carry, nullptr); }
+void Obj::startCarcassMotion()
+{
+	startMotion(UJIBANIM_Carry, nullptr);
+}
 
 /**
  * @note Address: 0x80259F68
@@ -249,7 +262,9 @@ void Obj::setNearestBridge()
  * @note Address: 0x8025A47C
  * @note Size: 0x4
  */
-void Obj::setCullingCheck() { }
+void Obj::setCullingCheck()
+{
+}
 
 /**
  * @note Address: 0x8025A480

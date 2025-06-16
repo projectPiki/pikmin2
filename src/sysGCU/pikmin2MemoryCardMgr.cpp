@@ -40,7 +40,9 @@ Player::Player()
  * @note Address: 0x804428E8
  * @note Size: 0x44
  */
-PlayerFileInfo::PlayerFileInfo() { }
+PlayerFileInfo::PlayerFileInfo()
+{
+}
 
 /**
  * @note Address: 0x8044292C
@@ -56,7 +58,10 @@ Player* PlayerFileInfo::getPlayer(int idx)
  * @note Address: 0x804429A0
  * @note Size: 0x80
  */
-bool PlayerFileInfo::isBrokenFile(int idx) { return getPlayer(idx)->mFlag; }
+bool PlayerFileInfo::isBrokenFile(int idx)
+{
+	return getPlayer(idx)->mFlag;
+}
 
 /**
  * @note Address: 0x80442A20
@@ -72,7 +77,10 @@ bool PlayerFileInfo::isNewFile(int idx)
  * @note Address: 0x80442AB4
  * @note Size: 0x6C
  */
-Resource::~Resource() { mMgr->destroyResource(); }
+Resource::~Resource()
+{
+	mMgr->destroyResource();
+}
 
 /**
  * @note Address: 0x80442B20
@@ -91,7 +99,10 @@ Mgr::Mgr()
  * @note Address: 0x80442B9C
  * @note Size: 0x30
  */
-bool Mgr::isErrorOccured() { return getCardStatus() != MCS_IOError; }
+bool Mgr::isErrorOccured()
+{
+	return getCardStatus() != MCS_IOError;
+}
 
 /**
  * @note Address: 0x80442BCC
@@ -123,7 +134,10 @@ void Mgr::destroyResource()
  * @note Address: 0x80442CFC
  * @note Size: 0x20
  */
-void Mgr::update() { MemoryCardMgr::update(); }
+void Mgr::update()
+{
+	MemoryCardMgr::update();
+}
 
 /**
  * @note Address: 0x80442D1C
@@ -844,13 +858,19 @@ bool Mgr::commandLoadGameOption()
  * @note Address: 0x804448D4
  * @note Size: 0x28
  */
-void Mgr::writeGameOption(Stream& stream) { sys->mPlayData->write(stream); }
+void Mgr::writeGameOption(Stream& stream)
+{
+	sys->mPlayData->write(stream);
+}
 
 /**
  * @note Address: 0x804448FC
  * @note Size: 0x28
  */
-void Mgr::readGameOption(Stream& stream) { sys->mPlayData->read(stream); }
+void Mgr::readGameOption(Stream& stream)
+{
+	sys->mPlayData->read(stream);
+}
 
 /**
  * @note Address: 0x80444924
@@ -1214,13 +1234,19 @@ bool Mgr::commandCopyPlayer(s8 fileIndex, s8 param_1)
  * @note Address: 0x80445908
  * @note Size: 0x24
  */
-void Mgr::writePlayer(Stream& stream) { playData->write(stream); }
+void Mgr::writePlayer(Stream& stream)
+{
+	playData->write(stream);
+}
 
 /**
  * @note Address: 0x8044592C
  * @note Size: 0x24
  */
-void Mgr::readPlayer(Stream& stream) { playData->read(stream); }
+void Mgr::readPlayer(Stream& stream)
+{
+	playData->read(stream);
+}
 
 /**
  * @note Address: 0x80445950
@@ -1235,13 +1261,19 @@ bool Mgr::checkOptionInfo(OptionInfo* optionInfo)
  * @note Address: 0x804459C4
  * @note Size: 0x24
  */
-u32 Mgr::calcCheckSumOptionInfo(OptionInfo* optionInfo) { return calcCheckSum(optionInfo, 0x1FFC); }
+u32 Mgr::calcCheckSumOptionInfo(OptionInfo* optionInfo)
+{
+	return calcCheckSum(optionInfo, 0x1FFC);
+}
 
 /**
  * @note Address: 0x804459E8
  * @note Size: 0x40
  */
-bool Mgr::testCheckSumOptionInfo(OptionInfo* optionInfo) { return (calcCheckSum(optionInfo, 0x1FFC) == optionInfo[0x3FF].mVersionType); }
+bool Mgr::testCheckSumOptionInfo(OptionInfo* optionInfo)
+{
+	return (calcCheckSum(optionInfo, 0x1FFC) == optionInfo[0x3FF].mVersionType);
+}
 
 /**
  * @note Address: 0x80445A28
@@ -1260,13 +1292,19 @@ bool Mgr::checkPlayerInfo(PlayerInfo* playerInfo)
  * @note Address: 0x80445A9C
  * @note Size: 0x28
  */
-u32 Mgr::calcCheckSumPlayerInfo(PlayerInfo* playerInfo) { return calcCheckSum(playerInfo, 0xBFFC); }
+u32 Mgr::calcCheckSumPlayerInfo(PlayerInfo* playerInfo)
+{
+	return calcCheckSum(playerInfo, 0xBFFC);
+}
 
 /**
  * @note Address: 0x80445AC4
  * @note Size: 0x48
  */
-bool Mgr::testCheckSumPlayerInfo(PlayerInfo* playerInfo) { return (calcCheckSum(playerInfo, 0xBFFC) == playerInfo[0x17FF].mVersionType); }
+bool Mgr::testCheckSumPlayerInfo(PlayerInfo* playerInfo)
+{
+	return (calcCheckSum(playerInfo, 0xBFFC) == playerInfo[0x17FF].mVersionType);
+}
 
 /**
  * @note Address: 0x80445B0C
@@ -1485,7 +1523,10 @@ bool Mgr::getIndexInvalidPlayerInfo(int* playerInfoIndex, s8* playerType, s8 tar
 	return isValid;
 }
 
-inline bool Mgr::checkCheckSum(u32* buffer) { return _D0 && buffer[0x2FFF] == calcCheckSum(buffer, 0xBFFC); }
+inline bool Mgr::checkCheckSum(u32* buffer)
+{
+	return _D0 && buffer[0x2FFF] == calcCheckSum(buffer, 0xBFFC);
+}
 
 // this might be a few inlines stacked together? unsure
 inline bool Mgr::checkInfo(u32* buffer)

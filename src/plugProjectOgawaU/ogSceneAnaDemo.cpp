@@ -21,7 +21,9 @@ AnaDemo::AnaDemo(s32 sceneType)
  * @note Address: 0x8031EAD8
  * @note Size: 0x4
  */
-void AnaDemo::doUserCallBackFunc(Resource::MgrCommand*) { }
+void AnaDemo::doUserCallBackFunc(Resource::MgrCommand*)
+{
+}
 
 /**
  * @note Address: 0x8031EADC

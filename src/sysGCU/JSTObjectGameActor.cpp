@@ -177,13 +177,19 @@ void ObjectGameActor::JSGSetAnimation(u32 id)
  * @note Address: 0x80430500
  * @note Size: 0x8
  */
-void ObjectGameActor::JSGSetShape(u32 command) { mSRTCommand = command; }
+void ObjectGameActor::JSGSetShape(u32 command)
+{
+	mSRTCommand = command;
+}
 
 /**
  * @note Address: 0x80430508
  * @note Size: 0x1C
  */
-void ObjectGameActor::JSGSetTranslation(Vec const& pos) { mTranslation2 = pos; }
+void ObjectGameActor::JSGSetTranslation(Vec const& pos)
+{
+	mTranslation2 = pos;
+}
 
 /**
  * @note Address: 0x80430524
@@ -201,7 +207,10 @@ void ObjectGameActor::JSGGetTranslation(Vec* pos) const
  * @note Address: 0x8043057C
  * @note Size: 0x1C
  */
-void ObjectGameActor::JSGSetRotation(Vec const& rot) { mRotation2 = rot; }
+void ObjectGameActor::JSGSetRotation(Vec const& rot)
+{
+	mRotation2 = rot;
+}
 
 /**
  * @note Address: 0x80430598

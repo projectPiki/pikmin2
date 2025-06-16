@@ -5,7 +5,10 @@
  * @note Address: 0x8006A59C
  * @note Size: 0x24
  */
-void J3DDeformData::deform(J3DModel* model) { deform(model->getVertexBuffer()); }
+void J3DDeformData::deform(J3DModel* model)
+{
+	deform(model->getVertexBuffer());
+}
 
 /**
  * @note Address: 0x8006A5C0

@@ -9,7 +9,10 @@ namespace newScreen {
  * @note Address: 0x80317F28
  * @note Size: 0x24
  */
-bool checkMovieActive() { return ((Game::moviePlayer != nullptr) && (Game::moviePlayer->isFlag(Game::MVP_IsActive))); }
+bool checkMovieActive()
+{
+	return ((Game::moviePlayer != nullptr) && (Game::moviePlayer->isFlag(Game::MVP_IsActive)));
+}
 
 /**
  * @note Address: N/A

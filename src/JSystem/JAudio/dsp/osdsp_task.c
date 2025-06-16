@@ -174,10 +174,16 @@ static void Dsp_Update_Request()
  * @note Address: 0x800AB0C0
  * @note Size: 0x14
  */
-BOOL Dsp_Running_Check() { return (DSP_prior_yield == TRUE) ? TRUE : FALSE; }
+BOOL Dsp_Running_Check()
+{
+	return (DSP_prior_yield == TRUE) ? TRUE : FALSE;
+}
 
 /**
  * @note Address: 0x800AB0E0
  * @note Size: 0xC
  */
-void Dsp_Running_Start() { DSP_prior_yield = 1; }
+void Dsp_Running_Start()
+{
+	DSP_prior_yield = 1;
+}

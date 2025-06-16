@@ -85,7 +85,10 @@ void TotalPokoScreen::closeTotalPoko()
  * @note Address: 0x8032C570
  * @note Size: 0x10
  */
-void TotalPokoScreen::hideTotalPoko() { mPane->hide(); }
+void TotalPokoScreen::hideTotalPoko()
+{
+	mPane->hide();
+}
 
 /**
  * @note Address: 0x8032C580

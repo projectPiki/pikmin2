@@ -8,7 +8,10 @@
 #include "Screen/Game2DMgr.h"
 #include "JSystem/J2D/J2DAnmLoader.h"
 
-static void strippedFunc() { OSReport("\0\0\0\0\0\0\0\0\0\0\0"); }
+static void strippedFunc()
+{
+	OSReport("\0\0\0\0\0\0\0\0\0\0\0");
+}
 
 namespace kh {
 namespace Screen {
@@ -57,7 +60,10 @@ void ObjFinalFloor::doCreate(JKRArchive* arc)
  * @note Address: 0x80401F54
  * @note Size: 0x20
  */
-bool ObjFinalFloor::doUpdate() { return updateAnimation(); }
+bool ObjFinalFloor::doUpdate()
+{
+	return updateAnimation();
+}
 
 /**
  * @note Address: 0x80401F74
@@ -126,7 +132,10 @@ bool ObjFinalFloor::doUpdateFadeout()
  * @note Address: 0x80402280
  * @note Size: 0x34
  */
-void ObjFinalFloor::doUpdateFadeoutFinish() { Game::gameSystem->mSection->startMainBgm(); }
+void ObjFinalFloor::doUpdateFadeoutFinish()
+{
+	Game::gameSystem->mSection->startMainBgm();
+}
 
 /**
  * @note Address: 0x804022B4
@@ -199,7 +208,10 @@ void ObjFinalFloor::restartSound()
  * @note Address: 0x80402618
  * @note Size: 0x40
  */
-bool SceneFinalFloor::doConfirmSetScene(::Screen::SetSceneArg& arg) { return arg.getSceneType() != SCENE_PAUSE_MENU; }
+bool SceneFinalFloor::doConfirmSetScene(::Screen::SetSceneArg& arg)
+{
+	return arg.getSceneType() != SCENE_PAUSE_MENU;
+}
 
 ObjFinalFloor::StaticValues ObjFinalFloor::msVal;
 

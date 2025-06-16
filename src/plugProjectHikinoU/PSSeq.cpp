@@ -22,7 +22,9 @@ SeqDataList::SeqDataList()
  * @note Address: 0x80330D80
  * @note Size: 0x88
  */
-SeqDataList::~SeqDataList() { }
+SeqDataList::~SeqDataList()
+{
+}
 
 /**
  * @note Address: 0x80330E08
@@ -141,7 +143,9 @@ StreamDataList::StreamDataList()
  * @note Address: 0x80330F70
  * @note Size: 0x88
  */
-StreamDataList::~StreamDataList() { }
+StreamDataList::~StreamDataList()
+{
+}
 
 /**
  * @note Address: 0x80330FF8
@@ -272,13 +276,19 @@ void SeqSoundBase::stop(u32 type)
  * @note Address: 0x8033119C
  * @note Size: 0x20
  */
-void SeqSound::stopInner(u32 type) { JAInter::SequenceMgr::releaseSeqBuffer(this, type); }
+void SeqSound::stopInner(u32 type)
+{
+	JAInter::SequenceMgr::releaseSeqBuffer(this, type);
+}
 
 /**
  * @note Address: 0x803311BC
  * @note Size: 0x20
  */
-void StreamSound::stopInner(u32 type) { JAInter::StreamMgr::releaseStreamBuffer(this, type); }
+void StreamSound::stopInner(u32 type)
+{
+	JAInter::StreamMgr::releaseStreamBuffer(this, type);
+}
 
 /**
  * @note Address: N/A
@@ -305,7 +315,10 @@ SeqHeap::SeqHeap(u32 entry, SeqBase* seq)
  * @note Address: 0x803311DC
  * @note Size: 0x60
  */
-SeqHeap::~SeqHeap() { delete[] mFileData; }
+SeqHeap::~SeqHeap()
+{
+	delete[] mFileData;
+}
 
 /**
  * @note Address: 0x8033123C
@@ -391,13 +404,19 @@ void SeqHeap::loadedCallback(u32 arg1, u32 arg2)
  * @note Address: 0x803315A8
  * @note Size: 0x30
  */
-void SeqPlayReservator::reservatorTask() { mSequence->startSeq(); }
+void SeqPlayReservator::reservatorTask()
+{
+	mSequence->startSeq();
+}
 
 /**
  * @note Address: 0x803315D8
  * @note Size: 0x30
  */
-void SeqPauseOffReservator::reservatorTask() { mSequence->pauseOff(); }
+void SeqPauseOffReservator::reservatorTask()
+{
+	mSequence->pauseOff();
+}
 
 /**
  * @note Address: 0x80331608
@@ -592,7 +611,9 @@ void SeqBase::exec()
  * @note Address: 0x80331D84
  * @note Size: 0x4
  */
-void SeqBase::onPlayingFrame() { }
+void SeqBase::onPlayingFrame()
+{
+}
 
 /**
  * @note Address: 0x80331D88
@@ -665,7 +686,10 @@ BgmSeq::BgmSeq(char const* bmsFileName, JAInter::SoundInfo const& info)
  * @note Address: 0x80332158
  * @note Size: 0xC0
  */
-BgmSeq::~BgmSeq() { stopSeq(0); }
+BgmSeq::~BgmSeq()
+{
+	stopSeq(0);
+}
 
 /**
  * @note Address: 0x80332218
@@ -682,19 +706,27 @@ StreamBgm::StreamBgm(u32 id, const JAInter::SoundInfo& info)
  * @note Address: 0x80332318
  * @note Size: 0x4
  */
-void StreamBgm::init() { }
+void StreamBgm::init()
+{
+}
 
 /**
  * @note Address: 0x8033231C
  * @note Size: 0xEC
  */
-StreamBgm::~StreamBgm() { stopSeq(0); }
+StreamBgm::~StreamBgm()
+{
+	stopSeq(0);
+}
 
 /**
  * @note Address: 0x80332408
  * @note Size: 0x8
  */
-void StreamBgm::setId(u32 a1) { mId = a1; }
+void StreamBgm::setId(u32 a1)
+{
+	mId = a1;
+}
 
 /**
  * @note Address: 0x80332410
@@ -733,19 +765,28 @@ void StreamBgm::setConfigVolume()
  * @note Address: 0x8033263C
  * @note Size: 0x14
  */
-bool StreamBgm::isPlaying() { return mJaiSound != 0; }
+bool StreamBgm::isPlaying()
+{
+	return mJaiSound != 0;
+}
 
 /**
  * @note Address: 0x80332650
  * @note Size: 0xC0
  */
-SeSeq::~SeSeq() { stopSeq(0); }
+SeSeq::~SeSeq()
+{
+	stopSeq(0);
+}
 
 /**
  * @note Address: 0x80332710
  * @note Size: 0x2C
  */
-void SeSeq::seqLoadAfter() { startSeq(); }
+void SeSeq::seqLoadAfter()
+{
+	startSeq();
+}
 
 /**
  * @note Address: 0x8033273C
@@ -872,7 +913,10 @@ void DirectedBgm::init()
  * @note Address: 0x80332EDC
  * @note Size: 0x154
  */
-void DirectedBgm::startSeq() { SeqBase::startSeq(); }
+void DirectedBgm::startSeq()
+{
+	SeqBase::startSeq();
+}
 
 /**
  * @note Address: 0x80333030
@@ -907,7 +951,10 @@ void DirectedBgm::onPlayingFrame()
  * @note Address: 0x8033314C
  * @note Size: 0x2C
  */
-void SeqTrackRoot_JumpBgm::onBeatTop() { mJumpPort->onBeatTop(mBeatMgr); }
+void SeqTrackRoot_JumpBgm::onBeatTop()
+{
+	mJumpPort->onBeatTop(mBeatMgr);
+}
 
 /**
  * @note Address: N/A
@@ -1088,19 +1135,28 @@ void JumpBgmSeq::startSeq(u16 type)
  * @note Address: 0x80333728
  * @note Size: 0x60
  */
-void JumpBgmSeq::requestJumpBgmQuickly(u16 jump) { mJumpPort.requestQuickly(jump); }
+void JumpBgmSeq::requestJumpBgmQuickly(u16 jump)
+{
+	mJumpPort.requestQuickly(jump);
+}
 
 /**
  * @note Address: 0x80333788
  * @note Size: 0x60
  */
-void JumpBgmSeq::requestJumpBgmOnBeat(u16 jump) { mJumpPort.requestOnBeat(jump); }
+void JumpBgmSeq::requestJumpBgmOnBeat(u16 jump)
+{
+	mJumpPort.requestOnBeat(jump);
+}
 
 /**
  * @note Address: 0x803337E8
  * @note Size: 0x54
  */
-void JumpBgmSeq::requestJumpBgmEveryBeat(u16 jump) { mJumpPort.requestEveryBeat(jump); }
+void JumpBgmSeq::requestJumpBgmEveryBeat(u16 jump)
+{
+	mJumpPort.requestEveryBeat(jump);
+}
 
 /**
  * @note Address: 0x8033383C
@@ -1118,7 +1174,10 @@ void JumpBgmSeq::onPlayingFrame()
  * @note Address: 0x80333888
  * @note Size: 0xC8
  */
-u16 JumpBgmSeq::outputJumpRequest() { return mJumpPort.output(); }
+u16 JumpBgmSeq::outputJumpRequest()
+{
+	return mJumpPort.output();
+}
 
 /**
  * @note Address: 0x80333950
@@ -1180,7 +1239,10 @@ SeqMgr::~SeqMgr()
  */
 void SeqMgr::pauseOnAllSeq(SeqBase::PauseMode mode)
 {
-	FOREACH_NODE(JSULink<SeqBase>, getFirst(), link) { link->getObject()->pauseOn(mode); }
+	FOREACH_NODE(JSULink<SeqBase>, getFirst(), link)
+	{
+		link->getObject()->pauseOn(mode);
+	}
 }
 
 /**
@@ -1189,7 +1251,10 @@ void SeqMgr::pauseOnAllSeq(SeqBase::PauseMode mode)
  */
 void SeqMgr::pauseOffAllSeq()
 {
-	FOREACH_NODE(JSULink<SeqBase>, getFirst(), link) { link->getObject()->pauseOff(); }
+	FOREACH_NODE(JSULink<SeqBase>, getFirst(), link)
+	{
+		link->getObject()->pauseOff();
+	}
 }
 
 /**
@@ -1198,7 +1263,10 @@ void SeqMgr::pauseOffAllSeq()
  */
 void SeqMgr::reservePauseOffAllSeq()
 {
-	FOREACH_NODE(JSULink<SeqBase>, getFirst(), link) { link->getObject()->mPauseOffRes.mState = 1; }
+	FOREACH_NODE(JSULink<SeqBase>, getFirst(), link)
+	{
+		link->getObject()->mPauseOffRes.mState = 1;
+	}
 }
 
 /**
@@ -1207,7 +1275,10 @@ void SeqMgr::reservePauseOffAllSeq()
  */
 void SeqMgr::cancelPauseOffAllSeq()
 {
-	FOREACH_NODE(JSULink<SeqBase>, getFirst(), link) { link->getObject()->mPauseOffRes.mState = 0; }
+	FOREACH_NODE(JSULink<SeqBase>, getFirst(), link)
+	{
+		link->getObject()->mPauseOffRes.mState = 0;
+	}
 }
 
 /**
@@ -1231,7 +1302,10 @@ void SeqMgr::exec()
  */
 void SeqMgr::stopAllSound(u32 state)
 {
-	FOREACH_NODE(JSULink<SeqBase>, getFirst(), link) { link->getObject()->stopSeq(state); }
+	FOREACH_NODE(JSULink<SeqBase>, getFirst(), link)
+	{
+		link->getObject()->stopSeq(state);
+	}
 }
 
 /**
@@ -1240,7 +1314,10 @@ void SeqMgr::stopAllSound(u32 state)
  */
 void SeqMgr::scene1st(TaskChecker* task)
 {
-	FOREACH_NODE(JSULink<SeqBase>, getFirst(), link) { link->getObject()->scene1st(task); }
+	FOREACH_NODE(JSULink<SeqBase>, getFirst(), link)
+	{
+		link->getObject()->scene1st(task);
+	}
 }
 
 /**
@@ -1309,7 +1386,10 @@ SeqBase* SeqMgr::getFirstSeq()
  * @note Address: 0x80333E78
  * @note Size: 0x24
  */
-SeqBase* SeqMgr::getFirstSeqA() { return getSeq(0); }
+SeqBase* SeqMgr::getFirstSeqA()
+{
+	return getSeq(0);
+}
 
 /**
  * @note Address: 0x80333E9C

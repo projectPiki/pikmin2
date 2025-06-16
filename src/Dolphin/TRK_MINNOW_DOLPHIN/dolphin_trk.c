@@ -24,13 +24,19 @@ static u32 TRK_ISR_OFFSETS[15] = { PPC_SystemReset,
 	                               PPC_SystemManagementInterrupt,
 	                               PPC_ThermalManagementInterrupt };
 
-DECL_SECT(".init") void __TRK_reset() { OSResetSystem(FALSE, 0, FALSE); }
+DECL_SECT(".init") void __TRK_reset()
+{
+	OSResetSystem(FALSE, 0, FALSE);
+}
 
 /**
  * @note Address: 0x800C03EC
  * @note Size: 0x20
  */
-void EnableMetroTRKInterrupts(void) { EnableEXI2Interrupts(); }
+void EnableMetroTRKInterrupts(void)
+{
+	EnableEXI2Interrupts();
+}
 
 /**
  * @note Address: 0x800C0394

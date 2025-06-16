@@ -25,7 +25,9 @@ JUTDbPrint::JUTDbPrint(JUTFont* font, JKRHeap* heap)
  * @note Address: N/A
  * @note Size: 0x50
  */
-JUTDbPrint::~JUTDbPrint() { }
+JUTDbPrint::~JUTDbPrint()
+{
+}
 
 /**
  * @note Address: 0x800294D4
@@ -63,7 +65,10 @@ JUTFont* JUTDbPrint::changeFont(JUTFont* newFont)
  * @note Size: 0x38
  * flush__10JUTDbPrintFv
  */
-void JUTDbPrint::flush() { flush(0, 0, JUTVideo::sManager->getFbWidth(), JUTVideo::sManager->getEfbHeight()); }
+void JUTDbPrint::flush()
+{
+	flush(0, 0, JUTVideo::sManager->getFbWidth(), JUTVideo::sManager->getEfbHeight());
+}
 
 /**
  * @note Address: 0x800295D0

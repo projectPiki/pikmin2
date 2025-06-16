@@ -11,7 +11,9 @@
  * @note Address: 0x80094028
  * @note Size: 0x48
  */
-JPAParticleCallBack::~JPAParticleCallBack() { }
+JPAParticleCallBack::~JPAParticleCallBack()
+{
+}
 
 /**
  * @note Address: 0x80094070

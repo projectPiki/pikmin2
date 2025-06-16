@@ -66,13 +66,19 @@ void MatTexAnimation::onAttachResource(void* resource)
  * @note Address: 0x804341E8
  * @note Size: 0x2C
  */
-void MatTexAnimation::set() { mModelData->getMaterialTable().entryTexMtxAnimator(mAnmSRT); }
+void MatTexAnimation::set()
+{
+	mModelData->getMaterialTable().entryTexMtxAnimator(mAnmSRT);
+}
 
 /**
  * @note Address: 0x80434214
  * @note Size: 0x2C
  */
-bool MatTexAnimation::remove() { return mModelData->getMaterialTable().removeTexMtxAnimator(mAnmSRT); }
+bool MatTexAnimation::remove()
+{
+	return mModelData->getMaterialTable().removeTexMtxAnimator(mAnmSRT);
+}
 
 /**
  * @note Address: 0x80434240
@@ -103,13 +109,19 @@ void MatTevRegAnimation::onAttachResource(void* resource)
  * @note Address: 0x804342FC
  * @note Size: 0x2C
  */
-void MatTevRegAnimation::set() { mModelData->getMaterialTable().entryTevRegAnimator(mAnmTevRegKey); }
+void MatTevRegAnimation::set()
+{
+	mModelData->getMaterialTable().entryTevRegAnimator(mAnmTevRegKey);
+}
 
 /**
  * @note Address: 0x80434328
  * @note Size: 0x2C
  */
-bool MatTevRegAnimation::remove() { return mModelData->getMaterialTable().removeTevRegAnimator(mAnmTevRegKey); }
+bool MatTevRegAnimation::remove()
+{
+	return mModelData->getMaterialTable().removeTevRegAnimator(mAnmTevRegKey);
+}
 
 /**
  * @note Address: 0x80434354
@@ -200,7 +212,9 @@ void MatBaseAnimator::animate(f32 rate)
  * @note Address: 0x804345C4
  * @note Size: 0x4
  */
-void MatBaseAnimator::do_animate(f32 rate) { }
+void MatBaseAnimator::do_animate(f32 rate)
+{
+}
 
 /**
  * @note Address: 0x804345C8
@@ -219,7 +233,10 @@ void MatLoopAnimator::do_animate(f32 rate)
  * @note Address: 0x80434778
  * @note Size: 0xC
  */
-void MatRepeatAnimator::onStart() { mStarted = true; }
+void MatRepeatAnimator::onStart()
+{
+	mStarted = true;
+}
 
 /**
  * @note Address: 0x80434784
@@ -244,17 +261,25 @@ void MatRepeatAnimator::do_animate(f32 rate)
  * @note Address: 0x80434AAC
  * @note Size: 0x4
  */
-void MatBaseAnimator::onStart() { }
+void MatBaseAnimator::onStart()
+{
+}
 
 /**
  * @note Address: 0x80434AB0
  * @note Size: 0x8
  */
-J3DAnmBase* MatTevRegAnimation::getAnmBase() { return mAnmTevRegKey; }
+J3DAnmBase* MatTevRegAnimation::getAnmBase()
+{
+	return mAnmTevRegKey;
+}
 
 /**
  * @note Address: 0x80434AB8
  * @note Size: 0x8
  */
-J3DAnmBase* MatTexAnimation::getAnmBase() { return mAnmSRT; }
+J3DAnmBase* MatTexAnimation::getAnmBase()
+{
+	return mAnmSRT;
+}
 } // namespace Sys

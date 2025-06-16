@@ -58,7 +58,9 @@ ObjVs::ObjVs(char const* name)
  * @note Address: 0x80325B9C
  * @note Size: 0xAC
  */
-ObjVs::~ObjVs() { }
+ObjVs::~ObjVs()
+{
+}
 
 /**
  * @note Address: 0x80325C48
@@ -1729,19 +1731,26 @@ bool ObjVs::doEnd(::Screen::EndSceneArg const*)
  * @note Address: 0x80327AD8
  * @note Size: 0x4
  */
-void ObjVs::doUpdateFadeinFinish() { }
+void ObjVs::doUpdateFadeinFinish()
+{
+}
 
 /**
  * @note Address: 0x80327ADC
  * @note Size: 0xC
  */
-void ObjVs::doUpdateFinish() { mFadeLevel = 0.0f; }
+void ObjVs::doUpdateFinish()
+{
+	mFadeLevel = 0.0f;
+}
 
 /**
  * @note Address: 0x80327AE8
  * @note Size: 0x4
  */
-void ObjVs::doUpdateFadeoutFinish() { }
+void ObjVs::doUpdateFadeoutFinish()
+{
+}
 
 /**
  * @note Address: 0x80327AEC

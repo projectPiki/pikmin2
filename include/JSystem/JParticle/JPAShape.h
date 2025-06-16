@@ -9,7 +9,10 @@ struct JPAEmitterWorkData;
 struct JPABaseParticle;
 
 // not sure where this belongs
-static inline u32 COLOR_MULTI(u32 a, u32 b) { return ((a * (b + 1)) * 0x10000) >> 24; }
+static inline u32 COLOR_MULTI(u32 a, u32 b)
+{
+	return ((a * (b + 1)) * 0x10000) >> 24;
+}
 
 struct JPAClrAnmKeyData {
 	s16 index;     // _00

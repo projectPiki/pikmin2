@@ -37,7 +37,10 @@ bool CullPlane::isPointVisible(Vector3f& pos, f32 rad)
  * @note Address: 0x8041A190
  * @note Size: 0x70
  */
-bool CullPlane::isVisible(Sys::Sphere& ball) { return isPointVisible(ball.mPosition, ball.mRadius); }
+bool CullPlane::isVisible(Sys::Sphere& ball)
+{
+	return isPointVisible(ball.mPosition, ball.mRadius);
+}
 
 /**
  * @note Address: 0x8041A200

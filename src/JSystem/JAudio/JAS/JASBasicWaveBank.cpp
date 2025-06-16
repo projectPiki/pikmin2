@@ -165,7 +165,10 @@ JASBasicWaveBank::TWaveGroup::TWaveGroup(JASBasicWaveBank* bank)
  * @note Size: 0xB4
  * __dt__Q216JASBasicWaveBank10TWaveGroupFv
  */
-JASBasicWaveBank::TWaveGroup::~TWaveGroup() { delete[] mInfo; }
+JASBasicWaveBank::TWaveGroup::~TWaveGroup()
+{
+	delete[] mInfo;
+}
 
 /**
  * @note Address: 0x8009A2D0
@@ -197,16 +200,25 @@ void JASBasicWaveBank::TWaveGroup::setWaveInfo(int infoIndex, u32 waveID, const 
  * @note Address: 0x8009A5F0
  * @note Size: 0xA0
  */
-void JASBasicWaveBank::TWaveGroup::onLoadDone() { mBank->incWaveTable(this); }
+void JASBasicWaveBank::TWaveGroup::onLoadDone()
+{
+	mBank->incWaveTable(this);
+}
 
 /**
  * @note Address: 0x8009A690
  * @note Size: 0xE8
  */
-void JASBasicWaveBank::TWaveGroup::onEraseDone() { mBank->decWaveTable(this); }
+void JASBasicWaveBank::TWaveGroup::onEraseDone()
+{
+	mBank->decWaveTable(this);
+}
 
 /**
  * @note Address: 0x8009A778
  * @note Size: 0x14
  */
-u32 JASBasicWaveBank::TWaveGroup::getWaveID(int infoIndex) const { return mInfo[infoIndex].mHandle.mWaveID; }
+u32 JASBasicWaveBank::TWaveGroup::getWaveID(int infoIndex) const
+{
+	return mInfo[infoIndex].mHandle.mWaveID;
+}

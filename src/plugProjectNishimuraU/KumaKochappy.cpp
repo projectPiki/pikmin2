@@ -23,7 +23,9 @@ KumaKochappy::Obj::Obj()
  * @note Address: 0x802E7198
  * @note Size: 0x4
  */
-void KumaKochappy::Obj::setInitialSetting(EnemyInitialParamBase*) { }
+void KumaKochappy::Obj::setInitialSetting(EnemyInitialParamBase*)
+{
+}
 
 /**
  * @note Address: 0x802E719C
@@ -63,13 +65,18 @@ void KumaKochappy::Obj::doUpdate()
  * @note Address: 0x802E7294
  * @note Size: 0x4
  */
-void KumaKochappy::Obj::doDirectDraw(Graphics&) { }
+void KumaKochappy::Obj::doDirectDraw(Graphics&)
+{
+}
 
 /**
  * @note Address: 0x802E7298
  * @note Size: 0x20
  */
-void KumaKochappy::Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
+void KumaKochappy::Obj::doDebugDraw(Graphics& gfx)
+{
+	EnemyBase::doDebugDraw(gfx);
+}
 
 /**
  * @note Address: 0x802E72B8
@@ -119,13 +126,19 @@ bool KumaKochappy::Obj::pressCallBack(Creature* creature, f32 damage, CollPart* 
  * @note Address: 0x802E7434
  * @note Size: 0x2C
  */
-bool KumaKochappy::Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* part) { pressCallBack(creature, damage, part); }
+bool KumaKochappy::Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* part)
+{
+	pressCallBack(creature, damage, part);
+}
 
 /**
  * @note Address: 0x802E7460
  * @note Size: 0x28
  */
-void KumaKochappy::Obj::startCarcassMotion() { startMotion(KUMAKOCHAPPYANIM_Carry, nullptr); }
+void KumaKochappy::Obj::startCarcassMotion()
+{
+	startMotion(KUMAKOCHAPPYANIM_Carry, nullptr);
+}
 
 /**
  * @note Address: 0x802E7488
@@ -156,7 +169,10 @@ void KumaKochappy::Obj::initWalkSmokeEffect()
  * @note Address: 0x802E7578
  * @note Size: 0x8
  */
-WalkSmokeEffect::Mgr* KumaKochappy::Obj::getWalkSmokeEffectMgr() { return &mWalkSmokeMgr; }
+WalkSmokeEffect::Mgr* KumaKochappy::Obj::getWalkSmokeEffectMgr()
+{
+	return &mWalkSmokeMgr;
+}
 
 /**
  * @note Address: 0x802E7580
@@ -245,7 +261,10 @@ Vector3f* KumaKochappy::Obj::setTargetParentPosition()
  * @note Address: 0x802E7B6C
  * @note Size: 0x1C
  */
-void KumaKochappy::Obj::updateHomePosition() { mHomePosition = mPosition; }
+void KumaKochappy::Obj::updateHomePosition()
+{
+	mHomePosition = mPosition;
+}
 
 /**
  * @note Address: 0x802E7B88
@@ -271,13 +290,19 @@ void KumaKochappy::Obj::createChappyRelation()
  * @note Address: 0x802E7C30
  * @note Size: 0x24
  */
-void KumaKochappy::Obj::releaseParent() { mParentRelation->del(); }
+void KumaKochappy::Obj::releaseParent()
+{
+	mParentRelation->del();
+}
 
 /**
  * @note Address: 0x802E7C54
  * @note Size: 0xC
  */
-ChappyRelation* KumaKochappy::Obj::getParentRelation() { return static_cast<ChappyRelation*>(mParentRelation->mParent); }
+ChappyRelation* KumaKochappy::Obj::getParentRelation()
+{
+	return static_cast<ChappyRelation*>(mParentRelation->mParent);
+}
 
 /**
  * @note Address: 0x802E7C60

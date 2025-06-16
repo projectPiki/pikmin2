@@ -8,7 +8,10 @@ CellMgrParms* CellMgrParms::mInstance;
  * @note Address: N/A
  * @note Size: 0xE4
  */
-static void _Print(char* format, ...) { OSReport(format, "CellMgrParms"); }
+static void _Print(char* format, ...)
+{
+	OSReport(format, "CellMgrParms");
+}
 
 /**
  * @note Address: N/A
@@ -25,7 +28,10 @@ CellMgrParms::CellMgrParms()
  * @note Address: 0x8022E188
  * @note Size: 0x74
  */
-CellMgrParms::~CellMgrParms() { mInstance = nullptr; }
+CellMgrParms::~CellMgrParms()
+{
+	mInstance = nullptr;
+}
 
 /**
  * @note Address: 0x8022E1FC

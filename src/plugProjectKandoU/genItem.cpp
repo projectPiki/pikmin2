@@ -8,7 +8,10 @@
  * @note Size: 0x9C
  */
 
-Game::GenObject* makeItem() { return new Game::GenItem; }
+Game::GenObject* makeItem()
+{
+	return new Game::GenItem;
+}
 
 namespace Game {
 
@@ -30,7 +33,10 @@ void GenItem::initialise()
 	factory->mCount++;
 }
 
-void GenItem::updateUseList(Generator* gen, int i) { mItemMgr = itemMgr->getMgrByIndex(mMgrIndex); }
+void GenItem::updateUseList(Generator* gen, int i)
+{
+	mItemMgr = itemMgr->getMgrByIndex(mMgrIndex);
+}
 
 /**
  * @note Address: 0x801ACE80
@@ -140,13 +146,17 @@ void GenItem::doRead(Stream& stream)
  * @note Address: 0x801AD254
  * @note Size: 0x4
  */
-void GenItem::ramSaveParameters(Stream&) { }
+void GenItem::ramSaveParameters(Stream&)
+{
+}
 
 /**
  * @note Address: 0x801AD258
  * @note Size: 0x4
  */
-void GenItem::ramLoadParameters(Stream&) { }
+void GenItem::ramLoadParameters(Stream&)
+{
+}
 
 /**
  * @note Address: 0x801AD25C

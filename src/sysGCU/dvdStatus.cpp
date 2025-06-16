@@ -22,7 +22,10 @@ DvdStatus::DvdStatus()
  * @note Address: 0x8042A328
  * @note Size: 0x2C
  */
-bool DvdStatus::isErrorOccured() { return mFader && !sys->mCardMgr->isFlag(Game::MemoryCard::MCMFLAG_IsWriting); }
+bool DvdStatus::isErrorOccured()
+{
+	return mFader && !sys->mCardMgr->isFlag(Game::MemoryCard::MCMFLAG_IsWriting);
+}
 
 /**
  * @note Address: 0x8042A354

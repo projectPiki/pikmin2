@@ -96,4 +96,7 @@ void TRKConstructEvent(TRKEvent* event, int eventType)
  * @note Address: 0x800BB488
  * @note Size: 0x24
  */
-void TRKDestructEvent(TRKEvent* event) { TRKReleaseBuffer(event->msgBufID); }
+void TRKDestructEvent(TRKEvent* event)
+{
+	TRKReleaseBuffer(event->msgBufID);
+}

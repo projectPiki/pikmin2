@@ -8,13 +8,17 @@ namespace newScreen {
  * @note Address: 0x803258E8
  * @note Size: 0x3C
  */
-FinalMsg::FinalMsg() { }
+FinalMsg::FinalMsg()
+{
+}
 
 /**
  * @note Address: 0x80325924
  * @note Size: 0x4
  */
-void FinalMsg::doUserCallBackFunc(Resource::MgrCommand*) { }
+void FinalMsg::doUserCallBackFunc(Resource::MgrCommand*)
+{
+}
 
 /**
  * @note Address: 0x80325928

@@ -61,7 +61,9 @@ void StateDead::exec(EnemyBase* enemy)
  * @note Address: 0x802EFE18
  * @note Size: 0x4
  */
-void StateDead::cleanup(EnemyBase* enemy) { }
+void StateDead::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x802EFE1C
@@ -99,7 +101,9 @@ void StatePress::exec(EnemyBase* enemy)
  * @note Address: 0x802EFEEC
  * @note Size: 0x4
  */
-void StatePress::cleanup(EnemyBase* enemy) { }
+void StatePress::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x802EFEF0
@@ -197,7 +201,9 @@ void StateAppear::exec(EnemyBase* enemy)
  * @note Address: 0x802F01E4
  * @note Size: 0x4
  */
-void StateAppear::cleanup(EnemyBase* enemy) { }
+void StateAppear::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x802F01E8
@@ -239,7 +245,9 @@ void StateDisappear::exec(EnemyBase* enemy)
  * @note Address: 0x802F02F4
  * @note Size: 0x4
  */
-void StateDisappear::cleanup(EnemyBase* enemy) { }
+void StateDisappear::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x802F02F8
@@ -297,7 +305,9 @@ void StateWait::exec(EnemyBase* enemy)
  * @note Address: 0x802F04B4
  * @note Size: 0x4
  */
-void StateWait::cleanup(EnemyBase* enemy) { }
+void StateWait::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x802F04B8
@@ -377,7 +387,9 @@ void StateMoveGround::exec(EnemyBase* enemy)
  * @note Address: 0x802F074C
  * @note Size: 0x4
  */
-void StateMoveGround::cleanup(EnemyBase* enemy) { }
+void StateMoveGround::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x802F0750
@@ -451,7 +463,9 @@ void StateMoveWater::exec(EnemyBase* enemy)
  * @note Address: 0x802F0978
  * @note Size: 0x4
  */
-void StateMoveWater::cleanup(EnemyBase* enemy) { }
+void StateMoveWater::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x802F097C
@@ -522,7 +536,10 @@ void StateFlick::exec(EnemyBase* enemy)
  * @note Address: 0x802F0B80
  * @note Size: 0x10
  */
-void StateFlick::cleanup(EnemyBase* enemy) { enemy->disableEvent(0, EB_NoInterrupt); }
+void StateFlick::cleanup(EnemyBase* enemy)
+{
+	enemy->disableEvent(0, EB_NoInterrupt);
+}
 
 } // namespace Sokkuri
 } // namespace Game

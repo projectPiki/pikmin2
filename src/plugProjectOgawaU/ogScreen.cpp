@@ -25,7 +25,10 @@ static void _Print(char* format, ...)
  * @note Address: 0x80301EB8
  * @note Size: 0x8
  */
-void ArrowAlphaBlink::setSpeed(f32 speed) { mSpeed = speed; }
+void ArrowAlphaBlink::setSpeed(f32 speed)
+{
+	mSpeed = speed;
+}
 
 /**
  * @note Address: 0x80301EC0
@@ -515,7 +518,10 @@ void setAlphaScreen(J2DPane* pane)
  * @note Address: 0x803034fc
  * @note Size: 0x10
  */
-u64 J2DPane::getTagName() const { return mTag; }
+u64 J2DPane::getTagName() const
+{
+	return mTag;
+}
 
 // NOTE: fabricated to generate the P2DScreen::Node vtable and Mgr_tuning dtor
 // probably were used in stripped/inlined functions

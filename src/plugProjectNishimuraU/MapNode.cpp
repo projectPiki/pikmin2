@@ -58,7 +58,10 @@ void MapNode::setOffset(int x, int y)
  * @note Address: 0x80243028
  * @note Size: 0x24
  */
-int MapNode::getDoorDirect(int idx) { return getDoorNode(idx)->mDoor.mDirection; }
+int MapNode::getDoorDirect(int idx)
+{
+	return getDoorNode(idx)->mDoor.mDirection;
+}
 
 /**
  * @note Address: 0x8024304C
@@ -182,7 +185,10 @@ void MapNode::detachDoorClose()
  * @note Address: 0x80243318
  * @note Size: 0x1C
  */
-bool MapNode::isDoorClose(int idx) { return mAdjustInfo[idx].mMapTile; }
+bool MapNode::isDoorClose(int idx)
+{
+	return mAdjustInfo[idx].mMapTile;
+}
 
 /**
  * @note Address: 0x80243334
@@ -212,19 +218,28 @@ void MapNode::setDoorScore(int idx, int score)
  * @note Address: 0x80243468
  * @note Size: 0x1C
  */
-bool MapNode::isDoorScoreSetDone(int idx) { return (mAdjustInfo[idx].mDoorScore >= 0); }
+bool MapNode::isDoorScoreSetDone(int idx)
+{
+	return (mAdjustInfo[idx].mDoorScore >= 0);
+}
 
 /**
  * @note Address: 0x80243484
  * @note Size: 0x24
  */
-DoorNode* MapNode::getDoorNode(int idx) { return mUnitInfo->getDoorNode(idx); }
+DoorNode* MapNode::getDoorNode(int idx)
+{
+	return mUnitInfo->getDoorNode(idx);
+}
 
 /**
  * @note Address: 0x802434A8
  * @note Size: 0x14
  */
-AdjustNode* MapNode::getAdjustNode(int idx) { return &mUnitInfo->mDoorCounts[idx]; }
+AdjustNode* MapNode::getAdjustNode(int idx)
+{
+	return &mUnitInfo->mDoorCounts[idx];
+}
 
 /**
  * @note Address: 0x802434BC
@@ -350,19 +365,28 @@ void MapNode::setEnemyScore()
  * @note Address: 0x80243864
  * @note Size: 0x8
  */
-void MapNode::setNodeScore(int score) { mNodeScore = score; }
+void MapNode::setNodeScore(int score)
+{
+	mNodeScore = score;
+}
 
 /**
  * @note Address: 0x8024386C
  * @note Size: 0xC
  */
-void MapNode::copyNodeScoreToVersusScore() { mVsScore = mNodeScore; }
+void MapNode::copyNodeScoreToVersusScore()
+{
+	mVsScore = mNodeScore;
+}
 
 /**
  * @note Address: 0x80243878
  * @note Size: 0x14
  */
-void MapNode::subNodeScoreToVersusScore() { mVsScore -= mNodeScore; }
+void MapNode::subNodeScoreToVersusScore()
+{
+	mVsScore -= mNodeScore;
+}
 
 /**
  * @note Address: 0x8024388C
@@ -383,37 +407,55 @@ void MapNode::draw(f32 x, f32 y, f32 scale)
  * @note Address: 0x8024399C
  * @note Size: 0x8
  */
-int MapNode::getNodeOffsetX() { return mXGridOffset; }
+int MapNode::getNodeOffsetX()
+{
+	return mXGridOffset;
+}
 
 /**
  * @note Address: 0x802439A4
  * @note Size: 0x8
  */
-int MapNode::getNodeOffsetY() { return mYGridOffset; }
+int MapNode::getNodeOffsetY()
+{
+	return mYGridOffset;
+}
 
 /**
  * @note Address: 0x802439AC
  * @note Size: 0x8
  */
-int MapNode::getEnemyScore() { return mEnemyScore; }
+int MapNode::getEnemyScore()
+{
+	return mEnemyScore;
+}
 
 /**
  * @note Address: 0x802439B4
  * @note Size: 0x8
  */
-int MapNode::getNodeScore() { return mNodeScore; }
+int MapNode::getNodeScore()
+{
+	return mNodeScore;
+}
 
 /**
  * @note Address: 0x802439BC
  * @note Size: 0x8
  */
-int MapNode::getVersusScore() { return mVsScore; }
+int MapNode::getVersusScore()
+{
+	return mVsScore;
+}
 
 /**
  * @note Address: 0x802439C4
  * @note Size: 0x24
  */
-char* MapNode::getUnitName() { return mUnitInfo->getUnitName(); }
+char* MapNode::getUnitName()
+{
+	return mUnitInfo->getUnitName();
+}
 
 /**
  * @note Address: 0x802439E8
@@ -429,7 +471,10 @@ void MapNode::getNodeCentreOffset(f32& x, f32& y)
  * @note Address: 0x80243AB8
  * @note Size: 0x24
  */
-int MapNode::getDirection() { return mUnitInfo->getUnitRotation(); }
+int MapNode::getDirection()
+{
+	return mUnitInfo->getUnitRotation();
+}
 
 /**
  * @note Address: 0x80243ADC
@@ -565,6 +610,9 @@ f32 MapNode::getDoorGlobalDirection(int idx)
  * @note Address: 0x80244060
  * @note Size: 0x34
  */
-int MapNode::getNumDoors() { return mUnitInfo->mDoorNode->getChildCount(); }
+int MapNode::getNumDoors()
+{
+	return mUnitInfo->mDoorNode->getChildCount();
+}
 } // namespace Cave
 } // namespace Game

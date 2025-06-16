@@ -46,7 +46,9 @@ void StateDead::exec(EnemyBase* enemy)
  * @note Address: 0x8028C7F0
  * @note Size: 0x4
  */
-void StateDead::cleanup(EnemyBase* enemy) { }
+void StateDead::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x8028C7F4
@@ -83,7 +85,9 @@ void StatePress::exec(EnemyBase* enemy)
  * @note Address: 0x8028C914
  * @note Size: 0x4
  */
-void StatePress::cleanup(EnemyBase* enemy) { }
+void StatePress::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x8028C918
@@ -125,7 +129,9 @@ void StateBorn::exec(EnemyBase* enemy)
  * @note Address: 0x8028CA30
  * @note Size: 0x4
  */
-void StateBorn::cleanup(EnemyBase* enemy) { }
+void StateBorn::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x8028CA34
@@ -489,7 +495,9 @@ lbl_8028CE80:
  * @note Address: 0x8028CED0
  * @note Size: 0x4
  */
-void StateMove::cleanup(EnemyBase* enemy) { }
+void StateMove::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x8028CED4
@@ -536,6 +544,9 @@ void StateAttack::exec(EnemyBase* enemy)
  * @note Address: 0x8028D028
  * @note Size: 0x24
  */
-void StateAttack::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
+void StateAttack::cleanup(EnemyBase* enemy)
+{
+	enemy->setEmotionCaution();
+}
 } // namespace Baby
 } // namespace Game

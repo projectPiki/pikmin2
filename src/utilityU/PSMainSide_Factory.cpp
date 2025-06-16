@@ -293,7 +293,9 @@ void EnvSeObjBuilder::onBuild(PSSystem::EnvSeBase* se)
  * @note Address: 0x8045A1C4
  * @note Size: 0x3C
  */
-SceneMgr::SceneMgr() { }
+SceneMgr::SceneMgr()
+{
+}
 
 /**
  * @note Address: 0x8045A200
@@ -315,7 +317,10 @@ PSSystem::BgmSeq* SceneMgr::newMainBgm(const char* bmsFilePath, JAInter::SoundIn
  * @note Address: 0x8045A2D8
  * @note Size: 0x14
  */
-bool SceneMgr::curSceneIsBigBossFloor() { return EnemyBigBoss::sBigBoss != nullptr; }
+bool SceneMgr::curSceneIsBigBossFloor()
+{
+	return EnemyBigBoss::sBigBoss != nullptr;
+}
 
 /**
  * @note Address: 0x8045A2EC
@@ -2602,7 +2607,10 @@ void SetNoYOfset(PSSystem::EnvSeMgr* mgr)
  * @note Address: 0x8045C05C
  * @note Size: 0x2C
  */
-void EnvSeObjBuilder::setInfo(PersEnvInfo info) { mPersEnvInfo = info; }
+void EnvSeObjBuilder::setInfo(PersEnvInfo info)
+{
+	mPersEnvInfo = info;
+}
 
 /**
  * @note Address: 0x8045C088
@@ -2984,7 +2992,9 @@ BigBossSeq::BigBossSeq(const char* bmsFileName, const JAInter::SoundInfo& info, 
  * @note Address: 0x8045C758
  * @note Size: 0x80
  */
-MiddleBossSeq::~MiddleBossSeq() { }
+MiddleBossSeq::~MiddleBossSeq()
+{
+}
 
 /**
  * @note Address: 0x8045C7D8

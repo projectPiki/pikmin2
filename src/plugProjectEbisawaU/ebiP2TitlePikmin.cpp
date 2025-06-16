@@ -491,7 +491,10 @@ bool Pikmin::TMgr::isAssemble()
  * @note Address: 0x803E528C
  * @note Size: 0x10
  */
-Pikmin::TUnit* Pikmin::TMgr::getUnit(s32 idx) { return &mUnits[idx]; }
+Pikmin::TUnit* Pikmin::TMgr::getUnit(s32 idx)
+{
+	return &mUnits[idx];
+}
 
 /**
  * @note Address: 0x803E529C
@@ -575,13 +578,19 @@ bool Pikmin::TUnit::beAttacked()
  * @note Address: 0x803E5700
  * @note Size: 0xC
  */
-void Pikmin::TUnit::alive() { mIsDead = false; }
+void Pikmin::TUnit::alive()
+{
+	mIsDead = false;
+}
 
 /**
  * @note Address: 0x803E570C
  * @note Size: 0x14
  */
-bool Pikmin::TUnit::isCalc() { return (bool)(mCurrentState != STATE_Hidden); }
+bool Pikmin::TUnit::isCalc()
+{
+	return (bool)(mCurrentState != STATE_Hidden);
+}
 
 /**
  * @note Address: 0x803E5720

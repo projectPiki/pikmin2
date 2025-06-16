@@ -7,7 +7,10 @@ namespace Wtank {
  * @note Address: 0x8027C80C
  * @note Size: 0xA4
  */
-Obj::Obj() { createEffect(); }
+Obj::Obj()
+{
+	createEffect();
+}
 
 /**
  * @note Address: 0x8027C8B0
@@ -36,7 +39,10 @@ void Obj::changeMaterial()
  * @note Address: 0x8027CA54
  * @note Size: 0x19C
  */
-void Obj::createEffect() { mTankEffect = new efx::TWtankEffect(nullptr); }
+void Obj::createEffect()
+{
+	mTankEffect = new efx::TWtankEffect(nullptr);
+}
 
 /**
  * @note Address: 0x8027CDDC
@@ -57,7 +63,10 @@ void Obj::setupEffect()
  * @note Address: 0x8027CE2C
  * @note Size: 0x34
  */
-void Obj::startEffect() { mTankEffect->mEfxWat.create(nullptr); }
+void Obj::startEffect()
+{
+	mTankEffect->mEfxWat.create(nullptr);
+}
 
 /**
  * @note Address: 0x8027CE60
@@ -127,13 +136,19 @@ void Obj::stopEffectRadius(f32 radius)
  * @note Address: 0x8027D154
  * @note Size: 0x44
  */
-void Obj::createChargeSE() { getJAIObject()->startSound(PSSE_EN_WATERTANK_BREATH, 0); }
+void Obj::createChargeSE()
+{
+	getJAIObject()->startSound(PSSE_EN_WATERTANK_BREATH, 0);
+}
 
 /**
  * @note Address: 0x8027D198
  * @note Size: 0x44
  */
-void Obj::createDisChargeSE() { getJAIObject()->startSound(PSSE_EN_WATERTANK_SHOT, 0); }
+void Obj::createDisChargeSE()
+{
+	getJAIObject()->startSound(PSSE_EN_WATERTANK_SHOT, 0);
+}
 
 } // namespace Wtank
 } // namespace Game

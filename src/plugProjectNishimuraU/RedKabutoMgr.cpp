@@ -23,19 +23,28 @@ Mgr::Mgr(int p1, u8 p2)
  * @note Address: 0x802FFE54
  * @note Size: 0x48
  */
-void Mgr::doAlloc() { init(new Kabuto::Parms); }
+void Mgr::doAlloc()
+{
+	init(new Kabuto::Parms);
+}
 
 /**
  * @note Address: 0x802FFE9C
  * @note Size: 0x60
  */
-void Mgr::createObj(int count) { mObj = new Obj[count]; }
+void Mgr::createObj(int count)
+{
+	mObj = new Obj[count];
+}
 
 /**
  * @note Address: 0x802FFFE8
  * @note Size: 0x10
  */
-EnemyBase* Mgr::getEnemy(int idx) { return &mObj[idx]; }
+EnemyBase* Mgr::getEnemy(int idx)
+{
+	return &mObj[idx];
+}
 
 /**
  * @note Address: 0x802FFFF8

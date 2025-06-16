@@ -203,7 +203,10 @@ void JAInter::HeapMgr::init(u8 stayCount, u32 stayPtrSize, u8 autoCount, u32 aut
  * @note Address: 0x800B0594
  * @note Size: 0x8
  */
-JAInter::HeapBlock* JAInter::HeapMgr::getAutoHeapPointer() { return sAutoHeap; }
+JAInter::HeapBlock* JAInter::HeapMgr::getAutoHeapPointer()
+{
+	return sAutoHeap;
+}
 
 /**
  * @note Address: N/A
@@ -332,7 +335,10 @@ void* JAInter::HeapMgr::getFreeAutoHeapPointer(u8 index, u32 soundID)
  * @note Address: 0x800B07F0
  * @note Size: 0xC
  */
-u32 JAInter::HeapMgr::checkUsefulStayHeapPosition() { return sStayHeapCount & 0xFF; }
+u32 JAInter::HeapMgr::checkUsefulStayHeapPosition()
+{
+	return sStayHeapCount & 0xFF;
+}
 
 /**
  * @note Address: 0x800B07FC
@@ -406,13 +412,19 @@ void JAInter::HeapMgr::getAutoHeapPointer(u32)
  * @note Address: 0x800B0904
  * @note Size: 0x14
  */
-void JAInter::HeapMgr::setAutoHeapLoadedFlag(u8 index, u8 flag) { sAutoHeap[index].mStatus = flag; }
+void JAInter::HeapMgr::setAutoHeapLoadedFlag(u8 index, u8 flag)
+{
+	sAutoHeap[index].mStatus = flag;
+}
 
 /**
  * @note Address: 0x800B0918
  * @note Size: 0x14
  */
-void JAInter::HeapMgr::setStayHeapLoadedFlag(u8 index, u8 flag) { sStayHeap[index].mStatus = flag; }
+void JAInter::HeapMgr::setStayHeapLoadedFlag(u8 index, u8 flag)
+{
+	sStayHeap[index].mStatus = flag;
+}
 
 /**
  * @note Address: 0x800B092C

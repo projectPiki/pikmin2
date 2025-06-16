@@ -178,6 +178,8 @@ void ActBreakRock::collisionCallback(Game::Piki* p, Game::CollEvent& collEvent)
  * @note Address: 0x801E3E34
  * @note Size: 0x4
  */
-void ActBreakRock::bounceCallback(Game::Piki*, Sys::Triangle*) { }
+void ActBreakRock::bounceCallback(Game::Piki*, Sys::Triangle*)
+{
+}
 
 } // namespace PikiAI

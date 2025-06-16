@@ -10,7 +10,10 @@ namespace Wealthy {
  * @note Address: 0x80284A9C
  * @note Size: 0x98
  */
-Obj::Obj() { createEffect(); }
+Obj::Obj()
+{
+	createEffect();
+}
 
 /**
  * @note Address: 0x80284B34
@@ -109,7 +112,10 @@ void Obj::createItem()
  * @note Address: 0x80284E68
  * @note Size: 0xB0
  */
-void Obj::createEffect() { mBodyEffect = new efx::TOoganeKira; }
+void Obj::createEffect()
+{
+	mBodyEffect = new efx::TOoganeKira;
+}
 
 /**
  * @note Address: 0x80284F18
@@ -126,25 +132,37 @@ void Obj::startBodyEffect()
  * @note Address: 0x80284F70
  * @note Size: 0x30
  */
-void Obj::finishBodyEffect() { mBodyEffect->fade(); }
+void Obj::finishBodyEffect()
+{
+	mBodyEffect->fade();
+}
 
 /**
  * @note Address: 0x80284FA0
  * @note Size: 0x30
  */
-void Obj::effectDrawOn() { mBodyEffect->endDemoDrawOn(); }
+void Obj::effectDrawOn()
+{
+	mBodyEffect->endDemoDrawOn();
+}
 
 /**
  * @note Address: 0x80284FD0
  * @note Size: 0x30
  */
-void Obj::effectDrawOff() { mBodyEffect->startDemoDrawOff(); }
+void Obj::effectDrawOff()
+{
+	mBodyEffect->startDemoDrawOff();
+}
 
 /**
  * @note Address: 0x80285000
  * @note Size: 0x44
  */
-void Obj::createPressSENormal() { getJAIObject()->startSound(PSSE_EN_OOGANE_HIT, 0); }
+void Obj::createPressSENormal()
+{
+	getJAIObject()->startSound(PSSE_EN_OOGANE_HIT, 0);
+}
 
 } // namespace Wealthy
 } // namespace Game

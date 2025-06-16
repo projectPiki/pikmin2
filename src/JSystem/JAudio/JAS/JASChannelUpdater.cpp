@@ -4,7 +4,10 @@
  * @note Address: 0x800A8504
  * @note Size: 0x30
  */
-JASChannelUpdater::JASChannelUpdater() { init(); }
+JASChannelUpdater::JASChannelUpdater()
+{
+	init();
+}
 
 /**
  * @note Address: 0x800A8534

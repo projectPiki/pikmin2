@@ -7,7 +7,9 @@ namespace newScreen {
  * @note Address: 0x80313F4C
  * @note Size: 0x50
  */
-SMenuItem::SMenuItem() { }
+SMenuItem::SMenuItem()
+{
+}
 
 /**
  * @note Address: 0x80313F9C
@@ -37,25 +39,35 @@ bool SMenuItem::doConfirmSetScene(::Screen::SetSceneArg& sceneArg)
  * @note Address: 0x80314004
  * @note Size: 0xC
  */
-void SMenuItem::doSetBackupScene(::Screen::SetSceneArg& sceneArg) { sceneArg.mDoCreateBackup = false; }
+void SMenuItem::doSetBackupScene(::Screen::SetSceneArg& sceneArg)
+{
+	sceneArg.mDoCreateBackup = false;
+}
 
 /**
  * @note Address: 0x80314010
  * @note Size: 0x4
  */
-void SMenuItem::doUserCallBackFunc(Resource::MgrCommand*) { }
+void SMenuItem::doUserCallBackFunc(Resource::MgrCommand*)
+{
+}
 
 /**
  * @note Address: 0x80314014
  * @note Size: 0x60
  */
-void SMenuItem::doCreateObj(JKRArchive* archive) { registObj(new ObjSMenuItem("SMenuItem screen"), archive); }
+void SMenuItem::doCreateObj(JKRArchive* archive)
+{
+	registObj(new ObjSMenuItem("SMenuItem screen"), archive);
+}
 
 /**
  * @note Address: 0x80314074
  * @note Size: 0x4
  */
-void SMenuItem::doUpdateActive() { }
+void SMenuItem::doUpdateActive()
+{
+}
 
 } // namespace newScreen
 } // namespace og

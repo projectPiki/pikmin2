@@ -58,19 +58,26 @@ ExtrapolateParameter TFunctionValue::toFunction_outside(int idx)
  * @note Address: N/A
  * @note Size: 0x10
  */
-TFunctionValue::TFunctionValue() { }
+TFunctionValue::TFunctionValue()
+{
+}
 
 /**
  * @note Address: 0x80008B34
  * @note Size: 0x48
  */
-TFunctionValue::~TFunctionValue() { }
+TFunctionValue::~TFunctionValue()
+{
+}
 
 /**
  * @note Address: N/A
  * @note Size: 0x28
  */
-void TFunctionValueAttribute_refer::refer_initialize() { clear(); }
+void TFunctionValueAttribute_refer::refer_initialize()
+{
+	clear();
+}
 
 /**
  * @note Address: N/A
@@ -321,13 +328,19 @@ TFunctionValue_composite::TFunctionValue_composite()
  * @note Address: 0x80008C54
  * @note Size: 0x8
  */
-int TFunctionValue_composite::getType() const { return TYPE_Composite; }
+int TFunctionValue_composite::getType() const
+{
+	return TYPE_Composite;
+}
 
 /**
  * @note Address: 0x80008C5C
  * @note Size: 0x20
  */
-TFunctionValueAttributeSet TFunctionValue_composite::getAttributeSet() { return TFunctionValueAttributeSet(this, nullptr, nullptr); }
+TFunctionValueAttributeSet TFunctionValue_composite::getAttributeSet()
+{
+	return TFunctionValueAttributeSet(this, nullptr, nullptr);
+}
 
 /**
  * @note Address: 0x80008C7C
@@ -344,7 +357,9 @@ void TFunctionValue_composite::initialize()
  * @note Address: 0x80008CC8
  * @note Size: 0x4
  */
-void TFunctionValue_composite::prepare() { }
+void TFunctionValue_composite::prepare()
+{
+}
 
 /**
  * @note Address: 0x80008CCC
@@ -546,31 +561,45 @@ TFunctionValue_constant::TFunctionValue_constant()
  * @note Address: 0x80009240
  * @note Size: 0x8
  */
-int TFunctionValue_constant::getType() const { return TYPE_Constant; }
+int TFunctionValue_constant::getType() const
+{
+	return TYPE_Constant;
+}
 
 /**
  * @note Address: 0x80009248
  * @note Size: 0x14
  */
-TFunctionValueAttributeSet TFunctionValue_constant::getAttributeSet() { return TFunctionValueAttributeSet(nullptr, nullptr, nullptr); }
+TFunctionValueAttributeSet TFunctionValue_constant::getAttributeSet()
+{
+	return TFunctionValueAttributeSet(nullptr, nullptr, nullptr);
+}
 
 /**
  * @note Address: 0x8000925C
  * @note Size: 0x10
  */
-void TFunctionValue_constant::initialize() { mValue = NAN; }
+void TFunctionValue_constant::initialize()
+{
+	mValue = NAN;
+}
 
 /**
  * @note Address: 0x8000926C
  * @note Size: 0x4
  */
-void TFunctionValue_constant::prepare() { }
+void TFunctionValue_constant::prepare()
+{
+}
 
 /**
  * @note Address: 0x80009270
  * @note Size: 0x8
  */
-f64 TFunctionValue_constant::getValue(f64) { return mValue; }
+f64 TFunctionValue_constant::getValue(f64)
+{
+	return mValue;
+}
 
 /**
  * @note Address: 0x80009278
@@ -586,13 +615,19 @@ TFunctionValue_transition::TFunctionValue_transition()
  * @note Address: 0x800092EC
  * @note Size: 0x8
  */
-int TFunctionValue_transition::getType() const { return TYPE_Transition; }
+int TFunctionValue_transition::getType() const
+{
+	return TYPE_Transition;
+}
 
 /**
  * @note Address: 0x800092F4
  * @note Size: 0x30
  */
-TFunctionValueAttributeSet TFunctionValue_transition::getAttributeSet() { return TFunctionValueAttributeSet(nullptr, this, this); }
+TFunctionValueAttributeSet TFunctionValue_transition::getAttributeSet()
+{
+	return TFunctionValueAttributeSet(nullptr, this, this);
+}
 
 /**
  * @note Address: 0x80009324
@@ -678,13 +713,19 @@ TFunctionValue_list::TFunctionValue_list()
  * @note Address: 0x800096DC
  * @note Size: 0x8
  */
-int TFunctionValue_list::getType() const { return TYPE_List; }
+int TFunctionValue_list::getType() const
+{
+	return TYPE_List;
+}
 
 /**
  * @note Address: 0x800096E4
  * @note Size: 0x30
  */
-TFunctionValueAttributeSet TFunctionValue_list::getAttributeSet() { return TFunctionValueAttributeSet(nullptr, this, this); }
+TFunctionValueAttributeSet TFunctionValue_list::getAttributeSet()
+{
+	return TFunctionValueAttributeSet(nullptr, this, this);
+}
 
 /**
  * @note Address: 0x80009714
@@ -856,13 +897,19 @@ TFunctionValue_list_parameter::TFunctionValue_list_parameter()
  * @note Address: 0x80009FB0
  * @note Size: 0x8
  */
-int TFunctionValue_list_parameter::getType() const { return TYPE_List_Parameter; }
+int TFunctionValue_list_parameter::getType() const
+{
+	return TYPE_List_Parameter;
+}
 
 /**
  * @note Address: 0x80009FB8
  * @note Size: 0x30
  */
-TFunctionValueAttributeSet TFunctionValue_list_parameter::getAttributeSet() { return TFunctionValueAttributeSet(nullptr, this, this); }
+TFunctionValueAttributeSet TFunctionValue_list_parameter::getAttributeSet()
+{
+	return TFunctionValueAttributeSet(nullptr, this, this);
+}
 
 /**
  * @note Address: 0x80009FE8
@@ -1074,13 +1121,19 @@ TFunctionValue_hermite::TFunctionValue_hermite()
  * @note Address: 0x8000ACF8
  * @note Size: 0x8
  */
-int TFunctionValue_hermite::getType() const { return TYPE_Hermite; }
+int TFunctionValue_hermite::getType() const
+{
+	return TYPE_Hermite;
+}
 
 /**
  * @note Address: 0x8000AD00
  * @note Size: 0x20
  */
-TFunctionValueAttributeSet TFunctionValue_hermite::getAttributeSet() { return TFunctionValueAttributeSet(nullptr, this, nullptr); }
+TFunctionValueAttributeSet TFunctionValue_hermite::getAttributeSet()
+{
+	return TFunctionValueAttributeSet(nullptr, this, nullptr);
+}
 
 /**
  * @note Address: 0x8000AD20
@@ -1119,7 +1172,10 @@ void TFunctionValue_hermite::initialize()
  * @note Address: 0x8000ADDC
  * @note Size: 0xA8
  */
-void TFunctionValue_hermite::prepare() { range_prepare(); }
+void TFunctionValue_hermite::prepare()
+{
+	range_prepare();
+}
 
 /**
  * @note Address: 0x8000AE84

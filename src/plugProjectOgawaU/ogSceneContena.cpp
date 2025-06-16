@@ -7,13 +7,18 @@ namespace newScreen {
  * @note Address: 0x80321F08
  * @note Size: 0x44
  */
-Contena::Contena() { mSceneType = SCENE_CONTENA_BLUE; }
+Contena::Contena()
+{
+	mSceneType = SCENE_CONTENA_BLUE;
+}
 
 /**
  * @note Address: 0x80321F4C
  * @note Size: 0x4
  */
-void Contena::doUserCallBackFunc(Resource::MgrCommand*) { }
+void Contena::doUserCallBackFunc(Resource::MgrCommand*)
+{
+}
 
 /**
  * @note Address: 0x80321F50

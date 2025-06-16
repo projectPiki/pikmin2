@@ -198,13 +198,19 @@ ParmString::ParmString(Parameters* parameters, char* value, int length, u32 rawI
  * @note Address: 0x80413C68
  * @note Size: 0x2C
  */
-void ParmString::write(Stream& stream) { stream.writeString(mValue); }
+void ParmString::write(Stream& stream)
+{
+	stream.writeString(mValue);
+}
 
 /**
  * @note Address: 0x80413C94
  * @note Size: 0x30
  */
-void ParmString::read(Stream& stream) { stream.readString(mValue, mLength); }
+void ParmString::read(Stream& stream)
+{
+	stream.readString(mValue, mLength);
+}
 
 /**
  * @note Address: 0x80413CC4
@@ -222,10 +228,16 @@ ParmEnum::ParmEnum(Parameters* parameters, char** enumValues, u32 value, int len
  * @note Address: 0x80413D7C
  * @note Size: 0x2C
  */
-void ParmEnum::write(Stream& stream) { stream.writeInt(mValue); }
+void ParmEnum::write(Stream& stream)
+{
+	stream.writeInt(mValue);
+}
 
 /**
  * @note Address: 0x80413DA8
  * @note Size: 0x34
  */
-void ParmEnum::read(Stream& stream) { mValue = stream.readInt(); }
+void ParmEnum::read(Stream& stream)
+{
+	mValue = stream.readInt();
+}

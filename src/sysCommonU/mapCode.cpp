@@ -8,7 +8,10 @@
  * @note Address: 0x8041C434
  * @note Size: 0xC
  */
-int MapCode::Code::getAttribute() { return mContents & ATTR_MASK; }
+int MapCode::Code::getAttribute()
+{
+	return mContents & ATTR_MASK;
+}
 
 /**
  * Returns 'Slip Code' component of code.
@@ -16,7 +19,10 @@ int MapCode::Code::getAttribute() { return mContents & ATTR_MASK; }
  * @note Address: 0x8041C440
  * @note Size: 0xC
  */
-int MapCode::Code::getSlipCode() { return mContents >> 4 & SLIPCODE_MASK; }
+int MapCode::Code::getSlipCode()
+{
+	return mContents >> 4 & SLIPCODE_MASK;
+}
 
 /**
  * Returns 'is bald' component of code.
@@ -24,7 +30,10 @@ int MapCode::Code::getSlipCode() { return mContents >> 4 & SLIPCODE_MASK; }
  * @note Address: 0x8041C44C
  * @note Size: 0xC
  */
-bool MapCode::Code::isBald() { return mContents >> 6 & 1; }
+bool MapCode::Code::isBald()
+{
+	return mContents >> 6 & 1;
+}
 
 /* --INLINE--
  * Writes contents of code to stream.
@@ -32,7 +41,10 @@ bool MapCode::Code::isBald() { return mContents >> 6 & 1; }
  * @note Address: N/A
  * @note Size: 0x2C
  */
-inline void MapCode::Code::write(Stream& output) { output.writeByte((u8)getContents()); }
+inline void MapCode::Code::write(Stream& output)
+{
+	output.writeByte((u8)getContents());
+}
 
 /* --INLINE--
  * Reads contents of stream into code.
@@ -40,7 +52,10 @@ inline void MapCode::Code::write(Stream& output) { output.writeByte((u8)getConte
  * @note Address: N/A
  * @note Size: 0x34
  */
-inline void MapCode::Code::read(Stream& input) { mContents = input.readByte(); }
+inline void MapCode::Code::read(Stream& input)
+{
+	mContents = input.readByte();
+}
 
 /**
  * Sets code given 'attribute', 'slip code' and 'is bald' components.
@@ -62,7 +77,9 @@ void MapCode::Code::setCode(int attribute, int slipCode, bool isBald)
  * @note Address: 0x8041C47C
  * @note Size: 0x7C
  */
-MapCode::Mgr::Mgr() { }
+MapCode::Mgr::Mgr()
+{
+}
 
 /* --UNUSED--
  * Writes contents of code array to stream.
@@ -71,7 +88,10 @@ MapCode::Mgr::Mgr() { }
  * @note Address: 0x8041C47C
  * @note Size: 0x7C
  */
-void MapCode::Mgr::write(Stream& stream) { mCodeArray.write(stream); }
+void MapCode::Mgr::write(Stream& stream)
+{
+	mCodeArray.write(stream);
+}
 
 /**
  * Reads contents of stream into code array.
@@ -79,7 +99,10 @@ void MapCode::Mgr::write(Stream& stream) { mCodeArray.write(stream); }
  * @note Address: 0x8041C760
  * @note Size: 0x2C
  */
-void MapCode::Mgr::read(Stream& stream) { mCodeArray.read(stream); }
+void MapCode::Mgr::read(Stream& stream)
+{
+	mCodeArray.read(stream);
+}
 
 /**
  * Adds codes from code array into code slot of TriangleTable triangles.
@@ -101,7 +124,10 @@ void MapCode::Mgr::attachCodes(Sys::TriangleTable* table)
  * @note Address: 0x8041C8C0
  * @note Size: 0x2C
  */
-void MapCode::Mgr::CodeArray::writeObject(Stream& output, MapCode::Code& object) { object.write(output); }
+void MapCode::Mgr::CodeArray::writeObject(Stream& output, MapCode::Code& object)
+{
+	object.write(output);
+}
 
 /**
  * Reads contents of stream into input code object.
@@ -109,7 +135,10 @@ void MapCode::Mgr::CodeArray::writeObject(Stream& output, MapCode::Code& object)
  * @note Address: 0x8041C8EC
  * @note Size: 0x34
  */
-void MapCode::Mgr::CodeArray::readObject(Stream& input, MapCode::Code& object) { object.read(input); }
+void MapCode::Mgr::CodeArray::readObject(Stream& input, MapCode::Code& object)
+{
+	object.read(input);
+}
 
 /* --UNUSED--
  * Fake function required to generate weak functions in correct order.

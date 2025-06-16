@@ -7,8 +7,11 @@
 extern "C" {
 #endif // ifdef __cplusplus
 
-#define DEFINE__PRINT(unit) \
-	inline static void _Print(char*, ...) { printf(unit); }
+#define DEFINE__PRINT(unit)               \
+	inline static void _Print(char*, ...) \
+	{                                     \
+		printf(unit);                     \
+	}
 
 #ifdef __cplusplus
 };

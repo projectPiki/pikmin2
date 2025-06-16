@@ -7,11 +7,20 @@
 
 #define TAU 6.2831855f
 
-inline bool checkASinCosBounds(f32 x) { return (x >= -1.0f) && (x <= 1.0f); }
+inline bool checkASinCosBounds(f32 x)
+{
+	return (x >= -1.0f) && (x <= 1.0f);
+}
 
-inline int GetTableIdxNeg(f32 x) { return x *= -325.9493f; }
+inline int GetTableIdxNeg(f32 x)
+{
+	return x *= -325.9493f;
+}
 
-inline int GetTableIdxPos(f32 x) { return x *= 325.9493f; }
+inline int GetTableIdxPos(f32 x)
+{
+	return x *= 325.9493f;
+}
 
 inline f32 sinf(f32 x)
 {
@@ -79,7 +88,10 @@ inline f32 _angXZ(f32 x1, f32 z1, f32 x2, f32 z2)
 	return roundAng(angle);
 }
 
-inline f32 angXZ(f32 x, f32 z) { return roundAng(JMAAtan2Radian(x, z)); }
+inline f32 angXZ(f32 x, f32 z)
+{
+	return roundAng(JMAAtan2Radian(x, z));
+}
 
 inline f32 absF(f32 val)
 {
@@ -87,13 +99,25 @@ inline f32 absF(f32 val)
 	return (f32)newVal;
 }
 
-inline f32 scaledSin(f32 theta) { return sinf(theta * TAU); }
+inline f32 scaledSin(f32 theta)
+{
+	return sinf(theta * TAU);
+}
 
-inline f32 absVal(f32 val) { return (val > 0.0f) ? val : -val; }
+inline f32 absVal(f32 val)
+{
+	return (val > 0.0f) ? val : -val;
+}
 
-inline int absVal(int val) { return (val > 0) ? val : -val; }
+inline int absVal(int val)
+{
+	return (val > 0) ? val : -val;
+}
 
-inline f32 boundVal(f32 val, f32 limit) { return (val > 0.0f) ? limit : -limit; }
+inline f32 boundVal(f32 val, f32 limit)
+{
+	return (val > 0.0f) ? limit : -limit;
+}
 
 inline f32 adjustVal(f32 y, f32 x, f32 delta)
 {
@@ -156,9 +180,15 @@ inline int adjustValInt(int current, int dest, const int delta)
 	return (absVal(current - dest) < delta) ? dest : (current < dest ? current += delta : current -= delta);
 }
 
-inline Vector3f getRotationOffset(f32 scale, f32 y, f32 angle) { return Vector3f(scale * sinf(angle), y, scale * cosf(angle)); }
+inline Vector3f getRotationOffset(f32 scale, f32 y, f32 angle)
+{
+	return Vector3f(scale * sinf(angle), y, scale * cosf(angle));
+}
 
-inline Vector3f getRotation(f32 angle) { return Vector3f(-sinf(angle), 0.0f, cosf(angle)); }
+inline Vector3f getRotation(f32 angle)
+{
+	return Vector3f(-sinf(angle), 0.0f, cosf(angle));
+}
 
 inline f32 clamp(f32 val, f32 limit)
 {
@@ -196,7 +226,10 @@ inline Vector3f getDirectionP2(f32 angle, f32 rad)
 	return vec;
 }
 
-inline Vector3f getPerpDirection(f32 angle) { return Vector3f(cosf(angle), 0.0f, -sinf(angle)); }
+inline Vector3f getPerpDirection(f32 angle)
+{
+	return Vector3f(cosf(angle), 0.0f, -sinf(angle));
+}
 
 inline Vector3f getDirectionMori(f32 angle)
 {
@@ -204,7 +237,13 @@ inline Vector3f getDirectionMori(f32 angle)
 	return vec;
 }
 
-inline f32 boundAboveBelow(f32 angle, f32 limit) { return (angle < -limit) ? -limit : (angle > limit) ? limit : angle; }
-inline f32 boundAboveBelow(f32 angle, f32 min, f32 max) { return (angle < min) ? min : (angle > max) ? max : angle; }
+inline f32 boundAboveBelow(f32 angle, f32 limit)
+{
+	return (angle < -limit) ? -limit : (angle > limit) ? limit : angle;
+}
+inline f32 boundAboveBelow(f32 angle, f32 min, f32 max)
+{
+	return (angle < min) ? min : (angle > max) ? max : angle;
+}
 
 #endif

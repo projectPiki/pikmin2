@@ -166,7 +166,10 @@ void ResetManager::draw()
  * @note Address: 0x8042A2BC
  * @note Size: 0x14
  */
-bool ResetManager::isWritingMemoryCard() { return sys->mCardMgr->isFlag(Game::MemoryCard::MCMFLAG_IsWriting); }
+bool ResetManager::isWritingMemoryCard()
+{
+	return sys->mCardMgr->isFlag(Game::MemoryCard::MCMFLAG_IsWriting);
+}
 
 /**
  * @note Address: 0x8042A2D0

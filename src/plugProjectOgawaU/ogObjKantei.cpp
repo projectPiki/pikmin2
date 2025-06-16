@@ -15,7 +15,10 @@
  * @note Address: N/A
  * @note Size: 0xE4
  */
-static void _Print(char* format, ...) { OSReport(format, __FILE__); }
+static void _Print(char* format, ...)
+{
+	OSReport(format, __FILE__);
+}
 
 namespace og {
 namespace newScreen {
@@ -75,7 +78,9 @@ ObjKantei::ObjKantei(char const* name)
  * @note Address: 0x80318364
  * @note Size: 0xAC
  */
-ObjKantei::~ObjKantei() { }
+ObjKantei::~ObjKantei()
+{
+}
 
 /**
  * @note Address: N/A
@@ -501,7 +506,9 @@ bool ObjKantei::doEnd(::Screen::EndSceneArg const*)
  * @note Address: 0x803197BC
  * @note Size: 0x4
  */
-void ObjKantei::doUpdateFadeinFinish() { }
+void ObjKantei::doUpdateFadeinFinish()
+{
+}
 
 /**
  * @note Address: 0x803197C0
@@ -519,7 +526,9 @@ void ObjKantei::doUpdateFinish()
  * @note Address: 0x80319800
  * @note Size: 0x4
  */
-void ObjKantei::doUpdateFadeoutFinish() { }
+void ObjKantei::doUpdateFadeoutFinish()
+{
+}
 
 /**
  * @note Address: 0x80319804

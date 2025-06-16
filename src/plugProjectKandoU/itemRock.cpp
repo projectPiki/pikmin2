@@ -55,7 +55,9 @@ void NormalState::exec(Item* item)
  * @note Address: 0x801E10B4
  * @note Size: 0x4
  */
-void NormalState::cleanup(Item*) { }
+void NormalState::cleanup(Item*)
+{
+}
 
 /**
  * @note Address: 0x801E10B8
@@ -110,19 +112,26 @@ void DownState::init(Item* item, StateArg* stateArg)
  * @note Address: 0x801E12B4
  * @note Size: 0x4
  */
-void DownState::exec(Item*) { }
+void DownState::exec(Item*)
+{
+}
 
 /**
  * @note Address: 0x801E12B8
  * @note Size: 0x4
  */
-void DownState::cleanup(Item*) { }
+void DownState::cleanup(Item*)
+{
+}
 
 /**
  * @note Address: 0x801E12BC
  * @note Size: 0x10
  */
-void DownState::onDamage(Item* item, f32 damage) { item->mDamageBuffer += damage; }
+void DownState::onDamage(Item* item, f32 damage)
+{
+	item->mDamageBuffer += damage;
+}
 
 /**
  * @note Address: 0x801E12CC
@@ -159,19 +168,26 @@ void UpState::init(Item* item, StateArg* stateArg)
  * @note Address: 0x801E1414
  * @note Size: 0x4
  */
-void UpState::exec(Item*) { }
+void UpState::exec(Item*)
+{
+}
 
 /**
  * @note Address: 0x801E1418
  * @note Size: 0x4
  */
-void UpState::cleanup(Item*) { }
+void UpState::cleanup(Item*)
+{
+}
 
 /**
  * @note Address: 0x801E141C
  * @note Size: 0x10
  */
-void UpState::onDamage(Item* item, f32 damage) { item->mDamageBuffer += damage; }
+void UpState::onDamage(Item* item, f32 damage)
+{
+	item->mDamageBuffer += damage;
+}
 
 /**
  * @note Address: 0x801E142C
@@ -201,7 +217,10 @@ Item::Item()
  * @note Address: 0x801E14F8
  * @note Size: 0x48
  */
-void Item::constructor() { mSoundObj = new PSM::WorkItem(this); }
+void Item::constructor()
+{
+	mSoundObj = new PSM::WorkItem(this);
+}
 
 /**
  * @note Address: 0x801E1540
@@ -240,7 +259,10 @@ void Item::onInit(CreatureInitArg* initArg)
  * @note Address: 0x801E1780
  * @note Size: 0x34
  */
-void Item::onKill(CreatureKillArg* killArg) { mgr->kill(this); }
+void Item::onKill(CreatureKillArg* killArg)
+{
+	mgr->kill(this);
+}
 
 /**
  * @note Address: 0x801E17B4
@@ -412,13 +434,19 @@ void Item::doAI()
  * @note Address: 0x801E1ED0
  * @note Size: 0x20
  */
-void Item::initMotion() { startWaitMotion(); }
+void Item::initMotion()
+{
+	startWaitMotion();
+}
 
 /**
  * @note Address: 0x801E1EF0
  * @note Size: 0x20
  */
-void Item::on_movie_end(bool) { startWaitMotion(); }
+void Item::on_movie_end(bool)
+{
+	startWaitMotion();
+}
 
 /**
  * @note Address: 0x801E1F10

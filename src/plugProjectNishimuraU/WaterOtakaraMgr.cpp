@@ -22,19 +22,28 @@ Mgr::Mgr(int objLimit, u8 modelType)
  * @note Address: 0x802B8730
  * @note Size: 0x48
  */
-void Mgr::doAlloc() { init(new OtakaraBase::Parms); }
+void Mgr::doAlloc()
+{
+	init(new OtakaraBase::Parms);
+}
 
 /**
  * @note Address: 0x802B8778
  * @note Size: 0x60
  */
-void Mgr::createObj(int count) { mObj = new Obj[count]; }
+void Mgr::createObj(int count)
+{
+	mObj = new Obj[count];
+}
 
 /**
  * @note Address: 0x802B88C8
  * @note Size: 0x10
  */
-EnemyBase* Mgr::getEnemy(int index) { return &mObj[index]; }
+EnemyBase* Mgr::getEnemy(int index)
+{
+	return &mObj[index];
+}
 
 /**
  * @note Address: 0x802B88D8

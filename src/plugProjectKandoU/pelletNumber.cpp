@@ -12,7 +12,9 @@ Mgr* mgr;
  * @note Address: 0x801F90D4
  * @note Size: 0x4
  */
-void Object::do_onInit(CreatureInitArg*) { }
+void Object::do_onInit(CreatureInitArg*)
+{
+}
 
 /**
  * @note Address: 0x801F90D8
@@ -120,7 +122,10 @@ void Mgr::onCreateModel(SysShape::Model* model)
  * @note Address: 0x801F97D8
  * @note Size: 0x3C
  */
-GenPelletParm* Mgr::generatorNewPelletParm() { return new GenNumberPelletParm(PELCOLOR_BLUE, PELLET_NUMBER_ONE); }
+GenPelletParm* Mgr::generatorNewPelletParm()
+{
+	return new GenNumberPelletParm(PELCOLOR_BLUE, PELLET_NUMBER_ONE);
+}
 
 /**
  * @note Address: 0x801F9814

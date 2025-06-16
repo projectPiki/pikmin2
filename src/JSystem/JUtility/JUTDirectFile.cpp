@@ -49,7 +49,10 @@ JUTDirectFile::JUTDirectFile()
  * @note Address: 0x80029850
  * @note Size: 0x44
  */
-JUTDirectFile::~JUTDirectFile() { mIsOpen = false; }
+JUTDirectFile::~JUTDirectFile()
+{
+	mIsOpen = false;
+}
 
 /**
  * @note Address: 0x80029894

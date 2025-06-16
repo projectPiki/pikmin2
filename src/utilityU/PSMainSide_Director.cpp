@@ -64,7 +64,9 @@ void TempoChangeDirectorBase::directOffTrack(PSSystem::SeqTrackBase& seqTrack)
  * @note Address: 0x80456D48
  * @note Size: 0x84
  */
-ActorDirector_TempoChange::ActorDirector_TempoChange() { }
+ActorDirector_TempoChange::ActorDirector_TempoChange()
+{
+}
 
 /**
  * @note Address: 0x80456E5C
@@ -793,7 +795,10 @@ ActorDirector_Enemy::ActorDirector_Enemy(const char* name, int trackCount, s32 f
  * @note Address: 0x804580D0
  * @note Size: 0x8
  */
-void ActorDirector_Enemy::onSetMinDistObj(Game::Creature* obj) { mGameObject = static_cast<Game::EnemyBase*>(obj); }
+void ActorDirector_Enemy::onSetMinDistObj(Game::Creature* obj)
+{
+	mGameObject = static_cast<Game::EnemyBase*>(obj);
+}
 
 /**
  * @note Address: 0x804580D8

@@ -22,7 +22,9 @@ Obj::Obj()
  * @note Address: 0x802661B0
  * @note Size: 0x4
  */
-void Obj::setInitialSetting(EnemyInitialParamBase*) { }
+void Obj::setInitialSetting(EnemyInitialParamBase*)
+{
+}
 
 /**
  * @note Address: 0x802661B4
@@ -45,19 +47,27 @@ void Obj::onInit(CreatureInitArg* initArg)
  * @note Address: 0x8026624C
  * @note Size: 0x34
  */
-void Obj::doUpdate() { mFsm->exec(this); }
+void Obj::doUpdate()
+{
+	mFsm->exec(this);
+}
 
 /**
  * @note Address: 0x80266280
  * @note Size: 0x4
  */
-void Obj::doDirectDraw(Graphics&) { }
+void Obj::doDirectDraw(Graphics&)
+{
+}
 
 /**
  * @note Address: 0x80266284
  * @note Size: 0x20
  */
-void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
+void Obj::doDebugDraw(Graphics& gfx)
+{
+	EnemyBase::doDebugDraw(gfx);
+}
 
 /**
  * @note Address: 0x802662A4
@@ -107,13 +117,19 @@ bool Obj::pressCallBack(Creature* creature, f32 damage, CollPart* part)
  * @note Address: 0x8026642C
  * @note Size: 0x2C
  */
-bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* part) { return pressCallBack(creature, damage, part); }
+bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* part)
+{
+	return pressCallBack(creature, damage, part);
+}
 
 /**
  * @note Address: 0x80266458
  * @note Size: 0x28
  */
-void Obj::startCarcassMotion() { startMotion(UJIAANIM_Carry, nullptr); }
+void Obj::startCarcassMotion()
+{
+	startMotion(UJIAANIM_Carry, nullptr);
+}
 
 /**
  * @note Address: 0x80266480
@@ -234,7 +250,9 @@ void Obj::setNearestBridge()
  * @note Address: 0x80266908
  * @note Size: 0x4
  */
-void Obj::setCullingCheck() { }
+void Obj::setCullingCheck()
+{
+}
 
 /**
  * @note Address: 0x8026690C

@@ -45,19 +45,28 @@ void MapUnits::setDoorNum(int doorNum)
  * @note Address: 0x8024290C
  * @note Size: 0x8
  */
-void MapUnits::setUnitName(char* name) { mName = name; }
+void MapUnits::setUnitName(char* name)
+{
+	mName = name;
+}
 
 /**
  * @note Address: 0x80242914
  * @note Size: 0x8
  */
-void MapUnits::setUnitIndex(int idx) { mIndex = idx; }
+void MapUnits::setUnitIndex(int idx)
+{
+	mIndex = idx;
+}
 
 /**
  * @note Address: 0x8024291C
  * @note Size: 0x8
  */
-void MapUnits::setUnitKind(int kind) { mKind = kind; }
+void MapUnits::setUnitKind(int kind)
+{
+	mKind = kind;
+}
 
 /**
  * @note Address: 0x80242924
@@ -73,55 +82,82 @@ void MapUnits::setUnitSize(int sizeX, int sizeY)
  * @note Address: 0x80242930
  * @note Size: 0x8
  */
-void MapUnits::setBaseGenPtr(BaseGen* baseGen) { mBaseGen = baseGen; }
+void MapUnits::setBaseGenPtr(BaseGen* baseGen)
+{
+	mBaseGen = baseGen;
+}
 
 /**
  * @note Address: N/A
  * @note Size: 0x8
  */
-void MapUnits::setUnitTexture(JUTTexture* texture) { mTexture = texture; }
+void MapUnits::setUnitTexture(JUTTexture* texture)
+{
+	mTexture = texture;
+}
 
 /**
  * @note Address: N/A
  * @note Size: 0x8
  */
-char* MapUnits::getUnitName() { return mName; }
+char* MapUnits::getUnitName()
+{
+	return mName;
+}
 
 /**
  * @note Address: N/A
  * @note Size: 0x8
  */
-int MapUnits::getUnitIndex() { return mIndex; }
+int MapUnits::getUnitIndex()
+{
+	return mIndex;
+}
 
 /**
  * @note Address: N/A
  * @note Size: 0x8
  */
-int MapUnits::getUnitKind() { return mKind; }
+int MapUnits::getUnitKind()
+{
+	return mKind;
+}
 
 /**
  * @note Address: N/A
  * @note Size: 0x8
  */
-int MapUnits::getUnitSizeX() { return mSizeX; }
+int MapUnits::getUnitSizeX()
+{
+	return mSizeX;
+}
 
 /**
  * @note Address: N/A
  * @note Size: 0x8
  */
-int MapUnits::getUnitSizeY() { return mSizeY; }
+int MapUnits::getUnitSizeY()
+{
+	return mSizeY;
+}
 
 /**
  * @note Address: N/A
  * @note Size: 0x8
  */
-BaseGen* MapUnits::getBaseGen() { return mBaseGen; }
+BaseGen* MapUnits::getBaseGen()
+{
+	return mBaseGen;
+}
 
 /**
  * @note Address: N/A
  * @note Size: 0x8
  */
-JUTTexture* MapUnits::getUnitTexture() { return mTexture; }
+JUTTexture* MapUnits::getUnitTexture()
+{
+	return mTexture;
+}
 
 /**
  * @note Address: 0x80242938
@@ -146,13 +182,19 @@ UnitInfo::UnitInfo(MapUnits* mapUnits)
  * @note Address: 0x8024299C
  * @note Size: 0xC
  */
-void UnitInfo::setUnitTexture(JUTTexture* texture) { mMapUnits->mTexture = texture; }
+void UnitInfo::setUnitTexture(JUTTexture* texture)
+{
+	mMapUnits->mTexture = texture;
+}
 
 /**
  * @note Address: 0x802429A8
  * @note Size: 0x8
  */
-void UnitInfo::setUnitRotation(int rot) { mUnitRotation = rot; }
+void UnitInfo::setUnitRotation(int rot)
+{
+	mUnitRotation = rot;
+}
 
 /**
  * @note Address: 0x802429B0
@@ -220,7 +262,10 @@ void UnitInfo::create()
  * @note Address: 0x80242B6C
  * @note Size: 0xC
  */
-char* UnitInfo::getUnitName() { return mMapUnits->mName; }
+char* UnitInfo::getUnitName()
+{
+	return mMapUnits->mName;
+}
 
 /**
  * @note Address: N/A
@@ -236,37 +281,55 @@ int UnitInfo::getUnitIndex()
  * @note Address: 0x80242B78
  * @note Size: 0xC
  */
-int UnitInfo::getUnitKind() { return mMapUnits->mKind; }
+int UnitInfo::getUnitKind()
+{
+	return mMapUnits->mKind;
+}
 
 /**
  * @note Address: 0x80242B84
  * @note Size: 0x8
  */
-int UnitInfo::getUnitSizeX() { return mUnitSizeX; }
+int UnitInfo::getUnitSizeX()
+{
+	return mUnitSizeX;
+}
 
 /**
  * @note Address: 0x80242B8C
  * @note Size: 0x8
  */
-int UnitInfo::getUnitSizeY() { return mUnitSizeY; }
+int UnitInfo::getUnitSizeY()
+{
+	return mUnitSizeY;
+}
 
 /**
  * @note Address: 0x80242B94
  * @note Size: 0x8
  */
-int UnitInfo::getUnitRotation() { return mUnitRotation; }
+int UnitInfo::getUnitRotation()
+{
+	return mUnitRotation;
+}
 
 /**
  * @note Address: 0x80242B9C
  * @note Size: 0x24
  */
-DoorNode* UnitInfo::getDoorNode(int doorNum) { return static_cast<DoorNode*>(mDoorNode->getChildAt(doorNum)); }
+DoorNode* UnitInfo::getDoorNode(int doorNum)
+{
+	return static_cast<DoorNode*>(mDoorNode->getChildAt(doorNum));
+}
 
 /**
  * @note Address: 0x80242BC0
  * @note Size: 0xC
  */
-BaseGen* UnitInfo::getBaseGen() { return mMapUnits->mBaseGen; }
+BaseGen* UnitInfo::getBaseGen()
+{
+	return mMapUnits->mBaseGen;
+}
 
 /**
  * @note Address: 0x80242BCC

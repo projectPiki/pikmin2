@@ -51,7 +51,9 @@ JKRArchive::JKRArchive(const char* p1, JKRArchive::EMountMode mountMode)
  * @note Address: 0x8001A564
  * @note Size: 0x60
  */
-JKRArchive::~JKRArchive() { }
+JKRArchive::~JKRArchive()
+{
+}
 
 /**
  * @note Address: 0x8001A5C4

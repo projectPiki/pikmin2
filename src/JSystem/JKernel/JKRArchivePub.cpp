@@ -356,4 +356,7 @@ JKRFileFinder* JKRArchive::getFirstFile(const char* path) const
  * @note Address: 0x8001BB8C
  * @note Size: 0x2C
  */
-u32 JKRArchive::getExpandedResSize(const void* resource) const { return getResSize(resource); }
+u32 JKRArchive::getExpandedResSize(const void* resource) const
+{
+	return getResSize(resource);
+}

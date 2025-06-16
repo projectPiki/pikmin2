@@ -285,7 +285,10 @@ void addYPos(J2DPane*, f32)
  * @note Address: 0x803489A8
  * @note Size: 0x24
  */
-void TGameOverScreen::setPosY(f32 pos) { mScreen->setXY(0.0f, pos); }
+void TGameOverScreen::setPosY(f32 pos)
+{
+	mScreen->setXY(0.0f, pos);
+}
 
 /**
  * @note Address: 0x803489CC

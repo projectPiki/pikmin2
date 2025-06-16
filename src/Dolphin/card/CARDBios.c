@@ -28,13 +28,18 @@ static OSResetFunctionInfo ResetFunctionInfo = { OnReset, 127 };
  * @note Address: 0x800D466C
  * @note Size: 0x4
  */
-void __CARDDefaultApiCallback(s32 channel, s32 result) { }
+void __CARDDefaultApiCallback(s32 channel, s32 result)
+{
+}
 
 /**
  * @note Address: 0x800D4670
  * @note Size: 0x34
  */
-void __CARDSyncCallback(s32 channel, s32 result) { OSWakeupThread(&__CARDBlock[channel].threadQueue); }
+void __CARDSyncCallback(s32 channel, s32 result)
+{
+	OSWakeupThread(&__CARDBlock[channel].threadQueue);
+}
 
 /**
  * @note Address: 0x800D46A4
@@ -561,7 +566,10 @@ void CARDInit()
  * @note Address: 0x800D558C
  * @note Size: 0x8
  */
-u16 __CARDGetFontEncode() { return __CARDEncode; }
+u16 __CARDGetFontEncode()
+{
+	return __CARDEncode;
+}
 
 // /**
 //  * @note Address: N/A

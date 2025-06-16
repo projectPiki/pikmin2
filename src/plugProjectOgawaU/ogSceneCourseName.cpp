@@ -9,13 +9,17 @@ namespace newScreen {
  * @note Address: 0x80318050
  * @note Size: 0x3C
  */
-CourseName::CourseName() { }
+CourseName::CourseName()
+{
+}
 
 /**
  * @note Address: N/A
  * @note Size: 0x74
  */
-CourseName::~CourseName() { }
+CourseName::~CourseName()
+{
+}
 
 /**
  * @note Address: 0x8031808C
@@ -52,7 +56,9 @@ void CourseName::doUserCallBackFunc(Resource::MgrCommand*)
  * @note Address: 0x803181B4
  * @note Size: 0x4
  */
-void CourseName::doCreateObj(JKRArchive*) { }
+void CourseName::doCreateObj(JKRArchive*)
+{
+}
 
 /**
  * @note Address: 0x803181B8

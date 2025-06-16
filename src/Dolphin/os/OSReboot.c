@@ -67,7 +67,10 @@ void ReadApploader(OSTime time1)
  * @note Address: 0x800EFF5C
  * @note Size: 0xC
  */
-static void Callback(void) { Prepared = TRUE; }
+static void Callback(void)
+{
+	Prepared = TRUE;
+}
 
 /**
  * @note Address: 0x800EFF68

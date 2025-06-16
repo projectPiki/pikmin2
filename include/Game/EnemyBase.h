@@ -1023,7 +1023,10 @@ struct StateMachine : public Game::EnemyStateMachine {
 
 // defined here to avoid include loop
 namespace efx {
-inline Arg::Arg(Game::EnemyBase* enemy) { mPosition = enemy->mPosition; }
+inline Arg::Arg(Game::EnemyBase* enemy)
+{
+	mPosition = enemy->mPosition;
+}
 } // namespace efx
 
 #endif

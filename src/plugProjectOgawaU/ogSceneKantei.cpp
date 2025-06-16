@@ -7,13 +7,18 @@ namespace newScreen {
  * @note Address: 0x80319BDC
  * @note Size: 0x44
  */
-KanteiDemo::KanteiDemo() { mObjBase = nullptr; }
+KanteiDemo::KanteiDemo()
+{
+	mObjBase = nullptr;
+}
 
 /**
  * @note Address: 0x80319C20
  * @note Size: 0x4
  */
-void KanteiDemo::doUserCallBackFunc(Resource::MgrCommand*) { }
+void KanteiDemo::doUserCallBackFunc(Resource::MgrCommand*)
+{
+}
 
 /**
  * @note Address: 0x80319C24

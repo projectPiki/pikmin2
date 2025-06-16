@@ -79,7 +79,10 @@ extern s32* wsGroupNumber;
 extern s32* wsLoadStatus;
 extern int wsMax;
 
-inline int getSceneSetFlag() { return SceneSetFlag; }
+inline int getSceneSetFlag()
+{
+	return SceneSetFlag;
+}
 
 } // namespace BankWave
 } // namespace JAInter

@@ -40,7 +40,10 @@ JointShadowRootNode::JointShadowRootNode(Creature* owner)
 void JointShadowRootNode::init(int count)
 {
 	mIsVisible = false;
-	FOREACH_NODE(JointShadowNode, mChild, childNode) { childNode->init(count); }
+	FOREACH_NODE(JointShadowNode, mChild, childNode)
+	{
+		childNode->init(count);
+	}
 }
 
 /**
@@ -150,13 +153,18 @@ void ShadowMgr::loadResource()
  * @note Address: 0x80241654
  * @note Size: 0x4
  */
-void ShadowMgr::init() { }
+void ShadowMgr::init()
+{
+}
 
 /**
  * @note Address: 0x80241658
  * @note Size: 0x10
  */
-void ShadowMgr::setViewport(Viewport* vp, int idx) { mViewports[idx] = vp; }
+void ShadowMgr::setViewport(Viewport* vp, int idx)
+{
+	mViewports[idx] = vp;
+}
 
 /**
  * @note Address: 0x80241668
@@ -517,7 +525,10 @@ void ShadowMgr::killJointShadow(Creature* owner)
  * @note Address: 0x802420DC
  * @note Size: 0x24
  */
-void ShadowMgr::setJointShadowRootNode(JointShadowRootNode* node) { mInactiveJointShadows->add(node); }
+void ShadowMgr::setJointShadowRootNode(JointShadowRootNode* node)
+{
+	mInactiveJointShadows->add(node);
+}
 
 /**
  * @note Address: 0x80242100
@@ -570,13 +581,19 @@ void ShadowMgr::setForceVisible(Creature* owner, bool isVisible)
  * @note Address: 0x802421F0
  * @note Size: 0x30
  */
-int ShadowMgr::getSize() { return mActiveShadows->getChildCount(); }
+int ShadowMgr::getSize()
+{
+	return mActiveShadows->getChildCount();
+}
 
 /**
  * @note Address: 0x80242220
  * @note Size: 0x8
  */
-int ShadowMgr::getMax() { return mAllocShadowNum; }
+int ShadowMgr::getMax()
+{
+	return mAllocShadowNum;
+}
 
 /**
  * @note Address: 0x80242228
@@ -596,19 +613,28 @@ Creature* ShadowMgr::getCreature(int idx)
  * @note Address: 0x80242260
  * @note Size: 0x8
  */
-int ShadowMgr::getFirst() { return 0; }
+int ShadowMgr::getFirst()
+{
+	return 0;
+}
 
 /**
  * @note Address: 0x80242268
  * @note Size: 0x8
  */
-int ShadowMgr::getNext(int idx) { return idx + 1; }
+int ShadowMgr::getNext(int idx)
+{
+	return idx + 1;
+}
 
 /**
  * @note Address: 0x80242270
  * @note Size: 0x4C
  */
-bool ShadowMgr::isDone(int idx) { return (u8)(idx >= getSize()); }
+bool ShadowMgr::isDone(int idx)
+{
+	return (u8)(idx >= getSize());
+}
 
 /**
  * @note Address: 0x802422BC
@@ -690,7 +716,10 @@ bool ShadowMgr::isDrawJointShadow(JointShadowRootNode* node, int vpNum)
  * @note Address: 0x80242454
  * @note Size: 0xAC
  */
-void ShadowMgr::readShadowParms(char* fileName) { loadFromFile(this, fileName); }
+void ShadowMgr::readShadowParms(char* fileName)
+{
+	loadFromFile(this, fileName);
+}
 
 /**
  * @note Address: 0x80242500

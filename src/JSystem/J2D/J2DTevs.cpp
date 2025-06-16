@@ -87,7 +87,10 @@ const J2DIndTevStageInfo j2dDefaultIndTevStageInfo = {
  * @note Address: 0x8005921C
  * @note Size: 0x30
  */
-void J2DTexMtx::load(u32 size) { GXLoadTexMtxImm(mMtx, size * 3 + 30, (GXTexMtxType)mInfo.getTexMtxType()); }
+void J2DTexMtx::load(u32 size)
+{
+	GXLoadTexMtxImm(mMtx, size * 3 + 30, (GXTexMtxType)mInfo.getTexMtxType());
+}
 
 /**
  * @note Address: 0x8005924C
@@ -162,19 +165,28 @@ void J2DIndTevStage::load(u8 tevStage)
  * @note Address: 0x80059618
  * @note Size: 0x30
  */
-void J2DIndTexMtx::load(u8 mtxID) { GXSetIndTexMtx((GXIndTexMtxID)(mtxID + 1), mMtxInfo.mMtx, mMtxInfo.mScale); }
+void J2DIndTexMtx::load(u8 mtxID)
+{
+	GXSetIndTexMtx((GXIndTexMtxID)(mtxID + 1), mMtxInfo.mMtx, mMtxInfo.mScale);
+}
 
 /**
  * @note Address: 0x80059648
  * @note Size: 0x30
  */
-void J2DIndTexCoordScale::load(u8 stage) { GXSetIndTexCoordScale((GXIndTexStageID)stage, mScaleInfo.getScaleS(), mScaleInfo.getScaleT()); }
+void J2DIndTexCoordScale::load(u8 stage)
+{
+	GXSetIndTexCoordScale((GXIndTexStageID)stage, mScaleInfo.getScaleS(), mScaleInfo.getScaleT());
+}
 
 /**
  * @note Address: 0x80059678
  * @note Size: 0x30
  */
-void J2DIndTexOrder::load(u8 stage) { GXSetIndTexOrder((GXIndTexStageID)stage, mOrder.getTexCoordID(), mOrder.getTexMapID()); }
+void J2DIndTexOrder::load(u8 stage)
+{
+	GXSetIndTexOrder((GXIndTexStageID)stage, mOrder.getTexCoordID(), mOrder.getTexMapID());
+}
 
 const GXColor j2dDefaultColInfo                              = { 0xFF, 0xFF, 0xFF, 0xFF };
 const J2DTevOrderInfo j2dDefaultTevOrderInfoNull             = { 0xFF, 0xFF, 0xFF, 0 };

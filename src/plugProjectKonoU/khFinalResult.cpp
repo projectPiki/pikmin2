@@ -11,7 +11,10 @@
 #include "Screen/Game2DMgr.h"
 #include "trig.h"
 
-static void _Print(char* format, ...) { OSReport(format, __FILE__); }
+static void _Print(char* format, ...)
+{
+	OSReport(format, __FILE__);
+}
 
 namespace kh {
 namespace Screen {

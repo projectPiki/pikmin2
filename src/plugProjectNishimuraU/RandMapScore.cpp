@@ -95,13 +95,19 @@ void RandMapScore::makeObjectLayout(MapNode* mapNode, ObjectLayout* layout)
  * @note Address: 0x8024CBA8
  * @note Size: 0x10
  */
-MapNode* RandMapScore::getFixObjNode(int idx) { return mFixObjNodes[idx]; }
+MapNode* RandMapScore::getFixObjNode(int idx)
+{
+	return mFixObjNodes[idx];
+}
 
 /**
  * @note Address: 0x8024CBB8
  * @note Size: 0x10
  */
-BaseGen* RandMapScore::getFixObjGen(int idx) { return mFixObjGens[idx]; }
+BaseGen* RandMapScore::getFixObjGen(int idx)
+{
+	return mFixObjGens[idx];
+}
 
 /**
  * @note Address: 0x8024CBC8
@@ -119,13 +125,19 @@ void RandMapScore::getGlobalPosition(int idx, Vector3f& position)
  * @note Address: 0x8024CC2C
  * @note Size: 0x8
  */
-int RandMapScore::getVersusHighScore() { return mVersusHighScore; }
+int RandMapScore::getVersusHighScore()
+{
+	return mVersusHighScore;
+}
 
 /**
  * @note Address: 0x8024CC34
  * @note Size: 0x8
  */
-int RandMapScore::getVersusLowScore() { return mVersusLowScore; }
+int RandMapScore::getVersusLowScore()
+{
+	return mVersusLowScore;
+}
 
 /**
  * @note Address: 0x8024CC3C
@@ -789,7 +801,10 @@ lbl_8024D714:
  */
 void RandMapScore::copyNodeScore()
 {
-	FOREACH_NODE(MapNode, mGenerator->mPlacedMapNodes->mChild, currNode) { currNode->copyNodeScoreToVersusScore(); }
+	FOREACH_NODE(MapNode, mGenerator->mPlacedMapNodes->mChild, currNode)
+	{
+		currNode->copyNodeScoreToVersusScore();
+	}
 }
 
 /**

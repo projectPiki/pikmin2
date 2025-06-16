@@ -140,14 +140,20 @@ void GameState::do_init(VsGameSection* section)
  * @note Address: 0x802296E8
  * @note Size: 0xC
  */
-bool GameState::goingToCave(VsGameSection* section) { return isFlag(VSGS_EnteringCave); }
+bool GameState::goingToCave(VsGameSection* section)
+{
+	return isFlag(VSGS_EnteringCave);
+}
 
 /**
  * This fake function is here to generate the vtables in the correct order
  * - I cannot see a way for them to generate correctly without something here to
  * spawn DispMemberChallenge2P 'before' (after) DispWinLose, so this will have to suffice. - HP
  */
-static void fakeFuncVsGsGame() { og::Screen::DispMemberChallenge2P disp; }
+static void fakeFuncVsGsGame()
+{
+	og::Screen::DispMemberChallenge2P disp;
+}
 
 /**
  * @note Address: 0x802296F4
@@ -551,7 +557,10 @@ void GameState::onBattleFinished(VsGameSection* section, int winningPlayerIndex,
  * @note Address: 0x8022A858
  * @note Size: 0x10
  */
-bool GameState::isCardUsable(VsGameSection* section) { return (u32) !(mSubState); }
+bool GameState::isCardUsable(VsGameSection* section)
+{
+	return (u32) !(mSubState);
+}
 
 /**
  * @note Address: 0x8022A868
@@ -1050,7 +1059,9 @@ void GameState::update_GameChallenge(VsGameSection* section)
  * @note Address: 0x8022C70C
  * @note Size: 0x4
  */
-void GameState::drawStatus(Graphics&, VsGameSection* section) { }
+void GameState::drawStatus(Graphics&, VsGameSection* section)
+{
+}
 
 } // namespace VsGame
 } // namespace Game

@@ -446,7 +446,10 @@ void J3DMaterial::makeDisplayList()
  * @note Address: 0x80062BE4
  * @note Size: 0x2D4
  */
-void J3DMaterial::makeSharedDisplayList() { makeDisplayList_private(mSharedDLObj); }
+void J3DMaterial::makeSharedDisplayList()
+{
+	makeDisplayList_private(mSharedDLObj);
+}
 
 /**
  * @note Address: 0x80062EB8
@@ -547,7 +550,10 @@ void J3DMaterial::calcDiffTexMtx(const Mtx mtx)
  * @note Size: 0x18
  * setCurrentMtx__11J3DMaterialFv
  */
-void J3DMaterial::setCurrentMtx() { mShape->setCurrentMtx(mCurrentMtx); }
+void J3DMaterial::setCurrentMtx()
+{
+	mShape->setCurrentMtx(mCurrentMtx);
+}
 
 /**
  * @note Address: 0x80063304
@@ -829,19 +835,26 @@ J3DErrType J3DMaterial::newSingleSharedDisplayList(u32 p1)
  * @note Size: 0x50
  * initialize__18J3DPatchedMaterialFv
  */
-void J3DPatchedMaterial::initialize() { J3DMaterial::initialize(); }
+void J3DPatchedMaterial::initialize()
+{
+	J3DMaterial::initialize();
+}
 
 /**
  * @note Address: 0x80063830
  * @note Size: 0x4
  */
-void J3DPatchedMaterial::makeDisplayList() { }
+void J3DPatchedMaterial::makeDisplayList()
+{
+}
 
 /**
  * @note Address: 0x80063834
  * @note Size: 0x4
  */
-void J3DPatchedMaterial::makeSharedDisplayList() { }
+void J3DPatchedMaterial::makeSharedDisplayList()
+{
+}
 
 /**
  * @note Address: 0x80063838
@@ -872,32 +885,43 @@ void J3DPatchedMaterial::loadSharedDL()
  * @note Address: 0x80063894
  * @note Size: 0x4
  */
-void J3DPatchedMaterial::reset() { }
+void J3DPatchedMaterial::reset()
+{
+}
 
 /**
  * @note Address: 0x80063898
  * @note Size: 0x4
  */
-void J3DPatchedMaterial::change() { }
+void J3DPatchedMaterial::change()
+{
+}
 
 /**
  * @note Address: 0x8006389C
  * @note Size: 0x50
  * initialize__17J3DLockedMaterialFv
  */
-void J3DLockedMaterial::initialize() { J3DMaterial::initialize(); }
+void J3DLockedMaterial::initialize()
+{
+	J3DMaterial::initialize();
+}
 
 /**
  * @note Address: 0x800638EC
  * @note Size: 0x4
  */
-void J3DLockedMaterial::makeDisplayList() { }
+void J3DLockedMaterial::makeDisplayList()
+{
+}
 
 /**
  * @note Address: 0x800638F0
  * @note Size: 0x4
  */
-void J3DLockedMaterial::makeSharedDisplayList() { }
+void J3DLockedMaterial::makeSharedDisplayList()
+{
+}
 
 /**
  * @note Address: 0x800638F4
@@ -928,28 +952,38 @@ void J3DLockedMaterial::loadSharedDL()
  * @note Address: 0x80063950
  * @note Size: 0x4
  */
-void J3DLockedMaterial::patch() { }
+void J3DLockedMaterial::patch()
+{
+}
 
 /**
  * @note Address: 0x80063954
  * @note Size: 0x4
  */
-void J3DLockedMaterial::diff(u32) { }
+void J3DLockedMaterial::diff(u32)
+{
+}
 
 /**
  * @note Address: 0x80063958
  * @note Size: 0x4
  */
-void J3DLockedMaterial::calc(const Mtx) { }
+void J3DLockedMaterial::calc(const Mtx)
+{
+}
 
 /**
  * @note Address: 0x8006395C
  * @note Size: 0x4
  */
-void J3DLockedMaterial::reset() { }
+void J3DLockedMaterial::reset()
+{
+}
 
 /**
  * @note Address: 0x80063960
  * @note Size: 0x4
  */
-void J3DLockedMaterial::change() { }
+void J3DLockedMaterial::change()
+{
+}

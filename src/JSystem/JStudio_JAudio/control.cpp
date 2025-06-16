@@ -36,7 +36,9 @@ JStudio::TObject* createObject_SOUND_JAI_(const JStudio::stb::data::TParse_TBloc
  * @note Address: 0x80015D10
  * @note Size: 0x60
  */
-TCreateObject::~TCreateObject() { }
+TCreateObject::~TCreateObject()
+{
+}
 
 /**
  * @note Address: 0x80015D70

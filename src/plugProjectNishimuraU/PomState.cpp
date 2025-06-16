@@ -23,7 +23,10 @@ void FSM::init(EnemyBase* enemy)
  * @note Address: 0x80255EC8
  * @note Size: 0x2C
  */
-void StateWait::init(EnemyBase* enemy, StateArg* stateArg) { enemy->startMotion(POMANIM_Wait, nullptr); }
+void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
+{
+	enemy->startMotion(POMANIM_Wait, nullptr);
+}
 
 /**
  * @note Address: 0x80255EF4
@@ -40,7 +43,9 @@ void StateWait::exec(EnemyBase* enemy)
  * @note Address: 0x80255F50
  * @note Size: 0x4
  */
-void StateWait::cleanup(EnemyBase* enemy) { }
+void StateWait::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x80255F54
@@ -72,7 +77,9 @@ void StateDead::exec(EnemyBase* enemy)
  * @note Address: 0x80255FF8
  * @note Size: 0x4
  */
-void StateDead::cleanup(EnemyBase* enemy) { }
+void StateDead::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x80255FFC
@@ -109,7 +116,9 @@ void StateOpen::exec(EnemyBase* enemy)
  * @note Address: 0x802560DC
  * @note Size: 0x4
  */
-void StateOpen::cleanup(EnemyBase* enemy) { }
+void StateOpen::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x802560E0
@@ -143,7 +152,9 @@ void StateClose::exec(EnemyBase* enemy)
  * @note Address: 0x80256198
  * @note Size: 0x4
  */
-void StateClose::cleanup(EnemyBase* enemy) { }
+void StateClose::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x8025619C
@@ -183,7 +194,10 @@ void StateShot::exec(EnemyBase* enemy)
  * @note Address: 0x8025627C
  * @note Size: 0x10
  */
-void StateShot::cleanup(EnemyBase* enemy) { enemy->enableEvent(0, EB_Cullable); }
+void StateShot::cleanup(EnemyBase* enemy)
+{
+	enemy->enableEvent(0, EB_Cullable);
+}
 
 /**
  * @note Address: 0x8025628C
@@ -224,6 +238,8 @@ void StateSwing::exec(EnemyBase* enemy)
  * @note Address: 0x802563C0
  * @note Size: 0x4
  */
-void StateSwing::cleanup(EnemyBase* enemy) { }
+void StateSwing::cleanup(EnemyBase* enemy)
+{
+}
 } // namespace Pom
 } // namespace Game

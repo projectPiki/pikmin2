@@ -38,7 +38,9 @@ void FarmMgr::setupSound()
 {
 	FOREACH_NODE(Farm, mFarmsRootNode.mChild, farm)
 	{
-		FOREACH_NODE(Obstacle, farm->mObstacleRootNode.mChild, obstacle) { }
+		FOREACH_NODE(Obstacle, farm->mObstacleRootNode.mChild, obstacle)
+		{
+		}
 	}
 }
 
@@ -84,7 +86,10 @@ void FarmMgr::doEntry()
 {
 	gameSystem->setDrawBuffer(DB_FarmLayer);
 	if (mFarmsRootNode.mChild) {
-		FOREACH_NODE(Farm, mFarmsRootNode.mChild, farm) { farm->doEntry(); }
+		FOREACH_NODE(Farm, mFarmsRootNode.mChild, farm)
+		{
+			farm->doEntry();
+		}
 	}
 	gameSystem->setDrawBuffer(DB_NormalLayer);
 }
@@ -96,7 +101,10 @@ void FarmMgr::doEntry()
 void FarmMgr::doSetView(int viewportNumber)
 {
 	if (mFarmsRootNode.mChild) {
-		FOREACH_NODE(Farm, mFarmsRootNode.mChild, farm) { farm->doSetView(viewportNumber); }
+		FOREACH_NODE(Farm, mFarmsRootNode.mChild, farm)
+		{
+			farm->doSetView(viewportNumber);
+		}
 	}
 }
 
@@ -107,7 +115,10 @@ void FarmMgr::doSetView(int viewportNumber)
 void FarmMgr::doViewCalc()
 {
 	if (mFarmsRootNode.mChild) {
-		FOREACH_NODE(Farm, mFarmsRootNode.mChild, farm) { farm->doViewCalc(); }
+		FOREACH_NODE(Farm, mFarmsRootNode.mChild, farm)
+		{
+			farm->doViewCalc();
+		}
 	}
 }
 
@@ -115,13 +126,17 @@ void FarmMgr::doViewCalc()
  * @note Address: 0x80124340
  * @note Size: 0x4
  */
-void FarmMgr::doSimulation(f32) { }
+void FarmMgr::doSimulation(f32)
+{
+}
 
 /**
  * @note Address: 0x80124344
  * @note Size: 0x4
  */
-void FarmMgr::doDirectDraw(Graphics&) { }
+void FarmMgr::doDirectDraw(Graphics&)
+{
+}
 
 /**
  * @note Address: 0x80124348
@@ -129,7 +144,10 @@ void FarmMgr::doDirectDraw(Graphics&) { }
  */
 void FarmMgr::doDebugDraw(Graphics& gfx)
 {
-	FOREACH_NODE(Farm, mFarmsRootNode.mChild, farm) { farm->doDebugDraw(gfx); }
+	FOREACH_NODE(Farm, mFarmsRootNode.mChild, farm)
+	{
+		farm->doDebugDraw(gfx);
+	}
 }
 
 /**
@@ -211,7 +229,10 @@ Plant* FarmMgr::addPlant(Creature* creature)
 void FarmMgr::initAllFarmObjectNodes()
 {
 	if (mFarmsRootNode.mChild) {
-		FOREACH_NODE(Farm, mFarmsRootNode.mChild, farm) { farm->initAllObjectNodes(); }
+		FOREACH_NODE(Farm, mFarmsRootNode.mChild, farm)
+		{
+			farm->initAllObjectNodes();
+		}
 	}
 }
 
@@ -221,6 +242,8 @@ void FarmMgr::initAllFarmObjectNodes()
  * @note Size: 0x78
  * TODO: Make Weak
  */
-FarmMgr::~FarmMgr() { }
+FarmMgr::~FarmMgr()
+{
+}
 } // namespace Farm
 } // namespace Game

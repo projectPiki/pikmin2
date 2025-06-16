@@ -20,13 +20,19 @@ namespace Damagumo {
  * @note Address: 0x802A57A4
  * @note Size: 0x24
  */
-void DamagumoGroundCallBack::invokeOnGround(int footIdx, WaterBox* wbox) { mObj->createOnGroundEffect(footIdx, wbox); }
+void DamagumoGroundCallBack::invokeOnGround(int footIdx, WaterBox* wbox)
+{
+	mObj->createOnGroundEffect(footIdx, wbox);
+}
 
 /**
  * @note Address: 0x802A57C8
  * @note Size: 0x24
  */
-void DamagumoGroundCallBack::invokeOffGround(int footIdx, WaterBox* wbox) { mObj->createOffGroundEffect(footIdx, wbox); }
+void DamagumoGroundCallBack::invokeOffGround(int footIdx, WaterBox* wbox)
+{
+	mObj->createOffGroundEffect(footIdx, wbox);
+}
 
 /**
  * @note Address: 0x802A57EC
@@ -57,7 +63,9 @@ void Obj::constructor()
  * @note Address: 0x802A598C
  * @note Size: 0x4
  */
-void Obj::setInitialSetting(EnemyInitialParamBase*) { }
+void Obj::setInitialSetting(EnemyInitialParamBase*)
+{
+}
 
 /**
  * @note Address: 0x802A5990
@@ -142,13 +150,18 @@ void Obj::doAnimationCullingOff()
  * @note Address: 0x802A5BE0
  * @note Size: 0x4
  */
-void Obj::doDirectDraw(Graphics&) { }
+void Obj::doDirectDraw(Graphics&)
+{
+}
 
 /**
  * @note Address: 0x802A5BE4
  * @note Size: 0x20
  */
-void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
+void Obj::doDebugDraw(Graphics& gfx)
+{
+	EnemyBase::doDebugDraw(gfx);
+}
 
 /**
  * @note Address: 0x802A5C04
@@ -251,13 +264,19 @@ void Obj::doFinishStoneState()
  * @note Address: 0x802A5FB4
  * @note Size: 0x20
  */
-void Obj::doStartMovie() { effectDrawOff(); }
+void Obj::doStartMovie()
+{
+	effectDrawOff();
+}
 
 /**
  * @note Address: 0x802A5FD4
  * @note Size: 0x20
  */
-void Obj::doEndMovie() { effectDrawOn(); }
+void Obj::doEndMovie()
+{
+	effectDrawOn();
+}
 
 /**
  * @note Address: 0x802A5FF4
@@ -367,7 +386,10 @@ void Obj::setIKParameter()
  * @note Address: 0x802A65C0
  * @note Size: 0x20
  */
-void Obj::setIKSystemTargetPosition(Vector3f& targetPos) { mIkSystemMgr->mTargetPosition = targetPos; }
+void Obj::setIKSystemTargetPosition(Vector3f& targetPos)
+{
+	mIkSystemMgr->mTargetPosition = targetPos;
+}
 
 /**
  * @note Address: 0x802A65E0
@@ -396,67 +418,100 @@ void Obj::doAnimationIKSystem()
  * @note Address: 0x802A66A0
  * @note Size: 0x24
  */
-void Obj::finishAnimationIKSystem() { mIkSystemMgr->resetAnimationCallBack(); }
+void Obj::finishAnimationIKSystem()
+{
+	mIkSystemMgr->resetAnimationCallBack();
+}
 
 /**
  * @note Address: 0x802A66C4
  * @note Size: 0x24
  */
-void Obj::startProgramedIK() { mIkSystemMgr->startProgramedIK(); }
+void Obj::startProgramedIK()
+{
+	mIkSystemMgr->startProgramedIK();
+}
 
 /**
  * @note Address: 0x802A66E8
  * @note Size: 0x24
  */
-void Obj::startIKMotion() { mIkSystemMgr->startIKMotion(); }
+void Obj::startIKMotion()
+{
+	mIkSystemMgr->startIKMotion();
+}
 
 /**
  * @note Address: 0x802A670C
  * @note Size: 0x24
  */
-void Obj::finishIKMotion() { mIkSystemMgr->finishIKMotion(); }
+void Obj::finishIKMotion()
+{
+	mIkSystemMgr->finishIKMotion();
+}
 
 /**
  * @note Address: 0x802A6730
  * @note Size: 0x24
  */
-void Obj::forceFinishIKMotion() { mIkSystemMgr->forceFinishIKMotion(); }
+void Obj::forceFinishIKMotion()
+{
+	mIkSystemMgr->forceFinishIKMotion();
+}
 
 /**
  * @note Address: 0x802A6754
  * @note Size: 0x24
  */
-bool Obj::isFinishIKMotion() { return mIkSystemMgr->isFinishIKMotion(); }
+bool Obj::isFinishIKMotion()
+{
+	return mIkSystemMgr->isFinishIKMotion();
+}
 
 /**
  * @note Address: 0x802A6778
  * @note Size: 0x24
  */
-void Obj::startBlendMotion() { mIkSystemMgr->startBlendMotion(); }
+void Obj::startBlendMotion()
+{
+	mIkSystemMgr->startBlendMotion();
+}
 
 /**
  * @note Address: 0x802A679C
  * @note Size: 0x24
  */
-void Obj::finishBlendMotion() { mIkSystemMgr->finishBlendMotion(); }
+void Obj::finishBlendMotion()
+{
+	mIkSystemMgr->finishBlendMotion();
+}
 
 /**
  * @note Address: 0x802A67C0
  * @note Size: 0x20
  */
-Vector3f Obj::getTraceCentrePosition() { return mIkSystemMgr->mTraceCentrePosition; }
+Vector3f Obj::getTraceCentrePosition()
+{
+	return mIkSystemMgr->mTraceCentrePosition;
+}
 
 /**
  * @note Address: 0x802A67E0
  * @note Size: 0x24
  */
-bool Obj::isCollisionCheck(CollPart* collpart) { return mIkSystemMgr->isCollisionCheck(collpart); }
+bool Obj::isCollisionCheck(CollPart* collpart)
+{
+	return mIkSystemMgr->isCollisionCheck(collpart);
+}
 
 /**
  * @note Address: 0x802A6804
  * @note Size: 0x48
  */
-void Obj::createShadowSystem() { mShadowMgr = new DamagumoShadowMgr(this); }
+void Obj::createShadowSystem()
+{
+	mShadowMgr = new DamagumoShadowMgr(this);
+}
 
 /**
  * @note Address: 0x802A684C
@@ -476,13 +531,19 @@ void Obj::setupShadowSystem()
  * @note Address: 0x802A68C0
  * @note Size: 0x24
  */
-void Obj::doAnimationShadowSystem() { mShadowMgr->update(); }
+void Obj::doAnimationShadowSystem()
+{
+	mShadowMgr->update();
+}
 
 /**
  * @note Address: 0x802A68E4
  * @note Size: 0x4C
  */
-void Obj::createMaterialAnimation() { mMatLoopAnimator = new Sys::MatLoopAnimator[2]; }
+void Obj::createMaterialAnimation()
+{
+	mMatLoopAnimator = new Sys::MatLoopAnimator[2];
+}
 
 /**
  * @note Address: 0x802A6930

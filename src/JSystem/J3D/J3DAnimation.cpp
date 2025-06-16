@@ -746,7 +746,10 @@ void J3DAnmTextureSRTKey::searchUpdateMaterialID(J3DMaterialTable* table)
  * @note Address: 0x80069020
  * @note Size: 0x124
  */
-void J3DAnmTextureSRTKey::searchUpdateMaterialID(J3DModelData* modelData) { searchUpdateMaterialID(&modelData->getMaterialTable()); }
+void J3DAnmTextureSRTKey::searchUpdateMaterialID(J3DModelData* modelData)
+{
+	searchUpdateMaterialID(&modelData->getMaterialTable());
+}
 
 /**
  * @note Address: 0x80069144

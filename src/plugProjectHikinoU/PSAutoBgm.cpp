@@ -40,13 +40,18 @@ Conductor::Conductor(AutoBgm* autoBgm, int p2)
  * @note Address: 0x80339024
  * @note Size: 0x290
  */
-Conductor::~Conductor() { }
+Conductor::~Conductor()
+{
+}
 
 /**
  * @note Address: N/A
  * @note Size: 0x74
  */
-void Conductor::onBeatProc() { mBgmSeq->mRootTrack->onBeatTop(); }
+void Conductor::onBeatProc()
+{
+	mBgmSeq->mRootTrack->onBeatTop();
+}
 
 /**
  * @note Address: 0x803392B4
@@ -211,7 +216,9 @@ void Track::afterGetFromFree()
  * @note Address: 0x803397D8
  * @note Size: 0x3DC
  */
-Track::~Track() { }
+Track::~Track()
+{
+}
 
 /**
  * @note Address: 0x80339BB4
@@ -2296,6 +2303,9 @@ void AutoBgm::pauseOn(SeqBase::PauseMode pause)
  * @note Address: 0x8033C548
  * @note Size: 0x20
  */
-void AutoBgm::pauseOff() { SeqBase::pauseOff(); }
+void AutoBgm::pauseOff()
+{
+	SeqBase::pauseOff();
+}
 
 } // namespace PSAutoBgm

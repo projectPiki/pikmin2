@@ -23,5 +23,8 @@ inline Mgr2D::Mgr2D(JKRHeap* heap)
  * @note Address: 0x80433F70
  * @note Size: 0xB0
  */
-void Mgr2D::init(JKRHeap* heap) { new Mgr2D(heap); }
+void Mgr2D::init(JKRHeap* heap)
+{
+	new Mgr2D(heap);
+}
 } // namespace Resource

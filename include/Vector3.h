@@ -121,27 +121,69 @@ struct Vector3 {
 typedef Vector3<f32> Vector3f;
 typedef Vector3<int> Vector3i;
 
-inline Vector3f operator+(const Vector3f& a, const Vector3f& b) { return Vector3f(a.x + b.x, a.y + b.y, a.z + b.z); }
+inline Vector3f operator+(const Vector3f& a, const Vector3f& b)
+{
+	return Vector3f(a.x + b.x, a.y + b.y, a.z + b.z);
+}
 
 // Using sub2 here fixes inline depth issues for navi_demoCheck and itemUjamushi
 // (panModokiState has an instance of needing to call sub2 directly because its quirky like that)
-inline Vector3f operator-(const Vector3f& a, const Vector3f& b) { return Vector3f::sub2(a, b); }
+inline Vector3f operator-(const Vector3f& a, const Vector3f& b)
+{
+	return Vector3f::sub2(a, b);
+}
 
-inline Vector3f operator*(const Vector3f& a, const f32 b) { return Vector3f(a.x * b, a.y * b, a.z * b); }
-inline Vector3f operator/(const Vector3f& a, const f32 b) { return Vector3f(a.x / b, a.y / b, a.z / b); }
-inline Vector3f operator*=(const Vector3f& a, const f32 b) { return Vector3f(a.x * b, a.y * b, a.z * b); }
+inline Vector3f operator*(const Vector3f& a, const f32 b)
+{
+	return Vector3f(a.x * b, a.y * b, a.z * b);
+}
+inline Vector3f operator/(const Vector3f& a, const f32 b)
+{
+	return Vector3f(a.x / b, a.y / b, a.z / b);
+}
+inline Vector3f operator*=(const Vector3f& a, const f32 b)
+{
+	return Vector3f(a.x * b, a.y * b, a.z * b);
+}
 
-inline Vector3i operator+(const Vector3i& a, const Vector3i& b) { return Vector3i(a.x + b.x, a.y + b.y, a.z + b.z); }
-inline Vector3i operator-(const Vector3i& a, const Vector3i& b) { return Vector3i(a.x - b.x, a.y - b.y, a.z - b.z); }
-inline Vector3i operator*(const Vector3i& a, const int b) { return Vector3i(a.x * b, a.y * b, a.z * b); }
-inline Vector3i operator/(const Vector3i& a, const int b) { return Vector3i(a.x / b, a.y / b, a.z / b); }
-inline Vector3i operator*=(const Vector3i& a, const int b) { return Vector3i(a.x * b, a.y * b, a.z * b); }
+inline Vector3i operator+(const Vector3i& a, const Vector3i& b)
+{
+	return Vector3i(a.x + b.x, a.y + b.y, a.z + b.z);
+}
+inline Vector3i operator-(const Vector3i& a, const Vector3i& b)
+{
+	return Vector3i(a.x - b.x, a.y - b.y, a.z - b.z);
+}
+inline Vector3i operator*(const Vector3i& a, const int b)
+{
+	return Vector3i(a.x * b, a.y * b, a.z * b);
+}
+inline Vector3i operator/(const Vector3i& a, const int b)
+{
+	return Vector3i(a.x / b, a.y / b, a.z / b);
+}
+inline Vector3i operator*=(const Vector3i& a, const int b)
+{
+	return Vector3i(a.x * b, a.y * b, a.z * b);
+}
 
-inline bool operator==(const Vector3f& a, const Vector3f& b) { return (a.x == b.x && a.y == b.y && a.z == b.z); }
-inline bool operator!=(const Vector3f& a, const Vector3f& b) { return (a.x != b.x || a.y != b.y || a.z != b.z); }
+inline bool operator==(const Vector3f& a, const Vector3f& b)
+{
+	return (a.x == b.x && a.y == b.y && a.z == b.z);
+}
+inline bool operator!=(const Vector3f& a, const Vector3f& b)
+{
+	return (a.x != b.x || a.y != b.y || a.z != b.z);
+}
 
-inline bool operator==(const Vector3i& a, const Vector3i& b) { return (a.x == b.x && a.y == b.y && a.z == b.z); }
-inline bool operator!=(const Vector3i& a, const Vector3i& b) { return (a.x != b.x || a.y != b.y || a.z != b.z); }
+inline bool operator==(const Vector3i& a, const Vector3i& b)
+{
+	return (a.x == b.x && a.y == b.y && a.z == b.z);
+}
+inline bool operator!=(const Vector3i& a, const Vector3i& b)
+{
+	return (a.x != b.x || a.y != b.y || a.z != b.z);
+}
 
 template <typename T>
 inline Vector3<T>::Vector3()
@@ -782,9 +824,15 @@ inline f32 sqrDistanceXZ(Vector3f& vec1, Vector3f& vec2)
 	return x * x + z * z;
 }
 
-inline bool inRadius(f32 r, Vector3f& vec1, Vector3f& vec2) { return sqrDistanceXZ(vec1, vec2) < r * r; }
+inline bool inRadius(f32 r, Vector3f& vec1, Vector3f& vec2)
+{
+	return sqrDistanceXZ(vec1, vec2) < r * r;
+}
 
-inline bool outsideRadius(f32 r, Vector3f& vec1, Vector3f& vec2) { return sqrDistanceXZ(vec1, vec2) > r * r; }
+inline bool outsideRadius(f32 r, Vector3f& vec1, Vector3f& vec2)
+{
+	return sqrDistanceXZ(vec1, vec2) > r * r;
+}
 
 inline f32 _distanceXZ(Vector3f& vec1, Vector3f& vec2)
 {
@@ -803,7 +851,10 @@ inline f32 _distanceXZflag(Vector3f& vec1, Vector3f& vec2)
 	return _sqrtf(vec.y + vec.x * vec.x);
 }
 
-inline void sumXY(Vector3f vec, f32* sum) { *sum = (vec.x *= vec.x) + (vec.y *= vec.y); }
+inline void sumXY(Vector3f vec, f32* sum)
+{
+	*sum = (vec.x *= vec.x) + (vec.y *= vec.y);
+}
 
 inline void sumZ(Vector3f vec, f32* sum)
 {

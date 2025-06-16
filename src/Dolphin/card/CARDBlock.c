@@ -8,7 +8,10 @@ s32 __CARDUpdateFatBlock(s32 channel, CARDFatBlock* fat, CARDCallback callback);
  * @note Address: 0x800D6E00
  * @note Size: 0x8
  */
-CARDFatBlock* __CARDGetFatBlock(CARDControl* card) { return card->currentFat; }
+CARDFatBlock* __CARDGetFatBlock(CARDControl* card)
+{
+	return card->currentFat;
+}
 
 /**
  * @note Address: 0x800D6E08

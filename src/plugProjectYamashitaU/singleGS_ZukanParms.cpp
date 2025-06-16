@@ -761,7 +761,10 @@ void PositionParmsList::read(Stream& stream)
  * @note Address: 0x80131934
  * @note Size: 0x20
  */
-void CameraParms::read(Stream& stream) { mParms.read(stream); }
+void CameraParms::read(Stream& stream)
+{
+	mParms.read(stream);
+}
 
 /**
  * @note Address: 0x80131954

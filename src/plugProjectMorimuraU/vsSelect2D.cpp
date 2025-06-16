@@ -139,7 +139,9 @@ void TVsSelectExplanationWindow::create(char const* path, u32 flags)
  * @note Address: 0x80399B7C
  * @note Size: 0x4
  */
-void TVsSelectExplanationWindow::screenScaleUp() { }
+void TVsSelectExplanationWindow::screenScaleUp()
+{
+}
 
 /**
  * @note Address: N/A
@@ -165,7 +167,9 @@ TVsPiki::TVsPiki(J2DPane* left, J2DPane* right, J2DPane* flower)
  * @note Address: 0x80399B80
  * @note Size: 0x4
  */
-TVsPiki::posInfo::posInfo() { }
+TVsPiki::posInfo::posInfo()
+{
+}
 
 /**
  * @note Address: N/A
@@ -6435,7 +6439,10 @@ setColor__14J2DGrafContextFQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColo
  * @note Address: 0x8039F334
  * @note Size: 0xC
  */
-void TVsSelect::doUpdateFadeinFinish() { mCanInput = true; }
+void TVsSelect::doUpdateFadeinFinish()
+{
+	mCanInput = true;
+}
 
 /**
  * @note Address: 0x8039F340
@@ -6731,7 +6738,10 @@ u64 TVsSelect::getNameID(int id)
  * @note Address: 0x8039FA7C
  * @note Size: 0x8
  */
-int TVsSelect::getIdMax() { return mStageCount; }
+int TVsSelect::getIdMax()
+{
+	return mStageCount;
+}
 
 /**
  * @note Address: 0x8039FA84

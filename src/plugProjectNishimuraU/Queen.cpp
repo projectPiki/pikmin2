@@ -32,7 +32,9 @@ Obj::Obj()
  * @note Address: 0x80289650
  * @note Size: 0x4
  */
-void Obj::setInitialSetting(EnemyInitialParamBase*) { }
+void Obj::setInitialSetting(EnemyInitialParamBase*)
+{
+}
 
 /**
  * @note Address: 0x80289654
@@ -139,13 +141,18 @@ void Obj::doAnimationCullingOff()
  * @note Address: 0x8028993C
  * @note Size: 0x4
  */
-void Obj::doDirectDraw(Graphics&) { }
+void Obj::doDirectDraw(Graphics&)
+{
+}
 
 /**
  * @note Address: 0x80289940
  * @note Size: 0x20
  */
-void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
+void Obj::doDebugDraw(Graphics& gfx)
+{
+	EnemyBase::doDebugDraw(gfx);
+}
 
 /**
  * @note Address: 0x80289960
@@ -196,7 +203,10 @@ bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* part)
  * @note Address: 0x80289AE8
  * @note Size: 0x8
  */
-bool Obj::earthquakeCallBack(Creature* creature, f32 damage) { return false; }
+bool Obj::earthquakeCallBack(Creature* creature, f32 damage)
+{
+	return false;
+}
 
 /**
  * @note Address: 0x80289AF0
@@ -247,19 +257,28 @@ bool Obj::ignoreAtari(Creature* creature)
  * @note Address: 0x80289C48
  * @note Size: 0x28
  */
-void Obj::startCarcassMotion() { startMotion(QUEENANIM_Carry, nullptr); }
+void Obj::startCarcassMotion()
+{
+	startMotion(QUEENANIM_Carry, nullptr);
+}
 
 /**
  * @note Address: 0x80289C70
  * @note Size: 0x20
  */
-void Obj::doStartMovie() { effectDrawOff(); }
+void Obj::doStartMovie()
+{
+	effectDrawOff();
+}
 
 /**
  * @note Address: 0x80289C90
  * @note Size: 0x20
  */
-void Obj::doEndMovie() { effectDrawOn(); }
+void Obj::doEndMovie()
+{
+	effectDrawOn();
+}
 
 /**
  * @note Address: 0x80289CB0
@@ -477,13 +496,19 @@ bool Obj::isCreateBaby()
  * @note Address: 0x8028AC58
  * @note Size: 0x18
  */
-bool Obj::isHitCounterUp() { return mFlickTimer > mPrevHitNum; }
+bool Obj::isHitCounterUp()
+{
+	return mFlickTimer > mPrevHitNum;
+}
 
 /**
  * @note Address: 0x8028AC70
  * @note Size: 0x28
  */
-void Obj::resetJointShadow() { shadowMgr->delNormalShadow(this); }
+void Obj::resetJointShadow()
+{
+	shadowMgr->delNormalShadow(this);
+}
 
 /**
  * @note Address: 0x8028AC98
@@ -641,7 +666,10 @@ void Obj::setupEffect()
  * @note Address: 0x8028B8CC
  * @note Size: 0x34
  */
-void Obj::createBornEffect() { mEfxLay->create(nullptr); }
+void Obj::createBornEffect()
+{
+	mEfxLay->create(nullptr);
+}
 
 /**
  * @note Address: 0x8028B900
@@ -700,43 +728,64 @@ void Obj::forceFinishRollingEffect()
  * @note Address: 0x8028BAC4
  * @note Size: 0x34
  */
-void Obj::startDamageEffect() { mEfxDamage->create(nullptr); }
+void Obj::startDamageEffect()
+{
+	mEfxDamage->create(nullptr);
+}
 
 /**
  * @note Address: 0x8028BAF8
  * @note Size: 0x30
  */
-void Obj::finishDamageEffect() { mEfxDamage->fade(); }
+void Obj::finishDamageEffect()
+{
+	mEfxDamage->fade();
+}
 
 /**
  * @note Address: 0x8028BB28
  * @note Size: 0x34
  */
-void Obj::createFlickEffect() { mEfxFlick->create(nullptr); }
+void Obj::createFlickEffect()
+{
+	mEfxFlick->create(nullptr);
+}
 
 /**
  * @note Address: 0x8028BB5C
  * @note Size: 0x34
  */
-void Obj::createDeadEffect() { mEfxDead->create(nullptr); }
+void Obj::createDeadEffect()
+{
+	mEfxDead->create(nullptr);
+}
 
 /**
  * @note Address: 0x8028BB90
  * @note Size: 0x34
  */
-void Obj::createWakeUpEffect() { mEfxWakeup->create(nullptr); }
+void Obj::createWakeUpEffect()
+{
+	mEfxWakeup->create(nullptr);
+}
 
 /**
  * @note Address: 0x8028BBC4
  * @note Size: 0x34
  */
-void Obj::startSleepEffect() { mEfxHanacho->create(nullptr); }
+void Obj::startSleepEffect()
+{
+	mEfxHanacho->create(nullptr);
+}
 
 /**
  * @note Address: 0x8028BBF8
  * @note Size: 0x30
  */
-void Obj::finishSleepEffect() { mEfxHanacho->fade(); }
+void Obj::finishSleepEffect()
+{
+	mEfxHanacho->fade();
+}
 
 /**
  * @note Address: 0x8028BC28

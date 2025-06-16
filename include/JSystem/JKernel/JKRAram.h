@@ -275,14 +275,20 @@ struct JKRAramPiece {
 
 int JKRDecompressFromAramToMainRam(u32 src, void* dst, u32 srcLength, u32 dstLength, u32 offset, u32* resourceSize);
 
-inline JKRAramStream* JKRCreateAramStreamManager(s32 priority) { return JKRAramStream::create(priority); }
+inline JKRAramStream* JKRCreateAramStreamManager(s32 priority)
+{
+	return JKRAramStream::create(priority);
+}
 
 inline JKRAramBlock* JKRAllocFromAram(u32 size, JKRAramHeap::EAllocMode allocMode)
 {
 	return JKRAram::getAramHeap()->alloc(size, allocMode);
 }
 
-inline void JKRFreeToAram(JKRAramBlock* block) { JKRAram::getAramHeap()->free(block); }
+inline void JKRFreeToAram(JKRAramBlock* block)
+{
+	JKRAram::getAramHeap()->free(block);
+}
 
 inline JKRAramBlock* JKRMainRamToAram(u8* buf, u32 bufSize, u32 alignedSize, JKRExpandSwitch expandSwitch, u32 fileSize, JKRHeap* heap,
                                       int id, u32* pSize)

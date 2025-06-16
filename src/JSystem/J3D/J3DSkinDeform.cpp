@@ -27,7 +27,10 @@ void J3DSkinDeform::deform(J3DModel* model)
  * @note Address: 0x800886E0
  * @note Size: 0x30
  */
-void J3DVtxColorCalc::calc(J3DModel* model) { calc(&model->mVertexBuffer); }
+void J3DVtxColorCalc::calc(J3DModel* model)
+{
+	calc(&model->mVertexBuffer);
+}
 
 /**
  * @note Address: 0x80088710

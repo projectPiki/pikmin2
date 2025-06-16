@@ -106,7 +106,10 @@ void LightObj::set(Matrixf& posMtx)
  * @note Address: 0x8042B80C
  * @note Size: 0x5C
  */
-void LightObj::drawPos(Graphics& gfx) { drawPos(gfx, *gfx.mCurrentViewport->getMatrix(false)); }
+void LightObj::drawPos(Graphics& gfx)
+{
+	drawPos(gfx, *gfx.mCurrentViewport->getMatrix(false));
+}
 
 /**
  * @note Address: 0x8042B868
@@ -209,7 +212,10 @@ void LightMgr::set(Matrixf& mtx)
 	GXColor color = mAmbientLight.mColor.toGXColor();
 	GXSetChanAmbColor(GX_COLOR0A0, color);
 
-	FOREACH_NODE(LightObj, mLightObjChain.mChild, light) { light->set(mtx); }
+	FOREACH_NODE(LightObj, mLightObjChain.mChild, light)
+	{
+		light->set(mtx);
+	}
 }
 
 /**
@@ -218,5 +224,8 @@ void LightMgr::set(Matrixf& mtx)
  */
 void LightMgr::drawDebugInfo(Graphics& gfx)
 {
-	FOREACH_NODE(LightObj, mLightObjChain.mChild, light) { light->drawPos(gfx); }
+	FOREACH_NODE(LightObj, mLightObjChain.mChild, light)
+	{
+		light->drawPos(gfx);
+	}
 }

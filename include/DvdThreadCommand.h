@@ -28,7 +28,7 @@ struct DvdThreadCommand {
 	};
 
 	DvdThreadCommand();
-	~DvdThreadCommand() {};
+	~DvdThreadCommand() { };
 	void loadUseCallBack(struct IDelegate*);
 
 	// unused/inlined:

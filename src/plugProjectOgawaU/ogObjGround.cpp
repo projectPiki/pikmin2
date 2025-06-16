@@ -42,7 +42,9 @@ ObjGround::ObjGround(char const* name)
  * @note Address: 0x8030DF4C
  * @note Size: 0xAC
  */
-ObjGround::~ObjGround() { }
+ObjGround::~ObjGround()
+{
+}
 
 /**
  * @note Address: 0x8030DFF8
@@ -228,13 +230,18 @@ bool ObjGround::doUpdateFadein()
  * @note Address: 0x8030E844
  * @note Size: 0x4
  */
-void ObjGround::doUpdateFadeinFinish() { }
+void ObjGround::doUpdateFadeinFinish()
+{
+}
 
 /**
  * @note Address: 0x8030E848
  * @note Size: 0xC
  */
-void ObjGround::doUpdateFinish() { mFadeLevel = 0.0f; }
+void ObjGround::doUpdateFinish()
+{
+	mFadeLevel = 0.0f;
+}
 
 /**
  * @note Address: 0x8030E854
@@ -258,7 +265,9 @@ bool ObjGround::doUpdateFadeout()
  * @note Address: 0x8030E8D0
  * @note Size: 0x4
  */
-void ObjGround::doUpdateFadeoutFinish() { }
+void ObjGround::doUpdateFadeoutFinish()
+{
+}
 
 ObjGround::StaticValues ObjGround::msVal;
 

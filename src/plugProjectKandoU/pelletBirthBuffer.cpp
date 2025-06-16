@@ -9,7 +9,10 @@ PelletInitArg PelletBirthBuffer::sArgs[MAX_PELLET_COUNT];
  * @note Address: 0x8023D41C
  * @note Size: 0xC
  */
-void PelletBirthBuffer::clear() { sNum = 0; }
+void PelletBirthBuffer::clear()
+{
+	sNum = 0;
+}
 
 /**
  * @note Address: 0x8023D428

@@ -518,19 +518,28 @@ void atan2f(void)
  * @note Address: 0x800CFC98
  * @note Size: 0x24
  */
-WEAKFUNC f32 cosf(f32 __x) { return cos((f64)__x); }
+WEAKFUNC f32 cosf(f32 __x)
+{
+	return cos((f64)__x);
+}
 
 /**
  * @note Address: 0x800CFC74
  * @note Size: 0x24
  */
-WEAKFUNC f32 sinf(f32 __x) { return sin((f64)__x); }
+WEAKFUNC f32 sinf(f32 __x)
+{
+	return sin((f64)__x);
+}
 
 /**
  * @note Address: 0x800CFC50
  * @note Size: 0x24
  */
-WEAKFUNC f32 tanf(f32 __x) { return tan((f64)__x); }
+WEAKFUNC f32 tanf(f32 __x)
+{
+	return tan((f64)__x);
+}
 
 /**
  * @note Address: N/A

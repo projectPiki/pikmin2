@@ -55,7 +55,9 @@ void StateDead::exec(EnemyBase* enemy)
  * @note Address: 0x802775E4
  * @note Size: 0x4
  */
-void StateDead::cleanup(EnemyBase* enemy) { }
+void StateDead::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x802775E8
@@ -109,7 +111,9 @@ void StateWait::exec(EnemyBase* enemy)
  * @note Address: 0x8027778C
  * @note Size: 0x4
  */
-void StateWait::cleanup(EnemyBase* enemy) { }
+void StateWait::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x80277790
@@ -171,7 +175,9 @@ void StateMove::exec(EnemyBase* enemy)
  * @note Address: 0x802779F4
  * @note Size: 0x4
  */
-void StateMove::cleanup(EnemyBase* enemy) { }
+void StateMove::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x802779F8
@@ -268,7 +274,10 @@ void StateEscape::exec(EnemyBase* enemy)
  * @note Address: 0x80277CE0
  * @note Size: 0x24
  */
-void StateEscape::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
+void StateEscape::cleanup(EnemyBase* enemy)
+{
+	enemy->setEmotionCaution();
+}
 
 /**
  * @note Address: 0x80277D04
@@ -385,6 +394,9 @@ void StateLeap::exec(EnemyBase* enemy)
  * @note Address: 0x802781E0
  * @note Size: 0x10
  */
-void StateLeap::cleanup(EnemyBase* enemy) { enemy->disableEvent(0, EB_NoInterrupt); }
+void StateLeap::cleanup(EnemyBase* enemy)
+{
+	enemy->disableEvent(0, EB_NoInterrupt);
+}
 } // namespace Tadpole
 } // namespace Game

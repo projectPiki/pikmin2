@@ -19,7 +19,10 @@ JASBasicBank::JASBasicBank()
  * @note Size: 0x74
  * __dt__12JASBasicBankFv
  */
-JASBasicBank::~JASBasicBank() { delete[] mInsts; }
+JASBasicBank::~JASBasicBank()
+{
+	delete[] mInsts;
+}
 
 /**
  * @note Address: 0x800997E4
@@ -39,11 +42,17 @@ void JASBasicBank::setInstCount(u32 count)
  * @note Size: 0x10
  * setInst__12JASBasicBankFiP7JASInst
  */
-void JASBasicBank::setInst(int index, JASInst* inst) { mInsts[index] = inst; }
+void JASBasicBank::setInst(int index, JASInst* inst)
+{
+	mInsts[index] = inst;
+}
 
 /**
  * @note Address: 0x80099858
  * @note Size: 0x24
  * getInst__12JASBasicBankCFi
  */
-JASInst* JASBasicBank::getInst(int index) const { return (index >= mInstCount) ? nullptr : mInsts[index]; }
+JASInst* JASBasicBank::getInst(int index) const
+{
+	return (index >= mInstCount) ? nullptr : mInsts[index];
+}

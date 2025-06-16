@@ -7,7 +7,10 @@ extern f64 __ieee754_exp();
  * @note Size: 0x20
  */
 
-f64 exp(f64 __x) { return (f64)__ieee754_exp(); }
+f64 exp(f64 __x)
+{
+	return (f64)__ieee754_exp();
+}
 
 /*
 .loc_0x0:

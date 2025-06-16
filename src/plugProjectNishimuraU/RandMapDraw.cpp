@@ -8,7 +8,10 @@ namespace Cave {
  * @note Address: 0x80245418
  * @note Size: 0x8
  */
-RandMapDraw::RandMapDraw(MapUnitGenerator* generator) { mGenerator = generator; }
+RandMapDraw::RandMapDraw(MapUnitGenerator* generator)
+{
+	mGenerator = generator;
+}
 
 /**
  * @note Address: 0x80245420

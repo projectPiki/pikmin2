@@ -7,7 +7,9 @@
  * @note Size: 0x5C
  * Unused function.
  */
-JSUOutputStream::~JSUOutputStream() { }
+JSUOutputStream::~JSUOutputStream()
+{
+}
 
 /**
  * @note Address: 0x800261E0

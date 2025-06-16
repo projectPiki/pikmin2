@@ -48,7 +48,9 @@ DirectorMgr_Scene::DirectorMgr_Scene(DirectorMgr_Scene* owner, u8 directorCount)
  * @note Address: 0x8046F594
  * @note Size: 0x8C
  */
-DirectorMgr_Scene::~DirectorMgr_Scene() { }
+DirectorMgr_Scene::~DirectorMgr_Scene()
+{
+}
 
 /**
  * @note Address: 0x8046F620

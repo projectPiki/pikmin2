@@ -136,7 +136,10 @@ void IKSystemMgr::startIKMotion()
  * @note Address: 0x802A8F2C
  * @note Size: 0xC
  */
-void IKSystemMgr::finishIKMotion() { mInMotion = false; }
+void IKSystemMgr::finishIKMotion()
+{
+	mInMotion = false;
+}
 
 /**
  * @note Address: 0x802A8F38
@@ -204,13 +207,19 @@ bool IKSystemMgr::isFinishIKMotion()
  * @note Address: 0x802A90D0
  * @note Size: 0xC
  */
-void IKSystemMgr::resetAnimationCallBack() { gIKSystemMgr = nullptr; }
+void IKSystemMgr::resetAnimationCallBack()
+{
+	gIKSystemMgr = nullptr;
+}
 
 /**
  * @note Address: 0x802A90DC
  * @note Size: 0x8
  */
-void IKSystemMgr::setAnimationCallBack() { gIKSystemMgr = this; }
+void IKSystemMgr::setAnimationCallBack()
+{
+	gIKSystemMgr = this;
+}
 
 /**
  * @note Address: 0x802A90E4
@@ -242,7 +251,10 @@ void IKSystemMgr::makeMatrix()
  * @note Address: 0x802A91BC
  * @note Size: 0x38
  */
-Vector3f IKSystemMgr::getCollisionCentre(int i) { return mIKSystems[i].getCollisionCentre(); }
+Vector3f IKSystemMgr::getCollisionCentre(int i)
+{
+	return mIKSystems[i].getCollisionCentre();
+}
 
 /**
  * @note Address: 0x802A91F4

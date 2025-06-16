@@ -35,7 +35,10 @@ inline f32 sqrtf2(f32& __sqrtf_g)
 	return __sqrtf_g;
 }
 
-inline f32 _sqrtf(f32 x) { return (x > 0.0f) ? sqrtf(x) : 0.0f; }
+inline f32 _sqrtf(f32 x)
+{
+	return (x > 0.0f) ? sqrtf(x) : 0.0f;
+}
 
 inline f32 _sqrtf2(f32 x)
 {

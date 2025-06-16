@@ -18,13 +18,18 @@ TAdaptor_ambientLight::TAdaptor_ambientLight(const JStage::TSystem* system, JSta
  * @note Size: 0x78
  * _dt
  */
-TAdaptor_ambientLight::~TAdaptor_ambientLight() { adaptor_do_end(nullptr); }
+TAdaptor_ambientLight::~TAdaptor_ambientLight()
+{
+	adaptor_do_end(nullptr);
+}
 
 /**
  * @note Address: 0x800132A4
  * @note Size: 0x4
  */
-void TAdaptor_ambientLight::adaptor_do_prepare(const JStudio::TObject*) { }
+void TAdaptor_ambientLight::adaptor_do_prepare(const JStudio::TObject*)
+{
+}
 
 /**
  * @note Address: 0x800132A8
@@ -40,7 +45,10 @@ void TAdaptor_ambientLight::adaptor_do_begin(const JStudio::TObject*)
  * @note Address: 0x80013334
  * @note Size: 0x54
  */
-void TAdaptor_ambientLight::adaptor_do_end(const JStudio::TObject*) { mLight->setFlagOff(1); }
+void TAdaptor_ambientLight::adaptor_do_end(const JStudio::TObject*)
+{
+	mLight->setFlagOff(1);
+}
 
 /**
  * @note Address: 0x80013388

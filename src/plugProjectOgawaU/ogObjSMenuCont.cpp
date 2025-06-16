@@ -6,7 +6,10 @@
 namespace og {
 namespace newScreen {
 
-static void _Print(char* format, ...) { OSReport(format, __FILE__); }
+static void _Print(char* format, ...)
+{
+	OSReport(format, __FILE__);
+}
 
 /**
  * @note Address: 0x80330658
@@ -24,7 +27,9 @@ ObjSMenuCont::ObjSMenuCont(char const* name)
  * @note Address: 0x803306BC
  * @note Size: 0xC4
  */
-ObjSMenuCont::~ObjSMenuCont() { }
+ObjSMenuCont::~ObjSMenuCont()
+{
+}
 
 /**
  * @note Address: 0x80330780
@@ -138,7 +143,10 @@ void ObjSMenuCont::in_R()
  * @note Address: 0x80330B84
  * @note Size: 0xC
  */
-void ObjSMenuCont::wait() { mState = MENUSTATE_Default; }
+void ObjSMenuCont::wait()
+{
+	mState = MENUSTATE_Default;
+}
 
 /**
  * @note Address: 0x80330B90
@@ -179,13 +187,19 @@ bool ObjSMenuCont::doStart(::Screen::StartSceneArg const* arg)
  * @note Address: 0x80330C8C
  * @note Size: 0x8
  */
-bool ObjSMenuCont::doEnd(::Screen::EndSceneArg const*) { return true; }
+bool ObjSMenuCont::doEnd(::Screen::EndSceneArg const*)
+{
+	return true;
+}
 
 /**
  * @note Address: 0x80330C94
  * @note Size: 0x20
  */
-void ObjSMenuCont::doUpdateFinish() { ObjSMenuBase::doUpdateFinish(); }
+void ObjSMenuCont::doUpdateFinish()
+{
+	ObjSMenuBase::doUpdateFinish();
+}
 
 /**
  * @note Address: 0x80330CB4
@@ -201,7 +215,9 @@ bool ObjSMenuCont::doUpdateFadeout()
  * @note Address: 0x80330D00
  * @note Size: 0x4
  */
-void ObjSMenuCont::doUpdateCancelAction() { }
+void ObjSMenuCont::doUpdateCancelAction()
+{
+}
 
 ObjSMenuCont::StaticValues ObjSMenuCont::msVal;
 

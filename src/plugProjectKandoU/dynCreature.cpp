@@ -14,7 +14,10 @@ DynParticleMgr* dynParticleMgr;
  * @note Address: 0x801A7F3C
  * @note Size: 0x5C
  */
-DynParticleMgr::DynParticleMgr(int count) { alloc(count); }
+DynParticleMgr::DynParticleMgr(int count)
+{
+	alloc(count);
+}
 
 /**
  * @note Address: 0x801A8038
@@ -1057,7 +1060,10 @@ lbl_801A8CE0:
  * @note Address: 0x801A8D34
  * @note Size: 0x1C
  */
-Vector3f DynCreature::getPosition() { return mRigid.mConfigs[0].mPosition; }
+Vector3f DynCreature::getPosition()
+{
+	return mRigid.mConfigs[0].mPosition;
+}
 
 /**
  * @note Address: 0x801A8D50
@@ -1074,13 +1080,19 @@ void DynCreature::onSetPosition(Vector3f& pos)
  * @note Address: 0x801A8E00
  * @note Size: 0x1C
  */
-Vector3f DynCreature::getVelocity() { return mRigid.mConfigs[0].mVelocity; }
+Vector3f DynCreature::getVelocity()
+{
+	return mRigid.mConfigs[0].mVelocity;
+}
 
 /**
  * @note Address: 0x801A8E1C
  * @note Size: 0x1C
  */
-void DynCreature::setVelocity(Vector3f& velocity) { mRigid.mConfigs[0].mVelocity = velocity; }
+void DynCreature::setVelocity(Vector3f& velocity)
+{
+	mRigid.mConfigs[0].mVelocity = velocity;
+}
 
 /**
  * @note Address: 0x801A8E38
@@ -1098,13 +1110,19 @@ void DynCreature::getVelocityAt(Vector3f& position, Vector3f& outVelocity)
  * @note Address: 0x801A8EC0
  * @note Size: 0x8
  */
-f32 DynCreature::getAngularEffect(Vector3f&, Vector3f&) { return 0.0f; }
+f32 DynCreature::getAngularEffect(Vector3f&, Vector3f&)
+{
+	return 0.0f;
+}
 
 /**
  * @note Address: 0x801A8EC8
  * @note Size: 0x44
  */
-void DynCreature::applyImpulse(Vector3f&, Vector3f& vel) { mRigid.mConfigs[0].mVelocity = mRigid.mConfigs[0].mVelocity + vel * mMass; }
+void DynCreature::applyImpulse(Vector3f&, Vector3f& vel)
+{
+	mRigid.mConfigs[0].mVelocity = mRigid.mConfigs[0].mVelocity + vel * mMass;
+}
 
 /**
  * @note Address: N/A

@@ -58,7 +58,9 @@ void StateDead::exec(EnemyBase* enemy)
  * @note Address: 0x80296240
  * @note Size: 0x4
  */
-void StateDead::cleanup(EnemyBase* enemy) { }
+void StateDead::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x80296244
@@ -532,7 +534,10 @@ lbl_802967F4:
  * @note Address: 0x8029684C
  * @note Size: 0x10
  */
-void StateRebirth::cleanup(EnemyBase* enemy) { enemy->disableEvent(0, EB_NoInterrupt); }
+void StateRebirth::cleanup(EnemyBase* enemy)
+{
+	enemy->disableEvent(0, EB_NoInterrupt);
+}
 
 /**
  * @note Address: 0x8029685C
@@ -896,7 +901,9 @@ lbl_80296CB4:
  * @note Address: 0x80296D04
  * @note Size: 0x4
  */
-void StateLost::cleanup(EnemyBase* enemy) { }
+void StateLost::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x80296D08
@@ -2686,7 +2693,10 @@ lbl_80298440:
  * @note Address: 0x80298490
  * @note Size: 0x28
  */
-void StateTurnPath::cleanup(EnemyBase* enemy) { enemy->setAnimSpeed(30.0f); }
+void StateTurnPath::cleanup(EnemyBase* enemy)
+{
+	enemy->setAnimSpeed(30.0f);
+}
 
 /**
  * @note Address: 0x802984B8
@@ -3743,6 +3753,9 @@ lbl_802991C8:
  * @note Address: 0x80299218
  * @note Size: 0x28
  */
-void StateWalkPath::cleanup(EnemyBase* enemy) { enemy->setAnimSpeed(30.0f); }
+void StateWalkPath::cleanup(EnemyBase* enemy)
+{
+	enemy->setAnimSpeed(30.0f);
+}
 } // namespace KumaChappy
 } // namespace Game

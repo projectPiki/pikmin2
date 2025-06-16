@@ -84,7 +84,9 @@ void __ARQServiceQueueLo()
  * @note Address: 0x800D42BC
  * @note Size: 0x4
  */
-void __ARQCallbackHack() { }
+void __ARQCallbackHack()
+{
+}
 
 /**
  * @note Address: 0x800D42C0

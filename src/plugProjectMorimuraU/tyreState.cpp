@@ -73,7 +73,10 @@ void Tyre::StateMove::exec(EnemyBase* enemy)
  * @note Address: 0x803ABA64
  * @note Size: 0x24
  */
-void Tyre::StateMove::cleanup(EnemyBase* enemy) { OBJ(enemy)->fadeSmokeEffect(); }
+void Tyre::StateMove::cleanup(EnemyBase* enemy)
+{
+	OBJ(enemy)->fadeSmokeEffect();
+}
 
 /**
  * @note Address: 0x803ABA88

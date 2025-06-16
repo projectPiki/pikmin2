@@ -22,7 +22,9 @@ Obj::Obj()
  * @note Address: 0x802E42C8
  * @note Size: 0x4
  */
-void Obj::setInitialSetting(EnemyInitialParamBase*) { }
+void Obj::setInitialSetting(EnemyInitialParamBase*)
+{
+}
 
 /**
  * @note Address: 0x802E42CC
@@ -66,13 +68,18 @@ void Obj::doUpdate()
  * @note Address: 0x802E441C
  * @note Size: 0x4
  */
-void Obj::doDirectDraw(Graphics&) { }
+void Obj::doDirectDraw(Graphics&)
+{
+}
 
 /**
  * @note Address: 0x802E4420
  * @note Size: 0x20
  */
-void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
+void Obj::doDebugDraw(Graphics& gfx)
+{
+	EnemyBase::doDebugDraw(gfx);
+}
 
 /**
  * @note Address: 0x802E4440
@@ -139,19 +146,28 @@ void Obj::doFinishStoneState()
  * @note Address: 0x802E4638
  * @note Size: 0x28
  */
-void Obj::startCarcassMotion() { startMotion(KABUTOANIM_Carry, nullptr); }
+void Obj::startCarcassMotion()
+{
+	startMotion(KABUTOANIM_Carry, nullptr);
+}
 
 /**
  * @note Address: 0x802E4660
  * @note Size: 0x2C
  */
-void Obj::doStartMovie() { effectDrawOff(); }
+void Obj::doStartMovie()
+{
+	effectDrawOff();
+}
 
 /**
  * @note Address: 0x802E4690
  * @note Size: 0x2C
  */
-void Obj::doEndMovie() { effectDrawOn(); }
+void Obj::doEndMovie()
+{
+	effectDrawOn();
+}
 
 /**
  * @note Address: 0x802E46C0
@@ -170,7 +186,10 @@ void Obj::initWalkSmokeEffect()
  * @note Address: 0x802E4754
  * @note Size: 0x8
  */
-WalkSmokeEffect::Mgr* Obj::getWalkSmokeEffectMgr() { return &mWalkSmokeMgr; }
+WalkSmokeEffect::Mgr* Obj::getWalkSmokeEffectMgr()
+{
+	return &mWalkSmokeMgr;
+}
 
 /**
  * @note Address: 0x802E475C

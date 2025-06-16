@@ -7,13 +7,17 @@ namespace newScreen {
  * @note Address: 0x803248F4
  * @note Size: 0x3C
  */
-UfoMenu::UfoMenu() { }
+UfoMenu::UfoMenu()
+{
+}
 
 /**
  * @note Address: 0x80324930
  * @note Size: 0x4
  */
-void UfoMenu::doUserCallBackFunc(Resource::MgrCommand*) { }
+void UfoMenu::doUserCallBackFunc(Resource::MgrCommand*)
+{
+}
 
 /**
  * @note Address: 0x80324934
@@ -47,7 +51,10 @@ bool UfoMenu::doConfirmSetScene(::Screen::SetSceneArg& sceneArg)
  * @note Address: 0x80324A0C
  * @note Size: 0xC
  */
-void UfoMenu::doSetBackupScene(::Screen::SetSceneArg& sceneArg) { sceneArg.mDoCreateBackup = false; }
+void UfoMenu::doSetBackupScene(::Screen::SetSceneArg& sceneArg)
+{
+	sceneArg.mDoCreateBackup = false;
+}
 
 } // namespace newScreen
 } // namespace og

@@ -100,7 +100,10 @@ JASChannel::JASChannel(Callback callback, void* cbData)
  * @note Address: 0x800A3364
  * @note Size: 0x30
  */
-JASOscillator::JASOscillator() { init(); }
+JASOscillator::JASOscillator()
+{
+	init();
+}
 
 /**
  * @note Address: 0x800A3438
@@ -211,19 +214,28 @@ lbl_800A3528:
  * @note Address: 0x800A3544
  * @note Size: 0x34
  */
-void JASChannel::setOscInit(int index, const JASOscillator::Data* data) { mOscillators[index].initStart(data); }
+void JASChannel::setOscInit(int index, const JASOscillator::Data* data)
+{
+	mOscillators[index].initStart(data);
+}
 
 /**
  * @note Address: 0x800A3578
  * @note Size: 0x10
  */
-void JASChannel::setMixConfig(int index, u16 mixConfig) { mMixConfigs[index].mWhole = mixConfig; }
+void JASChannel::setMixConfig(int index, u16 mixConfig)
+{
+	mMixConfigs[index].mWhole = mixConfig;
+}
 
 /**
  * @note Address: 0x800A3588
  * @note Size: 0x8
  */
-void JASChannel::directReleaseOsc(u16 release) { mOscillators[0].mRelease = release; }
+void JASChannel::directReleaseOsc(u16 release)
+{
+	mOscillators[0].mRelease = release;
+}
 
 /**
  * @note Address: N/A
@@ -274,7 +286,10 @@ void JASChannel::copyOsc(int index, JASOscillator::Data* toData)
  * @note Address: 0x800A35D8
  * @note Size: 0x34
  */
-void JASChannel::overwriteOsc(int index, JASOscillator::Data* data) { mOscillators[index].initStart(data); }
+void JASChannel::overwriteOsc(int index, JASOscillator::Data* data)
+{
+	mOscillators[index].initStart(data);
+}
 
 /**
  * @note Address: 0x800A360C
@@ -302,7 +317,10 @@ void JASChannel::setKeySweepTarget(u8 key, u32 steps)
  * @note Address: 0x800A3694
  * @note Size: 0x8
  */
-void JASChannel::setPauseFlag(bool doPause) { mPauseFlag = doPause; }
+void JASChannel::setPauseFlag(bool doPause)
+{
+	mPauseFlag = doPause;
+}
 
 /**
  * @note Address: 0x800A369C

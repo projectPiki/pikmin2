@@ -137,13 +137,19 @@ u32 ARInit(u32* stack_index_addr, u32 num_entries)
  * @note Address: 0x800D2910
  * @note Size: 0x8
  */
-u32 ARGetBaseAddress() { return __AR_ARAM_USR_BASE_ADDR; }
+u32 ARGetBaseAddress()
+{
+	return __AR_ARAM_USR_BASE_ADDR;
+}
 
 /**
  * @note Address: 0x800D2918
  * @note Size: 0x8
  */
-u32 ARGetSize() { return __AR_Size; }
+u32 ARGetSize()
+{
+	return __AR_Size;
+}
 
 /**
  * @note Address: 0x800D2920
@@ -185,7 +191,10 @@ void __ARClearInterrupt()
  * @note Address: 0x800D29B8
  * @note Size: 0x10
  */
-u16 __ARGetInterruptStatus() { return ((u16)(__DSPRegs[DSP_CONTROL_STATUS] & 0x20)); }
+u16 __ARGetInterruptStatus()
+{
+	return ((u16)(__DSPRegs[DSP_CONTROL_STATUS] & 0x20));
+}
 
 /**
  * @note Address: N/A

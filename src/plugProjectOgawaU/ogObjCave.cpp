@@ -43,7 +43,9 @@ ObjCave::ObjCave(const char* name)
  * @note Address: 0x8031C0A4
  * @note Size: 0xAC
  */
-ObjCave::~ObjCave() { }
+ObjCave::~ObjCave()
+{
+}
 
 /**
  * @note Address: 0x8031C150
@@ -278,13 +280,18 @@ bool ObjCave::doUpdateFadein()
  * @note Address: 0x8031CB2C
  * @note Size: 0x4
  */
-void ObjCave::doUpdateFadeinFinish() { }
+void ObjCave::doUpdateFadeinFinish()
+{
+}
 
 /**
  * @note Address: 0x8031CB30
  * @note Size: 0xC
  */
-void ObjCave::doUpdateFinish() { mFadeLevel = 0.0f; }
+void ObjCave::doUpdateFinish()
+{
+	mFadeLevel = 0.0f;
+}
 
 /**
  * @note Address: 0x8031CB3C
@@ -308,7 +315,9 @@ bool ObjCave::doUpdateFadeout()
  * @note Address: 0x8031CBB8
  * @note Size: 0x4
  */
-void ObjCave::doUpdateFadeoutFinish() { }
+void ObjCave::doUpdateFadeoutFinish()
+{
+}
 
 ObjCave::StaticValues ObjCave::msVal;
 

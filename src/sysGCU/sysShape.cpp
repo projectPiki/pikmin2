@@ -80,7 +80,10 @@ void Animator::startExAnim(AnimInfo* info)
  * @note Address: 0x80428DB8
  * @note Size: 0x8
  */
-bool Animator::assertValid(Model* model) { return true; }
+bool Animator::assertValid(Model* model)
+{
+	return true;
+}
 
 /**
  * @note Address: 0x80428DC0
@@ -332,7 +335,10 @@ void Joint::init(u16 index, Model* model, J3DJoint* j3dJoint)
  * @note Address: 0x804298A0
  * @note Size: 0x20
  */
-Matrixf* Joint::getWorldMatrix() { return mModel->getJ3DModel()->mMtxBuffer->getWorldMatrix(mJointIndex); }
+Matrixf* Joint::getWorldMatrix()
+{
+	return mModel->getJ3DModel()->mMtxBuffer->getWorldMatrix(mJointIndex);
+}
 
 /**
  * @note Address: N/A
@@ -436,7 +442,10 @@ KeyEvent* AnimInfo::getAnimKeyByType(u32 type)
  * @note Address: 0x8042997C
  * @note Size: 0x20
  */
-void AnimInfo::read(Stream& input) { readEditor(input); }
+void AnimInfo::read(Stream& input)
+{
+	readEditor(input);
+}
 
 /**
  * @note Address: 0x8042999C

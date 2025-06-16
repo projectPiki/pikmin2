@@ -28,19 +28,28 @@ static const char* cBtnTexName[] = { "a_btn.bti", "b_btn.bti", "c_btn.bti",  "x_
  * @note Address: N/A
  * @note Size: 0x1C
  */
-const char* getCurrentFontResName() { return sFontResName[sys->mRegion]; }
+const char* getCurrentFontResName()
+{
+	return sFontResName[sys->mRegion];
+}
 
 /**
  * @note Address: N/A
  * @note Size: 0x1C
  */
-const char* getCurrentMesResName() { return sMesResName[sys->mRegion]; }
+const char* getCurrentMesResName()
+{
+	return sMesResName[sys->mRegion];
+}
 
 /**
  * @note Address: 0x80437EAC
  * @note Size: 0x40
  */
-Mgr* Mgr::create(JKRExpHeap* heap) { new Mgr(heap); }
+Mgr* Mgr::create(JKRExpHeap* heap)
+{
+	new Mgr(heap);
+}
 
 /**
  * @note Address: 0x80437EEC
@@ -91,7 +100,10 @@ Mgr::Mgr(JKRExpHeap* heap)
  * @note Address: 0x8043805C
  * @note Size: 0x68
  */
-Mgr::~Mgr() { gP2JMEMgr = nullptr; }
+Mgr::~Mgr()
+{
+	gP2JMEMgr = nullptr;
+}
 
 /**
  * @note Address: N/A

@@ -36,13 +36,19 @@ void FSMStateMachine::init(TMgr* mgr)
  * @note Address: 0x803DE870
  * @note Size: 0x2C
  */
-void FSMState::init(TMgr* mgr, Game::StateArg* arg) { do_init(mgr, arg); }
+void FSMState::init(TMgr* mgr, Game::StateArg* arg)
+{
+	do_init(mgr, arg);
+}
 
 /**
  * @note Address: 0x803DE89C
  * @note Size: 0x2C
  */
-void FSMState::exec(TMgr* mgr) { do_exec(mgr); }
+void FSMState::exec(TMgr* mgr)
+{
+	do_exec(mgr);
+}
 
 /**
  * @note Address: 0x803DE8C8
@@ -133,7 +139,10 @@ void FSMState03_DoYouDelete::do_set(TMgr* mgr, Game::StateArg*)
  * @note Address: 0x803DEBC0
  * @note Size: 0x24
  */
-void FSMState03_DoYouDelete::do_decide(TMgr* mgr) { mgr->mMainScreen.closeDataWindow(); }
+void FSMState03_DoYouDelete::do_decide(TMgr* mgr)
+{
+	mgr->mMainScreen.closeDataWindow();
+}
 
 /**
  * @note Address: 0x803DEBE4
@@ -200,7 +209,10 @@ void FSMState_Warning::do_exec(TMgr* mgr)
  * @note Address: 0x803DED64
  * @note Size: 0x28
  */
-void FSMState05_FailToDelete::do_open(TMgr* mgr) { mgr->mMainScreen.openMSG(Screen::FileSelect::TMainScreen::MessageType_FileDeleteFail); }
+void FSMState05_FailToDelete::do_open(TMgr* mgr)
+{
+	mgr->mMainScreen.openMSG(Screen::FileSelect::TMainScreen::MessageType_FileDeleteFail);
+}
 
 /**
  * @note Address: 0x803DED8C
@@ -219,19 +231,28 @@ void FSMState05_FailToDelete::do_transit(TMgr* mgr)
  * @note Address: 0x803DEDD0
  * @note Size: 0x28
  */
-void FSMState06_FinishDelete::do_open(TMgr* mgr) { mgr->mMainScreen.openMSG(Screen::FileSelect::TMainScreen::MessageType_FileDeleted); }
+void FSMState06_FinishDelete::do_open(TMgr* mgr)
+{
+	mgr->mMainScreen.openMSG(Screen::FileSelect::TMainScreen::MessageType_FileDeleted);
+}
 
 /**
  * @note Address: 0x803DEDF8
  * @note Size: 0x34
  */
-void FSMState06_FinishDelete::do_transit(TMgr* mgr) { transit(mgr, FSSTATE_SelectData, nullptr); }
+void FSMState06_FinishDelete::do_transit(TMgr* mgr)
+{
+	transit(mgr, FSSTATE_SelectData, nullptr);
+}
 
 /**
  * @note Address: 0x803DEE2C
  * @note Size: 0x28
  */
-void FSMState08_FailToCopy::do_open(TMgr* mgr) { mgr->mMainScreen.openMSG(Screen::FileSelect::TMainScreen::MessageType_FileCopyFail); }
+void FSMState08_FailToCopy::do_open(TMgr* mgr)
+{
+	mgr->mMainScreen.openMSG(Screen::FileSelect::TMainScreen::MessageType_FileCopyFail);
+}
 
 /**
  * @note Address: 0x803DEE54
@@ -250,13 +271,19 @@ void FSMState08_FailToCopy::do_transit(TMgr* mgr)
  * @note Address: 0x803DEE98
  * @note Size: 0x28
  */
-void FSMState10_FinishCopy::do_open(TMgr* mgr) { mgr->mMainScreen.openMSG(Screen::FileSelect::TMainScreen::MessageType_FileCopied); }
+void FSMState10_FinishCopy::do_open(TMgr* mgr)
+{
+	mgr->mMainScreen.openMSG(Screen::FileSelect::TMainScreen::MessageType_FileCopied);
+}
 
 /**
  * @note Address: 0x803DEEC0
  * @note Size: 0x34
  */
-void FSMState10_FinishCopy::do_transit(TMgr* mgr) { transit(mgr, FSSTATE_SelectData, nullptr); }
+void FSMState10_FinishCopy::do_transit(TMgr* mgr)
+{
+	transit(mgr, FSSTATE_SelectData, nullptr);
+}
 
 /**
  * @note Address: 0x803DEEF4
@@ -337,7 +364,10 @@ void FSMState_CardTask::exec(TMgr* mgr)
  * @note Address: 0x803DF220
  * @note Size: 0x34
  */
-void FSMState_CardTask::do_transitCardPlayerDataBroken(TMgr* mgr) { transit(mgr, FSSTATE_DataBroken, nullptr); }
+void FSMState_CardTask::do_transitCardPlayerDataBroken(TMgr* mgr)
+{
+	transit(mgr, FSSTATE_DataBroken, nullptr);
+}
 
 /**
  * @note Address: 0x803DF254
@@ -353,13 +383,19 @@ void FSMState02_NowDelete::do_init(TMgr* mgr, Game::StateArg*)
  * @note Address: 0x803DF294
  * @note Size: 0x24
  */
-void FSMState02_NowDelete::do_close(TMgr* mgr) { mgr->mMainScreen.fadeFiledeletingEffect(); }
+void FSMState02_NowDelete::do_close(TMgr* mgr)
+{
+	mgr->mMainScreen.fadeFiledeletingEffect();
+}
 
 /**
  * @note Address: 0x803DF2B8
  * @note Size: 0x2C
  */
-bool FSMState02_NowDelete::do_cardRequest(TMgr* mgr) { return sys->mCardMgr->deletePlayer(mgr->mCurrSelection); }
+bool FSMState02_NowDelete::do_cardRequest(TMgr* mgr)
+{
+	return sys->mCardMgr->deletePlayer(mgr->mCurrSelection);
+}
 
 /**
  * @note Address: 0x803DF2E4
@@ -375,19 +411,28 @@ void FSMState02_NowDelete::do_transitCardReady(TMgr* mgr)
  * @note Address: 0x803DF344
  * @note Size: 0x34
  */
-void FSMState02_NowDelete::do_transitCardNoCard(TMgr* mgr) { transit(mgr, FSSTATE_FailToDelete, nullptr); }
+void FSMState02_NowDelete::do_transitCardNoCard(TMgr* mgr)
+{
+	transit(mgr, FSSTATE_FailToDelete, nullptr);
+}
 
 /**
  * @note Address: 0x803DF378
  * @note Size: 0x34
  */
-void FSMState02_NowDelete::do_transitCardIOError(TMgr* mgr) { transit(mgr, FSSTATE_FailToDelete, nullptr); }
+void FSMState02_NowDelete::do_transitCardIOError(TMgr* mgr)
+{
+	transit(mgr, FSSTATE_FailToDelete, nullptr);
+}
 
 /**
  * @note Address: 0x803DF3AC
  * @note Size: 0x24
  */
-void FSMState02_NowDelete::cleanup(TMgr* mgr) { mgr->mMainScreen.fadeFiledeletingEffect(); }
+void FSMState02_NowDelete::cleanup(TMgr* mgr)
+{
+	mgr->mMainScreen.fadeFiledeletingEffect();
+}
 
 /**
  * @note Address: 0x803DF3D0
@@ -403,13 +448,19 @@ void FSMState09_NowCopy::do_init(TMgr* mgr, Game::StateArg*)
  * @note Address: 0x803DF414
  * @note Size: 0x24
  */
-void FSMState09_NowCopy::do_close(TMgr* mgr) { mgr->mMainScreen.fadeFilecopyEffect(); }
+void FSMState09_NowCopy::do_close(TMgr* mgr)
+{
+	mgr->mMainScreen.fadeFilecopyEffect();
+}
 
 /**
  * @note Address: 0x803DF438
  * @note Size: 0x34
  */
-bool FSMState09_NowCopy::do_cardRequest(TMgr* mgr) { return sys->mCardMgr->copyPlayer(mgr->mCurrSelection, mgr->mCopySelection); }
+bool FSMState09_NowCopy::do_cardRequest(TMgr* mgr)
+{
+	return sys->mCardMgr->copyPlayer(mgr->mCurrSelection, mgr->mCopySelection);
+}
 
 /**
  * @note Address: 0x803DF46C
@@ -425,19 +476,28 @@ void FSMState09_NowCopy::do_transitCardReady(TMgr* mgr)
  * @note Address: 0x803DF4D0
  * @note Size: 0x34
  */
-void FSMState09_NowCopy::do_transitCardNoCard(TMgr* mgr) { transit(mgr, FSSTATE_FailToCopy, nullptr); }
+void FSMState09_NowCopy::do_transitCardNoCard(TMgr* mgr)
+{
+	transit(mgr, FSSTATE_FailToCopy, nullptr);
+}
 
 /**
  * @note Address: 0x803DF504
  * @note Size: 0x34
  */
-void FSMState09_NowCopy::do_transitCardIOError(TMgr* mgr) { transit(mgr, FSSTATE_FailToCopy, nullptr); }
+void FSMState09_NowCopy::do_transitCardIOError(TMgr* mgr)
+{
+	transit(mgr, FSSTATE_FailToCopy, nullptr);
+}
 
 /**
  * @note Address: 0x803DF538
  * @note Size: 0x24
  */
-void FSMState09_NowCopy::cleanup(TMgr* mgr) { mgr->mMainScreen.fadeFilecopyEffect(); }
+void FSMState09_NowCopy::cleanup(TMgr* mgr)
+{
+	mgr->mMainScreen.fadeFilecopyEffect();
+}
 
 /**
  * @note Address: 0x803DF55C
@@ -840,7 +900,10 @@ void TMgr::forceQuitSeq()
  * @note Address: 0x803E02F0
  * @note Size: 0x28
  */
-bool TMgr::isFinish() { return u8(getStateID() == FSSTATE_Standby); }
+bool TMgr::isFinish()
+{
+	return u8(getStateID() == FSSTATE_Standby);
+}
 
 /**
  * @note Address: 0x803E0318

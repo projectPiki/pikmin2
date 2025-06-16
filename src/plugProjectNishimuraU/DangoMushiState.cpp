@@ -81,7 +81,9 @@ void StateDead::exec(EnemyBase* enemy)
  * @note Address: 0x802F9F70
  * @note Size: 0x4
  */
-void StateDead::cleanup(EnemyBase* enemy) { }
+void StateDead::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x802F9F74
@@ -140,7 +142,9 @@ void StateStay::exec(EnemyBase* enemy)
  * @note Address: 0x802FA14C
  * @note Size: 0x4
  */
-void StateStay::cleanup(EnemyBase* enemy) { }
+void StateStay::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x802FA150
@@ -794,7 +798,9 @@ lbl_802FA9BC:
  * @note Address: 0x802FAA0C
  * @note Size: 0x4
  */
-void StateWait::cleanup(EnemyBase* enemy) { }
+void StateWait::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x802FAA10
@@ -1410,7 +1416,9 @@ lbl_802FB1C4:
  * @note Address: 0x802FB214
  * @note Size: 0x4
  */
-void StateMove::cleanup(EnemyBase* enemy) { }
+void StateMove::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x802FB218
@@ -1636,7 +1644,9 @@ void StateRecover::exec(EnemyBase* enemy)
  * @note Address: 0x802FBA78
  * @note Size: 0x4
  */
-void StateRecover::cleanup(EnemyBase* enemy) { }
+void StateRecover::cleanup(EnemyBase* enemy)
+{
+}
 
 /**
  * @note Address: 0x802FBA7C

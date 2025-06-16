@@ -76,13 +76,19 @@ static s16* audioCallbackWithMSound(s32 p1)
  * @note Address: N/A
  * @note Size: 0x2C
  */
-static void audioInitWithMSound() { JASDriver::registerMixCallback(audioCallbackWithMSound, MixMode_InterLeave); }
+static void audioInitWithMSound()
+{
+	JASDriver::registerMixCallback(audioCallbackWithMSound, MixMode_InterLeave);
+}
 
 /**
  * @note Address: N/A
  * @note Size: 0x28
  */
-static void audioQuitWithMSound() { JASDriver::registerMixCallback(nullptr, MixMode_Mono); }
+static void audioQuitWithMSound()
+{
+	JASDriver::registerMixCallback(nullptr, MixMode_Mono);
+}
 
 /**
  * @note Address: 0x8044DEE0
@@ -367,7 +373,10 @@ BOOL WaitUntilPrepare()
  * @note Address: 0x8044E634
  * @note Size: 0x30
  */
-void PrepareReady(int msg) { OSSendMessage(&PrepareReadyQueue, (OSMessage)msg, OS_MESSAGE_BLOCK); }
+void PrepareReady(int msg)
+{
+	OSSendMessage(&PrepareReadyQueue, (OSMessage)msg, OS_MESSAGE_BLOCK);
+}
 
 /**
  * @note Address: 0x8044E664
@@ -746,13 +755,19 @@ u32 THPPlayerGetTotalFrame()
  * @note Address: N/A
  * @note Size: 0x10
  */
-u8 THPPlayerGetState(void) { return ActivePlayer.mState; }
+u8 THPPlayerGetState(void)
+{
+	return ActivePlayer.mState;
+}
 
 /**
  * @note Address: 0x8044F130
  * @note Size: 0x30
  */
-static void PushUsedTextureSet(OSMessage msg) { OSSendMessage(&UsedTextureSetQueue, msg, OS_MESSAGE_NOBLOCK); }
+static void PushUsedTextureSet(OSMessage msg)
+{
+	OSSendMessage(&UsedTextureSetQueue, msg, OS_MESSAGE_NOBLOCK);
+}
 
 /**
  * @note Address: 0x8044F160

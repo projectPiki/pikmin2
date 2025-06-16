@@ -120,7 +120,10 @@ void NaviWhistle::stop()
  * @note Address: 0x80165420
  * @note Size: 0x10
  */
-bool NaviWhistle::timeout() { return mState == WS_Idle; }
+bool NaviWhistle::timeout()
+{
+	return mState == WS_Idle;
+}
 
 /**
  * @note Address: 0x80165430

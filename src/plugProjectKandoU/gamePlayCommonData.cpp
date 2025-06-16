@@ -169,13 +169,19 @@ void PlayCommonData::entryHighscores_common(Game::Highscore** highscores, int ne
  * @note Address: 0x8023470C
  * @note Size: 0xC
  */
-bool PlayCommonData::isChallengeGamePlayable() { return mChallengeData.mFlags.isSet(PlayChallengeGameData::PCGDF_IsPlayable); }
+bool PlayCommonData::isChallengeGamePlayable()
+{
+	return mChallengeData.mFlags.isSet(PlayChallengeGameData::PCGDF_IsPlayable);
+}
 
 /**
  * @note Address: 0x80234718
  * @note Size: 0xC
  */
-bool PlayCommonData::isLouieRescued() { return mChallengeData.mFlags.isSet(PlayChallengeGameData::PCGDF_IsLouieRescued); }
+bool PlayCommonData::isLouieRescued()
+{
+	return mChallengeData.mFlags.isSet(PlayChallengeGameData::PCGDF_IsLouieRescued);
+}
 
 /**
  * @note Address: 0x80234724
@@ -231,13 +237,19 @@ bool PlayCommonData::challenge_is_virgin()
  * @note Address: 0x8023482C
  * @note Size: 0x14
  */
-bool PlayCommonData::challenge_is_virgin_check_only() { return !mChallengeData.mFlags.isSet(PlayChallengeGameData::PCGDF_IsNotVirgin); }
+bool PlayCommonData::challenge_is_virgin_check_only()
+{
+	return !mChallengeData.mFlags.isSet(PlayChallengeGameData::PCGDF_IsNotVirgin);
+}
 
 /**
  * @note Address: 0x80234840
  * @note Size: 0x24
  */
-PlayChallengeGameData::CourseState* PlayCommonData::challenge_get_CourseState(int index) { return mChallengeData.getState(index); }
+PlayChallengeGameData::CourseState* PlayCommonData::challenge_get_CourseState(int index)
+{
+	return mChallengeData.getState(index);
+}
 
 /**
  * @note Address: N/A

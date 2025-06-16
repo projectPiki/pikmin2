@@ -38,7 +38,10 @@ SceneBase::SceneBase()
  * @note Address: 0x804518C4
  * @note Size: 0x30
  */
-IObjBase* SceneBase::searchObj(char* name) { return mObjMgr->search(this, name); }
+IObjBase* SceneBase::searchObj(char* name)
+{
+	return mObjMgr->search(this, name);
+}
 
 /**
  * @note Address: 0x804518F4
@@ -123,7 +126,9 @@ bool SceneBase::updateActive()
  * @note Address: 0x80451B84
  * @note Size: 0x4
  */
-void SceneBase::doUpdateActive() { }
+void SceneBase::doUpdateActive()
+{
+}
 
 /**
  * @note `break;` has a different result from `return;` here.
@@ -193,19 +198,28 @@ bool SceneBase::end(Screen::EndSceneArg* arg)
  * @note Address: 0x80451CF8
  * @note Size: 0x24
  */
-bool SceneBase::doEnd(Screen::EndSceneArg* arg) { return mObjMgr->end(arg); }
+bool SceneBase::doEnd(Screen::EndSceneArg* arg)
+{
+	return mObjMgr->end(arg);
+}
 
 /**
  * @note Address: 0x80451D1C
  * @note Size: 0x2C
  */
-void SceneBase::userCallBackFunc(Resource::MgrCommand* command) { doUserCallBackFunc(command); }
+void SceneBase::userCallBackFunc(Resource::MgrCommand* command)
+{
+	doUserCallBackFunc(command);
+}
 
 /**
  * @note Address: 0x80451D48
  * @note Size: 0x2C
  */
-void SceneBase::createObj(JKRArchive* archive) { doCreateObj(archive); }
+void SceneBase::createObj(JKRArchive* archive)
+{
+	doCreateObj(archive);
+}
 
 /**
  * @note Address: 0x80451D74
@@ -221,40 +235,58 @@ void SceneBase::registObj(ObjBase* obj, JKRArchive* archive)
  * @note Address: 0x80451DD0
  * @note Size: 0x78
  */
-bool SceneBase::confirmSetScene(SetSceneArg& arg) { return (mObjMgr->confirmSetScene(arg) && doConfirmSetScene(arg)); }
+bool SceneBase::confirmSetScene(SetSceneArg& arg)
+{
+	return (mObjMgr->confirmSetScene(arg) && doConfirmSetScene(arg));
+}
 
 /**
  * @note Address: 0x80451E48
  * @note Size: 0x78
  */
-bool SceneBase::confirmStartScene(StartSceneArg* arg) { return (mObjMgr->confirmStartScene(arg) && doConfirmStartScene(arg)); }
+bool SceneBase::confirmStartScene(StartSceneArg* arg)
+{
+	return (mObjMgr->confirmStartScene(arg) && doConfirmStartScene(arg));
+}
 
 /**
  * @note Address: 0x80451EC0
  * @note Size: 0x70
  */
-bool SceneBase::confirmEndScene(EndSceneArg* arg) { return (mObjMgr->confirmEndScene(arg) && doConfirmEndScene(arg)); }
+bool SceneBase::confirmEndScene(EndSceneArg* arg)
+{
+	return (mObjMgr->confirmEndScene(arg) && doConfirmEndScene(arg));
+}
 
 /**
  * setScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
  * @note Address: 0x80451F30
  * @note Size: 0x30
  */
-bool SceneBase::setScene(SetSceneArg& arg) { return mScreenMgr->setScene(arg); }
+bool SceneBase::setScene(SetSceneArg& arg)
+{
+	return mScreenMgr->setScene(arg);
+}
 
 /**
  * startScene__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg
  * @note Address: 0x80451F60
  * @note Size: 0x30
  */
-bool SceneBase::startScene(StartSceneArg* arg) { return mScreenMgr->startScene(arg); }
+bool SceneBase::startScene(StartSceneArg* arg)
+{
+	return mScreenMgr->startScene(arg);
+}
 
 /**
  * endScene__Q26Screen9SceneBaseFPQ26Screen11EndSceneArg
  * @note Address: 0x80451F90
  * @note Size: 0x30
  */
-void SceneBase::endScene(EndSceneArg* arg) { mScreenMgr->endScene(arg); }
+void SceneBase::endScene(EndSceneArg* arg)
+{
+	mScreenMgr->endScene(arg);
+}
 
 /**
  * setBackupScene__Q26Screen9SceneBaseFv
@@ -307,13 +339,19 @@ bool SceneBase::setDispMember(og::Screen::DispMemberBase* disp)
  * @note Address: 0x804521F0
  * @note Size: 0x40
  */
-int SceneBase::getFinishState() { return (mStateID == SB_Unknown4) ? doGetFinishState() : SB_Finished2; }
+int SceneBase::getFinishState()
+{
+	return (mStateID == SB_Unknown4) ? doGetFinishState() : SB_Finished2;
+}
 
 /**
  * @note Address: 0x80452230
  * @note Size: 0x54
  */
-Controller* SceneBase::getGamePad() const { return mScreenMgr->getGamePad(); }
+Controller* SceneBase::getGamePad() const
+{
+	return mScreenMgr->getGamePad();
+}
 
 /**
  * @note Address: 0x80452284
@@ -329,6 +367,9 @@ void SceneBase::setColorBG(u8 r, u8 g, u8 b, u8 a)
  * @note Address: N/A
  * @note Size: 0x30
  */
-void SceneBase::setBGMode(int mode) { mScreenMgr->setBGMode(mode); }
+void SceneBase::setBGMode(int mode)
+{
+	mScreenMgr->setBGMode(mode);
+}
 
 } // namespace Screen

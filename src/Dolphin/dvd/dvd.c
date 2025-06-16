@@ -72,7 +72,9 @@ static DVDOptionalCommandChecker checkOptionalCommand = defaultOptionalCommandCh
  * @note Address: 0x800DCD28
  * @note Size: 0x4
  */
-static void defaultOptionalCommandChecker(DVDCommandBlock* block, DVDLowCallback cb) { }
+static void defaultOptionalCommandChecker(DVDCommandBlock* block, DVDLowCallback cb)
+{
+}
 
 /**
  * @note Address: 0x800DCD2C
@@ -203,7 +205,10 @@ static void stateTimeout()
  * @note Address: 0x800DCFF8
  * @note Size: 0x28
  */
-static void stateGettingError() { DVDLowRequestError(cbForStateGettingError); }
+static void stateGettingError()
+{
+	DVDLowRequestError(cbForStateGettingError);
+}
 
 /**
  * @note Address: 0x800DD020
@@ -402,7 +407,10 @@ void cbForUnrecoveredErrorRetry(u32 p1)
  * @note Address: 0x800DD468
  * @note Size: 0x28
  */
-void stateGoToRetry() { DVDLowStopMotor(cbForStateGoToRetry); }
+void stateGoToRetry()
+{
+	DVDLowStopMotor(cbForStateGoToRetry);
+}
 
 /**
  * @note Address: 0x800DD490
@@ -467,13 +475,19 @@ static void stateCheckID()
  * @note Address: 0x800DD6C8
  * @note Size: 0x34
  */
-static void stateCheckID3(DVDCommandBlock* cmdBlock) { DVDLowAudioBufferConfig(IDShouldBe->streaming, 10, cbForStateCheckID3); }
+static void stateCheckID3(DVDCommandBlock* cmdBlock)
+{
+	DVDLowAudioBufferConfig(IDShouldBe->streaming, 10, cbForStateCheckID3);
+}
 
 /**
  * @note Address: 0x800DD6FC
  * @note Size: 0x34
  */
-static void stateCheckID2a(DVDCommandBlock* cmdBlock) { DVDLowAudioBufferConfig(IDShouldBe->streaming, 10, cbForStateCheckID2a); }
+static void stateCheckID2a(DVDCommandBlock* cmdBlock)
+{
+	DVDLowAudioBufferConfig(IDShouldBe->streaming, 10, cbForStateCheckID2a);
+}
 
 /**
  * @note Address: 0x800DD730
@@ -498,7 +512,10 @@ void cbForStateCheckID2a(u32 p1)
  * @note Address: 0x800DD7A4
  * @note Size: 0x38
  */
-static void stateCheckID2(DVDCommandBlock* block) { DVDLowRead(&BB2, OSRoundUp32B(sizeof(DVDBB2)), 0x420, cbForStateCheckID2); }
+static void stateCheckID2(DVDCommandBlock* block)
+{
+	DVDLowRead(&BB2, OSRoundUp32B(sizeof(DVDBB2)), 0x420, cbForStateCheckID2);
+}
 
 /**
  * @note Address: 0x800DD7DC
@@ -616,7 +633,10 @@ static void stateCoverClosed()
  * @note Address: 0x800DDBE0
  * @note Size: 0x30
  */
-void stateCoverClosed_CMD(DVDCommandBlock* cmdBlock) { DVDLowReadDiskID(&CurrDiskID, cbForStateCoverClosed); }
+void stateCoverClosed_CMD(DVDCommandBlock* cmdBlock)
+{
+	DVDLowReadDiskID(&CurrDiskID, cbForStateCoverClosed);
+}
 
 /**
  * @note Address: 0x800DDC10
@@ -642,7 +662,10 @@ void cbForStateCoverClosed(u32 p1)
  * @note Address: 0x800DDC80
  * @note Size: 0x28
  */
-static void stateMotorStopped() { DVDLowWaitCoverClose(cbForStateMotorStopped); }
+static void stateMotorStopped()
+{
+	DVDLowWaitCoverClose(cbForStateMotorStopped);
+}
 
 /**
  * @note Address: 0x800DDCA8
@@ -1471,7 +1494,10 @@ s32 DVDCancel(DVDCommandBlock* block)
  * @note Address: 0x800DF1E4
  * @note Size: 0x24
  */
-static void cbForCancelSync(s32 result, DVDCommandBlock* block) { OSWakeupThread(&__DVDThreadQueue); }
+static void cbForCancelSync(s32 result, DVDCommandBlock* block)
+{
+	OSWakeupThread(&__DVDThreadQueue);
+}
 
 /**
  * @note Address: N/A
@@ -1507,7 +1533,10 @@ static BOOL DVDCancelAllAsync(DVDCBCallback callback)
  * @note Address: 0x800DF208
  * @note Size: 0x8
  */
-DVDDiskID* DVDGetCurrentDiskID() { return (DVDDiskID*)OSPhysicalToCached(0); }
+DVDDiskID* DVDGetCurrentDiskID()
+{
+	return (DVDDiskID*)OSPhysicalToCached(0);
+}
 
 /**
  * @note Address: 0x800DF210
@@ -1600,4 +1629,7 @@ void __DVDPrepareResetAsync(DVDCBCallback callback)
  * @note Address: 0x800DF424
  * @note Size: 0x38
  */
-BOOL __DVDTestAlarm(OSAlarm* alarm) { return (alarm == &ResetAlarm) ? TRUE : __DVDLowTestAlarm(alarm); }
+BOOL __DVDTestAlarm(OSAlarm* alarm)
+{
+	return (alarm == &ResetAlarm) ? TRUE : __DVDLowTestAlarm(alarm);
+}

@@ -67,7 +67,9 @@ GameFlow::GameFlow()
  * @note Size: 0x48
  * Matches size.
  */
-GameFlow::~GameFlow() { }
+GameFlow::~GameFlow()
+{
+}
 
 /**
  * @note Address: 0x804241D0

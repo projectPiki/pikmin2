@@ -63,7 +63,10 @@ void MainResultState::init(SingleGameSection* game, StateArg* arg)
  * @note Address: 0x8021A1FC
  * @note Size: 0x24
  */
-void MainResultState::beforeSave() { playData->setPikminCounts_Yesterday(); }
+void MainResultState::beforeSave()
+{
+	playData->setPikminCounts_Yesterday();
+}
 
 /**
  * @note Address: 0x8021A220
@@ -158,7 +161,9 @@ void MainResultState::exec(SingleGameSection* game)
 		mStartTimer -= sys->mDeltaTime;
 		if (mStartTimer < 0.0f) {
 			game->clearHeap();
-			FOREACH_NODE(Result::TNode, mResultNode.mChild, node) { }
+			FOREACH_NODE(Result::TNode, mResultNode.mChild, node)
+			{
+			}
 			transit(game, SGS_Select, nullptr);
 			return;
 		}

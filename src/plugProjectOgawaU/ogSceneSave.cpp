@@ -10,7 +10,9 @@ namespace newScreen {
  * @note Address: 0x80324DB4
  * @note Size: 0x3C
  */
-Save::Save() { }
+Save::Save()
+{
+}
 
 /**
  * @note Address: 0x80324DF0
@@ -27,7 +29,10 @@ void Save::doUserCallBackFunc(Resource::MgrCommand*)
  * @note Address: 0x80324E68
  * @note Size: 0x30
  */
-void Save::doCreateObj(JKRArchive*) { setColorBG(0, 0, 255, 255); }
+void Save::doCreateObj(JKRArchive*)
+{
+	setColorBG(0, 0, 255, 255);
+}
 
 /**
  * @note Address: 0x80324E98

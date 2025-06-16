@@ -962,7 +962,10 @@ void* VIGetNextFrameBuffer()
  * @note Address: 0x800D20C0
  * @note Size: 0x8
  */
-void* VIGetCurrentFrameBuffer(void) { return (void*)CurrBufAddr; }
+void* VIGetCurrentFrameBuffer(void)
+{
+	return (void*)CurrBufAddr;
+}
 
 /**
  * @note Address: N/A
@@ -1003,7 +1006,10 @@ void VISet3D(void)
  * @note Address: 0x800D2144
  * @note Size: 0x8
  */
-u32 VIGetRetraceCount(void) { return retraceCount; }
+u32 VIGetRetraceCount(void)
+{
+	return retraceCount;
+}
 
 /**
  * @note Address: 0x800D214C
@@ -1040,7 +1046,10 @@ static u32 getCurrentHalfLine(void)
  * @note Address: 0x800D2188
  * @note Size: 0x68
  */
-static u32 getCurrentFieldEvenOdd() { return (getCurrentHalfLine() < CurrTiming->numHalfLines) ? 1 : 0; }
+static u32 getCurrentFieldEvenOdd()
+{
+	return (getCurrentHalfLine() < CurrTiming->numHalfLines) ? 1 : 0;
+}
 
 /**
  * @note Address: 0x800D21F0

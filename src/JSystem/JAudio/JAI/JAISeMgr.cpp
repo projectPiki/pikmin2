@@ -1562,7 +1562,10 @@ void checkPlayingSeUpdateAddition(JAISe* se, JAInter::SeqUpdateData* seqData, f3
  * @note Address: 0x800AF84C
  * @note Size: 0x8
  */
-u8 changeIDToCategory(u32 id) { return id >> 0xC; }
+u8 changeIDToCategory(u32 id)
+{
+	return id >> 0xC;
+}
 
 /**
  * @note Address: 0x800AF854
@@ -2563,6 +2566,9 @@ lbl_800B031C:
  * @note Address: 0x800B0338
  * @note Size: 0x8
  */
-void setSeSequenceStartCallback(StartCallback callback) { seStartCallback = callback; }
+void setSeSequenceStartCallback(StartCallback callback)
+{
+	seStartCallback = callback;
+}
 } // namespace SeMgr
 } // namespace JAInter

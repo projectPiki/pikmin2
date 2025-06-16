@@ -65,7 +65,9 @@ void AppearState::exec(Item* item)
  * @note Address: 0x801EC458
  * @note Size: 0x4
  */
-void AppearState::cleanup(Item* item) { }
+void AppearState::cleanup(Item* item)
+{
+}
 
 /**
  * @note Address: 0x801EC45C
@@ -81,13 +83,18 @@ void CloseState::init(Item* item, StateArg* arg)
  * @note Address: 0x801EC498
  * @note Size: 0x14
  */
-void CloseState::exec(Item* item) { item->mLod.resetFlag(AILOD_IsVisibleBoth); }
+void CloseState::exec(Item* item)
+{
+	item->mLod.resetFlag(AILOD_IsVisibleBoth);
+}
 
 /**
  * @note Address: 0x801EC4AC
  * @note Size: 0x4
  */
-void CloseState::cleanup(Item* item) { }
+void CloseState::cleanup(Item* item)
+{
+}
 
 /**
  * @note Address: 0x801EC4B0
@@ -104,13 +111,18 @@ void WaitState::init(Item* item, StateArg* arg)
  * @note Address: 0x801EC4F4
  * @note Size: 0x34
  */
-void WaitState::exec(Item* item) { item->startSound(PSSE_EN_WATERSHOT_NORMAL); }
+void WaitState::exec(Item* item)
+{
+	item->startSound(PSSE_EN_WATERSHOT_NORMAL);
+}
 
 /**
  * @note Address: 0x801EC528
  * @note Size: 0x4
  */
-void WaitState::cleanup(Item* item) { }
+void WaitState::cleanup(Item* item)
+{
+}
 
 /**
  * @note Address: 0x801EC52C
@@ -132,7 +144,10 @@ void WaitState::onDamage(Item* item, f32 damage)
  * @note Address: 0x801EC5C0
  * @note Size: 0xC
  */
-void WaitState::onKeyEvent(Item* item, SysShape::KeyEvent const& keyEvent) { item->mAnimSpeed = 0.0f; }
+void WaitState::onKeyEvent(Item* item, SysShape::KeyEvent const& keyEvent)
+{
+	item->mAnimSpeed = 0.0f;
+}
 
 /**
  * @note Address: 0x801EC5CC
@@ -158,13 +173,18 @@ void OutState::init(Item* item, StateArg* arg)
  * @note Address: 0x801EC6E8
  * @note Size: 0x34
  */
-void OutState::exec(Item* item) { item->startSound(PSSE_EV_BIG_FOUNTAIN); }
+void OutState::exec(Item* item)
+{
+	item->startSound(PSSE_EV_BIG_FOUNTAIN);
+}
 
 /**
  * @note Address: 0x801EC71C
  * @note Size: 0x4
  */
-void OutState::cleanup(Item* item) { }
+void OutState::cleanup(Item* item)
+{
+}
 
 /**
  * @note Address: 0x801EC720
@@ -239,7 +259,10 @@ Item::Item()
  * @note Address: 0x801ECA2C
  * @note Size: 0x48
  */
-void Item::constructor() { mSoundObj = new PSM::WorkItem(this); }
+void Item::constructor()
+{
+	mSoundObj = new PSM::WorkItem(this);
+}
 
 /**
  * @note Address: 0x801ECA74
@@ -417,16 +440,24 @@ void Item::updateBoundSphere()
  * @note Address: 0x801ED264
  * @note Size: 0x4
  */
-void Item::doSimulation(f32) { }
+void Item::doSimulation(f32)
+{
+}
 
 // this is here to fix the weak function ordering. - HP
-static void fakeFunc(Item* item) { item->FSMItem::doAI(); }
+static void fakeFunc(Item* item)
+{
+	item->FSMItem::doAI();
+}
 
 /**
  * @note Address: 0x801ED268
  * @note Size: 0x30
  */
-bool Item::canRide() { return mCurrentState->canRide(); }
+bool Item::canRide()
+{
+	return mCurrentState->canRide();
+}
 
 /**
  * @note Address: 0x801ED2A0
@@ -486,7 +517,10 @@ f32 Item::getWorkDistance(Sys::Sphere& sphere)
  * @note Address: 0x801ED4E8
  * @note Size: 0x3C
  */
-void Item::onKeyEvent(SysShape::KeyEvent const& keyEvent) { mCurrentState->onKeyEvent(this, keyEvent); }
+void Item::onKeyEvent(SysShape::KeyEvent const& keyEvent)
+{
+	mCurrentState->onKeyEvent(this, keyEvent);
+}
 
 /**
  * @note Address: 0x801ED528
@@ -537,7 +571,10 @@ void Mgr::onLoadResources()
  * @note Address: 0x801ED934
  * @note Size: 0x20
  */
-BaseItem* Mgr::birth() { return TNodeItemMgr::birth(); }
+BaseItem* Mgr::birth()
+{
+	return TNodeItemMgr::birth();
+}
 
 /**
  * @note Address: 0x801ED954

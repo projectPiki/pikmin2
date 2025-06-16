@@ -112,7 +112,10 @@ f64 __setflm(f64);
 #define FABS(x) (f32) __fabs(x)
 #define fabs(x) __fabs(x)
 
-inline f128 fabsl(f128 x) { return __fabs((f64)x); }
+inline f128 fabsl(f128 x)
+{
+	return __fabs((f64)x);
+}
 
 /**
  * kludges for emulating inlined f versions of funcs.
@@ -120,9 +123,18 @@ inline f128 fabsl(f128 x) { return __fabs((f64)x); }
  * If my theory is correct, those functions will become inlined by code using libDolphin as a library.
  */
 
-inline f32 tanf_kludge(f32 __x) { return tan((f64)__x); }
-inline f32 sinf_kludge(f32 __x) { return sin((f64)__x); }
-inline f32 cosf_kludge(f32 __x) { return cos((f64)__x); }
+inline f32 tanf_kludge(f32 __x)
+{
+	return tan((f64)__x);
+}
+inline f32 sinf_kludge(f32 __x)
+{
+	return sin((f64)__x);
+}
+inline f32 cosf_kludge(f32 __x)
+{
+	return cos((f64)__x);
+}
 
 #ifdef __cplusplus
 };
@@ -145,7 +157,10 @@ static inline f32 dolsqrtf(f32 x)
 	return x;
 }
 
-static inline f64 sqrt_step(f64 tmpd, f32 mag) { return tmpd * 0.5 * (3.0 - mag * (tmpd * tmpd)); }
+static inline f64 sqrt_step(f64 tmpd, f32 mag)
+{
+	return tmpd * 0.5 * (3.0 - mag * (tmpd * tmpd));
+}
 
 static inline f32 dolsqrtfull(f32 mag)
 {
@@ -164,11 +179,26 @@ static inline f32 dolsqrtfull(f32 mag)
 	}
 }
 
-static inline f32 scaleValue(f32 scale, f32 value) { return scale * value; }
+static inline f32 scaleValue(f32 scale, f32 value)
+{
+	return scale * value;
+}
 
-static inline f32 dolsinf(f32 val) { return (f32)sin((f32)val); }
-static inline f32 dolcosf(f32 val) { return (f32)cos((f32)val); }
-static inline f32 doltanf(f32 val) { return (f32)tan((f32)val); }
-static inline f32 dolatan2f(f32 val1, f32 val2) { return (f32)atan2((f32)val1, (f32)val2); }
+static inline f32 dolsinf(f32 val)
+{
+	return (f32)sin((f32)val);
+}
+static inline f32 dolcosf(f32 val)
+{
+	return (f32)cos((f32)val);
+}
+static inline f32 doltanf(f32 val)
+{
+	return (f32)tan((f32)val);
+}
+static inline f32 dolatan2f(f32 val1, f32 val2)
+{
+	return (f32)atan2((f32)val1, (f32)val2);
+}
 
 #endif

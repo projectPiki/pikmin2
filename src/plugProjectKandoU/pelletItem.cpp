@@ -12,7 +12,9 @@ Mgr* mgr;
  * @note Address: 0x80202E14
  * @note Size: 0x4
  */
-void Object::do_onInit(CreatureInitArg*) { }
+void Object::do_onInit(CreatureInitArg*)
+{
+}
 
 /**
  * @note Address: 0x80202E18
@@ -101,7 +103,10 @@ void Mgr::setupResources()
  * @note Address: 0x80203468
  * @note Size: 0x24
  */
-GenPelletParm* Mgr::generatorNewPelletParm() { return new GenPelletParm; }
+GenPelletParm* Mgr::generatorNewPelletParm()
+{
+	return new GenPelletParm;
+}
 
 /**
  * @note Address: 0x8020348C
@@ -134,13 +139,19 @@ Pellet* Mgr::generatorBirth(Vector3f& pos, Vector3f& rot, GenPelletParm* genParm
  * @note Address: 0x802035D4
  * @note Size: 0x30
  */
-void Mgr::generatorWrite(Stream& data, GenPelletParm* genParm) { data.writeShort((u16)genParm->mIndex); }
+void Mgr::generatorWrite(Stream& data, GenPelletParm* genParm)
+{
+	data.writeShort((u16)genParm->mIndex);
+}
 
 /**
  * @note Address: 0x80203604
  * @note Size: 0x38
  */
-void Mgr::generatorRead(Stream& data, GenPelletParm* parm, u32 flag) { parm->mIndex = (u16)data.readShort(); }
+void Mgr::generatorRead(Stream& data, GenPelletParm* parm, u32 flag)
+{
+	parm->mIndex = (u16)data.readShort();
+}
 
 } // namespace PelletItem
 } // namespace Game

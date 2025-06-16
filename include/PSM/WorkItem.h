@@ -17,7 +17,7 @@ struct WorkItem : public EventBase {
 	 * @reifiedAddress{804637A0}
 	 * @reifiedFile{utilityU/PSMainSide_ObjSound.cpp}
 	 */
-	virtual ~WorkItem() {}; // _04 (thunks at _00 of vtable 2 and _00 of vtable 3)
+	virtual ~WorkItem() { }; // _04 (thunks at _00 of vtable 2 and _00 of vtable 3)
 	/**
 	 * @reifiedAddress{804638E8}
 	 * @reifiedFile{utilityU/PSMainSide_ObjSound.cpp}
