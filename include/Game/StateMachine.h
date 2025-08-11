@@ -45,8 +45,7 @@ struct StateMachine {
 	virtual void init(T*) { }                                   // _08
 	virtual void start(T* obj, int stateID, StateArg* settings) // _0C
 	{
-		// obj->setCurrState(nullptr); // should be this but this breaks ebiFileSelectMgr for some goddamn reason
-		obj->setCurrState(nullptr); // this can't be right because of itemHole.cpp smh
+		obj->setCurrState(nullptr);
 		transit(obj, stateID, settings);
 	}
 	virtual void exec(T* obj); // _10
