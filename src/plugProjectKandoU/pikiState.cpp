@@ -357,14 +357,15 @@ void PikiHoleinState::init(Piki* piki, StateArg* stateArg)
 
 	piki->endStick();
 	piki->startMotion(IPikiAnims::RUN2, IPikiAnims::RUN2, nullptr, nullptr);
-	Vector3f pikiPos = piki->getPosition();
-	mPosDiff         = holeinArg->mPosition - pikiPos; // regswaps here and...
-	mPosDiff.y       = 0.0f;
+	Vector3f pikiPos;
+	pikiPos    = piki->getPosition();
+	mPosDiff   = holeinArg->mPosition - pikiPos;
+	mPosDiff.y = 0.0f;
 
 	mTargetDist = mPosDiff.normalise();
 	mTargetDist *= 0.5f;
 
-	mGoalPos = pikiPos + mPosDiff * mTargetDist; // ... here, related to pikiPos I think
+	mGoalPos = pikiPos + mPosDiff * mTargetDist;
 	mTimer   = -mTargetDist;
 
 	mCountdown      = 0.3f * randFloat();
@@ -373,149 +374,6 @@ void PikiHoleinState::init(Piki* piki, StateArg* stateArg)
 
 	piki->movie_begin(false);
 	mScale = 1.0f;
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	or.      r31, r5, r5
-	stw      r30, 0x28(r1)
-	mr       r30, r4
-	stw      r29, 0x24(r1)
-	mr       r29, r3
-	bne      lbl_8018A998
-	lis      r3, lbl_8047EC60@ha
-	lis      r5, lbl_8047ECA8@ha
-	addi     r3, r3, lbl_8047EC60@l
-	li       r4, 0x3b5
-	addi     r5, r5, lbl_8047ECA8@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8018A998:
-	mr       r3, r30
-	bl       endStick__Q24Game8CreatureFv
-	mr       r3, r30
-	li       r4, 0x1d
-	lwz      r12, 0(r30)
-	li       r5, 0x1d
-	li       r6, 0
-	li       r7, 0
-	lwz      r12, 0x208(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r30
-	addi     r3, r1, 8
-	lwz      r12, 0(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 8(r1)
-	lfs      f2, 0(r31)
-	lfs      f1, 0xc(r1)
-	lfs      f4, 4(r31)
-	fsubs    f3, f2, f0
-	lfs      f2, 0x10(r1)
-	lfs      f5, 8(r31)
-	fsubs    f6, f4, f1
-	lfs      f4, lbl_80518DE0@sda21(r2)
-	stfs     f3, 0x1c(r29)
-	fsubs    f3, f5, f2
-	stfs     f6, 0x20(r29)
-	stfs     f3, 0x24(r29)
-	stfs     f4, 0x20(r29)
-	lfs      f6, 0x1c(r29)
-	lfs      f5, 0x20(r29)
-	lfs      f7, 0x24(r29)
-	fmuls    f3, f6, f6
-	fmuls    f5, f5, f5
-	fmuls    f7, f7, f7
-	fadds    f3, f3, f5
-	fadds    f3, f7, f3
-	fcmpo    cr0, f3, f4
-	ble      lbl_8018AA58
-	fmadds   f3, f6, f6, f5
-	fadds    f5, f7, f3
-	fcmpo    cr0, f5, f4
-	ble      lbl_8018AA5C
-	frsqrte  f3, f5
-	fmuls    f5, f3, f5
-	b        lbl_8018AA5C
-
-lbl_8018AA58:
-	fmr      f5, f4
-
-lbl_8018AA5C:
-	lfs      f3, lbl_80518DE0@sda21(r2)
-	fcmpo    cr0, f5, f3
-	ble      lbl_8018AA98
-	lfs      f4, lbl_80518DE4@sda21(r2)
-	lfs      f3, 0x1c(r29)
-	fdivs    f4, f4, f5
-	fmuls    f3, f3, f4
-	stfs     f3, 0x1c(r29)
-	lfs      f3, 0x20(r29)
-	fmuls    f3, f3, f4
-	stfs     f3, 0x20(r29)
-	lfs      f3, 0x24(r29)
-	fmuls    f3, f3, f4
-	stfs     f3, 0x24(r29)
-	b        lbl_8018AA9C
-
-lbl_8018AA98:
-	fmr      f5, f3
-
-lbl_8018AA9C:
-	stfs     f5, 0x28(r29)
-	lfs      f3, lbl_80518DF4@sda21(r2)
-	lfs      f4, 0x28(r29)
-	fmuls    f3, f4, f3
-	stfs     f3, 0x28(r29)
-	lfs      f6, 0x28(r29)
-	lfs      f3, 0x1c(r29)
-	lfs      f4, 0x20(r29)
-	fmuls    f3, f3, f6
-	lfs      f5, 0x24(r29)
-	fmuls    f4, f4, f6
-	fmuls    f5, f5, f6
-	fadds    f0, f0, f3
-	fadds    f1, f1, f4
-	fadds    f2, f2, f5
-	stfs     f0, 0x10(r29)
-	stfs     f1, 0x14(r29)
-	stfs     f2, 0x18(r29)
-	lfs      f0, 0x28(r29)
-	fneg     f0, f0
-	stfs     f0, 0x2c(r29)
-	bl       rand
-	xoris    r0, r3, 0x8000
-	lis      r4, 0x4330
-	stw      r0, 0x1c(r1)
-	li       r0, 0
-	lfd      f3, lbl_80518DD8@sda21(r2)
-	mr       r3, r30
-	stw      r4, 0x18(r1)
-	li       r4, 0
-	lfs      f1, lbl_80518DC8@sda21(r2)
-	lfd      f2, 0x18(r1)
-	lfs      f0, lbl_80518DC4@sda21(r2)
-	fsubs    f2, f2, f3
-	fdivs    f1, f2, f1
-	fmuls    f0, f0, f1
-	stfs     f0, 0x30(r29)
-	stb      r0, 0x34(r29)
-	stb      r0, 0x44(r29)
-	bl       movie_begin__Q24Game8CreatureFb
-	lfs      f0, lbl_80518DE4@sda21(r2)
-	stfs     f0, 0x48(r29)
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /**
@@ -543,8 +401,9 @@ void PikiHoleinState::exec(Piki* piki)
 	}
 
 	// some nonsense here
-	f32 factor        = (40.0f + (-40.0f / SQUARE(mTargetDist)) * mTimer * mTimer);
-	Vector3f position = mPosDiff * mTimer + mGoalPos;
+	f32 p1            = -40.0f / SQUARE(mTargetDist);
+	f32 factor        = (40.0f + mTimer * (p1 * mTimer));
+	Vector3f position = mGoalPos + mPosDiff * mTimer;
 	position.y += factor;
 
 	piki->setPosition(position, false);
@@ -559,130 +418,6 @@ void PikiHoleinState::exec(Piki* piki)
 		mNeedHoldPos  = true;
 		mHeldPosition = position;
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	mr       r3, r31
-	bl       endStick__Q24Game8CreatureFv
-	lfs      f0, 0x48(r30)
-	stfs     f0, 0x168(r31)
-	stfs     f0, 0x16c(r31)
-	stfs     f0, 0x170(r31)
-	lbz      r0, 0x34(r30)
-	cmplwi   r0, 0
-	beq      lbl_8018ABB4
-	mr       r3, r31
-	addi     r4, r30, 0x38
-	li       r5, 0
-	bl       "setPosition__Q24Game8CreatureFR10Vector3<f>b"
-	b        lbl_8018AD08
-
-lbl_8018ABB4:
-	lfs      f1, 0x30(r30)
-	lfs      f0, lbl_80518DE0@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_8018ABD8
-	lwz      r3, sys@sda21(r13)
-	lfs      f0, 0x54(r3)
-	fsubs    f0, f1, f0
-	stfs     f0, 0x30(r30)
-	b        lbl_8018AD08
-
-lbl_8018ABD8:
-	lbz      r0, 0x44(r30)
-	cmplwi   r0, 0
-	bne      lbl_8018ABFC
-	li       r0, 1
-	mr       r3, r31
-	stb      r0, 0x44(r30)
-	li       r4, 0x282f
-	li       r5, 0
-	bl       startSound__Q24Game4PikiFUlb
-
-lbl_8018ABFC:
-	lfs      f0, 0x28(r30)
-	mr       r3, r31
-	lfs      f1, lbl_80518DFC@sda21(r2)
-	addi     r4, r1, 8
-	fmuls    f0, f0, f0
-	lfs      f8, 0x2c(r30)
-	lfs      f2, 0x20(r30)
-	li       r5, 0
-	lfs      f4, 0x24(r30)
-	fdivs    f6, f1, f0
-	lfs      f0, 0x1c(r30)
-	lfs      f7, lbl_80518DF8@sda21(r2)
-	lfs      f3, 0x14(r30)
-	lfs      f5, 0x18(r30)
-	lfs      f1, 0x10(r30)
-	fmuls    f6, f6, f8
-	fmuls    f2, f2, f8
-	fmuls    f4, f4, f8
-	fmuls    f6, f8, f6
-	fadds    f2, f3, f2
-	fmuls    f0, f0, f8
-	fadds    f6, f7, f6
-	fadds    f3, f5, f4
-	stfs     f2, 0xc(r1)
-	fadds    f1, f1, f0
-	fadds    f0, f2, f6
-	stfs     f3, 0x10(r1)
-	stfs     f1, 8(r1)
-	stfs     f0, 0xc(r1)
-	bl       "setPosition__Q24Game8CreatureFR10Vector3<f>b"
-	lwz      r3, sys@sda21(r13)
-	lfs      f3, lbl_80518E00@sda21(r2)
-	lfs      f2, 0x54(r3)
-	lfs      f1, 0x2c(r30)
-	lfs      f0, lbl_80518E04@sda21(r2)
-	fmadds   f1, f3, f2, f1
-	stfs     f1, 0x2c(r30)
-	lfs      f3, 0x28(r30)
-	lfs      f1, 0x2c(r30)
-	fmuls    f0, f0, f3
-	fcmpo    cr0, f1, f0
-	ble      lbl_8018ACC0
-	fsubs    f1, f1, f0
-	lfs      f2, lbl_80518E08@sda21(r2)
-	lfs      f0, lbl_80518E0C@sda21(r2)
-	fmsubs   f1, f2, f3, f1
-	fmuls    f0, f0, f3
-	fdivs    f0, f1, f0
-	stfs     f0, 0x48(r30)
-
-lbl_8018ACC0:
-	lfs      f1, lbl_80518E08@sda21(r2)
-	lfs      f0, 0x28(r30)
-	lfs      f2, 0x2c(r30)
-	fmuls    f0, f1, f0
-	fcmpo    cr0, f2, f0
-	cror     2, 1, 2
-	bne      lbl_8018AD08
-	lbz      r0, 0x34(r30)
-	cmplwi   r0, 0
-	bne      lbl_8018AD08
-	li       r0, 1
-	stb      r0, 0x34(r30)
-	lfs      f0, 8(r1)
-	stfs     f0, 0x38(r30)
-	lfs      f0, 0xc(r1)
-	stfs     f0, 0x3c(r30)
-	lfs      f0, 0x10(r1)
-	stfs     f0, 0x40(r30)
-
-lbl_8018AD08:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
@@ -707,9 +442,10 @@ void PikiFountainonState::init(Piki* piki, StateArg* stateArg)
 	piki->endStick();
 	piki->startMotion(IPikiAnims::RUN2, IPikiAnims::RUN2, nullptr, nullptr);
 
-	Vector3f pikiPos = piki->getPosition(); // regswaps here
-	mAvgPosition     = pikiPos * 0.6f + fountainonArg->mPosition * 0.4f;
-	mPosDiff         = mAvgPosition - pikiPos;
+	Vector3f pikiPos;
+	pikiPos      = piki->getPosition();
+	mAvgPosition = pikiPos * 0.6f + fountainonArg->mPosition * 0.39999998f;
+	mPosDiff     = mAvgPosition - pikiPos;
 
 	mTargetDist = mPosDiff.normalise();
 
@@ -717,144 +453,6 @@ void PikiFountainonState::init(Piki* piki, StateArg* stateArg)
 
 	mCountdown = 0.3f * randFloat();
 	piki->movie_begin(false);
-
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	or.      r31, r5, r5
-	stw      r30, 0x28(r1)
-	mr       r30, r4
-	stw      r29, 0x24(r1)
-	mr       r29, r3
-	bne      lbl_8018AD68
-	lis      r3, lbl_8047EC60@ha
-	lis      r5, lbl_8047ECC0@ha
-	addi     r3, r3, lbl_8047EC60@l
-	li       r4, 0x41a
-	addi     r5, r5, lbl_8047ECC0@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8018AD68:
-	mr       r3, r30
-	bl       endStick__Q24Game8CreatureFv
-	mr       r3, r30
-	li       r4, 0x1d
-	lwz      r12, 0(r30)
-	li       r5, 0x1d
-	li       r6, 0
-	li       r7, 0
-	lwz      r12, 0x208(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r30
-	addi     r3, r1, 8
-	lwz      r12, 0(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f8, 8(r1)
-	lfs      f7, lbl_80518E10@sda21(r2)
-	lfs      f9, 0xc(r1)
-	lfs      f5, lbl_80518E14@sda21(r2)
-	fmuls    f2, f8, f7
-	lfs      f0, 0(r31)
-	fmuls    f4, f9, f7
-	lfs      f1, 4(r31)
-	fmuls    f0, f0, f5
-	lfs      f10, 0x10(r1)
-	fmuls    f3, f1, f5
-	lfs      f6, 8(r31)
-	fmuls    f7, f10, f7
-	lfs      f1, lbl_80518DE0@sda21(r2)
-	fadds    f0, f2, f0
-	fmuls    f2, f6, f5
-	fadds    f3, f4, f3
-	stfs     f0, 0x10(r29)
-	fadds    f0, f7, f2
-	stfs     f3, 0x14(r29)
-	stfs     f0, 0x18(r29)
-	lfs      f0, 0x10(r29)
-	lfs      f2, 0x14(r29)
-	lfs      f3, 0x18(r29)
-	fsubs    f0, f0, f8
-	fsubs    f2, f2, f9
-	fsubs    f3, f3, f10
-	stfs     f0, 0x1c(r29)
-	stfs     f2, 0x20(r29)
-	stfs     f3, 0x24(r29)
-	lfs      f3, 0x1c(r29)
-	lfs      f2, 0x20(r29)
-	lfs      f4, 0x24(r29)
-	fmuls    f0, f3, f3
-	fmuls    f2, f2, f2
-	fmuls    f4, f4, f4
-	fadds    f0, f0, f2
-	fadds    f0, f4, f0
-	fcmpo    cr0, f0, f1
-	ble      lbl_8018AE68
-	fmadds   f0, f3, f3, f2
-	fadds    f2, f4, f0
-	fcmpo    cr0, f2, f1
-	ble      lbl_8018AE6C
-	frsqrte  f0, f2
-	fmuls    f2, f0, f2
-	b        lbl_8018AE6C
-
-lbl_8018AE68:
-	fmr      f2, f1
-
-lbl_8018AE6C:
-	lfs      f0, lbl_80518DE0@sda21(r2)
-	fcmpo    cr0, f2, f0
-	ble      lbl_8018AEA8
-	lfs      f1, lbl_80518DE4@sda21(r2)
-	lfs      f0, 0x1c(r29)
-	fdivs    f1, f1, f2
-	fmuls    f0, f0, f1
-	stfs     f0, 0x1c(r29)
-	lfs      f0, 0x20(r29)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x20(r29)
-	lfs      f0, 0x24(r29)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x24(r29)
-	b        lbl_8018AEAC
-
-lbl_8018AEA8:
-	fmr      f2, f0
-
-lbl_8018AEAC:
-	stfs     f2, 0x28(r29)
-	lfs      f0, 0x28(r29)
-	fneg     f0, f0
-	stfs     f0, 0x2c(r29)
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x1c(r1)
-	mr       r3, r30
-	lfd      f3, lbl_80518DD8@sda21(r2)
-	li       r4, 0
-	stw      r0, 0x18(r1)
-	lfs      f1, lbl_80518DC8@sda21(r2)
-	lfd      f2, 0x18(r1)
-	lfs      f0, lbl_80518DC4@sda21(r2)
-	fsubs    f2, f2, f3
-	fdivs    f1, f2, f1
-	fmuls    f0, f0, f1
-	stfs     f0, 0x30(r29)
-	bl       movie_begin__Q24Game8CreatureFb
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /**
@@ -873,141 +471,26 @@ void PikiFountainonState::exec(Piki* piki)
 
 	Vector3f position;
 
-	// regswaps here
-	f32 p1          = mTargetDist * 0.4f;
+	f32 p1          = mTargetDist * 0.39999998f;
 	f32 p2          = -50.0f / SQUARE(mTargetDist);
-	f32 otherFactor = 50.0f + p2 * SQUARE(mTimer);
+	f32 otherFactor = 50.0f + mTimer * (p2 * mTimer);
 
 	if (mTimer >= p1) {
-		f32 factor = 50.0f + p2 * SQUARE(p1) + (mTimer - p1);
-		position   = mPosDiff * p1 + mAvgPosition;
+		f32 factor = 50.0f + p1 * (p2 * p1) + (mTimer - p1);
+		position   = mAvgPosition + mPosDiff * p1;
 		position.y += factor;
 		mTimer += sys->mDeltaTime * 400.0f;
 	} else {
-		position = mPosDiff * mTimer + mAvgPosition;
+		position = mAvgPosition + mPosDiff * mTimer;
 		position.y += otherFactor;
 		mTimer += sys->mDeltaTime * 40.0f;
 
-		if (mTimer >= mTargetDist * 0.4f) {
+		if (mTimer >= mTargetDist * 0.39999998f) {
 			piki->startSound(PSSE_PK_ESCAPE_HOLE, 0);
 		}
 	}
 
 	piki->setPosition(position, false);
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lfs      f1, lbl_80518DE0@sda21(r2)
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	lfs      f2, 0x30(r3)
-	fcmpo    cr0, f2, f1
-	ble      lbl_8018AF70
-	lwz      r4, sys@sda21(r13)
-	lfs      f0, 0x54(r4)
-	fsubs    f0, f2, f0
-	stfs     f0, 0x30(r3)
-	lfs      f0, 0x30(r3)
-	fcmpo    cr0, f0, f1
-	cror     2, 0, 2
-	bne      lbl_8018B0A4
-	mr       r3, r31
-	li       r4, 0x282f
-	li       r5, 0
-	bl       startSound__Q24Game4PikiFUlb
-	b        lbl_8018B0A4
-
-lbl_8018AF70:
-	lfs      f3, 0x28(r3)
-	lfs      f6, lbl_80518E14@sda21(r2)
-	fmuls    f1, f3, f3
-	lfs      f2, lbl_80518E18@sda21(r2)
-	lfs      f0, 0x2c(r3)
-	fmuls    f8, f6, f3
-	lfs      f5, lbl_80518E1C@sda21(r2)
-	fdivs    f2, f2, f1
-	fmuls    f1, f2, f0
-	fcmpo    cr0, f0, f8
-	fmuls    f1, f0, f1
-	fadds    f9, f5, f1
-	cror     2, 1, 2
-	bne      lbl_8018B014
-	fmuls    f2, f2, f8
-	lfs      f4, 0x20(r3)
-	lfs      f6, 0x24(r3)
-	fsubs    f1, f0, f8
-	lfs      f3, 0x1c(r3)
-	fmuls    f4, f4, f8
-	fmadds   f2, f8, f2, f5
-	lfs      f5, 0x14(r3)
-	fmuls    f6, f6, f8
-	lfs      f7, 0x18(r3)
-	fadds    f5, f5, f4
-	lfs      f4, 0x10(r3)
-	fmuls    f3, f3, f8
-	lwz      r4, sys@sda21(r13)
-	fadds    f1, f2, f1
-	stfs     f5, 0xc(r1)
-	fadds    f6, f7, f6
-	lfs      f2, lbl_80518E20@sda21(r2)
-	fadds    f3, f4, f3
-	fadds    f1, f5, f1
-	stfs     f6, 0x10(r1)
-	stfs     f3, 8(r1)
-	stfs     f1, 0xc(r1)
-	lfs      f1, 0x54(r4)
-	fmadds   f0, f2, f1, f0
-	stfs     f0, 0x2c(r3)
-	b        lbl_8018B094
-
-lbl_8018B014:
-	lfs      f1, 0x20(r3)
-	lfs      f4, 0x24(r3)
-	fmuls    f2, f1, f0
-	lfs      f3, 0x14(r3)
-	lfs      f1, 0x1c(r3)
-	fmuls    f4, f4, f0
-	lfs      f5, 0x18(r3)
-	fadds    f7, f3, f2
-	lfs      f3, 0x10(r3)
-	fmuls    f2, f1, f0
-	fadds    f4, f5, f4
-	lwz      r4, sys@sda21(r13)
-	fadds    f1, f7, f9
-	fadds    f3, f3, f2
-	stfs     f7, 0xc(r1)
-	lfs      f2, lbl_80518DF8@sda21(r2)
-	stfs     f4, 0x10(r1)
-	stfs     f3, 8(r1)
-	stfs     f1, 0xc(r1)
-	lfs      f1, 0x54(r4)
-	fmadds   f0, f2, f1, f0
-	stfs     f0, 0x2c(r3)
-	lfs      f0, 0x28(r3)
-	lfs      f1, 0x2c(r3)
-	fmuls    f0, f6, f0
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_8018B094
-	mr       r3, r31
-	li       r4, 0x285a
-	li       r5, 0
-	bl       startSound__Q24Game4PikiFUlb
-
-lbl_8018B094:
-	mr       r3, r31
-	addi     r4, r1, 8
-	li       r5, 0
-	bl       "setPosition__Q24Game8CreatureFR10Vector3<f>b"
-
-lbl_8018B0A4:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
@@ -2058,15 +1541,15 @@ void PikiGoHangState::exec(Piki* piki)
 
 	CollPart* collpart = piki->mNavi->mCollTree->getCollPart('rhnd');
 	Vector3f diff      = collpart->mPosition - piki->getPosition();
-	f32 length         = diff.normalise(); // can't use this bc no second round of fmadds - has to use a different normalise.
+	f32 length         = diff.normalise();
 	f32 scale          = 1.0f;
-	if (length > 2.0f * naviMgr->mNaviParms->mNaviParms.mGrabPikiRange.mValue) {
+	if (length > 2.0f * naviMgr->mNaviParms->mNaviParms.mGrabPikiRange()) {
 		scale = 2.0f;
 	}
-	Vector3f naviPos      = piki->mNavi->mVelocity;
-	f32 factor            = scale * static_cast<NaviParms*>(piki->mNavi->mParms)->mNaviParms.mAutopluckDistance.mValue;
-	f32 dist              = naviPos.length();
-	piki->mTargetVelocity = diff * (factor + dist);
+	Vector3f naviPos = piki->mNavi->mVelocity;
+	f32 factor       = scale * static_cast<PikiParms*>(piki->mParms)->mPikiParms.mRunSpeed();
+	factor += naviPos.length();
+	piki->mTargetVelocity = diff * factor;
 
 	if (piki->mNavi->getStateID() != NSID_ThrowWait) {
 		transit(piki, PIKISTATE_Walk, nullptr);
@@ -4801,18 +4284,17 @@ void PikiDrownState::exec(Piki* piki)
 
 			mMoveVelocity = sep * piki->getSpeed(0.5f);
 
-			Vector3f oldVel = piki->mTargetVelocity;
 			Vector3f newSep = mMoveVelocity - piki->mTargetVelocity;
-			f32 speedDiff   = _normalise2(newSep);
+			f32 speedDiff   = newSep.normalise();
 			f32 modifier    = 15.0f;
 			if (mIsCalled) {
 				modifier *= 2.0f;
 			}
 
 			if (speedDiff > modifier * sys->mDeltaTime) {
-				piki->mTargetVelocity = newSep * speedDiff * sys->mDeltaTime + oldVel;
+				piki->mTargetVelocity = piki->mTargetVelocity + (newSep * modifier) * sys->mDeltaTime;
 			} else {
-				piki->mTargetVelocity = newSep * sys->mDeltaTime + oldVel;
+				piki->mTargetVelocity = piki->mTargetVelocity + newSep * sys->mDeltaTime;
 			}
 
 			piki->mVelocity.x = piki->mTargetVelocity.x;
@@ -5432,8 +4914,7 @@ void PikiEmotionState::init(Piki* piki, StateArg* stateArg)
 
 	switch (mEmotionType) {
 	case 0: {
-		KandoLib::Choice choiceList[3] = { (KandoLib::Choice) { IPikiAnims::JUMPB1, 0.33f }, (KandoLib::Choice) { IPikiAnims::JUMP, 0.33f },
-			                               (KandoLib::Choice) { IPikiAnims::JUMPR1, 0.33f } };
+		KandoLib::Choice choiceList[3] = { { IPikiAnims::JUMPB1, 0.33f }, { IPikiAnims::JUMP, 0.33f }, { IPikiAnims::JUMPR1, 0.33f } };
 
 		u32 choice = KandoLib::getRandomChoice(choiceList, 3);
 		mAnimIdx   = choice;
@@ -5443,8 +4924,7 @@ void PikiEmotionState::init(Piki* piki, StateArg* stateArg)
 	}
 
 	case 1: {
-		KandoLib::Choice choiceList[3] = { (KandoLib::Choice) { IPikiAnims::JUMPB1, 0.33f }, (KandoLib::Choice) { IPikiAnims::JUMP, 0.33f },
-			                               (KandoLib::Choice) { IPikiAnims::JUMPR1, 0.33f } };
+		KandoLib::Choice choiceList[3] = { { IPikiAnims::JUMPB1, 0.33f }, { IPikiAnims::JUMP, 0.33f }, { IPikiAnims::JUMPR1, 0.33f } };
 
 		u32 choice = KandoLib::getRandomChoice(choiceList, 3);
 		mAnimIdx   = choice;
@@ -5454,8 +4934,7 @@ void PikiEmotionState::init(Piki* piki, StateArg* stateArg)
 	}
 
 	case 2: {
-		KandoLib::Choice choiceList[2]
-		    = { (KandoLib::Choice) { IPikiAnims::SAGASU, 0.5f }, (KandoLib::Choice) { IPikiAnims::SAGASU2, 0.5f } };
+		KandoLib::Choice choiceList[2] = { { IPikiAnims::SAGASU, 0.5f }, { IPikiAnims::SAGASU2, 0.5f } };
 
 		u32 choice = KandoLib::getRandomChoice(choiceList, 2);
 		mAnimIdx   = choice;
@@ -5465,8 +4944,7 @@ void PikiEmotionState::init(Piki* piki, StateArg* stateArg)
 	}
 
 	case 4: {
-		KandoLib::Choice choiceList[2]
-		    = { (KandoLib::Choice) { IPikiAnims::GAKKARI, 0.5f }, (KandoLib::Choice) { IPikiAnims::SAGASU2, 0.5f } };
+		KandoLib::Choice choiceList[2] = { { IPikiAnims::GAKKARI, 0.5f }, { IPikiAnims::SAGASU2, 0.5f } };
 
 		u32 choice = KandoLib::getRandomChoice(choiceList, 2);
 		mAnimIdx   = choice;
