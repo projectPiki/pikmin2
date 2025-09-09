@@ -1690,7 +1690,7 @@ config.libs = [
             Object(Matching, "plugProjectOgawaU/ogSceneAnaDemo.cpp"),
             Object(Matching, "plugProjectOgawaU/ogObjChallenge2P.cpp"),
             Object(Matching, "plugProjectOgawaU/ogSceneChallenge2P.cpp"),
-            Object(NonMatching, "plugProjectOgawaU/ogObjContena.cpp"),
+            Object(Equivalent, "plugProjectOgawaU/ogObjContena.cpp"),
             Object(Matching, "plugProjectOgawaU/ogSceneContena.cpp"),
             Object(Matching, "plugProjectOgawaU/ogObjSMenuPauseDoukutu.cpp"),
             Object(Matching, "plugProjectOgawaU/ogSceneSMenuPauseDoukutu.cpp"),
