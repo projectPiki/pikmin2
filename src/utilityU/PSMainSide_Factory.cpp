@@ -426,18 +426,17 @@ void SceneMgr::initEnvironmentSe(PSM::Scene_Game* scene)
 		scene->mPersEnvMgr      = persMgr;
 
 		// use all 10 INSECT sounds in challenge mode (the amount that actually play depends on the map size)
+		APPEND_SE_LINK(builder, PSSE_MP_INSECT01_MIX1);
+		APPEND_SE_LINK(builder, PSSE_MP_INSECT02_MIX1);
+		APPEND_SE_LINK(builder, PSSE_MP_INSECT03_MIX1);
+		APPEND_SE_LINK(builder, PSSE_MP_INSECT04_MIX1);
+		APPEND_SE_LINK(builder, PSSE_MP_INSECT05_MIX1);
 
-		builder.appendNewSELink(PSSE_MP_INSECT01_MIX1);
-		builder.appendNewSELink(PSSE_MP_INSECT02_MIX1);
-		builder.appendNewSELink(PSSE_MP_INSECT03_MIX1);
-		builder.appendNewSELink(PSSE_MP_INSECT04_MIX1);
-		builder.appendNewSELink(PSSE_MP_INSECT05_MIX1);
-
-		builder.appendNewSELink(PSSE_MP_INSECT01_MIX2);
-		builder.appendNewSELink(PSSE_MP_INSECT02_MIX2);
-		builder.appendNewSELink(PSSE_MP_INSECT03_MIX2);
-		builder.appendNewSELink(PSSE_MP_INSECT04_MIX2);
-		builder.appendNewSELink(PSSE_MP_INSECT05_MIX2);
+		APPEND_SE_LINK(builder, PSSE_MP_INSECT01_MIX2);
+		APPEND_SE_LINK(builder, PSSE_MP_INSECT02_MIX2);
+		APPEND_SE_LINK(builder, PSSE_MP_INSECT03_MIX2);
+		APPEND_SE_LINK(builder, PSSE_MP_INSECT04_MIX2);
+		APPEND_SE_LINK(builder, PSSE_MP_INSECT05_MIX2);
 
 		PSM::PersEnvInfo envInfo = (PSM::PersEnvInfo) { 1500.0f, 479.0f, 707.0f, 808.0f, 1.0f };
 		persMgr->_10             = 479.0f;
@@ -452,7 +451,7 @@ void SceneMgr::initEnvironmentSe(PSM::Scene_Game* scene)
 		break;
 	}
 
-	if (!mgr && info->getFlag(PSGame::SceneInfo::SFBS_1) == 1) {
+	if (!mgr && info->getBitShift1() == FALSE) {
 		if (info->isCaveFloor()) {
 			mgr = new PSSystem::EnvSeMgr;
 
@@ -462,92 +461,92 @@ void SceneMgr::initEnvironmentSe(PSM::Scene_Game* scene)
 			// In story mode caves, use different ambient noises based on the sublevel (from 1 - 15)
 			switch (static_cast<PSGame::CaveFloorInfo*>(info)->mFloorNum) {
 			case 0: {
-				builder.appendNewSELink(PSSE_MP_INSECT02_MIX1);
-				builder.appendNewSELink(PSSE_MP_INSECT03_MIX1);
+				APPEND_SE_LINK(builder, PSSE_MP_INSECT02_MIX1);
+				APPEND_SE_LINK(builder, PSSE_MP_INSECT03_MIX1);
 			} break;
 
 			case 1: {
-				builder.appendNewSELink(PSSE_MP_INSECT02_MIX2);
-				builder.appendNewSELink(PSSE_MP_INSECT03_MIX2);
+				APPEND_SE_LINK(builder, PSSE_MP_INSECT02_MIX2);
+				APPEND_SE_LINK(builder, PSSE_MP_INSECT03_MIX2);
 			} break;
 
 			case 2: {
-				builder.appendNewSELink(PSSE_MP_INSECT02_MIX1);
-				builder.appendNewSELink(PSSE_MP_INSECT03_MIX2);
-				builder.appendNewSELink(PSSE_MP_INSECT04_MIX1);
+				APPEND_SE_LINK(builder, PSSE_MP_INSECT02_MIX1);
+				APPEND_SE_LINK(builder, PSSE_MP_INSECT03_MIX2);
+				APPEND_SE_LINK(builder, PSSE_MP_INSECT04_MIX1);
 			} break;
 
 			case 3: {
-				builder.appendNewSELink(PSSE_MP_INSECT03_MIX1);
-				builder.appendNewSELink(PSSE_MP_INSECT04_MIX2);
-				builder.appendNewSELink(PSSE_MP_INSECT01_MIX1);
+				APPEND_SE_LINK(builder, PSSE_MP_INSECT03_MIX1);
+				APPEND_SE_LINK(builder, PSSE_MP_INSECT04_MIX2);
+				APPEND_SE_LINK(builder, PSSE_MP_INSECT01_MIX1);
 			} break;
 
 			case 4: {
-				builder.appendNewSELink(PSSE_MP_INSECT04_MIX1);
-				builder.appendNewSELink(PSSE_MP_INSECT01_MIX2);
-				builder.appendNewSELink(PSSE_MP_INSECT05_MIX1);
+				APPEND_SE_LINK(builder, PSSE_MP_INSECT04_MIX1);
+				APPEND_SE_LINK(builder, PSSE_MP_INSECT01_MIX2);
+				APPEND_SE_LINK(builder, PSSE_MP_INSECT05_MIX1);
 			} break;
 
 			case 5: {
-				builder.appendNewSELink(PSSE_MP_INSECT01_MIX1);
-				builder.appendNewSELink(PSSE_MP_INSECT05_MIX2);
-				builder.appendNewSELink(PSSE_MP_INSECTDEEP01_MIX1);
+				APPEND_SE_LINK(builder, PSSE_MP_INSECT01_MIX1);
+				APPEND_SE_LINK(builder, PSSE_MP_INSECT05_MIX2);
+				APPEND_SE_LINK(builder, PSSE_MP_INSECTDEEP01_MIX1);
 			} break;
 
 			case 6: {
-				builder.appendNewSELink(PSSE_MP_INSECT05_MIX1);
-				builder.appendNewSELink(PSSE_MP_INSECTDEEP01_MIX2);
-				builder.appendNewSELink(PSSE_MP_INSECTDEEP06_MIX1);
+				APPEND_SE_LINK(builder, PSSE_MP_INSECT05_MIX1);
+				APPEND_SE_LINK(builder, PSSE_MP_INSECTDEEP01_MIX2);
+				APPEND_SE_LINK(builder, PSSE_MP_INSECTDEEP06_MIX1);
 			} break;
 
 			case 7: {
-				builder.appendNewSELink(PSSE_MP_INSECTDEEP01_MIX1);
-				builder.appendNewSELink(PSSE_MP_INSECTDEEP06_MIX2);
-				builder.appendNewSELink(PSSE_MP_INSECTDEEP02_MIX1);
+				APPEND_SE_LINK(builder, PSSE_MP_INSECTDEEP01_MIX1);
+				APPEND_SE_LINK(builder, PSSE_MP_INSECTDEEP06_MIX2);
+				APPEND_SE_LINK(builder, PSSE_MP_INSECTDEEP02_MIX1);
 			} break;
 
 			case 8: {
-				builder.appendNewSELink(PSSE_MP_INSECTDEEP06_MIX1);
-				builder.appendNewSELink(PSSE_MP_INSECTDEEP02_MIX2);
-				builder.appendNewSELink(PSSE_MP_INSECTDEEP05_MIX1);
+				APPEND_SE_LINK(builder, PSSE_MP_INSECTDEEP06_MIX1);
+				APPEND_SE_LINK(builder, PSSE_MP_INSECTDEEP02_MIX2);
+				APPEND_SE_LINK(builder, PSSE_MP_INSECTDEEP05_MIX1);
 			} break;
 
 			case 9: {
-				builder.appendNewSELink(PSSE_MP_INSECTDEEP02_MIX1);
-				builder.appendNewSELink(PSSE_MP_INSECTDEEP05_MIX2);
-				builder.appendNewSELink(PSSE_MP_INSECTDEEP04_MIX1);
+				APPEND_SE_LINK(builder, PSSE_MP_INSECTDEEP02_MIX1);
+				APPEND_SE_LINK(builder, PSSE_MP_INSECTDEEP05_MIX2);
+				APPEND_SE_LINK(builder, PSSE_MP_INSECTDEEP04_MIX1);
 			} break;
 
 			case 10: {
-				builder.appendNewSELink(PSSE_MP_INSECTDEEP05_MIX2);
-				builder.appendNewSELink(PSSE_MP_INSECTDEEP04_MIX2);
-				builder.appendNewSELink(PSSE_MP_INSECTDEEP03_MIX1);
+				APPEND_SE_LINK(builder, PSSE_MP_INSECTDEEP05_MIX2);
+				APPEND_SE_LINK(builder, PSSE_MP_INSECTDEEP04_MIX2);
+				APPEND_SE_LINK(builder, PSSE_MP_INSECTDEEP03_MIX1);
 			} break;
 
 			case 11: {
-				builder.appendNewSELink(PSSE_MP_INSECTDEEP05_MIX2);
-				builder.appendNewSELink(PSSE_MP_INSECTDEEP04_MIX2);
-				builder.appendNewSELink(PSSE_MP_INSECTDEEP03_MIX2);
+				APPEND_SE_LINK(builder, PSSE_MP_INSECTDEEP05_MIX2);
+				APPEND_SE_LINK(builder, PSSE_MP_INSECTDEEP04_MIX2);
+				APPEND_SE_LINK(builder, PSSE_MP_INSECTDEEP03_MIX2);
 			} break;
 
 			case 12: {
-				builder.appendNewSELink(PSSE_MP_INSECTDEEP05_MIX2);
-				builder.appendNewSELink(PSSE_MP_INSECTDEEP04_MIX2);
-				builder.appendNewSELink(PSSE_MP_INSECTDEEP03_MIX2);
+				APPEND_SE_LINK(builder, PSSE_MP_INSECTDEEP05_MIX2);
+				APPEND_SE_LINK(builder, PSSE_MP_INSECTDEEP04_MIX2);
+				APPEND_SE_LINK(builder, PSSE_MP_INSECTDEEP03_MIX2);
 			} break;
 
 			case 13: {
-				builder.appendNewSELink(PSSE_MP_INSECTDEEP05_MIX2);
-				builder.appendNewSELink(PSSE_MP_INSECTDEEP04_MIX2);
-				builder.appendNewSELink(PSSE_MP_INSECTDEEP03_MIX2);
+				APPEND_SE_LINK(builder, PSSE_MP_INSECTDEEP05_MIX2);
+				APPEND_SE_LINK(builder, PSSE_MP_INSECTDEEP04_MIX2);
+				APPEND_SE_LINK(builder, PSSE_MP_INSECTDEEP03_MIX2);
 			} break;
 
 			case 14:
 			default: {
-				builder.appendNewSELink(PSSE_MP_INSECTDEEP05_MIX2);
-				builder.appendNewSELink(PSSE_MP_INSECTDEEP04_MIX2);
-				builder.appendNewSELink(PSSE_MP_INSECTDEEP03_MIX2);
+				APPEND_SE_LINK(builder, PSSE_MP_INSECTDEEP05_MIX2);
+				APPEND_SE_LINK(builder, PSSE_MP_INSECTDEEP04_MIX2);
+				APPEND_SE_LINK(builder, PSSE_MP_INSECTDEEP03_MIX2);
 			} break;
 			}
 
@@ -582,9 +581,9 @@ void SceneMgr::initEnvironmentSe(PSM::Scene_Game* scene)
 				PersEnvManager* persMgr = new PersEnvManager(mgr);
 				scene->mPersEnvMgr      = persMgr;
 
-				builder.appendNewSELink(PSSE_MP_BIRD_SP_SUZUME); // 'sparrow'
-				builder.appendNewSELink(PSSE_MP_BIRD_SP_UGUISU); // 'japanese warbler'
-				builder.appendNewSELink(PSSE_MP_BIRD_SP_HIBARI); // 'lark'
+				APPEND_SE_LINK(builder, PSSE_MP_BIRD_SP_SUZUME); // 'sparrow'
+				APPEND_SE_LINK(builder, PSSE_MP_BIRD_SP_UGUISU); // 'japanese warbler'
+				APPEND_SE_LINK(builder, PSSE_MP_BIRD_SP_HIBARI); // 'lark'
 
 				PSM::PersEnvInfo envInfo = (PSM::PersEnvInfo) { 1500.0f, 379.0f, 579.0f, 1031.0f, 0.9f };
 				persMgr->_10             = 379.0f;
@@ -597,12 +596,12 @@ void SceneMgr::initEnvironmentSe(PSM::Scene_Game* scene)
 				PersEnvManager* persMgr = new PersEnvManager(mgr);
 				scene->mPersEnvMgr      = persMgr;
 
-				builder.appendNewSELink(PSSE_MP_SEMI_KUMA01);   // 'bear cicada'
-				builder.appendNewSELink(PSSE_MP_SEMI_MINMIN01); // 'minmin cicada'
-				builder.appendNewSELink(PSSE_MP_SEMI_NIINII01); // 'niinii cicada'
-				builder.appendNewSELink(PSSE_MP_SEMI_KUMA02);   // 'bear cicada'
-				builder.appendNewSELink(PSSE_MP_SEMI_MINMIN02); // 'minmin cicada'
-				builder.appendNewSELink(PSSE_MP_SEMI_NIINII02); // 'niinii cicada'
+				APPEND_SE_LINK(builder, PSSE_MP_SEMI_KUMA01);   // 'bear cicada'
+				APPEND_SE_LINK(builder, PSSE_MP_SEMI_MINMIN01); // 'minmin cicada'
+				APPEND_SE_LINK(builder, PSSE_MP_SEMI_NIINII01); // 'niinii cicada'
+				APPEND_SE_LINK(builder, PSSE_MP_SEMI_KUMA02);   // 'bear cicada'
+				APPEND_SE_LINK(builder, PSSE_MP_SEMI_MINMIN02); // 'minmin cicada'
+				APPEND_SE_LINK(builder, PSSE_MP_SEMI_NIINII02); // 'niinii cicada'
 
 				PSM::PersEnvInfo envInfo = (PSM::PersEnvInfo) { 1500.0f, 479.0f, 707.0f, 808.0f, 1.0f };
 				persMgr->_10             = 479.0f;
@@ -615,10 +614,10 @@ void SceneMgr::initEnvironmentSe(PSM::Scene_Game* scene)
 				PersEnvManager* persMgr = new PersEnvManager(mgr);
 				scene->mPersEnvMgr      = persMgr;
 
-				builder.appendNewSELink(PSSE_MP_BIRD_FA_KAMO);    // 'duck'
-				builder.appendNewSELink(PSSE_MP_BIRD_FA_MOZU);    // 'shrike'
-				builder.appendNewSELink(PSSE_MP_BIRD_FA_KAMO);    // 'duck'
-				builder.appendNewSELink(PSSE_MP_BIRD_FA_TSUGUMI); // 'thrush'
+				APPEND_SE_LINK(builder, PSSE_MP_BIRD_FA_KAMO);    // 'duck'
+				APPEND_SE_LINK(builder, PSSE_MP_BIRD_FA_MOZU);    // 'shrike'
+				APPEND_SE_LINK(builder, PSSE_MP_BIRD_FA_KAMO);    // 'duck'
+				APPEND_SE_LINK(builder, PSSE_MP_BIRD_FA_TSUGUMI); // 'thrush'
 
 				PSM::PersEnvInfo envInfo = (PSM::PersEnvInfo) { 1500.0f, 379.0f, 479.0f, 1131.0f, 1.0f };
 				persMgr->_10             = 379.0f;
@@ -2575,51 +2574,51 @@ lbl_8045BF30:
 	*/
 }
 
-/**
- * @note Address: 0x8045BF5C
- * @note Size: 0x8C
- */
-void SetBossBgmMuteVol(PSSystem::EnvSeMgr* mgr, u32 id, f32 vol)
-{
-	EnvSe_Perspective_AvoidY* se;
-	for (JSULink<PSSystem::EnvSeBase>* link = mgr->mEnvList.getFirst(); link; link = link->getNext()) {
-		se = (EnvSe_Perspective_AvoidY*)link->getObjectPtr();
-		if (se->getCastType() == 'poll' && id == se->mSoundID) {
-			se->mInfo.mMutedVolume = vol;
-		}
-	}
-}
+// /**
+//  * @note Address: 0x8045BF5C
+//  * @note Size: 0x8C
+//  */
+// void SetBossBgmMuteVol(PSSystem::EnvSeMgr* mgr, u32 id, f32 vol)
+// {
+// 	EnvSe_Perspective_AvoidY* se;
+// 	for (JSULink<PSSystem::EnvSeBase>* link = mgr->mEnvList.getFirst(); link; link = link->getNext()) {
+// 		se = (EnvSe_Perspective_AvoidY*)link->getObjectPtr();
+// 		if (se->getCastType() == 'poll' && id == se->mSoundID) {
+// 			se->mInfo.mMutedVolume = vol;
+// 		}
+// 	}
+// }
 
-/**
- * @note Address: 0x8045BFE8
- * @note Size: 0x74
- */
-void SetNoYOfset(PSSystem::EnvSeMgr* mgr)
-{
-	for (JSULink<PSSystem::EnvSeBase>* link = mgr->mEnvList.getFirst(); link; link = link->getNext()) {
-		if (((EnvSe_Perspective_AvoidY*)link->mValue)->getCastType() == 'pers') {
-			((EnvSe_Perspective_AvoidY*)link->mValue)->mYOffset = 0.0f;
-		}
-	}
-}
+// /**
+//  * @note Address: 0x8045BFE8
+//  * @note Size: 0x74
+//  */
+// void SetNoYOfset(PSSystem::EnvSeMgr* mgr)
+// {
+// 	for (JSULink<PSSystem::EnvSeBase>* link = mgr->mEnvList.getFirst(); link; link = link->getNext()) {
+// 		if (((EnvSe_Perspective_AvoidY*)link->mValue)->getCastType() == 'pers') {
+// 			((EnvSe_Perspective_AvoidY*)link->mValue)->mYOffset = 0.0f;
+// 		}
+// 	}
+// }
 
-/**
- * @note Address: 0x8045C05C
- * @note Size: 0x2C
- */
-void EnvSeObjBuilder::setInfo(PersEnvInfo info)
-{
-	mPersEnvInfo = info;
-}
+// /**
+//  * @note Address: 0x8045C05C
+//  * @note Size: 0x2C
+//  */
+// void EnvSeObjBuilder::setInfo(PersEnvInfo info)
+// {
+// 	mPersEnvInfo = info;
+// }
 
-/**
- * @note Address: 0x8045C088
- * @note Size: 0x70
- */
-EnvSeObjBuilder::EnvSeObjBuilder(JGeometry::TBox3f bounds)
-    : PSGame::Builder_EvnSe_Perspective(bounds)
-{
-}
+// /**
+//  * @note Address: 0x8045C088
+//  * @note Size: 0x70
+//  */
+// EnvSeObjBuilder::EnvSeObjBuilder(JGeometry::TBox3f bounds)
+//     : PSGame::Builder_EvnSe_Perspective(bounds)
+// {
+// }
 
 /**
  * @note Address: 0x8045C12C
@@ -2735,16 +2734,10 @@ void MiddleBossSeq::requestJumpBgmEveryBeat(u16 track)
  */
 u16 MiddleBossSeq::jumpCheck(u16 track)
 {
-	bool check        = true;
-	bool check2       = true;
 	mAvoidJumpMaxTime = 0;
-	if (track > EnemyMidBoss::BossBgm_MainLoop && track < EnemyMidBoss::BossBgm_Attack2) { // probably an inline?
-		check2 = false;
-	}
-	if (!check2 && track != EnemyMidBoss::BossBgm_Attack4) {
-		check = false;
-	}
-	P2ASSERTLINE(1136, !check);
+
+	// i think this makes sure we never jump into Attack2/3/4 without starting with Attack
+	P2ASSERTLINE(1136, !EnemyMidBoss::isSecondaryAttackTrack(track));
 
 	switch (mJumpPort.mCurrentTrackId) {
 	case EnemyMidBoss::BossBgm_MainLoop:
@@ -2752,21 +2745,19 @@ u16 MiddleBossSeq::jumpCheck(u16 track)
 			return 0xFFFF;
 		}
 		break;
-	case EnemyMidBoss::BossBgm_AttackPrep:
-	case EnemyMidBoss::BossBgm_Attack:
-	case EnemyMidBoss::BossBgm_Flick: // please someone get this switch case to spawn correctly
-	                                  // case 5:
-	                                  // case 6:
-	                                  // case 7:
-		break;
+
 	case EnemyMidBoss::BossBgm_AttackLong:
-	case EnemyMidBoss::BossBgm_Appear:
 		if (track != EnemyMidBoss::BossBgm_MainLoop && track != EnemyMidBoss::BossBgm_Defeated) {
 			return 0xFFFF;
 		}
 		break;
-		// case 9:
-		// 	break;
+
+	case EnemyMidBoss::BossBgm_InactiveLoop:
+	case EnemyMidBoss::BossBgm_AttackPrep:
+	case EnemyMidBoss::BossBgm_Attack:
+	case EnemyMidBoss::BossBgm_Flick:
+	case EnemyMidBoss::BossBgm_Appear:
+		break;
 	}
 
 	switch (track) {
@@ -2781,6 +2772,7 @@ u16 MiddleBossSeq::jumpCheck(u16 track)
 		track             = mCurrentAttackMixId;
 		mAvoidJumpMaxTime = 50;
 		break;
+
 	case EnemyMidBoss::BossBgm_Flick:
 		P2ASSERTLINE(1205, mCurrBossObj);
 		if (mAvoidJumpTimer < 400 || !mCurrBossObj->mHasReset) {
@@ -2788,195 +2780,22 @@ u16 MiddleBossSeq::jumpCheck(u16 track)
 		}
 		mAvoidJumpMaxTime = 90;
 		break;
+
 	case EnemyMidBoss::BossBgm_Appear:
 		mAvoidJumpMaxTime = 180;
 		break;
+
 	case EnemyMidBoss::BossBgm_Defeated:
 		mAvoidJumpMaxTime         = 180;
 		mJumpPort.mAvoidJumpTimer = 0;
 		break;
+
 	case EnemyMidBoss::BossBgm_WaterwraithEscape:
 		mJumpPort.mAvoidJumpTimer = 0;
 		break;
 	}
 
 	return track;
-
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r5, 1
-	stw      r0, 0x14(r1)
-	mr       r6, r5
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	addi     r0, r31, -5
-	li       r4, 0
-	stw      r30, 8(r1)
-	mr       r30, r3
-	clrlwi   r3, r0, 0x10
-	subfic   r0, r3, 1
-	stw      r4, 0x138(r30)
-	orc      r3, r5, r3
-	srwi     r0, r0, 1
-	subf     r0, r0, r3
-	rlwinm.  r0, r0, 1, 0x1f, 0x1f
-	bne      lbl_8045C528
-	mr       r6, r4
-
-lbl_8045C528:
-	clrlwi.  r0, r6, 0x18
-	bne      lbl_8045C540
-	clrlwi   r0, r31, 0x10
-	cmplwi   r0, 7
-	beq      lbl_8045C540
-	li       r5, 0
-
-lbl_8045C540:
-	clrlwi.  r0, r5, 0x18
-	beq      lbl_8045C564
-	lis      r3, lbl_8049CE74@ha
-	lis      r5, lbl_8049CE8C@ha
-	addi     r3, r3, lbl_8049CE74@l
-	li       r4, 0x470
-	addi     r5, r5, lbl_8049CE8C@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8045C564:
-	lhz      r0, 0x130(r30)
-	cmpwi    r0, 5
-	bge      lbl_8045C580
-	cmpwi    r0, 1
-	beq      lbl_8045C598
-	bge      lbl_8045C5D0
-	b        lbl_8045C5D0
-
-lbl_8045C580:
-	cmpwi    r0, 9
-	beq      lbl_8045C5D0
-	bge      lbl_8045C5D0
-	cmpwi    r0, 8
-	bge      lbl_8045C5B0
-	b        lbl_8045C5D0
-
-lbl_8045C598:
-	clrlwi   r0, r31, 0x10
-	cmplwi   r0, 1
-	bne      lbl_8045C5D0
-	lis      r3, 0x0000FFFF@ha
-	addi     r3, r3, 0x0000FFFF@l
-	b        lbl_8045C6D4
-
-lbl_8045C5B0:
-	clrlwi   r0, r31, 0x10
-	cmplwi   r0, 1
-	beq      lbl_8045C5D0
-	cmplwi   r0, 0xa
-	beq      lbl_8045C5D0
-	lis      r3, 0x0000FFFF@ha
-	addi     r3, r3, 0x0000FFFF@l
-	b        lbl_8045C6D4
-
-lbl_8045C5D0:
-	clrlwi   r0, r31, 0x10
-	cmpwi    r0, 9
-	beq      lbl_8045C6A8
-	bge      lbl_8045C5F8
-	cmpwi    r0, 4
-	beq      lbl_8045C64C
-	bge      lbl_8045C6D0
-	cmpwi    r0, 3
-	bge      lbl_8045C608
-	b        lbl_8045C6D0
-
-lbl_8045C5F8:
-	cmpwi    r0, 0xb
-	beq      lbl_8045C6C8
-	bge      lbl_8045C6D0
-	b        lbl_8045C6B4
-
-lbl_8045C608:
-	lhz      r3, 0x13c(r30)
-	addi     r0, r3, 1
-	sth      r0, 0x13c(r30)
-	lhz      r0, 0x13c(r30)
-	cmplwi   r0, 4
-	bne      lbl_8045C62C
-	li       r0, 5
-	sth      r0, 0x13c(r30)
-	b        lbl_8045C63C
-
-lbl_8045C62C:
-	cmplwi   r0, 8
-	bne      lbl_8045C63C
-	li       r0, 3
-	sth      r0, 0x13c(r30)
-
-lbl_8045C63C:
-	lhz      r31, 0x13c(r30)
-	li       r0, 0x32
-	stw      r0, 0x138(r30)
-	b        lbl_8045C6D0
-
-lbl_8045C64C:
-	lwz      r0, 0x134(r30)
-	cmplwi   r0, 0
-	bne      lbl_8045C674
-	lis      r3, lbl_8049CE74@ha
-	lis      r5, lbl_8049CE8C@ha
-	addi     r3, r3, lbl_8049CE74@l
-	li       r4, 0x4b5
-	addi     r5, r5, lbl_8049CE8C@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8045C674:
-	lhz      r0, 0x13e(r30)
-	cmplwi   r0, 0x190
-	blt      lbl_8045C690
-	lwz      r3, 0x134(r30)
-	lbz      r0, 0xff(r3)
-	cmplwi   r0, 0
-	bne      lbl_8045C69C
-
-lbl_8045C690:
-	lis      r3, 0x0000FFFF@ha
-	addi     r3, r3, 0x0000FFFF@l
-	b        lbl_8045C6D4
-
-lbl_8045C69C:
-	li       r0, 0x5a
-	stw      r0, 0x138(r30)
-	b        lbl_8045C6D0
-
-lbl_8045C6A8:
-	li       r0, 0xb4
-	stw      r0, 0x138(r30)
-	b        lbl_8045C6D0
-
-lbl_8045C6B4:
-	li       r3, 0xb4
-	li       r0, 0
-	stw      r3, 0x138(r30)
-	stw      r0, 0x12c(r30)
-	b        lbl_8045C6D0
-
-lbl_8045C6C8:
-	li       r0, 0
-	stw      r0, 0x12c(r30)
-
-lbl_8045C6D0:
-	mr       r3, r31
-
-lbl_8045C6D4:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /**

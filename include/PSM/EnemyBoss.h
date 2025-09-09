@@ -75,6 +75,11 @@ struct EnemyMidBoss : public EnemyBoss {
 	virtual void postPikiAttack(bool);                                  // _D8
 	virtual void onAppear1st();                                         // _E8
 
+	static inline bool isSecondaryAttackTrack(u16 track)
+	{
+		return track == EnemyMidBoss::BossBgm_Attack2 || track == EnemyMidBoss::BossBgm_Attack3 || track == EnemyMidBoss::BossBgm_Attack4;
+	}
+
 	// _00      = VTBL 1
 	// _28      = VTBL 2
 	// _00-_100 = EnemyBoss
