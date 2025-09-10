@@ -602,7 +602,7 @@ void PikiNukareState::exec(Piki* piki)
 		piki->mBrain->start(PikiAI::ACT_Formation, &initArg);
 
 		int pikiType = piki->mPikiKind;
-		if (pikiType >= 0 && pikiType <= 4) {
+		if (pikiType >= FirstPikmin && pikiType <= LastStoredPikiColor) {
 			if (!playData->hasMetPikmin(piki->mPikiKind)) {
 				gameSystem->mSection->playMovie_helloPikmin(piki);
 			}
@@ -1487,7 +1487,7 @@ void PikiAutoNukiState::exec(Piki* piki)
 		transit(piki, PIKISTATE_Walk, nullptr);
 
 		int type = piki->mPikiKind;
-		if (type >= 0 && type <= 4 && !playData->hasMetPikmin(type)) {
+		if (type >= FirstPikmin && type <= LastStoredPikiColor && !playData->hasMetPikmin(type)) {
 			gameSystem->mSection->playMovie_helloPikmin(piki);
 		}
 
@@ -1730,7 +1730,7 @@ void PikiHangedState::init(Piki* piki, StateArg* stateArg)
  */
 void PikiHangedState::exec(Piki* piki)
 {
-	if (piki->mNavi != nullptr && piki->mNavi->getStateID() != 6) {
+	if (piki->mNavi != nullptr && piki->mNavi->getStateID() != NSID_ThrowWait) {
 		transit(piki, PIKISTATE_Walk, nullptr);
 	}
 }
