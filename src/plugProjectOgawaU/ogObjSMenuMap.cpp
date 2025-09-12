@@ -107,20 +107,20 @@ void ObjSMenuMap::calcMapScale()
  */
 void ObjSMenuMap::calcMapPos(Vector2f pos, Vector2f* outPos)
 {
-	Vector2f newPos(0.0f);
+	// f32 x = pos.x;
+	f32 y = pos.y;
+
 	if (mDisp->mInCave) {
-		newPos.x += -0.2f + pos.x * 0.047f;
-		newPos.y += -0.6f + pos.y * 0.047f;
+		outPos->x += -0.2f + pos.x * 0.047f;
+		outPos->y += -0.6f + y * 0.047f;
 	} else {
-		f32 xOffset = newPos.x;
+		f32 xOffset = outPos->x;
 		if (mDisp->mCourseIndex == og::Screen::DispMemberSMenuMap::COURSE_Last) {
 			xOffset = (mMapTextureDimensions.x * 1400.0f) / 4705.6f;
 		}
-		newPos.x += 24.5f + (mMapTextureDimensions.x / 2 + pos.y * 0.058f) + xOffset;
-		newPos.y += -8.85f + (mMapTextureDimensions.y / 2 + pos.x * 0.058f);
+		outPos->x += 24.5f + (mMapTextureDimensions.x / 2 + pos.x * 0.058f) + xOffset;
+		outPos->y += -8.85f + (mMapTextureDimensions.y / 2 + y * 0.058f);
 	}
-
-	*outPos = newPos;
 }
 
 /**
@@ -188,7 +188,7 @@ void ObjSMenuMap::setMapPos()
 			}
 		} else {
 			Vector2f naviPos(aNaviPos.x, aNaviPos.z);
-			Vector2f mapPos;
+			Vector2f mapPos(0.0f, 0.0f);
 			calcMapPos(naviPos, &mapPos);
 
 			mMapPosition.x = -mapPos.x;
@@ -312,7 +312,10 @@ void ObjSMenuMap::initMapIcon(JKRArchive* arc)
 			int objType = cPoint->mObjType;
 			JUT_ASSERTLINE(569, objType >= 0 && objType < 22, "Radar type ERR!! (%d)\n", objType);
 			Vector2f cPos = cPoint->getPosition();
-			Vector2f newPos;
+			Vector2f newPos(0.0f);
+			f32 y  = cPos.y;
+			cPos.y = cPos.x;
+			cPos.x = y;
 			calcMapPos(cPos, &newPos);
 
 			u64 tag             = map_icon_tag[objType];
@@ -363,7 +366,7 @@ void ObjSMenuMap::initMapIcon(JKRArchive* arc)
 					}
 					if (objType == Radar::MAP_INCOMPLETE_CAVE || objType == Radar::MAP_COMPLETED_CAVE) {
 						u64 caveTag = og::Screen::maskTag(caveIDtoMsgID(cPoint->mCaveID), 1, 3);
-						appendCaveName(copyPic, (u16)count, caveTag);
+						appendCaveName(copyPic, count, caveTag);
 					}
 					mRadarPaneList[count][0] = copyPic;
 					count++;
