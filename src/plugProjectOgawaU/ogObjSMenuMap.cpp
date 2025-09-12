@@ -109,22 +109,15 @@ void ObjSMenuMap::calcMapPos(Vector2f pos, Vector2f* outPos)
 {
 	Vector2f newPos(0.0f);
 	if (mDisp->mInCave) {
-		Vector2f offset;
-		offset.x = -0.2f + pos.x * 0.047f;
-		offset.y = -0.6f + pos.y * 0.047f;
-		newPos.x += offset.x;
-		newPos.y += offset.y;
-
+		newPos.x += -0.2f + pos.x * 0.047f;
+		newPos.y += -0.6f + pos.y * 0.047f;
 	} else {
 		f32 xOffset = newPos.x;
 		if (mDisp->mCourseIndex == og::Screen::DispMemberSMenuMap::COURSE_Last) {
 			xOffset = (mMapTextureDimensions.x * 1400.0f) / 4705.6f;
 		}
-		Vector2f offset;
-		offset.x = 24.5f + (mMapTextureDimensions.x / 2 + pos.y * 0.058f) + xOffset;
-		offset.y = -8.85f + (mMapTextureDimensions.y / 2 + pos.x * 0.058f);
-		newPos.x += offset.x;
-		newPos.y += offset.y;
+		newPos.x += 24.5f + (mMapTextureDimensions.x / 2 + pos.y * 0.058f) + xOffset;
+		newPos.y += -8.85f + (mMapTextureDimensions.y / 2 + pos.x * 0.058f);
 	}
 
 	*outPos = newPos;
