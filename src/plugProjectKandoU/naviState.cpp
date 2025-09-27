@@ -1806,7 +1806,7 @@ void NaviPathMoveState::init(Navi* navi, StateArg* stateArg)
 void NaviPathMoveState::exec(Navi* navi)
 {
 	bool startWalking = false;
-	switch (_10) {
+	switch (mSubState) {
 	case 0:
 		if (execPathfinding(navi) == 2) {
 			startWalking = true;
@@ -1870,7 +1870,7 @@ int NaviPathMoveState::initPathfinding(Navi* navi)
 	}
 	PathfindRequest request(wp->mIndex, searchResult->mIndex, PATHFLAG_RequireOpen);
 	mPathfinderContextID = testPathfinder->start(request);
-	_10                  = 0;
+	mSubState            = 0;
 	return 1;
 }
 
@@ -1887,7 +1887,7 @@ int NaviPathMoveState::execPathfinding(Navi* navi)
 	case 0:
 		_2C       = testPathfinder->makepath(mPathfinderContextID, mNodes);
 		mNodes[1] = mNodes[0];
-		_10       = 1;
+		mSubState = 1;
 		break;
 	case 1:
 		return 2;
@@ -1947,7 +1947,7 @@ void NaviNukuState::init(Navi* navi, StateArg* stateArg)
 	if (stateArg != nullptr) {
 		mIsFollower = static_cast<NaviNukuArg*>(stateArg)->mIsFollowing;
 	} else {
-		mIsFollower = 0;
+		mIsFollower = false;
 	}
 	if (navi->mPluckingCounter != 0) {
 		mAnimID = IPikiAnims::NUKU3;
@@ -1957,10 +1957,10 @@ void NaviNukuState::init(Navi* navi, StateArg* stateArg)
 	navi->startMotion(mAnimID, mAnimID, navi, nullptr);
 	mCounter = static_cast<NaviParms*>(navi->mParms)->mNaviParms.mLoopCountToPluck;
 	navi->mSoundObj->startSound(PSSE_PL_PULLING_PIKI, 0);
-	mDidPluckSE = 0;
-	mIsActive   = 0;
-	mDidPressA  = 0;
-	_15         = 0;
+	mDidPluckSE = false;
+	mIsActive   = false;
+	mDidPressA  = false;
+	mUnusedBool = false;
 	navi->mMass = 0.0f;
 }
 
@@ -1982,19 +1982,19 @@ void NaviNukuState::exec(Navi* navi)
 	navi->mVelocity       = 0.0f;
 	navi->mTargetVelocity = 0.0f;
 	if (!navi->assertMotion(mAnimID)) {
-		if (mIsFollower != 0) {
+		if (mIsFollower) {
 			NaviFollowArg followArg(false); // not new to party
 			transit(navi, NSID_Follow, &followArg);
 		} else {
 			transit(navi, NSID_Walk, nullptr);
 		}
 		navi->mPluckingCounter = 0;
-	} else if (mIsFollower == 0) {
-		if (mDidPressA == 0 && navi->mController1->isButtonHeld(JUTGamePad::PRESS_A)) {
-			mDidPressA = 1;
+	} else if (!mIsFollower) {
+		if (!mDidPressA && navi->mController1->isButtonHeld(JUTGamePad::PRESS_A)) {
+			mDidPressA = true;
 		}
-		if (mDidPressA != 0 && !navi->mController1->isButtonHeld(JUTGamePad::PRESS_A)) {
-			mIsActive = 1;
+		if (mDidPressA && !navi->mController1->isButtonHeld(JUTGamePad::PRESS_A)) {
+			mIsActive = true;
 			navi->mPluckingCounter++;
 		}
 	}
@@ -2018,7 +2018,7 @@ void NaviNukuState::onKeyEvent(Navi* navi, SysShape::KeyEvent const& key)
 {
 	switch (key.mType) {
 	case KEYEVENT_2:
-		_15 = true;
+		mUnusedBool = true;
 		mCounter--;
 		if (mCounter == 0) {
 			navi->mSoundObj->startSound(PSSE_PL_PULLOUT_PIKI, 0);
@@ -2065,8 +2065,8 @@ void NaviNukuAdjustState::init(Navi* navi, StateArg* stateArg)
 	mUnusedVelocity = arg->mUnusedVelocity;
 	mUnusedState    = arg->mUnusedState;
 	mPikiHead       = arg->mPikihead;
-	mIsFollowing    = arg->_18;
-	mUnusedBool     = 0;
+	mIsFollowing    = arg->mIsFollowing;
+	mUnusedBool     = false;
 
 	Vector3f diff = arg->mPikihead->getPosition() - navi->getPosition();
 	mAngleToPiki  = JMAAtan2Radian(diff.x, diff.z);
@@ -2981,7 +2981,7 @@ void NaviDopeState::init(Navi* navi, StateArg* stateArg)
 	mDopeType         = static_cast<NaviDopeArg*>(stateArg)->mType;
 	Vector3f naviPos  = navi->getPosition(); // f31, f30, f29
 	Vector3f squadPos = Vector3f(0.0f);      // f28, f27, f26
-	_14               = 0;
+	mUsedDope         = false;
 	int pikis         = 0;
 	Iterator<Creature> iterator(navi->mCPlateMgr);
 	CI_LOOP(iterator)
@@ -3024,7 +3024,7 @@ void NaviDopeState::init(Navi* navi, StateArg* stateArg)
 		efx::ArgDopingSmoke arg(naviPos, squadPos, dopeType);
 		efx::TDopingSmoke efx;
 		efx.create(&arg);
-		_14 = 1;
+		mUsedDope = true;
 		navi->applyDopes(mDopeType, dopePos);
 		navi->useDope(mDopeType);
 	}
@@ -3470,7 +3470,7 @@ lbl_80183188:
 void NaviDopeState::exec(Navi* navi)
 {
 	navi->control();
-	if (_14 == 0) {
+	if (!mUsedDope) {
 		transit(navi, NSID_Walk, nullptr);
 	} else if (!navi->assertMotion(IPikiAnims::GROWUP2)) {
 		transit(navi, NSID_Walk, nullptr);
@@ -3491,7 +3491,7 @@ void NaviDopeState::cleanup(Navi* navi)
  */
 void NaviDopeState::onKeyEvent(Navi* navi, SysShape::KeyEvent const& keyEvent)
 {
-	if (_14 != 0 && keyEvent.mType == 1000) {
+	if (mUsedDope && keyEvent.mType == KEYEVENT_END) {
 		transit(navi, NSID_Walk, nullptr);
 	}
 }
@@ -3522,8 +3522,8 @@ void NaviClimbState::prepare(Navi* navi)
 	navi->startStick(mClimbObj, mTubePart);
 	Sys::Tube tube;
 	mTubePart->getTube(tube);
-	tube.getAxisVector(_10);
-	_1C = tube.mStartPos.distance(tube.mEndPos);
+	tube.getAxisVector(mClimbAxis);
+	mClimbDist = tube.mStartPos.distance(tube.mEndPos);
 }
 
 /**
@@ -3532,7 +3532,7 @@ void NaviClimbState::prepare(Navi* navi)
  */
 void NaviClimbState::exec(Navi* navi)
 {
-	navi->mVelocity = _10 * 100.0f * navi->mController1->mMStick.mYPos;
+	navi->mVelocity = mClimbAxis * 100.0f * navi->mController1->mMStick.mYPos;
 	navi->move(sys->mDeltaTime);
 	if (navi->mController1->getButton() & Controller::PRESS_B) {
 		transit(navi, NSID_Walk, nullptr);
@@ -3543,7 +3543,7 @@ void NaviClimbState::exec(Navi* navi)
 	Sys::Sphere naviSphere;
 	navi->getBoundingSphere(naviSphere);
 
-	f32 factor = 4.0f / _1C;
+	f32 factor = 4.0f / mClimbDist;
 	if (climbY > 1.0f + factor) {
 		CollPart* child = mTubePart->getChild();
 		if (child && (child->isTube() || child->isTubeTree())) {
@@ -3553,8 +3553,8 @@ void NaviClimbState::exec(Navi* navi)
 
 			Sys::Tube tube;
 			mTubePart->getTube(tube);
-			tube.getAxisVector(_10);
-			_1C = tube.mStartPos.distance(tube.mEndPos);
+			tube.getAxisVector(mClimbAxis);
+			mClimbDist = tube.mStartPos.distance(tube.mEndPos);
 			return;
 		}
 
@@ -3571,8 +3571,8 @@ void NaviClimbState::exec(Navi* navi)
 
 			Sys::Tube tube;
 			mTubePart->getTube(tube);
-			tube.getAxisVector(_10);
-			_1C = tube.mStartPos.distance(tube.mEndPos);
+			tube.getAxisVector(mClimbAxis);
+			mClimbDist = tube.mStartPos.distance(tube.mEndPos);
 			return;
 		}
 
@@ -3596,14 +3596,14 @@ void NaviClimbState::cleanup(Navi* navi)
 void NaviFallMeckState::init(Navi* navi, StateArg* stateArg)
 {
 	if (stateArg == nullptr) {
-		_10 = 0.0f;
+		mDamage = 0.0f;
 	} else {
-		_10 = static_cast<NaviFallMeckArg*>(stateArg)->_00;
+		mDamage = static_cast<NaviFallMeckArg*>(stateArg)->mDamage;
 	}
 	navi->startMotion(IPikiAnims::FALL, IPikiAnims::FALL, nullptr, nullptr);
 	navi->endStick();
-	_14 = 0;
-	if (_10 > 0.0f) {
+	mSubState = 0;
+	if (mDamage > 0.0f) {
 		navi->mVelocity.y       = -400.0f;
 		navi->mTargetVelocity.y = navi->mVelocity.y;
 	} else {
@@ -3618,11 +3618,11 @@ void NaviFallMeckState::init(Navi* navi, StateArg* stateArg)
  */
 void NaviFallMeckState::exec(Navi* navi)
 {
-	if (_14 != 0) {
+	if (mSubState != 0) {
 		navi->mTargetVelocity = 0.0f;
 		navi->mVelocity       = 0.0f;
 	}
-	if (_14 == 0 && !navi->assertMotion(IPikiAnims::FALL)) {
+	if (mSubState == 0 && !navi->assertMotion(IPikiAnims::FALL)) {
 		transit(navi, NSID_Walk, nullptr);
 	}
 }
@@ -3641,13 +3641,13 @@ void NaviFallMeckState::cleanup(Navi* navi)
  */
 void NaviFallMeckState::onKeyEvent(Navi* navi, SysShape::KeyEvent const& keyEvent)
 {
-	if (keyEvent.mType != 1000) {
+	if (keyEvent.mType != KEYEVENT_END) {
 		return;
 	}
-	if (_14 == 1) {
+	if (mSubState == 1) {
 		navi->startMotion(IPikiAnims::GETUP, IPikiAnims::GETUP, navi, nullptr);
-		_14 = 2;
-	} else if (_14 == 2) {
+		mSubState = 2;
+	} else if (mSubState == 2) {
 		transit(navi, NSID_Walk, nullptr);
 	}
 }
@@ -3673,8 +3673,8 @@ void NaviFallMeckState::bounceCallback(Navi* navi, Sys::Triangle*)
 		effect.create(&arg);
 	}
 
-	if (_14 == 0) {
-		f32 damage = _10;
+	if (mSubState == 0) {
+		f32 damage = mDamage;
 		if (damage > 0.0f) {
 			NaviKokeDamageInitArg arg(1.0f, 0, nullptr, damage);
 			navi->addDamage(0.0f, true);
@@ -3780,7 +3780,7 @@ void NaviKokeDamageState::init(Navi* navi, StateArg* stateArg)
 		mDamage            = 0.0f;
 		mTimer             = 0.0f;
 		mCreature          = nullptr;
-		mPlaySoundOnDamage = 0;
+		mPlaySoundOnDamage = false;
 	} else {
 		NaviKokeDamageInitArg* arg = static_cast<NaviKokeDamageInitArg*>(stateArg);
 
@@ -3792,7 +3792,7 @@ void NaviKokeDamageState::init(Navi* navi, StateArg* stateArg)
 
 	navi->startMotion(IPikiAnims::JKOKE, IPikiAnims::JKOKE, navi, nullptr);
 	rumbleMgr->startRumble(RUMBLETYPE_NaviDamage, navi->mNaviIndex);
-	mState = 0;
+	mSubState = 0;
 }
 
 /**
@@ -3808,21 +3808,21 @@ void NaviKokeDamageState::exec(Navi* navi)
 	} else {
 		navi->mTargetVelocity = 0.0f;
 		navi->mVelocity       = 0.0f;
-		if (mState == 1) {
+		if (mSubState == 1) {
 			mTimer -= sys->mDeltaTime;
 			if (mTimer <= 0.0f) {
 				navi->startMotion(IPikiAnims::GETUP, IPikiAnims::GETUP, navi, nullptr);
-				mState = 2;
+				mSubState = 2;
 			}
 		}
-		if (mState == 0 && !navi->assertMotion(IPikiAnims::JKOKE)) {
+		if (mSubState == 0 && !navi->assertMotion(IPikiAnims::JKOKE)) {
 			if (static_cast<NaviFSM*>(mStateMachine)->mBackupStateID == -1) {
 				transit(navi, NSID_Walk, nullptr);
 			} else {
 				transit(navi, static_cast<NaviFSM*>(mStateMachine)->mBackupStateID, nullptr);
 			}
 		}
-		if (mState == 2 && !navi->assertMotion(IPikiAnims::GETUP)) {
+		if (mSubState == 2 && !navi->assertMotion(IPikiAnims::GETUP)) {
 			if (static_cast<NaviFSM*>(mStateMachine)->mBackupStateID == -1) {
 				transit(navi, NSID_Walk, nullptr);
 			} else {
@@ -3847,10 +3847,10 @@ void NaviKokeDamageState::cleanup(Navi* navi)
 void NaviKokeDamageState::onKeyEvent(Navi* navi, SysShape::KeyEvent const& key)
 {
 	if (key.mType == KEYEVENT_END) {
-		if (mState == 0) {
-			mState = 1;
+		if (mSubState == 0) {
+			mSubState = 1;
 			navi->addDamage(mDamage, mPlaySoundOnDamage);
-		} else if (mState == 2) {
+		} else if (mSubState == 2) {
 			if (static_cast<NaviFSM*>(mStateMachine)->mBackupStateID == -1) {
 				transit(navi, NSID_Walk, nullptr);
 			} else {
@@ -4181,8 +4181,8 @@ void NaviAbsorbState::init(Navi* navi, StateArg* stateArg)
 	P2ASSERTLINE(3917, mDrop != nullptr);
 	navi->startMotion(IPikiAnims::MIZUNOMI, IPikiAnims::MIZUNOMI, navi, nullptr);
 	navi->mSoundObj->startSound(PSSE_PL_DRINK, 0);
-	_10                   = 0;
-	_18                   = 0;
+	mSubState             = 0;
+	mHasAbsorbed          = false;
 	Vector3f dropPosition = mDrop->getPosition();
 	navi->turnTo(dropPosition);
 	cameraMgr->controllerLock(navi->mNaviIndex);
@@ -4198,11 +4198,11 @@ void NaviAbsorbState::exec(Navi* navi)
 	navi->mVelocity.z     = 0.0f;
 	navi->mVelocity.x     = 0.0f;
 	navi->mTargetVelocity = 0.0f;
-	if (_10 == 1) {
-		if (mDrop->isAlive() && !_18) {
+	if (mSubState == 1) {
+		if (mDrop->isAlive() && !mHasAbsorbed) {
 			InteractAbsorb act(navi);
 			mDrop->stimulate(act);
-			_18 = true;
+			mHasAbsorbed = true;
 		}
 	}
 
@@ -4219,18 +4219,18 @@ void NaviAbsorbState::onKeyEvent(Navi* navi, SysShape::KeyEvent const& key)
 {
 	switch (key.mType) {
 	case KEYEVENT_LOOP_START:
-		_10 = 1;
+		mSubState = 1;
 		break;
 	case KEYEVENT_LOOP_END:
 		P2ASSERTLINE(3956, mDrop->mObjectTypeID == OBJTYPE_Honey);
 		ItemHoney::Item* item = mDrop;
 		if (!mDrop->isAlive() || !item->isShrinking()) {
-			_10 = 2;
+			mSubState = 2;
 			navi->finishMotion();
 		}
 		break;
 	case KEYEVENT_END:
-		if (_18) {
+		if (mHasAbsorbed) {
 			P2ASSERTLINE(3968, mDrop->mObjectTypeID == OBJTYPE_Honey);
 			navi->incDopeCount(mDrop->mHoneyType != HONEY_R);
 			transit(navi, NSID_Walk, nullptr);
@@ -4335,7 +4335,7 @@ void NaviDeadState::cleanup(Navi* navi)
  */
 void NaviDeadState::onKeyEvent(Navi* navi, SysShape::KeyEvent const& keyEvent)
 {
-	if (keyEvent.mType == 1000) {
+	if (keyEvent.mType == KEYEVENT_END) {
 		navi->setAlive(false);
 	}
 }
@@ -4360,7 +4360,7 @@ void NaviGatherState::init(Navi* navi, StateArg* stateArg)
 		_10 = arg->_00;
 		_11 = arg->_01;
 	} else {
-		_10 = 0;
+		_10 = false;
 	}
 	navi->startMotion(IPikiAnims::FUE, IPikiAnims::FUE, nullptr, nullptr);
 	navi->enableMotionBlend();
@@ -4409,7 +4409,7 @@ void NaviGatherState::exec(Navi* navi)
  */
 void NaviGatherState::cleanup(Navi* navi)
 {
-	if (_10 == 0) {
+	if (!_10) {
 		rumbleMgr->stopRumble(3, navi->mNaviIndex);
 	}
 	efx::TNaviEffect* effectsObj = navi->mEffectsObj;
@@ -4500,14 +4500,14 @@ void NaviThrowWaitState::init(Navi* navi, StateArg* stateArg)
 	} else {
 		Piki* piki = mNextPiki;
 		if (piki) {
-			piki->mFsm->transit(piki, PIKISTATE_GoHang, 0);
+			piki->mFsm->transit(piki, PIKISTATE_GoHang, nullptr);
 		}
 	}
 	mHasHeldPiki     = false;
 	mHoldChargeLevel = 0;
 	if (mHeldPiki) {
 		rumbleMgr->startRumble(RUMBLETYPE_Nudge, mNavi->mNaviIndex);
-		mHeldPiki->mFsm->transit(mHeldPiki, PIKISTATE_Hanged, 0);
+		mHeldPiki->mFsm->transit(mHeldPiki, PIKISTATE_Hanged, nullptr);
 		mHasHeldPiki = true;
 	}
 	navi->mHoldPikiCharge = mHoldChargeLevel / 3.0f * (CG_NAVIPARMS(navi).mThrowDistanceMax() - CG_NAVIPARMS(navi).mThrowDistanceMin())
@@ -6000,7 +6000,7 @@ void NaviThrowState::init(Navi* navi, StateArg* stateArg)
 	navi->startMotion(IPikiAnims::THROW, IPikiAnims::THROW, this, nullptr);
 	navi->enableMotionBlend();
 	mHasThrown = false;
-	mDidCancel = 0;
+	mDidCancel = false;
 	mNavi      = navi;
 	mPiki      = static_cast<NaviThrowInitArg*>(stateArg)->mPiki;
 	if (!navi->assertMotion(IPikiAnims::THROW)) {
@@ -6015,7 +6015,7 @@ void NaviThrowState::init(Navi* navi, StateArg* stateArg)
 void NaviThrowState::onKeyEvent(SysShape::KeyEvent const& key)
 {
 	switch (key.mType) {
-	case 2:
+	case KEYEVENT_2:
 		if (!mPiki->isThrowable()) {
 			mHasThrown = true;
 		} else {
@@ -6092,7 +6092,7 @@ void NaviPelletState::init(Navi* navi, StateArg* stateArg)
 	}
 	navi->becomePellet(&arg);
 	navi->setAtari(false);
-	mState = 0;
+	mSubState = 0;
 }
 
 /**
@@ -6124,7 +6124,7 @@ void NaviPelletState::exec(Navi* navi)
 			}
 		}
 
-		if (mState == 1 || mState == 0) {
+		if (mSubState == 1 || mSubState == 0) {
 			if (navi->mController1 && navi->mController1->isButtonDown(Controller::PRESS_ABX | Controller::PRESS_DPAD)) {
 				if (mDoForceWakeup) {
 					navi->mAnimSpeed = 60.0f;
@@ -6139,11 +6139,11 @@ void NaviPelletState::exec(Navi* navi)
 						navi->mSoundObj->startSound(PSSE_PL_WAKEUP_LUGI, 0);
 					}
 				}
-				mState = 2;
+				mSubState = 2;
 			}
 		}
 
-		if (mState == 3) {
+		if (mSubState == 3) {
 			Pellet* pelt = navi->mPellet;
 			if (pelt) {
 				pelt->kill(nullptr);
@@ -6168,7 +6168,7 @@ void NaviPelletState::exec(Navi* navi)
 void NaviPelletState::onKeyEvent(Navi* navi, SysShape::KeyEvent const& key)
 {
 	if (mDoForceWakeup) {
-		if (key.mType == 1) {
+		if (key.mType == KEYEVENT_LOOP_END) {
 			if (navi->mAnimator.mSelfAnimator.isFlag(SysShape::Animator::AnimFinishMotion)) {
 				if (playData->isStoryFlag(STORY_DebtPaid)) {
 					navi->mSoundObj->startSound(PSSE_PL_WAKEUP_SHACHO, 0);
@@ -6176,18 +6176,18 @@ void NaviPelletState::onKeyEvent(Navi* navi, SysShape::KeyEvent const& key)
 					navi->mSoundObj->startSound(PSSE_PL_WAKEUP_LUGI, 0);
 				}
 			}
-			switch (mState) {
+			switch (mSubState) {
 			case 0:
-				mState = 1;
+				mSubState = 1;
 				break;
 			default:
 				break;
 			}
 		}
 		if (key.mType == KEYEVENT_END) {
-			switch (mState) {
+			switch (mSubState) {
 			case 2:
-				mState = 3;
+				mSubState = 3;
 				break;
 			default:
 				break;
@@ -6195,12 +6195,12 @@ void NaviPelletState::onKeyEvent(Navi* navi, SysShape::KeyEvent const& key)
 		}
 	} else {
 		if (key.mType == KEYEVENT_END) {
-			switch (mState) {
+			switch (mSubState) {
 			case 0:
-				mState = 1;
+				mSubState = 1;
 				break;
 			case 2:
-				mState = 3;
+				mSubState = 3;
 				break;
 			}
 		}
@@ -6228,7 +6228,7 @@ void NaviPelletState::cleanup(Navi* navi)
  */
 void NaviDemo_UfoState::init(Navi* navi, StateArg* stateArg)
 {
-	_10 = 0;
+	mSubState = 0;
 	navi->startMotion(IPikiAnims::WALK, IPikiAnims::WALK, nullptr, nullptr);
 }
 
@@ -6238,16 +6238,16 @@ void NaviDemo_UfoState::init(Navi* navi, StateArg* stateArg)
  */
 void NaviDemo_UfoState::exec(Navi* navi)
 {
-	switch (_10) {
+	switch (mSubState) {
 	case 0:
 		if (execGoto(navi)) {
-			_10 = 1;
+			mSubState = 1;
 			initSuck(navi);
 		}
 		break;
 	case 1:
 		if (execSuck(navi)) {
-			_10 = 2;
+			mSubState = 2;
 		}
 		break;
 	case 2:
@@ -6292,15 +6292,15 @@ void NaviDemo_UfoState::initSuck(Navi* navi)
 	Onyon* ship   = ItemOnyon::mgr->mUfo;
 	Vector3f diff = ship->getSuckPos() - navi->getPosition();
 	f32 dist      = diff.length();
-	_18           = dist;
+	mDist         = dist;
 
 	_14               = 0.0f;
 	navi->mVelocity.y = 0.0f;
 
-	_1C = 1.0f;
-	_24 = navi->getPosition();
-	_20 = 0.0f;
-	_30 = 0.0f;
+	mScaleMod = 1.0f;
+	mStartPos = navi->getPosition();
+	mProgress = 0.0f;
+	mSpeed    = 0.0f;
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -6386,13 +6386,13 @@ lbl_801880BC:
 bool NaviDemo_UfoState::execSuck(Navi* navi)
 {
 	Vector3f goalPos = ItemOnyon::mgr->mUfo->getSuckPos();
-	Vector3f setPos  = _24 + (goalPos - _24) * _20;
+	Vector3f setPos  = mStartPos + (goalPos - mStartPos) * mProgress;
 	navi->setPosition(setPos, false);
-	navi->mScale = -(_20 * 0.75f - 1.0f) * _1C;
+	navi->mScale = -(mProgress * 0.75f - 1.0f) * mScaleMod;
 
-	_20 += (_30 * sys->mDeltaTime) / _18;
-	_30 += sys->mDeltaTime * 720.0f;
-	return _20 >= 1.0f;
+	mProgress += (mSpeed * sys->mDeltaTime) / mDist;
+	mSpeed += sys->mDeltaTime * 720.0f;
+	return mProgress >= 1.0f;
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -6540,7 +6540,7 @@ void NaviDemo_HoleInState::exec(Navi* navi)
  */
 void NaviDemo_HoleInState::onKeyEvent(Navi* navi, SysShape::KeyEvent const&)
 {
-	_12 = 1;
+	mReady = true;
 }
 
 /**
@@ -6578,7 +6578,7 @@ bool NaviDemo_HoleInState::execGoto(Navi* navi)
 void NaviDemo_HoleInState::initHesitate(Navi* navi)
 {
 	navi->startMotion(IPikiAnims::SAGASU, IPikiAnims::SAGASU, navi, nullptr);
-	_12 = 0;
+	mReady = false;
 }
 
 /**
@@ -6587,7 +6587,7 @@ void NaviDemo_HoleInState::initHesitate(Navi* navi)
  */
 bool NaviDemo_HoleInState::execHesitate(Navi* navi)
 {
-	if (_12) {
+	if (mReady) {
 		Vector3f holePos = mHoleObj->getPosition();
 		Vector3f diff    = holePos - navi->getPosition();
 		diff.normalise();
@@ -6745,7 +6745,7 @@ void NaviPressedState::init(Navi* navi, StateArg* stateArg)
 
 	navi->mBaseTrMatrix.makeSRT(navi->mScale, rot, pos);
 	navi->setAtari(false);
-	_20 = 0;
+	mSubState = 0;
 	navi->mSoundObj->startSound(PSSE_PL_ORIMA_DAMAGE, 0);
 	PSM::DamageDirector* psm = PSMGetDamageD();
 	if (psm) {
@@ -6759,7 +6759,7 @@ void NaviPressedState::init(Navi* navi, StateArg* stateArg)
  */
 void NaviPressedState::exec(Navi* navi)
 {
-	if (moviePlayer->isFlag(1)) {
+	if (moviePlayer->isFlag(MVP_IsActive)) {
 		transit(navi, NSID_Walk, nullptr);
 		return;
 	}
@@ -6769,13 +6769,13 @@ void NaviPressedState::exec(Navi* navi)
 	rot.x        = 0.0f;
 
 	mTimer -= sys->mDeltaTime;
-	switch (_20) {
+	switch (mSubState) {
 	case 0:
 		pos.y += 2.0f;
 		navi->mBaseTrMatrix.makeSRT(navi->mScale, rot, pos);
 		if (mTimer <= 0.0f) {
-			_20    = 1;
-			mTimer = 0.7f;
+			mSubState = 1;
+			mTimer    = 0.7f;
 		}
 		break;
 	case 1:

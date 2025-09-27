@@ -91,9 +91,9 @@ struct NaviAbsorbState : public NaviState {
 
 	// _00     = VTBL
 	// _00-_10 = NaviState
-	u8 _10;                 // _10
+	u8 mSubState;           // _10
 	ItemHoney::Item* mDrop; // _14
-	u8 _18;                 // _18
+	bool mHasAbsorbed;      // _18
 };
 
 struct NaviCarryBombArg : public StateArg {
@@ -166,8 +166,8 @@ struct NaviClimbState : public NaviState {
 
 	// _00     = VTBL
 	// _00-_10 = NaviState
-	Vector3f _10;        // _10
-	f32 _1C;             // _1C
+	Vector3f mClimbAxis; // _10
+	f32 mClimbDist;      // _1C
 	Creature* mClimbObj; // _20
 	CollPart* mTubePart; // _24
 };
@@ -260,7 +260,7 @@ struct NaviDemo_HoleInState : public NaviState {
 	// _00     = VTBL
 	// _00-_10 = NaviState
 	u16 mSubState;      // _10
-	u8 _12;             // _12
+	bool mReady;        // _12
 	BaseItem* mHoleObj; // _14, could be ItemHole or ItemCave
 };
 
@@ -280,13 +280,13 @@ struct NaviDemo_UfoState : public NaviState {
 
 	// _00     = VTBL
 	// _00-_10 = NaviState
-	u16 _10;      // _10
-	f32 _14;      // _14
-	f32 _18;      // _18
-	f32 _1C;      // _1C
-	f32 _20;      // _20
-	Vector3f _24; // _24
-	f32 _30;
+	u16 mSubState;      // _10
+	f32 _14;            // _14
+	f32 mDist;          // _18
+	f32 mScaleMod;      // _1C
+	f32 mProgress;      // _20
+	Vector3f mStartPos; // _24
+	f32 mSpeed;         // _30
 };
 
 struct NaviDopeArg : public StateArg {
@@ -312,14 +312,14 @@ struct NaviDopeState : public NaviState {
 
 	// _00     = VTBL
 	// _00-_10 = NaviState
-	int mDopeType; // _10
-	u8 _14;        // _14
+	int mDopeType;  // _10
+	bool mUsedDope; // _14
 };
 
 struct NaviFallMeckArg : public StateArg {
-	NaviFallMeckArg(f32 a1) { _00 = a1; }
+	NaviFallMeckArg(f32 damage) { mDamage = damage; }
 
-	f32 _00; // _00
+	f32 mDamage; // _00
 };
 
 struct NaviFallMeckState : public NaviState {
@@ -337,8 +337,8 @@ struct NaviFallMeckState : public NaviState {
 
 	// _00     = VTBL
 	// _00-_10 = NaviState
-	f32 _10; // _10
-	int _14; // _14
+	f32 mDamage;   // _10
+	int mSubState; // _14
 };
 
 struct NaviFlickArg : public StateArg {
@@ -427,8 +427,8 @@ struct NaviGatherArg : public StateArg {
 struct NaviGatherState : public NaviState {
 	inline NaviGatherState()
 	    : NaviState(NSID_Gather)
-	    , _10(0)
-	    , _11(0)
+	    , _10(false)
+	    , _11(false)
 	{
 	}
 
@@ -438,9 +438,9 @@ struct NaviGatherState : public NaviState {
 
 	// _00     = VTBL
 	// _00-_10 = NaviState
-	u8 _10;  // _10
-	u8 _11;  // _11
-	u32 _14; // _14, unknown
+	bool _10; // _10
+	bool _11; // _11
+	u32 _14;  // _14, unknown
 };
 
 struct NaviKokeDamageInitArg : public StateArg {
@@ -485,14 +485,14 @@ struct NaviKokeDamageState : public NaviState {
 	// _00-_10 = NaviState
 	f32 mDamage;             // _10
 	f32 mTimer;              // _14
-	int mState;              // _18
+	int mSubState;           // _18
 	Creature* mCreature;     // _1C
 	bool mPlaySoundOnDamage; // _20
 };
 
 struct NaviNukuAdjustStateArg : public StateArg {
 	inline NaviNukuAdjustStateArg()
-	    : _18(0)
+	    : mIsFollowing(false)
 	{
 	}
 
@@ -500,13 +500,13 @@ struct NaviNukuAdjustStateArg : public StateArg {
 	Vector3f mUnusedVelocity;      // _04
 	int mUnusedState;              // _10
 	ItemPikihead::Item* mPikihead; // _14
-	u8 _18;                        // _18
+	bool mIsFollowing;             // _18
 };
 
 struct NaviNukuAdjustState : public NaviState {
 	inline NaviNukuAdjustState()
 	    : NaviState(NSID_NukuAdjust)
-	    , mIsFollowing(0)
+	    , mIsFollowing(false)
 	{
 	}
 
@@ -527,7 +527,7 @@ struct NaviNukuAdjustState : public NaviState {
 	Vector3f mUnusedVelocity;       // _34
 	int mUnusedState;               // _40
 	ItemPikihead::Item* mPikiHead;  // _44
-	u8 mIsFollowing;                // _48
+	bool mIsFollowing;              // _48
 	u8 _49[0x3];                    // _49, unknown/buffer
 	u8 mIsMoving;                   // _4C
 	Vector3f mCollidedPikiPosition; // _50
@@ -535,7 +535,7 @@ struct NaviNukuAdjustState : public NaviState {
 };
 
 struct NaviNukuArg : public StateArg {
-	u8 mIsFollowing; // _00
+	bool mIsFollowing; // _00
 };
 
 struct NaviNukuState : public NaviState {
@@ -552,13 +552,13 @@ struct NaviNukuState : public NaviState {
 
 	// _00     = VTBL
 	// _00-_10 = NaviState
-	u16 mCounter;   // _10
-	u8 mDidPluckSE; // _12
-	u8 mDidPressA;  // _13
-	u8 mIsActive;   // _14
-	u8 _15;         // _15
-	s16 mAnimID;    // _16
-	u8 mIsFollower; // _18
+	u16 mCounter;     // _10
+	bool mDidPluckSE; // _12
+	bool mDidPressA;  // _13
+	bool mIsActive;   // _14
+	bool mUnusedBool; // _15
+	s16 mAnimID;      // _16
+	bool mIsFollower; // _18
 };
 
 /** @fabricated */
@@ -592,7 +592,7 @@ struct NaviPathMoveState : public NaviState {
 
 	// _00     = VTBL
 	// _00-_10 = NaviState
-	u16 _10;                  // _10
+	u16 mSubState;            // _10
 	u32 mPathfinderContextID; // _14
 	Vector3f mPosition;       // _18
 	PathNode* mNodes[2];      // _24
@@ -613,8 +613,8 @@ struct NaviPelletState : public NaviState {
 
 	// _00     = VTBL
 	// _00-_10 = NaviState
-	u8 mDoForceWakeup; // _10, never set to true
-	int mState;        // _14
+	bool mDoForceWakeup; // _10, never set to true
+	int mSubState;       // _14
 };
 
 struct NaviPressedState : public NaviState {
@@ -634,7 +634,7 @@ struct NaviPressedState : public NaviState {
 	// _00-_10 = NaviState
 	f32 mTimer;            // _10
 	Vector3f mScaleBackup; // _14
-	u32 _20;               // _20
+	u32 mSubState;         // _20
 };
 
 struct NaviPunchArg : public StateArg {
@@ -745,10 +745,10 @@ struct NaviThrowState : public NaviState, virtual public SysShape::MotionListene
 	// _00-_10 = NaviState
 	// _10-_14 = MotionListener VTBL
 
-	u8 mHasThrown; // _14
-	u8 mDidCancel; // _15, set to true on pressing b, never used
-	Piki* mPiki;   // _18
-	Navi* mNavi;   // _1C
+	bool mHasThrown; // _14
+	bool mDidCancel; // _15, set to true on pressing b, never used
+	Piki* mPiki;     // _18
+	Navi* mNavi;     // _1C
 
 	// _20 = MotionListener
 };
