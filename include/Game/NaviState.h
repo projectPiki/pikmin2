@@ -77,9 +77,9 @@ struct NaviAbsorbArg : public StateArg {
 
 struct NaviAbsorbState : public NaviState {
 	enum AbsorbSubState {
-		ABSORB_Sub0 = 0,
-		ABSORB_Sub1 = 1,
-		ABSORB_Sub2 = 2,
+		ABSORB_Start     = 0,
+		ABSORB_Absorbing = 1,
+		ABSORB_Finished  = 2,
 	};
 
 	inline NaviAbsorbState()
@@ -276,9 +276,9 @@ struct NaviDemo_HoleInState : public NaviState {
 
 struct NaviDemo_UfoState : public NaviState {
 	enum UfoSubState {
-		UFO_Sub0 = 0,
-		UFO_Sub1 = 1,
-		UFO_Sub2 = 2,
+		UFO_GoTo     = 0,
+		UFO_Suck     = 1,
+		UFO_Finished = 2,
 	};
 
 	inline NaviDemo_UfoState()
@@ -340,9 +340,9 @@ struct NaviFallMeckArg : public StateArg {
 
 struct NaviFallMeckState : public NaviState {
 	enum FallMeckSubState {
-		FALLMECK_Sub0 = 0,
-		FALLMECK_Sub1 = 1,
-		FALLMECK_Sub2 = 2,
+		FALLMECK_Fall     = 0,
+		FALLMECK_GetUp    = 1,
+		FALLMECK_Finished = 2,
 	};
 
 	inline NaviFallMeckState()
@@ -378,8 +378,8 @@ struct NaviFlickArg : public StateArg {
 
 struct NaviFlickState : public NaviState {
 	enum FlickSubState {
-		FLICK_Sub0 = 0,
-		FLICK_Sub1 = 1,
+		FLICK_Hit   = 0,
+		FLICK_Fling = 1,
 	};
 
 	inline NaviFlickState()
@@ -497,9 +497,9 @@ struct NaviDamageArg : public StateArg {
 // Knockback state
 struct NaviKokeDamageState : public NaviState {
 	enum KokeDamageSubState {
-		KOKEDAMAGE_Sub0 = 0,
-		KOKEDAMAGE_Sub1 = 1,
-		KOKEDAMAGE_Sub2 = 2,
+		KOKEDAMAGE_Fall  = 0,
+		KOKEDAMAGE_Lay   = 1,
+		KOKEDAMAGE_GetUp = 2,
 	};
 
 	inline NaviKokeDamageState()
@@ -601,9 +601,9 @@ struct NaviPathMoveStateArg : StateArg {
 
 struct NaviPathMoveState : public NaviState {
 	enum PathMoveSubState {
-		PATHMOVE_Sub0 = 0,
-		PATHMOVE_Sub1 = 1,
-		PATHMOVE_Sub2 = 2,
+		PATHMOVE_FindPath = 0,
+		PATHMOVE_Move     = 1,
+		PATHMOVE_MoveGoal = 2,
 	};
 
 	inline NaviPathMoveState()
@@ -640,10 +640,10 @@ struct NaviPathMoveState : public NaviState {
 
 struct NaviPelletState : public NaviState {
 	enum PelletSubState {
-		PELLET_Sub0 = 0,
-		PELLET_Sub1 = 1,
-		PELLET_Sub2 = 2,
-		PELLET_Sub3 = 3,
+		PELLET_LayDown  = 0,
+		PELLET_Wait     = 1,
+		PELLET_GetUp    = 2,
+		PELLET_Finished = 3,
 	};
 
 	inline NaviPelletState()
@@ -665,8 +665,8 @@ struct NaviPelletState : public NaviState {
 
 struct NaviPressedState : public NaviState {
 	enum PressedSubState {
-		PRESSED_Sub0 = 0,
-		PRESSED_Sub1 = 1,
+		PRESSED_Wait    = 0,
+		PRESSED_Restore = 1,
 	};
 
 	inline NaviPressedState()
