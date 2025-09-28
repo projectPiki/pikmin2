@@ -1807,12 +1807,12 @@ void NaviPathMoveState::exec(Navi* navi)
 {
 	bool startWalking = false;
 	switch (mSubState) {
-	case 0:
+	case PATHMOVE_Sub0:
 		if (execPathfinding(navi) == 2) {
 			startWalking = true;
 		}
 		break;
-	case 1: {
+	case PATHMOVE_Sub1: {
 		int moveResult = execMove(navi);
 		if (moveResult == 2) {
 			startWalking = true;
@@ -1820,7 +1820,7 @@ void NaviPathMoveState::exec(Navi* navi)
 			startWalking = true;
 		}
 	} break;
-	case 2:
+	case PATHMOVE_Sub2:
 		if (execMoveGoal(navi) == 2) {
 			startWalking = true;
 		}
@@ -1870,7 +1870,7 @@ int NaviPathMoveState::initPathfinding(Navi* navi)
 	}
 	PathfindRequest request(wp->mIndex, searchResult->mIndex, PATHFLAG_RequireOpen);
 	mPathfinderContextID = testPathfinder->start(request);
-	mSubState            = 0;
+	mSubState            = PATHMOVE_Sub0;
 	return 1;
 }
 
@@ -1887,7 +1887,7 @@ int NaviPathMoveState::execPathfinding(Navi* navi)
 	case 0:
 		_2C       = testPathfinder->makepath(mPathfinderContextID, mNodes);
 		mNodes[1] = mNodes[0];
-		mSubState = 1;
+		mSubState = PATHMOVE_Sub1;
 		break;
 	case 1:
 		return 2;
@@ -3602,7 +3602,7 @@ void NaviFallMeckState::init(Navi* navi, StateArg* stateArg)
 	}
 	navi->startMotion(IPikiAnims::FALL, IPikiAnims::FALL, nullptr, nullptr);
 	navi->endStick();
-	mSubState = 0;
+	mSubState = FALLMECK_Sub0;
 	if (mDamage > 0.0f) {
 		navi->mVelocity.y       = -400.0f;
 		navi->mTargetVelocity.y = navi->mVelocity.y;
@@ -3618,11 +3618,11 @@ void NaviFallMeckState::init(Navi* navi, StateArg* stateArg)
  */
 void NaviFallMeckState::exec(Navi* navi)
 {
-	if (mSubState != 0) {
+	if (mSubState != FALLMECK_Sub0) {
 		navi->mTargetVelocity = 0.0f;
 		navi->mVelocity       = 0.0f;
 	}
-	if (mSubState == 0 && !navi->assertMotion(IPikiAnims::FALL)) {
+	if (mSubState == FALLMECK_Sub0 && !navi->assertMotion(IPikiAnims::FALL)) {
 		transit(navi, NSID_Walk, nullptr);
 	}
 }
@@ -3644,10 +3644,10 @@ void NaviFallMeckState::onKeyEvent(Navi* navi, SysShape::KeyEvent const& keyEven
 	if (keyEvent.mType != KEYEVENT_END) {
 		return;
 	}
-	if (mSubState == 1) {
+	if (mSubState == FALLMECK_Sub1) {
 		navi->startMotion(IPikiAnims::GETUP, IPikiAnims::GETUP, navi, nullptr);
-		mSubState = 2;
-	} else if (mSubState == 2) {
+		mSubState = FALLMECK_Sub2;
+	} else if (mSubState == FALLMECK_Sub2) {
 		transit(navi, NSID_Walk, nullptr);
 	}
 }
@@ -3673,7 +3673,7 @@ void NaviFallMeckState::bounceCallback(Navi* navi, Sys::Triangle*)
 		effect.create(&arg);
 	}
 
-	if (mSubState == 0) {
+	if (mSubState == FALLMECK_Sub0) {
 		f32 damage = mDamage;
 		if (damage > 0.0f) {
 			NaviKokeDamageInitArg arg(1.0f, 0, nullptr, damage);
@@ -3702,7 +3702,7 @@ void NaviFlickState::init(Navi* navi, StateArg* stateArg)
 		mFlicker   = flickArg->mCreature;
 	}
 	navi->startMotion(IPikiAnims::JHIT, IPikiAnims::JHIT, navi, nullptr);
-	mSubState         = 0;
+	mSubState         = FLICK_Sub0;
 	navi->mVelocity.y = 0.0f;
 	navi->mFaceDir    = roundAng(JMAAtan2Radian(mDirection.x, mDirection.z) + PI);
 	navi->mSoundObj->startSound(PSSE_PL_ORIMA_DAMAGE, 0);
@@ -3720,7 +3720,7 @@ void NaviFlickState::init(Navi* navi, StateArg* stateArg)
 void NaviFlickState::exec(Navi* navi)
 {
 	switch (mSubState) {
-	case 0:
+	case FLICK_Sub0:
 		navi->mVelocity.x = mDirection.x;
 		navi->mVelocity.z = mDirection.z;
 		if (!navi->assertMotion(IPikiAnims::JHIT)) {
@@ -3728,7 +3728,7 @@ void NaviFlickState::exec(Navi* navi)
 			transit(navi, NSID_KokeDamage, &kokeDamageArg);
 		}
 		break;
-	case 1:
+	case FLICK_Sub1:
 		navi->mVelocity.x *= 0.9f;
 		navi->mVelocity.z *= 0.9f;
 		if (navi->mFakePikiBounceTriangle != nullptr) {
@@ -3753,8 +3753,8 @@ void NaviFlickState::cleanup(Navi* navi)
  */
 void NaviFlickState::onKeyEvent(Navi* navi, SysShape::KeyEvent const& keyEvent)
 {
-	if (keyEvent.mType == KEYEVENT_END && mSubState == 0) {
-		mSubState = 1;
+	if (keyEvent.mType == KEYEVENT_END && mSubState == FLICK_Sub0) {
+		mSubState = FLICK_Sub1;
 		navi->startMotion(IPikiAnims::JKOKE, IPikiAnims::JKOKE, nullptr, nullptr);
 	}
 }
@@ -3792,7 +3792,7 @@ void NaviKokeDamageState::init(Navi* navi, StateArg* stateArg)
 
 	navi->startMotion(IPikiAnims::JKOKE, IPikiAnims::JKOKE, navi, nullptr);
 	rumbleMgr->startRumble(RUMBLETYPE_NaviDamage, navi->mNaviIndex);
-	mSubState = 0;
+	mSubState = KOKEDAMAGE_Sub0;
 }
 
 /**
@@ -3808,21 +3808,21 @@ void NaviKokeDamageState::exec(Navi* navi)
 	} else {
 		navi->mTargetVelocity = 0.0f;
 		navi->mVelocity       = 0.0f;
-		if (mSubState == 1) {
+		if (mSubState == KOKEDAMAGE_Sub1) {
 			mTimer -= sys->mDeltaTime;
 			if (mTimer <= 0.0f) {
 				navi->startMotion(IPikiAnims::GETUP, IPikiAnims::GETUP, navi, nullptr);
-				mSubState = 2;
+				mSubState = KOKEDAMAGE_Sub2;
 			}
 		}
-		if (mSubState == 0 && !navi->assertMotion(IPikiAnims::JKOKE)) {
+		if (mSubState == KOKEDAMAGE_Sub0 && !navi->assertMotion(IPikiAnims::JKOKE)) {
 			if (static_cast<NaviFSM*>(mStateMachine)->mBackupStateID == -1) {
 				transit(navi, NSID_Walk, nullptr);
 			} else {
 				transit(navi, static_cast<NaviFSM*>(mStateMachine)->mBackupStateID, nullptr);
 			}
 		}
-		if (mSubState == 2 && !navi->assertMotion(IPikiAnims::GETUP)) {
+		if (mSubState == KOKEDAMAGE_Sub2 && !navi->assertMotion(IPikiAnims::GETUP)) {
 			if (static_cast<NaviFSM*>(mStateMachine)->mBackupStateID == -1) {
 				transit(navi, NSID_Walk, nullptr);
 			} else {
@@ -3847,10 +3847,10 @@ void NaviKokeDamageState::cleanup(Navi* navi)
 void NaviKokeDamageState::onKeyEvent(Navi* navi, SysShape::KeyEvent const& key)
 {
 	if (key.mType == KEYEVENT_END) {
-		if (mSubState == 0) {
-			mSubState = 1;
+		if (mSubState == KOKEDAMAGE_Sub0) {
+			mSubState = KOKEDAMAGE_Sub1;
 			navi->addDamage(mDamage, mPlaySoundOnDamage);
-		} else if (mSubState == 2) {
+		} else if (mSubState == KOKEDAMAGE_Sub2) {
 			if (static_cast<NaviFSM*>(mStateMachine)->mBackupStateID == -1) {
 				transit(navi, NSID_Walk, nullptr);
 			} else {
@@ -4181,7 +4181,7 @@ void NaviAbsorbState::init(Navi* navi, StateArg* stateArg)
 	P2ASSERTLINE(3917, mDrop != nullptr);
 	navi->startMotion(IPikiAnims::MIZUNOMI, IPikiAnims::MIZUNOMI, navi, nullptr);
 	navi->mSoundObj->startSound(PSSE_PL_DRINK, 0);
-	mSubState             = 0;
+	mSubState             = ABSORB_Sub0;
 	mHasAbsorbed          = false;
 	Vector3f dropPosition = mDrop->getPosition();
 	navi->turnTo(dropPosition);
@@ -4198,7 +4198,7 @@ void NaviAbsorbState::exec(Navi* navi)
 	navi->mVelocity.z     = 0.0f;
 	navi->mVelocity.x     = 0.0f;
 	navi->mTargetVelocity = 0.0f;
-	if (mSubState == 1) {
+	if (mSubState == ABSORB_Sub1) {
 		if (mDrop->isAlive() && !mHasAbsorbed) {
 			InteractAbsorb act(navi);
 			mDrop->stimulate(act);
@@ -4219,13 +4219,13 @@ void NaviAbsorbState::onKeyEvent(Navi* navi, SysShape::KeyEvent const& key)
 {
 	switch (key.mType) {
 	case KEYEVENT_LOOP_START:
-		mSubState = 1;
+		mSubState = ABSORB_Sub1;
 		break;
 	case KEYEVENT_LOOP_END:
 		P2ASSERTLINE(3956, mDrop->mObjectTypeID == OBJTYPE_Honey);
 		ItemHoney::Item* item = mDrop;
 		if (!mDrop->isAlive() || !item->isShrinking()) {
-			mSubState = 2;
+			mSubState = ABSORB_Sub2;
 			navi->finishMotion();
 		}
 		break;
@@ -6092,7 +6092,7 @@ void NaviPelletState::init(Navi* navi, StateArg* stateArg)
 	}
 	navi->becomePellet(&arg);
 	navi->setAtari(false);
-	mSubState = 0;
+	mSubState = PELLET_Sub0;
 }
 
 /**
@@ -6124,7 +6124,7 @@ void NaviPelletState::exec(Navi* navi)
 			}
 		}
 
-		if (mSubState == 1 || mSubState == 0) {
+		if (mSubState == PELLET_Sub1 || mSubState == PELLET_Sub0) {
 			if (navi->mController1 && navi->mController1->isButtonDown(Controller::PRESS_ABX | Controller::PRESS_DPAD)) {
 				if (mDoForceWakeup) {
 					navi->mAnimSpeed = 60.0f;
@@ -6139,11 +6139,11 @@ void NaviPelletState::exec(Navi* navi)
 						navi->mSoundObj->startSound(PSSE_PL_WAKEUP_LUGI, 0);
 					}
 				}
-				mSubState = 2;
+				mSubState = PELLET_Sub2;
 			}
 		}
 
-		if (mSubState == 3) {
+		if (mSubState == PELLET_Sub3) {
 			Pellet* pelt = navi->mPellet;
 			if (pelt) {
 				pelt->kill(nullptr);
@@ -6177,8 +6177,8 @@ void NaviPelletState::onKeyEvent(Navi* navi, SysShape::KeyEvent const& key)
 				}
 			}
 			switch (mSubState) {
-			case 0:
-				mSubState = 1;
+			case PELLET_Sub0:
+				mSubState = PELLET_Sub1;
 				break;
 			default:
 				break;
@@ -6186,8 +6186,8 @@ void NaviPelletState::onKeyEvent(Navi* navi, SysShape::KeyEvent const& key)
 		}
 		if (key.mType == KEYEVENT_END) {
 			switch (mSubState) {
-			case 2:
-				mSubState = 3;
+			case PELLET_Sub2:
+				mSubState = PELLET_Sub3;
 				break;
 			default:
 				break;
@@ -6196,11 +6196,11 @@ void NaviPelletState::onKeyEvent(Navi* navi, SysShape::KeyEvent const& key)
 	} else {
 		if (key.mType == KEYEVENT_END) {
 			switch (mSubState) {
-			case 0:
-				mSubState = 1;
+			case PELLET_Sub0:
+				mSubState = PELLET_Sub1;
 				break;
-			case 2:
-				mSubState = 3;
+			case PELLET_Sub2:
+				mSubState = PELLET_Sub3;
 				break;
 			}
 		}
@@ -6228,7 +6228,7 @@ void NaviPelletState::cleanup(Navi* navi)
  */
 void NaviDemo_UfoState::init(Navi* navi, StateArg* stateArg)
 {
-	mSubState = 0;
+	mSubState = UFO_Sub0;
 	navi->startMotion(IPikiAnims::WALK, IPikiAnims::WALK, nullptr, nullptr);
 }
 
@@ -6239,18 +6239,18 @@ void NaviDemo_UfoState::init(Navi* navi, StateArg* stateArg)
 void NaviDemo_UfoState::exec(Navi* navi)
 {
 	switch (mSubState) {
-	case 0:
+	case UFO_Sub0:
 		if (execGoto(navi)) {
-			mSubState = 1;
+			mSubState = UFO_Sub1;
 			initSuck(navi);
 		}
 		break;
-	case 1:
+	case UFO_Sub1:
 		if (execSuck(navi)) {
-			mSubState = 2;
+			mSubState = UFO_Sub2;
 		}
 		break;
-	case 2:
+	case UFO_Sub2:
 		transit(navi, NSID_Walk, nullptr);
 	}
 }
@@ -6475,7 +6475,7 @@ bool NaviDemo_UfoState::execSuck(Navi* navi)
  */
 void NaviDemo_HoleInState::init(Navi* navi, StateArg* stateArg)
 {
-	mSubState = GoTo;
+	mSubState = HOLEIN_GoTo;
 	navi->startMotion(IPikiAnims::WALK, IPikiAnims::WALK, nullptr, nullptr);
 	mHoleObj    = nullptr;
 	f32 maxDist = 12800.0f;
@@ -6516,19 +6516,19 @@ void NaviDemo_HoleInState::init(Navi* navi, StateArg* stateArg)
 void NaviDemo_HoleInState::exec(Navi* navi)
 {
 	switch (mSubState) {
-	case GoTo:
+	case HOLEIN_GoTo:
 		if (execGoto(navi)) {
-			mSubState = Hesitate;
+			mSubState = HOLEIN_Hesitate;
 			initHesitate(navi);
 		}
 		break;
-	case Hesitate:
+	case HOLEIN_Hesitate:
 		if (execHesitate(navi)) {
-			mSubState = Fall;
+			mSubState = HOLEIN_Fall;
 			initFall(navi);
 		}
 		break;
-	case Fall:
+	case HOLEIN_Fall:
 		execFall(navi);
 		break;
 	}
@@ -6745,7 +6745,7 @@ void NaviPressedState::init(Navi* navi, StateArg* stateArg)
 
 	navi->mBaseTrMatrix.makeSRT(navi->mScale, rot, pos);
 	navi->setAtari(false);
-	mSubState = 0;
+	mSubState = PRESSED_Sub0;
 	navi->mSoundObj->startSound(PSSE_PL_ORIMA_DAMAGE, 0);
 	PSM::DamageDirector* psm = PSMGetDamageD();
 	if (psm) {
@@ -6770,15 +6770,15 @@ void NaviPressedState::exec(Navi* navi)
 
 	mTimer -= sys->mDeltaTime;
 	switch (mSubState) {
-	case 0:
+	case PRESSED_Sub0:
 		pos.y += 2.0f;
 		navi->mBaseTrMatrix.makeSRT(navi->mScale, rot, pos);
 		if (mTimer <= 0.0f) {
-			mSubState = 1;
+			mSubState = PRESSED_Sub1;
 			mTimer    = 0.7f;
 		}
 		break;
-	case 1:
+	case PRESSED_Sub1:
 		f32 y      = 1.0f - mTimer / 0.7f;
 		f32 xz     = mTimer * TAU * 4.0f;
 		f32 sinVal = (0.5f * (1.0f - y)) * sinf(xz);
