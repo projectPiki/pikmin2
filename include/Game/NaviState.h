@@ -76,6 +76,12 @@ struct NaviAbsorbArg : public StateArg {
 };
 
 struct NaviAbsorbState : public NaviState {
+	enum AbsorbSubState {
+		ABSORB_Sub0 = 0,
+		ABSORB_Sub1 = 1,
+		ABSORB_Sub2 = 2,
+	};
+
 	inline NaviAbsorbState()
 	    : NaviState(NSID_Absorb)
 	{
@@ -239,12 +245,16 @@ struct NaviDeadState : public NaviState {
 };
 
 struct NaviDemo_HoleInState : public NaviState {
+	enum HoleInSubState {
+		HOLEIN_GoTo     = 0,
+		HOLEIN_Hesitate = 1,
+		HOLEIN_Fall     = 2,
+	};
+
 	inline NaviDemo_HoleInState()
 	    : NaviState(NSID_Demo_HoleIn)
 	{
 	}
-
-	enum SubState { GoTo, Hesitate, Fall };
 
 	virtual void init(Navi*, StateArg*);                       // _08
 	virtual void exec(Navi*);                                  // _0C
@@ -265,6 +275,12 @@ struct NaviDemo_HoleInState : public NaviState {
 };
 
 struct NaviDemo_UfoState : public NaviState {
+	enum UfoSubState {
+		UFO_Sub0 = 0,
+		UFO_Sub1 = 1,
+		UFO_Sub2 = 2,
+	};
+
 	inline NaviDemo_UfoState()
 	    : NaviState(NSID_Demo_Ufo)
 	{
@@ -323,6 +339,12 @@ struct NaviFallMeckArg : public StateArg {
 };
 
 struct NaviFallMeckState : public NaviState {
+	enum FallMeckSubState {
+		FALLMECK_Sub0 = 0,
+		FALLMECK_Sub1 = 1,
+		FALLMECK_Sub2 = 2,
+	};
+
 	inline NaviFallMeckState()
 	    : NaviState(NSID_FallMeck)
 	{
@@ -355,6 +377,11 @@ struct NaviFlickArg : public StateArg {
 };
 
 struct NaviFlickState : public NaviState {
+	enum FlickSubState {
+		FLICK_Sub0 = 0,
+		FLICK_Sub1 = 1,
+	};
+
 	inline NaviFlickState()
 	    : NaviState(NSID_Flick)
 	{
@@ -386,7 +413,7 @@ struct NaviFollowArg : public StateArg {
 };
 
 struct NaviFollowState : public NaviState {
-	enum FollowState {
+	enum FollowSubState {
 		FOLLOW_AlertJump   = 0,
 		FOLLOW_Normal      = 1,
 		FOLLOW_IdleGoof    = 2,
@@ -469,6 +496,12 @@ struct NaviDamageArg : public StateArg {
 
 // Knockback state
 struct NaviKokeDamageState : public NaviState {
+	enum KokeDamageSubState {
+		KOKEDAMAGE_Sub0 = 0,
+		KOKEDAMAGE_Sub1 = 1,
+		KOKEDAMAGE_Sub2 = 2,
+	};
+
 	inline NaviKokeDamageState()
 	    : NaviState(NSID_KokeDamage)
 	{
@@ -567,6 +600,12 @@ struct NaviPathMoveStateArg : StateArg {
 };
 
 struct NaviPathMoveState : public NaviState {
+	enum PathMoveSubState {
+		PATHMOVE_Sub0 = 0,
+		PATHMOVE_Sub1 = 1,
+		PATHMOVE_Sub2 = 2,
+	};
+
 	inline NaviPathMoveState()
 	    : NaviState(NSID_PathMove)
 	{
@@ -600,6 +639,13 @@ struct NaviPathMoveState : public NaviState {
 };
 
 struct NaviPelletState : public NaviState {
+	enum PelletSubState {
+		PELLET_Sub0 = 0,
+		PELLET_Sub1 = 1,
+		PELLET_Sub2 = 2,
+		PELLET_Sub3 = 3,
+	};
+
 	inline NaviPelletState()
 	    : NaviState(NSID_Pellet)
 	{
@@ -618,6 +664,11 @@ struct NaviPelletState : public NaviState {
 };
 
 struct NaviPressedState : public NaviState {
+	enum PressedSubState {
+		PRESSED_Sub0 = 0,
+		PRESSED_Sub1 = 1,
+	};
+
 	inline NaviPressedState()
 	    : NaviState(NSID_Pressed)
 	{
