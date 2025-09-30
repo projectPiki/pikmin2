@@ -5857,7 +5857,7 @@ void Navi::findNextThrowPiki()
 u32 Navi::ogGetNextThrowPiki()
 {
 	Piki* nextPiki = mNextThrowPiki;
-	return (!nextPiki) ? 0 : ((3 * nextPiki->mPikiKind) + 1) + nextPiki->mHappaKind;
+	return (!nextPiki) ? 0 : ((PikiGrowthStageCount * nextPiki->mPikiKind) + 1) + nextPiki->mHappaKind;
 }
 
 // extern f32 pikmin2_cosf(f32 theta);
