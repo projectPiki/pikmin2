@@ -103,7 +103,7 @@ void ActBreakRock::initStickAttack()
 int ActBreakRock::exec()
 {
 	if (!mRock->isAlive()) {
-		return 0;
+		return ACTEXEC_Success;
 	}
 
 	switch (mState) {
@@ -135,7 +135,7 @@ int ActBreakRock::exec()
 		break;
 	}
 
-	return 1;
+	return ACTEXEC_Continue;
 }
 
 /**

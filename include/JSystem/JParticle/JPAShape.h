@@ -62,17 +62,25 @@ struct JPABaseShape {
 	GXBlendFactor getBlendSrc() const { return st_bf[(mData->mBlendModeCfg >> 2) & 0x0F]; }
 	GXBlendFactor getBlendDst() const { return st_bf[(mData->mBlendModeCfg >> 6) & 0x0F]; }
 	GXLogicOp getLogicOp() const { return st_lo[(mData->mBlendModeCfg >> 10) & 0x0F]; }
-	GXBool getZCompLoc() const { return (GXBool)((mData->mZModeCfg >> 5) & 0x01); }
 
 	GXBool getZEnable() const { return (GXBool)(mData->mZModeCfg & 0x01); }
 	GXCompare getZCmp() const { return st_c[(mData->mZModeCfg >> 1) & 0x07]; }
 	GXBool getZUpd() const { return (GXBool)((mData->mZModeCfg >> 4) & 0x01); }
+	GXBool getZCompLoc() const { return (GXBool)((mData->mZModeCfg >> 5) & 0x01); }
 
 	GXCompare getAlphaCmp0() const { return st_c[mData->mAlphaCompareCfg & 0x07]; }
-	u8 getAlphaRef0() const { return mData->mAlphaRef0; }
 	GXAlphaOp getAlphaOp() const { return st_ao[(mData->mAlphaCompareCfg >> 3) & 0x03]; }
 	GXCompare getAlphaCmp1() const { return st_c[(mData->mAlphaCompareCfg >> 5) & 0x07]; }
+
+	u8 getAlphaRef0() const { return mData->mAlphaRef0; }
 	u8 getAlphaRef1() const { return mData->mAlphaRef1; }
+
+	BOOL isTexAnm() const { return mData->mTexFlg & 0x01; }
+	u8 getTexAnmType() const { return (mData->mTexFlg >> 2) & 0x07; }
+
+	BOOL isPrmAnm() const { return mData->mClrFlg & 0x02; }
+	BOOL isEnvAnm() const { return mData->mClrFlg & 0x08; }
+	u8 getClrAnmType() const { return (mData->mClrFlg >> 4) & 0x07; }
 
 	const GXTevColorArg* getTevColorArg() const { return st_ca[(mData->mFlags >> 0x0F) & 0x07]; }
 	const GXTevAlphaArg* getTevAlphaArg() const { return st_aa[(mData->mFlags >> 0x12) & 0x01]; }
@@ -84,27 +92,22 @@ struct JPABaseShape {
 	u32 getProjType() const { return ((mData->mFlags >> 24) & 0x01); }
 	u32 getTilingS() const { return (mData->mFlags >> 25) & 0x01; }
 	u32 getTilingT() const { return (mData->mFlags >> 26) & 0x01; }
-	bool isGlblClrAnm() const { return !!(mData->mFlags & 0x00001000); }
-	bool isGlblTexAnm() const { return !!(mData->mFlags & 0x00004000); }
-	bool isPrjTex() const { return !!(mData->mFlags & 0x00100000); }
+	BOOL isGlblClrAnm() const { return mData->mFlags & 0x00001000; }
+	BOOL isGlblTexAnm() const { return mData->mFlags & 0x00004000; }
+	BOOL isPrjTex() const { return mData->mFlags & 0x00100000; }
 	bool isDrawFwdAhead() const { return !!(mData->mFlags & 0x00200000); }
 	bool isDrawPrntAhead() const { return !!(mData->mFlags & 0x00400000); }
 	bool isClipOn() const { return !!(mData->mFlags & 0x00800000); }
-	bool isTexCrdAnm() const { return !!(mData->mFlags & 0x01000000); }
+	BOOL isTexCrdAnm() const { return mData->mFlags & 0x01000000; }
 	bool isNoDrawParent() const { return !!(mData->mFlags & 0x08000000); }
 	bool isNoDrawChild() const { return !!(mData->mFlags & 0x10000000); }
 
-	bool isPrmAnm() const { return !!(mData->mClrFlg & 0x02); }
-	bool isEnvAnm() const { return !!(mData->mClrFlg & 0x08); }
-	u8 getClrAnmType() const { return (mData->mClrFlg >> 4) & 0x07; }
 	s16 getClrAnmMaxFrm() const { return mData->mClrAnmFrmMax; }
 	void getPrmClr(GXColor* dst) { *dst = mData->mClrPrm; }
 	void getPrmClr(s16 idx, GXColor* dst) { *dst = mPrmClrAnmTbl[idx]; }
 	void getEnvClr(GXColor* dst) { *dst = mData->mClrEnv; }
 	void getEnvClr(s16 idx, GXColor* dst) { *dst = mEnvClrAnmTbl[idx]; }
 
-	bool isTexAnm() const { return !!(mData->mTexFlg & 0x01); }
-	u8 getTexAnmType() const { return (mData->mTexFlg >> 2) & 0x07; }
 	u32 getTexIdx() const { return mData->mTexIdx; }
 	u8 getTexIdx(u8 idx) const { return mTexIdxAnimTbl[idx]; }
 
@@ -194,12 +197,18 @@ struct JPAChildShape {
 	f32 getColorInhRate() const { return mData->mInheritRGB; }
 	f32 getAlphaInhRate() const { return mData->mInheritAlpha; }
 	f32 getGravity() const { return mData->mGravity; }
+	u32 getTexIdx() const { return mData->mTexIdx; }
 
+	u32 getType() const { return mData->mFlags & 0xF; }
 	bool isFieldAffected() const { return mData->mFlags & 0x200000; }
 	bool isScaleInherited() const { return mData->mFlags & 0x10000; }
 	bool isColorInherited() const { return mData->mFlags & 0x40000; }
 	bool isAlphaInherited() const { return mData->mFlags & 0x20000; }
 	bool isRotateOn() const { return mData->mFlags & 0x1000000; }
+	bool isClipOn() const { return mData->mFlags & 0x100000; }
+	bool isScaleOutOn() const { return mData->mFlags & 0x400000; }
+	bool isAlphaOutOn() const { return mData->mFlags & 0x800000; }
+	u32 getBasePlaneType() const { return (mData->mFlags >> 10) & 1; }
 
 	const JPAChildShapeData* mData; // _00
 };
@@ -225,7 +234,7 @@ struct JPAExTexShape {
 	void init_jpa(const u8*, JKRHeap*);
 
 	const f32* getIndTexMtx() const { return &mData->mIndTexMtx[0][0]; }
-	s32 getExpScale() const { return mData->mExpScale; }
+	s8 getExpScale() const { return mData->mExpScale; }
 	u8 getIndTexIdx() const { return mData->mIndTexIdx; }
 	u8 getSecTexIdx() const { return mData->mSecTexIdx; }
 	bool isUseIndirect() const { return !!(mData->mFlags & 0x01); }
@@ -303,9 +312,15 @@ struct JPAExtraShape {
 	f32 getAlphaIncRate() const { return mAlphaIncRate; }
 	f32 getAlphaDecRate() const { return mAlphaDecRate; }
 
-	bool isEnableScaleAnm() const { return mData->mFlags & 0x1; }
-	bool isEnableAlphaFlick() const { return mData->mFlags & 0x20000; }
-	bool isEnableRotateAnm() const { return mData->mFlags & 0x1000000; }
+	BOOL isEnableScaleAnm() const { return mData->mFlags & 1; }
+	BOOL isScaleXYDiff() const { return mData->mFlags & 2; }
+	u32 getScaleAnmTypeX() const { return (mData->mFlags >> 8) & 3; }
+	u32 getScaleAnmTypeY() const { return (mData->mFlags >> 10) & 3; }
+	u32 getScaleCenterX() const { return (mData->mFlags >> 12) & 3; }
+	u32 getScaleCenterY() const { return (mData->mFlags >> 14) & 3; }
+	BOOL isEnableAlphaAnm() const { return mData->mFlags & 0x10000; }
+	BOOL isEnableAlphaFlick() const { return mData->mFlags & 0x20000; }
+	BOOL isEnableRotateAnm() const { return mData->mFlags & 0x1000000; }
 
 	const JPAExtraShapeData* mData; // _00
 	f32 mAlphaIncRate;              // _04

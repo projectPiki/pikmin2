@@ -2,6 +2,7 @@
 #define _JSYSTEM_JPA_JPABLOCK_H
 
 #include "JSystem/JGeometry.h"
+#include "JSystem/JParticle/JPAField.h"
 #include "types.h"
 
 struct JKRHeap;
@@ -128,9 +129,10 @@ struct JPADynamicsBlock {
 struct JPAFieldBlock {
 	/** @fabricated */
 	struct Data {
-		u8 _00[4];                   // _00
-		u32 _04;                     // _04
-		u32 _08;                     // _08
+		// Representation of the contents in a .jpc file
+		u8 mMagic[4];                // _00
+		u32 mSize;                   // _04
+		u32 mFlags;                  // _08
 		JGeometry::TVec3f mOffset;   // _0C
 		JGeometry::TVec3f mVelocity; // _18
 		f32 mAmplitude;              // _24
@@ -150,9 +152,18 @@ struct JPAFieldBlock {
 	// unused/inlined:
 	void init_jpa(const u8*, JKRHeap*);
 
-	inline u32 getSttFlag() const { return mData->_08 >> 16; }
-	inline u32 getAddType() const { return (mData->_08 >> 8) & 0x3; }
-	inline u32 getType() const { return mData->_08 & 0xF; }
+	void prepare(JPAEmitterWorkData* work) { mField->prepare(work, this); }
+
+	void initOpParam()
+	{
+		getPosOrig(&mOffset);
+		getDirOrig(&mVelocity);
+		mSpeed = getMagOrig();
+	}
+
+	inline u32 getSttFlag() const { return mData->mFlags >> 16; }
+	inline u32 getAddType() const { return (mData->mFlags >> 8) & 0x3; }
+	inline u32 getType() const { return mData->mFlags & 0xF; }
 	inline int checkStatus(u16 flag) { return getSttFlag() & flag; }
 
 	inline JGeometry::TVec3f& getDir() { return mVelocity; } // should be const?
@@ -179,7 +190,7 @@ struct JPAFieldBlock {
 	f32 mFadeInRate;             // _08
 	f32 mFadeOutRate;            // _0C
 	JGeometry::TVec3f mOffset;   // _10
-	JGeometry::TVec3f mVelocity; // _1C
+	JGeometry::TVec3f mVelocity; // _1C, dir
 	f32 mSpeed;                  // _28
 };
 

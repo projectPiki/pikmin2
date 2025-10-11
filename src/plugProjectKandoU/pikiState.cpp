@@ -1859,14 +1859,13 @@ void PikiHipDropState::exec(Piki* piki)
 			CellIteratorArg iterArg(sphere);
 			iterArg.mUseCustomRadius = 1;
 			CellIterator iterator(iterArg);
-			iterator.first();
 
-			while (!iterator.isDone()) {
+			CI_LOOP(iterator)
+			{
 				Creature* creature = static_cast<Creature*>(*iterator);
 				if (creature->isTeki() && creature->isAlive() && creature->isLivingThing()) {
 					Vector3f creaturePos = creature->getPosition();
 					Vector3f pikiPos     = piki->getPosition();
-					// Vector3f diff        = Vector3f(creaturePos.x - pikiPos.x, creaturePos.y - pikiPos.y, creaturePos.x - pikiPos.x);
 
 					f32 currDist = creaturePos.distance(pikiPos);
 
@@ -1875,7 +1874,6 @@ void PikiHipDropState::exec(Piki* piki)
 						closestEnemy = creature;
 					}
 				}
-				iterator.next();
 			}
 
 			if (closestEnemy) {

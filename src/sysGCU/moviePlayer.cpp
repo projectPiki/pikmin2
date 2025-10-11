@@ -633,7 +633,7 @@ bool MoviePlayer::update(Controller* input1, Controller* input2)
 				if (norm > 10.0f) {
 					norm = 10.0f;
 				}
-				mCameraPosition = offset + (test * norm);
+				mCameraPosition = test + (offset * norm);
 				setTransform(mCameraPosition, mCameraAngle);
 			}
 		}

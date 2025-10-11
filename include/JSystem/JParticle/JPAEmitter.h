@@ -430,7 +430,7 @@ struct JPAEmitterWorkData {
 	int mDirType;                          // _200
 	int mRotType;                          // _204
 	int mPlaneType;                        // _208
-	int mDLType;                           // _20C
+	u32 mDLType;                           // _20C
 	int mProjectionType;                   // _210
 	s16 mClrKeyFrame;                      // _214
 	u8 mDrawCount;                         // _216
