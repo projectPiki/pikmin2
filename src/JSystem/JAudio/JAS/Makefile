@@ -25,7 +25,7 @@ JAUDIO_JAS_FILES:=\
 	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JASOscillator.o\
 	$(BUILD_DIR)/asm/JSystem/JAudio/JAS/JASChannel.o\
 	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JASDriverIF.o\
-	$(BUILD_DIR)/asm/JSystem/JAudio/JAS/JASDSPChannel.o\
+	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JASDSPChannel.o\
 	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JASDSPInterface.o\
 	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JASAudioThread.o\
 	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JASCalc.o\
@@ -36,7 +36,7 @@ JAUDIO_JAS_FILES:=\
 	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JASProbe.o\
 	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JASResArcLoader.o\
 	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JASReport.o\
-	$(BUILD_DIR)/asm/JSystem/JAudio/JAS/JASAiCtrl.o\
+	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JASAiCtrl.o\
 	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JASChannelUpdater.o\
 	$(BUILD_DIR)/asm/JSystem/JAudio/JAS/JASTaskThread.o\
 	$(BUILD_DIR)/asm/JSystem/JAudio/JAS/JASAramStream.o\

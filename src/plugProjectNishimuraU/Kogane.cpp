@@ -420,7 +420,7 @@ bool Kogane::Obj::createTreasureItem()
 void Kogane::Obj::createPellet(int type, int num)
 {
 	int colors                = 0;
-	int hasColors[OnyonCount] = {};
+	int hasColors[OnyonCount] = { 1, 1, 1 };
 	for (int i = 0; i < OnyonCount; i++) {
 		if (playData->hasMetPikmin(i)) {
 			hasColors[colors] = i;
@@ -442,7 +442,7 @@ void Kogane::Obj::createPellet(int type, int num)
 			pelt->onSetPosition(pos);
 
 			angle += offs;
-			Vector3f vel = Vector3f(1000.0f * sinf(angle), 250.0f, 1000.0f * cosf(angle));
+			Vector3f vel = Vector3f(50.0f * sinf(angle), 250.0f, 50.0f * cosf(angle));
 			pelt->setVelocity(vel);
 		}
 	}

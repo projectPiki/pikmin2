@@ -1,7 +1,6 @@
 #include "PSGame/BASARC.h"
 #include "PSSystem/PSSystemIF.h"
 #include "PSAutoBgm/PSAutoBgm.h"
-#include "PSAutoBgm/Cycle.h"
 #include "PSGame/CameraMgr.h"
 #include "PSGame/EnvSe.h"
 #include "PSGame/PikScene.h"
@@ -177,7 +176,7 @@ void ConductorList::getSeqAndWaveFromConductor(char const* cndName, u8* wScene, 
 	// NEW UNITS
 	if (IS_SAME_STRING_N("new", cndName, strlen("new"))) {
 		strcpy(newSeqName, cndName);
-		strcpy(&newSeqName[6], ".bms");
+		strcpy(&newSeqName[6], ".bms\0");
 		*bmsName = newSeqName;
 		*wScene  = PSSystem::WaveScene::WSCENE37_EmergenceCave + getAutoBgmInfo(0, 0);
 		return;

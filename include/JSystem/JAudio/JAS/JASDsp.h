@@ -177,12 +177,25 @@ struct JASDSPChannel {
 	void getNumFree();
 	void getNumBreak();
 
-	s32 _00;
+	enum Status {
+		STATUS_ACTIVE   = 0,
+		STATUS_INACTIVE = 1,
+		STATUS_DROP     = 2,
+	};
+
+	enum CallbackType {
+		CB_PLAY  = 0,
+		CB_START = 1,
+		CB_STOP  = 2,
+		CB_DROP  = 3,
+	};
+
+	s32 mStatus;
 	s16 mPriority;
 	u32 mFlags; // some kind of bitflag?
 	u32 _0C;
-	Callback mCallback;
-	void* mCallbackArgs;
+	Callback mCallback;  // _10
+	void* mCallbackArgs; // _14
 	JASDsp::TChannel* mChannel;
 
 	static JASDSPChannel* sDspChannels;

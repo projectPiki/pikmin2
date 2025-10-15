@@ -25,7 +25,8 @@ void JAInter::SoundTable::init(u8* data, u32 dataSize)
 	mPointerCategory = new (JAIBasic::msCurrentHeap, 4) SoundInfo*[0x12];
 	for (u8 i = 0; i < 0x12; i++) {
 		mSoundMax[i]        = reinterpret_cast<u16*>(&mAddress[6])[i * 2];
-		mPointerCategory[i] = reinterpret_cast<SoundInfo*>(&mAddress[0x50] + reinterpret_cast<u16*>(&mAddress[8])[i] * sizeof(SoundInfo));
+		u32 temp            = reinterpret_cast<u16*>(&mAddress[8])[i * 2];
+		mPointerCategory[i] = &(reinterpret_cast<SoundInfo*>(&mAddress[0x50])[temp]);
 		if (i < 0x10 && mSoundMax[i] != 0) {
 			mCategotyMax = i + 1;
 		}

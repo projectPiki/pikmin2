@@ -294,6 +294,33 @@ struct JASTrack : public JSUList<JASChannel> {
 	static void newMemPool(int);
 	static void registerSeqCallback(SeqCallback);
 
+	void* operator new(size_t n)
+	{
+		JASTrack* track = sFreeList;
+		if (track == nullptr) {
+			track = nullptr;
+		} else {
+			sFreeList = ((JASTrack**)sFreeList)[0];
+
+			if (sFreeList == nullptr)
+				sFreeListEnd = nullptr;
+		}
+		return track;
+	}
+
+	void operator delete(void* ptr, size_t n)
+	{
+		JASTrack* track = (JASTrack*)ptr;
+		track->mHead    = nullptr;
+
+		if (sFreeListEnd) {
+			sFreeListEnd->mHead = ((JSUPtrLink*)track);
+		} else {
+			sFreeList = track;
+		}
+		sFreeListEnd = track;
+	}
+
 	// unused/inlined:
 	~JASTrack();
 	int inherit();

@@ -105,8 +105,7 @@ Rappa::Rappa()
 void Rappa::init(u16 id)
 {
 	bool check = true;
-	// something dumb along these lines
-	if (bool(id == -1)) {
+	if ((1 | id) - (1 - id >> 1) >> 31 == 0) {
 		check = false;
 	}
 	P2ASSERTLINE(180, check);

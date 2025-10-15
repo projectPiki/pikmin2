@@ -70,6 +70,14 @@ JASTrack::JASTrack()
  */
 JASTrack::~JASTrack()
 {
+	JSULink<JASChannel>* link = getFirst();
+	while (link) {
+		JSULink<JASChannel>* next = link->getObject()->getNext();
+		link->getObject()->release(0);
+		link->getObject()->free();
+		remove(link->getObject()->getObject());
+		link = next;
+	}
 	// UNUSED FUNCTION
 }
 
@@ -1277,24 +1285,8 @@ bool JASTrack::stopSeq()
 		break;
 	case 2:
 		_35B = 0;
-		// none of this makes sense. there's some weird list thing going on here
-		if (_366 && this) {
-			JSULink<JASChannel>* link = getFirst();
-			while (link) {
-				JSULink<JASChannel>* next = link->getObject()->getNext();
-				link->getObject()->release(0);
-				link->getObject()->free();
-				remove(link->getObject()->getObject());
-				link = next;
-			}
-			this->~JASTrack();
-			mHead = nullptr;
-			if (sFreeListEnd) {
-				sFreeListEnd->mHead = reinterpret_cast<JSUPtrLink*>(this);
-			} else {
-				sFreeList = this;
-			}
-			sFreeListEnd = this;
+		if (_366) {
+			delete this;
 		}
 		break;
 	default:
@@ -1443,23 +1435,8 @@ void JASTrack::close()
 		link = next;
 	}
 
-	if (_366 && this) {
-		JSULink<JASChannel>* link = getFirst();
-		while (link) {
-			JSULink<JASChannel>* next = link->getObject()->getNext();
-			link->getObject()->release(0);
-			link->getObject()->free();
-			remove(link->getObject()->getObject());
-			link = next;
-		}
-		this->~JASTrack();
-		mHead = nullptr;
-		if (sFreeListEnd) {
-			sFreeListEnd->mHead = reinterpret_cast<JSUPtrLink*>(this);
-		} else {
-			sFreeList = this;
-		}
-		sFreeListEnd = this;
+	if (_366) {
+		delete this;
 	}
 	/*
 	stwu     r1, -0x20(r1)
@@ -1688,22 +1665,7 @@ JASTrack* JASTrack::openChild(u8 index, u8 p2)
 		mChildList[index] = nullptr;
 	}
 
-	// what is UP with these sFreeList things????
-	JASTrack** link = (JASTrack**)sFreeList;
-	JASTrack* newTrack;
-	if (link == nullptr) {
-		newTrack = 0;
-	} else {
-		newTrack  = *link;
-		sFreeList = newTrack;
-		if (!newTrack) {
-			sFreeListEnd = nullptr;
-		}
-	}
-
-	if (newTrack) {
-		// JASTrack(newTrack); how does this even work
-	}
+	JASTrack* newTrack = new JASTrack();
 	if (!newTrack) {
 		return nullptr;
 	}
@@ -1716,141 +1678,6 @@ JASTrack* JASTrack::openChild(u8 index, u8 p2)
 	mChildList[index]      = newTrack;
 	newTrack->inherit();
 	return newTrack;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	rlwinm   r0, r4, 2, 0x16, 0x1d
-	stmw     r27, 0xc(r1)
-	mr       r27, r3
-	add      r30, r27, r0
-	mr       r28, r4
-	mr       r29, r5
-	lwz      r3, 0x2fc(r30)
-	cmplwi   r3, 0
-	beq      lbl_800A1598
-	bl       close__8JASTrackFv
-	li       r0, 0
-	stw      r0, 0x2fc(r30)
-
-lbl_800A1598:
-	lwz      r31, sFreeList__8JASTrack@sda21(r13)
-	cmplwi   r31, 0
-	bne      lbl_800A15AC
-	li       r31, 0
-	b        lbl_800A15C4
-
-lbl_800A15AC:
-	lwz      r0, 0(r31)
-	cmplwi   r0, 0
-	stw      r0, sFreeList__8JASTrack@sda21(r13)
-	bne      lbl_800A15C4
-	li       r0, 0
-	stw      r0, sFreeListEnd__8JASTrack@sda21(r13)
-
-lbl_800A15C4:
-	cmplwi   r31, 0
-	beq      lbl_800A15D8
-	mr       r3, r31
-	bl       __ct__8JASTrackFv
-	mr       r31, r3
-
-lbl_800A15D8:
-	cmplwi   r31, 0
-	bne      lbl_800A15E8
-	li       r3, 0
-	b        lbl_800A1724
-
-lbl_800A15E8:
-	mr       r3, r31
-	bl       init__8JASTrackFv
-	li       r3, 1
-	clrlwi   r0, r28, 0x18
-	stb      r3, 0x366(r31)
-	stw      r27, 0x2f8(r31)
-	stb      r29, 0x357(r31)
-	lwz      r4, 0x348(r27)
-	slwi     r3, r4, 4
-	rlwinm   r4, r4, 0, 0, 3
-	or       r0, r3, r0
-	addis    r3, r4, 0x1000
-	clrlwi   r0, r0, 4
-	or       r0, r3, r0
-	stw      r0, 0x348(r31)
-	stw      r31, 0x2fc(r30)
-	lwz      r3, 0x2f8(r31)
-	cmplwi   r3, 0
-	beq      lbl_800A1720
-	lhz      r3, 0x352(r3)
-	li       r0, 0
-	sth      r3, 0x352(r31)
-	stb      r0, 0x365(r31)
-	lwz      r3, 0x2f8(r31)
-	lfs      f0, 0x344(r3)
-	stfs     f0, 0x344(r31)
-	lwz      r3, 0x2f8(r31)
-	lhz      r0, 0x354(r3)
-	sth      r0, 0x354(r31)
-	lwz      r3, 0x2f8(r31)
-	lbz      r0, 0x364(r3)
-	stb      r0, 0x364(r31)
-	lwz      r3, 0x2f8(r31)
-	lbz      r0, 0x362(r3)
-	stb      r0, 0x362(r31)
-	lwz      r3, 0x2f8(r31)
-	lbz      r0, 0x358(r3)
-	stb      r0, 0x358(r31)
-	lwz      r3, 0x2f8(r31)
-	lbz      r0, 0x359(r3)
-	stb      r0, 0x359(r31)
-	lwz      r3, 0x2f8(r31)
-	lbz      r0, 0x363(r3)
-	stb      r0, 0x363(r31)
-	lbz      r0, 0x357(r31)
-	rlwinm.  r0, r0, 0, 0x1e, 0x1e
-	bne      lbl_800A1720
-	lwz      r4, 0x2f8(r31)
-	addi     r3, r31, 0x268
-	addi     r4, r4, 0x268
-	bl       inherit__16JASRegisterParamFRC16JASRegisterParam
-	lwz      r3, 0x2f8(r31)
-	lbz      r0, 0x35c(r3)
-	stb      r0, 0x35c(r31)
-	lwz      r3, 0x2f8(r31)
-	lbz      r0, 0x35f(r3)
-	stb      r0, 0x35f(r31)
-	lwz      r3, 0x2f8(r31)
-	lbz      r0, 0x13e(r3)
-	stb      r0, 0x13e(r31)
-	lwz      r3, 0x2f8(r31)
-	lbz      r0, 0x35d(r3)
-	stb      r0, 0x35d(r31)
-	lwz      r3, 0x2f8(r31)
-	lbz      r0, 0x360(r3)
-	stb      r0, 0x360(r31)
-	lwz      r3, 0x2f8(r31)
-	lbz      r0, 0x13f(r3)
-	stb      r0, 0x13f(r31)
-	lwz      r3, 0x2f8(r31)
-	lbz      r0, 0x35e(r3)
-	stb      r0, 0x35e(r31)
-	lwz      r3, 0x2f8(r31)
-	lbz      r0, 0x361(r3)
-	stb      r0, 0x361(r31)
-	lwz      r3, 0x2f8(r31)
-	lbz      r0, 0x140(r3)
-	stb      r0, 0x140(r31)
-
-lbl_800A1720:
-	mr       r3, r31
-
-lbl_800A1724:
-	lmw      r27, 0xc(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**

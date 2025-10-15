@@ -273,114 +273,19 @@ void JAIBasic::initCamera()
 		JAInter::Const::nullCamera.mVec2->x = 0.0f;
 		JAInter::Const::nullCamera.mVec2->y = 0.0f;
 		JAInter::Const::nullCamera.mVec2->z = -50.0f;
-		Vec v1                              = { 0.0f, 1.0f, 0.0f };
-		Vec v2                              = JAInter::Const::dummyZeroVec;
-		// Vec v2 = { JAInter::Const::dummyZeroVec.x, JAInter::Const::dummyZeroVec.y, JAInter::Const::dummyZeroVec.z };
+		Vec v1;
+		v1.x = 0.0f;
+		v1.y = 1.0f;
+		v1.z = 0.0f;
+		Vec v2;
+		v2.x = JAInter::Const::dummyZeroVec.x;
+		v2.y = JAInter::Const::dummyZeroVec.y;
+		v2.z = JAInter::Const::dummyZeroVec.z;
 		C_MTXLookAt(JAInter::Const::camMtx, JAInter::Const::nullCamera.mVec1, &v1, &v2);
 		for (u32 i = 0; i < JAIGlobalParameter::audioCameraMax; i++) {
-			if (i < JAIGlobalParameter::audioCameraMax) {
-				mCameras[i].mVec1 = JAInter::Const::nullCamera.mVec1;
-				mCameras[i].mVec2 = JAInter::Const::nullCamera.mVec2;
-				mCameras[i].mMtx  = &JAInter::Const::camMtx;
-			}
+			setCameraInfo(JAInter::Const::nullCamera.mVec1, JAInter::Const::nullCamera.mVec2, JAInter::Const::camMtx, i);
 		}
 	}
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	li       r5, 0x20
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	stw      r30, 0x28(r1)
-	mr       r30, r3
-	lwz      r31, audioCameraMax__18JAIGlobalParameter@sda21(r13)
-	lwz      r4, msCurrentHeap__8JAIBasic@sda21(r13)
-	mulli    r3, r31, 0xc
-	addi     r3, r3, 0x10
-	bl       __nwa__FUlP7JKRHeapi
-	lis      r4, __defctor__Q27JAInter6CameraFv@ha
-	mr       r7, r31
-	addi     r4, r4, __defctor__Q27JAInter6CameraFv@l
-	li       r5, 0
-	li       r6, 0xc
-	bl       __construct_new_array
-	stw      r3, 4(r30)
-	lwz      r3, 4(r30)
-	lwz      r0, 0(r3)
-	cmplwi   r0, 0
-	bne      lbl_800AC678
-	lis      r3, nullCamera__Q27JAInter5Const@ha
-	lfs      f4, lbl_80516F10@sda21(r2)
-	addi     r31, r3, nullCamera__Q27JAInter5Const@l
-	lfs      f0, lbl_80516F14@sda21(r2)
-	lwz      r5, 0(r31)
-	lis      r3, camMtx__Q27JAInter5Const@ha
-	lis      r4, dummyZeroVec__Q27JAInter5Const@ha
-	lfs      f3, lbl_80516F18@sda21(r2)
-	stfs     f4, 0(r5)
-	addi     r3, r3, camMtx__Q27JAInter5Const@l
-	addi     r5, r1, 0x14
-	addi     r6, r1, 8
-	lwz      r7, 0(r31)
-	stfs     f4, 4(r7)
-	lwz      r7, 0(r31)
-	stfs     f0, 8(r7)
-	lwz      r7, 4(r31)
-	stfs     f4, 0(r7)
-	lwz      r7, 4(r31)
-	stfs     f4, 4(r7)
-	lwz      r7, 4(r31)
-	stfs     f0, 8(r7)
-	lfsu     f2, dummyZeroVec__Q27JAInter5Const@l(r4)
-	stfs     f4, 0x14(r1)
-	lfs      f1, 4(r4)
-	lfs      f0, 8(r4)
-	lwz      r4, 0(r31)
-	stfs     f3, 0x18(r1)
-	stfs     f4, 0x1c(r1)
-	stfs     f2, 8(r1)
-	stfs     f1, 0xc(r1)
-	stfs     f0, 0x10(r1)
-	bl       C_MTXLookAt
-	lis      r4, nullCamera__Q27JAInter5Const@ha
-	lis      r3, camMtx__Q27JAInter5Const@ha
-	addi     r6, r4, nullCamera__Q27JAInter5Const@l
-	li       r10, 0
-	addi     r4, r3, camMtx__Q27JAInter5Const@l
-	li       r9, 0
-	b        lbl_800AC66C
-
-lbl_800AC634:
-	cmplw    r0, r10
-	lwz      r8, 4(r31)
-	lwz      r7, 0(r6)
-	ble      lbl_800AC664
-	lwz      r5, 4(r30)
-	addi     r3, r9, 4
-	addi     r0, r9, 8
-	stwx     r7, r5, r9
-	lwz      r5, 4(r30)
-	stwx     r8, r5, r3
-	lwz      r3, 4(r30)
-	stwx     r4, r3, r0
-
-lbl_800AC664:
-	addi     r9, r9, 0xc
-	addi     r10, r10, 1
-
-lbl_800AC66C:
-	lwz      r0, audioCameraMax__18JAIGlobalParameter@sda21(r13)
-	cmplw    r10, r0
-	blt      lbl_800AC634
-
-lbl_800AC678:
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /**
@@ -1184,7 +1089,7 @@ s32 JAIBasic::stopCallBack(void*)
 		if (msStopStatus == 1) {
 			for (u32 i = 0; i < 0x40; i++) {
 				JASDSPChannel* channel = JASDSPChannel::getHandle(i);
-				if ((channel->_00 & 0xFF) == 0) {
+				if ((channel->mStatus & 0xFF) == 0) {
 					channel->drop();
 				}
 			}

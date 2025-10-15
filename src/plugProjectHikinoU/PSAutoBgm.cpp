@@ -2,7 +2,6 @@
 #include "JSystem/JAudio/JAD/JADUtility.h"
 #include "PSAutoBgm/PSAutoBgm.h"
 #include "PSAutoBgm/Conductor.h"
-#include "PSAutoBgm/Cycle.h"
 #include "PSAutoBgm/PrmLink.h"
 #include "PSSystem/PSSeq.h"
 #include "PSSystem/PSSystemIF.h"
@@ -964,7 +963,8 @@ u16 CycleBase::play(JASTrack* track)
 		if (childTrk == nullptr) {
 			PSWsData& ws = mModule->mWsData[mWaveSceneIndex++];
 			u16 wsPtr    = (ws.mData[0] | ws.mData[1] << 8);
-			x            = avoidCheck() | wsPtr;
+			x            = avoidCheck();
+			x |= wsPtr;
 		} else {
 			mWaveSceneIndex++;
 			x = childTrk->getChild(childTrk->mCurrModule)->_2B6;
@@ -982,7 +982,8 @@ u16 CycleBase::play(JASTrack* track)
 		u32 idx      = num * PSSystem::oRandom.nextFloat_0_1();
 		PSWsData* ws = mModule->mWsData;
 		u16 wsPtr    = (ws[(u16)idx].mData[0] | ws[(u16)idx].mData[1] << 8);
-		x            = avoidCheck() | wsPtr;
+		x            = avoidCheck();
+		x |= wsPtr;
 	} else {
 		x = childTrk->getChild(childTrk->mCurrModule)->_2B6;
 	}
@@ -1537,20 +1538,9 @@ void OnCycle::setTip(JASTrack* track)
 					x++;
 				}
 			}
-			PrmLink<u16>* link = (PrmLink<u16>*)_40.getFirst();
-			if (link) {
-				_40.JSUPtrList::remove(link);
-			}
 
-			if (!link) {
-				link = (PrmLink<u16>*)_40._10.getFirst();
-				if (link) {
-					_40._10.JSUPtrList::remove(link);
-				}
-			}
-			P2ASSERTLINE(341, link);
-
-			*link->getObject() = x;
+			// completely guessing the scope of the inline here, but the panic means it has to exist
+			PrmLink<u16>* link = setTest(x);
 
 			PrmLink<u16>* newLink = nullptr;
 			if (_40._10.getNumLinks() >= _40._10.mValue) {
@@ -1580,10 +1570,9 @@ void OnCycle::setTip(JASTrack* track)
 	}
 
 	mModule->_2C2   = x;
-	PSBankData& bnk = mModule->mBankData[x];
-	u32 addr        = (u32)(bnk.mData[2] | (bnk.mData[1] << 16 | bnk.mData[0] << 8));
-	track->writePortAppDirect(4, addr >> 16);
-	track->writePortAppDirect(7, addr);
+	PSBankData* bnk = mModule->mBankData;
+	track->writePortAppDirect(6, (bnk->mData[x * 3]));
+	track->writePortAppDirect(7, (bnk->mData[x * 3 + 1]));
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -1790,7 +1779,7 @@ u16 OnCycle::historiesAreSameAll()
  * @note Address: 0x8033BA98
  * @note Size: 0xBC
  */
-u32 OnCycle::avoidCheck()
+u16 OnCycle::avoidCheck()
 {
 	u8 num              = mCycleNum;
 	Track* track        = (Track*)mModule->mTree.getParent()->getObjectPtr();
@@ -1805,61 +1794,6 @@ u32 OnCycle::avoidCheck()
 		return 0x8000;
 	}
 	return 0;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	lwz      r4, 4(r3)
-	lbz      r31, 8(r3)
-	lwz      r3, 0x3c(r4)
-	lwz      r30, 0xc(r3)
-	lwz      r3, 0x3c(r30)
-	lbz      r0, 0x98(r30)
-	lwz      r3, 0xc(r3)
-	cmplwi   r0, 0x10
-	lwz      r3, 0xb4(r3)
-	addi     r29, r3, 0x33c
-	blt      lbl_8033BAF8
-	lis      r3, lbl_8048FE60@ha
-	lis      r5, lbl_8048FE70@ha
-	addi     r3, r3, lbl_8048FE60@l
-	li       r4, 0x1e4
-	addi     r5, r5, lbl_8048FE70@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8033BAF8:
-	li       r0, 0xff
-	mr       r3, r29
-	stb      r0, 8(r1)
-	addi     r4, r1, 8
-	stb      r0, 9(r1)
-	lbz      r0, 0x98(r30)
-	stb      r0, 8(r1)
-	stb      r31, 9(r1)
-	bl       isToAvoid__Q29PSAutoBgm10MeloArrMgrFRQ29PSAutoBgm10MeloArrArg
-	clrlwi   r0, r3, 0x18
-	cmplwi   r0, 1
-	bne      lbl_8033BB34
-	lis      r3, 0x00008000@ha
-	addi     r3, r3, 0x00008000@l
-	b        lbl_8033BB38
-
-lbl_8033BB34:
-	li       r3, 0
-
-lbl_8033BB38:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
@@ -1869,52 +1803,6 @@ lbl_8033BB38:
 OffCycle::OffCycle(Module* module)
     : CycleBase(module)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r5, __vt__Q29PSAutoBgm9CycleBase@ha
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	addi     r3, r5, __vt__Q29PSAutoBgm9CycleBase@l
-	stw      r3, 0(r30)
-	addi     r31, r30, 0xc
-	mr       r3, r31
-	stw      r4, 4(r30)
-	stb      r0, 8(r30)
-	bl       __ct__11JKRDisposerFv
-	lis      r3, __vt__Q210JADUtility7PrmBase@ha
-	li       r0, 0
-	addi     r3, r3, __vt__Q210JADUtility7PrmBase@l
-	mr       r4, r31
-	stw      r3, 0(r31)
-	addi     r3, r31, 0x1c
-	stb      r0, 0x18(r31)
-	bl       __ct__10JSUPtrLinkFPv
-	lis      r4, "__vt__Q210JADUtility7Prm<Uc>"@ha
-	lis      r3, "__vt__Q210JADUtility10PrmHio<Uc>"@ha
-	addi     r0, r4, "__vt__Q210JADUtility7Prm<Uc>"@l
-	lis      r4, "__vt__Q210JADUtility13PrmSlider<Uc>"@ha
-	stw      r0, 0(r31)
-	addi     r0, r3, "__vt__Q210JADUtility10PrmHio<Uc>"@l
-	lis      r3, __vt__Q29PSAutoBgm8OffCycle@ha
-	addi     r5, r4, "__vt__Q210JADUtility13PrmSlider<Uc>"@l
-	stw      r0, 0(r31)
-	li       r4, 0
-	addi     r0, r3, __vt__Q29PSAutoBgm8OffCycle@l
-	mr       r3, r30
-	stw      r5, 0(r31)
-	stb      r4, 0x3c(r30)
-	stw      r0, 0(r30)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /**
@@ -1940,16 +1828,18 @@ AutoBgm::AutoBgm(const char* cndFileName, const char* bmsFileName, const JAInter
 void AutoBgm::startSeq()
 {
 	DirectedBgm::startSeq();
+
 	if (*getHandleP()) {
 		JAISequence* sound = static_cast<JAISequence*>(*getHandleP());
-		Track* track       = (Track*)mRootTrack;
-		for (u8 i = 0; i < track->getChildNum(); i++) {
-			((Track*)track->getChild(i))->mIndex = i;
 
-			Track* ctrack = (Track*)track->getChild(i);
-			f32 volume    = ctrack->_16C._18 / 127.0f;
-			volume        = (volume < 1.0f) ? 1.0f : (volume > 0.0f) ? 0.0f : volume;
-			sound->setTrackFxmix(ctrack->mIndex, volume, 0);
+		JADUtility::PrmSetRc<Track>* track = mConductorMgr.mPrmSetRc;
+		for (u8 i = 0; i < track->getChildNum(); i++) {
+			track->getChild(i)->mIndex = i;
+
+			Track* ctrack = track->getChild(i);
+
+			f32 volume = ctrack->_16C.mValue / 127.0f;
+			sound->setTrackFxmix(ctrack->mIndex, (volume < 0.0f) ? 0.0f : (volume > 1.0f) ? 1.0f : volume, 0);
 		}
 	}
 	/*
@@ -2070,136 +1960,27 @@ void AutoBgm::loadConductor(PSSystem::TaskChecker* task)
 {
 	JKRArchive* arc = ConductorArcMgr::getInstance()->mArchive;
 	P2ASSERTLINE(1192, arc);
-	// struct for bms file?
-	int* file = (int*)arc->findNameResource(mBmsFileName);
-	JUT_ASSERTLINE(1195, file, "not find(%s)", mBmsFileName);
-	u16 test = file[0];
-	u32 size = file[3];
+
+	// todo: struct for cnd file?
+	int* file = (int*)arc->findNameResource(mConductorFilePath);
+	JUT_ASSERTLINE(1195, file, "not find(%s)", mConductorFilePath);
+	u32 size = OSRoundUp32B(file[3]);
+
 	P2ASSERTLINE(1205, !mHeap);
 	mHeap = (JKRHeap*)JKRHeap::alloc(size, -0x20, nullptr);
 	P2ASSERTLINE(1207, mHeap);
+
+	u32 ptr = (u32)this;
 	if (task) {
 		task->advanceTask();
 	}
 
-	// JASResArcLoader::loadResourceAsync(arc, file, mHeap, size, loadedCallback, task);
-	if (task) {
+	int res = JASResArcLoader::loadResourceAsync(arc, ((u16*)file)[0], (u8*)mHeap, size, loadedCallback, ptr);
+	if (res == 1) {
+		mTaskChecker = task;
+	} else if (task) {
 		task->rewindTask();
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r5, lbl_8048FE60@ha
-	stw      r0, 0x24(r1)
-	stmw     r26, 8(r1)
-	mr       r26, r3
-	mr       r31, r4
-	addi     r29, r5, lbl_8048FE60@l
-	lwz      r0, sInstance__Q29PSAutoBgm15ConductorArcMgr@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_8033C22C
-	addi     r3, r29, 0x74
-	addi     r5, r29, 0x10
-	li       r4, 0x2de
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8033C22C:
-	lwz      r3, sInstance__Q29PSAutoBgm15ConductorArcMgr@sda21(r13)
-	lwz      r28, 4(r3)
-	cmplwi   r28, 0
-	bne      lbl_8033C250
-	addi     r3, r29, 0
-	addi     r5, r29, 0x10
-	li       r4, 0x4a8
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8033C250:
-	lwz      r4, 0x330(r26)
-	mr       r3, r28
-	bl       findNameResource__10JKRArchiveCFPCc
-	or.      r30, r3, r3
-	bne      lbl_8033C27C
-	lwz      r6, 0x330(r26)
-	addi     r3, r29, 0
-	addi     r5, r29, 0x80
-	li       r4, 0x4ab
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8033C27C:
-	lwz      r0, 0x338(r26)
-	lwz      r3, 0xc(r30)
-	cmplwi   r0, 0
-	addi     r0, r3, 0x1f
-	rlwinm   r27, r0, 0, 0, 0x1a
-	beq      lbl_8033C2A8
-	addi     r3, r29, 0
-	addi     r5, r29, 0x10
-	li       r4, 0x4b5
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8033C2A8:
-	mr       r3, r27
-	li       r4, -32
-	li       r5, 0
-	bl       alloc__7JKRHeapFUliP7JKRHeap
-	stw      r3, 0x338(r26)
-	lwz      r0, 0x338(r26)
-	cmplwi   r0, 0
-	bne      lbl_8033C2DC
-	addi     r3, r29, 0
-	addi     r5, r29, 0x10
-	li       r4, 0x4b7
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8033C2DC:
-	cmplwi   r31, 0
-	mr       r29, r26
-	beq      lbl_8033C304
-	mr       r3, r31
-	bl       OSLockMutex
-	lbz      r4, 0x18(r31)
-	mr       r3, r31
-	addi     r0, r4, 1
-	stb      r0, 0x18(r31)
-	bl       OSUnlockMutex
-
-lbl_8033C304:
-	lis      r3, loadedCallback__Q29PSAutoBgm7AutoBgmFUlUl@ha
-	lhz      r4, 0(r30)
-	addi     r7, r3, loadedCallback__Q29PSAutoBgm7AutoBgmFUlUl@l
-	lwz      r5, 0x338(r26)
-	mr       r3, r28
-	mr       r6, r27
-	mr       r8, r29
-	bl       loadResourceAsync__15JASResArcLoaderFP10JKRArchiveUsPUcUlPFUlUl_vUl
-	cmpwi    r3, 1
-	bne      lbl_8033C334
-	stw      r31, 0x334(r26)
-	b        lbl_8033C358
-
-lbl_8033C334:
-	cmplwi   r31, 0
-	beq      lbl_8033C358
-	mr       r3, r31
-	bl       OSLockMutex
-	lbz      r4, 0x18(r31)
-	mr       r3, r31
-	addi     r0, r4, -1
-	stb      r0, 0x18(r31)
-	bl       OSUnlockMutex
-
-lbl_8033C358:
-	lmw      r26, 8(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
@@ -2208,47 +1989,14 @@ lbl_8033C358:
  */
 void AutoBgm::loadedCallback(u32 p1, u32 p2)
 {
-	AutoBgm* bgm = reinterpret_cast<AutoBgm*>(p1);
-	bgm->mConductorMgr.initInstanceExt(bgm->mHeap, (s32)getObjectPtr());
-	JKRFree(mHeap);
-	mHeap                          = nullptr;
+	AutoBgm* bgm = reinterpret_cast<AutoBgm*>(p2);
+	bgm->mConductorMgr.initInstanceExt(bgm->mHeap, (s32)p1);
+	JKRFree(bgm->mHeap);
+	bgm->mHeap                     = nullptr;
 	PSSystem::TaskChecker* checker = bgm->mTaskChecker;
 	if (checker) {
 		checker->rewindTask();
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r5, r3
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	addi     r3, r31, 0xb8
-	lwz      r4, 0x338(r4)
-	bl       initInstanceExt__Q210JADUtility15DataLoadMgrNodeFPvl
-	lwz      r3, 0x338(r31)
-	li       r4, 0
-	bl       free__7JKRHeapFPvP7JKRHeap
-	li       r0, 0
-	stw      r0, 0x338(r31)
-	lwz      r31, 0x334(r31)
-	cmplwi   r31, 0
-	beq      lbl_8033C3CC
-	mr       r3, r31
-	bl       OSLockMutex
-	lbz      r4, 0x18(r31)
-	mr       r3, r31
-	addi     r0, r4, -1
-	stb      r0, 0x18(r31)
-	bl       OSUnlockMutex
-
-lbl_8033C3CC:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /**

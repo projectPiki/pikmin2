@@ -817,7 +817,7 @@ void Obj::breakTargetBridge()
  */
 void Obj::createAppearEffect()
 {
-	Matrixf* worldMat = mModel->getJoint("ujinnko_m")->getWorldMatrix();
+	Matrixf* worldMat = mModel->getJoint("ujinnko_o")->getWorldMatrix();
 	efx::TUjinkoAp appearFX(worldMat);
 	appearFX.create(nullptr);
 }
@@ -828,7 +828,7 @@ void Obj::createAppearEffect()
  */
 void Obj::createDisAppearEffect()
 {
-	Matrixf* worldMat = mModel->getJoint("ujinnko_m")->getWorldMatrix();
+	Matrixf* worldMat = mModel->getJoint("ujinnko_o")->getWorldMatrix();
 	efx::TUjinkoHd hideFX(worldMat);
 	hideFX.create(nullptr);
 }
