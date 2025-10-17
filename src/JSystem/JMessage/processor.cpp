@@ -39,8 +39,7 @@ TProcessor::~TProcessor()
  */
 void TProcessor::setBegin_messageCode(u16 groupID, u16 messageIndex)
 {
-	const TResource* resource = getResource_groupID(groupID);
-	void* entry               = (resource == nullptr) ? nullptr : resource->getMessageEntry_messageIndex(messageIndex);
+	void* entry = getMessageEntry_messageCode(groupID, messageIndex);
 
 	if (entry) {
 		const char* text = mResourceCache->getMessageText_messageEntry(entry);
@@ -377,17 +376,27 @@ void TProcessor::reset_(const char* p1)
  */
 void TProcessor::on_tag_()
 {
-	// this is very funky and wrong
-	u8* psz = (u8*)getCurrent();
-	u8 size = mCurrent[1];
+	// funky shit here, definitely doesnt match what TP has
+	u32 uSize;
+	char* psz = (char*)getCurrent();
+	psz++;
 
-	mCurrent = size + (char*)psz;
+	uSize    = *(u8*)psz;
+	mCurrent = uSize + psz - 1;
+	psz++;
 
-	u32 tag = (psz[2] << 0x10) | (psz[3] << 0x8) | psz[4];
-	// tag <<= 8;
-	// tag |= psz[3];
+	u32 uTag = *(u8*)psz & 0xFF;
+	psz++;
 
-	on_tag(tag, &psz[5], size - 5);
+	uTag <<= 8;
+	uTag |= *(u8*)psz & 0xFF;
+	psz++;
+
+	uTag <<= 8;
+	uTag |= *(u8*)psz & 0xFF;
+	psz++;
+
+	on_tag(uTag, psz, uSize);
 }
 
 /**
@@ -668,7 +677,7 @@ const char* TProcessor::getMessageText_messageCode(u32 tag) const
  */
 bool TProcessor::process_character_()
 {
-	u32 character = mCurrent[0];
+	int character = mCurrent[0];
 
 	switch (character) {
 	case 0:
@@ -676,17 +685,17 @@ bool TProcessor::process_character_()
 			return false;
 		}
 		break;
-	case 26:
-		on_tag_(); // this is wrong
+	case data::gcTagBegin:
+		on_tag_();
 		break;
 	default:
-		if (mReference->mResource->isLeadByte(character)) {
+		if (on_parseCharacter(character)) {
 			mCurrent++;
 			character <<= 8;
-			character |= ((u8*)mCurrent)[0];
+			character |= *mCurrent;
 		}
 		mCurrent++;
-		on_character(character);
+		do_character(character);
 	}
 
 	return true;
@@ -742,19 +751,15 @@ bool TProcessor::process_onCharacterEnd_select_(TProcessor* processor)
  */
 const char* TProcessor::process_onSelect_limited_(TProcessor* processor)
 {
+	TProcess::TProcessData& pdata = processor->mProcess.mData;
 
-	u32 next                          = *(u16*)processor->mProcess.mData.mOffset;
-	processor->mProcess.mData.mOffset = (void*)((u8*)processor->mProcess.mData.mOffset + 2);
-	return processor->mProcess.mData.mBase + next;
-	/*
-	lwz      r5, 0x30(r3)
-	lhz      r4, 0(r5)
-	addi     r0, r5, 2
-	stw      r0, 0x30(r3)
-	lwz      r0, 0x2c(r3)
-	add      r3, r0, r4
-	blr
-	*/
+	u16* puOffset = (u16*)pdata.mOffset;
+	// clang-format off
+	u16 uData     = JGadget::binary::TParseValue<JGadget::binary::TParseValue_endian_big_<u16> >::parse(puOffset);
+	// clang-format on
+
+	pdata.mOffset = (void*)(puOffset + 1);
+	return &pdata.mBase[uData];
 }
 
 /**
@@ -764,18 +769,15 @@ const char* TProcessor::process_onSelect_limited_(TProcessor* processor)
  */
 const char* TProcessor::process_onSelect_(TProcessor* processor)
 {
-	u32 next                          = *(u32*)processor->mProcess.mData.mOffset;
-	processor->mProcess.mData.mOffset = (void*)((u8*)processor->mProcess.mData.mOffset + 4);
-	return processor->mProcess.mData.mBase + next;
-	/*
-	lwz      r5, 0x30(r3)
-	lwz      r4, 0(r5)
-	addi     r0, r5, 4
-	stw      r0, 0x30(r3)
-	lwz      r0, 0x2c(r3)
-	add      r3, r0, r4
-	blr
-	*/
+	TProcess::TProcessData& pdata = processor->mProcess.mData;
+
+	u32* puOffset = (u32*)pdata.mOffset;
+	// clang-format off
+	u32 uData     = JGadget::binary::TParseValue<JGadget::binary::TParseValue_endian_big_<u32> >::parse(puOffset);
+	// clang-format on
+
+	pdata.mOffset = (void*)(puOffset + 1);
+	return &pdata.mBase[uData];
 }
 
 /**
@@ -1324,9 +1326,10 @@ void TSequenceProcessor::do_systemTagCode_(u16 p1, const void* p2, u32 p3)
 {
 	switch (p1) {
 	case 6:
+		u32 ptr                   = *(u32*)p2;
 		mStatus                   = STATUS_Jump;
 		mProc.mJumpProc.mJumpFunc = &process_onJump_;
-		mProc.mJumpProc.mTarget   = *(u32*)p2;
+		mProc.mJumpProc.mTarget   = ptr;
 		break;
 	case 0:
 	case 1:
@@ -1339,40 +1342,6 @@ void TSequenceProcessor::do_systemTagCode_(u16 p1, const void* p2, u32 p3)
 		TProcessor::do_systemTagCode_(p1, p2, p3);
 		break;
 	}
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  rlwinm    r0,r4,0,16,31
-	  cmpwi     r0, 0x6
-	  beq-      .loc_0x30
-	  bge-      .loc_0x50
-	  cmpwi     r0, 0x4
-	  bge-      .loc_0x50
-	  cmpwi     r0, 0
-	  bge-      .loc_0x54
-	  b         .loc_0x50
-
-	.loc_0x30:
-	  li        r0, 0x3
-	  lis       r4, 0x8000
-	  stw       r0, 0x3C(r3)
-	  addi      r0, r4, 0x7F80
-	  lwz       r4, 0x0(r5)
-	  stw       r0, 0x40(r3)
-	  stw       r4, 0x44(r3)
-	  b         .loc_0x54
-
-	.loc_0x50:
-	  bl        -0xA8C
-
-	.loc_0x54:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
 }
 
 /**

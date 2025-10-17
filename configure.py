@@ -256,7 +256,7 @@ config.libs = [
         "progress_category" : "jsystem",
         "host": True,
         "objects": [
-            Object(NonMatching, "JSystem/JMessage/resource.cpp"),
+            Object(Matching, "JSystem/JMessage/resource.cpp"),
             Object(Matching, "JSystem/JMessage/data.cpp"),
             Object(NonMatching, "JSystem/JMessage/processor.cpp"),
             Object(Matching, "JSystem/JMessage/control.cpp"),

@@ -210,6 +210,12 @@ struct TLinkList : public TNodeLinkList {
 		friend bool operator==(iterator a, iterator b) { return a.mBase == b.mBase; }
 		friend bool operator!=(iterator a, iterator b) { return !(a == b); }
 
+		iterator& operator=(const iterator& other)
+		{
+			mBase = other.mBase;
+			return *this;
+		}
+
 		T* operator->() const { return Element_toValue(mBase.operator->()); }
 		T& operator*() const { return *operator->(); }
 
@@ -287,6 +293,7 @@ struct TLinkList : public TNodeLinkList {
 	const_iterator end() const { return const_iterator(const_cast<TLinkList*>(this)->end()); }
 	T& front() { return *begin(); }
 	T& back() { return *--end(); }
+	void pop_front() { erase(TNodeLinkList::begin()); }
 	void Push_front(T* element) { Insert(begin(), element); }
 	void Push_back(T* element) { Insert(end(), element); }
 	iterator Find(const T* element) { return iterator(TNodeLinkList::Find(Element_toNode(element))); }
@@ -297,9 +304,9 @@ struct TLinkList : public TNodeLinkList {
 
 template <typename T, int Offset>
 struct TLinkList_factory : public TLinkList<T, Offset> {
-	virtual ~TLinkList_factory() { } // _08
-	virtual T* Do_create()      = 0; // _0C
-	virtual void Do_destroy(T*) = 0; // _10
+	inline virtual ~TLinkList_factory() = 0; // _08 (inline is important here)
+	virtual T* Do_create()              = 0; // _0C
+	virtual void Do_destroy(T*)         = 0; // _10
 
 	void Clear_destroy()
 	{
@@ -309,15 +316,21 @@ struct TLinkList_factory : public TLinkList<T, Offset> {
 		}
 	}
 
-	void Erase_destroy(T* elem)
+	TLinkList<T, Offset>::iterator Erase_destroy(T* param_0)
 	{
-		Erase(elem);
-		Do_destroy(elem);
+		TLinkList<T, Offset>::iterator spC(Erase(param_0));
+		Do_destroy(param_0);
+		return spC;
 	}
 
 	// _00-_08	= TNodeLinkList
 	// _0C		= VTABLE
 };
+
+template <typename T, int I>
+TLinkList_factory<T, I>::~TLinkList_factory()
+{
+}
 
 }; // namespace JGadget
 

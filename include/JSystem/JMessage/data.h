@@ -34,6 +34,11 @@ struct TParse_TBlock : public TParseData_aligned<4> {
 	{
 	}
 
+	const char* get() const { return (char*)getRaw(); }
+	u32 get_size() const { return *(u32*)(get() + 0x4); }
+	const void* getNext() const { return (char*)getRaw() + get_size(); }
+	u32 get_type() const { return *(u32*)(get() + 0x0); }
+
 	// _00-_04 = TParseData_aligned
 };
 
@@ -80,6 +85,8 @@ struct TParse_TBlock_color : public TParse_TBlock {
 
 	// _00-_04 = TParse_TBlock
 };
+
+static const int gcTagBegin = '\x1A'; // All text Control Tags will begin with this character
 
 inline u32 getTagCode(u32 tag)
 {

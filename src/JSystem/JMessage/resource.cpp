@@ -83,6 +83,11 @@ u16 JMessage::TResource::toMessageIndex_messageID(u32 lowerHalf, u32 upperHalf, 
 	return (lower - first);
 }
 
+// This isn't meant to exist but it fixes vtable order :)
+JMessage::TResourceContainer::TCResource::TCResource()
+{
+}
+
 /**
  * @note Address: 0x800065A8
  * @note Size: 0x74
@@ -166,6 +171,7 @@ JMessage::TParse::~TParse()
 bool JMessage::TParse::parseHeader_next(const void** dataPtr, u32* outSize, u32 flag)
 {
 	const void* pData = *dataPtr;
+
 	data::TParse_THeader header(pData);
 	*dataPtr = header.getContent();
 	*outSize = header.getBlockNumber();
@@ -181,7 +187,7 @@ bool JMessage::TParse::parseHeader_next(const void** dataPtr, u32* outSize, u32 
 		if (!mResourceContainer->isEncodingSettable(encoding)) {
 			return false;
 		}
-		mResourceContainer->setEncoding(encoding); // not quite right
+		mResourceContainer->setEncoding(encoding);
 	}
 
 	if (flag & 0x10)
@@ -195,130 +201,6 @@ bool JMessage::TParse::parseHeader_next(const void** dataPtr, u32* outSize, u32 
 	container->Push_back(mResource);
 	mResource->setData_header(header.getRaw());
 	return true;
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  stw       r31, 0x3C(r1)
-	  stw       r30, 0x38(r1)
-	  mr        r30, r6
-	  stw       r29, 0x34(r1)
-	  mr        r29, r3
-	  stw       r28, 0x30(r1)
-	  lwz       r31, 0x0(r4)
-	  addi      r0, r31, 0x20
-	  mr        r3, r31
-	  stw       r0, 0x0(r4)
-	  subi      r4, r2, 0x7FC8
-	  lwz       r0, 0xC(r31)
-	  stw       r0, 0x0(r5)
-	  li        r5, 0x4
-	  bl        0xC0784
-	  cmpwi     r3, 0
-	  beq-      .loc_0x58
-	  li        r3, 0
-	  b         .loc_0x16C
-
-	.loc_0x58:
-	  lwz       r3, 0x4(r31)
-	  subis     r0, r3, 0x626D
-	  cmplwi    r0, 0x6731
-	  beq-      .loc_0x70
-	  li        r3, 0
-	  b         .loc_0x16C
-
-	.loc_0x70:
-	  lbz       r4, 0x10(r31)
-	  cmplwi    r4, 0
-	  beq-      .loc_0xF4
-	  lwz       r5, 0x4(r29)
-	  li        r0, 0
-	  lbz       r3, 0x0(r5)
-	  cmplw     r3, r4
-	  beq-      .loc_0x98
-	  cmplwi    r3, 0
-	  bne-      .loc_0x9C
-
-	.loc_0x98:
-	  li        r0, 0x1
-
-	.loc_0x9C:
-	  rlwinm.   r0,r0,0,24,31
-	  bne-      .loc_0xAC
-	  li        r3, 0
-	  b         .loc_0x16C
-
-	.loc_0xAC:
-	  cmplwi    r4, 0
-	  bne-      .loc_0xC4
-	  stb       r4, 0x0(r5)
-	  li        r0, 0
-	  stw       r0, 0x4(r5)
-	  b         .loc_0xF4
-
-	.loc_0xC4:
-	  stb       r4, 0x0(r5)
-	  li        r0, 0
-	  lis       r3, 0x804A
-	  cmplwi    r4, 0x4
-	  stw       r0, 0x18(r1)
-	  rlwinm    r4,r4,2,22,29
-	  subi      r0, r3, 0x1D18
-	  add       r3, r0, r4
-	  blt-      .loc_0xEC
-	  addi      r3, r1, 0x18
-
-	.loc_0xEC:
-	  lwz       r0, 0x0(r3)
-	  stw       r0, 0x4(r5)
-
-	.loc_0xF4:
-	  rlwinm.   r0,r30,0,27,27
-	  beq-      .loc_0x104
-	  li        r3, 0x1
-	  b         .loc_0x16C
-
-	.loc_0x104:
-	  lwz       r3, 0x4(r29)
-	  addi      r28, r3, 0x8
-	  mr        r3, r28
-	  lwz       r12, 0xC(r28)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x8(r29)
-	  lwz       r6, 0x8(r29)
-	  cmplwi    r6, 0
-	  bne-      .loc_0x138
-	  rlwinm    r3,r30,27,31,31
-	  b         .loc_0x16C
-
-	.loc_0x138:
-	  addi      r0, r28, 0x4
-	  mr        r4, r28
-	  stw       r0, 0xC(r1)
-	  addi      r3, r1, 0x10
-	  addi      r5, r1, 0x14
-	  stw       r0, 0x8(r1)
-	  stw       r0, 0x20(r1)
-	  stw       r0, 0x1C(r1)
-	  stw       r0, 0x14(r1)
-	  bl        0x209A4
-	  lwz       r4, 0x8(r29)
-	  li        r3, 0x1
-	  stw       r31, 0x8(r4)
-
-	.loc_0x16C:
-	  lwz       r0, 0x44(r1)
-	  lwz       r31, 0x3C(r1)
-	  lwz       r30, 0x38(r1)
-	  lwz       r29, 0x34(r1)
-	  lwz       r28, 0x30(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
-	*/
 }
 
 /**
@@ -327,31 +209,38 @@ bool JMessage::TParse::parseHeader_next(const void** dataPtr, u32* outSize, u32 
  */
 bool JMessage::TParse::parseBlock_next(const void** dataPtr, u32* outSize, u32 flag)
 {
-	data::TParse_THeader* header = (data::TParse_THeader*)dataPtr;
-	*(u32*)dataPtr += (u32)(((u32*)header)[1]);
-	*outSize = header->getType();
+	data::TParse_THeader* header = (data::TParse_THeader*)*dataPtr;
+
+	data::TParse_TBlock oBlock(header);
+	*dataPtr = oBlock.getNext();
+	*outSize = oBlock.get_size();
 
 	TResourceContainer::TCResource& container = mResourceContainer->mContainer;
-	switch (header->getType()) {
+	switch (oBlock.get_type()) {
 	case 'INF1':
 		mResource->setData_block_info(header);
-		mResource = nullptr;
 		break;
 	case 'DAT1':
-		mResource->setData_block_messageData((char*)&header[1]);
-		TResource* res = mResourceContainer->getResource_groupID(mResource->mInfo.getGroupID());
-		if (res != mResource && !!(flag & 0x80)) {
-			container.Erase_destroy(res);
+		mResource->setData_block_messageData((char*)&header[2]);
+
+		u16 group = mResource->getGroupID();
+		if (flag & 0x80) {
+			JGadget::TLinkList<TResource, 0>::iterator iResource(container.begin());
+			TResource* pResource;
+			while ((pResource = &*iResource) != mResource) {
+				if (group != pResource->getGroupID()) {
+					iResource++;
+				} else {
+					iResource = container.Erase_destroy(pResource);
+				}
+			}
 		}
-		mResource = nullptr;
 		break;
 	case 'STR1':
-		mResource->setData_block_stringAttribute((char*)&header[1]);
-		mResource = nullptr;
+		mResource->setData_block_stringAttribute((char*)&header[2]);
 		break;
 	case 'MID1':
 		mResource->setData_block_messageID(header);
-		mResource = nullptr;
 		break;
 	default:
 		if (!(flag & 0x40))
@@ -360,126 +249,6 @@ bool JMessage::TParse::parseBlock_next(const void** dataPtr, u32* outSize, u32 f
 	}
 
 	return true;
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  lis       r7, 0x4D49
-	  stw       r0, 0x34(r1)
-	  addi      r0, r7, 0x4431
-	  stw       r31, 0x2C(r1)
-	  stw       r30, 0x28(r1)
-	  mr        r30, r3
-	  stw       r29, 0x24(r1)
-	  stw       r28, 0x20(r1)
-	  lwz       r8, 0x0(r4)
-	  lwz       r3, 0x4(r8)
-	  add       r3, r8, r3
-	  stw       r3, 0x0(r4)
-	  lwz       r3, 0x4(r8)
-	  stw       r3, 0x0(r5)
-	  lwz       r4, 0x0(r8)
-	  lwz       r3, 0x4(r30)
-	  cmpw      r4, r0
-	  addi      r31, r3, 0x8
-	  beq-      .loc_0x13C
-	  bge-      .loc_0x80
-	  lis       r3, 0x494E
-	  addi      r0, r3, 0x4631
-	  cmpw      r4, r0
-	  beq-      .loc_0x94
-	  bge-      .loc_0x148
-	  lis       r3, 0x4441
-	  addi      r0, r3, 0x5431
-	  cmpw      r4, r0
-	  beq-      .loc_0xA0
-	  b         .loc_0x148
-
-	.loc_0x80:
-	  lis       r3, 0x5354
-	  addi      r0, r3, 0x5231
-	  cmpw      r4, r0
-	  beq-      .loc_0x12C
-	  b         .loc_0x148
-
-	.loc_0x94:
-	  lwz       r3, 0x8(r30)
-	  stw       r8, 0xC(r3)
-	  b         .loc_0x158
-
-	.loc_0xA0:
-	  lwz       r3, 0x8(r30)
-	  addi      r4, r8, 0x8
-	  rlwinm.   r0,r6,0,24,24
-	  stw       r4, 0x10(r3)
-	  lwz       r3, 0x8(r30)
-	  lwz       r3, 0xC(r3)
-	  lhz       r29, 0xC(r3)
-	  beq-      .loc_0x158
-	  lwz       r28, 0x4(r31)
-	  stw       r28, 0x14(r1)
-	  stw       r28, 0x10(r1)
-	  b         .loc_0x11C
-
-	.loc_0xD0:
-	  lwz       r3, 0xC(r28)
-	  lhz       r0, 0xC(r3)
-	  cmplw     r29, r0
-	  beq-      .loc_0xE8
-	  lwz       r28, 0x0(r28)
-	  b         .loc_0x11C
-
-	.loc_0xE8:
-	  mr        r4, r31
-	  mr        r5, r28
-	  addi      r3, r1, 0xC
-	  bl        0x208AC
-	  mr        r3, r31
-	  lwz       r0, 0xC(r1)
-	  lwz       r12, 0xC(r31)
-	  mr        r4, r28
-	  stw       r0, 0x8(r1)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r28, 0x8(r1)
-
-	.loc_0x11C:
-	  lwz       r0, 0x8(r30)
-	  cmplw     r28, r0
-	  bne+      .loc_0xD0
-	  b         .loc_0x158
-
-	.loc_0x12C:
-	  lwz       r3, 0x8(r30)
-	  addi      r0, r8, 0x8
-	  stw       r0, 0x14(r3)
-	  b         .loc_0x158
-
-	.loc_0x13C:
-	  lwz       r3, 0x8(r30)
-	  stw       r8, 0x18(r3)
-	  b         .loc_0x158
-
-	.loc_0x148:
-	  rlwinm.   r0,r6,0,25,25
-	  bne-      .loc_0x158
-	  li        r3, 0
-	  b         .loc_0x15C
-
-	.loc_0x158:
-	  li        r3, 0x1
-
-	.loc_0x15C:
-	  lwz       r0, 0x34(r1)
-	  lwz       r31, 0x2C(r1)
-	  lwz       r30, 0x28(r1)
-	  lwz       r29, 0x24(r1)
-	  lwz       r28, 0x20(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
-	*/
 }
 
 /**

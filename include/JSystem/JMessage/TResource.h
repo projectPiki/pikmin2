@@ -1,13 +1,10 @@
 #ifndef _JSYSTEM_JMESSAGE_TRESOURCE_H
 #define _JSYSTEM_JMESSAGE_TRESOURCE_H
 
+#include "JSystem/JGadget/search.h"
 #include "JSystem/JGadget/linklist.h"
 #include "JSystem/JMessage/data.h"
 #include "types.h"
-
-namespace JGadget {
-struct TLinkListNode;
-}
 
 namespace JMessage {
 struct TResource : public JGadget::TLinkListNode {
@@ -85,11 +82,12 @@ struct TResource_color {
 
 struct TResourceContainer {
 	struct TCResource : public JGadget::TLinkList_factory<TResource, 0> {
+		TCResource();
+		TResource* Get_groupID(u16);
+
 		virtual ~TCResource();               // _08
 		virtual TResource* Do_create();      // _0C
 		virtual void Do_destroy(TResource*); // _10
-
-		TResource* Get_groupID(u16);
 
 		// _00-_08 	= TLinkList_factory
 		// _0C 		= VTABLE
@@ -121,19 +119,19 @@ struct TResourceContainer {
 		destroyResource_color();
 	}
 
+	void setEncoding_(u8 encoding)
+	{
+		mEncoding  = encoding;
+		isLeadByte = JGadget::toValueFromIndex<IsLeadByteFunc>(encoding, TResourceContainer::sapfnIsLeadByte_, 4, nullptr);
+	}
+
 	void setEncoding(u8 encoding)
 	{
 		if (encoding == 0) {
 			mEncoding  = encoding;
 			isLeadByte = nullptr;
 		} else {
-			mEncoding               = encoding;
-			IsLeadByteFunc defFunc  = nullptr;
-			IsLeadByteFunc* funcPtr = &TResourceContainer::sapfnIsLeadByte_[encoding];
-			if (encoding >= 4) {
-				funcPtr = &defFunc;
-			}
-			isLeadByte = *funcPtr;
+			setEncoding_(encoding);
 		}
 	}
 

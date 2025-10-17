@@ -2,19 +2,19 @@
 #define MSL_ALGORITHM_H_
 
 #include "mem.h"
+#include "stl/iterator.h"
 
 namespace std {
 template <class ForwardIterator, class T>
 ForwardIterator lower_bound(ForwardIterator first, ForwardIterator last, const T& val)
 {
-	int count = last - first; // probably needs to be std::distance or w/e but im not gonna be the one to implement it
-	ForwardIterator it;
-	u32 step;
+	iterator_traits<ForwardIterator>::difference_type count = std::distance<ForwardIterator>(first, last);
 
 	while (count > 0) {
-		it   = first;
-		step = count / 2;
-		it += step;
+		ForwardIterator it                                     = first;
+		iterator_traits<ForwardIterator>::difference_type step = count / 2;
+		std::advance(it, step);
+
 		if (*it < val) {
 			first = ++it;
 			count -= step + 1;
@@ -22,6 +22,8 @@ ForwardIterator lower_bound(ForwardIterator first, ForwardIterator last, const T
 			count = step;
 		}
 	}
+
+	return first;
 }
 
 template <class ForwardIterator, class T>

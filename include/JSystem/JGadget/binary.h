@@ -55,24 +55,29 @@ struct TParse_header_block {
 	}
 };
 
-// these are from TP, they seem useful for processor.cpp - if that links without using any, get rid of them
 template <typename T>
 struct TParseValue_raw_ {
-	static T parse(const void* data) { return *(T*)data; }
+	typedef T ParseType;
+	static T parse(const void* data) { return (T) * (T*)data; }
+};
+
+template <typename T>
+struct TParseValue_raw : public TParseValue_raw_<T> {
+	typedef TParseValue_raw_<T> InnerParseValueClass;
 };
 
 template <typename T>
 struct TParseValue_endian_big_ : public TParseValue_raw_<T> {
-	static T parse(const void* data) { return TParseValue_raw_::parse(data); }
+	static T parse(const void* data) { return TParseValue_raw_<T>::parse(data); }
 };
 
-template <typename T, template <class> class Parser>
-struct TParseValue : public Parser<T> {
-	static T parse(const void* data) { return Parser<T>::parse(data); }
+template <class Parser>
+struct TParseValue : public Parser {
+	static typename Parser::ParseType parse(const void* data) { return Parser::parse(data); }
 
-	static T parse(const void* data, s32 advanceNum) { return Parser<T>::parse(advance(data, advanceNum)); }
+	static typename Parser::ParseType parse(const void* data, s32 advanceNum) { return Parser::parse(advance(data, advanceNum)); }
 
-	static const void* advance(const void* data, s32 advanceNum) { return (char*)data + (advanceNum * sizeof(T)); }
+	static const void* advance(const void* data, s32 advanceNum) { return (char*)data + (advanceNum * sizeof(Parser::ParseType)); }
 };
 
 extern const void* parseVariableUInt_16_32_following(const void*, u32*, u32*, TEBit*);
