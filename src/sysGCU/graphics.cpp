@@ -197,8 +197,8 @@ void Viewport::updateCameraAspect()
  */
 void Viewport::refresh()
 {
-	float size_x = mSplitRatio.x * mBounds.getWidth();
-	float size_y = mSplitRatio.y * mBounds.getHeight();
+	f32 size_x = mSplitRatio.x * mBounds.getWidth();
+	f32 size_y = mSplitRatio.y * mBounds.getHeight();
 	Vector2f size(size_x, size_y);
 	mBounds2.p1 = mBounds.p1 + mOffset;
 	mBounds2.p2 = mBounds2.p1 + size;
