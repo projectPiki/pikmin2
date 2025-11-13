@@ -197,58 +197,12 @@ void Viewport::updateCameraAspect()
  */
 void Viewport::refresh()
 {
+	f32 size_x = mSplitRatio.x * mBounds.getWidth();
+	f32 size_y = mSplitRatio.y * mBounds.getHeight();
+	Vector2f size(size_x, size_y);
 	mBounds2.p1 = mBounds.p1 + mOffset;
-	mBounds2.p2 = mBounds2.p1 + Vector2f(mSplitRatio.x * mBounds.getWidth(), mSplitRatio.y * mBounds.getHeight());
+	mBounds2.p2 = mBounds2.p1 + size;
 	updateCameraAspect();
-	/*
-	lfs      f4, 0x1c(r3)
-	lfs      f0, 0x48(r3)
-	lfs      f7, 0x20(r3)
-	lfs      f1, 0x4c(r3)
-	fadds    f0, f4, f0
-	lfs      f3, 0x24(r3)
-	lfs      f2, 0x28(r3)
-	fadds    f6, f7, f1
-	lfs      f5, 0x50(r3)
-	fsubs    f4, f3, f4
-	lfs      f3, 0x54(r3)
-	fsubs    f1, f2, f7
-	stfs     f0, 0x2c(r3)
-	fmuls    f2, f5, f4
-	fmuls    f3, f3, f1
-	stfs     f6, 0x30(r3)
-	lfs      f0, 0x2c(r3)
-	lfs      f1, 0x30(r3)
-	fadds    f0, f0, f2
-	fadds    f1, f1, f3
-	stfs     f0, 0x34(r3)
-	stfs     f1, 0x38(r3)
-	lwz      r4, 0x44(r3)
-	cmplwi   r4, 0
-	beqlr
-	lfs      f3, 0x38(r3)
-	lfs      f0, 0x30(r3)
-	lfs      f2, 0x34(r3)
-	lfs      f1, 0x2c(r3)
-	fsubs    f3, f3, f0
-	lfs      f0, lbl_805204B8@sda21(r2)
-	fsubs    f1, f2, f1
-	fcmpu    cr0, f0, f3
-	beq      lbl_8042536C
-	fcmpu    cr0, f0, f1
-	bne      lbl_80425374
-
-lbl_8042536C:
-	lfs      f0, lbl_805204C8@sda21(r2)
-	b        lbl_80425378
-
-lbl_80425374:
-	fdivs    f0, f1, f3
-
-lbl_80425378:
-	stfs     f0, 0x2c(r4)
-	blr
-	*/
 }
 
 /**
@@ -259,63 +213,6 @@ void Viewport::setRect(Rectf& rect)
 {
 	mBounds = rect;
 	refresh();
-	/*
-	lfs      f0, 0(r4)
-	stfs     f0, 0x1c(r3)
-	lfs      f0, 4(r4)
-	stfs     f0, 0x20(r3)
-	lfs      f0, 8(r4)
-	stfs     f0, 0x24(r3)
-	lfs      f0, 0xc(r4)
-	stfs     f0, 0x28(r3)
-	lfs      f4, 0x1c(r3)
-	lfs      f0, 0x48(r3)
-	lfs      f7, 0x20(r3)
-	lfs      f1, 0x4c(r3)
-	fadds    f0, f4, f0
-	lfs      f3, 0x24(r3)
-	lfs      f2, 0x28(r3)
-	fadds    f6, f7, f1
-	lfs      f5, 0x50(r3)
-	fsubs    f4, f3, f4
-	lfs      f3, 0x54(r3)
-	fsubs    f1, f2, f7
-	stfs     f0, 0x2c(r3)
-	fmuls    f4, f5, f4
-	fmuls    f2, f3, f1
-	stfs     f6, 0x30(r3)
-	lfs      f0, 0x2c(r3)
-	lfs      f1, 0x30(r3)
-	fadds    f0, f0, f4
-	fadds    f1, f1, f2
-	stfs     f0, 0x34(r3)
-	stfs     f1, 0x38(r3)
-	lwz      r4, 0x44(r3)
-	cmplwi   r4, 0
-	beqlr
-	lfs      f3, 0x38(r3)
-	lfs      f0, 0x30(r3)
-	lfs      f2, 0x34(r3)
-	lfs      f1, 0x2c(r3)
-	fsubs    f3, f3, f0
-	lfs      f0, lbl_805204B8@sda21(r2)
-	fsubs    f1, f2, f1
-	fcmpu    cr0, f0, f3
-	beq      lbl_80425430
-	fcmpu    cr0, f0, f1
-	bne      lbl_80425438
-
-lbl_80425430:
-	lfs      f0, lbl_805204C8@sda21(r2)
-	b        lbl_8042543C
-
-lbl_80425438:
-	fdivs    f0, f1, f3
-
-lbl_8042543C:
-	stfs     f0, 0x2c(r4)
-	blr
-	*/
 }
 
 /**
