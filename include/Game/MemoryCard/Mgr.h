@@ -5,6 +5,7 @@
 #include "JSystem/JKernel/JKRHeap.h"
 #include "stream.h"
 #include "types.h"
+#include "Game/MemoryCard/Player.h"
 
 struct Stream;
 
