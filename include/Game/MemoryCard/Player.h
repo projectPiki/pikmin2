@@ -26,10 +26,10 @@ struct Player {
 };
 
 struct PlayerInfoHeader {
-	u32 _00;        // _00
-	u32 _04;        // _04
-	u8 _08;         // _08
-	Player mPlayer; // _0C
+	u32 mMagic;       // _00
+	u32 mVersionType; // _04
+	u8 _08;           // _08
+	Player mPlayer;   // _0C
 };
 } // namespace MemoryCard
 } // namespace Game
