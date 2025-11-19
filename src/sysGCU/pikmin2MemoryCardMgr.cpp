@@ -477,8 +477,8 @@ bool Mgr::commandUpdatePlayerHeader(PlayerFileInfo* playerInfo)
 				*playerInfo->getPlayer(i) = infoHeader.mPlayer;
 			} else if (isErrorOccured()) {
 				break;
-			} else if (infoHeader._00 == 'PlIn') {
-				bool tagCheck        = (infoHeader._00 != 'PlIn');
+			} else if (infoHeader.mMagic == 'PlIn') {
+				bool tagCheck        = (infoHeader.mMagic != 'PlIn');
 				Player* player       = playerInfo->getPlayer(i);
 				player->mFlag        = tagCheck;
 				player->_01          = 0;
@@ -812,7 +812,7 @@ bool Mgr::commandLoadGameOption()
 			bool check2 = checkOptionInfo(info2);
 			// if both checks pass, pick buffer with higher value at 0xC, or first if equal
 			if (check1 && check2) {
-				if (info1[1].mMagic >= info2[1].mMagic) {
+				if (info1->mSaveSlotIndex >= info2->mSaveSlotIndex) {
 					optionResult = info1;
 				} else {
 					optionResult = info2;
@@ -835,8 +835,8 @@ bool Mgr::commandLoadGameOption()
 				// use buffer info to set playData variable
 			} else {
 				result                         = true;
-				sys->mPlayData->mSaveSlotIndex = optionResult[1].mMagic;
-				RamStream ramStream((void*)&optionResult[1].mVersionType, 0x1c00);
+				sys->mPlayData->mSaveSlotIndex = optionResult->mSaveSlotIndex;
+				RamStream ramStream(&optionResult->_000C, 0x1c00);
 				readGameOption(ramStream);
 			}
 
@@ -1046,12 +1046,12 @@ int Mgr::getIndexPlayerInfo(s8 fileIndex, PlayerInfoHeader* infoHeader, bool* pa
 					break;
 				}
 			} else {
-				if (infoHeader && infoHeader->_00 != 'PlVa') {
+				if (infoHeader && infoHeader->mMagic != 'PlVa') {
 					bool fileIndexCheck = false;
 					if ((s8)localHeader._08 == fileIndex) {
 						if (!noPlayerInfoCheck) {
 							fileIndexCheck = true;
-						} else if (infoHeader->_00 != 'PlIn' && localHeader._00 == 'PlIn') {
+						} else if (infoHeader->mMagic != 'PlIn' && localHeader.mMagic == 'PlIn') {
 							fileIndexCheck = true;
 						}
 					}
@@ -1129,7 +1129,7 @@ bool Mgr::loadPlayerProc(s8 fileIndex, u8* playerDataBuffer)
 			mErrorCode  = 2;
 		}
 	} else {
-		if (infoHeader._00 == 'PlIn') {
+		if (infoHeader.mMagic == 'PlIn') {
 			sys->mPlayData->resetPlayer((s8)fileIndex);
 			playData->reset();
 		} else {
@@ -1272,7 +1272,7 @@ u32 Mgr::calcCheckSumOptionInfo(OptionInfo* optionInfo)
  */
 bool Mgr::testCheckSumOptionInfo(OptionInfo* optionInfo)
 {
-	return (calcCheckSum(optionInfo, 0x1FFC) == optionInfo[0x3FF].mVersionType);
+	return (calcCheckSum(optionInfo, 0x1FFC) == optionInfo->mChecksum);
 }
 
 /**
@@ -1303,7 +1303,7 @@ u32 Mgr::calcCheckSumPlayerInfo(PlayerInfo* playerInfo)
  */
 bool Mgr::testCheckSumPlayerInfo(PlayerInfo* playerInfo)
 {
-	return (calcCheckSum(playerInfo, 0xBFFC) == playerInfo[0x17FF].mVersionType);
+	return (calcCheckSum(playerInfo, 0xBFFC) == playerInfo->mChecksum);
 }
 
 /**
@@ -1418,7 +1418,7 @@ bool Mgr::checkPlayerNoPlayerInfo(int param_1, s8 param_2, PlayerInfoHeader* inf
 		}
 		delete (buffer);
 	} else {
-		infoHeader->_00 = -1;
+		infoHeader->mMagic = -1;
 	}
 	return result;
 }

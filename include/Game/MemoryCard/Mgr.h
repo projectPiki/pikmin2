@@ -5,6 +5,7 @@
 #include "JSystem/JKernel/JKRHeap.h"
 #include "stream.h"
 #include "types.h"
+#include "Game/MemoryCard/Player.h"
 
 struct Stream;
 
@@ -13,15 +14,18 @@ namespace MemoryCard {
 struct PlayerFileInfo;
 struct PlayerInfoHeader;
 
-struct PlayerInfo {
-	u32 mMagic;       // _00
-	u32 mVersionType; // _04
+struct PlayerInfo : PlayerInfoHeader {
+	// _0000-_0040 = PlayerInfoHeader
+	u8 _0040[0xBFBC]; // _0040
+	u32 mChecksum;    // _BFFC
 };
 
 struct OptionInfo {
-	u32 mMagic;         // _00
-	u32 mVersionType;   // _04
-	u32 mSaveSlotIndex; // _08
+	u32 mMagic;         // _0000
+	u32 mVersionType;   // _0004
+	u32 mSaveSlotIndex; // _0008
+	u8 _000C[0x1FF0];   // _000C
+	u32 mChecksum;      // _1FFC
 };
 
 enum MemoryCardMgrFlags {
