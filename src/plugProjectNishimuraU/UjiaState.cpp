@@ -261,8 +261,10 @@ void StateMove::exec(EnemyBase* enemy)
 			f32 angleDist = uji->changeFaceDir(target);
 			uji->setTargetVelocity();
 
-			if (uji->isTargetWithinRange(target, angleDist, CG_GENERALPARMS(uji).mPrivateRadius(), CG_GENERALPARMS(uji).mSightRadius(),
-			                             CG_GENERALPARMS(uji).mFov(), angleDist)) {
+			f32 sightRadius   = CG_GENERALPARMS(uji).mSightRadius();
+			f32 fov           = CG_GENERALPARMS(uji).mFov();
+			f32 privateRadius = CG_GENERALPARMS(uji).mPrivateRadius();
+			if (uji->isTargetWithinRange(target, angleDist, privateRadius, sightRadius, fov, sightRadius)) {
 				uji->mTargetCreature = nullptr;
 			} else {
 				Vector3f deltaPosition = uji->mHomePosition;
