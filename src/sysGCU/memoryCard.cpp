@@ -2,7 +2,7 @@
 #include "System.h"
 #include "types.h"
 
-static CARDMemoryCard sCardWorkArea;
+static CARDMemoryCard ATTRIBUTE_ALIGN(32) sCardWorkArea;
 
 /**
  * @note Address: N/A
@@ -49,13 +49,8 @@ void MemoryCardMgr::resetCommandFlagQueue()
  */
 MemoryCardMgrCommand* MemoryCardMgr::getCurrentCommand()
 {
-	// this is placeholder for what needs to be here. assert is correct.
-	// should get used in cardProc()
-	bool check                = false;
 	MemoryCardMgrCommand* cmd = &mCommands[mCurrentCommandIdx];
-	if (cmd->mFlag || (!cmd->mFlag && (int)mIsCard == 0)) {
-		check = true;
-	}
+	bool check                = cmd->mFlag || (!cmd->mFlag && (int)mIsCard == 0);
 	JUT_ASSERTLINE(198, check, "command queue is broken.flag:%d num:%d", cmd->mFlag, mIsCard == 0);
 	return cmd;
 }
@@ -96,56 +91,13 @@ bool MemoryCardMgr::setCommand(MemoryCardMgrCommandBase* command)
 	if (check) {
 		u32 j = mCurrentCommandIdx;
 		while (true) {
-			// As far as I can tell, the instructions here do the following:
-			// 1. calc byte offset of start of command in an array of commands
-			// 2. add that to the base address of `this`.
-			// 3. get the value at that + 4, because mCommands starts at 4 and not 0.
-			// As far as I can tell, it's *not* getting the value at _04 (vt) of those commands.
-			// But I have no idea how to force that bizarre address manipulation. *shrug*
-
-			// MemoryCardMgrCommandBase* cmd = (MemoryCardMgrCommandBase*)&(mCommands[j]);
-			// if (!cmd->_00) {
-			// 	memcpy(&cmd->_00, (void*)command, cmd->getClassSize());
-			// 	mIsCard++;
-			// 	P2ASSERTLINE(254, (u32)mIsCard <= 5);
-			// 	break;
-			// }
-			// MemoryCardMgrCommand* cmd = &mCommands[j];
-			// if (!cmd->mData.dataView) {
-			// 	memcpy(&cmd->_00, (void*)command, sizeof(MemoryCardMgrCommand));
-			// 	mIsCard++;
-			// 	P2ASSERTLINE(254, (u32)mIsCard <= 5);
-			// 	break;
-			// }
-			int* dataPtr = &(mCommands[j].mFlag);
-			if (*dataPtr == 0) {
-				memcpy(dataPtr, (void*)command, sizeof(MemoryCardMgrCommand));
+			MemoryCardMgrCommand* cmd = getCommandQueue();
+			if (cmd[j].mFlag == 0) {
+				memcpy(&getCommandQueue()[j], (void*)command, sizeof(MemoryCardMgrCommand));
 				mIsCard++;
 				P2ASSERTLINE(254, (u32)mIsCard <= 5);
 				break;
 			}
-			// MemoryCardMgrCommandBase* ptr = (MemoryCardMgrCommandBase*)&(mCommands[j]);
-			// MemoryCardMgrCommand* ptr = mCommands + j;
-			// if (ptr->test()) {
-			// 	memcpy((void*)&mCommands[j], (void*)command, sizeof(mCommands[j]));
-			// 	mIsCard++;
-			// 	P2ASSERTLINE(254, (u32)mIsCard <= 5);
-			// 	break;
-			// }
-			// u8* ptr = (u8*)(mCommands + j);
-			// if (*(int*)(ptr + sizeof(MemoryCardMgrCommandBase) - sizeof(void*)) == 0) {
-			// 	memcpy(ptr, (void*)command, sizeof(mCommands[j]));
-			// 	mIsCard++;
-			// 	P2ASSERTLINE(254, (u32)mIsCard <= 5);
-			// 	break;
-			// }
-			// int* dumbPtr = (int*)&((MemoryCardMgrCommand*)(mCommands))[j];
-			// if (!dumbPtr[1]) {
-			// 	memcpy((void*)(&dumbPtr[1]), (void*)command, 0x20);
-			// 	mIsCard++;
-			// 	P2ASSERTLINE(254, (u32)mIsCard <= 5);
-			// 	break;
-			// }
 			j++;
 
 			if (j == 5) {
@@ -346,14 +298,14 @@ u32 MemoryCardMgr::checkStatus()
 	u32 result = 11;
 	if (OSTryLockMutex(&mOsMutex)) {
 		switch (mStatusFlag) {
-		case INSIDESTATUS_Unk:
+		case INSIDESTATUS_Unk3:
 			result = 1;
 			break;
 		case INSIDESTATUS_Unk1:
 		case INSIDESTATUS_Unk2:
 			result = 2;
 			break;
-		case INSIDESTATUS_Unk3:
+		case INSIDESTATUS_Unk:
 			result = 0;
 			break;
 		case INSIDESTATUS_Unk4:
@@ -426,194 +378,6 @@ void MemoryCardMgr::cardProc(void* data)
 		releaseCurrentCommand();
 		OSUnlockMutex(&mOsMutex);
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r5, lbl_8049AD08@ha
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	addi     r31, r5, lbl_8049AD08@l
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	stw      r28, 0x10(r1)
-
-lbl_804410EC:
-	addi     r3, r29, 0xac
-	bl       OSLockMutex
-	lwz      r0, 0xa4(r29)
-	li       r3, 0
-	slwi     r4, r0, 5
-	addi     r28, r4, 4
-	add      r28, r29, r28
-	lwz      r6, 0(r28)
-	cmpwi    r6, 0
-	bne      lbl_80441124
-	bne      lbl_80441128
-	lwz      r0, 0xa8(r29)
-	cmpwi    r0, 0
-	bne      lbl_80441128
-
-lbl_80441124:
-	li       r3, 1
-
-lbl_80441128:
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80441150
-	lwz      r0, 0xa8(r29)
-	addi     r3, r31, 0
-	addi     r5, r31, 0x10
-	li       r4, 0xc6
-	cntlzw   r0, r0
-	rlwinm   r7, r0, 0x1b, 0x18, 0x1f
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80441150:
-	mr       r5, r28
-	b        lbl_804411C4
-
-lbl_80441158:
-	addi     r3, r29, 0xc4
-	addi     r4, r29, 0xac
-	bl       OSWaitCond
-	lwz      r0, 0xa4(r29)
-	li       r3, 0
-	slwi     r4, r0, 5
-	addi     r28, r4, 4
-	add      r28, r29, r28
-	lwz      r6, 0(r28)
-	cmpwi    r6, 0
-	bne      lbl_80441194
-	bne      lbl_80441198
-	lwz      r0, 0xa8(r29)
-	cmpwi    r0, 0
-	bne      lbl_80441198
-
-lbl_80441194:
-	li       r3, 1
-
-lbl_80441198:
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_804411C0
-	lwz      r0, 0xa8(r29)
-	addi     r3, r31, 0
-	addi     r5, r31, 0x10
-	li       r4, 0xc6
-	cntlzw   r0, r0
-	rlwinm   r7, r0, 0x1b, 0x18, 0x1f
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804411C0:
-	mr       r5, r28
-
-lbl_804411C4:
-	lwz      r0, 0(r5)
-	cmpwi    r0, 0
-	beq      lbl_80441158
-	cmpwi    r0, 3
-	beq      lbl_80441218
-	bge      lbl_804411EC
-	cmpwi    r0, 1
-	beq      lbl_804411F8
-	bge      lbl_80441208
-	b        lbl_80441238
-
-lbl_804411EC:
-	cmpwi    r0, 5
-	bge      lbl_80441238
-	b        lbl_80441228
-
-lbl_804411F8:
-	mr       r3, r29
-	li       r4, 0
-	bl       format__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlot
-	b        lbl_80441250
-
-lbl_80441208:
-	mr       r3, r29
-	li       r4, 1
-	bl       format__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlot
-	b        lbl_80441250
-
-lbl_80441218:
-	mr       r3, r29
-	li       r4, 0
-	bl       attach__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlot
-	b        lbl_80441250
-
-lbl_80441228:
-	mr       r3, r29
-	li       r4, 0
-	bl       detach__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlot
-	b        lbl_80441250
-
-lbl_80441238:
-	lwz      r12, 0(r29)
-	mr       r3, r29
-	mr       r4, r30
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80441250:
-	lwz      r0, 0xa4(r29)
-	li       r4, 0xcd
-	li       r5, 0x20
-	slwi     r3, r0, 5
-	addi     r3, r3, 4
-	add      r3, r29, r3
-	bl       memset
-	lwz      r0, 0xa4(r29)
-	li       r4, 0
-	slwi     r3, r0, 5
-	addi     r0, r3, 4
-	stwx     r4, r29, r0
-	lwz      r3, 0xa8(r29)
-	addi     r0, r3, -1
-	stw      r0, 0xa8(r29)
-	lwz      r0, 0xa8(r29)
-	cmpwi    r0, 0
-	bge      lbl_804412AC
-	addi     r3, r31, 0
-	addi     r5, r31, 0x38
-	li       r4, 0x11d
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804412AC:
-	lwz      r3, 0xa4(r29)
-	addi     r0, r3, 1
-	cmplwi   r0, 5
-	stw      r0, 0xa4(r29)
-	bne      lbl_804412C8
-	li       r0, 0
-	stw      r0, 0xa4(r29)
-
-lbl_804412C8:
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	lwz      r12, 0x28(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80441304
-	li       r0, 0
-	stw      r0, 4(r29)
-	stw      r0, 0x24(r29)
-	stw      r0, 0x44(r29)
-	stw      r0, 0x64(r29)
-	stw      r0, 0x84(r29)
-	stw      r0, 0xa4(r29)
-	stw      r0, 0xa8(r29)
-
-lbl_80441304:
-	addi     r3, r29, 0xac
-	bl       OSUnlockMutex
-	b        lbl_804410EC
-	*/
 }
 
 /**
@@ -625,23 +389,18 @@ bool MemoryCardMgr::isErrorOccured()
 	return (checkStatus() != 2);
 }
 
-inline void checkSlot(MemoryCardMgr::ECardSlot cardSlot)
-{
-	bool check = (cardSlot == 0 || cardSlot == 1);
-	P2ASSERTLINE(536, check);
-}
-
 /**
  * @note Address: 0x80441428
  * @note Size: 0x1A0
  */
 bool MemoryCardMgr::fileOpen(CARDFileInfo* fileInfo, ECardSlot cardSlot, const char* fileName)
 {
-	checkSlot(cardSlot);
+	bool check = (cardSlot == 0 || cardSlot == 1);
+	P2ASSERTLINE(536, check);
 	bool result = false;
-	if (isErrorNotOccured()) {
-		u32 cardRes = CARDOpen(cardSlot, (char*)fileName, fileInfo);
-		switch (cardRes) {
+	if (checkStatus() == 2) {
+		// int cardRes = CARDOpen(cardSlot, (char*)fileName, fileInfo);
+		switch (CARDOpen(cardSlot, (char*)fileName, fileInfo)) {
 		case 0:
 			setInsideStatusFlag(INSIDESTATUS_Unk1);
 			result = true;
@@ -768,13 +527,15 @@ bool MemoryCardMgr::checkCardStat(ECardSlot cardSlot, CARDFileInfo* fileInfo)
 bool MemoryCardMgr::read(ECardSlot cardSlot, const char* fileName, u8* buffer, s32 length, s32 offset)
 {
 	CARDFileInfo fileInfo;
-	CARDStat cardStat;
-	bool result   = false;
-	char someChar = '\0';
-	if (fileOpen(&fileInfo, cardSlot, fileName)) {
+	bool result = false;
+	bool stat   = fileOpen(&fileInfo, cardSlot, fileName);
+	if (stat) {
+		stat = false;
 		setInsideStatusFlag(INSIDESTATUS_Unk11);
+		CARDStat cardStat;
 		if (!CARDGetStatus(cardSlot, fileInfo.fileNo, &cardStat)) {
-			if (doCheckCardStat(&cardStat)) {
+			stat = doCheckCardStat(&cardStat);
+			if (stat) {
 				setInsideStatusFlag(INSIDESTATUS_Unk1);
 			} else {
 				setInsideStatusFlag(INSIDESTATUS_Unk1);
@@ -782,7 +543,7 @@ bool MemoryCardMgr::read(ECardSlot cardSlot, const char* fileName, u8* buffer, s
 		} else {
 			setInsideStatusFlag(INSIDESTATUS_Unk10);
 		}
-		_D0 = someChar;
+		_D0 = stat;
 		setInsideStatusFlag(INSIDESTATUS_Unk11);
 		if (!CARDRead(&fileInfo, buffer, length, offset) == 0) {
 			setInsideStatusFlag(INSIDESTATUS_Unk10);
@@ -1041,9 +802,8 @@ void MemoryCardMgr::detach(ECardSlot cardSlot)
  */
 bool MemoryCardMgr::mount(ECardSlot cardSlot)
 {
-	bool result;
-	CARDMount(cardSlot, &sCardWorkArea, nullptr);
-	switch (cardSlot) {
+	bool result = false;
+	switch (CARDMount(cardSlot, &sCardWorkArea, nullptr)) {
 	case CARD_RESULT_FATAL_ERROR:
 	case CARD_RESULT_IOERROR:
 		setInsideStatusFlag(INSIDESTATUS_Unk10);
@@ -1060,15 +820,17 @@ bool MemoryCardMgr::mount(ECardSlot cardSlot)
 			result = true;
 			break;
 		case CARD_RESULT_IOERROR:
+		case CARD_RESULT_FATAL_ERROR:
 			setInsideStatusFlag(INSIDESTATUS_Unk10);
 			result = false;
 			break;
-		case CARD_RESULT_FATAL_ERROR:
+		default:
 			setInsideStatusFlag(INSIDESTATUS_Unk5);
-			if (result == false) {
-				CARDUnmount(cardSlot);
-			}
+			result = false;
 			break;
+		}
+		if (result == false) {
+			CARDUnmount(cardSlot);
 		}
 		break;
 	case CARD_RESULT_ENCODING:
@@ -1079,151 +841,6 @@ bool MemoryCardMgr::mount(ECardSlot cardSlot)
 		P2ASSERTLINE(989, false);
 	}
 	return result;
-	/*switch (cardSlot) {
-	case CARD_RESULT_IOERROR:
-	    setInsideStatusFlag(INSIDESTATUS_Unk10);
-	    return false;
-	case CARD_RESULT_FATAL_ERROR:
-	    setInsideStatusFlag(INSIDESTATUS_Unk4);
-	    return false;
-	case CARD_RESULT_READY:
-	    switch (CARDCheck(cardSlot)) {
-	        case CARD_RESULT_IOERROR:
-	        case CARD_RESULT_FATAL_ERROR:
-	            setInsideStatusFlag(INSIDESTATUS_Unk10);
-	            return false;
-	        case CARD_RESULT_READY:
-	            setInsideStatusFlag(INSIDESTATUS_Unk5);
-	        default:
-	            P2ASSERTLINE(989, false);
-	    }
-	case CARD_RESULT_ENCODING:
-	    setInsideStatusFlag(INSIDESTATUS_Unk4);
-	    return false;
-	case CARD_RESULT_BROKEN:
-	    P2ASSERTLINE(989, false);
-	    break;
-	}
-	CARDUnmount(cardSlot);
-	*/
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r5, sCardWorkArea@ha
-	stw      r0, 0x24(r1)
-	addi     r0, r5, sCardWorkArea@l
-	li       r5, 0
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	mr       r4, r0
-	stw      r30, 0x18(r1)
-	li       r30, 0
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	mr       r3, r31
-	bl       CARDMount
-	cmpwi    r3, -5
-	beq      lbl_804421C4
-	bge      lbl_804421AC
-	cmpwi    r3, -13
-	beq      lbl_80442258
-	bge      lbl_804421A0
-	cmpwi    r3, -128
-	beq      lbl_804421C4
-	b        lbl_8044226C
-
-lbl_804421A0:
-	cmpwi    r3, -6
-	bge      lbl_804421EC
-	b        lbl_8044226C
-
-lbl_804421AC:
-	cmpwi    r3, 0
-	beq      lbl_804421EC
-	bge      lbl_8044226C
-	cmpwi    r3, -3
-	beq      lbl_804421D8
-	b        lbl_8044226C
-
-lbl_804421C4:
-	mr       r3, r29
-	li       r4, 0xa
-	bl setInsideStatusFlag__13MemoryCardMgrFQ213MemoryCardMgr17EInsideStatusFlag
-	li       r30, 0
-	b        lbl_80442288
-
-lbl_804421D8:
-	mr       r3, r29
-	li       r4, 0
-	bl setInsideStatusFlag__13MemoryCardMgrFQ213MemoryCardMgr17EInsideStatusFlag
-	li       r30, 0
-	b        lbl_80442288
-
-lbl_804421EC:
-	mr       r3, r31
-	bl       CARDCheck
-	cmpwi    r3, -5
-	beq      lbl_80442220
-	bge      lbl_8044220C
-	cmpwi    r3, -128
-	beq      lbl_80442220
-	b        lbl_80442234
-
-lbl_8044220C:
-	cmpwi    r3, 0
-	beq      lbl_80442218
-	b        lbl_80442234
-
-lbl_80442218:
-	li       r30, 1
-	b        lbl_80442244
-
-lbl_80442220:
-	mr       r3, r29
-	li       r4, 0xa
-	bl setInsideStatusFlag__13MemoryCardMgrFQ213MemoryCardMgr17EInsideStatusFlag
-	li       r30, 0
-	b        lbl_80442244
-
-lbl_80442234:
-	mr       r3, r29
-	li       r4, 5
-	bl setInsideStatusFlag__13MemoryCardMgrFQ213MemoryCardMgr17EInsideStatusFlag
-	li       r30, 0
-
-lbl_80442244:
-	clrlwi.  r0, r30, 0x18
-	bne      lbl_80442288
-	mr       r3, r31
-	bl       CARDUnmount
-	b        lbl_80442288
-
-lbl_80442258:
-	mr       r3, r29
-	li       r4, 4
-	bl setInsideStatusFlag__13MemoryCardMgrFQ213MemoryCardMgr17EInsideStatusFlag
-	li       r30, 0
-	b        lbl_80442288
-
-lbl_8044226C:
-	lis      r3, lbl_8049AD08@ha
-	lis      r5, lbl_8049AD40@ha
-	addi     r3, r3, lbl_8049AD08@l
-	li       r4, 0x3dd
-	addi     r5, r5, lbl_8049AD40@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80442288:
-	lwz      r0, 0x24(r1)
-	mr       r3, r30
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**

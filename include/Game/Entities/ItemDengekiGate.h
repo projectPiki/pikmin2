@@ -9,13 +9,12 @@ namespace ItemDengekiGate {
 struct Mgr : public NodeItemMgr<ItemGate> {
 	Mgr();
 
-	virtual u32 generatorGetID();                                         // _58 (weak)
+	virtual u32 generatorGetID() { return 'dgat'; }                       // _58 (weak)
 	virtual BaseItem* generatorBirth(Vector3f&, Vector3f&, GenItemParm*); // _5C
 	virtual void generatorWrite(Stream&, GenItemParm*);                   // _60
 	virtual void generatorRead(Stream&, GenItemParm*, u32);               // _64
-	virtual u32 generatorLocalVersion();                                  // _68 (weak)
+	virtual u32 generatorLocalVersion() { return '0000'; }                // _68 (weak)
 	virtual GenItemParm* generatorNewItemParm();                          // _70
-	virtual ~Mgr();                                                       // _B4 (weak)
 	virtual char* getCaveName(int);                                       // _B8
 	virtual int getCaveID(char*);                                         // _BC
 

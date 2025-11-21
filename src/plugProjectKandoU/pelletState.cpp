@@ -1719,9 +1719,9 @@ void PelletReturnState::flick(Pellet* pelt)
 {
 	Stickers stick(pelt);
 	Iterator<Creature> it(&stick);
-	f32 dmg   = 100.0f;
+	f32 dmg   = 0.0f;
 	f32 ang   = FLICK_BACKWARD_ANGLE;
-	f32 intes = 0.0f;
+	f32 intes = 100.0f;
 	CI_LOOP(it)
 	{
 		Creature* obj = *it;

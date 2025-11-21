@@ -130,24 +130,27 @@ void Section::init()
 	mMenu->addKeyEvent(Menu::KeyEvent::U6, Controller::PRESS_B, new Delegate1<Section, Menu&>(this, &menuCancel));
 	mMenu->addKeyEvent(Menu::KeyEvent::INVOKE_ACTION_ON_BUTTON_PRESS, Controller::PRESS_A,
 	                   new Delegate1<Section, Menu&>(this, &menuSelect));
+
+	int i     = 0;
 	int sects = 0;
-	for (int i = 0; i < GameFlow::SN_SECTION_COUNT; i++) {
+	for (i = 0; i < GameFlow::SN_SECTION_COUNT; i++) {
 		SectionInfo* data = GameFlow::getSectionInfo(i);
 
 		if (data) {
-			if ((!Game::gGameConfig.mParms.mMarioClubDevelop() || data->mId.c) && data->mId.b) {
+			if ((!Game::gGameConfig.mParms.mMarioClubDevelop() || data->mId.mSectionId[2]) && data->mId.mSectionId[1]) {
 				mMenu->addOption(i, data->mName, nullptr, true);
 				sects++;
 			}
 		} else {
-			char* name = "NO NAME";
-			mMenu->addOption(i, name, nullptr, true);
+			mMenu->addOption(i, "NO NAME", nullptr, true);
 			sects++;
 		}
 	}
 
 	JUTFont* font = JFWSystem::systemFont;
-	mMenu->setPosition(300, sys->getRenderModeObj()->efbHeight - (sects * font->getHeight() + 60));
+	int x         = 300;
+	int y         = sys->getRenderModeObj()->efbHeight - (sects * font->getHeight() + 60);
+	mMenu->setPosition(x, y);
 
 	sys->heapStatusEnd("TitleSection::init");
 
@@ -231,9 +234,10 @@ void Section::drawShortCuts(Graphics& gfx)
  * @note Address: N/A
  * @note Size: 0x150
  */
-void Section::drawShortCut(Graphics&, int, int, int, char*)
+void Section::drawShortCut(Graphics&, int p2, int, int, char*)
 {
-	mTimeStep = randFloat(); // here for sdata2
+	// only here for sdata2
+	mTimeStep = p2;
 
 	// UNUSED FUNCTION
 }
@@ -343,9 +347,9 @@ void Section::doUpdateMainTitle()
 				mgr->checkScene();
 				seq = PSSystem::getSeqData(mgr, BGM_HiScore);
 				seq->startSeq();
-				mIsMainActive = true;
-				break;
 			}
+			mIsMainActive = true;
+			break;
 		case ebi::TMainTitleMgr::Select_Bonus:
 			mState = State_Bonus;
 			mOmakeMgr.start();
@@ -410,7 +414,7 @@ void Section::doUpdateOmake()
 		PSSystem::validateSceneMgr(mgr);
 		mgr->checkScene();
 		PSSystem::SeqBase* seq = PSSystem::getSeqData(mgr, BGM_Bonus);
-		f32 rate               = (ebi::TMainTitleMgr::kFadeOutTime / sys->mDeltaTime);
+		f32 rate               = (ebi::E2DFader::kFadeTime / sys->mDeltaTime);
 		rate                   = ROUND_F32_TO_U8(rate);
 		seq->stopSeq((int)rate);
 	}
@@ -517,8 +521,6 @@ void Section::run()
  */
 bool Section::doUpdate()
 {
-	PSSystem::SeqBase* seq;
-
 	sys->mCardMgr->update();
 	switch (mState) {
 	case State_Init:
@@ -585,7 +587,7 @@ bool Section::doLoading()
 		sys->dvdLoadUseCallBack(&mThreadCommand, mButtonCallback);
 		PSMGetSceneMgrCheck()->doStartMainSeq();
 	}
-	return u8(done == 0);
+	return !done;
 }
 
 /**

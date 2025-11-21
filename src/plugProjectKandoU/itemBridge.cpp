@@ -460,7 +460,6 @@ f32 Item::getStageWidth()
 }
 
 // need to increase the inline depth enough that this doesn't auto-inline anymore
-#pragma dont_inline on
 /**
  * @note Address: 0x801EF038
  * @note Size: 0xA4
@@ -469,8 +468,8 @@ f32 Item::getStageWidth()
 Vector3f Item::getBridgeZVec()
 {
 	return getDirection(mFaceDir);
+	FORCE_DONT_INLINE;
 }
-#pragma dont_inline reset
 
 /**
  * @note Address: 0x801EF0DC
@@ -489,14 +488,14 @@ Vector3f Item::getBridgeXVec()
 void Item::getBridgePos(Vector3f& pos, f32& p1, f32& p2)
 {
 	Vector3f bridgePos = mPosition;
-	bridgePos -= getBridgeZVec() * 20.0f;
-	Vector3f sep     = pos - bridgePos;
-	sep.y            = 0.0f;
-	Vector3f perpDir = getPerpDirection(mFaceDir);
-	Vector3f dir     = getDirection(mFaceDir);
+	bridgePos          = bridgePos - getBridgeZVec() * 20.0f;
+	bridgePos          = pos - bridgePos;
+	bridgePos.y        = 0.0f;
+	Vector3f perpDir   = getPerpDirection(mFaceDir);
+	Vector3f dir       = getDirection(mFaceDir);
 
-	p1 = sep.dot(dir);
-	p2 = sep.dot(perpDir);
+	p1 = bridgePos.dot(perpDir);
+	p2 = bridgePos.dot(dir);
 
 	/*
 	stwu     r1, -0x80(r1)

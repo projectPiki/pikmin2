@@ -3,6 +3,7 @@
 
 #include "types.h"
 #include "Dolphin/gx.h"
+#include "JSystem/JUtility/TColor.h"
 
 // TODO: See if this inherits GXColor
 struct Color4 {
@@ -45,6 +46,13 @@ struct Color4 {
 		u8 b = rate * bEnd + bStart;
 		u8 a = rate * aEnd + aStart;
 		set(r, g, b, a);
+	}
+
+	inline JUtility::TColor toTColor()
+	{
+		JUtility::TColor color;
+		color.set(r, g, b, a);
+		return color;
 	}
 
 	void read(struct Stream&);

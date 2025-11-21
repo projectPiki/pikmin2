@@ -1301,7 +1301,7 @@ void Pellet::setupParticles_simple()
 
 	f32 endIndex = (f32)mMaxCollParticle;
 
-	f32 mid = mConfig->mParams.mHeight.mData * 2.0f;
+	f32 mid = mConfig->mParams.mHeight.mData * 0.5f;
 	radius -= mid;
 
 	for (int i = 0; i < mMaxCollParticle; i++) {
@@ -1466,8 +1466,8 @@ lbl_80167AD8:
 // WIP: https://decomp.me/scratch/jVGhn
 void Pellet::setupParticles_tall()
 {
-	f32 radius = getStickRadius();
-	f32 mid    = mConfig->mParams.mHeight.mData * 2.0f;
+	f32 radius = mConfig->mParams.mRadius.mData;
+	f32 mid    = mConfig->mParams.mHeight.mData * 0.5f;
 
 	f32 height = mid;
 	if (mid > 10.0f) {
@@ -2043,7 +2043,7 @@ void Pellet::update()
 	mIsDynamic = check;
 
 	if (PelletMgr::disableDynamics || !mIsDynamic) {
-		f32 frametime = sys->mDeltaTime;
+		f32 frametime = sys->getDeltaTime();
 		Sys::Sphere moveSphere;
 		moveSphere.mPosition = mPelletPosition;
 		if (mPickFlags & 1) {
@@ -2101,23 +2101,16 @@ void Pellet::update()
 			mFloorTriangle = info.mFloorTriangle;
 
 			if (!(mPickFlags & 1) && (mIsAlwaysCarried == 0)) {
-				/////// this bit is full of regswaps
+				Vector3f normal  = info.mFloorNormal;
 				Vector3f currVel = *velocityPtr;
-				f32 dotVelocity  = currVel.dot(info.mFloorNormal);
-				Vector3f impulse(0.0f, -(_aiConstants->mGravity.mData * sys->mDeltaTime), 0.0f);
-				f32 dotImpulse = impulse.dot(info.mFloorNormal);
+				Vector3f fallVelocity(0.0f, -(_aiConstants->mGravity.mData * sys->getDeltaTime()), 0.0f);
 
-				Vector3f res = info.mFloorNormal * dotVelocity;
-				res          = currVel - res;
-				res          = res * frametime * 10.0f;
-				*velocityPtr = currVel - res;
+				Vector3f newDir = currVel - normal * currVel.dot(normal);
+				*velocityPtr    = currVel - (newDir * frametime) * 10.0f;
 
-				Vector3f res2 = info.mFloorNormal * dotImpulse;
-				res2          = impulse - res2;
-				res2.x        = -res2.x;
-				res2.y        = -res2.y;
-				res2.z        = -res2.z;
-				res2          = res2 * 1.0f;
+				Vector3f res2 = fallVelocity - normal * fallVelocity.dot(normal);
+				res2          = Vector3f(-res2.x, -res2.y, -res2.z) * 1.0f;
+
 				velocityPtr->x += res2.x;
 				velocityPtr->y += res2.y;
 				velocityPtr->z += res2.z;
@@ -2142,41 +2135,33 @@ void Pellet::update()
 		bool someCheck              = true;
 		mRigid.mConfigs[0].mForce.y = -_aiConstants->mGravity.mData;
 		if ((getStateID() == PELSTATE_Normal) && (mHasCollided != 0) && !isPicked()) {
-			Vector3f rigidVelocity = mRigid.mConfigs[0].mVelocity;
-			f32 mag                = rigidVelocity.length();
+			if (mRigid.mConfigs[0].mVelocity.length() < 10.0f && mRigid.mConfigs[0].mMomentum.length() < 100.0f && mIsAlwaysCarried == 0) {
+				f32 time = sys->getDeltaTime();
 
-			if (mag < 10.0f) {
-				Vector3f anotherVec = mRigid.mConfigs[0].mMomentum;
-				f32 anotherMag      = anotherVec.length();
+				Sys::Sphere ball3;
+				ball3.mPosition = mRigid.mConfigs[0].mPosition;
+				f32 halfHeight  = 0.5f * mConfig->mParams.mHeight.mData;
+				ball3.mRadius   = halfHeight;
+				ball3.mPosition.y -= halfHeight;
 
-				if (anotherMag < 100.0f && mIsAlwaysCarried == 0) {
-					f32 time = sys->mDeltaTime;
+				Vector3f anotherImpulse(0.0f, -_aiConstants->mGravity.mData, 0.0f);
 
-					Sys::Sphere ball3;
-					ball3.mPosition = mRigid.mConfigs[0].mPosition;
-					f32 halfHeight  = 0.5f * mConfig->mParams.mHeight.mData;
-					ball3.mRadius   = halfHeight;
-					ball3.mPosition.y -= halfHeight;
-
-					Vector3f anotherImpulse(0.0f, -_aiConstants->mGravity.mData, 0.0f);
-
-					MoveInfo info2(&ball3, &anotherImpulse, 0.0f);
-					mapMgr->traceMove(info2, time);
-					if (info2.mFloorTriangle == nullptr) {
-						if (platMgr) {
-							platMgr->traceMove(info2, time);
-						}
+				MoveInfo info2(&ball3, &anotherImpulse, 0.0f);
+				mapMgr->traceMove(info2, time);
+				if (info2.mFloorTriangle == nullptr) {
+					if (platMgr) {
+						platMgr->traceMove(info2, time);
 					}
+				}
 
-					if (info2.mFloorTriangle) {
-						someCheck = false;
-					}
+				if (info2.mFloorTriangle) {
+					someCheck = false;
 				}
 			}
 		}
 
 		Vector3f someVec = mRigid.mConfigs[0].mPosition;
-		f32 halfFrame    = sys->mDeltaTime / 2;
+		f32 halfFrame    = sys->getDeltaTime() / 2;
 
 		if (someCheck) {
 			if (isCollisionFlick() && !(mPickFlags & 1) && (mIsAlwaysCarried == 0)) {
@@ -2187,15 +2172,17 @@ void Pellet::update()
 				simulate(halfFrame);
 			}
 		}
-		f32 frametimeagain = sys->mDeltaTime;
+		f32 frametimeagain = sys->getDeltaTime();
 		f32 frames         = 1.0f / frametimeagain;
 		Sys::Sphere ball4;
 		ball4.mPosition = someVec;
 		ball4.mRadius   = 0.5f * mConfig->mParams.mHeight.mData;
 
 		Vector3f anotherMoveVec = mRigid.mConfigs[0].mPosition;
-		anotherMoveVec          = anotherMoveVec - someVec;
-		anotherMoveVec          = anotherMoveVec * frames;
+		someVec                 = anotherMoveVec - someVec;
+		anotherMoveVec          = someVec;
+		someVec                 = anotherMoveVec * frames;
+		anotherMoveVec          = someVec;
 
 		MoveInfo info3(&ball4, &anotherMoveVec, 0.5f);
 
@@ -2206,7 +2193,7 @@ void Pellet::update()
 
 		if (mPickFlags & 1) {
 			bool check = (info3.mWallTriangle != nullptr);
-			if (check && (anotherMoveVec.dot(info3.mWallNormal) > 0.5f)) {
+			if (check && (someVec.dot(info3.mWallNormal) > 0.5f)) {
 				check = false;
 			}
 			if (check) {
@@ -3889,8 +3876,8 @@ s16 Pellet::getRandomFreeStickSlot()
 		u32 index = slot >> 3;
 		u32 flag  = 1 << slot - index * 8;
 		if (!(flag & mSlots.mSlots[15 - index])) {
-			u32 slotDiff    = slot - randomSlot;
-			u32 slotShift   = slotDiff >> 31;
+			int slotDiff    = slot - randomSlot;
+			int slotShift   = slotDiff >> 31;
 			int newSlotByte = (slotShift ^ slotDiff) - slotShift;
 			if (newSlotByte < slotByte) {
 				slotByte   = newSlotByte;
@@ -4362,7 +4349,7 @@ void Pellet::startPick()
 		}
 
 		getYVector(vec2);
-		vec2 *= 4.0f;
+		vec2 = vec2 * 4.0f;
 
 		if (getFace() == 0) {
 			mRigid.mConfigs[0].mPosition += vec2;

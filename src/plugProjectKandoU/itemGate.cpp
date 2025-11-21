@@ -143,7 +143,7 @@ void ItemGate::doLoad(Stream& stream)
 	mSegmentsDown         = stream.readInt();
 	initMotion();
 	if (mSegmentsDown >= mMaxSegments) {
-		mCentrePlatInstance->setCollision(false); // Centre? ?\_(�?)_/? British
+		mCentrePlatInstance->setCollision(false);
 		setAlive(false);
 		if (mIsElectric) {
 			mEgateEfxA->forceKill();
@@ -328,22 +328,22 @@ bool ItemGate::getVectorField(Sys::Sphere& sphere, Vector3f& vectorField)
 f32 ItemGate::getWorkDistance(Sys::Sphere& sphere)
 {
 	f32 workDist0 = 0.0f;
-	f32 dist0     = mPlanes[2].calcDist(sphere.mPosition);
-	f32 dist1     = mPlanes[0].calcDist(sphere.mPosition);
-	f32 dist2     = mPlanes[1].calcDist(sphere.mPosition);
-	f32 dist3     = mPlanes[3].calcDist(sphere.mPosition);
+	f32 dist0     = mPlanes[0].calcDist(sphere.mPosition) - sphere.mRadius;
+	f32 dist1     = mPlanes[1].calcDist(sphere.mPosition) - sphere.mRadius;
+	f32 dist2     = mPlanes[2].calcDist(sphere.mPosition) - sphere.mRadius;
+	f32 dist3     = mPlanes[3].calcDist(sphere.mPosition) - sphere.mRadius;
 
-	if (dist0 > 0.0f) {
-		workDist0 = dist0;
-	} else if (dist1 > 0.0f) {
-		workDist0 = dist1;
+	if (dist2 > 0.0f) {
+		workDist0 = dist2;
+	} else if (dist3 > 0.0f) {
+		workDist0 = dist3;
 	}
 
 	f32 workDist1 = 0.0f;
-	if (dist2 > 0.0f) {
-		workDist1 = dist2;
-	} else if (dist3 > 0.0f) {
-		workDist1 = dist3;
+	if (dist0 > 0.0f) {
+		workDist1 = dist0;
+	} else if (dist1 > 0.0f) {
+		workDist1 = dist1;
 	} else if (workDist0 == 0.0f) {
 		return 0.0f;
 	} else {
@@ -351,95 +351,10 @@ f32 ItemGate::getWorkDistance(Sys::Sphere& sphere)
 	}
 
 	if (workDist1 < 50.0f && workDist0 < 30.0f) {
-		return workDist0 + workDist1;
+		return workDist1 + workDist0;
 	}
 
 	return 12800.0f;
-	/*
-	lfs      f5, 4(r4)
-	lfs      f0, 0x248(r3)
-	lfs      f3, 0x228(r3)
-	lfs      f2, 0x238(r3)
-	fmuls    f1, f5, f0
-	lfs      f0, 0x258(r3)
-	fmuls    f3, f5, f3
-	lfs      f8, 0(r4)
-	fmuls    f4, f5, f2
-	lfs      f2, 0x244(r3)
-	lfs      f6, 0x224(r3)
-	fmuls    f0, f5, f0
-	lfs      f5, 0x234(r3)
-	fmadds   f2, f8, f2, f1
-	lfs      f1, 0x254(r3)
-	fmadds   f6, f8, f6, f3
-	lfs      f9, 8(r4)
-	lfs      f3, 0x24c(r3)
-	fmadds   f4, f8, f5, f4
-	lfs      f7, 0x22c(r3)
-	fmadds   f1, f8, f1, f0
-	lfs      f5, 0x23c(r3)
-	fmadds   f3, f9, f3, f2
-	lfs      f0, 0x250(r3)
-	lfs      f2, 0x25c(r3)
-	fmadds   f7, f9, f7, f6
-	lfs      f6, 0x230(r3)
-	fmadds   f5, f9, f5, f4
-	lfs      f4, 0x240(r3)
-	fsubs    f3, f3, f0
-	lfs      f8, 0xc(r4)
-	fsubs    f6, f7, f6
-	lfs      f0, 0x260(r3)
-	fmadds   f1, f9, f2, f1
-	lfs      f7, lbl_80519598@sda21(r2)
-	fsubs    f2, f5, f4
-	fsubs    f4, f3, f8
-	fsubs    f0, f1, f0
-	fsubs    f3, f6, f8
-	fcmpo    cr0, f4, f7
-	fsubs    f2, f2, f8
-	fsubs    f0, f0, f8
-	ble      lbl_801C83F4
-	fmr      f7, f4
-	b        lbl_801C8400
-
-lbl_801C83F4:
-	fcmpo    cr0, f0, f7
-	ble      lbl_801C8400
-	fmr      f7, f0
-
-lbl_801C8400:
-	lfs      f1, lbl_80519598@sda21(r2)
-	fcmpo    cr0, f3, f1
-	ble      lbl_801C8414
-	fmr      f1, f3
-	b        lbl_801C8434
-
-lbl_801C8414:
-	fcmpo    cr0, f2, f1
-	ble      lbl_801C8424
-	fmr      f1, f2
-	b        lbl_801C8434
-
-lbl_801C8424:
-	fcmpu    cr0, f1, f7
-	beqlr
-	lfs      f1, lbl_805195C0@sda21(r2)
-	blr
-
-lbl_801C8434:
-	lfs      f0, lbl_805195C4@sda21(r2)
-	fcmpo    cr0, f1, f0
-	bge      lbl_801C8454
-	lfs      f0, lbl_805195BC@sda21(r2)
-	fcmpo    cr0, f7, f0
-	bge      lbl_801C8454
-	fadds    f1, f1, f7
-	blr
-
-lbl_801C8454:
-	lfs      f1, lbl_805195C0@sda21(r2)
-	blr
-	*/
 }
 
 /**
@@ -453,31 +368,34 @@ void ItemGate::initPlanes()
 
 	Vector3f pos = getPosition();
 
-	Vector3f plane0vec   = pos + (_270 * 20.0f);
-	mPlanes[0].mNormal.x = _270.x;
-	mPlanes[0].mNormal.y = _270.y;
-	mPlanes[0].mNormal.z = _270.z;
-	mPlanes[0].mOffset   = _270.dot(plane0vec);
+	Vector3f vec1          = Vector3f(_270);
+	Vector3f* vec1Ptr      = &vec1;
+	Vector3f plane0vec     = pos + (vec1 * 20.0f);
+	Vector3f* plane0vecPtr = &plane0vec;
+	mPlanes[0].mNormal     = vec1;
+	mPlanes[0].mOffset     = plane0vec.dot(mPlanes[0].mNormal);
 
-	Vector3f vec2        = (-_270.x, -_270.y, _270.z);
-	Vector3f plane1vec   = pos + (vec2 * 20.0f);
-	mPlanes[1].mNormal.x = vec2.x;
-	mPlanes[1].mNormal.y = vec2.y;
-	mPlanes[1].mNormal.z = vec2.z;
-	mPlanes[1].mOffset   = vec2.dot(plane1vec);
+	Vector3f vec2          = Vector3f(-f64(_270.x), -f64(_270.y), -f64(_270.z));
+	Vector3f* vec2Ptr      = &vec2;
+	Vector3f plane1vec     = pos + (vec2 * 20.0f);
+	Vector3f* plane1vecPtr = &plane1vec;
+	mPlanes[1].mNormal     = vec2;
+	mPlanes[1].mOffset     = plane1vec.dot(mPlanes[1].mNormal);
 
-	Vector3f plane2vec   = pos + (mGateDirection * 76.5f);
-	mPlanes[2].mNormal.x = mGateDirection.x;
-	mPlanes[2].mNormal.y = mGateDirection.y;
-	mPlanes[2].mNormal.z = mGateDirection.z;
-	mPlanes[2].mOffset   = mGateDirection.dot(plane2vec);
+	Vector3f vec3          = Vector3f(mGateDirection);
+	Vector3f* vec3Ptr      = &vec3;
+	Vector3f plane2vec     = pos + (vec3 * 76.5f);
+	Vector3f* plane2vecPtr = &plane2vec;
+	mPlanes[2].mNormal     = vec3;
+	mPlanes[2].mOffset     = plane2vec.dot(mPlanes[2].mNormal);
 
-	Vector3f vec3        = (-mGateDirection.x, -mGateDirection.y, mGateDirection.z);
-	Vector3f plane3vec   = pos + (vec3 * 76.5f);
-	mPlanes[3].mNormal.x = vec3.x;
-	mPlanes[3].mNormal.y = vec3.y;
-	mPlanes[3].mNormal.z = vec3.z;
-	mPlanes[3].mOffset   = vec3.dot(plane3vec);
+	Vector3f vec4          = Vector3f(-f64(mGateDirection.x), -f64(mGateDirection.y), -f64(mGateDirection.z));
+	Vector3f* vec4Ptr      = &vec4;
+	Vector3f plane3vec     = pos + (vec4 * 76.5f);
+	Vector3f* plane3vecPtr = &plane3vec;
+	mPlanes[3].mNormal     = vec4;
+	mPlanes[3].mOffset     = plane3vec.dot(mPlanes[3].mNormal);
+
 	/*
 	stwu     r1, -0xb0(r1)
 	mflr     r0
@@ -1265,134 +1183,6 @@ char* ItemDengekiGate::Mgr::getCaveName(int outsideCave)
 int ItemDengekiGate::Mgr::getCaveID(char* cave)
 {
 	return -(strncmp("e-gate", cave, strlen("e-gate")) != 0);
-}
-
-/**
- * @note Address: 0x801CA3CC
- * @note Size: 0x134
- */
-ItemDengekiGate::Mgr::~Mgr()
-{
-}
-
-/**
- * @note Address: 0x801CA500
- * @note Size: 0xC
- */
-u32 ItemDengekiGate::Mgr::generatorGetID()
-{
-	return 'dgat';
-}
-
-/**
- * @note Address: 0x801CA50C
- * @note Size: 0xC
- */
-u32 ItemDengekiGate::Mgr::generatorLocalVersion()
-{
-	return '0000';
-}
-
-/**
- * @note Address: 0x801CA518
- * @note Size: 0xC
- */
-u32 ItemGateMgr::generatorGetID()
-{
-	return 'gate';
-}
-
-/**
- * @note Address: 0x801CA524
- * @note Size: 0xC
- */
-u32 ItemGateMgr::generatorLocalVersion()
-{
-	return '0002';
-}
-
-/**
- * @note Address: 0x801CA530
- * @note Size: 0x2C
- */
-void ItemGateMgr::doAnimation()
-{
-	mNodeObjectMgr.doAnimation();
-}
-
-/**
- * @note Address: 0x801CA55C
- * @note Size: 0x2C
- */
-void ItemGateMgr::doEntry()
-{
-	mNodeObjectMgr.doEntry();
-}
-
-/**
- * @note Address: 0x801CA588
- * @note Size: 0x2C
- */
-void ItemGateMgr::doSetView(int viewportNumber)
-{
-	mNodeObjectMgr.doSetView(viewportNumber);
-}
-
-/**
- * @note Address: 0x801CA5B4
- * @note Size: 0x2C
- */
-void ItemGateMgr::doViewCalc()
-{
-	mNodeObjectMgr.doViewCalc();
-}
-
-/**
- * @note Address: 0x801CA5E0
- * @note Size: 0x2C
- */
-void ItemGateMgr::doSimulation(f32 val)
-{
-	mNodeObjectMgr.doSimulation(val);
-}
-
-/**
- * @note Address: 0x801CA60C
- * @note Size: 0x2C
- */
-void ItemGateMgr::doDirectDraw(Graphics& gfx)
-{
-	mNodeObjectMgr.doDirectDraw(gfx);
-}
-
-efx::TEgateA::~TEgateA()
-{
-}
-
-/**
- * @note Address: 0x801CA6DC
- * @note Size: 0x8
- */
-char* ItemGate::getCreatureName()
-{
-	return "Gate";
-}
-
-/**
- * @note Address: 0x801CA6E4
- * @note Size: 0x8
- */
-Mabiki* ItemGate::getMabiki()
-{
-	return &mMabiki;
-}
-
-/**
- * @note Address: 0x801CA6EC
- * @note Size: 0x4
- */
-void ItemGate::makeTrMatrix()
-{
 }
 
 } // namespace Game

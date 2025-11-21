@@ -310,9 +310,9 @@ int ActGotoSlot::exec()
 		sep.normalise();
 
 		// how far do we have to go to the actual pickup point?
-		Vector3f vec = (pelletPos - sep * pickRadius) - pikiPos;
-		Vector2f vec2D(vec.x, vec.z);
-		f32 dist = vec2D.length();
+		Vector3f vec = pelletPos - sep * pickRadius;
+		vec          = vec - pikiPos;
+		f32 dist     = vec.length2D();
 
 		// if we're not that close, get that ass moving
 		if (dist > 6.0f) {
@@ -329,18 +329,22 @@ int ActGotoSlot::exec()
 			}
 
 			// if we're within 6 units and vertically 'close enough', grab the damn pellet
-		} else if (FABS(vec.y) < 20.0f) {
+		} else if (absF(vec.y) < 20.0f) {
 			Vector3f slotPos; // 0x80
 			pellet->calcStickSlotGlobal(0, slotPos);
 
-			slotPos -= pelletPos;
+			slotPos = slotPos - pelletPos;
 			slotPos.normalise();
 
 			sep *= -1.0f;
 
-			f32 dotProd    = slotPos.dot(sep);
 			f32 crossThing = (slotPos.z * sep.x) - (slotPos.x * sep.z);
-			f32 factor     = (dotProd >= 1.0f) ? 1.0f : (dotProd <= -1.0f) ? -1.0f : dotProd; // f3
+			f32 factor     = slotPos.dot(sep);
+			if (slotPos.dot(sep) >= 1.0f) {
+				factor = 1.0f;
+			} else if (slotPos.dot(sep) <= -1.0f) {
+				factor = -1.0f;
+			}
 
 			pellet->mAngleOffset = (crossThing > 0.0f) ? acosf(factor) : roundAng(-acosf(factor));
 
@@ -368,7 +372,7 @@ int ActGotoSlot::exec()
 
 	// direction to goal
 	Vector3f dir = slotPos - pikiPos; // 0x5c
-	f32 absY     = (dir.y);
+	f32 absY     = absF(dir.y);
 	f32 dist     = dir.length2D();
 	dir.normalise();
 
@@ -432,7 +436,7 @@ int ActGotoSlot::exec()
 
 		// keep trying to get closer to the *pellet* horizontally while we check if we're stuck
 		sep2.normalise();
-		Vector3f dir2(sep2.x, 0.0f, -sep2.z);
+		Vector3f dir2(-sep2.z, 0.0f, sep2.x);
 		dir2.normalise();
 
 		mParent->setSpeed(0.2f, dir2);
@@ -1263,8 +1267,8 @@ ActPathMove::ActPathMove(Game::Piki* p)
  */
 void ActPathMove::init(ActionArg* settings)
 {
-	bool isPathMove    = false;
 	mVsWayPointCounter = 0;
+	bool isPathMove    = false;
 	if (settings) {
 		bool strCheck = strcmp("PathMoveArg", settings->getName()) == 0;
 		if (strCheck) {
@@ -2216,9 +2220,9 @@ int ActPathMove::execMoveGuru()
 	Vector3f pullDir = dir + moveVec;
 
 	Vector3f pelletPos = mPellet->getPosition();
-	pullDir -= pelletPos;
-	pullDir.y = 0.0f;
-	f32 dist  = pullDir.normalise();
+	pullDir            = pullDir - pelletPos;
+	pullDir.y          = 0.0f;
+	f32 dist           = pullDir.normalise();
 
 	if (dist == 0.0f) {
 		pullDir = Vector3f(0.0f);
@@ -2700,8 +2704,19 @@ bool ActPathMove::contextCheck(int idx)
 		Vector3f point = crGetPoint(idx);
 		crGetRadius(idx);
 
+		// this is insane.
 		Vector2f sep2D(point.x - pelletSphere.mPosition.x, point.z - pelletSphere.mPosition.z);
-		if (sep2D.length() > 700.0f) {
+		f32 len;
+		f32 x = sep2D.x + sep2D.x;
+		f32 y = sep2D.y * sep2D.y;
+		if (x + y > 0.0f) {
+			Vector2f vec = Vector2f(sep2D.x, sep2D.y);
+			len          = x + SQUARE(sep2D.y);
+			len          = sqrtf2(len);
+		} else {
+			len = 0.0f;
+		}
+		if (len > 700.0f) {
 			return false;
 		}
 
@@ -2738,287 +2753,6 @@ bool ActPathMove::contextCheck(int idx)
 	nextPointSphere.mRadius   = nextRad;
 
 	return (nextPointSphere.intersect(pelletSphere) > 0);
-	/*
-	stwu     r1, -0x100(r1)
-	mflr     r0
-	stw      r0, 0x104(r1)
-	stfd     f31, 0xf0(r1)
-	psq_st   f31, 248(r1), 0, qr0
-	stfd     f30, 0xe0(r1)
-	psq_st   f30, 232(r1), 0, qr0
-	stfd     f29, 0xd0(r1)
-	psq_st   f29, 216(r1), 0, qr0
-	stfd     f28, 0xc0(r1)
-	psq_st   f28, 200(r1), 0, qr0
-	stfd     f27, 0xb0(r1)
-	psq_st   f27, 184(r1), 0, qr0
-	stfd     f26, 0xa0(r1)
-	psq_st   f26, 168(r1), 0, qr0
-	stw      r31, 0x9c(r1)
-	stw      r30, 0x98(r1)
-	lwz      r5, gameSystem__4Game@sda21(r13)
-	mr       r30, r3
-	mr       r31, r4
-	lwz      r0, 0x44(r5)
-	cmpwi    r0, 1
-	bne      lbl_8019A53C
-	addic.   r6, r31, 1
-	blt      lbl_8019A53C
-	lwz      r0, 0x4c(r30)
-	cmpw     r6, r0
-	bge      lbl_8019A53C
-	cmpwi    r6, 0
-	lwz      r5, 0x48(r30)
-	li       r3, 0
-	ble      lbl_8019A494
-	cmpwi    r6, 8
-	addi     r4, r6, -8
-	ble      lbl_8019A47C
-	addi     r0, r4, 7
-	srwi     r0, r0, 3
-	mtctr    r0
-	cmpwi    r4, 0
-	ble      lbl_8019A47C
-
-lbl_8019A454:
-	lwz      r4, 0xc(r5)
-	addi     r3, r3, 8
-	lwz      r4, 0xc(r4)
-	lwz      r4, 0xc(r4)
-	lwz      r4, 0xc(r4)
-	lwz      r4, 0xc(r4)
-	lwz      r4, 0xc(r4)
-	lwz      r4, 0xc(r4)
-	lwz      r5, 0xc(r4)
-	bdnz     lbl_8019A454
-
-lbl_8019A47C:
-	subf     r0, r3, r6
-	mtctr    r0
-	cmpw     r3, r6
-	bge      lbl_8019A494
-
-lbl_8019A48C:
-	lwz      r5, 0xc(r5)
-	bdnz     lbl_8019A48C
-
-lbl_8019A494:
-	cmplwi   r5, 0
-	beq      lbl_8019A4BC
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	lha      r4, 0x20(r5)
-	lwz      r3, 8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8019A4C0
-
-lbl_8019A4BC:
-	li       r3, 0
-
-lbl_8019A4C0:
-	lwz      r4, 0x34(r30)
-	lhz      r0, 0x22e(r4)
-	cmplwi   r0, 0
-	bne      lbl_8019A508
-	lbz      r0, 0x34(r3)
-	rlwinm.  r0, r0, 0, 0x1a, 0x1a
-	beq      lbl_8019A4FC
-	lbz      r3, 0x3d(r30)
-	addi     r0, r3, 1
-	stb      r0, 0x3d(r30)
-	lbz      r0, 0x3d(r30)
-	cmplwi   r0, 2
-	bge      lbl_8019A53C
-	li       r3, 0
-	b        lbl_8019A730
-
-lbl_8019A4FC:
-	li       r0, 0
-	stb      r0, 0x3d(r30)
-	b        lbl_8019A53C
-
-lbl_8019A508:
-	lbz      r0, 0x34(r3)
-	rlwinm.  r0, r0, 0, 0x1b, 0x1b
-	beq      lbl_8019A534
-	lbz      r3, 0x3d(r30)
-	addi     r0, r3, 1
-	stb      r0, 0x3d(r30)
-	lbz      r0, 0x3d(r30)
-	cmplwi   r0, 2
-	bge      lbl_8019A53C
-	li       r3, 0
-	b        lbl_8019A730
-
-lbl_8019A534:
-	li       r0, 0
-	stb      r0, 0x3d(r30)
-
-lbl_8019A53C:
-	lwz      r4, 0x30(r30)
-	addi     r3, r1, 0x30
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 0x30(r1)
-	lfs      f1, 0x34(r1)
-	lfs      f0, 0x38(r1)
-	stfs     f2, 0x68(r1)
-	stfs     f1, 0x6c(r1)
-	stfs     f0, 0x70(r1)
-	lwz      r3, 0x30(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x80(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8019A598
-	lwz      r3, 0x30(r30)
-	bl       getBottomRadius__Q24Game6PelletFv
-	stfs     f1, 0x74(r1)
-	b        lbl_8019A5B0
-
-lbl_8019A598:
-	lwz      r3, 0x30(r30)
-	addi     r4, r1, 0x68
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8019A5B0:
-	cmpwi    r31, 0
-	bge      lbl_8019A634
-	mr       r4, r30
-	mr       r5, r31
-	addi     r3, r1, 0x24
-	bl       crGetPoint__Q26PikiAI11ActPathMoveFi
-	lfs      f30, 0x24(r1)
-	mr       r3, r30
-	lfs      f31, 0x2c(r1)
-	mr       r4, r31
-	bl       crGetRadius__Q26PikiAI11ActPathMoveFi
-	lfs      f0, 0x70(r1)
-	lfs      f1, 0x68(r1)
-	fsubs    f2, f31, f0
-	lfs      f0, lbl_80518F60@sda21(r2)
-	fsubs    f1, f30, f1
-	fmuls    f2, f2, f2
-	fadds    f1, f1, f1
-	fadds    f1, f1, f2
-	fcmpo    cr0, f1, f0
-	ble      lbl_8019A614
-	ble      lbl_8019A618
-	frsqrte  f0, f1
-	fmuls    f1, f0, f1
-	b        lbl_8019A618
-
-lbl_8019A614:
-	fmr      f1, f0
-
-lbl_8019A618:
-	lfs      f0, lbl_80518FC4@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_8019A62C
-	li       r3, 0
-	b        lbl_8019A730
-
-lbl_8019A62C:
-	li       r3, 1
-	b        lbl_8019A730
-
-lbl_8019A634:
-	mr       r4, r30
-	mr       r5, r31
-	addi     r3, r1, 0x18
-	bl       crGetPoint__Q26PikiAI11ActPathMoveFi
-	lfs      f29, 0x18(r1)
-	mr       r4, r30
-	lfs      f28, 0x20(r1)
-	addi     r3, r1, 0xc
-	addi     r5, r31, 1
-	bl       crGetPoint__Q26PikiAI11ActPathMoveFi
-	lfs      f27, 0xc(r1)
-	mr       r3, r30
-	lfs      f26, 0x14(r1)
-	mr       r4, r31
-	bl       crGetRadius__Q26PikiAI11ActPathMoveFi
-	fmr      f30, f1
-	mr       r3, r30
-	addi     r4, r31, 1
-	bl       crGetRadius__Q26PikiAI11ActPathMoveFi
-	fmr      f31, f1
-	lfs      f0, lbl_80518F60@sda21(r2)
-	stfs     f29, 0x78(r1)
-	addi     r3, r1, 0x78
-	addi     r4, r1, 0x68
-	addi     r5, r1, 0x5c
-	stfs     f0, 0x6c(r1)
-	addi     r6, r1, 8
-	stfs     f0, 0x7c(r1)
-	stfs     f28, 0x80(r1)
-	stfs     f27, 0x84(r1)
-	stfs     f0, 0x88(r1)
-	stfs     f26, 0x8c(r1)
-	stfs     f30, 0x90(r1)
-	stfs     f31, 0x94(r1)
-	bl       "collide__Q23Sys4TubeFRQ23Sys6SphereR10Vector3<f>Rf"
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8019A6D0
-	li       r3, 1
-	b        lbl_8019A730
-
-lbl_8019A6D0:
-	lfs      f0, lbl_80518F60@sda21(r2)
-	addi     r3, r1, 0x4c
-	stfs     f29, 0x4c(r1)
-	addi     r4, r1, 0x68
-	stfs     f0, 0x50(r1)
-	stfs     f28, 0x54(r1)
-	stfs     f30, 0x58(r1)
-	bl       intersect__Q23Sys6SphereFRQ23Sys6Sphere
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8019A700
-	li       r3, 1
-	b        lbl_8019A730
-
-lbl_8019A700:
-	lfs      f0, lbl_80518F60@sda21(r2)
-	addi     r3, r1, 0x3c
-	stfs     f27, 0x3c(r1)
-	addi     r4, r1, 0x68
-	stfs     f0, 0x40(r1)
-	stfs     f26, 0x44(r1)
-	stfs     f31, 0x48(r1)
-	bl       intersect__Q23Sys6SphereFRQ23Sys6Sphere
-	clrlwi   r3, r3, 0x18
-	neg      r0, r3
-	or       r0, r0, r3
-	srwi     r3, r0, 0x1f
-
-lbl_8019A730:
-	psq_l    f31, 248(r1), 0, qr0
-	lfd      f31, 0xf0(r1)
-	psq_l    f30, 232(r1), 0, qr0
-	lfd      f30, 0xe0(r1)
-	psq_l    f29, 216(r1), 0, qr0
-	lfd      f29, 0xd0(r1)
-	psq_l    f28, 200(r1), 0, qr0
-	lfd      f28, 0xc0(r1)
-	psq_l    f27, 184(r1), 0, qr0
-	lfd      f27, 0xb0(r1)
-	psq_l    f26, 168(r1), 0, qr0
-	lfd      f26, 0xa0(r1)
-	lwz      r31, 0x9c(r1)
-	lwz      r0, 0x104(r1)
-	lwz      r30, 0x98(r1)
-	mtlr     r0
-	addi     r1, r1, 0x100
-	blr
-	*/
 }
 
 /**
@@ -3217,25 +2951,20 @@ bool ActPathMove::crMove()
 		factor = 1.0f;
 	}
 
-	sep.x *= factor * dist;
-	sep.z *= factor * dist;
-	Vector3f newPoint = (sep + point0) - pelletPos; // f23, f24, f25
+	Vector3f newPoint = Vector3f(sep.x * (factor * dist), 0.0f, sep.z * (factor * dist)) + point0 - pelletPos; // f23, f24, f25
 	newPoint.y        = 0.0f;
 	f32 newDist       = newPoint.normalise(); // f28
 
-	f32 rad0 = crGetRadius(mCurrGraphIdx);     // f26
-	f32 rad1 = crGetRadius(mCurrGraphIdx + 1); // f0
-
-	f32 lerp = (1.0f - factor) * rad0 + (factor * rad1);
+	f32 lerp = (1.0f - factor) * crGetRadius(mCurrGraphIdx) + (factor * crGetRadius(mCurrGraphIdx + 1));
 	if (lerp == 0.0f) {
 		lerp = 1.0f;
 	}
 
-	f32 comp = FABS(newDist) / lerp; // f26
+	f32 comp = absF(newDist) / lerp; // f26
 	if (comp < 0.3f) {
 		comp = 0.0f;
 	}
-	if (comp > 2.0f && FABS(newDist) > 130.0f) {
+	if (comp > 2.0f && absF(newDist) > 130.0f) {
 		return true;
 	}
 

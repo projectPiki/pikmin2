@@ -249,15 +249,20 @@ void StateMove::exec(EnemyBase* enemy)
 	if (target) {
 		uji->mTargetCreature = target;
 		f32 angleDist        = uji->changeFaceDir(target);
-		uji->setTargetVelocity();
+		f32 x, y, z;
+		f32 speed = static_cast<EnemyParmsBase*>(uji->mParms)->mGeneral.mMoveSpeed();
+		x         = dolsinf(uji->getFaceDir());
+		y         = uji->getTargetVelocity().y;
+		z         = dolcosf(uji->getFaceDir());
+
+		uji->mTargetVelocity = Vector3f(speed * x, y, speed * z);
 
 		if (uji->isTargetAttackable(target, angleDist, CG_GENERALPARMS(uji).mMaxAttackRange(), CG_GENERALPARMS(uji).mMaxAttackAngle())) {
 			uji->mNextState = UJIB_Attack2;
 			uji->finishMotion();
 		} else {
-			Vector3f diff = uji->mHomePosition;
-			diff -= uji->getPosition();
-			f32 len = diff.length();
+			Vector3f homePos = uji->mHomePosition;
+			f32 len          = uji->getPosition().distance(homePos);
 			if (len > CG_GENERALPARMS(uji).mTerritoryRadius()) {
 				uji->mNextState = UJIB_GoHome;
 				uji->finishMotion();

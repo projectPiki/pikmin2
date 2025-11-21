@@ -110,15 +110,15 @@ struct GateWaitState : public GateState {
 struct ItemGate : public WorkItem<ItemGate, GateFSM, GateState> {
 	ItemGate();
 
+	virtual char* getCreatureName() { return "Gate"; }        // _1A8 (weak)
+	virtual Mabiki* getMabiki() { return &mMabiki; }          // _150 (weak)
+	virtual void makeTrMatrix() { }                           // _1C4 (weak)
 	virtual void constructor();                               // _2C
 	virtual void onInit(CreatureInitArg*);                    // _30
 	virtual f32 getFaceDir();                                 // _64 (weak)
 	virtual void doSave(Stream& stream);                      // _E0
 	virtual void doLoad(Stream& stream);                      // _E4
 	virtual void getLifeGaugeParam(LifeGaugeParam&);          // _13C
-	virtual Mabiki* getMabiki();                              // _150 (weak)
-	virtual char* getCreatureName();                          // _1A8 (weak)
-	virtual void makeTrMatrix();                              // _1C4 (weak)
 	virtual void doAI();                                      // _1C8
 	virtual void changeMaterial();                            // _1D0
 	virtual bool interactAttack(InteractAttack&);             // _1E0
@@ -163,21 +163,21 @@ struct ItemGate : public WorkItem<ItemGate, GateFSM, GateState> {
 struct ItemGateMgr : public BaseItemMgr {
 	ItemGateMgr();
 
-	virtual void doAnimation();                                           // _08 (weak)
-	virtual void doEntry();                                               // _0C (weak)
-	virtual void doSetView(int viewportNumber);                           // _10 (weak)
-	virtual void doViewCalc();                                            // _14 (weak)
-	virtual void doSimulation(f32 rate);                                  // _18 (weak)
-	virtual void doDirectDraw(Graphics& gfx);                             // _1C (weak)
-	virtual void initDependency();                                        // _38
-	virtual u32 generatorGetID();                                         // _58 (weak)
-	virtual BaseItem* generatorBirth(Vector3f&, Vector3f&, GenItemParm*); // _5C
-	virtual void generatorWrite(Stream&, GenItemParm*);                   // _60
-	virtual void generatorRead(Stream&, GenItemParm*, u32);               // _64
-	virtual u32 generatorLocalVersion();                                  // _68 (weak)
-	virtual GenItemParm* generatorNewItemParm();                          // _70
-	virtual char* getCaveName(int);                                       // _74
-	virtual int getCaveID(char*);                                         // _78
+	virtual u32 generatorGetID() { return 'gate'; }                                          // _58 (weak)
+	virtual u32 generatorLocalVersion() { return '0002'; }                                   // _68 (weak)
+	virtual void doAnimation() { mNodeObjectMgr.doAnimation(); }                             // _08 (weak)
+	virtual void doEntry() { mNodeObjectMgr.doEntry(); }                                     // _0C (weak)
+	virtual void doSetView(int viewportNumber) { mNodeObjectMgr.doSetView(viewportNumber); } // _10 (weak)
+	virtual void doViewCalc() { mNodeObjectMgr.doViewCalc(); }                               // _14 (weak)
+	virtual void doSimulation(f32 rate) { mNodeObjectMgr.doSimulation(rate); }               // _18 (weak)
+	virtual void doDirectDraw(Graphics& gfx) { mNodeObjectMgr.doDirectDraw(gfx); }           // _1C (weak)
+	virtual void initDependency();                                                           // _38
+	virtual BaseItem* generatorBirth(Vector3f&, Vector3f&, GenItemParm*);                    // _5C
+	virtual void generatorWrite(Stream&, GenItemParm*);                                      // _60
+	virtual void generatorRead(Stream&, GenItemParm*, u32);                                  // _64
+	virtual GenItemParm* generatorNewItemParm();                                             // _70
+	virtual char* getCaveName(int);                                                          // _74
+	virtual int getCaveID(char*);                                                            // _78
 
 	void setupGate(ItemGate*);
 	void setupPlatform(ItemGate*);

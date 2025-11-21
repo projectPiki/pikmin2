@@ -18,7 +18,7 @@ struct SectionInfo {
 
 	union {
 		u32 abcd;
-		u8 mSectionId, b, c, d;
+		u8 mSectionId[4];
 	} mId; // _04
 };
 

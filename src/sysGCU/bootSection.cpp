@@ -49,17 +49,17 @@ TinyPikmin::TinyPikmin()
  * @note Address: N/A
  * @note Size: 0x110
  */
-void TinyPikmin::init(int color, f32 delay, f32 u2, f32 x)
+void TinyPikmin::init(int color, f32 x, f32 y, f32 wait)
 {
 	mState          = INACTIVE;
 	mColor          = color;
-	mOffsetX        = delay + u2;
-	mOffsetY        = u2;
+	mOffsetX        = x;
+	mOffsetY        = y;
 	mPositionX      = 0.0f;
 	mPositionY      = 70.0f;
 	mScaleAnimTimer = randFloat();
 	mWaitTimer      = 0.0f;
-	mWaitDuration   = x;
+	mWaitDuration   = wait;
 	mVelocityX      = 0.0f;
 	mVelocityY      = 0.0f;
 	mAngle          = 0.0f;
@@ -156,12 +156,8 @@ void TinyPikmin::update()
 						Vector2f vec(piki->mOffsetX - mOffsetX, piki->mOffsetY - mOffsetY);
 						f32 dist = _lenVec2D(vec);
 						if (dist < 300.0f) {
-							f32 x   = (1.0f - dist / 300.0f) * 20.0f;
-							f32 dir = 1.0f;
-							if (piki->mOffsetX < mOffsetX) {
-								dir = -1.0f;
-							}
-							x *= dir;
+							f32 x = (1.0f - dist / 300.0f) * 20.0f;
+							x *= (piki->mOffsetX < mOffsetX) ? -1.0f : 1.0f;
 							piki->wind(x);
 						}
 					}
@@ -188,7 +184,7 @@ void TinyPikmin::update()
 					weight = 1.0f;
 					break;
 				}
-				mVelocityY = randWeightFloat(weight) * -4.0f + -1.0f;
+				mVelocityY = weight * (randFloat() * -4.0f + -1.0f);
 			}
 		}
 		break;
@@ -233,18 +229,18 @@ void TinyPikmin::update()
 void TinyPikmin::draw()
 {
 	if (mState != INACTIVE) {
-		f32 xScale, yScale;
+		f32 xScale;
+		f32 yScale;
 		if (mPositionY < 0.0f) {
-			xScale = FABS(mPositionY / 10.0f);
-			if (xScale > 1.0f) {
-				xScale = 1.0f;
+			yScale = absF(mPositionY / 10.0f);
+			if (yScale > 1.0f) {
+				yScale = 1.0f;
 			}
 
-			yScale = (1.0f - xScale) * 0.2f + 0.8f;
-			xScale = xScale * 0.2f + 1.0f;
+			xScale = (1.0f - yScale) * 0.2f + 0.8f;
+			yScale = yScale * 0.2f + 1.0f;
 		} else {
-			yScale = 1.0f;
-			xScale = 1.0f;
+			yScale = xScale = 1.0f;
 		}
 
 		f32 angle = mScaleAnimTimer * TAU;
@@ -313,7 +309,7 @@ void TinyPikminMgr::loadResource(JKRArchive* arc)
 		char buf[PATH_MAX];
 		sprintf(buf, "timg/%s", pikipaths[i]);
 		ResTIMG* file = static_cast<ResTIMG*>(arc->getResource(buf));
-		P2ASSERTLINE(786, file); // 1031 in demo 1?
+		JUT_ASSERTLINE(786, file, buf); // 1031 in demo 1?
 		JUTTexture* tex              = new JUTTexture(file);
 		TinyPikminMgr::sPikminTex[i] = new J2DPicture(tex);
 		TinyPikminMgr::sPikminTex[i]->setBasePosition(J2DPOS_BottomCenter);
@@ -326,8 +322,10 @@ void TinyPikminMgr::loadResource(JKRArchive* arc)
  */
 void TinyPikminMgr::init()
 {
-	f32 interval = 1.5f / sTinyPikminNum;
-	f32 maxTime  = 274.0f / sTinyPikminNum;
+	f32 maxTime, interval;
+
+	interval = 1.5f / sTinyPikminNum;
+	maxTime  = 274.0f / sTinyPikminNum;
 
 	// Create a list of random time values
 	f32* timeValues = new (-0x20) f32[sTinyPikminNum];
@@ -337,9 +335,9 @@ void TinyPikminMgr::init()
 
 	// Randomly swap around times
 	for (int i = 0; i < sTinyPikminNum; i++) {
-		int id   = randInt(sTinyPikminNum);
+		int id   = sTinyPikminNum * randFloat();
+		int id2  = sTinyPikminNum * randFloat();
 		f32 temp = timeValues[id];
-		int id2  = randInt(sTinyPikminNum);
 
 		timeValues[id]  = timeValues[id2];
 		timeValues[id2] = temp;
@@ -357,10 +355,12 @@ void TinyPikminMgr::init()
 	for (int i = 0; i < sTinyPikminNum; i++) {
 
 		// these rand calls belong in TinyPikmin::disappear based on sdata2, but I dont know how that works yet
-		if (!mDoSlamPikmin || i == sTinyPikminNum - 1) {
-			color = TinyPikmin::Purple;
-		} else if (!changecolor) {
-			color = 4.0f * randFloat();
+		if (mDoSlamPikmin) {
+			if (i == sTinyPikminNum - 1) {
+				color = TinyPikmin::Purple;
+			} else if (!changecolor) {
+				color = 4.0f * randFloat();
+			}
 		} else if (!changecolor) {
 			color = 5.0f * randFloat();
 		}
@@ -372,8 +372,7 @@ void TinyPikminMgr::init()
 			x = ((f32)i * interval) + (interval * randFloat());
 		}
 
-		// the + 166.0f is definitely wrong, but the value has to go somewhere around here
-		mPikis[i].init(color, delay, timeValues[i] + 166.0f, x);
+		mPikis[i].init(color, delay + timeValues[i], 166.0f, x);
 	}
 
 	delete[] timeValues;
@@ -489,7 +488,7 @@ void BootSection::init()
 void BootSection::loadBootResource()
 {
 	mDisplayHeap->becomeCurrentHeap();
-	JKRArchive* arc = JKRArchive::mount("/user/yamashita/arc/boot_us.szs", JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
+	JKRArchive* arc = JKRMountArchive("/user/yamashita/arc/boot_us.szs", JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
 	P2ASSERTLINE(1025, arc);
 
 	ResTIMG* file = JKRGetImageResource("/data/timg/nintendo_376x104.bti");
@@ -508,6 +507,7 @@ void BootSection::loadBootResource()
 	P2ASSERTLINE(1042, file);
 	mWarningPressStartTexture = new JUTTexture(file);
 
+	// the iterator in here is causing a regswap
 	sTinyPikminMgr->loadResource(arc);
 }
 
@@ -797,7 +797,7 @@ bool BootSection::doUpdate()
 		case JUTFader::Status_In:
 			bool dofadeout = false;
 			mFadeTimer += sys->mDeltaTime;
-			if (mController->getButtonDown() && mFadeTimer > 1.5f) {
+			if ((mController->isButtonDown(~Controller::False)) && mFadeTimer > 1.5f) {
 				PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_DECIDE, 0);
 				dofadeout = true;
 			} else if (mFadeTimer > 60.0f) {

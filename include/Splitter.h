@@ -27,7 +27,7 @@ struct HorizonalSplitter : public Splitter {
 	virtual void split2(f32); // _08
 
 	// _00 VTBL
-	Rectf mBounds;
+	Rectf mBounds;       // _04
 	Graphics* mGraphics; // _14
 };
 
@@ -38,6 +38,8 @@ struct VerticalSplitter : public Splitter {
 	virtual void split2(f32); // _08
 
 	// _00 VTBL
+	Rectf mBounds;       // _04
+	Graphics* mGraphics; // _14
 };
 
 // Unused struct (4 player pikmin 2 real?)
