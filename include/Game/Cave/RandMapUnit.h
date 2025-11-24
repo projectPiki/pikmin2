@@ -9,6 +9,8 @@
 
 namespace Game {
 namespace Cave {
+
+// Edit Maps for Versus Mode
 struct EditMapUnit {
 	EditMapUnit();
 
@@ -65,6 +67,7 @@ struct MapUnitGenerator {
 
 	inline MapNode* getStartNode() { return mMemMapList->getChild(); }
 
+	// Gets the CNode list of the MapNodes of type `kind`
 	inline MapNode* getMapNodeKind(int kind) { return &mMapNodeKinds[kind]; }
 	inline MapNode* getMemMapList() { return mMemMapList; }
 
@@ -76,7 +79,7 @@ struct MapUnitGenerator {
 	u32 mRandItemType;             // _04
 	FloorInfo* mFloorInfo;         // _08
 	MapNode* mMemMapList;          // _0C, head of list of all map tiles in memory
-	MapNode* mMapNodeKinds;        // _10, array of 3 MapNodes, indexed by UnitKind enum, each being head of a list of given UnitKind
+	MapNode* mMapNodeKinds;        // _10, array of 3 MapNodes, indexed by UnitKind enum, each being head of a CNode list of given UnitKind
 	EnemyNode* mMainEnemies;       // _14, main enemies + plants
 	EnemyNode* mCapEnemiesGround;  // _18, cap enemies, ground
 	EnemyNode* mCapEnemiesFalling; // _1C, cap enemies, falling
@@ -107,6 +110,9 @@ private:
 };
 
 /**
+ * The class which is tasked with
+ * placing map units
+ * 
  * @size{0x2C}
  */
 struct RandMapUnit {
@@ -123,6 +129,7 @@ struct RandMapUnit {
 	void deleteMapNode(MapNode* tile);
 
 	int getAliveMapIndex(MapNode* tile);
+	// are we sure this returns MapNode*?
 	MapNode* getCalcDoorIndex(int& doorIdx, int& doorOffsetX, int& doorOffsetY, int targetDoorCount);
 	int getDownToLinkDoorDir(int, int, int);
 	MapNode* getFirstMapUnit();
@@ -130,7 +137,7 @@ struct RandMapUnit {
 	int getLinkDoorDirection(MapNode*, int, MapNode*, int);
 	MapNode* getLinkDoorNodeFirst(MapNode*, int, int, int, int&);
 	MapNode* getLoopEndMapUnit();
-	u32 getLoopMapNode(MapNode**);
+	u32 getLoopMapNode(MapNode* nodes[]);
 	MapNode* getLoopRandMapUnit();
 	MapNode* getNormalRandMapUnit();
 	int getOpenDoorNum();
@@ -149,8 +156,8 @@ struct RandMapUnit {
 	void setFirstMapUnit();
 	void setMapUnit();
 	void setUnitDoorSorting(int kind);
-	void setUnitKindOrder(MapNode* tile, int* unitList);
-	void setRandomDoorIndex(int* list, int count);
+	void setUnitKindOrder(MapNode* tile, int unitList[]);
+	void setRandomDoorIndex(int list[], int count);
 
 	int mDoorCount;                // _00
 	int mRoomCount;                // _04
