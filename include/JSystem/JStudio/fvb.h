@@ -6,7 +6,7 @@
 #include "types.h"
 #include "JSystem/JGadget/linklist.h"
 #include "JSystem/JStudio/fvb-data-parse.h"
-#include "JSYstem/JStudio/functionvalue.h"
+#include "JSystem/JStudio/functionvalue.h"
 
 // this is too long to type out every time
 using namespace JGadget::binary;
