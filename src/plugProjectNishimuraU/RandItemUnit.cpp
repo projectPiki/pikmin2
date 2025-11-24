@@ -418,16 +418,16 @@ int RandItemUnit::getItemSlotNum(MapNode* mapNode)
 bool RandItemUnit::isItemSetHard()
 {
 	switch (mGenerator->mRandItemType) {
-	case 0:
-	case 1:
+	case RANDITEMTYPE_Challenge:
+	case RANDITEMTYPE_Unk1:
 		return false;
-	case 2:
-	case 3:
+	case RANDITEMTYPE_Unk2:
+	case RANDITEMTYPE_Unk3:
 		if (mItemCount != 0) {
 			return false;
 		}
 		return true;
-	case 4:
+	case RANDITEMTYPE_Story:
 		return true;
 	default:
 		return false;

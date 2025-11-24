@@ -177,7 +177,7 @@ struct RandMapMgr : public CNode {
 	ObjectLayoutInfo* makeObjectLayoutInfo(int placedNodeIndex);
 	void getStartPosition(Vector3f& position, int index);
 	void getItemDropPosition(Vector3f& position, f32 minDist, f32 maxDist);
-	void getItemDropPosition(Vector3f* positions, int positionCount, f32 lowerWeightBound, f32 upperWeightBound);
+	void getItemDropPosition(Vector3f positions[], int positionCount, f32 lowerWeightBound, f32 upperWeightBound);
 	void setUnitTexture(int placedNodeIndex, JUTTexture* unitTexture);
 	void setCaptureOn();
 	void captureRadarMap(Graphics& gfx);
@@ -204,14 +204,17 @@ struct RandMapMgr : public CNode {
 };
 
 /**
+ * An intermediate class which
+ * has functions to draw every map unit
  * @size{0x4}
  */
-struct RandMapDraw {
+class RandMapDraw {
+public:
 	RandMapDraw(MapUnitGenerator* generator);
 
 	void radarMapPartsOpen(Vector3f& pos);
 	void draw(Graphics& gfx, f32 x, f32 y, f32 z);
-
+private:
 	MapUnitGenerator* mGenerator; // _00
 };
 

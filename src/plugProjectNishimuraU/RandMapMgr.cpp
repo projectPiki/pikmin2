@@ -29,6 +29,13 @@ RandMapMgr::RandMapMgr(bool isVersusHiba)
 }
 
 /**
+ * Initializes all of the members for RandMapMgr
+ * @param interface The array of units to generate with
+ * @param interfaceCount The amount of size of the array
+ * @param floorInfo The floorinfo
+ * @param isFinalFloor Dictates if its the final floor (for geysers etc)
+ * @param editUnit The edit map, used for vs mode
+ * 
  * @note Address: 0x802445B0
  * @note Size: 0x1A4
  */
@@ -52,6 +59,15 @@ void RandMapMgr::loadResource(MapUnitInterface* interface, int interfaceCount, F
 }
 
 /**
+ * @brief Creates the cave layout
+ * 
+ * The main function for generating generating the cave map,
+ * sets the position for all of the internal caves spawns,
+ * including all of the enemies' spawn points, and
+ * sets up the radar map
+ * 
+ * This function does not spawn in
+ * anything other than the map
  * @note Address: 0x80244754
  * @note Size: 0x104
  */
@@ -96,6 +112,8 @@ void RandMapMgr::create()
 }
 
 /**
+ * @returns the total number of spawned rooms
+ * 
  * @note Address: 0x80244858
  * @note Size: 0x34
  */
@@ -105,6 +123,8 @@ int RandMapMgr::getNumRooms()
 }
 
 /**
+ * @returns the name of the unit with index idx
+ * 
  * @note Address: 0x8024488C
  * @note Size: 0x3C
  */
@@ -119,6 +139,13 @@ char* RandMapMgr::getUseUnitName(int idx)
 }
 
 /**
+ * Get's the position data from a room
+ * @param idx the index of the room
+ * @param x is set to the x position of the center of the room
+ * @param y is set to the y position of the center of the room
+ * @param dir is set to the orientation of the room (see Cave::CardinalDirection)
+ * @returns The name of the unit
+ * 
  * @note Address: 0x802448C8
  * @note Size: 0x84
  */
@@ -135,6 +162,11 @@ char* RandMapMgr::getRoomData(int idx, f32& x, f32& y, int& dir)
 }
 
 /**
+ * Makes the links for all of the doors for a map node
+ * 
+ * @param idx The index of the room
+ * @return A CNode list of the created RoomLinks
+ * 
  * @note Address: 0x8024494C
  * @note Size: 0xE4
  */
@@ -161,6 +193,11 @@ RoomLink* RandMapMgr::makeRoomLink(int idx)
 }
 
 /**
+ * Constructs the ObjectLayoutInfo for a MapNode
+ * 
+ * @param idx The index of the room
+ * @return the ObjectLayout for the unit
+ * 
  * @note Address: 0x80244A30
  * @note Size: 0x84
  */
@@ -176,6 +213,11 @@ ObjectLayoutInfo* RandMapMgr::makeObjectLayoutInfo(int idx)
 }
 
 /**
+ * Gets the global start position for a navi
+ * 
+ * @param position is set to the start position
+ * @param naviID the ID of the navi to be spawned, used in vs mode
+ * 
  * @note Address: 0x80244AB4
  * @note Size: 0x88
  */
@@ -195,6 +237,12 @@ void RandMapMgr::getStartPosition(Vector3f& position, int naviID)
 }
 
 /**
+ * Specialized for Versus Mode:
+ * Gets a random position to drop an item between weights minDist and maxDist
+ * @param position is set to the drop position
+ * @param minDist the minimum weight (between 0.0 and 1.0)
+ * @param maxDist the maximum weight (between 0.0 and 1.0)
+ * 
  * @note Address: 0x80244B3C
  * @note Size: 0xA0
  */
@@ -204,10 +252,18 @@ void RandMapMgr::getItemDropPosition(Vector3f& position, f32 minDist, f32 maxDis
 }
 
 /**
+ * Specialized for Versus Mode:
+ * Gets count unique drop positions between lowerWeightBound and UpperWeightBound
+ * 
+ * @param positions An array of Vector3f to be modified
+ * @param count The size of the positions array
+ * @param lowerWeightBound the lower bound for the vs weight (between 0.0 and 1.0)
+ * @param uppwerWeightBound the upper bound for the vs weight (between 0.0 and 1.0)
+ * 
  * @note Address: 0x80244BDC
  * @note Size: 0x188
  */
-void RandMapMgr::getItemDropPosition(Vector3f* positions, int count, f32 lowerWeightBound, f32 upperWeightBound)
+void RandMapMgr::getItemDropPosition(Vector3f positions[], int count, f32 lowerWeightBound, f32 upperWeightBound)
 {
 	f32 avg    = 0.5f * (lowerWeightBound + upperWeightBound);
 	f32 weight = (upperWeightBound - avg > 0.0f) ? upperWeightBound - avg : -(upperWeightBound - avg);
@@ -233,6 +289,11 @@ void RandMapMgr::getItemDropPosition(Vector3f* positions, int count, f32 lowerWe
 }
 
 /**
+ * Sets the texture for for an existing map unit
+ * 
+ * @param idx the idx of the placed map node
+ * @param texture the texture
+ * 
  * @note Address: 0x80244D64
  * @note Size: 0x48
  */
@@ -245,6 +306,8 @@ void RandMapMgr::setUnitTexture(int idx, JUTTexture* texture)
 }
 
 /**
+ * Infroms the radar map to re-capture the map
+ * 
  * @note Address: 0x80244DAC
  * @note Size: 0xC
  */
@@ -254,6 +317,12 @@ void RandMapMgr::setCaptureOn()
 }
 
 /**
+ * @brief Captures the radar map
+ * 
+ * Draws all the map units for the radar map
+ * captures it to mRadarMapTexure
+ * when mIsCaptureOn is true
+ * 
  * @note Address: 0x80244DB8
  * @note Size: 0xDC
  */
@@ -303,6 +372,12 @@ JUTTexture* RandMapMgr::getRadarMapTexture()
 }
 
 /**
+ * Horribly named by the devs,
+ * 
+ * Sets the room at pos to be discovered
+ * 
+ * @param pos The position to reveal | Remains unmoddified (should be const)
+ * 
  * @note Address: 0x80244EC0
  * @note Size: 0x24
  */
@@ -312,6 +387,11 @@ void RandMapMgr::radarMapPartsOpen(Vector3f& pos)
 }
 
 /**
+ * Translates from world space to tex space
+ * @param pos The input position | Remains unmoddified (should be const)
+ * @param x is set to the x position in the texture space
+ * @param y is set to the y position in the texture space
+ * 
  * @note Address: 0x80244EE4
  * @note Size: 0x20
  */
@@ -543,6 +623,12 @@ lbl_8024512C:
 }
 
 /**
+ * @brief Draws the frame buffer
+ * 
+ * In order for us to properly capture the radar map,
+ * we need to reset everything around our frame to be
+ * completely black, hence this function
+ * 
  * @note Address: 0x80245158
  * @note Size: 0x200
  */
