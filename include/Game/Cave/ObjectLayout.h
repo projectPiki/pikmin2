@@ -99,7 +99,7 @@ struct ObjectLayout : public ObjectLayoutInfo {
 	void setNode(int index, Game::ObjectLayoutNode* data);
 
 	// _00, VTBL
-	ObjectLayoutNode** mNodeList; // _04
+	ObjectLayoutNode** mNodeList; // _04, A list of size OBJLAYOUT_TypeCount
 };
 } // namespace Cave
 } // namespace Game

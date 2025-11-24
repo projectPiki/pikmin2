@@ -89,14 +89,18 @@ struct RoomDoorInfo {
 	Vector3f mLookAtPos; // _04
 };
 
+/**
+ * A struct defining a single link for a room
+ * 
+ */
 struct RoomLink : public CNode {
 	virtual ~RoomLink() { } // _08 (weak)
 
 	// _00     = VTBL
 	// _00-_18 = CNode
-	u16 mLinkIndex;      // _18
-	u16 mBirthDoorIndex; // _1A
-	s16 mAliveMapIndex;  // _1C
+	u16 mLinkIndex;      // _18, the internal index for the RoomLink list
+	u16 mBirthDoorIndex; // _1A, the index for the door (from copied from Cave::AdjustInfo)
+	s16 mAliveMapIndex;  // _1C, the global index in placeMapNodes
 };
 
 // Size: 0xF0

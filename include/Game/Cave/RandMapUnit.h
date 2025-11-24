@@ -73,8 +73,8 @@ struct MapUnitGenerator {
 	EnemyNode* mCapEnemiesFalling; // _1C, cap enemies, falling
 	GateNode* mGateNode;           // _20
 	ItemNode* mItemNode;           // _24
-	MapNode* mPlacedMapNodes;      // _28
-	MapNode* mVisitedMapNodes;     // _2C
+	MapNode* mPlacedMapNodes;      // _28, CNode list of the generator's placed map nodes
+	MapNode* mVisitedMapNodes;     // _2C, CNode list of the generator's visited map nodes
 	EditMapUnit* mEditMapUnit;     // _30
 };
 

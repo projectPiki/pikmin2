@@ -177,7 +177,7 @@ struct RandMapMgr : public CNode {
 	ObjectLayoutInfo* makeObjectLayoutInfo(int placedNodeIndex);
 	void getStartPosition(Vector3f& position, int index);
 	void getItemDropPosition(Vector3f& position, f32 minDist, f32 maxDist);
-	void getItemDropPosition(Vector3f* positions, int positionCount, f32 lowerWeightBound, f32 upperWeightBound);
+	void getItemDropPosition(Vector3f positions[], int positionCount, f32 lowerWeightBound, f32 upperWeightBound);
 	void setUnitTexture(int placedNodeIndex, JUTTexture* unitTexture);
 	void setCaptureOn();
 	void captureRadarMap(Graphics& gfx);
