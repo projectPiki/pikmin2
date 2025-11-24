@@ -23,18 +23,24 @@ RandMapScore::RandMapScore(MapUnitGenerator* generator)
 }
 
 /**
+ * Sets score for story and challenge mode
+ * based on the Pod start position
+ *
  * @note Address: 0x8024C920
  * @note Size: 0x6C
  */
 void RandMapScore::setMapUnitScore()
 {
 	clearRoomAndDoorScore();
-	if (!isScoreSetDone()) {
-		for (int i = 0; i < 500; i++) {
-			setUnitAndDoorScore();
-			if (isScoreSetDone()) {
-				return;
-			}
+
+	if (isScoreSetDone()) {
+		return;
+	}
+
+	for (int i = 0; i < 500; i++) {
+		setUnitAndDoorScore();
+		if (isScoreSetDone()) {
+			return;
 		}
 	}
 }
@@ -53,17 +59,24 @@ void RandMapScore::setStartSlot()
 }
 
 /**
+ * Sets the position of the cave hole and geyser
+ *
  * @note Address: 0x8024C9C4
  * @note Size: 0x58
  */
 void RandMapScore::setGoalSlot()
 {
-	if (!mGenerator->mIsVersusMode) {
-		if (isGoalSetHard()) {
-			setChallengeFixObjHard();
-		} else {
-			setChallengeFixObjNormal();
-		}
+	// If we're in versus mode we don't spawn a cave hole
+	if (mGenerator->mIsVersusMode) {
+		return;
+	}
+
+	if (isGoalSetHard()) {
+		// story mode
+		setChallengeFixObjHard();
+	} else {
+		// challenge mode
+		setChallengeFixObjNormal();
 	}
 }
 
@@ -110,6 +123,9 @@ BaseGen* RandMapScore::getFixObjGen(int idx)
 }
 
 /**
+ * Gets the global position of the gens for idx
+ * @param idx Index for the mapnode and the gen
+ * @param position is set to the position of the base gen
  * @note Address: 0x8024CBC8
  * @note Size: 0x64
  */
@@ -140,6 +156,8 @@ int RandMapScore::getVersusLowScore()
 }
 
 /**
+ * Checks if we're done setting score this iteration
+ *
  * @note Address: 0x8024CC3C
  * @note Size: 0x84
  */
@@ -158,6 +176,8 @@ bool RandMapScore::isScoreSetDone()
 }
 
 /**
+ * Clears score
+ *
  * @note Address: 0x8024CCC0
  * @note Size: 0xC4
  */
@@ -185,6 +205,8 @@ void RandMapScore::clearRoomAndDoorScore()
 }
 
 /**
+ * Sets the score for units and doors
+ *
  * @note Address: 0x8024CD84
  * @note Size: 0x154
  */
@@ -333,6 +355,9 @@ lbl_8024CEC4:
 }
 
 /**
+ * Goes through and sets every score based
+ * on the starting room being score 0
+ *
  * @note Address: 0x8024CED8
  * @note Size: 0xB0
  */
@@ -351,6 +376,10 @@ void RandMapScore::setStartMapNodeScore(MapNode* mapNode)
 }
 
 /**
+ * Gets a random room
+ *
+ * function does not work properly if there are >16 rooms (what the fuck)
+ *
  * @note Address: N/A
  * @note Size: 0xDC
  */
@@ -375,6 +404,9 @@ MapNode* RandMapScore::getRandRoomMapNode()
 }
 
 /**
+ * Sets the Pod for challenge mode to the first
+ * room with a ship pod
+ *
  * @note Address: 0x8024CF88
  * @note Size: 0x13C
  */
@@ -413,6 +445,14 @@ void RandMapScore::setChallengePod()
 }
 
 /**
+ * @brief Sets the positions of the onyons in vs mode
+ *
+ * Sets the onyon positions in vs mode by getting
+ * the furthest point from a random map node and
+ * placing the red onyon there, and then placing
+ * the blue onyon at the furthest point away from
+ * the red onyon
+ *
  * @note Address: 0x8024D0C4
  * @note Size: 0x1B8
  */
@@ -447,6 +487,9 @@ void RandMapScore::setVersusOnyon()
 }
 
 /**
+ * Gets the highest score map modes
+ * functionally gets the furthest away map node from the origin node
+ *
  * @note Address: 0x8024D27C
  * @note Size: 0xFC
  */
@@ -459,16 +502,16 @@ MapNode* RandMapScore::getMaxScoreRoomMapNode(MapNode* mapNode, BaseGen** maxSco
 		if (currNode != mapNode && currNode->mUnitInfo->getUnitKind() == UNITKIND_Room) {
 			int nodeScore = currNode->getNodeScore() + 10;
 			BaseGen* gen  = currNode->mUnitInfo->getBaseGen();
-			if (gen) {
-				FOREACH_NODE(BaseGen, gen->mChild, currGen)
-				{
-					if (currGen->mSpawnType == BaseGen::CGT_Start) {
-						if (nodeScore > maxScore || (nodeScore == maxScore && randWeightFloat(1.0f) < 0.5f)) {
-							*maxScoreGen = currGen;
-							maxScoreNode = currNode;
-							maxScore     = nodeScore;
-						}
-					}
+			if (!gen) {
+				continue;
+			}
+			FOREACH_NODE(BaseGen, gen->mChild, currGen)
+			{
+				if (currGen->mSpawnType == BaseGen::CGT_Start
+				    && (nodeScore > maxScore || (nodeScore == maxScore && randWeightFloat(1.0f) < 0.5f))) {
+					*maxScoreGen = currGen;
+					maxScoreNode = currNode;
+					maxScore     = nodeScore;
 				}
 			}
 		}
@@ -478,6 +521,8 @@ MapNode* RandMapScore::getMaxScoreRoomMapNode(MapNode* mapNode, BaseGen** maxSco
 }
 
 /**
+ * Sets the versus mode score originating at the mapnode
+ *
  * @note Address: 0x8024D378
  * @note Size: 0x3B0
  */
@@ -796,6 +841,8 @@ lbl_8024D714:
 }
 
 /**
+ * Copies the node score for every node into their vs score
+ *
  * @note Address: 0x8024D728
  * @note Size: 0x48
  */
@@ -808,6 +855,12 @@ void RandMapScore::copyNodeScore()
 }
 
 /**
+ * Subtracts vsscore by the current node score
+ * 
+ * also copies mVersusLowScore from the red onyon
+ * 
+ * also copies mVersusHighScore from the blue onyon
+ * 
  * @note Address: 0x8024D770
  * @note Size: 0x8C
  */
@@ -825,6 +878,11 @@ void RandMapScore::subNodeScore()
 }
 
 /**
+ * Sets our node's score to score
+ *
+ * @param mapNode the node
+ * @param score the score to set our node's score to
+ *
  * @note Address: 0x8024D7FC
  * @note Size: 0x64
  */
@@ -838,6 +896,8 @@ void RandMapScore::setMapNodeScore(MapNode* mapNode, int score)
 }
 
 /**
+ * dude fix this function holy shit
+ * 
  * @note Address: 0x8024D860
  * @note Size: 0x3BC
  */
@@ -858,76 +918,81 @@ void RandMapScore::setChallengeFixObjNormal()
 	}
 
 	for (int i = 0; i < 2; i++) {
-		if (fixObjEnabled[i] && !getFixObjNode(fixObjIdx[i])) {
-			MapNode* mapList[512];
-			BaseGen* genList[512];
-			int scoreList[512];
+		if (!fixObjEnabled[i] || getFixObjNode(fixObjIdx[i])) {
+			continue;
+		}
+		MapNode* mapList[512];
+		BaseGen* genList[512];
+		int scoreList[512];
 
-			int roomTypes[UNITKIND_Count] = { UNITKIND_Room, UNITKIND_Cap, UNITKIND_Corridor };
-			int counter                   = 0;
-			int tally                     = 0;
-			mapList[0]                    = nullptr;
-			// loop over room types
-			for (int j = 0; j < UNITKIND_Count; j++) {
-				if (!mapList[0] || j < 2) {
-					FOREACH_NODE(MapNode, placedNodes->mChild, currNode)
-					{
-						if (roomTypes[j] == currNode->mUnitInfo->getUnitKind()) {
-							f32 val;
-							if (currNode->getNodeScore() > 0) {
-								val = currNode->getNodeScore();
-								val = sqrtf(val);
-							} else {
-								val = 0.0f;
-							}
+		int roomTypes[UNITKIND_Count] = { UNITKIND_Room, UNITKIND_Cap, UNITKIND_Corridor };
+		int counter                   = 0;
+		int tally                     = 0;
+		mapList[0]                    = nullptr;
+		// loop over room types
+		for (int j = 0; j < UNITKIND_Count; j++) {
+			if (mapList[0] && j >= 2) {
+				continue;
+			}
+			FOREACH_NODE(MapNode, placedNodes->mChild, currNode)
+			{
+				if (roomTypes[j] != currNode->mUnitInfo->getUnitKind()) {
+					continue;
+				}
+				f32 val;
+				// not a ternary?
+				if (currNode->getNodeScore() > 0) {
+					val = currNode->getNodeScore();
+					val = sqrtf(val);
+				} else {
+					val = 0.0f;
+				}
 
-							int score = (int)val + 10;
+				int score = (int)val + 10;
 
-							if (roomTypes[j] == UNITKIND_Room) {
-								BaseGen* gen = currNode->mUnitInfo->getBaseGen();
-								if (gen) {
-									FOREACH_NODE(BaseGen, gen->mChild, currGen)
-									{
-										if (currGen->mSpawnType == BaseGen::CGT_HoleOrGeyser && isFixObjSet(currNode, currGen)) {
-											scoreList[counter] = score;
-											tally += scoreList[counter];
-											mapList[counter] = currNode;
-											genList[counter] = currGen;
-											counter++;
-										}
-									}
-								}
-
-							} else if (roomTypes[j] == UNITKIND_Cap) {
-								if (IS_SAME_STRING_PREFIX(currNode->getUnitName(), "item") && isFixObjSet(currNode, nullptr)) {
-									scoreList[counter] = score;
-									tally += scoreList[counter];
-									mapList[counter] = currNode;
-									genList[counter] = nullptr;
-									counter++;
-								}
-							} else if (isFixObjSet(currNode, nullptr)) {
+				if (roomTypes[j] == UNITKIND_Room) {
+					BaseGen* gen = currNode->mUnitInfo->getBaseGen();
+					if (gen) {
+						FOREACH_NODE(BaseGen, gen->mChild, currGen)
+						{
+							if (currGen->mSpawnType == BaseGen::CGT_HoleOrGeyser && isFixObjSet(currNode, currGen)) {
 								scoreList[counter] = score;
 								tally += scoreList[counter];
 								mapList[counter] = currNode;
-								genList[counter] = nullptr;
+								genList[counter] = currGen;
 								counter++;
 							}
 						}
 					}
-				}
-			}
 
-			if (tally) {
-				int randIdx  = randInt(tally);
-				int newTally = 0;
-				for (int k = 0; k < counter; k++) {
-					newTally += scoreList[k];
-					if (newTally > randIdx) {
-						mFixObjNodes[fixObjIdx[i]] = mapList[k];
-						mFixObjGens[fixObjIdx[i]]  = genList[k];
-						break;
+				} else if (roomTypes[j] == UNITKIND_Cap) {
+					if (IS_SAME_STRING_PREFIX(currNode->getUnitName(), "item") && isFixObjSet(currNode, nullptr)) {
+						scoreList[counter] = score;
+						tally += scoreList[counter];
+						mapList[counter] = currNode;
+						genList[counter] = nullptr;
+						counter++;
 					}
+				} else if (isFixObjSet(currNode, nullptr)) {
+					scoreList[counter] = score;
+					tally += scoreList[counter];
+					mapList[counter] = currNode;
+					genList[counter] = nullptr;
+					counter++;
+				}
+			
+			}
+		}
+
+		if (tally) {
+			int randIdx  = randInt(tally);
+			int newTally = 0;
+			for (int k = 0; k < counter; k++) {
+				newTally += scoreList[k];
+				if (newTally > randIdx) {
+					mFixObjNodes[fixObjIdx[i]] = mapList[k];
+					mFixObjGens[fixObjIdx[i]]  = genList[k];
+					break;
 				}
 			}
 		}
@@ -1221,6 +1286,8 @@ lbl_8024DC08:
 }
 
 /**
+ * oughhh it's so bad
+ * 
  * @note Address: 0x8024DC1C
  * @note Size: 0x324
  */
@@ -1241,76 +1308,80 @@ void RandMapScore::setChallengeFixObjHard()
 	}
 
 	for (int i = 0; i < 2; i++) {
-		if (fixObjEnabled[i] && !getFixObjNode(fixObjIdx[i])) {
-			MapNode* mapList[512];
-			BaseGen* genList[512];
-			// int scoreList[512];
+		if (!fixObjEnabled[i] || getFixObjNode(fixObjIdx[i])) {
+			continue;
+		}
+		MapNode* mapList[512];
+		BaseGen* genList[512];
+		// int scoreList[512];
 
-			int roomTypes[UNITKIND_Count] = { UNITKIND_Room, UNITKIND_Cap, UNITKIND_Corridor };
-			int counter                   = 0;
-			mapList[0]                    = nullptr;
-			int maxScore                  = -1;
-			// loop over room types
-			for (int j = 0; j < UNITKIND_Count; j++) {
-				if (!mapList[0] || j < 2) {
-					FOREACH_NODE(MapNode, placedNodes->mChild, currNode)
-					{
-						if (roomTypes[j] == currNode->mUnitInfo->getUnitKind()) {
-							int score = currNode->getNodeScore();
+		int roomTypes[UNITKIND_Count] = { UNITKIND_Room, UNITKIND_Cap, UNITKIND_Corridor };
+		int counter                   = 0;
+		mapList[0]                    = nullptr;
+		int maxScore                  = -1;
+		// loop over room types
+		for (int j = 0; j < UNITKIND_Count; j++) {
+			if (mapList[0] && j >= 2) {
+				continue;
+			}
+			FOREACH_NODE(MapNode, placedNodes->mChild, currNode)
+			{
+				if (roomTypes[j] != currNode->mUnitInfo->getUnitKind()) {
+					continue;
+				}
+				int score = currNode->getNodeScore();
 
-							if (roomTypes[j] == UNITKIND_Room) {
-								BaseGen* gen = currNode->mUnitInfo->getBaseGen();
-								if (gen) {
-									FOREACH_NODE(BaseGen, gen->mChild, currGen)
-									{
-										if (currGen->mSpawnType == BaseGen::CGT_HoleOrGeyser && isFixObjSet(currNode, currGen)) {
-											if (score >= maxScore) {
-												if (score > maxScore) {
-													counter  = 0;
-													maxScore = score;
-												}
-												mapList[counter] = currNode;
-												genList[counter] = currGen;
-												counter++;
-											}
-										}
-									}
-								}
-
-							} else if (roomTypes[j] == UNITKIND_Cap) {
-								if (IS_SAME_STRING_PREFIX(currNode->getUnitName(), "item") && isFixObjSet(currNode, nullptr)) {
-									if (score >= maxScore) {
-										if (score > maxScore) {
-											counter  = 0;
-											maxScore = score;
-										}
-										mapList[counter] = currNode;
-										genList[counter] = nullptr;
-										counter++;
-									}
-								}
-							} else if (isFixObjSet(currNode, nullptr)) {
+				if (roomTypes[j] == UNITKIND_Room) {
+					BaseGen* gen = currNode->mUnitInfo->getBaseGen();
+					if (gen) {
+						FOREACH_NODE(BaseGen, gen->mChild, currGen)
+						{
+							if (currGen->mSpawnType == BaseGen::CGT_HoleOrGeyser && isFixObjSet(currNode, currGen)) {
 								if (score >= maxScore) {
 									if (score > maxScore) {
 										counter  = 0;
 										maxScore = score;
 									}
 									mapList[counter] = currNode;
-									genList[counter] = nullptr;
+									genList[counter] = currGen;
 									counter++;
 								}
 							}
 						}
 					}
+
+				} else if (roomTypes[j] == UNITKIND_Cap) {
+					if (IS_SAME_STRING_PREFIX(currNode->getUnitName(), "item") && isFixObjSet(currNode, nullptr)) {
+						if (score >= maxScore) {
+							if (score > maxScore) {
+								counter  = 0;
+								maxScore = score;
+							}
+							mapList[counter] = currNode;
+							genList[counter] = nullptr;
+							counter++;
+						}
+					}
+				} else if (isFixObjSet(currNode, nullptr)) {
+					if (score >= maxScore) {
+						if (score > maxScore) {
+							counter  = 0;
+							maxScore = score;
+						}
+						mapList[counter] = currNode;
+						genList[counter] = nullptr;
+						counter++;
+					}
 				}
 			}
-
-			if (counter) {
-				int randIdx                = randInt(counter);
-				mFixObjNodes[fixObjIdx[i]] = mapList[randIdx];
-				mFixObjGens[fixObjIdx[i]]  = genList[randIdx];
-			}
 		}
+
+		if (counter) {
+			int randIdx                = randInt(counter);
+			mFixObjNodes[fixObjIdx[i]] = mapList[randIdx];
+			mFixObjGens[fixObjIdx[i]]  = genList[randIdx];
+		}
+	
 	}
 	/*
 	stwu     r1, -0x1070(r1)
@@ -1566,20 +1637,21 @@ lbl_8024DF2C:
  */
 bool RandMapScore::isGoalSetHard()
 {
+	// WHYYYYYYYYYYYY WHAT THE FUUUUUUUCK -Drought
 	switch (mGenerator->mRandItemType) {
-	case 0:
+	case RANDITEMTYPE_Challenge:
 		return false;
 
-	case 1:
+	case RANDITEMTYPE_Unk1:
 		return true;
 
-	case 2:
+	case RANDITEMTYPE_Unk2:
 		return false;
 
-	case 3:
+	case RANDITEMTYPE_Unk3:
 		return true;
 
-	case 4:
+	case RANDITEMTYPE_Story:
 		return true;
 	}
 

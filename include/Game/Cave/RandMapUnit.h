@@ -31,6 +31,15 @@ struct GateNode;
 struct ItemNode;
 struct MapNode;
 
+enum RandItemType {
+	RANDITEMTYPE_Challenge = 0,
+	RANDITEMTYPE_Unk1      = 1,
+	RANDITEMTYPE_Unk2      = 2,
+	RANDITEMTYPE_Unk3      = 3,
+	RANDITEMTYPE_Story     = 4
+};
+
+
 /**
  * @size{0x34}
  */
