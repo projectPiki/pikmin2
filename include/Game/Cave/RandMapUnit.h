@@ -79,9 +79,13 @@ struct MapUnitGenerator {
 };
 
 /**
+ * An intermediate class with
+ * functions to check things
+ * about a MapNode
  * @size{0x4}
  */
-struct RandMapChecker {
+class RandMapChecker {
+public:
 	RandMapChecker(MapNode* tile);
 
 	bool isPutOnMap(MapNode* tile);
@@ -89,7 +93,7 @@ struct RandMapChecker {
 	bool isDoorOnParts(MapNode* tile);
 	bool isPartsOnDoor(MapNode* tile);
 	bool isInnerBox(int outerX1, int outerY1, int outerX2, int outerY2, int innerX1, int innerY1, int innerX2, int innerY2);
-
+private:
 	MapNode* mMapNode; // _00
 };
 

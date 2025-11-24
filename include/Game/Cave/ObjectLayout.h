@@ -61,6 +61,7 @@ enum UnitKind {
 };
 
 /**
+ * An abstraction for a physical room
  * @size{0x18}
  */
 struct UnitInfo {
