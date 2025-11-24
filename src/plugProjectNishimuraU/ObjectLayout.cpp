@@ -10,15 +10,15 @@ namespace Cave {
  */
 ObjectLayout::ObjectLayout(MapNode* node)
 {
-	mNodeList = new ObjectLayoutNode*[8];
-	for (int i = 0; i < 8; i++) {
+	mNodeList = new ObjectLayoutNode*[OBJLAYOUT_TypeCount];
+	for (int i = 0; i < OBJLAYOUT_TypeCount; i++) {
 		mNodeList[i] = nullptr;
 	}
 
 	if (node) {
-		mNodeList[0] = node->mEnemyNode;
-		mNodeList[1] = node->mItemNode;
-		mNodeList[2] = node->mGateNode;
+		mNodeList[OBJLAYOUT_Enemy] = node->mEnemyNode;
+		mNodeList[OBJLAYOUT_Item]  = node->mItemNode;
+		mNodeList[OBJLAYOUT_Gate]  = node->mGateNode;
 	}
 }
 
