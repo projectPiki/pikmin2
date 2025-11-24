@@ -204,14 +204,17 @@ struct RandMapMgr : public CNode {
 };
 
 /**
+ * An intermediate class which
+ * has functions to draw every map unit
  * @size{0x4}
  */
-struct RandMapDraw {
+class RandMapDraw {
+public:
 	RandMapDraw(MapUnitGenerator* generator);
 
 	void radarMapPartsOpen(Vector3f& pos);
 	void draw(Graphics& gfx, f32 x, f32 y, f32 z);
-
+private:
 	MapUnitGenerator* mGenerator; // _00
 };
 
