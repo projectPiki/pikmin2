@@ -21,6 +21,9 @@ JSystem/JStudio_JParticle/object-particle.cpp:
 	.sbss       start:0x80514D80 end:0x80514D88
 	.sdata2     start:0x80516360 end:0x80516398
 
+JSystem/JMessage/data.cpp:
+	.sdata2     start:0x80516398 end:0x805163A0
+
 JSystem/JStudio_JParticle/control.cpp:
 	.text       start:0x80006220 end:0x800063C4
 	.data       start:0x8049E2D8 end:0x8049E2E8
@@ -32,9 +35,6 @@ JSystem/JMessage/resource.cpp:
 JSystem/JMessage/processor.cpp:
 	.text       start:0x80006D0C end:0x800083A4
 	.data       start:0x8049E360 end:0x8049E458
-
-JSystem/JMessage/data.cpp:
-	.sdata2     start:0x80516398 end:0x805163A0
 
 JSystem/JMessage/control.cpp:
 	.text       start:0x800083A4 end:0x8000893C
@@ -1315,9 +1315,6 @@ Dolphin/Runtime/global_destructor_chain.c:
 	.dtors      start:0x804732C8 end:0x804732CC
 	.sbss       start:0x80515320 end:0x80515328
 
-Dolphin/Runtime/__mem.c:
-	.init       start:0x800050B4 end:0x800051EC
-
 Dolphin/Runtime/CPlusLibPPC.cp:
 	.text       start:0x800C1718 end:0x800C1748
 
@@ -1908,13 +1905,16 @@ Dolphin/os/OSThread.c:
 	.sdata      start:0x805149F8 end:0x80514A00
 	.sbss       start:0x80515658 end:0x80515668
 
-Dolphin/os/__start.c:
-	.init       start:0x800051EC end:0x800054EC
-	.sbss       start:0x80515668 end:0x80515670
-
 Dolphin/os/OSTime.c:
 	.text       start:0x800F2B90 end:0x800F2FB4
 	.data       start:0x804A9E00 end:0x804A9E60
+
+Dolphin/Runtime/__mem.c:
+	.init       start:0x800050B4 end:0x800051EC
+
+Dolphin/os/__start.c:
+	.init       start:0x800051EC end:0x800054EC
+	.sbss       start:0x80515668 end:0x80515670
 
 Dolphin/os/__ppc_eabi_init.cpp:
 	.init       start:0x800054EC end:0x80005544

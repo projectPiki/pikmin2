@@ -31,9 +31,9 @@ DEFAULT_VERSION = 4
 VERSIONS = [
     "GPVE01_D17",  # 0
     "GPVE01_D18",  # 1
-    "GPVJ01",      # 2
-    "GPVP01",      # 3
-    "GPVE01",      # 4
+    "GPVJ01",  # 2
+    "GPVP01",  # 3
+    "GPVE01",  # 4
 ]
 
 parser = argparse.ArgumentParser()
@@ -146,11 +146,11 @@ config.asm_dir = None
 
 # Tool versions
 config.binutils_tag = "2.42-1"
-config.compilers_tag = "20240706"
-config.dtk_tag = "v1.3.0"
-config.objdiff_tag = "v2.4.0"
-config.sjiswrap_tag = "v1.2.0"
-config.wibo_tag = "0.6.11"
+config.compilers_tag = "20250812"
+config.dtk_tag = "v1.7.5"
+config.objdiff_tag = "v3.4.1"
+config.sjiswrap_tag = "v1.2.2"
+config.wibo_tag = "1.0.0-beta.5"
 
 # Project
 config.config_path = Path("config") / config.version / "config.yml"
@@ -230,9 +230,11 @@ cflags_pikmin = [
 
 config.linker_version = "GC/2.6"
 
-Matching = True                   # Object matches and should be linked
-NonMatching = False               # Object does not match and should not be linked
-Equivalent = config.non_matching  # Object should be linked when configured with --non-matching
+Matching = True  # Object matches and should be linked
+NonMatching = False  # Object does not match and should not be linked
+Equivalent = (
+    config.non_matching
+)  # Object should be linked when configured with --non-matching
 
 config.warn_missing_config = True
 config.warn_missing_source = False
@@ -241,8 +243,7 @@ config.libs = [
         "lib": "JStudio_JParticle",
         "cflags": cflags_pikmin,
         "mw_version": "GC/2.6",
-        "progress_category" : "jsystem",
-
+        "progress_category": "jsystem",
         "host": True,
         "objects": [
             Object(NonMatching, "JSystem/JStudio_JParticle/object-particle.cpp"),
@@ -253,7 +254,7 @@ config.libs = [
         "lib": "JMessage",
         "cflags": cflags_pikmin,
         "mw_version": "GC/2.6",
-        "progress_category" : "jsystem",
+        "progress_category": "jsystem",
         "host": True,
         "objects": [
             Object(Matching, "JSystem/JMessage/resource.cpp"),
@@ -266,7 +267,7 @@ config.libs = [
         "lib": "JStudio",
         "cflags": cflags_pikmin,
         "mw_version": "GC/2.6",
-        "progress_category" : "jsystem",
+        "progress_category": "jsystem",
         "host": True,
         "objects": [
             Object(Matching, "JSystem/JStudio/stb-data-parse.cpp"),
@@ -287,7 +288,7 @@ config.libs = [
         "lib": "JStudio_JStage",
         "cflags": cflags_pikmin,
         "mw_version": "GC/2.6",
-        "progress_category" : "jsystem",
+        "progress_category": "jsystem",
         "host": True,
         "objects": [
             Object(Matching, "JSystem/JStudio_JStage/object-light.cpp"),
@@ -303,7 +304,7 @@ config.libs = [
         "lib": "JStudio_JMessage",
         "cflags": cflags_pikmin,
         "mw_version": "GC/2.6",
-        "progress_category" : "jsystem",
+        "progress_category": "jsystem",
         "host": True,
         "objects": [
             Object(Matching, "JSystem/JStudio_JMessage/object-message.cpp"),
@@ -314,7 +315,7 @@ config.libs = [
         "lib": "JStudio_JAudio",
         "cflags": cflags_pikmin,
         "mw_version": "GC/2.6",
-        "progress_category" : "jsystem",
+        "progress_category": "jsystem",
         "host": True,
         "objects": [
             Object(Matching, "JSystem/JStudio_JAudio/object-sound.cpp"),
@@ -325,7 +326,7 @@ config.libs = [
         "lib": "J3DU",
         "cflags": cflags_pikmin,
         "mw_version": "GC/2.6",
-        "progress_category" : "jsystem",
+        "progress_category": "jsystem",
         "host": True,
         "objects": [
             Object(Matching, "JSystem/J3DU/J3DUDL.cpp"),
@@ -338,7 +339,7 @@ config.libs = [
         "lib": "JKernel",
         "cflags": cflags_pikmin,
         "mw_version": "GC/2.6",
-        "progress_category" : "jsystem",
+        "progress_category": "jsystem",
         "host": True,
         "objects": [
             Object(Matching, "JSystem/JKernel/JKRAram.cpp"),
@@ -371,7 +372,7 @@ config.libs = [
         "lib": "JSupport",
         "cflags": cflags_pikmin,
         "mw_version": "GC/2.6",
-        "progress_category" : "jsystem",
+        "progress_category": "jsystem",
         "host": True,
         "objects": [
             Object(Matching, "JSystem/JSupport/JSUOutputStream.cpp"),
@@ -385,7 +386,7 @@ config.libs = [
         "lib": "JGadget",
         "cflags": cflags_pikmin,
         "mw_version": "GC/2.6",
-        "progress_category" : "jsystem",
+        "progress_category": "jsystem",
         "host": True,
         "objects": [
             Object(Matching, "JSystem/JGadget/binary.cpp"),
@@ -398,7 +399,7 @@ config.libs = [
         "lib": "JUtility",
         "cflags": cflags_pikmin,
         "mw_version": "GC/2.6",
-        "progress_category" : "jsystem",
+        "progress_category": "jsystem",
         "host": True,
         "objects": [
             Object(Matching, "JSystem/JUtility/JUTAssert.cpp"),
@@ -428,7 +429,7 @@ config.libs = [
         "lib": "JMath",
         "cflags": cflags_pikmin,
         "mw_version": "GC/2.6",
-        "progress_category" : "jsystem",
+        "progress_category": "jsystem",
         "host": True,
         "objects": [
             Object(Matching, "JSystem/JMath/JMath.cpp"),
@@ -440,7 +441,7 @@ config.libs = [
         "lib": "J2D",
         "cflags": cflags_pikmin,
         "mw_version": "GC/2.6",
-        "progress_category" : "jsystem",
+        "progress_category": "jsystem",
         "host": True,
         "objects": [
             Object(Matching, "JSystem/J2D/J2DOrthoGraph.cpp"),
@@ -469,7 +470,7 @@ config.libs = [
         "lib": "J3D",
         "cflags": cflags_pikmin,
         "mw_version": "GC/2.6",
-        "progress_category" : "jsystem",
+        "progress_category": "jsystem",
         "host": True,
         "objects": [
             Object(Matching, "JSystem/J3D/J3DSys.cpp"),
@@ -510,7 +511,7 @@ config.libs = [
         "lib": "JFramework",
         "cflags": cflags_pikmin,
         "mw_version": "GC/2.6",
-        "progress_category" : "jsystem",
+        "progress_category": "jsystem",
         "host": True,
         "objects": [
             Object(Matching, "JSystem/JFramework/JFWSystem.cpp"),
@@ -521,7 +522,7 @@ config.libs = [
         "lib": "JParticle",
         "cflags": cflags_pikmin,
         "mw_version": "GC/2.6",
-        "progress_category" : "jsystem",
+        "progress_category": "jsystem",
         "host": True,
         "objects": [
             Object(NonMatching, "JSystem/JParticle/JPABaseShape.cpp"),
@@ -545,7 +546,7 @@ config.libs = [
         "lib": "JStage",
         "cflags": cflags_pikmin,
         "mw_version": "GC/2.6",
-        "progress_category" : "jsystem",
+        "progress_category": "jsystem",
         "host": True,
         "objects": [
             Object(Matching, "JSystem/JStage/JSGSystem.cpp"),
@@ -558,7 +559,7 @@ config.libs = [
         "lib": "JAudio_JAS",
         "cflags": cflags_pikmin,
         "mw_version": "GC/2.6",
-        "progress_category" : "jsystem",
+        "progress_category": "jsystem",
         "host": True,
         "objects": [
             Object(NonMatching, "JSystem/JAudio/JAS/JASWSParser.cpp"),
@@ -616,7 +617,7 @@ config.libs = [
             "-O4,s",
         ],
         "mw_version": "GC/2.6",
-        "progress_category" : "jsystem",
+        "progress_category": "jsystem",
         "host": True,
         "objects": [
             Object(Matching, "JSystem/JAudio/dsp/dspproc.c"),
@@ -629,7 +630,7 @@ config.libs = [
         "lib": "JAudio_JAI",
         "cflags": cflags_pikmin,
         "mw_version": "GC/2.6",
-        "progress_category" : "jsystem",
+        "progress_category": "jsystem",
         "host": True,
         "objects": [
             Object(NonMatching, "JSystem/JAudio/JAI/JAIAnimation.cpp"),
@@ -654,7 +655,7 @@ config.libs = [
         "lib": "JAudio_JAD",
         "cflags": cflags_pikmin,
         "mw_version": "GC/2.6",
-        "progress_category" : "jsystem",
+        "progress_category": "jsystem",
         "host": True,
         "objects": [Object(Matching, "JSystem/JAudio/JAD/JADHioNode.cpp")],
     },
@@ -662,7 +663,7 @@ config.libs = [
         "lib": "JAudio_JAL",
         "cflags": cflags_pikmin,
         "mw_version": "GC/2.6",
-        "progress_category" : "jsystem",
+        "progress_category": "jsystem",
         "host": True,
         "objects": [Object(Matching, "JSystem/JAudio/JAL/JALCalc.cpp")],
     },
@@ -670,7 +671,7 @@ config.libs = [
         "lib": "JAudio_JAU",
         "cflags": cflags_pikmin,
         "mw_version": "GC/2.6",
-        "progress_category" : "jsystem",
+        "progress_category": "jsystem",
         "host": True,
         "objects": [
             Object(Matching, "JSystem/JAudio/JAU/JAUData.cpp"),
@@ -681,7 +682,7 @@ config.libs = [
         "lib": "TRK_MINNOW_DOLPHIN",
         "cflags": [*cflags_runtime, "-inline deferred", "-sdata 0", "-sdata2 0"],
         "mw_version": "GC/2.6",
-        "progress_category" : "sdk",
+        "progress_category": "sdk",
         "host": False,
         "objects": [
             Object(Matching, "Dolphin/TRK_MINNOW_DOLPHIN/mainloop.c"),
@@ -736,7 +737,7 @@ config.libs = [
         "lib": "Runtime",
         "cflags": [*cflags_runtime, "-inline deferred"],
         "mw_version": "GC/2.6",
-        "progress_category" : "sdk",
+        "progress_category": "sdk",
         "host": False,
         "objects": [
             Object(Matching, "Dolphin/Runtime/__va_arg.c"),
@@ -763,7 +764,7 @@ config.libs = [
         "lib": "MSL_C",
         "cflags": [*cflags_runtime, "-inline deferred"],
         "mw_version": "GC/2.6",
-        "progress_category" : "sdk",
+        "progress_category": "sdk",
         "host": False,
         "objects": [
             Object(Matching, "Dolphin/MSL_C/PPC_EABI/abort_exit.c"),
@@ -936,7 +937,7 @@ config.libs = [
         "lib": "OdemuExi2",
         "cflags": [*cflags_runtime, "-inline deferred"],
         "mw_version": "GC/1.2.5n",
-        "progress_category" : "sdk",
+        "progress_category": "sdk",
         "host": False,
         "objects": [Object(Matching, "Dolphin/OdemuExi2/DebuggerDriver.c")],
     },
@@ -944,7 +945,7 @@ config.libs = [
         "lib": "vi",
         "cflags": [*cflags_runtime, "-str noreadonly"],
         "mw_version": "GC/1.2.5n",
-        "progress_category" : "sdk",
+        "progress_category": "sdk",
         "host": False,
         "objects": [Object(Matching, "Dolphin/vi/vi.c")],
     },
@@ -952,7 +953,7 @@ config.libs = [
         "lib": "amcstubs",
         "cflags": cflags_runtime,
         "mw_version": "GC/1.2.5n",
-        "progress_category" : "sdk",
+        "progress_category": "sdk",
         "host": False,
         "objects": [Object(Matching, "Dolphin/amcstubs/AmcExi2Stubs.c")],
     },
@@ -960,7 +961,7 @@ config.libs = [
         "lib": "ar",
         "cflags": [*cflags_runtime, "-str noreadonly"],
         "mw_version": "GC/1.2.5n",
-        "progress_category" : "sdk",
+        "progress_category": "sdk",
         "host": False,
         "objects": [
             Object(Matching, "Dolphin/ar/ar.c"),
@@ -971,7 +972,7 @@ config.libs = [
         "lib": "base",
         "cflags": cflags_runtime,
         "mw_version": "GC/1.2.5n",
-        "progress_category" : "sdk",
+        "progress_category": "sdk",
         "host": False,
         "objects": [Object(Matching, "Dolphin/base/PPCArch.c")],
     },
@@ -979,7 +980,7 @@ config.libs = [
         "lib": "card",
         "cflags": [*cflags_runtime, "-str noreadonly"],
         "mw_version": "GC/1.2.5n",
-        "progress_category" : "sdk",
+        "progress_category": "sdk",
         "host": False,
         "objects": [
             Object(Matching, "Dolphin/card/CARDBios.c"),
@@ -1002,7 +1003,7 @@ config.libs = [
         "lib": "db",
         "cflags": [*cflags_runtime, "-str noreadonly"],
         "mw_version": "GC/1.2.5n",
-        "progress_category" : "sdk",
+        "progress_category": "sdk",
         "host": False,
         "objects": [Object(Matching, "Dolphin/db/db.c")],
     },
@@ -1010,7 +1011,7 @@ config.libs = [
         "lib": "dsp",
         "cflags": [*cflags_runtime, "-str noreadonly"],
         "mw_version": "GC/1.2.5n",
-        "progress_category" : "sdk",
+        "progress_category": "sdk",
         "host": False,
         "objects": [
             Object(Matching, "Dolphin/dsp/dsp.c"),
@@ -1022,7 +1023,7 @@ config.libs = [
         "lib": "dvd",
         "cflags": [*cflags_runtime, "-str noreadonly"],
         "mw_version": "GC/1.2.5n",
-        "progress_category" : "sdk",
+        "progress_category": "sdk",
         "host": False,
         "objects": [
             Object(Matching, "Dolphin/dvd/dvdlow.c"),
@@ -1039,7 +1040,7 @@ config.libs = [
         "lib": "exi",
         "cflags": [*cflags_runtime, "-str noreadonly"],
         "mw_version": "GC/1.2.5n",
-        "progress_category" : "sdk",
+        "progress_category": "sdk",
         "host": False,
         "objects": [
             Object(Matching, "Dolphin/exi/EXIBios.c"),
@@ -1050,7 +1051,7 @@ config.libs = [
         "lib": "gd",
         "cflags": cflags_runtime,
         "mw_version": "GC/1.2.5n",
-        "progress_category" : "sdk",
+        "progress_category": "sdk",
         "host": False,
         "objects": [
             Object(Matching, "Dolphin/gd/GDBase.c"),
@@ -1061,7 +1062,7 @@ config.libs = [
         "lib": "gx",
         "cflags": [*cflags_runtime, "-str noreadonly", "-fp_contract off"],
         "mw_version": "GC/1.2.5n",
-        "progress_category" : "sdk",
+        "progress_category": "sdk",
         "host": False,
         "objects": [
             Object(Matching, "Dolphin/gx/GXInit.c"),
@@ -1084,7 +1085,7 @@ config.libs = [
         "lib": "mtx",
         "cflags": cflags_runtime,
         "mw_version": "GC/1.2.5n",
-        "progress_category" : "sdk",
+        "progress_category": "sdk",
         "host": False,
         "objects": [
             Object(Matching, "Dolphin/mtx/mtx.c"),
@@ -1097,7 +1098,7 @@ config.libs = [
         "lib": "odenotstub",
         "cflags": cflags_runtime,
         "mw_version": "GC/1.2.5n",
-        "progress_category" : "sdk",
+        "progress_category": "sdk",
         "host": False,
         "objects": [Object(Matching, "Dolphin/odenotstub/odenotstub.c")],
     },
@@ -1105,7 +1106,7 @@ config.libs = [
         "lib": "os",
         "cflags": [*cflags_runtime, "-str noreadonly"],
         "mw_version": "GC/1.2.5n",
-        "progress_category" : "sdk",
+        "progress_category": "sdk",
         "host": False,
         "objects": [
             Object(Matching, "Dolphin/os/OS.c"),
@@ -1137,7 +1138,7 @@ config.libs = [
         "lib": "pad",
         "cflags": [*cflags_runtime, "-fp_contract off", "-str noreadonly"],
         "mw_version": "GC/1.2.5n",
-        "progress_category" : "sdk",
+        "progress_category": "sdk",
         "host": False,
         "objects": [
             Object(Matching, "Dolphin/pad/Padclamp.c"),
@@ -1148,7 +1149,7 @@ config.libs = [
         "lib": "si",
         "cflags": [*cflags_runtime, "-str noreadonly"],
         "mw_version": "GC/1.2.5n",
-        "progress_category" : "sdk",
+        "progress_category": "sdk",
         "host": False,
         "objects": [
             Object(Matching, "Dolphin/si/SIBios.c"),
@@ -1159,7 +1160,7 @@ config.libs = [
         "lib": "ai",
         "cflags": [*cflags_runtime, "-str noreadonly"],
         "mw_version": "GC/1.2.5n",
-        "progress_category" : "sdk",
+        "progress_category": "sdk",
         "host": False,
         "objects": [Object(Matching, "Dolphin/ai/ai.c")],
     },
@@ -1167,7 +1168,7 @@ config.libs = [
         "lib": "thp",
         "cflags": [*cflags_runtime, "-str noreadonly"],
         "mw_version": "GC/1.2.5n",
-        "progress_category" : "sdk",
+        "progress_category": "sdk",
         "host": False,
         "objects": [
             Object(Matching, "Dolphin/thp/THPDec.c"),
@@ -1178,7 +1179,7 @@ config.libs = [
         "lib": "gba",
         "cflags": [*cflags_runtime, "-str noreadonly"],
         "mw_version": "GC/1.2.5n",
-        "progress_category" : "sdk",
+        "progress_category": "sdk",
         "host": False,
         "objects": [
             Object(Matching, "Dolphin/gba/GBA.c"),
@@ -1191,7 +1192,7 @@ config.libs = [
         "lib": "plugProjectYamashitaU",
         "cflags": cflags_pikmin,
         "mw_version": "GC/2.6",
-        "progress_category" : "game",
+        "progress_category": "game",
         "host": True,
         "objects": [
             Object(Matching, "plugProjectYamashitaU/enemyBase.cpp"),
@@ -1252,7 +1253,7 @@ config.libs = [
         "lib": "plugProjectKandoU",
         "cflags": cflags_pikmin,
         "mw_version": "GC/2.6",
-        "progress_category" : "game",
+        "progress_category": "game",
         "host": True,
         "objects": [
             Object(Matching, "plugProjectKandoU/pikiAnimator.cpp"),
@@ -1396,7 +1397,7 @@ config.libs = [
         "lib": "plugProjectNishimuraU",
         "cflags": cflags_pikmin,
         "mw_version": "GC/2.6",
-        "progress_category" : "game",
+        "progress_category": "game",
         "host": True,
         "objects": [
             Object(Equivalent, "plugProjectNishimuraU/nslibmath.cpp"),
@@ -1640,7 +1641,7 @@ config.libs = [
         "lib": "plugProjectOgawaU",
         "cflags": cflags_pikmin,
         "mw_version": "GC/2.6",
-        "progress_category" : "game",
+        "progress_category": "game",
         "host": True,
         "objects": [
             Object(Matching, "plugProjectOgawaU/ogScreen.cpp"),
@@ -1729,7 +1730,7 @@ config.libs = [
         "lib": "plugProjectHikinoU",
         "cflags": [*cflags_pikmin, "-sym on"],
         "mw_version": "GC/2.6",
-        "progress_category" : "game",
+        "progress_category": "game",
         "host": True,
         "objects": [
             Object(Equivalent, "plugProjectHikinoU/PSSeq.cpp"),
@@ -1752,7 +1753,7 @@ config.libs = [
         "lib": "plugProjectMorimuraU",
         "cflags": cflags_pikmin,
         "mw_version": "GC/2.6",
-        "progress_category" : "game",
+        "progress_category": "game",
         "host": True,
         "objects": [
             Object(NonMatching, "plugProjectMorimuraU/dayEndCount.cpp"),
@@ -1821,7 +1822,7 @@ config.libs = [
         "lib": "plugProjectEbisawaU",
         "cflags": cflags_pikmin,
         "mw_version": "GC/2.6",
-        "progress_category" : "game",
+        "progress_category": "game",
         "host": True,
         "objects": [
             Object(NonMatching, "plugProjectEbisawaU/efxBase.cpp"),
@@ -1929,7 +1930,7 @@ config.libs = [
         "lib": "plugProjectKonoU",
         "cflags": cflags_pikmin,
         "mw_version": "GC/2.6",
-        "progress_category" : "game",
+        "progress_category": "game",
         "host": True,
         "objects": [
             Object(Equivalent, "plugProjectKonoU/khWorldMap.cpp"),
@@ -1959,7 +1960,7 @@ config.libs = [
         "lib": "sysCommonU",
         "cflags": cflags_pikmin,
         "mw_version": "GC/2.6",
-        "progress_category" : "game",
+        "progress_category": "game",
         "host": True,
         "objects": [
             Object(Matching, "sysCommonU/node.cpp"),
@@ -1984,7 +1985,7 @@ config.libs = [
         "lib": "sysGCU",
         "cflags": [*cflags_pikmin, "-lang=c++"],
         "mw_version": "GC/2.6",
-        "progress_category" : "game",
+        "progress_category": "game",
         "host": True,
         "objects": [
             Object(Equivalent, "sysGCU/system.cpp"),
@@ -2064,7 +2065,7 @@ config.libs = [
         "lib": "utilityU",
         "cflags": [*cflags_pikmin, "-sym on"],
         "mw_version": "GC/2.6",
-        "progress_category" : "game",
+        "progress_category": "game",
         "host": True,
         "objects": [
             Object(Matching, "utilityU/menu.cpp"),
@@ -2095,6 +2096,7 @@ config.libs = [
     # },
 ]
 
+
 # Optional callback to adjust link order. This can be used to add, remove, or reorder objects.
 # This is called once per module, with the module ID and the current link order.
 #
@@ -2109,8 +2111,9 @@ def link_order_callback(module_id: int, objects: List[str]) -> List[str]:
             # Add new files here.
             # NB: any new files added here need to also be added to a library above
             # "folder/file.cpp",
-            ]
+        ]
     return objects
+
 
 # Uncomment to enable the link order callback.
 config.link_order_callback = link_order_callback
@@ -2123,6 +2126,12 @@ config.progress_categories = [
     ProgressCategory("jsystem", "JSystem Code"),
 ]
 config.progress_each_module = args.verbose
+# Optional extra arguments to `objdiff-cli report generate`
+config.progress_report_args = [
+    # Marks relocations as mismatching if the target value is different
+    # Default is "functionRelocDiffs=none", which is most lenient
+    # "--config functionRelocDiffs=data_value",
+]
 
 if args.mode == "configure":
     # Write build.ninja and objdiff.json
