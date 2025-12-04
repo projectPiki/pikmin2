@@ -1165,7 +1165,7 @@ void Obj::searchTarget()
 			if (pikiPos.y < minY || pikiPos.y > maxY) {
 				continue;
 			}
-			f32 angle = getCreatureViewAngle(piki);
+			f32 angle = getAngDist(piki);
 			if (absF(angle) <= searchAngle) {
 				Vector3f pos      = mPosition;
 				Vector3f pikiPos2 = Vector3f(piki->getPosition().x, 0.0f, piki->getPosition().z);
@@ -1631,7 +1631,7 @@ f32 Obj::turnFunc(f32 scale)
 		turnSpeed = C_PROPERPARMS.mBigRotationSpeedRate();
 	}
 
-	return turnToTarget2(targetPos, turnSpeed * scale, maxAngle * scale);
+	return turnToTarget(targetPos, turnSpeed * scale, maxAngle * scale);
 	/*
 	stwu     r1, -0x90(r1)
 	mflr     r0
@@ -1800,13 +1800,13 @@ void Obj::checkAttack(bool check)
 
 	if (mTargetCreature && mTargetCreature->isAlive()) {
 		Creature* target = mTargetCreature;
-		if (isTargetWithinRange(target, getCreatureViewAngle(target), C_GENERALPARMS.mPrivateRadius(), C_GENERALPARMS.mSightRadius(),
-		                        C_GENERALPARMS.mFov(), C_GENERALPARMS.mViewAngle())) {
+		if (isTargetOutOfRange(target, getAngDist(target), C_GENERALPARMS.mPrivateRadius(), C_GENERALPARMS.mSightRadius(),
+		                       C_GENERALPARMS.mFov(), C_GENERALPARMS.mViewAngle())) {
 			mTargetCreature = nullptr;
 
 		} else {
 			Creature* target = mTargetCreature;
-			f32 angle        = getCreatureViewAngle(target);
+			f32 angle        = getAngDist(target);
 			if (isTargetAttackable(target, angle, attackRange, attackAngle)) {
 				f32 range          = C_PROPERPARMS.mInvisibleRange();
 				Vector3f targetPos = mTargetCreature->getPosition();
@@ -1842,7 +1842,7 @@ void Obj::checkAttack(bool check)
 			continue;
 		}
 
-		f32 bombAngle = getCreatureViewAngle(bomb);
+		f32 bombAngle = getAngDist(bomb);
 		if (isTargetAttackable(bomb, bombAngle, attackRange, attackAngle)) {
 			f32 range          = C_PROPERPARMS.mInvisibleRange();
 			Vector3f targetPos = bomb->getPosition();
@@ -2514,7 +2514,7 @@ void Obj::checkTurn(bool check)
 		}
 	}
 
-	f32 angle = getCreatureViewAngle(mGoalPosition);
+	f32 angle = getAngDist(mGoalPosition);
 	if (absF(angle) > TORADIANS(C_PROPERPARMS.mRequiredTurningAngleDeg())) {
 		mAllowAnimBlending = check;
 		mFsm->transit(this, KINGCHAPPY_Turn, nullptr);

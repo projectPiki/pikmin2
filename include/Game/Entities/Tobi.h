@@ -92,6 +92,8 @@ struct Obj : public EnemyBase {
 	void createBridgeEffect();
 	void createEatEffect();
 
+	inline Vector3f getTargetPosition() { return mTargetPosition; }
+
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
 	FSM* mFsm;                 // _2BC

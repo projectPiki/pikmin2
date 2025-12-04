@@ -298,10 +298,8 @@ void StateTurn::exec(EnemyBase* enemy)
 {
 	Obj* ota = OBJ(enemy);
 	if (ota->isMovePositionSet(false)) {
-		Vector2f XZ;
-		XZ.x          = ota->mMovePosition.x;
-		XZ.y          = ota->mMovePosition.z;
-		f32 angleDist = ota->changeFaceDir(XZ);
+		Vector3f movePos = ota->mMovePosition;
+		f32 angleDist    = ota->turnToTarget(movePos, CG_GENERALPARMS(ota).mTurnSpeed(), CG_GENERALPARMS(ota).mMaxTurnAngle());
 
 		f64 abs = fabs(angleDist);
 		if ((f32)(abs) <= THIRD_PI) {
@@ -555,10 +553,8 @@ void StateItemTurn::exec(EnemyBase* enemy)
 	Obj* ota = OBJ(enemy);
 
 	if (ota->isMovePositionSet(true)) {
-		Vector2f XZ;
-		XZ.x          = ota->mMovePosition.x;
-		XZ.y          = ota->mMovePosition.z;
-		f32 angleDist = ota->changeFaceDir(XZ);
+		Vector3f movePos = ota->mMovePosition;
+		f32 angleDist    = ota->turnToTarget(movePos, CG_GENERALPARMS(ota).mTurnSpeed(), CG_GENERALPARMS(ota).mMaxTurnAngle());
 
 		f64 abs = fabs(angleDist);
 		if ((f32)(abs) <= THIRD_PI) {
@@ -891,10 +887,8 @@ void StateBombTurn::exec(EnemyBase* enemy)
 	Creature* creature = ota->getChaseTargetCreature();
 	if (creature) {
 		Vector3f creaturePos = creature->getPosition();
-		Vector2f XZ;
-		XZ.x          = creaturePos.x;
-		XZ.y          = creaturePos.z;
-		f32 angleDist = ota->changeFaceDir(XZ);
+		Vector3f movePos     = ota->mMovePosition;
+		f32 angleDist        = ota->turnToTarget(creaturePos, CG_GENERALPARMS(ota).mTurnSpeed(), CG_GENERALPARMS(ota).mMaxTurnAngle());
 
 		f64 abs = fabs(angleDist);
 		if ((f32)(abs) <= THIRD_PI) {

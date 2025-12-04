@@ -597,7 +597,7 @@ void Obj::fly()
 		sinVal *= C_PARMS->mRotateFaceDirFactor;
 		f32 faceDirOffset = TORADIANS(sinVal);
 		mFaceDir          = mTargetFaceDir;
-		turnToTarget2(mGoalPosition, rotAccel, rotSpeed);
+		turnToTarget(mGoalPosition, rotAccel, rotSpeed);
 
 		f32 angle = mFaceDir + faceDirOffset;
 		f32 x     = moveSpeed * sinf(angle);
@@ -992,7 +992,7 @@ bool Obj::checkRestOn()
 			return true;
 		}
 
-		f32 angleDist = getAngDist2(collSphere.mPosition);
+		f32 angleDist = getAngDist(collSphere.mPosition);
 		updateFaceDir(roundAng(0.3f * angleDist + mFaceDir));
 	}
 

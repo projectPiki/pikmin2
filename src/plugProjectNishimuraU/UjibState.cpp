@@ -248,22 +248,15 @@ void StateMove::exec(EnemyBase* enemy)
 
 	if (target) {
 		uji->mTargetCreature = target;
-		f32 angleDist        = uji->changeFaceDir(target);
-		f32 x, y, z;
-		f32 speed = static_cast<EnemyParmsBase*>(uji->mParms)->mGeneral.mMoveSpeed();
-		x         = dolsinf(uji->getFaceDir());
-		y         = uji->getTargetVelocity().y;
-		z         = dolcosf(uji->getFaceDir());
-
-		uji->mTargetVelocity = Vector3f(speed * x, y, speed * z);
+		f32 angleDist        = uji->turnToTarget(target, CG_GENERALPARMS(uji).mTurnSpeed(), CG_GENERALPARMS(uji).mMaxTurnAngle());
+		uji->setTargetSpeed(CG_GENERALPARMS(uji).mMoveSpeed());
 
 		if (uji->isTargetAttackable(target, angleDist, CG_GENERALPARMS(uji).mMaxAttackRange(), CG_GENERALPARMS(uji).mMaxAttackAngle())) {
 			uji->mNextState = UJIB_Attack2;
 			uji->finishMotion();
 		} else {
-			Vector3f homePos = uji->mHomePosition;
-			f32 len          = uji->getPosition().distance(homePos);
-			if (len > CG_GENERALPARMS(uji).mTerritoryRadius()) {
+
+			if (uji->distanceFromHome() > CG_GENERALPARMS(uji).mTerritoryRadius()) {
 				uji->mNextState = UJIB_GoHome;
 				uji->finishMotion();
 			} else if (EnemyFunc::getNearestPikminOrNavi(uji, CG_GENERALPARMS(uji).mMaxAttackAngle(),
@@ -284,7 +277,7 @@ void StateMove::exec(EnemyBase* enemy)
 
 	uji->setInWaterDamage();
 
-	if (uji->mHealth <= 0.0f) {
+	if (uji->isDead()) {
 		transit(uji, UJIB_Dead, nullptr);
 		return;
 	}

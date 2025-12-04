@@ -609,7 +609,7 @@ void StateStick::exec(EnemyBase* enemy)
 		EnemyFunc::walkToTarget(enemy, targetPos, 0.5f * CG_GENERALPARMS(enemy).mMoveSpeed(), CG_PROPERPARMS(enemy).mFastTurnSpeed(),
 		                        CG_PROPERPARMS(enemy).mMaxFastTurnAngle());
 
-		enemy->turnToTarget2(targetPos, CG_PROPERPARMS(enemy).mFastTurnSpeed(), CG_PROPERPARMS(enemy).mMaxFastTurnAngle());
+		enemy->turnToTarget(targetPos, CG_PROPERPARMS(enemy).mFastTurnSpeed(), CG_PROPERPARMS(enemy).mMaxFastTurnAngle());
 
 		mMoveToTargetTimer++;
 		f32 rad = 2.5f * OBJ(enemy)->mCarrySizeDiff;
@@ -694,7 +694,7 @@ void StateCarryEnd::exec(EnemyBase* enemy)
 			}
 
 		} else {
-			enemy->turnToTarget2(mStartPosition, CG_GENERALPARMS(enemy).mTurnSpeed(), CG_GENERALPARMS(enemy).mMaxTurnAngle());
+			enemy->turnToTarget(mStartPosition, CG_GENERALPARMS(enemy).mTurnSpeed(), CG_GENERALPARMS(enemy).mMaxTurnAngle());
 			diff *= 0.05f;
 			enemy->forceMovePosition(diff);
 		}

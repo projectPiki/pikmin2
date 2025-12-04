@@ -262,7 +262,7 @@ bool Obj::isInHomeRange()
  */
 void Obj::setJumpMove(Vector3f& targetPos)
 {
-	f32 angleDist = getAngDist2(targetPos);
+	f32 angleDist = getAngDist(targetPos);
 	if (absVal(angleDist) > HALF_PI) {
 		int turnDir = (angleDist == 0.0f) ? 0 : (angleDist > 0.0f) ? 1 : -1;
 

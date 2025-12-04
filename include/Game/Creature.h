@@ -320,25 +320,6 @@ struct Creature : public CellObject {
 	}
 
 	/**
-	 * Checks if a creature is within a specified range relative to this creature object.
-	 *
-	 * @param c The creature to check.
-	 * @param range The range around this creature to check within.
-	 * @return True if the creature is within the range, false otherwise.
-	 */
-	inline bool isCreatureWithinRange(Creature* c, f32 range)
-	{
-		Vector2f delta;
-		getDistanceTo(c, delta);
-
-		if (IS_WITHIN_CIRCLE(delta.x, delta.y, range)) {
-			return true;
-		}
-
-		return false;
-	}
-
-	/**
 	 * @brief Calculates the distance between the current creature and the target creature.
 	 *
 	 * @param target The target creature.
@@ -352,47 +333,6 @@ struct Creature : public CellObject {
 	}
 
 	inline bool isCreatureFlag(u32 flag) const { return mFlags.typeView & flag; }
-
-	/**
-	 * Calculates the angular distance between this creature and another creature.
-	 *
-	 * @param other The other creature.
-	 * @return The angular distance between the two creatures.
-	 */
-	inline f32 getAngDist(Creature* other)
-	{
-		Vector3f otherPos = other->getPosition();
-		Vector3f pos      = getPosition();
-
-		f32 angBetween = _angXZ(otherPos.x, otherPos.z, pos.x, pos.z);
-		return angDist(angBetween, getFaceDir());
-	}
-
-	/**
-	 * Calculates the angular distance between the current object's facing direction and a target position.
-	 *
-	 * @param targetPos The target position to calculate the angular distance to.
-	 * @return The angular distance between the current object's facing direction and the target position.
-	 */
-	inline f32 getAngDist(Vector3f& targetPos)
-	{
-		Vector3f pos   = getPosition();
-		f32 angBetween = angXZ(targetPos.x, targetPos.z, pos);
-		return angDist(angBetween, getFaceDir());
-	}
-
-	/**
-	 * Calculates the angular distance between the current object's facing direction and a target position.
-	 *
-	 * @param targetPos The target position to calculate the angular distance to.
-	 * @return The angular distance between the current object's facing direction and the target position.
-	 */
-	inline f32 getAngDist2(Vector3f& targetPos)
-	{
-		Vector3f pos   = getPosition();
-		f32 angBetween = _angXZ(targetPos.x, targetPos.z, pos.x, pos.z);
-		return angDist(angBetween, getFaceDir());
-	}
 
 	/**
 	 * @brief Calculates the separation vector between the current creature and a target creature.
@@ -432,6 +372,59 @@ struct Creature : public CellObject {
 		f32 sqrDist = SQUARE(sep.x) + SQUARE(sep.z);
 		return sqrtf(sqrDist);
 		// return sqrDist;
+	}
+
+	inline f32 getAngDist(Creature* other)
+	{
+		Vector3f otherPos;
+		otherPos = other->getPosition();
+
+		Vector3f pos;
+		pos = getPosition();
+
+		f32 x          = otherPos.x - pos.x;
+		f32 z          = otherPos.z - pos.z;
+		f32 angBetween = angXZ(x, z);
+		return angDist(angBetween, getFaceDir());
+	}
+
+	inline f32 getAngDist(Vector3f& targetPos)
+	{
+		Vector3f pos;
+		pos = getPosition();
+
+		f32 x          = targetPos.x - pos.x;
+		f32 z          = targetPos.z - pos.z;
+		f32 angBetween = angXZ(x, z);
+		return angDist(angBetween, getFaceDir());
+	}
+
+	inline f32 getAngDist2(Vector3f& targetPos)
+	{
+		Vector3f pos;
+		pos = getPosition();
+
+		f32 x          = targetPos.x;
+		f32 z          = targetPos.z;
+		f32 angBetween = angXZ(x, z, pos);
+		return angDist(angBetween, getFaceDir());
+	}
+
+	inline f32 getSqrTargetSeparation(Creature* target)
+	{
+		f32 x = target->getPosition().x - getPosition().x;
+		f32 y = target->getPosition().y - getPosition().y;
+		f32 z = target->getPosition().z - getPosition().z;
+		return x * x + y * y + z * z;
+	}
+
+	inline bool isCreatureWithinRange(Creature* c, f32 range)
+	{
+		// subtly wrong - see EnemyBase::isFinishableWaitingBirthTypeDrop
+		f32 x = getPosition().x - c->getPosition().x;
+		f32 z = getPosition().z - c->getPosition().z;
+
+		return SQUARE(x) + SQUARE(z) < SQUARE(range);
 	}
 
 	void applyAirDrag(f32 drag, f32 horizontalDrag, f32 verticalDrag);

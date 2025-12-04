@@ -252,25 +252,14 @@ void StateMove::exec(EnemyBase* enemy)
 	                                                     nullptr, nullptr, nullptr);
 	if (target) {
 		tobi->mTargetCreature = target;
-		f32 angleDist         = tobi->changeFaceDir2(target);
-		f32 x, y, z;
-		f32 speed = CG_GENERALPARMS(tobi).mMoveSpeed();
-		x         = (f32)sin(tobi->getFaceDir());
-		y         = tobi->getTargetVelocity().y;
-		z         = (f32)cos(tobi->getFaceDir());
-
-		tobi->mTargetVelocity = Vector3f(speed * x, y, speed * z);
+		f32 angleDist         = tobi->turnToTarget(target, CG_GENERALPARMS(tobi).mTurnSpeed(), CG_GENERALPARMS(tobi).mMaxTurnAngle());
+		tobi->setTargetSpeed(CG_GENERALPARMS(tobi).mMoveSpeed());
 
 		if (tobi->isTargetAttackable(target, angleDist, CG_GENERALPARMS(tobi).mMaxAttackRange(), CG_GENERALPARMS(tobi).mMaxAttackAngle())) {
 			tobi->mNextState = TOBI_Attack2;
 			tobi->finishMotion();
 		} else {
-			Vector3f homePos = tobi->mHomePosition;
-			Vector3f tobiPos = tobi->getPosition();
-
-			f32 dist = tobiPos.distance(homePos);
-
-			if (dist > CG_GENERALPARMS(tobi).mTerritoryRadius()) {
+			if (tobi->distanceFromHome() > CG_GENERALPARMS(tobi).mTerritoryRadius()) {
 				tobi->mNextState = TOBI_GoHome;
 				tobi->finishMotion();
 			} else {

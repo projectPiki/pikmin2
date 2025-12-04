@@ -359,7 +359,7 @@ void StateRolling::exec(EnemyBase* enemy)
 			newSep.x *= CG_GENERALPARMS(queen).mMoveSpeed();
 			newSep.z *= CG_GENERALPARMS(queen).mMoveSpeed();
 
-			queen->mTargetVelocity = newSep;
+			queen->setTargetVelocity(newSep);
 		}
 
 		queen->flickPikmin(FLICK_BACKWARD_ANGLE);

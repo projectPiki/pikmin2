@@ -843,7 +843,7 @@ void Obj::walkFunc()
 		}
 	}
 
-	f32 rotationSpeed, moveSpeed, turnSpeed; // should be f31, f30, f29
+	f32 moveSpeed, turnSpeed, rotationSpeed; // should be f31, f30, f29
 	moveSpeed     = C_GENERALPARMS.mMoveSpeed();
 	rotationSpeed = C_GENERALPARMS.mMaxTurnAngle();
 	turnSpeed     = C_GENERALPARMS.mTurnSpeed();
@@ -1004,7 +1004,7 @@ void Obj::walkFunc()
 
 	bool isInTurn = false; // lets the wraith do SICK DRIFTS
 	// turn inline hell is here
-	f32 angleDist = getAngDist2(mTargetPosition);
+	f32 angleDist = getAngDist(mTargetPosition);
 
 	if (fabs((int)(angleDist > 0.25f))) {
 		isInTurn = true;

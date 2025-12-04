@@ -412,7 +412,7 @@ void StateMiss::exec(EnemyBase* enemy)
 {
 	if (CG_PARMS(enemy)->_8FC) {
 		Vector3f goalPos = OBJ(enemy)->getGoalPos();
-		f32 angleDist    = enemy->turnToTarget2(goalPos, CG_GENERALPARMS(enemy).mTurnSpeed(), CG_GENERALPARMS(enemy).mMaxTurnAngle());
+		f32 angleDist    = enemy->turnToTarget(goalPos, CG_GENERALPARMS(enemy).mTurnSpeed(), CG_GENERALPARMS(enemy).mMaxTurnAngle());
 		if (absF(angleDist) < 0.05f) {
 			enemy->finishMotion();
 		}
@@ -713,7 +713,7 @@ void StateSearch::exec(EnemyBase* enemy)
 	    = OBJ(enemy)->getNearestPikiOrNavi(CG_GENERALPARMS(enemy).mSearchAngle(), CG_GENERALPARMS(enemy).mSearchDistance()); // r28
 	enemy->mTargetCreature = target;
 	if (target) {
-		f32 angleDist = enemy->getCreatureViewAngle(target);
+		f32 angleDist = enemy->getAngDist(target);
 		if (absF(angleDist) < 0.01f) {
 			enemy->finishMotion();
 			mAnimIdx                  = JIGUMOANIM_NULL;
@@ -722,12 +722,12 @@ void StateSearch::exec(EnemyBase* enemy)
 			enemy->finishMotion();
 			mAnimIdx = JIGUMOANIM_Turn;
 		} else {
-			enemy->turnToTarget(target);
+			enemy->turnToTarget(target, CG_GENERALPARMS(enemy).mTurnSpeed(), CG_GENERALPARMS(enemy).mMaxTurnAngle());
 		}
 	} else {
 		target = OBJ(enemy)->getNearestPikiOrNavi(CG_GENERALPARMS(enemy).mViewAngle(), CG_GENERALPARMS(enemy).mSightRadius());
 		if (target) {
-			f32 angleDist = enemy->getCreatureViewAngle(target);
+			f32 angleDist = enemy->getAngDist(target);
 			if (absF(angleDist) < 0.1f) {
 				if (animIdx == JIGUMOANIM_Turn) {
 					mAnimIdx = JIGUMOANIM_Wait;
@@ -737,7 +737,7 @@ void StateSearch::exec(EnemyBase* enemy)
 				mAnimIdx = JIGUMOANIM_Turn;
 				enemy->finishMotion();
 			} else {
-				enemy->turnToTarget(target);
+				enemy->turnToTarget(target, CG_GENERALPARMS(enemy).mTurnSpeed(), CG_GENERALPARMS(enemy).mMaxTurnAngle());
 			}
 		} else {
 			transit(enemy, JIGUMO_Wait, nullptr);

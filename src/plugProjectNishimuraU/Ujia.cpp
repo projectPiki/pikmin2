@@ -327,25 +327,14 @@ bool Obj::moveBridgeSide()
 	startPos += zVec;
 
 	if (sqrDistanceXZ(mPosition, startPos) < 250.0f) {
-		f32 moveSpeed = getMoveSpeed(0.75f);
-		f32 x         = dolsinf(getFaceDir());
-		f32 y         = getTargetVelocity().y;
-		f32 z         = dolcosf(getFaceDir());
-
-		mTargetVelocity = Vector3f(moveSpeed * x, y, moveSpeed * z);
+		setTargetSpeed(0.75f * C_GENERALPARMS.mMoveSpeed());
 
 		return true;
 
 	} else {
-		f32 val = turnToTarget2(startPos, C_GENERALPARMS.mTurnSpeed(), C_GENERALPARMS.mMaxTurnAngle());
+		f32 val = turnToTarget(startPos, C_GENERALPARMS.mTurnSpeed(), C_GENERALPARMS.mMaxTurnAngle());
 
-		Vector3f vel;
-		f32 moveSpeed = static_cast<EnemyParmsBase*>(mParms)->mGeneral.mMoveSpeed();
-		vel.x         = dolsinf(getFaceDir());
-		vel.y         = getTargetVelocity().y;
-		vel.z         = dolcosf(getFaceDir());
-
-		mTargetVelocity = Vector3f(moveSpeed * vel.x, vel.y, moveSpeed * vel.z);
+		setTargetSpeed(C_GENERALPARMS.mMoveSpeed());
 
 		return false;
 	}
@@ -366,25 +355,14 @@ bool Obj::moveBridgeCentre()
 	startPos += xVec;
 
 	if (sqrDistanceXZ(mPosition, startPos) < 250.0f) {
-		f32 moveSpeed = getMoveSpeed(0.75f);
-		f32 x         = dolsinf(getFaceDir());
-		f32 y         = getTargetVelocity().y;
-		f32 z         = dolcosf(getFaceDir());
-
-		mTargetVelocity = Vector3f(moveSpeed * x, y, moveSpeed * z);
+		setTargetSpeed(0.75f * C_GENERALPARMS.mMoveSpeed());
 
 		return true;
 
 	} else {
-		f32 val = turnToTarget2(startPos, C_GENERALPARMS.mTurnSpeed(), C_GENERALPARMS.mMaxTurnAngle());
+		f32 val = turnToTarget(startPos, C_GENERALPARMS.mTurnSpeed(), C_GENERALPARMS.mMaxTurnAngle());
 
-		Vector3f vel;
-		f32 moveSpeed = static_cast<EnemyParmsBase*>(mParms)->mGeneral.mMoveSpeed();
-		vel.x         = dolsinf(getFaceDir());
-		vel.y         = getTargetVelocity().y;
-		vel.z         = dolcosf(getFaceDir());
-
-		mTargetVelocity = Vector3f(moveSpeed * vel.x, vel.y, moveSpeed * vel.z);
+		setTargetSpeed(C_GENERALPARMS.mMoveSpeed());
 
 		return false;
 	}
@@ -410,7 +388,7 @@ bool Obj::moveBridgeTop()
 		stagePos += zVec;
 	}
 
-	f32 val = turnToTarget2(stagePos, C_GENERALPARMS.mTurnSpeed(), C_GENERALPARMS.mMaxTurnAngle());
+	f32 val = turnToTarget(stagePos, C_GENERALPARMS.mTurnSpeed(), C_GENERALPARMS.mMaxTurnAngle());
 
 	f32 dist = sqrDistanceXZ(mPosition, stagePos);
 
@@ -419,22 +397,12 @@ bool Obj::moveBridgeTop()
 		return true;
 
 	} else if (dist < 250.0f) {
-		f32 moveSpeed = C_GENERALPARMS.mMoveSpeed();
-		f32 x         = dolsinf(getFaceDir());
-		f32 y         = getTargetVelocity().y;
-		f32 z         = dolcosf(getFaceDir());
-
-		mTargetVelocity = Vector3f(moveSpeed * x, y, moveSpeed * z);
+		setTargetSpeed(C_GENERALPARMS.mMoveSpeed());
 
 		return true;
 
 	} else {
-		f32 moveSpeed = C_GENERALPARMS.mMoveSpeed();
-		f32 x         = dolsinf(getFaceDir());
-		f32 y         = getTargetVelocity().y;
-		f32 z         = dolcosf(getFaceDir());
-
-		mTargetVelocity = Vector3f(moveSpeed * x, y, moveSpeed * z);
+		setTargetSpeed(C_GENERALPARMS.mMoveSpeed());
 	}
 
 	return false;

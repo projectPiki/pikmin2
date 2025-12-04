@@ -656,7 +656,7 @@ void Obj::walkFunc()
 
 	faceDirRads = TORADIANS(rotationDelta);
 	mFaceDir    = mPrevFaceDir;
-	turnToTarget2(mGoalPosition, rotationAccel, rotationSpeed);
+	turnToTarget(mGoalPosition, rotationAccel, rotationSpeed);
 
 	f32 deltaFaceDir = mFaceDir + faceDirRads;
 
@@ -822,132 +822,8 @@ f32 Obj::turnFunc()
 		factor = C_PARMS->mBlindTurnRateReduction;
 	}
 
-	f32 maxAngle  = factor * C_PROPERPARMS.mRotateSpeedMax();
-	f32 turnSpeed = factor * C_PROPERPARMS.mRotateSpeed();
-
-	f32 angleDist = turnToTarget2(targetPos, turnSpeed, maxAngle);
+	f32 angleDist = turnToTarget(targetPos, factor * C_PROPERPARMS.mRotateSpeed(), factor * C_PROPERPARMS.mRotateSpeedMax());
 	return absF(angleDist);
-	/*
-	stwu     r1, -0x70(r1)
-	mflr     r0
-	stw      r0, 0x74(r1)
-	stfd     f31, 0x60(r1)
-	psq_st   f31, 104(r1), 0, qr0
-	stfd     f30, 0x50(r1)
-	psq_st   f30, 88(r1), 0, qr0
-	stfd     f29, 0x40(r1)
-	psq_st   f29, 72(r1), 0, qr0
-	stfd     f28, 0x30(r1)
-	psq_st   f28, 56(r1), 0, qr0
-	stw      r31, 0x2c(r1)
-	mr       r31, r3
-	lwz      r4, 0x2d8(r3)
-	cmplwi   r4, 0
-	beq      lbl_80385B24
-	lwz      r12, 0(r4)
-	addi     r3, r1, 0x14
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0x14(r1)
-	stfs     f0, 0x2bc(r31)
-	lfs      f0, 0x18(r1)
-	stfs     f0, 0x2c0(r31)
-	lfs      f0, 0x1c(r1)
-	stfs     f0, 0x2c4(r31)
-
-lbl_80385B24:
-	lwz      r3, 0x28c(r31)
-	li       r4, 0x513c
-	li       r5, 0
-	lwz      r12, 0x28(r3)
-	lwz      r12, 0x88(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x39c(r31)
-	lfs      f31, 0x2bc(r31)
-	cmpwi    r0, 0x65
-	lfs      f28, 0x2c4(r31)
-	lfs      f2, lbl_8051ED90@sda21(r2)
-	bne      lbl_80385B60
-	lwz      r3, 0xc0(r31)
-	lfs      f2, 0xa2c(r3)
-
-lbl_80385B60:
-	lwz      r5, 0xc0(r31)
-	mr       r4, r31
-	lwz      r12, 0(r31)
-	addi     r3, r1, 8
-	lfs      f1, 0x8e4(r5)
-	lfs      f0, 0x8bc(r5)
-	lwz      r12, 8(r12)
-	fmuls    f29, f2, f1
-	fmuls    f30, f2, f0
-	mtctr    r12
-	bctrl
-	lfs      f1, 8(r1)
-	lis      r3, atanTable___5JMath@ha
-	lfs      f0, 0x10(r1)
-	addi     r3, r3, atanTable___5JMath@l
-	fsubs    f1, f31, f1
-	fsubs    f2, f28, f0
-	bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
-	bl       roundAng__Ff
-	lwz      r12, 0(r31)
-	fmr      f31, f1
-	mr       r3, r31
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	fmr      f2, f1
-	fmr      f1, f31
-	bl       angDist__Fff
-	fmr      f31, f1
-	lfs      f0, lbl_8051EDD0@sda21(r2)
-	lfs      f1, lbl_8051EDCC@sda21(r2)
-	fmuls    f0, f0, f29
-	fmuls    f29, f31, f30
-	fmuls    f1, f1, f0
-	fabs     f0, f29
-	frsp     f0, f0
-	fcmpo    cr0, f0, f1
-	ble      lbl_80385C10
-	lfs      f0, lbl_8051EDA0@sda21(r2)
-	fcmpo    cr0, f29, f0
-	ble      lbl_80385C0C
-	fmr      f29, f1
-	b        lbl_80385C10
-
-lbl_80385C0C:
-	fneg     f29, f1
-
-lbl_80385C10:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	fadds    f1, f29, f1
-	bl       roundAng__Ff
-	stfs     f1, 0x1fc(r31)
-	fabs     f1, f31
-	lfs      f0, 0x1fc(r31)
-	frsp     f1, f1
-	stfs     f0, 0x1a8(r31)
-	psq_l    f31, 104(r1), 0, qr0
-	lfd      f31, 0x60(r1)
-	psq_l    f30, 88(r1), 0, qr0
-	lfd      f30, 0x50(r1)
-	psq_l    f29, 72(r1), 0, qr0
-	lfd      f29, 0x40(r1)
-	psq_l    f28, 56(r1), 0, qr0
-	lfd      f28, 0x30(r1)
-	lwz      r0, 0x74(r1)
-	lwz      r31, 0x2c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x70
-	blr
-	*/
 }
 
 /**
@@ -1360,7 +1236,7 @@ bool Obj::isAttackStart()
 	f32 attackAngle = TORADIANS(C_GENERALPARMS.mAttackHitAngle()); // f30
 
 	if (mTargetNavi && mTargetNavi->isAlive()) {
-		f32 angle = getCreatureViewAngle(mTargetNavi);
+		f32 angle = getAngDist(mTargetNavi);
 		if (absF(angle) <= attackAngle) {
 			Vector3f pos     = mPosition;
 			Vector3f naviPos = Vector3f(mTargetNavi->getPosition().x, 0.0f, mTargetNavi->getPosition().z);
@@ -1547,14 +1423,14 @@ lbl_803862AC:
  */
 bool Obj::isNeedTurn()
 {
-	f32 angle = getCreatureViewAngle(mGoalPosition);
+	f32 angle = getAngDist(mGoalPosition);
 	if (absF(angle) > TORADIANS(C_PROPERPARMS.mTurnStartAngle())) {
 		return true;
 	}
 
 	if (mTargetNavi) {
 		Vector3f naviPos = mTargetNavi->getPosition();
-		f32 naviAngle    = getCreatureViewAngle(naviPos);
+		f32 naviAngle    = getAngDist(naviPos);
 		if (absF(naviAngle) > TORADIANS(C_PROPERPARMS.mTurnStartAngle())) {
 			return true;
 		}
@@ -1742,14 +1618,14 @@ bool Obj::outMove()
 			f32 maxAngle  = 0.5f * C_PROPERPARMS.mRotateSpeedMax(); // f27
 			f32 turnSpeed = 0.5f * C_PROPERPARMS.mRotateSpeed();    // f28
 			f32 velY      = getTargetVelocity().y;
-			turnToTarget2(mTargetPosition, turnSpeed, maxAngle);
+			turnToTarget(mTargetPosition, turnSpeed, maxAngle);
 
 			mTargetVelocity = Vector3f(vel.x, velY, vel.z);
 		} else {
 			f32 maxAngle  = 0.5f * C_PROPERPARMS.mRotateSpeedMax(); // f27
 			f32 turnSpeed = 0.5f * C_PROPERPARMS.mRotateSpeed();    // f28
 
-			turnToTarget2(naviPos, turnSpeed, maxAngle);
+			turnToTarget(naviPos, turnSpeed, maxAngle);
 		}
 	}
 
