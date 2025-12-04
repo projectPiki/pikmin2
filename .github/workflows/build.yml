@@ -49,23 +49,3 @@ jobs:
       with:
         name: ${{ matrix.version }}_report
         path: build/${{ matrix.version }}/report.json
-
-  build_make:
-    name: Build (legacy)
-    runs-on: ubuntu-latest
-    container: ghcr.io/projectpiki/build:main
-    strategy:
-      fail-fast: false
-      matrix:
-        version: [GPVE01, GPVE01_D17]
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
-        submodules: recursive
-    - name: Git config
-      run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
-    - name: Build
-      run: |
-        make -j$(nproc) MAPGENFLAG=1 VERSION=${{matrix.version}}
