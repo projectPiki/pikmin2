@@ -139,6 +139,8 @@ struct Obj : public EnemyBase {
 		return true;
 	}
 
+	inline f32 getEscapeSpeed() { return mEscapeMoveSpeed; }
+
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
 	Matrixf* mLeftHandMtx;                  // _2BC

@@ -407,12 +407,12 @@ void StateGoHome::exec(EnemyBase* enemy)
 		f32 sqrMagXZ     = pos.x * pos.x + pos.z * pos.z;
 		Vector3f homePos = imomushi->mHomePosition;
 		// the mismatch is from sqrDistanceXZ
-		if (sqrMagXZ < SQUARE(CG_GENERALPARMS(imomushi).mHomeRadius.mValue)) {
+		if (sqrMagXZ < SQUARE(CG_GENERALPARMS(imomushi).mHomeRadius())) {
 			imomushi->mNextState = IMOMUSHI_Dive;
 			imomushi->finishMotion();
 		}
-		EnemyFunc::walkToTarget(imomushi, homePos, CG_GENERALPARMS(imomushi).mMoveSpeed.mValue, CG_GENERALPARMS(imomushi).mTurnSpeed.mValue,
-		                        CG_GENERALPARMS(imomushi).mMaxTurnAngle.mValue);
+		EnemyFunc::walkToTarget(imomushi, homePos, CG_GENERALPARMS(imomushi).mMoveSpeed(), CG_GENERALPARMS(imomushi).mTurnSpeed(),
+		                        CG_GENERALPARMS(imomushi).mMaxTurnAngle());
 	}
 
 	if ((imomushi->mCurAnim->mIsPlaying) && ((u32)imomushi->mCurAnim->mType == KEYEVENT_END)) {

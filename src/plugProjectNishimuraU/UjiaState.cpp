@@ -258,24 +258,14 @@ void StateMove::exec(EnemyBase* enemy)
 	} else {
 		Creature* target = uji->mTargetCreature;
 		if (target && target->isAlive()) {
-			f32 angleDist = uji->changeFaceDir(target);
-			f32 x, y, z;
-			f32 speed = static_cast<EnemyParmsBase*>(uji->mParms)->mGeneral.mMoveSpeed();
-			x         = dolsinf(uji->getFaceDir());
-			y         = uji->getTargetVelocity().y;
-			z         = dolcosf(uji->getFaceDir());
+			f32 angleDist = uji->turnToTarget(target, CG_GENERALPARMS(uji).mTurnSpeed(), CG_GENERALPARMS(uji).mMaxTurnAngle());
+			uji->setTargetSpeed(CG_GENERALPARMS(uji).mMoveSpeed());
 
-			uji->mTargetVelocity = Vector3f(speed * x, y, speed * z);
-
-			f32 sightRadius   = CG_GENERALPARMS(uji).mSightRadius();
-			f32 fov           = CG_GENERALPARMS(uji).mFov();
-			f32 privateRadius = CG_GENERALPARMS(uji).mPrivateRadius();
-			if (uji->isTargetWithinRange(target, angleDist, privateRadius, sightRadius, fov, sightRadius)) {
+			if (uji->isTargetOutOfRange(target, angleDist, CG_GENERALPARMS(uji).mPrivateRadius(), CG_GENERALPARMS(uji).mSightRadius(),
+			                            CG_GENERALPARMS(uji).mFov(), CG_GENERALPARMS(uji).mSightRadius())) {
 				uji->mTargetCreature = nullptr;
 			} else {
-				Vector3f homePos = uji->mHomePosition;
-				f32 len          = uji->getPosition().distance(homePos);
-				if (len > CG_GENERALPARMS(uji).mTerritoryRadius()) {
+				if (uji->distanceFromHome() > CG_GENERALPARMS(uji).mTerritoryRadius()) {
 					uji->mTargetCreature = nullptr;
 				}
 			}

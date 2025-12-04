@@ -209,13 +209,7 @@ void Obj::setQurioneStartPos(f32 slideDist)
  */
 void Obj::moveFaceDir()
 {
-	f32 moveSpeed = getMoveSpeed();
-	// Vector3f vel;
-	f32 x = dolsinf(getFaceDir());
-	f32 y = getTargetVelocity().y;
-	f32 z = dolcosf(getFaceDir());
-
-	mTargetVelocity = Vector3f(moveSpeed * x, y, moveSpeed * z);
+	setTargetSpeed(C_GENERALPARMS.mMoveSpeed());
 
 	f32 minY = mapMgr->getMinY(mPosition);
 

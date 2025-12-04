@@ -1072,7 +1072,7 @@ Pellet* Obj::findNearestPellet()
 			if (absF(y - mPosition.y) > 10.0f) {
 				continue;
 			}
-			f32 angle = getCreatureViewAngle(pelt);
+			f32 angle = getAngDist(pelt);
 			if (absF(angle) <= maxAngle) {
 				s32 id = pelt->getCreatureID();
 				if (pelt->getKind() == PelletType::Carcass && (id == 0 || id == 1)) {
@@ -1169,7 +1169,7 @@ void Obj::checkNearHomeGraphIndex()
 	}
 	f32 turnSpeed    = 1.0f;
 	f32 maxTurnSpeed = 360.0f; // this ends up as tau via the inline lol
-	turnToTarget2(mNextWayPointPosition, turnSpeed, maxTurnSpeed);
+	turnToTarget(mNextWayPointPosition, turnSpeed, maxTurnSpeed);
 }
 
 /**
@@ -1264,7 +1264,7 @@ bool Obj::carryTarget(f32 param)
 			peltVel.z += mPelletCarryVelocity.z;
 		}
 		pelt->mPelletCarry->pull(2, peltVel, mCarryStrength);
-		f32 angle   = getCreatureViewAngle(pelt);
+		f32 angle   = getAngDist(pelt);
 		mFaceDir    = roundAng(mFaceDir + angle);
 		mRotation.y = mFaceDir;
 		pelt->setPanModokiRotation(roundAng((mCarryDir + mCarryRotationOffset) - mAlsoRotationOffset));

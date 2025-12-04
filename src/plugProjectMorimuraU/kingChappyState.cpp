@@ -1632,7 +1632,7 @@ void StateWarCry::exec(EnemyBase* enemy)
 					if (yMax > pikiPos.y && yMin < pikiPos.y) {
 						roarAngle      = CG_PROPERPARMS(enemy).mRoarEffectiveAngleDeg();
 						roarDist       = CG_PROPERPARMS(enemy).mRoarEffectiveRange();
-						f32 angDist    = enemy->getCreatureViewAngle(piki);
+						f32 angDist    = enemy->getAngDist(piki);
 						bool distCheck = false;
 						Vector3f sep   = enemy->getTargetSeparation(piki);
 						if ((sep.sqrMagnitude() < SQUARE(roarDist)) && FABS(angDist) <= PI * (DEG2RAD * roarAngle)) {

@@ -435,7 +435,7 @@ Piki* Obj::getSearchedPikmin()
 	{
 		Piki* piki = *iPiki;
 		if (piki->isAlive() && piki->isPikmin() && piki->mFloorTriangle && !piki->isStickToMouth() && piki->mSticker != this) {
-			f32 sightDiff = getCreatureViewAngle(piki);
+			f32 sightDiff = getAngDist(piki);
 			if (FABS(sightDiff) <= FOV) {
 				Vector3f pos      = getPosition();
 				Vector3f pikiPos2 = piki->getPosition();
@@ -461,8 +461,8 @@ bool Obj::isTargetLost()
 			viewAngle = 180.0f;
 		}
 
-		return isTargetWithinRange(target, getCreatureViewAngle(target), C_GENERALPARMS.mPrivateRadius(), C_GENERALPARMS.mSightRadius(),
-		                           12800.0f, viewAngle);
+		return isTargetOutOfRange(target, getAngDist(target), C_GENERALPARMS.mPrivateRadius(), C_GENERALPARMS.mSightRadius(), 12800.0f,
+		                          viewAngle);
 	}
 
 	return true;

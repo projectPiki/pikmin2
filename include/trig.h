@@ -246,4 +246,14 @@ inline f32 boundAboveBelow(f32 angle, f32 min, f32 max)
 	return (angle < min) ? min : (angle > max) ? max : angle;
 }
 
+inline bool isAngleWithin(f32 angle, f32 rangeInDegrees)
+{
+	return absF(angle) <= TORADIANS(rangeInDegrees);
+}
+
+inline bool isRadiusWithin(f32 radius, f32 range)
+{
+	return radius < SQUARE(range);
+}
+
 #endif

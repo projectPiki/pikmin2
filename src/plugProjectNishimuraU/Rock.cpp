@@ -383,14 +383,9 @@ void Obj::updateMoveVelocity()
 			targetPos = mPosition + mTargetVelocity;
 		}
 
-		turnToTarget2(targetPos, C_GENERALPARMS.mTurnSpeed(), C_GENERALPARMS.mMaxTurnAngle());
+		turnToTarget(targetPos, C_GENERALPARMS.mTurnSpeed(), C_GENERALPARMS.mMaxTurnAngle());
 
-		f32 moveSpeed = getMoveSpeed();
-		f32 x         = dolsinf(getFaceDir());
-		f32 y         = getTargetVelocity().y;
-		f32 z         = dolcosf(getFaceDir());
-
-		mTargetVelocity = Vector3f(moveSpeed * x, y, moveSpeed * z);
+		setTargetSpeed(C_PROPERPARMS.mSearchRumbleSpeed());
 
 	} else {
 		mTargetVelocity.x = 0.01f * mCurrentVelocity.x + 0.99f * mTargetVelocity.x;
@@ -399,7 +394,7 @@ void Obj::updateMoveVelocity()
 
 		Vector3f targetPos = mPosition + mTargetVelocity;
 
-		turnToTarget2(targetPos, C_GENERALPARMS.mTurnSpeed(), C_GENERALPARMS.mMaxTurnAngle());
+		turnToTarget(targetPos, C_GENERALPARMS.mTurnSpeed(), C_GENERALPARMS.mMaxTurnAngle());
 	}
 	/*
 	stwu     r1, -0xa0(r1)

@@ -26,19 +26,7 @@ void Obj::attackNaviPosition()
 	{
 		Navi* navi = (*iter);
 		if (navi->isAlive()) {
-			f32 attackDist, attackAngle;
-			attackAngle = static_cast<EnemyParmsBase*>(mParms)->mGeneral.mMaxAttackAngle();
-			attackDist  = static_cast<EnemyParmsBase*>(mParms)->mGeneral.mMaxAttackRange();
-
-			f32 angledist = getCreatureViewAngle(navi);
-
-			bool check   = false;
-			Vector3f sep = getTargetSeparation(navi);
-			if ((sep.sqrMagnitude() < SQUARE(attackDist)) && FABS(angledist) <= TORADIANS(attackAngle)) {
-				check = true;
-			}
-
-			if (check) {
+			if (isTargetAttackable(navi, E_GENERALPARMS.mMaxAttackRange(), E_GENERALPARMS.mMaxAttackAngle())) {
 				mTargetPosition = Vector3f(navi->getPosition());
 			}
 		}

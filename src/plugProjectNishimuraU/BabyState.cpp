@@ -108,9 +108,10 @@ void StateBorn::exec(EnemyBase* enemy)
 {
 	if (enemy->mFloorTriangle) {
 
-		Vector3f vec = enemy->mTargetVelocity;
-		vec.scale2D(0.95f);
-		enemy->mTargetVelocity = vec;
+		Vector3f vec = enemy->getTargetVelocity();
+		vec.x *= 0.95f;
+		vec.z *= 0.95f;
+		enemy->setTargetVelocity(vec);
 
 		enemy->finishMotion();
 	}
@@ -165,12 +166,10 @@ void StateMove::exec(EnemyBase* enemy)
 		// Vector3f targetPos = creature->getPosition();
 		f32 angleDist = baby->turnToTarget(creature, CG_GENERALPARMS(baby).mTurnSpeed(), CG_GENERALPARMS(baby).mMaxTurnAngle());
 
-		f32 limit = PI * (DEG2RAD * CG_GENERALPARMS(baby).mMaxAttackAngle());
-
-		if (FABS(angleDist) <= limit) {
-			baby->setTargetVelocity();
+		if (isAngleWithin(angleDist, CG_GENERALPARMS(baby).mMaxAttackAngle())) {
+			baby->setTargetSpeed(CG_GENERALPARMS(baby).mMoveSpeed());
 		} else {
-			baby->setTargetVelocity(0.25f);
+			baby->setTargetSpeed(0.25f * CG_GENERALPARMS(baby).mMoveSpeed());
 		}
 
 		if (baby->isTargetAttackable(creature, angleDist, CG_GENERALPARMS(baby).mMaxAttackRange(),

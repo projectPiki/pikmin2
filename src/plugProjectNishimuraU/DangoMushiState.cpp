@@ -196,7 +196,7 @@ void StateAppear::exec(EnemyBase* enemy)
 				minAttackRange = CG_GENERALPARMS(crab).mMaxAttackAngle();
 				maxAttackRange = CG_GENERALPARMS(crab).mMaxAttackRange();
 
-				f32 viewAngle = crab->getCreatureViewAngle(target);
+				f32 viewAngle = crab->getAngDist(target);
 				if (crab->isTargetAttackable(target, viewAngle, maxAttackRange, minAttackRange)) {
 					transit(crab, DANGOMUSHI_Attack, nullptr);
 				} else {
@@ -209,280 +209,6 @@ void StateAppear::exec(EnemyBase* enemy)
 			}
 		}
 	}
-	/*
-	stwu     r1, -0x120(r1)
-	mflr     r0
-	stw      r0, 0x124(r1)
-	stfd     f31, 0x110(r1)
-	psq_st   f31, 280(r1), 0, qr0
-	stfd     f30, 0x100(r1)
-	psq_st   f30, 264(r1), 0, qr0
-	stfd     f29, 0xf0(r1)
-	psq_st   f29, 248(r1), 0, qr0
-	stfd     f28, 0xe0(r1)
-	psq_st   f28, 232(r1), 0, qr0
-	stfd     f27, 0xd0(r1)
-	psq_st   f27, 216(r1), 0, qr0
-	stfd     f26, 0xc0(r1)
-	psq_st   f26, 200(r1), 0, qr0
-	stw      r31, 0xbc(r1)
-	stw      r30, 0xb8(r1)
-	stw      r29, 0xb4(r1)
-	stw      r28, 0xb0(r1)
-	mr       r28, r3
-	lwz      r3, 0x188(r4)
-	mr       r30, r4
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_802FA58C
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0x7d0
-	bne      lbl_802FA258
-	mr       r3, r30
-	bl       endBlendAnimation__Q34Game10DangoMushi3ObjFv
-	b        lbl_802FA58C
-
-lbl_802FA258:
-	cmplwi   r0, 2
-	bne      lbl_802FA2C4
-	mr       r3, r30
-	bl       createAppearSmokeEffect__Q34Game10DangoMushi3ObjFv
-	mr       r4, r30
-	addi     r3, r1, 0x8c
-	lwz      r12, 0(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 0x8c(r1)
-	addi     r5, r1, 0xa4
-	lfs      f1, 0x90(r1)
-	li       r4, 0x1b
-	lfs      f0, 0x94(r1)
-	li       r6, 2
-	stfs     f2, 0xa4(r1)
-	lwz      r3, cameraMgr__4Game@sda21(r13)
-	stfs     f1, 0xa8(r1)
-	stfs     f0, 0xac(r1)
-	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
-	lwz      r3, rumbleMgr__4Game@sda21(r13)
-	addi     r5, r1, 0xa4
-	li       r4, 0xf
-	li       r6, 2
-	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
-	b        lbl_802FA58C
-
-lbl_802FA2C4:
-	cmplwi   r0, 3
-	bne      lbl_802FA2D8
-	mr       r3, r30
-	bl       setBossAppearBGM__Q34Game10DangoMushi3ObjFv
-	b        lbl_802FA58C
-
-lbl_802FA2D8:
-	cmplwi   r0, 4
-	bne      lbl_802FA338
-	lwz      r12, 0(r4)
-	addi     r3, r1, 0x80
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 0x80(r1)
-	addi     r5, r1, 0x98
-	lfs      f1, 0x84(r1)
-	li       r4, 0xf
-	lfs      f0, 0x88(r1)
-	li       r6, 2
-	stfs     f2, 0x98(r1)
-	lwz      r3, cameraMgr__4Game@sda21(r13)
-	stfs     f1, 0x9c(r1)
-	stfs     f0, 0xa0(r1)
-	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
-	lwz      r3, rumbleMgr__4Game@sda21(r13)
-	addi     r5, r1, 0x98
-	li       r4, 0xb
-	li       r6, 2
-	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
-	b        lbl_802FA58C
-
-lbl_802FA338:
-	cmplwi   r0, 0x3e8
-	bne      lbl_802FA58C
-	mr       r3, r30
-	bl       getSearchedTarget__Q34Game10DangoMushi3ObjFv
-	or.      r29, r3, r3
-	beq      lbl_802FA56C
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_802FA56C
-	lwz      r0, 0x44(r3)
-	cmpwi    r0, 4
-	beq      lbl_802FA56C
-	mr       r4, r29
-	lwz      r5, 0xc0(r30)
-	lwz      r12, 0(r29)
-	addi     r3, r1, 0x68
-	lfs      f30, 0x58c(r5)
-	lwz      r12, 8(r12)
-	lfs      f31, 0x564(r5)
-	mtctr    r12
-	bctrl
-	mr       r4, r30
-	lfs      f2, 0x68(r1)
-	lwz      r12, 0(r30)
-	addi     r3, r1, 0x74
-	lfs      f1, 0x6c(r1)
-	lfs      f0, 0x70(r1)
-	lwz      r12, 8(r12)
-	stfs     f2, 0x50(r1)
-	stfs     f1, 0x54(r1)
-	stfs     f0, 0x58(r1)
-	mtctr    r12
-	bctrl
-	lfs      f5, 0x74(r1)
-	lis      r3, atanTable___5JMath@ha
-	lfs      f3, 0x7c(r1)
-	addi     r3, r3, atanTable___5JMath@l
-	lfs      f1, 0x50(r1)
-	lfs      f0, 0x58(r1)
-	lfs      f4, 0x78(r1)
-	fsubs    f1, f1, f5
-	fsubs    f2, f0, f3
-	stfs     f5, 0x5c(r1)
-	stfs     f4, 0x60(r1)
-	stfs     f3, 0x64(r1)
-	bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
-	bl       roundAng__Ff
-	lwz      r12, 0(r30)
-	fmr      f26, f1
-	mr       r3, r30
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	fmr      f2, f1
-	fmr      f1, f26
-	bl       angDist__Fff
-	mr       r4, r30
-	fmr      f28, f1
-	lwz      r12, 0(r30)
-	addi     r3, r1, 0x14
-	li       r31, 0
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r29
-	addi     r3, r1, 8
-	lwz      r12, 0(r29)
-	lfs      f29, 0x14(r1)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r30
-	lfs      f0, 8(r1)
-	lwz      r12, 0(r30)
-	addi     r3, r1, 0x2c
-	fsubs    f26, f0, f29
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r29
-	addi     r3, r1, 0x20
-	lwz      r12, 0(r29)
-	lfs      f29, 0x30(r1)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r30
-	lfs      f0, 0x24(r1)
-	lwz      r12, 0(r30)
-	addi     r3, r1, 0x44
-	fsubs    f27, f0, f29
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r29
-	addi     r3, r1, 0x38
-	lwz      r12, 0(r29)
-	lfs      f29, 0x4c(r1)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	fmuls    f1, f27, f27
-	lfs      f2, 0x40(r1)
-	fmuls    f0, f31, f31
-	fsubs    f2, f2, f29
-	fmadds   f1, f26, f26, f1
-	fmadds   f1, f2, f2, f1
-	fcmpo    cr0, f1, f0
-	bge      lbl_802FA514
-	lfs      f0, lbl_8051D34C@sda21(r2)
-	fabs     f2, f28
-	lfs      f1, lbl_8051D348@sda21(r2)
-	fmuls    f0, f0, f30
-	frsp     f2, f2
-	fmuls    f0, f1, f0
-	fcmpo    cr0, f2, f0
-	cror     2, 0, 2
-	bne      lbl_802FA514
-	li       r31, 1
-
-lbl_802FA514:
-	clrlwi.  r0, r31, 0x18
-	beq      lbl_802FA540
-	mr       r3, r28
-	mr       r4, r30
-	lwz      r12, 0(r28)
-	li       r5, 5
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802FA58C
-
-lbl_802FA540:
-	mr       r3, r30
-	bl       setRandTarget__Q34Game10DangoMushi3ObjFv
-	mr       r3, r28
-	mr       r4, r30
-	lwz      r12, 0(r28)
-	li       r5, 4
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802FA58C
-
-lbl_802FA56C:
-	mr       r3, r28
-	mr       r4, r30
-	lwz      r12, 0(r28)
-	li       r5, 3
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_802FA58C:
-	psq_l    f31, 280(r1), 0, qr0
-	lfd      f31, 0x110(r1)
-	psq_l    f30, 264(r1), 0, qr0
-	lfd      f30, 0x100(r1)
-	psq_l    f29, 248(r1), 0, qr0
-	lfd      f29, 0xf0(r1)
-	psq_l    f28, 232(r1), 0, qr0
-	lfd      f28, 0xe0(r1)
-	psq_l    f27, 216(r1), 0, qr0
-	lfd      f27, 0xd0(r1)
-	psq_l    f26, 200(r1), 0, qr0
-	lfd      f26, 0xc0(r1)
-	lwz      r31, 0xbc(r1)
-	lwz      r30, 0xb8(r1)
-	lwz      r29, 0xb4(r1)
-	lwz      r0, 0x124(r1)
-	lwz      r28, 0xb0(r1)
-	mtlr     r0
-	addi     r1, r1, 0x120
-	blr
-	*/
 }
 
 /**
@@ -536,7 +262,7 @@ void StateWait::exec(EnemyBase* enemy)
 		minAttackRange = CG_GENERALPARMS(crab).mMaxAttackAngle();
 		maxAttackRange = CG_GENERALPARMS(crab).mMaxAttackRange();
 
-		f32 viewAngle = crab->getCreatureViewAngle(target);
+		f32 viewAngle = crab->getAngDist(target);
 		if (crab->isTargetAttackable(target, viewAngle, maxAttackRange, minAttackRange)) {
 			crab->mNextState = DANGOMUSHI_Attack;
 			crab->finishMotion();
@@ -558,240 +284,6 @@ void StateWait::exec(EnemyBase* enemy)
 			transit(crab, crab->mNextState, nullptr);
 		}
 	}
-
-	/*
-	stwu     r1, -0xf0(r1)
-	mflr     r0
-	stw      r0, 0xf4(r1)
-	stfd     f31, 0xe0(r1)
-	psq_st   f31, 232(r1), 0, qr0
-	stfd     f30, 0xd0(r1)
-	psq_st   f30, 216(r1), 0, qr0
-	stfd     f29, 0xc0(r1)
-	psq_st   f29, 200(r1), 0, qr0
-	stfd     f28, 0xb0(r1)
-	psq_st   f28, 184(r1), 0, qr0
-	stfd     f27, 0xa0(r1)
-	psq_st   f27, 168(r1), 0, qr0
-	stfd     f26, 0x90(r1)
-	psq_st   f26, 152(r1), 0, qr0
-	stw      r31, 0x8c(r1)
-	stw      r30, 0x88(r1)
-	stw      r29, 0x84(r1)
-	stw      r28, 0x80(r1)
-	lfs      f0, lbl_8051D340@sda21(r2)
-	mr       r31, r4
-	lfs      f1, 0x200(r4)
-	mr       r30, r3
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_802FA734
-	li       r0, 0
-	li       r5, 0
-	stw      r0, 0x2cc(r31)
-	addi     r6, r2, lbl_8051D350@sda21
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802FA9BC
-
-lbl_802FA734:
-	mr       r3, r31
-	bl       getSearchedTarget__Q34Game10DangoMushi3ObjFv
-	or.      r28, r3, r3
-	beq      lbl_802FA938
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_802FA938
-	lwz      r0, 0x44(r3)
-	cmpwi    r0, 4
-	beq      lbl_802FA938
-	mr       r4, r28
-	lwz      r5, 0xc0(r31)
-	lwz      r12, 0(r28)
-	addi     r3, r1, 0x68
-	lfs      f30, 0x58c(r5)
-	lwz      r12, 8(r12)
-	lfs      f31, 0x564(r5)
-	mtctr    r12
-	bctrl
-	mr       r4, r31
-	lfs      f2, 0x68(r1)
-	lwz      r12, 0(r31)
-	addi     r3, r1, 0x74
-	lfs      f1, 0x6c(r1)
-	lfs      f0, 0x70(r1)
-	lwz      r12, 8(r12)
-	stfs     f2, 0x50(r1)
-	stfs     f1, 0x54(r1)
-	stfs     f0, 0x58(r1)
-	mtctr    r12
-	bctrl
-	lfs      f5, 0x74(r1)
-	lis      r3, atanTable___5JMath@ha
-	lfs      f3, 0x7c(r1)
-	addi     r3, r3, atanTable___5JMath@l
-	lfs      f1, 0x50(r1)
-	lfs      f0, 0x58(r1)
-	lfs      f4, 0x78(r1)
-	fsubs    f1, f1, f5
-	fsubs    f2, f0, f3
-	stfs     f5, 0x5c(r1)
-	stfs     f4, 0x60(r1)
-	stfs     f3, 0x64(r1)
-	bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
-	bl       roundAng__Ff
-	lwz      r12, 0(r31)
-	fmr      f26, f1
-	mr       r3, r31
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	fmr      f2, f1
-	fmr      f1, f26
-	bl       angDist__Fff
-	mr       r4, r31
-	fmr      f28, f1
-	lwz      r12, 0(r31)
-	addi     r3, r1, 0x14
-	li       r29, 0
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r28
-	addi     r3, r1, 8
-	lwz      r12, 0(r28)
-	lfs      f29, 0x14(r1)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r31
-	lfs      f0, 8(r1)
-	lwz      r12, 0(r31)
-	addi     r3, r1, 0x2c
-	fsubs    f26, f0, f29
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r28
-	addi     r3, r1, 0x20
-	lwz      r12, 0(r28)
-	lfs      f29, 0x30(r1)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r31
-	lfs      f0, 0x24(r1)
-	lwz      r12, 0(r31)
-	addi     r3, r1, 0x44
-	fsubs    f27, f0, f29
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r28
-	addi     r3, r1, 0x38
-	lwz      r12, 0(r28)
-	lfs      f29, 0x4c(r1)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	fmuls    f1, f27, f27
-	lfs      f2, 0x40(r1)
-	fmuls    f0, f31, f31
-	fsubs    f2, f2, f29
-	fmadds   f1, f26, f26, f1
-	fmadds   f1, f2, f2, f1
-	fcmpo    cr0, f1, f0
-	bge      lbl_802FA908
-	lfs      f0, lbl_8051D34C@sda21(r2)
-	fabs     f2, f28
-	lfs      f1, lbl_8051D348@sda21(r2)
-	fmuls    f0, f0, f30
-	frsp     f2, f2
-	fmuls    f0, f1, f0
-	fcmpo    cr0, f2, f0
-	cror     2, 0, 2
-	bne      lbl_802FA908
-	li       r29, 1
-
-lbl_802FA908:
-	clrlwi.  r0, r29, 0x18
-	beq      lbl_802FA924
-	li       r0, 5
-	mr       r3, r31
-	stw      r0, 0x2cc(r31)
-	bl       finishMotion__Q24Game9EnemyBaseFv
-	b        lbl_802FA958
-
-lbl_802FA924:
-	li       r0, 4
-	mr       r3, r31
-	stw      r0, 0x2cc(r31)
-	bl       finishMotion__Q24Game9EnemyBaseFv
-	b        lbl_802FA958
-
-lbl_802FA938:
-	lfs      f1, 0x2c4(r31)
-	lfs      f0, lbl_8051D358@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_802FA958
-	li       r0, 4
-	mr       r3, r31
-	stw      r0, 0x2cc(r31)
-	bl       finishMotion__Q24Game9EnemyBaseFv
-
-lbl_802FA958:
-	lwz      r3, sys@sda21(r13)
-	lfs      f1, 0x2c4(r31)
-	lfs      f0, 0x54(r3)
-	fadds    f0, f1, f0
-	stfs     f0, 0x2c4(r31)
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_802FA9BC
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0x7d0
-	bne      lbl_802FA994
-	mr       r3, r31
-	bl       endBlendAnimation__Q34Game10DangoMushi3ObjFv
-	b        lbl_802FA9BC
-
-lbl_802FA994:
-	cmplwi   r0, 0x3e8
-	bne      lbl_802FA9BC
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r6, 0
-	lwz      r5, 0x2cc(r31)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_802FA9BC:
-	psq_l    f31, 232(r1), 0, qr0
-	lfd      f31, 0xe0(r1)
-	psq_l    f30, 216(r1), 0, qr0
-	lfd      f30, 0xd0(r1)
-	psq_l    f29, 200(r1), 0, qr0
-	lfd      f29, 0xc0(r1)
-	psq_l    f28, 184(r1), 0, qr0
-	lfd      f28, 0xb0(r1)
-	psq_l    f27, 168(r1), 0, qr0
-	lfd      f27, 0xa0(r1)
-	psq_l    f26, 152(r1), 0, qr0
-	lfd      f26, 0x90(r1)
-	lwz      r31, 0x8c(r1)
-	lwz      r30, 0x88(r1)
-	lwz      r29, 0x84(r1)
-	lwz      r0, 0xf4(r1)
-	lwz      r28, 0x80(r1)
-	mtlr     r0
-	addi     r1, r1, 0xf0
-	blr
-	*/
 }
 
 /**
@@ -832,7 +324,7 @@ void StateMove::exec(EnemyBase* enemy)
 
 	Creature* target = crab->getSearchedTarget();
 	if (target && gameSystem && !gameSystem->isZukanMode()) {
-		f32 viewAngle = crab->getCreatureViewAngle(target);
+		f32 viewAngle = crab->getAngDist(target);
 
 		if (crab->isTargetAttackable(target, viewAngle, CG_GENERALPARMS(crab).mMaxAttackRange(), CG_GENERALPARMS(crab).mMaxAttackAngle())) {
 			crab->mNextState = DANGOMUSHI_Attack;
@@ -840,8 +332,8 @@ void StateMove::exec(EnemyBase* enemy)
 
 		} else {
 			crab->turnToTarget(target, CG_GENERALPARMS(crab).mTurnSpeed(), CG_GENERALPARMS(crab).mMaxTurnAngle());
-			if (FABS(viewAngle) <= PI * (DEG2RAD * CG_GENERALPARMS(crab).mMaxAttackAngle())) {
-				crab->setTargetVelocity();
+			if (isAngleWithin(viewAngle, CG_GENERALPARMS(crab).mMaxAttackAngle())) {
+				crab->setTargetSpeed(CG_GENERALPARMS(crab).mMoveSpeed());
 			} else {
 				crab->mTargetVelocity = Vector3f(0.0f);
 			}
@@ -855,11 +347,11 @@ void StateMove::exec(EnemyBase* enemy)
 		crab->finishMotion();
 	} else {
 		Vector3f targetPos = crab->mTargetPosition;
-		f32 viewAngle      = crab->getCreatureViewAngle(targetPos);
-		crab->turnToTarget2(targetPos, CG_GENERALPARMS(crab).mTurnSpeed(), CG_GENERALPARMS(crab).mMaxTurnAngle());
+		f32 viewAngle      = crab->getAngDist(targetPos);
+		crab->turnToTarget(targetPos, CG_GENERALPARMS(crab).mTurnSpeed(), CG_GENERALPARMS(crab).mMaxTurnAngle());
 
-		if (FABS(viewAngle) <= HALF_PI) {
-			crab->setTargetVelocity();
+		if (isAngleWithin(viewAngle, 30.0f)) {
+			crab->setTargetSpeed(CG_GENERALPARMS(crab).mMoveSpeed());
 		} else {
 			crab->setTargetVelocity(Vector3f(0.0f));
 		}

@@ -354,7 +354,7 @@ void IKSystemMgr::updateController()
  */
 void IKSystemMgr::setNextCentrePosition()
 {
-	f32 angleDist = mOwner->getCreatureViewAngle(mTargetPosition);
+	f32 angleDist = mOwner->getAngDist(mTargetPosition);
 	Vector3f nextPos;
 	if (absF(angleDist) <= TORADIANS(mParams->getViewAngle())) {
 		Vector3f ownerPos = mOwner->getPosition();

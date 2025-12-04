@@ -735,15 +735,16 @@ void Obj::walkFunc()
 			mReturnTimer             = 0;
 		}
 
-		turnToTarget2(mGoalPosition, turningSpeed, maxTurnAngle);
+		turnToTarget(mGoalPosition, turningSpeed, maxTurnAngle);
 
 		f32 prevFaceDir = mFaceDir;
 
 		// adjust target velocity
-		f32 theta     = prevFaceDir + turnAngle;
-		f32 velocityX = walkSpeed * sinf(theta);
-		f32 velocityY = getTargetVelocity().y;
-		f32 velocityZ = walkSpeed * cosf(theta);
+		f32 theta = prevFaceDir + turnAngle;
+		Vector3f velocity;
+		velocity.x = walkSpeed * sinf(theta);
+		velocity.y = getTargetVelocity().y;
+		velocity.z = walkSpeed * cosf(theta);
 
 		mNextFaceDir = prevFaceDir;
 
@@ -760,8 +761,8 @@ void Obj::walkFunc()
 
 		// Update the face direction and target velocity
 		mFaceDir += roundAng(PI * flipFaceDir + turnAngle);
-		mRotation.y     = mFaceDir;
-		mTargetVelocity = Vector3f(velocityX, velocityY, velocityZ);
+		mRotation.y = mFaceDir;
+		setTargetVelocity(velocity);
 
 		// mPauseSpeedModifier is 0.15f by default, so this doesn't run
 		// but if modifier is meant to make speed 0... make speed HARD 0.
@@ -774,11 +775,7 @@ void Obj::walkFunc()
 	}
 
 	if (stateID == JIGUMO_Attack) {
-		f32 x = dolsinf(getFaceDir());
-		f32 y = getTargetVelocity().y;
-		f32 z = dolcosf(getFaceDir());
-
-		mTargetVelocity = Vector3f(walkSpeed * x, y, walkSpeed * z);
+		setTargetSpeed(walkSpeed);
 
 		return;
 	}

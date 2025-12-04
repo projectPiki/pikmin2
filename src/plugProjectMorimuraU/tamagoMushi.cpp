@@ -451,7 +451,7 @@ void Obj::setGoalDirect(Vector3f& pos)
 bool Obj::turnFunc()
 {
 	f32 angle
-	    = turnToTarget2(mGoalPosition, mRandomTurnFactor * C_GENERALPARMS.mTurnSpeed(), mRandomTurnFactor * C_GENERALPARMS.mMaxTurnAngle());
+	    = turnToTarget(mGoalPosition, mRandomTurnFactor * C_GENERALPARMS.mTurnSpeed(), mRandomTurnFactor * C_GENERALPARMS.mMaxTurnAngle());
 	if (absF(angle) < 0.1f) {
 		return true;
 	}

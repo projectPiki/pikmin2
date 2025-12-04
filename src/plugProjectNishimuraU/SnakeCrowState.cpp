@@ -461,9 +461,9 @@ void StateWait::exec(EnemyBase* enemy)
 	if (previousTarget) {
 		if (previousTarget->isAlive() && !previousTarget->isStickToMouth() && previousTarget->mSticker != snagret) {
 			// this inline needs fixing
-			if (snagret->isTargetWithinRange(previousTarget, snagret->getCreatureViewAngle(previousTarget),
-			                                 CG_GENERALPARMS(snagret).mPrivateRadius(), CG_GENERALPARMS(snagret).mSightRadius(),
-			                                 CG_GENERALPARMS(snagret).mFov(), CG_GENERALPARMS(snagret).mViewAngle())) {
+			if (snagret->isTargetOutOfRange(previousTarget, snagret->getAngDist(previousTarget), CG_GENERALPARMS(snagret).mPrivateRadius(),
+			                                CG_GENERALPARMS(snagret).mSightRadius(), CG_GENERALPARMS(snagret).mFov(),
+			                                CG_GENERALPARMS(snagret).mViewAngle())) {
 				target = nullptr;
 			} else {
 				target = EnemyFunc::getNearestPikminOrNavi(snagret, CG_GENERALPARMS(snagret).mViewAngle(),
@@ -484,16 +484,16 @@ void StateWait::exec(EnemyBase* enemy)
 		snagret->mStateTimer = 0.0f;
 
 		// this is probably one of the turnToTarget inlines but currently they don't generate the right stack >:(
-		f32 angleDist, angle, turnSpeed, maxTurnAngle;
+		f32 angleDist, turnSpeed, maxTurnAngle;
 		maxTurnAngle = CG_GENERALPARMS(snagret).mMaxTurnAngle();
 		turnSpeed    = CG_GENERALPARMS(snagret).mTurnSpeed();
 
-		angleDist = snagret->getCreatureViewAngle(target);
-		angle     = clamp(angleDist * turnSpeed, PI * (DEG2RAD * maxTurnAngle));
+		angleDist = snagret->getAngDist(target);
+		f32 angle = clamp(angleDist * turnSpeed, PI * (DEG2RAD * maxTurnAngle));
 
 		snagret->updateFaceDir(roundAng(angle + snagret->getFaceDir()));
 
-		if (absF(angleDist) <= SIN_2_5) {
+		if (isAngleWithin(angleDist, 25.0f)) {
 			snagret->finishRotateEffect();
 
 		} else {

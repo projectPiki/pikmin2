@@ -2104,13 +2104,9 @@ void walkToTarget(EnemyBase* enemy, Creature* target, f32 speed, f32 turnFactor,
  */
 void walkToTarget(EnemyBase* enemy, Vector3f& targetPos, f32 moveSpeed, f32 turnFactor, f32 maxTurnSpeed)
 {
-	enemy->turnToTarget2(targetPos, turnFactor, maxTurnSpeed);
+	enemy->turnToTarget(targetPos, turnFactor, maxTurnSpeed);
 
-	f32 x = sin(enemy->getFaceDir());
-	f32 y = enemy->getTargetVelocity().y;
-	f32 z = cos(enemy->getFaceDir());
-
-	enemy->mTargetVelocity = Vector3f(moveSpeed * x, y, moveSpeed * z);
+	enemy->setTargetSpeed(moveSpeed);
 }
 
 /**
