@@ -78,8 +78,8 @@ GXTevColorArg JPABaseShape::st_ca[6][4] = {
 	{ GX_CC_ZERO, GX_CC_TEXC, GX_CC_ONE, GX_CC_ZERO }, //
 	{ GX_CC_ZERO, GX_CC_C0, GX_CC_TEXC, GX_CC_ZERO },  //
 	{ GX_CC_C0, GX_CC_ONE, GX_CC_TEXC, GX_CC_ZERO },   //
-	{ GX_CC_C2, GX_CC_C0, GX_CC_TEXC, GX_CC_ZERO },    //
-	{ GX_CC_ZERO, GX_CC_TEXC, GX_CC_C0, GX_CC_C2 },    //
+	{ GX_CC_C1, GX_CC_C0, GX_CC_TEXC, GX_CC_ZERO },    //
+	{ GX_CC_ZERO, GX_CC_TEXC, GX_CC_C0, GX_CC_C1 },    //
 	{ GX_CC_ZERO, GX_CC_ZERO, GX_CC_ZERO, GX_CC_C0 },  //
 };
 
