@@ -877,7 +877,7 @@ void J2DPicture::setTevMode()
 		GXSetTevOrder(GXTevStageID(i), GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR_NULL);
 		GXSetTevColor(GX_TEVREG0, mBlack);
 		GXSetTevColor(GX_TEVREG1, mWhite);
-		GXSetTevColorIn(GXTevStageID(i), GX_CC_C0, GX_CC_C2, GX_CC_CPREV, GX_CC_ZERO);
+		GXSetTevColorIn(GXTevStageID(i), GX_CC_C0, GX_CC_C1, GX_CC_CPREV, GX_CC_ZERO);
 		GXSetTevAlphaIn(GXTevStageID(i), GX_CA_A0, GX_CA_A1, GX_CA_APREV, GX_CA_ZERO);
 		GXSetTevColorOp(GXTevStageID(i), GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
 		GXSetTevAlphaOp(GXTevStageID(i), GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);

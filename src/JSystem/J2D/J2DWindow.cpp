@@ -787,7 +787,7 @@ void J2DWindow::setTevMode(JUTTexture* texture, JUtility::TColor color1, JUtilit
 		GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR_NULL);
 		GXSetTevColor(GX_TEVREG0, color1);
 		GXSetTevColor(GX_TEVREG1, color2);
-		GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_C0, GX_CC_C2, GX_CC_TEXC, GX_CC_ZERO);
+		GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_C0, GX_CC_C1, GX_CC_TEXC, GX_CC_ZERO);
 		if (texture->getTransparency()) {
 			GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_A0, GX_CA_A1, GX_CA_TEXA, GX_CA_ZERO);
 		} else {
