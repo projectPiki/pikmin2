@@ -230,7 +230,7 @@ struct J2DPicture : public J2DPane {
 
 	inline ResTIMG* getTIMG(u8 i) { return getTexture(i)->mTexInfo; }
 
-	inline JGeometry::TVec2<s16>* getTexCoord(int i) { return &mTexCoords[i]; }
+	inline JGeometry::TVec2<s16>* getTexCoord(u8 i) { return &mTexCoords[i]; }
 
 	static inline void swap(f32& a, f32& b)
 	{
