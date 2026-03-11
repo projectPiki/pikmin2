@@ -570,10 +570,10 @@ void PelletGoalState::exec(Pellet* pelt)
 				if (strcmp(pelt->mConfig->mParams.mName.mData, "key")) {
 					PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
 					PSSystem::validateSceneMgr(mgr);
-					PSM::Scene_Cave* scene = static_cast<PSM::Scene_Cave*>(mgr->getChildScene());
+					PSM::Scene_Game* scene = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
 					PSSystem::checkGameScene(scene);
 					if (scene->isCave()) {
-						scene->startPollutUpSe();
+						static_cast<PSM::Scene_Cave*>(scene)->startPollutUpSe();
 					}
 				}
 			}
