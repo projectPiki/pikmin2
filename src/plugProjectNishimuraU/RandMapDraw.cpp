@@ -14,6 +14,14 @@ RandMapDraw::RandMapDraw(MapUnitGenerator* generator)
 }
 
 /**
+ * Horribly named by the devs,
+ * 
+ * Sets the room at pos to be visited and moves it
+ * from the mGenerator->mPlacedMapNodes CNode list
+ * to the mGenerator->mVisitedMapNodes CNode list
+ * 
+ * @param pos The position to reveal | Remains unmoddified (should be const)
+ * 
  * @note Address: 0x80245420
  * @note Size: 0x1CC
  */
@@ -35,7 +43,7 @@ void RandMapDraw::radarMapPartsOpen(Vector3f& pos)
 		    && y_pos < (childNode->getNodeOffsetY() + childNode->mUnitInfo->getUnitSizeY())) {
 
 			// We're within that section, so we add it to the visited nodes
-			childNode->del();
+			childNode->del(); // dude cnodes are so fucked
 			visitedNodes->add(childNode);
 
 			const int doorCount = childNode->getNumDoors();
@@ -53,6 +61,11 @@ void RandMapDraw::radarMapPartsOpen(Vector3f& pos)
 }
 
 /**
+ * Draws every map node
+ * @param x the base x coordinate
+ * @param y the base y coordinate
+ * @param z the base z coordinate
+ * 
  * @note Address: 0x802455EC
  * @note Size: 0x78
  */

@@ -151,11 +151,14 @@ RandMapUnit::RandMapUnit(MapUnitGenerator* generator)
 }
 
 /**
+ * Places all of the tiles for the floor
+ * 
  * @note Address: 0x8024611C
  * @note Size: 0xF4
  */
 void RandMapUnit::setMapUnit()
 {
+	// if we have an edit map, just use that
 	if (mGenerator->mEditMapUnit) {
 		setEditorMapUnit();
 	} else {
@@ -169,12 +172,16 @@ void RandMapUnit::setMapUnit()
 				addMap(tile->mUnitInfo, tile->getNodeOffsetX(), tile->getNodeOffsetY(), true);
 			}
 
+			// if there are no doors left, try destroying caps
 			if (getOpenDoorNum() == 0) {
+				// destroy any cap in hopes of connecting to a loop
 				changeCapToRootLoopMapUnit();
 
+				// if there are still no doors left, then merge any way2 into way2x2
 				if (getOpenDoorNum() == 0) {
 					changeTwoToOneMapUnit();
 
+					// juuuuuuuuust in case we open another door (we won't) y'know just in that one instance (we won't)
 					if (getOpenDoorNum() == 0) {
 						return;
 					}
@@ -185,6 +192,8 @@ void RandMapUnit::setMapUnit()
 }
 
 /**
+ * Gets the index for a specific map tile
+ * 
  * @note Address: 0x80246210
  * @note Size: 0x34
  */
@@ -204,6 +213,11 @@ int RandMapUnit::getAliveMapIndex(MapNode* tile)
 }
 
 /**
+ * Gets the size of a texture
+ * 
+ * @param x is set to the x size of the texture
+ * @param y is set to the y size of the texture
+ * 
  * @note Address: 0x80246244
  * @note Size: 0xA0
  */
@@ -231,15 +245,19 @@ void RandMapUnit::getTextureSize(int& x, int& y)
 }
 
 /**
+ * Picks the next map unit to be placed
+ * 
  * @note Address: 0x802462E4
  * @note Size: 0x6C
  */
 MapNode* RandMapUnit::getRandMapUnit()
 {
+	// if we haven't reached our room count yet, pick a random room
 	if (getPartsKindNum(UNITKIND_Room) < mRoomCount) {
 		return getNormalRandMapUnit();
 	}
 
+	// otherwise, try to connect open doors together with hallways
 	createLoopMapNodeCheck();
 
 	MapNode* loopNode = getLoopRandMapUnit();
@@ -251,80 +269,101 @@ MapNode* RandMapUnit::getRandMapUnit()
 }
 
 /**
+ * @brief Deletes any cap which collides with a corridor
+ * 
  * @note Address: 0x80246350
  * @note Size: 0x284
  */
 void RandMapUnit::changeCapToRootLoopMapUnit()
 {
-	char* unitNames[16];
+	// Key: = way2, + way4, ( cap
 
+	// if we have a corridor that collides with a cap [...==+(...]
+	// we check the forward position for if it is a cap [...==+_...]
+	// and if so, we destroy it, and ensure the other corridor is a + [...=== ...]
+	// eventually another function will go along and place a way2 or simillar in the gap
+	
+	char* way2Names[16];
 	// MapNode* placedNodes;
-	MapNode* nodeArray   = mGenerator->mMapNodeKinds;
+	MapNode* nodeArray   = &mGenerator->mMapNodeKinds[UNITKIND_Cap];
 	MapNode* placedNodes = mGenerator->getPlacedNodes();
 	int nameCount        = 0;
-	FOREACH_NODE(MapNode, nodeArray[2].mChild, currNode)
+	FOREACH_NODE(MapNode, mGenerator->mMapNodeKinds[UNITKIND_Corridor].mChild, currNode)
 	{
+		// ensures we are a way2
 		if (currNode->mUnitInfo->getUnitSizeX() == 1 && currNode->mUnitInfo->getUnitSizeY() == 1 && currNode->getNumDoors() == 2
-		    && currNode->getDoorDirect(CD_Up) == 0 && currNode->getDoorDirect(CD_Right) == 2) {
-			unitNames[nameCount] = currNode->mUnitInfo->getUnitName();
+		    && currNode->getDoorDirect(0) == CD_Up && currNode->getDoorDirect(1) == CD_Down) {
+			way2Names[nameCount] = currNode->mUnitInfo->getUnitName();
 			nameCount++;
 		}
 	}
 
-	if (nameCount) {
-		FOREACH_NODE(MapNode, placedNodes->mChild, currNode)
+	// if we don't have a hanging corridor, there's nothing for us to do
+	if (nameCount == 0) {
+		return;
+	}
+
+	FOREACH_NODE(MapNode, placedNodes->mChild, currNode)
+	{
+		// if we aren't a cap we don't care
+		if (currNode->mUnitInfo->getUnitKind() != UNITKIND_Cap) {
+			continue;
+		}
+
+		MapNode* tile = nullptr;
+		int X         = currNode->getNodeOffsetX();
+		int Y         = currNode->getNodeOffsetY();
+
+		int newX = X;
+		int newY = Y;
+
+		int doorDirect = (int)currNode->getDoorDirect(0);
+		// ensure newX and newY is the next position of hanging door
+		// for our cap
+		switch (doorDirect) {
+		case CD_Up:
+			newY++;
+			break;
+
+		case CD_Right:
+			newX = X - 1;
+			break;
+
+		case CD_Down:
+			newY--;
+			break;
+
+		case CD_Left:
+			newX = X + 1;
+			break;
+		}
+
+		FOREACH_NODE(MapNode, placedNodes->mChild, otherNode)
 		{
-			if (currNode->mUnitInfo->getUnitKind() == UNITKIND_Cap) {
-				MapNode* tile = nullptr;
-				int X         = currNode->getNodeOffsetX();
-				int Y         = currNode->getNodeOffsetY();
-
-				int newX = X;
-				int newY = Y;
-
-				int doorDirect = (int)currNode->getDoorDirect(CD_Up);
-				switch (doorDirect) {
-				case CD_Up:
-					newY++;
-					break;
-
-				case CD_Right:
-					newX = X - 1;
-					break;
-
-				case CD_Down:
-					newY--;
-					break;
-
-				case CD_Left:
-					newX = X + 1;
+			// go through every corridor except ourselves
+			if (currNode != otherNode && otherNode->mUnitInfo->getUnitKind() == UNITKIND_Corridor) {
+				// if the corridor collides with the cap's door, set it to be destroyed and replaced with a way2
+				// (so that we don't have an awkward way3 or way4 or wayl I suppose)
+				if (otherNode->getNodeOffsetX() == newX && otherNode->getNodeOffsetY() == newY) {
+					tile = otherNode;
 					break;
 				}
+			}
+		}
 
-				FOREACH_NODE(MapNode, placedNodes->mChild, otherNode)
-				{
-					if (currNode != otherNode && otherNode->mUnitInfo->getUnitKind() == UNITKIND_Corridor) {
-						if (otherNode->getNodeOffsetX() == newX && otherNode->getNodeOffsetY() == newY) {
-							tile = otherNode;
-							break;
-						}
-					}
-				}
+		if (tile) {
+			deleteMapNode(currNode);
+			deleteMapNode(tile);
 
-				if (tile) {
-					deleteMapNode(currNode);
-					deleteMapNode(tile);
+			int randIdx    = randInt(nameCount);
+			char* randName = way2Names[randIdx];
 
-					int randIdx    = randInt(nameCount);
-					char* randName = unitNames[randIdx];
-
-					FOREACH_NODE(MapNode, nodeArray[2].mChild, anotherNode)
-					{
-						if (anotherNode->mUnitInfo->getUnitName() == randName && doorDirect == anotherNode->getDoorDirect(CD_Up)) {
-							addMap(anotherNode->mUnitInfo, X, Y, true);
-							return;
-						}
-					}
+			FOREACH_NODE(MapNode, nodeArray[UNITKIND_Corridor].mChild, anotherNode)
+			{
+				// replaces these two units with a way2
+				if (anotherNode->mUnitInfo->getUnitName() == randName && doorDirect == anotherNode->getDoorDirect(0)) {
+					addMap(anotherNode->mUnitInfo, X, Y, true);
+					return;
 				}
 			}
 		}
@@ -332,54 +371,60 @@ void RandMapUnit::changeCapToRootLoopMapUnit()
 }
 
 /**
+ * Replaces two way2 units next to eachother with a way2x2 unit
+ * 
  * @note Address: 0x802465D4
  * @note Size: 0x360
  */
 void RandMapUnit::changeTwoToOneMapUnit()
 {
-	char* firstUnitNames[16];
-	int firstNamesCount  = 0;
-	int secondNamesCount = 0;
+	char* way2Names[16];
+	int way2Count  = 0;
+	int way2x2Count = 0;
 
 	MapNode* nodeArray   = mGenerator->getMapNodeKinds();
 	MapNode* placedNodes = mGenerator->getPlacedNodes();
 
-	FOREACH_NODE(MapNode, nodeArray[2].mChild, currNode)
+	FOREACH_NODE(MapNode, nodeArray[UNITKIND_Corridor].mChild, currNode)
 	{
+		// ensure we are way2
 		if (currNode->mUnitInfo->getUnitSizeX() == 1 && currNode->mUnitInfo->getUnitSizeY() == 1 && currNode->getNumDoors() == 2
-		    && currNode->getDoorDirect(CD_Up) == 0 && currNode->getDoorDirect(CD_Right) == 2) {
-			firstUnitNames[firstNamesCount] = currNode->mUnitInfo->getUnitName();
-			firstNamesCount++;
+		    && currNode->getDoorDirect(0) == CD_Up && currNode->getDoorDirect(1) == CD_Down) {
+			way2Names[way2Count] = currNode->mUnitInfo->getUnitName();
+			way2Count++;
 		}
 	}
 
-	char* secondUnitNames[16];
-	FOREACH_NODE(MapNode, nodeArray[2].mChild, currNode)
+	char* way2x2Names[16];
+	FOREACH_NODE(MapNode, nodeArray[UNITKIND_Corridor].mChild, currNode)
 	{
+		// ensure we are way2x2
 		if (currNode->mUnitInfo->getUnitSizeX() == 1 && currNode->mUnitInfo->getUnitSizeY() == 2 && currNode->getNumDoors() == 2
-		    && currNode->getDoorDirect(CD_Up) == 0 && currNode->getDoorDirect(CD_Right) == 2) {
-			secondUnitNames[secondNamesCount] = currNode->mUnitInfo->getUnitName();
-			secondNamesCount++;
+		    && currNode->getDoorDirect(0) == CD_Up && currNode->getDoorDirect(1) == CD_Down) {
+			way2x2Names[way2x2Count] = currNode->mUnitInfo->getUnitName();
+			way2x2Count++;
 		}
 	}
 
-	if (firstNamesCount && secondNamesCount) {
+	if (way2Count && way2x2Count) {
+		// get a random placed way2
 		MapNode* currNode = static_cast<MapNode*>(placedNodes->mChild);
 		for (; currNode; currNode = static_cast<MapNode*>(currNode->mNext)) {
 			MapNode* nextNode = static_cast<MapNode*>(currNode->mNext);
 			bool check        = false;
-			for (int i = 0; i < firstNamesCount; i++) {
-				if (currNode->mUnitInfo->getUnitName() == firstUnitNames[i]) {
+			for (int i = 0; i < way2Count; i++) {
+				if (currNode->mUnitInfo->getUnitName() == way2Names[i]) {
 					check = true;
 				}
 			}
 
+			// checks if we have another way2 adjecent to us and sets it to targetNode
 			MapNode* targetNode = nullptr;
 			if (check) {
 				for (int i = 0; i < 2; i++) {
 					if (!targetNode && currNode->mAdjustInfo[i].mMapTile) {
-						for (int j = 0; j < firstNamesCount; j++) {
-							if (currNode->mAdjustInfo[i].mMapTile->mUnitInfo->getUnitName() == firstUnitNames[j]) {
+						for (int j = 0; j < way2Count; j++) {
+							if (currNode->mAdjustInfo[i].mMapTile->mUnitInfo->getUnitName() == way2Names[j]) {
 								targetNode = currNode->mAdjustInfo[i].mMapTile;
 								break;
 							}
@@ -388,6 +433,7 @@ void RandMapUnit::changeTwoToOneMapUnit()
 				}
 			}
 
+			// if we have an adjacent node, kill both and replace with a 2x2
 			if (targetNode) {
 				int X        = targetNode->getNodeOffsetX();
 				int currentX = currNode->getNodeOffsetX();
@@ -406,11 +452,11 @@ void RandMapUnit::changeTwoToOneMapUnit()
 				deleteMapNode(currNode);
 				deleteMapNode(targetNode);
 
-				int randIdx    = randInt(secondNamesCount);
-				char* randName = secondUnitNames[randIdx];
+				int randIdx    = randInt(way2x2Count);
+				char* randName = way2x2Names[randIdx];
 				FOREACH_NODE(MapNode, nodeArray[2].mChild, anotherNode)
 				{
-					if (anotherNode->mUnitInfo->getUnitName() == randName && xDiff == anotherNode->getDoorDirect(CD_Up)) {
+					if (anotherNode->mUnitInfo->getUnitName() == randName && xDiff == anotherNode->getDoorDirect(0)) {
 						addMap(anotherNode->mUnitInfo, X, Y, true);
 						break;
 					}
@@ -691,6 +737,8 @@ lbl_80246920:
 }
 
 /**
+ * Place all of the edit map units for vs mode
+ * 
  * @note Address: 0x80246934
  * @note Size: 0x144
  */
@@ -719,6 +767,8 @@ void RandMapUnit::setEditorMapUnit()
 }
 
 /**
+ * Place the first map unit
+ * 
  * @note Address: 0x80246A78
  * @note Size: 0x6C
  */
@@ -731,12 +781,14 @@ void RandMapUnit::setFirstMapUnit()
 }
 
 /**
+ * Picks a the first room that has a start basegen
+ * 
  * @note Address: 0x80246AE4
  * @note Size: 0x8C
  */
 MapNode* RandMapUnit::getFirstMapUnit()
 {
-	FOREACH_NODE(MapNode, mGenerator->mMapNodeKinds[1].mChild, currNode)
+	FOREACH_NODE(MapNode, mGenerator->mMapNodeKinds[UNITKIND_Room].mChild, currNode)
 	{
 		BaseGen* gen = currNode->mUnitInfo->getBaseGen();
 		if (gen) {
@@ -754,50 +806,76 @@ MapNode* RandMapUnit::getFirstMapUnit()
 }
 
 /**
+ * @brief Choses a random room unit
+ * 
+ * @returns A specific mapnode unit corresponding to the next node to place
+ * 
  * @note Address: 0x80246B70
  * @note Size: 0x188
  */
 MapNode* RandMapUnit::getNormalRandMapUnit()
 {
-	int intArr[16];
+	int doorIndicies[16];
 	int kindOrder[UNITKIND_Count];
 	int doorNum  = getOpenDoorNum();
+	// choose a random door to place a map unit on
 	int randDoor = randInt(doorNum);
 
-	MapNode* nodeArray = mGenerator->getMapNodeKind(0);
+	// CNode list
+	MapNode* nodeArray = mGenerator->getMapNodeKind(UNITKIND_Cap);
 
 	int doorIdx;
 	int doorX;
 	int doorY;
+	// get the position on a door index, doorIdx should line up with the door we would place on
+	// (node is the the map unit we are attaching to, I believe)
 	MapNode* node  = getCalcDoorIndex(doorIdx, doorX, doorY, randDoor);
+	// door is the specific door we are attaching to
 	DoorNode* door = node->getDoorNode(doorIdx);
 
-	if (node && door) {
-		setUnitKindOrder(node, kindOrder);
-		for (int i = 0; i < UNITKIND_Count; i++) {
-			setUnitDoorSorting(kindOrder[i]);
-			FOREACH_NODE(MapNode, nodeArray[kindOrder[i]].mChild, currNode)
-			{
-				int currDoorNum = currNode->getNumDoors();
-				setRandomDoorIndex(intArr, currDoorNum);
+	// if we fail to attach, then we can't go on
+	if (!node || !door) {
+		return nullptr;
+	}
+	// set kindOrder
+	setUnitKindOrder(node, kindOrder);
 
-				for (int j = 0; j < currDoorNum; j++) {
-					if (currNode->isDoorSet(door, doorX, doorY, intArr[j]) && mChecker->isPutOnMap(currNode)) {
-						return currNode;
-					}
+	for (int i = 0; i < UNITKIND_Count; i++) {
+		// sorts our units if we're placing a corridor
+		setUnitDoorSorting(kindOrder[i]);
+		
+		FOREACH_NODE(MapNode, nodeArray[kindOrder[i]].mChild, currNode)
+		{
+			int currDoorNum = currNode->getNumDoors();
+			// note: performs undefined behavior if currDoorNum > 16
+			setRandomDoorIndex(doorIndicies, currDoorNum);
+
+			for (int j = 0; j < currDoorNum; j++) {
+				// if this is a valid spot for the map node, return it
+				if (currNode->isDoorSet(door, doorX, doorY, doorIndicies[j]) && mChecker->isPutOnMap(currNode)) {
+					return currNode;
 				}
 			}
 		}
 	}
-
+	
+	// this should be equivilent (?)
 	return nullptr;
 }
 
 /**
+ * 
+ * @brief Sets the order of unit types in unitList
+ * Sets cap as index 2, and set room and then corridor as 0 and 1 respectively
+ * if the random chance fails, otherwise sets corridor as index 0 and room as index 1
+ * 
+ * @param node The map node we attach to, doubles the likelyhood of it being a corridor if its a room
+ * @param unitList Size 3 list of unitkinds
+ * 
  * @note Address: 0x80246CF8
  * @note Size: 0xC8
  */
-void RandMapUnit::setUnitKindOrder(MapNode* node, int* unitList)
+void RandMapUnit::setUnitKindOrder(MapNode* node, int unitList[])
 {
 	f32 ratio = mRouteRatio;
 
@@ -820,50 +898,70 @@ void RandMapUnit::setUnitKindOrder(MapNode* node, int* unitList)
 }
 
 /**
+ * @brief Sorts the units of type kind
+ * 
+ * @param kind function does nothing unless kind == UNITKIND_Corridor
+ * 
  * @note Address: 0x80246DC0
  * @note Size: 0x314
  */
 void RandMapUnit::setUnitDoorSorting(int kind)
 {
-	if (kind == UNITKIND_Corridor) {
-		MapNode* corrTiles = mGenerator->getMapNodeKind(kind);
-		int doorOffsets[16];
-		int openDoorNum = getOpenDoorNum();
-		if (openDoorNum < 4) {
-			for (int i = 0; i < mDoorCount; i++) {
-				doorOffsets[i] = mDoorCount - i;
-			}
-		} else {
-			for (int i = 0; i < mDoorCount; i++) {
-				doorOffsets[i] = i + 1;
-			}
+	if (kind != UNITKIND_Corridor) {
+		return;
+	}
+	
+	// CNode list
+	MapNode* corrTiles = mGenerator->getMapNodeKind(kind);
+	int doorOffsets[16];
+	int openDoorNum = getOpenDoorNum();
+	if (openDoorNum < 4) {
+		for (int i = 0; i < mDoorCount; i++) {
+			doorOffsets[i] = mDoorCount - i;
+		}
+	} else {
+		for (int i = 0; i < mDoorCount; i++) {
+			doorOffsets[i] = i + 1;
+		}
 
-			if (openDoorNum < 10) {
+		if (openDoorNum < 10) {
+			// here's this stupid shuffle again, DEBUG makes it uniform random
+			#ifndef DEBUG
 				for (int i = 0; i < mDoorCount; i++) {
 					int randIdx          = randInt(mDoorCount);
 					int currOffset       = doorOffsets[i];
 					doorOffsets[i]       = doorOffsets[randIdx];
 					doorOffsets[randIdx] = currOffset;
 				}
+			#else
+				// Fisher–Yates shuffle
+				for (int i = mDoorCount - 1; i > 0; i--) {
+					int randIdx = randInt(i + 1);
+					int currOffset       = doorOffsets[i];
+					doorOffsets[i]       = doorOffsets[randIdx];
+					doorOffsets[randIdx] = currOffset;
+				}
+
+			#endif
+			
+		}
+	}
+
+	for (int i = 0; i < mDoorCount; i++) {
+		int counter = 0;
+		FOREACH_NODE(MapNode, corrTiles->mChild, currTile)
+		{
+			if (doorOffsets[i] == currTile->getNumDoors()) {
+				counter++;
 			}
 		}
 
-		for (int i = 0; i < mDoorCount; i++) {
-			int counter = 0;
+		for (int j = 0; j < counter; j++) {
 			FOREACH_NODE(MapNode, corrTiles->mChild, currTile)
 			{
 				if (doorOffsets[i] == currTile->getNumDoors()) {
-					counter++;
-				}
-			}
-
-			for (int j = 0; j < counter; j++) {
-				FOREACH_NODE(MapNode, corrTiles->mChild, currTile)
-				{
-					if (doorOffsets[i] == currTile->getNumDoors()) {
-						currTile->del();
-						corrTiles->add(currTile);
-					}
+					currTile->del();
+					corrTiles->add(currTile);
 				}
 			}
 		}
@@ -871,24 +969,49 @@ void RandMapUnit::setUnitDoorSorting(int kind)
 }
 
 /**
+ * Takes in a list of size max and randomly
+ * assigns digits 0...max to uniquely to
+ * each element 0...max in the list
+ * 
+ * @param list a list
+ * @param max the size of the list
+ * 
+ * @bug list isn't set truely randomly
+ * 
  * @note Address: 0x802470D4
  * @note Size: 0x164
  */
-void RandMapUnit::setRandomDoorIndex(int* list, int max)
+void RandMapUnit::setRandomDoorIndex(int list[], int max)
 {
+	// initialize list from 0 to max
 	for (int i = 0; i < max; i++) {
 		list[i] = i;
 	}
 
+	// randomly shuffle each element in the list
+	// NOTE: This is not a truely uniform random shuffle, see DEBUG
+#ifndef DEBUG
 	for (int i = 0; i < max; i++) {
 		int randIdx    = randInt(max);
 		int currOffset = list[i];
 		list[i]        = list[randIdx];
 		list[randIdx]  = currOffset;
 	}
+#else
+	// Fisher–Yates shuffle
+	for (int i = max - 1; i > 0; i--) {
+		int randIdx = randInt(i + 1);
+		int currOffset = list[i];
+		list[i]        = list[randIdx];
+		list[randIdx]  = currOffset;
+	}
+
+#endif
 }
 
 /**
+ * Returns a random hallway that bridges between two open doors
+ * 
  * @note Address: 0x80247238
  * @note Size: 0x208
  */
@@ -933,8 +1056,8 @@ MapNode* RandMapUnit::getLoopRandMapUnit()
 		for (int j = 0; j < 2; j++) {
 			for (int k = 0; k < loopCount; k++) {
 				// Get the directions of the doors in the current tile
-				int loopDir0 = tileList[k]->getDoorDirect(CD_Up);
-				int loopDir1 = tileList[k]->getDoorDirect(CD_Right);
+				int loopDir0 = tileList[k]->getDoorDirect(0);
+				int loopDir1 = tileList[k]->getDoorDirect(1);
 
 				// Check if the first door's direction is the opposite of the tile's door and the second door's direction matches the
 				// current direction
@@ -1101,10 +1224,19 @@ lbl_8024742C:
 }
 
 /**
+ * @brief Calculates information required to attach a mapunit to the given door
+ * 
+ * @param doorIdx The door index within the returned MapNode
+ * @param doorOffsetX The x coordinate of the door
+ * @param doorOffsetY The y coordinate of the door
+ * @param targetDoorGlobalIdx The global index of the door to attach to
+ * 
+ * @return The MapNode which the global index of the door is attached to
+ * 
  * @note Address: 0x80247440
  * @note Size: 0xC8
  */
-MapNode* RandMapUnit::getCalcDoorIndex(int& doorIdx, int& doorOffsetX, int& doorOffsetY, int targetDoorCount)
+MapNode* RandMapUnit::getCalcDoorIndex(int& doorIdx, int& doorOffsetX, int& doorOffsetY, int targetDoorGlobalIdx)
 {
 	int doorCount = 0;
 
@@ -1124,7 +1256,7 @@ MapNode* RandMapUnit::getCalcDoorIndex(int& doorIdx, int& doorOffsetX, int& door
 			}
 
 			// If we've reached the target door count, get the door offset and return the current node
-			if (doorCount == targetDoorCount) {
+			if (doorCount == targetDoorGlobalIdx) {
 				currTile->getDoorNode(doorIdx);
 				currTile->getDoorOffset(doorIdx, doorOffsetX, doorOffsetY);
 				return currTile;
@@ -1204,10 +1336,19 @@ lbl_802474F4:
 }
 
 /**
+ * Gets the closest valid tile to create a loop between
+ * @param tile the tile to check from
+ * @param doorIdx the index of the door to check froom
+ * @param x1 the x position of the tile
+ * @param y1 the y position of the tile
+ * @param outDoorIdx is set to the door index of the returned MapNode
+ * 
+ * @return the closest valid tile to our mapnode
+ * 
  * @note Address: 0x80247508
  * @note Size: 0x12C
  */
-MapNode* RandMapUnit::getLinkDoorNodeFirst(MapNode* tile, int doorIdx, int b, int c, int& d)
+MapNode* RandMapUnit::getLinkDoorNodeFirst(MapNode* tile, int doorIdx, int x1, int y1, int& outDoorIdx)
 {
 	int minIdx      = 255;
 	int doorDirect  = tile->getDoorDirect(doorIdx);
@@ -1227,13 +1368,13 @@ MapNode* RandMapUnit::getLinkDoorNodeFirst(MapNode* tile, int doorIdx, int b, in
 				int x, y;
 				currTile->getDoorOffset(i, x, y);
 
-				if (isInLinkArea(doorDirect, b, c, x, y)) {
-					int idx = _abs(b - x) + _abs(c - y);
+				if (isInLinkArea(doorDirect, x1, y1, x, y)) {
+					int idx = _abs(x1 - x) + _abs(y1 - y);
 
 					if (idx < minIdx) {
-						d      = i;
-						minIdx = idx;
-						target = currTile;
+						outDoorIdx = i;
+						minIdx     = idx;
+						target     = currTile;
 					}
 				}
 			}
@@ -1244,13 +1385,26 @@ MapNode* RandMapUnit::getLinkDoorNodeFirst(MapNode* tile, int doorIdx, int b, in
 }
 
 /**
+ * @brief Gets whether two door positions are close enough to make a link from
+ * 
+ * Checks if the distance between two doors is less than 10
+ * and is facing the correct direction
+ * 
+ * @param direction the direction of unit 1
+ * @param x1 the x coordinate of unit 1
+ * @param y1 the y coordinate of unit 1
+ * @param x2 the x coordinate of unit 2
+ * @param y2 the y coordinate of unit 2
+ * 
+ * @returns whether the doors are close enough
+ * 
  * @note Address: 0x80247634
  * @note Size: 0xD0
  */
-bool RandMapUnit::isInLinkArea(int direction, int p2, int p3, int p4, int p5)
+bool RandMapUnit::isInLinkArea(int direction, int x1, int y1, int x2, int y2)
 {
-	int xDiff = p4 - p2;
-	int yDiff = p5 - p3;
+	int xDiff = x2 - x1;
+	int yDiff = y2 - y1;
 	int xCalc = _abs(xDiff);
 	int yCalc = _abs(yDiff);
 
@@ -1281,14 +1435,24 @@ bool RandMapUnit::isInLinkArea(int direction, int p2, int p3, int p4, int p5)
 }
 
 /**
+ * Gets all of the 1x1 corridor map nodes with 2 doors
+ * 
+ * @param nodes A list of MapNode pointers
+ * @return the count of corridor map nodes, also the amount of valid MapNode pointers for nodes
+ * 
+ * @bug doesn't uniformly randomize the loopNodes
+ * 
  * @note Address: 0x80247704
  * @note Size: 0x130
  */
-u32 RandMapUnit::getLoopMapNode(MapNode** nodes)
+u32 RandMapUnit::getLoopMapNode(MapNode* nodes[])
 {
+	// why isn't this a u32 if we return a u32???
 	int counter = 0;
+
 	FOREACH_NODE(MapNode, mGenerator->mMapNodeKinds[UNITKIND_Corridor].mChild, node)
 	{
+		// ensures we are a way corridor with 2 doors (way2 or wayl)
 		if (node->mUnitInfo->getUnitSizeX() == 1 && node->mUnitInfo->getUnitSizeY() == 1 && node->getNumDoors() == 2) {
 			nodes[counter] = node;
 			counter++;
@@ -1296,12 +1460,24 @@ u32 RandMapUnit::getLoopMapNode(MapNode** nodes)
 	}
 
 	if (counter) {
+		// NOTE: This is not a truely uniform random shuffle, see DEBUG
+#ifndef DEBUG
 		for (int i = 0; i < counter; i++) {
 			int randIdx       = randInt(counter);
 			MapNode* prevNode = nodes[i];
 			nodes[i]          = nodes[randIdx];
 			nodes[randIdx]    = prevNode;
 		}
+#else
+		// Fisher–Yates shuffle
+		for (int i = counter - 1; i > 0; i--) {
+			int randIdx = randInt(i + 1);
+			MapNode* prevNode = nodes[i];
+			nodes[i]          = nodes[randIdx];
+			nodes[randIdx]    = prevNode;
+		}
+
+#endif
 	}
 
 	return counter;
@@ -1814,6 +1990,8 @@ lbl_80247EE8:
 }
 
 /**
+ * Gets the amount of placed nodes of type kind
+ * 
  * @note Address: 0x80247F0C
  * @note Size: 0x70
  */
@@ -1831,6 +2009,8 @@ int RandMapUnit::getPartsKindNum(int kind)
 }
 
 /**
+ * Get the amount of still open doors
+ * 
  * @note Address: 0x80247F7C
  * @note Size: 0x8C
  */
@@ -1850,6 +2030,13 @@ int RandMapUnit::getOpenDoorNum()
 }
 
 /**
+ * Creates a copy of the UnitMap and attaches it to the placed map nodes
+ * 
+ * @param info The unitinfo of the map unit
+ * @param x the unit's x position on the grid
+ * @param y the unit's y position on the grid
+ * @param updatePriority whether to update the map's doors, center, and priority
+ * 
  * @note Address: 0x80248008
  * @note Size: 0xB4
  */
@@ -1865,6 +2052,7 @@ void RandMapUnit::addMap(UnitInfo* info, int x, int y, bool updatePriority)
 	if (updatePriority) {
 		closeDoorCheck();
 		moveCentre();
+		// I have no clue what this does tbh -Drought
 		changeMapPriority(info);
 	}
 }
@@ -2382,6 +2570,8 @@ void RandMapUnit::changeMapPriority(UnitInfo* info)
 }
 
 /**
+ * Move all nodes so that the bounding box of all of the units begins at the origin
+ * 
  * @note Address: 0x80248498
  * @note Size: 0x12C
  */
@@ -2392,6 +2582,7 @@ void RandMapUnit::moveCentre()
 	int minX = 12800;
 	int minY = 12800;
 
+	// Gets the total bounding size of our map
 	Cave::MapNode* rootNode = mGenerator->mPlacedMapNodes;
 	for (Cave::MapNode* currentNode = static_cast<Cave::MapNode*>(rootNode->mChild); currentNode;
 	     currentNode                = static_cast<Cave::MapNode*>(currentNode->mNext)) {
@@ -2438,6 +2629,8 @@ void RandMapUnit::moveCentre()
 }
 
 /**
+ * Infroms any doors that are attached to another cave unit that they are closed
+ * 
  * @note Address: 0x802485C4
  * @note Size: 0x134
  */
@@ -2485,6 +2678,8 @@ void RandMapUnit::closeDoorCheck()
 }
 
 /**
+ * Removes a placed map tile
+ * 
  * @note Address: 0x802486F8
  * @note Size: 0x38
  */
@@ -2698,6 +2893,11 @@ lbl_802488B4:
 }
 
 /**
+ * Checks if the tile and door index is a candidate for a loop
+ * 
+ * @param tile the tile to check
+ * @param idx the door index of the tile to check
+ * 
  * @note Address: 0x802488C8
  * @note Size: 0x4C
  */

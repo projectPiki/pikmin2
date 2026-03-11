@@ -240,6 +240,9 @@ struct MapUnits {
 };
 
 /**
+ * An abstraction for a complete room,
+ * including the physical room,
+ * as well as spawned items
  * @size{0x40}
  */
 struct MapNode : public CNode {
