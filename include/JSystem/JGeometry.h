@@ -253,7 +253,9 @@ struct TVec3 {
 	// inline TVec3(T inX, T inY, T inZ)
 	//     : x(inX)
 	//     , y(inY)
-	//     , z(inZ) {};
+	//     , z(inZ)
+	// {
+	// };
 
 	// // TODO: Determine if this could've actually existed, or if I'm just making it up.
 	// inline TVec3(const TVec3<T>& other)
@@ -261,6 +263,13 @@ struct TVec3 {
 	// 	x = other.x;
 	// 	y = other.y;
 	// 	z = other.z;
+	// }
+
+	// inline TVec3(const Vec& vec)
+	// 	: x(vec.x)
+	// 	, y(vec.y)
+	// 	, z(vec.z)
+	// {
 	// }
 
 	// TODO: Determine if this could've actually existed, or if I'm just making
@@ -324,13 +333,6 @@ struct TVec3 {
 		other.z = z;
 		return other;
 	}
-
-	// inline TVec3(Vec& vec)
-	// {
-	// 	x = vec.x;
-	// 	y = vec.y;
-	// 	z = vec.z;
-	// }
 
 	void add(const TVec3<f32>& b)
 	{
@@ -467,6 +469,7 @@ struct TVec3 {
 	T y;
 	T z;
 };
+\
 
 // Size: 0x10
 template <class T>

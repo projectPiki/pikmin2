@@ -213,6 +213,11 @@ struct JPABaseEmitter {
 		mGlobalPScl.y = x;
 	}
 
+	inline void setGlobalScale(const JGeometry::TVec3<f32>& scale) {
+        mGlobalScl.set(scale);
+        mGlobalPScl.set(scale.x ,scale.y);
+    }
+
 	inline void setColor(Color4& color)
 	{
 		mGlobalPrmClr.r = color.r;
@@ -291,7 +296,7 @@ struct JPABaseEmitter {
 	void setGlobalRTMatrix(const Mtx m) { JPASetRMtxTVecfromMtx(m, mGlobalRot, &mGlobalTrs); }
 	void setGlobalRMatrix(const Mtx m) { JPASetRMtxfromMtx(m, mGlobalRot); }
 	void setGlobalTranslation(f32 x, f32 y, f32 z) { mGlobalTrs.set(x, y, z); }
-	void setGlobalTranslation(JGeometry::TVec3f& vec) { mGlobalTrs.set(vec); }
+	void setGlobalTranslation(const JGeometry::TVec3f& vec) { mGlobalTrs.set(vec); }
 	void getLocalTranslation(JGeometry::TVec3f& vec) { vec.set(mLocalTrs); }
 	void setGlobalRotation(const JGeometry::TVec3<s16>& rot) { JPAGetXYZRotateMtx(rot.x, rot.y, rot.z, mGlobalRot); }
 	void setGlobalRotation(s16 x, s16 y, s16 z) { JPAGetXYZRotateMtx(x, y, z, mGlobalRot); }

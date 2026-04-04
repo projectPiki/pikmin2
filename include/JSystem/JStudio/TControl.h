@@ -120,6 +120,35 @@ struct TControl : public stb::TControl {
 		PSMTXMultVecSR(transformOnGet_getMatrix(), &dir, transformedDir);
 	}
 
+	void transformOnSet_transformTranslation(const Vec& src, Vec& dst) const
+	{
+		PSMTXMultVec(transformOnSet_getMatrix(), &src, &dst);
+	}
+
+	void transformOnSet_transformDirection(const Vec& src, Vec& dst) const
+	{
+		dst.x = src.x;
+		dst.y = src.y + mTransformOnSet_RotY;
+		dst.z = src.z;
+	}
+	void transformOnSet_transform(const TTransform_translation_rotation_scaling& src,
+	                               TTransform_translation_rotation_scaling& dst) const
+	{
+		transformOnSet_transformTranslation(src.getTranslation(), dst.getTranslation());
+		transformOnSet_transformDirection(src.getRotation(), dst.getRotation());
+	}
+
+	const TTransform_translation_rotation_scaling&
+	transformOnSet_transform_ifEnabled(const TTransform_translation_rotation_scaling& src,
+	                                   TTransform_translation_rotation_scaling& dst) const
+	{
+		if (!transformOnSet_isEnabled()) {
+			return src;
+		}
+		transformOnSet_transform(src, dst);
+		return dst;
+	}
+
 	// _00     = VTBL
 	// _00-_58 = stb::TControl
 	f64 mSecondsPerFrame;       // _58
