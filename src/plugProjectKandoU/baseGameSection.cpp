@@ -33,6 +33,7 @@
 #include "utilityU.h"
 #include "PikiAI.h"
 #include "nans.h"
+#include "moddingU/modMenu.h"
 
 namespace og {
 namespace Screen {
@@ -356,6 +357,7 @@ bool BaseGameSection::doUpdate()
 	if (shadowMgr) {
 		shadowMgr->init();
 	}
+	moddingU::onBaseGameUpdate(mControllerP1);
 	gameSystem->endFrame();
 	return mIsMainActive;
 }
@@ -394,6 +396,7 @@ void BaseGameSection::doDraw(Graphics& gfx)
 	if (moviePlayer && !gameSystem->mIsMoviePause) {
 		moviePlayer->draw(gfx);
 	}
+	moddingU::onBaseGameDraw(gfx);
 }
 
 /**
