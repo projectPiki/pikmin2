@@ -168,7 +168,7 @@ int CPlate::getSlot(Creature* piki, SlotChangeListener* listener, bool doCheckVa
 {
 	if (!doCheckValid) {
 		static_cast<Piki*>(piki)->mNavi->getOlimarData();
-		if (mSlotCount >= 100) {
+		if (mSlotCount >= mSlotLimit) {
 			return -1;
 		}
 	}
