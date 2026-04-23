@@ -14,6 +14,10 @@
 #include "Game/generalEnemyMgr.h"
 #include "Game/GameSystem.h"
 #include "Game/gamePlayData.h"
+#include "Game/gameStages.h"
+#include "Game/gameStat.h"
+#include "Dolphin/rand.h"
+#include "PikiAI.h"
 
 #include "JSystem/J2D/J2DPrint.h"
 #include "JSystem/JFramework/JFWSystem.h"
@@ -27,17 +31,25 @@ namespace moddingU {
 // menu object would get its fields zeroed out from under it).
 static ModMenu sModMenuStorage;
 ModMenu* gModMenu = &sModMenuStorage;
-u32      gFieldCap = MAX_PIKI_COUNT;
+u32      gFieldCap = 100;
+u32      gPurpleLiftScale = 10;
 
 static void action_killAllEnemies();
 static void action_giveAllPikiFlower();
 static void action_killAllPikmin();
 static void action_allPikiToOnyon();
+static void action_onyonToCaptain();
+static void action_unlockAllLandingSpots();
 static void action_addPokos();
 static void action_toggleNoclip();
 static void action_toggleFreezeDay();
 static void action_refillSprays();
 static void action_restoreDefaults();
+
+static int displayPokoCount()
+{
+	return Game::playData ? Game::playData->getPokoCount() : 0;
+}
 
 void ensureCreated()
 {
@@ -81,6 +93,12 @@ ModMenu::ModMenu()
 		mSliders[i].mStep     = 0.0f;
 		mSliders[i].mAction   = nullptr;
 		mSliders[i].mOriginal = 0.0f;
+		mSliders[i].mEnabled           = false;
+		mSliders[i].mDirty             = false;
+		mSliders[i].mGreenLabel        = false;
+		mSliders[i].mNoValue           = false;
+		mSliders[i].mOrangeIfMenuDirty = false;
+		mSliders[i].mGetDisplayInt     = nullptr;
 	}
 }
 
@@ -93,6 +111,19 @@ void ModMenu::toggle()
 	}
 	mOpen = !mOpen;
 	OSReport("[MOD] menu %s\n", mOpen ? "OPEN" : "closed");
+}
+
+bool ModMenu::isMenuDirty() const
+{
+	for (int i = 0; i < mSliderCount; ++i) {
+		const ModSlider& s = mSliders[i];
+		if (s.mOrangeIfMenuDirty) continue; // don't let the restore button count itself
+		if ((s.mKind == kModSlider_Float || s.mKind == kModSlider_Int) && s.mDirty)
+			return true;
+		if (s.mKind == kModSlider_Action && s.mEnabled)
+			return true;
+	}
+	return false;
 }
 
 void ModMenu::buildSliders()
@@ -117,9 +148,9 @@ void ModMenu::buildSliders()
 		s.mStep   = (step_);                                                          \
 	} while (0)
 
-	ADD_PARM("Walk speed",        parms->mPikiParms.mWalkSpeed,          10.0f,  500.0f, 10.0f);
-	ADD_PARM("Run speed",         parms->mPikiParms.mRunSpeed,           10.0f,  500.0f, 10.0f);
-	ADD_PARM("Flower run speed",  parms->mPikiParms.mFlowerRunSpeed,     10.0f,  500.0f, 10.0f);
+	ADD_PARM("Pikmin follow spd", parms->mPikiParms.mWalkSpeed,          10.0f,  500.0f, 10.0f);
+	ADD_PARM("Pikmin carry spd",  parms->mPikiParms.mRunSpeed,           10.0f,  500.0f, 10.0f);
+	ADD_PARM("Flower carry spd",  parms->mPikiParms.mFlowerRunSpeed,     10.0f,  500.0f, 10.0f);
 	ADD_PARM("Pikmin HP",         parms->mPikiParms.mHealth,              1.0f, 1000.0f, 10.0f);
 	ADD_PARM("Blue attack",       parms->mPikiParms.mBlueAttackDamage,    1.0f, 1000.0f,  5.0f);
 	ADD_PARM("Red attack",        parms->mPikiParms.mRedAttackDamage,     1.0f, 1000.0f,  5.0f);
@@ -131,9 +162,32 @@ void ModMenu::buildSliders()
 	ADD_PARM("Bomb throw max",    parms->mPikiParms.mMaxBombThrowDistance, 1.0f, 1000.0f, 10.0f);
 
 	// Visual + purple-power bundle (v1)
-	ADD_PARM("Pikmin scale",      parms->mPikiParms.mScale,              0.1f,    3.0f,  0.1f);
 	ADD_PARM("Purple pound dmg",  parms->mPikiParms.mPoundDamage,        0.0f, 1000.0f, 10.0f);
-	ADD_PARM("Purple carry pow",  parms->mPikiParms.mPurpleCarryPower,   0.1f,   10.0f,  0.5f);
+	ADD_PARM("Purple carry spd mult",  parms->mPikiParms.mPurpleCarryPower,   0.1f,   10.0f,  0.5f);
+
+#undef ADD_PARM
+
+	// Purple lift multiplier — feeds getColorTransportScale (int).
+	{
+		ModSlider& s = mSliders[mSliderCount++];
+		s.mLabel  = "Purple lift mult";
+		s.mKind   = kModSlider_Int;
+		s.mTarget = &gPurpleLiftScale;
+		s.mMin    = 1.0f;
+		s.mMax    = 20.0f;
+		s.mStep   = 1.0f;
+	}
+
+#define ADD_PARM(label_, parmRef_, min_, max_, step_)                                 \
+	do {                                                                              \
+		ModSlider& s = mSliders[mSliderCount++];                                      \
+		s.mLabel  = label_;                                                           \
+		s.mKind   = kModSlider_Float;                                                 \
+		s.mTarget = &((parmRef_).mValue);                                             \
+		s.mMin    = (min_);                                                           \
+		s.mMax    = (max_);                                                           \
+		s.mStep   = (step_);                                                          \
+	} while (0)
 
 	// Spicy spray bundle (v1)
 	ADD_PARM("Spicy duration",    parms->mPikiParms.mDopeMaxDuration,    5.0f,  200.0f,  5.0f);
@@ -157,6 +211,7 @@ void ModMenu::buildSliders()
 
 		ADD_NAVI_PARM("Whistle radius",   np.mPikiCallMaxRadius, 10.0f,  500.0f, 10.0f);
 		ADD_NAVI_PARM("Throw dist max",   np.mThrowDistanceMax,  10.0f, 1000.0f, 10.0f);
+		ADD_NAVI_PARM("Throw height max", np.mThrowHeightMax,    10.0f, 1000.0f, 10.0f);
 		ADD_NAVI_PARM("Captain HP",       np.mMaxHealth,         10.0f, 2000.0f, 50.0f);
 		ADD_NAVI_PARM("Captain run spd",  np.mRunSpeed,          10.0f,  500.0f, 10.0f);
 
@@ -164,7 +219,6 @@ void ModMenu::buildSliders()
 	}
 
 	// Max on field (int) — caps onyon withdrawal UI and whistle-out count.
-	// Hard allocation cap is still MAX_PIKI_COUNT (100); values above that do nothing.
 	{
 		ModSlider& s = mSliders[mSliderCount++];
 		s.mLabel  = "Max on field";
@@ -185,15 +239,28 @@ void ModMenu::buildSliders()
 		s.mAction = (fn_);                                                \
 	} while (0)
 
-	ADD_ACTION("[ACTION] Kill all enemies",      &action_killAllEnemies);
-	ADD_ACTION("[ACTION] All piki -> flower",    &action_giveAllPikiFlower);
-	ADD_ACTION("[ACTION] Kill all pikmin",       &action_killAllPikmin);
-	ADD_ACTION("[ACTION] All piki -> onyon",     &action_allPikiToOnyon);
-	ADD_ACTION("[ACTION] +1000 Pokos",           &action_addPokos);
-	ADD_ACTION("[ACTION] Toggle noclip",         &action_toggleNoclip);
-	ADD_ACTION("[ACTION] Toggle freeze day",     &action_toggleFreezeDay);
-	ADD_ACTION("[ACTION] Refill sprays",         &action_refillSprays);
-	ADD_ACTION("[ACTION] Restore defaults",      &action_restoreDefaults);
+	ADD_ACTION("Kill all enemies",      &action_killAllEnemies);
+	mSliders[mSliderCount - 1].mNoValue = true;
+	ADD_ACTION("All piki -> flower",    &action_giveAllPikiFlower);
+	mSliders[mSliderCount - 1].mNoValue = true;
+	ADD_ACTION("Kill all pikmin",       &action_killAllPikmin);
+	mSliders[mSliderCount - 1].mNoValue = true;
+	ADD_ACTION("All piki -> onyon",     &action_allPikiToOnyon);
+	mSliders[mSliderCount - 1].mNoValue = true;
+	ADD_ACTION("Onyon -> Captain",      &action_onyonToCaptain);
+	mSliders[mSliderCount - 1].mNoValue = true;
+	ADD_ACTION("Unlock landing spots",  &action_unlockAllLandingSpots);
+	mSliders[mSliderCount - 1].mNoValue = true;
+	ADD_ACTION("+$1,000 Pokos",         &action_addPokos);
+	mSliders[mSliderCount - 1].mGreenLabel    = true;
+	mSliders[mSliderCount - 1].mGetDisplayInt = &displayPokoCount;
+	ADD_ACTION("Toggle noclip",         &action_toggleNoclip);
+	ADD_ACTION("Freeze day",            &action_toggleFreezeDay);
+	ADD_ACTION("Refill sprays",         &action_refillSprays);
+	mSliders[mSliderCount - 1].mNoValue = true;
+	ADD_ACTION("Restore defaults",      &action_restoreDefaults);
+	mSliders[mSliderCount - 1].mNoValue           = true;
+	mSliders[mSliderCount - 1].mOrangeIfMenuDirty = true;
 
 #undef ADD_ACTION
 
@@ -223,6 +290,8 @@ void ModMenu::restoreAll()
 		} else if (s.mKind == kModSlider_Int) {
 			*reinterpret_cast<u32*>(s.mTarget) = (u32)s.mOriginal;
 		}
+		s.mDirty   = false;
+		s.mEnabled = false;
 	}
 	OSReport("[MOD] restored %d parms\n", mSliderCount);
 }
@@ -249,6 +318,7 @@ void ModMenu::writeValue(ModSlider& s, f32 v)
 	} else if (s.mKind == kModSlider_Int) {
 		*reinterpret_cast<u32*>(s.mTarget) = (u32)v;
 	}
+	s.mDirty = true;
 }
 
 void ModMenu::bumpCurrent(f32 direction)
@@ -309,8 +379,15 @@ void ModMenu::update(Controller* pad)
 	}
 
 	ModSlider& cur = mSliders[mCursor];
-	if (cur.mKind == kModSlider_Action && pad->isButtonDown(PAD_BUTTON_A)) {
-		if (cur.mAction) cur.mAction();
+	if (pad->isButtonDown(PAD_BUTTON_A)) {
+		if (cur.mKind == kModSlider_Action) {
+			if (cur.mAction) cur.mAction();
+			if (!cur.mNoValue) cur.mEnabled = !cur.mEnabled;
+		} else if ((cur.mKind == kModSlider_Float || cur.mKind == kModSlider_Int) && cur.mTarget) {
+			if (readValue(cur) == cur.mOriginal) {
+				cur.mDirty = false;
+			}
+		}
 	}
 }
 
@@ -381,6 +458,22 @@ static void drawBtnIcon(Graphics& gfx, f32 x, f32 y, f32 size, int btnId)
     GXPosition3f32(left,  top,    zero); GXColor4u8(255,255,255,255); GXTexCoord2u8( 0,  0);
     GXPosition3f32(right, top,    zero); GXColor4u8(255,255,255,255); GXTexCoord2u8(16,  0);
     GXPosition3f32(right, bottom, zero); GXColor4u8(205,205,205,255); GXTexCoord2u8(16, 16);
+}
+
+// Format a float without trailing zeros: 100.00->"100", 0.50->"0.5", 1.20->"1.2"
+static const char* fmtFloat(char* buf, f32 v)
+{
+    sprintf(buf, "%.2f", v);
+    char* dot = buf;
+    while (*dot && *dot != '.') dot++;
+    if (*dot == '.') {
+        char* end = dot;
+        while (*end) end++;
+        end--;
+        while (end > dot && *end == '0') { *end = '\0'; end--; }
+        if (end == dot) *end = '\0';
+    }
+    return buf;
 }
 
 void ModMenu::draw(Graphics& gfx)
@@ -455,17 +548,50 @@ void ModMenu::draw(Graphics& gfx)
 	for (int i = first; i < last; ++i) {
 		const ModSlider& s = mSliders[i];
 		const char* marker = (i == mCursor) ? "> " : "  ";
+		bool isModified = (s.mKind == kModSlider_Float || s.mKind == kModSlider_Int)
+		                  && s.mTarget && s.mDirty;
+
+		// Determine label color and value color independently.
+		JUtility::TColor labelCol, valueCol;
 		if (i == mCursor) {
-			print.setCharColor(JUtility::TColor(80, 160, 255, 255));
+			labelCol = valueCol = JUtility::TColor(80, 160, 255, 255);
+		} else if (s.mOrangeIfMenuDirty) {
+			labelCol = valueCol = isMenuDirty() ? JUtility::TColor(255, 160, 0, 255)
+			                                    : JUtility::TColor(255, 255, 255, 255);
+		} else if (s.mKind == kModSlider_Action) {
+			labelCol = s.mGreenLabel ? JUtility::TColor(80, 220, 80, 255)
+			                         : (s.mEnabled ? JUtility::TColor(80, 220, 80, 255)
+			                                       : JUtility::TColor(220, 60, 60, 255));
+			valueCol = s.mEnabled ? JUtility::TColor(80, 220, 80, 255)
+			                      : JUtility::TColor(255, 255, 255, 255);
+		} else if (isModified) {
+			labelCol = valueCol = JUtility::TColor(80, 220, 80, 255);
 		} else {
-			print.setCharColor(JUtility::TColor(255, 255, 255, 255));
+			labelCol = valueCol = JUtility::TColor(255, 255, 255, 255);
 		}
-		if (s.mKind == kModSlider_Float && s.mTarget) {
-			print.print(x, y, "%s%-18s %7.2f", marker, s.mLabel, readValue(s));
-		} else if (s.mKind == kModSlider_Int && s.mTarget) {
-			print.print(x, y, "%s%-18s %7d", marker, s.mLabel, (int)readValue(s));
-		} else {
-			print.print(x, y, "%s%s", marker, s.mLabel);
+
+		// Print label portion, then value portion with separate colors.
+		char labelBuf[24];
+		sprintf(labelBuf, "%s%-18s ", marker, s.mLabel);
+		f32 valueX = x + print.getWidth(labelBuf);
+
+		print.setCharColor(labelCol);
+		print.print(x, y, "%s%-18s ", marker, s.mLabel);
+
+		if (!s.mNoValue) {
+			print.setCharColor(valueCol);
+			if (s.mKind == kModSlider_Float && s.mTarget) {
+				char vbuf[16];
+				print.print(valueX, y, "%7s", fmtFloat(vbuf, readValue(s)));
+			} else if (s.mKind == kModSlider_Int && s.mTarget) {
+				print.print(valueX, y, "%7d", (int)readValue(s));
+			} else if (s.mKind == kModSlider_Action) {
+				if (s.mGetDisplayInt) {
+					print.print(valueX, y, "%7d", s.mGetDisplayInt());
+				} else {
+					print.print(valueX, y, "%7s", s.mEnabled ? "On" : "Off");
+				}
+			}
 		}
 		y += dy;
 	}
@@ -519,6 +645,94 @@ static void action_allPikiToOnyon()
 	}
 }
 
+static void action_onyonToCaptain()
+{
+	if (!Game::pikiMgr || !Game::playData || !Game::naviMgr) return;
+
+	// Get captain 0 (Olimar) as the formation target.
+	Game::Navi* navi = nullptr;
+	for (int i = 0; i < Game::naviMgr->getMax(); ++i) {
+		if (!Game::naviMgr->getFlag(i)) {
+			navi = Game::naviMgr->getAt(i);
+			break;
+		}
+	}
+	if (!navi) return;
+
+	Vector3f spawnPos = navi->getPosition();
+
+	int toSpawn = (int)gFieldCap - (int)Game::GameStat::alivePikis;
+	if (toSpawn <= 0) return;
+
+	int spawned = 0;
+	for (int color = 0; color < Game::PikiColorCount && toSpawn > 0; ++color) {
+		// Prefer higher growth stages (Flower > Bud > Leaf).
+		for (int happa = Game::Flower; happa >= Game::Leaf && toSpawn > 0; --happa) {
+			int& count = Game::playData->mPikiContainer.getCount(color, happa);
+			while (count > 0 && toSpawn > 0) {
+				Game::Piki* piki = Game::pikiMgr->birth();
+				if (!piki) goto done;
+
+				count--;
+				piki->init(nullptr);
+				piki->changeShape(color);
+				piki->changeHappa(happa);
+
+				Vector3f vel(randWeightFloat(20.0f) - 10.0f, 60.0f + randWeightFloat(20.0f),
+				             randWeightFloat(20.0f) - 10.0f);
+				piki->setPosition(spawnPos, false);
+				piki->setVelocity(vel);
+
+				piki->mNavi = navi;
+				PikiAI::ActFormationInitArg arg(navi);
+				piki->mBrain->start(PikiAI::ACT_Formation, &arg);
+
+				--toSpawn;
+				++spawned;
+			}
+		}
+	}
+done:
+	OSReport("[MOD] Onyon -> Captain: spawned %d pikmin\n", spawned);
+}
+
+static void action_unlockAllLandingSpots()
+{
+	if (!Game::playData) return;
+
+	// Courses 0-3: Valley of Repose (0, always open), Awakening Wood (1),
+	// Perplexing Pool (2), Wistful Wild (3).
+	//
+	// Courses 1 & 2 are unlocked via OlimarData::getItem(), which sets the
+	// exploration-kit flag AND calls openCourse(). It does NOT touch
+	// mZukanStat->mOtakara, so the physical globe-half treasures remain in
+	// the game world if they haven't been physically delivered yet.
+	//
+	// Course 3 is gated by courseOpen(2) && STORY_DebtPaid in the WorldMap
+	// init. We open it directly here and set the debt-paid story flag so it
+	// stays open on every subsequent WorldMap enter.
+
+	Game::OlimarData& od = Game::playData->mOlimarData[0];
+
+	if (!od.hasItem(Game::OlimarData::ODII_SphericalAtlas)) {
+		od.getItem(Game::OlimarData::ODII_SphericalAtlas);       // opens course 1
+	}
+	if (!od.hasItem(Game::OlimarData::ODII_GeographicProjection)) {
+		od.getItem(Game::OlimarData::ODII_GeographicProjection); // opens course 2
+	}
+
+	// Open Wistful Wild and mark debt paid so the WorldMap init check
+	// never re-gates it.
+	if (!Game::playData->courseOpen(3)) {
+		Game::playData->openCourse(3);
+	}
+	if (!Game::playData->isStoryFlag(Game::STORY_DebtPaid)) {
+		Game::playData->setStoryFlag(Game::STORY_DebtPaid);
+	}
+
+	OSReport("[MOD] all 4 landing spots unlocked\n");
+}
+
 static void action_addPokos()
 {
 	if (Game::playData) {
@@ -554,16 +768,11 @@ static void action_toggleFreezeDay()
 
 static void action_refillSprays()
 {
-	if (!Game::naviMgr) return;
-	const int naviCount = Game::naviMgr->getMax();
-	for (int i = 0; i < naviCount; ++i) {
-		if (Game::naviMgr->getFlag(i)) continue;
-		Game::Navi* n = Game::naviMgr->getAt(i);
-		if (!n) continue;
-		n->mSprayCounts[0] = 10;
-		n->mSprayCounts[1] = 10;
-	}
-	OSReport("[MOD] sprays refilled to 10/10\n");
+	if (!Game::playData) return;
+	Game::playData->mSprayCount[0] += 10;
+	Game::playData->mSprayCount[1] += 10;
+	OSReport("[MOD] +10 sprays added (spicy=%d bitter=%d)\n",
+	         Game::playData->mSprayCount[0], Game::playData->mSprayCount[1]);
 }
 
 static void action_restoreDefaults()

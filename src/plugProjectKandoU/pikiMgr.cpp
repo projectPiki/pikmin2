@@ -1,4 +1,5 @@
 #include "Game/PikiMgr.h"
+#include "moddingU/modMenu.h"
 #include "Game/Entities/ItemPikihead.h"
 #include "SysShape/ModelMgr.h"
 #include "JSystem/JKernel/JKRDvdRipper.h"
@@ -497,7 +498,7 @@ int PikiMgr::getColorTransportScale(int color)
 {
 	P2ASSERTBOUNDSLINE(857, 0, color, PikiColorCount);
 	if (color == Purple) {
-		return 10;
+		return (int)moddingU::gPurpleLiftScale;
 	}
 
 	return 1;

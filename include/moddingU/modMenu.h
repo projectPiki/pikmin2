@@ -23,6 +23,12 @@ struct ModSlider {
 	f32           mStep;
 	void (*mAction)();           // for kModSlider_Action
 	f32           mOriginal;     // snapshot for restore
+	bool          mEnabled;      // for kModSlider_Action: toggles On/Off on each A press
+	bool          mDirty;        // for sliders: true once moved; cleared by A when at default
+	bool          mGreenLabel;       // label column always renders green (ignores cursor/state)
+	bool          mNoValue;          // suppress the value column entirely
+	bool          mOrangeIfMenuDirty; // label is orange when any menu item is modified, else white
+	int         (*mGetDisplayInt)(); // if non-null, action shows this value instead of On/Off
 };
 
 struct ModMenu {
@@ -42,6 +48,7 @@ private:
 	void bumpCurrent(f32 direction);    // +/- step with hold-to-repeat
 	f32  readValue(const ModSlider& s) const;
 	void writeValue(ModSlider& s, f32 v);
+	bool isMenuDirty() const;
 
 	enum { kMaxSliders = 40 };
 	enum { kVisibleRows = 13 }; // rows drawn on-screen at a time; rest off-scroll
@@ -59,6 +66,10 @@ extern ModMenu* gModMenu;
 // Whistle-cap override. Patched into naviState.cpp where MAX_PIKI_COUNT is stamped
 // into mMaxPikiOnField. Does NOT raise the hard allocation cap (still 100).
 extern u32 gFieldCap;
+
+// Purple lift multiplier — replaces the hardcoded 10 in PikiMgr::getColorTransportScale.
+// Controls how many pikmin-worth one purple counts toward the minimum carry threshold.
+extern u32 gPurpleLiftScale;
 
 // Install / tear down from BaseGameSection::init / exit
 void ensureCreated();
