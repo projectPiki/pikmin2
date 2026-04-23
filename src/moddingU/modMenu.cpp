@@ -17,6 +17,8 @@
 
 #include "JSystem/J2D/J2DPrint.h"
 #include "JSystem/JFramework/JFWSystem.h"
+#include "JSystem/JUtility/JUTTexture.h"
+#include "P2JME/P2JME.h"
 
 namespace moddingU {
 
@@ -312,6 +314,75 @@ void ModMenu::update(Controller* pad)
 	}
 }
 
+// Matches cBtnIconColor[11] in messageRendering.cpp: [id][0]=.a field, [id][1]=.b field.
+// TEVREG0 = .b color, TEVREG1 = .a color (the game swaps them when assigning mImageColorA/B).
+static const u8 sBtnIconColors[8][2][4] = {
+    { {255,255,255,255}, {  0,166,  0,  0} }, // 0: A (green)
+    { {255,255,255,255}, {255,  0,  0,  0} }, // 1: B (red)
+    { {  0,  0,  0,255}, {255,255,  0,  0} }, // 2: C (yellow)
+    { {  0,  0,  0,255}, {200,200,200,  0} }, // 3: X (gray)
+    { {  0,  0,  0,255}, {200,200,200,  0} }, // 4: Y (gray)
+    { {  0,  0,255,255}, {255,255,255,  0} }, // 5: Z (blue)
+    { {  0,  0,  0,255}, {200,200,200,  0} }, // 6: L (gray)
+    { {  0,  0,  0,255}, {200,200,200,  0} }, // 7: R (gray)
+};
+
+// Draw one GC controller button icon using the game's own textures + TEV pipeline.
+// Replicates TRenderingProcessor::setImageGX (colorized path) + drawImage exactly.
+// btnId: 0=A 1=B 5=Z 6=L 7=R
+static void drawBtnIcon(Graphics& gfx, f32 x, f32 y, f32 size, int btnId)
+{
+    if (!gP2JMEMgr) return;
+    JUTTexture* img = gP2JMEMgr->getImage(P2JME::ImageGroup::ID0, btnId);
+    if (!img || (u32)btnId >= 8) return;
+
+    // TEVREG0 = .b color, TEVREG1 = .a color
+    GXColor reg0, reg1;
+    reg0.r = sBtnIconColors[btnId][1][0]; reg0.g = sBtnIconColors[btnId][1][1];
+    reg0.b = sBtnIconColors[btnId][1][2]; reg0.a = sBtnIconColors[btnId][1][3];
+    reg1.r = sBtnIconColors[btnId][0][0]; reg1.g = sBtnIconColors[btnId][0][1];
+    reg1.b = sBtnIconColors[btnId][0][2]; reg1.a = sBtnIconColors[btnId][0][3];
+
+    gfx.mOrthoGraph.setPort();
+
+    // setImageGX — colorized path (stage 0 blends two TEV registers through the texture,
+    // stage 1 multiplies by vertex raster color for the top/bottom gradient).
+    GXSetNumChans(1);
+    GXSetNumTevStages(2);
+    GXSetNumTexGens(1);
+    GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR_NULL);
+    GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_REG, GX_SRC_VTX, 0, GX_DF_NONE, GX_AF_NONE);
+    GXSetTevColor(GX_TEVREG0, reg0);
+    GXSetTevColor(GX_TEVREG1, reg1);
+    GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_C0, GX_CC_C1, GX_CC_TEXC, GX_CC_ZERO);
+    GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_A0, GX_CA_A1, GX_CA_TEXA, GX_CA_ZERO);
+    GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
+    GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
+    GXSetTevOrder(GX_TEVSTAGE1, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR0A0);
+    GXSetTevColorIn(GX_TEVSTAGE1, GX_CC_ZERO, GX_CC_CPREV, GX_CC_RASC, GX_CC_ZERO);
+    GXSetTevAlphaIn(GX_TEVSTAGE1, GX_CA_ZERO, GX_CA_APREV, GX_CA_RASA, GX_CA_ZERO);
+    GXSetTevColorOp(GX_TEVSTAGE1, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
+    GXSetTevAlphaOp(GX_TEVSTAGE1, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
+    GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_SET);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_CLR0, GX_POS_XYZ, GX_RGBA8, 0);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_POS_XYZ, GX_S8, 4);
+    GXClearVtxDesc();
+    GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
+    GXSetVtxDesc(GX_VA_CLR0, GX_DIRECT);
+    GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
+
+    // drawImage quad: (left,bottom)→colorB, (left,top)→colorA, ...
+    // colorA = top gradient (brighter), colorB = bottom gradient (slightly dimmed).
+    f32 left = x, right = x + size, top = y, bottom = y + size, zero = 0.0f;
+    img->load(GX_TEXMAP0);
+    GXBegin(GX_QUADS, GX_VTXFMT0, 4);
+    GXPosition3f32(left,  bottom, zero); GXColor4u8(205,205,205,255); GXTexCoord2u8( 0, 16);
+    GXPosition3f32(left,  top,    zero); GXColor4u8(255,255,255,255); GXTexCoord2u8( 0,  0);
+    GXPosition3f32(right, top,    zero); GXColor4u8(255,255,255,255); GXTexCoord2u8(16,  0);
+    GXPosition3f32(right, bottom, zero); GXColor4u8(205,205,205,255); GXTexCoord2u8(16, 16);
+}
+
 void ModMenu::draw(Graphics& gfx)
 {
 	if (!mOpen) return;
@@ -332,8 +403,8 @@ void ModMenu::draw(Graphics& gfx)
 	print.setCharColor(JUtility::TColor(255, 255, 255, 255));
 	print.setGradColor(JUtility::TColor(180, 220, 255, 255));
 
-	const f32 x    = 40.0f;
-	f32       y    = 60.0f;
+	const f32 x    = 100.0f;
+	f32       y    = 20.0f;
 	const f32 dy   = 18.0f;
 
 	// Cursor-window scroll: show up to kVisibleRows rows, centered on cursor.
@@ -346,12 +417,49 @@ void ModMenu::draw(Graphics& gfx)
 		if (first < 0) first = 0;
 	}
 
-	print.print(x, y, "== MOD MENU ==  L+R+Z close  (%d/%d)", mCursor + 1, mSliderCount);
+	// Measure widths so we can position button icons exactly between the text segments.
+	const f32 iconSize   = 16.0f;
+	const f32 prefixW    = print.getWidth("MOD MENU == ");
+	const f32 sepW       = print.getWidth("+");
+	const f32 closeW     = print.getWidth(" close, ");
+
+	// Icon x positions: prefix | [L] sep [R] sep [Z] close, [A] select
+	const f32 lx = x + prefixW;
+	const f32 rx = lx + iconSize + sepW;
+	const f32 zx = rx + iconSize + sepW;
+	const f32 ax = zx + iconSize + closeW;
+
+	// Icons drawn at y - 15 to align with J2DPrint's baseline-origin text.
+	const f32 iconY = y - 15.0f;
+	drawBtnIcon(gfx, lx, iconY, iconSize, 6); // L
+	drawBtnIcon(gfx, rx, iconY, iconSize, 7); // R
+	drawBtnIcon(gfx, zx, iconY, iconSize, 5); // Z
+	drawBtnIcon(gfx, ax, iconY, iconSize, 0); // A
+
+	// Restore J2DPrint GX state after the icon draws changed it.
+	print.initiate();
+	print.setCharColor(JUtility::TColor(255, 255, 255, 255));
+	print.setGradColor(JUtility::TColor(180, 220, 255, 255));
+
+	// Draw text segments around the icons.
+	print.setCharColor(JUtility::TColor(255, 40, 40, 255));
+	print.print(x,              y, "MOD MENU == ");
+	print.print(lx + iconSize,  y, "+");
+	print.print(rx + iconSize,  y, "+");
+	print.print(zx + iconSize,  y, " close, ");
+	print.print(ax + iconSize,  y, " select");
+	print.setCharColor(JUtility::TColor(255, 255, 255, 255));
+
 	y += dy * 1.5f;
 
 	for (int i = first; i < last; ++i) {
 		const ModSlider& s = mSliders[i];
 		const char* marker = (i == mCursor) ? "> " : "  ";
+		if (i == mCursor) {
+			print.setCharColor(JUtility::TColor(80, 160, 255, 255));
+		} else {
+			print.setCharColor(JUtility::TColor(255, 255, 255, 255));
+		}
 		if (s.mKind == kModSlider_Float && s.mTarget) {
 			print.print(x, y, "%s%-18s %7.2f", marker, s.mLabel, readValue(s));
 		} else if (s.mKind == kModSlider_Int && s.mTarget) {
@@ -361,6 +469,10 @@ void ModMenu::draw(Graphics& gfx)
 		}
 		y += dy;
 	}
+
+	// Fixed footer: always below the last visible row, never scrolls.
+	print.setCharColor(JUtility::TColor(80, 160, 255, 255));
+	print.print(x, y, "(%d/%d)", mCursor + 1, mSliderCount);
 }
 
 // ---------- Actions ----------

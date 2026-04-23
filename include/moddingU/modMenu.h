@@ -44,7 +44,7 @@ private:
 	void writeValue(ModSlider& s, f32 v);
 
 	enum { kMaxSliders = 40 };
-	enum { kVisibleRows = 24 }; // rows drawn on-screen at a time; rest off-scroll
+	enum { kVisibleRows = 13 }; // rows drawn on-screen at a time; rest off-scroll
 
 	bool      mOpen;
 	bool      mInitialized;
