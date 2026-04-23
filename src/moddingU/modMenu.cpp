@@ -20,7 +20,11 @@
 
 namespace moddingU {
 
-ModMenu* gModMenu = nullptr;
+// Backing storage lives in .bss so we don't depend on whatever JKRHeap is
+// current mid-frame (the game freely rewinds section-level heaps and the
+// menu object would get its fields zeroed out from under it).
+static ModMenu sModMenuStorage;
+ModMenu* gModMenu = &sModMenuStorage;
 u32      gFieldCap = MAX_PIKI_COUNT;
 
 static void action_killAllEnemies();
@@ -35,15 +39,13 @@ static void action_restoreDefaults();
 
 void ensureCreated()
 {
-	if (!gModMenu) {
-		gModMenu = new ModMenu();
-	}
+	// No-op; gModMenu points at the .bss-resident singleton. Kept for
+	// symmetry with the old hook call-site.
 }
 
 void teardown()
 {
-	delete gModMenu;
-	gModMenu = nullptr;
+	// Nothing to free; storage is static.
 }
 
 void onBaseGameUpdate(Controller* p1)
@@ -64,7 +66,6 @@ void onBaseGameDraw(Graphics& gfx)
 ModMenu::ModMenu()
     : mOpen(false)
     , mInitialized(false)
-    , mSuppressDPad(false)
     , mCursor(0)
     , mSliderCount(0)
     , mHoldFrames(0)
@@ -89,11 +90,6 @@ void ModMenu::toggle()
 		mInitialized = true;
 	}
 	mOpen = !mOpen;
-	// The toggle chord is "hold Y + tap DPad Left", so DPad Left is still held
-	// the frame after we open. Suppress L/R slider bumps until the user releases
-	// the DPad once, otherwise we'd immediately decrement the top slider.
-	mSuppressDPad = true;
-	mHoldFrames   = 0;
 	OSReport("[MOD] menu %s\n", mOpen ? "OPEN" : "closed");
 }
 
@@ -265,10 +261,21 @@ void ModMenu::update(Controller* pad)
 {
 	if (!pad) return;
 
-	// Toggle: hold Y, tap D-Pad Left.
-	if (pad->isButtonHeld(PAD_BUTTON_Y) && pad->isButtonDown(PAD_BUTTON_LEFT)) {
+	// Defensive: if anything ever stomped our state, clamp before using it.
+	if (mSliderCount < 0 || mSliderCount > kMaxSliders) mSliderCount = 0;
+	if (mSliderCount > 0) {
+		if (mCursor < 0)              mCursor = 0;
+		if (mCursor >= mSliderCount)  mCursor = mSliderCount - 1;
+	} else {
+		mCursor = 0;
+	}
+
+	// Toggle: hold BOTH L and R, then press Z.
+	// isButtonHeld tests bit-ANY (returns true if any bit in the mask is held),
+	// so we test the full chord with an explicit == mask.
+	const u32 chord = PAD_TRIGGER_L | PAD_TRIGGER_R;
+	if ((pad->getButton() & chord) == chord && pad->isButtonDown(PAD_TRIGGER_Z)) {
 		toggle();
-		return;
 	}
 
 	if (!mOpen) return;
@@ -287,16 +294,10 @@ void ModMenu::update(Controller* pad)
 		mCursor = (mCursor + 1) % mSliderCount;
 	}
 
-	// Hold-to-repeat on left/right: fire immediately on press, then every 2 frames while held.
-	const u32 dpadLR = PAD_BUTTON_LEFT | PAD_BUTTON_RIGHT;
-	bool leftHeld    = (pad->getButton() & PAD_BUTTON_LEFT)  != 0;
-	bool rightHeld   = (pad->getButton() & PAD_BUTTON_RIGHT) != 0;
-	if (mSuppressDPad) {
-		// Wait until the user releases BOTH DPad L and R before processing slider bumps.
-		if ((pad->getButton() & dpadLR) == 0) {
-			mSuppressDPad = false;
-		}
-	} else if (leftHeld || rightHeld) {
+	// Hold-to-repeat on left/right: fire immediately on press, then every 4 frames while held.
+	bool leftHeld  = (pad->getButton() & PAD_BUTTON_LEFT)  != 0;
+	bool rightHeld = (pad->getButton() & PAD_BUTTON_RIGHT) != 0;
+	if (leftHeld || rightHeld) {
 		if (mHoldFrames == 0 || (mHoldFrames > 10 && (mHoldFrames % 2) == 0)) {
 			bumpCurrent(leftHeld ? -1.0f : 1.0f);
 		}
@@ -316,11 +317,15 @@ void ModMenu::draw(Graphics& gfx)
 	if (!mOpen) return;
 	if (!JFWSystem::systemFont) return;
 
-	// Required for J2DPrint to render in screen-space. Every other J2DPrint use
-	// in the codebase (baseGameSection.cpp:1420, singleGS_WorldMap.cpp:296) does this.
-	// Without it, the previous draw pass's projection/viewport leaks in and text
-	// either renders off-screen or in a stale GX state.
-	gfx.mOrthoGraph.setPort();
+	// Defensive: same clamp as update() in case update() hasn't run yet.
+	if (mSliderCount < 0 || mSliderCount > kMaxSliders) mSliderCount = 0;
+	if (mSliderCount > 0) {
+		if (mCursor < 0)              mCursor = 0;
+		if (mCursor >= mSliderCount)  mCursor = mSliderCount - 1;
+	} else {
+		mCursor = 0;
+		return; // nothing to draw
+	}
 
 	J2DPrint print(JFWSystem::systemFont, 0.0f);
 	print.initiate();
@@ -341,7 +346,7 @@ void ModMenu::draw(Graphics& gfx)
 		if (first < 0) first = 0;
 	}
 
-	print.print(x, y, "== MOD MENU ==  Y+Left close  (%d/%d)", mCursor + 1, mSliderCount);
+	print.print(x, y, "== MOD MENU ==  L+R+Z close  (%d/%d)", mCursor + 1, mSliderCount);
 	y += dy * 1.5f;
 
 	for (int i = first; i < last; ++i) {

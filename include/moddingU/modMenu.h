@@ -48,7 +48,6 @@ private:
 
 	bool      mOpen;
 	bool      mInitialized;
-	bool      mSuppressDPad;       // set on toggle; blocks L/R bump until DPad is released once
 	int       mCursor;
 	int       mSliderCount;
 	int       mHoldFrames;         // for analog-style repeat when holding L/R

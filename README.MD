@@ -128,3 +128,26 @@ To add new source files to the DOL:
 - Within the `link_order_callback` function below the object configuration, uncomment and add each new file with its path within `src`, as indicated.
 
 Once built with `ninja`, the new DOL will exist at `build/GPVE01/main.dol`.
+
+### Iterating on a mod build (yerry's local flow)
+
+This fork uses a small wrapper script, `./mod.sh`, so the extracted-disc tree at `orig/GPVE01/` can be launched directly in Dolphin without any deploy/staging folder. Run `./mod.sh` from the repo root **instead of `ninja`** every time you change source code:
+
+```sh
+./mod.sh          # == ninja + post-build install of the modded DOL
+```
+
+What it does:
+
+1. Invokes `ninja`. The build's DOL-splitter reads retail from `orig/GPVE01/sys/main.dol.retail` (see `config/GPVE01/config.yml`), so the retail copy is never touched.
+2. Copies `build/GPVE01/main.dol` over `orig/GPVE01/sys/main.dol` so that Dolphin — configured to scan `orig/` as its game folder — picks up the freshly built modded DOL on next launch.
+
+Layout after a successful `./mod.sh`:
+
+```
+orig/GPVE01/sys/
+  main.dol          modded (current build, playable in Dolphin)
+  main.dol.retail   retail (build input, locked, never modify)
+```
+
+If you ever need to restore the original game, just copy `main.dol.retail` over `main.dol`. The retail SHA1 is in `sha1/pikmin2.GPVE01.sha1`.
