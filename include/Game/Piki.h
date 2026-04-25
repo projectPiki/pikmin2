@@ -7,7 +7,7 @@
 #include "Game/FakePiki.h"
 #include "Game/StateMachine.h"
 
-#define MAX_PIKI_COUNT (300) // Maximum number of pikmin allowed out of the onyon/in a cave
+#define MAX_PIKI_COUNT (100) // Maximum number of pikmin allowed out of the onyon/in a cave
 
 namespace efx {
 struct Context;

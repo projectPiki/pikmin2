@@ -9,9 +9,11 @@ struct Graphics;
 namespace moddingU {
 
 enum ModSliderKind {
-	kModSlider_Float,   // edits a f32*
-	kModSlider_Int,     // edits an int*
-	kModSlider_Action,  // one-shot, calls action fn
+	kModSlider_Float,      // edits a f32*
+	kModSlider_Int,        // edits an int*
+	kModSlider_Action,     // one-shot, calls action fn
+	kModSlider_TimeOfDay,  // live-synced elapsed seconds; A applies via TimeMgr::setTime
+	
 };
 
 struct ModSlider {
@@ -23,8 +25,9 @@ struct ModSlider {
 	f32           mStep;
 	void (*mAction)();           // for kModSlider_Action
 	f32           mOriginal;     // snapshot for restore
+	f32           mPendingValue; // value shown in menu; written to game only on A press
 	bool          mEnabled;      // for kModSlider_Action: toggles On/Off on each A press
-	bool          mDirty;        // for sliders: true once moved; cleared by A when at default
+	bool          mDirty;        // true when game value != mOriginal (applied and changed)
 	bool          mGreenLabel;       // label column always renders green (ignores cursor/state)
 	bool          mNoValue;          // suppress the value column entirely
 	bool          mOrangeIfMenuDirty; // label is orange when any menu item is modified, else white

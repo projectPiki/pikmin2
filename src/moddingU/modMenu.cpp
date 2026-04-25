@@ -39,12 +39,33 @@ static void action_giveAllPikiFlower();
 static void action_killAllPikmin();
 static void action_allPikiToOnyon();
 static void action_onyonToCaptain();
-static void action_unlockAllLandingSpots();
+static void action_spawnFiveEach();
 static void action_addPokos();
 static void action_toggleNoclip();
 static void action_toggleFreezeDay();
 static void action_refillSprays();
 static void action_restoreDefaults();
+
+// Returns how many real seconds have elapsed since the drop (day start).
+// Uses the same ratio TimeMgr::setTime uses: hours / 24 * dayLengthSeconds.
+static f32 getElapsedSeconds()
+{
+	if (!Game::gameSystem || !Game::gameSystem->mTimeMgr) return 0.0f;
+	Game::TimeMgr* tm = Game::gameSystem->mTimeMgr;
+	f32 secsPerHour = tm->mParms.mParms.mDayLengthSeconds.mValue / 24.0f;
+	f32 elapsed = (tm->mCurrentTimeOfDay - tm->mParms.mParms.mDayStartTime.mValue) * secsPerHour;
+	return elapsed < 0.0f ? 0.0f : elapsed;
+}
+
+static void applyTimeOfDay(f32 elapsedSeconds)
+{
+	if (!Game::gameSystem || !Game::gameSystem->mTimeMgr) return;
+	Game::TimeMgr* tm = Game::gameSystem->mTimeMgr;
+	f32 secsPerHour = tm->mParms.mParms.mDayLengthSeconds.mValue / 24.0f;
+	f32 timeOfDay = tm->mParms.mParms.mDayStartTime.mValue + elapsedSeconds / secsPerHour;
+	tm->setTime(timeOfDay);
+	OSReport("[MOD] time set: %ds -> %.2fh\n", (int)elapsedSeconds, timeOfDay);
+}
 
 static int displayPokoCount()
 {
@@ -85,16 +106,17 @@ ModMenu::ModMenu()
     , mHoldFrames(0)
 {
 	for (int i = 0; i < kMaxSliders; ++i) {
-		mSliders[i].mLabel    = "";
-		mSliders[i].mKind     = kModSlider_Float;
-		mSliders[i].mTarget   = nullptr;
-		mSliders[i].mMin      = 0.0f;
-		mSliders[i].mMax      = 0.0f;
-		mSliders[i].mStep     = 0.0f;
-		mSliders[i].mAction   = nullptr;
-		mSliders[i].mOriginal = 0.0f;
-		mSliders[i].mEnabled           = false;
-		mSliders[i].mDirty             = false;
+		mSliders[i].mLabel        = "";
+		mSliders[i].mKind         = kModSlider_Float;
+		mSliders[i].mTarget       = nullptr;
+		mSliders[i].mMin          = 0.0f;
+		mSliders[i].mMax          = 0.0f;
+		mSliders[i].mStep         = 0.0f;
+		mSliders[i].mAction       = nullptr;
+		mSliders[i].mOriginal     = 0.0f;
+		mSliders[i].mPendingValue = 0.0f;
+		mSliders[i].mEnabled      = false;
+		mSliders[i].mDirty        = false;
 		mSliders[i].mGreenLabel        = false;
 		mSliders[i].mNoValue           = false;
 		mSliders[i].mOrangeIfMenuDirty = false;
@@ -163,7 +185,7 @@ void ModMenu::buildSliders()
 
 	// Visual + purple-power bundle (v1)
 	ADD_PARM("Purple pound dmg",  parms->mPikiParms.mPoundDamage,        0.0f, 1000.0f, 10.0f);
-	ADD_PARM("Purple carry spd mult",  parms->mPikiParms.mPurpleCarryPower,   0.1f,   10.0f,  0.5f);
+	ADD_PARM("Purple carry spd mult",  parms->mPikiParms.mPurpleCarryPower,   0.1f,    5.0f,  0.1f);
 
 #undef ADD_PARM
 
@@ -191,7 +213,7 @@ void ModMenu::buildSliders()
 
 	// Spicy spray bundle (v1)
 	ADD_PARM("Spicy duration",    parms->mPikiParms.mDopeMaxDuration,    5.0f,  200.0f,  5.0f);
-	ADD_PARM("Spicy run speed",   parms->mPikiParms.mDopeRunSpeed,      50.0f,  400.0f, 10.0f);
+	ADD_PARM("Spicy run speed",   parms->mPikiParms.mDopeRunSpeed,      50.0f,  220.0f, 10.0f);
 
 #undef ADD_PARM
 
@@ -211,8 +233,11 @@ void ModMenu::buildSliders()
 
 		ADD_NAVI_PARM("Whistle radius",   np.mPikiCallMaxRadius, 10.0f,  500.0f, 10.0f);
 		ADD_NAVI_PARM("Throw dist max",   np.mThrowDistanceMax,  10.0f, 1000.0f, 10.0f);
-		ADD_NAVI_PARM("Throw height max", np.mThrowHeightMax,    10.0f, 1000.0f, 10.0f);
-		ADD_NAVI_PARM("Captain HP",       np.mMaxHealth,         10.0f, 2000.0f, 50.0f);
+		ADD_NAVI_PARM("Red/Blue throw ht", np.mThrowHeightMax,     10.0f,  200.0f,  5.0f);
+		ADD_NAVI_PARM("Yellow throw ht",  np.mThrowHeightYellow,  10.0f,  200.0f,  5.0f);
+		ADD_NAVI_PARM("Purple throw ht",  np.mThrowBlackHeight,   10.0f,  200.0f,  5.0f);
+		ADD_NAVI_PARM("White throw ht",   np.mThrowWhiteHeight,   10.0f,  200.0f,  5.0f);
+		ADD_NAVI_PARM("Captain HP",       np.mMaxHealth,         10.0f, 1000.0f, 50.0f);
 		ADD_NAVI_PARM("Captain run spd",  np.mRunSpeed,          10.0f,  500.0f, 10.0f);
 
 #undef ADD_NAVI_PARM
@@ -226,6 +251,24 @@ void ModMenu::buildSliders()
 		s.mTarget = &gFieldCap;
 		s.mMin    = 1.0f;
 		s.mMax    = (f32)MAX_PIKI_COUNT;
+		s.mStep   = 5.0f;
+	}
+
+	// Time of day — live-synced when not selected, scrubable when selected.
+	// Max is computed from timeMgr parms; default day = 780s (12 game hours * 65 real s/hr).
+	{
+		f32 todMax = 780.0f;
+		if (Game::gameSystem && Game::gameSystem->mTimeMgr) {
+			Game::TimeMgr* tm = Game::gameSystem->mTimeMgr;
+			f32 secsPerHour = tm->mParms.mParms.mDayLengthSeconds.mValue / 24.0f;
+			todMax = tm->mGameDayLength * secsPerHour;
+		}
+		ModSlider& s = mSliders[mSliderCount++];
+		s.mLabel  = "Time of day";
+		s.mKind   = kModSlider_TimeOfDay;
+		s.mTarget = nullptr;
+		s.mMin    = 0.0f;
+		s.mMax    = todMax;
 		s.mStep   = 5.0f;
 	}
 
@@ -249,7 +292,7 @@ void ModMenu::buildSliders()
 	mSliders[mSliderCount - 1].mNoValue = true;
 	ADD_ACTION("Onyon -> Captain",      &action_onyonToCaptain);
 	mSliders[mSliderCount - 1].mNoValue = true;
-	ADD_ACTION("Unlock landing spots",  &action_unlockAllLandingSpots);
+	ADD_ACTION("+5 each pik type",      &action_spawnFiveEach);
 	mSliders[mSliderCount - 1].mNoValue = true;
 	ADD_ACTION("+$1,000 Pokos",         &action_addPokos);
 	mSliders[mSliderCount - 1].mGreenLabel    = true;
@@ -277,6 +320,7 @@ void ModMenu::snapshotOriginals()
 		} else if (s.mKind == kModSlider_Int) {
 			s.mOriginal = (f32)(*reinterpret_cast<u32*>(s.mTarget));
 		}
+		s.mPendingValue = s.mOriginal;
 	}
 }
 
@@ -290,8 +334,9 @@ void ModMenu::restoreAll()
 		} else if (s.mKind == kModSlider_Int) {
 			*reinterpret_cast<u32*>(s.mTarget) = (u32)s.mOriginal;
 		}
-		s.mDirty   = false;
-		s.mEnabled = false;
+		s.mPendingValue = s.mOriginal;
+		s.mDirty        = false;
+		s.mEnabled      = false;
 	}
 	OSReport("[MOD] restored %d parms\n", mSliderCount);
 }
@@ -325,8 +370,11 @@ void ModMenu::bumpCurrent(f32 direction)
 {
 	if (mSliderCount <= 0) return;
 	ModSlider& s = mSliders[mCursor];
-	if (s.mKind != kModSlider_Float && s.mKind != kModSlider_Int) return;
-	writeValue(s, readValue(s) + direction * s.mStep);
+	if (s.mKind != kModSlider_Float && s.mKind != kModSlider_Int && s.mKind != kModSlider_TimeOfDay) return;
+	f32 v = s.mPendingValue + direction * s.mStep;
+	if (v < s.mMin) v = s.mMin;
+	if (v > s.mMax) v = s.mMax;
+	s.mPendingValue = v;
 }
 
 void ModMenu::update(Controller* pad)
@@ -351,6 +399,18 @@ void ModMenu::update(Controller* pad)
 	}
 
 	if (!mOpen) return;
+
+	// Live-sync TimeOfDay sliders every frame except when the cursor is on them.
+	// When selected, the user controls the pending value manually via L/R.
+	for (int i = 0; i < mSliderCount; ++i) {
+		if (i == mCursor) continue;
+		if (mSliders[i].mKind == kModSlider_TimeOfDay) {
+			f32 live = getElapsedSeconds();
+			if (live < mSliders[i].mMin) live = mSliders[i].mMin;
+			if (live > mSliders[i].mMax) live = mSliders[i].mMax;
+			mSliders[i].mPendingValue = live;
+		}
+	}
 
 	if (mSliderCount == 0 && mInitialized) {
 		// Parms weren't ready when first opened — try again.
@@ -384,9 +444,10 @@ void ModMenu::update(Controller* pad)
 			if (cur.mAction) cur.mAction();
 			if (!cur.mNoValue) cur.mEnabled = !cur.mEnabled;
 		} else if ((cur.mKind == kModSlider_Float || cur.mKind == kModSlider_Int) && cur.mTarget) {
-			if (readValue(cur) == cur.mOriginal) {
-				cur.mDirty = false;
-			}
+			writeValue(cur, cur.mPendingValue);
+			cur.mDirty = (cur.mPendingValue != cur.mOriginal);
+		} else if (cur.mKind == kModSlider_TimeOfDay) {
+			applyTimeOfDay(cur.mPendingValue);
 		}
 	}
 }
@@ -548,8 +609,10 @@ void ModMenu::draw(Graphics& gfx)
 	for (int i = first; i < last; ++i) {
 		const ModSlider& s = mSliders[i];
 		const char* marker = (i == mCursor) ? "> " : "  ";
-		bool isModified = (s.mKind == kModSlider_Float || s.mKind == kModSlider_Int)
-		                  && s.mTarget && s.mDirty;
+		bool isApplied = (s.mKind == kModSlider_Float || s.mKind == kModSlider_Int)
+		                 && s.mTarget && s.mDirty;
+		bool isPending = (s.mKind == kModSlider_Float || s.mKind == kModSlider_Int)
+		                 && s.mTarget && !s.mDirty && (s.mPendingValue != s.mOriginal);
 
 		// Determine label color and value color independently.
 		JUtility::TColor labelCol, valueCol;
@@ -564,8 +627,11 @@ void ModMenu::draw(Graphics& gfx)
 			                                       : JUtility::TColor(220, 60, 60, 255));
 			valueCol = s.mEnabled ? JUtility::TColor(80, 220, 80, 255)
 			                      : JUtility::TColor(255, 255, 255, 255);
-		} else if (isModified) {
+		} else if (isApplied) {
 			labelCol = valueCol = JUtility::TColor(80, 220, 80, 255);
+		} else if (isPending) {
+			labelCol = JUtility::TColor(255, 255, 255, 255);
+			valueCol = JUtility::TColor(220, 60, 60, 255);
 		} else {
 			labelCol = valueCol = JUtility::TColor(255, 255, 255, 255);
 		}
@@ -582,9 +648,11 @@ void ModMenu::draw(Graphics& gfx)
 			print.setCharColor(valueCol);
 			if (s.mKind == kModSlider_Float && s.mTarget) {
 				char vbuf[16];
-				print.print(valueX, y, "%7s", fmtFloat(vbuf, readValue(s)));
+				print.print(valueX, y, "%7s", fmtFloat(vbuf, s.mPendingValue));
 			} else if (s.mKind == kModSlider_Int && s.mTarget) {
-				print.print(valueX, y, "%7d", (int)readValue(s));
+				print.print(valueX, y, "%7d", (int)s.mPendingValue);
+			} else if (s.mKind == kModSlider_TimeOfDay) {
+				print.print(valueX, y, "%5ds", (int)s.mPendingValue);
 			} else if (s.mKind == kModSlider_Action) {
 				if (s.mGetDisplayInt) {
 					print.print(valueX, y, "%7d", s.mGetDisplayInt());
@@ -696,41 +764,47 @@ done:
 	OSReport("[MOD] Onyon -> Captain: spawned %d pikmin\n", spawned);
 }
 
-static void action_unlockAllLandingSpots()
+static void action_spawnFiveEach()
 {
-	if (!Game::playData) return;
+	if (!Game::pikiMgr || !Game::naviMgr) return;
 
-	// Courses 0-3: Valley of Repose (0, always open), Awakening Wood (1),
-	// Perplexing Pool (2), Wistful Wild (3).
-	//
-	// Courses 1 & 2 are unlocked via OlimarData::getItem(), which sets the
-	// exploration-kit flag AND calls openCourse(). It does NOT touch
-	// mZukanStat->mOtakara, so the physical globe-half treasures remain in
-	// the game world if they haven't been physically delivered yet.
-	//
-	// Course 3 is gated by courseOpen(2) && STORY_DebtPaid in the WorldMap
-	// init. We open it directly here and set the debt-paid story flag so it
-	// stays open on every subsequent WorldMap enter.
-
-	Game::OlimarData& od = Game::playData->mOlimarData[0];
-
-	if (!od.hasItem(Game::OlimarData::ODII_SphericalAtlas)) {
-		od.getItem(Game::OlimarData::ODII_SphericalAtlas);       // opens course 1
+	Game::Navi* navi = nullptr;
+	for (int i = 0; i < Game::naviMgr->getMax(); ++i) {
+		if (!Game::naviMgr->getFlag(i)) {
+			navi = Game::naviMgr->getAt(i);
+			break;
+		}
 	}
-	if (!od.hasItem(Game::OlimarData::ODII_GeographicProjection)) {
-		od.getItem(Game::OlimarData::ODII_GeographicProjection); // opens course 2
-	}
+	if (!navi) return;
 
-	// Open Wistful Wild and mark debt paid so the WorldMap init check
-	// never re-gates it.
-	if (!Game::playData->courseOpen(3)) {
-		Game::playData->openCourse(3);
-	}
-	if (!Game::playData->isStoryFlag(Game::STORY_DebtPaid)) {
-		Game::playData->setStoryFlag(Game::STORY_DebtPaid);
-	}
+	Vector3f spawnPos = navi->getPosition();
+	int spawned     = 0;
+	bool poolFull   = false;
 
-	OSReport("[MOD] all 4 landing spots unlocked\n");
+	// Loop over the 5 storable types: Blue, Red, Yellow, Purple, White.
+	for (int color = 0; color < (int)Game::StoredPikiCount && !poolFull; ++color) {
+		for (int n = 0; n < 5 && !poolFull; ++n) {
+			if ((int)Game::GameStat::alivePikis >= (int)gFieldCap) { poolFull = true; break; }
+
+			Game::Piki* piki = Game::pikiMgr->birth();
+			if (!piki) { poolFull = true; break; }
+
+			piki->init(nullptr);
+			piki->changeShape(color);
+			piki->changeHappa(Game::Flower);
+
+			Vector3f vel(randWeightFloat(20.0f) - 10.0f, 60.0f + randWeightFloat(20.0f),
+			             randWeightFloat(20.0f) - 10.0f);
+			piki->setPosition(spawnPos, false);
+			piki->setVelocity(vel);
+
+			piki->mNavi = navi;
+			PikiAI::ActFormationInitArg arg(navi);
+			piki->mBrain->start(PikiAI::ACT_Formation, &arg);
+			++spawned;
+		}
+	}
+	OSReport("[MOD] +5 each: spawned %d pikmin\n", spawned);
 }
 
 static void action_addPokos()
