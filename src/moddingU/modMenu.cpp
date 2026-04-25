@@ -557,7 +557,7 @@ void ModMenu::draw(Graphics& gfx)
 	print.setCharColor(JUtility::TColor(255, 255, 255, 255));
 	print.setGradColor(JUtility::TColor(180, 220, 255, 255));
 
-	const f32 x    = 100.0f;
+	const f32 x    = 120.0f;
 	f32       y    = 20.0f;
 	const f32 dy   = 18.0f;
 
