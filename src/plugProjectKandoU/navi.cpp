@@ -136,7 +136,7 @@ void Navi::onInit(Game::CreatureInitArg* arg)
 
 	mCollTree->createFromFactory(mModel, naviMgr->mCollData, nullptr);
 	JUT_ASSERTLINE(838, ((int)mCollTree->mPart) >= 0x80000000,
-	               "ザン?[?[（・д・）−−ネン\n"); // 'disappointttttt D: ?? ment' (lol)
+	               "ザンーー（・д・）−−ネン\n"); // 'disappointttttt D: ?? ment' (lol)
 	mCollTree->attachModel(mModel);
 
 	mFsm->start(this, NSID_Walk, nullptr);
@@ -865,6 +865,7 @@ void Navi::useDope(int sprayType)
 {
 	if (gameSystem->isVersusMode()) {
 		mSprayCounts[sprayType]--;
+		return;
 	}
 
 	playData->useDope(sprayType);

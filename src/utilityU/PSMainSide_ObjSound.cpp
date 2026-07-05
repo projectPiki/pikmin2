@@ -10,6 +10,7 @@
 #include "PSM/CreaturePrm.h"
 #include "PSM/Navi.h"
 #include "PSMath.h"
+#include "PSGame/SeMgr.h"
 #include "utilityU.h"
 
 namespace PSM {
@@ -313,9 +314,8 @@ JAISound* Creature::startSoundInner(PSM::StartSoundArg& arg)
 	}
 
 	if (temp) {
-		JAInter::Actor actor(this, jai->_24, 0, 0);
-		u8 players = PSSystem::SingletonBase<ObjCalcBase>::sInstance->getPlayerNo(this);
-		JAIBasic::msBasic->startSoundActorT(sound, temp, &actor, unk, players);
+		JAInter::Actor actor(this, jai->_24);
+		JAIBasic::msBasic->startSoundActorT(sound, temp, &actor, unk, PSSystem::SingletonBase<ObjCalcBase>::sInstance->getPlayerNo(this));
 		onPlayingSe(sound, *temp);
 		if (*temp) {
 			(*temp)->mIsPlayingWithActor = true;
@@ -331,20 +331,19 @@ JAISound* Creature::startSoundInner(PSM::StartSoundArg& arg)
 			}
 		}
 
-		if (id == 255 || JAInter::SoundTable::getInfoPointer(sound)->mPriority >= prio) {
-			return nullptr;
-		}
-		jai->handleStop(id, 0);
+		if (id != 255 && JAInter::SoundTable::getInfoPointer(sound)->mPriority < prio) {
+			jai->handleStop(id, 0);
 
-		JAInter::Actor actor(this, jai->_24, 0, 0);
-		u8 players = PSSystem::SingletonBase<ObjCalcBase>::sInstance->getPlayerNo(this);
-		JAIBasic::msBasic->startSoundActorT(sound, getHandleArea(id), &actor, unk, players);
-		onPlayingSe(sound, *getHandleArea(id));
-		JAISound* se = jai->mSounds[id];
-		if (se) {
-			se->mIsPlayingWithActor = true;
+			JAInter::Actor actor(this, jai->_24);
+			JAIBasic::msBasic->startSoundActorT(sound, getHandleArea(id), &actor, unk,
+			                                    PSSystem::SingletonBase<ObjCalcBase>::sInstance->getPlayerNo(this));
+			onPlayingSe(sound, *getHandleArea(id));
+			JAISound* se = jai->mSounds[id];
+			if (se) {
+				se->mIsPlayingWithActor = true;
+			}
+			return se;
 		}
-		return se;
 	}
 	return nullptr;
 	/*
@@ -1023,10 +1022,11 @@ void CreatureAnime::exec()
  */
 void CreatureAnime::onCalcOn()
 {
-	JAInter::Actor actor(this, _24, 0, 0);
+	JAInter::Actor actor(this, _24);
 
 	setAnimSoundActor(&actor, mGameObj->getSound_CurrAnimFrame(), mGameObj->getSound_CurrAnimSpeed(),
 	                  PSSystem::SingletonBase<ObjCalcBase>::sInstance->getPlayerNo(this));
+
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -1167,122 +1167,13 @@ EnemyBase::EnemyBase(Game::EnemyBase* gameObj, u8 p2)
  */
 void EnemyBase::startAnimSound(u32 soundID, JAISound** se, JAInter::Actor* actor, u8 a1)
 {
-	if ((static_cast<Game::EnemyBase*>(mGameObj)->isEvent(0, Game::EB_Bittered))) {
-		u32 id = soundID;
-		if ((id == PSSE_EN_DOPING_GAS_FREEZE || id == PSSE_EN_DOPING_ROCK_FLICK || id == PSSE_EN_DOPING_FLICK_LAST
-		     || id == PSSE_EN_DOPING_ROCK_BREAK)
-		    || ((id >> 12) & 0xf) == 2) {
-			CreatureAnime::startAnimSound(soundID, se, actor, a1);
-		}
+	u32 id = soundID;
+	if (!static_cast<Game::EnemyBase*>(mGameObj)->isEvent(0, Game::EB_Bittered)
+	    || (id == PSSE_EN_DOPING_GAS_FREEZE || id == PSSE_EN_DOPING_ROCK_FLICK || id == PSSE_EN_DOPING_FLICK_LAST
+	        || id == PSSE_EN_DOPING_ROCK_BREAK)
+	    || ((id >> 12) & 0xf) == 2) {
+		CreatureAnime::startAnimSound(soundID, se, actor, a1);
 	}
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r7, 0x804A
-	  stw       r0, 0x24(r1)
-	  stmw      r26, 0x8(r1)
-	  mr        r26, r3
-	  mr        r27, r4
-	  mr        r28, r5
-	  mr        r29, r6
-	  subi      r31, r7, 0x3060
-	  lwz       r3, 0x2C(r3)
-	  lwz       r0, 0x1E0(r3)
-	  rlwinm.   r0,r0,0,22,22
-	  beq-      .loc_0x58
-	  cmplwi    r27, 0x50B0
-	  beq-      .loc_0x58
-	  subi      r0, r27, 0x58B1
-	  cmplwi    r0, 0x2
-	  ble-      .loc_0x58
-	  rlwinm    r0,r27,20,28,31
-	  cmplwi    r0, 0x2
-	  bne-      .loc_0x160
-
-	.loc_0x58:
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x104(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x160
-	  lwz       r0, -0x6780(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x90
-	  addi      r3, r31, 0x30
-	  addi      r5, r31, 0x18
-	  li        r4, 0x1D3
-	  crclr     6, 0x6
-	  bl        -0x4340EC
-
-	.loc_0x90:
-	  lwz       r30, -0x6780(r13)
-	  cmplwi    r30, 0
-	  bne-      .loc_0xB0
-	  addi      r3, r31, 0x30
-	  addi      r5, r31, 0x18
-	  li        r4, 0x1DC
-	  crclr     6, 0x6
-	  bl        -0x43410C
-
-	.loc_0xB0:
-	  lwz       r0, 0x8(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0xD0
-	  addi      r3, r31, 0x3C
-	  addi      r5, r31, 0x18
-	  li        r4, 0xA1
-	  crclr     6, 0x6
-	  bl        -0x43412C
-
-	.loc_0xD0:
-	  lwz       r3, 0x8(r30)
-	  mr        r4, r26
-	  mr        r5, r27
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x38(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x160
-	  stw       r26, 0x0(r29)
-	  mr        r4, r26
-	  lwz       r3, -0x6E4C(r13)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r7, r3
-	  mr        r4, r27
-	  mr        r5, r28
-	  mr        r6, r29
-	  addi      r3, r26, 0x30
-	  bl        -0x3B2B74
-	  cmplwi    r28, 0
-	  bne-      .loc_0x144
-	  addi      r3, r31, 0
-	  addi      r5, r31, 0x18
-	  li        r4, 0x1B9
-	  crclr     6, 0x6
-	  bl        -0x4341A0
-
-	.loc_0x144:
-	  mr        r3, r26
-	  mr        r4, r27
-	  lwz       r12, 0x28(r26)
-	  lwz       r5, 0x0(r28)
-	  lwz       r12, 0x38(r12)
-	  mtctr     r12
-	  bctrl
-
-	.loc_0x160:
-	  lmw       r26, 0x8(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
 }
 
 /**
@@ -3119,10 +3010,15 @@ void Navi::stopWaitVoice()
 JAISound* Navi::startSound(u32 soundID, u32 flag)
 {
 	switch (soundID) {
-	case PSSE_PL_SLEEP_ORIMA:
 	case PSSE_PL_PUNCH_ORIMA:
-	case PSSE_PL_GORYU_PLAYER:
-	case PSSE_PL_WAKEUP_ORIMA:
+	case PSSE_PL_PUNCH_LUI:
+	case PSSE_PL_PUNCH_SHACHO:
+	case PSSE_PL_DAMAGE_ORIMA:
+	case PSSE_PL_DAMAGE_LUI:
+	case PSSE_PL_DAMAGE_SHACHO:
+	case PSSE_PL_SLEEP_ORIMA:
+	case PSSE_PL_SLEEP_LUGI:
+	case PSSE_PL_SLEEP_SHACHO:
 		stopWaitVoice();
 		break;
 	case PSSE_PL_ORIMA_DAMAGE:
@@ -3135,86 +3031,6 @@ JAISound* Navi::startSound(u32 soundID, u32 flag)
 	if (soundID >= PSSE_PL_WAIT_JUMP_ORIMA && soundID <= PSSE_PL_WAIT_CHAT_SHACHO) {
 		mCurrSound = se;
 	}
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	mr       r31, r5
-	stw      r30, 0x28(r1)
-	mr       r30, r4
-	cmpwi    r30, 0x897
-	stw      r29, 0x24(r1)
-	mr       r29, r3
-	bge      lbl_80462CE0
-	cmpwi    r30, 0x88d
-	bge      lbl_80462CD4
-	cmpwi    r30, 0x80f
-	beq      lbl_80462D20
-	b        lbl_80462D48
-
-lbl_80462CD4:
-	cmpwi    r30, 0x893
-	bge      lbl_80462D48
-	b        lbl_80462CF4
-
-lbl_80462CE0:
-	cmpwi    r30, 0x89d
-	beq      lbl_80462CF4
-	bge      lbl_80462D48
-	cmpwi    r30, 0x899
-	bge      lbl_80462D48
-
-lbl_80462CF4:
-	lwz      r3, 0x90(r29)
-	cmplwi   r3, 0
-	beq      lbl_80462D48
-	lwz      r12, 0x10(r3)
-	li       r4, 0
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 0
-	stw      r0, 0x90(r29)
-	b        lbl_80462D48
-
-lbl_80462D20:
-	bl       getManType__Q23PSM4NaviFv
-	mr       r4, r3
-	mr       r3, r29
-	lwz      r12, 0x28(r29)
-	addi     r4, r4, 0x890
-	li       r5, 0
-	lwz      r12, 0x7c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80462D80
-
-lbl_80462D48:
-	stw      r29, 8(r1)
-	mr       r3, r29
-	addi     r4, r1, 8
-	stw      r30, 0xc(r1)
-	stw      r31, 0x10(r1)
-	lwz      r12, 0x28(r29)
-	lwz      r12, 0x30(r12)
-	mtctr    r12
-	bctrl
-	cmplwi   r30, 0x874
-	blt      lbl_80462D80
-	cmplwi   r30, 0x888
-	bgt      lbl_80462D80
-	stw      r3, 0x90(r29)
-
-lbl_80462D80:
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /**
@@ -3409,7 +3225,7 @@ void Navi::playWalkSound(PSM::Navi::FootType type, int id)
 
 	randid.mId   = 0.7f;
 	JAISe* sound = randid.startSound(this, test, 2, 0);
-	randid.mId   = -1.0f;
+	randid.mId   = PSGame::RandId::cNotUsingMasterIdRatio;
 
 	if (sound) {
 		sound->setPortData(10, getManType());

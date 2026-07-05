@@ -139,6 +139,16 @@ extern CustomHeapCallback customHeapCallback;
 } // namespace SequenceMgr
 
 struct Actor {
+	inline Actor(void* vec1, Vec* vec2)
+	{
+		// The use in ObjSound is close to this
+		mObj              = (vec1) ? vec1 : vec2;
+		mVec2             = vec2;
+		mVec3             = (Vec*)-1;
+		mInfoIndex        = 0;
+		mFlag.boolView[0] = 1;
+	}
+
 	inline Actor(void* vec1, Vec* vec2, Vec* vec3, u32 unk)
 	{
 		// The use in ObjSound is close to this
