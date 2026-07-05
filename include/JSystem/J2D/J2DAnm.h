@@ -602,7 +602,7 @@ struct J2DAnmVtxColor : public J2DAnmBase {
 	virtual ~J2DAnmVtxColor() { }                      // _08 (weak)
 	virtual void getColor(u8, u16, GXColor*) const { } // _10 (weak)
 
-	u16 getAnmTableNum(u8 idx) const { return mAnmTableNum[idx]; }
+	u16 getAnmTableNum(u8 idx) { return mAnmTableNum[idx]; }
 	J3DAnmVtxColorIndexData* getAnmVtxColorIndexData(u8 idx, u16 p1) const { return &mVtxColorIndexData[idx][p1]; }
 	u16* getVtxColorIndexPointer(u8 idx) const { return mVtxColorIndexPtr[idx]; }
 

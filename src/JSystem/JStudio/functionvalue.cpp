@@ -11,22 +11,6 @@
 #include "math.h"
 #include "types.h"
 
-namespace JGadget {
-template <typename Iterator, typename Value>
-// TODO: this
-Iterator findUpperBound_binary_current(Iterator i1, Iterator i2, Iterator i3, const Value& val)
-{
-	std::less<Value> comp;
-	findUpperBound_binary_current(i1, i2, i3, val, comp);
-}
-
-template <typename Iterator, typename Value>
-Iterator findUpperBound_binary_current(Iterator i1, Iterator i2, Iterator i3, const Value& val, std::less<Value>)
-{
-	i1.mValue = (const f32*)&val;
-}
-}; // namespace JGadget
-
 namespace JStudio {
 
 namespace {
@@ -114,13 +98,13 @@ f64 functionvalue::interpolateValue_BSpline_uniform(f64 interpolationFactor, f64
 
 	f64 coefficient1 = inverseInterpolationFactorCubed;
 
-	f64 blendFactorForPoint3 = (16.0 / 99.0) * interpolationFactorCubed - interpolationFactorSquared + 0.5;
+	f64 blendFactorForPoint3 = (1.0 / 2.0) * interpolationFactorCubed - interpolationFactorSquared + (2.0 / 3.0);
 
-	f64 blendFactorForPoint4 = (16.0 / 99.0) * (interpolationFactor + interpolationFactorSquared - interpolationFactorCubed) + (2.0 / 3.0);
+	f64 blendFactorForPoint4 = (1.0 / 2.0) * (interpolationFactor + interpolationFactorSquared - interpolationFactorCubed) + (1.0 / 6.0);
 
 	f64 coefficient2 = interpolationFactorCubed;
 
-	return ((coefficient1 * point2) + (coefficient2 * point5)) * (2.0 / 3.0) + (blendFactorForPoint3 * point3)
+	return ((coefficient1 * point2) + (coefficient2 * point5)) * (1.0 / 6.0) + (blendFactorForPoint3 * point3)
 	     + (blendFactorForPoint4 * point4);
 }
 
@@ -991,7 +975,6 @@ f64 TFunctionValue_list_parameter::getValue(f64 p1)
 	}
 
 	const f32* pf         = mData3.get();
-	const int suData_size = 1;
 	return mUpdateFunction(*this, p1);
 }
 

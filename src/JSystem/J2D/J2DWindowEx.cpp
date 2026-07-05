@@ -614,9 +614,9 @@ void J2DWindowEx::drawFrameTexture(f32 x, f32 y, f32 width, f32 height, u16 p5, 
 				aTStack_84 = JUtility::TColor((u32)uVar11 | 0xffffff00);
 			}
 		} else if (parentPane != nullptr && mIsInfluencedAlpha != 0 && p10) {
-			int matColorAlpha = material->getColorBlock()->getMatColor(0)->a;
-			int colorAlpha    = parentPane->mColorAlpha;
-			GXSetChanMatColor(GX_ALPHA0, JUtility::TColor((matColorAlpha * colorAlpha / 0xff) & 0xff));
+			u8 matColorAlpha = material->getColorBlock()->getMatColor(0)->a;
+			matColorAlpha    = matColorAlpha * parentPane->mColorAlpha / 0xff;
+			GXSetChanMatColor(GX_ALPHA0, JUtility::TColor(matColorAlpha));
 		}
 		GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGBA, GX_F32, 0);
 		GXBegin(GX_QUADS, GX_VTXFMT0, 4);
@@ -640,174 +640,6 @@ void J2DWindowEx::drawFrameTexture(f32 x, f32 y, f32 width, f32 height, u16 p5, 
 		GXEnd();
 		GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGBA, GX_RGBA4, 0);
 	}
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x80(r1)
-	  mflr      r0
-	  stw       r0, 0x84(r1)
-	  stfd      f31, 0x70(r1)
-	  psq_st    f31,0x78(r1),0,0
-	  stfd      f30, 0x60(r1)
-	  psq_st    f30,0x68(r1),0,0
-	  stfd      f29, 0x50(r1)
-	  psq_st    f29,0x58(r1),0,0
-	  stfd      f28, 0x40(r1)
-	  psq_st    f28,0x48(r1),0,0
-	  stmw      r25, 0x24(r1)
-	  mr.       r31, r8
-	  fmr       f28, f1
-	  fmr       f29, f2
-	  mr        r25, r3
-	  mr        r27, r4
-	  mr        r28, r5
-	  mr        r29, r6
-	  mr        r30, r7
-	  mr        r26, r9
-	  beq-      .loc_0x230
-	  lbz       r0, 0xE(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x230
-	  rlwinm.   r0,r26,0,24,31
-	  fadds     f31, f28, f3
-	  fadds     f30, f29, f4
-	  beq-      .loc_0x7C
-	  mr        r3, r31
-	  bl        0xC21C
-
-	.loc_0x7C:
-	  li        r0, -0x1
-	  mr        r3, r25
-	  stw       r0, 0x14(r1)
-	  bl        -0xCF5C
-	  lhz       r0, 0x1C(r31)
-	  rlwinm    r0,r0,0,31,31
-	  cmplwi    r0, 0x1
-	  bne-      .loc_0x128
-	  lbz       r0, 0xF(r31)
-	  cmpwi     r0, 0x1
-	  bne-      .loc_0x184
-	  addic.    r0, r31, 0x10
-	  li        r4, 0xFF
-	  beq-      .loc_0xB8
-	  lbz       r4, 0x13(r31)
-
-	.loc_0xB8:
-	  cmplwi    r3, 0
-	  beq-      .loc_0xF8
-	  lbz       r0, 0xB4(r25)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xF8
-	  lbz       r0, 0xB3(r3)
-	  rlwinm    r4,r4,0,24,31
-	  lis       r3, 0x8081
-	  mullw     r0, r4, r0
-	  subi      r3, r3, 0x7F7F
-	  mulhw     r3, r3, r0
-	  add       r0, r3, r0
-	  srawi     r0, r0, 0x7
-	  rlwinm    r3,r0,1,31,31
-	  add       r0, r0, r3
-	  rlwinm    r4,r0,0,24,31
-
-	.loc_0xF8:
-	  li        r0, -0x100
-	  rlwimi    r0,r4,0,24,31
-	  stw       r0, 0x10(r1)
-	  lbz       r5, 0x10(r1)
-	  lbz       r4, 0x11(r1)
-	  lbz       r3, 0x12(r1)
-	  lbz       r0, 0x13(r1)
-	  stb       r5, 0x14(r1)
-	  stb       r4, 0x15(r1)
-	  stb       r3, 0x16(r1)
-	  stb       r0, 0x17(r1)
-	  b         .loc_0x184
-
-	.loc_0x128:
-	  cmplwi    r3, 0
-	  beq-      .loc_0x184
-	  lbz       r0, 0xB4(r25)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x184
-	  rlwinm.   r0,r26,0,24,31
-	  beq-      .loc_0x184
-	  lbz       r0, 0xB3(r3)
-	  lis       r3, 0x8081
-	  lbz       r6, 0x13(r31)
-	  subi      r5, r3, 0x7F7F
-	  addi      r4, r1, 0xC
-	  li        r3, 0x2
-	  mullw     r0, r6, r0
-	  mulhw     r5, r5, r0
-	  add       r0, r5, r0
-	  srawi     r0, r0, 0x7
-	  rlwinm    r5,r0,1,31,31
-	  add       r0, r0, r5
-	  rlwinm    r0,r0,0,24,31
-	  stw       r0, 0x8(r1)
-	  stw       r0, 0xC(r1)
-	  bl        0xA0C40
-
-	.loc_0x184:
-	  li        r3, 0
-	  li        r4, 0x9
-	  li        r5, 0x1
-	  li        r6, 0x4
-	  li        r7, 0
-	  bl        0x9E5BC
-	  li        r3, 0x80
-	  li        r4, 0
-	  li        r5, 0x4
-	  bl        0x9F82C
-	  lis       r8, 0xCC01
-	  lfs       f0, -0x7AB0(r2)
-	  stfs      f28, -0x8000(r8)
-	  li        r3, 0
-	  lwz       r0, 0x14(r1)
-	  li        r4, 0x9
-	  stfs      f29, -0x8000(r8)
-	  li        r5, 0x1
-	  li        r6, 0x3
-	  li        r7, 0
-	  stfs      f0, -0x8000(r8)
-	  stw       r0, -0x8000(r8)
-	  sth       r29, -0x8000(r8)
-	  sth       r30, -0x8000(r8)
-	  stfs      f31, -0x8000(r8)
-	  stfs      f29, -0x8000(r8)
-	  stfs      f0, -0x8000(r8)
-	  stw       r0, -0x8000(r8)
-	  sth       r27, -0x8000(r8)
-	  sth       r30, -0x8000(r8)
-	  stfs      f31, -0x8000(r8)
-	  stfs      f30, -0x8000(r8)
-	  stfs      f0, -0x8000(r8)
-	  stw       r0, -0x8000(r8)
-	  sth       r27, -0x8000(r8)
-	  sth       r28, -0x8000(r8)
-	  stfs      f28, -0x8000(r8)
-	  stfs      f30, -0x8000(r8)
-	  stfs      f0, -0x8000(r8)
-	  stw       r0, -0x8000(r8)
-	  sth       r29, -0x8000(r8)
-	  sth       r28, -0x8000(r8)
-	  bl        0x9E528
-
-	.loc_0x230:
-	  psq_l     f31,0x78(r1),0,0
-	  lfd       f31, 0x70(r1)
-	  psq_l     f30,0x68(r1),0,0
-	  lfd       f30, 0x60(r1)
-	  psq_l     f29,0x58(r1),0,0
-	  lfd       f29, 0x50(r1)
-	  psq_l     f28,0x48(r1),0,0
-	  lfd       f28, 0x40(r1)
-	  lmw       r25, 0x24(r1)
-	  lwz       r0, 0x84(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x80
-	  blr
-	*/
 }
 
 /**
@@ -924,15 +756,15 @@ void J2DWindowEx::setTevStage(bool p1)
  */
 void J2DWindowEx::setStage(J2DTevStage* stage, J2DWindowEx::stage_enum stageNum)
 {
-	s8 local_30[6][4] = {
+	u8 local_30[6][4] = {
 		{ 0x0f, 0x08, 0x0a, 0x0f }, { 0x0f, 0x08, 0x0a, 0x0f }, { 0x0f, 0x0a, 0x00, 0x0f },
 		{ 0x02, 0x04, 0x08, 0x0f }, { 0x02, 0x04, 0x08, 0x0f }, { 0x0f, 0x0f, 0x0f, 0x0a },
 	};
-	s8 local_48[6][4] = {
+	u8 local_48[6][4] = {
 		{ 0x07, 0x04, 0x05, 0x07 }, { 0x05, 0x07, 0x07, 0x07 }, { 0x07, 0x05, 0x00, 0x07 },
 		{ 0x01, 0x02, 0x04, 0x07 }, { 0x07, 0x07, 0x07, 0x02 }, { 0x07, 0x07, 0x07, 0x05 },
 	};
-	s8 local_68[6][5] = {
+	u8 local_68[6][5] = {
 		{ 1, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0 }, { 0, 1, 0, 0, 1 }, { 0, 0, 1, 0, 0 }, { 1, 0, 0, 0, 0 }, { 0, 0, 0, 0, 1 },
 	};
 
@@ -1723,7 +1555,7 @@ void J2DWindowEx::setAnimation(J2DAnmVtxColor* animation)
 	mAnmVtxColor = animation;
 	_17C         = 0;
 	if (animation != nullptr) {
-		u32 uVar3 = animation->getAnmTableNum(0);
+		u16 uVar3 = animation->getAnmTableNum(0);
 		for (u8 i = 0; i < 4; i++) {
 			if (_168[i] != 0xffff) {
 				for (u16 j = 0; j < uVar3; j++) {

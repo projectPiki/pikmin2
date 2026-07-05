@@ -252,9 +252,6 @@ struct TAdaptor_sound : public TAdaptor {
 	}
 
 	virtual ~TAdaptor_sound()                                                               = 0; // _08
-	virtual void adaptor_do_prepare(const JStudio::TObject*)                                = 0; // _0C
-	virtual void adaptor_do_end(const JStudio::TObject*)                                    = 0; // _14
-	virtual void adaptor_do_update(const JStudio::TObject*, u32)                            = 0; // _18
 	virtual void adaptor_do_SOUND(JStudio::data::TEOperationData, const void*, u32)         = 0; // _20
 	virtual void adaptor_do_BEGIN(JStudio::data::TEOperationData, const void*, u32)         = 0; // _24
 	virtual void adaptor_do_BEGIN_FADE_IN(JStudio::data::TEOperationData, const void*, u32) = 0; // _28

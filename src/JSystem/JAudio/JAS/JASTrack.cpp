@@ -526,9 +526,9 @@ void JASTrack::oscSetupFull(u8 route, u32 attackOffset, u32 releaseOffset)
 {
 	u8 oscIdx           = (route & 0x10) >> 4;
 	int target          = route & 0xF;
-	bool doSetupEnv     = (route & 0x80) >> 7;
-	bool doSetupAttack  = route & 0x40;
-	bool doSetupRelease = route & 0x20;
+	bool doSetupEnv     = (route & 0x80) ? true : false;
+	bool doSetupAttack  = route & 0x40 ? true : false;
+	bool doSetupRelease = route & 0x20 ? true : false;
 	if (doSetupEnv) {
 		mOscData[oscIdx]         = JASPlayer::sEnvelopeDef;
 		mOscData[oscIdx].mTarget = target;
@@ -552,74 +552,6 @@ void JASTrack::oscSetupFull(u8 route, u32 attackOffset, u32 releaseOffset)
 		}
 		mOscData[oscIdx].mRelease = (s16*)(mSeqCtrl.mRawFilePtr + releaseOffset);
 	}
-	/*
-	rlwinm.  r0, r4, 0x19, 0x1f, 0x1f
-	rlwinm   r8, r4, 0x1c, 0x1f, 0x1f
-	clrlwi   r12, r4, 0x1c
-	rlwinm   r9, r4, 0x1a, 0x1f, 0x1f
-	rlwinm   r10, r4, 0x1b, 0x1f, 0x1f
-	beq      lbl_8009FB64
-	mulli    r11, r8, 0x18
-	lis      r4, sEnvelopeDef__9JASPlayer@ha
-	cmpwi    r12, 1
-	addi     r7, r4, sEnvelopeDef__9JASPlayer@l
-	lwz      r0, 0(r7)
-	add      r11, r3, r11
-	lfs      f0, 4(r7)
-	stw      r0, 0x2a8(r11)
-	lwz      r4, 8(r7)
-	stfs     f0, 0x2ac(r11)
-	lwz      r0, 0xc(r7)
-	stw      r4, 0x2b0(r11)
-	lfs      f1, 0x10(r7)
-	stw      r0, 0x2b4(r11)
-	lfs      f0, 0x14(r7)
-	stfs     f1, 0x2b8(r11)
-	stfs     f0, 0x2bc(r11)
-	stw      r12, 0x2a8(r11)
-	beq      lbl_8009FB5C
-	b        lbl_8009FB64
-
-lbl_8009FB5C:
-	lfs      f0, lbl_80516D7C@sda21(r2)
-	stfs     f0, 0x2bc(r11)
-
-lbl_8009FB64:
-	cmplwi   r9, 0
-	beq      lbl_8009FB98
-	cmplwi   r5, 0
-	bne      lbl_8009FB84
-	mulli    r0, r8, 0x18
-	li       r7, 0
-	add      r4, r3, r0
-	stw      r7, 0x2b0(r4)
-
-lbl_8009FB84:
-	mulli    r0, r8, 0x18
-	lwz      r4, 0xc(r3)
-	add      r5, r4, r5
-	add      r4, r3, r0
-	stw      r5, 0x2b0(r4)
-
-lbl_8009FB98:
-	cmplwi   r10, 0
-	beqlr
-	cmplwi   r6, 0
-	bne      lbl_8009FBBC
-	mulli    r0, r8, 0x18
-	lis      r4, sRelTable__9JASPlayer@ha
-	addi     r5, r4, sRelTable__9JASPlayer@l
-	add      r4, r3, r0
-	stw      r5, 0x2b4(r4)
-
-lbl_8009FBBC:
-	mulli    r0, r8, 0x18
-	lwz      r4, 0xc(r3)
-	add      r4, r4, r6
-	add      r3, r3, r0
-	stw      r4, 0x2b4(r3)
-	blr
-	*/
 }
 
 /**
@@ -2837,17 +2769,17 @@ bool JASTrack::readPortAppDirect(u32 portNo, u16* outValue)
  */
 JASTrack* JASTrack::routeTrack(u32 route)
 {
-	u32 idx = route;
-	for (u32 i = 0; i < (route >> 28); i++) {
-		JASTrack* outTrack = mChildList[idx & 0xF];
-		if (!outTrack) {
+	JASTrack* owning_track = this;
+
+	u32 depth = route >> 28;
+	for (u32 i = 0; i < depth; i++) {
+		owning_track = owning_track->mChildList[route & 0xF];
+		if (owning_track == nullptr) {
 			return nullptr;
 		}
-
-		idx >>= 4;
+		route >>= 4;
 	}
-
-	return this;
+	return owning_track;
 }
 
 /**
@@ -2870,75 +2802,7 @@ bool JASTrack::writePortApp(u32 route, u16 value)
 		return false;
 	}
 
-	u32 portNo = (route >> 16) & 0xFF;
-	track->writePortAppDirect(portNo, value);
-
-	return true;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r7, r4
-	stw      r0, 0x14(r1)
-	srwi     r0, r4, 0x1c
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mtctr    r0
-	cmplwi   r0, 0
-	ble      lbl_800A21D8
-
-lbl_800A21B4:
-	rlwinm   r6, r7, 2, 0x1a, 0x1d
-	addi     r0, r6, 0x2fc
-	lwzx     r3, r3, r0
-	cmplwi   r3, 0
-	bne      lbl_800A21D0
-	li       r31, 0
-	b        lbl_800A21DC
-
-lbl_800A21D0:
-	srwi     r7, r7, 4
-	bdnz     lbl_800A21B4
-
-lbl_800A21D8:
-	mr       r31, r3
-
-lbl_800A21DC:
-	cmplwi   r31, 0
-	bne      lbl_800A21EC
-	li       r3, 0
-	b        lbl_800A2228
-
-lbl_800A21EC:
-	rlwinm   r30, r4, 0x10, 0x18, 0x1f
-	addi     r3, r31, 0x54
-	mr       r4, r30
-	bl       writeImport__12JASTrackPortFiUs
-	cmplwi   r30, 0
-	beq      lbl_800A220C
-	cmplwi   r30, 1
-	bne      lbl_800A2224
-
-lbl_800A220C:
-	cmplwi   r30, 0
-	addi     r3, r31, 0x94
-	li       r4, 4
-	bne      lbl_800A2220
-	li       r4, 3
-
-lbl_800A2220:
-	bl       request__10JASIntrMgrFUl
-
-lbl_800A2224:
-	li       r3, 1
-
-lbl_800A2228:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return track->writePortAppDirect((route >> 16) & 0xFF, value);
 }
 
 /**
@@ -2952,53 +2816,7 @@ bool JASTrack::readPortApp(u32 route, u16* outValue)
 		return false;
 	}
 
-	*outValue = track->mTrackPort.readExport((route >> 16) & 0xFF);
-	return true;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r6, r4
-	stw      r0, 0x14(r1)
-	srwi     r0, r4, 0x1c
-	stw      r31, 0xc(r1)
-	mr       r31, r5
-	mtctr    r0
-	cmplwi   r0, 0
-	ble      lbl_800A228C
-
-lbl_800A2268:
-	rlwinm   r5, r6, 2, 0x1a, 0x1d
-	addi     r0, r5, 0x2fc
-	lwzx     r3, r3, r0
-	cmplwi   r3, 0
-	bne      lbl_800A2284
-	li       r3, 0
-	b        lbl_800A228C
-
-lbl_800A2284:
-	srwi     r6, r6, 4
-	bdnz     lbl_800A2268
-
-lbl_800A228C:
-	cmplwi   r3, 0
-	bne      lbl_800A229C
-	li       r3, 0
-	b        lbl_800A22B0
-
-lbl_800A229C:
-	addi     r3, r3, 0x54
-	rlwinm   r4, r4, 0x10, 0x18, 0x1f
-	bl       readExport__12JASTrackPortFi
-	sth      r3, 0(r31)
-	li       r3, 1
-
-lbl_800A22B0:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return track->readPortAppDirect((route >> 16) & 0xFF, outValue);
 }
 
 /**

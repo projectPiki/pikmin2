@@ -189,20 +189,6 @@ void TAdaptor::adaptor_setVariableValue(JStudio::TObject* object, u32 value, JSt
 	case data::TEOD_Unknown_12:
 		func = adaptor_setVariableValue_FVR_INDEX_;
 		break;
-	case data::TEOD_Unknown_00:
-	case data::TEOD_Unknown_04:
-	case data::TEOD_Unknown_05:
-	case data::TEOD_Unknown_06:
-	case data::TEOD_Unknown_07:
-	case data::TEOD_Unknown_08:
-	case data::TEOD_Unknown_09:
-	case data::TEOD_Unknown_0A:
-	case data::TEOD_Unknown_0B:
-	case data::TEOD_Unknown_0C:
-	case data::TEOD_Unknown_0D:
-	case data::TEOD_Unknown_0E:
-	case data::TEOD_Unknown_0F:
-	case data::TEOD_Unknown_11:
 	default:
 		return;
 	}
@@ -232,26 +218,10 @@ void TAdaptor::adaptor_setVariableValue_n(JStudio::TObject* object, u32 const* v
 		offset = 4;
 		func   = adaptor_setVariableValue_TIME_;
 		break;
-	case data::TEOD_Unknown_10:
-		return;
 	case data::TEOD_Unknown_12:
 		offset = 4;
 		func   = adaptor_setVariableValue_FVR_INDEX_;
 		break;
-	case data::TEOD_Unknown_00:
-	case data::TEOD_Unknown_04:
-	case data::TEOD_Unknown_05:
-	case data::TEOD_Unknown_06:
-	case data::TEOD_Unknown_07:
-	case data::TEOD_Unknown_08:
-	case data::TEOD_Unknown_09:
-	case data::TEOD_Unknown_0A:
-	case data::TEOD_Unknown_0B:
-	case data::TEOD_Unknown_0C:
-	case data::TEOD_Unknown_0D:
-	case data::TEOD_Unknown_0E:
-	case data::TEOD_Unknown_0F:
-	case data::TEOD_Unknown_11:
 	default:
 		return;
 	}
@@ -413,37 +383,6 @@ void TAdaptor::adaptor_setVariableValue_FVR_INDEX_(JStudio::TAdaptor* adaptor, J
 	TVariableValue* varVal = &adaptor->mVariableValues[idx];
 	varVal->setValueFunctionValue(object->getControl()->getFunctionValue_index(*(u32*)value));
 }
-
-const u32 TAdaptor_actor::sauVariableValue_3_TRANSLATION_XYZ[3] = { 3, 4, 5 };
-const u32 TAdaptor_actor::sauVariableValue_3_ROTATION_XYZ[3]    = { 6, 7, 8 };
-const u32 TAdaptor_actor::sauVariableValue_3_SCALING_XYZ[3]     = { 9, 10, 11 };
-
-const u32 TAdaptor_ambientLight::sauVariableValue_3_COLOR_RGB[3]  = { 0, 1, 2 };
-const u32 TAdaptor_ambientLight::sauVariableValue_4_COLOR_RGBA[4] = { 0, 1, 2, 3 };
-
-const u32 TAdaptor_camera::sauVariableValue_3_POSITION_XYZ[3]        = { 0, 1, 2 };
-const u32 TAdaptor_camera::sauVariableValue_3_TARGET_POSITION_XYZ[3] = { 3, 4, 5 };
-const u32 TAdaptor_camera::sauVariableValue_2_DISTANCE_NEAR_FAR[2]   = { 8, 9 };
-
-const u32 TAdaptor_fog::sauVariableValue_3_COLOR_RGB[3]       = { 0, 1, 2 };
-const u32 TAdaptor_fog::sauVariableValue_4_COLOR_RGBA[4]      = { 0, 1, 2, 3 };
-const u32 TAdaptor_fog::sauVariableValue_2_RANGE_BEGIN_END[2] = { 4, 5 };
-
-const u32 TAdaptor_light::sauVariableValue_3_COLOR_RGB[3]           = { 0, 1, 2 };
-const u32 TAdaptor_light::sauVariableValue_4_COLOR_RGBA[4]          = { 0, 1, 2, 3 };
-const u32 TAdaptor_light::sauVariableValue_3_POSITION_XYZ[3]        = { 4, 5, 6 };
-const u32 TAdaptor_light::sauVariableValue_3_TARGET_POSITION_XYZ[3] = { 7, 8, 9 };
-const u32 TAdaptor_light::sauVariableValue_2_DIRECTION_THETA_PHI[2] = { 10, 11 };
-
-const u32 TAdaptor_particle::sauVariableValue_3_TRANSLATION_XYZ[3] = { 0, 1, 2 };
-const u32 TAdaptor_particle::sauVariableValue_3_ROTATION_XYZ[3]    = { 3, 4, 5 };
-const u32 TAdaptor_particle::sauVariableValue_3_SCALING_XYZ[3]     = { 6, 7, 8 };
-const u32 TAdaptor_particle::sauVariableValue_3_COLOR_RGB[3]       = { 9, 10, 11 };
-const u32 TAdaptor_particle::sauVariableValue_4_COLOR_RGBA[4]      = { 9, 10, 11, 12 };
-const u32 TAdaptor_particle::sauVariableValue_3_COLOR1_RGB[3]      = { 9, 10, 11 };
-const u32 TAdaptor_particle::sauVariableValue_4_COLOR1_RGBA[4]     = { 9, 10, 11, 12 };
-
-const u32 TAdaptor_sound::sauVariableValue_3_POSITION_XYZ[3] = { 0, 1, 2 };
 
 /**
  * @note Address: N/A
@@ -614,6 +553,10 @@ TObject::TObject(JStudio::data::TE32Block, void const*, u32, JStudio::TAdaptor*)
 TAdaptor_actor::~TAdaptor_actor()
 {
 }
+
+const u32 TAdaptor_actor::sauVariableValue_3_TRANSLATION_XYZ[3] = { 3, 4, 5 };
+const u32 TAdaptor_actor::sauVariableValue_3_ROTATION_XYZ[3]    = { 6, 7, 8 };
+const u32 TAdaptor_actor::sauVariableValue_3_SCALING_XYZ[3]     = { 9, 10, 11 };
 
 /**
  * @note Address: N/A
@@ -1294,6 +1237,9 @@ TAdaptor_ambientLight::~TAdaptor_ambientLight()
 {
 }
 
+const u32 TAdaptor_ambientLight::sauVariableValue_3_COLOR_RGB[3]  = { 0, 1, 2 };
+const u32 TAdaptor_ambientLight::sauVariableValue_4_COLOR_RGBA[4] = { 0, 1, 2, 3 };
+
 /**
  * @note Address: N/A
  * @note Size: 0x6C
@@ -1552,6 +1498,10 @@ TObject_camera::TObject_camera(JStudio::stb::data::TParse_TBlock_object const& p
     : TObject(p1, p2)
 {
 }
+
+const u32 TAdaptor_camera::sauVariableValue_3_POSITION_XYZ[3]        = { 0, 1, 2 };
+const u32 TAdaptor_camera::sauVariableValue_3_TARGET_POSITION_XYZ[3] = { 3, 4, 5 };
+const u32 TAdaptor_camera::sauVariableValue_2_DISTANCE_NEAR_FAR[2]   = { 8, 9 };
 
 /**
  * @note Address: 0x8000E118
@@ -2139,6 +2089,10 @@ TAdaptor_fog::~TAdaptor_fog()
 {
 }
 
+const u32 TAdaptor_fog::sauVariableValue_3_COLOR_RGB[3]       = { 0, 1, 2 };
+const u32 TAdaptor_fog::sauVariableValue_4_COLOR_RGBA[4]      = { 0, 1, 2, 3 };
+const u32 TAdaptor_fog::sauVariableValue_2_RANGE_BEGIN_END[2] = { 4, 5 };
+
 /**
  * @note Address: N/A
  * @note Size: 0x6C
@@ -2463,6 +2417,12 @@ TAdaptor_light::~TAdaptor_light()
 {
 }
 
+const u32 TAdaptor_light::sauVariableValue_3_COLOR_RGB[3]           = { 0, 1, 2 };
+const u32 TAdaptor_light::sauVariableValue_4_COLOR_RGBA[4]          = { 0, 1, 2, 3 };
+const u32 TAdaptor_light::sauVariableValue_3_POSITION_XYZ[3]        = { 4, 5, 6 };
+const u32 TAdaptor_light::sauVariableValue_3_TARGET_POSITION_XYZ[3] = { 7, 8, 9 };
+const u32 TAdaptor_light::sauVariableValue_2_DIRECTION_THETA_PHI[2] = { 10, 11 };
+
 /**
  * @note Address: N/A
  * @note Size: 0x6C
@@ -2491,7 +2451,7 @@ TObject_light::TObject_light(JStudio::stb::data::TParse_TBlock_object const& p1,
  */
 void TObject_light::do_paragraph(u32 p1, const void* p2, u32 p3)
 {
-	TAdaptor_light* adaptor = static_cast<TAdaptor_light*>(getAdaptor());
+	TAdaptor* adaptor = getAdaptor();
 	if (!adaptor) {
 		return;
 	}
@@ -2506,9 +2466,9 @@ void TObject_light::do_paragraph(u32 p1, const void* p2, u32 p3)
 
 	switch (v1) {
 	case 0x36:
-		output = &soovv_light_ENABLE_;
-		value  = 12;
 		doFunc = (TAdaptor::AdaptorDoFunction)&TAdaptor_light::adaptor_do_ENABLE;
+		value  = 12;
+		output = &soovv_light_ENABLE_;
 		goto output_type_1;
 		return;
 
@@ -3030,18 +2990,18 @@ TObject_message::TObject_message(JStudio::stb::data::TParse_TBlock_object const&
  */
 void TObject_message::do_paragraph(u32 p1, const void* p2, u32 p3)
 {
-	TAdaptor_camera* adaptor = static_cast<TAdaptor_camera*>(getAdaptor());
+	TAdaptor* adaptor = getAdaptor();
 	if (!adaptor) {
 		return;
 	}
 
 	u32 v1                             = p1 >> 5;
-	data::TEOperationData operation    = (data::TEOperationData)(p1 & 0x1F);
+	data::TEOperationData operation    = (data::TEOperationData)(p1 &= 0x1F);
 	TAdaptor::AdaptorDoFunction doFunc = nullptr;
 
 	switch (v1) {
 	case 0x42:
-		doFunc = (TAdaptor::AdaptorDoFunction)&TAdaptor_camera::adaptor_do_PARENT;
+		doFunc = (TAdaptor::AdaptorDoFunction)&TAdaptor_message::adaptor_do_MESSAGE;
 		break;
 
 	default:
@@ -3103,6 +3063,14 @@ lbl_8000ED04:
 TAdaptor_particle::~TAdaptor_particle()
 {
 }
+
+const u32 TAdaptor_particle::sauVariableValue_3_TRANSLATION_XYZ[3] = { 0, 1, 2 };
+const u32 TAdaptor_particle::sauVariableValue_3_ROTATION_XYZ[3]    = { 3, 4, 5 };
+const u32 TAdaptor_particle::sauVariableValue_3_SCALING_XYZ[3]     = { 6, 7, 8 };
+const u32 TAdaptor_particle::sauVariableValue_3_COLOR_RGB[3]       = { 9, 10, 11 };
+const u32 TAdaptor_particle::sauVariableValue_4_COLOR_RGBA[4]      = { 9, 10, 11, 12 };
+const u32 TAdaptor_particle::sauVariableValue_3_COLOR1_RGB[3]      = { 9, 10, 11 };
+const u32 TAdaptor_particle::sauVariableValue_4_COLOR1_RGBA[4]     = { 9, 10, 11, 12 };
 
 /**
  * @note Address: N/A
@@ -3784,6 +3752,8 @@ TAdaptor_sound::~TAdaptor_sound()
 {
 }
 
+const u32 TAdaptor_sound::sauVariableValue_3_POSITION_XYZ[3] = { 0, 1, 2 };
+
 /**
  * @note Address: N/A
  * @note Size: 0x6C
@@ -3817,61 +3787,63 @@ void TObject_sound::do_paragraph(u32 p1, const void* p2, u32 p3)
 		return;
 	}
 
+	typedef void (TAdaptor_sound::*soundParagraphFunc)(JStudio::data::TEOperationData, const void*, u32);
+
 	u32 v1                          = p1 >> 5;
 	data::TEOperationData operation = (data::TEOperationData)(p1 & 0x1F);
 
-	TAdaptor::AdaptorDoFunction doFunc = nullptr;
-	u32 value                          = -1;
-	const u32* values                  = nullptr;
-	TVariableValue::TOutput* output    = nullptr;
+	soundParagraphFunc doFunc       = nullptr;
+	u32 value                       = -1;
+	const u32* values               = nullptr;
+	TVariableValue::TOutput* output = nullptr;
 
 	switch (v1) {
 	case 0x3C:
-		doFunc = (TAdaptor::AdaptorDoFunction)&TAdaptor_sound::adaptor_do_SOUND;
+		doFunc = &TAdaptor_sound::adaptor_do_SOUND;
 		goto output_type_4;
 		return;
 
 	case 0x4F:
-		doFunc = (TAdaptor::AdaptorDoFunction)&TAdaptor_sound::adaptor_do_BEGIN;
+		doFunc = &TAdaptor_sound::adaptor_do_BEGIN;
 		goto output_type_4;
 		return;
 
 	case 0x2E:
-		doFunc = (TAdaptor::AdaptorDoFunction)&TAdaptor_sound::adaptor_do_BEGIN_FADE_IN;
+		doFunc = &TAdaptor_sound::adaptor_do_BEGIN_FADE_IN;
 		goto output_type_4;
 		return;
 
 	case 0x50:
-		doFunc = (TAdaptor::AdaptorDoFunction)&TAdaptor_sound::adaptor_do_END;
+		doFunc = &TAdaptor_sound::adaptor_do_END;
 		goto output_type_4;
 		return;
 
 	case 0x2F:
-		doFunc = (TAdaptor::AdaptorDoFunction)&TAdaptor_sound::adaptor_do_END_FADE_OUT;
+		doFunc = &TAdaptor_sound::adaptor_do_END_FADE_OUT;
 		goto output_type_4;
 		return;
 
 	case 0x30:
-		doFunc = (TAdaptor::AdaptorDoFunction)&TAdaptor_sound::adaptor_do_PARENT;
+		doFunc = &TAdaptor_sound::adaptor_do_PARENT;
 		goto output_type_4;
 		return;
 
 	case 0x31:
-		doFunc = (TAdaptor::AdaptorDoFunction)&TAdaptor_sound::adaptor_do_PARENT_NODE;
+		doFunc = &TAdaptor_sound::adaptor_do_PARENT_NODE;
 		goto output_type_4;
 		return;
 
 	case 0x32:
 		output = &soovv_sound_PARENT_ENABLE_;
 		value  = 3;
-		doFunc = (TAdaptor::AdaptorDoFunction)&TAdaptor_sound::adaptor_do_PARENT_ENABLE;
+		doFunc = &TAdaptor_sound::adaptor_do_PARENT_ENABLE;
 		goto output_type_1;
 		return;
 
 	case 0x38:
 		output = &soovv_sound_LOCATED_;
 		value  = 4;
-		doFunc = (TAdaptor::AdaptorDoFunction)&TAdaptor_sound::adaptor_do_LOCATED;
+		doFunc = &TAdaptor_sound::adaptor_do_LOCATED;
 		goto output_type_1;
 		return;
 

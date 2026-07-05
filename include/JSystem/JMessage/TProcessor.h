@@ -154,12 +154,14 @@ struct TProcessor {
 
 	const char* on_word(u32 param_0) const { return mReference->on_word(param_0); }
 
-	void on_tag(u32 p1, const void* p2, u32 p3)
+	void on_tag(u32 tag, const void* data, u32 size)
 	{
-		if (!do_tag(p1, p2, p3 - 5)) {
-			do_tag_(p1, p2, p3 - 5);
+		if (!do_tag(tag, data, size - 5)) {
+			do_tag_(tag, data, size - 5);
 		}
 	}
+
+	void setCurrent_(const char* v) { mCurrent = v; }
 
 	// Unused/inlined:
 	void pushCurrent(const char*);

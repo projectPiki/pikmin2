@@ -50,7 +50,7 @@ struct TObject : public object::TObject_ID {
 
 	void prepare(const data::TParse_TBlock& block, TControl* control);
 
-	TFunctionValue& referFunctionValue() { return *mBaseFV; }
+	TFunctionValue* const& referFunctionValue() { return mBaseFV; }
 
 	// _08     = VTBL
 	// _00-_08 = TIData

@@ -23,6 +23,7 @@ struct J2DTexGenBlock {
 	void setTexCoord(u32 i, J2DTexCoord coord) { mTexCoords[i] = coord; }
 	void setTexCoord(u32 i, const J2DTexCoord* coord) { mTexCoords[i] = *coord; }
 	void setTexMtx(u32 i, J2DTexMtx* mtx) { mTexMtxes[i] = mtx; }
+	J2DTexMtx& getTexMtx(u32 i) { return *mTexMtxes[i]; }
 
 	virtual ~J2DTexGenBlock(); // _08
 

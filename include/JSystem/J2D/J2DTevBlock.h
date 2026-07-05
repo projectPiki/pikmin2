@@ -16,8 +16,8 @@ struct J2DTevBlock {
 	virtual void initialize() { }                                                   // _08 (weak)
 	virtual void setGX() { }                                                        // _0C (weak)
 	virtual void loadTexture(GXTexMapID, u32) { }                                   // _10 (weak)
-	virtual u32 getType()     = 0;                                                  // _14
-	virtual u32 getMaxStage() = 0;                                                  // _18
+	virtual u32 getType()    = 0;                                                   // _14
+	virtual u8 getMaxStage() = 0;                                                   // _18
 	virtual void setTexNo(u32 index, u16 texNo) { }                                 // _1C (weak)
 	virtual u16 getTexNo(u32 index) const { return 0xFFFF; }                        // _20 (weak)
 	virtual void setFontNo(u16 fontNo) { }                                          // _24 (weak)
@@ -69,7 +69,7 @@ struct J2DTevBlock1 : public J2DTevBlock {
 	virtual void setGX();                                                                // _0C
 	virtual void loadTexture(_GXTexMapID id, u32 index);                                 // _10
 	virtual u32 getType() { return JBT_Tev1; }                                           // _14 (weak)
-	virtual u32 getMaxStage() { return 0x1; }                                            // _18 (weak)
+	virtual u8 getMaxStage() { return 0x1; }                                             // _18 (weak)
 	virtual void setTexNo(u32 index, u16 texNo) { mTexIndices[index] = texNo; }          // _1C (weak)
 	virtual u16 getTexNo(u32 index) const { return mTexIndices[index]; }                 // _20 (weak)
 	virtual void setFontNo(u16 fontNo) { mFontNo = fontNo; }                             // _24 (weak)
@@ -147,7 +147,7 @@ struct J2DTevBlock2 : public J2DTevBlock {
 	virtual void setGX();                                                                // _0C
 	virtual void loadTexture(_GXTexMapID id, u32 index);                                 // _10
 	virtual u32 getType() { return JBT_Tev2; }                                           // _14 (weak)
-	virtual u32 getMaxStage() { return 0x2; }                                            // _18 (weak)
+	virtual u8 getMaxStage() { return 0x2; }                                             // _18 (weak)
 	virtual void setTexNo(u32 index, u16 texNo) { mTexIndices[index] = texNo; }          // _1C (weak)
 	virtual u16 getTexNo(u32 index) const { return mTexIndices[index]; }                 // _20 (weak)
 	virtual void setFontNo(u16 fontNo) { mFontNo = fontNo; }                             // _24 (weak)
@@ -227,7 +227,7 @@ struct J2DTevBlock4 : J2DTevBlock {
 	virtual void setGX();                                                                // _0C
 	virtual void loadTexture(_GXTexMapID id, u32 index);                                 // _10
 	virtual u32 getType() { return JBT_Tev4; }                                           // _14 (weak)
-	virtual u32 getMaxStage() { return 0x4; }                                            // _18 (weak)
+	virtual u8 getMaxStage() { return 0x4; }                                             // _18 (weak)
 	virtual void setTexNo(u32 index, u16 texNo) { mTexIndices[index] = texNo; }          // _1C (weak)
 	virtual u16 getTexNo(u32 index) const { return mTexIndices[index]; }                 // _20 (weak)
 	virtual void setFontNo(u16 fontNo) { mFontNo = fontNo; }                             // _24 (weak)
@@ -307,7 +307,7 @@ struct J2DTevBlock8 : J2DTevBlock {
 	virtual void setGX();                                                                // _0C
 	virtual void loadTexture(_GXTexMapID id, u32 index);                                 // _10
 	virtual u32 getType() { return JBT_Tev8; }                                           // _14 (weak)
-	virtual u32 getMaxStage() { return 0x8; }                                            // _18 (weak)
+	virtual u8 getMaxStage() { return 0x8; }                                             // _18 (weak)
 	virtual void setTexNo(u32 index, u16 texNo) { mTexIndices[index] = texNo; }          // _1C (weak)
 	virtual u16 getTexNo(u32 index) const { return mTexIndices[index]; }                 // _20 (weak)
 	virtual void setFontNo(u16 fontNo) { mFontNo = fontNo; }                             // _24 (weak)
@@ -388,7 +388,7 @@ struct J2DTevBlock16 : J2DTevBlock {
 	virtual void setGX();                                                                // _0C
 	virtual void loadTexture(_GXTexMapID id, u32 index);                                 // _10
 	virtual u32 getType() { return JBT_Tev16; }                                          // _14 (weak)
-	virtual u32 getMaxStage() { return 0x10; }                                           // _18 (weak)
+	virtual u8 getMaxStage() { return 0x10; }                                            // _18 (weak)
 	virtual void setTexNo(u32 index, u16 texNo) { mTexIndices[index] = texNo; }          // _1C (weak)
 	virtual u16 getTexNo(u32 index) const { return mTexIndices[index]; }                 // _20 (weak)
 	virtual void setFontNo(u16 fontNo) { mFontNo = fontNo; }                             // _24 (weak)

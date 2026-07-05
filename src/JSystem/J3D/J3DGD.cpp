@@ -238,12 +238,18 @@ void J3DGDSetVtxAttrFmtv(GXVtxFmt fmt, const GXVtxAttrFmtList* vtxAttr, bool for
  */
 void J3DGDSetTexCoordGen(GXTexGenType type, GXTexGenSrc src)
 {
-	// looks very similar to /src/Dolphin/gx/GXAttr.c : GXSetTexCoordGen2
-	u32 form        = 0;
-	u32 proj        = 0;
-	u32 row         = 5;
-	u32 embossSrc   = 5;
-	u32 embossLight = 0;
+	u32 tgType;
+	u32 form;
+	u32 proj;
+	u32 row;
+	u32 embossRow;
+	u32 embossLit;
+
+	form      = 0;
+	proj      = 0;
+	row       = 5;
+	embossRow = 5;
+	embossLit = 0;
 
 	switch (src) {
 	case GX_TG_POS:
@@ -293,35 +299,35 @@ void J3DGDSetTexCoordGen(GXTexGenType type, GXTexGenSrc src)
 		row = 12;
 		break;
 	case GX_TG_TEXCOORD0:
-		embossSrc = 0;
+		embossRow = 0;
 		break;
 	case GX_TG_TEXCOORD1:
-		embossSrc = 1;
+		embossRow = 1;
 		break;
 	case GX_TG_TEXCOORD2:
-		embossSrc = 2;
+		embossRow = 2;
 		break;
 	case GX_TG_TEXCOORD3:
-		embossSrc = 3;
+		embossRow = 3;
 		break;
 	case GX_TG_TEXCOORD4:
-		embossSrc = 4;
+		embossRow = 4;
 		break;
 	case GX_TG_TEXCOORD5:
-		embossSrc = 5;
+		embossRow = 5;
 		break;
 	case GX_TG_TEXCOORD6:
-		embossSrc = 6;
+		embossRow = 6;
 		break;
 	}
 
 	switch (type) {
 	case GX_TG_MTX3X4:
-		src = (GXTexGenSrc)0;
+		tgType = 0;
 		break;
 	case GX_TG_MTX2X4:
-		src  = (GXTexGenSrc)0;
-		proj = 1;
+		tgType = 0;
+		proj   = 1;
 		break;
 	case GX_TG_BUMP0:
 	case GX_TG_BUMP1:
@@ -331,216 +337,19 @@ void J3DGDSetTexCoordGen(GXTexGenType type, GXTexGenSrc src)
 	case GX_TG_BUMP5:
 	case GX_TG_BUMP6:
 	case GX_TG_BUMP7:
-		src         = (GXTexGenSrc)1;
-		embossLight = type - GX_TG_BUMP0;
+		tgType    = 1;
+		embossLit = type - GX_TG_BUMP0;
 		break;
 	case GX_TG_SRTG:
-		if (src == GX_TG_COLOR0)
-			src = (GXTexGenSrc)2;
-		else
-			src = (GXTexGenSrc)3;
+		if (src == GX_TG_COLOR0) {
+			tgType = 2;
+		} else {
+			tgType = 3;
+		}
 		break;
 	}
 
-	u32 val = (embossLight << 15) | ((embossSrc << 12) | ((row << 7) | (src << 4) | (form << 2) | (proj << 1)));
-	J3DGDWrite_u32(val);
-	/*
-	cmplwi   r4, 0x14
-	li       r7, 0
-	li       r8, 0
-	li       r9, 5
-	li       r10, 5
-	li       r11, 0
-	bgt      lbl_8007553C
-	lis      r5, lbl_804A208C@ha
-	slwi     r0, r4, 2
-	addi     r5, r5, lbl_804A208C@l
-	lwzx     r0, r5, r0
-	mtctr    r0
-	bctr
-	.global  lbl_80075488
-
-lbl_80075488:
-	li       r9, 0
-	li       r7, 1
-	b        lbl_8007553C
-	.global  lbl_80075494
-
-lbl_80075494:
-	li       r9, 1
-	li       r7, 1
-	b        lbl_8007553C
-	.global  lbl_800754A0
-
-lbl_800754A0:
-	li       r9, 3
-	li       r7, 1
-	b        lbl_8007553C
-	.global  lbl_800754AC
-
-lbl_800754AC:
-	li       r9, 4
-	li       r7, 1
-	b        lbl_8007553C
-	.global  lbl_800754B8
-
-lbl_800754B8:
-	li       r9, 2
-	b        lbl_8007553C
-	.global  lbl_800754C0
-
-lbl_800754C0:
-	li       r9, 2
-	b        lbl_8007553C
-	.global  lbl_800754C8
-
-lbl_800754C8:
-	li       r9, 5
-	b        lbl_8007553C
-	.global  lbl_800754D0
-
-lbl_800754D0:
-	li       r9, 6
-	b        lbl_8007553C
-	.global  lbl_800754D8
-
-lbl_800754D8:
-	li       r9, 7
-	b        lbl_8007553C
-	.global  lbl_800754E0
-
-lbl_800754E0:
-	li       r9, 8
-	b        lbl_8007553C
-	.global  lbl_800754E8
-
-lbl_800754E8:
-	li       r9, 9
-	b        lbl_8007553C
-	.global  lbl_800754F0
-
-lbl_800754F0:
-	li       r9, 0xa
-	b        lbl_8007553C
-	.global  lbl_800754F8
-
-lbl_800754F8:
-	li       r9, 0xb
-	b        lbl_8007553C
-	.global  lbl_80075500
-
-lbl_80075500:
-	li       r9, 0xc
-	b        lbl_8007553C
-	.global  lbl_80075508
-
-lbl_80075508:
-	li       r10, 0
-	b        lbl_8007553C
-	.global  lbl_80075510
-
-lbl_80075510:
-	li       r10, 1
-	b        lbl_8007553C
-	.global  lbl_80075518
-
-lbl_80075518:
-	li       r10, 2
-	b        lbl_8007553C
-	.global  lbl_80075520
-
-lbl_80075520:
-	li       r10, 3
-	b        lbl_8007553C
-	.global  lbl_80075528
-
-lbl_80075528:
-	li       r10, 4
-	b        lbl_8007553C
-	.global  lbl_80075530
-
-lbl_80075530:
-	li       r10, 5
-	b        lbl_8007553C
-	.global  lbl_80075538
-
-lbl_80075538:
-	li       r10, 6
-
-lbl_8007553C:
-	cmpwi    r3, 1
-	beq      lbl_80075564
-	bge      lbl_80075554
-	cmpwi    r3, 0
-	bge      lbl_8007556C
-	b        lbl_80075598
-
-lbl_80075554:
-	cmpwi    r3, 0xa
-	beq      lbl_80075584
-	bge      lbl_80075598
-	b        lbl_80075578
-
-lbl_80075564:
-	li       r6, 0
-	b        lbl_80075598
-
-lbl_8007556C:
-	li       r6, 0
-	li       r8, 1
-	b        lbl_80075598
-
-lbl_80075578:
-	addi     r11, r3, -2
-	li       r6, 1
-	b        lbl_80075598
-
-lbl_80075584:
-	cmpwi    r4, 0x13
-	bne      lbl_80075594
-	li       r6, 2
-	b        lbl_80075598
-
-lbl_80075594:
-	li       r6, 3
-
-lbl_80075598:
-	slwi     r0, r7, 2
-	slwi     r3, r8, 1
-	slwi     r5, r6, 4
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	or       r0, r3, r0
-	slwi     r6, r9, 7
-	or       r5, r5, r0
-	lwz      r3, 8(r4)
-	or       r5, r6, r5
-	slwi     r7, r10, 0xc
-	addi     r0, r3, 1
-	slwi     r6, r11, 0xf
-	or       r5, r7, r5
-	stw      r0, 8(r4)
-	or       r7, r6, r5
-	srwi     r0, r7, 0x18
-	stb      r0, 0(r3)
-	rlwinm   r6, r7, 0x10, 0x18, 0x1f
-	rlwinm   r5, r7, 0x18, 0x18, 0x1f
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r4)
-	addi     r0, r3, 1
-	stw      r0, 8(r4)
-	stb      r6, 0(r3)
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r4)
-	addi     r0, r3, 1
-	stw      r0, 8(r4)
-	stb      r5, 0(r3)
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r4)
-	addi     r0, r3, 1
-	stw      r0, 8(r4)
-	stb      r7, 0(r3)
-	blr
-	*/
+	J3DGDWrite_u32(XF_REG_TEX(proj, form, tgType, row, embossRow, embossLit));
 }
 
 /**

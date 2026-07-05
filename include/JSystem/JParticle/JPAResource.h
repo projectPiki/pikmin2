@@ -73,6 +73,14 @@ struct JPAResource {
 	u8 mDrawParticleChildFuncListNum;          // _47
 };
 
+struct JPAResourceHeader {
+	u16 mUsrIdx;       // _00
+	u16 mBlockNum;     // _02
+	u8 mFieldBlockNum; // _04
+	u8 mKeyBlockNum;   // _05
+	u8 mTDB1Num;       // _06
+};
+
 /**
  * @size{0x14}
  */

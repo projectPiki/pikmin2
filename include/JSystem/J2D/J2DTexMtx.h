@@ -12,12 +12,13 @@ struct J2DTexMtxInfo {
 		DCC_Maya = 1,
 	};
 
-	inline void operator=(const J2DTexMtxInfo& other)
+	J2DTexMtxInfo& operator=(const J2DTexMtxInfo& other)
 	{
 		mCenter         = other.mCenter;
 		mTexMtxType     = other.mTexMtxType;
 		mTexMtxDCC      = other.mTexMtxDCC;
 		mTextureSRTInfo = other.mTextureSRTInfo;
+		return *this;
 	}
 
 	GXTexMtxType getTexMtxType() const { return (GXTexMtxType)mTexMtxType; }
@@ -36,19 +37,7 @@ extern J2DTexMtxInfo const j2dDefaultTexMtxInfo;
  */
 struct J2DTexMtx {
 	J2DTexMtx() { mInfo = j2dDefaultTexMtxInfo; }
-	J2DTexMtx(const J2DTexMtxInfo& info)
-	{
-		mInfo.mCenter.x                     = info.mCenter.x;
-		mInfo.mCenter.y                     = info.mCenter.y;
-		mInfo.mCenter.z                     = info.mCenter.z;
-		mInfo.mTexMtxType                   = info.mTexMtxType;
-		mInfo.mTexMtxDCC                    = info.mTexMtxDCC;
-		mInfo.mTextureSRTInfo.mScaleX       = info.mTextureSRTInfo.mScaleX;
-		mInfo.mTextureSRTInfo.mScaleY       = info.mTextureSRTInfo.mScaleY;
-		mInfo.mTextureSRTInfo.mRotationDeg  = info.mTextureSRTInfo.mRotationDeg;
-		mInfo.mTextureSRTInfo.mTranslationX = info.mTextureSRTInfo.mTranslationX;
-		mInfo.mTextureSRTInfo.mTranslationY = info.mTextureSRTInfo.mTranslationY;
-	}
+	J2DTexMtx(const J2DTexMtxInfo& info) { mInfo = info; }
 
 	inline ~J2DTexMtx() { } // unused/inlined
 
@@ -58,19 +47,7 @@ struct J2DTexMtx {
 	void getTextureMtxMaya(const J2DTextureSRTInfo&, Mtx);
 
 	J2DTexMtxInfo& getTexMtxInfo() { return mInfo; }
-	void setTexMtxInfo(J2DTexMtxInfo info)
-	{
-		mInfo.mCenter.x                     = info.mCenter.x;
-		mInfo.mCenter.y                     = info.mCenter.y;
-		mInfo.mCenter.z                     = info.mCenter.z;
-		mInfo.mTexMtxType                   = info.mTexMtxType;
-		mInfo.mTexMtxDCC                    = info.mTexMtxDCC;
-		mInfo.mTextureSRTInfo.mScaleX       = info.mTextureSRTInfo.mScaleX;
-		mInfo.mTextureSRTInfo.mScaleY       = info.mTextureSRTInfo.mScaleY;
-		mInfo.mTextureSRTInfo.mRotationDeg  = info.mTextureSRTInfo.mRotationDeg;
-		mInfo.mTextureSRTInfo.mTranslationX = info.mTextureSRTInfo.mTranslationX;
-		mInfo.mTextureSRTInfo.mTranslationY = info.mTextureSRTInfo.mTranslationY;
-	}
+	void setTexMtxInfo(J2DTexMtxInfo info) { mInfo = info; }
 
 	J2DTexMtxInfo mInfo; // _00
 	Mtx mMtx;            // _24

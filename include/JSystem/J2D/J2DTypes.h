@@ -559,7 +559,7 @@ struct J2DTexCoord {
 	J2DTexCoord() { mTexCoordInfo = j2dDefaultTexCoordInfo[0]; }
 	// J2DTexCoordInfo _00;
 
-	J2DTexCoord(const J2DTexCoordInfo& info) { *(J2DTexCoordInfo*)this = info; }
+	J2DTexCoord(const J2DTexCoordInfo& info) { mTexCoordInfo = info; }
 
 	void setTexCoordInfo(const J2DTexCoordInfo& info) { mTexCoordInfo = info; }
 	s32 getTexGenType() { return mTexCoordInfo.mTexGenType; }

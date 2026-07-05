@@ -1550,6 +1550,9 @@ typedef enum _GXXFRegs {
 	GX_XF_REG_DUALTEX7     = 0x1057,
 } GXXFRegs;
 
+#define XF_REG_TEX(proj, form, tgType, row, embossRow, embossLit) \
+	((proj) << 1 | (form) << 2 | (tgType) << 4 | (row) << 7 | (embossRow) << 12 | (embossLit) << 15)
+
 // BP GenMode locators.
 typedef enum _GXBPGenMode {
 	// Active texture counts [28-31]

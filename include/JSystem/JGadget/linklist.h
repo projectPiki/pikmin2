@@ -220,6 +220,12 @@ struct TLinkList : public TNodeLinkList {
 		T& operator*() const { return *operator->(); }
 
 		TNodeLinkList::iterator mBase; // _00
+
+		typedef s32 difference_type;
+		typedef T value_type;
+		typedef T* pointer;
+		typedef T& reference;
+		typedef std::bidirectional_iterator_tag iterator_category;
 	};
 
 	struct const_iterator {

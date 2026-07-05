@@ -1310,7 +1310,7 @@ void TMainScreen::setColorTimgDataBall_(s32 fileID)
 {
 	/* NON-MATCHING */
 	if (mFileData[fileID].mIsBrokenFile) {
-		ResTIMG* time = mPanePdc[fileID]->changeTexture("break_new_icon.bti", 0);
+		const ResTIMG* time = mPanePdc[fileID]->changeTexture("break_new_icon.bti", 0);
 		P2ASSERTLINE(1363, time);
 
 		time = mPaneMdc[fileID]->changeTexture("break_new_icon.bti", 0);
@@ -1325,7 +1325,7 @@ void TMainScreen::setColorTimgDataBall_(s32 fileID)
 		P2ASSERTLINE(1375, mCounterDayM[fileID]);
 		mCounterDayM[fileID]->hide();
 	} else if (mFileData[fileID].mIsNewFile) {
-		ResTIMG* time = mPanePdc[fileID]->changeTexture("new_icon.bti", 0);
+		const ResTIMG* time = mPanePdc[fileID]->changeTexture("new_icon.bti", 0);
 		P2ASSERTLINE(1382, time);
 
 		time = mPaneMdc[fileID]->changeTexture("new_icon.bti", 0);
@@ -1340,7 +1340,7 @@ void TMainScreen::setColorTimgDataBall_(s32 fileID)
 		P2ASSERTLINE(1394, mCounterDayM[fileID]);
 		mCounterDayM[fileID]->hide();
 	} else {
-		ResTIMG* time = mPanePdc[fileID]->changeTexture("dicon_icon.bti", 0);
+		const ResTIMG* time = mPanePdc[fileID]->changeTexture("dicon_icon.bti", 0);
 		P2ASSERTLINE(1400, time);
 
 		time = mPaneMdc[fileID]->changeTexture("dicon_icon.bti", 0);

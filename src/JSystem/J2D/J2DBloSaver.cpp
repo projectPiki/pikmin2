@@ -82,12 +82,9 @@ J2DTevStage::J2DTevStage()
  */
 void J2DTevStage::setTevStageInfo(const J2DTevStageInfo& info)
 {
-	setTevColorAB(info.mColorA, info.mColorB);
-	setTevColorCD(info.mColorC, info.mColorD);
+	setColorABCD(info.mColorA, info.mColorB, info.mColorC, info.mColorD);
 	setTevColorOp(info.mCOp, info.mCBias, info.mCScale, info.mCClamp, info.mCReg);
 
-	setTevColorAB(info.mColorA, info.mColorB);
-	setTevColorCD(info.mColorC, info.mColorD);
 	setAlphaABCD(info.mAlphaA, info.mAlphaB, info.mAlphaC, info.mAlphaD);
 	setTevAlphaOp(info.mAOp, info.mABias, info.mAScale, info.mAClamp, info.mAReg);
 
