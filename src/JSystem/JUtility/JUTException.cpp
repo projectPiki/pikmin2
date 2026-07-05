@@ -125,10 +125,10 @@ void JUTException::errorHandler(OSError error, OSContext* context, u32 p3, u32 p
 	OSFillFPUContext(context);
 	OSSetErrorHandler(error, nullptr);
 	if (error == OS_ERROR_PROTECTION) {
-		OSProtectRange(0, 0, 0, 3);
-		OSProtectRange(1, 0, 0, 3);
-		OSProtectRange(2, 0, 0, 3);
-		OSProtectRange(3, 0, 0, 3);
+		OSProtectRange(OS_PROTECT_CHAN0, NULL, 0, OS_PROTECT_CONTROL_RDWR);
+		OSProtectRange(OS_PROTECT_CHAN1, NULL, 0, OS_PROTECT_CONTROL_RDWR);
+		OSProtectRange(OS_PROTECT_CHAN2, NULL, 0, OS_PROTECT_CONTROL_RDWR);
+		OSProtectRange(OS_PROTECT_CHAN3, NULL, 0, OS_PROTECT_CONTROL_RDWR);
 	}
 	exCallbackObject.mErrorHandler = (OSErrorHandler)sPreUserCallback;
 	exCallbackObject.mError        = error;

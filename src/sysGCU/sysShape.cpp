@@ -210,16 +210,8 @@ void BlendAnimator::setAnimMgr(AnimMgr* mgr)
 	mIsBlendEnabled = false;
 
 	for (int i = 0; i < 2; i++) {
-		mAnimators[i].mAnimMgr  = mgr;
-		mAnimators[i].mAnimInfo = mAnimators[i].mAnimMgr->getAnimByID(0);
-		if (!mAnimators[i].mAnimInfo) {
-			mAnimators[i].mAnimMgr->dump();
-			JUT_PANICLINE(220, "go to hell !\n"); // so polite
-		}
-		mAnimators[i].mTimer      = 0.0f;
-		mAnimators[i].mCurAnimKey = mAnimators[i].mAnimInfo->getLowestAnimKey(0.0f);
-		mAnimators[i].mListener   = nullptr;
-		mAnimators[i].mFlags      = 0;
+		mAnimators[i].mAnimMgr = mgr;
+		mAnimators[i].startAnim(0, nullptr);
 	}
 
 	AnimInfo* info = mgr->getAnimByID(0);

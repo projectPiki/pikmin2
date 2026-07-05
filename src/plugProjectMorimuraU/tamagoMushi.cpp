@@ -125,7 +125,7 @@ void Obj::doAnimationCullingOff()
 
 	PSMTXCopy(mBaseTrMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
 
-	if (C_PARMS->mDoUseModelFetch && getCurrAnimIndex() == 2) {
+	if (C_PARMS->mDoUseModelFetch && getCurrAnimIndex() == TAMAGOANIM_Move) {
 		J3DModel* model = mModel->getJ3DModel();
 		C_MGR->fetch(model, getMotionFrame());
 

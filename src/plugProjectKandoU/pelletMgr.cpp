@@ -744,7 +744,7 @@ bool Pellet::isPickable()
 void Pellet::onKill(CreatureKillArg* killArg)
 {
 	if (gameSystem->isVersusMode()) {
-		mPelletSM->start(this, 0, nullptr);
+		mPelletSM->start(this, PELSTATE_Normal, nullptr);
 	}
 
 	setAlive(false);
@@ -5580,12 +5580,15 @@ int PelletMgr::encode(u8 pelletType, int code)
  */
 char* PelletMgr::getCaveName(int caveID)
 {
-	int idx            = caveID & 0xFFFFFF;
-	BasePelletMgr* mgr = getMgrByID((caveID >> 24) & 0xFF);
+	u8 mgrID;
+	int configID;
+	decode(caveID, mgrID, configID);
+
+	BasePelletMgr* mgr = getMgrByID(mgrID);
 	P2ASSERTLINE(5881, mgr);
-	PelletConfig* config = mgr->getPelletConfig(idx);
+	PelletConfig* config = mgr->getPelletConfig(configID);
 	P2ASSERTLINE(5883, config);
-	return config->mParams.mName.mData;
+	return config->getName();
 }
 
 /**
@@ -5600,8 +5603,7 @@ int PelletMgr::getCaveID(char* name)
 		BasePelletMgr* mgr = (BasePelletMgr*)*iter;
 		for (int i = 0; i < mgr->mConfigList->mConfigCnt; i++) {
 			if (IS_SAME_STRING_N(mgr->getPelletConfig(i)->getName(), name, strlen(name))) {
-				int id = (mgr->getMgrID() << 24);
-				return id | i;
+				return encode(mgr->getMgrID(), i);
 			}
 		}
 	}
