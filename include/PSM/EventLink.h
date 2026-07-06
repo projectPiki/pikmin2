@@ -7,6 +7,7 @@
 
 namespace PSM {
 struct ActorDirector_TrackOn;
+struct Otakara;
 
 struct EventLink : public DirectorLink {
 	inline EventLink(void* p1)
@@ -47,6 +48,8 @@ struct OtakaraEventLink_2PBattle : public OtakaraEventLink {
 	virtual void eventFinish();                        // _18
 	virtual bool is2PBattle() { return true; }         // _1C (weak)
 
+	Otakara* getPSOtakara();
+	bool isAvoidCase();
 	ActorDirector_TrackOn* getTargetDirector();
 };
 } // namespace PSM
