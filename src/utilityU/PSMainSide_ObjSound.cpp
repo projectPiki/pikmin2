@@ -2654,7 +2654,7 @@ void Otakara::setGoalOnyon(Game::Creature* onyon)
  * @note Address: N/A
  * @note Size: 0x84
  */
-void Otakara::avoidNormalDirection()
+bool Otakara::avoidNormalDirection()
 {
 	P2ASSERTLINE(2058, mOtaEvent);
 	return is2PBattle();
