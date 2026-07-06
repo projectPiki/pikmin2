@@ -883,6 +883,7 @@ void ProcAnimator::calcAngles()
  */
 void ProcAnimator::calcDists()
 {
+	Vector3f sep;
 	Vector3f lastPos;
 	Matrixf* mat0 = mMatrices[0];
 	lastPos.x     = mat0->mMatrix.structView.tx;
@@ -896,9 +897,9 @@ void ProcAnimator::calcDists()
 		newPos.y = mat->mMatrix.structView.ty;
 		newPos.z = mat->mMatrix.structView.tz;
 
-		Vector3f sep = newPos - lastPos;
-		lastPos      = newPos;
-		mYDist[i]    = sep.length();
+		sep       = newPos - lastPos;
+		lastPos   = newPos;
+		mYDist[i] = sep.length();
 	}
 }
 
@@ -925,12 +926,13 @@ void ProcAnimator::force(f32)
  */
 void ProcAnimator::update(f32 faceDir, f32 p2)
 {
-	f32 x         = 80.0f;
-	f32 factor    = 1.0f * x; // this has gotta be part of an inline to actually multiply by 1.0f
-	factor        = -factor;
-	f32 p3        = x * p2;
-	f32 frameRate = sys->mDeltaTime;
-	_28 += ((_24 * factor - _28 * 1.6f) + p3) * frameRate;
+	// regswaps with this mess
+	f32 idk       = 80.0f;           // f0
+	f32 temp      = 1.0f;            // f4
+	f32 p3        = p2 * idk;        // f5
+	f32 frameRate = sys->mDeltaTime; // f6
+	f32 idk2      = -((f32)temp * idk);
+	_28 += ((idk2 * _24 - _28 * 1.6f) + p3) * frameRate;
 	_24 += frameRate * _28;
 
 	if (_24 > TORADIANS(40.0f)) {
@@ -944,7 +946,7 @@ void ProcAnimator::update(f32 faceDir, f32 p2)
 	originMat.makeTR(Vector3f::zero, rot1);
 
 	calcAngles();
-	calcDists(); // regswaps here
+	calcDists();
 
 	Vector3f pos = mPosition; // 0x74
 
@@ -961,18 +963,18 @@ void ProcAnimator::update(f32 faceDir, f32 p2)
 		f32 angleOffset = _24 * angleFactor;
 
 		Matrixf mat;                         // 0x8C
+		Vector3f newPos;                     // 0x68
 		f32 theta = mAngle[i] + angleOffset; // f29
+		Vector3f rot;                        // 0x5C
+		f32 angle = mXRot[i] + angleOffset;  // f0
+		f32 ydist = mYDist[i];
 
-		Vector3f newPos; // 0x68
 		newPos.x = 0.0f;
-		newPos.y = mYDist[i];
+		newPos.y = ydist;
 		newPos.z = 0.0f;
-
-		Vector3f rot; // 0x5C
-		rot.x = mXRot[i] + angleOffset;
-		rot.y = faceDir;
-		rot.z = 0.0f;
-
+		rot.x    = angle;
+		rot.y    = faceDir;
+		rot.z    = 0.0f;
 		mat.makeTR(pos, rot); // 0x8C, 0x74, 0x5C
 
 		newPos = mat.mtxMult(newPos); // 0x8C, 0x68, (0x2C) -> 0x68
@@ -1464,12 +1466,13 @@ void Plant::doDirectDraw(Graphics& gfx)
 void Plant::onInit(CreatureInitArg* initArg)
 {
 	Item::onInit(initArg);
-	mModel = new SysShape::Model(mgr->getModelData(0), 0, 2);
+	mRandGrowTimeOffset = 0.0f;
+	mModel              = new SysShape::Model(mgr->getModelData(0), 0, 2);
 	setAlive(true);
 
 	CollPart* root    = new CollPart(mModel); // r29
 	root->mJointIndex = 0;
-	root->mRadius     = 160.0f;
+	root->mRadius     = 150.0f;
 
 	CollPart* part1    = new CollPart(mModel); // r28
 	part1->mJointIndex = mModel->getJointIndex("kuki_jnt1");
@@ -2404,7 +2407,7 @@ BaseItem* Mgr::birth()
 void Mgr::onLoadResources()
 {
 	loadArchive("arc.szs");
-	loadBmd("model.bmd", 0, J3DMODEL_Unk26 | J3DMODEL_CreateNewDL);
+	loadBmd("model.bmd", 0, J3DMODEL_Unk30 | J3DMODEL_CreateNewDL);
 	mAnmColor = static_cast<J3DAnmColor*>(J3DAnmLoaderDataBase ::load(JKRFileLoader::getGlbResource("model.bpk", nullptr)));
 
 	JKRArchive* textArc = openTextArc("texts.szs");
@@ -2541,14 +2544,13 @@ void Fruits::update()
  *
  * @param plantType Type of Plant to make berries for, either spicy, bitter, or random.
  *
- * @note NON-MATCHING
  * @note Address: 0x801E0288
  * @note Size: 0x2B4
  */
 void Fruits::bearAll(u16 plantType)
 {
 	for (int i = 0; i < mSlotCount; i++) {
-		FruitSlot* slot = getSlot(i);
+		FruitSlot* slot = &mSlots[i];
 		Pellet* fruit   = slot->getFruit();
 
 		if (!fruit) {
@@ -2584,219 +2586,26 @@ void Fruits::bearAll(u16 plantType)
 			Matrixf mtx;
 			PSMTXIdentity(mtx.mMatrix.mtxView);
 
-			const f32 positions[5][3] = {
-				{ 33.965f, 0.0f, 0.0f },   { 25.463f, 8.0f, -8.0f }, { 25.463f, 8.0f, 8.0f },
-				{ 25.463f, -8.0f, -8.0f }, { 25.463f, -8.0f, 8.0f },
-			};
+			Vector3f T;
+			const f32 position1[3] = { 33.965f, 0.0f, 0.0f };
+			const f32 position2[3] = { 25.463f, 8.0f, -8.0f };
+			const f32 position3[3] = { 25.463f, 8.0f, 8.0f };
+			const f32 position4[3] = { 25.463f, -8.0f, -8.0f };
+			const f32 position5[3] = { 25.463f, -8.0f, 8.0f };
 
 			Vector3f pos[5];
-			pos[0].set(positions[0][0], positions[0][1], positions[0][2]);
-			pos[1].set(positions[1][0], positions[1][1], positions[1][2]);
-			pos[2].set(positions[2][0], positions[2][1], positions[2][2]);
-			pos[3].set(positions[3][0], positions[3][1], positions[3][2]);
-			pos[4].set(positions[4][0], positions[4][1], positions[4][2]);
+			pos[0].set(position1[0], position1[1], position1[2]);
+			pos[1].set(position2[0], position2[1], position2[2]);
+			pos[2].set(position3[0], position3[1], position3[2]);
+			pos[3].set(position4[0], position4[1], position4[2]);
+			pos[4].set(position5[0], position5[1], position5[2]);
 
-			Vector3f T(pos[i].x, pos[i].y, pos[i].z);
+			T = pos[i];
 			mtx.makeT(T);
 
 			slot->setFruit(pellet, mMatrix, mtx);
 		}
 	}
-	/*
-	stwu     r1, -0x140(r1)
-	mflr     r0
-	stw      r0, 0x144(r1)
-	stfd     f31, 0x130(r1)
-	psq_st   f31, 312(r1), 0, qr0
-	stmw     r18, 0xf8(r1)
-	lis      r5, lbl_804808F0@ha
-	mr       r24, r3
-	addi     r31, r5, lbl_804808F0@l
-	addi     r29, r1, 0x50
-	clrlwi   r28, r4, 0x10
-	li       r27, 0
-	li       r30, 0
-	b        lbl_801E0514
-
-lbl_801E02C0:
-	lwz      r0, 0(r24)
-	add      r26, r0, r30
-	lwz      r0, 0x18(r26)
-	cmplwi   r0, 0
-	bne      lbl_801E0508
-	lis      r3, __vt__Q24Game15CreatureInitArg@ha
-	li       r6, 0
-	addi     r0, r3, __vt__Q24Game15CreatureInitArg@l
-	li       r3, -1
-	lis      r4, __vt__Q24Game13PelletInitArg@ha
-	stw      r0, 0xbc(r1)
-	addi     r7, r4, __vt__Q24Game13PelletInitArg@l
-	li       r5, 0xff
-	li       r4, 1
-	addi     r0, r2, lbl_805198B8@sda21
-	cmpwi    r28, 1
-	stw      r7, 0xbc(r1)
-	stb      r6, 0xd8(r1)
-	sth      r6, 0xd0(r1)
-	stb      r5, 0xd2(r1)
-	stw      r6, 0xd4(r1)
-	stb      r6, 0xd3(r1)
-	stb      r4, 0xc0(r1)
-	stb      r6, 0xd9(r1)
-	stw      r3, 0xe0(r1)
-	stw      r3, 0xdc(r1)
-	stb      r6, 0xda(r1)
-	stb      r6, 0xdb(r1)
-	stw      r0, 0xc4(r1)
-	beq      lbl_801E035C
-	bge      lbl_801E0348
-	cmpwi    r28, 0
-	bge      lbl_801E0354
-	b        lbl_801E03AC
-
-lbl_801E0348:
-	cmpwi    r28, 3
-	bge      lbl_801E03AC
-	b        lbl_801E0364
-
-lbl_801E0354:
-	stw      r6, 0xc8(r1)
-	b        lbl_801E03AC
-
-lbl_801E035C:
-	stw      r4, 0xc8(r1)
-	b        lbl_801E03AC
-
-lbl_801E0364:
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0xec(r1)
-	lfd      f3, lbl_80519858@sda21(r2)
-	stw      r0, 0xe8(r1)
-	lfs      f1, lbl_80519870@sda21(r2)
-	lfd      f2, 0xe8(r1)
-	lfs      f0, lbl_805198C0@sda21(r2)
-	fsubs    f2, f2, f3
-	fdivs    f1, f2, f1
-	fcmpo    cr0, f1, f0
-	ble      lbl_801E03A4
-	li       r0, 1
-	stw      r0, 0xc8(r1)
-	b        lbl_801E03AC
-
-lbl_801E03A4:
-	li       r0, 0
-	stw      r0, 0xc8(r1)
-
-lbl_801E03AC:
-	li       r3, 0
-	li       r5, 1
-	li       r0, 2
-	stw      r3, 0xcc(r1)
-	lwz      r3, pelletMgr__4Game@sda21(r13)
-	addi     r4, r1, 0xbc
-	sth      r5, 0xd0(r1)
-	stb      r0, 0xd2(r1)
-	bl       birth__Q24Game9PelletMgrFPQ24Game13PelletInitArg
-	or.      r25, r3, r3
-	beq      lbl_801E0520
-	addi     r3, r1, 0x8c
-	bl       PSMTXIdentity
-	lwz      r18, 0x1d4(r31)
-	addi     r3, r1, 0x8c
-	lwz      r19, 0x1d8(r31)
-	addi     r4, r1, 0x44
-	lwz      r20, 0x1dc(r31)
-	lwz      r21, 0x1e0(r31)
-	lwz      r22, 0x1e4(r31)
-	lwz      r23, 0x1e8(r31)
-	lwz      r12, 0x1ec(r31)
-	lwz      r11, 0x1f0(r31)
-	lwz      r10, 0x1f4(r31)
-	lwz      r9, 0x1f8(r31)
-	lwz      r8, 0x1fc(r31)
-	lwz      r7, 0x200(r31)
-	lwz      r6, 0x204(r31)
-	lwz      r5, 0x208(r31)
-	lwz      r0, 0x20c(r31)
-	stw      r18, 0x38(r1)
-	stw      r19, 0x3c(r1)
-	lfs      f31, 0x38(r1)
-	stw      r20, 0x40(r1)
-	lfs      f13, 0x3c(r1)
-	stw      r21, 0x2c(r1)
-	lfs      f12, 0x40(r1)
-	stw      r22, 0x30(r1)
-	lfs      f11, 0x2c(r1)
-	stw      r23, 0x34(r1)
-	lfs      f10, 0x30(r1)
-	stw      r12, 0x20(r1)
-	lfs      f9, 0x34(r1)
-	stw      r11, 0x24(r1)
-	lfs      f8, 0x20(r1)
-	stw      r10, 0x28(r1)
-	lfs      f7, 0x24(r1)
-	stw      r9, 0x14(r1)
-	lfs      f6, 0x28(r1)
-	stw      r8, 0x18(r1)
-	lfs      f5, 0x14(r1)
-	stw      r7, 0x1c(r1)
-	lfs      f4, 0x18(r1)
-	stw      r6, 8(r1)
-	lfs      f3, 0x1c(r1)
-	stw      r5, 0xc(r1)
-	lfs      f2, 8(r1)
-	stw      r0, 0x10(r1)
-	lfs      f1, 0xc(r1)
-	lfs      f0, 0x10(r1)
-	stfs     f31, 0x50(r1)
-	stfs     f13, 0x54(r1)
-	stfs     f12, 0x58(r1)
-	stfs     f11, 0x5c(r1)
-	stfs     f10, 0x60(r1)
-	stfs     f9, 0x64(r1)
-	stfs     f8, 0x68(r1)
-	stfs     f7, 0x6c(r1)
-	stfs     f6, 0x70(r1)
-	stfs     f5, 0x74(r1)
-	stfs     f4, 0x78(r1)
-	stfs     f3, 0x7c(r1)
-	stfs     f2, 0x80(r1)
-	stfs     f1, 0x84(r1)
-	stfs     f0, 0x88(r1)
-	lfs      f2, 0(r29)
-	lfs      f1, 4(r29)
-	lfs      f0, 8(r29)
-	stfs     f2, 0x44(r1)
-	stfs     f1, 0x48(r1)
-	stfs     f0, 0x4c(r1)
-	bl       "makeT__7MatrixfFR10Vector3<f>"
-	lwz      r5, 8(r24)
-	mr       r3, r26
-	mr       r4, r25
-	addi     r6, r1, 0x8c
-	bl setFruit__Q34Game9ItemPlant9FruitSlotFPQ24Game6PelletP7MatrixfR7Matrixf
-
-lbl_801E0508:
-	addi     r30, r30, 0x4c
-	addi     r29, r29, 0xc
-	addi     r27, r27, 1
-
-lbl_801E0514:
-	lwz      r0, 4(r24)
-	cmpw     r27, r0
-	blt      lbl_801E02C0
-
-lbl_801E0520:
-	psq_l    f31, 312(r1), 0, qr0
-	lfd      f31, 0x130(r1)
-	lmw      r18, 0xf8(r1)
-	lwz      r0, 0x144(r1)
-	mtlr     r0
-	addi     r1, r1, 0x140
-	blr
-	*/
 }
 
 /**
