@@ -278,12 +278,6 @@ struct J2DPane {
 		calcMtx();
 	}
 
-	inline void multScale(f32 scale)
-	{
-		mScale *= scale;
-		calcMtx();
-	}
-
 	inline void setAlphaFromFloat(f32 alpha)
 	{
 		if (alpha >= 0.0f) {
@@ -331,6 +325,7 @@ struct J2DPane {
 		calcMtx();
 	}
 
+	inline f32 getOffsetX() { return mOffset.x; }
 	inline f32 getOffsetY() { return mOffset.y; }
 
 	inline void setAngleY(f32 a)

@@ -148,17 +148,17 @@ struct TChallengeResult : public TTestBase {
 	static ResTIMG* mFlowerTexture;    // nullptr
 	static ResTIMG* mRedFlowerTexture; // nullptr
 
-	static f32 mMoveSpeed;               // 12.0f
-	static f32 mAngRate;                 // 0.3f
-	static f32 mAngVelMax;               // 20.0f
-	static f32 mAccel;                   // 0.1f
-	static bool mTestDemo;               // true
-	static bool mComplete;               // true
-	static s16 mTestRankInOrder;         // 0xFFFF
-	static f32 mFlashInterval;           // 40.0f
-	static f32 mDemoSpeedUpRate;         // 2.0f
-	static f32 mDemoSpeedUpMax;          // 3.0f
-	static JUtility::TColor mFlashColor; // 255, 255, 0, 255
+	static f32 mMoveSpeed;       // 12.0f
+	static f32 mAngRate;         // 0.3f
+	static f32 mAngVelMax;       // 20.0f
+	static f32 mAccel;           // 0.1f
+	static bool mTestDemo;       // true
+	static bool mComplete;       // true
+	static s16 mTestRankInOrder; // 0xFFFF
+	static f32 mFlashInterval;   // 40.0f
+	static f32 mDemoSpeedUpRate; // 2.0f
+	static f32 mDemoSpeedUpMax;  // 3.0f
+	static u8 mFlashColor[];     // 255, 255, 0, 255 (not a color struct since its in sdata not sbss)
 
 	enum ResultFlags {
 		ChalResult_Is2Player = 1,

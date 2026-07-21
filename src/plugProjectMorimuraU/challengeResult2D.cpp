@@ -23,17 +23,17 @@ ResTIMG* TChallengeResult::mLeafTexture      = nullptr;
 ResTIMG* TChallengeResult::mFlowerTexture    = nullptr;
 ResTIMG* TChallengeResult::mRedFlowerTexture = nullptr;
 
-f32 TChallengeResult::mMoveSpeed               = 12.0f;
-f32 TChallengeResult::mAngRate                 = 0.3f;
-f32 TChallengeResult::mAngVelMax               = 20.0f;
-f32 TChallengeResult::mAccel                   = 0.1f;
-bool TChallengeResult::mTestDemo               = true;
-bool TChallengeResult::mComplete               = true;
-s16 TChallengeResult::mTestRankInOrder         = 0xFFFF;
-f32 TChallengeResult::mFlashInterval           = 40.0f;
-f32 TChallengeResult::mDemoSpeedUpRate         = 2.0f;
-f32 TChallengeResult::mDemoSpeedUpMax          = 3.0f;
-JUtility::TColor TChallengeResult::mFlashColor = JUtility::TColor(255, 255, 0, 255);
+f32 TChallengeResult::mMoveSpeed       = 12.0f;
+f32 TChallengeResult::mAngRate         = 0.3f;
+f32 TChallengeResult::mAngVelMax       = 20.0f;
+f32 TChallengeResult::mAccel           = 0.1f;
+bool TChallengeResult::mTestDemo       = true;
+bool TChallengeResult::mComplete       = true;
+s16 TChallengeResult::mTestRankInOrder = 0xFFFF;
+f32 TChallengeResult::mFlashInterval   = 40.0f;
+f32 TChallengeResult::mDemoSpeedUpRate = 2.0f;
+f32 TChallengeResult::mDemoSpeedUpMax  = 3.0f;
+u8 TChallengeResult::mFlashColor[]     = { 255, 255, 0, 255 };
 
 const int cRandArray[] = { 0, 1, 2, 0, 2, 1, 1, 0, 2, 1, 2, 0, 2, 1, 0, 2, 0, 1, 0 };
 
@@ -737,10 +737,7 @@ void TCounterRV::reset()
 	mEnabled = false;
 	_B1      = false;
 	setPuyoAnim(false);
-	for (int i = 0; i < mMaxDisplayDigitNum; i++) {
-		P2ASSERTLINE(619, mEfxCountKiras[i]);
-		mEfxCountKiras[i]->fade();
-	}
+	fadeKiraEffect();
 }
 
 /**
@@ -1385,14 +1382,13 @@ bool TChallengeResult::doUpdate()
 		if (mTimer > mFlashInterval) {
 			mTimer = 0.0f;
 		}
-		f32 calc = (mTimer / 40.0f) * TAU;
+		f32 calc = (mTimer / TChallengeResult::mFlashInterval) * TAU;
 		calc     = absF(sinf(calc));
 
 		f32 calc1 = 1.0f - calc;
-		f32 calc2 = calc * 255.0f;
-		u8 r      = mFlashColor.r * calc1 + calc2;
-		u8 g      = mFlashColor.g * calc1 + calc2;
-		u8 b      = mFlashColor.b * calc1 + calc2;
+		u8 r      = mFlashColor[0] * calc1 + calc * 255.0f;
+		u8 g      = mFlashColor[1] * calc1 + calc * 255.0f;
+		u8 b      = mFlashColor[2] * calc1 + calc * 255.0f;
 
 		mCounter1->setColor(r, g, b, 255);
 		for (int i = 0; i < 3; i++) {
@@ -2295,17 +2291,19 @@ void TChallengeResult::setInfo()
 		for (int i = 0; i < 5; i++) {
 			mClearTexture[i]->changeTexture(true);
 		}
-	} else if (mFlags[0] & 4) {
-		mResultDemoScreen->setComplete(true);
-		mFlags[1] = 1;
-	}
-
-	if (mFlags[0] & 8) {
-		for (int i = 0; i < 5; i++) {
-			mClearTexture[i]->changeTexture(false);
+	} else {
+		if (mFlags[0] & 4) {
+			mResultDemoScreen->setComplete(true);
+			mFlags[1] = 1;
 		}
-	} else if (mFlags[0] & 2) {
-		mFlags[1] = 1;
+
+		if (mFlags[0] & 8) {
+			for (int i = 0; i < 5; i++) {
+				mClearTexture[i]->changeTexture(false);
+			}
+		} else if (mFlags[0] & 2) {
+			mFlags[1] = 1;
+		}
 	}
 
 	if (!mFlags[1] && mFlags[0] & 0x10 && mFlags[0] & 4) {
@@ -3433,7 +3431,15 @@ void TChallengeResult::updateDemo()
 		for (int i = 0; i < 3; i++) {
 			int id1 = mOnyonMovePane[i]->_48;
 			int id2 = mOnyonMovePane[i]->mState;
-			P2ASSERTBOUNDSLINE(1813, 3, id1, 0);
+			{
+				// yes this really cant be a macro since the order of checks is inverted for some reason
+				// unless you want to add a whole new macro for this alone of course :)
+				bool check = false;
+				if (3 >= id1 && id1 >= 0) {
+					check = true;
+				}
+				P2ASSERTLINE(1813, check);
+			}
 			if (mResultCounters[id1]->checkState(2) == false) {
 				if (mOnyonMovePane[i]->mCounter > 0) {
 					if (id2 == 0) {
@@ -5092,7 +5098,7 @@ void TChallengeResult::changeAnimDemo()
 			} else {
 				PSSystem::spSysIF->playSystemSe(PSSE_CHALLENGE_COURSECLEAR, 0);
 			}
-			 mResultDemoScreen->reset2();
+			mResultDemoScreen->reset2();
 		}
 		mDemoState = 6;
 
