@@ -315,9 +315,9 @@ void MapUnitGenerator::createItemList()
  */
 void MapUnitGenerator::createCaveLevel()
 {
-	mRandItemType = 0;
+	mRandItemType = RANDITEMTYPE_Challenge;
 	if (gameSystem && gameSystem->isStoryMode()) {
-		mRandItemType = 4;
+		mRandItemType = RANDITEMTYPE_Story;
 	}
 }
 

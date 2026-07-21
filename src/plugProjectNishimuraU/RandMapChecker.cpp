@@ -16,9 +16,10 @@ RandMapChecker::RandMapChecker(MapNode* mapnode)
 }
 
 /**
+ * Checks if it is valid to place the mapnode
+ * 
  * @note Address: 0x8024566C
  * @note Size: 0x7C
- * Matches!
  */
 bool RandMapChecker::isPutOnMap(MapNode* mapnode)
 {
@@ -32,10 +33,10 @@ bool RandMapChecker::isPutOnMap(MapNode* mapnode)
 }
 
 /**
+ * Checks if the mapnode's unit would overlap with any existing placed units
+ * 
  * @note Address: 0x802456E8
  * @note Size: 0xF0
- * Description: Appears to check if map parts would overlap
- * Matches!
  */
 bool RandMapChecker::isPartsOnParts(MapNode* mapnode)
 {
@@ -62,9 +63,11 @@ bool RandMapChecker::isPartsOnParts(MapNode* mapnode)
 };
 
 /**
+ * Checks if our mapnode's doors collide
+ * into an existing unit and don't link
+ * up with a door
  * @note Address: 0x802457D8
  * @note Size: 0x220
- * Matches!
  */
 bool RandMapChecker::isDoorOnParts(MapNode* mapnode)
 {
@@ -127,9 +130,12 @@ bool RandMapChecker::isDoorOnParts(MapNode* mapnode)
 }
 
 /**
+ * Checks if we cause an existing door to
+ * collide with a side of our
+ * room that isn't a door
+ * 
  * @note Address: 0x802459F8
  * @note Size: 0x1E8
- * Matches!
  */
 bool RandMapChecker::isPartsOnDoor(MapNode* mapnode)
 {
@@ -188,25 +194,33 @@ bool RandMapChecker::isPartsOnDoor(MapNode* mapnode)
 }
 
 /**
+ * Checks if "our" box and "their" box interlap in any way
+ * 
+ * (doesn't use any members, so out to be static)
+ * 
  * @note Address: 0x80245BE0
  * @note Size: 0x7C
  *
  */
-bool RandMapChecker::isInnerBox(int outerX1, int outerY1, int outerX2, int outerY2, int innerX1, int innerY1, int innerX2, int innerY2)
+bool RandMapChecker::isInnerBox(int ourTopLeftX, int ourTopLeftY, int ourBottomRightX, int ourBottomRightY, 
+	int theirTopLeftX, int theirTopLeftY, int theirBottomRightX, int theirBottomRightY)
 {
-	if (outerX1 < innerX1) {
-		if (outerY1 < innerY1) {
-			if (outerX2 > innerX1 && outerY2 > innerY1)
+	// holy shit this is such a bad way to do this, wtf P2 devs
+	if (ourTopLeftX < theirTopLeftX) {
+		if (ourTopLeftY < theirTopLeftY) {
+			if (ourBottomRightX > theirTopLeftX && ourBottomRightY > theirTopLeftY) {
 				return true;
-		} else if (outerY1 < innerY2 && outerX2 > innerX1) {
+			}
+		} else if (ourTopLeftY < theirBottomRightY && ourBottomRightX > theirTopLeftX) {
 			return true;
 		}
 	} else {
-		if (outerX1 < innerX2) {
-			if (outerY1 < innerY1) {
-				if (outerY2 > innerY1)
+		if (ourTopLeftX < theirBottomRightX) {
+			if (ourTopLeftY < theirTopLeftY) {
+				if (ourBottomRightY > theirTopLeftY) {
 					return true;
-			} else if (outerY1 < innerY2) {
+				}
+			} else if (ourTopLeftY < theirBottomRightY) {
 				return true;
 			}
 		}
