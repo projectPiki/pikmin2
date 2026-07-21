@@ -1594,7 +1594,7 @@ config.libs = [
             Object(Matching, "plugProjectNishimuraU/BigTreasureMgr.cpp"),
             Object(NonMatching, "plugProjectNishimuraU/BigTreasureShadow.cpp"),
             Object(Matching, "plugProjectNishimuraU/BigTreasure.cpp"),
-            Object(NonMatching, "plugProjectNishimuraU/KabutoState.cpp"),
+            Object(Matching, "plugProjectNishimuraU/KabutoState.cpp"),
             Object(Matching, "plugProjectNishimuraU/KabutoAnimator.cpp"),
             Object(Matching, "plugProjectNishimuraU/KabutoMgr.cpp"),
             Object(Matching, "plugProjectNishimuraU/Kabuto.cpp"),
