@@ -293,7 +293,6 @@ PathNode* PathNode::pop()
 		targetNode->del();
 	}
 
-	
 	return targetNode;
 }
 
@@ -397,7 +396,7 @@ void AStarPathfinder::initsearch(Game::AStarContext* context)
 	s16 startID = context->mStartWPID;
 	s16 endID   = context->mEndWPID;
 	setContext(context);
-	
+
 	mContext->mActiveList.initNode();
 	mContext->mInactiveList.initNode();
 
@@ -598,7 +597,7 @@ int AStarPathfinder::search(Game::AStarContext* context, int maxIterations, Game
 	}
 
 	// Today I learned you can make volatile functions to do shit like this T-T
-	if (mContext->isExausted()) {
+	if (mContext->isExhausted()) {
 		return 1;
 	}
 

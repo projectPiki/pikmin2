@@ -91,7 +91,7 @@ struct AStarContext {
 	bool checkContext() { return mHandleIdx != 0 && mState == PATHFIND_Busy; }
 
 	// fabricated
-	bool isExausted() volatile { return mActiveList.mRootNode == nullptr; }
+	bool isExhausted() volatile { return mActiveList.mRootNode == nullptr; }
 
 	inline bool isFlag(PathFindFlags flag) { return mRequestFlag & flag; }
 
@@ -118,7 +118,6 @@ struct AStarPathfinder {
 	void search(s16, s16, s16*, int);
 	void search(AStarContext*, s16, s16, s16*, int, int, int&);
 	void setContext(AStarContext*);
-	
 
 	AStarContext* mContext; // _00
 };
