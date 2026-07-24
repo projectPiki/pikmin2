@@ -1289,7 +1289,7 @@ config.libs = [
             Object(Matching, "plugProjectKandoU/aiAttack.cpp"),
             Object(Matching, "plugProjectKandoU/aiTransport.cpp"),
             Object(NonMatching, "plugProjectKandoU/aiEnter.cpp"),
-            Object(NonMatching, "plugProjectKandoU/pathfinder.cpp"),
+            Object(Equivalent, "plugProjectKandoU/pathfinder.cpp"),
             Object(Equivalent, "plugProjectKandoU/pelletState.cpp"),
             Object(NonMatching, "plugProjectKandoU/dynCreature.cpp"),
             Object(Matching, "plugProjectKandoU/gameGenerator.cpp"),

@@ -21,8 +21,8 @@ enum PathFindFlags {
 	PATHFLAG_PathThroughWater          = 0x2,
 	PATHFLAG_DisallowUnfinishedBridges = 0x4,
 	PATHFLAG_Unk4                      = 0x8,
-	PATHFLAG_DisallowVsRed             = 0x10,
-	PATHFLAG_DisallowVsBlue            = 0x20,
+	PATHFLAG_VsRed                     = 0x10,
+	PATHFLAG_VsBlue                    = 0x20,
 	PATHFLAG_AllowUnvisited            = 0x40,
 	PATHFLAG_TwoWayPathing             = 0x80 // used for Panmodoki and BlackMan
 };
@@ -43,24 +43,27 @@ struct PathfindRequest {
 	u8 mFlag;       // _04
 };
 
+#define FOREACH_NODE_SIBLING(type, first, varname) \
+	for (type* varname = (type*)(first); varname != nullptr; varname = (type*)(varname->mSibling))
+
 struct PathNode {
 	void initNode();
 	void add(PathNode*);
 	void del();
 	void dump(char*);
-	void pop();
+	PathNode* pop();
 	void countLinks(PathNode**);
 
-	f32 _00;             // _00
-	f32 mDistanceToEnd;  // _04
-	PathNode* mChild;    // _08
-	PathNode* mNext;     // _0C
-	PathNode* mParent;   // _10
-	PathNode* mSibling;  // _14
-	PathNode* mPrevious; // _18
-	PathNode* mRootNode; // _1C
-	s16 mWpIndex;        // _20
-	u8 _22;              // _22
+	f32 mDistanceFromStart; // _00
+	f32 mDistanceToEnd;     // _04
+	PathNode* mChild;       // _08
+	PathNode* mNext;        // _0C
+	PathNode* mParent;      // _10
+	PathNode* mSibling;     // _14
+	PathNode* mPrevSibling; // _18
+	PathNode* mRootNode;    // _1C
+	s16 mWpIndex;           // _20
+	u8 mListParent;         // _22
 };
 
 struct AStarContext {
@@ -87,14 +90,20 @@ struct AStarContext {
 
 	bool checkContext() { return mHandleIdx != 0 && mState == PATHFIND_Busy; }
 
+	// fabricated
+	bool isExhausted() volatile { return mActiveList.mRootNode == nullptr; }
+
+	inline bool isFlag(PathFindFlags flag) { return mRequestFlag & flag; }
+
 	s16 mStartWPID;         // _00
 	s16 mEndWPID;           // _02
 	u8 mRequestFlag;        // _04
-	PathNode mNodeLists[2]; // _08, only the first seems to be used for anything
+	PathNode mActiveList;   // _08, only the first seems to be used for anything
+	PathNode mInactiveList; // _2C
 	s16 mUsedNodeCount;     // 50
 	s16 mWpNum;             // _52
 	u8 mState;              // _54, see PathFindState enum
-	PathNode* _58;          // _58, guess
+	PathNode* mUsedNodes;   // _58, guess
 	PathNode* mNode;        // _5C
 	u32 mHandleIdx;         // _60
 };

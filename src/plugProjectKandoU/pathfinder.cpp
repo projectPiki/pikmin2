@@ -187,13 +187,12 @@ int Pathfinder::check(u32 handle)
  */
 void PathNode::initNode()
 {
-	// UNUSED FUNCTION
-	mPrevious = nullptr;
-	mSibling  = nullptr;
-	mRootNode = nullptr;
-	mParent   = nullptr;
-	mChild    = nullptr;
-	mNext     = nullptr;
+	mPrevSibling = nullptr;
+	mSibling     = nullptr;
+	mRootNode    = nullptr;
+	mParent      = nullptr;
+	mChild       = nullptr;
+	mNext        = nullptr;
 }
 
 /**
@@ -202,17 +201,17 @@ void PathNode::initNode()
  */
 void PathNode::add(Game::PathNode* newNode)
 {
-	// UNUSED FUNCTION
-	if (mRootNode != nullptr) {
-		PathNode* node;
-		for (node = mRootNode; node->mSibling != nullptr;) {
+	PathNode* node = mRootNode;
+	if (node) {
+		while (node->mSibling) {
 			node = node->mSibling;
 		}
-		node->mSibling     = newNode;
-		newNode->mPrevious = node;
+		node->mSibling        = newNode;
+		newNode->mPrevSibling = node;
 	} else {
 		mRootNode = newNode;
 	}
+	newNode->mParent = this;
 }
 
 /**
@@ -221,7 +220,45 @@ void PathNode::add(Game::PathNode* newNode)
  */
 void PathNode::del()
 {
-	// UNUSED FUNCTION
+	// yes this is literally CNode del lmao
+	PathNode* parent = mParent;
+	if (!parent) {
+		return;
+	}
+
+	PathNode* curChild = parent->mRootNode;
+	PathNode* oldChild = nullptr;
+	while (curChild) {
+		if (curChild == this) {
+			if (oldChild) {
+				oldChild->mSibling = curChild->mSibling;
+
+				PathNode* next = curChild->mSibling;
+				if (next) {
+					next->mPrevSibling = oldChild;
+				}
+				mPrevSibling = nullptr;
+				mSibling     = nullptr;
+				mParent      = nullptr;
+			} else {
+				parent->mRootNode = curChild->mSibling;
+
+				PathNode* next = curChild->mSibling;
+				if (next) {
+					next->mPrevSibling = nullptr;
+				}
+
+				mPrevSibling = nullptr;
+				mSibling     = nullptr;
+				mParent      = nullptr;
+			}
+
+			return;
+		}
+
+		oldChild = curChild;
+		curChild = curChild->mSibling;
+	}
 }
 
 /**
@@ -237,9 +274,26 @@ void PathNode::dump(char*)
  * @note Address: N/A
  * @note Size: 0xDC
  */
-void PathNode::pop()
+PathNode* PathNode::pop()
 {
-	// UNUSED FUNCTION
+	f32 minDist          = FLOAT_DIST_MAX;
+	PathNode* targetNode = nullptr;
+
+	// this is a bad excuse for a priority queue
+	FOREACH_NODE_SIBLING(PathNode, mRootNode, node)
+	{
+		f32 dist = node->mDistanceFromStart + node->mDistanceToEnd;
+		if (dist < minDist) {
+			minDist    = dist;
+			targetNode = node;
+		}
+	}
+
+	if (targetNode) {
+		targetNode->del();
+	}
+
+	return targetNode;
 }
 
 /**
@@ -265,7 +319,7 @@ void AStarContext::init(RouteMgr* mgr, int wpNum)
 		} else {
 			mWpNum = wpNum;
 		}
-		_58 = new PathNode[mWpNum]; // not sure what this type is
+		mUsedNodes = new PathNode[mWpNum]; // not sure what this type is
 		resetContext();
 	}
 }
@@ -294,23 +348,22 @@ void AStarPathfinder::setContext(AStarContext* context)
  */
 PathNode* AStarContext::getNode(s16 wpID)
 {
-	// UNUSED FUNCTION
 	int count = mUsedNodeCount;
 
 	for (int i = 0; i < count; i++) {
-		if (wpID == _58[i].mWpIndex) {
-			return &_58[i];
+		if (wpID == mUsedNodes[i].mWpIndex) {
+			return &mUsedNodes[i];
 		}
 	}
 
 	PathNode* node;
 	if (count < mWpNum) {
-		node = &_58[count];
+		node = &mUsedNodes[count];
 		mUsedNodeCount++;
 
 		node->initNode();
-		node->mWpIndex = wpID;
-		node->_22      = 2;
+		node->mWpIndex    = wpID;
+		node->mListParent = 2;
 		return node;
 	}
 	return nullptr;
@@ -343,20 +396,19 @@ void AStarPathfinder::initsearch(Game::AStarContext* context)
 	s16 startID = context->mStartWPID;
 	s16 endID   = context->mEndWPID;
 	setContext(context);
-	for (int i = 0; i < 2; i++) {
-		mContext->mNodeLists[i].initNode();
-	}
+
+	mContext->mActiveList.initNode();
+	mContext->mInactiveList.initNode();
+
 	mContext->mUsedNodeCount = 0;
 	PathNode* node           = mContext->getNode(startID);
 	node->mWpIndex           = startID;
-	node->_00                = 0.0f;
+	node->mDistanceFromStart = 0.0f;
 	node->mDistanceToEnd     = estimate(startID, endID);
 	node->mChild             = nullptr;
-	node->_22                = 0;
+	node->mListParent        = 0;
 
-	PathNode* parent = &mContext->mNodeLists[0];
-	parent->add(node);
-	node->mParent = parent;
+	mContext->mActiveList.add(node);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -489,65 +541,20 @@ int AStarPathfinder::search(Game::AStarContext* context, int maxIterations, Game
 {
 	setContext(context);
 	s16 endIdx = context->mEndWPID;
-	for (int i = maxIterations; mContext->mNodeLists[0].mRootNode && i > 0; i--) {
-		f32 minDist          = 1280000.0f;
-		PathNode* targetNode = nullptr;
-		for (PathNode* node = mContext->mNodeLists[0].mRootNode; node; node = node->mSibling) {
-			f32 dist = node->_00 + node->mDistanceToEnd;
-			if (dist < minDist) {
-				minDist    = dist;
-				targetNode = node;
-			}
-		}
 
-		if (!targetNode) {
-			continue;
-		}
-
-		PathNode* child = targetNode->mParent;
-		if (!child) {
-			continue;
-		}
-
-		PathNode* node     = child->mRootNode;
-		PathNode* prevNode = nullptr;
-		while (node) {
-			if (node == targetNode) {
-				if (prevNode) {
-					prevNode->mSibling = node->mSibling;
-					if (node->mSibling) {
-						node->mSibling->mPrevious = prevNode;
-					}
-
-					targetNode->mPrevious = nullptr;
-					targetNode->mSibling  = nullptr;
-					targetNode->mParent   = nullptr;
-				} else {
-					child->mRootNode = node->mSibling;
-					if (node->mSibling) {
-						node->mSibling->mPrevious = nullptr;
-					}
-
-					targetNode->mPrevious = nullptr;
-					targetNode->mSibling  = nullptr;
-					targetNode->mParent   = nullptr;
-				}
-				break;
-			}
-
-			prevNode = node;
-			node     = node->mSibling;
-		}
+	for (int i = maxIterations; mContext->mActiveList.mRootNode && i > 0; i--) {
+		f32 minDist          = FLOAT_DIST_MAX;
+		PathNode* targetNode = mContext->mActiveList.pop();
 
 		if (targetNode->mWpIndex == endIdx) {
-			path[0] = targetNode;
-			return 0;
+			*path = targetNode;
+			return 0; // success!
 		}
 
 		WayPoint* wp = PathfindContext::routeMgr->getWayPoint(targetNode->mWpIndex);
 
-		WayPointIterator iter(wp, mContext->mRequestFlag & PATHFLAG_TwoWayPathing);
-
+		// we act on all the neighbors of wp
+		WayPointIterator iter(wp, mContext->isFlag(PATHFLAG_TwoWayPathing));
 		CI_LOOP(iter)
 		{
 			s16 idx = *iter;
@@ -559,478 +566,42 @@ int AStarPathfinder::search(Game::AStarContext* context, int maxIterations, Game
 			WayPoint* cWP = PathfindContext::routeMgr->getWayPoint(idx);
 
 			PathNode* node = mContext->getNode(idx);
-			if ((((mContext->mRequestFlag & PATHFLAG_RequireOpen) && (cWP->mFlags & WPF_Closed))
-			     || (!(mContext->mRequestFlag & PATHFLAG_PathThroughWater) && (cWP->mFlags & WPF_Water))
-			     || (!(mContext->mRequestFlag & PATHFLAG_AllowUnvisited) && (cWP->mFlags & WPF_Unvisited))
-			     || ((cWP->mFlags & WPF_Water) && (mContext->mRequestFlag & PATHFLAG_DisallowUnfinishedBridges)
-			         && (wp->mFlags & WPF_Bridge))
-			     || ((mContext->mRequestFlag & PATHFLAG_DisallowVsRed) && (wp->mFlags & WPF_VersusRed))
-			     || ((mContext->mRequestFlag & PATHFLAG_DisallowVsBlue) && (wp->mFlags & WPF_VersusBlue)))) {
+			if (((mContext->isFlag(PATHFLAG_RequireOpen) && cWP->isFlag(WPF_Closed))
+			     || (!mContext->isFlag(PATHFLAG_PathThroughWater) && cWP->isFlag(WPF_Water))
+			     || (!mContext->isFlag(PATHFLAG_AllowUnvisited) && cWP->isFlag(WPF_Unvisited))
+			     || (wp->isFlag(WPF_Water) && mContext->isFlag(PATHFLAG_DisallowUnfinishedBridges) && cWP->isFlag(WPF_Bridge))
+			     || (mContext->isFlag(PATHFLAG_VsBlue) && cWP->isFlag(WPF_VersusRed))
+			     || (mContext->isFlag(PATHFLAG_VsRed) && cWP->isFlag(WPF_VersusBlue)))) {
 				continue;
 			}
 
-			f32 test = estimate(targetNode->mWpIndex, node->mWpIndex);
-			test += node->_00;
-			if (node->_22 == 2 || test <= node->_00) {
-				node->mChild         = targetNode;
-				node->_00            = test;
-				node->mDistanceToEnd = estimate(node->mWpIndex, endIdx);
-				if (node->_22 == 1) {
-					PathNode* parent = node->mParent;
-					if (parent) {
-						PathNode* out = nullptr;
-						for (PathNode* child = parent->mRootNode; child->mSibling != nullptr;) {
-							if (child == node) {
-								if (out) {
-									out->mSibling = child->mSibling;
-									if (child->mSibling) {
-										child->mSibling->mPrevious = out;
-									}
-									node->mPrevious = nullptr;
-									node->mSibling  = nullptr;
-									node->mParent   = nullptr;
-								} else {
-									parent->mSibling = child->mSibling;
-									if (child->mSibling) {
-										child->mSibling->mPrevious = nullptr;
-									}
-									node->mPrevious = nullptr;
-									node->mSibling  = nullptr;
-									node->mParent   = nullptr;
-								}
-								break;
-							}
-						}
-					}
-					node->_22 = 2;
+			f32 test = estimate(targetNode->mWpIndex, node->mWpIndex) + targetNode->mDistanceFromStart;
+			// if we are not yet used, or we a closer from this node, update our path to contain it
+			if (node->mListParent == 2 || !(node->mDistanceFromStart <= test)) {
+				node->mChild             = targetNode;
+				node->mDistanceFromStart = test;
+				node->mDistanceToEnd     = estimate(node->mWpIndex, endIdx);
+
+				if (node->mListParent == 1) {
+					node->del();
+					node->mListParent = 2;
 				}
-				if (node->_22) {
-					node->_22             = 0;
-					AStarContext* context = mContext;
-					PathNode* newnode     = context->mNodeLists[0].mRootNode;
-					if (newnode) {
-						while (newnode->mSibling) {
-							newnode = newnode->mSibling;
-						}
-						newnode->mSibling = node;
-						node->mPrevious   = newnode;
-					} else {
-						context->mNodeLists[0].mRootNode = node;
-					}
-					node->mParent = &context->mNodeLists[0];
+				if (node->mListParent != 0) {
+					node->mListParent = 0; // we are one of the nodes to have priority checking
+					mContext->mActiveList.add(node);
 				}
 			}
 		}
-		targetNode->_22 = 1;
+		targetNode->mListParent = 1;
+		mContext->mInactiveList.add(targetNode);
 	}
 
-	if (!mContext->mNodeLists[0].mRootNode) {
+	// Today I learned you can make volatile functions to do shit like this T-T
+	if (mContext->isExhausted()) {
 		return 1;
 	}
 
 	return 2;
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stmw     r24, 0x20(r1)
-	mr       r24, r3
-	mr       r25, r6
-	mr       r28, r5
-	stw      r4, 0(r3)
-	lha      r29, 2(r4)
-	b        lbl_801A41E4
-
-lbl_801A3D98:
-	lfs      f2, lbl_80519180@sda21(r2)
-	li       r31, 0
-	b        lbl_801A3DC4
-
-lbl_801A3DA4:
-	lfs      f1, 0(r3)
-	lfs      f0, 4(r3)
-	fadds    f0, f1, f0
-	fcmpo    cr0, f0, f2
-	bge      lbl_801A3DC0
-	fmr      f2, f0
-	mr       r31, r3
-
-lbl_801A3DC0:
-	lwz      r3, 0x14(r3)
-
-lbl_801A3DC4:
-	cmplwi   r3, 0
-	bne      lbl_801A3DA4
-	cmplwi   r31, 0
-	beq      lbl_801A3E68
-	lwz      r5, 0x10(r31)
-	cmplwi   r5, 0
-	beq      lbl_801A3E68
-	lwz      r4, 0x1c(r5)
-	li       r3, 0
-	b        lbl_801A3E60
-
-lbl_801A3DEC:
-	cmplw    r4, r31
-	bne      lbl_801A3E58
-	cmplwi   r3, 0
-	beq      lbl_801A3E28
-	lwz      r0, 0x14(r4)
-	stw      r0, 0x14(r3)
-	lwz      r4, 0x14(r4)
-	cmplwi   r4, 0
-	beq      lbl_801A3E14
-	stw      r3, 0x18(r4)
-
-lbl_801A3E14:
-	li       r0, 0
-	stw      r0, 0x18(r31)
-	stw      r0, 0x14(r31)
-	stw      r0, 0x10(r31)
-	b        lbl_801A3E68
-
-lbl_801A3E28:
-	lwz      r0, 0x14(r4)
-	stw      r0, 0x1c(r5)
-	lwz      r3, 0x14(r4)
-	cmplwi   r3, 0
-	beq      lbl_801A3E44
-	li       r0, 0
-	stw      r0, 0x18(r3)
-
-lbl_801A3E44:
-	li       r0, 0
-	stw      r0, 0x18(r31)
-	stw      r0, 0x14(r31)
-	stw      r0, 0x10(r31)
-	b        lbl_801A3E68
-
-lbl_801A3E58:
-	mr       r3, r4
-	lwz      r4, 0x14(r4)
-
-lbl_801A3E60:
-	cmplwi   r4, 0
-	bne      lbl_801A3DEC
-
-lbl_801A3E68:
-	lha      r4, 0x20(r31)
-	cmpw     r4, r29
-	bne      lbl_801A3E80
-	stw      r31, 0(r25)
-	li       r3, 0
-	b        lbl_801A4214
-
-lbl_801A3E80:
-	lwz      r3, routeMgr__Q24Game15PathfindContext@sda21(r13)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0(r24)
-	mr       r27, r3
-	addi     r3, r1, 8
-	lbz      r0, 4(r4)
-	mr       r4, r27
-	rlwinm   r5, r0, 0x19, 0x1f, 0x1f
-	bl       __ct__Q24Game16WayPointIteratorFPQ24Game8WayPointb
-	addi     r3, r1, 8
-	bl       first__Q24Game16WayPointIteratorFv
-	b        lbl_801A3ECC
-
-lbl_801A3EBC:
-	addi     r3, r1, 8
-	bl       __ml__Q24Game16WayPointIteratorFv
-	addi     r3, r1, 8
-	bl       next__Q24Game16WayPointIteratorFv
-
-lbl_801A3ECC:
-	addi     r3, r1, 8
-	bl       isDone__Q24Game16WayPointIteratorFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801A3EBC
-	addi     r3, r1, 8
-	bl       first__Q24Game16WayPointIteratorFv
-	b        lbl_801A418C
-
-lbl_801A3EE8:
-	addi     r3, r1, 8
-	bl       __ml__Q24Game16WayPointIteratorFv
-	mr       r0, r3
-	lwz      r3, routeMgr__Q24Game15PathfindContext@sda21(r13)
-	mr       r26, r0
-	lwz      r12, 0(r3)
-	mr       r4, r26
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r8, 0(r24)
-	li       r5, 0
-	mr       r6, r5
-	extsh    r4, r26
-	lha      r9, 0x50(r8)
-	mtctr    r9
-	cmpwi    r9, 0
-	ble      lbl_801A3F5C
-
-lbl_801A3F30:
-	lwz      r7, 0x58(r8)
-	addi     r0, r6, 0x20
-	lhax     r0, r7, r0
-	cmpw     r4, r0
-	bne      lbl_801A3F50
-	mulli    r0, r5, 0x24
-	add      r30, r7, r0
-	b        lbl_801A3FB0
-
-lbl_801A3F50:
-	addi     r6, r6, 0x24
-	addi     r5, r5, 1
-	bdnz     lbl_801A3F30
-
-lbl_801A3F5C:
-	lha      r0, 0x52(r8)
-	cmpw     r9, r0
-	bge      lbl_801A3FAC
-	lha      r5, 0x50(r8)
-	mulli    r6, r9, 0x24
-	lwz      r7, 0x58(r8)
-	li       r4, 0
-	addi     r0, r5, 1
-	sth      r0, 0x50(r8)
-	add      r30, r7, r6
-	li       r0, 2
-	stw      r4, 0x18(r30)
-	stw      r4, 0x14(r30)
-	stw      r4, 0x1c(r30)
-	stw      r4, 0x10(r30)
-	stw      r4, 8(r30)
-	stw      r4, 0xc(r30)
-	sth      r26, 0x20(r30)
-	stb      r0, 0x22(r30)
-	b        lbl_801A3FB0
-
-lbl_801A3FAC:
-	li       r30, 0
-
-lbl_801A3FB0:
-	lwz      r4, 0(r24)
-	lbz      r4, 4(r4)
-	clrlwi.  r0, r4, 0x1f
-	beq      lbl_801A3FCC
-	lbz      r0, 0x34(r3)
-	clrlwi.  r0, r0, 0x1f
-	bne      lbl_801A4184
-
-lbl_801A3FCC:
-	rlwinm.  r0, r4, 0, 0x1e, 0x1e
-	bne      lbl_801A3FE0
-	lbz      r0, 0x34(r3)
-	rlwinm.  r0, r0, 0, 0x1e, 0x1e
-	bne      lbl_801A4184
-
-lbl_801A3FE0:
-	rlwinm.  r0, r4, 0, 0x19, 0x19
-	bne      lbl_801A3FF4
-	lbz      r0, 0x34(r3)
-	rlwinm.  r0, r0, 0, 0x18, 0x18
-	bne      lbl_801A4184
-
-lbl_801A3FF4:
-	lbz      r0, 0x34(r27)
-	rlwinm.  r0, r0, 0, 0x1e, 0x1e
-	beq      lbl_801A4014
-	rlwinm.  r0, r4, 0, 0x1d, 0x1d
-	beq      lbl_801A4014
-	lbz      r0, 0x34(r3)
-	rlwinm.  r0, r0, 0, 0x1d, 0x1d
-	bne      lbl_801A4184
-
-lbl_801A4014:
-	rlwinm.  r0, r4, 0, 0x1a, 0x1a
-	beq      lbl_801A4028
-	lbz      r0, 0x34(r3)
-	rlwinm.  r0, r0, 0, 0x1a, 0x1a
-	bne      lbl_801A4184
-
-lbl_801A4028:
-	rlwinm.  r0, r4, 0, 0x1b, 0x1b
-	beq      lbl_801A403C
-	lbz      r0, 0x34(r3)
-	rlwinm.  r0, r0, 0, 0x1b, 0x1b
-	bne      lbl_801A4184
-
-lbl_801A403C:
-	lha      r4, 0x20(r31)
-	mr       r3, r24
-	lha      r5, 0x20(r30)
-	bl       estimate__Q24Game15AStarPathfinderFss
-	lfs      f0, 0(r31)
-	lbz      r0, 0x22(r30)
-	fadds    f1, f0, f1
-	cmplwi   r0, 2
-	beq      lbl_801A4070
-	lfs      f0, 0(r30)
-	fcmpo    cr0, f0, f1
-	cror     2, 0, 2
-	beq      lbl_801A4184
-
-lbl_801A4070:
-	stw      r31, 8(r30)
-	mr       r3, r24
-	mr       r5, r29
-	stfs     f1, 0(r30)
-	lha      r4, 0x20(r30)
-	bl       estimate__Q24Game15AStarPathfinderFss
-	stfs     f1, 4(r30)
-	lbz      r0, 0x22(r30)
-	cmplwi   r0, 1
-	bne      lbl_801A4134
-	lwz      r5, 0x10(r30)
-	cmplwi   r5, 0
-	beq      lbl_801A412C
-	lwz      r4, 0x1c(r5)
-	li       r3, 0
-	b        lbl_801A4124
-
-lbl_801A40B0:
-	cmplw    r4, r30
-	bne      lbl_801A411C
-	cmplwi   r3, 0
-	beq      lbl_801A40EC
-	lwz      r0, 0x14(r4)
-	stw      r0, 0x14(r3)
-	lwz      r4, 0x14(r4)
-	cmplwi   r4, 0
-	beq      lbl_801A40D8
-	stw      r3, 0x18(r4)
-
-lbl_801A40D8:
-	li       r0, 0
-	stw      r0, 0x18(r30)
-	stw      r0, 0x14(r30)
-	stw      r0, 0x10(r30)
-	b        lbl_801A412C
-
-lbl_801A40EC:
-	lwz      r0, 0x14(r4)
-	stw      r0, 0x1c(r5)
-	lwz      r3, 0x14(r4)
-	cmplwi   r3, 0
-	beq      lbl_801A4108
-	li       r0, 0
-	stw      r0, 0x18(r3)
-
-lbl_801A4108:
-	li       r0, 0
-	stw      r0, 0x18(r30)
-	stw      r0, 0x14(r30)
-	stw      r0, 0x10(r30)
-	b        lbl_801A412C
-
-lbl_801A411C:
-	mr       r3, r4
-	lwz      r4, 0x14(r4)
-
-lbl_801A4124:
-	cmplwi   r4, 0
-	bne      lbl_801A40B0
-
-lbl_801A412C:
-	li       r0, 2
-	stb      r0, 0x22(r30)
-
-lbl_801A4134:
-	lbz      r0, 0x22(r30)
-	cmplwi   r0, 0
-	beq      lbl_801A4184
-	li       r0, 0
-	stb      r0, 0x22(r30)
-	lwz      r3, 0(r24)
-	addi     r4, r3, 8
-	lwz      r3, 0x24(r3)
-	cmplwi   r3, 0
-	beq      lbl_801A417C
-	b        lbl_801A4164
-
-lbl_801A4160:
-	mr       r3, r0
-
-lbl_801A4164:
-	lwz      r0, 0x14(r3)
-	cmplwi   r0, 0
-	bne      lbl_801A4160
-	stw      r30, 0x14(r3)
-	stw      r3, 0x18(r30)
-	b        lbl_801A4180
-
-lbl_801A417C:
-	stw      r30, 0x1c(r4)
-
-lbl_801A4180:
-	stw      r4, 0x10(r30)
-
-lbl_801A4184:
-	addi     r3, r1, 8
-	bl       next__Q24Game16WayPointIteratorFv
-
-lbl_801A418C:
-	addi     r3, r1, 8
-	bl       isDone__Q24Game16WayPointIteratorFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801A3EE8
-	li       r0, 1
-	stb      r0, 0x22(r31)
-	lwz      r3, 0(r24)
-	addi     r4, r3, 0x2c
-	lwz      r3, 0x48(r3)
-	cmplwi   r3, 0
-	beq      lbl_801A41D8
-	b        lbl_801A41C0
-
-lbl_801A41BC:
-	mr       r3, r0
-
-lbl_801A41C0:
-	lwz      r0, 0x14(r3)
-	cmplwi   r0, 0
-	bne      lbl_801A41BC
-	stw      r31, 0x14(r3)
-	stw      r3, 0x18(r31)
-	b        lbl_801A41DC
-
-lbl_801A41D8:
-	stw      r31, 0x1c(r4)
-
-lbl_801A41DC:
-	stw      r4, 0x10(r31)
-	addi     r28, r28, -1
-
-lbl_801A41E4:
-	lwz      r4, 0(r24)
-	lwz      r3, 0x24(r4)
-	cmplwi   r3, 0
-	beq      lbl_801A41FC
-	cmpwi    r28, 0
-	bgt      lbl_801A3D98
-
-lbl_801A41FC:
-	lwz      r0, 0x24(r4)
-	cmplwi   r0, 0
-	bne      lbl_801A4210
-	li       r3, 1
-	b        lbl_801A4214
-
-lbl_801A4210:
-	li       r3, 2
-
-lbl_801A4214:
-	lmw      r24, 0x20(r1)
-	lwz      r0, 0x44(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
 }
 
 /**
@@ -1075,4 +646,5 @@ void AStarPathfinder::constructPath(Game::PathNode*, s16*, int)
 {
 	// UNUSED FUNCTION
 }
+
 } // namespace Game
