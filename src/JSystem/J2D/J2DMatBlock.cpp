@@ -1213,7 +1213,7 @@ bool J2DTevBlock2::setTexture(u32 id, const ResTIMG* timg)
 					var_r0 = 16;
 				}
 
-				if (!(u8)(tlutname - var_r0)) {
+				if (u8(tlutname - (tlutname >= GX_BIGTLUT0 ? GX_BIGTLUT0 : GX_TLUT0)) == 0) {
 					tlutid = 1;
 				}
 			}
@@ -1258,169 +1258,6 @@ bool J2DTevBlock2::setTexture(u32 id, const ResTIMG* timg)
 	mPalettes[id]   = nullptr;
 	mTexIndices[id] = -1;
 	return true;
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stmw     r25, 0x14(r1)
-	mr       r26, r4
-	cmplwi   r26, 2
-	mr       r25, r3
-	mr       r27, r5
-	blt      lbl_8004BAB4
-	li       r3, 0
-	b        lbl_8004BC90
-
-lbl_8004BAB4:
-	cmplwi   r27, 0
-	li       r28, 0
-	beq      lbl_8004BB20
-	lbz      r0, 8(r27)
-	cmplwi   r0, 0
-	beq      lbl_8004BB20
-	cntlzw   r0, r26
-	rlwinm   r0, r0, 0x1d, 0x16, 0x1d
-	add      r3, r25, r0
-	lwz      r4, 0x64(r3)
-	cmplwi   r4, 0
-	beq      lbl_8004BB20
-	lwz      r3, 0x20(r4)
-	cmplwi   r3, 0
-	beq      lbl_8004BB20
-	lbz      r0, 8(r3)
-	cmplwi   r0, 0
-	beq      lbl_8004BB20
-	lbz      r3, 0x3a(r4)
-	li       r0, 0
-	cmpwi    r3, 0x10
-	blt      lbl_8004BB10
-	li       r0, 0x10
-
-lbl_8004BB10:
-	subf     r0, r0, r3
-	clrlwi.  r0, r0, 0x18
-	bne      lbl_8004BB20
-	li       r28, 1
-
-lbl_8004BB20:
-	slwi     r29, r26, 2
-	add      r31, r25, r29
-	lwz      r3, 0x64(r31)
-	cmplwi   r3, 0
-	bne      lbl_8004BBB4
-	cmplwi   r27, 0
-	beq      lbl_8004BB9C
-	li       r3, 0x40
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_8004BB6C
-	li       r0, 0
-	mr       r4, r27
-	stw      r0, 0x28(r30)
-	mr       r5, r28
-	bl       storeTIMG__10JUTTextureFPC7ResTIMGUc
-	lbz      r0, 0x3b(r30)
-	rlwinm   r0, r0, 0, 0x1e, 0x1e
-	stb      r0, 0x3b(r30)
-
-lbl_8004BB6C:
-	stw      r30, 0x64(r31)
-	lwz      r0, 0x64(r31)
-	cmplwi   r0, 0
-	bne      lbl_8004BB84
-	li       r3, 0
-	b        lbl_8004BC90
-
-lbl_8004BB84:
-	li       r0, 1
-	lbz      r3, 0x78(r25)
-	slw      r0, r0, r26
-	or       r0, r3, r0
-	stb      r0, 0x78(r25)
-	b        lbl_8004BC64
-
-lbl_8004BB9C:
-	li       r0, 1
-	lbz      r3, 0x78(r25)
-	slw      r0, r0, r26
-	andc     r0, r3, r0
-	stb      r0, 0x78(r25)
-	b        lbl_8004BC64
-
-lbl_8004BBB4:
-	li       r0, 1
-	lbz      r4, 0x78(r25)
-	slw      r30, r0, r26
-	and.     r0, r4, r30
-	beq      lbl_8004BC00
-	cmplwi   r27, 0
-	beq      lbl_8004BBE0
-	mr       r4, r27
-	mr       r5, r28
-	bl       storeTIMG__10JUTTextureFPC7ResTIMGUc
-	b        lbl_8004BC64
-
-lbl_8004BBE0:
-	li       r4, 1
-	bl       __dt__10JUTTextureFv
-	li       r0, 0
-	stw      r0, 0x64(r31)
-	lbz      r0, 0x78(r25)
-	andc     r0, r0, r30
-	stb      r0, 0x78(r25)
-	b        lbl_8004BC64
-
-lbl_8004BC00:
-	li       r0, 0
-	cmplwi   r27, 0
-	stw      r0, 0x64(r31)
-	beq      lbl_8004BC64
-	li       r3, 0x40
-	bl       __nw__FUl
-	or.      r28, r3, r3
-	beq      lbl_8004BC40
-	li       r0, 0
-	mr       r4, r27
-	stw      r0, 0x28(r28)
-	li       r5, 0
-	bl       storeTIMG__10JUTTextureFPC7ResTIMGUc
-	lbz      r0, 0x3b(r28)
-	rlwinm   r0, r0, 0, 0x1e, 0x1e
-	stb      r0, 0x3b(r28)
-
-lbl_8004BC40:
-	stw      r28, 0x64(r31)
-	lwz      r0, 0x64(r31)
-	cmplwi   r0, 0
-	bne      lbl_8004BC58
-	li       r3, 0
-	b        lbl_8004BC90
-
-lbl_8004BC58:
-	lbz      r0, 0x78(r25)
-	or       r0, r0, r30
-	stb      r0, 0x78(r25)
-
-lbl_8004BC64:
-	add      r27, r25, r29
-	lwz      r3, 0x6c(r27)
-	bl       __dl__FPv
-	li       r4, 0
-	slwi     r0, r26, 1
-	lis      r3, 0x0000FFFF@ha
-	stw      r4, 0x6c(r27)
-	addi     r4, r3, 0x0000FFFF@l
-	add      r3, r25, r0
-	sth      r4, 4(r3)
-	li       r3, 1
-
-lbl_8004BC90:
-	lmw      r25, 0x14(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /**
@@ -1994,11 +1831,10 @@ bool J2DTevBlock4::insertTexture(u32 id, const ResTIMG* timg, JUTPalette* palett
 			if (!texInfo->mPaletteFormat) {
 				continue;
 			}
-			u8 tlutName  = mTextures[i]->getTlutName();
-			int local_3c = tlutName >= 0x10 ? 0x10 : 0;
-			u8 bVar1     = tlutName - local_3c;
-			if (bVar1 < 4) {
-				local_44 |= 1 << bVar1;
+			int tlutName = mTextures[i]->getTlutName();
+			u8 tlut_no   = tlutName - (tlutName >= GX_BIGTLUT0 ? GX_BIGTLUT0 : GX_TLUT0);
+			if (tlut_no < 4) {
+				local_44 |= 1 << tlut_no;
 			}
 		}
 		for (u8 i = 0; i < 4; i++) {
@@ -2031,15 +1867,15 @@ bool J2DTevBlock4::insertTexture(u32 id, const ResTIMG* timg, JUTPalette* palett
 		} else {
 			texture->storeTIMG(timg, palette);
 		}
-		u8 local_38[4];
+		bool local_38[4];
 		for (u8 i = 0; i < 4; i++) {
-			local_38[i] = -(mUndeleteFlag & 1 << i) >> 0x1f;
+			local_38[i] = (mUndeleteFlag & 1 << i) != 0;
 		}
-		for (; idx > id; idx--) {
-			mTextures[idx]   = mTextures[idx - 1];
-			mPalettes[idx]   = mPalettes[idx - 1];
-			mTexIndices[idx] = mTexIndices[idx - 1];
-			local_38[idx]    = local_38[idx - 1];
+		for (u8 i = idx; i > id; i--) {
+			mTextures[i]   = mTextures[i - 1];
+			mPalettes[i]   = mPalettes[i - 1];
+			mTexIndices[i] = mTexIndices[i - 1];
+			local_38[i]    = local_38[i - 1];
 		}
 		mTextures[id] = texture;
 		mUndeleteFlag &= 0x80;
@@ -2053,301 +1889,6 @@ bool J2DTevBlock4::insertTexture(u32 id, const ResTIMG* timg, JUTPalette* palett
 	mPalettes[id]   = nullptr;
 	mTexIndices[id] = -1;
 	return true;
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stmw     r25, 0x14(r1)
-	mr       r26, r4
-	cmplwi   r26, 4
-	mr       r25, r3
-	mr       r27, r5
-	mr       r28, r6
-	bge      lbl_8004CA98
-	cmplwi   r27, 0
-	bne      lbl_8004CAA0
-
-lbl_8004CA98:
-	li       r3, 0
-	b        lbl_8004CE00
-
-lbl_8004CAA0:
-	li       r30, 0
-	b        lbl_8004CACC
-
-lbl_8004CAA8:
-	rlwinm   r3, r30, 2, 0x16, 0x1d
-	addi     r0, r3, 0x8c
-	lwzx     r3, r25, r0
-	cmplwi   r3, 0
-	beq      lbl_8004CAD8
-	lwz      r0, 0x20(r3)
-	cmplwi   r0, 0
-	beq      lbl_8004CAD8
-	addi     r30, r30, 1
-
-lbl_8004CACC:
-	clrlwi   r0, r30, 0x18
-	cmplwi   r0, 4
-	blt      lbl_8004CAA8
-
-lbl_8004CAD8:
-	clrlwi   r0, r30, 0x18
-	cmplw    r0, r26
-	bge      lbl_8004CAEC
-	li       r3, 0
-	b        lbl_8004CE00
-
-lbl_8004CAEC:
-	cmplwi   r0, 4
-	bne      lbl_8004CAFC
-	li       r3, 0
-	b        lbl_8004CE00
-
-lbl_8004CAFC:
-	lbz      r0, 8(r27)
-	li       r29, 0
-	cmplwi   r0, 0
-	beq      lbl_8004CBBC
-	cmplwi   r28, 0
-	bne      lbl_8004CBBC
-	li       r0, 3
-	mr       r5, r25
-	li       r7, 0
-	mtctr    r0
-	li       r3, 1
-
-lbl_8004CB28:
-	lwz      r6, 0x8c(r5)
-	cmplwi   r6, 0
-	beq      lbl_8004CB7C
-	lwz      r4, 0x20(r6)
-	cmplwi   r4, 0
-	beq      lbl_8004CB7C
-	lbz      r0, 8(r4)
-	cmplwi   r0, 0
-	beq      lbl_8004CB7C
-	lbz      r4, 0x3a(r6)
-	li       r0, 0
-	cmpwi    r4, 0x10
-	blt      lbl_8004CB60
-	li       r0, 0x10
-
-lbl_8004CB60:
-	subf     r0, r0, r4
-	clrlwi   r0, r0, 0x18
-	cmplwi   r0, 4
-	bge      lbl_8004CB7C
-	slw      r0, r3, r0
-	or       r0, r7, r0
-	clrlwi   r7, r0, 0x18
-
-lbl_8004CB7C:
-	addi     r5, r5, 4
-	bdnz     lbl_8004CB28
-	clrlwi   r4, r7, 0x18
-	li       r5, 0
-	li       r3, 1
-	b        lbl_8004CBB0
-
-lbl_8004CB94:
-	clrlwi   r0, r5, 0x18
-	slw      r0, r3, r0
-	and.     r0, r4, r0
-	bne      lbl_8004CBAC
-	mr       r29, r5
-	b        lbl_8004CBBC
-
-lbl_8004CBAC:
-	addi     r5, r5, 1
-
-lbl_8004CBB0:
-	clrlwi   r0, r5, 0x18
-	cmplwi   r0, 4
-	blt      lbl_8004CB94
-
-lbl_8004CBBC:
-	rlwinm   r0, r30, 2, 0x16, 0x1d
-	add      r3, r25, r0
-	lwz      r31, 0x8c(r3)
-	cmplwi   r31, 0
-	bne      lbl_8004CCB8
-	li       r3, 0x40
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_8004CC00
-	li       r0, 0
-	mr       r4, r27
-	stw      r0, 0x28(r31)
-	mr       r5, r29
-	bl       storeTIMG__10JUTTextureFPC7ResTIMGUc
-	lbz      r0, 0x3b(r31)
-	rlwinm   r0, r0, 0, 0x1e, 0x1e
-	stb      r0, 0x3b(r31)
-
-lbl_8004CC00:
-	cmplwi   r31, 0
-	bne      lbl_8004CC10
-	li       r3, 0
-	b        lbl_8004CE00
-
-lbl_8004CC10:
-	cmplwi   r28, 0
-	beq      lbl_8004CC28
-	mr       r3, r31
-	mr       r4, r27
-	mr       r5, r28
-	bl       storeTIMG__10JUTTextureFPC7ResTIMGP10JUTPalette
-
-lbl_8004CC28:
-	li       r8, 3
-	b        lbl_8004CC6C
-
-lbl_8004CC30:
-	slwi     r3, r4, 2
-	rlwinm   r0, r8, 2, 0x16, 0x1d
-	add      r6, r25, r3
-	slwi     r4, r4, 1
-	lwz      r5, 0x88(r6)
-	add      r7, r25, r0
-	rlwinm   r3, r8, 1, 0x17, 0x1e
-	addi     r4, r4, 2
-	stw      r5, 0x8c(r7)
-	addi     r0, r3, 4
-	addi     r8, r8, -1
-	lwz      r3, 0x98(r6)
-	stw      r3, 0x9c(r7)
-	lhzx     r3, r25, r4
-	sthx     r3, r25, r0
-
-lbl_8004CC6C:
-	clrlwi   r4, r8, 0x18
-	cmplw    r4, r26
-	bgt      lbl_8004CC30
-	slwi     r0, r26, 2
-	mr       r3, r25
-	add      r5, r25, r0
-	clrlwi   r4, r26, 0x18
-	stw      r31, 0x8c(r5)
-	li       r5, 1
-	lwz      r12, 0(r25)
-	lwz      r12, 0xac(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 1
-	lbz      r3, 0xb0(r25)
-	slw      r0, r0, r26
-	or       r0, r3, r0
-	stb      r0, 0xb0(r25)
-	b        lbl_8004CDD8
-
-lbl_8004CCB8:
-	cmplwi   r28, 0
-	bne      lbl_8004CCD4
-	mr       r3, r31
-	mr       r4, r27
-	mr       r5, r29
-	bl       storeTIMG__10JUTTextureFPC7ResTIMGUc
-	b        lbl_8004CCE4
-
-lbl_8004CCD4:
-	mr       r3, r31
-	mr       r4, r27
-	mr       r5, r28
-	bl       storeTIMG__10JUTTextureFPC7ResTIMGP10JUTPalette
-
-lbl_8004CCE4:
-	lbz      r0, 0xb0(r25)
-	mr       r10, r30
-	addi     r3, r1, 8
-	clrlwi   r6, r0, 0x1f
-	rlwinm   r5, r0, 0x1f, 0x1f, 0x1f
-	rlwinm   r4, r0, 0x1e, 0x1f, 0x1f
-	rlwinm   r0, r0, 0x1d, 0x1f, 0x1f
-	stb      r6, 8(r1)
-	stb      r5, 9(r1)
-	stb      r4, 0xa(r1)
-	stb      r0, 0xb(r1)
-	b        lbl_8004CD60
-
-lbl_8004CD14:
-	slwi     r4, r7, 2
-	rlwinm   r0, r10, 2, 0x16, 0x1d
-	add      r8, r25, r4
-	slwi     r5, r7, 1
-	lwz      r6, 0x88(r8)
-	add      r9, r25, r0
-	addi     r0, r7, -1
-	rlwinm   r4, r10, 1, 0x17, 0x1e
-	stw      r6, 0x8c(r9)
-	clrlwi   r7, r10, 0x18
-	lbzx     r0, r3, r0
-	addi     r5, r5, 2
-	lwz      r6, 0x98(r8)
-	addi     r4, r4, 4
-	stbx     r0, r3, r7
-	addi     r10, r10, -1
-	stw      r6, 0x9c(r9)
-	lhzx     r0, r25, r5
-	sthx     r0, r25, r4
-
-lbl_8004CD60:
-	clrlwi   r7, r10, 0x18
-	cmplw    r7, r26
-	bgt      lbl_8004CD14
-	slwi     r0, r26, 2
-	addi     r5, r1, 8
-	add      r3, r25, r0
-	li       r7, 0
-	stw      r31, 0x8c(r3)
-	li       r3, 1
-	lbz      r0, 0xb0(r25)
-	rlwinm   r0, r0, 0, 0x18, 0x18
-	stb      r0, 0xb0(r25)
-	b        lbl_8004CDB8
-
-lbl_8004CD94:
-	clrlwi   r6, r7, 0x18
-	lbzx     r0, r5, r6
-	cmplwi   r0, 0
-	beq      lbl_8004CDB4
-	lbz      r4, 0xb0(r25)
-	slw      r0, r3, r6
-	or       r0, r4, r0
-	stb      r0, 0xb0(r25)
-
-lbl_8004CDB4:
-	addi     r7, r7, 1
-
-lbl_8004CDB8:
-	clrlwi   r0, r7, 0x18
-	cmplwi   r0, 4
-	blt      lbl_8004CD94
-	li       r0, 1
-	lbz      r3, 0xb0(r25)
-	slw      r0, r0, r26
-	or       r0, r3, r0
-	stb      r0, 0xb0(r25)
-
-lbl_8004CDD8:
-	slwi     r3, r26, 2
-	slwi     r0, r26, 1
-	add      r4, r25, r3
-	li       r5, 0
-	lis      r3, 0x0000FFFF@ha
-	stw      r5, 0x9c(r4)
-	addi     r4, r3, 0x0000FFFF@l
-	add      r3, r25, r0
-	sth      r4, 4(r3)
-	li       r3, 1
-
-lbl_8004CE00:
-	lmw      r25, 0x14(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /**
@@ -2410,33 +1951,24 @@ bool J2DTevBlock4::setTexture(u32 id, const ResTIMG* timg)
 
 	u8 tlutid = 0;
 	if (timg && timg->mPaletteFormat) {
-		u8 local_44 = 0;
+		u8 used_tlut = 0;
 		for (int i = 0; i < 4; i++) {
-			if (i == id) {
-				continue;
-			}
-			if (!mTextures[i]) {
+			if (i == id || !mTextures[i]) {
 				continue;
 			}
 			const ResTIMG* texInfo = mTextures[i]->getTexInfo();
-			if (!texInfo) {
-				continue;
-			}
-			if (!texInfo->mPaletteFormat) {
+			if (!texInfo || !texInfo->mPaletteFormat) {
 				continue;
 			}
 			int tlutName = mTextures[i]->getTlutName();
-			int local_3c = 0;
-			if (tlutName >= 16) {
-				local_3c = 16;
-			}
-			u8 bVar1 = tlutName - local_3c;
-			if (bVar1 < 8) {
-				local_44 |= 1 << bVar1;
+			u8 tlut_no   = tlutName - (tlutName >= GX_BIGTLUT0 ? GX_BIGTLUT0 : GX_TLUT0);
+
+			if (tlut_no < 4) {
+				used_tlut |= 1 << tlut_no;
 			}
 		}
 		for (u8 i = 0; i < 4; i++) {
-			if ((local_44 & 1 << i) == 0) {
+			if ((used_tlut & 1 << i) == 0) {
 				tlutid = i;
 				break;
 			}
@@ -2481,233 +2013,6 @@ bool J2DTevBlock4::setTexture(u32 id, const ResTIMG* timg)
 	mPalettes[id]   = nullptr;
 	mTexIndices[id] = -1;
 	return true;
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stmw     r25, 0x14(r1)
-	mr       r26, r4
-	cmplwi   r26, 4
-	mr       r25, r3
-	mr       r27, r5
-	blt      lbl_8004CFD8
-	li       r3, 0
-	b        lbl_8004D27C
-
-lbl_8004CFD8:
-	cmplwi   r27, 0
-	li       r28, 0
-	beq      lbl_8004D10C
-	lbz      r0, 8(r27)
-	cmplwi   r0, 0
-	beq      lbl_8004D10C
-	li       r0, 2
-	mr       r4, r25
-	li       r6, 0
-	li       r7, 0
-	mtctr    r0
-
-lbl_8004D004:
-	cmplw    r7, r26
-	beq      lbl_8004D064
-	lwz      r5, 0x8c(r4)
-	cmplwi   r5, 0
-	beq      lbl_8004D064
-	lwz      r3, 0x20(r5)
-	cmplwi   r3, 0
-	beq      lbl_8004D064
-	lbz      r0, 8(r3)
-	cmplwi   r0, 0
-	beq      lbl_8004D064
-	lbz      r3, 0x3a(r5)
-	li       r0, 0
-	cmpwi    r3, 0x10
-	blt      lbl_8004D044
-	li       r0, 0x10
-
-lbl_8004D044:
-	subf     r0, r0, r3
-	clrlwi   r3, r0, 0x18
-	cmplwi   r3, 4
-	bge      lbl_8004D064
-	li       r0, 1
-	slw      r0, r0, r3
-	or       r0, r6, r0
-	clrlwi   r6, r0, 0x18
-
-lbl_8004D064:
-	addi     r7, r7, 1
-	cmplw    r7, r26
-	beq      lbl_8004D0C8
-	lwz      r5, 0x90(r4)
-	cmplwi   r5, 0
-	beq      lbl_8004D0C8
-	lwz      r3, 0x20(r5)
-	cmplwi   r3, 0
-	beq      lbl_8004D0C8
-	lbz      r0, 8(r3)
-	cmplwi   r0, 0
-	beq      lbl_8004D0C8
-	lbz      r3, 0x3a(r5)
-	li       r0, 0
-	cmpwi    r3, 0x10
-	blt      lbl_8004D0A8
-	li       r0, 0x10
-
-lbl_8004D0A8:
-	subf     r0, r0, r3
-	clrlwi   r3, r0, 0x18
-	cmplwi   r3, 4
-	bge      lbl_8004D0C8
-	li       r0, 1
-	slw      r0, r0, r3
-	or       r0, r6, r0
-	clrlwi   r6, r0, 0x18
-
-lbl_8004D0C8:
-	addi     r4, r4, 8
-	addi     r7, r7, 1
-	bdnz     lbl_8004D004
-	clrlwi   r4, r6, 0x18
-	li       r5, 0
-	li       r3, 1
-	b        lbl_8004D100
-
-lbl_8004D0E4:
-	clrlwi   r0, r5, 0x18
-	slw      r0, r3, r0
-	and.     r0, r4, r0
-	bne      lbl_8004D0FC
-	mr       r28, r5
-	b        lbl_8004D10C
-
-lbl_8004D0FC:
-	addi     r5, r5, 1
-
-lbl_8004D100:
-	clrlwi   r0, r5, 0x18
-	cmplwi   r0, 4
-	blt      lbl_8004D0E4
-
-lbl_8004D10C:
-	slwi     r29, r26, 2
-	add      r31, r25, r29
-	lwz      r3, 0x8c(r31)
-	cmplwi   r3, 0
-	bne      lbl_8004D1A0
-	cmplwi   r27, 0
-	beq      lbl_8004D188
-	li       r3, 0x40
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_8004D158
-	li       r0, 0
-	mr       r4, r27
-	stw      r0, 0x28(r30)
-	mr       r5, r28
-	bl       storeTIMG__10JUTTextureFPC7ResTIMGUc
-	lbz      r0, 0x3b(r30)
-	rlwinm   r0, r0, 0, 0x1e, 0x1e
-	stb      r0, 0x3b(r30)
-
-lbl_8004D158:
-	stw      r30, 0x8c(r31)
-	lwz      r0, 0x8c(r31)
-	cmplwi   r0, 0
-	bne      lbl_8004D170
-	li       r3, 0
-	b        lbl_8004D27C
-
-lbl_8004D170:
-	li       r0, 1
-	lbz      r3, 0xb0(r25)
-	slw      r0, r0, r26
-	or       r0, r3, r0
-	stb      r0, 0xb0(r25)
-	b        lbl_8004D250
-
-lbl_8004D188:
-	li       r0, 1
-	lbz      r3, 0xb0(r25)
-	slw      r0, r0, r26
-	andc     r0, r3, r0
-	stb      r0, 0xb0(r25)
-	b        lbl_8004D250
-
-lbl_8004D1A0:
-	li       r0, 1
-	lbz      r4, 0xb0(r25)
-	slw      r30, r0, r26
-	and.     r0, r4, r30
-	beq      lbl_8004D1EC
-	cmplwi   r27, 0
-	beq      lbl_8004D1CC
-	mr       r4, r27
-	mr       r5, r28
-	bl       storeTIMG__10JUTTextureFPC7ResTIMGUc
-	b        lbl_8004D250
-
-lbl_8004D1CC:
-	li       r4, 1
-	bl       __dt__10JUTTextureFv
-	li       r0, 0
-	stw      r0, 0x8c(r31)
-	lbz      r0, 0xb0(r25)
-	andc     r0, r0, r30
-	stb      r0, 0xb0(r25)
-	b        lbl_8004D250
-
-lbl_8004D1EC:
-	li       r0, 0
-	cmplwi   r27, 0
-	stw      r0, 0x8c(r31)
-	beq      lbl_8004D250
-	li       r3, 0x40
-	bl       __nw__FUl
-	or.      r28, r3, r3
-	beq      lbl_8004D22C
-	li       r0, 0
-	mr       r4, r27
-	stw      r0, 0x28(r28)
-	li       r5, 0
-	bl       storeTIMG__10JUTTextureFPC7ResTIMGUc
-	lbz      r0, 0x3b(r28)
-	rlwinm   r0, r0, 0, 0x1e, 0x1e
-	stb      r0, 0x3b(r28)
-
-lbl_8004D22C:
-	stw      r28, 0x8c(r31)
-	lwz      r0, 0x8c(r31)
-	cmplwi   r0, 0
-	bne      lbl_8004D244
-	li       r3, 0
-	b        lbl_8004D27C
-
-lbl_8004D244:
-	lbz      r0, 0xb0(r25)
-	or       r0, r0, r30
-	stb      r0, 0xb0(r25)
-
-lbl_8004D250:
-	add      r27, r25, r29
-	lwz      r3, 0x9c(r27)
-	bl       __dl__FPv
-	li       r4, 0
-	slwi     r0, r26, 1
-	lis      r3, 0x0000FFFF@ha
-	stw      r4, 0x9c(r27)
-	addi     r4, r3, 0x0000FFFF@l
-	add      r3, r25, r0
-	sth      r4, 4(r3)
-	li       r3, 1
-
-lbl_8004D27C:
-	lmw      r25, 0x14(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /**
@@ -3335,11 +2640,10 @@ bool J2DTevBlock8::insertTexture(u32 id, const ResTIMG* timg, JUTPalette* palett
 			if (!texInfo->mPaletteFormat) {
 				continue;
 			}
-			u8 tlutName  = mTextures[i]->getTlutName();
-			int local_3c = tlutName >= 0x10 ? 0x10 : 0;
-			u8 bVar1     = tlutName - local_3c;
-			if (bVar1 < 8) {
-				local_44 |= 1 << bVar1;
+			int tlutName = mTextures[i]->getTlutName();
+			u8 tlut_no   = tlutName - (tlutName >= GX_BIGTLUT0 ? GX_BIGTLUT0 : GX_TLUT0);
+			if (tlut_no < 8) {
+				local_44 |= 1 << tlut_no;
 			}
 		}
 		for (u8 i = 0; i < 8; i++) {
@@ -3372,18 +2676,18 @@ bool J2DTevBlock8::insertTexture(u32 id, const ResTIMG* timg, JUTPalette* palett
 		} else {
 			texture->storeTIMG(timg, palette);
 		}
-		u8 local_38[4];
+		bool local_38[8];
 		for (u8 i = 0; i < 8; i++) {
-			local_38[i] = -(mUndeleteFlag & 1 << i) >> 0x1f;
+			local_38[i] = (mUndeleteFlag & 1 << i) != 0;
 		}
-		for (; idx > id; idx--) {
-			mTextures[idx]   = mTextures[idx - 1];
-			mPalettes[idx]   = mPalettes[idx - 1];
-			mTexIndices[idx] = mTexIndices[idx - 1];
-			local_38[idx]    = local_38[idx - 1];
+		for (u8 i = idx; i > id; i--) {
+			mTextures[i]   = mTextures[i - 1];
+			mPalettes[i]   = mPalettes[i - 1];
+			mTexIndices[i] = mTexIndices[i - 1];
+			local_38[i]    = local_38[i - 1];
 		}
 		mTextures[id] = texture;
-		mUndeleteFlag &= 0x80;
+		mUndeleteFlag = 0;
 		for (u8 i = 0; i < 8; i++) {
 			if (local_38[i]) {
 				mUndeleteFlag |= 1 << i;
@@ -3394,308 +2698,6 @@ bool J2DTevBlock8::insertTexture(u32 id, const ResTIMG* timg, JUTPalette* palett
 	mPalettes[id]   = nullptr;
 	mTexIndices[id] = -1;
 	return true;
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stmw     r25, 0x14(r1)
-	mr       r26, r4
-	cmplwi   r26, 8
-	mr       r25, r3
-	mr       r27, r5
-	mr       r28, r6
-	bge      lbl_8004E2B4
-	cmplwi   r27, 0
-	bne      lbl_8004E2BC
-
-lbl_8004E2B4:
-	li       r3, 0
-	b        lbl_8004E638
-
-lbl_8004E2BC:
-	li       r30, 0
-	b        lbl_8004E2E8
-
-lbl_8004E2C4:
-	rlwinm   r3, r30, 2, 0x16, 0x1d
-	addi     r0, r3, 0xdc
-	lwzx     r3, r25, r0
-	cmplwi   r3, 0
-	beq      lbl_8004E2F4
-	lwz      r0, 0x20(r3)
-	cmplwi   r0, 0
-	beq      lbl_8004E2F4
-	addi     r30, r30, 1
-
-lbl_8004E2E8:
-	clrlwi   r0, r30, 0x18
-	cmplwi   r0, 8
-	blt      lbl_8004E2C4
-
-lbl_8004E2F4:
-	clrlwi   r0, r30, 0x18
-	cmplw    r0, r26
-	bge      lbl_8004E308
-	li       r3, 0
-	b        lbl_8004E638
-
-lbl_8004E308:
-	cmplwi   r0, 8
-	bne      lbl_8004E318
-	li       r3, 0
-	b        lbl_8004E638
-
-lbl_8004E318:
-	lbz      r0, 8(r27)
-	li       r29, 0
-	cmplwi   r0, 0
-	beq      lbl_8004E3D8
-	cmplwi   r28, 0
-	bne      lbl_8004E3D8
-	li       r0, 7
-	mr       r5, r25
-	li       r7, 0
-	mtctr    r0
-	li       r3, 1
-
-lbl_8004E344:
-	lwz      r6, 0xdc(r5)
-	cmplwi   r6, 0
-	beq      lbl_8004E398
-	lwz      r4, 0x20(r6)
-	cmplwi   r4, 0
-	beq      lbl_8004E398
-	lbz      r0, 8(r4)
-	cmplwi   r0, 0
-	beq      lbl_8004E398
-	lbz      r4, 0x3a(r6)
-	li       r0, 0
-	cmpwi    r4, 0x10
-	blt      lbl_8004E37C
-	li       r0, 0x10
-
-lbl_8004E37C:
-	subf     r0, r0, r4
-	clrlwi   r0, r0, 0x18
-	cmplwi   r0, 8
-	bge      lbl_8004E398
-	slw      r0, r3, r0
-	or       r0, r7, r0
-	clrlwi   r7, r0, 0x18
-
-lbl_8004E398:
-	addi     r5, r5, 4
-	bdnz     lbl_8004E344
-	clrlwi   r4, r7, 0x18
-	li       r5, 0
-	li       r3, 1
-	b        lbl_8004E3CC
-
-lbl_8004E3B0:
-	clrlwi   r0, r5, 0x18
-	slw      r0, r3, r0
-	and.     r0, r4, r0
-	bne      lbl_8004E3C8
-	mr       r29, r5
-	b        lbl_8004E3D8
-
-lbl_8004E3C8:
-	addi     r5, r5, 1
-
-lbl_8004E3CC:
-	clrlwi   r0, r5, 0x18
-	cmplwi   r0, 8
-	blt      lbl_8004E3B0
-
-lbl_8004E3D8:
-	rlwinm   r0, r30, 2, 0x16, 0x1d
-	add      r3, r25, r0
-	lwz      r31, 0xdc(r3)
-	cmplwi   r31, 0
-	bne      lbl_8004E4D4
-	li       r3, 0x40
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_8004E41C
-	li       r0, 0
-	mr       r4, r27
-	stw      r0, 0x28(r31)
-	mr       r5, r29
-	bl       storeTIMG__10JUTTextureFPC7ResTIMGUc
-	lbz      r0, 0x3b(r31)
-	rlwinm   r0, r0, 0, 0x1e, 0x1e
-	stb      r0, 0x3b(r31)
-
-lbl_8004E41C:
-	cmplwi   r31, 0
-	bne      lbl_8004E42C
-	li       r3, 0
-	b        lbl_8004E638
-
-lbl_8004E42C:
-	cmplwi   r28, 0
-	beq      lbl_8004E444
-	mr       r3, r31
-	mr       r4, r27
-	mr       r5, r28
-	bl       storeTIMG__10JUTTextureFPC7ResTIMGP10JUTPalette
-
-lbl_8004E444:
-	li       r8, 7
-	b        lbl_8004E488
-
-lbl_8004E44C:
-	slwi     r3, r4, 2
-	rlwinm   r0, r8, 2, 0x16, 0x1d
-	add      r6, r25, r3
-	slwi     r4, r4, 1
-	lwz      r5, 0xd8(r6)
-	add      r7, r25, r0
-	rlwinm   r3, r8, 1, 0x17, 0x1e
-	addi     r4, r4, 2
-	stw      r5, 0xdc(r7)
-	addi     r0, r3, 4
-	addi     r8, r8, -1
-	lwz      r3, 0xf8(r6)
-	stw      r3, 0xfc(r7)
-	lhzx     r3, r25, r4
-	sthx     r3, r25, r0
-
-lbl_8004E488:
-	clrlwi   r4, r8, 0x18
-	cmplw    r4, r26
-	bgt      lbl_8004E44C
-	slwi     r0, r26, 2
-	mr       r3, r25
-	add      r5, r25, r0
-	clrlwi   r4, r26, 0x18
-	stw      r31, 0xdc(r5)
-	li       r5, 1
-	lwz      r12, 0(r25)
-	lwz      r12, 0xac(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 1
-	lbz      r3, 0x120(r25)
-	slw      r0, r0, r26
-	or       r0, r3, r0
-	stb      r0, 0x120(r25)
-	b        lbl_8004E610
-
-lbl_8004E4D4:
-	cmplwi   r28, 0
-	bne      lbl_8004E4F0
-	mr       r3, r31
-	mr       r4, r27
-	mr       r5, r29
-	bl       storeTIMG__10JUTTextureFPC7ResTIMGUc
-	b        lbl_8004E500
-
-lbl_8004E4F0:
-	mr       r3, r31
-	mr       r4, r27
-	mr       r5, r28
-	bl       storeTIMG__10JUTTextureFPC7ResTIMGP10JUTPalette
-
-lbl_8004E500:
-	lbz      r0, 0x120(r25)
-	mr       r3, r30
-	addi     r4, r1, 8
-	clrlwi   r11, r0, 0x1f
-	rlwinm   r10, r0, 0x1f, 0x1f, 0x1f
-	rlwinm   r9, r0, 0x1e, 0x1f, 0x1f
-	rlwinm   r8, r0, 0x1d, 0x1f, 0x1f
-	rlwinm   r7, r0, 0x1c, 0x1f, 0x1f
-	rlwinm   r6, r0, 0x1b, 0x1f, 0x1f
-	rlwinm   r5, r0, 0x1a, 0x1f, 0x1f
-	rlwinm   r0, r0, 0x19, 0x1f, 0x1f
-	stb      r11, 8(r1)
-	stb      r10, 9(r1)
-	stb      r9, 0xa(r1)
-	stb      r8, 0xb(r1)
-	stb      r7, 0xc(r1)
-	stb      r6, 0xd(r1)
-	stb      r5, 0xe(r1)
-	stb      r0, 0xf(r1)
-	b        lbl_8004E59C
-
-lbl_8004E550:
-	slwi     r5, r8, 2
-	rlwinm   r0, r3, 2, 0x16, 0x1d
-	add      r9, r25, r5
-	slwi     r6, r8, 1
-	lwz      r7, 0xd8(r9)
-	add      r10, r25, r0
-	addi     r0, r8, -1
-	rlwinm   r5, r3, 1, 0x17, 0x1e
-	stw      r7, 0xdc(r10)
-	clrlwi   r8, r3, 0x18
-	lbzx     r0, r4, r0
-	addi     r6, r6, 2
-	lwz      r7, 0xf8(r9)
-	addi     r5, r5, 4
-	stbx     r0, r4, r8
-	addi     r3, r3, -1
-	stw      r7, 0xfc(r10)
-	lhzx     r0, r25, r6
-	sthx     r0, r25, r5
-
-lbl_8004E59C:
-	clrlwi   r8, r3, 0x18
-	cmplw    r8, r26
-	bgt      lbl_8004E550
-	slwi     r3, r26, 2
-	li       r0, 0
-	add      r3, r25, r3
-	addi     r5, r1, 8
-	stw      r31, 0xdc(r3)
-	li       r7, 0
-	li       r3, 1
-	stb      r0, 0x120(r25)
-	b        lbl_8004E5F0
-
-lbl_8004E5CC:
-	clrlwi   r6, r7, 0x18
-	lbzx     r0, r5, r6
-	cmplwi   r0, 0
-	beq      lbl_8004E5EC
-	lbz      r4, 0x120(r25)
-	slw      r0, r3, r6
-	or       r0, r4, r0
-	stb      r0, 0x120(r25)
-
-lbl_8004E5EC:
-	addi     r7, r7, 1
-
-lbl_8004E5F0:
-	clrlwi   r0, r7, 0x18
-	cmplwi   r0, 8
-	blt      lbl_8004E5CC
-	li       r0, 1
-	lbz      r3, 0x120(r25)
-	slw      r0, r0, r26
-	or       r0, r3, r0
-	stb      r0, 0x120(r25)
-
-lbl_8004E610:
-	slwi     r3, r26, 2
-	slwi     r0, r26, 1
-	add      r4, r25, r3
-	li       r5, 0
-	lis      r3, 0x0000FFFF@ha
-	stw      r5, 0xfc(r4)
-	addi     r4, r3, 0x0000FFFF@l
-	add      r3, r25, r0
-	sth      r4, 4(r3)
-	li       r3, 1
-
-lbl_8004E638:
-	lmw      r25, 0x14(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /**
@@ -3758,33 +2760,23 @@ bool J2DTevBlock8::setTexture(u32 id, const ResTIMG* timg)
 
 	u8 tlutid = 0;
 	if (timg && timg->mPaletteFormat) {
-		u8 local_44 = 0;
+		u8 used_tlut = 0;
 		for (int i = 0; i < 8; i++) {
-			if (i == id) {
-				continue;
-			}
-			if (!mTextures[i]) {
+			if (i == id || !mTextures[i]) {
 				continue;
 			}
 			const ResTIMG* texInfo = mTextures[i]->getTexInfo();
-			if (!texInfo) {
-				continue;
-			}
-			if (!texInfo->mPaletteFormat) {
+			if (!texInfo || !texInfo->mPaletteFormat) {
 				continue;
 			}
 			int tlutName = mTextures[i]->getTlutName();
-			int local_3c = 0;
-			if (tlutName >= 16) {
-				local_3c = 16;
-			}
-			u8 bVar1 = tlutName - local_3c;
-			if (bVar1 < 8) {
-				local_44 |= 1 << bVar1;
+			u8 tlut_no   = tlutName - (tlutName >= GX_BIGTLUT0 ? GX_BIGTLUT0 : GX_TLUT0);
+			if (tlut_no < 8) {
+				used_tlut |= 1 << tlut_no;
 			}
 		}
 		for (u8 i = 0; i < 4; i++) {
-			if ((local_44 & 1 << i) == 0) {
+			if ((used_tlut & 1 << i) == 0) {
 				tlutid = i;
 				break;
 			}
@@ -3829,233 +2821,6 @@ bool J2DTevBlock8::setTexture(u32 id, const ResTIMG* timg)
 	mPalettes[id]   = nullptr;
 	mTexIndices[id] = -1;
 	return true;
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stmw     r25, 0x14(r1)
-	mr       r26, r4
-	cmplwi   r26, 8
-	mr       r25, r3
-	mr       r27, r5
-	blt      lbl_8004E810
-	li       r3, 0
-	b        lbl_8004EAB4
-
-lbl_8004E810:
-	cmplwi   r27, 0
-	li       r28, 0
-	beq      lbl_8004E944
-	lbz      r0, 8(r27)
-	cmplwi   r0, 0
-	beq      lbl_8004E944
-	li       r0, 4
-	mr       r4, r25
-	li       r6, 0
-	li       r7, 0
-	mtctr    r0
-
-lbl_8004E83C:
-	cmplw    r7, r26
-	beq      lbl_8004E89C
-	lwz      r5, 0xdc(r4)
-	cmplwi   r5, 0
-	beq      lbl_8004E89C
-	lwz      r3, 0x20(r5)
-	cmplwi   r3, 0
-	beq      lbl_8004E89C
-	lbz      r0, 8(r3)
-	cmplwi   r0, 0
-	beq      lbl_8004E89C
-	lbz      r3, 0x3a(r5)
-	li       r0, 0
-	cmpwi    r3, 0x10
-	blt      lbl_8004E87C
-	li       r0, 0x10
-
-lbl_8004E87C:
-	subf     r0, r0, r3
-	clrlwi   r3, r0, 0x18
-	cmplwi   r3, 8
-	bge      lbl_8004E89C
-	li       r0, 1
-	slw      r0, r0, r3
-	or       r0, r6, r0
-	clrlwi   r6, r0, 0x18
-
-lbl_8004E89C:
-	addi     r7, r7, 1
-	cmplw    r7, r26
-	beq      lbl_8004E900
-	lwz      r5, 0xe0(r4)
-	cmplwi   r5, 0
-	beq      lbl_8004E900
-	lwz      r3, 0x20(r5)
-	cmplwi   r3, 0
-	beq      lbl_8004E900
-	lbz      r0, 8(r3)
-	cmplwi   r0, 0
-	beq      lbl_8004E900
-	lbz      r3, 0x3a(r5)
-	li       r0, 0
-	cmpwi    r3, 0x10
-	blt      lbl_8004E8E0
-	li       r0, 0x10
-
-lbl_8004E8E0:
-	subf     r0, r0, r3
-	clrlwi   r3, r0, 0x18
-	cmplwi   r3, 8
-	bge      lbl_8004E900
-	li       r0, 1
-	slw      r0, r0, r3
-	or       r0, r6, r0
-	clrlwi   r6, r0, 0x18
-
-lbl_8004E900:
-	addi     r4, r4, 8
-	addi     r7, r7, 1
-	bdnz     lbl_8004E83C
-	clrlwi   r4, r6, 0x18
-	li       r5, 0
-	li       r3, 1
-	b        lbl_8004E938
-
-lbl_8004E91C:
-	clrlwi   r0, r5, 0x18
-	slw      r0, r3, r0
-	and.     r0, r4, r0
-	bne      lbl_8004E934
-	mr       r28, r5
-	b        lbl_8004E944
-
-lbl_8004E934:
-	addi     r5, r5, 1
-
-lbl_8004E938:
-	clrlwi   r0, r5, 0x18
-	cmplwi   r0, 4
-	blt      lbl_8004E91C
-
-lbl_8004E944:
-	slwi     r29, r26, 2
-	add      r31, r25, r29
-	lwz      r3, 0xdc(r31)
-	cmplwi   r3, 0
-	bne      lbl_8004E9D8
-	cmplwi   r27, 0
-	beq      lbl_8004E9C0
-	li       r3, 0x40
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_8004E990
-	li       r0, 0
-	mr       r4, r27
-	stw      r0, 0x28(r30)
-	mr       r5, r28
-	bl       storeTIMG__10JUTTextureFPC7ResTIMGUc
-	lbz      r0, 0x3b(r30)
-	rlwinm   r0, r0, 0, 0x1e, 0x1e
-	stb      r0, 0x3b(r30)
-
-lbl_8004E990:
-	stw      r30, 0xdc(r31)
-	lwz      r0, 0xdc(r31)
-	cmplwi   r0, 0
-	bne      lbl_8004E9A8
-	li       r3, 0
-	b        lbl_8004EAB4
-
-lbl_8004E9A8:
-	li       r0, 1
-	lbz      r3, 0x120(r25)
-	slw      r0, r0, r26
-	or       r0, r3, r0
-	stb      r0, 0x120(r25)
-	b        lbl_8004EA88
-
-lbl_8004E9C0:
-	li       r0, 1
-	lbz      r3, 0x120(r25)
-	slw      r0, r0, r26
-	andc     r0, r3, r0
-	stb      r0, 0x120(r25)
-	b        lbl_8004EA88
-
-lbl_8004E9D8:
-	li       r0, 1
-	lbz      r4, 0x120(r25)
-	slw      r30, r0, r26
-	and.     r0, r4, r30
-	beq      lbl_8004EA24
-	cmplwi   r27, 0
-	beq      lbl_8004EA04
-	mr       r4, r27
-	mr       r5, r28
-	bl       storeTIMG__10JUTTextureFPC7ResTIMGUc
-	b        lbl_8004EA88
-
-lbl_8004EA04:
-	li       r4, 1
-	bl       __dt__10JUTTextureFv
-	li       r0, 0
-	stw      r0, 0xdc(r31)
-	lbz      r0, 0x120(r25)
-	andc     r0, r0, r30
-	stb      r0, 0x120(r25)
-	b        lbl_8004EA88
-
-lbl_8004EA24:
-	li       r0, 0
-	cmplwi   r27, 0
-	stw      r0, 0xdc(r31)
-	beq      lbl_8004EA88
-	li       r3, 0x40
-	bl       __nw__FUl
-	or.      r28, r3, r3
-	beq      lbl_8004EA64
-	li       r0, 0
-	mr       r4, r27
-	stw      r0, 0x28(r28)
-	li       r5, 0
-	bl       storeTIMG__10JUTTextureFPC7ResTIMGUc
-	lbz      r0, 0x3b(r28)
-	rlwinm   r0, r0, 0, 0x1e, 0x1e
-	stb      r0, 0x3b(r28)
-
-lbl_8004EA64:
-	stw      r28, 0xdc(r31)
-	lwz      r0, 0xdc(r31)
-	cmplwi   r0, 0
-	bne      lbl_8004EA7C
-	li       r3, 0
-	b        lbl_8004EAB4
-
-lbl_8004EA7C:
-	lbz      r0, 0x120(r25)
-	or       r0, r0, r30
-	stb      r0, 0x120(r25)
-
-lbl_8004EA88:
-	add      r27, r25, r29
-	lwz      r3, 0xfc(r27)
-	bl       __dl__FPv
-	li       r4, 0
-	slwi     r0, r26, 1
-	lis      r3, 0x0000FFFF@ha
-	stw      r4, 0xfc(r27)
-	addi     r4, r3, 0x0000FFFF@l
-	add      r3, r25, r0
-	sth      r4, 4(r3)
-	li       r3, 1
-
-lbl_8004EAB4:
-	lmw      r25, 0x14(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /**
@@ -4728,11 +3493,10 @@ bool J2DTevBlock16::insertTexture(u32 id, const ResTIMG* timg, JUTPalette* palet
 			if (!texInfo->mPaletteFormat) {
 				continue;
 			}
-			u8 tlutName  = mTextures[i]->getTlutName();
-			int local_3c = tlutName >= 0x10 ? 0x10 : 0;
-			u8 bVar1     = tlutName - local_3c;
-			if (bVar1 < 8) {
-				local_44 |= 1 << bVar1;
+			int tlutName = mTextures[i]->getTlutName();
+			u8 tlut_no   = tlutName - (tlutName >= GX_BIGTLUT0 ? GX_BIGTLUT0 : GX_TLUT0);
+			if (tlut_no < 8) {
+				local_44 |= 1 << tlut_no;
 			}
 		}
 		for (u8 i = 0; i < 8; i++) {
@@ -4765,18 +3529,19 @@ bool J2DTevBlock16::insertTexture(u32 id, const ResTIMG* timg, JUTPalette* palet
 		} else {
 			texture->storeTIMG(timg, palette);
 		}
-		u8 local_38[4];
+		bool local_38[8];
 		for (u8 i = 0; i < 8; i++) {
-			local_38[i] = -(mUndeleteFlag & 1 << i) >> 0x1f;
+			local_38[i] = (mUndeleteFlag & 1 << i) != 0;
 		}
-		for (; idx > id; idx--) {
-			mTextures[idx]   = mTextures[idx - 1];
-			mPalettes[idx]   = mPalettes[idx - 1];
-			mTexIndices[idx] = mTexIndices[idx - 1];
-			local_38[idx]    = local_38[idx - 1];
+
+		for (u8 i = idx; i > id; i--) {
+			mTextures[i]   = mTextures[i - 1];
+			mPalettes[i]   = mPalettes[i - 1];
+			mTexIndices[i] = mTexIndices[i - 1];
+			local_38[i]    = local_38[i - 1];
 		}
 		mTextures[id] = texture;
-		mUndeleteFlag &= 0x80;
+		mUndeleteFlag = 0;
 		for (u8 i = 0; i < 8; i++) {
 			if (local_38[i]) {
 				mUndeleteFlag |= 1 << i;
@@ -4787,308 +3552,6 @@ bool J2DTevBlock16::insertTexture(u32 id, const ResTIMG* timg, JUTPalette* palet
 	mPalettes[id]   = nullptr;
 	mTexIndices[id] = -1;
 	return true;
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stmw     r25, 0x14(r1)
-	mr       r26, r4
-	cmplwi   r26, 8
-	mr       r25, r3
-	mr       r27, r5
-	mr       r28, r6
-	bge      lbl_8004FB74
-	cmplwi   r27, 0
-	bne      lbl_8004FB7C
-
-lbl_8004FB74:
-	li       r3, 0
-	b        lbl_8004FEF8
-
-lbl_8004FB7C:
-	li       r30, 0
-	b        lbl_8004FBA8
-
-lbl_8004FB84:
-	rlwinm   r3, r30, 2, 0x16, 0x1d
-	addi     r0, r3, 0x16c
-	lwzx     r3, r25, r0
-	cmplwi   r3, 0
-	beq      lbl_8004FBB4
-	lwz      r0, 0x20(r3)
-	cmplwi   r0, 0
-	beq      lbl_8004FBB4
-	addi     r30, r30, 1
-
-lbl_8004FBA8:
-	clrlwi   r0, r30, 0x18
-	cmplwi   r0, 8
-	blt      lbl_8004FB84
-
-lbl_8004FBB4:
-	clrlwi   r0, r30, 0x18
-	cmplw    r0, r26
-	bge      lbl_8004FBC8
-	li       r3, 0
-	b        lbl_8004FEF8
-
-lbl_8004FBC8:
-	cmplwi   r0, 8
-	bne      lbl_8004FBD8
-	li       r3, 0
-	b        lbl_8004FEF8
-
-lbl_8004FBD8:
-	lbz      r0, 8(r27)
-	li       r29, 0
-	cmplwi   r0, 0
-	beq      lbl_8004FC98
-	cmplwi   r28, 0
-	bne      lbl_8004FC98
-	li       r0, 7
-	mr       r5, r25
-	li       r7, 0
-	mtctr    r0
-	li       r3, 1
-
-lbl_8004FC04:
-	lwz      r6, 0x16c(r5)
-	cmplwi   r6, 0
-	beq      lbl_8004FC58
-	lwz      r4, 0x20(r6)
-	cmplwi   r4, 0
-	beq      lbl_8004FC58
-	lbz      r0, 8(r4)
-	cmplwi   r0, 0
-	beq      lbl_8004FC58
-	lbz      r4, 0x3a(r6)
-	li       r0, 0
-	cmpwi    r4, 0x10
-	blt      lbl_8004FC3C
-	li       r0, 0x10
-
-lbl_8004FC3C:
-	subf     r0, r0, r4
-	clrlwi   r0, r0, 0x18
-	cmplwi   r0, 8
-	bge      lbl_8004FC58
-	slw      r0, r3, r0
-	or       r0, r7, r0
-	clrlwi   r7, r0, 0x18
-
-lbl_8004FC58:
-	addi     r5, r5, 4
-	bdnz     lbl_8004FC04
-	clrlwi   r4, r7, 0x18
-	li       r5, 0
-	li       r3, 1
-	b        lbl_8004FC8C
-
-lbl_8004FC70:
-	clrlwi   r0, r5, 0x18
-	slw      r0, r3, r0
-	and.     r0, r4, r0
-	bne      lbl_8004FC88
-	mr       r29, r5
-	b        lbl_8004FC98
-
-lbl_8004FC88:
-	addi     r5, r5, 1
-
-lbl_8004FC8C:
-	clrlwi   r0, r5, 0x18
-	cmplwi   r0, 8
-	blt      lbl_8004FC70
-
-lbl_8004FC98:
-	rlwinm   r0, r30, 2, 0x16, 0x1d
-	add      r3, r25, r0
-	lwz      r31, 0x16c(r3)
-	cmplwi   r31, 0
-	bne      lbl_8004FD94
-	li       r3, 0x40
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_8004FCDC
-	li       r0, 0
-	mr       r4, r27
-	stw      r0, 0x28(r31)
-	mr       r5, r29
-	bl       storeTIMG__10JUTTextureFPC7ResTIMGUc
-	lbz      r0, 0x3b(r31)
-	rlwinm   r0, r0, 0, 0x1e, 0x1e
-	stb      r0, 0x3b(r31)
-
-lbl_8004FCDC:
-	cmplwi   r31, 0
-	bne      lbl_8004FCEC
-	li       r3, 0
-	b        lbl_8004FEF8
-
-lbl_8004FCEC:
-	cmplwi   r28, 0
-	beq      lbl_8004FD04
-	mr       r3, r31
-	mr       r4, r27
-	mr       r5, r28
-	bl       storeTIMG__10JUTTextureFPC7ResTIMGP10JUTPalette
-
-lbl_8004FD04:
-	li       r8, 7
-	b        lbl_8004FD48
-
-lbl_8004FD0C:
-	slwi     r3, r4, 2
-	rlwinm   r0, r8, 2, 0x16, 0x1d
-	add      r6, r25, r3
-	slwi     r4, r4, 1
-	lwz      r5, 0x168(r6)
-	add      r7, r25, r0
-	rlwinm   r3, r8, 1, 0x17, 0x1e
-	addi     r4, r4, 2
-	stw      r5, 0x16c(r7)
-	addi     r0, r3, 4
-	addi     r8, r8, -1
-	lwz      r3, 0x188(r6)
-	stw      r3, 0x18c(r7)
-	lhzx     r3, r25, r4
-	sthx     r3, r25, r0
-
-lbl_8004FD48:
-	clrlwi   r4, r8, 0x18
-	cmplw    r4, r26
-	bgt      lbl_8004FD0C
-	slwi     r0, r26, 2
-	mr       r3, r25
-	add      r5, r25, r0
-	clrlwi   r4, r26, 0x18
-	stw      r31, 0x16c(r5)
-	li       r5, 1
-	lwz      r12, 0(r25)
-	lwz      r12, 0xac(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 1
-	lbz      r3, 0x1b0(r25)
-	slw      r0, r0, r26
-	or       r0, r3, r0
-	stb      r0, 0x1b0(r25)
-	b        lbl_8004FED0
-
-lbl_8004FD94:
-	cmplwi   r28, 0
-	bne      lbl_8004FDB0
-	mr       r3, r31
-	mr       r4, r27
-	mr       r5, r29
-	bl       storeTIMG__10JUTTextureFPC7ResTIMGUc
-	b        lbl_8004FDC0
-
-lbl_8004FDB0:
-	mr       r3, r31
-	mr       r4, r27
-	mr       r5, r28
-	bl       storeTIMG__10JUTTextureFPC7ResTIMGP10JUTPalette
-
-lbl_8004FDC0:
-	lbz      r0, 0x1b0(r25)
-	mr       r3, r30
-	addi     r4, r1, 8
-	clrlwi   r11, r0, 0x1f
-	rlwinm   r10, r0, 0x1f, 0x1f, 0x1f
-	rlwinm   r9, r0, 0x1e, 0x1f, 0x1f
-	rlwinm   r8, r0, 0x1d, 0x1f, 0x1f
-	rlwinm   r7, r0, 0x1c, 0x1f, 0x1f
-	rlwinm   r6, r0, 0x1b, 0x1f, 0x1f
-	rlwinm   r5, r0, 0x1a, 0x1f, 0x1f
-	rlwinm   r0, r0, 0x19, 0x1f, 0x1f
-	stb      r11, 8(r1)
-	stb      r10, 9(r1)
-	stb      r9, 0xa(r1)
-	stb      r8, 0xb(r1)
-	stb      r7, 0xc(r1)
-	stb      r6, 0xd(r1)
-	stb      r5, 0xe(r1)
-	stb      r0, 0xf(r1)
-	b        lbl_8004FE5C
-
-lbl_8004FE10:
-	slwi     r5, r8, 2
-	rlwinm   r0, r3, 2, 0x16, 0x1d
-	add      r9, r25, r5
-	slwi     r6, r8, 1
-	lwz      r7, 0x168(r9)
-	add      r10, r25, r0
-	addi     r0, r8, -1
-	rlwinm   r5, r3, 1, 0x17, 0x1e
-	stw      r7, 0x16c(r10)
-	clrlwi   r8, r3, 0x18
-	lbzx     r0, r4, r0
-	addi     r6, r6, 2
-	lwz      r7, 0x188(r9)
-	addi     r5, r5, 4
-	stbx     r0, r4, r8
-	addi     r3, r3, -1
-	stw      r7, 0x18c(r10)
-	lhzx     r0, r25, r6
-	sthx     r0, r25, r5
-
-lbl_8004FE5C:
-	clrlwi   r8, r3, 0x18
-	cmplw    r8, r26
-	bgt      lbl_8004FE10
-	slwi     r3, r26, 2
-	li       r0, 0
-	add      r3, r25, r3
-	addi     r5, r1, 8
-	stw      r31, 0x16c(r3)
-	li       r7, 0
-	li       r3, 1
-	stb      r0, 0x1b0(r25)
-	b        lbl_8004FEB0
-
-lbl_8004FE8C:
-	clrlwi   r6, r7, 0x18
-	lbzx     r0, r5, r6
-	cmplwi   r0, 0
-	beq      lbl_8004FEAC
-	lbz      r4, 0x1b0(r25)
-	slw      r0, r3, r6
-	or       r0, r4, r0
-	stb      r0, 0x1b0(r25)
-
-lbl_8004FEAC:
-	addi     r7, r7, 1
-
-lbl_8004FEB0:
-	clrlwi   r0, r7, 0x18
-	cmplwi   r0, 8
-	blt      lbl_8004FE8C
-	li       r0, 1
-	lbz      r3, 0x1b0(r25)
-	slw      r0, r0, r26
-	or       r0, r3, r0
-	stb      r0, 0x1b0(r25)
-
-lbl_8004FED0:
-	slwi     r3, r26, 2
-	slwi     r0, r26, 1
-	add      r4, r25, r3
-	li       r5, 0
-	lis      r3, 0x0000FFFF@ha
-	stw      r5, 0x18c(r4)
-	addi     r4, r3, 0x0000FFFF@l
-	add      r3, r25, r0
-	sth      r4, 4(r3)
-	li       r3, 1
-
-lbl_8004FEF8:
-	lmw      r25, 0x14(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /**
@@ -5151,7 +3614,7 @@ bool J2DTevBlock16::setTexture(u32 id, const ResTIMG* timg)
 
 	u8 tlutid = 0;
 	if (timg && timg->mPaletteFormat) {
-		u8 local_44 = 0;
+		u8 used_tlut = 0;
 		for (int i = 0; i < 8; i++) {
 			if (i == id) {
 				continue;
@@ -5167,17 +3630,14 @@ bool J2DTevBlock16::setTexture(u32 id, const ResTIMG* timg)
 				continue;
 			}
 			int tlutName = mTextures[i]->getTlutName();
-			int local_3c = 0;
-			if (tlutName >= 16) {
-				local_3c = 16;
-			}
-			u8 bVar1 = tlutName - local_3c;
-			if (bVar1 < 8) {
-				local_44 |= 1 << bVar1;
+			u8 tlut_no   = tlutName - (tlutName >= GX_BIGTLUT0 ? GX_BIGTLUT0 : GX_TLUT0);
+
+			if (tlut_no < 8) {
+				used_tlut |= 1 << tlut_no;
 			}
 		}
 		for (u8 i = 0; i < 4; i++) {
-			if ((local_44 & 1 << i) == 0) {
+			if ((used_tlut & 1 << i) == 0) {
 				tlutid = i;
 				break;
 			}
@@ -5222,233 +3682,6 @@ bool J2DTevBlock16::setTexture(u32 id, const ResTIMG* timg)
 	mPalettes[id]   = nullptr;
 	mTexIndices[id] = -1;
 	return true;
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stmw     r25, 0x14(r1)
-	mr       r26, r4
-	cmplwi   r26, 8
-	mr       r25, r3
-	mr       r27, r5
-	blt      lbl_800500D0
-	li       r3, 0
-	b        lbl_80050374
-
-lbl_800500D0:
-	cmplwi   r27, 0
-	li       r28, 0
-	beq      lbl_80050204
-	lbz      r0, 8(r27)
-	cmplwi   r0, 0
-	beq      lbl_80050204
-	li       r0, 4
-	mr       r4, r25
-	li       r6, 0
-	li       r7, 0
-	mtctr    r0
-
-lbl_800500FC:
-	cmplw    r7, r26
-	beq      lbl_8005015C
-	lwz      r5, 0x16c(r4)
-	cmplwi   r5, 0
-	beq      lbl_8005015C
-	lwz      r3, 0x20(r5)
-	cmplwi   r3, 0
-	beq      lbl_8005015C
-	lbz      r0, 8(r3)
-	cmplwi   r0, 0
-	beq      lbl_8005015C
-	lbz      r3, 0x3a(r5)
-	li       r0, 0
-	cmpwi    r3, 0x10
-	blt      lbl_8005013C
-	li       r0, 0x10
-
-lbl_8005013C:
-	subf     r0, r0, r3
-	clrlwi   r3, r0, 0x18
-	cmplwi   r3, 8
-	bge      lbl_8005015C
-	li       r0, 1
-	slw      r0, r0, r3
-	or       r0, r6, r0
-	clrlwi   r6, r0, 0x18
-
-lbl_8005015C:
-	addi     r7, r7, 1
-	cmplw    r7, r26
-	beq      lbl_800501C0
-	lwz      r5, 0x170(r4)
-	cmplwi   r5, 0
-	beq      lbl_800501C0
-	lwz      r3, 0x20(r5)
-	cmplwi   r3, 0
-	beq      lbl_800501C0
-	lbz      r0, 8(r3)
-	cmplwi   r0, 0
-	beq      lbl_800501C0
-	lbz      r3, 0x3a(r5)
-	li       r0, 0
-	cmpwi    r3, 0x10
-	blt      lbl_800501A0
-	li       r0, 0x10
-
-lbl_800501A0:
-	subf     r0, r0, r3
-	clrlwi   r3, r0, 0x18
-	cmplwi   r3, 8
-	bge      lbl_800501C0
-	li       r0, 1
-	slw      r0, r0, r3
-	or       r0, r6, r0
-	clrlwi   r6, r0, 0x18
-
-lbl_800501C0:
-	addi     r4, r4, 8
-	addi     r7, r7, 1
-	bdnz     lbl_800500FC
-	clrlwi   r4, r6, 0x18
-	li       r5, 0
-	li       r3, 1
-	b        lbl_800501F8
-
-lbl_800501DC:
-	clrlwi   r0, r5, 0x18
-	slw      r0, r3, r0
-	and.     r0, r4, r0
-	bne      lbl_800501F4
-	mr       r28, r5
-	b        lbl_80050204
-
-lbl_800501F4:
-	addi     r5, r5, 1
-
-lbl_800501F8:
-	clrlwi   r0, r5, 0x18
-	cmplwi   r0, 4
-	blt      lbl_800501DC
-
-lbl_80050204:
-	slwi     r29, r26, 2
-	add      r31, r25, r29
-	lwz      r3, 0x16c(r31)
-	cmplwi   r3, 0
-	bne      lbl_80050298
-	cmplwi   r27, 0
-	beq      lbl_80050280
-	li       r3, 0x40
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_80050250
-	li       r0, 0
-	mr       r4, r27
-	stw      r0, 0x28(r30)
-	mr       r5, r28
-	bl       storeTIMG__10JUTTextureFPC7ResTIMGUc
-	lbz      r0, 0x3b(r30)
-	rlwinm   r0, r0, 0, 0x1e, 0x1e
-	stb      r0, 0x3b(r30)
-
-lbl_80050250:
-	stw      r30, 0x16c(r31)
-	lwz      r0, 0x16c(r31)
-	cmplwi   r0, 0
-	bne      lbl_80050268
-	li       r3, 0
-	b        lbl_80050374
-
-lbl_80050268:
-	li       r0, 1
-	lbz      r3, 0x1b0(r25)
-	slw      r0, r0, r26
-	or       r0, r3, r0
-	stb      r0, 0x1b0(r25)
-	b        lbl_80050348
-
-lbl_80050280:
-	li       r0, 1
-	lbz      r3, 0x1b0(r25)
-	slw      r0, r0, r26
-	andc     r0, r3, r0
-	stb      r0, 0x1b0(r25)
-	b        lbl_80050348
-
-lbl_80050298:
-	li       r0, 1
-	lbz      r4, 0x1b0(r25)
-	slw      r30, r0, r26
-	and.     r0, r4, r30
-	beq      lbl_800502E4
-	cmplwi   r27, 0
-	beq      lbl_800502C4
-	mr       r4, r27
-	mr       r5, r28
-	bl       storeTIMG__10JUTTextureFPC7ResTIMGUc
-	b        lbl_80050348
-
-lbl_800502C4:
-	li       r4, 1
-	bl       __dt__10JUTTextureFv
-	li       r0, 0
-	stw      r0, 0x16c(r31)
-	lbz      r0, 0x1b0(r25)
-	andc     r0, r0, r30
-	stb      r0, 0x1b0(r25)
-	b        lbl_80050348
-
-lbl_800502E4:
-	li       r0, 0
-	cmplwi   r27, 0
-	stw      r0, 0x16c(r31)
-	beq      lbl_80050348
-	li       r3, 0x40
-	bl       __nw__FUl
-	or.      r28, r3, r3
-	beq      lbl_80050324
-	li       r0, 0
-	mr       r4, r27
-	stw      r0, 0x28(r28)
-	li       r5, 0
-	bl       storeTIMG__10JUTTextureFPC7ResTIMGUc
-	lbz      r0, 0x3b(r28)
-	rlwinm   r0, r0, 0, 0x1e, 0x1e
-	stb      r0, 0x3b(r28)
-
-lbl_80050324:
-	stw      r28, 0x16c(r31)
-	lwz      r0, 0x16c(r31)
-	cmplwi   r0, 0
-	bne      lbl_8005033C
-	li       r3, 0
-	b        lbl_80050374
-
-lbl_8005033C:
-	lbz      r0, 0x1b0(r25)
-	or       r0, r0, r30
-	stb      r0, 0x1b0(r25)
-
-lbl_80050348:
-	add      r27, r25, r29
-	lwz      r3, 0x18c(r27)
-	bl       __dl__FPv
-	li       r4, 0
-	slwi     r0, r26, 1
-	lis      r3, 0x0000FFFF@ha
-	stw      r4, 0x18c(r27)
-	addi     r4, r3, 0x0000FFFF@l
-	add      r3, r25, r0
-	sth      r4, 4(r3)
-	li       r3, 1
-
-lbl_80050374:
-	lmw      r25, 0x14(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /**

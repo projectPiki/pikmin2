@@ -446,21 +446,21 @@ struct J3DColorChan {
 		                            info.mAmbSrc == 0xFFFF ? 0 : info.mAmbSrc);
 	}
 
-	GXAttnFn getAttnFn();
-	GXDiffuseFn getDiffuseFn() { return GXDiffuseFn(mChanCtrl >> 7 & 3); }
-	u8 getLightMask() { return ((mChanCtrl >> 2 & 0x0f) | (mChanCtrl >> 11 & 0x0f) << 4); }
+	GXAttnFn getAttnFn() const;
+	u8 getDiffuseFn() const { return ((u32)(mChanCtrl & (3 << 7)) >> 7); }
+	u8 getLightMask() const { return ((mChanCtrl >> 2) & 0xf) | ((mChanCtrl >> 11) & 0xf) << 4; }
 	void setLightMask(u8 mask)
 	{
 		mChanCtrl = (mChanCtrl & ~0x003c) | ((mask & 0x0F) << 2);
 		mChanCtrl = (mChanCtrl & ~0x7800) | ((mask & 0xF0) << 7);
 	}
-	GXColorSrc getMatSrc() { return GXColorSrc(mChanCtrl >> 0 & 0x01); }
-	GXColorSrc getAmbSrc() { return GXColorSrc(mChanCtrl >> 6 & 0x01); }
-	u8 getEnable() { return !!(mChanCtrl & 0x02); }
-	void load()
+	u8 getMatSrc() const { return (GXColorSrc)(mChanCtrl & 1); }
+	u8 getAmbSrc() const { return (GXColorSrc)((u32)(mChanCtrl & (1 << 6)) >> 6); }
+	u8 getEnable() const { return (u32)(mChanCtrl & 0x2) >> 1; }
+	void load() const
 	{
-		// something in here is not quite right still
-		J3DGDWrite_u32(setChanCtrlMacro(getEnable(), getAmbSrc(), getMatSrc(), getLightMask(), getDiffuseFn(), getAttnFn()));
+		J3DGDWrite_u32(setChanCtrlMacro(getEnable(), (GXColorSrc)getAmbSrc(), (GXColorSrc)getMatSrc(), getLightMask(),
+		                                (GXDiffuseFn)getDiffuseFn(), (GXAttnFn)getAttnFn()));
 	}
 
 	u16 mChanCtrl; // _00
