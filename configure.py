@@ -494,7 +494,7 @@ config.libs = [
             Object(Matching, "JSystem/J3D/J3DAnmLoader.cpp"),
             Object(Matching, "JSystem/J3D/J3DModelSaver.cpp"),
             Object(Matching, "JSystem/J3D/J3DGD.cpp"),
-            Object(NonMatching, "JSystem/J3D/J3DMatBlock.cpp"),
+            Object(Matching, "JSystem/J3D/J3DMatBlock.cpp"),
             Object(Matching, "JSystem/J3D/J3DModelData.cpp"),
             Object(NonMatching, "JSystem/J3D/J3DMaterialAttach.cpp"),
             Object(NonMatching, "JSystem/J3D/J3DMaterialFactory_v21.cpp"),
