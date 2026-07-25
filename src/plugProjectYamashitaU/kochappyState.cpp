@@ -113,10 +113,13 @@ void StateWait::exec(EnemyBase* enemy)
 				enemy->getJAIObject()->startSound(PSSE_EN_KOCHAPPY_NOTICE, 0);
 				break;
 			case KEYEVENT_END:
-				Parms* parms = CG_PARMS(enemy);
-				f32 angLimit = parms->mProperParms.mRotationEndAngle();
-				f32 angDist  = enemy->turnToTarget(enemy->mTargetCreature, CG_GENERALPARMS(enemy).mTurnSpeed(),
-				                                   CG_GENERALPARMS(enemy).mMaxTurnAngle()); // this is wrong?
+				Parms* parms     = CG_PARMS(enemy);
+				f32 angLimit     = parms->mProperParms.mRotationEndAngle();
+				f32 maxTurnAngle = CG_GENERALPARMS(enemy).mMaxTurnAngle();
+				f32 turnSpeed    = CG_GENERALPARMS(enemy).mTurnSpeed();
+				f32 angDist      = enemy->getAngDist(enemy->mTargetCreature);
+				f32 angle        = clamp(angDist * turnSpeed, TORADIANS(maxTurnAngle));
+				enemy->updateFaceDir(roundAng(angle + enemy->getFaceDir()));
 				if (isAngleWithin(angDist, angLimit)) {
 					transit(enemy, KOCHAPPY_Walk, nullptr);
 				} else {
@@ -443,8 +446,7 @@ void StateTurn::exec(EnemyBase* enemy)
 		if (target) {
 			enemy->mTargetCreature = target;
 			f32 angle              = enemy->getAngDist(enemy->mTargetCreature);
-			if (enemy->isTargetAttackable(enemy->mTargetCreature, angle, CG_GENERALPARMS(enemy).mMaxAttackRange,
-			                              CG_GENERALPARMS(enemy).mMaxAttackAngle)) {
+			if (enemy->isTargetAttackable(angle, CG_GENERALPARMS(enemy).mMaxAttackRange, CG_GENERALPARMS(enemy).mMaxAttackAngle)) {
 				mNextState = KOCHAPPY_Attack;
 				enemy->finishMotion();
 				OBJ(enemy)->setAnimationSpeed(60.0f);
@@ -454,8 +456,12 @@ void StateTurn::exec(EnemyBase* enemy)
 					mNextState = KOCHAPPY_TurnToHome;
 					enemy->finishMotion();
 				} else {
-					if (enemy->turnToTarget(enemy->mTargetCreature, CG_GENERALPARMS(enemy).mTurnSpeed(),
-					                        CG_GENERALPARMS(enemy).mMaxTurnAngle(), CG_PROPERPARMS(enemy).mRotationEndAngle())) {
+					f32 maxTurnAngle = CG_GENERALPARMS(enemy).mMaxTurnAngle();
+					f32 turnSpeed    = CG_GENERALPARMS(enemy).mTurnSpeed();
+					f32 angDist      = enemy->getAngDist(enemy->mTargetCreature);
+					f32 angle        = clamp(angDist * turnSpeed, TORADIANS(maxTurnAngle));
+					enemy->updateFaceDir(roundAng(angle + enemy->getFaceDir()));
+					if (isAngleWithin(angDist, CG_PROPERPARMS(enemy).mRotationEndAngle())) {
 						mNextState = KOCHAPPY_Walk;
 						enemy->finishMotion();
 						OBJ(enemy)->setAnimationSpeed(60.0f);
@@ -1638,8 +1644,7 @@ void StateAttack::exec(EnemyBase* enemy)
 			if (target) {
 				enemy->mTargetCreature = target;
 				f32 angle              = enemy->getAngDist(enemy->mTargetCreature);
-				if (enemy->isTargetAttackable(enemy->mTargetCreature, angle, CG_GENERALPARMS(enemy).mMaxAttackRange(),
-				                              CG_GENERALPARMS(enemy).mMaxAttackAngle())) {
+				if (enemy->isTargetAttackable(angle, CG_GENERALPARMS(enemy).mMaxAttackRange(), CG_GENERALPARMS(enemy).mMaxAttackAngle())) {
 					transit(enemy, KOCHAPPY_Attack, nullptr);
 				} else {
 					transit(enemy, KOCHAPPY_Turn, nullptr);
