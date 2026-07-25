@@ -2222,14 +2222,14 @@ void BaseGameSection::setupFloatMemory()
 
 		sys->heapStatusStart("CellMgr", nullptr);
 
-		BoundBox2d bounds(FLOAT_DIST_MAX, FLOAT_DIST_MAX, FLOAT_DIST_MIN, FLOAT_DIST_MIN);
+		BoundBox2d bounds(12800000.0f, 12800000.0f, -12800000.0f, -12800000.0f);
 		mapMgr->getBoundBox2d(bounds);
 		sys->heapStatusStart("PlatCellMgr", nullptr);
 		platCellMgr = new CellPyramid;
 		platCellMgr->create(bounds, 128.0f);
 		sys->heapStatusEnd("PlatCellMgr");
 
-		BoundBox2d bounds2(FLOAT_DIST_MAX, FLOAT_DIST_MAX, FLOAT_DIST_MIN, FLOAT_DIST_MIN);
+		BoundBox2d bounds2(12800000.0f, 12800000.0f, -12800000.0f, -12800000.0f);
 		mapMgr->getBoundBox2d(bounds2);
 		sys->heapStatusStart("MapRoomCellMgr", nullptr);
 		mapRoomCellMgr = new CellPyramid;
@@ -2266,7 +2266,7 @@ void BaseGameSection::setupFloatMemory()
 
 	sys->heapStatusStart("CellMgr", nullptr);
 	cellMgr = new CellPyramid;
-	BoundBox2d bounds(FLOAT_DIST_MAX, FLOAT_DIST_MAX, FLOAT_DIST_MIN, FLOAT_DIST_MIN);
+	BoundBox2d bounds(12800000.0f, 12800000.0f, -12800000.0f, -12800000.0f);
 	mapMgr->getBoundBox2d(bounds);
 	JKRGetCurrentHeap()->getFreeSize();
 	cellMgr->create(bounds, 108.0f);

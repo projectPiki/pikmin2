@@ -2522,7 +2522,6 @@ void RoomMapMgr::createGlobalCollision()
 		triTable->addOne(tri);
 	}
 
-	int count21 = 0;
 	int count20 = 0;
 
 	Iterator<MapRoom> iterCreate(&mRoomMgr);
@@ -2532,6 +2531,7 @@ void RoomMapMgr::createGlobalCollision()
 		Matrixf& mtx             = room->mRoomSpaceMtx;
 		Sys::VertexTable* verts  = room->mUnit->mCollision.mDivider->mVertexTable;   // r26
 		Sys::TriangleTable* tris = room->mUnit->mCollision.mDivider->mTriangleTable; // r19
+		int count21              = count20;
 		for (int i = 0; i < verts->getNum(); i++) {
 			Vector3f preVert = *verts->getVertex(i);
 			Vector3f vert    = mtx.mtxMult(preVert);

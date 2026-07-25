@@ -152,12 +152,14 @@ bool MiniHoudaiShotGunNode::update()
 	startPos.y -= 10.0f;
 	newPos.y -= 10.0f;
 
-	f32 dist   = startPos.distance(newPos);
-	f32 radius = CG_GENERALPARMS(mOwner).mAttackRadius();
+	f32 dist     = startPos.distance(newPos);
+	f32 hitangle = CG_GENERALPARMS(mOwner).mAttackHitAngle();
+	f32 radius   = CG_GENERALPARMS(mOwner).mAttackRadius();
 
 	if (dist > 0.0f) {
 		Vector3f searchCenter((newPos.x + startPos.x) * 0.5f, (newPos.y + startPos.y) * 0.5f, (newPos.z + startPos.z) * 0.5f);
 		f32 searchRadius = dist + radius;
+		f32 hitangle2    = hitangle * hitangle;
 		Vector3f vec1    = newPos - startPos; // f29, f28, f30
 		vec1.normalise();
 
@@ -169,7 +171,7 @@ bool MiniHoudaiShotGunNode::update()
 		Vector3f vec3 = cross(vec1, vec2); // f23, f22, f21
 		vec3.normalise();
 
-		Sys::Sphere searchSphere(searchCenter, searchRadius);
+		Sys::Sphere searchSphere(searchCenter, dist + hitangle);
 		CellIteratorArg iterArg(searchSphere);
 		iterArg.mOptimise = true;
 
@@ -217,11 +219,11 @@ bool MiniHoudaiShotGunNode::update()
 
 			if (result && check) {
 				if (target->isNavi() || target->isPiki()) {
-					Vector3f tempSep = newPos - creaturePos;
-					if (tempSep.sqrMagnitude() < radius) {
+					Vector3f tempSep(newPos - creaturePos);
+					if (tempSep.sqrMagnitude() < hitangle2) {
 						f32 dist           = tempSep.length();
 						Vector3f targetSep = creaturePos - newPos;
-						f32 factor         = dist / radius;
+						f32 factor         = dist / hitangle;
 						f32 mag            = 150.0f * (1.0f - factor) + 75.0f * factor;
 						targetSep.y        = 0.0f;
 						targetSep.normalise();
@@ -1809,7 +1811,8 @@ bool MiniHoudaiShotGunMgr::searchShotGunRotation()
 		}
 	}
 
-	Vector2f vec2D(((0.45f * dist) / ((val / sys->mDeltaTime) / 20.0f)) / sys->mDeltaTime, (val / sys->mDeltaTime) / 20.0f);
+	f32 b = (val / sys->mDeltaTime) / 20.0f;
+	Vector2f vec2D((0.45f * dist) / (b / 20.0f) / sys->mDeltaTime, b);
 	mShellSpeed = vec2D.length();
 
 	f32 angleDist = angDist(mAngle, HALF_PI - JMAAtan2Radian(vec2D.x, vec2D.y));

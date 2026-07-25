@@ -53,7 +53,7 @@ struct Triangle {
 	void read(Stream&);
 	void constructFromJ3D(VertexTable&, __J3DUTriangle&);
 	void draw(Graphics&, VertexTable&, bool);
-	bool intersect(VertexTable&, BoundBox2d&);
+	inline bool intersect(VertexTable&, BoundBox2d&);
 	bool intersect(Edge&, Vector3f&);
 	bool intersectOptimistic(Sphere&, Vector3f&);
 
