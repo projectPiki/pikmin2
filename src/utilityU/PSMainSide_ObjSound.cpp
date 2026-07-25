@@ -2437,10 +2437,10 @@ void OtakaraEventLink::eventFinish()
 }
 
 /**
- * @note Address: 0x80460F10
- * @note Size: 0x250
+ * @note Address: N/A
+ * @note Size: 0x114
  */
-ActorDirector_TrackOn* OtakaraEventLink_2PBattle::getTargetDirector()
+Otakara* OtakaraEventLink_2PBattle::getPSOtakara()
 {
 	P2ASSERTLINE(1699, getObject());
 
@@ -2448,6 +2448,26 @@ ActorDirector_TrackOn* OtakaraEventLink_2PBattle::getTargetDirector()
 	P2ASSERTLINE(1701, obj);
 
 	P2ASSERTLINE(1706, obj->isTreasure());
+
+	return obj;
+}
+
+/**
+ * @note Address: N/A
+ * @note Size: 0x164
+ */
+bool OtakaraEventLink_2PBattle::isAvoidCase()
+{
+	return getPSOtakara()->canFinish();
+}
+
+/**
+ * @note Address: 0x80460F10
+ * @note Size: 0x250
+ */
+ActorDirector_TrackOn* OtakaraEventLink_2PBattle::getTargetDirector()
+{
+	Otakara* obj = getPSOtakara();
 
 	Game::Onyon* onyon           = obj->mOnyon;
 	ActorDirector_TrackOn* actor = nullptr;
@@ -2494,14 +2514,7 @@ ActorDirector_TrackOn* OtakaraEventLink_2PBattle::getTargetDirector()
  */
 void OtakaraEventLink_2PBattle::eventStart()
 {
-	P2ASSERTLINE(1699, getObject());
-
-	Otakara* obj = static_cast<Otakara*>(getObject()->getPSCreature());
-	P2ASSERTLINE(1701, obj);
-
-	P2ASSERTLINE(1706, obj->isTreasure());
-
-	if (!obj->canFinish()) {
+	if (!isAvoidCase()) {
 		ActorDirector_TrackOn* director = getTargetDirector();
 		if (director->mActor) {
 			static_cast<ListDirectorActor*>(director->mActor)->append(this);
@@ -2524,14 +2537,7 @@ void OtakaraEventLink_2PBattle::eventRestart()
  */
 void OtakaraEventLink_2PBattle::eventStop()
 {
-	P2ASSERTLINE(1699, getObject());
-
-	Otakara* obj = static_cast<Otakara*>(getObject()->getPSCreature());
-	P2ASSERTLINE(1701, obj);
-
-	P2ASSERTLINE(1706, obj->isTreasure());
-
-	if (!obj->canFinish()) {
+	if (!isAvoidCase()) {
 		ActorDirector_TrackOn* director = getTargetDirector();
 		if (director->mActor) {
 			static_cast<ListDirectorActor*>(director->mActor)->remove(this);
@@ -2554,12 +2560,7 @@ void OtakaraEventLink_2PBattle::eventFinish()
  */
 ListDirectorActor* OtakaraEventLink_2PBattle::getListDirectorActor()
 {
-	P2ASSERTLINE(1699, getObject());
-
-	Otakara* obj = static_cast<Otakara*>(getObject()->getPSCreature());
-	P2ASSERTLINE(1701, obj);
-
-	P2ASSERTLINE(1706, obj->isTreasure());
+	Otakara* obj = getPSOtakara();
 
 	P2ASSERTLINE(1891, (int)obj->mBedamaType == Otakara::PSMBedama_None);
 
@@ -2650,13 +2651,22 @@ void Otakara::setGoalOnyon(Game::Creature* onyon)
 }
 
 /**
+ * @note Address: N/A
+ * @note Size: 0x84
+ */
+bool Otakara::avoidNormalDirection()
+{
+	P2ASSERTLINE(2058, mOtaEvent);
+	return is2PBattle();
+}
+
+/**
  * @note Address: 0x804619F0
  * @note Size: 0xDC
  */
 void Otakara::otakaraEventStart()
 {
-	P2ASSERTLINE(2058, mOtaEvent);
-	if (!is2PBattle()) {
+	if (!avoidNormalDirection()) {
 		mEventLink.eventStart();
 	}
 	P2ASSERTLINE(2074, mOtaEvent);
@@ -2670,8 +2680,7 @@ void Otakara::otakaraEventStart()
 void Otakara::otakaraEventRestart()
 {
 	P2ASSERTLINE(2082, mOtaEvent);
-	P2ASSERTLINE(2058, mOtaEvent);
-	if (!is2PBattle()) {
+	if (!avoidNormalDirection()) {
 		mEventLink.eventRestart();
 	}
 	mOtaEvent->eventRestart();
@@ -2684,8 +2693,7 @@ void Otakara::otakaraEventRestart()
 void Otakara::otakaraEventStop()
 {
 	P2ASSERTLINE(2094, mOtaEvent);
-	P2ASSERTLINE(2058, mOtaEvent);
-	if (!is2PBattle()) {
+	if (!avoidNormalDirection()) {
 		mEventLink.eventStop();
 	}
 	mOtaEvent->eventStop();
@@ -2698,8 +2706,7 @@ void Otakara::otakaraEventStop()
 void Otakara::otakaraEventFinish()
 {
 	P2ASSERTLINE(2106, mOtaEvent);
-	P2ASSERTLINE(2058, mOtaEvent);
-	if (!is2PBattle()) {
+	if (!avoidNormalDirection()) {
 		mEventLink.eventFinish();
 	}
 	mOtaEvent->eventFinish();

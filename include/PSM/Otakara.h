@@ -48,6 +48,8 @@ struct Otakara : public EventBase {
 
 	void setGoalOnyon(Game::Creature*);
 
+	bool avoidNormalDirection();
+
 	inline bool is2PBattle()
 	{
 		if (mOtaEvent->is2PBattle() && (int)mBedamaType != PSMBedama_None) {
