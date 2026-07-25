@@ -252,11 +252,11 @@ struct MoviePlayer : public JKRDisposer {
 
 	// unused/inlined
 	void setMovieHeap(JKRHeap*);
-	void clearMovieHeap();
+	int clearMovieHeap();
 	void doStartMovie();
 	bool playSuspended();
-	void hasSuspendedDemo();
-	void hasSuspendedContext();
+	bool hasSuspendedDemo();
+	bool hasSuspendedContext();
 	MovieContext* getSuspendedContext();
 	void do_stop();
 	void suspend(s32);

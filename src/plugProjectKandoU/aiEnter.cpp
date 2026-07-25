@@ -47,7 +47,7 @@ void ActEnter::init(ActionArg* arg)
 		Vector3f gotoPos  = startPos + offset;
 		GotoPosActionArg gotoArg;
 		gotoArg.mPosition = gotoPos;
-		gotoArg.mRadius   = PIKI_ENTERSHIP_RADIUS;
+		gotoArg.mRadius   = 20.0f;
 		mGotoPos->init(&gotoArg);
 		mState = ENTER_ShipGoto;
 		return;

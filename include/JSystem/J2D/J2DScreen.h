@@ -41,7 +41,7 @@ struct J2DScreen : public J2DPane {
 	J2DMaterial* getMaterial(u16 index);
 	J2DResReference* getResReference(JSURandomInputStream*, u32);
 	bool getScreenInformation(JSURandomInputStream* input);
-	u32 makeHierarchyPanes(J2DPane*, JSURandomInputStream*, u32, JKRArchive*);
+	inline s32 makeHierarchyPanes(J2DPane*, JSURandomInputStream*, u32, JKRArchive*); // needs to be marked as inline for recursion to work
 	bool set(const char*, u32, JKRArchive*);
 	bool set(JSURandomInputStream*, u32);
 	bool private_set(JSURandomInputStream* stream, u32 flags, JKRArchive* archive);

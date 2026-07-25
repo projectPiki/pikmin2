@@ -780,10 +780,76 @@ f32 Sys::Triangle::calcDist(Plane& plane, Sys::VertexTable& vertTable)
  * @note Address: N/A
  * @note Size: 0x1EC
  */
-// bool Triangle::intersect(Sys::VertexTable&, BoundBox2d&)
-// {
-// 	// UNUSED FUNCTION
-// }
+bool Triangle::intersect(Sys::VertexTable& verts, BoundBox2d& bounds)
+{
+	f32 x, z;
+	f32 maxX = 12800000.0f;
+	f32 maxZ = 12800000.0f;
+	f32 minX = -12800000.0f;
+	f32 minZ = -12800000.0f;
+
+	x = verts.mObjects[mVertices[0]].x;
+	if (maxX > x)
+		maxX = x;
+	z = verts.mObjects[mVertices[0]].z;
+	if (maxZ > z)
+		maxZ = z;
+	if (minX < x)
+		minX = x;
+	if (minZ < z)
+		minZ = z;
+
+	x = verts.mObjects[mVertices[1]].x;
+	if (maxX > x)
+		maxX = x;
+	z = verts.mObjects[mVertices[1]].z;
+	if (maxZ > z)
+		maxZ = z;
+	if (minX < x)
+		minX = x;
+	if (minZ < z)
+		minZ = z;
+
+	x = verts.mObjects[mVertices[2]].x;
+	if (x > maxX)
+		maxX = x;
+	z = verts.mObjects[mVertices[2]].z;
+	if (maxZ > z)
+		maxZ = z;
+	if (minX < x)
+		minX = x;
+	if (minZ < z)
+		minZ = z;
+
+	bool check = false;
+
+	// these are wrong
+	// check that X coords are in bounds
+	if (maxX < bounds.mMax.x && bounds.mMin.x < minX) {
+		check = false;
+	} else if (maxX <= bounds.mMin.x && bounds.mMin.x <= maxX) {
+		check = false;
+	} else if (bounds.mMin.x <= maxX && minX <= bounds.mMin.x) {
+		check = false;
+	} else {
+		check = true;
+	}
+
+	// check that Z coords are in bounds
+	if (!check) {
+		check = false;
+	} else if (maxZ < bounds.mMax.y && bounds.mMin.y < minZ) {
+		check = false;
+	} else if (maxZ <= bounds.mMin.y && bounds.mMax.y <= maxZ) {
+		check = true;
+	} else if (bounds.mMin.y <= maxZ && minZ <= bounds.mMin.y) {
+		check = true;
+	} else {
+		check = false;
+	}
+
+	return check;
+}
 
 /**
  * @note Address: N/A
@@ -2073,7 +2139,7 @@ void GridDivider::createTriangles(Sys::CreateTriangleArg& triArg)
 					verticesBuffer[triangleCount * 3 + 1] = vertexB + offsetVector;
 					verticesBuffer[triangleCount * 3 + 2] = vertexC + offsetVector;
 
-					firstTriangle[triangleCount * 4] = *currentTriangle; // Copy current triangle
+					// firstTriangle[triangleCount * 4] = *currentTriangle; // Copy current triangle
 					++triangleCount;
 				}
 			}
@@ -3087,6 +3153,13 @@ lbl_80418BC8:
  */
 void GridDivider::create(BoundBox& box, int countX, int countZ, Sys::VertexTable* vertTable, Sys::TriangleTable* triTable)
 {
+	int usedTris[1024];
+
+	mVertexTable   = vertTable;
+	mTriangleTable = triTable;
+	mMaxX          = countX;
+	mMaxZ          = countZ;
+
 	int arrayDims  = countX * countZ;
 	mTriIndexLists = new TriIndexList[arrayDims];
 
@@ -3095,7 +3168,31 @@ void GridDivider::create(BoundBox& box, int countX, int countZ, Sys::VertexTable
 	mScaleZ      = FABS(box.mMax.z - box.mMin.z) / countZ;
 
 	for (int i = 0; i < countX; i++) {
-		for (int j = 0; j < countZ; j++) { }
+		for (int j = 0; j < countZ; j++) {
+			int useCount = 0;
+			BoundBox2d bounds;
+			bounds.mMin.x = mBoundingBox.mMin.x + i * mScaleX;
+			bounds.mMax.x = bounds.mMin.x + mScaleX;
+
+			bounds.mMin.y = mBoundingBox.mMin.z + j * mScaleZ;
+			bounds.mMax.y = bounds.mMin.y + mScaleZ;
+
+			for (int k = 0; k < mTriangleTable->mCount; k++) {
+				Triangle* tri = &mTriangleTable->mObjects[k];
+
+				if (tri->intersect(*mVertexTable, bounds) && useCount < 1024) {
+					usedTris[useCount++] = k;
+				}
+			}
+
+			TriIndexList* tri = &mTriIndexLists[j + i * mMaxZ];
+			if (useCount > 0) {
+				tri->alloc(useCount);
+				for (int k = 0; k < useCount; k++) {
+					tri->addOne(usedTris[k]);
+				}
+			}
+		}
 	}
 	/*
 	.loc_0x0:

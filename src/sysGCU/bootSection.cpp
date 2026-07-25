@@ -1082,9 +1082,9 @@ void BootSection::setMode(int id)
  * @note Address: N/A
  * @note Size: 0x8
  */
-void BootSection::getModeEpilepsy()
+BootSection::StateID BootSection::getModeEpilepsy()
 {
-	// UNUSED FUNCTION
+	return mStateID;
 }
 
 /**

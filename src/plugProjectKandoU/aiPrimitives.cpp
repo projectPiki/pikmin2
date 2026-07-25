@@ -1521,9 +1521,9 @@ void ActPathMove::initPathfinding(bool resetLinkCount)
 		flag |= Game::PATHFLAG_DisallowUnfinishedBridges;
 		if (Game::gameSystem && Game::gameSystem->isVersusMode()) {
 			if (mOnyon->mOnyonType == ONYON_TYPE_BLUE) {
-				flag |= (Game::PATHFLAG_DisallowVsBlue | Game::PATHFLAG_AllowUnvisited);
+				flag |= (Game::PATHFLAG_VsBlue | Game::PATHFLAG_AllowUnvisited);
 			} else {
-				flag |= (Game::PATHFLAG_DisallowVsRed | Game::PATHFLAG_AllowUnvisited);
+				flag |= (Game::PATHFLAG_VsRed | Game::PATHFLAG_AllowUnvisited);
 			}
 		}
 
@@ -2671,7 +2671,7 @@ bool ActPathMove::contextCheck(int idx)
 			Game::WayPoint* wp = getWayPoint(nextIdx);
 
 			if (mOnyon->mOnyonType == ONYON_TYPE_BLUE) {
-				if (wp->isFlag(Game::PATHFLAG_DisallowVsBlue)) {
+				if (wp->isFlag(Game::PATHFLAG_VsBlue)) {
 					mVsWayPointCounter++;
 					if (mVsWayPointCounter < 2) {
 						return false;
@@ -2679,7 +2679,7 @@ bool ActPathMove::contextCheck(int idx)
 				} else {
 					mVsWayPointCounter = 0;
 				}
-			} else if (wp->isFlag(Game::PATHFLAG_DisallowVsRed)) {
+			} else if (wp->isFlag(Game::PATHFLAG_VsRed)) {
 				mVsWayPointCounter++;
 				if (mVsWayPointCounter < 2) {
 					return false;

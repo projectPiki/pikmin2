@@ -183,18 +183,20 @@ struct PrmSetRc : public PrmSetBase {
 	virtual void load(JSUMemoryInputStream& input)
 	{
 		PrmSetBase::load(input);
+		if (getChildNum() == 0) {
+			return;
+		}
+
 		JKRHeap* currentHeap = JKRGetCurrentHeap();
-		if (getChildNum() != 0) {
-			if (getPrmObjHeap() != nullptr) {
-				getPrmObjHeap()->becomeCurrentHeap();
-			}
-			T* childObjects = new T[getChildNum()];
-			for (u8 i = 0; i < getChildNum(); i++) {
-				PrmSetBase* object = static_cast<PrmSetBase*>(childObjects + i);
-				mTree.append(&object->mTree);
-				object->appendAfter();
-				object->load(input);
-			}
+		if (getPrmObjHeap() != nullptr) {
+			getPrmObjHeap()->becomeCurrentHeap();
+		}
+		T* childObjects = new T[getChildNum()];
+		for (u8 i = 0; i < getChildNum(); i++) {
+			PrmSetBase* object = childObjects + i;
+			mTree.append((JADUtility::PrmSetTree*)&object->mTree); // cast is needed for null check
+			object->appendAfter();
+			object->load(input);
 		}
 		currentHeap->becomeCurrentHeap();
 	} // _10 (weak)

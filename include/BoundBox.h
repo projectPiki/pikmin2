@@ -81,6 +81,14 @@ struct BoundBox {
 };
 
 struct BoundBox2d {
+	inline BoundBox2d()
+	{
+		mMin.x = 0.0f;
+		mMin.y = 0.0f;
+		mMax.x = 0.0f;
+		mMax.y = 0.0f;
+	}
+
 	inline BoundBox2d(f32 minX, f32 minY, f32 maxX, f32 maxY)
 	{
 		mMin.x = minX;

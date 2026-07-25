@@ -263,28 +263,29 @@ void Obj::setElecHibaPosition(InitialParam* param, f32 p1)
  */
 void Obj::interactDenkiAttack(Vector3f& position)
 {
-	Vector3f sep     = position - mPosition;
-	Vector3f normSep = sep;
-	f32 theta        = mFaceDir;
-	Vector3f dirXZ   = Vector3f(sinf(theta), 0.0f, cosf(theta));
-	normSep.normalise();
+	Vector3f sep(mPosition);
+	Vector3f normSep = (position + sep) / 2;
 
-	// Vector3f crossProd = normSep cross dirXZ
-	// crossProd.normalise();
-	f32 distance = sep.length();
+	f32 theta      = mFaceDir;
+	Vector3f dirXZ = Vector3f(sinf(theta), 0.0f, cosf(theta));
 
-	// some vector addition/scalar multiplication here
-	Vector3f spherePos;
-	spherePos.x     = (position.x - mPosition.x) / 2;
-	spherePos.y     = (position.y - mPosition.y) / 2;
-	spherePos.z     = (position.z - mPosition.z) / 2;
-	f32 attackRange = C_GENERALPARMS.mMaxAttackRange.mValue;
-	f32 negRange    = -attackRange;
-	f32 totalRange  = distance + C_GENERALPARMS.mMaxAttackRange.mValue;
-	f32 radius      = (totalRange - negRange) / 2;
-	Sys::Sphere sphere(spherePos, radius);
+	Vector3f posDelta(position - sep);
+	Vector3f posDiff(posDelta);
+	posDiff.normalise();
 
-	// also some other constants pulled from parms
+	Vector3f crossProd = posDelta.cross(posDiff);
+	crossProd.normalise();
+
+	f32 distance = posDelta.length();
+
+	f32 attackRange  = C_GENERALPARMS.mMaxAttackRange();
+	f32 search       = C_GENERALPARMS.mSearchDistance();
+	f32 searchHeight = C_GENERALPARMS.mSearchHeight();
+	sep.y += C_GENERALPARMS.mMaxAttackAngle();
+	f32 totalRange = distance + attackRange;
+	f32 negRange   = -attackRange;
+	Vector3f spherePos(dirXZ.x * search, 0.0f, dirXZ.z * search);
+	Sys::Sphere sphere(normSep, (totalRange - negRange) / 2);
 
 	CellIteratorArg iterArg(sphere);
 	iterArg.mOptimise = true;
@@ -296,29 +297,32 @@ void Obj::interactDenkiAttack(Vector3f& position)
 		Creature* creature = static_cast<Creature*>(*iter);
 		if (creature->isAlive() && (creature->isNavi() || creature->isPiki())) {
 			Vector3f creaturePos = creature->getPosition();
-			// Vector3f creatureSep = creaturePos - some other vector of consts;
+			Vector3f creatureSep = Vector3f(creaturePos - sep);
+			f32 dotProd1         = dirXZ.dot(creatureSep);
+			f32 adj              = absVal(dotProd1);
 
-			// f32 dotProd = crossProd.dot(creatureSep);
-			f32 dotProd = 1.0f;
-			if (!(dotProd > 0.0f)) { // make sure it's positive
-				dotProd = -dotProd;
-			}
+			if (adj < C_GENERALPARMS.mAttackRadius()) {
+				f32 dotProd = posDiff.dot(creatureSep);
+				if (dotProd < totalRange && dotProd > negRange) {
+					if (absVal(crossProd.dot(creatureSep)) < C_GENERALPARMS.mAttackHitAngle()) {
+						if (mVersusHibaType == VHT_Neutral) {
 
-			if (dotProd < C_GENERALPARMS.mAttackHitAngle.mValue) {
-				if (mVersusHibaType == VHT_Neutral) {
-					// some math to determine attack direction
-					// Vector3f attackDirection = something
-					InteractDenki zap(this, C_GENERALPARMS.mAttackDamage.mValue,
-					                  &creaturePos); // should be &attackDirection eventually
-					creature->stimulate(zap);
+							Vector3f attackDirection(dotProd1 / adj * spherePos.x, 0.0f, dotProd1 / adj * spherePos.z);
+							if (creature->isPiki()) {
+								attackDirection.y = searchHeight;
+							}
+							InteractDenki zap(this, C_GENERALPARMS.mAttackDamage(), &attackDirection);
+							creature->stimulate(zap);
 
-				} else if (mVersusHibaType == VHT_Red) {
-					InteractFire fire(this, C_GENERALPARMS.mAttackDamage.mValue);
-					creature->stimulate(fire);
+						} else if (mVersusHibaType == VHT_Red) {
+							InteractFire fire(this, C_GENERALPARMS.mAttackDamage());
+							creature->stimulate(fire);
 
-				} else if (mVersusHibaType == VHT_Blue) {
-					InteractBubble bubble(this, C_GENERALPARMS.mAttackDamage.mValue);
-					creature->stimulate(bubble);
+						} else if (mVersusHibaType == VHT_Blue) {
+							InteractBubble bubble(this, C_GENERALPARMS.mAttackDamage());
+							creature->stimulate(bubble);
+						}
+					}
 				}
 			}
 		}

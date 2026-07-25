@@ -657,311 +657,18 @@ void OBB::constructOBB2(Sys::VertexTable& vertTable, Sys::TriangleTable& triTabl
  */
 void OBB::autoDivide(Sys::VertexTable& vertTable, Sys::TriangleTable& triTable, int p1, int p2)
 {
-	if ((mTriIndexList.getNum() > p1) && (p2 > 0) && (divide(vertTable, triTable))) {
-		if (mHalfA) {
-			mHalfA->autoDivide(vertTable, triTable, p1, p2 - 1);
+	if (mTriIndexList.getNum() > p1 && p2 > 0) {
+		mTriIndexList.getNum();
+		if (divide(vertTable, triTable)) {
+			if (mHalfA) {
+				mHalfA->autoDivide(vertTable, triTable, p1, p2 - 1);
+			}
+			if (mHalfB) {
+				mHalfB->autoDivide(vertTable, triTable, p1, p2 - 1);
+			}
 		}
-		if (mHalfB) {
-			mHalfB->autoDivide(vertTable, triTable, p1, p2 - 1);
-		}
-
-		// below matches but needs to be recursive to generate ArrayContainer::getNum
-
-		// FIRST HALF
-		// OBB* half_1 = mHalfA;
-		// if ((half_1) && (half_1->mTriIndexList.mCount > p1) && ((p2 - 1) > 0) && (half_1->divide(vertTable, triTable))) {
-		//     // FIRST HALF, FIRST HALF
-		//     OBB* quarter_1 = half_1->mHalfA;
-		//     if ((quarter_1) && (quarter_1->mTriIndexList.getNum() > p1) && ((p2 - 2) > 0)) {
-		//         quarter_1->mTriIndexList.getNum();
-		//         if (quarter_1->divide(vertTable, triTable)) {
-		//             // FIRST HALF, FIRST HALF, FIRST HALF
-		//             OBB* eighth_1 = quarter_1->mHalfA;
-		//             if (eighth_1) {
-		//                 eighth_1->autoDivide(vertTable, triTable, p1, p2 - 3);
-		//             }
-		//             // FIRST HALF, FIRST HALF, SECOND HALF
-		//             OBB* eighth_2 = quarter_1->mHalfB;
-		//             if (eighth_2) {
-		//                 eighth_2->autoDivide(vertTable, triTable, p1, p2 - 3);
-		//             }
-		//         }
-		//     }
-		//     // FIRST HALF, SECOND HALF
-		//     OBB* quarter_2 = half_1->mHalfB;
-		//     if ((quarter_2) && (quarter_2->mTriIndexList.getNum() > p1) && ((p2 - 2) > 0)) {
-		//         quarter_2->mTriIndexList.getNum();
-		//         if (quarter_2->divide(vertTable, triTable)) {
-		//             // FIRST HALF, SECOND HALF, FIRST HALF
-		//             OBB* eighth_1 = quarter_2->mHalfA;
-		//             if (eighth_1) {
-		//                 eighth_1->autoDivide(vertTable, triTable, p1, p2 - 3);
-		//             }
-		//             // FIRST HALF, SECOND HALF, SECOND HALF
-		//             OBB* eighth_2 = quarter_2->mHalfB;
-		//             if (eighth_2) {
-		//                 eighth_2->autoDivide(vertTable, triTable, p1, p2 - 3);
-		//             }
-		//         }
-		//     }
-		// }
-
-		// // SECOND HALF
-		// OBB* half_2 = mHalfB;
-		// if ((half_2) && (half_2->mTriIndexList.mCount > p1) && ((p2 - 1) > 0) && (half_2->divide(vertTable, triTable))) {
-		//     // SECOND HALF, FIRST HALF
-		//     OBB* quarter_1 = half_2->mHalfA;
-		//     if ((quarter_1) && (quarter_1->mTriIndexList.getNum() > p1) && ((p2 - 2) > 0)) {
-		//         quarter_1->mTriIndexList.getNum();
-		//         if (quarter_1->divide(vertTable, triTable)) {
-		//             // SECOND HALF, FIRST HALF, FIRST HALF
-		//             OBB* eighth_1 = quarter_1->mHalfA;
-		//             if (eighth_1) {
-		//                 eighth_1->autoDivide(vertTable, triTable, p1, p2 - 3);
-		//             }
-		//             // SECOND HALF, FIRST HALF, SECOND HALF
-		//             OBB* eighth_2 = quarter_1->mHalfB;
-		//             if (eighth_2) {
-		//                 eighth_2->autoDivide(vertTable, triTable, p1, p2 - 3);
-		//             }
-		//         }
-		//     }
-		//     // SECOND HALF, SECOND HALF
-		//     OBB* quarter_2 = half_2->mHalfB;
-		//     if ((quarter_2) && (quarter_2->mTriIndexList.getNum() > p1) && ((p2 - 2) > 0)) {
-		//         quarter_2->mTriIndexList.getNum();
-		//         if (quarter_2->divide(vertTable, triTable)) {
-		//             // SECOND HALF, SECOND HALF, FIRST HALF
-		//             OBB* eighth_1 = quarter_2->mHalfA;
-		//             if (eighth_1) {
-		//                 eighth_1->autoDivide(vertTable, triTable, p1, p2 - 3);
-		//             }
-		//             // SECOND HALF, SECOND HALF, SECOND HALF
-		//             OBB* eighth_2 = quarter_2->mHalfB;
-		//             if (eighth_2) {
-		//                 eighth_2->autoDivide(vertTable, triTable, p1, p2 - 3);
-		//             }
-		//         }
-		//     }
-		// }
 	}
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stmw     r25, 0x14(r1)
-	mr       r30, r6
-	mr       r27, r3
-	mr       r28, r4
-	mr       r29, r5
-	mr       r31, r7
-	lwz      r0, 0xf4(r3)
-	cmpw     r0, r30
-	ble      lbl_8041D9F4
-	cmpwi    r31, 0
-	ble      lbl_8041D9F4
-	bl       divide__Q23Sys3OBBFRQ23Sys11VertexTableRQ23Sys13TriangleTable
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8041D9F4
-	lwz      r26, 0xc0(r27)
-	cmplwi   r26, 0
-	beq      lbl_8041D8B4
-	lwz      r0, 0xf4(r26)
-	cmpw     r0, r30
-	ble      lbl_8041D8B4
-	addic.   r0, r31, -1
-	ble      lbl_8041D8B4
-	mr       r3, r26
-	mr       r4, r28
-	mr       r5, r29
-	bl       divide__Q23Sys3OBBFRQ23Sys11VertexTableRQ23Sys13TriangleTable
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8041D8B4
-	lwz      r25, 0xc0(r26)
-	cmplwi   r25, 0
-	beq      lbl_8041D830
-	addi     r3, r25, 0xd8
-	bl       "getNum__17ArrayContainer<i>Fv"
-	cmpw     r3, r30
-	ble      lbl_8041D830
-	addic.   r0, r31, -2
-	ble      lbl_8041D830
-	addi     r3, r25, 0xd8
-	bl       "getNum__17ArrayContainer<i>Fv"
-	mr       r3, r25
-	mr       r4, r28
-	mr       r5, r29
-	bl       divide__Q23Sys3OBBFRQ23Sys11VertexTableRQ23Sys13TriangleTable
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8041D830
-	lwz      r3, 0xc0(r25)
-	cmplwi   r3, 0
-	beq      lbl_8041D810
-	mr       r4, r28
-	mr       r5, r29
-	mr       r6, r30
-	addi     r7, r31, -3
-	bl       autoDivide__Q23Sys3OBBFRQ23Sys11VertexTableRQ23Sys13TriangleTableii
-
-lbl_8041D810:
-	lwz      r3, 0xc4(r25)
-	cmplwi   r3, 0
-	beq      lbl_8041D830
-	mr       r4, r28
-	mr       r5, r29
-	mr       r6, r30
-	addi     r7, r31, -3
-	bl       autoDivide__Q23Sys3OBBFRQ23Sys11VertexTableRQ23Sys13TriangleTableii
-
-lbl_8041D830:
-	lwz      r25, 0xc4(r26)
-	cmplwi   r25, 0
-	beq      lbl_8041D8B4
-	addi     r3, r25, 0xd8
-	bl       "getNum__17ArrayContainer<i>Fv"
-	cmpw     r3, r30
-	ble      lbl_8041D8B4
-	addic.   r0, r31, -2
-	ble      lbl_8041D8B4
-	addi     r3, r25, 0xd8
-	bl       "getNum__17ArrayContainer<i>Fv"
-	mr       r3, r25
-	mr       r4, r28
-	mr       r5, r29
-	bl       divide__Q23Sys3OBBFRQ23Sys11VertexTableRQ23Sys13TriangleTable
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8041D8B4
-	lwz      r3, 0xc0(r25)
-	cmplwi   r3, 0
-	beq      lbl_8041D894
-	mr       r4, r28
-	mr       r5, r29
-	mr       r6, r30
-	addi     r7, r31, -3
-	bl       autoDivide__Q23Sys3OBBFRQ23Sys11VertexTableRQ23Sys13TriangleTableii
-
-lbl_8041D894:
-	lwz      r3, 0xc4(r25)
-	cmplwi   r3, 0
-	beq      lbl_8041D8B4
-	mr       r4, r28
-	mr       r5, r29
-	mr       r6, r30
-	addi     r7, r31, -3
-	bl       autoDivide__Q23Sys3OBBFRQ23Sys11VertexTableRQ23Sys13TriangleTableii
-
-lbl_8041D8B4:
-	lwz      r25, 0xc4(r27)
-	cmplwi   r25, 0
-	beq      lbl_8041D9F4
-	lwz      r0, 0xf4(r25)
-	cmpw     r0, r30
-	ble      lbl_8041D9F4
-	addic.   r0, r31, -1
-	ble      lbl_8041D9F4
-	mr       r3, r25
-	mr       r4, r28
-	mr       r5, r29
-	bl       divide__Q23Sys3OBBFRQ23Sys11VertexTableRQ23Sys13TriangleTable
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8041D9F4
-	lwz      r26, 0xc0(r25)
-	cmplwi   r26, 0
-	beq      lbl_8041D970
-	addi     r3, r26, 0xd8
-	bl       "getNum__17ArrayContainer<i>Fv"
-	cmpw     r3, r30
-	ble      lbl_8041D970
-	addic.   r0, r31, -2
-	ble      lbl_8041D970
-	addi     r3, r26, 0xd8
-	bl       "getNum__17ArrayContainer<i>Fv"
-	mr       r3, r26
-	mr       r4, r28
-	mr       r5, r29
-	bl       divide__Q23Sys3OBBFRQ23Sys11VertexTableRQ23Sys13TriangleTable
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8041D970
-	lwz      r3, 0xc0(r26)
-	cmplwi   r3, 0
-	beq      lbl_8041D950
-	mr       r4, r28
-	mr       r5, r29
-	mr       r6, r30
-	addi     r7, r31, -3
-	bl       autoDivide__Q23Sys3OBBFRQ23Sys11VertexTableRQ23Sys13TriangleTableii
-
-lbl_8041D950:
-	lwz      r3, 0xc4(r26)
-	cmplwi   r3, 0
-	beq      lbl_8041D970
-	mr       r4, r28
-	mr       r5, r29
-	mr       r6, r30
-	addi     r7, r31, -3
-	bl       autoDivide__Q23Sys3OBBFRQ23Sys11VertexTableRQ23Sys13TriangleTableii
-
-lbl_8041D970:
-	lwz      r25, 0xc4(r25)
-	cmplwi   r25, 0
-	beq      lbl_8041D9F4
-	addi     r3, r25, 0xd8
-	bl       "getNum__17ArrayContainer<i>Fv"
-	cmpw     r3, r30
-	ble      lbl_8041D9F4
-	addic.   r0, r31, -2
-	ble      lbl_8041D9F4
-	addi     r3, r25, 0xd8
-	bl       "getNum__17ArrayContainer<i>Fv"
-	mr       r3, r25
-	mr       r4, r28
-	mr       r5, r29
-	bl       divide__Q23Sys3OBBFRQ23Sys11VertexTableRQ23Sys13TriangleTable
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8041D9F4
-	lwz      r3, 0xc0(r25)
-	cmplwi   r3, 0
-	beq      lbl_8041D9D4
-	mr       r4, r28
-	mr       r5, r29
-	mr       r6, r30
-	addi     r7, r31, -3
-	bl       autoDivide__Q23Sys3OBBFRQ23Sys11VertexTableRQ23Sys13TriangleTableii
-
-lbl_8041D9D4:
-	lwz      r3, 0xc4(r25)
-	cmplwi   r3, 0
-	beq      lbl_8041D9F4
-	mr       r4, r28
-	mr       r5, r29
-	mr       r6, r30
-	addi     r7, r31, -3
-	bl       autoDivide__Q23Sys3OBBFRQ23Sys11VertexTableRQ23Sys13TriangleTableii
-
-lbl_8041D9F4:
-	lmw      r25, 0x14(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
-
-// } // namespace Sys
-
-// /**
-//  * @note Address: 0x8041DA08
-//  * @note Size: 0x8
-//  */
-// void ArrayContainer<int>::getNum()
-// {
-// 	/*
-// 	lwz      r3, 0x1c(r3)
-// 	blr
-// 	*/
-// }
-
-// namespace Sys {
 
 /**
  * @note Address: N/A
@@ -1038,8 +745,9 @@ void OBB::determineDivPlane(Sys::VertexTable& vertTable, Sys::TriangleTable& tri
 
 	Vector3f correctAxis = mAxes[axisID];
 	// divPlane has normal = axis with min cuts, and goes through center/position of box
+	f32 d             = correctAxis.dot(mPosition);
 	mDivPlane.mNormal = correctAxis;
-	mDivPlane.mOffset = correctAxis.dot(mPosition);
+	mDivPlane.mOffset = d;
 	/*
 	stwu     r1, -0x80(r1)
 	mflr     r0
@@ -1594,8 +1302,8 @@ void OBB::getCurrTri(Game::CurrTriInfo& info)
 	} else {
 		Vector3f vec = info.mPosition;
 		vec.y        = (mDivPlane.mOffset - (mDivPlane.mNormal.x * info.mPosition.x) - (mDivPlane.mNormal.z * info.mPosition.z))
-		      / mDivPlane.mNormal.y;
-		dist = mDivPlane.calcDist(vec);
+		             / mDivPlane.mNormal.y;
+		dist         = mDivPlane.calcDist(vec);
 	}
 
 	if (dist > 0.01f) {
@@ -2640,38 +2348,39 @@ f32 OBB::getMinY(Vector3f& pos, Sys::TriangleTable& triTable, f32 inputMin)
 	if (0.0f == mDivPlane.mNormal.y) {
 		divDist = mDivPlane.calcDist(pos);
 	} else {
-		Vector3f planeVec = pos;
-		planeVec.y        = -(mDivPlane.mNormal.x * planeVec.x - mDivPlane.mOffset);
-		planeVec.y        = -(mDivPlane.mNormal.z * planeVec.z - planeVec.y);
-		planeVec.y        = planeVec.y / mDivPlane.mNormal.y;
-		divDist           = mDivPlane.calcDist(planeVec);
+		Vector3f planeVec(pos);
+		planeVec.y = -(mDivPlane.mNormal.x * planeVec.x - mDivPlane.mOffset);
+		planeVec.y = -(mDivPlane.mNormal.z * planeVec.z - planeVec.y);
+		planeVec.y = planeVec.y / mDivPlane.mNormal.y;
+		divDist    = mDivPlane.calcDist(planeVec);
 	}
 
 	if (divDist > 0.01f) {
+		// check only side A
 		if (mHalfA) {
-			minY = mHalfA->getMinY(pos, triTable, inputMin);
-			if (minY < inputMin) {
-
-			} else {
-				minY = inputMin;
-			}
-		} else {
-			minY = inputMin;
+			f32 minY2 = mHalfA->getMinY(pos, triTable, inputMin);
+			minY      = minY2 > inputMin ? minY2 : inputMin;
 		}
-		return minY;
-	}
-	if (divDist < -0.01f) {
+	} else if (divDist < -0.01f) {
+		// check only side B
 		if (mHalfB) {
-			f32 minY = mHalfB->getMinY(pos, triTable, inputMin);
-			if (minY < inputMin) {
-
-			} else {
-				minY = inputMin;
-			}
-		} else {
-			minY = inputMin;
+			f32 minY2 = mHalfB->getMinY(pos, triTable, inputMin);
+			minY      = minY2 > inputMin ? minY2 : inputMin;
 		}
+	} else {
+		// check both sides
+		f32 minY2 = mHalfA->getMinY(pos, triTable, minY);
+		if (minY2 > minY)
+			minY = minY2;
+
+		minY2 = mHalfB->getMinY(pos, triTable, minY);
+		if (minY2 > minY)
+			minY = minY2;
 	}
+
+	if (minY > inputMin)
+		minY = inputMin;
+
 	return minY;
 	/*
 	stwu     r1, -0x70(r1)

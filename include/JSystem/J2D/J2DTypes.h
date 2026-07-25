@@ -300,7 +300,7 @@ struct J2DTevSwapModeTableInfo {
 	u8 mA; // _03
 };
 
-inline u8 J2DCalcTevSwapTable(u32 r, u32 g, u32 b, u32 a)
+inline u8 J2DCalcTevSwapTable(u8 r, u8 g, u8 b, u8 a)
 {
 	return (r << 6) + (g << 4) + (b << 2) + a;
 }
@@ -314,14 +314,7 @@ struct J2DTevSwapModeTable {
 
 	J2DTevSwapModeTable(const J2DTevSwapModeTableInfo& info) { _00 = J2DCalcTevSwapTable(info.mR, info.mG, info.mB, info.mA); }
 
-	void setTevSwapModeTableInfo(const J2DTevSwapModeTableInfo& info)
-	{
-		u8 r = info.mR;
-		u8 g = info.mG;
-		u8 b = info.mB;
-		u8 a = info.mA;
-		_00  = J2DCalcTevSwapTable(r, g, b, a);
-	}
+	void setTevSwapModeTableInfo(const J2DTevSwapModeTableInfo& info) { _00 = J2DCalcTevSwapTable(info.mR, info.mG, info.mB, info.mA); }
 
 	u8 getR() { return _00 >> 6 & 3; }
 	u8 getG() { return _00 >> 4 & 3; }
@@ -365,11 +358,13 @@ struct J2DTevStage {
 
 	void setTevSwapModeInfo(const J2DTevSwapModeInfo& swapInfo)
 	{
-		setTexSel(swapInfo.mTexSel);
+		setTexSel(static_cast<u32>(swapInfo.mTexSel));
 		setRasSel(swapInfo.mRasSel);
 	}
 
 	void setTexSel(u8 texSel) { _07 = (_07 & ~0xC) | (texSel << 2); }
+
+	void setTexSel(u32 texSel) { _07 = (_07 & ~0xC) | (texSel << 2); }
 
 	void setRasSel(u8 rasSel) { _07 = (_07 & ~0x3) | (u8)rasSel; }
 

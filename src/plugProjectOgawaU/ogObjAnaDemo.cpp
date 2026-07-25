@@ -8,7 +8,6 @@
 
 namespace og {
 namespace newScreen {
-// should be static once the file is finished!
 // clang-format off
 static CaveTitleMsgEntry CaveTitleMsg [] = {
 //   id, filler, msg,      fire,  elec,  water, poison, filler

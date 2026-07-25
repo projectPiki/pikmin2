@@ -18,8 +18,8 @@ struct J2DMaterial {
 	struct J2DMaterialAnmPointer {
 		J2DMaterialAnmPointer()
 		{
-			mColorAnm    = nullptr;
-			mColorIds[0] = 0xFFFF;
+			mColorAnm = nullptr;
+			mColorIds = 0xFFFF;
 
 			mSRTAnm    = nullptr;
 			mSRTIds[0] = 0xFFFF;
@@ -57,7 +57,7 @@ struct J2DMaterial {
 		J2DAnmTextureSRTKey* mSRTAnm;  // _04
 		J2DAnmTexPattern* mPatternAnm; // _08
 		J2DAnmTevRegKey* mTevAnm;      // _0C
-		u16 mColorIds[1];              // _10
+		u16 mColorIds;                 // _10
 		u16 mSRTIds[8];                // _12
 		u16 mPatternIds[8];            // _22
 		u16 mTevCRegIds[4];            // _32
