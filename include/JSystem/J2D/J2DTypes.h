@@ -358,11 +358,13 @@ struct J2DTevStage {
 
 	void setTevSwapModeInfo(const J2DTevSwapModeInfo& swapInfo)
 	{
-		setTexSel(swapInfo.mTexSel);
+		setTexSel(static_cast<u32>(swapInfo.mTexSel));
 		setRasSel(swapInfo.mRasSel);
 	}
 
 	void setTexSel(u8 texSel) { _07 = (_07 & ~0xC) | (texSel << 2); }
+
+	void setTexSel(u32 texSel) { _07 = (_07 & ~0xC) | (texSel << 2); }
 
 	void setRasSel(u8 rasSel) { _07 = (_07 & ~0x3) | (u8)rasSel; }
 
