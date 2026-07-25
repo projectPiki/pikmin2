@@ -1182,45 +1182,14 @@ void EnemyBase::startAnimSound(u32 soundID, JAISound** se, JAInter::Actor* actor
  */
 JAISound* EnemyBase::startSoundInner(PSM::StartSoundArg& arg)
 {
-	if ((static_cast<Game::EnemyBase*>(mGameObj)->isEvent(0, Game::EB_Bittered))) {
-		u32 id = arg.mSoundID;
-		if ((id == PSSE_EN_DOPING_GAS_FREEZE || id == PSSE_EN_DOPING_ROCK_FLICK || id == PSSE_EN_DOPING_FLICK_LAST
-		     || id == PSSE_EN_DOPING_ROCK_BREAK)
-		    || ((id >> 12) & 0xf) != 2) {
-			return nullptr;
-		}
+	if (!(!static_cast<Game::EnemyBase*>(mGameObj)->isEvent(0, Game::EB_Bittered)
+	      || (arg.mSoundID == PSSE_EN_DOPING_GAS_FREEZE || arg.mSoundID == PSSE_EN_DOPING_ROCK_FLICK
+	          || arg.mSoundID == PSSE_EN_DOPING_FLICK_LAST || arg.mSoundID == PSSE_EN_DOPING_ROCK_BREAK)
+	      || ((arg.mSoundID >> 12) & 0xf) == 2)) {
+		return nullptr;
 	}
+
 	return Creature::startSoundInner(arg);
-
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r5, 0x2c(r3)
-	lwz      r0, 0x1e0(r5)
-	rlwinm.  r0, r0, 0, 0x16, 0x16
-	beq      lbl_8045E85C
-	lwz      r5, 4(r4)
-	cmplwi   r5, 0x50b0
-	beq      lbl_8045E85C
-	addi     r0, r5, -22705
-	cmplwi   r0, 2
-	ble      lbl_8045E85C
-	rlwinm   r0, r5, 0x14, 0x1c, 0x1f
-	cmplwi   r0, 2
-	beq      lbl_8045E85C
-	li       r3, 0
-	b        lbl_8045E860
-
-	lbl_8045E85C:
-	bl       startSoundInner__Q23PSM8CreatureFRQ23PSM13StartSoundArg
-
-	lbl_8045E860:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /**
