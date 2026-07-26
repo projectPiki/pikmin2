@@ -48,8 +48,7 @@ void StateCautionBase::cautionProc(EnemyBase* enemy)
 	bool doAlert;
 	switch (enemy->getEnemyTypeID()) {
 	case EnemyTypeID::EnemyID_BlueChappy: {
-		f32 wakeRadius = CG_PROPERPARMS(OBJ(enemy)).mBulborbWakeRadius.mValue;
-		doAlert        = EnemyFunc::isPikminOrNaviInRange(enemy, wakeRadius);
+		doAlert = EnemyFunc::isPikminOrNaviInRange(enemy, CG_PROPERPARMS(OBJ(enemy)).mBulborbWakeRadius.mValue);
 
 		if (!doAlert) {
 			doAlert = enemy->mHealth < CG_GENERALPARMS(enemy).mLifeBeforeAlert.mValue;
@@ -58,8 +57,7 @@ void StateCautionBase::cautionProc(EnemyBase* enemy)
 	}
 
 	default: {
-		f32 wakeRadius = CG_GENERALPARMS(enemy).mPrivateRadius.mValue;
-		doAlert        = EnemyFunc::isPikminOrNaviInRange(enemy, wakeRadius);
+		doAlert = EnemyFunc::isPikminOrNaviInRange(enemy, CG_GENERALPARMS(enemy).mPrivateRadius.mValue);
 
 		if (!doAlert) {
 			doAlert = enemy->mHealth < CG_GENERALPARMS(enemy).mLifeBeforeAlert.mValue;
@@ -1939,8 +1937,7 @@ void StateAttack::transitState(EnemyBase* enemy)
 		enemy->mTargetCreature = target;
 
 		f32 angle = enemy->getAngDist(enemy->mTargetCreature);
-		if (enemy->isTargetAttackable(enemy->mTargetCreature, angle, CG_GENERALPARMS(enemy).mMaxAttackRange(),
-		                              CG_GENERALPARMS(enemy).mMaxAttackAngle())) {
+		if (enemy->isTargetAttackable(angle, CG_GENERALPARMS(enemy).mMaxAttackRange(), CG_GENERALPARMS(enemy).mMaxAttackAngle())) {
 			transit(enemy, CHAPPY_Attack, nullptr);
 			return;
 		}
