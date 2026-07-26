@@ -123,6 +123,11 @@ struct ActionArg {
 		return "ActionArg";
 	}
 
+	// fabricated
+	inline bool is(const char* argtype) {
+		return strcmp(argtype, getName()) == 0;
+	}
+
 	// _00 = VTBL
 };
 
@@ -163,7 +168,7 @@ struct Action {
 
 	inline bool checkArg(ActionArg* settings, const char* typeName)
 	{
-		return (settings != nullptr && (strcmp(typeName, settings->getName()) == 0));
+		return settings && settings->is(typeName);
 	}
 
 	inline bool checkName(ActionArg* settings, const char* typeName) { return strcmp(typeName, settings->getName()) != 0; }
