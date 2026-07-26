@@ -475,6 +475,17 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 		return result;
 	}
 
+	// @fabricated signature, but required to match - reads mTargetCreature itself instead of taking it as a parameter
+	inline bool isTargetAttackable(f32 angleDiff, f32 attackDist, f32 attackAngle)
+	{
+		bool result      = false;
+		Creature* target = mTargetCreature;
+		if (isRadiusWithin(getSqrTargetSeparation(target), attackDist) && (isAngleWithin(angleDiff, attackAngle))) {
+			result = true;
+		}
+		return result;
+	}
+
 	inline bool isTargetAttackable(Creature* target, f32 attackDist, f32 attackAngle)
 	{
 		f32 angleDiff = getAngDist(target);

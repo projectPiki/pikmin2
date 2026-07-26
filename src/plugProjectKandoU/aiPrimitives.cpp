@@ -83,13 +83,7 @@ ActApproachPos::ActApproachPos(Game::Piki* p)
  */
 void ActApproachPos::init(ActionArg* settings)
 {
-	bool isApproachArg = false;
-	if (settings) {
-		bool strCheck = strcmp("ApproachPosActionArg", settings->getName()) == 0;
-		if (strCheck) {
-			isApproachArg = true;
-		}
-	}
+	bool isApproachArg = settings && settings->is("ApproachPosActionArg");
 	P2ASSERTLINE(424, isApproachArg);
 	ApproachPosActionArg* approachArg = static_cast<ApproachPosActionArg*>(settings);
 
@@ -201,13 +195,7 @@ ActGotoSlot::ActGotoSlot(Game::Piki* p)
  */
 void ActGotoSlot::init(ActionArg* settings)
 {
-	bool isGotoSlotArg = false;
-	if (settings) {
-		bool strCheck = strcmp("GotoSlotArg", settings->getName()) == 0;
-		if (strCheck) {
-			isGotoSlotArg = true;
-		}
-	}
+	bool isGotoSlotArg = settings && settings->is("GotoSlotArg");
 	P2ASSERTLINE(529, isGotoSlotArg);
 
 	mParent->startMotion(Game::IPikiAnims::WALK, Game::IPikiAnims::WALK, nullptr, nullptr);
@@ -1268,14 +1256,10 @@ ActPathMove::ActPathMove(Game::Piki* p)
 void ActPathMove::init(ActionArg* settings)
 {
 	mVsWayPointCounter = 0;
-	bool isPathMove    = false;
-	if (settings) {
-		bool strCheck = strcmp("PathMoveArg", settings->getName()) == 0;
-		if (strCheck) {
-			isPathMove = true;
-		}
-	}
-	P2ASSERTLINE(790, isPathMove);
+	bool check = settings && settings->is("PathMoveArg");
+	
+	P2ASSERTLINE(790, check);
+
 	PathMoveArg* pathMoveArg = static_cast<PathMoveArg*>(settings);
 
 	mOnyon  = nullptr;
@@ -1307,127 +1291,6 @@ void ActPathMove::init(ActionArg* settings)
 			pellet->mPelletCarry->reset();
 		}
 	}
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	mr       r31, r3
-	lis      r3, lbl_8047F070@ha
-	stw      r30, 0x28(r1)
-	addi     r30, r3, lbl_8047F070@l
-	stw      r29, 0x24(r1)
-	li       r29, 0
-	stw      r28, 0x20(r1)
-	or.      r28, r4, r4
-	stb      r29, 0x3d(r31)
-	beq      lbl_801986BC
-	mr       r3, r28
-	lwz      r12, 0(r28)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	addi     r3, r30, 0x6c
-	bl       strcmp
-	cntlzw   r0, r3
-	rlwinm.  r0, r0, 0x1b, 0x18, 0x1f
-	beq      lbl_801986BC
-	li       r29, 1
-
-lbl_801986BC:
-	clrlwi.  r0, r29, 0x18
-	bne      lbl_801986D8
-	addi     r3, r30, 0x34
-	addi     r5, r30, 0x48
-	li       r4, 0x316
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801986D8:
-	li       r0, 0
-	stw      r0, 0x34(r31)
-	lwz      r0, 4(r28)
-	stw      r0, 0x30(r31)
-	lwz      r3, 0x18(r28)
-	neg      r0, r3
-	andc     r0, r0, r3
-	srwi     r0, r0, 0x1f
-	stb      r0, 0x3c(r31)
-	lbz      r0, 0x3c(r31)
-	cmplwi   r0, 0
-	beq      lbl_8019872C
-	lwz      r3, 0x18(r28)
-	lis      r0, 0x4330
-	stw      r0, 0x18(r1)
-	xoris    r0, r3, 0x8000
-	lfd      f1, lbl_80518FA8@sda21(r2)
-	stw      r0, 0x1c(r1)
-	lfd      f0, 0x18(r1)
-	fsubs    f0, f0, f1
-	stfs     f0, 0x38(r31)
-
-lbl_8019872C:
-	li       r0, 0
-	lfs      f0, lbl_80518F60@sda21(r2)
-	stw      r0, 0x20(r31)
-	mr       r3, r31
-	li       r4, 1
-	stfs     f0, 0xb0(r31)
-	stfs     f0, 0xb4(r31)
-	stfs     f0, 0xb8(r31)
-	bl       initPathfinding__Q26PikiAI11ActPathMoveFb
-	li       r0, 1
-	addi     r3, r1, 8
-	stb      r0, 0x6c(r31)
-	lwz      r4, 0x30(r31)
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 8(r1)
-	stfs     f0, 0x10(r31)
-	lfs      f0, 0xc(r1)
-	stfs     f0, 0x14(r31)
-	lfs      f0, 0x10(r1)
-	stfs     f0, 0x18(r31)
-	lwz      r3, 0x30(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x80(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801987F0
-	lwz      r3, 0x30(r31)
-	lis      r4, "zero__10Vector3<f>"@ha
-	addi     r4, r4, "zero__10Vector3<f>"@l
-	lwz      r12, 0(r3)
-	mr       r29, r3
-	lwz      r12, 0x68(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, lbl_80518F60@sda21(r2)
-	mr       r3, r29
-	stfs     f0, 0x1c8(r29)
-	stfs     f0, 0x1cc(r29)
-	stfs     f0, 0x1d0(r29)
-	bl       getSpeicalSlot__Q24Game6PelletFv
-	extsh    r0, r3
-	cmpwi    r0, -1
-	bne      lbl_801987F0
-	lwz      r3, 0x334(r29)
-	bl       reset__Q24Game11PelletCarryFv
-
-lbl_801987F0:
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	lwz      r28, 0x20(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /**
@@ -3987,13 +3850,7 @@ ActStickAttack::ActStickAttack(Game::Piki* p)
  */
 void ActStickAttack::init(ActionArg* settings)
 {
-	bool isStickArg = false;
-	if (settings) {
-		bool strCheck = strcmp("StickAttackActionArg", settings->getName()) == 0;
-		if (strCheck) {
-			isStickArg = true;
-		}
-	}
+	bool isStickArg = settings && settings->is("StickAttackActionArg");
 	P2ASSERTLINE(2331, isStickArg);
 	StickAttackActionArg* arg = static_cast<StickAttackActionArg*>(settings);
 
@@ -4318,7 +4175,7 @@ ActGather::ActGather(Game::Piki* p)
  */
 void ActGather::init(ActionArg* settings)
 {
-	bool strCheck = strcmp("GatherActionArg", settings->getName()) == 0;
+	bool strCheck = settings->is("GatherActionArg");
 	P2ASSERTLINE(2669, strCheck);
 
 	GatherActionArg* arg = static_cast<GatherActionArg*>(settings);
