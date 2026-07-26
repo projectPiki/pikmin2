@@ -499,7 +499,7 @@ config.libs = [
             Object(NonMatching, "JSystem/J3D/J3DMaterialAttach.cpp"),
             Object(NonMatching, "JSystem/J3D/J3DMaterialFactory_v21.cpp"),
             Object(Matching, "JSystem/J3D/J3DShapeMtx.cpp"),
-            Object(NonMatching, "JSystem/J3D/J3DModelLoaderCalcSize.cpp"),
+            Object(Matching, "JSystem/J3D/J3DModelLoaderCalcSize.cpp"),
             Object(Matching, "JSystem/J3D/J3DJointTree.cpp"),
             Object(Matching, "JSystem/J3D/J3DSkinDeform.cpp"),
             Object(Matching, "JSystem/J3D/J3DShapeDraw.cpp"),

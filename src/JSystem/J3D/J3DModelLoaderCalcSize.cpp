@@ -115,12 +115,12 @@ int J3DModelLoader::calcLoadMaterialTableSize(const void* stream)
  */
 int J3DModelLoader::calcLoadBinaryDisplayListSize(const void* stream, u32 flags)
 {
+	u32 size = 0;
+	size += sizeof(J3DModelData);
 	const J3DFileHeader* header       = (const J3DFileHeader*)stream;
-	u32 blockCount                    = header->mBlockCount;
-	const J3DFileBlockBase* nextBlock = header->getFirstBlock();
-	u32 matFlags                      = flags & (J3DMLF_Material_UseIndirect | J3DMLF_26);
-	int size                          = sizeof(J3DModelData);
-	for (u32 i = 0; i < blockCount; i++) {
+	const J3DFileBlockBase* nextBlock = (const J3DFileBlockBase*)(header + 1);
+
+	for (u32 i = 0; i < header->mBlockCount; i++) {
 		switch (nextBlock->mBlockType) {
 		case J3DFBT_Info:
 			size += calcSizeInformation((const J3DModelInfoBlock*)nextBlock, flags);
@@ -140,14 +140,16 @@ int J3DModelLoader::calcLoadBinaryDisplayListSize(const void* stream, u32 flags)
 		case J3DFBT_MaterialV21:
 			break;
 		case J3DFBT_Material:
-			mMaterialBlock = (const J3DMaterialBlock*)nextBlock;
-			matFlags |= (J3DMLF_21 | J3DMLF_Material_PE_Full | J3DMLF_Material_Color_LightOn);
-			if ((flags & (J3DMLF_13 | J3DMLF_DoBdlMaterialCalc)) == 0) {
+			u32 flags2 = (J3DMLF_21 | J3DMLF_Material_PE_Full | J3DMLF_Material_Color_LightOn);
+			flags2 |= (u32)flags & (J3DMLF_Material_UseIndirect | J3DMLF_26);
+			mMaterialBlock    = (const J3DMaterialBlock*)nextBlock;
+			u32 flag_mtl_type = getBdlFlag_MaterialType(flags);
+			if (flag_mtl_type == 0) {
 				_18 = 1;
-				size += calcSizeMaterial((const J3DMaterialBlock*)nextBlock, matFlags);
-			} else if ((flags & (J3DMLF_13 | J3DMLF_DoBdlMaterialCalc)) == J3DMLF_DoBdlMaterialCalc) {
+				size += calcSizeMaterial((const J3DMaterialBlock*)nextBlock, flags2);
+			} else if (flag_mtl_type == J3DMLF_DoBdlMaterialCalc) {
 				_18 = 1;
-				size += calcSizePatchedMaterial((const J3DMaterialBlock*)nextBlock, matFlags);
+				size += calcSizePatchedMaterial((const J3DMaterialBlock*)nextBlock, flags2);
 			}
 			break;
 		case J3DFBT_Envelope:
@@ -164,170 +166,6 @@ int J3DModelLoader::calcLoadBinaryDisplayListSize(const void* stream, u32 flags)
 		nextBlock = nextBlock->getNext();
 	}
 	return size;
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stmw     r23, 0xc(r1)
-	mr       r25, r5
-	lis      r5, 0x4D415433@ha
-	lwz      r23, 0xc(r4)
-	mr       r24, r3
-	addi     r27, r4, 0x20
-	rlwinm   r30, r25, 0, 6, 7
-	rlwinm   r29, r25, 0, 0x12, 0x13
-	addi     r31, r5, 0x4D415433@l
-	li       r26, 0
-	li       r28, 0xe4
-	b        lbl_80087DAC
-
-lbl_80087BF8:
-	lwz      r4, 0(r27)
-	cmpw     r4, r31
-	beq      lbl_80087D1C
-	bge      lbl_80087C5C
-	lis      r3, 0x494E4631@ha
-	addi     r0, r3, 0x494E4631@l
-	cmpw     r4, r0
-	beq      lbl_80087CAC
-	bge      lbl_80087C44
-	lis      r3, 0x45565031@ha
-	addi     r0, r3, 0x45565031@l
-	cmpw     r4, r0
-	beq      lbl_80087D7C
-	bge      lbl_80087DA0
-	lis      r3, 0x44525731@ha
-	addi     r0, r3, 0x44525731@l
-	cmpw     r4, r0
-	beq      lbl_80087D90
-	b        lbl_80087DA0
-
-lbl_80087C44:
-	lis      r3, 0x4A4E5431@ha
-	addi     r0, r3, 0x4A4E5431@l
-	cmpw     r4, r0
-	beq      lbl_80087CC4
-	blt      lbl_80087DA0
-	b        lbl_80087DA0
-
-lbl_80087C5C:
-	lis      r3, 0x54455831@ha
-	addi     r0, r3, 0x54455831@l
-	cmpw     r4, r0
-	beq      lbl_80087CF0
-	bge      lbl_80087C98
-	lis      r3, 0x53485031@ha
-	addi     r0, r3, 0x53485031@l
-	cmpw     r4, r0
-	beq      lbl_80087CD8
-	bge      lbl_80087DA0
-	lis      r3, 0x4D444C33@ha
-	addi     r0, r3, 0x4D444C33@l
-	cmpw     r4, r0
-	beq      lbl_80087D04
-	b        lbl_80087DA0
-
-lbl_80087C98:
-	lis      r3, 0x56545831@ha
-	addi     r0, r3, 0x56545831@l
-	cmpw     r4, r0
-	beq      lbl_80087DA0
-	b        lbl_80087DA0
-
-lbl_80087CAC:
-	mr       r3, r24
-	mr       r4, r27
-	mr       r5, r25
-	bl       calcSizeInformation__14J3DModelLoaderFPC17J3DModelInfoBlockUl
-	add      r28, r28, r3
-	b        lbl_80087DA0
-
-lbl_80087CC4:
-	mr       r3, r24
-	mr       r4, r27
-	bl       calcSizeJoint__14J3DModelLoaderFPC13J3DJointBlock
-	add      r28, r28, r3
-	b        lbl_80087DA0
-
-lbl_80087CD8:
-	mr       r3, r24
-	mr       r4, r27
-	mr       r5, r25
-	bl       calcSizeShape__14J3DModelLoaderFPC13J3DShapeBlockUl
-	add      r28, r28, r3
-	b        lbl_80087DA0
-
-lbl_80087CF0:
-	mr       r3, r24
-	mr       r4, r27
-	bl       calcSizeTexture__14J3DModelLoaderFPC15J3DTextureBlock
-	add      r28, r28, r3
-	b        lbl_80087DA0
-
-lbl_80087D04:
-	mr       r3, r24
-	mr       r4, r27
-	mr       r5, r25
-	bl       calcSizeMaterialDL__14J3DModelLoaderFPC18J3DMaterialDLBlockUl
-	add      r28, r28, r3
-	b        lbl_80087DA0
-
-lbl_80087D1C:
-	cmplwi   r29, 0
-	lis      r5, 0x5010
-	stw      r27, 0x10(r24)
-	or       r5, r5, r30
-	bne      lbl_80087D58
-	li       r0, 1
-	mr       r3, r24
-	stb      r0, 0x18(r24)
-	mr       r4, r27
-	lwz      r12, 0(r24)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	add      r28, r28, r3
-	b        lbl_80087DA0
-
-lbl_80087D58:
-	cmplwi   r29, 0x2000
-	bne      lbl_80087DA0
-	li       r0, 1
-	mr       r3, r24
-	stb      r0, 0x18(r24)
-	mr       r4, r27
-	bl       calcSizePatchedMaterial__14J3DModelLoaderFPC16J3DMaterialBlockUl
-	add      r28, r28, r3
-	b        lbl_80087DA0
-
-lbl_80087D7C:
-	mr       r3, r24
-	mr       r4, r27
-	bl       calcSizeEnvelope__14J3DModelLoaderFPC16J3DEnvelopeBlock
-	add      r28, r28, r3
-	b        lbl_80087DA0
-
-lbl_80087D90:
-	mr       r3, r24
-	mr       r4, r27
-	bl       calcSizeDraw__14J3DModelLoaderFPC12J3DDrawBlock
-	add      r28, r28, r3
-
-lbl_80087DA0:
-	lwz      r0, 4(r27)
-	addi     r26, r26, 1
-	add      r27, r27, r0
-
-lbl_80087DAC:
-	cmplw    r26, r23
-	blt      lbl_80087BF8
-	mr       r3, r28
-	lmw      r23, 0xc(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /**
@@ -524,9 +362,8 @@ int J3DModelLoader::calcSizeMaterialDL(const J3DMaterialDLBlock* block, u32 flag
 {
 	size_t size = 0;
 	J3DMaterialFactory factory(*block);
-	u32 count;
 	if (!_18) {
-		count = block->mEntries;
+		u32 count = block->mEntries;
 		if (block->mStringTableOffset) {
 			size = 0x10;
 		}
@@ -535,79 +372,10 @@ int J3DModelLoader::calcSizeMaterialDL(const J3DMaterialDLBlock* block, u32 flag
 			size += factory.calcSize(nullptr, J3DMaterialFactory::LOCKED, (u16)i, flags);
 		}
 	} else {
-		count = block->mEntries;
+		u32 count = block->mEntries;
 		for (u16 i = 0; (u16)i < count; i++) {
 			size += factory.calcSize((J3DMaterial*)this, J3DMaterialFactory::LOCKED, (u16)i, flags);
 		}
 	}
 	return size;
-	/*
-	.loc_0x0:
-	  stwu      r1, -0xB0(r1)
-	  mflr      r0
-	  stw       r0, 0xB4(r1)
-	  stmw      r27, 0x9C(r1)
-	  mr        r27, r3
-	  mr        r29, r4
-	  mr        r28, r5
-	  addi      r3, r1, 0x8
-	  li        r31, 0
-	  bl        -0x1BBF4
-	  lbz       r0, 0x18(r27)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x84
-	  lwz       r0, 0x20(r29)
-	  lhz       r30, 0x8(r29)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x48
-	  li        r31, 0x10
-
-	.loc_0x48:
-	  rlwinm    r0,r30,2,0,29
-	  li        r29, 0
-	  add       r31, r31, r0
-	  b         .loc_0x74
-
-	.loc_0x58:
-	  mr        r7, r28
-	  addi      r3, r1, 0x8
-	  li        r4, 0
-	  li        r5, 0x1
-	  bl        -0x1A2E0
-	  add       r31, r31, r3
-	  addi      r29, r29, 0x1
-
-	.loc_0x74:
-	  rlwinm    r6,r29,0,16,31
-	  cmplw     r6, r30
-	  blt+      .loc_0x58
-	  b         .loc_0xB8
-
-	.loc_0x84:
-	  lhz       r29, 0x8(r29)
-	  li        r30, 0
-	  b         .loc_0xAC
-
-	.loc_0x90:
-	  mr        r4, r27
-	  mr        r7, r28
-	  addi      r3, r1, 0x8
-	  li        r5, 0x1
-	  bl        -0x1A318
-	  add       r31, r31, r3
-	  addi      r30, r30, 0x1
-
-	.loc_0xAC:
-	  rlwinm    r6,r30,0,16,31
-	  cmplw     r6, r29
-	  blt+      .loc_0x90
-
-	.loc_0xB8:
-	  mr        r3, r31
-	  lmw       r27, 0x9C(r1)
-	  lwz       r0, 0xB4(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0xB0
-	  blr
-	*/
 }

@@ -129,7 +129,7 @@ struct J3DModelData {
 
 	bool checkFlag(u32 flag) const { return (mModelLoaderFlags & flag) ? true : false; }
 	u32 getFlag() const { return mModelLoaderFlags; }
-	u16 checkBumpFlag() const { return mBumpFlag; }
+	u16 checkBumpFlag() const { return mBumpFlag == 1; }
 	void setBumpFlag(u32 flag) { mBumpFlag = flag; }
 	bool checkBBoardFlag() const { return mBillboardFlag == 1; }
 	bool isLocked() { return mMaterialTable.isLocked(); }
@@ -193,7 +193,7 @@ struct J3DModel {
 
 	Mtx& getBaseTRMtx() { return mPosMtx; }
 	void i_setBaseTRMtx(Mtx m) { PSMTXCopy(m, mPosMtx); }
-	u32 getMtxCalcMode() const { return mFlags & J3DMODEL_SkinPosCpu; }
+	u32 getMtxCalcMode() { return mFlags & (J3DMODEL_Unk1 | J3DMODEL_UseDefaultJ3D); }
 	J3DVertexBuffer* getVertexBuffer() const { return (J3DVertexBuffer*)&mVertexBuffer; }
 	J3DMatPacket* getMatPacket(u16 idx) const { return &mMatPackets[idx]; }
 	J3DShapePacket* getShapePacket(u16 idx) const { return &mShapePackets[idx]; }
