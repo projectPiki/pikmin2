@@ -125,15 +125,15 @@ struct J3DIndBlock {
 struct J3DIndBlockFull : public J3DIndBlock {
 	inline J3DIndBlockFull() { initialize(); }
 
-	virtual void reset(J3DIndBlock*);                                                                               // _08
 	virtual void diff(u32);                                                                                         // _0C
+	virtual void reset(J3DIndBlock*);                                                                               // _08
 	virtual void load();                                                                                            // _10
 	virtual u32 countDLSize();                                                                                      // _14
 	virtual JBlockType getType() { return JBT_IndFull; }                                                            // _18 (weak)
 	virtual void setIndTexStageNum(u8 stageNum) { mIndTexStageNum = stageNum; }                                     // _1C (weak)
 	virtual u8 getIndTexStageNum() const { return mIndTexStageNum; }                                                // _20 (weak)
-	virtual void setIndTexOrder(u32 index, J3DIndTexOrder order) { mOrders[index] = order; }                        // _24 (weak)
 	virtual void setIndTexOrder(u32 index, const J3DIndTexOrder* order) { mOrders[index] = *order; }                // _28 (weak)
+	virtual void setIndTexOrder(u32 index, J3DIndTexOrder order) { mOrders[index] = order; }                        // _24 (weak)
 	virtual J3DIndTexOrder* getIndTexOrder(u32 index) { return &mOrders[index]; }                                   // _2C (weak)
 	virtual void setIndTexMtx(u32 index, const J3DIndTexMtx* mtx) { mTexMtxs[index] = *mtx; }                       // _30 (weak)
 	virtual void setIndTexMtx(u32 index, J3DIndTexMtx mtx) { mTexMtxs[index] = mtx; }                               // _34 (weak)

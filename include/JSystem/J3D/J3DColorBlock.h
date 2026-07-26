@@ -95,8 +95,8 @@ struct J3DColorBlockAmbientOn : public J3DColorBlockLightOff {
 		initialize();
 	}
 
-	virtual void load();                                                                             // _08
 	virtual void reset(J3DColorBlock*);                                                              // _0C
+	virtual void load();                                                                             // _08
 	virtual u32 countDLSize();                                                                       // _28
 	virtual JBlockType getType() { return JBT_ColorAmbientOn; }                                      // _2C (weak)
 	virtual void setAmbColor(u32 index, const J3DGXColor* color) { mAmbientColors[index] = *color; } // _3C (weak)
@@ -121,8 +121,8 @@ struct J3DColorBlockLightOn : public J3DColorBlock {
 		initialize();
 	}
 
-	virtual void load();                                                                                        // _08
 	virtual void reset(J3DColorBlock*);                                                                         // _0C
+	virtual void load();                                                                                        // _08
 	virtual void patch();                                                                                       // _10
 	virtual void patchMatColor();                                                                               // _14
 	virtual void patchLight();                                                                                  // _18
