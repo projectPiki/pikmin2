@@ -1825,8 +1825,8 @@ config.libs = [
         "progress_category": "game",
         "host": True,
         "objects": [
-            Object(NonMatching, "plugProjectEbisawaU/efxBase.cpp"),
-            Object(NonMatching, "plugProjectEbisawaU/efxEnemy.cpp"),
+            Object(Matching, "plugProjectEbisawaU/efxBase.cpp"),
+            Object(Equivalent, "plugProjectEbisawaU/efxEnemy.cpp"),
             Object(Matching, "plugProjectEbisawaU/efxObject.cpp"),
             Object(NonMatching, "plugProjectEbisawaU/efxPikmin.cpp"),
             Object(Matching, "plugProjectEbisawaU/particle2dMgr.cpp"),

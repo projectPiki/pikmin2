@@ -2,7 +2,7 @@
 #define _EFX_TODAMA_H
 
 #include "efx/TSimple.h"
-#include "efx/TChasePos.h"
+#include "efx/TChasePosPos.h"
 #include "efx/TChaseMtx.h"
 
 namespace efx {

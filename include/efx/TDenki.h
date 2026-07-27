@@ -54,7 +54,7 @@ struct TDenkiHibaMgr : public TBase {
 	void setRateLOD(int);
 
 	// unused/inlined:
-	void createHiba();
+	bool createHiba();
 
 	// _00  = VTBL
 	TDenkiHiba mHiba;                 // _04

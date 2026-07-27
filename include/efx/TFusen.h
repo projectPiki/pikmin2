@@ -1,7 +1,7 @@
 #ifndef _EFX_TFUSEN_H
 #define _EFX_TFUSEN_H
 
-#include "efx/TChasePos.h"
+#include "efx/TChasePosYRot.h"
 #include "efx/TChaseMtx.h"
 
 namespace efx {
