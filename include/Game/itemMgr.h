@@ -203,9 +203,6 @@ struct FixedSizeItemMgr : public BaseItemMgr, public Container<T> {
 	virtual u32 generatorGetID()                                  = 0;                       // _58
 	virtual T* generatorBirth(Vector3f&, Vector3f&, GenItemParm*) = 0;                       // _5C
 	virtual void kill(T* item) { mMonoObjectMgr.kill(item); }                                // _A8 (weak)
-	virtual void* getNext(void* idx) { return mMonoObjectMgr.getNext(idx); }                 // _B0 (weak, thunk at _88)
-	virtual void* getStart() { return mMonoObjectMgr.getStart(); }                           // _B4 (weak, thunk at _8C)
-	SysShape::Model* createModel(T*);
 
 	void createMgr(int, u32);
 
@@ -236,8 +233,11 @@ struct FixedSizeItemMgr : public BaseItemMgr, public Container<T> {
 			(*iter)->initDependency();
 		}
 	}
-	virtual T* get(void* idx); // _AC (weak, thunk at _94)
-	virtual void* getEnd();    // _B8 (weak, thunk at _90)
+	virtual T* get(void* idx);                                               // _AC (weak, thunk at _94)
+	virtual void* getNext(void* idx) { return mMonoObjectMgr.getNext(idx); } // _B0 (weak, thunk at _88)
+	virtual void* getStart() { return mMonoObjectMgr.getStart(); }           // _B4 (weak, thunk at _8C)
+	virtual void* getEnd();                                                  // _B8 (weak, thunk at _90)
+	SysShape::Model* createModel(T*);
 
 	void alloc(int count) { mMonoObjectMgr.alloc(count); }
 
