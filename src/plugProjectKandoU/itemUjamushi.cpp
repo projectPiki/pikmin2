@@ -2439,7 +2439,7 @@ Mgr::Mgr()
 	billData->simpleCalcMaterial(0, *(Mtx*)&j3dDefaultMtx);
 	billData->makeSharedDL();
 
-	_88 = 72.0f;
+	_88 = 0.35f;
 	_8C = 1;
 	_8D = 1;
 	_8E = 1;

@@ -987,7 +987,7 @@ void TOmake::doInitWaitState()
 {
 	E2DCallBack_BlinkFontColor* font = &mFonts[mCurrSel];
 	font->mIsEnabled                 = true;
-	font->mSpeed                     = sys->mDeltaTime * 3.333333f;
+	font->mSpeed                     = sys->mDeltaTime * 3.3333333f;
 	font->mColor1Weight              = 0.0f;
 	font->mIsTowardColor1            = true;
 	font->_49                        = false;

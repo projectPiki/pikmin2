@@ -526,7 +526,7 @@ void Pikmin::TUnit::init(ebi::title::Pikmin::TMgr* mgr, s32 color)
 	mParms[2] = mManager->mParams.mCollRadius();
 
 	mFrameControlA.mFrame = 5.0f * randEbisawaFloat();
-	mRandAnimSpeeds.y     = 0.8f * randEbisawaFloat() + 0.40000004f;
+	mRandAnimSpeeds.y     = 0.40000004f * randEbisawaFloat() + 0.8f;
 	mIsDead               = false;
 }
 

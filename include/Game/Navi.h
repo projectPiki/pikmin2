@@ -147,7 +147,7 @@ struct Navi : public FakePiki, virtual public PelletView {
 	virtual void onStickEnd(Creature*);                                 // _15C
 	virtual bool ignoreAtari(Creature* toIgnore);                       // _190
 	virtual bool stimulate(Interaction& data);                          // _1A4
-	virtual char* getCreatureName() { return "navi"; }                  // _1A8 (weak)
+	virtual char* getCreatureName() { return "orima"; }                 // _1A8 (weak)
 	virtual s32 getCreatureID() { return mNaviIndex; }                  // _1AC (weak)
 
 	// vtable 2 (MotionListener + FakePiki + self)

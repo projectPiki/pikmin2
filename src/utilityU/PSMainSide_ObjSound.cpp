@@ -3077,7 +3077,7 @@ JAISound* Navi::playKaisanSE()
  */
 void Navi::playWalkSound(PSM::Navi::FootType type, int id)
 {
-	int test               = type + (id * 2);
+	id                     = type + (id * 2);
 	PSGame::RandId& randid = PSSystem::getSeMgrInstance()->mRandid;
 
 	if (static_cast<Game::Navi*>(mGameObj)->isWalking()) {
@@ -3085,87 +3085,12 @@ void Navi::playWalkSound(PSM::Navi::FootType type, int id)
 	}
 
 	randid.mId   = 0.7f;
-	JAISe* sound = randid.startSound(this, test, 2, 0);
+	JAISe* sound = randid.startSound(this, id, 2, 0);
 	randid.mId   = PSGame::RandId::cNotUsingMasterIdRatio;
 
 	if (sound) {
 		sound->setPortData(10, getRappaManType(mRappa));
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	slwi     r5, r5, 1
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	add      r30, r4, r5
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lwz      r0,
-"sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13) cmplwi   r0,
-0 bne      lbl_80462F50 lis      r3, lbl_8049CFD0@ha lis      r5,
-lbl_8049CFB8@ha addi     r3, r3, lbl_8049CFD0@l li       r4, 0x237 addi     r5,
-r5, lbl_8049CFB8@l crclr    6 bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80462F50:
-	lwz      r3, 0x2c(r29)
-	lwz      r4,
-"sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13) lwz r12,
-0(r3) addi     r31, r4, 0x24 lwz      r12, 0x21c(r12) mtctr    r12 bctrl clrlwi.
-r0, r3, 0x18 beq      lbl_80462F9C lwz      r3, 0x90(r29) cmplwi   r3, 0 beq
-lbl_80462F9C lwz      r12, 0x10(r3) li       r4, 0 lwz      r12, 0x14(r12) mtctr
-r12 bctrl li       r0, 0 stw      r0, 0x90(r29)
-
-lbl_80462F9C:
-	lfs      f0, lbl_80520C88@sda21(r2)
-	cmplwi   r29, 0
-	mr       r4, r29
-	stfs     f0, 0(r31)
-	beq      lbl_80462FB4
-	addi     r4, r29, 0x30
-
-lbl_80462FB4:
-	mr       r3, r31
-	mr       r5, r30
-	li       r6, 2
-	li       r7, 0
-	bl       startSound__Q26PSGame6RandIdFPQ27JAInter6ObjectUlUlUl
-	lfs      f0, cNotUsingMasterIdRatio__Q26PSGame6RandId@sda21(r13)
-	cmplwi   r3, 0
-	stfs     f0, 0(r31)
-	beq      lbl_80463018
-	lwz      r0, 0x88(r29)
-	cmplwi   r0, 0xd
-	bne      lbl_80462FEC
-	li       r0, 0
-	b        lbl_80463000
-
-lbl_80462FEC:
-	cmplwi   r0, 0xe
-	bne      lbl_80462FFC
-	li       r0, 1
-	b        lbl_80463000
-
-lbl_80462FFC:
-	li       r0, 2
-
-lbl_80463000:
-	lwz      r12, 0x10(r3)
-	clrlwi   r5, r0, 0x10
-	li       r4, 0xa
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80463018:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
