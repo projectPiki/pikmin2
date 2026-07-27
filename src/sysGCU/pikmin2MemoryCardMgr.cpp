@@ -1528,19 +1528,30 @@ inline bool Mgr::checkCheckSum(u32* buffer)
 	return _D0 && buffer[0x2FFF] == calcCheckSum(buffer, 0xBFFC);
 }
 
-// this might be a few inlines stacked together? unsure
-inline bool Mgr::checkInfo(u32* buffer)
+inline bool Mgr::checkPlVa(u32* buffer)
 {
-	bool checkPlVa    = false;
-	bool checkVersion = false;
-	if (checkCheckSum(buffer) && buffer[0] == 'PlVa') {
-		checkPlVa = true;
+	bool checkPlVa = false;
+	if (checkCheckSum(buffer)) {
+		if (buffer[0] == 'PlVa') {
+			checkPlVa = true;
+		}
 	}
-	if (checkPlVa && buffer[1] == '0003') {
+	return checkPlVa;
+}
+
+inline bool Mgr::checkInfoBody(u32* buffer)
+{
+	bool checkVersion = false;
+	if (checkPlVa(buffer) && buffer[1] == '0003') {
 		checkVersion = true;
 	}
 
 	return checkVersion;
+}
+
+inline bool Mgr::checkInfo(u32* buffer)
+{
+	return checkInfoBody(buffer);
 }
 
 /**

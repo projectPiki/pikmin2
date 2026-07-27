@@ -1,9 +1,28 @@
 #ifndef _EFX_TSIMPLEMTX_H
 #define _EFX_TSIMPLEMTX_H
 
-#include "Matrixf.h"
 #include "efx/TSimple.h"
 #include "efx/TCallBack_StaticClipping.h"
+
+#define SET_EMITTER_CALLBACKS(I)                                                                          \
+	inline bool TSimpleMtx##I::setEmitterCallbacks()                                                      \
+	{                                                                                                     \
+		Arg newArg;                                                                                       \
+		for (int i = 0; i < I; i++) {                                                                     \
+			TCallBack_StaticClipping* callback = &mCallBack_StaticClipping;                               \
+			mEmitters[i]                       = particleMgr->create(mEffectIDs[i], newArg.mPosition, 0); \
+                                                                                                          \
+			if (mEmitters[i]) {                                                                           \
+				mEmitters[i]->mEmitterCallback = callback;                                                \
+                                                                                                          \
+			} else {                                                                                      \
+				return false;                                                                             \
+			}                                                                                             \
+		}                                                                                                 \
+		return true;                                                                                      \
+	}
+
+struct Matrixf;
 
 namespace efx {
 struct TSimpleMtx1 : public TSimple1 {
@@ -14,23 +33,8 @@ struct TSimpleMtx1 : public TSimple1 {
 	}
 
 	virtual bool create(Arg*); // _08
-
-	inline bool setEmitterCallbacks() // this could afford to be a template for all these functions
-	{
-		Arg newArg;
-		for (int i = 0; i < (int)ARRAY_SIZE(mEmitters); i++) {
-			TCallBack_StaticClipping* callback = &mCallBack_StaticClipping;
-			mEmitters[i]                       = particleMgr->create(mEffectIDs[i], newArg.mPosition, 0);
-
-			if (mEmitters[i]) {
-				mEmitters[i]->mEmitterCallback = callback;
-
-			} else {
-				return false;
-			}
-		}
-		return true;
-	}
+	// fabricated
+	inline bool setEmitterCallbacks();
 
 	// _00		= VTBL
 	// _00-_0C	= TSimple1
@@ -46,22 +50,8 @@ struct TSimpleMtx2 : public TSimple2 {
 
 	virtual bool create(Arg*); // _08
 
-	inline bool setEmitterCallbacks() // this could afford to be a template for all these functions
-	{
-		Arg newArg;
-		for (int i = 0; i < (int)ARRAY_SIZE(mEmitters); i++) {
-			TCallBack_StaticClipping* callback = &mCallBack_StaticClipping;
-			mEmitters[i]                       = particleMgr->create(mEffectIDs[i], newArg.mPosition, 0);
-
-			if (mEmitters[i]) {
-				mEmitters[i]->mEmitterCallback = callback;
-
-			} else {
-				return false;
-			}
-		}
-		return true;
-	}
+	// fabricated
+	inline bool setEmitterCallbacks();
 
 	// _00		= VTBL
 	// _00-_10	= TSimple2
@@ -77,22 +67,8 @@ struct TSimpleMtx3 : public TSimple3 {
 
 	virtual bool create(Arg*); // _08
 
-	inline bool setEmitterCallbacks() // this could afford to be a template for all these functions
-	{
-		Arg newArg;
-		for (int i = 0; i < (int)ARRAY_SIZE(mEmitters); i++) {
-			TCallBack_StaticClipping* callback = &mCallBack_StaticClipping;
-			mEmitters[i]                       = particleMgr->create(mEffectIDs[i], newArg.mPosition, 0);
-
-			if (mEmitters[i]) {
-				mEmitters[i]->mEmitterCallback = callback;
-
-			} else {
-				return false;
-			}
-		}
-		return true;
-	}
+	// fabricated
+	inline bool setEmitterCallbacks();
 
 	// _00		= VTBL
 	// _00-_18	= TSimple3
@@ -108,27 +84,19 @@ struct TSimpleMtx4 : public TSimple4 {
 
 	virtual bool create(Arg*); // _08
 
-	inline bool setEmitterCallbacks() // this could afford to be a template for all these functions
-	{
-		Arg newArg;
-		for (int i = 0; i < (int)(sizeof(mEmitters) / sizeof(mEmitters[0])); i++) {
-			TCallBack_StaticClipping* callback = &mCallBack_StaticClipping;
-			mEmitters[i]                       = particleMgr->create(mEffectIDs[i], newArg.mPosition, 0);
-
-			if (mEmitters[i]) {
-				mEmitters[i]->mEmitterCallback = callback;
-
-			} else {
-				return false;
-			}
-		}
-		return true;
-	}
+	// fabricated
+	inline bool setEmitterCallbacks();
 
 	// _00		= VTBL
 	// _00-_1C	= TSimple4
 	Matrixf* mMtx; // _1C
 };
+
+SET_EMITTER_CALLBACKS(1)
+SET_EMITTER_CALLBACKS(2)
+SET_EMITTER_CALLBACKS(3)
+SET_EMITTER_CALLBACKS(4)
+
 } // namespace efx
 
 #endif

@@ -3,7 +3,7 @@
 
 #include "efx/TSimple.h"
 #include "efx/TSimpleMtx.h"
-#include "efx/TChasePos.h"
+#include "efx/TChasePosPos.h"
 #include "efx/TChaseMtx.h"
 #include "efx/TForever.h"
 

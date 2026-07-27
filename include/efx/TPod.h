@@ -2,7 +2,7 @@
 #define _EFX_TPOD_H
 
 #include "efx/TSimple.h"
-#include "efx/TChasePos.h"
+#include "efx/TChasePosYRot.h"
 #include "efx/TChaseMtx.h"
 #include "efx/TForever.h"
 

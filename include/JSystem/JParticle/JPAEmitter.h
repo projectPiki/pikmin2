@@ -49,6 +49,13 @@ struct JPABaseParticle {
 	f32 getCalcCurrentPositionY(const JPABaseEmitter*) const;
 	f32 getCalcCurrentPositionZ(const JPABaseEmitter*) const;
 
+	Vector3f getCalcCurrentPosition(const JPABaseEmitter* emit) const
+	{
+		return Vector3f(getCalcCurrentPositionX(emit), 
+						getCalcCurrentPositionY(emit),
+		                getCalcCurrentPositionZ(emit));
+	}
+
 	// unused/inlined:
 	//~JPABaseParticle();
 	f32 getWidth(const JPABaseEmitter*) const;
@@ -295,6 +302,8 @@ struct JPABaseEmitter {
 	void getLocalTranslation(JGeometry::TVec3f& vec) { vec.set(mLocalTrs); }
 	void setGlobalRotation(const JGeometry::TVec3<s16>& rot) { JPAGetXYZRotateMtx(rot.x, rot.y, rot.z, mGlobalRot); }
 	void setGlobalRotation(s16 x, s16 y, s16 z) { JPAGetXYZRotateMtx(x, y, z, mGlobalRot); }
+	void getLocalScale(JGeometry::TVec3f& vec) { vec.set(mLocalScl); }
+	JGeometry::TVec3f getLocalScale() { return mLocalScl; }
 	void setGlobalAlpha(u8 alpha) { mGlobalPrmClr.a = alpha; }
 	u8 getGlobalAlpha() { return mGlobalPrmClr.a; }
 	void getGlobalPrmColor(GXColor& color) { color = mGlobalPrmClr; }
@@ -329,6 +338,9 @@ struct JPABaseEmitter {
 	void playCalcEmitter() { resetFlag(JPAEMIT_StopCalc); }
 	void stopDrawParticle() { setFlag(JPAEMIT_StopDraw); }
 	void playDrawParticle() { resetFlag(JPAEMIT_StopDraw); }
+
+	inline bool isFinished() { return isFlag(JPAEMIT_EnableDeleteEmitter) && getParticleNumber() == 0; }
+
 
 	JGeometry::TVec3f mLocalScl;             // _00
 	JGeometry::TVec3f mLocalTrs;             // _0C

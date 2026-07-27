@@ -3,7 +3,8 @@
 
 #include "efx/TSimple.h"
 #include "efx/TSimpleMtx.h"
-#include "efx/TChasePos.h"
+#include "efx/TChasePosPos.h"
+#include "efx/TChasePosYRot.h"
 #include "efx/TChaseMtx.h"
 
 namespace efx {

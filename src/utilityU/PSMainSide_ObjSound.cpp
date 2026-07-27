@@ -3009,34 +3009,35 @@ JAISound* Navi::startSound(u32 soundID, u32 flag)
 	}
 }
 
+// 0 olimar, 1 louie, 2 president
+static inline int getRappaManType(PSGame::Rappa& rappa)
+{
+	if (rappa.mId == 13) {
+		return 0;
+	}
+
+	if (rappa.mId == 14) {
+		return 1;
+	}
+	return 2;
+}
+
 /**
  * @note Address: 0x80462D9C
  * @note Size: 0x28
  */
 int Navi::getManType()
 {
+	// same logic as getRappaManType, only this shape matches standalone
 	if (mRappa.mId == 13) {
 		return 0;
 	}
 
+	int ret = 2;
 	if (mRappa.mId == 14) {
-		return 4; // should be 1 but everything breaks
+		ret = 1;
 	}
-	return 2;
-	/*
-	lwz      r0, 0x88(r3)
-	cmplwi   r0, 0xd
-	bne      lbl_80462DB0
-	li       r3, 0
-	blr
-
-lbl_80462DB0:
-	cmplwi   r0, 0xe
-	li       r3, 2
-	bnelr
-	li       r3, 1
-	blr
-	*/
+	return ret;
 }
 
 /**
@@ -3046,71 +3047,13 @@ lbl_80462DB0:
 JAISound* Navi::playShugoSE()
 {
 	u32 sound;
-	if (getManType() == 0) {
+	if (getRappaManType(mRappa) == 0) {
 		sound = PSSE_PL_SHUGO;
 	} else {
-		sound = (getManType() - 1 == 1) + 0xa0;
+		// written like this to match
+		sound = PSSE_PL_SYUGO_SHACHO + ((getRappaManType(mRappa) == 1) ? -1 : 0);
 	}
 	return startSound(sound, 0);
-
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r4, 0x88(r3)
-	cmplwi   r4, 0xd
-	bne      lbl_80462DE4
-	li       r0, 0
-	b        lbl_80462DF8
-
-lbl_80462DE4:
-	cmplwi   r4, 0xe
-	bne      lbl_80462DF4
-	li       r0, 1
-	b        lbl_80462DF8
-
-lbl_80462DF4:
-	li       r0, 2
-
-lbl_80462DF8:
-	cmpwi    r0, 0
-	bne      lbl_80462E08
-	li       r4, 7
-	b        lbl_80462E40
-
-lbl_80462E08:
-	cmplwi   r4, 0xd
-	bne      lbl_80462E18
-	li       r5, 0
-	b        lbl_80462E2C
-
-lbl_80462E18:
-	cmplwi   r4, 0xe
-	bne      lbl_80462E28
-	li       r5, 1
-	b        lbl_80462E2C
-
-lbl_80462E28:
-	li       r5, 2
-
-lbl_80462E2C:
-	addi     r4, r5, -1
-	subfic   r0, r5, 1
-	nor      r0, r4, r0
-	srawi    r4, r0, 0x1f
-	addi     r4, r4, 0xa0
-
-lbl_80462E40:
-	lwz      r12, 0x28(r3)
-	li       r5, 0
-	lwz      r12, 0x7c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /**
@@ -3120,70 +3063,12 @@ lbl_80462E40:
 JAISound* Navi::playKaisanSE()
 {
 	u32 sound;
-	if (getManType() == 0) {
+	if (getRappaManType(mRappa) == 0) {
 		sound = PSSE_PL_KAISAN;
 	} else {
-		sound = ((getManType() - 1) == 1) + PSSE_PL_KAISAN_SHACHO;
+		sound = PSSE_PL_KAISAN_SHACHO + ((getRappaManType(mRappa) == 1) ? -1 : 0);
 	}
 	return startSound(sound, 0);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r4, 0x88(r3)
-	cmplwi   r4, 0xd
-	bne      lbl_80462E84
-	li       r0, 0
-	b        lbl_80462E98
-
-lbl_80462E84:
-	cmplwi   r4, 0xe
-	bne      lbl_80462E94
-	li       r0, 1
-	b        lbl_80462E98
-
-lbl_80462E94:
-	li       r0, 2
-
-lbl_80462E98:
-	cmpwi    r0, 0
-	bne      lbl_80462EA8
-	li       r4, 0x808
-	b        lbl_80462EE0
-
-lbl_80462EA8:
-	cmplwi   r4, 0xd
-	bne      lbl_80462EB8
-	li       r5, 0
-	b        lbl_80462ECC
-
-lbl_80462EB8:
-	cmplwi   r4, 0xe
-	bne      lbl_80462EC8
-	li       r5, 1
-	b        lbl_80462ECC
-
-lbl_80462EC8:
-	li       r5, 2
-
-lbl_80462ECC:
-	addi     r4, r5, -1
-	subfic   r0, r5, 1
-	nor      r0, r4, r0
-	srawi    r4, r0, 0x1f
-	addi     r4, r4, 0x8a2
-
-lbl_80462EE0:
-	lwz      r12, 0x28(r3)
-	li       r5, 0
-	lwz      r12, 0x7c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /**
@@ -3204,7 +3089,7 @@ void Navi::playWalkSound(PSM::Navi::FootType type, int id)
 	randid.mId   = PSGame::RandId::cNotUsingMasterIdRatio;
 
 	if (sound) {
-		sound->setPortData(10, getManType());
+		sound->setPortData(10, getRappaManType(mRappa));
 	}
 	/*
 	stwu     r1, -0x20(r1)

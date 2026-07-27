@@ -1,7 +1,7 @@
 #ifndef _EFX_TJGM_H
 #define _EFX_TJGM_H
 
-#include "efx/TChasePos.h"
+#include "efx/TChasePosYRot.h"
 #include "efx/TChaseMtx.h"
 #include "efx/TSimple.h"
 

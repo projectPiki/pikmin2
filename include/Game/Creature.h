@@ -360,15 +360,16 @@ struct Creature : public CellObject {
 		return SQUARE(diffX) + SQUARE(diffZ);
 	}
 
+	// pmo stands for panmodoki trust
+	inline f32 getPositionToPMO(Vector3f& pos) {
+		// are they stupid? T-T
+		return (getSquarePositionTo(pos) > 0.0f) ? getPositionTo(pos) : 0.0f;
+	}
+
 	inline f32 getPositionTo(Vector3f& pos)
 	{
 		Vector3f sep = pos - Vector3f(getPosition().x, 0.0f, getPosition().z);
-		// f32 z = getPosition().z;
-		// f32 x = getPosition().x;
-		// f32 targetZ = pos.z;
-		// f32 targetX = pos.x;
-		// f32 diffZ = targetZ - z;
-		// f32 diffX = targetX - x;
+
 		f32 sqrDist = SQUARE(sep.x) + SQUARE(sep.z);
 		return sqrtf(sqrDist);
 		// return sqrDist;
