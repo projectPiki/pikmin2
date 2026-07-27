@@ -1176,12 +1176,11 @@ void HoudaiShotGunMgr::emitShotGun()
 
 	xVec.normalise();
 
-	Game::EnemyParmsBase::Parms& parms = CG_GENERALPARMS(mOwner);
 
-	const f32 factor = parms.mAttackHitAngle.mValue * 2.0f;
-	xVec.x += randWeightFloat(factor) - parms.mAttackHitAngle.mValue;
-	xVec.y += randWeightFloat(factor) - parms.mAttackHitAngle.mValue;
-	xVec.z += randWeightFloat(factor) - parms.mAttackHitAngle.mValue;
+	const f32 factor = CG_GENERALPARMS(mOwner).mAttackHitAngle() * 2.0f;
+	xVec.x += randWeightFloat(factor) - CG_GENERALPARMS(mOwner).mAttackHitAngle();
+	xVec.y += randWeightFloat(factor) - CG_GENERALPARMS(mOwner).mAttackHitAngle();
+	xVec.z += randWeightFloat(factor) - CG_GENERALPARMS(mOwner).mAttackHitAngle();
 
 	xVec.normalise();
 

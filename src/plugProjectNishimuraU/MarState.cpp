@@ -166,7 +166,7 @@ void StateMove::exec(EnemyBase* enemy)
 	if (target) {
 		mar->mTargetCreature = target;
 		transit(mar, MAR_Chase, nullptr);
-	} else if (sqrDist < 10000.0f || mar->mGeneralTimer > 7.5f) {
+	} else if (sqrDist < SQUARE(100.0f) || mar->mGeneralTimer > 7.5f) {
 		mar->mTargetVelocity = Vector3f(0.0f);
 		mar->finishMotion();
 	} else {

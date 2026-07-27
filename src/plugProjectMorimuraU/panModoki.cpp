@@ -99,6 +99,10 @@ void Obj::onInit(CreatureInitArg* args)
 	mWpIndex2             = 0;
 	mPelletCarryVelocity  = 0.0f;
 	mIsCarryStuck         = 0;
+#if BUGFIX
+	// prevents us from releasing a pathfinder handle we don't own, potentially causing crashes
+	mPathID               = 0; 
+#endif
 
 	mBodyJoint = mModel->getJoint("body");
 	P2ASSERTLINE(137, mBodyJoint);
@@ -238,28 +242,7 @@ void Obj::updateCaptureMatrix()
 		Vector3f slotPos;
 		calcSlotGlobalPos(slotPos);
 
-		f32 dist = pellet->getSquarePositionTo(slotPos);
-		// Vector3f pelletPos1(pellet->getPosition().x, 0.0f, pellet->getPosition().z);
-		// Vector3f diff = slotPos - pelletPos1;
-		// diff.y        = 0.0f;
-		f32 dist2D = 0.0f;
-		if (dist > dist2D) {
-			dist2D = pellet->getPositionTo(slotPos);
-			// f32 z = pellet->getPosition().z;
-			// f32 x = pellet->getPosition().x;
-			// f32 slotX = slotPos.x;
-			// f32 slotZ = slotPos.z;
-			// f32 diffX = slotX - x;
-			// f32 diffZ = slotZ - z;
-			// dist2D = diffX * diffX + diffZ * diffZ;
-			// sqrtf(dist2D);
-			// dist2D =
-			// THIS has to be an inline
-			// diff2D.y        = 0.0f;
-			// dist2D          = diff2D.length2D();
-		}
-
-		f32 pelletZ = mCarrySizeDiff * 0.2f + dist2D;
+		f32 pelletZ = mCarrySizeDiff * 0.2f + pellet->getPositionToPMO(slotPos);
 		matrix      = mKamuJoint->getWorldMatrix();
 		PSMTXCopy(matrix->mMatrix.mtxView, mCarryMatrix.mMatrix.mtxView);
 		mCarryMatrix.mMatrix.structView.tx += (f32)(xVec.x * pelletZ);
