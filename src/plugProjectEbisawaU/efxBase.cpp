@@ -4,12 +4,14 @@
 #include "efx/Arg.h"
 #include "efx/Context.h"
 #include "efx/TCallBack_StaticClipping.h"
-#include "efx/TChaseMtx.h"
-#include "efx/TChasePos.h"
-#include "efx/TForever.h"
 #include "efx/TOneEmitter.h"
 #include "efx/TSimpleMtx.h"
 #include "efx/TSyncGroup.h"
+#include "efx/TForever.h"
+#include "efx/TChasePos.h"
+#include "efx/TChaseMtx.h"
+#include "efx/TChasePosYRot.h"
+#include "efx/TChasePosPos.h"
 
 namespace efx {
 
@@ -591,7 +593,7 @@ void TChasePosPos::doExecuteEmitterOperation(JPABaseEmitter* emitter)
 void makeMtxZAxisAlongPosPos(Mtx mtx, Vector3f& p2, Vector3f& p3)
 {
 	Vector3f midPt = (p2 + p3) / 2;
-	Vector3f zVec = p3 - p2;
+	Vector3f zVec  = p3 - p2;
 
 	zVec.normalise();
 
@@ -1411,6 +1413,13 @@ void TSyncGroup6<T>::endDemoDrawOn()
 	for (u32 i = 0; i < 6; i++) {
 		mItems[i].endDemoDrawOn();
 	}
+}
+
+static void fakematch()
+{
+	// fake but this dtor needs to spawn before the actual virtual functions
+	TOneEmitterChasePos* e = nullptr;
+	delete e;
 }
 
 } // namespace efx
