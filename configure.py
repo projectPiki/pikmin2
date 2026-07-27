@@ -2034,7 +2034,7 @@ config.libs = [
             Object(NonMatching, "sysGCU/sysShapeModel.cpp"),
             Object(NonMatching, "sysGCU/windowMessage.cpp"),
             Object(Equivalent, "sysGCU/memoryCard.cpp"),
-            Object(Equivalent, "sysGCU/pikmin2MemoryCardMgr.cpp"),
+            Object(Matching, "sysGCU/pikmin2MemoryCardMgr.cpp"),
             Object(Matching, "sysGCU/commonSaveData.cpp"),
             Object(Equivalent, "sysGCU/bootSection.cpp"),
             Object(Equivalent, "sysGCU/titleSection.cpp"),

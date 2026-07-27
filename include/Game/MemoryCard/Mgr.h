@@ -124,6 +124,8 @@ struct Mgr : public MemoryCardMgr {
 	inline bool isFlag(u32 flag) const { return mFlags.typeView & flag; }
 
 	inline bool checkCheckSum(u32* buffer);
+	inline bool checkPlVa(u32* buffer);
+	inline bool checkInfoBody(u32* buffer);
 	inline bool checkInfo(u32* buffer);
 
 	inline bool isCardReady() { return (int)getCardStatus() == MCS_Ready; }
