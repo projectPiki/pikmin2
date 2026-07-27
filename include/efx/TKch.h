@@ -4,6 +4,7 @@
 #include "efx/TSimple.h"
 #include "efx/TSimpleMtx.h"
 #include "efx/TChasePos.h"
+#include "efx/TChasePosYRot.h"
 #include "efx/TChaseMtx.h"
 #include "efx/TOneEmitter.h"
 

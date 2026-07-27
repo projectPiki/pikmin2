@@ -30,7 +30,6 @@ struct Arg {
 	}
 
 	inline Arg(Game::EnemyBase*); // defined in Game/EnemyBase.h header to avoid include loops
-
 	inline Arg(Game::BaseItem*); // defined in Game/BaseItem.h header to avoid include loops
 
 	/**
@@ -53,7 +52,7 @@ struct ArgEnemyType : public Arg {
 		mScale = scale;
 	};
 	ArgEnemyType(Vector3f position)
-	    : Arg(position) {};
+	    : Arg(position) { };
 
 	/**
 	 * @reifiedAddress{801081F4}
@@ -139,6 +138,8 @@ struct ArgDenkiHiba : public Arg {
 	{
 		return "ArgDenkiHiba";
 	}
+
+	enum DenkiHibaType { TYPE_Denki = 0, TYPE_VsRed = 1, TYPE_VsBlue = 2 };
 
 	// _00     = VTBL
 	// _00-_10 = Arg

@@ -565,14 +565,34 @@ bool TBabaHe::create(Arg* arg)
 		for (int i = 0; i < 2; i++) {
 			mEmitters[i]->setGlobalRTMatrix(mtx.mMatrix.mtxView);
 		}
-		Vector3f trs;
-		mtx.getTranslation(trs);
-		trs *= -35.0f;
-		trs += pos;
-		JGeometry::TVec3f newpos;
-		newpos.set(trs.x, trs.y, trs.z);
-		volatile Vector3f dumb = trs;
-		mEmitters[0]->setGlobalTranslation(newpos);
+
+		/* Problem Area */
+
+		// Drought here, I think what is going on
+		// is some sort of getPosition()
+		// function is being called, and
+		// then vec3 is copying it by doing
+		// vec.x = getPosition().x; ...; etc
+
+		// The issue is this inflates the stack too much,
+		// and I wasn't able to figure out what in the
+		// world the struct with a getPosition() could be
+
+		// the functionality though is equivalent, I believe,
+		// since all the missing stfs modify the stack
+
+		Vector3f forward;
+		mtx.getBasis(2, forward);
+		Vector3f copy = forward * -35.0f + pos;
+
+		JGeometry::TVec3f vec3;
+		vec3.x = copy.x;
+		vec3.y = copy.y;
+		vec3.z = copy.z;
+
+		mEmitters[1]->setGlobalTranslation(vec3);
+		/* Problem Area */
+
 		return true;
 	}
 	return false;
@@ -735,10 +755,8 @@ void TParticleCallBack_TankFire::init(JPABaseEmitter*, JPABaseParticle*)
  */
 void TParticleCallBack_TankFire::execute(JPABaseEmitter* emit, JPABaseParticle* particle)
 {
-	f32 z = particle->getCalcCurrentPositionZ(emit);
-	f32 y = particle->getCalcCurrentPositionY(emit);
-	f32 x = particle->getCalcCurrentPositionX(emit);
-	Vector3f tgt(x, y, z);
+	// shame on whoever for not knowing the funcs get called in right to left order -Drought
+	Vector3f tgt = particle->getCalcCurrentPosition(emit);
 
 	if (tgt.distance(emit->mGlobalTrs) > mMaxDistance) {
 		particle->mFlags |= 2;
@@ -746,7 +764,7 @@ void TParticleCallBack_TankFire::execute(JPABaseEmitter* emit, JPABaseParticle* 
 		TTankFireHit* hit = mEfxHit;
 		if (hit && hit->mCurrPosIndex < hit->mPositionNum) {
 			Vector3f* pos = &hit->mPositionList[hit->mCurrPosIndex];
-			pos->set(x, y, z);
+			pos->set(tgt);
 			hit->mCurrPosIndex++;
 		}
 	}
@@ -913,11 +931,16 @@ void TDnkmsThunderA::doExecuteEmitterOperation(JPABaseEmitter* emit)
 	Vector3f pos2 = *mPartnerPosition;
 	Mtx mtx;
 	makeMtxZAxisAlongPosPos(mtx, pos1, pos2);
-	JPASetRMtxTVecfromMtx(mtx, emit->mGlobalRot, &emit->mGlobalTrs);
+	emit->setGlobalRTMatrix(mtx);
 
 	f32 z = (*mPosition).distance(*mPartnerPosition);
-	volatile Vector3f test(z);
-	emit->setScaleMain(emit->mLocalScl.x, emit->mLocalScl.y, z / 120.0f);
+
+	// drought here again simillar issue as line 570
+	JGeometry::TVec3f v;
+	emit->getLocalScale(v);
+	v.z = z / 120.0f;
+
+	emit->setScaleMain(v);
 	/*
 	stwu     r1, -0x70(r1)
 	mflr     r0
@@ -1029,15 +1052,21 @@ void TDnkmsThunderB::doExecuteEmitterOperation(JPABaseEmitter* emit)
 	P2ASSERTLINE(666, mPosition);
 	P2ASSERTLINE(667, mPartnerPosition);
 
+	// This function is a 2-for-1 deal, solve above solve below
+
 	Vector3f pos1 = *mPosition;
 	Vector3f pos2 = *mPartnerPosition;
 	Mtx mtx;
 	makeMtxZAxisAlongPosPos(mtx, pos1, pos2);
-	JPASetRMtxTVecfromMtx(mtx, emit->mGlobalRot, &emit->mGlobalTrs);
+	emit->setGlobalRTMatrix(mtx);
 
 	f32 z = (*mPosition).distance(*mPartnerPosition);
-	volatile Vector3f test(z);
-	emit->setScaleMain(emit->mLocalScl.x, emit->mLocalScl.y, z / 120.0f);
+
+	JGeometry::TVec3f v;
+	emit->getLocalScale(v);
+	v.z = z / 120.0f;
+
+	emit->setScaleMain(v);
 
 	/*
 	stwu     r1, -0x70(r1)
@@ -1213,19 +1242,17 @@ bool TDenkiHiba::create(Arg* arg)
 	Vector3f pos1 = denarg->mOwnerPos;
 	Vector3f pos2 = denarg->mTargetPos;
 
-	bool made = TSyncGroup3<TForever>::create(denarg);
-	if (made) {
+	if (TSyncGroup3<TForever>::create(denarg)) {
 		Mtx mtx;
 		makeMtxZAxisAlongPosPos(mtx, pos1, pos2);
 		for (int i = 0; i < 3; i++) {
-			TForever* efx = &mItems[i];
-			if (efx) {
-				JPABaseEmitter* emit = efx->mEmitter;
-				JPASetRMtxTVecfromMtx(mtx, emit->mGlobalRot, &emit->mLocalTrs);
-				if (denarg->mType == 1) {
+			JPABaseEmitter* emit = mItems[i].mEmitter;
+			if (emit) {
+				emit->setGlobalRTMatrix(mtx);
+				if (denarg->mType == ArgDenkiHiba::TYPE_VsRed) {
 					emit->setGlobalPrmColor(255, 0, 0);
 					emit->setGlobalEnvColor(255, 0, 0);
-				} else if (denarg->mType == 2) {
+				} else if (denarg->mType == ArgDenkiHiba::TYPE_VsBlue) {
 					emit->setGlobalPrmColor(0, 0, 255);
 					emit->setGlobalEnvColor(0, 0, 255);
 				}
@@ -1236,8 +1263,11 @@ bool TDenkiHiba::create(Arg* arg)
 		mItems[0].mEmitter->setScaleMain(1.0f, 1.0f, dist);
 		mItems[1].mEmitter->setScaleMain(1.0f, dist, 1.0);
 
-		JGeometry::TVec3f scl = mItems[2].mEmitter->mLocalScl;
-		mItems[2].mEmitter->setScaleMain(scl.x, scl.y * dist, scl.z);
+		// same issue as elsewhere in this file
+		JGeometry::TVec3f scl;
+		mItems[2].mEmitter->getLocalScale(scl);
+		scl.y *= dist;
+		mItems[2].mEmitter->setScaleMain(scl);
 		return true;
 	}
 	return false;
@@ -1452,9 +1482,25 @@ bool TDenkiHibaMgr::createHiba(int type)
  * @note Address: N/A
  * @note Size: 0x174
  */
-void TDenkiHibaMgr::createHiba()
+bool TDenkiHibaMgr::createHiba()
 {
-	// UNUSED FUNCTION
+	// drought here, this is my best guess for what was here
+
+	// arg.mType is actually never set, so if this function
+	// was ever used, there'd be a small chance to see
+	// a colored elechiba
+	ArgDenkiHiba arg(mOwnerPosition, mTargetCreaturePosition);
+	mHiba.create(&arg);
+
+	Arg arg2(mOwnerPosition);
+	Arg arg3(mTargetCreaturePosition);
+
+	mPoles[0].create(&arg2);
+	mPoles[1].create(&arg3);
+
+	mPolesigns[0].fade();
+	mPolesigns[1].fade();
+	return true;
 }
 
 /**

@@ -3,7 +3,7 @@
 
 #include "Color4.h"
 #include "efx/TSimple.h"
-#include "efx/TChasePos.h"
+#include "efx/TChasePosYRot.h"
 #include "efx/TSimpleMtx.h"
 #include "efx/TChaseMtx.h"
 

@@ -4,12 +4,14 @@
 #include "efx/Arg.h"
 #include "efx/Context.h"
 #include "efx/TCallBack_StaticClipping.h"
-#include "efx/TChaseMtx.h"
-#include "efx/TChasePos.h"
-#include "efx/TForever.h"
 #include "efx/TOneEmitter.h"
 #include "efx/TSimpleMtx.h"
 #include "efx/TSyncGroup.h"
+#include "efx/TForever.h"
+#include "efx/TChasePos.h"
+#include "efx/TChaseMtx.h"
+#include "efx/TChasePosYRot.h"
+#include "efx/TChasePosPos.h"
 
 namespace efx {
 
@@ -42,7 +44,6 @@ void TOneEmitter::add(Context* context)
  */
 void TOneEmitter::del(Context* context)
 {
-	// UNUSED FUNCTION
 	context->del();
 }
 
@@ -459,13 +460,7 @@ bool TSync::create(Arg* arg)
  */
 void TSync::execute(JPABaseEmitter* emitter)
 {
-	bool check = false;
-
-	if (mEmitter->isFlag(JPAEMIT_EnableDeleteEmitter) && emitter->getParticleNumber() == 0) {
-		check = true;
-	}
-
-	if (check) {
+	if (emitter->isFinished()) {
 		fade();
 	} else {
 		doExecuteEmitterOperation(emitter);
@@ -597,9 +592,8 @@ void TChasePosPos::doExecuteEmitterOperation(JPABaseEmitter* emitter)
  */
 void makeMtxZAxisAlongPosPos(Mtx mtx, Vector3f& p2, Vector3f& p3)
 {
-	Vector3f zVec(p3.x - p2.x, p3.y - p2.y, p3.z - p2.z);
-	Vector3f midPt(p2.x + p3.x, p2.y + p3.y, p2.z + p3.z);
-	midPt *= 0.5f;
+	Vector3f midPt = (p2 + p3) / 2;
+	Vector3f zVec  = p3 - p2;
 
 	zVec.normalise();
 
@@ -621,77 +615,6 @@ void makeMtxZAxisAlongPosPos(Mtx mtx, Vector3f& p2, Vector3f& p3)
 	mtx[2][1] = yVec.z;
 	mtx[2][2] = zVec.z;
 	mtx[2][3] = midPt.z;
-
-	/*
-	lfs      f0, 4(r4)
-	lfs      f2, 4(r5)
-	lfs      f4, 8(r4)
-	fsubs    f1, f2, f0
-	lfs      f7, 8(r5)
-	lfs      f8, 0(r4)
-	fadds    f6, f0, f2
-	fsubs    f2, f7, f4
-	lfs      f9, 0(r5)
-	fsubs    f0, f9, f8
-	lfs      f5, lbl_8051F610@sda21(r2)
-	fadds    f7, f4, f7
-	lfs      f3, lbl_8051F614@sda21(r2)
-	fmuls    f10, f1, f1
-	fmuls    f11, f2, f2
-	fadds    f8, f8, f9
-	fmadds   f4, f0, f0, f10
-	fmuls    f7, f7, f5
-	fmuls    f6, f6, f5
-	fadds    f4, f11, f4
-	fmuls    f11, f8, f5
-	fcmpo    cr0, f4, f3
-	ble      lbl_803AFCEC
-	ble      lbl_803AFCF0
-	frsqrte  f3, f4
-	fmuls    f4, f3, f4
-	b        lbl_803AFCF0
-
-lbl_803AFCEC:
-	fmr      f4, f3
-
-lbl_803AFCF0:
-	lfs      f3, lbl_8051F614@sda21(r2)
-	fcmpo    cr0, f4, f3
-	ble      lbl_803AFD10
-	lfs      f3, lbl_8051F618@sda21(r2)
-	fdivs    f3, f3, f4
-	fmuls    f0, f0, f3
-	fmuls    f1, f1, f3
-	fmuls    f2, f2, f3
-
-lbl_803AFD10:
-	lfs      f4, lbl_8051F614@sda21(r2)
-	lfs      f5, lbl_8051F618@sda21(r2)
-	fmuls    f3, f4, f2
-	fmuls    f10, f4, f1
-	fmsubs   f9, f4, f0, f3
-	fmsubs   f8, f5, f2, f10
-	fnmsubs  f10, f5, f0, f10
-	fmuls    f5, f2, f9
-	fmuls    f3, f1, f8
-	stfs     f8, 0(r3)
-	fmuls    f4, f0, f10
-	fmsubs   f5, f1, f10, f5
-	fmsubs   f3, f0, f9, f3
-	fmsubs   f4, f2, f8, f4
-	stfs     f5, 4(r3)
-	stfs     f0, 8(r3)
-	stfs     f11, 0xc(r3)
-	stfs     f9, 0x10(r3)
-	stfs     f4, 0x14(r3)
-	stfs     f1, 0x18(r3)
-	stfs     f6, 0x1c(r3)
-	stfs     f10, 0x20(r3)
-	stfs     f3, 0x24(r3)
-	stfs     f2, 0x28(r3)
-	stfs     f7, 0x2c(r3)
-	blr
-	*/
 }
 
 /**
@@ -1490,6 +1413,13 @@ void TSyncGroup6<T>::endDemoDrawOn()
 	for (u32 i = 0; i < 6; i++) {
 		mItems[i].endDemoDrawOn();
 	}
+}
+
+static void fakematch()
+{
+	// fake but this dtor needs to spawn before the actual virtual functions
+	TOneEmitterChasePos* e = nullptr;
+	delete e;
 }
 
 } // namespace efx
