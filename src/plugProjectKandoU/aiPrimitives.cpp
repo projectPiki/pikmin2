@@ -299,8 +299,8 @@ int ActGotoSlot::exec()
 
 		// how far do we have to go to the actual pickup point?
 		Vector3f vec = pelletPos - sep * pickRadius;
-		vec          = vec - pikiPos;
-		f32 dist     = vec.length2D();
+		vec -= pikiPos;
+		f32 dist = vec.length2D();
 
 		// if we're not that close, get that ass moving
 		if (dist > 6.0f) {
@@ -1256,8 +1256,8 @@ ActPathMove::ActPathMove(Game::Piki* p)
 void ActPathMove::init(ActionArg* settings)
 {
 	mVsWayPointCounter = 0;
-	bool check = settings && settings->is("PathMoveArg");
-	
+	bool check         = settings && settings->is("PathMoveArg");
+
 	P2ASSERTLINE(790, check);
 
 	PathMoveArg* pathMoveArg = static_cast<PathMoveArg*>(settings);
@@ -2080,7 +2080,8 @@ int ActPathMove::execMoveGuru()
 
 	Vector3f dir = getDirection(mPaceAngle);
 	dir *= 10.0f;
-	Vector3f pullDir = dir + moveVec;
+	dir += moveVec;
+	Vector3f pullDir = dir;
 
 	Vector3f pelletPos = mPellet->getPosition();
 	pullDir            = pullDir - pelletPos;
@@ -2814,7 +2815,8 @@ bool ActPathMove::crMove()
 		factor = 1.0f;
 	}
 
-	Vector3f newPoint = Vector3f(sep.x * (factor * dist), 0.0f, sep.z * (factor * dist)) + point0 - pelletPos; // f23, f24, f25
+	pelletPos         = Vector3f(sep.x * (factor * dist), 0.0f, sep.z * (factor * dist)) + point0 - pelletPos;
+	Vector3f newPoint = pelletPos; // f23, f24, f25
 	newPoint.y        = 0.0f;
 	f32 newDist       = newPoint.normalise(); // f28
 
