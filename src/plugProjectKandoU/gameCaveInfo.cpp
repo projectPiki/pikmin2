@@ -87,12 +87,11 @@ void TekiInfo::read(Stream& stream)
 	char* parsedString = inputBuffer;
 	int parsedVarIndex = 0;
 	u32 parsedIntValue = 0;
-	char* inputPtr     = inputString;
 
 	while (strlen(inputString) > parsedIntValue) {
 		bool isUnderscore = false;
 
-		if (*inputPtr == '_') {
+		if (inputString[parsedIntValue] == '_') {
 			if (parsedString == inputBuffer) {
 				parsedString[parsedVarIndex] = '\0';
 				int enemyIndex               = 0;
@@ -112,12 +111,11 @@ void TekiInfo::read(Stream& stream)
 			parsedString   = parsedBuffer;
 			parsedVarIndex = 0;
 		} else {
-			parsedString[parsedVarIndex] = *inputPtr;
+			parsedString[parsedVarIndex] = inputString[parsedIntValue];
 			parsedVarIndex++;
 		}
 
 		parsedIntValue++;
-		inputPtr++;
 	}
 	parsedString[parsedVarIndex] = '\0';
 	mEnemyID                     = static_cast<EnemyTypeID::EEnemyTypeID>(generalEnemyMgr->getEnemyID(inputBuffer, EFlag_CanBeSpawned));
@@ -126,11 +124,9 @@ void TekiInfo::read(Stream& stream)
 		pelletMgr->makeOtakaraItemCode(parsedBuffer, mOtakaraItemCode);
 	}
 
-	parsedIntValue = stream.readInt();
-	mWeight        = parsedIntValue;
-	mType          = static_cast<BaseGen::CaveGenType>(stream.readInt());
-	inputPtr       = generalEnemyMgr->getEnemyName(mEnemyID, EFlag_CanBeSpawned);
-	mName          = inputPtr;
+	mWeight = stream.readInt();
+	mType   = static_cast<BaseGen::CaveGenType>(stream.readInt());
+	mName   = generalEnemyMgr->getEnemyName(mEnemyID, EFlag_CanBeSpawned);
 
 	/*
 	.loc_0x0:
