@@ -173,7 +173,7 @@ void StateMove::exec(EnemyBase* enemy)
 	if (target) {
 		hanachirashi->mTargetCreature = target;
 		transit(hanachirashi, HANACHIRASHI_Chase, nullptr);
-	} else if (sqrDist < 10000.0f || hanachirashi->mAirWaitTime > 7.5f) {
+	} else if (sqrDist < SQUARE(100.0f) || hanachirashi->mAirWaitTime > 7.5f) {
 		hanachirashi->mTargetVelocity = Vector3f(0.0f);
 		hanachirashi->finishMotion();
 	} else {

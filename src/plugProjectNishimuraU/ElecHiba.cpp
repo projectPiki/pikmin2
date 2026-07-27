@@ -263,28 +263,28 @@ void Obj::setElecHibaPosition(InitialParam* param, f32 p1)
  */
 void Obj::interactDenkiAttack(Vector3f& position)
 {
-	Vector3f sep(mPosition);
-	Vector3f normSep = (position + sep) / 2;
+	Vector3f origin(mPosition);
+	Vector3f normSep = (origin + position) / 2;
 
-	f32 theta      = mFaceDir;
-	Vector3f dirXZ = Vector3f(sinf(theta), 0.0f, cosf(theta));
+	f32 theta           = mFaceDir;
+	Vector3f forwardVec = Vector3f(sinf(theta), 0.0f, cosf(theta));
 
-	Vector3f posDelta(position - sep);
-	Vector3f posDiff(posDelta);
-	posDiff.normalise();
+	Vector3f posDelta(position - origin);
+	Vector3f rightVec(posDelta);
+	rightVec.normalise();
 
-	Vector3f crossProd = posDelta.cross(posDiff);
-	crossProd.normalise();
+	Vector3f upVec = forwardVec.cross(rightVec);
+	upVec.normalise();
 
 	f32 distance = posDelta.length();
 
 	f32 attackRange  = C_GENERALPARMS.mMaxAttackRange();
 	f32 search       = C_GENERALPARMS.mSearchDistance();
 	f32 searchHeight = C_GENERALPARMS.mSearchHeight();
-	sep.y += C_GENERALPARMS.mMaxAttackAngle();
+	origin.y += C_GENERALPARMS.mMaxAttackAngle();
 	f32 totalRange = distance + attackRange;
 	f32 negRange   = -attackRange;
-	Vector3f spherePos(dirXZ.x * search, 0.0f, dirXZ.z * search);
+	Vector3f spherePos(forwardVec.x * search, 0.0f, forwardVec.z * search);
 	Sys::Sphere sphere(normSep, (totalRange - negRange) / 2);
 
 	CellIteratorArg iterArg(sphere);
@@ -296,15 +296,14 @@ void Obj::interactDenkiAttack(Vector3f& position)
 	{
 		Creature* creature = static_cast<Creature*>(*iter);
 		if (creature->isAlive() && (creature->isNavi() || creature->isPiki())) {
-			Vector3f creaturePos = creature->getPosition();
-			Vector3f creatureSep = Vector3f(creaturePos - sep);
-			f32 dotProd1         = dirXZ.dot(creatureSep);
+			Vector3f creatureSep = creature->getPosition() - origin;
+			f32 dotProd1         = forwardVec.dot(creatureSep);
 			f32 adj              = absVal(dotProd1);
 
 			if (adj < C_GENERALPARMS.mAttackRadius()) {
-				f32 dotProd = posDiff.dot(creatureSep);
+				f32 dotProd = rightVec.dot(creatureSep);
 				if (dotProd < totalRange && dotProd > negRange) {
-					if (absVal(crossProd.dot(creatureSep)) < C_GENERALPARMS.mAttackHitAngle()) {
+					if (absVal(upVec.dot(creatureSep)) < C_GENERALPARMS.mAttackHitAngle()) {
 						if (mVersusHibaType == VHT_Neutral) {
 
 							Vector3f attackDirection(dotProd1 / adj * spherePos.x, 0.0f, dotProd1 / adj * spherePos.z);

@@ -1829,12 +1829,13 @@ void BigTreasureAttackMgr::startNewWaterList()
 		speedFactor = 1.0f;
 	}
 
-	f32 vertSpeed = (350.0f / sys->mDeltaTime) / 20.0f;
+	f32 vertSpeed = sys->mDeltaTime / 350.0f / 20.0f;
 
 	f32 speed = ((0.5f * speedFactor) / (vertSpeed / 20.0f)) / sys->mDeltaTime;
 
-	Vector3f sep  = targetPos - emitPos;
-	f32 angleDist = JMAAtan2Radian(sep.x, sep.z); // f31
+	Vector3f sep  = emitPos - targetPos;
+	// ...guys... it literally says.... JMAAtan2Radian(f32 y, f32 x)... y, x......
+	f32 angleDist = JMAAtan2Radian(sep.z, sep.x); // f31
 
 	f32 angOffset = mAttackData->mWaterJitterAngle;
 	f32 randAngle = angleDist + (randWeightFloat(2.0f * angOffset) - angOffset);
@@ -2381,7 +2382,7 @@ void BigTreasureAttackMgr::startElecAttack()
 
 	f32 attackVal = (f32)mAttackData->mElecMaxNodes * 0.25f;
 	for (int i = 0; i < 3; i++) {
-		mElecSENodeIDs[i] = attackVal * f32(i);
+		mElecSENodeIDs[i] = attackVal * (f32)(i + 1);
 	}
 
 	/*
