@@ -1974,7 +1974,7 @@ config.libs = [
             Object(Matching, "sysCommonU/tagparams.cpp"),
             Object(Matching, "sysCommonU/sysTemplates.cpp"),
             Object(Matching, "sysCommonU/mapCode.cpp"),
-            Object(Equivalent, "sysCommonU/geomIntersection.cpp"),
+            Object(Matching, "sysCommonU/geomIntersection.cpp"),
             Object(NonMatching, "sysCommonU/geomOBBTree.cpp"),
             Object(NonMatching, "sysCommonU/geomTraceMove.cpp"),
             Object(Matching, "sysCommonU/geomCylinder.cpp"),

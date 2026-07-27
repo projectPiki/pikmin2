@@ -57,8 +57,9 @@ bool Triangle::intersect(Sys::VertexTable& vtxTable, Sys::Triangle::SphereSweep&
 	}
 
 	f32 edgeDists[3];
+	Vector3f spherePos(sweep.mSphere.mPosition);
 	for (int i = 0; i < 3; i++) {
-		edgeDists[i] = mEdgePlanes[i].calcDist(sweep.mSphere.mPosition);
+		edgeDists[i] = mEdgePlanes[i].calcDist(spherePos);
 	}
 
 	if ((edgeDists[0] <= 0.0f) && (edgeDists[1] <= 0.0f) && (edgeDists[2] <= 0.0f)) {

@@ -604,9 +604,12 @@ void StateMoveTurn::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* tank = OBJ(enemy);
 	tank->mTurnGoalDir += PI / 3;
-	Vector3f homePos(tank->mHomePosition);
-	tank->mGoalPosition   = Vector3f(CG_GENERALPARMS(tank).mTerritoryRadius() * sinf(tank->mTurnGoalDir) + homePos.x, homePos.y,
-	                                 CG_GENERALPARMS(tank).mTerritoryRadius() * cosf(tank->mTurnGoalDir) + homePos.z);
+	f32 turnGoalDir       = tank->mTurnGoalDir;
+	f32 homeX             = tank->mHomePosition.x;
+	f32 homeY             = tank->mHomePosition.y;
+	f32 homeZ             = tank->mHomePosition.z;
+	tank->mGoalPosition   = Vector3f(CG_GENERALPARMS(tank).mTerritoryRadius() * sinf(turnGoalDir) + homeX, homeY,
+	                                 CG_GENERALPARMS(tank).mTerritoryRadius() * cosf(turnGoalDir) + homeZ);
 	tank->mTargetCreature = nullptr;
 	tank->mTargetVelocity = Vector3f(0.0f);
 	tank->startMotion(TANKANIM_Turn, nullptr);
