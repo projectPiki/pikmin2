@@ -2815,7 +2815,8 @@ bool ActPathMove::crMove()
 		factor = 1.0f;
 	}
 
-	Vector3f newPoint = Vector3f(sep.x * (factor * dist), 0.0f, sep.z * (factor * dist)) + point0 - pelletPos; // f23, f24, f25
+	pelletPos         = Vector3f(sep.x * (factor * dist), 0.0f, sep.z * (factor * dist)) + point0 - pelletPos;
+	Vector3f newPoint = pelletPos; // f23, f24, f25
 	newPoint.y        = 0.0f;
 	f32 newDist       = newPoint.normalise(); // f28
 
