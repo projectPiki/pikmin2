@@ -3643,7 +3643,8 @@ void TriIndexList::getMinMax(VertexTable& vertTable, TriangleTable& triTable, Ve
 		};
 
 		for (int j = 0; j < 3; j++) {
-			f32 testVal = vec1.dot(vertices[j] - vec2);
+			Vector3f relative = vertices[j] - vec2;
+			f32 testVal       = relative.x * vec1.x + relative.y * vec1.y + relative.z * vec1.z;
 
 			if (testVal > max) {
 				max = testVal;

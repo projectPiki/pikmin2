@@ -498,8 +498,10 @@ void PelletGoalState::exec(Pellet* pelt)
 		mTimer       = 0.0f;
 	}
 
-	Vector3f scaledSep = (mOnyon->getSuckPos() - mCurrPos);
-	Vector3f test      = mCurrPos + scaledSep * mSuckTime;
+	Vector3f suckPos = mOnyon->getSuckPos();
+	Vector3f scaledSep;
+	scaledSep.sub(suckPos, mCurrPos);
+	Vector3f test = mCurrPos + scaledSep * mSuckTime;
 	if (mIsWaiting) {
 		if ((u8)mOnyon->isSuckArriveWait()) {
 			return;
@@ -527,7 +529,7 @@ void PelletGoalState::exec(Pellet* pelt)
 	f32 scale      = suckRemain * mScale;
 
 	f32 sinTheta = sinf(8.0f * (TAU * suckRemain));
-	sinTheta *= 0.03f; // regswap here for f1 and f0
+	sinTheta     = 0.03f * sinTheta;
 	scale += sinTheta;
 	pelt->mScale = Vector3f(scale);
 
@@ -1927,7 +1929,9 @@ u32 PelletReturnState::execMove(Pellet* pelt)
 	}
 	Vector3f velocity  = sep * 200.0f;
 	Vector3f velocity2 = pelt->getVelocity();
-	velocity           = velocity2 + (velocity - velocity2) * 0.2f;
+	Vector3f velocityDelta;
+	velocityDelta.sub(velocity, velocity2);
+	velocity = velocity2 + velocityDelta * 0.2f;
 
 	Vector3f pos = pelt->getPosition();
 	f32 y        = pelt->getCylinderHeight() * 0.5f;
