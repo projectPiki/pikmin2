@@ -37,17 +37,18 @@ inline u32 Node::dvdToAram(char const* name, bool forceFail)
 	return reinterpret_cast<u32>(mMemoryBlock);
 }
 
-void* Node::aramToMainRam(u8* buf, u32 address, u32 offset, JKRExpandSwitch expandSwitch, u32 maxExpandSize, JKRHeap* heap,
-                          JKRDvdRipper::EAllocDirection allocDir, int id, u32* byteCnt)
+inline void* Node::aramToMainRam(u8* buf, u32 address, u32 offset, JKRExpandSwitch expandSwitch, u32 maxExpandSize, JKRHeap* heap,
+                                 JKRDvdRipper::EAllocDirection allocDir, int id, u32* byteCnt)
 {
 	void* addr;
 	u32 tempByteVal;
+	u32* out = byteCnt;
 
 	tempByteVal = 0;
 	addr        = 0;
 
-	if (byteCnt == nullptr) {
-		byteCnt = &tempByteVal;
+	if (out == nullptr) {
+		out = &tempByteVal;
 	}
 
 	if (!mMemoryBlock) {
@@ -55,11 +56,11 @@ void* Node::aramToMainRam(u8* buf, u32 address, u32 offset, JKRExpandSwitch expa
 	}
 
 	if (mMemoryBlock) {
-		addr = JKRAram::aramToMainRam(mMemoryBlock, buf, address, offset, expandSwitch, maxExpandSize, heap, id, byteCnt);
-		DCFlushRange(addr, *byteCnt);
+		addr = JKRAram::aramToMainRam(mMemoryBlock, buf, address, offset, expandSwitch, maxExpandSize, heap, id, out);
+		DCFlushRange(addr, *out);
 		if (allocDir == JKRDvdRipper::ALLOC_DIR_BOTTOM) {
-			char* newAddr = new (heap, -0x20) char[*byteCnt];
-			memcpy(newAddr, addr, *byteCnt);
+			char* newAddr = new (heap, -0x20) char[*out];
+			memcpy(newAddr, addr, *out);
 			delete addr;
 			addr = newAddr;
 		}
@@ -138,14 +139,7 @@ u32 Mgr::dvdToAram(char const* name, bool forceAddNode)
 /**
  * @note Address: 0x80432E74
  * @note Size: 0x154
- * TODO: Match
  */
-inline u32* validPointer(u32* p)
-{
-	u32 zero = 0;
-	return !p ? &zero : p;
-}
-
 void* Mgr::aramToMainRam(char const* name, u8* buf, u32 address, u32 offset, JKRExpandSwitch expandSwitch, u32 maxExpandSize, JKRHeap* heap,
                          JKRDvdRipper::EAllocDirection allocDir, int id, u32* byteCnt)
 {

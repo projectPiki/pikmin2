@@ -2014,7 +2014,7 @@ config.libs = [
             Object(Matching, "sysGCU/movieConfig.cpp"),
             Object(Matching, "sysGCU/gameConfig.cpp"),
             Object(Matching, "sysGCU/fogMgr.cpp"),
-            Object(Equivalent, "sysGCU/aramMgr.cpp"),
+            Object(Matching, "sysGCU/aramMgr.cpp"),
             Object(Matching, "sysGCU/resourceMgr.cpp"),
             Object(Matching, "sysGCU/resourceMgr2D.cpp"),
             Object(Matching, "sysGCU/sysMaterialAnim.cpp"),
