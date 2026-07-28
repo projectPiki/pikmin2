@@ -3,6 +3,9 @@
 #include "Game/routeMgr.h"
 #include "Game/cellPyramid.h"
 
+// retail uses a sentinel ten times FLOAT_DIST_MAX here, proven by the sdata2 literal
+#define PATHFIND_DIST_MAX 1280000.0f
+
 namespace Game {
 
 Pathfinder* testPathfinder;
@@ -232,22 +235,17 @@ void PathNode::del()
 		if (curChild == this) {
 			if (oldChild) {
 				oldChild->mSibling = curChild->mSibling;
-
-				PathNode* next = curChild->mSibling;
-				if (next) {
-					next->mPrevSibling = oldChild;
+				if (curChild->mSibling) {
+					curChild->mSibling->mPrevSibling = oldChild;
 				}
 				mPrevSibling = nullptr;
 				mSibling     = nullptr;
 				mParent      = nullptr;
 			} else {
 				parent->mRootNode = curChild->mSibling;
-
-				PathNode* next = curChild->mSibling;
-				if (next) {
-					next->mPrevSibling = nullptr;
+				if (curChild->mSibling) {
+					curChild->mSibling->mPrevSibling = nullptr;
 				}
-
 				mPrevSibling = nullptr;
 				mSibling     = nullptr;
 				mParent      = nullptr;
@@ -276,7 +274,7 @@ void PathNode::dump(char*)
  */
 PathNode* PathNode::pop()
 {
-	f32 minDist          = FLOAT_DIST_MAX;
+	f32 minDist          = PATHFIND_DIST_MAX;
 	PathNode* targetNode = nullptr;
 
 	// this is a bad excuse for a priority queue
@@ -348,17 +346,15 @@ void AStarPathfinder::setContext(AStarContext* context)
  */
 PathNode* AStarContext::getNode(s16 wpID)
 {
-	int count = mUsedNodeCount;
-
-	for (int i = 0; i < count; i++) {
+	for (int i = 0; i < mUsedNodeCount; i++) {
 		if (wpID == mUsedNodes[i].mWpIndex) {
 			return &mUsedNodes[i];
 		}
 	}
 
 	PathNode* node;
-	if (count < mWpNum) {
-		node = &mUsedNodes[count];
+	if (mUsedNodeCount < mWpNum) {
+		node = &mUsedNodes[mUsedNodeCount];
 		mUsedNodeCount++;
 
 		node->initNode();
@@ -543,7 +539,7 @@ int AStarPathfinder::search(Game::AStarContext* context, int maxIterations, Game
 	s16 endIdx = context->mEndWPID;
 
 	for (int i = maxIterations; mContext->mActiveList.mRootNode && i > 0; i--) {
-		f32 minDist          = FLOAT_DIST_MAX;
+		f32 minDist          = PATHFIND_DIST_MAX;
 		PathNode* targetNode = mContext->mActiveList.pop();
 
 		if (targetNode->mWpIndex == endIdx) {
