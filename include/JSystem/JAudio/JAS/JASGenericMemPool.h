@@ -76,13 +76,13 @@ struct JASPoolAllocObject { //: public JASSingletonHolder<JASMemPool<T, Threadin
 	 * @fabricated
 	 */
 	// void* operator new(size_t size) { return ::new (SingletonHolder::getInstance()->alloc(size)) T(); }
+	void operator delete(void* ptr, size_t size) { SingletonHolder::getInstance()->free(ptr, size); }
 
 	// static inline T* alloc() { return ::new (SingletonHolder::getInstance()->alloc(sizeof(T))) T(); }
 	static inline void* alloc() { return (SingletonHolder::getInstance()->alloc(sizeof(T))); }
 
 	virtual ~JASPoolAllocObject<T, CreationPolicy, ThreadingModel>() // _08
 	{
-		SingletonHolder::getInstance()->free(this, 4);
 	}
 
 	/**
