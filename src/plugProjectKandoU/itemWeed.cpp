@@ -19,6 +19,12 @@ namespace Game {
 namespace ItemWeed {
 
 Mgr* mgr;
+
+static void fakeFunc(Item* item)
+{
+	item->FSMItem<Item, FSM, State>::doAI();
+}
+
 /**
  * @note Address: 0x8020F280
  * @note Size: 0x38

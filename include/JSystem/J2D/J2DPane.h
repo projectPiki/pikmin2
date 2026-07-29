@@ -392,18 +392,11 @@ struct J2DPane {
 		mGlobalBounds  = other.mGlobalBounds;
 		mClipRect      = other.mClipRect;
 
-		// these are probably supposed to be some sort of Mtx inline (not PSMTXCopy because that would make sense)
-		for (int x = 0; x < 3; x++) {
-			for (int y = 0; y < 4; y++) {
-				mPositionMtx[x][y] = other.mPositionMtx[x][y];
-			}
-		}
-
-		for (int x = 0; x < 3; x++) {
-			for (int y = 0; y < 4; y++) {
-				mGlobalMtx[x][y] = other.mGlobalMtx[x][y];
-			}
-		}
+		struct PaneMtx {
+			Mtx mtx;
+		};
+		*(PaneMtx*)mPositionMtx = *(const PaneMtx*)other.mPositionMtx;
+		*(PaneMtx*)mGlobalMtx   = *(const PaneMtx*)other.mGlobalMtx;
 
 		mIsVisible         = other.mIsVisible;
 		mCullMode          = other.mCullMode;

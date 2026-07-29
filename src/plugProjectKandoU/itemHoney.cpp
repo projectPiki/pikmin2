@@ -1,9 +1,11 @@
+#define ITEM_HONEY_WEAK_ORDER
 #include "efx/THoneydown.h"
 #include "Game/Entities/ItemHoney.h"
 #include "Game/Navi.h"
 #include "Game/AIConstants.h"
 #include "PSM/Navi.h"
 #include "Dolphin/rand.h"
+#undef ITEM_HONEY_WEAK_ORDER
 
 namespace Game {
 namespace ItemHoney {
