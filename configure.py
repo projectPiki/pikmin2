@@ -1311,7 +1311,7 @@ config.libs = [
             Object(Equivalent, "plugProjectKandoU/aiBreakGate.cpp"),
             Object(Matching, "plugProjectKandoU/gameStat.cpp"),
             Object(Matching, "plugProjectKandoU/itemHole.cpp"),
-            Object(Equivalent, "plugProjectKandoU/itemHoney.cpp"),
+            Object(Matching, "plugProjectKandoU/itemHoney.cpp"),
             Object(Matching, "plugProjectKandoU/gameCaveInfo.cpp"),
             Object(Equivalent, "plugProjectKandoU/creatureLOD.cpp"),
             Object(Matching, "plugProjectKandoU/interactNavi.cpp"),

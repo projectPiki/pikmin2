@@ -106,13 +106,13 @@ struct TFlockMgr : public BaseFlockMgr, public Container<T> {
 
 	virtual int getMaxObjects() { return mMonoObjectMgr.mMax; }                     // _08
 	virtual int getNumObjects() { return mMonoObjectMgr.mActiveCount; }             // _0C
-	virtual bool isFlagAlive(int idx) { return mMonoObjectMgr.mOpenIds[idx] == 0; } // _10
 	virtual TFlock* getFlock(int idx) { return mMonoObjectMgr.getAt(idx); }         // _14
-	virtual void killFlock(TFlock* flock) { mMonoObjectMgr.kill((T*)flock); }       // _18
 	virtual T* get(void* idx) { return mMonoObjectMgr.get(idx); }                   // _5C
 	virtual void* getNext(void* idx) { return mMonoObjectMgr.getNext(idx); }        // _60
 	virtual void* getStart() { return mMonoObjectMgr.getStart(); }                  // _64
 	virtual void* getEnd() { return mMonoObjectMgr.getEnd(); }                      // _68
+	virtual void killFlock(TFlock* flock) { mMonoObjectMgr.kill((T*)flock); }       // _18
+	virtual bool isFlagAlive(int idx) { return mMonoObjectMgr.mOpenIds[idx] == 0; } // _10
 
 	TFlock* getValidFlock(int idx)
 	{

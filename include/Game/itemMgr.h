@@ -185,6 +185,10 @@ struct TNodeItemMgr : public BaseItemMgr, public Container<BaseItem> {
 
 template <typename T>
 struct FixedSizeItemMgr : public BaseItemMgr, public Container<T> {
+#ifdef ITEM_HONEY_WEAK_ORDER
+	typedef T ItemType;
+#endif
+
 	inline FixedSizeItemMgr()
 	    : BaseItemMgr(1)
 	    , Container<T>()
