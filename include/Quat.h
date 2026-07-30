@@ -133,15 +133,7 @@ struct Quat {
 	 * @param other The scalar to multiply by.
 	 * @return The resulting quaternion.
 	 */
-	inline Quat operator*(f32 scale)
-	{
-		Quat result;
-		result.w   = scale * w;
-		result.v.x = scale * v.x;
-		result.v.y = scale * v.y;
-		result.v.z = scale * v.z;
-		return result;
-	}
+	inline Quat operator*(f32 scale) { return Quat(scale * w, v * scale); }
 
 	inline Quat operator+(const Quat& other)
 	{

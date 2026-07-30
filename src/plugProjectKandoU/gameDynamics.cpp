@@ -4,6 +4,29 @@
 
 DynamicsParms* DynamicsParms::mInstance;
 
+static inline f32 resolveCollisionDebug(f32 value) // fabricated
+{
+	return value;
+}
+
+static inline Quat quatMultiply(Quat& q1, Quat& q2) // fabricated
+{
+	Quat result;
+	f32 w    = q1.w * q2.w - q1.v.dot(q2.v);
+	result.v = q1.v.cross(q2.v) + q2.v * q1.w + q1.v * q2.w;
+	result.w = w;
+	return Quat(result.w, result.v);
+}
+
+static inline Vector3f resolveCollisionCross(Vector3f& a, Vector3f& b) // fabricated
+{
+	Vector3f result;
+	result.y = a.z * b.x - a.x * b.z;
+	result.z = a.x * b.y - a.y * b.x;
+	result.x = a.y * b.z - a.z * b.y;
+	return result;
+}
+
 /**
  * @note Address: 0x80139C60
  * @note Size: 0x334
@@ -126,8 +149,7 @@ static f32 getYDegree(Quat& quat, Vector3f& vec)
 	Quat inverseQuat;
 	inverseQuat = quat.inverse();
 
-	// Issues are here
-	intermediateQuat = quat * yAxisQuat;
+	intermediateQuat = quatMultiply(quat, yAxisQuat);
 
 	intermediateQuat = intermediateQuat * inverseQuat;
 
@@ -327,10 +349,10 @@ void Game::Rigid::integrate(f32 timeStep, int configIdx)
 
 	if (mFlags.typeView & 1) {
 		Quat halfTimeQ; // 0x140
-		halfTimeQ = Quat((0.5f * timeStep) * primaryQ.w, primaryQ.v * (0.5f * timeStep));
+		halfTimeQ = primaryQ * (0.5f * timeStep);
 
 		Quat primaryRotatedQ; // 0x130
-		primaryRotatedQ = halfTimeQ + thisConfig->mPrimaryRotation;
+		primaryRotatedQ = thisConfig->mPrimaryRotation + halfTimeQ;
 
 		Vector3f vec1; // 0x124
 		f32 yDeg48 = getYDegree(thisConfig->mPrimaryRotation, vec1);
@@ -355,7 +377,7 @@ void Game::Rigid::integrate(f32 timeStep, int configIdx)
 		}
 	} else {
 		Quat q5; // 0x108
-		q5                           = Quat((0.5f * timeStep) * primaryQ.w, primaryQ.v * (0.5f * timeStep));
+		q5                           = primaryQ * (0.5f * timeStep);
 		thisConfig->mPrimaryRotation = thisConfig->mPrimaryRotation + q5;
 	}
 
@@ -793,247 +815,45 @@ lbl_8013AB2C:
  */
 bool Game::Rigid::resolveCollision(int configIndex, Vector3f& collisionPoint, Vector3f& collisionNormal, f32 restitutionCoefficient)
 {
-	if (DynamicsParms::mInstance->mMicroCollision.mValue == 1120.0f) {
-#if _DEBUG
-		// Stripped from release build
-		OSReport("rassclaaat");
-#endif
+	if (1120.0f * DynamicsParms::mInstance->mMicroCollision.mValue > 0.0f) {
+		restitutionCoefficient = resolveCollisionDebug(restitutionCoefficient);
 	}
+	f32 zero = 0.0f;
 
-	RigidConfig* config = &this->mConfigs[configIndex];
+	RigidConfig& config      = mConfigs[configIndex];
+	Vector3f positionDelta   = collisionPoint - config.mPosition;
+	Vector3f scratch         = config.mRotatedMomentum;
+	scratch                  = scratch.cross(positionDelta);
+	Vector3f contactVelocity = config.mVelocity + scratch;
+	contactVelocity.negate2();
 
-	Vector3f positionDelta = collisionPoint - config->mPosition;
+	f32 impulseMagnitude = contactVelocity.dot(collisionNormal);
 
-	Vector3f angularMomentum(config->mRotatedMomentum.z * positionDelta.y - config->mRotatedMomentum.y * positionDelta.z,
-	                         config->mRotatedMomentum.x * positionDelta.z - config->mRotatedMomentum.z * positionDelta.x,
-	                         config->mRotatedMomentum.y * positionDelta.x - config->mRotatedMomentum.x * positionDelta.y);
-
-	config->mRotatedMomentum = angularMomentum;
-
-	Vector3f impulse = angularMomentum + config->mVelocity;
-	impulse.negate2();
-
-	f32 impulseMagnitude = impulse.dot(collisionNormal);
-
-	// If there's a collision
-	if (impulseMagnitude < 0.0f * -0.0f) {
+	if (impulseMagnitude < -zero) {
 		return false;
 	}
 
-	// If it's tiny, just set it to 0
-	if (fabs(impulseMagnitude) <= 0.0f) {
+	if (absF(impulseMagnitude) <= zero) {
 		restitutionCoefficient = 1.0f;
-		impulseMagnitude       = 0.0f;
+		impulseMagnitude       = zero;
 	}
 
-	Vector3f rotatedVelocity = config->mRotatedTransform.mtxMult(positionDelta.cross(collisionNormal));
+	f32 impulseDenominator = mTimeStep;
+	impulseMagnitude       = -(1.0f + restitutionCoefficient) * impulseMagnitude;
+	f32 impulseNumerator   = impulseMagnitude;
 
-	f32 dynamicCoefficient = collisionNormal.dot(rotatedVelocity);
-	f32 scalar             = -(1.0f + restitutionCoefficient) * impulseMagnitude / dynamicCoefficient;
+	scratch = positionDelta;
+	scratch = resolveCollisionCross(scratch, collisionNormal);
+	scratch = config.mRotatedTransform.mtxMult(scratch);
+	scratch = resolveCollisionCross(scratch, positionDelta);
+	impulseDenominator += collisionNormal.dot(scratch);
+	Vector3f collisionImpulse = collisionNormal;
+	collisionImpulse *= -(impulseNumerator / impulseDenominator);
+	config.mVelocity = config.mVelocity + collisionImpulse * mTimeStep;
 
-	Vector3f collisionImpulse = positionDelta * (collisionNormal * scalar);
-
-	config->mVelocity = config->mVelocity + collisionImpulse;
-	config->setMomentum(positionDelta.cross(collisionImpulse));
+	scratch                 = positionDelta;
+	scratch                 = resolveCollisionCross(scratch, collisionImpulse);
+	config.mMomentum        = config.mMomentum + scratch;
+	config.mRotatedMomentum = config.mRotatedTransform.mtxMult(config.mMomentum);
 	return true;
-	/*
-	stwu     r1, -0x90(r1)
-	mflr     r0
-	stw      r0, 0x94(r1)
-	stfd     f31, 0x80(r1)
-	psq_st   f31, 136(r1), 0, qr0
-	stfd     f30, 0x70(r1)
-	psq_st   f30, 120(r1), 0, qr0
-	stfd     f29, 0x60(r1)
-	psq_st   f29, 104(r1), 0, qr0
-	stfd     f28, 0x50(r1)
-	psq_st   f28, 88(r1), 0, qr0
-	stfd     f27, 0x40(r1)
-	psq_st   f27, 72(r1), 0, qr0
-	stw      r31, 0x3c(r1)
-	stw      r30, 0x38(r1)
-	stw      r29, 0x34(r1)
-	lwz      r7, mInstance__13DynamicsParms@sda21(r13)
-	mr       r29, r3
-	lfs      f3, lbl_80518278@sda21(r2)
-	mr       r30, r6
-	lfs      f2, 0xa8(r7)
-	lfs      f0, lbl_8051823C@sda21(r2)
-	fmuls    f2, f3, f2
-	fcmpo    cr0, f2, f0
-	mulli    r3, r4, 0x88
-	lfs      f2, lbl_8051823C@sda21(r2)
-	lfs      f8, 8(r5)
-	lfs      f6, 4(r5)
-	fneg     f0, f2
-	addi     r31, r3, 0x34
-	add      r31, r29, r31
-	lfs      f4, 0(r5)
-	lfs      f7, 8(r31)
-	lfs      f5, 4(r31)
-	lfs      f3, 0(r31)
-	fsubs    f29, f8, f7
-	lfs      f7, 0x24(r31)
-	fsubs    f30, f6, f5
-	fsubs    f31, f4, f3
-	stfs     f7, 0x20(r1)
-	fmuls    f4, f7, f29
-	lfs      f6, 0x28(r31)
-	stfs     f6, 0x24(r1)
-	fmuls    f3, f6, f31
-	lfs      f5, 0x2c(r31)
-	fmsubs   f8, f7, f30, f3
-	fmuls    f3, f5, f30
-	stfs     f5, 0x28(r1)
-	fmsubs   f4, f5, f31, f4
-	stfs     f8, 0x28(r1)
-	fmsubs   f6, f6, f29, f3
-	stfs     f4, 0x24(r1)
-	stfs     f6, 0x20(r1)
-	lfs      f3, 0x10(r31)
-	lfs      f5, 0xc(r31)
-	fadds    f4, f3, f4
-	lfs      f7, 0x14(r31)
-	fadds    f6, f5, f6
-	lfs      f3, 4(r30)
-	fadds    f8, f7, f8
-	lfs      f5, 0(r30)
-	fneg     f4, f4
-	lfs      f7, 8(r30)
-	fneg     f6, f6
-	fneg     f8, f8
-	fmuls    f3, f4, f3
-	fmadds   f3, f6, f5, f3
-	fmadds   f3, f8, f7, f3
-	fcmpo    cr0, f3, f0
-	bge      lbl_8013AC94
-	li       r3, 0
-	b        lbl_8013AE30
-
-lbl_8013AC94:
-	fabs     f0, f3
-	frsp     f0, f0
-	fcmpo    cr0, f0, f2
-	cror     2, 0, 2
-	bne      lbl_8013ACB0
-	lfs      f1, lbl_80518258@sda21(r2)
-	fmr      f3, f2
-
-lbl_8013ACB0:
-	lfs      f27, 0(r29)
-	addi     r3, r31, 0x58
-	lfs      f0, lbl_80518258@sda21(r2)
-	addi     r4, r1, 0x20
-	stfs     f31, 0x20(r1)
-	addi     r5, r1, 0x14
-	fadds    f0, f0, f1
-	stfs     f30, 0x24(r1)
-	stfs     f29, 0x28(r1)
-	fneg     f0, f0
-	lfs      f4, 0(r30)
-	lfs      f5, 8(r30)
-	fmuls    f28, f0, f3
-	lfs      f3, 4(r30)
-	fmuls    f1, f30, f4
-	fmuls    f2, f31, f5
-	fmuls    f0, f29, f3
-	fmsubs   f3, f31, f3, f1
-	fmsubs   f1, f29, f4, f2
-	fmsubs   f0, f30, f5, f0
-	stfs     f3, 0x28(r1)
-	stfs     f0, 0x20(r1)
-	stfs     f1, 0x24(r1)
-	bl       PSMTXMultVec
-	lfs      f5, 0x14(r1)
-	addi     r3, r31, 0x58
-	lfs      f4, 0x18(r1)
-	addi     r4, r31, 0x30
-	lfs      f3, 0x1c(r1)
-	fmuls    f2, f5, f29
-	fmuls    f1, f4, f31
-	stfs     f5, 0x20(r1)
-	fmuls    f0, f3, f30
-	addi     r5, r1, 8
-	fmsubs   f6, f3, f31, f2
-	stfs     f4, 0x24(r1)
-	fmsubs   f2, f4, f29, f0
-	fmsubs   f4, f5, f30, f1
-	stfs     f3, 0x28(r1)
-	stfs     f2, 0x20(r1)
-	stfs     f6, 0x24(r1)
-	stfs     f4, 0x28(r1)
-	lfs      f9, 4(r30)
-	lfs      f8, 0(r30)
-	fmuls    f0, f9, f6
-	lfs      f6, 8(r30)
-	lfs      f3, 0(r29)
-	lfs      f1, 0xc(r31)
-	fmadds   f0, f8, f2, f0
-	lfs      f5, 0x10(r31)
-	lfs      f7, 0x14(r31)
-	fmadds   f0, f6, f4, f0
-	fadds    f27, f27, f0
-	fdivs    f0, f28, f27
-	fneg     f0, f0
-	fmuls    f8, f8, f0
-	fmuls    f9, f9, f0
-	fmuls    f10, f6, f0
-	fmuls    f0, f8, f3
-	fmuls    f4, f9, f3
-	fmuls    f6, f10, f3
-	fadds    f3, f1, f0
-	fmuls    f2, f31, f10
-	fmuls    f1, f30, f8
-	fmuls    f0, f29, f9
-	stfs     f3, 0xc(r31)
-	fadds    f3, f5, f4
-	fadds    f4, f7, f6
-	fmsubs   f5, f29, f8, f2
-	stfs     f3, 0x10(r31)
-	fmsubs   f6, f31, f9, f1
-	fmsubs   f3, f30, f10, f0
-	stfs     f4, 0x14(r31)
-	stfs     f31, 0x20(r1)
-	stfs     f30, 0x24(r1)
-	stfs     f29, 0x28(r1)
-	stfs     f3, 0x20(r1)
-	stfs     f5, 0x24(r1)
-	stfs     f6, 0x28(r1)
-	lfs      f0, 0x30(r31)
-	lfs      f1, 0x34(r31)
-	lfs      f2, 0x38(r31)
-	fadds    f0, f0, f3
-	fadds    f1, f1, f5
-	fadds    f2, f2, f6
-	stfs     f0, 0x30(r31)
-	stfs     f1, 0x34(r31)
-	stfs     f2, 0x38(r31)
-	bl       PSMTXMultVec
-	lfs      f1, 0xc(r1)
-	li       r3, 1
-	lfs      f2, 0x10(r1)
-	lfs      f0, 8(r1)
-	stfs     f0, 0x24(r31)
-	stfs     f1, 0x28(r31)
-	stfs     f2, 0x2c(r31)
-
-lbl_8013AE30:
-	psq_l    f31, 136(r1), 0, qr0
-	lfd      f31, 0x80(r1)
-	psq_l    f30, 120(r1), 0, qr0
-	lfd      f30, 0x70(r1)
-	psq_l    f29, 104(r1), 0, qr0
-	lfd      f29, 0x60(r1)
-	psq_l    f28, 88(r1), 0, qr0
-	lfd      f28, 0x50(r1)
-	psq_l    f27, 72(r1), 0, qr0
-	lfd      f27, 0x40(r1)
-	lwz      r31, 0x3c(r1)
-	lwz      r30, 0x38(r1)
-	lwz      r0, 0x94(r1)
-	lwz      r29, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x90
-	blr
-	*/
 }
