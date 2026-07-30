@@ -156,7 +156,7 @@ struct J2DPicture : public J2DPane {
 	void setTexCoord(JGeometry::TVec2s* texCoord, const JUTTexture* texture, J2DBinding binding, J2DMirror mirror, bool doRotate90);
 	GXTlut getTlutID(const ResTIMG* img, u8 id);
 
-	void operator=(const J2DPicture& other)
+	J2DPicture& operator=(const J2DPicture& other)
 	{
 		J2DPane::operator=(other);
 
@@ -168,20 +168,15 @@ struct J2DPicture : public J2DPane {
 		mTextureCount     = other.mTextureCount;
 		mUsedTextureFlags = other.mUsedTextureFlags;
 
-		mTexCoords[0] = other.mTexCoords[0];
-		mTexCoords[1] = other.mTexCoords[1];
-		mTexCoords[2] = other.mTexCoords[2];
-		mTexCoords[3] = other.mTexCoords[3];
-
-		mBlendColorRatio[0] = other.mBlendColorRatio[0];
-		mBlendColorRatio[1] = other.mBlendColorRatio[1];
-		mBlendColorRatio[2] = other.mBlendColorRatio[2];
-		mBlendColorRatio[3] = other.mBlendColorRatio[3];
-
-		mBlendAlphaRatio[0] = other.mBlendAlphaRatio[0];
-		mBlendAlphaRatio[1] = other.mBlendAlphaRatio[1];
-		mBlendAlphaRatio[2] = other.mBlendAlphaRatio[2];
-		mBlendAlphaRatio[3] = other.mBlendAlphaRatio[3];
+		struct TexCoordBlock {
+			JGeometry::TVec2s coords[4];
+		};
+		struct RatioBlock {
+			f32 ratios[4];
+		};
+		*(TexCoordBlock*)mTexCoords    = *(const TexCoordBlock*)other.mTexCoords;
+		*(RatioBlock*)mBlendColorRatio = *(const RatioBlock*)other.mBlendColorRatio;
+		*(RatioBlock*)mBlendAlphaRatio = *(const RatioBlock*)other.mBlendAlphaRatio;
 
 		mPalette         = other.mPalette;
 		mWhite           = other.mWhite;
@@ -192,6 +187,7 @@ struct J2DPicture : public J2DPane {
 		mCornerColors[3] = other.mCornerColors[3];
 		mBlendColor      = other.mBlendColor;
 		mBlendAlpha      = other.mBlendAlpha;
+		return *this;
 	}
 
 	inline void setCornerColor(TCornerColor colors)

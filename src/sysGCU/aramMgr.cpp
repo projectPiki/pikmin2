@@ -107,7 +107,6 @@ u32 Mgr::dvdToAram(char const* name, bool forceAddNode)
 	Node* found = search(name);
 
 	if (!found) {
-		// Is sSystemHeap volatile or something?
 		JKRHeap* sysHeap1 = JKRHeap::sSystemHeap;
 		Node* newNode     = new (sysHeap1, 0) Node;
 
