@@ -214,20 +214,30 @@ void CellIterator::calcExtent()
 {
 	// Get the cell manager and sphere properties from mArg
 	CellPyramid* cellManager = mArg.mCellMgr;
-	Vector3f spherePosition  = mArg.mSphere.mPosition;
-	f32 sphereRadius         = mArg.mSphere.mRadius;
 
-	// Get the bounds from the cell manager
-	Vector2f bounds(cellManager->mBounds.x, cellManager->mBounds.y);
+	u16 layerSize = cellManager->getLayer(mCurrLayerIdx)->mLayerSize;
+	f32 mult      = (f32)layerSize * cellManager->mScale;
 
-	// Calculate the normalization factor
-	f32 normalizationFactor = 1.0f / (cellManager->mScale * cellManager->getLayer(mCurrLayerIdx)->mLayerSize);
+	f32 xLow = mArg.mSphere.mPosition.x - mArg.mSphere.mRadius;
+	f32 xHi  = mArg.mSphere.mPosition.x + mArg.mSphere.mRadius;
+	f32 yLow = mArg.mSphere.mPosition.z - mArg.mSphere.mRadius;
+	f32 yHi  = mArg.mSphere.mPosition.z + mArg.mSphere.mRadius;
+
+	f32 left  = cellManager->mBounds.x;
+	f32 right = cellManager->mBounds.y;
+
+	f32 xLowDiff = xLow - right;
+	f32 yLowDiff = yLow - left;
+	f32 xHiDiff  = xHi - right;
+	f32 yHiDiff  = yHi - left;
+
+	f32 scale = 1.0f / mult;
 
 	// Calculate the minimum and maximum x and y values
-	mMinX = (spherePosition.x - sphereRadius - bounds.x) * normalizationFactor;
-	mMinY = (spherePosition.z - sphereRadius - bounds.y) * normalizationFactor;
-	mMaxX = (spherePosition.x + sphereRadius - bounds.x) * normalizationFactor;
-	mMaxY = (spherePosition.z + sphereRadius - bounds.y) * normalizationFactor;
+	mMinX = xLowDiff * scale;
+	mMinY = yLowDiff * scale;
+	mMaxX = xHiDiff * scale;
+	mMaxY = yHiDiff * scale;
 
 	if (mMinX > mMaxX) {
 		JUT_PANICLINE(249, "x %f>%f", mMinX, mMaxX);
@@ -243,113 +253,6 @@ void CellIterator::calcExtent()
 
 	mCurrX = mMinX;
 	mCurrY = mMinY;
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	lfd      f2, lbl_8051A318@sda21(r2)
-	stw      r0, 0x44(r1)
-	lis      r0, 0x4330
-	lfs      f3, lbl_8051A304@sda21(r2)
-	stw      r31, 0x3c(r1)
-	mr       r31, r3
-	lwz      r3, 0xc(r3)
-	lwz      r5, 0x3c(r31)
-	mulli    r3, r3, 0x38
-	stw      r0, 8(r1)
-	lwz      r4, 0x30(r5)
-	lfs      f0, 0x34(r5)
-	addi     r0, r3, 4
-	lfs      f6, 0x30(r31)
-	lhzx     r0, r4, r0
-	lfs      f7, 0x2c(r31)
-	stw      r0, 0xc(r1)
-	lfs      f4, 0x24(r31)
-	fsubs    f5, f7, f6
-	lfd      f1, 8(r1)
-	lfs      f9, 0x40(r5)
-	fsubs    f2, f1, f2
-	lfs      f8, 0x3c(r5)
-	fsubs    f1, f4, f6
-	fadds    f4, f4, f6
-	fmuls    f2, f2, f0
-	fadds    f0, f7, f6
-	fsubs    f1, f1, f9
-	fdivs    f6, f3, f2
-	fsubs    f2, f5, f8
-	fmuls    f1, f1, f6
-	fsubs    f4, f4, f9
-	fmuls    f2, f2, f6
-	fctiwz   f3, f1
-	fsubs    f0, f0, f8
-	fmuls    f1, f4, f6
-	fctiwz   f2, f2
-	stfd     f3, 0x10(r1)
-	fmuls    f0, f0, f6
-	fctiwz   f1, f1
-	lwz      r0, 0x14(r1)
-	stfd     f2, 0x18(r1)
-	fctiwz   f0, f0
-	stfd     f1, 0x20(r1)
-	lwz      r3, 0x1c(r1)
-	stw      r0, 0x10(r31)
-	lwz      r0, 0x24(r1)
-	stw      r3, 0x14(r31)
-	stfd     f0, 0x28(r1)
-	stw      r0, 0x18(r31)
-	lwz      r0, 0x2c(r1)
-	stw      r0, 0x1c(r31)
-	lwz      r6, 0x10(r31)
-	lwz      r7, 0x18(r31)
-	cmpw     r6, r7
-	ble      lbl_8022EA04
-	lis      r3, lbl_80483828@ha
-	li       r4, 0xf9
-	addi     r3, r3, lbl_80483828@l
-	addi     r5, r2, lbl_8051A308@sda21
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8022EA04:
-	lwz      r6, 0x14(r31)
-	lwz      r7, 0x1c(r31)
-	cmpw     r6, r7
-	ble      lbl_8022EA2C
-	lis      r3, lbl_80483828@ha
-	li       r4, 0xfc
-	addi     r3, r3, lbl_80483828@l
-	addi     r5, r2, lbl_8051A310@sda21
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8022EA2C:
-	lwz      r6, 0x10(r31)
-	lwz      r8, 0x18(r31)
-	lwz      r7, 0x14(r31)
-	lwz      r9, 0x1c(r31)
-	subf     r3, r6, r8
-	subf     r0, r7, r9
-	mullw    r0, r3, r0
-	cmpwi    r0, 0x2710
-	blt      lbl_8022EA6C
-	lis      r3, lbl_80483828@ha
-	lis      r4, lbl_8048383C@ha
-	addi     r5, r4, lbl_8048383C@l
-	addi     r3, r3, lbl_80483828@l
-	li       r4, 0x103
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8022EA6C:
-	lwz      r0, 0x10(r31)
-	stw      r0, 4(r31)
-	lwz      r0, 0x14(r31)
-	stw      r0, 8(r31)
-	lwz      r31, 0x3c(r1)
-	lwz      r0, 0x44(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
 }
 
 /**
