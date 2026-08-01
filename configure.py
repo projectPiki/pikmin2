@@ -1365,7 +1365,7 @@ config.libs = [
             Object(Matching, "plugProjectKandoU/vsGS_Load.cpp"),
             Object(Matching, "plugProjectKandoU/vsStageData.cpp"),
             Object(Matching, "plugProjectKandoU/cellMgrParms.cpp"),
-            Object(NonMatching, "plugProjectKandoU/cellIterator.cpp"),
+            Object(Matching, "plugProjectKandoU/cellIterator.cpp"),
             Object(Matching, "plugProjectKandoU/vsGS_VSGame.cpp"),
             Object(Matching, "plugProjectKandoU/gameSoundEvent.cpp"),
             Object(Matching, "plugProjectKandoU/aiBattle.cpp"),
