@@ -1589,7 +1589,7 @@ config.libs = [
             Object(Matching, "plugProjectNishimuraU/OniKurageState.cpp"),
             Object(Matching, "plugProjectNishimuraU/OniKurageAnimator.cpp"),
             Object(Matching, "plugProjectNishimuraU/OniKurageMgr.cpp"),
-            Object(NonMatching, "plugProjectNishimuraU/OniKurage.cpp"),
+            Object(Matching, "plugProjectNishimuraU/OniKurage.cpp"),
             Object(Matching, "plugProjectNishimuraU/BigTreasureState.cpp"),
             Object(Matching, "plugProjectNishimuraU/BigTreasureMgr.cpp"),
             Object(NonMatching, "plugProjectNishimuraU/BigTreasureShadow.cpp"),
