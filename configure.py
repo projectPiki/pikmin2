@@ -2032,7 +2032,7 @@ config.libs = [
             Object(Matching, "sysGCU/simpleMessage.cpp"),
             Object(Matching, "sysGCU/sysShapeAnimation.cpp"),
             Object(NonMatching, "sysGCU/sysShapeModel.cpp"),
-            Object(NonMatching, "sysGCU/windowMessage.cpp"),
+            Object(Matching, "sysGCU/windowMessage.cpp"),
             Object(Equivalent, "sysGCU/memoryCard.cpp"),
             Object(Matching, "sysGCU/pikmin2MemoryCardMgr.cpp"),
             Object(Matching, "sysGCU/commonSaveData.cpp"),

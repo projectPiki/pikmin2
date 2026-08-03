@@ -6,10 +6,14 @@
 #include "PSSystem/PSSystemIF.h"
 #include "nans.h"
 
-static const char idk[] = "\0\0\0\0\0\0\0\0\0";
-
 namespace P2JME {
 namespace Window {
+
+static void strippedFunc()
+{
+	OSReport("\0\0\0\0\0\0\0\0\0\0\0");
+}
+
 /**
  * @note Address: 0x8043F188
  * @note Size: 0x50
@@ -196,333 +200,72 @@ void TRenderingProcessor::initDrawInfoMgr(u32 count)
  * @note Address: 0x8043F55C
  * @note Size: 0x344
  */
-BOOL TRenderingProcessor::doDrawCommon(f32 a1, f32 a2, Matrixf* mtx1, Matrixf* mtx2)
+BOOL TRenderingProcessor::doDrawCommon(f32 x0, f32 y0, Matrixf* mtx1, Matrixf* mtx2)
 {
 	u8 ret = 255;
 
 	DrawInfo* info = mDrawInfo.searchDrawInfo(mInfoIndex);
-	f32 speed      = mSpeed;
-	if (a2 >= -speed) {
-		f32 speed2 = mTextBoxHeight;
-		if (a2 < (speed2 + speed)) {
-			f32 calc = 0.0f;
-			f32 calc2;
-			if (a2 <= 0.0f) {
-				if (a2 < speed2) {
-					calc2 = a2;
-					if (a2 < 0.0f) {
-						calc2 = a2 - speed2;
-					}
-				}
-			}
-			speed2 = 0.0f;
-			speed2 = speed * speed - calc2 * calc2;
-			speed2 = _sqrtf(speed2);
-			speed2 = -speed2;
-			speed  = JMAAtan2Radian(speed2, calc2);
-			calc   = speed + HALF_PI;
-			calc   = ROUND_F32_TO_U8(calc2 / mSpeed * 255.0f);
-			ret    = 255 - (u8)calc;
-			calc2  = speed2 + mSpeed;
-
-			if (!info) {
-				info      = (DrawInfo*)mDrawInfo.mInfoList2.mChild;
-				int index = mInfoIndex;
-				if (info) {
-					info->mIndex = index;
-					info->mTimer = 0.0f;
-					info->del();
-					mDrawInfo.mInfoList1.add(info);
-					doGetDrawInfo(info);
-				}
-				info = (DrawInfo*)info->mChild;
-			}
-
-			Matrixf mtx;
-			if (info) {
-				Vector3f pos(a1, a2, calc2);
-				makeMatrix(&mtx, info, calc, pos);
+	if (y0 >= -mSpeed && y0 < mTextBoxHeight + mSpeed) {
+		f32 y;
+		f32 delta;
+		f32 zPos;
+		f32 angle;
+		if (y0 >= 0.0f && y0 < mTextBoxHeight) {
+			zPos  = 0.0f;
+			angle = 0.0f;
+		} else {
+			if (y0 < 0.0f) {
+				delta = y0;
 			} else {
-				Vector3f pos(a1, a2, calc2);
-				mtx.makeT(pos);
+				delta = y0 - mTextBoxHeight;
 			}
+			f32 deltaSq = delta;
+			deltaSq *= deltaSq;
+			f32 radicand = mSpeed * mSpeed - deltaSq;
+			y            = -_sqrtf(radicand);
+			angle        = HALF_PI + JMAAtan2Radian(y, delta);
+			zPos         = y + mSpeed;
+			f64 ratio    = fabs(delta / mSpeed);
+			f32 alpha    = 255.0f * (f32)ratio;
+			alpha        = ROUND_F32_TO_U8(alpha);
+			ret          = 255 - (u8)alpha;
+		}
 
-			if (mtx2) {
-				PSMTXCopy(mtx.mMatrix.mtxView, mtx2->mMatrix.mtxView);
-				f32 tx                      = mtx2->mMatrix.structView.tx;
-				f32 ty                      = mtx2->mMatrix.structView.ty;
-				ty                          = ty + 5.0f;
-				tx                          = tx + 10.0f;
-				mtx2->mMatrix.structView.tx = tx;
-				mtx2->mMatrix.structView.ty = ty;
-				PSMTXConcat(mMtx1->mMatrix.mtxView, mtx2->mMatrix.mtxView, mtx2->mMatrix.mtxView);
-				PSMTXConcat(mMtx2->mMatrix.mtxView, mtx2->mMatrix.mtxView, mtx2->mMatrix.mtxView);
-			}
-			PSMTXConcat(mMtx1->mMatrix.mtxView, mtx.mMatrix.mtxView, mtx.mMatrix.mtxView);
-			PSMTXConcat(mMtx2->mMatrix.mtxView, mtx.mMatrix.mtxView, mtx.mMatrix.mtxView);
-			if (mtx1) {
-				PSMTXCopy(mtx.mMatrix.mtxView, mtx1->mMatrix.mtxView);
-			} else {
-				GXLoadPosMtxImm(mtx.mMatrix.mtxView, 0);
-			}
+		if (!info) {
+			info = mDrawInfo.getDrawInfo(mInfoIndex);
+			doGetDrawInfo(info);
+		}
+
+		Matrixf mtx;
+		if (info) {
+			Vector3f pos(x0, y0, zPos);
+			makeMatrix(&mtx, info, angle, pos);
+		} else {
+			Vector3f pos(x0, y0, zPos);
+			mtx.makeT(pos);
+		}
+
+		if (mtx2) {
+			PSMTXCopy(mtx.mMatrix.mtxView, mtx2->mMatrix.mtxView);
+			Vector3f translation = mtx2->getTranslation();
+			translation.x += 10.0f;
+			translation.y += 5.0f;
+			mtx2->setTranslation(translation);
+			PSMTXConcat(mMtx1->mMatrix.mtxView, mtx2->mMatrix.mtxView, mtx2->mMatrix.mtxView);
+			PSMTXConcat(mMtx2->mMatrix.mtxView, mtx2->mMatrix.mtxView, mtx2->mMatrix.mtxView);
+		}
+		PSMTXConcat(mMtx1->mMatrix.mtxView, mtx.mMatrix.mtxView, mtx.mMatrix.mtxView);
+		PSMTXConcat(mMtx2->mMatrix.mtxView, mtx.mMatrix.mtxView, mtx.mMatrix.mtxView);
+		if (mtx1) {
+			PSMTXCopy(mtx.mMatrix.mtxView, mtx1->mMatrix.mtxView);
+		} else {
+			GXLoadPosMtxImm(mtx.mMatrix.mtxView, 0);
 		}
 	} else {
 		ret = 0;
 	}
 
 	return (int)(ret * mBaseAlphaModifier);
-
-	/*
-	stwu     r1, -0xe0(r1)
-	mflr     r0
-	stw      r0, 0xe4(r1)
-	stfd     f31, 0xd0(r1)
-	psq_st   f31, 216(r1), 0, qr0
-	stfd     f30, 0xc0(r1)
-	psq_st   f30, 200(r1), 0, qr0
-	stfd     f29, 0xb0(r1)
-	psq_st   f29, 184(r1), 0, qr0
-	stfd     f28, 0xa0(r1)
-	psq_st   f28, 168(r1), 0, qr0
-	stfd     f27, 0x90(r1)
-	psq_st   f27, 152(r1), 0, qr0
-	stmw     r27, 0x7c(r1)
-	mr       r29, r3
-	fmr      f30, f1
-	fmr      f31, f2
-	lwz      r6, 0x40(r3)
-	lwz      r3, 0x120(r3)
-	mr       r30, r4
-	mr       r31, r5
-	li       r27, 0xff
-	li       r28, 0
-	b        lbl_8043F5D4
-
-lbl_8043F5BC:
-	lwz      r0, 0x18(r3)
-	cmpw     r6, r0
-	bne      lbl_8043F5D0
-	mr       r28, r3
-	b        lbl_8043F5DC
-
-lbl_8043F5D0:
-	lwz      r3, 4(r3)
-
-lbl_8043F5D4:
-	cmplwi   r3, 0
-	bne      lbl_8043F5BC
-
-lbl_8043F5DC:
-	lfs      f1, 0x140(r29)
-	fneg     f0, f1
-	fcmpo    cr0, f31, f0
-	cror     2, 1, 2
-	bne      lbl_8043F830
-	lfs      f2, 0x3c(r29)
-	fadds    f0, f2, f1
-	fcmpo    cr0, f31, f0
-	bge      lbl_8043F830
-	lfs      f0, lbl_80520924@sda21(r2)
-	fcmpo    cr0, f31, f0
-	cror     2, 1, 2
-	bne      lbl_8043F624
-	fcmpo    cr0, f31, f2
-	bge      lbl_8043F624
-	fmr      f28, f0
-	fmr      f27, f0
-	b        lbl_8043F6D8
-
-lbl_8043F624:
-	lfs      f0, lbl_80520924@sda21(r2)
-	fcmpo    cr0, f31, f0
-	bge      lbl_8043F638
-	fmr      f28, f31
-	b        lbl_8043F63C
-
-lbl_8043F638:
-	fsubs    f28, f31, f2
-
-lbl_8043F63C:
-	fmuls    f2, f28, f28
-	lfs      f0, lbl_80520924@sda21(r2)
-	fmsubs   f1, f1, f1, f2
-	fcmpo    cr0, f1, f0
-	ble      lbl_8043F660
-	ble      lbl_8043F664
-	frsqrte  f0, f1
-	fmuls    f1, f0, f1
-	b        lbl_8043F664
-
-lbl_8043F660:
-	fmr      f1, f0
-
-lbl_8043F664:
-	fneg     f29, f1
-	lis      r3, atanTable___5JMath@ha
-	fmr      f2, f28
-	addi     r3, r3, atanTable___5JMath@l
-	fmr      f1, f29
-	bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
-	lfs      f5, 0x140(r29)
-	lfs      f4, lbl_80520930@sda21(r2)
-	fdivs    f3, f28, f5
-	lfs      f2, lbl_80520934@sda21(r2)
-	lfs      f0, lbl_80520924@sda21(r2)
-	fabs     f3, f3
-	fadds    f27, f4, f1
-	fadds    f28, f29, f5
-	frsp     f1, f3
-	fmuls    f1, f2, f1
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_8043F6BC
-	lfs      f0, lbl_80520928@sda21(r2)
-	fadds    f0, f0, f1
-	b        lbl_8043F6C4
-
-lbl_8043F6BC:
-	lfs      f0, lbl_80520928@sda21(r2)
-	fsubs    f0, f1, f0
-
-lbl_8043F6C4:
-	fctiwz   f0, f0
-	stfd     f0, 0x60(r1)
-	lwz      r0, 0x64(r1)
-	subfic   r0, r0, 0xff
-	clrlwi   r27, r0, 0x18
-
-lbl_8043F6D8:
-	cmplwi   r28, 0
-	bne      lbl_8043F728
-	lwz      r28, 0x138(r29)
-	lwz      r0, 0x40(r29)
-	cmplwi   r28, 0
-	beq      lbl_8043F710
-	stw      r0, 0x18(r28)
-	mr       r3, r28
-	lfs      f0, lbl_80520924@sda21(r2)
-	stfs     f0, 0x1c(r28)
-	bl       del__5CNodeFv
-	mr       r4, r28
-	addi     r3, r29, 0x110
-	bl       add__5CNodeFP5CNode
-
-lbl_8043F710:
-	lwz      r12, 0(r29)
-	mr       r3, r29
-	mr       r4, r28
-	lwz      r12, 0x8c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8043F728:
-	cmplwi   r28, 0
-	beq      lbl_8043F77C
-	stfs     f30, 0x20(r1)
-	mr       r3, r29
-	fmr      f1, f27
-	mr       r5, r28
-	stfs     f31, 0x24(r1)
-	addi     r4, r1, 0x2c
-	lwz      r8, 0x20(r1)
-	addi     r6, r1, 8
-	stfs     f28, 0x28(r1)
-	lwz      r7, 0x24(r1)
-	lwz      r0, 0x28(r1)
-	stw      r8, 8(r1)
-	stw      r7, 0xc(r1)
-	stw      r0, 0x10(r1)
-	lwz      r12, 0(r29)
-	lwz      r12, 0x88(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8043F794
-
-lbl_8043F77C:
-	stfs     f30, 0x14(r1)
-	addi     r3, r1, 0x2c
-	addi     r4, r1, 0x14
-	stfs     f31, 0x18(r1)
-	stfs     f28, 0x1c(r1)
-	bl       "makeT__7MatrixfFR10Vector3<f>"
-
-lbl_8043F794:
-	cmplwi   r31, 0
-	beq      lbl_8043F7E8
-	mr       r4, r31
-	addi     r3, r1, 0x2c
-	bl       PSMTXCopy
-	lfs      f2, 0xc(r31)
-	mr       r4, r31
-	lfs      f1, lbl_80520938@sda21(r2)
-	mr       r5, r31
-	lfs      f3, 0x1c(r31)
-	lfs      f0, lbl_8052093C@sda21(r2)
-	fadds    f2, f2, f1
-	fadds    f3, f3, f0
-	stfs     f2, 0xc(r31)
-	stfs     f3, 0x1c(r31)
-	lwz      r3, 0x44(r29)
-	bl       PSMTXConcat
-	lwz      r3, 0x48(r29)
-	mr       r4, r31
-	mr       r5, r31
-	bl       PSMTXConcat
-
-lbl_8043F7E8:
-	addi     r4, r1, 0x2c
-	lwz      r3, 0x44(r29)
-	mr       r5, r4
-	bl       PSMTXConcat
-	addi     r4, r1, 0x2c
-	lwz      r3, 0x48(r29)
-	mr       r5, r4
-	bl       PSMTXConcat
-	cmplwi   r30, 0
-	beq      lbl_8043F820
-	mr       r4, r30
-	addi     r3, r1, 0x2c
-	bl       PSMTXCopy
-	b        lbl_8043F834
-
-lbl_8043F820:
-	addi     r3, r1, 0x2c
-	li       r4, 0
-	bl       GXLoadPosMtxImm
-	b        lbl_8043F834
-
-lbl_8043F830:
-	li       r27, 0
-
-lbl_8043F834:
-	clrlwi   r3, r27, 0x18
-	lis      r0, 0x4330
-	stw      r3, 0x64(r1)
-	lfd      f2, lbl_80520940@sda21(r2)
-	stw      r0, 0x60(r1)
-	lfs      f0, 0x78(r29)
-	lfd      f1, 0x60(r1)
-	fsubs    f1, f1, f2
-	fmuls    f0, f1, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x68(r1)
-	lwz      r3, 0x6c(r1)
-	psq_l    f31, 216(r1), 0, qr0
-	lfd      f31, 0xd0(r1)
-	psq_l    f30, 200(r1), 0, qr0
-	lfd      f30, 0xc0(r1)
-	psq_l    f29, 184(r1), 0, qr0
-	lfd      f29, 0xb0(r1)
-	psq_l    f28, 168(r1), 0, qr0
-	lfd      f28, 0xa0(r1)
-	psq_l    f27, 152(r1), 0, qr0
-	lfd      f27, 0x90(r1)
-	lmw      r27, 0x7c(r1)
-	lwz      r0, 0xe4(r1)
-	mtlr     r0
-	addi     r1, r1, 0xe0
-	blr
-	*/
 }
 
 /**
@@ -533,211 +276,33 @@ void TRenderingProcessor::makeMatrix(Matrixf* mtx, DrawInfo* info, f32 angle, Ve
 {
 	switch (mMatrixType) {
 	case 0: {
-		f32 calc = info->getCalc();
-		Vector3f scale(1.0f, -((1.0f - calc) * 0.8f * cosf(calc) - 1.0f), 1.0f);
-		calc = info->getCalc();
-		Vector3f rotate(angle, 0.0f, -((1.0f - calc) * HALF_PI * cosf(calc)));
+		f32 t = info->mTimer / info->mTimeLimit;
+		Vector3f scale(1.0f, -(0.8f * (1.0f - t) * cosf((TAU * 2.0f) * t) - 1.0f), 1.0f);
+		t = info->mTimer / info->mTimeLimit;
+		Vector3f rotate(angle, 0.0f, -(HALF_PI * (1.0f - t) * cosf((TAU * 2.0f) * t)));
 		mtx->makeSRT(scale, rotate, pos);
 		break;
 	}
 	case 1: {
-		f32 calc = info->getCalc2();
-		Vector3f scale((f32)fabs((1.0f - calc) * cosf(calc) * 2.0f * (1.0f - calc)) + 1.0f);
+		f32 t    = info->mTimer / info->mTimeLimit;
+		f32 wave = 2.0f * cosf(2.0f * (TAU * (info->mTimer / info->mTimeLimit)));
+		Vector3f scale(1.0f + (f32)fabs((1.0f - t) * (wave * (1.0f - (info->mTimer / info->mTimeLimit)))));
 		Vector3f rotate(angle, 0.0f, 0.0f);
 		mtx->makeSRT(scale, rotate, pos);
 		break;
 	}
 	case 2: {
-		f32 calc = info->getCalc2();
-		pos.y    = -((f32)fabs((1.0f - calc) * cosf(calc) * 4.0f * (1.0f - calc)) * 15.0f - pos.y);
+		f32 t      = info->mTimer / info->mTimeLimit;
+		f32 theta  = 2.0f * (TAU * t);
+		f32 wave   = 4.0f * cosf(theta);
+		f32 offset = (f32)fabs((1.0f - (f32)t) * (wave * (1.0f - t)));
 		Vector3f scale(1.0f);
 		Vector3f rotate(angle, 0.0f, 0.0f);
+		pos.y -= 15.0f * offset;
 		mtx->makeSRT(scale, rotate, pos);
 		break;
 	}
 	}
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x60(r1)
-	  mflr      r0
-	  stw       r0, 0x64(r1)
-	  lbz       r0, 0xDC(r3)
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x11C
-	  bge-      .loc_0x28
-	  cmpwi     r0, 0
-	  bge-      .loc_0x34
-	  b         .loc_0x274
-
-	.loc_0x28:
-	  cmpwi     r0, 0x3
-	  bge-      .loc_0x274
-	  b         .loc_0x1C4
-
-	.loc_0x34:
-	  lfs       f3, 0x1C(r5)
-	  lfs       f0, 0x20(r5)
-	  lfs       f2, 0x25E8(r2)
-	  fdivs     f5, f3, f0
-	  lfs       f0, 0x25C4(r2)
-	  fmuls     f2, f2, f5
-	  fcmpo     cr0, f2, f0
-	  bge-      .loc_0x58
-	  fneg      f2, f2
-
-	.loc_0x58:
-	  lfs       f0, 0x25EC(r2)
-	  lis       r3, 0x8050
-	  lfs       f4, 0x25F0(r2)
-	  addi      r3, r3, 0x71A0
-	  fmuls     f3, f2, f0
-	  lfs       f2, 0x25F4(r2)
-	  fsubs     f0, f4, f5
-	  addi      r7, r3, 0x4
-	  stfs      f4, 0x44(r1)
-	  fctiwz    f5, f3
-	  fmuls     f3, f2, f0
-	  stfs      f4, 0x4C(r1)
-	  lfs       f2, 0x25E8(r2)
-	  stfd      f5, 0x50(r1)
-	  lfs       f0, 0x25C4(r2)
-	  lwz       r0, 0x54(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f5, r7, r0
-	  fnmsubs   f3, f3, f5, f4
-	  stfs      f3, 0x48(r1)
-	  lfs       f4, 0x1C(r5)
-	  lfs       f3, 0x20(r5)
-	  fdivs     f5, f4, f3
-	  fmuls     f3, f2, f5
-	  fcmpo     cr0, f3, f0
-	  bge-      .loc_0xC4
-	  fneg      f3, f3
-
-	.loc_0xC4:
-	  lfs       f2, 0x25EC(r2)
-	  mr        r3, r4
-	  lfs       f0, 0x25F0(r2)
-	  addi      r4, r1, 0x44
-	  fmuls     f4, f3, f2
-	  stfs      f1, 0x38(r1)
-	  lfs       f3, 0x25C4(r2)
-	  fsubs     f0, f0, f5
-	  lfs       f2, 0x25D0(r2)
-	  addi      r5, r1, 0x38
-	  fctiwz    f1, f4
-	  stfs      f3, 0x3C(r1)
-	  fmuls     f0, f2, f0
-	  stfd      f1, 0x58(r1)
-	  lwz       r0, 0x5C(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f1, r7, r0
-	  fmuls     f0, f0, f1
-	  fneg      f0, f0
-	  stfs      f0, 0x40(r1)
-	  bl        -0x176E0
-	  b         .loc_0x274
-
-	.loc_0x11C:
-	  lfs       f3, 0x1C(r5)
-	  lfs       f0, 0x20(r5)
-	  lfs       f2, 0x25FC(r2)
-	  fdivs     f4, f3, f0
-	  lfs       f3, 0x25F8(r2)
-	  lfs       f0, 0x25C4(r2)
-	  fmuls     f2, f2, f4
-	  fmuls     f3, f3, f2
-	  fcmpo     cr0, f3, f0
-	  bge-      .loc_0x148
-	  fneg      f3, f3
-
-	.loc_0x148:
-	  lfs       f2, 0x25EC(r2)
-	  lis       r3, 0x8050
-	  lfs       f0, 0x25C4(r2)
-	  addi      r7, r3, 0x71A0
-	  fmuls     f2, f3, f2
-	  stfs      f1, 0x20(r1)
-	  lfs       f5, 0x25F0(r2)
-	  mr        r3, r4
-	  lfs       f3, 0x25F8(r2)
-	  addi      r4, r1, 0x2C
-	  fctiwz    f1, f2
-	  stfs      f0, 0x24(r1)
-	  fsubs     f4, f5, f4
-	  addi      r5, r1, 0x20
-	  stfs      f0, 0x28(r1)
-	  stfd      f1, 0x58(r1)
-	  lwz       r0, 0x5C(r1)
-	  rlwinm    r0,r0,3,18,28
-	  add       r7, r7, r0
-	  lfs       f0, 0x4(r7)
-	  fmuls     f0, f3, f0
-	  fmuls     f0, f0, f4
-	  fmuls     f0, f4, f0
-	  fabs      f0, f0
-	  frsp      f0, f0
-	  fadds     f0, f5, f0
-	  stfs      f0, 0x2C(r1)
-	  stfs      f0, 0x30(r1)
-	  stfs      f0, 0x34(r1)
-	  bl        -0x17788
-	  b         .loc_0x274
-
-	.loc_0x1C4:
-	  lfs       f3, 0x1C(r5)
-	  lfs       f0, 0x20(r5)
-	  lfs       f2, 0x25FC(r2)
-	  fdivs     f4, f3, f0
-	  lfs       f3, 0x25F8(r2)
-	  lfs       f0, 0x25C4(r2)
-	  fmuls     f2, f2, f4
-	  fmuls     f2, f3, f2
-	  fcmpo     cr0, f2, f0
-	  bge-      .loc_0x1F0
-	  fneg      f2, f2
-
-	.loc_0x1F0:
-	  lfs       f0, 0x25EC(r2)
-	  lis       r3, 0x8050
-	  lfs       f7, 0x25F0(r2)
-	  addi      r7, r3, 0x71A0
-	  fmuls     f0, f2, f0
-	  lfs       f3, 0x25C4(r2)
-	  fsubs     f6, f7, f4
-	  mr        r3, r4
-	  lfs       f5, 0x2600(r2)
-	  addi      r4, r1, 0x14
-	  fctiwz    f4, f0
-	  stfs      f1, 0x8(r1)
-	  lfs       f2, 0x2604(r2)
-	  addi      r5, r1, 0x8
-	  lfs       f0, 0x4(r6)
-	  stfd      f4, 0x58(r1)
-	  lwz       r0, 0x5C(r1)
-	  stfs      f7, 0x14(r1)
-	  rlwinm    r0,r0,3,18,28
-	  add       r7, r7, r0
-	  stfs      f7, 0x18(r1)
-	  lfs       f4, 0x4(r7)
-	  stfs      f7, 0x1C(r1)
-	  fmuls     f1, f5, f4
-	  stfs      f3, 0xC(r1)
-	  fmuls     f1, f1, f6
-	  stfs      f3, 0x10(r1)
-	  fmuls     f1, f6, f1
-	  fabs      f1, f1
-	  frsp      f1, f1
-	  fnmsubs   f0, f2, f1, f0
-	  stfs      f0, 0x4(r6)
-	  bl        -0x1783C
-
-	.loc_0x274:
-	  lwz       r0, 0x64(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x60
-	  blr
-	*/
 }
 
 /**
@@ -749,14 +314,14 @@ f32 TRenderingProcessor::doDrawLetter(f32 x0, f32 y0, f32 x, f32 y, int a1, bool
 	f32 wid;
 	Matrixf mtx1;
 	Matrixf mtx2;
-	u8 ret = doDrawCommon(x0, y0, &mtx1, &mtx2);
-	if (ret) {
+	int ret = doDrawCommon(x0, y0, &mtx1, &mtx2);
+	if ((u8)ret) {
 		GXLoadPosMtxImm(mtx2.mMatrix.mtxView, 0);
 		JUtility::TColor color;
 		color.b = 0; // This actually assigns in BGRA order, weird!
 		color.g = 0;
 		color.r = 0;
-		color.a = ret >> 1;
+		color.a = (u8)ret >> 1;
 		mMainFont->setGradColor(color, color);
 		mMainFont->drawChar_scale(0.0f, 0.0f, x, y, a1, flag);
 
@@ -770,111 +335,6 @@ f32 TRenderingProcessor::doDrawLetter(f32 x0, f32 y0, f32 x, f32 y, int a1, bool
 		wid = calcWidth(mMainFont, a1, x, flag);
 	}
 	return wid;
-	/*
-	.loc_0x0:
-	  stwu      r1, -0xB0(r1)
-	  mflr      r0
-	  stw       r0, 0xB4(r1)
-	  stfd      f31, 0xA0(r1)
-	  psq_st    f31,0xA8(r1),0,0
-	  stfd      f30, 0x90(r1)
-	  psq_st    f30,0x98(r1),0,0
-	  stw       r31, 0x8C(r1)
-	  stw       r30, 0x88(r1)
-	  stw       r29, 0x84(r1)
-	  stw       r28, 0x80(r1)
-	  lwz       r12, 0x0(r3)
-	  mr        r29, r4
-	  mr        r30, r5
-	  fmr       f30, f3
-	  lwz       r12, 0x84(r12)
-	  fmr       f31, f4
-	  mr        r28, r3
-	  addi      r4, r1, 0x50
-	  addi      r5, r1, 0x20
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  mr        r31, r3
-	  beq-      .loc_0x140
-	  addi      r3, r1, 0x20
-	  li        r4, 0
-	  bl        -0x35661C
-	  li        r3, -0x1
-	  rlwinm    r0,r31,31,25,31
-	  stw       r3, 0x1C(r1)
-	  li        r3, 0
-	  addi      r4, r1, 0x18
-	  addi      r5, r1, 0x14
-	  stb       r3, 0x1E(r1)
-	  stb       r3, 0x1D(r1)
-	  stb       r3, 0x1C(r1)
-	  stb       r0, 0x1F(r1)
-	  lwz       r0, 0x1C(r1)
-	  stw       r0, 0x14(r1)
-	  stw       r0, 0x18(r1)
-	  stw       r0, 0x8(r1)
-	  lwz       r3, 0x4C(r28)
-	  bl        -0x4129C4
-	  lwz       r3, 0x4C(r28)
-	  fmr       f3, f30
-	  lfs       f1, 0x25C4(r2)
-	  fmr       f4, f31
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r29
-	  fmr       f2, f1
-	  lwz       r12, 0x14(r12)
-	  mr        r5, r30
-	  mtctr     r12
-	  bctrl
-	  addi      r3, r1, 0x50
-	  li        r4, 0
-	  bl        -0x356694
-	  stb       r31, 0x67(r28)
-	  addi      r4, r1, 0x10
-	  addi      r5, r1, 0xC
-	  stb       r31, 0x6B(r28)
-	  lwz       r0, 0x68(r28)
-	  stw       r0, 0xC(r1)
-	  lwz       r0, 0x64(r28)
-	  stw       r0, 0x10(r1)
-	  lwz       r3, 0x4C(r28)
-	  bl        -0x412A24
-	  lwz       r3, 0x4C(r28)
-	  fmr       f3, f30
-	  lfs       f1, 0x25C4(r2)
-	  fmr       f4, f31
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r29
-	  fmr       f2, f1
-	  lwz       r12, 0x14(r12)
-	  mr        r5, r30
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x158
-
-	.loc_0x140:
-	  fmr       f1, f30
-	  lwz       r4, 0x4C(r28)
-	  mr        r3, r28
-	  mr        r5, r29
-	  mr        r6, r30
-	  bl        -0x3968
-
-	.loc_0x158:
-	  psq_l     f31,0xA8(r1),0,0
-	  lfd       f31, 0xA0(r1)
-	  psq_l     f30,0x98(r1),0,0
-	  lfd       f30, 0x90(r1)
-	  lwz       r31, 0x8C(r1)
-	  lwz       r30, 0x88(r1)
-	  lwz       r29, 0x84(r1)
-	  lwz       r0, 0xB4(r1)
-	  lwz       r28, 0x80(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0xB0
-	  blr
-	*/
 }
 
 /**
@@ -886,128 +346,26 @@ f32 TRenderingProcessor::doDrawRuby(f32 x0, f32 y0, f32 x, f32 y, int a1, bool f
 	f32 wid;
 	Matrixf mtx1;
 	Matrixf mtx2;
-	u8 ret = doDrawCommon(x0, y0, nullptr, nullptr);
-	if (ret) {
+	int ret = doDrawCommon(x0, y0, nullptr, nullptr);
+	if ((u8)ret) {
 		JUtility::TColor color(mColorData3);
 		color.a = ret;
 		mRubyFont->setCharColor(color);
 
-		GXColor col(mDefaultWhite);
-		col.r = col.r >> 1;
-		col.g = col.g >> 1;
-		col.b = col.b >> 1;
-		col.a = col.a >> 1;
+		GXColor col(mDefaultBlack);
+		col.r /= 2;
+		col.g /= 2;
+		col.b /= 2;
+		col.a /= 2;
 		GXSetTevColor(GX_TEVREG0, col);
 		wid = mRubyFont->drawChar_scale(0.0f, 0.0f, x, y, a1, flag);
 
-		GXColor col2(mDefaultWhite);
+		GXColor col2(mDefaultBlack);
 		GXSetTevColor(GX_TEVREG0, col2);
 	} else {
 		wid = calcWidth(mRubyFont, a1, x, flag);
 	}
 	return wid;
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x50(r1)
-	  mflr      r0
-	  stw       r0, 0x54(r1)
-	  stfd      f31, 0x40(r1)
-	  psq_st    f31,0x48(r1),0,0
-	  stfd      f30, 0x30(r1)
-	  psq_st    f30,0x38(r1),0,0
-	  stw       r31, 0x2C(r1)
-	  stw       r30, 0x28(r1)
-	  stw       r29, 0x24(r1)
-	  lwz       r12, 0x0(r3)
-	  mr        r30, r4
-	  mr        r31, r5
-	  fmr       f30, f3
-	  lwz       r12, 0x84(r12)
-	  fmr       f31, f4
-	  mr        r29, r3
-	  li        r4, 0
-	  li        r5, 0
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x130
-	  lwz       r0, 0x6C(r29)
-	  addi      r4, r1, 0x10
-	  stw       r0, 0x18(r1)
-	  stb       r3, 0x1B(r1)
-	  lwz       r0, 0x18(r1)
-	  stw       r0, 0x10(r1)
-	  lwz       r3, 0x50(r29)
-	  bl        -0x412B6C
-	  lwz       r0, 0xCC(r29)
-	  addi      r4, r1, 0xC
-	  li        r3, 0x1
-	  stw       r0, 0x14(r1)
-	  lbz       r5, 0x14(r1)
-	  lbz       r6, 0x15(r1)
-	  rlwinm    r0,r5,1,31,31
-	  lbz       r7, 0x16(r1)
-	  add       r5, r0, r5
-	  srawi     r9, r5, 0x1
-	  rlwinm    r0,r6,1,31,31
-	  add       r0, r0, r6
-	  rlwinm    r6,r7,1,31,31
-	  srawi     r8, r0, 0x1
-	  lbz       r5, 0x17(r1)
-	  add       r6, r6, r7
-	  stb       r9, 0x14(r1)
-	  rlwinm    r0,r5,1,31,31
-	  srawi     r6, r6, 0x1
-	  stb       r8, 0x15(r1)
-	  add       r0, r0, r5
-	  srawi     r0, r0, 0x1
-	  stb       r6, 0x16(r1)
-	  stb       r0, 0x17(r1)
-	  lwz       r0, 0x14(r1)
-	  stw       r0, 0xC(r1)
-	  bl        -0x357734
-	  lwz       r3, 0x50(r29)
-	  fmr       f3, f30
-	  lfs       f1, 0x25C4(r2)
-	  fmr       f4, f31
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r30
-	  fmr       f2, f1
-	  lwz       r12, 0x14(r12)
-	  mr        r5, r31
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0xCC(r29)
-	  fmr       f31, f1
-	  addi      r4, r1, 0x8
-	  li        r3, 0x1
-	  stw       r0, 0x8(r1)
-	  bl        -0x357778
-	  b         .loc_0x14C
-
-	.loc_0x130:
-	  fmr       f1, f30
-	  lwz       r4, 0x50(r29)
-	  mr        r3, r29
-	  mr        r5, r30
-	  mr        r6, r31
-	  bl        -0x3AE0
-	  fmr       f31, f1
-
-	.loc_0x14C:
-	  fmr       f1, f31
-	  psq_l     f31,0x48(r1),0,0
-	  lfd       f31, 0x40(r1)
-	  psq_l     f30,0x38(r1),0,0
-	  lfd       f30, 0x30(r1)
-	  lwz       r31, 0x2C(r1)
-	  lwz       r30, 0x28(r1)
-	  lwz       r0, 0x54(r1)
-	  lwz       r29, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x50
-	  blr
-	*/
 }
 
 /**
