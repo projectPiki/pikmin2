@@ -6,30 +6,14 @@
 #include "PSSystem/PSSystemIF.h"
 #include "nans.h"
 
-static const char idk[] = "\0\0\0\0\0\0\0\0\0\0\0";
-
 namespace P2JME {
 namespace Window {
-// thin wrappers that pin the operand order the fused float math below needs
-static inline f32 subValues(f32 left, f32 right)
+
+static void strippedFunc()
 {
-	return left - right;
+	OSReport("\0\0\0\0\0\0\0\0\0\0\0");
 }
-static inline f32 mulSwapped(f32 left, f32 right)
-{
-	return right * left;
-}
-static inline f32 mulValues(f32 left, f32 right)
-{
-	return left * right;
-}
-static inline f32 calcBounce(register f32 scale, register f32 cosine, register f32 t, register f32 one)
-{
-	register f32 remain;
-	// plain C++ here loses the register assignment retail uses
-	asm { fsubs remain, one, t }
-	return remain * mulValues(scale * cosine, remain);
-}
+
 /**
  * @note Address: 0x8043F188
  * @note Size: 0x50
@@ -212,45 +196,37 @@ void TRenderingProcessor::initDrawInfoMgr(u32 count)
 	mDrawInfo.init(count);
 }
 
-DECL_SECT(".sdata2") f32 poolHalfPi   = HALF_PI;
-DECL_SECT(".sdata2") f32 poolMaxAlpha = 255.0f;
-DECL_SECT(".sdata2") f32 poolTen      = 10.0f;
-DECL_SECT(".sdata2") f32 poolFive     = 5.0f;
-
 /**
  * @note Address: 0x8043F55C
  * @note Size: 0x344
  */
-BOOL TRenderingProcessor::doDrawCommon(f32 a1, f32 a2, Matrixf* mtx1, Matrixf* mtx2)
+BOOL TRenderingProcessor::doDrawCommon(f32 x0, f32 y0, Matrixf* mtx1, Matrixf* mtx2)
 {
 	u8 ret = 255;
 
-	DrawInfo* info     = mDrawInfo.searchDrawInfo(mInfoIndex);
-	register f32 speed = mSpeed;
-	register f32 speed2;
-	if (a2 >= -speed && ((speed2 = mTextBoxHeight), a2 < (speed2 + speed))) {
-		register f32 delta;
-		f32 calc2;
-		f32 calc;
-		register f32 radicand;
-		if (a2 >= 0.0f && a2 < speed2) {
-			calc2 = 0.0f;
-			calc  = 0.0f;
+	DrawInfo* info = mDrawInfo.searchDrawInfo(mInfoIndex);
+	if (y0 >= -mSpeed && y0 < mTextBoxHeight + mSpeed) {
+		f32 y;
+		f32 delta;
+		f32 zPos;
+		f32 angle;
+		if (y0 >= 0.0f && y0 < mTextBoxHeight) {
+			zPos  = 0.0f;
+			angle = 0.0f;
 		} else {
-			if (a2 < 0.0f) {
-				delta = a2;
+			if (y0 < 0.0f) {
+				delta = y0;
 			} else {
-				delta = a2 - speed2;
+				delta = y0 - mTextBoxHeight;
 			}
-			// without this speed and speed2 land in each others registers
-			asm { fmuls radicand, delta, delta }
-			radicand     = subValues(speed * speed, radicand);
-			speed2       = -_sqrtf(radicand);
-			speed        = JMAAtan2Radian(speed2, delta);
-			calc         = poolHalfPi + speed;
-			calc2        = speed2 + mSpeed;
-			f64 absSpeed = fabs(delta / mSpeed);
-			f32 alpha    = poolMaxAlpha * (f32)absSpeed;
+			f32 deltaSq = delta;
+			deltaSq *= deltaSq;
+			f32 radicand = mSpeed * mSpeed - deltaSq;
+			y            = -_sqrtf(radicand);
+			angle        = HALF_PI + JMAAtan2Radian(y, delta);
+			zPos         = y + mSpeed;
+			f64 ratio    = fabs(delta / mSpeed);
+			f32 alpha    = 255.0f * (f32)ratio;
 			alpha        = ROUND_F32_TO_U8(alpha);
 			ret          = 255 - (u8)alpha;
 		}
@@ -262,19 +238,19 @@ BOOL TRenderingProcessor::doDrawCommon(f32 a1, f32 a2, Matrixf* mtx1, Matrixf* m
 
 		Matrixf mtx;
 		if (info) {
-			Vector3f pos(a1, a2, calc2);
-			makeMatrix(&mtx, info, calc, pos);
+			Vector3f pos(x0, y0, zPos);
+			makeMatrix(&mtx, info, angle, pos);
 		} else {
-			Vector3f pos(a1, a2, calc2);
+			Vector3f pos(x0, y0, zPos);
 			mtx.makeT(pos);
 		}
 
 		if (mtx2) {
 			PSMTXCopy(mtx.mMatrix.mtxView, mtx2->mMatrix.mtxView);
-			Vector2f trans(mtx2->mMatrix.structView.tx, mtx2->mMatrix.structView.ty);
-			trans.add(poolTen, poolFive);
-			mtx2->mMatrix.structView.tx = trans.x;
-			mtx2->mMatrix.structView.ty = trans.y;
+			Vector3f translation = mtx2->getTranslation();
+			translation.x += 10.0f;
+			translation.y += 5.0f;
+			mtx2->setTranslation(translation);
 			PSMTXConcat(mMtx1->mMatrix.mtxView, mtx2->mMatrix.mtxView, mtx2->mMatrix.mtxView);
 			PSMTXConcat(mMtx2->mMatrix.mtxView, mtx2->mMatrix.mtxView, mtx2->mMatrix.mtxView);
 		}
@@ -303,25 +279,23 @@ void TRenderingProcessor::makeMatrix(Matrixf* mtx, DrawInfo* info, f32 angle, Ve
 		f32 t = info->mTimer / info->mTimeLimit;
 		Vector3f scale(1.0f, -(0.8f * (1.0f - t) * cosf((TAU * 2.0f) * t) - 1.0f), 1.0f);
 		t = info->mTimer / info->mTimeLimit;
-		Vector3f rotate(angle, 0.0f, -(poolHalfPi * (1.0f - t) * cosf((TAU * 2.0f) * t)));
+		Vector3f rotate(angle, 0.0f, -(HALF_PI * (1.0f - t) * cosf((TAU * 2.0f) * t)));
 		mtx->makeSRT(scale, rotate, pos);
 		break;
 	}
 	case 1: {
-		f32 t = info->mTimer / info->mTimeLimit;
-		Vector3f scale(1.0f
-		               + (f32)fabs((1.0f - t)
-		                           * mulSwapped(1.0f - (info->mTimer / info->mTimeLimit),
-		                                        2.0f * cosf(2.0f * (TAU * (info->mTimer / info->mTimeLimit))))));
+		f32 t    = info->mTimer / info->mTimeLimit;
+		f32 wave = 2.0f * cosf(2.0f * (TAU * (info->mTimer / info->mTimeLimit)));
+		Vector3f scale(1.0f + (f32)fabs((1.0f - t) * (wave * (1.0f - (info->mTimer / info->mTimeLimit)))));
 		Vector3f rotate(angle, 0.0f, 0.0f);
 		mtx->makeSRT(scale, rotate, pos);
 		break;
 	}
 	case 2: {
-		f32 offset;
-		f32 t    = info->mTimer / info->mTimeLimit;
-		f32 calc = 2.0f * (TAU * t);
-		offset   = (f32)fabs(calcBounce(4.0f, cosf(calc), t, 1.0f));
+		f32 t      = info->mTimer / info->mTimeLimit;
+		f32 theta  = 2.0f * (TAU * t);
+		f32 wave   = 4.0f * cosf(theta);
+		f32 offset = (f32)fabs((1.0f - (f32)t) * (wave * (1.0f - t)));
 		Vector3f scale(1.0f);
 		Vector3f rotate(angle, 0.0f, 0.0f);
 		pos.y -= 15.0f * offset;
