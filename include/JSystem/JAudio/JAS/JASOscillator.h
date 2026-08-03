@@ -40,7 +40,7 @@ struct JASOscillator {
 		f32 mVertex;         // _14
 	};
 
-	JASOscillator();
+	JASOscillator() { init(); }
 
 	void init();
 	void initStart(const Data* oscData);

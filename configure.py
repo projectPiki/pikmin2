@@ -586,7 +586,7 @@ config.libs = [
             Object(NonMatching, "JSystem/JAudio/JAS/JASTrack.cpp"),
             Object(Matching, "JSystem/JAudio/JAS/JASTrackInterrupt.cpp"),
             Object(Matching, "JSystem/JAudio/JAS/JASOscillator.cpp"),
-            Object(NonMatching, "JSystem/JAudio/JAS/JASChannel.cpp"),
+            Object(Matching, "JSystem/JAudio/JAS/JASChannel.cpp"),
             Object(Matching, "JSystem/JAudio/JAS/JASDriverIF.cpp"),
             Object(Matching, "JSystem/JAudio/JAS/JASDSPChannel.cpp"),
             Object(Matching, "JSystem/JAudio/JAS/JASDSPInterface.cpp"),

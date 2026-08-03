@@ -97,15 +97,6 @@ JASChannel::JASChannel(Callback callback, void* cbData)
 }
 
 /**
- * @note Address: 0x800A3364
- * @note Size: 0x30
- */
-JASOscillator::JASOscillator()
-{
-	init();
-}
-
-/**
  * @note Address: 0x800A3438
  * @note Size: 0x10C
  */
@@ -712,7 +703,7 @@ void JASChannel::updateMixer(f32 volume, f32 pan, f32 fxmix, f32 dolby, u16* out
 					vol *= scale;
 					break;
 				default:
-					vol *= JMASin(scale * (PI * 0.5f));
+					vol *= JMASinRadian(scale * (PI * 0.5f));
 					break;
 				}
 			}
@@ -742,14 +733,14 @@ void JASChannel::updateMixer(f32 volume, f32 pan, f32 fxmix, f32 dolby, u16* out
 				switch (config.mParts.l1) {
 				case 3:
 				case 7:
-					vol *= JMASin((scale * 0.34776f + 0.32612f) * (PI * 0.5f));
+					vol *= JMASinRadian((scale * 0.34776f + 0.32612f) * (PI * 0.5f));
 					break;
 				case 2:
 				case 6:
 					vol *= scale;
 					break;
 				default:
-					vol *= JMASin(scale * (PI * 0.5f));
+					vol *= JMASinRadian(scale * (PI * 0.5f));
 					break;
 				}
 			}
