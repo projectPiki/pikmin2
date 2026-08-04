@@ -46,7 +46,7 @@ namespace Game {
 /**
  * @note Address: N/A
  */
-static inline f32 getThrowWaitLength(f32 z, f32 x, f32 y)
+static inline f32 getVectorLength(f32 z, f32 x, f32 y)
 {
 	Vector2f sqr(z * z, x * x + y * y);
 	f32 length = sqr.x + sqr.y;
@@ -2083,20 +2083,13 @@ static inline f32 makeTargetMetrics(Vector3f& out, f32& distance, f32& absoluteY
 	return out.normalise();
 }
 
-static inline void getCollisionVelocity(Vector3f& out, Navi* navi)
+static inline void copyVelocity(Vector3f& out, const Vector3f& vel)
 {
-	out.x = navi->mVelocity.x;
-	f32 y = navi->mVelocity.y;
+	out.x = vel.x;
+	f32 y = vel.y;
 	out.y = y;
-	f32 z = navi->mVelocity.z;
+	f32 z = vel.z;
 	out.z = z;
-}
-
-static inline void makeCollisionDiff(Vector3f& out, const Vector3f& a, const Vector3f& b)
-{
-	out.x = a.x - b.x;
-	out.z = a.z - b.z;
-	out.y = a.y - b.y;
 }
 
 /**
@@ -2432,12 +2425,12 @@ void NaviNukuAdjustState::exec(Navi* navi)
 	}
 
 	Vector3f currentVel;
-	getCollisionVelocity(currentVel, navi);
+	copyVelocity(currentVel, navi->mVelocity);
 	mIsMoving--;
 	Vector3f naviPos = navi->getPosition();
 
 	Vector3f pikiToNavi;
-	makeCollisionDiff(pikiToNavi, mCollidedPikiPosition, naviPos);
+	makeDiff(pikiToNavi, mCollidedPikiPosition, naviPos);
 	f32 distancePikiToNavi = pikiToNavi.normalise();
 
 	// If the distance is 0, return
@@ -2445,7 +2438,7 @@ void NaviNukuAdjustState::exec(Navi* navi)
 		return;
 	}
 
-	f32 velocityDifference = pikiToNavi.x * currentVel.z - pikiToNavi.z * currentVel.x;
+	f32 velocityDifference = pikiToNavi.z * currentVel.x - pikiToNavi.x * currentVel.z;
 	Vector3f newVel(-pikiToNavi.z, 0.0f, pikiToNavi.x);
 
 	f32 simSpeed = currentVel.length();
@@ -5039,7 +5032,7 @@ void NaviThrowWaitState::exec(Navi* navi)
 			f32 dx           = handPos.x - pikiPos.x;
 			f32 dy           = handPos.y - pikiPos.y;
 			f32 dz           = handPos.z - pikiPos.z;
-			f32 dist         = getThrowWaitLength(dz, dx, dy);
+			f32 dist         = getVectorLength(dz, dx, dy);
 			if (dist <= 32.5f) {
 				navi->mAnimSpeed = 30.0f;
 				navi->startMotion(IPikiAnims::THROWWWAIT, IPikiAnims::THROWWWAIT, this, nullptr);
@@ -5212,7 +5205,7 @@ void NaviThrowWaitState::exec(Navi* navi)
 		f32 dx           = slotPos.x - naviPos.x;
 		f32 dy           = slotPos.y - naviPos.y;
 		f32 dz           = slotPos.z - naviPos.z;
-		f32 distance     = getThrowWaitLength(dz, dx, dy);
+		f32 distance     = getVectorLength(dz, dx, dy);
 		if (distance > 30.0f) {
 			Vector3f naviPos = navi->getPosition();
 			Vector3f naviVel = navi->getVelocity();
