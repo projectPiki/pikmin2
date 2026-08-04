@@ -35,24 +35,24 @@ struct RandEnemyUnit {
 	void setEnemyTypeA();
 	void setVersusHibaTypeC();
 	void setVersusEnemyTypeC();
-	void setSlotEnemyTypeC(int&, int);
+	void setSlotEnemyTypeC(int& doorIdx, int vsColor);
 	void setUnitRandEnemyTypeC();
-	void makeSetEnemyTypeC(MapNode*, int, EnemyUnit*);
+	void makeSetEnemyTypeC(MapNode* tile, int doorIdx, EnemyUnit* enemy);
 	void setVersusEnemyTypeF();
-	void setSlotEnemyTypeF(int);
+	void setSlotEnemyTypeF(int vsColor);
 	void setUnitRandEnemyTypeF();
-	void makeSetEnemyTypeF(MapNode*, BaseGen*, EnemyUnit*);
+	void makeSetEnemyTypeF(MapNode* tile, BaseGen* spawn, EnemyUnit* enemy);
 	void setVersusEnemyTypeB();
-	void setSlotEnemyTypeB(int);
+	void setSlotEnemyTypeB(int vsColor);
 	void setUnitRandEnemyTypeB();
-	void makeSetEnemyTypeB(MapNode*, BaseGen*, EnemyUnit*);
+	void makeSetEnemyTypeB(MapNode* tile, BaseGen* spawn, EnemyUnit* enemy);
 	void setVersusEasyEnemy();
-	BaseGen* getVersusEasyEnemyBaseGen(MapNode*, BaseGen*);
+	BaseGen* getVersusEasyEnemyBaseGen(MapNode* refTile, BaseGen* refSpawn);
 	void setVersusEnemyTypeA();
-	void setSlotEnemyTypeA(int&, int&, int);
-	void setUnitRandEnemyTypeA(int&, int, int);
-	void makeSetEnemyTypeA(MapNode*, BaseGen*, EnemyUnit*, int);
-	bool isEnemySetGen(MapNode*, BaseGen*);
+	void setSlotEnemyTypeA(int& max, int& min, int vsColor);
+	void setUnitRandEnemyTypeA(int& count, int max, int min);
+	void makeSetEnemyTypeA(MapNode* tile, BaseGen* spawn, EnemyUnit* enemy, int count);
+	bool isEnemySetGen(MapNode* tile, BaseGen* spawn);
 
 	MapUnitGenerator* mGenerator; // _00
 	RandMapScore* mMapScore;      // _04

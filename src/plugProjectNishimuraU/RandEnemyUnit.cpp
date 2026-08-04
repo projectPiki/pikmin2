@@ -59,11 +59,13 @@ void RandEnemyUnit::setEnemySlot()
  */
 void RandEnemyUnit::setEnemyTypeWeight()
 {
-	int enemyTypes[4] = { BaseGen::CGT_EnemyEasy, BaseGen::CGT_EnemyHard, BaseGen::CGT_DoorSeam, BaseGen::CGT_EnemySpecial }; // _38
+	int enemyTypes[4] = { BaseGen::CGT_EnemyEasy, BaseGen::CGT_EnemyHard, BaseGen::CGT_DoorSeam, BaseGen::CGT_EnemySpecial };
 
-	int weightList[4]; // _28
-	int countList[4];  // _18
+	int weightList[4];
+	int countList[4];
 	int totalWeights = 0;
+
+	EnemyNode* currEnemy = static_cast<EnemyNode*>(mGenerator->mMainEnemies->mChild);
 
 	for (int i = 0; i < 4; i++) {
 		mTypeCount[i] = 0;
@@ -75,8 +77,7 @@ void RandEnemyUnit::setEnemyTypeWeight()
 		countList[i]  = 0;
 	}
 
-	FOREACH_NODE(EnemyNode, mGenerator->mMainEnemies->mChild, currEnemy)
-	{
+	for (; currEnemy; currEnemy = static_cast<EnemyNode*>(currEnemy->mNext)) {
 		TekiInfo* tekiInfo = currEnemy->getTekiInfo();
 		if (tekiInfo) {
 			for (int i = 0; i < 4; i++) {
@@ -99,16 +100,13 @@ void RandEnemyUnit::setEnemyTypeWeight()
 	int tallyWeights[4];
 
 	tallyWeights[0] = weightList[0];
-	tallyWeights[1] = tallyWeights[0] + weightList[1];
-	tallyWeights[2] = tallyWeights[1] + weightList[2];
-	tallyWeights[3] = tallyWeights[2] + weightList[3];
-
-	int totalNum = countList[0];
+	int totalNum    = countList[0];
 	for (int i = 1; i < 4; i++) {
+		tallyWeights[i] = tallyWeights[i - 1] + weightList[i];
 		totalNum += countList[i];
 	}
 
-	for (totalNum; totalNum < mMaxEnemies; totalNum++) {
+	for (; totalNum < mMaxEnemies; totalNum++) {
 		int randEnemy = randInt(totalWeights);
 		for (int i = 0; i < 4; i++) {
 			if (randEnemy < tallyWeights[i]) {
@@ -500,15 +498,14 @@ void RandEnemyUnit::setVersusEnemyTypeC()
  */
 void RandEnemyUnit::setSlotEnemyTypeC(int& doorIdx, int vsColor)
 {
+	MapNode* mapTiles[256];
+	int openDoorIndices[256];
+	int doorScores[256];
 
-	MapNode* mapTiles[256];   // 0x808
-	int openDoorIndices[256]; // 0x408
-	int doorScores[256];      // 0x8
+	int counter    = 0;
+	int scoreTally = 0;
 
-	int counter    = 0; // r22
-	int scoreTally = 0; // r21
-
-	MapNode* placedNodes = mGenerator->getPlacedNodes(); // r17
+	MapNode* placedNodes = mGenerator->getPlacedNodes();
 
 	if (mGenerator->mIsVersusMode) { // Versus mode
 		int vsScore = 0;
@@ -917,7 +914,6 @@ void RandEnemyUnit::setVersusEnemyTypeF()
 
 				int randIdx = randInt(2);
 				for (int i = 0; i < roundedMax; i++, randIdx ^= 1) {
-					int slot = -1;
 					setSlotEnemyTypeF(randIdx);
 
 					if (mMapTile && mSpawn) {
@@ -928,8 +924,7 @@ void RandEnemyUnit::setVersusEnemyTypeF()
 				}
 
 				if (altNum) {
-					int slot = -1;
-					setSlotEnemyTypeF(slot);
+					setSlotEnemyTypeF(-1);
 
 					if (mMapTile && mSpawn) {
 						makeSetEnemyTypeF(mMapTile, mSpawn, currEnemy->mEnemyUnit);
@@ -946,13 +941,13 @@ void RandEnemyUnit::setVersusEnemyTypeF()
  * @note Address: 0x80249A3C
  * @note Size: 0x3E0
  */
-void RandEnemyUnit::setSlotEnemyTypeF(int p1)
+void RandEnemyUnit::setSlotEnemyTypeF(int vsColor)
 {
 	MapNode* nodeList[128];
 	BaseGen* spawnList[128];
 	int scoreList[128];
 	Vector3f vecArray[3];
-	f32 floatArray[3] = { 300.0f, 150.0f, 150.0f }; // 0x2C
+	f32 floatArray[3] = { 300.0f, 150.0f, 150.0f };
 
 	int counter      = 0;
 	int vsScore      = 0;
@@ -960,37 +955,37 @@ void RandEnemyUnit::setSlotEnemyTypeF(int p1)
 	int spawnCounter = 0;
 	int scoreTally   = 0;
 
+	MapNode* fixNode;
+	BaseGen* fixGen;
 	MapNode* placedNodes = mGenerator->getPlacedNodes();
 	if (mGenerator->mIsVersusMode) {
-		MapNode* onyon;
 		for (int i = FIXNODE_VsStart; i <= FIXNODE_VsEnd; i++) {
-			onyon               = mMapScore->getFixObjNode(i);
-			BaseGen* onyonSpawn = mMapScore->getFixObjGen(i);
-			if (!onyon) {
+			fixNode = mMapScore->getFixObjNode(i);
+			fixGen  = mMapScore->getFixObjGen(i);
+			if (!fixNode) {
 				continue;
 			}
 
-			Vector3f spawnPos   = onyon->getBaseGenGlobalPosition(onyonSpawn);
+			Vector3f spawnPos   = fixNode->getBaseGenGlobalPosition(fixGen);
 			vecArray[counter]   = spawnPos;
 			floatArray[counter] = 400.0f;
 
-			if (p1 == 0 && counter == 0) {
-				vsScore = onyon->getVersusScore();
+			if (vsColor == Blue && counter == 0) {
+				vsScore = fixNode->getVersusScore();
 				vsSign  = -1;
-			} else if (p1 == 1 && counter == 1) {
-				vsScore = onyon->getVersusScore();
+			} else if (vsColor == Red && counter == 1) {
+				vsScore = fixNode->getVersusScore();
 				vsSign  = 1;
 			}
 			counter++;
 		}
 	} else {
-		MapNode* exit;
 		// loop through start and exits (pod, hole, fountain)
 		for (int i = FIXNODE_Pod; i <= FIXNODE_Fountain; i++) {
-			exit               = mMapScore->getFixObjNode(i);
-			BaseGen* exitSpawn = mMapScore->getFixObjGen(i);
-			if (exit) {
-				Vector3f spawnPos = exit->getBaseGenGlobalPosition(exitSpawn);
+			fixNode = mMapScore->getFixObjNode(i);
+			fixGen  = mMapScore->getFixObjGen(i);
+			if (fixNode) {
+				Vector3f spawnPos = fixNode->getBaseGenGlobalPosition(fixGen);
 				vecArray[counter] = spawnPos;
 				counter++;
 			}
@@ -1059,271 +1054,6 @@ void RandEnemyUnit::setSlotEnemyTypeF(int p1)
 			return;
 		}
 	}
-	/*
-	stwu     r1, -0x6d0(r1)
-	mflr     r0
-	stw      r0, 0x6d4(r1)
-	stmw     r14, 0x688(r1)
-	mr       r15, r3
-	lis      r3, lbl_804840D0@ha
-	mr       r16, r4
-	li       r23, 0
-	li       r14, 0
-	li       r22, 0
-	li       r21, 0
-	li       r20, 0
-	lwz      r6, 0(r15)
-	lwzu     r5, lbl_804840D0@l(r3)
-	lbz      r0, 2(r6)
-	lwz      r4, 4(r3)
-	lwz      r3, 8(r3)
-	cmplwi   r0, 0
-	stw      r5, 0x2c(r1)
-	lwz      r17, 0x28(r6)
-	stw      r4, 0x30(r1)
-	stw      r3, 0x34(r1)
-	beq      lbl_80249B5C
-	addi     r18, r1, 0x38
-	addi     r19, r1, 0x2c
-	li       r25, 3
-
-lbl_80249AA4:
-	lwz      r3, 4(r15)
-	mr       r4, r25
-	bl       getFixObjNode__Q34Game4Cave12RandMapScoreFi
-	mr       r0, r3
-	lwz      r3, 4(r15)
-	mr       r24, r0
-	mr       r4, r25
-	bl       getFixObjGen__Q34Game4Cave12RandMapScoreFi
-	cmplwi   r24, 0
-	beq      lbl_80249B4C
-	mr       r4, r24
-	mr       r5, r3
-	addi     r3, r1, 0x20
-	bl getBaseGenGlobalPosition__Q34Game4Cave7MapNodeFPQ34Game4Cave7BaseGen lfs
-f1, 0x20(r1) cmpwi    r16, 0 lfs      f0, lbl_8051A79C@sda21(r2) stfs     f1,
-0(r18) lfs      f2, 0x24(r1) lfs      f1, 0x28(r1) stfs     f2, 4(r18) stfs f1,
-8(r18) stfs     f0, 0(r19) bne      lbl_80249B20 cmpwi    r23, 0 bne
-lbl_80249B20 mr       r3, r24 bl       getVersusScore__Q34Game4Cave7MapNodeFv li
-r22, -1 mr       r14, r3 b        lbl_80249B40
-
-lbl_80249B20:
-	cmpwi    r16, 1
-	bne      lbl_80249B40
-	cmpwi    r23, 1
-	bne      lbl_80249B40
-	mr       r3, r24
-	bl       getVersusScore__Q34Game4Cave7MapNodeFv
-	li       r22, 1
-	mr       r14, r3
-
-lbl_80249B40:
-	addi     r18, r18, 0xc
-	addi     r19, r19, 4
-	addi     r23, r23, 1
-
-lbl_80249B4C:
-	addi     r25, r25, 1
-	cmpwi    r25, 4
-	ble      lbl_80249AA4
-	b        lbl_80249BC4
-
-lbl_80249B5C:
-	li       r19, 0
-	addi     r16, r1, 0x38
-
-lbl_80249B64:
-	lwz      r3, 4(r15)
-	mr       r4, r19
-	bl       getFixObjNode__Q34Game4Cave12RandMapScoreFi
-	mr       r18, r3
-	lwz      r3, 4(r15)
-	mr       r4, r19
-	bl       getFixObjGen__Q34Game4Cave12RandMapScoreFi
-	cmplwi   r18, 0
-	beq      lbl_80249BB8
-	mr       r4, r18
-	mr       r5, r3
-	addi     r3, r1, 0x14
-	bl getBaseGenGlobalPosition__Q34Game4Cave7MapNodeFPQ34Game4Cave7BaseGen lfs
-f0, 0x14(r1) addi     r23, r23, 1 lfs      f1, 0x18(r1) stfs     f0, 0(r16) lfs
-f0, 0x1c(r1) stfs     f1, 4(r16) stfs     f0, 8(r16) addi     r16, r16, 0xc
-
-lbl_80249BB8:
-	addi     r19, r19, 1
-	cmpwi    r19, 2
-	ble      lbl_80249B64
-
-lbl_80249BC4:
-	addi     r0, r1, 0x5c
-	lwz      r19, 0x10(r17)
-	stw      r0, 0x678(r1)
-	mr       r24, r0
-	addi     r26, r1, 0x45c
-	addi     r25, r1, 0x25c
-	b        lbl_80249D48
-
-lbl_80249BE0:
-	lwz      r3, 0x18(r19)
-	bl       getUnitKind__Q34Game4Cave8UnitInfoFv
-	cmpwi    r3, 1
-	bne      lbl_80249D44
-	lwz      r3, 0x18(r19)
-	bl       getBaseGen__Q34Game4Cave8UnitInfoFv
-	cmplwi   r3, 0
-	beq      lbl_80249D44
-	lwz      r18, 0x10(r3)
-	mr       r29, r26
-	mr       r28, r25
-	mr       r27, r24
-	b        lbl_80249D3C
-
-lbl_80249C14:
-	lwz      r0, 0x18(r18)
-	cmpwi    r0, 8
-	bne      lbl_80249D38
-	mr       r3, r15
-	mr       r4, r19
-	mr       r5, r18
-	bl
-isEnemySetGen__Q34Game4Cave13RandEnemyUnitFPQ34Game4Cave7MapNodePQ34Game4Cave7BaseGen
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80249D38
-	addi     r31, r1, 0x38
-	addi     r30, r1, 0x2c
-	li       r17, 1
-	li       r16, 0
-	b        lbl_80249CD4
-
-lbl_80249C4C:
-	clrlwi.  r0, r17, 0x18
-	beq      lbl_80249CC8
-	mr       r4, r19
-	mr       r5, r18
-	addi     r3, r1, 8
-	bl getBaseGenGlobalPosition__Q34Game4Cave7MapNodeFPQ34Game4Cave7BaseGen lfs
-f1, 0xc(r1) lfs      f0, 4(r31) lfs      f3, 8(r1) fsubs    f4, f1, f0 lfs f2,
-0(r31) lfs      f1, 0x10(r1) lfs      f0, 8(r31) fsubs    f3, f3, f2 fmuls f4,
-f4, f4 fsubs    f2, f1, f0 lfs      f0, lbl_8051A7A0@sda21(r2) fmadds   f1, f3,
-f3, f4 fmuls    f2, f2, f2 fadds    f1, f2, f1 fcmpo    cr0, f1, f0 ble
-lbl_80249CB4 ble      lbl_80249CB8 frsqrte  f0, f1 fmuls    f1, f0, f1 b
-lbl_80249CB8
-
-lbl_80249CB4:
-	fmr      f1, f0
-
-lbl_80249CB8:
-	lfs      f0, 0(r30)
-	fcmpo    cr0, f1, f0
-	bge      lbl_80249CC8
-	li       r17, 0
-
-lbl_80249CC8:
-	addi     r31, r31, 0xc
-	addi     r30, r30, 4
-	addi     r16, r16, 1
-
-lbl_80249CD4:
-	cmpw     r16, r23
-	blt      lbl_80249C4C
-	clrlwi.  r0, r17, 0x18
-	beq      lbl_80249D38
-	stw      r19, 0(r29)
-	stw      r18, 0(r28)
-	lwz      r3, 0(r29)
-	bl       getVersusScore__Q34Game4Cave7MapNodeFv
-	add      r0, r14, r3
-	mullw    r0, r22, r0
-	stw      r0, 0(r27)
-	lwz      r0, 0(r27)
-	cmpwi    r0, 0
-	bgt      lbl_80249D14
-	li       r0, 1
-	stw      r0, 0(r27)
-
-lbl_80249D14:
-	lwz      r0, 0(r27)
-	addi     r26, r26, 4
-	addi     r25, r25, 4
-	addi     r24, r24, 4
-	add      r20, r20, r0
-	addi     r21, r21, 1
-	addi     r29, r29, 4
-	addi     r28, r28, 4
-	addi     r27, r27, 4
-
-lbl_80249D38:
-	lwz      r18, 4(r18)
-
-lbl_80249D3C:
-	cmplwi   r18, 0
-	bne      lbl_80249C14
-
-lbl_80249D44:
-	lwz      r19, 4(r19)
-
-lbl_80249D48:
-	cmplwi   r19, 0
-	bne      lbl_80249BE0
-	li       r0, 0
-	cmpwi    r21, 0
-	stw      r0, 0x30(r15)
-	stw      r0, 0x34(r15)
-	beq      lbl_80249E08
-	bl       rand
-	lis      r4, 0x4330
-	xoris    r0, r3, 0x8000
-	stw      r0, 0x664(r1)
-	xoris    r0, r20, 0x8000
-	lfd      f2, lbl_8051A790@sda21(r2)
-	li       r5, 0
-	stw      r4, 0x660(r1)
-	li       r6, 0
-	lfs      f0, lbl_8051A788@sda21(r2)
-	lfd      f1, 0x660(r1)
-	stw      r0, 0x66c(r1)
-	fsubs    f1, f1, f2
-	stw      r4, 0x668(r1)
-	fdivs    f1, f1, f0
-	lfd      f0, 0x668(r1)
-	fsubs    f0, f0, f2
-	fmuls    f0, f0, f1
-	fctiwz   f0, f0
-	stfd     f0, 0x670(r1)
-	lwz      r4, 0x674(r1)
-	mtctr    r21
-	cmpwi    r21, 0
-	ble      lbl_80249E08
-
-lbl_80249DC4:
-	lwz      r3, 0x678(r1)
-	lwz      r0, 0(r3)
-	add      r5, r5, r0
-	cmpw     r5, r4
-	ble      lbl_80249DF8
-	slwi     r0, r6, 2
-	addi     r3, r1, 0x45c
-	lwzx     r4, r3, r0
-	addi     r3, r1, 0x25c
-	lwzx     r0, r3, r0
-	stw      r4, 0x30(r15)
-	stw      r0, 0x34(r15)
-	b        lbl_80249E08
-
-lbl_80249DF8:
-	addi     r3, r3, 4
-	addi     r6, r6, 1
-	stw      r3, 0x678(r1)
-	bdnz     lbl_80249DC4
-
-lbl_80249E08:
-	lmw      r14, 0x688(r1)
-	lwz      r0, 0x6d4(r1)
-	mtlr     r0
-	addi     r1, r1, 0x6d0
-	blr
-	*/
 }
 
 /**
@@ -1421,8 +1151,7 @@ void RandEnemyUnit::setVersusEnemyTypeB()
 				}
 
 				if (altNum) {
-					int slot = -1;
-					setSlotEnemyTypeB(slot);
+					setSlotEnemyTypeB(-1);
 
 					if (mMapTile && mSpawn) {
 						makeSetEnemyTypeB(mMapTile, mSpawn, currEnemy->mEnemyUnit);
@@ -1439,13 +1168,13 @@ void RandEnemyUnit::setVersusEnemyTypeB()
  * @note Address: 0x8024A1C0
  * @note Size: 0x3E0
  */
-void RandEnemyUnit::setSlotEnemyTypeB(int p1)
+void RandEnemyUnit::setSlotEnemyTypeB(int vsColor)
 {
 	MapNode* nodeList[128];
 	BaseGen* spawnList[128];
 	int scoreList[128];
 	Vector3f vecArray[3];
-	f32 floatArray[3] = { 300.0f, 150.0f, 150.0f }; // 0x2C
+	f32 floatArray[3] = { 300.0f, 150.0f, 150.0f };
 
 	int counter      = 0;
 	int vsScore      = 0;
@@ -1453,38 +1182,37 @@ void RandEnemyUnit::setSlotEnemyTypeB(int p1)
 	int spawnCounter = 0;
 	int scoreTally   = 0;
 
+	MapNode* fixNode;
+	BaseGen* fixGen;
 	MapNode* placedNodes = mGenerator->getPlacedNodes();
 	if (mGenerator->mIsVersusMode) {
-		MapNode* onyon;
-		BaseGen* onyonSpawn;
 		for (int i = FIXNODE_VsStart; i <= FIXNODE_VsEnd; i++) {
-			onyon      = mMapScore->getFixObjNode(i);
-			onyonSpawn = mMapScore->getFixObjGen(i);
-			if (!onyon) {
+			fixNode = mMapScore->getFixObjNode(i);
+			fixGen  = mMapScore->getFixObjGen(i);
+			if (!fixNode) {
 				continue;
 			}
 
-			Vector3f spawnPos   = onyon->getBaseGenGlobalPosition(onyonSpawn);
+			Vector3f spawnPos   = fixNode->getBaseGenGlobalPosition(fixGen);
 			vecArray[counter]   = spawnPos;
 			floatArray[counter] = 400.0f;
 
-			if (p1 == 0 && counter == 0) {
-				vsScore = onyon->getVersusScore();
+			if (vsColor == Blue && counter == 0) {
+				vsScore = fixNode->getVersusScore();
 				vsSign  = -1;
-			} else if (p1 == 1 && counter == 1) {
-				vsScore = onyon->getVersusScore();
+			} else if (vsColor == Red && counter == 1) {
+				vsScore = fixNode->getVersusScore();
 				vsSign  = 1;
 			}
 			counter++;
 		}
 	} else {
-		MapNode* exit;
 		// loop through start and exits (pod, hole, fountain)
 		for (int i = FIXNODE_Pod; i <= FIXNODE_Fountain; i++) {
-			exit               = mMapScore->getFixObjNode(i);
-			BaseGen* exitSpawn = mMapScore->getFixObjGen(i);
-			if (exit) {
-				Vector3f spawnPos = exit->getBaseGenGlobalPosition(exitSpawn);
+			fixNode = mMapScore->getFixObjNode(i);
+			fixGen  = mMapScore->getFixObjGen(i);
+			if (fixNode) {
+				Vector3f spawnPos = fixNode->getBaseGenGlobalPosition(fixGen);
 				vecArray[counter] = spawnPos;
 				counter++;
 			}
@@ -1553,271 +1281,6 @@ void RandEnemyUnit::setSlotEnemyTypeB(int p1)
 			return;
 		}
 	}
-	/*
-	stwu     r1, -0x6d0(r1)
-	mflr     r0
-	stw      r0, 0x6d4(r1)
-	stmw     r14, 0x688(r1)
-	mr       r15, r3
-	lis      r3, lbl_804840DC@ha
-	mr       r16, r4
-	li       r23, 0
-	li       r14, 0
-	li       r22, 0
-	li       r21, 0
-	li       r20, 0
-	lwz      r6, 0(r15)
-	lwzu     r5, lbl_804840DC@l(r3)
-	lbz      r0, 2(r6)
-	lwz      r4, 4(r3)
-	lwz      r3, 8(r3)
-	cmplwi   r0, 0
-	stw      r5, 0x2c(r1)
-	lwz      r17, 0x28(r6)
-	stw      r4, 0x30(r1)
-	stw      r3, 0x34(r1)
-	beq      lbl_8024A2E0
-	addi     r18, r1, 0x38
-	addi     r19, r1, 0x2c
-	li       r25, 3
-
-lbl_8024A228:
-	lwz      r3, 4(r15)
-	mr       r4, r25
-	bl       getFixObjNode__Q34Game4Cave12RandMapScoreFi
-	mr       r0, r3
-	lwz      r3, 4(r15)
-	mr       r24, r0
-	mr       r4, r25
-	bl       getFixObjGen__Q34Game4Cave12RandMapScoreFi
-	cmplwi   r24, 0
-	beq      lbl_8024A2D0
-	mr       r4, r24
-	mr       r5, r3
-	addi     r3, r1, 0x20
-	bl getBaseGenGlobalPosition__Q34Game4Cave7MapNodeFPQ34Game4Cave7BaseGen lfs
-f1, 0x20(r1) cmpwi    r16, 0 lfs      f0, lbl_8051A79C@sda21(r2) stfs     f1,
-0(r18) lfs      f2, 0x24(r1) lfs      f1, 0x28(r1) stfs     f2, 4(r18) stfs f1,
-8(r18) stfs     f0, 0(r19) bne      lbl_8024A2A4 cmpwi    r23, 0 bne
-lbl_8024A2A4 mr       r3, r24 bl       getVersusScore__Q34Game4Cave7MapNodeFv li
-r22, -1 mr       r14, r3 b        lbl_8024A2C4
-
-lbl_8024A2A4:
-	cmpwi    r16, 1
-	bne      lbl_8024A2C4
-	cmpwi    r23, 1
-	bne      lbl_8024A2C4
-	mr       r3, r24
-	bl       getVersusScore__Q34Game4Cave7MapNodeFv
-	li       r22, 1
-	mr       r14, r3
-
-lbl_8024A2C4:
-	addi     r18, r18, 0xc
-	addi     r19, r19, 4
-	addi     r23, r23, 1
-
-lbl_8024A2D0:
-	addi     r25, r25, 1
-	cmpwi    r25, 4
-	ble      lbl_8024A228
-	b        lbl_8024A348
-
-lbl_8024A2E0:
-	li       r19, 0
-	addi     r16, r1, 0x38
-
-lbl_8024A2E8:
-	lwz      r3, 4(r15)
-	mr       r4, r19
-	bl       getFixObjNode__Q34Game4Cave12RandMapScoreFi
-	mr       r18, r3
-	lwz      r3, 4(r15)
-	mr       r4, r19
-	bl       getFixObjGen__Q34Game4Cave12RandMapScoreFi
-	cmplwi   r18, 0
-	beq      lbl_8024A33C
-	mr       r4, r18
-	mr       r5, r3
-	addi     r3, r1, 0x14
-	bl getBaseGenGlobalPosition__Q34Game4Cave7MapNodeFPQ34Game4Cave7BaseGen lfs
-f0, 0x14(r1) addi     r23, r23, 1 lfs      f1, 0x18(r1) stfs     f0, 0(r16) lfs
-f0, 0x1c(r1) stfs     f1, 4(r16) stfs     f0, 8(r16) addi     r16, r16, 0xc
-
-lbl_8024A33C:
-	addi     r19, r19, 1
-	cmpwi    r19, 2
-	ble      lbl_8024A2E8
-
-lbl_8024A348:
-	addi     r0, r1, 0x5c
-	lwz      r19, 0x10(r17)
-	stw      r0, 0x678(r1)
-	mr       r24, r0
-	addi     r26, r1, 0x45c
-	addi     r25, r1, 0x25c
-	b        lbl_8024A4CC
-
-lbl_8024A364:
-	lwz      r3, 0x18(r19)
-	bl       getUnitKind__Q34Game4Cave8UnitInfoFv
-	cmpwi    r3, 1
-	bne      lbl_8024A4C8
-	lwz      r3, 0x18(r19)
-	bl       getBaseGen__Q34Game4Cave8UnitInfoFv
-	cmplwi   r3, 0
-	beq      lbl_8024A4C8
-	lwz      r18, 0x10(r3)
-	mr       r29, r26
-	mr       r28, r25
-	mr       r27, r24
-	b        lbl_8024A4C0
-
-lbl_8024A398:
-	lwz      r0, 0x18(r18)
-	cmpwi    r0, 1
-	bne      lbl_8024A4BC
-	mr       r3, r15
-	mr       r4, r19
-	mr       r5, r18
-	bl
-isEnemySetGen__Q34Game4Cave13RandEnemyUnitFPQ34Game4Cave7MapNodePQ34Game4Cave7BaseGen
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8024A4BC
-	addi     r31, r1, 0x38
-	addi     r30, r1, 0x2c
-	li       r17, 1
-	li       r16, 0
-	b        lbl_8024A458
-
-lbl_8024A3D0:
-	clrlwi.  r0, r17, 0x18
-	beq      lbl_8024A44C
-	mr       r4, r19
-	mr       r5, r18
-	addi     r3, r1, 8
-	bl getBaseGenGlobalPosition__Q34Game4Cave7MapNodeFPQ34Game4Cave7BaseGen lfs
-f1, 0xc(r1) lfs      f0, 4(r31) lfs      f3, 8(r1) fsubs    f4, f1, f0 lfs f2,
-0(r31) lfs      f1, 0x10(r1) lfs      f0, 8(r31) fsubs    f3, f3, f2 fmuls f4,
-f4, f4 fsubs    f2, f1, f0 lfs      f0, lbl_8051A7A0@sda21(r2) fmadds   f1, f3,
-f3, f4 fmuls    f2, f2, f2 fadds    f1, f2, f1 fcmpo    cr0, f1, f0 ble
-lbl_8024A438 ble      lbl_8024A43C frsqrte  f0, f1 fmuls    f1, f0, f1 b
-lbl_8024A43C
-
-lbl_8024A438:
-	fmr      f1, f0
-
-lbl_8024A43C:
-	lfs      f0, 0(r30)
-	fcmpo    cr0, f1, f0
-	bge      lbl_8024A44C
-	li       r17, 0
-
-lbl_8024A44C:
-	addi     r31, r31, 0xc
-	addi     r30, r30, 4
-	addi     r16, r16, 1
-
-lbl_8024A458:
-	cmpw     r16, r23
-	blt      lbl_8024A3D0
-	clrlwi.  r0, r17, 0x18
-	beq      lbl_8024A4BC
-	stw      r19, 0(r29)
-	stw      r18, 0(r28)
-	lwz      r3, 0(r29)
-	bl       getVersusScore__Q34Game4Cave7MapNodeFv
-	add      r0, r14, r3
-	mullw    r0, r22, r0
-	stw      r0, 0(r27)
-	lwz      r0, 0(r27)
-	cmpwi    r0, 0
-	bgt      lbl_8024A498
-	li       r0, 1
-	stw      r0, 0(r27)
-
-lbl_8024A498:
-	lwz      r0, 0(r27)
-	addi     r26, r26, 4
-	addi     r25, r25, 4
-	addi     r24, r24, 4
-	add      r20, r20, r0
-	addi     r21, r21, 1
-	addi     r29, r29, 4
-	addi     r28, r28, 4
-	addi     r27, r27, 4
-
-lbl_8024A4BC:
-	lwz      r18, 4(r18)
-
-lbl_8024A4C0:
-	cmplwi   r18, 0
-	bne      lbl_8024A398
-
-lbl_8024A4C8:
-	lwz      r19, 4(r19)
-
-lbl_8024A4CC:
-	cmplwi   r19, 0
-	bne      lbl_8024A364
-	li       r0, 0
-	cmpwi    r21, 0
-	stw      r0, 0x30(r15)
-	stw      r0, 0x34(r15)
-	beq      lbl_8024A58C
-	bl       rand
-	lis      r4, 0x4330
-	xoris    r0, r3, 0x8000
-	stw      r0, 0x664(r1)
-	xoris    r0, r20, 0x8000
-	lfd      f2, lbl_8051A790@sda21(r2)
-	li       r5, 0
-	stw      r4, 0x660(r1)
-	li       r6, 0
-	lfs      f0, lbl_8051A788@sda21(r2)
-	lfd      f1, 0x660(r1)
-	stw      r0, 0x66c(r1)
-	fsubs    f1, f1, f2
-	stw      r4, 0x668(r1)
-	fdivs    f1, f1, f0
-	lfd      f0, 0x668(r1)
-	fsubs    f0, f0, f2
-	fmuls    f0, f0, f1
-	fctiwz   f0, f0
-	stfd     f0, 0x670(r1)
-	lwz      r4, 0x674(r1)
-	mtctr    r21
-	cmpwi    r21, 0
-	ble      lbl_8024A58C
-
-lbl_8024A548:
-	lwz      r3, 0x678(r1)
-	lwz      r0, 0(r3)
-	add      r5, r5, r0
-	cmpw     r5, r4
-	ble      lbl_8024A57C
-	slwi     r0, r6, 2
-	addi     r3, r1, 0x45c
-	lwzx     r4, r3, r0
-	addi     r3, r1, 0x25c
-	lwzx     r0, r3, r0
-	stw      r4, 0x30(r15)
-	stw      r0, 0x34(r15)
-	b        lbl_8024A58C
-
-lbl_8024A57C:
-	addi     r3, r3, 4
-	addi     r6, r6, 1
-	stw      r3, 0x678(r1)
-	bdnz     lbl_8024A548
-
-lbl_8024A58C:
-	lmw      r14, 0x688(r1)
-	lwz      r0, 0x6d4(r1)
-	mtlr     r0
-	addi     r1, r1, 0x6d0
-	blr
-	*/
 }
 
 /**
@@ -1909,10 +1372,12 @@ void RandEnemyUnit::setVersusEasyEnemy()
 
 	EnemyUnit* enemyUnits[] = { nullptr, nullptr };
 
-	for (EnemyNode* currNode = (EnemyNode*)(mainNode->mChild); currNode;) {
-		EnemyUnit* unit     = currNode->mEnemyUnit;
-		TekiInfo* currInfo  = currNode->getTekiInfo();
-		EnemyNode* nextNode = (EnemyNode*)currNode->mNext;
+	EnemyNode* nextNode;
+	EnemyNode* currNode;
+	for (currNode = (EnemyNode*)(mainNode->mChild); currNode;) {
+		EnemyUnit* unit    = currNode->mEnemyUnit;
+		TekiInfo* currInfo = currNode->getTekiInfo();
+		nextNode           = (EnemyNode*)currNode->mNext;
 
 		if (currInfo) {
 			if (currInfo->mEnemyID == vsEasyIDs[0]) {
@@ -1931,8 +1396,9 @@ void RandEnemyUnit::setVersusEasyEnemy()
 	}
 
 	for (int i = 0; i < 2; i++) {
-		if (enemyCounts[i][0] == 0)
+		if (enemyCounts[i][0] == 0) {
 			continue;
+		}
 
 		f32 tieBreaker = 0.0f;
 		if (enemyCounts[i][0] % 2 != 0) { // dumbasses don't realize that it's always an even number in-game
@@ -2216,11 +1682,11 @@ void RandEnemyUnit::setVersusEnemyTypeA()
 		if (info && info->mType == BaseGen::CGT_EnemyEasy) {
 			count += info->mWeight / 10;
 			if (count > mTypeCount[TEKITYPE_A]) {
-				int max = (count - mTypeCount[TEKITYPE_A]);
+				int remaining = (count - mTypeCount[TEKITYPE_A]);
 
 				int vsColor = randInt(2);
 
-				for (int i = 0; i < max; i++, vsColor ^= 1) {
+				for (int i = 0; i < remaining; i++, vsColor ^= 1) {
 					if (count <= mTypeCount[TEKITYPE_A]) {
 						continue;
 					}
@@ -2230,7 +1696,12 @@ void RandEnemyUnit::setVersusEnemyTypeA()
 
 					max = (max < count - mTypeCount[TEKITYPE_A]) ? max : count - mTypeCount[TEKITYPE_A];
 
-					int enemiesToMake = (max <= min) ? max : min + randInt(max - min + 1);
+					int enemiesToMake;
+					if (max <= min) {
+						enemiesToMake = max;
+					} else {
+						enemiesToMake = min + randInt(max - min + 1);
+					}
 
 					if (mMapTile && mSpawn && enemiesToMake) {
 						makeSetEnemyTypeA(mMapTile, mSpawn, currEnemy->mEnemyUnit, enemiesToMake);
@@ -2393,7 +1864,7 @@ void RandEnemyUnit::setSlotEnemyTypeA(int& max, int& min, int vsColor)
 	BaseGen* spawnList[128];
 	int scoreList[128];
 	Vector3f vecArray[2];
-	f32 floatArray[2] = { 400.0f, 400.0f }; // 0x2C
+	f32 floatArray[2] = { 400.0f, 400.0f };
 
 	int counter      = 0;
 	int vsScore      = 0;
@@ -2401,34 +1872,34 @@ void RandEnemyUnit::setSlotEnemyTypeA(int& max, int& min, int vsColor)
 	int spawnCounter = 0;
 	int scoreTally   = 0;
 
+	MapNode* fixNode;
+	BaseGen* fixGen;
 	MapNode* placedNodes = mGenerator->getPlacedNodes();
 	if (mGenerator->mIsVersusMode) {
-		MapNode* onyon;
-		BaseGen* onyonSpawn;
 		for (int i = FIXNODE_VsStart; i <= FIXNODE_VsEnd; i++) {
-			onyon      = mMapScore->getFixObjNode(i);
-			onyonSpawn = mMapScore->getFixObjGen(i);
-			if (!onyon) {
+			fixNode = mMapScore->getFixObjNode(i);
+			fixGen  = mMapScore->getFixObjGen(i);
+			if (!fixNode) {
 				continue;
 			}
 
-			Vector3f spawnPos = onyon->getBaseGenGlobalPosition(onyonSpawn);
+			Vector3f spawnPos = fixNode->getBaseGenGlobalPosition(fixGen);
 			vecArray[counter] = spawnPos;
 
 			if (vsColor == Blue && counter == 0) {
-				vsScore = onyon->getVersusScore();
+				vsScore = fixNode->getVersusScore();
 				vsSign  = -1;
 			} else if (vsColor == Red && counter == 1) {
-				vsScore = onyon->getVersusScore();
+				vsScore = fixNode->getVersusScore();
 				vsSign  = 1;
 			}
 			counter++;
 		}
 	} else {
-		MapNode* start      = mMapScore->getFixObjNode(FIXNODE_Pod);
-		BaseGen* startSpawn = mMapScore->getFixObjGen(FIXNODE_Pod);
-		if (start) {
-			Vector3f spawnPos   = start->getBaseGenGlobalPosition(startSpawn);
+		fixNode = mMapScore->getFixObjNode(FIXNODE_Pod);
+		fixGen  = mMapScore->getFixObjGen(FIXNODE_Pod);
+		if (fixNode) {
+			Vector3f spawnPos   = fixNode->getBaseGenGlobalPosition(fixGen);
 			vecArray[counter]   = spawnPos;
 			floatArray[counter] = 300.0f;
 			counter++;
@@ -2500,266 +1971,6 @@ void RandEnemyUnit::setSlotEnemyTypeA(int& max, int& min, int vsColor)
 			return;
 		}
 	}
-	/*
-	stwu     r1, -0x6c0(r1)
-	mflr     r0
-	stw      r0, 0x6c4(r1)
-	stmw     r14, 0x678(r1)
-	mr       r15, r3
-	mr       r24, r6
-	li       r23, 0
-	stw      r4, 8(r1)
-	li       r14, 0
-	li       r22, 0
-	li       r21, 0
-	stw      r5, 0xc(r1)
-	li       r20, 0
-	lwz      r8, 0(r3)
-	lwz      r7, lbl_8051A7B4@sda21(r2)
-	lbz      r0, 2(r8)
-	lwz      r3, lbl_8051A7B8@sda21(r2)
-	cmplwi   r0, 0
-	stw      r7, 0x10(r1)
-	lwz      r16, 0x28(r8)
-	stw      r3, 0x14(r1)
-	beq      lbl_8024AEB8
-	li       r19, 3
-	addi     r17, r1, 0x3c
-
-lbl_8024AE0C:
-	lwz      r3, 4(r15)
-	mr       r4, r19
-	bl       getFixObjNode__Q34Game4Cave12RandMapScoreFi
-	mr       r0, r3
-	lwz      r3, 4(r15)
-	mr       r18, r0
-	mr       r4, r19
-	bl       getFixObjGen__Q34Game4Cave12RandMapScoreFi
-	cmplwi   r18, 0
-	beq      lbl_8024AEA8
-	mr       r4, r18
-	mr       r5, r3
-	addi     r3, r1, 0x30
-	bl getBaseGenGlobalPosition__Q34Game4Cave7MapNodeFPQ34Game4Cave7BaseGen lfs
-f0, 0x30(r1) cmpwi    r24, 0 lfs      f1, 0x34(r1) stfs     f0, 0(r17) lfs f0,
-0x38(r1) stfs     f1, 4(r17) stfs     f0, 8(r17) bne      lbl_8024AE80 cmpwi
-r23, 0 bne      lbl_8024AE80 mr       r3, r18 bl
-getVersusScore__Q34Game4Cave7MapNodeFv li       r22, -1 mr       r14, r3 b
-lbl_8024AEA0
-
-lbl_8024AE80:
-	cmpwi    r24, 1
-	bne      lbl_8024AEA0
-	cmpwi    r23, 1
-	bne      lbl_8024AEA0
-	mr       r3, r18
-	bl       getVersusScore__Q34Game4Cave7MapNodeFv
-	li       r22, 1
-	mr       r14, r3
-
-lbl_8024AEA0:
-	addi     r17, r17, 0xc
-	addi     r23, r23, 1
-
-lbl_8024AEA8:
-	addi     r19, r19, 1
-	cmpwi    r19, 4
-	ble      lbl_8024AE0C
-	b        lbl_8024AF10
-
-lbl_8024AEB8:
-	lwz      r3, 4(r15)
-	li       r4, 0
-	bl       getFixObjNode__Q34Game4Cave12RandMapScoreFi
-	mr       r17, r3
-	lwz      r3, 4(r15)
-	li       r4, 0
-	bl       getFixObjGen__Q34Game4Cave12RandMapScoreFi
-	cmplwi   r17, 0
-	beq      lbl_8024AF10
-	mr       r4, r17
-	mr       r5, r3
-	addi     r3, r1, 0x24
-	bl getBaseGenGlobalPosition__Q34Game4Cave7MapNodeFPQ34Game4Cave7BaseGen lfs
-f3, 0x24(r1) li       r23, 1 lfs      f2, 0x28(r1) lfs      f1, 0x2c(r1) lfs f0,
-lbl_8051A7BC@sda21(r2) stfs     f3, 0x3c(r1) stfs     f2, 0x40(r1) stfs     f1,
-0x44(r1) stfs     f0, 0x10(r1)
-
-lbl_8024AF10:
-	addi     r0, r1, 0x54
-	lwz      r19, 0x10(r16)
-	stw      r0, 0x670(r1)
-	mr       r24, r0
-	addi     r26, r1, 0x454
-	addi     r25, r1, 0x254
-	b        lbl_8024B094
-
-lbl_8024AF2C:
-	lwz      r3, 0x18(r19)
-	bl       getUnitKind__Q34Game4Cave8UnitInfoFv
-	cmpwi    r3, 1
-	bne      lbl_8024B090
-	lwz      r3, 0x18(r19)
-	bl       getBaseGen__Q34Game4Cave8UnitInfoFv
-	cmplwi   r3, 0
-	beq      lbl_8024B090
-	lwz      r18, 0x10(r3)
-	mr       r29, r26
-	mr       r28, r25
-	mr       r27, r24
-	b        lbl_8024B088
-
-lbl_8024AF60:
-	lwz      r0, 0x18(r18)
-	cmpwi    r0, 0
-	bne      lbl_8024B084
-	mr       r3, r15
-	mr       r4, r19
-	mr       r5, r18
-	bl
-isEnemySetGen__Q34Game4Cave13RandEnemyUnitFPQ34Game4Cave7MapNodePQ34Game4Cave7BaseGen
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8024B084
-	addi     r31, r1, 0x3c
-	addi     r30, r1, 0x10
-	li       r17, 1
-	li       r16, 0
-	b        lbl_8024B020
-
-lbl_8024AF98:
-	clrlwi.  r0, r17, 0x18
-	beq      lbl_8024B014
-	mr       r4, r19
-	mr       r5, r18
-	addi     r3, r1, 0x18
-	bl getBaseGenGlobalPosition__Q34Game4Cave7MapNodeFPQ34Game4Cave7BaseGen lfs
-f1, 0x1c(r1) lfs      f0, 4(r31) lfs      f3, 0x18(r1) fsubs    f4, f1, f0 lfs
-f2, 0(r31) lfs      f1, 0x20(r1) lfs      f0, 8(r31) fsubs    f3, f3, f2 fmuls
-f4, f4, f4 fsubs    f2, f1, f0 lfs      f0, lbl_8051A7A0@sda21(r2) fmadds   f1,
-f3, f3, f4 fmuls    f2, f2, f2 fadds    f1, f2, f1 fcmpo    cr0, f1, f0 ble
-lbl_8024B000 ble      lbl_8024B004 frsqrte  f0, f1 fmuls    f1, f0, f1 b
-lbl_8024B004
-
-lbl_8024B000:
-	fmr      f1, f0
-
-lbl_8024B004:
-	lfs      f0, 0(r30)
-	fcmpo    cr0, f1, f0
-	bge      lbl_8024B014
-	li       r17, 0
-
-lbl_8024B014:
-	addi     r31, r31, 0xc
-	addi     r30, r30, 4
-	addi     r16, r16, 1
-
-lbl_8024B020:
-	cmpw     r16, r23
-	blt      lbl_8024AF98
-	clrlwi.  r0, r17, 0x18
-	beq      lbl_8024B084
-	stw      r19, 0(r29)
-	stw      r18, 0(r28)
-	lwz      r3, 0(r29)
-	bl       getVersusScore__Q34Game4Cave7MapNodeFv
-	add      r0, r14, r3
-	mullw    r0, r22, r0
-	stw      r0, 0(r27)
-	lwz      r0, 0(r27)
-	cmpwi    r0, 0
-	bgt      lbl_8024B060
-	li       r0, 1
-	stw      r0, 0(r27)
-
-lbl_8024B060:
-	lwz      r0, 0(r27)
-	addi     r26, r26, 4
-	addi     r25, r25, 4
-	addi     r24, r24, 4
-	add      r20, r20, r0
-	addi     r21, r21, 1
-	addi     r29, r29, 4
-	addi     r28, r28, 4
-	addi     r27, r27, 4
-
-lbl_8024B084:
-	lwz      r18, 4(r18)
-
-lbl_8024B088:
-	cmplwi   r18, 0
-	bne      lbl_8024AF60
-
-lbl_8024B090:
-	lwz      r19, 4(r19)
-
-lbl_8024B094:
-	cmplwi   r19, 0
-	bne      lbl_8024AF2C
-	li       r0, 0
-	cmpwi    r21, 0
-	stw      r0, 0x30(r15)
-	stw      r0, 0x34(r15)
-	beq      lbl_8024B16C
-	bl       rand
-	lis      r4, 0x4330
-	xoris    r0, r3, 0x8000
-	stw      r0, 0x65c(r1)
-	xoris    r0, r20, 0x8000
-	lfd      f2, lbl_8051A790@sda21(r2)
-	li       r5, 0
-	stw      r4, 0x658(r1)
-	li       r6, 0
-	lfs      f0, lbl_8051A788@sda21(r2)
-	lfd      f1, 0x658(r1)
-	stw      r0, 0x664(r1)
-	fsubs    f1, f1, f2
-	stw      r4, 0x660(r1)
-	fdivs    f1, f1, f0
-	lfd      f0, 0x660(r1)
-	fsubs    f0, f0, f2
-	fmuls    f0, f0, f1
-	fctiwz   f0, f0
-	stfd     f0, 0x668(r1)
-	lwz      r4, 0x66c(r1)
-	mtctr    r21
-	cmpwi    r21, 0
-	ble      lbl_8024B16C
-
-lbl_8024B110:
-	lwz      r3, 0x670(r1)
-	lwz      r0, 0(r3)
-	add      r5, r5, r0
-	cmpw     r5, r4
-	ble      lbl_8024B15C
-	slwi     r4, r6, 2
-	addi     r3, r1, 0x454
-	lwzx     r0, r3, r4
-	addi     r3, r1, 0x254
-	lwzx     r4, r3, r4
-	stw      r0, 0x30(r15)
-	lwz      r3, 8(r1)
-	stw      r4, 0x34(r15)
-	lwz      r0, 0x34(r4)
-	stw      r0, 0(r3)
-	lwz      r3, 0xc(r1)
-	lwz      r0, 0x30(r4)
-	stw      r0, 0(r3)
-	b        lbl_8024B16C
-
-lbl_8024B15C:
-	addi     r3, r3, 4
-	addi     r6, r6, 1
-	stw      r3, 0x670(r1)
-	bdnz     lbl_8024B110
-
-lbl_8024B16C:
-	lmw      r14, 0x678(r1)
-	lwz      r0, 0x6c4(r1)
-	mtlr     r0
-	addi     r1, r1, 0x6c0
-	blr
-	*/
 }
 
 /**
@@ -2856,16 +2067,14 @@ void RandEnemyUnit::makeSetEnemyTypeA(MapNode* tile, BaseGen* spawn, EnemyUnit* 
 		vecArray[i].z = randDist * cosf(randAngle) + spawnPos.z;
 	}
 
-	for (int i = 0; i < 5; i++) {             // r5
-		for (int j = 0; j < count; j++) {     // r6
-			for (int k = 0; k < count; k++) { // r7
+	for (int i = 0; i < 5; i++) {
+		for (int j = 0; j < count; j++) {
+			for (int k = 0; k < count; k++) {
 				if (j == k) {
 					continue;
 				}
-				// issues are here
-				Vector3f sep = vecArray[j];
-				sep          = sep - vecArray[k];
 				f32 dist     = vecArray[j].distance(vecArray[k]);
+				Vector3f sep = vecArray[j] - vecArray[k];
 				if (dist < 35.0f) {
 					sep.normalise();
 					sep *= (0.5f * (35.0f - dist));
@@ -2885,311 +2094,6 @@ void RandEnemyUnit::makeSetEnemyTypeA(MapNode* tile, BaseGen* spawn, EnemyUnit* 
 
 	mTypeCount[TEKITYPE_A] += count;
 	mTotalCount += count;
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x1D0(r1)
-	  mflr      r0
-	  stw       r0, 0x1D4(r1)
-	  stfd      f31, 0x1C0(r1)
-	  psq_st    f31,0x1C8(r1),0,0
-	  stfd      f30, 0x1B0(r1)
-	  psq_st    f30,0x1B8(r1),0,0
-	  stfd      f29, 0x1A0(r1)
-	  psq_st    f29,0x1A8(r1),0,0
-	  stfd      f28, 0x190(r1)
-	  psq_st    f28,0x198(r1),0,0
-	  stfd      f27, 0x180(r1)
-	  psq_st    f27,0x188(r1),0,0
-	  stfd      f26, 0x170(r1)
-	  psq_st    f26,0x178(r1),0,0
-	  stfd      f25, 0x160(r1)
-	  psq_st    f25,0x168(r1),0,0
-	  stfd      f24, 0x150(r1)
-	  psq_st    f24,0x158(r1),0,0
-	  stfd      f23, 0x140(r1)
-	  psq_st    f23,0x148(r1),0,0
-	  stfd      f22, 0x130(r1)
-	  psq_st    f22,0x138(r1),0,0
-	  stmw      r22, 0x108(r1)
-	  lis       r8, 0x8012
-	  mr        r23, r3
-	  subi      r0, r8, 0xCB8
-	  mr        r24, r4
-	  mr        r25, r5
-	  mr        r26, r6
-	  mr        r27, r7
-	  mr        r4, r0
-	  addi      r3, r1, 0x14
-	  li        r5, 0
-	  li        r6, 0xC
-	  li        r7, 0x10
-	  bl        -0x189C6C
-	  mr        r4, r24
-	  mr        r5, r25
-	  addi      r3, r1, 0x8
-	  bl        -0x79DC
-	  addi      r29, r1, 0x14
-	  lis       r3, 0x8050
-	  lfs       f26, 0x8(r1)
-	  mr        r30, r29
-	  lfs       f25, 0xC(r1)
-	  addi      r22, r3, 0x71A0
-	  lfs       f24, 0x10(r1)
-	  li        r28, 0
-	  lfs       f23, 0x2C(r25)
-	  lis       r31, 0x4330
-	  lfd       f28, -0x3BD0(r2)
-	  lfs       f29, -0x3BD8(r2)
-	  lfs       f30, -0x3BA0(r2)
-	  lfs       f31, -0x3BC0(r2)
-	  lfs       f22, -0x3B98(r2)
-	  b         .loc_0x1C0
-
-	.loc_0xE4:
-	  bl        -0x181F5C
-	  xoris     r0, r3, 0x8000
-	  stw       r31, 0xD8(r1)
-	  stw       r0, 0xDC(r1)
-	  lfd       f0, 0xD8(r1)
-	  fsubs     f0, f0, f28
-	  fmuls     f0, f23, f0
-	  fdivs     f27, f0, f29
-	  bl        -0x181F7C
-	  xoris     r0, r3, 0x8000
-	  stw       r31, 0xE0(r1)
-	  stw       r0, 0xE4(r1)
-	  lfd       f0, 0xE0(r1)
-	  fsubs     f0, f0, f28
-	  fmuls     f0, f30, f0
-	  fdivs     f1, f0, f29
-	  fcmpo     cr0, f1, f31
-	  bge-      .loc_0x158
-	  lfs       f0, -0x3B9C(r2)
-	  lis       r3, 0x8050
-	  addi      r3, r3, 0x71A0
-	  fmuls     f0, f1, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0xE8(r1)
-	  lwz       r0, 0xEC(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f0, r3, r0
-	  fneg      f0, f0
-	  b         .loc_0x17C
-
-	.loc_0x158:
-	  lfs       f0, -0x3B98(r2)
-	  lis       r3, 0x8050
-	  addi      r3, r3, 0x71A0
-	  fmuls     f0, f1, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0xF0(r1)
-	  lwz       r0, 0xF4(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f0, r3, r0
-
-	.loc_0x17C:
-	  fmadds    f0, f27, f0, f26
-	  fcmpo     cr0, f1, f31
-	  stfs      f0, 0x0(r30)
-	  stfs      f25, 0x4(r30)
-	  bge-      .loc_0x194
-	  fneg      f1, f1
-
-	.loc_0x194:
-	  fmuls     f0, f1, f22
-	  addi      r28, r28, 0x1
-	  fctiwz    f0, f0
-	  stfd      f0, 0xF8(r1)
-	  lwz       r0, 0xFC(r1)
-	  rlwinm    r0,r0,3,18,28
-	  add       r3, r22, r0
-	  lfs       f0, 0x4(r3)
-	  fmadds    f0, f27, f0, f24
-	  stfs      f0, 0x8(r30)
-	  addi      r30, r30, 0xC
-
-	.loc_0x1C0:
-	  cmpw      r28, r27
-	  blt+      .loc_0xE4
-	  li        r5, 0
-
-	.loc_0x1CC:
-	  mr        r4, r29
-	  li        r6, 0
-	  b         .loc_0x31C
-
-	.loc_0x1D8:
-	  mr        r3, r29
-	  li        r7, 0
-	  mtctr     r27
-	  cmpwi     r27, 0
-	  ble-      .loc_0x314
-
-	.loc_0x1EC:
-	  cmpw      r6, r7
-	  beq-      .loc_0x308
-	  lfs       f1, 0x4(r4)
-	  lfs       f0, 0x4(r3)
-	  lfs       f4, 0x0(r4)
-	  fsubs     f1, f1, f0
-	  lfs       f2, 0x0(r3)
-	  lfs       f3, 0x8(r4)
-	  lfs       f0, 0x8(r3)
-	  fsubs     f2, f4, f2
-	  fmuls     f4, f1, f1
-	  fsubs     f0, f3, f0
-	  lfs       f3, -0x3BC0(r2)
-	  fmadds    f4, f2, f2, f4
-	  fmuls     f5, f0, f0
-	  fadds     f6, f5, f4
-	  fcmpo     cr0, f6, f3
-	  ble-      .loc_0x244
-	  ble-      .loc_0x248
-	  fsqrte    f3, f6
-	  fmuls     f6, f3, f6
-	  b         .loc_0x248
-
-	.loc_0x244:
-	  fmr       f6, f3
-
-	.loc_0x248:
-	  lfs       f3, -0x3B94(r2)
-	  fcmpo     cr0, f6, f3
-	  bge-      .loc_0x308
-	  fmuls     f4, f1, f1
-	  lfs       f3, -0x3BC0(r2)
-	  fmuls     f5, f0, f0
-	  fmadds    f4, f2, f2, f4
-	  fadds     f4, f5, f4
-	  fcmpo     cr0, f4, f3
-	  ble-      .loc_0x280
-	  ble-      .loc_0x284
-	  fsqrte    f3, f4
-	  fmuls     f4, f3, f4
-	  b         .loc_0x284
-
-	.loc_0x280:
-	  fmr       f4, f3
-
-	.loc_0x284:
-	  lfs       f3, -0x3BC0(r2)
-	  fcmpo     cr0, f4, f3
-	  ble-      .loc_0x2A4
-	  lfs       f3, -0x3B90(r2)
-	  fdivs     f3, f3, f4
-	  fmuls     f2, f2, f3
-	  fmuls     f1, f1, f3
-	  fmuls     f0, f0, f3
-
-	.loc_0x2A4:
-	  lfs       f3, -0x3B94(r2)
-	  lfs       f5, -0x3B8C(r2)
-	  fsubs     f4, f3, f6
-	  lfs       f3, 0x0(r4)
-	  fmuls     f4, f5, f4
-	  fmuls     f2, f2, f4
-	  fmuls     f1, f1, f4
-	  fmuls     f0, f0, f4
-	  fadds     f3, f3, f2
-	  stfs      f3, 0x0(r4)
-	  lfs       f3, 0x4(r4)
-	  fadds     f3, f3, f1
-	  stfs      f3, 0x4(r4)
-	  lfs       f3, 0x8(r4)
-	  fadds     f3, f3, f0
-	  stfs      f3, 0x8(r4)
-	  lfs       f3, 0x0(r3)
-	  fsubs     f2, f3, f2
-	  stfs      f2, 0x0(r3)
-	  lfs       f2, 0x4(r3)
-	  fsubs     f1, f2, f1
-	  stfs      f1, 0x4(r3)
-	  lfs       f1, 0x8(r3)
-	  fsubs     f0, f1, f0
-	  stfs      f0, 0x8(r3)
-
-	.loc_0x308:
-	  addi      r3, r3, 0xC
-	  addi      r7, r7, 0x1
-	  bdnz+     .loc_0x1EC
-
-	.loc_0x314:
-	  addi      r4, r4, 0xC
-	  addi      r6, r6, 0x1
-
-	.loc_0x31C:
-	  cmpw      r6, r27
-	  blt+      .loc_0x1D8
-	  addi      r5, r5, 0x1
-	  cmpwi     r5, 0x5
-	  blt+      .loc_0x1CC
-	  lis       r3, 0x8051
-	  li        r30, 0
-	  subi      r28, r3, 0x2E20
-	  b         .loc_0x39C
-
-	.loc_0x340:
-	  li        r3, 0x38
-	  bl        -0x2278B8
-	  mr.       r22, r3
-	  beq-      .loc_0x364
-	  mr        r4, r26
-	  mr        r5, r25
-	  li        r6, 0x1
-	  bl        -0x75AC
-	  mr        r22, r3
-
-	.loc_0x364:
-	  lfs       f1, 0x0(r29)
-	  mr        r3, r28
-	  lfs       f0, 0x8(r29)
-	  fsubs     f1, f1, f26
-	  fsubs     f2, f0, f24
-	  bl        -0x216688
-	  mr        r3, r22
-	  mr        r4, r29
-	  bl        -0x7398
-	  lwz       r3, 0x1C(r24)
-	  mr        r4, r22
-	  bl        0x1C5C60
-	  addi      r29, r29, 0xC
-	  addi      r30, r30, 0x1
-
-	.loc_0x39C:
-	  cmpw      r30, r27
-	  blt+      .loc_0x340
-	  lwz       r0, 0x10(r23)
-	  add       r0, r0, r27
-	  stw       r0, 0x10(r23)
-	  lwz       r0, 0x8(r23)
-	  add       r0, r0, r27
-	  stw       r0, 0x8(r23)
-	  psq_l     f31,0x1C8(r1),0,0
-	  lfd       f31, 0x1C0(r1)
-	  psq_l     f30,0x1B8(r1),0,0
-	  lfd       f30, 0x1B0(r1)
-	  psq_l     f29,0x1A8(r1),0,0
-	  lfd       f29, 0x1A0(r1)
-	  psq_l     f28,0x198(r1),0,0
-	  lfd       f28, 0x190(r1)
-	  psq_l     f27,0x188(r1),0,0
-	  lfd       f27, 0x180(r1)
-	  psq_l     f26,0x178(r1),0,0
-	  lfd       f26, 0x170(r1)
-	  psq_l     f25,0x168(r1),0,0
-	  lfd       f25, 0x160(r1)
-	  psq_l     f24,0x158(r1),0,0
-	  lfd       f24, 0x150(r1)
-	  psq_l     f23,0x148(r1),0,0
-	  lfd       f23, 0x140(r1)
-	  psq_l     f22,0x138(r1),0,0
-	  lfd       f22, 0x130(r1)
-	  lmw       r22, 0x108(r1)
-	  lwz       r0, 0x1D4(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x1D0
-	  blr
-	*/
 }
 
 /**
