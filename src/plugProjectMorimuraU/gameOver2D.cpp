@@ -214,12 +214,7 @@ void TGameOverScreen::init(char const* path, u32 flags)
 	mScreen2 = new P2DScreen::Mgr_tuning;
 	mScreen2->set(path, flags, mArchive);
 
-	J2DBlendInfo info;
-	info.mType       = 1;
-	info.mSrcFactor  = 7;
-	info.mDestFactor = 6;
-	info.mOp         = 0;
-	J2DBlend blend(info);
+	J2DBlend blend(GX_BM_BLEND, GX_BL_INVDSTALPHA, GX_BL_DSTALPHA, GX_LO_CLEAR);
 	u64 taglist[9] = { 'back', 'efect_00', 'efect_01', 'kuronuki', 'kuro_u', 'kuro_d', 'kuro_l', 'kuro_r', 'capusel' };
 	mGXPane        = new TGXSetPane;
 	mScreen->appendChild(mGXPane);

@@ -287,7 +287,11 @@ void FSMStateShake::makeMatrix(DrawInfo* drawInfo, Matrixf* mtx)
 		p3 = p1 * 30.0f;
 		break;
 	case 2:
-		p1 = sinf(theta * TAU * 1.5f) * 0.1f;
+		f32 t = sinf(theta * TAU * 1.5f);
+		p1    = t * 0.1f;
+		if (t < 0.0f) {
+			p1 = 0.0f;
+		}
 		p2 = 125.6637115478516f;
 		p3 = p1 * 30.0f;
 		break;
@@ -307,7 +311,7 @@ void FSMStateShake::makeMatrix(DrawInfo* drawInfo, Matrixf* mtx)
 	// f32 theta2            = p2 * theta;
 	Vector3f translation = Vector3f(p1 * sinf(p2 * theta), 0.0f, p1 * cosf(p2 * theta));
 	f32 sinTheta         = (f32)sin(p2 * theta);
-	Vector3f rotation    = Vector3f(PI * (DEG2RAD * (p3 * sinTheta)), 0.0f, 0.0f);
+	Vector3f rotation    = Vector3f(TORADIANS((p3 * sinTheta)), 0.0f, 0.0f);
 	mtx->makeTR(translation, rotation);
 
 	/*

@@ -81,7 +81,7 @@ void ObjCourseName::doCreate(JKRArchive* arc)
 	og::Screen::setAlphaScreen(mScreen);
 
 	u64 tags[4] = { 'nuki_tex', 'efect_00', 'efect_01', 0 };
-	J2DBlend info(1, 7, 6, 0);
+	J2DBlend info(GX_BM_BLEND, GX_BL_INVDSTALPHA, GX_BL_DSTALPHA, GX_LO_CLEAR);
 	mScreen->setBlendInfo(info, tags);
 
 	J2DPane* pane = mScreen->search('nuki_tex');
