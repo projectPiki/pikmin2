@@ -210,8 +210,8 @@ void THurryUp2D::doDraw(Graphics& gfx)
 	gfx.mPerspGraph.setPort();
 	mScreen->draw(gfx, gfx.mPerspGraph);
 	if (mState == 3 && mDoDraw) {
-		f32 width  = mPaneSunW->getWidth();
-		f32 height = mPaneSunW->getHeight();
+		Vector2f wpos(mWhitePane->_1A8.x - 56.0f, mWhitePane->_1A8.y);
+		Vector2f sunpos(mPaneSunW->getWidth(), mPaneSunW->getHeight());
 
 		GXClearVtxDesc();
 		GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
@@ -221,46 +221,40 @@ void THurryUp2D::doDraw(Graphics& gfx)
 		GXSetNumTevStages(1);
 		GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR0A0);
 		GXSetTevOp(GX_TEVSTAGE0, GX_PASSCLR);
-		u32 flag = mParams[5].mAlpha1;
+		u32 flag = (mWhitePane->mAlpha >> 1) & 0xff;
 		if (flag > 0x80) {
 			flag = 0x80;
 		}
-		f32 calc = flag * mFadeFraction;
-		JUtility::TColor color(255, 255, 255, calc);
-		GXSetChanMatColor(GX_COLOR_NULL, color);
+		int calc = f32((u8)flag) * mFadeFraction;
+		GXSetChanMatColor(GX_COLOR0A0, (GXColor) { 255, 255, 255, calc });
 		GXSetCullMode(GX_CULL_NONE);
 		GXLoadPosMtxImm(mWhitePane->mMatrix.mMatrix.mtxView, 0);
 
-		GXBegin(GX_TRIANGLES, GX_VTXFMT0, 216);
-		for (int i = 0; i < 26; i++) {
-			// this is just a bunch of nonsense guessing
-			f32 y        = mWhitePane->_1A8.y;
-			f32 test0    = (56.0f - mWhitePane->_1A8.x);
-			f32 test     = 80.0f - test0;
-			f32 test1    = cosf(-test);
-			f32 test2    = sinf(-test);
+		// this needs fixing
+		int idk = 360;
+		u16 max = (10.0f / idk);
+
+		GXBegin(GX_TRIANGLES, GX_VTXFMT0, max * 6);
+		for (int i = 0; i < max; i++) {
+			f32 s2 = (f32(i) * 10.0f * TAU) / 360.0f;
+			f32 s4 = (f32(i + 1) * 10.0f * TAU) / 360.0f;
+			f32 s1 = sinf(s2) * 80.0f + wpos.x;
+			s2     = -(cosf(s2) * 80.0f - wpos.y);
+			f32 s3 = sinf(s4) * 80.0f + wpos.x;
+			s4     = -(cosf(s4) * 80.0f - wpos.y);
+
 			f32 zero     = 0.0f;
 			f32 minusone = -1.0f;
 
-			GX_WRITE_F32(test0);
-			GX_WRITE_F32(y);
-			GX_WRITE_F32(zero);
-			GX_WRITE_F32(test);
-			GX_WRITE_F32(test1);
-			GX_WRITE_F32(zero);
-			GX_WRITE_F32(test2);
-			GX_WRITE_F32(test);
-			GX_WRITE_F32(zero);
-			GX_WRITE_F32(width);
-			GX_WRITE_F32(height);
-			GX_WRITE_F32(minusone);
-			GX_WRITE_F32(test);
-			GX_WRITE_F32(test1);
-			GX_WRITE_F32(zero);
-			GX_WRITE_F32(test2);
-			GX_WRITE_F32(test);
-			GX_WRITE_F32(zero);
+			GXNormal3f32(wpos.x, wpos.y, zero);
+			GXPosition3f32(s1, s2, zero);
+			GXPosition3f32(s3, s4, zero);
+
+			GXNormal3f32(sunpos.x, sunpos.y, minusone);
+			GXPosition3f32(s1, s2, zero);
+			GXPosition3f32(s3, s4, zero);
 		}
+		GXEnd();
 	}
 	/*
 	stwu     r1, -0xa0(r1)
@@ -624,17 +618,14 @@ void THurryUp2D::init()
 
 	if (mDoDraw) {
 		mWhitePane->show();
-		J2DBlend info1(1, 6, 7, 0);
-		// J2DBlend blend(info1);
+		J2DBlend info1(GX_BM_BLEND, GX_BL_DSTALPHA, GX_BL_INVDSTALPHA, GX_LO_CLEAR);
 		static_cast<J2DPictureEx*>(mPaneSunW)->getMaterial()->mPeBlock.setBlend(info1);
 
-		J2DBlend info2(1, 1, 0, 0);
-		// J2DBlend blend2(info2);
+		J2DBlend info2(GX_BM_BLEND, GX_BL_ONE, GX_BL_ZERO, GX_LO_CLEAR);
 		mWhitePane->getMaterial()->mPeBlock.setBlend(info2);
 		mWhitePane->mAlpha = 0;
 	} else {
-		J2DBlend info(1, 4, 5, 0);
-		// J2DBlend blend(info);
+		J2DBlend info(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_CLEAR);
 		J2DPictureEx* pane = static_cast<J2DPictureEx*>(mScreen->search('sunw'));
 		pane->getMaterial()->mPeBlock.setBlend(info);
 		mWhitePane->hide();

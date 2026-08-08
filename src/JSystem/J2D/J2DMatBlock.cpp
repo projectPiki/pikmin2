@@ -28,51 +28,6 @@ void J2DColorBlock::initialize()
 		mChannels[i].setColorChanInfo(j2dDefaultColorChanInfo);
 	}
 	mCullMode = GX_CULL_NONE;
-	/*
-	stwu     r1, -0x10(r1)
-	li       r4, 2
-	lwz      r9, j2dDefaultColInfo@sda21(r2)
-	addi     r10, r2, j2dDefaultColorChanInfo@sda21
-	li       r0, 0
-	stw      r9, 8(r1)
-	lbz      r8, 8(r1)
-	lbz      r7, 9(r1)
-	stb      r8, 0(r3)
-	lbz      r6, 0xa(r1)
-	lbz      r5, 0xb(r1)
-	stb      r7, 1(r3)
-	stb      r6, 2(r3)
-	stw      r9, 8(r1)
-	stb      r8, 0xc(r1)
-	lbz      r8, 8(r1)
-	stb      r5, 3(r3)
-	stb      r7, 0xd(r1)
-	lbz      r7, 9(r1)
-	stb      r8, 4(r3)
-	stb      r6, 0xe(r1)
-	lbz      r6, 0xa(r1)
-	stb      r7, 5(r3)
-	stb      r5, 0xf(r1)
-	lbz      r5, 0xb(r1)
-	stb      r6, 6(r3)
-	stb      r5, 7(r3)
-	stb      r4, 8(r3)
-	lbz      r4, 1(r10)
-	stb      r8, 0xc(r1)
-	sth      r4, 0xa(r3)
-	lbz      r4, 1(r10)
-	stb      r7, 0xd(r1)
-	sth      r4, 0xc(r3)
-	lbz      r4, 1(r10)
-	stb      r6, 0xe(r1)
-	sth      r4, 0xe(r3)
-	lbz      r4, 1(r10)
-	stb      r5, 0xf(r1)
-	sth      r4, 0x10(r3)
-	stb      r0, 0x12(r3)
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /**
@@ -801,9 +756,9 @@ void J2DTevBlock2::initialize()
 		mSwapModeTables[i] = j2dDefaultTevSwapModeTable;
 	}
 
-	for (int i = 0; i < 2; i++) {
-		mIndStages[i].setIndTevStageInfo(j2dDefaultIndTevStageInfo);
-	}
+	mIndStages[0].setIndTevStageInfo(j2dDefaultIndTevStageInfo);
+	mIndStages[1].setIndTevStageInfo(j2dDefaultIndTevStageInfo);
+
 	for (int i = 0; i < 2; i++) {
 		mPalettes[i] = nullptr;
 	}
@@ -2270,7 +2225,7 @@ void J2DTevBlock8::initialize()
 		mKAlphaSels[i] = -1;
 	}
 	for (int i = 0; i < 4; i++) {
-		mSwapModeTables[i] = j2dDefaultTevSwapModeTable;
+		mSwapModeTables[i].setTevSwapModeTableInfo(j2dDefaultTevSwapModeTable);
 	}
 	for (int i = 0; i < 8; i++) {
 		mIndStages[i].setIndTevStageInfo(j2dDefaultIndTevStageInfo);
@@ -2278,7 +2233,8 @@ void J2DTevBlock8::initialize()
 	for (int i = 0; i < 8; i++) {
 		mPalettes[i] = nullptr;
 	}
-	mFont = nullptr;
+	mFont             = nullptr;
+	mFontUndeleteFlag = 0;
 	/*
 	stwu     r1, -0x50(r1)
 	addi     r8, r2, j2dDefaultTevColor@sda21
@@ -3075,7 +3031,7 @@ void J2DTevBlock16::initialize()
 		mKAlphaSels[i] = -1;
 	}
 	for (int i = 0; i < 4; i++) {
-		mSwapModeTables[i] = j2dDefaultTevSwapModeTable;
+		mSwapModeTables[i].setTevSwapModeTableInfo(j2dDefaultTevSwapModeTable);
 	}
 	for (int i = 0; i < 16; i++) {
 		mIndStages[i].setIndTevStageInfo(j2dDefaultIndTevStageInfo);
@@ -3083,7 +3039,8 @@ void J2DTevBlock16::initialize()
 	for (int i = 0; i < 8; i++) {
 		mPalettes[i] = nullptr;
 	}
-	mFont = nullptr;
+	mFont             = nullptr;
+	mFontUndeleteFlag = 0;
 	/*
 	stwu     r1, -0x30(r1)
 	lis      r4, 0x0000FFFF@ha
