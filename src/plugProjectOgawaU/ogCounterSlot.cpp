@@ -136,7 +136,6 @@ void CallBack_CounterSlot::startSlot(f32 calc)
  */
 void CallBack_CounterSlot::setValue(bool flag1, bool flag2)
 {
-	/* NON-MATCHING */
 	if (mIsBlind) {
 		mInitialDisplayValue = 0;
 		mCurrDisplayValue    = 0;
@@ -206,10 +205,11 @@ void CallBack_CounterSlot::setValue(bool flag1, bool flag2)
 	mPic1->setOffset(xVal, mPanePosition.y);
 	mPic1->calcMtx();
 
+	// yes they're set in a weird order, idk man this works
 	Vector3f angle;
 	angle.z = mPic1->mAngleZ;
-	angle.x = mPic1->mAngleX;
-	angle.y = mPic1->mAngleY;
+	angle.x = mPic1->getRotateX();
+	angle.y = mPic1->getRotateY();
 
 	JUtility::TColor white = mPic1->getWhite();
 	JUtility::TColor black = mPic1->getBlack();

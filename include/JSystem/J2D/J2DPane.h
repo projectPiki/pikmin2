@@ -366,6 +366,8 @@ struct J2DPane {
 	f32 getTranslateY() const { return mOffset.y; }
 	JGeometry::TVec2f getTranslate() const { return mOffset; }
 	int getKind() const { return mBloBlockType; }
+	f32 getRotateX() const { return mAngleX; }
+	f32 getRotateY() const { return mAngleY; }
 	f32 getRotateZ() const { return mAngleZ; }
 	f32 getRotOffsetX() const { return mAnchorPoint.x; }
 	f32 getRotOffsetY() const { return mAnchorPoint.y; }

@@ -1709,7 +1709,7 @@ config.libs = [
             Object(Matching, "plugProjectOgawaU/ogObjSMenuPauseVs.cpp"),
             Object(Matching, "plugProjectOgawaU/ogSceneSMenuPauseVs.cpp"),
             Object(Matching, "plugProjectOgawaU/ogFuriko.cpp"),
-            Object(Equivalent, "plugProjectOgawaU/ogCounterSlot.cpp"),
+            Object(Matching, "plugProjectOgawaU/ogCounterSlot.cpp"),
             Object(Matching, "plugProjectOgawaU/ogObjWorldMapInfoWindow0.cpp"),
             Object(Matching, "plugProjectOgawaU/ogSceneWorldMapInfoWindow0.cpp"),
             Object(Matching, "plugProjectOgawaU/ogObjWorldMapInfoWindow1.cpp"),
