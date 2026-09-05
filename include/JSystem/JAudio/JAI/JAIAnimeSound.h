@@ -6,36 +6,27 @@
 
 struct JAIBasic;
 
-/**
- * @fabricated
- * @size{0x20}
- */
-struct JAIAnimeSoundDataEntry {
-	f32 mTime;    // _00 something dumb going on with all of this
-	u8 _04[0x1C]; // _04 - unknown
-};
-
-// represenation of contents of .bas file, maybe
-struct JAIAnimeSoundData {
-	u16 mEntryNum;                       // _00
-	u32 _04;                             // _04 - unknown
-	u32 _08;                             // _08
-	JAIAnimeSoundDataEntry* mSndEntries; // _0C
-	u8 _10[8];                           // _10 - unknown
-	u8 _18;                              // _18
-};
-
+// frame sound record in a BAS animation sound file
 struct JAIAnimeFrameSoundData {
-	u32 mSoundID;        // _00 none of the values here make senese
-	f32 mStartTime;      // _04 Im pretty sure its just an entry
-	f32 mPlaybackTimer;  // _08 from a .bas file, the first few
-	f32 mPitch;          // _0C members line up, but the later stuff
-	u32 mPlayFlags;      // _10 doesnt
-	u8 mPanning;         // _14
+	u32 mSoundID;        // _00
+	f32 mStartTime;      // _04
+	f32 mEndTime;        // _08
+	f32 mPitch;          // _0C
+	u32 mPlayFlags;      // _10
+	u8 mVolume;          // _14
 	s8 mPitchScale;      // _15
 	u8 mActivationFrame; // _16
-	u8 mVelocity;        // _17
-	s8 mPanOffsetScale;  // _18
+	u8 mPan;             // _17
+	s8 mVolumeScale;     // _18
+	u8 _19[0x7];         // _19
+};
+
+// BAS header followed by mEntryNum frame sound records
+struct JAIAnimeSoundData {
+	u16 mEntryNum;                         // _00
+	u16 _02;                               // _02
+	u32 _04;                               // _04
+	JAIAnimeFrameSoundData mSndEntries[1]; // _08, variable-length
 };
 
 struct JAIAnimeSound : public JAInter::Object {

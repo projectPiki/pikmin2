@@ -559,7 +559,7 @@ bool JASAramStream::load()
 	}
 
 	u32 length = sBlockSize * mNumBlocks + 0x20;
-	u32 offset = mCurrentBlock * mNumBlocks + 0x40;
+	u32 offset = mCurrentBlock * (sBlockSize * mNumBlocks + 0x20) + 0x40;
 
 	if (mCurrentBlock == numMaxBlocks) {
 		length = mFileInfo.length - offset;
@@ -573,7 +573,7 @@ bool JASAramStream::load()
 	u32* preBuffer = (u32*)sReadBuffer;
 	u32 size       = mDataOffset + (mCurrentLoadIndex * sBlockSize);
 	for (int i = 0; i < mNumBlocks; i++) {
-		if (JKRMainRamToAram((u8*)(sReadBuffer + (preBuffer[1] + 0x20)), size + (i * sBlockSize * mBlockCount), ((u32*)sReadBuffer)[1],
+		if (JKRMainRamToAram((u8*)(sReadBuffer + (preBuffer[1] * i + 0x20)), size + (i * (sBlockSize * mBlockCount)), preBuffer[1],
 		                     Switch_0, 0, nullptr, -1, nullptr)
 		    == 0) {
 			sFatalErrorFlag = true;
@@ -587,7 +587,7 @@ bool JASAramStream::load()
 		int nextBlock = mCurrentBlock + (mMaxLoadIndex - 1);
 		if (mLoopFlag) {
 			while (nextBlock > numMaxBlocks) {
-				nextBlock = (numMaxBlocks - nextBlock) + adjustedBlockCount;
+				nextBlock = (nextBlock - numMaxBlocks) + adjustedBlockCount;
 			}
 		}
 		if (nextBlock == numMaxBlocks || nextBlock + 2 == numMaxBlocks) {
@@ -955,7 +955,7 @@ void JASAramStream::updateChannel(u32 command, JASChannel* chan, JASDsp::TChanne
 				}
 
 				dspChan->mCurrentSampleOffset
-				    -= (blockSamples * mCurrentBlockNum) - (mFileSize % blockSamples) + (mMaxBlocks * blockSamples);
+				    -= (blockSamples * mCurrentBlockNum) - ((mFileSize % blockSamples) + (mMaxBlocks * blockSamples));
 				mCurrentSampleOffset = dspChan->mCurrentSampleOffset;
 				mControlFlags |= 1;
 				mMaxBlocks += (mFileSize - 1) / blockSamples - (mAramSize / blockSamples) + 1;
@@ -969,7 +969,7 @@ void JASAramStream::updateChannel(u32 command, JASChannel* chan, JASDsp::TChanne
 
 			u32 blockIndex = sampleOffset / sBlockSize;
 			if (blockIndex != mCurrentReadOffset) {
-				u32 isNewBlock = bool((mCurrentReadOffset ^ blockIndex) == 0);
+				u32 isNewBlock = mCurrentReadOffset > blockIndex;
 				while (blockIndex != mCurrentReadOffset) {
 					if (sLoadThread->sendCmdMsg(&loadToAramTask, this) == 0) {
 						sFatalErrorFlag = true;
@@ -1700,15 +1700,13 @@ int JASAramStream::channelProc()
 	return 0;
 }
 
-// ??
-static const int one = 1;
-
 /**
  * @note Address: 0x800AA48C
  * @note Size: 0x240
  */
 void JASAramStream::channelStart()
 {
+	static const int one = 1;
 	u8 blockType;
 	switch (mStreamType) {
 	case 0:
@@ -1730,13 +1728,11 @@ void JASAramStream::channelStart()
 		info->mSampleCount   = info->mLoopEndOffset;
 		info->mLast          = 0;
 		info->mPenult        = 0;
-		info->_24            = (void*)one;
+		info->_24            = (void*)&one;
 
 		JASChannel* chan
-		    = (JASChannel*)JASPoolAllocObject<JASChannel, JASCreationPolicy::NewFromRootHeap, JASThreadingModel::SingleThreaded>::alloc();
-		if (chan) {
-			// chan = JASChannel(channelCallback, this); // ????? how???
-		}
+		    = new (JASPoolAllocObject<JASChannel, JASCreationPolicy::NewFromRootHeap, JASThreadingModel::SingleThreaded>::alloc())
+		        JASChannel(channelCallback, this);
 
 		chan->mPriority = 127;
 		chan->setPanPower(0.0f, 0.0f, 1.0f);
@@ -1758,180 +1754,6 @@ void JASAramStream::channelStart()
 		mChannels[i] = chan;
 	}
 	mActiveChannel = nullptr;
-	/*
-	stwu     r1, -0x60(r1)
-	mflr     r0
-	stw      r0, 0x64(r1)
-	stfd     f31, 0x50(r1)
-	psq_st   f31, 88(r1), 0, qr0
-	stmw     r21, 0x24(r1)
-	mr       r23, r3
-	lhz      r0, 0x248(r3)
-	cmpwi    r0, 1
-	beq      lbl_800AA4CC
-	bge      lbl_800AA4D0
-	cmpwi    r0, 0
-	bge      lbl_800AA4C4
-	b        lbl_800AA4D0
-
-lbl_800AA4C4:
-	li       r26, 0
-	b        lbl_800AA4D0
-
-lbl_800AA4CC:
-	li       r26, 3
-
-lbl_800AA4D0:
-	lis      r3, OSC_ENV@ha
-	lfd      f31, lbl_80516EC0@sda21(r2)
-	mr       r28, r23
-	mr       r27, r23
-	addi     r31, r3, OSC_ENV@l
-	li       r25, 0
-	lis      r30, 0x4330
-	b        lbl_800AA69C
-
-lbl_800AA4F0:
-	addi     r24, r28, 0x90
-	li       r3, -1
-	stb      r26, 0x90(r28)
-	li       r0, 0
-	stw      r3, 0xa0(r28)
-	stw      r0, 0xa4(r28)
-	lhz      r0, 0x248(r23)
-	lwz      r4, 0x24c(r23)
-	cmplwi   r0, 0
-	bne      lbl_800AA534
-	lwz      r0, sBlockSize__13JASAramStream@sda21(r13)
-	lis      r3, 0x38E38E39@ha
-	addi     r3, r3, 0x38E38E39@l
-	slwi     r0, r0, 4
-	mulhwu   r0, r3, r0
-	srwi     r0, r0, 1
-	b        lbl_800AA53C
-
-lbl_800AA534:
-	lwz      r0, sBlockSize__13JASAramStream@sda21(r13)
-	srwi     r0, r0, 1
-
-lbl_800AA53C:
-	mullw    r4, r4, r0
-	li       r3, 0
-	addi     r0, r2, one$870@sda21
-	stw      r4, 0x18(r24)
-	lwz      r4, 0x18(r24)
-	stw      r4, 0x1c(r24)
-	sth      r3, 0x20(r24)
-	sth      r3, 0x22(r24)
-	stw      r0, 0x24(r24)
-	lwz      r0,
-"sInstance__123JASSingletonHolder<62JASMemPool<10JASChannel,Q217JASThreadingModel14SingleThreaded>,Q217JASCreationPolicy15NewFromRootHeap>"@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_800AA5A8
-	bl       OSDisableInterrupts
-	lwz      r0,
-"sInstance__123JASSingletonHolder<62JASMemPool<10JASChannel,Q217JASThreadingModel14SingleThreaded>,Q217JASCreationPolicy15NewFromRootHeap>"@sda21(r13)
-	stw      r3, 8(r1)
-	cmplwi   r0, 0
-	bne      lbl_800AA5A0
-	lwz      r4, JASDram@sda21(r13)
-	li       r3, 0xc
-	li       r5, 0
-	bl       __nw__FUlP7JKRHeapi
-	or.      r29, r3, r3
-	beq      lbl_800AA59C
-	bl       __ct__17JASGenericMemPoolFv
-
-lbl_800AA59C:
-	stw      r29,
-"sInstance__123JASSingletonHolder<62JASMemPool<10JASChannel,Q217JASThreadingModel14SingleThreaded>,Q217JASCreationPolicy15NewFromRootHeap>"@sda21(r13)
-
-lbl_800AA5A0:
-	lwz      r3, 8(r1)
-	bl       OSRestoreInterrupts
-
-lbl_800AA5A8:
-	lwz      r3,
-"sInstance__123JASSingletonHolder<62JASMemPool<10JASChannel,Q217JASThreadingModel14SingleThreaded>,Q217JASCreationPolicy15NewFromRootHeap>"@sda21(r13)
-	li       r4, 0x118
-	bl       alloc__17JASGenericMemPoolFUl
-	or.      r29, r3, r3
-	beq      lbl_800AA5D0
-	lis      r4,
-channelCallback__13JASAramStreamFUlP10JASChannelPQ26JASDsp8TChannelPv@ha mr r5,
-r23 addi     r4, r4,
-channelCallback__13JASAramStreamFUlP10JASChannelPQ26JASDsp8TChannelPv@l bl
-__ct__10JASChannelFPFUlP10JASChannelPQ26JASDsp8TChannelPv_vPv mr       r29, r3
-
-lbl_800AA5D0:
-	lfs      f1, lbl_80516EB0@sda21(r2)
-	li       r0, 0x7f
-	sth      r0, 0xbc(r29)
-	mr       r3, r29
-	fmr      f2, f1
-	lfs      f3, lbl_80516EB4@sda21(r2)
-	bl       setPanPower__10JASChannelFfff
-	li       r0, 1
-	mr       r22, r23
-	stb      r0, 0x108(r29)
-	li       r21, 0
-	stb      r0, 0x109(r29)
-	stb      r0, 0x10a(r29)
-
-lbl_800AA604:
-	lhz      r5, 0x2cc(r22)
-	mr       r3, r29
-	mr       r4, r21
-	bl       setMixConfig__10JASChannelFiUs
-	addi     r21, r21, 1
-	addi     r22, r22, 2
-	cmpwi    r21, 6
-	blt      lbl_800AA604
-	bl       getDacRate__9JASDriverFv
-	lwz      r0, 0x254(r23)
-	mr       r3, r29
-	stw      r30, 0x10(r1)
-	mr       r5, r31
-	li       r4, 0
-	stw      r0, 0x14(r1)
-	lfd      f0, 0x10(r1)
-	fsubs    f0, f0, f31
-	fdivs    f0, f0, f1
-	stfs     f0, 0xf0(r29)
-	lfs      f0, 0xf0(r29)
-	stfs     f0, 0xf8(r29)
-	bl       setOscInit__10JASChannelFiPCQ213JASOscillator4Data
-	stw      r24, 0xe8(r29)
-	li       r0, 0
-	mr       r3, r29
-	lwz      r5, sBlockSize__13JASAramStream@sda21(r13)
-	lwz      r4, 0x250(r23)
-	lwz      r6, 0x238(r23)
-	mullw    r4, r5, r4
-	mullw    r4, r25, r4
-	add      r4, r6, r4
-	stw      r4, 0xec(r29)
-	stb      r0, 0xe4(r29)
-	bl       playForce__10JASChannelFv
-	stw      r29, 0x180(r27)
-	addi     r28, r28, 0x28
-	addi     r27, r27, 4
-	addi     r25, r25, 1
-
-lbl_800AA69C:
-	lhz      r0, 0x24a(r23)
-	cmpw     r25, r0
-	blt      lbl_800AA4F0
-	li       r0, 0
-	stw      r0, 0x198(r23)
-	psq_l    f31, 88(r1), 0, qr0
-	lfd      f31, 0x50(r1)
-	lmw      r21, 0x24(r1)
-	lwz      r0, 0x64(r1)
-	mtlr     r0
-	addi     r1, r1, 0x60
-	blr
-	*/
 }
 
 /**

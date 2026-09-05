@@ -19,7 +19,12 @@ struct J3DMatColorAnm {
 		mAnm     = anm;
 	}
 
-	J3DMatColorAnm();
+	J3DMatColorAnm()
+	    : mIndex(0)
+	    , mAnmFlag(1)
+	    , mAnm(nullptr)
+	{
+	}
 
 	~J3DMatColorAnm() { }
 
@@ -42,7 +47,12 @@ struct J3DMatColorAnm {
 };
 
 struct J3DTexNoAnm {
-	J3DTexNoAnm();
+	J3DTexNoAnm()
+	    : mIndex(0)
+	    , mAnmFlag(1)
+	    , mAnm(nullptr)
+	{
+	}
 
 	// incredible useless u16 cast needed for match
 	virtual void calc(u16* data) const { getAnmTexPattern()->getTexNo(*(u16*)&mIndex, data); } // _08 (weak)
@@ -75,7 +85,12 @@ struct J3DTexMtxAnm {
 		mAnm     = anm;
 	}
 
-	J3DTexMtxAnm();
+	J3DTexMtxAnm()
+	    : mIndex(0)
+	    , mAnmFlag(1)
+	    , mAnm(nullptr)
+	{
+	}
 
 	~J3DTexMtxAnm() { }
 
@@ -103,7 +118,12 @@ struct J3DTevColorAnm {
 		mAnm     = anm;
 	}
 
-	J3DTevColorAnm();
+	J3DTevColorAnm()
+	    : mIndex(0)
+	    , mAnmFlag(1)
+	    , mAnm(nullptr)
+	{
+	}
 
 	~J3DTevColorAnm() { }
 
@@ -131,7 +151,12 @@ struct J3DTevKColorAnm {
 		mAnm     = anm;
 	}
 
-	J3DTevKColorAnm();
+	J3DTevKColorAnm()
+	    : mIndex(0)
+	    , mAnmFlag(1)
+	    , mAnm(nullptr)
+	{
+	}
 
 	~J3DTevKColorAnm() { }
 
@@ -160,11 +185,40 @@ struct J3DMaterialAnm {
 	void initialize();
 
 	// unused/TP debug inlines to do:
-	void setMatColorAnm(int, J3DMatColorAnm*);
-	void setTexMtxAnm(int, J3DTexMtxAnm*);
 	void setTexNoAnm(int, J3DTexNoAnm*);
-	void setTevColorAnm(int, J3DTevColorAnm*);
-	void setTevKColorAnm(int, J3DTevKColorAnm*);
+
+	void setMatColorAnm(int index, J3DMatColorAnm* anm)
+	{
+		if (anm == nullptr) {
+			mMatColAnmList[index].setAnmFlag(false);
+		} else {
+			mMatColAnmList[index] = *anm;
+		}
+	}
+	void setTexMtxAnm(int index, J3DTexMtxAnm* anm)
+	{
+		if (anm == nullptr) {
+			mTexMtxAnmList[index].setAnmFlag(false);
+		} else {
+			mTexMtxAnmList[index] = *anm;
+		}
+	}
+	void setTevColorAnm(int index, J3DTevColorAnm* anm)
+	{
+		if (anm == nullptr) {
+			mTevColAnmList[index].setAnmFlag(false);
+		} else {
+			mTevColAnmList[index] = *anm;
+		}
+	}
+	void setTevKColorAnm(int index, J3DTevKColorAnm* anm)
+	{
+		if (anm == nullptr) {
+			mTevKColAnmList[index].setAnmFlag(false);
+		} else {
+			mTevKColAnmList[index] = *anm;
+		}
+	}
 
 	const J3DTexMtxAnm& getTexMtxAnm(int i) const { return mTexMtxAnmList[i]; }
 

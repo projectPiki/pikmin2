@@ -201,8 +201,7 @@ struct J2DWindowEx : public J2DWindow {
 	// _000      = VTBL
 	// _000-_148 = J2DWindow
 	J2DMaterial* mFrameMaterials[4];      // _148
-	u16 _158[2];                          // _158
-	u8 _15C[4];                           // _15C
+	u16 mFrameMaterialIds[4];             // _158
 	J2DMaterial* mContentsMaterial;       // _160
 	u16 mMaterialID;                      // _164
 	u16 _166;                             // _166

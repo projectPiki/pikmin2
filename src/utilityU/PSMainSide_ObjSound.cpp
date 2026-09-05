@@ -711,62 +711,64 @@ void CreatureAnime::setAnime(JAIAnimeSoundData* data, u32 flag, f32 loopStartFra
  */
 void CreatureAnime::playActorAnimSound(JAInter::Actor* actor, f32 pitchmod, u8 a2)
 {
-	JUT_ASSERTLINE(549, mSoundData->mEntryNum < mAnimID, "JAIAnimeSound::playActorAnimSound  dataCounterが異常です。\n");
-	JAIAnimeSoundData* data = &mSoundData[mAnimID];
-	u8 max                  = mHandleCount;
-	for (u8 i = 0; i < max; i++) {
+	u8 i = 0;
+	JUT_ASSERTLINE(549, mAnimID < mSoundData->mEntryNum, "JAIAnimeSound::playActorAnimSound  dataCounterが異常です。\n");
+	JAIAnimeFrameSoundData* data = &mSoundData->mSndEntries[mAnimID];
+	u8 max                       = mHandleCount;
+	while (i < max) {
 		u8* handle = mSoundStatus;
 		if (handle[i]) {
 			JAISound* se = mSounds[i];
 			if (!se) {
 				break;
 			}
-			if (data->_08 != se->mSoundID) {
+			if (data->mSoundID != se->mSoundID) {
+				i++;
 				continue;
 			}
-			if (!(data->_08 & 0xc00)) {
+			if (!(data->mSoundID & 0xc00)) {
 				mAnimID += mSoundFlags;
 				return;
-			} else {
-				break;
 			}
+			break;
 		}
-
-		if (!(mUseHandleFlag & 1 << i)) {
-			JAISound** se = mSounds;
-			if (!se) {
-				break;
-			}
-			if (i != max - 1) {
-				continue;
-			}
-			int maxTime = 0;
-			int useId   = 0;
+		if (mUseHandleFlag & 1 << i) {
+			i++;
+			continue;
+		}
+		JAISound** se = mSounds;
+		if (!se[i]) {
+			break;
+		}
+		if (i == max - 1) {
+			u32 maxTime = 0;
+			u8 useId    = 0;
 			for (u8 j = 0; j < max; j++) {
-				if (!handle[j] && (se[j]->mActiveTimer < maxTime)) {
+				if (!handle[j] && maxTime < se[j]->mActiveTimer) {
 					maxTime = se[j]->mActiveTimer;
 					useId   = j;
 				}
 			}
-
-			// if (a2 != max && (!(data->_10[0] & 8) || _6C == data->_10[7]) && _5C == 1 && (max & 2 == 0) || (_5C == -1 && (max & 1 == 0)))
-			// {
-			JAISound** sound = &mSounds[a2];
-			if (*sound) {
-				handleStop(a2, 0);
-			}
-			startAnimSound(data->_08, sound, actor, a2);
-			if (*sound) {
-				mBasEntries[a2]  = (JAIAnimeFrameSoundData*)data;
-				mSoundStatus[a2] = true;
-				(*sound)->setVolume((f32)data->_08 / 127.0f, 0, SOUNDPARAM_Unk5);
-				(*sound)->setPitch((f32)data->_18 * (1.0f - pitchmod), 0, SOUNDPARAM_Unk5);
-			}
-			//}
-			mAnimID += mSoundFlags;
-			return;
+			i = useId;
+			break;
+		}
+		i++;
+	}
+	if (i != max && (!(data->mPlayFlags & 8) || mFrameTimer == data->mActivationFrame)
+	    && ((mSoundFlags == 1 && !(data->mPlayFlags & 2)) || (mSoundFlags == -1 && !(data->mPlayFlags & 1)))) {
+		JAISound** sound = &mSounds[i];
+		if (*sound) {
+			handleStop(i, 0);
+		}
+		startAnimSound(data->mSoundID, sound, actor, a2);
+		if (*sound) {
+			mBasEntries[i]  = data;
+			mSoundStatus[i] = true;
+			(*sound)->setVolume((f32)data->mVolume / 127.0f, 0, SOUNDPARAM_Unk5);
+			(*sound)->setPitch((f32)data->mPitchScale * (pitchmod - 1.0f) / 32.0f + data->mPitch, 0, SOUNDPARAM_Unk5);
 		}
 	}
+	mAnimID += mSoundFlags;
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0

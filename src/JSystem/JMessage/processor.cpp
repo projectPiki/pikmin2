@@ -42,67 +42,9 @@ void TProcessor::setBegin_messageCode(u16 groupID, u16 messageIndex)
 	void* entry = getMessageEntry_messageCode(groupID, messageIndex);
 
 	if (entry) {
-		const char* text = mResourceCache->getMessageText_messageEntry(entry);
-		reset_(text);
-		do_begin_((const void*)entry, text);
+		const char* text = getResourceCache()->mMessages + *(int*)entry;
+		setBegin_messageEntryText(getResourceCache(), entry, text);
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r5
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	bl       getResource_groupID__Q28JMessage10TProcessorCFUs
-	cmplwi   r3, 0
-	bne      lbl_80006DD8
-	li       r31, 0
-	b        lbl_80006E04
-
-lbl_80006DD8:
-	lwz      r3, 0xc(r3)
-	clrlwi   r4, r30, 0x10
-	lhz      r0, 8(r3)
-	cmplw    r4, r0
-	bge      lbl_80006E00
-	lhz      r0, 0xa(r3)
-	mullw    r0, r4, r0
-	add      r31, r3, r0
-	addi     r31, r31, 0x10
-	b        lbl_80006E04
-
-lbl_80006E00:
-	li       r31, 0
-
-lbl_80006E04:
-	cmplwi   r31, 0
-	beq      lbl_80006E44
-	lwz      r5, 8(r29)
-	mr       r3, r29
-	lwz      r0, 0(r31)
-	lwz      r4, 0x10(r5)
-	add      r30, r4, r0
-	mr       r4, r30
-	bl       reset___Q28JMessage10TProcessorFPCc
-	mr       r3, r29
-	mr       r4, r31
-	lwz      r12, 0(r29)
-	mr       r5, r30
-	lwz      r12, 0x30(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80006E44:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
@@ -125,64 +67,6 @@ void TProcessor::setBegin_messageID(u32 lowerHalfMsg, u32 upperHalfMsg, bool* is
 void TProcessor::setBegin_messageCode(u32 code)
 {
 	setBegin_messageCode(code >> 0x10, code & 0xFFFF);
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	srwi     r4, r4, 0x10
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	bl       getResource_groupID__Q28JMessage10TProcessorCFUs
-	cmplwi   r3, 0
-	bne      lbl_80006EDC
-	li       r30, 0
-	b        lbl_80006F08
-
-lbl_80006EDC:
-	lwz      r4, 0xc(r3)
-	clrlwi   r3, r30, 0x10
-	lhz      r0, 8(r4)
-	cmplw    r3, r0
-	bge      lbl_80006F04
-	lhz      r0, 0xa(r4)
-	mullw    r0, r3, r0
-	add      r30, r4, r0
-	addi     r30, r30, 0x10
-	b        lbl_80006F08
-
-lbl_80006F04:
-	li       r30, 0
-
-lbl_80006F08:
-	cmplwi   r30, 0
-	beq      lbl_80006F48
-	lwz      r5, 8(r29)
-	mr       r3, r29
-	lwz      r0, 0(r30)
-	lwz      r4, 0x10(r5)
-	add      r31, r4, r0
-	mr       r4, r31
-	bl       reset___Q28JMessage10TProcessorFPCc
-	mr       r3, r29
-	mr       r4, r30
-	lwz      r12, 0(r29)
-	mr       r5, r31
-	lwz      r12, 0x30(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80006F48:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
@@ -271,10 +155,9 @@ unknown TProcessor::on_select_begin(ProcessOnSelectCallBack selectCallback, cons
 		mProcess.mData.mBase           = (char*)base;
 		mProcess.mData.mOffset         = offset;
 		mProcess.mData.mRest           = code;
-		pushCurrent(process_onSelect_(this));
+		pushCurrent(selectCallback(this));
 		do_select_begin(code);
 	}
-	// UNUSED FUNCTION
 }
 
 /**

@@ -394,64 +394,7 @@ void Obj::updateTargetDistance()
  */
 void Obj::updateHomePosition()
 {
-
-	mHomePosition = Vector3f(C_GENERALPARMS.mHomeRadius.mValue * sinf(mFaceDir) + mPosition.x, mPosition.y,
-	                         C_GENERALPARMS.mHomeRadius.mValue * cosf(mFaceDir) + mPosition.z);
-	/*
-	stwu     r1, -0x20(r1)
-	lfs      f0, lbl_8051BB68@sda21(r2)
-	lfs      f5, 0x1fc(r3)
-	fmr      f1, f5
-	fcmpo    cr0, f5, f0
-	bge      lbl_8029A3C0
-	fneg     f1, f5
-
-lbl_8029A3C0:
-	lfs      f3, lbl_8051BBE0@sda21(r2)
-	lis      r5, sincosTable___5JMath@ha
-	lfs      f0, lbl_8051BB68@sda21(r2)
-	addi     r5, r5, sincosTable___5JMath@l
-	fmuls    f2, f1, f3
-	lwz      r4, 0xc0(r3)
-	fcmpo    cr0, f5, f0
-	lfs      f1, 0x194(r3)
-	lfs      f6, 0x384(r4)
-	fctiwz   f0, f2
-	lfs      f2, 0x190(r3)
-	stfd     f0, 8(r1)
-	lwz      r0, 0xc(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	add      r4, r5, r0
-	lfs      f0, 4(r4)
-	fmadds   f4, f0, f6, f1
-	bge      lbl_8029A42C
-	lfs      f0, lbl_8051BBE4@sda21(r2)
-	fmuls    f0, f5, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x10(r1)
-	lwz      r0, 0x14(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r5, r0
-	fneg     f1, f0
-	b        lbl_8029A444
-
-lbl_8029A42C:
-	fmuls    f0, f5, f3
-	fctiwz   f0, f0
-	stfd     f0, 0x18(r1)
-	lwz      r0, 0x1c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f1, r5, r0
-
-lbl_8029A444:
-	lfs      f0, 0x18c(r3)
-	fmadds   f0, f1, f6, f0
-	stfs     f0, 0x198(r3)
-	stfs     f2, 0x19c(r3)
-	stfs     f4, 0x1a0(r3)
-	addi     r1, r1, 0x20
-	blr
-	*/
+	mHomePosition = getForwardHomePosition();
 }
 
 /**

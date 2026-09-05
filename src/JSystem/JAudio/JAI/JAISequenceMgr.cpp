@@ -80,7 +80,7 @@ JAInter::SeqUpdateData::SeqUpdateData()
     , _03(0)
     , mActiveTrackFlag(0)
     , mSequence(nullptr)
-    , mPlayerParams(new(JAIBasic::getCurrentJAIHeap(), 0x20) PlayerParameter[33])
+    , mPlayerParams(new (JAIBasic::getCurrentJAIHeap(), 0x20) PlayerParameter[33])
 {
 	mTrackVolumes = new (JAIBasic::getCurrentJAIHeap(), 0x20) f32[JAIGlobalParameter::getParamSeqTrackMax()];
 	mTrackPans    = new (JAIBasic::getCurrentJAIHeap(), 0x20) f32[JAIGlobalParameter::getParamSeqTrackMax()];
@@ -522,12 +522,12 @@ void checkPlayingSeqUpdateTrack(u32 playTrackNo, u32 trackType, JAInter::MovePar
 				if (set->move() == FALSE) {
 					*paramFlags ^= (1 << i);
 				}
-			}
 
-			if (mixPtr[i] != set->mCurrentValue) {
-				mixPtr[i] = set->mCurrentValue;
-				SystemInterface::setSeqPortargsF32(&seqTrackInfo[playTrackNo], i, portargType, set->mCurrentValue);
-				seqTrackInfo[playTrackNo]._44[i] |= (1 << (portargType - 3));
+				if (mixPtr[i] != set->mCurrentValue) {
+					mixPtr[i] = set->mCurrentValue;
+					SystemInterface::setSeqPortargsF32(&seqTrackInfo[playTrackNo], i, portargType, set->mCurrentValue);
+					seqTrackInfo[playTrackNo]._44[i] |= (1 << (portargType - 3));
+				}
 			}
 		}
 

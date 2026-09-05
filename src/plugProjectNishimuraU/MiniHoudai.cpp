@@ -8,6 +8,7 @@
 
 namespace Game {
 namespace MiniHoudai {
+
 /**
  * @note Address: 0x802EBFF8
  * @note Size: 0x148
@@ -481,63 +482,7 @@ void Obj::updateTargetDistance()
  */
 void Obj::updateHomePosition()
 {
-	mHomePosition = Vector3f(sinf(mFaceDir) * C_GENERALPARMS.mHomeRadius.mValue + mPosition.x, mPosition.y,
-	                         cosf(mFaceDir) * C_GENERALPARMS.mHomeRadius.mValue + mPosition.z);
-	/*
-	stwu     r1, -0x20(r1)
-	lfs      f0, lbl_8051CF8C@sda21(r2)
-	lfs      f5, 0x1fc(r3)
-	fmr      f1, f5
-	fcmpo    cr0, f5, f0
-	bge      lbl_802ECE4C
-	fneg     f1, f5
-
-lbl_802ECE4C:
-	lfs      f3, lbl_8051CFE0@sda21(r2)
-	lis      r5, sincosTable___5JMath@ha
-	lfs      f0, lbl_8051CF8C@sda21(r2)
-	addi     r5, r5, sincosTable___5JMath@l
-	fmuls    f2, f1, f3
-	lwz      r4, 0xc0(r3)
-	fcmpo    cr0, f5, f0
-	lfs      f1, 0x194(r3)
-	lfs      f6, 0x384(r4)
-	fctiwz   f0, f2
-	lfs      f2, 0x190(r3)
-	stfd     f0, 8(r1)
-	lwz      r0, 0xc(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	add      r4, r5, r0
-	lfs      f0, 4(r4)
-	fmadds   f4, f0, f6, f1
-	bge      lbl_802ECEB8
-	lfs      f0, lbl_8051CFE4@sda21(r2)
-	fmuls    f0, f5, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x10(r1)
-	lwz      r0, 0x14(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r5, r0
-	fneg     f1, f0
-	b        lbl_802ECED0
-
-lbl_802ECEB8:
-	fmuls    f0, f5, f3
-	fctiwz   f0, f0
-	stfd     f0, 0x18(r1)
-	lwz      r0, 0x1c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f1, r5, r0
-
-lbl_802ECED0:
-	lfs      f0, 0x18c(r3)
-	fmadds   f0, f1, f6, f0
-	stfs     f0, 0x198(r3)
-	stfs     f2, 0x19c(r3)
-	stfs     f4, 0x1a0(r3)
-	addi     r1, r1, 0x20
-	blr
-	*/
+	mHomePosition = getForwardHomePosition();
 }
 
 /**

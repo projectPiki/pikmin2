@@ -395,6 +395,20 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	inline bool isDead() { return mHealth <= 0.0f; }
 	inline Vector3f getTargetVelocity() { return mTargetVelocity; }
 
+	inline f32 getForwardHomePositionX()
+	{
+		f32 s = sinf(mFaceDir);
+		return s * E_GENERALPARMS.mHomeRadius() + mPosition.x;
+	}
+
+	inline f32 getForwardHomePositionZ()
+	{
+		f32 c = cosf(mFaceDir);
+		return c * E_GENERALPARMS.mHomeRadius() + mPosition.z;
+	}
+
+	inline Vector3f getForwardHomePosition() { return Vector3f(getForwardHomePositionX(), mPosition.y, getForwardHomePositionZ()); }
+
 	inline void setTargetSpeed(f32 speed)
 	{
 		Vector3f vel;

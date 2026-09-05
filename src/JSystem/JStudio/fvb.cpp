@@ -36,6 +36,8 @@ void TObject::prepare(const JStudio::fvb::data::TParse_TBlock& block, JStudio::f
 
 		switch (u32Type) {
 		case 0:
+			// I hate this goto, but I don't see what else could cause this jump in the table??
+			goto end;
 		case 1: {
 			prepare_data_(dat, control);
 		} break;
@@ -143,6 +145,7 @@ void TObject::prepare(const JStudio::fvb::data::TParse_TBlock& block, JStudio::f
 		pData = dat.mNext;
 	}
 
+end:
 	mBaseFV->prepare();
 	/*
 	.loc_0x0:

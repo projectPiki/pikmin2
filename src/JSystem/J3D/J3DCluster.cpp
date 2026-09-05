@@ -75,15 +75,20 @@ void J3DDeformer::deform_VtxPosF32(J3DVertexBuffer* vtxbuffer, J3DCluster* clust
 
 	f32 weightModifiers[2] = { 1.0f, -1.0f };
 	for (u16 i = 0; i < clusterCount; i++) {
-		u16* vertices        = cluster->_18; // r10
-		int vertexIndex      = vertices[i] * 3;
-		f32* vertexPositions = (f32*)(vtxbuffer->mVtxPos[vertexIndex]);
-
+		int vertexIndex = cluster->_18[i] * 3;
+		f32* position = &vertexPositions[vertexIndex];
 		for (u16 j = 0; j < clusterSize; j++) {
-			Vec* vec = &vertexIndices[j];
-			vertexPositions[0] += (vec->x * weightModifiers[j]) * weights[j];
-			vertexPositions[1] += (vec->y * weightModifiers[j]) * weights[j];
-			vertexPositions[2] += (vec->z * weightModifiers[j]) * weights[j];
+			u32 index = key[j]._04[i];
+			Vec* vec = &vertexIndices[index & ~0xe000];
+			f32 x = vec->x;
+			f32 y = vec->y;
+			f32 z = vec->z;
+			x *= weightModifiers[(index >> 15) & 1];
+			y *= weightModifiers[(index >> 14) & 1];
+			z *= weightModifiers[(index >> 13) & 1];
+			position[0] += x * weights[j];
+			position[1] += y * weights[j];
+			position[2] += z * weights[j];
 		}
 	}
 	/*

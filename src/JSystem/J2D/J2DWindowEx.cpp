@@ -38,11 +38,11 @@ J2DWindowEx::J2DWindowEx(J2DPane* parent, JSURandomInputStream* input, u32 flags
 	colors[3]                   = &mContentsColorD;
 
 	for (int i = 0; i < 4; i++) {
-		_15C[i]            = windowData.mContentIds[i];
+		mFrameMaterialIds[i]            = windowData.mContentIds[i];
 		mFrameMaterials[i] = nullptr;
-		if (_15C[i] != 0xffff) {
-			mFrameMaterials[i]           = materials + _15C[i];
-			(materials + _15C[i])->mPane = this;
+		if (mFrameMaterialIds[i] != 0xffff) {
+			mFrameMaterials[i]           = materials + mFrameMaterialIds[i];
+			(materials + mFrameMaterialIds[i])->mPane = this;
 		}
 		_168[i]      = windowData._28[i];
 		*(colors[i]) = JUtility::TColor(windowData.mContentColors[i]);
@@ -69,201 +69,6 @@ J2DWindowEx::J2DWindowEx(J2DPane* parent, JSURandomInputStream* input, u32 flags
 	mContentsTexture = nullptr;
 	mMaterialFlags   = 0;
 	setMinSize();
-	/*
-	.loc_0x0:
-	  stwu      r1, -0xB0(r1)
-	  mflr      r0
-	  stw       r0, 0xB4(r1)
-	  stmw      r26, 0x98(r1)
-	  mr        r28, r3
-	  mr        r26, r4
-	  mr        r29, r5
-	  mr        r30, r7
-	  bl        -0x2910
-	  lis       r3, 0x804A
-	  li        r0, 0
-	  addi      r4, r3, 0xB20
-	  mr        r3, r29
-	  stw       r4, 0x0(r28)
-	  stw       r0, 0x174(r28)
-	  stw       r0, 0x178(r28)
-	  lwz       r12, 0x0(r29)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r31, r3
-	  mr        r3, r29
-	  addi      r4, r1, 0x14
-	  li        r5, 0x8
-	  bl        -0x1EAC0
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r29
-	  stw       r0, 0x8(r28)
-	  lwz       r12, 0x0(r29)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r27, r3
-	  mr        r3, r29
-	  addi      r4, r1, 0xC
-	  li        r5, 0x8
-	  bl        -0x1E878
-	  mr        r3, r28
-	  mr        r4, r26
-	  mr        r5, r29
-	  bl        -0xBDD8
-	  lwz       r0, 0x10(r1)
-	  mr        r3, r29
-	  li        r5, 0
-	  add       r4, r27, r0
-	  bl        -0x1E7E0
-	  mr        r3, r29
-	  addi      r4, r1, 0x2C
-	  li        r5, 0x40
-	  bl        -0x1EB24
-	  lis       r3, 0x8048
-	  addi      r7, r1, 0x2C
-	  subi      r4, r3, 0x7B20
-	  addi      r11, r28, 0x128
-	  lwz       r0, 0x0(r4)
-	  li        r3, 0
-	  lwz       r5, 0x4(r4)
-	  addi      r10, r28, 0x12C
-	  stw       r0, 0x1C(r1)
-	  addi      r9, r28, 0x130
-	  lwz       r27, 0x8(r4)
-	  addi      r8, r28, 0x134
-	  lwz       r12, 0xC(r4)
-	  li        r0, 0x4
-	  stw       r5, 0x20(r1)
-	  mr        r4, r3
-	  mr        r5, r7
-	  addi      r6, r1, 0x1C
-	  stw       r27, 0x24(r1)
-	  stw       r12, 0x28(r1)
-	  stw       r11, 0x1C(r1)
-	  stw       r10, 0x20(r1)
-	  stw       r9, 0x24(r1)
-	  stw       r8, 0x28(r1)
-	  mtctr     r0
-
-	.loc_0x12C:
-	  lhz       r10, 0x10(r7)
-	  addi      r9, r3, 0x158
-	  addi      r8, r4, 0x148
-	  li        r0, 0
-	  sthx      r10, r28, r9
-	  stwx      r0, r28, r8
-	  lhzx      r0, r28, r9
-	  cmplwi    r0, 0xFFFF
-	  beq-      .loc_0x16C
-	  mulli     r0, r0, 0x88
-	  add       r0, r30, r0
-	  stwx      r0, r28, r8
-	  lhzx      r0, r28, r9
-	  mulli     r8, r0, 0x88
-	  addi      r0, r8, 0x4
-	  stwx      r28, r30, r0
-
-	.loc_0x16C:
-	  lhz       r8, 0x28(r7)
-	  addi      r0, r3, 0x168
-	  lwz       r9, 0x0(r6)
-	  addi      r7, r7, 0x2
-	  sthx      r8, r28, r0
-	  addi      r3, r3, 0x2
-	  addi      r4, r4, 0x4
-	  addi      r6, r6, 0x4
-	  lwz       r0, 0x30(r5)
-	  addi      r5, r5, 0x4
-	  stw       r0, 0x8(r1)
-	  lbz       r8, 0x8(r1)
-	  lbz       r0, 0x9(r1)
-	  stb       r8, 0x0(r9)
-	  lbz       r8, 0xA(r1)
-	  stb       r0, 0x1(r9)
-	  lbz       r0, 0xB(r1)
-	  stb       r8, 0x2(r9)
-	  stb       r0, 0x3(r9)
-	  bdnz+     .loc_0x12C
-	  lbz       r3, 0x44(r1)
-	  lis       r4, 0x4330
-	  stw       r4, 0x80(r1)
-	  li        r0, 0
-	  lfd       f2, -0x7AB8(r2)
-	  stb       r3, 0x144(r28)
-	  lfd       f3, -0x7AC0(r2)
-	  lhz       r7, 0x46(r1)
-	  lhz       r6, 0x48(r1)
-	  stw       r7, 0x84(r1)
-	  lhz       r3, 0x4A(r1)
-	  lhz       r5, 0x4C(r1)
-	  add       r3, r7, r3
-	  lfd       f0, 0x80(r1)
-	  xoris     r3, r3, 0x8000
-	  add       r5, r6, r5
-	  fsubs     f1, f0, f2
-	  xoris     r5, r5, 0x8000
-	  stw       r6, 0x8C(r1)
-	  stw       r4, 0x88(r1)
-	  lfd       f0, 0x88(r1)
-	  stw       r3, 0x7C(r1)
-	  fsubs     f0, f0, f2
-	  stw       r4, 0x78(r1)
-	  lfd       f2, 0x78(r1)
-	  stfs      f1, 0x114(r28)
-	  fsubs     f1, f2, f3
-	  stfs      f0, 0x118(r28)
-	  stw       r5, 0x74(r1)
-	  stw       r4, 0x70(r1)
-	  lfd       f0, 0x70(r1)
-	  stfs      f1, 0x11C(r28)
-	  fsubs     f0, f0, f3
-	  stfs      f0, 0x120(r28)
-	  lhz       r3, 0x4E(r1)
-	  sth       r3, 0x166(r28)
-	  lhz       r3, 0x50(r1)
-	  sth       r3, 0x164(r28)
-	  stw       r0, 0x160(r28)
-	  lhz       r0, 0x164(r28)
-	  cmplwi    r0, 0xFFFF
-	  beq-      .loc_0x280
-	  mulli     r0, r0, 0x88
-	  add       r0, r30, r0
-	  stw       r0, 0x160(r28)
-	  lhz       r0, 0x164(r28)
-	  mulli     r0, r0, 0x88
-	  add       r3, r30, r0
-	  stw       r28, 0x4(r3)
-
-	.loc_0x280:
-	  lwz       r0, 0x18(r1)
-	  mr        r3, r29
-	  li        r5, 0
-	  add       r4, r31, r0
-	  bl        -0x1E9BC
-	  mr        r3, r28
-	  lwz       r12, 0x0(r28)
-	  lwz       r12, 0x58(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r0, 0
-	  mr        r3, r28
-	  stw       r0, 0x100(r28)
-	  stw       r0, 0x104(r28)
-	  stw       r0, 0x108(r28)
-	  stw       r0, 0x10C(r28)
-	  stw       r0, 0x124(r28)
-	  stw       r0, 0x110(r28)
-	  stb       r0, 0x170(r28)
-	  bl        0x3C
-	  mr        r3, r28
-	  lmw       r26, 0x98(r1)
-	  lwz       r0, 0xB4(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0xB0
-	  blr
-	*/
 }
 
 /**
@@ -765,7 +570,7 @@ void J2DWindowEx::setStage(J2DTevStage* stage, J2DWindowEx::stage_enum stageNum)
 		{ 0x01, 0x02, 0x04, 0x07 }, { 0x07, 0x07, 0x07, 0x02 }, { 0x07, 0x07, 0x07, 0x05 },
 	};
 	u8 local_68[6][5] = {
-		{ 1, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0 }, { 0, 1, 0, 0, 1 }, { 0, 0, 1, 0, 0 }, { 1, 0, 0, 0, 0 }, { 0, 0, 0, 0, 1 },
+		{ 0, 0, 0, 1, 0 }, { 0, 0, 0, 1, 0 }, { 0, 0, 0, 1, 0 }, { 0, 0, 0, 1, 0 }, { 0, 0, 0, 1, 0 }, { 0, 0, 0, 1, 0 },
 	};
 
 	stage->setTevColorAB(local_30[stageNum][0], local_30[stageNum][1]);

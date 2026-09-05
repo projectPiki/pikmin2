@@ -550,8 +550,7 @@ void J3DMtxBuffer::calcDrawMtx(u32 p1, const Vec& vec, const Mtx& mtx)
 		Mtx* viewMtx = j3dSys.getViewMtx();
 		u32 mtxNum   = mJointTree->getDrawFullWgtMtxNum();
 		for (u16 i = 0; i < mtxNum; i++) {
-			Mtx& drawMtx = *getDrawMtx(i);
-			PSMTXConcat(*viewMtx, *(Mtx*)getAnmMtx(i), drawMtx);
+			PSMTXConcat(*viewMtx, *(Mtx*)getAnmMtx(mJointTree->getDrawMtxIndex(i)), *getDrawMtx(i));
 		}
 
 		if (mJointTree->getDrawMtxNum() > mtxNum) {
@@ -562,12 +561,12 @@ void J3DMtxBuffer::calcDrawMtx(u32 p1, const Vec& vec, const Mtx& mtx)
 	case 1: {
 		u32 mtxNum = mJointTree->getDrawFullWgtMtxNum();
 		for (u16 i = 0; i < mtxNum; i++) {
-			PSMTXCopy(*(Mtx*)getWeightAnmMtx(i), *getDrawMtx(i));
+			PSMTXCopy(*(Mtx*)getAnmMtx(mJointTree->getDrawMtxIndex(i)), *getDrawMtx(i));
 		}
 
 		mtxNum = mJointTree->getDrawFullWgtMtxNum();
 		for (u16 i = 0; i < mtxNum; i++) {
-			PSMTXCopy(*(Mtx*)getAnmMtx(mJointTree->getDrawMtxIndex(i)), *getDrawMtx(i));
+			PSMTXCopy(mWeightEnvelopeMatrices[i], mDrawMatrices[1][mCurrentViewNumber][i + mJointTree->getDrawFullWgtMtxNum()]);
 		}
 	} break;
 

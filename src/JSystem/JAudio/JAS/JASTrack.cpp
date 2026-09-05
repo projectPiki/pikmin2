@@ -900,235 +900,30 @@ void JASTrack::updateTempo()
  */
 void JASTrack::updateSeq(u32 flags, bool recursive)
 {
-	flags |= mUpdateFlags;
+	u32 newFlags = flags | mUpdateFlags;
 	if (mExtBuffer) {
-		flags |= mExtBuffer->getOuterUpdate();
+		newFlags |= mExtBuffer->getOuterUpdate();
 		mExtBuffer->setOuterUpdate(0);
 	}
 
 	mVibrate.incCounter();
 	mUpdateFlags = 0;
 
-	if (flags) {
-		updateTrack(flags);
+	if (newFlags) {
+		updateTrack(newFlags);
 	}
 
 	for (int i = 0; i < 16; i++) {
-		if (mChildList[i] && mChildList[i]->_35B) {
+		JASTrack* childTrack = mChildList[i];
+		if (childTrack && childTrack->_35B) {
+			u32 childFlags = newFlags;
 			if (recursive) {
-				mChildList[i]->updateSeq(flags, recursive);
+				childTrack->updateSeq(childFlags, recursive);
 			} else {
-				mChildList[i]->mUpdateFlags |= flags;
+				childTrack->mUpdateFlags |= childFlags;
 			}
 		}
 	}
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stmw     r18, 8(r1)
-	mr       r18, r3
-	mr       r31, r5
-	lwz      r3, 0x33c(r3)
-	lwz      r0, 0x34c(r18)
-	cmplwi   r3, 0
-	or       r21, r4, r0
-	beq      lbl_800A0AD0
-	bl       getOuterUpdate__13JASOuterParamFv
-	clrlwi   r0, r3, 0x10
-	lwz      r3, 0x33c(r18)
-	or       r21, r21, r0
-	li       r4, 0
-	bl       setOuterUpdate__13JASOuterParamFUs
-
-lbl_800A0AD0:
-	addi     r3, r18, 0xe8
-	bl       incCounter__10JASVibrateFv
-	li       r0, 0
-	cmplwi   r21, 0
-	stw      r0, 0x34c(r18)
-	beq      lbl_800A0AF4
-	mr       r3, r18
-	mr       r4, r21
-	bl       updateTrack__8JASTrackFUl
-
-lbl_800A0AF4:
-	li       r20, 0
-	mr       r22, r18
-
-lbl_800A0AFC:
-	lwz      r18, 0x2fc(r22)
-	cmplwi   r18, 0
-	beq      lbl_800A0CFC
-	lbz      r0, 0x35b(r18)
-	cmplwi   r0, 0
-	beq      lbl_800A0CFC
-	clrlwi.  r0, r31, 0x18
-	beq      lbl_800A0CF0
-	lwz      r3, 0x33c(r18)
-	lwz      r0, 0x34c(r18)
-	cmplwi   r3, 0
-	or       r29, r21, r0
-	beq      lbl_800A0B48
-	bl       getOuterUpdate__13JASOuterParamFv
-	clrlwi   r0, r3, 0x10
-	lwz      r3, 0x33c(r18)
-	or       r29, r29, r0
-	li       r4, 0
-	bl       setOuterUpdate__13JASOuterParamFUs
-
-lbl_800A0B48:
-	addi     r3, r18, 0xe8
-	bl       incCounter__10JASVibrateFv
-	li       r0, 0
-	cmplwi   r29, 0
-	stw      r0, 0x34c(r18)
-	beq      lbl_800A0B6C
-	mr       r3, r18
-	mr       r4, r29
-	bl       updateTrack__8JASTrackFUl
-
-lbl_800A0B6C:
-	li       r30, 0
-	mr       r23, r18
-
-lbl_800A0B74:
-	lwz      r24, 0x2fc(r23)
-	cmplwi   r24, 0
-	beq      lbl_800A0CDC
-	lbz      r0, 0x35b(r24)
-	cmplwi   r0, 0
-	beq      lbl_800A0CDC
-	clrlwi.  r0, r31, 0x18
-	beq      lbl_800A0CD0
-	lwz      r3, 0x33c(r24)
-	lwz      r0, 0x34c(r24)
-	cmplwi   r3, 0
-	or       r27, r29, r0
-	beq      lbl_800A0BC0
-	bl       getOuterUpdate__13JASOuterParamFv
-	clrlwi   r0, r3, 0x10
-	lwz      r3, 0x33c(r24)
-	or       r27, r27, r0
-	li       r4, 0
-	bl       setOuterUpdate__13JASOuterParamFUs
-
-lbl_800A0BC0:
-	addi     r3, r24, 0xe8
-	bl       incCounter__10JASVibrateFv
-	li       r0, 0
-	cmplwi   r27, 0
-	stw      r0, 0x34c(r24)
-	beq      lbl_800A0BE4
-	mr       r3, r24
-	mr       r4, r27
-	bl       updateTrack__8JASTrackFUl
-
-lbl_800A0BE4:
-	li       r28, 0
-
-lbl_800A0BE8:
-	lwz      r25, 0x2fc(r24)
-	cmplwi   r25, 0
-	beq      lbl_800A0CBC
-	lbz      r0, 0x35b(r25)
-	cmplwi   r0, 0
-	beq      lbl_800A0CBC
-	clrlwi.  r0, r31, 0x18
-	beq      lbl_800A0CB0
-	lwz      r3, 0x33c(r25)
-	lwz      r0, 0x34c(r25)
-	cmplwi   r3, 0
-	or       r26, r27, r0
-	beq      lbl_800A0C34
-	bl       getOuterUpdate__13JASOuterParamFv
-	clrlwi   r0, r3, 0x10
-	lwz      r3, 0x33c(r25)
-	or       r26, r26, r0
-	li       r4, 0
-	bl       setOuterUpdate__13JASOuterParamFUs
-
-lbl_800A0C34:
-	addi     r3, r25, 0xe8
-	bl       incCounter__10JASVibrateFv
-	li       r0, 0
-	cmplwi   r26, 0
-	stw      r0, 0x34c(r25)
-	beq      lbl_800A0C58
-	mr       r3, r25
-	mr       r4, r26
-	bl       updateTrack__8JASTrackFUl
-
-lbl_800A0C58:
-	clrlwi   r19, r31, 0x18
-	li       r18, 0
-
-lbl_800A0C60:
-	lwz      r3, 0x2fc(r25)
-	cmplwi   r3, 0
-	beq      lbl_800A0C9C
-	lbz      r0, 0x35b(r3)
-	cmplwi   r0, 0
-	beq      lbl_800A0C9C
-	cmplwi   r19, 0
-	beq      lbl_800A0C90
-	mr       r4, r26
-	mr       r5, r31
-	bl       updateSeq__8JASTrackFUlb
-	b        lbl_800A0C9C
-
-lbl_800A0C90:
-	lwz      r0, 0x34c(r3)
-	or       r0, r0, r26
-	stw      r0, 0x34c(r3)
-
-lbl_800A0C9C:
-	addi     r18, r18, 1
-	addi     r25, r25, 4
-	cmpwi    r18, 0x10
-	blt      lbl_800A0C60
-	b        lbl_800A0CBC
-
-lbl_800A0CB0:
-	lwz      r0, 0x34c(r25)
-	or       r0, r0, r27
-	stw      r0, 0x34c(r25)
-
-lbl_800A0CBC:
-	addi     r28, r28, 1
-	addi     r24, r24, 4
-	cmpwi    r28, 0x10
-	blt      lbl_800A0BE8
-	b        lbl_800A0CDC
-
-lbl_800A0CD0:
-	lwz      r0, 0x34c(r24)
-	or       r0, r0, r29
-	stw      r0, 0x34c(r24)
-
-lbl_800A0CDC:
-	addi     r30, r30, 1
-	addi     r23, r23, 4
-	cmpwi    r30, 0x10
-	blt      lbl_800A0B74
-	b        lbl_800A0CFC
-
-lbl_800A0CF0:
-	lwz      r0, 0x34c(r18)
-	or       r0, r0, r21
-	stw      r0, 0x34c(r18)
-
-lbl_800A0CFC:
-	addi     r20, r20, 1
-	addi     r22, r22, 4
-	cmpwi    r20, 0x10
-	blt      lbl_800A0AFC
-	lmw      r18, 8(r1)
-	lwz      r0, 0x44(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
 }
 
 /**
@@ -3001,70 +2796,6 @@ void JASTrack::newMemPool(int id)
 	}
 
 	list[0] = nullptr;
-
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	li       r5, 0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	li       r3, 0x368
-	lwz      r4, JASDram@sda21(r13)
-	bl       __nwa__FUlP7JKRHeapi
-	lwz      r4, JASDram@sda21(r13)
-	mr       r31, r3
-	li       r3, 0x2c
-	li       r5, 0
-	bl       __nw__FUlP7JKRHeapi
-	or.      r0, r3, r3
-	beq      lbl_800A27A4
-	bl       __ct__13JASOuterParamFv
-	mr       r0, r3
-
-lbl_800A27A4:
-	stw      r0, 0x33c(r31)
-	li       r30, 1
-	stw      r31, sFreeList__8JASTrack@sda21(r13)
-	b        lbl_800A27FC
-
-lbl_800A27B4:
-	lwz      r4, JASDram@sda21(r13)
-	li       r3, 0x368
-	li       r5, 0
-	bl       __nwa__FUlP7JKRHeapi
-	stw      r3, 0(r31)
-	li       r3, 0x2c
-	li       r5, 0
-	lwz      r4, JASDram@sda21(r13)
-	bl       __nw__FUlP7JKRHeapi
-	or.      r0, r3, r3
-	beq      lbl_800A27E8
-	bl       __ct__13JASOuterParamFv
-	mr       r0, r3
-
-lbl_800A27E8:
-	lwz      r3, 0(r31)
-	addi     r30, r30, 1
-	stw      r0, 0x33c(r3)
-	lwz      r31, 0(r31)
-	stw      r31, sFreeListEnd__8JASTrack@sda21(r13)
-
-lbl_800A27FC:
-	cmpw     r30, r29
-	blt      lbl_800A27B4
-	li       r0, 0
-	stw      r0, 0(r31)
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
