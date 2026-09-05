@@ -464,7 +464,7 @@ void TScrollList::updateIndex(bool doScrollDown)
 			}
 		} else {
 			mIndexPaneList[mCurrMaxActiveRow]->mYOffset = mIndexPaneList[mCurrMinActiveRow]->mPane->mOffset.y - mIndexGroup->getHeight();
-			if (mIndexGroup->getHeight() * (mIndexPaneList[mCurrMinActiveRow]->mYOffset - 1.25) <= mMinSelYOffset) { // mismatch here
+			if (mIndexPaneList[mCurrMinActiveRow]->mYOffset - 1.25 * mIndexGroup->getHeight() <= mMinSelYOffset) {
 				check2 = true;
 			}
 

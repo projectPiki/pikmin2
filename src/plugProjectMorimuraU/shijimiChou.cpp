@@ -604,7 +604,7 @@ void Obj::fly()
 		f32 y     = getTargetVelocity().y;
 		f32 z     = moveSpeed * cosf(angle);
 
-		mTargetFaceDir = angle;
+		mTargetFaceDir = mFaceDir;
 		if (absF(faceDirOffset) > rotSpeed) {
 			if (faceDirOffset > 0.0f) {
 				faceDirOffset = rotSpeed;
@@ -993,7 +993,7 @@ bool Obj::checkRestOn()
 		}
 
 		f32 angleDist = getAngDist(collSphere.mPosition);
-		updateFaceDir(roundAng(0.3f * angleDist + mFaceDir));
+		updateFaceDir(roundAng(angleDist * 0.3f + mFaceDir));
 	}
 
 	return false;

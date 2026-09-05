@@ -444,7 +444,7 @@ void SceneMgr::initEnvironmentSe(PSM::Scene_Game* scene)
 		builder.build(1.0f, mgr);
 		PSM::SetNoYOfset(mgr);
 		mgr->mEnvList.append(new Env_Pollutin(PSSE_EV_POLUTION_MIX01));
-		mgr->mEnvList.append(new Env_Pollutin(PSSE_EV_POLUTION_MIX02));
+		mgr->mEnvList.append(new Env_Pollutin(PSSE_EV_POLUTION_MIX02, 1.0f, 0.0f));
 		break;
 
 	case PSGame::SceneInfo::TWO_PLAYER_BATTLE:
@@ -556,7 +556,7 @@ void SceneMgr::initEnvironmentSe(PSM::Scene_Game* scene)
 			builder.build(1.0f, mgr);
 			SetNoYOfset(mgr);
 			mgr->mEnvList.append(new Env_Pollutin(PSSE_EV_POLUTION_MIX01));
-			mgr->mEnvList.append(new Env_Pollutin(PSSE_EV_POLUTION_MIX02));
+			mgr->mEnvList.append(new Env_Pollutin(PSSE_EV_POLUTION_MIX02, 1.0f, 0.0f));
 
 		} else {
 			switch (type) {

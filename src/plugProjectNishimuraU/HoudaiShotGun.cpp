@@ -168,7 +168,7 @@ bool HoudaiShotGunNode::update()
 	f32 radius = CG_GENERALPARMS(mOwner).mAttackRadius();
 
 	if (dist > 0.0f) {
-		Vector3f searchCenter((newPos.x + startPos.x) * 0.5f, (newPos.y + startPos.y) * 0.5f, (newPos.z + startPos.z) * 0.5f);
+		Vector3f searchCenter((startPos.x + newPos.x) * 0.5f, (startPos.y + newPos.y) * 0.5f, (startPos.z + newPos.z) * 0.5f);
 		f32 searchRadius = dist + radius;
 		Vector3f vec1    = newPos - startPos; // f29, f28, f30
 		vec1.normalise();

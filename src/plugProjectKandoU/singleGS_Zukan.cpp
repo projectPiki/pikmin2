@@ -27,7 +27,7 @@
 #include "Splitter.h"
 #include "nans.h"
 
-int sParentHeapFreeSize;
+static int sParentHeapFreeSize;
 
 static const int unusedArray[] = { 0, 0, 0 };
 static const char name[]       = "SingleGS_Zukan";
@@ -347,7 +347,7 @@ void Camera::doUpdate()
 	if (dist > 0.0001f) {
 		sep *= 1.0f / dist;
 	} else {
-		sep = Vector3f(0.0f, -1.0f, 0.0f);
+		sep = Vector3f(0.0f, 0.0f, -1.0f);
 	}
 
 	Vector3f vec2(mCurrentShakeMagnitude.x + mHorizontalInputDampened, mCurrentShakeMagnitude.y + mVerticalInputDampened,
@@ -3976,10 +3976,10 @@ void ZukanState::dvdloadA()
 	mParms->loadFile(arc);
 	mGameSect->addGenNode(mParms);
 	PSSystem::SingletonBase<PSM::ObjMgr>::newInstance();
-	u16 width     = sys->getRenderModeObj()->fbWidth;
-	u16 height    = sys->getRenderModeObj()->efbHeight;
-	int newWidth  = (int)((f32)width * 0.6f * 0.75f * 0.25f + 0.5f) * 4;
-	int newHeight = (int)((f32)height * 0.75f * 0.25f + 0.5f) * 4;
+	u16 width1    = sys->getRenderModeObj()->fbWidth;
+	u16 width2    = sys->getRenderModeObj()->fbWidth;
+	int newHeight = (int)((f32)width1 * 0.6f * 0.75f * 0.25f + 0.5f) * 4;
+	int newWidth  = (int)((f32)width2 * 0.75f * 0.25f + 0.5f) * 4;
 	Rectf bounds(0.0f, 0.0f, newWidth, newHeight);
 	mWindowBounds = bounds;
 	mCameraAspect = 0.0f;

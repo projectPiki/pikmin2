@@ -866,7 +866,7 @@ void StateFlick::exec(EnemyBase* enemy)
 
 		case KEYEVENT_3:
 			f32 yMax         = 25.0f + OBJ(enemy)->mFootPosition.y;                                     // f31
-			f32 yMin         = OBJ(enemy)->mFootPosition.y - 30.0f;                                     // f30
+			f32 yMin         = yMax - 30.0f;                                     // f30
 			Vector3f footPos = OBJ(enemy)->mFootPosition;                                               // f28, na, f27
 			f32 trampleRange = SQUARE(CG_PROPERPARMS(enemy).mTramplingRange() * enemy->mScaleModifier); // f29
 

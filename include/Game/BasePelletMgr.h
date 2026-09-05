@@ -23,6 +23,7 @@ struct BasePelletMgr : public GenericObjectMgr, virtual public _BasePelletMgrPar
 	BasePelletMgr(PelletList::cKind);
 
 	////////// VTABLE
+	virtual void resetMgr()             = 0;                             // _28
 	virtual void resetMgrAndResources() = 0;                             // _38
 	virtual Pellet* birth()             = 0;                             // _3C
 	virtual void doAnimation() { }                                       // _08 (weak)

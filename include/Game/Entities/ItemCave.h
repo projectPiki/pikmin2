@@ -72,20 +72,6 @@ struct OpenState : public State {
 struct FogParm : public Parameters {
 	FogParm();
 
-	void operator=(const FogParm& in)
-	{
-		mStartZ        = in.mStartZ;
-		mEndZ          = in.mEndZ;
-		mStartTime     = in.mStartTime;
-		mEndTime       = in.mEndTime;
-		mRed           = in.mRed;
-		mGreen         = in.mGreen;
-		mBlue          = in.mBlue;
-		mDistance      = in.mDistance;
-		mEnterDistance = in.mEnterDistance;
-		mExitDistance  = in.mExitDistance;
-	}
-
 	// _00-_0C = Parameters
 	Parm<f32> mStartZ;        // _0C, fg00
 	Parm<f32> mEndZ;          // _34, fg01

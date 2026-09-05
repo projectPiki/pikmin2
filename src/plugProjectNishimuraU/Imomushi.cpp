@@ -91,8 +91,8 @@ void Obj::doAnimationStick()
 
 		mClimbDirection += sep;
 
-		crossVec       = cross(mClimbDirection, mClimbRotation);
-		mClimbRotation = cross(crossVec, mClimbDirection);
+		crossVec       = mClimbRotation.cross(mClimbDirection);
+		mClimbRotation = mClimbDirection.cross(crossVec);
 	}
 
 	mClimbDirection.normalise();

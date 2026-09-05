@@ -467,7 +467,9 @@ void Obj::checkInteract(Obj* partner)
 			if (absVal(dotPerp) < 15.0f) {
 				// Calculate the direction for interaction
 				Vector3f interactionDir = searchDirection;
-				interactionDir.scale2D(dotCross / abs);
+				f32 interactionScale = dotCross / abs;
+				interactionDir.x = interactionScale * interactionDir.x;
+				interactionDir.z = interactionScale * interactionDir.z;
 
 				// Perform the interaction with the calculated attack damage
 				f32 attackDamage = C_GENERALPARMS.mAttackDamage.mValue;

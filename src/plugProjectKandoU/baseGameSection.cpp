@@ -522,7 +522,7 @@ void BaseGameSection::initJ3D()
 	j3dSys.setDrawBuffer(mOpaqueDrawBuffer->get(DB_NormalLayer)->mBuffer, J3DSys::SYSDRAW_Opa);
 	j3dSys.setDrawBuffer(mTransparentDrawBuffer->get(DB_NormalLayer)->mBuffer, J3DSys::SYSDRAW_Xlu);
 
-	System::FragmentationChecker frag("poyol", false);
+	System::FragmentationChecker frag("poyo1", false);
 }
 
 /**
@@ -762,7 +762,7 @@ void BaseGameSection::initGenerators()
 						currentLoopMgr->mUnusedFlag  = true; // is nonrepeating?
 
 						currentLoopMgr->read(loopTxt, false);
-						currentLoopMgr->setDayLimit(floorDay + currentGen->mMaximumDay - 30);
+						currentLoopMgr->setDayLimit(floorDay + currentGen->mDayLimit - 30);
 						currentLoopMgr->updateUseList();
 
 						generatorManagers[fileIdx] = currentLoopMgr;
@@ -871,7 +871,7 @@ void BaseGameSection::initGenerators()
 				mapMgr->getStartPosition(position, 0);
 				position.y = mapMgr->getMinY(position) + 8.5f;
 				position.x += 18.082f;
-				position.z += -11.428f;
+				position.z += -11.482f;
 			} else {
 				Matrixf* demoMtx = mapMgr->getDemoMatrix();
 				Vector3f vec_0x1c78;

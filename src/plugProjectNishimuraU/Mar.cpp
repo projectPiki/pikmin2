@@ -1034,7 +1034,7 @@ void Obj::windTarget()
 		if (navi->isAlive()) {
 			Vector3f naviPosition     = navi->getPosition();
 			Vector3f separationVector = naviPosition - attackStartPosition;
-			f32 dotProduct            = separationVector.dot(attackDirection);
+			f32 dotProduct            = attackDirection.dot(separationVector);
 
 			if (dotProduct < radius && dotProduct > 0.0f) {
 				f32 attackRadius = dotProduct * slope;
@@ -1061,7 +1061,7 @@ void Obj::windTarget()
 		if (piki->isAlive() && piki->isPikmin()) {
 			Vector3f pikiPosition     = piki->getPosition();
 			Vector3f separationVector = pikiPosition - attackStartPosition;
-			f32 dotProduct            = separationVector.dot(attackDirection);
+			f32 dotProduct            = attackDirection.dot(separationVector);
 
 			if (dotProduct < radius && dotProduct > 0.0f) {
 				f32 attackRadius = dotProduct * slope;

@@ -19,9 +19,11 @@ struct TList {
 			mPrev = nullptr;
 		}
 
-		TNode_* mNext;    // _00
-		TNode_* mPrev;    // _04
-		Element mElement; // _08
+		Element& getElement() { return *(Element*)(this + 1); }
+		const Element& getElement() const { return *(const Element*)(this + 1); }
+
+		TNode_* mNext; // _00
+		TNode_* mPrev; // _04
 	};
 
 	struct iterator {
@@ -29,7 +31,7 @@ struct TList {
 		iterator(TNode_* node) { mNode = node; }
 
 		inline void operator=(const iterator& other) { mNode = other.mNode; }
-		inline Element operator*() const { return mNode->mElement; }
+		inline Element operator*() const { return mNode->getElement(); }
 		inline void operator++() { mNode = mNode->mNext; }
 		inline TNode_ operator--(int)
 		{
@@ -51,7 +53,7 @@ struct TList {
 		const_iterator(const const_iterator& other) { mNode = other.mNode; }
 
 		inline void operator=(const_iterator& other) { mNode = other.mNode; }
-		inline Element operator*() const { return mNode->mElement; }
+		inline Element operator*() const { return mNode->getElement(); }
 		inline void operator++() { mNode = mNode->mNext; }
 		inline TNode_ operator--(int)
 		{
@@ -76,20 +78,20 @@ struct TList {
 	// from TP debug:
 	TNode_* CreateNode_(TNode_* nextNode, TNode_* prevNode, Element const& value)
 	{
-		TNode_* newNode = (TNode_*)mAllocator.AllocateRaw(sizeof(TNode_));
+		TNode_* newNode = (TNode_*)mAllocator.AllocateRaw(sizeof(TNode_) + sizeof(Element));
 		if (!newNode) {
 			return nullptr;
 		}
 
 		newNode->mNext = nextNode;
 		newNode->mPrev = prevNode;
-		mAllocator.construct(&newNode->mElement, value);
+		mAllocator.construct(&newNode->getElement(), value);
 		return newNode;
 	}
 
 	void DestroyNode_(TNode_* node)
 	{
-		mAllocator.destroy(&node->mElement);
+		mAllocator.destroy(&node->getElement());
 		mAllocator.DeallocateRaw(node);
 	}
 

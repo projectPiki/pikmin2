@@ -55,8 +55,8 @@ struct EnvSe_Perspective_AvoidY : public PSGame::EnvSe_Perspective {
 };
 
 struct Env_Pollutin : public PSGame::EnvSe_AutoPan {
-	Env_Pollutin(u32 soundID)
-	    : EnvSe_AutoPan(soundID, 0.0f, 1.0f, 1.0f, 0.0018554f, 0.0008554f)
+	Env_Pollutin(u32 soundID, f32 pan = 0.0f, f32 dolby = 1.0f)
+	    : EnvSe_AutoPan(soundID, pan, dolby, 1.0f, 0.0018554f, 0.0008554f)
 	    , mVolumeModifier(1.0f)
 	{
 	}

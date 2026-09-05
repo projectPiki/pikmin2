@@ -279,9 +279,9 @@ void TMainScreen::doSetArchive(JKRArchive* arc)
 	mPaneCopyCursorR[2] = E2DScreen_searchAssert(mMainScreen, 'Pposd3r');
 
 	J2DTextBox* text = static_cast<J2DTextBox*>(E2DScreen_searchAssert(mMainScreen, 'Tcol'));
-	mFontColor2.setColors(text);
-	text = static_cast<J2DTextBox*>(mPaneMesgNo);
 	mFontColor1.setColors(text);
+	text = static_cast<J2DTextBox*>(mPaneMesgNo);
+	mFontColor2.setColors(text);
 
 	for (int i = 0; i < 3; i++) {
 		mPaneCopyCursorL[i]->setAlpha(0);

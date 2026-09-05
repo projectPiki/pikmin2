@@ -1028,25 +1028,20 @@ bool TOmake::doUpdateStateWait()
 		mInput.update();
 		if (mInput.mSelectionChanged) {
 
-			// this whole thing is wrong, the flow is wack
 			int id = mInput.mLastIndex;
 			if (id < mCurrSel) {
-				for (; mCurrSel < 7;) {
+				while (mPaneListMesg[mCurrSel]->getUserInfo() == '4844_00') {
 					mCurrSel++;
-				}
-				mCurrSel = id;
-			} else {
-				do {
-					if (mPaneListMesg[mCurrSel]->getUserInfo() == '4844_00') {
+					if (mCurrSel >= 7) {
+						mCurrSel = id;
 						break;
 					}
+				}
+			} else {
+				while (mPaneListMesg[mCurrSel]->getUserInfo() == '4844_00') {
 					mCurrSel--;
-				} while (mCurrSel >= 0);
-				mCurrSel = id;
-
-				while (true) {
-					u64 tag = mPaneListMesg[mCurrSel]->getUserInfo();
-					if (tag != '4844_00') {
+					if (mCurrSel < 0) {
+						mCurrSel = id;
 						break;
 					}
 				}

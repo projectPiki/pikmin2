@@ -289,7 +289,7 @@ void FSMStateShake::makeMatrix(DrawInfo* drawInfo, Matrixf* mtx)
 	case 2:
 		f32 t = sinf(theta * TAU * 1.5f);
 		p1    = t * 0.1f;
-		if (t < 0.0f) {
+		if (p1 < 0.0f) {
 			p1 = 0.0f;
 		}
 		p2 = 125.6637115478516f;
@@ -302,7 +302,7 @@ void FSMStateShake::makeMatrix(DrawInfo* drawInfo, Matrixf* mtx)
 		p3 = 0.0f;
 		break;
 	case 4:
-		p1 = (1.0f - cosf(theta * PI * 2.5f)) * 0.15f;
+		p1 = (1.0f - cosf(theta * PI * 2.5f)) * 0.15f * theta;
 		p2 = 201.0619354248047f;
 		p3 = theta * 4.0f;
 		break;
@@ -744,7 +744,7 @@ bool DrawInfo::getPosAndScale(Vector3f* pos, f32* scale)
 		f32* row2 = &mtx.mMatrix.structView.xy;
 		f32* row3 = &mtx.mMatrix.structView.xx;
 		for (int i = 0; i < 3; i++) {
-			Vector3f result = Vector3f(row1[i], row2[i], row3[i]);
+			Vector3f result = Vector3f(row3[i], row2[i], row1[i]);
 			f32 length      = result.length();
 			*scale += length;
 		}

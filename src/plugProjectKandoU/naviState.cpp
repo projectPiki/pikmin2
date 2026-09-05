@@ -2393,8 +2393,8 @@ void NaviNukuAdjustState::exec(Navi* navi)
 		return;
 	}
 
-	f32 velocityDifference = pikiToNavi.z * currentVel.z - targetToNavi.x * currentVel.x;
-	Vector3f newVel(pikiToNavi.x, 0.0f, -pikiToNavi.z);
+	f32 velocityDifference = pikiToNavi.z * currentVel.x - pikiToNavi.x * currentVel.z;
+	Vector3f newVel(-pikiToNavi.z, 0.0f, pikiToNavi.x);
 
 	f32 simSpeed = currentVel.length();
 

@@ -153,7 +153,7 @@ struct TControl {
 	// could use a better name, used in moviePlayer::skip
 	void stopAllObjects()
 	{
-		for (JGadget::TLinkList<TObject, -12>::iterator it = mObjectContainer.begin(); it != mObjectContainer.begin(); it++) {
+		for (JGadget::TLinkList<TObject, -12>::iterator it = mObjectContainer.begin(); it != mObjectContainer.end(); it++) {
 			char* string = (char*)it->mIDString;
 			if (string[0] == '#') {
 				delete it.operator->();

@@ -16,7 +16,7 @@
 namespace kh {
 namespace Screen {
 
-u64 arrow[6] = { 'Nyaji01', 'Nyaji02', 'Nyaji03', 'Nyaji04', 'Nyaji05', 'Nyaji06' };
+static u64 arrow[6] = { 'Nyaji01', 'Nyaji02', 'Nyaji03', 'Nyaji04', 'Nyaji05', 'Nyaji06' };
 
 static void _Printf(char* format)
 {

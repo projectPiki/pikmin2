@@ -338,7 +338,7 @@ bool Navi::procActionButton()
 			// if sprout found, pluck it.
 			if (otherTargetSprout) {
 				NaviNukuAdjustStateArg nukuAdjustArg2;
-				setupNukuAdjustArg(otherTargetSprout, nukuAdjustArg2);
+				otherNavi->setupNukuAdjustArg(otherTargetSprout, nukuAdjustArg2);
 				nukuAdjustArg2.mIsFollowing = true;
 				otherNavi->mFsm->transit(otherNavi, NSID_NukuAdjust, &nukuAdjustArg2);
 			}
@@ -2486,7 +2486,7 @@ void Navi::setDeadLaydown()
 {
 	int id = mNaviIndex;
 	if (id < 8) {
-		(&playData->mDeadNaviID)[mNaviIndex] = mNaviIndex > 0; // erm
+		playData->mDeadNaviID |= 1 << id;
 	}
 
 	Vector3f offset;
@@ -3680,9 +3680,8 @@ void Navi::enterAllPikis()
 	{
 		Piki* piki = *iterator;
 		if (piki->isAlive()) {
-			list[pikis] = piki;
+			list[pikis++] = piki;
 		}
-		pikis++;
 	}
 
 	list = buffer;
@@ -4883,7 +4882,7 @@ void Navi::makeCStick(bool disable)
 		f32 plateAngleCos  = pikmin2_cosf(plateAngle);
 		f32 plateSineAngle = pikmin2_sinf(plateAngle);
 
-		f32 angleLimit = pikmin2_cosf(120.0f * DEG2RAD);
+		f32 angleLimit = pikmin2_cosf(2.0f * PI / 3.0f);
 
 		f32 newAngle = 0.0f;
 

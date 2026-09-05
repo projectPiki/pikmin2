@@ -801,19 +801,17 @@ void CPlate::refreshSlot(f32 p1)
 	int row       = 0; // r26
 
 	while (slotCount < mActiveGroupSize) {
-		f32 sqrBase          = mBaseRadius * mBaseRadius;
-		f32 sqrRad           = radius * radius;
-		f32 radiusDifference = sqrBase - sqrRad;
+		f32 radiusDifference;
 
-		if (radiusDifference > 0.0f) {
-			f32 areaDifference = sqrRad * sqrRad - mBaseRadius;
+		if (absF(radius) < mBaseRadius) {
+			f32 areaDifference = mBaseRadius * mBaseRadius - radius * radius;
 			radiusDifference   = sqrtf(areaDifference);
 		} else {
 			radiusDifference = 0.0f;
 		}
 
 		f32 movestickScaled = mMoveStickRadius * radiusDifference;
-		int val             = static_cast<int>(movestickScaled / sqrRad / (2.0f * maxSize));
+		int val             = static_cast<int>(movestickScaled / mBaseRadius / (2.0f * maxSize));
 		if (val < 0) {
 			val = 0;
 		}

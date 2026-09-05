@@ -122,6 +122,6 @@ struct BootSection : public Game::BaseHIOSection {
 	f32 mLogoShakeStrength;                 // _E4
 };
 
-static BootSection* sBootSection;
+extern BootSection* sBootSection;
 
 #endif

@@ -1052,7 +1052,7 @@ void StateWalk::exec(EnemyBase* enemy)
 				enemy->finishMotion();
 				enemy->mTargetVelocity = Vector3f(0.0f);
 			} else {
-				f32 max = CG_PROPERPARMS(enemy).mRotationEndAngle();
+				f32 max = CG_GENERALPARMS(enemy).mViewAngle();
 				if (absF(angle) <= TORADIANS(max)) {
 					EnemyFunc::walkToTarget(enemy, enemy->mTargetCreature, CG_GENERALPARMS(enemy).mMoveSpeed(),
 					                        CG_GENERALPARMS(enemy).mTurnSpeed(), CG_GENERALPARMS(enemy).mMaxTurnAngle());
@@ -2068,6 +2068,7 @@ void StateTurnToHome::exec(EnemyBase* enemy)
 {
 	if (EnemyFunc::isStartFlick(enemy, true)) {
 		transit(enemy, KOCHAPPY_Flick, nullptr);
+		return;
 	} else {
 		Vector3f targetPos = enemy->mHomePosition;
 		f32 maxAngle       = CG_GENERALPARMS(enemy).mMaxAttackAngle();

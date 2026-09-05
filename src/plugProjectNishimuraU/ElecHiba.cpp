@@ -264,7 +264,7 @@ void Obj::setElecHibaPosition(InitialParam* param, f32 p1)
 void Obj::interactDenkiAttack(Vector3f& position)
 {
 	Vector3f origin(mPosition);
-	Vector3f normSep = (origin + position) / 2;
+	Vector3f normSep = (position + origin) / 2;
 
 	f32 theta           = mFaceDir;
 	Vector3f forwardVec = Vector3f(sinf(theta), 0.0f, cosf(theta));
@@ -306,7 +306,8 @@ void Obj::interactDenkiAttack(Vector3f& position)
 					if (absVal(upVec.dot(creatureSep)) < C_GENERALPARMS.mAttackHitAngle()) {
 						if (mVersusHibaType == VHT_Neutral) {
 
-							Vector3f attackDirection(dotProd1 / adj * spherePos.x, 0.0f, dotProd1 / adj * spherePos.z);
+							f32 directionScale = dotProd1 / adj;
+							Vector3f attackDirection(directionScale * spherePos.x, 0.0f, directionScale * spherePos.z);
 							if (creature->isPiki()) {
 								attackDirection.y = searchHeight;
 							}

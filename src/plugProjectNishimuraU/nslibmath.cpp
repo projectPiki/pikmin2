@@ -37,7 +37,7 @@ void calcLagrange(const Vector3f* controlPoints, f32 t, Vector3f& output)
  */
 inline f32 calculateScale(f32 distanceTopToTarget, f32 distanceTopMiddle, f32 distanceMiddleBottom)
 {
-	return (2.0f / distanceTopToTarget) * (distanceTopToTarget + (distanceTopMiddle - distanceMiddleBottom));
+	return (0.5f / distanceTopToTarget) * (distanceTopToTarget + (distanceTopMiddle - distanceMiddleBottom));
 }
 
 /**
@@ -64,7 +64,7 @@ void calcJointPos(const Vector3f& topPosition, const Vector3f& bottomPosition, f
 	f32 distanceTopToTarget  = topToTargetVector.sqrMagnitude(); // f11
 
 	if (!(distanceTopToTarget < 0.000001f)) {
-		f32 scale = (2.0f / distanceTopToTarget) * (distanceTopToTarget + (distanceTopMiddle - distanceMiddleBottom));
+		f32 scale = (0.5f / distanceTopToTarget) * (distanceTopToTarget + (distanceTopMiddle - distanceMiddleBottom));
 		Vector3f scaledTopToTarget(scale * topToTargetVector.x + topPosition.x, scale * topToTargetVector.y + topPosition.y,
 		                           scale * topToTargetVector.z + topPosition.z);
 		Vector3f offsetFromTop = scaledTopToTarget - topPosition;

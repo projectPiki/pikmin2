@@ -45,8 +45,8 @@ void ObjectSystem::destroyObjectAll()
 	JGadget::TList<void*, JGadget::TVoidAllocator>::iterator iterEnd(mObjListPointer.mNode.mNext);
 	while (!mObjListPointer.empty()) {
 		JGadget::TList<void*, JGadget::TVoidAllocator>::TNode_* prev = iterStart.mNode->mPrev;
-		delete static_cast<JStage::TObject*>(prev->mElement);
-		prev->mElement = nullptr;
+		delete static_cast<JStage::TObject*>(prev->getElement());
+		prev->getElement() = nullptr;
 		erase(iterStart.mNode->mPrev);
 	}
 	/*

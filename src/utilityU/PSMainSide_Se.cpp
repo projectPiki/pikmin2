@@ -259,7 +259,7 @@ PikiHummingMgr::PikiHummingMgr()
 void PikiHumming::exec(HumType type, bool doPlay)
 {
 	bool test = true;
-	if ((type == mHumType) || !doPlay) {
+	if ((type != mHumType) || !doPlay) {
 		if (mCounter == -1) {
 			_00 = 0;
 		}

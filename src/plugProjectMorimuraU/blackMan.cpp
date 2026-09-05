@@ -3343,6 +3343,7 @@ void Obj::jointMtxCalc(int jointIdx)
 	if (jointIdx < 2 && C_PARMS->mUseTyreForJointCalc) {
 		f32 sinVal1 = C_PARMS->mArmRotationA * absF(sinf(mTyre->mCurrentRotation2)); // f23
 		f32 sinVal2 = C_PARMS->mArmRotationB * absF(sinf(mTyre->mCurrentRotation2)); // f24
+		vec2.y = sinVal2;
 		getStateID();                                                                // unused
 
 		if (mTyre->mCurrentRotation2 < 0.0f) {

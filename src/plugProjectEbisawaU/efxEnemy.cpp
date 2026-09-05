@@ -1064,7 +1064,7 @@ void TDnkmsThunderB::doExecuteEmitterOperation(JPABaseEmitter* emit)
 
 	JGeometry::TVec3f v;
 	emit->getLocalScale(v);
-	v.z = z / 120.0f;
+	v.y = z / 120.0f;
 
 	emit->setScaleMain(v);
 
@@ -1177,10 +1177,10 @@ lbl_803B4968:
 void THibaFire::setRateLOD(int id)
 {
 	f32 lods[4][3] = {
-		{ 0.2f, 0.2f, 0.2f },
-		{ 1.0f, 1.0f, 1.0f },
-		{ 0.082f, 0.05f, 0.0f },
-		{ 2.3f, 1.7f, 0.0f },
+		{ 0.85f, 0.5f, 0.35f },
+		{ 0.3f, 0.2f, 0.0f },
+		{ 0.25f, 0.25f, 0.2f },
+		{ 0.25f, 0.15f, 0.0f },
 	};
 
 	for (int i = 0; i < 4; i++) {

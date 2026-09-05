@@ -28,6 +28,7 @@ static u32 unused[4] = { 1, 2, 3, 0 }; // has to be generated before nans
 static const u32 padding[]        = { 0, 0, 0 };
 u32 TinyPikminMgr::sTinyPikminNum = 10;
 J2DPicture* TinyPikminMgr::sPikminTex[6];
+BootSection* sBootSection;
 
 /**
  * @note Address: 0x804473BC
