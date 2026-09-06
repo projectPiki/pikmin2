@@ -865,7 +865,8 @@ void TVsSelect::doCreate(JKRArchive* arc)
 	sys->heapStatusStart("vsSelectTexture", nullptr);
 	mVsSelectTextureArc = nullptr;
 	char path[50];
-	og::newScreen::makeLanguageResName(path, "res_vsSelectTexture.szs");
+	const char* textureArchiveName = "res_vsSelectTexture.szs";
+	og::newScreen::makeLanguageResName(path, textureArchiveName);
 	mVsSelectTextureArc = JKRMountArchive(path, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
 	JUT_ASSERTLINE(893, mVsSelectTextureArc, "arcName = %s\n", path);
 	sys->heapStatusEnd("vsSelectTexture");
@@ -1011,7 +1012,7 @@ void TVsSelect::doCreate(JKRArchive* arc)
 	}
 
 	og::Screen::setCallBack_CounterRV(screen, 'Prp_f_r', 'Prp_f_l', 'Prp_f_l', &mDispPikiNum[0], 2, 0, 1, mArchive);
-	og::Screen::setCallBack_CounterRV(screen, 'Prp_f_r1', 'Prp_f_l1', 'Prp_f_l1', &mDispPikiNum[0], 2, 0, 1, mArchive);
+	og::Screen::setCallBack_CounterRV(screen, 'Prp_f_r1', 'Prp_f_l1', 'Prp_f_l1', &mDispPikiNum[1], 2, 0, 1, mArchive);
 
 	mWinCounter[0] = new TVsSelectCBWinNum(const_cast<char**>(og::Screen::SujiTex32), 4, mArchive);
 	mWinCounter[0]->init(screen, 'Pori_r', 'Pori_l', 'Pori_c', &mPlayerWinCounts[0], true);
@@ -1135,7 +1136,7 @@ void TVsSelect::doCreate(JKRArchive* arc)
 	mMaxSelYOffset = icon->mOffset.y;
 	mIndexPaneList = new TIndexPane*[mNumActiveRows];
 	for (int i = 0; i < mNumActiveRows; i++) {
-		mIndexPaneList[i] = new TIndexPane(this, screen, stageTags[i]);
+		mIndexPaneList[i] = new TIndexPane(nullptr, screen, stageTags[i]);
 		mIndexPaneList[i]->mPane->setMsgID('0000_01');
 		mIndexPaneList[i]->setIndex(i);
 		mIndexPaneList[i]->mPane->show();

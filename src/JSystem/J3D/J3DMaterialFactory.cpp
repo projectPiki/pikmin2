@@ -172,10 +172,10 @@ J3DMaterial* J3DMaterialFactory::createNormalMaterial(J3DMaterial* material, int
 	u32 texNum = tevStageNum > 8 ? 8 : tevStageNum;
 
 	u32 texGenNum  = countTexGens(matID);
-	u32 texGenFlag = texGenNum > 4 ? 0 : getMdlDataFlag_TexGenFlag(flags);
 	u32 colorFlag  = getMdlDataFlag_ColorFlag(flags);
 	u32 peFlag     = getMdlDataFlag_PEFlag(flags);
 	bool indFlag   = (flags & 0x01000000);
+	u32 texGenFlag = texGenNum > 4 ? 0 : getMdlDataFlag_TexGenFlag(flags);
 
 	if (!material) {
 		material = new J3DMaterial();

@@ -2222,10 +2222,9 @@ void TChallengeSelect::doCreate(JKRArchive* arc)
 	}
 
 	mCurrentSelection = selection;
-	// problem here (THiScore::changePangeInfo does something very similar to this, but here its not working)
-	int offs     = selection / 5;
-	mDownOffset  = offs;
-	mRightOffset = selection - offs * 5;
+	int offs          = selection / 5;
+	mDownOffset       = offs;
+	mRightOffset      = selection % 5;
 
 	u64 tags[2] = { '4901_00', '4910_00' };
 	mOffsMesg   = new TOffsetMsgSet(tags, '4900_00', 2);

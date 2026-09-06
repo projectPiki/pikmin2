@@ -255,7 +255,7 @@ void Item::createLightEvent()
 		arg.mRedScale      = mFogParm.mRed.mValue;
 		arg.mGreenScale    = mFogParm.mGreen.mValue;
 		arg.mBlueScale     = mFogParm.mBlue.mValue;
-		arg.mEventFlag     = (LIGHTEVENT_Unk3 + LIGHTEVENT_Unk4);
+		arg.mEventFlag.typeView = (LIGHTEVENT_Unk3 + LIGHTEVENT_Unk4);
 		arg.mRange         = mFogParm.mDistance.mValue;
 		mLightEventNode    = gameSystem->getLightMgr()->createEventLight(arg);
 	}

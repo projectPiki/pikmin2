@@ -101,9 +101,9 @@ J3DMaterial* J3DMaterialFactory_v21::create(J3DMaterial* mat, int index, u32 fla
 		texNum2 = 0;
 	}
 
+	u32 PEFlag     = flags & (J3DMLF_Material_PE_Full | J3DMLF_Material_PE_FogOff);
 	u32 colorFlag  = flags & (J3DMLF_Material_Color_LightOn | J3DMLF_Material_Color_AmbientOn);
 	u32 texGenFlag = texNum2 > 4 ? 0 : flags & (J3DMLF_27 | J3DMLF_Material_TexGen_Block4);
-	u32 PEFlag     = flags & (J3DMLF_Material_PE_Full | J3DMLF_Material_PE_FogOff);
 	u32 IndFlag    = (flags >> 0x18) & 1;
 
 	if (mat == nullptr) {

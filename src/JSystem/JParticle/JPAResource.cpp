@@ -68,10 +68,10 @@ JPAResource::JPAResource()
 void JPAResource::init(JKRHeap* heap)
 {
 	BOOL is_glbl_clr_anm       = mBaseShape->isGlblClrAnm();
-	BOOL is_glbl_tex_anm       = mBaseShape->isGlblTexAnm();
 	BOOL is_prm_anm            = mBaseShape->isPrmAnm();
 	BOOL is_env_anm            = mBaseShape->isEnvAnm();
 	BOOL is_tex_anm            = mBaseShape->isTexAnm();
+	BOOL is_glbl_tex_anm       = mBaseShape->isGlblTexAnm();
 	BOOL is_tex_crd_anm        = mBaseShape->isTexCrdAnm();
 	BOOL is_prj_tex            = mBaseShape->isPrjTex();
 	BOOL is_enable_scale_anm   = mExtraShape && mExtraShape->isEnableScaleAnm();

@@ -2,6 +2,7 @@
 #define _GAME_GAMELIGHT_H
 
 #include "types.h"
+#include "BitFlag.h"
 #include "Light.h"
 #include "CNode.h"
 #include "Game/GameLightSetting.h"
@@ -33,13 +34,12 @@ enum LightEventTypes {
 
 struct GameLightEventArg {
 	inline GameLightEventArg()
-	    : mEventFlag(0)
-	    , mLightTypeFlag(0)
+	    : mLightTypeFlag(0)
 	{
+		mEventFlag.clear();
 		setEvent(LIGHTEVENT_Unk1 | LIGHTEVENT_Unk2);
 		mLightTypeFlag = 0;
 		setLightType(LIGHTTYPE_Main);
-		setEvent(LIGHTEVENT_Unk1);
 		mGrowTime   = 0.5f;
 		mRedScale   = 1.5f;
 		mGreenScale = 1.5f;
@@ -49,7 +49,11 @@ struct GameLightEventArg {
 		mFarZ       = 1024.0f;
 		mPosition   = nullptr;
 		mRange      = 500.0f;
+	}
 
+	inline void init()
+	{
+		setEvent(LIGHTEVENT_Unk1);
 		setLightType(LIGHTTYPE_Main);
 		mGrowTime = 3.0f;
 		mFadeTime = 3.0f;
@@ -59,36 +63,25 @@ struct GameLightEventArg {
 		mBlueScale  = 1.25f;
 	}
 
-	inline void setEvent(u32 flag) { mEventFlag |= flag; }
-	inline void resetEvent(u32 flag) { mEventFlag &= ~flag; }
-	inline bool isEvent(u32 flag) const { return mEventFlag & flag; }
+	inline void setEvent(u32 flag) { mEventFlag.set(flag); }
+	inline void resetEvent(u32 flag) { mEventFlag.unset(flag); }
+	inline bool isEvent(u32 flag) const { return mEventFlag.typeView & flag; }
 
 	inline void setLightType(u32 flag) { mLightTypeFlag |= flag; }
 	inline void resetLightType(u32 flag) { mLightTypeFlag &= ~flag; }
 	inline bool isLightType(u32 flag) const { return mLightTypeFlag & flag; }
 
-	// inline void init()
-	// {
-	// 	setLightType(LIGHTTYPE_Main);
-	// 	_10 = 3.0f;
-	// 	_14 = 3.0f;
-	// 	setEvent(LIGHTEVENT_Unk2);
-	// 	_04 = 1.25f;
-	// 	_08 = 1.25f;
-	// 	_0C = 1.25f;
-	// }
-
-	u8 mEventFlag;       // _00
-	u8 mLightTypeFlag;   // _01
-	f32 mRedScale;       // _04
-	f32 mGreenScale;     // _08
-	f32 mBlueScale;      // _0C
-	f32 mGrowTime;       // _10
-	f32 mFadeTime;       // _14
-	f32 mNearZ;          // _18
-	f32 mFarZ;           // _1C
-	Vector3f* mPosition; // _20
-	f32 mRange;          // _24
+	BitFlag<u8> mEventFlag;     // _00
+	u8          mLightTypeFlag; // _01
+	f32         mRedScale;      // _04
+	f32         mGreenScale;    // _08
+	f32         mBlueScale;     // _0C
+	f32         mGrowTime;      // _10
+	f32         mFadeTime;      // _14
+	f32         mNearZ;         // _18
+	f32         mFarZ;          // _1C
+	Vector3f*   mPosition;      // _20
+	f32         mRange;         // _24
 };
 
 struct GameLightEventNode : public CNode {
