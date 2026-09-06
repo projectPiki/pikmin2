@@ -107,17 +107,17 @@ inline Iterator findUpperBound_binary_end(Iterator first, Iterator last, const T
 	return findUpperBound_binary_all(i, ++last, val, p);
 }
 
-template <typename Iterator, typename Value>
-Iterator findUpperBound_binary_current(Iterator i1, Iterator i2, Iterator i3, const Value& val)
-{
-	return findUpperBound_binary_current(i1, i2, i3, val, std::less<Value>());
-}
-
-template <typename Iterator, typename Value>
-Iterator findUpperBound_binary_current(Iterator first, Iterator last, Iterator current, const Value& val, std::less<Value> p)
+template <typename Iterator, typename Value, typename Predicate>
+Iterator findUpperBound_binary_current(Iterator first, Iterator last, Iterator current, const Value& val, Predicate p)
 {
 	return current == last || p(val, *current) ? findUpperBound_binary_end(first, current, val, p)
 	                                           : findUpperBound_binary_begin(current, last, val, p);
+}
+
+template <typename Iterator, typename Value>
+Iterator findUpperBound_binary_current(Iterator first, Iterator last, Iterator current, const Value& val)
+{
+	return findUpperBound_binary_current(first, last, current, val, std::less<Value>());
 }
 
 } // namespace JGadget

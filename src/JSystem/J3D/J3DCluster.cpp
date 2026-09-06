@@ -76,13 +76,13 @@ void J3DDeformer::deform_VtxPosF32(J3DVertexBuffer* vtxbuffer, J3DCluster* clust
 	f32 weightModifiers[2] = { 1.0f, -1.0f };
 	for (u16 i = 0; i < clusterCount; i++) {
 		int vertexIndex = cluster->_18[i] * 3;
-		f32* position = &vertexPositions[vertexIndex];
+		f32* position   = &vertexPositions[vertexIndex];
 		for (u16 j = 0; j < clusterSize; j++) {
 			u32 index = key[j]._04[i];
-			Vec* vec = &vertexIndices[index & ~0xe000];
-			f32 x = vec->x;
-			f32 y = vec->y;
-			f32 z = vec->z;
+			Vec* vec  = &vertexIndices[index & ~0xe000];
+			f32 x     = vec->x;
+			f32 y     = vec->y;
+			f32 z     = vec->z;
 			x *= weightModifiers[(index >> 15) & 1];
 			y *= weightModifiers[(index >> 14) & 1];
 			z *= weightModifiers[(index >> 13) & 1];
@@ -367,9 +367,12 @@ void J3DDeformer::deform_VtxNrmF32(J3DVertexBuffer* vtxBuffer, J3DCluster* clust
 			f32 factor = (dotProd - cluster->_04) / (cluster->_00 - cluster->_04);
 			f32* norm  = &vtxNormBuffer[idx3];
 
-			norm[0] = (1.0f - factor) * currVec[0] + factor * vec[0];
-			norm[1] = (1.0f - factor) * currVec[1] + factor * vec[1];
-			norm[2] = (1.0f - factor) * currVec[2] + factor * vec[2];
+			f32 averageX = (1.0f - factor) * vec[0];
+			norm[0]      = factor * currVec[0] + averageX;
+			f32 averageY = (1.0f - factor) * vec[1];
+			norm[1]      = factor * currVec[1] + averageY;
+			f32 averageZ = (1.0f - factor) * vec[2];
+			norm[2]      = factor * currVec[2] + averageZ;
 		}
 	}
 	/*

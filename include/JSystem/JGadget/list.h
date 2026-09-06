@@ -224,8 +224,6 @@ struct TList_pointer : public TList_pointer_void {
 	iterator erase(iterator where) { return iterator(Base::erase(where)); }
 };
 
-template <typename Iterator, typename Value, typename Predicate>
-void findUpperBound_binary_current(Iterator, Iterator, Iterator, const Value&, Predicate);
 } // namespace JGadget
 
 #endif

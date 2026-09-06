@@ -111,7 +111,7 @@ struct TFunctionValue {
 
 	TFunctionValue(); // unused/inlined
 
-	virtual ~TFunctionValue();                                // _08
+	virtual ~TFunctionValue()                            = 0; // _08
 	virtual int getType() const                          = 0; // _0C
 	virtual TFunctionValueAttributeSet getAttributeSet() = 0; // _10
 	virtual void initialize()                            = 0; // _14
@@ -453,10 +453,7 @@ struct TFunctionValue_list_parameter : public TFunctionValue,
 			return *this;
 		}
 
-		friend s32 operator-(const TIterator_data_& r1, const TIterator_data_& r2)
-		{
-			return (r1.mValue - r2.mValue) / suData_size;
-		}
+		friend s32 operator-(const TIterator_data_& r1, const TIterator_data_& r2) { return (r1.mValue - r2.mValue) / suData_size; }
 
 		const f32* mValue; // _00
 	};

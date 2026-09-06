@@ -1893,7 +1893,7 @@ void JASTrack::writeRegParam(u8 p1)
 			val23 = (byte << 8) | (byte << 1);
 		}
 		break;
-	case 10:
+	case 0x10:
 		val23 = -1;
 		break;
 	}
@@ -1909,11 +1909,12 @@ void JASTrack::writeRegParam(u8 p1)
 		}
 		val23 += regVal;
 		break;
-	case 0x2:
-		regVal = regVal * (s16)val23;
-		writeRegDirect(4, regVal >> 16);
-		writeRegDirect(5, regVal & 0xFFFF);
+	case 0x2: {
+		u32 product = (s16)regVal * (s16)val23;
+		writeRegDirect(4, product >> 16);
+		writeRegDirect(5, product & 0xFFFF);
 		return;
+	}
 	case 0x3:
 		mRegisterParam._00[3] = regVal - val23;
 		return;
@@ -1925,9 +1926,11 @@ void JASTrack::writeRegParam(u8 p1)
 			val23 = JASPlayer::extend8to16(val23);
 		}
 		if (val23 < 0) {
-			val23 = regVal >> -val23;
+			u32 shift = (u32)-val23 & 63;
+			val23     = shift < 32 ? (u32)(u16)regVal >> shift : 0;
 		} else {
-			val23 = regVal << val23;
+			u32 shift = (u32)val23 & 63;
+			val23     = shift < 32 ? (u32)(u16)regVal << shift : 0;
 		}
 		break;
 	case 0x20:
@@ -1935,9 +1938,11 @@ void JASTrack::writeRegParam(u8 p1)
 			val23 = JASPlayer::extend8to16(val23);
 		}
 		if (val23 < 0) {
-			val23 = regVal >> -val23;
+			u32 shift = (u32)-val23 & 63;
+			val23     = shift < 32 ? (s32)(s16)regVal >> shift : (regVal < 0 ? -1 : 0);
 		} else {
-			val23 = regVal << val23;
+			u32 shift = (u32)val23 & 63;
+			val23     = shift < 32 ? (u32)(u16)regVal << shift : 0;
 		}
 		break;
 	case 0x30:
@@ -2000,7 +2005,7 @@ void JASTrack::writeRegParam(u8 p1)
 	case 0x2A:
 	case 0x2B:
 		mRegisterParam._20[nextByte - 0x28] = val28;
-		break;
+		return;
 	default:
 		val29 = val23;
 		break;

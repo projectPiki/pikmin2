@@ -375,23 +375,130 @@ lbl_80088DF4:
  */
 void J3DMtxBuffer::calcWeightEnvelopeMtx()
 {
-	int max      = mJointTree->getWEvlpMtxNum();
-	u16* indices = mJointTree->getWEvlpMixIndex();
-	f32* weights = mJointTree->getWEvlpMixWeight();
-	for (int i = -1; i < max; i++) {
-		u8* scaleFlags    = mEnvelopeScaleFlags;
-		scaleFlags[i]     = 1;
-		Mtx* weightAnmMtx = &mWeightEnvelopeMatrices[i];
-		int mixNum        = mJointTree->getWEvlpMixMtxNum(i);
-		for (int j = 0; j < mixNum; j++) {
-			u16 idx       = indices[j];
-			f32 weight    = weights[j];
-			Mtx& invMtx   = mJointTree->getInvJointMtx(idx);
-			Mtx& worldMtx = mWorldMatrices[idx];
-			// I think it's this but as ASM? maybe?
-			PSMTXConcat(invMtx, worldMtx, *weightAnmMtx);
-			scaleFlags[i] &= mScaleFlags[j];
+	register MtxP weightAnmMtx;
+	register Mtx* worldMtx;
+	register Mtx* invMtx;
+	register f32 weight;
+	int jointIdx;
+	int mixIdx;
+	int mixCount;
+	int envelopeIdx;
+	int envelopeCount;
+	u16* indices;
+	f32* weights;
+	u8* scaleFlags;
+	register f32 world0XY;
+	register f32 scratch0;
+	register f32 world1XY;
+	register f32 world1ZW;
+	register f32 world2XY;
+	register f32 world2ZW;
+	register f32 scratch1;
+	register f32 inverseRow1;
+	register f32 inverseRow2;
+	register f32 sum0XY;
+	register f32 sum0ZW;
+	register f32 sum1XY;
+	register f32 sum1ZW;
+	register f32 sum2XY;
+	register f32 sum2ZW;
+	register f32 product0XY;
+	register f32 product0ZW;
+	register f32 product1XY;
+	register f32 product1ZW;
+	register f32 product2XY;
+	register f32 unit01;
+	register f32* unitData = J3DUnit01;
+	envelopeIdx            = -1;
+	envelopeCount          = mJointTree->getWEvlpMtxNum();
+	indices                = mJointTree->getWEvlpMixIndex() - 1;
+	weights                = mJointTree->getWEvlpMixWeight() - 1;
+#ifdef __MWERKS__ // clang-format off
+	asm {
+		psq_l unit01, 0(unitData), 0, 0
+		ps_merge00 sum0ZW, unit01, unit01
+		ps_merge00 sum1ZW, unit01, unit01
+		ps_merge00 sum2ZW, unit01, unit01
+	}
+#endif // clang-format on
+	while (++envelopeIdx < envelopeCount)
+	{
+		scaleFlags   = &mEnvelopeScaleFlags[envelopeIdx];
+		*scaleFlags  = 1;
+		weightAnmMtx = mWeightEnvelopeMatrices[envelopeIdx];
+#ifdef __MWERKS__ // clang-format off
+		asm {
+			ps_merge00 sum0XY, unit01, unit01
+			ps_merge00 sum1XY, unit01, unit01
+			ps_merge00 sum2XY, unit01, unit01
 		}
+#endif // clang-format on
+		mixIdx   = 0;
+		mixCount = mJointTree->getWEvlpMixMtxNum(envelopeIdx);
+		// this feels bad as a do-while, but I can't get the instruction order to work otherwise
+		do {
+			jointIdx = *++indices;
+			invMtx   = &mJointTree->getInvJointMtx((u16)jointIdx);
+			worldMtx = &mWorldMatrices[jointIdx];
+			weight   = *++weights;
+#ifdef __MWERKS__ // clang-format off
+			asm {
+				psq_l    scratch0, 0(invMtx), 0, 0
+				psq_l    world0XY, 0(worldMtx), 0, 0
+				psq_l    world1XY, 16(worldMtx), 0, 0
+				ps_muls0 product0XY, scratch0, world0XY
+				psq_l    inverseRow1, 16(invMtx), 0, 0
+				ps_muls0 product1XY, scratch0, world1XY
+				psq_l    world2XY, 32(worldMtx), 0, 0
+				psq_l    scratch1, 8(invMtx), 0, 0
+				ps_muls0 product2XY, scratch0, world2XY
+				ps_madds1 product0XY, inverseRow1, world0XY, product0XY
+				psq_l    inverseRow2, 32(invMtx), 0, 0
+				psq_l    scratch0, 8(worldMtx), 0, 0
+				ps_madds1 product1XY, inverseRow1, world1XY, product1XY
+				psq_l    world1ZW, 24(worldMtx), 0, 0
+				ps_madds0 product0XY, inverseRow2, scratch0, product0XY
+				ps_madds1 product2XY, inverseRow1, world2XY, product2XY
+				psq_l    world2ZW, 40(worldMtx), 0, 0
+				ps_madds0 product1XY, inverseRow2, world1ZW, product1XY
+				psq_l    inverseRow1, 24(invMtx), 0, 0
+				ps_muls0 product0ZW, scratch1, world0XY
+				ps_muls0 product1ZW, scratch1, world1XY
+				ps_madds0 product2XY, inverseRow2, world2ZW, product2XY
+				psq_l    inverseRow2, 40(invMtx), 0, 0
+				ps_madds0 sum0XY, product0XY, weight, sum0XY
+				ps_muls0 scratch1, scratch1, world2XY
+				ps_madds1 product0ZW, inverseRow1, world0XY, product0ZW
+				ps_madds1 product1ZW, inverseRow1, world1XY, product1ZW
+				psq_st   sum0XY, 0(weightAnmMtx), 0, 0
+				ps_madds0 sum1XY, product1XY, weight, sum1XY
+				ps_madds1 scratch1, inverseRow1, world2XY, scratch1
+				ps_madds0 product0ZW, inverseRow2, scratch0, product0ZW
+				ps_madds0 product1ZW, inverseRow2, world1ZW, product1ZW
+				psq_st   sum1XY, 16(weightAnmMtx), 0, 0
+				ps_madds0 sum2XY, product2XY, weight, sum2XY
+				ps_madds0 scratch1, inverseRow2, world2ZW, scratch1
+				ps_madd  product0ZW, unit01, scratch0, product0ZW
+				psq_st   sum2XY, 32(weightAnmMtx), 0, 0
+				ps_madd  product1ZW, unit01, world1ZW, product1ZW
+				ps_madd  scratch1, unit01, world2ZW, scratch1
+				ps_madds0 sum0ZW, product0ZW, weight, sum0ZW
+				ps_madds0 sum1ZW, product1ZW, weight, sum1ZW
+				ps_madds0 sum2ZW, scratch1, weight, sum2ZW
+			}
+#endif // clang-format on
+			*scaleFlags &= mScaleFlags[jointIdx];
+		} while (++mixIdx < mixCount);
+#ifdef __MWERKS__ // clang-format off
+		asm {
+			psq_st sum0ZW, 8(weightAnmMtx), 0, 0
+			ps_merge00 sum0ZW, unit01, unit01
+			psq_st sum1ZW, 24(weightAnmMtx), 0, 0
+			ps_merge00 sum1ZW, unit01, unit01
+			psq_st sum2ZW, 40(weightAnmMtx), 0, 0
+			ps_merge00 sum2ZW, unit01, unit01
+		}
+#endif // clang-format on
 	}
 	/*
 	stwu     r1, -0xa0(r1)
