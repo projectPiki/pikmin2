@@ -77,7 +77,7 @@ struct Scene_Global : public SceneBase {
 	virtual bool getSeSceneGate(ObjBase*, u32)
 	{
 		// this needs to go in PSMainSide_Scene.h
-		JUT_PANICLINE(63, "P2Assert");
+		JUTException::panic_f("PSMainSide_Scene.h", 63, "P2Assert");
 		return false;
 	} // _38 (weak)
 

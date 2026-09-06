@@ -15,8 +15,8 @@ struct TFueactBiriBase : public TSync {
 
 	// _00      = VTBL
 	// _00-_10  = TSync
-	Matrixf* mMtx;           // _10
-	JGeometry::TVec3f* mPos; // _14
+	Matrixf* mMtx;  // _10
+	Vector3f* mPos; // _14
 };
 
 struct TFueactBiri1 : public TFueactBiriBase {

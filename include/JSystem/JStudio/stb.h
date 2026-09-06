@@ -11,6 +11,64 @@ namespace JStudio {
 struct TObject;
 
 namespace stb {
+template <int S>
+struct TParseData : public data::TParse_TParagraph_data::TData {
+	TParseData(const void* pContent) { set(data::TParse_TParagraph_data(pContent)); }
+
+	TParseData() { set(NULL); }
+
+	void set(const data::TParse_TParagraph_data& data) { data.getData(this); }
+
+	void set(const void* pContent) { set(data::TParse_TParagraph_data(pContent)); }
+
+	bool isEnd() const { return mStatus == 0; }
+
+	bool empty() const { return mData == NULL; }
+
+	bool isValid() const { return !empty() && mStatus == S; }
+
+	const void* getContent() const { return mData; }
+
+	u32 size() const { return mFileCount; }
+};
+
+template <int S, class Iterator = JGadget::binary::TValueIterator_raw<u8> /**/>
+struct TParseData_fixed : public TParseData<S> {
+	TParseData_fixed(const void* pContent)
+	    : TParseData<S>(pContent)
+	{
+	}
+	TParseData_fixed()
+	    : TParseData<S>()
+	{
+	}
+
+	const void* getNext() const { return this->mDataBlockEnd; }
+
+	bool isValid() const { return TParseData<S>::isValid() && getNext() != NULL; }
+
+	Iterator begin() const { return Iterator(this->mData); }
+
+	Iterator end() const
+	{
+		Iterator i(this->mData);
+		i += this->size();
+		return i;
+	}
+
+	typename Iterator::ValueType front() const { return *begin(); }
+
+	typename Iterator::ValueType back() const { return *--end(); }
+};
+
+struct TParseData_string : public TParseData<0x60> {
+	TParseData_string(const void* pContent)
+	    : TParseData<0x60>(pContent)
+	{
+	}
+	const char* getData() const { return static_cast<const char*>(getContent()); }
+};
+
 struct TControl;
 struct TObject;
 

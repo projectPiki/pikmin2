@@ -15,10 +15,9 @@ void TyreTubeShadowNode::makeShadowSRT(JointShadowParm& shadowParm, Matrixf* mat
 
 	Vector3f xVec = Vector3f(mat->getColumn(0));
 	xVec.normalise();
-	xVec       = xVec * shadowParm._18;
-	matVecs[0] = xVec;
+	matVecs[0] = xVec * shadowParm._18;
 
-	matVecs[2] = cross(matVecs[0], shadowParm.mRotation);
+	matVecs[2] = cross(xVec, shadowParm.mRotation);
 	matVecs[2].normalise();
 	matVecs[2].x = matVecs[2].x * shadowParm._1C;
 	matVecs[2].y = matVecs[2].y * shadowParm._1C;

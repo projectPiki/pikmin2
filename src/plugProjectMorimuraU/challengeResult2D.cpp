@@ -382,8 +382,8 @@ bool TMovePane::hosei()
 	mAngleSin = 0.0f;
 	mAngleCos = 0.0f;
 	mVelocity = 0.0f;
-	f32 x     = (mOffset.x - mPaneGoal.x) * 0.05f * TChallengeResult::mDemoSpeedUpRate;
-	f32 y     = (mOffset.y - mPaneGoal.y) * 0.05f * TChallengeResult::mDemoSpeedUpRate;
+	f32 x     = (mOffset.x - mPaneGoal.x) * (0.05f * TChallengeResult::mDemoSpeedUpRate);
+	f32 y     = (mOffset.y - mPaneGoal.y) * (0.05f * TChallengeResult::mDemoSpeedUpRate);
 	mPaneGoal.x += x;
 	mPaneGoal.y += y;
 	if (absF(x) < 0.05f && absF(y) < 0.05f) {
@@ -767,9 +767,9 @@ void TChallengeResultCounter::start()
 
 	int test = *mDisplayValue;
 	for (; digits > 1; digits--) {
-		int calc    = (int)pow(10.0f, f64(digits - 1));
-		int test2   = test / calc;
-		_24[test--] = test2;
+		int calc        = (int)pow(10.0f, f64(digits - 1));
+		int test2       = test / calc;
+		_24[digits - 1] = test2;
 		test -= test2 * calc;
 	}
 	_24[0] = test;
@@ -1278,7 +1278,9 @@ bool TChallengeResult::doUpdate()
 		mResultDemoScreen->update();
 	}
 
-	JGeometry::TBox2f box(mPane6->getGlbVtx(GLBVTX_TopRight), mPane6->getGlbVtx(GLBVTX_BtmLeft));
+	JGeometry::TVec3f bottomLeft = mPane6->getGlbVtx(GLBVTX_BtmLeft);
+	JGeometry::TVec3f topRight   = mPane6->getGlbVtx(GLBVTX_TopRight);
+	JGeometry::TBox2f box(bottomLeft, topRight);
 	mScissorPic->mBounds = box;
 
 	if (mIsSaveOpen && mSaveMgr->isFinish()) {
@@ -3454,11 +3456,11 @@ void TChallengeResult::updateDemo()
 						if (y + 0.1f > 1.0f) {
 							y2 = 1.0f;
 						}
-						mOnyonMovePane[i]->mOffset.set(mVecUnit[id1]._08.y, -((x - mVecUnit[id1]._08.x) * y2 - x));
+						mOnyonMovePane[i]->mOffset.set(-((x - mVecUnit[id1]._08.x) * y2 - x), mVecUnit[id1]._08.y);
 						mOnyonMovePane[i]->mCounter = 1;
 					} else if (id2 == 2) {
 						if (FABS(mOnyonMovePane[i]->getAngDist()) < 0.05f) {
-							if (60.0f / mDemoSpeedUpRate > (f32)mOnyonMovePane[i]->mCounter) {
+							if ((f32)mOnyonMovePane[i]->mCounter > 60.0f / mDemoSpeedUpRate) {
 								mOnyonMovePane[i]->mState = 1;
 								PSSystem::spSysIF->playSystemSe(PSSE_SY_CHALLENGE_SCORE_S, 0);
 								int calc                     = (f32)_1DC / mDemoSpeedUpRate;
@@ -3508,7 +3510,7 @@ void TChallengeResult::updateDemo()
 					mOnyonMovePane[id]->mCounter = 1;
 
 					int id2 = mResultCounters[3]->mDigits;
-					f32 x   = mVecUnit[id]._00.x;
+					f32 x   = mVecUnit[3]._00.x;
 					f32 y   = (f32)id2 / (f32)mResultCounters[3]->_18;
 					if (id2 == 1) {
 						y += 0.05f;
@@ -3517,10 +3519,10 @@ void TChallengeResult::updateDemo()
 					if (y + 0.1f > 1.0f) {
 						y2 = 1.0f;
 					}
-					mOnyonMovePane[cRandArray[id + 1]]->mOffset.set(mVecUnit[3]._08.y, -((x - mVecUnit[3]._08.x) * y2 - x));
-					mOnyonMovePane[cRandArray[id + 1]]->mState   = 1;
-					mOnyonMovePane[cRandArray[id + 1]]->mCounter = 1;
-					mOnyonMovePane[cRandArray[id + 2]]->start();
+					mOnyonMovePane[cRandArray[test * 3 + 1]]->mOffset.set(-((x - mVecUnit[3]._08.x) * y2 - x), mVecUnit[3]._08.y);
+					mOnyonMovePane[cRandArray[test * 3 + 1]]->mState   = 1;
+					mOnyonMovePane[cRandArray[test * 3 + 1]]->mCounter = 1;
+					mOnyonMovePane[cRandArray[test * 3 + 2]]->start();
 				} else {
 					changeAnimDemo();
 				}
@@ -3546,10 +3548,8 @@ void TChallengeResult::updateDemo()
 						mOnyonMovePane[i]->mState = 2;
 						mOnyonMovePane[i]->mOffset.set(mVecUnit[3]._00.x + 300.0f, mVecUnit[3]._00.y);
 					}
-					if ((u8)state != 2) {
-						if (FABS(mOnyonMovePane[i]->getAngDist()) > 0.01f) {
-							check = false;
-						}
+					if (FABS(mOnyonMovePane[i]->getAngDist()) > 0.01f) {
+						check = false;
 					}
 				}
 			}
@@ -3572,7 +3572,7 @@ void TChallengeResult::updateDemo()
 			for (int i = 0; i < 3; i++) {
 				if (mOnyonMovePane[i]->mCounter > 0) {
 					f32 test2 = mOnyonMovePane[i]->mPaneGoal.x;
-					if (test2 < 0.0f) {
+					if (test < test2) {
 						id   = i;
 						test = test2;
 					}
@@ -3641,19 +3641,19 @@ void TChallengeResult::updateDemo()
 					if (tex->_00 == 0) {
 						Vector2f test;
 						tex->getPosition(test);
-						mClearTexture[4]->_00            = 1;
-						mOnyonMovePane[i]->mPanePosition = test;
-						mOnyonMovePane[i]->mCounter      = 3;
-						mOnyonMovePane[i]->mState        = 1;
+						mClearTexture[3]->_00      = 1;
+						mOnyonMovePane[i]->mOffset = test;
+						mOnyonMovePane[i]->_44     = 3;
+						mOnyonMovePane[i]->mState  = 1;
 					} else {
 						tex = mClearTexture[4];
 						if (tex->_00 == 0) {
 							Vector2f test;
 							tex->getPosition(test);
-							mClearTexture[4]->_00            = 1;
-							mOnyonMovePane[i]->mPanePosition = test;
-							mOnyonMovePane[i]->mCounter      = 3;
-							mOnyonMovePane[i]->mState        = 1;
+							mClearTexture[4]->_00      = 1;
+							mOnyonMovePane[i]->mOffset = test;
+							mOnyonMovePane[i]->_44     = 4;
+							mOnyonMovePane[i]->mState  = 1;
 						} else {
 							mOnyonMovePane[i]->start();
 							mDemoState = 5;

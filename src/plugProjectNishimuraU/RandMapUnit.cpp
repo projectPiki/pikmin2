@@ -365,9 +365,10 @@ void RandMapUnit::changeTwoToOneMapUnit()
 
 	if (firstNamesCount && secondNamesCount) {
 		MapNode* currNode = static_cast<MapNode*>(placedNodes->mChild);
-		for (; currNode; currNode = static_cast<MapNode*>(currNode->mNext)) {
-			MapNode* nextNode = static_cast<MapNode*>(currNode->mNext);
-			bool check        = false;
+		MapNode* nextNode;
+		for (; currNode; currNode = nextNode) {
+			nextNode   = static_cast<MapNode*>(currNode->mNext);
+			bool check = false;
 			for (int i = 0; i < firstNamesCount; i++) {
 				if (currNode->mUnitInfo->getUnitName() == firstUnitNames[i]) {
 					check = true;
@@ -1498,26 +1499,22 @@ int RandMapUnit::getLeftToLinkDoorDir(int direction, int xDiff, int yDiff)
 	return yDiff > CD_Right ? CD_Down : (int)CD_Left;
 }
 
-inline Cave::DoorNode* findUnblockedDoorNode(Cave::MapNode*& mapNode, int& offsetX, int& offsetY)
+inline Cave::MapNode* findUnblockedMapNode(Cave::MapNode* mapNode, int& doorIndex, int& offsetX, int& offsetY, int target)
 {
-	Cave::DoorNode* doorNode = nullptr;
-	int closedDoors          = 0;
-
-	// Find an unblocked door
-	while (mapNode) {
-		for (int doorIndex = 0; doorIndex < mapNode->getNumDoors(); ++doorIndex) {
-			if (!mapNode->isDoorClose(doorIndex) && !closedDoors) {
-				doorNode = mapNode->getDoorNode(doorIndex);
-				mapNode->getDoorOffset(doorIndex, offsetX, offsetY);
-			} else {
-				closedDoors++;
+	int unclosedDoors = 0;
+	for (; mapNode; mapNode = static_cast<Cave::MapNode*>(mapNode->mNext)) {
+		for (doorIndex = 0; doorIndex < mapNode->getNumDoors(); ++doorIndex) {
+			if (!mapNode->isDoorClose(doorIndex)) {
+				if (unclosedDoors == target) {
+					mapNode->getDoorNode(doorIndex);
+					mapNode->getDoorOffset(doorIndex, offsetX, offsetY);
+					return mapNode;
+				}
+				++unclosedDoors;
 			}
 		}
-
-		mapNode = static_cast<Cave::MapNode*>(mapNode->mNext);
 	}
-
-	return mapNode->getDoorNode(0);
+	return nullptr;
 }
 
 /**
@@ -1526,53 +1523,42 @@ inline Cave::DoorNode* findUnblockedDoorNode(Cave::MapNode*& mapNode, int& offse
  */
 MapNode* RandMapUnit::getLoopEndMapUnit()
 {
-	Cave::MapUnitGenerator* mapUnitGenerator = mGenerator;
-	Cave::MapNode* mapNodeTypes              = mapUnitGenerator->getMapNodeKinds();
-
-	int doorOffsetX, doorOffsetY = 0;
-	Cave::MapNode* unblockedMapNode;
-
-	Cave::MapNode* mapNode            = static_cast<Cave::MapNode*>(mapUnitGenerator->getPlacedNodes()->mChild);
-	Cave::DoorNode* unblockedDoorNode = findUnblockedDoorNode(mapNode, doorOffsetX, doorOffsetY);
-
-	int doorTypes[3] = { 0, 2, 1 };
-
-	for (int typeIndex = 0; typeIndex < 3; typeIndex++) {
-		for (int doorCount = 0; doorCount < mDoorCount; doorCount++) {
-			for (Cave::MapNode* mapNode = &mapNodeTypes[doorTypes[typeIndex]]; mapNode; mapNode = (MapNode*)mapNode->mNext) {
-				int dc = doorCount + 1;
-
-				if (mapNode->getNumDoors() != dc) {
-					continue;
-				}
-
-				int doorIndices[8];
-				for (int i = 0; i < dc; ++i) {
-					doorIndices[i] = i;
-				}
-
-				// Shuffle the doorIndices
-				for (int i = 0; i < dc; i++) {
-					int j          = randInt(doorCount);
-					int temp       = doorIndices[i];
-					doorIndices[i] = doorIndices[j];
-					doorIndices[j] = temp;
-				}
-
-				for (int i = 0; i < dc; ++i) {
-					if (!mapNode->isDoorSet(unblockedDoorNode, doorOffsetX, doorOffsetY, doorIndices[i])
-					    || !mChecker->isPutOnMap(mapNode)) {
+	MapNode* mapNodeTypes = mGenerator->getMapNodeKinds();
+	int doorIndex, doorOffsetX, doorOffsetY;
+	MapNode* unblockedMapNode
+	    = findUnblockedMapNode(static_cast<MapNode*>(mGenerator->getPlacedNodes()->mChild), doorIndex, doorOffsetX, doorOffsetY, 0);
+	DoorNode* unblockedDoorNode = unblockedMapNode->getDoorNode(doorIndex);
+	int doorTypes[3]            = { 0, 2, 1 };
+	if (unblockedMapNode && unblockedDoorNode) {
+		for (int typeIndex = 0; typeIndex < 3; ++typeIndex) {
+			for (int doorCount = 0; doorCount < mDoorCount; ++doorCount) {
+				int count = doorCount + 1;
+				for (MapNode* mapNode = static_cast<MapNode*>(mapNodeTypes[doorTypes[typeIndex]].mChild); mapNode;
+				     mapNode          = static_cast<MapNode*>(mapNode->mNext)) {
+					if (mapNode->getNumDoors() != count) {
 						continue;
 					}
-
-					return mapNode;
+					int doorIndices[16];
+					for (int i = 0; i < count; ++i) {
+						doorIndices[i] = i;
+					}
+					for (int i = 0; i < count; ++i) {
+						int j          = randInt(count);
+						int temp       = doorIndices[i];
+						doorIndices[i] = doorIndices[j];
+						doorIndices[j] = temp;
+					}
+					for (int i = 0; i < count; ++i) {
+						if (mapNode->isDoorSet(unblockedDoorNode, doorOffsetX, doorOffsetY, doorIndices[i])
+						    && mChecker->isPutOnMap(mapNode)) {
+							return mapNode;
+						}
+					}
 				}
 			}
 		}
-
-		return nullptr;
 	}
-
+	return nullptr;
 	/*
 	stwu     r1, -0xd0(r1)
 	mflr     r0
@@ -1875,58 +1861,73 @@ void RandMapUnit::addMap(UnitInfo* info, int x, int y, bool updatePriority)
  */
 void RandMapUnit::changeMapPriority(UnitInfo* info)
 {
-	int unitKind                      = info->getUnitKind();
-	Cave::MapUnitGenerator* generator = mGenerator;
-	Cave::MapNode& rootMapNode        = generator->mMapNodeKinds[unitKind << 6];
-	if (unitKind == Cave::UNITKIND_Room) {
-		Cave::MapNode* placed = generator->mPlacedMapNodes;
+	int unitKind                = info->getUnitKind();
+	MapUnitGenerator* generator = mGenerator;
+	MapNode& rootMapNode        = generator->mMapNodeKinds[unitKind];
+	if (unitKind == UNITKIND_Room) {
+		MapNode* placed = generator->mPlacedMapNodes;
 		info->getUnitName();
+		int lastFourStart = mUnitKindChildCounts[UNITKIND_Room] - 4;
+		int unitCounts[128];
+		char* unitNames[128];
 		int addedUnitCount = 0;
-
-		char* x[8][16];
-		char* y[8][16];
-		for (int i = 0; i < 8; i++) {
-			for (int j = 0; j < 16; j++) {
-				x[i][j] = nullptr;
-				y[i][j] = nullptr;
-			}
+		for (int i = 0; i < 128; ++i) {
+			unitCounts[i] = 0;
+			unitNames[i]  = nullptr;
 		}
-
-		char** unitCountsFirst = x[0];
-		char** unitNamesFirst  = y[0];
-		for (MapNode* i = (MapNode*)placed->mChild; i; i = (MapNode*)i->mNext) {
-			if (i->mUnitInfo->getUnitKind() == Cave::UNITKIND_Room) {
+		for (MapNode* node = static_cast<MapNode*>(placed->mChild); node; node = static_cast<MapNode*>(node->mNext)) {
+			if (node->mUnitInfo->getUnitKind() == UNITKIND_Room) {
 				bool toAdd = true;
-
-				for (int index = 0; index < addedUnitCount; index++) {
-					if (!strcmp((char*)y[0], i->getUnitName())) {
+				for (int i = 0; i < addedUnitCount; ++i) {
+					if (!strcmp(unitNames[i], node->getUnitName())) {
+						++unitCounts[i];
 						toAdd = false;
-						x[0][index]++;
 						break;
 					}
 				}
-
 				if (toAdd) {
-					char* unitName = i->getUnitName();
-
-					char* previousName = unitCountsFirst[0];
-					addedUnitCount++;
-					unitNamesFirst[0] = unitName;
-					unitNamesFirst++;
-					unitCountsFirst[0] = previousName + 1;
+					unitNames[addedUnitCount] = node->getUnitName();
+					++unitCounts[addedUnitCount];
+					++addedUnitCount;
 				}
 			}
 		}
-
+		for (int i = 0; i < addedUnitCount - 1; ++i) {
+			for (int j = i + 1; j < addedUnitCount; ++j) {
+				if (unitCounts[i] > unitCounts[j]) {
+					int count     = unitCounts[i];
+					char* name    = unitNames[i];
+					unitCounts[i] = unitCounts[j];
+					unitNames[i]  = unitNames[j];
+					unitCounts[j] = count;
+					unitNames[j]  = name;
+				}
+			}
+		}
+		for (int i = 0; i < addedUnitCount; ++i) {
+			for (int j = 0; j < 4; ++j) {
+				for (MapNode* node = static_cast<MapNode*>(rootMapNode.mChild); node; node = static_cast<MapNode*>(node->mNext)) {
+					if (!strcmp(node->getUnitName(), unitNames[i])) {
+						node->del();
+						rootMapNode.add(node);
+					}
+				}
+			}
+			for (int j = 0; j < 4; ++j) {
+				CNode* node = rootMapNode.getChildAt(lastFourStart + randInt(4));
+				if (node) {
+					node->del();
+					rootMapNode.add(node);
+				}
+			}
+		}
 	} else {
 		int childCount;
 		for (int i = 0; i < (childCount = mUnitKindChildCounts[unitKind]); ++i) {
-			f32 randomIndex = randFloat() * static_cast<f32>(childCount);
-
-			CNode* selectedNode = rootMapNode.getChildAt(randomIndex);
-			if (selectedNode) {
-				selectedNode->del();
-				rootMapNode.add(selectedNode);
+			CNode* node = rootMapNode.getChildAt(randInt(childCount));
+			if (node) {
+				node->del();
+				rootMapNode.add(node);
 			}
 		}
 	}
@@ -2503,60 +2504,22 @@ void RandMapUnit::createLoopMapNodeCheck()
 	if (!mNeedsLoopMapNodeCheck) {
 		return;
 	}
-
 	mNeedsLoopMapNodeCheck = false;
-
-	int unclosedDoors;
-	Cave::MapNode* rootNode = mGenerator->mPlacedMapNodes;
-	for (Cave::MapNode* currentNode = static_cast<Cave::MapNode*>(rootNode->mChild); currentNode;
-	     currentNode                = static_cast<Cave::MapNode*>(currentNode->mNext)) {
-		for (int doorIdx = 0; doorIdx < currentNode->getNumDoors(); doorIdx++) {
-			if (currentNode->isDoorClose(doorIdx)) {
-				continue;
+	int unclosedDoors      = 0;
+	for (MapNode* node = static_cast<MapNode*>(mGenerator->mPlacedMapNodes->mChild); node; node = static_cast<MapNode*>(node->mNext)) {
+		for (int doorIndex = 0; doorIndex < node->getNumDoors(); ++doorIndex) {
+			if (!node->isDoorClose(doorIndex)) {
+				++unclosedDoors;
 			}
-
-			unclosedDoors++;
 		}
 	}
-
-	for (int doorIdx = 0; doorIdx < unclosedDoors; ++doorIdx) {
-		if (mCapCandidateCount >= 16) {
-			continue;
-		}
-
-		f32 x = randWeightFloat(1.0f);
-		if (x < mCapMax) {
-			Cave::MapNode* selectedNode = nullptr;
-
-			rootNode = mGenerator->mPlacedMapNodes;
-			for (Cave::MapNode* currentNode = static_cast<Cave::MapNode*>(rootNode->mChild); currentNode;
-			     currentNode                = static_cast<Cave::MapNode*>(currentNode->mNext)) {
-
-				int unclosedDoorIdx;
-				for (int doorIdx = 0;; ++doorIdx) {
-					if (doorIdx == currentNode->getNumDoors()) {
-						break;
-					}
-
-					if (currentNode->isDoorClose(doorIdx)) {
-						continue;
-					}
-
-					if (unclosedDoorIdx == doorIdx) {
-						Cave::MapNode* node = (Cave::MapNode*)currentNode->getDoorNode(doorIdx);
-
-						int x, y;
-						node->getDoorOffset(doorIdx, x, y);
-						if (node->getNumDoors()) {
-							mCapCandidateNodes[mCapCandidateCount]         = node;
-							mCapCandidateDoorIndices[mCapCandidateCount++] = doorIdx;
-							break;
-						}
-					}
-
-					++unclosedDoorIdx;
-				}
-			}
+	for (int i = 0; i < unclosedDoors; ++i) {
+		if (mCapCandidateCount < 16 && randWeightFloat(1.0f) < mCapMax) {
+			int doorIndex, x, y;
+			MapNode* node = findUnblockedMapNode(static_cast<MapNode*>(mGenerator->mPlacedMapNodes->mChild), doorIndex, x, y, i);
+			mCapCandidateNodes[mCapCandidateCount]       = node;
+			mCapCandidateDoorIndices[mCapCandidateCount] = doorIndex;
+			++mCapCandidateCount;
 		}
 	}
 	/*

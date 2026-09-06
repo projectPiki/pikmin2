@@ -138,7 +138,7 @@ void TChallengePiki::update()
 					}
 					mPosInfo[i].mCurrentPos.x = -(mPosInfo[i].mDeviation.x * sinf(mPosInfo[i].mTimer) - mPosInfo[i].mInitialPos.x);
 					mPosInfo[i].mCurrentPos.y
-					    = (FABS(sinf(mPosInfo[i].mTimer * 2.0f) * mPosInfo[i].mDeviation.y) - mPosInfo[i].mInitialPos.y);
+					    = (mPosInfo[i].mInitialPos.y - FABS(sinf(mPosInfo[i].mTimer * 2.0f) * mPosInfo[i].mDeviation.y));
 				}
 				break;
 			case 1:
@@ -620,7 +620,7 @@ void TChallengeDoping::update()
 	if (mCurrentFillLevel > 1.0f) {
 		mCurrentFillLevel = 1.0f;
 	}
-	mPaneBase->updateScale(mCurrentFillLevel);
+	mPaneBase->updateScale(1.0f, mCurrentFillLevel);
 
 	f32 calc = mCurrentFillLevel * 3.0f;
 	mBubblePanes[0]->hide();
@@ -769,9 +769,9 @@ void TChallengePanel::update(int index, bool flag)
 	int id = mIndex;
 	// this is wrong, I hate it here
 	int a2 = (index / 5);
-	int a1 = (a2 % 5);
+	int a1 = (index % 5);
 	int a4 = (id / 5);
-	int a3 = (a4 % 5);
+	int a3 = (id % 5);
 
 	if (index != id) {
 		if (a1 == a3) {
@@ -1497,8 +1497,8 @@ void TChallengePlayModeScreen::draw(Graphics& gfx, J2DPerspGraph* persp)
 		// player 1 olimar
 		J2DPane* pic2 = mPaneOlimarP1;
 		GXSetScissor(TChallengeSelect::mMetOffset._00 + pic2->mGlobalMtx[0][3],
-		             pic->getHeight() * (1.0f - mAlphaTimer) * pic2->getScaleY() * 1.1f + TChallengeSelect::mMetOffset._04
-		                 + pic2->mGlobalMtx[1][3],
+		             (1.0f - mAlphaTimer) * (pic->getHeight() * pic2->getScaleY() * 1.1f)
+		                 + (TChallengeSelect::mMetOffset._04 + pic2->mGlobalMtx[1][3]),
 		             pic->getWidth() * pic2->getScaleX() * 1.1f, pic->getHeight() * pic2->getScaleY() * 1.1f);
 		pic  = mSphereTex;
 		pic2 = mPaneOlimarP1;
@@ -1509,11 +1509,11 @@ void TChallengePlayModeScreen::draw(Graphics& gfx, J2DPerspGraph* persp)
 		pic  = mSphereTex;
 		pic2 = mPaneLouie;
 		GXSetScissor(TChallengeSelect::mMetOffset._00 + pic2->mGlobalMtx[0][3],
-		             pic->getHeight() * (1.0f - mAlphaTimer) * pic2->getScaleY() * 1.1f + TChallengeSelect::mMetOffset._04
-		                 + pic2->mGlobalMtx[1][3],
-		             pic->getWidth() * pic2->getScaleX() * 1.1f, pic->getHeight() * pic2->getScaleY() * 1.1f);
+		             (1.0f - mScale) * (pic->getHeight() * pic2->getScaleY() * 1.1f)
+		                 + (TChallengeSelect::mMetOffset._04 + pic2->mGlobalMtx[1][3]),
+		             (pic->getWidth() * pic2->getScaleX() * 1.1f) * 0.5f, pic->getHeight() * pic2->getScaleY() * 1.1f);
 		pic  = mSphereTex;
-		pic2 = mPaneOlimarP1;
+		pic2 = mPaneLouie;
 		pic->draw(TChallengeSelect::mMetOffset._00 + pic2->mGlobalMtx[0][3], TChallengeSelect::mMetOffset._04 + pic2->mGlobalMtx[1][3],
 		          pic->getWidth() * pic2->getScaleX() * 1.1f, pic->getHeight() * pic2->getScaleY() * 1.1f, false, false, false);
 		mSphereTex->calcMtx();
@@ -1546,9 +1546,9 @@ void TChallengePlayModeScreen::draw(Graphics& gfx, J2DPerspGraph* persp)
 		pic  = mSphereTex;
 		pic2 = mPaneLouie;
 		GXSetScissor(TChallengeSelect::mMetOffset._00 + pic2->mGlobalMtx[0][3],
-		             pic->getHeight() * (1.0f - mAlphaTimer) * pic2->getScaleY() * 1.1f + TChallengeSelect::mMetOffset._04
-		                 + pic2->mGlobalMtx[1][3],
-		             pic->getWidth() * pic2->getScaleX() * 1.1f, pic->getHeight() * pic2->getScaleY() * 1.1f);
+		             (1.0f - mScale) * (pic->getHeight() * pic2->getScaleY() * 1.1f)
+		                 + (TChallengeSelect::mMetOffset._04 + pic2->mGlobalMtx[1][3]),
+		             (pic->getWidth() * pic2->getScaleX() * 1.1f) * 0.5f, pic->getHeight() * pic2->getScaleY() * 1.1f);
 		pic  = mSphereTex;
 		pic2 = mPaneOlimarP2;
 		pic->draw(TChallengeSelect::mMetOffset._00 + pic2->mGlobalMtx[0][3], TChallengeSelect::mMetOffset._04 + pic2->mGlobalMtx[1][3],
@@ -2679,19 +2679,22 @@ bool TChallengeSelect::doUpdate()
 		f32 calc  = 1.0f - mLevelNameMoveTimer;
 		switch (mLevelNameMoveState) {
 		case 0:
-			XGoal = 1.3f;
+			YGoal = 1.3f;
 			break;
 		case 1:
-			XGoal = -1.3f;
+			YGoal = -1.3f;
 			break;
 		case 2:
-			YGoal = 1.25f;
+			XGoal = 1.25f;
 			break;
 		case 3:
-			YGoal = -1.25f;
+			XGoal = -1.25f;
 			break;
 		}
-		mPaneLevelName[i]->addOffset(calc * XGoal * mPaneLevelName[i]->getWidth(), calc * YGoal * mPaneLevelName[i]->getHeight());
+		J2DPane* namePane   = mPaneLevelName[i];
+		namePane->mOffset.x = calc * (XGoal * namePane->getWidth()) + namePane->mOffset.x;
+		namePane->mOffset.y = calc * (YGoal * namePane->getHeight()) + namePane->mOffset.y;
+		namePane->calcMtx();
 	}
 
 	// when in the entering demo, rotate the circular selection effect in the X axis

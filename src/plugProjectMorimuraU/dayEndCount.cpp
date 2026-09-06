@@ -106,7 +106,7 @@ bool TDayEndCount::doUpdate()
 {
 	if (mIsSection) {
 		mDispMember->mCurrSunRatio += 0.0001f;
-		if (1.0f > mDispMember->mCurrSunRatio) {
+		if (mDispMember->mCurrSunRatio > 1.0f) {
 			mDispMember->mCurrSunRatio = mDispMember->mDuration;
 		}
 		if (mDispMember->mCurrSunRatio < mDispMember->mDuration) {
@@ -115,7 +115,7 @@ bool TDayEndCount::doUpdate()
 	}
 
 	f32 calc = (1.0f - mDispMember->mCurrSunRatio) / (1.0f - mDispMember->mDuration);
-	if (mIsSection || calc < 0.01f) {
+	if (!mIsSection && calc < 0.01f) {
 		return true;
 	}
 
@@ -179,6 +179,7 @@ bool TDayEndCount::doUpdate()
 		mDoPlaySE = false;
 	}
 
+	u32 texAlpha = alpha;
 	if (id >= 0 && (u8)alpha <= 100) {
 		alpha = 100;
 	}
@@ -189,13 +190,14 @@ bool TDayEndCount::doUpdate()
 		case 0:
 		case 1:
 		case 2:
+		case 3:
 			mColor.r = 255;
 			mColor.g = 100;
 			mColor.b = 0;
 			break;
-		case 3:
 		case 4:
 		case 5:
+		case 6:
 			mColor.r = 255;
 			mColor.g = 255;
 			mColor.b = 0;
@@ -213,10 +215,17 @@ bool TDayEndCount::doUpdate()
 		mTextPane->setWhite(color);
 	}
 
-	mTexCoords1[0] = mTexCoords2[0];
-	mTexCoords1[1] = mTexCoords2[1];
-	mTexCoords1[2] = mTexCoords2[2];
-	mTexCoords1[3] = mTexCoords2[3];
+	f32 angle        = TAU * 2.0f * (u8)texAlpha / mAlphaMax;
+	f32 xoffs        = sinf(angle) * 5.0f;
+	f32 yoffs        = cosf(angle) * 5.0f;
+	mTexCoords1[0].x = mTexCoords2[0].x - xoffs;
+	mTexCoords1[0].y = mTexCoords2[0].y - yoffs;
+	mTexCoords1[1].x = mTexCoords2[1].x + xoffs;
+	mTexCoords1[1].y = mTexCoords2[1].y - yoffs;
+	mTexCoords1[2].x = mTexCoords2[2].x + xoffs;
+	mTexCoords1[2].y = mTexCoords2[2].y + yoffs;
+	mTexCoords1[3].x = mTexCoords2[3].x - xoffs;
+	mTexCoords1[3].y = mTexCoords2[3].y + yoffs;
 	mCurrNumberPane->setTexCoord(mTexCoords1);
 
 	if (mMode) {

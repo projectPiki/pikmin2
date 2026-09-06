@@ -3,7 +3,7 @@
 #include "JSystem/J3D/J3DAnmLoader.h"
 #include "JSystem/J3D/J3DModelLoader.h"
 #include "Game/GameSystem.h"
-#include "JSystem/JStudio/stb-data-parse.h"
+#include "JSystem/JStudio/stb.h"
 #include "Viewport.h"
 #include "nans.h"
 
@@ -28,15 +28,16 @@ ObjectActor::ObjectActor(char const* name, MoviePlayer* movie)
     , mTranslation(govNAN_)
     , mRotation(govNAN_)
     , mScaling(govNAN_)
-    , mShape(*(u32*)&govNAN_.x) // these should be gu32NAN but it wont cooperate
-    , mAnimation(*(u32*)&govNAN_.x)
     , mAnimFrame(gfNAN_)
     , mAnimFrameMax(gfNAN_)
-    , mModelFileId(*(u32*)&govNAN_.x)
-    , mAnimationFileId(*(u32*)&govNAN_.x)
 {
 
-	mArchive = MoviePlayer::mArchive;
+	u32 invalid      = gu32NAN_.a;
+	mShape           = invalid;
+	mAnimation       = invalid;
+	mModelFileId     = invalid;
+	mAnimationFileId = invalid;
+	mArchive         = MoviePlayer::mArchive;
 }
 
 /**
@@ -321,30 +322,43 @@ void ObjectActor::mountArchive()
  */
 void ObjectActor::parseUserData_(u32 p1, void const* p2)
 {
-	OSReport("data-ID : %u (0x%08x)\n", p1, p2);
-	JStudio::stb::data::TParse_TParagraph_data v1(p2);
-	JStudio::stb::data::TParse_TParagraph_data::TData v2;
-	v1.getData(&v2);
-	if (v2.mStatus == 0) {
+	OSReport("data-ID : %u (0x%08x)\n", p1, (u32)p2);
+	typedef JGadget::binary::TValueIterator_misaligned<s16> IntIterator;
+	JStudio::stb::TParseData_fixed<0x22, IntIterator> ints(p2);
+	if (ints.isEnd()) {
 		return;
 	}
-	if (v2.mData == 0 || v2.mStatus != 0x22 || v2.mDataBlockEnd == nullptr) {
+	if (!ints.isValid()) {
 		return;
 	}
-
-	OSReport("int16:%d,%d,%d\n");
-	OSReport("char:%d,%c,%c\n");
-
-	JStudio::stb::data::TParse_TParagraph_data v4(p2);
-	JStudio::stb::data::TParse_TParagraph_data::TData v3;
-	v4.getData(&v3);
-	if (v3.mData && v3.isLoaded()) {
-		char* str = (char*)v3.mFileCount;
-		for (int i = 0; i < v3.mDataSize;) {
-			OSReport("string:%u,%s\n", i, str);
-			i++;
-			str = strchr(str, 0) + 1;
-		}
+	IntIterator i(ints.begin());
+	for (; i != ints.end(); ++i) {
+		OSReport("int16:%d,%d,%d\n", i - ints.begin(), *i, ints.begin()[i - ints.begin()]);
+	}
+	typedef JGadget::binary::TValueIterator_misaligned<char> CharIterator;
+	JStudio::stb::TParseData_fixed<0x51, CharIterator> chars(i.get());
+	if (chars.isEnd()) {
+		return;
+	}
+	if (!chars.isValid()) {
+		return;
+	}
+	CharIterator c(chars.begin());
+	for (; c != chars.end(); ++c) {
+		OSReport("char:%d,%c,%c\n", c - chars.begin(), *c, chars.begin()[c - chars.begin()]);
+	}
+	JStudio::stb::TParseData_string strings(c.get());
+	if (strings.isEnd()) {
+		return;
+	}
+	if (!strings.isValid()) {
+		return;
+	}
+	const char* str = strings.getData();
+	for (u32 n = 0; n < strings.size();) {
+		OSReport("string:%u,%s\n", n, str);
+		n++;
+		str = strchr(str, 0) + 1;
 	}
 	/*
 	stwu     r1, -0xb0(r1)

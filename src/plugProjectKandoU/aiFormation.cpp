@@ -308,7 +308,7 @@ int PikiAI::ActFormation::exec()
 		return ACTEXEC_Fail;
 	}
 
-	bool cstickTest = mParent->mNavi->isCStickNetural();
+	bool isCStickNeutral = mParent->mNavi->isCStickNetural();
 	JUT_ASSERTLINE(661, mCPlate->validSlot(mSlotID), "invalid slotId!\n");
 
 	Vector3f slotPos; // 0x138
@@ -472,13 +472,13 @@ int PikiAI::ActFormation::exec()
 
 		if (plateSep.dot(naviPikiSep) > 0.0f) {
 			Vector3f impulse = Vector3f(-naviPikiSep.z, 0.0f, naviPikiSep.x); // f29, f27, f30
-			if (mSlotID & 1) {
+			if (!(mSlotID & 1)) {
 				impulse.negate();
 			}
 
 			impulse.normalise();
 
-			if (newVer && cstickTest) {
+			if (newVer && !isCStickNeutral) {
 				impulse = Vector3f(0.0f);
 			}
 
@@ -498,13 +498,13 @@ int PikiAI::ActFormation::exec()
 
 		if (plateSep.dot(naviPikiSep) > 0.0f) {
 			Vector3f impulse = Vector3f(-naviPikiSep.z, 0.0f, naviPikiSep.x); // f29, f27, f30
-			if (mSlotID & 1) {
+			if (!(mSlotID & 1)) {
 				impulse.negate();
 			}
 
 			impulse.normalise();
 
-			if (newVer && cstickTest) {
+			if (newVer && !isCStickNeutral) {
 				impulse = Vector3f(0.0f);
 			}
 

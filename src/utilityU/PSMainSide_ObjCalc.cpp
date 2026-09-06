@@ -40,12 +40,11 @@ void ObjCalc_2PGame::newInstance_2PGame()
 	new ObjCalc_2PGame;
 }
 
-inline f32 VecDistance(Vec& a, Vec b)
+inline f32 VecDistance(Vec& a, Vector3f b)
 {
-	volatile f32 x = a.x - b.x;
-	volatile f32 y = a.y - b.y;
-	volatile f32 z = a.z - b.z;
-	return SQUARE(x) + SQUARE(y) + SQUARE(z);
+	Vector3f delta   = Vector3f(a) - Vector3f(b);
+	Vector3f squares = delta * delta;
+	return squares.z + (squares.x + squares.y);
 }
 
 /**
@@ -59,7 +58,6 @@ u8 ObjCalc_2PGame::getPlayerNo(Vec& pos)
 		return 0;
 
 	case OBJCALC_0:
-		Vec vnpos[4];
 		f32 dists[2] = { 100000.0f, 1000000.0f };
 		Iterator<Game::Navi> it(Game::naviMgr);
 		int i = 0;
@@ -67,16 +65,13 @@ u8 ObjCalc_2PGame::getPlayerNo(Vec& pos)
 		{
 			Game::Navi* navi = *it;
 			Vector3f npos    = navi->getPosition();
-			vnpos[i].x       = npos.x;
-			vnpos[i].y       = npos.y;
-			vnpos[i].z       = npos.z;
-			P2ASSERTLINE(65, vnpos != 0);
+			P2ASSERTLINE(65, &npos != 0);
 			P2ASSERTLINE(66, i < 2);
 
-			dists[i] = VecDistance(pos, vnpos[i]);
+			dists[i] = VecDistance(pos, npos);
 			i++;
 		}
-		return bool(dists[0] < dists[1]);
+		return !(dists[0] < dists[1]);
 	default:
 		P2ASSERTLINE(77, false);
 		return 0;

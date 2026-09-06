@@ -9,6 +9,7 @@ namespace PSSystem {
 inline PSM::SceneBase* checkGameScene(Scene* scene)
 {
 	P2ASSERTLINE(375, scene->toSceneBase()->isGameScene());
+	return scene->toSceneBase();
 }
 }; // namespace PSSystem
 

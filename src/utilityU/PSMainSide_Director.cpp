@@ -318,7 +318,7 @@ void ActorDirector_Scaled::execInner()
 f32 ActorDirector_Scaled::getNearestDistance()
 {
 	bool is1P   = PSSystem::SingletonBase<PSM::ObjCalcBase>::getInstance()->is1PGame();
-	f32 minDist = 100000.0f;
+	f32 minDist = 1000000.0f;
 	if (!is1P) {
 		Game::Navi* olimar = Game::naviMgr->getAt(NAVIID_Olimar);
 		Game::Navi* louie  = Game::naviMgr->getAt(NAVIID_Louie);
@@ -331,8 +331,14 @@ f32 ActorDirector_Scaled::getNearestDistance()
 		{
 			Game::Creature* obj = link->getObject();
 			Vector3f objpos     = obj->getPosition();
-			f32 p1Dist          = oPos.distance(objpos);
-			f32 p2Dist          = lPos.distance(objpos);
+			Vector3f p1Delta    = oPos - objpos;
+			Vector3f p1Squared  = p1Delta * p1Delta;
+			f32 p1Dist          = p1Squared.z + (p1Squared.x + p1Squared.y);
+			p1Dist              = sqrtf(p1Dist);
+			Vector3f p2Delta    = lPos - objpos;
+			Vector3f p2Squared  = p2Delta * p2Delta;
+			f32 p2Dist          = p2Squared.z + (p2Squared.x + p2Squared.y);
+			p2Dist              = sqrtf(p2Dist);
 			if (p1Dist <= p2Dist) {
 				if (p1Dist < minDist) {
 					onSetMinDistObj(obj);
@@ -359,13 +365,17 @@ f32 ActorDirector_Scaled::getNearestDistance()
 		{
 			Game::Creature* obj = link->getObject();
 			Vector3f objpos     = obj->getPosition();
-			f32 dist            = naviPos.distance(objpos);
+			Vector3f delta      = naviPos - objpos;
+			Vector3f squared    = delta * delta;
+			f32 dist            = squared.z + (squared.x + squared.y);
+			dist                = sqrtf(dist);
 			if (dist < minDist) {
 				minDist = dist;
 				onSetMinDistObj(obj);
 			}
 		}
 	}
+	return minDist;
 	/*
 	stwu     r1, -0x1d0(r1)
 	mflr     r0

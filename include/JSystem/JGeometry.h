@@ -311,7 +311,7 @@ struct TVec3 {
 			x = max.x;
 		if (y <= max.y)
 			y = max.y;
-		if (z >= max.z)
+		if (z <= max.z)
 			z = max.z;
 	}
 

@@ -32,7 +32,7 @@ struct ObjectSystem : public JStage::TSystem, public ObjectBase {
 
 	void erase(JGadget::TList<void*, JGadget::TVoidAllocator>::TNode_* node)
 	{
-		mObjListPointer.erase(JGadget::TList_pointer<JStudio::TObject*>::iterator(node));
+		mObjListPointer.erase(JGadget::TList_pointer<JStage::TObject*>::iterator(node));
 	}
 
 	// _00     = VTABLE (JStage::TSystem)

@@ -41,13 +41,11 @@ ObjectSystem::~ObjectSystem()
  */
 void ObjectSystem::destroyObjectAll()
 {
-	JGadget::TList<void*, JGadget::TVoidAllocator>::iterator iterStart(&mObjListPointer.mNode);
-	JGadget::TList<void*, JGadget::TVoidAllocator>::iterator iterEnd(mObjListPointer.mNode.mNext);
 	while (!mObjListPointer.empty()) {
-		JGadget::TList<void*, JGadget::TVoidAllocator>::TNode_* prev = iterStart.mNode->mPrev;
-		delete static_cast<JStage::TObject*>(prev->getElement());
-		prev->getElement() = nullptr;
-		erase(iterStart.mNode->mPrev);
+		JStage::TObject*& object = mObjListPointer.back();
+		delete object;
+		object = nullptr;
+		mObjListPointer.pop_back();
 	}
 	/*
 	stwu     r1, -0x30(r1)
@@ -108,8 +106,8 @@ lbl_80430AF4:
  */
 void ObjectSystem::reset()
 {
-	JGadget::TList<void*, JGadget::TVoidAllocator>::iterator iterStart(&mObjListPointer.mNode);
-	JGadget::TList<void*, JGadget::TVoidAllocator>::iterator iterEnd(mObjListPointer.mNode.mNext);
+	JGadget::TList_pointer<JStage::TObject*>::iterator iterStart = mObjListPointer.begin();
+	JGadget::TList_pointer<JStage::TObject*>::iterator iterEnd   = mObjListPointer.end();
 	while (iterStart != iterEnd) {
 		JStage::TObject* obj = static_cast<JStage::TObject*>(*iterStart);
 		switch (obj->JSGFGetType()) {
@@ -128,85 +126,8 @@ void ObjectSystem::reset()
 			break;
 		}
 
-		++iterStart; // probably something like this
+		++iterStart;
 	}
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	addi     r31, r3, 0x28
-	stw      r30, 0x28(r1)
-	lwz      r0, 0x28(r3)
-	stw      r31, 0xc(r1)
-	stw      r0, 0x14(r1)
-	stw      r0, 0x10(r1)
-	stw      r0, 0x24(r1)
-	stw      r31, 8(r1)
-	stw      r31, 0x20(r1)
-	stw      r31, 0x1c(r1)
-	b        lbl_80430BEC
-
-lbl_80430B5C:
-	lwz      r3, 0x24(r1)
-	lwz      r30, 8(r3)
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 3
-	beq      lbl_80430B9C
-	bge      lbl_80430B90
-	cmpwi    r3, 2
-	bge      lbl_80430BB4
-	b        lbl_80430BCC
-
-lbl_80430B90:
-	cmpwi    r3, 7
-	bge      lbl_80430BCC
-	b        lbl_80430BE0
-
-lbl_80430B9C:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0xc0(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80430BE0
-
-lbl_80430BB4:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80430BE0
-
-lbl_80430BCC:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80430BE0:
-	lwz      r3, 0x24(r1)
-	lwz      r0, 0(r3)
-	stw      r0, 0x24(r1)
-
-lbl_80430BEC:
-	lwz      r0, 0x24(r1)
-	cmplw    r0, r31
-	stw      r0, 0x18(r1)
-	bne      lbl_80430B5C
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /**
@@ -215,8 +136,8 @@ lbl_80430BEC:
  */
 void ObjectSystem::entry()
 {
-	JGadget::TList<void*, JGadget::TVoidAllocator>::iterator iterStart(&mObjListPointer.mNode);
-	JGadget::TList<void*, JGadget::TVoidAllocator>::iterator iterEnd(mObjListPointer.mNode.mNext);
+	JGadget::TList_pointer<JStage::TObject*>::iterator iterStart = mObjListPointer.begin();
+	JGadget::TList_pointer<JStage::TObject*>::iterator iterEnd   = mObjListPointer.end();
 	while (iterStart != iterEnd) {
 		JStage::TObject* obj = static_cast<JStage::TObject*>(*iterStart);
 		switch (obj->JSGFGetType()) {
@@ -225,61 +146,8 @@ void ObjectSystem::entry()
 			break;
 		}
 
-		++iterStart; // probably something like this
+		++iterStart;
 	}
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	addi     r31, r3, 0x28
-	stw      r30, 0x28(r1)
-	lwz      r0, 0x28(r3)
-	stw      r31, 0xc(r1)
-	stw      r0, 0x14(r1)
-	stw      r0, 0x10(r1)
-	stw      r0, 0x24(r1)
-	stw      r31, 8(r1)
-	stw      r31, 0x20(r1)
-	stw      r31, 0x1c(r1)
-	b        lbl_80430C98
-
-lbl_80430C50:
-	lwz      r3, 0x24(r1)
-	lwz      r30, 8(r3)
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 2
-	beq      lbl_80430C78
-	b        lbl_80430C8C
-
-lbl_80430C78:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0xb0(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80430C8C:
-	lwz      r3, 0x24(r1)
-	lwz      r0, 0(r3)
-	stw      r0, 0x24(r1)
-
-lbl_80430C98:
-	lwz      r0, 0x24(r1)
-	cmplw    r0, r31
-	stw      r0, 0x18(r1)
-	bne      lbl_80430C50
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /**
@@ -288,8 +156,8 @@ lbl_80430C98:
  */
 void ObjectSystem::update()
 {
-	JGadget::TList<void*, JGadget::TVoidAllocator>::iterator iterStart(&mObjListPointer.mNode);
-	JGadget::TList<void*, JGadget::TVoidAllocator>::iterator iterEnd(mObjListPointer.mNode.mNext);
+	JGadget::TList_pointer<JStage::TObject*>::iterator iterStart = mObjListPointer.begin();
+	JGadget::TList_pointer<JStage::TObject*>::iterator iterEnd   = mObjListPointer.end();
 	while (iterStart != iterEnd) {
 		JStage::TObject* obj = static_cast<JStage::TObject*>(*iterStart);
 		switch (obj->JSGFGetType()) {
@@ -304,7 +172,7 @@ void ObjectSystem::update()
 			break;
 		}
 
-		++iterStart; // probably something like this
+		++iterStart;
 	}
 	/*
 	stwu     r1, -0x30(r1)
@@ -379,8 +247,8 @@ lbl_80430D6C:
  */
 void ObjectSystem::start()
 {
-	JGadget::TList<void*, JGadget::TVoidAllocator>::iterator iterStart(&mObjListPointer.mNode);
-	JGadget::TList<void*, JGadget::TVoidAllocator>::iterator iterEnd(mObjListPointer.mNode.mNext);
+	JGadget::TList_pointer<JStage::TObject*>::iterator iterStart = mObjListPointer.begin();
+	JGadget::TList_pointer<JStage::TObject*>::iterator iterEnd   = mObjListPointer.end();
 	while (iterStart != iterEnd) {
 		JStage::TObject* obj = static_cast<JStage::TObject*>(*iterStart);
 		switch (obj->JSGFGetType()) {
@@ -395,7 +263,7 @@ void ObjectSystem::start()
 			break;
 		}
 
-		++iterStart; // probably something like this
+		++iterStart;
 	}
 	/*
 	stwu     r1, -0x30(r1)
@@ -470,8 +338,8 @@ lbl_80430E40:
  */
 void ObjectSystem::stop()
 {
-	JGadget::TList<void*, JGadget::TVoidAllocator>::iterator iterStart(&mObjListPointer.mNode);
-	JGadget::TList<void*, JGadget::TVoidAllocator>::iterator iterEnd(mObjListPointer.mNode.mNext);
+	JGadget::TList_pointer<JStage::TObject*>::iterator iterStart = mObjListPointer.begin();
+	JGadget::TList_pointer<JStage::TObject*>::iterator iterEnd   = mObjListPointer.end();
 	while (iterStart != iterEnd) {
 		JStage::TObject* obj = static_cast<JStage::TObject*>(*iterStart);
 		switch (obj->JSGFGetType()) {
@@ -486,7 +354,7 @@ void ObjectSystem::stop()
 			break;
 		}
 
-		++iterStart; // probably something like this
+		++iterStart;
 	}
 	/*
 	stwu     r1, -0x30(r1)
@@ -561,30 +429,18 @@ lbl_80430F14:
  */
 JStage::TObject* ObjectSystem::findObject(const char* name, JStage::TEObject type) const
 {
-	JGadget::TList<void*, JGadget::TVoidAllocator>::const_iterator iterStart(&mObjListPointer.mNode);
-	JGadget::TList<void*, JGadget::TVoidAllocator>::const_iterator iterEnd(mObjListPointer.mNode.mNext);
+	JGadget::TList_pointer<JStage::TObject*>::const_iterator iterStart = mObjListPointer.begin();
+	JGadget::TList_pointer<JStage::TObject*>::const_iterator iterEnd   = mObjListPointer.end();
 	while (iterStart != iterEnd) {
-		++iterStart; // probably
-
-		if (iterStart != iterEnd) {
-			JStage::TObject* obj = static_cast<JStage::TObject*>(*iterStart);
-			bool check;
-			if (!obj) {
-				check = false;
-			} else {
-				check = (strcmp(obj->JSGGetName(), name) == 0);
-			}
-			if (check) {
-				continue;
-			}
+		JStage::TObject* obj = static_cast<JStage::TObject*>(*iterStart);
+		if (obj && strcmp(obj->JSGGetName(), name) == 0) {
+			break;
 		}
-		break;
+		++iterStart;
 	}
-
 	if (iterStart != iterEnd) {
 		return static_cast<JStage::TObject*>(*iterStart);
 	}
-
 	return nullptr;
 	/*
 	stwu     r1, -0x60(r1)
@@ -673,8 +529,8 @@ lbl_80431020:
  */
 int ObjectSystem::JSGFindObject(JStage::TObject** outObject, const char* name, JStage::TEObject type) const
 {
-	JStage::TObject* obj = findObject(name, type);
-	const void* newObj   = obj;
+	JStage::TObject* obj    = findObject(name, type);
+	JStage::TObject* newObj = obj;
 	if (obj) {
 		*outObject = obj;
 		return 0;
@@ -691,7 +547,7 @@ int ObjectSystem::JSGFindObject(JStage::TObject** outObject, const char* name, J
 			if (actor) {
 				newObj = new ObjectGameActor(name, mMoviePlayer, actor);
 			}
-		} else if (name[0] == 'p') {
+		} else {
 			newObj = new ObjectActor(name, mMoviePlayer);
 		}
 		break;
@@ -699,16 +555,17 @@ int ObjectSystem::JSGFindObject(JStage::TObject** outObject, const char* name, J
 		newObj = new ObjectCamera(name, mMoviePlayer);
 		break;
 	default:
-		JGadget::TList<void*, JGadget::TVoidAllocator>::const_iterator iterStart(&mObjListPointer.mNode);
-		JGadget::TList<void*, JGadget::TVoidAllocator>::const_iterator iterEnd(mObjListPointer.mNode.mNext);
+		JGadget::TList_pointer<JStage::TObject*>::const_iterator iterStart = mObjListPointer.begin();
+		JGadget::TList_pointer<JStage::TObject*>::const_iterator iterEnd   = mObjListPointer.end();
 		while (iterStart != iterEnd) {
 			JStage::TObject* obj = static_cast<JStage::TObject*>(*iterStart);
 			obj->JSGGetName(); // debug probably
 
-			++iterStart; // probably, eventually
+			++iterStart;
 		}
-		JUT_PANICLINE(449, "JSGFindObject---- %d not found\n");
+		JUT_PANICLINE(449, "JSGFindObject---- %d not found\n", type);
 		break;
+	case JStage::TEO_System:
 	case JStage::TEO_AmbientLight:
 	case JStage::TEO_Light:
 	case JStage::TEO_Fog:
@@ -716,18 +573,11 @@ int ObjectSystem::JSGFindObject(JStage::TObject** outObject, const char* name, J
 	}
 
 	if (newObj) {
-		JGadget::TList<void*, JGadget::TVoidAllocator>::iterator iterStart(
-		    const_cast<JGadget::TList<void*>::TNode_*>(&mObjListPointer.mNode));
-		void* const& val = &newObj;
-		// mObjListPointer.insert(iterStart, 0, val);
+		JGadget::TList_pointer<JStage::TObject*>& objects = const_cast<JGadget::TList_pointer<JStage::TObject*>&>(mObjListPointer);
+		objects.insert(objects.end(), newObj);
 	}
-
-	*outObject = *(JStage::TObject**)newObj;
-	if (!*(JStage::TObject**)newObj) {
-		return 2;
-	}
-
-	return 0;
+	*outObject = newObj;
+	return newObj ? 0 : 2;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0xB0(r1)

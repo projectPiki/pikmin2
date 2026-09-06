@@ -299,7 +299,7 @@ void PodIconScreen::update()
 			f32 factor        = (newDiff.x * mMomentum.x + newDiff.y * mMomentum.y + newDiff.z * mMomentum.z + 1.0f) * 0.5f;
 			f32 momentumScale = ((1.0f - factor) + 1.0f) * 0.2f;
 
-			factor = factor * factor * 0.35f * length;
+			factor = 0.35f * (length * (factor * factor));
 
 			newDiff.x *= momentumScale;
 			newDiff.y *= momentumScale;
@@ -1319,7 +1319,18 @@ TControl::EModeFlag TControl::setMode(EModeFlag mode)
 		windowPane->mTimer           = 0.0f;
 		windowPane->mMaxTime         = 0.5f;
 		PodIconScreen* podIconScreen = mPodIcon;
-		if ((randFloat() * 2.0f)) {
+		switch (int(randFloat() * 2.0f)) {
+		case 0: {
+			_GXRenderModeObj* renderObj = System::getRenderModeObj();
+			u16 efbHeight               = renderObj->efbHeight;
+			renderObj                   = System::getRenderModeObj();
+			u16 fbWidth                 = renderObj->fbWidth;
+			podIconScreen->mPosition.x  = (randFloat() * 0.5f + 0.3f) * fbWidth;
+			podIconScreen->mPosition.y  = -efbHeight * 1.25f;
+			podIconScreen->mPosition.z  = 100.0f;
+			break;
+		}
+		case 1: {
 			_GXRenderModeObj* renderObj = System::getRenderModeObj();
 			u16 efbHeight               = renderObj->efbHeight;
 			renderObj                   = System::getRenderModeObj();
@@ -1327,21 +1338,14 @@ TControl::EModeFlag TControl::setMode(EModeFlag mode)
 			podIconScreen->mPosition.x  = (randFloat() * 0.5f + 0.3f) * fbWidth;
 			podIconScreen->mPosition.y  = efbHeight * 0.65f;
 			podIconScreen->mPosition.z  = 100.0f;
-		} else {
-			_GXRenderModeObj* renderObj = System::getRenderModeObj();
-			u16 efbHeight               = renderObj->efbHeight;
-			renderObj                   = System::getRenderModeObj();
-			u16 fbWidth                 = renderObj->fbWidth;
-			podIconScreen->mPosition.x  = (randFloat() * 0.5f + 0.3f) * fbWidth;
-			podIconScreen->mPosition.y  = efbHeight * 1.25f;
-			podIconScreen->mPosition.z  = 100.0f;
 		}
+		}
+		f32 momentumY              = randFloat();
 		podIconScreen->mMomentum.x = randFloat() * 0.5f + 0.5f;
-		podIconScreen->mMomentum.y = rand();
+		podIconScreen->mMomentum.y = momentumY;
 		podIconScreen->mMomentum.z = 0.0f;
 		podIconScreen->mMomentum.normalise();
 		podIconScreen->mState = 2;
-		mMessageWindow->mWindowPane->close(0.5f);
 		break;
 	}
 	return oldMode;

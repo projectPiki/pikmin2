@@ -929,18 +929,19 @@ void VsGame::CardMgr::drawSlot(Graphics& gfx, Vector3f& place, SlotMachine& mach
 
 	f32 spinAngle = machine.mSpinAngle;
 	Vector3f pos  = place;
+	pos.x += machine.mAppearValue;
 	gfx.initPrimDraw(0);
 	gfx.mDrawColor = Color4(250, 250, 250, 255);
 	GXSetLineWidth(40, GX_TO_ZERO);
 	gfx.mOrthoGraph.setPort();
 	Matrixf* matrix = (Matrixf*)&gfx.mOrthoGraph.mPosMtx;
-	Matrixf mtxCopy1;
-	Matrixf mtxCopy2;
+	Matrixf modelMtx;
+	Matrixf drawMtx;
 	Vector3f vec = Vector3f(spinAngle + PI / CARD_ID_COUNT, 0.0f, 0.0f);
-	matrix->makeTR(pos, vec);
-	PSMTXConcat(*(Mtx*)matrix, *(Mtx*)&mtxCopy1, *(Mtx*)&mtxCopy2);
-	GXLoadPosMtxImm(*(Mtx*)&mtxCopy2, 0);
-	GXLoadNrmMtxImm(*(Mtx*)&mtxCopy2, 0);
+	modelMtx.makeTR(pos, vec);
+	PSMTXConcat(*(Mtx*)matrix, *(Mtx*)&modelMtx, *(Mtx*)&drawMtx);
+	GXLoadPosMtxImm(*(Mtx*)&drawMtx, 0);
+	GXLoadNrmMtxImm(*(Mtx*)&drawMtx, 0);
 	GXSetNumTevStages(1);
 	GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_ZERO, GX_CC_TEXC, GX_CC_RASC, GX_CC_ZERO);
 	GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
@@ -973,34 +974,30 @@ void VsGame::CardMgr::drawSlot(Graphics& gfx, Vector3f& place, SlotMachine& mach
 	GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX3X4, GX_TG_TEXCOORD0, 0x3c, 0, 0x7d);
 	GXSetCullMode(GX_CULL_BACK);
 
-	int cardNum = CARD_ID_COUNT;
-
-	// r21 - this
-
-	// r29 - i ?
-
 	for (int i = 0; i < CARD_ID_COUNT; i++) {
 		mSlotTextures[i]->load(GX_TEXMAP0);
-		int vectorsPerCard = 0x100 / CARD_ID_COUNT;
-		for (int j = 0; j < 0x40; j += 0x4) {
+		for (int j = 0; j < 32; j++) {
+			int index = i * 64 + j * 2;
+			f32 t0    = (j + 1) * (1.0f / 32.0f);
+			f32 t1    = t0 + (1.0f / 32.0f);
 
-			GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 0x4);
+			GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 4);
 
-			vert(mPointCount / i - j * mPointCount);
-			norm(mPointCount / i - j * mPointCount);
-			GXTexCoord2f32(0.0f, 0.0f);
+			vert(index % mPointCount);
+			norm(index % mPointCount);
+			GXTexCoord2f32(0.0f, t0);
 
-			vert(mPointCount / i - j * mPointCount);
-			norm(mPointCount / i - j * mPointCount);
-			GXTexCoord2f32(0.0f, 0.0f);
+			vert((index + 1) % mPointCount);
+			norm((index + 1) % mPointCount);
+			GXTexCoord2f32(1.0f, t0);
 
-			vert(mPointCount / i - j * mPointCount);
-			norm(mPointCount / i - j * mPointCount);
-			GXTexCoord2f32(0.0f, 0.0f);
+			vert((index + 2) % mPointCount);
+			norm((index + 2) % mPointCount);
+			GXTexCoord2f32(0.0f, t1);
 
-			vert(mPointCount / i - j * mPointCount);
-			norm(mPointCount / i - j * mPointCount);
-			GXTexCoord2f32(0.0f, 0.0f);
+			vert((index + 3) % mPointCount);
+			norm((index + 3) % mPointCount);
+			GXTexCoord2f32(1.0f, t1);
 		}
 	}
 
@@ -1015,7 +1012,8 @@ void VsGame::CardMgr::drawSlot(Graphics& gfx, Vector3f& place, SlotMachine& mach
 	if (machine._38 != 0 && machine._51) {
 		newvec = pos;
 		if (gGameConfig.mParms.mVsY.mData != 0) {
-			newvec = Vector3f(place.z, place.y, machine.mAppearValue / 2 + place.x);
+			newvec = place;
+			newvec.x += machine.mAppearValue * 0.5f;
 		}
 
 		GXSetChanMatColor(GX_COLOR0A0, (JUtility::TColor)0xffffffff);
@@ -1023,10 +1021,10 @@ void VsGame::CardMgr::drawSlot(Graphics& gfx, Vector3f& place, SlotMachine& mach
 		Matrixf matrix2;
 		Vector3f anotherVec = Vector3f(0.0f, 0.0f, machine.mRotationZ);
 		matrix2.makeTR(newvec, anotherVec);
-		Matrixf* anotherMtx = new Matrixf;
-		PSMTXConcat(*(Mtx*)matrix, *(Mtx*)&matrix2, *(Mtx*)anotherMtx);
-		GXLoadPosMtxImm(*(Mtx*)anotherMtx, 0);
-		GXLoadNrmMtxImm(*(Mtx*)anotherMtx, 0);
+		Matrixf anotherMtx;
+		PSMTXConcat(*(Mtx*)matrix, *(Mtx*)&matrix2, *(Mtx*)&anotherMtx);
+		GXLoadPosMtxImm(*(Mtx*)&anotherMtx, 0);
+		GXLoadNrmMtxImm(*(Mtx*)&anotherMtx, 0);
 		JUTASSERTBOUNDSLINE(1818, 0, machine._4C, CARD_ID_COUNT, "%d");
 		mSlotTextures[machine._4C]->load(GX_TEXMAP0);
 		GXSetTevOp(GX_TEVSTAGE0, GX_MODULATE);
@@ -1051,7 +1049,8 @@ void VsGame::CardMgr::drawSlot(Graphics& gfx, Vector3f& place, SlotMachine& mach
 		GXSetTevAlphaIn(GX_TEVSTAGE1, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO, GX_CA_APREV);
 		GXSetTevAlphaOp(GX_TEVSTAGE1, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
 
-		GXSetTevColor(GX_TEVREG1, (JUtility::TColor)0x00000000);
+		u8 highlight = (1.0f - cosf(machine._6C * TAU)) * 127.5;
+		GXSetTevColor(GX_TEVREG1, JUtility::TColor(highlight, highlight, highlight, highlight));
 
 		if (machine._68 > 1.0f) {
 			machine._68 -= 1.0f;
@@ -1103,19 +1102,57 @@ void VsGame::CardMgr::drawSlot(Graphics& gfx, Vector3f& place, SlotMachine& mach
 
 		if (gGameConfig.mParms.mVsY.mData == 0 && machine._38 != 0 && machine._51) {
 			mYButtonTexture->load(GX_TEXMAP0);
-			GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 0x4);
+			f32 extent = machine._48 * 2.0f;
+			f32 left   = -extent - 7.0f;
+			f32 right  = extent - 7.0f;
+			f32 top    = -extent * 0.35f - 39.0f;
+			f32 bottom = extent * 0.35f - 39.0f;
+			GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 4);
+			GXPosition3f32(left, top, 0.0f);
+			GXNormal3f32(0.0f, 0.0f, 1.0f);
+			GXTexCoord2f32(0.0f, 0.0f);
+			GXPosition3f32(right, top, 0.0f);
+			GXNormal3f32(0.0f, 0.0f, 1.0f);
+			GXTexCoord2f32(1.0f, 0.0f);
+			GXPosition3f32(left, bottom, 0.0f);
+			GXNormal3f32(0.0f, 0.0f, 1.0f);
+			GXTexCoord2f32(0.0f, 1.0f);
+			GXPosition3f32(right, bottom, 0.0f);
+			GXNormal3f32(0.0f, 0.0f, 1.0f);
+			GXTexCoord2f32(1.0f, 1.0f);
 		}
 	} // end "if (machine._38 != 0 && machine._51)"
 
-	f32 machineY;
+	GXSetChanMatColor(GX_COLOR0A0, (JUtility::TColor)0xffffffff);
+	GXSetZMode(0, GX_LESS, 0);
+	GXLoadPosMtxImm(*(Mtx*)matrix, 0);
+	GXLoadNrmMtxImm(*(Mtx*)matrix, 0);
 
-	if (machine.mPlayerIndex == 0) {
-		machineY = 115.0f;
-	} else {
-		machineY = 315.0f;
+	f32 machineY = (machine.mPlayerIndex == 0) ? 115.0f : 315.0f;
+	f32 lampX    = 515.0f - 22.4f;
+	f32 lampY    = machineY - 80.0f;
+	for (int i = 0; i < 4; i++) {
+		JUTTexture* texture = (i < machine.mCherryStock) ? mLampOnTexture : mLampOffTexture;
+		texture->load(GX_TEXMAP0);
+		f32 left   = lampX - 8.0f;
+		f32 right  = lampX + 8.0f;
+		f32 top    = lampY - 8.0f;
+		f32 bottom = lampY + 8.0f;
+		GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 4);
+		GXPosition3f32(left, top, 0.0f);
+		GXNormal3f32(0.0f, 0.0f, 1.0f);
+		GXTexCoord2f32(0.0f, 0.0f);
+		GXPosition3f32(right, top, 0.0f);
+		GXNormal3f32(0.0f, 0.0f, 1.0f);
+		GXTexCoord2f32(1.0f, 0.0f);
+		GXPosition3f32(left, bottom, 0.0f);
+		GXNormal3f32(0.0f, 0.0f, 1.0f);
+		GXTexCoord2f32(0.0f, 1.0f);
+		GXPosition3f32(right, bottom, 0.0f);
+		GXNormal3f32(0.0f, 0.0f, 1.0f);
+		GXTexCoord2f32(1.0f, 1.0f);
+		lampX += 16.0f;
 	}
-
-	for (int i = 0; i < 4; i++) { }
 }
 
 /**

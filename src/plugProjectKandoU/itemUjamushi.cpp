@@ -450,7 +450,7 @@ void Uja::update(BoidParms& parms)
 
 	Iterator<Navi> naviIt(naviMgr);
 	scale               = (scale + 6.0f) + 6.0f;
-	Vector3f naviResult = 0.0f;
+	Vector3f naviResult = Vector3f(0.0f);
 	CI_LOOP(naviIt)
 	{
 		Navi* navi = *naviIt;
@@ -477,7 +477,7 @@ void Uja::update(BoidParms& parms)
 	if (mClosePikiBuffer[0] && mClosePikiBuffer[0]->isAlive()) {
 		Vector3f posDiff = mClosePikiBuffer[0]->getPosition() - *this;
 		f32 dist         = posDiff.normalise();
-		if (dist > scale) {
+		if (dist < scale) {
 			f32 inv      = (scale - dist) * -1.0f;
 			pikiResult.x = posDiff.x * inv;
 			pikiResult.y = dist;
@@ -500,7 +500,7 @@ void Uja::update(BoidParms& parms)
 		}
 	}
 
-	Vector3f totalResult;
+	Vector3f totalResult = 0.0f;
 	if (mState != 2) {
 		f32 speed2   = speed * parms.mTarget();
 		Vector3f dir = directionTo_44 * speed2;
@@ -556,7 +556,7 @@ void Uja::update(BoidParms& parms)
 	}
 
 	f32 vel = mVelocity.length();
-	if (mState != 2 && speed > vel) {
+	if (mState != 2 && vel > speed) {
 		f32 inv = (1.0f / vel) * speed;
 		mVelocity *= inv;
 		vel = speed;
@@ -590,15 +590,14 @@ void Uja::update(BoidParms& parms)
 	f32 boundDist      = boundDiff.normalise();
 	f32 radius2        = mFlockMgr->mBoundSphere.mRadius;
 	if (boundDist > 0.0f) {
-		f32 angle = JMAAtan2Radian(boundDiff.x, boundDiff.z);
-		f32 one   = 1.0f;
-		radius2 *= one;
-		if (boundDist > radius2) {
-			f32 diff      = mVelocity.sqrDistance(boundDiff);
-			Vector3f temp = boundDiff * diff;
-			mVelocity     = mVelocity - temp;
+		f32 angle          = JMAAtan2Radian(boundDiff.x, boundDiff.z);
+		f32 boundaryRadius = radius2 * 2.0f;
+		if (boundDist > boundaryRadius) {
+			f32 projection = boundDiff.dot(mVelocity);
+			Vector3f temp  = boundDiff * projection;
+			mVelocity      = mVelocity - temp;
 
-			(Vector3f)* this = boundPos - (boundDiff * boundDist);
+			(Vector3f)* this = boundPos - (boundDiff * boundaryRadius);
 		}
 	}
 
@@ -610,7 +609,7 @@ void Uja::update(BoidParms& parms)
 		}
 	} else {
 		minY += radius2 * 2.0f;
-		if (minY > this->y) {
+		if (this->y > minY) {
 			this->y = minY;
 		}
 	}

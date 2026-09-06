@@ -77,7 +77,7 @@ typedef u16 wchar_t;
 #define CLAMP_VALUE_ABOVE(val, limit)              ((val) > (limit)) ? (limit) : (val)
 #define MAX(a, b)                                  (((a) > (b)) ? (a) : (b))
 #define MIN(a, b)                                  (((a) < (b)) ? (a) : (b))
-#define ROUND_F32_TO_U8(a)                         a >= 0.0f ? a + 0.5f : a - 0.5f
+#define ROUND_F32_TO_U8(a)                         ((a) >= 0.0f) ? ((a) + 0.5f) : ((a) - 0.5f)
 #define INTERPOLATE_BETWEEN(src, dest, proportion) (proportion) * ((f32)(dest) - (f32)(src)) + (f32)(src)
 
 #ifdef __MWERKS__

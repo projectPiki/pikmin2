@@ -73,7 +73,7 @@ bool TPkNageBlur::create(Arg* arg)
 		mEffectID = PID_PkNageBlur_White;
 		break;
 	}
-	TSync::create(arg);
+	return TSync::create(arg);
 }
 
 static void fakeFuncEfxPikmin(TParticleCallBack_Yodare* callback)
@@ -391,17 +391,23 @@ void TFueactCircle::execute(JPABaseEmitter*, JPABaseParticle* prt)
 	P2ASSERTLINE(548, mPos);
 
 	// Vector3f sep = *mPos - mMtx->getTranslation();
-	JGeometry::TVec3f pos = *(JGeometry::TVec3f*)mPos; // 0x38
+	JGeometry::TVec3f pos;
+	pos.set(mPos->x, mPos->y, mPos->z); // 0x38
 	JGeometry::TVec3f mtxPos;
 	mtxPos.set((*mMtx)(0, 3), (*mMtx)(1, 3), (*mMtx)(2, 3));
 	JGeometry::TVec3f sep2;
 	sep2.sub(pos, mtxPos);
-	f32 dist = sep2.squared();
-	sep2.normalize();
+	f32 squareX = sep2.x * sep2.x;
+	f32 squareY = sep2.y * sep2.y;
+	f32 squareZ = sep2.z * sep2.z;
+	f32 squared = squareX + squareY;
+	squared     = squareZ + squared;
+	f32 dist    = JGeometry::TUtilf::sqrt(squared);
 	if (dist > 175.0f) {
-		sep2.setLength(dist);
-
-		pos.set(sep2);
+		sep2.normalize();
+		sep2.scale(175.0f);
+		pos.set(mtxPos);
+		pos.add(sep2);
 	}
 
 	if (!prt->checkStatus(0x4)) {
@@ -620,14 +626,20 @@ void TFueactBiriBase::doExecuteEmitterOperation(JPABaseEmitter* emit)
 	P2ASSERTLINE(579, mMtx);
 	P2ASSERTLINE(580, mPos);
 
-	Vector3f* pos   = (Vector3f*)&mPos;
+	Vector3f pos(mPos->x, mPos->y, mPos->z);
 	Vector3f mtxPos = mMtx->getTranslation();
-	Vector3f angle  = *pos - mtxPos;
-	f32 scale       = pos->distance(mtxPos);
+	Vector3f angle  = pos - mtxPos;
+	f32 scale       = pos.distance(mtxPos);
 	angle.normalise();
 
 	Matrixf mtx;
-	mtx.setTransformationMtx2(angle, mtxPos);
+	Vector3f up(0.0f, 1.0f, 0.0f);
+	Vector3f cross(up.y * angle.z - up.z * angle.y, up.z * angle.x - up.x * angle.z, up.x * angle.y - up.y * angle.x);
+	Vector3f cross2(angle.y * cross.z - angle.z * cross.y, angle.z * cross.x - angle.x * cross.z, angle.x * cross.y - angle.y * cross.x);
+	mtx.setColumn(0, cross);
+	mtx.setColumn(1, cross2);
+	mtx.setColumn(2, angle);
+	mtx.setColumn(3, mtxPos);
 
 	JPASetRMtxTVecfromMtx(mtx.mMatrix.mtxView, emit->mGlobalRot, &emit->mGlobalTrs);
 	if (scale > 175.0f) {
@@ -1214,9 +1226,9 @@ void TNaviEffect::createFueact_(Mtx mtx, Vector3f* pos)
 	mFueact.mCircle.mMtx = (Matrixf*)mtx;
 	mFueact.mCircle.mPos = pos;
 	mFueact.mBiri1.mMtx  = (Matrixf*)mtx;
-	mFueact.mBiri1.mPos  = (JGeometry::TVec3f*)pos;
+	mFueact.mBiri1.mPos  = pos;
 	mFueact.mBiri2.mMtx  = (Matrixf*)mtx;
-	mFueact.mBiri2.mPos  = (JGeometry::TVec3f*)pos;
+	mFueact.mBiri2.mPos  = pos;
 	mFueact.create(nullptr);
 }
 

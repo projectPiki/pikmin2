@@ -3,6 +3,7 @@
 #include "Game/Piki.h"
 #include "Game/MapMgr.h"
 #include "nans.h"
+#include "JSystem/JStudio/stb.h"
 
 static const u32 padding[]    = { 0, 0, 0 };
 static const char className[] = "ObjectGameActor";
@@ -80,8 +81,8 @@ void ObjectGameActor::update()
 	if (mGameObject->mModel) {
 		if (mGameObject->isNavi() && moviePlayer->isFlag(MVP_IsFinished)) {
 			Piki* piki = static_cast<Piki*>(mGameObject);
-			piki->mAnimator.mSelfAnimator.animate(10.0f);
-			piki->mAnimator.mBoundAnimator.animate(10.0f);
+			piki->mAnimator.mSelfAnimator.animate(1.0f);
+			piki->mAnimator.mBoundAnimator.animate(1.0f);
 			piki->mModel->mJ3dModel->calc();
 		}
 		SysShape::Joint* joint = mGameObject->mModel->mJoints;
@@ -261,114 +262,14 @@ void ObjectGameActor::parseUserData_(u32 data1, void const* data2)
 	JUT_ASSERTLINE(534, count < 4, "too many userdata (%d)\n", mUserDataNum);
 	mUserDataNum++;
 
-	JStudio::stb::data::TParse_TParagraph_data::TData tdata;
-	JStudio::stb::data::TParse_TParagraph_data data(data2);
-	data.getData(&tdata);
-	if (tdata.mStatus) {
-		bool test = false;
-		if (tdata.mData && tdata.mStatus == 0x32 && tdata.mDataBlockEnd) {
-			test = true;
-		}
-		if (test) {
-			for (u16* i = (u16*)tdata.mData; i != (u16*)tdata.mData + tdata.mDataSize; i++) {
-				mMovieCommandData[count] = i[0];
+	JStudio::stb::TParseData_fixed<0x32, JGadget::binary::TValueIterator_misaligned<u16> /**/> data(data2);
+	if (!data.isEnd()) {
+		if (data.isValid()) {
+			for (JGadget::binary::TValueIterator_misaligned<u16> i(data.begin()); i != data.end(); ++i) {
+				mMovieCommandData[count] = *i;
 			}
 		}
 	}
-
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	lis      r4, lbl_8049A210@ha
-	stw      r0, 0x44(r1)
-	stw      r31, 0x3c(r1)
-	mr       r31, r3
-	stw      r30, 0x38(r1)
-	addi     r30, r4, lbl_8049A210@l
-	stw      r29, 0x34(r1)
-	stw      r28, 0x30(r1)
-	mr       r28, r5
-	lwz      r3, 0x74(r3)
-	addic.   r29, r3, -1
-	bge      lbl_804307BC
-	lwz      r6, 0xb0(r31)
-	addi     r3, r30, 0x1c
-	addi     r5, r30, 0xb0
-	li       r4, 0x213
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804307BC:
-	cmpwi    r29, 4
-	blt      lbl_804307DC
-	lwz      r6, 0xb0(r31)
-	addi     r3, r30, 0x1c
-	addi     r5, r30, 0xd8
-	li       r4, 0x216
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804307DC:
-	lwz      r5, 0xb0(r31)
-	addi     r3, r1, 8
-	addi     r4, r1, 0x1c
-	addi     r0, r5, 1
-	stw      r0, 0xb0(r31)
-	stw      r28, 8(r1)
-	bl
-getData__Q47JStudio3stb4data22TParse_TParagraph_dataCFPQ57JStudio3stb4data22TParse_TParagraph_data5TData
-	lbz      r0, 0x1c(r1)
-	cmplwi   r0, 0
-	beq      lbl_80430884
-	lwz      r4, 0x28(r1)
-	li       r3, 0
-	cmplwi   r4, 0
-	beq      lbl_8043082C
-	cmplwi   r0, 0x32
-	bne      lbl_8043082C
-	lwz      r0, 0x2c(r1)
-	cmplwi   r0, 0
-	beq      lbl_8043082C
-	li       r3, 1
-
-lbl_8043082C:
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80430884
-	slwi     r3, r29, 1
-	stw      r4, 0x18(r1)
-	addi     r5, r3, 0xb4
-	b        lbl_8043085C
-
-lbl_80430844:
-	lwz      r4, 0x18(r1)
-	lwz      r3, 0x18(r1)
-	lhz      r4, 0(r4)
-	addi     r0, r3, 2
-	sthx     r4, r31, r5
-	stw      r0, 0x18(r1)
-
-lbl_8043085C:
-	lwz      r0, 0x24(r1)
-	lwz      r4, 0x28(r1)
-	slwi     r3, r0, 1
-	lwz      r0, 0x18(r1)
-	add      r4, r4, r3
-	cmplw    r0, r4
-	stw      r4, 0x14(r1)
-	stw      r4, 0x10(r1)
-	stw      r0, 0xc(r1)
-	bne      lbl_80430844
-
-lbl_80430884:
-	lwz      r0, 0x44(r1)
-	lwz      r31, 0x3c(r1)
-	lwz      r30, 0x38(r1)
-	lwz      r29, 0x34(r1)
-	lwz      r28, 0x30(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
 }
 
 } // namespace P2JST

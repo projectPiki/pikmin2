@@ -302,9 +302,10 @@ JAISound* Creature::startSoundInner(PSM::StartSoundArg& arg)
 		return nullptr;
 	}
 
+	Creature* obj        = arg.mObj;
 	u32 sound            = arg.mSoundID;
 	u32 unk              = arg._08;
-	JAInter::Object* jai = arg.mObj->getJAIObject();
+	JAInter::Object* jai = obj->getJAIObject();
 	JAISound** temp      = nullptr;
 	if (!(sound & 0x800)) {
 		temp = jai->getUseSoundHandlePointer(sound);
@@ -314,7 +315,7 @@ JAISound* Creature::startSoundInner(PSM::StartSoundArg& arg)
 	}
 
 	if (temp) {
-		JAInter::Actor actor(this, jai->_24);
+		JAInter::Actor actor(obj, jai->_24);
 		JAIBasic::msBasic->startSoundActorT(sound, temp, &actor, unk, PSSystem::SingletonBase<ObjCalcBase>::sInstance->getPlayerNo(this));
 		onPlayingSe(sound, *temp);
 		if (*temp) {
@@ -331,10 +332,10 @@ JAISound* Creature::startSoundInner(PSM::StartSoundArg& arg)
 			}
 		}
 
-		if (id != 255 && JAInter::SoundTable::getInfoPointer(sound)->mPriority < prio) {
+		if (id != 255 && JAInter::SoundTable::getInfoPointer(sound)->mPriority >= prio) {
 			jai->handleStop(id, 0);
 
-			JAInter::Actor actor(this, jai->_24);
+			JAInter::Actor actor(obj, jai->_24);
 			JAIBasic::msBasic->startSoundActorT(sound, getHandleArea(id), &actor, unk,
 			                                    PSSystem::SingletonBase<ObjCalcBase>::sInstance->getPlayerNo(this));
 			onPlayingSe(sound, *getHandleArea(id));
@@ -1786,10 +1787,13 @@ void EnemyBoss::calcDistance()
 	CI_LOOP(iterator)
 	{
 		Game::Navi* navi = *iterator;
-		if (navi->isAlive()) {
+		if (navi->mController1) {
 			Vector3f pos     = mGameObj->getPosition();
 			Vector3f navipos = navi->getPosition();
-			f32 cdist        = pos.distance(navipos);
+			Vector3f delta   = navipos - pos;
+			Vector3f squared = delta * delta;
+			f32 cdist        = squared.z + (squared.x + squared.y);
+			cdist            = sqrtf(cdist);
 			if (cdist < dist) {
 				dist = cdist;
 			}
@@ -3000,8 +3004,7 @@ JAISound* Navi::startSound(u32 soundID, u32 flag)
 		stopWaitVoice();
 		break;
 	case PSSE_PL_ORIMA_DAMAGE:
-		startSound(getManType() + PSSE_PL_DAMAGE_ORIMA, 0);
-		return;
+		return startSound(getManType() + PSSE_PL_DAMAGE_ORIMA, 0);
 	}
 
 	PSM::StartSoundArg arg(this, soundID, flag);
@@ -3009,6 +3012,7 @@ JAISound* Navi::startSound(u32 soundID, u32 flag)
 	if (soundID >= PSSE_PL_WAIT_JUMP_ORIMA && soundID <= PSSE_PL_WAIT_CHAT_SHACHO) {
 		mCurrSound = se;
 	}
+	return se;
 }
 
 // 0 olimar, 1 louie, 2 president

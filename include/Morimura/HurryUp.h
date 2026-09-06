@@ -49,7 +49,7 @@ struct THurryUp2D : public TTestBase {
 
 	inline f32 calcTimer(int numA, int numB, int numC, int numD)
 	{
-		f32 test = 0.000004f;
+		f32 test = 0.000043f;
 		if (mIsSection) {
 			test = 0.0001f;
 		}
@@ -60,13 +60,13 @@ struct THurryUp2D : public TTestBase {
 			time   = check - numA;
 			mState = StateScaleUp1;
 			if (time >= numB) {
-				time   = check - numB;
+				time -= numB;
 				mState = StateColorUp;
 				if (time >= numC) {
-					time   = check - numC;
+					time -= numC;
 					mState = StateScaleUp2;
 					if (time >= numD) {
-						time = check - numD;
+						time -= numD;
 					}
 				}
 			}

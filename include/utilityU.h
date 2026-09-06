@@ -14,7 +14,7 @@
 #include "SoundID.h"
 #include "PSM/Director.h"
 
-void* PSChangeBgm_ChallengeGame();
+void PSChangeBgm_ChallengeGame();
 void PSMCancelToPauseOffMainBgm();
 PSM::ActorDirector_Battle* PSMGetBattleD();
 PSSystem::DirectorBase* PSMGetBattleDirector(u8 directorID);
@@ -50,6 +50,6 @@ JAISound* PSStartEnemyFatalHitSE(Game::EnemyBase*, f32);
 JAISound* PSStartEnemyGhostSE(Game::EnemyBase*, f32);
 JAISe* PSStartTreasureLaderSE(f32);
 JAISe* PSStartTreasureLaderNoiseSE(u8, f32, f32);
-u8 PSStop2DStream();
+void PSStop2DStream();
 
 #endif

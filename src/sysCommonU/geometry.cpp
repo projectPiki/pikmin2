@@ -782,73 +782,68 @@ f32 Sys::Triangle::calcDist(Plane& plane, Sys::VertexTable& vertTable)
  */
 bool Triangle::intersect(Sys::VertexTable& verts, BoundBox2d& bounds)
 {
-	f32 x, z;
-	f32 maxX = 12800000.0f;
-	f32 maxZ = 12800000.0f;
-	f32 minX = -12800000.0f;
-	f32 minZ = -12800000.0f;
+	f32 triMinX = 12800000.0f;
+	f32 triMinZ = 12800000.0f;
+	f32 triMaxX = -12800000.0f;
+	f32 triMaxZ = -12800000.0f;
 
-	x = verts.mObjects[mVertices[0]].x;
-	if (maxX > x)
-		maxX = x;
-	z = verts.mObjects[mVertices[0]].z;
-	if (maxZ > z)
-		maxZ = z;
-	if (minX < x)
-		minX = x;
-	if (minZ < z)
-		minZ = z;
+	f32 x = verts.mObjects[mVertices[0]].x;
+	f32 z = verts.mObjects[mVertices[0]].z;
+	if (triMinX > x)
+		triMinX = x;
+	if (triMinZ > z)
+		triMinZ = z;
+	if (triMaxX < x)
+		triMaxX = x;
+	if (triMaxZ < z)
+		triMaxZ = z;
 
 	x = verts.mObjects[mVertices[1]].x;
-	if (maxX > x)
-		maxX = x;
 	z = verts.mObjects[mVertices[1]].z;
-	if (maxZ > z)
-		maxZ = z;
-	if (minX < x)
-		minX = x;
-	if (minZ < z)
-		minZ = z;
+	if (triMinX > x)
+		triMinX = x;
+	if (triMinZ > z)
+		triMinZ = z;
+	if (triMaxX < x)
+		triMaxX = x;
+	if (triMaxZ < z)
+		triMaxZ = z;
 
 	x = verts.mObjects[mVertices[2]].x;
-	if (x > maxX)
-		maxX = x;
 	z = verts.mObjects[mVertices[2]].z;
-	if (maxZ > z)
-		maxZ = z;
-	if (minX < x)
-		minX = x;
-	if (minZ < z)
-		minZ = z;
+	if (triMinX > x)
+		triMinX = x;
+	if (triMinZ > z)
+		triMinZ = z;
+	if (triMaxX < x)
+		triMaxX = x;
+	if (triMaxZ < z)
+		triMaxZ = z;
 
-	bool check = false;
-
-	// these are wrong
-	// check that X coords are in bounds
-	if (maxX < bounds.mMax.x && bounds.mMin.x < minX) {
-		check = false;
-	} else if (maxX <= bounds.mMin.x && bounds.mMin.x <= maxX) {
-		check = false;
-	} else if (bounds.mMin.x <= maxX && minX <= bounds.mMin.x) {
-		check = false;
+	bool overlapsX;
+	if (bounds.mMax.x < triMinX) {
+		overlapsX = false;
+	} else if (triMaxX < bounds.mMin.x) {
+		overlapsX = false;
+	} else if (bounds.mMin.x <= triMinX && triMinX <= bounds.mMax.x) {
+		overlapsX = true;
+	} else if (triMinX <= bounds.mMin.x && bounds.mMin.x <= triMaxX) {
+		overlapsX = true;
 	} else {
-		check = true;
+		overlapsX = false;
 	}
+	if (!overlapsX)
+		return false;
 
-	// check that Z coords are in bounds
-	if (!check) {
-		check = false;
-	} else if (maxZ < bounds.mMax.y && bounds.mMin.y < minZ) {
-		check = false;
-	} else if (maxZ <= bounds.mMin.y && bounds.mMax.y <= maxZ) {
-		check = true;
-	} else if (bounds.mMin.y <= maxZ && minZ <= bounds.mMin.y) {
-		check = true;
-	} else {
-		check = false;
-	}
-
-	return check;
+	if (bounds.mMax.y < triMinZ)
+		return false;
+	if (triMaxZ < bounds.mMin.y)
+		return false;
+	if (bounds.mMin.y <= triMinZ && triMinZ <= bounds.mMax.y)
+		return true;
+	if (triMinZ <= bounds.mMin.y && bounds.mMin.y <= triMaxZ)
+		return true;
+	return false;
 }
 
 /**
@@ -2095,6 +2090,7 @@ void GridDivider::createTriangles(Sys::CreateTriangleArg& triArg)
 	triArg.mCount    = 0;
 	triArg.mVertices = nullptr;
 
+	Triangle* trianglesBuffer[128];
 	Vector3f verticesBuffer[128 * 3]; // Max 128 triangles, 3 vertices each
 	int triangleCount = 0;
 
@@ -2110,7 +2106,6 @@ void GridDivider::createTriangles(Sys::CreateTriangleArg& triArg)
 	if (indicesInBounds) {
 		Triangle* currentTriangle;
 		TriIndexList& triIndexList = mTriIndexLists[gridZIndex + (gridXIndex * mMaxZ)];
-		Triangle* firstTriangle    = mTriangleTable->getTriangle(0);
 
 		for (int i = 0; i < triIndexList.getNum(); ++i) {
 			currentTriangle  = mTriangleTable->getTriangle(triIndexList.mObjects[i]);
@@ -2121,7 +2116,7 @@ void GridDivider::createTriangles(Sys::CreateTriangleArg& triArg)
 			// Check if the triangle is already processed
 			bool isDuplicate = false;
 			for (int j = 0; j < triangleCount; ++j) {
-				if (currentTriangle == (firstTriangle + j * 4)) {
+				if (currentTriangle == trianglesBuffer[j]) {
 					isDuplicate = true;
 					break;
 				}
@@ -2139,7 +2134,7 @@ void GridDivider::createTriangles(Sys::CreateTriangleArg& triArg)
 					verticesBuffer[triangleCount * 3 + 1] = vertexB + offsetVector;
 					verticesBuffer[triangleCount * 3 + 2] = vertexC + offsetVector;
 
-					// firstTriangle[triangleCount * 4] = *currentTriangle; // Copy current triangle
+					trianglesBuffer[triangleCount] = currentTriangle;
 					++triangleCount;
 				}
 			}
@@ -2480,8 +2475,8 @@ f32 GridDivider::getMinY(Vector3f& inputPoint)
 		}
 
 		// Calculate potential Y value based on the plane equation
-		float potentialY = (triangle->mTrianglePlane.mOffset - (triangle->mTrianglePlane.mNormal.x * inputX)
-		                    - (triangle->mTrianglePlane.mNormal.z * inputZ))
+		float potentialY = (triangle->mTrianglePlane.mOffset
+		                    - (triangle->mTrianglePlane.mNormal.x * inputX + triangle->mTrianglePlane.mNormal.z * inputZ))
 		                 / normalY;
 
 		// Check if the point is inside the triangle

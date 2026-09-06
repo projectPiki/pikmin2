@@ -1174,7 +1174,7 @@ void RandEnemyUnit::setSlotEnemyTypeB(int vsColor)
 	BaseGen* spawnList[128];
 	int scoreList[128];
 	Vector3f vecArray[3];
-	f32 floatArray[3] = { 300.0f, 150.0f, 150.0f };
+	f32 floatArray[3] = { 300.0f, 200.0f, 200.0f };
 
 	int counter      = 0;
 	int vsScore      = 0;

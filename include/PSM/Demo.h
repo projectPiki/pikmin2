@@ -59,12 +59,12 @@ struct Demo : public JKRDisposer {
 
 	// _00     = VTBL
 	// _00-_18 = JKRDisposer
-	s8 _18;                  // _18
-	u8 mDoStartWithAudio;    // _19
-	SoundID mMovieStartSE;   // _1C
-	SoundID mMovieEndSE;     // _20
-	void* (*mFuncptr)(void); // _24
-	char* mCurrentDemoName;  // _28
+	s8 _18;                 // _18
+	u8 mDoStartWithAudio;   // _19
+	SoundID mMovieStartSE;  // _1C
+	SoundID mMovieEndSE;    // _20
+	void (*mFuncptr)(void); // _24
+	char* mCurrentDemoName; // _28
 };
 } // namespace PSM
 

@@ -17,7 +17,7 @@
 
 static const f32 unusedSectionArray[] = { 0.0f, 0.0f, 0.0f };
 
-static OSTime sPlayTime = OS_TIMER_CLOCK * 300;
+static OSTime sPlayTime = OSSecondsToTicks((OSTime)300);
 
 /**
  * @note Address: 0x80423770

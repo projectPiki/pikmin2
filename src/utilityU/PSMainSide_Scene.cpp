@@ -323,7 +323,10 @@ void Scene_Objects::exec()
 			if (cam) {
 				Vector3f soundpos = *cam->getSoundPositionPtr();
 				Vector3f pos      = cam->getLookAtPosition();
-				f32 dist          = pos.distance(soundpos);
+				Vector3f delta    = pos - soundpos;
+				Vector3f squared  = delta * delta;
+				f32 dist          = squared.z + (squared.x + squared.y);
+				dist              = sqrtf(dist);
 				mCameraMgr->update(i, dist);
 				mCameraMgr->mIsSpecial[i] = cam->isSpecialCamera();
 			}
@@ -543,7 +546,7 @@ void Scene_Game::bossKilled(PSM::EnemyBoss* obj)
 	PSM::MiddleBossSeq* seq = PSMGetMiddleBossSeq();
 
 	PSM::BossBgmFader::Mgr* mgr = PSSystem::SingletonBase<PSM::BossBgmFader::Mgr>::getInstance();
-	if (!mgr->checkBossActive() && seq) {
+	if (mgr->checkBossActive() && seq) {
 		seq = PSMGetMiddleBossSeq();
 		if (seq
 		    && (seq->mJumpPort.mCurrentTrackId == EnemyMidBoss::BossBgm_AttackPrep
@@ -868,14 +871,15 @@ void Scene_Game::exec()
 
 	JSULink<EnemyBoss>* boss = mEnemyBossList.getFirst();
 	while (boss) {
-		boss->getObject()->dyingFrameWork();
-		boss = boss->getNext();
+		EnemyBoss* obj = boss->getObject();
+		boss           = boss->getNext();
+		obj->dyingFrameWork();
 	}
 
 	ObjCalcBase* calc = PSSystem::SingletonBase<ObjCalcBase>::getInstance();
 	if (calc->is1PGame()) {
-		u8 mode = calc->mMode;
-		P2ASSERTLINE(508, bool(mode != -1));
+		u8 mode = static_cast<ObjCalc_SingleGame*>(calc)->mPlayerNum;
+		P2ASSERTLINE(508, mode <= 1);
 		f32 vol = mCameraMgr->getBgmCamVol(mode);
 		P2ASSERTBOUNDSLINE2(510, 0.0f, vol, 1.0f);
 		FOREACH_NODE(JSULink<PSSystem::SeqBase>, mSeqMgr.getFirst(), seq)
@@ -1858,7 +1862,7 @@ void Scene_Cave::startPollutUpSe()
 			se1->setDolby(1.0f, 80, SOUNDPARAM_Unk0);
 		}
 		if (se2) {
-			se2->setPan(1.0f, 80, SOUNDPARAM_Unk0);
+			se2->setPan(0.0f, 80, SOUNDPARAM_Unk0);
 			se2->setDolby(1.0f, 80, SOUNDPARAM_Unk0);
 		}
 	}
@@ -1941,7 +1945,7 @@ void Scene_Cave::bossKilled(PSM::EnemyBoss* obj)
 	} else {
 		MiddleBossSeq* seq = PSMGetMiddleBossSeq();
 		bool check         = PSSystem::SingletonBase<BossBgmFader::Mgr>::getInstance()->checkBossActive();
-		if (!check && seq) {
+		if (check && seq) {
 			seq = PSMGetMiddleBossSeq();
 			if (seq
 			    && (seq->mJumpPort.mCurrentTrackId == EnemyMidBoss::BossBgm_AttackPrep
@@ -2064,7 +2068,7 @@ f32 Scene_NoObjects::getCamDistVol(u8)
  * @note Address: 0x8046B5B8
  * @note Size: 0x1B8
  */
-void* PSChangeBgm_ChallengeGame()
+void PSChangeBgm_ChallengeGame()
 {
 	PSSystem::Scene* scene = PSMGetGameScene();
 	if (scene) {
@@ -2233,7 +2237,7 @@ void PSStart2DStream(u32 id)
  * @note Address: 0x8046B870
  * @note Size: 0xEC
  */
-u8 PSStop2DStream()
+void PSStop2DStream()
 {
 	PSSystem::StreamBgm* seq = static_cast<PSM::Scene_Global*>(PSMGetSceneMgrCheck()->mScenes)->getGlobalStream();
 	seq->stopSeq(30);

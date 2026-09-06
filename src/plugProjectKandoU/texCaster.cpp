@@ -85,19 +85,32 @@ void Caster::makeDL()
 
 	int index       = 0;
 	mDisplayList[0] = 0x90;
-	mDisplayList[1] = 3 * (mTriangleCount >> 16);
+	mDisplayList[1] = (mTriangleCount * 3) >> 8;
+	mDisplayList[2] = mTriangleCount * 3;
 
+	u8* displayList = mDisplayList + 3;
 	for (int i = 0; i < mTriangleCount; ++i) {
-		int j                   = index + 1;
-		mDisplayList[index + 3] = (index >> 8) & 0xFF;
-		mDisplayList[index + 4] = index & 0xFF;
-		mDisplayList[index + 5] = (j >> 8) & 0xFF;
-		mDisplayList[index + 6] = j & 0xFF;
+		int index1      = index + 1;
+		int index2      = index + 2;
+		displayList[0]  = index >> 8;
+		displayList[1]  = index;
+		displayList[2]  = index >> 8;
+		displayList[3]  = index;
+		displayList[4]  = index1 >> 8;
+		displayList[5]  = index1;
+		displayList[6]  = index1 >> 8;
+		displayList[7]  = index1;
+		displayList[8]  = index2 >> 8;
+		displayList[9]  = index2;
+		displayList[10] = index2 >> 8;
+		displayList[11] = index2;
+		displayList += 12;
 		index += 3;
 	}
 
-	for (int i = index; i < mDisplayListSize; i += 8) {
-		memset(mDisplayList + i, 0, 8);
+	u8* displayListEnd = mDisplayList + mDisplayListSize;
+	while (displayList < displayListEnd) {
+		*displayList++ = 0;
 	}
 
 	DCFlushRange(mDisplayList, mDisplayListSize);
@@ -252,7 +265,7 @@ Caster* Mgr::create(Sys::Sphere& sphere, f32 rotationAngle)
 	caster->mBoundingSphere   = sphere;
 	caster->mVertices         = triArg.mVertices;
 	caster->mTriangleCount    = triArg.mCount;
-	caster->mTexturePositions = new f32*[caster->mTriangleCount * 6];
+	caster->mTexturePositions = new f32[caster->mTriangleCount * 6];
 
 	for (int triangleIndex = 0; triangleIndex < caster->mTriangleCount; triangleIndex++) {
 		for (int vertexIndex = 0; vertexIndex < 3; vertexIndex++) {
@@ -262,14 +275,13 @@ Caster* Mgr::create(Sys::Sphere& sphere, f32 rotationAngle)
 			f32 deltaX             = currentVertex.x - sphere.mPosition.x;
 			f32 scaleFactor        = (30.0f / sphere.mRadius) * 0.03125f;
 
-			// Rotate the texture coordinates based on some angle rotationAngle
-			Vector2f rotationVector(sin(rotationAngle), cos(rotationAngle));
-
-			caster->mTexturePositions[triangleIndex * 3 + vertexIndex] = new f32[2];
-			caster->mTexturePositions[triangleIndex * 3 + vertexIndex][0]
-			    = 0.5f + ((deltaZ * rotationVector.x + deltaX * rotationVector.y) * scaleFactor);
-			caster->mTexturePositions[triangleIndex * 3 + vertexIndex][1]
-			    = 0.5f + ((deltaZ * rotationVector.y - deltaX * rotationVector.x) * scaleFactor);
+			f32 sin1                                    = sin(rotationAngle);
+			f32 cos1                                    = cos(rotationAngle);
+			f32 cos2                                    = cos(rotationAngle);
+			f32 sin2                                    = sin(rotationAngle);
+			int textureIndex                            = (triangleIndex * 3 + vertexIndex) * 2;
+			caster->mTexturePositions[textureIndex]     = 0.5f + ((deltaZ * sin2 + deltaX * cos2) * scaleFactor);
+			caster->mTexturePositions[textureIndex + 1] = 0.5f + ((deltaZ * cos1 - deltaX * sin1) * scaleFactor);
 		}
 	}
 

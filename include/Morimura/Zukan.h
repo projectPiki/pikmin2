@@ -295,20 +295,6 @@ struct TZukanBase : public TScrollList {
 			mRollSpeedMod        = 1.1f;
 			mSpeedSpeedupFactor  = 1.5f;
 			mInitialRollSpeed    = 2.0f;
-
-			mNewOffset.set(0.0f, -12.5f);
-			mLargeNewOffset.set(0.0f, -30.0f);
-
-			mNewColor0.set(255, 96, 80, 0);
-			mNewColor1.set(225, 0, 0, 255);
-
-			mCategoryScale.x = 1.3f;
-			mCategoryScale.y = 1.15f;
-
-			mCategoryColor0w.set(0, 0, 255, 255);
-			mCategoryColor0b.set(255, 255, 255, 0);
-			mCategoryColor1w.set(255, 255, 255, 255);
-			mCategoryColor1b.set(255, 255, 255, 0);
 		}
 
 		f32 mMaxRollSpeed;        // _00

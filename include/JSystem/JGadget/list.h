@@ -169,15 +169,59 @@ struct TList_pointer_void : public TList<void*> {
 
 template <typename T>
 struct TList_pointer : public TList_pointer_void {
-
+	typedef TList_pointer_void Base;
+	struct iterator : Base::iterator {
+		iterator() { }
+		iterator(typename Base::TNode_* node)
+		    : Base::iterator(node)
+		{
+		}
+		iterator(Base::iterator it)
+		    : Base::iterator(it)
+		{
+		}
+		T& operator*() const { return *(T*)&this->mNode->getElement(); }
+		iterator& operator++()
+		{
+			Base::iterator::operator++();
+			return *this;
+		}
+		iterator& operator--()
+		{
+			Base::iterator::operator--();
+			return *this;
+		}
+		friend bool operator==(iterator a, iterator b) { return a.mNode == b.mNode; }
+		friend bool operator!=(iterator a, iterator b) { return !(a == b); }
+	};
+	struct const_iterator : Base::const_iterator {
+		const_iterator() { }
+		const_iterator(Base::const_iterator it)
+		    : Base::const_iterator(it)
+		{
+		}
+		const T& operator*() const { return *(const T*)&this->mNode->getElement(); }
+		const_iterator& operator++()
+		{
+			Base::const_iterator::operator++();
+			return *this;
+		}
+		friend bool operator==(const_iterator a, const_iterator b) { return a.mNode == b.mNode; }
+		friend bool operator!=(const_iterator a, const_iterator b) { return !(a == b); }
+	};
 	TList_pointer(const TVoidAllocator& allocator)
-	    : TList_pointer_void(allocator)
+	    : Base(allocator)
 	{
 	}
-
 	~TList_pointer() { }
-
-	// _00-_10 = TList_pointer_void
+	iterator begin() { return iterator(Base::begin()); }
+	iterator end() { return iterator(Base::end()); }
+	const_iterator begin() const { return const_iterator(Base::const_iterator(this->mNode.mNext)); }
+	const_iterator end() const { return const_iterator(Base::const_iterator(&this->mNode)); }
+	iterator insert(iterator where, const T& value) { return iterator(Base::insert(where, (void* const&)value)); }
+	T& back() { return *--end(); }
+	void pop_back() { erase(--end()); }
+	iterator erase(iterator where) { return iterator(Base::erase(where)); }
 };
 
 template <typename Iterator, typename Value, typename Predicate>

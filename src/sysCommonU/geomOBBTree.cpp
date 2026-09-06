@@ -1744,7 +1744,16 @@ bool OBB::findRayIntersection(Sys::RayIntersectInfo& info, Matrixf& transformati
 		}
 		return findRayIntersectionTriList(info, transformationMtx, unused);
 	}
-	return false;
+
+	bool intersectA = false;
+	if (mHalfA) {
+		intersectA = mHalfA->findRayIntersection(info, transformationMtx, unused);
+	}
+	bool intersectB = false;
+	if (mHalfB) {
+		intersectB = mHalfB->findRayIntersection(info, transformationMtx, unused);
+	}
+	return intersectA || intersectB;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -2329,7 +2338,7 @@ nullreturn:
  */
 f32 OBBTree::getMinY(Vector3f& pos)
 {
-	getOBB()->getMinY(pos, *mTriangleTable, FLOAT_DIST_MIN);
+	return getOBB()->getMinY(pos, *mTriangleTable, FLOAT_DIST_MIN);
 }
 
 /**
@@ -2378,7 +2387,7 @@ f32 OBB::getMinY(Vector3f& pos, Sys::TriangleTable& triTable, f32 inputMin)
 			minY = minY2;
 	}
 
-	if (minY > inputMin)
+	if (minY < inputMin)
 		minY = inputMin;
 
 	return minY;

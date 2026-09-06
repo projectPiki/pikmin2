@@ -9,7 +9,6 @@
 #include "Dolphin/rand.h"
 #include "efx2d/T2DChangesmoke.h"
 #include "Screen/Game2DMgr.h"
-#include "nans.h"
 
 static const int unusedArray[] = { 0, 0, 0 };
 
@@ -30,15 +29,6 @@ bool TZukanBase::mAllNewSupply;
 bool TZukanBase::mZukanShortenTest;
 bool TZukanBase::mZukanCategoryTest;
 f32 TZukanBase::mRandShowRate;
-JGeometry::TVec2f TZukanBase::mNewOffset;
-JGeometry::TVec2f TZukanBase::mLargeNewOffset;
-JUtility::TColor TZukanBase::mNewColor0;
-JUtility::TColor TZukanBase::mNewColor1;
-JGeometry::TVec2f TZukanBase::mCategoryScale;
-JUtility::TColor TZukanBase::mCategoryColor0w;
-JUtility::TColor TZukanBase::mCategoryColor0b;
-JUtility::TColor TZukanBase::mCategoryColor1w;
-JUtility::TColor TZukanBase::mCategoryColor1b;
 JKRHeap* TZukanBase::mDebugHeapParent;
 JKRExpHeap* TZukanBase::mDebugHeap;
 
@@ -2980,7 +2970,7 @@ bool TItemZukan::doUpdate()
 			break;
 		}
 	}
-	TZukanBase::doUpdate();
+	return TZukanBase::doUpdate();
 }
 
 /**
@@ -4753,7 +4743,9 @@ void TZukanWindow::update()
 		}
 	}
 
-	JGeometry::TBox2f box(mPaneWinCap->getGlbVtx(GLBVTX_TopRight), mPaneWinCap->getGlbVtx(GLBVTX_BtmLeft));
+	JGeometry::TVec3f bottomLeft = mPaneWinCap->getGlbVtx(GLBVTX_BtmLeft);
+	JGeometry::TVec3f topRight   = mPaneWinCap->getGlbVtx(GLBVTX_TopRight);
+	JGeometry::TBox2f box(bottomLeft, topRight);
 	box.i.x += 10.0f;
 	box.i.y += 5.0f;
 	box.f.x -= 10.0f;
@@ -4888,4 +4880,16 @@ void TZukanWindow::changeIconTexture(int id, ResTIMG* file)
 
 TZukanBase::StaticValues TZukanBase::mScrollParm;
 
+JGeometry::TVec2f TZukanBase::mNewOffset(0.0f, -12.5f);
+JGeometry::TVec2f TZukanBase::mLargeNewOffset(0.0f, -30.0f);
+JUtility::TColor TZukanBase::mNewColor0(255, 96, 80, 0);
+JUtility::TColor TZukanBase::mNewColor1(225, 0, 0, 255);
+JGeometry::TVec2f TZukanBase::mCategoryScale(1.3f, 1.15f);
+JUtility::TColor TZukanBase::mCategoryColor0w(0, 0, 255, 255);
+JUtility::TColor TZukanBase::mCategoryColor0b(255, 255, 255, 0);
+JUtility::TColor TZukanBase::mCategoryColor1w(255, 255, 255, 255);
+JUtility::TColor TZukanBase::mCategoryColor1b(255, 255, 255, 0);
+
 } // namespace Morimura
+
+#include "nans.h"

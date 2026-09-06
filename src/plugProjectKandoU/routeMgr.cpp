@@ -536,108 +536,103 @@ bool RouteMgr::getNearestEdge(WPEdgeSearchArg& searchArg)
 	CI_LOOP(iter)
 	{
 		WayPoint* wpA = *iter;
-
-		// If we're in water and the waypoint is a bridge, skip it
 		if ((searchArg.mInWater & 1) && wpA->isFlag(WPF_Bridge)) {
 			continue;
 		}
 
-		// If the waypoint is already linked with our path, skip it
 		int wpAIndex = wpA->mIndex;
 		if (searchArg.isLinkedTo(wpAIndex)) {
 			continue;
 		}
 
-		// For each link in the waypoint
 		for (int i = 0; i < 8; i++) {
-			// If the link is invalid, skip it
 			s16 linkIdx = wpA->mFromLinks[i];
 			if (linkIdx == -1) {
 				continue;
 			}
 
 			WayPoint* wpB = getWayPoint(linkIdx);
-
-			// If the link is already linked with our path, skip it
-			s16 wpBIndex = wpB->mIndex;
-			if (!searchArg.isLinkedTo(wpBIndex)) {
+			s16 wpBIndex  = wpB->mIndex;
+			if (searchArg.isLinkedTo(wpBIndex)) {
 				continue;
 			}
 
-			// If we're searching for a specific room and the link doesn't have it, skip it
 			s16 roomIdx = searchArg.mRoomID;
-			if (roomIdx == -1 && !wpA->includeRoom(roomIdx) && !wpB->includeRoom(roomIdx)) {
+			if (roomIdx != -1 && !wpA->includeRoom(roomIdx) && !wpB->includeRoom(roomIdx)) {
 				continue;
 			}
 
-			// If we're in water and the link is a bridge, skip it
-			if (searchArg.mInWater & 1 && wpB->isFlag(WPF_Bridge)) {
+			if ((searchArg.mInWater & 1) && wpB->isFlag(WPF_Bridge)) {
 				continue;
 			}
 
-			// If waypoint B is linked to waypoint A and waypoint A is after waypoint B, skip it
-			if (wpB->mFromLinks[i] == wpA->mIndex && wpAIndex <= wpBIndex) {
-				bool isWaypointAOpen = wpA->isFlag(WPF_Closed);
-				if (!isWaypointAOpen || !wpB->isFlag(WPF_Closed)) {
-					WayPoint* a;
-					WayPoint* b;
-					if (isWaypointAOpen == false) {
-						a = wpA;
-						b = wpB;
-					} else {
-						a = wpB;
-						b = wpA;
-					}
+			if (wpB->mFromLinks[i] == wpA->mIndex && wpA->mIndex > wpB->mIndex) {
+				continue;
+			}
 
-					Vector3f sep = a->mPosition - b->mPosition;
-					sep.normalise();
-
-					// some weird math here.
-
-					if (sep.y < 0.0f) { // not the correct comparison, just a placeholder
-						continue;
-					}
-				}
-
-				Vector3f wpPos            = wpA->mPosition;
-				Vector3f relativePosition = wpB->mPosition - wpPos;
-
-				f32 distanceMagnitude = relativePosition.normalise();
-
-				Vector3f searchSep = searchArg.mStartPosition - wpPos;
-				f32 dotProd        = relativePosition.dot(searchSep) / distanceMagnitude;
-
-				if (distanceMagnitude < 0.1f) {
-					JUT_PANICLINE(768, "wpA(%d) and wpB(%d) cause singularity !\n", wpA->mIndex, wpB->mIndex);
-				}
-
-				Vector3f searchPos = searchArg.mStartPosition;
-				f32 revDistA       = wpA->mPosition.distance(searchPos); // f0
-				f32 revDistB       = wpB->mPosition.distance(searchPos); // f13
-
-				f32 newDist;
-				if (dotProd < 0.0f || dotProd > 1.0f) {
-					if (revDistB < revDistA) {
-						newDist = revDistB - wpB->mRadius;
-					} else {
-						newDist = revDistA - wpA->mRadius;
-					}
+			bool isWaypointAClosed = wpA->isFlag(WPF_Closed);
+			if (isWaypointAClosed || wpB->isFlag(WPF_Closed)) {
+				WayPoint* a;
+				WayPoint* b;
+				if (isWaypointAClosed == false) {
+					a = wpA;
+					b = wpB;
 				} else {
-					f32 factor = dotProd * distanceMagnitude;
-					newDist    = searchPos.length(); // this isn't the correct vector, need to do more math here
+					a = wpB;
+					b = wpA;
 				}
 
-				if (newDist < minDist) {
-					if (revDistA < revDistB) {
-						searchArg.mWp1 = wpA;
-						searchArg.mWp2 = wpB;
-					} else {
-						searchArg.mWp1 = wpB;
-						searchArg.mWp2 = wpA;
-					}
-					minDist = newDist;
-					result  = true;
+				Vector3f sep = a->mPosition - b->mPosition;
+				sep.normalise();
+				Vector3f searchSep = searchArg.mStartPosition - b->mPosition;
+				if (sep.dot(searchSep) < 0.0f) {
+					continue;
 				}
+			}
+
+			Vector3f wpPos            = wpA->mPosition;
+			Vector3f relativePosition = wpB->mPosition - wpPos;
+			f32 distanceMagnitude     = relativePosition.length();
+			if (distanceMagnitude > 0.0f) {
+				f32 norm = 1.0f / distanceMagnitude;
+				relativePosition.x *= norm;
+				relativePosition.y *= norm;
+				relativePosition.z *= norm;
+			}
+			Vector3f searchSep = searchArg.mStartPosition - wpPos;
+			f32 dotProd        = relativePosition.dot(searchSep) / distanceMagnitude;
+
+			if (distanceMagnitude < 0.1f) {
+				JUT_PANICLINE(768, "wpA(%d) and wpB(%d) cause singularity !\n", wpA->mIndex, wpB->mIndex);
+			}
+
+			Vector3f searchPos = searchArg.mStartPosition;
+			f32 revDistA       = wpA->mPosition.distance(searchPos);
+			f32 revDistB       = wpB->mPosition.distance(searchPos);
+			f32 newDist;
+			if (dotProd < 0.0f || dotProd > 1.0f) {
+				if (revDistB < revDistA) {
+					newDist = revDistB - wpB->mRadius;
+				} else {
+					newDist = revDistA - wpA->mRadius;
+				}
+			} else {
+				f32 factor       = dotProd * distanceMagnitude;
+				Vector3f edgePos = wpPos + relativePosition * factor;
+				f32 radius       = (1.0f - dotProd) * wpA->mRadius + dotProd * wpB->mRadius;
+				newDist          = edgePos.distance(searchPos) - radius;
+			}
+
+			if (newDist < minDist) {
+				if (revDistA < revDistB) {
+					searchArg.mWp1 = wpA;
+					searchArg.mWp2 = wpB;
+				} else {
+					searchArg.mWp1 = wpB;
+					searchArg.mWp2 = wpA;
+				}
+				minDist = newDist;
+				result  = true;
 			}
 		}
 	}

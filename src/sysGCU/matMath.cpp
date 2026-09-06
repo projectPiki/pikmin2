@@ -24,17 +24,18 @@ void Matrixf::makeNaturalPosture(Vector3f& direction, f32 a1)
 {
 	Vector3f xDir, zDir;
 	if (FABS(direction.x) > FABS(direction.z)) {
-		xDir = Vector3f(sinf(a1), a1, cosf(a1));
+		zDir = Vector3f(sinf(a1), 0.0f, cosf(a1));
+		xDir = direction.cross(zDir);
 		xDir.normalise();
-		zDir = zDir.cross(xDir);
+		zDir = xDir.cross(direction);
 		zDir.normalise();
 	} else {
-		xDir = Vector3f(sinf(a1 + HALF_PI), a1 + HALF_PI, cosf(a1 + HALF_PI));
-		xDir.normalise();
-		zDir = zDir.cross(xDir);
+		xDir = Vector3f(sinf(a1 + HALF_PI), 0.0f, cosf(a1 + HALF_PI));
+		zDir = xDir.cross(direction);
 		zDir.normalise();
+		xDir = direction.cross(zDir);
+		xDir.normalise();
 	}
-
 	mMatrix.structView.xx = xDir.x;
 	mMatrix.structView.xy = xDir.y;
 	mMatrix.structView.xz = xDir.z;

@@ -83,12 +83,8 @@ struct PodIconScreen : P2DScreen::Mgr_tuning {
 
 	void appear()
 	{
-		mMomentum = Vector3f(1.0f, randFloat(), 0.0f);
-		mMomentum.normalise();
-		mPosition = Vector3f(0.0f);
-		Game::playData->isStoryFlag(Game::STORY_DebtPaid) ? setXY(mInitialPos.x - 250.0f, mInitialPos.y - 25.0f)
-		                                                  : setXY(mInitialPos.x - 250.0f, mInitialPos.y - 10.0f);
-		// mIsVisible = true; // should be here, but we are reaching limits of inline complexity
+		reset();
+		show();
 		mState = 0;
 	}
 

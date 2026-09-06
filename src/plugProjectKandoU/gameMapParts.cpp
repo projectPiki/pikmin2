@@ -2522,7 +2522,8 @@ void RoomMapMgr::createGlobalCollision()
 		triTable->addOne(tri);
 	}
 
-	int count20 = 0;
+	int count20  = 0;
+	int triIndex = 0;
 
 	Iterator<MapRoom> iterCreate(&mRoomMgr);
 	CI_LOOP(iterCreate)
@@ -2539,16 +2540,16 @@ void RoomMapMgr::createGlobalCollision()
 			count21++;
 		}
 
-		for (int i = 0; i < tris->getNum(); i++) {
+		for (int i = 0; i < tris->getNum(); i++, triIndex++) {
 			Sys::Triangle* preTri  = tris->getTriangle(i);
-			Sys::Triangle* postTri = triTable->getTriangle(i);
+			Sys::Triangle* postTri = triTable->getTriangle(triIndex);
 			postTri->mVertices[0]  = preTri->mVertices[0] + count20;
 			postTri->mVertices[1]  = preTri->mVertices[1] + count20;
 			postTri->mVertices[2]  = preTri->mVertices[2] + count20;
 			postTri->mCode         = preTri->mCode;
 			postTri->makePlanes(*vertTable);
 			postTri->createSphere(*vertTable);
-			mRoomTriIndices[i] = room->mIndex;
+			mRoomTriIndices[triIndex] = room->mIndex;
 		}
 		count20 = count21;
 	}
@@ -3309,9 +3310,6 @@ Sys::TriIndexList* RoomMapMgr::traceMove_new(MoveInfo& info, f32 step)
 	moveSphere->mPosition      = moveSphere->mPosition;
 	Sys::TriIndexList* triList = mMapCollision->mDivider->findTriLists(*moveSphere);
 
-	Sys::Sphere sphere44; // r29
-	Sys::Sphere sphere34; // r28
-
 	Sys::VertexTable* vertTable = mMapCollision->mDivider->mVertexTable; // r23
 
 	for (triList; triList; triList = static_cast<Sys::TriIndexList*>(triList->mNext)) {
@@ -3326,25 +3324,24 @@ Sys::TriIndexList* RoomMapMgr::traceMove_new(MoveInfo& info, f32 step)
 			}
 
 			if (tri->intersect(*vertTable, sweep)) {
-				info.mRoomIndex    = mRoomTriIndices[index];
-				sphere34.mPosition = sphere34.mPosition;
-				Vector3f old34     = sphere34.mPosition;
+				info.mRoomIndex = mRoomTriIndices[index];
+				Vector3f normal = sweep.mNormal;
 				if (info.mIntersectCallback) {
-					info.mIntersectCallback->invoke(sphere44.mPosition, sphere34.mPosition);
+					info.mIntersectCallback->invoke(sweep.mIntersectionPoint, sweep.mNormal);
 				}
 
-				if (sphere34.mPosition.y >= info.mFloorThreshold) {
+				if (sweep.mNormal.y >= info.mFloorThreshold) {
 					info.mFloorTriangle = tri;
-					info.mFloorNormal   = sphere34.mPosition;
-				} else if (absF(sphere34.mPosition.y) <= info.mWallThreshold) {
+					info.mFloorNormal   = sweep.mNormal;
+				} else if (absF(sweep.mNormal.y) <= info.mWallThreshold) {
 					info.mWallTriangle = tri;
-					info.mWallNormal   = sphere34.mPosition;
+					info.mWallNormal   = sweep.mNormal;
 				}
 
-				f32 impactAmt         = sphere34.mPosition.dot(*velocity);
+				f32 impactAmt         = sweep.mNormal.dot(*velocity);
 				impactAmt             = (1.0f + info.mRestitution) * impactAmt;
-				*velocity             = *velocity - sphere34.mPosition * impactAmt;
-				moveSphere->mPosition = moveSphere->mPosition + old34 * sphere34.mRadius;
+				*velocity             = *velocity - sweep.mNormal * impactAmt;
+				moveSphere->mPosition = moveSphere->mPosition + normal * sweep.mDistanceFromRadius;
 			}
 
 			Sys::Triangle::debug = false;
@@ -3674,6 +3671,7 @@ Sys::TriIndexList* RoomMapMgr::traceMove_original(MoveInfo& info, f32 step)
 	f32 elasticFactor     = 1.0f + info.mRestitution;
 	*velocity             = *velocity - lineOfImpact * (elasticFactor * impactAmt);
 	moveSphere->mPosition = moveSphere->mPosition + (lineOfImpact * floatSum);
+	return nullptr;
 	/*
 	stwu     r1, -0x150(r1)
 	mflr     r0
@@ -4353,7 +4351,7 @@ void RoomMapMgr::createTriangles(Sys::CreateTriangleArg& createArg)
 					roomArray[count] = room;
 					for (int k = 0; k < 3; k++) {
 						vertices[k] += addVec;
-						vecs[3 * count + k] = addVec;
+						vecs[3 * count + k] = vertices[k];
 					}
 					count++;
 				}
@@ -5169,7 +5167,7 @@ void RoomMapMgr::makeOneRoom(f32 centreX, f32 centreY, f32 direction, char* unit
 			Vector3f rotation3(0.0f, faceAngle, 0.0f);
 			mtx2.makeTR(Vector3f::zero, rotation3);
 
-			doorInfo->mLookAtPos = mtx2.getColumn(3) + (Vector3f)(doorDirs[door->mDir]); // not right, just a placeholder
+			doorInfo->mLookAtPos = mtx2.mtxMult(doorDirs[door->mDir]);
 
 		} else {
 			P2ASSERTBOOLLINE(3530, wp->mIndex >= 0 && wp->mIndex < counter);

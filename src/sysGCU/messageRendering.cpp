@@ -192,11 +192,11 @@ void TRenderingProcessor::setDrawLocateY()
 			}
 		}
 
-		f32 height  = 0.5f * (mTextBoxHeight - totalFontHeight);
-		u8 paraNum  = mParagraphNum;
-		f32 x       = ((mTextBoxHeight * pageInfoNum)
-                 + (0.5f * (mLineHeight - mFontHeight * mMainFont->getHeight()) + (mFontHeight * mMainFont->getAscent() + mLocate.f.y)));
-		f32 y       = (mLineHeight * paraNum + height);
+		f32 height = 0.5f * (mTextBoxHeight - totalFontHeight);
+		u8 paraNum = mParagraphNum;
+		f32 x = ((mTextBoxHeight * pageInfoNum)
+		         + (0.5f * (mLineHeight - mFontHeight * mMainFont->getHeight()) + (mFontHeight * mMainFont->getAscent() + mLocate.f.y)));
+		f32 y = (mLineHeight * paraNum + height);
 		mLocate.i.y = y + x;
 
 		return;
@@ -1617,7 +1617,7 @@ void TRenderingProcessor::resetPageInfo()
 	// UNUSED FUNCTION
 	for (int i = 0; i < 10; i++) {
 		mLineWidthInfos[i].mStartIndex = 0;
-		mLineWidthInfos[i].mEndIndex = 0;
+		mLineWidthInfos[i].mEndIndex   = 0;
 	}
 }
 
@@ -1756,8 +1756,10 @@ void TRenderingProcessor::setTextBoxInfo(J2DPane* pane)
 	mTextBoxWidth     = text->getWidth();
 	mTextBoxHeight    = text->getHeight();
 
-	mFontWidth  = text->mFontSize.x / mMainFont->getWidth();
-	mFontHeight = text->mFontSize.y / mMainFont->getHeight();
+	f32 fontWidth  = text->mFontSize.x;
+	f32 fontHeight = text->mFontSize.y;
+	mFontWidth     = fontWidth / mMainFont->getWidth();
+	mFontHeight    = fontHeight / mMainFont->getHeight();
 
 	switch ((text->mFlags) >> 2 & 3) {
 	case 0:

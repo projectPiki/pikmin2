@@ -267,13 +267,15 @@ f32 ObjectCamera::JSGGetProjectionAspect() const
  * @note Address: N/A
  * @note Size: 0x168
  */
-void ObjectCamera::setParms(Camera*)
+void ObjectCamera::setParms(Camera* cam)
 {
 	// this might not be right since its not using the camera input, but the size is right and it does get setCamera a bit closer
 
 	Vector3f pos = mCameraObj->getPosition();
 	JSGSetViewPosition(*(Vec*)&pos);
-	pos += mCameraObj->getViewVector() * 200.0f;
+	Vector3f view = mCameraObj->getViewVector();
+	view *= 200.0f;
+	pos += view;
 	JSGSetViewTargetPosition(*(Vec*)&pos);
 
 	JSGSetViewRoll(0.0f);

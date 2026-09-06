@@ -96,11 +96,11 @@ void Conductor::createTables(JASTrack* track)
 	u16 v2;
 	track->readPortAppDirect(2, &v1);
 	track->readPortAppDirect(3, &v2);
-	mBankData = (PSBankData*)((v2 | (v1 << 16)) + track->mSeqCtrl.mRawFilePtr);
+	mBankData = (PSBankData*)((v2 | (u32(v1) << 16)) + track->mSeqCtrl.mRawFilePtr);
 
 	track->readPortAppDirect(4, &v1);
 	track->readPortAppDirect(5, &v2);
-	mWsData = (PSBankData*)((v2 | (v1 << 16)) + track->mSeqCtrl.mRawFilePtr);
+	mWsData = (PSBankData*)((v2 | (u32(v1) << 16)) + track->mSeqCtrl.mRawFilePtr);
 	P2ASSERTLINE(230, mBankData);
 	P2ASSERTLINE(231, mWsData);
 	/*
@@ -731,7 +731,7 @@ void Module::setTableAddress(JASTrack* track)
 
 	u16 bnkVal      = _184.mValue;
 	PSBankData& bnk = bnkCdtr->mBankData[bnkVal];
-	mBankData       = (PSBankData*)(bnk.mData[2] | (bnk.mData[1] << 16 | bnk.mData[0] << 8));
+	mBankData       = (PSBankData*)(bnk.mData[2] | (bnk.mData[0] << 16 | bnk.mData[1] << 8));
 	mBankData       = (PSBankData*)(track->getSeq()->mRawFilePtr + (u32)mBankData);
 
 	Track* wsTrk      = (Track*)mTree.getParent()->getObjectPtr();
@@ -739,7 +739,7 @@ void Module::setTableAddress(JASTrack* track)
 
 	u16 wsVal      = _1B4.mValue;
 	PSBankData* ws = (PSBankData*)&wsCdtr->mWsData[wsVal];
-	mWsData        = (PSWsData*)(ws->mData[2] | (ws->mData[1] << 16 | ws->mData[0] << 8));
+	mWsData        = (PSWsData*)(ws->mData[2] | (ws->mData[0] << 16 | ws->mData[1] << 8));
 	mWsData        = (PSWsData*)(track->getSeq()->mRawFilePtr + (u32)mWsData);
 
 	u8 count = 0;
@@ -962,7 +962,7 @@ u16 CycleBase::play(JASTrack* track)
 		Track* childTrk = ((Track*)mModule->mTree.getParent()->getObjectPtr())->mUnisonTrack;
 		if (childTrk == nullptr) {
 			PSWsData& ws = mModule->mWsData[mWaveSceneIndex++];
-			u16 wsPtr    = (ws.mData[0] | ws.mData[1] << 8);
+			u16 wsPtr    = (ws.mData[0] << 8 | ws.mData[1]);
 			x            = avoidCheck();
 			x |= wsPtr;
 		} else {
@@ -981,7 +981,7 @@ u16 CycleBase::play(JASTrack* track)
 		f32 num      = mModule->mWsDataNum;
 		u32 idx      = num * PSSystem::oRandom.nextFloat_0_1();
 		PSWsData* ws = mModule->mWsData;
-		u16 wsPtr    = (ws[(u16)idx].mData[0] | ws[(u16)idx].mData[1] << 8);
+		u16 wsPtr    = (ws[(u16)idx].mData[0] << 8 | ws[(u16)idx].mData[1]);
 		x            = avoidCheck();
 		x |= wsPtr;
 	} else {
@@ -1558,8 +1558,8 @@ void OnCycle::setTip(JASTrack* track)
 					if (anotherLink) {
 						_40.JSUPtrList::remove(anotherLink);
 					}
-					_40.JSUPtrList::append(newLink);
 				}
+				_40.JSUPtrList::append(newLink);
 			}
 
 		} else {
@@ -1571,8 +1571,9 @@ void OnCycle::setTip(JASTrack* track)
 
 	mModule->_2C2   = x;
 	PSBankData* bnk = mModule->mBankData;
-	track->writePortAppDirect(6, (bnk->mData[x * 3]));
-	track->writePortAppDirect(7, (bnk->mData[x * 3 + 1]));
+	u32 bankData    = (bnk[x].mData[0] << 16) | (bnk[x].mData[1] << 8) | bnk[x].mData[2];
+	track->writePortAppDirect(6, bankData >> 16);
+	track->writePortAppDirect(7, bankData & 0xFFFF);
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
