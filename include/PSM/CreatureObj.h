@@ -11,7 +11,6 @@ struct CreatureObj : public Creature, public JAInter::Object {
 
 	// VTBL 1 (JKRDisposer, dtor-only, _10)
 	// VTBL 2 (ObjBase + self, _28)
-	virtual ~CreatureObj() { }                                         // _14 (thunks at _10 and _48)
 	virtual void frameEnd_onPlaySe();                                  // _18
 	virtual CreatureCastType getCastType() { return CCT_CreatureObj; } // _1C (weak)
 	virtual JAInter::Object* getJAIObject() { return this; }           // _24 (weak)

@@ -842,7 +842,7 @@ void loadNBTScale(J3DNBTScale&);
 
 void loadTexCoordGens(u32, J3DTexCoord*);
 
-inline void loadTexCoordScale(GXTexCoordID coord, const J3DTexCoordScaleInfo& info)
+inline void loadTexCoordScale(GXTexCoordID coord, J3DTexCoordScaleInfo& info)
 {
 	J3DGDSetTexCoordScale2(coord, info.mScaleS, info.mBiasS == 1, 0, info.mScaleT, info.mBiasT == 1, 0);
 }

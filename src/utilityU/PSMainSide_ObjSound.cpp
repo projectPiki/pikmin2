@@ -114,52 +114,9 @@ bool Creature::judgeNearWithPlayer(const Vec& pos1, const Vec& pos2, f32 near, f
  */
 bool Creature::isNear(Game::Creature* obj, f32 near)
 {
-	Vec* pos  = (Vec*)mGameObj->getSound_PosPtr();
-	Vec* pos2 = (Vec*)obj->getSound_PosPtr();
+	Vec* pos = (Vec*)mGameObj->getSound_PosPtr();
 
-	return judgeNearWithPlayer(*pos, *pos2, near, near / 2);
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stfd     f31, 0x10(r1)
-	psq_st   f31, 24(r1), 0, qr0
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	fmr      f31, f1
-	lwz      r3, 0x2c(r3)
-	mr       r31, r4
-	lwz      r12, 0(r3)
-	lwz      r12, 0x100(r12)
-	mtctr    r12
-	bctrl
-	mr       r0, r3
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	mr       r31, r0
-	lwz      r12, 0x100(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0x28(r30)
-	mr       r5, r3
-	lfs      f0, lbl_80520C54@sda21(r2)
-	fmr      f1, f31
-	lwz      r12, 0x34(r12)
-	mr       r3, r30
-	fmuls    f2, f31, f0
-	mr       r4, r31
-	mtctr    r12
-	bctrl
-	psq_l    f31, 24(r1), 0, qr0
-	lwz      r0, 0x24(r1)
-	lfd      f31, 0x10(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	return judgeNearWithPlayer(*pos, *(Vec*)obj->getSound_PosPtr(), near, near / 2);
 }
 
 /**
@@ -191,7 +148,7 @@ void Creature::loopCalc(FrameCalcArg& arg)
 
 	u8 players = PSSystem::SingletonBase<ObjCalcBase>::sInstance->getPlayerNo(this);
 	PSMTXMultVec(*JAIBasic::msBasic->mCameras[players].mMtx, jai->_24, &pos);
-	dist = pikmin2_sqrtf((pos.x * pos.x) + (pos.y * pos.y) + (pos.z * pos.z));
+	dist = PSMath::calcMagnitude(pos);
 
 	for (u8 i = 0; i < jai->mHandleCount; i++) {
 		JAISound* se = jai->mSounds[i];
@@ -302,9 +259,9 @@ JAISound* Creature::startSoundInner(PSM::StartSoundArg& arg)
 		return nullptr;
 	}
 
-	Creature* obj        = arg.mObj;
 	u32 sound            = arg.mSoundID;
 	u32 unk              = arg._08;
+	Creature* obj        = arg.mObj;
 	JAInter::Object* jai = obj->getJAIObject();
 	JAISound** temp      = nullptr;
 	if (!(sound & 0x800)) {
@@ -715,7 +672,7 @@ void CreatureAnime::playActorAnimSound(JAInter::Actor* actor, f32 pitchmod, u8 a
 	u8 i = 0;
 	JUT_ASSERTLINE(549, mAnimID < mSoundData->mEntryNum, "JAIAnimeSound::playActorAnimSound  dataCounterが異常です。\n");
 	JAIAnimeFrameSoundData* data = &mSoundData->mSndEntries[mAnimID];
-	u8 max                       = mHandleCount;
+	u32 max                      = mHandleCount;
 	while (i < max) {
 		u8* handle = mSoundStatus;
 		if (handle[i]) {
@@ -1346,12 +1303,11 @@ bool EnemyBase::calcKehai()
 	{
 		Game::Navi* navi = *iterator;
 		if (navi->mController1) {
-			Vector3f pos = navi->getPosition();
-			volatile Vec pos2;
-			pos2.x = pos.x;
-			pos2.y = pos.y;
-			pos2.z = pos.z;
-			if (judgeNearWithPlayer(enemypos, *(Vec*)&pos, CreaturePrm::cVolZeroDist_Kehai[getCastType() - 2],
+			Vector3f position = navi->getPosition();
+			JGeometry::TVec3f pos;
+			pos.set(position.x, position.y, position.z);
+			Vec naviPosition = pos;
+			if (judgeNearWithPlayer(enemypos, naviPosition, CreaturePrm::cVolZeroDist_Kehai[getCastType() - 2],
 			                        CreaturePrm::cVolZeroDist_InnerSize_Kehai[getCastType() - 2])) {
 				return true;
 			}
@@ -1599,9 +1555,7 @@ lbl_8045EEB8:
 bool EnemyBase::judgeNearWithPlayer(const Vec& enemyPosition, const Vec& naviPosition, f32 distanceX, f32 distanceY)
 {
 	f32 x = enemyPosition.x - naviPosition.x;
-	if (!(x >= 0.0f)) {
-		x = -x;
-	}
+	x     = (x >= 0.0f) ? x : -x;
 
 	if (x < distanceX) {
 		x = enemyPosition.y - naviPosition.y;
@@ -1790,10 +1744,7 @@ void EnemyBoss::calcDistance()
 		if (navi->mController1) {
 			Vector3f pos     = mGameObj->getPosition();
 			Vector3f navipos = navi->getPosition();
-			Vector3f delta   = navipos - pos;
-			Vector3f squared = delta * delta;
-			f32 cdist        = squared.z + (squared.x + squared.y);
-			cdist            = sqrtf(cdist);
+			f32 cdist        = PSMath::calcDistance(pos, navipos);
 			if (cdist < dist) {
 				dist = cdist;
 			}
@@ -3015,35 +2966,20 @@ JAISound* Navi::startSound(u32 soundID, u32 flag)
 	return se;
 }
 
-// 0 olimar, 1 louie, 2 president
-static inline int getRappaManType(PSGame::Rappa& rappa)
-{
-	if (rappa.mId == 13) {
-		return 0;
-	}
-
-	if (rappa.mId == 14) {
-		return 1;
-	}
-	return 2;
-}
-
 /**
  * @note Address: 0x80462D9C
  * @note Size: 0x28
  */
-int Navi::getManType()
+Navi::ManType Navi::getManType()
 {
-	// same logic as getRappaManType, only this shape matches standalone
 	if (mRappa.mId == 13) {
-		return 0;
+		return ManType_Olimar;
 	}
 
-	int ret = 2;
 	if (mRappa.mId == 14) {
-		ret = 1;
+		return ManType_Louie;
 	}
-	return ret;
+	return ManType_President;
 }
 
 /**
@@ -3053,11 +2989,11 @@ int Navi::getManType()
 JAISound* Navi::playShugoSE()
 {
 	u32 sound;
-	if (getRappaManType(mRappa) == 0) {
+	if (getManType() == ManType_Olimar) {
 		sound = PSSE_PL_SHUGO;
 	} else {
 		// written like this to match
-		sound = PSSE_PL_SYUGO_SHACHO + ((getRappaManType(mRappa) == 1) ? -1 : 0);
+		sound = PSSE_PL_SYUGO_SHACHO + ((getManType() == ManType_Louie) ? -1 : 0);
 	}
 	return startSound(sound, 0);
 }
@@ -3069,10 +3005,10 @@ JAISound* Navi::playShugoSE()
 JAISound* Navi::playKaisanSE()
 {
 	u32 sound;
-	if (getRappaManType(mRappa) == 0) {
+	if (getManType() == ManType_Olimar) {
 		sound = PSSE_PL_KAISAN;
 	} else {
-		sound = PSSE_PL_KAISAN_SHACHO + ((getRappaManType(mRappa) == 1) ? -1 : 0);
+		sound = PSSE_PL_KAISAN_SHACHO + ((getManType() == ManType_Louie) ? -1 : 0);
 	}
 	return startSound(sound, 0);
 }
@@ -3095,7 +3031,7 @@ void Navi::playWalkSound(PSM::Navi::FootType type, int id)
 	randid.mId   = PSGame::RandId::cNotUsingMasterIdRatio;
 
 	if (sound) {
-		sound->setPortData(10, getRappaManType(mRappa));
+		sound->setPortData(10, getManType());
 	}
 }
 

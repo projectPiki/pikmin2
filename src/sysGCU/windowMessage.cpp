@@ -9,10 +9,7 @@
 namespace P2JME {
 namespace Window {
 
-static void strippedFunc()
-{
-	OSReport("\0\0\0\0\0\0\0\0\0\0\0");
-}
+static const u32 padding[3] = { 0, 0, 0 };
 
 /**
  * @note Address: 0x8043F188

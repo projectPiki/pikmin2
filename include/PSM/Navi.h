@@ -10,6 +10,12 @@ struct Navi;
 
 namespace PSM {
 struct Navi : public CreatureObj {
+	enum ManType {
+		ManType_Olimar    = 0,
+		ManType_Louie     = 1,
+		ManType_President = 2,
+	};
+
 	enum FootType {
 		NAVIFOOT_820 = 0x820, // PSSE_PL_WALKLEAF_L1
 		NAVIFOOT_840 = 0x840, // PSSE_PL_WALKLEAF_R1
@@ -28,7 +34,7 @@ struct Navi : public CreatureObj {
 	void init(u16);
 	void setShacho();
 	void stopWaitVoice();
-	int getManType();
+	ManType getManType();
 	JAISound* playShugoSE();
 	JAISound* playKaisanSE();
 	void playWalkSound(Navi::FootType, int);

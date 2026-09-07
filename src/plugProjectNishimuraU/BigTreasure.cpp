@@ -1415,35 +1415,32 @@ void Obj::updateMaterialColor()
 	// body
 	const int& targetRed = getTargetBodyRed();
 	const int& currRed   = getCurrentBodyRed();
-	mCurrMatBodyColor.r  = adjustValInt(currRed, targetRed, 5);
+	mCurrMatBodyColor.r  = approach(currRed, targetRed, 5);
 
 	const int& targetGreen = getTargetBodyGreen();
 	const int& currGreen   = getCurrentBodyGreen();
-	mCurrMatBodyColor.g    = adjustValInt(currGreen, targetGreen, 5);
+	mCurrMatBodyColor.g    = approach(currGreen, targetGreen, 5);
 
 	const int& targetBlue = getTargetBodyBlue();
 	const int& currBlue   = getCurrentBodyBlue();
-	mCurrMatBodyColor.b   = adjustValInt(currBlue, targetBlue, 5);
+	mCurrMatBodyColor.b   = approach(currBlue, targetBlue, 5);
 
 	const int& targetAlpha = getTargetBodyAlpha();
 	const int& currAlpha   = getCurrentBodyAlpha();
-	mCurrMatBodyColor.a    = adjustValInt(currAlpha, targetAlpha, 5);
+	mCurrMatBodyColor.a    = approach(currAlpha, targetAlpha, 5);
 
 	// cluster eyes
 	mCurrClusterEyeColor.mRgb[0]
-	    = adjustVal(mCurrClusterEyeColor.mRgb[0], mTargetClusterEyeColor[mTargetEyeColorIdx].mRgb[0], mClusterEyeAnimSpeeds[0]);
+	    = approach(mCurrClusterEyeColor.mRgb[0], mTargetClusterEyeColor[mTargetEyeColorIdx].mRgb[0], mClusterEyeAnimSpeeds[0]);
 	mCurrClusterEyeColor.mRgb[1]
-	    = adjustVal(mCurrClusterEyeColor.mRgb[1], mTargetClusterEyeColor[mTargetEyeColorIdx].mRgb[1], mClusterEyeAnimSpeeds[1]);
+	    = approach(mCurrClusterEyeColor.mRgb[1], mTargetClusterEyeColor[mTargetEyeColorIdx].mRgb[1], mClusterEyeAnimSpeeds[1]);
 	mCurrClusterEyeColor.mRgb[2]
-	    = adjustVal(mCurrClusterEyeColor.mRgb[2], mTargetClusterEyeColor[mTargetEyeColorIdx].mRgb[2], mClusterEyeAnimSpeeds[2]);
+	    = approach(mCurrClusterEyeColor.mRgb[2], mTargetClusterEyeColor[mTargetEyeColorIdx].mRgb[2], mClusterEyeAnimSpeeds[2]);
 
 	// side eyes
-	mCurrSideEyeColor.mRgb[0]
-	    = adjustVal(mCurrSideEyeColor.mRgb[0], mTargetSideEyeColor[mTargetEyeColorIdx].mRgb[0], mSideEyeAnimSpeeds[0]);
-	mCurrSideEyeColor.mRgb[1]
-	    = adjustVal(mCurrSideEyeColor.mRgb[1], mTargetSideEyeColor[mTargetEyeColorIdx].mRgb[1], mSideEyeAnimSpeeds[1]);
-	mCurrSideEyeColor.mRgb[2]
-	    = adjustVal(mCurrSideEyeColor.mRgb[2], mTargetSideEyeColor[mTargetEyeColorIdx].mRgb[2], mSideEyeAnimSpeeds[2]);
+	mCurrSideEyeColor.mRgb[0] = approach(mCurrSideEyeColor.mRgb[0], mTargetSideEyeColor[mTargetEyeColorIdx].mRgb[0], mSideEyeAnimSpeeds[0]);
+	mCurrSideEyeColor.mRgb[1] = approach(mCurrSideEyeColor.mRgb[1], mTargetSideEyeColor[mTargetEyeColorIdx].mRgb[1], mSideEyeAnimSpeeds[1]);
+	mCurrSideEyeColor.mRgb[2] = approach(mCurrSideEyeColor.mRgb[2], mTargetSideEyeColor[mTargetEyeColorIdx].mRgb[2], mSideEyeAnimSpeeds[2]);
 
 	// if both cluster and side eyes are within 0.01f of the target color (for R, G, and B), swap target (light->dark or dark->light)
 	bool check = true;

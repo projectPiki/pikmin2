@@ -910,9 +910,10 @@ Piki* Obj::getAttackPiki(int animIdx)
 		p2 = animIdx + 1;
 	}
 
-	Vector3f snakePos = getPosition();                 // f28, f27, f26
-	Vector3f dir      = getDirection(mFaceDir);        // f30, f29
-	Vector3f orthoDir = Vector3f(-dir.z, 0.0f, dir.x); // f31
+	Vector3f snakePos = getPosition();          // f28, f27, f26
+	Vector3f dir      = getDirection(mFaceDir); // f30, f29
+	Vector3f orthoDir;
+	orthoDir.set(-dir.z, 0.0f, dir.x); // f31
 
 	f32 maxDotDirs[]     = { 120.0f, 180.0f, 260.0f, 160.0f, 160.0f }; // 0x94
 	f32 minDotDirs[]     = { 0.0f, 120.0f, 180.0f, 80.0f, 80.0f };     // 0x80
@@ -923,6 +924,8 @@ Piki* Obj::getAttackPiki(int animIdx)
 
 	for (int i = 0; i < 5; i++) {
 		maxYs[i] += mAttackPositions[i].y - snakePos.y;
+	}
+	for (int i = 0; i < 5; i++) {
 		minYs[i] += mAttackPositions[i].y - snakePos.y;
 	}
 
@@ -1376,9 +1379,10 @@ Navi* Obj::getAttackNavi(int animIdx)
 		p2 = animIdx + 1;
 	}
 
-	Vector3f snakePos = getPosition();                 // f28, f27, f26
-	Vector3f dir      = getDirection(mFaceDir);        // f30, f29
-	Vector3f orthoDir = Vector3f(-dir.z, 0.0f, dir.x); // f31
+	Vector3f snakePos = getPosition();          // f28, f27, f26
+	Vector3f dir      = getDirection(mFaceDir); // f30, f29
+	Vector3f orthoDir;
+	orthoDir.set(-dir.z, 0.0f, dir.x); // f31
 
 	f32 maxDotDirs[]     = { 120.0f, 180.0f, 260.0f, 160.0f, 160.0f }; // 0x94
 	f32 minDotDirs[]     = { 0.0f, 120.0f, 180.0f, 80.0f, 80.0f };     // 0x80
@@ -1389,6 +1393,8 @@ Navi* Obj::getAttackNavi(int animIdx)
 
 	for (int i = 0; i < 5; i++) {
 		maxYs[i] += mAttackPositions[i].y - snakePos.y;
+	}
+	for (int i = 0; i < 5; i++) {
 		minYs[i] += mAttackPositions[i].y - snakePos.y;
 	}
 

@@ -113,14 +113,9 @@ void StateWait::exec(EnemyBase* enemy)
 				enemy->getJAIObject()->startSound(PSSE_EN_KOCHAPPY_NOTICE, 0);
 				break;
 			case KEYEVENT_END:
-				Parms* parms     = CG_PARMS(enemy);
-				f32 angLimit     = parms->mProperParms.mRotationEndAngle();
-				f32 maxTurnAngle = CG_GENERALPARMS(enemy).mMaxTurnAngle();
-				f32 turnSpeed    = CG_GENERALPARMS(enemy).mTurnSpeed();
-				f32 angDist      = enemy->getAngDist(enemy->mTargetCreature);
-				f32 angle        = clamp(angDist * turnSpeed, TORADIANS(maxTurnAngle));
-				enemy->updateFaceDir(roundAng(angle + enemy->getFaceDir()));
-				if (isAngleWithin(angDist, angLimit)) {
+				Parms* parms = CG_PARMS(enemy);
+				if (enemy->turnToTarget(enemy->mTargetCreature, CG_GENERALPARMS(enemy).mTurnSpeed(), CG_GENERALPARMS(enemy).mMaxTurnAngle(),
+				                        parms->mProperParms.mRotationEndAngle())) {
 					transit(enemy, KOCHAPPY_Walk, nullptr);
 				} else {
 					transit(enemy, KOCHAPPY_Turn, nullptr);
@@ -133,221 +128,6 @@ void StateWait::exec(EnemyBase* enemy)
 	if (enemy->mHealth <= 0.0f) {
 		transit(enemy, KOCHAPPY_Dead, nullptr);
 	}
-	/*
-	stwu     r1, -0x90(r1)
-	mflr     r0
-	stw      r0, 0x94(r1)
-	stfd     f31, 0x80(r1)
-	psq_st   f31, 136(r1), 0, qr0
-	stfd     f30, 0x70(r1)
-	psq_st   f30, 120(r1), 0, qr0
-	stfd     f29, 0x60(r1)
-	psq_st   f29, 104(r1), 0, qr0
-	stfd     f28, 0x50(r1)
-	psq_st   f28, 88(r1), 0, qr0
-	stw      r31, 0x4c(r1)
-	stw      r30, 0x48(r1)
-	mr       r31, r4
-	mr       r30, r3
-	mr       r3, r31
-	li       r4, 1
-	bl       isStartFlick__Q24Game9EnemyFuncFPQ24Game9EnemyBaseb
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8010FC6C
-	li       r0, 2
-	mr       r3, r30
-	stw      r0, 8(r1)
-	mr       r4, r31
-	addi     r6, r1, 8
-	li       r5, 5
-	lwz      r12, 0(r30)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8010FE8C
-
-lbl_8010FC6C:
-	lwz      r0, 0x230(r31)
-	cmplwi   r0, 0
-	bne      lbl_8010FCAC
-	lwz      r5, 0xc0(r31)
-	mr       r3, r31
-	lfs      f1, lbl_80517A00@sda21(r2)
-	li       r4, 0
-	lfs      f2, 0x3d4(r5)
-	li       r5, 0
-	li       r6, 0
-	bl
-"getNearestPikminOrNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>P23Condition<Q24Game4Piki>"
-	cmplwi   r3, 0
-	beq      lbl_8010FCAC
-	stw      r3, 0x230(r31)
-	mr       r3, r31
-	bl       finishMotion__Q24Game9EnemyBaseFv
-
-lbl_8010FCAC:
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_8010FE8C
-	lwz      r0, 0x1c(r3)
-	cmpwi    r0, 0x3e8
-	beq      lbl_8010FD08
-	bge      lbl_8010FE8C
-	cmpwi    r0, 2
-	beq      lbl_8010FCD8
-	b        lbl_8010FE8C
-
-lbl_8010FCD8:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0xf4(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	li       r4, 0x596a
-	li       r5, 0
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8010FE8C
-
-lbl_8010FD08:
-	lwz      r4, 0x230(r31)
-	addi     r3, r1, 0x24
-	lwz      r5, 0xc0(r31)
-	lwz      r12, 0(r4)
-	lfs      f31, 0x86c(r5)
-	lwz      r12, 8(r12)
-	lfs      f28, 0x334(r5)
-	lfs      f29, 0x30c(r5)
-	mtctr    r12
-	bctrl
-	mr       r4, r31
-	lfs      f2, 0x24(r1)
-	lwz      r12, 0(r31)
-	addi     r3, r1, 0x30
-	lfs      f1, 0x28(r1)
-	lfs      f0, 0x2c(r1)
-	lwz      r12, 8(r12)
-	stfs     f2, 0xc(r1)
-	stfs     f1, 0x10(r1)
-	stfs     f0, 0x14(r1)
-	mtctr    r12
-	bctrl
-	lfs      f5, 0x30(r1)
-	lis      r3, atanTable___5JMath@ha
-	lfs      f3, 0x38(r1)
-	addi     r3, r3, atanTable___5JMath@l
-	lfs      f1, 0xc(r1)
-	lfs      f0, 0x14(r1)
-	lfs      f4, 0x34(r1)
-	fsubs    f1, f1, f5
-	fsubs    f2, f0, f3
-	stfs     f5, 0x18(r1)
-	stfs     f4, 0x1c(r1)
-	stfs     f3, 0x20(r1)
-	bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
-	bl       roundAng__Ff
-	lwz      r12, 0(r31)
-	fmr      f30, f1
-	mr       r3, r31
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	fmr      f2, f1
-	fmr      f1, f30
-	bl       angDist__Fff
-	fmr      f30, f1
-	lfs      f0, lbl_80517A08@sda21(r2)
-	lfs      f1, lbl_80517A04@sda21(r2)
-	fmuls    f0, f0, f28
-	fmuls    f28, f30, f29
-	fmuls    f1, f1, f0
-	fabs     f0, f28
-	frsp     f0, f0
-	fcmpo    cr0, f0, f1
-	ble      lbl_8010FDFC
-	lfs      f0, lbl_805179E0@sda21(r2)
-	fcmpo    cr0, f28, f0
-	ble      lbl_8010FDF8
-	fmr      f28, f1
-	b        lbl_8010FDFC
-
-lbl_8010FDF8:
-	fneg     f28, f1
-
-lbl_8010FDFC:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	fadds    f1, f28, f1
-	bl       roundAng__Ff
-	lfs      f0, lbl_80517A08@sda21(r2)
-	fabs     f2, f30
-	stfs     f1, 0x1fc(r31)
-	fmuls    f0, f0, f31
-	lfs      f1, lbl_80517A04@sda21(r2)
-	lfs      f3, 0x1fc(r31)
-	frsp     f2, f2
-	fmuls    f0, f1, f0
-	stfs     f3, 0x1a8(r31)
-	fcmpo    cr0, f2, f0
-	cror     2, 0, 2
-	bne      lbl_8010FE6C
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 3
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8010FE8C
-
-lbl_8010FE6C:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 2
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8010FE8C:
-	lfs      f1, 0x200(r31)
-	lfs      f0, lbl_805179E0@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_8010FEC0
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 1
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8010FEC0:
-	psq_l    f31, 136(r1), 0, qr0
-	lfd      f31, 0x80(r1)
-	psq_l    f30, 120(r1), 0, qr0
-	lfd      f30, 0x70(r1)
-	psq_l    f29, 104(r1), 0, qr0
-	lfd      f29, 0x60(r1)
-	psq_l    f28, 88(r1), 0, qr0
-	lfd      f28, 0x50(r1)
-	lwz      r31, 0x4c(r1)
-	lwz      r0, 0x94(r1)
-	lwz      r30, 0x48(r1)
-	mtlr     r0
-	addi     r1, r1, 0x90
-	blr
-	*/
 }
 
 /**
@@ -446,7 +226,7 @@ void StateTurn::exec(EnemyBase* enemy)
 		if (target) {
 			enemy->mTargetCreature = target;
 			f32 angle              = enemy->getAngDist(enemy->mTargetCreature);
-			if (enemy->isTargetAttackable(angle, CG_GENERALPARMS(enemy).mMaxAttackRange, CG_GENERALPARMS(enemy).mMaxAttackAngle)) {
+			if (enemy->isTargetAttackable(angle, CG_GENERALPARMS(enemy).mMaxAttackRange(), CG_GENERALPARMS(enemy).mMaxAttackAngle())) {
 				mNextState = KOCHAPPY_Attack;
 				enemy->finishMotion();
 				OBJ(enemy)->setAnimationSpeed(60.0f);
@@ -456,12 +236,8 @@ void StateTurn::exec(EnemyBase* enemy)
 					mNextState = KOCHAPPY_TurnToHome;
 					enemy->finishMotion();
 				} else {
-					f32 maxTurnAngle = CG_GENERALPARMS(enemy).mMaxTurnAngle();
-					f32 turnSpeed    = CG_GENERALPARMS(enemy).mTurnSpeed();
-					f32 angDist      = enemy->getAngDist(enemy->mTargetCreature);
-					f32 angle        = clamp(angDist * turnSpeed, TORADIANS(maxTurnAngle));
-					enemy->updateFaceDir(roundAng(angle + enemy->getFaceDir()));
-					if (isAngleWithin(angDist, CG_PROPERPARMS(enemy).mRotationEndAngle())) {
+					if (enemy->turnToTarget(enemy->mTargetCreature, CG_GENERALPARMS(enemy).mTurnSpeed(),
+					                        CG_GENERALPARMS(enemy).mMaxTurnAngle(), CG_PROPERPARMS(enemy).mRotationEndAngle())) {
 						mNextState = KOCHAPPY_Walk;
 						enemy->finishMotion();
 						OBJ(enemy)->setAnimationSpeed(60.0f);
@@ -2071,9 +1847,8 @@ void StateTurnToHome::exec(EnemyBase* enemy)
 		return;
 	} else {
 		Vector3f targetPos = enemy->mHomePosition;
-		f32 maxAngle       = CG_GENERALPARMS(enemy).mMaxAttackAngle();
-		f32 angle          = enemy->turnToTargetPos(targetPos, CG_GENERALPARMS(enemy).mTurnSpeed(), CG_GENERALPARMS(enemy).mMaxTurnAngle());
-		if (absF(angle) <= TORADIANS(maxAngle)) {
+		if (enemy->turnToTargetPos(targetPos, CG_GENERALPARMS(enemy).mTurnSpeed(), CG_GENERALPARMS(enemy).mMaxTurnAngle(),
+		                           CG_GENERALPARMS(enemy).mMaxAttackAngle())) {
 			enemy->finishMotion();
 		}
 		if (enemy->mCurAnim->mIsPlaying) {

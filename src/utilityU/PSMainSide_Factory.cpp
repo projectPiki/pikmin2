@@ -15,24 +15,11 @@
 #include "PSSystem/PSMainSide_Scene.h"
 #include "PSAutoBgm/MeloArr.h"
 #include "nans.h"
+#include "PSMath.h"
 
 static const u32 padding[] = { 0, 0, 0 };
 
 namespace PSM {
-
-// idk if these are Vec&, Vec*, Vec, or JGeometry::TVec3f/Vector3f equivalents. this is the closest i've gotten but stack is off
-// might take EnvSe_Perspective_AvoidY* and Navi*? seems unlikely comparing the functions it's used in but who knows
-// see EnvSe_Perspective_AvoidY::play and PersEnvManager::exec
-static inline f32 getSoundDistance(Vec& sound, Vec& navi)
-{
-	f32 x = sound.x - navi.x;
-	x *= x;
-	f32 z = sound.z - navi.z;
-	z *= z;
-	f32 dist = x + z;
-	sqrtf(dist);
-	return dist;
-}
 
 /**
  * @note Address: 0x80459BD4
@@ -80,9 +67,8 @@ JAISound* EnvSe_Perspective_AvoidY::play()
 	if (hasNavi && persMgr && persMgr->playOk(this)) {
 		mPosition.y = mYOffset + navi->getPosition().y;
 
-		Vector3f pos = navi->getPosition();
-		Vec naviPos  = *(Vec*)&pos;
-		f32 dist     = getSoundDistance(mPosition, naviPos); // this is close. need to match with this and PersEnvManager::exec
+		Vector3f naviPos = navi->getPosition();
+		f32 dist         = PSMath::calcDistanceXZ(mPosition, naviPos);
 
 		PSSystem::spSysIF->startSoundVecT(mSoundID, &mSound, &mPosition, 0, 0,
 		                                  PSSystem::SingletonBase<ObjCalcBase>::getInstance()->getPlayerNo(mPosition));
@@ -2965,10 +2951,9 @@ void PersEnvManager::exec()
 				continue;
 			}
 
-			Vec soundDist = se->mPosition;
-			Vector3f pos  = navi->getPosition();
-			Vec naviPos   = *(Vec*)&pos;
-			f32 dist = getSoundDistance(soundDist, naviPos); // this is close. need to match with this and EnvSe_Perspective_AvoidY::play
+			Vec soundDist    = se->mPosition;
+			Vector3f naviPos = navi->getPosition();
+			f32 dist         = PSMath::calcDistanceXZ(soundDist, naviPos);
 			if (mSeDistances[i] > dist) {
 				mSeDistances[i]   = dist;
 				mPersEnvSounds[i] = se;

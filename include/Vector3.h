@@ -95,7 +95,6 @@ struct Vector3 {
 
 	// Distance Functions
 	inline T qDistance(Vector3& them);
-	inline T sqrDistanceToSphere(Vector3& them);
 	static inline T distance(Vector3& a, Vector3& b);
 	T distance(Vector3&);
 	T distance2D(Vector3&);
@@ -422,7 +421,11 @@ inline Vector3<T> Vector3<T>::cross(const Vector3& other)
 template <typename T>
 inline void Vector3<T>::cross(const Vector3& v1, const Vector3& v2)
 {
-	set(v1.y * v2.z - v1.z * v2.y, v1.z * v2.x - v1.x * v2.z, v1.x * v2.y - v1.y * v2.z);
+	Vector3 outVec;
+	outVec.y = v1.z * v2.x - v1.x * v2.z;
+	outVec.z = v1.x * v2.y - v1.y * v2.x;
+	outVec.x = v1.y * v2.z - v1.z * v2.y;
+	*this    = outVec;
 }
 
 template <typename T>
@@ -593,16 +596,6 @@ inline T Vector3<T>::qDistance(Vector3& them)
 	return pikmin2_sqrtf(SQUARE(diffX) + SQUARE(diffY) + SQUARE(diffZ));
 }
 
-template <typename T>
-inline T Vector3<T>::sqrDistanceToSphere(Vector3& them)
-{
-	T diffX = this->x - them.x;
-	T diffY = this->y - them.y;
-	T diffZ = this->z - them.z;
-
-	return SQUARE(diffX) + SQUARE(diffY) + SQUARE(diffZ);
-}
-
 template <>
 inline f32 Vector3f::length() const
 {
@@ -689,12 +682,12 @@ inline f32 Vector3f::distance2D(Vector3f& them)
 	return Vector3f(diffX, diffY, diffZ).length2D();
 }
 
-template <>
-inline f32 Vector3f::sqrDistance(Vector3f& them)
+template <typename T>
+inline T Vector3<T>::sqrDistance(Vector3& them)
 {
-	f32 diffX = this->x - them.x;
-	f32 diffY = this->y - them.y;
-	f32 diffZ = this->z - them.z;
+	T diffX = this->x - them.x;
+	T diffY = this->y - them.y;
+	T diffZ = this->z - them.z;
 
 	return SQUARE(diffX) + SQUARE(diffY) + SQUARE(diffZ);
 }

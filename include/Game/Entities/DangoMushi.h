@@ -103,6 +103,23 @@ struct Obj : public EnemyBase {
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() { return EnemyTypeID::EnemyID_DangoMushi; } // _258 (weak)
 	//////////////// VTABLE END
 
+	inline f32 turnByAngle(f32 angleDist, f32 turnSpeed, f32 maxTurnAngle)
+	{
+		f32 angle = clamp(angleDist * turnSpeed, TORADIANS(maxTurnAngle));
+		updateFaceDir(roundAng(angle + getFaceDir()));
+		return angleDist;
+	}
+
+	inline f32 turnToTarget(Creature* target, f32 turnSpeed, f32 maxTurnAngle)
+	{
+		return turnByAngle(getAngDist(target), turnSpeed, maxTurnAngle);
+	}
+
+	inline f32 turnToTarget(Vector3f& target, f32 turnSpeed, f32 maxTurnAngle)
+	{
+		return turnByAngle(getAngDist(target), turnSpeed, maxTurnAngle);
+	}
+
 	bool addShadowScale();
 	void setRandTarget();
 	bool isReachedTarget();

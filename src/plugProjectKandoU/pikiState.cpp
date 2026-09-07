@@ -34,17 +34,6 @@ static const int someArray[3] = { 0, 0, 0 };
 static const char fileName[]  = "pikiState";
 
 /**
- * @note Address: N/A
- */
-static inline f32 getVectorLength(f32 z, f32 x, f32 y)
-{
-	Vector2f sqr(z * z, x * x + y * y);
-	f32 length = sqr.x + sqr.y;
-	__sqrtf(length, &length);
-	return length;
-}
-
-/**
  * @note Address: 0x80189378
  * @note Size: 0x4
  */
@@ -1744,10 +1733,11 @@ void PikiHipDropState::exec(Piki* piki)
 					Vector3f creaturePos = creature->getPosition();
 					Vector3f pikiPos     = piki->getPosition();
 
-					f32 diffX    = creaturePos.x - pikiPos.x;
-					f32 diffZ    = creaturePos.z - pikiPos.z;
-					f32 diffY    = creaturePos.y - pikiPos.y;
-					f32 currDist = getVectorLength(diffZ, diffX, diffY);
+					f32 diffX = creaturePos.x - pikiPos.x;
+					f32 diffZ = creaturePos.z - pikiPos.z;
+					f32 diffY = creaturePos.y - pikiPos.y;
+					Vector3f separation(diffX, diffY, diffZ);
+					f32 currDist = separation.length();
 
 					if (currDist < minDist) {
 						minDist      = currDist;
@@ -3065,7 +3055,6 @@ void PikiDrownState::exec(Piki* piki)
 
 			mMoveVelocity = sep * piki->getSpeed(0.5f);
 
-			//naviPos gets reused here matches retail
 			naviPos = mMoveVelocity - piki->mTargetVelocity;
 
 			f32 speedDiff = naviPos.normalise();

@@ -593,16 +593,17 @@ void Obj::fly()
 			mYawRate -= 360.0f;
 		}
 
-		f32 sinVal = (f32)sin(mYawRate);
-		sinVal *= C_PARMS->mRotateFaceDirFactor;
+		f32 sinVal        = (f32)sin(mYawRate);
+		sinVal            = C_PARMS->mRotateFaceDirFactor * sinVal;
 		f32 faceDirOffset = TORADIANS(sinVal);
 		mFaceDir          = mTargetFaceDir;
 		turnToTarget(mGoalPosition, rotAccel, rotSpeed);
 
 		f32 angle = mFaceDir + faceDirOffset;
-		f32 x     = moveSpeed * sinf(angle);
-		f32 y     = getTargetVelocity().y;
-		f32 z     = moveSpeed * cosf(angle);
+		Vector3f velocity;
+		velocity.x = moveSpeed * sinf(angle);
+		velocity.y = getTargetVelocity().y;
+		velocity.z = moveSpeed * cosf(angle);
 
 		mTargetFaceDir = mFaceDir;
 		if (absF(faceDirOffset) > rotSpeed) {
@@ -614,7 +615,7 @@ void Obj::fly()
 		}
 		updateFaceDir(mFaceDir + roundAng(faceDirOffset));
 
-		mTargetVelocity = Vector3f(x, y, z);
+		mTargetVelocity = velocity;
 	}
 
 	mPosition.y += 0.01f * (mGoalPosition.y - mPosition.y);

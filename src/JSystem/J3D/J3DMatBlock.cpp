@@ -21,12 +21,6 @@ static size_t SizeOfLoadColorChans = 21;
 static size_t SizeOfJ3DColorBlockLightOffLoad  = SizeOfLoadMatColors + SizeOfLoadColorChans;
 static size_t SizeOfJ3DColorBlockAmbientOnLoad = SizeOfLoadMatColors + SizeOfLoadAmbColors + SizeOfLoadColorChans;
 
-// the const ref version in J3DTypes.h mismatches here
-inline void loadTexCoordScale(GXTexCoordID coord, J3DTexCoordScaleInfo& info)
-{
-	J3DGDSetTexCoordScale2(coord, info.mScaleS, info.mBiasS == 1, 0, info.mScaleT, info.mBiasT == 1, 0);
-}
-
 // this has to get defined here to stop an sdata2 fragment going EVERYWHERE IN THE PROJECT smh
 inline u8 J3DColorChan::getAttnFn() const
 {

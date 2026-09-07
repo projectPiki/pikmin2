@@ -17,11 +17,6 @@ const f32 cDefaultKamuJointOffset[2] = { 7.5f, -7.5f };
 const f32 cFlickKamuJointOffset[2]   = { 10.0f, -10.0f };
 } // namespace
 
-static inline f32 weightVal(f32 y, f32 x, f32 yWeight, f32 xWeight)
-{
-	return y * yWeight + xWeight * x;
-}
-
 /**
  * @note Address: 0x802D3F84
  * @note Size: 0x140
@@ -660,8 +655,8 @@ void Obj::updateCollPartOffset()
 		if (slot->mStuckCreature) {
 			if (absVal(slot->mOffset.x - cDefaultKamuJointOffset[i]) > 1.0f || absVal(20.0f + slot->mOffset.y) > 1.0f
 			    || absVal(slot->mOffset.z) > 1.0f) {
-				slot->mOffset.x = weightVal(slot->mOffset.x, cDefaultKamuJointOffset[i], 0.8f, 0.2f);
-				slot->mOffset.y = adjustVal(slot->mOffset.y, -20.0f, 7.5f);
+				slot->mOffset.x = interpolate(slot->mOffset.x, cDefaultKamuJointOffset[i], 0.2f);
+				slot->mOffset.y = approach(slot->mOffset.y, -20.0f, 7.5f);
 				slot->mOffset.z *= 0.8f;
 
 				if (absVal(slot->mOffset.x - cDefaultKamuJointOffset[i]) < 1.0f && absVal(20.0f + slot->mOffset.y) < 1.0f
@@ -728,8 +723,8 @@ void Obj::flickStickNavi(bool check)
 				val    = -75.0f;
 			}
 
-			slot->mOffset.x = adjustVal(slot->mOffset.x, offset, 1.0f);
-			slot->mOffset.y = adjustVal(slot->mOffset.y, val, 10.0f);
+			slot->mOffset.x = approach(slot->mOffset.x, offset, 1.0f);
+			slot->mOffset.y = approach(slot->mOffset.y, val, 10.0f);
 
 			if (absVal(slot->mOffset.x - offset) < 1.0f && absVal(slot->mOffset.y - val) < 1.0f) {
 				Creature* navi = slot->mStuckCreature;

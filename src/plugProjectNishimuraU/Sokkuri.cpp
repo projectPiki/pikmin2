@@ -278,10 +278,10 @@ void Obj::updateMoveState()
 		newVelocity.y += 5.0f;
 		setVelocity(newVelocity);
 
-		mMoveVelocity = adjustVal(mMoveVelocity, C_PROPERPARMS.mUnderwaterMoveSpeed.mValue, 10.0f);
+		mMoveVelocity = approach(mMoveVelocity, C_PROPERPARMS.mUnderwaterMoveSpeed.mValue, 10.0f);
 
 	} else {
-		mMoveVelocity = adjustVal(mMoveVelocity, C_GENERALPARMS.mMoveSpeed.mValue, 25.0f);
+		mMoveVelocity = approach(mMoveVelocity, C_GENERALPARMS.mMoveSpeed.mValue, 25.0f);
 	}
 }
 

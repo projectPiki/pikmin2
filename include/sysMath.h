@@ -24,4 +24,34 @@ inline f32 log(f32& a, f64 b)
 	return dividend / divisor;
 }
 
+inline f32 absVal(f32 val)
+{
+	return (val > 0.0f) ? val : -val;
+}
+
+inline int absVal(int val)
+{
+	return (val > 0) ? val : -val;
+}
+
+// move toward the target by at most `step`.
+inline f32 approach(f32 current, f32 target, f32 step)
+{
+	f32 diff = absVal(current - target);
+
+	return (diff < step) ? target : (current < target) ? current + step : current - step;
+}
+
+// move toward the target by at most `step`.
+inline int approach(int current, int target, const int step)
+{
+	return (absVal(current - target) < step) ? target : (current < target ? current += step : current -= step);
+}
+
+// linearly interpolate `from` to `to` - weight=0 => `from`, weight=1 => `to`
+inline f32 interpolate(f32 from, f32 to, f32 weight)
+{
+	return from * (1.0f - weight) + weight * to;
+}
+
 #endif

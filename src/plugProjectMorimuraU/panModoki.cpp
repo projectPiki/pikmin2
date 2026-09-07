@@ -101,7 +101,7 @@ void Obj::onInit(CreatureInitArg* args)
 	mIsCarryStuck         = 0;
 #if BUGFIX
 	// prevents us from releasing a pathfinder handle we don't own, potentially causing crashes
-	mPathID               = 0; 
+	mPathID = 0;
 #endif
 
 	mBodyJoint = mModel->getJoint("body");
@@ -242,7 +242,7 @@ void Obj::updateCaptureMatrix()
 		Vector3f slotPos;
 		calcSlotGlobalPos(slotPos);
 
-		f32 pelletZ = mCarrySizeDiff * 0.2f + pellet->getPositionToPMO(slotPos);
+		f32 pelletZ = mCarrySizeDiff * 0.2f + pellet->getDistanceTo(slotPos);
 		matrix      = mKamuJoint->getWorldMatrix();
 		PSMTXCopy(matrix->mMatrix.mtxView, mCarryMatrix.mMatrix.mtxView);
 		mCarryMatrix.mMatrix.structView.tx += (f32)(xVec.x * pelletZ);

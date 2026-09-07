@@ -46,7 +46,7 @@ Navi* getNearestNavi(Creature* creature, f32 searchAngle, f32 searchRadius, f32*
 				// something here
 				Vector3f sep = Vector3f(currNavi->getPosition().x, 0.0f, currNavi->getPosition().z)
 				             - Vector3f(creature->getPosition().x, 0.0f, creature->getPosition().z);
-				f32 newDist = SQUARE(sep.x) + SQUARE(sep.z);
+				f32 newDist  = sep.sqrMagnitude2D();
 				if (newDist < minDist) {
 					navi    = currNavi;
 					minDist = newDist;
@@ -397,7 +397,7 @@ Piki* getNearestPikmin(Creature* creature, f32 searchAngle, f32 searchRadius, f3
 				// something here
 				Vector3f sep = Vector3f(currPiki->getPosition().x, 0.0f, currPiki->getPosition().z)
 				             - Vector3f(creature->getPosition().x, 0.0f, creature->getPosition().z);
-				f32 newDist = SQUARE(sep.x) + SQUARE(sep.z);
+				f32 newDist  = sep.sqrMagnitude2D();
 				if (newDist < minDist) {
 					piki    = currPiki;
 					minDist = newDist;
@@ -838,7 +838,7 @@ void flickNearbyNavi(Creature* creature, f32 searchRadius, f32 knockback, f32 da
 		// this is weird
 		Vector3f sep = Vector3f(creature->getPosition().x, creature->getPosition().y, creature->getPosition().z)
 		             - Vector3f(navi->getPosition().x, navi->getPosition().y, navi->getPosition().z);
-		f32 newDist = SQUARE(sep.x) + SQUARE(sep.y) + SQUARE(sep.z);
+		f32 newDist  = sep.sqrMagnitude();
 		if (newDist < searchRadius) {
 			InteractFlick flick(creature, knockback, damage, angle);
 			navi->stimulate(flick);
@@ -1258,8 +1258,7 @@ bool isTherePikmin(Creature* creature, f32 searchRadius, Condition<Piki>* condit
 			Vector3f creaturePos = Vector3f(creature->getPosition().x, creature->getPosition().y, creature->getPosition().z);
 			Vector3f pikiPos     = Vector3f(piki->getPosition().x, piki->getPosition().y, piki->getPosition().z);
 
-			Vector3f diff = creaturePos - pikiPos;
-			if (diff.sqrMagnitude() < searchRadius) {
+			if (creaturePos.sqrDistance(pikiPos) < searchRadius) {
 				return true;
 			}
 		}
@@ -1533,8 +1532,7 @@ bool isThereOlimar(Creature* creature, f32 searchRadius, Condition<Navi>* condit
 		Vector3f creaturePos = Vector3f(creature->getPosition().x, creature->getPosition().y, creature->getPosition().z);
 		Vector3f naviPos     = Vector3f(navi->getPosition().x, navi->getPosition().y, navi->getPosition().z);
 
-		Vector3f diff = creaturePos - naviPos;
-		if (diff.sqrMagnitude() < searchRadius) {
+		if (creaturePos.sqrDistance(naviPos) < searchRadius) {
 			return true;
 		}
 	}
@@ -1785,8 +1783,7 @@ int getSurroundPikminNum(Creature* creature, f32 searchRadius, Condition<Piki>* 
 			Vector3f creaturePos = Vector3f(creature->getPosition().x, creature->getPosition().y, creature->getPosition().z);
 			Vector3f pikiPos     = Vector3f(piki->getPosition().x, piki->getPosition().y, piki->getPosition().z);
 
-			Vector3f diff = creaturePos - pikiPos;
-			if (diff.sqrMagnitude() < searchRadius) {
+			if (creaturePos.sqrDistance(pikiPos) < searchRadius) {
 				pikiCount++;
 			}
 		}
@@ -2134,8 +2131,7 @@ bool ConditionPikminNearby::satisfy(Creature* creature)
 		Vector3f creaturePos = Vector3f(creature->getPosition().x, creature->getPosition().y, creature->getPosition().z);
 		Vector3f targetPos   = Vector3f(mCreature->getPosition().x, mCreature->getPosition().y, mCreature->getPosition().z);
 
-		Vector3f diff = creaturePos - targetPos;
-		if (diff.sqrMagnitude() < mSearchDist) {
+		if (creaturePos.sqrDistance(targetPos) < mSearchDist) {
 			return true;
 		}
 	}

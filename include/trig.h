@@ -104,33 +104,9 @@ inline f32 scaledSin(f32 theta)
 	return sinf(theta * TAU);
 }
 
-inline f32 absVal(f32 val)
-{
-	return (val > 0.0f) ? val : -val;
-}
-
-inline int absVal(int val)
-{
-	return (val > 0) ? val : -val;
-}
-
 inline f32 boundVal(f32 val, f32 limit)
 {
 	return (val > 0.0f) ? limit : -limit;
-}
-
-inline f32 adjustVal(f32 y, f32 x, f32 delta)
-{
-	f32 diff = absVal(y - x);
-
-	return (diff < delta) ? x : (y < x) ? y + delta : y - delta;
-}
-
-inline f32 adjustVal(f32& diff, f32 y, f32 x, f32 delta)
-{
-	diff = absVal(y - x);
-
-	return (diff < delta) ? x : (y < x) ? y + delta : y - delta;
 }
 
 inline f32 _normaliseAngle(f32 angle)
@@ -173,11 +149,6 @@ inline f32 _clampAngle(f32 angle, f32 difference, f32 limit)
 {
 	f32 angDistance = absVal(angle - difference);
 	return angDistance < limit ? difference : (angle < difference) ? angle + limit : angle - limit;
-}
-
-inline int adjustValInt(int current, int dest, const int delta)
-{
-	return (absVal(current - dest) < delta) ? dest : (current < dest ? current += delta : current -= delta);
 }
 
 inline Vector3f getRotationOffset(f32 scale, f32 y, f32 angle)

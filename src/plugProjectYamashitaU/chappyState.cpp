@@ -251,11 +251,13 @@ bool StateTurnBase::turnToTarget(EnemyBase* enemy, Vector3f& targetPos)
 	if (pikiNum > 10) {
 		pikiNum = 10;
 	}
-	// f32 attackAngle = CG_GENERALPARMS(enemy).mMaxAttackAngle();
-	// f32 turnFactor  = 1.0f - (0.9f * (f32)pikiNum / 10.0f);
-	return enemy->turnToTargetPos(targetPos, CG_GENERALPARMS(enemy).mTurnSpeed(),
-	                              (1.0f - (0.9f * (f32)pikiNum / 10.0f)) * CG_GENERALPARMS(enemy).mMaxTurnAngle(),
-	                              CG_GENERALPARMS(enemy).mMaxAttackAngle());
+	f32 endAngle     = CG_GENERALPARMS(enemy).mMaxAttackAngle;
+	f32 maxTurnAngle = (1.0f - (0.9f * (f32)pikiNum / 10.0f)) * CG_GENERALPARMS(enemy).mMaxTurnAngle();
+	f32 turnSpeed    = CG_GENERALPARMS(enemy).mTurnSpeed();
+	f32 angleDist    = enemy->getAngDist(targetPos);
+	f32 angle        = clamp(angleDist * turnSpeed, TORADIANS(maxTurnAngle));
+	enemy->updateFaceDir(roundAng(angle + enemy->getFaceDir()));
+	return isAngleWithin(angleDist, endAngle);
 }
 
 /**

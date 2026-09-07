@@ -29,7 +29,7 @@ struct OneShotDirector : public ::PSSystem::OneShotDirector {
 	{
 	}
 
-//	virtual ~OneShotDirector() { } // _08 (weak)
+	//	virtual ~OneShotDirector() { } // _08 (weak)
 
 	// _00     = VTBL
 	// _00-_48 = PSSystem::OneShotDirector
@@ -59,8 +59,6 @@ struct SwitcherDirector : public ::PSSystem::SwitcherDirector {
 	{
 	}
 
-	virtual ~SwitcherDirector() { } // _08 (weak)
-
 	// _00     = VTBL
 	// _00-_48 = PSSystem::SwitcherDirector
 };
@@ -79,7 +77,6 @@ struct CopyActorWrapper {
 struct PikminNumberDirector : public SwitcherDirector, public CopyActorWrapper {
 	PikminNumberDirector(int trackCount, u8 mask, ::PSSystem::DirectedBgm& bgm);
 
-	virtual ~PikminNumberDirector() { }                     // _08 (weak)
 	virtual void execInner();                               // _1C
 	virtual void directOnTrack(::PSSystem::SeqTrackBase&);  // _20
 	virtual void directOffTrack(::PSSystem::SeqTrackBase&); // _24
@@ -108,14 +105,7 @@ struct PikminNumberDirector_AutoBgm : public PikminNumberDirector {
 };
 
 struct TempoChangeDirectorBase : public SwitcherDirector {
-	inline TempoChangeDirectorBase()
-	    : SwitcherDirector(1, "lifeD    ")
-	    , mTempoValue(0.7f)
-	    , mTimeBase(100)
-	    , mActor(nullptr)
-	{
-	}
-	virtual ~TempoChangeDirectorBase() { }                  // _08 (weak)
+	TempoChangeDirectorBase(const char* name, f32 tempo, s32 duration);
 	virtual void directOnTrack(::PSSystem::SeqTrackBase&);  // _20
 	virtual void directOffTrack(::PSSystem::SeqTrackBase&); // _24
 
@@ -143,7 +133,7 @@ struct ActorDirector_TempoChange : public TempoChangeDirectorBase {
 struct TrackOnDirectorBase : public SwitcherDirector {
 	TrackOnDirectorBase(int trackCount, const char* name, s32 fadeIn, s32 fadeOut);
 
-//	virtual ~TrackOnDirectorBase() { }                      // _08 (weak)
+	//	virtual ~TrackOnDirectorBase() { }                      // _08 (weak)
 	virtual void directOnTrack(::PSSystem::SeqTrackBase&);  // _20
 	virtual void directOffTrack(::PSSystem::SeqTrackBase&); // _24
 	virtual void onPlayInit(JASTrack*);                     // _2C
@@ -180,18 +170,8 @@ struct ListDirectorActor : public ::PSSystem::DirectorCopyActor, public JSUList<
 };
 
 struct TrackOnDirector_Scaled : public TrackOnDirectorBase {
-	inline TrackOnDirector_Scaled(const char* name, int trackCount, f32 endDistance, f32 startDistance, s32 fadeIn, s32 fadeOut,
-	                              u32 fadeDuration)
-	    : TrackOnDirectorBase(trackCount, name, fadeIn, fadeOut)
-	    , mEndDistance(endDistance)
-	    , mStartDistance(startDistance)
-	    , mCurrDistance(100000.0f)
-	    , mFadeDuration(fadeDuration)
-	{
-		mEnableType = 1;
-		mActor      = nullptr;
-	}
-//	virtual ~TrackOnDirector_Scaled() { } // _08 (weak)
+	TrackOnDirector_Scaled(const char* name, int trackCount, f32 endDistance, f32 startDistance, s32 fadeIn, s32 fadeOut, u32 fadeDuration);
+	//	virtual ~TrackOnDirector_Scaled() { } // _08 (weak)
 	virtual void underDirection();        // _18
 	virtual f32 getNearestDistance() = 0; // _38
 
@@ -270,7 +250,6 @@ struct GroundDirector_Cave : public ActorDirector_TrackOn {
 struct ActorDirector_Scaled : public TrackOnDirector_Scaled {
 	ActorDirector_Scaled(const char* name, int trackCount, f32 endDistance, f32 startDistance, s32 fadeIn, s32 fadeOut, u32 fadeDuration);
 
-	virtual ~ActorDirector_Scaled() { }               // _08 (weak)
 	virtual void execInner();                         // _1C
 	virtual f32 getNearestDistance();                 // _38
 	virtual void onSetMinDistObj(Game::Creature*) { } // _3C (weak)

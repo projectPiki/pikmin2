@@ -1,4 +1,5 @@
 #include "PSM/ObjCalc.h"
+#include "PSMath.h"
 #include "Iterator.h"
 #include "Game/Navi.h"
 
@@ -40,13 +41,6 @@ void ObjCalc_2PGame::newInstance_2PGame()
 	new ObjCalc_2PGame;
 }
 
-inline f32 VecDistance(Vec& a, Vector3f b)
-{
-	Vector3f delta   = Vector3f(a) - Vector3f(b);
-	Vector3f squares = delta * delta;
-	return squares.z + (squares.x + squares.y);
-}
-
 /**
  * @note Address: 0x80472970
  * @note Size: 0x3BC
@@ -68,7 +62,7 @@ u8 ObjCalc_2PGame::getPlayerNo(Vec& pos)
 			P2ASSERTLINE(65, &npos != 0);
 			P2ASSERTLINE(66, i < 2);
 
-			dists[i] = VecDistance(pos, npos);
+			dists[i] = PSMath::calcSquareDistance(pos, npos);
 			i++;
 		}
 		return !(dists[0] < dists[1]);

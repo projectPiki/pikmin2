@@ -8,11 +8,10 @@ template <typename T>
 struct MonoObjectMgr;
 
 template <typename T>
-inline void instantiateDelegate1Alloc(T* object)
+inline void instantiateDelegate1Alloc(T*)
 {
-	if (sizeof(T) == 0) {
-		(object->mMonoObjectMgr.*&MonoObjectMgr<typename T::ItemType>::alloc)(0);
-	}
+	// this is still a huge hack but it feels like a better hack
+	(void)&MonoObjectMgr<typename T::ItemType>::alloc;
 }
 #endif
 

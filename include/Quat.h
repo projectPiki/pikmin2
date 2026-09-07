@@ -143,6 +143,21 @@ struct Quat {
 		return result;
 	}
 
+	/**
+	 * @brief Returns the Hamilton product of two quaternions.
+	 * @param q1 Left quaternion.
+	 * @param q2 Right quaternion.
+	 * @return The product q1 * q2.
+	 */
+	static inline Quat multiply(Quat& q1, Quat& q2)
+	{
+		Quat result;
+		f32 newW = q1.w * q2.w - q1.v.dot(q2.v);
+		result.v = q1.v.cross(q2.v) + q2.v * q1.w + q1.v * q2.w;
+		result.w = newW;
+		return Quat(result.w, result.v);
+	}
+
 	f32 w;      // _00
 	Vector3f v; // _04
 };

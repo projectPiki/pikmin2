@@ -4,29 +4,6 @@
 
 DynamicsParms* DynamicsParms::mInstance;
 
-static inline f32 resolveCollisionDebug(f32 value) // fabricated
-{
-	return value;
-}
-
-static inline Quat quatMultiply(Quat& q1, Quat& q2) // fabricated
-{
-	Quat result;
-	f32 w    = q1.w * q2.w - q1.v.dot(q2.v);
-	result.v = q1.v.cross(q2.v) + q2.v * q1.w + q1.v * q2.w;
-	result.w = w;
-	return Quat(result.w, result.v);
-}
-
-static inline Vector3f resolveCollisionCross(Vector3f& a, Vector3f& b) // fabricated
-{
-	Vector3f result;
-	result.y = a.z * b.x - a.x * b.z;
-	result.z = a.x * b.y - a.y * b.x;
-	result.x = a.y * b.z - a.z * b.y;
-	return result;
-}
-
 /**
  * @note Address: 0x80139C60
  * @note Size: 0x334
@@ -149,7 +126,7 @@ static f32 getYDegree(Quat& quat, Vector3f& vec)
 	Quat inverseQuat;
 	inverseQuat = quat.inverse();
 
-	intermediateQuat = quatMultiply(quat, yAxisQuat);
+	intermediateQuat = Quat::multiply(quat, yAxisQuat);
 
 	intermediateQuat = intermediateQuat * inverseQuat;
 
@@ -816,7 +793,8 @@ lbl_8013AB2C:
 bool Game::Rigid::resolveCollision(int configIndex, Vector3f& collisionPoint, Vector3f& collisionNormal, f32 restitutionCoefficient)
 {
 	if (1120.0f * DynamicsParms::mInstance->mMicroCollision.mValue > 0.0f) {
-		restitutionCoefficient = resolveCollisionDebug(restitutionCoefficient);
+		// probably some commented-out/otherwise stripped code here
+		restitutionCoefficient = restitutionCoefficient;
 	}
 	f32 zero = 0.0f;
 
@@ -843,16 +821,16 @@ bool Game::Rigid::resolveCollision(int configIndex, Vector3f& collisionPoint, Ve
 	f32 impulseNumerator   = impulseMagnitude;
 
 	scratch = positionDelta;
-	scratch = resolveCollisionCross(scratch, collisionNormal);
+	scratch.cross(scratch, collisionNormal);
 	scratch = config.mRotatedTransform.mtxMult(scratch);
-	scratch = resolveCollisionCross(scratch, positionDelta);
+	scratch.cross(scratch, positionDelta);
 	impulseDenominator += collisionNormal.dot(scratch);
 	Vector3f collisionImpulse = collisionNormal;
 	collisionImpulse *= -(impulseNumerator / impulseDenominator);
 	config.mVelocity = config.mVelocity + collisionImpulse * mTimeStep;
 
-	scratch                 = positionDelta;
-	scratch                 = resolveCollisionCross(scratch, collisionImpulse);
+	scratch = positionDelta;
+	scratch.cross(scratch, collisionImpulse);
 	config.mMomentum        = config.mMomentum + scratch;
 	config.mRotatedMomentum = config.mRotatedTransform.mtxMult(config.mMomentum);
 	return true;
