@@ -465,7 +465,13 @@ struct TEnemyZukan : public TZukanBase {
 
 struct TItemZukan : public TZukanBase {
 
+#if defined(VERSION_JP) || defined(VERSION_PAL)
+// JP has the Mystery Disc category, PAL has Ancient Ad category
+#define TREASUREHOARD_CATEGORY_NUM 24
+#else
+// US has Survival category and also Ancient Ad category
 #define TREASUREHOARD_CATEGORY_NUM 25
+#endif
 
 	// 2 appears to not exist
 	enum StateID {

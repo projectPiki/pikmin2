@@ -535,7 +535,11 @@ void TOmake::doOpenScreen(ArgOpen* arg)
 	}
 
 	// disable e-reader if not on JP version
+#if defined(VERSION_PAL)
+	if (sys->getLanguage() != System::LANG_Japanese) {
+#else
 	if (sys->mRegion != System::LANG_Japanese) {
+#endif
 		setMsgColor(mPaneListMesg[6]);
 
 		mPaneListMesg[6]->setMsgID('4844_00');       // "?"

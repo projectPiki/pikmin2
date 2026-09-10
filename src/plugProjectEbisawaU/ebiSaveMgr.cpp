@@ -671,7 +671,9 @@ void TMgr::onDvdErrorRecovered()
 {
 	if (msInstance && msInstance->mDVDErrorSuspended) {
 		msInstance->start();
+#if !defined(VERSION_JP)
 		msInstance->mDVDErrorSuspended = false;
+#endif
 	}
 }
 
@@ -725,7 +727,11 @@ void TMgr::forceQuit()
  */
 bool TMgr::isFinish()
 {
+#if defined(VERSION_JP)
+	if (getStateID() == Standby) {
+#else
 	if (getStateID() == Standby && !mDVDErrorSuspended) {
+#endif
 		return true;
 	}
 
@@ -792,7 +798,11 @@ void TMgr::showInfo()
  */
 int TMgr::getStateID()
 {
+#if defined(VERSION_JP)
+	P2ASSERTLINE(822, mCurrentState);
+#else
 	P2ASSERTLINE(824, mCurrentState);
+#endif
 	return mCurrentState->mId;
 }
 

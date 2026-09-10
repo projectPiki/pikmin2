@@ -3969,7 +3969,13 @@ void ZukanState::dvdloadA()
 	mMainHeap = JKRExpHeap::create(mParentHeap->getFreeSize(), mParentHeap, true);
 	mMainHeap->becomeCurrentHeap();
 	char path[PATH_MAX]; // 0x160
+#if defined(VERSION_JP)
+	sprintf(path, "user/Yamashita/zukan/%s/%s/arc.szs", "jpn", sDirName[mMapIndex]);
+#elif defined(VERSION_PAL)
+	sprintf(path, "user/Yamashita/zukan/%s/%s/arc.szs", "pal", sDirName[mMapIndex]);
+#else
 	sprintf(path, "user/Yamashita/zukan/%s/%s/arc.szs", "us", sDirName[mMapIndex]);
+#endif
 	JKRArchive* arc = JKRMountArchive(path, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Tail);
 	P2ASSERTLINE(2457, arc);
 	mParms = new IllustratedBook::Parms;

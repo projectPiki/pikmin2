@@ -514,7 +514,11 @@ void Pikmin::TUnit::init(ebi::title::Pikmin::TMgr* mgr, s32 color)
 	mFrameControlA.init(mManager->mAnimator->mWaitAnim->mTotalFrameCount);
 	mFrameControlB.init(mManager->mAnimator->mWaveAnim->mTotalFrameCount);
 
+#if defined(VERSION_PAL)
+	switch (sys->getLanguage()) {
+#else
 	switch (sys->mRegion) {
+#endif
 	case System::LANG_Japanese:
 		mParms[1] = mManager->mParams.mJpnScale();
 		break;

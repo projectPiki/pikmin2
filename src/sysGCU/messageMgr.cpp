@@ -30,7 +30,11 @@ static const char* cBtnTexName[] = { "a_btn.bti", "b_btn.bti", "c_btn.bti",  "x_
  */
 const char* getCurrentFontResName()
 {
+#if defined(VERSION_PAL)
+	return sFontResName[sys->getLanguage()];
+#else
 	return sFontResName[sys->mRegion];
+#endif
 }
 
 /**
@@ -39,7 +43,11 @@ const char* getCurrentFontResName()
  */
 const char* getCurrentMesResName()
 {
+#if defined(VERSION_PAL)
+	return sMesResName[sys->getLanguage()];
+#else
 	return sMesResName[sys->mRegion];
+#endif
 }
 
 /**
@@ -60,11 +68,15 @@ Mgr::Mgr(JKRExpHeap* heap)
     , mImageLists(nullptr)
     , mMaxTextures(nullptr)
     , mIsLoaded(false)
-    , _2C(0)
+    , mLangHeap(nullptr)
     , mResContainer(nullptr)
     , mMsgRef(nullptr)
 {
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(197, !gP2JMEMgr);
+#else
 	P2ASSERTLINE(194, !gP2JMEMgr);
+#endif
 	gP2JMEMgr = this;
 
 	sys->heapStatusStart("MessageMgr", nullptr);
@@ -90,7 +102,12 @@ Mgr::Mgr(JKRExpHeap* heap)
 	sys->heapStatusEnd("MessageMgr");
 
 	JKRHeap* heap2 = JKRGetCurrentHeap();
-	_2C            = 0;
+#if defined(VERSION_PAL)
+	mLangHeap = makeExpHeap(0x4B000, heap2, true);
+	mLangHeap->becomeCurrentHeap();
+#else
+	mLangHeap = nullptr;
+#endif
 	setupMessage();
 	heap2->becomeCurrentHeap();
 	mIsLoaded = true;
@@ -111,8 +128,22 @@ Mgr::~Mgr()
  */
 void Mgr::reloadMessageResource()
 {
-	// This is most likely used in the PAL region after changing languages
-	// Entirely removed for US though
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(272, mLangHeap);
+	mLangHeap->freeAll();
+	JKRHeap* prevHeap = JKRGetCurrentHeap();
+	mLangHeap->becomeCurrentHeap();
+
+	int bufferSize = mLangHeap->getFreeSize();
+	u8* langBuffer = new u8[bufferSize];
+	memset(langBuffer, 0xCD, bufferSize);
+	delete[] langBuffer;
+
+	setupMessage();
+
+	OSReport("Message FreeSize:%d \n", (int)mLangHeap->getFreeSize() >> 10);
+	prevHeap->becomeCurrentHeap();
+#endif
 }
 
 /**
@@ -122,7 +153,11 @@ void Mgr::reloadMessageResource()
 void Mgr::setupMessage()
 {
 	JKRArchive* msgarc = JKRMountArchive(getCurrentMesResName(), JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(300, msgarc);
+#else
 	P2ASSERTLINE(304, msgarc);
+#endif
 
 	mResContainer      = new JMessage::TResourceContainer;
 	mMsgRef            = new TReference;
@@ -145,7 +180,11 @@ void Mgr::setupTex()
 	for (int i = 0; i < mMaxTextures[0]; i++) {
 		// dont even ask.
 		timg = (ResTIMG*)JKRGetArchiveImageResource(imgarc, cBtnTexName[i]);
+#if defined(VERSION_PAL)
+		P2ASSERTLINE(340, timg);
+#else
 		P2ASSERTLINE(344, timg);
+#endif
 		setImage(ImageGroup::ID0, i, new JUTTexture(timg));
 	}
 }
@@ -157,22 +196,42 @@ void Mgr::setupTex()
 void Mgr::setupFont(char const* path, JKRExpHeap* heap)
 {
 	// Japanese uses a separate font loading system since it's so big
+#if defined(VERSION_PAL)
+	if (sys->getLanguage() == System::LANG_Japanese) {
+#else
 	if (sys->mRegion == System::LANG_Japanese) {
+#endif
 		JKRAram::sAramObject->mAramHeap->getFreeSize();
 
 		JKRArchive* fontarc = JKRMountArchive(getCurrentFontResName(), JKRArchive::EMM_Mem, heap, JKRArchive::EMD_Tail);
+#if defined(VERSION_PAL)
+		P2ASSERTLINE(364, fontarc);
+#else
 		P2ASSERTLINE(368, fontarc);
+#endif
 		sys->heapStatusStart("cacheFont", nullptr);
 
 		ResFONT* file = static_cast<ResFONT*>(fontarc->getResource(path));
+#if defined(VERSION_PAL)
+		P2ASSERTLINE(367, file);
+#else
 		P2ASSERTLINE(371, file);
+#endif
 
 		mFont = new JUTCacheFont(file, 0x4c2c0, JKRGetCurrentHeap());
+#if defined(VERSION_PAL)
+		P2ASSERTLINE(370, mFont);
+#else
 		P2ASSERTLINE(374, mFont);
+#endif
 
 		sys->heapStatusEnd("cacheFont");
 
+#if defined(VERSION_PAL)
+		P2ASSERTLINE(374, mFont->mIsValid);
+#else
 		P2ASSERTLINE(378, mFont->mIsValid);
+#endif
 		static_cast<JUTCacheFont*>(mFont)->mPagingType = JUTCacheFont::CFPAGETYPE_Unk1;
 		static_cast<JUTCacheFont*>(mFont)->loadCache_string("\tあいうえおかきくけこさしすせそたちすてとなにぬねのはひすへほまみむめもやゆよ"
 		                                                    "わん\tアイウエオカキクケコサシスセソ\タチツテトナ"
@@ -182,7 +241,11 @@ void Mgr::setupFont(char const* path, JKRExpHeap* heap)
 		fontarc->unmount();
 	} else {
 		JKRArchive* fontarc = JKRMountArchive(getCurrentFontResName(), JKRArchive::EMM_Mem, JKRGetCurrentHeap(), JKRArchive::EMD_Head);
+#if defined(VERSION_PAL)
+		P2ASSERTLINE(403, fontarc);
+#else
 		P2ASSERTLINE(407, fontarc);
+#endif
 
 		sys->heapStatusStart("resFont", nullptr);
 
@@ -200,8 +263,16 @@ void Mgr::setupFont(char const* path, JKRExpHeap* heap)
  */
 void Mgr::createImage(ImageGroup::EID group, int max)
 {
+#if defined(VERSION_PAL)
+	P2ASSERTBOUNDSLINE(419, 0, group, 1);
+#else
 	P2ASSERTBOUNDSLINE(423, 0, group, 1);
+#endif
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(422, !mImageLists[group]);
+#else
 	P2ASSERTLINE(426, !mImageLists[group]);
+#endif
 	mMaxTextures[group] = max;
 	mImageLists[group]  = new JUTTexture*[max];
 
@@ -216,8 +287,16 @@ void Mgr::createImage(ImageGroup::EID group, int max)
  */
 void Mgr::setImage(ImageGroup::EID group, int id, JUTTexture* tex)
 {
+#if defined(VERSION_PAL)
+	P2ASSERTBOUNDSLINE(438, 0, group, 1);
+#else
 	P2ASSERTBOUNDSLINE(442, 0, group, 1);
+#endif
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(440, mMaxTextures[group] > id);
+#else
 	P2ASSERTLINE(444, mMaxTextures[group] > id);
+#endif
 
 	mImageLists[group][id] = tex;
 }
@@ -228,8 +307,16 @@ void Mgr::setImage(ImageGroup::EID group, int id, JUTTexture* tex)
  */
 JUTTexture* Mgr::getImage(ImageGroup::EID group, int id)
 {
+#if defined(VERSION_PAL)
+	P2ASSERTBOUNDSLINE(452, 0, group, 1);
+#else
 	P2ASSERTBOUNDSLINE(456, 0, group, 1);
+#endif
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(454, mMaxTextures[group] > id);
+#else
 	P2ASSERTLINE(458, mMaxTextures[group] > id);
+#endif
 
 	return mImageLists[group][id];
 }
@@ -242,12 +329,20 @@ void Mgr::setupMessageResource(JKRArchive* arc, char const* path)
 {
 	sys->heapStatusStart("bmg", nullptr);
 	const void* file = arc->getResource(path);
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(470, file);
+#else
 	P2ASSERTLINE(474, file);
+#endif
 	sys->heapStatusEnd("bmg");
 
 	sys->heapStatusStart("メッセージのパース", nullptr); // "Message Parsing"
 	JMessage::TParse parse(mResContainer);
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(480, parse.parse(file, 0));
+#else
 	P2ASSERTLINE(484, parse.parse(file, 0));
+#endif
 	sys->heapStatusEnd("メッセージのパース"); // "Message Parsing"
 }
 
@@ -258,12 +353,20 @@ void Mgr::setupMessageResource(JKRArchive* arc, char const* path)
 bool Mgr::setupColor(JKRArchive* arc, char const* path)
 {
 	const void* file = arc->getResource(path);
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(497, file);
+#else
 	P2ASSERTLINE(501, file);
+#endif
 
 	sys->heapStatusStart("メッセージカラーのパース", nullptr); // "Message Parsing"
 	JMessage::TParse_color parse(mResContainer);
 	bool success = parse.parse(file, 0x20);
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(506, success);
+#else
 	P2ASSERTLINE(510, success);
+#endif
 	sys->heapStatusEnd("メッセージカラーのパース"); // "Message Parsing"
 	return success;
 }

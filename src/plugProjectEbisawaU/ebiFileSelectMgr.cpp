@@ -469,7 +469,9 @@ void TMgr::onDvdErrorRecovered()
 {
 	if (msInstance && msInstance->mInError) {
 		msInstance->start();
+#if !defined(VERSION_JP)
 		msInstance->mInError = false;
+#endif
 	}
 }
 
@@ -538,11 +540,18 @@ void TMgr::showInfo()
  */
 bool TMgr::isFinish()
 {
+#if defined(VERSION_JP)
+	if (getStateID() == 0) {
+		return true;
+	}
+	return false;
+#else
 	if (!getStateID() && !mInError) {
 		return true;
 	} else {
 		return false;
 	}
+#endif
 }
 
 /**
@@ -563,7 +572,11 @@ void TMgr::goEnd_(enumEnd end)
  */
 int TMgr::getStateID()
 {
+#if defined(VERSION_JP)
+	P2ASSERTLINE(533, mCurrentState);
+#else
 	P2ASSERTLINE(534, mCurrentState);
+#endif
 	return mCurrentState->mId;
 }
 

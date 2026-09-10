@@ -15,6 +15,8 @@ struct SimpleMessage {
 
 	void init();
 	void drawMessageID(Graphics&, u32, u32);
+	void locate(int, int);
+	void drawMessageID(Graphics&, char*);
 
 	TRenderingProcessor* mProcessor; // _00
 };

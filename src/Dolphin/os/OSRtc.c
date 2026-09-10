@@ -397,6 +397,30 @@ void OSSetProgressiveMode(u32 mode)
 	__OSUnlockSram(TRUE);
 }
 
+#if defined(VERSION_PAL)
+u8 OSGetLanguage(void)
+{
+	OSSram* sram;
+	u8 language;
+
+	sram     = LockSram(0);
+	language = sram->language;
+	__OSUnlockSram(FALSE);
+	return language;
+}
+
+u32 OSGetEuRgb60Mode(void)
+{
+	OSSram* sram;
+	u32 mode;
+
+	sram = LockSram(0);
+	mode = (sram->ntd & 0x40) >> 6;
+	__OSUnlockSram(FALSE);
+	return mode;
+}
+#endif
+
 /**
  * @note Address: 0x800F14D8
  * @note Size: 0xA4

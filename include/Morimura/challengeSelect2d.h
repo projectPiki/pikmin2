@@ -85,7 +85,9 @@ struct TChallengePlayModeScreen : public TScreenBase {
 	bool mDoShowNoController;                    // _84
 	f32 mNoControllerTimer;                      // _88
 	f32 mTimer;                                  // _8C
+#if !defined(VERSION_JP)                         //
 	f32 mTimer2;                                 // _90
+#endif                                           //
 	f32 mMovePos;                                // _94
 	f32 mAlphaTimer;                             // _98
 	f32 mScale;                                  // _9C

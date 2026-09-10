@@ -232,7 +232,11 @@ void FSMState_LoadOption::do_exec(TMgr* mgr)
 			transit(mgr, ScreenOpen, 0);
 		} else {
 			if (sys->mCardMgr->isCardInvalid()) {
+#if defined(VERSION_PAL)
+				bool check = sys->mCardMgr->loadGameOption(false);
+#else
 				bool check = sys->mCardMgr->loadGameOption();
+#endif
 				if (check) {
 					mStatus = 1;
 				} else {

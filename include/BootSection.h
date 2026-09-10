@@ -27,6 +27,10 @@ struct JKRHeap;
 struct JUTTexture;
 struct TinyPikminMgr;
 
+namespace P2JME {
+struct SimpleMessage;
+}
+
 namespace ebi {
 struct TScreenProgre;
 }
@@ -48,17 +52,21 @@ struct BootSection : public Game::BaseHIOSection {
 	 * @brief Enumeration representing the different state IDs in the boot section.
 	 */
 	enum StateID {
-		SID_LoadResourceFirst     = 0,  /**< State ID for loading resources first */
-		SID_LoadMemoryCard        = 1,  /**< State ID for loading memory card */
-		SID_InitNintendoLogo      = 2,  /**< State ID for initializing Nintendo logo */
-		SID_FadeInNintendoLogo    = 3,  /**< State ID for fade in Nintendo Logo */
-		SID_NintendoLogo          = 4,  /**< State ID for displaying Nintendo logo */
-		SID_WaitProgressive       = 5,  /**< State ID for waiting for progressive scan */
-		SID_UpdateWaitProgressive = 6,  /**< State ID for updating wait for progressive scan */
-		SID_SetInterlace          = 7,  /**< State ID for setting interlace */
-		SID_UpdateSetInterlace    = 8,  /**< State ID for updating set interlace */
-		SID_DolbyLogo             = 9,  /**< State ID for displaying Dolby logo */
-		SID_EndState              = 10, /**< State ID for end state */
+		SID_LoadResourceFirst  = 0, /**< State ID for loading resources first */
+		SID_LoadMemoryCard     = 1, /**< State ID for loading memory card */
+		SID_InitNintendoLogo   = 2, /**< State ID for initializing Nintendo logo */
+		SID_FadeInNintendoLogo = 3, /**< State ID for fade in Nintendo Logo */
+		SID_NintendoLogo       = 4, /**< State ID for displaying Nintendo logo */
+
+#if defined(VERSION_PAL)
+		SID_SelectTVMode = 5, /**< State ID for PAL-only 50/60 Hz selection */
+#endif
+		SID_WaitProgressive,       /**< State ID for waiting for progressive scan */
+		SID_UpdateWaitProgressive, /**< State ID for updating wait for progressive scan */
+		SID_SetInterlace,          /**< State ID for setting interlace */
+		SID_UpdateSetInterlace,    /**< State ID for updating set interlace */
+		SID_DolbyLogo,             /**< State ID for displaying Dolby logo */
+		SID_EndState,              /**< State ID for end state */
 
 		SID_FirstState = 0, /**< First state ID */
 		SID_NullState  = -1 /**< Null state ID */
@@ -66,19 +74,30 @@ struct BootSection : public Game::BaseHIOSection {
 
 	BootSection(JKRHeap*);
 
-	virtual ~BootSection();                     // _08
-	virtual void run();                         // _0C
-	virtual void init();                        // _18
+	virtual ~BootSection(); // _08
+	virtual void run();     // _0C
+	virtual void init();    // _18
+#if defined(VERSION_JP)
+	// this is missing from JP
+#else
 	virtual bool forceReset() { return false; } // _2C (weak)
-	virtual bool doUpdate();                    // _3C
-	virtual void doDraw(Graphics& gfx);         // _40
+#endif
+	virtual bool doUpdate();            // _3C
+	virtual void doDraw(Graphics& gfx); // _40
 
 	void drawDolbyLogo(Graphics&);
+#if defined(VERSION_US)
 	void drawEpilepsy(Graphics&);
+#endif
 	void drawNintendoLogo(Graphics&);
 	void drawProgressive(Graphics&);
 	void drawSetInterlace(Graphics&);
 	void drawSetProgressive(Graphics&);
+
+#if defined(VERSION_PAL)
+	void updateSelectTVMode();
+	void drawSelectTVMode(Graphics&);
+#endif
 
 	void load2DResource();
 	void loadBootResource();
@@ -120,6 +139,12 @@ struct BootSection : public Game::BaseHIOSection {
 	bool mDoOpenProgressive;                // _DD
 	TinyPikminMgr* mPikiMgr;                // _E0
 	f32 mLogoShakeStrength;                 // _E4
+#if defined(VERSION_PAL)                    //
+	int mTVModeState;                       // _E8
+	P2JME::SimpleMessage* mTVModeMessage;   // _EC
+	int mTVModeSelection;                   // _F0 (0:60Hz, 1:50Hz)
+	u8 mTVModeAlpha;                        // _F4
+#endif
 };
 
 extern BootSection* sBootSection;

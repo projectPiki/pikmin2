@@ -580,6 +580,9 @@ struct ObjDayEndResultItem : public ObjDayEndResultBase {
 	int mTotalValueDelay;                                    // _F4
 	u8 mScrollUpDelay;                                       // _F8
 	u8 mScrollDownDelay;                                     // _F9
+#if defined(VERSION_PAL)                                     //
+	bool mHasDrawn;                                          // _FA (PAL)
+#endif
 };
 
 struct ObjDayEndResultTitl : public ::Screen::ObjBase {

@@ -159,7 +159,11 @@ void Obj::getShadowParam(ShadowParam& param)
 			param.mBoundingSphere.mRadius = 0.75f * C_PROPERPARMS.mJumpSpeed();
 		}
 	} else {
+#if defined(VERSION_JP)
+		param.mBoundingSphere.mRadius = 30.0f;
+#else
 		param.mBoundingSphere.mRadius = 22.5f;
+#endif
 	}
 
 	param.mBoundingSphere.mPosition = Vector3f(0.0f, 1.0f, 0.0f);

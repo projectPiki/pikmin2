@@ -1,0 +1,10 @@
+object: orig/GPVP01/sys/main.dol
+hash: cbd6d7b93536c8e84f75ed76027df740b4e1178b
+
+# recovered from the PAL DOL using US symbols as a base
+symbols: config/GPVP01/symbols.txt
+splits: config/GPVP01/splits.txt
+
+mw_comment_version: 10 # GC Linker 2.6
+symbols_known: false # Very fast analysis
+fill_gaps: true # We don't know alignments for certain

@@ -15,7 +15,9 @@ namespace CommonSaveData {
  */
 Mgr::Mgr()
 {
+#if !defined(VERSION_PAL)
 	setDefault();
+#endif
 }
 
 /**
@@ -33,7 +35,11 @@ void Mgr::setDefault()
 	mIsRumble      = true;
 	mIsRubyFont    = true;
 	mUseDeflicker  = true;
-	mRegion        = (u8)sys->mRegion;
+#if defined(VERSION_PAL)
+	mLanguage = sys->getLanguage();
+#else
+	mLanguage = (u8)sys->mRegion;
+#endif
 	mSaveCount     = 0;
 	mTime          = 0;
 	mFileIndex     = -1;
@@ -77,7 +83,7 @@ void Mgr::write(Stream& output)
 	output.writeByte(mIsRumble);
 	output.writeByte(mIsRubyFont);
 	output.writeByte(mUseDeflicker);
-	output.writeByte(mRegion);
+	output.writeByte(mLanguage);
 	PlayCommonData::write(output);
 }
 
@@ -94,7 +100,11 @@ void Mgr::read(Stream& input)
 	mIsRumble     = input.readByte();
 	mIsRubyFont   = input.readByte();
 	mUseDeflicker = input.readByte();
-	mRegion       = input.readByte();
+#if defined(VERSION_PAL)
+	setLanguage(input.readByte());
+#else
+	mLanguage = input.readByte();
+#endif
 	PlayCommonData::read(input);
 }
 
@@ -119,7 +129,9 @@ void Mgr::setup()
 			setSoundModeSurround();
 			break;
 		default:
-#if BUILDTARGET == USADEMO1
+#if defined(VERSION_PAL)
+			JUT_PANICLINE(277, "Unknown sound mode:%d \n", mSoundMode);
+#elif defined(VERSION_US_DEMO1)
 			JUT_PANICLINE(271, "Unknown sound mode:%d \n", mSoundMode);
 #else
 			JUT_PANICLINE(268, "Unknown sound mode:%d \n", mSoundMode);
@@ -131,6 +143,9 @@ void Mgr::setup()
 	setBgmVolume(mMusicVol / 255.0f);
 	setSeVolume(mSeVol / 255.0f);
 	setDeflicker();
+#if defined(VERSION_PAL)
+	setLanguage();
+#endif
 }
 
 /**
@@ -162,7 +177,9 @@ void Mgr::setDeflicker(bool deflicker)
 	_GXRenderModeObj* obj = System::getRenderModeObj();
 	mUseDeflicker         = deflicker;
 
-	if (OSGetProgressiveMode() == OS_PROGRESSIVE_MODE_ON) {
+	u32 progMode = OSGetProgressiveMode();
+#if !defined(VERSION_PAL)
+	if (progMode == OS_PROGRESSIVE_MODE_ON) {
 		obj->vfilter[0] = 0;
 		obj->vfilter[1] = 0;
 		obj->vfilter[2] = 21;
@@ -170,8 +187,9 @@ void Mgr::setDeflicker(bool deflicker)
 		obj->vfilter[4] = 21;
 		obj->vfilter[5] = 0;
 		obj->vfilter[6] = 0;
-
-	} else if (deflicker) {
+	} else
+#endif
+	    if (deflicker) {
 		obj->vfilter[0] = 7;
 		obj->vfilter[1] = 7;
 		obj->vfilter[2] = 12;
@@ -233,7 +251,9 @@ void Mgr::setBgmVolume(f32 volume)
 	bool temp = OSDisableInterrupts();
 	OSDisableScheduler();
 
-#if BUILDTARGET == USADEMO1
+#if defined(VERSION_PAL)
+	P2ASSERTBOOLLINE(398, volume >= 0.0f && volume <= 1.0f);
+#elif defined(VERSION_US_DEMO1)
 	P2ASSERTBOOLLINE(392, volume >= 0.0f && volume <= 1.0f);
 #else
 	P2ASSERTBOOLLINE(389, volume >= 0.0f && volume <= 1.0f);
@@ -256,7 +276,9 @@ void Mgr::setSeVolume(f32 volume)
 	bool temp = OSDisableInterrupts();
 	OSDisableScheduler();
 
-#if BUILDTARGET == USADEMO1
+#if defined(VERSION_PAL)
+	P2ASSERTBOOLLINE(416, volume >= 0.0f && volume <= 1.0f);
+#elif defined(VERSION_US_DEMO1)
 	P2ASSERTBOOLLINE(410, volume >= 0.0f && volume <= 1.0f);
 #else
 	P2ASSERTBOOLLINE(407, volume >= 0.0f && volume <= 1.0f);
@@ -270,6 +292,30 @@ void Mgr::setSeVolume(f32 volume)
 	OSEnableScheduler();
 	OSRestoreInterrupts(temp);
 }
+
+#if defined(VERSION_PAL)
+/**
+ * @note Address: 0x80447B30 (PAL)
+ * @note Size: 0x24
+ * @note Fabricated name. Guess based on the setDeflicker pair further up.
+ */
+void Mgr::setLanguage()
+{
+	setLanguage(mLanguage);
+}
+
+/**
+ * @note Address: 0x80447B54 (PAL)
+ * @note Size: 0x14
+ * @note Fabricated name. Guess based on the setDeflicker pair further up.
+ */
+void Mgr::setLanguage(int language)
+{
+	if (mFlags.isSet(SaveFlag_Language)) {
+		mLanguage = language;
+	}
+}
+#endif
 
 } // namespace CommonSaveData
 } // namespace Game

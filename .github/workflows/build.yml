@@ -12,7 +12,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        version: [GPVE01, GPVE01_D17] # TODO: other versions
+        version: [GPVE01, GPVE01_D17, GPVE01_D18, GPVJ01, GPVP01]
 
     steps:
     # Checkout the repository

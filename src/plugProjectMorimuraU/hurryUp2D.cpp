@@ -792,8 +792,13 @@ void THurryUp2D::scaleUp2()
 		mWhitePane->setAlpha(0);
 		mPaneSunL->updateScale(scale);
 	} else {
+#if defined(VERSION_JP)
+		if ((Game::gameSystem->isFlag(Game::GAMESYS_IsGameWorldActive)) && !mIsSection && Game::moviePlayer
+		    && !Game::playData->isDemoFlag(Game::DEMO_First_Sunset_Warning)) {
+#else
 		if (!mIsSection && (Game::gameSystem->isFlag(Game::GAMESYS_IsGameWorldActive)) && !mIsSection && Game::moviePlayer
 		    && !Game::playData->isDemoFlag(Game::DEMO_First_Sunset_Warning)) {
+#endif
 			Game::MoviePlayArg arg("g09_first_sunset", nullptr, nullptr, 0);
 			Game::Navi* navi = Game::naviMgr->getActiveNavi();
 			if (navi && navi->mCamera) {

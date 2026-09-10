@@ -22,6 +22,8 @@
 #include "ebi/E2DGraph.h"
 #include "menu.h"
 #include "nans.h"
+#include "JSystem/J2D/J2DPrint.h"
+#include "JSystem/JFramework/JFWSystem.h"
 
 static const u32 padding[]    = { 0, 0, 0 };
 static const char className[] = "titleSection";
@@ -29,6 +31,19 @@ static const char className[] = "titleSection";
 namespace {
 static u8 sMovieIndex[7] = { 0, 2, 4, 1, 3, 11, 11 };
 static s8 sSeasonIndex   = 255;
+#if defined(VERSION_PAL)
+static u16 sBuildInfoButtons[11] = { Controller::PRESS_A,
+	                                 Controller::PRESS_B,
+	                                 Controller::PRESS_X,
+	                                 Controller::PRESS_R,
+	                                 Controller::PRESS_L,
+	                                 Controller::PRESS_DPAD_LEFT,
+	                                 Controller::PRESS_DPAD_DOWN,
+	                                 Controller::PRESS_DPAD_UP,
+	                                 Controller::PRESS_DPAD_RIGHT,
+	                                 Controller::PRESS_Z,
+	                                 0 };
+#endif
 } // namespace
 
 namespace Title {
@@ -45,9 +60,16 @@ Section::Section(JKRHeap* heap)
 {
 	mMovieIndex     = -1;
 	mButtonCallback = new Delegate<Section>(this, &loadResident);
+#if defined(VERSION_PAL)
+	mReloadMessageCallback = new Delegate<Section>(this, &reloadMessageResource);
+#endif
 	og::Lib2D::create();
 	gPikmin2AramMgr->setLoadPermission(true);
 	mDoCheckShortCut = false;
+#if defined(VERSION_PAL)
+	mDebugKeyIndex = 0;
+	mShowBuildInfo = false;
+#endif
 }
 
 /**
@@ -70,9 +92,29 @@ void Section::doExit()
 	mgr->deleteCurrentScene();
 	mThpPlayer->stop();
 	if (!Screen::gGame2DMgr->mScreenMgr->reset()) {
+#if defined(VERSION_PAL)
+		JUT_PANICLINE(577, "game2DMgr::reset error\n");
+#elif defined(VERSION_JP)
+		JUT_PANICLINE(497, "game2DMgr::reset error\n");
+#elif defined(VERSION_US_DEMO1)
+		JUT_PANICLINE(533, "game2DMgr::reset error\n");
+#else
 		JUT_PANICLINE(527, "game2DMgr::reset error\n");
+#endif
 	}
 }
+
+#if defined(VERSION_PAL)
+/**
+ * @note Address: 0x8044AFAC (PAL)
+ * @note Size: 0x24
+ * @note Fabricated name. Could be reloadMessage or loadMessageResource or something.
+ */
+void Section::reloadMessageResource()
+{
+	gP2JMEMgr->reloadMessageResource();
+}
+#endif
 
 /**
  * @note Address: 0x8044A5C8
@@ -88,11 +130,27 @@ void Section::loadResident()
 
 		char* path      = "/user/Kando/piki/pikis.szs";
 		JKRArchive* arc = JKRMountArchive(path, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
+#if defined(VERSION_PAL)
+		JUT_ASSERTLINE(631, arc, "%s : mount failed !!\n", path);
+#elif defined(VERSION_JP)
+		JUT_ASSERTLINE(552, arc, "%s : mount failed !!\n", path);
+#elif defined(VERSION_US_DEMO1)
+		JUT_ASSERTLINE(588, arc, "%s : mount failed !!\n", path);
+#else
 		JUT_ASSERTLINE(582, arc, "%s : mount failed !!\n", path);
+#endif
 
 		path = "user/Kando/onyon/arc.szs";
 		arc  = JKRMountArchive(path, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
+#if defined(VERSION_PAL)
+		JUT_ASSERTLINE(639, arc, "%s : mount failed !!\n", path);
+#elif defined(VERSION_JP)
+		JUT_ASSERTLINE(560, arc, "%s : mount failed !!\n", path);
+#elif defined(VERSION_US_DEMO1)
+		JUT_ASSERTLINE(596, arc, "%s : mount failed !!\n", path);
+#else
 		JUT_ASSERTLINE(590, arc, "%s : mount failed !!\n", path);
+#endif
 
 		sys->heapStatusEnd("titleSection::loadResident");
 		sys->setFlag(System::SF_LoadResident);
@@ -209,7 +267,7 @@ void Section::doDraw(Graphics& gfx)
 		}
 		mOmakeMgr.draw();
 		break;
-	case 5:
+	case State_ReloadMessages:
 		break;
 	case State_HiScore:
 		Screen::gGame2DMgr->draw(gfx);
@@ -219,6 +277,16 @@ void Section::doDraw(Graphics& gfx)
 	gfx.mPerspGraph.setPort();
 	particle2dMgr->draw(1, 0);
 	particle2dMgr->draw(0, 0);
+#if defined(VERSION_PAL)
+	if (mShowBuildInfo) {
+		gfx.mOrthoGraph.setPort();
+		J2DPrint print(JFWSystem::systemFont, 0.0f);
+		print.initiate();
+		print.mGlyphWidth  = 16.0f;
+		print.mGlyphHeight = 16.0f;
+		print.print(32.0f, 370.0f, "%s %s \n", "0721", _2F4C);
+	}
+#endif
 }
 
 /**
@@ -297,6 +365,9 @@ void Section::doUpdateMainTitle()
 	if (mController1->getButtonDown() & Controller::PRESS_Y) {
 		OSReport("code size           %dKB\n", ((int)JKRHeap::getCodeEnd() - (int)JKRHeap::getCodeStart()) / 1024);
 		OSReport("GameSystemHeap Free %dKB\n", (int)sys->mSysHeap->getTotalFreeSize() / 1024);
+#if defined(VERSION_PAL)
+		OSReport("SystemHeap free     %dKB\n", (int)JKRHeap::sSystemHeap->getTotalFreeSize() >> 10);
+#endif
 	}
 
 	PSSystem::SceneMgr* mgr;
@@ -334,7 +405,7 @@ void Section::doUpdateMainTitle()
 			mgr->checkScene();
 			seq = PSSystem::getSeqData(mgr, BGM_Options);
 			seq->startSeq();
-			mLanguageID = sys->mPlayData->mRegion;
+			mLanguageID = sys->mPlayData->mLanguage;
 			break;
 		case ebi::TMainTitleMgr::Select_HiScore:
 			if (isFinishable()) {
@@ -368,8 +439,16 @@ void Section::doUpdateMainTitle()
 			break;
 		}
 	} else {
+#if defined(VERSION_JP)
+		if (mGoToDemoTimer > 40.0f) {
+#else
 		if (mGoToDemoTimer > 43.0f) {
-			if (!Game::gGameConfig.mParms.mKFesVersion.mData && !Game::gGameConfig.mParms.mNintendoVersion.mData) {
+#endif
+			if (
+#if defined(VERSION_JP)
+			    !Game::gGameConfig.mParms.mE3version.mData &&
+#endif
+			    !Game::gGameConfig.mParms.mKFesVersion.mData && !Game::gGameConfig.mParms.mNintendoVersion.mData) {
 				mMainTitleMgr.forceQuit();
 				mIsMainActive                = false;
 				GameFlow::mActiveSectionFlag = GameFlow::SN_Demo;
@@ -432,7 +511,11 @@ void Section::doUpdateOmake()
 			}
 			mThpPlayer->load((Game::THPPlayer::EMovieIndex)mMovieIndex);
 			mThpPlayer->pause();
+#if defined(VERSION_PAL)
+		} else if (isFinishable() && mThpPlayer->isFinishLoading()) {
+#else
 		} else if (mThpPlayer->isFinishLoading()) {
+#endif
 			mThpPlayer->play();
 		}
 		mThpPlayer->update();
@@ -473,6 +556,11 @@ void Section::doUpdateOmake()
 void Section::doUpdateOption()
 {
 	mOptionMgr.update();
+#if defined(VERSION_PAL)
+	if (mOptionMgr.getStateID() != 1) {
+		sys->mPlayData->mFlags.set(Game::CommonSaveData::Mgr::SaveFlag_Language);
+	}
+#endif
 	if (mOptionMgr.mIsFinished) {
 
 		PSSystem::SeqBase* seq = PSSystemGetSeqCheck(BGM_Options);
@@ -481,10 +569,21 @@ void Section::doUpdateOption()
 		seq->stopSeq((int)rate);
 	}
 	if (mOptionMgr.isFinish()) {
-		mState = State_MainTitle;
-		int idk;
-		mMainTitleMgr.startMenuSet(idk, ebi::TMainTitleMgr::Select_Options);
-		PSSystemGetSeqCheck(BGM_MainTheme)->startSeq();
+#if defined(VERSION_PAL)
+		sys->mPlayData->mFlags.unset(Game::CommonSaveData::Mgr::SaveFlag_Language);
+		if (mLanguageID != sys->mPlayData->mLanguage) {
+			mState = State_ReloadMessages;
+			gPikmin2AramMgr->freeAll();
+			sys->dvdLoadUseCallBack(&mThreadCommand, mReloadMessageCallback);
+		} else {
+#endif
+			mState = State_MainTitle;
+			int idk;
+			mMainTitleMgr.startMenuSet(idk, ebi::TMainTitleMgr::Select_Options);
+			PSSystemGetSeqCheck(BGM_MainTheme)->startSeq();
+#if defined(VERSION_PAL)
+		}
+#endif
 	}
 }
 
@@ -494,8 +593,15 @@ void Section::doUpdateOption()
  */
 void Section::run()
 {
+#if defined(VERSION_PAL)
+	sys->getLanguage();
+#endif
 	if (!Game::gGameConfig.mParms.mNintendoVersion.mData && !Game::gGameConfig.mParms.mE3version.mData) {
+#if defined(VERSION_PAL)
+		sys->mCardMgr->loadGameOption(false);
+#else
 		sys->mCardMgr->loadGameOption();
+#endif
 	}
 
 	bool dorun = true;
@@ -542,18 +648,35 @@ bool Section::doUpdate()
 	case State_HiScore:
 		doUpdateHiScore();
 		break;
-	case 5:
+	case State_ReloadMessages:
 		if (sys->dvdLoadSyncNoBlock(&mThreadCommand)) {
+#if defined(VERSION_PAL)
+			mIsMainActive                = false;
+			GameFlow::mActiveSectionFlag = GameFlow::SN_MainTitle;
+#else
 			mState = State_MainTitle;
 			int idk;
 			mMainTitleMgr.startMenuSet(idk, ebi::TMainTitleMgr::Select_Options);
 			PSSystemGetSeqCheck(BGM_MainTheme)->startSeq();
+#endif
 		}
 		break;
 	}
 
 	BaseHIOSection::doUpdate();
 	particle2dMgr->update();
+#if defined(VERSION_PAL)
+	// ??
+	if (mController2->getButtonDown() & Controller::PRESS_ANY) {
+		if (mController2->getButtonDown() & sBuildInfoButtons[mDebugKeyIndex]) {
+			if (++mDebugKeyIndex == 10) {
+				mShowBuildInfo ^= 1;
+			}
+		} else {
+			mDebugKeyIndex = 0;
+		}
+	}
+#endif
 	return mIsMainActive;
 }
 
@@ -638,7 +761,7 @@ void Section::loadResource()
 	case 4:
 		sSeasonIndex = ebi::title::TTitleMgr::LEVEL_Spring;
 		break;
-	case 5:
+	case State_ReloadMessages:
 		sSeasonIndex = ebi::title::TTitleMgr::LEVEL_Summer;
 		break;
 	case 6:
@@ -687,7 +810,15 @@ void Section::loadResource()
 	og::newScreen::makeLanguageResName(buf, name);
 
 	mHiScoreTex = JKRMountArchive(buf, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
+#if defined(VERSION_PAL)
+	JUT_ASSERTLINE(1801, mHiScoreTex, "arcName = %s\n", buf);
+#elif defined(VERSION_JP)
+	JUT_ASSERTLINE(1671, mHiScoreTex, "arcName = %s\n", buf);
+#elif defined(VERSION_US_DEMO1)
+	JUT_ASSERTLINE(1706, mHiScoreTex, "arcName = %s\n", buf);
+#else
 	JUT_ASSERTLINE(1700, mHiScoreTex, "arcName = %s\n", buf);
+#endif
 	sys->heapStatusEnd("hiscoreTexture");
 
 	sys->heapStatusStart("omakeMgr", nullptr);

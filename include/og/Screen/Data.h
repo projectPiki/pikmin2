@@ -19,9 +19,14 @@ struct DataNavi {
 		mNaviLifeRatio = 1.0f;
 		mFollowPikis   = 1;
 		mNextThrowPiki = 2;
-		mDope1Count    = 10;
-		mDope0Count    = 10;
-		mActiveNaviID  = 1;
+#if defined(VERSION_PAL)
+		mDope1Count = -1;
+		mDope0Count = -1;
+#else
+		mDope1Count = 10;
+		mDope0Count = 10;
+#endif
+		mActiveNaviID = 1;
 	}
 
 	inline void update(int naviIdx); // defined in Game/Navi.h to avoid include loops

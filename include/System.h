@@ -10,6 +10,9 @@
 struct RenderModeInfo {
 	u32 mIdentifier; // _00, must be set to 'vald' for saved render mode to be used
 	u8 mRenderMode;  // _04 (System::ERenderMode)
+#if defined(VERSION_PAL)
+	bool mTVModeSelected; // _05
+#endif
 };
 // This struct represents a region of memory that will be saved through soft-resets
 #define RENDER_INFO_STORE ((RenderModeInfo*)DOL_ADDR_LIMIT)
@@ -97,6 +100,10 @@ struct System : public OSMutex {
 
 	enum Flags {
 		SF_LoadResident = 1 << 0,
+#if defined(VERSION_PAL)
+		SF_RestoredRenderMode = 1 << 1,
+		SF_TVModeSelected     = 1 << 2,
+#endif
 	};
 
 	struct FragmentationChecker {
@@ -117,6 +124,11 @@ struct System : public OSMutex {
 
 	System();
 	~System();
+
+#if defined(VERSION_PAL)
+	int getLanguage();
+	void setLanguage(int language);
+#endif
 
 	static _GXRenderModeObj* getRenderModeObj();
 	static int getRenderModeWidth() { return getRenderModeObj()->fbWidth; }
@@ -183,7 +195,11 @@ struct System : public OSMutex {
 	void dvdLoadSyncAll(DvdThread::ESyncBlockFlag);
 	void heapStatusDumpNode();
 	void resetOff();
+#if defined(VERSION_JP)
+	bool forceFinishSection();
+#else
 	void forceFinishSection();
+#endif
 
 	// idk why this exists alongside getPlayCommonData() but that one's global.
 	// this one needs to be weak/inlined.
@@ -238,9 +254,14 @@ struct System : public OSMutex {
 	Game::CommonSaveData::Mgr* mPlayData; // _60
 	f32 mFrameRate;                       // _64
 	DvdThreadCommand mThreadCommand;      // _68
-	LanguageID mRegion;                   // _D4
-	BitFlag<u32> mFlags;                  // _D8
-	struct JUTRomFont* mRomFont;          // _DC
+#if defined(VERSION_PAL)
+	// PAL outsources language/region stuff to Game::CommonSaveData::Mgr
+	static BitFlag<u32> mFlags;
+#else
+	LanguageID mRegion;  // _D4
+	BitFlag<u32> mFlags; // _D8
+#endif
+	struct JUTRomFont* mRomFont; // _DC (PAL: _D4)
 };
 
 extern System* sys;

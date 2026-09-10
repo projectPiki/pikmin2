@@ -379,7 +379,11 @@ bool InteractBury::actPiki(Game::Piki* piki)
 	if (piki->mCurrentState->invincible(piki)) {
 		return false;
 	}
+#if defined(VERSION_PAL)
+	if (GameStat::mePikis >= 99 - GameStat::zikatuPikis) {
+#else
 	if (GameStat::mePikis >= 99) {
+#endif
 		return false;
 	}
 
@@ -559,7 +563,13 @@ bool InteractGas::actPiki(Game::Piki* piki)
 bool InteractBattle::actPiki(Game::Piki* piki)
 {
 	if (piki->getCurrActionID() != PikiAI::ACT_Battle) {
+#if defined(VERSION_PAL)
+		P2ASSERTLINE(1099, mCreature->isPiki());
+#elif defined(VERSION_JP)
+		P2ASSERTLINE(1062, mCreature->isPiki());
+#else
 		P2ASSERTLINE(1073, mCreature->isPiki());
+#endif
 		PikiAI::ActBattleArg battleArg(static_cast<Piki*>(mCreature), true);
 		piki->mBrain->start(PikiAI::ACT_Battle, &battleArg);
 		return true;
@@ -651,7 +661,13 @@ bool InteractSwallow::actPiki(Game::Piki* piki)
 
 	CollPart* collpart = mCollPart;
 	bool isMouth       = collpart && collpart->isMouth();
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(1206, isMouth);
+#elif defined(VERSION_JP)
+	P2ASSERTLINE(1169, isMouth);
+#else
 	P2ASSERTLINE(1180, isMouth);
+#endif
 	if (!piki->mCurrentState->dead()) {
 		piki->startStickMouth(mCreature, mCollPart);
 

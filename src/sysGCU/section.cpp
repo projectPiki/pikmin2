@@ -11,13 +11,17 @@
 #include "System.h"
 #include "Graphics.h"
 #include "nans.h"
-#if BUILDTARGET == USADEMO1
+#if defined(VERSION_US_DEMO)
 #include "Game/GameConfig.h"
 #endif
 
 static const f32 unusedSectionArray[] = { 0.0f, 0.0f, 0.0f };
 
+#if defined(VERSION_JP)
+static OSTime sPlayTime = OSSecondsToTicks((OSTime)780);
+#else
 static OSTime sPlayTime = OSSecondsToTicks((OSTime)300);
+#endif
 
 /**
  * @note Address: 0x80423770
@@ -72,7 +76,7 @@ Section::Section(JFWDisplay* display, JKRHeap* heap, bool b)
 
 	mGraphics = new Graphics();
 	sys->mGfx = mGraphics;
-#if BUILDTARGET == USADEMO1
+#if defined(VERSION_US_DEMO)
 	mOsTime          = 0;
 	mDemoController1 = new JUTGamePad(JUTGamePad::PORT_0);
 	mDemoController2 = new JUTGamePad(JUTGamePad::PORT_1);
@@ -162,7 +166,7 @@ void Section::fadeIn()
  */
 void Section::main()
 {
-#if BUILDTARGET == USADEMO1
+#if defined(VERSION_US_DEMO)
 	mOsTime = OSGetTime();
 	drawInit(*mGraphics, Section::One);
 	Game::GameConfig* config = &Game::gGameConfig;
@@ -184,20 +188,15 @@ void Section::main()
 		update();
 		sys->mTimers->_stop("update");
 		endFrame();
-#if BUILDTARGET == USADEMO1
-		// TODO: This case has to be something around the lines of the below, running into inlining issues with Section::run()
-		/*if (!config->mParms.mE3version.mData || !config->mParms.mNintendoVersion.mData && !forceReset()) {
-		    if (!mDemoController1->mButton.mButton || !mDemoController2->mButton.mButton) {
-		        mTimer = 0.0f;
-		    }
-		    mTimer += sys->mDeltaTime;
-		    if (mTimer > 180.0f)
-		        sys->resetOn(false);
-		}*/
-		if (!config->mParms.mE3version.mData) {
-			mTimer += sys->mDeltaTime;
-			if (mTimer > 180.0f)
+#if defined(VERSION_US_DEMO)
+		if ((config->mParms.mE3version() || config->mParms.mNintendoVersion()) && forceReset()) {
+			if (mDemoController1->isButtonHeld(JUTGamePad::PRESS_ANY) || mDemoController2->isButtonHeld(JUTGamePad::PRESS_ANY)) {
+				mTimer = 0.0f;
+			}
+			mTimer += sys->getDeltaTime();
+			if (mTimer > 180.0f) {
 				sys->resetOn(false);
+			}
 		}
 #endif
 	} while (!mIsLoadingDVD && mIsMainActive);
@@ -248,7 +247,11 @@ void Section::fadeOut()
  */
 void Section::run()
 {
+#if defined(VERSION_JP)
+	JUT_ASSERTLINE(532, mDisplay, "no Display manager.\n");
+#else
 	JUT_ASSERTLINE(543, mDisplay, "no Display manager.\n");
+#endif
 
 	mDisplay->waitBlanking(1);
 

@@ -4677,6 +4677,14 @@ void BasePelletMgr::load()
 	char buffer[512];
 	char* file = nullptr;
 
+#if defined(VERSION_PAL)
+	if (gGameConfig.mParms.mPelletMultiLang.mData != 0) {
+		sprintf(buffer, "/user/Abe/Pellet/%s/", "pal");
+		file = buffer;
+	} else {
+		file = "user/Kando/pellet/";
+	}
+#else
 	if (gGameConfig.mParms.mPelletMultiLang.mData != 0) {
 		switch (sys->mRegion) {
 		case System::LANG_Japanese:
@@ -4699,6 +4707,7 @@ void BasePelletMgr::load()
 	} else {
 		file = "user/Kando/pellet/";
 	}
+#endif
 
 	char buffer2[512];
 
@@ -4762,6 +4771,14 @@ void BasePelletMgr::load_texArc(char* filename)
 	char buffer[512];
 	char* directory = nullptr;
 
+#if defined(VERSION_PAL)
+	if (gGameConfig.mParms.mPelletMultiLang.mData != 0) {
+		sprintf(buffer, "/user/Abe/Pellet/%s/", "pal");
+		directory = buffer;
+	} else {
+		directory = "user/Kando/pellet/";
+	}
+#else
 	if (gGameConfig.mParms.mPelletMultiLang.mData != 0) {
 		switch (sys->mRegion) {
 		case System::LANG_Japanese:
@@ -4784,6 +4801,7 @@ void BasePelletMgr::load_texArc(char* filename)
 	} else {
 		directory = "user/Kando/pellet/";
 	}
+#endif
 
 	char path[512];
 	sprintf(path, "%s%s", directory, filename);
@@ -4865,6 +4883,14 @@ JKRArchive* BasePelletMgr::openTextArc(char* arc)
 {
 	char directory[512];
 	char* file = nullptr;
+#if defined(VERSION_PAL)
+	if (gGameConfig.mParms.mPelletMultiLang.mData != 0) {
+		sprintf(directory, "/user/Abe/Pellet/%s/", "pal");
+		file = directory;
+	} else {
+		file = "user/Kando/pellet/";
+	}
+#else
 	if (gGameConfig.mParms.mPelletMultiLang.mData != 0) {
 		switch (sys->mRegion) {
 		case System::LANG_Japanese:
@@ -4887,6 +4913,7 @@ JKRArchive* BasePelletMgr::openTextArc(char* arc)
 	} else {
 		file = "user/Kando/pellet/";
 	}
+#endif
 
 	char filePath[512];
 

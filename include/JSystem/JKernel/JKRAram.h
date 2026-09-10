@@ -66,6 +66,9 @@ struct JKRAramHeap : public JKRDisposer {
 	JKRAramBlock* alloc(u32 size, EAllocMode mode);
 	JKRAramBlock* allocFromHead(u32 size);
 	JKRAramBlock* allocFromTail(u32 size);
+
+	void freeAll(); // only not stripped in PAL
+
 	s32 getFreeSize();
 
 	void free(JKRAramBlock* block) { delete block; }

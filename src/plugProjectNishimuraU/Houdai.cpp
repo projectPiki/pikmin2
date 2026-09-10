@@ -222,7 +222,11 @@ void Obj::getShadowParam(ShadowParam& param)
  */
 bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* collpart)
 {
+#if defined(VERSION_JP)
+	if (collpart && creature && creature->isPiki()) {
+#else
 	if (creature && collpart && creature->isPiki() && creature->isStickTo()) {
+#endif
 		if (getStateID() == HOUDAI_Land) {
 			damage *= 0.25f;
 		}

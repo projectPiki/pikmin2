@@ -355,7 +355,11 @@ void ObjFloor::doCreate(JKRArchive* arc)
 	}
 
 	mScreenFont = new P2DScreen::Mgr_tuning;
+#if defined(VERSION_PAL)
+	if (sys->getLanguage() == System::LANG_Japanese) {
+#else
 	if (sys->mRegion == System::LANG_Japanese) {
+#endif
 		mScreenFont->set("new_font_0.blo", 0x1040000, arc);
 	} else {
 		mScreenFont->set("new_font_0_eng_pal.blo", 0x1040000, arc);

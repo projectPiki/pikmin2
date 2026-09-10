@@ -68,7 +68,14 @@ void TMainTitleMgr::loadResource()
 	P2ASSERTLINE(69, arc);
 	sys->heapStatusEnd("TTitleMenu::loadResource");
 
-	mTitleMenu.setArchive(arc);
+#if defined(VERSION_JP)
+	if (Game::gGameConfig.mParms.mE3version.mData) {
+		mE3TitleMenu.loadResource();
+	} else
+#endif
+	{
+		mTitleMenu.setArchive(arc);
+	}
 	mPressStart.setArchive(arc);
 	mTMBack.setArchive(arc);
 	mLogo.setArchive(arc);
@@ -85,7 +92,15 @@ void TMainTitleMgr::loadResource()
  */
 void TMainTitleMgr::setController(Controller* control)
 {
-	mTitleMenu.setController(control);
+
+#if defined(VERSION_JP)
+	if (Game::gGameConfig.mParms.mE3version.mData) {
+		mE3TitleMenu.setController(control);
+	} else
+#endif
+	{
+		mTitleMenu.setController(control);
+	}
 	mPressStart.mControl = control;
 	title::titleMgr->setController(control);
 	mController = control;
@@ -97,7 +112,15 @@ void TMainTitleMgr::setController(Controller* control)
  */
 void TMainTitleMgr::start()
 {
-	mTitleMenu.killScreen();
+
+#if defined(VERSION_JP)
+	if (Game::gGameConfig.mParms.mE3version.mData) {
+		mE3TitleMenu.killScreen();
+	} else
+#endif
+	{
+		mTitleMenu.killScreen();
+	}
 	mPressStart.killScreen();
 
 	Screen::ArgOpenTMBack arg(5.0f);
@@ -143,10 +166,13 @@ void TMainTitleMgr::startMenuSet(s32, s32 select)
 		JUT_PANICLINE(177, "P2Assert");
 	}
 
+#if !defined(VERSION_JP)
 	if (Game::gGameConfig.mParms.mE3version.mData) {
 		Screen::ArgOpenTitleMenu arg(1, id);
 		mTitleMenu.openMenuSet(&arg);
-	} else {
+	} else
+#endif
+	{
 		Screen::ArgOpenTitleMenu arg(sys->getPlayCommonData()->isChallengeGamePlayable() != 0, id);
 		mTitleMenu.openMenuSet(&arg);
 	}
@@ -248,39 +274,80 @@ void TMainTitleMgr::update()
 				mOpenMenuCounterMax = count2;
 				mDrawState          = 2;
 				mState              = Exiting;
+
+#if defined(VERSION_JP)
+			} else {
+				if (Game::gGameConfig.mParms.mE3version.mData) {
+					mE3TitleMenu.openScreen(true);
+				} else {
+					Screen::ArgOpenTitleMenu arg(sys->getPlayCommonData()->isChallengeGamePlayable() != 0, 0);
+					mTitleMenu.openScreen(&arg);
+				}
+				mState = MainMenu;
+			}
+#else
 			} else if (Game::gGameConfig.mParms.mE3version.mData) {
+#if defined(VERSION_JP)
+				mE3TitleMenu.openScreen(true);
+#else
 				Screen::ArgOpenTitleMenu arg(1, 1);
 				mTitleMenu.openScreen(&arg);
+#endif
 				mState = MainMenu;
 			} else {
 				Screen::ArgOpenTitleMenu arg(sys->getPlayCommonData()->isChallengeGamePlayable() != 0, 0);
 				mTitleMenu.openScreen(&arg);
 				mState = MainMenu;
 			}
+#endif
 		}
 		break;
 	case MainMenu:
+#if defined(VERSION_JP)
+		bool decided;
+		if (Game::gGameConfig.mParms.mE3version.mData) {
+			decided = mE3TitleMenu.isDecide();
+		} else {
+			decided = mTitleMenu.isDecide();
+		}
+		if (decided && !mIsForceSelect) {
+#else
 		if (mTitleMenu.isDecide() && !mIsForceSelect) {
+#endif
 			mIsForceSelect = true;
-			switch (mTitleMenu.mSelectID) {
-			case 0:
-				mSelectedMenuOption = Select_Story;
-				break;
-			case 1:
-				mSelectedMenuOption = Select_Vs;
-				break;
-			case 2:
-				mSelectedMenuOption = Select_Challenge;
-				break;
-			case 3:
-				mSelectedMenuOption = Select_Options;
-				break;
-			case 4:
-				mSelectedMenuOption = Select_HiScore;
-				break;
-			case 5:
-				mSelectedMenuOption = Select_Bonus;
-				break;
+#if defined(VERSION_JP)
+			if (Game::gGameConfig.mParms.mE3version.mData) {
+				switch (mE3TitleMenu.mSelectedMenu) {
+				case 0:
+					mSelectedMenuOption = Select_Story;
+					break;
+				case 1:
+					mSelectedMenuOption = Select_Challenge;
+					break;
+				}
+			} else
+#endif
+			{
+				switch (mTitleMenu.mSelectID) {
+				case 0:
+					mSelectedMenuOption = Select_Story;
+					break;
+				case 1:
+					mSelectedMenuOption = Select_Vs;
+					break;
+				case 2:
+					mSelectedMenuOption = Select_Challenge;
+					break;
+				case 3:
+					mSelectedMenuOption = Select_Options;
+					break;
+				case 4:
+					mSelectedMenuOption = Select_HiScore;
+					break;
+				case 5:
+					mSelectedMenuOption = Select_Bonus;
+					break;
+				}
 			}
 			title::titleMgr->breakup();
 			Screen::ArgCloseTMBack arg(1.0f);
@@ -293,8 +360,20 @@ void TMainTitleMgr::update()
 				mDoEndBGM           = true;
 			}
 		}
+#if defined(VERSION_JP)
+		u8 end;
+		bool end2;
+		if (Game::gGameConfig.mParms.mE3version.mData) {
+			end  = mE3TitleMenu.isFinishScreen();
+			end2 = mE3TitleMenu.isCancel();
+		} else {
+			end  = mTitleMenu.isFinishScreen();
+			end2 = mTitleMenu.isCancel();
+		}
+#else
 		u8 end    = mTitleMenu.isFinishScreen();
 		bool end2 = mTitleMenu.isCancel();
+#endif
 		if (end) {
 			if (end2) {
 				mPressStart.openScreen(nullptr);
@@ -316,7 +395,14 @@ void TMainTitleMgr::update()
 		break;
 	}
 
-	mTitleMenu.update();
+#if defined(VERSION_JP)
+	if (Game::gGameConfig.mParms.mE3version.mData) {
+		mE3TitleMenu.update();
+	} else
+#endif
+	{
+		mTitleMenu.update();
+	}
 	mPressStart.update();
 	mTMBack.update();
 	mLogo.update();
@@ -336,7 +422,15 @@ void TMainTitleMgr::draw()
 		title::titleMgr->draw();
 		GXSetZMode(GX_FALSE, GX_ALWAYS, GX_FALSE);
 		mTMBack.draw();
-		mTitleMenu.draw();
+
+#if defined(VERSION_JP)
+		if (Game::gGameConfig.mParms.mE3version.mData) {
+			mE3TitleMenu.draw();
+		} else
+#endif
+		{
+			mTitleMenu.draw();
+		}
 		mPressStart.draw();
 		mLogo.draw();
 		if (mDrawState != 0) {

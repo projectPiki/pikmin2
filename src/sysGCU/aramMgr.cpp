@@ -6,6 +6,15 @@
 
 ARAM::Mgr* gAramMgr;
 
+// PAL uses a dedicated heap for certain ARAM resource loading, so it can get thrown
+// out when the language gets swapped - US/JP just uses the system heap
+#if defined(VERSION_PAL)
+#define RESOURCE_HEAP          (mNodeHeap)
+#define PAL_RESOURCE_HEAP_SIZE (0x5C00) // 23 KB heap, to throw out and reload when language swapping
+#else
+#define RESOURCE_HEAP (JKRGetSystemHeap())
+#endif
+
 #if MATCHING
 static const char* SDATA2_FIX = "";
 #endif
@@ -23,7 +32,11 @@ inline Node::Node()
 
 inline u32 Node::dvdToAram(char const* name, bool forceFail)
 {
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(114, name);
+#else
 	P2ASSERTLINE(105, name);
+#endif
 	mName = const_cast<char*>(name);
 
 	if (!mMemoryBlock) {
@@ -91,10 +104,18 @@ void Mgr::init()
  * @note Size: 0x80
  */
 Mgr::Mgr()
-    : mRootNode("root")
+    : mResourceList("root")
 {
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(258, gAramMgr == nullptr);
+#else
 	P2ASSERTLINE(248, gAramMgr == nullptr);
+#endif
 	gAramMgr = this;
+
+#if defined(VERSION_PAL)
+	mNodeHeap = makeExpHeap(PAL_RESOURCE_HEAP_SIZE, JKRGetSystemHeap(), true);
+#endif
 }
 
 /**
@@ -107,22 +128,19 @@ u32 Mgr::dvdToAram(char const* name, bool forceAddNode)
 	Node* found = search(name);
 
 	if (!found) {
-		JKRHeap* sysHeap1 = JKRHeap::sSystemHeap;
-		Node* newNode     = new (sysHeap1, 0) Node;
+		Node* newNode = new (RESOURCE_HEAP, 0) Node;
 
-		JKRHeap* sysHeap2 = JKRHeap::sSystemHeap;
-		size_t length     = strlen(const_cast<char*>(name)) + 1;
-		char* newName     = new (sysHeap2, 0) char[length];
+		char* newName = new (RESOURCE_HEAP, 0) char[strlen(const_cast<char*>(name)) + 1];
 		strcpy(newName, name);
 
 		if (forceAddNode) {
 			newNode->dvdToAram(newName, forceAddNode);
-			mRootNode.add(newNode);
+			mResourceList.add(newNode);
 		} else {
 			success = newNode->dvdToAram(newName, false);
 
 			if (success) {
-				mRootNode.add(newNode);
+				mResourceList.add(newNode);
 			} else {
 				delete newName;
 				delete newNode;
@@ -168,7 +186,7 @@ void ARAM::Mgr::dump()
 	JKRAram::sAramObject->mAramHeap->getFreeSize();
 	JKRAram::sAramObject->mAramHeap->getFreeSize();
 	JKRAramBlock* status;
-	FOREACH_NODE(Node, mRootNode.mChild, node)
+	FOREACH_NODE(Node, mResourceList.mChild, node)
 	{
 		status   = node->mMemoryBlock;
 		u32 size = (status) ? status->mSize : 0;
@@ -178,6 +196,9 @@ void ARAM::Mgr::dump()
 			min = size;
 		}
 	}
+#if defined(VERSION_PAL)
+	OSReport("\tHeapFree  %5dKB \n", (int)mNodeHeap->getTotalFreeSize() >> 10);
+#endif
 }
 
 /**
@@ -187,7 +208,7 @@ void ARAM::Mgr::dump()
 Node* ARAM::Mgr::search(char const* str)
 {
 	Node* result = nullptr;
-	CNode* node  = mRootNode.mChild;
+	CNode* node  = mResourceList.mChild;
 	while (node) {
 		if (strcmp(str, node->mName) == 0) {
 			result = static_cast<Node*>(node);
@@ -197,4 +218,18 @@ Node* ARAM::Mgr::search(char const* str)
 	}
 	return result;
 }
+
+#if defined(VERSION_PAL)
+/**
+ * @note Address: 0x80433594 (PAL only)
+ * @note Size: 0x50
+ * @note Fabricated name. Solid guess based on what it calls though.
+ */
+void ARAM::Mgr::freeAll()
+{
+	mNodeHeap->freeAll();
+	mResourceList.clearRelations();
+	JKRAram::getAramHeap()->freeAll();
+}
+#endif
 } // namespace ARAM

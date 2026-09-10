@@ -19,6 +19,10 @@ struct Mgr {
 	void loadDemo();
 	void loadItem();
 
+#if defined(VERSION_PAL)
+	void freeAll(); // fabricated name
+#endif
+
 	// _00 = VTBL
 	bool mLoadPermission; // _04
 };

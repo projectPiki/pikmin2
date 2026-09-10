@@ -30,7 +30,13 @@ struct LogoLocation {
 };
 
 static LogoLocation sLogoLocate[] = {
+#if defined(VERSION_JP)
+	{ 370, 320 }, { 370, 320 }, { 370, 320 }, { 370, 40 }, { 370, 320 }, { 370, 320 }, { 370, 340 }, { 370, 40 },
+#elif defined(VERSION_PAL)
+	{ 380, 7 }, { 380, 7 }, { 380, 7 }, { 380, 40 }, { 380, 7 }, { 380, 7 }, { 380, 7 }, { 380, 40 },
+#else
 	{ 370, 15 }, { 370, 15 }, { 370, 15 }, { 370, 40 }, { 370, 15 }, { 370, 15 }, { 370, 15 }, { 370, 40 },
+#endif
 };
 } // namespace
 
@@ -166,11 +172,29 @@ bool Section::doLoading()
  */
 void Section::loadResource()
 {
+#if defined(VERSION_JP)
+	JKRArchive* arc = JKRMountArchive("/user/yamashita/arc/demoMovieLogo_jp.szs", JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
+#elif defined(VERSION_PAL)
+	JKRArchive* arc = JKRMountArchive("/user/yamashita/arc/demoMovieLogo_pal.szs", JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
+#else
 	JKRArchive* arc = JKRMountArchive("/user/yamashita/arc/demoMovieLogo_us.szs", JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
+#endif
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(431, arc);
+#elif defined(VERSION_JP)
+	P2ASSERTLINE(422, arc);
+#else
 	P2ASSERTLINE(428, arc);
+#endif
 
 	ResTIMG* timg = JKRGetImageResource("/data/timg/pikmin2_logo.bti");
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(436, timg);
+#elif defined(VERSION_JP)
+	P2ASSERTLINE(427, timg);
+#else
 	P2ASSERTLINE(433, timg);
+#endif
 
 	mLogoTexture = new JUTTexture(timg);
 }

@@ -1,21 +1,14 @@
 #ifndef _BUILDSETTINGS_H
 #define _BUILDSETTINGS_H
 
+#include "Version.h"
+
 // TODO: These should probably go into a precompiled header or build flags or
 // something.
 #define LOCALIZED   true
 #define MATCHING    true
 #define BUGFIX      false
 #define FOR_MODDING false
-
-#define USADEMO1 0
-#define USAFINAL 4
-
-#if VERNUM == USAFINAL
-#define BUILDTARGET USAFINAL
-#elif VERNUM == USADEMO1
-#define BUILDTARGET USADEMO1
-#endif
 
 // The following are constants that mods might be interested in tweaking.
 #define CHALLENGE_COURSE_COUNT 30

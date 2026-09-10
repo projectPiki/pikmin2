@@ -1117,15 +1117,33 @@ void TChallengeScreen::create(char const* path, u32 flags)
 
 	TCallbackScissor* scis = new TCallbackScissor;
 	scis->mBounds          = JGeometry::TBox2f(320.0f, 70.0f, 560.0f, 100.0f);
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(569, mScreenObj->search('Tmapti3'));
+#elif defined(VERSION_JP)
+	P2ASSERTLINE(567, mScreenObj->search('Tmapti3'));
+#else
 	P2ASSERTLINE(568, mScreenObj->search('Tmapti3'));
+#endif
 	mScreenObj->addCallBack('Tmapti3', scis);
 
 	og::Screen::CallBack_Message* mesg = new og::Screen::CallBack_Message;
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(577, mScreenObj->search('Tyel2'));
+#elif defined(VERSION_JP)
+	P2ASSERTLINE(575, mScreenObj->search('Tyel2'));
+#else
 	P2ASSERTLINE(576, mScreenObj->search('Tyel2'));
+#endif
 	mScreenObj->addCallBack('Tyel2', mesg);
 
 	og::Screen::CallBack_Message* mesg2 = new og::Screen::CallBack_Message;
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(582, mScreenObj->search('Tyel1'));
+#elif defined(VERSION_JP)
+	P2ASSERTLINE(580, mScreenObj->search('Tyel1'));
+#else
 	P2ASSERTLINE(581, mScreenObj->search('Tyel1'));
+#endif
 	mScreenObj->addCallBack('Tyel1', mesg2);
 
 	TCallbackScissor* scis2 = new TCallbackScissor;
@@ -1232,16 +1250,19 @@ TChallengePlayModeScreen::TChallengePlayModeScreen(JKRArchive* arc, int anims)
 	mDoShowNoController = false;
 	mNoControllerTimer  = 0.0f;
 	mTimer              = 0.0f;
-	mTimer2             = 0.0f;
-	mMovePos            = 800.0f;
-	mPaneList0[0]       = nullptr;
-	mScaleMgr[0]        = nullptr;
-	mPaneOlimarP1       = nullptr;
-	mAlphaTimer         = 0.0f;
-	mPaneList0[1]       = nullptr;
-	mScaleMgr[1]        = nullptr;
-	mPaneOlimarP2       = nullptr;
-	mScale              = 0.0f;
+
+#if !defined(VERSION_JP)
+	mTimer2 = 0.0f;
+#endif
+	mMovePos      = 800.0f;
+	mPaneList0[0] = nullptr;
+	mScaleMgr[0]  = nullptr;
+	mPaneOlimarP1 = nullptr;
+	mAlphaTimer   = 0.0f;
+	mPaneList0[1] = nullptr;
+	mScaleMgr[1]  = nullptr;
+	mPaneOlimarP2 = nullptr;
+	mScale        = 0.0f;
 	for (int i = 0; i < 3; i++) {
 		mPaneList1[i]   = nullptr;
 		mAngleTimers[i] = TAU * randFloat();
@@ -1259,25 +1280,45 @@ void TChallengePlayModeScreen::create(char const* path, u32 flags)
 {
 	TScreenBase::create(path, flags);
 
+#if !defined(VERSION_JP)
 	mScreenObj->search('il00')->hide();
 	mScreenObj->search('ir00')->hide();
 	mScreenObj->search('il01')->hide();
 	mScreenObj->search('ir01')->hide();
+#endif
 	mEfxCursor2 = new efx2d::T2DCursor(&mEfxCursorPos2);
 	mEfxCursor1 = new efx2d::T2DCursor(&mEfxCursorPos1);
 
 	mPaneList0[0] = mScreenObj->search('nu_01');
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(765, mPaneList0[0]);
+#elif defined(VERSION_JP)
+	P2ASSERTLINE(754, mPaneList0[0]);
+#else
 	P2ASSERTLINE(764, mPaneList0[0]);
+#endif
 
 	mPaneList0[1] = mScreenObj->search('nu_02');
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(768, mPaneList0[1]);
+#elif defined(VERSION_JP)
+	P2ASSERTLINE(757, mPaneList0[1]);
+#else
 	P2ASSERTLINE(767, mPaneList0[1]);
+#endif
 
 	for (int i = 0; i < 2; i++) {
 		mScaleMgr[i] = new og::Screen::ScaleMgr;
 	}
 
 	mFuriko = og::Screen::setCallBack_Furiko(mScreenObj, 'furiko00');
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(777, mFuriko);
+#elif defined(VERSION_JP)
+	P2ASSERTLINE(766, mFuriko);
+#else
 	P2ASSERTLINE(776, mFuriko);
+#endif
 	mFuriko->stop();
 
 	u64 tags[4] = { 'h_00', 'h_01', 'h_02', 'h_03' };
@@ -1289,7 +1330,13 @@ void TChallengePlayModeScreen::create(char const* path, u32 flags)
 		} else {
 			mAnimScreen[i] = og::Screen::setMenuScreen(mArchive, mScreenObj, tags[i]);
 		}
+#if defined(VERSION_PAL)
+		P2ASSERTLINE(787, mAnimScreen[i]);
+#elif defined(VERSION_JP)
+		P2ASSERTLINE(776, mAnimScreen[i]);
+#else
 		P2ASSERTLINE(786, mAnimScreen[i]);
+#endif
 		mAnimScreen[i]->stop();
 	}
 
@@ -1297,17 +1344,53 @@ void TChallengePlayModeScreen::create(char const* path, u32 flags)
 	mAnimScreen[3]->mMesgAlpha = mNoControllerTimer;
 
 	mPaneOlimarP1 = mScreenObj->search('P1orima');
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(796, mPaneOlimarP1);
+#elif defined(VERSION_JP)
+	P2ASSERTLINE(785, mPaneOlimarP1);
+#else
 	P2ASSERTLINE(795, mPaneOlimarP1);
+#endif
 	mPaneList1[0] = mScreenObj->search('P1ori_l');
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(798, mPaneList1[0]);
+#elif defined(VERSION_JP)
+	P2ASSERTLINE(787, mPaneList1[0]);
+#else
 	P2ASSERTLINE(797, mPaneList1[0]);
+#endif
 	mPaneOlimarP2 = mScreenObj->search('P2orima');
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(801, mPaneOlimarP2);
+#elif defined(VERSION_JP)
+	P2ASSERTLINE(790, mPaneOlimarP2);
+#else
 	P2ASSERTLINE(800, mPaneOlimarP2);
+#endif
 	mPaneList1[1] = mScreenObj->search('P2ori_l');
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(803, mPaneList1[1]);
+#elif defined(VERSION_JP)
+	P2ASSERTLINE(792, mPaneList1[1]);
+#else
 	P2ASSERTLINE(802, mPaneList1[1]);
+#endif
 	mPaneLouie = mScreenObj->search('Plui');
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(807, mPaneLouie);
+#elif defined(VERSION_JP)
+	P2ASSERTLINE(796, mPaneLouie);
+#else
 	P2ASSERTLINE(806, mPaneLouie);
+#endif
 	mPaneList1[2] = mScreenObj->search('P2lui_l');
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(809, mPaneList1[2]);
+#elif defined(VERSION_JP)
+	P2ASSERTLINE(798, mPaneList1[2]);
+#else
 	P2ASSERTLINE(808, mPaneList1[2]);
+#endif
 }
 
 /**
@@ -1316,24 +1399,42 @@ void TChallengePlayModeScreen::create(char const* path, u32 flags)
  */
 void TChallengePlayModeScreen::update()
 {
+#if !defined(VERSION_JP)
 	mPane1Pos.x = mScreenObj->search('il00')->mGlobalMtx[0][3];
 	mPane1Pos.y = mScreenObj->search('ir00')->mGlobalMtx[1][3];
 	mPane2Pos.x = mScreenObj->search('ir00')->mGlobalMtx[0][3];
 	mPane2Pos.y = mScreenObj->search('ir01')->mGlobalMtx[1][3];
 
+#endif
+#if defined(VERSION_JP)
+	f32 x = 144.0f - mEfxCursorPos1.x;
+#else
 	f32 x = mPane1Pos.x - mEfxCursorPos1.x;
+#endif
 	if (FABS(x) < 2.0f) {
+#if defined(VERSION_JP)
+		mEfxCursorPos1.x = 144.0f;
+#else
 		mEfxCursorPos1.x = mPane1Pos.x;
-		x                = 0.0f;
+#endif
+		x = 0.0f;
 	} else {
 		x *= 0.3f;
 	}
 	mEfxCursorPos1.x += x;
 
+#if defined(VERSION_JP)
+	f32 x2 = 440.0f - mEfxCursorPos2.x;
+#else
 	f32 x2 = mPane2Pos.x - mEfxCursorPos2.x;
+#endif
 	if (FABS(x2) < 2.0f) {
+#if defined(VERSION_JP)
+		mEfxCursorPos2.x = 440.0f;
+#else
 		mEfxCursorPos2.x = mPane2Pos.x;
-		x2               = 0.0f;
+#endif
+		x2 = 0.0f;
 	} else {
 		x2 *= 0.3f;
 	}
@@ -1349,10 +1450,18 @@ void TChallengePlayModeScreen::update()
 			mScale = 0.0f;
 		}
 
+#if defined(VERSION_JP)
+		f32 y = 234.0f - mEfxCursorPos2.y;
+#else
 		f32 y = mPane1Pos.y - mEfxCursorPos2.y;
+#endif
 		if (FABS(y) < 2.0f) {
+#if defined(VERSION_JP)
+			mEfxCursorPos2.y = 234.0f;
+#else
 			mEfxCursorPos2.y = mPane1Pos.y;
-			y                = 0.0f;
+#endif
+			y = 0.0f;
 		} else {
 			y *= 0.3f;
 		}
@@ -1375,10 +1484,18 @@ void TChallengePlayModeScreen::update()
 			mAlphaTimer = 0.0f;
 		}
 
+#if defined(VERSION_JP)
+		f32 y = 278.0f - mEfxCursorPos2.y;
+#else
 		f32 y = mPane2Pos.y - mEfxCursorPos2.y;
+#endif
 		if (FABS(y) < 2.0f) {
+#if defined(VERSION_JP)
+			mEfxCursorPos2.y = 278.0f;
+#else
 			mEfxCursorPos2.y = mPane2Pos.y;
-			y                = 0.0f;
+#endif
+			y = 0.0f;
 		} else {
 			y *= 0.3f;
 		}
@@ -1408,7 +1525,9 @@ void TChallengePlayModeScreen::update()
 		mFuriko->stop();
 		mMovePos = 400.0f;
 		mTimer   = 0.0f;
-		mTimer2  = 0.0f;
+#if !defined(VERSION_JP)
+		mTimer2 = 0.0f;
+#endif
 	} else {
 		if (mScreenObj) {
 			mScreenObj->update();
@@ -1421,6 +1540,18 @@ void TChallengePlayModeScreen::update()
 				mTimer += sys->mDeltaTime;
 				mMovePos = (1.0f - og::Screen::calcSmooth0to1(mTimer, 0.3f)) * 800.0f;
 				if (mMovePos <= 0.0f) {
+#if defined(VERSION_JP)
+					mState = 2;
+					if (TChallengeSelect::mSelected1p) {
+						mEfxCursorPos1 = Vector2f(144.0f, 234.0f);
+						mEfxCursorPos2 = Vector2f(440.0f, 234.0f);
+					} else {
+						mEfxCursorPos1 = Vector2f(144.0f, 278.0f);
+						mEfxCursorPos2 = Vector2f(440.0f, 278.0f);
+					}
+					mEfxCursor1->create(nullptr);
+					mEfxCursor2->create(nullptr);
+#else
 					mTimer2 += sys->mDeltaTime;
 					if (mTimer2 > 0.5f) {
 						mState = 2;
@@ -1438,6 +1569,7 @@ void TChallengePlayModeScreen::update()
 						mEfxCursor1->create(nullptr);
 						mEfxCursor2->create(nullptr);
 					}
+#endif
 				}
 				break;
 			case 0:
@@ -2033,7 +2165,13 @@ void TChallengePlayModeScreen::reset()
  */
 void TChallengePlayModeScreen::createMetPicture(ResTIMG const* data)
 {
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(1208, data);
+#elif defined(VERSION_JP)
+	P2ASSERTLINE(1167, data);
+#else
 	P2ASSERTLINE(1207, data);
+#endif
 	mSphereTex = new J2DPicture(data);
 }
 
@@ -2151,13 +2289,25 @@ void TChallengeSelect::doCreate(JKRArchive* arc)
 	if (mIsSection) {
 		if (mDebugHeapParent) {
 			mDebugHeap = JKRExpHeap::create(0x100000, mDebugHeapParent, true);
+#if defined(VERSION_PAL)
+			P2ASSERTLINE(1340, mDebugHeap);
+#elif defined(VERSION_JP)
+			P2ASSERTLINE(1299, mDebugHeap);
+#else
 			P2ASSERTLINE(1339, mDebugHeap);
+#endif
 			mDisp                        = new (mDebugHeap, 0) DispMemberChallengeSelect;
 			mDisp->mDebugExpHeap         = mDebugHeap;
 			mDisp->mDispWorldMapInfoWin0 = new og::Screen::DispMemberWorldMapInfoWin0;
 			getOwner()->setDispMember(mDisp);
 		} else {
+#if defined(VERSION_PAL)
+			JUT_PANICLINE(1350, "set DebugHeapParent. mail to morimun.\n");
+#elif defined(VERSION_JP)
+			JUT_PANICLINE(1309, "set DebugHeapParent. mail to morimun.\n");
+#else
 			JUT_PANICLINE(1349, "set DebugHeapParent. mail to morimun.\n");
+#endif
 		}
 		mStageList = new Game::ChallengeGame::StageList;
 		void* file = JKRDvdRipper::loadToMainRAM("/user/Matoba/challenge/stages.txt", nullptr, Switch_0, 0, nullptr,
@@ -2233,7 +2383,13 @@ void TChallengeSelect::doCreate(JKRArchive* arc)
 	char* paths[4] = { "timg/flower_seed.bti", "timg/leaf_icon.bti", "timg/flower_icon.bti", "timg/flower_p_icon.bti" };
 	for (int i = 0; i < 4; i++) {
 		mIconTexture[i] = static_cast<ResTIMG*>(mArchive->getResource(paths[i]));
+#if defined(VERSION_PAL)
+		P2ASSERTLINE(1465, mIconTexture[i]);
+#elif defined(VERSION_JP)
+		P2ASSERTLINE(1424, mIconTexture[i]);
+#else
 		P2ASSERTLINE(1464, mIconTexture[i]);
+#endif
 	}
 
 	mPlayModeScreen = new TChallengePlayModeScreen(arc, 0);
@@ -2276,7 +2432,13 @@ void TChallengeSelect::doCreate(JKRArchive* arc)
 	mPaneLevelName[0] = screen->search('Tyel1');
 	mPaneLevelName[1] = screen->search('Tyel2');
 	for (int i = 0; i < 2; i++) {
+#if defined(VERSION_PAL)
+		P2ASSERTLINE(1526, mPaneLevelName[i]);
+#elif defined(VERSION_JP)
+		P2ASSERTLINE(1485, mPaneLevelName[i]);
+#else
 		P2ASSERTLINE(1525, mPaneLevelName[i]);
+#endif
 	}
 
 	mDoping[0] = new TChallengeDoping(screen->search('PICT_013'), screen->search('PICT_023'), screen->search('PICT_022'),
@@ -2285,10 +2447,22 @@ void TChallengeSelect::doCreate(JKRArchive* arc)
 	                                  screen->search('PICT_027'));
 
 	J2DPane* pane = screen->search('Peffect');
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(1537, pane);
+#elif defined(VERSION_JP)
+	P2ASSERTLINE(1496, pane);
+#else
 	P2ASSERTLINE(1536, pane);
+#endif
 	pane->show();
 	mPaneSelect = screen->search('Pselec00');
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(1542, mPaneSelect);
+#elif defined(VERSION_JP)
+	P2ASSERTLINE(1501, mPaneSelect);
+#else
 	P2ASSERTLINE(1541, mPaneSelect);
+#endif
 
 	mHighScoreCounter[0] = setScaleUpCounter(screen, 'Phs1p1', &mHighScoreValue[0], 5, mArchive);
 	mHighScoreCounter[1] = setScaleUpCounter(screen, 'Phs2p1', &mHighScoreValue[1], 5, mArchive);
@@ -2360,12 +2534,25 @@ void TChallengeSelect::doCreate(JKRArchive* arc)
 		}
 	}
 
+#if defined(VERSION_US_DEMO1) || defined(VERSION_PAL)
+
+	if (JUTGamePad::mPadStatus[1].err == -1 || Game::gGameConfig.mParms.mNintendoVersion()) {
+		mConnect2p = false;
+	} else {
+		mConnect2p = true;
+	}
+	mSelected1p = true;
+
+#else
+
 	mSelected1p = true;
 	if (JUTGamePad::mPadStatus[1].err != -1) {
 		mConnect2p = true;
 	} else {
 		mConnect2p = false;
 	}
+
+#endif
 
 	if (mDisp->mPlayType == 1) {
 		mSelected1p = false;
@@ -2386,7 +2573,11 @@ bool TChallengeSelect::doUpdate()
 {
 	if (mPlayModeScreen->isState(TChallengePlayModeScreen::PlayModeScreen_Active) != 0) {
 		// Check that player 2s controller is plugged in
+#if defined(VERSION_US_DEMO1) || defined(VERSION_PAL)
+		if (JUTGamePad::mPadStatus[1].err == -1 || Game::gGameConfig.mParms.mNintendoVersion()) {
+#else
 		if (JUTGamePad::mPadStatus[1].err == -1) {
+#endif
 			mConnect2p = false;
 		} else {
 			if (!mConnect2p) {
@@ -2636,7 +2827,19 @@ bool TChallengeSelect::doUpdate()
 	}
 
 	// update the state of the level name when it moves
-	if (_136) {
+#if defined(VERSION_PAL)
+	if (mDisp && mDisp->mStatus == Screen::Game2DMgr::CHECK2D_ChallengeSelect_InDemo) {
+		mLevelNameMoveTimer += 0.25f;
+		if (mLevelNameMoveState > 1) {
+			mLevelNameMoveTimer += 0.15f;
+		}
+		if (mLevelNameMoveTimer > 1.0f) {
+			mLevelNameMoveTimer = 1.0f;
+			mLevelNameMoveState = -1;
+		}
+	} else
+#endif
+	    if (_136) {
 		mLevelNameMoveTimer *= 0.65f;
 		if (mLevelNameMoveTimer < 0.2f) {
 			_136 = false;
@@ -2684,10 +2887,18 @@ bool TChallengeSelect::doUpdate()
 			YGoal = -1.3f;
 			break;
 		case 2:
+#if defined(VERSION_PAL)
+			XGoal = 1.4f;
+#else
 			XGoal = 1.25f;
+#endif
 			break;
 		case 3:
+#if defined(VERSION_PAL)
+			XGoal = -1.4f;
+#else
 			XGoal = -1.25f;
+#endif
 			break;
 		}
 		J2DPane* namePane   = mPaneLevelName[i];
@@ -2717,7 +2928,10 @@ bool TChallengeSelect::doUpdate()
 
 		if (end) {
 			mEfxDive->fade();
-			if (mDivePikiNum > 0) {
+#if !defined(VERSION_JP)
+			if (mDivePikiNum > 0)
+#endif
+			{
 				J2DPane* pane = mPanelList[mCurrentSelection]->mPane2;
 				Vector2f pos(pane->mGlobalMtx[0][3], pane->mGlobalMtx[1][3]);
 				efx2d::Arg arg(pos);
@@ -4791,7 +5005,15 @@ void TChallengeSelect::doDraw(Graphics& gfx)
  */
 void TChallengeSelect::doUpdateFadeoutFinish()
 {
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(2229, mDisp);
+#elif defined(VERSION_JP)
+	P2ASSERTLINE(2176, mDisp);
+#elif defined(VERSION_US_DEMO1)
+	P2ASSERTLINE(2220, mDisp);
+#else
 	P2ASSERTLINE(2218, mDisp);
+#endif
 	if (_134) {
 		mDisp->mStatus = Screen::Game2DMgr::CHECK2D_ChallengeSelect_ExitFinished;
 	} else {
@@ -4805,7 +5027,15 @@ void TChallengeSelect::doUpdateFadeoutFinish()
  */
 void TChallengeSelect::setInfo(int stageID)
 {
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(2241, stageID < CHALLENGE_COURSE_COUNT);
+#elif defined(VERSION_JP)
+	P2ASSERTLINE(2188, stageID < CHALLENGE_COURSE_COUNT);
+#elif defined(VERSION_US_DEMO1)
+	P2ASSERTLINE(2232, stageID < CHALLENGE_COURSE_COUNT);
+#else
 	P2ASSERTLINE(2230, stageID < CHALLENGE_COURSE_COUNT);
+#endif
 
 	if (mIsSection) {
 		// debug way of setting stage data
@@ -4859,15 +5089,55 @@ void TChallengeSelect::setInfo(int stageID)
 	}
 
 	// make sure all new values are legal
+#if defined(VERSION_PAL)
+	JUT_ASSERTLINE(2306, mHighScoreValue[0] <= 1000000, "hiscore1p = %d\n", mHighScoreValue[0]);
+#elif defined(VERSION_JP)
+	JUT_ASSERTLINE(2253, mHighScoreValue[0] <= 1000000, "hiscore1p = %d\n", mHighScoreValue[0]);
+#elif defined(VERSION_US_DEMO1)
+	JUT_ASSERTLINE(2297, mHighScoreValue[0] <= 1000000, "hiscore1p = %d\n", mHighScoreValue[0]);
+#else
 	JUT_ASSERTLINE(2295, mHighScoreValue[0] <= 1000000, "hiscore1p = %d\n", mHighScoreValue[0]);
+#endif
+#if defined(VERSION_PAL)
+	JUT_ASSERTLINE(2307, mHighScoreValue[1] <= 1000000, "hiscore2p = %d\n", mHighScoreValue[1]);
+#elif defined(VERSION_JP)
+	JUT_ASSERTLINE(2254, mHighScoreValue[1] <= 1000000, "hiscore2p = %d\n", mHighScoreValue[1]);
+#elif defined(VERSION_US_DEMO1)
+	JUT_ASSERTLINE(2298, mHighScoreValue[1] <= 1000000, "hiscore2p = %d\n", mHighScoreValue[1]);
+#else
 	JUT_ASSERTLINE(2296, mHighScoreValue[1] <= 1000000, "hiscore2p = %d\n", mHighScoreValue[1]);
+#endif
 	for (int i = 0; i < 5; i++) {
+#if defined(VERSION_PAL)
+		JUT_ASSERTLINE(2309, mPikiCounts[i] <= 100, "piki(%d) = %d\n", i, mPikiCounts[i]);
+#elif defined(VERSION_JP)
+		JUT_ASSERTLINE(2256, mPikiCounts[i] <= 100, "piki(%d) = %d\n", i, mPikiCounts[i]);
+#elif defined(VERSION_US_DEMO1)
+		JUT_ASSERTLINE(2300, mPikiCounts[i] <= 100, "piki(%d) = %d\n", i, mPikiCounts[i]);
+#else
 		JUT_ASSERTLINE(2298, mPikiCounts[i] <= 100, "piki(%d) = %d\n", i, mPikiCounts[i]);
+#endif
 	}
 	for (int i = 0; i < 2; i++) {
+#if defined(VERSION_PAL)
+		JUT_ASSERTLINE(2313, mDopeCount[i] <= 100, "doping(%d) = %d\n", i, mDopeCount[i]);
+#elif defined(VERSION_JP)
+		JUT_ASSERTLINE(2260, mDopeCount[i] <= 100, "doping(%d) = %d\n", i, mDopeCount[i]);
+#elif defined(VERSION_US_DEMO1)
+		JUT_ASSERTLINE(2304, mDopeCount[i] <= 100, "doping(%d) = %d\n", i, mDopeCount[i]);
+#else
 		JUT_ASSERTLINE(2302, mDopeCount[i] <= 100, "doping(%d) = %d\n", i, mDopeCount[i]);
+#endif
 	}
+#if defined(VERSION_PAL)
+	JUT_ASSERTLINE(2316, mFloorCount <= 100, "floor = %d\n", mFloorCount);
+#elif defined(VERSION_JP)
+	JUT_ASSERTLINE(2263, mFloorCount <= 100, "floor = %d\n", mFloorCount);
+#elif defined(VERSION_US_DEMO1)
+	JUT_ASSERTLINE(2307, mFloorCount <= 100, "floor = %d\n", mFloorCount);
+#else
 	JUT_ASSERTLINE(2305, mFloorCount <= 100, "floor = %d\n", mFloorCount);
+#endif
 
 	// make all the counters shake
 	for (int i = 0; i < 2; i++) {
@@ -4910,7 +5180,15 @@ int TChallengeSelect::getState(int id)
 {
 	FORCE_DONT_INLINE; // bad but needed for isChangeState, unless theres a proper way
 
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(2370, id < CHALLENGE_COURSE_COUNT);
+#elif defined(VERSION_JP)
+	P2ASSERTLINE(2317, id < CHALLENGE_COURSE_COUNT);
+#elif defined(VERSION_US_DEMO1)
+	P2ASSERTLINE(2361, id < CHALLENGE_COURSE_COUNT);
+#else
 	P2ASSERTLINE(2359, id < CHALLENGE_COURSE_COUNT);
+#endif
 	if (mIsSection) {
 		if (mStageData[id]->mIsPerfect) {
 			return TChallengePanel::ChallengePanel_Perfect;
@@ -4951,7 +5229,15 @@ int TChallengeSelect::getState(int id)
  */
 int TChallengeSelect::getAfterState(int id)
 {
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(2420, id < CHALLENGE_COURSE_COUNT);
+#elif defined(VERSION_JP)
+	P2ASSERTLINE(2367, id < CHALLENGE_COURSE_COUNT);
+#elif defined(VERSION_US_DEMO1)
+	P2ASSERTLINE(2411, id < CHALLENGE_COURSE_COUNT);
+#else
 	P2ASSERTLINE(2409, id < CHALLENGE_COURSE_COUNT);
+#endif
 	if (mIsSection) {
 		return TChallengePanel::ChallengePanel_Perfect;
 	} else {
@@ -4973,7 +5259,15 @@ int TChallengeSelect::getAfterState(int id)
  */
 bool TChallengeSelect::isChangeState(int id)
 {
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(2446, id < CHALLENGE_COURSE_COUNT);
+#elif defined(VERSION_JP)
+	P2ASSERTLINE(2393, id < CHALLENGE_COURSE_COUNT);
+#elif defined(VERSION_US_DEMO1)
+	P2ASSERTLINE(2437, id < CHALLENGE_COURSE_COUNT);
+#else
 	P2ASSERTLINE(2435, id < CHALLENGE_COURSE_COUNT);
+#endif
 	if (mIsSection) {
 		if (mStageData[id]->mIsChange)
 			return true;

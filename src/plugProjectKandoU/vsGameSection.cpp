@@ -115,7 +115,9 @@ VsGameSection::~VsGameSection()
 		GXSaveCPUFifo(mVsFifo->mFifo);
 		while (VSFifo::isGPActive())
 			;
+#if !defined(VERSION_JP)
 		GXDrawDone();
+#endif
 		GXInitFifoPtrs(JUTGraphFifo::sCurrentFifo->mFifo, JUTGraphFifo::sCurrentFifo->mBase, JUTGraphFifo::sCurrentFifo->mBase);
 		GXSetCPUFifo(JUTGraphFifo::sCurrentFifo->mFifo);
 		GXSetGPFifo(JUTGraphFifo::sCurrentFifo->mFifo);
@@ -195,7 +197,21 @@ void VsGameSection::onInit()
 	mFsm = new VsGame::FSM;
 	static_cast<VsGame::FSM*>(mFsm)->init(this);
 	initPlayData();
-	mFsm->start(this, VsGame::VGS_Title, nullptr);
+#if defined(VERSION_JP)
+	if (gGameConfig.mParms.mE3version.mData) {
+		VsGame::LoadArg load;
+		ChallengeGame::StageData* data = mChallengeStageList->getStageData(0);
+		P2ASSERTLINE(709, data);
+		strcpy(mCaveInfoFilename, data->mCaveInfoFilename);
+		load.mGameLoadType = 0;
+		mContainer1        = data->mPikiContainer;
+		mFsm->start(this, VsGame::VGS_Load, &load);
+	} else {
+#endif
+		mFsm->start(this, VsGame::VGS_Title, nullptr);
+#if defined(VERSION_JP)
+	}
+#endif
 
 	mCurrentFloor = 0;
 
@@ -361,7 +377,11 @@ void VsGameSection::onSetupFloatMemory()
 
 		PelletConfig* pelletConfig = PelletList::Mgr::getConfigAndKind(const_cast<char*>(marbles[i]), cKind);
 
+#if defined(VERSION_JP)
+		JUT_ASSERTLINE(905, pelletConfig, "zannenn\n"); // 'disappointing'
+#else
 		JUT_ASSERTLINE(904, pelletConfig, "zannenn\n"); // 'disappointing'
+#endif
 
 		initArg.mPelletIndex    = pelletConfig->mParams.mIndex;
 		initArg.mTextIdentifier = pelletConfig->mParams.mName.mData;
@@ -719,11 +739,19 @@ void VsGameSection::createFallPikmins(PikiContainer& setPikmin, int unused2)
 void VsGameSection::createVsPikmins()
 {
 	Onyon* redOnyon = ItemOnyon::mgr->getOnyon(ONYON_TYPE_RED);
+#if defined(VERSION_JP)
+	P2ASSERTLINE(1350, redOnyon);
+#else
 	P2ASSERTLINE(1349, redOnyon);
+#endif
 	Vector3f redOnyonPos = redOnyon->getPosition();
 
 	Onyon* blueOnyon = ItemOnyon::mgr->getOnyon(ONYON_TYPE_BLUE);
+#if defined(VERSION_JP)
+	P2ASSERTLINE(1355, blueOnyon);
+#else
 	P2ASSERTLINE(1354, blueOnyon);
+#endif
 	Vector3f blueOnyonPos = blueOnyon->getPosition();
 	PikiContainer* pikmin = &mContainer1;
 	pikmin->clear();
@@ -891,7 +919,11 @@ bool GameMessagePelletBorn::actVs(VsGameSection* section)
 				return true;
 			}
 		}
+#if defined(VERSION_JP)
+		JUT_PANICLINE(1593, "no space for new yellow\n");
+#else
 		JUT_PANICLINE(1592, "no space for new yellow\n");
+#endif
 	}
 	return false;
 }
@@ -909,7 +941,11 @@ bool GameMessagePelletDead::actVs(VsGameSection* section)
 				return true;
 			}
 		}
+#if defined(VERSION_JP)
+		JUT_PANICLINE(1618, "no entry for pellet\n");
+#else
 		JUT_PANICLINE(1617, "no entry for pellet\n");
+#endif
 	}
 
 	return false;
@@ -1035,7 +1071,11 @@ Pellet* VsGameSection::createCardPellet()
 	PelletInitArg pelletArg;
 
 	PelletConfig* config = PelletList::Mgr::getConfigAndKind(name, kind);
+#if defined(VERSION_JP)
+	JUT_ASSERTLINE(1760, config, "zannenn\n");
+#else
 	JUT_ASSERTLINE(1759, config, "zannenn\n");
+#endif
 	pelletArg.mPelletIndex       = config->mParams.mIndex;
 	pelletArg.mTextIdentifier    = config->mParams.mName.mData;
 	pelletArg.mPelletType        = kind;
@@ -1068,7 +1108,11 @@ void VsGameSection::initCardPellets()
 	PelletInitArg arg;
 
 	PelletConfig* config = PelletList::Mgr::getConfigAndKind(name, kind);
+#if defined(VERSION_JP)
+	JUT_ASSERTLINE(1797, config, "zannenn\n"); // 'disappointing'
+#else
 	JUT_ASSERTLINE(1796, config, "zannenn\n"); // 'disappointing'
+#endif
 	arg.mPelletIndex    = config->mParams.mIndex;
 	arg.mTextIdentifier = config->mParams.mName.mData;
 	arg.mPelletType     = kind;
@@ -1083,7 +1127,11 @@ void VsGameSection::initCardPellets()
 			pellet->setPosition(position, false);
 			mCherryArray[j] = pellet;
 		} else {
+#if defined(VERSION_JP)
+			JUT_PANICLINE(1814, "birth failed !\n");
+#else
 			JUT_PANICLINE(1813, "birth failed !\n");
+#endif
 		}
 	}
 
@@ -1252,7 +1300,11 @@ void VsGameSection::createYellowBedamas(int bedamas)
 	PelletInitArg pelletArg;
 
 	PelletConfig* config = PelletList::Mgr::getConfigAndKind(name, kind);
+#if defined(VERSION_JP)
+	JUT_ASSERTLINE(2155, config, "zannenn\n"); // 'disappointing'
+#else
 	JUT_ASSERTLINE(2154, config, "zannenn\n"); // 'disappointing'
+#endif
 
 	pelletArg.mPelletIndex = config->mParams.mIndex;
 
@@ -1260,7 +1312,11 @@ void VsGameSection::createYellowBedamas(int bedamas)
 	pelletArg.mPelletType     = kind;
 	pelletArg.mMinCarriers    = VS_MARBLE_MIN_WEIGHT;
 	pelletArg.mMaxCarriers    = VS_MARBLE_MAX_WEIGHT;
+#if defined(VERSION_JP)
+	JUT_ASSERTLINE(2164, bedamas <= 50, "oosugi %d\n", bedamas);
+#else
 	JUT_ASSERTLINE(2163, bedamas <= 50, "oosugi %d\n", bedamas);
+#endif
 
 	Vector3f positions[50];
 	Cave::randMapMgr->getItemDropPosition(positions, bedamas, 0.4f, 0.6f);
@@ -1281,7 +1337,11 @@ void VsGameSection::createRedBlueBedamas(Vector3f& pos)
 		PelletInitArg pelletArg;
 		char* name           = const_cast<char*>(marbles[i]);
 		PelletConfig* config = PelletList::Mgr::getConfigAndKind(name, kind);
+#if defined(VERSION_JP)
+		JUT_ASSERTLINE(2212, config, "zannenn\n"); // 'disappointing'
+#else
 		JUT_ASSERTLINE(2211, config, "zannenn\n"); // 'disappointing'
+#endif
 		pelletArg.mPelletIndex    = config->mParams.mIndex;
 		pelletArg.mTextIdentifier = config->mParams.mName.mData;
 		pelletArg.mPelletType     = kind;
@@ -1488,8 +1548,16 @@ void VsGameSection::clearGetDopeCount()
  */
 int& VsGameSection::getGetDopeCount(int player, int type)
 {
+#if defined(VERSION_JP)
+	JUTASSERTBOUNDSINCLUSIVELINE(2568, 0, player, 1, "%d playerID\n");
+#else
 	JUTASSERTBOUNDSINCLUSIVELINE(2567, 0, player, 1, "%d playerID\n");
+#endif
+#if defined(VERSION_JP)
+	JUTASSERTBOUNDSINCLUSIVELINE(2569, 0, type, 1, "%d typeID\n");
+#else
 	JUTASSERTBOUNDSINCLUSIVELINE(2568, 0, type, 1, "%d typeID\n");
+#endif
 	return mDopeCounts[player][type];
 }
 

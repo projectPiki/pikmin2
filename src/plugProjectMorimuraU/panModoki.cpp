@@ -686,6 +686,9 @@ void Obj::initMouthSlots()
  */
 void Obj::onKill(CreatureKillArg* settings)
 {
+#if defined(VERSION_PAL)
+	fadePulledSmokeEffect();
+#endif
 	EnemyBase::onKill(settings);
 	throwUpEatItem();
 	releasePathFinder();
@@ -810,7 +813,11 @@ void Obj::findNextRoutePoint(bool cond)
 	}
 
 	WayPoint* wp2 = routeMgr->getWayPoint(mWpIndex2);
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(995, wp2);
+#else
 	P2ASSERTLINE(993, wp2);
+#endif
 	s16 idxArray[8];
 	int counter = 0;
 
@@ -993,7 +1000,11 @@ bool Obj::isReachToGoal(f32 radius)
 
 	Creature* creature = mTargetCreature;
 	if (creature) {
+#if defined(VERSION_PAL)
+		P2ASSERTLINE(1202, creature);
+#else
 		P2ASSERTLINE(1200, creature);
+#endif
 		radius += static_cast<Pellet*>(creature)->mConfig->mParams.mRadius.mData;
 	} else {
 		radius *= 2.0f;
@@ -1130,13 +1141,21 @@ void Obj::checkNearHomeGraphIndex()
 	WPSearchArg searchArgs(mPosition, nullptr, 0, 10.0f);
 	RouteMgr* route  = mapMgr->mRouteMgr;
 	WayPoint* nearWP = route->getNearestWayPoint(searchArgs);
+#if defined(VERSION_PAL)
+	JUT_ASSERTLINE(1371, nearWP, "P2Assert");
+#else
 	JUT_ASSERTLINE(1369, nearWP, "P2Assert");
+#endif
 	s16 index = nearWP->mIndex;
 	mWpIndex1 = index;
 	mWpIndex3 = index;
 	mWpIndex2 = index;
 	nearWP    = route->getWayPoint(mWpIndex2);
+#if defined(VERSION_PAL)
+	JUT_ASSERTLINE(1376, nearWP, "P2Assert");
+#else
 	JUT_ASSERTLINE(1374, nearWP, "P2Assert");
+#endif
 	mNextWayPointPosition = Vector3f(nearWP->mPosition);
 	WPEdgeSearchArg edgeSearchArgs(mPosition);
 	if (route->getNearestEdge(edgeSearchArgs)) {
@@ -1382,7 +1401,11 @@ bool Obj::isEndPathFinder()
 	if (mIsPathfinding) {
 		return true;
 	} else {
+#if defined(VERSION_PAL)
+		P2ASSERTLINE(1710, testPathfinder);
+#else
 		P2ASSERTLINE(1708, testPathfinder);
+#endif
 		switch (testPathfinder->check(mPathID)) {
 		case 0:
 			testPathfinder->makepath(mPathID, &mPathNode);
@@ -1421,7 +1444,11 @@ bool Obj::setPathFinder(bool cond)
 	mPelletCarryVelocity = 0.0f;
 	WPEdgeSearchArg args(mPosition);
 	RouteMgr* routeMgr = mapMgr->mRouteMgr;
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(1758, routeMgr);
+#else
 	P2ASSERTLINE(1756, routeMgr);
+#endif
 	if (routeMgr->getNearestEdge(args)) {
 		WayPoint* wp1   = args.mWp1;
 		WayPoint* wp2   = args.mWp2;
@@ -1466,7 +1493,11 @@ bool Obj::setPathFinder(bool cond)
 		mNextWayPointPosition.z = wpPos.z;
 		return true;
 	}
+#if defined(VERSION_PAL)
+	JUT_PANICLINE(1812, nullptr);
+#else
 	JUT_PANICLINE(1810, nullptr);
+#endif
 	return false;
 }
 
@@ -1541,7 +1572,11 @@ void Obj::calcSlotGlobalPos(Vector3f& pos)
 	Pellet* pellet = static_cast<Pellet*>(mTargetCreature);
 	Matrixf matrix;
 	pellet = getCarryTarget();
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(1905, pellet);
+#else
 	P2ASSERTLINE(1903, pellet);
+#endif
 	f32 rad      = pellet->getPickRadius();
 	f32 angle    = mAlsoRotationOffset;
 	Vector3f dir = Vector3f(rad * sinf(angle), 0.0f, rad * cosf(angle));

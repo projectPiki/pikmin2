@@ -120,7 +120,19 @@ struct Mgr {
 	 */
 	Node* search(char const* name);
 
-	CNode mRootNode; // _00
+#if defined(VERSION_PAL)
+	/**
+	 * @brief Clears the ARAM heap and resource list.
+	 *
+	 * @note Fabricated name. Could be `reset` or `clear`.
+	 */
+	void freeAll();
+#endif
+
+	CNode mResourceList;   // _00
+#if defined(VERSION_PAL)   //
+	JKRExpHeap* mNodeHeap; // _18, PAL-only
+#endif                     //
 };
 }; // namespace ARAM
 extern ARAM::Mgr* gAramMgr;

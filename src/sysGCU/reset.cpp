@@ -64,6 +64,9 @@ void ResetManager::update()
 				} else {
 					RENDER_INFO_STORE->mIdentifier = 'vald';
 					RENDER_INFO_STORE->mRenderMode = System::mRenderMode;
+#if defined(VERSION_PAL)
+					RENDER_INFO_STORE->mTVModeSelected = sys->isFlag(System::SF_TVModeSelected);
+#endif
 					OSSetSaveRegion((void*)DOL_ADDR_LIMIT, (void*)(DOL_ADDR_LIMIT + 8));
 					OSResetSystem(false, 0, false);
 				}

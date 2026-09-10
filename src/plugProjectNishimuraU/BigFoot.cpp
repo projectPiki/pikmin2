@@ -201,7 +201,11 @@ bool Obj::needShadow()
  */
 bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* collpart)
 {
+#if defined(VERSION_JP)
+	if (collpart && creature && creature->isPiki()) {
+#else
 	if (creature && collpart && creature->isPiki() && creature->isStickTo()) {
+#endif
 		addDamage(damage, 1.0f);
 		return true;
 	}

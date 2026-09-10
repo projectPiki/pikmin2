@@ -1,4 +1,5 @@
 #include "Game/DeathMgr.h"
+#include "Game/gameConfig.h"
 #include "Game/Entities/ItemOnyon.h"
 #include "Game/Entities/ItemDownFloor.h"
 #include "Game/Entities/ItemPikihead.h"
@@ -65,7 +66,11 @@ void GameState::init(SingleGameSection* game, StateArg* arg)
 	}
 
 	GameArg* castedArg = static_cast<GameArg*>(arg);
+#if defined(VERSION_JP)
+	P2ASSERTLINE(621, castedArg);
+#else
 	P2ASSERTLINE(624, castedArg);
+#endif
 	u16 startType = castedArg->mStartType;
 
 	game->setFixNearFar(false, 0.0f, 0.0f);
@@ -157,12 +162,21 @@ void GameState::init(SingleGameSection* game, StateArg* arg)
 				}
 			}
 		}
+#if defined(VERSION_JP)
+		if (gGameConfig.mParms.mE3version.mData) {
+			game->createFallPikmins(playData->mPikiContainer, 0);
+		}
+#endif
 		if (startType == MapEnter_CaveGeyser) {
 			gameSystem->mTimeMgr->setTime(playData->mCaveSaveData.mTime);
 		}
 	} break;
 	default:
+#if defined(VERSION_JP)
+		JUT_PANICLINE(829, "illegal state GameState::init\n");
+#else
 		JUT_PANICLINE(832, "illegal state GameState::init\n");
+#endif
 	}
 
 	sys->heapStatusDump(true);
@@ -312,7 +326,11 @@ void GameState::on_demo_timer(SingleGameSection* game, u32 id)
 				bagObj = dwfl;
 			}
 		}
+#if defined(VERSION_JP)
+		JUT_ASSERTLINE(1022, bagObj, "no down floor 20\n"); // This panic seems to imply the bag once weighed 20 instead of 15
+#else
 		JUT_ASSERTLINE(1025, bagObj, "no down floor 20\n"); // This panic seems to imply the bag once weighed 20 instead of 15
+#endif
 
 		MoviePlayArg moviePlayArg("x17_join_guide", nullptr, nullptr, 0);
 		moviePlayArg.mOrigin       = bagObj->getPosition();
@@ -383,7 +401,11 @@ void GameState::on_demo_timer(SingleGameSection* game, u32 id)
 				seed = *iterator;
 				break;
 			}
+#if defined(VERSION_JP)
+			P2ASSERTLINE(1135, seed);
+#else
 			P2ASSERTLINE(1138, seed);
+#endif
 			MoviePlayArg moviePlayArg("g01_pick_me", nullptr, game->mMovieFinishCallback, 0);
 			moviePlayArg.mOrigin = seed->getPosition();
 			moviePlayArg.mAngle  = seed->getFaceDir();
@@ -509,7 +531,11 @@ void GameState::exec(SingleGameSection* game)
 		transit(game, SGS_DayEnd, &arg);
 		return;
 	case Screen::Game2DMgr::CHECK2D_SMenu_ReturnToFileSelect:
+#if defined(VERSION_JP)
+		P2ASSERTLINE(1301, Screen::gGame2DMgr->mScreenMgr->reset() == 1);
+#else
 		P2ASSERTLINE(1304, Screen::gGame2DMgr->mScreenMgr->reset() == 1);
+#endif
 		playData->mDeadNaviID = 0;
 		naviMgr->clearDeadCount();
 		gameSystem->resetFlag(GAMESYS_IsGameWorldActive);
@@ -519,7 +545,11 @@ void GameState::exec(SingleGameSection* game)
 		transit(game, SGS_File, nullptr);
 		return;
 	case Screen::Game2DMgr::CHECK2D_SMenu_EscapeCave:
+#if defined(VERSION_JP)
+		JUT_PANICLINE(1315, "smenu_escape\n");
+#else
 		JUT_PANICLINE(1318, "smenu_escape\n");
+#endif
 		break;
 	default:
 		// Check open pause menu
@@ -769,6 +799,16 @@ void GameState::onMovieDone(SingleGameSection* game, MovieConfig* config, u32, u
 	// Regular/first time course landing, check usual stuff after it
 	if (config->is("s00_coursein") || config->is("x01_coursein_forest") || config->is("x01_coursein_yakushima")
 	    || config->is("x01_coursein_last")) {
+#if defined(VERSION_JP)
+		if (gGameConfig.mParms.mE3version.mData) {
+			char* name = const_cast<char*>(game->mCurrentCourseInfo->mName);
+			MoviePlayArg moviePlayArg("g00_gamestart", name, game->mMovieFinishCallback, 0);
+			moviePlayArg.mDelegateStart = game->mMovieStartCallback;
+			moviePlayer->play(moviePlayArg);
+			Screen::gGame2DMgr->close_CourseName();
+			return;
+		}
+#endif
 		if (playData->isStoryFlag(STORY_DebtPaid) && !playData->isDemoFlag(DEMO_President_Start)) {
 			playData->setDemoFlag(DEMO_President_Start);
 			char* name = const_cast<char*>(game->mCurrentCourseInfo->mName);
@@ -890,6 +930,12 @@ void GameState::onMovieDone(SingleGameSection* game, MovieConfig* config, u32, u
 
 	if (config->is("s05_pikminzero")) {
 		Screen::gGame2DMgr->close_GameOver();
+#if defined(VERSION_JP)
+		if (gGameConfig.mParms.mE3version.mData) {
+			sys->forceFinishSection();
+			return;
+		}
+#endif
 		gameSystem->resetFlag(GAMESYS_IsGameWorldActive);
 		DayEndArg arg(DayEndState::DETYPE_PikminZero);
 		transit(game, SGS_DayEnd, &arg);

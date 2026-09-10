@@ -67,6 +67,7 @@ struct SingleGameSection : public BaseGameSection {
 	void clearCaveMenus();
 	void clearCaveOtakaraEarningsAndDrops();
 	void createFallPikmins();
+	void createFallPikmins(PikiContainer& container, int mapIndex);
 	void flow_goto_title();
 	void loadMainMapSituation();
 	void newCaveOtakaraEarningsAndDrops();
@@ -86,6 +87,7 @@ struct SingleGameSection : public BaseGameSection {
 	inline void setCurrState(StateType* state) { mCurrentState = state; }
 	inline StateType* getCurrState() { return mCurrentState; }
 
+	// Member offsets below are for US/JP/PAL - for US_DEMO1, add 0x24.
 	f32 mTimer;                                           // _174
 	bool mTimerEnabled;                                   // _178
 	u32 mTimerType;                                       // _17C
@@ -115,9 +117,6 @@ struct SingleGameSection : public BaseGameSection {
 	KindCounter mOtakaraCounter;                          // _264
 	KindCounter mItemCounter;                             // _26C
 	u8 mDoTrackCarcass;                                   // _274
-#if BUILDTARGET == USADEMO1
-	u8 _DemoPadding2[0x4];
-#endif
 };
 } // namespace Game
 

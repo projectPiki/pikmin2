@@ -1,5 +1,6 @@
 #include "types.h"
 #include "Game/Entities/Kabuto.h"
+#include "Game/gamePlayData.h"
 
 namespace Game {
 namespace FixKabuto {
@@ -46,6 +47,31 @@ void Obj::changeMaterial()
 		material->diff(packet->getShapePacket()->mDiffFlag);
 	}
 }
+
+#if defined(VERSION_PAL)
+/**
+ * @note Address: 0x803009A0 (PAL)
+ * @note Size: 0x140
+ */
+void Obj::setZukanVisible(bool updateTekiDeathInfo)
+{
+	if (!mInPiklopedia) {
+		return;
+	}
+	if (gameSystem->isFlag(GAMESYS_DisableDeathCounter)) {
+		return;
+	}
+	if (EnemyInfoFunc::getEnemyInfo(EnemyTypeID::EnemyID_Kabuto, 0xFFFF)->mFlags & EFlag_HasNoInfo) {
+		return;
+	}
+	TekiStat::Info* info = playData->mTekiStatMgr.getTekiInfo(EnemyTypeID::EnemyID_Kabuto);
+	if (updateTekiDeathInfo) {
+		info->incKilled();
+	} else {
+		info->mState.set(TEKISTAT_STATE_UPDATED);
+	}
+}
+#endif
 
 /**
  * @note Address: 0x80300998

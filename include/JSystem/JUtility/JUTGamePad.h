@@ -74,6 +74,8 @@ struct JUTGamePad : public JKRDisposer {
 		PRESS_ABX     = (PRESS_A | PRESS_B | PRESS_X),
 		PRESS_ABXY    = (PRESS_A | PRESS_B | PRESS_X | PRESS_Y),
 		PRESS_ABXYLRZ = (PRESS_A | PRESS_B | PRESS_X | PRESS_Y | PRESS_L | PRESS_R | PRESS_Z),
+
+		PRESS_ANY = 0xFFFFFFFF,
 	};
 
 	struct CButton {
@@ -371,7 +373,7 @@ struct JUTGamePadRecord : public JUTGamePadRecordBase {
 
 // entirely unused/inlined. May or may not extend JUTGamePadRecord instead of JUTGamePadRecordBase directly
 struct JUTGamePadRecordFixed : public JUTGamePadRecordBase {
-	enum EOrigin {};
+	enum EOrigin { };
 
 	JUTGamePadRecordFixed();
 	virtual ~JUTGamePadRecordFixed(); // _08

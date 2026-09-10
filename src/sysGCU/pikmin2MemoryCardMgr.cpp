@@ -50,7 +50,13 @@ PlayerFileInfo::PlayerFileInfo()
  */
 Player* PlayerFileInfo::getPlayer(int idx)
 {
+#if defined(VERSION_PAL)
+	P2ASSERTBOUNDSLINE(399, 0, idx, 3);
+#elif defined(VERSION_JP)
+	P2ASSERTBOUNDSLINE(390, 0, idx, 3);
+#else
 	P2ASSERTBOUNDSLINE(396, 0, idx, 3);
+#endif
 	return &mPlayers[idx];
 }
 
@@ -111,13 +117,37 @@ bool Mgr::isErrorOccured()
 void Mgr::loadResource(JKRHeap* heap)
 {
 	Resource* resource = new (heap, 0) Resource(this);
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(547, resource);
+#elif defined(VERSION_JP)
+	P2ASSERTLINE(527, resource);
+#else
 	P2ASSERTLINE(533, resource);
+#endif
 	JKRArchive* memCardHeader = JKRMountArchive("/memoryCard/memoryCardHeader.szs", JKRArchive::EMM_Mem, heap, JKRArchive::EMD_Head);
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(554, memCardHeader);
+#elif defined(VERSION_JP)
+	P2ASSERTLINE(534, memCardHeader);
+#else
 	P2ASSERTLINE(540, memCardHeader);
+#endif
 	mBannerImageFile = JKRFileLoader::getGlbResource("banner.dat", memCardHeader); // possibly ResTIMG*
 	mIconImageFile   = JKRFileLoader::getGlbResource("icon.dat", memCardHeader);
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(557, mBannerImageFile);
+#elif defined(VERSION_JP)
+	P2ASSERTLINE(537, mBannerImageFile);
+#else
 	P2ASSERTLINE(543, mBannerImageFile);
+#endif
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(558, mIconImageFile);
+#elif defined(VERSION_JP)
+	P2ASSERTLINE(538, mIconImageFile);
+#else
 	P2ASSERTLINE(544, mIconImageFile);
+#endif
 }
 
 /**
@@ -240,12 +270,21 @@ bool Mgr::saveGameOption()
  * @note Address: 0x80442F9C
  * @note Size: 0xB8
  */
+#if defined(VERSION_PAL)
+bool Mgr::loadGameOption(bool loadLanguage)
+#else
 bool Mgr::loadGameOption()
+#endif
 {
 	bool result = false;
 	if (checkError() && OSTryLockMutex(&mOsMutex)) {
 		result = true;
+#if defined(VERSION_PAL)
+		MgrCommandLoadGameOption command(6, loadLanguage);
+		setCommand(&command);
+#else
 		setCommand(6);
+#endif
 		OSUnlockMutex(&mOsMutex);
 		OSSignalCond(&mCond);
 	}
@@ -313,7 +352,13 @@ bool Mgr::savePlayer(int fileIndex)
 bool Mgr::loadPlayer(int fileIndex)
 {
 	bool result = false;
+#if defined(VERSION_PAL)
+	P2ASSERTBOUNDSLINE(831, 0, fileIndex, 3);
+#elif defined(VERSION_JP)
+	P2ASSERTBOUNDSLINE(809, 0, fileIndex, 3);
+#else
 	P2ASSERTBOUNDSLINE(815, 0, fileIndex, 3);
+#endif
 	if (checkError() && OSTryLockMutex(&mOsMutex)) {
 		result = true;
 		MgrCommandPlayerNo command(10, fileIndex);
@@ -331,7 +376,13 @@ bool Mgr::loadPlayer(int fileIndex)
 bool Mgr::deletePlayer(int fileIndex)
 {
 	bool result = false;
+#if defined(VERSION_PAL)
+	P2ASSERTBOUNDSLINE(855, 0, fileIndex, 3);
+#elif defined(VERSION_JP)
+	P2ASSERTBOUNDSLINE(833, 0, fileIndex, 3);
+#else
 	P2ASSERTBOUNDSLINE(839, 0, fileIndex, 3);
+#endif
 	if (checkError() && OSTryLockMutex(&mOsMutex)) {
 		result = true;
 		MgrCommandPlayerNo command(0xB, fileIndex);
@@ -349,8 +400,20 @@ bool Mgr::deletePlayer(int fileIndex)
 bool Mgr::copyPlayer(int fileIndex1, int fileIndex2)
 {
 	bool result = false;
+#if defined(VERSION_PAL)
+	P2ASSERTBOUNDSINCLUSIVELINE(878, 0, fileIndex1, 2);
+#elif defined(VERSION_JP)
+	P2ASSERTBOUNDSINCLUSIVELINE(856, 0, fileIndex1, 2);
+#else
 	P2ASSERTBOUNDSINCLUSIVELINE(862, 0, fileIndex1, 2);
+#endif
+#if defined(VERSION_PAL)
+	P2ASSERTBOUNDSINCLUSIVELINE(879, 0, fileIndex2, 2);
+#elif defined(VERSION_JP)
+	P2ASSERTBOUNDSINCLUSIVELINE(857, 0, fileIndex2, 2);
+#else
 	P2ASSERTBOUNDSINCLUSIVELINE(863, 0, fileIndex2, 2);
+#endif
 	if (checkError() && OSTryLockMutex(&mOsMutex)) {
 		result = true;
 		MgrCommandCopyPlayer command(12, fileIndex1, fileIndex2);
@@ -403,7 +466,11 @@ bool Mgr::doCardProc(void*, MemoryCardMgrCommand* command)
 		break;
 
 	case 6:
+#if defined(VERSION_PAL)
+		result = commandLoadGameOption(reinterpret_cast<MgrCommandLoadGameOption*>(command)->mLoadLanguage);
+#else
 		result = commandLoadGameOption();
+#endif
 		break;
 
 	case 8:
@@ -451,10 +518,28 @@ bool Mgr::doCardProc(void*, MemoryCardMgrCommand* command)
 		break;
 
 	default:
+#if defined(VERSION_PAL)
+		P2ASSERTLINE(1011, false);
+#elif defined(VERSION_JP)
+		P2ASSERTLINE(989, false);
+#else
 		P2ASSERTLINE(995, false);
+#endif
 	}
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(1024, currHeap == JKRHeap::getCurrentHeap());
+#elif defined(VERSION_JP)
+	P2ASSERTLINE(1002, currHeap == JKRHeap::getCurrentHeap());
+#else
 	P2ASSERTLINE(1008, currHeap == JKRHeap::getCurrentHeap());
+#endif
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(1026, heapSize == (int)JKRHeap::getCurrentHeap()->getTotalFreeSize());
+#elif defined(VERSION_JP)
+	P2ASSERTLINE(1004, heapSize == (int)JKRHeap::getCurrentHeap()->getTotalFreeSize());
+#else
 	P2ASSERTLINE(1010, heapSize == (int)JKRHeap::getCurrentHeap()->getTotalFreeSize());
+#endif
 
 	return result;
 }
@@ -467,7 +552,13 @@ bool Mgr::commandUpdatePlayerHeader(PlayerFileInfo* playerInfo)
 {
 	bool result = false;
 	Player* players;
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(1047, playerInfo);
+#elif defined(VERSION_JP)
+	P2ASSERTLINE(1025, playerInfo);
+#else
 	P2ASSERTLINE(1031, playerInfo);
+#endif
 	bool check;
 	do {
 		check = false;
@@ -573,7 +664,13 @@ bool Mgr::checkSpace(MemoryCardMgr::ECardSlot cardSlot)
 		break;
 
 	default:
+#if defined(VERSION_PAL)
+		JUT_PANICLINE(1236, "P2Assert");
+#elif defined(VERSION_JP)
+		JUT_PANICLINE(1214, "P2Assert");
+#else
 		JUT_PANICLINE(1220, "P2Assert");
+#endif
 	}
 
 	return result;
@@ -731,7 +828,13 @@ bool Mgr::commandSaveGameOption(bool isForceSave, bool skipReadCheck)
 
 	if (isForceSave || checkSerialNo(false)) {
 		u32* optionBuffer = new (mHeap, -32) u32[0x800];
+#if defined(VERSION_PAL)
+		P2ASSERTLINE(1516, optionBuffer);
+#elif defined(VERSION_JP)
+		P2ASSERTLINE(1494, optionBuffer);
+#else
 		P2ASSERTLINE(1500, optionBuffer);
+#endif
 
 		int selectedSlot    = -1;
 		bool hasWriteFailed = false;
@@ -778,19 +881,42 @@ bool Mgr::commandSaveGameOption(bool isForceSave, bool skipReadCheck)
  * @note Address: 0x8044468C
  * @note Size: 0x248
  */
+#if defined(VERSION_PAL)
+bool Mgr::commandLoadGameOption(bool loadLanguage)
+#else
 bool Mgr::commandLoadGameOption()
+#endif
 {
 	bool result = false;
 
+#if defined(VERSION_PAL)
+	if (loadLanguage) {
+		sys->mPlayData->mFlags.set(CommonSaveData::Mgr::SaveFlag_Language);
+	} else {
+		sys->mPlayData->mFlags.unset(CommonSaveData::Mgr::SaveFlag_Language);
+	}
+#endif
 	u64 serial;
 	if (readCardSerialNo(&serial, CARDSLOT_Unk0)) {
 		int freeSize = JKRHeap::getCurrentHeap()->getTotalFreeSize();
 
 		u32* infoBuffers[2];
 		infoBuffers[0] = new (mHeap, -32) u32[0x800];
+#if defined(VERSION_PAL)
+		P2ASSERTLINE(1642, infoBuffers[0]);
+#elif defined(VERSION_JP)
+		P2ASSERTLINE(1610, infoBuffers[0]);
+#else
 		P2ASSERTLINE(1616, infoBuffers[0]);
+#endif
 		infoBuffers[1] = new (mHeap, -32) u32[0x800];
+#if defined(VERSION_PAL)
+		P2ASSERTLINE(1644, infoBuffers[1]);
+#elif defined(VERSION_JP)
+		P2ASSERTLINE(1612, infoBuffers[1]);
+#else
 		P2ASSERTLINE(1618, infoBuffers[1]);
+#endif
 
 		int i;
 		bool readError = false;
@@ -847,10 +973,19 @@ bool Mgr::commandLoadGameOption()
 		delete (infoBuffers[1]);
 
 		// check we successfully deleted the buffers
+#if defined(VERSION_PAL)
+		P2ASSERTLINE(1733, freeSize == (int)JKRHeap::getCurrentHeap()->getTotalFreeSize());
+#elif defined(VERSION_JP)
+		P2ASSERTLINE(1701, freeSize == (int)JKRHeap::getCurrentHeap()->getTotalFreeSize());
+#else
 		P2ASSERTLINE(1707, freeSize == (int)JKRHeap::getCurrentHeap()->getTotalFreeSize());
+#endif
 	}
 
 	sys->mPlayData->setup();
+#if defined(VERSION_PAL)
+	sys->mPlayData->mFlags.unset(CommonSaveData::Mgr::SaveFlag_Language);
+#endif
 	return result;
 }
 
@@ -899,7 +1034,13 @@ bool Mgr::checkSerialNo(bool param_1)
 bool Mgr::commandSavePlayer(s8 fileIndex, bool param_2)
 {
 	bool result = false;
+#if defined(VERSION_PAL)
+	P2ASSERTBOUNDSLINE(1943, 0, fileIndex, 3);
+#elif defined(VERSION_JP)
+	P2ASSERTBOUNDSLINE(1908, 0, fileIndex, 3);
+#else
 	P2ASSERTBOUNDSLINE(1914, 0, fileIndex, 3);
+#endif
 	if (checkSerialNo(false)) {
 		result = commandSavePlayerNoCheckSerialNo(fileIndex, param_2);
 	}
@@ -918,7 +1059,13 @@ bool Mgr::commandSavePlayerNoCheckSerialNo(s8 fileIndex, bool param_2)
 	u64 serial;
 	if (readCardSerialNo(&serial, CARDSLOT_Unk0)) {
 		u32* buffer = new (mHeap, -32) u32[0x3000];
+#if defined(VERSION_PAL)
+		P2ASSERTLINE(1968, buffer);
+#elif defined(VERSION_JP)
+		P2ASSERTLINE(1933, buffer);
+#else
 		P2ASSERTLINE(1939, buffer);
+#endif
 		sys->mPlayData->mSaveCount++;
 		buffer[0]                   = 'PlVa'; // Magic Word
 		buffer[1]                   = '0003'; // Version
@@ -965,7 +1112,13 @@ bool Mgr::commandSavePlayerNoCheckSerialNo(s8 fileIndex, bool param_2)
 			buffer[12] = playData->mZukanStat->calcEarnKinds();
 			buffer[15] = time;
 		} else {
+#if defined(VERSION_PAL)
+			JUT_PANICLINE(2071, "dameck\n");
+#elif defined(VERSION_JP)
+			JUT_PANICLINE(2036, "dameck\n");
+#else
 			JUT_PANICLINE(2042, "dameck\n");
+#endif
 
 			// this code never gets reached smh.
 			buffer[5]  = 0;
@@ -990,7 +1143,13 @@ bool Mgr::commandSavePlayerNoCheckSerialNo(s8 fileIndex, bool param_2)
 		}
 	}
 
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(2108, freeSize == (int)JKRHeap::getCurrentHeap()->getTotalFreeSize());
+#elif defined(VERSION_JP)
+	P2ASSERTLINE(2073, freeSize == (int)JKRHeap::getCurrentHeap()->getTotalFreeSize());
+#else
 	P2ASSERTLINE(2079, freeSize == (int)JKRHeap::getCurrentHeap()->getTotalFreeSize());
+#endif
 
 	if (result) {
 		result = commandSaveGameOption(true, false);
@@ -1026,7 +1185,13 @@ int Mgr::getIndexPlayerInfo(s8 fileIndex, PlayerInfoHeader* infoHeader, bool* pa
 	doLoop = true;
 	while (doLoop) {
 		i++;
+#if defined(VERSION_PAL)
+		JUT_ASSERTLINE(2192, i < 5, "MemoryCardModify Error");
+#elif defined(VERSION_JP)
+		JUT_ASSERTLINE(2157, i < 5, "MemoryCardModify Error");
+#else
 		JUT_ASSERTLINE(2163, i < 5, "MemoryCardModify Error");
+#endif
 		doLoop = false;
 		for (int j = 0; j < 4; j++) {
 			if (checkPlayerNoPlayerInfo(j, fileIndex, &localHeader)) {
@@ -1073,14 +1238,30 @@ int Mgr::getIndexPlayerInfo(s8 fileIndex, PlayerInfoHeader* infoHeader, bool* pa
 bool Mgr::commandLoadPlayer(s8 fileIndex)
 {
 	u64 serial;
+#if defined(VERSION_PAL)
+	P2ASSERTBOUNDSLINE(2293, 0, fileIndex, 3);
+#elif defined(VERSION_JP)
+	P2ASSERTBOUNDSLINE(2258, 0, fileIndex, 3);
+#else
 	P2ASSERTBOUNDSLINE(2264, 0, fileIndex, 3);
+#endif
+#if defined(VERSION_PAL)
+	commandLoadGameOption(false);
+#else
 	commandLoadGameOption();
+#endif
 	if ((s32)mErrorCode == 1)
 		mErrorCode = 0;
 	if (!isErrorOccured()) {
 		if (readCardSerialNo(&serial, CARDSLOT_Unk0)) {
 			u32* buffer = new (mHeap, -32) u32[0x3000];
+#if defined(VERSION_PAL)
+			P2ASSERTLINE(2319, buffer);
+#elif defined(VERSION_JP)
+			P2ASSERTLINE(2284, buffer);
+#else
 			P2ASSERTLINE(2290, buffer);
+#endif
 			sys->mPlayData->setCardSerialNo(serial);
 			if (loadPlayerProc(fileIndex, (u8*)buffer)) {
 				RamStream ramStream(&buffer[0x10], 0xBF80);
@@ -1103,7 +1284,13 @@ bool Mgr::commandLoadPlayer(s8 fileIndex)
  */
 bool Mgr::loadPlayerForNoCard(s8 fileIndex)
 {
+#if defined(VERSION_PAL)
+	P2ASSERTBOUNDSLINE(2411, 0, fileIndex, 3);
+#elif defined(VERSION_JP)
+	P2ASSERTBOUNDSLINE(2376, 0, fileIndex, 3);
+#else
 	P2ASSERTBOUNDSLINE(2382, 0, fileIndex, 3);
+#endif
 	sys->mPlayData->mFileIndex = fileIndex;
 	sys->mPlayData->resetPlayer((s8)fileIndex);
 	playData->reset();
@@ -1118,7 +1305,13 @@ bool Mgr::loadPlayerForNoCard(s8 fileIndex)
 bool Mgr::loadPlayerProc(s8 fileIndex, u8* playerDataBuffer)
 {
 	bool loadSuccess = false;
+#if defined(VERSION_PAL)
+	P2ASSERTBOUNDSLINE(2436, 0, fileIndex, 3);
+#elif defined(VERSION_JP)
+	P2ASSERTBOUNDSLINE(2401, 0, fileIndex, 3);
+#else
 	P2ASSERTBOUNDSLINE(2407, 0, fileIndex, 3);
+#endif
 
 	PlayerInfoHeader infoHeader;
 	int playerInfo = getIndexPlayerInfo(fileIndex, &infoHeader, nullptr);
@@ -1168,7 +1361,13 @@ bool Mgr::savePlayerProc(s8 fileIndex, u8* param_2, bool param_3)
 	int idx;
 	bool result = false;
 
+#if defined(VERSION_PAL)
+	P2ASSERTBOUNDSLINE(2535, 0, fileIndex, 3);
+#elif defined(VERSION_JP)
+	P2ASSERTBOUNDSLINE(2500, 0, fileIndex, 3);
+#else
 	P2ASSERTBOUNDSLINE(2506, 0, fileIndex, 3);
+#endif
 	if (getIndexInvalidPlayerInfo(&idx, &tempIndex, fileIndex, ((u32*)param_2)[4], param_3)) {
 		if (idx < 0 || idx >= 4) {
 			mErrorCode = 2;
@@ -1218,7 +1417,13 @@ bool Mgr::commandCheckSerialNo()
 bool Mgr::commandCopyPlayer(s8 fileIndex, s8 param_1)
 {
 	u32* buffer = new (mHeap, -0x20) u32[0x3000];
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(2679, buffer);
+#elif defined(VERSION_JP)
+	P2ASSERTLINE(2644, buffer);
+#else
 	P2ASSERTLINE(2650, buffer);
+#endif
 
 	bool result = loadPlayerProc(fileIndex, (u8*)buffer);
 	if (result) {
@@ -1328,7 +1533,13 @@ u32 Mgr::getCardStatus()
 			result = 14;
 			break;
 		default:
+#if defined(VERSION_PAL)
+			P2ASSERTLINE(2861, false);
+#elif defined(VERSION_JP)
+			P2ASSERTLINE(2826, false);
+#else
 			P2ASSERTLINE(2832, false);
+#endif
 		}
 	} else {
 		result = checkStatus();
@@ -1344,7 +1555,13 @@ bool Mgr::writeInvalidGameOption()
 {
 	bool result;
 	u32* buffer = new (mHeap, -32) u32[0x800];
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(2886, buffer);
+#elif defined(VERSION_JP)
+	P2ASSERTLINE(2851, buffer);
+#else
 	P2ASSERTLINE(2857, buffer);
+#endif
 
 	result    = true;
 	buffer[0] = 'OpIn';
@@ -1381,9 +1598,21 @@ bool Mgr::writeInvalidPlayerInfoAll()
  */
 bool Mgr::writeInvalidPlayerInfo(int fileIndex, s8 param_2)
 {
+#if defined(VERSION_PAL)
+	P2ASSERTBOUNDSLINE(2951, 0, fileIndex, 4);
+#elif defined(VERSION_JP)
+	P2ASSERTBOUNDSLINE(2916, 0, fileIndex, 4);
+#else
 	P2ASSERTBOUNDSLINE(2922, 0, fileIndex, 4);
+#endif
 	s8* buffer = new (mHeap, -32) s8[0x2000];
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(2954, buffer);
+#elif defined(VERSION_JP)
+	P2ASSERTLINE(2919, buffer);
+#else
 	P2ASSERTLINE(2925, buffer);
+#endif
 	memset(buffer, 0xCD, 0x2000);
 	((u32*)buffer)[0] = 'PlIn';
 	buffer[8]         = param_2;
@@ -1407,7 +1636,13 @@ bool Mgr::checkPlayerNoPlayerInfo(int param_1, s8 param_2, PlayerInfoHeader* inf
 	}
 	if (_D0) {
 		u32* buffer = new (mHeap, -32) u32[0x800];
+#if defined(VERSION_PAL)
+		P2ASSERTLINE(3004, buffer);
+#elif defined(VERSION_JP)
+		P2ASSERTLINE(2969, buffer);
+#else
 		P2ASSERTLINE(2975, buffer);
+#endif
 		if (read(CARDSLOT_Unk0, localName, (u8*)buffer, 0x200, param_1 * 0xC000 + 0x6000)) {
 			if (infoHeader) {
 				*infoHeader = *(PlayerInfoHeader*)buffer;
@@ -1450,7 +1685,13 @@ bool Mgr::getIndexInvalidPlayerInfo(int* playerInfoIndex, s8* playerType, s8 tar
 	int foundIndex = -1;
 
 	u32* buffer = new (mHeap, -32) u32[0x80];
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(3100, buffer);
+#elif defined(VERSION_JP)
+	P2ASSERTLINE(3065, buffer);
+#else
 	P2ASSERTLINE(3071, buffer);
+#endif
 
 	for (int i = 0; i < 4; i++) {
 		if (read(CARDSLOT_Unk0, cFileName, (u8*)buffer, 0x200, 0x6000 + (i * 0xC000))) {
@@ -1465,7 +1706,13 @@ bool Mgr::getIndexInvalidPlayerInfo(int* playerInfoIndex, s8* playerType, s8 tar
 				foundIndex  = i;
 			}
 			if (*(s8*)(buffer + 2) == targetType && buffer[0] == 'PlVa' && checkValue && buffer[4] >= targetValue) {
+#if defined(VERSION_PAL)
+				JUT_ASSERTLINE(3177, targetValue == 1, "card [%d] memory[%d]\n", buffer[4], targetValue);
+#elif defined(VERSION_JP)
+				JUT_ASSERTLINE(3142, targetValue == 1, "card [%d] memory[%d]\n", buffer[4], targetValue);
+#else
 				JUT_ASSERTLINE(3148, targetValue == 1, "card [%d] memory[%d]\n", buffer[4], targetValue);
+#endif
 				isValid    = false;
 				mErrorCode = 3;
 				break;
@@ -1582,7 +1829,13 @@ bool Mgr::modifyPlayerInfo(s8 fileIndex, bool* param_2)
 
 	for (int i = 0; i < 4; i++) {
 		u32* buffer = new (mHeap, -32) u32[0x3000];
+#if defined(VERSION_PAL)
+		P2ASSERTLINE(3474, buffer);
+#elif defined(VERSION_JP)
+		P2ASSERTLINE(3439, buffer);
+#else
 		P2ASSERTLINE(3445, buffer);
+#endif
 		result = read(CARDSLOT_Unk0, cFileName, (u8*)buffer, 0xC000, 0x6000 + (0xC000 * i));
 		if (result) {
 			if (checkInfo(buffer)) {
@@ -1676,7 +1929,13 @@ bool Mgr::resetError()
 	} else {
 		result = true;
 	}
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(3802, result);
+#elif defined(VERSION_JP)
+	P2ASSERTLINE(3767, result);
+#else
 	P2ASSERTLINE(3773, result);
+#endif
 	return result;
 }
 
@@ -1687,11 +1946,20 @@ bool Mgr::resetError()
 void Mgr::doMakeHeader(u8* header)
 {
 	OSCalendarTime calendar;
+#if defined(VERSION_JP)
+	snprintf((char*)(header + 0x1800), 0x20, "ピクミン２　セーブデータ ");
+#else
 	snprintf((char*)(header + 0x1800), 0x20, "PIKMIN 2");
+#endif
 	OSTime time = OSGetTime();
 	OSTicksToCalendarTime(time, &calendar);
+#if defined(VERSION_JP)
+	snprintf((char*)(header + 0x1820), 0x20, "%04d/%02d/%02d %02d:%02d:%02d", calendar.year, calendar.mon + 1, calendar.mday, calendar.hour,
+	         calendar.min, calendar.sec);
+#else
 	snprintf((char*)(header + 0x1820), 0x20, "%02d/%02d/%04d %02d:%02d:%02d", calendar.mon + 1, calendar.mday, calendar.year, calendar.hour,
 	         calendar.min, calendar.sec);
+#endif
 	if (mBannerImageFile && mIconImageFile) {
 		memcpy(header, mBannerImageFile, 0xe00);
 		memcpy(header + 0xe00, mIconImageFile, 0x400);

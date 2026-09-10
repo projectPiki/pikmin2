@@ -30,7 +30,11 @@ Game2DMgr* gGame2DMgr;
  */
 void Game2DMgr::create()
 {
+#if defined(VERSION_JP)
+	P2ASSERTLINE(483, !gGame2DMgr);
+#else
 	P2ASSERTLINE(486, !gGame2DMgr);
+#endif
 	gGame2DMgr = new Game2DMgr;
 }
 
@@ -395,7 +399,11 @@ bool Game2DMgr::open_SMenu_Sub(og::Screen::DispMemberSMenuAll& disp)
 		break;
 	}
 	default:
+#if defined(VERSION_JP)
+		JUT_PANICLINE(961, "SMENU MODE ERR!");
+#else
 		JUT_PANICLINE(969, "SMENU MODE ERR!");
+#endif
 	}
 	if (set) {
 		if (mScreenMgr->startScene(nullptr)) {
@@ -457,7 +465,11 @@ int Game2DMgr::check_SMenu()
 				break;
 
 			default:
+#if defined(VERSION_JP)
+				JUT_PANICLINE(1037, "SMENU FinishStateError %d \n", scene);
+#else
 				JUT_PANICLINE(1045, "SMENU FinishStateError %d \n", scene);
+#endif
 				break;
 			}
 		} else {
@@ -569,7 +581,11 @@ void Game2DMgr::open_Kantei(og::Screen::DispMemberKantei& disp)
 	if (mScreenMgr->setScene(arg) && mScreenMgr->startScene(nullptr)) {
 		PSPause_StartMenuOn();
 	} else {
+#if defined(VERSION_JP)
+		JUT_PANICLINE(1134, "fail to open Kantei!\n");
+#else
 		JUT_PANICLINE(1142, "fail to open Kantei!\n");
+#endif
 	}
 }
 
@@ -584,7 +600,11 @@ void Game2DMgr::close_Kantei()
 			mScreenMgr->startScene(nullptr);
 			PSPause_StartMenuOff();
 		} else {
+#if defined(VERSION_JP)
+			JUT_PANICLINE(1159, "call to OG san");
+#else
 			JUT_PANICLINE(1167, "call to OG san");
+#endif
 		}
 	}
 }
@@ -626,7 +646,11 @@ void Game2DMgr::close_SpecialItem()
 			mScreenMgr->startScene(nullptr);
 			PSPause_StartMenuOff();
 		} else {
+#if defined(VERSION_JP)
+			JUT_PANICLINE(1215, "call to OG san");
+#else
 			JUT_PANICLINE(1223, "call to OG san");
+#endif
 		}
 	}
 }
@@ -998,7 +1022,11 @@ int Game2DMgr::check_FinalResult() const
 		return CHECK2D_FinalResult_Error;
 	} else {
 		if (!mScreenMgr->getDispMember()->isID(OWNER_KH, MEMBER_FINAL_RESULT)) {
+#if defined(VERSION_JP)
+			JUT_PANICLINE(1628, "disp member err");
+#else
 			JUT_PANICLINE(1636, "disp member err");
+#endif
 		}
 		return reinterpret_cast<kh::Screen::DispFinalResult*>(mScreenMgr->getDispMember())->mExitStatus;
 	}
@@ -1027,7 +1055,11 @@ int Game2DMgr::check_CaveResult() const
 		return CHECK2D_CaveResult_Error;
 	} else {
 		if (!mScreenMgr->getDispMember()->isID(OWNER_KH, MEMBER_CAVE_RESULT)) {
+#if defined(VERSION_JP)
+			JUT_PANICLINE(1648, "disp member err");
+#else
 			JUT_PANICLINE(1656, "disp member err");
+#endif
 		}
 		return reinterpret_cast<kh::Screen::DispCaveResult*>(mScreenMgr->getDispMember())->mIsFinished;
 	}
@@ -1059,7 +1091,11 @@ int Game2DMgr::check_DayEndResult() const
 	}
 
 	if (!mScreenMgr->getDispMember()->isID(OWNER_KH, MEMBER_DAY_END_RESULT)) {
+#if defined(VERSION_JP)
+		JUT_PANICLINE(1679, "disp member err");
+#else
 		JUT_PANICLINE(1687, "disp member err");
+#endif
 	}
 	return reinterpret_cast<kh::Screen::DispDayEndResult*>(mScreenMgr->getDispMember())->mMail.mExitStatus;
 }
@@ -1176,7 +1212,11 @@ int Game2DMgr::check_ReadyGo() const
 		return CHECK2D_ReadyGo_Error;
 	} else {
 		if (!mScreenMgr->getDispMember()->isID(OWNER_KH, MEMBER_READY_GO)) {
+#if defined(VERSION_JP)
+			JUT_PANICLINE(1758, "disp member err");
+#else
 			JUT_PANICLINE(1766, "disp member err");
+#endif
 		}
 		return reinterpret_cast<kh::Screen::DispReadyGo*>(mScreenMgr->getDispMember())->mStatus;
 	}
@@ -1238,7 +1278,11 @@ int Game2DMgr::check_WinLose() const
 		return CHECK2D_WinLose_Error;
 	} else {
 		if (!mScreenMgr->getDispMember()->isID(OWNER_KH, MEMBER_WIN_LOSE)) {
+#if defined(VERSION_JP)
+			JUT_PANICLINE(1793, "disp member err");
+#else
 			JUT_PANICLINE(1801, "disp member err");
+#endif
 		}
 		return reinterpret_cast<kh::Screen::DispWinLose*>(mScreenMgr->getDispMember())->mStatus;
 	}
@@ -1361,7 +1405,11 @@ int Game2DMgr::result_Contena()
 			ret = disp->mDataContena.mResult;
 		}
 	} else {
+#if defined(VERSION_JP)
+		JUT_PANICLINE(1929, "Illegal call.\n");
+#else
 		JUT_PANICLINE(1937, "Illegal call.\n");
+#endif
 	}
 	return ret;
 }
@@ -1581,7 +1629,11 @@ int Game2DMgr::getZukanEnemyCurrSelectId()
 	int ret = -1;
 	if (mScreenMgr->getSceneType() == SCENE_ZUKAN_ENEMY) {
 		Morimura::TDEnemyScene* scene = static_cast<Morimura::TDEnemyScene*>(mScreenMgr->mBackupScene);
+#if defined(VERSION_JP)
+		P2ASSERTLINE(2187, scene);
+#else
 		P2ASSERTLINE(2195, scene);
+#endif
 		Morimura::TZukanBase* obj = static_cast<Morimura::TZukanBase*>(scene->mObject);
 		ret                       = (obj) ? obj->getCurrSelectId() : -1;
 	}
@@ -1597,7 +1649,11 @@ int Game2DMgr::getZukanItemCurrSelectId()
 	int ret = -1;
 	if (mScreenMgr->getSceneType() == SCENE_ZUKAN_ITEM) {
 		Morimura::TDItemScene* scene = static_cast<Morimura::TDItemScene*>(mScreenMgr->mBackupScene);
+#if defined(VERSION_JP)
+		P2ASSERTLINE(2202, scene);
+#else
 		P2ASSERTLINE(2210, scene);
+#endif
 		Morimura::TZukanBase* obj = static_cast<Morimura::TZukanBase*>(scene->mObject);
 		ret                       = (obj) ? obj->getCurrSelectId() : -1;
 	}
@@ -1613,14 +1669,22 @@ void Game2DMgr::requireZukanRequest()
 	SceneType id = mScreenMgr->getSceneType();
 	if (id == SCENE_ZUKAN_ITEM) {
 		Morimura::TDItemScene* scene = static_cast<Morimura::TDItemScene*>(mScreenMgr->mBackupScene);
+#if defined(VERSION_JP)
+		P2ASSERTLINE(2219, scene);
+#else
 		P2ASSERTLINE(2227, scene);
+#endif
 		Morimura::TZukanBase* obj = static_cast<Morimura::TZukanBase*>(scene->mObject);
 		if (obj) {
 			obj->requireRequest();
 		}
 	} else if (id == SCENE_ZUKAN_ENEMY) {
 		Morimura::TDEnemyScene* scene = static_cast<Morimura::TDEnemyScene*>(mScreenMgr->mBackupScene);
+#if defined(VERSION_JP)
+		P2ASSERTLINE(2225, scene);
+#else
 		P2ASSERTLINE(2233, scene);
+#endif
 		Morimura::TZukanBase* obj = static_cast<Morimura::TZukanBase*>(scene->mObject);
 		if (obj) {
 			obj->requireRequest();
@@ -1637,14 +1701,22 @@ void Game2DMgr::requireZukanEffectOff()
 	SceneType id = mScreenMgr->getSceneType();
 	if (id == SCENE_ZUKAN_ITEM) {
 		Morimura::TDItemScene* scene = static_cast<Morimura::TDItemScene*>(mScreenMgr->mBackupScene);
+#if defined(VERSION_JP)
+		P2ASSERTLINE(2239, scene);
+#else
 		P2ASSERTLINE(2247, scene);
+#endif
 		Morimura::TZukanBase* obj = static_cast<Morimura::TZukanBase*>(scene->mObject);
 		if (obj) {
 			obj->requireEffectOff();
 		}
 	} else if (id == SCENE_ZUKAN_ENEMY) {
 		Morimura::TDEnemyScene* scene = static_cast<Morimura::TDEnemyScene*>(mScreenMgr->mBackupScene);
+#if defined(VERSION_JP)
+		P2ASSERTLINE(2245, scene);
+#else
 		P2ASSERTLINE(2253, scene);
+#endif
 		Morimura::TZukanBase* obj = static_cast<Morimura::TZukanBase*>(scene->mObject);
 		if (obj) {
 			obj->requireEffectOff();
@@ -1662,13 +1734,21 @@ bool Game2DMgr::isZukanEnlargedWindow()
 	SceneType id = mScreenMgr->getSceneType();
 	if (id == SCENE_ZUKAN_ITEM) {
 		Morimura::TDItemScene* scene = static_cast<Morimura::TDItemScene*>(mScreenMgr->mBackupScene);
+#if defined(VERSION_JP)
+		P2ASSERTLINE(2262, scene);
+#else
 		P2ASSERTLINE(2270, scene);
+#endif
 		Morimura::TZukanBase* obj = static_cast<Morimura::TZukanBase*>(scene->mObject);
 		ret                       = (obj) ? obj->isEnlargedWindow() : false;
 
 	} else if (id == SCENE_ZUKAN_ENEMY) {
 		Morimura::TDEnemyScene* scene = static_cast<Morimura::TDEnemyScene*>(mScreenMgr->mBackupScene);
+#if defined(VERSION_JP)
+		P2ASSERTLINE(2269, scene);
+#else
 		P2ASSERTLINE(2277, scene);
+#endif
 		Morimura::TZukanBase* obj = static_cast<Morimura::TZukanBase*>(scene->mObject);
 		ret                       = (obj) ? obj->isEnlargedWindow() : false;
 	}
@@ -1685,13 +1765,21 @@ bool Game2DMgr::isZukanMemoWindow()
 	SceneType id = mScreenMgr->getSceneType();
 	if (id == SCENE_ZUKAN_ITEM) {
 		Morimura::TDItemScene* scene = static_cast<Morimura::TDItemScene*>(mScreenMgr->mBackupScene);
+#if defined(VERSION_JP)
+		P2ASSERTLINE(2290, scene);
+#else
 		P2ASSERTLINE(2298, scene);
+#endif
 		Morimura::TZukanBase* obj = static_cast<Morimura::TZukanBase*>(scene->mObject);
 		ret                       = (obj) ? obj->isMemoWindow() : false;
 
 	} else if (id == SCENE_ZUKAN_ENEMY) {
 		Morimura::TDEnemyScene* scene = static_cast<Morimura::TDEnemyScene*>(mScreenMgr->mBackupScene);
+#if defined(VERSION_JP)
+		P2ASSERTLINE(2297, scene);
+#else
 		P2ASSERTLINE(2305, scene);
+#endif
 		Morimura::TZukanBase* obj = static_cast<Morimura::TZukanBase*>(scene->mObject);
 		ret                       = (obj) ? obj->isMemoWindow() : false;
 	}
@@ -1708,11 +1796,19 @@ bool Game2DMgr::isAppearConfirmWindow()
 	SceneType id = mScreenMgr->getSceneType();
 	if (id == SCENE_ZUKAN_ITEM) {
 		Morimura::TDItemScene* scene = static_cast<Morimura::TDItemScene*>(mScreenMgr->mBackupScene);
+#if defined(VERSION_JP)
+		P2ASSERTLINE(2337, scene);
+#else
 		P2ASSERTLINE(2345, scene);
+#endif
 		ret = scene->isAppearConfirmWindow();
 	} else if (id == SCENE_ZUKAN_ENEMY) {
 		Morimura::TDEnemyScene* scene = static_cast<Morimura::TDEnemyScene*>(mScreenMgr->mBackupScene);
+#if defined(VERSION_JP)
+		P2ASSERTLINE(2344, scene);
+#else
 		P2ASSERTLINE(2352, scene);
+#endif
 		ret = scene->isAppearConfirmWindow();
 	}
 	return ret;

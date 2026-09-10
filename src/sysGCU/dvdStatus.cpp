@@ -112,7 +112,11 @@ void DvdStatus::draw()
 
 		char** errorMsgSet;
 		if (print.mFont) {
+#if defined(VERSION_PAL)
+			switch (sys->getLanguage()) {
+#else
 			switch (sys->mRegion) {
+#endif
 			case System::LANG_English:
 				errorMsgSet = DvdError::gMessage_eng;
 				break;
@@ -132,7 +136,11 @@ void DvdStatus::draw()
 				errorMsgSet = DvdError::gMessage_spa;
 				break;
 			default:
+#if defined(VERSION_PAL)
+				JUT_PANICLINE(294, "unknown language. %d", sys->getLanguage());
+#else
 				JUT_PANICLINE(294, "unknown language. %d", sys->mRegion);
+#endif
 				break;
 			}
 

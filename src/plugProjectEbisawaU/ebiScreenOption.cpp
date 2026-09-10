@@ -46,6 +46,25 @@ void TOptionParameter::loadRam()
 	mBgmVolume    = (f32)mgr->mMusicVol / 255.0f * 10.0f;
 	mSeVolume     = (f32)mgr->mSeVol / 255.0f * 10.0f;
 	mUseDeflicker = mgr->mUseDeflicker;
+#if defined(VERSION_PAL)
+	switch (mgr->mLanguage) {
+	case System::LANG_English:
+		mLanguage = 0;
+		break;
+	case System::LANG_Italian:
+		mLanguage = 1;
+		break;
+	case System::LANG_French:
+		mLanguage = 2;
+		break;
+	case System::LANG_Spanish:
+		mLanguage = 3;
+		break;
+	case System::LANG_German:
+		mLanguage = 4;
+		break;
+	}
+#endif
 }
 
 /**
@@ -71,6 +90,25 @@ void TOptionParameter::saveRam()
 	mgr->setBgmVolume(mBgmVolume / 10.0f);
 	mgr->setSeVolume(mSeVolume / 10.0f);
 	mgr->setDeflicker(mUseDeflicker);
+#if defined(VERSION_PAL)
+	switch (mLanguage) {
+	case 0:
+		mgr->setLanguage(System::LANG_English);
+		break;
+	case 1:
+		mgr->setLanguage(System::LANG_Italian);
+		break;
+	case 2:
+		mgr->setLanguage(System::LANG_French);
+		break;
+	case 3:
+		mgr->setLanguage(System::LANG_Spanish);
+		break;
+	case 4:
+		mgr->setLanguage(System::LANG_German);
+		break;
+	}
+#endif
 }
 
 /**
@@ -99,6 +137,17 @@ void TOption::doSetArchive(JKRArchive* archive)
 	mMainScreen = new P2DScreen::Mgr_tuning;
 	mMainScreen->set("option.blo", 0x1100000, archive);
 	sys->heapStatusEnd("Screen::TOption::set_blo_P2DScreen::Mgr");
+#if defined(VERSION_JP)
+	mPaneRubyYes = (J2DTextBox*)E2DScreen_searchAssert(mMainScreen, 'Tfri_y');
+	mPaneRubyNo  = (J2DTextBox*)E2DScreen_searchAssert(mMainScreen, 'Tfri_n');
+#endif
+#if defined(VERSION_PAL)
+	mPaneLanguage[0] = E2DScreen_searchAssert(mMainScreen, 'Pe');
+	mPaneLanguage[1] = E2DScreen_searchAssert(mMainScreen, 'Pi');
+	mPaneLanguage[2] = E2DScreen_searchAssert(mMainScreen, 'Pf');
+	mPaneLanguage[3] = E2DScreen_searchAssert(mMainScreen, 'Ps');
+	mPaneLanguage[4] = E2DScreen_searchAssert(mMainScreen, 'Pg');
+#endif
 	mPaneRumbleYes    = (J2DTextBox*)E2DScreen_searchAssert(mMainScreen, 'Tsin_y');
 	mPaneRumbleNo     = (J2DTextBox*)E2DScreen_searchAssert(mMainScreen, 'Tsin_n');
 	mPaneSoundType[0] = (J2DTextBox*)E2DScreen_searchAssert(mMainScreen, 'Tmon');
@@ -137,6 +186,17 @@ void TOption::doSetArchive(JKRArchive* archive)
 	mMainScreen->addCallBackPane(mMainScreen, &mAnimCalc);
 	mAnimOpenScreen.loadAnm("option.bck", archive, 20, 41);
 
+#if defined(VERSION_JP)
+	mMainScreen->addCallBack('Pfri_yc', &mButtonPuruAnim[7]);
+	mMainScreen->addCallBack('Pfri_nc', &mButtonPuruAnim[8]);
+#endif
+#if defined(VERSION_PAL)
+	mMainScreen->addCallBack('Plang01', &mButtonPuruAnim[7]);
+	mMainScreen->addCallBack('Plang02', &mButtonPuruAnim[11]);
+	mMainScreen->addCallBack('Plang03', &mButtonPuruAnim[9]);
+	mMainScreen->addCallBack('Plang04', &mButtonPuruAnim[10]);
+	mMainScreen->addCallBack('Plang05', &mButtonPuruAnim[8]);
+#endif
 	mMainScreen->addCallBack('Psin_yc', &mButtonPuruAnim[0]);
 	mMainScreen->addCallBack('Psin_nc', &mButtonPuruAnim[1]);
 	mMainScreen->addCallBack('Pmonc', &mButtonPuruAnim[2]);
@@ -194,10 +254,15 @@ void TOption::doOpenScreen(ArgOpen*)
 	mCounterOpen    = count;
 	mCounterOpenMax = count;
 
-	mState             = 1;
+	mState = 1;
+#if defined(VERSION_JP) || defined(VERSION_PAL)
+	mCurrMainSelection = 0;
+	mNextSelection     = 0;
+#else
 	mCurrMainSelection = 1;
 	mNextSelection     = 1;
 	mOptionPanes[0]->hide();
+#endif
 	bounds = *mButtonPaneList[mCurrMainSelection]->getBounds();
 
 	count                     = (0.1f / sys->mDeltaTime);
@@ -243,7 +308,7 @@ bool TOption::doUpdateStateOpen()
 	}
 	mMainScreen->update();
 
-#if BUILDTARGET == USADEMO1 // demo
+#if defined(VERSION_US_DEMO1) // demo
 	mOptionPanes[0]->hide();
 #endif
 
@@ -265,9 +330,11 @@ bool TOption::doUpdateStateWait()
 		mInputMainSel.update();
 		if (mInputMainSel.mSelectionChanged) {
 			mNextSelection = mInputMainSel.mLastIndex;
+#if !defined(VERSION_JP) && !defined(VERSION_PAL)
 			if (mCurrMainSelection == 0) {
 				mCurrMainSelection = 1;
 			}
+#endif
 
 			if (mNextSelection != mCurrMainSelection) {
 				JGeometry::TBox2f bounds;
@@ -295,8 +362,55 @@ bool TOption::doUpdateStateWait()
 			PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CANCEL, 0);
 		}
 		switch (mCurrMainSelection) {
-		case 0: // language
+#if defined(VERSION_JP)
+		case 0:
+			if (mController->isMoveRight()) {
+				if (mOptionParamA.mIsRubyFont == true) {
+					mOptionParamA.mIsRubyFont = false;
+					mButtonPuruAnim[8].mScaleMgr.up(0.2f, 30.0f, 0.6f, 0.0f);
+					mExitStatus = OptionState_Unk1;
+					PSSystem::spSysIF->playSystemSe(PSSE_SY_SOUND_CONFIG, 0);
+				}
+			} else if (mController->isMoveLeft()) {
+				if (!mOptionParamA.mIsRubyFont) {
+					mOptionParamA.mIsRubyFont = true;
+					mButtonPuruAnim[7].mScaleMgr.up(0.2f, 30.0f, 0.6f, 0.0f);
+					mExitStatus = OptionState_Unk1;
+					PSSystem::spSysIF->playSystemSe(PSSE_SY_SOUND_CONFIG, 0);
+				}
+			}
 			break;
+
+#else
+		case 0: // language
+#if defined(VERSION_PAL)
+			mInputLanguage.update();
+			if (mInputLanguage.mSelectionChanged) {
+				mExitStatus = OptionState_Unk8;
+				int index;
+				switch (mOptionParamA.mLanguage) {
+				case 0:
+					index = 7;
+					break;
+				case 1:
+					index = 11;
+					break;
+				case 2:
+					index = 9;
+					break;
+				case 3:
+					index = 10;
+					break;
+				case 4:
+					index = 8;
+					break;
+				}
+				mButtonPuruAnim[index].mScaleMgr.up(0.2f, 30.0f, 0.6f, 0.0f);
+				PSSystem::spSysIF->playSystemSe(PSSE_SY_SOUND_CONFIG, 0);
+			}
+#endif
+			break;
+#endif
 
 		case 1: // Rumble
 			if (mController->isMoveRight()) {
@@ -436,6 +550,17 @@ bool TOption::doUpdateStateWait()
 		mDeflickerScreen->setAlpha(0);
 	}
 
+#if defined(VERSION_JP)
+	mPaneRubyYes->updateScale(mButtonPuruAnim[7].mScale);
+	mPaneRubyNo->updateScale(mButtonPuruAnim[8].mScale);
+#endif
+#if defined(VERSION_PAL)
+	mPaneLanguage[0]->updateScale(mButtonPuruAnim[7].mScale);
+	mPaneLanguage[1]->updateScale(mButtonPuruAnim[11].mScale);
+	mPaneLanguage[2]->updateScale(mButtonPuruAnim[9].mScale);
+	mPaneLanguage[3]->updateScale(mButtonPuruAnim[10].mScale);
+	mPaneLanguage[4]->updateScale(mButtonPuruAnim[8].mScale);
+#endif
 	mPaneRumbleYes->updateScale(mButtonPuruAnim[0].mScale);
 	mPaneRumbleNo->updateScale(mButtonPuruAnim[1].mScale);
 	mPaneSoundType[0]->updateScale(mButtonPuruAnim[2].mScale);
@@ -444,7 +569,7 @@ bool TOption::doUpdateStateWait()
 	mPaneDeflickerYes->updateScale(mButtonPuruAnim[5].mScale);
 	mPaneDeflickerNo->updateScale(mButtonPuruAnim[6].mScale);
 
-#if BUILDTARGET == USADEMO1 // demo
+#if defined(VERSION_US_DEMO1) // demo
 	mOptionPanes[0]->hide();
 #endif
 
@@ -520,9 +645,15 @@ void TOption::loadResource()
 {
 	char resName[PATH_MAX];
 	sys->heapStatusStart("TOption::loadResource", nullptr);
+#if defined(VERSION_JP)
+	og::newScreen::makeLanguageResName(resName, "option_jp.szs");
+#elif defined(VERSION_PAL)
+	og::newScreen::makeLanguageResName(resName, "option_pal.szs");
+#else
 	og::newScreen::makeLanguageResName(resName, "option_us.szs");
+#endif
 	JKRArchive* archive = JKRMountArchive(resName, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
-#if BUILDTARGET == USADEMO1 // demo
+#if defined(VERSION_PAL) || defined(VERSION_US_DEMO1)
 	P2ASSERTLINE(768, (archive != nullptr));
 #else
 	P2ASSERTLINE(757, (archive != nullptr));
@@ -542,6 +673,9 @@ void TOption::setController(Controller* controller)
 	mInputSfxVol.init(mController, 0, 10, &mOptionParamA.mSeVolume, EUTPadInterface_countNum::MODE_RIGHTLEFT, 0.66f, 0.15f);
 	mInputStereo.init(mController, 0, 2, &mOptionParamA.mSoundMode, EUTPadInterface_countNum::MODE_RIGHTLEFT, 0.66f, 0.15f);
 	mInputMainSel.init(mController, 0, 6, &mCurrMainSelection, EUTPadInterface_countNum::MODE_DOWNUP, 0.66f, 0.15f);
+#if defined(VERSION_PAL)
+	mInputLanguage.init(mController, 0, 4, &mOptionParamA.mLanguage, EUTPadInterface_countNum::MODE_RIGHTLEFT, 0.66f, 0.15f);
+#endif
 }
 
 /**
@@ -582,6 +716,22 @@ void TOption::initScreen_()
  */
 void TOption::setOptionParamToScreen_()
 {
+#if defined(VERSION_PAL)
+	for (int i = 0; i < 5; i++) {
+		mPaneLanguage[i]->setAlpha(80);
+	}
+	mPaneLanguage[mOptionParamA.mLanguage]->setAlpha(255);
+#endif
+#if defined(VERSION_JP)
+	if (mOptionParamA.mIsRubyFont) {
+		mFontColorActiveSel.applyColorsToPane(mPaneRubyYes);
+		mFontColorInactiveSel.applyColorsToPane(mPaneRubyNo);
+	} else {
+		mFontColorInactiveSel.applyColorsToPane(mPaneRubyYes);
+		mFontColorActiveSel.applyColorsToPane(mPaneRubyNo);
+	}
+
+#endif
 	if (mOptionParamA.mIsRumble) {
 		mFontColorActiveSel.applyColorsToPane(mPaneRumbleYes);
 		mFontColorInactiveSel.applyColorsToPane(mPaneRumbleNo);
@@ -634,8 +784,22 @@ void TOption::setOptionParamToScreen_()
 	}
 
 	switch (mCurrMainSelection) {
+#if defined(VERSION_JP)
 	case 0:
+		if (mOptionParamA.mIsRubyFont) {
+			mBlinkColor.mPane = mPaneRubyYes;
+		} else {
+			mBlinkColor.mPane = mPaneRubyNo;
+		}
+		mBlinkAlphaA.mPane = nullptr;
 		break;
+#else
+	case 0:
+#if defined(VERSION_PAL)
+		mBlinkColor.mPane = nullptr;
+#endif
+		break;
+#endif
 	case 1:
 		if (mOptionParamA.mIsRumble) {
 			mBlinkColor.mPane = mPaneRumbleYes;

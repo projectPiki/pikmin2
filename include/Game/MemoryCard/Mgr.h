@@ -70,7 +70,13 @@ struct Mgr : public MemoryCardMgr {
 	bool checkError();
 	bool createNewFile();
 	bool saveGameOption();
+#if defined(VERSION_PAL)
+	bool loadGameOption(bool loadLanguage);
+	bool commandLoadGameOption(bool loadLanguage);
+#else
 	bool loadGameOption();
+	bool commandLoadGameOption();
+#endif
 	bool savePlayerNoCheckSerialNumber(int);
 	bool savePlayer(int);
 	bool loadPlayer(int);
@@ -86,7 +92,6 @@ struct Mgr : public MemoryCardMgr {
 	bool dataFormat(MemoryCardMgr::ECardSlot);
 	bool varifyCardStatus();
 	bool commandSaveGameOption(bool, bool);
-	bool commandLoadGameOption();
 	void writeGameOption(Stream&);
 	void readGameOption(Stream&);
 	bool checkSerialNo(bool);
@@ -140,6 +145,23 @@ struct Mgr : public MemoryCardMgr {
 	void* mIconImageFile;   // _E0
 	BitFlag<u32> mFlags;    // _E4
 };
+
+#if defined(VERSION_PAL)
+// PAL-only command class - name is a guess, based on the function in pikmin2MemoryCardMgr that uses it
+struct MgrCommandLoadGameOption : public MemoryCardMgrCommandBase {
+	MgrCommandLoadGameOption(int flags, bool loadLanguage)
+	    : MemoryCardMgrCommandBase(flags)
+	    , mLoadLanguage(loadLanguage)
+	{
+	}
+
+	virtual u32 getClassSize() { return sizeof(MgrCommandLoadGameOption); } // _08 (weak)
+
+	// _04     = VTBL
+	// _00-_08 = MemoryCardMgrCommandBase
+	bool mLoadLanguage; // _08
+};
+#endif
 
 struct MgrCommandCopyPlayer : public MemoryCardMgrCommandBase {
 	MgrCommandCopyPlayer(int flags, int fileIndex1, int fileIndex2)

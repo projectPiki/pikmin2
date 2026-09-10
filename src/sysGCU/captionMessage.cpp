@@ -149,7 +149,11 @@ void TControl::draw(Graphics& gfx)
 {
 	if (mState != 0) {
 		Matrixf mtx;
+#if defined(VERSION_PAL)
+		Vector3f pos(0.0f, 280.0f, 0.0f);
+#else
 		Vector3f pos(0.0f, 290.0f, 0.0f);
+#endif
 		mtx.makeT(pos);
 		gfx.mPerspGraph.setPort();
 		P2JME::TControl::draw(mtx.mMatrix.mtxView, gfx.mPerspGraph.mPosMtx);

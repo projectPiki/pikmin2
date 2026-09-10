@@ -15,7 +15,15 @@ namespace Game {
 struct OtakaraArray {
 	int mConfigIndex;
 	f32 mRadiusModifier;
-} asArrayOtakara[] = { { -1, 1.0f } };
+} asArrayOtakara[] = {
+#if defined(VERSION_JP)
+	{ 5, 0.80f },   { 6, 0.80f },   { 7, 0.80f },   { 18, 0.90f },  { 19, 0.90f },  { 27, 0.90f },  { 43, 0.95f },
+	{ 55, 0.90f },  { 76, 1.40f },  { 98, 1.40f },  { 100, 1.40f }, { 103, 1.50f }, { 104, 1.50f }, { 110, 1.50f },
+	{ 126, 2.00f }, { 129, 1.50f }, { 156, 1.40f }, { 172, 1.40f }, { 173, 1.40f }, { 185, 1.50f }, { -1, 1.00f }
+#else
+	{ -1, 1.0f }
+#endif
+};
 
 /**
  * @note Address: 0x8023B534

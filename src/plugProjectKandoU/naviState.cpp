@@ -1,4 +1,5 @@
 #include "Game/NaviState.h"
+#include "Game/gameConfig.h"
 #include "Game/CameraMgr.h"
 #include "Game/MapMgr.h"
 #include "Game/NaviParms.h"
@@ -415,12 +416,18 @@ void NaviWalkState::exec(Navi* navi)
 				return;
 			}
 
-			Onyon* onyon = navi->checkOnyon();
-			if (onyon && navi->mController1->isButtonDown(JUTGamePad::PRESS_A) && onyon->mOnyonType != ONYON_TYPE_POD) {
-				NaviContainerArg containerArg(onyon);
-				transit(navi, NSID_Container, &containerArg);
-				return;
+#if defined(VERSION_JP)
+			if (!gGameConfig.mParms.mE3version.mData) {
+#endif
+				Onyon* onyon = navi->checkOnyon();
+				if (onyon && navi->mController1->isButtonDown(JUTGamePad::PRESS_A) && onyon->mOnyonType != ONYON_TYPE_POD) {
+					NaviContainerArg containerArg(onyon);
+					transit(navi, NSID_Container, &containerArg);
+					return;
+				}
+#if defined(VERSION_JP)
 			}
+#endif
 
 			if (navi->mController1->isButtonDown(JUTGamePad::PRESS_B)) {
 				transit(navi, NSID_Gather, nullptr);
@@ -865,7 +872,11 @@ void NaviWalkState::initAI_animation(Navi* navi)
 	}
 
 	int naviIdx = navi->mNaviIndex;
+#if defined(VERSION_JP)
+	if (gameSystem->isStoryMode() && playData->isStoryFlag(STORY_DebtPaid)) {
+#else
 	if (naviIdx == NAVIID_Louie && gameSystem->isStoryMode() && playData->isStoryFlag(STORY_DebtPaid)) {
+#endif
 		naviIdx++; // president!
 	}
 
@@ -1461,7 +1472,11 @@ void NaviFollowState::exec(Navi* navi)
 			// get right id for each navi for sounds
 			// 0 for olimar, 1 for louie, or 2 for president
 			int naviID = navi->mNaviIndex;
+#if defined(VERSION_JP)
+			if (gameSystem->isStoryMode() && playData->isStoryFlag(STORY_DebtPaid)) {
+#else
 			if (naviID == NAVIID_Louie && gameSystem->isStoryMode() && playData->isStoryFlag(STORY_DebtPaid)) {
+#endif
 				naviID++;
 			}
 
@@ -2057,7 +2072,11 @@ void NaviNukuState::onKeyEvent(Navi* navi, SysShape::KeyEvent const& key)
 void NaviNukuAdjustState::init(Navi* navi, StateArg* stateArg)
 {
 	playData->setDemoFlag(DEMO_Pluck_First_Pikmin);
+#if defined(VERSION_JP)
+	P2ASSERTLINE(2760, stateArg);
+#else
 	P2ASSERTLINE(2769, stateArg);
+#endif
 
 	NaviNukuAdjustStateArg* arg = static_cast<NaviNukuAdjustStateArg*>(stateArg);
 
@@ -2977,7 +2996,11 @@ void NaviNukuAdjustState::cleanup(Navi* navi)
  */
 void NaviDopeState::init(Navi* navi, StateArg* stateArg)
 {
+#if defined(VERSION_JP)
+	P2ASSERTLINE(2997, stateArg);
+#else
 	P2ASSERTLINE(3006, stateArg);
+#endif
 	mDopeType         = static_cast<NaviDopeArg*>(stateArg)->mType;
 	Vector3f naviPos  = navi->getPosition(); // f31, f30, f29
 	Vector3f squadPos = Vector3f(0.0f);      // f28, f27, f26
@@ -3502,9 +3525,17 @@ void NaviDopeState::onKeyEvent(Navi* navi, SysShape::KeyEvent const& keyEvent)
  */
 void NaviClimbState::init(Navi* navi, StateArg* stateArg)
 {
+#if defined(VERSION_JP)
+	JUT_PANICLINE(3100, "navi climb\n");
+#else
 	JUT_PANICLINE(3109, "navi climb\n");
+#endif
 
+#if defined(VERSION_JP)
+	P2ASSERTLINE(3103, stateArg);
+#else
 	P2ASSERTLINE(3112, stateArg);
+#endif
 	navi->startMotion(IPikiAnims::HNOBORU, IPikiAnims::HNOBORU, navi, nullptr);
 	navi->enableMotionBlend();
 	mClimbObj = static_cast<ClimbStateArg*>(stateArg)->mObj;
@@ -3694,7 +3725,11 @@ void NaviFlickState::init(Navi* navi, StateArg* stateArg)
 {
 	NaviFlickArg* flickArg;
 	if (stateArg == nullptr) {
+#if defined(VERSION_JP)
+		JUT_PANICLINE(3275, "flick needs NaviFlickInitArg !\n");
+#else
 		JUT_PANICLINE(3284, "flick needs NaviFlickInitArg !\n");
+#endif
 	} else {
 		flickArg   = static_cast<NaviFlickArg*>(stateArg);
 		mDamage    = flickArg->mDamage;
@@ -3978,7 +4013,11 @@ void NaviSaraiExitState::bounceCallback(Navi* navi, Sys::Triangle*)
  */
 void NaviContainerState::init(Navi* navi, StateArg* stateArg)
 {
+#if defined(VERSION_JP)
+	P2ASSERTLINE(3593, stateArg);
+#else
 	P2ASSERTLINE(3602, stateArg);
+#endif
 	mOnyon = static_cast<NaviContainerArg*>(stateArg)->mOnyon;
 
 	Screen::gGame2DMgr->setGamePad(navi->mController1);
@@ -4176,9 +4215,17 @@ void NaviContainerState::cleanup(Navi* navi)
 void NaviAbsorbState::init(Navi* navi, StateArg* stateArg)
 {
 	NaviAbsorbArg* absorbArg = static_cast<NaviAbsorbArg*>(stateArg);
+#if defined(VERSION_JP)
+	P2ASSERTLINE(3906, absorbArg != nullptr);
+#else
 	P2ASSERTLINE(3915, absorbArg != nullptr);
+#endif
 	mDrop = absorbArg->mDrop;
+#if defined(VERSION_JP)
+	P2ASSERTLINE(3908, mDrop != nullptr);
+#else
 	P2ASSERTLINE(3917, mDrop != nullptr);
+#endif
 	navi->startMotion(IPikiAnims::MIZUNOMI, IPikiAnims::MIZUNOMI, navi, nullptr);
 	navi->mSoundObj->startSound(PSSE_PL_DRINK, 0);
 	mSubState             = ABSORB_Start;
@@ -4222,7 +4269,11 @@ void NaviAbsorbState::onKeyEvent(Navi* navi, SysShape::KeyEvent const& key)
 		mSubState = ABSORB_Absorbing;
 		break;
 	case KEYEVENT_LOOP_END:
+#if defined(VERSION_JP)
+		P2ASSERTLINE(3947, mDrop->mObjectTypeID == OBJTYPE_Honey);
+#else
 		P2ASSERTLINE(3956, mDrop->mObjectTypeID == OBJTYPE_Honey);
+#endif
 		ItemHoney::Item* item = mDrop;
 		if (!mDrop->isAlive() || !item->isShrinking()) {
 			mSubState = ABSORB_Finished;
@@ -4231,7 +4282,11 @@ void NaviAbsorbState::onKeyEvent(Navi* navi, SysShape::KeyEvent const& key)
 		break;
 	case KEYEVENT_END:
 		if (mHasAbsorbed) {
+#if defined(VERSION_JP)
+			P2ASSERTLINE(3959, mDrop->mObjectTypeID == OBJTYPE_Honey);
+#else
 			P2ASSERTLINE(3968, mDrop->mObjectTypeID == OBJTYPE_Honey);
+#endif
 			navi->incDopeCount(mDrop->mHoneyType != HONEY_R);
 			transit(navi, NSID_Walk, nullptr);
 		} else {
@@ -4257,7 +4312,11 @@ void NaviAbsorbState::cleanup(Navi* navi)
  */
 void NaviDamagedState::init(Navi* navi, StateArg* stateArg)
 {
+#if defined(VERSION_JP)
+	P2ASSERTLINE(3993, stateArg);
+#else
 	P2ASSERTLINE(4002, stateArg);
+#endif
 	navi->startMotion(IPikiAnims::DAMAGE, IPikiAnims::DAMAGE, navi, nullptr);
 	navi->enableMotionBlend();
 }
@@ -4510,8 +4569,8 @@ void NaviThrowWaitState::init(Navi* navi, StateArg* stateArg)
 		mHeldPiki->mFsm->transit(mHeldPiki, PIKISTATE_Hanged, nullptr);
 		mHasHeldPiki = true;
 	}
-	navi->mHoldPikiCharge = mHoldChargeLevel / 3.0f * (CG_NAVIPARMS(navi).mThrowDistanceMax() - CG_NAVIPARMS(navi).mThrowDistanceMin())
-	                      + CG_NAVIPARMS(navi).mThrowDistanceMin();
+	navi->mHoldPikiCharge  = mHoldChargeLevel / 3.0f * (CG_NAVIPARMS(navi).mThrowDistanceMax() - CG_NAVIPARMS(navi).mThrowDistanceMin())
+	                       + CG_NAVIPARMS(navi).mThrowDistanceMin();
 	navi->mHoldPikiCharge2 = mHoldChargeLevel / 3.0f * (CG_NAVIPARMS(navi).mThrowHeightMax() - CG_NAVIPARMS(navi).mThrowHeightMin())
 	                       + CG_NAVIPARMS(navi).mThrowHeightMin();
 	mNextPikiTimeLimit     = 3.0f;

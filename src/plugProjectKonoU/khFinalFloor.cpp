@@ -97,7 +97,11 @@ bool ObjFinalFloor::doUpdateFadeout()
 {
 	bool isCh = Game::gameSystem && Game::gameSystem->isChallengeMode();
 	if (!getDispMember()->isID(OWNER_KH, MEMBER_FINAL_FLOOR)) {
+#if defined(VERSION_JP)
+		JUT_PANICLINE(139, "disp member err");
+#else
 		JUT_PANICLINE(151, "disp member err");
+#endif
 	}
 
 	DispFinalFloor* disp = static_cast<DispFinalFloor*>(getDispMember());

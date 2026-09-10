@@ -46,11 +46,14 @@ void ResultTexMgr::Mgr::create(ResultTexMgr::Arg& arg)
 	mItemConfigList    = arg.mItemConfigList;
 	mHeap              = arg.mHeap;
 
-	JKRHeap* poppedHeap = JKRHeap::sCurrentHeap;
+	JKRHeap* poppedHeap = JKRGetCurrentHeap();
 	JKRArchive* archive = nullptr;
 	mHeap->becomeCurrentHeap();
 
 	if (arg.mRegionMode == REGIONID_Null) {
+#if defined(VERSION_PAL)
+		sprintf(pathBuffer, "/user/Matoba/resulttex/%s/arc.szs", "pal");
+#else
 		switch (sys->mRegion) {
 		case System::LANG_Japanese:
 			sprintf(pathBuffer, "/user/Matoba/resulttex/%s/arc.szs", "jpn");
@@ -59,6 +62,7 @@ void ResultTexMgr::Mgr::create(ResultTexMgr::Arg& arg)
 			sprintf(pathBuffer, "/user/Matoba/resulttex/%s/arc.szs", "us");
 			break;
 		}
+#endif
 	} else {
 		switch (arg.mRegionMode) {
 		case REGIONID_JPN:

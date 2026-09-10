@@ -258,14 +258,22 @@ void TRenderingProcessor::newParagraph()
 {
 	setLineWidth();
 	mCurrLine++;
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(512, mCurrLine < 64);
+#else
 	P2ASSERTLINE(509, mCurrLine < 64);
+#endif
 	mParagraphNum++;
 	if (mFlags.isSet(TProcFlag_PageFinished) != 0) {
 		setPageInfo();
 		setOnePageLine();
 		mParagraphNum = 0;
+#if defined(VERSION_PAL)
+		incPageInfoNum();
+#else
 		mPageInfoNum++;
 		checkPageInfoNum();
+#endif
 		mFlags.unset(TProcFlag_PageFinished);
 	}
 	setDrawLocate();
@@ -414,7 +422,11 @@ bool TRenderingProcessor::tagRuby(const void* data, u32 size)
 {
 	if (sys->mPlayData->mIsRubyFont && !mFlags.isSet(TProcFlag_Unk0)) {
 
+#if defined(VERSION_PAL)
+		P2ASSERTLINE(842, size < 33);
+#else
 		P2ASSERTLINE(839, size < 33);
+#endif
 		strncpy(mRubyBuffer, (char*)data + 1, size - 1);
 
 		mRubyBuffer[size - 1] = 0;
@@ -853,7 +865,11 @@ lbl_8043AF18:
  */
 bool TRenderingProcessor::tagImage(u16 p1, const void* p2, u32 p3)
 {
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(1117, p3 == 1);
+#else
 	P2ASSERTLINE(1114, p3 == 1);
+#endif
 	int type;
 	u8 firstByte = ((u8*)p2)[0]; // r29
 	f32 width;
@@ -865,7 +881,11 @@ bool TRenderingProcessor::tagImage(u16 p1, const void* p2, u32 p3)
 		height = 32.0f * mFontHeightAdjusted;
 		break;
 	default:
+#if defined(VERSION_PAL)
+		P2ASSERTLINE(1137, false);
+#else
 		P2ASSERTLINE(1134, false);
+#endif
 		break;
 	}
 
@@ -1627,7 +1647,11 @@ void TRenderingProcessor::resetPageInfo()
  */
 void TRenderingProcessor::setPageInfo()
 {
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(1576, mPageInfoNum < 10);
+#else
 	P2ASSERTLINE(1573, mPageInfoNum < 10);
+#endif
 	mLineWidthInfos[mPageInfoNum].mEndIndex = mCurrLine - 1;
 	if (mPageInfoNum < 9) {
 		mLineWidthInfos[mPageInfoNum + 1].mStartIndex = mCurrLine;
@@ -1724,7 +1748,11 @@ void TRenderingProcessor::setFont(JUTFont* font)
  */
 void TRenderingProcessor::setTextBoxInfo(J2DPane* pane)
 {
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(1690, pane->getTypeID() == PANETYPE_TextBox);
+#else
 	P2ASSERTLINE(1687, pane->getTypeID() == PANETYPE_TextBox);
+#endif
 
 	if (pane->getTypeID() != PANETYPE_TextBox) {
 		return;
@@ -2089,5 +2117,20 @@ addi     r1, r1, 0x90
 blr
 */
 }
+
+#if defined(VERSION_PAL)
+/**
+ * @note Address: 0x8043D888 (PAL)
+ * @note Size: 0x50
+ * @note Fabricated name. Could be incrementPageInfoNum or something.
+ */
+void TRenderingProcessor::incPageInfoNum()
+{
+	mPageInfoNum++;
+	if (mPageInfoNum >= 10) {
+		JUT_PANICLINE(1771, "%d/%d", mPageInfoNum, 10);
+	}
+}
+#endif
 
 } // namespace P2JME

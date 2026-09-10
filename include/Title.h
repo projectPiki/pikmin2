@@ -39,17 +39,19 @@ struct HIORootNode : public Game::HIORootNode {
 
 namespace Title {
 
-// Size: 0x1B0
+// Size: 0x2F70 (US), 0x3100 (PAL).
 struct Section : public Game::BaseHIOSection {
 	enum BGMIndex { BGM_MainTheme = 0, BGM_Options, BGM_HiScore, BGM_Bonus };
-	enum State { State_Init, State_MainTitle, State_Options, State_Bonus, State_HiScore };
+	enum State { State_Init, State_MainTitle, State_Options, State_Bonus, State_HiScore, State_ReloadMessages };
 	Section(JKRHeap* heap);
 
 	virtual ~Section();                         // _08
 	virtual void run();                         // _0C
 	virtual void init();                        // _18
 	virtual void doExit();                      // _24
+#if !defined(VERSION_JP)                        //
 	virtual bool forceReset() { return false; } // _2C (weak)
+#endif                                          //
 	virtual void doLoadingStart();              // _34
 	virtual bool doLoading();                   // _38
 	virtual bool doUpdate();                    // _3C
@@ -58,8 +60,10 @@ struct Section : public Game::BaseHIOSection {
 	virtual void loadResource();                // _50
 
 	void loadResident();
-	// void menuCancel(Menu&);
-	// void menuSelect(Menu&);
+
+#if defined(VERSION_PAL)
+	void reloadMessageResource();
+#endif
 	void doUpdateMainTitle();
 	void doUpdateOmake();
 	void menuCancel(Menu&);
@@ -73,22 +77,29 @@ struct Section : public Game::BaseHIOSection {
 
 	// _00		= VTBL
 	// _00-_48	= Game::BaseHIOSection
-	int mState;                         // _0048
-	f32 mGoToDemoTimer;                 // _004C
-	Menu* mMenu;                        // _0050
-	DvdThreadCommand mThreadCommand;    // _0054
-	Delegate<Section>* mButtonCallback; // _00C0
-	Controller* mController1;           // _00C4
-	Controller* mController2;           // _00C8
-	ebi::TMainTitleMgr mMainTitleMgr;   // _00CC
-	ebi::Option::TMgr mOptionMgr;       // _1730
-	ebi::Omake::TMgr mOmakeMgr;         // _2678
-	Game::THPPlayer* mThpPlayer;        // _2F38
-	int mMovieIndex;                    // _2F3C
-	JKRArchive* mHiScoreTex;            // _2F40
-	bool mDoCheckShortCut;              // _2F44
-	u32 mLanguageID;                    // _2F48
-	u8 _2F4C[32];                       // _2F4C, unknown
+	int mState;                                // _0048
+	f32 mGoToDemoTimer;                        // _004C
+	Menu* mMenu;                               // _0050
+	DvdThreadCommand mThreadCommand;           // _0054
+	Delegate<Section>* mButtonCallback;        // _00C0
+#if defined(VERSION_PAL)                       //
+	Delegate<Section>* mReloadMessageCallback; // _00C4
+#endif                                         //
+	Controller* mController1;                  // _00C4
+	Controller* mController2;                  // _00C8
+	ebi::TMainTitleMgr mMainTitleMgr;          // _00CC
+	ebi::Option::TMgr mOptionMgr;              // _1730
+	ebi::Omake::TMgr mOmakeMgr;                // _2678
+	Game::THPPlayer* mThpPlayer;               // _2F38
+	int mMovieIndex;                           // _2F3C
+	JKRArchive* mHiScoreTex;                   // _2F40
+	bool mDoCheckShortCut;                     // _2F44
+	u32 mLanguageID;                           // _2F48
+	u8 _2F4C[32];                              // _2F4C, unknown (PAL: _30D4)
+#if defined(VERSION_PAL)                       //
+	u32 mDebugKeyIndex;                        // _30F4
+	bool mShowBuildInfo;                       // _30F8
+#endif
 };
 } // namespace Title
 

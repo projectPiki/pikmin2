@@ -473,6 +473,12 @@ void LivingState::updateCullingOff(EnemyBase* enemy)
 void LivingState::updateAlways(EnemyBase* enemy)
 {
 	if (enemy->isEvent(0, EB_BitterQueued)) {
+#if defined(VERSION_PAL)
+		if (enemy->mHealth <= 0.0f) {
+			enemy->disableEvent(0, EB_BitterQueued);
+			return;
+		}
+#endif
 		enemy->startStoneState();
 	}
 }
@@ -728,7 +734,11 @@ void StoneState::init(EnemyBase* enemy, StateArg* arg)
  */
 void StoneState::cleanup(EnemyBase* enemy)
 {
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(1031, enemy->isEvent(0, EB_Bittered));
+#else
 	P2ASSERTLINE(1024, enemy->isEvent(0, EB_Bittered));
+#endif
 
 	enemy->restoreEvents();
 
@@ -1112,13 +1122,21 @@ void EnemyBase::onInitPost(CreatureInitArg* arg)
 				mLifecycleFSM->start(this, EnemyBaseFSM::EBS_DropEarthquake, nullptr);
 				break;
 			default:
+#if defined(VERSION_PAL)
+				JUT_PANICLINE(1490, "Unknown birth type:%d", mDropGroup);
+#else
 				JUT_PANICLINE(1483, "Unknown birth type:%d", mDropGroup);
+#endif
 				break;
 			}
 		}
 		break;
 	default:
+#if defined(VERSION_PAL)
+		JUT_PANICLINE(1497, "Unknown birth type:%d", mDropGroup);
+#else
 		JUT_PANICLINE(1490, "Unknown birth type:%d", mDropGroup);
+#endif
 		break;
 	}
 
@@ -1299,77 +1317,86 @@ void EnemyBase::onKill(CreatureKillArg* inputArg)
 			deathProcedure();
 			disableEvent(0, EB_Bittered);
 			constraintOff();
+#if defined(VERSION_JP)
+			// I believe this is the cause of the volatile dweevil crash in the piklopedia
+			// since it's the only enemy that can die there while bittered, but there's no
+			// ItemHoney mgr initialised in that game state.
+#else
 			if (ItemHoney::mgr) {
-				s8 bitterDrop = (s8)EnemyInfoFunc::getEnemyInfo(getEnemyTypeID(), 0xFFFF)->mBitterDrops;
-				f32 scaledChance, dropChance;
-				int dropRolls;
+#endif
+			s8 bitterDrop = (s8)EnemyInfoFunc::getEnemyInfo(getEnemyTypeID(), 0xFFFF)->mBitterDrops;
+			f32 scaledChance, dropChance;
+			int dropRolls;
 
-				switch (bitterDrop) {
-				case BDT_Weak:
-					dropChance = 0.99f;
-					dropRolls  = 1;
-					break;
-				case BDT_Normal:
-				case BDT_Strong:
-					dropChance = 0.9f;
-					dropRolls  = 1;
-					break;
-				case BDT_Triple:
-					dropChance = 0.9f;
-					dropRolls  = 3;
-					break;
-				case BDT_MiniBoss:
-				case BDT_Boss:
-					dropChance = 0.85f;
-					dropRolls  = 5;
-					break;
-				case BDT_FinalBoss:
-					dropChance = 0.0f;
-					dropRolls  = 10;
-					break;
-				default:
-					dropChance = 1.0f;
-					dropRolls  = 0;
-					break;
+			switch (bitterDrop) {
+			case BDT_Weak:
+				dropChance = 0.99f;
+				dropRolls  = 1;
+				break;
+			case BDT_Normal:
+			case BDT_Strong:
+				dropChance = 0.9f;
+				dropRolls  = 1;
+				break;
+			case BDT_Triple:
+				dropChance = 0.9f;
+				dropRolls  = 3;
+				break;
+			case BDT_MiniBoss:
+			case BDT_Boss:
+				dropChance = 0.85f;
+				dropRolls  = 5;
+				break;
+			case BDT_FinalBoss:
+				dropChance = 0.0f;
+				dropRolls  = 10;
+				break;
+			default:
+				dropChance = 1.0f;
+				dropRolls  = 0;
+				break;
+			}
+
+			scaledChance = (0.5f * (1.0f - dropChance)) + dropChance;
+
+			for (int i = 0; i < dropRolls; i++) {
+				f32 randRoll = randFloat();
+
+				u8 honeyKind;
+				if (randRoll < dropChance) {
+					honeyKind = HONEY_Y;
+				} else if (randRoll < scaledChance) {
+					honeyKind = HONEY_R;
+				} else {
+					honeyKind = HONEY_B;
 				}
 
-				scaledChance = (0.5f * (1.0f - dropChance)) + dropChance;
+				Sys::Sphere ball;
+				getBoundingSphere(ball);
 
-				for (int i = 0; i < dropRolls; i++) {
-					f32 randRoll = randFloat();
+				ItemHoney::InitArg honeyArg(honeyKind, false);
+				ItemHoney::Item* drop = ItemHoney::mgr->birth();
 
-					u8 honeyKind;
-					if (randRoll < dropChance) {
-						honeyKind = HONEY_Y;
-					} else if (randRoll < scaledChance) {
-						honeyKind = HONEY_R;
-					} else {
-						honeyKind = HONEY_B;
-					}
+				if (drop != nullptr) {
+					drop->init((CreatureInitArg*)&honeyArg);
+					drop->setPosition(ball.mPosition, false);
+					f32 theta    = TAU * randFloat();
+					f32 scale    = 1.0f + ((f32)dropRolls / 10.0f);
+					f32 cosTheta = scale * (50.0f * cosf(theta));
+					f32 sinTheta = scale * (50.0f * sinf(theta));
 
-					Sys::Sphere ball;
-					getBoundingSphere(ball);
+					Vector3f dropVelocity; // sp58
+					dropVelocity.x = sinTheta;
+					dropVelocity.y = 250.0f * scale;
+					dropVelocity.z = cosTheta;
 
-					ItemHoney::InitArg honeyArg(honeyKind, false);
-					ItemHoney::Item* drop = ItemHoney::mgr->birth();
-
-					if (drop != nullptr) {
-						drop->init((CreatureInitArg*)&honeyArg);
-						drop->setPosition(ball.mPosition, false);
-						f32 theta    = TAU * randFloat();
-						f32 scale    = 1.0f + ((f32)dropRolls / 10.0f);
-						f32 cosTheta = scale * (50.0f * cosf(theta));
-						f32 sinTheta = scale * (50.0f * sinf(theta));
-
-						Vector3f dropVelocity; // sp58
-						dropVelocity.x = sinTheta;
-						dropVelocity.y = 250.0f * scale;
-						dropVelocity.z = cosTheta;
-
-						drop->setVelocity(dropVelocity);
-					}
+					drop->setVelocity(dropVelocity);
 				}
 			}
+#if defined(VERSION_JP)
+#else
+			}
+#endif
 			forceKillEffects();
 			becomeCarcass();
 
@@ -1426,7 +1453,13 @@ void EnemyBase::setZukanVisible(bool updateStats)
 		EnemyInfo* enemyInfo = EnemyInfoFunc::getEnemyInfo(getEnemyTypeID(), 0xFFFF);
 		if ((enemyInfo->mFlags & EFlag_HasNoInfo) == FALSE) {
 			TekiStat::Info* tekiInfo = playData->mTekiStatMgr.getTekiInfo(getEnemyTypeID());
+#if defined(VERSION_PAL)
+			P2ASSERTLINE(1866, tekiInfo);
+#elif defined(VERSION_JP)
+			P2ASSERTLINE(1858, tekiInfo);
+#else
 			P2ASSERTLINE(1859, tekiInfo);
+#endif
 
 			if (updateStats) {
 				tekiInfo->incKilled();
@@ -3084,7 +3117,13 @@ PSM::EnemyBase* EnemyBase::createPSEnemyBase()
 		break;
 	case BDT_Triple:
 	case BDT_MiniBoss:
+#if defined(VERSION_PAL)
+		JUT_PANICLINE(4399, "abolished type\n");
+#elif defined(VERSION_JP)
+		JUT_PANICLINE(4391, "abolished type\n");
+#else
 		JUT_PANICLINE(4392, "abolished type\n");
+#endif
 		break;
 	case BDT_Boss:
 		base = new PSM::EnemyMidBoss(this);

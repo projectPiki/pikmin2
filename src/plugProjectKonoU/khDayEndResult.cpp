@@ -404,6 +404,9 @@ ObjDayEndResultItem::ObjDayEndResultItem()
 	mTotalValueDelay        = 0;
 	mScrollDownDelay        = 0;
 	mScrollUpDelay          = 0;
+#if defined(VERSION_PAL)
+	mHasDrawn = false;
+#endif
 }
 
 /**
@@ -441,7 +444,11 @@ void ObjDayEndResultItem::doCreate(JKRArchive* archive)
 	og::Screen::setCallBackMessage(mScreenMain);
 
 	if (!getDispMember()->isID(OWNER_KH, MEMBER_DAY_END_RESULT)) {
+#if defined(VERSION_PAL)
+		JUT_PANICLINE(502, "disp member err");
+#else
 		JUT_PANICLINE(501, "disp member err");
+#endif
 	}
 
 	DispDayEndResult* dispResult = static_cast<DispDayEndResult*>(getDispMember());
@@ -625,7 +632,11 @@ bool ObjDayEndResultItem::doUpdate()
 		mStatus            = ITEMSTATUS_Normal;
 
 		if (!getDispMember()->isID(OWNER_KH, MEMBER_DAY_END_RESULT)) {
+#if defined(VERSION_PAL)
+			JUT_PANICLINE(665, "disp member err");
+#else
 			JUT_PANICLINE(664, "disp member err");
+#endif
 		}
 
 		DispDayEndResult* dispResult = static_cast<DispDayEndResult*>(getDispMember());
@@ -672,11 +683,18 @@ bool ObjDayEndResultItem::doUpdateFadeout()
  */
 void ObjDayEndResultItem::doDraw(Graphics& gfx)
 {
+#if defined(VERSION_PAL)
+	mHasDrawn = true;
+#endif
 	ObjDayEndResultBase::doDraw(gfx);
 	gfx.mOrthoGraph.setPort();
 
 	if (!getDispMember()->isID(OWNER_KH, MEMBER_DAY_END_RESULT)) {
+#if defined(VERSION_PAL)
+		JUT_PANICLINE(723, "disp member err");
+#else
 		JUT_PANICLINE(720, "disp member err");
+#endif
 	}
 
 	DispDayEndResult* dispResult = static_cast<DispDayEndResult*>(getDispMember());
@@ -738,7 +756,10 @@ void ObjDayEndResultItem::doDraw(Graphics& gfx)
 			}
 			mTreasurePokoCount[isOdd] = pokos;
 			mTreasurePokoCounter[isOdd]->update();
-			mScreenMain->draw(gfx, gfx.mOrthoGraph);
+#if defined(VERSION_PAL)
+			if (mGXScissorBottomY)
+#endif
+				mScreenMain->draw(gfx, gfx.mOrthoGraph);
 		}
 		i++;
 	}
@@ -868,7 +889,11 @@ void ObjDayEndResultItem::statusForceScroll()
 			mStatus            = ITEMSTATUS_DrumRoll;
 		} else {
 			if (!getDispMember()->isID(OWNER_KH, MEMBER_DAY_END_RESULT)) {
+#if defined(VERSION_PAL)
+				JUT_PANICLINE(964, "disp member err");
+#else
 				JUT_PANICLINE(958, "disp member err");
+#endif
 			}
 
 			DispDayEndResult* dispResult = static_cast<DispDayEndResult*>(getDispMember());
@@ -908,7 +933,11 @@ void ObjDayEndResultItem::statusTotalValue()
 {
 	if (mTotalValueDelay == 0) {
 		if (!getDispMember()->isID(OWNER_KH, MEMBER_DAY_END_RESULT)) {
+#if defined(VERSION_PAL)
+			JUT_PANICLINE(1017, "disp member err");
+#else
 			JUT_PANICLINE(1011, "disp member err");
+#endif
 		}
 
 		DispDayEndResult* dispResult = static_cast<DispDayEndResult*>(getDispMember());
@@ -934,10 +963,19 @@ void ObjDayEndResultItem::updateCommon()
 	JGeometry::TVec3f topLeft    = mScreenMain->search('Nmask')->getGlbVtx(GLBVTX_BtmLeft);
 	JGeometry::TVec3f centerLeft = mScreenMain->search('Nmask')->getGlbVtx(GLBVTX_TopRight);
 
-	// this is so dumb. SO DUMB.
-	f32 yTop;
-	mGXScissorTopY    = 0.5f + (yTop = topLeft.y);
-	mGXScissorBottomY = centerLeft.y - yTop;
+#if defined(VERSION_PAL)
+	if (mHasDrawn) {
+#endif
+		// this is so dumb. SO DUMB.
+		f32 yTop;
+		mGXScissorTopY    = 0.5f + (yTop = topLeft.y);
+		mGXScissorBottomY = centerLeft.y - yTop;
+
+#if defined(VERSION_PAL)
+	} else {
+		mGXScissorTopY = mGXScissorBottomY = 0;
+	}
+#endif
 
 	mScreenMain->animation();
 
@@ -1034,7 +1072,11 @@ void ObjDayEndResultIncP::doCreate(JKRArchive* arc)
 	og::Screen::setCallBackMessage(mScreenMain);
 
 	if (!getDispMember()->isID(OWNER_KH, MEMBER_DAY_END_RESULT)) {
+#if defined(VERSION_PAL)
+		JUT_PANICLINE(1168, "disp member err");
+#else
 		JUT_PANICLINE(1158, "disp member err");
+#endif
 	}
 
 	DispDayEndResult* dispResult = static_cast<DispDayEndResult*>(getDispMember());
@@ -1398,7 +1440,11 @@ void ObjDayEndResultIncP::statusFadeout()
 	}
 
 	if (!getDispMember()->isID(OWNER_KH, MEMBER_DAY_END_RESULT)) {
+#if defined(VERSION_PAL)
+		JUT_PANICLINE(1551, "disp member err");
+#else
 		JUT_PANICLINE(1541, "disp member err");
+#endif
 	}
 	DispDayEndResult* dispResult = static_cast<DispDayEndResult*>(getDispMember());
 	if (!dispResult->mIncP._0D) {
@@ -1565,7 +1611,11 @@ void ObjDayEndResultIncP::effectCommon()
 	mPikiCounterToday->startPuyoUp(1.0f);
 
 	if (!getDispMember()->isID(OWNER_KH, MEMBER_DAY_END_RESULT)) {
+#if defined(VERSION_PAL)
+		JUT_PANICLINE(1740, "disp member err");
+#else
 		JUT_PANICLINE(1730, "disp member err");
+#endif
 	}
 	DispDayEndResult* dispResult = static_cast<DispDayEndResult*>(getDispMember());
 
@@ -1649,7 +1699,11 @@ void ObjDayEndResultMail::doCreate(JKRArchive* arc)
 	mScreenStars->setAnimation(mStarsAnimColor);
 
 	if (!getDispMember()->isID(OWNER_KH, MEMBER_DAY_END_RESULT)) {
+#if defined(VERSION_PAL)
+		JUT_PANICLINE(1912, "disp member err");
+#else
 		JUT_PANICLINE(1902, "disp member err");
+#endif
 	}
 	DispDayEndResult* dispResult = static_cast<DispDayEndResult*>(getDispMember());
 
@@ -1738,7 +1792,11 @@ bool ObjDayEndResultMail::doStart(const ::Screen::StartSceneArg* arg)
 	PSSystem::spSysIF->playSystemSe(PSSE_SY_MESSAGE_EXIT, 0);
 
 	if (!getDispMember()->isID(OWNER_KH, MEMBER_DAY_END_RESULT)) {
+#if defined(VERSION_PAL)
+		JUT_PANICLINE(2032, "disp member err");
+#else
 		JUT_PANICLINE(2022, "disp member err");
+#endif
 	}
 	DispDayEndResult* dispResult = static_cast<DispDayEndResult*>(getDispMember());
 	if (!dispResult->mMail.mHasOpened) {
@@ -1782,7 +1840,11 @@ bool ObjDayEndResultMail::doUpdateFadein()
 bool ObjDayEndResultMail::doUpdate()
 {
 	if (!getDispMember()->isID(OWNER_KH, MEMBER_DAY_END_RESULT)) {
+#if defined(VERSION_PAL)
+		JUT_PANICLINE(2072, "disp member err");
+#else
 		JUT_PANICLINE(2062, "disp member err");
+#endif
 	}
 	DispDayEndResult* dispResult = static_cast<DispDayEndResult*>(getDispMember());
 
@@ -1995,7 +2057,11 @@ void ObjDayEndResultMail::statusFadeinFromRight()
 void ObjDayEndResultMail::statusWaitOpen()
 {
 	if (!getDispMember()->isID(OWNER_KH, MEMBER_DAY_END_RESULT)) {
+#if defined(VERSION_PAL)
+		JUT_PANICLINE(2299, "disp member err");
+#else
 		JUT_PANICLINE(2289, "disp member err");
+#endif
 	}
 	DispDayEndResult* dispResult = static_cast<DispDayEndResult*>(getDispMember());
 	dispResult->mMail.mHasOpened = true;
@@ -2353,7 +2419,11 @@ void SceneDayEndResultMail::doUserCallBackFunc(Resource::MgrCommand* mgr)
 	if (tableNode) {
 		file = static_cast<MailTableFile*>(JKRGetResource("mail_table.bin", tableNode->mArchive));
 	} else {
+#if defined(VERSION_PAL)
+		JUT_PANICLINE(2684, "failed");
+#else
 		JUT_PANICLINE(2674, "failed");
+#endif
 	}
 
 	// problem is from here
@@ -2374,7 +2444,11 @@ void SceneDayEndResultMail::doUserCallBackFunc(Resource::MgrCommand* mgr)
 	// to here
 
 	if (!getDispMember()->isID(OWNER_KH, MEMBER_DAY_END_RESULT)) {
+#if defined(VERSION_PAL)
+		JUT_PANICLINE(2700, "disp member err");
+#else
 		JUT_PANICLINE(2690, "disp member err");
+#endif
 	}
 
 	int mailID;
@@ -2393,7 +2467,11 @@ void SceneDayEndResultMail::doUserCallBackFunc(Resource::MgrCommand* mgr)
 			}
 		}
 
+#if defined(VERSION_PAL)
+		JUT_ASSERTLINE(2720, mailID != -1, "error");
+#else
 		JUT_ASSERTLINE(2710, mailID != -1, "error");
+#endif
 
 		for (int i = 0; i < entries; i++) {
 			if (dispResult.mMailCategory != mTableData[i]->mFlag[0]) {
@@ -2426,7 +2504,11 @@ void SceneDayEndResultMail::doUserCallBackFunc(Resource::MgrCommand* mgr)
 		if (iconNode) {
 			mIconArchive = static_cast<JKRMemArchive*>(iconNode->mArchive);
 		} else {
+#if defined(VERSION_PAL)
+			JUT_PANICLINE(2759, "no exist");
+#else
 			JUT_PANICLINE(2749, "no exist");
+#endif
 		}
 	} else {
 		mMailFlags = Game::playData->mMailSaveData.mHistory;
@@ -2438,7 +2520,11 @@ void SceneDayEndResultMail::doUserCallBackFunc(Resource::MgrCommand* mgr)
 	if (node) {
 		registObj(new ObjDayEndResultMail, node->mArchive);
 	} else {
+#if defined(VERSION_PAL)
+		JUT_PANICLINE(2774, "failed");
+#else
 		JUT_PANICLINE(2764, "failed");
+#endif
 	}
 	/*
 stwu     r1, -0xd0(r1)

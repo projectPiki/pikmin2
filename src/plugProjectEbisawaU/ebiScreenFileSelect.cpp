@@ -290,8 +290,11 @@ void TMainScreen::doSetArchive(JKRArchive* arc)
 
 	E2DScreen_searchAssert(mMainScreen, 'Popen1')->show();
 	E2DScreen_searchAssert(mMainScreen, 'Popenp1')->show();
-
+#if defined(VERSION_PAL)
+	setMsgID_('5479_00', '5481_00', '5481_00'); // "Choose a Ship's Log."
+#else
 	setMsgID_('5479_00', '5479_00', '5479_00'); // "Choose a Ship's Log."
+#endif
 
 	sys->heapStatusStart("TScreen_FS_scene_open::setArchive--callback_message", nullptr);
 	E2DPane_setTreeCallBackMessage(mMainScreen, mMainScreen);
@@ -1011,7 +1014,11 @@ void TMainScreen::openMSG(s32 mesgID)
 	switch (mesgID) {
 	case MessageType_SelectAFile:
 		// "Choose a Ship's Log."
+#if defined(VERSION_PAL)
+		setMsgID_('5479_00', '5481_00', '5481_00');
+#else
 		setMsgID_('5479_00', '5479_00', '5479_00');
+#endif
 		break;
 	case MessageType_FileCorrupted:
 		// "This Ship's Log is corrupted. Erase this Ship's Log?" "Yes" "No"
@@ -1020,7 +1027,11 @@ void TMainScreen::openMSG(s32 mesgID)
 		break;
 	case MessageType_ErasingFile:
 		// "Erasing the file... Do not touch the Memory Card in Slot A or the POWER Button."
+#if defined(VERSION_PAL)
+		setMsgID_('5489_00', '5481_00', '5481_00');
+#else
 		setMsgID_('5489_00', '5479_00', '5479_00');
+#endif
 		break;
 	case MessageType_DoYouErase:
 		// "Erase the contents of this Ship's Log?" "Yes" "No"
@@ -1029,15 +1040,27 @@ void TMainScreen::openMSG(s32 mesgID)
 		break;
 	case MessageType_CopyWhere:
 		// "Erase the contents of this Ship's Log?"
+#if defined(VERSION_PAL)
+		setMsgID_('5505_00', '5481_00', '5481_00');
+#else
 		setMsgID_('5505_00', '5479_00', '5479_00');
+#endif
 		break;
 	case MessageType_FileDeleteFail:
 		// "The file could not be erased."
+#if defined(VERSION_PAL)
+		setMsgID_('5488_00', '5481_00', '5481_00');
+#else
 		setMsgID_('5488_00', '5479_00', '5479_00');
+#endif
 		break;
 	case MessageType_FileDeleted:
 		// "The file has been erased."
+#if defined(VERSION_PAL)
+		setMsgID_('5490_00', '5481_00', '5481_00');
+#else
 		setMsgID_('5490_00', '5479_00', '5479_00');
+#endif
 		break;
 	case MessageType_DoYouOverwrite:
 		// "Copy over the contents of this Ship's Log?" "Yes" "No"
@@ -1046,15 +1069,27 @@ void TMainScreen::openMSG(s32 mesgID)
 		break;
 	case MessageType_FileCopyFail:
 		// "The file could not be copied."
+#if defined(VERSION_PAL)
+		setMsgID_('5491_00', '5481_00', '5481_00');
+#else
 		setMsgID_('5491_00', '5479_00', '5479_00');
+#endif
 		break;
 	case MessageType_CopyingFile:
 		// "Copying... Do not touch the Memory Card in Slot A or the POWER Button."
+#if defined(VERSION_PAL)
+		setMsgID_('5498_00', '5481_00', '5481_00');
+#else
 		setMsgID_('5498_00', '5479_00', '5479_00');
+#endif
 		break;
 	case MessageType_FileCopied:
 		// "The file has been copied."
+#if defined(VERSION_PAL)
+		setMsgID_('5499_00', '5481_00', '5481_00');
+#else
 		setMsgID_('5499_00', '5479_00', '5479_00');
+#endif
 		break;
 	}
 }

@@ -992,14 +992,48 @@ void SingleGameSection::createFallPikmins()
 	playData->mCaveSaveData.mCavePikis.clear();
 }
 
-// /**
-//  * @note Address: N/A
-//  * @note Size: 0x440
-//  */
-// void SingleGameSection::createFallPikmins(Game::PikiContainer&, int)
-// {
-// 	// UNUSED FUNCTION
-// }
+/**
+ * @note Address: N/A
+ * @note Size: 0x440
+ * @note Stripped in every version except JP.
+ */
+void SingleGameSection::createFallPikmins(PikiContainer& container, int mapIndex)
+{
+	Vector3f origin;
+	mapMgr->getStartPosition(origin, mapIndex);
+	container.dump("createFallPikmins");
+	Navi* navi = naviMgr->getAt(0);
+	origin     = navi->getPosition();
+	origin.y   = mapMgr->getMinY(origin);
+	for (int color = 0; color < PikiColorCount; color++) {
+		for (int happa = 0; happa < 3; happa++) {
+			for (int i = 0; i < container.getCount(color, happa); i++) {
+				f32 randDist   = 15.0f + 30.0f * randFloat();
+				f32 randAngle  = TAU * randFloat();
+				f32 randHeight = 770.0f + (850.0f + 120.0f * randFloat());
+
+				Vector3f randpos = Vector3f(randDist * sinf(randAngle), randHeight, randDist * cosf(randAngle));
+
+				PikiMgr::mBirthMode = PikiMgr::PSM_Replace;
+				Piki* piki          = pikiMgr->birth();
+				PikiMgr::mBirthMode = PikiMgr::PSM_Normal;
+				randpos += origin;
+				if (piki) {
+					PikiInitArg arg(PIKISTATE_Tane);
+					piki->init(&arg);
+					piki->mFaceDir = randFloat() * TAU;
+					piki->setPosition(randpos, false);
+					piki->changeShape(color);
+					piki->changeHappa(happa);
+					Vector3f velocity(0.0f, -(randFloat() * 150.0f + 2700.0f), 0.0f);
+					piki->setVelocity(velocity);
+					piki->movie_begin(false);
+				}
+			}
+		}
+	}
+	container.clear();
+}
 
 /**
  * @note Address: 0x80154FD8

@@ -11,7 +11,11 @@
 #include "JSystem/JMath.h"
 #include "trig.h"
 
+#if defined(VERSION_US_DEMO) || defined(VERSION_PAL)
+// Demo and PAL define this (as an array) near rootCallback instead
+#else
 static f32 c32 = 1.0f;
+#endif
 
 JASTrack::SeqCallback JASTrack::sCallBackFunc;
 JASSeqParser JASTrack::sParser;
@@ -2738,6 +2742,11 @@ f32 JASTrack::panCalc(f32 valA, f32 valB, f32 weight, u8 calcType)
 	return 0.0f;
 }
 
+#if defined(VERSION_US_DEMO) || defined(VERSION_PAL)
+// sure.
+static volatile f32 c32[8] ATTRIBUTE_ALIGN(32) = { 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f };
+#endif
+
 /**
  * @note Address: 0x800A2658
  * @note Size: 0xF4
@@ -2756,6 +2765,20 @@ s32 JASTrack::rootCallback(void* obj)
 		return -1;
 	}
 	track->_340 += track->mCurrentTempo;
+
+#if defined(VERSION_US_DEMO) || defined(VERSION_PAL)
+	if (track->_340 < c32[0]) {
+		track->updateSeq(0, true);
+	} else {
+		while (track->_340 >= c32[0]) {
+			track->_340 -= c32[0];
+			if (track->mainProc() == -1) {
+				track->stopSeqMain();
+				return -1;
+			}
+		}
+	}
+#else
 	DCInvalidateRange(&c32, sizeof(c32));
 	if (track->_340 < c32) {
 		track->updateSeq(0, true);
@@ -2769,6 +2792,7 @@ s32 JASTrack::rootCallback(void* obj)
 			}
 		}
 	}
+#endif
 	return 0;
 }
 

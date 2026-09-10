@@ -264,7 +264,11 @@ void TTitleMgr::loadResource()
 		mCoordMgr[COORD_Main].readCoordinate(arc, "logo/coordinate_eng");
 		mCoordMgr[COORD_Sub].readCoordinate(arc, "logo/coordinate_Nintendo");
 	} else {
+#if defined(VERSION_PAL)
+		switch (sys->getLanguage()) {
+#else
 		switch (sys->mRegion) {
+#endif
 		case System::LANG_Japanese:
 			if (Game::gGameConfig.mParms.mKFesVersion.mData) {
 				mCoordMgr[COORD_Main].readCoordinate(arc, "logo/coordinate_eng");

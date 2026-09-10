@@ -160,6 +160,9 @@ void TTitleMenu::doOpenScreen(ArgOpen* arg)
 
 	E2DPane_setTreeShow(mMainScreen);
 
+#if defined(VERSION_JP)
+	mPad.init(mController, 0, 5, &mSelectID, EUTPadInterface_countNum::MODE_DOWNUP, 0.66f, 0.15f);
+#else
 	// When E3 mode is enabled, only two menu options exist, vs and challenge mode (I think)
 	if (Game::gGameConfig.mParms.mE3version.mData) {
 		for (int i = 0; i < 6; i++) {
@@ -173,6 +176,8 @@ void TTitleMenu::doOpenScreen(ArgOpen* arg)
 	} else {
 		mPad.init(mController, 0, 5, &mSelectID, EUTPadInterface_countNum::MODE_DOWNUP, 0.66f, 0.15f);
 	}
+
+#endif
 
 	mMainScreen->clearAnmTransform();
 

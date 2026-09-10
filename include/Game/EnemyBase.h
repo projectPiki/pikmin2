@@ -277,6 +277,9 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	virtual void doFinishEarthquakeState();                  // _2B4
 	virtual void doStartEarthquakeFitState();                // _2B8
 	virtual void doFinishEarthquakeFitState();               // _2BC
+#if defined(VERSION_PAL)                                     //
+	virtual void setZukanVisible(bool updateTekiDeathInfo);  // _2C0 (PAL)
+#endif                                                       //
 	virtual void lifeRecover();                              // _2C0
 	virtual void startCarcassMotion()                        // _2C4 (weak)
 	{
@@ -358,7 +361,11 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	void setAnimMgr(SysShape::AnimMgr* animMgr);
 	void setOtakaraCode(PelletMgr::OtakaraItemCode& code);
 	void setPSEnemyBaseAnime();
+#if defined(VERSION_PAL)
+	// this is a virtual method in PAL, see above
+#else
 	void setZukanVisible(bool updateTekiDeathInfo);
+#endif
 
 	void startBlend(int srcAnimIdx, int destAnimIdx, SysShape::BlendFunction* blendFunc, f32 frameRate, SysShape::MotionListener* listener);
 	void endBlend();

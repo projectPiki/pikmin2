@@ -83,7 +83,11 @@ static const char unusedBabyAnim[]      = "/enemy/data/Baby/anim.szs";
  */
 void Mgr::init()
 {
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(193, !gPikmin2AramMgr);
+#else
 	P2ASSERTLINE(190, !gPikmin2AramMgr);
+#endif
 	gPikmin2AramMgr = new Pikmin2ARAM::Mgr;
 }
 
@@ -149,13 +153,25 @@ void Mgr::loadEnemy()
 	OSDisableScheduler();
 
 	u32 freeSize = JKRGetSystemHeap()->getFreeSize() - 31040;
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(293, freeSize);
+#else
 	P2ASSERTLINE(290, freeSize);
+#endif
 
 	JKRExpHeap* heap1 = makeExpHeap(freeSize, JKRGetSystemHeap(), true);
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(296, heap1);
+#else
 	P2ASSERTLINE(293, heap1);
+#endif
 
 	JKRExpHeap* heap2 = makeExpHeap(30880, JKRGetSystemHeap(), true);
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(298, heap2);
+#else
 	P2ASSERTLINE(295, heap2);
+#endif
 
 	heap1->destroy();
 	OSEnableScheduler();
@@ -227,4 +243,16 @@ void Mgr::loadItem()
 		gAramMgr->dvdToAram(sAramResItem[i], !mLoadPermission);
 	}
 }
+
+#if defined(VERSION_PAL)
+/**
+ * @note Address: 0x80456B34 (PAL)
+ * @note Size: 0x24
+ * @note Fabricated name. Solid guess based on what it calls, though.
+ */
+void Mgr::freeAll()
+{
+	gAramMgr->freeAll();
+}
+#endif
 } // namespace Pikmin2ARAM

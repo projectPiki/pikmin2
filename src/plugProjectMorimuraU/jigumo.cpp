@@ -386,17 +386,32 @@ void Obj::outWaterCallback()
 	efx::ArgScale fxArg(mPosition, mScaleModifier);
 
 	switch (getStateID()) {
-	case JIGUMO_Attack:
-		mEfxAttack->create(&fxArg);
+	case JIGUMO_Attack: {
+#if defined(VERSION_PAL)
+		if (!isEvent(0, EB_Bittered))
+#endif
+			mEfxAttack->create(&fxArg);
+
 		mEfxAttackW->fade();
 		break;
-	case JIGUMO_Carry:
-		mEfxBack->create(&fxArg);
+	}
+	case JIGUMO_Carry: {
+#if defined(VERSION_PAL)
+		if (!isEvent(0, EB_Bittered))
+#endif
+			mEfxBack->create(&fxArg);
+
 		mEfxBackW->fade();
 		break;
-	case JIGUMO_Return:
-		mEfxSmoke->create(&fxArg);
+	}
+	case JIGUMO_Return: {
+#if defined(VERSION_PAL)
+		if (!isEvent(0, EB_Bittered))
+#endif
+			mEfxSmoke->create(&fxArg);
+
 		break;
+	}
 	}
 }
 
@@ -410,19 +425,28 @@ void Obj::inWaterCallback(WaterBox* wb)
 	efx::ArgScale fxArg(mPosition, mScaleModifier);
 
 	switch (getStateID()) {
-	case JIGUMO_Attack:
+	case JIGUMO_Attack: {
 		mEffectPosition   = mPosition;
 		mEffectPosition.y = *mWaterBox->getSeaHeightPtr();
-		mEfxAttackW->create(&fxArg);
+#if defined(VERSION_PAL)
+		if (!isEvent(0, EB_Bittered))
+#endif
+			mEfxAttackW->create(&fxArg);
 		mEfxAttack->fade();
 		break;
-	case JIGUMO_Carry:
-		mEfxBackW->create(&fxArg);
+	}
+	case JIGUMO_Carry: {
+#if defined(VERSION_PAL)
+		if (!isEvent(0, EB_Bittered))
+#endif
+			mEfxBackW->create(&fxArg);
 		mEfxBack->fade();
 		break;
-	case JIGUMO_Return:
+	}
+	case JIGUMO_Return: {
 		mEfxSmoke->fade();
 		break;
+	}
 	}
 }
 
@@ -523,6 +547,9 @@ void Obj::doSimulationGround(f32 step)
  */
 void Obj::onKill(CreatureKillArg* killArg)
 {
+#if defined(VERSION_PAL)
+	effectStop();
+#endif
 	EnemyBase::onKill(killArg);
 	killNest();
 }
@@ -1445,6 +1472,12 @@ void Obj::calcBaseTrMatrix()
 		if (isConstrained()) {
 			isMoving = 0.0f;
 		}
+
+#if defined(VERSION_PAL)
+		if (isEvent(0, EB_Bittered)) {
+			isMoving = 0.0f;
+		}
+#endif
 
 		mPosition.y += mClimbingAccel * (isMoving * C_PARMS->_91C);
 

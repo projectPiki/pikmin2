@@ -259,6 +259,7 @@ struct BaseGameSection : public BaseHIOSection {
 	// _00 		= VTBL
 	// _00-_48 	= BaseHIOSection
 	// All the remaining unnamed variables seem to be unused.
+	// Member offsets below are for US/JP/PAL - for US_DEMO1, add 0x20.
 	u32 mMoney;                                               // _48
 	u32 _4C;                                                  // _4C
 	BlendCamera* mBlendCamera;                                // _50
@@ -308,11 +309,6 @@ struct BaseGameSection : public BaseHIOSection {
 	JUTTexture* mXfbTexture2d;                                // _168
 	int mXfbBounds2dX;                                        // _16C
 	int mXfbBounds2dY;                                        // _170
-
-// not sure where this goes, but it goes after mTexData1 and before mContainer1 (VsGameSection).
-#if BUILDTARGET == USADEMO1
-	u8 _DemoPadding3[0x4];
-#endif
 };
 } // namespace Game
 

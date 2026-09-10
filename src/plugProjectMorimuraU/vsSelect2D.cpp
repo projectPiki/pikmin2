@@ -6448,7 +6448,11 @@ void TVsSelect::doUpdateFadeinFinish()
  */
 void TVsSelect::doUpdateFadeoutFinish()
 {
+#if defined(VERSION_JP)
+	P2ASSERTLINE(2094, mDispMember);
+#else
 	P2ASSERTLINE(2096, mDispMember);
+#endif
 	mDispMember->mOlimarHandicap     = mHandicapSel[0];
 	mDispMember->mLouieHandicap      = mHandicapSel[1];
 	mDispMember->mSelectedStageIndex = mIndexPaneList[mCurrActiveRowSel]->getIndex();
@@ -6466,10 +6470,18 @@ void TVsSelect::doUpdateFadeoutFinish()
 void TVsSelect::paneInit()
 {
 	mPaneStageNameBg = mMainScreen->mScreenObj->search('PICT_075');
+#if defined(VERSION_JP)
+	P2ASSERTLINE(2116, mPaneStageNameBg);
+#else
 	P2ASSERTLINE(2119, mPaneStageNameBg);
+#endif
 
 	mPaneLevelName = mMainScreen->mScreenObj->search('Tbmenu11');
+#if defined(VERSION_JP)
+	P2ASSERTLINE(2119, mPaneLevelName);
+#else
 	P2ASSERTLINE(2122, mPaneLevelName);
+#endif
 
 	mActiveCourseThumbs[0] = static_cast<J2DPicture*>(mListScreen->mScreenObj->search('Plistim0'));
 	mActiveCourseThumbs[1] = static_cast<J2DPicture*>(mListScreen->mScreenObj->search('Plistim1'));
@@ -6484,19 +6496,35 @@ void TVsSelect::paneInit()
 	mPaneLevelWindows[4] = mListScreen->mScreenObj->search('Pliswin4');
 
 	for (int i = 0; i < mNumActiveRows; i++) {
+#if defined(VERSION_JP)
+		JUT_ASSERTLINE(2136, mActiveCourseThumbs[i], "coursename[%d] not find\n", i);
+#else
 		JUT_ASSERTLINE(2139, mActiveCourseThumbs[i], "coursename[%d] not find\n", i);
+#endif
+#if defined(VERSION_JP)
+		JUT_ASSERTLINE(2137, mPaneLevelWindows[i], "pictureframe[%d] not find\n", i);
+#else
 		JUT_ASSERTLINE(2140, mPaneLevelWindows[i], "pictureframe[%d] not find\n", i);
+#endif
 	}
 
 	mPaneSpot = mMainScreen->mScreenObj->search('Pspot0');
+#if defined(VERSION_JP)
+	P2ASSERTLINE(2142, mPaneSpot);
+#else
 	P2ASSERTLINE(2145, mPaneSpot);
+#endif
 
 	f32 test                = 20.0f;
 	mSelectionYOffset       = mIndexPaneList[mCurrActiveRowSel]->getPaneYOffset() - 10.0f;
 	mCursorSelectionYOffset = mSelectionYOffset + test;
 
 	mPaneStars = mMainScreen->mScreenObj->search('Nstarpik');
+#if defined(VERSION_JP)
+	P2ASSERTLINE(2151, mPaneStars);
+#else
 	P2ASSERTLINE(2154, mPaneStars);
+#endif
 
 	changeCourseTexture();
 }
@@ -6727,7 +6755,11 @@ lbl_8039F9C8:
  */
 u64 TVsSelect::getNameID(int id)
 {
+#if defined(VERSION_JP)
+	P2ASSERTLINE(2223, id <= getIdMax());
+#else
 	P2ASSERTLINE(2226, id <= getIdMax());
+#endif
 	int course = getCourseID(id);
 	return mMesgData->getMsgID(course - 1);
 }
@@ -6996,13 +7028,19 @@ void TVsSelect::doScreenEffect()
 			if (mEndDelayTimer > 15.0f && !mIsSection) {
 				mZoomState          = 0;
 				mDispMember->mState = Screen::Game2DMgr::CHECK2D_VsSelect_InDemo;
+#if defined(VERSION_JP)
+				P2ASSERTLINE(2371, getOwner());
+#else
 				P2ASSERTLINE(2374, getOwner());
+#endif
 				getOwner()->endScene(nullptr);
+#if !defined(VERSION_JP)
 				for (int i = 0; i < mNumActiveRows; i++) {
 					if (i != mCurrActiveRowSel) {
 						mIndexPaneList[i]->mPane->hide();
 					}
 				}
+#endif
 			}
 		} else {
 			mEndDelayTimer = 0.0f;
@@ -7580,7 +7618,11 @@ void TVsSelect::changeIndirectTexture()
  */
 void TVsSelect::setShortenIndex(int id, int id2, bool)
 {
+#if defined(VERSION_JP)
+	P2ASSERTLINE(2495, id < mNumActiveRows);
+#else
 	P2ASSERTLINE(2503, id < mNumActiveRows);
+#endif
 	id2 = getCourseID(id2);
 	mActiveCourseThumbs[id]->changeTexture(mLevelTextures[id2], 0);
 }
@@ -7673,7 +7715,11 @@ void TVsSelect::changeFaceTexture()
 void TVsSelect::changeOrimaTexture(int id)
 {
 	ResTIMG* timg = mOrimaTexture[id];
+#if defined(VERSION_JP)
+	P2ASSERTLINE(2589, timg);
+#else
 	P2ASSERTLINE(2597, timg);
+#endif
 
 	for (int i = 0; i < 6; i++) {
 		mOlimarFacePanes[i]->changeTexture(timg, 0);
@@ -7687,7 +7733,11 @@ void TVsSelect::changeOrimaTexture(int id)
 void TVsSelect::changeLouieTexture(int id)
 {
 	ResTIMG* timg = mLouieTexture[id];
+#if defined(VERSION_JP)
+	P2ASSERTLINE(2603, timg);
+#else
 	P2ASSERTLINE(2611, timg);
+#endif
 
 	for (int i = 0; i < 6; i++) {
 		mLouieFacePanes[i]->changeTexture(timg, 0);

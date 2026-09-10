@@ -3,9 +3,7 @@
 
 #include "JSystem/JKernel/JKRDisposer.h"
 #include "wipe.h"
-#if BUILDTARGET == USADEMO1
 #include "Controller.h"
-#endif
 
 struct Graphics;
 struct JFWDisplay;
@@ -63,20 +61,20 @@ struct Section : public ISection {
 	void main();
 	void fadeOut();
 
-	WipeBase* mDisplayWiper; // _18
-	JKRHeap* mDisplayHeap;   // _1C
-	JKRHeap* mOldHeap;       // _20
-	JFWDisplay* mDisplay;    // _24
-	JUTFader* mFader;        // _28
-	Graphics* mGraphics;     // _2C
-	f32 mTimeStep;           // _30
-	bool mIsMainActive;      // _34
-	bool mIsDisplayNew;      // _35
-	u8 _36;                  // _36
-	bool mIsLoadingDVD;      // _37
-	u8 _38;                  // _38
-#if BUILDTARGET == USADEMO1
-	OSTime mOsTime;               // _40
+	WipeBase* mDisplayWiper;      // _18
+	JKRHeap* mDisplayHeap;        // _1C
+	JKRHeap* mOldHeap;            // _20
+	JFWDisplay* mDisplay;         // _24
+	JUTFader* mFader;             // _28
+	Graphics* mGraphics;          // _2C
+	f32 mTimeStep;                // _30
+	bool mIsMainActive;           // _34
+	bool mIsDisplayNew;           // _35
+	u8 _36;                       // _36
+	bool mIsLoadingDVD;           // _37
+	u8 _38;                       // _38
+#if defined(VERSION_US_DEMO)     //
+	OSTime mOsTime;               // _40 NB: this causes other structs to align-64, hence the "padding" we had
 	JUTGamePad* mDemoController1; // _48
 	JUTGamePad* mDemoController2; // _4C
 	f32 mTimer;                   // _50

@@ -24,23 +24,19 @@ endif
 
 NAME := pikmin2
 VERSION ?= GPVE01
-#VERSION := GPVE01_D17
-
-# only GPVE01 and GPVE01_D17 are implemented right now --EpochFlame
 
 ifeq ($(VERSION), GPVE01)
-    VERNUM = 4
+    ASM_VERSION = 4
 else ifeq ($(VERSION), GPVE01_D17)
-    VERNUM = 0
+    ASM_VERSION = 0
 else ifeq ($(VERSION), GPVE01_D18)
-    VERNUM = 1
+    ASM_VERSION = 1
 else ifeq ($(VERSION), GPVJ01)
-    VERNUM = 2
+    ASM_VERSION = 2
 else ifeq ($(VERSION), GPVP01)
-    VERNUM = 3
-# default to usa retail
+    ASM_VERSION = 3
 else
-    VERNUM = 4
+    $(error Unsupported VERSION: $(VERSION))
 endif
 
 # Use the all-in-one updater after successful build? (Fails on non-windows platforms)
@@ -124,7 +120,7 @@ endif
 INCLUDES := -i include/ -i include/stl/
 ASM_INCLUDES := -I include/
 
-ASFLAGS := -mgekko $(ASM_INCLUDES) --defsym version=$(VERNUM)
+ASFLAGS := -mgekko $(ASM_INCLUDES) --defsym version=$(ASM_VERSION)
 ifeq ($(VERBOSE),1)
 # this set of LDFLAGS outputs warnings.
 LDFLAGS := $(MAPGEN) -fp hard -nodefaults
@@ -134,7 +130,7 @@ ifeq ($(VERBOSE),0)
 LDFLAGS := $(MAPGEN) -fp hard -nodefaults -w off
 endif
 LIBRARY_LDFLAGS := -nodefaults -fp hard -proc gekko
-CFLAGS  := -Cpp_exceptions off -enum int -inline auto -proc gekko -RTTI off -fp hard -fp_contract on -rostr -O4,p -use_lmw_stmw on -common on -multibyte -sdata 8 -sdata2 8 -nodefaults -MMD -DVERNUM=$(VERNUM) $(INCLUDES)
+CFLAGS  := -Cpp_exceptions off -enum int -inline auto -proc gekko -RTTI off -fp hard -fp_contract on -rostr -O4,p -use_lmw_stmw on -common on -multibyte -sdata 8 -sdata2 8 -nodefaults -MMD -DVERSION_$(VERSION) $(INCLUDES)
 
 ifeq ($(VERBOSE),0)
 # this set of ASFLAGS generates no warnings.

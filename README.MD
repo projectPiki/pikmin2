@@ -17,6 +17,9 @@ Supported versions:
 
 - `GPVE01`: USA Retail
 - `GPVE01_D17`: USA Demo 17
+- `GPVE01_D18`: USA Demo 18
+- `GPVP01`: PAL Retail
+- `GPVJ01`: JPN Retail
 
 Index
 -----
@@ -77,7 +80,16 @@ Building
   git clone https://github.com/projectPiki/pikmin2.git
   ```
 
-- Using [Dolphin Emulator](https://dolphin-emu.org/), extract your game's system data to `orig/GPVE01`. (Or `orig/GPVE01_D17` for demo)
+- Using [Dolphin Emulator](https://dolphin-emu.org/), extract your game's system data to the corresponding directory:
+
+  | Release | Directory | Configure option |
+  | --- | --- | --- |
+  | US | `orig/GPVE01` | Default |
+  | US demo 17 | `orig/GPVE01_D17` | `--version GPVE01_D17` |
+  | US demo 18 | `orig/GPVE01_D18` | `--version GPVE01_D18` |
+  | Japan | `orig/GPVJ01` | `--version GPVJ01` |
+  | Europe / PAL | `orig/GPVP01` | `--version GPVP01` |
+
   - Right-click the game in Dolphin's game list and select `Properties`.
   - Go to the `Filesystem` tab and right-click `Disc` -> `Extract System Data`.
 ![Dolphin filesystem extract](assets/dolphin-extract.png)
@@ -88,12 +100,14 @@ Building
   python configure.py
   ```
 
-  To use the demo version, add `--version GPVE01_D17`. Add `--help` to see all available options.
+  Select another release with the option above. Add `--help` to see all available options.
 - Build:
 
   ```sh
   ninja
   ```
+
+The US version built with `--non-matching` is, to the best of our knowledge, functionally equivalent, and builds completely from the C++ source files, meaning every file can be edited for modding. All PAL, JP and US demo files are also, to the best of our knowledge, functionally equivalent.
 
 Diffing
 -------

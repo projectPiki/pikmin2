@@ -30,9 +30,12 @@ void drawObjName(Graphics&, char*)
  */
 void getLanguageDir(char*& path)
 {
-	// UNUSED FUNCTION
 	if (LOCALIZED) {
+#if defined(VERSION_PAL)
+		switch (sys->getLanguage()) {
+#else
 		switch (sys->mRegion) {
+#endif
 		case System::LANG_English:
 			path = "eng/";
 			break;

@@ -1,4 +1,6 @@
 #include "Game/MoviePlayer.h"
+#include "Game/gameConfig.h"
+#include "Game/AIConstants.h"
 #include "Screen/Game2DMgr.h"
 #include "System.h"
 #include "types.h"
@@ -83,6 +85,18 @@ void FileState::exec(SingleGameSection* game)
 		mIsNotInitialized = false;
 
 	} else if (mMainHeap) {
+#if defined(VERSION_JP)
+		if (gGameConfig.mParms.mE3version.mData) {
+			playData->reset();
+			playData->setDevelopSetting(true, false);
+			playData->setDopeCount(SPRAY_TYPE_SPICY, 10);
+			playData->setDopeCount(SPRAY_TYPE_BITTER, 10);
+			game->mCurrentCourseInfo = stageList->getCourseInfo(1);
+			LoadArg arg(MapEnter_NewDay, false, true, false);
+			transit(game, SGS_Load, &arg);
+			return;
+		}
+#endif
 		if (particle2dMgr) {
 			particle2dMgr->update();
 		}
@@ -135,7 +149,11 @@ void FileState::startGame(SingleGameSection* game)
 		game->mDisplayWiper = game->mWipeInFader;
 		game->mWipeInFader->start(4.0f);
 		game->mCurrentCourseInfo = playData->getCurrentCourse();
+#if defined(VERSION_JP)
+		P2ASSERTLINE(464, game->mCurrentCourseInfo);
+#else
 		P2ASSERTLINE(469, game->mCurrentCourseInfo);
+#endif
 
 		u16 loadtype = MapEnter_CaveGeyser;
 		if (playData->mDeadNaviID & 1 && playData->mDeadNaviID & 2) {
@@ -171,7 +189,11 @@ void FileState::startGame(SingleGameSection* game)
 	}
 
 	default:
+#if defined(VERSION_JP)
+		JUT_PANICLINE(524, "unknown saveFlag (%d)\n", saveFlag);
+#else
 		JUT_PANICLINE(529, "unknown saveFlag (%d)\n", saveFlag);
+#endif
 	}
 }
 

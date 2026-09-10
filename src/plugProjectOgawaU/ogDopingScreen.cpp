@@ -229,12 +229,17 @@ void DopingScreen::openDopingKey()
  */
 DopingCheck::DopingCheck()
 {
-	mNaviLifeRatio    = 1.0f;
-	mFollowPiki       = 1;
-	mNextThrowPiki    = 2;
+	mNaviLifeRatio = 1.0f;
+	mFollowPiki    = 1;
+	mNextThrowPiki = 2;
+#if defined(VERSION_PAL)
+	mSpicySprayCount  = -1;
+	mBitterSprayCount = -1;
+#else
 	mSpicySprayCount  = 10;
 	mBitterSprayCount = 10;
-	mActiveNaviID     = 1;
+#endif
+	mActiveNaviID = 1;
 
 	// Inlined init?
 	mSpicyPane      = nullptr;
@@ -282,6 +287,15 @@ void DopingCheck::update()
 		mOldBitterCount = newBitterCount;
 		return;
 	}
+
+#if defined(VERSION_PAL)
+	if (newSpicyCount == 0xFFFFFFFF) {
+		return;
+	}
+	if (newBitterCount == 0xFFFFFFFF) {
+		return;
+	}
+#endif
 
 	if (og::newScreen::checkMovieActive()) {
 		mOldSpicyCount  = newSpicyCount;

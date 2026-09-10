@@ -106,7 +106,13 @@ BaseGameSection::BaseGameSection(JKRHeap* heap)
  */
 void BaseGameSection::useSpecificFBTexture(JUTTexture* texture)
 {
+#if defined(VERSION_PAL)
+	JUT_ASSERTLINE(1526, !mFbTexture, "２回は無理ｗ\n"); // 'it's impossible to do twice lol'
+#elif defined(VERSION_JP)
+	JUT_ASSERTLINE(1518, !mFbTexture, "２回は無理ｗ\n"); // 'it's impossible to do twice lol'
+#else
 	JUT_ASSERTLINE(1523, !mFbTexture, "２回は無理ｗ\n"); // 'it's impossible to do twice lol'
+#endif
 	mFbTexture                    = mXfbImage;
 	mXfbImage                     = texture;
 	Game::gameSystem->mXfbTexture = mXfbImage;
@@ -118,7 +124,13 @@ void BaseGameSection::useSpecificFBTexture(JUTTexture* texture)
  */
 void BaseGameSection::restoreFBTexture()
 {
+#if defined(VERSION_PAL)
+	JUT_ASSERTLINE(1536, mFbTexture, "useSpecificFBTexture してないｗ\n"); // 'i haven't used useSpecificFBTexture lol'
+#elif defined(VERSION_JP)
+	JUT_ASSERTLINE(1528, mFbTexture, "useSpecificFBTexture してないｗ\n"); // 'i haven't used useSpecificFBTexture lol'
+#else
 	JUT_ASSERTLINE(1533, mFbTexture, "useSpecificFBTexture してないｗ\n"); // 'i haven't used useSpecificFBTexture lol'
+#endif
 	mXfbImage                     = mFbTexture;
 	mFbTexture                    = nullptr;
 	Game::gameSystem->mXfbTexture = mXfbImage;
@@ -827,7 +839,13 @@ void BaseGameSection::initGenerators()
 		Vector3f position(-40.0f, 0.0f, 2.0f);
 		if (gameSystem->isVersusMode()) {
 			Onyon* redOnyon = ItemOnyon::mgr->getOnyon(Red);
+#if defined(VERSION_PAL)
+			P2ASSERTLINE(2742, redOnyon);
+#elif defined(VERSION_JP)
+			P2ASSERTLINE(2734, redOnyon);
+#else
 			P2ASSERTLINE(2739, redOnyon);
+#endif
 			position = redOnyon->getPosition();
 		} else {
 			if (!mapMgr->getDemoMatrix()) {
@@ -864,7 +882,13 @@ void BaseGameSection::initGenerators()
 		position    = Vector3f(-60.0f, 0.0f, -10.0f);
 		if (gameSystem->isVersusMode()) {
 			Onyon* blueOnyon = ItemOnyon::mgr->getOnyon(Blue);
+#if defined(VERSION_PAL)
+			P2ASSERTLINE(2794, blueOnyon);
+#elif defined(VERSION_JP)
+			P2ASSERTLINE(2786, blueOnyon);
+#else
 			P2ASSERTLINE(2791, blueOnyon);
+#endif
 			position = blueOnyon->getPosition();
 		} else {
 			if (!mapMgr->getDemoMatrix()) {
@@ -905,10 +929,22 @@ void BaseGameSection::initGenerators()
 	}
 
 	case 1:
+#if defined(VERSION_PAL)
+		JUT_PANICLINE(2856, "KESHIMASU!\n"); // erase?
+#elif defined(VERSION_JP)
+		JUT_PANICLINE(2848, "KESHIMASU!\n"); // erase?
+#else
 		JUT_PANICLINE(2853, "KESHIMASU!\n"); // erase?
+#endif
 		mapMgr->getMapRotation();
 		Vector3f offset(-60.0f, 0.0f, 2.0f);
+#if defined(VERSION_PAL)
+		JUT_ASSERTLINE(2862, mapMgr->getDemoMatrix(), "no demomatrix\n");
+#elif defined(VERSION_JP)
+		JUT_ASSERTLINE(2854, mapMgr->getDemoMatrix(), "no demomatrix\n");
+#else
 		JUT_ASSERTLINE(2859, mapMgr->getDemoMatrix(), "no demomatrix\n");
+#endif
 		Matrixf* mtx = mapMgr->getDemoMatrix();
 		Vector3f pos;
 		PSMTXMultVec(mtx->mMatrix.mtxView, (Vec*)&offset, (Vec*)&pos);
@@ -949,7 +985,13 @@ void BaseGameSection::advanceDayCount()
 
 void BaseGameSection::saveToGeneratorCache(CourseInfo* courseinfo)
 {
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(2926, courseinfo);
+#elif defined(VERSION_JP)
+	P2ASSERTLINE(2918, courseinfo);
+#else
 	P2ASSERTLINE(2923, courseinfo);
+#endif
 	generatorCache->beginSave(courseinfo->mCourseIndex);
 	FOREACH_NODE(Generator, generatorCache->getFirstGenerator(), node)
 	{
@@ -1070,7 +1112,13 @@ void BaseGameSection::onCameraBlendFinished(CameraArg* arg)
 	if (gameSystem->isStoryMode()) {
 		if (!playData->isDemoFlag(DEMO_First_Use_Louie) && playData->isDemoFlag(DEMO_Unlock_Captain_Switch)) {
 			Navi* louie = naviMgr->getAt(NAVIID_Louie);
+#if defined(VERSION_PAL)
+			JUT_ASSERTLINE(3091, louie, "louie null");
+#elif defined(VERSION_JP)
+			JUT_ASSERTLINE(3083, louie, "louie null");
+#else
 			JUT_ASSERTLINE(3088, louie, "louie null");
+#endif
 			MoviePlayArg louieStart("x05_louiestart", nullptr, nullptr, 0);
 			louieStart.setTarget(louie);
 			moviePlayer->mTargetObject = louie;
@@ -1185,8 +1233,20 @@ int BaseGameSection::getActivePlayerID()
  */
 void BaseGameSection::setDefaultPSSceneInfo(PSGame::SceneInfo& sceneInfo)
 {
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(3200, mOlimarCamera);
+#elif defined(VERSION_JP)
+	P2ASSERTLINE(3192, mOlimarCamera);
+#else
 	P2ASSERTLINE(3197, mOlimarCamera);
+#endif
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(3201, mLouieCamera);
+#elif defined(VERSION_JP)
+	P2ASSERTLINE(3193, mLouieCamera);
+#else
 	P2ASSERTLINE(3198, mLouieCamera);
+#endif
 
 	sceneInfo.mCameras                     = 2;
 	sceneInfo.mCam1Position[NAVIID_Olimar] = mOlimarCamera->getSoundPositionPtr();
@@ -2013,14 +2073,19 @@ void BaseGameSection::setupFixMemory_dvdload()
 
 	TParticle2dMgr::globalInstance();
 	particle2dMgr->createHeap(PARTICLE_MGR2D_HEAP_SIZE);
-	particle2dMgr->createMgr("user/Ebisawa/effect/eff2d_game2d.jpc", 0x1d4, 0x28, 0x80);
+#if defined(VERSION_PAL)
+	particle2dMgr->createMgr("user/Ebisawa/effect/eff2d_game2d.jpc", 0x1A0, 0x42, 0x80);
+#elif defined(VERSION_JP)
+	particle2dMgr->createMgr("user/Ebisawa/effect/eff2d_game2d.jpc", 0x1F4, 0x18, 0x80);
+#else
+	particle2dMgr->createMgr("user/Ebisawa/effect/eff2d_game2d.jpc", 0x1D4, 0x28, 0x80);
+#endif
 	addGenNode(particle2dMgr);
 
 	particleMgr->beginEntryModelEffect();
 	efx::OnyonSpotData* spot = new efx::OnyonSpotData;
 	spot->entry();
 	particleMgr->endEntryModelEffect();
-	// Instance_TPkEffectMgr isn't static, checked particleMgr.o
 	particleMgr->Instance_TPkEffectMgr();
 
 	sys->heapStatusEnd("particle");
@@ -3238,7 +3303,13 @@ lbl_801513A8:
  */
 void BaseGameSection::setDrawBuffer(int index)
 {
+#if defined(VERSION_PAL)
+	P2ASSERTBOUNDSLINE(5298, 0, index, 10);
+#elif defined(VERSION_JP)
+	P2ASSERTBOUNDSLINE(5290, 0, index, 10);
+#else
 	P2ASSERTBOUNDSLINE(5295, 0, index, 10);
+#endif
 	j3dSys.mDrawBuffer[0] = mOpaqueDrawBuffer->get(index)->mBuffer;
 	j3dSys.mDrawBuffer[1] = mTransparentDrawBuffer->get(index)->mBuffer;
 }

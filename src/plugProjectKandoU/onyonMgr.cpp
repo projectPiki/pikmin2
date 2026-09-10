@@ -48,7 +48,11 @@ void Onyon::movieUserCommand(u32 code, MoviePlayer* player)
 	case CC_MovieCommand1: // 0x64
 	case CC_MovieCommand6: // 0x69
 		if (!playData->hasBootContainer(mOnyonType)) {
+#if defined(VERSION_JP)
+			JUT_PANICLINE(531, "BIKKURI no boot!\n");
+#else
 			JUT_PANICLINE(534, "BIKKURI no boot!\n");
+#endif
 		}
 
 		// Redundant call
@@ -107,7 +111,11 @@ void Onyon::movieUserCommand(u32 code, MoviePlayer* player)
 				CI_LOOP(iterPiki)
 				{
 					Piki* piki = *iterPiki;
+#if defined(VERSION_JP)
+					if (piki->isAlive()) {
+#else
 					if (piki->isAlive() && !piki->isZikatu()) {
+#endif
 						f32 curDist = piki->calcSphereDistance(this);
 						if (curDist > maxDist) {
 							maxDist    = curDist;
@@ -133,7 +141,11 @@ void Onyon::movieUserCommand(u32 code, MoviePlayer* player)
 				newSprout->movie_begin(false);
 				doEmit(newSprout, true);
 			} else {
+#if defined(VERSION_JP)
+				JUT_PANICLINE(631, "onyon supply failure!\n");
+#else
 				JUT_PANICLINE(641, "onyon supply failure!\n");
+#endif
 			}
 		}
 		break;
@@ -246,15 +258,27 @@ void Onyon::setType(int type)
 		mUfoPodOpen = new ::efx::TUfoPodOpen(jnt->getWorldMatrix()->mMatrix.mtxView);
 
 		jnt = mModel->getJoint("in1");
+#if defined(VERSION_JP)
+		P2ASSERTLINE(772, jnt);
+#else
 		P2ASSERTLINE(782, jnt);
+#endif
 		mUfoGasIn = new ::efx::TUfoGasIn(jnt->getWorldMatrix());
 		jnt       = mModel->getJoint("out");
+#if defined(VERSION_JP)
+		P2ASSERTLINE(774, jnt);
+#else
 		P2ASSERTLINE(784, jnt);
+#endif
 		mUfoGasOut = new ::efx::TUfoGasOut(jnt->getWorldMatrix());
 
 	} else if (mOnyonType == ONYON_TYPE_POD) {
 		jnt = mModel->getJoint("pot_ctr");
+#if defined(VERSION_JP)
+		P2ASSERTLINE(778, jnt);
+#else
 		P2ASSERTLINE(788, jnt);
+#endif
 		mPodOpenA = new ::efx::TPodOpenA;
 		mPodOpenB = new ::efx::TPodOpenB(jnt->getWorldMatrix());
 		mPodSpot  = new ::efx::TPodSpot(&mPosition, &mFaceDir);
@@ -326,7 +350,11 @@ bool InteractSuckArrive::actOnyon(Onyon* item)
 		}
 
 		if (item->mSuckState == Onyon::SUCKSTATE_Closing) {
+#if defined(VERSION_JP)
+			JUT_PANICLINE(849, "damedayo !: arrive  ufoSuckState=%d\n", item->mSuckState);
+#else
 			JUT_PANICLINE(859, "damedayo !: arrive  ufoSuckState=%d\n", item->mSuckState);
+#endif
 		}
 	}
 
@@ -379,7 +407,11 @@ bool InteractSuckDone::actOnyon(Onyon* item)
 		return false;
 	}
 
+#if defined(VERSION_JP)
+	P2ASSERTLINE(889, mCreature->isPellet());
+#else
 	P2ASSERTLINE(899, mCreature->isPellet());
+#endif
 	Pellet* pellet = static_cast<Pellet*>(mCreature);
 
 	if (item->mOnyonType <= ONYON_TYPE_YELLOW) {
@@ -1007,11 +1039,19 @@ void Onyon::initTube()
 		part->mPartType = COLLTYPE_TUBE;
 	}
 	if (!part) {
+#if defined(VERSION_JP)
+		JUT_PANICLINE(1675, "bikkuri!\n");
+#else
 		JUT_PANICLINE(1685, "bikkuri!\n");
+#endif
 	}
 
 	part = mCollTree->getCollPart('fot1');
+#if defined(VERSION_JP)
+	JUT_ASSERTLINE(1680, part, "I\'am bikkuri-ed\n");
+#else
 	JUT_ASSERTLINE(1690, part, "I\'am bikkuri-ed\n");
+#endif
 }
 
 /**
@@ -1112,7 +1152,11 @@ void Onyon::onKeyEvent(const SysShape::KeyEvent& event)
  */
 void Onyon::vsChargePikmin()
 {
+#if defined(VERSION_JP)
+	P2ASSERTLINE(1781, gameSystem->isVersusMode());
+#else
 	P2ASSERTLINE(1791, gameSystem->isVersusMode());
+#endif
 	mPikminType = mOnyonType;
 	mToBirth++;
 	int animid = mAnimator.getAnimIndex();
@@ -1253,7 +1297,11 @@ void Onyon::doEmit(Creature* seed, bool isSetAngle)
  */
 CollPart* Onyon::getLegPart(int id)
 {
+#if defined(VERSION_JP)
+	P2ASSERTBOUNDSINCLUSIVELINE(1995, 0, id, 2);
+#else
 	P2ASSERTBOUNDSINCLUSIVELINE(2005, 0, id, 2);
+#endif
 
 	u32 tags[3] = { 'leg1', 'leg2', 'leg3' };
 	return mCollTree->getCollPart(tags[id]);
@@ -1265,11 +1313,19 @@ CollPart* Onyon::getLegPart(int id)
  */
 CollPart* Onyon::getFootPart(int id)
 {
+#if defined(VERSION_JP)
+	P2ASSERTBOUNDSINCLUSIVELINE(2004, 0, id, 2);
+#else
 	P2ASSERTBOUNDSINCLUSIVELINE(2014, 0, id, 2);
+#endif
 
 	u32 tags[3]    = { 'fot1', 'fot2', 'fot3' };
 	CollPart* part = mCollTree->getCollPart(tags[id]);
+#if defined(VERSION_JP)
+	JUT_ASSERTLINE(2010, part, "oh! no!\n"); // oh no! indeed
+#else
 	JUT_ASSERTLINE(2020, part, "oh! no!\n"); // oh no! indeed
+#endif
 	return part;
 }
 
@@ -1545,7 +1601,11 @@ Creature* Onyon::exitPiki()
 			if ((int)mPurplesToWithdraw > 0) {
 				color = Purple;
 			} else {
+#if defined(VERSION_JP)
+				JUT_PANICLINE(2286, "exitWhite/Black zero (UFO)\n");
+#else
 				JUT_PANICLINE(2296, "exitWhite/Black zero (UFO)\n");
+#endif
 			}
 		}
 	}
@@ -1574,7 +1634,11 @@ Creature* Onyon::exitPiki()
 			} else if (color == Purple) {
 				mPurplesToWithdraw--;
 			}
+#if defined(VERSION_JP)
+			P2ASSERTLINE(2328, piki);
+#else
 			P2ASSERTLINE(2338, piki);
+#endif
 
 			int& count = playData->mPikiContainer.getCount(color, happa);
 			count--;
@@ -1708,7 +1772,11 @@ Vector3f Onyon::getInEnd_UFO()
 	if (mPikiInJoint) {
 		return getJointPosition(mPikiInJoint); // this is necessary to make the stack line up for both this and the next function
 	} else {
+#if defined(VERSION_JP)
+		JUT_PANICLINE(2535, "not ufo\n");
+#else
 		JUT_PANICLINE(2545, "not ufo\n");
+#endif
 		return Vector3f::zero;
 	}
 }
@@ -1737,7 +1805,11 @@ Vector3f Onyon::getOutStart_UFO()
 	if (mPikiOutJoint) {
 		return getJointPosition(mPikiOutJoint);
 	} else {
+#if defined(VERSION_JP)
+		JUT_PANICLINE(2559, "だめです");
+#else
 		JUT_PANICLINE(2569, "だめです");
+#endif
 		return Vector3f::zero;
 	}
 }
@@ -1784,7 +1856,11 @@ void Onyon::init_pmotions()
 f32& Onyon::getPMotionSpeed(int i)
 {
 	bool check = (0 <= i && i < mPMotionCount);
+#if defined(VERSION_JP)
+	P2ASSERTLINE(2593, check);
+#else
 	P2ASSERTLINE(2603, check);
+#endif
 	return mPMotionSpeeds[i];
 }
 
@@ -1795,7 +1871,11 @@ f32& Onyon::getPMotionSpeed(int i)
 SysShape::Animator& Onyon::getPAnimator(int i)
 {
 	bool check = (0 <= i && i < mPMotionCount);
+#if defined(VERSION_JP)
+	P2ASSERTLINE(2599, check);
+#else
 	P2ASSERTLINE(2609, check);
+#endif
 	return mPMotionList[i];
 }
 
@@ -1816,7 +1896,11 @@ void Onyon::update_pmotions()
 			if (jnt) {
 				panim.setModelCalc(mModel, jnt->mJointIndex);
 			} else {
+#if defined(VERSION_JP)
+				JUT_PANICLINE(2633, "no joint (%s)\n", names[i]);
+#else
 				JUT_PANICLINE(2643, "no joint (%s)\n", names[i]);
+#endif
 			}
 		}
 	}
@@ -2060,7 +2144,11 @@ Onyon* ItemOnyon::Mgr::getOnyon(int i)
 	if (i >= 0 && i < ONYON_TYPE_MAX) {
 		return mOnyons[i];
 	} else {
+#if defined(VERSION_JP)
+		JUT_PANICLINE(2920, "illegal onyon index %d\n", i);
+#else
 		JUT_PANICLINE(2930, "illegal onyon index %d\n", i);
+#endif
 		return nullptr;
 	}
 }
@@ -2092,7 +2180,11 @@ void ItemOnyon::Mgr::load()
 	sys->heapStatusEnd("onyon-arc");
 
 	void* file = JKRFileLoader::getGlbResource("goal.bmd", nullptr);
+#if defined(VERSION_JP)
+	JUT_ASSERTLINE(2956, file, "goal.bmd not found !!\n");
+#else
 	JUT_ASSERTLINE(2966, file, "goal.bmd not found !!\n");
+#endif
 	mModelData[0] = J3DModelLoaderDataBase::load(file, J3DMLF_UseUniqueMaterials | J3DMLF_UseSingleSharedDL);
 
 	JKRArchive* podarc = nullptr;
@@ -2107,7 +2199,11 @@ void ItemOnyon::Mgr::load()
 		}
 
 		file = JKRFileLoader::getGlbResource("pot.bmd", nullptr);
+#if defined(VERSION_JP)
+		JUT_ASSERTLINE(2988, file, "pot.bmd not found !!\n");
+#else
 		JUT_ASSERTLINE(2998, file, "pot.bmd not found !!\n");
+#endif
 		J3DModelData* modelDataPod = J3DModelLoaderDataBase::load(file, J3DMLF_UsePostTexMtx | J3DMLF_UseImmediateMtx);
 		mModelData[1]              = modelDataPod;
 		mModelData[1]->newSharedDisplayList(J3DMLF_UseSingleSharedDL);
@@ -2162,7 +2258,11 @@ void ItemOnyon::Mgr::load()
 		ufoarc = nullptr;
 	}
 	file = JKRFileLoader::getGlbResource("ufo.bmd", nullptr);
+#if defined(VERSION_JP)
+	JUT_ASSERTLINE(3113, file, "ufo.bmd not found!\n");
+#else
 	JUT_ASSERTLINE(3123, file, "ufo.bmd not found!\n");
+#endif
 	J3DModelData* modelDataUfo = J3DModelLoaderDataBase::load(file, J3DMLF_Material_PE_FogOff | J3DMLF_Material_UseIndirect | J3DMLF_18
 	                                                                    | J3DMLF_UsePostTexMtx | J3DMLF_UseImmediateMtx);
 	mModelData[2]              = modelDataUfo;
@@ -2176,11 +2276,19 @@ void ItemOnyon::Mgr::load()
 	SysShape::Model::enableMaterialAnim(mModelData[2], 0);
 
 	file = JKRFileLoader::getGlbResource("ufo.brk", nullptr);
+#if defined(VERSION_JP)
+	P2ASSERTLINE(3141, file);
+#else
 	P2ASSERTLINE(3151, file);
+#endif
 	mUfoTevAnim[0].attachResource(file, mModelData[2]);
 
 	file = JKRFileLoader::getGlbResource("ufo_2.brk", nullptr);
+#if defined(VERSION_JP)
+	P2ASSERTLINE(3146, file);
+#else
 	P2ASSERTLINE(3156, file);
+#endif
 	mUfoTevAnim[1].attachResource(file, mModelData[2]);
 
 	if (playData->isStoryFlag(STORY_DebtPaid)) {

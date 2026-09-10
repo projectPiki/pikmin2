@@ -30,6 +30,9 @@ struct TOptionParameter {
 		mBgmVolume    = 0;
 		mSeVolume     = 0;
 		mUseDeflicker = false;
+#if defined(VERSION_PAL)
+		mLanguage = 0;
+#endif
 	}
 	void initParamForTest();
 	void loadRam();
@@ -41,6 +44,9 @@ struct TOptionParameter {
 	s32 mBgmVolume;     // _08
 	s32 mSeVolume;      // _0C
 	bool mUseDeflicker; // _10
+#if defined(VERSION_PAL)
+	s32 mLanguage; // _14, option index: English, Italian, French, Spanish, German (0-4)
+#endif
 };
 
 struct TOption : public TScreenBase {
@@ -96,41 +102,57 @@ struct TOption : public TScreenBase {
 
 	// _00     = VTBL
 	// _00-_08 = TScreenBase
-	Controller* mController;                   // _00C
-	u8 mEnabled;                               // _010
-	EUTPadInterface_countNum mInputBgmVol;     // _014
-	EUTPadInterface_countNum mInputSfxVol;     // _040
-	EUTPadInterface_countNum mInputStereo;     // _06C
-	EUTPadInterface_countNum mInputMainSel;    // _098
-	int mExitStatus;                           // _0C4
-	TOptionParameter mOptionParamA;            // _0C8
-	TOptionParameter mOptionParamB;            // _0DC
-	JUtility::TColor mColor;                   // _0F0
-	u8 mAlpha;                                 // _0F4
-	int mState;                                // _0F8
-	u32 mCounterOpen;                          // _0FC
-	u32 mCounterOpenMax;                       // _100
-	s32 mCurrMainSelection;                    // _104
-	s32 mNextSelection;                        // _108
-	P2DScreen::Mgr_tuning* mMainScreen;        // _10C
-	J2DTextBox* mPaneRumbleYes;                // _110
-	J2DTextBox* mPaneRumbleNo;                 // _114
-	J2DTextBox* mPaneSoundType[3];             // _118, 0 = mono, 1 = stereo, 2 = surround
-	J2DTextBox* mPaneDeflickerYes;             // _124
-	J2DTextBox* mPaneDeflickerNo;              // _128
-	J2DPane* mPaneSfxVolume[10];               // _12C
-	J2DPane* mPaneBgmVolume[10];               // _154
-	J2DPane* mDeflickerScreen;                 // _17C
-	J2DPane* mOptionPanes[10];                 // _180, this might be a smaller array
-	J2DPane* mButtonPaneList[7];               // _1A8
-	E2DFullFontColor mFontColorActiveSel;      // _1C4
-	E2DFullFontColor mFontColorInactiveSel;    // _1D4
-	E2DCallBack_AnmBase mAnimOpenScreen;       // _1E4
-	E2DCallBack_CalcAnimation mAnimCalc;       // _220
-	E2DCallBack_BlinkFontColor mBlinkColor;    // _240
-	E2DCallBack_BlinkAlpha mBlinkAlphaA;       // _28C
-	E2DCallBack_BlinkAlpha mBlinkAlphaB;       // _2BC
-	E2DCallBack_Purupuru mButtonPuruAnim[7];   // _2EC
+	Controller* mController;                // _00C
+	u8 mEnabled;                            // _010
+	EUTPadInterface_countNum mInputBgmVol;  // _014
+	EUTPadInterface_countNum mInputSfxVol;  // _040
+	EUTPadInterface_countNum mInputStereo;  // _06C
+	EUTPadInterface_countNum mInputMainSel; // _098
+#if defined(VERSION_PAL)
+	EUTPadInterface_countNum mInputLanguage; // _0C4
+#endif
+	int mExitStatus;                    // _0C4
+	TOptionParameter mOptionParamA;     // _0C8
+	TOptionParameter mOptionParamB;     // _0DC
+	JUtility::TColor mColor;            // _0F0
+	u8 mAlpha;                          // _0F4
+	int mState;                         // _0F8
+	u32 mCounterOpen;                   // _0FC
+	u32 mCounterOpenMax;                // _100
+	s32 mCurrMainSelection;             // _104
+	s32 mNextSelection;                 // _108
+	P2DScreen::Mgr_tuning* mMainScreen; // _10C
+#if defined(VERSION_PAL)
+	J2DPane* mPaneLanguage[5]; // _144 (Pe, Pi, Pf, Ps, Pg)
+#endif
+#if defined(VERSION_JP)
+	J2DTextBox* mPaneRubyYes; // _110, Tfri_y
+	J2DTextBox* mPaneRubyNo;  // _114, Tfri_n
+#endif
+	J2DTextBox* mPaneRumbleYes;             // _110
+	J2DTextBox* mPaneRumbleNo;              // _114
+	J2DTextBox* mPaneSoundType[3];          // _118, 0 = mono, 1 = stereo, 2 = surround
+	J2DTextBox* mPaneDeflickerYes;          // _124
+	J2DTextBox* mPaneDeflickerNo;           // _128
+	J2DPane* mPaneSfxVolume[10];            // _12C
+	J2DPane* mPaneBgmVolume[10];            // _154
+	J2DPane* mDeflickerScreen;              // _17C
+	J2DPane* mOptionPanes[10];              // _180, this might be a smaller array
+	J2DPane* mButtonPaneList[7];            // _1A8
+	E2DFullFontColor mFontColorActiveSel;   // _1C4
+	E2DFullFontColor mFontColorInactiveSel; // _1D4
+	E2DCallBack_AnmBase mAnimOpenScreen;    // _1E4
+	E2DCallBack_CalcAnimation mAnimCalc;    // _220
+	E2DCallBack_BlinkFontColor mBlinkColor; // _240
+	E2DCallBack_BlinkAlpha mBlinkAlphaA;    // _28C
+	E2DCallBack_BlinkAlpha mBlinkAlphaB;    // _2BC
+#if defined(VERSION_PAL)
+	E2DCallBack_Purupuru mButtonPuruAnim[12]; // _334
+#elif defined(VERSION_JP)
+	E2DCallBack_Purupuru mButtonPuruAnim[9]; // _2F4
+#else
+	E2DCallBack_Purupuru mButtonPuruAnim[7]; // _2EC
+#endif
 	E2DCallBack_Purupuru mBgmSelPuruAnimA[10]; // _4AC
 	E2DCallBack_Purupuru mBgmSelPuruAnimB[10]; // _72C
 	E2DCallBack_Purupuru mSfxSelPuruAnimA[10]; // _9AC

@@ -1,4 +1,6 @@
 #include "BootSection.h"
+#include "P2JME/SimpleMessage.h"
+#include "JSystem/J2D/J2DPrint.h"
 #include "TinyPikmin.h"
 #include "TinyPikminMgr.h"
 #include "System.h"
@@ -271,7 +273,13 @@ void TinyPikmin::drawPikmin(f32 xScale, f32 yScale, f32 xPosition, f32 yPosition
  */
 TinyPikminMgr::TinyPikminMgr()
 {
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(748, !sTinyPikminMgr);
+#elif defined(VERSION_JP)
+	P2ASSERTLINE(705, !sTinyPikminMgr);
+#else
 	P2ASSERTLINE(731, !sTinyPikminMgr);
+#endif
 	sTinyPikminMgr = this;
 
 	int pikis;
@@ -310,7 +318,13 @@ void TinyPikminMgr::loadResource(JKRArchive* arc)
 		char buf[PATH_MAX];
 		sprintf(buf, "timg/%s", pikipaths[i]);
 		ResTIMG* file = static_cast<ResTIMG*>(arc->getResource(buf));
-		JUT_ASSERTLINE(786, file, buf); // 1031 in demo 1?
+#if defined(VERSION_PAL)
+		JUT_ASSERTLINE(803, file, buf);
+#elif defined(VERSION_JP)
+		JUT_ASSERTLINE(760, file, buf);
+#else
+		JUT_ASSERTLINE(786, file, buf);
+#endif
 		JUTTexture* tex              = new JUTTexture(file);
 		TinyPikminMgr::sPikminTex[i] = new J2DPicture(tex);
 		TinyPikminMgr::sPikminTex[i]->setBasePosition(J2DPOS_BottomCenter);
@@ -436,6 +450,11 @@ BootSection::BootSection(JKRHeap* heap)
     , mProgressiveActive(false)
     , mDoOpenProgressive(false)
     , mLogoShakeStrength(0.0f)
+#if defined(VERSION_PAL)
+    , mTVModeMessage(nullptr)
+    , mTVModeSelection(0)
+    , mTVModeAlpha(255)
+#endif
 {
 	sBootSection = this;
 
@@ -489,17 +508,44 @@ void BootSection::init()
 void BootSection::loadBootResource()
 {
 	mDisplayHeap->becomeCurrentHeap();
+#if defined(VERSION_PAL)
+	JKRArchive* arc = JKRMountArchive("/user/yamashita/arc/boot_pal.szs", JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
+#elif defined(VERSION_JP)
+	JKRArchive* arc = JKRMountArchive("/user/yamashita/arc/boot_jp.szs", JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
+#else
 	JKRArchive* arc = JKRMountArchive("/user/yamashita/arc/boot_us.szs", JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
+#endif
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(1042, arc);
+#elif defined(VERSION_JP)
+	P2ASSERTLINE(999, arc);
+#else
 	P2ASSERTLINE(1025, arc);
+#endif
 
 	ResTIMG* file = JKRGetImageResource("/data/timg/nintendo_376x104.bti");
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(1048, file);
+#elif defined(VERSION_JP)
+	P2ASSERTLINE(1005, file);
+#else
 	P2ASSERTLINE(1031, file);
+#endif
 	mNintendoLogoTexture = new JUTTexture(file);
 
 	file = JKRGetImageResource("/data/timg/dolby_mark.bti");
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(1051, file);
+#elif defined(VERSION_JP)
+	P2ASSERTLINE(1008, file);
+#else
 	P2ASSERTLINE(1034, file);
+#endif
 	mDolbyMarkTexture = new JUTTexture(file);
 
+#if defined(VERSION_PAL) || defined(VERSION_JP)
+	// PAL and JP have no warning
+#else
 	file = JKRGetImageResource("/data/timg/warning.bti");
 	P2ASSERTLINE(1039, file);
 	mWarningTexture = new JUTTexture(file);
@@ -507,6 +553,7 @@ void BootSection::loadBootResource()
 	file = JKRGetImageResource("/data/timg/warning_pstart.bti");
 	P2ASSERTLINE(1042, file);
 	mWarningPressStartTexture = new JUTTexture(file);
+#endif
 
 	// the iterator in here is causing a regswap
 	sTinyPikminMgr->loadResource(arc);
@@ -579,11 +626,20 @@ void BootSection::doDraw(Graphics& gfx)
 	case SID_LoadMemoryCard:
 	case SID_InitNintendoLogo:
 	case SID_FadeInNintendoLogo:
-		drawEpilepsy(gfx); // drawNintendoLogo in USA Demo 1
+#if defined(VERSION_US)
+		drawEpilepsy(gfx);
+#else
+		drawNintendoLogo(gfx);
+#endif
 		break;
 	case SID_NintendoLogo:
 		drawNintendoLogo(gfx);
 		break;
+#if defined(VERSION_PAL)
+	case SID_SelectTVMode:
+		drawSelectTVMode(gfx);
+		break;
+#endif
 	case SID_WaitProgressive:
 		drawProgressive(gfx);
 		drawScreenProgre(gfx);
@@ -650,7 +706,11 @@ void BootSection::drawNintendoLogo(Graphics& gfx)
 
 	J2DPicture pic(mNintendoLogoTexture);
 	JUtility::TColor color;
+#if defined(VERSION_PAL)
+	if (sys->getLanguage() == System::LANG_Japanese) {
+#else
 	if (sys->mRegion == System::LANG_Japanese) {
+#endif
 		color.set(NINTENDOLOGO_COLOR_JP);
 	} else {
 		color.set(NINTENDOLOGO_COLOR_US);
@@ -681,6 +741,7 @@ void BootSection::drawDolbyLogo(Graphics& gfx)
  * @note Address: 0x80448E84
  * @note Size: 0x188
  */
+#if defined(VERSION_US)
 void BootSection::drawEpilepsy(Graphics& gfx)
 {
 	// Note: This function is completely missing in all(?) versions of the game besides USA final
@@ -701,6 +762,7 @@ void BootSection::drawEpilepsy(Graphics& gfx)
 		pic2.draw(0.0f, 360.0f, 608.0f, 48.0f, false, false, false);
 	}
 }
+#endif
 
 /**
  * @note Address: N/A
@@ -729,6 +791,11 @@ bool BootSection::doUpdate()
 	case SID_NintendoLogo:
 		updateNintendoLogo();
 		break;
+#if defined(VERSION_PAL)
+	case SID_SelectTVMode:
+		updateSelectTVMode();
+		break;
+#endif
 	case SID_WaitProgressive:
 		updateProgressive();
 		break;
@@ -757,7 +824,11 @@ bool BootSection::doUpdate()
 				VIFlush();
 				VIWaitForRetrace();
 				VIWaitForRetrace();
+#if defined(VERSION_PAL)
+				sys->changeRenderMode(System::RM_PAL_60Hz);
+#else
 				sys->changeRenderMode(System::RM_NTSC_Progressive);
+#endif
 			}
 			break;
 		}
@@ -780,11 +851,22 @@ bool BootSection::doUpdate()
 			if (mProgressiveScreen->isFinish()) {
 				mFadeTimer = 0.0f;
 				setMode(SID_DolbyLogo);
+#if defined(VERSION_PAL)
+				sys->changeRenderMode(System::RM_PAL_Standard);
+#else
 				sys->changeRenderMode(System::RM_NTSC_Standard);
+#endif
 			}
 			break;
 		}
 		break;
+#if defined(VERSION_US_DEMO) || defined(VERSION_PAL) || defined(VERSION_JP)
+	case SID_InitNintendoLogo:
+		// only US has to handle the epilepsy warning fadeout thing
+		setMode(SID_NintendoLogo);
+		mPikiMgr->appear();
+		break;
+#else
 	case SID_InitNintendoLogo:
 		if ((mController->getButton() & Controller::PRESS_B) && VIGetDTVStatus() == 1) {
 			mDoOpenProgressive = true;
@@ -812,7 +894,7 @@ bool BootSection::doUpdate()
 			break;
 		}
 		break;
-	case SID_FadeInNintendoLogo:
+	case SID_FadeInNintendoLogo: {
 		if (mDisplay->mFader->mStatus == 0) {
 			setMode(SID_NintendoLogo);
 			mPikiMgr->appear();
@@ -822,6 +904,8 @@ bool BootSection::doUpdate()
 			scene->startGlobalStream(P2_STREAM_SOUND_ID(PSSTR_PIKMIN_GREET));
 		}
 		break;
+	}
+#endif
 	case SID_DolbyLogo:
 		fader = mDisplay->mFader;
 		switch (fader->mStatus) {
@@ -865,14 +949,23 @@ void BootSection::updateLoadResourceFirst()
 		if (Game::gGameConfig.mParms.mNintendoVersion.mData) {
 			sys->mPlayData->mIsRumble = false;
 		} else if (!Game::gGameConfig.mParms.mE3version.mData) {
+#if defined(VERSION_PAL)
+			sys->mCardMgr->loadGameOption(true);
+#else
 			sys->mCardMgr->loadGameOption();
+#endif
 		}
-		// THIS IS ALL FOR DEMO 1
-#if BUILDTARGET == USADEMO1
+#if defined(VERSION_US_DEMO) || defined(VERSION_PAL) || defined(VERSION_JP)
 		PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
 		PSSystem::validateSceneMgr(mgr);
 		PSM::Scene_Global* scene = static_cast<PSM::Scene_Global*>(mgr->mScenes);
+#if defined(VERSION_PAL)
+		P2ASSERTLINE(1748, scene);
+#elif defined(VERSION_JP)
+		P2ASSERTLINE(1680, scene);
+#else
 		P2ASSERTLINE(1723, scene);
+#endif
 		scene->startGlobalStream(P2_STREAM_SOUND_ID(PSSTR_PIKMIN_GREET));
 #endif
 		setMode(SID_LoadMemoryCard);
@@ -890,7 +983,13 @@ void BootSection::updateLoadMemoryCard()
 	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
 	PSSystem::validateSceneMgr(mgr);
 	PSM::Scene_Global* scene = static_cast<PSM::Scene_Global*>(mgr->mScenes);
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(1773, scene);
+#elif defined(VERSION_JP)
+	P2ASSERTLINE(1704, scene);
+#else
 	P2ASSERTLINE(1748, scene);
+#endif
 	JAISound* handle = *(scene->getGlobalStream()->getHandleP());
 
 	if (sys->mCardMgr->isSaveInvalid() && !handle) {
@@ -908,6 +1007,35 @@ void BootSection::updateLoadMemoryCard()
  */
 void BootSection::updateNintendoLogo()
 {
+#if defined(VERSION_PAL)
+	int lastMode = mStateID;
+	if (!sys->isFlag(System::SF_RestoredRenderMode) || !sys->isFlag(System::SF_TVModeSelected)) {
+		mDoOpenProgressive = true;
+	}
+	if (mDoOpenProgressive && mChangeStateID != SID_WaitProgressive && !mProgressiveActive) {
+		mChangeStateID = SID_SelectTVMode;
+	}
+	mFadeTimer += sys->mDeltaTime;
+	if (mFadeTimer > 1.5f && !waitLoadResource()) {
+		if (!mProgressiveActive) {
+			mProgressiveActive = true;
+		}
+		if (mChangeStateID != SID_SelectTVMode) {
+			mChangeStateID = SID_DolbyLogo;
+		}
+		JUTFader* fader = mDisplay->mFader;
+		if (fader->mStatus == JUTFader::Status_In) {
+			fader->startFadeOut(getFadeSpeed());
+		}
+		if (mDisplay->mFader->mStatus == JUTFader::Status_Out) {
+			setMode(mChangeStateID);
+			mFadeTimer = 0.0f;
+		}
+	}
+	if (mStateID != lastMode) {
+		sys->dvdLoadUseCallBack(&mThreadCommand, mButtonCallback);
+	}
+#else
 	int lastMode = mStateID;
 	if (!Game::gGameConfig.mParms.mNintendoVersion.mData && sys->mRenderMode != System::RM_NTSC_Progressive) {
 		if ((OSGetProgressiveMode() == OS_PROGRESSIVE_MODE_ON || mController->getButton() & Controller::PRESS_B) && VIGetDTVStatus() == 1) {
@@ -951,6 +1079,7 @@ void BootSection::updateNintendoLogo()
 	if (mStateID != lastMode) {
 		sys->dvdLoadUseCallBack(&mThreadCommand, mButtonCallback);
 	}
+#endif
 }
 
 /**
@@ -992,7 +1121,11 @@ void BootSection::updateProgressive()
 void BootSection::updateWaitProgressive()
 {
 	mFadeTimer += 1.0f;
+#if defined(VERSION_PAL)
+	if (mFadeTimer > 100.0f) {
+#else
 	if (mFadeTimer > 150.0f) {
+#endif
 		VISetBlack(FALSE);
 		VIFlush();
 		VIWaitForRetrace();
@@ -1096,3 +1229,173 @@ void BootSection::setModeEpilepsy()
 {
 	setMode(SID_InitNintendoLogo);
 }
+
+#if defined(VERSION_PAL)
+/**
+ * @note Address: 0x80449F74 (PAL)
+ * @note Size: 0x3E8
+ * @note Fabricated name. Guess based on what it does.
+ */
+void BootSection::updateSelectTVMode()
+{
+	switch (mTVModeState) {
+	case 0: {
+		JUTFader* fader = mDisplay->mFader;
+		switch (fader->mStatus) {
+		case JUTFader::Status_Out: {
+			fader->startFadeIn(0.5f / sys->mDeltaTime);
+			JKRHeap* previousHeap = JKRGetCurrentHeap();
+			mDisplayHeap->becomeCurrentHeap();
+			mFadeTimer     = 0.0f;
+			mTVModeMessage = new P2JME::SimpleMessage;
+			mTVModeMessage->init();
+			if (OSGetEuRgb60Mode() == 1) {
+				mTVModeSelection = 0;
+			} else {
+				mTVModeSelection = 1;
+			}
+			mTVModeAlpha = 255;
+			previousHeap->becomeCurrentHeap();
+			break;
+		}
+		case JUTFader::Status_In: {
+			mFadeTimer += sys->mDeltaTime;
+			int previousSelection = mTVModeSelection;
+			mTVModeSelection
+			    += (int)mController->isButtonDown(Controller::ANALOG_RIGHT) - (mController->isButtonDown(Controller::ANALOG_LEFT) != false);
+			if (mTVModeSelection < 0) {
+				mTVModeSelection = 0;
+			} else if (mTVModeSelection > 1) {
+				mTVModeSelection = 1;
+			}
+			if (previousSelection != mTVModeSelection) {
+				PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CURSOR, 0);
+			}
+			if ((mController->getButtonDown() & Controller::PRESS_A) || mFadeTimer > 10.0f) {
+				mFadeTimer = 10.0f;
+				PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_DECIDE, 0);
+				mTVModeState = 1;
+			}
+			break;
+		}
+		}
+		break;
+	}
+	case 1:
+		if (mTVModeAlpha > 25) {
+			mTVModeAlpha -= 25;
+		} else {
+			mTVModeAlpha = 0;
+			mFadeTimer   = 0.0f;
+			mTVModeState = 2;
+		}
+		break;
+	case 2:
+		mFadeTimer += sys->mDeltaTime;
+		if (mFadeTimer > 2.0f || (mController->getButtonDown() & Controller::PRESS_A)) {
+			mTVModeState = 3;
+			mDisplay->mFader->startFadeOut(getFadeSpeed());
+		}
+		break;
+	case 3:
+		if (mDisplay->mFader->mStatus == JUTFader::Status_Out) {
+			mFadeTimer = 0.0f;
+			if (mTVModeSelection == 0) {
+				setMode(SID_UpdateWaitProgressive);
+				VISetBlack(TRUE);
+				VIFlush();
+				VIWaitForRetrace();
+				VIWaitForRetrace();
+				sys->changeRenderMode(System::RM_PAL_60Hz);
+			} else {
+				setMode(SID_DolbyLogo);
+				sys->changeRenderMode(System::RM_PAL_Standard);
+			}
+			// record that the TV mode selection has finished
+			sys->setFlag(System::SF_TVModeSelected);
+		}
+		break;
+	default:
+		JUT_PANICLINE(2313, "Unknown mode");
+	}
+}
+
+/**
+ * @note Address: 0x8044A35C (PAL)
+ * @note Size: 0x600
+ * @note Fabricated name. Guess based on what it does.
+ */
+void BootSection::drawSelectTVMode(Graphics& gfx)
+{
+	gfx.mOrthoGraph.setPort();
+	if (mTVModeMessage) {
+		u8 alpha                         = mTVModeAlpha;
+		P2JME::TRenderingProcessor* proc = mTVModeMessage->mProcessor;
+		proc->mActiveLineHeight          = 26.0f;
+		proc->mLineHeight                = 26.0f;
+		JUtility::TColor promptColor(255, 255, 255, alpha);
+		JUtility::TColor resultColor(255, 255, 255, 255 - alpha);
+		JUtility::TColor selectedColor(255, 255, 0, alpha);
+		JUtility::TColor unselectedColor(50, 50, 200, alpha);
+
+		proc->initFlagsA();
+		proc->mTextBoxWidth = System::getRenderModeObj()->fbWidth;
+		proc->setDefaultCharColor(JUtility::TColor(promptColor));
+		proc->setDefaultGradColor(JUtility::TColor(promptColor));
+		proc->mXOffset = 0.0f;
+		mTVModeMessage->locate(0, 100);
+		mTVModeMessage->drawMessageID(gfx, "8305_00");
+
+		char* resultID;
+		if (mTVModeSelection == 0) {
+			resultID = "8309_00";
+		} else {
+			resultID = "8308_00";
+		}
+		proc->initFlagsA();
+		proc->mTextBoxWidth = System::getRenderModeObj()->fbWidth;
+		proc->setDefaultCharColor(JUtility::TColor(resultColor));
+		proc->setDefaultGradColor(JUtility::TColor(resultColor));
+		proc->mXOffset = 0.0f;
+		mTVModeMessage->locate(0, 100);
+		mTVModeMessage->drawMessageID(gfx, resultID);
+
+		proc->initFlagsA();
+		proc->mTextBoxWidth = System::getRenderModeObj()->fbWidth / 2;
+		if (mTVModeSelection == 0) {
+			proc->setDefaultCharColor(JUtility::TColor(selectedColor));
+			proc->setDefaultGradColor(JUtility::TColor(selectedColor));
+		} else {
+			proc->setDefaultCharColor(JUtility::TColor(unselectedColor));
+			proc->setDefaultGradColor(JUtility::TColor(unselectedColor));
+		}
+		proc->mXOffset = 0.0f;
+		mTVModeMessage->locate(0, 350);
+		mTVModeMessage->drawMessageID(gfx, "8306_00");
+
+		proc->initFlagsA();
+		proc->mTextBoxWidth = System::getRenderModeObj()->fbWidth / 2;
+		if (mTVModeSelection == 1) {
+			proc->setDefaultCharColor(JUtility::TColor(selectedColor));
+			proc->setDefaultGradColor(JUtility::TColor(selectedColor));
+		} else {
+			proc->setDefaultCharColor(JUtility::TColor(unselectedColor));
+			proc->setDefaultGradColor(JUtility::TColor(unselectedColor));
+		}
+		proc->mXOffset = System::getRenderModeObj()->fbWidth / 2;
+		mTVModeMessage->locate(0, 350);
+		mTVModeMessage->drawMessageID(gfx, "8307_00");
+
+		J2DPrint print(gP2JMEMgr->mFont, 0.0f);
+		print.initiate();
+		print.setCharColor(promptColor);
+		print.setGradColor(promptColor);
+		f32 remaining   = 10.0f - mFadeTimer;
+		int countdown   = ROUND_F32_TO_U8(remaining);
+		int secondCount = ROUND_F32_TO_U8(remaining);
+		u16 width       = System::getRenderModeObj()->fbWidth;
+		f32 textWidth   = print.getWidth("%d", secondCount);
+		print.print((width - textWidth) * 0.5f, 350.0f, "%d", countdown);
+	}
+}
+#endif

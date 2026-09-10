@@ -13,7 +13,7 @@ s32 __CARDReadStatus(s32 chan, u8* status);
 s32 __CARDClearStatus(s32 chan);
 void __CARDSetDiskID(const DVDDiskID* id);
 static s32 Retry(s32 chan);
-BOOL OnReset(BOOL f);
+static BOOL OnReset(BOOL f);
 
 static OSResetFunctionInfo ResetFunctionInfo = { OnReset, 127 };
 
@@ -765,7 +765,7 @@ s32 __CARDSync(s32 channel)
  * @note Address: 0x800D58D0
  * @note Size: 0x50
  */
-BOOL OnReset(BOOL f)
+static BOOL OnReset(BOOL f)
 {
 	if (!f) {
 		if (CARDUnmount(0) == CARD_RESULT_BUSY || CARDUnmount(1) == CARD_RESULT_BUSY) {

@@ -1,0 +1,10 @@
+object: orig/GPVJ01/sys/main.dol
+hash: 5dca32da3e021f5168146844cb4bfb0db1e99461
+
+# recovered from the JP DOL using US symbols as a base
+symbols: config/GPVJ01/symbols.txt
+splits: config/GPVJ01/splits.txt
+
+mw_comment_version: 10 # GC Linker 2.6
+symbols_known: false # Very fast analysis
+fill_gaps: true # We don't know alignments for certain

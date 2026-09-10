@@ -107,6 +107,22 @@ JKRAramBlock* JKRAramHeap::allocFromTail(size_t size)
 }
 
 /**
+ * @note Address: 0x80433594 (PAL)
+ * @note Size: 0xC0
+ * @note This is stripped in all versions except PAL.
+ */
+void JKRAramHeap::freeAll()
+{
+	lock();
+	for (JSULinkIterator<JKRAramBlock> iterator(sAramList.getFirst()); iterator != nullptr;) {
+		delete (iterator++).getObject();
+	}
+	JKRAramBlock* block = new (mHeap, 0) JKRAramBlock(mHeadAddress, 0, mSize, 0xFF, false);
+	sAramList.append(&block->mLink);
+	unlock();
+}
+
+/**
  * @note Address: 0x800199C8
  * @note Size: 0x78
  */

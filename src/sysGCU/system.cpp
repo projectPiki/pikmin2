@@ -91,6 +91,9 @@ static GXRenderModeObj* sRenderModeTable[4]
 
 System::ERenderMode System::mRenderMode;
 System* sys;
+#if defined(VERSION_PAL)
+BitFlag<u32> System::mFlags;
+#endif
 System::GXVerifyArg System::sVerifyArg;
 
 static bool sUseABXCommand = true;
@@ -395,6 +398,28 @@ void retraceCallback(u32)
 	}
 }
 
+#if defined(VERSION_PAL)
+/**
+ * @note Address: 0x8042268C (PAL)
+ * @note Size: 0xC
+ * @note Fabricated name.
+ */
+int System::getLanguage()
+{
+	return mPlayData->mLanguage;
+}
+
+/**
+ * @note Address: 0x80422698 (PAL)
+ * @note Size: 0x24
+ * @note Fabricated name. Also unsure if the arg for this should be int, s32, or an enum.
+ */
+void System::setLanguage(int language)
+{
+	mPlayData->setLanguage(language);
+}
+#endif
+
 /**
  * @note Address: 0x804223E8
  * @note Size: 0x11C
@@ -407,11 +432,56 @@ System::System()
     , mDeltaTime(SINGLE_FRAME_LENGTH)
     , mPlayData(nullptr)
     , mFrameRate(1.0f)
+#if defined(VERSION_PAL)
+// region lives in CommonSaveData in PAL, not here
+#elif defined(VERSION_JP)
+    , mRegion(System::LANG_Japanese)
+#else
     , mRegion(System::LANG_English)
+#endif
 {
 	sys            = this;
 	sUseABXCommand = true;
 	initCurrentHeapMutex();
+
+#if defined(VERSION_PAL)
+	mPlayData = new Game::CommonSaveData::Mgr();
+	mPlayData->setDefault();
+	mPlayData->mFlags.set(Game::CommonSaveData::Mgr::SaveFlag_Language);
+
+	switch (OSGetLanguage()) {
+	case OS_LANG_ENGLISH: {
+		mPlayData->setLanguage(LANG_English);
+		break;
+	}
+	case OS_LANG_GERMAN: {
+		mPlayData->setLanguage(LANG_German);
+		break;
+	}
+	case OS_LANG_FRENCH: {
+		mPlayData->setLanguage(LANG_French);
+		break;
+	}
+	case OS_LANG_SPANISH: {
+		mPlayData->setLanguage(LANG_Spanish);
+		break;
+	}
+	case OS_LANG_ITALIAN: {
+		mPlayData->setLanguage(LANG_Italian);
+		break;
+	}
+	case OS_LANG_DUTCH: {
+		mPlayData->setLanguage(LANG_English);
+		break;
+	}
+	default: {
+		JUT_PANICLINE(793, "unknown language:%d", OSGetLanguage());
+	}
+	}
+
+	mPlayData->mFlags.unset(Game::CommonSaveData::Mgr::SaveFlag_Language);
+#endif
+
 	JKRHeap* heap = JKRGetCurrentHeap();
 	mSysHeap      = JKRExpHeap::create(SYSTEM_HEAP_SIZE, nullptr, true);
 	mSysHeap->becomeCurrentHeap();
@@ -420,7 +490,9 @@ System::System()
 	heap->becomeCurrentHeap();
 	mGfx = nullptr;
 	JUTVideo::sManager->setPostRetraceCallback(retraceCallback);
+#if !defined(VERSION_PAL)
 	mFlags.clear();
+#endif
 	mSysHeap->getTotalFreeSize();
 	mSysHeap->getTotalFreeSize();
 }
@@ -434,7 +506,13 @@ System::~System()
 	// UNUSED FUNCTION
 }
 
-static char* cMapFileName = "/pikmin2UP.map"; // !!
+#if defined(VERSION_PAL)
+static char* cMapFileName = "/pikmin2PP.map";
+#elif defined(VERSION_JP)
+static char* cMapFileName = "/pikmin2JP.map";
+#else
+static char* cMapFileName = "/pikmin2UP.map";
+#endif // !!
 
 /**
  * @note Address: 0x80422504
@@ -475,7 +553,10 @@ void System::construct()
 	Resource::Mgr2D::init(JKRGetCurrentHeap());
 	heapStatusEnd("ResourceMgr2D");
 
-	mPlayData  = new Game::CommonSaveData::Mgr;
+#if !defined(VERSION_PAL)
+	// we initialise this the ctor for PAL, not here
+	mPlayData = new Game::CommonSaveData::Mgr;
+#endif
 	mDvdStatus = new DvdStatus;
 	LoadResource::Mgr::init();
 
@@ -490,7 +571,11 @@ void System::construct()
  */
 void System::constructWithDvdAccessFirst()
 {
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(1052, JKRGetCurrentHeap()->getHeapType() == 'EXPH');
+#else
 	P2ASSERTLINE(1013, JKRGetCurrentHeap()->getHeapType() == 'EXPH');
+#endif
 
 	JKRHeap* old = JKRGetCurrentHeap();
 	mSysHeap->becomeCurrentHeap();
@@ -516,7 +601,11 @@ void System::constructWithDvdAccessSecond()
 {
 	loadSoundResource();
 
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(1103, JKRGetCurrentHeap()->getHeapType() == 'EXPH');
+#else
 	P2ASSERTLINE(1064, JKRGetCurrentHeap()->getHeapType() == 'EXPH');
+#endif
 
 	JKRExpHeap* old = static_cast<JKRExpHeap*>(JKRGetCurrentHeap());
 	mSysHeap->becomeCurrentHeap();
@@ -567,18 +656,34 @@ void System::createSoundSystem()
 	sys->heapStatusStart("SoundSystem", nullptr);
 	JKRHeap* old = JKRHeap::getCurrentHeap();
 
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(1197, old);
+#else
 	P2ASSERTLINE(1158, old);
+#endif
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(1200, gResMgr2D);
+#else
 	P2ASSERTLINE(1161, gResMgr2D);
+#endif
 
 	JKRHeap* resHeap    = gResMgr2D->mHeap;
 	JKRExpHeap* newheap = makeExpHeap(resHeap->getFreeSize(), resHeap, true);
 
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(1204, newheap);
+#else
 	P2ASSERTLINE(1165, newheap);
+#endif
 	newheap->becomeCurrentHeap();
 
 	void* file = JKRGetResource("PSound.aaf", JKRMountDvdDrive("/AudioRes", newheap, nullptr));
 
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(1212, file);
+#else
 	P2ASSERTLINE(1173, file);
+#endif
 
 	PSM::Factory* factory = new PSM::Factory;
 	factory->mMakeSeFunc  = PSM::SeSound::makeSeSound;
@@ -613,7 +718,11 @@ void System::loadSoundResource()
 
 	// something in these inlines is doing bad regalloc things. or not enough bad regalloc things. not sure.
 	PSSystem::Scene* scene = PSMGetPikSceneMgrCheck()->mScenes;
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(1284, scene);
+#else
 	P2ASSERTLINE(1245, scene);
+#endif
 	scene->scene1stLoadSync();
 
 	newheap->adjustSize();
@@ -720,16 +829,35 @@ void System::clearGXVerifyLevel()
  */
 void System::initialize()
 {
-	if (RENDER_INFO_STORE->mIdentifier == 'vald') {                         // magic stored from reset
+#if defined(VERSION_PAL)
+	mFlags.clear();
+#endif
+	if (RENDER_INFO_STORE->mIdentifier == 'vald') { // magic stored from reset
+#if defined(VERSION_PAL)
+		mFlags.set(SF_RestoredRenderMode);
+#endif
 		System::setRenderMode((ERenderMode)RENDER_INFO_STORE->mRenderMode); // render mode is stored after magic
+#if defined(VERSION_PAL)
+		if (RENDER_INFO_STORE->mTVModeSelected) {
+			mFlags.set(SF_TVModeSelected);
+		}
+#endif
 	} else {
+#if defined(VERSION_PAL)
+		System::setRenderMode(RM_PAL_Standard);
+#else
 		System::setRenderMode(RM_NTSC_Standard);
+#endif
 	}
 
 	OSInitFastCast();
 
-	JFWSystem::CSetUpParam::maxStdHeaps      = 1;
-	JFWSystem::CSetUpParam::sysHeapSize      = 0xa0000;
+	JFWSystem::CSetUpParam::maxStdHeaps = 1;
+#if defined(VERSION_PAL)
+	JFWSystem::CSetUpParam::sysHeapSize = 0xa2800;
+#else
+	JFWSystem::CSetUpParam::sysHeapSize = 0xa0000;
+#endif
 	JFWSystem::CSetUpParam::fifoBufSize      = 0x70800;
 	JFWSystem::CSetUpParam::aramAudioBufSize = 0x900000;
 	JFWSystem::CSetUpParam::aramGraphBufSize = 0xffffffff;
@@ -995,7 +1123,11 @@ _GXRenderModeObj* System::getRenderModeObj()
 void System::changeRenderMode(ERenderMode newmode)
 {
 	JUTVideo* mgr = JUTVideo::getManager();
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(1935, mgr);
+#else
 	P2ASSERTLINE(1889, mgr);
+#endif
 
 	if (mRenderMode != newmode) {
 		mRenderMode = newmode;
@@ -1019,7 +1151,11 @@ void System::changeRenderMode(ERenderMode newmode)
 		OSSetEuRgb60Mode(1);
 		break;
 	default:
+#if defined(VERSION_PAL)
+		JUT_PANICLINE(1967, "unknown renderMode:%d \n", newmode);
+#else
 		JUT_PANICLINE(1921, "unknown renderMode:%d \n", newmode);
+#endif
 	}
 
 	mPlayData->setDeflicker();
@@ -1159,7 +1295,11 @@ void System::initCurrentHeapMutex()
 void System::startChangeCurrentHeap(JKRHeap* newheap)
 {
 	OSLockMutex(this);
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(2079, !mBackupHeap);
+#else
 	P2ASSERTLINE(2033, !mBackupHeap);
+#endif
 	mBackupHeap = JKRGetCurrentHeap();
 	newheap->becomeCurrentHeap();
 }
@@ -1170,7 +1310,11 @@ void System::startChangeCurrentHeap(JKRHeap* newheap)
  */
 void System::endChangeCurrentHeap()
 {
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(2087, mBackupHeap);
+#else
 	P2ASSERTLINE(2041, mBackupHeap);
+#endif
 	mBackupHeap->becomeCurrentHeap();
 	mBackupHeap = nullptr;
 	OSUnlockMutex(this);
@@ -1207,23 +1351,60 @@ void System::refreshGenNode()
 void System::setFrameRate(int newFactor)
 {
 	JFWDisplay* display = mDisplay;
+#if defined(VERSION_PAL)
+	JUT_ASSERTLINE(2389, display, "no display");
+#else
 	JUT_ASSERTLINE(2343, display, "no display");
-	mFrameRate          = (f32)newFactor;
-	mDeltaTime          = mFrameRate / 60.0f;
+#endif
+	mFrameRate = (f32)newFactor;
+	mDeltaTime = mFrameRate / 60.0f;
+#if defined(VERSION_PAL)
+	switch (mRenderMode) {
+	case RM_PAL_Standard:
+		display->setTickRate((u32)(OS_TIMER_CLOCK * (f32)newFactor / 59.94) - 100);
+		break;
+	case RM_PAL_60Hz:
+		display->mFrameRate = newFactor;
+		display->mTickRate  = 0;
+		break;
+	default:
+		JUT_PANICLINE(2426, "ありえない\n"); // 'impossible'
+	}
+#else
 	display->mFrameRate = newFactor;
 	display->mTickRate  = 0;
+#endif
 }
 
 /**
  * @note Address: N/A
  * @note Size: 0xA0
  */
+#if defined(VERSION_JP)
+bool System::forceFinishSection()
+{
+	Section* section = (Section*)((ISectionMgr*)mGameFlow)->getCurrentSection();
+	if (section) {
+		if (Game::gGameConfig.mParms.mE3version.mData) {
+			bool finished = section->forceFinish();
+			if (finished) {
+				GameFlow::mActiveSectionFlag = GameFlow::SN_E3ThanksSection;
+				JUTGamePad::CRumble::setEnabled(0);
+			}
+			return finished;
+		}
+		return section->forceFinish();
+	}
+	return false;
+}
+#else
 void System::forceFinishSection()
 {
 	// just for weak function spawning
 	((ISectionMgr*)mGameFlow)->getCurrentSection();
 	// UNUSED FUNCTION
 }
+#endif
 
 /**
  * @note Address: 0x804235D4

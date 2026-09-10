@@ -120,6 +120,7 @@ struct VsGameSection : public BaseGameSection {
 	static int mBlueWinCount;
 	static int mDrawCount;
 
+	// Member offsets below are for US/JP/PAL - for US_DEMO1, add 0x24.
 	bool mIsVersusMode;                            // _174
 	VSFifo* mVsFifo;                               // _178
 	StateMachine<Game::VsGameSection>* mFsm;       // _17C

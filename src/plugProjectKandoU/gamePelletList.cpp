@@ -80,6 +80,15 @@ void Mgr::loadResource()
 	JKRArchive* archive;
 	char pathBuffer[512];
 
+#if defined(VERSION_PAL)
+	if (gGameConfig.mParms.mPelletMultiLang.mData) {
+		sprintf(pathBuffer, "/user/Abe/Pellet/%s/pelletlist_%s.szs", "pal", "pal");
+		archive = JKRMountArchive(pathBuffer, JKRArchive::EMM_Mem, JKRHeap::getCurrentHeap(), JKRArchive::EMD_Tail);
+	} else {
+		JUT_PANICLINE(145, "don\'t use this !\n");
+		archive = JKRMountArchive("/user/Kando/pelletlist.szs", JKRArchive::EMM_Mem, JKRHeap::getCurrentHeap(), JKRArchive::EMD_Tail);
+	}
+#else
 	if (gGameConfig.mParms.mPelletMultiLang.mData) {
 		switch (sys->mRegion) {
 		case System::LANG_French:
@@ -100,6 +109,7 @@ void Mgr::loadResource()
 		JUT_PANICLINE(145, "don\'t use this !\n");
 		archive = JKRMountArchive("/user/Kando/pelletlist.szs", JKRArchive::EMM_Mem, JKRHeap::getCurrentHeap(), JKRArchive::EMD_Tail);
 	}
+#endif
 
 	JUT_ASSERTLINE(154, archive, "no pelletlist.szs\n");
 

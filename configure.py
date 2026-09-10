@@ -27,14 +27,14 @@ from tools.project import (
 )
 
 # Game versions
-DEFAULT_VERSION = 4
-VERSIONS = [
-    "GPVE01_D17",  # 0
-    "GPVE01_D18",  # 1
-    "GPVJ01",  # 2
-    "GPVP01",  # 3
-    "GPVE01",  # 4
-]
+DEFAULT_VERSION = "GPVE01"
+VERSIONS = {
+    "GPVE01_D17": 0,
+    "GPVE01_D18": 1,
+    "GPVJ01": 2,
+    "GPVP01": 3,
+    "GPVE01": 4,
+}
 
 parser = argparse.ArgumentParser()
 parser.add_argument(
@@ -49,7 +49,7 @@ parser.add_argument(
     "--version",
     choices=VERSIONS,
     type=str.upper,
-    default=VERSIONS[DEFAULT_VERSION],
+    default=DEFAULT_VERSION,
     help="version to build",
 )
 parser.add_argument(
@@ -127,7 +127,7 @@ args = parser.parse_args()
 
 config = ProjectConfig()
 config.version = str(args.version)
-version_num = VERSIONS.index(config.version)
+version_num = VERSIONS[config.version]
 
 # Apply arguments
 config.build_dir = args.build_dir
@@ -141,7 +141,7 @@ config.sjiswrap_path = args.sjiswrap
 config.progress = args.progress
 if not is_windows():
     config.wrapper = args.wrapper
-# If you want to use the original EpochFlame-curated .s asm files, comment out this line below
+# If you want to use the original EpochFlame-curated .s asm files, comment out this line below. US and US_DEMO1 only.
 config.asm_dir = None
 
 # Tool versions
@@ -202,7 +202,7 @@ cflags_base = [
     "-i include",
     "-i include/stl",
     f"-i build/{config.version}/include",
-    f"-DVERNUM={version_num}",
+    f"-DVERSION_{config.version}",
 ]
 
 # Debug flags
@@ -230,11 +230,29 @@ cflags_pikmin = [
 
 config.linker_version = "GC/2.6"
 
-Matching = True  # Object matches and should be linked
-NonMatching = False  # Object does not match and should not be linked
-Equivalent = (
-    config.non_matching
-)  # Object should be linked when configured with --non-matching
+# Helpers for noting which version matches/is equivalent.
+# Unlisted versions are NonMatching/use the split assembly.
+US = "GPVE01"
+US_DEMO1 = "GPVE01_D17"
+US_DEMO2 = "GPVE01_D18"
+JP = "GPVJ01"
+PAL = "GPVP01"
+
+Matching = True  # Verified matching for every supported version
+NonMatching = False  # Use the original object
+Equivalent = config.non_matching  # Functionally equivalent for every version - usable for modding
+
+
+def MatchingFor(*versions):
+    return config.version in versions
+
+
+def EquivalentFor(*versions):
+    return config.non_matching and MatchingFor(*versions)
+
+
+# List multiple within one type with commas, and combine types with "or", e.g.
+# Object(MatchingFor(US, JP) or EquivalentFor(PAL), "path/file.cpp")
 
 config.warn_missing_config = True
 config.warn_missing_source = False
@@ -809,127 +827,37 @@ config.libs = [
             Object(Matching, "Dolphin/MSL_C/MSL_Common/strtoul.c"),
             Object(Matching, "Dolphin/MSL_C/MSL_Common/wchar_io.c"),
             Object(Matching, "Dolphin/MSL_C/PPC_EABI/uart_console_io_gcn.c"),
-            Object(
-                Matching,
-                "Dolphin/MSL_C/MSL_Common_Embedded/Math/Double_precision/e_asin.c",
-            ),
-            Object(
-                Matching,
-                "Dolphin/MSL_C/MSL_Common_Embedded/Math/Double_precision/e_atan2.c",
-            ),
-            Object(
-                Matching,
-                "Dolphin/MSL_C/MSL_Common_Embedded/Math/Double_precision/e_exp.c",
-            ),
-            Object(
-                Matching,
-                "Dolphin/MSL_C/MSL_Common_Embedded/Math/Double_precision/e_fmod.c",
-            ),
-            Object(
-                Matching,
-                "Dolphin/MSL_C/MSL_Common_Embedded/Math/Double_precision/e_log.c",
-            ),
-            Object(
-                Matching,
-                "Dolphin/MSL_C/MSL_Common_Embedded/Math/Double_precision/e_log10.c",
-            ),
-            Object(
-                Matching,
-                "Dolphin/MSL_C/MSL_Common_Embedded/Math/Double_precision/e_pow.c",
-            ),
-            Object(
-                Matching,
-                "Dolphin/MSL_C/MSL_Common_Embedded/Math/Double_precision/e_rem_pio2.c",
-            ),
-            Object(
-                Matching,
-                "Dolphin/MSL_C/MSL_Common_Embedded/Math/Double_precision/k_cos.c",
-            ),
-            Object(
-                Matching,
-                "Dolphin/MSL_C/MSL_Common_Embedded/Math/Double_precision/k_rem_pio2.c",
-            ),
-            Object(
-                Matching,
-                "Dolphin/MSL_C/MSL_Common_Embedded/Math/Double_precision/k_sin.c",
-            ),
-            Object(
-                Matching,
-                "Dolphin/MSL_C/MSL_Common_Embedded/Math/Double_precision/k_tan.c",
-            ),
-            Object(
-                Matching,
-                "Dolphin/MSL_C/MSL_Common_Embedded/Math/Double_precision/s_atan.c",
-            ),
-            Object(
-                Matching,
-                "Dolphin/MSL_C/MSL_Common_Embedded/Math/Double_precision/s_ceil.c",
-            ),
-            Object(
-                Matching,
-                "Dolphin/MSL_C/MSL_Common_Embedded/Math/Double_precision/s_copysign.c",
-            ),
-            Object(
-                Matching,
-                "Dolphin/MSL_C/MSL_Common_Embedded/Math/Double_precision/s_cos.c",
-            ),
-            Object(
-                Matching,
-                "Dolphin/MSL_C/MSL_Common_Embedded/Math/Double_precision/s_floor.c",
-            ),
-            Object(
-                Matching,
-                "Dolphin/MSL_C/MSL_Common_Embedded/Math/Double_precision/s_frexp.c",
-            ),
-            Object(
-                Matching,
-                "Dolphin/MSL_C/MSL_Common_Embedded/Math/Double_precision/s_ldexp.c",
-            ),
-            Object(
-                Matching,
-                "Dolphin/MSL_C/MSL_Common_Embedded/Math/Double_precision/s_modf.c",
-            ),
-            Object(
-                Matching,
-                "Dolphin/MSL_C/MSL_Common_Embedded/Math/Double_precision/s_sin.c",
-            ),
-            Object(
-                Matching,
-                "Dolphin/MSL_C/MSL_Common_Embedded/Math/Double_precision/s_tan.c",
-            ),
-            Object(
-                Matching,
-                "Dolphin/MSL_C/MSL_Common_Embedded/Math/Double_precision/w_asin.c",
-            ),
-            Object(
-                Matching,
-                "Dolphin/MSL_C/MSL_Common_Embedded/Math/Double_precision/w_atan2.c",
-            ),
-            Object(
-                Matching,
-                "Dolphin/MSL_C/MSL_Common_Embedded/Math/Double_precision/w_exp.c",
-            ),
-            Object(
-                Matching,
-                "Dolphin/MSL_C/MSL_Common_Embedded/Math/Double_precision/w_fmod.c",
-            ),
-            Object(
-                Matching,
-                "Dolphin/MSL_C/MSL_Common_Embedded/Math/Double_precision/w_log10.c",
-            ),
-            Object(
-                Matching,
-                "Dolphin/MSL_C/MSL_Common_Embedded/Math/Double_precision/w_pow.c",
-            ),
-            Object(
-                Matching,
-                "Dolphin/MSL_C/MSL_Common_Embedded/Math/Double_precision/e_sqrt.c",
-            ),
+            Object(Matching, "Dolphin/MSL_C/MSL_Common_Embedded/Math/Double_precision/e_asin.c"),
+            Object(Matching, "Dolphin/MSL_C/MSL_Common_Embedded/Math/Double_precision/e_atan2.c"),
+            Object(Matching, "Dolphin/MSL_C/MSL_Common_Embedded/Math/Double_precision/e_exp.c"),
+            Object(Matching, "Dolphin/MSL_C/MSL_Common_Embedded/Math/Double_precision/e_fmod.c"),
+            Object(Matching, "Dolphin/MSL_C/MSL_Common_Embedded/Math/Double_precision/e_log.c"),
+            Object(Matching, "Dolphin/MSL_C/MSL_Common_Embedded/Math/Double_precision/e_log10.c"),
+            Object(Matching, "Dolphin/MSL_C/MSL_Common_Embedded/Math/Double_precision/e_pow.c"),
+            Object(Matching, "Dolphin/MSL_C/MSL_Common_Embedded/Math/Double_precision/e_rem_pio2.c"),
+            Object(Matching, "Dolphin/MSL_C/MSL_Common_Embedded/Math/Double_precision/k_cos.c"),
+            Object(Matching, "Dolphin/MSL_C/MSL_Common_Embedded/Math/Double_precision/k_rem_pio2.c"),
+            Object(Matching, "Dolphin/MSL_C/MSL_Common_Embedded/Math/Double_precision/k_sin.c"),
+            Object(Matching, "Dolphin/MSL_C/MSL_Common_Embedded/Math/Double_precision/k_tan.c"),
+            Object(Matching, "Dolphin/MSL_C/MSL_Common_Embedded/Math/Double_precision/s_atan.c"),
+            Object(Matching, "Dolphin/MSL_C/MSL_Common_Embedded/Math/Double_precision/s_ceil.c"),
+            Object(Matching, "Dolphin/MSL_C/MSL_Common_Embedded/Math/Double_precision/s_copysign.c"),
+            Object(Matching, "Dolphin/MSL_C/MSL_Common_Embedded/Math/Double_precision/s_cos.c"),
+            Object(Matching, "Dolphin/MSL_C/MSL_Common_Embedded/Math/Double_precision/s_floor.c"),
+            Object(Matching, "Dolphin/MSL_C/MSL_Common_Embedded/Math/Double_precision/s_frexp.c"),
+            Object(Matching, "Dolphin/MSL_C/MSL_Common_Embedded/Math/Double_precision/s_ldexp.c"),
+            Object(Matching, "Dolphin/MSL_C/MSL_Common_Embedded/Math/Double_precision/s_modf.c"),
+            Object(Matching, "Dolphin/MSL_C/MSL_Common_Embedded/Math/Double_precision/s_sin.c"),
+            Object(Matching, "Dolphin/MSL_C/MSL_Common_Embedded/Math/Double_precision/s_tan.c"),
+            Object(Matching, "Dolphin/MSL_C/MSL_Common_Embedded/Math/Double_precision/w_asin.c"),
+            Object(Matching, "Dolphin/MSL_C/MSL_Common_Embedded/Math/Double_precision/w_atan2.c"),
+            Object(Matching, "Dolphin/MSL_C/MSL_Common_Embedded/Math/Double_precision/w_exp.c"),
+            Object(Matching, "Dolphin/MSL_C/MSL_Common_Embedded/Math/Double_precision/w_fmod.c"),
+            Object(Matching, "Dolphin/MSL_C/MSL_Common_Embedded/Math/Double_precision/w_log10.c"),
+            Object(Matching, "Dolphin/MSL_C/MSL_Common_Embedded/Math/Double_precision/w_pow.c"),
+            Object(Matching, "Dolphin/MSL_C/MSL_Common_Embedded/Math/Double_precision/e_sqrt.c"),
             Object(Matching, "Dolphin/MSL_C/PPC_EABI/math_ppc.c"),
-            Object(
-                Matching,
-                "Dolphin/MSL_C/MSL_Common_Embedded/Math/Double_precision/w_sqrt.c",
-            ),
+            Object(Matching, "Dolphin/MSL_C/MSL_Common_Embedded/Math/Double_precision/w_sqrt.c"),
             Object(Matching, "Dolphin/MSL_C/MSL_Common/extras.c"),
         ],
     },
@@ -1886,6 +1814,18 @@ config.libs = [
                 Matching,
                 "plugProjectEbisawaU/ebiScreenTMBack.cpp",
                 extra_cflags=["-sym on"],
+            ),
+            # JP-only title menu
+            *(
+                [
+                    Object(
+                        MatchingFor(JP),
+                        "plugProjectEbisawaU/ebiScreenE3TitleMenu.cpp",
+                        extra_cflags=["-sym on"],
+                    )
+                ]
+                if config.version == "GPVJ01"
+                else []
             ),
             Object(
                 Equivalent,

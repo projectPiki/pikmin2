@@ -532,7 +532,9 @@ void Obj::onKill(Game::CreatureKillArg* arg)
 {
 	EnemyBase::onKill(arg);
 	releasePathFinder();
+#if !defined(VERSION_JP)
 	fadeFlickEffect();
+#endif
 }
 
 /**
@@ -557,7 +559,9 @@ void Obj::doStartStoneState()
 	mCollTree->getCollPart('head')->mSpecialID = 'st__';
 
 	fadeTraceEffect();
+#if !defined(VERSION_JP)
 	fadeFlickEffect();
+#endif
 }
 
 /**
@@ -1722,7 +1726,11 @@ void Obj::findNextRoutePoint()
 
 	WayPoint* currWP = routeMgr->getWayPoint(mCurrentWaypointIndex);
 
+#if defined(VERSION_JP)
+	P2ASSERTLINE(1552, currWP);
+#else
 	P2ASSERTLINE(1557, currWP);
+#endif
 
 	int counter = 0;
 	s16 indices[8];
@@ -3043,7 +3051,11 @@ void Obj::findNextTraceRoutePoint()
 		return;
 	}
 
+#if defined(VERSION_JP)
+	JUT_PANICLINE(1833, "failed traceRoutePoint\n");
+#else
 	JUT_PANICLINE(1838, "failed traceRoutePoint\n");
+#endif
 }
 
 /**
@@ -3056,7 +3068,11 @@ bool Obj::isEndPathFinder()
 		return true;
 	}
 
+#if defined(VERSION_JP)
+	P2ASSERTLINE(1845, testPathfinder);
+#else
 	P2ASSERTLINE(1850, testPathfinder);
+#endif
 
 	switch (testPathfinder->check(mPathFindingHandle)) {
 	case PATHFIND_MakePath:
@@ -3074,7 +3090,11 @@ bool Obj::isEndPathFinder()
 		return false;
 
 	case PATHFIND_NoHandle:
+#if defined(VERSION_JP)
+		JUT_PANICLINE(1865, "no handle pathFinder\n");
+#else
 		JUT_PANICLINE(1870, "no handle pathFinder\n");
+#endif
 		mFoundPath = 0;
 		return false;
 	}
@@ -3091,7 +3111,11 @@ bool Obj::setPathFinder(bool check)
 	releasePathFinder();
 	WPEdgeSearchArg edgeArg(mPosition);
 	RouteMgr* routeMgr = mapMgr->mRouteMgr;
+#if defined(VERSION_JP)
+	P2ASSERTLINE(1888, routeMgr);
+#else
 	P2ASSERTLINE(1893, routeMgr);
+#endif
 
 	if (routeMgr->getNearestEdge(edgeArg)) {
 		Vector3f wp1Pos  = edgeArg.mWp1->mPosition;
@@ -3126,7 +3150,11 @@ bool Obj::setPathFinder(bool check)
 		return true;
 	}
 
+#if defined(VERSION_JP)
+	JUT_PANICLINE(1929, nullptr);
+#else
 	JUT_PANICLINE(1934, nullptr);
+#endif
 	return false;
 	/*
 	stwu     r1, -0x50(r1)
@@ -3343,8 +3371,8 @@ void Obj::jointMtxCalc(int jointIdx)
 	if (jointIdx < 2 && C_PARMS->mUseTyreForJointCalc) {
 		f32 sinVal1 = C_PARMS->mArmRotationA * absF(sinf(mTyre->mCurrentRotation2)); // f23
 		f32 sinVal2 = C_PARMS->mArmRotationB * absF(sinf(mTyre->mCurrentRotation2)); // f24
-		vec2.y = sinVal2;
-		getStateID();                                                                // unused
+		vec2.y      = sinVal2;
+		getStateID(); // unused
 
 		if (mTyre->mCurrentRotation2 < 0.0f) {
 			if (jointIdx == 0) {
@@ -4078,7 +4106,11 @@ void Obj::moveRestart()
 		PSSystem::validateSceneMgr(mgr);
 		mgr->checkScene();
 		PSSystem::SeqBase* seqBase = PSSystem::getSeqData(mgr, 1);
+#if defined(VERSION_JP)
+		P2ASSERTLINE(2216, seqBase);
+#else
 		P2ASSERTLINE(2221, seqBase);
+#endif
 		seqBase->startSeq();
 		mHasStartedChaseBgm = true;
 	}

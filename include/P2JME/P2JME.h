@@ -39,7 +39,7 @@ struct Mgr : public JKRDisposer {
 	JUTTexture*** mImageLists;                   // _20 (list of these arrays, but only index 0 matters)
 	int* mMaxTextures;                           // _24 (list of these values, but only index 0 matters)
 	u8 mIsLoaded;                                // _28
-	u32 _2C;                                     // _2C
+	JKRExpHeap* mLangHeap;                       // _2C
 	JMessage::TResourceContainer* mResContainer; // _30
 	JMessage::TReference* mMsgRef;               // _34
 };

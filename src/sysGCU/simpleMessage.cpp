@@ -36,4 +36,34 @@ void SimpleMessage::drawMessageID(Graphics& gfx, u32 lowerHalf, u32 upperHalf)
 	jmProc->setBegin_messageID(lowerHalf, upperHalf, nullptr);
 	jmProc->process(nullptr);
 }
+
+/**
+ * @note Address: N/A
+ * @note Size: 0x90
+ * @note Stripped in every version except PAL.
+ */
+void SimpleMessage::drawMessageID(Graphics& gfx, char* messageID)
+{
+	u32 lowerHalf, upperHalf;
+	convertCharToMessageID(messageID, &lowerHalf, &upperHalf);
+	mProcessor->preProcID(lowerHalf, upperHalf);
+	JMessage::TRenderingProcessor* jmProc = static_cast<JMessage::TRenderingProcessor*>(mProcessor);
+	u32 renderLowerHalf, renderUpperHalf;
+	renderUpperHalf = upperHalf;
+	renderLowerHalf = lowerHalf;
+	jmProc->reset_(nullptr);
+	jmProc->setBegin_messageID(renderLowerHalf, renderUpperHalf, nullptr);
+	jmProc->process(nullptr);
+}
+
+/**
+ * @note Address: N/A
+ * @note Size: 0x50
+ * @note Stripped in every version except PAL.
+ */
+void SimpleMessage::locate(int x, int y)
+{
+	mProcessor->setLocate(x, y);
+}
+
 } // namespace P2JME

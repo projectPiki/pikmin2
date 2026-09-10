@@ -466,6 +466,9 @@ struct Obj : public Kabuto::Obj {
 	{
 		return EnemyTypeID::EnemyID_Fkabuto;
 	}
+#if defined(VERSION_PAL)
+	virtual void setZukanVisible(bool updateTekiDeathInfo); // _2C0 (PAL)
+#endif
 	virtual void createEffect();       // _2FC
 	virtual void setupEffect();        // _300
 	virtual void startRotateEffect();  // _304

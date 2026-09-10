@@ -109,9 +109,18 @@ void PikiFSM::transit(Piki* piki, int stateID, StateArg* stateArg)
 		}
 
 		if (!currentState->transittable(stateID)) {
+#if defined(VERSION_PAL)
+			JUT_PANICLINE(704, "*Transit(%d)(%d)\n(%s)=>(%s)\n", currentState->mId, mIdToIndexArray[stateID], currentState->mName,
+			              static_cast<PikiState*>(mStates[mIdToIndexArray[stateID]])->mName);
+#else
 			JUT_PANICLINE(701, "*Transit(%d)(%d)\n(%s)=>(%s)\n", currentState->mId, mIdToIndexArray[stateID], currentState->mName,
 			              static_cast<PikiState*>(mStates[mIdToIndexArray[stateID]])->mName);
+#endif
+#if defined(VERSION_PAL)
+			JUT_PANICLINE(705, "---------- だめだよ～\n");
+#else
 			JUT_PANICLINE(702, "---------- だめだよ～\n");
+#endif
 		}
 	}
 
@@ -352,7 +361,11 @@ void PikiHoleinState::init(Piki* piki, StateArg* stateArg)
 {
 	HoleinStateArg* holeinArg = static_cast<HoleinStateArg*>(stateArg);
 	if (holeinArg == nullptr) {
+#if defined(VERSION_PAL)
+		JUT_PANICLINE(952, "need HoleinStateArg !\n");
+#else
 		JUT_PANICLINE(949, "need HoleinStateArg !\n");
+#endif
 	}
 
 	piki->endStick();
@@ -436,7 +449,11 @@ void PikiFountainonState::init(Piki* piki, StateArg* stateArg)
 {
 	FountainonStateArg* fountainonArg = static_cast<FountainonStateArg*>(stateArg);
 	if (fountainonArg == nullptr) {
+#if defined(VERSION_PAL)
+		JUT_PANICLINE(1053, "need FountainonStateArg !\n");
+#else
 		JUT_PANICLINE(1050, "need FountainonStateArg !\n");
+#endif
 	}
 
 	piki->endStick();
@@ -549,7 +566,11 @@ void PikiTaneState::bounceCallback(Piki* piki, Sys::Triangle*)
 void PikiNukareState::init(Piki* piki, StateArg* stateArg)
 {
 	NukareStateArg* nukareArg = static_cast<NukareStateArg*>(stateArg);
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(1169, nukareArg != nullptr);
+#else
 	P2ASSERTLINE(1166, nukareArg != nullptr);
+#endif
 
 	piki->mTargetVelocity = Vector3f(0.0f);
 	piki->mFaceDir        = nukareArg->mNavi->getFaceDir();
@@ -631,7 +652,11 @@ void PikiNukareState::onKeyEvent(Piki* piki, SysShape::KeyEvent const& keyEvent)
 			diveFx.create(&fxArg);
 
 			if (piki->mNavi == nullptr) {
+#if defined(VERSION_PAL)
+				JUT_PANICLINE(1245, "getNavi():pullW");
+#else
 				JUT_PANICLINE(1242, "getNavi():pullW");
+#endif
 			}
 
 			piki->startSound(piki->mNavi, PSSE_EV_ITEM_LAND_WATER1_S, true);
@@ -639,7 +664,11 @@ void PikiNukareState::onKeyEvent(Piki* piki, SysShape::KeyEvent const& keyEvent)
 
 		} else {
 			if (piki->mNavi == nullptr) {
+#if defined(VERSION_PAL)
+				JUT_PANICLINE(1249, "getNavi():Pull");
+#else
 				JUT_PANICLINE(1246, "getNavi():Pull");
+#endif
 			}
 			efx::createSimplePkAp(position);
 			piki->startSound(piki->mNavi, PSSE_PL_PULLOUT_PIKI, false);
@@ -668,7 +697,11 @@ void PikiNukareState::cleanup(Piki* piki)
 void PikiDopeState::init(Piki* piki, StateArg* stateArg)
 {
 	DopeStateArg* dopeArg = static_cast<DopeStateArg*>(stateArg);
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(1273, dopeArg != nullptr);
+#else
 	P2ASSERTLINE(1270, dopeArg != nullptr);
+#endif
 	mDopeState            = dopeArg->mDopeType;
 	mStartWaitTime        = 0.3f * randFloat();
 	mHasAnimStarted       = false;
@@ -806,7 +839,11 @@ inline void PikiPanicState::startSound(Piki* piki)
 void PikiPanicState::init(Piki* piki, StateArg* stateArg)
 {
 	PanicStateArg* panicArg = static_cast<PanicStateArg*>(stateArg);
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(1402, panicArg != nullptr);
+#else
 	P2ASSERTLINE(1399, panicArg != nullptr);
+#endif
 	mPanicType       = panicArg->mPanicType;
 	mIsCalled        = false;
 	mIsLobsterLanded = true;
@@ -1965,7 +2002,11 @@ void PikiFallMeckState::platCallback(Piki* piki, PlatEvent& platEvent)
 bool PikiFallMeckState::becomePikihead(Piki* piki)
 {
 	bool check;
+#if defined(VERSION_PAL)
+	if (GameStat::mePikis >= 99 - GameStat::zikatuPikis) {
+#else
 	if (GameStat::mePikis >= 99) {
+#endif
 		return false;
 	} else {
 		PikiMgr::mBirthMode        = PikiMgr::PSM_Force;
@@ -2030,7 +2071,11 @@ void PikiFallMeckState::bounceCallback(Piki* piki, Sys::Triangle* triangle)
 void PikiSuikomiState::init(Piki* piki, StateArg* stateArg)
 {
 	SuikomiStateArg* suikomiArg = static_cast<SuikomiStateArg*>(stateArg);
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(2578, suikomiArg != nullptr);
+#else
 	P2ASSERTLINE(2572, suikomiArg != nullptr);
+#endif
 	mCreature        = suikomiArg->mCreature;
 	mCollpart        = suikomiArg->mCollpart;
 	mStomachCollpart = suikomiArg->mStomachCollpart;
@@ -2152,7 +2197,11 @@ void PikiSuikomiState::execStomach(Piki* piki)
 {
 	if (mCreature) {
 		if (mCreature->mObjectTypeID != OBJTYPE_Teki) {
+#if defined(VERSION_PAL)
+			JUT_PANICLINE(2686, "not teki (%s)!", mCreature->getCreatureName());
+#else
 			JUT_PANICLINE(2680, "not teki (%s)!", mCreature->getCreatureName());
+#endif
 		}
 
 		EnemyBase* enemy = static_cast<EnemyBase*>(mCreature);
@@ -2425,7 +2474,11 @@ void PikiFlyingState::cleanup(Piki* piki)
 void PikiFlickState::init(Piki* piki, StateArg* stateArg)
 {
 	// ??
+#if defined(VERSION_PAL)
+	JUT_PANICLINE(3066, "flick:init:erase\n");
+#else
 	JUT_PANICLINE(3057, "flick:init:erase\n");
+#endif
 	mState = FLICK_Start;
 
 	FlickStateArg* flickArg = static_cast<FlickStateArg*>(stateArg);
@@ -2458,7 +2511,11 @@ void PikiFlickState::onFlute(Piki* piki, Navi* navi)
 void PikiFlickState::exec(Piki* piki)
 {
 	// ???
+#if defined(VERSION_PAL)
+	JUT_PANICLINE(3101, "flick:exec:erase\n");
+#else
 	JUT_PANICLINE(3092, "flick:exec:erase\n");
+#endif
 	if (mState == FLICK_Start) { // yeet the piki.
 		f32 speed         = mKnockBackSpeed;
 		piki->mVelocity.x = -speed * sinf(mKnockBackAngle);
@@ -2544,7 +2601,11 @@ void PikiBlowState::init(Piki* piki, StateArg* stateArg)
 {
 	BlowStateArg* blowArg = static_cast<BlowStateArg*>(stateArg);
 	if (!blowArg) {
+#if defined(VERSION_PAL)
+		JUT_PANICLINE(3232, "flick needs PikiBlowInitArg !\n");
+#else
 		JUT_PANICLINE(3223, "flick needs PikiBlowInitArg !\n");
+#endif
 	} else {
 		mBlowDirection = blowArg->mBlowDirection;
 		mChanceToLeaf  = blowArg->mChanceToLeaf;
@@ -3137,7 +3198,11 @@ void PikiDrownState::onKeyEvent(Piki* piki, SysShape::KeyEvent const& event)
 void PikiEmotionState::init(Piki* piki, StateArg* stateArg)
 {
 	EmotionStateArg* emotionArg = static_cast<EmotionStateArg*>(stateArg);
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(3938, emotionArg);
+#else
 	P2ASSERTLINE(3929, emotionArg);
+#endif
 
 	mEmotionType = emotionArg->mType;
 	mUnusedVal   = 0;
@@ -3212,7 +3277,11 @@ void PikiEmotionState::init(Piki* piki, StateArg* stateArg)
 	}
 
 	case 8:
+#if defined(VERSION_PAL)
+		JUT_PANICLINE(4121, "rapCnt の使い方がよくなので凍結中! (RAPTURE)\n");
+#else
 		JUT_PANICLINE(4112, "rapCnt の使い方がよくなので凍結中! (RAPTURE)\n");
+#endif
 		break;
 	}
 }
@@ -3276,16 +3345,28 @@ void PikiEmotionState::onKeyEvent(Piki* piki, SysShape::KeyEvent const& event)
 void PikiAbsorbState::init(Piki* piki, StateArg* stateArg)
 {
 	AbsorbStateArg* absorbArg = static_cast<AbsorbStateArg*>(stateArg);
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(4219, absorbArg);
+#else
 	P2ASSERTLINE(4210, absorbArg);
+#endif
 	mAbsorbingCreature = absorbArg->mCreature;
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(4221, mAbsorbingCreature);
+#else
 	P2ASSERTLINE(4212, mAbsorbingCreature);
+#endif
 	piki->startMotion(IPikiAnims::MIZUNOMI, IPikiAnims::MIZUNOMI, piki, nullptr);
 	mState             = 0;
 	mHasAbsorbed       = 0;
 	Vector3f targetPos = mAbsorbingCreature->getPosition();
 	piki->turnTo(targetPos);
 
+#if defined(VERSION_PAL)
+	P2ASSERTLINE(4228, mAbsorbingCreature->getJAIObject());
+#else
 	P2ASSERTLINE(4219, mAbsorbingCreature->getJAIObject());
+#endif
 	piki->mSoundObj->startPikiSound(mAbsorbingCreature->getJAIObject(), PSSE_PK_VC_DRINK, 0);
 	mAbsorbTimer = 0;
 }
@@ -3336,7 +3417,11 @@ void PikiAbsorbState::onKeyEvent(Piki* piki, SysShape::KeyEvent const& event)
 
 	case KEYEVENT_LOOP_END:
 		Creature* creature = mAbsorbingCreature;
+#if defined(VERSION_PAL)
+		P2ASSERTLINE(4270, creature->mObjectTypeID == OBJTYPE_Honey);
+#else
 		P2ASSERTLINE(4261, creature->mObjectTypeID == OBJTYPE_Honey);
+#endif
 		ItemHoney::Item* nectar = (ItemHoney::Item*)mAbsorbingCreature;
 
 		if (!mAbsorbingCreature->isAlive() || mHasAbsorbed || !nectar->isShrinking()) {
