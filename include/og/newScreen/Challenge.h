@@ -249,7 +249,7 @@ struct ObjChallenge2P : public ObjChallengeBase {
 	inline JGeometry::TBox2f getDividerBar()
 	{
 		JGeometry::TBox2f box;
-		box.i = JGeometry::TVec2f(msVal.mDividerBarXPos, msVal.mDividerBarYPos);
+		box.i = JGeometry::TVec2f((f32)msVal.mDividerBarXPos, (f32)msVal.mDividerBarYPos);
 		box.f = box.i;
 		box.f.x += msVal.mDividerBarWidth;
 		box.f.y += msVal.mDividerBarHeight;
@@ -259,7 +259,7 @@ struct ObjChallenge2P : public ObjChallengeBase {
 	inline JGeometry::TBox2f getDividerBar2()
 	{
 		JGeometry::TBox2f box;
-		box.i = JGeometry::TVec2f(msVal.mDividerBarWidth2, msVal.mDividerBarYPos);
+		box.i = JGeometry::TVec2f((f32)msVal.mDividerBarWidth2, (f32)msVal.mDividerBarYPos);
 		box.f = box.i;
 		box.f.x += msVal.mDividerBarHeight2;
 		box.f.y += msVal.mDividerBarHeight;

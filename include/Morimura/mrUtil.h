@@ -187,20 +187,19 @@ struct TMovePane {
 		mCounter = 0;
 	}
 
-	J2DPane* mPane;                   // _00
-	J2DPane* mStickPane;              // _04
-	JGeometry::TVec2f mOffset;        // _08
-	JGeometry::TVec2f mPanePosition;  // _10
-	JGeometry::TVec2f mPaneGoal;      // _18
-	JGeometry::TVec2f mVelocity;      // _20
-	f32 mAngleSin;                    // _28
-	f32 mAngleCos;                    // _2C
-	JGeometry::TVec2f mStickPosition; // _30
-	f32 mAngle;                       // _38
-	int mState;                       // _3C
-	int mCounter;                     // _40
-	u32 _44;                          // _44, unknown
-	int _48;                          // _48, unknown
+	J2DPane* mPane;                    // _00
+	J2DPane* mStickPane;               // _04
+	JGeometry::TVec2f mOffset;         // _08
+	JGeometry::TVec2f mPanePosition;   // _10
+	JGeometry::TVec2f mPaneGoal;       // _18
+	JGeometry::TVec2f mVelocity;       // _20
+	JGeometry::TVec2f mTargetVelocity; // _28
+	JGeometry::TVec2f mStickPosition;  // _30
+	f32 mAngle;                        // _38
+	int mState;                        // _3C
+	int mCounter;                      // _40
+	u32 _44;                           // _44, unknown
+	int _48;                           // _48, unknown
 };
 
 struct THuWhitePaneSet : public J2DPictureEx {

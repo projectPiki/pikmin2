@@ -89,17 +89,23 @@ template <typename T>
 struct TVec2 {
 	TVec2() { }
 	TVec2(T v) { set(v); }
-	TVec2(T x, T y) { set(x, y); }
+	template <typename U>
+	TVec2(U x, U y)
+	{
+		set(x, y);
+	}
 
 	void set(T v) { y = x = v; }
 
-	void set(T x, T y)
+	template <typename U>
+	void set(U x, U y)
 	{
 		this->x = x;
 		this->y = y;
 	}
 
-	void set(const TVec2& other)
+	template <typename U>
+	void set(const TVec2<U>& other)
 	{
 		x = other.x;
 		y = other.y;
@@ -125,6 +131,12 @@ struct TVec2 {
 	{
 		x += other.x;
 		y += other.y;
+	}
+
+	void add(const TVec2<T>& a, const TVec2<T>& b)
+	{
+		x = a.x + b.x;
+		y = a.y + b.y;
 	}
 
 	/** @fabricated */
@@ -173,15 +185,13 @@ struct TVec2 {
 		y = a.y * scale;
 	}
 
+	TVec2<T> operator*(T scale) const { return TVec2<T>(x * scale, y * scale); }
+
 	void zero() { x = y = 0.0f; }
 
-	f32 squared() const { return x * x + y * y; }
+	f32 squared() const { return dot(*this); }
 
-	T length()
-	{
-		f32 sq = squared();
-		return JGeometry::TUtil<T>::sqrt(sq);
-	}
+	f32 length() const { return TUtil<f32>::sqrt(squared()); }
 
 	void normalize()
 	{
@@ -231,7 +241,18 @@ struct TVec2 {
 		return dist;
 	}
 
-	f32 dot(const TVec2<f32>& other) const { return x * other.x + y * other.y; }
+	f32 dot(const TVec2<T>& other) const { return x * other.x + y * other.y; }
+
+	bool equals(const TVec2<T>& other) const
+	{
+		bool result = false;
+		if (x == other.x && y == other.y) {
+			result = true;
+		}
+		return result;
+	}
+
+	bool operator==(const TVec2<T>& other) const { return equals(other); }
 
 	bool isAbove(const TVec2<T>& other) const { return (x >= other.x) && (y >= other.y) ? true : false; }
 
@@ -273,13 +294,6 @@ struct TVec3 {
 		return *this;
 	}
 
-	void set(T x, T y, T z)
-	{
-		this->x = x;
-		this->y = y;
-		this->z = z;
-	}
-
 	template <typename T2>
 	void set(T2 x, T2 y, T2 z)
 	{
@@ -288,11 +302,25 @@ struct TVec3 {
 		this->z = z;
 	}
 
-	void set(const TVec3& other)
+	template <typename U>
+	void set(const TVec3<U>& other)
 	{
 		x = other.x;
 		y = other.y;
 		z = other.z;
+	}
+
+	void set(const Vec& other)
+	{
+		x = other.x;
+		y = other.y;
+		z = other.z;
+	}
+
+	TVec3& operator=(const Vec& other)
+	{
+		set(other);
+		return *this;
 	}
 
 	void setMin(const TVec3<f32>& min)
@@ -390,25 +418,27 @@ struct TVec3 {
 		return norm;
 	}
 
-	void setLength(f32 length)
+	f32 setLength(f32 length)
 	{
-		if (squared() <= TUtilf::epsilon()) {
-			return;
+		f32 sq = squared();
+		if (sq <= TUtilf::epsilon()) {
+			return 0.0f;
 		}
-		f32 sq   = squared();
 		f32 norm = TUtilf::inv_sqrt(sq);
 		scale(norm * length);
+		return norm * sq;
 	}
 
-	void setLength(const TVec3<f32>& other, f32 length)
+	f32 setLength(const TVec3<f32>& other, f32 length)
 	{
 		f32 sq = other.squared();
 		if (sq <= TUtilf::epsilon()) {
 			zero();
-			return;
+			return 0.0f;
 		}
 		f32 norm = TUtilf::inv_sqrt(sq);
 		scale(norm * length, other);
+		return norm * sq;
 	}
 
 	f32 normalize()
@@ -431,7 +461,7 @@ struct TVec3 {
 		}
 		f32 norm = TUtilf::inv_sqrt(sq);
 		scale(norm, other);
-		return norm;
+		return norm * sq;
 	}
 
 	void cross(const TVec3<f32>& a, const TVec3<f32>& b) { set(a.y * b.z - a.z * b.y, a.z * b.x - a.x * b.z, a.x * b.y - a.y * b.x); }
@@ -456,6 +486,41 @@ struct TVec3 {
 	bool isAbove(const TVec3<T>& other) const { return (x >= other.x) && (y >= other.y) && (z >= other.z); }
 
 	bool isZero() const { return squared() <= 32.0f * FLT_EPSILON; }
+
+	TVec3& operator+=(const TVec3& other)
+	{
+		add(other);
+		return *this;
+	}
+
+	TVec3 operator+(const TVec3& other) const
+	{
+		TVec3 result = *this;
+		result += other;
+		return result;
+	}
+
+	void negateInternal(TVec3* dst)
+	{
+		dst->x = -x;
+		dst->y = -y;
+		dst->z = -z;
+	}
+
+	void negate() { negateInternal(this); }
+
+	void cubic(const TVec3& start, const TVec3& startTangent, const TVec3& endTangent, const TVec3& end, f32 t)
+	{
+		f32 t2                 = t * t;
+		f32 t3                 = t2 * t;
+		f32 startWeight        = 1.0f + (2.0f * t3 - 3.0f * t2);
+		f32 endWeight          = -2.0f * t3 + 3.0f * t2;
+		f32 startTangentWeight = t + (t3 - 2.0f * t2);
+		f32 endTangentWeight   = t3 - t2;
+		x = startWeight * start.x + endWeight * end.x + startTangentWeight * startTangent.x + endTangentWeight * endTangent.x;
+		y = startWeight * start.y + endWeight * end.y + startTangentWeight * startTangent.y + endTangentWeight * endTangent.y;
+		z = startWeight * start.z + endWeight * end.z + startTangentWeight * startTangent.z + endTangentWeight * endTangent.z;
+	}
 
 	TVec3& operator*=(T v)
 	{
