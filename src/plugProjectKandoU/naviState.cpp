@@ -45,6 +45,17 @@ SoundID se_kyoros[3]    = { PSSE_PL_WAIT_KYORO_ORIMA, PSSE_PL_WAIT_KYORO_LUGI, P
 namespace Game {
 
 /**
+ * @note Address: N/A
+ */
+static inline f32 getVectorLength(f32 z, f32 x, f32 y)
+{
+	Vector2f sqr(z * z, x * x + y * y);
+	f32 length = sqr.x + sqr.y;
+	__sqrtf(length, &length);
+	return length;
+}
+
+/**
  * @note Address: 0x8017D44C
  * @note Size: 0x4
  */
@@ -303,7 +314,10 @@ void NaviStuckState::exec(Navi* navi)
 
 	navi->control();
 
-	Vector3f stickVals(navi->mController1->getMainStickX(), 0.0f, navi->mController1->getMainStickY());
+	Vector3f stickVals;
+	stickVals.z  = navi->mController1->getMainStickY();
+	stickVals.y  = 0.0f;
+	stickVals.x  = navi->mController1->getMainStickX();
 	f32 stickMag = stickVals.length();
 
 	if (stickMag > 0.3f) {
@@ -702,9 +716,10 @@ void NaviWalkState::execAI_wait(Navi* navi)
 	if (mTarget) {
 		Vector3f naviPos   = navi->getPosition();
 		Vector3f targetPos = mTarget->getPosition();
-		Vector3f sep       = naviPos - targetPos;
+		f32 dx             = naviPos.x - targetPos.x;
+		f32 dz             = naviPos.z - targetPos.z;
 		f32 rad            = 100.0f;
-		if (sep.sqrMagnitude2D() > SQUARE(rad)) {
+		if (dx * dx + dz * dz > SQUARE(rad)) {
 			mTarget = nullptr;
 			return;
 		}
@@ -1011,8 +1026,8 @@ void NaviWalkState::execAI_escape(Navi* navi)
 		sep.x           = oldSep.z;
 		sep.z           = oldSep.x;
 		if (!mIsEscapeCCW) {
-			sep.x = -oldSep.z;
 			sep.z = -(f32)(f64)oldSep.x;
+			sep.x = -oldSep.z;
 		}
 	}
 
@@ -2065,6 +2080,33 @@ void NaviNukuState::onKeyEvent(Navi* navi, SysShape::KeyEvent const& key)
 	}
 }
 
+static inline void makeDiff(Vector3f& out, const Vector3f& a, const Vector3f& b)
+{
+	out.x = a.x - b.x;
+	out.z = a.z - b.z;
+	out.y = a.y - b.y;
+}
+
+static inline f32 makeTargetMetrics(Vector3f& out, f32& distance, f32& absoluteY, const Vector3f& a, const Vector3f& b)
+{
+	out.x           = a.x - b.x;
+	const f32 yDiff = a.y - b.y;
+	out.y           = yDiff;
+	out.z           = a.z - b.z;
+	distance        = out.length2D();
+	absoluteY       = absF(out.y);
+	return out.normalise();
+}
+
+static inline void copyVelocity(Vector3f& out, const Vector3f& vel)
+{
+	out.x = vel.x;
+	f32 y = vel.y;
+	out.y = y;
+	f32 z = vel.z;
+	out.z = z;
+}
+
 /**
  * @note Address: 0x801820A0
  * @note Size: 0x240
@@ -2087,8 +2129,9 @@ void NaviNukuAdjustState::init(Navi* navi, StateArg* stateArg)
 	mIsFollowing    = arg->mIsFollowing;
 	mUnusedBool     = false;
 
-	Vector3f diff = arg->mPikihead->getPosition() - navi->getPosition();
-	mAngleToPiki  = JMAAtan2Radian(diff.x, diff.z);
+	Vector3f diff;
+	makeDiff(diff, arg->mPikihead->getPosition(), navi->getPosition());
+	mAngleToPiki = JMAAtan2Radian(diff.x, diff.z);
 	diff.normalise();
 	mTargetPosition = arg->mPikihead->getPosition() - (diff * 6.0f);
 
@@ -2327,14 +2370,14 @@ void NaviNukuAdjustState::exec(Navi* navi)
 
 	mNaviPosition = navi->getPosition();
 
-	Vector3f sproutToNavi = mPikiHead->getPosition() - navi->getPosition();
+	Vector3f sproutToNavi;
+	makeDiff(sproutToNavi, mPikiHead->getPosition(), navi->getPosition());
 	sproutToNavi.length(); // unused
 
-	Vector3f targetToNavi    = mTargetPosition - navi->getPosition(); // f26, f27, f28
-	f32 targetToNaviDistance = targetToNavi.length2D();               // f31
-	f32 absoluteDeltaY       = absF(targetToNavi.y);
-
-	f32 normalisedDistance = targetToNavi.normalise(); // f30, why tho
+	Vector3f targetToNavi;
+	f32 targetToNaviDistance;
+	f32 absoluteDeltaY;
+	f32 normalisedDistance = makeTargetMetrics(targetToNavi, targetToNaviDistance, absoluteDeltaY, mTargetPosition, navi->getPosition());
 
 	f32 newFaceDir = mAngleToPiki;
 	f32 angle      = angDist(newFaceDir, navi->mFaceDir);
@@ -2400,11 +2443,13 @@ void NaviNukuAdjustState::exec(Navi* navi)
 		return;
 	}
 
-	Vector3f currentVel = navi->mVelocity; // f31, f30, f29
+	Vector3f currentVel;
+	copyVelocity(currentVel, navi->mVelocity);
 	mIsMoving--;
 	Vector3f naviPos = navi->getPosition();
 
-	Vector3f pikiToNavi    = mCollidedPikiPosition - naviPos;
+	Vector3f pikiToNavi;
+	makeDiff(pikiToNavi, mCollidedPikiPosition, naviPos);
 	f32 distancePikiToNavi = pikiToNavi.normalise();
 
 	// If the distance is 0, return
@@ -2423,7 +2468,8 @@ void NaviNukuAdjustState::exec(Navi* navi)
 	}
 
 	// Interpolate 35% current velocity and 65% new velocity
-	Vector3f blendedVel = currentVel * 0.35f + newVel * 0.65f;
+	Vector3f blendedVel = currentVel * 0.35f;
+	blendedVel          = blendedVel + newVel * 0.65f;
 
 	f32 speed = blendedVel.normalise();
 	if (speed != 0.0f) {
@@ -3031,7 +3077,8 @@ void NaviDopeState::init(Navi* navi, StateArg* stateArg)
 			dopePos = naviPos + (squadPos * 70.0f);
 
 		} else if (pikis > 0) {
-			squadPos = squadPos * (1.0f / (f32)pikis) - naviPos;
+			squadPos = squadPos * (1.0f / (f32)pikis);
+			squadPos = squadPos - naviPos;
 			squadPos.normalise();
 		} else {
 			squadPos = Vector3f(0.0f, 1.0f, 0.0f);
@@ -4533,7 +4580,8 @@ void NaviThrowWaitState::init(Navi* navi, StateArg* stateArg)
 		Piki* piki = static_cast<Piki*>(*iterator);
 
 		Vector3f diff        = piki->getPosition() - navi->getPosition();
-		Vector3f naviFaceDir = getDirection(navi->mFaceDir);
+		f32 faceDir          = navi->mFaceDir;
+		Vector3f naviFaceDir = getDirection(faceDir);
 		f32 dist             = diff.length();
 		if (!(absF(diff.y) > 15.0f)) {
 			if (diff.dot(naviFaceDir) > -0.1f) {
@@ -5040,18 +5088,22 @@ void NaviThrowWaitState::exec(Navi* navi)
 			CollPart* part   = navi->mCollTree->getCollPart('rhnd');
 			Vector3f handPos = part->mPosition;
 			Vector3f pikiPos = mNextPiki->getPosition();
-			f32 dist         = handPos.distance(pikiPos);
-			if (!(dist <= 32.5f))
+			f32 dx           = handPos.x - pikiPos.x;
+			f32 dy           = handPos.y - pikiPos.y;
+			f32 dz           = handPos.z - pikiPos.z;
+			f32 dist         = getVectorLength(dz, dx, dy);
+			if (dist <= 32.5f) {
+				navi->mAnimSpeed = 30.0f;
+				navi->startMotion(IPikiAnims::THROWWWAIT, IPikiAnims::THROWWWAIT, this, nullptr);
+				navi->enableMotionBlend();
+				mHeldPiki = mNextPiki;
+				mNextPiki = nullptr;
+				rumbleMgr->startRumble(RUMBLETYPE_Nudge, mNavi->mNaviIndex);
+				mHeldPiki->mFsm->transit(mHeldPiki, PIKISTATE_Hanged, nullptr);
+				mHasHeldPiki = true;
+			} else {
 				return;
-
-			navi->mAnimSpeed = 30.0f;
-			navi->startMotion(IPikiAnims::THROWWWAIT, IPikiAnims::THROWWWAIT, this, nullptr);
-			navi->enableMotionBlend();
-			mHeldPiki = mNextPiki;
-			mNextPiki = nullptr;
-			rumbleMgr->startRumble(RUMBLETYPE_Nudge, mNavi->mNaviIndex);
-			mHeldPiki->mFsm->transit(mHeldPiki, PIKISTATE_Hanged, nullptr);
-			mHasHeldPiki = true;
+			}
 		} else {
 			transit(navi, NSID_Punch, nullptr);
 			return;
@@ -5060,13 +5112,10 @@ void NaviThrowWaitState::exec(Navi* navi)
 
 	navi->mNextThrowPiki = mHeldPiki;
 
-	f32 min               = CG_NAVIPARMS(navi).mThrowDistanceMin();
-	f32 max               = CG_NAVIPARMS(navi).mThrowDistanceMax();
-	navi->mHoldPikiCharge = mHoldChargeLevel / 3.0f * (max - min) + min;
-
-	max                    = CG_NAVIPARMS(navi).mThrowHeightMax();
-	min                    = CG_NAVIPARMS(navi).mThrowHeightMin();
-	navi->mHoldPikiCharge2 = mHoldChargeLevel / 3.0f * (max - min) + min;
+	navi->mHoldPikiCharge = mHoldChargeLevel / 3.0f * (CG_NAVIPARMS(navi).mThrowDistanceMax() - CG_NAVIPARMS(navi).mThrowDistanceMin())
+	                      + CG_NAVIPARMS(navi).mThrowDistanceMin();
+	navi->mHoldPikiCharge2 = mHoldChargeLevel / 3.0f * (CG_NAVIPARMS(navi).mThrowHeightMax() - CG_NAVIPARMS(navi).mThrowHeightMin())
+	                       + CG_NAVIPARMS(navi).mThrowHeightMin();
 
 	if (mHeldPiki && mHasHeldPiki) {
 		int stateID = mHeldPiki->getStateID();
@@ -5147,11 +5196,14 @@ void NaviThrowWaitState::exec(Navi* navi)
 
 	} else if (navi->mController1->getButtonDown() & Controller::PRESS_DPAD_UP
 	           || navi->mController1->getButtonDown() & Controller::PRESS_DPAD_DOWN) {
-		bool isButton = navi->mController1->isButtonDown(Controller::PRESS_DPAD_DOWN);
-		int currColor = mHeldPiki->mPikiKind;
-		int currHappa = mHeldPiki->mHappaKind;
+		int i;
+		int currHappa;
+		bool isButton = (navi->mController1->getButtonDown() & Controller::PRESS_DPAD_DOWN) != 0;
+		Vector2i kinds(mHeldPiki->mHappaKind, mHeldPiki->mPikiKind);
+		currHappa     = kinds.x;
+		int currColor = kinds.y;
 		Piki* newPiki;
-		for (int i = 0; i < MaxHappaStage; i++) {
+		for (i = 0; i < MaxHappaStage; i++) {
 			if (isButton) {
 				mCurrHappa = (mCurrHappa + (PikiGrowthStageCount - 1)) % PikiGrowthStageCount; // leaf->flower, flower->bud, bud->leaf
 			} else {
@@ -5209,7 +5261,11 @@ void NaviThrowWaitState::exec(Navi* navi)
 	if (navi->mCPlateMgr->mActiveGroupSize > 0) {
 		Vector3f slotPos = navi->mCPlateMgr->mSlots->mPosition;
 		Vector3f naviPos = navi->getPosition();
-		if (slotPos.distance(naviPos) > 30.0f) {
+		f32 dx           = slotPos.x - naviPos.x;
+		f32 dy           = slotPos.y - naviPos.y;
+		f32 dz           = slotPos.z - naviPos.z;
+		f32 distance     = getVectorLength(dz, dx, dy);
+		if (distance > 30.0f) {
 			Vector3f naviPos = navi->getPosition();
 			Vector3f naviVel = navi->getVelocity();
 			navi->mCPlateMgr->setPos(naviPos, navi->mFaceDir + PI, naviVel, 1.0f);
@@ -6651,11 +6707,11 @@ bool NaviDemo_HoleInState::execHesitate(Navi* navi)
 		Vector3f diff    = holePos - navi->getPosition();
 		diff.normalise();
 
-		Vector3f velocity(diff.x, 240.0f, diff.z);
-		velocity.x *= 2.0f;
-		velocity.z *= 2.0f;
-		navi->mVelocity       = velocity;
-		navi->mTargetVelocity = velocity;
+		diff.x *= 2.0f;
+		diff.y = 240.0f;
+		diff.z *= 2.0f;
+		navi->mVelocity       = diff;
+		navi->mTargetVelocity = diff;
 		navi->setMapCollision(false);
 		return true;
 	}
