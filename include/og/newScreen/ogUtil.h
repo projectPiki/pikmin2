@@ -8,7 +8,7 @@ namespace og {
 namespace newScreen {
 bool checkMovieActive();
 void drawObjName(Graphics&, char*);
-void getLanguageDir(char*&);
+void getLanguageDir(char*);
 void makeLanguageResName(char*, char const*);
 u64 caveIDtoMsgID(u32);
 } // namespace newScreen
