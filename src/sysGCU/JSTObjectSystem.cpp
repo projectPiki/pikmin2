@@ -1,11 +1,33 @@
 #include "Game/P2JST/ObjectSystem.h"
 #include "Game/P2JST/ObjectActor.h"
 #include "Game/P2JST/ObjectCamera.h"
+#include "stl/algorithm.h"
+
+// this is a made-up helper for the find_if call in findObject
+// since it really looks like it needs *something*
+namespace {
+struct TObjectNameEqual {
+	TObjectNameEqual(JStage::TEObject type, const char* name)
+	    : mType(type)
+	    , mName(name)
+	{
+	}
+
+	bool operator()(JStage::TObject* const& object) const
+	{
+		if (!object) {
+			return false;
+		}
+		return strcmp(object->JSGGetName(), mName) == 0;
+	}
+
+	JStage::TEObject mType; // _00
+	const char* mName;      // _04
+};
+} // namespace
 
 namespace Game {
 namespace P2JST {
-
-// NB: this file probably gets significantly closer if we work out JGadget::TList<>::iterator.
 
 /**
  * @note Address: N/A
@@ -429,19 +451,10 @@ lbl_80430F14:
  */
 JStage::TObject* ObjectSystem::findObject(const char* name, JStage::TEObject type) const
 {
-	JGadget::TList_pointer<JStage::TObject*>::const_iterator iterStart = mObjListPointer.begin();
-	JGadget::TList_pointer<JStage::TObject*>::const_iterator iterEnd   = mObjListPointer.end();
-	while (iterStart != iterEnd) {
-		JStage::TObject* obj = static_cast<JStage::TObject*>(*iterStart);
-		if (obj && strcmp(obj->JSGGetName(), name) == 0) {
-			break;
-		}
-		++iterStart;
-	}
-	if (iterStart != iterEnd) {
-		return static_cast<JStage::TObject*>(*iterStart);
-	}
-	return nullptr;
+	JGadget::TList_pointer<JStage::TObject*>::const_iterator first = mObjListPointer.begin();
+	JGadget::TList_pointer<JStage::TObject*>::const_iterator last  = mObjListPointer.end();
+	JGadget::TList_pointer<JStage::TObject*>::const_iterator found = std::find_if(first, last, TObjectNameEqual(type, name));
+	return found != mObjListPointer.end() ? *found : nullptr;
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0
@@ -563,7 +576,7 @@ int ObjectSystem::JSGFindObject(JStage::TObject** outObject, const char* name, J
 
 			++iterStart;
 		}
-		JUT_PANICLINE(449, "JSGFindObject---- %d not found\n", type);
+		JUT_PANICLINE(449, "JSGFindObject---- %d not found\n"); // nice oopsie
 		break;
 	case JStage::TEO_System:
 	case JStage::TEO_AmbientLight:

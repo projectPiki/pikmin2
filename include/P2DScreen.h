@@ -15,7 +15,6 @@ struct Node : public CNode {
 	{
 	}
 
-	virtual ~Node() { }                                           // _08 (weak)
 	virtual void update() { }                                     // _10 (weak)
 	virtual void draw(Graphics& gfx, J2DGrafContext& context) { } // _14 (weak)
 	virtual void doInit() { }                                     // _18 (weak)
@@ -28,7 +27,6 @@ struct Node : public CNode {
 struct CallBackNode : public Node {
 	CallBackNode() { }
 
-	virtual ~CallBackNode() { } // _08 (weak)
 	virtual void update() { }   // _10 (weak)
 
 	// _00     = VTBL

@@ -7,6 +7,10 @@
 #include "mem.h"
 #include "JSystem/JGadget/enumerator.h"
 
+template <>
+JGadget::TObjectList::iterator std::find_if(JGadget::TObjectList::iterator first, JGadget::TObjectList::iterator last,
+                                            JStudio::object::TPRObject_ID_equal p);
+
 namespace JStudio {
 namespace stb {
 

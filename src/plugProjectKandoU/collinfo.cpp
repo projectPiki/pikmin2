@@ -196,7 +196,7 @@ Platform* PlatAttacher::getPlatform(int i)
 AgePlatform::AgePlatform()
 {
 	mTriDivider = new Sys::OBBTree[2]; // something here has to generate four weak dtors
-	new Sys::GridDivider;
+	new Sys::GridDivider[2];
 }
 
 /**
@@ -900,167 +900,6 @@ void CollPart::calcStickLocal(Vector3f& input, Vector3f& localPosition)
 		localPosition.y = tube.getPosRatio(input);
 		break;
 	}
-	/*
-	stwu     r1, -0xf0(r1)
-	mflr     r0
-	stw      r0, 0xf4(r1)
-	stfd     f31, 0xe0(r1)
-	psq_st   f31, 232(r1), 0, qr0
-	stw      r31, 0xdc(r1)
-	stw      r30, 0xd8(r1)
-	stw      r29, 0xd4(r1)
-	mr       r29, r3
-	mr       r30, r4
-	lbz      r0, 0x58(r3)
-	mr       r31, r5
-	cmpwi    r0, 0
-	beq      lbl_801375F8
-	blt      lbl_801377B8
-	cmpwi    r0, 3
-	bge      lbl_801377B8
-	b        lbl_801377A0
-
-lbl_801375F8:
-	lwz      r0, 0x2c(r29)
-	cmpwi    r0, -1
-	beq      lbl_80137648
-	addi     r3, r1, 0x34
-	bl       PSMTXIdentity
-	lfs      f0, 0x20(r29)
-	stfs     f0, 0x40(r1)
-	lfs      f0, 0x24(r29)
-	stfs     f0, 0x50(r1)
-	lfs      f0, 0x28(r29)
-	stfs     f0, 0x60(r1)
-	lwz      r3, 0x5c(r29)
-	lwz      r4, 0x2c(r29)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	addi     r4, r1, 0x34
-	addi     r5, r1, 0x94
-	bl       PSMTXConcat
-
-lbl_80137648:
-	addi     r3, r1, 0x94
-	addi     r4, r1, 0x64
-	bl       PSMTXInverse
-	lfs      f0, 0x94(r1)
-	lfs      f1, 0x98(r1)
-	fmuls    f3, f0, f0
-	lfs      f4, 0x9c(r1)
-	fmuls    f2, f1, f1
-	lfs      f0, lbl_80518210@sda21(r2)
-	fmuls    f1, f4, f4
-	fadds    f3, f3, f2
-	fadds    f3, f3, f1
-	fcmpo    cr0, f3, f0
-	ble      lbl_80137690
-	ble      lbl_80137694
-	frsqrte  f0, f3
-	fmuls    f3, f0, f3
-	b        lbl_80137694
-
-lbl_80137690:
-	fmr      f3, f0
-
-lbl_80137694:
-	fabs     f1, f3
-	lfs      f0, lbl_80518220@sda21(r2)
-	frsp     f1, f1
-	fcmpo    cr0, f1, f0
-	bge      lbl_801376BC
-	lfs      f0, lbl_80518210@sda21(r2)
-	stfs     f0, 0(r31)
-	stfs     f0, 4(r31)
-	stfs     f0, 8(r31)
-	b        lbl_801377B8
-
-lbl_801376BC:
-	lfs      f0, lbl_80518224@sda21(r2)
-	mr       r4, r30
-	addi     r3, r1, 0x64
-	addi     r5, r1, 8
-	fdivs    f31, f0, f3
-	bl       PSMTXMultVec
-	lfs      f2, 0xc(r1)
-	lfs      f3, 0x10(r1)
-	lfs      f0, 8(r1)
-	lfs      f1, lbl_80518210@sda21(r2)
-	stfs     f0, 0(r31)
-	stfs     f2, 4(r31)
-	stfs     f3, 8(r31)
-	lfs      f3, 0(r31)
-	lfs      f2, 4(r31)
-	lfs      f4, 8(r31)
-	fmuls    f0, f3, f3
-	fmuls    f2, f2, f2
-	fmuls    f4, f4, f4
-	fadds    f0, f0, f2
-	fadds    f0, f4, f0
-	fcmpo    cr0, f0, f1
-	ble      lbl_80137734
-	fmadds   f0, f3, f3, f2
-	fadds    f2, f4, f0
-	fcmpo    cr0, f2, f1
-	ble      lbl_80137738
-	frsqrte  f0, f2
-	fmuls    f2, f0, f2
-	b        lbl_80137738
-
-lbl_80137734:
-	fmr      f2, f1
-
-lbl_80137738:
-	lfs      f0, lbl_80518210@sda21(r2)
-	fcmpo    cr0, f2, f0
-	ble      lbl_80137770
-	lfs      f1, lbl_80518224@sda21(r2)
-	lfs      f0, 0(r31)
-	fdivs    f1, f1, f2
-	fmuls    f0, f0, f1
-	stfs     f0, 0(r31)
-	lfs      f0, 4(r31)
-	fmuls    f0, f0, f1
-	stfs     f0, 4(r31)
-	lfs      f0, 8(r31)
-	fmuls    f0, f0, f1
-	stfs     f0, 8(r31)
-
-lbl_80137770:
-	lfs      f1, 0x1c(r29)
-	lfs      f0, 0(r31)
-	fmuls    f3, f1, f31
-	lfs      f1, 4(r31)
-	lfs      f2, 8(r31)
-	fmuls    f0, f0, f3
-	fmuls    f1, f1, f3
-	fmuls    f2, f2, f3
-	stfs     f0, 0(r31)
-	stfs     f1, 4(r31)
-	stfs     f2, 8(r31)
-	b        lbl_801377B8
-
-lbl_801377A0:
-	addi     r4, r1, 0x14
-	bl       getTube__8CollPartFRQ23Sys4Tube
-	mr       r4, r30
-	addi     r3, r1, 0x14
-	bl       "getPosRatio__Q23Sys4TubeFRC10Vector3<f>"
-	stfs     f1, 4(r31)
-
-lbl_801377B8:
-	psq_l    f31, 232(r1), 0, qr0
-	lwz      r0, 0xf4(r1)
-	lfd      f31, 0xe0(r1)
-	lwz      r31, 0xdc(r1)
-	lwz      r30, 0xd8(r1)
-	lwz      r29, 0xd4(r1)
-	mtlr     r0
-	addi     r1, r1, 0xf0
-	blr
-	*/
 }
 
 /**
@@ -1118,18 +957,16 @@ void CollPart::calcPoseMatrix(Vector3f& input, Matrixf& poseMatrix)
 		Matrixf mtx;
 		makeMatrixTo(mtx);
 
-		Vector3f pos;
-		mtx.getTranslation(pos);
-
-		pos -= input;
+		Vector3f pos = mtx.getTranslation();
+		pos = pos - input;
 		f32 len = pos.normalise();
 
 		if (len == 0.0f) {
 			pos = Vector3f(0.0f, 0.0f, 1.0f);
 		}
 
-		Vector3f zAxis(0.0f, 0.0f, 1.0f);
-		Vector3f crossProd = pos.cross(zAxis);
+		Vector3f yAxis(0.0f, 1.0f, 0.0f);
+		Vector3f crossProd = yAxis.cross(pos);
 		crossProd.normalise();
 		poseMatrix.setColumn(0, crossProd);
 		poseMatrix.setColumn(1, pos.cross(crossProd));
@@ -1165,7 +1002,7 @@ void CollPart::calcPoseMatrix(Vector3f& input, Matrixf& poseMatrix)
 
 		Vector3f axis;
 		tube.getAxisVector(axis);
-		axis.negate2();
+		axis = -axis;
 
 		Vector3f axisCross = input.cross(axis);
 		_normaliseVec(axisCross);

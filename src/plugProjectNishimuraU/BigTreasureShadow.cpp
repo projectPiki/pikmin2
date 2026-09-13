@@ -544,44 +544,66 @@ void BigTreasureShadowMgr::updateAntennaShadow(JointShadowParm& parm)
 
 		parm.mShadowScale = 4.0f * mObj->mShadowScale;
 
+		Vector3f xOffset1 = xVec1;
+		xOffset1.scale(55.0f);
+		Vector3f yOffset1 = yVec1;
+		yOffset1.scale(0.0f);
 		Vector3f pos3 = pos2;
-		pos3 += xVec1 * 55.0f;
-		pos3 += yVec1 * 0.0f;
+		pos3 += xOffset1;
+		pos3 += yOffset1;
 
 		mAntennaTubeNodes[i][1]->makeShadowSRT(parm, pos2, pos3);
 
 		parm.mShadowScale = 5.0f * mObj->mShadowScale;
 
+		Vector3f xOffset2a = xVec1;
+		xOffset2a.scale(55.0f);
+		Vector3f xOffset2b = xVec1;
+		xOffset2b.scale(50.0f);
+		Vector3f yOffset2a = yVec1;
+		yOffset2a.scale(-35.0f);
+		Vector3f yOffset2b = yVec1;
+		yOffset2b.scale(0.0f);
 		Vector3f pos4 = pos2;
 		Vector3f pos5 = pos2;
-
-		pos4 += xVec1 * 55.0f;
-		pos5 += xVec1 * 50.0f;
-
-		pos4 += yVec1 * -35.0f;
-		pos5 += yVec1 * 0.0f;
+		pos4 += xOffset2a;
+		pos5 += xOffset2b;
+		pos4 += yOffset2a;
+		pos5 += yOffset2b;
 
 		mAntennaTubeNodes[i][2]->makeShadowSRT(parm, pos4, pos5);
 
+		Vector3f xOffset3a = xVec1;
+		xOffset3a.scale(37.5f);
+		Vector3f xOffset3b = xVec1;
+		xOffset3b.scale(40.0f);
+		Vector3f yOffset3a = yVec1;
+		yOffset3a.scale(-30.0f);
+		Vector3f yOffset3b = yVec1;
+		yOffset3b.scale(0.0f);
 		Vector3f pos6 = pos2;
 		Vector3f pos7 = pos2;
-
-		pos6 += xVec1 * 37.5f;
-		pos7 += xVec1 * 40.0f;
-
-		pos6 += yVec1 * -30.0f;
-		pos7 += yVec1 * 0.0f;
+		pos6 += xOffset3a;
+		pos7 += xOffset3b;
+		pos6 += yOffset3a;
+		pos7 += yOffset3b;
 
 		mAntennaTubeNodes[i][3]->makeShadowSRT(parm, pos6, pos7);
 
+		Vector3f xOffset4a = xVec1;
+		xOffset4a.scale(20.0f);
+		Vector3f xOffset4b = xVec1;
+		xOffset4b.scale(35.0f);
+		Vector3f yOffset4a = yVec1;
+		yOffset4a.scale(-20.0f);
+		Vector3f yOffset4b = yVec1;
+		yOffset4b.scale(0.0f);
 		Vector3f pos8 = pos2;
 		Vector3f pos9 = pos2;
-
-		pos8 += xVec1 * 20.0f;
-		pos9 += xVec1 * 35.0f;
-
-		pos8 += yVec1 * -20.0f;
-		pos9 += yVec1 * 0.0f;
+		pos8 += xOffset4a;
+		pos9 += xOffset4b;
+		pos8 += yOffset4a;
+		pos9 += yOffset4b;
 
 		mAntennaTubeNodes[i][4]->makeShadowSRT(parm, pos8, pos9);
 

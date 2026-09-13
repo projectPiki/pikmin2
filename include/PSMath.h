@@ -27,7 +27,7 @@ static inline Vec squareComponents(Vec vector)
 }
 
 template <typename A, typename B>
-inline f32 calcDistance(const A& from, B to)
+inline f32 calcDistance(A from, B to)
 {
 	JGeometry::TVec3f fromGeometry;
 	fromGeometry.set(from.x, from.y, from.z);

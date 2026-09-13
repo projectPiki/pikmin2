@@ -295,6 +295,8 @@ struct J2DTevStageInfo {
 	u8 _13;     // _13
 };
 
+extern const J2DTevStageInfo j2dDefaultTevStageInfo;
+
 struct J2DTevSwapModeInfo {
 	u8 mRasSel; // _00
 	u8 mTexSel; // _01
@@ -318,12 +320,15 @@ struct J2DTevSwapModeTableInfo {
 	u8 mA; // _03
 };
 
-inline u8 J2DCalcTevSwapTable(u32 r, u32 g, u32 b, u32 a)
+inline u8 J2DCalcTevSwapTable(const u8 r, const u8 g, const u8 b, const u8 a)
 {
 	return (r << 6) + (g << 4) + (b << 2) + a;
 }
 
-extern const J2DTevSwapModeInfo j2dDefaultTevSwapMode;
+// this should be const, but the codegen *treats* it as non-const
+// so, the workaround is just making it non-const and forcing J2DTevs into
+// putting it in the right data section. if someone can fix this later, please do -HP
+extern J2DTevSwapModeInfo j2dDefaultTevSwapMode;
 extern const J2DTevSwapModeTableInfo j2dDefaultTevSwapModeTable;
 extern const u8 j2dDefaultTevSwapTable;
 
@@ -349,26 +354,21 @@ struct J2DTevStage {
 	{
 		setTevStageInfo(info);
 		setTevSwapModeInfo(j2dDefaultTevSwapMode);
-		// TODO: this is here to force this to not inline - it's probably (actually) an inline depth issue.
-		// clang-format off
-		(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; 
-		(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; 
-		(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; 
-		(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; 
-		(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; 
-		(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; 
-		(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; 
-		(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; 
-		(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; 
-		(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; 
-		(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; 
-		(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0;
-		// clang-format on
 	}
 
-	J2DTevStage();
+	J2DTevStage()
+	{
+		setTevStageInfo(j2dDefaultTevStageInfo);
+		setTevSwapModeInfo(j2dDefaultTevSwapMode);
+	}
 
-	void setTevStageInfo(J2DTevStageInfo const&);
+	void setTevStageInfo(J2DTevStageInfo const& info)
+	{
+		setColorABCD(info.mColorA, info.mColorB, info.mColorC, info.mColorD);
+		setTevColorOp(info.mCOp, info.mCBias, info.mCScale, info.mCClamp, info.mCReg);
+		setAlphaABCD(info.mAlphaA, info.mAlphaB, info.mAlphaC, info.mAlphaD);
+		setTevAlphaOp(info.mAOp, info.mABias, info.mAScale, info.mAClamp, info.mAReg);
+	}
 
 	void setStageNo(u32 param_0)
 	{
@@ -378,7 +378,7 @@ struct J2DTevStage {
 
 	void setTevSwapModeInfo(const J2DTevSwapModeInfo& swapInfo)
 	{
-		setTexSel(swapInfo.mTexSel);
+		_07 = (_07 & ~0xC) | (swapInfo.mTexSel << 2);
 		setRasSel(swapInfo.mRasSel);
 	}
 
@@ -386,16 +386,16 @@ struct J2DTevStage {
 
 	void setRasSel(u8 rasSel) { _07 = (_07 & ~0x3) | (u8)rasSel; }
 
-	void setColorABCD(u8 a, u8 b, u8 c, u8 d)
+	void setColorABCD(const u8 a, const u8 b, const u8 c, const u8 d)
 	{
 		setTevColorAB(a, b);
 		setTevColorCD(c, d);
 	}
 
-	void setTevColorAB(u8 a, u8 b) { _02 = a << 4 | b; }
-	void setTevColorCD(u8 c, u8 d) { _03 = c << 4 | d; }
+	void setTevColorAB(const u8 a, const u8 b) { _02 = a << 4 | b; }
+	void setTevColorCD(const u8 c, const u8 d) { _03 = c << 4 | d; }
 
-	void setTevColorOp(u8 op, u8 bias, u8 scale, u8 clamp, u8 reg)
+	void setTevColorOp(const u8 op, const u8 bias, const u8 scale, const u8 clamp, const u8 reg)
 	{
 		_01 = _01 & ~0x04 | op << 2;
 		if (op <= 1) {
@@ -409,7 +409,7 @@ struct J2DTevStage {
 		_01 = _01 & ~0xc0 | reg << 6;
 	}
 
-	void setAlphaABCD(u8 a, u8 b, u8 c, u8 d)
+	void setAlphaABCD(const u8 a, const u8 b, const u8 c, const u8 d)
 	{
 		setAlphaA(a);
 		setAlphaB(b);
@@ -417,15 +417,15 @@ struct J2DTevStage {
 		setAlphaD(d);
 	}
 
-	void setAlphaA(u8 a) { _06 = _06 & ~0xe0 | a << 5; }
-	void setAlphaB(u8 b) { _06 = _06 & ~0x1c | b << 2; }
-	void setAlphaC(u8 c)
+	void setAlphaA(const u8 a) { _06 = _06 & ~0xe0 | a << 5; }
+	void setAlphaB(const u8 b) { _06 = _06 & ~0x1c | b << 2; }
+	void setAlphaC(const u8 c)
 	{
 		_06 = _06 & ~0x03 | c >> 1;
 		_07 = _07 & ~0x80 | c << 7;
 	}
-	void setAlphaD(u8 d) { _07 = _07 & ~0x70 | d << 4; }
-	void setTevAlphaOp(u8 op, u8 bias, u8 scale, u8 clamp, u8 reg)
+	void setAlphaD(const u8 d) { _07 = _07 & ~0x70 | d << 4; }
+	void setTevAlphaOp(const u8 op, const u8 bias, const u8 scale, const u8 clamp, const u8 reg)
 	{
 		_05 = _05 & ~0x04 | op << 2;
 		if (op <= 1) {
@@ -592,7 +592,6 @@ struct J2DTextureSRTInfo {
 	f32 mTranslationY; // _10
 };
 
-extern const J2DTevStageInfo j2dDefaultTevStageInfo;
 extern const GXColor j2dDefaultColInfo;
 extern const GXColorS10 j2dDefaultTevColor;
 extern const GXColor j2dDefaultTevKColor;

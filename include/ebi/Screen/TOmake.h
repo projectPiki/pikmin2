@@ -14,8 +14,6 @@ namespace Screen {
 struct TOmake : public TScreenBase {
 	TOmake();
 
-	~TOmake() { }
-
 	virtual void doSetArchive(JKRArchive*);      // _24
 	virtual void doOpenScreen(ArgOpen*);         // _28
 	virtual void doCloseScreen(ArgClose*);       // _2C
@@ -94,7 +92,6 @@ struct TOmake : public TScreenBase {
 };
 struct TOmakeCardE : public TScreenBase {
 	TOmakeCardE();
-	~TOmakeCardE() { }
 
 	enum CardEState { MainMenu, InZoomed, ExitingZoomed, EnteringZoomed };
 
@@ -127,7 +124,6 @@ struct TOmakeCardE : public TScreenBase {
 
 struct TOmakeGame : public TScreenBase {
 	TOmakeGame();
-	~TOmakeGame() { }
 
 	enum MsgDescType { GameDesc = 0, Transferring = 1, TransferFinished = 2, TransferFailed = 3, TransferUnable = 4 };
 	enum GameID { PikminPluck, PikminPart, PikminPath, GameCount };

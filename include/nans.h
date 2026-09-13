@@ -3,22 +3,18 @@
 
 #include "types.h"
 #include "math.h"
+#include "limits.h"
 #include "Dolphin/vec.h"
 
 namespace Game {
 namespace P2JST {
-struct _u32FakeMatch {
-	inline _u32FakeMatch(u32 v)
-	    : a(v)
-	{
-	}
-	u32 a;
-};
+// good chance these were originally in one of the P2JST headers (like ObjectActor or something)
+// keeping them here so we're less dependent on keeping those header includes exact
 
-// static u32 gu32NAN = -1;
-const _u32FakeMatch gu32NAN_(-1);
-const f32 gfNAN_  = NAN;
-const Vec govNAN_ = { NAN, gfNAN_, NAN };
+// this seems so much more sensible than the fake nonsense we had before
+const u32 gu32NAN_ = std::numeric_limits<u32>::max();
+const f32 gfNAN_   = NAN;
+const Vec govNAN_  = { NAN, NAN, NAN };
 } // namespace P2JST
 } // namespace Game
 

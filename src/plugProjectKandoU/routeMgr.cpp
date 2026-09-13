@@ -530,8 +530,10 @@ WayPoint* RouteMgr::getNearestWayPoint(WPSearchArg& searchArg)
  */
 bool RouteMgr::getNearestEdge(WPEdgeSearchArg& searchArg)
 {
-	f32 minDist = FLOAT_DIST_MAX;
-	bool result = false;
+	searchArg.mWp2 = nullptr;
+	searchArg.mWp1 = nullptr;
+	f32 minDist    = FLOAT_DIST_MAX;
+	bool result    = false;
 	Iterator<WayPoint> iter(this);
 	CI_LOOP(iter)
 	{
@@ -566,7 +568,12 @@ bool RouteMgr::getNearestEdge(WPEdgeSearchArg& searchArg)
 				continue;
 			}
 
-			if (wpB->mFromLinks[i] == wpA->mIndex && wpA->mIndex > wpB->mIndex) {
+			// there really are a shitton of branches here from SOMETHING
+			// this is my best guess for now
+			bool isReverseLink = wpB->mFromLinks[i] == wpA->mIndex || wpB->mFromLinks[i] == wpA->mIndex || wpB->mFromLinks[i] == wpA->mIndex
+			                  || wpB->mFromLinks[i] == wpA->mIndex || wpB->mFromLinks[i] == wpA->mIndex || wpB->mFromLinks[i] == wpA->mIndex
+			                  || wpB->mFromLinks[i] == wpA->mIndex || wpB->mFromLinks[i] == wpA->mIndex;
+			if (isReverseLink && wpA->mIndex > wpB->mIndex) {
 				continue;
 			}
 

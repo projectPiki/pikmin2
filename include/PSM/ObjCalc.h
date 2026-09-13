@@ -20,7 +20,6 @@ struct ObjCalcBase : public PSSystem::SingletonBase<ObjCalcBase> {
 		OBJCALC_3 = 3,
 	};
 
-	virtual ~ObjCalcBase() { }                        // _08 (weak)
 	virtual u8 getPlayerNo(Creature*) = 0;            // _0C
 	virtual u8 getPlayerNo(Vec&)      = 0;            // _10
 	virtual void setMode(Mode mode) { mMode = mode; } // _14 (weak)

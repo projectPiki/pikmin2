@@ -1760,10 +1760,10 @@ void TRenderingProcessor::setTextBoxInfo(J2DPane* pane)
 
 	J2DTextBoxEx* text = static_cast<J2DTextBoxEx*>(pane);
 
-	// Target is going extra with all the byte assignments, so maybe
-	// There is more to this than what we have right now.
-	JUtility::TColor chrcolor  = text->mCharColor;
-	JUtility::TColor gradcolor = text->mGradientColor;
+	JUtility::TColor chrcolor;
+	chrcolor.setRGBA(text->mCharColor);
+	JUtility::TColor gradcolor;
+	gradcolor.setRGBA(text->mGradientColor);
 
 	JUtility::TColor black, white;
 	black = text->getBlack();

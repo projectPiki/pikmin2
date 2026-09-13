@@ -64,11 +64,11 @@ static u8* p_dl[2] = {
 GXBlendMode JPABaseShape::st_bm[3] = { GX_BM_NONE, GX_BM_BLEND, GX_BM_LOGIC };
 
 GXBlendFactor JPABaseShape::st_bf[10] = { GX_BL_ZERO,      GX_BL_ONE,      GX_BL_SRCCOL,      GX_BL_INVSRCCOL, GX_BL_DSTCOL,
-	                                      GX_BL_INVDSTCOL, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_BL_DSTALPHA,  GX_BL_INVDSTALPHA };
+                                          GX_BL_INVDSTCOL, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_BL_DSTALPHA,  GX_BL_INVDSTALPHA };
 
 GXLogicOp JPABaseShape::st_lo[16]
     = { GX_LO_CLEAR, GX_LO_SET, GX_LO_COPY, GX_LO_INVCOPY, GX_LO_NOOP,   GX_LO_INV,    GX_LO_AND,   GX_LO_NAND,
-	    GX_LO_OR,    GX_LO_NOR, GX_LO_XOR,  GX_LO_EQUIV,   GX_LO_REVAND, GX_LO_INVAND, GX_LO_REVOR, GX_LO_INVOR };
+        GX_LO_OR,    GX_LO_NOR, GX_LO_XOR,  GX_LO_EQUIV,   GX_LO_REVAND, GX_LO_INVAND, GX_LO_REVOR, GX_LO_INVOR };
 
 GXCompare JPABaseShape::st_c[8] = { GX_NEVER, GX_LESS, GX_LEQUAL, GX_EQUAL, GX_NEQUAL, GX_GEQUAL, GX_GREATER, GX_ALWAYS };
 
@@ -490,7 +490,7 @@ void JPAGenCalcTexCrdMtxAnm(JPAEmitterWorkData* workData)
 	f32 scaleY = (tickCount * baseShape->getIncScaleY()) + baseShape->getInitScaleY();
 
 	// Calculate the rotation
-	s32 rotation = (tickCount * baseShape->getIncRot()) + baseShape->getInitRot();
+	s16 rotation = (tickCount * baseShape->getIncRot()) + baseShape->getInitRot();
 
 	// Calculate the sine and cosine of the rotation
 	f32 sinRotation = JMASSin(rotation);
@@ -520,110 +520,6 @@ void JPAGenCalcTexCrdMtxAnm(JPAEmitterWorkData* workData)
 
 	// Set the texture coordinate generation parameters
 	GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX3X4, GX_TG_TEX0, GX_TEXMTX0, false, GX_PTIDENTITY);
-	/*
-	stwu     r1, -0x70(r1)
-	mflr     r0
-	stw      r0, 0x74(r1)
-	stfd     f31, 0x60(r1)
-	psq_st   f31, 104(r1), 0, qr0
-	lwz      r5, 4(r3)
-	lis      r8, 0x4330
-	lwz      r4, 0(r3)
-	lis      r3, sincosTable___5JMath@ha
-	lwz      r9, 0x1c(r5)
-	addi     r7, r3, sincosTable___5JMath@l
-	lwz      r0, 0x100(r4)
-	addi     r3, r1, 8
-	lwz      r6, 0(r9)
-	li       r4, 0x1e
-	stw      r0, 0x3c(r1)
-	li       r5, 1
-	lwz      r0, 8(r6)
-	stw      r8, 0x38(r1)
-	rlwinm   r6, r0, 7, 0x1f, 0x1f
-	lfd      f3, lbl_80516B58@sda21(r2)
-	lfd      f0, 0x38(r1)
-	rlwinm   r0, r0, 6, 0x1f, 0x1f
-	lwz      r9, 4(r9)
-	fsubs    f6, f0, f3
-	stw      r6, 0x44(r1)
-	lfs      f1, 0x24(r9)
-	stw      r8, 0x40(r1)
-	lfs      f0, 0x10(r9)
-	lfd      f2, 0x40(r1)
-	fmadds   f0, f6, f1, f0
-	stw      r0, 0x4c(r1)
-	fsubs    f2, f2, f3
-	lfs      f7, lbl_80516B4C@sda21(r2)
-	stw      r8, 0x48(r1)
-	fctiwz   f0, f0
-	lfd      f1, 0x48(r1)
-	fadds    f2, f7, f2
-	lfs      f5, lbl_80516B48@sda21(r2)
-	fsubs    f1, f1, f3
-	stfd     f0, 0x50(r1)
-	fmuls    f11, f5, f2
-	lfs      f3, 0x14(r9)
-	lfs      f2, 0(r9)
-	fadds    f4, f7, f1
-	fmadds   f8, f6, f3, f2
-	lwz      r0, 0x54(r1)
-	lfs      f1, 0x18(r9)
-	rlwinm   r0, r0, 0x1e, 0x12, 0x1c
-	fmuls    f12, f5, f4
-	lfs      f0, 4(r9)
-	add      r6, r7, r0
-	fadds    f10, f11, f8
-	fmadds   f4, f6, f1, f0
-	lfs      f3, 0x1c(r9)
-	lfs      f2, 8(r9)
-	lfs      f1, 0x20(r9)
-	lfs      f0, 0xc(r9)
-	fmadds   f13, f6, f3, f2
-	lfs      f9, 4(r6)
-	fadds    f3, f12, f4
-	fmadds   f31, f6, f1, f0
-	lfsx     f8, r7, r0
-	lfs      f5, lbl_80516B50@sda21(r2)
-	fmuls    f1, f9, f10
-	stfs     f7, 0x30(r1)
-	fmuls    f0, f9, f3
-	fmuls    f4, f13, f9
-	stfs     f5, 0x10(r1)
-	fmsubs   f1, f8, f3, f1
-	fneg     f2, f13
-	stfs     f5, 0x20(r1)
-	fmuls    f3, f31, f8
-	stfs     f4, 8(r1)
-	fmadds   f4, f13, f1, f11
-	fmuls    f6, f2, f8
-	fmuls    f2, f31, f9
-	stfs     f5, 0x28(r1)
-	fneg     f1, f31
-	fmadds   f0, f8, f10, f0
-	stfs     f6, 0xc(r1)
-	stfs     f4, 0x14(r1)
-	fmadds   f0, f1, f0, f12
-	stfs     f3, 0x18(r1)
-	stfs     f2, 0x1c(r1)
-	stfs     f0, 0x24(r1)
-	stfs     f5, 0x2c(r1)
-	stfs     f5, 0x34(r1)
-	bl       GXLoadTexMtxImm
-	li       r3, 0
-	li       r4, 1
-	li       r5, 4
-	li       r6, 0x1e
-	li       r7, 0
-	li       r8, 0x7d
-	bl       GXSetTexCoordGen2
-	psq_l    f31, 104(r1), 0, qr0
-	lwz      r0, 0x74(r1)
-	lfd      f31, 0x60(r1)
-	mtlr     r0
-	addi     r1, r1, 0x70
-	blr
-	*/
 }
 
 /**
@@ -651,7 +547,7 @@ void JPALoadCalcTexCrdMtxAnm(JPAEmitterWorkData* workData, JPABaseParticle* part
 	f32 scaleY = (particleAge * baseShape->getIncScaleY()) + baseShape->getInitScaleY();
 
 	// Calculate the rotation
-	s32 rotation = (particleAge * baseShape->getIncRot()) + baseShape->getInitRot();
+	s16 rotation = (particleAge * baseShape->getIncRot()) + baseShape->getInitRot();
 
 	// Calculate the sine and cosine of the rotation
 	f32 sinRotation = JMASSin(rotation);
@@ -678,101 +574,6 @@ void JPALoadCalcTexCrdMtxAnm(JPAEmitterWorkData* workData, JPABaseParticle* part
 
 	// Load the transformation matrix into the texture matrix
 	GXLoadTexMtxImm(transformationMatrix, 0x1e, GX_MTX2x4);
-
-	/*
-	stwu     r1, -0x60(r1)
-	mflr     r0
-	lis      r8, 0x4330
-	lfd      f1, lbl_80516B40@sda21(r2)
-	stw      r0, 0x64(r1)
-	lfd      f3, lbl_80516B58@sda21(r2)
-	lwz      r5, 4(r3)
-	lis      r3, sincosTable___5JMath@ha
-	lha      r0, 0x80(r4)
-	addi     r7, r3, sincosTable___5JMath@l
-	lwz      r6, 0x1c(r5)
-	addi     r3, r1, 8
-	xoris    r0, r0, 0x8000
-	stw      r8, 0x38(r1)
-	lwz      r5, 0(r6)
-	li       r4, 0x1e
-	stw      r0, 0x3c(r1)
-	lwz      r0, 8(r5)
-	li       r5, 1
-	lfd      f0, 0x38(r1)
-	lwz      r9, 4(r6)
-	rlwinm   r6, r0, 7, 0x1f, 0x1f
-	fsubs    f10, f0, f1
-	rlwinm   r0, r0, 6, 0x1f, 0x1f
-	stw      r6, 0x44(r1)
-	lfs      f1, 0x24(r9)
-	stw      r8, 0x40(r1)
-	lfs      f0, 0x10(r9)
-	lfd      f2, 0x40(r1)
-	fmadds   f0, f10, f1, f0
-	stw      r0, 0x4c(r1)
-	fsubs    f2, f2, f3
-	lfs      f6, lbl_80516B4C@sda21(r2)
-	stw      r8, 0x48(r1)
-	fctiwz   f0, f0
-	lfd      f1, 0x48(r1)
-	fadds    f5, f6, f2
-	lfs      f7, lbl_80516B48@sda21(r2)
-	fsubs    f1, f1, f3
-	stfd     f0, 0x50(r1)
-	lfs      f0, 0(r9)
-	fmuls    f11, f7, f5
-	lwz      r0, 0x54(r1)
-	fadds    f4, f6, f1
-	lfs      f1, 0x14(r9)
-	rlwinm   r0, r0, 0x1e, 0x12, 0x1c
-	add      r6, r7, r0
-	lfs      f3, 0x18(r9)
-	fmadds   f5, f10, f1, f0
-	fmuls    f12, f7, f4
-	lfs      f2, 4(r9)
-	lfs      f1, 0x1c(r9)
-	lfs      f0, 8(r9)
-	fmadds   f2, f10, f3, f2
-	fadds    f9, f11, f5
-	fmadds   f13, f10, f1, f0
-	lfs      f8, 4(r6)
-	fadds    f5, f12, f2
-	lfs      f1, 0x20(r9)
-	lfs      f0, 0xc(r9)
-	lfs      f4, lbl_80516B50@sda21(r2)
-	fmadds   f10, f10, f1, f0
-	lfsx     f7, r7, r0
-	fmuls    f2, f13, f8
-	stfs     f4, 0x10(r1)
-	fmuls    f0, f8, f5
-	fmuls    f1, f8, f9
-	stfs     f2, 8(r1)
-	fneg     f3, f13
-	fmadds   f0, f7, f9, f0
-	fmsubs   f2, f7, f5, f1
-	stfs     f4, 0x20(r1)
-	fmuls    f5, f3, f7
-	fmuls    f1, f10, f7
-	stfs     f4, 0x28(r1)
-	fmadds   f3, f13, f2, f11
-	fmuls    f2, f10, f8
-	stfs     f5, 0xc(r1)
-	stfs     f1, 0x18(r1)
-	fneg     f1, f10
-	stfs     f3, 0x14(r1)
-	fmadds   f0, f1, f0, f12
-	stfs     f2, 0x1c(r1)
-	stfs     f0, 0x24(r1)
-	stfs     f4, 0x2c(r1)
-	stfs     f6, 0x30(r1)
-	stfs     f4, 0x34(r1)
-	bl       GXLoadTexMtxImm
-	lwz      r0, 0x64(r1)
-	mtlr     r0
-	addi     r1, r1, 0x60
-	blr
-	*/
 }
 
 /**
@@ -985,7 +786,7 @@ void loadPrjAnm(const JPAEmitterWorkData* workData, const Mtx transformationMatr
 	f32 scaleY = (emitterAge * baseShape->getIncScaleY()) + baseShape->getInitScaleY();
 
 	// Calculate the rotation
-	s32 rotation = (emitterAge * baseShape->getIncRot()) + baseShape->getInitRot();
+	s16 rotation = (emitterAge * baseShape->getIncRot()) + baseShape->getInitRot();
 
 	// Calculate the sine and cosine of the rotation
 	f32 sinRotation = JMASSin(rotation);
@@ -1018,115 +819,6 @@ void loadPrjAnm(const JPAEmitterWorkData* workData, const Mtx transformationMatr
 
 	// Load the local transformation matrix into the texture matrix
 	GXLoadTexMtxImm(localTransformationMatrix, 0x1e, GX_MTX3x4);
-	/*
-	stwu     r1, -0x70(r1)
-	mflr     r0
-	stw      r0, 0x74(r1)
-	stfd     f31, 0x60(r1)
-	psq_st   f31, 104(r1), 0, qr0
-	stw      r31, 0x5c(r1)
-	lwz      r7, 4(r3)
-	lis      r8, 0x4330
-	lwz      r6, 0(r3)
-	mr       r10, r3
-	lwz      r9, 0x1c(r7)
-	lis      r5, sincosTable___5JMath@ha
-	lwz      r0, 0x100(r6)
-	mr       r31, r4
-	lwz      r6, 0(r9)
-	addi     r7, r5, sincosTable___5JMath@l
-	stw      r0, 0x3c(r1)
-	addi     r3, r1, 8
-	lwz      r0, 8(r6)
-	mr       r5, r3
-	stw      r8, 0x38(r1)
-	addi     r4, r10, 0x1b4
-	rlwinm   r6, r0, 7, 0x1f, 0x1f
-	lfd      f3, lbl_80516B58@sda21(r2)
-	lfd      f0, 0x38(r1)
-	rlwinm   r0, r0, 6, 0x1f, 0x1f
-	lwz      r9, 4(r9)
-	fsubs    f6, f0, f3
-	stw      r6, 0x44(r1)
-	lfs      f1, 0x24(r9)
-	stw      r8, 0x40(r1)
-	lfs      f0, 0x10(r9)
-	lfd      f2, 0x40(r1)
-	fmadds   f0, f6, f1, f0
-	stw      r0, 0x4c(r1)
-	fsubs    f2, f2, f3
-	lfs      f7, lbl_80516B4C@sda21(r2)
-	stw      r8, 0x48(r1)
-	fctiwz   f0, f0
-	lfd      f1, 0x48(r1)
-	fadds    f2, f7, f2
-	lfs      f5, lbl_80516B48@sda21(r2)
-	fsubs    f1, f1, f3
-	stfd     f0, 0x50(r1)
-	fmuls    f11, f5, f2
-	lfs      f3, 0x14(r9)
-	lfs      f2, 0(r9)
-	fadds    f4, f7, f1
-	fmadds   f8, f6, f3, f2
-	lwz      r0, 0x54(r1)
-	lfs      f1, 0x18(r9)
-	rlwinm   r0, r0, 0x1e, 0x12, 0x1c
-	fmuls    f12, f5, f4
-	lfs      f0, 4(r9)
-	add      r6, r7, r0
-	fadds    f10, f11, f8
-	fmadds   f5, f6, f1, f0
-	lfs      f3, 0x1c(r9)
-	lfs      f2, 8(r9)
-	lfs      f1, 0x20(r9)
-	lfs      f0, 0xc(r9)
-	fmadds   f13, f6, f3, f2
-	lfs      f9, 4(r6)
-	fadds    f3, f12, f5
-	fmadds   f31, f6, f1, f0
-	lfsx     f8, r7, r0
-	lfs      f4, lbl_80516B50@sda21(r2)
-	fmuls    f1, f9, f10
-	stfs     f7, 0x30(r1)
-	fmuls    f0, f9, f3
-	fmuls    f5, f13, f9
-	stfs     f4, 0x14(r1)
-	fmsubs   f1, f8, f3, f1
-	fneg     f2, f13
-	stfs     f4, 0x24(r1)
-	fmuls    f3, f31, f8
-	stfs     f5, 8(r1)
-	fmadds   f5, f13, f1, f11
-	fmuls    f6, f2, f8
-	fmuls    f2, f31, f9
-	stfs     f4, 0x28(r1)
-	fneg     f1, f31
-	fmadds   f0, f8, f10, f0
-	stfs     f6, 0xc(r1)
-	stfs     f5, 0x10(r1)
-	fmadds   f0, f1, f0, f12
-	stfs     f3, 0x18(r1)
-	stfs     f2, 0x1c(r1)
-	stfs     f0, 0x20(r1)
-	stfs     f4, 0x2c(r1)
-	stfs     f4, 0x34(r1)
-	bl       PSMTXConcat
-	addi     r3, r1, 8
-	mr       r4, r31
-	mr       r5, r3
-	bl       PSMTXConcat
-	addi     r3, r1, 8
-	li       r4, 0x1e
-	li       r5, 0
-	bl       GXLoadTexMtxImm
-	psq_l    f31, 104(r1), 0, qr0
-	lwz      r0, 0x74(r1)
-	lfd      f31, 0x60(r1)
-	lwz      r31, 0x5c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x70
-	blr
-	*/
 }
 
 /**

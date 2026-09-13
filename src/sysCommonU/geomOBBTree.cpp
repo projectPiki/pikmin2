@@ -168,14 +168,14 @@ void OBB::create2(Sys::VertexTable& vertTable, Sys::TriangleTable& triTable, Mat
 	//     (m_axes[i].y * m_maxXYZ[i])) + m_sidePlanes[i].c * (m_position.z + (m_axes[i].z * m_maxXYZ[i]));
 	// }
 
-	Vector3f tempVec;
+	Vec tempVec;
 	setMaxPlane(&tempVec, 0);
 	setMaxPlane(&tempVec, 1);
 	setMaxPlane(&tempVec, 2);
 
-	setMinPlane(0);
-	setMinPlane(1);
-	setMinPlane(2);
+	setMinPlane(&tempVec, 0);
+	setMinPlane(&tempVec, 1);
+	setMinPlane(&tempVec, 2);
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x150(r1)

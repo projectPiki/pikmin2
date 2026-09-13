@@ -500,6 +500,13 @@ struct TVec3 {
 		return result;
 	}
 
+	TVec3 operator-(const TVec3& other) const
+	{
+		TVec3 result = *this;
+		result.sub(other);
+		return result;
+	}
+
 	void negateInternal(TVec3* dst)
 	{
 		dst->x = -x;
@@ -579,7 +586,7 @@ template <typename T>
 struct TBox2 : TBox<TVec2<T> > {
 	TBox2() {}
 	// TBox2(const TBox2& other) { set(other); }
-	TBox2(const TVec2<T>& i_, const TVec2<T> f_) 
+	TBox2(const TVec2<T>& i_, const TVec2<T>& f_)
 	{ 
 		i.set(i_);
 		f.set(f_); 

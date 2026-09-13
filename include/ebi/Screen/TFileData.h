@@ -7,24 +7,7 @@ namespace ebi {
 namespace Screen {
 namespace FileSelect {
 struct TFileData {
-	TFileData()
-	{
-		mIsNewFile  = false;
-		mCurrentDay = 77777;
-		// someone thought the pikmin were from hell apparently
-		mRedPikis        = 666;
-		mBluePikis       = 666;
-		mYellowPikis     = 666;
-		mWhitePikis      = 666;
-		mPurplePikis     = 666;
-		mPokos           = 88888;
-		mTreasure        = 88;
-		mCaveID          = 0;
-		mCaveFloor       = 666;
-		mPlayTimeHours   = 11;
-		mPlayTimeMinutes = 11;
-		mIsBrokenFile    = false;
-	}
+	TFileData();
 
 	inline void setData(bool isNew, u32 day, u32 blue, u32 red, u32 yellow, u32 purple, u32 white, u32 poko, u32 treasure, u32 cave,
 	                    u32 floor, u32 hours, u32 minutes, bool broken)

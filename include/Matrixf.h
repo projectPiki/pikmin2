@@ -302,8 +302,12 @@ struct Matrixf {
 
 	inline f32 getRowLength(int index)
 	{
-		Vector3f row = getRow(index);
-		return row.length();
+		f32 x = SQUARE(mMatrix.mtxView[index][0]);
+		f32 y = SQUARE(mMatrix.mtxView[index][1]);
+		f32 z = SQUARE(mMatrix.mtxView[index][2]);
+		x += y;
+		x += z;
+		return _sqrtf(x);
 	}
 
 	/**

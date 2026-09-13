@@ -102,7 +102,7 @@ struct TMainScreen : public TScreenBase {
 
 	void setTevColor(J2DTevBlock* paneIconTev, J2DGXColorS10& newColor)
 	{
-		newColor.a = (u16)paneIconTev->getTevColor(0)->a;
+		newColor.a = paneIconTev->getTevColor(0)->a;
 		paneIconTev->setTevColor(0, newColor);
 	}
 	// _00     = VTBL
@@ -193,5 +193,25 @@ struct TMainScreen : public TScreenBase {
 } // namespace FileSelect
 } // namespace Screen
 } // namespace ebi
+
+// this has to live here for the sym on sectioning to work in ebiScreenFileSelect
+inline ebi::Screen::FileSelect::TFileData::TFileData()
+{
+	mIsNewFile  = false;
+	mCurrentDay = 77777;
+	// someone thought the pikmin were from hell apparently
+	mRedPikis        = 666;
+	mBluePikis       = 666;
+	mYellowPikis     = 666;
+	mWhitePikis      = 666;
+	mPurplePikis     = 666;
+	mPokos           = 88888;
+	mTreasure        = 88;
+	mCaveID          = 0;
+	mCaveFloor       = 666;
+	mPlayTimeHours   = 11;
+	mPlayTimeMinutes = 11;
+	mIsBrokenFile    = false;
+}
 
 #endif

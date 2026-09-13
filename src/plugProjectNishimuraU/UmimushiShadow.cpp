@@ -18,8 +18,8 @@ void UmimushiTubeShadowNode::makeShadowSRT(JointShadowParm& parm, Matrixf* mat, 
 	vec2.y += xVec.y * parm._18 + yVec.y * parm._1C;
 	vec2.z += xVec.z * parm._18 + yVec.z * parm._1C;
 
-	Vector3f halfDelta = (vec2 - vec1) * 0.5f;
-	Vector3f side      = halfDelta.cross(parm.mRotation);
+	Vector3f halfDelta((vec2.x - vec1.x) * 0.5f, (vec2.y - vec1.y) * 0.5f, (vec2.z - vec1.z) * 0.5f);
+	Vector3f side = halfDelta.cross(parm.mRotation);
 	side.normalise();
 
 	Vector3f position = (vec1 + vec2) * 0.5f;

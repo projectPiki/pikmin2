@@ -13,6 +13,7 @@
 #include "Game/MoviePlayer.h"
 #include "Game/Footmark.h"
 #include "Dolphin/rand.h"
+#include "PowerPC_EABI_Support/MSL_C/MSL_Common/arith.h"
 #include "P2Macros.h"
 #include "Iterator.h"
 #include "nans.h"
@@ -260,6 +261,8 @@ void ActFormation::cleanup()
 	mSlotID = -1;
 }
 
+// honestly with how huge this function is, I believe this being a real used pragma here
+#pragma inline_max_total_size(16384)
 /**
  * @note Address: 0x8019D680
  * @note Size: 0x16E8
@@ -318,7 +321,7 @@ int PikiAI::ActFormation::exec()
 		Vector3f sep     = slotPos - mParent->getPosition(); // 0x12c
 		f32 dist         = sep.length();                     // f26
 		Vector3f pikiPos = mParent->getPosition();           // 0x120
-		if ((Game::gameSystem->mFrameTimer - mFrameTimer) < 0x32 && dist > 60.0f) {
+		if (_abs(Game::gameSystem->mFrameTimer - mFrameTimer) < 0x32 && dist > 60.0f) {
 			if (mTouchingWallTimer > 3) {
 				mFootmark = mParent->mNavi->mFootmarks->findNearest2(pikiPos, mFootmarkFlags);
 				if (mFootmark) {
@@ -359,7 +362,7 @@ int PikiAI::ActFormation::exec()
 	}
 
 	Vector3f sep = slotPos - mParent->getPosition(); // 0x114
-	f32 dist     = sep.length();                     // f31
+	f32 dist     = sep.length2D();                   // f31
 
 	sep.normalise();
 
@@ -380,9 +383,11 @@ int PikiAI::ActFormation::exec()
 				// ?
 			}
 
-			slotPos              = mParent->mNavi->getPosition(); // 0x138
-			mHasLostNumbness     = false;
-			Vector3f naviPikiDir = slotPos - mParent->getPosition(); // 0xf8
+			slotPos               = mParent->mNavi->getPosition(); // 0x138
+			mHasLostNumbness      = false;
+			Vector3f pikiPosition = mParent->getPosition();
+			Vector3f naviPikiDir; // 0xf8
+			naviPikiDir.sub(slotPos, pikiPosition);
 			naviPikiDir.normalise();
 
 			if (qdist2(slotPos.x, slotPos.z, mParent->getPosition().x, mParent->getPosition().z) <= 40.0f) {
@@ -445,12 +450,14 @@ int PikiAI::ActFormation::exec()
 			mHasLostNumbness = true; // this has to be true to get... set to true lol
 		}
 
-		f32 factor  = 10.0f / static_cast<Game::PikiParms*>(mParent->mParms)->mCreatureProps.mProps.mAccel.mValue; // f26
-		f32 speed   = mParent->getSpeed(1.0f);                                                                     // f1
-		f32 factor2 = (0.5f * (speed / factor)) * speed;                                                           // f7
+		f32 factor          = 10.0f / static_cast<Game::PikiParms*>(mParent->mParms)->mCreatureProps.mProps.mAccel.mValue; // f26
+		f32 speed           = mParent->getSpeed(1.0f);                                                                     // f1
+		f32 halfSpeedFactor = 0.5f * (speed / factor);
+		f32 factor2         = halfSpeedFactor * speed; // f7
 
-		f32 simSpeed = mParent->mVelocity.length(); // f3
-		f32 factor3  = (0.5f * (simSpeed / factor)) * simSpeed;
+		f32 simSpeed           = mParent->mVelocity.length(); // f3
+		f32 halfSimSpeedFactor = 0.5f * (simSpeed / factor);
+		f32 factor3            = halfSimSpeedFactor * simSpeed;
 
 		if (dist < factor3) {
 			mParent->mTargetVelocity = Vector3f(0.0f);
@@ -473,7 +480,7 @@ int PikiAI::ActFormation::exec()
 		if (plateSep.dot(naviPikiSep) > 0.0f) {
 			Vector3f impulse = Vector3f(-naviPikiSep.z, 0.0f, naviPikiSep.x); // f29, f27, f30
 			if (!(mSlotID & 1)) {
-				impulse.negate();
+				impulse.negate2();
 			}
 
 			impulse.normalise();
@@ -484,9 +491,9 @@ int PikiAI::ActFormation::exec()
 
 			f32 currSpeed = mParent->mTargetVelocity.length(); // f28
 
-			mParent->mTargetVelocity += impulse * mParent->getSpeed(1.0f);
+			mParent->mTargetVelocity = mParent->mTargetVelocity + impulse * mParent->getSpeed(0.5f);
 			mParent->mTargetVelocity.normalise();
-			mParent->mTargetVelocity *= currSpeed;
+			mParent->mTargetVelocity = mParent->mTargetVelocity * currSpeed;
 		}
 	} else {
 		mDistanceType = 4;
@@ -499,7 +506,7 @@ int PikiAI::ActFormation::exec()
 		if (plateSep.dot(naviPikiSep) > 0.0f) {
 			Vector3f impulse = Vector3f(-naviPikiSep.z, 0.0f, naviPikiSep.x); // f29, f27, f30
 			if (!(mSlotID & 1)) {
-				impulse.negate();
+				impulse.negate2();
 			}
 
 			impulse.normalise();
@@ -510,9 +517,9 @@ int PikiAI::ActFormation::exec()
 
 			f32 currSpeed = mParent->mTargetVelocity.length(); // f28
 
-			mParent->mTargetVelocity += impulse * mParent->getSpeed(1.0f);
+			mParent->mTargetVelocity = mParent->mTargetVelocity + impulse * mParent->getSpeed(0.5f);
 			mParent->mTargetVelocity.normalise();
-			mParent->mTargetVelocity *= currSpeed;
+			mParent->mTargetVelocity = mParent->mTargetVelocity * currSpeed;
 		}
 	}
 

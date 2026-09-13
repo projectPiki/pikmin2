@@ -12,6 +12,8 @@
 
 static const int unusedArray[] = { 0, 0, 0 };
 
+#include "nans.h"
+
 namespace Morimura {
 s16 TZukanBase::mRequestTimerMax    = 10;
 bool TZukanBase::mIconMove          = true;
@@ -29,8 +31,6 @@ bool TZukanBase::mAllNewSupply;
 bool TZukanBase::mZukanShortenTest;
 bool TZukanBase::mZukanCategoryTest;
 f32 TZukanBase::mRandShowRate;
-JKRHeap* TZukanBase::mDebugHeapParent;
-JKRExpHeap* TZukanBase::mDebugHeap;
 
 // these represent the highest index (index that the hoard shows you in-game) of each set's treasures
 // for example the first set is ids 1 through 7
@@ -2279,7 +2279,7 @@ void TEnemyZukan::indexPaneInit(J2DScreen* screen)
 	mCurrMaxActiveRow = mNumActiveRows - 1;
 
 	u64 tags[14] = { 'Tmenu12', 'Tmenu13', 'Tmenu00', 'Tmenu01', 'Tmenu02', 'Tmenu03', 'Tmenu04',
-		             'Tmenu05', 'Tmenu07', 'Tmenu06', 'Tmenu08', 'Tmenu09', 'Tmenu10', 'Tmenu11' };
+	                 'Tmenu05', 'Tmenu07', 'Tmenu06', 'Tmenu08', 'Tmenu09', 'Tmenu10', 'Tmenu11' };
 
 	J2DPane* pane = screen->search(tags[mCurrMinActiveRow]);
 #if defined(VERSION_JP)
@@ -3917,29 +3917,31 @@ void TItemZukan::doCreate(JKRArchive* arc)
  */
 void TItemZukan::doDemoDraw(Graphics& gfx)
 {
+	J2DPicture* pane1;
 	J2DPerspGraph* graf = gfx.getPerspGraph();
 
-	u8 alpha = mDemoStateButtonAlpha * 255.0f;
+	u8 savedAlpha = mDemoStateButtonAlpha * 255.0f;
 	gfx.mOrthoGraph.setPort();
 
-	J2DPane* pane1 = mMainScreen->mScreenObj->search('Pzbtn3');
-	pane1->setAlpha(alpha);
-	static_cast<J2DPicture*>(pane1)->draw(pane1->getGlbVtx(GLBVTX_BtmLeft).x, pane1->getGlbVtx(GLBVTX_BtmRight).y, pane1->getWidth(),
-	                                      pane1->getHeight(), false, false, false);
+	pane1 = static_cast<J2DPicture*>(mMainScreen->mScreenObj->search('Pzbtn3'));
+	pane1->setAlpha(savedAlpha);
+	pane1->draw(pane1->getGlbVtx(GLBVTX_BtmLeft).x, pane1->getGlbVtx(GLBVTX_BtmRight).y, pane1->getWidth(), pane1->getHeight(), false,
+	            false, false);
 	pane1->calcMtx();
 	pane1->setAlpha(255);
 
-	J2DPane* pane2;
-	pane2 = mMainScreen->mScreenObj->search('Pzbtn2');
-	pane2->setAlpha(alpha);
-	static_cast<J2DPicture*>(pane2)->draw(pane2->getGlbVtx(GLBVTX_BtmLeft).x, pane2->getGlbVtx(GLBVTX_BtmRight).y, pane2->getWidth(),
-	                                      pane2->getHeight(), false, false, false);
+	J2DPicture* pane2;
+	J2DPicture* pane3;
+	pane2 = static_cast<J2DPicture*>(mMainScreen->mScreenObj->search('Pzbtn2'));
+	pane2->setAlpha(savedAlpha);
+	pane2->draw(pane2->getGlbVtx(GLBVTX_BtmLeft).x, pane2->getGlbVtx(GLBVTX_BtmRight).y, pane2->getWidth(), pane2->getHeight(), false,
+	            false, false);
 	pane2->calcMtx();
 	pane2->setAlpha(255);
 
 	gfx.getPerspGraph()->setPort();
 
-	mPaneMenu->setAlpha(alpha);
+	mPaneMenu->setAlpha(savedAlpha);
 	mMessageItemName->draw(gfx, *graf);
 	mPaneMenu->setAlpha(255);
 	gfx.mOrthoGraph.setPort();
@@ -3950,32 +3952,30 @@ void TItemZukan::doDemoDraw(Graphics& gfx)
 		for (int j = 0; j < 3; j++) {
 			TIconInfo* icon = getIndexPane(i)->getIconInfo(j);
 			if (mSelection == icon->mCategoryID && icon->mPane->isVisible()) {
-				u8 alpha = mMessageBoxBGAlpha * mCategoryAlphaRate;
-				J2DPictureEx* pane2;
-				J2DPictureEx* pane3;
-				J2DPictureEx* pane1 = icon->mPic;
-				u8 oldalpha         = pane1->mAlpha;
+				u8 alpha   = mMessageBoxBGAlpha * mCategoryAlphaRate;
+				pane1      = icon->mPic;
+				savedAlpha = pane1->mAlpha;
 				pane1->setAlpha(alpha);
 				pane1->draw(pane1->getGlbVtx(GLBVTX_BtmLeft).x + 8.0f, pane1->getGlbVtx(GLBVTX_BtmLeft).y + 2.5f, pane1->getWidth(),
 				            pane1->getHeight(), false, false, false);
 				pane1->calcMtx();
-				pane1->setAlpha(oldalpha);
+				pane1->setAlpha(savedAlpha);
 
-				pane2    = static_cast<J2DPictureEx*>(getIndexPane(i)->getIconInfo(j)->mPane);
-				oldalpha = pane2->mAlpha;
+				pane2      = static_cast<J2DPictureEx*>(getIndexPane(i)->getIconInfo(j)->mPane);
+				savedAlpha = pane2->mAlpha;
 				pane2->setAlpha(mMessageBoxBGAlpha);
 				pane2->draw(pane2->getGlbVtx(GLBVTX_BtmLeft).x, pane2->getGlbVtx(GLBVTX_BtmLeft).y, pane2->getWidth(), pane2->getHeight(),
 				            false, false, false);
 				pane2->calcMtx();
-				pane2->setAlpha(oldalpha);
+				pane2->setAlpha(savedAlpha);
 
-				pane3    = static_cast<J2DPictureEx*>(getIndexPane(i)->getIconInfo(j)->mPane2);
-				oldalpha = pane3->mAlpha;
+				pane3      = static_cast<J2DPictureEx*>(getIndexPane(i)->getIconInfo(j)->mPane2);
+				savedAlpha = pane3->mAlpha;
 				pane3->setAlpha(mMessageBoxBGAlpha);
 				pane3->draw(pane3->getGlbVtx(GLBVTX_BtmLeft).x, pane3->getGlbVtx(GLBVTX_BtmLeft).y, pane3->getWidth(), pane3->getHeight(),
 				            false, false, false);
 				pane3->calcMtx();
-				pane3->setAlpha(oldalpha);
+				pane3->setAlpha(savedAlpha);
 			}
 		}
 	}
@@ -4013,521 +4013,6 @@ void TItemZukan::doDemoDraw(Graphics& gfx)
 	}
 
 	mWindow->draw(gfx, graf);
-	/*
-	stwu     r1, -0xe0(r1)
-	mflr     r0
-	stw      r0, 0xe4(r1)
-	stfd     f31, 0xd0(r1)
-	psq_st   f31, 216(r1), 0, qr0
-	stfd     f30, 0xc0(r1)
-	psq_st   f30, 200(r1), 0, qr0
-	stmw     r23, 0x9c(r1)
-	mr       r24, r3
-	mr       r25, r4
-	lfs      f1, lbl_8051EB70@sda21(r2)
-	addi     r3, r25, 0xbc
-	lfs      f0, 0x3b8(r24)
-	addi     r31, r25, 0x190
-	lwz      r12, 0xbc(r4)
-	fmuls    f0, f1, f0
-	lwz      r12, 0x14(r12)
-	fctiwz   f0, f0
-	stfd     f0, 0x88(r1)
-	lwz      r26, 0x8c(r1)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x7c(r24)
-	lis      r3, 0x62746E33@ha
-	addi     r6, r3, 0x62746E33@l
-	li       r5, 0x507a
-	lwz      r3, 8(r4)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	mr       r23, r3
-	mr       r4, r26
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r23
-	addi     r3, r1, 0x70
-	li       r5, 1
-	bl       getGlbVtx__7J2DPaneCFUc
-	mr       r4, r23
-	addi     r3, r1, 0x7c
-	li       r5, 0
-	bl       getGlbVtx__7J2DPaneCFUc
-	mr       r3, r23
-	lfs      f3, 0x28(r23)
-	lwz      r12, 0(r23)
-	li       r4, 0
-	lfs      f2, 0x20(r23)
-	li       r5, 0
-	lfs      f1, 0x2c(r23)
-	li       r6, 0
-	lfs      f0, 0x24(r23)
-	fsubs    f3, f3, f2
-	lwz      r12, 0xec(r12)
-	fsubs    f4, f1, f0
-	lfs      f1, 0x7c(r1)
-	lfs      f2, 0x74(r1)
-	mtctr    r12
-	bctrl
-	mr       r3, r23
-	lwz      r12, 0(r23)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r23
-	li       r4, 0xff
-	lwz      r12, 0(r23)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x7c(r24)
-	lis      r3, 0x62746E32@ha
-	addi     r6, r3, 0x62746E32@l
-	li       r5, 0x507a
-	lwz      r3, 8(r4)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	mr       r23, r3
-	mr       r4, r26
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r23
-	addi     r3, r1, 0x58
-	li       r5, 1
-	bl       getGlbVtx__7J2DPaneCFUc
-	mr       r4, r23
-	addi     r3, r1, 0x64
-	li       r5, 0
-	bl       getGlbVtx__7J2DPaneCFUc
-	mr       r3, r23
-	lfs      f3, 0x28(r23)
-	lwz      r12, 0(r23)
-	li       r4, 0
-	lfs      f2, 0x20(r23)
-	li       r5, 0
-	lfs      f1, 0x2c(r23)
-	li       r6, 0
-	lfs      f0, 0x24(r23)
-	fsubs    f3, f3, f2
-	lwz      r12, 0xec(r12)
-	fsubs    f4, f1, f0
-	lfs      f1, 0x64(r1)
-	lfs      f2, 0x5c(r1)
-	mtctr    r12
-	bctrl
-	mr       r3, r23
-	lwz      r12, 0(r23)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r23
-	li       r4, 0xff
-	lwz      r12, 0(r23)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r31)
-	mr       r3, r31
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0xf4(r24)
-	mr       r4, r26
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0xd0(r24)
-	mr       r4, r25
-	mr       r5, r31
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0xf4(r24)
-	li       r4, 0xff
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r25, 0xbc
-	lwz      r12, 0xbc(r25)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lfs      f31, 0x1a4(r24)
-	lfs      f0, 0x1ac(r24)
-	lfs      f30, 0x1a0(r24)
-	fsubs    f1, f0, f31
-	bl       __cvt_fp2unsigned
-	lfs      f0, 0x1a8(r24)
-	mr       r28, r3
-	fsubs    f1, f0, f30
-	bl       __cvt_fp2unsigned
-	fmr      f1, f31
-	mr       r27, r3
-	bl       __cvt_fp2unsigned
-	fmr      f1, f30
-	mr       r26, r3
-	bl       __cvt_fp2unsigned
-	mr       r4, r26
-	mr       r5, r27
-	mr       r6, r28
-	bl       GXSetScissor
-	li       r28, 0
-	li       r29, 0
-	b        lbl_8037AA68
-
-lbl_8037A7B4:
-	li       r27, 0
-	li       r30, 0
-
-lbl_8037A7BC:
-	lwz      r0, 0x88(r24)
-	lwz      r3, 0x23c(r24)
-	lwzx     r4, r29, r0
-	lwz      r4, 0x20(r4)
-	lwzx     r4, r4, r30
-	lwz      r0, 0(r4)
-	cmpw     r3, r0
-	bne      lbl_8037AA50
-	lwz      r3, 0x10(r4)
-	lbz      r0, 0xb0(r3)
-	cmplwi   r0, 0
-	beq      lbl_8037AA50
-	lbz      r3, 0x214(r24)
-	lis      r0, 0x4330
-	lwz      r23, 4(r4)
-	stw      r3, 0x8c(r1)
-	mr       r3, r23
-	lfd      f2, lbl_8051EB90@sda21(r2)
-	stw      r0, 0x88(r1)
-	lwz      r12, 0(r23)
-	lfd      f1, 0x88(r1)
-	lfs      f0, mCategoryAlphaRate__Q28Morimura10TZukanBase@sda21(r13)
-	fsubs    f1, f1, f2
-	lwz      r12, 0x24(r12)
-	lbz      r26, 0xb2(r23)
-	fmuls    f0, f1, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x90(r1)
-	lwz      r4, 0x94(r1)
-	mtctr    r12
-	bctrl
-	mr       r4, r23
-	addi     r3, r1, 0x40
-	li       r5, 0
-	bl       getGlbVtx__7J2DPaneCFUc
-	lfs      f1, 0x44(r1)
-	mr       r4, r23
-	lfs      f0, lbl_8051EB48@sda21(r2)
-	addi     r3, r1, 0x4c
-	li       r5, 0
-	fadds    f31, f0, f1
-	bl       getGlbVtx__7J2DPaneCFUc
-	lfs      f1, 0x4c(r1)
-	fmr      f2, f31
-	lfs      f0, lbl_8051EBDC@sda21(r2)
-	mr       r3, r23
-	lwz      r12, 0(r23)
-	li       r4, 0
-	fadds    f1, f0, f1
-	lfs      f5, 0x28(r23)
-	li       r5, 0
-	lfs      f3, 0x20(r23)
-	li       r6, 0
-	lfs      f4, 0x2c(r23)
-	lfs      f0, 0x24(r23)
-	fsubs    f3, f5, f3
-	lwz      r12, 0xec(r12)
-	fsubs    f4, f4, f0
-	mtctr    r12
-	bctrl
-	mr       r3, r23
-	lwz      r12, 0(r23)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r23
-	mr       r4, r26
-	lwz      r12, 0(r23)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x88(r24)
-	lbz      r4, 0x214(r24)
-	lwzx     r3, r29, r0
-	lwz      r3, 0x20(r3)
-	lwzx     r3, r3, r30
-	lwz      r23, 0x10(r3)
-	mr       r3, r23
-	lbz      r26, 0xb2(r23)
-	lwz      r12, 0(r23)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r23
-	addi     r3, r1, 0x28
-	li       r5, 0
-	bl       getGlbVtx__7J2DPaneCFUc
-	mr       r4, r23
-	addi     r3, r1, 0x34
-	li       r5, 0
-	bl       getGlbVtx__7J2DPaneCFUc
-	mr       r3, r23
-	lfs      f3, 0x28(r23)
-	lwz      r12, 0(r23)
-	li       r4, 0
-	lfs      f2, 0x20(r23)
-	li       r5, 0
-	lfs      f1, 0x2c(r23)
-	li       r6, 0
-	lfs      f0, 0x24(r23)
-	fsubs    f3, f3, f2
-	lwz      r12, 0xec(r12)
-	fsubs    f4, f1, f0
-	lfs      f1, 0x34(r1)
-	lfs      f2, 0x2c(r1)
-	mtctr    r12
-	bctrl
-	mr       r3, r23
-	lwz      r12, 0(r23)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r23
-	mr       r4, r26
-	lwz      r12, 0(r23)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x88(r24)
-	lbz      r4, 0x214(r24)
-	lwzx     r3, r29, r0
-	lwz      r3, 0x20(r3)
-	lwzx     r3, r3, r30
-	lwz      r23, 0xc(r3)
-	mr       r3, r23
-	lbz      r26, 0xb2(r23)
-	lwz      r12, 0(r23)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r23
-	addi     r3, r1, 0x10
-	li       r5, 0
-	bl       getGlbVtx__7J2DPaneCFUc
-	mr       r4, r23
-	addi     r3, r1, 0x1c
-	li       r5, 0
-	bl       getGlbVtx__7J2DPaneCFUc
-	mr       r3, r23
-	lfs      f3, 0x28(r23)
-	lwz      r12, 0(r23)
-	li       r4, 0
-	lfs      f2, 0x20(r23)
-	li       r5, 0
-	lfs      f1, 0x2c(r23)
-	li       r6, 0
-	lfs      f0, 0x24(r23)
-	fsubs    f3, f3, f2
-	lwz      r12, 0xec(r12)
-	fsubs    f4, f1, f0
-	lfs      f1, 0x1c(r1)
-	lfs      f2, 0x14(r1)
-	mtctr    r12
-	bctrl
-	mr       r3, r23
-	lwz      r12, 0(r23)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r23
-	mr       r4, r26
-	lwz      r12, 0(r23)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8037AA50:
-	addi     r27, r27, 1
-	addi     r30, r30, 4
-	cmpwi    r27, 3
-	blt      lbl_8037A7BC
-	addi     r29, r29, 4
-	addi     r28, r28, 1
-
-lbl_8037AA68:
-	lha      r0, 0x8e(r24)
-	cmpw     r28, r0
-	blt      lbl_8037A7B4
-	addi     r3, r25, 0x190
-	lwz      r12, 0x190(r25)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x3ac(r24)
-	cmpwi    r0, 3
-	bne      lbl_8037AC74
-	lfs      f30, 0x1a4(r24)
-	lfs      f0, 0x1ac(r24)
-	lfs      f31, 0x1a0(r24)
-	fsubs    f1, f0, f30
-	bl       __cvt_fp2unsigned
-	lfs      f0, 0x1a8(r24)
-	mr       r28, r3
-	fsubs    f1, f0, f31
-	bl       __cvt_fp2unsigned
-	fmr      f1, f30
-	mr       r27, r3
-	bl       __cvt_fp2unsigned
-	fmr      f1, f31
-	mr       r26, r3
-	bl       __cvt_fp2unsigned
-	mr       r4, r26
-	mr       r5, r27
-	mr       r6, r28
-	bl       GXSetScissor
-	lis      r4, 0x315F3030@ha
-	lwz      r3, 0xf0(r24)
-	addi     r0, r4, 0x315F3030@l
-	lis      r4, 0x00393030@ha
-	stw      r0, 0x1c(r3)
-	addi     r0, r4, 0x00393030@l
-	stw      r0, 0x18(r3)
-	lwz      r4, 0x24c(r24)
-	lwz      r3, 0xf0(r24)
-	lwz      r0, 0x20(r4)
-	lwz      r12, 0(r3)
-	stw      r0, 0xc(r1)
-	lwz      r12, 0x24(r12)
-	lbz      r4, 0xf(r1)
-	mtctr    r12
-	bctrl
-	li       r0, 0
-	addi     r4, r1, 8
-	stb      r0, 0xf(r1)
-	lwz      r0, 0xc(r1)
-	stw      r0, 8(r1)
-	lwz      r3, 0xf0(r24)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xa4(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0xc8(r24)
-	mr       r4, r25
-	mr       r5, r31
-	lwz      r12, 0(r3)
-	lwz      r12, 0x9c(r12)
-	mtctr    r12
-	bctrl
-	li       r27, 0
-	li       r30, 0
-	addi     r28, r13, mNewOffset__Q28Morimura10TZukanBase@sda21
-	b        lbl_8037AC38
-
-lbl_8037AB74:
-	lwz      r3, 0x88(r24)
-	lwzx     r3, r3, r30
-	lwz      r3, 4(r3)
-	lbz      r0, 0xb0(r3)
-	cmplwi   r0, 0
-	beq      lbl_8037AC30
-	li       r26, 0
-	li       r29, 0
-
-lbl_8037AB94:
-	lwz      r0, 0x88(r24)
-	lwz      r4, 0x23c(r24)
-	lwzx     r3, r30, r0
-	lwz      r3, 0x20(r3)
-	lwzx     r3, r3, r29
-	lwz      r0, 0(r3)
-	cmpw     r4, r0
-	bne      lbl_8037AC20
-	bne      lbl_8037AC20
-	lwz      r0, 0x18(r3)
-	cmplwi   r0, 0
-	beq      lbl_8037AC20
-	lwz      r3, 0x10(r3)
-	mr       r4, r25
-	lfs      f1, mNewOffset__Q28Morimura10TZukanBase@sda21(r13)
-	mr       r5, r31
-	lfs      f0, 0x8c(r3)
-	lwz      r3, 0xf0(r24)
-	fadds    f0, f1, f0
-	stfs     f0, 0x8c(r3)
-	lwz      r0, 0x88(r24)
-	lfs      f1, 4(r28)
-	lwzx     r6, r30, r0
-	lwz      r3, 0xf0(r24)
-	lwz      r6, 0x20(r6)
-	lwzx     r6, r6, r29
-	lwz      r6, 0x10(r6)
-	lfs      f0, 0x9c(r6)
-	fadds    f0, f1, f0
-	stfs     f0, 0x9c(r3)
-	lwz      r3, 0xcc(r24)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8037AC20:
-	addi     r26, r26, 1
-	addi     r29, r29, 4
-	cmpwi    r26, 3
-	blt      lbl_8037AB94
-
-lbl_8037AC30:
-	addi     r30, r30, 4
-	addi     r27, r27, 1
-
-lbl_8037AC38:
-	lha      r0, 0x8e(r24)
-	cmpw     r27, r0
-	blt      lbl_8037AB74
-	lis      r3, 0x305F3030@ha
-	lwz      r5, 0xf0(r24)
-	addi     r0, r3, 0x305F3030@l
-	lis      r3, 0x00393030@ha
-	stw      r0, 0x1c(r5)
-	addi     r0, r3, 0x00393030@l
-	li       r3, 0
-	li       r4, 0
-	stw      r0, 0x18(r5)
-	li       r5, 0x280
-	li       r6, 0x1e0
-	bl       GXSetScissor
-
-lbl_8037AC74:
-	lwz      r3, 0xdc(r24)
-	mr       r4, r25
-	mr       r5, r31
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	psq_l    f31, 216(r1), 0, qr0
-	lfd      f31, 0xd0(r1)
-	psq_l    f30, 200(r1), 0, qr0
-	lfd      f30, 0xc0(r1)
-	lmw      r23, 0x9c(r1)
-	lwz      r0, 0xe4(r1)
-	mtlr     r0
-	addi     r1, r1, 0xe0
-	blr
-	*/
 }
 
 /**
@@ -5063,13 +4548,17 @@ void TZukanWindow::update()
 		}
 	}
 
-	JGeometry::TVec3f bottomLeft = mPaneWinCap->getGlbVtx(GLBVTX_BtmLeft);
-	JGeometry::TVec3f topRight   = mPaneWinCap->getGlbVtx(GLBVTX_TopRight);
-	JGeometry::TBox2f box(bottomLeft, topRight);
-	box.i.x += 10.0f;
-	box.i.y += 5.0f;
-	box.f.x -= 10.0f;
-	box.f.y -= 10.0f;
+	const JGeometry::TVec3f& bottomLeft = mPaneWinCap->getGlbVtx(GLBVTX_BtmLeft);
+	f32 left                            = bottomLeft.x;
+	f32 bottom                          = bottomLeft.y;
+	const JGeometry::TVec3f& topRight   = mPaneWinCap->getGlbVtx(GLBVTX_TopRight);
+	f32 right                           = topRight.x;
+	f32 top                             = topRight.y;
+	left += 10.0f;
+	bottom += 5.0f;
+	right -= 10.0f;
+	top -= 10.0f;
+	JGeometry::TBox2f box(left, bottom, right, top);
 	mScissor->mBounds = box;
 }
 
@@ -5204,6 +4693,8 @@ void TZukanWindow::changeIconTexture(int id, ResTIMG* file)
 	mCharacterIcon[id]->changeTexture(file, 0);
 }
 
+} // namespace Morimura
+namespace Morimura {
 TZukanBase::StaticValues TZukanBase::mScrollParm;
 
 JGeometry::TVec2f TZukanBase::mNewOffset(0.0f, -12.5f);
@@ -5216,6 +4707,7 @@ JUtility::TColor TZukanBase::mCategoryColor0b(255, 255, 255, 0);
 JUtility::TColor TZukanBase::mCategoryColor1w(255, 255, 255, 255);
 JUtility::TColor TZukanBase::mCategoryColor1b(255, 255, 255, 0);
 
-} // namespace Morimura
+JKRHeap* TZukanBase::mDebugHeapParent;
+JKRExpHeap* TZukanBase::mDebugHeap;
 
-#include "nans.h"
+} // namespace Morimura

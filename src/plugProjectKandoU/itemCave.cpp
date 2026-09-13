@@ -237,7 +237,7 @@ void Item::changeMaterial()
 	}
 }
 
-#pragma dont_inline on
+#pragma auto_inline off
 /**
  * @note Address: 0x801EAB90
  * @note Size: 0x14C
@@ -246,18 +246,23 @@ void Item::createLightEvent()
 {
 	if (!mLightEventNode) {
 		GameLightEventArg arg;
-		arg.mPosition      = &mPosition;
-		arg.mFarZ          = mFogParm.mEndZ.mValue;
-		arg.mNearZ         = mFogParm.mStartZ.mValue;
-		arg.mLightTypeFlag = (LIGHTTYPE_Fog + LIGHTTYPE_Main);
-		arg.mFadeTime      = mFogParm.mEndTime.mValue;
-		arg.mGrowTime      = mFogParm.mStartTime.mValue;
-		arg.mRedScale      = mFogParm.mRed.mValue;
-		arg.mGreenScale    = mFogParm.mGreen.mValue;
-		arg.mBlueScale     = mFogParm.mBlue.mValue;
-		arg.mEventFlag.typeView = (LIGHTEVENT_Unk3 + LIGHTEVENT_Unk4);
-		arg.mRange         = mFogParm.mDistance.mValue;
-		mLightEventNode    = gameSystem->getLightMgr()->createEventLight(arg);
+		arg.mFarZ  = mFogParm.mEndZ.mValue;
+		arg.mNearZ = mFogParm.mStartZ.mValue;
+		arg.setLightType(LIGHTTYPE_Fog);
+		arg.mFadeTime   = mFogParm.mEndTime.mValue;
+		arg.mGrowTime   = mFogParm.mStartTime.mValue;
+		u8 blue         = mFogParm.mBlue.mValue;
+		u8 green        = mFogParm.mGreen.mValue;
+		u8 red          = mFogParm.mRed.mValue;
+		arg.mBlueScale  = blue;
+		arg.mGreenScale = green;
+		arg.mRedScale   = red;
+		arg.resetEvent(LIGHTEVENT_Unk1);
+		arg.resetEvent(LIGHTEVENT_Unk2);
+		arg.setEvent(LIGHTEVENT_Unk3 | LIGHTEVENT_Unk4);
+		arg.mPosition   = &mPosition;
+		arg.mRange      = mFogParm.mDistance.mValue;
+		mLightEventNode = gameSystem->getLightMgr()->createEventLight(arg);
 	}
 	/*
 	stwu     r1, -0x50(r1)
@@ -347,7 +352,7 @@ lbl_801EACC8:
 	blr
 	*/
 }
-#pragma dont_inline reset
+#pragma auto_inline reset
 
 /**
  * @note Address: 0x801EACDC

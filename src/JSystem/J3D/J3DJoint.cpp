@@ -16,49 +16,10 @@ J3DMtxCalc* J3DJoint::mCurrentMtxCalc;
  */
 void J3DMtxCalcJ3DSysInitBasic::init(const Vec& scale, const Mtx& mtx)
 {
+	Vec& inputScale   = const_cast<Vec&>(scale);
 	J3DSys::mCurrentS = scale;
 	J3DSys::mParentS  = (Vec) { 1.0f, 1.0f, 1.0f };
-	JMAMTXApplyScale(mtx, J3DSys::mCurrentMtx, scale.x, scale.y, scale.z);
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	mr       r9, r3
-	lis      r5, lbl_804789B0@ha
-	stw      r0, 0x24(r1)
-	addi     r6, r5, lbl_804789B0@l
-	lfs      f1, 0(r9)
-	lis      r8, mCurrentS__6J3DSys@ha
-	lwz      r0, 0(r6)
-	lis      r5, mParentS__6J3DSys@ha
-	lwz      r7, 4(r6)
-	lis      r3, mCurrentMtx__6J3DSys@ha
-	stw      r0, 8(r1)
-	addi     r0, r3, mCurrentMtx__6J3DSys@l
-	lwz      r6, 8(r6)
-	mr       r3, r4
-	stw      r7, 0xc(r1)
-	mr       r4, r0
-	lfs      f5, 8(r1)
-	stw      r6, 0x10(r1)
-	lfs      f2, 4(r9)
-	stfsu    f1, mCurrentS__6J3DSys@l(r8)
-	lfs      f3, 8(r9)
-	stfs     f2, 4(r8)
-	lfs      f4, 0xc(r1)
-	stfsu    f5, mParentS__6J3DSys@l(r5)
-	lfs      f0, 0x10(r1)
-	stfs     f3, 8(r8)
-	lfs      f1, 0(r9)
-	lfs      f2, 4(r9)
-	lfs      f3, 8(r9)
-	stfs     f4, 4(r5)
-	stfs     f0, 8(r5)
-	bl       JMAMTXApplyScale__FPA4_CfPA4_ffff
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	JMAMTXApplyScale(mtx, J3DSys::mCurrentMtx, inputScale.x, inputScale.y, inputScale.z);
 }
 
 /**
@@ -68,50 +29,10 @@ void J3DMtxCalcJ3DSysInitBasic::init(const Vec& scale, const Mtx& mtx)
  */
 void J3DMtxCalcJ3DSysInitMaya::init(const Vec& scale, const Mtx& mtx)
 {
-	J3DSys::mCurrentS = scale;
+	Vec& inputScale   = const_cast<Vec&>(scale);
 	J3DSys::mParentS  = (Vec) { 1.0f, 1.0f, 1.0f };
-	JMAMTXApplyScale(mtx, J3DSys::mCurrentMtx, scale.x, scale.y, scale.z);
-
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	mr       r9, r3
-	lis      r5, lbl_804789BC@ha
-	stw      r0, 0x24(r1)
-	addi     r7, r5, lbl_804789BC@l
-	lfs      f5, 0(r9)
-	lis      r5, mCurrentS__6J3DSys@ha
-	lwz      r0, 0(r7)
-	lis      r6, mParentS__6J3DSys@ha
-	lwz      r8, 4(r7)
-	lis      r3, mCurrentMtx__6J3DSys@ha
-	stw      r0, 8(r1)
-	addi     r0, r3, mCurrentMtx__6J3DSys@l
-	lwz      r7, 8(r7)
-	mr       r3, r4
-	stw      r8, 0xc(r1)
-	mr       r4, r0
-	lfs      f1, 8(r1)
-	stw      r7, 0x10(r1)
-	lfs      f2, 0xc(r1)
-	stfsu    f1, mParentS__6J3DSys@l(r6)
-	lfs      f3, 0x10(r1)
-	stfs     f2, 4(r6)
-	lfs      f4, 4(r9)
-	stfsu    f5, mCurrentS__6J3DSys@l(r5)
-	lfs      f0, 8(r9)
-	stfs     f3, 8(r6)
-	lfs      f1, 0(r9)
-	lfs      f2, 4(r9)
-	lfs      f3, 8(r9)
-	stfs     f4, 4(r5)
-	stfs     f0, 8(r5)
-	bl       JMAMTXApplyScale__FPA4_CfPA4_ffff
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	J3DSys::mCurrentS = scale;
+	JMAMTXApplyScale(mtx, J3DSys::mCurrentMtx, inputScale.x, inputScale.y, inputScale.z);
 }
 
 inline s32 checkScaleOne(const Vec& vec)

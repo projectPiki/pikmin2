@@ -654,29 +654,34 @@ struct SceneDayEndResultItem : public ::Screen::SceneBase {
 	// TODO: work out if this has extra members
 };
 
+// mail is 4-byte aligned, despite this struct wanting to go to 8-byte aligned
+// BUT this is the only way I've found to get khDayEndResult to match.
+#pragma pack(push, 4)
 struct MailTableDataEntry {
+	inline u64 getMessageID() const { return mMessageID; }
+
 	u64 mMessageID;          // _00
 	u8 mFlag[4];             // _08
 	const char mFileName[0]; // _0C
 };
+#pragma pack(pop)
 
 struct MailTableData {
 	MailTableData(MailTableDataEntry* data, MailSaveFlags& flags, int i)
 	{
-		u8 bit     = flags.getReverseByte(i >> 3);
-		int shift  = (i - (int(i >> 3) << 3));
-		mMessageID = data->mMessageID;
-		mFlag[0]   = data->mFlag[0];
-		mFlag[1]   = data->mFlag[1];
-		mFlag[2]   = data->mFlag[2];
-		mFileName  = (const char*)&data->mFileName;
-		mSaveFlag  = ((1 << shift) & bit) != 0;
+		bool saveFlag = calcSaveFlag(flags, i);
+		mMessageID    = data->getMessageID();
+		mFlag[0]      = data->mFlag[0];
+		mFlag[1]      = data->mFlag[1];
+		mFlag[2]      = data->mFlag[2];
+		mFileName     = (const char*)&data->mFileName;
+		mSaveFlag     = saveFlag;
 	}
 
-	inline u32 calcSaveFlag(MailSaveFlags& flags, int i)
+	inline bool calcSaveFlag(MailSaveFlags& flags, int i)
 	{
 		u32 cleared = (i >> 3);
-		return (1 << (i - (cleared << 3))) & flags.byteView[15 - (i >> 3)];
+		return ((1 << (i - (cleared << 3))) & flags.byteView[15 - (i >> 3)]) != 0;
 	}
 
 	inline const char* getFileName() { return mFileName; }

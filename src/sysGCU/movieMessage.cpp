@@ -204,8 +204,6 @@ PodIconScreen::PodIconScreen()
 	u16 y = sys->getRenderModeHeight();
 	u16 x = sys->getRenderModeWidth();
 	mInitialPos.set(x * 0.75f, y, 100.0f);
-	reset();
-	hide();
 }
 
 /**
@@ -228,7 +226,7 @@ void PodIconScreen::setTrans()
 void PodIconScreen::reset()
 {
 	mMomentum.set(1.0f, randFloat(), 0.0f);
-	mMomentum.normalise(); // Needs to be here, but we are reaching limits of inline complexity
+	mMomentum.normalise();
 	mPosition.set(0.0f, 0.0f, 0.0f);
 	setTrans();
 }
@@ -717,7 +715,12 @@ bool TControl::onInit()
 	}
 	arc = JKRMountArchive(path, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
 	if (arc) {
-		mPodIcon = new PodIconScreen;
+		PodIconScreen* podIcon = new PodIconScreen;
+		if (podIcon) {
+			podIcon->reset();
+			podIcon->hide();
+		}
+		mPodIcon = podIcon;
 		mPodIcon->set(arc);
 	} else {
 		JUT_PANICLINE(658, "%s is not found.\n", path);

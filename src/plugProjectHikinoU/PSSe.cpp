@@ -104,7 +104,8 @@ Rappa::Rappa()
  */
 void Rappa::init(u16 id)
 {
-	P2ASSERTLINE(180, id < 2);
+	s16 checkID = id;
+	P2ASSERTBOUNDSLINE(180, 0, checkID, 2);
 
 	u32 val    = -(id == 0);
 	mId        = val + 14;

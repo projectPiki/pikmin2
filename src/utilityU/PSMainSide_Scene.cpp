@@ -323,9 +323,9 @@ void Scene_Objects::exec()
 		for (u8 i = 0; i < mSceneInfoA->mCameras; i++) {
 			Camera* cam = Game::cameraMgr->mCameraObjList[i];
 			if (cam) {
-				Vector3f soundpos = *cam->getSoundPositionPtr();
-				Vector3f pos      = cam->getLookAtPosition();
-				f32 dist          = PSMath::calcDistance(soundpos, pos);
+				Vector3f soundpos   = *cam->getSoundPositionPtr();
+				const Vector3f& pos = cam->getLookAtPosition();
+				f32 dist            = PSMath::calcDistance(soundpos, pos);
 				mCameraMgr->update(i, dist);
 				mCameraMgr->mIsSpecial[i] = cam->isSpecialCamera();
 			}

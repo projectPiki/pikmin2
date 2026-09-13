@@ -10,7 +10,6 @@
 #include "THP/THPRead.h"
 #include "System.h"
 #include "Graphics.h"
-#include "nans.h"
 #if defined(VERSION_US_DEMO)
 #include "Game/GameConfig.h"
 #endif
@@ -22,6 +21,7 @@ static OSTime sPlayTime = OSSecondsToTicks((OSTime)780);
 #else
 static OSTime sPlayTime = OSSecondsToTicks((OSTime)300);
 #endif
+#include "nans.h"
 
 /**
  * @note Address: 0x80423770

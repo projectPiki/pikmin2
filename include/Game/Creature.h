@@ -351,12 +351,11 @@ struct Creature : public CellObject {
 
 	inline f32 getSquarePositionTo(Vector3f& pos)
 	{
-		f32 z       = getPosition().z;
-		f32 x       = getPosition().x;
-		f32 targetZ = pos.z;
-		f32 targetX = pos.x;
-		f32 diffZ   = targetZ - z;
-		f32 diffX   = targetX - x;
+		f32 x, z;
+		z         = getPosition().z;
+		x         = getPosition().x;
+		f32 diffX = pos.x - x;
+		f32 diffZ = pos.z - z;
 		return SQUARE(diffX) + SQUARE(diffZ);
 	}
 
@@ -364,8 +363,11 @@ struct Creature : public CellObject {
 
 	inline f32 getPositionTo(Vector3f& pos)
 	{
+		f32 diffX, diffZ;
 		Vector3f position(getPosition().x, 0.0f, getPosition().z);
-		f32 sqrDist = pos.sqrDistance2D(position);
+		diffX       = pos.x - position.x;
+		diffZ       = pos.z - position.z;
+		f32 sqrDist = diffX * diffX + diffZ * diffZ;
 		return sqrtf(sqrDist);
 	}
 

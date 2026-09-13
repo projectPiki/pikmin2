@@ -50,7 +50,6 @@ struct TList {
 	struct const_iterator {
 		const_iterator() { mNode = nullptr; }
 		const_iterator(const TNode_* node) { mNode = node; }
-		const_iterator(const const_iterator& other) { mNode = other.mNode; }
 
 		inline void operator=(const_iterator& other) { mNode = other.mNode; }
 		inline Element operator*() const { return mNode->getElement(); }

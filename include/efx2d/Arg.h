@@ -32,10 +32,7 @@ struct ArgColor : public Arg {
 	{
 	}
 
-	virtual const char* getName() // _08 (weak)
-	{
-		return "ArgColor";
-	}
+	virtual const char* getName(); // _08 (weak)
 
 	// _00-_08	= Vector2f
 	// _08 		= VTBL
@@ -82,5 +79,7 @@ struct ArgScaleColorColor : public Arg {
 	JUtility::TColor mColor2; // _14
 };
 } // namespace efx2d
+
+#include "efx2d/Arg.inl"
 
 #endif

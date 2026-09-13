@@ -47,21 +47,6 @@ public:
 	ID32(u32 id);
 
 	/**
-	 * @brief Assignment operator.
-	 *
-	 * Assigns the identifier from another ID32 object.
-	 *
-	 * @param other The ID32 object to assign from.
-	 * @return A reference to the assigned ID32 object.
-	 */
-	inline ID32& operator=(const ID32& other)
-	{
-		__copy(mStringID, const_cast<char*>(other.mStringID), 5);
-		mId = other.mId;
-		return *this;
-	}
-
-	/**
 	 * @brief Assignment operator with integer parameter.
 	 *
 	 * Assigns the specified integer identifier to the ID32 object.

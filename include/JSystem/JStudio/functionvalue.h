@@ -418,11 +418,6 @@ struct TFunctionValue_list_parameter : public TFunctionValue,
 		    : mValue(value)
 		{
 		}
-		TIterator_data_(const TIterator_data_& other)
-		    : mValue(other.mValue)
-		{
-		}
-
 		void operator=(const TIterator_data_& other) { mValue = other.mValue; }
 		TIterator_data_& operator--()
 		{

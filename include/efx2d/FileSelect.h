@@ -15,7 +15,7 @@ struct ArgFilecopy : public Arg {
 	    , mColor(color)
 	{
 	}
-	virtual const char* getName() { return "ArgFilecopy"; } // _08 (weak)
+	virtual const char* getName(); // _08 (weak)
 
 	// _00-_08	= Vector2f
 	// _08 		= VTBL
@@ -146,7 +146,7 @@ struct T2DFilesel : public TChasePos {
 		mResMgrId = 1;
 	}
 
-	virtual ~T2DFilesel() { } // _34 (weak)
+	virtual ~T2DFilesel(); // _34 (weak)
 
 	// _00     = VTBL
 	// _00-_18 = TChasePos
@@ -159,13 +159,13 @@ struct T2DFileselM : public TChasePos {
 		mResMgrId = 1;
 	}
 
-	virtual ~T2DFileselM() { } // _34 (weak)
-
 	// _00     = VTBL
 	// _00-_18 = TChasePos
 };
 
 } // namespace FileSelect
 } // namespace efx2d
+
+#include "efx2d/FileSelect.inl"
 
 #endif

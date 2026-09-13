@@ -20,12 +20,12 @@ struct J2DGXColorS10 : public GXColorS10 {
 		a = _a;
 	}
 
-	J2DGXColorS10(const J2DGXColorS10& other)
+	J2DGXColorS10(J2DGXColorS10& other)
 	{
-		r = (s16)other.r;
-		g = (s16)other.g;
-		b = (s16)other.b;
-		a = (s16)other.a;
+		r = other.r;
+		g = other.g;
+		b = other.b;
+		a = other.a;
 	}
 
 	J2DGXColorS10(const u64& other)

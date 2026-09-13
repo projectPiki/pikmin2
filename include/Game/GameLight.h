@@ -40,10 +40,10 @@ struct GameLightEventArg {
 		setEvent(LIGHTEVENT_Unk1 | LIGHTEVENT_Unk2);
 		mLightTypeFlag = 0;
 		setLightType(LIGHTTYPE_Main);
-		mGrowTime   = 0.5f;
 		mRedScale   = 1.5f;
 		mGreenScale = 1.5f;
 		mBlueScale  = 1.5f;
+		mGrowTime   = 0.5f;
 		mFadeTime   = 2.0f;
 		mNearZ      = 0.0f;
 		mFarZ       = 1024.0f;
@@ -71,17 +71,17 @@ struct GameLightEventArg {
 	inline void resetLightType(u32 flag) { mLightTypeFlag &= ~flag; }
 	inline bool isLightType(u32 flag) const { return mLightTypeFlag & flag; }
 
-	BitFlag<u8> mEventFlag;     // _00
-	u8          mLightTypeFlag; // _01
-	f32         mRedScale;      // _04
-	f32         mGreenScale;    // _08
-	f32         mBlueScale;     // _0C
-	f32         mGrowTime;      // _10
-	f32         mFadeTime;      // _14
-	f32         mNearZ;         // _18
-	f32         mFarZ;          // _1C
-	Vector3f*   mPosition;      // _20
-	f32         mRange;         // _24
+	BitFlag<u8> mEventFlag; // _00
+	u8 mLightTypeFlag;      // _01
+	f32 mRedScale;          // _04
+	f32 mGreenScale;        // _08
+	f32 mBlueScale;         // _0C
+	f32 mGrowTime;          // _10
+	f32 mFadeTime;          // _14
+	f32 mNearZ;             // _18
+	f32 mFarZ;              // _1C
+	Vector3f* mPosition;    // _20
+	f32 mRange;             // _24
 };
 
 struct GameLightEventNode : public CNode {

@@ -368,33 +368,33 @@ void ItemGate::initPlanes()
 
 	Vector3f pos = getPosition();
 
-	Vector3f vec1          = Vector3f(_270);
-	Vector3f* vec1Ptr      = &vec1;
-	Vector3f plane0vec     = pos + (vec1 * 20.0f);
-	Vector3f* plane0vecPtr = &plane0vec;
-	mPlanes[0].mNormal     = vec1;
-	mPlanes[0].mOffset     = plane0vec.dot(mPlanes[0].mNormal);
+	Vec normal0;
+	normal0.x          = _270.x;
+	normal0.y          = _270.y;
+	normal0.z          = _270.z;
+	Vector3f plane0vec = pos + (_270 * 20.0f);
+	mPlanes[0].updatePlane(plane0vec, normal0);
 
-	Vector3f vec2          = Vector3f(-f64(_270.x), -f64(_270.y), -f64(_270.z));
-	Vector3f* vec2Ptr      = &vec2;
-	Vector3f plane1vec     = pos + (vec2 * 20.0f);
-	Vector3f* plane1vecPtr = &plane1vec;
-	mPlanes[1].mNormal     = vec2;
-	mPlanes[1].mOffset     = plane1vec.dot(mPlanes[1].mNormal);
+	Vec normal1;
+	normal1.x          = -f64(_270.x);
+	normal1.y          = -f64(_270.y);
+	normal1.z          = -f64(_270.z);
+	Vector3f plane1vec = pos + (Vector3f(-f64(_270.x), -f64(_270.y), -f64(_270.z)) * 20.0f);
+	mPlanes[1].updatePlane(plane1vec, normal1);
 
-	Vector3f vec3          = Vector3f(mGateDirection);
-	Vector3f* vec3Ptr      = &vec3;
-	Vector3f plane2vec     = pos + (vec3 * 76.5f);
-	Vector3f* plane2vecPtr = &plane2vec;
-	mPlanes[2].mNormal     = vec3;
-	mPlanes[2].mOffset     = plane2vec.dot(mPlanes[2].mNormal);
+	Vec normal2;
+	normal2.x          = mGateDirection.x;
+	normal2.y          = mGateDirection.y;
+	normal2.z          = mGateDirection.z;
+	Vector3f plane2vec = pos + (mGateDirection * 76.5f);
+	mPlanes[2].updatePlane(plane2vec, normal2);
 
-	Vector3f vec4          = Vector3f(-f64(mGateDirection.x), -f64(mGateDirection.y), -f64(mGateDirection.z));
-	Vector3f* vec4Ptr      = &vec4;
-	Vector3f plane3vec     = pos + (vec4 * 76.5f);
-	Vector3f* plane3vecPtr = &plane3vec;
-	mPlanes[3].mNormal     = vec4;
-	mPlanes[3].mOffset     = plane3vec.dot(mPlanes[3].mNormal);
+	Vec normal3;
+	normal3.x          = -f64(mGateDirection.x);
+	normal3.y          = -f64(mGateDirection.y);
+	normal3.z          = -f64(mGateDirection.z);
+	Vector3f plane3vec = pos + (Vector3f(-f64(mGateDirection.x), -f64(mGateDirection.y), -f64(mGateDirection.z)) * 76.5f);
+	mPlanes[3].updatePlane(plane3vec, normal3);
 
 	/*
 	stwu     r1, -0xb0(r1)

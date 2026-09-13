@@ -357,8 +357,8 @@ f32 ActorDirector_Scaled::getNearestDistance()
 		FOREACH_NODE(JSULink<Game::Creature>, actors->getFirst(), link)
 		{
 			Vector3f objpos = link->getObject()->getPosition();
-			f32 p1Dist      = PSMath::calcDistance(oPos, objpos);
-			f32 p2Dist      = PSMath::calcDistance(lPos, objpos);
+			f32 p1Dist      = PSMath::calcDistance<const Vector3f&>(oPos, objpos);
+			f32 p2Dist      = PSMath::calcDistance<const Vector3f&>(lPos, objpos);
 			if (p1Dist <= p2Dist) {
 				if (p1Dist < minDist) {
 					minDist = p1Dist;
@@ -384,7 +384,7 @@ f32 ActorDirector_Scaled::getNearestDistance()
 		FOREACH_NODE(JSULink<Game::Creature>, mActor->getFirst(), link)
 		{
 			Vector3f objpos = link->getObject()->getPosition();
-			f32 dist        = PSMath::calcDistance(naviPos, objpos);
+			f32 dist        = PSMath::calcDistance<const Vector3f&>(naviPos, objpos);
 			if (dist < minDist) {
 				minDist = dist;
 				onSetMinDistObj(link->getObject());

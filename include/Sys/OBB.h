@@ -64,30 +64,26 @@ struct OBB : public CNode {
 
 	bool isLeaf() { return (!mHalfA && !mHalfB); }
 
-	inline void setMaxPlane(Vector3f* axisVec, int i)
+	inline void setMaxPlane(Vec* axisVec, int i)
 	{
 		f32 max    = mMaxXYZ[i];
 		axisVec->x = mAxes[i].x;
 		axisVec->y = mAxes[i].y;
 		axisVec->z = mAxes[i].z;
+		Vector3f scaledVec(axisVec->x * max, axisVec->y * max, axisVec->z * max);
 
-		Vector3f scaledVec       = *axisVec * max;
-		mSidePlanes[i].mNormal.x = axisVec->x;
-		mSidePlanes[i].mNormal.y = axisVec->y;
-		mSidePlanes[i].mNormal.z = axisVec->z;
-		mSidePlanes[i].mOffset   = mSidePlanes[i].mNormal.x * (mPosition.x + scaledVec.x)
-		                       + mSidePlanes[i].mNormal.y * (mPosition.y + scaledVec.y)
-		                       + mSidePlanes[i].mNormal.z * (mPosition.z + scaledVec.z);
+		mSidePlanes[i].updatePlane(mPosition + scaledVec, *axisVec);
 	}
 
-	inline void setMinPlane(int i)
+	inline void setMinPlane(Vec* axisVec, int i)
 	{
-		mSidePlanes[i + 3].mNormal.x = -mAxes[i].x;
-		mSidePlanes[i + 3].mNormal.y = -mAxes[i].y;
-		mSidePlanes[i + 3].mNormal.z = -mAxes[i].z;
-		mSidePlanes[i + 3].mOffset   = mSidePlanes[i + 3].mNormal.x * (mPosition.x + (-mAxes[i].x * mMinXYZ[i]))
-		                           + mSidePlanes[i + 3].mNormal.y * (mPosition.y + (-mAxes[i].y * mMinXYZ[i]))
-		                           + mSidePlanes[i + 3].mNormal.z * (mPosition.z + (-mAxes[i].z * mMinXYZ[i]));
+		axisVec->x = mAxes[i].x;
+		axisVec->y = mAxes[i].y;
+		axisVec->z = mAxes[i].z;
+		JGeometry::TVec3f normal;
+		normal.set(-axisVec->x, -axisVec->y, -axisVec->z);
+		Vector3f scaledVec(axisVec->x * mMinXYZ[i], axisVec->y * mMinXYZ[i], axisVec->z * mMinXYZ[i]);
+		mSidePlanes[i + 3].updatePlane(mPosition + scaledVec, static_cast<Vec>(normal));
 	}
 
 	Plane mSidePlanes[6];       // _18

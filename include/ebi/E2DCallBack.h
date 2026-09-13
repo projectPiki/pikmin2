@@ -129,8 +129,7 @@ struct E2DCallBack_BlinkFontColor : public E2DCallBack_Base {
 		mIsEnabled = false;
 	}
 
-	virtual ~E2DCallBack_BlinkFontColor() { } // _08 (weak)
-	virtual void do_update();                 // _1C
+	virtual void do_update(); // _1C
 
 	void set(J2DTextBox* pane1, J2DTextBox* pane2)
 	{

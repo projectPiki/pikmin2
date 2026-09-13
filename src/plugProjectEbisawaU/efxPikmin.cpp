@@ -390,31 +390,24 @@ void TFueactCircle::execute(JPABaseEmitter*, JPABaseParticle* prt)
 	P2ASSERTLINE(547, mMtx);
 	P2ASSERTLINE(548, mPos);
 
-	// Vector3f sep = *mPos - mMtx->getTranslation();
-	JGeometry::TVec3f pos;
-	pos.set(mPos->x, mPos->y, mPos->z); // 0x38
 	JGeometry::TVec3f mtxPos;
+	JGeometry::TVec3f pos;
+	pos.set(mPos->x, mPos->y, mPos->z);
 	mtxPos.set((*mMtx)(0, 3), (*mMtx)(1, 3), (*mMtx)(2, 3));
-	JGeometry::TVec3f sep2;
-	sep2.sub(pos, mtxPos);
-	f32 squareX = sep2.x * sep2.x;
-	f32 squareY = sep2.y * sep2.y;
-	f32 squareZ = sep2.z * sep2.z;
-	f32 squared = squareX + squareY;
-	squared     = squareZ + squared;
-	f32 dist    = JGeometry::TUtilf::sqrt(squared);
+	JGeometry::TVec3f sep2 = pos - mtxPos;
+	f32 dist               = sep2.length();
 	if (dist > 175.0f) {
 		sep2.normalize();
 		sep2.scale(175.0f);
-		pos.set(mtxPos);
-		pos.add(sep2);
+		pos = mtxPos + sep2;
 	}
 
 	if (!prt->checkStatus(0x4)) {
 		JGeometry::TVec3f newScaledVec;
 		newScaledVec.scale(prt->mTime, pos);
-		sep2.scaleAdd(1.0f - prt->mTime, mtxPos, newScaledVec);
-		prt->setOffsetPosition(sep2);
+		JGeometry::TVec3f offset;
+		offset.scaleAdd(1.0f - prt->mTime, mtxPos, newScaledVec);
+		prt->setOffsetPosition(offset);
 	}
 	/*
 	stwu     r1, -0x60(r1)
