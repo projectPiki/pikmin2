@@ -248,19 +248,18 @@ u32 Track::seqCpuSync_AutoBgm_Track(JASTrack* track1, u16 cmd, u32 p2, JASTrack*
 			mUnisonTrack = nullptr;
 		}
 
-		u8 max = getChildNum();
+		u32 max = getChildNum();
 		for (u8 i = 0; i < max; i++) {
 			getChild(i)->mIsTableAddrSet = 0;
 		}
 
-		// this isn't quite right but it's Close-ish
-		u32 x;
+		u16 x;
 		if (mUnisonTrack) {
 			u8 val = mUnisonTrack->_D0.mValue;
-			x      = (60 & (~(val - 1 | 1 - val) >> 1));
+			x      = val == 1 ? 60 : 0;
 		} else {
 			u8 val = _D0.mValue;
-			x      = (60 & (~(val - 1 | 1 - val) >> 1));
+			x      = val == 1 ? 60 : 0;
 		}
 		return (u16)(x + ((_A0.mValue & 0xFFFF) * 0x78));
 	case 0x800:
@@ -272,145 +271,6 @@ u32 Track::seqCpuSync_AutoBgm_Track(JASTrack* track1, u16 cmd, u32 p2, JASTrack*
 	}
 
 	return 0;
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r26, 0x8(r1)
-	  mr        r27, r5
-	  rlwinm    r0,r27,0,16,31
-	  lis       r5, 0x8049
-	  cmpwi     r0, 0x800
-	  mr        r31, r3
-	  mr        r26, r4
-	  mr        r29, r6
-	  mr        r28, r7
-	  subi      r30, r5, 0x1A0
-	  beq-      .loc_0x15C
-	  bge-      .loc_0x1A0
-	  cmpwi     r0, 0x600
-	  beq-      .loc_0x48
-	  b         .loc_0x1A0
-
-	.loc_0x48:
-	  li        r0, 0xFF
-	  stb       r0, 0x99(r31)
-	  lbz       r3, 0x168(r31)
-	  cmplwi    r3, 0x10
-	  beq-      .loc_0xB4
-	  lbz       r0, 0x98(r31)
-	  cmplw     r3, r0
-	  blt-      .loc_0x7C
-	  addi      r3, r30, 0
-	  addi      r5, r30, 0x1C
-	  li        r4, 0x1A0
-	  crclr     6, 0x6
-	  bl        -0x30F628
-
-	.loc_0x7C:
-	  lwz       r3, 0x3C(r31)
-	  lbz       r4, 0x168(r31)
-	  lwz       r3, 0xC(r3)
-	  bl        0x3284
-	  stw       r3, 0x19C(r31)
-	  lwz       r0, 0x19C(r31)
-	  cmplwi    r0, 0
-	  bne-      .loc_0xBC
-	  addi      r3, r30, 0
-	  addi      r5, r30, 0x10
-	  li        r4, 0x1A2
-	  crclr     6, 0x6
-	  bl        -0x30F65C
-	  b         .loc_0xBC
-
-	.loc_0xB4:
-	  li        r0, 0
-	  stw       r0, 0x19C(r31)
-
-	.loc_0xBC:
-	  mr        r3, r31
-	  bl        0x2E74
-	  rlwinm    r29,r3,0,24,31
-	  li        r28, 0
-	  li        r30, 0
-	  b         .loc_0xE8
-
-	.loc_0xD4:
-	  mr        r3, r31
-	  mr        r4, r28
-	  bl        0x3050
-	  stb       r30, 0x2C1(r3)
-	  addi      r28, r28, 0x1
-
-	.loc_0xE8:
-	  rlwinm    r0,r28,0,24,31
-	  cmplw     r0, r29
-	  blt+      .loc_0xD4
-	  lwz       r3, 0x19C(r31)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x124
-	  lbz       r3, 0xFC(r3)
-	  li        r0, 0x3C
-	  subi      r4, r3, 0x1
-	  subfic    r3, r3, 0x1
-	  nor       r3, r4, r3
-	  srawi     r3, r3, 0x1F
-	  and       r0, r0, r3
-	  rlwinm    r3,r0,0,16,31
-	  b         .loc_0x144
-
-	.loc_0x124:
-	  lbz       r3, 0xFC(r31)
-	  li        r0, 0x3C
-	  subi      r4, r3, 0x1
-	  subfic    r3, r3, 0x1
-	  nor       r3, r4, r3
-	  srawi     r3, r3, 0x1F
-	  and       r0, r0, r3
-	  rlwinm    r3,r0,0,16,31
-
-	.loc_0x144:
-	  lha       r0, 0xCC(r31)
-	  rlwinm    r0,r0,0,16,31
-	  mulli     r0, r0, 0x78
-	  add       r0, r3, r0
-	  rlwinm    r3,r0,0,16,31
-	  b         .loc_0x1A4
-
-	.loc_0x15C:
-	  bl        .loc_0x1B8
-	  lbz       r4, 0x99(r31)
-	  mr        r3, r31
-	  bl        0x2FC4
-	  cmplwi    r3, 0
-	  beq-      .loc_0x198
-	  lbz       r4, 0x99(r31)
-	  mr        r3, r31
-	  bl        0x2FB0
-	  mr        r4, r26
-	  mr        r5, r27
-	  mr        r6, r29
-	  mr        r7, r28
-	  bl        0xDA0
-	  b         .loc_0x1A4
-
-	.loc_0x198:
-	  li        r3, 0
-	  b         .loc_0x1A4
-
-	.loc_0x1A0:
-	  li        r3, 0
-
-	.loc_0x1A4:
-	  lmw       r26, 0x8(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-
-	.loc_0x1B8:
-	*/
 }
 
 /**
@@ -542,14 +402,13 @@ u32 Module::seqCpuSync_AutoBgm_Module(JASTrack* track1, u16 cmd, u32 p3, JASTrac
 		}
 
 		Track* track = static_cast<Track*>(mTree.getParent()->getObjectPtr());
-		// this isn't quite right but it's Close-ish
-		u32 x;
+		u16 x;
 		if (track->mUnisonTrack) {
 			u8 val = track->mUnisonTrack->getChild(0)->_274.mValue;
-			x      = (60 & (~(val - 1 | 1 - val) >> 1));
+			x      = val == 1 ? 60 : 0;
 		} else {
 			u8 val = _274.mValue;
-			x      = (0x3C & (~(val - 1 | 1 - val) >> 1));
+			x      = val == 1 ? 60 : 0;
 		}
 		return (u16)(x + (_64.mValue * 0x78));
 	}
@@ -961,8 +820,9 @@ u16 CycleBase::play(JASTrack* track)
 		u16 x;
 		Track* childTrk = ((Track*)mModule->mTree.getParent()->getObjectPtr())->mUnisonTrack;
 		if (childTrk == nullptr) {
-			PSWsData& ws = mModule->mWsData[mWaveSceneIndex++];
-			u16 wsPtr    = (ws.mData[0] << 8 | ws.mData[1]);
+			u8 index     = mWaveSceneIndex++;
+			PSWsData* ws = mModule->mWsData;
+			u16 wsPtr    = (ws[index].mData[0] << 8 | ws[index].mData[1]);
 			x            = avoidCheck();
 			x |= wsPtr;
 		} else {

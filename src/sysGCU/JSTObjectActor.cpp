@@ -28,16 +28,14 @@ ObjectActor::ObjectActor(char const* name, MoviePlayer* movie)
     , mTranslation(govNAN_)
     , mRotation(govNAN_)
     , mScaling(govNAN_)
+    , mShape(gu32NAN_)
+    , mAnimation(gu32NAN_)
     , mAnimFrame(gfNAN_)
     , mAnimFrameMax(gfNAN_)
+    , mModelFileId(gu32NAN_)
+    , mAnimationFileId(gu32NAN_)
 {
-
-	u32 invalid      = gu32NAN_;
-	mShape           = invalid;
-	mAnimation       = invalid;
-	mModelFileId     = invalid;
-	mAnimationFileId = invalid;
-	mArchive         = MoviePlayer::mArchive;
+	mArchive = MoviePlayer::mArchive;
 }
 
 /**

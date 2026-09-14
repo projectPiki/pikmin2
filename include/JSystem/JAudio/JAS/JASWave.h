@@ -1,6 +1,8 @@
 #ifndef _JSYSTEM_JAS_JASWAVE_H
 #define _JSYSTEM_JAS_JASWAVE_H
 
+#include "JSystem/JSupport/JSU.h"
+
 #include "JSystem/JAudio/JAS/JASHeap.h"
 
 struct JASWaveArc : public JASDisposer {
@@ -230,11 +232,25 @@ extern JASWaveBank** sWaveBank;
 } // namespace JASWaveBankMgr
 
 namespace JASWSParser {
+struct TWaveArchiveBank;
+struct TCtrlGroup;
+struct TWave;
+struct TWaveArchive;
+struct TCtrlWave;
+struct TCtrl;
+struct TCtrlScene;
+
+template <class T>
+struct TOffset {
+	T* ptr(const void* base) const { return JSUConvertOffsetToPtr<T>(base, mOffset); }
+	u32 mOffset;
+};
+
 /** @fabricated */
 struct THeader {
-	u8 _00[0x10];           // _00 - unknown/padding
-	u32 mArchiveBankOffset; // _10
-	u32 mCtrlGroupOffset;   // _14
+	u8 _00[0x10];                                 // _00 - unknown/padding
+	TOffset<TWaveArchiveBank> mArchiveBankOffset; // _10
+	TOffset<TCtrlGroup> mCtrlGroupOffset;         // _14
 };
 
 struct TCtrlWave {
@@ -257,30 +273,30 @@ struct TWave {
 };
 
 struct TWaveArchive {
-	char mFileName[0x74]; // _00 - unknown length
-	u32 mWaveOffsets[1];  // _74 - dynamic length
+	char mFileName[0x74];           // _00 - unknown length
+	TOffset<TWave> mWaveOffsets[1]; // _74 - dynamic length
 };
 
 struct TWaveArchiveBank {
-	u8 _00[8];              // _00 - unknown/padding
-	u32 mArchiveOffsets[1]; // _08 - dynamic length
+	u8 _00[8];                                // _00 - unknown/padding
+	TOffset<TWaveArchive> mArchiveOffsets[1]; // _08 - dynamic length
 };
 
 struct TCtrl {
-	u8 _00[4];               // _00 - unknown/padding
-	u32 mWaveCount;          // _04
-	u32 mCtrlWaveOffsets[1]; // _08 - dynamic length
+	u8 _00[4];                              // _00 - unknown/padding
+	u32 mWaveCount;                         // _04
+	TOffset<TCtrlWave> mCtrlWaveOffsets[1]; // _08 - dynamic length
 };
 
 struct TCtrlScene {
-	u8 _00[12];      // _00 - unknown/padding
-	u32 mCtrlOffset; // _0C
+	u8 _00[12];                 // _00 - unknown/padding
+	TOffset<TCtrl> mCtrlOffset; // _0C
 };
 
 struct TCtrlGroup {
-	u8 _00[8];                // _00 - unknown/padding
-	u32 mCtrlGroupCount;      // _08
-	u32 mCtrlSceneOffsets[1]; // _0C - dynamic length
+	u8 _00[8];                                // _00 - unknown/padding
+	u32 mCtrlGroupCount;                      // _08
+	TOffset<TCtrlScene> mCtrlSceneOffsets[1]; // _0C - dynamic length
 };
 
 u32 getGroupCount(void*);

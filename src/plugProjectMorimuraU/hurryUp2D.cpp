@@ -273,9 +273,13 @@ bool THurryUp2D::doStart(Screen::StartSceneArg const* arg)
  * @note Address: N/A
  * @note Size: 0x2C
  */
-void THurryUp2D::calcCount()
+int THurryUp2D::calcCount()
 {
-	// UNUSED FUNCTION
+	f32 step = 0.000043f;
+	if (mIsSection) {
+		step = 0.0001f;
+	}
+	return int((mDisp->mCurrSunRatio - mDisp->mDuration) / step);
 }
 
 /**
@@ -349,329 +353,24 @@ void THurryUp2D::init()
 		mWhitePane->hide();
 	}
 
-	// These values need to be treated as variables and not constants, somehow
-	s32 numA = 75;
-	s32 numB = 9;
-	s32 numC = 64;
-	s32 numD = 6;
-	mTimer   = calcTimer(numA, numB, numC, numD);
+	int durations[4];
+	durations[0] = 75;
+	durations[1] = 9;
+	durations[2] = 64;
+	durations[3] = 6;
 
+	int count = calcCount();
+
+	for (int i = 0; i < 4; i++) {
+		mState = i + 1;
+		if (count >= durations[i]) {
+			count -= durations[i];
+		} else {
+			break;
+		}
+	}
+	mTimer = count;
 	changeState(mState, mTimer);
-
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	li       r4, 0
-	lfs      f0, lbl_8051E258@sda21(r2)
-	stw      r0, 0x34(r1)
-	li       r0, 0xff
-	lfs      f4, lbl_8051E260@sda21(r2)
-	stw      r31, 0x2c(r1)
-	mr       r31, r3
-	lfs      f3, lbl_8051E270@sda21(r2)
-	stw      r4, 0xb0(r3)
-	li       r3, 0x64
-	lfs      f2, lbl_8051E2B8@sda21(r2)
-	stfs     f0, 0xb4(r31)
-	lfs      f1, lbl_8051E2BC@sda21(r2)
-	stfs     f0, 0xcc(r31)
-	lfs      f0, lbl_8051E2C0@sda21(r2)
-	stb      r3, 0xdc(r31)
-	stb      r0, 0xdd(r31)
-	stfs     f4, 0xe0(r31)
-	stfs     f3, 0xe4(r31)
-	stb      r3, 0xe8(r31)
-	stb      r0, 0xe9(r31)
-	stfs     f2, 0xec(r31)
-	stfs     f1, 0xf0(r31)
-	stb      r0, 0x100(r31)
-	stb      r4, 0x101(r31)
-	stfs     f3, 0x104(r31)
-	stfs     f0, 0x108(r31)
-	lwz      r3, 0x80(r31)
-	stb      r4, 0xb0(r3)
-	lfs      f1, 0x9c(r31)
-	lfs      f0, mInitPosX__Q28Morimura10THurryUp2D@sda21(r13)
-	lwz      r3, 0x80(r31)
-	fadds    f0, f1, f0
-	lfs      f1, 0xa0(r31)
-	stfs     f0, 0xd4(r3)
-	stfs     f1, 0xd8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x80(r31)
-	li       r4, 4
-	bl       setBasePosition__7J2DPaneF15J2DBasePosition
-	lwz      r3, 0x80(r31)
-	lfs      f0, lbl_8051E260@sda21(r2)
-	stfs     f0, 0xcc(r3)
-	stfs     f0, 0xd0(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x80(r31)
-	li       r4, 0x64
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x84(r31)
-	li       r0, 0
-	stb      r0, 0xb0(r3)
-	lfs      f1, 0xa4(r31)
-	lfs      f0, mInitPosX__Q28Morimura10THurryUp2D@sda21(r13)
-	lwz      r3, 0x84(r31)
-	fsubs    f0, f1, f0
-	lfs      f1, 0xa8(r31)
-	stfs     f0, 0xd4(r3)
-	stfs     f1, 0xd8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x84(r31)
-	li       r4, 4
-	bl       setBasePosition__7J2DPaneF15J2DBasePosition
-	lwz      r3, 0x84(r31)
-	lfs      f0, lbl_8051E260@sda21(r2)
-	stfs     f0, 0xcc(r3)
-	stfs     f0, 0xd0(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x84(r31)
-	li       r4, 0x64
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x90(r31)
-	li       r4, 4
-	bl       setBasePosition__7J2DPaneF15J2DBasePosition
-	lwz      r3, 0x90(r31)
-	lfs      f0, 0xec(r31)
-	stfs     f0, 0xcc(r3)
-	stfs     f0, 0xd0(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x90(r31)
-	li       r4, 0x64
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x90(r31)
-	li       r0, 0
-	li       r4, 4
-	stb      r0, 0xb0(r3)
-	lwz      r3, 0x88(r31)
-	bl       setBasePosition__7J2DPaneF15J2DBasePosition
-	lwz      r3, 0x88(r31)
-	lfs      f0, lbl_8051E270@sda21(r2)
-	stfs     f0, 0xcc(r3)
-	stfs     f0, 0xd0(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x88(r31)
-	li       r0, 0
-	li       r4, 4
-	stb      r0, 0xb0(r3)
-	lwz      r3, 0x94(r31)
-	bl       setBasePosition__7J2DPaneF15J2DBasePosition
-	lwz      r3, 0x94(r31)
-	lfs      f0, lbl_8051E260@sda21(r2)
-	stfs     f0, 0xcc(r3)
-	stfs     f0, 0xd0(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x94(r31)
-	li       r0, 0
-	li       r4, 0x64
-	stb      r0, 0xb0(r3)
-	lwz      r3, 0x94(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x98(r31)
-	li       r4, 4
-	bl       setBasePosition__7J2DPaneF15J2DBasePosition
-	lwz      r3, 0x98(r31)
-	lfs      f0, lbl_8051E260@sda21(r2)
-	stfs     f0, 0xcc(r3)
-	stfs     f0, 0xd0(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x98(r31)
-	li       r0, 0
-	li       r4, 0x64
-	stb      r0, 0xb0(r3)
-	lwz      r3, 0x98(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	lbz      r0, 0xc4(r31)
-	cmplwi   r0, 0
-	beq      lbl_803471EC
-	lwz      r3, 0x8c(r31)
-	li       r6, 1
-	li       r5, 6
-	li       r4, 7
-	stb      r6, 0xb0(r3)
-	li       r0, 0
-	lwz      r3, 0x88(r31)
-	stb      r6, 0x1c(r1)
-	lwz      r12, 0(r3)
-	stb      r5, 0x1d(r1)
-	lwz      r12, 0x13c(r12)
-	stb      r4, 0x1e(r1)
-	stb      r0, 0x1f(r1)
-	lwz      r0, 0x1c(r1)
-	stw      r0, 0x10(r1)
-	mtctr    r12
-	bctrl
-	lbz      r6, 0x10(r1)
-	li       r4, 1
-	li       r0, 0
-	lbz      r5, 0x11(r1)
-	stb      r6, 0x7c(r3)
-	lbz      r6, 0x12(r1)
-	stb      r5, 0x7d(r3)
-	lbz      r5, 0x13(r1)
-	stb      r6, 0x7e(r3)
-	stb      r5, 0x7f(r3)
-	lwz      r3, 0x8c(r31)
-	stb      r4, 0x18(r1)
-	lwz      r12, 0(r3)
-	stb      r4, 0x19(r1)
-	lwz      r12, 0x13c(r12)
-	stb      r0, 0x1a(r1)
-	stb      r0, 0x1b(r1)
-	lwz      r0, 0x18(r1)
-	stw      r0, 0xc(r1)
-	mtctr    r12
-	bctrl
-	lbz      r5, 0xc(r1)
-	li       r0, 0
-	lbz      r4, 0xd(r1)
-	stb      r5, 0x7c(r3)
-	lbz      r5, 0xe(r1)
-	stb      r4, 0x7d(r3)
-	lbz      r4, 0xf(r1)
-	stb      r5, 0x7e(r3)
-	stb      r4, 0x7f(r3)
-	lwz      r3, 0x8c(r31)
-	stb      r0, 0x1e0(r3)
-	b        lbl_80347270
-
-lbl_803471EC:
-	lwz      r3, 0x7c(r31)
-	li       r6, 1
-	li       r5, 4
-	li       r7, 5
-	lwz      r12, 0(r3)
-	li       r0, 0
-	lis      r4, 0x73756E77@ha
-	stb      r6, 0x14(r1)
-	lwz      r12, 0x3c(r12)
-	addi     r6, r4, 0x73756E77@l
-	stb      r5, 0x15(r1)
-	li       r5, 0
-	stb      r7, 0x16(r1)
-	stb      r0, 0x17(r1)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	lwz      r0, 0x14(r1)
-	lwz      r12, 0x13c(r12)
-	stw      r0, 8(r1)
-	mtctr    r12
-	bctrl
-	lbz      r5, 8(r1)
-	li       r0, 0
-	lbz      r4, 9(r1)
-	stb      r5, 0x7c(r3)
-	lbz      r5, 0xa(r1)
-	stb      r4, 0x7d(r3)
-	lbz      r4, 0xb(r1)
-	stb      r5, 0x7e(r3)
-	stb      r4, 0x7f(r3)
-	lwz      r3, 0x8c(r31)
-	stb      r0, 0xb0(r3)
-
-lbl_80347270:
-	lbz      r0, mIsSection__Q28Morimura9TTestBase@sda21(r13)
-	li       r6, 0x4b
-	lfs      f2, lbl_8051E2B0@sda21(r2)
-	li       r4, 9
-	cmplwi   r0, 0
-	li       r3, 0x40
-	li       r0, 6
-	beq      lbl_80347294
-	lfs      f2, lbl_8051E2B4@sda21(r2)
-
-lbl_80347294:
-	lwz      r7, 0xac(r31)
-	li       r5, 1
-	lfs      f1, 8(r7)
-	lfs      f0, 0xc(r7)
-	fsubs    f0, f1, f0
-	stw      r5, 0xb0(r31)
-	fdivs    f0, f0, f2
-	fctiwz   f0, f0
-	stfd     f0, 0x20(r1)
-	lwz      r7, 0x24(r1)
-	cmpw     r7, r6
-	blt      lbl_80347304
-	subf     r7, r6, r7
-	li       r5, 2
-	cmpw     r7, r4
-	stw      r5, 0xb0(r31)
-	blt      lbl_80347304
-	subf     r7, r4, r7
-	li       r5, 3
-	cmpw     r7, r3
-	stw      r5, 0xb0(r31)
-	blt      lbl_80347304
-	subf     r7, r3, r7
-	li       r5, 4
-	cmpw     r7, r0
-	stw      r5, 0xb0(r31)
-	blt      lbl_80347304
-	subf     r7, r0, r7
-
-lbl_80347304:
-	xoris    r3, r7, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x24(r1)
-	mr       r3, r31
-	lfd      f1, lbl_8051E268@sda21(r2)
-	stw      r0, 0x20(r1)
-	lfd      f0, 0x20(r1)
-	fsubs    f0, f0, f1
-	stfs     f0, 0xb4(r31)
-	lwz      r4, 0xb0(r31)
-	lfs      f1, 0xb4(r31)
-	bl       changeState__Q28Morimura10THurryUp2DFif
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /**

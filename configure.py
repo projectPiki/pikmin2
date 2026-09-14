@@ -580,7 +580,7 @@ config.libs = [
         "progress_category": "jsystem",
         "host": True,
         "objects": [
-            Object(Equivalent, "JSystem/JAudio/JAS/JASWSParser.cpp"),
+            Object(Matching, "JSystem/JAudio/JAS/JASWSParser.cpp"),
             Object(Matching, "JSystem/JAudio/JAS/JASBankMgr.cpp"),
             Object(Matching, "JSystem/JAudio/JAS/JASBasicBank.cpp"),
             Object(Matching, "JSystem/JAudio/JAS/JASBasicInst.cpp"),
@@ -1685,7 +1685,7 @@ config.libs = [
         "host": True,
         "objects": [
             Object(Equivalent, "plugProjectMorimuraU/dayEndCount.cpp"),
-            Object(Equivalent, "plugProjectMorimuraU/hurryUp2D.cpp"),
+            Object(Matching, "plugProjectMorimuraU/hurryUp2D.cpp"),
             Object(Matching, "plugProjectMorimuraU/gameOver2D.cpp"),
             Object(Matching, "plugProjectMorimuraU/testBase.cpp"),
             Object(Matching, "plugProjectMorimuraU/bombState.cpp"),

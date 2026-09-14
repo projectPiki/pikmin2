@@ -756,7 +756,11 @@ void Builder_EvnSe_Perspective::build(f32 volume, PSSystem::EnvSeMgr* mgr)
 	if (!mDoSkipSizeCheck) {
 		f32* temp = &totalSizeX;
 		int* val  = &mGridSizeX;
-		while (*val = *temp / 1000.0f, val != &mGridSizeZ) {
+		while (true) {
+			*val = *temp / 1000.0f;
+			if (val == &mGridSizeZ) {
+				break;
+			}
 			temp = &totalSizeZ;
 			val  = &mGridSizeZ;
 		}
@@ -768,9 +772,8 @@ void Builder_EvnSe_Perspective::build(f32 volume, PSSystem::EnvSeMgr* mgr)
 	pos.y = mYPosition;
 
 	f32 unitSizeX = totalSizeX / f32(mGridSizeX);
-	f32 startPosX = mBox.mMin.x + unitSizeX / 2;
-
 	f32 unitSizeZ = totalSizeZ / f32(mGridSizeZ);
+	f32 startPosX = mBox.mMin.x + unitSizeX / 2;
 	f32 startPosZ = mBox.mMin.z + unitSizeZ / 2;
 
 	for (int x = 0; x < mGridSizeX; x++) {
@@ -778,9 +781,9 @@ void Builder_EvnSe_Perspective::build(f32 volume, PSSystem::EnvSeMgr* mgr)
 		for (int z = 0; z < mGridSizeZ; z++) {
 			pos.z = unitSizeZ * f32(z) + startPosZ;
 
-			mList.setNextLink();
+			PSSystem::IdLink* link = mList.setNextLink();
 
-			EnvSe_Perspective* se = newSeObj(mList.mNextLink->mId, volume, pos);
+			EnvSe_Perspective* se = newSeObj(link->mId, volume, pos);
 			P2ASSERTLINE(662, se);
 			onBuild(se);
 			mgr->mEnvList.append(se);

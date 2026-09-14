@@ -466,8 +466,7 @@ int PikiAI::ActFormation::exec()
 			mParent->setMoveRotation(false);
 			mParent->mFaceDir += 0.3f * angle;
 		} else if (dist < factor2) {
-			f32 val                  = SQUARE(simSpeed) + (8.0f * factor) * dist;
-			f32 val2                 = 0.5f * _sqrtf2(val) + simSpeed;
+			f32 val2                 = 0.5f * _sqrtf2(SQUARE(simSpeed) + (8.0f * factor) * dist) + simSpeed;
 			mParent->mTargetVelocity = sep * val2;
 		} else {
 			mParent->setSpeed(1.0f, sep);

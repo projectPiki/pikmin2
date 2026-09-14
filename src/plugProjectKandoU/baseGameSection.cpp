@@ -777,8 +777,8 @@ void BaseGameSection::initGenerators()
 						currentLoopMgr->setDayLimit(floorDay + currentGen->mDayLimit - 30);
 						currentLoopMgr->updateUseList();
 
-						generatorManagers[fileIdx] = currentLoopMgr;
 						generatorFiles[fileIdx]    = loopFile;
+						generatorManagers[fileIdx] = currentLoopMgr;
 						fileIdx++;
 						limitGeneratorMgr->addMgr(currentLoopMgr);
 

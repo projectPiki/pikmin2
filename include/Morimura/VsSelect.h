@@ -139,7 +139,7 @@ struct TVsSelectExplanationWindow : public TSelectExplanationWindow {
 
 	inline void openClose()
 	{
-		if (0.0f <= mScaleGrowRate) {
+		if (mScaleGrowRate <= 0.0f) {
 			openWindow();
 			PSSystem::spSysIF->playSystemSe(PSSE_SY_MESSAGE_EXIT, 0);
 		} else {

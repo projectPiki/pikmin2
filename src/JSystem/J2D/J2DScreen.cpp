@@ -24,7 +24,7 @@ J2DDataManage* J2DScreen::mDataManage;
  * @note Size: 0xA8
  */
 J2DScreen::J2DScreen()
-    : J2DPane(nullptr, true, 'root', JGeometry::TBox2f(0.0f, 0.0f, 640.0f, 480.0f))
+    : J2DPane(nullptr, true, 'root', JGeometry::TBox2f(JGeometry::TVec2f(0.0f, 0.0f), JGeometry::TVec2f(640.0f, 480.0f)))
 {
 	mAnimPaneIndex = 0xFFFF;
 	mIsScissor     = false;
@@ -33,50 +33,6 @@ J2DScreen::J2DScreen()
 	mTexRes        = nullptr;
 	mFontRes       = nullptr;
 	mNameTab       = nullptr;
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	lfs      f2, lbl_80516840@sda21(r2)
-	lis      r4, 0x726F6F74@ha
-	stw      r0, 0x34(r1)
-	addi     r8, r4, 0x726F6F74@l
-	lfs      f1, lbl_80516844@sda21(r2)
-	addi     r9, r1, 0x10
-	stw      r31, 0x2c(r1)
-	mr       r31, r3
-	lfs      f0, lbl_80516848@sda21(r2)
-	li       r4, 0
-	stfs     f2, 8(r1)
-	li       r5, 1
-	li       r7, 0
-	stfs     f2, 0xc(r1)
-	stfs     f2, 0x10(r1)
-	stfs     f2, 0x14(r1)
-	stfs     f1, 0x18(r1)
-	stfs     f0, 0x1c(r1)
-	bl       "__ct__7J2DPaneFP7J2DPanebUxRCQ29JGeometry8TBox2<f>"
-	lis      r4, __vt__9J2DScreen@ha
-	lis      r3, 0x0000FFFF@ha
-	addi     r0, r4, __vt__9J2DScreen@l
-	li       r5, -1
-	stw      r0, 0(r31)
-	addi     r4, r3, 0x0000FFFF@l
-	li       r0, 0
-	mr       r3, r31
-	stw      r5, 0x114(r31)
-	sth      r4, 4(r31)
-	stb      r0, 0x100(r31)
-	sth      r0, 0x102(r31)
-	stw      r0, 0x104(r31)
-	stw      r0, 0x108(r31)
-	stw      r0, 0x10c(r31)
-	stw      r0, 0x110(r31)
-	lwz      r31, 0x2c(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /**

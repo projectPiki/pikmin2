@@ -95,6 +95,8 @@ struct TIndexPane {
 
 	inline f32 getPaneOffsetY() const { return mPane->getOffsetY(); }
 
+	inline void alignPaneY() { mYOffset = mPane->getOffsetY(); }
+
 	inline TIconInfo* getIconInfo(int idx) const { return mIconInfos[idx]; }
 
 	inline J2DPane* getMainPane() const { return mPane; }

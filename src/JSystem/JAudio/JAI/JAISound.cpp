@@ -250,10 +250,12 @@ f32 JAISound::setDistanceVolumeCommon(f32 p1, u8 p2)
 f32 JAISound::setDistancePanCommon()
 {
 	if (JAIGlobalParameter::audioCameraMax == 1) {
-		JAISound_0x34* obj = mSoundObj;
-		f32 absX           = FABS(obj->mPosition.x);
-		f32 absZ           = FABS(obj->mPosition.z);
-		if (absX < 1.0f && absZ < 1.0f) {
+		JAISound_0x34* obj   = mSoundObj;
+		const f32 magnitudeX = FABS(obj->mPosition.x);
+		const f32 magnitudeZ = FABS(obj->mPosition.z);
+		f32 absX             = magnitudeX;
+		f32 absZ             = magnitudeZ;
+		if (magnitudeX < 1.0f && magnitudeZ < 1.0f) {
 			return 0.5f;
 		}
 		if (JAIGlobalParameter::panDistanceMax < absX) {

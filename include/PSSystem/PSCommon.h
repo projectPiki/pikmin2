@@ -76,14 +76,16 @@ struct IdList : public JSUList<IdLink> {
 		}
 	}
 
-	inline void setNextLink()
+	inline IdLink* setNextLink()
 	{
 		JUT_ASSERTLINE(210, mNextLink, "リンクがありません"); // No link
 
-		mNextLink = (PSSystem::IdLink*)mNextLink->getNext();
+		IdLink* link = mNextLink;
+		mNextLink    = (PSSystem::IdLink*)link->getNext();
 		if (!mNextLink) {
 			mNextLink = (PSSystem::IdLink*)mHead;
 		}
+		return link;
 	}
 
 	// _00-_0C = JSUList

@@ -125,7 +125,8 @@ bool TDayEndCount::doUpdate()
 		return false;
 	}
 
-	f32 calc2 = calc_2 * 1.1f;
+	f32 calc2 = calc_2;
+	calc2 *= 1.1f;
 	if (calc2 >= 11.0f) {
 		calc2 = 11.0f;
 	}
@@ -181,9 +182,9 @@ bool TDayEndCount::doUpdate()
 			mCurrNumberPane->setOffset(mNumberPanePos.x, mNumberPanePos.y + mOffsetY);
 		}
 	} else if (calc3 > end) {
-		f32 duration   = 1.0f - end;
+		// f32 duration   = 1.0f - end;
 		f32 scaleSlope = (scale - scaleMax) / (end - 1.0f);
-		f32 alphaSlope = (f32)(u8)alpha / duration;
+		f32 alphaSlope = (f32)(u8)alpha / (1.0f - end);
 		scale          = scaleSlope * calc3 + (scaleMax - scaleSlope);
 		alpha          = -alphaSlope * calc3 + alphaSlope;
 		mCurrNumberPane->setOffset(mNumberPanePos.x, mNumberPanePos.y + mOffsetY);
@@ -197,13 +198,13 @@ bool TDayEndCount::doUpdate()
 		mDoPlaySE = false;
 	}
 
-	GXColor fadeColor;
 	u32 textAlpha = alpha;
 	if (id >= 0 && (u8)textAlpha <= 100) {
 		textAlpha = 100;
 	}
 
 	JUtility::TColor color;
+	GXColor fadeColor;
 	if ((u8)alpha < mAlphaMax && !mColorTest) {
 		if (id <= 3) {
 			mColor.r = 255;
@@ -221,34 +222,31 @@ bool TDayEndCount::doUpdate()
 
 		f32 colorRatio = (u8)textAlpha / 100.0f - 1.0f;
 		f32 whiteRatio = 1.0f - colorRatio;
-		fadeColor.r    = mColor.r * colorRatio + 255.0f * whiteRatio;
-		fadeColor.g    = mColor.g * colorRatio + 255.0f * whiteRatio;
-		fadeColor.b    = mColor.b * colorRatio + 255.0f * whiteRatio;
+		fadeColor.r    = (u8)(mColor.r * colorRatio + 255.0f * whiteRatio);
+		fadeColor.g    = (u8)(mColor.g * colorRatio + 255.0f * whiteRatio);
+		fadeColor.b    = (u8)(mColor.b * colorRatio + 255.0f * whiteRatio);
 		fadeColor.a    = 255;
-		color          = fadeColor;
+		color.set(fadeColor);
 		mTextPane->setWhite(color);
 	} else {
 		color.set(mColor);
 		mTextPane->setWhite(color);
 	}
 
-	f32 angle = TAU * 2.0f * (u8)alpha / mAlphaMax;
-	f32 xoffs = sinf(angle);
-	f32 yoffs = cosf(angle);
+	J2DPicture* numPane = mCurrNumberPane;
+	f32 angle           = TAU * 2.0f * (u8)alpha / mAlphaMax;
+	f32 xoffs           = sinf(angle);
+	f32 yoffs           = cosf(angle);
 	xoffs *= 5.0f;
 	yoffs *= 5.0f;
-	mTexCoords1[0].x = mTexCoords2[0].x - xoffs;
-	mTexCoords1[0].y = mTexCoords2[0].y - yoffs;
-	mTexCoords1[1].x = mTexCoords2[1].x + xoffs;
-	mTexCoords1[1].y = mTexCoords2[1].y - yoffs;
-	mTexCoords1[2].x = mTexCoords2[2].x + xoffs;
-	mTexCoords1[2].y = mTexCoords2[2].y + yoffs;
-	mTexCoords1[3].x = mTexCoords2[3].x - xoffs;
-	mTexCoords1[3].y = mTexCoords2[3].y + yoffs;
-	mCurrNumberPane->setTexCoord(mTexCoords1);
+	mTexCoords1[0].set(mTexCoords2[0].x - xoffs, mTexCoords2[0].y - yoffs);
+	mTexCoords1[1].set(mTexCoords2[1].x + xoffs, mTexCoords2[1].y - yoffs);
+	mTexCoords1[2].set(mTexCoords2[2].x + xoffs, mTexCoords2[2].y + yoffs);
+	mTexCoords1[3].set(mTexCoords2[3].x - xoffs, mTexCoords2[3].y + yoffs);
+	numPane->setTexCoord(mTexCoords1);
 
 	if (mMode) {
-		u8 alpha = mFadeFraction * mWaitAlpha;
+		u8 alpha = mWaitAlpha * mFadeFraction;
 		for (int i = 0; i < mCurrNumberValue; i++) {
 			mNumberPaneList[i]->setAlpha(alpha);
 		}
@@ -259,10 +257,10 @@ bool TDayEndCount::doUpdate()
 		mCurrNumberPane->setWhite(mNumberColor);
 	}
 
-	mCurrNumberPane->setAlpha(alpha * mFadeFraction);
+	mCurrNumberPane->setAlpha((u8)alpha * mFadeFraction);
 	mCurrNumberPane->updateScale(scale * mScale);
 	mTextPane->setOffset(mTextPanePos.x, mTextPanePos.y + mOffsetY);
-	mTextPane->setAlpha(textAlpha * mFadeFraction);
+	mTextPane->setAlpha((u8)textAlpha * mFadeFraction);
 	mScreenObj->update();
 	return false;
 

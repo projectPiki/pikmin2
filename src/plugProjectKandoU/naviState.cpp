@@ -2423,7 +2423,8 @@ void NaviNukuAdjustState::exec(Navi* navi)
 	}
 
 	// Interpolate 35% current velocity and 65% new velocity
-	Vector3f blendedVel = currentVel * 0.35f + newVel * 0.65f;
+	Vector3f blendedVel = currentVel * 0.35f;
+	blendedVel += newVel * 0.65f;
 
 	f32 speed = blendedVel.normalise();
 	if (speed != 0.0f) {
@@ -5037,10 +5038,11 @@ void NaviThrowWaitState::exec(Navi* navi)
 				transit(navi, NSID_Walk, nullptr);
 				return;
 			}
-			CollPart* part   = navi->mCollTree->getCollPart('rhnd');
-			Vector3f handPos = part->mPosition;
-			Vector3f pikiPos = mNextPiki->getPosition();
-			f32 dist         = handPos.distance(pikiPos);
+			CollPart* part      = navi->mCollTree->getCollPart('rhnd');
+			Vector3f handPos    = part->mPosition;
+			Vector3f pikiPos    = mNextPiki->getPosition();
+			Vector3f handToPiki = handPos - pikiPos;
+			f32 dist            = handToPiki.length();
 			if (!(dist <= 32.5f))
 				return;
 
@@ -5060,13 +5062,10 @@ void NaviThrowWaitState::exec(Navi* navi)
 
 	navi->mNextThrowPiki = mHeldPiki;
 
-	f32 min               = CG_NAVIPARMS(navi).mThrowDistanceMin();
-	f32 max               = CG_NAVIPARMS(navi).mThrowDistanceMax();
-	navi->mHoldPikiCharge = mHoldChargeLevel / 3.0f * (max - min) + min;
-
-	max                    = CG_NAVIPARMS(navi).mThrowHeightMax();
-	min                    = CG_NAVIPARMS(navi).mThrowHeightMin();
-	navi->mHoldPikiCharge2 = mHoldChargeLevel / 3.0f * (max - min) + min;
+	navi->mHoldPikiCharge  = mHoldChargeLevel / 3.0f * (CG_NAVIPARMS(navi).mThrowDistanceMax() - CG_NAVIPARMS(navi).mThrowDistanceMin())
+	                       + CG_NAVIPARMS(navi).mThrowDistanceMin();
+	navi->mHoldPikiCharge2 = mHoldChargeLevel / 3.0f * (CG_NAVIPARMS(navi).mThrowHeightMax() - CG_NAVIPARMS(navi).mThrowHeightMin())
+	                       + CG_NAVIPARMS(navi).mThrowHeightMin();
 
 	if (mHeldPiki && mHasHeldPiki) {
 		int stateID = mHeldPiki->getStateID();
@@ -6651,9 +6650,9 @@ bool NaviDemo_HoleInState::execHesitate(Navi* navi)
 		Vector3f diff    = holePos - navi->getPosition();
 		diff.normalise();
 
+		diff.x *= 2.0f;
+		diff.z *= 2.0f;
 		Vector3f velocity(diff.x, 240.0f, diff.z);
-		velocity.x *= 2.0f;
-		velocity.z *= 2.0f;
 		navi->mVelocity       = velocity;
 		navi->mTargetVelocity = velocity;
 		navi->setMapCollision(false);
@@ -6663,110 +6662,6 @@ bool NaviDemo_HoleInState::execHesitate(Navi* navi)
 	navi->mVelocity       = 0.0f;
 	navi->mTargetVelocity = 0.0f;
 	return false;
-
-	/*
-	stwu     r1, -0x60(r1)
-	mflr     r0
-	stw      r0, 0x64(r1)
-	stfd     f31, 0x50(r1)
-	psq_st   f31, 88(r1), 0, qr0
-	stfd     f30, 0x40(r1)
-	psq_st   f30, 72(r1), 0, qr0
-	stfd     f29, 0x30(r1)
-	psq_st   f29, 56(r1), 0, qr0
-	stw      r31, 0x2c(r1)
-	lbz      r0, 0x12(r3)
-	mr       r31, r4
-	cmplwi   r0, 0
-	beq      lbl_80188B88
-	lwz      r4, 0x14(r3)
-	addi     r3, r1, 0x14
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r31
-	addi     r3, r1, 8
-	lwz      r12, 0(r31)
-	lfs      f31, 0x14(r1)
-	lwz      r12, 8(r12)
-	lfs      f30, 0x18(r1)
-	lfs      f29, 0x1c(r1)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0xc(r1)
-	lfs      f2, 0x10(r1)
-	fsubs    f3, f30, f0
-	lfs      f1, 8(r1)
-	fsubs    f4, f29, f2
-	lfs      f0, lbl_80518BE0@sda21(r2)
-	fsubs    f2, f31, f1
-	fmuls    f1, f3, f3
-	fmuls    f3, f4, f4
-	fmadds   f1, f2, f2, f1
-	fadds    f1, f3, f1
-	fcmpo    cr0, f1, f0
-	ble      lbl_80188B20
-	ble      lbl_80188B24
-	frsqrte  f0, f1
-	fmuls    f1, f0, f1
-	b        lbl_80188B24
-
-lbl_80188B20:
-	fmr      f1, f0
-
-lbl_80188B24:
-	lfs      f0, lbl_80518BE0@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_80188B40
-	lfs      f0, lbl_80518C48@sda21(r2)
-	fdivs    f0, f0, f1
-	fmuls    f2, f2, f0
-	fmuls    f4, f4, f0
-
-lbl_80188B40:
-	lfs      f1, lbl_80518C3C@sda21(r2)
-	mr       r3, r31
-	lfs      f0, lbl_80518CEC@sda21(r2)
-	li       r4, 0
-	fmuls    f2, f2, f1
-	fmuls    f4, f4, f1
-	stfs     f2, 0x200(r31)
-	stfs     f0, 0x204(r31)
-	stfs     f4, 0x208(r31)
-	stfs     f2, 0x1e4(r31)
-	stfs     f0, 0x1e8(r31)
-	stfs     f4, 0x1ec(r31)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x1f0(r12)
-	mtctr    r12
-	bctrl
-	li       r3, 1
-	b        lbl_80188BA8
-
-lbl_80188B88:
-	lfs      f0, lbl_80518BE0@sda21(r2)
-	li       r3, 0
-	stfs     f0, 0x200(r31)
-	stfs     f0, 0x204(r31)
-	stfs     f0, 0x208(r31)
-	stfs     f0, 0x1e4(r31)
-	stfs     f0, 0x1e8(r31)
-	stfs     f0, 0x1ec(r31)
-
-lbl_80188BA8:
-	psq_l    f31, 88(r1), 0, qr0
-	lfd      f31, 0x50(r1)
-	psq_l    f30, 72(r1), 0, qr0
-	lfd      f30, 0x40(r1)
-	psq_l    f29, 56(r1), 0, qr0
-	lfd      f29, 0x30(r1)
-	lwz      r0, 0x64(r1)
-	lwz      r31, 0x2c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x60
-	blr
-	*/
 }
 
 /**

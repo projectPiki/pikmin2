@@ -32,102 +32,25 @@ SeqDataList::~SeqDataList()
  */
 int SeqDataList::getSeqVolume(char const* bmsname)
 {
-	char buf[32];
+	struct {
+		char buf[32];
+		u8 volume;
+	} entry;
 	P2ASSERTLINE(36, mFile);
 	RamStream stream(mFile, -1);
 	stream.setMode(STREAM_MODE_TEXT, 1);
-	stream.readString(buf, 32);
+	stream.readString(entry.buf, 32);
 
-	while (strcmp(buf, "endoffile")) {
-		volatile u8 volume = stream.readByte();
-		if (!strcmp(buf, bmsname)) {
-			return volume;
+	while (strcmp(entry.buf, "endoffile")) {
+		entry.volume = stream.readByte();
+		if (!strcmp(entry.buf, bmsname)) {
+			return entry.volume;
 		}
-		stream.readString(buf, 32);
+		stream.readString(entry.buf, 32);
 	}
 
 	JUT_PANICLINE(53, "seq list\nnot find\n(%s)\n", bmsname);
 	return 50;
-	/*
-	stwu     r1, -0x460(r1)
-	mflr     r0
-	stw      r0, 0x464(r1)
-	stw      r31, 0x45c(r1)
-	stw      r30, 0x458(r1)
-	mr       r30, r4
-	stw      r29, 0x454(r1)
-	mr       r29, r3
-	lis      r3, lbl_8048F848@ha
-	lwz      r0, 0x18(r29)
-	addi     r31, r3, lbl_8048F848@l
-	cmplwi   r0, 0
-	bne      lbl_80330E50
-	addi     r3, r31, 0
-	addi     r5, r31, 0xc
-	li       r4, 0x24
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80330E50:
-	lwz      r4, 0x18(r29)
-	addi     r3, r1, 0x2c
-	li       r5, -1
-	bl       __ct__9RamStreamFPvi
-	li       r0, 1
-	cmpwi    r0, 1
-	stw      r0, 0x38(r1)
-	bne      lbl_80330E78
-	li       r0, 0
-	stw      r0, 0x440(r1)
-
-lbl_80330E78:
-	addi     r3, r1, 0x2c
-	addi     r4, r1, 8
-	li       r5, 0x20
-	bl       readString__6StreamFPci
-	b        lbl_80330EC4
-
-lbl_80330E8C:
-	addi     r3, r1, 0x2c
-	bl       readByte__6StreamFv
-	stb      r3, 0x28(r1)
-	mr       r4, r30
-	addi     r3, r1, 8
-	bl       strcmp
-	cmpwi    r3, 0
-	bne      lbl_80330EB4
-	lbz      r3, 0x28(r1)
-	b        lbl_80330EF4
-
-lbl_80330EB4:
-	addi     r3, r1, 0x2c
-	addi     r4, r1, 8
-	li       r5, 0x20
-	bl       readString__6StreamFPci
-
-lbl_80330EC4:
-	addi     r3, r1, 8
-	addi     r4, r31, 0x18
-	bl       strcmp
-	cmpwi    r3, 0
-	bne      lbl_80330E8C
-	mr       r6, r30
-	addi     r3, r31, 0
-	addi     r5, r31, 0x24
-	li       r4, 0x35
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-	li       r3, 0x32
-
-lbl_80330EF4:
-	lwz      r0, 0x464(r1)
-	lwz      r31, 0x45c(r1)
-	lwz      r30, 0x458(r1)
-	lwz      r29, 0x454(r1)
-	mtlr     r0
-	addi     r1, r1, 0x460
-	blr
-	*/
 }
 
 /**
@@ -154,109 +77,26 @@ StreamDataList::~StreamDataList()
 int StreamDataList::getStreamVolume(u32 id)
 {
 	u32 searchID = id & 0xfff;
-	u8 volume[1];
-	int streamID[1];
-	char buf[32];
+	struct {
+		char buf[32];
+		int streamID;
+		u8 volume;
+	} entry;
 	P2ASSERTLINE(76, mFile);
 	RamStream stream(mFile, -1);
 	stream.setMode(STREAM_MODE_TEXT, 1);
-	stream.readString(buf, 32);
-	while (strcmp(buf, "endoffile")) {
-		for (int i = 0; i < 1; i++) {
-			streamID[i] = stream.readInt();
-			volume[i]   = (u8)stream.readByte();
-		}
-		int vol = *volume;
-		if (*streamID == searchID) {
+	stream.readString(entry.buf, 32);
+	while (strcmp(entry.buf, "endoffile")) {
+		entry.streamID = stream.readInt();
+		entry.volume   = stream.readByte();
+		int vol        = entry.volume;
+		if (entry.streamID == searchID) {
 			return vol;
 		}
-		stream.readString(buf, 32);
+		stream.readString(entry.buf, 32);
 	}
 	JUT_PANICLINE(95, "stream list\nnot find\n(id=%d)\n", searchID);
 	return 0;
-
-	/*
-	stwu     r1, -0x460(r1)
-	mflr     r0
-	stw      r0, 0x464(r1)
-	stw      r31, 0x45c(r1)
-	stw      r30, 0x458(r1)
-	clrlwi   r30, r4, 0x14
-	stw      r29, 0x454(r1)
-	mr       r29, r3
-	lis      r3, lbl_8048F848@ha
-	lwz      r0, 0x18(r29)
-	addi     r31, r3, lbl_8048F848@l
-	cmplwi   r0, 0
-	bne      lbl_80331040
-	addi     r3, r31, 0
-	addi     r5, r31, 0xc
-	li       r4, 0x4c
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80331040:
-	lwz      r4, 0x18(r29)
-	addi     r3, r1, 0x30
-	li       r5, -1
-	bl       __ct__9RamStreamFPvi
-	li       r0, 1
-	cmpwi    r0, 1
-	stw      r0, 0x3c(r1)
-	bne      lbl_80331068
-	li       r0, 0
-	stw      r0, 0x444(r1)
-
-lbl_80331068:
-	addi     r3, r1, 0x30
-	addi     r4, r1, 8
-	li       r5, 0x20
-	bl       readString__6StreamFPci
-	b        lbl_803310BC
-
-lbl_8033107C:
-	addi     r3, r1, 0x30
-	bl       readInt__6StreamFv
-	stw      r3, 0x28(r1)
-	addi     r3, r1, 0x30
-	bl       readByte__6StreamFv
-	lwz      r0, 0x28(r1)
-	clrlwi   r4, r3, 0x18
-	stb      r3, 0x2c(r1)
-	cmplw    r0, r30
-	bne      lbl_803310AC
-	mr       r3, r4
-	b        lbl_803310EC
-
-lbl_803310AC:
-	addi     r3, r1, 0x30
-	addi     r4, r1, 8
-	li       r5, 0x20
-	bl       readString__6StreamFPci
-
-lbl_803310BC:
-	addi     r3, r1, 8
-	addi     r4, r31, 0x18
-	bl       strcmp
-	cmpwi    r3, 0
-	bne      lbl_8033107C
-	mr       r6, r30
-	addi     r3, r31, 0
-	addi     r5, r31, 0x3c
-	li       r4, 0x5f
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-	li       r3, 0
-
-lbl_803310EC:
-	lwz      r0, 0x464(r1)
-	lwz      r31, 0x45c(r1)
-	lwz      r30, 0x458(r1)
-	lwz      r29, 0x454(r1)
-	mtlr     r0
-	addi     r1, r1, 0x460
-	blr
-	*/
 }
 
 /**

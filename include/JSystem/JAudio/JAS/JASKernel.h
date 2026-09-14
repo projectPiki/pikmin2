@@ -73,6 +73,20 @@ struct JASCmdHeap {
 			return res;
 		}
 
+		Block* getNextChunk() { return mNext; }
+		void setNextChunk(Block* next) { mNext = next; }
+		bool isEmpty() const { return mMsgCount == 0; }
+		void* alloc(u32 size)
+		{
+			u8* result = mBuffer + mUsedLength;
+			mUsedLength += size;
+			mMsgCount++;
+			return result;
+		}
+		void free(void*) { mMsgCount--; }
+		u32 getFreeSize() const { return 0x400 - mUsedLength; }
+		void revive() { mUsedLength = 0; }
+
 		Block* mNext;       // _00
 		size_t mUsedLength; // _04
 		u32 mMsgCount;      // _08
@@ -83,9 +97,9 @@ struct JASCmdHeap {
 	{
 		JASCmdHeap::Block* previousHead = mHead;
 
-		if (previousHead != nullptr && (u32)previousHead->mMsgCount == 0) {
+		if (previousHead != nullptr && previousHead->isEmpty()) {
 			// No need!
-			previousHead->mUsedLength = 0;
+			previousHead->revive();
 			return true;
 		}
 		// Try to alloc into JASKernel sys heap:
@@ -103,11 +117,11 @@ struct JASCmdHeap {
 		return false;
 	}
 
-	inline Header* alloc(size_t msgLength)
+	inline void* alloc(size_t msgLength)
 	{
 		JASMutexLock lock(&mMutex);
-		Block* previousHead = mHead;
-		if (0x400 - previousHead->mUsedLength < msgLength) {
+		u32 freeSize = mHead->getFreeSize();
+		if (freeSize < msgLength) {
 			if (0x400 < msgLength) {
 				// too large!
 				return nullptr;
@@ -118,11 +132,7 @@ struct JASCmdHeap {
 			}
 		}
 
-		Block* head     = mHead;
-		int startOffset = head->mUsedLength;
-		head->mUsedLength += msgLength;
-		head->mMsgCount++;
-		return (Header*)(head->mBuffer + startOffset);
+		return mHead->alloc(msgLength);
 	}
 
 	inline void free(void* block)
@@ -132,17 +142,17 @@ struct JASCmdHeap {
 		Block* prev    = nullptr;
 		while (current != nullptr) {
 			if (current->contains(block)) {
-				current->mMsgCount--;
-				if (current != mHead && current->mMsgCount == 0) {
+				current->free(block);
+				if (current != mHead && current->isEmpty()) {
 					Block* next; // regswap here
-					next = current->mNext;
+					next = current->getNextChunk();
 					delete current;
-					prev->mNext = next;
+					prev->setNextChunk(next);
 				}
 				return;
 			}
 			prev    = current;
-			current = current->mNext;
+			current = current->getNextChunk();
 		}
 	}
 

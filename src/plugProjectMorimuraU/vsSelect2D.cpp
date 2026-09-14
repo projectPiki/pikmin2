@@ -254,20 +254,23 @@ void TVsPiki::update(int pikis)
  */
 void TVsPiki::draw()
 {
-	JGeometry::TVec3f pos = mPikminLeft->getGlbVtx(GLBVTX_TopLeft);
-	f32 x1                = pos.x - mPikiOffset.x;
-	f32 xoffs             = mPikiOffset.x;
-	f32 y1                = pos.y - 50.0f;
-	f32 y2                = mPikminLeft->getGlbVtx(GLBVTX_TopLeft).y - y1;
-	f32 x2                = (xoffs * 12.0f + x1) - x1;
+	const JGeometry::TVec3f& pos = mPikminLeft->getGlbVtx(GLBVTX_TopLeft);
+	Vector2f origin(pos.x, pos.y);
+	f32 xoffs = mPikiOffset.x;
+	origin.x -= xoffs;
+	origin.y -= 50.0f;
+	f32 x1 = origin.x;
+	f32 y1 = origin.y;
+	f32 y2 = mPikminLeft->getGlbVtx(GLBVTX_TopLeft).y - y1;
+	f32 x2 = (xoffs * 12.0f + x1) - x1;
 	GXSetScissor(x1, y1, x2, y2);
 	Vector2f* offs = &mPikiOffset;
 
 	for (int i = 0; i < 10; i++) {
 		J2DPicture* pic = mPikminLeft;
 		f32 calc        = TVsSelect::mDemoScale;
-		f32 x           = mPosInfos[i].mPosition.x * calc + pic->getGlbVtx(GLBVTX_BtmLeft).x;
 		f32 y           = mPosInfos[i].mPosition.y * calc + pic->getGlbVtx(GLBVTX_BtmLeft).y;
+		f32 x           = mPosInfos[i].mPosition.x * calc + pic->getGlbVtx(GLBVTX_BtmLeft).x;
 		pic->draw(x, y, calc * pic->getWidth(), calc * pic->getHeight(), false, false, false);
 		pic->calcMtx();
 
@@ -873,7 +876,7 @@ void TVsSelect::doCreate(JKRArchive* arc)
 
 	const char* texNames[VS_Stage_Count]
 	    = { "timg/otegaru.bti",  "timg/ujyaujya.bti", "timg/hirobiro.bti", "timg/karakuchi.bti", "timg/semai.bti",
-		    "timg/hiyahiya.bti", "timg/nobinobi.bti", "timg/kakukaku.bti", "timg/meiro.bti",     "timg/tile.bti" };
+	        "timg/hiyahiya.bti", "timg/nobinobi.bti", "timg/kakukaku.bti", "timg/meiro.bti",     "timg/tile.bti" };
 	for (int i = 0; i < mStageCount; i++) {
 		mLevelTextures[i] = JKRGetArchiveImageResource(mVsSelectTextureArc, texNames[i]);
 
@@ -897,7 +900,7 @@ void TVsSelect::doCreate(JKRArchive* arc)
 	mSlotTexturesScreen->create("vs_slot_texture.blo", 0x20000);
 
 	u64 iconTags[12] = { 'P0icon00', 'P0icon01', 'P0icon02', 'P0icon03', 'P0icon04', 'P0icon05',
-		                 'P1icon00', 'P1icon01', 'P1icon02', 'P1icon03', 'P1icon04', 'P1icon05' };
+	                     'P1icon00', 'P1icon01', 'P1icon02', 'P1icon03', 'P1icon04', 'P1icon05' };
 
 	for (int i = 0; i < 12; i++) {
 		TVsSelectSlotIndex info      = *TVsSelectSlotIndex::getIndexInfo(i);
@@ -3943,8 +3946,10 @@ bool TVsSelect::doUpdate()
 			for (int i = 0; i < 2; i++) {
 				TVsSelectOnyon* onyon = mOnyonObj[i];
 				f32 calc              = onyon->mGoalAngle;
-				onyon->mGoalPosition
-				    = Vector2f(cosf(calc) * 400.0f + onyon->mCurrentPosition.x, sinf(calc) * 400.0f + onyon->mCurrentPosition.y);
+				Vector2f pos          = onyon->mCurrentPosition;
+				pos.x += 400.0f * sinf(calc);
+				pos.y += 400.0f * cosf(calc);
+				onyon->mGoalPosition = pos;
 			}
 		}
 	}
@@ -4049,8 +4054,9 @@ bool TVsSelect::doUpdate()
 	mListScreen->mScreenObj->scaleScreen(mDemoScale);
 	mFireScreen->mScreenObj->scaleScreen(mDemoScale);
 
+	f32 spotOffsetX = -mScreenXPos / mDemoScale;
 	mPaneSpot->updateScale(1.0f / mDemoScale);
-	f32 x = 1.1f * (-mScreenXPos / mDemoScale) + 324.0f;
+	f32 x = 1.1f * spotOffsetX + 324.0f;
 	f32 y = 243.0f - 40.0f * (1.0f - 1.0f / mDemoScale);
 	mPaneSpot->setOffset(x, y);
 
@@ -5572,11 +5578,12 @@ void TVsSelect::doDraw(Graphics& gfx)
 			if (mOnyonObj[i]->_30 > 0.0f) {
 				mIsOnyonHitGoal       = true;
 				TVsSelectOnyon* onyon = mOnyonObj[i];
-				f32 scale             = onyon->_30 * 25.0f;
-				f32 y                 = 240.0f * ((mOnyonGoalOffset.y + (onyon->mCurrentPosition.y - _294)) / (_29C - _294));
 				f32 x                 = (mOnyonGoalOffset.x + (onyon->mCurrentPosition.x - _290)) / (_298 - _290);
+				f32 y                 = 240.0f * ((mOnyonGoalOffset.y + (onyon->mCurrentPosition.y - _294)) / (_29C - _294));
+				f32 scale             = onyon->_30 * 25.0f;
 				pics[i].setBasePosition(J2DPOS_Center);
-				pics[i].draw((x * 336.0f) - (scale * 0.5f), (y) - (scale * 0.5f), scale, scale, false, false, false);
+				f32 drawX = x * 336.0f;
+				pics[i].draw(drawX - (scale * 0.5f), (y) - (scale * 0.5f), scale, scale, false, false, false);
 			}
 		}
 
@@ -6561,13 +6568,14 @@ void TVsSelect::changePaneInfo()
 			mIsSelectIndexChange       = 1;
 			mIndexGroup->mScrollOffset = 0.0f;
 			for (int i = 0; i < mNumActiveRows; i++) {
-				mIndexPaneList[i]->mPane->setOffsetY(calc + mIndexPaneList[i]->getPaneYOffset());
+				mIndexPaneList[i]->setOffset(calc);
 			}
 		}
 
 		for (int i = 0; i < mNumActiveRows; i++) {
 			mIndexPaneList[i]->mPane->show();
-			if (id != mIndexPaneList[i]->getIndex()) {
+			int paneIndex = mIndexPaneList[i]->getIndex();
+			if (paneIndex != id) {
 				TIndexPane* ind = mIndexPaneList[i];
 				f32 y2          = ind->getPaneYOffset();
 				ind->getIndex();
@@ -6577,176 +6585,6 @@ void TVsSelect::changePaneInfo()
 			}
 		}
 	}
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stfd     f31, 0x30(r1)
-	psq_st   f31, 56(r1), 0, qr0
-	stfd     f30, 0x20(r1)
-	psq_st   f30, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	stw      r28, 0x10(r1)
-	mr       r30, r3
-	lwz      r0, 0x94(r3)
-	lwz      r3, 0x88(r3)
-	slwi     r0, r0, 2
-	lwzx     r3, r3, r0
-	bl       getIndex__Q28Morimura10TIndexPaneFv
-	lwz      r12, 0(r30)
-	mr       r0, r3
-	mr       r3, r30
-	lwz      r29, 0xf0(r30)
-	lwz      r12, 0x8c(r12)
-	mr       r4, r0
-	mtctr    r12
-	bctrl
-	stw      r4, 0x1c(r29)
-	lfs      f0, lbl_8051F17C@sda21(r2)
-	stw      r3, 0x18(r29)
-	lfs      f1, 0x230(r30)
-	fmuls    f0, f1, f0
-	stfs     f0, 0x230(r30)
-	lbz      r0, mLoopDrum__Q28Morimura9TVsSelect@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_8039F9C8
-	li       r0, 0
-	stw      r0, 0x244(r30)
-	lwz      r3, 0x208(r30)
-	bl       stickUpDown__Q32og6Screen12StickAnimMgrFv
-	lwz      r0, 0x94(r30)
-	lwz      r3, 0x88(r30)
-	slwi     r0, r0, 2
-	lwzx     r3, r3, r0
-	bl       getIndex__Q28Morimura10TIndexPaneFv
-	lwz      r0, 0x94(r30)
-	or.      r31, r3, r3
-	lwz      r3, 0x88(r30)
-	slwi     r0, r0, 2
-	lwzx     r3, r3, r0
-	lfs      f30, 0x1c(r3)
-	bne      lbl_8039F890
-	li       r0, 1
-	stw      r0, 0x244(r30)
-	lwz      r3, 0x208(r30)
-	bl       stickDown__Q32og6Screen12StickAnimMgrFv
-
-lbl_8039F890:
-	lwz      r3, 0x248(r30)
-	addi     r0, r3, -1
-	cmpw     r31, r0
-	bne      lbl_8039F8B0
-	li       r0, 2
-	stw      r0, 0x244(r30)
-	lwz      r3, 0x208(r30)
-	bl       stickUp__Q32og6Screen12StickAnimMgrFv
-
-lbl_8039F8B0:
-	lwz      r0, 0x244(r30)
-	cmpwi    r0, 0
-	bne      lbl_8039F8C8
-	li       r0, 0
-	stb      r0, 0x23d(r30)
-	b        lbl_8039F924
-
-lbl_8039F8C8:
-	li       r0, 1
-	lfs      f31, lbl_8051F170@sda21(r2)
-	stb      r0, 0x23d(r30)
-	li       r28, 0
-	li       r29, 0
-	lwz      r3, 0x84(r30)
-	stfs     f31, 0x14(r3)
-	b        lbl_8039F918
-
-lbl_8039F8E8:
-	lwz      r3, 0x88(r30)
-	lwzx     r4, r3, r29
-	lfs      f0, 0x1c(r4)
-	lwz      r3, 4(r4)
-	fadds    f0, f0, f31
-	stfs     f0, 0xd8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	addi     r29, r29, 4
-	addi     r28, r28, 1
-
-lbl_8039F918:
-	lha      r0, 0x8e(r30)
-	cmpw     r28, r0
-	blt      lbl_8039F8E8
-
-lbl_8039F924:
-	li       r28, 0
-	li       r29, 0
-	b        lbl_8039F9BC
-
-lbl_8039F930:
-	lwz      r3, 0x88(r30)
-	li       r0, 1
-	lwzx     r3, r3, r29
-	lwz      r3, 4(r3)
-	stb      r0, 0xb0(r3)
-	lwz      r3, 0x88(r30)
-	lwzx     r3, r3, r29
-	bl       getIndex__Q28Morimura10TIndexPaneFv
-	cmpw     r3, r31
-	beq      lbl_8039F9B4
-	lwz      r3, 0x88(r30)
-	lwzx     r3, r3, r29
-	lfs      f31, 0x1c(r3)
-	bl       getIndex__Q28Morimura10TIndexPaneFv
-	lwz      r3, 0x88(r30)
-	lwzx     r3, r3, r29
-	bl       getIndex__Q28Morimura10TIndexPaneFv
-	cmpw     r3, r31
-	ble      lbl_8039F984
-	fcmpo    cr0, f30, f31
-	bgt      lbl_8039F9A0
-
-lbl_8039F984:
-	lwz      r3, 0x88(r30)
-	lwzx     r3, r3, r29
-	bl       getIndex__Q28Morimura10TIndexPaneFv
-	cmpw     r3, r31
-	bge      lbl_8039F9B4
-	fcmpo    cr0, f30, f31
-	bge      lbl_8039F9B4
-
-lbl_8039F9A0:
-	lwz      r3, 0x88(r30)
-	li       r0, 0
-	lwzx     r3, r3, r29
-	lwz      r3, 4(r3)
-	stb      r0, 0xb0(r3)
-
-lbl_8039F9B4:
-	addi     r29, r29, 4
-	addi     r28, r28, 1
-
-lbl_8039F9BC:
-	lha      r0, 0x8e(r30)
-	cmpw     r28, r0
-	blt      lbl_8039F930
-
-lbl_8039F9C8:
-	psq_l    f31, 56(r1), 0, qr0
-	lfd      f31, 0x30(r1)
-	psq_l    f30, 40(r1), 0, qr0
-	lfd      f30, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r0, 0x44(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
 }
 
 /**
@@ -6812,13 +6650,12 @@ void TVsSelect::doZoom()
 			mZoomLevel  = 0.0f;
 			bool finish = true;
 			Vector2f offset(320.0f, 240.0f);
-			Vector2f diff1 = mOnyonObj[0]->mCurrentPosition - offset;
-			if (diff1.sqrMagnitude() < 160000.0f) {
-				finish = false;
-			}
-			Vector2f diff2 = mOnyonObj[1]->mCurrentPosition - offset;
-			if (diff2.sqrMagnitude() < 160000.0f) {
-				finish = false;
+			for (int i = 0; i < 2; i++) {
+				Vector2f diff = mOnyonObj[i]->mCurrentPosition;
+				diff -= offset;
+				if (diff.sqrMagnitude() < 160000.0f) {
+					finish = false;
+				}
 			}
 			if (finish)
 				mZoomState = 0;
@@ -6828,7 +6665,7 @@ void TVsSelect::doZoom()
 	f32 calc  = sinf(mZoomLevel * HALF_PI / mZoomFrameMax);
 	f32 scale = 0.0f;
 	f32 temp;
-	if (calc >= 0.25f) {
+	if (!(calc < 0.25f)) {
 		temp  = 1.0f;
 		scale = (calc - 0.25f) * 4.0f / 3.0f;
 		if (calc == 1.0f) {
@@ -6837,155 +6674,11 @@ void TVsSelect::doZoom()
 				mZoomState = 3;
 				changeIndirectTexture();
 				mCanCancel = false;
-				scale      = temp;
 			}
 		}
 	}
-	mScreenXPos = scale * mDemoOffsetMax;
-	mDemoScale  = scale * (mDemoScaleMax - 1.0f) + 1.0f;
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stfd     f31, 0x20(r1)
-	psq_st   f31, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	lwz      r0, 0x240(r3)
-	cmpwi    r0, 1
-	bne      lbl_8039FB10
-	lfs      f1, 0x250(r31)
-	lfs      f0, mZoomFrameMax__Q28Morimura9TVsSelect@sda21(r13)
-	fcmpo    cr0, f1, f0
-	ble      lbl_8039FB00
-	stfs     f0, 0x250(r31)
-	b        lbl_8039FBB0
-
-lbl_8039FB00:
-	lfs      f0, lbl_8051F180@sda21(r2)
-	fadds    f0, f1, f0
-	stfs     f0, 0x250(r31)
-	b        lbl_8039FBB0
-
-lbl_8039FB10:
-	cmpwi    r0, 2
-	bne      lbl_8039FBB0
-	lfs      f2, 0x250(r31)
-	lfs      f1, lbl_8051F180@sda21(r2)
-	lfs      f0, lbl_8051F170@sda21(r2)
-	fsubs    f1, f2, f1
-	stfs     f1, 0x250(r31)
-	lfs      f1, 0x250(r31)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_8039FBB0
-	stfs     f0, 0x250(r31)
-	li       r0, 1
-	lfs      f2, lbl_8051F240@sda21(r2)
-	lwz      r3, 0x1e8(r31)
-	lfs      f3, lbl_8051F294@sda21(r2)
-	lfs      f1, 0x10(r3)
-	lfs      f4, 0xc(r3)
-	fsubs    f1, f1, f2
-	lfs      f0, lbl_8051F298@sda21(r2)
-	fsubs    f4, f4, f3
-	fmuls    f1, f1, f1
-	fmadds   f1, f4, f4, f1
-	fcmpo    cr0, f1, f0
-	bge      lbl_8039FB78
-	li       r0, 0
-
-lbl_8039FB78:
-	lwz      r3, 0x1ec(r31)
-	lfs      f1, 0x10(r3)
-	lfs      f4, 0xc(r3)
-	fsubs    f1, f1, f2
-	fsubs    f4, f4, f3
-	fmuls    f1, f1, f1
-	fmadds   f1, f4, f4, f1
-	fcmpo    cr0, f1, f0
-	bge      lbl_8039FBA0
-	li       r0, 0
-
-lbl_8039FBA0:
-	clrlwi.  r0, r0, 0x18
-	beq      lbl_8039FBB0
-	li       r0, 0
-	stw      r0, 0x240(r31)
-
-lbl_8039FBB0:
-	lfs      f2, lbl_8051F268@sda21(r2)
-	lfs      f0, 0x250(r31)
-	lfs      f1, mZoomFrameMax__Q28Morimura9TVsSelect@sda21(r13)
-	fmuls    f2, f2, f0
-	lfs      f0, lbl_8051F170@sda21(r2)
-	fdivs    f1, f2, f1
-	fcmpo    cr0, f1, f0
-	bge      lbl_8039FBFC
-	lfs      f0, lbl_8051F1B0@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fmuls    f0, f1, f0
-	fctiwz   f0, f0
-	stfd     f0, 8(r1)
-	lwz      r0, 0xc(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r3, r0
-	fneg     f4, f0
-	b        lbl_8039FC20
-
-lbl_8039FBFC:
-	lfs      f0, lbl_8051F1B4@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fmuls    f0, f1, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x10(r1)
-	lwz      r0, 0x14(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f4, r3, r0
-
-lbl_8039FC20:
-	lfs      f0, lbl_8051F1FC@sda21(r2)
-	lfs      f31, lbl_8051F170@sda21(r2)
-	fcmpo    cr0, f4, f0
-	blt      lbl_8039FC78
-	fsubs    f2, f4, f0
-	lfs      f3, lbl_8051F29C@sda21(r2)
-	lfs      f0, lbl_8051F180@sda21(r2)
-	lfs      f1, lbl_8051F2A0@sda21(r2)
-	fmuls    f2, f3, f2
-	fcmpu    cr0, f0, f4
-	fdivs    f31, f2, f1
-	bne      lbl_8039FC78
-	lbz      r0, 0x229(r31)
-	fmr      f31, f0
-	cmplwi   r0, 0
-	beq      lbl_8039FC78
-	li       r0, 3
-	mr       r3, r31
-	stw      r0, 0x240(r31)
-	bl       changeIndirectTexture__Q28Morimura9TVsSelectFv
-	li       r0, 0
-	stb      r0, mCanCancel__Q28Morimura9TVsSelect@sda21(r13)
-
-lbl_8039FC78:
-	lfs      f0, mDemoOffsetMax__Q28Morimura9TVsSelect@sda21(r13)
-	lfs      f1, lbl_8051F180@sda21(r2)
-	fmuls    f0, f0, f31
-	stfs     f0, 0x26c(r31)
-	lfs      f0, mDemoScaleMax__Q28Morimura9TVsSelect@sda21(r13)
-	fsubs    f0, f0, f1
-	fmadds   f0, f0, f31, f1
-	stfs     f0, mDemoScale__Q28Morimura9TVsSelect@sda21(r13)
-	psq_l    f31, 40(r1), 0, qr0
-	lwz      r0, 0x34(r1)
-	lfd      f31, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	mScreenXPos = mDemoOffsetMax * scale;
+	mDemoScale  = (mDemoScaleMax - 1.0f) * scale + 1.0f;
 }
 
 /**

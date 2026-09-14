@@ -2433,34 +2433,12 @@ f32 GridDivider::getMinY(Vector3f& inputPoint)
 	bool foundY                = false;
 	TriIndexList& triIndexList = mTriIndexLists[gridZIndex + (gridXIndex * mMaxZ)];
 
+	Vector3f point(inputX, inputPoint.y, inputZ);
+
 	for (int i = 0; i < triIndexList.getNum(); ++i) {
 		Triangle* triangle = mTriangleTable->getTriangle(triIndexList.mObjects[i]);
-		float normalY      = triangle->mTrianglePlane.mNormal.y;
-
-		if (normalY <= 0.0f) {
-			continue; // Skip triangles with non-positive normal Y component
-		}
-
-		// Calculate potential Y value based on the plane equation
-		float potentialY = (triangle->mTrianglePlane.mOffset
-		                    - (triangle->mTrianglePlane.mNormal.x * inputX + triangle->mTrianglePlane.mNormal.z * inputZ))
-		                 / normalY;
-
-		// Check if the point is inside the triangle
-		bool isInsideTriangle = true;
-		for (int j = 0; j < 3; ++j) {
-			const Plane& edgePlane = triangle->mEdgePlanes[j];
-
-			if ((inputX * edgePlane.mNormal.x + potentialY * edgePlane.mNormal.y + inputZ * edgePlane.mNormal.z) - edgePlane.mOffset
-			    > 0.0f) {
-				isInsideTriangle = false;
-				break;
-			}
-		}
-
-		// Update minY if the point is inside the triangle and potentialY is valid
-		if (isInsideTriangle && potentialY < minY) {
-			minY   = potentialY;
+		if (triangle->insideXZ(point) && minY > point.y) {
+			minY   = point.y;
 			foundY = true;
 		}
 	}
