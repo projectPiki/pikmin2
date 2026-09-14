@@ -88,6 +88,30 @@ struct BitFlag {
 	 */
 	inline void unset(T value) { typeView &= ~value; }
 
+	/**
+	 * @brief Safely set a specific bit in the bit flag, by number.
+	 *
+	 * @param id Bit number to set.
+	 */
+	inline void setBit(int id)
+	{
+		if (id < (int)(sizeof(T) * 8)) {
+			int byte = id >> 3;
+			byteView[sizeof(T) - 1 - byte] |= 1 << (id - byte * 8);
+		}
+	}
+
+	/**
+	 * @brief Check if a specific bit is set, by number.
+	 *
+	 * @param id Bit number to check.
+	 */
+	inline bool isBitSet(int id) const
+	{
+		int byte = id >> 3;
+		return ((1 << (id - byte * 8)) & byteView[sizeof(T) - 1 - byte]) != 0;
+	}
+
 	union {
 		u8 byteView[sizeof(T)]; /**< The byte view of the bit flag. */
 		T typeView;             /**< The type view of the bit flag. */

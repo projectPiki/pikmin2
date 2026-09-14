@@ -1304,8 +1304,9 @@ void Pellet::setupParticles_simple()
 	f32 mid = mConfig->mParams.mHeight.mData * 0.5f;
 	radius -= mid;
 
+	f32 angularStep = TAU / endIndex;
 	for (int i = 0; i < mMaxCollParticle; i++) {
-		f32 theta = (TAU / endIndex) * (f32)i;
+		f32 theta = angularStep * (f32)i;
 		Vector3f rotation(radius * sinf(theta), 0.0f, radius * cosf(theta));
 		setupDynParticle(i, mid, rotation);
 	}
@@ -1480,8 +1481,9 @@ void Pellet::setupParticles_tall()
 	f32 endIndex   = (f32)count;
 	mid            = radius - height;
 
+	f32 angularStep = TAU / endIndex;
 	for (int i = 0; i < count; i++) {
-		f32 theta = (TAU / endIndex) * (f32)i;
+		f32 theta = angularStep * (f32)i;
 		Vector3f rotation(mid * sinf(theta), heightDiff, mid * cosf(theta));
 		setupDynParticle(i, height, rotation);
 	}

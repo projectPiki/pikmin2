@@ -446,7 +446,7 @@ void PlayData::reset()
 {
 	mNaviLifeMax[1]        = 0.0f;
 	mNaviLifeMax[0]        = 0.0f;
-	mDeadNaviID            = 0;
+	mDeadNaviID.typeView            = 0;
 	u64 osTime             = OSGetTime();
 	mOsTime                = osTime;
 	mDoAllowDebugPikiSpawn = false;

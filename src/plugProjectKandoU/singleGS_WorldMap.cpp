@@ -48,7 +48,7 @@ void SelectState::init(SingleGameSection*, StateArg*)
 	sParentHeapFreeSize      = JKRHeap::sCurrentHeap->getFreeSize();
 	JKRHeap::sCurrentHeap->getFreeSize();
 	JKRHeap::sCurrentHeap->getTotalFreeSize();
-	playData->mDeadNaviID = 0;
+	playData->mDeadNaviID.typeView = 0;
 	naviMgr->clearDeadCount();
 	mNewLevelOpen = false;
 }

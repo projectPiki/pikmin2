@@ -54,12 +54,8 @@ void CaveState::init(SingleGameSection* game, StateArg* arg)
 	gameSystem->mIsInCave                                                 = true;
 	game->setFixNearFar(true, 1.0f, 12800.0f);
 
-	// I assume this is meant to check if the 'active' navi is dead and if so, swap to the other navi
-	// THIS CANNOT BE WHAT THE DEVS WROTE
-	int naviID     = playData->mCaveSaveData.mActiveNaviID;
-	u8* deadNaviID = &playData->mDeadNaviID;
-	int shiftedID  = naviID >> 3;
-	if (1 << (naviID - (shiftedID << 3)) & *(deadNaviID - shiftedID)) {
+	int naviID = playData->mCaveSaveData.mActiveNaviID;
+	if (playData->mDeadNaviID.isBitSet(naviID)) {
 		naviID = 1 - naviID;
 	}
 

@@ -2091,7 +2091,7 @@ void ZukanState::execTeki(SingleGameSection* game)
 			velocity.normalise();
 
 			Vector3f yAxis(0.0f, 1.0f, 0.0f);
-			Vector3f perpVec = cross(velocity, yAxis);
+			Vector3f perpVec = velocity.cross(yAxis);
 			perpVec *= mDebugParms->_1C[1];
 			position += perpVec;
 			position.y += mDebugParms->_1C[2];

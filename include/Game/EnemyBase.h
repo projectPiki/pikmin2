@@ -547,6 +547,22 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 		return isTargetOutOfRange(target, getAngDist(target), pPrivateRadius, pSightRadius, pFov, pViewAngle);
 	}
 
+	inline bool isTargetOutsideView(Creature* target, f32 privateRadius, f32 sightRadius, f32 verticalRange, f32 viewAngle)
+	{
+		f32 angle = getAngDist(target);
+		f32 x, y, z;
+		x = target->getPosition().x - getPosition().x;
+		y = target->getPosition().y - getPosition().y;
+		z = target->getPosition().z - getPosition().z;
+
+		f32 sightRadiusSqr   = SQUARE(sightRadius);
+		f32 privateRadiusSqr = privateRadius;
+		privateRadiusSqr *= privateRadiusSqr;
+		f32 distance = x * x + z * z;
+
+		return (distance > privateRadiusSqr && (distance > sightRadiusSqr && absF(y) < verticalRange)) || !isAngleWithin(angle, viewAngle);
+	}
+
 	inline void setCreatureID(u8 idx) { mCreatureID = idx; }
 
 	inline bool isEarthQuakeOrDropping() { return isEvent(1, EB2_Earthquake) || isEvent(1, EB2_Dropping); }

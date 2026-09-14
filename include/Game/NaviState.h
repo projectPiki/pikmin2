@@ -488,10 +488,11 @@ struct NaviKokeDamageInitArg : public StateArg {
 struct NaviDamageArg : public StateArg {
 	NaviDamageArg(f32 damage) { mDamage = damage; }
 
+	f32 mDamage; // _00
+
 	virtual const char* getName() { return "NaviDamageArg"; } // _08 (weak)
 
-	// _00 VTBL
-	f32 mDamage;
+	// _04 VTBL
 };
 
 // Knockback state

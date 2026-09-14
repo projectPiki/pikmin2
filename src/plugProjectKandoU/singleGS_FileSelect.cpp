@@ -44,7 +44,7 @@ void FileState::init(SingleGameSection* section, StateArg* arg)
 	section->refreshHIO();
 	Screen::gGame2DMgr->mScreenMgr->reset();
 	sys->setFrameRate(1);
-	playData->mDeadNaviID = 0;
+	playData->mDeadNaviID.typeView = 0;
 }
 
 /**
@@ -156,7 +156,7 @@ void FileState::startGame(SingleGameSection* game)
 #endif
 
 		u16 loadtype = MapEnter_CaveGeyser;
-		if (playData->mDeadNaviID & 1 && playData->mDeadNaviID & 2) {
+		if (playData->mDeadNaviID.typeView & 1 && playData->mDeadNaviID.typeView & 2) {
 			loadtype = MapEnter_CaveNavisDown;
 		}
 		LoadArg arg(loadtype, false, true, false);

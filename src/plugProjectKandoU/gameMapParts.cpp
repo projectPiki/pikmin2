@@ -2533,14 +2533,14 @@ void RoomMapMgr::createGlobalCollision()
 		Sys::VertexTable* verts  = room->mUnit->mCollision.mDivider->mVertexTable;   // r26
 		Sys::TriangleTable* tris = room->mUnit->mCollision.mDivider->mTriangleTable; // r19
 		int count21              = count20;
-		for (int i = 0; i < verts->getNum(); i++) {
+		for (int i = 0; i < verts->mLimit; i++) {
 			Vector3f preVert = *verts->getVertex(i);
 			Vector3f vert    = mtx.mtxMult(preVert);
 			vertTable->addOne(vert);
 			count21++;
 		}
 
-		for (int i = 0; i < tris->getNum(); i++, triIndex++) {
+		for (int i = 0; i < tris->mLimit; i++, triIndex++) {
 			Sys::Triangle* preTri  = tris->getTriangle(i);
 			Sys::Triangle* postTri = triTable->getTriangle(triIndex);
 			postTri->mVertices[0]  = preTri->mVertices[0] + count20;

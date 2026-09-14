@@ -803,8 +803,11 @@ void CPlate::refreshSlot(f32 p1)
 	while (slotCount < mActiveGroupSize) {
 		f32 radiusDifference;
 
-		if (absF(radius) < mBaseRadius) {
-			f32 areaDifference = mBaseRadius * mBaseRadius - radius * radius;
+		Vector2f radii(mBaseRadius, radius);
+		f32 radiusSquared = radius * radius;
+		f32 baseSquared = mBaseRadius * mBaseRadius;
+		if (baseSquared - radiusSquared > 0.0f) {
+			f32 areaDifference = radii.x * radii.x - radii.y * radii.y;
 			radiusDifference   = sqrtf(areaDifference);
 		} else {
 			radiusDifference = 0.0f;

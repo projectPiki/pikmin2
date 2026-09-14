@@ -26,10 +26,10 @@ namespace Game {
 
 Color4 Piki::pikiColors[PikiColorCount + 1]
     = { Color4(0, 50, 255, 255),    Color4(255, 30, 0, 255),  Color4(255, 210, 0, 255), Color4(28, 0, 52, 255),
-	    Color4(255, 230, 255, 255), Color4(255, 140, 0, 255), Color4(255, 255, 255, 0) };
+        Color4(255, 230, 255, 255), Color4(255, 140, 0, 255), Color4(255, 255, 255, 0) };
 Color4 Piki::pikiColorsCursor[PikiColorCount + 1]
     = { Color4(0, 50, 255, 255),    Color4(255, 30, 0, 255),  Color4(255, 210, 0, 255), Color4(120, 0, 250, 255),
-	    Color4(255, 230, 255, 255), Color4(255, 140, 0, 255), Color4(255, 255, 255, 0) };
+        Color4(255, 230, 255, 255), Color4(255, 140, 0, 255), Color4(255, 255, 255, 0) };
 
 static const int unusedPikiArray[] = { 0, 0, 0 };
 } // namespace Game
@@ -537,100 +537,15 @@ void Piki::inWaterCallback(WaterBox* wbox)
 	mEffectsObj->mHeight = wbox->getSeaHeightPtr();
 	if (isAlive()) {
 		efx::TPkEffect* effectObj = mEffectsObj;
-		effectObj->doWaterEntry(effectObj->isFlag(PKEFF_Drown)); // regswap in this inline
+		bool wasDrowning;
+		if (effectObj->isFlag(PKEFF_Drown)) {
+			wasDrowning = true;
+		} else {
+			wasDrowning = false;
+		}
+		effectObj->doWaterEntry(wasDrowning);
 		mSoundObj->startFreePikiSetSound(PSSE_PK_SE_WATER_IN, PSGame::SeMgr::SETSE_PikiLanding, 90, 0);
 	}
-
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	bl       getStateID__Q24Game4PikiFv
-	cmpwi    r3, 5
-	lbz      r31, 0x2b8(r29)
-	beq      lbl_80148C80
-	cmpwi    r3, 0xa
-	beq      lbl_80148C80
-	lwz      r3, 0x290(r29)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x58(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80148C80
-	cmpwi    r31, 0
-	beq      lbl_80148C80
-	cmpwi    r31, 5
-	beq      lbl_80148C80
-	lwz      r3, moviePlayer__4Game@sda21(r13)
-	lwz      r0, 0x18(r3)
-	cmpwi    r0, 0
-	bne      lbl_80148CFC
-	lfs      f1, 0x204(r29)
-	lfs      f0, lbl_80518438@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_80148CFC
-	lwz      r3, 0x28c(r29)
-	mr       r4, r29
-	li       r5, 0xa
-	li       r6, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80148C80
-	b        lbl_80148CFC
-
-lbl_80148C80:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x258(r29)
-	stw      r3, 0x20(r4)
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80148CFC
-	lwz      r31, 0x258(r29)
-	lwz      r4, 0(r31)
-	mr       r3, r31
-	ori      r0, r4, 0x20
-	rlwinm   r30, r4, 0x1b, 0x1f, 0x1f
-	stw      r0, 0(r31)
-	bl       updateHamon___Q23efx9TPkEffectFv
-	cmplwi   r30, 0
-	bne      lbl_80148CE4
-	addi     r3, r31, 0x28
-	bl       "createSimpleDive__3efxFR10Vector3<f>"
-
-lbl_80148CE4:
-	lwz      r3, 0x250(r29)
-	li       r4, 0x2811
-	li       r5, 6
-	li       r6, 0x5a
-	li       r7, 0
-	bl       startFreePikiSetSound__Q23PSM4PikiFUlQ36PSGame5SeMgr7SetSeIdUlUl
-
-lbl_80148CFC:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**

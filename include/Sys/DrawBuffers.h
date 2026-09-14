@@ -22,7 +22,7 @@ struct DrawBuffer : public CNode {
 		CreateArg()
 		{
 			mSize = 1;
-			mName = "noname\0"; // IMPORTANT !!!
+			mName = "noname"; // IMPORTANT !!!
 			mFlags.clear();
 		}
 

@@ -334,8 +334,12 @@ void Obj::setAttackPosition()
 		f32 dirFactor       = array1[i];
 		f32 orthoDirFactor  = array2[i];
 		mAttackPositions[i] = mPosition;
-		mAttackPositions[i] += dir * dirFactor;
-		mAttackPositions[i] += orthoDir * orthoDirFactor;
+		Vector3f forward = dir;
+		Vector3f sideways = orthoDir;
+		forward *= dirFactor;
+		sideways *= orthoDirFactor;
+		mAttackPositions[i] += forward;
+		mAttackPositions[i] += sideways;
 		mAttackPositions[i].y = mapMgr->getMinY(mAttackPositions[i]);
 	}
 	/*
@@ -507,10 +511,9 @@ Piki* Obj::getAttackPiki(int animIdx)
 	f32 minYs[]          = { -40.0f, -40.0f, -40.0f, -40.0f, -40.0f }; // 0x30
 
 	for (int i = 0; i < 5; i++) {
-		maxYs[i] += mAttackPositions[i].y - snakePos.y;
-	}
-	for (int i = 0; i < 5; i++) {
-		minYs[i] += mAttackPositions[i].y - snakePos.y;
+		f32 height = mAttackPositions[i].y - snakePos.y;
+		maxYs[i] += height;
+		minYs[i] += height;
 	}
 
 	Iterator<Piki> iter(pikiMgr);
@@ -976,10 +979,9 @@ Navi* Obj::getAttackNavi(int animIdx)
 	f32 minYs[]          = { -40.0f, -40.0f, -40.0f, -40.0f, -40.0f }; // 0x30
 
 	for (int i = 0; i < 5; i++) {
-		maxYs[i] += mAttackPositions[i].y - snakePos.y;
-	}
-	for (int i = 0; i < 5; i++) {
-		minYs[i] += mAttackPositions[i].y - snakePos.y;
+		f32 height = mAttackPositions[i].y - snakePos.y;
+		maxYs[i] += height;
+		minYs[i] += height;
 	}
 
 	Iterator<Navi> iter(naviMgr);

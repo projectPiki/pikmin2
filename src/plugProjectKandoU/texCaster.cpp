@@ -249,12 +249,14 @@ Caster* Mgr::create(Sys::Sphere& sphere, f32 rotationAngle)
 		Vector3f spherePos = sphere.mPosition;
 		f32 sphereRad      = sphere.mRadius;
 
-		triArg.mVertices[0] = Vector3f(spherePos.x - sphereRad, spherePos.y, spherePos.z - sphereRad);
-		triArg.mVertices[1] = Vector3f(spherePos.x + sphereRad, spherePos.y, spherePos.z + sphereRad);
-		triArg.mVertices[2] = Vector3f(spherePos.x - sphereRad, spherePos.y, spherePos.z + sphereRad);
-		triArg.mVertices[3] = Vector3f(spherePos.x + sphereRad, spherePos.y, spherePos.z - sphereRad);
-		triArg.mVertices[4] = Vector3f(spherePos.x - sphereRad, spherePos.y, spherePos.z + sphereRad);
-		triArg.mVertices[5] = Vector3f(spherePos.x + sphereRad, spherePos.y, spherePos.z + sphereRad);
+		Vector3f axisX(sphereRad, 0.0f, 0.0f);
+		Vector3f axisZ(0.0f, 0.0f, sphereRad);
+		triArg.mVertices[0] = spherePos - axisX - axisZ;
+		triArg.mVertices[1] = spherePos - axisX + axisZ;
+		triArg.mVertices[2] = spherePos + axisX + axisZ;
+		triArg.mVertices[3] = spherePos + axisX - axisZ;
+		triArg.mVertices[4] = spherePos - axisX - axisZ;
+		triArg.mVertices[5] = spherePos + axisX + axisZ;
 
 		for (int i = 0; i < 6; i++) {
 			triArg.mVertices[i].y += triArg.mScale;
@@ -280,8 +282,10 @@ Caster* Mgr::create(Sys::Sphere& sphere, f32 rotationAngle)
 			f32 cos2                                    = cos(rotationAngle);
 			f32 sin2                                    = sin(rotationAngle);
 			int textureIndex                            = (triangleIndex * 3 + vertexIndex) * 2;
-			caster->mTexturePositions[textureIndex]     = 0.5f + ((deltaZ * sin2 + deltaX * cos2) * scaleFactor);
-			caster->mTexturePositions[textureIndex + 1] = 0.5f + ((deltaZ * cos1 - deltaX * sin1) * scaleFactor);
+			Vector3f texturePosition(deltaZ * sin2 + deltaX * cos2, 0.0f, deltaZ * cos1 - deltaX * sin1);
+			texturePosition *= scaleFactor;
+			caster->mTexturePositions[textureIndex] = 0.5f + texturePosition.x;
+			caster->mTexturePositions[textureIndex + 1] = 0.5f + texturePosition.z;
 		}
 	}
 
