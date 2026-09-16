@@ -862,7 +862,8 @@ bool Obj::isChangeNavi()
 		dist *= dist;
 		if (navi->isAlive()) {
 			Vector3f naviPos(navi->getPosition().x, navi->getPosition().y, navi->getPosition().z);
-			if (mPosition.sqrDistance(naviPos) < dist) {
+			Vector3f pos(mPosition.x, mPosition.y, mPosition.z);
+			if (pos.sqrDistance(naviPos) < dist) {
 				if (mTargetNavi != navi) {
 					mPrevTailColor       = mActiveTailColor;
 					mTargetNavi          = navi;

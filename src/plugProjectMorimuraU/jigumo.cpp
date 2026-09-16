@@ -513,7 +513,7 @@ void Obj::doSimulationGround(f32 step)
 	targetVel.y        = mCurrentVelocity.y;
 
 	Vector3f currentVelocity = mCurrentVelocity;
-	Vector3f velocityChange  = targetVel - currentVelocity;
+	Vector3f velocityChange  = Vector3f::sub2(targetVel, currentVelocity);
 
 	// Calculate the change in velocity and apply it, including acceleration
 	mCurrentVelocity = mCurrentVelocity + (velocityChange) * (step / C_PARMS->mCreatureProps.mProps.mAccel());

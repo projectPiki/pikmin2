@@ -30,7 +30,7 @@ JKRHeap* TVsSelect::mDebugHeapParent;
 Vector2f TVsPiki::mPikiOffset = Vector2f(12.5f, -0.5f);
 TVsSelect::StaticValues TVsSelect::mScrollParm;
 
-u32 unk[]                            = { 1, 2, 3 };
+u32 unk[]                            = { 1, 2, 3, 0 };
 ResTIMG* TVsSelect::mOrimaTexture[5] = { nullptr };
 ResTIMG* TVsSelect::mLouieTexture[5] = { nullptr };
 

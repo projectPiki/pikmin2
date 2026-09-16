@@ -6349,92 +6349,15 @@ void NaviDemo_UfoState::initSuck(Navi* navi)
 {
 	Onyon* ship   = ItemOnyon::mgr->mUfo;
 	Vector3f diff = ship->getSuckPos() - navi->getPosition();
-	f32 dist      = diff.length();
-	mDist         = dist;
+	mDist         = diff.length();
 
-	_14               = 0.0f;
-	navi->mVelocity.y = 0.0f;
+	_14             = 0.0f;
+	navi->mVelocity = Vector3f(navi->mVelocity.x, 0.0f, navi->mVelocity.z);
 
 	mScaleMod = 1.0f;
 	mStartPos = navi->getPosition();
 	mProgress = 0.0f;
 	mSpeed    = 0.0f;
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stw      r31, 0x3c(r1)
-	stw      r30, 0x38(r1)
-	mr       r30, r4
-	stw      r29, 0x34(r1)
-	mr       r29, r3
-	addi     r3, r1, 0x14
-	lwz      r12, 0(r4)
-	lwz      r5, mgr__Q24Game9ItemOnyon@sda21(r13)
-	lwz      r12, 8(r12)
-	lwz      r31, 0xb0(r5)
-	mtctr    r12
-	bctrl
-	mr       r4, r31
-	addi     r3, r1, 0x20
-	lwz      r12, 0(r31)
-	lwz      r12, 0x194(r12)
-	mtctr    r12
-	bctrl
-	lfs      f1, 0x24(r1)
-	lfs      f0, 0x18(r1)
-	lfs      f3, 0x28(r1)
-	fsubs    f4, f1, f0
-	lfs      f2, 0x1c(r1)
-	lfs      f1, 0x20(r1)
-	lfs      f0, 0x14(r1)
-	fsubs    f2, f3, f2
-	fmuls    f3, f4, f4
-	fsubs    f1, f1, f0
-	lfs      f0, lbl_80518BE0@sda21(r2)
-	fmuls    f2, f2, f2
-	fmadds   f1, f1, f1, f3
-	fadds    f1, f2, f1
-	fcmpo    cr0, f1, f0
-	ble      lbl_801880B8
-	ble      lbl_801880BC
-	frsqrte  f0, f1
-	fmuls    f1, f0, f1
-	b        lbl_801880BC
-
-lbl_801880B8:
-	fmr      f1, f0
-
-lbl_801880BC:
-	stfs     f1, 0x18(r29)
-	mr       r4, r30
-	lfs      f2, lbl_80518BE0@sda21(r2)
-	addi     r3, r1, 8
-	lfs      f0, lbl_80518C48@sda21(r2)
-	stfs     f2, 0x14(r29)
-	stfs     f2, 0x204(r30)
-	stfs     f0, 0x1c(r29)
-	lwz      r12, 0(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f1, 8(r1)
-	lfs      f0, lbl_80518BE0@sda21(r2)
-	stfs     f1, 0x24(r29)
-	lfs      f1, 0xc(r1)
-	stfs     f1, 0x28(r29)
-	lfs      f1, 0x10(r1)
-	stfs     f1, 0x2c(r29)
-	stfs     f0, 0x20(r29)
-	stfs     f0, 0x30(r29)
-	lwz      r31, 0x3c(r1)
-	lwz      r30, 0x38(r1)
-	lwz      r29, 0x34(r1)
-	lwz      r0, 0x44(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
 }
 
 /**
@@ -6444,87 +6367,17 @@ lbl_801880BC:
 bool NaviDemo_UfoState::execSuck(Navi* navi)
 {
 	Vector3f goalPos = ItemOnyon::mgr->mUfo->getSuckPos();
-	Vector3f setPos  = mStartPos + (goalPos - mStartPos) * mProgress;
+	Vector3f dir     = Vector3f::sub2(goalPos, mStartPos);
+	Vector3f setPos  = mStartPos + dir * mProgress;
 	navi->setPosition(setPos, false);
 	navi->mScale = -(mProgress * 0.75f - 1.0f) * mScaleMod;
 
 	mProgress += (mSpeed * sys->mDeltaTime) / mDist;
 	mSpeed += sys->mDeltaTime * 720.0f;
-	return mProgress >= 1.0f;
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	mr       r31, r4
-	stw      r30, 0x28(r1)
-	mr       r30, r3
-	addi     r3, r1, 8
-	lwz      r5, mgr__Q24Game9ItemOnyon@sda21(r13)
-	lwz      r4, 0xb0(r5)
-	lwz      r12, 0(r4)
-	lwz      r12, 0x194(r12)
-	mtctr    r12
-	bctrl
-	lfs      f1, 0x10(r1)
-	mr       r3, r31
-	lfs      f5, 0x2c(r30)
-	addi     r4, r1, 0x14
-	lfs      f0, 0xc(r1)
-	li       r5, 0
-	lfs      f6, 0x28(r30)
-	fsubs    f2, f1, f5
-	lfs      f4, 0x20(r30)
-	fsubs    f3, f0, f6
-	lfs      f1, 8(r1)
-	lfs      f7, 0x24(r30)
-	fmuls    f0, f2, f4
-	fsubs    f2, f1, f7
-	fmuls    f1, f3, f4
-	fadds    f0, f5, f0
-	fmuls    f2, f2, f4
-	fadds    f1, f6, f1
-	stfs     f0, 0x1c(r1)
-	fadds    f0, f7, f2
-	stfs     f1, 0x18(r1)
-	stfs     f0, 0x14(r1)
-	bl       "setPosition__Q24Game8CreatureFR10Vector3<f>b"
-	lfs      f2, lbl_80518CDC@sda21(r2)
-	lfs      f1, 0x20(r30)
-	lfs      f4, lbl_80518C48@sda21(r2)
-	lfs      f0, 0x1c(r30)
-	fnmsubs  f1, f2, f1, f4
-	lfs      f2, lbl_80518CE0@sda21(r2)
-	fmuls    f0, f1, f0
-	stfs     f0, 0x168(r31)
-	stfs     f0, 0x16c(r31)
-	stfs     f0, 0x170(r31)
-	lwz      r3, sys@sda21(r13)
-	lfs      f3, 0x30(r30)
-	lfs      f1, 0x54(r3)
-	lfs      f0, 0x18(r30)
-	fmuls    f1, f3, f1
-	lfs      f3, 0x20(r30)
-	fdivs    f0, f1, f0
-	fadds    f0, f3, f0
-	stfs     f0, 0x20(r30)
-	lwz      r3, sys@sda21(r13)
-	lfs      f0, 0x30(r30)
-	lfs      f1, 0x54(r3)
-	fmadds   f0, f2, f1, f0
-	stfs     f0, 0x30(r30)
-	lfs      f0, 0x20(r30)
-	fcmpo    cr0, f0, f4
-	cror     2, 1, 2
-	mfcr     r0
-	lwz      r31, 0x2c(r1)
-	rlwinm   r3, r0, 3, 0x1f, 0x1f
-	lwz      r0, 0x34(r1)
-	lwz      r30, 0x28(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	if (mProgress >= 1.0f) {
+		return true;
+	}
+	return false;
 }
 
 /**
