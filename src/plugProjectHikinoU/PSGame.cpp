@@ -5,7 +5,6 @@
 #include "PSGame/EnvSe.h"
 #include "PSGame/PikScene.h"
 #include "PSGame/SoundCreatureMgr.h"
-#include "PSGame/SceneInfo.h"
 #include "PSGame/SoundTable.h"
 #include "PSGame/SysFactory.h"
 #include "PSM/BossSeq.h"
@@ -19,7 +18,6 @@
 #include "PSGame/PSSe.h"
 
 bool PSGame::ConductorList::sToolMode;
-PSGame::ConductorList* PSSystem::SingletonBase<PSGame::ConductorList>::sInstance;
 
 namespace PSGame {
 char newSeqName[32];
@@ -85,6 +83,16 @@ bool ConductorList::read(Stream& input)
 	}
 
 	return true;
+}
+
+/**
+ * @note Address: 0x80334510
+ * @note Size: 0x14
+ */
+ConductorList::CaveInfo::CaveInfo()
+{
+	mFileNameCount = 255;
+	mFileNames     = nullptr;
 }
 
 /**
@@ -578,14 +586,14 @@ PikScene::~PikScene()
 PSM::MiddleBossSeq* PikScene::getMiddleBossBgm()
 {
 	char* name;
-	PSM::MiddleBossSeq* seq = static_cast<PSM::MiddleBossSeq*>(mSeqMgr.getSeq(1));
+	PSSystem::SeqBase* seq = mSeqMgr.getSeq(1);
 	if (!seq) {
 		return nullptr;
 	}
 
 	name = seq->mBmsFileName;
 	if ((!strcmp(name, "m_boss.bms") || !strcmp(name, "l_boss.bms")) && seq->getCastType() == PSSystem::SeqBase::TYPE_JumpBgmSeq) {
-		return seq;
+		return static_cast<PSM::MiddleBossSeq*>(seq);
 	}
 	return nullptr;
 }
@@ -3015,11 +3023,11 @@ PSSystem::DirectedBgm* PSGetDirectedMainBgm()
 		return nullptr;
 	}
 
-	PSSystem::DirectedBgm* seq = (PSSystem::DirectedBgm*)scene->mSeqMgr.getFirstSeq();
+	PSSystem::SeqBase* seq = scene->mSeqMgr.getFirstSeq();
 	if (seq
 	    && (seq->getCastType() == PSSystem::SeqBase::TYPE_DirectedBgm || seq->getCastType() == PSSystem::SeqBase::TYPE_AutoBgm
 	        || seq->getCastType() == PSSystem::SeqBase::TYPE_JumpBgmSeq)) {
-		return seq;
+		return static_cast<PSSystem::DirectedBgm*>(seq);
 	}
 	return nullptr;
 }

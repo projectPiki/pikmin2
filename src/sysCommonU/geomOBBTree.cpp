@@ -2354,9 +2354,7 @@ f32 OBB::getMinY(Vector3f& pos, Sys::TriangleTable& triTable, f32 inputMin)
 		divDist = mDivPlane.calcDist(pos);
 	} else {
 		Vector3f planeVec(pos);
-		planeVec.y = -(mDivPlane.mNormal.x * planeVec.x - mDivPlane.mOffset);
-		planeVec.y = -(mDivPlane.mNormal.z * planeVec.z - planeVec.y);
-		planeVec.y = planeVec.y / mDivPlane.mNormal.y;
+		planeVec.y = (mDivPlane.mOffset - mDivPlane.mNormal.x * pos.x - mDivPlane.mNormal.z * pos.z) / mDivPlane.mNormal.y;
 		divDist    = mDivPlane.calcDist(planeVec);
 	}
 
@@ -2364,13 +2362,13 @@ f32 OBB::getMinY(Vector3f& pos, Sys::TriangleTable& triTable, f32 inputMin)
 		// check only side A
 		if (mHalfA) {
 			f32 minY2 = mHalfA->getMinY(pos, triTable, inputMin);
-			minY      = minY2 > inputMin ? minY2 : inputMin;
+			return minY2 > inputMin ? minY2 : inputMin;
 		}
 	} else if (divDist < -0.01f) {
 		// check only side B
 		if (mHalfB) {
 			f32 minY2 = mHalfB->getMinY(pos, triTable, inputMin);
-			minY      = minY2 > inputMin ? minY2 : inputMin;
+			return minY2 > inputMin ? minY2 : inputMin;
 		}
 	} else {
 		// check both sides
@@ -2381,12 +2379,11 @@ f32 OBB::getMinY(Vector3f& pos, Sys::TriangleTable& triTable, f32 inputMin)
 		minY2 = mHalfB->getMinY(pos, triTable, minY);
 		if (minY2 > minY)
 			minY = minY2;
+
+		return minY;
 	}
 
-	if (minY < inputMin)
-		minY = inputMin;
-
-	return minY;
+	return inputMin;
 	/*
 	stwu     r1, -0x70(r1)
 	mflr     r0

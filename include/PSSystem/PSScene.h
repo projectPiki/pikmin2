@@ -7,7 +7,7 @@
 #include "JSystem/JAudio/JAD/JADUtility.h"
 #include "SoundID.h"
 #include "P2Macros.h"
-#include "PSSystem/Seq.h"
+#include "PSSystem/PSSeq.h"
 #include "PSSystem/WaveScene.h"
 
 namespace PSM {
@@ -127,6 +127,8 @@ struct SceneMgr {
 		checkScene();
 		return mScenes->mChild;
 	}
+
+	inline Scene* getScene() { return mScenes; }
 
 	// _00	= VTBL
 	Scene* mScenes;   // _04

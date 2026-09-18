@@ -56,8 +56,6 @@ struct SeMgr : public PSSystem::SingletonBase<SeMgr> {
 
 	SeMgr();
 
-	virtual ~SeMgr() { } // _08 (weak)
-
 	void playMessageVoice(u32, bool);
 	void stopMessageVoice();
 

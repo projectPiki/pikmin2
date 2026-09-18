@@ -4,16 +4,12 @@
 #include "types.h"
 #include "stream.h"
 #include "PSSystem/PSCommon.h"
-#include "PSSystem/SeqData.h"
+#include "PSSystem/PSSeq.h"
 
 namespace PSGame {
 struct ConductorList : public PSSystem::TextDataBase, public PSSystem::SingletonBase<ConductorList> {
 	struct CaveInfo {
-		CaveInfo()
-		{
-			mFileNameCount = 255;
-			mFileNames     = nullptr;
-		}
+		CaveInfo();
 
 		u8 mFileNameCount; // _00, num file names in _04
 		char* mFileNames;  // _04, array of file names

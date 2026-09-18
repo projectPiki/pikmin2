@@ -915,82 +915,15 @@ void MoviePlayer::skip()
 	gameSystem->startFadeout(1.0f);
 	mDemoPSM->onDemoFadeoutStart(30);
 	gameSystem->setPause(true, "moviePl:skip", 0);
-	mStudioControl->stopAllObjects();
 
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	lfs      f0, lbl_80520654@sda21(r2)
-	stw      r0, 0x44(r1)
-	li       r0, 0
-	lfs      f1, lbl_8052064C@sda21(r2)
-	stw      r31, 0x3c(r1)
-	mr       r31, r3
-	li       r3, 6
-	lwz      r4, 0x1f0(r31)
-	ori      r4, r4, 2
-	stw      r4, 0x1f0(r31)
-	stw      r3, 0x18(r31)
-	stfs     f0, 0xa0(r31)
-	stb      r0, 0xa4(r31)
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x90(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0xac(r31)
-	li       r4, 0x1e
-	bl       onDemoFadeoutStart__Q23PSM4DemoFUl
-	lis      r4, lbl_8049A118@ha
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	addi     r5, r4, lbl_8049A118@l
-	li       r6, 0
-	li       r4, 1
-	bl       setPause__Q24Game10GameSystemFbPci
-	lwz      r31, 0x1d0(r31)
-	lwz      r0, 0x14(r31)
-	stw      r0, 0x1c(r1)
-	stw      r0, 0x18(r1)
-	stw      r0, 0x2c(r1)
-	b        lbl_8042E7FC
-
-lbl_8042E7C0:
-	lwz      r3, 0x2c(r1)
-	lwzu     r4, -0xc(r3)
-	lbz      r0, 0(r4)
-	cmpwi    r0, 0x23
-	bne      lbl_8042E7F0
-	cmplwi   r3, 0
-	beq      lbl_8042E7F0
-	lwz      r12, 8(r3)
-	li       r4, 1
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8042E7F0:
-	lwz      r3, 0x2c(r1)
-	lwz      r0, 0(r3)
-	stw      r0, 0x2c(r1)
-
-lbl_8042E7FC:
-	lwz      r0, 0x2c(r1)
-	addi     r3, r31, 0x14
-	stw      r3, 0x14(r1)
-	cmplw    r0, r3
-	stw      r3, 0x10(r1)
-	stw      r3, 0x28(r1)
-	stw      r3, 0x24(r1)
-	stw      r0, 0x20(r1)
-	stw      r3, 0xc(r1)
-	stw      r0, 8(r1)
-	bne      lbl_8042E7C0
-	lwz      r0, 0x44(r1)
-	lwz      r31, 0x3c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+	// gets rid of all objects with IDs starting with #
+	JGadget::TLinkList<JStudio::stb::TObject, -12>& objects = mStudioControl->referObjectContainer();
+	for (JGadget::TLinkList<JStudio::stb::TObject, -12>::iterator it = objects.begin(); it != objects.end(); ++it) {
+		char* id = (char*)it->mIDString;
+		if (id[0] == '#') {
+			delete it.operator->();
+		}
+	}
 }
 
 /**

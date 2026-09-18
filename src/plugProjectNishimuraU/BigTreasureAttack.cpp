@@ -342,7 +342,12 @@ bool BigTreasureWaterAttack::update()
  */
 void BigTreasureWaterAttack::finish()
 {
-	// UNUSED FUNCTION
+	mEfxWaterBomb->fade();
+
+	efx::Arg fxArg(mPosition);
+	efx::TOootaWbHit hitFX;
+	hitFX.create(&fxArg);
+	PSStartSoundVec(PSSE_EN_BIGTAKARA_W_GROUND, (Vec*)&mPosition);
 }
 
 /**
@@ -2174,12 +2179,7 @@ void BigTreasureAttackMgr::updateWaterAttack()
 	while (waterNode) {
 		BigTreasureWaterAttack* nextNode = waterNode->getNext();
 		if (waterNode->update()) {
-			waterNode->mEfxWaterBomb->fade();
-
-			efx::Arg fxArg(waterNode->mPosition);
-			efx::TOootaWbHit hitFX;
-			hitFX.create(&fxArg);
-			PSStartSoundVec(PSSE_EN_BIGTAKARA_W_GROUND, (Vec*)&waterNode->mPosition);
+			waterNode->finish();
 			waterNode->del();
 			mWaterAttackNodes->add(waterNode);
 			delAttackShadow(waterNode);

@@ -127,8 +127,8 @@ void StateMachine<T>::registerState(FSMState<T>* state)
 template <typename T>
 void StateMachine<T>::exec(T* obj)
 {
-	if (obj->mCurrentState != nullptr) {
-		obj->mCurrentState->exec(obj);
+	if (obj->getCurrState() != nullptr) {
+		obj->getCurrState()->exec(obj);
 	}
 }
 

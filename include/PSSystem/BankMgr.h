@@ -22,15 +22,10 @@ namespace PSSystem {
 struct BankMgr : public JKRDisposer {
 	BankMgr();
 
-	virtual ~BankMgr() // _08
-	{
-		if (sBankMgr) {
-			delete sBankMgr;
-			sBankMgr = nullptr;
-		}
-	}
+	virtual ~BankMgr() { deleteInstance(); } // _08
 
 	static BankMgr* createInstance();
+	static void deleteInstance();
 	void preInit();
 	void init();
 	void setBankData(u32* data);

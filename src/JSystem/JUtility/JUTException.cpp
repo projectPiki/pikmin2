@@ -33,8 +33,8 @@ static OSTime c3bcnt[4] = { 0, 0, 0, 0 };
 
 const char* JUTException::sCpuExpName[OS_ERROR_MAX + 1]
     = { "SYSTEM RESET",      "MACHINE CHECK", "DSI",           "ISI",   "EXTERNAL INTERRUPT", "ALIGNMENT",   "PROGRAM",
-	    "FLOATING POINT",    "DECREMENTER",   "SYSTEM CALL",   "TRACE", "PERFORMACE MONITOR", "BREAK POINT", "SYSTEM INTERRUPT",
-	    "THERMAL INTERRUPT", "PROTECTION",    "FLOATING POINT" };
+        "FLOATING POINT",    "DECREMENTER",   "SYSTEM CALL",   "TRACE", "PERFORMACE MONITOR", "BREAK POINT", "SYSTEM INTERRUPT",
+        "THERMAL INTERRUPT", "PROTECTION",    "FLOATING POINT" };
 
 /**
  * @note Address: N/A
@@ -87,7 +87,7 @@ void* JUTException::run()
 		OSReceiveMessage(&sMessageQueue, (void**)&msg, OS_MESSAGE_BLOCK);
 		VISetPreRetraceCallback(nullptr);
 		VISetPostRetraceCallback(nullptr);
-		OSErrorHandler handler;
+		JUTExceptionHandler handler;
 		OSError error;
 		error              = msg->mError;
 		handler            = msg->mErrorHandler;
@@ -104,7 +104,7 @@ void* JUTException::run()
 		sErrorManager->mDirectPrint->changeFrameBuffer(mFrameMemory, sErrorManager->mDirectPrint->mFBWidth,
 		                                               sErrorManager->mDirectPrint->mFBHeight);
 		if (handler != nullptr) {
-			((OSErrorHandlerNoVARG)handler)(error, context, v1, v2);
+			(handler)(error, context, v1, v2);
 		}
 		OSDisableInterrupts();
 		mFrameMemory = (JUTExternalFB*)VIGetCurrentFrameBuffer();
@@ -130,7 +130,7 @@ void JUTException::errorHandler(OSError error, OSContext* context, u32 p3, u32 p
 		OSProtectRange(OS_PROTECT_CHAN2, NULL, 0, OS_PROTECT_CONTROL_RDWR);
 		OSProtectRange(OS_PROTECT_CHAN3, NULL, 0, OS_PROTECT_CONTROL_RDWR);
 	}
-	exCallbackObject.mErrorHandler = (OSErrorHandler)sPreUserCallback;
+	exCallbackObject.mErrorHandler = sPreUserCallback;
 	exCallbackObject.mError        = error;
 	exCallbackObject.mContext      = context;
 	exCallbackObject._0C           = p3;
@@ -155,7 +155,7 @@ void JUTException::panic_f_va(const char* fileName, int lineNumber, const char* 
 	memcpy(&context, OSGetCurrentContext(), sizeof(OSContext));
 	sErrorManager->mStackPointer = (void*)OSGetStackPointer();
 
-	exCallbackObject.mErrorHandler = (OSErrorHandler)sPreUserCallback;
+	exCallbackObject.mErrorHandler = sPreUserCallback;
 	exCallbackObject.mError        = 0xFF;
 	exCallbackObject.mContext      = &context;
 	exCallbackObject._0C           = 0;

@@ -48,7 +48,6 @@ struct J2DWindow : public J2DPane {
 	virtual void resize(f32, f32);                                         // _18
 	virtual void drawSelf(f32, f32);                                       // _34
 	virtual void drawSelf(f32, f32, Mtx*);                                 // _38
-	virtual bool isUsed(const ResTIMG* resource);                          // _4C
 	virtual void draw(const JGeometry::TBox2f&);                           // _94
 	virtual void draw(const JGeometry::TBox2f&, const JGeometry::TBox2f&); // _98
 	virtual void draw(f32 x0, f32 y0, f32 width, f32 height)               // _9C (weak)
@@ -89,6 +88,7 @@ struct J2DWindow : public J2DPane {
 	virtual J2DMaterial* getFrameMaterial(u8 index) const { return nullptr; }          // _C0 (weak)
 	virtual J2DMaterial* getContentsMaterial() const { return nullptr; }               // _C4 (weak)
 	virtual void drawContents(const JGeometry::TBox2f&);                               // _C8
+	virtual bool isUsed(const ResTIMG* resource);                                      // _4C
 	virtual bool isUsed(const ResFONT* resource) { return J2DPane::isUsed(resource); } // _50 (weak)
 	virtual void rewriteAlpha() { }                                                    // _58 (weak)
 

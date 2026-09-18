@@ -246,22 +246,27 @@ void Item::createLightEvent()
 {
 	if (!mLightEventNode) {
 		GameLightEventArg arg;
-		arg.mFarZ  = mFogParm.mEndZ.mValue;
-		arg.mNearZ = mFogParm.mStartZ.mValue;
+		f32 farZ  = mFogParm.mEndZ.mValue;
+		f32 nearZ = mFogParm.mStartZ.mValue;
 		arg.setLightType(LIGHTTYPE_Fog);
-		arg.mFadeTime   = mFogParm.mEndTime.mValue;
-		arg.mGrowTime   = mFogParm.mStartTime.mValue;
-		u8 blue         = mFogParm.mBlue.mValue;
-		u8 green        = mFogParm.mGreen.mValue;
-		u8 red          = mFogParm.mRed.mValue;
-		arg.mBlueScale  = blue;
-		arg.mGreenScale = green;
-		arg.mRedScale   = red;
+		arg.mNearZ = nearZ;
+		arg.mFarZ  = farZ;
+		f32 fade   = mFogParm.mEndTime.mValue;
+		f32 grow   = mFogParm.mStartTime.mValue;
 		arg.resetEvent(LIGHTEVENT_Unk1);
+		arg.mGrowTime = grow;
+		arg.mFadeTime = fade;
+		u8 blue       = mFogParm.mBlue.mValue;
+		u8 green      = mFogParm.mGreen.mValue;
+		u8 red        = mFogParm.mRed.mValue;
 		arg.resetEvent(LIGHTEVENT_Unk2);
+		arg.mRedScale   = red;
+		arg.mGreenScale = green;
+		arg.mBlueScale  = blue;
+		f32 range       = mFogParm.mDistance.mValue;
 		arg.setEvent(LIGHTEVENT_Unk3 | LIGHTEVENT_Unk4);
 		arg.mPosition   = &mPosition;
-		arg.mRange      = mFogParm.mDistance.mValue;
+		arg.mRange      = range;
 		mLightEventNode = gameSystem->getLightMgr()->createEventLight(arg);
 	}
 	/*

@@ -362,7 +362,7 @@ struct SeqUpdateData {
 };
 
 struct SeqParameter {
-	~SeqParameter();
+	~SeqParameter() { }
 
 	void init();
 

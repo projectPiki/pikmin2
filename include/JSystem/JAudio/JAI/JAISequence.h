@@ -10,17 +10,10 @@
 struct JAISequence : public JAISound {
 	JAISequence();
 
-	virtual void setPortData(u8, u16); // _08 (weak)
-	virtual u16 getPortData(u8 p1)     // _0C (weak)
-	{
-		static u16 _port;
-		mSeqParameter.mTrack.readPortApp(p1 << 0x10, &_port);
-		return _port;
-	}
 	virtual void stop(u32 fadeTime) { JAInter::SequenceMgr::releaseSeqBuffer(this, fadeTime); }            // _14 (weak)
 	virtual void setVolume(f32 value, u32 moveTime, u8 type) { setSeqInterVolume(type, value, moveTime); } // _1C (weak)
 	virtual f32 getVolume(u8 type) { return getSeqInterVolume(type); }                                     // _20 (weak)
-	virtual void setPan(f32 value, u32 moveTime, u8 type);                                                 // _24 (weak)
+	virtual void setPan(f32 value, u32 moveTime, u8 type) { setSeqInterPan(type, value, moveTime); }       // _24 (weak)
 	virtual f32 getPan(u8 type)                                                                            // _28 (weak)
 	{
 		if (mState == SOUNDSTATE_Playing || mState == SOUNDSTATE_Fadeout) {
@@ -28,8 +21,8 @@ struct JAISequence : public JAISound {
 		}
 		return -1.0f;
 	}
-	virtual void setPitch(f32 value, u32 moveTime, u8 type); // _2C (weak)
-	virtual f32 getPitch(u8 type)                            // _30 (weak)
+	virtual void setPitch(f32 value, u32 moveTime, u8 type) { setSeqInterPitch(type, value, moveTime); } // _2C (weak)
+	virtual f32 getPitch(u8 type)                                                                        // _30 (weak)
 	{
 		if (mState == SOUNDSTATE_Playing || mState == SOUNDSTATE_Fadeout) {
 			return mSeqParameter.mPitches[type].mCurrentValue;
@@ -133,9 +126,32 @@ struct JAISequence : public JAISound {
 		}
 	}
 	virtual u8 getDolbyU7(u8 type) { return JAISequence::getDolby(type) * 127.0f; } // _68 (weak)
-	virtual u32 getFadeCounter();                                                   // _A4
-	virtual void setPrepareFlag(u8 flag) { setSeqPrepareFlag(flag); }               // _A8 (weak)
-	virtual void checkReady() { checkSeqReady(); }                                  // _AC (weak)
+	virtual void setPortData(u8 p1, u16 p2)                                         // _08 (weak)
+	{
+		if (mSeqParameter._10[p1].mCurrentValue == 0.0f && mState >= SOUNDSTATE_Ready) {
+			u16 portVal;
+			mSeqParameter.mTrack.readPortApp(p1 << 16, &portVal);
+			mSeqParameter._10[p1].mCurrentValue = portVal;
+		}
+
+		int setResult = mSeqParameter._10[p1].set((f32)p2, 0);
+		if (setResult == JAInter::MOVEPARA_SetTarget) {
+			mSeqParameter._280 |= (1 << p1);
+		}
+
+		if (mSeqParameter.mUpdateData && setResult != JAInter::MOVEPARA_AlreadySet) {
+			mSeqParameter.mUpdateData->mActiveTrackFlag |= JAInter::SOUNDACTIVE_Unk5;
+		}
+	}
+	virtual u16 getPortData(u8 p1) // _0C (weak)
+	{
+		static u16 _port;
+		mSeqParameter.mTrack.readPortApp(p1 << 0x10, &_port);
+		return _port;
+	}
+	virtual u32 getFadeCounter();                                     // _A4
+	virtual void setPrepareFlag(u8 flag) { setSeqPrepareFlag(flag); } // _A8 (weak)
+	virtual void checkReady() { checkSeqReady(); }                    // _AC (weak)
 
 	void setSeqInterVolume(u8 type, f32 value, u32 moveTime);
 	void setSeqInterPan(u8 type, f32 value, u32 moveTime);

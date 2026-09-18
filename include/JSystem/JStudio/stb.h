@@ -207,17 +207,7 @@ struct TControl {
 	TObject_control& referObject_control() { return mObject_control; }
 	int getSuspend() const { return mSuspend; }
 	void setSuspend(s32 suspend) { mObject_control.setSuspend(suspend); }
-
-	// could use a better name, used in moviePlayer::skip
-	void stopAllObjects()
-	{
-		for (JGadget::TLinkList<TObject, -12>::iterator it = mObjectContainer.begin(); it != mObjectContainer.end(); it++) {
-			char* string = (char*)it->mIDString;
-			if (string[0] == '#') {
-				delete it.operator->();
-			}
-		}
-	}
+	JGadget::TLinkList<TObject, -12>& referObjectContainer() { return mObjectContainer; }
 
 	// _00 = VTBL
 	int _04;                                           // _04

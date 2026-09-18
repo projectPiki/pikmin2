@@ -31,60 +31,60 @@
 #include "Dolphin/__start.h"
 
 static GXRenderModeObj localNtsc608x448IntDfProg = { VI_TVMODE_NTSC_PROG,
-	                                                 608, // fbWidth
-	                                                 448, // efbHeight
-	                                                 448, // xfbHeight
-	                                                 27,  // viXOrigin
-	                                                 16,  // viYOrigin
-	                                                 666, // viWidth
-	                                                 448, // viHeight
-	                                                 VI_XFBMODE_SF,
-	                                                 0, // field_rendering
-	                                                 0, // aa
-	                                                 { 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6 },
-	                                                 { 0, 0, 21, 22, 21, 0, 0 } };
+                                                     608, // fbWidth
+                                                     448, // efbHeight
+                                                     448, // xfbHeight
+                                                     27,  // viXOrigin
+                                                     16,  // viYOrigin
+                                                     666, // viWidth
+                                                     448, // viHeight
+                                                     VI_XFBMODE_SF,
+                                                     0, // field_rendering
+                                                     0, // aa
+                                                     { 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6 },
+                                                     { 0, 0, 21, 22, 21, 0, 0 } };
 
 static GXRenderModeObj localNtsc608x448IntDf = { VI_TVMODE_NTSC_INT,
-	                                             608, // fbWidth
-	                                             448, // efbHeight
-	                                             448, // xfbHeight
-	                                             27,  // viXOrigin
-	                                             16,  // viYOrigin
-	                                             666, // viWidth
-	                                             448, // viHeight
-	                                             VI_XFBMODE_DF,
-	                                             0, // field_rendering
-	                                             0, // aa
-	                                             { 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6 },
-	                                             { 7, 7, 12, 12, 12, 7, 7 } };
+                                                 608, // fbWidth
+                                                 448, // efbHeight
+                                                 448, // xfbHeight
+                                                 27,  // viXOrigin
+                                                 16,  // viYOrigin
+                                                 666, // viWidth
+                                                 448, // viHeight
+                                                 VI_XFBMODE_DF,
+                                                 0, // field_rendering
+                                                 0, // aa
+                                                 { 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6 },
+                                                 { 7, 7, 12, 12, 12, 7, 7 } };
 
 static GXRenderModeObj localPal608x448IntDf = { VI_TVMODE_PAL_INT,
-	                                            608, // fbWidth
-	                                            448, // efbHeight
-	                                            538, // xfbHeight
-	                                            25,  // viXOrigin
-	                                            18,  // viYOrigin
-	                                            670, // viWidth
-	                                            538, // viHeight
-	                                            VI_XFBMODE_DF,
-	                                            0, // field_rendering
-	                                            0, // aa
-	                                            { 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6 },
-	                                            { 7, 7, 12, 12, 12, 7, 7 } };
+                                                608, // fbWidth
+                                                448, // efbHeight
+                                                538, // xfbHeight
+                                                25,  // viXOrigin
+                                                18,  // viYOrigin
+                                                670, // viWidth
+                                                538, // viHeight
+                                                VI_XFBMODE_DF,
+                                                0, // field_rendering
+                                                0, // aa
+                                                { 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6 },
+                                                { 7, 7, 12, 12, 12, 7, 7 } };
 
 static GXRenderModeObj localPal60608x448IntDf = { VI_TVMODE_EURGB60_INT,
-	                                              608, // fbWidth
-	                                              448, // efbHeight
-	                                              448, // xfbHeight
-	                                              27,  // viXOrigin
-	                                              16,  // viYOrigin
-	                                              666, // viWidth
-	                                              448, // viHeight
-	                                              VI_XFBMODE_DF,
-	                                              0, // field_rendering
-	                                              0, // aa
-	                                              { 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6 },
-	                                              { 7, 7, 12, 12, 12, 7, 7 } };
+                                                  608, // fbWidth
+                                                  448, // efbHeight
+                                                  448, // xfbHeight
+                                                  27,  // viXOrigin
+                                                  16,  // viYOrigin
+                                                  666, // viWidth
+                                                  448, // viHeight
+                                                  VI_XFBMODE_DF,
+                                                  0, // field_rendering
+                                                  0, // aa
+                                                  { 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6 },
+                                                  { 7, 7, 12, 12, 12, 7, 7 } };
 
 static GXRenderModeObj* sRenderModeTable[4]
     = { &localNtsc608x448IntDf, &localNtsc608x448IntDfProg, &localPal608x448IntDf, &localPal60608x448IntDf };
@@ -124,9 +124,9 @@ static void kando_panic_f(bool r3, const char* file, int line, const char* forma
 	va_list list;
 	va_start(list, format);
 
-	JUTConsole* console  = JUTException::sConsole;
-	JUTException* except = JUTException::sErrorManager;
-	OSErrorHandler func  = (OSErrorHandler)preUserCallback;
+	JUTConsole* console      = JUTException::getConsole();
+	JUTExceptionHandler func = preUserCallback;
+	JUTException* except     = JUTException::getManager();
 
 	char buffer[260];
 	vsnprintf(buffer, 255, format, list);
@@ -145,7 +145,7 @@ static void kando_panic_f(bool r3, const char* file, int line, const char* forma
 	exCallbackObject._0C           = 0;
 	exCallbackObject._10           = 0;
 
-	if (!console || (console && !(console->mOutput & 2))) {
+	if (!console || (console && !(console->isOutputConsole()))) {
 		OSReport("%s in \"%s\" on line %d\n", buffer, file, line);
 	}
 
@@ -280,16 +280,16 @@ void preUserCallback(u16, OSContext*, u32, u32)
 	u32 track;
 	// the inputs needed to open the crash log
 	u16 inputs[11] = { Controller::PRESS_A,
-		               Controller::PRESS_B,
-		               Controller::PRESS_X,
-		               Controller::PRESS_R,
-		               Controller::PRESS_L,
-		               Controller::PRESS_DPAD_LEFT,
-		               Controller::PRESS_DPAD_DOWN,
-		               Controller::PRESS_DPAD_UP,
-		               Controller::PRESS_DPAD_RIGHT,
-		               Controller::PRESS_Z,
-		               0 };
+	                   Controller::PRESS_B,
+	                   Controller::PRESS_X,
+	                   Controller::PRESS_R,
+	                   Controller::PRESS_L,
+	                   Controller::PRESS_DPAD_LEFT,
+	                   Controller::PRESS_DPAD_DOWN,
+	                   Controller::PRESS_DPAD_UP,
+	                   Controller::PRESS_DPAD_RIGHT,
+	                   Controller::PRESS_Z,
+	                   0 };
 
 	int i = 0;
 	// wait until all required inputs are in before passing, disable this if you want instant crash log
@@ -717,7 +717,7 @@ void System::loadSoundResource()
 	newheap->becomeCurrentHeap();
 
 	// something in these inlines is doing bad regalloc things. or not enough bad regalloc things. not sure.
-	PSSystem::Scene* scene = PSMGetPikSceneMgrCheck()->mScenes;
+	PSSystem::Scene* scene = PSMGetPikSceneMgrCheck()->getScene();
 #if defined(VERSION_PAL)
 	P2ASSERTLINE(1284, scene);
 #else

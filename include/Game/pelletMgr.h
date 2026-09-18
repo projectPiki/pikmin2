@@ -97,8 +97,8 @@ struct PelletMgr : public NodeObjectMgr<GenericObjectMgr> {
 
 	// vtable 1
 	virtual ~PelletMgr() { }                    // _08 (weak)
-	virtual void doAnimation();                 // _64 (weak)
-	virtual void doEntry();                     // _68 (weak)
+	virtual void doEntry();                     // _68
+	virtual void doAnimation();                 // _64
 	virtual void doSetView(int viewportNumber); // _6C (weak)
 	virtual void doViewCalc();                  // _70 (weak)
 	virtual void doSimulation(f32 rate);        // _74 (weak)
@@ -250,11 +250,11 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	{
 		return mPelletPosition;
 	}
+	virtual void onInit(CreatureInitArg* settings);           // _30
+	virtual void onKill(CreatureKillArg* settings);           // _34
 	virtual void getBoundingSphere(Sys::Sphere& boundSphere); // _10
 	virtual bool deferPikiCollision() { return true; }        // _20 (weak)
 	virtual void constructor();                               // _2C
-	virtual void onInit(CreatureInitArg* settings);           // _30 (weak)
-	virtual void onKill(CreatureKillArg* settings);           // _34
 	virtual void doAnimation();                               // _3C
 	virtual void doEntry();                                   // _40
 	virtual void doSetView(int viewportNumber);               // _44

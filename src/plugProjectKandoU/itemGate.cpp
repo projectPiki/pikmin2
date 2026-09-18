@@ -214,8 +214,8 @@ void ItemGate::doAI()
  */
 void ItemGate::onKeyEvent(const SysShape::KeyEvent& keyEvent)
 {
-	if (mCurrentState) {
-		mCurrentState->onKeyEvent(this, keyEvent);
+	if (getCurrState()) {
+		getCurrState()->onKeyEvent(this, keyEvent);
 	}
 }
 
@@ -225,8 +225,8 @@ void ItemGate::onKeyEvent(const SysShape::KeyEvent& keyEvent)
  */
 bool ItemGate::interactAttack(Game::InteractAttack& attack)
 {
-	if (mCurrentState) {
-		mCurrentState->onDamage(this, attack.mDamage);
+	if (getCurrState()) {
+		getCurrState()->onDamage(this, attack.mDamage);
 		switch (mSoundEvent.event()) {
 		case TSE_Active:
 			P2ASSERTLINE(380, mSoundObj->getCastType() == PSM::CCT_WorkItem);
@@ -372,28 +372,32 @@ void ItemGate::initPlanes()
 	normal0.x          = _270.x;
 	normal0.y          = _270.y;
 	normal0.z          = _270.z;
-	Vector3f plane0vec = pos + (_270 * 20.0f);
+	Vector3f plane0vec = pos;
+	plane0vec += _270 * 20.0f;
 	mPlanes[0].updatePlane(plane0vec, normal0);
 
 	Vec normal1;
-	normal1.x          = -f64(_270.x);
-	normal1.y          = -f64(_270.y);
-	normal1.z          = -f64(_270.z);
-	Vector3f plane1vec = pos + (Vector3f(-f64(_270.x), -f64(_270.y), -f64(_270.z)) * 20.0f);
+	normal1.x          = -_270.x;
+	normal1.y          = -_270.y;
+	normal1.z          = -_270.z;
+	Vector3f plane1vec = pos;
+	plane1vec += Vector3f(-f64(_270.x), -f64(_270.y), -f64(_270.z)) * 20.0f;
 	mPlanes[1].updatePlane(plane1vec, normal1);
 
 	Vec normal2;
 	normal2.x          = mGateDirection.x;
 	normal2.y          = mGateDirection.y;
 	normal2.z          = mGateDirection.z;
-	Vector3f plane2vec = pos + (mGateDirection * 76.5f);
+	Vector3f plane2vec = pos;
+	plane2vec += mGateDirection * 76.5f;
 	mPlanes[2].updatePlane(plane2vec, normal2);
 
 	Vec normal3;
-	normal3.x          = -f64(mGateDirection.x);
-	normal3.y          = -f64(mGateDirection.y);
-	normal3.z          = -f64(mGateDirection.z);
-	Vector3f plane3vec = pos + (Vector3f(-f64(mGateDirection.x), -f64(mGateDirection.y), -f64(mGateDirection.z)) * 76.5f);
+	normal3.x          = -mGateDirection.x;
+	normal3.y          = -mGateDirection.y;
+	normal3.z          = -mGateDirection.z;
+	Vector3f plane3vec = pos;
+	plane3vec += Vector3f(-f64(mGateDirection.x), -f64(mGateDirection.y), -f64(mGateDirection.z)) * 76.5f;
 	mPlanes[3].updatePlane(plane3vec, normal3);
 
 	/*

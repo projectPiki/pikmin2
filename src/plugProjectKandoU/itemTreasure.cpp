@@ -366,7 +366,7 @@ void Item::createTreasure()
  */
 bool Item::interactAttack(InteractAttack& act)
 {
-	State* cState = mCurrentState;
+	State* cState = getCurrState();
 	if (cState) {
 		cState->onDamage(this, act.mDamage);
 

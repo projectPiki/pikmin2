@@ -10,7 +10,10 @@ struct MonoObjectMgr : public ObjectMgr<T> {
 
 	virtual T* birth(); // _7C (weak)
 
+	// NB: these need to be between the virtual methods for weak function ordering
 	void kill(T* item);
+	void alloc(int count);
+
 	// virtual ~MonoObjectMgr() { }     // _08 (weak)
 	virtual void* getNext(void* idx); // _14 (weak)
 	virtual void* getStart();         // _18 (weak)
@@ -50,8 +53,6 @@ struct MonoObjectMgr : public ObjectMgr<T> {
 	{
 		return &mArray[(int)idx];
 	}
-
-	void alloc(int count);
 
 	inline int getMax() const { return mMax; }
 	inline void setFlag(int i, u32 flag) { mOpenIds[i] = flag; }

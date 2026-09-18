@@ -6,7 +6,7 @@
 #include "types.h"
 #include "Game/SingleGame.h"
 #include "nans.h"
-#include "PSGame/SceneInfo.h"
+#include "PSGame/PikScene.h"
 #include "PSSystem/PSGame.h"
 #include "PSM/Scene.h"
 #include "TParticle2dMgr.h"

@@ -811,8 +811,8 @@ void flickNearbyPikmin(Creature* creature, f32 searchRadius, f32 knockback, f32 
 
 	CI_LOOP(iter)
 	{
-		Piki* piki                   = *iter;
-		ConditionPikminNearby* condi = &nearbyCondition;
+		Piki* piki                 = *iter;
+		Condition<Creature>* condi = &nearbyCondition;
 		if (condi->satisfy(piki)) {
 			InteractFlick flick(creature, knockback, damage, angle);
 			piki->stimulate(flick);
@@ -2106,132 +2106,5 @@ void walkToTarget(EnemyBase* enemy, Vector3f& targetPos, f32 moveSpeed, f32 turn
 	enemy->setTargetSpeed(moveSpeed);
 }
 
-/**
- * @note Address: 0x80115798
- * @note Size: 0x80
- */
-bool EatPikminDefaultCondition::satisfy(Piki* piki)
-{
-	bool result        = false;
-	Creature* creature = mEnemy;
-	if (piki->isPikmin() && piki->mSticker != creature && !piki->isStickToMouth()) {
-		result = true;
-	}
-
-	return result;
-}
-
-/**
- * @note Address: 0x80115818
- * @note Size: 0x168
- */
-bool ConditionPikminNearby::satisfy(Creature* creature)
-{
-	if (creature->mSticker != mCreature) {
-		Vector3f creaturePos = Vector3f(creature->getPosition().x, creature->getPosition().y, creature->getPosition().z);
-		Vector3f targetPos   = Vector3f(mCreature->getPosition().x, mCreature->getPosition().y, mCreature->getPosition().z);
-
-		if (creaturePos.sqrDistance(targetPos) < mSearchDist) {
-			return true;
-		}
-	}
-	return false;
-	/*
-	stwu     r1, -0xb0(r1)
-	mflr     r0
-	stw      r0, 0xb4(r1)
-	stfd     f31, 0xa0(r1)
-	psq_st   f31, 168(r1), 0, qr0
-	stfd     f30, 0x90(r1)
-	psq_st   f30, 152(r1), 0, qr0
-	stfd     f29, 0x80(r1)
-	psq_st   f29, 136(r1), 0, qr0
-	stfd     f28, 0x70(r1)
-	psq_st   f28, 120(r1), 0, qr0
-	stfd     f27, 0x60(r1)
-	psq_st   f27, 104(r1), 0, qr0
-	stw      r31, 0x5c(r1)
-	stw      r30, 0x58(r1)
-	mr       r30, r3
-	mr       r31, r4
-	lwz      r3, 0xf4(r4)
-	lwz      r0, 4(r30)
-	cmplw    r3, r0
-	beq      lbl_8011593C
-	lwz      r12, 0(r4)
-	addi     r3, r1, 8
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r31
-	addi     r3, r1, 0x14
-	lwz      r12, 0(r31)
-	lfs      f27, 0x10(r1)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r31
-	addi     r3, r1, 0x20
-	lwz      r12, 0(r31)
-	lfs      f28, 0x18(r1)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 4(r30)
-	addi     r3, r1, 0x2c
-	lfs      f29, 0x20(r1)
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 4(r30)
-	addi     r3, r1, 0x38
-	lfs      f30, 0x34(r1)
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 4(r30)
-	addi     r3, r1, 0x44
-	lfs      f31, 0x3c(r1)
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	fsubs    f1, f31, f28
-	lfs      f3, 0x44(r1)
-	fsubs    f2, f30, f27
-	lfs      f0, 8(r30)
-	fsubs    f3, f3, f29
-	fmuls    f1, f1, f1
-	fmadds   f1, f3, f3, f1
-	fmadds   f1, f2, f2, f1
-	fcmpo    cr0, f1, f0
-	bge      lbl_8011593C
-	li       r3, 1
-	b        lbl_80115940
-
-lbl_8011593C:
-	li       r3, 0
-
-lbl_80115940:
-	psq_l    f31, 168(r1), 0, qr0
-	lfd      f31, 0xa0(r1)
-	psq_l    f30, 152(r1), 0, qr0
-	lfd      f30, 0x90(r1)
-	psq_l    f29, 136(r1), 0, qr0
-	lfd      f29, 0x80(r1)
-	psq_l    f28, 120(r1), 0, qr0
-	lfd      f28, 0x70(r1)
-	psq_l    f27, 104(r1), 0, qr0
-	lfd      f27, 0x60(r1)
-	lwz      r31, 0x5c(r1)
-	lwz      r0, 0xb4(r1)
-	lwz      r30, 0x58(r1)
-	mtlr     r0
-	addi     r1, r1, 0xb0
-	blr
-	*/
-}
 } // namespace EnemyFunc
 } // namespace Game

@@ -630,7 +630,7 @@ void Item::doAI()
  */
 bool Item::interactAttack(InteractAttack& attack)
 {
-	mCurrentState->onDamage(this, attack.mDamage);
+	getCurrState()->onDamage(this, attack.mDamage);
 	return true;
 }
 
@@ -646,7 +646,7 @@ bool Item::interactAttack(InteractAttack& attack)
  */
 bool Item::interactFarmKarero(InteractFarmKarero& karero)
 {
-	mCurrentState->eventKarero(this);
+	getCurrState()->eventKarero(this);
 	return true;
 }
 
@@ -662,7 +662,7 @@ bool Item::interactFarmKarero(InteractFarmKarero& karero)
  */
 bool Item::interactFarmHaero(InteractFarmHaero& haero)
 {
-	mCurrentState->eventHaero(this);
+	getCurrState()->eventHaero(this);
 	return true;
 }
 
@@ -1881,7 +1881,7 @@ void Mgr::onLoadResources()
 {
 	loadArchive("arc.szs");
 	loadBmd("model.bmd", 0, J3DMODEL_Unk30 | J3DMODEL_CreateNewDL);
-	mAnmColor = static_cast<J3DAnmColor*>(J3DAnmLoaderDataBase ::load(JKRFileLoader::getGlbResource("model.bpk", nullptr)));
+	mAnmColor = static_cast<J3DAnmColor*>(J3DAnmLoaderDataBase::load(JKRFileLoader::getGlbResource("model.bpk", nullptr)));
 
 	JKRArchive* textArc = openTextArc("texts.szs");
 	P2ASSERTLINE(1329, textArc);

@@ -1,14 +1,13 @@
 #ifndef _PSM_SCENE_H
 #define _PSM_SCENE_H
 
-#include "PSGame/SceneInfo.h"
 #include "PSSystem/PSSystemIF.h"
 #include "types.h"
 #include "PSGame/PikScene.h"
 #include "PSGame/CameraMgr.h"
 #include "PSM/ObjBase.h"
 #include "PSM/EnemyBoss.h"
-#include "PSM/BossBgmFader.h"
+#include "PSM/DirectorMgr.h"
 #include "PSM/PikiHumming.h"
 #include "PSM/Se.h"
 #include "PSM/WorldMapRocket.h"
@@ -18,6 +17,10 @@
 namespace PSM {
 struct Scene_Game;
 struct ObjMgr;
+
+namespace BossBgmFader {
+struct Mgr;
+} // namespace BossBgmFader
 
 /**
  * @size{0x28}
@@ -189,8 +192,8 @@ struct Scene_Game : public Scene_Objects {
  */
 struct Scene_Ground : public Scene_Game {
 
-	static int cEvenning_fadeOuTime;
-	static int cEvenning_fadeInTime;
+	static const int cEvenning_fadeOuTime;
+	static const int cEvenning_fadeInTime;
 
 	enum Time { GroundTime_On, GroundTime_Off };
 

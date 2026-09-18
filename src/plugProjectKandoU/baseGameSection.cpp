@@ -26,6 +26,7 @@
 #include "Sys/DrawBuffers.h"
 #include "TParticle2dMgr.h"
 #include "PSGame/Global.h"
+#include "PSM/BossBgmFader.h"
 #include "efx/OnyonSpot.h"
 #include "Dolphin/rand.h"
 #include "LifeGaugeMgr.h"
@@ -1262,12 +1263,12 @@ void BaseGameSection::setDefaultPSSceneInfo(PSGame::SceneInfo& sceneInfo)
 	Vector3f min = box.mMin;
 	Vector3f max = box.mMax;
 
-	sceneInfo.mBounds.mMin.x = min.x;
-	sceneInfo.mBounds.mMin.y = min.y;
-	sceneInfo.mBounds.mMin.z = min.z;
-	sceneInfo.mBounds.mMax.x = max.x;
-	sceneInfo.mBounds.mMax.y = max.y;
-	sceneInfo.mBounds.mMax.z = max.z;
+	sceneInfo.mBounds.i.x = min.x;
+	sceneInfo.mBounds.i.y = min.y;
+	sceneInfo.mBounds.i.z = min.z;
+	sceneInfo.mBounds.f.x = max.x;
+	sceneInfo.mBounds.f.y = max.y;
+	sceneInfo.mBounds.f.z = max.z;
 }
 
 /**

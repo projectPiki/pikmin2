@@ -27,13 +27,13 @@
 // Audio
 #include "PS.h"
 #include "PSM/CreatureAnime.h"
-#include "PSM/BossBgmFader.h"
 #include "PSM/BgmTrackMap.h"
+#include "PSM/ObjMgr.h"
 #include "PSM/CreaturePrm.h"
+#include "PSM/ObjCalc.h"
+#include "PSM/BossBgmFader.h"
 #include "PSM/EnemyBase.h"
 #include "PSM/EnemyBoss.h"
-#include "PSM/ObjCalc.h"
-#include "PSM/ObjMgr.h"
 #include "PSSystem/PSCommon.h"
 #include "PSSystem/PSSystemIF.h"
 #include "PSGame/Global.h"
@@ -44,18 +44,6 @@
 
 // Archives
 JKRArchive* Game::gParmArc;
-PSSystem::ArcMgr<PSGame::BASARC>* PSSystem::ArcMgr<PSGame::BASARC>::sInstance;
-
-// SingletonBase instances
-PSM::BossBgmFader::Mgr* PSSystem::SingletonBase<PSM::BossBgmFader::Mgr>::sInstance;
-PSM::ObjCalcBase* PSSystem::SingletonBase<PSM::ObjCalcBase>::sInstance;
-PSM::CreaturePrm* PSSystem::SingletonBase<PSM::CreaturePrm>::sInstance;
-PSM::ObjMgr* PSSystem::SingletonBase<PSM::ObjMgr>::sInstance;
-PSM::BgmTrackMapFile* PSSystem::SingletonBase<PSM::BgmTrackMapFile>::sInstance;
-PSGame::SoundTable::CategoryMgr* PSSystem::SingletonBase<PSGame::SoundTable::CategoryMgr>::sInstance;
-PSGame::SeMgr* PSSystem::SingletonBase<PSGame::SeMgr>::sInstance;
-PSSystem::SeqDataList* PSSystem::SingletonBase<PSSystem::SeqDataList>::sInstance;
-PSSystem::StreamDataList* PSSystem::SingletonBase<PSSystem::StreamDataList>::sInstance;
 
 namespace Game {
 

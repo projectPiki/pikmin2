@@ -31,7 +31,6 @@ struct TSimple_ArgDirScale : public TSimple1 {
 	inline TSimple_ArgDirScale(u16 effectID)
 	    : TSimple1(effectID)
 	{
-		mGroup    = 0;
 		mResMgrId = 1;
 	}
 

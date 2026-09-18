@@ -2,6 +2,7 @@
 #define _JSYSTEM_JAI_JAISE_H
 
 #include "JSystem/JAudio/JAI/JAISound.h"
+#include "JSystem/JAudio/JAI/JAISequence.h"
 #include "JSystem/JAudio/JAI/JAInter.h"
 #include "JSystem/JAudio/JAI/JAInter/SeMgr.h"
 #include "types.h"
@@ -9,8 +10,6 @@
 struct JAISe : public JAISound {
 	JAISe();
 
-	virtual void setPortData(u8, u16);                                                                        // _08 (weak)
-	virtual u16 getPortData(u8);                                                                              // _0C (weak)
 	virtual void stop(u32 p1) { JAInter::SeMgr::releaseSeBuffer(this, p1); }                                  // _14 (weak)
 	virtual void setVolume(f32 value, u32 moveTime, u8 type) { setSeInterVolume(type, value, moveTime, 0); }  // _1C (weak)
 	virtual f32 getVolume(u8 type) { return mSeParam.mVolumes[type].mCurrentValue; }                          // _20 (weak)
@@ -46,15 +45,54 @@ struct JAISe : public JAISound {
 		mSeParam.mDolbys[type].set(dolby, moveTime);
 	}
 	virtual u8 getDolbyU7(u8 type) { return mSeParam.mDolbys[type].mCurrentValue * 127.0f; } // _68 (weak)
-	virtual u32 getFadeCounter();                                                            // _A4
-	virtual void setSeDistanceParameters();                                                  // _D4
-	virtual void setSeDistanceVolume(u8);                                                    // _D8
-	virtual void setSeDistancePan(u8);                                                       // _DC
-	virtual void setSeDistancePitch(u8);                                                     // _E0
-	virtual void setSeDistanceFxmix(u8);                                                     // _E4
-	virtual void setSeDistanceFir(u8);                                                       // _E8
-	virtual void setSeDistanceDolby(u8);                                                     // _EC
-	virtual void setSePositionDopplar();                                                     // _F0
+	virtual void setPortData(u8 p1, u16 p2)                                                  // _08 (weak)
+	{
+		if (mState == SOUNDSTATE_Stored) {
+			mSeParam._00[p1] = p2;
+			mSeParam._20 |= (1 << p1);
+			return;
+		}
+
+		JAISequence* seq             = JAInter::SeMgr::seHandle;
+		u8 trackNo                   = getTrackNumber();
+		JAInter::SeqUpdateData* data = seq->mSeqParameter.mUpdateData;
+		if (!data) {
+			return;
+		}
+		if (seq->mState >= SOUNDSTATE_Playing) {
+			seq->mSeqParameter.getTrack()->writePortApp(seq->getTrackPortRoute(trackNo, p1), p2);
+		} else {
+			data->mActiveTrackFlag |= JAInter::SOUNDACTIVE_TrackPortData;
+			seq->mSeqParameter.mTrackPortDataFlag |= (1 << trackNo);
+			seq->mSeqParameter._2B4[trackNo] |= (1 << p1);
+		}
+
+		seq->mSeqParameter._274[trackNo][p1] = p2;
+	}
+	virtual u16 getPortData(u8 p1) // _0C (weak)
+	{
+		JAISequence* seq;
+		if ((mSoundID & JAISoundID_TypeMask) == JAISoundID_Type_Se) {
+			u8 v1            = _14;
+			seq              = JAInter::SeMgr::seHandle;
+			static u16 _port = -1;
+			if (seq->mState >= SOUNDSTATE_Playing) {
+				seq->mSeqParameter.getTrack()->readPortApp(seq->getTrackPortRoute(v1, p1), &_port);
+			}
+			return _port;
+		}
+
+		return 0;
+	}
+	virtual u32 getFadeCounter();           // _A4
+	virtual void setSeDistanceParameters(); // _D4
+	virtual void setSeDistanceVolume(u8);   // _D8
+	virtual void setSeDistancePan(u8);      // _DC
+	virtual void setSeDistancePitch(u8);    // _E0
+	virtual void setSeDistanceFxmix(u8);    // _E4
+	virtual void setSeDistanceFir(u8);      // _E8
+	virtual void setSeDistanceDolby(u8);    // _EC
+	virtual void setSePositionDopplar();    // _F0
 
 	u8 getSeCategoryNumber();
 	void setSeInterVolume(u8, f32, u32, u8);

@@ -13,13 +13,7 @@ struct TObjectNameEqual {
 	{
 	}
 
-	bool operator()(JStage::TObject* const& object) const
-	{
-		if (!object) {
-			return false;
-		}
-		return strcmp(object->JSGGetName(), mName) == 0;
-	}
+	bool operator()(JStage::TObject* const& object) const { return (object == nullptr) ? false : strcmp(object->JSGGetName(), mName) == 0; }
 
 	JStage::TEObject mType; // _00
 	const char* mName;      // _04
@@ -451,10 +445,12 @@ lbl_80430F14:
  */
 JStage::TObject* ObjectSystem::findObject(const char* name, JStage::TEObject type) const
 {
-	JGadget::TList_pointer<JStage::TObject*>::const_iterator first = mObjListPointer.begin();
-	JGadget::TList_pointer<JStage::TObject*>::const_iterator last  = mObjListPointer.end();
-	JGadget::TList_pointer<JStage::TObject*>::const_iterator found = std::find_if(first, last, TObjectNameEqual(type, name));
-	return found != mObjListPointer.end() ? *found : nullptr;
+	JGadget::TList_pointer<JStage::TObject*>::const_iterator found
+	    = std::find_if(mObjListPointer.begin(), mObjListPointer.end(), TObjectNameEqual(type, name));
+	if (found != mObjListPointer.end()) {
+		return *found;
+	}
+	return nullptr;
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0

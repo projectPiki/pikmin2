@@ -566,32 +566,12 @@ bool TBabaHe::create(Arg* arg)
 			mEmitters[i]->setGlobalRTMatrix(mtx.mMatrix.mtxView);
 		}
 
-		/* Problem Area */
-
-		// Drought here, I think what is going on
-		// is some sort of getPosition()
-		// function is being called, and
-		// then vec3 is copying it by doing
-		// vec.x = getPosition().x; ...; etc
-
-		// The issue is this inflates the stack too much,
-		// and I wasn't able to figure out what in the
-		// world the struct with a getPosition() could be
-
-		// the functionality though is equivalent, I believe,
-		// since all the missing stfs modify the stack
-
 		Vector3f forward;
-		mtx.getBasis(2, forward);
-		Vector3f copy = forward * -35.0f + pos;
+		forward = mtx.getColumn(2);
+		forward *= -35.0f;
+		forward = forward + pos;
 
-		JGeometry::TVec3f vec3;
-		vec3.x = copy.x;
-		vec3.y = copy.y;
-		vec3.z = copy.z;
-
-		mEmitters[1]->setGlobalTranslation(vec3);
-		/* Problem Area */
+		mEmitters[1]->setGlobalTranslation((JGeometry::TVec3f&)forward);
 
 		return true;
 	}
@@ -935,112 +915,14 @@ void TDnkmsThunderA::doExecuteEmitterOperation(JPABaseEmitter* emit)
 
 	f32 z = (*mPosition).distance(*mPartnerPosition);
 
-	// drought here again simillar issue as line 570
-	JGeometry::TVec3f v;
-	emit->getLocalScale(v);
+	Vector3f v;
+	v.x = emit->mLocalScl.x;
+	v.y = emit->mLocalScl.y;
+	v.z = emit->mLocalScl.z;
+
 	v.z = z / 120.0f;
 
-	emit->setScaleMain(v);
-	/*
-	stwu     r1, -0x70(r1)
-	mflr     r0
-	stw      r0, 0x74(r1)
-	stw      r31, 0x6c(r1)
-	mr       r31, r4
-	stw      r30, 0x68(r1)
-	mr       r30, r3
-	lwz      r0, 0x10(r3)
-	cmplwi   r0, 0
-	bne      lbl_803B4724
-	lis      r3, lbl_80495898@ha
-	lis      r5, lbl_804958B4@ha
-	addi     r3, r3, lbl_80495898@l
-	li       r4, 0x284
-	addi     r5, r5, lbl_804958B4@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B4724:
-	lwz      r0, 0x14(r30)
-	cmplwi   r0, 0
-	bne      lbl_803B474C
-	lis      r3, lbl_80495898@ha
-	lis      r5, lbl_804958B4@ha
-	addi     r3, r3, lbl_80495898@l
-	li       r4, 0x285
-	addi     r5, r5, lbl_804958B4@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B474C:
-	lwz      r6, 0x10(r30)
-	addi     r3, r1, 0x2c
-	addi     r4, r1, 0x20
-	addi     r5, r1, 0x14
-	lfs      f0, 0(r6)
-	stfs     f0, 0x20(r1)
-	lfs      f0, 4(r6)
-	stfs     f0, 0x24(r1)
-	lfs      f0, 8(r6)
-	stfs     f0, 0x28(r1)
-	lwz      r6, 0x14(r30)
-	lfs      f0, 0(r6)
-	stfs     f0, 0x14(r1)
-	lfs      f0, 4(r6)
-	stfs     f0, 0x18(r1)
-	lfs      f0, 8(r6)
-	stfs     f0, 0x1c(r1)
-	bl       "makeMtxZAxisAlongPosPos__3efxFPA4_fR10Vector3<f>R10Vector3<f>"
-	addi     r3, r1, 0x2c
-	addi     r4, r31, 0x68
-	addi     r5, r31, 0xa4
-	bl       "JPASetRMtxTVecfromMtx__FPA4_CfPA4_fPQ29JGeometry8TVec3<f>"
-	lwz      r4, 0x14(r30)
-	lwz      r3, 0x10(r30)
-	lfs      f0, 4(r4)
-	lfs      f1, 4(r3)
-	lfs      f3, 0(r3)
-	fsubs    f4, f1, f0
-	lfs      f2, 0(r4)
-	lfs      f1, 8(r3)
-	lfs      f0, 8(r4)
-	fsubs    f3, f3, f2
-	fmuls    f4, f4, f4
-	fsubs    f2, f1, f0
-	lfs      f0, lbl_8051F638@sda21(r2)
-	fmadds   f1, f3, f3, f4
-	fmuls    f2, f2, f2
-	fadds    f1, f2, f1
-	fcmpo    cr0, f1, f0
-	ble      lbl_803B47FC
-	ble      lbl_803B4800
-	frsqrte  f0, f1
-	fmuls    f1, f0, f1
-	b        lbl_803B4800
-
-lbl_803B47FC:
-	fmr      f1, f0
-
-lbl_803B4800:
-	lfs      f0, lbl_8051F648@sda21(r2)
-	lfs      f3, 0(r31)
-	fdivs    f0, f1, f0
-	lfs      f2, 4(r31)
-	lfs      f1, 8(r31)
-	stfs     f3, 8(r1)
-	stfs     f3, 0(r31)
-	stfs     f1, 0x10(r1)
-	stfs     f2, 4(r31)
-	stfs     f2, 0xc(r1)
-	stfs     f0, 0x10(r1)
-	stfs     f0, 8(r31)
-	lwz      r31, 0x6c(r1)
-	lwz      r30, 0x68(r1)
-	lwz      r0, 0x74(r1)
-	mtlr     r0
-	addi     r1, r1, 0x70
-	blr
-	*/
+	emit->setScaleMain((JGeometry::TVec3f&)v);
 }
 
 /**
@@ -1062,112 +944,14 @@ void TDnkmsThunderB::doExecuteEmitterOperation(JPABaseEmitter* emit)
 
 	f32 z = (*mPosition).distance(*mPartnerPosition);
 
-	JGeometry::TVec3f v;
-	emit->getLocalScale(v);
+	Vector3f v;
+	v.x = emit->mLocalScl.x;
+	v.y = emit->mLocalScl.y;
+	v.z = emit->mLocalScl.z;
+
 	v.y = z / 120.0f;
 
-	emit->setScaleMain(v);
-
-	/*
-	stwu     r1, -0x70(r1)
-	mflr     r0
-	stw      r0, 0x74(r1)
-	stw      r31, 0x6c(r1)
-	mr       r31, r4
-	stw      r30, 0x68(r1)
-	mr       r30, r3
-	lwz      r0, 0x10(r3)
-	cmplwi   r0, 0
-	bne      lbl_803B488C
-	lis      r3, lbl_80495898@ha
-	lis      r5, lbl_804958B4@ha
-	addi     r3, r3, lbl_80495898@l
-	li       r4, 0x29a
-	addi     r5, r5, lbl_804958B4@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B488C:
-	lwz      r0, 0x14(r30)
-	cmplwi   r0, 0
-	bne      lbl_803B48B4
-	lis      r3, lbl_80495898@ha
-	lis      r5, lbl_804958B4@ha
-	addi     r3, r3, lbl_80495898@l
-	li       r4, 0x29b
-	addi     r5, r5, lbl_804958B4@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B48B4:
-	lwz      r6, 0x10(r30)
-	addi     r3, r1, 0x2c
-	addi     r4, r1, 0x20
-	addi     r5, r1, 0x14
-	lfs      f0, 0(r6)
-	stfs     f0, 0x20(r1)
-	lfs      f0, 4(r6)
-	stfs     f0, 0x24(r1)
-	lfs      f0, 8(r6)
-	stfs     f0, 0x28(r1)
-	lwz      r6, 0x14(r30)
-	lfs      f0, 0(r6)
-	stfs     f0, 0x14(r1)
-	lfs      f0, 4(r6)
-	stfs     f0, 0x18(r1)
-	lfs      f0, 8(r6)
-	stfs     f0, 0x1c(r1)
-	bl       "makeMtxZAxisAlongPosPos__3efxFPA4_fR10Vector3<f>R10Vector3<f>"
-	addi     r3, r1, 0x2c
-	addi     r4, r31, 0x68
-	addi     r5, r31, 0xa4
-	bl       "JPASetRMtxTVecfromMtx__FPA4_CfPA4_fPQ29JGeometry8TVec3<f>"
-	lwz      r4, 0x14(r30)
-	lwz      r3, 0x10(r30)
-	lfs      f0, 4(r4)
-	lfs      f1, 4(r3)
-	lfs      f3, 0(r3)
-	fsubs    f4, f1, f0
-	lfs      f2, 0(r4)
-	lfs      f1, 8(r3)
-	lfs      f0, 8(r4)
-	fsubs    f3, f3, f2
-	fmuls    f4, f4, f4
-	fsubs    f2, f1, f0
-	lfs      f0, lbl_8051F638@sda21(r2)
-	fmadds   f1, f3, f3, f4
-	fmuls    f2, f2, f2
-	fadds    f1, f2, f1
-	fcmpo    cr0, f1, f0
-	ble      lbl_803B4964
-	ble      lbl_803B4968
-	frsqrte  f0, f1
-	fmuls    f1, f0, f1
-	b        lbl_803B4968
-
-lbl_803B4964:
-	fmr      f1, f0
-
-lbl_803B4968:
-	lfs      f0, lbl_8051F648@sda21(r2)
-	lfs      f3, 0(r31)
-	fdivs    f0, f1, f0
-	lfs      f2, 4(r31)
-	lfs      f1, 8(r31)
-	stfs     f2, 0xc(r1)
-	stfs     f3, 0(r31)
-	stfs     f3, 8(r1)
-	stfs     f0, 4(r31)
-	stfs     f1, 0x10(r1)
-	stfs     f0, 0xc(r1)
-	stfs     f1, 8(r31)
-	lwz      r31, 0x6c(r1)
-	lwz      r30, 0x68(r1)
-	lwz      r0, 0x74(r1)
-	mtlr     r0
-	addi     r1, r1, 0x70
-	blr
-	*/
+	emit->setScaleMain((JGeometry::TVec3f&)v);
 }
 
 /**
@@ -1246,7 +1030,7 @@ bool TDenkiHiba::create(Arg* arg)
 		Mtx mtx;
 		makeMtxZAxisAlongPosPos(mtx, pos1, pos2);
 		for (int i = 0; i < 3; i++) {
-			JPABaseEmitter* emit = mItems[i].mEmitter;
+			JPABaseEmitter* emit = mItems[i].getEmitter();
 			if (emit) {
 				emit->setGlobalRTMatrix(mtx);
 				if (denarg->mType == ArgDenkiHiba::TYPE_VsRed) {
@@ -1260,170 +1044,18 @@ bool TDenkiHiba::create(Arg* arg)
 		}
 		f32 dist = pos1.distance(pos2);
 		dist /= 120.0f;
-		mItems[0].mEmitter->setScaleMain(1.0f, 1.0f, dist);
-		mItems[1].mEmitter->setScaleMain(1.0f, dist, 1.0);
+		Vector3f scl0(1.0f, 1.0f, dist);
+		mItems[0].mEmitter->setScaleMain((JGeometry::TVec3f&)scl0);
+		Vector3f scl1(1.0f, dist, 1.0f);
+		mItems[1].mEmitter->setScaleMain((JGeometry::TVec3f&)scl1);
 
-		// same issue as elsewhere in this file
 		JGeometry::TVec3f scl;
-		mItems[2].mEmitter->getLocalScale(scl);
+		scl.set(mItems[2].mEmitter->mLocalScl);
 		scl.y *= dist;
 		mItems[2].mEmitter->setScaleMain(scl);
 		return true;
 	}
 	return false;
-
-	/*
-	stwu     r1, -0x80(r1)
-	mflr     r0
-	stw      r0, 0x84(r1)
-	stmw     r27, 0x6c(r1)
-	mr       r27, r4
-	lis      r4, lbl_80495898@ha
-	mr       r31, r3
-	mr       r3, r27
-	addi     r30, r4, lbl_80495898@l
-	lwz      r12, 0(r27)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	addi     r3, r30, 0xb8
-	bl       strcmp
-	cntlzw   r0, r3
-	rlwinm.  r0, r0, 0x1b, 0x18, 0x1f
-	bne      lbl_803B4C24
-	addi     r3, r30, 0
-	addi     r5, r30, 0x1c
-	li       r4, 0x2ef
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B4C24:
-	lfs      f0, 0x10(r27)
-	mr       r3, r31
-	mr       r4, r27
-	stfs     f0, 0x2c(r1)
-	lfs      f0, 0x14(r27)
-	stfs     f0, 0x30(r1)
-	lfs      f0, 0x18(r27)
-	stfs     f0, 0x34(r1)
-	lfs      f0, 0x1c(r27)
-	stfs     f0, 0x20(r1)
-	lfs      f0, 0x20(r27)
-	stfs     f0, 0x24(r1)
-	lfs      f0, 0x24(r27)
-	stfs     f0, 0x28(r1)
-	bl       "create__Q23efx28TSyncGroup3<Q23efx8TForever>FPQ23efx3Arg"
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803B4DC4
-	addi     r3, r1, 0x38
-	addi     r4, r1, 0x2c
-	addi     r5, r1, 0x20
-	bl       "makeMtxZAxisAlongPosPos__3efxFPA4_fR10Vector3<f>R10Vector3<f>"
-	li       r28, 0
-	mr       r29, r31
-
-lbl_803B4C80:
-	lwz      r30, 0xc(r29)
-	cmplwi   r30, 0
-	beq      lbl_803B4CF4
-	addi     r3, r1, 0x38
-	addi     r4, r30, 0x68
-	addi     r5, r30, 0xa4
-	bl       "JPASetRMtxTVecfromMtx__FPA4_CfPA4_fPQ29JGeometry8TVec3<f>"
-	lwz      r0, 0x28(r27)
-	cmpwi    r0, 1
-	bne      lbl_803B4CCC
-	li       r3, 0xff
-	li       r0, 0
-	stb      r3, 0xb8(r30)
-	stb      r0, 0xb9(r30)
-	stb      r0, 0xba(r30)
-	stb      r3, 0xbc(r30)
-	stb      r0, 0xbd(r30)
-	stb      r0, 0xbe(r30)
-	b        lbl_803B4CF4
-
-lbl_803B4CCC:
-	cmpwi    r0, 2
-	bne      lbl_803B4CF4
-	li       r3, 0
-	li       r0, 0xff
-	stb      r3, 0xb8(r30)
-	stb      r3, 0xb9(r30)
-	stb      r0, 0xba(r30)
-	stb      r3, 0xbc(r30)
-	stb      r3, 0xbd(r30)
-	stb      r0, 0xbe(r30)
-
-lbl_803B4CF4:
-	addi     r28, r28, 1
-	addi     r29, r29, 0x10
-	cmpwi    r28, 3
-	blt      lbl_803B4C80
-	lfs      f1, 0x30(r1)
-	lfs      f0, 0x24(r1)
-	lfs      f3, 0x2c(r1)
-	fsubs    f4, f1, f0
-	lfs      f2, 0x20(r1)
-	lfs      f1, 0x34(r1)
-	lfs      f0, 0x28(r1)
-	fsubs    f3, f3, f2
-	fmuls    f4, f4, f4
-	fsubs    f2, f1, f0
-	lfs      f0, lbl_8051F638@sda21(r2)
-	fmadds   f1, f3, f3, f4
-	fmuls    f2, f2, f2
-	fadds    f2, f2, f1
-	fcmpo    cr0, f2, f0
-	ble      lbl_803B4D54
-	ble      lbl_803B4D58
-	frsqrte  f0, f2
-	fmuls    f2, f0, f2
-	b        lbl_803B4D58
-
-lbl_803B4D54:
-	fmr      f2, f0
-
-lbl_803B4D58:
-	lfs      f0, lbl_8051F648@sda21(r2)
-	li       r3, 1
-	lfs      f1, lbl_8051F64C@sda21(r2)
-	fdivs    f4, f2, f0
-	lwz      r4, 0xc(r31)
-	stfs     f1, 0x14(r1)
-	stfs     f1, 0(r4)
-	stfs     f1, 4(r4)
-	stfs     f1, 0x18(r1)
-	stfs     f4, 8(r4)
-	lwz      r4, 0x1c(r31)
-	stfs     f4, 0x1c(r1)
-	stfs     f1, 0(r4)
-	stfs     f4, 4(r4)
-	stfs     f1, 8(r4)
-	lwz      r4, 0x2c(r31)
-	stfs     f1, 8(r1)
-	lfs      f2, 4(r4)
-	lfs      f3, 8(r4)
-	lfs      f0, 0(r4)
-	fmuls    f2, f2, f4
-	stfs     f4, 0xc(r1)
-	stfs     f0, 0(r4)
-	stfs     f2, 4(r4)
-	stfs     f1, 0x10(r1)
-	stfs     f3, 8(r4)
-	b        lbl_803B4DC8
-
-lbl_803B4DC4:
-	li       r3, 0
-
-lbl_803B4DC8:
-	lmw      r27, 0x6c(r1)
-	lwz      r0, 0x84(r1)
-	mtlr     r0
-	addi     r1, r1, 0x80
-	blr
-	*/
 }
 
 /**

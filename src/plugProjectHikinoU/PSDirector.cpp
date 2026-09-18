@@ -1,4 +1,4 @@
-#include "PSM/Director.h"
+#include "PSSystem/PSDirector.h"
 
 namespace PSSystem {
 

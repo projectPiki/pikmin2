@@ -14,7 +14,7 @@
 #include "PSSystem/PSGame.h"
 #include "PSSystem/PSScene.h"
 #include "PSM/Scene.h"
-#include "PSSystem/Seq.h"
+#include "PSSystem/PSSeq.h"
 #include "Game/MoviePlayer.h"
 #include "JSystem/J3D/J3DTexMtx.h"
 #include "Game/EnemyAnimKeyEvent.h"

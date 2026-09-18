@@ -45,9 +45,9 @@ TotalResultData::TotalResultData(const int* p1, const int* p2, Game::Highscore**
 	JKRArchive* arc = nullptr;
 	char* bloNames[GAME_HIGHSCORE_COUNT]
 	    = { "result_final_image00.blo", "result_final_image01.blo", "result_final_image02.blo", "result_final_image03.blo",
-		    "result_final_image04.blo", "result_final_image05.blo", "result_final_image06.blo", "result_final_image07.blo",
-		    "result_final_image08.blo", "result_final_image09.blo", "result_final_image10.blo", "result_final_image11.blo",
-		    "result_final_image12.blo", "result_final_image13.blo", "result_final_image14.blo", "result_final_image15.blo" };
+	        "result_final_image04.blo", "result_final_image05.blo", "result_final_image06.blo", "result_final_image07.blo",
+	        "result_final_image08.blo", "result_final_image09.blo", "result_final_image10.blo", "result_final_image11.blo",
+	        "result_final_image12.blo", "result_final_image13.blo", "result_final_image14.blo", "result_final_image15.blo" };
 
 	int scoreIDs[GAME_HIGHSCORE_COUNT] = { 0, 8, 1, 2, 3, 4, 5, 6, 7, 14, 10, 11, 9, 13, 12, 15 };
 
@@ -114,9 +114,11 @@ ObjFinalResult::ObjFinalResult()
 	mAnmCol1 = mAnmCol2 = mAnmCol3 = nullptr;
 	mAnmSRT                        = nullptr;
 	mAnmTev                        = nullptr;
-	for (int i = 7; i >= 0; i--) {
-		mAnimTimers[i] = 0.0f;
-	}
+	mAnimTimers[0] = mAnimTimers[1] = mAnimTimers[2] = mAnimTimers[3] = mAnimTimers[4] = mAnimTimers[5] = mAnimTimers[6] = mAnimTimers[7]
+	    = 0.0f;
+	// for (int i = 7; i >= 0; i--) {
+	// 	mAnimTimers[i] = 0.0f;
+	// }
 	mStickAnimMgr    = nullptr;
 	mFadePaneAButton = nullptr;
 	mFadePaneYameL   = nullptr;
@@ -334,7 +336,8 @@ void ObjFinalResult::doCreate(JKRArchive* arc)
 	mFadePaneAButton->fadeout();
 
 	u64 tags1[8] = { 'Ptokyop1', 'P1st0_1', 'P2nd0_1', 'P3rd0_1', 'Ptomadp1', 'P1st1_1', 'P2nd1_1', 'P3rd1_1' };
-	u64 tags3[8] = { 'Ptomad11', 'P1stt3', 'P2ndt3', 'P3rdt3', 'Ptomadp9', 'P1stt1', 'P2ndt1', 'P3rdt1' };
+	u64 tags3[4] = { 'Ptomad11', 'P1stt3', 'P2ndt3', 'P3rdt3' };
+	u64 tags4[4] = { 'Ptomadp9', 'P1stt1', 'P2ndt1', 'P3rdt1' };
 
 	for (int i = 0; i < 4; i++) {
 		mCounters1[i] = og::Screen::setCallBack_CounterRV(mScreen, tags1[i], &mCounterData1[i], 9, false, false, arc);

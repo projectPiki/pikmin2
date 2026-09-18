@@ -312,8 +312,7 @@ void Uja::update(BoidParms& parms)
 	f32 scale = 10.0f * mFlockMgr->mUjaParms->mDisplayScale(); // f29
 	f32 speed = parms.mMaxSpeed();                             // f30
 
-	f32 unk1 = 0.0f; // 0x2f4
-	f32 unk2 = 0.0f; // 0x2f0
+	Vector3f moveDir(0.0f); // 0x2f4, 0x2f0
 
 	sys->mTimers->_start("AI PIKI", true);
 	updateBuffer();
@@ -343,9 +342,9 @@ void Uja::update(BoidParms& parms)
 
 		f32 distanceThreshold = scale + parms.mDistance(); // f14
 
-		Iterator<Uja> flockList(mFlockMgr);
-
 		f32 doubleScale = 2.0f * scale; // f15
+
+		Iterator<Uja> flockList(mFlockMgr);
 
 		CI_LOOP(flockList)
 		{
@@ -372,7 +371,7 @@ void Uja::update(BoidParms& parms)
 					// We can see the other Uja, so we add it to the alignment vector to not collide with it
 					seperationVec += *i;
 
-					Vector3f newVec = mVelocity;
+					Vector3f newVec = i->mVelocity;
 					newVec.normalise();
 
 					visibleUjaCount++;
@@ -433,24 +432,26 @@ void Uja::update(BoidParms& parms)
 		closestUjaDirection = mPreviousClosestUjaDir;
 	}
 
-	Vector3f pos    = mFlockMgr->mBoundSphere.mPosition - *this;
+	Vector3f centre = mFlockMgr->mBoundSphere.mPosition;
 	Vector3f result = 0.0f;
 	f32 radius      = mFlockMgr->mBoundSphere.mRadius;
+	Vector3f pos    = centre - *this;
 	f32 diff        = pos.normalise();
 	if (diff > 0.0f) {
-		f32 angle = JMAAtan2Radian(pos.x, pos.z) * 8.0f;
-		if (radius * (cosf(angle) * 0.2f + 0.8f) < diff) {
+		f32 angle = 8.0f * JMAAtan2Radian(pos.x, pos.z);
+		if (diff > radius * (0.2f * sinf(angle) + 0.8f)) {
 			result = pos;
 		}
 	}
 
-	f32 randAngle = parms.mRandomAngle() * (randFloat() - 0.5f) + mFaceDirection;
+	f32 randRange = TORADIANS(parms.mRandomAngle());
+	f32 randAngle = randRange * (randFloat() - 0.5f) + mFaceDirection;
 	f32 randCos   = cosf(randAngle);
 	f32 randSin   = sinf(randAngle);
 
-	Iterator<Navi> naviIt(naviMgr);
-	scale               = (scale + 6.0f) + 6.0f;
 	Vector3f naviResult = Vector3f(0.0f);
+	Iterator<Navi> naviIt(naviMgr);
+	scale = 6.0f + (6.0f + scale);
 	CI_LOOP(naviIt)
 	{
 		Navi* navi = *naviIt;
@@ -458,11 +459,11 @@ void Uja::update(BoidParms& parms)
 			Vector3f posDiff = navi->getPosition() - *this;
 			f32 dist         = posDiff.normalise();
 			if (dist < scale) {
-				f32 inv      = (scale - dist) * -1.0f;
-				naviResult.x = posDiff.x * inv;
-				naviResult.y = dist;
-				naviResult.z = posDiff.z * inv;
-			} else if (dist < 40.0f) {
+				if (dist < alignmentThreshold) {
+					alignmentThreshold = dist;
+					avoidanceVector    = Vector2f(posDiff.x, posDiff.z) * (-1.0f * (scale - dist));
+				}
+			} else if (!(dist > 40.0f)) {
 				naviResult = posDiff;
 			}
 		}
@@ -478,11 +479,11 @@ void Uja::update(BoidParms& parms)
 		Vector3f posDiff = mClosePikiBuffer[0]->getPosition() - *this;
 		f32 dist         = posDiff.normalise();
 		if (dist < scale) {
-			f32 inv      = (scale - dist) * -1.0f;
-			pikiResult.x = posDiff.x * inv;
-			pikiResult.y = dist;
-			pikiResult.z = posDiff.z * inv;
-		} else if (dist < 40.0f) {
+			if (dist < alignmentThreshold) {
+				alignmentThreshold = dist;
+				avoidanceVector    = Vector2f(posDiff.x, posDiff.z) * (-1.0f * (scale - dist));
+			}
+		} else if (!(dist > 40.0f)) {
 			pikiResult = posDiff;
 			if (mState == 0 && dist < 30.0f) {
 				mState = 2;
@@ -500,13 +501,12 @@ void Uja::update(BoidParms& parms)
 		}
 	}
 
-	Vector3f totalResult = 0.0f;
 	if (mState != 2) {
 		f32 speed2   = speed * parms.mTarget();
 		Vector3f dir = directionTo_44 * speed2;
 
 		speed2           = speed * parms.mRandom();
-		Vector3f randDir = Vector3f(randCos, 0.0f, randSin) * speed2;
+		Vector3f randDir = Vector3f(randSin, 0.0f, randCos) * speed2;
 
 		speed2           = speed * parms.mNavi();
 		Vector3f naviPos = naviResult * speed2;
@@ -523,24 +523,24 @@ void Uja::update(BoidParms& parms)
 		speed2       = speed * parms.mSeparation();
 		Vector3f sep = closestUjaDirection * speed2;
 
-		speed2         = speed * parms.mAlignment();
-		Vector3f align = alignmentVec * speed2;
+		Vector3f align = alignmentVec * parms.mAlignment();
 
 		speed2        = speed * parms.mCohesion();
 		Vector3f sep2 = seperationVec * speed2;
 
-		totalResult = dir + randDir + naviPos + centerPos + pikiPos + boundPos + sep + align + sep2;
+		moveDir = dir + randDir + naviPos + centerPos + pikiPos + boundPos + sep + align + sep2;
 	}
 
-	if (totalResult.z != 0.0f) {
-		f32 angle = JMAAtan2Radian(totalResult.x, totalResult.z);
+	if (moveDir.z != 0.0f) {
+		f32 angle = JMAAtan2Radian(moveDir.x, moveDir.z);
 		mFaceDirection += (angDist(roundAng(angle), mFaceDirection) * 8.0f) * frameLength;
 		mFaceDirection = roundAng(mFaceDirection);
 	}
-	f32 faceCos = cosf(mFaceDirection);
-	f32 faceSin = sinf(mFaceDirection);
-	f32 mult    = mFlockMgr->mUjaParms->mMysteryMultiply();
-	mVelocity   = mVelocity + Vector3f(faceSin, 0.0f, faceCos) * mult;
+	f32 faceCos      = cosf(mFaceDirection);
+	f32 faceSin      = sinf(mFaceDirection);
+	f32 mult         = mFlockMgr->mUjaParms->mMysteryMultiply();
+	Vector3f faceDir = Vector3f(faceSin, 0.0f, faceCos);
+	mVelocity        = mVelocity + faceDir * faceDir.dot(moveDir) * mult;
 
 	if (mState != 2) {
 		mVelocity.y = 0.0f;
@@ -576,19 +576,17 @@ void Uja::update(BoidParms& parms)
 				_AD = randInt(30) + '\n';
 			}
 		}
-		Vector3f test    = pikiResult * frameLength * 10.0f;
-		Vector3f dist    = test + *this;
-		(Vector3f)* this = dist;
+		Vector3f test    = Vector3f(avoidanceVector.x, 0.0f, avoidanceVector.y) * frameLength * 10.0f;
+		(Vector3f)* this = *this + test;
 
 		Vector3f velocity = mVelocity * frameLength;
-		Vector3f dist2    = velocity + *this;
-		(Vector3f)* this  = dist2;
+		(Vector3f)* this  = *this + velocity;
 	}
 
 	Vector3f boundPos  = mFlockMgr->mBoundSphere.mPosition;
+	f32 radius2        = mFlockMgr->mBoundSphere.mRadius;
 	Vector3f boundDiff = boundPos - *this;
 	f32 boundDist      = boundDiff.normalise();
-	f32 radius2        = mFlockMgr->mBoundSphere.mRadius;
 	if (boundDist > 0.0f) {
 		f32 angle          = JMAAtan2Radian(boundDiff.x, boundDiff.z);
 		f32 boundaryRadius = radius2 * 2.0f;
@@ -614,7 +612,7 @@ void Uja::update(BoidParms& parms)
 		}
 	}
 
-	updateScale(alignmentThreshold);
+	updateScale(vel);
 	makeMatrix();
 
 	FORCE_DONT_INLINE;

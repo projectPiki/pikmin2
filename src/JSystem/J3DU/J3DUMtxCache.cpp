@@ -10,9 +10,9 @@ namespace {
 template <typename T>
 void init(J3DModel* model, J3DAnmTransform* transform, T* table)
 {
-	J3DModelData* data      = model->getModelData();
-	J3DMtxCalc* calc        = data->getJointNodePointer(0)->getMtxCalc();
-	J3DMtxCalcAnmBase* base = J3DNewMtxCalcAnm(data->mJointTree.mFlags & J3DMLF_MtxTypeMask, transform);
+	J3DModelData* data = model->getModelData();
+	J3DMtxCalc* calc   = data->getJointNodePointer(0)->getMtxCalc();
+	J3DMtxCalc* base   = J3DNewMtxCalcAnm(data->mJointTree.mFlags & J3DMLF_MtxTypeMask, transform);
 
 	data->getJointNodePointer(0)->mMtxCalc = base;
 

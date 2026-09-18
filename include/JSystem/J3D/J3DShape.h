@@ -84,7 +84,7 @@ struct J3DShape {
 
 	J3DMaterial* getMaterial() const { return mMaterial; }
 	u32 getIndex() const { return mId; }
-	u32 getPipeline() const { return (mFlags >> 2) & 0x07; }
+	u32 getPipeline() const { return (mFlags & 0x1C) >> 2; }
 	u32 getTexMtxLoadType() const { return mFlags & 0xF000; }
 	u32 getMtxGroupNum() const { return mMtxGroupNum; }
 	J3DShapeDraw* getShapeDraw(u32 idx) const { return mShapeDraw[idx]; }

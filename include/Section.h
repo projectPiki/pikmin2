@@ -15,7 +15,6 @@ struct ISection : public JKRDisposer {
 	virtual void run()           = 0; // _0C
 	virtual bool update()        = 0; // _10
 	virtual void draw(Graphics&) = 0; // _14
-	virtual void init()          = 0; // _18
 };
 
 struct ISectionMgr {
@@ -73,7 +72,7 @@ struct Section : public ISection {
 	u8 _36;                       // _36
 	bool mIsLoadingDVD;           // _37
 	u8 _38;                       // _38
-#if defined(VERSION_US_DEMO)     //
+#if defined(VERSION_US_DEMO)      //
 	OSTime mOsTime;               // _40 NB: this causes other structs to align-64, hence the "padding" we had
 	JUTGamePad* mDemoController1; // _48
 	JUTGamePad* mDemoController2; // _4C

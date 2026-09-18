@@ -148,7 +148,10 @@ void DynCreature::computeForces(f32 friction)
 				continue;
 			}
 
-			Vector3f sep      = particle->mPosition - mTransformedPosition;
+			Vector3f sep;
+			sep.x             = particle->mPosition.x - mTransformedPosition.x;
+			sep.y             = particle->mPosition.y - mTransformedPosition.y;
+			sep.z             = particle->mPosition.z - mTransformedPosition.z;
 			Vector3f crossVec = mRigid.mConfigs[0].mRotatedMomentum.cross(sep) + mRigid.mConfigs[0].mVelocity;
 
 			f32 dotProd  = crossVec.dot(particle->mCollisionNormal); // f13

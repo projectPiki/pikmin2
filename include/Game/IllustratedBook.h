@@ -105,7 +105,7 @@ struct Camera : public LookAtCamera {
 };
 
 struct EnemyTexMgr : public IconTexture::Mgr {
-	inline EnemyTexMgr();
+	EnemyTexMgr();
 
 	virtual ~EnemyTexMgr() { } // _08 (weak)
 

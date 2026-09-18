@@ -83,15 +83,18 @@ void Caster::makeDL()
 	mDisplayListSize = OSRoundDown32B(mTriangleCount * 12 + 34);
 	mDisplayList     = new (0x20) u8[mDisplayListSize];
 
-	int index       = 0;
-	mDisplayList[0] = 0x90;
-	mDisplayList[1] = (mTriangleCount * 3) >> 8;
-	mDisplayList[2] = mTriangleCount * 3;
+	u8* displayList    = mDisplayList;
+	u8* displayListEnd = displayList + mDisplayListSize;
 
-	u8* displayList = mDisplayList + 3;
+	u16 index      = 0;
+	displayList[0] = 0x90;
+	displayList[1] = (mTriangleCount * 3) >> 8;
+	displayList[2] = mTriangleCount * 3;
+	displayList += 3;
+
 	for (int i = 0; i < mTriangleCount; ++i) {
-		int index1      = index + 1;
-		int index2      = index + 2;
+		u16 index1      = index + 1;
+		u16 index2      = index + 2;
 		displayList[0]  = index >> 8;
 		displayList[1]  = index;
 		displayList[2]  = index >> 8;
@@ -108,7 +111,6 @@ void Caster::makeDL()
 		index += 3;
 	}
 
-	u8* displayListEnd = mDisplayList + mDisplayListSize;
 	while (displayList < displayListEnd) {
 		*displayList++ = 0;
 	}
@@ -270,22 +272,22 @@ Caster* Mgr::create(Sys::Sphere& sphere, f32 rotationAngle)
 	caster->mTexturePositions = new f32[caster->mTriangleCount * 6];
 
 	for (int triangleIndex = 0; triangleIndex < caster->mTriangleCount; triangleIndex++) {
+		f32 scaleFactor = (30.0f / sphere.mRadius) * 0.03125f;
+		Vector3f center = sphere.mPosition;
 		for (int vertexIndex = 0; vertexIndex < 3; vertexIndex++) {
-			// Calculate the texture position for each vertex
-			Vector3f currentVertex = caster->mVertices[triangleIndex * 3 + vertexIndex];
-			f32 deltaZ             = currentVertex.z - sphere.mPosition.z;
-			f32 deltaX             = currentVertex.x - sphere.mPosition.x;
-			f32 scaleFactor        = (30.0f / sphere.mRadius) * 0.03125f;
+			int index              = triangleIndex * 3 + vertexIndex;
+			Vector3f currentVertex = caster->mVertices[index];
+			f32 deltaX             = currentVertex.x - center.x;
+			f32 deltaZ             = currentVertex.z - center.z;
 
-			f32 sin1                                    = sin(rotationAngle);
-			f32 cos1                                    = cos(rotationAngle);
-			f32 cos2                                    = cos(rotationAngle);
-			f32 sin2                                    = sin(rotationAngle);
-			int textureIndex                            = (triangleIndex * 3 + vertexIndex) * 2;
+			f32 sin1 = sin(rotationAngle);
+			f32 cos1 = cos(rotationAngle);
+			f32 cos2 = cos(rotationAngle);
+			f32 sin2 = sin(rotationAngle);
 			Vector3f texturePosition(deltaZ * sin2 + deltaX * cos2, 0.0f, deltaZ * cos1 - deltaX * sin1);
 			texturePosition *= scaleFactor;
-			caster->mTexturePositions[textureIndex] = 0.5f + texturePosition.x;
-			caster->mTexturePositions[textureIndex + 1] = 0.5f + texturePosition.z;
+			caster->mTexturePositions[index * 2]     = 0.5f + texturePosition.x;
+			caster->mTexturePositions[index * 2 + 1] = 0.5f + texturePosition.z;
 		}
 	}
 

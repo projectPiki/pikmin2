@@ -2,9 +2,9 @@
 #define _PSM_ENVSE_PERSPECTIVE_AVOIDY_H
 
 #include "JSystem/JAudio/JAI/JAISound.h"
-#include "PSGame/EnvSe.h"
 #include "JSystem/JAudio/JAI/JAISe.h"
-#include "PSGame/SoundTable.h"
+#include "PSSystem/PSGame.h"
+#include "PSGame/EnvSe.h"
 
 namespace PSM {
 // using an inline makes it stop inlining in initEnvironmentSe, so here's a macro for now

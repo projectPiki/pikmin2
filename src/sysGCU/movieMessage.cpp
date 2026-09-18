@@ -709,9 +709,11 @@ bool TControl::onInit()
 
 	sys->heapStatusStart("podIcon", nullptr);
 
-	char* path = "new_screen/cmn/pod_for_message_window.szs";
+	char* path;
 	if (Game::playData->isStoryFlag(Game::STORY_DebtPaid)) {
 		path = "new_screen/cmn/gold_pod_for_message_window.szs";
+	} else {
+		path = "new_screen/cmn/pod_for_message_window.szs";
 	}
 	arc = JKRMountArchive(path, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
 	if (arc) {

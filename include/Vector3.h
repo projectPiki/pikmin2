@@ -65,6 +65,7 @@ struct Vector3 {
 	inline void sub(const Vector3& other);
 	inline void sub(Vector3& a, Vector3& b);
 	inline void setMiddle(Vector3& a, Vector3& b);
+	static inline Vector3<T> add2(const Vector3& a, const Vector3& b);
 	static inline Vector3<T> sub2(const Vector3& a, const Vector3& b);
 
 	// Direction Functions
@@ -122,7 +123,7 @@ typedef Vector3<int> Vector3i;
 
 inline Vector3f operator+(const Vector3f& a, const Vector3f& b)
 {
-	return Vector3f(a.x + b.x, a.y + b.y, a.z + b.z);
+	return Vector3f::add2(a, b);
 }
 
 // Using sub2 here fixes inline depth issues for navi_demoCheck and itemUjamushi
@@ -208,7 +209,7 @@ inline Vector3<T>::Vector3(T x, T y, T z)
 template <typename T>
 inline Vector3<T>::Vector3(JGeometry::TVec3<T> vec)
 {
-	__memcpy(this, &vec, sizeof(Vector3));
+	FAST_COPY(this, &vec, sizeof(Vector3));
 }
 
 template <typename T>
@@ -481,6 +482,12 @@ inline void Vector3<T>::setMiddle(Vector3& a, Vector3& b)
 	x = (a.x + b.x) * 0.5f;
 	y = (a.y + b.y) * 0.5f;
 	z = (a.z + b.z) * 0.5f;
+}
+
+template <typename T>
+inline Vector3<T> Vector3<T>::add2(const Vector3& a, const Vector3& b)
+{
+	return Vector3(a.x + b.x, a.y + b.y, a.z + b.z);
 }
 
 template <typename T>

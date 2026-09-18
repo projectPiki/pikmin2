@@ -24,7 +24,18 @@ struct ConditionPikminNearby : public Condition<Creature> {
 	{
 	}
 
-	virtual bool satisfy(Creature*); // 08 (weak)
+	virtual bool satisfy(Creature* creature) // 08 (weak)
+	{
+		if (creature->mSticker != mCreature) {
+			Vector3f creaturePos = Vector3f(creature->getPosition().x, creature->getPosition().y, creature->getPosition().z);
+			Vector3f targetPos   = Vector3f(mCreature->getPosition().x, mCreature->getPosition().y, mCreature->getPosition().z);
+
+			if (targetPos.sqrDistance(creaturePos) < mSearchDist) {
+				return true;
+			}
+		}
+		return false;
+	}
 
 	// _00 = VTBL
 	Creature* mCreature; // _00
@@ -37,7 +48,16 @@ struct EatPikminDefaultCondition : public Condition<Piki> {
 	{
 	}
 
-	virtual bool satisfy(Piki*); // 08 (weak)
+	virtual bool satisfy(Piki* piki) // 08 (weak)
+	{
+		bool result        = false;
+		Creature* creature = mEnemy;
+		if (piki->isPikmin() && piki->mSticker != creature && !piki->isStickToMouth()) {
+			result = true;
+		}
+
+		return result;
+	}
 
 	// _00 = VTBL
 	EnemyBase* mEnemy; // _00

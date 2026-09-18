@@ -35,7 +35,7 @@ f32 TChallengeResult::mDemoSpeedUpRate = 2.0f;
 f32 TChallengeResult::mDemoSpeedUpMax  = 3.0f;
 u8 TChallengeResult::mFlashColor[]     = { 255, 255, 0, 255 };
 
-const int cRandArray[] = { 0, 1, 2, 0, 2, 1, 1, 0, 2, 1, 2, 0, 2, 1, 0, 2, 0, 1, 0 };
+const int cRandArray[] = { 0, 1, 2, 0, 2, 1, 1, 0, 2, 1, 2, 0, 2, 1, 0, 2, 0, 1 };
 
 /**
  * @note Address: 0x80393348

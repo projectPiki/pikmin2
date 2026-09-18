@@ -2,7 +2,6 @@
 #include "P2Macros.h"
 #include "PSGame/CameraMgr.h"
 #include "PSGame/PikScene.h"
-#include "PSGame/SceneInfo.h"
 #include "PSM/BossBgmFader.h"
 #include "PSM/BossSeq.h"
 #include "PSM/ObjCalc.h"
@@ -19,7 +18,6 @@
 #include "PSSystem/PSGame.h"
 #include "PSSystem/PSScene.h"
 #include "PSSystem/Reservator.h"
-#include "PSSystem/Seq.h"
 #include "PSSystem/PSCommon.h"
 #include "PSSystem/PSMainSide_Scene.h"
 #include "Game/Navi.h"
@@ -32,9 +30,6 @@
 static const u32 padding[] = { 0, 0, 0 };
 
 namespace PSM {
-
-int Scene_Ground::cEvenning_fadeOuTime = 150;
-int Scene_Ground::cEvenning_fadeInTime = 150;
 
 /**
  * @note Address: 0x80467630
@@ -321,11 +316,9 @@ void Scene_Objects::exec()
 
 	if (Game::cameraMgr) {
 		for (u8 i = 0; i < mSceneInfoA->mCameras; i++) {
-			Camera* cam = Game::cameraMgr->mCameraObjList[i];
+			Camera* cam = Game::cameraMgr->mCameraObjList[(int)i];
 			if (cam) {
-				Vector3f soundpos   = *cam->getSoundPositionPtr();
-				const Vector3f& pos = cam->getLookAtPosition();
-				f32 dist            = PSMath::calcDistance(soundpos, pos);
+				f32 dist = PSMath::calcDistance(PSMath::toVec(cam->getLookAtPosition()), PSMath::toVec(*cam->getSoundPositionPtr()));
 				mCameraMgr->update(i, dist);
 				mCameraMgr->mIsSpecial[i] = cam->isSpecialCamera();
 			}
@@ -792,15 +785,19 @@ void Scene_Game::exec()
 
 	JSULink<EnemyBoss>* boss = mEnemyBossList.getFirst();
 	while (boss) {
-		EnemyBoss* obj = boss->getObject();
-		boss           = boss->getNext();
-		obj->dyingFrameWork();
+		JSULink<EnemyBoss>* link = boss;
+		boss                     = boss->getNext();
+		link->getObject()->dyingFrameWork();
 	}
 
 	ObjCalcBase* calc = PSSystem::SingletonBase<ObjCalcBase>::getInstance();
 	if (calc->is1PGame()) {
-		u8 mode = static_cast<ObjCalc_SingleGame*>(calc)->mPlayerNum;
-		P2ASSERTLINE(508, mode <= 1);
+		u8 mode    = static_cast<ObjCalc_SingleGame*>(calc)->mPlayerNum;
+		bool check = true;
+		if (!(mode <= 1)) {
+			check = false;
+		}
+		P2ASSERTLINE(508, check);
 		f32 vol = mCameraMgr->getBgmCamVol(mode);
 		P2ASSERTBOUNDSLINE2(510, 0.0f, vol, 1.0f);
 		FOREACH_NODE(JSULink<PSSystem::SeqBase>, mSeqMgr.getFirst(), seq)
@@ -1244,6 +1241,9 @@ bool Scene_Game::akubiOK()
 	}
 	return result;
 }
+
+const int Scene_Ground::cEvenning_fadeOuTime = 150;
+const int Scene_Ground::cEvenning_fadeInTime = 150;
 
 /**
  * @note Address: 0x80469940

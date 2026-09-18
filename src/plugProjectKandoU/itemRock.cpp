@@ -309,8 +309,8 @@ void Item::emitDamageEffect()
  */
 void Item::onKeyEvent(const SysShape::KeyEvent& event)
 {
-	if (mCurrentState) {
-		mCurrentState->onKeyEvent(this, event);
+	if (getCurrState()) {
+		getCurrState()->onKeyEvent(this, event);
 	}
 }
 
@@ -619,8 +619,8 @@ void Item::createRock(int visibleSizeCount)
  */
 bool Item::interactAttack(InteractAttack& attack)
 {
-	if (mCurrentState) {
-		mCurrentState->onDamage(this, attack.mDamage);
+	if (getCurrState()) {
+		getCurrState()->onDamage(this, attack.mDamage);
 		emitDamageEffect();
 	}
 

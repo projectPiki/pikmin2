@@ -42,7 +42,7 @@ struct OneShotDirector : public ::PSSystem::OneShotDirector {
 struct DamageDirector : public OneShotDirector {
 	DamageDirector();
 
-	virtual ~DamageDirector() { }                          // _08 (weak)
+	// virtual ~DamageDirector() { }                          // _08 (weak)
 	virtual void execInner();                              // _1C
 	virtual void directOnTrack(::PSSystem::SeqTrackBase&); // _20
 
@@ -93,7 +93,7 @@ struct PikminNumberDirector : public SwitcherDirector, public CopyActorWrapper {
 struct PikminNumberDirector_AutoBgm : public PikminNumberDirector {
 	PikminNumberDirector_AutoBgm(int trackCount, u8 mask, ::PSSystem::DirectedBgm& bgm);
 
-	virtual ~PikminNumberDirector_AutoBgm() { }             // _08 (weak)
+	// virtual ~PikminNumberDirector_AutoBgm() { }             // _08 (weak)
 	virtual void directOnTrack(::PSSystem::SeqTrackBase&);  // _20
 	virtual void directOffTrack(::PSSystem::SeqTrackBase&); // _24
 
@@ -122,8 +122,8 @@ struct TempoChangeDirectorBase : public SwitcherDirector {
 struct ActorDirector_TempoChange : public TempoChangeDirectorBase {
 	ActorDirector_TempoChange();
 
-	virtual ~ActorDirector_TempoChange() { } // _08 (weak)
-	virtual void execInner();                // _1C
+	// virtual ~ActorDirector_TempoChange() { } // _08 (weak)
+	virtual void execInner(); // _1C
 
 	// _00     = VTBL
 	// _00-_48 = SwitcherDirector
@@ -151,7 +151,7 @@ struct TrackOnDirectorBase : public SwitcherDirector {
 struct PikAttackDirector : public TrackOnDirectorBase {
 	PikAttackDirector(int trackCount);
 
-	virtual ~PikAttackDirector() { } // _08 (weak)
+	// virtual ~PikAttackDirector() { } // _08 (weak)
 
 	// _00     = VTBL
 	// _00-_54 = TrackOnDirectorBase
@@ -193,8 +193,8 @@ struct TrackOnDirector_Voting : public TrackOnDirectorBase {
 	{
 		mVoteState = 0;
 	}
-	virtual ~TrackOnDirector_Voting() { } // _08 (weak)
-	virtual void execInner();             // _1C
+	// virtual ~TrackOnDirector_Voting() { } // _08 (weak)
+	virtual void execInner(); // _1C
 
 	// _00     = VTBL
 	// _00-_54 = TrackOnDirectorBase
@@ -207,7 +207,7 @@ struct TrackOnDirector_Voting : public TrackOnDirectorBase {
 struct ExiteDirector : public TrackOnDirectorBase {
 	ExiteDirector(int trackCount);
 
-	virtual ~ExiteDirector() { } // _08 (weak)
+	// virtual ~ExiteDirector() { } // _08 (weak)
 
 	// _00     = VTBL
 	// _00-_54 = TrackOnDirectorBase
@@ -219,8 +219,8 @@ struct ExiteDirector : public TrackOnDirectorBase {
 struct ActorDirector_TrackOn : public TrackOnDirectorBase, public CopyActorWrapper {
 	ActorDirector_TrackOn(const char* name, int trackCount, s32 fadeIn, s32 fadeOut);
 
-	virtual ~ActorDirector_TrackOn() { } // _08 (weak)
-	virtual void execInner();            // _1C
+	// virtual ~ActorDirector_TrackOn() { } // _08 (weak)
+	virtual void execInner(); // _1C
 
 	// _00     = VTBL
 	// _00-_54 = TrackOnDirectorBase
@@ -236,9 +236,9 @@ struct GroundDirector_Cave : public ActorDirector_TrackOn {
 	{
 	}
 
-	virtual ~GroundDirector_Cave() { } // _08 (weak)
-	virtual void directOn() { }        // _10 (weak)
-	virtual void directOff() { }       // _14 (weak)
+	// virtual ~GroundDirector_Cave() { } // _08 (weak)
+	virtual void directOn() { }  // _10 (weak)
+	virtual void directOff() { } // _14 (weak)
 
 	// _00     = VTBL
 	// _00-_58 = ActorDirector_TrackOn
@@ -264,7 +264,7 @@ struct ActorDirector_Scaled : public TrackOnDirector_Scaled {
 struct ActorDirector_Enemy : public ActorDirector_Scaled {
 	ActorDirector_Enemy(const char*, int, s32, s32, u32);
 
-	virtual ~ActorDirector_Enemy() { }                // _08 (weak)
+	// virtual ~ActorDirector_Enemy() { }                // _08 (weak)
 	virtual void underDirection();                    // _18
 	virtual void onSetMinDistObj(Game::Creature*);    // _3C
 	virtual f32 getVolZeroDist(Game::EnemyBase*) = 0; // _40
@@ -284,7 +284,7 @@ struct ActorDirector_Battle : public ActorDirector_Enemy {
 	{
 	}
 
-	virtual ~ActorDirector_Battle() { }           // _08 (weak)
+	// virtual ~ActorDirector_Battle() { }           // _08 (weak)
 	virtual f32 getVolZeroDist(Game::EnemyBase*); // _40
 	virtual f32 getVolMaxDist(Game::EnemyBase*);  // _44
 
@@ -301,7 +301,7 @@ struct ActorDirector_Kehai : public ActorDirector_Enemy {
 	{
 	}
 
-	virtual ~ActorDirector_Kehai() { }            // _08 (weak)
+	// virtual ~ActorDirector_Kehai() { }            // _08 (weak)
 	virtual f32 getVolZeroDist(Game::EnemyBase*); // _40
 	virtual f32 getVolMaxDist(Game::EnemyBase*);  // _44
 

@@ -31,7 +31,7 @@ struct Caster : public CNode {
 	// _00      = VTABLE
 	// _04-_18  = CNode
 	Sys::Sphere mBoundingSphere; // _18
-	u32 mTriangleCount;          // _28
+	int mTriangleCount;          // _28
 	Vector3f* mVertices;         // _2C
 	u8* mDisplayList;            // _30
 	int mDisplayListSize;        // _34

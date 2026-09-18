@@ -120,7 +120,7 @@ struct JAISound : public JSULink<JAISound> {
 	virtual void onGet();                                 // _CC (weak)
 	virtual void onRelease();                             // _D0 (weak)
 
-	~JAISound();
+	~JAISound() { }
 	void initMultiMoveParameter(JAInter::MoveParaSet*, u8, u32, f32, f32, u32);
 	u32 getSwBit();
 	u32 checkSwBit(u32);

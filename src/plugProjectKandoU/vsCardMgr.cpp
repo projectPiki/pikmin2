@@ -175,7 +175,13 @@ void VsGame::CardMgr::update()
  */
 Vector3f VsGame::CardMgr::getSlotOrigin(int playerIdx)
 {
-	return (playerIdx == 0) ? Vector3f(515.0f, 115.0f, 0.0f) : Vector3f(515.0f, 315.0f, 0.0f);
+	Vector3f origin;
+	if (playerIdx == 0) {
+		origin = Vector3f(515.0f, 115.0f, 0.0f);
+	} else {
+		origin = Vector3f(515.0f, 315.0f, 0.0f);
+	}
+	return origin;
 }
 
 /**
@@ -884,7 +890,7 @@ void VsGame::CardMgr::initDraw()
 	mNormals    = new Vector3f[mPointCount];
 	f32 phi     = TAU / countA;
 	phi *= 0.5f;
-	f32 s       = sinf(phi);
+	f32 s = sinf(phi);
 	f32 x, y, z;
 
 	x = 20.0f;
@@ -936,8 +942,8 @@ void VsGame::CardMgr::drawSlot(Graphics& gfx, Vector3f& place, SlotMachine& mach
 	GXSetLineWidth(40, GX_TO_ZERO);
 	gfx.mOrthoGraph.setPort();
 	Matrixf* matrix = (Matrixf*)&gfx.mOrthoGraph.mPosMtx;
-	Matrixf modelMtx;
 	Matrixf drawMtx;
+	Matrixf modelMtx;
 	Vector3f vec = Vector3f(spinAngle + PI / CARD_ID_COUNT, 0.0f, 0.0f);
 	modelMtx.makeTR(pos, vec);
 	PSMTXConcat(*(Mtx*)matrix, *(Mtx*)&modelMtx, *(Mtx*)&drawMtx);
@@ -975,6 +981,8 @@ void VsGame::CardMgr::drawSlot(Graphics& gfx, Vector3f& place, SlotMachine& mach
 	GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX3X4, GX_TG_TEXCOORD0, 0x3c, 0, 0x7d);
 	GXSetCullMode(GX_CULL_BACK);
 
+	f32 u0 = 0.0f;
+	f32 u1 = 1.0f;
 	for (int i = 0; i < CARD_ID_COUNT; i++) {
 		mSlotTextures[i]->load(GX_TEXMAP0);
 		for (int j = 0; j < 32; j++) {
@@ -986,19 +994,19 @@ void VsGame::CardMgr::drawSlot(Graphics& gfx, Vector3f& place, SlotMachine& mach
 
 			vert(index % mPointCount);
 			norm(index % mPointCount);
-			GXTexCoord2f32(0.0f, t0);
+			GXTexCoord2f32(u0, t0);
 
 			vert((index + 1) % mPointCount);
 			norm((index + 1) % mPointCount);
-			GXTexCoord2f32(1.0f, t0);
+			GXTexCoord2f32(u1, t0);
 
 			vert((index + 2) % mPointCount);
 			norm((index + 2) % mPointCount);
-			GXTexCoord2f32(0.0f, t1);
+			GXTexCoord2f32(u0, t1);
 
 			vert((index + 3) % mPointCount);
 			norm((index + 3) % mPointCount);
-			GXTexCoord2f32(1.0f, t1);
+			GXTexCoord2f32(u1, t1);
 		}
 	}
 
@@ -1022,10 +1030,9 @@ void VsGame::CardMgr::drawSlot(Graphics& gfx, Vector3f& place, SlotMachine& mach
 		Matrixf matrix2;
 		Vector3f anotherVec = Vector3f(0.0f, 0.0f, machine.mRotationZ);
 		matrix2.makeTR(newvec, anotherVec);
-		Matrixf anotherMtx;
-		PSMTXConcat(*(Mtx*)matrix, *(Mtx*)&matrix2, *(Mtx*)&anotherMtx);
-		GXLoadPosMtxImm(*(Mtx*)&anotherMtx, 0);
-		GXLoadNrmMtxImm(*(Mtx*)&anotherMtx, 0);
+		PSMTXConcat(*(Mtx*)matrix, *(Mtx*)&matrix2, *(Mtx*)&drawMtx);
+		GXLoadPosMtxImm(*(Mtx*)&drawMtx, 0);
+		GXLoadNrmMtxImm(*(Mtx*)&drawMtx, 0);
 		JUTASSERTBOUNDSLINE(1818, 0, machine._4C, CARD_ID_COUNT, "%d");
 		mSlotTextures[machine._4C]->load(GX_TEXMAP0);
 		GXSetTevOp(GX_TEVSTAGE0, GX_MODULATE);
@@ -1051,8 +1058,9 @@ void VsGame::CardMgr::drawSlot(Graphics& gfx, Vector3f& place, SlotMachine& mach
 		GXSetTevAlphaOp(GX_TEVSTAGE1, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
 
 		f32 highlightValue = (1.0f - cosf(machine._6C * TAU)) * 127.5;
-		u8 highlight = highlightValue;
-		GXSetTevColor(GX_TEVREG0, JUtility::TColor(highlight, highlight, highlight, highlight));
+		u8 highlight       = highlightValue;
+		JUtility::TColor color(highlight, highlight, highlight, highlight);
+		GXSetTevColor(GX_TEVREG0, color);
 
 		if (machine._68 > 1.0f) {
 			machine._68 -= 1.0f;
@@ -1070,26 +1078,27 @@ void VsGame::CardMgr::drawSlot(Graphics& gfx, Vector3f& place, SlotMachine& mach
 		GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 0x4);
 
 		f32 z = 0.0f;
+		f32 o = 1.0f;
 		// --------------------------
 		GXPosition3f32(neg, neg, z);
 		GXPosition2f32(z, z);
-		GXPosition3f32(1.0f, z, z);
+		GXPosition3f32(o, z, z);
 		GXPosition2f32(machine._68, z);
 
 		GXPosition3f32(pos, neg, z);
 		GXPosition2f32(z, z);
-		GXPosition3f32(1.0f, 1.0f, z);
-		GXPosition2f32(machine._68 + 1.0f, z);
+		GXPosition3f32(o, o, z);
+		GXPosition2f32(o + machine._68, z);
 
 		GXPosition3f32(neg, pos, z);
 		GXPosition2f32(z, z);
-		GXPosition3f32(1.0f, z, 1.0f);
-		GXPosition2f32(machine._68, 1.0f);
+		GXPosition3f32(o, z, o);
+		GXPosition2f32(machine._68, o);
 
 		GXPosition3f32(pos, pos, z);
 		GXPosition2f32(z, z);
-		GXPosition3f32(1.0f, 1.0f, 1.0f);
-		GXPosition2f32(machine._68 + 1.0f, 1.0f);
+		GXPosition3f32(o, o, o);
+		GXPosition2f32(o + machine._68, o);
 		// --------------------------
 
 		GXSetNumTevStages(1);
@@ -1103,6 +1112,8 @@ void VsGame::CardMgr::drawSlot(Graphics& gfx, Vector3f& place, SlotMachine& mach
 		GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_POS_XYZ, GX_F32, 0);
 
 		if (gGameConfig.mParms.mVsY.mData == 0 && machine._38 != 0 && machine._51) {
+			f32 zero = 0.0f;
+			f32 one  = 1.0f;
 			mYButtonTexture->load(GX_TEXMAP0);
 			f32 extent = machine._48 * 2.0f;
 			f32 height = 0.35f * extent;
@@ -1121,17 +1132,17 @@ void VsGame::CardMgr::drawSlot(Graphics& gfx, Vector3f& place, SlotMachine& mach
 			bottomRight += offset;
 			GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 4);
 			GXPosition3f32(topLeft.x, topLeft.y, topLeft.z);
-			GXNormal3f32(0.0f, 0.0f, 1.0f);
-			GXTexCoord2f32(0.0f, 0.0f);
+			GXNormal3f32(zero, zero, one);
+			GXTexCoord2f32(zero, zero);
 			GXPosition3f32(topRight.x, topRight.y, topRight.z);
-			GXNormal3f32(0.0f, 0.0f, 1.0f);
-			GXTexCoord2f32(1.0f, 0.0f);
+			GXNormal3f32(zero, zero, one);
+			GXTexCoord2f32(one, zero);
 			GXPosition3f32(bottomLeft.x, bottomLeft.y, bottomLeft.z);
-			GXNormal3f32(0.0f, 0.0f, 1.0f);
-			GXTexCoord2f32(0.0f, 1.0f);
+			GXNormal3f32(zero, zero, one);
+			GXTexCoord2f32(zero, one);
 			GXPosition3f32(bottomRight.x, bottomRight.y, bottomRight.z);
-			GXNormal3f32(0.0f, 0.0f, 1.0f);
-			GXTexCoord2f32(1.0f, 1.0f);
+			GXNormal3f32(zero, zero, one);
+			GXTexCoord2f32(one, one);
 		}
 	} // end "if (machine._38 != 0 && machine._51)"
 
@@ -1141,7 +1152,10 @@ void VsGame::CardMgr::drawSlot(Graphics& gfx, Vector3f& place, SlotMachine& mach
 	GXLoadNrmMtxImm(*(Mtx*)matrix, 0);
 
 	Vector3f lampPos = getSlotOrigin(machine.mPlayerIndex);
-	lampPos -= Vector3f(22.4f, 80.0f, 0.0f);
+	lampPos.x -= 22.4f;
+	lampPos.y -= 80.0f;
+	f32 zero = 0.0f;
+	f32 one  = 1.0f;
 	for (int i = 0; i < 4; i++) {
 		JUTTexture* texture = (i < machine.mCherryStock) ? mLampOnTexture : mLampOffTexture;
 		texture->load(GX_TEXMAP0);
@@ -1156,17 +1170,17 @@ void VsGame::CardMgr::drawSlot(Graphics& gfx, Vector3f& place, SlotMachine& mach
 		bottomRight += lampPos;
 		GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 4);
 		GXPosition3f32(topLeft.x, topLeft.y, topLeft.z);
-		GXNormal3f32(0.0f, 0.0f, 1.0f);
-		GXTexCoord2f32(0.0f, 0.0f);
+		GXNormal3f32(zero, zero, one);
+		GXTexCoord2f32(zero, zero);
 		GXPosition3f32(topRight.x, topRight.y, topRight.z);
-		GXNormal3f32(0.0f, 0.0f, 1.0f);
-		GXTexCoord2f32(1.0f, 0.0f);
+		GXNormal3f32(zero, zero, one);
+		GXTexCoord2f32(one, zero);
 		GXPosition3f32(bottomLeft.x, bottomLeft.y, bottomLeft.z);
-		GXNormal3f32(0.0f, 0.0f, 1.0f);
-		GXTexCoord2f32(0.0f, 1.0f);
+		GXNormal3f32(zero, zero, one);
+		GXTexCoord2f32(zero, one);
 		GXPosition3f32(bottomRight.x, bottomRight.y, bottomRight.z);
-		GXNormal3f32(0.0f, 0.0f, 1.0f);
-		GXTexCoord2f32(1.0f, 1.0f);
+		GXNormal3f32(zero, zero, one);
+		GXTexCoord2f32(one, one);
 		lampPos.x += 16.0f;
 	}
 }

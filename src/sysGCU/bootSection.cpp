@@ -29,8 +29,9 @@ static u32 unused[4] = { 1, 2, 3, 0 }; // has to be generated before nans
 
 static const u32 padding[]        = { 0, 0, 0 };
 u32 TinyPikminMgr::sTinyPikminNum = 10;
-J2DPicture* TinyPikminMgr::sPikminTex[6];
+J2DPicture* TinyPikminMgr::sPikminTex[5];
 BootSection* sBootSection;
+static TinyPikminMgr* sTinyPikminMgr;
 
 /**
  * @note Address: 0x804473BC
@@ -1340,8 +1341,8 @@ void BootSection::drawSelectTVMode(Graphics& gfx)
 
 		proc->initFlagsA();
 		proc->mTextBoxWidth = System::getRenderModeObj()->fbWidth;
-		proc->setDefaultCharColor(JUtility::TColor(promptColor));
-		proc->setDefaultGradColor(JUtility::TColor(promptColor));
+		proc->setDefaultCharColor(promptColor);
+		proc->setDefaultGradColor(promptColor);
 		proc->mXOffset = 0.0f;
 		mTVModeMessage->locate(0, 100);
 		mTVModeMessage->drawMessageID(gfx, "8305_00");
@@ -1354,8 +1355,8 @@ void BootSection::drawSelectTVMode(Graphics& gfx)
 		}
 		proc->initFlagsA();
 		proc->mTextBoxWidth = System::getRenderModeObj()->fbWidth;
-		proc->setDefaultCharColor(JUtility::TColor(resultColor));
-		proc->setDefaultGradColor(JUtility::TColor(resultColor));
+		proc->setDefaultCharColor(resultColor);
+		proc->setDefaultGradColor(resultColor);
 		proc->mXOffset = 0.0f;
 		mTVModeMessage->locate(0, 100);
 		mTVModeMessage->drawMessageID(gfx, resultID);
@@ -1363,11 +1364,11 @@ void BootSection::drawSelectTVMode(Graphics& gfx)
 		proc->initFlagsA();
 		proc->mTextBoxWidth = System::getRenderModeObj()->fbWidth / 2;
 		if (mTVModeSelection == 0) {
-			proc->setDefaultCharColor(JUtility::TColor(selectedColor));
-			proc->setDefaultGradColor(JUtility::TColor(selectedColor));
+			proc->setDefaultCharColor(selectedColor);
+			proc->setDefaultGradColor(selectedColor);
 		} else {
-			proc->setDefaultCharColor(JUtility::TColor(unselectedColor));
-			proc->setDefaultGradColor(JUtility::TColor(unselectedColor));
+			proc->setDefaultCharColor(unselectedColor);
+			proc->setDefaultGradColor(unselectedColor);
 		}
 		proc->mXOffset = 0.0f;
 		mTVModeMessage->locate(0, 350);
@@ -1376,11 +1377,11 @@ void BootSection::drawSelectTVMode(Graphics& gfx)
 		proc->initFlagsA();
 		proc->mTextBoxWidth = System::getRenderModeObj()->fbWidth / 2;
 		if (mTVModeSelection == 1) {
-			proc->setDefaultCharColor(JUtility::TColor(selectedColor));
-			proc->setDefaultGradColor(JUtility::TColor(selectedColor));
+			proc->setDefaultCharColor(selectedColor);
+			proc->setDefaultGradColor(selectedColor);
 		} else {
-			proc->setDefaultCharColor(JUtility::TColor(unselectedColor));
-			proc->setDefaultGradColor(JUtility::TColor(unselectedColor));
+			proc->setDefaultCharColor(unselectedColor);
+			proc->setDefaultGradColor(unselectedColor);
 		}
 		proc->mXOffset = System::getRenderModeObj()->fbWidth / 2;
 		mTVModeMessage->locate(0, 350);

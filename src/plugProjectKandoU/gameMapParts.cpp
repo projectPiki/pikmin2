@@ -3303,12 +3303,12 @@ lbl_801BAB44:
  */
 Sys::TriIndexList* RoomMapMgr::traceMove_new(MoveInfo& info, f32 step)
 {
-	Vector3f* velocity         = info.mVelocity;   // r25
-	Sys::Sphere* moveSphere    = info.mMoveSphere; // r26
-	Vector3f startPos          = moveSphere->mPosition;
-	moveSphere->mPosition      = moveSphere->mPosition + *info.mVelocity * step;
-	moveSphere->mPosition      = moveSphere->mPosition;
-	Sys::TriIndexList* triList = mMapCollision->mDivider->findTriLists(*moveSphere);
+	Sys::Sphere* moveSphere     = info.mMoveSphere;
+	Vector3f* velocity          = info.mVelocity;
+	Vector3f startPos           = moveSphere->mPosition;
+	moveSphere->mPosition       = moveSphere->mPosition + *velocity * step;
+	info.mMoveSphere->mPosition = moveSphere->mPosition;
+	Sys::TriIndexList* triList  = mMapCollision->mDivider->findTriLists(*moveSphere);
 
 	Sys::VertexTable* vertTable = mMapCollision->mDivider->mVertexTable; // r23
 
@@ -3324,8 +3324,10 @@ Sys::TriIndexList* RoomMapMgr::traceMove_new(MoveInfo& info, f32 step)
 			}
 
 			if (tri->intersect(*vertTable, sweep)) {
-				info.mRoomIndex = mRoomTriIndices[index];
-				Vector3f normal = sweep.mNormal;
+				info.mRoomIndex          = mRoomTriIndices[index];
+				Vector3f normal          = sweep.mNormal;
+				Vector3f point           = sweep.mIntersectionPoint;
+				sweep.mIntersectionPoint = point;
 				if (info.mIntersectCallback) {
 					info.mIntersectCallback->invoke(sweep.mIntersectionPoint, sweep.mNormal);
 				}
@@ -5125,7 +5127,7 @@ void RoomMapMgr::makeOneRoom(f32 centreX, f32 centreY, f32 direction, char* unit
 			Door* door = mui->getDoor(wp->mDoorIndex); // r22
 
 			Vector3f doorDirs[4] = { (Vector3f) { 0.0f, 0.0f, 1.0f }, (Vector3f) { 1.0f, 0.0f, 0.0f }, (Vector3f) { 0.0f, 0.0f, -1.0f },
-				                     (Vector3f) { -1.0f, 0.0f, 0.0f } }; // 0x1B4
+			                         (Vector3f) { -1.0f, 0.0f, 0.0f } }; // 0x1B4
 
 			if (!aliveRoom) {
 				P2ASSERTBOOLLINE(3480, wp->mIndex >= 0 && wp->mIndex < counter);

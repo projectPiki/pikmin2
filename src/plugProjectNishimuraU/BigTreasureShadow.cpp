@@ -363,10 +363,10 @@ void BigTreasureShadowMgr::updateAntennaShadow(JointShadowParm& parm)
 
 		Vector3f xOffset3a = xVec1;
 		xOffset3a.scale(37.5f);
-		Vector3f xOffset3b = xVec1;
-		xOffset3b.scale(40.0f);
 		Vector3f yOffset3a = yVec1;
 		yOffset3a.scale(-30.0f);
+		Vector3f xOffset3b = xVec1;
+		xOffset3b.scale(40.0f);
 		Vector3f yOffset3b = yVec1;
 		yOffset3b.scale(0.0f);
 		Vector3f pos6 = pos2;

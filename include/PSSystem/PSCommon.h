@@ -45,11 +45,8 @@ struct SingletonBase {
 	static T* sInstance;
 };
 
-// template <typename T>
-// SingletonBase<T>::~SingletonBase()
-// {
-// 	sInstance = nullptr;
-// }
+template <typename T>
+T* SingletonBase<T>::sInstance;
 
 struct IdLink : public JSULink<IdLink> {
 	IdLink(u32 id)

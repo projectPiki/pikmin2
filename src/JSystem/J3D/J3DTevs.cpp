@@ -17,10 +17,9 @@
 #define J3DTEXCOORDTABLE_DIM_3 3
 
 u8 j3dTexCoordTable[J3DTEXCOORDTABLE_DIM_0 * J3DTEXCOORDTABLE_DIM_1 * J3DTEXCOORDTABLE_DIM_2 * J3DTEXCOORDTABLE_DIM_3];
-GDCurrentDL J3DDisplayListObj::sGDLObj;
 u8 j3dTevSwapTableTable[1024];
-u8 j3dZModeTable[96];
 u8 j3dAlphaCmpTable[768];
+u8 j3dZModeTable[96];
 
 const J3DTexCoordInfo j3dDefaultTexCoordInfo[8] = {
 	// mTexGenType, mTexGenSrc, mTexGenMtx
@@ -694,18 +693,13 @@ lbl_80065720:
  */
 void makeZModeTable()
 {
-	int i       = 0;
-	int iOffset = 0;
-	u8* table   = j3dZModeTable;
-	for (; i < 2; i++, iOffset += 16) {
-		int jOffset = 0;
-		int j       = 0;
-		for (; j < 8; j++, jOffset += 2) {
+	for (int i = 0; i < 2; i++) {
+		for (int j = 0; j < 8; j++) {
 			for (int k = 0; k < 2; k++) {
-				u32 idx            = iOffset + jOffset + k;
-				table[idx * 3]     = i;
-				table[idx * 3 + 1] = j;
-				table[idx * 3 + 2] = k;
+				u32 idx                    = k + j * 2 + i * 16;
+				j3dZModeTable[idx * 3]     = i;
+				j3dZModeTable[idx * 3 + 1] = j;
+				j3dZModeTable[idx * 3 + 2] = k;
 			}
 		}
 	}

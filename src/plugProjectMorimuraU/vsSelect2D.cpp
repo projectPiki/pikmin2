@@ -10,24 +10,24 @@
 
 static const char unusedName[] = "vsSelect2D";
 namespace Morimura {
-bool TVsSelect::mCanCancel      = false;
-bool TVsSelect::mLoopDrum       = false;
-bool TVsSelect::mForceDemoStart = false;
-f32 TVsSelect::mAngRate         = 0.2f;
-f32 TVsSelect::mMoveSpeed       = 25.0f;
-f32 TVsSelect::mIndVal          = 0.05f;
-f32 TVsSelect::mIndShuki        = 0.3f;
-f32 TVsSelect::mZoomFrameMax    = 25.0f;
-f32 TVsSelect::mTestVal         = 10.0f;
-f32 TVsSelect::mAngUp           = 0.03f;
-f32 TVsSelect::mWindowScale     = 1.0f;
-f32 TVsSelect::mDemoScaleMax    = 2.2f;
-f32 TVsSelect::mDemoScale       = 1.0f;
-f32 TVsSelect::mDemoOffsetMax   = 290.0f;
-f32 TVsSelect::mFireAlphaRate   = 0.5f;
-JKRHeap* TVsSelect::mDebugHeap;
+f32 TVsSelect::mAngRate       = 0.2f;
+f32 TVsSelect::mMoveSpeed     = 25.0f;
+f32 TVsSelect::mIndVal        = 0.05f;
+f32 TVsSelect::mIndShuki      = 0.3f;
+f32 TVsSelect::mZoomFrameMax  = 25.0f;
+f32 TVsSelect::mTestVal       = 10.0f;
+f32 TVsSelect::mAngUp         = 0.03f;
+f32 TVsSelect::mWindowScale   = 1.0f;
+f32 TVsSelect::mDemoScaleMax  = 2.2f;
+f32 TVsSelect::mDemoScale     = 1.0f;
+f32 TVsSelect::mDemoOffsetMax = 290.0f;
+f32 TVsSelect::mFireAlphaRate = 0.5f;
 JKRHeap* TVsSelect::mDebugHeapParent;
-Vector2f TVsPiki::mPikiOffset = Vector2f(12.5f, -0.5f);
+JKRHeap* TVsSelect::mDebugHeap;
+Vector2f TVsPiki::mPikiOffset   = Vector2f(12.5f, -0.5f);
+bool TVsSelect::mForceDemoStart = false;
+bool TVsSelect::mLoopDrum       = false;
+bool TVsSelect::mCanCancel      = false;
 TVsSelect::StaticValues TVsSelect::mScrollParm;
 
 u32 unk[]                            = { 1, 2, 3, 0 };
@@ -781,6 +781,19 @@ TVsSelect::TVsSelect()
 	mScrollParm._0C    = 1.25f;
 	mScrollParm._10    = 2.5f;
 	mCanCancel         = false;
+}
+
+/**
+ * @note Address: 0x8039AB60
+ * @note Size: 0x10C
+ */
+TVsSelect::~TVsSelect()
+{
+	if (mDebugHeap) {
+		mDispMember->mDebugExpHeap->freeAll();
+		mDebugHeap->destroy();
+	}
+	mDebugHeap = nullptr;
 }
 
 /**

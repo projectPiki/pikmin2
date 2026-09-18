@@ -37,7 +37,7 @@ struct Otakara : public EventBase {
 
 	// vtable 1 (JSUPtrLink, _10)
 	// vtable 2 (JKRDisposer -> ObjBase -> Creature, _28)
-	virtual ~Otakara();                                            // _14 (thunks at _10 and _48)
+	// virtual ~Otakara();                                         // _14 (thunks at _10 and _48)
 	virtual CreatureCastType getCastType() { return CCT_Otakara; } // _1C (weak)
 
 	// vtable 3 (JAInter::ObjectBase -> JAInter::Object + self, _28)

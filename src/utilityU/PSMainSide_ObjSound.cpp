@@ -3,6 +3,7 @@
 #include "Game/Navi.h"
 #include "PSSystem/PSMainSide_ObjSound.h"
 #include "PSM/BossSeq.h"
+#include "PSM/BossBgmFader.h"
 #include "PSM/EnemyBoss.h"
 #include "PSM/Tsuyukusa.h"
 #include "PSM/WorkItem.h"
@@ -1742,9 +1743,7 @@ void EnemyBoss::calcDistance()
 	{
 		Game::Navi* navi = *iterator;
 		if (navi->mController1) {
-			Vector3f pos     = mGameObj->getPosition();
-			Vector3f navipos = navi->getPosition();
-			f32 cdist        = PSMath::calcDistance(pos, navipos);
+			f32 cdist = PSMath::calcDistance(PSMath::toVec(navi->getPosition()), PSMath::toVec(mGameObj->getPosition()));
 			if (cdist < dist) {
 				dist = cdist;
 			}
@@ -2126,14 +2125,6 @@ EnemyMidBoss::EnemyMidBoss(Game::EnemyBase* gameObj)
 }
 
 /**
- * @note Address: 0x804601D0
- * @note Size: 0x1A8
- */
-EnemyBoss::~EnemyBoss()
-{
-}
-
-/**
  * @note Address: 0x80460378
  * @note Size: 0x21C
  */
@@ -2211,14 +2202,6 @@ EnemyBigBoss::EnemyBigBoss(Game::EnemyBase* gameObj)
     , mCurrBgmState(1)
 {
 	sBigBoss = this;
-}
-
-/**
- * @note Address: 0x80460854
- * @note Size: 0x1F0
- */
-EnemyMidBoss::~EnemyMidBoss()
-{
 }
 
 /**
@@ -2650,14 +2633,6 @@ PelletOtakara::PelletOtakara(Game::PelletOtakara::Object* gameObj, bool is2PBatt
 	} else {
 		mOtaEvent = new OtakaraEventLink_2PBattle(gameObj);
 	}
-}
-
-/**
- * @note Address: 0x80461F84
- * @note Size: 0x148
- */
-Otakara::~Otakara()
-{
 }
 
 /**

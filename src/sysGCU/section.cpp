@@ -16,12 +16,13 @@
 
 static const f32 unusedSectionArray[] = { 0.0f, 0.0f, 0.0f };
 
+#include "nans.h"
+
 #if defined(VERSION_JP)
 static OSTime sPlayTime = OSSecondsToTicks((OSTime)780);
 #else
 static OSTime sPlayTime = OSSecondsToTicks((OSTime)300);
 #endif
-#include "nans.h"
 
 /**
  * @note Address: 0x80423770

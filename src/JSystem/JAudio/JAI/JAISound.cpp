@@ -42,24 +42,6 @@ JAISequence::JAISequence()
 }
 
 /**
- * @note Address: N/A
- * @note Size: 0x58
- */
-JAInter::SeqParameter::~SeqParameter()
-{
-	// UNUSED FUNCTION
-}
-
-/**
- * @note Address: N/A
- * @note Size: 0x64
- */
-JAISound::~JAISound()
-{
-	// UNUSED FUNCTION
-}
-
-/**
  * @note Address: 0x800B3924
  * @note Size: 0x154
  * __ct__5JAISeFv
@@ -2017,78 +1999,4 @@ BOOL JAInter::MoveParaSet::move()
 		}
 	}
 	return result;
-}
-
-/**
- * @note Address: 0x800B6864
- * @note Size: 0x130
- * setPortData__5JAISeFUcUs
- */
-void JAISe::setPortData(u8 p1, u16 p2)
-{
-	if (mState == SOUNDSTATE_Stored) {
-		mSeParam._00[p1] = p2;
-		mSeParam._20 |= (1 << p1);
-		return;
-	}
-
-	JAISequence* seq             = JAInter::SeMgr::seHandle;
-	u8 trackNo                   = getTrackNumber();
-	JAInter::SeqUpdateData* data = seq->mSeqParameter.mUpdateData;
-	if (!data) {
-		return;
-	}
-	if (seq->mState >= SOUNDSTATE_Playing) {
-		seq->mSeqParameter.getTrack()->writePortApp(seq->getTrackPortRoute(trackNo, p1), p2);
-	} else {
-		data->mActiveTrackFlag |= JAInter::SOUNDACTIVE_TrackPortData;
-		seq->mSeqParameter.mTrackPortDataFlag |= (1 << trackNo);
-		seq->mSeqParameter._2B4[trackNo] |= (1 << p1);
-	}
-
-	seq->mSeqParameter._274[trackNo][p1] = p2;
-}
-
-/**
- * @note Address: 0x800B6994
- * @note Size: 0xAC
- * getPortData__5JAISeFUc
- */
-u16 JAISe::getPortData(u8 p1)
-{
-	JAISequence* seq;
-	if ((mSoundID & JAISoundID_TypeMask) == JAISoundID_Type_Se) {
-		u8 v1            = _14;
-		seq              = JAInter::SeMgr::seHandle;
-		static u16 _port = -1;
-		if (seq->mState >= SOUNDSTATE_Playing) {
-			seq->mSeqParameter.getTrack()->readPortApp(seq->getTrackPortRoute(v1, p1), &_port);
-		}
-		return _port;
-	}
-
-	return 0;
-}
-
-/**
- * @note Address: 0x800B72A0
- * @note Size: 0x17C
- * setPortData__11JAISequenceFUcUs
- */
-void JAISequence::setPortData(u8 p1, u16 p2)
-{
-	if (mSeqParameter._10[p1].mCurrentValue == 0.0f && mState >= SOUNDSTATE_Ready) {
-		u16 portVal;
-		mSeqParameter.mTrack.readPortApp(p1 << 16, &portVal);
-		mSeqParameter._10[p1].mCurrentValue = portVal;
-	}
-
-	int setResult = mSeqParameter._10[p1].set((f32)p2, 0);
-	if (setResult == JAInter::MOVEPARA_SetTarget) {
-		mSeqParameter._280 |= (1 << p1);
-	}
-
-	if (mSeqParameter.mUpdateData && setResult != JAInter::MOVEPARA_AlreadySet) {
-		mSeqParameter.mUpdateData->mActiveTrackFlag |= JAInter::SOUNDACTIVE_Unk5;
-	}
 }

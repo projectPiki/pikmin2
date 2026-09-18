@@ -5,7 +5,6 @@
 #include "Screen/Game2DMgr.h"
 #include "Game/SingleGame.h"
 #include "kh/khWorldMap.h"
-#include "PSGame/SceneInfo.h"
 #include "PSSystem/PSGame.h"
 #include "PSGame/PikScene.h"
 #include "TParticle2dMgr.h"

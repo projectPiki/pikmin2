@@ -412,12 +412,4 @@ PSSystem::DirectorBase* DirectorMgr_2PBattle::newDirector(u8 type, PSSystem::Dir
 	return actor;
 }
 
-// I'm not thrilled with this solution but utility is a hunk of junk. This makes the dtors spawn correctly so w/e. -HP
-static void fuckingHateSymOn(DirectorMgr_2PBattle* battle2P, DirectorMgr_Battle* battle, DirectorMgr_Scene_AutoBgm* autoBGM)
-{
-	delete autoBGM;
-	delete battle;
-	delete battle2P;
-}
-
 } // namespace PSM

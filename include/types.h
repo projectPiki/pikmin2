@@ -90,4 +90,10 @@ typedef u16 wchar_t;
 #define ASM
 #endif
 
+#ifdef __MWERKS__
+#define FAST_COPY(dst, src, size) __memcpy((dst), (src), (size))
+#else
+#define FAST_COPY(dst, src, size) memcpy((dst), (src), (size))
+#endif
+
 #endif // _TYPES_H

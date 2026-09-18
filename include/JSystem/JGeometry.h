@@ -549,8 +549,8 @@ struct TBox {
 	{
 	}
 	TBox(const TBox& other)
-	    : i(other.f)
-	    , f(other.y)
+	    : i(other.i)
+	    , f(other.f)
 	{
 	}
 
@@ -662,7 +662,7 @@ struct TBox2 : TBox<TVec2<T> > {
 // clang-format on
 
 template <typename T>
-struct TBox3 {
+struct TBox3 : TBox<TVec3<T> /**/> {
 	TBox3() { }
 	TBox3(const TBox3& other) { set(other); }
 	// TBox3(const TVec3<T>& i, const TVec3<T> f) { set(i, f); }
@@ -683,29 +683,26 @@ struct TBox3 {
 	// 	return *this;
 	// }
 
-	inline bool isValid() { return mMax.isAbove(mMin); }
+	inline bool isValid() { return this->f.isAbove(this->i); }
 
 	void absolute()
 	{
 		if (!this->isValid()) {
-			TBox3<T> box(*this);
-			this->mMin.setMin(box.mMin);
-			this->mMin.setMin(box.mMax);
-			this->mMax.setMax(box.mMin);
-			this->mMax.setMax(box.mMax);
+			TBox<TVec3<T> /**/> box(*this);
+			this->i.setMin(box.i);
+			this->i.setMin(box.f);
+			this->f.setMax(box.i);
+			this->f.setMax(box.f);
 		}
 	}
 
-	void set(const TBox3& other) { set(other.mMin, other.mMax); }
-	void set(const TVec3<T>& i, const TVec3<T>& f) { this->mMin.set(i), this->mMax.set(f); }
+	void set(const TBox3& other) { set(other.i, other.f); }
+	void set(const TVec3<T>& i, const TVec3<T>& f) { this->i.set(i), this->f.set(f); }
 	void set(T x0, T y0, T z0, T x1, T y1, T z1)
 	{
-		this->mMin.set(x0, y0);
-		this->mMax.set(x1, y1);
+		this->i.set(x0, y0);
+		this->f.set(x1, y1);
 	}
-
-	TVec3<T> mMin; // _00
-	TVec3<T> mMax; // _0C
 };
 
 typedef TVec2<f32> TVec2f;

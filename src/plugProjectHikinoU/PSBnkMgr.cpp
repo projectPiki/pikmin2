@@ -23,6 +23,18 @@ BankMgr* BankMgr::createInstance()
 }
 
 /**
+ * @note Address: N/A
+ * @note Size: 0x48
+ */
+void BankMgr::deleteInstance()
+{
+	if (sBankMgr) {
+		delete sBankMgr;
+		sBankMgr = nullptr;
+	}
+}
+
+/**
  * @note Address: 0x8033D79C
  * @note Size: 0x58
  */

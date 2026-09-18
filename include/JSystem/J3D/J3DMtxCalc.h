@@ -79,9 +79,9 @@ struct J3DMtxCalcAnmBase : public J3DMtxCalc {
 
 	inline J3DMtxCalcAnmBase() { }
 
-	virtual ~J3DMtxCalcAnmBase();                                             // _08
-	virtual void setAnmTransform(J3DAnmTransform* anim) { mBaseAnim = anim; } // _0C
+	virtual ~J3DMtxCalcAnmBase() { }                                         // _08 (weak)
 	virtual J3DAnmTransform* getAnmTransform() { return mBaseAnim; }          // _10
+	virtual void setAnmTransform(J3DAnmTransform* anim) { mBaseAnim = anim; } // _0C
 
 	// _00 = VTBL
 	J3DAnmTransform* mBaseAnim; // _04
@@ -95,9 +95,9 @@ struct J3DMtxCalcAnimation : public J3DMtxCalcAnmBase {
 	{
 	}
 
-	virtual ~J3DMtxCalcAnimation() {};                                              // _08
-	virtual void setAnmTransform(J3DAnmTransform* p1) { mBaseAnim = p1; }           // _0C
+	virtual ~J3DMtxCalcAnimation() { };                                             // _08
 	virtual void init(const Vec& p1, const f32 (&p2)[3][4]) { Init::init(p1, p2); } // _24
+	virtual void setAnmTransform(J3DAnmTransform* p1) { mBaseAnim = p1; }           // _0C
 	virtual void calc()                                                             // _28
 	{
 		Adaptor::calc(this);

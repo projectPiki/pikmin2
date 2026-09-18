@@ -337,7 +337,8 @@ J2DPane* J2DScreen::searchUserInfo(u64 p1)
 void J2DScreen::drawSelf(f32 x, f32 y, Mtx* mtx)
 {
 	JUtility::TColor color(mColor);
-	u8 alpha = ((color.a * mAlpha) / 255);
+	u8 alpha = color.a;
+	alpha    = (alpha * mAlpha) / 255;
 	if (!alpha) {
 		return;
 	}
@@ -358,96 +359,6 @@ void J2DScreen::drawSelf(f32 x, f32 y, Mtx* mtx)
 	GXColor1u32(color);
 
 	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_S16, 0);
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	lis      r3, 0x80808081@ha
-	lwz      r4, 0x114(r31)
-	addi     r3, r3, 0x80808081@l
-	lbz      r0, 0xb2(r31)
-	stw      r4, 0xc(r1)
-	lbz      r5, 0xf(r1)
-	mullw    r0, r5, r0
-	mulhw    r3, r3, r0
-	add      r0, r3, r0
-	srawi    r0, r0, 7
-	srwi     r3, r0, 0x1f
-	add      r0, r0, r3
-	clrlwi.  r0, r0, 0x18
-	beq      lbl_8004066C
-	rlwimi   r4, r0, 0, 0x18, 0x1f
-	li       r3, 1
-	stw      r4, 8(r1)
-	li       r4, 4
-	li       r5, 5
-	li       r6, 0xf
-	lbz      r9, 8(r1)
-	lbz      r8, 9(r1)
-	lbz      r7, 0xa(r1)
-	lbz      r0, 0xb(r1)
-	stb      r9, 0xc(r1)
-	stb      r8, 0xd(r1)
-	stb      r7, 0xe(r1)
-	stb      r0, 0xf(r1)
-	bl       GXSetBlendMode
-	li       r3, 0
-	li       r4, 9
-	li       r5, 1
-	li       r6, 4
-	li       r7, 0
-	bl       GXSetVtxAttrFmt
-	li       r3, 0x80
-	li       r4, 0
-	li       r5, 4
-	bl       GXBegin
-	lfs      f4, lbl_80516840@sda21(r2)
-	lis      r8, 0xCC008000@ha
-	lwz      r0, 0xc(r1)
-	li       r3, 0
-	stfs     f4, 0xCC008000@l(r8)
-	li       r4, 9
-	li       r5, 1
-	li       r6, 3
-	stfs     f4, -0x8000(r8)
-	li       r7, 0
-	stfs     f4, -0x8000(r8)
-	stw      r0, -0x8000(r8)
-	lfs      f1, 0x28(r31)
-	lfs      f0, 0x20(r31)
-	fsubs    f0, f1, f0
-	stfs     f0, -0x8000(r8)
-	stfs     f4, -0x8000(r8)
-	stfs     f4, -0x8000(r8)
-	stw      r0, -0x8000(r8)
-	lfs      f1, 0x28(r31)
-	lfs      f0, 0x20(r31)
-	lfs      f3, 0x2c(r31)
-	lfs      f2, 0x24(r31)
-	fsubs    f0, f1, f0
-	fsubs    f1, f3, f2
-	stfs     f0, -0x8000(r8)
-	stfs     f1, -0x8000(r8)
-	stfs     f4, -0x8000(r8)
-	stw      r0, -0x8000(r8)
-	lfs      f1, 0x2c(r31)
-	lfs      f0, 0x24(r31)
-	fsubs    f0, f1, f0
-	stfs     f4, -0x8000(r8)
-	stfs     f0, -0x8000(r8)
-	stfs     f4, -0x8000(r8)
-	stw      r0, -0x8000(r8)
-	bl       GXSetVtxAttrFmt
-
-lbl_8004066C:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**

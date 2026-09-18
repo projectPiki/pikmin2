@@ -263,20 +263,23 @@ void Obj::setElecHibaPosition(InitialParam* param, f32 p1)
  */
 void Obj::interactDenkiAttack(Vector3f& position)
 {
+	Vector3f normSep(0.5f * (position.x + mPosition.x), 0.5f * (position.y + mPosition.y), 0.5f * (position.z + mPosition.z));
 	Vector3f origin(mPosition);
-	Vector3f normSep = (position + origin) / 2;
 
 	f32 theta           = mFaceDir;
 	Vector3f forwardVec = Vector3f(sinf(theta), 0.0f, cosf(theta));
 
-	Vector3f posDelta(position - origin);
-	Vector3f rightVec(posDelta);
+	Vector3f rightVec;
+	rightVec.x = position.x - origin.x;
+	rightVec.y = position.y - origin.y;
+	rightVec.z = position.z - origin.z;
 	rightVec.normalise();
 
-	Vector3f upVec = forwardVec.cross(rightVec);
+	Vector3f upVec;
+	upVec = forwardVec.cross(rightVec);
 	upVec.normalise();
 
-	f32 distance = posDelta.length();
+	f32 distance = position.distance(origin);
 
 	f32 attackRange  = C_GENERALPARMS.mMaxAttackRange();
 	f32 search       = C_GENERALPARMS.mSearchDistance();

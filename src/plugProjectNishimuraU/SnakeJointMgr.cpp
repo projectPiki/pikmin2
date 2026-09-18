@@ -145,26 +145,33 @@ void SnakeJointMgr::makeMatrix()
 		if (i < 5) {
 			Vector3f newPos;
 			mJointMatrices[i + 1]->getTranslation(newPos);
-			Vector3f sep = pos - newPos;
-			dists[i]     = sep.length();
+			dists[i] = pos.distance(newPos);
 		}
 
 		f32 modRatio = (cJointModRatio[i] * _20);
-		Vector3f newPos(pos.x, _2C * modRatio + pos.y, pos.z);
-		mJointMatrices[i]->setColumn(3, newPos);
+		pos.y += _2C * modRatio;
+		mJointMatrices[i]->setColumn(3, pos);
 	}
 
 	for (int i = 0; i < 5; i++) {
-		Vector3f xVec  = mJointMatrices[i + 1]->getColumn(3) - mJointMatrices[i]->getColumn(3); // f0, f1, f2
+		Vector3f pos;
+		mJointMatrices[i]->getTranslation(pos);
+		Vector3f nextPos;
+		mJointMatrices[i + 1]->getTranslation(nextPos);
+		Vector3f xVec;
+		xVec.x         = nextPos.x - pos.x;
+		xVec.y         = nextPos.y - pos.y;
+		xVec.z         = nextPos.z - pos.z;
 		Vector3f nextZ = mJointMatrices[i]->getColumn(2);
-		Vector3f yVec  = cross(nextZ, xVec);
-		Vector3f zVec  = cross(xVec, yVec);
-		f32 len        = xVec.normalise();
+		Vector3f yVec;
+		Vector3f zVec;
+		yVec    = cross(nextZ, xVec);
+		zVec    = cross(xVec, yVec);
+		f32 len = xVec.normalise();
 		yVec.normalise();
 		zVec.normalise();
 
-		f32 factor = len / dists[i];
-		xVec *= factor;
+		xVec *= len / dists[i];
 		mJointMatrices[i]->setColumn(0, xVec);
 		mJointMatrices[i]->setColumn(1, yVec);
 		mJointMatrices[i]->setColumn(2, zVec);

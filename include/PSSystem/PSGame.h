@@ -3,8 +3,9 @@
 
 #include "P2Macros.h"
 #include "PSSystem/PSCommon.h"
+#include "PSSystem/PSSystemIF.h"
 #include "PSSystem/PSScene.h"
-#include "PSSystem/Seq.h"
+#include "PSSystem/PSSeq.h"
 #include "PSGame/SeMgr.h"
 #include "PSGame/SoundTable.h"
 #include "PSGame/PikScene.h"

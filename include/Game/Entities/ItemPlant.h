@@ -220,8 +220,8 @@ struct ProcAnimator {
 struct Item : public FSMItem<Item, FSM, State> {
 	Item(int objType);
 
-	virtual void constructor();                                        // _2C
 	virtual void onInit(CreatureInitArg* settings);                    // _30
+	virtual void constructor();                                        // _2C
 	virtual void doDirectDraw(Graphics& gfx);                          // _50
 	virtual void updateTrMatrix();                                     // _78
 	virtual void onStickStart(Creature* stuck);                        // _158

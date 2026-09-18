@@ -191,10 +191,10 @@ struct TVsSelectScreen : public TScreenBase {
 
 struct TVsSelectScene : public THIOScene {
 	TVsSelectScene() { mConfirmEndWindow = nullptr; }
+	virtual const char* getResName() const { return "res_vsSelect.szs"; } // _1C (weak)
 	virtual SceneType getSceneType() { return SCENE_VS_SELECT; }          // _08 (weak)
 	virtual ScreenOwnerID getOwnerID() { return OWNER_MRMR; }             // _0C (weak)
 	virtual ScreenMemberID getMemberID() { return MEMBER_VS_SELECT; }     // _10 (weak)
-	virtual const char* getResName() const { return "res_vsSelect.szs"; } // _1C (weak)
 	virtual void doCreateObj(JKRArchive*);                                // _20
 	virtual bool doStart(Screen::StartSceneArg*);                         // _3C
 
@@ -207,14 +207,7 @@ struct TVsSelectScene : public THIOScene {
 struct TVsSelect : public TScrollList {
 	TVsSelect();
 
-	virtual ~TVsSelect()
-	{
-		if (mDebugHeap) {
-			mDispMember->mDebugExpHeap->freeAll();
-			mDebugHeap->destroy();
-		}
-		mDebugHeap = nullptr;
-	} // _08 (weak)
+	virtual ~TVsSelect();                                                                                          // _08
 	virtual void doCreate(JKRArchive*);                                                                            // _4C
 	virtual void doUpdateFadeinFinish();                                                                           // _54
 	virtual bool doUpdate();                                                                                       // _58

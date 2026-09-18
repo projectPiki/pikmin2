@@ -567,8 +567,8 @@ void J2DWindow::drawFrameTexture(JUTTexture* texture, f32 x0, f32 y0, f32 width,
  */
 void J2DWindow::drawFrameTexture(JUTTexture* texture, f32 x0, f32 y0, bool doInvertU, bool doInvertV, bool doLoad)
 {
-	drawFrameTexture(texture, x0, y0, texture->getSizeX(), texture->getSizeY(), doInvertU ? 0 : 0x8000, doInvertV ? 0 : 0x8000,
-	                 doInvertU ? 0x8000 : 0, doInvertV ? 0x8000 : 0, doLoad);
+	drawFrameTexture(texture, x0, y0, texture->getSizeX(), texture->getSizeY(), (int)doInvertU ? 0 : 0x8000,
+	                 (int)doInvertV ? 0 : 0x8000, (int)doInvertU ? 0x8000 : 0, (int)doInvertV ? 0x8000 : 0, doLoad);
 	/*
 	stwu     r1, -0x80(r1)
 	mflr     r0

@@ -50,11 +50,11 @@ struct JUTException : public JKRThread {
 
 	/** @fabricated */
 	struct ExCallbackObject {
-		OSErrorHandler mErrorHandler; // _00
-		OSError mError;               // _04
-		OSContext* mContext;          // _08
-		u32 _0C;                      // _0C
-		u32 _10;                      // _10
+		JUTExceptionHandler mErrorHandler; // _00
+		OSError mError;                    // _04
+		OSContext* mContext;               // _08
+		u32 _0C;                           // _0C
+		u32 _10;                           // _10
 	};
 
 	JUTException(JUTDirectPrint*); // unused/inlined

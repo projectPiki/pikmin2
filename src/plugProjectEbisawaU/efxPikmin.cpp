@@ -622,7 +622,7 @@ void TFueactBiriBase::doExecuteEmitterOperation(JPABaseEmitter* emit)
 	Vector3f pos(mPos->x, mPos->y, mPos->z);
 	Vector3f mtxPos = mMtx->getTranslation();
 	Vector3f angle  = pos - mtxPos;
-	f32 scale       = pos.distance(mtxPos);
+	f32 scale       = angle.length();
 	angle.normalise();
 
 	Matrixf mtx;

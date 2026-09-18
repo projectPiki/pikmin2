@@ -12,7 +12,6 @@ J3DMtxCalc* J3DJoint::mCurrentMtxCalc;
 /**
  * @note Address: 0x8006B200
  * @note Size: 0x98
- * init__25J3DMtxCalcJ3DSysInitBasicFRC3VecRA3_A4_Cf
  */
 void J3DMtxCalcJ3DSysInitBasic::init(const Vec& scale, const Mtx& mtx)
 {
@@ -25,7 +24,6 @@ void J3DMtxCalcJ3DSysInitBasic::init(const Vec& scale, const Mtx& mtx)
 /**
  * @note Address: 0x8006B298
  * @note Size: 0x98
- * init__24J3DMtxCalcJ3DSysInitMayaFRC3VecRA3_A4_Cf
  */
 void J3DMtxCalcJ3DSysInitMaya::init(const Vec& scale, const Mtx& mtx)
 {
@@ -35,19 +33,9 @@ void J3DMtxCalcJ3DSysInitMaya::init(const Vec& scale, const Mtx& mtx)
 	JMAMTXApplyScale(mtx, J3DSys::mCurrentMtx, inputScale.x, inputScale.y, inputScale.z);
 }
 
-inline s32 checkScaleOne(const Vec& vec)
-{
-	if (vec.x == 1.0f && vec.y == 1.0f && vec.z == 1.0f) {
-		return true;
-	} else {
-		return false;
-	}
-}
-
 /**
  * @note Address: 0x8006B330
  * @note Size: 0x118
- * calcTransform__28J3DMtxCalcCalcTransformBasicFRC16J3DTransformInfo
  */
 void J3DMtxCalcCalcTransformBasic::calcTransform(const J3DTransformInfo& transInfo)
 {
@@ -75,7 +63,6 @@ void J3DMtxCalcCalcTransformBasic::calcTransform(const J3DTransformInfo& transIn
 /**
  * @note Address: 0x8006B448
  * @note Size: 0x168
- * calcTransform__32J3DMtxCalcCalcTransformSoftimageFRC16J3DTransformInfo
  */
 void J3DMtxCalcCalcTransformSoftimage::calcTransform(const J3DTransformInfo& transInfo)
 {
@@ -209,7 +196,6 @@ lbl_8006B59C:
 /**
  * @note Address: 0x8006B5B0
  * @note Size: 0x178
- * calcTransform__27J3DMtxCalcCalcTransformMayaFRC16J3DTransformInfo
  */
 void J3DMtxCalcCalcTransformMaya::calcTransform(const J3DTransformInfo& transInfo)
 {
@@ -256,7 +242,6 @@ void J3DMtxCalcCalcTransformMaya::calcTransform(const J3DTransformInfo& transInf
 /**
  * @note Address: 0x8006B728
  * @note Size: 0x104
- * J3DNewMtxCalcAnm__FUlP15J3DAnmTransform
  */
 J3DMtxCalcAnmBase* J3DNewMtxCalcAnm(u32 type, J3DAnmTransform* p2)
 {
@@ -276,15 +261,6 @@ J3DMtxCalcAnmBase* J3DNewMtxCalcAnm(u32 type, J3DAnmTransform* p2)
 }
 
 /**
- * @note Address: 0x8006B82C
- * @note Size: 0x5C
- * __dt__17J3DMtxCalcAnmBaseFv
- */
-J3DMtxCalcAnmBase::~J3DMtxCalcAnmBase()
-{
-}
-
-/**
  * @note Address: 0x8006B888
  * @note Size: 0x34
  */
@@ -301,14 +277,9 @@ void J3DJoint::appendChild(J3DJoint* newChild)
 	}
 }
 
-struct copyhelper {
-	u32 x[8];
-};
-
 /**
  * @note Address: 0x8006B8BC
  * @note Size: 0xFC
- * __ct__8J3DJointFv
  */
 J3DJoint::J3DJoint()
 {
@@ -320,11 +291,10 @@ J3DJoint::J3DJoint()
 	mJointIdx         = 0;
 	mKind             = 1;
 	mScaleCompensate  = false;
-	// "This line is probably a fake match but the normal = works nothing like this." - TP
-	*(copyhelper*)&mTransformInfo = *(copyhelper*)&j3dDefaultTransformInfo;
-	mBoundingSphereRadius         = 0.0f;
-	mMtxCalc                      = nullptr;
-	mMaterial                     = nullptr;
+	FAST_COPY(&mTransformInfo, &j3dDefaultTransformInfo, sizeof(J3DTransformInfo));
+	mBoundingSphereRadius = 0.0f;
+	mMtxCalc              = nullptr;
+	mMaterial             = nullptr;
 
 	JGeometry::TVec3f init  = { 0.0f, 0.0f, 0.0f };
 	mMin                    = init;

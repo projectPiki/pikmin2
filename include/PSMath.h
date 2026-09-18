@@ -25,26 +25,30 @@ inline f32 calcSquareDistance(const A& a, const B& b)
 	positionGeometry.x = b.x;
 	positionGeometry.y = b.y;
 	positionGeometry.z = b.z;
-	Vec position = positionGeometry;
+	Vec position       = positionGeometry;
 	JGeometry::TVec3f deltaGeometry;
 	deltaGeometry.x = a.x - position.x;
 	deltaGeometry.y = a.y - position.y;
 	deltaGeometry.z = a.z - position.z;
-	Vec delta = deltaGeometry;
-	Vec squares = squareComponents(delta);
+	Vec delta       = deltaGeometry;
+	Vec squares     = squareComponents(delta);
 	return squares.z + (squares.x + squares.y);
+}
+
+inline JGeometry::TVec3f toVec(const Vector3f& position)
+{
+	JGeometry::TVec3f geometry;
+	geometry.set(position.x, position.y, position.z);
+	return geometry;
 }
 
 template <typename A, typename B>
 inline f32 calcDistance(A from, B to)
 {
-	JGeometry::TVec3f fromGeometry;
-	fromGeometry.set(from.x, from.y, from.z);
-	Vec fromPosition = fromGeometry;
-
-	JGeometry::TVec3f deltaGeometry;
-	deltaGeometry.set(to.x - fromPosition.x, to.y - fromPosition.y, to.z - fromPosition.z);
-	Vec delta    = deltaGeometry;
+	Vec delta;
+	delta.x      = from.x - to.x;
+	delta.y      = from.y - to.y;
+	delta.z      = from.z - to.z;
 	Vec squares  = squareComponents(delta);
 	f32 distance = squares.z + (squares.x + squares.y);
 	return sqrtf(distance);

@@ -6,7 +6,6 @@
 #include "Game/Data.h"
 #include "PSSystem/PSGame.h"
 #include "PSSystem/PSScene.h"
-#include "PSGame/SceneInfo.h"
 #include "PSGame/PikScene.h"
 #include "Screen/Game2DMgr.h"
 #include "Morimura/challengeResult2d.h"

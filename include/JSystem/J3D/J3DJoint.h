@@ -69,4 +69,13 @@ struct J3DJoint {
 	J3DMaterial* mMaterial;          // _58
 };
 
+inline s32 checkScaleOne(const Vec& vec)
+{
+	if (vec.x == 1.0f && vec.y == 1.0f && vec.z == 1.0f) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
 #endif

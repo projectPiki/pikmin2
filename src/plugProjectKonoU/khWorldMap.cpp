@@ -289,7 +289,7 @@ void WorldMap::loadResource()
 
 	// set up info/anim paths for rocket
 	const char* paths[2][3] = { "worldmap_icon.blo",  "worldmap_icon.bck",  "worldmap_icon.btp",
-		                        "worldmap_gicon.blo", "worldmap_gicon.bck", "worldmap_gicon.btp" };
+	                            "worldmap_gicon.blo", "worldmap_gicon.bck", "worldmap_gicon.btp" };
 	const char** usePath;
 
 	usePath = paths[0]; // normal ship
@@ -450,13 +450,13 @@ void WorldMap::loadResource()
 	mCaveFadePane->fadeout();
 
 	u64 paneTags[25] = { 'PICT_045', 'Pg_p_01',  'Pg_p_02',  'Pg_c_01', 'Pg_c_02', 'Pcave_00', 'P0_p_01',  'P0_p_02', 'P0_c_01',
-		                 'P0_c_02',  'Pcave_01', 'P1_p_01',  'P1_p_02', 'P1_c_01', 'P1_c_02',  'Pcave_02', 'P2_p_01', 'P2_p_02',
-		                 'P2_c_01',  'P2_c_02',  'Pcave_03', 'P3_p_01', 'P3_p_02', 'P3_c_01',  'P3_c_02' };
+	                     'P0_c_02',  'Pcave_01', 'P1_p_01',  'P1_p_02', 'P1_c_01', 'P1_c_02',  'Pcave_02', 'P2_p_01', 'P2_p_02',
+	                     'P2_c_01',  'P2_c_02',  'Pcave_03', 'P3_p_01', 'P3_p_02', 'P3_c_01',  'P3_c_02' };
 
 	og::Screen::CallBack_CounterRV* counter[5][2]
 	    = { mGroundTreasureCounterCollected,  mGroundTreasureCounterMax,  mCaveTreasureCounterCollected[0], mCaveTreasureCounterMax[0],
-		    mCaveTreasureCounterCollected[1], mCaveTreasureCounterMax[1], mCaveTreasureCounterCollected[2], mCaveTreasureCounterMax[2],
-		    mCaveTreasureCounterCollected[3], mCaveTreasureCounterMax[3] };
+	        mCaveTreasureCounterCollected[1], mCaveTreasureCounterMax[1], mCaveTreasureCounterCollected[2], mCaveTreasureCounterMax[2],
+	        mCaveTreasureCounterCollected[3], mCaveTreasureCounterMax[3] };
 
 	for (int i = 0; i < 5; i++) {
 		mColorAnims[i] = new khUtilColorAnmWM(mScreenInfo, paneTags[5 * i]);
@@ -467,7 +467,7 @@ void WorldMap::loadResource()
 
 		J2DPicture* paneList[4]
 		    = { (J2DPicture*)mScreenInfo->search(paneTags[5 * i + 1]), (J2DPicture*)mScreenInfo->search(paneTags[5 * i + 2]),
-			    (J2DPicture*)mScreenInfo->search(paneTags[5 * i + 3]), (J2DPicture*)mScreenInfo->search(paneTags[5 * i + 4]) };
+		        (J2DPicture*)mScreenInfo->search(paneTags[5 * i + 3]), (J2DPicture*)mScreenInfo->search(paneTags[5 * i + 4]) };
 
 		mColorAnims[i]->my_init(paneList, counter[i]);
 	}
@@ -597,7 +597,7 @@ void WorldMap::update(Game::WorldMap::UpdateArg& arg)
 					// if a course has just opened, make the appear effect spawn over its dot
 					Vector2f efxPos(getPaneCenterX(mScreenKitagawa->search(getSerialTagName('Npoint0', i))),
 					                getPaneCenterY(mScreenKitagawa->search(getSerialTagName('Npoint0', i))));
-					efx2d::ArgScale efxArg(efxPos, msVal._28[mOpenCourses]);
+					efx2d::ArgScale efxArg(efxPos, msVal._30[mOpenCourses - 2]);
 					efx2d::WorldMap::T2DNewmap efx;
 					efx.mResMgrId = 1;
 					efx.mGroup    = 2;
@@ -1190,7 +1190,7 @@ void WorldMap::rocketUpdate(J2DPane* pane)
 
 	mRocketScale = mRocketScale * msVal._08 + (1.0f - msVal._08) * tag2num(pane->mMessageID);
 
-	f32 scale2 = *(&msVal._1C + mOpenCourses) * mRocketScale;
+	f32 scale2 = msVal._20[mOpenCourses - 1] * mRocketScale;
 	shipPane->updateScale(scale2);
 
 	Vector2f sep = mRocketPosition;
@@ -1200,23 +1200,18 @@ void WorldMap::rocketUpdate(J2DPane* pane)
 	JGeometry::TVec3f pos2 = shipPane2->getGlbVtx(GLBVTX_BtmRight);
 	JGeometry::TVec3f pos3 = shipPane2->getGlbVtx(GLBVTX_TopLeft);
 	JGeometry::TVec3f pos4 = shipPane2->getGlbVtx(GLBVTX_TopRight);
-	// f32 factor             = msVal._1C;
-	JGeometry::TVec3f mid2;
-	mid2.set(0.5f * (pos4.x + pos3.x), 0.5f * (pos4.y + pos3.y), 0.5f * (pos4.z + pos3.z)); // f5, f4, f7
-	JGeometry::TVec3f mid1;
-	mid1.set(0.5f * (pos1.x + pos2.x), 0.5f * (pos1.y + pos2.y), 0.5f * (pos1.z + pos2.z)); //
-	// f32 inv                = 1.0f - msVal._1C[0];
-	mEffectPos = sep + Vector2f(mid1.x * (1.0f - msVal._1C) + mid2.x * msVal._1C, mid1.y * (1.0f - msVal._1C) + mid2.y * msVal._1C);
+
+	Vec vec  = { 0.0f, 0.0f, 0.0f };
+	vec.x    = 0.5f * (pos1.x + pos2.x);
+	vec.y    = 0.5f * (pos1.y + pos2.y);
+	Vec vec2 = { 0.0f, 0.0f, 0.0f };
+	vec2.x   = 0.5f * (pos4.x + pos3.x);
+	vec2.y   = 0.5f * (pos4.y + pos3.y);
+
+	mEffectPos = sep + Vector2f(vec.x * (1.0f - msVal._1C) + vec2.x * msVal._1C, vec.y * (1.0f - msVal._1C) + vec2.y * msVal._1C);
 	mEffectDir = Vector2f(-mRocketAngle.x, -mRocketAngle.y);
 
-	volatile Vec vec  = { 0.0f, 0.0f, 0.0f };
-	volatile Vec vec2 = { 0.0f, 0.0f, 0.0f };
-
 	efx2d::WorldMap::ArgDirScale arg(mEffectPos, mEffectDir, scale2);
-	vec.x  = mid1.x;
-	vec.y  = mid1.y;
-	vec2.x = mid2.x;
-	vec2.y = mid2.y;
 
 	efx2d::WorldMap::T2DRocketA efx;
 	efx.create(&arg);
@@ -1539,12 +1534,13 @@ void WorldMap::changeInfo()
 	u64 tags2[4]
 	    = { '8396_01', '8398_01', '8401_01', '8410_01' }; // "Hole of Beasts" 	"White Flower Garden"	"Bulblax Kingdom" 	"Snagret Hole"
 	u64 tags3[4]     = { '8397_01', '8402_01', '8403_01',
-		                 '8411_01' }; // "Citadel of Spiders"	"Glutton's Kitchen"		"Shower Room"		"Submerged Castle"
+	                     '8411_01' }; // "Citadel of Spiders"	"Glutton's Kitchen"		"Shower Room"		"Submerged Castle"
 	u64 tags4[4]     = { '8412_01', '8413_01', '8414_01', 'no_data' }; // "Cavern of Chaos" 	"Hole of Heroes"	 	"Dream Den"
 	u64* caveTags[4] = { tags1, tags2, tags3, tags4 };
 
-	u64 unusedtags[20] = { 'Pg_p_01', 'Pg_p_02', 'Pg_c_01', 'Pg_c_02', 'P0_p_01', 'P0_p_02', 'P0_c_01', 'P0_c_02', 'P1_p_01', 'P1_p_02',
-		                   'P1_c_01', 'P1_c_02', 'P2_p_01', 'P2_p_02', 'P2_c_01', 'P2_c_02', 'P3_p_01', 'P3_p_02', 'P3_c_01', 'P3_c_02' };
+	u64 unusedtags1[4]  = { 'Pg_p_01', 'Pg_p_02', 'Pg_c_01', 'Pg_c_02' };
+	u64 unusedtags2[16] = { 'P0_p_01', 'P0_p_02', 'P0_c_01', 'P0_c_02', 'P1_p_01', 'P1_p_02', 'P1_c_01', 'P1_c_02',
+	                        'P2_p_01', 'P2_p_02', 'P2_c_01', 'P2_c_02', 'P3_p_01', 'P3_p_02', 'P3_c_01', 'P3_c_02' };
 
 	u64 floTags[4] = { 'Nca_fl0', 'Nca_fl1', 'Nca_fl2', 'Nca_fl3' };
 
@@ -1646,13 +1642,14 @@ void WorldMap::effectFirstTime()
 	u64 tags2[4]
 	    = { '8396_01', '8398_01', '8401_01', '8410_01' }; // "Hole of Beasts" 	"White Flower Garden"	"Bulblax Kingdom" 	"Snagret Hole"
 	u64 tags3[4] = { '8397_01', '8402_01', '8403_01',
-		             '8411_01' }; // "Citadel of Spiders"	"Glutton's Kitchen"		"Shower Room"		"Submerged Castle"
+	                 '8411_01' }; // "Citadel of Spiders"	"Glutton's Kitchen"		"Shower Room"		"Submerged Castle"
 	u64 tags4[4] = { '8412_01', '8413_01', '8414_01', 'no_data' }; // "Cavern of Chaos" 	"Hole of Heroes"	 	"Dream Den"
 
 	u64* caveTags[4] = { tags1, tags2, tags3, tags4 }; // Note: this generates some 0s in the rodata, so its place is important
 
-	u64 unusedtags[20] = { 'Pg_p_01', 'Pg_p_02', 'Pg_c_01', 'Pg_c_02', 'P0_p_01', 'P0_p_02', 'P0_c_01', 'P0_c_02', 'P1_p_01', 'P1_p_02',
-		                   'P1_c_01', 'P1_c_02', 'P2_p_01', 'P2_p_02', 'P2_c_01', 'P2_c_02', 'P3_p_01', 'P3_p_02', 'P3_c_01', 'P3_c_02' };
+	u64 unusedtags1[4]  = { 'Pg_p_01', 'Pg_p_02', 'Pg_c_01', 'Pg_c_02' };
+	u64 unusedtags2[16] = { 'P0_p_01', 'P0_p_02', 'P0_c_01', 'P0_c_02', 'P1_p_01', 'P1_p_02', 'P1_c_01', 'P1_c_02',
+	                        'P2_p_01', 'P2_p_02', 'P2_c_01', 'P2_c_02', 'P3_p_01', 'P3_p_02', 'P3_c_01', 'P3_c_02' };
 
 	bool isIncPoko = false;
 	bool isNewOta  = false;

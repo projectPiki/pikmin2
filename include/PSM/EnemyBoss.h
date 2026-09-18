@@ -11,7 +11,7 @@ namespace PSM {
 struct EnemyBoss : public EnemyBase {
 	EnemyBoss(Game::EnemyBase* gameObj);
 
-	virtual ~EnemyBoss();                                            // _14 (weak)
+	// virtual ~EnemyBoss();                                         // _14 (weak)
 	virtual CreatureCastType getCastType() { return CCT_EnemyBoss; } // _1C (weak)
 	virtual void exec();                                             // _20
 	virtual void onCalcOn();                                         // _28
@@ -68,7 +68,7 @@ struct EnemyMidBoss : public EnemyBoss {
 
 	EnemyMidBoss(Game::EnemyBase*);
 
-	virtual ~EnemyMidBoss();                                            // _14 (weak)
+	// virtual ~EnemyMidBoss();                                         // _14 (weak)
 	virtual CreatureCastType getCastType() { return CCT_EnemyMidBoss; } // _1C (weak)
 	virtual void onCalcOn();                                            // _28
 	virtual void jumpRequest(u16);                                      // _D4

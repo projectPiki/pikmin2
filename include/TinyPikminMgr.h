@@ -38,9 +38,7 @@ struct TinyPikminMgr {
 	}
 
 	static u32 sTinyPikminNum;
-	static J2DPicture* sPikminTex[6];
+	static J2DPicture* sPikminTex[5];
 };
-
-static TinyPikminMgr* sTinyPikminMgr;
 
 #endif

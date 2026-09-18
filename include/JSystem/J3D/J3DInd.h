@@ -153,9 +153,9 @@ struct J3DIndBlockFull : public J3DIndBlock {
 };
 
 struct J3DIndBlockNull : public J3DIndBlock {
-	virtual void reset(J3DIndBlock*) { }                 // _08 (weak)
 	virtual void diff(u32) { }                           // _0C (weak)
 	virtual void load() { }                              // _10 (weak)
+	virtual void reset(J3DIndBlock*) { }                 // _08 (weak)
 	virtual JBlockType getType() { return JBT_IndNull; } // _18 (weak)
 	virtual ~J3DIndBlockNull() { }                       // _48 (weak)
 };

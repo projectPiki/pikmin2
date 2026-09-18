@@ -2054,8 +2054,8 @@ bool RayIntersectInfo::condition(Sys::Triangle& triangle)
 void GridDivider::createTriangles(Sys::CreateTriangleArg& triArg)
 {
 	// Initialize output arguments
-	triArg.mCount    = 0;
 	triArg.mVertices = nullptr;
+	triArg.mCount    = 0;
 
 	Triangle* trianglesBuffer[128];
 	Vector3f verticesBuffer[128 * 3]; // Max 128 triangles, 3 vertices each
@@ -2085,21 +2085,19 @@ void GridDivider::createTriangles(Sys::CreateTriangleArg& triArg)
 			for (int j = 0; j < triangleCount; ++j) {
 				if (currentTriangle == trianglesBuffer[j]) {
 					isDuplicate = true;
-					break;
 				}
 			}
 
 			// Process the triangle if it's not a duplicate and if within the triangle limit
 			if (!isDuplicate && triangleCount < 128) {
-				float normalY = currentTriangle->mTrianglePlane.mNormal.y;
+				Vector3f normal = currentTriangle->mTrianglePlane.mNormal;
 
-				if (normalY > triArg.mScaleLimit) {
-					float scaleFactor     = triArg.mScale;
-					Vector3f offsetVector = currentTriangle->mTrianglePlane.mNormal * scaleFactor;
+				if (normal.y > triArg.mScaleLimit) {
+					float scaleFactor = triArg.mScale;
 
-					verticesBuffer[triangleCount * 3]     = vertexA + offsetVector;
-					verticesBuffer[triangleCount * 3 + 1] = vertexB + offsetVector;
-					verticesBuffer[triangleCount * 3 + 2] = vertexC + offsetVector;
+					verticesBuffer[triangleCount * 3]     = vertexA + normal * scaleFactor;
+					verticesBuffer[triangleCount * 3 + 1] = vertexB + normal * scaleFactor;
+					verticesBuffer[triangleCount * 3 + 2] = vertexC + normal * scaleFactor;
 
 					trianglesBuffer[triangleCount] = currentTriangle;
 					++triangleCount;

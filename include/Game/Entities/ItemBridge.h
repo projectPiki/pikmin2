@@ -155,15 +155,15 @@ struct Item : public WorkItem<Item, FSM, State> {
 struct Mgr : public TNodeItemMgr {
 	Mgr();
 
-	virtual void onLoadResources();                                       // _48
-	virtual BaseItem* doNew() { return new Item(); }                      // _A0 (weak)
-	virtual u32 generatorGetID() { return 'brdg'; }                       // _58 (weak)
+	virtual BaseItem* birth();                                            // _BC
 	virtual BaseItem* generatorBirth(Vector3f&, Vector3f&, GenItemParm*); // _5C
+	virtual void onLoadResources();                                       // _48
+	virtual GenItemParm* generatorNewItemParm();                          // _70
 	virtual void generatorWrite(Stream&, GenItemParm*);                   // _60
 	virtual void generatorRead(Stream&, GenItemParm*, u32);               // _64
+	virtual BaseItem* doNew() { return new Item(); }                      // _A0 (weak)
+	virtual u32 generatorGetID() { return 'brdg'; }                       // _58 (weak)
 	virtual u32 generatorLocalVersion() { return '0001'; }                // _68 (weak)
-	virtual GenItemParm* generatorNewItemParm();                          // _70
-	virtual BaseItem* birth();                                            // _BC
 
 	BridgeInfo* getBridgeInfo(int);
 	void createBridgeInfo(int);
