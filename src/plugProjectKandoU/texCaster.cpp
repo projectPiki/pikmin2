@@ -86,33 +86,33 @@ void Caster::makeDL()
 	u8* displayList    = mDisplayList;
 	u8* displayListEnd = displayList + mDisplayListSize;
 
-	u16 index      = 0;
+	u32 index      = 0;
 	displayList[0] = 0x90;
 	displayList[1] = (mTriangleCount * 3) >> 8;
 	displayList[2] = mTriangleCount * 3;
-	displayList += 3;
 
+	u8* out = displayList + 3;
 	for (int i = 0; i < mTriangleCount; ++i) {
-		u16 index1      = index + 1;
-		u16 index2      = index + 2;
-		displayList[0]  = index >> 8;
-		displayList[1]  = index;
-		displayList[2]  = index >> 8;
-		displayList[3]  = index;
-		displayList[4]  = index1 >> 8;
-		displayList[5]  = index1;
-		displayList[6]  = index1 >> 8;
-		displayList[7]  = index1;
-		displayList[8]  = index2 >> 8;
-		displayList[9]  = index2;
-		displayList[10] = index2 >> 8;
-		displayList[11] = index2;
-		displayList += 12;
+		u16 index1 = index + 1;
+		u16 index2 = index + 2;
+		out[0]     = index >> 8;
+		out[1]     = index;
+		out[2]     = index >> 8;
+		out[3]     = index;
+		out[4]     = index1 >> 8;
+		out[5]     = index1;
+		out[6]     = index1 >> 8;
+		out[7]     = index1;
+		out[8]     = index2 >> 8;
+		out[9]     = index2;
+		out[10]    = index2 >> 8;
+		out[11]    = index2;
+		out += 12;
 		index += 3;
 	}
 
-	while (displayList < displayListEnd) {
-		*displayList++ = 0;
+	while (out < displayListEnd) {
+		*out++ = 0;
 	}
 
 	DCFlushRange(mDisplayList, mDisplayListSize);

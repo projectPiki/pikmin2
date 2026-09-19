@@ -23,7 +23,7 @@ FakePiki* Obj::getAttackableTarget()
 	if (mAttackTimer > 3.0f) {
 		Vector3f pos = getPosition();
 
-		if (sqrDistanceXZ(pos, mHomePosition) < SQUARE(GENERALPARMS.mTerritoryRadius())) {
+		if (pos.sqrDistance2D(mHomePosition) < SQUARE(GENERALPARMS.mTerritoryRadius())) {
 			f32 fov = TORADIANS(GENERALPARMS.mViewAngle());
 			f32 max = SQUARE(GENERALPARMS.mSightRadius());
 
@@ -40,7 +40,7 @@ FakePiki* Obj::getAttackableTarget()
 				f32 ang = getAngDist(navi);
 				if (FABS(ang) <= fov) {
 					Vector3f naviPos = navi->getPosition();
-					if (sqrDistanceXZ(pos, naviPos) < max) {
+					if (pos.sqrDistance2D(naviPos) < max) {
 						return navi;
 					}
 				}

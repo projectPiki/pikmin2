@@ -207,7 +207,7 @@ KumaChappy::Obj* KumaKochappy::Obj::setNearestParent()
 			if (currBear->isAlive()) {
 				if (FABS(getAngDist(currBear)) <= searchAngle) {
 					Vector3f bearPos = currBear->getPosition();
-					f32 bearDist     = sqrDistanceXZ(mPosition, bearPos);
+					f32 bearDist     = mPosition.sqrDistance2D(bearPos);
 					if (bearDist < dist) {
 						parent = currBear;
 						dist   = bearDist;

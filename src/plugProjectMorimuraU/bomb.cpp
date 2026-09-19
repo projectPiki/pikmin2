@@ -353,7 +353,7 @@ bool Obj::bombCallBack(Creature* creature, Vector3f& direction, f32 damage)
 				Vector3f creaturePos = creature->getPosition();
 				f32 rad              = C_GENERALPARMS.mAttackRadius.mValue;
 				rad *= rad;
-				f32 factor           = (1.0f - (sqrDistanceXZ(creaturePos, mPosition) / rad)) * (f32)C_PROPERPARMS.mTriggerLimit();
+				f32 factor           = (1.0f - (creaturePos.sqrDistance2D(mPosition) / rad)) * (f32)C_PROPERPARMS.mTriggerLimit();
 				mAnimStartDelayTimer = (int)factor + 1;
 			}
 		} else {

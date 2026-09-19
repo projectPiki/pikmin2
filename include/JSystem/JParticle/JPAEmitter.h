@@ -51,9 +51,7 @@ struct JPABaseParticle {
 
 	Vector3f getCalcCurrentPosition(const JPABaseEmitter* emit) const
 	{
-		return Vector3f(getCalcCurrentPositionX(emit), 
-						getCalcCurrentPositionY(emit),
-		                getCalcCurrentPositionZ(emit));
+		return Vector3f(getCalcCurrentPositionX(emit), getCalcCurrentPositionY(emit), getCalcCurrentPositionZ(emit));
 	}
 
 	// unused/inlined:
@@ -152,9 +150,12 @@ struct JPABaseEmitter {
 
 	inline void setScale(JGeometry::TVec3f& vec)
 	{
-		mGlobalScl    = vec;
-		mGlobalPScl.x = vec.x;
-		mGlobalPScl.y = vec.y;
+		f32 x = vec.x;
+		f32 y = vec.y;
+		f32 z = vec.z;
+		mGlobalScl.set(x, y, z);
+		mGlobalPScl.x = x;
+		mGlobalPScl.y = y;
 	}
 
 	inline void setScale(f32 scaleXY, f32 scaleZ)
@@ -340,7 +341,6 @@ struct JPABaseEmitter {
 	void playDrawParticle() { resetFlag(JPAEMIT_StopDraw); }
 
 	inline bool isFinished() { return isFlag(JPAEMIT_EnableDeleteEmitter) && getParticleNumber() == 0; }
-
 
 	JGeometry::TVec3f mLocalScl;             // _00
 	JGeometry::TVec3f mLocalTrs;             // _0C

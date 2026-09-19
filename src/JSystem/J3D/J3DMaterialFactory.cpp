@@ -1977,9 +1977,9 @@ size_t J3DMaterialFactory::calcSizeNormalMaterial(J3DMaterial* material, int mat
 	}
 	u32 tex_gens         = countTexGens(matID);
 	u32 pe_flag          = getMdlDataFlag_PEFlag(flags);
-	u32 tex_gen_flag     = tex_gens > 4 ? 0 : getMdlDataFlag_TexGenFlag(flags);
 	u32 color_block_flag = getMdlDataFlag_ColorFlag(flags);
 	u32 ind_flag         = (flags >> 0x18) & 1;
+	u32 tex_gen_flag     = tex_gens > 4 ? 0 : getMdlDataFlag_TexGenFlag(flags);
 	if (material == nullptr) {
 		size = sizeof(J3DMaterial);
 	}
@@ -2281,111 +2281,6 @@ J3DColorChan J3DMaterialFactory::newColorChan(int matID, int colID) const
 		return J3DColorChan(mColorChanInfo[id]);
 	}
 	return J3DColorChan();
-	/*
-	lwz      r7, 8(r4)
-	slwi     r5, r5, 1
-	slwi     r0, r6, 1
-	lwz      r6, 4(r4)
-	lhzx     r5, r7, r5
-	mulli    r5, r5, 0x14c
-	addi     r5, r5, 0xc
-	add      r0, r5, r0
-	lhzx     r0, r6, r0
-	cmplwi   r0, 0xffff
-	beq      lbl_8006E518
-	lwz      r4, 0x18(r4)
-	rlwinm   r0, r0, 3, 0xd, 0x1c
-	add      r8, r4, r0
-	lbz      r10, 5(r8)
-	lbz      r0, 2(r8)
-	lbz      r5, 0(r8)
-	addi     r7, r10, -255
-	subfic   r6, r10, 0xff
-	lbz      r4, 1(r8)
-	nor      r6, r7, r6
-	rlwinm   r7, r5, 1, 0xf, 0x1e
-	srawi    r5, r6, 0x1f
-	lbz      r9, 4(r8)
-	andc     r5, r10, r5
-	or       r4, r7, r4
-	rlwinm   r6, r4, 0, 0x1a, 0x18
-	rlwinm   r11, r0, 7, 0x12, 0x12
-	rlwinm   r5, r5, 6, 0x12, 0x19
-	cntlzw   r4, r9
-	or       r12, r6, r5
-	lbz      r6, 3(r8)
-	rlwinm   r5, r4, 0x1b, 0x1f, 0x1f
-	neg      r4, r9
-	rlwimi   r12, r0, 2, 0x1d, 0x1d
-	rlwinm   r10, r0, 7, 0x11, 0x11
-	rlwimi   r12, r0, 2, 0x1c, 0x1c
-	neg      r5, r5
-	andc     r5, r6, r5
-	subfic   r6, r9, 2
-	rlwimi   r12, r0, 2, 0x1b, 0x1b
-	or       r4, r4, r9
-	rlwimi   r12, r0, 2, 0x1a, 0x1a
-	slwi     r7, r5, 7
-	rlwimi   r12, r0, 7, 0x14, 0x14
-	addi     r5, r9, -2
-	rlwimi   r12, r0, 7, 0x13, 0x13
-	rlwimi   r11, r12, 0, 0x13, 0x1f
-	or       r0, r6, r5
-	rlwimi   r10, r11, 0, 0x12, 0x1f
-	rlwinm   r5, r10, 0, 0x19, 0x16
-	or       r5, r5, r7
-	rlwimi   r5, r0, 0xa, 0x16, 0x16
-	rlwimi   r5, r4, 0xb, 0x15, 0x15
-	sth      r5, 0(r3)
-	blr
-
-lbl_8006E518:
-	addi     r8, r2, j3dDefaultColorChanInfo@sda21
-	lis      r4, 0x0000FFFF@ha
-	lbz      r10, 5(r8)
-	addi     r4, r4, 0x0000FFFF@l
-	lbz      r0, 2(r8)
-	lbz      r5, j3dDefaultColorChanInfo@sda21(r2)
-	subf     r7, r4, r10
-	subf     r6, r10, r4
-	lbz      r4, 1(r8)
-	nor      r6, r7, r6
-	rlwinm   r7, r5, 1, 0xf, 0x1e
-	srawi    r5, r6, 0x1f
-	lbz      r9, 4(r8)
-	andc     r5, r10, r5
-	or       r4, r7, r4
-	rlwinm   r6, r4, 0, 0x1a, 0x18
-	rlwinm   r11, r0, 7, 0x12, 0x12
-	rlwinm   r5, r5, 6, 0x12, 0x19
-	cntlzw   r4, r9
-	or       r12, r6, r5
-	lbz      r6, 3(r8)
-	rlwinm   r5, r4, 0x1b, 0x1f, 0x1f
-	neg      r4, r9
-	rlwimi   r12, r0, 2, 0x1d, 0x1d
-	rlwinm   r10, r0, 7, 0x11, 0x11
-	rlwimi   r12, r0, 2, 0x1c, 0x1c
-	neg      r5, r5
-	andc     r5, r6, r5
-	subfic   r6, r9, 2
-	rlwimi   r12, r0, 2, 0x1b, 0x1b
-	or       r4, r4, r9
-	rlwimi   r12, r0, 2, 0x1a, 0x1a
-	slwi     r7, r5, 7
-	rlwimi   r12, r0, 7, 0x14, 0x14
-	addi     r5, r9, -2
-	rlwimi   r12, r0, 7, 0x13, 0x13
-	rlwimi   r11, r12, 0, 0x13, 0x1f
-	or       r0, r6, r5
-	rlwimi   r10, r11, 0, 0x12, 0x1f
-	rlwinm   r5, r10, 0, 0x19, 0x16
-	or       r5, r5, r7
-	rlwimi   r5, r0, 0xa, 0x16, 0x16
-	rlwimi   r5, r4, 0xb, 0x15, 0x15
-	sth      r5, 0(r3)
-	blr
-	*/
 }
 
 /**

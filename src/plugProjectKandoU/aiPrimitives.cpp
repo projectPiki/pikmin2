@@ -2576,7 +2576,7 @@ bool ActPathMove::contextCheck(int idx)
 		if (x + y > 0.0f) {
 			Vector2f vec = Vector2f(sep2D.x, sep2D.y);
 			len          = x + SQUARE(sep2D.y);
-			len          = sqrtf2(len);
+			len          = sqrtf(len);
 		} else {
 			len = 0.0f;
 		}

@@ -333,7 +333,7 @@ void Obj::setNearestBridge()
 			ItemBridge::Item* bridge = static_cast<ItemBridge::Item*>(*iter);
 			Vector3f bridgePos       = bridge->getStartPos();
 
-			f32 newDist = sqrDistanceXZ(mPosition, bridgePos);
+			f32 newDist = mPosition.sqrDistance2D(bridgePos);
 			if (newDist < dist) {
 				mBridge = bridge;
 				dist    = newDist;
@@ -427,7 +427,7 @@ bool Obj::moveBridgeSide()
 	startPos += xVec;
 	startPos += zVec;
 
-	if (sqrDistanceXZ(mPosition, startPos) < 250.0f) {
+	if (mPosition.sqrDistance2D(startPos) < 250.0f) {
 		setTargetSpeed(0.75f * C_GENERALPARMS.mMoveSpeed());
 
 		return true;
@@ -633,7 +633,7 @@ bool Obj::moveBridgeCentre()
 	xVec *= 0.7f * mBridgePositionOffset;
 	startPos += xVec;
 
-	if (sqrDistanceXZ(mPosition, startPos) < 250.0f) {
+	if (mPosition.sqrDistance2D(startPos) < 250.0f) {
 		setTargetSpeed(0.75f * C_GENERALPARMS.mMoveSpeed());
 
 		return true;
@@ -844,7 +844,7 @@ bool Obj::moveBridgeTop()
 
 	f32 val = turnToTarget(stagePos, C_GENERALPARMS.mTurnSpeed(), C_GENERALPARMS.mMaxTurnAngle());
 
-	f32 dist = sqrDistanceXZ(mPosition, stagePos);
+	f32 dist = mPosition.sqrDistance2D(stagePos);
 	if (dist < 50.0f) {
 		mTargetVelocity = Vector3f(0.0f);
 		return true;

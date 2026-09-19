@@ -89,12 +89,7 @@ J3DErrType J3DMaterialTable::allocTexMtxAnimator(J3DAnmTextureSRTKey* p1, J3DTex
 	if (*p2 == nullptr) {
 		return JET_OutOfMemory;
 	}
-	for (u16 i = 0; i < elementCount; i++) {
-		(*p2)[i].mIndex = i;
-		(*p2)[i].mAnm   = p1;
-		// v1[i].mIndex = i;
-		// v1[i].mAnm = p1;
-	}
+	initTexMtxAnms(p1, p2, elementCount);
 	return JET_Success;
 	// const u16 elementCount = p1->_14 / 3;
 	// *p2 = new J3DTexMtxAnm[elementCount];
@@ -250,32 +245,17 @@ J3DErrType J3DMaterialTable::allocTevRegAnimator(J3DAnmTevRegKey* tevRegKey, J3D
 	u16 tevKColorAnmCount = tevRegKey->mKRegUpdateMaterialNum;
 	*tevColorAnms         = new J3DTevColorAnm[tevColorAnmCount];
 
-	// s32 result = initTevColorAnms(tevRegKey, *tevColorAnms, tevColorAnmCount);
-
-	// s32 result = initTevColorAnms(tevRegKey, tevColorAnms, tevColorAnmCount);
-
-	s32 result;
 	if (*tevColorAnms == nullptr) {
 		return JET_OutOfMemory;
 	}
-	for (u16 i = 0; i < tevColorAnmCount; i++) {
-		(*tevColorAnms)[i].mIndex = i;
-		(*tevColorAnms)[i].mAnm   = tevRegKey;
-	}
+	initTevColorAnms(tevRegKey, tevColorAnms, tevColorAnmCount);
 
 	*tevKColorAnms = new J3DTevKColorAnm[tevKColorAnmCount];
-
-	// result = initTevKColorAnms(tevRegKey, *tevKColorAnms, tevKColorAnmCount);
-
-	// result = initTevKColorAnms(tevRegKey, tevKColorAnms, tevKColorAnmCount);
 
 	if (*tevKColorAnms == nullptr) {
 		return JET_OutOfMemory;
 	}
-	for (u16 i = 0; i < tevKColorAnmCount; i++) {
-		(*tevKColorAnms)[i].mIndex = i;
-		(*tevKColorAnms)[i].mAnm   = tevRegKey;
-	}
+	initTevKColorAnms(tevRegKey, tevKColorAnms, tevKColorAnmCount);
 
 	return JET_Success;
 	/*
@@ -552,7 +532,7 @@ bool J3DMaterialTable::removeTevRegAnimator(J3DAnmTevRegKey* anm)
 	for (u16 i = 0; i < count; i++) {
 		u16 matID = anm->getCRegUpdateMaterialID(i);
 		if (matID != 0xffff) {
-			J3DMaterialAnm* matanm = mMaterials[matID]->getMaterialAnm();
+			J3DMaterialAnm* matanm = getMaterialNodePointer(matID)->getMaterialAnm();
 			u8 id                  = anm->mCRegKeyTable[i]._18[0];
 
 			if (!matanm) {
@@ -566,7 +546,7 @@ bool J3DMaterialTable::removeTevRegAnimator(J3DAnmTevRegKey* anm)
 	for (u16 i = 0; i < kcount; i++) {
 		u16 matID = anm->getKRegUpdateMaterialID(i);
 		if (matID != 0xffff) {
-			J3DMaterialAnm* matanm = mMaterials[matID]->getMaterialAnm();
+			J3DMaterialAnm* matanm = getMaterialNodePointer(matID)->getMaterialAnm();
 
 			u8 id = anm->mKRegKeyTable[i]._18[0];
 			if (!matanm) {
@@ -716,7 +696,7 @@ J3DErrType J3DMaterialTable::entryTexMtxAnimator(J3DAnmTextureSRTKey* anm)
 	J3DErrType allocationResult = JET_Success;
 	u16 count                   = anm->getUpdateMaterialNum();
 
-	if (_1C == 1) {
+	if (isLocked()) {
 		allocationResult = JET_LockedModelData;
 	} else {
 		for (u16 i = 0; i < count; i++) {
@@ -745,7 +725,7 @@ J3DErrType J3DMaterialTable::entryTexMtxAnimator(J3DAnmTextureSRTKey* anm)
 		return result;
 	}
 
-	if (_1C == 1) {
+	if (isLocked()) {
 		return JET_LockedModelData;
 	}
 
@@ -1057,7 +1037,7 @@ J3DErrType J3DMaterialTable::entryTevRegAnimator(J3DAnmTevRegKey* anm)
 	u16 kcount       = anm->mKRegUpdateMaterialNum;
 	J3DErrType found = JET_Success;
 
-	if (_1C == 1) {
+	if (isLocked()) {
 		return JET_LockedModelData;
 	}
 

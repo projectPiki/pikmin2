@@ -149,13 +149,13 @@ void OBB::create2(Sys::VertexTable& vertTable, Sys::TriangleTable& triTable, Mat
 	mSphere.mPosition = (maxVec + minVec) * 0.5f;
 
 	Vector3f maxSep = maxVec - mSphere.mPosition;
-	f32 maxDist     = lenVec(maxSep);
+	f32 maxDist     = maxSep.qLength();
 
 	Vector3f minSep = minVec - mSphere.mPosition;
 
 	f32 maxRadius = maxDist;
-	if (maxDist < lenVec(minSep)) {
-		maxRadius = lenVec(minSep);
+	if (maxDist < minSep.qLength()) {
+		maxRadius = minSep.qLength();
 	}
 
 	mSphere.mRadius = maxRadius;

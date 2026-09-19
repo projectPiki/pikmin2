@@ -634,6 +634,7 @@ void BaseGameSection::initGenerators()
 		generatorCache->updateUseList();
 
 		int fileIdx = 0;
+		void* file;
 
 		char filenameCharArr[PATH_MAX];
 		void* generatorFiles[64];
@@ -643,15 +644,15 @@ void BaseGameSection::initGenerators()
 
 		sprintf(filenameCharArr, "%s/defaultgen.txt", mapMgr->mCourseInfo->mAbeFolder);
 
-		void* defaultGenFile = LoadTextFile(filenameCharArr);
+		file = LoadTextFile(filenameCharArr);
 
-		if (defaultGenFile) {
-			RamStream defaultGenTxt(defaultGenFile, -1);
+		if (file) {
+			RamStream defaultGenTxt(file, -1);
 			defaultGenTxt.setMode(STREAM_MODE_TEXT, 1);
 			generatorMgr->read(defaultGenTxt, false);
 			generatorMgr->updateUseList();
 
-			generatorFiles[0]    = defaultGenFile;
+			generatorFiles[0]    = file;
 			generatorManagers[0] = generatorMgr;
 			fileIdx++;
 		}
@@ -664,13 +665,13 @@ void BaseGameSection::initGenerators()
 		int entrynum = DVDConvertPathToEntrynum(filenameCharArr);
 
 		if (entrynum != -1) {
-			void* plantsgenFile = LoadTextFile(filenameCharArr);
-			if (plantsgenFile) {
-				RamStream plantsGenTxt(plantsgenFile, -1);
+			file = LoadTextFile(filenameCharArr);
+			if (file) {
+				RamStream plantsGenTxt(file, -1);
 				plantsGenTxt.setMode(STREAM_MODE_TEXT, 1);
 				plantsGeneratorMgr->read(plantsGenTxt, false);
 				plantsGeneratorMgr->updateUseList();
-				generatorFiles[fileIdx]    = plantsgenFile;
+				generatorFiles[fileIdx]    = file;
 				generatorManagers[fileIdx] = plantsGeneratorMgr;
 				fileIdx++;
 			}
@@ -687,19 +688,23 @@ void BaseGameSection::initGenerators()
 		if (!firstVisit) {
 			playData->visitCourse(courseInfo->mCourseIndex);
 			sprintf(filenameCharArr, "%s/initgen.txt", courseInfo->mAbeFolder);
-			void* initgenFile = LoadTextFile(filenameCharArr);
-			if (initgenFile) {
-				RamStream initgenTxt(initgenFile, -1);
+			file = LoadTextFile(filenameCharArr);
+			if (file) {
+				RamStream initgenTxt(file, -1);
 				initgenTxt.setMode(STREAM_MODE_TEXT, 1);
 				onceGeneratorMgr->read(initgenTxt, false);
 				onceGeneratorMgr->updateUseList();
-				generatorFiles[fileIdx]    = initgenFile;
+				generatorFiles[fileIdx]    = file;
 				generatorManagers[fileIdx] = onceGeneratorMgr;
 				fileIdx++;
 			}
 		}
 
 #pragma endregion
+		void** nonloopFileSlot = generatorFiles + fileIdx;
+		void** fileSlot;
+		GeneratorMgr** managerSlot;
+		int floorDay;
 		int today = gameSystem->mTimeMgr->mDayCount;
 
 		{ // nonloop
@@ -714,10 +719,10 @@ void BaseGameSection::initGenerators()
 
 				sprintf(filenameCharArr, "%s/nonloop/%s", courseInfo->mAbeFolder, currentGen->mName);
 
-				void* nonLoopFile = LoadTextFile(filenameCharArr);
+				file = LoadTextFile(filenameCharArr);
 
-				if (nonLoopFile) {
-					RamStream noonloopTxt(nonLoopFile, -1);
+				if (file) {
+					RamStream noonloopTxt(file, -1);
 					noonloopTxt.setMode(STREAM_MODE_TEXT, 1);
 
 					GeneratorMgr* currentNonloopMgr = new GeneratorMgr;
@@ -727,7 +732,7 @@ void BaseGameSection::initGenerators()
 					currentNonloopMgr->setDayLimit(currentGen->mDayLimit);
 					currentNonloopMgr->updateUseList();
 
-					generatorFiles[fileIdx]    = nonLoopFile;
+					*nonloopFileSlot++         = file;
 					generatorManagers[fileIdx] = currentNonloopMgr;
 					fileIdx++;
 
@@ -742,14 +747,16 @@ void BaseGameSection::initGenerators()
 			int day = gameSystem->mTimeMgr->mDayCount;
 			// int loopGenCount = courseInfo->mLoopGenInfo.mCount;
 
-			int intervalDay = today % 30;
+			today %= 30;
 
 			int intervalIterations = day / 30;
 
 			// effectively day > 30
 			if (intervalIterations >= 1) {
 
-				int floorDay = intervalIterations * 30;
+				fileSlot    = generatorFiles + fileIdx;
+				managerSlot = generatorManagers + fileIdx;
+				floorDay    = intervalIterations * 30;
 
 				for (int i = 0; i < courseInfo->mLoopGenInfo.mCount; i++) {
 					LimitGen* currentGen = static_cast<LimitGen*>(courseInfo->mLoopGenInfo.mOwner.getChildAt(i));
@@ -757,7 +764,7 @@ void BaseGameSection::initGenerators()
 					int intervalMin = currentGen->mMinimumDay % 30;
 					int intervalMax = currentGen->mMaximumDay % 30;
 
-					if (intervalMin > intervalDay || intervalDay > intervalMax)
+					if (intervalMin > today || today > intervalMax)
 						continue;
 
 					bool loopLoaded = playData->mLimitGen[courseInfo->mCourseIndex].mLoops.isFlag(i);
@@ -766,20 +773,22 @@ void BaseGameSection::initGenerators()
 						continue;
 
 					sprintf(filenameCharArr, "%s/loop/%s", courseInfo->mAbeFolder, currentGen->mName);
-					void* loopFile = LoadTextFile(filenameCharArr);
-					if (loopFile) {
-						RamStream loopTxt(loopFile, -1);
+					file = LoadTextFile(filenameCharArr);
+					if (file) {
+						RamStream loopTxt(file, -1);
 						loopTxt.setMode(STREAM_MODE_TEXT, 1);
 
 						GeneratorMgr* currentLoopMgr = new GeneratorMgr;
 						currentLoopMgr->mUnusedFlag  = true; // is nonrepeating?
 
 						currentLoopMgr->read(loopTxt, false);
-						currentLoopMgr->setDayLimit(floorDay + currentGen->mDayLimit - 30);
+						u32 dayLimit = currentGen->mDayLimit - 30;
+						dayLimit += floorDay;
+						currentLoopMgr->setDayLimit(s32(dayLimit));
 						currentLoopMgr->updateUseList();
 
-						generatorFiles[fileIdx]    = loopFile;
-						generatorManagers[fileIdx] = currentLoopMgr;
+						*fileSlot++    = file;
+						*managerSlot++ = currentLoopMgr;
 						fileIdx++;
 						limitGeneratorMgr->addMgr(currentLoopMgr);
 
@@ -794,13 +803,13 @@ void BaseGameSection::initGenerators()
 			sprintf(filenameCharArr, "%s/day/%d.txt", courseInfo->mAbeFolder, today % 30);
 			int fileNum = DVDConvertPathToEntrynum(filenameCharArr);
 			if (fileNum != -1) {
-				void* dayFile = LoadTextFile(filenameCharArr);
-				if (dayFile) {
-					RamStream dayTxt(dayFile, -1);
+				file = LoadTextFile(filenameCharArr);
+				if (file) {
+					RamStream dayTxt(file, -1);
 					dayTxt.setMode(STREAM_MODE_TEXT, 1);
 					dayGeneratorMgr->read(dayTxt, false);
 					dayGeneratorMgr->updateUseList();
-					generatorFiles[fileIdx]    = dayFile;
+					generatorFiles[fileIdx]    = file;
 					generatorManagers[fileIdx] = dayGeneratorMgr;
 					fileIdx++;
 				}
@@ -833,11 +842,14 @@ void BaseGameSection::initGenerators()
 	}
 	switch (naviCount) {
 	case 0: {
-		bool olimarAlive  = false;
+		Navi* olimar;
+		Navi* louie;
+		bool olimarAlive = false;
+		Vector3f position;
 		Vector3f velocity = Vector3f(0.0f);
 
 		f32 mapRotation = mapMgr->getMapRotation();
-		Vector3f position(-40.0f, 0.0f, 2.0f);
+		position        = Vector3f(-40.0f, 0.0f, 2.0f);
 		if (gameSystem->isVersusMode()) {
 			Onyon* redOnyon = ItemOnyon::mgr->getOnyon(Red);
 #if defined(VERSION_PAL)
@@ -855,15 +867,12 @@ void BaseGameSection::initGenerators()
 				position.x += -4.526f;
 				position.z += 7.453f;
 			} else {
-				Matrixf* demoMtx = mapMgr->getDemoMatrix();
-				Vector3f vec_0x1c78;
-				PSMTXMultVec((PSQuaternion*)demoMtx, (Vec*)&position, (Vec*)&vec_0x1c78);
-				position   = vec_0x1c78;
+				position   = mapMgr->getDemoMatrix()->mtxMult(position);
 				position.y = mapMgr->getMinY(position);
-				velocity.set(0.0f);
+				velocity   = Vector3f(0.0f);
 			}
 		}
-		Navi* olimar = naviMgr->birth();
+		olimar = naviMgr->birth();
 		olimar->init(nullptr);
 		olimar->mFaceDir = roundAng(mapRotation);
 		olimar->setCamera(mOlimarCamera);
@@ -898,15 +907,12 @@ void BaseGameSection::initGenerators()
 				position.x += 18.082f;
 				position.z += -11.482f;
 			} else {
-				Matrixf* demoMtx = mapMgr->getDemoMatrix();
-				Vector3f vec_0x1c78;
-				PSMTXMultVec((PSQuaternion*)demoMtx, (Vec*)&position, (Vec*)&vec_0x1c78);
-				position   = vec_0x1c78;
+				position   = mapMgr->getDemoMatrix()->mtxMult(position);
 				position.y = mapMgr->getMinY(position);
 				velocity   = Vector3f(0.0f);
 			}
 		}
-		Navi* louie = naviMgr->birth();
+		louie = naviMgr->birth();
 		louie->init(nullptr);
 
 		louie->setCamera(mLouieCamera);
@@ -946,10 +952,7 @@ void BaseGameSection::initGenerators()
 #else
 		JUT_ASSERTLINE(2859, mapMgr->getDemoMatrix(), "no demomatrix\n");
 #endif
-		Matrixf* mtx = mapMgr->getDemoMatrix();
-		Vector3f pos;
-		PSMTXMultVec(mtx->mMatrix.mtxView, (Vec*)&offset, (Vec*)&pos);
-		offset       = pos;
+		offset       = mapMgr->getDemoMatrix()->mtxMult(offset);
 		offset.y     = mapMgr->getMinY(offset) + 8.5f;
 		Navi* olimar = naviMgr->getAt(NAVIID_Olimar);
 		olimar->setCamera(mOlimarCamera);
@@ -1030,7 +1033,12 @@ void BaseGameSection::pmTogglePlayer()
  */
 void BaseGameSection::pmPlayerJoin()
 {
-	// UNUSED FUNCTION
+	if (mPrevNaviIdx == NAVIID_Olimar) {
+		// something
+	} else if (mPrevNaviIdx == NAVIID_Louie) {
+		// something else
+	}
+	onPlayerJoin();
 }
 
 /**
@@ -1039,12 +1047,14 @@ void BaseGameSection::pmPlayerJoin()
  */
 void BaseGameSection::setPlayerMode(int mode)
 {
-	// this is a really dumb regswap
-	Navi* fools[2];
-	fools[0] = naviMgr->getAt(NAVIID_Olimar);
-	fools[1] = naviMgr->getAt(NAVIID_Louie);
-	fools[0]->disableController();
-	fools[1]->disableController();
+	Navi* navis[2];
+	navis[NAVIID_Olimar] = navis[NAVIID_Louie] = nullptr;
+
+	navis[NAVIID_Olimar] = naviMgr->getAt(NAVIID_Olimar);
+	navis[NAVIID_Louie]  = naviMgr->getAt(NAVIID_Louie);
+
+	navis[NAVIID_Olimar]->disableController();
+	navis[NAVIID_Louie]->disableController();
 
 	switch (mode) {
 	case NAVIID_Olimar: {
@@ -2377,925 +2387,6 @@ void BaseGameSection::setupFloatMemory()
 		Farm::farmMgr->setupSound();
 	}
 	OSReport("<float> Done\n"); // anyone else who changes this to f32 gets 40 years in the dungeon
-
-	/*
-	stwu     r1, -0x2c0(r1)
-	mflr     r0
-	stw      r0, 0x2c4(r1)
-	stfd     f31, 0x2b0(r1)
-	psq_st   f31, 696(r1), 0, qr0
-	stmw     r27, 0x29c(r1)
-	lwz      r4, gameSystem__4Game@sda21(r13)
-	lis      r5, lbl_8047C948@ha
-	mr       r31, r3
-	li       r29, 0
-	lbz      r0, 0x3c(r4)
-	addi     r30, r5, lbl_8047C948@l
-	rlwinm   r0, r0, 0, 0x18, 0x1e
-	stb      r0, 0x3c(r4)
-	lwz      r0,
-"sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13) cmplwi   r0, 0
-	beq      lbl_80150768
-	addi     r3, r30, 0x380
-	addi     r5, r30, 0x70
-	li       r4, 0x76
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80150768:
-	lwz      r0,
-"sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13) cmplwi   r0, 0
-	bne      lbl_801507DC
-	li       r3, 0x30
-	bl       __nw__FUl
-	or.      r5, r3, r3
-	beq      lbl_801507D8
-	mr       r27, r5
-	bl       initiate__10JSUPtrListFv
-	lis      r3, "__vt__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@ha
-	addic.   r4, r27, 0xc
-	addi     r0, r3, "__vt__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@l
-	stw      r0, 0xc(r27)
-	beq      lbl_801507A4
-	addi     r4, r4, -12
-
-lbl_801507A4:
-	stw      r4,
-"sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13) addi     r3,
-r27, 0x10 bl       __ct__11JKRDisposerFv lis      r3, __vt__Q23PSM6ObjMgr@ha li
-r0, 0 addi     r3, r3, __vt__Q23PSM6ObjMgr@l mr       r5, r27 stw      r3,
-0x28(r27) addi     r4, r3, 8 addi     r3, r3, 0x14 stw      r4, 0xc(r27) stw r3,
-0x10(r27) stw      r0, 0x2c(r27)
-
-lbl_801507D8:
-	stw      r5,
-"sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
-
-lbl_801507DC:
-	lwz      r0,
-"sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13) cmplwi   r0, 0
-	bne      lbl_801507FC
-	addi     r3, r30, 0x380
-	addi     r5, r30, 0x70
-	li       r4, 0x79
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801507FC:
-	lwz      r0,
-"sInstance__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>"@sda21(r13)
-	cmplwi   r0, 0
-	beq      lbl_8015081C
-	addi     r3, r30, 0x380
-	addi     r5, r30, 0x70
-	li       r4, 0x76
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8015081C:
-	lwz      r0,
-"sInstance__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>"@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_80150844
-	li       r3, 0x3c
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80150840
-	bl       __ct__Q33PSM12BossBgmFader3MgrFv
-	mr       r0, r3
-
-lbl_80150840:
-	stw      r0,
-"sInstance__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>"@sda21(r13)
-
-lbl_80150844:
-	lwz      r0,
-"sInstance__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>"@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_80150864
-	addi     r3, r30, 0x380
-	addi     r5, r30, 0x70
-	li       r4, 0x79
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80150864:
-	lwz      r28, sCurrentHeap__7JKRHeap@sda21(r13)
-	mr       r3, r28
-	bl       getFreeSize__7JKRHeapFv
-	mr       r4, r28
-	li       r5, 1
-	bl       create__10JKRExpHeapFUlP7JKRHeapb
-	stw      r3, 0xfc(r31)
-	lwz      r0, 0xfc(r31)
-	stw      r0, theExpHeap@sda21(r13)
-	lwz      r3, 0xfc(r31)
-	bl       becomeCurrentHeap__7JKRHeapFv
-	stw      r3, 0x100(r31)
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x12c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r30, 0x38c
-	li       r5, 0
-	bl       heapStatusStart__6SystemFPcP7JKRHeap
-	lwz      r3, naviMgr__4Game@sda21(r13)
-	bl       loadResources_float__Q24Game7NaviMgrFv
-	li       r3, 0x94
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_801508D8
-	bl       __ct__12LifeGaugeMgrFv
-	mr       r0, r3
-
-lbl_801508D8:
-	stw      r0, lifeGaugeMgr@sda21(r13)
-	mr       r3, r0
-	bl       loadResource__12LifeGaugeMgrFv
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	lwz      r0, 0x44(r3)
-	cmpwi    r0, 0
-	bne      lbl_80150918
-	li       r3, 0xec
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80150910
-	li       r4, 0x30
-	bl       __ct__12CarryInfoMgrFi
-	mr       r0, r3
-
-lbl_80150910:
-	stw      r0, carryInfoMgr@sda21(r13)
-	b        lbl_80150938
-
-lbl_80150918:
-	li       r3, 0xec
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80150934
-	li       r4, 0x40
-	bl       __ct__12CarryInfoMgrFi
-	mr       r0, r3
-
-lbl_80150934:
-	stw      r0, carryInfoMgr@sda21(r13)
-
-lbl_80150938:
-	lwz      r3, carryInfoMgr@sda21(r13)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	li       r3, 0x3c
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80150964
-	bl       __ct__Q24Game7PlatMgrFv
-	mr       r0, r3
-
-lbl_80150964:
-	stw      r0, platMgr__4Game@sda21(r13)
-	li       r3, 0x50
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80150984
-	li       r4, 2
-	bl       __ct__Q24Game9ShadowMgrFi
-	mr       r4, r3
-
-lbl_80150984:
-	stw      r4, shadowMgr__4Game@sda21(r13)
-	mr       r3, r31
-	bl       addGenNode__Q24Game14BaseHIOSectionFP5CNode
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x108(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, naviMgr__4Game@sda21(r13)
-	li       r4, 2
-	bl       "alloc__27MonoObjectMgr<Q24Game4Navi>Fi"
-	lwz      r3, naviMgr__4Game@sda21(r13)
-	li       r4, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	mr       r0, r3
-	lwz      r3, naviMgr__4Game@sda21(r13)
-	mr       r28, r0
-	li       r4, 1
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	mr       r0, r3
-	li       r3, 0xb0
-	mr       r27, r0
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80150A0C
-	li       r4, 0
-	bl       __ct__10ControllerFQ210JUTGamePad8EPadPort
-	mr       r0, r3
-
-lbl_80150A0C:
-	stw      r0, 0x10c(r31)
-	li       r3, 0xb0
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80150A2C
-	li       r4, 1
-	bl       __ct__10ControllerFQ210JUTGamePad8EPadPort
-	mr       r0, r3
-
-lbl_80150A2C:
-	stw      r0, 0x110(r31)
-	li       r3, 0x254
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80150A4C
-	mr       r4, r28
-	bl       __ct__Q24Game10PlayCameraFPQ24Game4Navi
-	mr       r0, r3
-
-lbl_80150A4C:
-	stw      r0, 0x104(r31)
-	li       r3, 0x254
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80150A6C
-	mr       r4, r27
-	bl       __ct__Q24Game10PlayCameraFPQ24Game4Navi
-	mr       r0, r3
-
-lbl_80150A6C:
-	stw      r0, 0x108(r31)
-	li       r3, 0x3c
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80150A88
-	bl       __ct__Q24Game9CameraMgrFv
-	mr       r0, r3
-
-lbl_80150A88:
-	stw      r0, cameraMgr__4Game@sda21(r13)
-	mr       r3, r0
-	bl       loadResource__Q24Game9CameraMgrFv
-	lwz      r4, cameraMgr__4Game@sda21(r13)
-	mr       r3, r31
-	bl       addGenNode__Q24Game14BaseHIOSectionFP5CNode
-	lwz      r4, lbl_80520E58@sda21(r2)
-	li       r3, 0x180
-	lwz      r0, lbl_80520E5C@sda21(r2)
-	stw      r4, 8(r1)
-	stw      r0, 0xc(r1)
-	lwz      r0, 0x104(r31)
-	stw      r0, 8(r1)
-	lwz      r0, 0x108(r31)
-	stw      r0, 0xc(r1)
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80150AE0
-	addi     r5, r1, 8
-	li       r4, 2
-	bl       __ct__11BlendCameraFiPP6Camera
-	mr       r0, r3
-
-lbl_80150AE0:
-	stw      r0, 0x50(r31)
-	li       r0, 0
-	li       r3, 0x34
-	stb      r0, 0x58(r31)
-	lwz      r0, 0x104(r31)
-	lwz      r4, 0x128(r31)
-	stw      r0, 0x233c(r4)
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80150B10
-	bl       __ct__Q24Game9RumbleMgrFv
-	mr       r0, r3
-
-lbl_80150B10:
-	stw      r0, rumbleMgr__4Game@sda21(r13)
-	mr       r3, r0
-	bl       loadResource__Q24Game9RumbleMgrFv
-	lwz      r3, rumbleMgr__4Game@sda21(r13)
-	bl       init__Q24Game9RumbleMgrFv
-	lwz      r4, rumbleMgr__4Game@sda21(r13)
-	mr       r3, r31
-	bl       addGenNode__Q24Game14BaseHIOSectionFP5CNode
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	li       r27, 0
-	lbz      r0, 0x48(r3)
-	cmplwi   r0, 0
-	beq      lbl_80150B48
-	li       r27, 1
-
-lbl_80150B48:
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r2, lbl_80518580@sda21
-	li       r5, 0
-	bl       heapStatusStart__6SystemFPcP7JKRHeap
-	li       r3, 0x3c
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80150B70
-	bl       __ct__Q24Game7ItemMgrFv
-	mr       r0, r3
-
-lbl_80150B70:
-	stw      r0, itemMgr__4Game@sda21(r13)
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x5c(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80150BA0
-	lwz      r3, itemMgr__4Game@sda21(r13)
-	li       r4, 3
-	bl       createManagers__Q24Game7ItemMgrFUl
-	b        lbl_80150BC4
-
-lbl_80150BA0:
-	clrlwi.  r0, r27, 0x18
-	beq      lbl_80150BB8
-	lwz      r3, itemMgr__4Game@sda21(r13)
-	li       r4, 1
-	bl       createManagers__Q24Game7ItemMgrFUl
-	b        lbl_80150BC4
-
-lbl_80150BB8:
-	lwz      r3, itemMgr__4Game@sda21(r13)
-	li       r4, 2
-	bl       createManagers__Q24Game7ItemMgrFUl
-
-lbl_80150BC4:
-	lwz      r4, itemMgr__4Game@sda21(r13)
-	cmplwi   r4, 0
-	beq      lbl_80150BD4
-	addi     r4, r4, 0x1c
-
-lbl_80150BD4:
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	bl       addObjectMgr__Q24Game10GameSystemFP16GenericObjectMgr
-	lwz      r4, itemMgr__4Game@sda21(r13)
-	mr       r3, r31
-	bl       addGenNode__Q24Game14BaseHIOSectionFP5CNode
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r2, lbl_80518580@sda21
-	bl       heapStatusEnd__6SystemFPc
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r30, 0x3a0
-	li       r5, 0
-	bl       heapStatusStart__6SystemFPcP7JKRHeap
-	lwz      r3, pikiMgr__4Game@sda21(r13)
-	li       r4, 0x64
-	bl       "alloc__27MonoObjectMgr<Q24Game4Piki>Fi"
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r30, 0x3a0
-	bl       heapStatusEnd__6SystemFPc
-	li       r3, 0x90
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80150C34
-	bl       __ct__Q24Game15GeneralEnemyMgrFv
-	mr       r4, r3
-
-lbl_80150C34:
-	stw      r4, generalEnemyMgr__4Game@sda21(r13)
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	bl       addObjectMgr__Q24Game10GameSystemFP16GenericObjectMgr
-	lwz      r4, generalEnemyMgr__4Game@sda21(r13)
-	cmplwi   r4, 0
-	beq      lbl_80150C50
-	addi     r4, r4, 4
-
-lbl_80150C50:
-	mr       r3, r31
-	bl       addGenNode__Q24Game14BaseHIOSectionFP5CNode
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x120(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, mapMgr__4Game@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_80151158
-	mr       r3, r31
-	li       r29, 1
-	lwz      r12, 0(r31)
-	lwz      r12, 0x84(r12)
-	mtctr    r12
-	bctrl
-	mr       r5, r3
-	addi     r3, r1, 0x94
-	addi     r4, r30, 0x3b4
-	crclr    6
-	bl       sprintf
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x84(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r1, 0x94
-	bl       load__Q34Game4Cave8CaveInfoFPc
-	lwz      r4, gameSystem__4Game@sda21(r13)
-	mr       r27, r3
-	li       r28, 0
-	lwz      r0, 0x44(r4)
-	cmpwi    r0, 1
-	bne      lbl_80150D6C
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x88(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	addi     r3, r2, lbl_80518588@sda21
-	bl       strcmp
-	cmpwi    r3, 0
-	beq      lbl_80150D6C
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x88(r12)
-	mtctr    r12
-	bctrl
-	mr       r5, r3
-	addi     r3, r1, 0x94
-	addi     r4, r30, 0x3d4
-	crclr    6
-	bl       sprintf
-	li       r3, 0x20
-	bl       __nw__FUl
-	or.      r28, r3, r3
-	beq      lbl_80150D40
-	bl       __ct__Q34Game4Cave11EditMapUnitFv
-	mr       r28, r3
-
-lbl_80150D40:
-	mr       r3, r28
-	addi     r4, r1, 0x94
-	bl       read__Q34Game4Cave11EditMapUnitFPc
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x8c(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	mr       r3, r28
-	bl       setEditNumber__Q34Game4Cave11EditMapUnitFi
-
-lbl_80150D6C:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x80(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80150D90
-	mr       r3, r27
-	bl       disablePelplant__Q34Game4Cave8CaveInfoFv
-
-lbl_80150D90:
-	li       r3, 0x120
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80150DB0
-	mr       r5, r27
-	li       r4, 1
-	bl       __ct__Q24Game10RoomMapMgrFPQ34Game4Cave8CaveInfo
-	mr       r0, r3
-
-lbl_80150DB0:
-	stw      r0, mapMgr__4Game@sda21(r13)
-	addi     r4, r2, lbl_80518590@sda21
-	lwz      r3, sys@sda21(r13)
-	li       r5, 0
-	bl       heapStatusStart__6SystemFPcP7JKRHeap
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x58(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	mr       r5, r28
-	bl       createRandomMap__Q24Game10RoomMapMgrFiPQ34Game4Cave11EditMapUnit
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r2, lbl_80518590@sda21
-	bl       heapStatusEnd__6SystemFPc
-	lwz      r4, mapMgr__4Game@sda21(r13)
-	cmplwi   r4, 0
-	beq      lbl_80150E04
-	lwz      r4, 0(r4)
-
-lbl_80150E04:
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	bl       addObjectMgr__Q24Game10GameSystemFP16GenericObjectMgr
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	lwz      r0, 0x44(r3)
-	cmpwi    r0, 1
-	bne      lbl_80150FDC
-	lis      r4, __vt__Q24Game11GameMessage@ha
-	lis      r3, __vt__Q24Game21GameMessageVsAddEnemy@ha
-	addi     r0, r4, __vt__Q24Game11GameMessage@l
-	li       r5, 0x37
-	stw      r0, 0x88(r1)
-	addi     r4, r3, __vt__Q24Game21GameMessageVsAddEnemy@l
-	li       r0, 4
-	mr       r3, r31
-	stw      r4, 0x88(r1)
-	addi     r4, r1, 0x88
-	stw      r5, 0x8c(r1)
-	stw      r0, 0x90(r1)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x50(r12)
-	mtctr    r12
-	bctrl
-	lis      r4, __vt__Q24Game11GameMessage@ha
-	lis      r3, __vt__Q24Game21GameMessageVsAddEnemy@ha
-	addi     r0, r4, __vt__Q24Game11GameMessage@l
-	li       r5, 0x17
-	stw      r0, 0x7c(r1)
-	addi     r4, r3, __vt__Q24Game21GameMessageVsAddEnemy@l
-	li       r0, 4
-	mr       r3, r31
-	stw      r4, 0x7c(r1)
-	addi     r4, r1, 0x7c
-	stw      r5, 0x80(r1)
-	stw      r0, 0x84(r1)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x50(r12)
-	mtctr    r12
-	bctrl
-	lis      r4, __vt__Q24Game11GameMessage@ha
-	lis      r3, __vt__Q24Game21GameMessageVsAddEnemy@ha
-	addi     r0, r4, __vt__Q24Game11GameMessage@l
-	li       r5, 0x13
-	stw      r0, 0x70(r1)
-	addi     r4, r3, __vt__Q24Game21GameMessageVsAddEnemy@l
-	li       r0, 0xc
-	mr       r3, r31
-	stw      r4, 0x70(r1)
-	addi     r4, r1, 0x70
-	stw      r5, 0x74(r1)
-	stw      r0, 0x78(r1)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x50(r12)
-	mtctr    r12
-	bctrl
-	lis      r4, __vt__Q24Game11GameMessage@ha
-	lis      r3, __vt__Q24Game21GameMessageVsAddEnemy@ha
-	addi     r0, r4, __vt__Q24Game11GameMessage@l
-	li       r5, 0x5d
-	stw      r0, 0x64(r1)
-	addi     r4, r3, __vt__Q24Game21GameMessageVsAddEnemy@l
-	li       r0, 2
-	mr       r3, r31
-	stw      r4, 0x64(r1)
-	addi     r4, r1, 0x64
-	stw      r5, 0x68(r1)
-	stw      r0, 0x6c(r1)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x50(r12)
-	mtctr    r12
-	bctrl
-	lis      r4, __vt__Q24Game11GameMessage@ha
-	lis      r3, __vt__Q24Game21GameMessageVsAddEnemy@ha
-	addi     r0, r4, __vt__Q24Game11GameMessage@l
-	li       r5, 0x18
-	stw      r0, 0x58(r1)
-	addi     r4, r3, __vt__Q24Game21GameMessageVsAddEnemy@l
-	li       r0, 4
-	mr       r3, r31
-	stw      r4, 0x58(r1)
-	addi     r4, r1, 0x58
-	stw      r5, 0x5c(r1)
-	stw      r0, 0x60(r1)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x50(r12)
-	mtctr    r12
-	bctrl
-	lis      r4, __vt__Q24Game11GameMessage@ha
-	lis      r3, __vt__Q24Game21GameMessageVsAddEnemy@ha
-	addi     r0, r4, __vt__Q24Game11GameMessage@l
-	li       r5, 0x19
-	stw      r0, 0x4c(r1)
-	addi     r4, r3, __vt__Q24Game21GameMessageVsAddEnemy@l
-	li       r0, 4
-	mr       r3, r31
-	stw      r4, 0x4c(r1)
-	addi     r4, r1, 0x4c
-	stw      r5, 0x50(r1)
-	stw      r0, 0x54(r1)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x50(r12)
-	mtctr    r12
-	bctrl
-	lis      r4, __vt__Q24Game11GameMessage@ha
-	lis      r3, __vt__Q24Game21GameMessageVsAddEnemy@ha
-	addi     r0, r4, __vt__Q24Game11GameMessage@l
-	li       r5, 0xe
-	stw      r0, 0x40(r1)
-	addi     r4, r3, __vt__Q24Game21GameMessageVsAddEnemy@l
-	li       r0, 0x14
-	mr       r3, r31
-	stw      r4, 0x40(r1)
-	addi     r4, r1, 0x40
-	stw      r5, 0x44(r1)
-	stw      r0, 0x48(r1)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x50(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80150FDC:
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r2, lbl_80518598@sda21
-	li       r5, 0
-	bl       heapStatusStart__6SystemFPcP7JKRHeap
-	lfs      f1, lbl_805185A0@sda21(r2)
-	addi     r4, r1, 0x30
-	lfs      f0, lbl_805185A4@sda21(r2)
-	stfs     f1, 0x30(r1)
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	stfs     f1, 0x34(r1)
-	stfs     f0, 0x38(r1)
-	stfs     f0, 0x3c(r1)
-	lwz      r12, 4(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r30, 0x3e4
-	li       r5, 0
-	bl       heapStatusStart__6SystemFPcP7JKRHeap
-	li       r3, 0x48
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80151044
-	bl       __ct__Q24Game11CellPyramidFv
-	mr       r0, r3
-
-lbl_80151044:
-	stw      r0, platCellMgr__4Game@sda21(r13)
-	mr       r3, r0
-	lfs      f1, lbl_805185A8@sda21(r2)
-	addi     r4, r1, 0x30
-	bl       create__Q24Game11CellPyramidFR10BoundBox2df
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r30, 0x3e4
-	bl       heapStatusEnd__6SystemFPc
-	lfs      f1, lbl_805185A0@sda21(r2)
-	addi     r4, r1, 0x20
-	lfs      f0, lbl_805185A4@sda21(r2)
-	stfs     f1, 0x20(r1)
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	stfs     f1, 0x24(r1)
-	stfs     f0, 0x28(r1)
-	stfs     f0, 0x2c(r1)
-	lwz      r12, 4(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r30, 0x3f0
-	li       r5, 0
-	bl       heapStatusStart__6SystemFPcP7JKRHeap
-	li       r3, 0x48
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_801510BC
-	bl       __ct__Q24Game11CellPyramidFv
-	mr       r0, r3
-
-lbl_801510BC:
-	stw      r0, mapRoomCellMgr__4Game@sda21(r13)
-	mr       r3, r0
-	lfs      f1, lbl_805185AC@sda21(r2)
-	addi     r4, r1, 0x20
-	bl       create__Q24Game11CellPyramidFR10BoundBox2df
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r30, 0x3f0
-	bl       heapStatusEnd__6SystemFPc
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	bl       entryToMapRoomCellMgr__Q24Game10RoomMapMgrFv
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	bl       createGlobalCollision__Q24Game10RoomMapMgrFv
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r2, lbl_80518598@sda21
-	bl       heapStatusEnd__6SystemFPc
-	lwz      r0, 0x114(r31)
-	li       r5, -1
-	lwz      r3, generalEnemyMgr__4Game@sda21(r13)
-	clrlwi   r4, r0, 0x18
-	bl       allocateEnemys__Q24Game15GeneralEnemyMgrFUci
-	lwz      r3, generalEnemyMgr__4Game@sda21(r13)
-	bl       setupSoundViewerAndBas__Q24Game15GeneralEnemyMgrFv
-	lwz      r3, pelletMgr__4Game@sda21(r13)
-	bl       setupResources__Q24Game9PelletMgrFv
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x58(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 0
-	bne      lbl_80151144
-	lwz      r3, playData__4Game@sda21(r13)
-	li       r0, 1
-	stb      r0, 0x6c(r3)
-
-lbl_80151144:
-	bl       globalInstance__Q29TexCaster3MgrFv
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	lwz      r3, 8(r3)
-	bl       setCloseAll__Q24Game8RouteMgrFv
-	b        lbl_8015115C
-
-lbl_80151158:
-	bl       globalInstance__Q29TexCaster3MgrFv
-
-lbl_8015115C:
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	lwz      r0, 8(r3)
-	cmplwi   r0, 0
-	beq      lbl_801511A0
-	li       r3, 0x14
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80151184
-	bl       __ct__Q24Game10PathfinderFv
-	mr       r0, r3
-
-lbl_80151184:
-	stw      r0, testPathfinder__4Game@sda21(r13)
-	mr       r3, r0
-	lwz      r5, mapMgr__4Game@sda21(r13)
-	li       r4, 0x64
-	lwz      r5, 8(r5)
-	bl       create__Q24Game10PathfinderFiPQ24Game8RouteMgr
-	b        lbl_801511A8
-
-lbl_801511A0:
-	li       r0, 0
-	stw      r0, testPathfinder__4Game@sda21(r13)
-
-lbl_801511A8:
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	lwz      r3, 8(r3)
-	cmplwi   r3, 0
-	beq      lbl_801511BC
-	bl       refreshWater__Q24Game8RouteMgrFv
-
-lbl_801511BC:
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r2, lbl_80518598@sda21
-	li       r5, 0
-	bl       heapStatusStart__6SystemFPcP7JKRHeap
-	li       r3, 0x48
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_801511E4
-	bl       __ct__Q24Game11CellPyramidFv
-	mr       r0, r3
-
-lbl_801511E4:
-	lfs      f1, lbl_805185A0@sda21(r2)
-	addi     r4, r1, 0x10
-	lfs      f0, lbl_805185A4@sda21(r2)
-	stw      r0, cellMgr__4Game@sda21(r13)
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	stfs     f1, 0x10(r1)
-	stfs     f1, 0x14(r1)
-	stfs     f0, 0x18(r1)
-	stfs     f0, 0x1c(r1)
-	lwz      r12, 4(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, sCurrentHeap__7JKRHeap@sda21(r13)
-	bl       getFreeSize__7JKRHeapFv
-	lwz      r3, cellMgr__4Game@sda21(r13)
-	addi     r4, r1, 0x10
-	lfs      f1, lbl_805185B0@sda21(r2)
-	bl       create__Q24Game11CellPyramidFR10BoundBox2df
-	clrlwi.  r0, r29, 0x18
-	bne      lbl_80151280
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r30, 0x3e4
-	li       r5, 0
-	bl       heapStatusStart__6SystemFPcP7JKRHeap
-	li       r3, 0x48
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80151260
-	bl       __ct__Q24Game11CellPyramidFv
-	mr       r0, r3
-
-lbl_80151260:
-	stw      r0, platCellMgr__4Game@sda21(r13)
-	mr       r3, r0
-	lfs      f1, lbl_805185A8@sda21(r2)
-	addi     r4, r1, 0x10
-	bl       create__Q24Game11CellPyramidFR10BoundBox2df
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r30, 0x3e4
-	bl       heapStatusEnd__6SystemFPc
-
-lbl_80151280:
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r2, lbl_80518598@sda21
-	bl       heapStatusEnd__6SystemFPc
-	clrlwi.  r0, r29, 0x18
-	beq      lbl_8015129C
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	bl       placeObjects__Q24Game10RoomMapMgrFv
-
-lbl_8015129C:
-	mr       r3, r31
-	lwz      r4, sys@sda21(r13)
-	lwz      r12, 0(r31)
-	lwz      r28, 0x24(r4)
-	lwz      r12, 0xfc(r12)
-	mr       r4, r28
-	mtctr    r12
-	bctrl
-	lwz      r3, particleMgr@sda21(r13)
-	mr       r4, r28
-	bl       setViewport__11ParticleMgrFR8Graphics
-	lwz      r3, particleMgr@sda21(r13)
-	bl       start__11ParticleMgrFv
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x104(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, itemMgr__4Game@sda21(r13)
-	bl       initDependency__Q24Game7ItemMgrFv
-	lwz      r3, cameraMgr__4Game@sda21(r13)
-	li       r4, 0
-	bl       init__Q24Game9CameraMgrFi
-	lwz      r3, _aiConstants__4Game@sda21(r13)
-	lfs      f1, lbl_805185B8@sda21(r2)
-	lfs      f0, 0x58(r3)
-	lfs      f2, lbl_805185B4@sda21(r2)
-	fmuls    f0, f1, f0
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	fmuls    f31, f2, f0
-	bl       getMapRotation__Q24Game6MapMgrFv
-	fadds    f1, f31, f1
-	bl       roundAng__Ff
-	fmr      f31, f1
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	bl       getMapRotation__Q24Game6MapMgrFv
-	fmr      f1, f31
-	lwz      r3, cameraMgr__4Game@sda21(r13)
-	li       r4, 2
-	bl       setCameraAngle__Q24Game9CameraMgrFfi
-	lwz      r3, cameraMgr__4Game@sda21(r13)
-	li       r4, 2
-	bl       controllerUnLock__Q24Game9CameraMgrFi
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r30, 0x38c
-	bl       heapStatusEnd__6SystemFPc
-	lwz      r3, pikiMgr__4Game@sda21(r13)
-	bl       setupSoundViewerAndBas__Q24Game7PikiMgrFv
-	lwz      r3, naviMgr__4Game@sda21(r13)
-	bl       setupSoundViewerAndBas__Q24Game7NaviMgrFv
-	lwz      r3, itemMgr__4Game@sda21(r13)
-	bl       setupSoundViewerAndBas__Q24Game7ItemMgrFv
-	lwz      r3, pelletMgr__4Game@sda21(r13)
-	bl       setupSoundViewerAndBas__Q24Game9PelletMgrFv
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x128(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	lbz      r0, 0x3c(r3)
-	ori      r0, r0, 1
-	stb      r0, 0x3c(r3)
-	lwz      r3, farmMgr__Q24Game4Farm@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_801513A8
-	bl       setupSound__Q34Game4Farm7FarmMgrFv
-
-lbl_801513A8:
-	addi     r3, r30, 0x400
-	crclr    6
-	bl       OSReport
-	psq_l    f31, 696(r1), 0, qr0
-	lfd      f31, 0x2b0(r1)
-	lmw      r27, 0x29c(r1)
-	lwz      r0, 0x2c4(r1)
-	mtlr     r0
-	addi     r1, r1, 0x2c0
-	blr
-	*/
 }
 
 /**

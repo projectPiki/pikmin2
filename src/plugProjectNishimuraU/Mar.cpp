@@ -437,7 +437,7 @@ Piki* Obj::getSearchedPikmin()
 			f32 sightDiff = getAngDist(piki);
 			if (FABS(sightDiff) <= FOV) {
 				Vector3f pikiPos2 = piki->getPosition();
-				if (sqrDistanceXZ(mPosition, pikiPos2) < sqrSight) {
+				if (mPosition.sqrDistance2D(pikiPos2) < sqrSight) {
 					return piki;
 				}
 			}
@@ -482,7 +482,7 @@ Creature* Obj::isAttackable()
 		Piki* piki = *iter;
 		if (piki->isAlive() && piki->isPikmin() && !piki->isStickToMouth() && piki->mSticker != this) {
 			Vector3f pikiPos = piki->getPosition();
-			if (sqrDistanceXZ(pikiPos, vec) < radius) {
+			if (pikiPos.sqrDistance2D(vec) < radius) {
 				return piki;
 			}
 		}

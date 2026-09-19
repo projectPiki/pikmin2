@@ -464,9 +464,8 @@ void StateGoHome::exec(EnemyBase* enemy)
 
 	Vector3f homePos2 = uji->mHomePosition;
 	Vector3f position = uji->getPosition();
-	Vector3f diff     = Vector3f(position.y - homePos2.y, position.z - homePos2.z, position.x - homePos2.x);
 
-	if (_length2(diff) < CG_GENERALPARMS(uji).mHomeRadius.mValue) {
+	if (position.distance(homePos2) < CG_GENERALPARMS(uji).mHomeRadius.mValue) {
 		uji->finishMotion();
 	}
 

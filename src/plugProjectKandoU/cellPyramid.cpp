@@ -1026,6 +1026,7 @@ void CellPyramid::entry(CellObject* object, Sys::Sphere& sphere, int& layerIndex
 void CellPyramid::create(BoundBox2d& box, f32 scale)
 {
 	mFreeMemory = JKRHeap::sCurrentHeap->getFreeSize();
+	int layerCount;
 
 	mBounds.set(box.mMin.y, box.mMin.x);
 
@@ -1046,8 +1047,8 @@ void CellPyramid::create(BoundBox2d& box, f32 scale)
 
 	int maxDimension = MAX(pixelWidth, pixelHeight);
 
-	f32 log2       = (f32)log10(2.0f);
-	int layerCount = (f32)ceil((f32)log10((f32)maxDimension) / log2);
+	f32 log2   = (f32)log10(2.0f);
+	layerCount = (f32)ceil((f32)log10((f32)maxDimension) / log2);
 	pow(2.0, (f64)layerCount);
 
 	mLayerCount       = layerCount + 1;

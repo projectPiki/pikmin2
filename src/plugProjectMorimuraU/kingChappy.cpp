@@ -836,7 +836,7 @@ bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* collpart)
 	} else if (creature->isAlive()) {
 		Vector3f creaturePos = creature->getPosition();
 		if (creaturePos.y < 5.0f + mPosition.y) {
-			if (sqrDistanceXZ(creaturePos, mPosition) < SQUARE(40.0f)) {
+			if (creaturePos.sqrDistance2D(mPosition) < SQUARE(40.0f)) {
 				addDamage(damage * 0.2f, 1.0f);
 				return true;
 			}
@@ -1103,7 +1103,7 @@ void Obj::getTonguePosVel(Vector3f& pos, Vector3f& vel)
 void Obj::setNextGoal()
 {
 	f32 rad = C_GENERALPARMS.mTerritoryRadius();
-	if (sqrDistanceXZ(mPosition, mHomePosition) > SQUARE(rad)) {
+	if (mPosition.sqrDistance2D(mHomePosition) > SQUARE(rad)) {
 		mGoalPosition = mHomePosition;
 		checkTurn(true);
 		return;
@@ -1169,7 +1169,7 @@ void Obj::searchTarget()
 			if (absF(angle) <= searchAngle) {
 				Vector3f pos      = mPosition;
 				Vector3f pikiPos2 = Vector3f(piki->getPosition().x, 0.0f, piki->getPosition().z);
-				f32 dist          = sqrDistanceXZ(pikiPos2, pos);
+				f32 dist          = pikiPos2.sqrDistance2D(pos);
 				if (dist < searchDist && dist > range) {
 					mTargetCreature = piki;
 					searchDist      = dist;
@@ -1537,7 +1537,7 @@ lbl_8035FE94:
 bool Obj::isOutOfTerritory(f32 rangeScale)
 {
 	f32 radius = rangeScale * C_GENERALPARMS.mTerritoryRadius();
-	f32 dist   = sqrDistanceXZ(mHomePosition, mPosition);
+	f32 dist   = mHomePosition.sqrDistance2D(mPosition);
 	return (dist > SQUARE(radius));
 }
 
@@ -1601,7 +1601,7 @@ void Obj::walkFunc()
 	// this certainly explains why its so bad at chasing stuff
 	mWalkingTimer++;
 	if (mWalkingTimer > 120) {
-		if (sqrDistanceXZ(mPosition, mPrevWalkingCheckPosition) < 900.0f) {
+		if (mPosition.sqrDistance2D(mPrevWalkingCheckPosition) < 900.0f) {
 			mSearchDelayTimer = 120;
 			mTargetCreature   = nullptr;
 			mGoalPosition     = mHomePosition;
@@ -1758,7 +1758,7 @@ lbl_803602A4:
 bool Obj::isReachToGoal(f32 radius)
 {
 	f32 rad  = SQUARE(radius);
-	f32 dist = sqrDistanceXZ(mPosition, mGoalPosition);
+	f32 dist = mPosition.sqrDistance2D(mGoalPosition);
 	return (u8)(dist < rad);
 }
 
@@ -1811,7 +1811,7 @@ void Obj::checkAttack(bool check)
 				f32 range          = C_PROPERPARMS.mInvisibleRange();
 				Vector3f targetPos = mTargetCreature->getPosition();
 
-				if (sqrDistanceXZ(mPosition, targetPos) > SQUARE(range)) {
+				if (mPosition.sqrDistance2D(targetPos) > SQUARE(range)) {
 					mAllowAnimBlending = check;
 					mFsm->transit(this, KINGCHAPPY_Attack, nullptr);
 					mTargetCreature = nullptr;
@@ -1847,7 +1847,7 @@ void Obj::checkAttack(bool check)
 			f32 range          = C_PROPERPARMS.mInvisibleRange();
 			Vector3f targetPos = bomb->getPosition();
 
-			if (sqrDistanceXZ(mPosition, targetPos) > SQUARE(range)) {
+			if (mPosition.sqrDistance2D(targetPos) > SQUARE(range)) {
 				mAllowAnimBlending = check;
 				mFsm->transit(this, KINGCHAPPY_Attack, nullptr);
 				mTargetCreature = nullptr;

@@ -352,7 +352,7 @@ bool VsGame::CardMgr::usePlayerCard(int user, Game::VsGame::TekiMgr* tekiMgr)
 			}
 			Vector3f onyonPos  = onyon->getFlagSetPos();
 			Vector3f bedamaPos = bedama->getPosition();
-			if (_distanceXZflag(bedamaPos, onyonPos) > 30.0f) {
+			if (bedamaPos.distance2D(onyonPos) > 30.0f) {
 				onyonPos.y += bedama->getCylinderHeight() * 0.5f;
 				PelletReturnArg end = onyonPos;
 

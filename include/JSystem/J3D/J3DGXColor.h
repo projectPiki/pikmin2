@@ -81,10 +81,7 @@ struct J3DGXColorS10 : public GXColorS10 {
 
 	J3DGXColorS10(const J3DGXColorS10& other)
 	{
-		r = other.r;
-		g = other.g;
-		b = other.b;
-		a = other.a;
+		*this = other;
 	}
 
 	J3DGXColorS10(const GXColorS10& other)

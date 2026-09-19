@@ -327,11 +327,11 @@ void CPlate::sortByColor(Creature* piki, int happaType)
 			int iPrio;
 			int jPrio;
 			if (happaType == -1) {
-				jPrio = happa != jPiki->getHappa();
 				iPrio = happa != iPiki->getHappa();
+				jPrio = happa != jPiki->getHappa();
 			} else {
-				jPrio = happaSlots[jPiki->getHappa()];
 				iPrio = happaSlots[iPiki->getHappa()];
+				jPrio = happaSlots[jPiki->getHappa()];
 			}
 
 			if (j > i && jPrio < iPrio) {
@@ -745,7 +745,11 @@ void CPlate::refresh(int formationSize, f32 moveStrength)
 	f32 effectiveMaxSize = maxPositionSize * (mShrinkTimer ? 0.5f : 1.0f);
 
 	f32 radiusFactor = (f32)formationSize / PI;
-	radiusFactor     = _sqrtf(radiusFactor);
+	if (radiusFactor > 0.0f) {
+		sqrtfInPlace(radiusFactor);
+	} else {
+		radiusFactor = 0.0f;
+	}
 
 	mMaxRadius        = ((2.0f + RADIUS_VARIANCE) * effectiveMaxSize) * radiusFactor;
 	f32 smallerRadius = (2.0f - RADIUS_VARIANCE) * effectiveMaxSize;
@@ -805,10 +809,10 @@ void CPlate::refreshSlot(f32 p1)
 
 		Vector2f radii(mBaseRadius, radius);
 		f32 radiusSquared = radius * radius;
-		f32 baseSquared = mBaseRadius * mBaseRadius;
+		f32 baseSquared   = mBaseRadius * mBaseRadius;
 		if (baseSquared - radiusSquared > 0.0f) {
 			f32 areaDifference = radii.x * radii.x - radii.y * radii.y;
-			radiusDifference   = sqrtf(areaDifference);
+			radiusDifference   = sqrtfInPlace(areaDifference);
 		} else {
 			radiusDifference = 0.0f;
 		}

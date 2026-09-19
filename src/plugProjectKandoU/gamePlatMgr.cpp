@@ -459,11 +459,12 @@ void PlatMgr::getCurrTri(CurrTriInfo& info)
  */
 bool PlatMgr::findRayIntersection(Sys::RayIntersectInfo& info)
 {
-	// unused (but annoying).
-	Vector3f edgeVec(info.mIntersectEdge.mStartPos.y - info.mIntersectEdge.mEndPos.y,
-	                 info.mIntersectEdge.mStartPos.z - info.mIntersectEdge.mEndPos.z,
-	                 info.mIntersectEdge.mStartPos.x - info.mIntersectEdge.mEndPos.x);
-	_length2(edgeVec);
+	// completely unused calc lol
+	Vector3f edgeVec;
+	edgeVec.x = info.mIntersectEdge.mStartPos.x - info.mIntersectEdge.mEndPos.x;
+	edgeVec.y = info.mIntersectEdge.mStartPos.y - info.mIntersectEdge.mEndPos.y;
+	edgeVec.z = info.mIntersectEdge.mStartPos.z - info.mIntersectEdge.mEndPos.z;
+	edgeVec.length();
 
 	Iterator<PlatInstance> iter(this);
 

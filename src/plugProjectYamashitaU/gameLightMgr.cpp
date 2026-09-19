@@ -294,7 +294,7 @@ void GameLightEventNode::updateCommon(GameLightMgr* lightMgr, bool check)
 			if (camera) {
 				Vector3f cameraPos = camera->getPosition();
 
-				val = 1.0f - (pikmin2_sqrtf(sqrDistance(*mPosition, cameraPos)) / mRange);
+				val = 1.0f - (pikmin2_sqrtf(mPosition->sqrDistance(cameraPos)) / mRange);
 				if (val < 0.0f) {
 					val = 0.0f;
 				}
@@ -666,7 +666,8 @@ void GameLightMgr::updateSunType()
 			            &mSettings.mSunLight.mLightTimes[SUNTIME_Demo]);
 			break;
 		}
-	}}
+	}
+}
 
 /**
  * @note Address: 0x801212C0

@@ -17,7 +17,7 @@ namespace newScreen {
 
 u64 map_icon_tag[22]
     = { 'oniyon_r', 'oniyon_b', 'oniyon_y', 'piki_r',   'piki__b', 'piki_y',   'piki_bl',  'piki_w',   'piki_fr', 'piki_me', 'kanketu',
-	    'cave',     'pot',      'luji_bs',  'orima_bs', 'ufo',     'takar_bs', 'takar_bs', 'takar_bs', 'cave',    'comp_c',  'cave' };
+        'cave',     'pot',      'luji_bs',  'orima_bs', 'ufo',     'takar_bs', 'takar_bs', 'takar_bs', 'cave',    'comp_c',  'cave' };
 
 /**
  * @note Address: N/A
@@ -1363,7 +1363,7 @@ void ObjSMenuMap::transMap()
 	}
 	f32 X   = SQUARE(inputs.x);
 	f32 Y   = SQUARE(inputs.y);
-	f32 mag = _sqrtf(X + Y);
+	f32 mag = sqrtfClamped(X + Y);
 	if (mag > 1.0f) {
 		mag = 1.0f;
 	}

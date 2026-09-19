@@ -16,7 +16,7 @@ Cylinder::Cylinder(const Vector3f& start, const Vector3f& end, f32 radius)
 	mCenter = (start + end) * 0.5;
 	mAxis   = end - start;
 
-	f32 length = normalise(&mAxis);
+	f32 length = mAxis.qNormalise();
 	mLength    = length;
 	mRadius    = radius;
 }
@@ -42,7 +42,7 @@ void Cylinder::set(const Vector3f& start, const Vector3f& end, f32 radius)
 	mCenter = (start + end) * 0.5;
 	mAxis   = end - start;
 
-	f32 length = normalise(&mAxis);
+	f32 length = mAxis.qNormalise();
 	mLength    = length;
 	mRadius    = radius;
 }

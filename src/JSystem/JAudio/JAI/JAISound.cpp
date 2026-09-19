@@ -388,20 +388,23 @@ f32 JAISound::setPositionDopplarCommon(u32 p1)
 	f32 soundX              = soundObj->mPosition.x;
 	f32 soundY              = soundObj->mPosition.y;
 	f32 soundZ              = soundObj->mPosition.z;
-	f32 x                   = soundX - soundObj->_0C.x;
-	f32 y                   = soundY - soundObj->_0C.y;
-	f32 z                   = soundZ - soundObj->_0C.z;
-	f32 dist1               = dolsqrtfull(SQUARE(soundX) + SQUARE(soundY) + SQUARE(soundZ));
-	f32 x2                  = soundX + x;
-	f32 y2                  = soundY + y;
-	f32 z2                  = soundZ + z;
+	f32 distDiff;
+	f32 x     = soundX - soundObj->_0C.x;
+	f32 y     = soundY - soundObj->_0C.y;
+	f32 z     = soundZ - soundObj->_0C.z;
+	f32 mag1  = SQUARE(soundX) + SQUARE(soundY) + SQUARE(soundZ);
+	f32 dist1 = dolsqrtfull(mag1);
+	f32 x2    = soundX + x;
+	f32 y2    = soundY + y;
+	f32 z2    = soundZ + z;
 
-	f32 dist2 = dolsqrtfull(SQUARE(x2) + SQUARE(y2) + SQUARE(z2));
+	f32 mag2  = SQUARE(x2) + SQUARE(y2) + SQUARE(z2);
+	f32 dist2 = dolsqrtfull(mag2);
 
 	f32 sqVal = SQUARE(p1 >> 8);
 
-	dist1 -= dist2;
-	f32 posDopplar = 1.0f / (1.0f - (dist1 / (JAIGlobalParameter::dopplarParameter / sqVal)));
+	distDiff       = dist1 - dist2;
+	f32 posDopplar = 1.0f / (1.0f - (distDiff / (JAIGlobalParameter::dopplarParameter / sqVal)));
 
 	if (posDopplar < 0.1f) {
 		posDopplar = 0.1f;
@@ -410,206 +413,6 @@ f32 JAISound::setPositionDopplarCommon(u32 p1)
 	}
 
 	return posDopplar;
-	/*
-	stwu     r1, -0x20(r1)
-	lfs      f0, lbl_80516FE4@sda21(r2)
-	lwz      r3, 0x34(r3)
-	lfs      f6, 4(r3)
-	lfs      f2, 0x10(r3)
-	fmuls    f1, f6, f6
-	lfs      f5, 0(r3)
-	lfs      f3, 0xc(r3)
-	fsubs    f9, f6, f2
-	lfs      f7, 8(r3)
-	fmadds   f1, f5, f5, f1
-	lfs      f2, 0x14(r3)
-	fsubs    f8, f5, f3
-	fmadds   f4, f7, f7, f1
-	fsubs    f10, f7, f2
-	fcmpo    cr0, f4, f0
-	ble      lbl_800B40C4
-	frsqrte  f1, f4
-	lfd      f3, lbl_80516FF8@sda21(r2)
-	lfd      f2, lbl_80517000@sda21(r2)
-	fmul     f0, f1, f1
-	fmul     f1, f3, f1
-	fnmsub   f0, f4, f0, f2
-	fmul     f1, f1, f0
-	fmul     f0, f1, f1
-	fmul     f1, f3, f1
-	fnmsub   f0, f4, f0, f2
-	fmul     f1, f1, f0
-	fmul     f0, f1, f1
-	fmul     f1, f3, f1
-	fnmsub   f0, f4, f0, f2
-	fmul     f0, f1, f0
-	fmul     f4, f4, f0
-	frsp     f4, f4
-	b        lbl_800B4148
-
-lbl_800B40C4:
-	lfd      f0, lbl_80517008@sda21(r2)
-	fcmpo    cr0, f4, f0
-	bge      lbl_800B40DC
-	lis      r3, __float_nan@ha
-	lfs      f4, __float_nan@l(r3)
-	b        lbl_800B4148
-
-lbl_800B40DC:
-	stfs     f4, 0xc(r1)
-	lis      r0, 0x7f80
-	lwz      r5, 0xc(r1)
-	rlwinm   r3, r5, 0, 1, 8
-	cmpw     r3, r0
-	beq      lbl_800B4104
-	bge      lbl_800B4134
-	cmpwi    r3, 0
-	beq      lbl_800B411C
-	b        lbl_800B4134
-
-lbl_800B4104:
-	clrlwi.  r0, r5, 9
-	beq      lbl_800B4114
-	li       r0, 1
-	b        lbl_800B4138
-
-lbl_800B4114:
-	li       r0, 2
-	b        lbl_800B4138
-
-lbl_800B411C:
-	clrlwi.  r0, r5, 9
-	beq      lbl_800B412C
-	li       r0, 5
-	b        lbl_800B4138
-
-lbl_800B412C:
-	li       r0, 3
-	b        lbl_800B4138
-
-lbl_800B4134:
-	li       r0, 4
-
-lbl_800B4138:
-	cmpwi    r0, 1
-	bne      lbl_800B4148
-	lis      r3, __float_nan@ha
-	lfs      f4, __float_nan@l(r3)
-
-lbl_800B4148:
-	fadds    f1, f6, f9
-	lfs      f0, lbl_80516FE4@sda21(r2)
-	fadds    f2, f5, f8
-	fadds    f3, f7, f10
-	fmuls    f1, f1, f1
-	fmadds   f1, f2, f2, f1
-	fmadds   f5, f3, f3, f1
-	fcmpo    cr0, f5, f0
-	ble      lbl_800B41B4
-	frsqrte  f1, f5
-	lfd      f3, lbl_80516FF8@sda21(r2)
-	lfd      f2, lbl_80517000@sda21(r2)
-	fmul     f0, f1, f1
-	fmul     f1, f3, f1
-	fnmsub   f0, f5, f0, f2
-	fmul     f1, f1, f0
-	fmul     f0, f1, f1
-	fmul     f1, f3, f1
-	fnmsub   f0, f5, f0, f2
-	fmul     f1, f1, f0
-	fmul     f0, f1, f1
-	fmul     f1, f3, f1
-	fnmsub   f0, f5, f0, f2
-	fmul     f0, f1, f0
-	fmul     f0, f5, f0
-	frsp     f0, f0
-	b        lbl_800B4240
-
-lbl_800B41B4:
-	lfd      f0, lbl_80517008@sda21(r2)
-	fcmpo    cr0, f5, f0
-	bge      lbl_800B41CC
-	lis      r3, __float_nan@ha
-	lfs      f0, __float_nan@l(r3)
-	b        lbl_800B4240
-
-lbl_800B41CC:
-	stfs     f5, 8(r1)
-	lis      r0, 0x7f80
-	lwz      r5, 8(r1)
-	rlwinm   r3, r5, 0, 1, 8
-	cmpw     r3, r0
-	beq      lbl_800B41F4
-	bge      lbl_800B4224
-	cmpwi    r3, 0
-	beq      lbl_800B420C
-	b        lbl_800B4224
-
-lbl_800B41F4:
-	clrlwi.  r0, r5, 9
-	beq      lbl_800B4204
-	li       r0, 1
-	b        lbl_800B4228
-
-lbl_800B4204:
-	li       r0, 2
-	b        lbl_800B4228
-
-lbl_800B420C:
-	clrlwi.  r0, r5, 9
-	beq      lbl_800B421C
-	li       r0, 5
-	b        lbl_800B4228
-
-lbl_800B421C:
-	li       r0, 3
-	b        lbl_800B4228
-
-lbl_800B4224:
-	li       r0, 4
-
-lbl_800B4228:
-	cmpwi    r0, 1
-	bne      lbl_800B423C
-	lis      r3, __float_nan@ha
-	lfs      f0, __float_nan@l(r3)
-	b        lbl_800B4240
-
-lbl_800B423C:
-	fmr      f0, f5
-
-lbl_800B4240:
-	srwi     r3, r4, 8
-	lis      r0, 0x4330
-	mullw    r3, r3, r3
-	stw      r0, 0x10(r1)
-	lfd      f2, lbl_80517018@sda21(r2)
-	fsubs    f4, f4, f0
-	lfs      f3, dopplarParameter__18JAIGlobalParameter@sda21(r13)
-	lfs      f5, lbl_80516FE0@sda21(r2)
-	stw      r3, 0x14(r1)
-	lfs      f0, lbl_80517010@sda21(r2)
-	lfd      f1, 0x10(r1)
-	fsubs    f1, f1, f2
-	fdivs    f1, f3, f1
-	fdivs    f1, f4, f1
-	fsubs    f1, f5, f1
-	fdivs    f1, f5, f1
-	fcmpo    cr0, f1, f0
-	bge      lbl_800B4290
-	fmr      f1, f0
-	b        lbl_800B42A0
-
-lbl_800B4290:
-	lfs      f0, lbl_80517014@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_800B42A0
-	fmr      f1, f0
-
-lbl_800B42A0:
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**

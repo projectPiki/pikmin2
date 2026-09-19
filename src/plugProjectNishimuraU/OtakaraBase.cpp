@@ -403,7 +403,7 @@ Pellet* OtakaraBase::Obj::getNearestTreasure()
 		Pellet* pellet = (Pellet*)(*iterator);
 		if (pellet->isAlive() && (pellet->mCaptureMatrix == nullptr && pellet->isPickable())) {
 			Vector3f position = pellet->getPosition();
-			if (sqrDistanceXZ(position, mHomePosition) < SQUARE(C_GENERALPARMS.mTerritoryRadius())) {
+			if (position.sqrDistance2D(mHomePosition) < SQUARE(C_GENERALPARMS.mTerritoryRadius())) {
 				Vector3f sep2 = mPosition;
 				sep2 -= position;
 				f32 dist2D = SQUARE(sep2.x) + SQUARE(sep2.z);
@@ -435,7 +435,7 @@ Vector3f Obj::getTargetPosition(Creature* target)
 	sep += otakaraPosition;
 
 	f32 territory = C_GENERALPARMS.mTerritoryRadius.mValue;
-	if (sqrDistanceXZ(sep, homePos) > SQUARE(territory)) {
+	if (sep.sqrDistance2D(homePos) > SQUARE(territory)) {
 		Vector3f::getFlatDirectionFromTo(homePos, sep);
 		sep *= territory;
 		sep += homePos;
@@ -598,7 +598,7 @@ void Obj::attackTarget()
 		Creature* target = static_cast<Creature*>(*iter);
 		if (target->isAlive() && (target->isNavi() || target->isPiki())) {
 			Vector3f targetPos = target->getPosition();
-			if (maxRange > targetPos.y && minRange < targetPos.y && sqrDistanceXZ(mPosition, targetPos) < dist) {
+			if (maxRange > targetPos.y && minRange < targetPos.y && mPosition.sqrDistance2D(targetPos) < dist) {
 				interactCreature(target);
 			}
 		}

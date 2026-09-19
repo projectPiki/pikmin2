@@ -114,7 +114,7 @@ bool BigTreasureFireAttack::update()
 			Vector3f creaturePos = creature->getPosition();
 			f32 yDiff            = absVal(pos.y - creaturePos.y);
 
-			if (yDiff < yComp && sqrDistanceXZ(pos, creaturePos) < radius) {
+			if (yDiff < yComp && pos.sqrDistance2D(creaturePos) < radius) {
 				InteractFire fire(mOwner, CG_GENERALPARMS(mOwner).mAttackDamage.mValue);
 				if (creature->isNavi()) {
 					if (!creature->stimulate(fire)) {
@@ -216,7 +216,7 @@ bool BigTreasureGasAttack::update()
 		Creature* creature = static_cast<Creature*>(*iter);
 		if (creature->isAlive()) {
 			Vector3f creaturePos = creature->getPosition();
-			if (absVal(gasPos.y - creaturePos.y) < 30.0f && sqrDistanceXZ(gasPos, creaturePos) < gasDist) {
+			if (absVal(gasPos.y - creaturePos.y) < 30.0f && gasPos.sqrDistance2D(creaturePos) < gasDist) {
 				InteractGas gas(mOwner, CG_GENERALPARMS(mOwner).mAttackDamage());
 				if (creature->isNavi()) {
 					if (creature->stimulate(gas)) {

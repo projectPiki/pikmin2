@@ -542,8 +542,7 @@ bool RouteMgr::getNearestEdge(WPEdgeSearchArg& searchArg)
 			continue;
 		}
 
-		int wpAIndex = wpA->mIndex;
-		if (searchArg.isLinkedTo(wpAIndex)) {
+		if (searchArg.isLinkedTo(wpA->mIndex)) {
 			continue;
 		}
 
@@ -568,8 +567,6 @@ bool RouteMgr::getNearestEdge(WPEdgeSearchArg& searchArg)
 				continue;
 			}
 
-			// there really are a shitton of branches here from SOMETHING
-			// this is my best guess for now
 			bool isReverseLink = false;
 			for (int j = 0; j < 8; j++) {
 				if (wpB->mFromLinks[i] == wpA->mIndex) {
@@ -581,7 +578,7 @@ bool RouteMgr::getNearestEdge(WPEdgeSearchArg& searchArg)
 				continue;
 			}
 
-			bool isWaypointAClosed = wpA->isFlag(WPF_Closed);
+			int isWaypointAClosed = wpA->isFlag(WPF_Closed);
 			if (isWaypointAClosed && wpB->isFlag(WPF_Closed)) {
 				continue;
 			}
@@ -605,27 +602,17 @@ bool RouteMgr::getNearestEdge(WPEdgeSearchArg& searchArg)
 				}
 			}
 
-			Vector3f wpPos            = wpA->mPosition;
-			Vector3f relativePosition = wpB->mPosition - wpPos;
-			f32 distanceMagnitude     = relativePosition.length();
-			if (distanceMagnitude > 0.0f) {
-				f32 norm = 1.0f / distanceMagnitude;
-				relativePosition.x *= norm;
-				relativePosition.y *= norm;
-				relativePosition.z *= norm;
-			} else {
-				distanceMagnitude = 0.0f;
-			}
-			Vector3f searchSep = searchArg.mStartPosition - wpPos;
-			f32 dotProd        = relativePosition.dot(searchSep) / distanceMagnitude;
+			Vector3f relativePosition = wpB->mPosition - wpA->mPosition;
+			f32 distanceMagnitude     = relativePosition.normalise();
+			Vector3f searchSep        = searchArg.mStartPosition - wpA->mPosition;
+			f32 dotProd               = relativePosition.dot(searchSep) / distanceMagnitude;
 
 			if (distanceMagnitude < 0.1f) {
 				JUT_PANICLINE(768, "wpA(%d) and wpB(%d) cause singularity !\n", wpA->mIndex, wpB->mIndex);
 			}
 
-			Vector3f searchPos = searchArg.mStartPosition;
-			f32 revDistA       = wpA->mPosition.distance(searchPos);
-			f32 revDistB       = wpB->mPosition.distance(searchPos);
+			f32 revDistA = wpA->mPosition.distance(searchArg.mStartPosition);
+			f32 revDistB = wpB->mPosition.distance(searchArg.mStartPosition);
 			f32 newDist;
 			if (dotProd < 0.0f || dotProd > 1.0f) {
 				if (revDistB < revDistA) {
@@ -637,7 +624,7 @@ bool RouteMgr::getNearestEdge(WPEdgeSearchArg& searchArg)
 				f32 factor       = dotProd * distanceMagnitude;
 				Vector3f edgePos = relativePosition * factor + wpA->mPosition;
 				f32 radius       = (1.0f - dotProd) * wpA->mRadius + dotProd * wpB->mRadius;
-				newDist          = edgePos.distance(searchPos) - radius;
+				newDist          = edgePos.distance(searchArg.mStartPosition) - radius;
 			}
 
 			if (newDist < minDist) {
@@ -1475,12 +1462,13 @@ EditorRouteMgr::EditorRouteMgr()
  */
 void EditorRouteMgr::read(Stream& input)
 {
+	u16 count;
 	FOREACH_NODE(WPNode, mNode.mChild, node)
 	{
 		delWayPoint(node->mWayPoint);
 	}
 
-	u16 count = input.readShort();
+	count = input.readShort();
 	WayPoint* wp;
 	mCount = 0;
 	for (int i = 0; i < count; i++) {

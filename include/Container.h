@@ -63,7 +63,7 @@ struct ArrayContainer : public Container<T> {
 	}
 
 	/////////////////// VTABLE
-	virtual ~ArrayContainer() { } // _08 (weak)
+	// virtual ~ArrayContainer() { } // _08 (weak)
 
 	virtual void writeObject(Stream&, T&) { } // _2C (weak)
 	virtual void readObject(Stream&, T&) { }  // _30 (weak)

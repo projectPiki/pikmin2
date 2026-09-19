@@ -17,9 +17,17 @@ struct CreateTriangleArg;
 struct Sphere;
 
 struct GridInfo {
+	~GridInfo()
+	{
+		mCount = 0;
+		delete[] mIndices;
+	}
+
 	// Unused/inlined:
-	~GridInfo();
 	void write(Stream&);
+
+	int mCount;    // _00
+	int* mIndices; // _04
 };
 
 /**

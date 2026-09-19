@@ -342,7 +342,7 @@ int ActEnter::execSuck()
 	if (val < 0.0f) {
 		val = 0.0f;
 	}
-	mBaseScale = _sqrtf2(val);
+	mBaseScale = sqrtfClamped(val);
 	if (mBaseScale < 0.05f) {
 		mBaseScale = 0.05f;
 	}

@@ -250,7 +250,7 @@ void J3DShape::drawFast() const
 			J3DShapeMtx::resetMtxLoadCache();
 		u16 i = 0;
 		u32 n = getMtxGroupNum();
-		for (i; i < n; i++) {
+		for (; i < n; i++) {
 			if (getShapeMtx(i) != nullptr)
 				getShapeMtx(i)->load();
 			if (getShapeDraw(i) != nullptr)

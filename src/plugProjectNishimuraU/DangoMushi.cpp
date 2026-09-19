@@ -393,7 +393,7 @@ void Obj::setRandTarget()
  */
 bool Obj::isReachedTarget()
 {
-	return sqrDistanceXZ(mPosition, mTargetPosition) < 625.0f;
+	return mPosition.sqrDistance2D(mTargetPosition) < 625.0f;
 }
 
 /**

@@ -203,8 +203,8 @@ void TAdaptor::adaptor_setVariableValue_n(JStudio::TObject* object, u32 const* v
                                           void const* p5, u32 p6)
 {
 	// UNUSED FUNCTION
-	StaticCapsSetVariableValueFunction func;
 	u32 offset;
+	StaticCapsSetVariableValueFunction func;
 	switch (operation) {
 	case data::TEOD_Unknown_01:
 		offset = 0;
@@ -400,7 +400,7 @@ TObject::~TObject()
  */
 void TObject::forward_value(u32 p1)
 {
-	TAdaptor* adaptor = getAdaptor();
+	TAdaptor* adaptor = mAdaptor;
 	if (adaptor) {
 		adaptor->adaptor_updateVariableValue(this, p1);
 		adaptor->adaptor_do_update(this, p1);
@@ -440,77 +440,6 @@ void TObject::do_end()
 void TObject::do_wait(u32 p1)
 {
 	forward_value(p1);
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stfd     f31, 0x20(r1)
-	psq_st   f31, 40(r1), 0, qr0
-	stmw     r26, 8(r1)
-	mr       r26, r3
-	mr       r27, r4
-	lwz      r31, 0x34(r3)
-	cmplwi   r31, 0
-	beq      lbl_8000D824
-	lwz      r0, 8(r31)
-	lwz      r3, 0x14(r26)
-	mulli    r0, r0, 0x14
-	lwz      r28, 4(r31)
-	lfd      f31, 0x58(r3)
-	add      r30, r28, r0
-	b        lbl_8000D800
-
-lbl_8000D79C:
-	lwz      r3, 4(r28)
-	mr       r29, r28
-	addi     r28, r28, 0x14
-	subfic   r0, r3, -1
-	cmplw    r0, r27
-	bgt      lbl_8000D7C0
-	li       r0, -1
-	stw      r0, 4(r29)
-	b        lbl_8000D7C8
-
-lbl_8000D7C0:
-	add      r0, r3, r27
-	stw      r0, 4(r29)
-
-lbl_8000D7C8:
-	lwz      r12, 8(r29)
-	cmplwi   r12, 0
-	beq      lbl_8000D800
-	fmr      f1, f31
-	mr       r3, r29
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x10(r29)
-	mr       r4, r31
-	lfs      f1, 0(r29)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8000D800:
-	cmplw    r28, r30
-	bne      lbl_8000D79C
-	mr       r3, r31
-	mr       r4, r26
-	lwz      r12, 0(r31)
-	mr       r5, r27
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8000D824:
-	psq_l    f31, 40(r1), 0, qr0
-	lfd      f31, 0x20(r1)
-	lmw      r26, 8(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /**
@@ -1274,7 +1203,6 @@ void TObject_ambientLight::do_paragraph(u32 p1, void const* p2, u32 p3)
 	}
 	u32 value;
 	const u32* values;
-	u32 count;
 	u32 v1                          = p1 >> 5;
 	data::TEOperationData operation = (data::TEOperationData)(p1 & 0x1F);
 	switch (v1) {
@@ -1291,13 +1219,13 @@ void TObject_ambientLight::do_paragraph(u32 p1, void const* p2, u32 p3)
 		value = 3;
 		break;
 	case 0x21:
-		count  = 3;
 		values = TAdaptor_ambientLight::sauVariableValue_3_COLOR_RGB;
+		value  = 3;
 		goto multi;
 		return;
 	case 0x22:
-		count  = 4;
 		values = TAdaptor_ambientLight::sauVariableValue_4_COLOR_RGBA;
+		value  = 4;
 		goto multi;
 		return;
 	default:
@@ -1306,7 +1234,7 @@ void TObject_ambientLight::do_paragraph(u32 p1, void const* p2, u32 p3)
 	adaptor->adaptor_setVariableValue(this, value, operation, p2, p3);
 	return;
 multi:
-	adaptor->adaptor_setVariableValue_n(this, values, count, operation, p2, 0);
+	adaptor->adaptor_setVariableValue_n(this, values, value, operation, p2, 0);
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x30(r1)
@@ -2996,7 +2924,7 @@ void TObject_message::do_paragraph(u32 p1, const void* p2, u32 p3)
 	}
 
 	u32 v1                             = p1 >> 5;
-	data::TEOperationData operation    = (data::TEOperationData)(p1 &= 0x1F);
+	data::TEOperationData operation    = (data::TEOperationData)(p1 & 0x1F);
 	TAdaptor::AdaptorDoFunction doFunc = nullptr;
 
 	switch (v1) {
@@ -4299,5 +4227,4 @@ lbl_8000F6B8:
 	blr
 	*/
 }
-
 } // namespace JStudio

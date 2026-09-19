@@ -299,7 +299,7 @@ void BombSarai::Obj::throwBomb(Vector3f& velocity)
  */
 Creature* BombSarai::Obj::getAttackablePikmin()
 {
-	if (sqrDistanceXZ(mPosition, mHomePosition) < SQUARE(C_GENERALPARMS.mTerritoryRadius())) {
+	if (mPosition.sqrDistance2D(mHomePosition) < SQUARE(C_GENERALPARMS.mTerritoryRadius())) {
 		return EnemyFunc::getNearestPikminOrNavi(this, C_GENERALPARMS.mViewAngle.mValue, C_GENERALPARMS.mSightRadius.mValue, nullptr,
 		                                         nullptr, nullptr);
 	}

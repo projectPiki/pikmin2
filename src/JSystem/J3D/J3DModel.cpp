@@ -711,7 +711,6 @@ void J3DModel::calcNrmMtx()
 void J3DModel::calcBumpMtx()
 {
 	u32 bumpMtxIdx, materialNum;
-	u16 i;
 	if (!getModelData()->checkBumpFlag()) {
 		return;
 	}
@@ -719,8 +718,7 @@ void J3DModel::calcBumpMtx()
 	bumpMtxIdx  = 0;
 	materialNum = getModelData()->getMaterialNum();
 
-	i = 0;
-	for (i; i < materialNum; i++) {
+	for (u16 i = 0; i < materialNum; i++) {
 		J3DMaterial* material = getModelData()->getMaterialNodePointer(i);
 		if (material->getNBTScale()->mHasScale == TRUE) {
 			material->getShape()->calcNBTScale(*material->getNBTScale()->getScale(), getNrmMtxPtr(), getBumpMtxPtr(bumpMtxIdx));

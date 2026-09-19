@@ -1695,12 +1695,12 @@ bool Onyon::insideAccessArea(Vector3f& navipos)
 {
 	if (mOnyonType == ONYON_TYPE_SHIP) {
 		Vector3f pos = getGoalPos();
-		if (sqrDistanceXZ(navipos, pos) < 900.0f) {
+		if (navipos.sqrDistance2D(pos) < 900.0f) {
 			return true;
 		}
 	} else {
 		Vector3f pos = mPosition;
-		if (sqrDistanceXZ(navipos, pos) < 900.0f) {
+		if (navipos.sqrDistance2D(pos) < 900.0f) {
 			return true;
 		}
 	}

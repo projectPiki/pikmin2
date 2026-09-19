@@ -580,8 +580,7 @@ bool Piki::might_bury()
 		if (creature->mObjectTypeID == OBJTYPE_Cave || creature->mObjectTypeID == OBJTYPE_BigFountain
 		    || creature->mObjectTypeID == OBJTYPE_Hole) {
 			Vector3f creaturePos = creature->getPosition();
-			Vector3f sep         = Vector3f(creaturePos.y - mPosition.y, creaturePos.z - mPosition.z, creaturePos.x - mPosition.x);
-			if (_length2(sep) <= 100.0f) {
+			if (creaturePos.distance(mPosition) <= 100.0f) {
 				return false;
 			}
 		}
@@ -1334,8 +1333,7 @@ void Piki::do_updateLookCreature()
 			mTargetLookTimer -= sys->mDeltaTime;
 			if (mTargetLookTimer > 0.0f) {
 				Vector3f targetPos = mLookAtTargetCreature->getPosition();
-				Vector3f sep       = Vector3f(targetPos.y - mPosition.y, targetPos.z - mPosition.z, targetPos.x - mPosition.x);
-				if (_length2(sep) > 200.0f) {
+				if (targetPos.distance(mPosition) > 200.0f) {
 					finishLook();
 				}
 				return;

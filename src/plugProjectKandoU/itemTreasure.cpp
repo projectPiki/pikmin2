@@ -277,7 +277,7 @@ void Item::doDirectDraw(Graphics& gfx)
 bool Item::getVectorField(Sys::Sphere& bounds, Vector3f& pos)
 {
 	Vector3f diff = mPosition - bounds.mPosition;
-	f32 dist      = _normalise2(diff); // needs tweaking
+	f32 dist      = diff.normalize();
 
 	if (dist > getWorkRadius() + 5.0f) {
 		pos = diff;

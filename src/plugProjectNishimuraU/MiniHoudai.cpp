@@ -464,7 +464,7 @@ void Obj::updateTargetDistance()
 {
 	f32 radius = (mNearestWaypoint) ? mNearestWaypoint->mRadius : C_GENERALPARMS.mHomeRadius.mValue;
 
-	if (sqrDistanceXZ(mPosition, mWalkTargetPosition) < radius * radius) {
+	if (mPosition.sqrDistance2D(mWalkTargetPosition) < radius * radius) {
 		setLinkWayPoint();
 		mUpdateTimer = 0.0f;
 	}

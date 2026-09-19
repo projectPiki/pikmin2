@@ -219,7 +219,7 @@ bool Item::sound_culling()
 	Navi* navi = naviMgr->getActiveNavi();
 	if (navi) {
 		Vector3f pos = navi->getPosition();
-		if (sqrDistanceXZ(pos, mPosition) >= SQUARE(700.0f)) {
+		if (pos.sqrDistance2D(mPosition) >= SQUARE(700.0f)) {
 			return true;
 		}
 	}
@@ -246,13 +246,13 @@ void Item::createLightEvent()
 {
 	if (!mLightEventNode) {
 		GameLightEventArg arg;
-		f32 farZ  = mFogParm.mEndZ.mValue;
 		f32 nearZ = mFogParm.mStartZ.mValue;
+		f32 farZ  = mFogParm.mEndZ.mValue;
 		arg.setLightType(LIGHTTYPE_Fog);
 		arg.mNearZ = nearZ;
 		arg.mFarZ  = farZ;
-		f32 fade   = mFogParm.mEndTime.mValue;
 		f32 grow   = mFogParm.mStartTime.mValue;
+		f32 fade   = mFogParm.mEndTime.mValue;
 		arg.resetEvent(LIGHTEVENT_Unk1);
 		arg.mGrowTime = grow;
 		arg.mFadeTime = fade;
@@ -260,9 +260,9 @@ void Item::createLightEvent()
 		u8 green      = mFogParm.mGreen.mValue;
 		u8 red        = mFogParm.mRed.mValue;
 		arg.resetEvent(LIGHTEVENT_Unk2);
-		arg.mRedScale   = red;
-		arg.mGreenScale = green;
 		arg.mBlueScale  = blue;
+		arg.mGreenScale = green;
+		arg.mRedScale   = red;
 		f32 range       = mFogParm.mDistance.mValue;
 		arg.setEvent(LIGHTEVENT_Unk3 | LIGHTEVENT_Unk4);
 		arg.mPosition   = &mPosition;

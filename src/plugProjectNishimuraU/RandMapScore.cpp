@@ -580,7 +580,7 @@ void RandMapScore::setChallengeFixObjNormal()
 							f32 val;
 							if (currNode->getNodeScore() > 0) {
 								val = currNode->getNodeScore();
-								val = sqrtf(val);
+								val = sqrtfInPlace(val);
 							} else {
 								val = 0.0f;
 							}
@@ -1014,8 +1014,7 @@ bool RandMapScore::isFixObjSet(MapNode* node, BaseGen* spawner)
 	if (node == getFixObjNode(FIXNODE_Pod) && spawner && getFixObjGen(FIXNODE_Pod)) {
 		Vector3f fixPos  = getFixObjGen(FIXNODE_Pod)->mPosition;
 		Vector3f testPos = spawner->mPosition;
-		Vector3f sep     = Vector3f(fixPos.y - testPos.y, fixPos.z - testPos.z, fixPos.x - testPos.x);
-		if (_length2(sep) < 150.0f) {
+		if (fixPos.distance(testPos) < 150.0f) {
 			return false;
 		}
 	}

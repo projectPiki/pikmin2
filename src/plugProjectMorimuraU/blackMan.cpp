@@ -366,7 +366,7 @@ void Obj::doUpdate()
 					getPosition2D(pos);
 					Vector3f naviPos = Vector3f(activeNavi->getPosition().x, 0.0f, activeNavi->getPosition().z);
 
-					f32 sqrDist = sqrDistanceXZ(naviPos, pos);
+					f32 sqrDist = naviPos.sqrDistance2D(pos);
 					if (isFinalFloor()) {
 						f32 fallRadius = C_PARMS->mFallRadius;
 						if (sqrDist < SQUARE(fallRadius)) {
@@ -878,7 +878,7 @@ void Obj::walkFunc()
 
 			bool isAnimEnd = false;
 
-			f32 sqrDist = sqrDistanceXZ(mPosition, naviPosition);
+			f32 sqrDist = mPosition.sqrDistance2D(naviPosition);
 
 			if (mCurAnim->mIsPlaying && mCurAnim->mType == KEYEVENT_END) {
 				isAnimEnd = true;
@@ -930,7 +930,7 @@ void Obj::walkFunc()
 	} else if (ItemOnyon::mgr && ItemOnyon::mgr->mPod) {
 		Vector3f podPos = ItemOnyon::mgr->mPod->getPosition();
 		bool isAnimEnd  = false;
-		f32 sqrDist     = sqrDistanceXZ(mPosition, podPos);
+		f32 sqrDist     = mPosition.sqrDistance2D(podPos);
 
 		if (mCurAnim->mIsPlaying && mCurAnim->mType == KEYEVENT_END) {
 			isAnimEnd = true;
@@ -997,7 +997,7 @@ void Obj::walkFunc()
 	if (mRouteFindTimer == 0) {
 		mRouteFindCooldownTimer++;
 		if (mRouteFindCooldownTimer > 60) {
-			if (sqrDistanceXZ(mPosition, mNextRoutePos) < SQUARE(10.0f)) {
+			if (mPosition.sqrDistance2D(mNextRoutePos) < SQUARE(10.0f)) {
 				mRouteFindTimer = 120;
 				findNextRoutePoint();
 			}
@@ -1663,7 +1663,7 @@ lbl_803A8B4C:
  */
 bool Obj::isReachToGoal(f32 rad)
 {
-	return (u8)(sqrDistanceXZ(mPosition, mTargetPosition) < SQUARE(rad));
+	return (u8)(mPosition.sqrDistance2D(mTargetPosition) < SQUARE(rad));
 }
 
 /**
@@ -1794,7 +1794,7 @@ void Obj::findNextRoutePoint()
 						Vector3f* wpPosPtr2 = &wp->getPosition();
 						Vector3f pikiPos    = Vector3f(piki->getPosition().x, 0.0f, piki->getPosition().z);
 
-						f32 sqrDist = sqrDistanceXZ(pikiPos, wpPos);
+						f32 sqrDist = pikiPos.sqrDistance2D(wpPos);
 						if (sqrDist < minDist) {
 							minDist = sqrDist;
 							val     = i;
@@ -1810,7 +1810,7 @@ void Obj::findNextRoutePoint()
 					Vector3f wpPos2     = wpPos;
 					Vector3f* wpPosPtr2 = &wpPos2;
 					Vector3f naviPos    = Vector3f(activeNavi->getPosition().x, 0.0f, activeNavi->getPosition().z);
-					f32 sqrDist         = sqrDistanceXZ(naviPos, wpPos);
+					f32 sqrDist         = naviPos.sqrDistance2D(wpPos);
 					if (sqrDist < minDist) {
 						minDist = sqrDist;
 						val     = i;
@@ -3121,8 +3121,8 @@ bool Obj::setPathFinder(bool check)
 		Vector3f wp1Pos  = edgeArg.mWp1->mPosition;
 		Vector3f wp2Pos  = edgeArg.mWp2->mPosition;
 		Vector3f homePos = mHomePosition;
-		f32 wp2Dist      = sqrDistanceXZ(wp2Pos, homePos);
-		f32 wp1Dist      = sqrDistanceXZ(wp1Pos, homePos);
+		f32 wp2Dist      = wp2Pos.sqrDistance2D(homePos);
+		f32 wp1Dist      = wp1Pos.sqrDistance2D(homePos);
 		s16 idx1         = edgeArg.mWp1->mIndex;
 		s16 idx2         = edgeArg.mWp2->mIndex;
 		if (wp1Dist > wp2Dist) {

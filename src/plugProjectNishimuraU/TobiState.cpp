@@ -507,9 +507,8 @@ void StateGoHome::exec(EnemyBase* enemy)
 	} else {
 		Vector3f homePos2 = tobi->mHomePosition;
 		Vector3f position = tobi->getPosition();
-		Vector3f diff     = Vector3f(position.y - homePos2.y, position.z - homePos2.z, position.x - homePos2.x);
 
-		if (_length2(diff) < CG_GENERALPARMS(tobi).mHomeRadius.mValue) {
+		if (position.distance(homePos2) < CG_GENERALPARMS(tobi).mHomeRadius.mValue) {
 			tobi->mNextState = TOBI_Dive;
 			tobi->finishMotion();
 		}
@@ -699,9 +698,8 @@ void StateAttack2::exec(EnemyBase* enemy)
 
 			Vector3f homePos2 = tobi->mHomePosition;
 			Vector3f position = tobi->getPosition();
-			Vector3f diff     = Vector3f(position.y - homePos2.y, position.z - homePos2.z, position.x - homePos2.x);
 
-			if (_length2(diff) > CG_GENERALPARMS(tobi).mTerritoryRadius.mValue) {
+			if (position.distance(homePos2) > CG_GENERALPARMS(tobi).mTerritoryRadius.mValue) {
 				transit(tobi, TOBI_GoHome, nullptr);
 				return;
 			}
@@ -753,9 +751,8 @@ void StateEat::exec(EnemyBase* enemy)
 
 			Vector3f homePos2 = tobi->mHomePosition;
 			Vector3f position = tobi->getPosition();
-			Vector3f diff     = Vector3f(position.y - homePos2.y, position.z - homePos2.z, position.x - homePos2.x);
 
-			if (_length2(diff) > CG_GENERALPARMS(tobi).mTerritoryRadius.mValue) {
+			if (position.distance(homePos2) > CG_GENERALPARMS(tobi).mTerritoryRadius.mValue) {
 				transit(tobi, TOBI_GoHome, nullptr);
 				return;
 			}

@@ -446,7 +446,7 @@ void PlayData::reset()
 {
 	mNaviLifeMax[1]        = 0.0f;
 	mNaviLifeMax[0]        = 0.0f;
-	mDeadNaviID.typeView            = 0;
+	mDeadNaviID.typeView   = 0;
 	u64 osTime             = OSGetTime();
 	mOsTime                = osTime;
 	mDoAllowDebugPikiSpawn = false;
@@ -1255,7 +1255,8 @@ void PlayData::initCaveOtakaras()
 	}
 
 	for (int i = 0; i < max; i++) {
-		mCaveOtakaraOld[i].clear();
+		CaveOtakara* ota = &mCaveOtakaraOld[i];
+		ota->clear();
 	}
 }
 
@@ -1639,7 +1640,7 @@ void PlayData::write_CaveOtakara_Old(Stream& ram)
 {
 	/* NON-MATCHING */
 	ram.textBeginGroup("＊洞窟情報(Old)＊");
-	u16 max = stageList->getCourseCount();
+	u16 max = stageList->mCourseCount;
 	for (int i = 0; i < max; i++) {
 		CaveOtakara* ota = &mCaveOtakaraOld[i];
 		ota->write(ram);

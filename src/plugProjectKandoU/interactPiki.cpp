@@ -648,7 +648,7 @@ bool InteractSwallow::actPiki(Game::Piki* piki)
 		posDiff.x = pikiPos.x - enemyPos.x;
 		posDiff.z = pikiPos.z - enemyPos.z;
 		posDiff.y = pikiPos.y - enemyPos.y;
-		_normaliseXZ(posDiff); // nearly every normalize function works
+		posDiff.normalise();
 		f32 angle = JMAAtan2Radian(posDiff.x, posDiff.z);
 		InteractFlick swallowFlick(mCreature, 50.0f, 0.0f, -angle);
 		piki->stimulate(swallowFlick);

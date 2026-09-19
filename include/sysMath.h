@@ -4,6 +4,9 @@
 #include "JSystem/JMath.h"
 #include "math.h"
 
+#define FLOAT_DIST_MAX 128000.0f
+#define FLOAT_DIST_MIN -128000.0f
+
 template <typename T>
 struct Vector3;
 

@@ -638,39 +638,14 @@ f32 JAIBasic::getMapInfoFxParameter(u32 p1)
  */
 u16 JAIBasic::getSoundOffsetNumberFromID(u32 id)
 {
-	// TODO: probably an inline here.
+	u16 offset;
 	if (JAInter::SoundTable::getInfoFormat(id) & 1) {
-		return JAInter::SoundTable::getInfoPointer(id)->mOffsetNo;
+		JAInter::SoundInfo* info = JAInter::SoundTable::getInfoPointer(id);
+		offset                   = info->mOffsetNo;
+	} else {
+		offset = id & 0x3FF;
 	}
-
-	return (id & 0x3FF);
-
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	bl       getInfoFormat__Q27JAInter10SoundTableFUl
-	clrlwi.  r0, r3, 0x1f
-	beq      lbl_800ACB00
-	mr       r3, r31
-	bl       getInfoPointer__Q27JAInter10SoundTableFUl
-	lhz      r3, 6(r3)
-	b        lbl_800ACB08
-
-lbl_800ACB00:
-	clrlwi   r0, r31, 0x16
-	mr       r3, r0
-
-lbl_800ACB08:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return offset;
 }
 
 /**
@@ -700,11 +675,11 @@ u16 JAIBasic::setParameterSeqSync(JASTrack* track, u16 p2)
 	u16 result = 0;
 	switch (p2) {
 	case 0: {
+		JASTrack* parentTrack;
 		for (u32 i = 0; i < JAIGlobalParameter::seqPlayTrackMax; i++) {
 			if (JAInter::SequenceMgr::getPlayTrackInfo(i)->mSequence != nullptr) {
 				JASTrack* seqTrack = JAInter::SequenceMgr::getPlayTrackInfo(i)->mSequence->mSeqParameter.getTrack();
-				JASTrack* parentTrack;
-				if (!IsJAISoundIDInUse(JAInter::SequenceMgr::getPlayTrackInfo(i)->mSequence->mSoundID)) {
+				if (JAInter::SequenceMgr::getPlayTrackInfo(i)->mSequence->mSoundID & 0x800) {
 					parentTrack = track->mParentTrack->mParentTrack;
 				} else {
 					parentTrack = track->mParentTrack;

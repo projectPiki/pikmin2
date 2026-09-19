@@ -284,7 +284,7 @@ void StateAttacking::exec(EnemyBase* enemy)
 				}
 
 				Vector3f pikiPos = piki->getPosition();
-				if (maxY > pikiPos.y && minY < pikiPos.y && sqrDistanceXZ(pos, pikiPos) < radius) {
+				if (maxY > pikiPos.y && minY < pikiPos.y && pos.sqrDistance2D(pikiPos) < radius) {
 					if (enemy->mTargetCreature == piki) {
 						enemy->mTargetCreature = nullptr;
 					}
@@ -304,7 +304,7 @@ void StateAttacking::exec(EnemyBase* enemy)
 				}
 
 				Vector3f naviPos = navi->getPosition();
-				if (maxY > naviPos.y && minY < naviPos.y && sqrDistanceXZ(pos, naviPos) < radius) {
+				if (maxY > naviPos.y && minY < naviPos.y && pos.sqrDistance2D(naviPos) < radius) {
 					if (enemy->mTargetCreature == navi) {
 						enemy->mTargetCreature = nullptr;
 					}

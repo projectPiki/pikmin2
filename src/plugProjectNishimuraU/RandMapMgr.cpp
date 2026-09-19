@@ -358,10 +358,9 @@ void RandMapMgr::getBaseGenData(Vector3f* positions, f32* dirs)
 				{
 					if (currGen->mSpawnType == BaseGen::CGT_EnemyEasy || currGen->mSpawnType == BaseGen::CGT_EnemyHard) {
 						Vector3f globalPos = currNode->getBaseGenGlobalPosition(currGen);
-						Vector3f sep       = Vector3f(positions->y - globalPos.y, positions->z - globalPos.z, positions->x - globalPos.x);
 						nodeList[counter]  = currNode;
 						genList[counter]   = currGen;
-						floatList[counter] = _length2(sep);
+						floatList[counter] = positions->distance(globalPos);
 
 						total += floatList[counter];
 						counter++;

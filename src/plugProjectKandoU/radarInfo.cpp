@@ -216,7 +216,7 @@ Radar::Mgr::RadarSearchResult Radar::Mgr::calcNearestTreasure(Vector3f& naviPos,
 		creature->getBoundingSphere(boundingSphere);
 
 		// Calculate the distance between the creature and the treasure
-		f32 cDist = _lenVec2D(positionOffset) - boundingSphere.mRadius;
+		f32 cDist = positionOffset.length() - boundingSphere.mRadius;
 		if (cDist <= closestDistance) {
 			closestDistance  = cDist;
 			closestPoint     = cPoint;

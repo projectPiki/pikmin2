@@ -332,7 +332,7 @@ void StateMove::exec(EnemyBase* enemy)
 			if (!imomushi->isAttackable()) {
 				imomushi->mTargetCreature = imomushi->getRandFruitsPlant();
 			} else {
-				if (sqrDistanceXZ(pos, creaturePos) < 900.0f) {
+				if (pos.sqrDistance2D(creaturePos) < 900.0f) {
 					imomushi->mNextState = IMOMUSHI_Climb;
 					imomushi->finishMotion();
 				}

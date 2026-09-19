@@ -71,7 +71,7 @@ bool Tube::collide(Sphere& ball, Vector3f& repulsionVec, f32& posRatio)
 	diff          = diff - mStartPos;
 	Vector3f axis = diff;
 
-	f32 lenTube = lenVec(axis);
+	f32 lenTube = axis.qLength();
 
 	// if tube isn't 0-length, normalise axis to unit vector
 	if (lenTube > 0.0f) {
@@ -98,7 +98,7 @@ bool Tube::collide(Sphere& ball, Vector3f& repulsionVec, f32& posRatio)
 	Vector3f perpVec = (diff * scalarProj) + mStartPos - ball.mPosition;
 
 	// get center-to-center distance
-	f32 perpDist = lenVec(perpVec);
+	f32 perpDist = perpVec.qLength();
 
 	// get radius of tube at point of perpendicular distance
 	// i.e. at fraction 'scalarProj' along tube, assuming radius changes linearly from one end to the other
@@ -112,7 +112,7 @@ bool Tube::collide(Sphere& ball, Vector3f& repulsionVec, f32& posRatio)
 	// check we have 0 <= scalarProj <= 1 (ball 'next to' tube) and some overlap
 	if ((scalarProj >= 0) && (scalarProj <= 1.0f) && overlap >= 0) {
 		repulsionVec = perpVec;
-		f32 mag_vec  = normalise(&repulsionVec);
+		f32 mag_vec  = repulsionVec.qNormalise();
 
 		// scale (unit) repulsion vector by overlap + point away from tube
 		repulsionVec = repulsionVec * -overlap;
@@ -312,7 +312,7 @@ f32 Tube::getPosRatio(const Vector3f& point)
 
 	// get axis vector and normalise to unit vector
 	Vector3f axis(mEndPos.x - mStartPos.x, mEndPos.y - mStartPos.y, mEndPos.z - mStartPos.z);
-	f32 mag = normalise(&axis);
+	f32 mag = axis.qNormalise();
 
 	// get separation vector
 	Vector3f sep = point - mStartPos;
@@ -392,7 +392,7 @@ bool Sys::Sphere::intersect(Sys::Sphere& ball, Vector3f& repulsionVec)
 
 	// calculate center-to-center distance
 	repulsionVec = ball.mPosition - mPosition;
-	f32 sep      = normalise(&repulsionVec);
+	f32 sep      = repulsionVec.qNormalise();
 
 	// (distance between centers) - (total 'material' between centers); positive if there's a gap
 	f32 negOverlap = sep - (ball.mRadius + mRadius);
@@ -419,7 +419,7 @@ bool Sphere::intersect(Edge& edge, f32& t)
 
 	// check start point of edge
 	Vector3f startSep(edge.mStartPos.x - mPosition.x, edge.mStartPos.y - mPosition.y, edge.mStartPos.z - mPosition.z);
-	f32 startDist = lenVec(startSep);
+	f32 startDist = startSep.qLength();
 	if (startDist <= mRadius) { // start is intersecting
 		t = 0.0f;
 		return true;
@@ -427,7 +427,7 @@ bool Sphere::intersect(Edge& edge, f32& t)
 
 	// check end point of edge
 	Vector3f endSep(edge.mEndPos.x - mPosition.x, edge.mEndPos.y - mPosition.y, edge.mEndPos.z - mPosition.z);
-	f32 endDist = lenVec(endSep);
+	f32 endDist = endSep.qLength();
 	if (endDist <= mRadius) { //  end is intersecting
 		t = 1.0f;
 		return true;
@@ -435,7 +435,7 @@ bool Sphere::intersect(Edge& edge, f32& t)
 
 	// create unit edge vector (pointing along edge) + get length of edge
 	Vector3f edgeVec(edge.mEndPos.x - edge.mStartPos.x, edge.mEndPos.y - edge.mStartPos.y, edge.mEndPos.z - edge.mStartPos.z);
-	f32 edgeLen = normalise(&edgeVec);
+	f32 edgeLen = edgeVec.qNormalise();
 
 	// negative of startSep, will be used to calculate perp dist
 	Vector3f sep(mPosition.x - edge.mStartPos.x, mPosition.y - edge.mStartPos.y, mPosition.z - edge.mStartPos.z);
@@ -455,7 +455,7 @@ bool Sphere::intersect(Edge& edge, f32& t)
 	Vector3f perpVec(sep.x - projVec.x, sep.y - projVec.y, sep.z - projVec.z);
 
 	// check if perp distance to edge is less than or equal to radius of sphere
-	f32 perpDist = lenVec(perpVec);
+	f32 perpDist = perpVec.qLength();
 	if (perpDist <= mRadius) { // if so, intersects
 		return true;           // t is then parametrised 'location' of intersection along edge, sort of
 	}
@@ -476,7 +476,7 @@ bool Sphere::intersect(Edge& edge, f32& t, Vector3f& intersectPoint)
 
 	// check start point of edge
 	Vector3f startSep(edge.mStartPos.x - mPosition.x, edge.mStartPos.y - mPosition.y, edge.mStartPos.z - mPosition.z);
-	f32 startDist = lenVec(startSep);
+	f32 startDist = startSep.qLength();
 	if (startDist <= mRadius) { // start is intersecting
 		t              = 0.0f;
 		intersectPoint = edge.mStartPos;
@@ -485,7 +485,7 @@ bool Sphere::intersect(Edge& edge, f32& t, Vector3f& intersectPoint)
 
 	// check end point of edge
 	Vector3f endSep(edge.mEndPos.x - mPosition.x, edge.mEndPos.y - mPosition.y, edge.mEndPos.z - mPosition.z);
-	f32 endDist = lenVec(endSep);
+	f32 endDist = endSep.qLength();
 	if (endDist <= mRadius) { // end is intersecting
 		t              = 1.0f;
 		intersectPoint = edge.mEndPos;
@@ -494,7 +494,7 @@ bool Sphere::intersect(Edge& edge, f32& t, Vector3f& intersectPoint)
 
 	// create unit edge vector (pointing along edge) + get length of edge
 	Vector3f edgeVec(edge.mEndPos.x - edge.mStartPos.x, edge.mEndPos.y - edge.mStartPos.y, edge.mEndPos.z - edge.mStartPos.z);
-	f32 edgeLen = _normalise(&edgeVec);
+	f32 edgeLen = edgeVec.qNormalise();
 
 	// negative of startSep, will be used to calculate perp dist
 	Vector3f sep(intersectPoint.x - edge.mStartPos.x, intersectPoint.y - edge.mStartPos.y, intersectPoint.z - edge.mStartPos.z);
@@ -514,7 +514,7 @@ bool Sphere::intersect(Edge& edge, f32& t, Vector3f& intersectPoint)
 	Vector3f perpVec(sep.x - projVec.x, sep.y - projVec.y, sep.z - projVec.z);
 
 	// check if perp distance to edge is less than or equal to radius of sphere
-	f32 perpDist = lenVec(perpVec);
+	f32 perpDist = perpVec.qLength();
 	if (perpDist <= mRadius) { // if so, intersects
 		f32 edgeDist = t * edgeLen;
 		projVec      = Vector3f(edgeVec.x * edgeDist, edgeVec.y * edgeDist, edgeVec.z * edgeDist);
@@ -539,7 +539,7 @@ bool Sphere::intersect(Edge& edge, f32& t, Vector3f& repulsionVec, f32& strength
 
 	// create unit edge vector (pointing along edge) + get length of edge
 	Vector3f edgeVec(edge.mEndPos.x - edge.mStartPos.x, edge.mEndPos.y - edge.mStartPos.y, edge.mEndPos.z - edge.mStartPos.z);
-	f32 edgeLen = normalise(&edgeVec);
+	f32 edgeLen = edgeVec.qNormalise();
 
 	// calculate vector from start of edge to sphere
 	Vector3f startSep(mPosition.x - edge.mStartPos.x, mPosition.y - edge.mStartPos.y, mPosition.z - edge.mStartPos.z);
@@ -553,12 +553,12 @@ bool Sphere::intersect(Edge& edge, f32& t, Vector3f& repulsionVec, f32& strength
 		// Check start of edge
 		// negative of startSep, will be used to calculate perp dist
 		Vector3f sep_0(edge.mStartPos.x - mPosition.x, edge.mStartPos.y - mPosition.y, edge.mStartPos.z - mPosition.z);
-		if (lenVec(sep_0) <= mRadius) {                // start is intersecting
+		if (sep_0.qLength() <= mRadius) {              // start is intersecting
 			t            = 0.0f;                       // intersection is at start
 			repulsionVec = mPosition - edge.mStartPos; // pointing from start to ball
 
 			// normalise repulsionVec + calculate strength from 'overlap'
-			f32 sepDist = normalise(&repulsionVec);
+			f32 sepDist = repulsionVec.qNormalise();
 			strength    = mRadius - sepDist;
 
 			// if the length is 0, make sure output vector is 0
@@ -574,12 +574,12 @@ bool Sphere::intersect(Edge& edge, f32& t, Vector3f& repulsionVec, f32& strength
 		Vector3f sep_1(edge.mEndPos.x - mPosition.x, edge.mEndPos.y - mPosition.y, edge.mEndPos.z - mPosition.z);
 
 		// if we're too close to end point, need to do some overlap calculations
-		if (lenVec(sep_1) <= mRadius) {              // end is intersecting
+		if (sep_1.qLength() <= mRadius) {            // end is intersecting
 			t            = 1.0f;                     // intersection is at end
 			repulsionVec = mPosition - edge.mEndPos; // pointing from end to ball
 
 			// normalise repulsionVec + calculate strength from 'overlap'
-			f32 sepDist = normalise(&repulsionVec);
+			f32 sepDist = repulsionVec.qNormalise();
 			strength    = mRadius - sepDist;
 
 			// if the length is 0, make sure output vector is 0
@@ -599,7 +599,7 @@ bool Sphere::intersect(Edge& edge, f32& t, Vector3f& repulsionVec, f32& strength
 
 	// calculate perp distance + unit perp vector from ball to edge
 	Vector3f perpVec(startSep.x - projVec.x, startSep.y - projVec.y, startSep.z - projVec.z);
-	f32 perpDist = normalise(&perpVec);
+	f32 perpDist = perpVec.qNormalise();
 
 	// check if we have overlap
 	if (perpDist < mRadius) {           // yes overlap
@@ -866,7 +866,7 @@ bool Triangle::intersect(Edge& edge, f32 cutoff, Vector3f& intersectionPoint)
 
 	// get length of edge and scalar projection of edge onto normal to triangle plane
 	Vector3f edgeVec(edge.mEndPos.x - edge.mStartPos.x, edge.mEndPos.y - edge.mStartPos.y, edge.mEndPos.z - edge.mStartPos.z);
-	f32 edgeLen = lenVec(edgeVec);
+	f32 edgeLen = edgeVec.qLength();
 
 	Vector3f triPlaneNormal(mTrianglePlane.mNormal);
 
@@ -946,7 +946,7 @@ bool Sys::Triangle::intersect(Sys::Edge& edge, f32 cutoff, Vector3f& intersectio
 
 	// get length of edge and scalar projection of edge onto normal to triangle plane
 	Vector3f edgeVec(edge.mEndPos.x - edge.mStartPos.x, edge.mEndPos.y - edge.mStartPos.y, edge.mEndPos.z - edge.mStartPos.z);
-	f32 edgeLen = lenVec(edgeVec);
+	f32 edgeLen = edgeVec.qLength();
 
 	Vector3f triPlaneNormal(mTrianglePlane.mNormal);
 
@@ -1681,7 +1681,7 @@ void Triangle::makePlanes(Sys::VertexTable& vertTable)
 	// get unit normal to triangle plane
 	triNormal = CA;
 	triNormal.cross(triNormal, BA);
-	_normalise(&triNormal);
+	triNormal.qNormalise();
 
 	// define trianglePlane using unit normal and point A
 	mTrianglePlane.updatePlane(vert_A, triNormal);
@@ -1691,7 +1691,7 @@ void Triangle::makePlanes(Sys::VertexTable& vertTable)
 	// get unit normal to AB edge plane
 	edgeNormal = vert_A - vert_B;
 	edgeNormal.cross(edgeNormal, triNormal);
-	_normalise(&edgeNormal);
+	edgeNormal.qNormalise();
 	// define AB edge plane using unit normal and point A
 	mEdgePlanes[0].updatePlane(vert_A, edgeNormal);
 
@@ -1699,7 +1699,7 @@ void Triangle::makePlanes(Sys::VertexTable& vertTable)
 	// get unit normal to BC edge plane
 	edgeNormal = vert_B - vert_C;
 	edgeNormal.cross(edgeNormal, triNormal);
-	_normalise(&edgeNormal);
+	edgeNormal.qNormalise();
 
 	// define BC edge plane using unit normal and point B
 	mEdgePlanes[1].updatePlane(vert_B, edgeNormal);
@@ -1708,7 +1708,7 @@ void Triangle::makePlanes(Sys::VertexTable& vertTable)
 	// get unit normal to CA edge plane
 	edgeNormal = CA;
 	edgeNormal.cross(edgeNormal, triNormal);
-	_normalise(&edgeNormal);
+	edgeNormal.qNormalise();
 
 	// define CA edge plane using unit normal and point C
 	mEdgePlanes[2].updatePlane(vert_C, edgeNormal);

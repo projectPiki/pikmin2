@@ -541,7 +541,7 @@ void Pikmin::TUnit::init(ebi::title::Pikmin::TMgr* mgr, s32 color)
 void Pikmin::TUnit::goDestination()
 {
 	Vector2f Diff(mDestPos.x - mPosition.x, mDestPos.y - mPosition.y);
-	f32 comp = _lenVec2D(Diff);
+	f32 comp = Diff.length();
 	if (comp < mManager->mParams.mStopDist.mValue) {
 		startState(STATE_Unk1);
 		return;

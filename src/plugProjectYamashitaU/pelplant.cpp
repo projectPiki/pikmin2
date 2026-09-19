@@ -260,7 +260,11 @@ void Obj::getShadowParam(ShadowParam& param)
 	sum *= newVec.x;
 	sum += newVec.y;
 	sum += newVec.z;
-	__sqrtf(sum, &sum);
+	if (sum > 0.0f) {
+		sqrtfInPlace(sum);
+	} else {
+		sum = 0.0f;
+	}
 
 	param.mSize = 8.0f * sum;
 }

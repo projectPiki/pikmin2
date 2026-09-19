@@ -141,7 +141,7 @@ void StateMove::exec(EnemyBase* enemy)
 	EnemyFunc::walkToTarget(tadpole, targetPos, CG_GENERALPARMS(tadpole).mMoveSpeed.mValue, CG_GENERALPARMS(tadpole).mTurnSpeed.mValue,
 	                        CG_GENERALPARMS(tadpole).mMaxTurnAngle.mValue);
 
-	if (tadpole->mStateTimer > 3.0f || sqrDistanceXZ(tadpolePos, targetPos) < 100.0f) {
+	if (tadpole->mStateTimer > 3.0f || tadpolePos.sqrDistance2D(targetPos) < 100.0f) {
 		tadpole->mTargetVelocity = Vector3f(0.0f);
 		tadpole->finishMotion();
 	}
@@ -316,7 +316,7 @@ void StateLeap::exec(EnemyBase* enemy)
 		if (tadpole->mWaterBox) {
 			tadpole->mNextState = TADPOLE_Wait;
 			tadpole->finishMotion();
-		} else if (tadpole->mStateTimer > 10.0f || sqrDistanceXZ(tadpolePos, targetPos) < 100.0f) {
+		} else if (tadpole->mStateTimer > 10.0f || tadpolePos.sqrDistance2D(targetPos) < 100.0f) {
 			tadpole->mStateTimer = 0.0f;
 			tadpole->setRandTarget(true);
 		}

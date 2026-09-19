@@ -546,7 +546,7 @@ void checkPlayingSeqTrack(u32 playTrackNo)
 {
 	SeqUpdateData* data = &seqTrackInfo[playTrackNo];
 	SeqParameter* param = &data->mSequence->mSeqParameter;
-	if (data->mSequence->mSeqParameter.mPauseMode == SOUNDPAUSE_Unk2) {
+	if (param->mPauseMode == SOUNDPAUSE_Unk2) {
 		return;
 	}
 

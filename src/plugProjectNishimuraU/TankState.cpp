@@ -141,7 +141,7 @@ void StateMove::exec(EnemyBase* enemy)
 	Vector3f pos       = Vector3f(tank->getPosition());
 	Vector3f targetPos = Vector3f(tank->mGoalPosition);
 
-	if (sqrDistanceXZ(pos, targetPos) > 2500.0f && tank->mWalkTimer < 3.0f) {
+	if (pos.sqrDistance2D(targetPos) > 2500.0f && tank->mWalkTimer < 3.0f) {
 		EnemyFunc::walkToTarget(tank, targetPos, CG_GENERALPARMS(tank).mMoveSpeed(), CG_GENERALPARMS(tank).mTurnSpeed(),
 		                        CG_GENERALPARMS(tank).mMaxTurnAngle());
 	} else {

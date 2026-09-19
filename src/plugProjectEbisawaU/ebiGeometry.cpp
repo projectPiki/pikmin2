@@ -119,7 +119,7 @@ void EGEBox2f::in(Vector2f* point, f32 margin)
 bool ebi::EGECircle2f::isOut(Vector2f& point)
 {
 	Vector2f di = Vector2f(point.x - mCenter.x, point.y - mCenter.y);
-	return mRadius < _lenVec2D(di) ? true : false;
+	return mRadius < di.length() ? true : false;
 }
 
 /**

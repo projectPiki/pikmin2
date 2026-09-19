@@ -376,7 +376,7 @@ void Obj::updateTargetDistance()
 		radius = C_GENERALPARMS.mHomeRadius;
 	}
 
-	if (sqrDistanceXZ(mPosition, mTargetPos) < radius * radius) {
+	if (mPosition.sqrDistance2D(mTargetPos) < radius * radius) {
 		setLinkWayPoint();
 		mTimer = 0.0f;
 	}

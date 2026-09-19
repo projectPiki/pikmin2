@@ -466,7 +466,7 @@ int PikiAI::ActFormation::exec()
 			mParent->setMoveRotation(false);
 			mParent->mFaceDir += 0.3f * angle;
 		} else if (dist < factor2) {
-			f32 val2                 = 0.5f * _sqrtf2(SQUARE(simSpeed) + (8.0f * factor) * dist) + simSpeed;
+			f32 val2                 = 0.5f * sqrtfClamped(SQUARE(simSpeed) + (8.0f * factor) * dist) + simSpeed;
 			mParent->mTargetVelocity = sep * val2;
 		} else {
 			mParent->setSpeed(1.0f, sep);
@@ -479,7 +479,7 @@ int PikiAI::ActFormation::exec()
 		if (plateSep.dot(naviPikiSep) > 0.0f) {
 			Vector3f impulse = Vector3f(-naviPikiSep.z, 0.0f, naviPikiSep.x); // f29, f27, f30
 			if (!(mSlotID & 1)) {
-				impulse.negate2();
+				impulse.negate();
 			}
 
 			impulse.normalise();
@@ -505,7 +505,7 @@ int PikiAI::ActFormation::exec()
 		if (plateSep.dot(naviPikiSep) > 0.0f) {
 			Vector3f impulse = Vector3f(-naviPikiSep.z, 0.0f, naviPikiSep.x); // f29, f27, f30
 			if (!(mSlotID & 1)) {
-				impulse.negate2();
+				impulse.negate();
 			}
 
 			impulse.normalise();

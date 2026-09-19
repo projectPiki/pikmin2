@@ -697,7 +697,7 @@ bool Obj::isCarryToGoal()
 	homeRadius *= homeRadius;
 
 	Vector3f pos = mPosition;
-	if (sqrDistanceXZ(pos, mHomePosition) < homeRadius) {
+	if (pos.sqrDistance2D(mHomePosition) < homeRadius) {
 		releasePathFinder();
 		return true;
 	}
@@ -841,7 +841,7 @@ bool Obj::isReachToGoal(f32 radius)
 		radius *= 2.0f;
 	}
 
-	if (inRadius(radius, mPosition, mNextWayPointPosition)) {
+	if (inRadius2D(radius, mPosition, mNextWayPointPosition)) {
 		if (getStateID() == PANMODOKI_Walk && mTargetCreature) {
 			if (isCreatureIn2DRadius(radius, mPosition)) {
 				mFsm->transit(this, PANMODOKI_Stick, nullptr);
@@ -906,7 +906,7 @@ Pellet* Obj::findNearestPellet()
 					}
 				}
 				Vector3f pelPos2 = pelt->getPosition();
-				f32 dist         = sqrDistanceXZ(mPosition, pelPos2);
+				f32 dist         = mPosition.sqrDistance2D(pelPos2);
 				if (dist < minDist) {
 					resPellet = pelt;
 					minDist   = dist;
@@ -1035,7 +1035,7 @@ bool Obj::carryTarget(f32 param)
 		}
 	}
 	Vector3f wpPos = mNextWayPointPosition;
-	if (sqrDistanceXZ(mPosition, mNextWayPointPosition) < 10000.0f) {
+	if (mPosition.sqrDistance2D(mNextWayPointPosition) < 10000.0f) {
 		turnSpeed    = CG_PROPERPARMS(this).mFastTurnSpeed.mValue;
 		maxTurnAngle = CG_PROPERPARMS(this).mMaxFastTurnAngle.mValue;
 	}
@@ -1059,7 +1059,7 @@ bool Obj::carryTarget(f32 param)
 			if (!mIsCarryStuck) {
 				mMoveToWpTimer++;
 				if (mMoveToWpTimer > 0x5A) {
-					if (sqrDistanceXZ(mPosition, mPrevCheckPosition) < 100.0f) {
+					if (mPosition.sqrDistance2D(mPrevCheckPosition) < 100.0f) {
 						mIsCarryStuck = 1;
 					} else {
 						mMoveToWpTimer = 0;
@@ -1290,7 +1290,7 @@ bool Obj::setPathFinder(bool cond)
 		Vector3f wp1Pos = wp1->mPosition;
 		Vector3f wp2Pos = wp2->mPosition;
 
-		if (sqrDistanceXZ(wp1Pos, mHomePosition) > sqrDistanceXZ(wp2Pos, mHomePosition)) {
+		if (wp1Pos.sqrDistance2D(mHomePosition) > wp2Pos.sqrDistance2D(mHomePosition)) {
 			farIdx  = idx1;
 			nearIdx = idx2;
 		}

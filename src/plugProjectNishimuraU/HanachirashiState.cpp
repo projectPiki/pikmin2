@@ -165,9 +165,9 @@ void StateMove::exec(EnemyBase* enemy)
 	hanachirashi->setHeightVelocity();
 
 	// this bit is being weird
-	Vector3f pos = Vector3f(hanachirashi->getPosition());
+	Vector3f pos       = Vector3f(hanachirashi->getPosition());
 	Vector3f targetPos = Vector3f(hanachirashi->mTargetPosition);
-	f32 sqrDist = sqrDistanceXZ(pos, targetPos);
+	f32 sqrDist        = pos.sqrDistance2D(targetPos);
 
 	Creature* target = hanachirashi->getSearchedPikmin();
 	if (target) {
@@ -227,7 +227,7 @@ void StateChase::exec(EnemyBase* enemy)
 		if (target) {
 			Vector3f homePos         = hanachirashi->mHomePosition;
 			Vector3f hanachirashiPos = hanachirashi->getPosition();
-			Vector3f targetPos       = target->getPosition();       //
+			Vector3f targetPos       = target->getPosition(); //
 
 			Vector3f sep(hanachirashiPos.x - targetPos.x, 0.0f, hanachirashiPos.z - targetPos.z);
 			sep.normalise();
@@ -237,7 +237,7 @@ void StateChase::exec(EnemyBase* enemy)
 
 			hanachirashi->turnToTarget(target, CG_GENERALPARMS(hanachirashi).mTurnSpeed(), CG_GENERALPARMS(hanachirashi).mMaxTurnAngle());
 
-			if (sqrDistanceXZ(hanachirashiPos, targetPos) > 225.0f) {
+			if (hanachirashiPos.sqrDistance2D(targetPos) > 225.0f) {
 				f32 x = CG_GENERALPARMS(hanachirashi).mMoveSpeed() * sinf(angle);
 				f32 y = hanachirashi->getTargetVelocity().y;
 				f32 z = CG_GENERALPARMS(hanachirashi).mMoveSpeed() * cosf(angle);
@@ -247,7 +247,7 @@ void StateChase::exec(EnemyBase* enemy)
 				hanachirashi->mTargetVelocity = Vector3f(0.0f);
 			}
 
-			if (sqrDistanceXZ(hanachirashiPos, homePos) > SQUARE(CG_GENERALPARMS(hanachirashi).mTerritoryRadius())) {
+			if (hanachirashiPos.sqrDistance2D(homePos) > SQUARE(CG_GENERALPARMS(hanachirashi).mTerritoryRadius())) {
 				transit(hanachirashi, HANACHIRASHI_ChaseInside, nullptr);
 			} else if (hanachirashi->isTargetLost()) {
 				Piki* piki = hanachirashi->getSearchedPikmin();
@@ -329,7 +329,7 @@ void StateChaseInside::exec(EnemyBase* enemy)
 
 	Vector3f hanachirashiPos = hanachirashi->getPosition();
 	Vector3f targetPos       = hanachirashi->mTargetPosition;
-	if (sqrDistanceXZ(hanachirashiPos, targetPos) < 10000.0f) {
+	if (hanachirashiPos.sqrDistance2D(targetPos) < 10000.0f) {
 		transit(hanachirashi, HANACHIRASHI_Chase, nullptr);
 	} else {
 		Creature* target = hanachirashi->mTargetCreature;

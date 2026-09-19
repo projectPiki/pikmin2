@@ -219,13 +219,18 @@ BOOL TRenderingProcessor::doDrawCommon(f32 x0, f32 y0, Matrixf* mtx1, Matrixf* m
 			f32 deltaSq = delta;
 			deltaSq *= deltaSq;
 			f32 radicand = mSpeed * mSpeed - deltaSq;
-			y            = -_sqrtf(radicand);
-			angle        = HALF_PI + JMAAtan2Radian(y, delta);
-			zPos         = y + mSpeed;
-			f64 ratio    = fabs(delta / mSpeed);
-			f32 alpha    = 255.0f * (f32)ratio;
-			alpha        = ROUND_F32_TO_U8(alpha);
-			ret          = 255 - (u8)alpha;
+			if (radicand > 0.0f) {
+				sqrtfInPlace(radicand);
+			} else {
+				radicand = 0.0f;
+			}
+			y         = -radicand;
+			angle     = HALF_PI + JMAAtan2Radian(y, delta);
+			zPos      = y + mSpeed;
+			f64 ratio = fabs(delta / mSpeed);
+			f32 alpha = 255.0f * (f32)ratio;
+			alpha     = ROUND_F32_TO_U8(alpha);
+			ret       = 255 - (u8)alpha;
 		}
 
 		if (!info) {

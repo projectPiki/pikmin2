@@ -219,7 +219,7 @@ void StateAttack::exec(EnemyBase* enemy)
 				Vector3f* parentPos = kuma->setTargetParentPosition();
 				if (parentPos) {
 					Vector3f pos = kuma->getPosition();
-					f32 dist     = sqrDistanceXZ(pos, *parentPos);
+					f32 dist     = pos.sqrDistance2D(*parentPos);
 					if (dist < SQUARE(CG_GENERALPARMS(kuma).mHomeRadius())) {
 						transit(kuma, KUMAKOCHAPPY_Wait, nullptr);
 						return;
@@ -303,7 +303,7 @@ void StateFlick::exec(EnemyBase* enemy)
 				Vector3f* parentPos = kuma->setTargetParentPosition();
 				if (parentPos) {
 					Vector3f pos = kuma->getPosition();
-					f32 dist     = sqrDistanceXZ(pos, *parentPos);
+					f32 dist     = pos.sqrDistance2D(*parentPos);
 					if (dist < SQUARE(CG_GENERALPARMS(kuma).mHomeRadius())) {
 						transit(kuma, KUMAKOCHAPPY_Wait, nullptr);
 						return;
@@ -374,7 +374,7 @@ void StateWalk::exec(EnemyBase* enemy)
 		Vector3f* parentPos = kuma->setTargetParentPosition();
 		if (parentPos) {
 			Vector3f pos = kuma->getPosition();
-			f32 dist     = sqrDistanceXZ(pos, *parentPos);
+			f32 dist     = pos.sqrDistance2D(*parentPos);
 			if (dist < SQUARE(CG_GENERALPARMS(kuma).mHomeRadius())) {
 				kuma->mNextState = KUMAKOCHAPPY_Wait;
 				kuma->finishMotion();
@@ -454,7 +454,7 @@ void StateWalkPath::exec(EnemyBase* enemy)
 		Vector3f* parentPos = kuma->setTargetParentPosition();
 		if (parentPos) {
 			Vector3f pos = kuma->getPosition();
-			f32 dist     = sqrDistanceXZ(pos, *parentPos);
+			f32 dist     = pos.sqrDistance2D(*parentPos);
 			if (dist < SQUARE(CG_GENERALPARMS(kuma).mHomeRadius())) {
 				kuma->mNextState = KUMAKOCHAPPY_Wait;
 				kuma->finishMotion();

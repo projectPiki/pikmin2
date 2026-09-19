@@ -224,7 +224,7 @@ void Kabuto::StateMove::exec(EnemyBase* enemy)
 		} else {
 			Vector3f pos       = kabuto->getPosition();
 			Vector3f targetPos = kabuto->mTargetPosition;
-			if (kabuto->mStateTimer > 6.0f || sqrDistanceXZ(pos, targetPos) < 625.0f) {
+			if (kabuto->mStateTimer > 6.0f || pos.sqrDistance2D(targetPos) < 625.0f) {
 				kabuto->mNextState = KABUTO_Wait;
 				kabuto->finishMotion();
 			} else {

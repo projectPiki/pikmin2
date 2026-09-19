@@ -665,7 +665,7 @@ void Obj::walkFunc()
 		Vector3f seperation = mGoalPosition;
 		seperation -= mPosition;
 
-		f32 distance = _sqrtf2(SQUARE(seperation.x) + SQUARE(seperation.y) + SQUARE(seperation.z));
+		f32 distance = sqrtfClamped(SQUARE(seperation.x) + SQUARE(seperation.y) + SQUARE(seperation.z));
 		// f32 dist = mGoalPosition.distance(mPosition);
 		if (distance < 0.0f) {
 			distance = 0.0f;

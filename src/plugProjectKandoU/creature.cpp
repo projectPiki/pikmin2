@@ -714,18 +714,18 @@ void Creature::resolveOneColl(CollPart* source, CollPart* dest, Vector3f& direct
 	f32 fps = 1.0f / sys->mDeltaTime;
 	if (isNavi() && !op->isNavi()) {
 		if (!op->isPiki()) {
-			addAccel(mAcceleration, direction, massRatioThisCreature, fps, 0.5f, 0.0f);
+			addCollisionAcceleration(mAcceleration, direction, massRatioThisCreature, fps, 0.5f, 0.0f);
 		}
 	} else {
-		setAccel(mAcceleration, direction, massRatioThisCreature, fps, 0.5f, 0.0f);
+		setCollisionAcceleration(mAcceleration, direction, massRatioThisCreature, fps, 0.5f, 0.0f);
 	}
 
 	if (op->isNavi() && !isNavi()) {
 		if (!isPiki()) {
-			setOpAccel(op->mAcceleration, direction, massRatioOtherCreature, fps, 0.5f, 0.0f);
+			setOpposingCollisionAcceleration(op->mAcceleration, direction, massRatioOtherCreature, fps, 0.5f, 0.0f);
 		}
 	} else {
-		setOpAccel(op->mAcceleration, direction, massRatioOtherCreature, fps, 0.5f, 0.0f);
+		setOpposingCollisionAcceleration(op->mAcceleration, direction, massRatioOtherCreature, fps, 0.5f, 0.0f);
 	}
 
 	f32 accelMag = mAcceleration.length();

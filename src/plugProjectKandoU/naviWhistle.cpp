@@ -213,7 +213,7 @@ void NaviWhistle::update(Vector3f& stick, bool active)
 		offset   = stickVec * time;
 		offset   = offset + mNaviOffsetVec;
 
-		if (offset.lengthWeird() >= mNavi->getParms()->mNaviParms.mMaxCursorMoveRadius()) {
+		if (offset.magnitude() >= mNavi->getParms()->mNaviParms.mMaxCursorMoveRadius()) {
 			offset.normalise();
 
 			offset = (stickVec - offset * offset.dot(stickVec)) * time + mNaviOffsetVec;

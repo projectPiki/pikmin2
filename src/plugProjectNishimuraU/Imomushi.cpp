@@ -733,7 +733,7 @@ Creature* Obj::getRandFruitsPlant()
 		ItemPlant::Plant* plant = static_cast<ItemPlant::Plant*>(item);
 		if (plant->isAlive() && plant->hasFruits()) {
 			Vector3f plantPos = plant->getPosition();
-			if (sqrDistanceXZ(mHomePosition, plantPos) < rad) {
+			if (mHomePosition.sqrDistance2D(plantPos) < rad) {
 				plantList[counter] = plant;
 				counter++;
 			}
@@ -878,7 +878,7 @@ void Obj::setZukanTargetPosition()
  */
 bool Obj::isInZukanTargetArea()
 {
-	return (sqrDistanceXZ(mPosition, mZukanTargetPosition) < 500.0f);
+	return (mPosition.sqrDistance2D(mZukanTargetPosition) < 500.0f);
 }
 
 /**

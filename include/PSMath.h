@@ -51,7 +51,7 @@ inline f32 calcDistance(A from, B to)
 	delta.z      = from.z - to.z;
 	Vec squares  = squareComponents(delta);
 	f32 distance = squares.z + (squares.x + squares.y);
-	return sqrtf(distance);
+	return sqrtfInPlace(distance);
 }
 
 inline f32 calcMagnitude(const Vec& vector)
@@ -67,7 +67,7 @@ inline f32 calcDistanceXZ(const A& a, B b)
 	f32 z = a.z - b.z;
 	z *= z;
 	f32 distance = x + z;
-	return sqrtf(distance);
+	return sqrtfInPlace(distance);
 }
 
 inline bool calcDistanceInRange(const Vec& pos1, const Vec& pos2, f32 a1, f32 a2)

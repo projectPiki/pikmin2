@@ -368,7 +368,7 @@ struct Creature : public CellObject {
 		diffX       = pos.x - position.x;
 		diffZ       = pos.z - position.z;
 		f32 sqrDist = diffX * diffX + diffZ * diffZ;
-		return sqrtf(sqrDist);
+		return sqrtfInPlace(sqrDist);
 	}
 
 	inline f32 getAngDist(Creature* other)
@@ -454,6 +454,32 @@ struct Creature : public CellObject {
 	void updateCell();
 	void updateLOD(AILODParm& lod);
 	void updateStick(Vector3f& position);
+
+	// these are required by Creature::resolveOneColl (and only resolveOneColl)
+
+	static inline void setCollisionAcceleration(Vector3f& outputVec, const Vector3f& inputVec, f32 massRatio, f32 fps, f32 groundFactor,
+	                                            f32 airFactor)
+	{
+		outputVec.x = inputVec.x * (groundFactor * fps * massRatio);
+		outputVec.z = inputVec.z * (groundFactor * fps * massRatio);
+		outputVec.y = inputVec.y * (airFactor * fps * massRatio);
+	}
+
+	static inline void setOpposingCollisionAcceleration(Vector3f& outputVec, const Vector3f& inputVec, f32 massRatio, f32 fps,
+	                                                    f32 groundFactor, f32 airFactor)
+	{
+		outputVec.x = -inputVec.x * (groundFactor * fps * massRatio);
+		outputVec.z = -inputVec.z * (groundFactor * fps * massRatio);
+		outputVec.y = -inputVec.y * (airFactor * fps * massRatio);
+	}
+
+	static inline void addCollisionAcceleration(Vector3f& outputVec, const Vector3f& inputVec, f32 massRatio, f32 fps, f32 groundFactor,
+	                                            f32 airFactor)
+	{
+		outputVec.x += inputVec.x * (groundFactor * fps * massRatio);
+		outputVec.z += inputVec.z * (groundFactor * fps * massRatio);
+		outputVec.y += inputVec.y * (airFactor * fps * massRatio);
+	}
 
 	// unused/inlined
 	bool isStickLeader();

@@ -628,7 +628,7 @@ bool Obj::isReachToGoal(f32 radius)
 		mReachGoalStopTimer = 0;
 		return true;
 	}
-	return (u8)(sqrDistanceXZ(mPosition, mGoalPosition) < SQUARE(radius));
+	return (u8)(mPosition.sqrDistance2D(mGoalPosition) < SQUARE(radius));
 }
 
 /**
@@ -672,7 +672,7 @@ void Obj::walkFunc()
 	// check bloyster has moved far enough in the past 120 frames, or else make it forget what it was doing (why does morimura do this)
 	mMoveCheckIntervalTimer++;
 	if (mMoveCheckIntervalTimer > 120) {
-		if (sqrDistanceXZ(mPosition, mLastCheckedPosition) < SQUARE(30.0f)) {
+		if (mPosition.sqrDistance2D(mLastCheckedPosition) < SQUARE(30.0f)) {
 			mCantSearchTargetTimer = 120;
 			mTargetCreature        = nullptr;
 			mGoalPosition          = mHomePosition;
@@ -1073,7 +1073,7 @@ bool Obj::isFindTarget()
 		searchDist *= searchDist;
 		Vector3f pos     = mPosition;
 		Vector3f naviPos = Vector3f(mTargetNavi->getPosition().x, 0.0f, mTargetNavi->getPosition().z);
-		if (sqrDistanceXZ(naviPos, pos) < searchDist) {
+		if (naviPos.sqrDistance2D(pos) < searchDist) {
 			mTargetCreature = mTargetNavi;
 			mGoalPosition   = mTargetCreature->getPosition();
 			return true;
@@ -1241,7 +1241,7 @@ bool Obj::isAttackStart()
 		if (absF(angle) <= attackAngle) {
 			Vector3f pos     = mPosition;
 			Vector3f naviPos = Vector3f(mTargetNavi->getPosition().x, 0.0f, mTargetNavi->getPosition().z);
-			if (sqrDistanceXZ(naviPos, pos) < attackDist) {
+			if (naviPos.sqrDistance2D(pos) < attackDist) {
 				return true;
 			}
 		}
@@ -1453,7 +1453,7 @@ bool Obj::isOutOfTerritory(f32 scale)
 
 	// needs tweaking to inline correctly in next function
 	f32 scaledRad = SQUARE(rad * scale);
-	return (u8)(sqrDistanceXZ(mHomePosition, mPosition) > scaledRad);
+	return (u8)(mHomePosition.sqrDistance2D(mPosition) > scaledRad);
 }
 
 /**
@@ -1478,7 +1478,7 @@ bool Obj::canMove()
 		}
 
 		Vector3f naviPos = mTargetNavi->getPosition();
-		f32 sqrDist      = sqrDistanceXZ(mHomePosition, naviPos);
+		f32 sqrDist      = mHomePosition.sqrDistance2D(naviPos);
 		mGoalPosition    = naviPos;
 		mTargetCreature  = mTargetNavi;
 

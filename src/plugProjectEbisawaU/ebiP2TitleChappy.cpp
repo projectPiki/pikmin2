@@ -242,7 +242,7 @@ void Chappy::TUnit::startAIState_(enumAIState state)
 
 	case CHAPPYAI_EscapeScreen: {
 		Vector2f negPos(-mPosition.x, -mPosition.y);
-		f32 len = _sqrtf(negPos.x * negPos.x + negPos.y * negPos.y);
+		f32 len = sqrtfClamped(negPos.x * negPos.x + negPos.y * negPos.y);
 		if (len != 0.0f) {
 			f32 norm = 1.0f / len;
 			negPos.x *= norm;

@@ -467,11 +467,13 @@ void makeTexCoordTable()
 	};
 
 	size_t idx;
+	int j;
+	int k;
 
 	for (u32 i = 0; i < 11; i++) {
-		for (int j = 0; j < 21u; j++) {
+		for (j = 0; j < 21u; j++) {
 			// 21u makes me think there's some sizeof() shenanigans
-			for (int k = 0; k < 11; k++) {
+			for (k = 0; k < 11; k++) {
 				idx = j * 11 + i * (11 * 21) + k;
 
 				table[idx * 3 + 0] = i;
@@ -588,11 +590,12 @@ lbl_800656CC:
  */
 void makeAlphaCmpTable()
 {
-	u32 i       = 0;
+	u32 i = 0;
+	u32 j;
 	u32 iOffset = 0;
 	u8* table   = j3dAlphaCmpTable;
 	for (; i < 8; i++, iOffset += 32) {
-		u32 j       = 0;
+		j           = 0;
 		u32 jOffset = 0;
 		for (; j < 4; j++, jOffset += 8) {
 			for (u32 k = 0; k < 8; k++) {
@@ -603,88 +606,6 @@ void makeAlphaCmpTable()
 			}
 		}
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	lis      r4, j3dAlphaCmpTable@ha
-	li       r3, 0
-	li       r5, 0
-	stmw     r26, 8(r1)
-	addi     r30, r4, j3dAlphaCmpTable@l
-
-lbl_80065710:
-	li       r0, 4
-	li       r4, 0
-	li       r6, 0
-	mtctr    r0
-
-lbl_80065720:
-	add      r11, r5, r6
-	li       r8, 0
-	mulli    r0, r11, 3
-	li       r10, 1
-	addi     r7, r11, 1
-	addi     r12, r11, 2
-	add      r9, r30, r0
-	addi     r29, r11, 3
-	stb      r3, 0(r9)
-	mulli    r7, r7, 3
-	addi     r28, r11, 4
-	stb      r4, 1(r9)
-	li       r31, 3
-	mulli    r0, r12, 3
-	addi     r27, r11, 5
-	stb      r8, 2(r9)
-	add      r12, r30, r7
-	addi     r7, r11, 7
-	stb      r3, 0(r12)
-	mulli    r8, r29, 3
-	add      r29, r30, r0
-	stb      r4, 1(r12)
-	addi     r26, r11, 6
-	li       r9, 2
-	stb      r10, 2(r12)
-	mulli    r0, r28, 3
-	add      r28, r30, r8
-	stb      r3, 0(r29)
-	li       r12, 4
-	li       r10, 5
-	stb      r4, 1(r29)
-	mulli    r11, r27, 3
-	add      r27, r30, r0
-	stb      r9, 2(r29)
-	li       r8, 6
-	li       r0, 7
-	stb      r3, 0(r28)
-	mulli    r9, r26, 3
-	add      r11, r30, r11
-	stb      r4, 1(r28)
-	addi     r6, r6, 8
-	stb      r31, 2(r28)
-	mulli    r7, r7, 3
-	add      r9, r30, r9
-	stb      r3, 0(r27)
-	add      r7, r30, r7
-	stb      r4, 1(r27)
-	stb      r12, 2(r27)
-	stb      r3, 0(r11)
-	stb      r4, 1(r11)
-	stb      r10, 2(r11)
-	stb      r3, 0(r9)
-	stb      r4, 1(r9)
-	stb      r8, 2(r9)
-	stb      r3, 0(r7)
-	stb      r4, 1(r7)
-	addi     r4, r4, 1
-	stb      r0, 2(r7)
-	bdnz     lbl_80065720
-	addi     r3, r3, 1
-	addi     r5, r5, 0x20
-	cmplwi   r3, 8
-	blt      lbl_80065710
-	lmw      r26, 8(r1)
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
@@ -693,10 +614,13 @@ lbl_80065720:
  */
 void makeZModeTable()
 {
-	for (int i = 0; i < 2; i++) {
+	u32 idx;
+	u32 iOffset = 0;
+
+	for (int i = 0; i < 2; i++, iOffset += 16) {
 		for (int j = 0; j < 8; j++) {
 			for (int k = 0; k < 2; k++) {
-				u32 idx                    = k + j * 2 + i * 16;
+				idx                        = k + j * 2 + iOffset;
 				j3dZModeTable[idx * 3]     = i;
 				j3dZModeTable[idx * 3 + 1] = j;
 				j3dZModeTable[idx * 3 + 2] = k;
@@ -824,7 +748,11 @@ const J3DIndTexCoordScaleInfo j3dDefaultIndTexCoordScaleInfo = {
 
 const GXColor j3dDefaultTevKColor = { 0xFF, 0xFF, 0xFF, 0xFF }; // White
 
-const J3DTevSwapModeInfo j3dDefaultTevSwapMode           = { 0, 0 };
+// the codebase treats this as non-const, despite it being in sdata2 and therefore const
+// forcing it is the only solution i've found -HP
+DECL_SECT(".sdata2")
+J3DTevSwapModeInfo j3dDefaultTevSwapMode = { 0, 0 };
+
 const J3DTevSwapModeTableInfo j3dDefaultTevSwapModeTable = { GX_CH_RED, GX_CH_GREEN, GX_CH_BLUE, GX_CH_ALPHA };
 const J3DBlendInfo j3dDefaultBlendInfo                   = { 1, 4, 5, 5 };
 const J3DColorChanInfo j3dDefaultColorChanInfo = { false, GX_SRC_REG, GX_SRC_REG, GX_LIGHT1, GX_DF_CLAMP, GX_AF_SPEC, 0xFF, 0xFF };

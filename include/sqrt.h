@@ -10,58 +10,40 @@
 		*output = __frsqrte_v;                \
 	}
 
-inline f32 sqrtf(f32& __sqrtf_g)
+// these all seem to be required in various places (unfortunately)
+
+// approximate square root (without changing input)
+inline f32 sqrtf(const f32& input)
 {
-	if ((__sqrtf_g > 0.0f)) {
-		f32 __sqrtf_h;
+	f32 value = input;
+	if (value > 0.0f) {
+		f32 estimate;
 #ifdef __MWERKS__ // clang-format off
-		FRSQRTE(__sqrtf_g, &__sqrtf_h);
+		FRSQRTE(value, &estimate);
 #endif // clang-format on
-		__sqrtf_g = __sqrtf_h * __sqrtf_g;
+		value = estimate * value;
+		return value;
 	}
-	return __sqrtf_g;
+	return value;
 }
 
-inline f32 sqrtf2(f32& __sqrtf_g)
+// approximate square root (in-place)
+inline f32 sqrtfInPlace(f32& value)
 {
-	if ((__sqrtf_g > 0.0f)) {
-		f32 __sqrtf_h;
+	if (value > 0.0f) {
+		f32 estimate;
 #ifdef __MWERKS__ // clang-format off
-		FRSQRTE(__sqrtf_g, &__sqrtf_h);
+		FRSQRTE(value, &estimate);
 #endif // clang-format on
-		__sqrtf_g = __sqrtf_h * __sqrtf_g;
-		return __sqrtf_g;
+		value = estimate * value;
 	}
-	return __sqrtf_g;
+	return value;
 }
 
-inline f32 _sqrtf(f32 x)
+// approximate square root (with extra checks)
+inline f32 sqrtfClamped(f32 value)
 {
-	return (x > 0.0f) ? sqrtf(x) : 0.0f;
-}
-
-inline f32 _sqrtf2(f32 x)
-{
-	if (x > 0.0f) {
-		return sqrtf2(x);
-	}
-	return 0.0f;
-}
-
-// used in pelplant's Obj::getShadowParam(ShadowParam&)
-inline void __sqrtf(register f32 x, f32* val)
-{
-	if (x > 0.0f) {
-		if (x > 0.0f) {
-			register f32 reg_f0;
-#ifdef __MWERKS__ // clang-format off
-			asm { frsqrte reg_f0, x }
-#endif // clang-format on
-			*val = reg_f0 * x;
-		}
-	} else {
-		*val = 0.0f;
-	}
+	return (value > 0.0f) ? sqrtf(value) : 0.0f;
 }
 
 #endif

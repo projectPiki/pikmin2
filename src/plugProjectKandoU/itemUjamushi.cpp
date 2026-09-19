@@ -342,8 +342,6 @@ void Uja::update(BoidParms& parms)
 
 		f32 distanceThreshold = scale + parms.mDistance(); // f14
 
-		f32 doubleScale = 2.0f * scale; // f15
-
 		Iterator<Uja> flockList(mFlockMgr);
 
 		CI_LOOP(flockList)
@@ -380,6 +378,7 @@ void Uja::update(BoidParms& parms)
 
 				if (dist < alignmentThreshold) {
 					alignmentThreshold = dist;
+					f32 doubleScale    = 2.0f * scale;
 					avoidanceVector    = Vector2f(directionFromUjaToThis.x, directionFromUjaToThis.z) * (doubleScale - dist);
 				}
 			}
@@ -387,8 +386,9 @@ void Uja::update(BoidParms& parms)
 
 		// If we could see any other Uja, we cache the move direction
 		if (visibleUjaCount > 0) {
-			f32 norm              = 1.0f / (f32)visibleUjaCount;
-			mPreviousAlignmentDir = alignmentVec * norm;
+			f32 norm = 1.0f / (f32)visibleUjaCount;
+			alignmentVec *= norm;
+			mPreviousAlignmentDir = alignmentVec;
 
 			seperationVec *= norm;
 			seperationVec = seperationVec - *this;
@@ -528,7 +528,7 @@ void Uja::update(BoidParms& parms)
 		speed2        = speed * parms.mCohesion();
 		Vector3f sep2 = seperationVec * speed2;
 
-		moveDir = dir + randDir + naviPos + centerPos + pikiPos + boundPos + sep + align + sep2;
+		moveDir = sep2 + align + sep + boundPos + pikiPos + centerPos + naviPos + randDir + dir;
 	}
 
 	if (moveDir.z != 0.0f) {
@@ -576,11 +576,11 @@ void Uja::update(BoidParms& parms)
 				_AD = randInt(30) + '\n';
 			}
 		}
-		Vector3f test    = Vector3f(avoidanceVector.x, 0.0f, avoidanceVector.y) * frameLength * 10.0f;
-		(Vector3f)* this = *this + test;
+		Vector3f test                 = Vector3f(avoidanceVector.x, 0.0f, avoidanceVector.y) * frameLength * 10.0f;
+		static_cast<Vector3f&>(*this) = *this + test;
 
-		Vector3f velocity = mVelocity * frameLength;
-		(Vector3f)* this  = *this + velocity;
+		Vector3f velocity             = mVelocity * frameLength;
+		static_cast<Vector3f&>(*this) = *this + velocity;
 	}
 
 	Vector3f boundPos  = mFlockMgr->mBoundSphere.mPosition;
@@ -589,13 +589,13 @@ void Uja::update(BoidParms& parms)
 	f32 boundDist      = boundDiff.normalise();
 	if (boundDist > 0.0f) {
 		f32 angle          = JMAAtan2Radian(boundDiff.x, boundDiff.z);
-		f32 boundaryRadius = radius2 * 2.0f;
+		f32 boundaryRadius = radius2 * 1.0f;
 		if (boundDist > boundaryRadius) {
 			f32 projection = boundDiff.dot(mVelocity);
 			Vector3f temp  = boundDiff * projection;
 			mVelocity      = mVelocity - temp;
 
-			(Vector3f)* this = boundPos - (boundDiff * boundaryRadius);
+			static_cast<Vector3f&>(*this) = boundPos - (boundDiff * boundaryRadius);
 		}
 	}
 

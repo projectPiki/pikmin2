@@ -124,9 +124,7 @@ struct ActionArg {
 	}
 
 	// fabricated
-	inline bool is(const char* argtype) {
-		return strcmp(argtype, getName()) == 0;
-	}
+	inline bool is(const char* argtype) { return strcmp(argtype, getName()) == 0; }
 
 	// _00 = VTBL
 };
@@ -166,10 +164,7 @@ struct Action {
 	/// @param Destination string
 	virtual void getInfo(char* dest); // _38,
 
-	inline bool checkArg(ActionArg* settings, const char* typeName)
-	{
-		return settings && settings->is(typeName);
-	}
+	inline bool checkArg(ActionArg* settings, const char* typeName) { return settings && settings->is(typeName); }
 
 	inline bool checkName(ActionArg* settings, const char* typeName) { return strcmp(typeName, settings->getName()) != 0; }
 
@@ -831,11 +826,11 @@ struct ActFormation : public Action, virtual Game::SlotChangeListener, virtual S
 };
 
 struct ActFreeArg : public ActionArg {
-	ActFreeArg(f32 radius, Vector3f& goal, u8 gather)
+	ActFreeArg(Vector3f& goal, f32 radius, u8 gather)
 	{
-		mRadius       = radius;
-		mGoalPosition = goal;
 		mToGather     = gather;
+		mGoalPosition = goal;
+		mRadius       = radius;
 	}
 	virtual const char* getName() { return "ActFreeArg"; } // _08 (weak)
 

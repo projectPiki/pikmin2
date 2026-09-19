@@ -22,7 +22,7 @@ bool TDangoCrash::create(Arg* arg)
 	Vector3f ang = argd->mAngle;
 
 	if (TSimple2::create(arg)) {
-		_normalise2(ang);
+		ang.normalise();
 
 		Matrixf mtx;
 		Vector3f vecDir(0.0f, 1.0f, 0.0f);

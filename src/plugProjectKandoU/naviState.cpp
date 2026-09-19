@@ -2404,7 +2404,8 @@ void NaviNukuAdjustState::exec(Navi* navi)
 	mIsMoving--;
 	Vector3f naviPos = navi->getPosition();
 
-	Vector3f pikiToNavi    = mCollidedPikiPosition - naviPos;
+	Vector3f pikiToNavi = mCollidedPikiPosition;
+	pikiToNavi -= naviPos;
 	f32 distancePikiToNavi = pikiToNavi.normalise();
 
 	// If the distance is 0, return

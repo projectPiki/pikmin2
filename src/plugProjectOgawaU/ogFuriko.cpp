@@ -104,7 +104,7 @@ void CallBack_Furiko::update()
 			mGoalPosition.x += mChangeModifier.x * time;
 			mGoalPosition.y += mChangeModifier.y * time;
 
-			f32 angle      = mCurrPosition.angleBetween(mGoalPosition);
+			f32 angle      = mCurrPosition.angleTo(mGoalPosition);
 			mCurrPaneAngle = (angle * RAD2DEG) + 90.0f;
 
 			mPane->setAngle(mCurrPaneAngle);

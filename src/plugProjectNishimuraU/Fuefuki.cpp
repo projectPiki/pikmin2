@@ -377,7 +377,7 @@ void Obj::updateWhisle()
 		Piki* currPiki = (*iter);
 		if (currPiki->isAlive() && currPiki->isPikmin() && !currPiki->isStickToMouth() && !currPiki->isMyPikmin(this)) {
 			Vector3f pikiPos = currPiki->getPosition();
-			if (sqrDistanceXZ(mPosition, pikiPos) < whistleDiameter) {
+			if (mPosition.sqrDistance2D(pikiPos) < whistleDiameter) {
 				InteractFueFuki whistle(this);
 				currPiki->stimulate(whistle);
 			}
@@ -467,7 +467,7 @@ bool Obj::isJumpAway()
 
 				if (creatureCheck) {
 					Vector3f creaturePos = creature->getPosition();
-					if (sqrDistanceXZ(mPosition, creaturePos) < privateDiameter) {
+					if (mPosition.sqrDistance2D(creaturePos) < privateDiameter) {
 						mAppearTimer = C_PROPERPARMS.mMaxGroundTime.mValue;
 						return true;
 					}
@@ -485,7 +485,7 @@ bool Obj::isJumpAway()
  */
 bool Obj::isArriveTarget()
 {
-	if (mWallTriangle || sqrDistanceXZ(mPosition, mTargetPosition) < 625.0f) {
+	if (mWallTriangle || mPosition.sqrDistance2D(mTargetPosition) < 625.0f) {
 		return true;
 	}
 

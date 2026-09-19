@@ -1185,10 +1185,10 @@ config.libs = [
         "host": True,
         "objects": [
             Object(Matching, "plugProjectKandoU/pikiAnimator.cpp"),
-            Object(Equivalent, "plugProjectKandoU/collinfo.cpp"),
-            Object(Equivalent, "plugProjectKandoU/gameDynamics.cpp"),
+            Object(Matching, "plugProjectKandoU/collinfo.cpp"),
+            Object(Matching, "plugProjectKandoU/gameDynamics.cpp"),
             Object(Matching, "plugProjectKandoU/creature.cpp"),
-            Object(Equivalent, "plugProjectKandoU/fakePiki.cpp"),
+            Object(Matching, "plugProjectKandoU/fakePiki.cpp"),
             Object(Equivalent, "plugProjectKandoU/navi.cpp"),
             Object(Matching, "plugProjectKandoU/piki.cpp"),
             Object(Equivalent, "plugProjectKandoU/baseGameSection.cpp"),

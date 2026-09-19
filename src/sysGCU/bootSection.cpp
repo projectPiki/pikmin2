@@ -158,7 +158,7 @@ void TinyPikmin::update()
 
 					if (piki != this) {
 						Vector2f vec(piki->mOffsetX - mOffsetX, piki->mOffsetY - mOffsetY);
-						f32 dist = _lenVec2D(vec);
+						f32 dist = vec.length();
 						if (dist < 300.0f) {
 							f32 x = (1.0f - dist / 300.0f) * 20.0f;
 							x *= (piki->mOffsetX < mOffsetX) ? -1.0f : 1.0f;

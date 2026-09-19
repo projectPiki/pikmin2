@@ -252,7 +252,7 @@ void Obj::randomFlyingTarget()
 	Vector3f vel       = getVelocity();
 	Vector3f zeroVec   = Vector3f(0.0f, 0.0f, 0.0f);
 
-	if (sqrDistanceXZ(targetPos, pos) < sqrDistanceXZ(zeroVec, vel) / 2.0f) {
+	if (targetPos.sqrDistance2D(pos) < zeroVec.sqrDistance2D(vel) / 2.0f) {
 		f32 randAngle = randWeightFloat(TAU);
 		f32 randDist  = randWeightFloat(C_GENERALPARMS.mTerritoryRadius());
 
@@ -363,7 +363,7 @@ void Obj::setNearestBridge()
 		{
 			ItemBridge::Item* bridge = static_cast<ItemBridge::Item*>(*iter);
 			Vector3f startPos        = bridge->getStartPos();
-			f32 newRad               = sqrDistanceXZ(mPosition, startPos);
+			f32 newRad               = mPosition.sqrDistance2D(startPos);
 			if (newRad < radius) {
 				mBridge = bridge;
 				radius  = newRad;
@@ -456,7 +456,7 @@ bool Obj::moveBridgeSide()
 	startPos += xVec;
 	startPos += zVec;
 
-	if (sqrDistanceXZ(mPosition, startPos) < 250.0f) {
+	if (mPosition.sqrDistance2D(startPos) < 250.0f) {
 		setTargetSpeed(0.75f * C_GENERALPARMS.mMoveSpeed());
 
 		return true;
@@ -483,7 +483,7 @@ bool Obj::moveBridgeCentre()
 
 	startPos += xVec;
 
-	if (sqrDistanceXZ(mPosition, startPos) < 250.0f) {
+	if (mPosition.sqrDistance2D(startPos) < 250.0f) {
 		setTargetSpeed(0.75f * C_GENERALPARMS.mMoveSpeed());
 
 		return true;
@@ -519,7 +519,7 @@ bool Obj::moveBridgeTop()
 
 	f32 val = turnToTarget(stagePos, C_GENERALPARMS.mTurnSpeed(), C_GENERALPARMS.mMaxTurnAngle());
 
-	f32 dist = sqrDistanceXZ(mPosition, stagePos);
+	f32 dist = mPosition.sqrDistance2D(stagePos);
 
 	if (dist < 50.0f) {
 		mTargetVelocity = Vector3f(0.0f);

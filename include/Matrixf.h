@@ -307,7 +307,7 @@ struct Matrixf {
 		f32 z = SQUARE(mMatrix.mtxView[index][2]);
 		x += y;
 		x += z;
-		return _sqrtf(x);
+		return sqrtfClamped(x);
 	}
 
 	/**

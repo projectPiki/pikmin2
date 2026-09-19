@@ -1030,9 +1030,9 @@ void Pellet::setupParticles()
 			createParticles(mMaxCollParticle);
 
 			for (int i = 0; i < particleCount; i++) {
+				f32 theta     = (TAU / (f32)particleCount) * (f32)i;
 				f32 mid       = mConfig->mParams.mHeight.mData * 0.5f;
 				f32 midRadius = radius - mid;
-				f32 theta     = (TAU / (f32)particleCount) * (f32)i;
 				Vector3f rotation(midRadius * sinf(theta), 0.0f, midRadius * cosf(theta));
 				// _2F4                        = _2F4 + rotation;
 				setupDynParticle(i, mid, rotation);
@@ -1041,8 +1041,8 @@ void Pellet::setupParticles()
 			}
 
 			Vector3f rotation(0.0f);
-			f32 configHeight = mConfig->mParams.mHeight.mData;
-			setupDynParticle(particleCount, configHeight * 0.5f, rotation);
+			f32 halfHeight = mConfig->mParams.mHeight.mData * 0.5f;
+			setupDynParticle(particleCount, halfHeight, rotation);
 			// _2F4               = _2F4 + Vector3f(0.0f, 0.0f, 0.0f);
 			// f32 height = configHeight / 2;
 			// mDynParticle->getAt(particleCount)->_00 = Vector3f(0.0f, 0.0f, 0.0f);
@@ -3765,8 +3765,7 @@ s16 Pellet::getNearFreeStickSlot(Vector3f& position)
 		if (!(flag & mSlots.mSlots[15 - index])) {
 			Vector3f slotPosition;
 			calcStickSlotGlobal(slot, slotPosition);
-			Vector3f diff = Vector3f(slotPosition.y - position.y, slotPosition.z - position.z, slotPosition.x - position.x);
-			f32 dist      = _length2(diff);
+			f32 dist = slotPosition.distance(position);
 			if (dist < minDist) {
 				minDist    = dist;
 				returnSlot = slot;

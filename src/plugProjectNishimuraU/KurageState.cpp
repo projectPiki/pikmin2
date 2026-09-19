@@ -196,7 +196,7 @@ void StateMove::exec(EnemyBase* enemy)
 	} else {
 		Vector3f position  = kurage->getPosition();
 		Vector3f targetPos = Vector3f(kurage->mTargetPosition);
-		if (kurage->mStateTimer > 10.0f || (sqrDistanceXZ(position, targetPos)) < 625.0f) {
+		if (kurage->mStateTimer > 10.0f || (position.sqrDistance2D(targetPos)) < 625.0f) {
 			kurage->mNextState = KURAGE_Wait;
 			kurage->finishMotion();
 

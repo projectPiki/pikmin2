@@ -544,7 +544,7 @@ void StateGoHome::exec(EnemyBase* enemy)
 		EnemyFunc::walkToTarget(frog, homePos, CG_GENERALPARMS(frog).mMoveSpeed.mValue, CG_GENERALPARMS(frog).mTurnSpeed.mValue,
 		                        CG_GENERALPARMS(frog).mMaxTurnAngle.mValue);
 
-		if (sqrDistanceXZ(pos, homePos) < SQUARE(CG_GENERALPARMS(frog).mHomeRadius())) {
+		if (pos.sqrDistance2D(homePos) < SQUARE(CG_GENERALPARMS(frog).mHomeRadius())) {
 			frog->mNextState = FROG_Wait;
 			frog->finishMotion();
 		} else if (frog->mAirTimer > 7.5f) {

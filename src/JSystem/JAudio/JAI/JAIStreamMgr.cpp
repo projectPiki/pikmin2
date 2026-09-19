@@ -300,10 +300,11 @@ void storeStreamBuffer(JAIStream** soundHandlePtr, JAInter::Actor* actor, u32 so
 		return;
 	}
 	if (streamSound->mState != SOUNDSTATE_Inactive) {
-		if (streamSound->getInfoPriority() > info->mPriority) {
+		if (streamSound->getInfoPriority() <= info->mPriority) {
+			streamSound->stop(0);
+		} else {
 			return;
 		}
-		streamSound->stop(0);
 	}
 
 	JAIStream* stream = streamSound;

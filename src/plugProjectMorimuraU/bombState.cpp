@@ -173,7 +173,7 @@ void StateBomb::exec(EnemyBase* enemy)
 
 							Vector3f sep = creature->getPosition();
 							sep -= position;
-							_normaliseXZ(sep);
+							sep.normalise();
 
 							f32 pikiWeight = 100.0f;
 							if (creature->isPiki()) {

@@ -379,7 +379,6 @@ void J3DMtxBuffer::calcWeightEnvelopeMtx()
 	register Mtx* worldMtx;
 	register Mtx* invMtx;
 	register f32 weight;
-	int jointIdx;
 	int mixIdx;
 	int mixCount;
 	int envelopeIdx;
@@ -387,6 +386,7 @@ void J3DMtxBuffer::calcWeightEnvelopeMtx()
 	u16* indices;
 	f32* weights;
 	u8* scaleFlags;
+	int jointIdx;
 	register f32 world0XY;
 	register f32 scratch0;
 	register f32 world1XY;

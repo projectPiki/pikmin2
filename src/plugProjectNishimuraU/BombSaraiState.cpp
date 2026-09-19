@@ -252,7 +252,7 @@ void StateBombWait::exec(EnemyBase* enemy)
 			Vector3f saraiPos  = sarai->getPosition();
 			Vector3f targetPos = target->getPosition();
 
-			if (sqrDistanceXZ(saraiPos, targetPos) < SQUARE(CG_GENERALPARMS(sarai).mAttackRadius())) {
+			if (saraiPos.sqrDistance2D(targetPos) < SQUARE(CG_GENERALPARMS(sarai).mAttackRadius())) {
 				sarai->mNextState = BOMBSARAI_Release;
 				sarai->finishMotion();
 			} else {
@@ -329,7 +329,7 @@ void StateMove::exec(EnemyBase* enemy)
 
 			Vector3f pos       = sarai->getPosition();
 			Vector3f targetPos = Vector3f(sarai->mTargetPosition);
-			if (sarai->mStateTimer > 5.0f || sqrDistanceXZ(pos, targetPos) < 625.0f) {
+			if (sarai->mStateTimer > 5.0f || pos.sqrDistance2D(targetPos) < 625.0f) {
 				sarai->mNextState = BOMBSARAI_Wait;
 				sarai->finishMotion();
 			}
@@ -401,7 +401,7 @@ void StateBombMove::exec(EnemyBase* enemy)
 			sarai->finishMotion();
 		} else {
 			targetPos = target->getPosition();
-			if (sqrDistanceXZ(saraiPos, targetPos) < SQUARE(CG_GENERALPARMS(sarai).mAttackRadius())) {
+			if (saraiPos.sqrDistance2D(targetPos) < SQUARE(CG_GENERALPARMS(sarai).mAttackRadius())) {
 				sarai->mNextState = BOMBSARAI_Release;
 				sarai->finishMotion();
 			}
@@ -409,7 +409,7 @@ void StateBombMove::exec(EnemyBase* enemy)
 	} else {
 		targetPos = Vector3f(sarai->mTargetPosition);
 
-		if (sarai->mStateTimer > 5.0f || sqrDistanceXZ(saraiPos, targetPos) < 625.0f) {
+		if (sarai->mStateTimer > 5.0f || saraiPos.sqrDistance2D(targetPos) < 625.0f) {
 			sarai->mNextState = BOMBSARAI_BombMove;
 			sarai->finishMotion();
 		}

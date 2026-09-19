@@ -334,10 +334,9 @@ void J3DDeformer::deform_VtxNrmF32(J3DVertexBuffer* vtxBuffer, J3DCluster* clust
 				continue;
 			}
 
-			int idx3 = idx * 3; // r21
-
 			u16 idx2     = key->_04[j];                 // r28
 			f32* currVec = &vecBuffer[(int)(idx2 * 3)]; // r29
+			int idx3     = idx * 3;                     // r21
 			f32 dotProd  = vec[0] * currVec[0] + vec[1] * currVec[1] + vec[2] * currVec[2];
 			if (dotProd >= 1.0f) {
 				dotProd = 0.0f;
@@ -356,8 +355,8 @@ void J3DDeformer::deform_VtxNrmF32(J3DVertexBuffer* vtxBuffer, J3DCluster* clust
 			}
 
 			if (dotProd > cluster->_00) {
-				f32* norm     = &vtxNormBuffer[idx3];
 				f32* nextNorm = &vecBuffer[idx2 * 3];
+				f32* norm     = &vtxNormBuffer[idx3];
 				norm[0]       = nextNorm[0];
 				norm[1]       = nextNorm[1];
 				norm[2]       = nextNorm[2];
@@ -367,12 +366,10 @@ void J3DDeformer::deform_VtxNrmF32(J3DVertexBuffer* vtxBuffer, J3DCluster* clust
 			f32 factor = (dotProd - cluster->_04) / (cluster->_00 - cluster->_04);
 			f32* norm  = &vtxNormBuffer[idx3];
 
-			f32 averageX = (1.0f - factor) * vec[0];
-			norm[0]      = factor * currVec[0] + averageX;
-			f32 averageY = (1.0f - factor) * vec[1];
-			norm[1]      = factor * currVec[1] + averageY;
-			f32 averageZ = (1.0f - factor) * vec[2];
-			norm[2]      = factor * currVec[2] + averageZ;
+			f32 inv = 1.0f - factor;
+			norm[0] = factor * currVec[0] + inv * vec[0];
+			norm[1] = factor * currVec[1] + inv * vec[1];
+			norm[2] = factor * currVec[2] + inv * vec[2];
 		}
 	}
 	/*

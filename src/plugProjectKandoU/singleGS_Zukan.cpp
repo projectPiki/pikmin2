@@ -2867,20 +2867,20 @@ void ZukanState::drawGradationEffect(SingleGameSection*, Graphics& gfx)
 	for (int i = 0; i < 4; i++) {
 		J2DPicture pic(tex);
 		JUtility::TColor color(255, 255, 255, 127);
-		pic.setCornerColor(color);
+		pic.setCornerColor(color, color, color, color);
 		GXSetAlphaUpdate(GX_FALSE);
 		pic.draw(min, min, mWindowBounds.getWidth(), mWindowBounds.getHeight(), false, false, false);
 
 		color.a -= 16;
-		pic.setCornerColor(color);
+		pic.setCornerColor(color, color, color, color);
 		pic.draw(max, min, mWindowBounds.getWidth(), mWindowBounds.getHeight(), false, false, false);
 
 		color.a -= 16;
-		pic.setCornerColor(color);
+		pic.setCornerColor(color, color, color, color);
 		pic.draw(min, max, mWindowBounds.getWidth(), mWindowBounds.getHeight(), false, false, false);
 
 		color.a -= 16;
-		pic.setCornerColor(color);
+		pic.setCornerColor(color, color, color, color);
 		pic.draw(max, max, mWindowBounds.getWidth(), mWindowBounds.getHeight(), false, false, false);
 
 		GXInvalidateTexAll();

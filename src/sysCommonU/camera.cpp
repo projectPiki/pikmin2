@@ -116,7 +116,7 @@ Vector3f CullFrustum::getViewVector()
 Vector3f CullFrustum::getPosition()
 {
 	Vector3f tVec = mViewMatrix->getBasis(3);
-	tVec.negate2();
+	tVec.negate();
 
 	Vector3f xVec = mViewMatrix->getBasis(0);
 	Vector3f yVec = mViewMatrix->getBasis(1);
@@ -279,7 +279,7 @@ Vector3f Camera::getPosition()
 	}
 
 	Vector3f vec = mViewMatrix->getColumn(3);
-	vec.negate2();
+	vec.negate();
 	return mViewMatrix->multTranspose(vec);
 }
 
@@ -567,7 +567,7 @@ void BlendCamera::doUpdate()
 	mViewAngle = invBlendFactor * mCameras[blend]->mViewAngle + blendFactor * mCameras[nextBlendIndex]->mViewAngle;
 
 	Vector3f vect3 = vectIndex * invBlendFactor + vectNextIndex * blendFactor;
-	vect3.negate2();
+	vect3.negate();
 
 	indexQuat.slerp(nextIndexQuat, blendFactor, slerpQuat);
 	slerpQuat.normalise();

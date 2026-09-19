@@ -153,7 +153,7 @@ Vector3f Obj::getTargetPosition(Creature* target)
 	sep += tadpolePos;
 
 	f32 territory = C_GENERALPARMS.mTerritoryRadius.mValue;
-	if (sqrDistanceXZ(sep, homePos) > SQUARE(territory)) {
+	if (sep.sqrDistance2D(homePos) > SQUARE(territory)) {
 		Vector3f::getFlatDirectionFromTo(homePos, sep);
 		sep *= territory;
 		sep += homePos;

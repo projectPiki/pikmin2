@@ -221,7 +221,7 @@ bool MiniHoudaiShotGunNode::update()
 				if (target->isNavi() || target->isPiki()) {
 					Vector3f tempSep(newPos - creaturePos);
 					if (tempSep.sqrMagnitude() < hitangle2) {
-						f32 dist           = _sqrtf2(SQUARE(tempSep.x) + SQUARE(tempSep.y) + SQUARE(tempSep.z));
+						f32 dist           = sqrtfClamped(SQUARE(tempSep.x) + SQUARE(tempSep.y) + SQUARE(tempSep.z));
 						Vector3f targetSep = creaturePos - newPos;
 						f32 factor         = dist / hitangle;
 						f32 mag            = 150.0f * (1.0f - factor) + 75.0f * factor;
@@ -1457,8 +1457,8 @@ Vector3f MiniHoudaiShotGunMgr::getShotGunPosition()
 bool MiniHoudaiShotGunMgr::searchShotGunRotation()
 {
 	Vector3f pos = getShotGunPosition();
-	f32 dx = pos.x - mTargetPosition.x;
-	f32 dz = pos.z - mTargetPosition.z;
+	f32 dx       = pos.x - mTargetPosition.x;
+	f32 dz       = pos.z - mTargetPosition.z;
 	Vector2f sep2D(dx, dz);
 	f32 dist = sep2D.length() - 50.0f;
 	if (dist < 1.0f) {
@@ -1477,7 +1477,7 @@ bool MiniHoudaiShotGunMgr::searchShotGunRotation()
 
 	f32 b = (val / sys->mDeltaTime) / 20.0f;
 	Vector2f vec2D((0.45f * dist) / (b / 20.0f) / sys->mDeltaTime, b);
-	mShellSpeed = _sqrtf2(SQUARE(vec2D.y) + SQUARE(vec2D.x));
+	mShellSpeed = sqrtfClamped(SQUARE(vec2D.y) + SQUARE(vec2D.x));
 
 	f32 angleDist = angDist(mAngle, HALF_PI - JMAAtan2Radian(vec2D.x, vec2D.y));
 

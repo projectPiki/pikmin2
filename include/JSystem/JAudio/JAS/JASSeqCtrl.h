@@ -27,6 +27,14 @@ struct JASSeqCtrl {
 	u8* getAddr(u32 offset) { return mRawFilePtr + offset; }
 	void jump(u32 offset) { mCurrentFilePtr = mRawFilePtr + offset; }
 
+	u16 getLoopCount() const
+	{
+		if (mLoopIndex == 0) {
+			return 0;
+		}
+		return mLoopTimers[mLoopIndex - 1];
+	}
+
 	u8* mRawFilePtr;            // _00
 	u8* mCurrentFilePtr;        // _04
 	int mWaitTimer;             // _08

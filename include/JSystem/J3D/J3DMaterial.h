@@ -229,9 +229,33 @@ struct J3DMaterialTable {
 	J3DErrType entryTexMtxAnimator(J3DAnmTextureSRTKey*);
 	bool removeTexMtxAnimator(J3DAnmTextureSRTKey*);
 
+	void initTexMtxAnms(J3DAnmTextureSRTKey* key, J3DTexMtxAnm** anms, u16 count)
+	{
+		for (u16 i = 0; i < count; i++) {
+			(*anms)[i].mIndex = i;
+			(*anms)[i].mAnm   = key;
+		}
+	}
+
 	J3DErrType allocTevRegAnimator(J3DAnmTevRegKey*, J3DTevColorAnm**, J3DTevKColorAnm**);
 	J3DErrType entryTevRegAnimator(J3DAnmTevRegKey*);
 	bool removeTevRegAnimator(J3DAnmTevRegKey*);
+
+	void initTevColorAnms(J3DAnmTevRegKey* key, J3DTevColorAnm** anms, u16 count)
+	{
+		for (u16 i = 0; i < count; i++) {
+			(*anms)[i].mIndex = i;
+			(*anms)[i].mAnm   = key;
+		}
+	}
+
+	void initTevKColorAnms(J3DAnmTevRegKey* key, J3DTevKColorAnm** anms, u16 count)
+	{
+		for (u16 i = 0; i < count; i++) {
+			(*anms)[i].mIndex = i;
+			(*anms)[i].mAnm   = key;
+		}
+	}
 
 	J3DErrType entryMatColorAnimator(J3DAnmColor*);
 

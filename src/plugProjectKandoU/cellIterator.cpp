@@ -190,13 +190,17 @@ bool CellIterator::satisfy()
 		if (!mArg.mUseCustomRadius) {
 			objPos = objPos - mArg.mSphere.mPosition;
 
-			if (isWithinSphere(objPos, mArg.mSphere.mRadius + boundingSphere.mRadius)) {
+			f32 radius = mArg.mSphere.mRadius + boundingSphere.mRadius;
+			radius *= radius;
+			if (objPos.sqrMagnitude2D() > radius) {
 				return false;
 			}
 		} else {
 			objPos -= mArg.mSphere.mPosition;
 
-			if (isWithinSphere(objPos, mArg.mSphere.mRadius + boundingSphere.mRadius)) {
+			f32 radius = mArg.mSphere.mRadius + boundingSphere.mRadius;
+			radius *= radius;
+			if (objPos.sqrMagnitude2D() > radius) {
 				return false;
 			}
 		}

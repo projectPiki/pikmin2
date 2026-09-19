@@ -198,7 +198,7 @@ void StateLost::exec(EnemyBase* enemy)
 		Vector3f miniPos = mini->getPosition();
 		Vector3f homePos = mini->mHomePosition;
 
-		f32 homeDist = sqrDistanceXZ(miniPos, homePos);
+		f32 homeDist = miniPos.sqrDistance2D(homePos);
 		if (homeDist > SQUARE(CG_GENERALPARMS(mini).mTerritoryRadius())) {
 			f32 angleSep = mini->getAngDist(homePos);
 
@@ -346,7 +346,7 @@ void StateAttack::exec(EnemyBase* enemy)
 
 			Vector3f miniPos = mini->getPosition();
 			Vector3f homePos = mini->mHomePosition;
-			f32 dist         = sqrDistanceXZ(miniPos, homePos);
+			f32 dist         = miniPos.sqrDistance2D(homePos);
 			if (dist > SQUARE(CG_GENERALPARMS(mini).mTerritoryRadius())) {
 				f32 angleSep = mini->getAngDist(homePos);
 				if (absF(angleSep) <= (QUARTER_PI)) {
@@ -448,7 +448,7 @@ void StateFlick::exec(EnemyBase* enemy)
 
 			Vector3f miniPos = mini->getPosition();
 			Vector3f homePos = mini->mHomePosition;
-			f32 dist         = sqrDistanceXZ(miniPos, homePos);
+			f32 dist         = miniPos.sqrDistance2D(homePos);
 			if (dist > SQUARE(CG_GENERALPARMS(mini).mTerritoryRadius())) {
 				f32 angleSep = mini->getAngDist(homePos);
 				if (absF(angleSep) <= (QUARTER_PI)) {
@@ -560,7 +560,7 @@ void StateTurn::exec(EnemyBase* enemy)
 		} else {
 			Vector3f miniPos = mini->getPosition();
 			Vector3f homePos = mini->mHomePosition;
-			f32 dist         = sqrDistanceXZ(miniPos, homePos);
+			f32 dist         = miniPos.sqrDistance2D(homePos);
 			if (dist < SQUARE(CG_GENERALPARMS(mini).mHomeRadius())) {
 				Vector3f targetPos = mini->mWalkTargetPosition;
 
@@ -753,7 +753,7 @@ void StateWalk::exec(EnemyBase* enemy)
 	} else {
 		Vector3f miniPos = mini->getPosition();
 		Vector3f homePos = mini->mHomePosition;
-		f32 dist         = sqrDistanceXZ(miniPos, homePos);
+		f32 dist         = miniPos.sqrDistance2D(homePos);
 		if (dist > SQUARE(CG_GENERALPARMS(mini).mTerritoryRadius())) {
 			mini->mNextState = MINIHOUDAI_Lost;
 			mini->finishMotion();
@@ -863,7 +863,7 @@ void StateWalkHome::exec(EnemyBase* enemy)
 	} else {
 		Vector3f miniPos = mini->getPosition();
 		Vector3f homePos = mini->mHomePosition;
-		f32 dist         = sqrDistanceXZ(miniPos, homePos);
+		f32 dist         = miniPos.sqrDistance2D(homePos);
 
 		f32 angleSep  = mini->turnToTarget(homePos, turnSpeed, maxTurnAngle);
 		f32 maxAttack = CG_GENERALPARMS(mini).mMaxAttackAngle();

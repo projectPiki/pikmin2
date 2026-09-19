@@ -19,6 +19,32 @@
 #include "types.h"
 #include "Vector3.h"
 
+/**
+ * One of the few remnants of the Age editing tools that probably existed - see P1.
+ *
+ * This lives in here because it's never called or used anywhere else, and its functions
+ * are needed for weak function ordering in this file, so.
+ *
+ * @note Size: 0x198.
+ */
+struct AgePlatform : public Platform {
+	AgePlatform();
+
+	virtual ~AgePlatform() { } // _08 (weak)
+
+	void directCreate(u8*);
+	void createGrid(int, int);
+
+	// Unused/inlined:
+	void setVertices(ArrayContainer<Vector3f>& vertices, Vector3f* array, int count) { vertices.setArray(array, count); }
+	void addVertex(ArrayContainer<Vector3f>& vertices, Vector3f& vertex) { vertices.addOne(vertex); }
+
+	// _00     = VTBL
+	// _00-_1C = Platform
+	Sys::OBBTree mOBBTree;         // _01C
+	Sys::GridDivider mGridDivider; // _14C
+};
+
 bool CollTree::mDebug;
 
 /**
@@ -195,8 +221,31 @@ Platform* PlatAttacher::getPlatform(int i)
  */
 AgePlatform::AgePlatform()
 {
-	mTriDivider = new Sys::OBBTree[2]; // something here has to generate four weak dtors
-	new Sys::GridDivider[2];
+	Sys::GridInfo info;
+	// some other unknown nonsense here.
+}
+
+/**
+ * @note Address: N/A
+ * @note Size: 0x6C
+ */
+void AgePlatform::directCreate(u8* data)
+{
+	// this is a guess, but it fits the function size + generates the right weak function ordering.
+	RamStream input(data, -1);
+	mOBBTree.read(input);
+	setTriDivider(&mOBBTree);
+	mGridDivider.read(input);
+}
+
+/**
+ * @note Address: N/A
+ * @note Size: 0x40
+ */
+void AgePlatform::createGrid(int x, int z)
+{
+	// again, a guess, but size is right + generates the right weak function ordering.
+	mGridDivider.create(mGridDivider.mBoundingBox, x, z, mTriDivider->mVertexTable, mTriDivider->mTriangleTable);
 }
 
 /**
@@ -626,7 +675,9 @@ CollPart* CollTree::findCollPart(FindCollPartArg& findArg)
 		for (int i = 0; i < numParts; i++) {
 			CollPart* currPart = partArray[i];
 			if ((!findArg.mCondition || findArg.mCondition->satisfy(currPart)) && currPart->isSphere()) {
-				f32 distance = sqrDistance(findArg.getHitPosition(), currPart->mPosition) - currPart->getSqrRadius();
+				Vector3f diff = findArg.getHitPosition();
+				diff          = Vector3f::sub2(diff, currPart->mPosition);
+				f32 distance  = diff.sqrMagnitude() - currPart->getSqrRadius();
 
 				if (distance < minDist) {
 					foundPart = currPart;
@@ -638,90 +689,6 @@ CollPart* CollTree::findCollPart(FindCollPartArg& findArg)
 		return foundPart;
 	}
 	return nullptr;
-	/*
-	stwu     r1, -0x440(r1)
-	mflr     r0
-	stw      r0, 0x444(r1)
-	stfd     f31, 0x430(r1)
-	psq_st   f31, 1080(r1), 0, qr0
-	stmw     r26, 0x418(r1)
-	lwz      r0, 0(r3)
-	mr       r26, r4
-	cmplwi   r0, 0
-	beq      lbl_80136AFC
-	li       r0, 0
-	addi     r4, r1, 0xc
-	stw      r0, 8(r1)
-	addi     r6, r1, 8
-	li       r5, 0x100
-	lwz      r3, 0(r3)
-	bl       getAllCollPartToArray__8CollPartFPP8CollPartiRi
-	lfs      f31, lbl_80518214@sda21(r2)
-	mr       r31, r3
-	addi     r30, r1, 0xc
-	li       r29, 0
-	li       r28, 0
-	b        lbl_80136AEC
-
-lbl_80136A60:
-	lwz      r3, 0(r26)
-	lwz      r27, 0(r30)
-	cmplwi   r3, 0
-	beq      lbl_80136A8C
-	lwz      r12, 0(r3)
-	mr       r4, r27
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80136AE4
-
-lbl_80136A8C:
-	lbz      r0, 0x58(r27)
-	cmplwi   r0, 0
-	bne      lbl_80136AE4
-	lfs      f1, 8(r26)
-	lfs      f0, 0x50(r27)
-	lfs      f2, 0x1c(r27)
-	fsubs    f5, f1, f0
-	lfs      f3, 4(r26)
-	lfs      f1, 0x4c(r27)
-	fmuls    f0, f2, f2
-	lfs      f4, 0xc(r26)
-	lfs      f2, 0x54(r27)
-	fsubs    f3, f3, f1
-	fmuls    f1, f5, f5
-	fsubs    f2, f4, f2
-	fmadds   f1, f3, f3, f1
-	fmadds   f1, f2, f2, f1
-	fsubs    f0, f1, f0
-	fcmpo    cr0, f0, f31
-	bge      lbl_80136AE4
-	mr       r29, r27
-	fmr      f31, f0
-
-lbl_80136AE4:
-	addi     r30, r30, 4
-	addi     r28, r28, 1
-
-lbl_80136AEC:
-	cmpw     r28, r31
-	blt      lbl_80136A60
-	mr       r3, r29
-	b        lbl_80136B00
-
-lbl_80136AFC:
-	li       r3, 0
-
-lbl_80136B00:
-	psq_l    f31, 1080(r1), 0, qr0
-	lfd      f31, 0x430(r1)
-	lmw      r26, 0x418(r1)
-	lwz      r0, 0x444(r1)
-	mtlr     r0
-	addi     r1, r1, 0x440
-	blr
-	*/
 }
 
 /**
@@ -949,7 +916,6 @@ void CollPart::calcStickGlobal(Vector3f& input, Vector3f& globalPosition)
  * @note Address: 0x80137944
  * @note Size: 0x4C8
  */
-// WIP: https://decomp.me/scratch/rvuzC
 void CollPart::calcPoseMatrix(Vector3f& input, Matrixf& poseMatrix)
 {
 	switch (mPartType) {
@@ -958,8 +924,8 @@ void CollPart::calcPoseMatrix(Vector3f& input, Matrixf& poseMatrix)
 		makeMatrixTo(mtx);
 
 		Vector3f pos = mtx.getTranslation();
-		pos = pos - input;
-		f32 len = pos.normalise();
+		pos          = Vector3f::sub2(pos, input);
+		f32 len      = pos.normalise();
 
 		if (len == 0.0f) {
 			pos = Vector3f(0.0f, 0.0f, 1.0f);
@@ -991,7 +957,6 @@ void CollPart::calcPoseMatrix(Vector3f& input, Matrixf& poseMatrix)
 		}
 		Vector3f path = CRSplineTangent(input.y, controls);
 		path.normalise();
-		f32 returnVal = input.x;
 
 		poseMatrix.makeNaturalPosture(path, input.x);
 		break;
@@ -1002,381 +967,21 @@ void CollPart::calcPoseMatrix(Vector3f& input, Matrixf& poseMatrix)
 
 		Vector3f axis;
 		tube.getAxisVector(axis);
-		axis = -axis;
+		axis.negate();
 
-		Vector3f axisCross = input.cross(axis);
-		_normaliseVec(axisCross);
+		Vector3f axisCross = input;
+		axisCross.CP(axis);
+		axisCross.normalise();
 
-		Vector3f thirdAxis = axisCross.cross(axis);
-		_normaliseVec(thirdAxis);
+		crossProd = axisCross;
+		crossProd.CP(axis);
+		crossProd.normalise();
 
 		poseMatrix.setColumn(0, axisCross);
 		poseMatrix.setColumn(1, axis);
-		poseMatrix.setColumn(2, thirdAxis);
+		poseMatrix.setColumn(2, crossProd);
 		break;
 	}
-	/*
-	stwu     r1, -0xf0(r1)
-	mflr     r0
-	stw      r0, 0xf4(r1)
-	stw      r31, 0xec(r1)
-	mr       r31, r5
-	stw      r30, 0xe8(r1)
-	mr       r30, r4
-	stw      r29, 0xe4(r1)
-	mr       r29, r3
-	lbz      r0, 0x58(r3)
-	cmpwi    r0, 1
-	beq      lbl_80137CA0
-	bge      lbl_80137984
-	cmpwi    r0, 0
-	bge      lbl_80137990
-	b        lbl_80137DF0
-
-lbl_80137984:
-	cmpwi    r0, 3
-	bge      lbl_80137DF0
-	b        lbl_80137B1C
-
-lbl_80137990:
-	lwz      r0, 0x2c(r29)
-	cmpwi    r0, -1
-	beq      lbl_801379E0
-	addi     r3, r1, 0x4c
-	bl       PSMTXIdentity
-	lfs      f0, 0x20(r29)
-	stfs     f0, 0x58(r1)
-	lfs      f0, 0x24(r29)
-	stfs     f0, 0x68(r1)
-	lfs      f0, 0x28(r29)
-	stfs     f0, 0x78(r1)
-	lwz      r3, 0x5c(r29)
-	lwz      r4, 0x2c(r29)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	addi     r4, r1, 0x4c
-	addi     r5, r1, 0xac
-	bl       PSMTXConcat
-
-lbl_801379E0:
-	lfs      f1, 0xc8(r1)
-	lfs      f0, 4(r30)
-	lfs      f4, 0xb8(r1)
-	fsubs    f1, f1, f0
-	lfs      f0, 0(r30)
-	lfs      f3, 0xd8(r1)
-	lfs      f2, 8(r30)
-	fsubs    f0, f4, f0
-	fmuls    f4, f1, f1
-	fsubs    f2, f3, f2
-	lfs      f3, lbl_80518210@sda21(r2)
-	fmadds   f4, f0, f0, f4
-	fmuls    f5, f2, f2
-	fadds    f4, f5, f4
-	fcmpo    cr0, f4, f3
-	ble      lbl_80137A30
-	ble      lbl_80137A34
-	frsqrte  f3, f4
-	fmuls    f4, f3, f4
-	b        lbl_80137A34
-
-lbl_80137A30:
-	fmr      f4, f3
-
-lbl_80137A34:
-	lfs      f3, lbl_80518210@sda21(r2)
-	fcmpo    cr0, f4, f3
-	ble      lbl_80137A58
-	lfs      f3, lbl_80518224@sda21(r2)
-	fdivs    f3, f3, f4
-	fmuls    f0, f0, f3
-	fmuls    f1, f1, f3
-	fmuls    f2, f2, f3
-	b        lbl_80137A5C
-
-lbl_80137A58:
-	fmr      f4, f3
-
-lbl_80137A5C:
-	lfs      f3, lbl_80518210@sda21(r2)
-	fcmpu    cr0, f3, f4
-	bne      lbl_80137A74
-	fmr      f0, f3
-	lfs      f2, lbl_80518224@sda21(r2)
-	fmr      f1, f3
-
-lbl_80137A74:
-	lfs      f4, lbl_80518210@sda21(r2)
-	lfs      f5, lbl_80518224@sda21(r2)
-	fmuls    f3, f4, f2
-	fmuls    f6, f4, f1
-	fmsubs   f7, f4, f0, f3
-	fnmsubs  f8, f5, f0, f6
-	fmsubs   f6, f5, f2, f6
-	fmuls    f3, f7, f7
-	fmuls    f5, f8, f8
-	fmadds   f3, f6, f6, f3
-	fadds    f5, f5, f3
-	fcmpo    cr0, f5, f4
-	ble      lbl_80137AB8
-	ble      lbl_80137ABC
-	frsqrte  f3, f5
-	fmuls    f5, f3, f5
-	b        lbl_80137ABC
-
-lbl_80137AB8:
-	fmr      f5, f4
-
-lbl_80137ABC:
-	lfs      f3, lbl_80518210@sda21(r2)
-	fcmpo    cr0, f5, f3
-	ble      lbl_80137ADC
-	lfs      f3, lbl_80518224@sda21(r2)
-	fdivs    f3, f3, f5
-	fmuls    f6, f6, f3
-	fmuls    f7, f7, f3
-	fmuls    f8, f8, f3
-
-lbl_80137ADC:
-	stfs     f6, 0(r31)
-	fmuls    f5, f2, f7
-	fmuls    f4, f0, f8
-	stfs     f7, 0x10(r31)
-	fmuls    f3, f1, f6
-	fmsubs   f5, f1, f8, f5
-	stfs     f8, 0x20(r31)
-	fmsubs   f4, f2, f6, f4
-	fmsubs   f3, f0, f7, f3
-	stfs     f5, 4(r31)
-	stfs     f4, 0x14(r31)
-	stfs     f3, 0x24(r31)
-	stfs     f0, 8(r31)
-	stfs     f1, 0x18(r31)
-	stfs     f2, 0x28(r31)
-	b        lbl_80137DF0
-
-lbl_80137B1C:
-	lfs      f0, 0x4c(r29)
-	stfs     f0, 0x88(r1)
-	lfs      f0, 0x50(r29)
-	stfs     f0, 0x8c(r1)
-	lfs      f0, 0x54(r29)
-	stfs     f0, 0x90(r1)
-	lwz      r3, 0x10(r29)
-	lfs      f0, 0x4c(r3)
-	stfs     f0, 0x94(r1)
-	lfs      f0, 0x50(r3)
-	stfs     f0, 0x98(r1)
-	lfs      f0, 0x54(r3)
-	stfs     f0, 0x9c(r1)
-	lwz      r3, 0xc(r29)
-	cmplwi   r3, 0
-	beq      lbl_80137B84
-	lbz      r0, 0x58(r3)
-	cmplwi   r0, 2
-	bne      lbl_80137B84
-	lfs      f0, 0x4c(r3)
-	stfs     f0, 0x7c(r1)
-	lfs      f0, 0x50(r3)
-	stfs     f0, 0x80(r1)
-	lfs      f0, 0x54(r3)
-	stfs     f0, 0x84(r1)
-	b        lbl_80137B9C
-
-lbl_80137B84:
-	lfs      f2, 0x88(r1)
-	lfs      f1, 0x8c(r1)
-	lfs      f0, 0x90(r1)
-	stfs     f2, 0x7c(r1)
-	stfs     f1, 0x80(r1)
-	stfs     f0, 0x84(r1)
-
-lbl_80137B9C:
-	lwz      r3, 0x10(r29)
-	lwz      r3, 0x10(r3)
-	cmplwi   r3, 0
-	beq      lbl_80137BD4
-	lbz      r0, 0x58(r3)
-	cmplwi   r0, 2
-	bne      lbl_80137BD4
-	lfs      f0, 0x4c(r3)
-	stfs     f0, 0xa0(r1)
-	lfs      f0, 0x50(r3)
-	stfs     f0, 0xa4(r1)
-	lfs      f0, 0x54(r3)
-	stfs     f0, 0xa8(r1)
-	b        lbl_80137BEC
-
-lbl_80137BD4:
-	lfs      f2, 0x94(r1)
-	lfs      f1, 0x98(r1)
-	lfs      f0, 0x9c(r1)
-	stfs     f2, 0xa0(r1)
-	stfs     f1, 0xa4(r1)
-	stfs     f0, 0xa8(r1)
-
-lbl_80137BEC:
-	lfs      f1, 4(r30)
-	addi     r3, r1, 8
-	addi     r4, r1, 0x7c
-	bl       "CRSplineTangent__FfP10Vector3<f>"
-	lfs      f4, 8(r1)
-	lfs      f3, 0xc(r1)
-	fmuls    f0, f4, f4
-	lfs      f2, 0x10(r1)
-	fmuls    f5, f3, f3
-	lfs      f1, lbl_80518210@sda21(r2)
-	fmuls    f6, f2, f2
-	stfs     f4, 0x20(r1)
-	fadds    f0, f0, f5
-	stfs     f3, 0x24(r1)
-	stfs     f2, 0x28(r1)
-	fadds    f0, f6, f0
-	fcmpo    cr0, f0, f1
-	ble      lbl_80137C50
-	fmadds   f0, f4, f4, f5
-	fadds    f3, f6, f0
-	fcmpo    cr0, f3, f1
-	ble      lbl_80137C54
-	frsqrte  f0, f3
-	fmuls    f3, f0, f3
-	b        lbl_80137C54
-
-lbl_80137C50:
-	fmr      f3, f1
-
-lbl_80137C54:
-	lfs      f0, lbl_80518210@sda21(r2)
-	fcmpo    cr0, f3, f0
-	ble      lbl_80137C8C
-	lfs      f0, lbl_80518224@sda21(r2)
-	lfs      f2, 0x20(r1)
-	fdivs    f3, f0, f3
-	lfs      f1, 0x24(r1)
-	lfs      f0, 0x28(r1)
-	fmuls    f2, f2, f3
-	fmuls    f1, f1, f3
-	fmuls    f0, f0, f3
-	stfs     f2, 0x20(r1)
-	stfs     f1, 0x24(r1)
-	stfs     f0, 0x28(r1)
-
-lbl_80137C8C:
-	lfs      f1, 0(r30)
-	mr       r3, r31
-	addi     r4, r1, 0x20
-	bl       "makeNaturalPosture__7MatrixfFR10Vector3<f>f"
-	b        lbl_80137DF0
-
-lbl_80137CA0:
-	addi     r4, r1, 0x2c
-	bl       getTube__8CollPartFRQ23Sys4Tube
-	addi     r3, r1, 0x2c
-	addi     r4, r1, 0x14
-	bl       "getAxisVector__Q23Sys4TubeFR10Vector3<f>"
-	lfs      f0, 0x14(r1)
-	lfs      f1, 0x18(r1)
-	fneg     f3, f0
-	lfs      f0, 0x1c(r1)
-	fneg     f2, f1
-	lfs      f4, lbl_80518210@sda21(r2)
-	fneg     f1, f0
-	stfs     f3, 0x14(r1)
-	frsp     f9, f3
-	stfs     f2, 0x18(r1)
-	frsp     f8, f1
-	frsp     f0, f2
-	stfs     f1, 0x1c(r1)
-	lfs      f3, 0(r30)
-	lfs      f6, 4(r30)
-	lfs      f7, 8(r30)
-	fmuls    f2, f3, f8
-	fmuls    f1, f6, f9
-	fmuls    f5, f7, f0
-	fmsubs   f2, f7, f9, f2
-	fmsubs   f3, f3, f0, f1
-	fmsubs   f1, f6, f8, f5
-	fmuls    f5, f2, f2
-	fmuls    f6, f3, f3
-	fmadds   f5, f1, f1, f5
-	fadds    f5, f6, f5
-	fcmpo    cr0, f5, f4
-	ble      lbl_80137D34
-	ble      lbl_80137D38
-	frsqrte  f4, f5
-	fmuls    f5, f4, f5
-	b        lbl_80137D38
-
-lbl_80137D34:
-	fmr      f5, f4
-
-lbl_80137D38:
-	lfs      f4, lbl_80518210@sda21(r2)
-	fcmpo    cr0, f5, f4
-	ble      lbl_80137D58
-	lfs      f4, lbl_80518224@sda21(r2)
-	fdivs    f4, f4, f5
-	fmuls    f1, f1, f4
-	fmuls    f2, f2, f4
-	fmuls    f3, f3, f4
-
-lbl_80137D58:
-	fmuls    f6, f1, f8
-	lfs      f4, lbl_80518210@sda21(r2)
-	fmuls    f5, f2, f9
-	fmuls    f7, f3, f0
-	fmsubs   f9, f3, f9, f6
-	fmsubs   f6, f2, f8, f7
-	fmsubs   f7, f1, f0, f5
-	fmuls    f0, f9, f9
-	fmuls    f5, f7, f7
-	fmadds   f0, f6, f6, f0
-	fadds    f5, f5, f0
-	fcmpo    cr0, f5, f4
-	ble      lbl_80137D9C
-	ble      lbl_80137DA0
-	frsqrte  f0, f5
-	fmuls    f5, f0, f5
-	b        lbl_80137DA0
-
-lbl_80137D9C:
-	fmr      f5, f4
-
-lbl_80137DA0:
-	lfs      f0, lbl_80518210@sda21(r2)
-	fcmpo    cr0, f5, f0
-	ble      lbl_80137DC0
-	lfs      f0, lbl_80518224@sda21(r2)
-	fdivs    f0, f0, f5
-	fmuls    f6, f6, f0
-	fmuls    f9, f9, f0
-	fmuls    f7, f7, f0
-
-lbl_80137DC0:
-	stfs     f1, 0(r31)
-	stfs     f2, 0x10(r31)
-	stfs     f3, 0x20(r31)
-	lfs      f0, 0x14(r1)
-	stfs     f0, 4(r31)
-	lfs      f0, 0x18(r1)
-	stfs     f0, 0x14(r31)
-	lfs      f0, 0x1c(r1)
-	stfs     f0, 0x24(r31)
-	stfs     f6, 8(r31)
-	stfs     f9, 0x18(r31)
-	stfs     f7, 0x28(r31)
-
-lbl_80137DF0:
-	lwz      r0, 0xf4(r1)
-	lwz      r31, 0xec(r1)
-	lwz      r30, 0xe8(r1)
-	lwz      r29, 0xe4(r1)
-	mtlr     r0
-	addi     r1, r1, 0xf0
-	blr
-	*/
 }
 
 /**

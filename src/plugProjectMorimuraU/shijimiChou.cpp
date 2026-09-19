@@ -531,7 +531,7 @@ void Obj::fly()
 
 	mCurrentVelocity.y = 0.0f;
 
-	if (sqrDistanceXZ(mPosition, mGoalPosition) < 1000.0f) {
+	if (mPosition.sqrDistance2D(mGoalPosition) < 1000.0f) {
 		setNextGoal();
 		return;
 	}
@@ -867,7 +867,7 @@ void Obj::restFly()
 
 	mCurrentVelocity.y = 0.0f;
 
-	if (sqrDistanceXZ(mPosition, mGoalPosition) < 1000.0f) {
+	if (mPosition.sqrDistance2D(mGoalPosition) < 1000.0f) {
 		setNextGoal();
 	} else {
 		EnemyFunc::walkToTarget(this, mGoalPosition, C_GENERALPARMS.mMoveSpeed(), C_GENERALPARMS.mTurnSpeed(),
@@ -1450,7 +1450,7 @@ void Obj::resetRestPos()
 void Obj::leave()
 {
 	if (mGroupLeader && mGroupLeader != this && mGroupLeader->isAlive()) {
-		if (sqrDistanceXZ(mPosition, mGoalPosition) < 1000.0f) {
+		if (mPosition.sqrDistance2D(mGoalPosition) < 1000.0f) {
 			setTraceGoal();
 		}
 
