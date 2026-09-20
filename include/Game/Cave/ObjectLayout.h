@@ -15,8 +15,8 @@ enum ObjectLayoutType {
 	OBJLAYOUT_Hole        = 3,
 	OBJLAYOUT_Pod         = 4,
 	OBJLAYOUT_Fountain    = 5,
-	OBJLAYOUT_VsRedOnyon  = 6,
-	OBJLAYOUT_VsBlueOnyon = 7,
+	OBJLAYOUT_VsBlueOnyon = 6,
+	OBJLAYOUT_VsRedOnyon  = 7,
 	OBJLAYOUT_TypeCount, // 8
 };
 

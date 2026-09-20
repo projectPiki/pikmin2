@@ -5,7 +5,7 @@
 #include "Game/Entities/ShijimiChou.h"
 #include "Game/GameSystem.h"
 #include "efx/TWatage.h"
-#include "PSM/Navi.h"
+#include "PSSystem/PSMainSide_ObjSound.h"
 #include "nans.h"
 
 namespace Game {

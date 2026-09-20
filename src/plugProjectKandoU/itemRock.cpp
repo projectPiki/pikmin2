@@ -1,6 +1,6 @@
 #include "Game/Entities/ItemRock.h"
 #include "Game/Farm.h"
-#include "PSM/WorkItem.h"
+#include "PSSystem/PSMainSide_ObjSound.h"
 #include "Dolphin/rand.h"
 #include "JSystem/JKernel/JKRDvdRipper.h"
 

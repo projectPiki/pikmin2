@@ -80,10 +80,12 @@ struct OBB : public CNode {
 		axisVec->x = mAxes[i].x;
 		axisVec->y = mAxes[i].y;
 		axisVec->z = mAxes[i].z;
-		JGeometry::TVec3f normal;
-		normal.set(-axisVec->x, -axisVec->y, -axisVec->z);
+		Vec normal;
+		normal.x = -axisVec->x;
+		normal.y = -axisVec->y;
+		normal.z = -axisVec->z;
 		Vector3f scaledVec(axisVec->x * mMinXYZ[i], axisVec->y * mMinXYZ[i], axisVec->z * mMinXYZ[i]);
-		mSidePlanes[i + 3].updatePlane(mPosition + scaledVec, static_cast<Vec>(normal));
+		mSidePlanes[i + 3].updatePlane(mPosition + scaledVec, normal);
 	}
 
 	Plane mSidePlanes[6];       // _18

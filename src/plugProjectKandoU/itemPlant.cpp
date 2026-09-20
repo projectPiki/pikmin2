@@ -6,7 +6,7 @@
 #include "efx/TFruitsDown.h"
 
 #include "PSM/EventBase.h"
-#include "PSM/Tsuyukusa.h"
+#include "PSSystem/PSMainSide_ObjSound.h"
 
 #include "JSystem/J3D/J3DAnmLoader.h"
 

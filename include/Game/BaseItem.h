@@ -45,7 +45,6 @@ struct BaseItem : public Creature, public SysShape::MotionListener {
 	virtual void doAnimation();                  // _3C (weak)
 	virtual void doEntry();                      // _40
 	virtual void doSimulation(f32);              // _4C
-	virtual f32 getFaceDir() { return 0.0f; };   // _64 (weak)
 	virtual void setVelocity(Vector3f& velocity) // _60 (weak)
 	{
 		mVelocity = velocity;
@@ -68,7 +67,8 @@ struct BaseItem : public Creature, public SysShape::MotionListener {
 	virtual void makeTrMatrix();                                                      // _1C4
 	virtual void doAI() { }                                                           // _1C8 (weak)
 	virtual void move(f32);                                                           // _1CC
-	virtual void changeMaterial() {};                                                 // _1D0 (weak)
+	virtual void changeMaterial() { };                                                // _1D0 (weak)
+	virtual f32 getFaceDir() { return 0.0f; };                                        // _64 (weak)
 	virtual void do_updateLOD();                                                      // _1D4
 	virtual void do_setLODParm(AILODParm&) { }                                        // _1D8 (weak)
 	virtual f32 getMapCollisionRadius() { return mBoundingSphere.mRadius; }           // _1DC (weak)
@@ -205,10 +205,11 @@ struct FSMItem : public BaseItem {
 
 	// vtable 1
 	// vtable 2
-	virtual void bounceCallback(Sys::Triangle* tri);         // _E0
-	virtual void collisionCallback(CollEvent& event);        // _E4
-	virtual void platCallback(PlatEvent& event);             // _E8
-	virtual void doAI() { mFsm->exec((ItemClass*)this); }    // _10
+	virtual void bounceCallback(Sys::Triangle* tri);      // _E0
+	virtual void collisionCallback(CollEvent& event);     // _E4
+	virtual void platCallback(PlatEvent& event);          // _E8
+	virtual void doAI() { mFsm->exec((ItemClass*)this); } // _10
+	int getStateID();
 	virtual void onKeyEvent(const SysShape::KeyEvent& event) // _68 (thunked at _00)
 	{
 		if (mCurrentState) {
@@ -216,7 +217,6 @@ struct FSMItem : public BaseItem {
 		}
 	}
 
-	int getStateID();
 	inline void setCurrState(StateType* state) { mCurrentState = state; }
 	inline StateType* getCurrState() { return mCurrentState; }
 

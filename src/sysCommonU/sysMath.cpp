@@ -29,24 +29,6 @@ f32 pikmin2_cosf(f32 x)
 	return cosf(x);
 }
 
-f32 acosfDumb(f32 x)
-{
-	// not right but it's a start
-	if (x <= -1.0f) {
-		return 0.0f;
-	}
-	if (x >= 1.0f) {
-		return PI;
-	}
-	if (x < 0.0f) {
-		f32 dumb = HALF_PI;
-		f32 acos = JMath::asinAcosTable_.mTable[(u32)(-x * 1023.5f)];
-		return acos + dumb;
-	} else {
-		return HALF_PI - JMath::asinAcosTable_.mTable[(u32)(x * 1023.5f)];
-	}
-}
-
 /**
  * @note Address: N/A
  * @note Size: 0xF4
@@ -122,8 +104,10 @@ f32 qdist2(f32 x1, f32 y1, f32 x2, f32 y2)
  */
 f32 qdist3(f32 x1, f32 y1, f32 z1, f32 x2, f32 y2, f32 z2)
 {
-	Vector3f xyz(x2 - x1, y2 - y1, z2 - z1);
-	return xyz.qLength();
+	f32 deltaX = x2 - x1;
+	f32 deltaY = y2 - y1;
+	f32 deltaZ = z2 - z1;
+	return pikmin2_sqrtf(SQUARE(deltaX) + SQUARE(deltaY) + SQUARE(deltaZ));
 }
 
 /**
@@ -329,7 +313,8 @@ void Matrix3f::calcEigenMatrix(Matrix3f& diagMtx, Matrix3f& eigenMtx)
 					continue;
 				}
 
-				jacobiMtx = diagMtx;
+				jacobiMtx          = diagMtx;
+				Matrix3f& rotation = jacobiMtx;
 
 				f32 offDiagonalElem = jacobiMtx.calcJacobi(row, col);
 
@@ -343,8 +328,12 @@ void Matrix3f::calcEigenMatrix(Matrix3f& diagMtx, Matrix3f& eigenMtx)
 				f32 sinTheta = tangentTheta * cosTheta;
 
 				jacobiMtx.makeIdentity();
-				jacobiMtx.updateJacobiOffDiagonal(row, col, sinTheta);
-				jacobiMtx.updateJacobiDiagonal(row, col, cosTheta);
+				f32* rowValues = rotation.mMatrix[row];
+				f32* colValues = rotation.mMatrix[col];
+				rowValues[row] = cosTheta;
+				colValues[col] = cosTheta;
+				rowValues[col] = sinTheta;
+				colValues[row] = -sinTheta;
 
 				intermediateMtx = eigenMtx * jacobiMtx;
 				eigenMtx        = intermediateMtx;
@@ -568,313 +557,44 @@ void Quat::normalise()
  */
 void Quat::slerp(Quat& q1, f32 t, Quat& qout)
 {
-	// take dot product between start and end - this is cos(omega)
-	// these inputs really should be unit quats, so this should never be > |1|
-	f32 cos_omega = (w * q1.w) + ((v.z * q1.v.z) + ((v.x * q1.v.x) + (v.y * q1.v.y)));
+	f32 cosOmega = w * q1.w + v.dot(q1.v);
 
-	// acos is gonna throw errors if we put in > |1|, so don't do that
-	if (cos_omega > 1.0f) {
-		cos_omega = 1.0f;
-	} else if (cos_omega < -1.0f) {
-		cos_omega = -1.0f;
+	if (cosOmega > 1.0f) {
+		cosOmega = 1.0f;
+	} else if (cosOmega < -1.0f) {
+		cosOmega = -1.0f;
 	}
 
-	// calculate omega based on positive, but need to remember to flip back later if negative
 	int flipDirection;
-	if (cos_omega < 0.0) {
-		cos_omega     = -cos_omega;
+	if (cosOmega < 0.0) {
+		cosOmega      = -cosOmega;
 		flipDirection = 1;
 	} else {
 		flipDirection = 0;
 	}
 
-	// if something's gone drastically wrong, panic bc we can't do acos math on stuff that's outside -1 to 1
-	// if (cos_omega < -1.0f || cos_omega > 1.0f) {
-	// 	JUT_PANICLINE(65, "acosf %f\n", cos_omega);
-	// }
+	f32 omega = pikmin2_acosf(cosOmega);
 
-	// call acos to get omega
-	// [ISSUE HERE] ----------------------------------------------------------------=-=-=-=-=-=-=-=-=-=-HEREHERHEHERHERHE
-	// I negated to fix the resgwaps below, which indicates some weirdness
-	// Regswaps happen inside this function but once fixed I think it'll solve the ones below
-	f32 newOmega = pikmin2_acosf(cos_omega);
+	f32 sinOmega = sinf(omega);
 
-	// calculate sin(omega)
-	f32 sinOmega = pikmin2_sinf(newOmega);
-
-	// work out what the linear interpolation factors should be
-	// if sin_omega is super tiny, just use an approximation
 	f32 a;
 	if (FABS(sinOmega) < 0.00001f) {
 		a = 1.0f - t;
 	} else {
-		f32 denom   = (1.0f / sinOmega);
-		f32 t_omega = t * newOmega;
-		a           = pikmin2_sinf(newOmega - t_omega) * denom;
-		t           = pikmin2_sinf(t_omega) * denom;
+		f32 denom  = 1.0f / sinOmega;
+		f32 tOmega = t * omega;
+		a          = sinf(omega - tOmega) * denom;
+		t          = sinf(tOmega) * denom;
 	}
 
-	// remember to flip back if cos(omega) was negative before!
 	if (flipDirection != 0) {
 		t = -t;
 	}
 
-	// do the actual linear interpolation based on factors above
 	qout.v.x = (a * v.x) + (t * q1.v.x);
 	qout.v.y = (a * v.y) + (t * q1.v.y);
 	qout.v.z = (a * v.z) + (t * q1.v.z);
 	qout.w   = (a * w) + (t * q1.w);
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x60(r1)
-	  mflr      r0
-	  stw       r0, 0x64(r1)
-	  stfd      f31, 0x50(r1)
-	  psq_st    f31,0x58(r1),0,0
-	  stfd      f30, 0x40(r1)
-	  psq_st    f30,0x48(r1),0,0
-	  stw       r31, 0x3C(r1)
-	  stw       r30, 0x38(r1)
-	  stw       r29, 0x34(r1)
-	  stw       r28, 0x30(r1)
-	  mr        r28, r3
-	  mr        r29, r4
-	  lfs       f2, 0x8(r3)
-	  fmr       f31, f1
-	  lfs       f0, 0x8(r4)
-	  mr        r30, r5
-	  lfs       f3, 0x4(r3)
-	  fmuls     f0, f2, f0
-	  lfs       f1, 0x4(r4)
-	  lfs       f4, 0xC(r3)
-	  lfs       f2, 0xC(r4)
-	  fmadds    f1, f3, f1, f0
-	  lfs       f5, 0x0(r3)
-	  lfs       f3, 0x0(r4)
-	  lfs       f0, 0x1F18(r2)
-	  fmadds    f1, f4, f2, f1
-	  fmadds    f30, f5, f3, f1
-	  fcmpo     cr0, f30, f0
-	  ble-      .loc_0x80
-	  fmr       f30, f0
-	  b         .loc_0x90
-
-	.loc_0x80:
-	  lfs       f0, 0x1F14(r2)
-	  fcmpo     cr0, f30, f0
-	  bge-      .loc_0x90
-	  fmr       f30, f0
-
-	.loc_0x90:
-	  lfd       f0, 0x1F50(r2)
-	  fcmpo     cr0, f30, f0
-	  bge-      .loc_0xA8
-	  fneg      f30, f30
-	  li        r31, 0x1
-	  b         .loc_0xAC
-
-	.loc_0xA8:
-	  li        r31, 0
-
-	.loc_0xAC:
-	  lfs       f0, 0x1F14(r2)
-	  fcmpo     cr0, f30, f0
-	  blt-      .loc_0xC4
-	  lfs       f0, 0x1F18(r2)
-	  fcmpo     cr0, f30, f0
-	  ble-      .loc_0xE4
-
-	.loc_0xC4:
-	  fmr       f1, f30
-	  lis       r3, 0x804A
-	  lis       r4, 0x804A
-	  subi      r5, r4, 0x69AC
-	  subi      r3, r3, 0x69B8
-	  li        r4, 0x41
-	  crset     6, 0x6
-	  bl        -0x3E8390
-
-	.loc_0xE4:
-	  lfs       f0, 0x1F18(r2)
-	  fcmpo     cr0, f30, f0
-	  cror      2, 0x1, 0x2
-	  bne-      .loc_0xFC
-	  lfs       f3, 0x1F10(r2)
-	  b         .loc_0x170
-
-	.loc_0xFC:
-	  lfs       f0, 0x1F14(r2)
-	  fcmpo     cr0, f30, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x114
-	  lfs       f3, 0x1F1C(r2)
-	  b         .loc_0x170
-
-	.loc_0x114:
-	  lfs       f0, 0x1F10(r2)
-	  fcmpo     cr0, f30, f0
-	  bge-      .loc_0x14C
-	  fneg      f0, f30
-	  lfs       f1, 0x1F20(r2)
-	  fmuls     f1, f1, f0
-	  bl        -0x350ED0
-	  lis       r4, 0x8051
-	  rlwinm    r0,r3,2,0,29
-	  subi      r3, r4, 0x1E00
-	  lfs       f0, 0x1F24(r2)
-	  lfsx      f1, r3, r0
-	  fadds     f3, f1, f0
-	  b         .loc_0x170
-
-	.loc_0x14C:
-	  lfs       f0, 0x1F20(r2)
-	  fmuls     f1, f0, f30
-	  bl        -0x350EF8
-	  lis       r4, 0x8051
-	  rlwinm    r0,r3,2,0,29
-	  subi      r3, r4, 0x1E00
-	  lfs       f0, 0x1F24(r2)
-	  lfsx      f1, r3, r0
-	  fsubs     f3, f0, f1
-
-	.loc_0x170:
-	  lfs       f0, 0x1F10(r2)
-	  fcmpo     cr0, f3, f0
-	  bge-      .loc_0x1A8
-	  lfs       f0, 0x1F08(r2)
-	  lis       r3, 0x8050
-	  addi      r3, r3, 0x71A0
-	  fmuls     f0, f3, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x8(r1)
-	  lwz       r0, 0xC(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f0, r3, r0
-	  fneg      f2, f0
-	  b         .loc_0x1CC
-
-	.loc_0x1A8:
-	  lfs       f0, 0x1F0C(r2)
-	  lis       r3, 0x8050
-	  addi      r3, r3, 0x71A0
-	  fmuls     f0, f3, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x10(r1)
-	  lwz       r0, 0x14(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f2, r3, r0
-
-	.loc_0x1CC:
-	  fabs      f1, f2
-	  lfs       f0, 0x1F58(r2)
-	  frsp      f1, f1
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x1EC
-	  lfs       f0, 0x1F18(r2)
-	  fsubs     f2, f0, f31
-	  b         .loc_0x2BC
-
-	.loc_0x1EC:
-	  lfs       f1, 0x1F18(r2)
-	  fmuls     f5, f31, f3
-	  lfs       f0, 0x1F10(r2)
-	  fdivs     f4, f1, f2
-	  fsubs     f1, f3, f5
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x234
-	  lfs       f0, 0x1F08(r2)
-	  lis       r3, 0x8050
-	  addi      r3, r3, 0x71A0
-	  fmuls     f0, f1, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x10(r1)
-	  lwz       r0, 0x14(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f0, r3, r0
-	  fneg      f1, f0
-	  b         .loc_0x258
-
-	.loc_0x234:
-	  lfs       f0, 0x1F0C(r2)
-	  lis       r3, 0x8050
-	  addi      r3, r3, 0x71A0
-	  fmuls     f0, f1, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x8(r1)
-	  lwz       r0, 0xC(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f1, r3, r0
-
-	.loc_0x258:
-	  lfs       f0, 0x1F10(r2)
-	  fmuls     f2, f4, f1
-	  fcmpo     cr0, f5, f0
-	  bge-      .loc_0x294
-	  lfs       f0, 0x1F08(r2)
-	  lis       r3, 0x8050
-	  addi      r3, r3, 0x71A0
-	  fmuls     f0, f5, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x18(r1)
-	  lwz       r0, 0x1C(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f0, r3, r0
-	  fneg      f0, f0
-	  b         .loc_0x2B8
-
-	.loc_0x294:
-	  lfs       f0, 0x1F0C(r2)
-	  lis       r3, 0x8050
-	  addi      r3, r3, 0x71A0
-	  fmuls     f0, f5, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x20(r1)
-	  lwz       r0, 0x24(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f0, r3, r0
-
-	.loc_0x2B8:
-	  fmuls     f31, f4, f0
-
-	.loc_0x2BC:
-	  cmpwi     r31, 0
-	  beq-      .loc_0x2C8
-	  fneg      f31, f31
-
-	.loc_0x2C8:
-	  lfs       f0, 0x4(r29)
-	  lfs       f1, 0x4(r28)
-	  fmuls     f0, f31, f0
-	  fmadds    f0, f2, f1, f0
-	  stfs      f0, 0x4(r30)
-	  lfs       f0, 0x8(r29)
-	  lfs       f1, 0x8(r28)
-	  fmuls     f0, f31, f0
-	  fmadds    f0, f2, f1, f0
-	  stfs      f0, 0x8(r30)
-	  lfs       f0, 0xC(r29)
-	  lfs       f1, 0xC(r28)
-	  fmuls     f0, f31, f0
-	  fmadds    f0, f2, f1, f0
-	  stfs      f0, 0xC(r30)
-	  lfs       f0, 0x0(r29)
-	  lfs       f1, 0x0(r28)
-	  fmuls     f0, f31, f0
-	  fmadds    f0, f2, f1, f0
-	  stfs      f0, 0x0(r30)
-	  psq_l     f31,0x58(r1),0,0
-	  lfd       f31, 0x50(r1)
-	  psq_l     f30,0x48(r1),0,0
-	  lfd       f30, 0x40(r1)
-	  lwz       r31, 0x3C(r1)
-	  lwz       r30, 0x38(r1)
-	  lwz       r29, 0x34(r1)
-	  lwz       r0, 0x64(r1)
-	  lwz       r28, 0x30(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x60
-	  blr
-	*/
 }
 
 /**
@@ -1041,8 +761,8 @@ void BoundBox::makeBoundSphere(Sys::Sphere& sphere)
 	Vector3f mid     = (mMin + mMax) / 2;
 	sphere.mPosition = mid;
 
-	f32 len_min = qdist3(mMin.x, mMin.y, mMin.z, mid.x, mid.y, mid.z);
-	f32 len_max = qdist3(mMax.x, mMax.y, mMax.z, mid.x, mid.y, mid.z);
+	f32 len_min = qdist3(mMin, mid);
+	f32 len_max = qdist3(mMax, mid);
 
 	sphere.mRadius = (len_min > len_max) ? len_min : len_max;
 }

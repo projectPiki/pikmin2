@@ -1,8 +1,6 @@
 #include "JSystem/JAudio/JAD/JADDataMgr.h"
 #include "JSystem/JAudio/JAD/JADUtility.h"
 #include "PSAutoBgm/PSAutoBgm.h"
-#include "PSAutoBgm/Conductor.h"
-#include "PSAutoBgm/PrmLink.h"
 #include "PSSystem/PSSeq.h"
 #include "PSSystem/PSSystemIF.h"
 #include "JSystem/JAudio/JAS/JASResArcLoader.h"
@@ -41,15 +39,6 @@ Conductor::Conductor(AutoBgm* autoBgm, int p2)
  */
 Conductor::~Conductor()
 {
-}
-
-/**
- * @note Address: N/A
- * @note Size: 0x74
- */
-void Conductor::onBeatProc()
-{
-	mBgmSeq->mRootTrack->onBeatTop();
 }
 
 /**
@@ -284,6 +273,16 @@ void Track::incCurModule()
 	} else if (mCurrModule != (getChildNum() - 1)) {
 		mCurrModule++;
 	}
+}
+
+/**
+ * @note Address: N/A
+ * @note Size: 0x78
+ */
+void Track::onStartSeq(JAISequence* sound)
+{
+	f32 volume = _16C.mValue / 127.0f;
+	sound->setTrackFxmix(mIndex, (volume < 0.0f) ? 0.0f : (volume > 1.0f) ? 1.0f : volume, 0);
 }
 
 /**

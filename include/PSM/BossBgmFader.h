@@ -4,7 +4,7 @@
 #include "PSSystem/PSCommon.h"
 #include "types.h"
 #include "PSM/Director.h"
-#include "PSM/EnemyBoss.h"
+#include "PSSystem/PSMainSide_ObjSound.h"
 #include "JSystem/JSupport/JSUList.h"
 
 namespace PSM {

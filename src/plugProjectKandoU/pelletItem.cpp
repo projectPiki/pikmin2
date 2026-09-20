@@ -1,6 +1,6 @@
 #include "Game/Entities/PelletItem.h"
 #include "Game/gameGenerator.h"
-#include "PSM/Otakara.h"
+#include "PSSystem/PSMainSide_ObjSound.h"
 #include "Game/MapMgr.h"
 
 namespace Game {

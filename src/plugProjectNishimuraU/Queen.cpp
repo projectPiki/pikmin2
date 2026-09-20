@@ -7,7 +7,6 @@
 #include "Game/Stickers.h"
 #include "Game/SingleGameSection.h"
 #include "Game/Navi.h"
-#include "PSM/EnemyBoss.h"
 #include "PSSystem/PSMainSide_ObjSound.h"
 #include "Dolphin/rand.h"
 #include "nans.h"

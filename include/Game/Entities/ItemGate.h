@@ -2,6 +2,7 @@
 #define _GAME_ENTITIES_ITEMGATE_H
 
 #include "types.h"
+#include "ObjectMgr.h"
 #include "Game/BaseItem.h"
 #include "Game/itemMgr.h"
 #include "Game/PlatInstance.h"

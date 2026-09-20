@@ -2335,7 +2335,7 @@ bool Item::interactFlockAttack(InteractFlockAttack& interaction)
  */
 void Item::doAI()
 {
-	mFsm->exec(this);
+	FSMItem::doAI();
 	updateCollTree();
 
 	if (_1E8 < 1.0f) {

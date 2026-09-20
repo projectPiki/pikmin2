@@ -564,9 +564,35 @@ void JAIBasic::getPlayingSoundLinkHeadPointer(u32)
  * @note Address: N/A
  * @note Size: 0x1D0
  */
-void JAIBasic::stopAllSound(u32)
+void JAIBasic::stopAllSound(u32 soundID)
 {
-	// UNUSED FUNCTION
+	switch (soundID & JAISoundID_TypeMask) {
+	case JAISoundID_Type_Se: {
+		JSULink<JAISound>* link = JAInter::SeMgr::seRegist[JAInter::SeMgr::changeIDToCategory(soundID)].mUsedList->getFirst();
+		while (link) {
+			JAISound* sound = link->getObject();
+			link            = link->getNext();
+			if (sound->mSoundID == soundID) {
+				stopSoundHandle(sound, 0);
+			}
+		}
+		break;
+	}
+	case JAISoundID_Type_Sequence:
+		for (u32 track = 0; track < JAIGlobalParameter::getParamSeqPlayTrackMax(); track++) {
+			JAISequence* sequence = JAInter::SequenceMgr::getPlayTrackInfo(track)->mSequence;
+			if (sequence && sequence->mSoundID == soundID) {
+				sequence->stop(0);
+			}
+		}
+		break;
+	case JAISoundID_Type_Stream:
+		JAIStream* stream = JAInter::StreamMgr::streamUpdate->mStream;
+		if (stream && stream->mSoundID == soundID) {
+			stream->stop(0);
+		}
+		break;
+	}
 }
 
 /**

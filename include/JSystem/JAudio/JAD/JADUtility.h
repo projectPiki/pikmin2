@@ -7,6 +7,8 @@
 #include "JSystem/JKernel/JKRDisposer.h"
 #include "JSystem/JSupport/JSUList.h"
 
+#include "stl/string.h"
+
 namespace JADUtility {
 struct PrmSetBase;
 struct PrmBase;
@@ -149,7 +151,6 @@ struct Prm : public PrmBase {
 	{
 	}
 
-	virtual ~Prm() { }                               // _08 (weak)
 	virtual void save(JSUMemoryOutputStream& output) // _0C (weak)
 	{
 		output.write(mValue);
@@ -171,6 +172,8 @@ struct Prm : public PrmBase {
  */
 template <typename T>
 struct PrmSetRc : public PrmSetBase {
+	u8 getChildNum();
+
 	PrmSetRc();
 
 	virtual ~PrmSetRc() // _08 (weak)
@@ -204,8 +207,6 @@ struct PrmSetRc : public PrmSetBase {
 
 	T* getChild(u8 n);
 
-	u8 getChildNum();
-
 	// _00      = VTABLE
 	// _04-_64  = PrmSetBase
 	T* _64;      // _64 - unknown
@@ -229,8 +230,8 @@ u8 PrmSetRc<T>::getChildNum()
 template <typename T>
 T* PrmSetRc<T>::getChild(u8 n)
 {
-	JSUPtrLink* link = mTree.getNthLink(n);
-	return (link != nullptr ? static_cast<T*>(link->getObjectPtr()) : nullptr);
+	JSULink<PrmSetBase>* link = static_cast<JSULink<PrmSetBase>*>(mTree.getNthLink(n));
+	return (link != nullptr ? static_cast<T*>(link->getObject()) : nullptr);
 }
 
 /**
@@ -243,8 +244,6 @@ struct PrmHio : public Prm<T> {
 	    : Prm<T>()
 	{
 	}
-
-	virtual ~PrmHio() { } // _08 (weak)
 
 	// _00      = VTABLE
 	// _04-_30  = Prm
@@ -268,6 +267,67 @@ template <typename T>
 struct PrmSlider : public PrmHio<T> {
 	// _00      = VTABLE
 	// _04-_30  = Prm
+};
+
+/**
+ * @size = 0x3C
+ */
+struct StrPrm : public PrmHio<char*> {
+	typedef void (*Callback)(void*, u32);
+
+	StrPrm(u32 p1)
+	    : PrmHio<char*>()
+	    , _30(p1)
+	    , _34(nullptr)
+	    , _38(0)
+	{
+	}
+
+	virtual ~StrPrm() { }                            // _08 (weak)
+	virtual void save(JSUMemoryOutputStream& output) // _0C (weak)
+	{
+		if (_30 > 0) {
+			output.write(mValue, _30);
+		} else {
+			output.write(mValue);
+		}
+		PrmBase::save(output);
+	}
+	virtual void load(JSUMemoryInputStream& input) // _10 (weak)
+	{
+		if (_30 > 0) {
+			input.read(mValue, _30);
+		} else {
+			input.read(mValue);
+		}
+		PrmBase::load(input);
+		if (_34 != nullptr && _38) {
+			_34(this, _38);
+		}
+	}
+
+	// _00      = VTABLE
+	// _04-_30  = Prm
+	s32 _30;      // _30
+	Callback _34; // _34
+	u32 _38;      // _38
+};
+
+/**
+ * @size = 0x3C
+ */
+struct StrEditBox : public StrPrm {
+	StrEditBox()
+	    : StrPrm(8)
+	{
+		mValue = new char[8];
+		strcpy(mValue, "\0");
+	}
+
+	virtual ~StrEditBox() // _08 (weak)
+	{
+		delete[] mValue;
+	}
 };
 
 } // namespace JADUtility

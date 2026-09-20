@@ -101,7 +101,7 @@ struct Iterator {
 	 *
 	 * @return true if the current element satisfies the condition, false otherwise.
 	 */
-	inline bool satisfy() { return mCondition->satisfy(mContainer->get(mIndex)); }
+	inline bool satisfy() { return mCondition->satisfy(Iterator<T>::operator*()); }
 
 	void* mIndex;             // _04;
 	Container<T>* mContainer; // _08

@@ -143,12 +143,7 @@ struct JAISequence : public JAISound {
 			mSeqParameter.mUpdateData->mActiveTrackFlag |= JAInter::SOUNDACTIVE_Unk5;
 		}
 	}
-	virtual u16 getPortData(u8 p1) // _0C (weak)
-	{
-		static u16 _port;
-		mSeqParameter.mTrack.readPortApp(p1 << 0x10, &_port);
-		return _port;
-	}
+	virtual inline u16 getPortData(u8 p1);                            // _0C (weak but in JAISound.cpp for linkage reasons)
 	virtual u32 getFadeCounter();                                     // _A4
 	virtual void setPrepareFlag(u8 flag) { setSeqPrepareFlag(flag); } // _A8 (weak)
 	virtual void checkReady() { checkSeqReady(); }                    // _AC (weak)

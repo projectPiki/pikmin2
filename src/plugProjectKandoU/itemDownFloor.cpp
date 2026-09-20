@@ -6,7 +6,7 @@
 #include "Game/SingleGame.h"
 #include "efx/TDownf.h"
 #include "efx/TPbag.h"
-#include "PSM/WorkItem.h"
+#include "PSSystem/PSMainSide_ObjSound.h"
 #include "PSSystem/PSSystemIF.h"
 #include "Dolphin/rand.h"
 #include "Platform.h"

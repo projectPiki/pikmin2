@@ -14,6 +14,33 @@
 #include "JSystem/JSupport/JSUList.h"
 #include "types.h"
 
+// these live in here because of a) ordering and b) the _port static
+// if they're in their headers, _port gets put in JAIBasic, which is too early in the link order
+// soz xoxo -HP
+
+inline u16 JAISequence::getPortData(u8 p1)
+{
+	static u16 _port;
+	mSeqParameter.mTrack.readPortApp(p1 << 0x10, &_port);
+	return _port;
+}
+
+inline u16 JAISe::getPortData(u8 p1)
+{
+	JAISequence* seq;
+	if ((mSoundID & JAISoundID_TypeMask) == JAISoundID_Type_Se) {
+		u8 v1            = _14;
+		seq              = JAInter::SeMgr::seHandle;
+		static u16 _port = -1;
+		if (seq->mState >= SOUNDSTATE_Playing) {
+			seq->mSeqParameter.getTrack()->readPortApp(seq->getTrackPortRoute(v1, p1), &_port);
+		}
+		return _port;
+	}
+
+	return 0;
+}
+
 /**
  * @note Address: N/A
  * @note Size: 0x78

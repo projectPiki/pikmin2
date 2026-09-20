@@ -5,7 +5,6 @@
 #include "Game/rumble.h"
 #include "Game/MapMgr.h"
 #include "PSSystem/PSMainSide_ObjSound.h"
-#include "PSM/EnemyBoss.h"
 #include "nans.h"
 
 namespace Game {

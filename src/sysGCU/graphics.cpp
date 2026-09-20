@@ -1389,7 +1389,7 @@ void Graphics::setupJ2DOrthoGraphDefault()
 	mOrthoGraph.place(0.0f, 0.0f, x, y);
 
 	f32 y2   = sys->getRenderModeObj()->efbHeight + gScissorOffset;
-	f32 x2   = sys->getRenderModeObj()->fbWidth;
+	u16 x2   = sys->getRenderModeObj()->fbWidth;
 	f32 offs = 0.0f;
 	mOrthoGraph.scissor(JGeometry::TBox2f(0.0f, 0.0f, offs + x2, offs + y2));
 
@@ -1397,99 +1397,6 @@ void Graphics::setupJ2DOrthoGraphDefault()
 	x = sys->getRenderModeObj()->fbWidth;
 	JGeometry::TBox2f bounds2(0.0f, 0.0f, x, y);
 	mOrthoGraph.setOrtho(bounds2, -1024.0f, 1024.0f);
-	/*
-	stwu     r1, -0x70(r1)
-	mflr     r0
-	stw      r0, 0x74(r1)
-	stfd     f31, 0x60(r1)
-	psq_st   f31, 104(r1), 0, qr0
-	stw      r31, 0x5c(r1)
-	stw      r30, 0x58(r1)
-	mr       r30, r3
-	bl       getRenderModeObj__6SystemFv
-	bl       getRenderModeObj__6SystemFv
-	lhz      r31, 6(r3)
-	bl       getRenderModeObj__6SystemFv
-	lhz      r4, 4(r3)
-	lis      r0, 0x4330
-	addi     r3, r30, 0xbc
-	lfs      f1, lbl_805204B8@sda21(r2)
-	stw      r4, 0x2c(r1)
-	lwz      r12, 0xbc(r30)
-	fmr      f2, f1
-	stw      r0, 0x28(r1)
-	lfd      f4, lbl_805204C0@sda21(r2)
-	lfd      f0, 0x28(r1)
-	stw      r31, 0x34(r1)
-	lwz      r12, 0x10(r12)
-	fsubs    f3, f0, f4
-	stw      r0, 0x30(r1)
-	lfd      f0, 0x30(r1)
-	fsubs    f4, f0, f4
-	mtctr    r12
-	bctrl
-	bl       getRenderModeObj__6SystemFv
-	lhz      r4, 6(r3)
-	lis      r0, 0x4330
-	lwz      r3, gScissorOffset@sda21(r13)
-	stw      r0, 0x38(r1)
-	add      r0, r3, r4
-	lfd      f1, lbl_805204D0@sda21(r2)
-	xoris    r0, r0, 0x8000
-	stw      r0, 0x3c(r1)
-	lfd      f0, 0x38(r1)
-	fsubs    f31, f0, f1
-	bl       getRenderModeObj__6SystemFv
-	lhz      r4, 4(r3)
-	lis      r0, 0x4330
-	lfs      f3, lbl_805204B8@sda21(r2)
-	addi     r3, r30, 0xbc
-	stw      r4, 0x44(r1)
-	addi     r4, r1, 8
-	fadds    f0, f3, f31
-	lfd      f2, lbl_805204C0@sda21(r2)
-	stw      r0, 0x40(r1)
-	lfd      f1, 0x40(r1)
-	stfs     f3, 8(r1)
-	fsubs    f1, f1, f2
-	stfs     f3, 0xc(r1)
-	fadds    f1, f3, f1
-	stfs     f0, 0x14(r1)
-	stfs     f1, 0x10(r1)
-	bl       "scissor__14J2DGrafContextFRCQ29JGeometry8TBox2<f>"
-	bl       getRenderModeObj__6SystemFv
-	lhz      r31, 6(r3)
-	bl       getRenderModeObj__6SystemFv
-	lhz      r4, 4(r3)
-	lis      r0, 0x4330
-	lfs      f5, lbl_805204B8@sda21(r2)
-	addi     r3, r30, 0xbc
-	stw      r4, 0x4c(r1)
-	addi     r4, r1, 0x18
-	lfd      f4, lbl_805204C0@sda21(r2)
-	stw      r0, 0x48(r1)
-	lfs      f1, lbl_805204F8@sda21(r2)
-	lfd      f0, 0x48(r1)
-	stw      r31, 0x54(r1)
-	fsubs    f3, f0, f4
-	lfs      f2, lbl_805204FC@sda21(r2)
-	stw      r0, 0x50(r1)
-	lfd      f0, 0x50(r1)
-	stfs     f5, 0x18(r1)
-	fsubs    f0, f0, f4
-	stfs     f5, 0x1c(r1)
-	stfs     f3, 0x20(r1)
-	stfs     f0, 0x24(r1)
-	bl       "setOrtho__13J2DOrthoGraphFRCQ29JGeometry8TBox2<f>ff"
-	psq_l    f31, 104(r1), 0, qr0
-	lwz      r0, 0x74(r1)
-	lfd      f31, 0x60(r1)
-	lwz      r31, 0x5c(r1)
-	lwz      r30, 0x58(r1)
-	mtlr     r0
-	addi     r1, r1, 0x70
-	blr
-	*/
 }
 
 /**
@@ -1503,85 +1410,12 @@ void Graphics::setupJ2DPerspGraphDefault()
 	mPerspGraph.place(0.0f, 0.0f, x, y);
 
 	f32 y2   = sys->getRenderModeObj()->efbHeight + gScissorOffset;
-	f32 x2   = sys->getRenderModeObj()->fbWidth;
+	u16 x2   = sys->getRenderModeObj()->fbWidth;
 	f32 offs = 0.0f;
 	JGeometry::TBox2f bounds(0.0f, 0.0f, offs + x2, offs + y2);
 	mPerspGraph.scissor(bounds);
 
 	mPerspGraph.set(30.0f, 10.0f, 10000.0f);
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stfd     f31, 0x40(r1)
-	psq_st   f31, 72(r1), 0, qr0
-	stw      r31, 0x3c(r1)
-	stw      r30, 0x38(r1)
-	mr       r30, r3
-	bl       getRenderModeObj__6SystemFv
-	lhz      r31, 6(r3)
-	bl       getRenderModeObj__6SystemFv
-	lhz      r4, 4(r3)
-	lis      r0, 0x4330
-	addi     r3, r30, 0x190
-	lfs      f1, lbl_805204B8@sda21(r2)
-	stw      r4, 0x1c(r1)
-	lwz      r12, 0x190(r30)
-	fmr      f2, f1
-	stw      r0, 0x18(r1)
-	lfd      f4, lbl_805204C0@sda21(r2)
-	lfd      f0, 0x18(r1)
-	stw      r31, 0x24(r1)
-	lwz      r12, 0x10(r12)
-	fsubs    f3, f0, f4
-	stw      r0, 0x20(r1)
-	lfd      f0, 0x20(r1)
-	fsubs    f4, f0, f4
-	mtctr    r12
-	bctrl
-	bl       getRenderModeObj__6SystemFv
-	lhz      r4, 6(r3)
-	lis      r0, 0x4330
-	lwz      r3, gScissorOffset@sda21(r13)
-	stw      r0, 0x28(r1)
-	add      r0, r3, r4
-	lfd      f1, lbl_805204D0@sda21(r2)
-	xoris    r0, r0, 0x8000
-	stw      r0, 0x2c(r1)
-	lfd      f0, 0x28(r1)
-	fsubs    f31, f0, f1
-	bl       getRenderModeObj__6SystemFv
-	lhz      r4, 4(r3)
-	lis      r0, 0x4330
-	lfs      f3, lbl_805204B8@sda21(r2)
-	addi     r3, r30, 0x190
-	stw      r4, 0x34(r1)
-	addi     r4, r1, 8
-	fadds    f0, f3, f31
-	lfd      f2, lbl_805204C0@sda21(r2)
-	stw      r0, 0x30(r1)
-	lfd      f1, 0x30(r1)
-	stfs     f3, 8(r1)
-	fsubs    f1, f1, f2
-	stfs     f3, 0xc(r1)
-	fadds    f1, f3, f1
-	stfs     f0, 0x14(r1)
-	stfs     f1, 0x10(r1)
-	bl       "scissor__14J2DGrafContextFRCQ29JGeometry8TBox2<f>"
-	lfs      f1, lbl_80520500@sda21(r2)
-	addi     r3, r30, 0x190
-	lfs      f2, lbl_80520504@sda21(r2)
-	lfs      f3, lbl_80520508@sda21(r2)
-	bl       set__13J2DPerspGraphFfff
-	psq_l    f31, 72(r1), 0, qr0
-	lwz      r0, 0x54(r1)
-	lfd      f31, 0x40(r1)
-	lwz      r31, 0x3c(r1)
-	lwz      r30, 0x38(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
 }
 
 /**

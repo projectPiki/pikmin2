@@ -102,14 +102,13 @@ struct NodeItemMgr : public BaseItemMgr, public Container<T> {
 	virtual void doDirectDraw(Graphics& gfx) { mNodeObjectMgr.doDirectDraw(gfx); }           // _1C (weak)
 
 	// vtable 2
+	void entry(T* item);
+	virtual void killAll();                                                  // _3C
 	virtual T* get(void* idx) { return mNodeObjectMgr.get(idx); }            // _A4 (weak)
 	virtual void* getNext(void* idx) { return mNodeObjectMgr.getNext(idx); } // _A8 (weak)
 	virtual void* getStart() { return mNodeObjectMgr.getStart(); }           // _AC (weak)
 	virtual void* getEnd() { return mNodeObjectMgr.getEnd(); }               // _B0 (weak)
-	virtual void killAll();                                                  // _3C
 	virtual ~NodeItemMgr() { }                                               // _B4 (weak)
-
-	void entry(T* item);
 
 	// _00     = VTBL (BaseItemMgr)
 	// _00-_30 = BaseItemMgr

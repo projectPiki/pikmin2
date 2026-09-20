@@ -45,7 +45,7 @@ struct MonoObjectMgr : public ObjectMgr<T> {
 			mOpenIds[i] = true;
 		}
 	}
-	virtual void onAlloc(); // _88 (weak)
+	virtual void onAlloc() { } // _88 (weak)
 
 	int getEmptyIndex();
 
@@ -85,7 +85,7 @@ void MonoObjectMgr<T>::alloc(int count)
 	mOpenIds     = new u8[count];
 
 	for (int i = 0; i < count; i++) {
-		setFlag(i, 1);
+		mOpenIds[i] = 1;
 	}
 
 	onAlloc();
@@ -93,11 +93,6 @@ void MonoObjectMgr<T>::alloc(int count)
 	for (int i = 0; i < count; i++) {
 		mArray[i].constructor();
 	}
-}
-
-template <typename T>
-void MonoObjectMgr<T>::onAlloc()
-{
 }
 
 template <typename T>

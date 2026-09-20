@@ -22,6 +22,102 @@ static const u32 padding[] = { 0, 0, 0 };
 namespace PSM {
 
 /**
+ * @size{0x14}
+ */
+struct PersEnvInfo {
+	f32 _00;          // _00
+	f32 mMutedVolume; // _04
+	f32 _08;          // _08
+	f32 _0C;          // _0C
+	f32 _10;          // _10
+
+	inline void operator=(PersEnvInfo& other)
+	{
+		_00          = other._00;
+		mMutedVolume = other.mMutedVolume;
+		_08          = other._08;
+		_0C          = other._0C;
+		_10          = other._10;
+	}
+};
+
+struct EnvSe_Perspective_AvoidY : public PSGame::EnvSe_Perspective {
+	EnvSe_Perspective_AvoidY(u32 soundID, f32 volume, Vec pos)
+	    : PSGame::EnvSe_Perspective(soundID, volume, pos)
+	{
+		mYOffset = 400.0f;
+	}
+
+	virtual JAISound* play();                    // _0C
+	virtual u32 getCastType() { return 'pers'; } // _10 (weak)
+
+	// _10     = VTBL
+	// _00-_48 = PSGame::EnvSe_Perspective
+	f32 mYOffset;      // _48
+	PersEnvInfo mInfo; // _4C
+};
+
+struct Env_Pollutin : public PSGame::EnvSe_AutoPan {
+	Env_Pollutin(u32 soundID, f32 pan = 0.0f, f32 dolby = 1.0f)
+	    : EnvSe_AutoPan(soundID, pan, dolby, 1.0f, 0.0018554f, 0.0008554f)
+	    , mVolumeModifier(1.0f)
+	{
+	}
+
+	virtual JAISound* play();                    // _0C
+	virtual u32 getCastType() { return 'poll'; } // _10 (weak)
+
+	// _10     = VTBL
+	// _00-_50 = PSGame::EnvSe_AutoPan
+	f32 mVolumeModifier; // _50
+};
+
+struct EnvSeObjBuilder : public PSGame::Builder_EvnSe_Perspective {
+	EnvSeObjBuilder(JGeometry::TBox3<f32> bounds)
+	    : PSGame::Builder_EvnSe_Perspective(bounds)
+	{
+	}
+
+	virtual void onBuild(PSSystem::EnvSeBase*);                 // _0C
+	virtual PSGame::EnvSe_Perspective* newSeObj(u32, f32, Vec); // _10
+
+	void setInfo(PersEnvInfo info) { mPersEnvInfo = info; }
+
+	inline void appendNewSELink(u32 id)
+	{
+		PSSystem::IdLink* link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(id);
+		PSSystem::IdList* list = &mList;
+		if (!list->getFirst()) {
+			mList.mNextLink = link;
+		}
+		list->append(link);
+	}
+
+	// _00     = VTBL
+	// _00-_50 = PSGame::Builder_EvnSe_Perspective
+	PersEnvInfo mPersEnvInfo; // _50
+};
+
+inline void SetNoYOfset(PSSystem::EnvSeMgr* mgr)
+{
+	for (JSULink<PSSystem::EnvSeBase>* link = mgr->mEnvList.getFirst(); link; link = link->getNext()) {
+		if (static_cast<PSSystem::EnvSeBase*>(link->getObjectPtr())->getCastType() == 'pers') {
+			((EnvSe_Perspective_AvoidY*)link->getObjectPtr())->mYOffset = 0.0f;
+		}
+	}
+}
+inline void SetBossBgmMuteVol(PSSystem::EnvSeMgr* mgr, u32 id, f32 vol)
+{
+	PSSystem::EnvSeBase* se;
+	for (JSULink<PSSystem::EnvSeBase>* link = mgr->mEnvList.getFirst(); link; link = link->getNext()) {
+		se = static_cast<PSSystem::EnvSeBase*>(link->getObjectPtr());
+		if (se->getCastType() == 'poll' && id == se->mSoundID) {
+			static_cast<Env_Pollutin*>(se)->mVolumeModifier = vol;
+		}
+	}
+}
+
+/**
  * @note Address: 0x80459BD4
  * @note Size: 0x274
  */
@@ -424,7 +520,7 @@ void SceneMgr::initEnvironmentSe(PSM::Scene_Game* scene)
 		APPEND_SE_LINK(builder, PSSE_MP_INSECT04_MIX2);
 		APPEND_SE_LINK(builder, PSSE_MP_INSECT05_MIX2);
 
-		PSM::PersEnvInfo envInfo = (PSM::PersEnvInfo) { 1500.0f, 479.0f, 707.0f, 808.0f, 1.0f };
+		PSM::PersEnvInfo envInfo = { 1500.0f, 479.0f, 707.0f, 808.0f, 1.0f };
 		persMgr->_10             = 479.0f;
 		builder.setInfo(envInfo);
 		builder.build(1.0f, mgr);
@@ -536,7 +632,7 @@ void SceneMgr::initEnvironmentSe(PSM::Scene_Game* scene)
 			} break;
 			}
 
-			PSM::PersEnvInfo envInfo = (PSM::PersEnvInfo) { 1500.0f, 479.0f, 707.0f, 808.0f, 1.0f };
+			PSM::PersEnvInfo envInfo = { 1500.0f, 479.0f, 707.0f, 808.0f, 1.0f };
 			persMgr->_10             = 479.0f;
 			builder.setInfo(envInfo);
 			builder.build(1.0f, mgr);
@@ -571,7 +667,7 @@ void SceneMgr::initEnvironmentSe(PSM::Scene_Game* scene)
 				APPEND_SE_LINK(builder, PSSE_MP_BIRD_SP_UGUISU); // 'japanese warbler'
 				APPEND_SE_LINK(builder, PSSE_MP_BIRD_SP_HIBARI); // 'lark'
 
-				PSM::PersEnvInfo envInfo = (PSM::PersEnvInfo) { 1500.0f, 379.0f, 579.0f, 1031.0f, 0.9f };
+				PSM::PersEnvInfo envInfo = { 1500.0f, 379.0f, 579.0f, 1031.0f, 0.9f };
 				persMgr->_10             = 379.0f;
 				builder.setInfo(envInfo);
 				builder.build(1.0f, mgr);
@@ -589,7 +685,7 @@ void SceneMgr::initEnvironmentSe(PSM::Scene_Game* scene)
 				APPEND_SE_LINK(builder, PSSE_MP_SEMI_MINMIN02); // 'minmin cicada'
 				APPEND_SE_LINK(builder, PSSE_MP_SEMI_NIINII02); // 'niinii cicada'
 
-				PSM::PersEnvInfo envInfo = (PSM::PersEnvInfo) { 1500.0f, 479.0f, 707.0f, 808.0f, 1.0f };
+				PSM::PersEnvInfo envInfo = { 1500.0f, 479.0f, 707.0f, 808.0f, 1.0f };
 				persMgr->_10             = 479.0f;
 				builder.setInfo(envInfo);
 				builder.build(1.0f, mgr);
@@ -605,19 +701,19 @@ void SceneMgr::initEnvironmentSe(PSM::Scene_Game* scene)
 				APPEND_SE_LINK(builder, PSSE_MP_BIRD_FA_KAMO);    // 'duck'
 				APPEND_SE_LINK(builder, PSSE_MP_BIRD_FA_TSUGUMI); // 'thrush'
 
-				PSM::PersEnvInfo envInfo = (PSM::PersEnvInfo) { 1500.0f, 379.0f, 479.0f, 1131.0f, 1.0f };
+				PSM::PersEnvInfo envInfo = { 1500.0f, 379.0f, 479.0f, 1131.0f, 1.0f };
 				persMgr->_10             = 379.0f;
 				builder.setInfo(envInfo);
 				builder.build(1.0f, mgr);
 			} break;
 			}
 		}
+	}
 
-		if (mgr) {
-			SetBossBgmMuteVol(mgr, PSSE_EV_POLUTION_MIX01, 0.28f);
-			SetBossBgmMuteVol(mgr, PSSE_EV_POLUTION_MIX02, 0.28f);
-			scene->adaptEnvSe(mgr);
-		}
+	if (mgr) {
+		SetBossBgmMuteVol(mgr, PSSE_EV_POLUTION_MIX01, 0.28f);
+		SetBossBgmMuteVol(mgr, PSSE_EV_POLUTION_MIX02, 0.28f);
+		scene->adaptEnvSe(mgr);
 	}
 	/*
 	stwu     r1, -0x170(r1)
@@ -2560,52 +2656,6 @@ lbl_8045BF30:
 	*/
 }
 
-// /**
-//  * @note Address: 0x8045BF5C
-//  * @note Size: 0x8C
-//  */
-// void SetBossBgmMuteVol(PSSystem::EnvSeMgr* mgr, u32 id, f32 vol)
-// {
-// 	EnvSe_Perspective_AvoidY* se;
-// 	for (JSULink<PSSystem::EnvSeBase>* link = mgr->mEnvList.getFirst(); link; link = link->getNext()) {
-// 		se = (EnvSe_Perspective_AvoidY*)link->getObjectPtr();
-// 		if (se->getCastType() == 'poll' && id == se->mSoundID) {
-// 			se->mInfo.mMutedVolume = vol;
-// 		}
-// 	}
-// }
-
-// /**
-//  * @note Address: 0x8045BFE8
-//  * @note Size: 0x74
-//  */
-// void SetNoYOfset(PSSystem::EnvSeMgr* mgr)
-// {
-// 	for (JSULink<PSSystem::EnvSeBase>* link = mgr->mEnvList.getFirst(); link; link = link->getNext()) {
-// 		if (((EnvSe_Perspective_AvoidY*)link->mValue)->getCastType() == 'pers') {
-// 			((EnvSe_Perspective_AvoidY*)link->mValue)->mYOffset = 0.0f;
-// 		}
-// 	}
-// }
-
-// /**
-//  * @note Address: 0x8045C05C
-//  * @note Size: 0x2C
-//  */
-// void EnvSeObjBuilder::setInfo(PersEnvInfo info)
-// {
-// 	mPersEnvInfo = info;
-// }
-
-// /**
-//  * @note Address: 0x8045C088
-//  * @note Size: 0x70
-//  */
-// EnvSeObjBuilder::EnvSeObjBuilder(JGeometry::TBox3f bounds)
-//     : PSGame::Builder_EvnSe_Perspective(bounds)
-// {
-// }
-
 /**
  * @note Address: 0x8045C12C
  * @note Size: 0x164
@@ -2794,14 +2844,6 @@ BigBossSeq::BigBossSeq(const char* bmsFileName, const JAInter::SoundInfo& info, 
 }
 
 /**
- * @note Address: 0x8045C758
- * @note Size: 0x80
- */
-MiddleBossSeq::~MiddleBossSeq()
-{
-}
-
-/**
  * @note Address: 0x8045C7D8
  * @note Size: 0x1B4
  */
@@ -2935,7 +2977,7 @@ void PersEnvManager::exec()
 	for (u8 i = 0; i < mSeCount; i++) {
 		for (JSULink<PSSystem::EnvSeBase>* link = mEnvSeMgr->mEnvList.getFirst(); link; link = link->getNext()) {
 			se = (EnvSe_Perspective_AvoidY*)link->getObjectPtr();
-			if (se->getCastType() != 'pers') {
+			if (static_cast<PSSystem::EnvSeBase*>(se)->getCastType() != 'pers') {
 				continue;
 			}
 

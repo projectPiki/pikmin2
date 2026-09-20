@@ -26,14 +26,12 @@
 
 // Audio
 #include "PS.h"
-#include "PSM/CreatureAnime.h"
+#include "PSSystem/PSMainSide_ObjSound.h"
 #include "PSM/BgmTrackMap.h"
 #include "PSM/ObjMgr.h"
 #include "PSM/CreaturePrm.h"
 #include "PSM/ObjCalc.h"
 #include "PSM/BossBgmFader.h"
-#include "PSM/EnemyBase.h"
-#include "PSM/EnemyBoss.h"
 #include "PSSystem/PSCommon.h"
 #include "PSSystem/PSSystemIF.h"
 #include "PSGame/Global.h"

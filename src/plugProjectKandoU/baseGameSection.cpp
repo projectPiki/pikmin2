@@ -1,3 +1,5 @@
+#include "Game/Navi.h"
+#include "Game/PikiMgr.h"
 #include "Game/Entities/ItemBigFountain.h"
 #include "Game/Entities/PelletOtakara.h"
 #include "Game/Entities/PelletCarcass.h"
@@ -15,9 +17,7 @@
 #include "Game/GameLight.h"
 #include "Game/CameraMgr.h"
 #include "Game/DeathMgr.h"
-#include "Game/PikiMgr.h"
 #include "Game/rumble.h"
-#include "Game/Navi.h"
 #include "Game/Farm.h"
 
 #include "JSystem/JFramework/JFWDisplay.h"
@@ -1909,7 +1909,10 @@ void BaseGameSection::doDirectDraw(Graphics&, Viewport*)
  */
 void BaseGameSection::startHeap()
 {
-	// UNUSED FUNCTION
+	mTheExpHeap = JKRExpHeap::create(JKRGetCurrentHeap()->getFreeSize(), JKRGetCurrentHeap(), true);
+	theExpHeap  = mTheExpHeap;
+	mBackupHeap = mTheExpHeap->becomeCurrentHeap();
+	onStartHeap();
 }
 
 /**

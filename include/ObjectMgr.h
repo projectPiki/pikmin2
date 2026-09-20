@@ -104,6 +104,9 @@ struct TObjectNode : public CNode {
 };
 
 template <typename T>
+struct MonoObjectMgr;
+
+template <typename T>
 struct NodeObjectMgr : public ObjectMgr<T> {
 	inline NodeObjectMgr()
 	    : mNode()

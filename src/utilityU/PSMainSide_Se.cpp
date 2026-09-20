@@ -10,7 +10,7 @@
 #include "Game/Navi.h"
 #include "Game/Piki.h"
 #include "Game/CPlate.h"
-#include "PSM/EnemyBase.h"
+#include "PSSystem/PSMainSide_ObjSound.h"
 #include "PSM/BossSeq.h"
 #include "PSM/CreaturePrm.h"
 
@@ -991,17 +991,18 @@ JAISound* PSStartEnemyGhostSE(Game::EnemyBase* enemy, f32)
 			pitch  = 1.7f;
 			break;
 
-		case Game::EnemyTypeID::EnemyID_UjiA:
-		case Game::EnemyTypeID::EnemyID_UjiB:
-		case Game::EnemyTypeID::EnemyID_Tobi:
-		case Game::EnemyTypeID::EnemyID_TamagoMushi:
-			volume = 0.6f;
-			pitch  = 1.8f;
-			break;
 		case Game::EnemyTypeID::EnemyID_FireOtakara:
 		case Game::EnemyTypeID::EnemyID_WaterOtakara:
 		case Game::EnemyTypeID::EnemyID_GasOtakara:
 		case Game::EnemyTypeID::EnemyID_ElecOtakara:
+			volume = 0.6f;
+			pitch  = 1.8f;
+			break;
+		case Game::EnemyTypeID::EnemyID_UjiA:
+		case Game::EnemyTypeID::EnemyID_UjiB:
+		case Game::EnemyTypeID::EnemyID_Tobi:
+		case Game::EnemyTypeID::EnemyID_TamagoMushi:
+		case Game::EnemyTypeID::EnemyID_Qurione:
 			volume = 0.5f;
 			pitch  = 2.0f;
 			break;

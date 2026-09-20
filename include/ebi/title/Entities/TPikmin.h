@@ -172,10 +172,14 @@ struct TUnit : public TObjBase {
 		mIsDead             = false;
 	}
 
-	~TUnit() { }
-
 	virtual u32 getCreatureType() { return TITLECREATURE_Pikmin; } // _08 (weak)
 	virtual bool isCalc();                                         // _0C
+
+	inline void setDestPos(const Vector2f& position)
+	{
+		mDestPos.x = position.x;
+		mDestPos.y = position.y;
+	}
 
 	void init(TMgr*, s32);
 	void goDestination();

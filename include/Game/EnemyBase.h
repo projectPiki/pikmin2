@@ -12,7 +12,7 @@
 
 #include "SysShape/MotionListener.h"
 
-#include "PSM/EnemyBase.h"
+#include "PSSystem/PSMainSide_ObjSound.h"
 #include "efx/TEnemyPiyo.h"
 
 #include "trig.h"

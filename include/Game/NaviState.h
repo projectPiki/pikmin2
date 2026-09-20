@@ -441,11 +441,13 @@ struct NaviFollowState : public NaviState {
 	u8 mPunchSeekCounter;   // _1E, time out seeking punch target after 60 frames (2s)
 };
 
-struct NaviGatherArg : public StateArg {
-	inline NaviGatherArg(bool p1)
+struct NaviGatherInitArg : public StateArg {
+	inline NaviGatherInitArg(bool p1)
 	    : _00(p1)
 	{
 	}
+
+	Piki* findTargetPikmin(Navi* navi);
 
 	bool _00; // _00
 	bool _01; // _01

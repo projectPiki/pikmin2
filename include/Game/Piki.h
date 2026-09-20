@@ -3,7 +3,7 @@
 
 #include "JSystem/JAudio/JAI/JAInter/Object.h"
 #include "JSystem/JUtility/TColor.h"
-#include "PSM/Piki.h"
+#include "PSSystem/PSMainSide_ObjSound.h"
 #include "Game/FakePiki.h"
 #include "Game/StateMachine.h"
 

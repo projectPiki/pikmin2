@@ -2,7 +2,6 @@
 #include "Game/Navi.h"
 #include "Game/EnemyFunc.h"
 #include "Game/EnemyAnimKeyEvent.h"
-#include "PSM/EnemyBoss.h"
 #include "PSSystem/PSMainSide_ObjSound.h"
 #include "JSystem/J3D/J3DMtxBuffer.h"
 #include "JSystem/JMath.h"

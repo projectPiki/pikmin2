@@ -139,7 +139,7 @@ AbtnPane::AbtnPane(u8 state)
 	mState       = state;
 	mAnimAlpha   = 0.0f;
 	mAppearAlpha = 0.0f;
-	mAnimAlpha   = -0.0f;
+	mAnimAlpha   = -(state / 255.0f);
 }
 
 /**
@@ -235,6 +235,37 @@ void PodIconScreen::reset()
  * @note Address: N/A
  * @note Size: 0x1E0
  */
+void PodIconScreen::disappear()
+{
+	switch (int(randFloat() * 2.0f)) {
+	case 0: {
+		_GXRenderModeObj* renderObj = System::getRenderModeObj();
+		u16 efbHeight               = renderObj->efbHeight;
+		renderObj                   = System::getRenderModeObj();
+		u16 fbWidth                 = renderObj->fbWidth;
+		mPosition.x                 = (randFloat() * 0.5f + 0.3f) * fbWidth;
+		mPosition.y                 = -efbHeight * 1.25f;
+		mPosition.z                 = 100.0f;
+		break;
+	}
+	case 1: {
+		_GXRenderModeObj* renderObj = System::getRenderModeObj();
+		u16 efbHeight               = renderObj->efbHeight;
+		renderObj                   = System::getRenderModeObj();
+		u16 fbWidth                 = renderObj->fbWidth;
+		mPosition.x                 = (randFloat() * 0.5f + 0.3f) * fbWidth;
+		mPosition.y                 = efbHeight * 0.65f;
+		mPosition.z                 = 100.0f;
+	}
+	}
+	f32 momentumY = randFloat();
+	mMomentum.x   = randFloat() * 0.5f + 0.5f;
+	mMomentum.y   = momentumY;
+	mMomentum.z   = 0.0f;
+	mMomentum.normalise();
+	mState = 2;
+}
+
 void PodIconScreen::set(JKRArchive* arc)
 {
 	bool didLoad = J2DScreen::set("pod.blo", 0x40000, arc);

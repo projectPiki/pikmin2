@@ -3,7 +3,7 @@
 #include "Game/Entities/Egg.h"
 #include "efx/TEggdown.h"
 #include "efx/TEnemyBomb.h"
-#include "PSM/EnemyBase.h"
+#include "PSSystem/PSMainSide_ObjSound.h"
 
 namespace Game {
 namespace Egg {

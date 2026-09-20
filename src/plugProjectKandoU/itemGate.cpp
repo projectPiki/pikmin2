@@ -2,7 +2,7 @@
 #include "Game/Entities/ItemDengekiGate.h"
 #include "efx/TGate.h"
 #include "efx/TEgate.h"
-#include "PSM/WorkItem.h"
+#include "PSSystem/PSMainSide_ObjSound.h"
 #include "Dolphin/rand.h"
 #include "Sys/MatBaseAnimator.h"
 #include "Game/routeMgr.h"
@@ -196,7 +196,7 @@ void ItemGate::update()
 void ItemGate::doAI()
 {
 	mMabiki.update(4);
-	mFsm->exec(this);
+	FSMItem::doAI();
 	switch (mSoundEvent.update()) {
 	case TSE_ApplyTransition:
 		P2ASSERTLINE(354, mSoundObj->getCastType() == PSM::CCT_WorkItem);

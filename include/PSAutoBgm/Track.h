@@ -3,9 +3,10 @@
 
 #include "types.h"
 #include "JSystem/JAudio/JAD/JADUtility.h"
-#include "JSystem/JAudio/JAD/JADStr.h"
 #include "JSystem/JAudio/JAS/JASTrack.h"
 #include "PSSystem/BankMgr.h"
+
+struct JAISequence;
 
 namespace PSAutoBgm {
 struct CycleBase;
@@ -62,6 +63,7 @@ struct Track : public JADUtility::PrmSetRc<PSAutoBgm::Module> {
 	static void removeCallback(u8 idx, void* track);
 	u32 seqCpuSync_AutoBgm_Track(JASTrack*, u16, u32, JASTrack*);
 	void incCurModule();
+	void onStartSeq(JAISequence*);
 
 	// _00      = VTABLE
 	// _04-_98  = PrmSetRc

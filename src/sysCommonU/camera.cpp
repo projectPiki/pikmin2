@@ -454,9 +454,7 @@ void Camera::updateSoundCamera(f32 angle)
 
 	Vector3f soundPos = mSoundPosition;
 	Matrixf matrix    = *mViewMatrix;
-	Vector3f newPos;
-	matrix.getSoundPosition(soundPos, newPos); // need to tweak this inline probably
-	matrix.setTranslation(newPos);
+	matrix.setMultNeg(soundPos);
 	PSMTXCopy(matrix.mMatrix.mtxView, mSoundMatrix.mMatrix.mtxView);
 }
 

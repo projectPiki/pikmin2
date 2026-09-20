@@ -56,6 +56,11 @@ struct Creature : public ObjBase {
 	virtual void onPlayingSe(u32, JAISound*);                           // _38
 	virtual JAISound** getHandleArea(u8) = 0;                           // _3C
 
+	inline bool isTreasure()
+	{
+		return getCastType() == CCT_PelletOtakara || getCastType() == CCT_PelletItem || getCastType() == CCT_Otakara;
+	}
+
 	bool isNear(Game::Creature*, f32);
 	u8 getPlayingHandleNum();
 

@@ -5,7 +5,7 @@
 #include "Game/PikiMgr.h"
 #include "efx/TOtakara.h"
 #include "Dolphin/rand.h"
-#include "PSM/WorkItem.h"
+#include "PSSystem/PSMainSide_ObjSound.h"
 #include "VsOtakaraName.h"
 #include "JSystem/JKernel/JKRDvdRipper.h"
 #include "nans.h"

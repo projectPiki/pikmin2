@@ -396,7 +396,28 @@ void MapRoom::countItems()
  */
 void MapRoom::countEnemys()
 {
-	// UNUSED FUNCTION
+	for (int i = 0; i < mObjectLayoutInfo->getCount(0); i++) {
+		u8 num;
+		ObjectLayoutNode* node = mObjectLayoutInfo->getNode(0, i);
+		PelletMgr::OtakaraItemCode itemCode;
+		itemCode.mValue = node->getExtraCode();
+
+		PelletInitArg initArg;
+
+		if (pelletMgr->makePelletInitArg(initArg, itemCode)) {
+			if (pelletMgr->setUse(&initArg)) {
+				if (Pellet::sFromTekiEnable) {
+					PelletBirthBuffer::entry(initArg);
+				}
+			} else {
+				itemCode.mValue = 0;
+			}
+		}
+
+		num = node->getBirthCount();
+
+		generalEnemyMgr->addEnemyNum(node->getObjectId(), num, nullptr);
+	}
 }
 
 /**

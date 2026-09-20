@@ -742,6 +742,11 @@ inline f32 Vector3f::distance(JGeometry::TVec3f& them)
 	return JGeometry::TUtil<f32>::sqrt(X + Y + Z);
 }
 
+inline f32 qdist3(const Vector3f& a, const Vector3f& b)
+{
+	return qdist3(a.x, a.y, a.z, b.x, b.y, b.z);
+}
+
 inline bool inRadius2D(f32 r, Vector3f& vec1, Vector3f& vec2)
 {
 	return vec1.sqrDistance2D(vec2) < r * r;

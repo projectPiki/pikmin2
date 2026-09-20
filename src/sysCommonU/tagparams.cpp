@@ -273,16 +273,15 @@ TagParm::TagParm(TagParameters* container, char* name)
 }
 
 /**
- * TODO: This probably uses isEndToken, but IDK how.
  * @note Address: 0x8041C0D4
  * @note Size: 0xD4
  */
 void TagParameters::read(Stream& stream)
 {
 	while (true) {
-		char* str  = stream.readString(nullptr, 0);
-		int strLen = strlen("end");
-		bool isEnd = IS_SAME_STRING_N("end", str, strLen);
+		char* str = stream.readString(nullptr, 0);
+		int strLen;
+		bool isEnd = isEndToken(str);
 
 		if (isEnd) {
 			break;

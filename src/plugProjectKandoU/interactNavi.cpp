@@ -3,7 +3,7 @@
 #include "Game/Interaction.h"
 #include "Game/Entities/Sarai.h"
 
-#include "PSM/Navi.h"
+#include "PSSystem/PSMainSide_ObjSound.h"
 
 #include "Dolphin/rand.h"
 

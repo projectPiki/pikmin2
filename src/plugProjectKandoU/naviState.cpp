@@ -1,3 +1,4 @@
+#include "IDelegate.h"
 #include "Game/NaviState.h"
 #include "Game/gameConfig.h"
 #include "Game/CameraMgr.h"
@@ -18,7 +19,7 @@
 #include "Game/Entities/ItemCave.h"
 #include "efx/TEnemyDownSmoke.h"
 #include "Game/rumble.h"
-#include "PSM/Navi.h"
+#include "PSSystem/PSMainSide_ObjSound.h"
 #include "Game/PikiState.h"
 #include "PSSystem/PSSystemIF.h"
 #include "KandoLib/Choice.h"
@@ -4401,14 +4402,30 @@ void NaviDeadState::onKeyEvent(Navi* navi, SysShape::KeyEvent const& keyEvent)
 	}
 }
 
-// /**
-//  * @note Address: N/A
-//  * @note Size: 0x2FC
-//  */
-// void NaviGatherInitArg::findTargetPikmin(Navi* navi)
-// {
-// 	// UNUSED FUNCTION
-// }
+/**
+ * @note Address: N/A
+ * @note Size: 0x2FC
+ */
+Piki* NaviGatherInitArg::findTargetPikmin(Navi* navi)
+{
+	Piki* nearest = nullptr;
+	f32 nearestDistance;
+	Vector3f position = navi->getPosition();
+	Iterator<Piki> iterator(pikiMgr);
+	CI_LOOP(iterator)
+	{
+		Piki* piki = *iterator;
+		if (piki->isAlive()) {
+			Vector3f offset = piki->getPosition() - position;
+			f32 distance = offset.length();
+			if (!nearest || distance < nearestDistance) {
+				nearest = piki;
+				nearestDistance = distance;
+			}
+		}
+	}
+	return nearest;
+}
 
 /**
  * @note Address: 0x801858DC
@@ -4416,7 +4433,7 @@ void NaviDeadState::onKeyEvent(Navi* navi, SysShape::KeyEvent const& keyEvent)
  */
 void NaviGatherState::init(Navi* navi, StateArg* stateArg)
 {
-	NaviGatherArg* arg = static_cast<NaviGatherArg*>(stateArg);
+	NaviGatherInitArg* arg = static_cast<NaviGatherInitArg*>(stateArg);
 	if (arg) {
 		_10 = arg->_00;
 		_11 = arg->_01;

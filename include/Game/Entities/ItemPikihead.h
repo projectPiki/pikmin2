@@ -2,6 +2,8 @@
 #define _GAME_ENTITIES_ITEMPIKIHEAD_H
 
 #include "types.h"
+#include "IDelegate.h"
+#include "MonoObjectMgr.h"
 #include "Game/BaseItem.h"
 #include "Game/itemMgr.h"
 #include "efx/TPk.h"

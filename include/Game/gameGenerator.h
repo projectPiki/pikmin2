@@ -142,7 +142,7 @@ struct GeneratorMgr : public CNode {
 	u8 mUnusedFlag;           // _6C, set to true for nonloop/loop, not used
 	u8 mUnusedFlag2;          // _6D
 
-	static Delegate1<struct BaseGameSection, Vector3f&>* cursorCallback;
+	static IDelegate1<Vector3f&>* cursorCallback;
 };
 
 struct GenArg : public CreatureInitArg {

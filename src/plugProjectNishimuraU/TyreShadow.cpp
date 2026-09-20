@@ -250,9 +250,10 @@ void TyreShadowMgr::update()
 	parm.mPosition = mObj->getPosition();
 	parm.mRotation = Vector3f(0.0f, 1.0f, 0.0f);
 
-	f32 scale1 = 31.5f * mGlobalScale;
-	f32 scale2 = 17.5f * mGlobalScale;
-	parm.setBoth(scale1, scale2);
+	parm._18                 = 31.5f * mGlobalScale;
+	parm._1C                 = 17.5f * mGlobalScale;
+	parm.mShadowScale        = 0.0f;
+	parm.mPositionMultiplier = -17.5f;
 	mFrontShadow->makeShadowSRT(parm, mFrontMatrix);
 	mBackShadow->makeShadowSRT(parm, mBackMatrix);
 	/*

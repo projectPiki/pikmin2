@@ -26,9 +26,8 @@ struct CullPlane : public ArrayContainer<Plane> {
 	// needed for Camera ctor
 	CullPlane(int a);
 
-	virtual ~CullPlane() { }                      // _08 (weak)
-	virtual void writeObject(Stream&, Plane&) {}; // _2C (weak)
-	virtual void readObject(Stream&, Plane&) {};  // _30 (weak)
+	virtual void readObject(Stream&, Plane&) { }  // _30 (weak)
+	virtual void writeObject(Stream&, Plane&) { } // _2C (weak)
 
 	bool isPointVisible(Vector3f&, f32);
 	bool isVisible(Sys::Sphere&);

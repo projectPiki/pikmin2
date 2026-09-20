@@ -685,7 +685,7 @@ lbl_801DA0E8:
  */
 void Item::doAI()
 {
-	mFsm->exec(this);
+	FSMItem::doAI();
 	if (mAutopluckedTimer > 0.0f) {
 		mAutopluckedTimer -= sys->mDeltaTime;
 		if (mAutopluckedTimer <= 0.0f) {
@@ -1037,7 +1037,7 @@ Item* Mgr::birth()
 		break;
 	}
 
-	return mMonoObjectMgr.birth();
+	return FixedSizeItemMgr<Item>::birth();
 }
 
 /**

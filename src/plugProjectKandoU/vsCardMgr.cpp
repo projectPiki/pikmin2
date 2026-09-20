@@ -197,7 +197,8 @@ Vector2f VsGame::CardMgr::getLampPos(int user, int cherries)
 		lampOrigin = Vector2f(515.0f, 315.0f);
 	}
 
-	lampOrigin -= Vector2f(22.4f, 80.0f);
+	lampOrigin.y -= 80.0f;
+	lampOrigin.x -= 22.4f;
 	f32 lampWidth = 8.0f;
 	lampOrigin.x += cherries * lampWidth * 2.0f;
 	return lampOrigin;
@@ -748,7 +749,7 @@ void VsGame::CardMgr::SlotMachine::update()
 			PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_DECIDE, 0);
 		}
 		break;
-	case SPIN_DOWN_TO_CARD:
+	case SPIN_UP_TO_CARD:
 		mSpinTimer -= deltaTime;
 		if (mSpinTimer <= 0.0f) {
 			mSpinSpeed = 0.0f;
@@ -756,7 +757,7 @@ void VsGame::CardMgr::SlotMachine::update()
 			mSpinState = SPIN_WAIT_CARD_ROLL;
 		}
 		break;
-	case SPIN_WAIT_CARD_STOP:
+	case SPIN_WAIT_CARD_ROLL:
 		if (equalTo(mSelectedSlot)) {
 			mSpinSpeed = 0.0f;
 			mSpinAccel = 0.0f;
@@ -764,7 +765,7 @@ void VsGame::CardMgr::SlotMachine::update()
 			PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_DECIDE, 0);
 		}
 		break;
-	case SPIN_UP_TO_CARD:
+	case SPIN_DOWN_TO_CARD:
 		mSpinTimer -= deltaTime;
 		if (mSpinTimer <= 0.0f) {
 			mSpinSpeed = 0.0f;
@@ -772,7 +773,7 @@ void VsGame::CardMgr::SlotMachine::update()
 			mSpinState = SPIN_WAIT_CARD_STOP;
 		}
 		break;
-	case SPIN_WAIT_CARD_ROLL:
+	case SPIN_WAIT_CARD_STOP:
 		if (equalTo(mSelectedSlot)) {
 			mSpinSpeed = 0.0f;
 			mSpinAccel = 0.0f;

@@ -2,7 +2,7 @@
 #include "Game/Entities/ItemOnyon.h"
 #include "JSystem/J3D/J3DTexMtx.h"
 #include "Game/MapMgr.h"
-#include "PSM/Otakara.h"
+#include "PSSystem/PSMainSide_ObjSound.h"
 #include "nans.h"
 namespace Game {
 namespace PelletOtakara {

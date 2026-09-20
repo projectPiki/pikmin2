@@ -1,15 +1,12 @@
+#include "Game/pelletMgr.h"
 #include "Game/Entities/PelletItem.h"
 #include "Game/Entities/PelletOtakara.h"
 #include "Game/Navi.h"
 #include "PSSystem/PSMainSide_ObjSound.h"
 #include "PSM/BossSeq.h"
 #include "PSM/BossBgmFader.h"
-#include "PSM/EnemyBoss.h"
-#include "PSM/Tsuyukusa.h"
-#include "PSM/WorkItem.h"
 #include "PSM/ObjCalc.h"
 #include "PSM/CreaturePrm.h"
-#include "PSM/Navi.h"
 #include "PSMath.h"
 #include "PSGame/SeMgr.h"
 #include "utilityU.h"
@@ -587,7 +584,7 @@ void CreatureObj::frameEnd_onPlaySe()
  * @note Address: N/A
  * @note Size: 0x118
  */
-inline CreatureAnime::CreatureAnime(Game::Creature* gameObj, u8 p2)
+CreatureAnime::CreatureAnime(Game::Creature* gameObj, u8 p2)
     : Creature(gameObj)
     , JAIAnimeSound(reinterpret_cast<Vec*>(gameObj->getSound_PosPtr()), JKRGetCurrentHeap(), p2)
     , _AC(0.0f)
@@ -1676,7 +1673,7 @@ bool EnemyBig::judgeNearWithPlayer(const Vec& pos1, const Vec& pos2, f32 min, f3
  * @note Address: N/A
  * @note Size: 0x1F0
  */
-inline EnemyBoss::EnemyBoss(Game::EnemyBase* gameObj)
+EnemyBoss::EnemyBoss(Game::EnemyBase* gameObj)
     : EnemyBase(gameObj, 4)
     , mNaviDistance(10000000.0f)
     , mDisappearTimer(-1)
@@ -2621,6 +2618,11 @@ void Otakara::otakaraEventFinish()
 	mOtaEvent->eventFinish();
 }
 
+// this is here for now, since putting it in a header causes the sym on ordering to go weird and wrong
+inline Otakara::~Otakara()
+{
+}
+
 /**
  * @note Address: 0x80461D60
  * @note Size: 0x224
@@ -2778,76 +2780,77 @@ u32 Piki::checkHappaChappySE(u32 id)
 		return id;
 	}
 
+	u32 soundID;
 	switch (id) {
 	case PSSE_PK_VC_BREAKUP:
-		id = PSSE_PK_HAPPA_BREAKUP;
+		soundID = PSSE_PK_HAPPA_BREAKUP;
 		break;
 	case PSSE_PK_VC_CALLED:
-		id = PSSE_PK_HAPPA_CALLED;
+		soundID = PSSE_PK_HAPPA_CALLED;
 		break;
 	case PSSE_PK_VC_THROW_WAIT:
-		id = PSSE_PK_HAPPA_THROW_WAIT;
+		soundID = PSSE_PK_HAPPA_THROW_WAIT;
 		break;
 	case PSSE_PK_VC_THROWN:
-		id = PSSE_PK_HAPPA_THROWN;
+		soundID = PSSE_PK_HAPPA_THROWN;
 		break;
 	case PSSE_PK_VC_EATEN:
-		id = PSSE_PK_HAPPA_EATEN;
+		soundID = PSSE_PK_HAPPA_EATEN;
 		break;
 	case PSSE_PK_VC_GHOST:
-		id = PSSE_PK_HAPPA_GHOST;
+		soundID = PSSE_PK_HAPPA_GHOST;
 		break;
 	case PSSE_PK_VC_JUMP_INTO_HOLE:
-		id = PSSE_PK_HAPPA_JUMP_HOLE;
+		soundID = PSSE_PK_HAPPA_JUMP_HOLE;
 		break;
 	case PSSE_PK_VC_FALL:
 	case PSSE_PK_VC_BLOWN_DEAD:
-		id = PSSE_PK_HAPPA_FALL;
+		soundID = PSSE_PK_HAPPA_FALL;
 		break;
 	case PSSE_PK_VC_PRESSED:
-		id = PSSE_PK_HAPPA_PRESSED;
+		soundID = PSSE_PK_HAPPA_PRESSED;
 		break;
 	case PSSE_PK_FLOWER_VOICE:
-		id = PSSE_PK_HAPPA_FLOWER;
+		soundID = PSSE_PK_HAPPA_FLOWER;
 		break;
 	case PSSE_PK_FLOWER_FALL_VOICE:
-		id = PSSE_PK_HAPPA_FLOWER_FALL;
+		soundID = PSSE_PK_HAPPA_FLOWER_FALL;
 		break;
 	case PSSE_PL_PULLOUT_PIKI:
-		id = PSSE_PK_HAPPA_PULLOUT;
+		soundID = PSSE_PK_HAPPA_PULLOUT;
 		break;
 	case PSSE_PK_VC_LIFT_TRY:
-		id = PSSE_PK_HAPPA_LIFT_TRY;
+		soundID = PSSE_PK_HAPPA_LIFT_TRY;
 		break;
 	case PSSE_PK_VC_LIFT_SUCCESS:
-		id = PSSE_PK_HAPPA_LIFT_SUCCESS;
+		soundID = PSSE_PK_HAPPA_LIFT_SUCCESS;
 		break;
 	case PSSE_PK_VC_LIFT_MOVE:
-		id = PSSE_PK_HAPPA_LIFT_MOVE;
+		soundID = PSSE_PK_HAPPA_LIFT_MOVE;
 		break;
 	case PSSE_PK_VC_ATTACK:
-		id = PSSE_PK_HAPPA_ATTACK;
+		soundID = PSSE_PK_HAPPA_ATTACK;
 		break;
 	case PSSE_PK_VC_DOPING:
-		id = PSSE_PK_HAPPA_DOPING;
+		soundID = PSSE_PK_HAPPA_DOPING;
 		break;
 	case PSSE_PK_VC_DOPE_ATTACK:
-		id = PSSE_PK_HAPPA_DOPE_ATTACK;
+		soundID = PSSE_PK_HAPPA_DOPE_ATTACK;
 		break;
 	case PSSE_PK_VC_DOPE_END:
-		id = PSSE_PK_HAPPA_DOPE_END;
+		soundID = PSSE_PK_HAPPA_DOPE_END;
 		break;
 	case PSSE_PK_VC_SCATTERED:
-		id = PSSE_PK_HAPPA_SCATTERED;
+		soundID = PSSE_PK_HAPPA_SCATTERED;
 		break;
 	case PSSE_PK_VC_DIGGING:
-		id = PSSE_PK_HAPPA_DIGGING;
+		soundID = PSSE_PK_HAPPA_DIGGING;
 		break;
 	case PSSE_PK_VC_SAVED:
-		id = PSSE_PK_HAPPA_SAVED;
+		soundID = PSSE_PK_HAPPA_SAVED;
 		break;
 	case PSSE_PK_VC_PANIC:
-		id = PSSE_PK_HAPPA_PANIC;
+		soundID = PSSE_PK_HAPPA_PANIC;
 		break;
 	case PSSE_PK_SE_ATTACH:
 	case PSSE_PK_SE_KARABURI:
@@ -2864,11 +2867,12 @@ u32 Piki::checkHappaChappySE(u32 id)
 	case PSSE_PK_SE_STABBED:
 	case PSSE_PK_VC_DRINK:
 	case PSSE_PK_SE_HIT_ELEC_GATE:
+		soundID = id;
 		break;
 	default:
-		id = -1;
+		soundID = -1;
 	}
-	return id;
+	return soundID;
 }
 
 /**

@@ -1,7 +1,7 @@
 #include "PSSystem/SeqTrack.h"
 #include "PSMath.h"
 #include "PSM/ObjCalc.h"
-#include "PSM/Otakara.h"
+#include "PSSystem/PSMainSide_ObjSound.h"
 #include "PSGame/Global.h"
 #include "PSAutoBgm/PSAutoBgm.h"
 #include "JSystem/JAudio/JALCalc.h"
@@ -898,6 +898,11 @@ static const char* unusedpath = "PSMainSide_ObjSound.h";
  */
 PikAttackDirector::PikAttackDirector(int numTracks)
     : TrackOnDirectorBase(numTracks, "pikatkD  ", 100, 100)
+{
+}
+
+// this is here for now, since putting it in a header causes the sym on ordering to go weird and wrong
+inline ExiteDirector::~ExiteDirector()
 {
 }
 

@@ -207,7 +207,7 @@ struct TrackOnDirector_Voting : public TrackOnDirectorBase {
 struct ExiteDirector : public TrackOnDirectorBase {
 	ExiteDirector(int trackCount);
 
-	// virtual ~ExiteDirector() { } // _08 (weak)
+	virtual ~ExiteDirector(); // _08 (weak)
 
 	// _00     = VTBL
 	// _00-_54 = TrackOnDirectorBase

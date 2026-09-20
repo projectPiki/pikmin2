@@ -7,7 +7,7 @@
 #include "PSM/ObjCalc.h"
 #include "PSM/ObjMgr.h"
 #include "PSM/PikiHumming.h"
-#include "PSM/Navi.h"
+#include "PSSystem/PSMainSide_ObjSound.h"
 #include "PSM/Scene.h"
 #include "PSM/CreaturePrm.h"
 #include "PSM/WorldMapRocket.h"
@@ -18,7 +18,6 @@
 #include "PSSystem/PSGame.h"
 #include "PSSystem/PSScene.h"
 #include "PSSystem/Reservator.h"
-#include "PSSystem/PSCommon.h"
 #include "PSSystem/PSMainSide_Scene.h"
 #include "Game/Navi.h"
 #include "Game/PikiMgr.h"
@@ -157,6 +156,11 @@ void Scene_Global::startGlobalStream(u32 bgmID)
 	PSSystem::StreamBgm* stream = getGlobalStream();
 	stream->setId(bgmID);
 	stream->startSeq();
+}
+
+// this is here for now, since putting it in a header causes the sym on ordering to go weird and wrong
+inline Scene_Demo::~Scene_Demo()
+{
 }
 
 /**

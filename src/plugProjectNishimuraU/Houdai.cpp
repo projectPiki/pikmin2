@@ -7,7 +7,6 @@
 #include "efx/TOoota.h"
 #include "efx/TEnemyDownWat.h"
 #include "efx/TEnemyDownSmoke.h"
-#include "PSM/EnemyBoss.h"
 #include "PSSystem/PSMainSide_ObjSound.h"
 #include "PS.h"
 #include "Dolphin/rand.h"

@@ -16,9 +16,8 @@ Cylinder::Cylinder(const Vector3f& start, const Vector3f& end, f32 radius)
 	mCenter = (start + end) * 0.5;
 	mAxis   = end - start;
 
-	f32 length = mAxis.qNormalise();
-	mLength    = length;
-	mRadius    = radius;
+	mLength = mAxis.qNormalise();
+	mRadius = radius;
 }
 
 /**
@@ -42,9 +41,8 @@ void Cylinder::set(const Vector3f& start, const Vector3f& end, f32 radius)
 	mCenter = (start + end) * 0.5;
 	mAxis   = end - start;
 
-	f32 length = mAxis.qNormalise();
-	mLength    = length;
-	mRadius    = radius;
+	mLength = mAxis.qNormalise();
+	mRadius = radius;
 }
 
 /**
@@ -67,9 +65,8 @@ bool Cylinder::culled(Plane const& inputPlane)
 	Vector3f lowerVec = mCenter - mAxis * (len);
 	Vector3f upperVec = mCenter + mAxis * (len);
 
-	Vector3f planeVec(inputPlane.mNormal);
-	f32 dotPlane     = mAxis.dot(planeVec);
-	f32 scaledRadius = mRadius * pikmin2_sqrtf(-((dotPlane * dotPlane) - 1.0f));
+	f32 dotPlane     = mAxis.dot(inputPlane.mNormal);
+	f32 scaledRadius = mRadius * pikmin2_sqrtf(1.0f - dotPlane * dotPlane);
 
 	f32 below = scaledRadius + inputPlane.calcDist(lowerVec);
 	f32 above = scaledRadius + inputPlane.calcDist(upperVec);
@@ -97,9 +94,8 @@ bool Cylinder::intersect(Triangle const& triangle, f32& p2)
 	Vector3f lowerVec = mCenter - mAxis * (len);
 	Vector3f upperVec = mCenter + mAxis * (len);
 
-	Vector3f planeVec(triangle.mTrianglePlane.mNormal);
-	f32 dotPlane     = mAxis.dot(planeVec);
-	f32 scaledRadius = mRadius * pikmin2_sqrtf(-((dotPlane * dotPlane) - 1.0f));
+	f32 dotPlane     = mAxis.dot(triangle.mTrianglePlane.mNormal);
+	f32 scaledRadius = mRadius * pikmin2_sqrtf(1.0f - dotPlane * dotPlane);
 
 	f32 below = triangle.mTrianglePlane.calcDist(lowerVec) - scaledRadius;
 	f32 above = scaledRadius + triangle.mTrianglePlane.calcDist(upperVec);

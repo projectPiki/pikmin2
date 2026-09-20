@@ -30,7 +30,7 @@ GeneratorMgr* onceGeneratorMgr;
 GeneratorMgr* limitGeneratorMgr;
 GeneratorMgr* plantsGeneratorMgr;
 GeneratorMgr* dayGeneratorMgr;
-Delegate1<BaseGameSection, Vector3f&>* GeneratorMgr::cursorCallback;
+IDelegate1<Vector3f&>* GeneratorMgr::cursorCallback;
 
 /**
  * @note Address: 0x801AA6E4

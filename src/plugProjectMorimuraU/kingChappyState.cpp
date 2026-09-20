@@ -6,7 +6,6 @@
 #include "Game/MapMgr.h"
 #include "Game/Navi.h"
 #include "Game/PikiMgr.h"
-#include "PSM/EnemyBoss.h"
 #include "PSSystem/PSMainSide_ObjSound.h"
 #include "nans.h"
 

@@ -1,3 +1,6 @@
+#include "Game/Entities/PelletOtakara.h"
+#include "IDelegate.h"
+#include "MonoObjectMgr.h"
 #include "Game/GameConfig.h"
 #include "Game/gamePlayData.h"
 #include "Game/GameSystem.h"
@@ -12,11 +15,10 @@
 #include "Game/routeMgr.h"
 #include "Game/Entities/ItemOnyon.h"
 #include "Game/Entities/ItemTreasure.h"
+#include "Game/Entities/PelletNumber.h"
 #include "Game/Entities/PelletCarcass.h"
 #include "Game/Entities/PelletFruit.h"
 #include "Game/Entities/PelletItem.h"
-#include "Game/Entities/PelletNumber.h"
-#include "Game/Entities/PelletOtakara.h"
 #include "Game/Entities/ItemHole.h"
 #include "Game/Entities/ItemBigFountain.h"
 #include "Game/VsGameSection.h"
@@ -28,7 +30,7 @@
 #include "Dolphin/rand.h"
 #include "efx/TFruitsDown.h"
 #include "efx/TOtakara.h"
-#include "PSM/Otakara.h"
+#include "PSSystem/PSMainSide_ObjSound.h"
 #include "PSSystem/PSMainSide_Scene.h"
 #include "ObjectTypes.h"
 #include "CollInfo.h"
@@ -5193,18 +5195,33 @@ void PelletMgr::setupResources()
  * @note Size: 0x50C
  * calcNearestTreasure__Q24Game9PelletMgrFR10Vector3<f>f
  */
-void PelletMgr::calcNearestTreasure(Vector3f&, f32)
+Pellet* PelletMgr::calcNearestTreasure(Vector3f& position, f32 radius)
 {
-	// these are here to spawn the weak functions from these templates
+	Pellet* nearest = nullptr;
+	f32 distance = radius;
 	Iterator<PelletOtakara::Object> iterOta(PelletOtakara::mgr);
 	CI_LOOP(iterOta)
 	{
+		Pellet* pellet = *iterOta;
+		Vector3f offset = pellet->getPosition() - position;
+		f32 currentDistance = offset.length();
+		if (currentDistance < distance) {
+			distance = currentDistance;
+			nearest = pellet;
+		}
 	}
 	Iterator<PelletItem::Object> iterItem(PelletItem::mgr);
 	CI_LOOP(iterItem)
 	{
+		Pellet* pellet = *iterItem;
+		Vector3f offset = pellet->getPosition() - position;
+		f32 currentDistance = offset.length();
+		if (currentDistance < distance) {
+			distance = currentDistance;
+			nearest = pellet;
+		}
 	}
-	// UNUSED FUNCTION
+	return nearest;
 }
 
 /**

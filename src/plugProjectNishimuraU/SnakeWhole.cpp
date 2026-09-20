@@ -8,7 +8,6 @@
 #include "Game/CameraMgr.h"
 #include "Game/rumble.h"
 #include "efx/THebi.h"
-#include "PSM/EnemyBoss.h"
 #include "PSSystem/PSMainSide_ObjSound.h"
 #include "Dolphin/rand.h"
 

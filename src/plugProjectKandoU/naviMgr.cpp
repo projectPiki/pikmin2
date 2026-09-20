@@ -2,7 +2,7 @@
 #include "Game/NaviParms.h"
 #include "SysShape/Model.h"
 #include "PSM/ObjMgr.h"
-#include "PSM/Navi.h"
+#include "PSSystem/PSMainSide_ObjSound.h"
 #include "utilityU.h"
 #include "JSystem/J3D/J3DModelLoader.h"
 #include "Game/PikiMgr.h"

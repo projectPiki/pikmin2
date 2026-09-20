@@ -69,21 +69,7 @@ struct JAISe : public JAISound {
 
 		seq->mSeqParameter._274[trackNo][p1] = p2;
 	}
-	virtual u16 getPortData(u8 p1) // _0C (weak)
-	{
-		JAISequence* seq;
-		if ((mSoundID & JAISoundID_TypeMask) == JAISoundID_Type_Se) {
-			u8 v1            = _14;
-			seq              = JAInter::SeMgr::seHandle;
-			static u16 _port = -1;
-			if (seq->mState >= SOUNDSTATE_Playing) {
-				seq->mSeqParameter.getTrack()->readPortApp(seq->getTrackPortRoute(v1, p1), &_port);
-			}
-			return _port;
-		}
-
-		return 0;
-	}
+	virtual inline u16 getPortData(u8 p1);  // _0C (weak but in JAISound.cpp for linkage reasons)
 	virtual u32 getFadeCounter();           // _A4
 	virtual void setSeDistanceParameters(); // _D4
 	virtual void setSeDistanceVolume(u8);   // _D8

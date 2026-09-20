@@ -255,6 +255,28 @@ void Pikmin::TMgr::update()
 }
 
 /**
+ * @note Address: 0x803E4668
+ * @note Size: 0x164
+ */
+void Pikmin::TMgr::setStartPos(Vector2f* pos)
+{
+	for (int i = 0; i < TITLE_PIKI_TOTAL; i++) {
+		mUnits[i].setPosition(pos[i]);
+	}
+}
+
+/**
+ * @note Address: 0x803E47CC
+ * @note Size: 0x164
+ */
+void Pikmin::TMgr::setDestPos(Vector2f* pos)
+{
+	for (int i = 0; i < TITLE_PIKI_TOTAL; i++) {
+		mUnits[i].setDestPos(pos[i]);
+	}
+}
+
+/**
  * @note Address: 0x803E4930
  * @note Size: 0xC0
  */
@@ -1842,32 +1864,6 @@ mtlr     r0
 addi     r1, r1, 0xa0
 blr
 	*/
-}
-
-/**
- * @note Address: 0x803E4668
- * @note Size: 0x164
- */
-void Pikmin::TMgr::setStartPos(Vector2f* pos)
-{
-	for (int i = 0; i < TITLE_PIKI_TOTAL; i++) {
-		TUnit* unit       = getUnit(i);
-		unit->mPosition.x = pos[i].x;
-		unit->mPosition.y = pos[i].y;
-	}
-}
-
-/**
- * @note Address: 0x803E47CC
- * @note Size: 0x164
- */
-void Pikmin::TMgr::setDestPos(Vector2f* pos)
-{
-	for (int i = 0; i < TITLE_PIKI_TOTAL; i++) {
-		TUnit* unit      = getUnit(i);
-		unit->mDestPos.x = pos[i].x;
-		unit->mDestPos.y = pos[i].y;
-	}
 }
 
 } // namespace title

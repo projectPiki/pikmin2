@@ -5,7 +5,7 @@
 #include "Game/Navi.h"
 #include "Game/CameraMgr.h"
 #include "Game/rumble.h"
-#include "PSM/Navi.h"
+#include "PSSystem/PSMainSide_ObjSound.h"
 #include "Dolphin/rand.h"
 #include "nans.h"
 

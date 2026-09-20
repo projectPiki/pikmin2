@@ -76,7 +76,7 @@ void RandMapScore::makeObjectLayout(MapNode* mapNode, ObjectLayout* layout)
 	for (int i = 0; i < FIXNODE_Count; i++) {
 		if (mapNode == mFixObjNodes[i]) {
 			int layoutTypes[FIXNODE_Count]
-			    = { OBJLAYOUT_Pod, OBJLAYOUT_Hole, OBJLAYOUT_Fountain, OBJLAYOUT_VsRedOnyon, OBJLAYOUT_VsBlueOnyon };
+			    = { OBJLAYOUT_Pod, OBJLAYOUT_Hole, OBJLAYOUT_Fountain, OBJLAYOUT_VsBlueOnyon, OBJLAYOUT_VsRedOnyon };
 			FixObjNode* rootObjNode  = new FixObjNode(layoutTypes[i]);
 			FixObjNode* childObjNode = new FixObjNode(layoutTypes[i]);
 

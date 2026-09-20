@@ -20,7 +20,7 @@
 #include "JSystem/J3D/J3DJoint.h"
 #include "PSSystem/PSSystemIF.h"
 #include "P2Macros.h"
-#include "PSM/Navi.h"
+#include "PSSystem/PSMainSide_ObjSound.h"
 #include "SysShape/Model.h"
 #include "CollInfo.h"
 #include "Iterator.h"
@@ -2767,12 +2767,10 @@ void Navi::makeCStick(bool disable)
 		f32 plateAngleCos  = pikmin2_cosf(plateAngle);
 		f32 plateSineAngle = pikmin2_sinf(plateAngle);
 
-		f32 angleLimit = pikmin2_cosf(2.0f * PI / 3.0f);
-
 		f32 newAngle = 0.0f;
 
 		// If the angle of the C-Stick is greater than the angle limit
-		if ((stickAngleSine * plateSineAngle + newAngle) + (stickAngleCos * plateAngleCos) > angleLimit) {
+		if ((stickAngleSine * plateSineAngle + newAngle) + (stickAngleCos * plateAngleCos) > pikmin2_cosf(2.0f * PI / 3.0f)) {
 			// Interpolate from the Plate angle to the C-Stick angle
 			newAngle = angDist(stickAngle, plateAngle) * 0.4f + plateAngle;
 		} else {

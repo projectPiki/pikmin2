@@ -3,7 +3,6 @@
 #include "Game/generalEnemyMgr.h"
 #include "efx/TKage.h"
 #include "PSSystem/PSMainSide_ObjSound.h"
-#include "PSM/EnemyBoss.h"
 #include "Game/MapMgr.h"
 #include "Game/pathfinder.h"
 #include "Game/routeMgr.h"

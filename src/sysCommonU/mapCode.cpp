@@ -66,9 +66,8 @@ inline void MapCode::Code::read(Stream& input)
 void MapCode::Code::setCode(int attribute, int slipCode, bool isBald)
 {
 	bool baldCode = (isBald > 0);
-	baldCode &= SLIPCODE_MASK;
-	int temp  = (attribute & ATTR_MASK) | (slipCode << 4);
-	mContents = temp | (baldCode << 6);
+	int temp      = (attribute & ATTR_MASK) | (slipCode << 4);
+	mContents     = temp | (baldCode << 6);
 }
 
 /**
@@ -138,18 +137,4 @@ void MapCode::Mgr::CodeArray::writeObject(Stream& output, MapCode::Code& object)
 void MapCode::Mgr::CodeArray::readObject(Stream& input, MapCode::Code& object)
 {
 	object.read(input);
-}
-
-/* --UNUSED--
- * Fake function required to generate weak functions in correct order.
- * (Likely due to inlined/unused functions that have not been re-created)
- *
- * @note Address: 0x--------
- * @note Size: 0x
- */
-void fakeFunction(ArrayContainer<MapCode::Code>* container, MapCode::Code* code)
-{
-	container->get(nullptr);
-	container->setArray(0, 0);
-	container->addOne(*code);
 }

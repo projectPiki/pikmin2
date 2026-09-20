@@ -1,6 +1,7 @@
 #ifndef _GAME_ENTITIES_ITEMUJAMUSHI_H
 #define _GAME_ENTITIES_ITEMUJAMUSHI_H
 
+#include "MonoObjectMgr.h"
 #include "Game/BaseItem.h"
 #include "Game/itemMgr.h"
 #include "Game/Interaction.h"

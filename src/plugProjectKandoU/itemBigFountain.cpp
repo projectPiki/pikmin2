@@ -3,7 +3,7 @@
 #include "Game/MapMgr.h"
 #include "Platform.h"
 #include "JSystem/JKernel/JKRDvdRipper.h"
-#include "PSM/WorkItem.h"
+#include "PSSystem/PSMainSide_ObjSound.h"
 #include "PSSystem/PSSystemIF.h"
 #include "Radar.h"
 #include "nans.h"

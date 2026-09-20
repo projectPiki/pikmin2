@@ -2,6 +2,7 @@
 #define _GAME_ENTITIES_ITEMCAVE_H
 
 #include "types.h"
+#include "BaseParm.h"
 #include "Game/BaseItem.h"
 #include "Game/itemMgr.h"
 #include "Game/PlatInstance.h"

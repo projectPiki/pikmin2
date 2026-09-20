@@ -574,7 +574,7 @@ Builder_EvnSe_Perspective::Builder_EvnSe_Perspective(JGeometry::TBox3f box)
     : mDoSkipSizeCheck(false)
     , mGridSizeX(0)
     , mGridSizeZ(0)
-    , mBox(box)
+    , mBox(box.i, box.f)
     , mYPosition(0.0f)
 {
 	mBox.absolute();

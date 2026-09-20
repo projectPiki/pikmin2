@@ -549,8 +549,14 @@ struct TBox {
 	{
 	}
 	TBox(const TBox& other)
-	    : i(other.i)
-	    , f(other.f)
+	{
+		i.set(other.i);
+		f.set(other.f);
+	}
+
+	TBox(const T& start, const T& end)
+	    : i(start)
+	    , f(end)
 	{
 	}
 
@@ -664,8 +670,7 @@ struct TBox2 : TBox<TVec2<T> > {
 template <typename T>
 struct TBox3 : TBox<TVec3<T> /**/> {
 	TBox3() { }
-	TBox3(const TBox3& other) { set(other); }
-	// TBox3(const TVec3<T>& i, const TVec3<T> f) { set(i, f); }
+	TBox3(const TVec3<T>& i, const TVec3<T>& f) { set(i, f); }
 	// // TBox2(const TVec2<T>& i, T x1, T y1) { set(i, x1, y1); }
 	// // TBox2(T x0, T y0, const TVec2<T>& f) { set(x0, y0, f); }
 	// TBox3(T x0, T y0, T z0, T x1, T y1, T z1) { set(x0, y0, z0, x1, y1, z1); }
@@ -688,7 +693,7 @@ struct TBox3 : TBox<TVec3<T> /**/> {
 	void absolute()
 	{
 		if (!this->isValid()) {
-			TBox<TVec3<T> /**/> box(*this);
+			TBox<TVec3<T> /**/> box(this->i, this->f);
 			this->i.setMin(box.i);
 			this->i.setMin(box.f);
 			this->f.setMax(box.i);

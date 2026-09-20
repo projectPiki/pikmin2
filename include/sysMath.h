@@ -19,6 +19,8 @@ f32 roundAng(f32 x);
 f32 angDist(f32 x, f32 y);
 
 f32 qdist2(f32, f32, f32, f32);
+f32 qdist3(f32, f32, f32, f32, f32, f32);
+f32 qdist3(const Vector3<f32>&, const Vector3<f32>&);
 
 inline f32 log(f32& a, f64 b)
 {

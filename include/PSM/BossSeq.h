@@ -9,7 +9,6 @@ struct EnemyBoss;
 struct MiddleBossSeq : public PSSystem::JumpBgmSeq {
 	MiddleBossSeq(const char* bmsFileName, const JAInter::SoundInfo& info, PSSystem::DirectorMgrBase* directorMgr);
 
-	virtual ~MiddleBossSeq();                  // _08 (weak)
 	virtual void exec();                       // _2C
 	virtual void requestJumpBgmQuickly(u16);   // _50
 	virtual void requestJumpBgmOnBeat(u16);    // _54
@@ -29,7 +28,6 @@ struct MiddleBossSeq : public PSSystem::JumpBgmSeq {
 struct BigBossSeq : public MiddleBossSeq {
 	BigBossSeq(const char* bmsFileName, const JAInter::SoundInfo& info, PSSystem::DirectorMgrBase* directorMgr);
 
-	virtual ~BigBossSeq() { }         // _08 (weak)
 	virtual void onJump(u16 track);   // _60
 	virtual u16 jumpCheck(u16 track); // _64
 

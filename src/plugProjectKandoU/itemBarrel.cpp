@@ -10,7 +10,7 @@
 #include "JSystem/JKernel/JKRDvdRipper.h"
 #include "P2Macros.h"
 #include "PSM/ObjBase.h"
-#include "PSM/WorkItem.h"
+#include "PSSystem/PSMainSide_ObjSound.h"
 #include "PSSystem/PSSystemIF.h"
 #include "Sys/Sphere.h"
 #include "SysShape/Model.h"

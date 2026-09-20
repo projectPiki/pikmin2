@@ -21,7 +21,7 @@
 #include "efx/TEnemyDive.h"
 #include "KandoLib/Choice.h"
 #include "P2Macros.h"
-#include "PSM/Navi.h"
+#include "PSSystem/PSMainSide_ObjSound.h"
 #include "Dolphin/rand.h"
 #include "trig.h"
 #include "System.h"

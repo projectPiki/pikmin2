@@ -25,7 +25,12 @@ struct ConductorList : public PSSystem::TextDataBase, public PSSystem::Singleton
 
 	// unused/inlined:
 	char* getInfo(u8, u8);
-	u8 getAutoBgmInfo(u8, u8);
+	struct AutoBgmInfo {
+		char* mBmsName;
+		char* mConductorName;
+		u8 mWaveScene;
+	};
+	AutoBgmInfo getAutoBgmInfo(u8, u8);
 
 	// _00 = VTBL
 	u8 mCaveCount;        // _20

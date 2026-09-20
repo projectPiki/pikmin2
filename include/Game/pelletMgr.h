@@ -128,7 +128,7 @@ struct PelletMgr : public NodeObjectMgr<GenericObjectMgr> {
 	int encode(u8, int);
 	BasePelletMgr* getMgrByID(u8);
 	BasePelletMgr* getMgrByIndex(int);
-	void calcNearestTreasure(Vector3f&, f32);
+	Pellet* calcNearestTreasure(Vector3f&, f32);
 	void setUseFlagAll(bool);
 
 	static bool mDebug;
@@ -253,7 +253,6 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	virtual void onInit(CreatureInitArg* settings);           // _30
 	virtual void onKill(CreatureKillArg* settings);           // _34
 	virtual void getBoundingSphere(Sys::Sphere& boundSphere); // _10
-	virtual bool deferPikiCollision() { return true; }        // _20 (weak)
 	virtual void constructor();                               // _2C
 	virtual void doAnimation();                               // _3C
 	virtual void doEntry();                                   // _40
@@ -261,7 +260,6 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	virtual void doViewCalc();                                // _48
 	virtual void doSimulation(f32 rate);                      // _4C
 	virtual void doDirectDraw(Graphics& gfx);                 // _50
-	virtual f32 getFaceDir() { return mFaceDir; }             // _64 (weak)
 	virtual void setVelocity(Vector3f& vel);                  // _68
 	virtual Vector3f getVelocity();                           // _6C
 	virtual void onSetPosition(Vector3f& dest)                // _70 (weak)
@@ -269,33 +267,32 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 		mPelletPosition = dest;
 		onSetPosition();
 	}
-	virtual void updateTrMatrix();                                   // _78
-	virtual bool inWater() { return mIsInWater; }                    // _8C (weak)
-	virtual void onStartCapture();                                   // _94
-	virtual void onUpdateCapture(Matrixf& mtx);                      // _98
-	virtual void onEndCapture();                                     // _9C
-	virtual void doSave(Stream& stream);                             // _E0
-	virtual void doLoad(Stream& stream);                             // _E4
-	virtual void bounceCallback(Sys::Triangle* tri);                 // _E8
-	virtual JAInter::Object* getJAIObject();                         // _F4
-	virtual PSM::Creature* getPSCreature();                          // _F8
-	virtual Vector3f* getSound_PosPtr() { return &mPelletPosition; } // _100 (weak)
-	virtual void getShadowParam(ShadowParam& settings);              // _134
-	virtual bool needShadow();                                       // _138
-	virtual void getLODSphere(Sys::Sphere& lodSphere);               // _140
-	virtual void startPick();                                        // _148
-	virtual void endPick(bool);                                      // _14C
-	virtual bool isSlotFree(s16);                                    // _168
-	virtual s16 getFreeStickSlot();                                  // _16C
-	virtual s16 getNearFreeStickSlot(Vector3f&);                     // _170
-	virtual s16 getRandomFreeStickSlot();                            // _174
-	virtual void onSlotStickStart(Creature*, s16);                   // _178
-	virtual void onSlotStickEnd(Creature*, s16);                     // _17C
-	virtual void calcStickSlotGlobal(s16, Vector3f&);                // _180
-	virtual bool stimulate(Interaction& data);                       // _1A4
-	virtual char* getCreatureName();                                 // _1A8
-	virtual s32 getCreatureID();                                     // _1AC
-	virtual void onSetPosition();                                    // _1B0
+	virtual void updateTrMatrix();                      // _78
+	virtual bool inWater() { return mIsInWater; }       // _8C (weak)
+	virtual void onStartCapture();                      // _94
+	virtual void onUpdateCapture(Matrixf& mtx);         // _98
+	virtual void onEndCapture();                        // _9C
+	virtual void doSave(Stream& stream);                // _E0
+	virtual void doLoad(Stream& stream);                // _E4
+	virtual void bounceCallback(Sys::Triangle* tri);    // _E8
+	virtual JAInter::Object* getJAIObject();            // _F4
+	virtual PSM::Creature* getPSCreature();             // _F8
+	virtual void getShadowParam(ShadowParam& settings); // _134
+	virtual bool needShadow();                          // _138
+	virtual void getLODSphere(Sys::Sphere& lodSphere);  // _140
+	virtual void startPick();                           // _148
+	virtual void endPick(bool);                         // _14C
+	virtual bool isSlotFree(s16);                       // _168
+	virtual s16 getFreeStickSlot();                     // _16C
+	virtual s16 getNearFreeStickSlot(Vector3f&);        // _170
+	virtual s16 getRandomFreeStickSlot();               // _174
+	virtual void onSlotStickStart(Creature*, s16);      // _178
+	virtual void onSlotStickEnd(Creature*, s16);        // _17C
+	virtual void calcStickSlotGlobal(s16, Vector3f&);   // _180
+	virtual bool stimulate(Interaction& data);          // _1A4
+	virtual char* getCreatureName();                    // _1A8
+	virtual s32 getCreatureID();                        // _1AC
+	virtual void onSetPosition();                       // _1B0
 	////////////// VTABLE 1 END (DYNCREATURE)
 
 	////////////// VTABLE 2  (MOTIONLISTENER)
@@ -304,26 +301,29 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 
 	////////////// VTABLE 3 (CARRYINFOOWNER + SELF)
 	// getCarryInfoParam thunk at _1C8
-	virtual void do_onInit(CreatureInitArg*) { }                 // _1CC (weak)
-	virtual void onCreateShape() { }                             // _1D0 (weak)
-	virtual void theEntry();                                     // _1D4
-	virtual void onBounce() { }                                  // _1D8 (weak)
-	virtual void shadowOn();                                     // _1DC
-	virtual void shadowOff();                                    // _1E0
-	virtual bool isPickable();                                   // _1E4
-	virtual s32 getBedamaColor() { return -1; }                  // _1E8 (weak)
-	virtual void do_update() { }                                 // _1EC (weak)
-	virtual void onKeyEvent(const SysShape::KeyEvent& keyEvent); // _1F0 (weak, thunk at _1BC)
-	virtual u8 getKind() = 0;                                    // _1F4
-	virtual void changeMaterial() { }                            // _1F8 (weak)
-	virtual void createKiraEffect(Vector3f&) { }                 // _1FC (weak)
-	virtual void getCarryInfoParam(CarryInfoParam& infoParam);   // _200 (not weak, thunk at _1C8)
-	virtual bool isCarried();                                    // _204
-	virtual bool isPicked() { return mPickFlags & 1; }           // _208 (weak)
-	virtual void sound_otakaraEventStart() { }                   // _20C (weak)
-	virtual void sound_otakaraEventRestart() { }                 // _210 (weak)
-	virtual void sound_otakaraEventStop() { }                    // _214 (weak)
-	virtual void sound_otakaraEventFinish() { }                  // _218 (weak)
+	virtual void do_onInit(CreatureInitArg*) { }                     // _1CC (weak)
+	virtual void onCreateShape() { }                                 // _1D0 (weak)
+	virtual void theEntry();                                         // _1D4
+	virtual void onBounce() { }                                      // _1D8 (weak)
+	virtual void shadowOn();                                         // _1DC
+	virtual void shadowOff();                                        // _1E0
+	virtual bool isPickable();                                       // _1E4
+	virtual s32 getBedamaColor() { return -1; }                      // _1E8 (weak)
+	virtual Vector3f* getSound_PosPtr() { return &mPelletPosition; } // _100 (weak)
+	virtual f32 getFaceDir() { return mFaceDir; }                    // _64 (weak)
+	virtual bool deferPikiCollision() { return true; }               // _20 (weak)
+	virtual void do_update() { }                                     // _1EC (weak)
+	virtual void onKeyEvent(const SysShape::KeyEvent& keyEvent);     // _1F0 (weak, thunk at _1BC)
+	virtual u8 getKind() = 0;                                        // _1F4
+	virtual void changeMaterial() { }                                // _1F8 (weak)
+	virtual void createKiraEffect(Vector3f&) { }                     // _1FC (weak)
+	virtual void getCarryInfoParam(CarryInfoParam& infoParam);       // _200 (not weak, thunk at _1C8)
+	virtual bool isCarried();                                        // _204
+	virtual bool isPicked() { return mPickFlags & 1; }               // _208 (weak)
+	virtual void sound_otakaraEventStart() { }                       // _20C (weak)
+	virtual void sound_otakaraEventRestart() { }                     // _210 (weak)
+	virtual void sound_otakaraEventStop() { }                        // _214 (weak)
+	virtual void sound_otakaraEventFinish() { }                      // _218 (weak)
 
 	u8 getWallTimer();
 	void clearClaim();
@@ -408,7 +408,7 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 			if (joint) {
 				u16 index               = joint->mJointIndex;
 				SysShape::Model* model  = mModel;
-				J3DMtxCalcAnmBase* calc = static_cast<J3DMtxCalcAnmBase*>(animator->getCalc());
+				J3DMtxCalcAnmBase* calc = static_cast<J3DMtxCalcAnmBase*>(static_cast<SysShape::BaseAnimator*>(animator)->getCalc());
 
 				model->mJ3dModel->mModelData->mJointTree.mJoints[index]->mMtxCalc = calc;
 			}

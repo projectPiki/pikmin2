@@ -88,11 +88,7 @@ struct PodIconScreen : P2DScreen::Mgr_tuning {
 		mState = 0;
 	}
 
-	void disappear()
-	{
-		setTrans();
-		hide();
-	}
+	void disappear();
 	void set(JKRArchive*);
 
 	// _00      = VTBL

@@ -63,8 +63,6 @@ struct MeloArrMgr : public JADHioNode {
 	{
 	}
 
-	virtual ~MeloArrMgr() { } // _08 (weak)
-
 	bool isToAvoid(MeloArrArg&);
 
 	// _00 = VTABLE
