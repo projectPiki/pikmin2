@@ -10,39 +10,6 @@
 #include "SoundID.h"
 #include "types.h"
 
-enum JAISoundType {
-	SOUNDPARAM_Unk0     = 0,
-	SOUNDPARAM_Dopplar  = 1,
-	SOUNDPARAM_Demo     = 2,
-	SOUNDPARAM_Unk3     = 3,
-	SOUNDPARAM_Distance = 4,
-	SOUNDPARAM_Unk5     = 5,
-	SOUNDPARAM_Direct   = 6,
-	SOUNDPARAM_Fadeout  = 7,
-	SOUNDPARAM_Unk8     = 8,
-	SOUNDPARAM_Unk9     = 9,
-	SOUNDPARAM_Unk10    = 10,
-	SOUNDPARAM_Pause    = 11,
-};
-
-enum JAISoundState {
-	SOUNDSTATE_Inactive = 0,
-	SOUNDSTATE_Stored   = 1,
-	SOUNDSTATE_Loaded   = 2,
-	SOUNDSTATE_Ready    = 3,
-	SOUNDSTATE_Playing  = 4,
-	SOUNDSTATE_Fadeout  = 5,
-};
-
-enum JAISoundPauseMode {
-	SOUNDPAUSE_Unk0 = 0,
-	SOUNDPAUSE_Unk1 = 1,
-	SOUNDPAUSE_Unk2 = 2,
-	SOUNDPAUSE_Unk3 = 3,
-	SOUNDPAUSE_Unk4 = 4,
-	SOUNDPAUSE_Unk5 = 8,
-};
-
 namespace JAInter {
 struct Actor;
 struct MoveParaSet;
@@ -117,8 +84,8 @@ struct JAISound : public JSULink<JAISound> {
 	virtual f32 setDistanceDolbyCommon();                                                                    // _C4
 	virtual void initParameter(void* handlePtr, JAInter::Actor* actor, u32 soundID, u32 fadeTime, u8 camId,
 	                           JAInter::SoundInfo* info); // _C8
-	virtual void onGet();                                 // _CC (weak)
-	virtual void onRelease();                             // _D0 (weak)
+	virtual void onGet() { }                              // _CC (weak)
+	virtual void onRelease() { }                          // _D0 (weak)
 
 	~JAISound() { }
 	void initMultiMoveParameter(JAInter::MoveParaSet*, u8, u32, f32, f32, u32);

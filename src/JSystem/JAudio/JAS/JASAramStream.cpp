@@ -88,105 +88,17 @@ JASAramStream::JASAramStream()
     , mUseStereo(0)
 {
 	for (int i = 0; i < 6; i++) {
-		mChannels[i]       = nullptr;
-		mSampleData[0][i]  = 0;
-		mSampleData[1][i]  = 0;
-		mChannelData[0][i] = 1.0f;
-		mChannelData[1][i] = 0.5f;
-		mChannelData[2][i] = 0.0f;
-		mChannelData[3][i] = 0.0f;
+		mChannels[i]      = nullptr;
+		mSampleData[0][i] = 0;
+		mSampleData[1][i] = 0;
+		mChannelVolume[i] = 1.0f;
+		mChannelPan[i]    = 0.5f;
+		mChannelFxMix[i]  = 0.0f;
+		mChannelDolby[i]  = 0.0f;
 	}
 	for (int i = 0; i < 6; i++) {
 		mMixData[i] = 0;
 	}
-	/*
-	li       r0, 0
-	lfs      f3, lbl_80516EB0@sda21(r2)
-	stw      r0, 0x198(r3)
-	lfs      f2, lbl_80516EB4@sda21(r2)
-	stb      r0, 0x19c(r3)
-	lfs      f1, lbl_80516EB8@sda21(r2)
-	stb      r0, 0x19d(r3)
-	lfs      f0, lbl_80516EB0@sda21(r2)
-	stb      r0, 0x19e(r3)
-	stw      r0, 0x1a0(r3)
-	stw      r0, 0x1a4(r3)
-	stw      r0, 0x1a8(r3)
-	stw      r0, 0x1ac(r3)
-	stb      r0, 0x1b0(r3)
-	stw      r0, 0x1b4(r3)
-	stfs     f3, 0x1b8(r3)
-	stw      r0, 0x1f8(r3)
-	stw      r0, 0x1fc(r3)
-	stw      r0, 0x200(r3)
-	stb      r0, 0x204(r3)
-	stw      r0, 0x208(r3)
-	stw      r0, 0x21c(r3)
-	stw      r0, 0x238(r3)
-	stw      r0, 0x23c(r3)
-	stw      r0, 0x240(r3)
-	stw      r0, 0x244(r3)
-	sth      r0, 0x248(r3)
-	sth      r0, 0x24a(r3)
-	stw      r0, 0x24c(r3)
-	stw      r0, 0x250(r3)
-	stw      r0, 0x254(r3)
-	stb      r0, 0x258(r3)
-	stw      r0, 0x25c(r3)
-	stw      r0, 0x260(r3)
-	stfs     f2, 0x264(r3)
-	stfs     f2, 0x268(r3)
-	stb      r0, 0x2d8(r3)
-	stw      r0, 0x180(r3)
-	sth      r0, 0x220(r3)
-	sth      r0, 0x22c(r3)
-	stfs     f2, 0x26c(r3)
-	stfs     f1, 0x284(r3)
-	stfs     f0, 0x29c(r3)
-	stfs     f0, 0x2b4(r3)
-	stw      r0, 0x184(r3)
-	sth      r0, 0x222(r3)
-	sth      r0, 0x22e(r3)
-	stfs     f2, 0x270(r3)
-	stfs     f1, 0x288(r3)
-	stfs     f0, 0x2a0(r3)
-	stfs     f0, 0x2b8(r3)
-	stw      r0, 0x188(r3)
-	sth      r0, 0x224(r3)
-	sth      r0, 0x230(r3)
-	stfs     f2, 0x274(r3)
-	stfs     f1, 0x28c(r3)
-	stfs     f0, 0x2a4(r3)
-	stfs     f0, 0x2bc(r3)
-	stw      r0, 0x18c(r3)
-	sth      r0, 0x226(r3)
-	sth      r0, 0x232(r3)
-	stfs     f2, 0x278(r3)
-	stfs     f1, 0x290(r3)
-	stfs     f0, 0x2a8(r3)
-	stfs     f0, 0x2c0(r3)
-	stw      r0, 0x190(r3)
-	sth      r0, 0x228(r3)
-	sth      r0, 0x234(r3)
-	stfs     f2, 0x27c(r3)
-	stfs     f1, 0x294(r3)
-	stfs     f0, 0x2ac(r3)
-	stfs     f0, 0x2c4(r3)
-	stw      r0, 0x194(r3)
-	sth      r0, 0x22a(r3)
-	sth      r0, 0x236(r3)
-	stfs     f2, 0x280(r3)
-	stfs     f1, 0x298(r3)
-	stfs     f0, 0x2b0(r3)
-	stfs     f0, 0x2c8(r3)
-	sth      r0, 0x2cc(r3)
-	sth      r0, 0x2ce(r3)
-	sth      r0, 0x2d0(r3)
-	sth      r0, 0x2d2(r3)
-	sth      r0, 0x2d4(r3)
-	sth      r0, 0x2d6(r3)
-	blr
-	*/
 }
 
 /**
@@ -195,13 +107,9 @@ JASAramStream::JASAramStream()
  */
 void JASAramStream::init(u32 dataOffs, u32 dataLen, JASAramStreamCallback callback, void* p4)
 {
-	const f32 x = 0.0f;
-	const f32 y = 1.0f;
-	const f32 z = 0.5f;
-
 	mDataOffset = dataOffs;
 	mDataLength = dataLen;
-	_1B8        = 0;
+	_1B8        = 0.0f;
 	mPauseFlags = 0;
 	_19C        = 0.01;
 	_19D        = 0;
@@ -209,85 +117,20 @@ void JASAramStream::init(u32 dataOffs, u32 dataLen, JASAramStreamCallback callba
 	mNumBlocks  = 0;
 
 	for (int i = 0; i < 6; i++) {
-		mChannelData[0][i] = y;
-		mChannelData[1][i] = z;
-		mChannelData[2][i] = x;
-		mChannelData[3][i] = x;
+		mChannelVolume[i] = 1.0f;
+		mChannelPan[i]    = 0.5f;
+		mChannelFxMix[i]  = 0.0f;
+		mChannelDolby[i]  = 0.0f;
 	}
 
-	mVolume     = y;
-	mPitch      = y;
+	mVolume     = 1.0f;
+	mPitch      = 1.0f;
 	mUseStereo  = 0;
 	mMixData[0] = -1;
 	mCallback   = callback;
 	_244        = p4;
 	OSInitMessageQueue(&mMsgQueueA, mMsgSlotsA, ARRAY_SIZE(mMsgSlotsA));
 	OSInitMessageQueue(&mMsgQueueB, mMsgSlotsB, ARRAY_SIZE(mMsgSlotsB));
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lfs       f0, -0x74B0(r2)
-	  li        r9, 0
-	  stw       r0, 0x14(r1)
-	  lis       r8, 0x1
-	  lfs       f2, -0x74AC(r2)
-	  subi      r0, r8, 0x1
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lfs       f1, -0x74A8(r2)
-	  stw       r4, 0x238(r3)
-	  addi      r4, r31, 0x40
-	  stw       r5, 0x23C(r3)
-	  li        r5, 0x10
-	  stfs      f0, 0x1B8(r3)
-	  lfs       f0, -0x74B0(r2)
-	  stb       r9, 0x19E(r3)
-	  stb       r9, 0x19C(r3)
-	  stb       r9, 0x19D(r3)
-	  stb       r9, 0x204(r3)
-	  sth       r9, 0x24A(r3)
-	  stfs      f2, 0x26C(r3)
-	  stfs      f1, 0x284(r3)
-	  stfs      f0, 0x29C(r3)
-	  stfs      f0, 0x2B4(r3)
-	  stfs      f2, 0x270(r3)
-	  stfs      f1, 0x288(r3)
-	  stfs      f0, 0x2A0(r3)
-	  stfs      f0, 0x2B8(r3)
-	  stfs      f2, 0x274(r3)
-	  stfs      f1, 0x28C(r3)
-	  stfs      f0, 0x2A4(r3)
-	  stfs      f0, 0x2BC(r3)
-	  stfs      f2, 0x278(r3)
-	  stfs      f1, 0x290(r3)
-	  stfs      f0, 0x2A8(r3)
-	  stfs      f0, 0x2C0(r3)
-	  stfs      f2, 0x27C(r3)
-	  stfs      f1, 0x294(r3)
-	  stfs      f0, 0x2AC(r3)
-	  stfs      f0, 0x2C4(r3)
-	  stfs      f2, 0x280(r3)
-	  stfs      f1, 0x298(r3)
-	  stfs      f0, 0x2B0(r3)
-	  stfs      f0, 0x2C8(r3)
-	  stfs      f2, 0x264(r3)
-	  stfs      f2, 0x268(r3)
-	  stb       r9, 0x2D8(r3)
-	  sth       r0, 0x2CC(r3)
-	  stw       r6, 0x240(r3)
-	  stw       r7, 0x244(r3)
-	  bl        0x46260
-	  addi      r3, r31, 0x20
-	  addi      r4, r31, 0x80
-	  li        r5, 0x4
-	  bl        0x46250
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
 }
 
 /**
@@ -904,13 +747,13 @@ int JASAramStream::channelProc()
 
 	for (int i = 0; i < mNumBlocks; i++) {
 		JASChannel* channel     = mChannels[i];
-		channel->mVolumeChannel = mVolume * mChannelData[0][i];
+		channel->mVolumeChannel = mVolume * mChannelVolume[i];
 		channel->mPitchChannel  = mPitch;
 		if (mUseStereo) {
-			channel->mPanChannel = mChannelData[1][i];
+			channel->mPanChannel = mChannelPan[i];
 		}
-		channel->mFxMixChannel = mChannelData[2][i];
-		channel->mDolbyChannel = mChannelData[3][i];
+		channel->mFxMixChannel = mChannelFxMix[i];
+		channel->mDolbyChannel = mChannelDolby[i];
 	}
 
 	if (!mUseStereo && mNumBlocks == 2) {
@@ -988,49 +831,4 @@ void JASAramStream::channelStop(u16 p1)
 			mChannels[i]->release(p1);
 		}
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	li       r30, 0
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	mr       r31, r28
-	b        lbl_800AA718
-
-lbl_800AA6FC:
-	lwz      r3, 0x180(r31)
-	cmplwi   r3, 0
-	beq      lbl_800AA710
-	mr       r4, r29
-	bl       release__10JASChannelFUs
-
-lbl_800AA710:
-	addi     r31, r31, 4
-	addi     r30, r30, 1
-
-lbl_800AA718:
-	lhz      r0, 0x24a(r28)
-	cmpw     r30, r0
-	blt      lbl_800AA6FC
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	.4byte 0x00000000 // unknown instruction
-	.4byte 0x00000000 // unknown instruction
-	.4byte 0x00000000 // unknown instruction
-	.4byte 0x00000000 // unknown instruction
-	.4byte 0x00000000 // unknown instruction
-	.4byte 0x00000000 // unknown instruction
-	.4byte 0x00000000 // unknown instruction
-	*/
 }

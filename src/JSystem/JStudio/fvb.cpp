@@ -23,8 +23,8 @@ TObject::~TObject()
 void TObject::prepare(const JStudio::fvb::data::TParse_TBlock& block, JStudio::fvb::TControl* control)
 {
 	TFunctionValueAttributeSet set = mBaseFV->getAttributeSet();
-	const void* pNext              = block.getNext();
-	const void* pData              = block.getContent();
+	const void* pNext              = (const void*)block.getNext();
+	const void* pData              = (const void*)block.getContent();
 
 	while (pData < pNext) {
 		data::TParse_TParagraph para(pData);
@@ -36,7 +36,6 @@ void TObject::prepare(const JStudio::fvb::data::TParse_TBlock& block, JStudio::f
 
 		switch (u32Type) {
 		case 0:
-			// I hate this goto, but I don't see what else could cause this jump in the table??
 			goto end;
 		case 1: {
 			prepare_data_(dat, control);
@@ -50,17 +49,17 @@ void TObject::prepare(const JStudio::fvb::data::TParse_TBlock& block, JStudio::f
 
 			JGadget::TVector_pointer<TFunctionValue*>& rCnt = referGet->refer_referContainer();
 
-			u32* content = (u32*)pContent;
-			u32 i        = content[0];
-			u32* ptr     = content + 1;
-			for (; i != 0; ptr++, i--) {
-				u32 size         = *ptr;
-				TObject* pObject = control->getObject(ptr + 1, size);
+			u8* content = (u8*)pContent;
+			u32 i       = *(u32*)content;
+			u8* ptr     = content + 4;
+			for (; i != 0; i--) {
+				u32 size         = *(u32*)ptr;
+				TObject* pObject = control->getObject(ptr + 4, size);
 				if (pObject) {
 					TFunctionValue& rfv = *pObject->referFunctionValue();
 					rCnt.push_back(&rfv);
 				}
-				ptr += align_roundUp(size, 4) >> 2;
+				ptr += align_roundUp(size, 4) + 4;
 			}
 
 		} break;
@@ -147,162 +146,6 @@ void TObject::prepare(const JStudio::fvb::data::TParse_TBlock& block, JStudio::f
 
 end:
 	mBaseFV->prepare();
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x60(r1)
-	  mflr      r0
-	  stw       r0, 0x64(r1)
-	  stmw      r23, 0x3C(r1)
-	  mr        r23, r4
-	  mr        r26, r3
-	  mr        r27, r5
-	  lwz       r4, 0x14(r3)
-	  addi      r3, r1, 0x14
-	  lwz       r12, 0x0(r4)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r5, 0x0(r23)
-	  lwz       r31, 0x14(r1)
-	  lhz       r3, 0x6(r5)
-	  lwz       r4, 0x0(r5)
-	  addi      r0, r3, 0x3
-	  lwz       r30, 0x18(r1)
-	  rlwinm    r0,r0,0,0,29
-	  lwz       r29, 0x1C(r1)
-	  add       r3, r5, r0
-	  add       r28, r5, r4
-	  addi      r3, r3, 0x8
-	  b         .loc_0x1EC
-
-	.loc_0x64:
-	  stw       r3, 0x10(r1)
-	  addi      r3, r1, 0x10
-	  addi      r4, r1, 0x20
-	  bl        0xE84
-	  lwz       r0, 0x24(r1)
-	  lwz       r4, 0x28(r1)
-	  cmplwi    r0, 0x16
-	  bgt-      .loc_0x1E8
-	  lis       r3, 0x804A
-	  rlwinm    r0,r0,2,0,29
-	  subi      r3, r3, 0x1AB8
-	  lwzx      r0, r3, r0
-	  mtctr     r0
-	  bctr
-	  mr        r3, r26
-	  mr        r5, r27
-	  lwz       r12, 0x8(r26)
-	  addi      r4, r1, 0x20
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x1E8
-	  cmplwi    r31, 0
-	  beq-      .loc_0x1E8
-	  lwz       r25, 0x0(r4)
-	  addi      r24, r4, 0x4
-	  b         .loc_0x118
-
-	.loc_0xD0:
-	  lwz       r23, 0x0(r24)
-	  mr        r3, r27
-	  addi      r4, r24, 0x4
-	  mr        r5, r23
-	  bl        0x348
-	  cmplwi    r3, 0
-	  beq-      .loc_0x104
-	  lwz       r0, 0x14(r3)
-	  mr        r3, r31
-	  addi      r5, r1, 0xC
-	  stw       r0, 0xC(r1)
-	  lwz       r4, 0x8(r31)
-	  bl        0x1C048
-
-	.loc_0x104:
-	  addi      r0, r23, 0x3
-	  subi      r25, r25, 0x1
-	  rlwinm    r0,r0,0,0,29
-	  add       r24, r0, r24
-	  addi      r24, r24, 0x4
-
-	.loc_0x118:
-	  cmplwi    r25, 0
-	  bne+      .loc_0xD0
-	  b         .loc_0x1E8
-	  cmplwi    r31, 0
-	  beq-      .loc_0x1E8
-	  lwz       r24, 0x0(r4)
-	  mr        r23, r4
-	  b         .loc_0x168
-
-	.loc_0x138:
-	  lwz       r4, 0x0(r23)
-	  mr        r3, r27
-	  bl        0x418
-	  cmplwi    r3, 0
-	  beq-      .loc_0x164
-	  lwz       r0, 0x14(r3)
-	  mr        r3, r31
-	  addi      r5, r1, 0x8
-	  stw       r0, 0x8(r1)
-	  lwz       r4, 0x8(r31)
-	  bl        0x1BFE8
-
-	.loc_0x164:
-	  subi      r24, r24, 0x1
-
-	.loc_0x168:
-	  cmplwi    r24, 0
-	  addi      r23, r23, 0x4
-	  bne+      .loc_0x138
-	  b         .loc_0x1E8
-	  cmplwi    r30, 0
-	  beq-      .loc_0x1E8
-	  lfs       f1, 0x0(r4)
-	  mr        r3, r30
-	  lfs       f2, 0x4(r4)
-	  bl        -0x30F8
-	  b         .loc_0x1E8
-	  cmplwi    r30, 0
-	  beq-      .loc_0x1E8
-	  lwz       r0, 0x0(r4)
-	  stb       r0, 0x18(r30)
-	  b         .loc_0x1E8
-	  cmplwi    r30, 0
-	  beq-      .loc_0x1E8
-	  lwz       r0, 0x0(r4)
-	  stb       r0, 0x19(r30)
-	  b         .loc_0x1E8
-	  cmplwi    r30, 0
-	  beq-      .loc_0x1E8
-	  lhz       r3, 0x2(r4)
-	  lhz       r0, 0x0(r4)
-	  stw       r0, 0x30(r30)
-	  stw       r3, 0x34(r30)
-	  b         .loc_0x1E8
-	  cmplwi    r29, 0
-	  beq-      .loc_0x1E8
-	  lwz       r0, 0x0(r4)
-	  stw       r0, 0x0(r29)
-
-	.loc_0x1E8:
-	  lwz       r3, 0x2C(r1)
-
-	.loc_0x1EC:
-	  cmplw     r3, r28
-	  blt+      .loc_0x64
-	  lwz       r3, 0x14(r26)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  lmw       r23, 0x3C(r1)
-	  lwz       r0, 0x64(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x60
-	  blr
-	*/
 }
 
 namespace {

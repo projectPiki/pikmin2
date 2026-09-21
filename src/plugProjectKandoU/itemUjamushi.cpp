@@ -286,7 +286,8 @@ void Uja::update(BoidParms& parms)
 		return;
 	}
 
-	f32 frameLength = sys->mDeltaTime;
+	f32 speed;
+	f32 frameLength = sys->getDeltaTime();
 	if (mState == STATE_FallOffWorld) {
 		if (mPitch < HALF_PI) {
 			mPitch += 4.0f * (HALF_PI * frameLength);
@@ -310,7 +311,7 @@ void Uja::update(BoidParms& parms)
 	Vector2f avoidanceVector(0.0f); // f24, f25 (f23?)
 
 	f32 scale = 10.0f * mFlockMgr->mUjaParms->mDisplayScale(); // f29
-	f32 speed = parms.mMaxSpeed();                             // f30
+	speed     = parms.mMaxSpeed();
 
 	Vector3f moveDir(0.0f); // 0x2f4, 0x2f0
 
@@ -438,8 +439,8 @@ void Uja::update(BoidParms& parms)
 	Vector3f pos    = centre - *this;
 	f32 diff        = pos.normalise();
 	if (diff > 0.0f) {
-		f32 angle = 8.0f * JMAAtan2Radian(pos.x, pos.z);
-		if (diff > radius * (0.2f * sinf(angle) + 0.8f)) {
+		f32 angle = JMAAtan2Radian(pos.x, pos.z);
+		if (diff > radius * (0.2f * sinf(8.0f * angle) + 0.8f)) {
 			result = pos;
 		}
 	}
@@ -451,9 +452,9 @@ void Uja::update(BoidParms& parms)
 
 	Vector3f naviResult = Vector3f(0.0f);
 	Iterator<Navi> naviIt(naviMgr);
+	naviIt.first();
 	scale = 6.0f + (6.0f + scale);
-	CI_LOOP(naviIt)
-	{
+	for (; !naviIt.isDone(); naviIt.next()) {
 		Navi* navi = *naviIt;
 		if (navi->isAlive()) {
 			Vector3f posDiff = navi->getPosition() - *this;
@@ -487,11 +488,8 @@ void Uja::update(BoidParms& parms)
 			pikiResult = posDiff;
 			if (mState == 0 && dist < 30.0f) {
 				mState = 2;
-				Vector3f offs;
-				f32 xz    = randFloat() * 10.0f + 60.0f;
-				offs.x    = posDiff.x * xz;
-				offs.y    = randFloat() * 10.0f + 72.0f;
-				offs.z    = posDiff.z * xz;
+				f32 xz = randFloat() * 10.0f + 60.0f;
+				Vector3f offs(pikiResult.x * xz, randFloat() * 10.0f + 72.0f, pikiResult.z * xz);
 				mVelocity = mVelocity + offs;
 				if (randFloat() > 0.99f) {
 					InteractGas act(nullptr, 0.0f);
@@ -501,46 +499,26 @@ void Uja::update(BoidParms& parms)
 		}
 	}
 
+	Vector3f randomDirection(randSin, 0.0f, randCos);
 	if (mState != 2) {
-		f32 speed2   = speed * parms.mTarget();
-		Vector3f dir = directionTo_44 * speed2;
-
-		speed2           = speed * parms.mRandom();
-		Vector3f randDir = Vector3f(randSin, 0.0f, randCos) * speed2;
-
-		speed2           = speed * parms.mNavi();
-		Vector3f naviPos = naviResult * speed2;
-
-		speed2             = speed * parms.mGoHome();
-		Vector3f centerPos = center * speed2;
-
-		speed2           = speed * parms.mPiki();
-		Vector3f pikiPos = pikiResult * speed2;
-
-		speed2            = speed * parms.mBounds();
-		Vector3f boundPos = result * speed2;
-
-		speed2       = speed * parms.mSeparation();
-		Vector3f sep = closestUjaDirection * speed2;
-
-		Vector3f align = alignmentVec * parms.mAlignment();
-
-		speed2        = speed * parms.mCohesion();
-		Vector3f sep2 = seperationVec * speed2;
-
-		moveDir = sep2 + align + sep + boundPos + pikiPos + centerPos + naviPos + randDir + dir;
+		moveDir = seperationVec * (speed * parms.mCohesion()) + alignmentVec * parms.mAlignment()
+		        + closestUjaDirection * (speed * parms.mSeparation()) + result * (speed * parms.mBounds())
+		        + pikiResult * (speed * parms.mPiki()) + center * (speed * parms.mGoHome()) + naviResult * (speed * parms.mNavi())
+		        + randomDirection * (speed * parms.mRandom()) + directionTo_44 * (speed * parms.mTarget());
 	}
 
 	if (moveDir.z != 0.0f) {
 		f32 angle = JMAAtan2Radian(moveDir.x, moveDir.z);
-		mFaceDirection += (angDist(roundAng(angle), mFaceDirection) * 8.0f) * frameLength;
+		f32 turn  = angDist(roundAng(angle), mFaceDirection) * 8.0f;
+		mFaceDirection += turn * frameLength;
 		mFaceDirection = roundAng(mFaceDirection);
 	}
 	f32 faceCos      = cosf(mFaceDirection);
 	f32 faceSin      = sinf(mFaceDirection);
 	f32 mult         = mFlockMgr->mUjaParms->mMysteryMultiply();
 	Vector3f faceDir = Vector3f(faceSin, 0.0f, faceCos);
-	mVelocity        = mVelocity + faceDir * faceDir.dot(moveDir) * mult;
+	f32 projection   = faceDir.dot(moveDir);
+	mVelocity        = mVelocity + faceDir * projection * mult;
 
 	if (mState != 2) {
 		mVelocity.y = 0.0f;
@@ -557,8 +535,7 @@ void Uja::update(BoidParms& parms)
 
 	f32 vel = mVelocity.length();
 	if (mState != 2 && vel > speed) {
-		f32 inv = (1.0f / vel) * speed;
-		mVelocity *= inv;
+		mVelocity *= (1.0f / vel) * speed;
 		vel = speed;
 	}
 
@@ -576,11 +553,10 @@ void Uja::update(BoidParms& parms)
 				_AD = randInt(30) + '\n';
 			}
 		}
-		Vector3f test                 = Vector3f(avoidanceVector.x, 0.0f, avoidanceVector.y) * frameLength * 10.0f;
-		static_cast<Vector3f&>(*this) = *this + test;
+		Vector3f avoidance(avoidanceVector.x, 0.0f, avoidanceVector.y);
+		static_cast<Vector3f&>(*this) = *this + avoidance * frameLength * 10.0f;
 
-		Vector3f velocity             = mVelocity * frameLength;
-		static_cast<Vector3f&>(*this) = *this + velocity;
+		static_cast<Vector3f&>(*this) = *this + mVelocity * frameLength;
 	}
 
 	Vector3f boundPos  = mFlockMgr->mBoundSphere.mPosition;
@@ -588,12 +564,12 @@ void Uja::update(BoidParms& parms)
 	Vector3f boundDiff = boundPos - *this;
 	f32 boundDist      = boundDiff.normalise();
 	if (boundDist > 0.0f) {
-		f32 angle          = JMAAtan2Radian(boundDiff.x, boundDiff.z);
-		f32 boundaryRadius = radius2 * 1.0f;
+		f32 angle = JMAAtan2Radian(boundDiff.x, boundDiff.z);
+		// This boundary keeps the angular modulation disabled.
+		f32 boundaryRadius = radius2 * (0.0f * sinf(angle) + 1.0f);
 		if (boundDist > boundaryRadius) {
 			f32 projection = boundDiff.dot(mVelocity);
-			Vector3f temp  = boundDiff * projection;
-			mVelocity      = mVelocity - temp;
+			mVelocity      = mVelocity - boundDiff * projection;
 
 			static_cast<Vector3f&>(*this) = boundPos - (boundDiff * boundaryRadius);
 		}
@@ -606,9 +582,9 @@ void Uja::update(BoidParms& parms)
 			mState = 0;
 		}
 	} else {
-		minY += radius2 * 2.0f;
-		if (this->y > minY) {
-			this->y = minY;
+		f32 maxY = minY + radius2 * 2.0f;
+		if (this->y > maxY) {
+			this->y = maxY;
 		}
 	}
 

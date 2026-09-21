@@ -414,11 +414,10 @@ struct TFunctionValue_list_parameter : public TFunctionValue,
                                        public TFunctionValueAttribute_range,
                                        public TFunctionValueAttribute_interpolate {
 	struct TIterator_data_ : public JGadget::TIterator<std::random_access_iterator_tag, const f32, ptrdiff_t, const f32*, const f32&> {
-		TIterator_data_(const f32* value)
+		TIterator_data_(const TFunctionValue_list_parameter& rParent, const f32* value)
 		    : mValue(value)
 		{
 		}
-		void operator=(const TIterator_data_& other) { mValue = other.mValue; }
 		TIterator_data_& operator--()
 		{
 			mValue -= suData_size;
@@ -428,7 +427,7 @@ struct TFunctionValue_list_parameter : public TFunctionValue,
 
 		const f32* get() const { return mValue; }
 		void set(const f32* value) { mValue = value; }
-		const f32 operator*() const { return *mValue; }
+		f32 operator*() { return *mValue; }
 
 		TIterator_data_& operator++()
 		{
@@ -536,7 +535,7 @@ struct TFunctionValue_hermite : public TFunctionValue, public TFunctionValueAttr
 
 		friend s32 operator-(const TIterator_data_& r1, const TIterator_data_& r2) { return (r1.mValue - r2.mValue) / r1.size_; }
 
-		const f32 operator*() const { return *mValue; }
+		f32 operator*() { return *mValue; }
 
 		const f32* mValue; // _00
 		u32 size_;         // _04

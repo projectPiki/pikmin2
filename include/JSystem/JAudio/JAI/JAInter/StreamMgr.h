@@ -6,6 +6,8 @@
 struct JAIStream;
 struct JASAramStream;
 
+#define STREAM_PARAMETER_BUFFER_MAX (1)
+
 namespace JAInter {
 namespace StreamMgr {
 struct BufferInfo {
@@ -113,6 +115,12 @@ extern MgrCallback mgrCallback;
 
 extern u32 sChannelMax;
 extern u32 decodedBufferBlocks;
+
+inline StreamUpdateData* getUpdateInfo()
+{
+	return streamUpdate;
+}
+
 } // namespace StreamMgr
 } // namespace JAInter
 

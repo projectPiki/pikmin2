@@ -46,14 +46,12 @@ namespace WorldMap {
 struct InitArg {
 	inline InitArg()
 	{
-		mHeap                       = nullptr;
-		mController                 = nullptr;
-		mStages                     = nullptr;
-		mCurrentDay                 = 0;
-		mInitialCourseIndex         = 0;
-		mHasNewTreasureHoardEntries = false;
-		mHasNewPiklopediaEntries    = false;
-		mDoNewEntriesEfx            = 0;
+		mHeap               = nullptr;
+		mController         = nullptr;
+		mStages             = nullptr;
+		mInitialCourseIndex = mCurrentDay = 0;
+		mHasNewPiklopediaEntries = mHasNewTreasureHoardEntries = false;
+		mDoNewEntriesEfx                                       = 0;
 	}
 
 	JKRHeap* mHeap;                   // _00

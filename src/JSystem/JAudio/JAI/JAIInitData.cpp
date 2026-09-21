@@ -62,8 +62,6 @@ void JAInter::InitData::checkInitDataOnMemory()
 {
 	u32 r30 = 0;
 	u32 r29 = true;
-	u8 r31;
-	u8* temp;
 	while (r29) {
 		switch (aafPointer[r30++]) {
 		case 0:
@@ -106,7 +104,9 @@ void JAInter::InitData::checkInitDataOnMemory()
 			r30 += 3;
 			break;
 		case 8: {
-			u8* tmp = transInitDataFile((u8*)aafPointer + aafPointer[r30], (aafPointer[r30 + 1] & 0xFFF0) + 16); // aaaaaaaaaaaaa
+			u8* file = (u8*)aafPointer;
+			file += aafPointer[r30];
+			u8* tmp                               = transInitDataFile(file, (aafPointer[r30 + 1] & 0xFFF0) + 16);
 			JAIBasic::getInterface()->mRawDataPtr = tmp;
 			r30 += 3;
 			break;
@@ -117,198 +117,6 @@ void JAInter::InitData::checkInitDataOnMemory()
 		}
 	}
 	BankWave::initCallback();
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	stw      r31, 0x1c(r1)
-	li       r31, 1
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	stw      r28, 0x10(r1)
-	stw      r0, 8(r1)
-	b        lbl_800ADEC8
-
-lbl_800ADCC4:
-	lwz      r3, 8(r1)
-	lwz      r5, aafPointer__Q27JAInter8InitData@sda21(r13)
-	addi     r4, r3, 1
-	slwi     r0, r3, 2
-	stw      r4, 8(r1)
-	lwzx     r0, r5, r0
-	cmplwi   r0, 8
-	bgt      lbl_800ADEAC
-	lis      r3, lbl_804A62A0@ha
-	slwi     r0, r0, 2
-	addi     r3, r3, lbl_804A62A0@l
-	lwzx     r0, r3, r0
-	mtctr    r0
-	bctr
-	.global  lbl_800ADCFC
-
-lbl_800ADCFC:
-	li       r31, 0
-	b        lbl_800ADEC8
-	.global  lbl_800ADD04
-
-lbl_800ADD04:
-	addi     r6, r4, 1
-	slwi     r4, r4, 2
-	stw      r6, 8(r1)
-	addi     r3, r6, 1
-	slwi     r0, r6, 2
-	lwzx     r4, r5, r4
-	stw      r3, 8(r1)
-	add      r3, r5, r4
-	lwzx     r29, r5, r0
-	mr       r4, r29
-	bl       transInitDataFile__7JAInterFPUcUl
-	mr       r4, r29
-	bl       init__Q27JAInter10SoundTableFPUcUl
-	lwz      r3, 8(r1)
-	addi     r0, r3, 1
-	stw      r0, 8(r1)
-	b        lbl_800ADEC8
-	.global  lbl_800ADD48
-
-lbl_800ADD48:
-	lwz      r12, bnkInitCallback__Q27JAInter8InitData@sda21(r13)
-	addi     r3, r1, 8
-	mtctr    r12
-	bctrl
-	b        lbl_800ADEC8
-	.global  lbl_800ADD5C
-
-lbl_800ADD5C:
-	lwz      r12, wsInitCallback__Q27JAInter8InitData@sda21(r13)
-	addi     r3, r1, 8
-	mtctr    r12
-	bctrl
-	b        lbl_800ADEC8
-	.global  lbl_800ADD70
-
-lbl_800ADD70:
-	addi     r0, r4, 3
-	stw      r0, 8(r1)
-	b        lbl_800ADEC8
-	.global  lbl_800ADD7C
-
-lbl_800ADD7C:
-	slwi     r0, r4, 2
-	li       r4, 8
-	add      r3, r5, r0
-	bl       transInitDataFile__7JAInterFPUcUl
-	lwz      r0, 8(r1)
-	lwz      r5, aafPointer__Q27JAInter8InitData@sda21(r13)
-	slwi     r0, r0, 2
-	stw      r3, initOnCodeStrm__Q27JAInter9StreamMgr@sda21(r13)
-	add      r3, r5, r0
-	lwz      r0, 0(r3)
-	lwz      r4, 4(r3)
-	add      r3, r5, r0
-	bl       transInitDataFile__7JAInterFPUcUl
-	lwz      r4, initOnCodeStrm__Q27JAInter9StreamMgr@sda21(r13)
-	stw      r3, 0(r4)
-	lwz      r4, initOnCodeStrm__Q27JAInter9StreamMgr@sda21(r13)
-	lwz      r3, 8(r1)
-	lwz      r4, 0(r4)
-	addi     r0, r3, 3
-	stw      r4, streamList__Q27JAInter9StreamMgr@sda21(r13)
-	stw      r0, 8(r1)
-	b        lbl_800ADEC8
-	.global  lbl_800ADDD4
-
-lbl_800ADDD4:
-	slwi     r0, r4, 2
-	add      r3, r5, r0
-	lwz      r0, 0(r3)
-	lwz      r4, 4(r3)
-	add      r3, r5, r0
-	bl       transInitDataFile__7JAInterFPUcUl
-	mr       r30, r3
-	lwz      r3, 0(r3)
-	bl       setParamSoundSceneMax__18JAIGlobalParameterFUl
-	lwz      r3, msBasic__8JAIBasic@sda21(r13)
-	addi     r0, r30, 4
-	li       r28, 0
-	li       r29, 0
-	stw      r0, 0x1c(r3)
-	b        lbl_800ADE2C
-
-lbl_800ADE10:
-	lwz      r3, msBasic__8JAIBasic@sda21(r13)
-	addi     r28, r28, 1
-	lwz      r3, 0x1c(r3)
-	lwzx     r0, r3, r29
-	add      r0, r0, r30
-	stwx     r0, r3, r29
-	addi     r29, r29, 4
-
-lbl_800ADE2C:
-	bl       getParamSoundSceneMax__18JAIGlobalParameterFv
-	cmplw    r28, r3
-	blt      lbl_800ADE10
-	lwz      r3, 8(r1)
-	addi     r0, r3, 3
-	stw      r0, 8(r1)
-	b        lbl_800ADEC8
-	.global  lbl_800ADE48
-
-lbl_800ADE48:
-	slwi     r0, r4, 2
-	add      r3, r5, r0
-	lwz      r0, 0(r3)
-	lwz      r4, 4(r3)
-	add      r3, r5, r0
-	bl       transInitDataFile__7JAInterFPUcUl
-	lwz      r4, 8(r1)
-	stw      r3, initOnCodeFxScene__Q27JAInter2Fx@sda21(r13)
-	addi     r0, r4, 3
-	stw      r0, 8(r1)
-	b        lbl_800ADEC8
-	.global  lbl_800ADE74
-
-lbl_800ADE74:
-	slwi     r0, r4, 2
-	add      r4, r5, r0
-	lwz      r0, 4(r4)
-	lwz      r3, 0(r4)
-	rlwinm   r4, r0, 0, 0x10, 0x1b
-	add      r3, r5, r3
-	addi     r4, r4, 0x10
-	bl       transInitDataFile__7JAInterFPUcUl
-	lwz      r4, msBasic__8JAIBasic@sda21(r13)
-	stw      r3, 0x18(r4)
-	lwz      r3, 8(r1)
-	addi     r0, r3, 3
-	stw      r0, 8(r1)
-	b        lbl_800ADEC8
-
-lbl_800ADEAC:
-	lwz      r4, 8(r1)
-	addi     r3, r4, 1
-	slwi     r0, r4, 2
-	stw      r3, 8(r1)
-	lwzx     r0, r5, r0
-	cmplwi   r0, 0
-	bne      lbl_800ADEAC
-
-lbl_800ADEC8:
-	cmplwi   r31, 0
-	bne      lbl_800ADCC4
-	lwz      r12, initCallback__Q27JAInter8BankWave@sda21(r13)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**

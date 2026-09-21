@@ -1329,7 +1329,7 @@ void TChallengePlayModeScreen::draw(Graphics& gfx, J2DPerspGraph* persp)
 		GXSetScissor(TChallengeSelect::mMetOffset._00 + pic2->mGlobalMtx[0][3],
 		             (1.0f - mScale) * (mSphereTex->getHeight() * pic2->getScaleY() * 1.1f)
 		                 + (TChallengeSelect::mMetOffset._04 + pic2->mGlobalMtx[1][3]),
-		             (pic->getWidth() * pic2->getScaleX() * 1.1f) * 0.5f, pic->getHeight() * pic2->getScaleY() * 1.1f);
+		             (pic->getWidth() * pic2->getScaleX() * 1.1f) * 2.0f, pic->getHeight() * pic2->getScaleY() * 1.1f);
 		mSphereTex->draw(TChallengeSelect::mMetOffset._00 + mPaneLouie->mGlobalMtx[0][3],
 		                 TChallengeSelect::mMetOffset._04 + mPaneLouie->mGlobalMtx[1][3],
 		                 mSphereTex->getWidth() * mPaneLouie->getScaleX() * 1.1f, mSphereTex->getHeight() * mPaneLouie->getScaleY() * 1.1f,
@@ -1366,7 +1366,7 @@ void TChallengePlayModeScreen::draw(Graphics& gfx, J2DPerspGraph* persp)
 		GXSetScissor(TChallengeSelect::mMetOffset._00 + pic2->mGlobalMtx[0][3],
 		             (1.0f - mScale) * (mSphereTex->getHeight() * pic2->getScaleY() * 1.1f)
 		                 + (TChallengeSelect::mMetOffset._04 + pic2->mGlobalMtx[1][3]),
-		             (pic->getWidth() * pic2->getScaleX() * 1.1f) * 0.5f, pic->getHeight() * pic2->getScaleY() * 1.1f);
+		             (pic->getWidth() * pic2->getScaleX() * 1.1f) * 2.0f, pic->getHeight() * pic2->getScaleY() * 1.1f);
 		mSphereTex->draw(TChallengeSelect::mMetOffset._00 + mPaneOlimarP2->mGlobalMtx[0][3],
 		                 TChallengeSelect::mMetOffset._04 + mPaneOlimarP2->mGlobalMtx[1][3],
 		                 mSphereTex->getWidth() * mPaneOlimarP2->getScaleX() * 1.1f,

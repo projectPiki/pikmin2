@@ -300,6 +300,23 @@ struct JPABaseEmitter {
 	void setGlobalRMatrix(const Mtx m) { JPASetRMtxfromMtx(m, mGlobalRot); }
 	void setGlobalTranslation(f32 x, f32 y, f32 z) { mGlobalTrs.set(x, y, z); }
 	void setGlobalTranslation(JGeometry::TVec3f& vec) { mGlobalTrs.set(vec); }
+	void setGlobalTranslation(const Vec& vec)
+	{
+		f32 z, y, x;
+		x = vec.x;
+		y = vec.y;
+		z = vec.z;
+		mGlobalTrs.set(x, y, z);
+	}
+	void setGlobalScale(const Vec& scale)
+	{
+		f32 z, y, x;
+		x = scale.x;
+		y = scale.y;
+		z = scale.z;
+		mGlobalScl.set(x, y, z);
+		mGlobalPScl.set(x, y);
+	}
 	void getLocalTranslation(JGeometry::TVec3f& vec) { vec.set(mLocalTrs); }
 	void setGlobalRotation(const JGeometry::TVec3<s16>& rot) { JPAGetXYZRotateMtx(rot.x, rot.y, rot.z, mGlobalRot); }
 	void setGlobalRotation(s16 x, s16 y, s16 z) { JPAGetXYZRotateMtx(x, y, z, mGlobalRot); }

@@ -120,7 +120,7 @@ void* JASTaskThread::run()
 {
 	OSInitFastCast();
 	do {
-		JASThreadCallStack* callStack = (JASThreadCallStack*)waitMessageBlock();
+		JASThreadCallStack* callStack = static_cast<JASThreadCallStack*>(waitMessageBlock());
 		if (_84) {
 			OSSleepThread(&_7C);
 		}
@@ -132,108 +132,6 @@ void* JASTaskThread::run()
 		JASCmdHeap* heap = JASKernel::getCommandHeap();
 		heap->free(callStack);
 	} while (true);
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	li       r3, 4
-	stw      r30, 0x18(r1)
-	oris     r3, r3, 4
-	stw      r29, 0x14(r1)
-	stw      r28, 0x10(r1)
-	mtspr    0x392, r3
-	li       r3, 5
-	oris     r3, r3, 5
-	mtspr    0x393, r3
-	li       r3, 6
-	oris     r3, r3, 6
-	mtspr    0x394, r3
-	li       r3, 7
-	oris     r3, r3, 7
-	mtspr    0x395, r3
-
-lbl_800A8EAC:
-	addi     r3, r31, 0x30
-	addi     r4, r1, 0xc
-	li       r5, 1
-	bl       OSReceiveMessage
-	lbz      r0, 0x84(r31)
-	lwz      r28, 0xc(r1)
-	cmplwi   r0, 0
-	beq      lbl_800A8ED4
-	addi     r3, r31, 0x7c
-	bl       OSSleepThread
-
-lbl_800A8ED4:
-	lwz      r0, 4(r28)
-	cmplwi   r0, 0
-	beq      lbl_800A8EF4
-	lwz      r12, 0(r28)
-	addi     r3, r28, 8
-	mtctr    r12
-	bctrl
-	b        lbl_800A8F04
-
-lbl_800A8EF4:
-	lwz      r12, 0(r28)
-	lwz      r3, 8(r28)
-	mtctr    r12
-	bctrl
-
-lbl_800A8F04:
-	bl       getCommandHeap__9JASKernelFv
-	mr       r30, r3
-	addi     r3, r30, 4
-	stw      r3, 8(r1)
-	bl       OSLockMutex
-	lwz      r3, 0(r30)
-	li       r29, 0
-	b        lbl_800A8F90
-
-lbl_800A8F24:
-	addi     r0, r3, 0xc
-	li       r4, 0
-	cmplw    r0, r28
-	bgt      lbl_800A8F44
-	addi     r0, r3, 0x40c
-	cmplw    r28, r0
-	bge      lbl_800A8F44
-	li       r4, 1
-
-lbl_800A8F44:
-	clrlwi.  r0, r4, 0x18
-	beq      lbl_800A8F88
-	lwz      r4, 8(r3)
-	addi     r0, r4, -1
-	stw      r0, 8(r3)
-	lwz      r0, 0(r30)
-	cmplw    r3, r0
-	beq      lbl_800A8F7C
-	lwz      r0, 8(r3)
-	cmplwi   r0, 0
-	bne      lbl_800A8F7C
-	lwz      r28, 0(r3)
-	bl       __dl__FPv
-	stw      r28, 0(r29)
-
-lbl_800A8F7C:
-	lwz      r3, 8(r1)
-	bl       OSUnlockMutex
-	b        lbl_800A8EAC
-
-lbl_800A8F88:
-	mr       r29, r3
-	lwz      r3, 0(r3)
-
-lbl_800A8F90:
-	cmplwi   r3, 0
-	bne      lbl_800A8F24
-	lwz      r3, 8(r1)
-	bl       OSUnlockMutex
-	b        lbl_800A8EAC
-	*/
 }
 
 /**

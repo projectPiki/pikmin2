@@ -76,7 +76,7 @@ struct JASAramStream {
 	int mMaxBlocks;                  // _1AC
 	u8 _1B0;                         // _1B0
 	u32 _1B4;                        // _1B4
-	f32 _1B8;                        // _1B8
+	volatile f32 _1B8;               // _1B8
 	DVDFileInfo mFileInfo;           // _1BC
 	u32 mMaxLoadIndex;               // _1F8
 	int mCurrentLoadIndex;           // _1FC
@@ -103,7 +103,10 @@ struct JASAramStream {
 	u32 mFileSize;                   // _260
 	f32 mVolume;                     // _264
 	f32 mPitch;                      // _268
-	f32 mChannelData[4][6];          // _26C, values (volume, pan, fxmix, dolby) for each of the 6 channels
+	f32 mChannelVolume[6];           // _26C
+	f32 mChannelPan[6];              // _284
+	f32 mChannelFxMix[6];            // _29C
+	f32 mChannelDolby[6];            // _2B4
 	u16 mMixData[6];                 // _2CC
 	u8 mUseStereo;                   // _2D8, related to pan
 

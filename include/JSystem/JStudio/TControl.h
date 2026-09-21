@@ -96,6 +96,32 @@ struct TControl : public stb::TControl {
 	CMtxP transformOnSet_getMatrix() const { return mTransformOnSet_Mtx; }
 	CMtxP transformOnGet_getMatrix() const { return mTransformOnGet_Mtx; }
 
+	void transformOnSet_transformTranslation(const Vec& translation, Vec* transformedTranslation) const
+	{
+		PSMTXMultVec(transformOnSet_getMatrix(), &translation, transformedTranslation);
+	}
+	void transformOnSet_transformRotation(const Vec& rotation, Vec* transformedRotation) const
+	{
+		transformedRotation->x = rotation.x;
+		transformedRotation->y = rotation.y + transformOnSet_getRotationY();
+		transformedRotation->z = rotation.z;
+	}
+	void transformOnSet_transform(const TTransform_translation_rotation_scaling& srt,
+	                              TTransform_translation_rotation_scaling* transformedSrt) const
+	{
+		transformOnSet_transformTranslation(srt.getTranslation(), &transformedSrt->getTranslation());
+		transformOnSet_transformRotation(srt.getRotation(), &transformedSrt->getRotation());
+	}
+	const TTransform_translation_rotation_scaling*
+	transformOnSet_transform_ifEnabled(const TTransform_translation_rotation_scaling& srt,
+	                                   TTransform_translation_rotation_scaling* transformedSrt) const
+	{
+		if (!transformOnSet_isEnabled()) {
+			return &srt;
+		}
+		transformOnSet_transform(srt, transformedSrt);
+		return transformedSrt;
+	}
 	const TTransform_position_direction* transformOnGet_transform_ifEnabled(const TTransform_position_direction& posDir,
 	                                                                        TTransform_position_direction* transformedPosDir) const
 	{

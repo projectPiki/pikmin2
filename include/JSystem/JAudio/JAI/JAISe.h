@@ -95,6 +95,8 @@ struct JAISe : public JAISound {
 	void getSeParametermeterF32(u8, u8);
 	void getSeInfoPointer();
 
+	JAInter::SeParameter* getSeParameter() { return &mSeParam; }
+
 	// _00      = VTABLE
 	// _04-_48  = JAISound
 	JAInter::SeParameter mSeParam; // _48

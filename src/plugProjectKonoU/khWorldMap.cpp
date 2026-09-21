@@ -145,33 +145,19 @@ void khUtilColorAnmWM::do_update()
  */
 WorldMap::WorldMap()
 {
-	/* NON-MATCHING */
-	mScreenKitagawa     = nullptr;
-	mKitaAnim2          = nullptr;
-	mKitaAnim1          = nullptr;
-	mKitaAnim3          = nullptr;
-	mKitaAnim5          = nullptr;
-	mKitaAnim4          = nullptr;
-	mScreenRocket       = nullptr;
-	mRocketAnim1        = nullptr;
-	mRocketAnim2        = nullptr;
-	mScreenInfo         = nullptr;
-	mInfoAnim3          = nullptr;
-	mInfoAnim2          = nullptr;
-	mInfoAnim1          = nullptr;
-	mAnimTimers[9]      = 0.0f;
-	mAnimTimers[8]      = 0.0f;
-	mAnimTimers[7]      = 0.0f;
-	mAnimTimers[6]      = 0.0f;
-	mAnimTimers[5]      = 0.0f;
-	mAnimTimers[4]      = 0.0f;
-	mAnimTimers[3]      = 0.0f;
-	mAnimTimers[2]      = 0.0f;
-	mAnimTimers[1]      = 0.0f;
-	mAnimTimers[0]      = 0.0f;
-	mCameraZoomX        = 0.0f;
-	mCameraZoomMinFrame = 0.0f;
-	mCameraZoomY        = 1.0f;
+	mScreenKitagawa = nullptr;
+	mKitaAnim1 = mKitaAnim2 = nullptr;
+	mKitaAnim3              = nullptr;
+	mKitaAnim4 = mKitaAnim5 = nullptr;
+	mScreenRocket           = nullptr;
+	mRocketAnim1            = nullptr;
+	mRocketAnim2            = nullptr;
+	mScreenInfo             = nullptr;
+	mInfoAnim1 = mInfoAnim2 = mInfoAnim3 = nullptr;
+	mAnimTimers[0] = mAnimTimers[1] = mAnimTimers[2] = mAnimTimers[3] = mAnimTimers[4] = mAnimTimers[5] = mAnimTimers[6] = mAnimTimers[7]
+	    = mAnimTimers[8] = mAnimTimers[9] = 0.0f;
+	mCameraZoomMinFrame = mCameraZoomX = 0.0f;
+	mCameraZoomY                       = 1.0f;
 	mRocketPosition.set(0.0f, 0.0f);
 	mRocketPosition2.set(0.0f, 0.0f);
 
@@ -211,13 +197,11 @@ WorldMap::WorldMap()
 		mColorAnims[i] = nullptr;
 	}
 
-	mColorAnim2 = nullptr;
-	mArrowBlink = nullptr;
-	// possibly a substruct?
-	mCurrentState    = WMAP_Begin;
-	mRocketAngleMode = ROT_Unk1;
-	mFlags           = WMAPFLAG_IsFirstTimeEffect;
-	// end possible substruct
+	mColorAnim2          = nullptr;
+	mArrowBlink          = nullptr;
+	mCurrentState        = WMAP_Begin;
+	mRocketAngleMode     = ROT_Unk1;
+	mFlags               = WMAPFLAG_IsFirstTimeEffect;
 	mLockoutCounter      = 1;
 	mCourseJustOpenFlags = 0;
 	mOpenCourses         = 0;
@@ -507,7 +491,6 @@ void WorldMap::loadResource()
  */
 void WorldMap::update(Game::WorldMap::UpdateArg& arg)
 {
-	/* NON-MATCHING */
 	arg.mCourseInfo = mInitArg.mStages->getCourseInfo(mCurrentCourseIndex);
 	mKitaAnim1->setFrame(mAnimTimers[0]);
 	mKitaAnim3->setFrame(mAnimTimers[2]);
@@ -670,8 +653,8 @@ void WorldMap::update(Game::WorldMap::UpdateArg& arg)
 		mRocketPosition.x += msVal._04 * (mRocketAngle.x * msVal._00);
 		mRocketPosition.y += msVal._04 * (mRocketAngle.y * msVal._00);
 
-		// this is the regswap
-		JGeometry::TVec2f vec(getPaneCenterX(cPointPane) - mRocketPosition.x, getPaneCenterY(cPointPane) - mRocketPosition.y);
+		y = getPaneCenterY(cPointPane) - mRocketPosition.y;
+		JGeometry::TVec2f vec(getPaneCenterX(cPointPane) - mRocketPosition.x, y);
 		f32 dist = vec.x * vec.x + vec.y + vec.y; // is this a typo?
 		if (!isFlag(WMAPFLAG_Unk4)) {
 			vec.normalize();
@@ -1183,7 +1166,6 @@ f32 WorldMap::rocketMove(J2DPane* pane, bool flag)
  */
 void WorldMap::rocketUpdate(J2DPane* pane)
 {
-	/* NON-MATCHING */
 	J2DPane* shipPane = mScreenRocket->search('NROCKET'); // r30
 	shipPane->setOffset(mRocketPosition.x, mRocketPosition.y);
 	shipPane->setAngle(JMAAtan2Radian(-mRocketAngle.x, -mRocketAngle.y) * JMath::TAngleConstant_<f32>::RADIAN_TO_DEGREE_FACTOR());
@@ -1208,7 +1190,9 @@ void WorldMap::rocketUpdate(J2DPane* pane)
 	vec2.x   = 0.5f * (pos4.x + pos3.x);
 	vec2.y   = 0.5f * (pos4.y + pos3.y);
 
-	mEffectPos = sep + Vector2f(vec.x * (1.0f - msVal._1C) + vec2.x * msVal._1C, vec.y * (1.0f - msVal._1C) + vec2.y * msVal._1C);
+	f32 efxX   = sep.x + (vec.x * (1.0f - msVal._1C) + vec2.x * msVal._1C);
+	f32 efxY   = sep.y + (vec.y * (1.0f - msVal._1C) + vec2.y * msVal._1C);
+	mEffectPos = Vector2f(efxX, efxY);
 	mEffectDir = Vector2f(-mRocketAngle.x, -mRocketAngle.y);
 
 	efx2d::WorldMap::ArgDirScale arg(mEffectPos, mEffectDir, scale2);

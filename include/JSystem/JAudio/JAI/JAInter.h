@@ -16,7 +16,41 @@
 struct JAISequence;
 struct JAISound;
 
+enum JAISoundType {
+	SOUNDPARAM_Unk0     = 0,
+	SOUNDPARAM_Dopplar  = 1,
+	SOUNDPARAM_Demo     = 2,
+	SOUNDPARAM_Unk3     = 3,
+	SOUNDPARAM_Distance = 4,
+	SOUNDPARAM_Unk5     = 5,
+	SOUNDPARAM_Direct   = 6,
+	SOUNDPARAM_Fadeout  = 7,
+	SOUNDPARAM_Unk8     = 8,
+	SOUNDPARAM_Unk9     = 9,
+	SOUNDPARAM_Unk10    = 10,
+	SOUNDPARAM_Pause    = 11,
+};
+
+enum JAISoundState {
+	SOUNDSTATE_Inactive = 0,
+	SOUNDSTATE_Stored   = 1,
+	SOUNDSTATE_Loaded   = 2,
+	SOUNDSTATE_Ready    = 3,
+	SOUNDSTATE_Playing  = 4,
+	SOUNDSTATE_Fadeout  = 5,
+};
+
+enum JAISoundPauseMode {
+	SOUNDPAUSE_Unk0 = 0,
+	SOUNDPAUSE_Unk1 = 1,
+	SOUNDPAUSE_Unk2 = 2,
+	SOUNDPAUSE_Unk3 = 3,
+	SOUNDPAUSE_Unk4 = 4,
+	SOUNDPAUSE_Unk5 = 8,
+};
+
 namespace JAInter {
+
 enum JAISoundTrackActiveFlags {
 	SOUNDACTIVE_Unk0                 = 0,
 	SOUNDACTIVE_Unk1                 = 1 << 0,  // 0x1
@@ -364,7 +398,52 @@ struct SeqUpdateData {
 struct SeqParameter {
 	~SeqParameter() { }
 
-	void init();
+	void init()
+	{
+		mTrack.assignExtBuffer(&mOuterParam);
+		_27C       = 0xFFFFFFFF;
+		mTempo     = MoveParaSet();
+		mPauseMode = SOUNDPAUSE_Unk0;
+		_27A       = 0;
+		_280       = 0;
+
+		mVolumeFlags       = 0;
+		mPanFlags          = 0;
+		mPitchFlags        = 0;
+		mFxmixFlags        = 0;
+		mDolbyFlags        = 0;
+		mTrackVolumeFlag   = 0;
+		mTrackPanFlag      = 0;
+		mTrackPitchFlag    = 0;
+		mTrackFxmixFlag    = 0;
+		mTrackDolbyFlag    = 0;
+		_2AC               = 0;
+		mTrackPortDataFlag = 0;
+		for (u32 i = 0; i < JAIGlobalParameter::getParamSeqTrackMax(); i++) {
+			mTrackVolumes[i]      = MoveParaSet();
+			mTrackPans[i]         = MoveParaSetInitHalf();
+			mTrackPitches[i]      = MoveParaSet();
+			mTrackFxmixes[i]      = MoveParaSetInitZero();
+			mTrackDolbys[i]       = MoveParaSetInitZero(0.5f);
+			mInterruptSwitches[i] = 0;
+			_2B4[i]               = 0;
+			for (int j = 0; j < 16; j++) {
+				_274[i][j] = 0;
+			}
+		}
+		for (int i = 0; i < 16; i++) {
+			_10[i] = MoveParaSetInitZero();
+		}
+		for (u32 i = 0; i < JAIGlobalParameter::getParamSeqPlayTrackMax() + 12; i++) {
+			mVolumes[i] = MoveParaSet();
+		}
+		for (u32 i = 0; i < JAIGlobalParameter::getParamSeqParameterLines(); i++) {
+			mPans[i]    = MoveParaSetInitHalf();
+			mPitches[i] = MoveParaSet();
+			mFxmixes[i] = MoveParaSetInitZero();
+			mDolbys[i]  = MoveParaSetInitHalf();
+		}
+	}
 
 	inline JASTrack* getTrack() { return &mTrack; }
 

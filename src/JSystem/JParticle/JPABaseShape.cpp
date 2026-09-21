@@ -2016,7 +2016,7 @@ void JPADrawParticleCallBack(JPAEmitterWorkData* workData, JPABaseParticle* part
  */
 void makeColorTable(GXColor** colorTable, const JPAClrAnmKeyData* data, u8 a2, s16 size, JKRHeap* heap)
 {
-	GXColor* color_table = (GXColor*)JKRAllocFromHeap(heap, (size + 1) * 4, 4);
+	GXColor* color_table = (GXColor*)JKRHeap::alloc((size + 1) * 4, 4, heap);
 
 	f32 r_step, g_step, b_step, a_step;
 	r_step = g_step = b_step = a_step = 0.0f;
@@ -2240,7 +2240,7 @@ void makeColorTable(GXColor** colorTable, const JPAClrAnmKeyData* data, u8 a2, s
  */
 JPABaseShape::JPABaseShape(const u8* data, JKRHeap* heap)
 {
-	mData = (const JPABaseShapeData*)data;
+	mData = (JPABaseShapeData*)data;
 
 	if (isTexCrdAnm()) {
 		mTexCrdMtxAnmTbl = (const void*)(data + sizeof(JPABaseShapeData));
@@ -2297,86 +2297,4 @@ void JPABaseShape::setGX(JPAEmitterWorkData* work) const
 	GXSetTevDirect(GX_TEVSTAGE0);
 	GXSetTevDirect(GX_TEVSTAGE1);
 	GXSetZCompLoc(getZCompLoc());
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	lwz      r4, 0(r28)
-	lis      r3, jpa_dl@ha
-	addi     r31, r3, jpa_dl@l
-	lhz      r0, 0x18(r4)
-	addi     r3, r31, 0x80
-	lwz      r9, 8(r4)
-	addi     r7, r31, 0x8c
-	rlwinm   r8, r0, 2, 0x1c, 0x1d
-	rlwinm   r4, r0, 0, 0x1a, 0x1d
-	rlwinm   r5, r0, 0x1c, 0x1a, 0x1d
-	rlwinm   r10, r9, 0x15, 0x19, 0x1b
-	addi     r30, r31, 0x124
-	addi     r6, r31, 0xb4
-	rlwinm   r0, r0, 0x18, 0x1a, 0x1d
-	rlwinm   r9, r9, 0x12, 0x1b, 0x1b
-	addi     r29, r31, 0x184
-	lwzx     r3, r3, r8
-	lwzx     r4, r7, r4
-	add      r30, r30, r10
-	lwzx     r5, r7, r5
-	add      r29, r29, r9
-	lwzx     r6, r6, r0
-	bl       GXSetBlendMode
-	lwz      r3, 0(r28)
-	addi     r4, r31, 0xf4
-	lbz      r5, 0x1d(r3)
-	rlwinm   r0, r5, 1, 0x1b, 0x1d
-	clrlwi   r3, r5, 0x1f
-	lwzx     r4, r4, r0
-	rlwinm   r5, r5, 0x1c, 0x1f, 0x1f
-	bl       GXSetZMode
-	lwz      r8, 0(r28)
-	addi     r7, r31, 0xf4
-	addi     r5, r31, 0x114
-	lbz      r0, 0x1a(r8)
-	lbz      r4, 0x1b(r8)
-	rlwinm   r3, r0, 2, 0x1b, 0x1d
-	rlwinm   r6, r0, 0x1f, 0x1c, 0x1d
-	rlwinm   r0, r0, 0x1d, 0x1b, 0x1d
-	lwzx     r5, r5, r6
-	lwzx     r3, r7, r3
-	lwzx     r6, r7, r0
-	lbz      r7, 0x1c(r8)
-	bl       GXSetAlphaCompare
-	lwz      r4, 0(r30)
-	li       r3, 0
-	lwz      r5, 4(r30)
-	lwz      r6, 8(r30)
-	lwz      r7, 0xc(r30)
-	bl       GXSetTevColorIn
-	lwz      r4, 0(r29)
-	li       r3, 0
-	lwz      r5, 4(r29)
-	lwz      r6, 8(r29)
-	lwz      r7, 0xc(r29)
-	bl       GXSetTevAlphaIn
-	li       r3, 0
-	bl       GXSetTevDirect
-	li       r3, 1
-	bl       GXSetTevDirect
-	lwz      r3, 0(r28)
-	lbz      r0, 0x1d(r3)
-	rlwinm   r3, r0, 0x1b, 0x1f, 0x1f
-	bl       GXSetZCompLoc
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }

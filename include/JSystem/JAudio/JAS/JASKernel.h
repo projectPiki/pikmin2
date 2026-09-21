@@ -144,8 +144,7 @@ struct JASCmdHeap {
 			if (current->contains(block)) {
 				current->free(block);
 				if (current != mHead && current->isEmpty()) {
-					Block* next; // regswap here
-					next = current->getNextChunk();
+					Block* next = current->getNextChunk();
 					delete current;
 					prev->setNextChunk(next);
 				}

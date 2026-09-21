@@ -74,13 +74,13 @@ JASTrack::JASTrack()
  */
 JASTrack::~JASTrack()
 {
-	JSULink<JASChannel>* link = getFirst();
-	while (link) {
-		JSULink<JASChannel>* next = link->getObject()->getNext();
-		link->getObject()->release(0);
-		link->getObject()->free();
-		remove(link->getObject()->getObject());
-		link = next;
+	JSUListIterator<JASChannel> it(this);
+	while (it != getEnd()) {
+		JSULink<JASChannel>* next = it.getObject()->getNext();
+		it.getObject()->release(0);
+		it.getObject()->free();
+		remove(it.getObject()->getObject());
+		it = next;
 	}
 	// UNUSED FUNCTION
 }
@@ -1026,87 +1026,6 @@ bool JASTrack::stopSeq()
 	}
 
 	return true;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lbz      r0, 0x35b(r3)
-	cmpwi    r0, 1
-	beq      lbl_800A102C
-	bge      lbl_800A0F90
-	cmpwi    r0, 0
-	bge      lbl_800A1034
-	b        lbl_800A102C
-
-lbl_800A0F90:
-	cmpwi    r0, 3
-	bge      lbl_800A102C
-	li       r0, 0
-	stb      r0, 0x35b(r29)
-	lbz      r0, 0x366(r29)
-	cmplwi   r0, 0
-	beq      lbl_800A1034
-	cmplwi   r29, 0
-	beq      lbl_800A1034
-	lwz      r30, 0(r29)
-	b        lbl_800A0FE8
-
-lbl_800A0FBC:
-	lwz      r3, 0(r30)
-	li       r4, 0
-	lwz      r31, 0xc(r3)
-	bl       release__10JASChannelFUs
-	lwz      r3, 0(r30)
-	bl       free__10JASChannelFv
-	lwz      r4, 0(r30)
-	mr       r3, r29
-	lwz      r4, 0(r4)
-	bl       remove__10JSUPtrListFP10JSUPtrLink
-	mr       r30, r31
-
-lbl_800A0FE8:
-	cmplwi   r30, 0
-	bne      lbl_800A0FBC
-	cmplwi   r29, 0
-	beq      lbl_800A1004
-	mr       r3, r29
-	li       r4, 0
-	bl       __dt__10JSUPtrListFv
-
-lbl_800A1004:
-	li       r0, 0
-	stw      r0, 0(r29)
-	lwz      r3, sFreeListEnd__8JASTrack@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_800A1020
-	stw      r29, 0(r3)
-	b        lbl_800A1024
-
-lbl_800A1020:
-	stw      r29, sFreeList__8JASTrack@sda21(r13)
-
-lbl_800A1024:
-	stw      r29, sFreeListEnd__8JASTrack@sda21(r13)
-	b        lbl_800A1034
-
-lbl_800A102C:
-	li       r0, 3
-	stb      r0, 0x35b(r29)
-
-lbl_800A1034:
-	lwz      r0, 0x24(r1)
-	li       r3, 1
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
@@ -1156,174 +1075,18 @@ void JASTrack::close()
 
 	mIsMuted = false;
 
-	// this is the same crap as stopSeq, whatever *that* is
-	JSULink<JASChannel>* link = getFirst();
-	while (link) {
-		JSULink<JASChannel>* next = link->getObject()->getNext();
-		link->getObject()->release(0);
-		link->getObject()->free();
-		remove(link->getObject()->getObject());
-		link = next;
+	JSUListIterator<JASChannel> it(this);
+	while (it != getEnd()) {
+		JSULink<JASChannel>* next = it.getObject()->getNext();
+		it.getObject()->release(0);
+		it.getObject()->free();
+		remove(it.getObject()->getObject());
+		it = next;
 	}
 
 	if (_366) {
 		delete this;
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	stw      r28, 0x10(r1)
-	lbz      r0, 0x35b(r3)
-	cmplwi   r0, 0
-	beq      lbl_800A1244
-	lwz      r0, 0x2f8(r31)
-	cmplwi   r0, 0
-	bne      lbl_800A1108
-	li       r28, 0
-	li       r30, 0
-	b        lbl_800A10F8
-
-lbl_800A10D4:
-	rlwinm   r3, r28, 2, 0x16, 0x1d
-	addi     r29, r3, 0xc0
-	lwzx     r3, r31, r29
-	cmplwi   r3, 0
-	beq      lbl_800A10F4
-	li       r4, 0xa
-	bl       release__10JASChannelFUs
-	stwx     r30, r31, r29
-
-lbl_800A10F4:
-	addi     r28, r28, 1
-
-lbl_800A10F8:
-	clrlwi   r0, r28, 0x18
-	cmplwi   r0, 8
-	blt      lbl_800A10D4
-	b        lbl_800A1144
-
-lbl_800A1108:
-	li       r28, 0
-	li       r30, 0
-	b        lbl_800A1138
-
-lbl_800A1114:
-	rlwinm   r3, r28, 2, 0x16, 0x1d
-	addi     r29, r3, 0xc0
-	lwzx     r3, r31, r29
-	cmplwi   r3, 0
-	beq      lbl_800A1134
-	li       r4, 0
-	bl       release__10JASChannelFUs
-	stwx     r30, r31, r29
-
-lbl_800A1134:
-	addi     r28, r28, 1
-
-lbl_800A1138:
-	clrlwi   r0, r28, 0x18
-	cmplwi   r0, 8
-	blt      lbl_800A1114
-
-lbl_800A1144:
-	li       r30, 0
-	mr       r29, r31
-	stb      r30, 0x35b(r31)
-	li       r28, 0
-
-lbl_800A1154:
-	lwz      r3, 0x2fc(r29)
-	cmplwi   r3, 0
-	beq      lbl_800A1168
-	bl       close__8JASTrackFv
-	stw      r30, 0x2fc(r29)
-
-lbl_800A1168:
-	addi     r28, r28, 1
-	addi     r29, r29, 4
-	cmpwi    r28, 0x10
-	blt      lbl_800A1154
-	li       r0, 0
-	stb      r0, 0x363(r31)
-	lwz      r29, 0(r31)
-	b        lbl_800A11B4
-
-lbl_800A1188:
-	lwz      r3, 0(r29)
-	li       r4, 0
-	lwz      r30, 0xc(r3)
-	bl       release__10JASChannelFUs
-	lwz      r3, 0(r29)
-	bl       free__10JASChannelFv
-	lwz      r4, 0(r29)
-	mr       r3, r31
-	lwz      r4, 0(r4)
-	bl       remove__10JSUPtrListFP10JSUPtrLink
-	mr       r29, r30
-
-lbl_800A11B4:
-	cmplwi   r29, 0
-	bne      lbl_800A1188
-	lbz      r0, 0x366(r31)
-	cmplwi   r0, 0
-	beq      lbl_800A1244
-	cmplwi   r31, 0
-	beq      lbl_800A1244
-	lwz      r29, 0(r31)
-	b        lbl_800A1204
-
-lbl_800A11D8:
-	lwz      r3, 0(r29)
-	li       r4, 0
-	lwz      r30, 0xc(r3)
-	bl       release__10JASChannelFUs
-	lwz      r3, 0(r29)
-	bl       free__10JASChannelFv
-	lwz      r4, 0(r29)
-	mr       r3, r31
-	lwz      r4, 0(r4)
-	bl       remove__10JSUPtrListFP10JSUPtrLink
-	mr       r29, r30
-
-lbl_800A1204:
-	cmplwi   r29, 0
-	bne      lbl_800A11D8
-	cmplwi   r31, 0
-	beq      lbl_800A1220
-	mr       r3, r31
-	li       r4, 0
-	bl       __dt__10JSUPtrListFv
-
-lbl_800A1220:
-	li       r0, 0
-	stw      r0, 0(r31)
-	lwz      r3, sFreeListEnd__8JASTrack@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_800A123C
-	stw      r31, 0(r3)
-	b        lbl_800A1240
-
-lbl_800A123C:
-	stw      r31, sFreeList__8JASTrack@sda21(r13)
-
-lbl_800A1240:
-	stw      r31, sFreeListEnd__8JASTrack@sda21(r13)
-
-lbl_800A1244:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
@@ -1516,10 +1279,11 @@ u16 JASTrack::readReg16(u8 reg)
 		result = 0;
 		for (int i = 7; i >= 0; i--) {
 			result <<= 1;
+			JASChannel* channel = getChannel(i);
 			u8 val;
-			if (!mChannels[i]) {
+			if (!channel) {
 				val = 1;
-			} else if (mChannels[i]->mStatus == 0) {
+			} else if (channel->mStatus == 0) {
 				val = 1;
 			} else {
 				val = 0;
@@ -1537,193 +1301,6 @@ u16 JASTrack::readReg16(u8 reg)
 	}
 
 	return result;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	clrlwi   r5, r4, 0x18
-	stw      r0, 0x14(r1)
-	addi     r0, r5, -32
-	cmplwi   r0, 0x10
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bgt      lbl_800A19FC
-	lis      r5, lbl_804A4350@ha
-	slwi     r0, r0, 2
-	addi     r5, r5, lbl_804A4350@l
-	lwzx     r0, r5, r0
-	mtctr    r0
-	bctr
-	.global  lbl_800A184C
-
-lbl_800A184C:
-	addi     r3, r30, 0x268
-	bl       getBankNumber__16JASRegisterParamCFv
-	clrlwi   r31, r3, 0x18
-	b        lbl_800A1A08
-	.global  lbl_800A185C
-
-lbl_800A185C:
-	addi     r3, r30, 0x268
-	bl       getProgramNumber__16JASRegisterParamCFv
-	clrlwi   r31, r3, 0x18
-	b        lbl_800A1A08
-	.global  lbl_800A186C
-
-lbl_800A186C:
-	li       r4, 0
-	bl       readReg16__8JASTrackFUc
-	rlwinm   r31, r3, 8, 0x10, 0x17
-	mr       r3, r30
-	li       r4, 1
-	bl       readReg16__8JASTrackFUc
-	or       r31, r31, r3
-	b        lbl_800A1A08
-	.global  lbl_800A188C
-
-lbl_800A188C:
-	li       r0, 4
-	addi     r3, r30, 0x3c
-	li       r31, 0
-	li       r5, 0xf
-	mtctr    r0
-
-lbl_800A18A0:
-	lwz      r4, 0x2fc(r3)
-	rlwinm   r31, r31, 1, 0x10, 0x1e
-	cmplwi   r4, 0
-	beq      lbl_800A18C4
-	lbz      r0, 0x35b(r4)
-	cmplwi   r0, 0
-	beq      lbl_800A18C4
-	ori      r0, r31, 1
-	clrlwi   r31, r0, 0x10
-
-lbl_800A18C4:
-	lwz      r4, 0x2f8(r3)
-	rlwinm   r31, r31, 1, 0x10, 0x1e
-	cmplwi   r4, 0
-	beq      lbl_800A18E8
-	lbz      r0, 0x35b(r4)
-	cmplwi   r0, 0
-	beq      lbl_800A18E8
-	ori      r0, r31, 1
-	clrlwi   r31, r0, 0x10
-
-lbl_800A18E8:
-	lwz      r4, 0x2f4(r3)
-	rlwinm   r31, r31, 1, 0x10, 0x1e
-	cmplwi   r4, 0
-	beq      lbl_800A190C
-	lbz      r0, 0x35b(r4)
-	cmplwi   r0, 0
-	beq      lbl_800A190C
-	ori      r0, r31, 1
-	clrlwi   r31, r0, 0x10
-
-lbl_800A190C:
-	lwz      r4, 0x2f0(r3)
-	rlwinm   r31, r31, 1, 0x10, 0x1e
-	cmplwi   r4, 0
-	beq      lbl_800A1930
-	lbz      r0, 0x35b(r4)
-	cmplwi   r0, 0
-	beq      lbl_800A1930
-	ori      r0, r31, 1
-	clrlwi   r31, r0, 0x10
-
-lbl_800A1930:
-	addi     r3, r3, -16
-	addi     r5, r5, -3
-	bdnz     lbl_800A18A0
-	b        lbl_800A1A08
-	.global  lbl_800A1940
-
-lbl_800A1940:
-	li       r0, 4
-	addi     r4, r30, 0x1c
-	li       r31, 0
-	li       r5, 7
-	mtctr    r0
-
-lbl_800A1954:
-	lwz      r3, 0xc0(r4)
-	rlwinm   r31, r31, 1, 0x10, 0x1e
-	cmplwi   r3, 0
-	bne      lbl_800A196C
-	li       r0, 1
-	b        lbl_800A1984
-
-lbl_800A196C:
-	lwz      r0, 0x18(r3)
-	cmpwi    r0, 0
-	bne      lbl_800A1980
-	li       r0, 1
-	b        lbl_800A1984
-
-lbl_800A1980:
-	li       r0, 0
-
-lbl_800A1984:
-	lwz      r3, 0xbc(r4)
-	clrlwi   r0, r0, 0x18
-	or       r31, r31, r0
-	cmplwi   r3, 0
-	rlwinm   r31, r31, 1, 0x10, 0x1e
-	bne      lbl_800A19A4
-	li       r0, 1
-	b        lbl_800A19BC
-
-lbl_800A19A4:
-	lwz      r0, 0x18(r3)
-	cmpwi    r0, 0
-	bne      lbl_800A19B8
-	li       r0, 1
-	b        lbl_800A19BC
-
-lbl_800A19B8:
-	li       r0, 0
-
-lbl_800A19BC:
-	clrlwi   r0, r0, 0x18
-	addi     r5, r5, -1
-	or       r31, r31, r0
-	addi     r4, r4, -8
-	bdnz     lbl_800A1954
-	b        lbl_800A1A08
-	.global  lbl_800A19D4
-
-lbl_800A19D4:
-	lwz      r0, 0x18(r30)
-	cmplwi   r0, 0
-	bne      lbl_800A19E8
-	li       r0, 0
-	b        lbl_800A19F4
-
-lbl_800A19E8:
-	slwi     r0, r0, 1
-	add      r3, r30, r0
-	lhz      r0, 0x3a(r3)
-
-lbl_800A19F4:
-	mr       r31, r0
-	b        lbl_800A1A08
-	.global  lbl_800A19FC
-
-lbl_800A19FC:
-	rlwinm   r0, r4, 1, 0x17, 0x1e
-	add      r3, r30, r0
-	lhz      r31, 0x268(r3)
-
-lbl_800A1A08:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /**

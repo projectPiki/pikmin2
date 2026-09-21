@@ -349,6 +349,8 @@ struct JASTrack : public JSUList<JASChannel> {
 	inline JASSeqCtrl* getSeq() { return &mSeqCtrl; }
 	inline JASOuterParam* getExtBuffer() const { return mExtBuffer; }
 
+	inline JASChannel* getChannel(int i) { return mChannels[i]; }
+
 	inline void initOscillators()
 	{
 		for (int i = 0; i < 2; i++) {

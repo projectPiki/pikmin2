@@ -142,11 +142,11 @@ struct JPABaseShape {
 	static GXTevColorArg st_ca[6][4];
 	static GXTevAlphaArg st_aa[2][4];
 
-	const JPABaseShapeData* mData; // _00
-	const void* mTexCrdMtxAnmTbl;  // _04
-	const u8* mTexIdxAnimTbl;      // _08
-	GXColor* mPrmClrAnmTbl;        // _0C
-	GXColor* mEnvClrAnmTbl;        // _10
+	JPABaseShapeData* mData;      // _00
+	const void* mTexCrdMtxAnmTbl; // _04
+	const u8* mTexIdxAnimTbl;     // _08
+	GXColor* mPrmClrAnmTbl;       // _0C
+	GXColor* mEnvClrAnmTbl;       // _10
 };
 
 struct JPAChildShapeData {
@@ -240,7 +240,7 @@ struct JPAExTexShape {
 	BOOL isUseIndirect() const { return mData->mFlags & 0x01; }
 	BOOL isUseSecTex() const { return mData->mFlags & 0x0100; }
 
-	const JPAExTexShapeData* mData; // _00
+	JPAExTexShapeData* mData; // _00
 };
 
 struct JPAExtraShapeData {

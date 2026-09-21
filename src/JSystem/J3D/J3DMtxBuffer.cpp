@@ -171,7 +171,7 @@ int J3DMtxBuffer::createBumpMtxArray(J3DModelData* data, u32 viewNum)
 			}
 		}
 		for (int i = 0; i < 2; i++) {
-			u16 materialCount = data->getMaterialNum();
+			u32 materialCount = data->getMaterialNum();
 			int shapeCount    = 0;
 			for (u16 matIndex = 0; matIndex < materialCount; matIndex++) {
 				J3DMaterial* material = data->getMaterialNodePointer(matIndex);
@@ -183,7 +183,7 @@ int J3DMtxBuffer::createBumpMtxArray(J3DModelData* data, u32 viewNum)
 			}
 		}
 		for (int i = 0; i < 2; i++) {
-			u16 materialCount = data->getMaterialNum();
+			u32 materialCount = data->getMaterialNum();
 			int j             = 0;
 			for (u16 matIndex = 0; matIndex < materialCount; matIndex++) {
 				J3DMaterial* material = data->getMaterialNodePointer(matIndex);

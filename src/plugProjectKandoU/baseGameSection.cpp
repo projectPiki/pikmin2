@@ -583,12 +583,12 @@ void BaseGameSection::initViewports(Graphics& gfx)
 	mTreasureGetViewport->setCamera(mTreasureZoomCamera);
 }
 
+#define LoadTextFile(x) JKRDvdToMainRam(x, nullptr, Switch_0, 0, nullptr, JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr)
+
 /**
  * @note Address: 0x8014C5CC
  * @note Size: 0x1120
  */
-#define LoadTextFile(x) JKRDvdRipper::loadToMainRAM(x, nullptr, Switch_0, 0, nullptr, JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
-
 void BaseGameSection::initGenerators()
 {
 
@@ -701,7 +701,6 @@ void BaseGameSection::initGenerators()
 		}
 
 #pragma endregion
-		void** nonloopFileSlot = generatorFiles + fileIdx;
 		void** fileSlot;
 		GeneratorMgr** managerSlot;
 		int floorDay;
@@ -732,7 +731,7 @@ void BaseGameSection::initGenerators()
 					currentNonloopMgr->setDayLimit(currentGen->mDayLimit);
 					currentNonloopMgr->updateUseList();
 
-					*nonloopFileSlot++         = file;
+					generatorFiles[fileIdx]    = file;
 					generatorManagers[fileIdx] = currentNonloopMgr;
 					fileIdx++;
 

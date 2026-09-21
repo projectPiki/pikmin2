@@ -3,6 +3,7 @@
 
 #include "JSystem/JAudio/JAS/JASBank.h"
 #include "JSystem/JAudio/JAS/JASOscillator.h"
+#include "JSystem/JSupport/JSU.h"
 #include "types.h"
 
 // The total number of instruments allocated for a bank (even though 128-227 are invalid)
@@ -20,53 +21,69 @@
 #define TPerc_MAX_ENTRIES 128
 
 namespace JASBNKParser {
+struct TInst;
+struct TKeymap;
+struct TOsc;
+struct TPerc;
+struct TPmap;
+struct TRand;
+struct TSense;
+struct TVmap;
+
+template <typename T>
+struct TOffset {
+	T* ptr(const void* base) const { return JSUConvertOffsetToPtr<T>(base, mOffset); }
+
+	u32 mOffset; // _00
+};
+
 struct THeader {
-	u8 _00[0x20];                                   // _00
-	u32 mMagic;                                     // _20 'BANK'
-	u32 mInstOffsets[JASBank_MAX_INSTRUMENT + 100]; // _24, theres an extra 100 unused slots
-	u32 mPercOffsets[JASBank_MAX_PERCUSSION];       // _3B4
+	u8 _00[0x20];                                              // _00
+	u32 mMagic;                                                // _20 'BANK'
+	TOffset<TInst> mInstOffsets[JASBank_MAX_INSTRUMENT + 100]; // _24, theres an extra 100 unused slots
+	TOffset<TPerc> mPercOffsets[JASBank_MAX_PERCUSSION];       // _3B4
 };
 
 struct TInst {
-	u8 mMagic[8];                           // _00
-	f32 mVolume;                            // _08
-	f32 mPitch;                             // _0C
-	u32 mOscOffsets[TInst_MAX_OSCILLATORS]; // _10
-	u32 mRandOffsets[TInst_MAX_RAND];       // _18
-	u32 mSenseOffsets[TInst_MAX_SENSE];     // _20
-	u32 mKeyRegionCount;                    // _28
-	u32 mKeymapOffsets[1];                  // _2C actual length depends on mKeyRegionCount
+	u8 mMagic[8];                                     // _00
+	f32 mVolume;                                      // _08
+	f32 mPitch;                                       // _0C
+	TOffset<TOsc> mOscOffsets[TInst_MAX_OSCILLATORS]; // _10
+	TOffset<TRand> mRandOffsets[TInst_MAX_RAND];      // _18
+	TOffset<TSense> mSenseOffsets[TInst_MAX_SENSE];   // _20
+	u32 mKeyRegionCount;                              // _28
+	TOffset<TKeymap> mKeymapOffsets[1];               // _2C actual length depends on mKeyRegionCount
 };
 
 struct TKeymap {
-	u8 mBaseKey;         // _00
-	u32 mVelRegCount;    // _04
-	u32 mVmapOffsets[1]; // _08 actual length depends on mVelRegCount
+	u8 mBaseKey;                    // _00
+	u32 mVelRegCount;               // _04
+	TOffset<TVmap> mVmapOffsets[1]; // _08 actual length depends on mVelRegCount
 };
 
 struct TOsc {
-	u8 mTarget;   // _00
-	f32 mRate;    // _04
-	u32 mAttack;  // _08
-	u32 mRelease; // _0C
-	f32 mWidth;   // _10
-	f32 mVertex;  // _14
+	u8 mTarget;            // _00
+	f32 mRate;             // _04
+	TOffset<s16> mAttack;  // _08
+	TOffset<s16> mRelease; // _0C
+	f32 mWidth;            // _10
+	f32 mVertex;           // _14
 };
 
 struct TPerc {
-	u32 mMagic;                          // _00
-	u8 _04[0x84];                        // _04, padding
-	u32 mPmapOffsets[TPerc_MAX_ENTRIES]; // _88
-	s8 mPanning[TPerc_MAX_ENTRIES];      // _288
-	u16 mRelease[TPerc_MAX_ENTRIES];     // _308
+	u32 mMagic;                                     // _00
+	u8 _04[0x84];                                   // _04, padding
+	TOffset<TPmap> mPmapOffsets[TPerc_MAX_ENTRIES]; // _88
+	s8 mPanning[TPerc_MAX_ENTRIES];                 // _288
+	u16 mRelease[TPerc_MAX_ENTRIES];                // _308
 };
 
 struct TPmap {
-	f32 mPitch;                       // _00
-	f32 mVolume;                      // _04
-	u32 mRandOffsets[TInst_MAX_RAND]; // _08
-	u32 mVeloRegionCount;             // _10
-	u32 mVeloRegionOffsets[1];        // _14 actual length depends on mVeloRegionCount
+	f32 mPitch;                                  // _00
+	f32 mVolume;                                 // _04
+	TOffset<TRand> mRandOffsets[TInst_MAX_RAND]; // _08
+	u32 mVeloRegionCount;                        // _10
+	TOffset<TVmap> mVeloRegionOffsets[1];        // _14 actual length depends on mVeloRegionCount
 };
 
 struct TRand {

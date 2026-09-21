@@ -71,9 +71,9 @@ void J3DMtxCalcCalcTransformSoftimage::calcTransform(const J3DTransformInfo& tra
 
 	MtxP anmMtx = mtxBuf->getAnmMtx(jntNo);
 
-	J3DGetTranslateRotateMtx(transInfo.mRotation.x, transInfo.mRotation.y, transInfo.mRotation.z,
-	                         transInfo.mTranslation.x * J3DSys::mCurrentS.x, transInfo.mTranslation.y * J3DSys::mCurrentS.y,
-	                         transInfo.mTranslation.z * J3DSys::mCurrentS.z, anmMtx);
+	SVec& rotation = const_cast<SVec&>(transInfo.mRotation);
+	J3DGetTranslateRotateMtx(rotation.x, rotation.y, rotation.z, transInfo.mTranslation.x * J3DSys::mCurrentS.x,
+	                         transInfo.mTranslation.y * J3DSys::mCurrentS.y, transInfo.mTranslation.z * J3DSys::mCurrentS.z, anmMtx);
 	PSMTXConcat(J3DSys::mCurrentMtx, anmMtx, J3DSys::mCurrentMtx);
 
 	J3DSys::mCurrentS.x *= transInfo.mScale.x;
@@ -90,107 +90,6 @@ void J3DMtxCalcCalcTransformSoftimage::calcTransform(const J3DTransformInfo& tra
 		mtxBuf->setScaleFlag(jntNo, 1);
 		PSMTXCopy(J3DSys::mCurrentMtx, anmMtx);
 	}
-
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r27, 0xc(r1)
-	mr       r27, r3
-	lis      r3, mCurrentS__6J3DSys@ha
-	lfs      f1, 0x14(r27)
-	addi     r29, r3, mCurrentS__6J3DSys@l
-	lfs      f4, 0x18(r27)
-	lfs      f3, 0x1c(r27)
-	lha      r5, 0x10(r27)
-	lwz      r4, mJoint__10J3DMtxCalc@sda21(r13)
-	lfs      f0, 0(r29)
-	lhz      r30, 0x14(r4)
-	lwz      r28, mMtxBuffer__10J3DMtxCalc@sda21(r13)
-	fmuls    f1, f1, f0
-	lfs      f2, 4(r29)
-	mulli    r0, r30, 0x30
-	lfs      f0, 8(r29)
-	lwz      r3, 0xc(r28)
-	fmuls    f2, f4, f2
-	fmuls    f3, f3, f0
-	lha      r4, 0xe(r27)
-	add      r31, r3, r0
-	lha      r3, 0xc(r27)
-	mr       r6, r31
-	bl       J3DGetTranslateRotateMtx__FsssfffPA4_f
-	lis      r3, mCurrentMtx__6J3DSys@ha
-	mr       r4, r31
-	addi     r3, r3, mCurrentMtx__6J3DSys@l
-	mr       r5, r3
-	bl       PSMTXConcat
-	lis      r3, mCurrentS__6J3DSys@ha
-	lfs      f1, 0(r27)
-	lfsu     f2, mCurrentS__6J3DSys@l(r3)
-	lfs      f3, 4(r29)
-	fmuls    f4, f2, f1
-	lfs      f0, 4(r27)
-	lfs      f2, 8(r29)
-	fmuls    f3, f3, f0
-	lfs      f1, 8(r27)
-	lfs      f0, lbl_80516A78@sda21(r2)
-	fmuls    f1, f2, f1
-	stfs     f4, 0(r3)
-	fcmpu    cr0, f0, f4
-	stfs     f3, 4(r29)
-	stfs     f1, 8(r29)
-	bne      lbl_8006B520
-	fcmpu    cr0, f0, f3
-	bne      lbl_8006B520
-	fcmpu    cr0, f0, f1
-	bne      lbl_8006B520
-	li       r0, 1
-	b        lbl_8006B524
-
-lbl_8006B520:
-	li       r0, 0
-
-lbl_8006B524:
-	cmpwi    r0, 0
-	bne      lbl_8006B580
-	lwz      r5, 4(r28)
-	li       r0, 0
-	lis      r3, mCurrentS__6J3DSys@ha
-	lis      r4, mCurrentMtx__6J3DSys@ha
-	stbx     r0, r5, r30
-	addi     r5, r3, mCurrentS__6J3DSys@l
-	addi     r3, r4, mCurrentMtx__6J3DSys@l
-	mr       r4, r31
-	lfs      f1, 0(r5)
-	lfs      f2, 4(r29)
-	lfs      f3, 8(r29)
-	bl       JMAMTXApplyScale__FPA4_CfPA4_ffff
-	lis      r3, mCurrentMtx__6J3DSys@ha
-	addi     r3, r3, mCurrentMtx__6J3DSys@l
-	lfs      f0, 0xc(r3)
-	stfs     f0, 0xc(r31)
-	lfs      f0, 0x1c(r3)
-	stfs     f0, 0x1c(r31)
-	lfs      f0, 0x2c(r3)
-	stfs     f0, 0x2c(r31)
-	b        lbl_8006B59C
-
-lbl_8006B580:
-	lwz      r5, 4(r28)
-	li       r0, 1
-	lis      r3, mCurrentMtx__6J3DSys@ha
-	mr       r4, r31
-	stbx     r0, r5, r30
-	addi     r3, r3, mCurrentMtx__6J3DSys@l
-	bl       PSMTXCopy
-
-lbl_8006B59C:
-	lmw      r27, 0xc(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**

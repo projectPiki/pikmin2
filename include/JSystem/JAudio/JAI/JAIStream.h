@@ -149,6 +149,8 @@ struct JAIStream : public JAISound {
 		mStreamParameter.mChannelDolbys  = new (JAIBasic::msCurrentHeap, 0x20) JAInter::MoveParaSet[JAInter::StreamMgr::sChannelMax];
 	}
 
+	JAInter::StreamParameter* getStreamParameter() { return &mStreamParameter; }
+
 	// _00-_10  = JSULink
 	// _10      = VTABLE
 	// _14-_48  = JAISound

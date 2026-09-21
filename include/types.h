@@ -96,4 +96,12 @@ typedef u16 wchar_t;
 #define FAST_COPY(dst, src, size) memcpy((dst), (src), (size))
 #endif
 
+// byte-matching hack to force something to hang around longer
+// in MWCC's register allocation steps
+#ifdef __MWERKS__
+#define BUMP_VAR(value) asm { mr value, value }
+#else
+#define BUMP_VAR(value) ((void)0)
+#endif
+
 #endif // _TYPES_H
