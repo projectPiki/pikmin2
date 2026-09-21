@@ -224,7 +224,7 @@ void THiScore::doCreate(JKRArchive* arc)
 	if (disp->isID(OWNER_MRMR, MEMBER_HIGH_SCORE)) {
 		mDisp = disp;
 		P2ASSERTLINE(287, mDisp);
-		mIsAllTreasures = sys->getPlayCommonData()->mChallengeFlags.isSet(2);
+		mIsAllTreasures = sys->getPlayCommonData()->mCommonStoryFlags.isSet(Game::PlayCommonData::CommonData_AllTreasures);
 	} else {
 		mDisp      = new DispMemberHighScore;
 		mIsSection = true;
@@ -1495,7 +1495,7 @@ void THiScore::changePaneInfo()
 		mMainScreen->mScreenObj->search('Notakara')->show();
 	} else {
 		mHighScorePic->show();
-		if (!mIsSection && !(sys->getPlayCommonData()->mChallengeFlags.isSet(1))) {
+		if (!mIsSection && !(sys->getPlayCommonData()->mCommonStoryFlags.isSet(Game::PlayCommonData::CommonData_DebtRepayed))) {
 			mHighScorePic->hide();
 		}
 		mMainScreen->mScreenObj->search('Notakara')->hide();
@@ -1644,7 +1644,7 @@ int THiScore::getRecord(int type, int id)
 		if (debug) {
 			return 1.0f + 10.0f * randFloat();
 		}
-		if (sys->getPlayCommonData()->mChallengeFlags.isSet(1)) {
+		if (sys->getPlayCommonData()->mCommonStoryFlags.isSet(Game::PlayCommonData::CommonData_DebtRepayed)) {
 			return sys->getPlayCommonData()->getHighscore_clear(orderID)->getScore(0);
 		}
 		return -1;
@@ -1653,7 +1653,7 @@ int THiScore::getRecord(int type, int id)
 		if (debug) {
 			return 10.0f + 100.0f * randFloat();
 		}
-		if (sys->getPlayCommonData()->mChallengeFlags.isSet(1)) {
+		if (sys->getPlayCommonData()->mCommonStoryFlags.isSet(Game::PlayCommonData::CommonData_DebtRepayed)) {
 			return sys->getPlayCommonData()->getHighscore_clear(orderID)->getScore(1);
 		}
 		return -1;
@@ -1665,7 +1665,7 @@ int THiScore::getRecord(int type, int id)
 			}
 			return 110.0f + 1000.0f * randFloat();
 		}
-		if (sys->getPlayCommonData()->mChallengeFlags.isSet(1)) {
+		if (sys->getPlayCommonData()->mCommonStoryFlags.isSet(Game::PlayCommonData::CommonData_DebtRepayed)) {
 			return sys->getPlayCommonData()->getHighscore_clear(orderID)->getScore(2);
 		}
 		return -1;
@@ -1674,7 +1674,7 @@ int THiScore::getRecord(int type, int id)
 		if (debug) {
 			return 10.f + 100.0f * randFloat();
 		}
-		if (sys->getPlayCommonData()->mChallengeFlags.isSet(1)) {
+		if (sys->getPlayCommonData()->mCommonStoryFlags.isSet(Game::PlayCommonData::CommonData_DebtRepayed)) {
 			return sys->getPlayCommonData()->getHighscore_complete(orderID)->getScore(0);
 		}
 		return -1;
@@ -1683,7 +1683,7 @@ int THiScore::getRecord(int type, int id)
 		if (debug) {
 			return 110.0f + 100.0f * randFloat();
 		}
-		if (sys->getPlayCommonData()->mChallengeFlags.isSet(1)) {
+		if (sys->getPlayCommonData()->mCommonStoryFlags.isSet(Game::PlayCommonData::CommonData_DebtRepayed)) {
 			return sys->getPlayCommonData()->getHighscore_complete(orderID)->getScore(1);
 		}
 		return -1;
@@ -1692,7 +1692,7 @@ int THiScore::getRecord(int type, int id)
 		if (debug) {
 			return 1100.0f + 100000.0f * randFloat();
 		}
-		if (sys->getPlayCommonData()->mChallengeFlags.isSet(1)) {
+		if (sys->getPlayCommonData()->mCommonStoryFlags.isSet(Game::PlayCommonData::CommonData_DebtRepayed)) {
 			return sys->getPlayCommonData()->getHighscore_complete(orderID)->getScore(2);
 		}
 		return -1;

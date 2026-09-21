@@ -106,8 +106,16 @@ inline int CaveOtakaraInfo::getCaveIndex_FromID(ID32& id)
  * @note Address: N/A
  * @note Size: 0x3C
  */
-inline ID32* CaveOtakaraInfo::getCaveID_FromIndex(int)
+inline ID32* CaveOtakaraInfo::getCaveID_FromIndex(int index)
 {
+	CaveOtakara* caveNode;
+	for (int idx = 0; idx < mCount; idx++) {
+		caveNode = (CaveOtakara*)mOwner.getChildAt(idx);
+
+		if (idx == index) {
+			return &caveNode->mId;
+		}
+	}
 	return nullptr;
 	// UNUSED FUNCTION
 }
@@ -462,17 +470,6 @@ void Stages::createMapMgr(Game::CourseInfo* info, Game::RouteMgr* routeMgr)
 
 	static_cast<ShapeMapMgr*>(mapMgr)->load(loadarg);
 }
-
-} // namespace Game
-
-/**
- * @note Address: 0x801AE254
- * @note Size: 0x60
- * AUTOGEN
- */
-// MapCollision::~MapCollision() { }
-
-namespace Game {
 
 /**
  * @note Address: N/A

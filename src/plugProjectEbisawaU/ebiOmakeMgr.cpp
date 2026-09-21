@@ -52,7 +52,8 @@ void FSMState_OmakeScreen::do_init(TMgr* mgr, Game::StateArg*)
 {
 	if (!mgr->mStateMachine.mCurrentID) {
 
-		Screen::ArgOpenOmake arg(sys->getPlayCommonData()->mChallengeFlags.isSet(1), sys->getPlayCommonData()->mChallengeFlags.isSet(2),
+		Screen::ArgOpenOmake arg(sys->getPlayCommonData()->mCommonStoryFlags.isSet(Game::PlayCommonData::CommonData_DebtRepayed),
+		                         sys->getPlayCommonData()->mCommonStoryFlags.isSet(Game::PlayCommonData::CommonData_AllTreasures),
 		                         sys->getPlayCommonData()->isPerfectChallenge());
 		arg.mUnusedVal = -1;
 

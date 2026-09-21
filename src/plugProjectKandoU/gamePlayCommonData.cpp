@@ -31,7 +31,7 @@ PlayCommonData::PlayCommonData()
  */
 void PlayCommonData::reset()
 {
-	mChallengeFlags.clear();
+	mCommonStoryFlags.clear();
 	mChallengeData.reset();
 	for (int i = 0; i < GAME_HIGHSCORE_COUNT; i++) {
 		mHiScoreClear[i]->clear();
@@ -63,7 +63,7 @@ void PlayChallengeGameData::reset()
 void PlayCommonData::write(Stream& output)
 {
 	output.writeInt(2);
-	output.writeBytes(&mChallengeFlags.typeView, 1);
+	output.writeBytes(&mCommonStoryFlags.typeView, 1);
 	for (int i = 0; i < GAME_HIGHSCORE_COUNT; i++) {
 		mHiScoreClear[i]->write(output);
 		mHiScoreComplete[i]->write(output);
@@ -78,9 +78,9 @@ void PlayCommonData::write(Stream& output)
  */
 void PlayCommonData::read(Stream& stream)
 {
-	u32 fileInt              = stream.readInt();
-	u8 fileByte              = stream.readByte();
-	mChallengeFlags.typeView = fileByte;
+	u32 fileInt                = stream.readInt();
+	u8 fileByte                = stream.readByte();
+	mCommonStoryFlags.typeView = fileByte;
 	if (fileInt >= 2) {
 		for (int i = 0; i < GAME_HIGHSCORE_COUNT; i++) {
 			mHiScoreClear[i]->read(stream);
@@ -189,7 +189,7 @@ bool PlayCommonData::isLouieRescued()
  */
 bool PlayCommonData::isPerfectChallenge()
 {
-	if ((mChallengeFlags.isSet(4))) {
+	if ((mCommonStoryFlags.isSet(CommonData_LouieDarkSecret))) {
 		return true;
 	}
 	for (int i = 0; i < mChallengeData.mCourseCount; i++) {
@@ -198,7 +198,7 @@ bool PlayCommonData::isPerfectChallenge()
 			return false;
 		}
 	}
-	mChallengeFlags.set(4);
+	mCommonStoryFlags.set(CommonData_LouieDarkSecret);
 	return true;
 }
 
@@ -382,7 +382,7 @@ void PlayCommonData::challenge_setKunsho(int index)
 			return;
 		}
 	}
-	mChallengeFlags.set(4);
+	mCommonStoryFlags.set(CommonData_LouieDarkSecret);
 }
 
 /**

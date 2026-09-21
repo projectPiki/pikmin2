@@ -10,7 +10,7 @@
 #include "id32.h"
 #include "kh/khDayEndResult.h"
 
-// HOW MUCH IS THE DEBT
+// HOW MUCH IS THE DEBT (this value only affects a couple menus, the important value is in the game's own aiConstants.txt file)
 #define DEBT_AMOUNT (10000)
 
 namespace Game {
@@ -18,12 +18,14 @@ struct CourseInfo;
 struct Pellet;
 struct BasePelletMgr;
 
+// These represent progress of a specific game, see PlayCommonData for the global flags
 enum StoryFlags {
 	STORY_DebtPaid              = 0x1, // debt has been repaid
 	STORY_AllTreasuresCollected = 0x2, // all 201 treasures have been collected
 	STORY_LouieRescued          = 0x4, // louie collected? seems to get set by PelletGoalState::checkMovie and not used
 };
 
+// Flags used to determine if cutscenes have been seen
 enum DemoFlags {
 	DEMO_Pluck_First_Pikmin      = 0,  // 20s after first seed from red onion
 	DEMO_Discover_Treasure       = 1,  // within 200u (+ radius) of standard treasure
@@ -72,13 +74,13 @@ enum DemoFlags {
 	DEMO_Discover_Bulbmin        = 44, // whistle bulbmin for first time
 	DEMO_Whites_Digging          = 45, // first time FULLY buried treasure takes damage
 	DEMO_Reds_Purples_Tutorial   = 46, // reds and purples cutscene, 20s after both close in party
-	DEMO_Pikmin_In_Danger_Fire   = 47, //
+	DEMO_Pikmin_In_Danger_Fire   = 47, // set if a Pikmin has been on fire for 2 seconds
 	DEMO_You_Appear_Lost         = 48, // 3min after 15+ red pikmin on field if captains not reunited (needs 15w scale block or crashes)
 	DEMO_First_Number_Pellet     = 49, // collect number pellet for first time
 	DEMO_Waterwraith_Appears     = 50, // waterwraith spawning on Submerged Castle 1-4
-	DEMO_Pikmin_In_Danger_Water  = 51,
-	DEMO_Pikmin_In_Danger_Poison = 52,
-	DEMO_UNK_53                  = 53,
+	DEMO_Pikmin_In_Danger_Water  = 51, // set if a Pikmin is in a bubble for 2 seconds
+	DEMO_Pikmin_In_Danger_Poison = 52, // set if a Pikmin is poisoned for 2 seconds
+	DEMO_UNK_53                  = 53, // unused
 	DEMO_RADAR_ENABLED           = 54, // these arent even for cutscenes, they're specifically for hud stuff
 	DEMO_SPICY_ENABLED           = 55,
 	DEMO_BITTER_ENABLED          = 56,
@@ -104,7 +106,7 @@ struct CaveSaveData {
 	bool mIsInCave;           // _00
 	int mCourseIdx;           // _04
 	ID32 mCurrentCaveID;      // _08
-	PikiContainer mCavePikis; // _14, guessed name
+	PikiContainer mCavePikis; // _14
 	f32 mTime;                // _1C
 	u8 mIsWaterwraithAlive;   // _20
 	f32 mWaterwraithTimer;    // _24
@@ -114,10 +116,12 @@ struct CaveSaveData {
 };
 
 struct KindCounter {
+	// These bit flags are only actually used for mKinds in PelletFirstMemory. For PelletCropMemory, mKinds holds how many of the pellet you
+	// have obtained instead.
 	enum Flags {
-		KCF_Unset    = 0,
-		KCF_Unknown1 = 1,
-		KCF_Earned   = 2,
+		KCF_Unset  = 0, // default
+		KCF_Earned = 2, // the pellet has been collected and should be in the treasure hoard
+		KCF_IsOld  = 4, // the pellet has been seen in the treasure hoard and is not new
 	};
 	KindCounter();
 
@@ -137,7 +141,7 @@ struct KindCounter {
 	inline int getNumKinds() const { return mNumKinds; }
 
 	u16 mNumKinds; // _00
-	u8* mKinds;    // _04
+	u8* mKinds;    // _04, stores the number of every pellet collected
 };
 
 /**
@@ -175,15 +179,8 @@ struct OlimarData {
 	void read(Stream&);
 
 	/**
-	 * Returns the map type based on the given collection flags.
-	 *
-	 * @param hasPrototypeDetector A boolean indicating whether the Prototype Detector item has been collected.
-	 * @param hasNapsack A boolean indicating whether the Five-Man Napsack item has been collected.
-	 * @return An integer representing the map type:
-	 * 		0 = None
-	 * 		1 = Prototype Detector
-	 * 		2 = Napsack
-	 * 		3 = Both
+	 * This function is never used for anything that gets seen and should be ignored for modding
+	 * Seemingly the pause map screen would have checked if you have the treasure radar/napsack unlocked
 	 */
 	static inline int getDetectorFlags(bool hasPrototypeDetector, bool hasNapsack)
 	{
@@ -253,10 +250,10 @@ struct PelletFirstMemory : public PelletCropMemory {
  */
 struct PlayData : public CNode {
 	enum CourseFlags {
-		PDCF_Unset    = 0x0,
-		PDCF_Open     = 0x1,
-		PDCF_JustOpen = 0x2,
-		PDCF_Visited  = 0x4,
+		PDCF_Unset    = 0x0, // default
+		PDCF_Open     = 0x1, // Course is unlocked and can be visited
+		PDCF_JustOpen = 0x2, // Course is newly unlocked and should show the world map animation
+		PDCF_Visited  = 0x4, // Course has been visited before
 	};
 	/**
 	 * @size{0xC}

@@ -193,7 +193,7 @@ void EndingState::exec(SingleGameSection* game)
 
 					playData->clearCurrentCave();
 					sys->mPlayData->mDoSaveOptions = true;
-					sys->getPlayCommonData()->mChallengeFlags.set(1);
+					sys->getPlayCommonData()->mCommonStoryFlags.set(PlayCommonData::CommonData_DebtRepayed);
 					// Only open Wistful Wild if Perplexing Pool is opened
 					if (playData->courseOpen(2)) {
 						playData->openCourse(3);
@@ -257,7 +257,7 @@ void EndingState::exec(SingleGameSection* game)
 
 				playData->clearCurrentCave();
 				sys->mPlayData->mDoSaveOptions = true;
-				sys->getPlayCommonData()->mChallengeFlags.set(2);
+				sys->getPlayCommonData()->mCommonStoryFlags.set(PlayCommonData::CommonData_AllTreasures);
 				playData->setStoryFlag(STORY_AllTreasuresCollected);
 				mStatus = EndingStatus_ShowFinalResultsComplete;
 				playData->setSaveFlag(STORYSAVE_WorldMap, nullptr);
@@ -281,7 +281,7 @@ void EndingState::exec(SingleGameSection* game)
 
 					playData->clearCurrentCave();
 					sys->mPlayData->mDoSaveOptions = true;
-					sys->getPlayCommonData()->mChallengeFlags.set(2);
+					sys->getPlayCommonData()->mCommonStoryFlags.set(PlayCommonData::CommonData_AllTreasures);
 					playData->setStoryFlag(STORY_AllTreasuresCollected);
 					mStatus = EndingStatus_ShowFinalResultsComplete;
 					playData->setSaveFlag(STORYSAVE_WorldMap, nullptr);

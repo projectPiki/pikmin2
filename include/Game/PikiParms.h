@@ -50,23 +50,23 @@ struct PikiParms : public FakePikiParms {
 		    , mWhiteDistanceFree(this, 'p032', "white 距離(Free)", 200.0f, 0.0f, 10000.0f)     // 'white distance (Free)'
 		    , mGrayDistanceFree(this, 'p033', "gray 距離(Free)", 800.0f, 0.0f, 10000.0f)       // 'gray distance (Free)'
 		    , mWallPushTimeDynamic(this, 'p035', "壁を押し始める時間(Dynamic)", 0.6f, 0.0f,
-		                           10.0f) // 'time to start pushing against the wall (Dynamic)'
+			                       10.0f) // 'time to start pushing against the wall (Dynamic)'
 		    , mWallPushTimeStatic(this, 'p036', "壁を押し始める時間(Static)", 0.6f, 0.0f,
-		                          10.0f)                                                // 'time to start pushing against the wall (Static)'
+			                      10.0f)                                                // 'time to start pushing against the wall (Static)'
 		    , mTimeToFree(this, 'p040', "フリーになるまでの時間", 15.0f, 1.0f, 1080.0f) // 'time to free'
 		    , mEnemySearchRange(this, 'p041', "敵のサーチエリア", 60.0f, 1.0f, 1000.0f) // 'enemy search area'
 		    , mPelletSearchRange(this, 'p042', "Pelletのサーチエリア", 30.0f, 1.0f, 1000.0f)     // 'pellet search area'
 		    , mNectarRockSearchRange(this, 'P010', "農耕岩のサーチエリア", 30.0f, 1.0f, 1000.0f) // 'agricultural rock search area' (lmao)
-		    , mNectarRockRangeDuplicate(this, 'P011', "農耕岩のサーチエリア", 40.0f, 1.0f,
-		                                1000.0f)                                           // 'agricultural rock search area' (mistake?)
-		    , mBridgeSearchRange(this, 'P012', "橋のサーチエリア", 100.0f, 1.0f, 1000.0f)  // 'bridge search area'
-		    , mClogSearchRange(this, 'P013', "壊す岩のサーチエリア", 30.0f, 1.0f, 1000.0f) // 'breaking rock search area'
+		    , mGateSearchRange(this, 'P011', "農耕岩のサーチエリア", 40.0f, 1.0f,
+			                   1000.0f) // 'agricultural rock search area' (should refer to gates)
+		    , mBridgeSearchRange(this, 'P012', "橋のサーチエリア", 100.0f, 1.0f, 1000.0f)              // 'bridge search area'
+		    , mClogSearchRange(this, 'P013', "壊す岩のサーチエリア", 30.0f, 1.0f, 1000.0f)             // 'breaking rock search area'
 		    , mBuriedTreasureSearchRange(this, 'P014', "掘り出し物サーチエリア", 30.0f, 1.0f, 1000.0f) // 'bargain search area' (lmao??)
 		    , mSpiderWortSearchRange(this, 'P015', "農耕植物のサーチエリア", 30.0f, 1.0f, 1000.0f)     // 'agricultural plant search area'
 		    , mKnockdownRecoverTimeMax(this, 'p043', "はじかれて起きるまでの最長時間", 0.7f, 0.0f,
-		                               10.0f) // 'max time to wake up after being repelled'
+			                           10.0f) // 'max time to wake up after being repelled'
 		    , mKnockdownRecoverTimeMin(this, 'p074', "はじかれて起きるまでの最小時間", 0.7f, 0.0f,
-		                               10.0f) // 'min time to wake up after being repelled'
+			                           10.0f) // 'min time to wake up after being repelled'
 		    , mSeedLeaftoBudTime(this, 'p044', "leaf->bud    の時間（秒）", 10.0f, 1.0f, 1000.0f)      // 'leaf->bud time (seconds)'
 		    , mSeedBudToFlowerTime(this, 'p045', "bud->flower  の時間（秒）", 10.0f, 1.0f, 1000.0f)    // 'bud->flower time (seconds)'
 		    , mSeedFlowerToWitherTime(this, 'p046', "flower->seed の時間（秒）", 10.0f, 1.0f, 1000.0f) // 'flower->seed time (seconds)'
@@ -79,7 +79,7 @@ struct PikiParms : public FakePikiParms {
 		    , mWitheredHideTime(this, 'p053', "rebirthTime（秒）", 1.0f, 0.0f, 300.0f)     // 'rebirthTime (seconds)'
 		    , mPanicMaxTime(this, 'p055', "火に包まれて死ぬまでの時間", 3.0f, 0.0f, 30.0f) // 'time until death in fire'
 		    , mFlowerPikiRefundChance(this, 'p056', "花ピキが種として再生する確率", 0.8f, 0.0f,
-		                              1.0f)                                         // 'probability of flower piki regenerating as seeds'
+			                          1.0f)                                         // 'probability of flower piki regenerating as seeds'
 		    , mPikiBombFuseTime(this, 'p057', "爆発までの時間", 2.0f, 0.0f, 60.0f)  // 'time to detonation/explosion'
 		    , mPikiBombAOERange(this, 'p058', "爆弾効果範囲", 50.0f, 0.0f, 1000.0f) // 'bomb area of effect'
 		    , mPikiBombGateDamage(this, 'p059', "爆弾ダメージ量 水門", 200.0f, 0.0f, 1000.0f) // 'bomb damage floodgate'
@@ -165,7 +165,7 @@ struct PikiParms : public FakePikiParms {
 		Parm<f32> mEnemySearchRange;          // _968, p041, search ranges when idle
 		Parm<f32> mPelletSearchRange;         // _990, p042
 		Parm<f32> mNectarRockSearchRange;     // _9B8, P010,
-		Parm<f32> mNectarRockRangeDuplicate;  // _9E0, P011, duplicate of above?
+		Parm<f32> mGateSearchRange;           // _9E0, P011, duplicate of above?
 		Parm<f32> mBridgeSearchRange;         // _A08, P012
 		Parm<f32> mClogSearchRange;           // _A30, P013
 		Parm<f32> mBuriedTreasureSearchRange; // _A58, P014

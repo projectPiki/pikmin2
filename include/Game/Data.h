@@ -10,10 +10,11 @@
 namespace Game {
 struct PlayChallengeGameData {
 	enum Flags {
-		PCGDF_Unset          = 0x0,
-		PCGDF_IsPlayable     = 0x1,
-		PCGDF_IsNotVirgin    = 0x2,
-		PCGDF_IsLouieRescued = 0x4,
+		PCGDF_Unset          = 0x0, // default
+		PCGDF_IsPlayable     = 0x1, // set if challenge mode is unlocked
+		PCGDF_IsNotVirgin    = 0x2, // set if challenge mode has been played before
+		PCGDF_IsLouieRescued = 0x4, // set when Louie is recovered from the Titan Dweevil
+		                            // (why is this in challenge mode flags instead of common story flags?)
 	};
 
 	struct CourseState {
@@ -58,7 +59,7 @@ struct PlayChallengeGameData {
 		}
 
 		BitFlag<u16> mFlags;      // _00
-		Highscore mHighscores[2]; // _04, 0 = 1Player, 1 = 2Player
+		Highscore mHighscores[2]; // _04, 0 = 1 Player, 1 = 2 Player
 	};
 
 	PlayChallengeGameData();
@@ -74,6 +75,14 @@ struct PlayChallengeGameData {
 };
 
 struct PlayCommonData {
+	enum Flags {
+		CommonData_Unset           = 0x0, // default
+		CommonData_DebtRepayed     = 0x1, // set when debt is repayed on any file
+		CommonData_AllTreasures    = 0x2, // set when all treasures are collected on any file
+		CommonData_LouieDarkSecret = 0x4, // set when Louie's Dark Secret is unlocked
+		                                  // See PlayChallengeGameData::Flags for the Louie Rescued from Titan Dweevil flag
+	};
+
 	PlayCommonData();
 
 	void reset();
@@ -116,7 +125,7 @@ struct PlayCommonData {
 	bool challenge_checkJustKunsho(int);
 	void challenge_setKunsho(int);
 
-	BitFlag<u8> mChallengeFlags;          // _00
+	BitFlag<u8> mCommonStoryFlags;        // _00
 	Highscore** mHiScoreClear;            // _04 (for repay debt)
 	Highscore** mHiScoreComplete;         // _08 (for all treasures)
 	PlayChallengeGameData mChallengeData; // _0C
