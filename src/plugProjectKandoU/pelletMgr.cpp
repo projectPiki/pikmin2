@@ -931,23 +931,8 @@ void Pellet::onInit(CreatureInitArg* initArg)
 		mIsDynamic   = true;
 	}
 
-	mSlots.mSlots[0]  = 0;
-	mSlots.mSlots[1]  = 0;
-	mSlots.mSlots[2]  = 0;
-	mSlots.mSlots[3]  = 0;
-	mSlots.mSlots[4]  = 0;
-	mSlots.mSlots[5]  = 0;
-	mSlots.mSlots[6]  = 0;
-	mSlots.mSlots[7]  = 0;
-	mSlots.mSlots[8]  = 0;
-	mSlots.mSlots[9]  = 0;
-	mSlots.mSlots[10] = 0;
-	mSlots.mSlots[11] = 0;
-	mSlots.mSlots[12] = 0;
-	mSlots.mSlots[13] = 0;
-	mSlots.mSlots[14] = 0;
-	mSlots.mSlots[15] = 0;
-	mIsAlwaysCarried  = 0;
+	mSlots.clear();
+	mIsAlwaysCarried = 0;
 
 	mSlotCount = getPelletConfigMax();
 
@@ -3689,9 +3674,7 @@ bool Pellet::isSlotFree(s16 slot)
 
 	P2ASSERTBOUNDSLINE(3686, 0, slot, mSlotCount);
 
-	u32 index = slot >> 3;
-	u32 flag  = 1 << slot - index * 8;
-	return !(flag & mSlots.mSlots[15 - index]);
+	return !mSlots.isBitSet(slot);
 }
 
 /**
@@ -3714,42 +3697,11 @@ int Pellet::getSpeicalSlot()
 s16 Pellet::getFreeStickSlot()
 {
 	for (int slot = 0; slot < mSlotCount; slot++) {
-		u32 index = slot >> 3;
-		u32 flag  = 1 << slot - index * 8;
-		if (!(flag & mSlots.mSlots[15 - index])) {
+		if (!mSlots.isBitSet(slot)) {
 			return slot;
 		}
 	}
 	return -1;
-	/*
-	lha      r0, 0x3f4(r3)
-	li       r7, 0
-	li       r6, 1
-	mtctr    r0
-	cmpwi    r0, 0
-	ble      lbl_8016A510
-
-lbl_8016A4DC:
-	srawi    r4, r7, 3
-	subfic   r0, r4, 0xf
-	slwi     r5, r4, 3
-	add      r4, r3, r0
-	subf     r5, r5, r7
-	lbz      r0, 0x3e4(r4)
-	slw      r4, r6, r5
-	and.     r0, r4, r0
-	bne      lbl_8016A508
-	extsh    r3, r7
-	blr
-
-lbl_8016A508:
-	addi     r7, r7, 1
-	bdnz     lbl_8016A4DC
-
-lbl_8016A510:
-	li       r3, -1
-	blr
-	*/
 }
 
 /**
@@ -3762,9 +3714,7 @@ s16 Pellet::getNearFreeStickSlot(Vector3f& position)
 	s16 returnSlot = -1;
 
 	for (s16 slot = 0; slot < mSlotCount; slot++) {
-		u32 index = slot >> 3;
-		u32 flag  = 1 << slot - index * 8;
-		if (!(flag & mSlots.mSlots[15 - index])) {
+		if (!mSlots.isBitSet(slot)) {
 			Vector3f slotPosition;
 			calcStickSlotGlobal(slot, slotPosition);
 			f32 dist = slotPosition.distance(position);
@@ -3775,92 +3725,6 @@ s16 Pellet::getNearFreeStickSlot(Vector3f& position)
 		}
 	}
 	return returnSlot;
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stfd     f31, 0x30(r1)
-	psq_st   f31, 56(r1), 0, qr0
-	stw      r31, 0x2c(r1)
-	stw      r30, 0x28(r1)
-	stw      r29, 0x24(r1)
-	stw      r28, 0x20(r1)
-	lfs      f31, lbl_805189C0@sda21(r2)
-	mr       r28, r3
-	mr       r29, r4
-	li       r31, -1
-	li       r30, 0
-	b        lbl_8016A604
-
-lbl_8016A554:
-	extsh    r6, r30
-	li       r5, 1
-	srawi    r3, r6, 3
-	subfic   r0, r3, 0xf
-	slwi     r4, r3, 3
-	add      r3, r28, r0
-	subf     r4, r4, r6
-	lbz      r0, 0x3e4(r3)
-	slw      r3, r5, r4
-	and.     r0, r3, r0
-	bne      lbl_8016A600
-	mr       r3, r28
-	mr       r4, r30
-	lwz      r12, 0(r28)
-	addi     r5, r1, 8
-	lwz      r12, 0x180(r12)
-	mtctr    r12
-	bctrl
-	lfs      f1, 0xc(r1)
-	lfs      f0, 4(r29)
-	lfs      f3, 8(r1)
-	fsubs    f4, f1, f0
-	lfs      f2, 0(r29)
-	lfs      f1, 0x10(r1)
-	lfs      f0, 8(r29)
-	fsubs    f3, f3, f2
-	fmuls    f4, f4, f4
-	fsubs    f2, f1, f0
-	lfs      f0, lbl_80518914@sda21(r2)
-	fmadds   f1, f3, f3, f4
-	fmuls    f2, f2, f2
-	fadds    f1, f2, f1
-	fcmpo    cr0, f1, f0
-	ble      lbl_8016A5EC
-	ble      lbl_8016A5F0
-	frsqrte  f0, f1
-	fmuls    f1, f0, f1
-	b        lbl_8016A5F0
-
-lbl_8016A5EC:
-	fmr      f1, f0
-
-lbl_8016A5F0:
-	fcmpo    cr0, f1, f31
-	bge      lbl_8016A600
-	fmr      f31, f1
-	mr       r31, r30
-
-lbl_8016A600:
-	addi     r30, r30, 1
-
-lbl_8016A604:
-	lha      r0, 0x3f4(r28)
-	extsh    r3, r30
-	cmpw     r3, r0
-	blt      lbl_8016A554
-	mr       r3, r31
-	psq_l    f31, 56(r1), 0, qr0
-	lwz      r0, 0x44(r1)
-	lfd      f31, 0x30(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	lwz      r28, 0x20(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
 }
 
 /**
@@ -3873,10 +3737,8 @@ s16 Pellet::getRandomFreeStickSlot()
 	s16 randomSlot = randInt(slotCap);
 	int slotByte   = 128;
 	s16 returnSlot = -1;
-	for (s16 slot = 0; slot < slotCap; slot++) {
-		u32 index = slot >> 3;
-		u32 flag  = 1 << slot - index * 8;
-		if (!(flag & mSlots.mSlots[15 - index])) {
+	for (u16 slot = 0; slot < slotCap; slot++) {
+		if (!mSlots.isBitSet(slot)) {
 			int slotDiff    = slot - randomSlot;
 			int slotShift   = slotDiff >> 31;
 			int newSlotByte = (slotShift ^ slotDiff) - slotShift;
@@ -4055,7 +3917,7 @@ void Pellet::onSlotStickStart(Creature* creature, s16 slot)
 	if (slot != 9999) {
 		P2ASSERTBOUNDSLINE(3917, 0, slot, mSlotCount);
 		P2ASSERTLINE(3918, isSlotFree(slot));
-		setSlotOccupied(slot);
+		mSlots.setBit(slot);
 	}
 
 	if (creature->isPiki()) {
@@ -4086,7 +3948,7 @@ void Pellet::onSlotStickEnd(Creature* creature, s16 slot)
 		if (isSlotFree(slot)) {
 			JUT_PANICLINE(3956, "onSlotStickEnd\n");
 		}
-		setSlotFree(slot);
+		mSlots.unsetBit(slot);
 	}
 
 	if (creature->isPiki()) {
@@ -5198,27 +5060,27 @@ void PelletMgr::setupResources()
 Pellet* PelletMgr::calcNearestTreasure(Vector3f& position, f32 radius)
 {
 	Pellet* nearest = nullptr;
-	f32 distance = radius;
+	f32 distance    = radius;
 	Iterator<PelletOtakara::Object> iterOta(PelletOtakara::mgr);
 	CI_LOOP(iterOta)
 	{
-		Pellet* pellet = *iterOta;
-		Vector3f offset = pellet->getPosition() - position;
+		Pellet* pellet      = *iterOta;
+		Vector3f offset     = pellet->getPosition() - position;
 		f32 currentDistance = offset.length();
 		if (currentDistance < distance) {
 			distance = currentDistance;
-			nearest = pellet;
+			nearest  = pellet;
 		}
 	}
 	Iterator<PelletItem::Object> iterItem(PelletItem::mgr);
 	CI_LOOP(iterItem)
 	{
-		Pellet* pellet = *iterItem;
-		Vector3f offset = pellet->getPosition() - position;
+		Pellet* pellet      = *iterItem;
+		Vector3f offset     = pellet->getPosition() - position;
 		f32 currentDistance = offset.length();
 		if (currentDistance < distance) {
 			distance = currentDistance;
-			nearest = pellet;
+			nearest  = pellet;
 		}
 	}
 	return nearest;

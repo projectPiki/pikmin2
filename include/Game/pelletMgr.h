@@ -222,17 +222,6 @@ struct PelletKillArg : public CreatureKillArg {
 struct Pellet : public DynCreature, public SysShape::MotionListener, public CarryInfoOwner {
 	typedef PelletState StateType;
 
-	struct PelletSlots {
-		PelletSlots()
-		{
-			for (int i = 0; i < 16; i++) {
-				mSlots[i] = 0;
-			}
-		}
-
-		u8 mSlots[16]; // _00
-	};
-
 	Pellet();
 
 	enum PelletFlag {
@@ -377,24 +366,6 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 		mPelletColor = color;
 	}
 
-	inline void setSlotOccupied(int slot)
-	{
-		if (slot < 128) {
-			u32 index = slot >> 3;
-			u32 flag  = 1 << slot - index * 8;
-			mSlots.mSlots[15 - index] |= flag;
-		}
-	}
-
-	inline void setSlotFree(int slot)
-	{
-		if (slot < 128) {
-			u32 index = slot >> 3;
-			u32 flag  = 1 << slot - index * 8;
-			mSlots.mSlots[15 - index] &= ~flag;
-		}
-	}
-
 	inline void animate_pmotions(SysShape::Animator* animator)
 	{
 		for (int i = 0; i < mNumPMotions; i++) {
@@ -491,7 +462,7 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	int mMinCarriers;                 // _3D8, to do with pikmin number
 	int mMaxCarriers;                 // _3DC
 	f32 mAngleOffset;                 // _3E0
-	PelletSlots mSlots;               // _3E4
+	BitFlag2<u32, 4> mSlots;          // _3E4
 	s16 mSlotCount;                   // _3F4
 	u8 mIsAlwaysCarried;              // _3F6, is never set to true, probably testing
 	u32 mPikminCount[PikiColorCount]; // _3F8

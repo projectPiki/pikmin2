@@ -51,10 +51,7 @@ void PlayData::write(Stream& output)
 	output.textEndGroup();
 
 	output.textBeginGroup("* 返済度フラグ *"); // 'repayment flag'
-	u8* flags = &mDebtProgressFlags.typeView;
-	for (u32 i = 0; i < 2; i++) {
-		output.writeByte(flags[i]);
-	}
+	getDebtProgressFlags().writeBytes(output);
 	output.textEndGroup();
 
 	output.textBeginGroup("* クリアフラグ *"); // 'clear flag'
@@ -723,10 +720,7 @@ void PlayData::read(Stream& input)
 	}
 
 	if (versionID >= 'j001') {
-		u8* debtFlags = &mDebtProgressFlags.typeView;
-		for (u32 i = 0; i < 2; i++) {
-			debtFlags[i] = input.readByte();
-		}
+		getDebtProgressFlags().readBytes(input);
 	}
 
 	mStoryFlags            = input.readByte();
@@ -1346,9 +1340,7 @@ void PelletCropMemory::read(Stream& input)
 void OlimarData::write(Stream& output)
 {
 	output.textWriteTab(output.mTabCount);
-	for (u32 i = 0; i < 2; i++) {
-		output.writeByte(mFlags[i]);
-	}
+	mFlags.writeBytes(output);
 	output.textWriteText("\t# itemFlag\r\n");
 }
 
@@ -1359,9 +1351,7 @@ void OlimarData::write(Stream& output)
  */
 void OlimarData::read(Stream& input)
 {
-	for (u32 i = 0; i < 2; i++) {
-		mFlags[i] = input.readByte();
-	}
+	mFlags.readBytes(input);
 }
 
 /**

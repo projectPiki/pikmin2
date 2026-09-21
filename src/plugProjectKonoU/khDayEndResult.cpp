@@ -2426,8 +2426,8 @@ void SceneDayEndResultMail::doUserCallBackFunc(Resource::MgrCommand* mgr)
 #endif
 	}
 
-	int offset              = 4;
-	MailSaveFlags saveFlags = Game::playData->mMailSaveData.mPastLogs;
+	int offset                 = 4;
+	BitFlag2<u32, 4> saveFlags = Game::playData->mMailSaveData.mPastLogs;
 
 	u32 entries = file->mEntries;
 	mTableData  = new MailTableData*[entries];
@@ -2485,10 +2485,7 @@ void SceneDayEndResultMail::doUserCallBackFunc(Resource::MgrCommand* mgr)
 
 		dispResult.mTodayMailID = mailID;
 
-		if (dispResult.mTodayMailID < 128) {
-			int byte = dispResult.mTodayMailID >> 3;
-			saveFlags.byteView[15 - byte] |= (1 << (dispResult.mTodayMailID - (byte << 3)));
-		}
+		saveFlags.setBit(dispResult.mTodayMailID);
 
 		Game::playData->mMailSaveData.mPastLogs = saveFlags;
 		Game::playData->mMailSaveData.set_history(dispResult.mTodayMailID);

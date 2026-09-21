@@ -207,7 +207,7 @@ struct OlimarData {
 		return mapType;
 	}
 
-	u8 mFlags[2]; // _00
+	BitFlag<u16> mFlags; // _00
 };
 
 struct PelletCropMemory {
@@ -473,7 +473,7 @@ struct PlayData : public CNode {
 
 	inline void addPokos(int pokos) { mPokoCount += pokos; }
 
-	inline u8& getDebtProgressFlags(int flagID) { return ((u8*)(&mDebtProgressFlags))[flagID]; }
+	inline BitFlag2<u16, 1>& getDebtProgressFlags() { return mDebtProgressFlags; }
 
 	inline PelletCropMemory* getCaveCropMemory() const { return mCaveCropMemory; }
 
@@ -483,7 +483,6 @@ struct PlayData : public CNode {
 	u8 mLoadType;                           // _19, see SaveFlags enum
 	void* mBeforeSaveDelegate;              // _1C
 	BitFlag<u8> mDeadNaviID;                // _20
-	u8 mDeadNaviID2;                        // _21
 	f32 mNaviLifeMax[2];                    // _24
 	u8 mHasContainerFlags;                  // _2C
 	u8 mHasBootContainerFlags;              // _2D
@@ -517,8 +516,8 @@ struct PlayData : public CNode {
 
 	int mCavePokoCount; // _EC
 
-	BitFlag<u8> mDebtProgressFlags;       // _F0, represent which %of debt messages have been seen
-	BitFlag<u8> mBackupDebtProgressFlags; // _F1
+	BitFlag2<u16, 1> mDebtProgressFlags; // _F0, represent which %of debt messages have been seen
+	// this should be just BitFlag but it needs the inline when mDeadNaviID needs to not have the inline
 
 	// ptr to array of previous day's collected overworld treasure counts, per
 	// course.

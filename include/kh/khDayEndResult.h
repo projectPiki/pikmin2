@@ -33,33 +33,21 @@ enum MailCategory {
 	AllTreasures   = 0x37,
 };
 
-union MailSaveFlags {
-	inline u8 getReverseByte(int i) { return byteView[15 - i]; }
-
-	u32 typeView[4];
-	u8 byteView[16];
-};
-
 union MailHistoryFlags {
 	int typeView[4];
 	s8 byteView[20];
 };
 
 struct MailSaveData {
-	MailSaveData()
-	{
-		for (int i = 0; i < 16; i++) {
-			mPastLogs.byteView[i] = 0;
-		}
-	}
+	MailSaveData() { }
 
 	void clear();
 	void read(Stream&);
 	void write(Stream&);
 	void set_history(s8);
 
-	MailSaveFlags mPastLogs;   // _00
-	MailHistoryFlags mHistory; // _10
+	BitFlag2<u32, 4> mPastLogs; // _00
+	MailHistoryFlags mHistory;  // _10, this is definitely also a BitFlag2 but its causing problems
 };
 
 struct IncP {
@@ -667,21 +655,15 @@ struct MailTableDataEntry {
 #pragma pack(pop)
 
 struct MailTableData {
-	MailTableData(MailTableDataEntry* data, MailSaveFlags& flags, int i)
+	MailTableData(MailTableDataEntry* data, BitFlag2<u32, 4>& flags, int i)
 	{
-		bool saveFlag = calcSaveFlag(flags, i);
+		bool saveFlag = flags.isBitSet(i);
 		mMessageID    = data->getMessageID();
 		mFlag[0]      = data->mFlag[0];
 		mFlag[1]      = data->mFlag[1];
 		mFlag[2]      = data->mFlag[2];
 		mFileName     = (const char*)&data->mFileName;
 		mSaveFlag     = saveFlag;
-	}
-
-	inline bool calcSaveFlag(MailSaveFlags& flags, int i)
-	{
-		u32 cleared = (i >> 3);
-		return ((1 << (i - (cleared << 3))) & flags.byteView[15 - (i >> 3)]) != 0;
 	}
 
 	inline const char* getFileName() { return mFileName; }

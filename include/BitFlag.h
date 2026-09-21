@@ -119,6 +119,80 @@ struct BitFlag {
 };
 
 /**
+ * @brief A template struct representing a bit flag.
+ *
+ * This struct is largely the same as BitFlag, but has an extra template value
+ * that allows for a variable struct length. It is used in a few places.
+ *
+ * @tparam T The type of the bit flag.
+ * @tparam I The size of the bit flag array.
+ */
+template <typename T, int I>
+struct BitFlag2 {
+
+	BitFlag2()
+	{
+		for (int i = 0; i < sizeof(T) * I; i++) {
+			byteView[i] = 0;
+		}
+	}
+
+	inline void clear()
+	{
+		for (int i = 0; i < sizeof(T) * I; i++) {
+			byteView[i] = 0;
+		}
+	}
+
+	inline void readBytes(Stream& stream)
+	{
+		for (int i = 0; i < sizeof(T) * I; i++) {
+			byteView[i] = stream.readByte();
+		}
+	}
+
+	inline void writeBytes(Stream& stream)
+	{
+		for (int i = 0; i < sizeof(T) * I; i++) {
+			stream.writeByte(byteView[i]);
+		}
+	}
+
+	inline bool isSet(int i, T value) { return (typeView[i] & value) != 0; }
+	inline void set(int i, T value) { typeView[i] |= value; }
+	inline void unset(int i, T value) { typeView[i] &= ~value; }
+
+	inline u8& getBytes(int i) { return byteView[i]; }
+
+	inline void setBit(int id)
+	{
+		if (id < (int)(sizeof(T) * I * 8)) {
+			int byte = id >> 3;
+			getBytes(sizeof(T) * I - 1 - byte) |= 1 << (id - byte * 8);
+		}
+	}
+
+	inline void unsetBit(int id)
+	{
+		if (id < (int)(sizeof(T) * I * 8)) {
+			int byte = id >> 3;
+			getBytes(sizeof(T) * I - 1 - byte) &= ~(1 << (id - byte * 8));
+		}
+	}
+
+	inline bool isBitSet(int id)
+	{
+		int byte = id >> 3;
+		return ((1 << (id - byte * 8)) & getBytes(sizeof(T) * I - 1 - byte)) != 0;
+	}
+
+	union {
+		u8 byteView[sizeof(T) * I]; /**< The byte view of the bit flag. */
+		T typeView[I];              /**< The type view of the bit flag. */
+	};
+};
+
+/**
  * @brief A template struct representing an array of bit flags.
  *
  * This struct provides a convenient way to manage an array of bit flags, where each flag is represented by a single bit.

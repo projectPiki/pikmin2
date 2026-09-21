@@ -8,9 +8,7 @@ namespace Screen {
  */
 void MailSaveData::clear()
 {
-	for (int i = 0; i < 16; i++) {
-		mPastLogs.byteView[i] = 0;
-	}
+	mPastLogs.clear();
 
 	for (int i = 0; i < 20; i++) {
 		mHistory.byteView[i] = -1;
@@ -23,10 +21,7 @@ void MailSaveData::clear()
  */
 void MailSaveData::read(Stream& stream)
 {
-	for (u32 i = 0; i < 16; i++) {
-		mPastLogs.byteView[i] = stream.readByte();
-	}
-
+	mPastLogs.readBytes(stream);
 	for (s32 i = 0; i < 20; i++) {
 		mHistory.byteView[i] = stream.readByte();
 	}
@@ -38,9 +33,7 @@ void MailSaveData::read(Stream& stream)
  */
 void MailSaveData::write(Stream& stream)
 {
-	for (u32 i = 0; i < 0x10; i++) {
-		stream.writeByte(mPastLogs.byteView[i]);
-	}
+	mPastLogs.writeBytes(stream);
 
 	for (s32 i = 0; i < 0x14; i++) {
 		stream.writeByte(mHistory.byteView[i]);

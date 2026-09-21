@@ -183,24 +183,24 @@ bool PelletFirstMemory::firstCarryPellet(Pellet* pellet)
 	if (pellet->getKind() == PelletType::Treasure) {
 		int id = pellet->getConfigIndex();
 
-		if (!(mOtakara(id) & 2)) {
-			mOtakara(id) |= 2;
+		if (!(mOtakara(id) & KindCounter::KCF_Earned)) {
+			mOtakara(id) |= KindCounter::KCF_Earned;
 			pellet->getConfigName();
 			return true;
 		}
 
 	} else if (pellet->getKind() == PelletType::Upgrade) {
 		int id = pellet->getConfigIndex();
-		if (!(mItem(id) & 2)) {
-			mItem(id) |= 2;
+		if (!(mItem(id) & KindCounter::KCF_Earned)) {
+			mItem(id) |= KindCounter::KCF_Earned;
 			pellet->getConfigName();
 			return true;
 		}
 
 	} else if (pellet->getKind() == PelletType::Carcass) {
 		int id = pellet->getConfigIndex();
-		if (!(mCarcass(id) & 2)) {
-			mCarcass(id) |= 2;
+		if (!(mCarcass(id) & KindCounter::KCF_Earned)) {
+			mCarcass(id) |= KindCounter::KCF_Earned;
 			pellet->getConfigName();
 			return true;
 		}
@@ -216,11 +216,11 @@ bool PelletFirstMemory::firstCarryPellet(Pellet* pellet)
 void PelletFirstMemory::obtainPellet(BasePelletMgr* mgr, int id)
 {
 	if (mgr->getMgrID() == PelletType::Treasure) {
-		mOtakara(id) |= 2;
+		mOtakara(id) |= KindCounter::KCF_Earned;
 		mgr->getPelletConfig(id);
 
 	} else if (mgr->getMgrID() == PelletType::Upgrade) {
-		mItem(id) |= 2;
+		mItem(id) |= KindCounter::KCF_Earned;
 		mgr->getPelletConfig(id);
 
 	} else {
@@ -235,11 +235,11 @@ void PelletFirstMemory::obtainPellet(BasePelletMgr* mgr, int id)
 void PelletFirstMemory::losePellet(Game::BasePelletMgr* mgr, int id)
 {
 	if (mgr->getMgrID() == PelletType::Treasure) {
-		mOtakara(id) &= ~0x2;
+		mOtakara(id) &= ~KindCounter::KCF_Earned;
 		mgr->getPelletConfig(id);
 
 	} else if (mgr->getMgrID() == PelletType::Upgrade) {
-		mItem(id) &= ~0x2;
+		mItem(id) &= ~KindCounter::KCF_Earned;
 		mgr->getPelletConfig(id);
 
 	} else {
@@ -304,8 +304,6 @@ int KindCounter::getEarnKinds()
  */
 OlimarData::OlimarData()
 {
-	mFlags[0] = 0;
-	mFlags[1] = 0;
 	clear();
 }
 
@@ -315,8 +313,7 @@ OlimarData::OlimarData()
  */
 void OlimarData::clear()
 {
-	mFlags[0] = 0;
-	mFlags[1] = 0;
+	mFlags.clear();
 }
 
 /**
@@ -326,10 +323,7 @@ void OlimarData::clear()
 bool OlimarData::hasItem(int index)
 {
 	P2ASSERTBOUNDSLINE(588, ODII_BruteKnuckles, index, ODII_LAST_NON_EXPLORATION_KIT_ITEM);
-	int data_idx = (index >> 3);
-	int rot      = (data_idx << 3);
-	int bits     = 1 << (index - rot);
-	return (mFlags[1 - data_idx] & bits) != false;
+	return mFlags.isBitSet(index);
 }
 
 /**
@@ -341,10 +335,7 @@ void OlimarData::getItem(int item)
 	bool validItem = item >= ODII_BruteKnuckles && item < ODII_LAST_NON_EXPLORATION_KIT_ITEM;
 	P2ASSERTLINE(601, validItem);
 
-	if (item < 16) {
-		int data_idx = (item >> 3);
-		mFlags[1 - data_idx] |= 1 << (item - (data_idx << 3));
-	}
+	mFlags.setBit(item);
 
 	switch (item) {
 	case ODII_SphericalAtlas:
@@ -453,12 +444,8 @@ void PlayData::reset()
 	mLoadType              = 0;
 	mStoryFlags            = 0;
 	mDebtProgressFlags.clear();
-	mBackupDebtProgressFlags.clear();
 	for (int i = 0; i <= -1; i++) {
-		if (i < 16) {
-			int byte = i >> 3;
-			getDebtProgressFlags(1 - byte) |= 1 << (i - (byte << 3));
-		}
+		mDebtProgressFlags.setBit(i);
 	}
 	generatorCache->clearCache();
 	mPokoCount     = 0;
@@ -509,7 +496,7 @@ void PlayData::setDevelopSetting(bool isDevelop, bool setDemos)
 		debugSetContainerFlagOn();
 		mDemoFlags.all_one();
 		mFindItemFlags.all_one();
-		mOlimarData[0].mFlags[0] |= 4;
+		mOlimarData[0].mFlags.byteView[0] |= 4;
 		playData->openCourse(1);
 		initCourses(true);
 		if (!setDemos) {
@@ -900,7 +887,7 @@ bool PlayData::isPelletZukanVisible(int id)
 	PelletConfig* config   = list->getPelletConfig_ByDictionaryNo(id);
 	if (config) {
 		int index = config->mParams.mIndex;
-		if (IS_FLAG(mZukanStat->mOtakara(index), 2)) {
+		if (IS_FLAG(mZukanStat->mOtakara(index), KindCounter::KCF_Earned)) {
 			return true;
 		}
 	} else {
@@ -908,7 +895,7 @@ bool PlayData::isPelletZukanVisible(int id)
 		config = list->getPelletConfig_ByDictionaryNo(id);
 		if (config) {
 			int index = config->mParams.mIndex;
-			if (IS_FLAG(mZukanStat->mItem(index), 2)) {
+			if (IS_FLAG(mZukanStat->mItem(index), KindCounter::KCF_Earned)) {
 				return true;
 			}
 		}
@@ -922,12 +909,14 @@ bool PlayData::isPelletZukanVisible(int id)
  */
 bool PlayData::isPelletZukanWhatsNew(int id)
 {
+	// Check if any collected treasures are still new, specifically that their ZukanStat flag is set to KCF_Earned but without KCF_IsOld set
+	// this is done seperately for normal treasures and explorer kit items
 	PelletConfigList* list = PelletList::Mgr::getConfigList(PelletList::PLK_Otakara);
 	PelletConfig* config   = list->getPelletConfig_ByDictionaryNo(id);
 	if (config) {
 		int index = config->mParams.mIndex;
 		u8 kinds  = mZukanStat->mOtakara(index);
-		if (kinds & 2 && !(kinds & 4)) {
+		if (kinds & KindCounter::KCF_Earned && !(kinds & KindCounter::KCF_IsOld)) {
 			return true;
 		}
 	} else {
@@ -936,7 +925,7 @@ bool PlayData::isPelletZukanWhatsNew(int id)
 		if (config) {
 			int index = config->mParams.mIndex;
 			u8 kinds  = mZukanStat->mItem(index);
-			if (kinds & 2 && !(kinds & 4)) {
+			if (kinds & KindCounter::KCF_Earned && !(kinds & KindCounter::KCF_IsOld)) {
 				return true;
 			}
 		}
@@ -953,7 +942,7 @@ bool PlayData::hasPelletZukanWhatsNew()
 	PelletFirstMemory* zukanStat = getZukanStat();
 	for (int i = 0; i < zukanStat->mOtakara.mNumKinds; i++) {
 		u8 kinds = zukanStat->mOtakara(i);
-		if (kinds && !(IS_FLAG(zukanStat->mOtakara(i), 4)))
+		if (kinds != KindCounter::KCF_Unset && !(IS_FLAG(zukanStat->mOtakara(i), KindCounter::KCF_IsOld)))
 			return true;
 	}
 
@@ -961,7 +950,7 @@ bool PlayData::hasPelletZukanWhatsNew()
 	for (int i = 0; i < zukanStat2->mItem.mNumKinds; i++) {
 
 		u8 kinds = zukanStat2->mItem(i);
-		if (kinds && !(IS_FLAG(zukanStat2->mItem(i), 4)))
+		if (kinds != KindCounter::KCF_Unset && !(IS_FLAG(zukanStat2->mItem(i), KindCounter::KCF_IsOld)))
 			return true;
 	}
 	return false;
@@ -976,16 +965,16 @@ void PlayData::setPelletZukanOutOfDateAll()
 	PelletFirstMemory* zukanStat = getZukanStat();
 	for (int i = 0; i < zukanStat->mOtakara.mNumKinds; i++) {
 		u8 kinds = zukanStat->mOtakara(i);
-		if (kinds) {
-			SET_FLAG(zukanStat->mOtakara(i), 4);
+		if (kinds != KindCounter::KCF_Unset) {
+			SET_FLAG(zukanStat->mOtakara(i), KindCounter::KCF_IsOld);
 		}
 	}
 
 	PelletFirstMemory* zukanStat2 = getZukanStat();
 	for (int i = 0; i < zukanStat2->mItem.mNumKinds; i++) {
 		u8 kinds = zukanStat2->mItem(i);
-		if (kinds) {
-			SET_FLAG(zukanStat2->mItem(i), 4);
+		if (kinds != KindCounter::KCF_Unset) {
+			SET_FLAG(zukanStat2->mItem(i), KindCounter::KCF_IsOld);
 		}
 	}
 }
@@ -1364,12 +1353,9 @@ bool PlayData::checkRepayLevelFirstClear()
 {
 	int id = getRepayLevel();
 
-	if (id >= 0) {
-		int byte = id >> 3;
-		if ((getDebtProgressFlags(1 - byte) & 1 << (id - (byte << 3))) == 0) {
-			return true;
-		}
-	}
+	if (id >= 0 && !mDebtProgressFlags.isBitSet(id))
+		return true;
+
 	return false;
 }
 
@@ -1383,10 +1369,7 @@ void PlayData::experienceRepayLevelFirstClear()
 
 	if (id >= 0) {
 		for (int i = 0; i <= id; i++) {
-			if (i < 16) {
-				int byte = i >> 3;
-				getDebtProgressFlags(1 - byte) |= 1 << (i - (byte << 3));
-			}
+			mDebtProgressFlags.setBit(i);
 		}
 	}
 }
