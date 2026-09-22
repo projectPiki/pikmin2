@@ -18,22 +18,22 @@ static const int unusedIllustratedBookArray[] = { 0, 0, 0 };
 ColorSetting::ColorSetting()
     : CNode("色設定")
 {
-	mColorListA[0][0] = Color4(88, 91, 153, 255);
-	mColorListA[0][1] = Color4(64, 64, 64, 255);
-	mColorListA[1][0] = Color4(166, 232, 253, 255);
-	mColorListA[1][1] = Color4(255, 255, 255, 255);
-	mColorListA[2][0] = Color4(166, 232, 253, 255);
-	mColorListA[2][1] = Color4(255, 255, 255, 255);
-	mColorListA[3][0] = Color4(255, 192, 128, 255);
-	mColorListA[3][1] = Color4(255, 255, 143, 255);
-	mColorListA[4][0] = Color4(255, 255, 255, 255);
-	mColorListA[4][1] = Color4(255, 255, 255, 255);
+	mBgGradientColors[SUNTIME_Night][BGGRAD_Top]      = Color4(88, 91, 153, 255);
+	mBgGradientColors[SUNTIME_Night][BGGRAD_Bottom]   = Color4(64, 64, 64, 255);
+	mBgGradientColors[SUNTIME_Morning][BGGRAD_Top]    = Color4(166, 232, 253, 255);
+	mBgGradientColors[SUNTIME_Morning][BGGRAD_Bottom] = Color4(255, 255, 255, 255);
+	mBgGradientColors[SUNTIME_Noon][BGGRAD_Top]       = Color4(166, 232, 253, 255);
+	mBgGradientColors[SUNTIME_Noon][BGGRAD_Bottom]    = Color4(255, 255, 255, 255);
+	mBgGradientColors[SUNTIME_Evening][BGGRAD_Top]    = Color4(255, 192, 128, 255);
+	mBgGradientColors[SUNTIME_Evening][BGGRAD_Bottom] = Color4(255, 255, 143, 255);
+	mBgGradientColors[SUNTIME_Demo][BGGRAD_Top]       = Color4(255, 255, 255, 255);
+	mBgGradientColors[SUNTIME_Demo][BGGRAD_Bottom]    = Color4(255, 255, 255, 255);
 
-	mColorListB[0] = Color4(73, 73, 73, 255);
-	mColorListB[1] = Color4(8, 8, 8, 255);
-	mColorListB[2] = Color4(50, 50, 40, 255);
-	mColorListB[3] = Color4(52, 32, 10, 255);
-	mColorListB[4] = Color4(32, 32, 10, 255);
+	mGlowColors[SUNTIME_Night]   = Color4(73, 73, 73, 255);
+	mGlowColors[SUNTIME_Morning] = Color4(8, 8, 8, 255);
+	mGlowColors[SUNTIME_Noon]    = Color4(50, 50, 40, 255);
+	mGlowColors[SUNTIME_Evening] = Color4(52, 32, 10, 255);
+	mGlowColors[SUNTIME_Demo]    = Color4(32, 32, 10, 255);
 }
 
 /**
@@ -42,13 +42,13 @@ ColorSetting::ColorSetting()
  */
 void ColorSetting::read(Stream& stream)
 {
-	for (int i = 0; i < 4; i++) {
-		mColorListA[i][0].read(stream);
-		mColorListA[i][1].read(stream);
+	for (int i = 0; i < SUNTIME_Demo; i++) {
+		mBgGradientColors[i][BGGRAD_Top].read(stream);
+		mBgGradientColors[i][BGGRAD_Bottom].read(stream);
 	}
 
-	for (int i = 0; i < 4; i++) {
-		mColorListB[i].read(stream);
+	for (int i = 0; i < SUNTIME_Demo; i++) {
+		mGlowColors[i].read(stream);
 	}
 }
 
@@ -85,633 +85,54 @@ void ColorSetting::update()
 		break;
 	}
 
-	f32 ratio             = gameSystem->mTimeMgr->mLightSettingRatio;
-	Color4* startColor40  = &mColorListB[start];
-	Color4* middleColor40 = &mColorListB[middle];
-	Color4* stopColor40   = &mColorListB[stop];
+	Color4* startBgTop     = getBgColor(start, BGGRAD_Top);
+	Color4* middleBgTop    = getBgColor(middle, BGGRAD_Top);
+	Color4* stopBgTop      = getBgColor(stop, BGGRAD_Top);
+	Color4* startBgBottom  = getBgColor(start, BGGRAD_Bottom);
+	Color4* middleBgBottom = getBgColor(middle, BGGRAD_Bottom);
+	Color4* stopBgBottom   = getBgColor(stop, BGGRAD_Bottom);
+	Color4* startGlow      = getGlowColor(start);
+	Color4* middleGlow     = getGlowColor(middle);
+	Color4* stopGlow       = getGlowColor(stop);
 
-	// how are these meant to get loaded in/pointed to?
-	Color4* startColor18  = mColorListA[start];
-	Color4* middleColor18 = mColorListA[middle];
-	Color4* stopColor18   = mColorListA[stop];
+	f32 ratio = gameSystem->mTimeMgr->mLightSettingRatio;
+	f32 t     = ratio;
 
 	if (ratio < 0.5f) {
-		ratio *= 2.0f;
-		mActiveColorA.r = INTERPOLATE_BETWEEN(startColor18[0].r, middleColor18[0].r, ratio);
-		mActiveColorA.g = INTERPOLATE_BETWEEN(startColor18[0].g, middleColor18[0].g, ratio);
-		mActiveColorA.b = INTERPOLATE_BETWEEN(startColor18[0].b, middleColor18[0].b, ratio);
-		mActiveColorA.a = INTERPOLATE_BETWEEN(startColor18[0].a, middleColor18[0].a, ratio);
+		// first half of the slot: start -> middle
+		t *= 2.0f;
+		mActiveBgTopColor.r = INTERPOLATE_BETWEEN(startBgTop->r, middleBgTop->r, t);
+		mActiveBgTopColor.g = INTERPOLATE_BETWEEN(startBgTop->g, middleBgTop->g, t);
+		mActiveBgTopColor.b = INTERPOLATE_BETWEEN(startBgTop->b, middleBgTop->b, t);
+		mActiveBgTopColor.a = INTERPOLATE_BETWEEN(startBgTop->a, middleBgTop->a, t);
 
-		mActiveColorB.r = INTERPOLATE_BETWEEN(startColor18[1].r, middleColor18[1].r, ratio);
-		mActiveColorB.g = INTERPOLATE_BETWEEN(startColor18[1].g, middleColor18[1].g, ratio);
-		mActiveColorB.b = INTERPOLATE_BETWEEN(startColor18[1].b, middleColor18[1].b, ratio);
-		mActiveColorB.a = INTERPOLATE_BETWEEN(startColor18[1].a, middleColor18[1].a, ratio);
+		mActiveBgBottomColor.r = INTERPOLATE_BETWEEN(startBgBottom->r, middleBgBottom->r, t);
+		mActiveBgBottomColor.g = INTERPOLATE_BETWEEN(startBgBottom->g, middleBgBottom->g, t);
+		mActiveBgBottomColor.b = INTERPOLATE_BETWEEN(startBgBottom->b, middleBgBottom->b, t);
+		mActiveBgBottomColor.a = INTERPOLATE_BETWEEN(startBgBottom->a, middleBgBottom->a, t);
 
-		mActiveColorC.r = INTERPOLATE_BETWEEN(startColor40->r, middleColor40->r, ratio);
-		mActiveColorC.g = INTERPOLATE_BETWEEN(startColor40->g, middleColor40->g, ratio);
-		mActiveColorC.b = INTERPOLATE_BETWEEN(startColor40->b, middleColor40->b, ratio);
-		mActiveColorC.a = INTERPOLATE_BETWEEN(startColor40->a, middleColor40->a, ratio);
-
+		mActiveGlowColor.r = INTERPOLATE_BETWEEN(startGlow->r, middleGlow->r, t);
+		mActiveGlowColor.g = INTERPOLATE_BETWEEN(startGlow->g, middleGlow->g, t);
+		mActiveGlowColor.b = INTERPOLATE_BETWEEN(startGlow->b, middleGlow->b, t);
+		mActiveGlowColor.a = INTERPOLATE_BETWEEN(startGlow->a, middleGlow->a, t);
 	} else {
-		ratio           = 2.0f * (ratio - 0.5f);
-		mActiveColorA.r = INTERPOLATE_BETWEEN(middleColor18[0].r, stopColor18[0].r, ratio);
-		mActiveColorA.g = INTERPOLATE_BETWEEN(middleColor18[0].g, stopColor18[0].g, ratio);
-		mActiveColorA.b = INTERPOLATE_BETWEEN(middleColor18[0].b, stopColor18[0].b, ratio);
-		mActiveColorA.a = INTERPOLATE_BETWEEN(middleColor18[0].a, stopColor18[0].a, ratio);
+		// second half of the slot: middle -> stop
+		t                   = 2.0f * (ratio - 0.5f);
+		mActiveBgTopColor.r = INTERPOLATE_BETWEEN(middleBgTop->r, stopBgTop->r, t);
+		mActiveBgTopColor.g = INTERPOLATE_BETWEEN(middleBgTop->g, stopBgTop->g, t);
+		mActiveBgTopColor.b = INTERPOLATE_BETWEEN(middleBgTop->b, stopBgTop->b, t);
+		mActiveBgTopColor.a = INTERPOLATE_BETWEEN(middleBgTop->a, stopBgTop->a, t);
 
-		mActiveColorB.r = INTERPOLATE_BETWEEN(middleColor18[1].r, stopColor18[1].r, ratio);
-		mActiveColorB.g = INTERPOLATE_BETWEEN(middleColor18[1].g, stopColor18[1].g, ratio);
-		mActiveColorB.b = INTERPOLATE_BETWEEN(middleColor18[1].b, stopColor18[1].b, ratio);
-		mActiveColorB.a = INTERPOLATE_BETWEEN(middleColor18[1].a, stopColor18[1].a, ratio);
+		mActiveBgBottomColor.r = INTERPOLATE_BETWEEN(middleBgBottom->r, stopBgBottom->r, t);
+		mActiveBgBottomColor.g = INTERPOLATE_BETWEEN(middleBgBottom->g, stopBgBottom->g, t);
+		mActiveBgBottomColor.b = INTERPOLATE_BETWEEN(middleBgBottom->b, stopBgBottom->b, t);
+		mActiveBgBottomColor.a = INTERPOLATE_BETWEEN(middleBgBottom->a, stopBgBottom->a, t);
 
-		mActiveColorC.r = INTERPOLATE_BETWEEN(middleColor40->r, stopColor40->r, ratio);
-		mActiveColorC.g = INTERPOLATE_BETWEEN(middleColor40->g, stopColor40->g, ratio);
-		mActiveColorC.b = INTERPOLATE_BETWEEN(middleColor40->b, stopColor40->b, ratio);
-		mActiveColorC.a = INTERPOLATE_BETWEEN(middleColor40->a, stopColor40->a, ratio);
+		mActiveGlowColor.r = INTERPOLATE_BETWEEN(middleGlow->r, stopGlow->r, t);
+		mActiveGlowColor.g = INTERPOLATE_BETWEEN(middleGlow->g, stopGlow->g, t);
+		mActiveGlowColor.b = INTERPOLATE_BETWEEN(middleGlow->b, stopGlow->b, t);
+		mActiveGlowColor.a = INTERPOLATE_BETWEEN(middleGlow->a, stopGlow->a, t);
 	}
-	/*
-	stwu     r1, -0x1a0(r1)
-	mflr     r0
-	stw      r0, 0x1a4(r1)
-	stw      r31, 0x19c(r1)
-	stw      r30, 0x198(r1)
-	mr       r30, r3
-	stw      r29, 0x194(r1)
-	stw      r28, 0x190(r1)
-	lwz      r4, gameSystem__4Game@sda21(r13)
-	lwz      r3, 0x40(r4)
-	lwz      r0, 0x210(r3)
-	cmpwi    r0, 2
-	beq      lbl_80130E7C
-	bge      lbl_80130E50
-	cmpwi    r0, 0
-	beq      lbl_80130E5C
-	bge      lbl_80130E6C
-	b        lbl_80130E9C
-
-lbl_80130E50:
-	cmpwi    r0, 4
-	bge      lbl_80130E9C
-	b        lbl_80130E8C
-
-lbl_80130E5C:
-	li       r29, 0
-	li       r28, 0
-	li       r31, 0
-	b        lbl_80130EB8
-
-lbl_80130E6C:
-	li       r29, 0
-	li       r28, 1
-	li       r31, 2
-	b        lbl_80130EB8
-
-lbl_80130E7C:
-	li       r29, 2
-	li       r28, 2
-	li       r31, 2
-	b        lbl_80130EB8
-
-lbl_80130E8C:
-	li       r29, 2
-	li       r28, 3
-	li       r31, 0
-	b        lbl_80130EB8
-
-lbl_80130E9C:
-	lis      r3, lbl_8047C364@ha
-	lis      r5, lbl_8047C37C@ha
-	addi     r3, r3, lbl_8047C364@l
-	li       r4, 0xcd
-	addi     r5, r5, lbl_8047C37C@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80130EB8:
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	slwi     r6, r29, 2
-	slwi     r4, r28, 2
-	slwi     r5, r31, 2
-	lwz      r3, 0x40(r3)
-	slwi     r8, r29, 3
-	slwi     r7, r28, 3
-	slwi     r0, r31, 3
-	lfs      f2, 0x214(r3)
-	addi     r3, r6, 0x40
-	lfs      f0, lbl_80518158@sda21(r2)
-	addi     r4, r4, 0x40
-	addi     r5, r5, 0x40
-	add      r8, r30, r8
-	fcmpo    cr0, f2, f0
-	add      r6, r30, r7
-	add      r7, r30, r0
-	add      r3, r30, r3
-	add      r4, r30, r4
-	add      r5, r30, r5
-	bge      lbl_801312E0
-	lbz      r7, 0x18(r8)
-	lis      r5, 0x4330
-	lbz      r0, 0x18(r6)
-	stw      r5, 8(r1)
-	lfs      f1, lbl_8051815C@sda21(r2)
-	stw      r0, 0xc(r1)
-	lfd      f0, lbl_80518160@sda21(r2)
-	fmuls    f1, f2, f1
-	lfd      f2, 8(r1)
-	stw      r7, 0x14(r1)
-	fsubs    f4, f2, f0
-	stw      r5, 0x10(r1)
-	lfd      f2, 0x10(r1)
-	stw      r7, 0x1c(r1)
-	fsubs    f3, f2, f0
-	stw      r5, 0x18(r1)
-	lfd      f2, 0x18(r1)
-	fsubs    f3, f4, f3
-	stw      r5, 0x28(r1)
-	fsubs    f2, f2, f0
-	stw      r5, 0x30(r1)
-	fmadds   f2, f1, f3, f2
-	stw      r5, 0x38(r1)
-	stw      r5, 0x48(r1)
-	fctiwz   f2, f2
-	stw      r5, 0x50(r1)
-	stfd     f2, 0x20(r1)
-	lwz      r0, 0x24(r1)
-	stw      r5, 0x58(r1)
-	stb      r0, 0x54(r30)
-	lbz      r7, 0x19(r8)
-	lbz      r0, 0x19(r6)
-	stw      r7, 0x34(r1)
-	stw      r0, 0x2c(r1)
-	lfd      f2, 0x30(r1)
-	lfd      f4, 0x28(r1)
-	stw      r7, 0x3c(r1)
-	fsubs    f3, f2, f0
-	fsubs    f4, f4, f0
-	lfd      f2, 0x38(r1)
-	stw      r5, 0x68(r1)
-	fsubs    f3, f4, f3
-	fsubs    f2, f2, f0
-	stw      r5, 0x70(r1)
-	stw      r5, 0x78(r1)
-	fmadds   f2, f1, f3, f2
-	fctiwz   f2, f2
-	stfd     f2, 0x40(r1)
-	lwz      r0, 0x44(r1)
-	stb      r0, 0x55(r30)
-	lbz      r7, 0x1a(r8)
-	lbz      r0, 0x1a(r6)
-	stw      r7, 0x54(r1)
-	stw      r0, 0x4c(r1)
-	lfd      f2, 0x50(r1)
-	lfd      f4, 0x48(r1)
-	stw      r7, 0x5c(r1)
-	fsubs    f3, f2, f0
-	fsubs    f4, f4, f0
-	lfd      f2, 0x58(r1)
-	fsubs    f3, f4, f3
-	fsubs    f2, f2, f0
-	fmadds   f2, f1, f3, f2
-	fctiwz   f2, f2
-	stfd     f2, 0x60(r1)
-	lwz      r0, 0x64(r1)
-	stb      r0, 0x56(r30)
-	lbz      r7, 0x1b(r8)
-	lbz      r0, 0x1b(r6)
-	stw      r7, 0x74(r1)
-	stw      r0, 0x6c(r1)
-	lfd      f2, 0x70(r1)
-	lfd      f4, 0x68(r1)
-	stw      r7, 0x7c(r1)
-	fsubs    f3, f2, f0
-	fsubs    f4, f4, f0
-	lfd      f2, 0x78(r1)
-	fsubs    f3, f4, f3
-	fsubs    f2, f2, f0
-	fmadds   f2, f1, f3, f2
-	fctiwz   f2, f2
-	stfd     f2, 0x80(r1)
-	lwz      r0, 0x84(r1)
-	stb      r0, 0x57(r30)
-	lbz      r7, 0x1c(r8)
-	lbz      r0, 0x1c(r6)
-	stw      r5, 0x88(r1)
-	stw      r0, 0x8c(r1)
-	lfd      f2, 0x88(r1)
-	stw      r7, 0x94(r1)
-	fsubs    f4, f2, f0
-	stw      r5, 0x90(r1)
-	lfd      f2, 0x90(r1)
-	stw      r7, 0x9c(r1)
-	fsubs    f3, f2, f0
-	stw      r5, 0x98(r1)
-	lfd      f2, 0x98(r1)
-	fsubs    f3, f4, f3
-	stw      r5, 0xa8(r1)
-	fsubs    f2, f2, f0
-	stw      r5, 0xb0(r1)
-	fmadds   f2, f1, f3, f2
-	stw      r5, 0xb8(r1)
-	stw      r5, 0xc8(r1)
-	fctiwz   f2, f2
-	stw      r5, 0xd0(r1)
-	stfd     f2, 0xa0(r1)
-	lwz      r0, 0xa4(r1)
-	stw      r5, 0xd8(r1)
-	stb      r0, 0x58(r30)
-	lbz      r7, 0x1d(r8)
-	lbz      r0, 0x1d(r6)
-	stw      r7, 0xb4(r1)
-	stw      r0, 0xac(r1)
-	lfd      f2, 0xb0(r1)
-	lfd      f4, 0xa8(r1)
-	stw      r7, 0xbc(r1)
-	fsubs    f3, f2, f0
-	fsubs    f4, f4, f0
-	lfd      f2, 0xb8(r1)
-	stw      r5, 0xe8(r1)
-	fsubs    f3, f4, f3
-	fsubs    f2, f2, f0
-	stw      r5, 0xf0(r1)
-	stw      r5, 0xf8(r1)
-	fmadds   f2, f1, f3, f2
-	fctiwz   f2, f2
-	stfd     f2, 0xc0(r1)
-	lwz      r0, 0xc4(r1)
-	stb      r0, 0x59(r30)
-	lbz      r7, 0x1e(r8)
-	lbz      r0, 0x1e(r6)
-	stw      r7, 0xd4(r1)
-	stw      r0, 0xcc(r1)
-	lfd      f2, 0xd0(r1)
-	lfd      f4, 0xc8(r1)
-	stw      r7, 0xdc(r1)
-	fsubs    f3, f2, f0
-	fsubs    f4, f4, f0
-	lfd      f2, 0xd8(r1)
-	fsubs    f3, f4, f3
-	fsubs    f2, f2, f0
-	fmadds   f2, f1, f3, f2
-	fctiwz   f2, f2
-	stfd     f2, 0xe0(r1)
-	lwz      r0, 0xe4(r1)
-	stb      r0, 0x5a(r30)
-	lbz      r7, 0x1f(r8)
-	lbz      r0, 0x1f(r6)
-	stw      r7, 0xf4(r1)
-	stw      r0, 0xec(r1)
-	lfd      f2, 0xf0(r1)
-	lfd      f4, 0xe8(r1)
-	stw      r7, 0xfc(r1)
-	fsubs    f3, f2, f0
-	fsubs    f4, f4, f0
-	lfd      f2, 0xf8(r1)
-	fsubs    f3, f4, f3
-	fsubs    f2, f2, f0
-	fmadds   f2, f1, f3, f2
-	fctiwz   f2, f2
-	stfd     f2, 0x100(r1)
-	lwz      r0, 0x104(r1)
-	stb      r0, 0x5b(r30)
-	lbz      r6, 0(r3)
-	lbz      r0, 0(r4)
-	stw      r5, 0x108(r1)
-	stw      r0, 0x10c(r1)
-	lfd      f2, 0x108(r1)
-	stw      r6, 0x114(r1)
-	fsubs    f4, f2, f0
-	stw      r5, 0x110(r1)
-	lfd      f2, 0x110(r1)
-	stw      r6, 0x11c(r1)
-	fsubs    f3, f2, f0
-	stw      r5, 0x118(r1)
-	lfd      f2, 0x118(r1)
-	fsubs    f3, f4, f3
-	stw      r5, 0x128(r1)
-	fsubs    f2, f2, f0
-	stw      r5, 0x130(r1)
-	fmadds   f2, f1, f3, f2
-	stw      r5, 0x138(r1)
-	stw      r5, 0x148(r1)
-	fctiwz   f2, f2
-	stw      r5, 0x150(r1)
-	stfd     f2, 0x120(r1)
-	lwz      r0, 0x124(r1)
-	stw      r5, 0x158(r1)
-	stb      r0, 0x5c(r30)
-	lbz      r6, 1(r3)
-	lbz      r0, 1(r4)
-	stw      r6, 0x134(r1)
-	stw      r0, 0x12c(r1)
-	lfd      f2, 0x130(r1)
-	lfd      f4, 0x128(r1)
-	stw      r6, 0x13c(r1)
-	fsubs    f3, f2, f0
-	fsubs    f4, f4, f0
-	lfd      f2, 0x138(r1)
-	stw      r5, 0x168(r1)
-	fsubs    f3, f4, f3
-	fsubs    f2, f2, f0
-	stw      r5, 0x170(r1)
-	stw      r5, 0x178(r1)
-	fmadds   f2, f1, f3, f2
-	fctiwz   f2, f2
-	stfd     f2, 0x140(r1)
-	lwz      r0, 0x144(r1)
-	stb      r0, 0x5d(r30)
-	lbz      r5, 2(r3)
-	lbz      r0, 2(r4)
-	stw      r5, 0x154(r1)
-	stw      r0, 0x14c(r1)
-	lfd      f2, 0x150(r1)
-	lfd      f4, 0x148(r1)
-	stw      r5, 0x15c(r1)
-	fsubs    f3, f2, f0
-	fsubs    f4, f4, f0
-	lfd      f2, 0x158(r1)
-	fsubs    f3, f4, f3
-	fsubs    f2, f2, f0
-	fmadds   f2, f1, f3, f2
-	fctiwz   f2, f2
-	stfd     f2, 0x160(r1)
-	lwz      r0, 0x164(r1)
-	stb      r0, 0x5e(r30)
-	lbz      r3, 3(r3)
-	lbz      r0, 3(r4)
-	stw      r3, 0x174(r1)
-	stw      r0, 0x16c(r1)
-	lfd      f2, 0x170(r1)
-	lfd      f4, 0x168(r1)
-	stw      r3, 0x17c(r1)
-	fsubs    f3, f2, f0
-	fsubs    f4, f4, f0
-	lfd      f2, 0x178(r1)
-	fsubs    f3, f4, f3
-	fsubs    f0, f2, f0
-	fmadds   f0, f1, f3, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x180(r1)
-	lwz      r0, 0x184(r1)
-	stb      r0, 0x5f(r30)
-	b        lbl_801316B4
-
-lbl_801312E0:
-	lbz      r8, 0x18(r6)
-	lis      r3, 0x4330
-	lbz      r0, 0x18(r7)
-	fsubs    f1, f2, f0
-	stw      r3, 0x180(r1)
-	lfs      f2, lbl_8051815C@sda21(r2)
-	stw      r0, 0x184(r1)
-	lfd      f0, lbl_80518160@sda21(r2)
-	fmuls    f1, f2, f1
-	lfd      f2, 0x180(r1)
-	stw      r8, 0x17c(r1)
-	fsubs    f4, f2, f0
-	stw      r3, 0x178(r1)
-	lfd      f2, 0x178(r1)
-	stw      r8, 0x174(r1)
-	fsubs    f3, f2, f0
-	stw      r3, 0x170(r1)
-	lfd      f2, 0x170(r1)
-	fsubs    f3, f4, f3
-	stw      r3, 0x160(r1)
-	fsubs    f2, f2, f0
-	stw      r3, 0x158(r1)
-	fmadds   f2, f1, f3, f2
-	stw      r3, 0x150(r1)
-	stw      r3, 0x140(r1)
-	fctiwz   f2, f2
-	stw      r3, 0x138(r1)
-	stfd     f2, 0x168(r1)
-	lwz      r0, 0x16c(r1)
-	stw      r3, 0x130(r1)
-	stb      r0, 0x54(r30)
-	lbz      r8, 0x19(r6)
-	lbz      r0, 0x19(r7)
-	stw      r8, 0x15c(r1)
-	stw      r0, 0x164(r1)
-	lfd      f2, 0x158(r1)
-	lfd      f4, 0x160(r1)
-	stw      r8, 0x154(r1)
-	fsubs    f3, f2, f0
-	fsubs    f4, f4, f0
-	lfd      f2, 0x150(r1)
-	stw      r3, 0x120(r1)
-	fsubs    f3, f4, f3
-	fsubs    f2, f2, f0
-	stw      r3, 0x118(r1)
-	stw      r3, 0x110(r1)
-	fmadds   f2, f1, f3, f2
-	fctiwz   f2, f2
-	stfd     f2, 0x148(r1)
-	lwz      r0, 0x14c(r1)
-	stb      r0, 0x55(r30)
-	lbz      r8, 0x1a(r6)
-	lbz      r0, 0x1a(r7)
-	stw      r8, 0x13c(r1)
-	stw      r0, 0x144(r1)
-	lfd      f2, 0x138(r1)
-	lfd      f4, 0x140(r1)
-	stw      r8, 0x134(r1)
-	fsubs    f3, f2, f0
-	fsubs    f4, f4, f0
-	lfd      f2, 0x130(r1)
-	fsubs    f3, f4, f3
-	fsubs    f2, f2, f0
-	fmadds   f2, f1, f3, f2
-	fctiwz   f2, f2
-	stfd     f2, 0x128(r1)
-	lwz      r0, 0x12c(r1)
-	stb      r0, 0x56(r30)
-	lbz      r8, 0x1b(r6)
-	lbz      r0, 0x1b(r7)
-	stw      r8, 0x11c(r1)
-	stw      r0, 0x124(r1)
-	lfd      f2, 0x118(r1)
-	lfd      f4, 0x120(r1)
-	stw      r8, 0x114(r1)
-	fsubs    f3, f2, f0
-	fsubs    f4, f4, f0
-	lfd      f2, 0x110(r1)
-	fsubs    f3, f4, f3
-	fsubs    f2, f2, f0
-	fmadds   f2, f1, f3, f2
-	fctiwz   f2, f2
-	stfd     f2, 0x108(r1)
-	lwz      r0, 0x10c(r1)
-	stb      r0, 0x57(r30)
-	lbz      r8, 0x1c(r6)
-	lbz      r0, 0x1c(r7)
-	stw      r3, 0x100(r1)
-	stw      r0, 0x104(r1)
-	lfd      f2, 0x100(r1)
-	stw      r8, 0xfc(r1)
-	fsubs    f4, f2, f0
-	stw      r3, 0xf8(r1)
-	lfd      f2, 0xf8(r1)
-	stw      r8, 0xf4(r1)
-	fsubs    f3, f2, f0
-	stw      r3, 0xf0(r1)
-	lfd      f2, 0xf0(r1)
-	fsubs    f3, f4, f3
-	stw      r3, 0xe0(r1)
-	fsubs    f2, f2, f0
-	stw      r3, 0xd8(r1)
-	fmadds   f2, f1, f3, f2
-	stw      r3, 0xd0(r1)
-	stw      r3, 0xc0(r1)
-	fctiwz   f2, f2
-	stw      r3, 0xb8(r1)
-	stfd     f2, 0xe8(r1)
-	lwz      r0, 0xec(r1)
-	stw      r3, 0xb0(r1)
-	stb      r0, 0x58(r30)
-	lbz      r8, 0x1d(r6)
-	lbz      r0, 0x1d(r7)
-	stw      r8, 0xdc(r1)
-	stw      r0, 0xe4(r1)
-	lfd      f2, 0xd8(r1)
-	lfd      f4, 0xe0(r1)
-	stw      r8, 0xd4(r1)
-	fsubs    f3, f2, f0
-	fsubs    f4, f4, f0
-	lfd      f2, 0xd0(r1)
-	stw      r3, 0xa0(r1)
-	fsubs    f3, f4, f3
-	fsubs    f2, f2, f0
-	stw      r3, 0x98(r1)
-	stw      r3, 0x90(r1)
-	fmadds   f2, f1, f3, f2
-	fctiwz   f2, f2
-	stfd     f2, 0xc8(r1)
-	lwz      r0, 0xcc(r1)
-	stb      r0, 0x59(r30)
-	lbz      r8, 0x1e(r6)
-	lbz      r0, 0x1e(r7)
-	stw      r8, 0xbc(r1)
-	stw      r0, 0xc4(r1)
-	lfd      f2, 0xb8(r1)
-	lfd      f4, 0xc0(r1)
-	stw      r8, 0xb4(r1)
-	fsubs    f3, f2, f0
-	fsubs    f4, f4, f0
-	lfd      f2, 0xb0(r1)
-	fsubs    f3, f4, f3
-	fsubs    f2, f2, f0
-	fmadds   f2, f1, f3, f2
-	fctiwz   f2, f2
-	stfd     f2, 0xa8(r1)
-	lwz      r0, 0xac(r1)
-	stb      r0, 0x5a(r30)
-	lbz      r6, 0x1f(r6)
-	lbz      r0, 0x1f(r7)
-	stw      r6, 0x9c(r1)
-	stw      r0, 0xa4(r1)
-	lfd      f2, 0x98(r1)
-	lfd      f4, 0xa0(r1)
-	stw      r6, 0x94(r1)
-	fsubs    f3, f2, f0
-	fsubs    f4, f4, f0
-	lfd      f2, 0x90(r1)
-	fsubs    f3, f4, f3
-	fsubs    f2, f2, f0
-	fmadds   f2, f1, f3, f2
-	fctiwz   f2, f2
-	stfd     f2, 0x88(r1)
-	lwz      r0, 0x8c(r1)
-	stb      r0, 0x5b(r30)
-	lbz      r6, 0(r4)
-	lbz      r0, 0(r5)
-	stw      r3, 0x80(r1)
-	stw      r0, 0x84(r1)
-	lfd      f2, 0x80(r1)
-	stw      r6, 0x7c(r1)
-	fsubs    f4, f2, f0
-	stw      r3, 0x78(r1)
-	lfd      f2, 0x78(r1)
-	stw      r6, 0x74(r1)
-	fsubs    f3, f2, f0
-	stw      r3, 0x70(r1)
-	lfd      f2, 0x70(r1)
-	fsubs    f3, f4, f3
-	stw      r3, 0x60(r1)
-	fsubs    f2, f2, f0
-	stw      r3, 0x58(r1)
-	fmadds   f2, f1, f3, f2
-	stw      r3, 0x50(r1)
-	stw      r3, 0x40(r1)
-	fctiwz   f2, f2
-	stw      r3, 0x38(r1)
-	stfd     f2, 0x68(r1)
-	lwz      r0, 0x6c(r1)
-	stw      r3, 0x30(r1)
-	stb      r0, 0x5c(r30)
-	lbz      r6, 1(r4)
-	lbz      r0, 1(r5)
-	stw      r6, 0x5c(r1)
-	stw      r0, 0x64(r1)
-	lfd      f2, 0x58(r1)
-	lfd      f4, 0x60(r1)
-	stw      r6, 0x54(r1)
-	fsubs    f3, f2, f0
-	fsubs    f4, f4, f0
-	lfd      f2, 0x50(r1)
-	stw      r3, 0x20(r1)
-	fsubs    f3, f4, f3
-	fsubs    f2, f2, f0
-	stw      r3, 0x18(r1)
-	stw      r3, 0x10(r1)
-	fmadds   f2, f1, f3, f2
-	fctiwz   f2, f2
-	stfd     f2, 0x48(r1)
-	lwz      r0, 0x4c(r1)
-	stb      r0, 0x5d(r30)
-	lbz      r3, 2(r4)
-	lbz      r0, 2(r5)
-	stw      r3, 0x3c(r1)
-	stw      r0, 0x44(r1)
-	lfd      f2, 0x38(r1)
-	lfd      f4, 0x40(r1)
-	stw      r3, 0x34(r1)
-	fsubs    f3, f2, f0
-	fsubs    f4, f4, f0
-	lfd      f2, 0x30(r1)
-	fsubs    f3, f4, f3
-	fsubs    f2, f2, f0
-	fmadds   f2, f1, f3, f2
-	fctiwz   f2, f2
-	stfd     f2, 0x28(r1)
-	lwz      r0, 0x2c(r1)
-	stb      r0, 0x5e(r30)
-	lbz      r3, 3(r4)
-	lbz      r0, 3(r5)
-	stw      r3, 0x1c(r1)
-	stw      r0, 0x24(r1)
-	lfd      f2, 0x18(r1)
-	lfd      f4, 0x20(r1)
-	stw      r3, 0x14(r1)
-	fsubs    f3, f2, f0
-	fsubs    f4, f4, f0
-	lfd      f2, 0x10(r1)
-	fsubs    f3, f4, f3
-	fsubs    f0, f2, f0
-	fmadds   f0, f1, f3, f0
-	fctiwz   f0, f0
-	stfd     f0, 8(r1)
-	lwz      r0, 0xc(r1)
-	stb      r0, 0x5f(r30)
-
-lbl_801316B4:
-	lwz      r0, 0x1a4(r1)
-	lwz      r31, 0x19c(r1)
-	lwz      r30, 0x198(r1)
-	lwz      r29, 0x194(r1)
-	lwz      r28, 0x190(r1)
-	mtlr     r0
-	addi     r1, r1, 0x1a0
-	blr
-	*/
 }
 
 /**

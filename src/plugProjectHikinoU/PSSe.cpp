@@ -110,52 +110,6 @@ void Rappa::init(u16 id)
 	u32 val    = -(id == 0);
 	mId        = val + 14;
 	sRappa[id] = this;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r5, 1
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r30, 8(r1)
-	mr       r30, r4
-	clrlwi   r4, r4, 0x10
-	subfic   r0, r4, 1
-	orc      r3, r5, r4
-	srwi     r0, r0, 1
-	subf     r0, r0, r3
-	rlwinm.  r0, r0, 1, 0x1f, 0x1f
-	bne      lbl_8033F554
-	li       r5, 0
-
-lbl_8033F554:
-	clrlwi.  r0, r5, 0x18
-	bne      lbl_8033F578
-	lis      r3, lbl_804900C8@ha
-	lis      r5, lbl_804900D4@ha
-	addi     r3, r3, lbl_804900C8@l
-	li       r4, 0xb4
-	addi     r5, r5, lbl_804900D4@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8033F578:
-	clrlwi   r3, r30, 0x10
-	rlwinm   r0, r30, 2, 0xe, 0x1d
-	cntlzw   r4, r3
-	addi     r3, r13, sRappa__Q26PSGame5Rappa@sda21
-	rlwinm   r4, r4, 0x1b, 0x1f, 0x1f
-	neg      r4, r4
-	addi     r4, r4, 0xe
-	stw      r4, 0x18(r31)
-	stwx     r31, r3, r0
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /**
@@ -202,130 +156,13 @@ JAISound* Rappa::playRappa(bool flag, f32 x, f32 y, JAInter::Object* obj)
 
 			f32 val = (min - 1.0f);
 			val *= -1.0f;
-			f32 comp      = (val < 0.0f) ? 0.0f : (val > 1.0f) ? 1.0f : val;
-			int extraWait = comp * cRatio;
+			val = (val < 0.0f) ? 0.0f : (val > 1.0f) ? 1.0f : val;
+			val *= cRatio;
+			int extraWait = val;
 			mDelay        = extraWait + cBaseWaitTime;
 		}
 	}
 	return sound;
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stfd     f31, 0x30(r1)
-	psq_st   f31, 56(r1), 0, qr0
-	stfd     f30, 0x20(r1)
-	psq_st   f30, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	fmr      f30, f1
-	lwz      r3, 0x18(r3)
-	fmr      f31, f2
-	mr       r30, r4
-	mr       r31, r5
-	addis    r0, r3, 1
-	cmplwi   r0, 0xffff
-	bne      lbl_8033F6BC
-	lis      r3, lbl_804900C8@ha
-	lis      r5, lbl_804900D4@ha
-	addi     r3, r3, lbl_804900C8@l
-	li       r4, 0xcc
-	addi     r5, r5, lbl_804900D4@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8033F6BC:
-	clrlwi   r0, r30, 0x18
-	li       r3, 0
-	cmplwi   r0, 1
-	bne      lbl_8033F798
-	lfs      f0, lbl_8051E198@sda21(r2)
-	fcmpo    cr0, f31, f0
-	cror     2, 1, 2
-	bne      lbl_8033F6E4
-	fmr      f1, f31
-	b        lbl_8033F6E8
-
-lbl_8033F6E4:
-	fneg     f1, f31
-
-lbl_8033F6E8:
-	lfs      f0, lbl_8051E198@sda21(r2)
-	fcmpo    cr0, f30, f0
-	cror     2, 1, 2
-	bne      lbl_8033F700
-	fmr      f31, f30
-	b        lbl_8033F704
-
-lbl_8033F700:
-	fneg     f31, f30
-
-lbl_8033F704:
-	fcmpo    cr0, f31, f1
-	ble      lbl_8033F710
-	b        lbl_8033F714
-
-lbl_8033F710:
-	fmr      f31, f1
-
-lbl_8033F714:
-	lfs      f0, lbl_8051E19C@sda21(r2)
-	fcmpo    cr0, f31, f0
-	bge      lbl_8033F728
-	li       r3, 0
-	b        lbl_8033F798
-
-lbl_8033F728:
-	mr       r3, r31
-	lwz      r4, 0x18(r29)
-	lwz      r12, 0(r31)
-	li       r5, 0
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lfs      f1, lbl_8051E190@sda21(r2)
-	lfs      f0, lbl_8051E1A0@sda21(r2)
-	fsubs    f3, f31, f1
-	lfs      f2, lbl_8051E198@sda21(r2)
-	fmuls    f3, f3, f0
-	fcmpo    cr0, f3, f2
-	bge      lbl_8033F764
-	b        lbl_8033F778
-
-lbl_8033F764:
-	fcmpo    cr0, f3, f1
-	ble      lbl_8033F774
-	fmr      f2, f1
-	b        lbl_8033F778
-
-lbl_8033F774:
-	fmr      f2, f3
-
-lbl_8033F778:
-	lfs      f0, cRatio__Q26PSGame5Rappa@sda21(r13)
-	lhz      r0, cBaseWaitTime__Q26PSGame5Rappa@sda21(r13)
-	fmuls    f2, f2, f0
-	fctiwz   f0, f2
-	stfd     f0, 8(r1)
-	lwz      r4, 0xc(r1)
-	add      r0, r4, r0
-	sth      r0, 0x1c(r29)
-
-lbl_8033F798:
-	psq_l    f31, 56(r1), 0, qr0
-	lfd      f31, 0x30(r1)
-	psq_l    f30, 40(r1), 0, qr0
-	lfd      f30, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r0, 0x44(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
 }
 
 /**
@@ -578,169 +415,6 @@ Builder_EvnSe_Perspective::Builder_EvnSe_Perspective(JGeometry::TBox3f box)
     , mYPosition(0.0f)
 {
 	mBox.absolute();
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	mr       r31, r4
-	stw      r30, 0x28(r1)
-	mr       r30, r3
-	bl       __ct__11JKRDisposerFv
-	lis      r3, __vt__Q26PSGame25Builder_EvnSe_Perspective@ha
-	li       r0, 0
-	addi     r3, r3, __vt__Q26PSGame25Builder_EvnSe_Perspective@l
-	lfs      f1, 0(r31)
-	stw      r3, 0(r30)
-	addi     r3, r30, 0x40
-	lfs      f0, 4(r31)
-	stb      r0, 0x18(r30)
-	lfs      f4, 8(r31)
-	stw      r0, 0x1c(r30)
-	lfs      f3, 0xc(r31)
-	stw      r0, 0x20(r30)
-	lfs      f2, 0x10(r31)
-	stfs     f1, 0x24(r30)
-	lfs      f1, 0x14(r31)
-	stfs     f0, 0x28(r30)
-	lfs      f0, lbl_8051E198@sda21(r2)
-	stfs     f4, 0x2c(r30)
-	stfs     f3, 0x30(r30)
-	stfs     f2, 0x34(r30)
-	stfs     f1, 0x38(r30)
-	stfs     f0, 0x3c(r30)
-	bl       initiate__10JSUPtrListFv
-	lfs      f0, 0x30(r30)
-	li       r0, 0
-	lfs      f2, 0x24(r30)
-	fcmpo    cr0, f0, f2
-	cror     2, 1, 2
-	bne      lbl_803401D0
-	lfs      f1, 0x34(r30)
-	lfs      f0, 0x28(r30)
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_803401D0
-	lfs      f1, 0x38(r30)
-	lfs      f0, 0x2c(r30)
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_803401D0
-	li       r0, 1
-
-lbl_803401D0:
-	clrlwi.  r0, r0, 0x18
-	bne      lbl_80340310
-	lwz      r0, 0x24(r30)
-	lwz      r6, 0x28(r30)
-	stw      r0, 8(r1)
-	lwz      r5, 0x2c(r30)
-	lfs      f0, 8(r1)
-	lwz      r4, 0x30(r30)
-	lwz      r3, 0x34(r30)
-	fcmpo    cr0, f2, f0
-	lwz      r0, 0x38(r30)
-	stw      r6, 0xc(r1)
-	stw      r5, 0x10(r1)
-	stw      r4, 0x14(r1)
-	stw      r3, 0x18(r1)
-	stw      r0, 0x1c(r1)
-	cror     2, 1, 2
-	bne      lbl_8034021C
-	stfs     f0, 0x24(r30)
-
-lbl_8034021C:
-	lfs      f0, 0x28(r30)
-	lfs      f1, 0xc(r1)
-	fcmpo    cr0, f0, f1
-	cror     2, 1, 2
-	bne      lbl_80340234
-	stfs     f1, 0x28(r30)
-
-lbl_80340234:
-	lfs      f0, 0x2c(r30)
-	lfs      f2, 0x10(r1)
-	fcmpo    cr0, f0, f2
-	cror     2, 1, 2
-	bne      lbl_8034024C
-	stfs     f2, 0x2c(r30)
-
-lbl_8034024C:
-	lfs      f0, 0x24(r30)
-	lfs      f3, 0x14(r1)
-	fcmpo    cr0, f0, f3
-	cror     2, 1, 2
-	bne      lbl_80340264
-	stfs     f3, 0x24(r30)
-
-lbl_80340264:
-	lfs      f0, 0x28(r30)
-	lfs      f4, 0x18(r1)
-	fcmpo    cr0, f0, f4
-	cror     2, 1, 2
-	bne      lbl_8034027C
-	stfs     f4, 0x28(r30)
-
-lbl_8034027C:
-	lfs      f0, 0x2c(r30)
-	lfs      f5, 0x1c(r1)
-	fcmpo    cr0, f0, f5
-	cror     2, 1, 2
-	bne      lbl_80340294
-	stfs     f5, 0x2c(r30)
-
-lbl_80340294:
-	lfs      f0, 0x30(r30)
-	lfs      f6, 8(r1)
-	fcmpo    cr0, f0, f6
-	cror     2, 0, 2
-	bne      lbl_803402AC
-	stfs     f6, 0x30(r30)
-
-lbl_803402AC:
-	lfs      f0, 0x34(r30)
-	fcmpo    cr0, f0, f1
-	cror     2, 0, 2
-	bne      lbl_803402C0
-	stfs     f1, 0x34(r30)
-
-lbl_803402C0:
-	lfs      f0, 0x38(r30)
-	fcmpo    cr0, f0, f2
-	cror     2, 0, 2
-	bne      lbl_803402D4
-	stfs     f2, 0x38(r30)
-
-lbl_803402D4:
-	lfs      f0, 0x30(r30)
-	fcmpo    cr0, f0, f3
-	cror     2, 0, 2
-	bne      lbl_803402E8
-	stfs     f3, 0x30(r30)
-
-lbl_803402E8:
-	lfs      f0, 0x34(r30)
-	fcmpo    cr0, f0, f4
-	cror     2, 0, 2
-	bne      lbl_803402FC
-	stfs     f4, 0x34(r30)
-
-lbl_803402FC:
-	lfs      f0, 0x38(r30)
-	fcmpo    cr0, f0, f5
-	cror     2, 0, 2
-	bne      lbl_80340310
-	stfs     f5, 0x38(r30)
-
-lbl_80340310:
-	lwz      r0, 0x34(r1)
-	mr       r3, r30
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /**
@@ -753,16 +427,18 @@ void Builder_EvnSe_Perspective::build(f32 volume, PSSystem::EnvSeMgr* mgr)
 	f32 totalSizeX = mBox.f.x - mBox.i.x;
 	f32 totalSizeZ = mBox.f.z - mBox.i.z;
 
+	f32 sizeX = totalSizeX;
+	f32 sizeZ = totalSizeZ;
 	if (!mDoSkipSizeCheck) {
-		f32* temp = &totalSizeX;
 		int* val  = &mGridSizeX;
+		f32* temp = &sizeX;
 		while (true) {
 			*val = *temp / 1000.0f;
 			if (val == &mGridSizeZ) {
 				break;
 			}
-			temp = &totalSizeZ;
 			val  = &mGridSizeZ;
+			temp = &sizeZ;
 		}
 	} else {
 		P2ASSERTBOOLLINE(639, mGridSizeX > 0 && mGridSizeZ > 0);
@@ -781,221 +457,14 @@ void Builder_EvnSe_Perspective::build(f32 volume, PSSystem::EnvSeMgr* mgr)
 		for (int z = 0; z < mGridSizeZ; z++) {
 			pos.z = unitSizeZ * f32(z) + startPosZ;
 
-			PSSystem::IdLink* link = mList.setNextLink();
+			u32 soundID = mList.setNextLink()->mId;
 
-			EnvSe_Perspective* se = newSeObj(link->mId, volume, pos);
+			EnvSe_Perspective* se = newSeObj(soundID, volume, pos);
 			P2ASSERTLINE(662, se);
 			onBuild(se);
 			mgr->mEnvList.append(se);
 		}
 	}
-
-	/*
-	stwu     r1, -0xc0(r1)
-	mflr     r0
-	stw      r0, 0xc4(r1)
-	stfd     f31, 0xb0(r1)
-	psq_st   f31, 184(r1), 0, qr0
-	stfd     f30, 0xa0(r1)
-	psq_st   f30, 168(r1), 0, qr0
-	stfd     f29, 0x90(r1)
-	psq_st   f29, 152(r1), 0, qr0
-	stfd     f28, 0x80(r1)
-	psq_st   f28, 136(r1), 0, qr0
-	stfd     f27, 0x70(r1)
-	psq_st   f27, 120(r1), 0, qr0
-	stfd     f26, 0x60(r1)
-	psq_st   f26, 104(r1), 0, qr0
-	stmw     r25, 0x44(r1)
-	or.      r27, r4, r4
-	fmr      f31, f1
-	lis      r4, lbl_80490038@ha
-	mr       r26, r3
-	addi     r30, r4, lbl_80490038@l
-	bne      lbl_80340398
-	addi     r3, r30, 0x90
-	addi     r5, r30, 0x9c
-	li       r4, 0x254
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80340398:
-	lfs      f3, 0x30(r26)
-	lfs      f2, 0x24(r26)
-	lfs      f1, 0x38(r26)
-	lfs      f0, 0x2c(r26)
-	fsubs    f29, f3, f2
-	fsubs    f28, f1, f0
-	stfs     f29, 0xc(r1)
-	stfs     f28, 8(r1)
-	lbz      r0, 0x18(r26)
-	cmplwi   r0, 0
-	bne      lbl_80340400
-	lfs      f1, lbl_8051E1BC@sda21(r2)
-	addi     r4, r26, 0x1c
-	addi     r3, r1, 0xc
-	addi     r0, r26, 0x20
-
-lbl_803403D4:
-	lfs      f0, 0(r3)
-	cmplw    r4, r0
-	fdivs    f0, f0, f1
-	fctiwz   f0, f0
-	stfd     f0, 0x28(r1)
-	lwz      r3, 0x2c(r1)
-	stw      r3, 0(r4)
-	beq      lbl_8034043C
-	mr       r4, r0
-	addi     r3, r1, 8
-	b        lbl_803403D4
-
-lbl_80340400:
-	lwz      r0, 0x1c(r26)
-	li       r3, 0
-	cmpwi    r0, 0
-	ble      lbl_80340420
-	lwz      r0, 0x20(r26)
-	cmpwi    r0, 0
-	ble      lbl_80340420
-	li       r3, 1
-
-lbl_80340420:
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8034043C
-	addi     r3, r30, 0x90
-	addi     r5, r30, 0x9c
-	li       r4, 0x27f
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8034043C:
-	lwz      r3, 0x1c(r26)
-	lis      r31, 0x4330
-	lwz      r0, 0x20(r26)
-	li       r29, 0
-	xoris    r3, r3, 0x8000
-	lfs      f5, 0x3c(r26)
-	xoris    r0, r0, 0x8000
-	stw      r3, 0x2c(r1)
-	lfd      f30, lbl_8051E1A8@sda21(r2)
-	stw      r31, 0x28(r1)
-	lfs      f2, lbl_8051E194@sda21(r2)
-	lfd      f0, 0x28(r1)
-	stw      r0, 0x34(r1)
-	fsubs    f4, f0, f30
-	lfs      f1, 0x24(r26)
-	stw      r31, 0x30(r1)
-	lfs      f0, 0x2c(r26)
-	lfd      f3, 0x30(r1)
-	fdivs    f29, f29, f4
-	stfs     f5, 0x20(r1)
-	fsubs    f3, f3, f30
-	fmadds   f27, f29, f2, f1
-	fdivs    f28, f28, f3
-	fmadds   f26, f28, f2, f0
-	b        lbl_803405AC
-
-lbl_803404A0:
-	xoris    r0, r29, 0x8000
-	stw      r31, 0x30(r1)
-	li       r28, 0
-	stw      r0, 0x34(r1)
-	lfd      f0, 0x30(r1)
-	fsubs    f0, f0, f30
-	fmadds   f0, f29, f0, f27
-	stfs     f0, 0x1c(r1)
-	b        lbl_8034059C
-
-lbl_803404C4:
-	xoris    r3, r28, 0x8000
-	lwz      r0, 0x4c(r26)
-	stw      r3, 0x34(r1)
-	cmplwi   r0, 0
-	stw      r31, 0x30(r1)
-	lfd      f0, 0x30(r1)
-	fsubs    f0, f0, f30
-	fmadds   f0, f28, f0, f26
-	stfs     f0, 0x24(r1)
-	bne      lbl_80340500
-	addi     r3, r30, 0xa8
-	addi     r5, r30, 0xb4
-	li       r4, 0xd2
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80340500:
-	lwz      r3, 0x4c(r26)
-	lwz      r0, 0xc(r3)
-	stw      r0, 0x4c(r26)
-	lwz      r0, 0x4c(r26)
-	cmplwi   r0, 0
-	bne      lbl_80340520
-	lwz      r0, 0x40(r26)
-	stw      r0, 0x4c(r26)
-
-lbl_80340520:
-	lwz      r4, 0x10(r3)
-	fmr      f1, f31
-	lwz      r7, 0x1c(r1)
-	mr       r3, r26
-	lwz      r6, 0x20(r1)
-	addi     r5, r1, 0x10
-	lwz      r0, 0x24(r1)
-	stw      r7, 0x10(r1)
-	stw      r6, 0x14(r1)
-	stw      r0, 0x18(r1)
-	lwz      r12, 0(r26)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	or.      r25, r3, r3
-	bne      lbl_80340574
-	addi     r3, r30, 0x90
-	addi     r5, r30, 0x9c
-	li       r4, 0x296
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80340574:
-	mr       r3, r26
-	mr       r4, r25
-	lwz      r12, 0(r26)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r27
-	mr       r4, r25
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	addi     r28, r28, 1
-
-lbl_8034059C:
-	lwz      r0, 0x20(r26)
-	cmpw     r28, r0
-	blt      lbl_803404C4
-	addi     r29, r29, 1
-
-lbl_803405AC:
-	lwz      r0, 0x1c(r26)
-	cmpw     r29, r0
-	blt      lbl_803404A0
-	psq_l    f31, 184(r1), 0, qr0
-	lfd      f31, 0xb0(r1)
-	psq_l    f30, 168(r1), 0, qr0
-	lfd      f30, 0xa0(r1)
-	psq_l    f29, 152(r1), 0, qr0
-	lfd      f29, 0x90(r1)
-	psq_l    f28, 136(r1), 0, qr0
-	lfd      f28, 0x80(r1)
-	psq_l    f27, 120(r1), 0, qr0
-	lfd      f27, 0x70(r1)
-	psq_l    f26, 104(r1), 0, qr0
-	lfd      f26, 0x60(r1)
-	lmw      r25, 0x44(r1)
-	lwz      r0, 0xc4(r1)
-	mtlr     r0
-	addi     r1, r1, 0xc0
-	blr
-	*/
 }
 
 /**

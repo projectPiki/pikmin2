@@ -4,6 +4,7 @@
 #include "Game/Creature.h"
 #include "Game/IconTexture.h"
 #include "Game/enemyInfo.h"
+#include "Game/TimeMgr.h"
 #include "JSystem/JUtility/TColor.h"
 #include "Camera.h"
 #include "Controller.h"
@@ -157,7 +158,19 @@ struct CameraParms {
 	virtual void read(Stream&); // _08
 };
 
+/**
+ * Time-of-day colours for the Piklopedia viewer, indexed by SunLightTimes.
+ * The background gradient is drawn behind, then the glow colour tints the
+ * additive light effect drawn over it.
+ */
 struct ColorSetting : public CNode {
+
+	enum BgGradientPos {
+		BGGRAD_Top    = 0,
+		BGGRAD_Bottom = 1,
+		BGGRAD_Count,
+	};
+
 	ColorSetting();
 
 	virtual ~ColorSetting() { } // _08 (weak)
@@ -165,34 +178,36 @@ struct ColorSetting : public CNode {
 
 	void update();
 
-	JUtility::TColor getActiveColorA()
+	Color4* getBgColor(int slot, int pos) { return &mBgGradientColors[slot][pos]; }
+	Color4* getGlowColor(int slot) { return &mGlowColors[slot]; }
+
+	JUtility::TColor getActiveBgTopColor()
 	{
 		JUtility::TColor outColor;
-		outColor.set(mActiveColorA.r, mActiveColorA.g, mActiveColorA.b, mActiveColorA.a);
+		outColor.set(mActiveBgTopColor.r, mActiveBgTopColor.g, mActiveBgTopColor.b, mActiveBgTopColor.a);
 		return outColor;
 	}
 
-	JUtility::TColor getActiveColorB()
+	JUtility::TColor getActiveBgBottomColor()
 	{
 		JUtility::TColor outColor;
-		outColor.set(mActiveColorB.r, mActiveColorB.g, mActiveColorB.b, mActiveColorB.a);
+		outColor.set(mActiveBgBottomColor.r, mActiveBgBottomColor.g, mActiveBgBottomColor.b, mActiveBgBottomColor.a);
 		return outColor;
 	}
 
 	// _00     = VTBL
 	// _00-_18 = CNode
-	Color4 mColorListA[5][2]; // _18
-	Color4 mColorListB[5];    // _40
-	GXColor mActiveColorA;    // _54
-	GXColor mActiveColorB;    // _58
-	Color4 mActiveColorC;     // _5C
+	Color4 mBgGradientColors[SUNTIME_Count][BGGRAD_Count]; // _18
+	Color4 mGlowColors[SUNTIME_Count];                     // _40
+	GXColor mActiveBgTopColor;                             // _54
+	GXColor mActiveBgBottomColor;                          // _58
+	Color4 mActiveGlowColor;                               // _5C
 };
 
 struct DebugParms : public CNode {
 	DebugParms();
 
 	virtual ~DebugParms() { } // _08 (weak)
-	// potential something at _10?
 
 	// _00     = VTBL
 	// _00-_18 = CNode
@@ -243,8 +258,8 @@ struct EnemyParms : public CNode {
 		inline Parms()
 		    : Parameters(nullptr, "enemyParms")
 		    , mSize(this, 'f001', "大きさ", 10.0f, 0.0f, 1000.0f)         // 'size'
-		    , mAppearRange(this, 'f000', "出現範囲", 0.0f, 0.0f, 1000.0f) // 'occurence range'
-		    , mAppearNum(this, 'i000', "出現数", 1, 1, 99)
+		    , mAppearRange(this, 'f000', "出現範囲", 0.0f, 0.0f, 1000.0f) // 'occurrence range'
+		    , mAppearNum(this, 'i000', "出現数", 1, 1, 99)                // 'number of occurrences'
 		{
 		}
 
@@ -281,9 +296,9 @@ struct ItemParms : public CNode {
 	struct Parms : public Parameters {
 		inline Parms()
 		    : Parameters(nullptr, "enemyParms")
-		    , mOffsetX(this, 'f000', "オフセットｘ", 0.0f, -10000.0f, 10000.0f)
-		    , mOffsetY(this, 'f001', "オフセットｙ", 0.0f, -10000.0f, 10000.0f)
-		    , mOffsetZ(this, 'f002', "オフセットｚ", 0.0f, -10000.0f, 10000.0f)
+		    , mOffsetX(this, 'f000', "オフセットｘ", 0.0f, -10000.0f, 10000.0f) // 'offset X'
+		    , mOffsetY(this, 'f001', "オフセットｙ", 0.0f, -10000.0f, 10000.0f) // 'offset Y'
+		    , mOffsetZ(this, 'f002', "オフセットｚ", 0.0f, -10000.0f, 10000.0f) // 'offset Z'
 		{
 		}
 

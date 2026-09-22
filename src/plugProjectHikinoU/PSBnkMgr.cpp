@@ -54,7 +54,7 @@ BankMgr::BankMgr()
  */
 void BankMgr::setBankData(u32* data)
 {
-	u32* aafPtr = (u32*)JAInter::InitData::aafPointer;
+	u32* aafPtr = JAInter::InitData::aafPointer;
 	P2ASSERTLINE(56, aafPtr);
 	P2ASSERTLINE(57, !mBankData);
 
@@ -68,17 +68,17 @@ void BankMgr::setBankData(u32* data)
 	u8* wsdata = new (JASDram, 0x20) u8[count];
 	if (wsdata) {
 		for (u32 i = 0; i < count; i++) {
-			(wsdata)[i] = (aafData)[i];
+			const u32& byte = aafData[i];
+			wsdata[i]       = byte;
 		}
 	}
 	mBankData = (PSInstData*)wsdata;
 
 	u8 banks = 0;
-	for (; *(u32*)aafData;) {
-		aafData += 12;
-		dataStart += 3;
+	while (aafPtr[dataStart] != 0) {
 		mBankData[banks]._00 = (int)aafPtr + mBankData[banks]._00;
 		banks++;
+		dataStart += 3;
 	}
 	mInstBankNum = banks;
 	*data        = dataStart + 1;
@@ -90,7 +90,7 @@ void BankMgr::setBankData(u32* data)
  */
 void BankMgr::setWsData(u32* data)
 {
-	u32* aafPtr = (u32*)JAInter::InitData::aafPointer;
+	u32* aafPtr = JAInter::InitData::aafPointer;
 	P2ASSERTLINE(89, aafPtr);
 	P2ASSERTLINE(90, !mWsData);
 
@@ -104,17 +104,17 @@ void BankMgr::setWsData(u32* data)
 	u8* wsdata = new (JASDram, 0x20) u8[count];
 	if (wsdata) {
 		for (u32 i = 0; i < count; i++) {
-			(wsdata)[i] = (aafData)[i];
+			const u32& byte = aafData[i];
+			wsdata[i]       = byte;
 		}
 	}
 	mWsData = (PSInstData*)wsdata;
 
 	u8 banks = 0;
-	for (; *(u32*)aafData;) {
-		aafData += 12;
-		dataStart += 3;
+	while (aafPtr[dataStart] != 0) {
 		mWsData[banks]._00 = (int)aafPtr + mWsData[banks]._00;
 		banks++;
+		dataStart += 3;
 	}
 	mWaveBankNum = banks;
 	*data        = dataStart + 1;

@@ -21,6 +21,13 @@ struct FieldVtxColorInfo {
 	// Unused/inlined:
 	void setVtxColorIndex(u16);
 
+	inline void raiseAlpha(u8 alpha)
+	{
+		if (mAlpha < alpha) {
+			mAlpha = alpha;
+		}
+	}
+
 	u16 mColorIdx; // _00
 	u16 _02;       // _02
 	u8 mAlpha;     // _04
@@ -62,6 +69,31 @@ struct FieldVtxColorControlInfo {
 struct FieldVtxColorControl {
 	FieldVtxColorControl(); // inlined
 
+	inline void addControlInfo(FieldVtxColorControlInfo* info)
+	{
+		FieldVtxColorControlInfo* node = mControlInfo;
+		if (!node) {
+			mControlInfo = info;
+			return;
+		}
+
+		info->mNext = nullptr;
+
+		if (!node->mNext) {
+			node->mNext = info;
+			return;
+		}
+
+		node = node->mNext;
+		while (node) {
+			if (!node->mNext) {
+				break;
+			}
+			node = node->mNext;
+		}
+		node->mNext = info;
+	}
+
 	FieldVtxColorControl* mNext;            // _00
 	Vector3f mPosition;                     // _04
 	f32 mRadius;                            // _10
@@ -90,6 +122,31 @@ struct FieldVtxColorMgr : public J3DVtxColorCalc, public CNode {
 	void drawDebugInfo(struct Graphics&);
 
 	inline FieldVtxColorInfo& getColorInfo(u16 i) const { return mInfo[i]; }
+
+	inline void addControl(FieldVtxColorControl* control)
+	{
+		FieldVtxColorControl* node = mControl;
+		if (!node) {
+			mControl = control;
+			return;
+		}
+
+		control->mNext = nullptr;
+
+		if (!node->mNext) {
+			node->mNext = control;
+			return;
+		}
+
+		node = node->mNext;
+		while (node) {
+			if (!node->mNext) {
+				break;
+			}
+			node = node->mNext;
+		}
+		node->mNext = control;
+	}
 
 	inline void setFlag(u32 flag) { mMgrFlags.typeView |= flag; }
 	inline void resetFlag(u32 flag) { mMgrFlags.typeView &= ~flag; }

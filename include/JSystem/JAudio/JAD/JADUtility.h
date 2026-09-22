@@ -194,9 +194,11 @@ struct PrmSetRc : public PrmSetBase {
 		if (getPrmObjHeap() != nullptr) {
 			getPrmObjHeap()->becomeCurrentHeap();
 		}
-		T* childObjects = new T[getChildNum()];
+		u16 count = getChildNum();
+		T* childObjects = new T[count];
+		PrmSetBase* object;
 		for (u8 i = 0; i < getChildNum(); i++) {
-			PrmSetBase* object = childObjects + i;
+			object = &childObjects[i];
 			mTree.append((JADUtility::PrmSetTree*)&object->mTree); // cast is needed for null check
 			object->appendAfter();
 			object->load(input);

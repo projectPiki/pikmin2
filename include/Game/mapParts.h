@@ -84,7 +84,7 @@ struct Door : public CNode {
 
 // Size: 0x10
 struct RoomDoorInfo {
-	RoomDoorInfo();
+	RoomDoorInfo() { }
 	WayPoint* mWaypoint; // _00
 	Vector3f mLookAtPos; // _04
 };
