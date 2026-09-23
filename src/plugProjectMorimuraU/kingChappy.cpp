@@ -290,6 +290,7 @@ void Obj::onKill(CreatureKillArg* killArg)
  */
 void Obj::doAnimationCullingOff()
 {
+	Matrixf* mat;
 	if (C_PARMS->mDoUseFootCallback) {
 		if (getStateID() == KINGCHAPPY_Walk || mLFootHeightRatio != 0.0f || mRFootHeightRatio != 0.0f) {
 			curK = this;
@@ -325,7 +326,6 @@ void Obj::doAnimationCullingOff()
 	// this is a really complicated way to adjust the world matrices when eating pikmin
 	for (int i = 0; i < mMouthSlots.mMax; i++) {
 		// this loop has regswaps, but not from the math for once!
-		Matrixf* mat;
 		Creature* stuckCreature = mMouthSlots.getStuckCreature(i);
 		if (stuckCreature) {
 			mat             = (Matrixf*)mModel->mJ3dModel->mMtxBuffer->mWorldMatrices[mMouthJointIndices[i]];
@@ -1150,7 +1150,8 @@ void Obj::searchTarget()
 	mTargetCreature
 	    = EnemyFunc::getNearestNavi(this, C_GENERALPARMS.mSearchAngle(), C_GENERALPARMS.mSearchDistance(), &searchDist, nullptr);
 
-	f32 range = SQUARE(C_PROPERPARMS.mInvisibleRange()); // f30
+	f32 range = C_PROPERPARMS.mInvisibleRange();
+	range *= range; // f30
 	f32 maxY, minY;
 	minY = mPosition.y - 50.0f; // f28
 	maxY = 50.0f + mPosition.y; // f29
@@ -1166,7 +1167,8 @@ void Obj::searchTarget()
 			}
 			f32 angle = getAngDist(piki);
 			if (absF(angle) <= searchAngle) {
-				Vector3f pos      = mPosition;
+				Vector3f pos;
+				getPosition2D(pos);
 				Vector3f pikiPos2 = Vector3f(piki->getPosition().x, 0.0f, piki->getPosition().z);
 				f32 dist          = pikiPos2.sqrDistance2D(pos);
 				if (dist < searchDist && dist > range) {
@@ -1789,6 +1791,7 @@ void Obj::checkAttack(bool check)
 	}
 
 	f32 attackRange, attackAngle; // f27, f26
+	Bomb::Obj* bomb;
 	if (mIsBig) {
 		attackRange = C_PROPERPARMS.mBigAttackHitRange();
 		attackAngle = C_PROPERPARMS.mBigAttackAngle();
@@ -1798,15 +1801,12 @@ void Obj::checkAttack(bool check)
 	}
 
 	if (mTargetCreature && mTargetCreature->isAlive()) {
-		Creature* target = mTargetCreature;
-		if (isTargetOutOfRange(target, getAngDist(target), C_GENERALPARMS.mPrivateRadius(), C_GENERALPARMS.mSightRadius(),
-		                       C_GENERALPARMS.mFov(), C_GENERALPARMS.mViewAngle())) {
+		if (isTargetOutOfRange(mTargetCreature, C_GENERALPARMS.mPrivateRadius(), C_GENERALPARMS.mSightRadius(), C_GENERALPARMS.mFov(),
+		                       C_GENERALPARMS.mViewAngle())) {
 			mTargetCreature = nullptr;
 
 		} else {
-			Creature* target = mTargetCreature;
-			f32 angle        = getAngDist(target);
-			if (isTargetAttackable(target, angle, attackRange, attackAngle)) {
+			if (isTargetAttackable(mTargetCreature, attackRange, attackAngle)) {
 				f32 range          = C_PROPERPARMS.mInvisibleRange();
 				Vector3f targetPos = mTargetCreature->getPosition();
 
@@ -1832,7 +1832,7 @@ void Obj::checkAttack(bool check)
 	}
 
 	for (int i = 0; i < bombMgr->getMaxObjects(); i++) {
-		Bomb::Obj* bomb = static_cast<Bomb::Obj*>(bombMgr->getEnemy(i));
+		bomb = static_cast<Bomb::Obj*>(bombMgr->getEnemy(i));
 		if (!bomb) {
 			continue;
 		}
@@ -1841,8 +1841,7 @@ void Obj::checkAttack(bool check)
 			continue;
 		}
 
-		f32 bombAngle = getAngDist(bomb);
-		if (isTargetAttackable(bomb, bombAngle, attackRange, attackAngle)) {
+		if (isTargetAttackable(bomb, attackRange, attackAngle)) {
 			f32 range          = C_PROPERPARMS.mInvisibleRange();
 			Vector3f targetPos = bomb->getPosition();
 

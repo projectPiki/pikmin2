@@ -34,6 +34,7 @@ struct TIndexGroup {
 	inline bool isState(u8 state) const { return mStateID == state; }
 
 	inline f32 getHeight() { return mHeight; }
+	inline f32 getScrollOffset() const { return mScrollOffset; }
 
 	f32 mMaxRollSpeed;        // _00, maximum scroll speed when holding up/down
 	f32 mSpeedSlowdownFactor; // _04, rate of deceleration near end of movement

@@ -114,7 +114,7 @@ struct ObjContena : public ::Screen::ObjBase {
 	J2DPane* mPaneTiretu;                    // _160
 	J2DPane* mPaneTiretul;                   // _164
 	og::Screen::ScaleMgr* mScaleMgr4;        // _168
-	u8 mPayedDebt;                           // _16C
+	bool mPayedDebt;                         // _16C
 
 	static struct StaticValues {
 		inline StaticValues()

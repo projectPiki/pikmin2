@@ -567,7 +567,7 @@ bool TBabaHe::create(Arg* arg)
 		}
 
 		Vector3f forward;
-		forward = mtx.getColumn(2);
+		mtx.getColumn(2, forward);
 		forward *= -35.0f;
 		forward = forward + pos;
 
@@ -576,113 +576,6 @@ bool TBabaHe::create(Arg* arg)
 		return true;
 	}
 	return false;
-	/*
-	stwu     r1, -0x90(r1)
-	mflr     r0
-	stw      r0, 0x94(r1)
-	stfd     f31, 0x80(r1)
-	psq_st   f31, 136(r1), 0, qr0
-	stfd     f30, 0x70(r1)
-	psq_st   f30, 120(r1), 0, qr0
-	stfd     f29, 0x60(r1)
-	psq_st   f29, 104(r1), 0, qr0
-	stw      r31, 0x5c(r1)
-	stw      r30, 0x58(r1)
-	stw      r29, 0x54(r1)
-	mr       r30, r4
-	mr       r29, r3
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	addi     r3, r2, lbl_8051F62C@sda21
-	bl       strcmp
-	cntlzw   r0, r3
-	rlwinm.  r0, r0, 0x1b, 0x18, 0x1f
-	bne      lbl_803B40D4
-	lis      r3, lbl_80495898@ha
-	lis      r5, lbl_804958B4@ha
-	addi     r3, r3, lbl_80495898@l
-	li       r4, 0x209
-	addi     r5, r5, lbl_804958B4@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B40D4:
-	lfs      f31, 4(r30)
-	addi     r3, r1, 0x14
-	lfs      f30, 8(r30)
-	li       r4, 0x79
-	lfs      f29, 0xc(r30)
-	lfs      f1, 0x10(r30)
-	bl       PSMTXRotRad
-	stfs     f31, 0x20(r1)
-	mr       r3, r29
-	mr       r4, r30
-	stfs     f30, 0x30(r1)
-	stfs     f29, 0x40(r1)
-	bl       create__Q23efx8TSimple2FPQ23efx3Arg
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803B41A0
-	li       r30, 0
-	mr       r31, r29
-
-lbl_803B4118:
-	lwz      r5, 8(r31)
-	addi     r3, r1, 0x14
-	addi     r4, r5, 0x68
-	addi     r5, r5, 0xa4
-	bl       "JPASetRMtxTVecfromMtx__FPA4_CfPA4_fPQ29JGeometry8TVec3<f>"
-	addi     r30, r30, 1
-	addi     r31, r31, 4
-	cmpwi    r30, 2
-	blt      lbl_803B4118
-	lfs      f1, 0x1c(r1)
-	li       r3, 1
-	lfs      f0, lbl_8051F634@sda21(r2)
-	lfs      f5, 0x2c(r1)
-	fmuls    f3, f1, f0
-	lfs      f4, 0x3c(r1)
-	fmuls    f2, f5, f0
-	stfs     f1, 8(r1)
-	fmuls    f1, f4, f0
-	lwz      r4, 0xc(r29)
-	fadds    f0, f3, f31
-	stfs     f5, 0xc(r1)
-	fadds    f5, f2, f30
-	stfs     f4, 0x10(r1)
-	fadds    f4, f1, f29
-	stfs     f0, 0xa4(r4)
-	stfs     f3, 8(r1)
-	stfs     f2, 0xc(r1)
-	stfs     f1, 0x10(r1)
-	stfs     f5, 0xa8(r4)
-	stfs     f0, 8(r1)
-	stfs     f5, 0xc(r1)
-	stfs     f4, 0x10(r1)
-	stfs     f4, 0xac(r4)
-	b        lbl_803B41A4
-
-lbl_803B41A0:
-	li       r3, 0
-
-lbl_803B41A4:
-	psq_l    f31, 136(r1), 0, qr0
-	lfd      f31, 0x80(r1)
-	psq_l    f30, 120(r1), 0, qr0
-	lfd      f30, 0x70(r1)
-	psq_l    f29, 104(r1), 0, qr0
-	lfd      f29, 0x60(r1)
-	lwz      r31, 0x5c(r1)
-	lwz      r30, 0x58(r1)
-	lwz      r0, 0x94(r1)
-	lwz      r29, 0x54(r1)
-	mtlr     r0
-	addi     r1, r1, 0x90
-	blr
-	*/
 }
 
 /**

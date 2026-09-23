@@ -71,12 +71,6 @@ struct AdjustNode : public CNode {
 struct AdjustInfo {
 	AdjustInfo();
 
-	inline void resetDoor()
-	{
-		mMapTile        = nullptr;
-		mBirthDoorIndex = -1;
-	}
-
 	MapNode* mMapTile;   // _00
 	int mBirthDoorIndex; // _04
 	int mDoorScore;      // _08
@@ -280,8 +274,10 @@ struct MapNode : public CNode {
 	f32 getDoorGlobalDirection(int doorIndex);
 	int getNumDoors();
 
-	inline MapNode* getChild() { return static_cast<MapNode*>(mChild); }
+	inline MapNode* getConnectedNode(int doorIndex) { return mAdjustInfo[doorIndex].mMapTile; }
+	inline int getDoorScore(int doorIndex) { return mAdjustInfo[doorIndex].mDoorScore; }
 
+	inline MapNode* getChild() { return static_cast<MapNode*>(mChild); }
 	inline MapNode* getNext() { return static_cast<MapNode*>(mNext); }
 
 	// _00     = VTBL

@@ -68,8 +68,6 @@ ObjVs::~ObjVs()
  */
 void ObjVs::doCreate(JKRArchive* arc)
 {
-	/* NON-MATCHING */
-	// some regswaps
 	mScreenP1 = new ScreenSet;
 	mScreenP2 = new ScreenSet;
 
@@ -102,33 +100,29 @@ void ObjVs::doCreate(JKRArchive* arc)
 	J2DPictureEx* panePcup   = static_cast<J2DPictureEx*>(bdamaScreen->search('Pcup'));
 
 	J2DPane* root = scrn1->search('ROOT');
-	int xoffs     = 0;
 	for (int i = 0; i < 4; i++) {
 		mPane_bedama1P[i]
-		    = og::Screen::CopyPictureToPane(paneBdamaY, root, msVal.mMarbleBaseXOffs + xoffs, msVal.mMarbleP1YOffs, 'bd1P_000' + i);
+		    = og::Screen::CopyPictureToPane(paneBdamaY, root, msVal.mMarbleBaseXOffs + i * 40, msVal.mMarbleP1YOffs, 'bd1P_000' + i);
 		mPane_nodama1P[i]
-		    = og::Screen::CopyPictureToPane(panePcup, root, msVal.mMarbleBaseXOffs + xoffs, msVal.mMarbleP1YOffs, 'nd1P_000' + i);
+		    = og::Screen::CopyPictureToPane(panePcup, root, msVal.mMarbleBaseXOffs + i * 40, msVal.mMarbleP1YOffs, 'nd1P_000' + i);
 		mPane_windama1P[i]
-		    = og::Screen::CopyPictureToPane(paneBdamaB, root, msVal.mMarbleBaseXOffs + xoffs, msVal.mMarbleP1YOffs, 'wd1P_000' + i);
+		    = og::Screen::CopyPictureToPane(paneBdamaB, root, msVal.mMarbleBaseXOffs + i * 40, msVal.mMarbleP1YOffs, 'wd1P_000' + i);
 		mScaleMgrP1_1[i] = new og::Screen::ScaleMgr;
 		mScaleMgrP1_2[i] = new og::Screen::ScaleMgr;
 		mPane_windama1P[i]->hide();
-		xoffs += 40;
 	}
 
 	J2DPane* root2 = scrn2->search('ROOT');
-	xoffs          = 0;
 	for (int i = 0; i < 4; i++) {
 		mPane_bedama2P[i]
-		    = og::Screen::CopyPictureToPane(paneBdamaY, root2, msVal.mMarbleBaseXOffs + xoffs, msVal.mMarbleP2YOffs, 'bd2P_000' + i);
+		    = og::Screen::CopyPictureToPane(paneBdamaY, root2, msVal.mMarbleBaseXOffs + i * 40, msVal.mMarbleP2YOffs, 'bd2P_000' + i);
 		mPane_nodama2P[i]
-		    = og::Screen::CopyPictureToPane(panePcup, root2, msVal.mMarbleBaseXOffs + xoffs, msVal.mMarbleP2YOffs, 'nd2P_000' + i);
+		    = og::Screen::CopyPictureToPane(panePcup, root2, msVal.mMarbleBaseXOffs + i * 40, msVal.mMarbleP2YOffs, 'nd2P_000' + i);
 		mPane_windama2P[i]
-		    = og::Screen::CopyPictureToPane(paneBdamaR, root2, msVal.mMarbleBaseXOffs + xoffs, msVal.mMarbleP2YOffs, 'wd2P_000' + i);
+		    = og::Screen::CopyPictureToPane(paneBdamaR, root2, msVal.mMarbleBaseXOffs + i * 40, msVal.mMarbleP2YOffs, 'wd2P_000' + i);
 		mScaleMgrP2_1[i] = new og::Screen::ScaleMgr;
 		mScaleMgrP2_2[i] = new og::Screen::ScaleMgr;
 		mPane_windama2P[i]->hide();
-		xoffs += 40;
 	}
 
 	mScreenIcons = new P2DScreen::Mgr_tuning;
@@ -416,7 +410,6 @@ void ObjVs::ScreenSet::update(og::Screen::DataNavi& data)
  */
 void ObjVs::checkObake()
 {
-	/* NON-MATCHING */
 	if (mObakeEnabledP1) {
 		mAlphaObakeP1 += sys->mDeltaTime;
 		if (mAlphaObakeP1 > 1.0f)
@@ -501,13 +494,12 @@ void ObjVs::checkObake()
 	f32 yOffs1 = msVal.mRouletteP1YOffs;
 	f32 yOffs2 = msVal.mRouletteP2YOffs;
 
-	// f1-f0 regswap here
-	mPaneObake1P->setOffset(xOffs + b, yOffs1 + a);
+	mPaneObake1P->translate(xOffs + b, yOffs1 + a);
 
 	f32 c = sin * angle2;
 	f32 d = cos * angle2;
 
-	mPaneObake2P->setOffset(xOffs + d, yOffs2 + c);
+	mPaneObake2P->translate(xOffs + d, yOffs2 + c);
 
 	f32 scale = msVal.mRouletteScale;
 	mPaneObake1P->updateScale(scale);
@@ -520,9 +512,8 @@ void ObjVs::checkObake()
  */
 void ObjVs::doUpdateCommon()
 {
-	/* NON-MATCHING */
-	// need r31 load to happen after the PI load
-	f32 scale = (cosf(mScale * PI) + 1.0f) / 2;
+	f32 angle = mScale * PI;
+	f32 scale = (cosf(angle) + 1.0f) / 2;
 
 	setOnOffBdama(mSetBedamaFlag == false);
 	checkObake();

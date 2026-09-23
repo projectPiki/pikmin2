@@ -549,8 +549,8 @@ void Obj::fly()
 		}
 
 		f32 sinVal        = (f32)sin(mYawRate);
-		sinVal            = C_PARMS->mRotateFaceDirFactor * sinVal;
-		f32 faceDirOffset = TORADIANS(sinVal);
+		f32 scaledSin     = C_PARMS->mRotateFaceDirFactor * sinVal;
+		f32 faceDirOffset = TORADIANS(scaledSin);
 		mFaceDir          = mTargetFaceDir;
 		turnToTarget(mGoalPosition, rotAccel, rotSpeed);
 
@@ -904,14 +904,17 @@ bool Obj::checkRestOn()
 	Sys::Sphere collSphere;
 	static_cast<CollPart*>(mSpawningEnemy->mCollTree->mPart->mChild)->getSphere(collSphere);
 
-	f32 rad = collSphere.mRadius;
+	f32 dist;
+	f32 rad     = collSphere.mRadius;
+	f32 restRad = 1.2f * rad;
 
-	Vector3f positionSep = mPosition;
-	positionSep.sub(collSphere.mPosition);
+	f32 dx = mPosition.x - collSphere.mPosition.x;
+	f32 dy = mPosition.y - collSphere.mPosition.y;
+	f32 dz = mPosition.z - collSphere.mPosition.z;
 
-	f32 dist             = positionSep.sqrMagnitude();
+	dist                 = dx * dx + dy * dy + dz * dz;
 	mRestEnemyCollSphere = collSphere;
-	if (dist < SQUARE(1.2f * rad)) {
+	if (dist < SQUARE(restRad)) {
 		mTargetVelocity *= 0.0f;
 		mCurrentVelocity *= 0.0f;
 		hardConstraintOn();
@@ -948,8 +951,9 @@ bool Obj::checkRestOn()
 			return true;
 		}
 
+		f32 turnRate  = 0.3f;
 		f32 angleDist = getAngDist(collSphere.mPosition);
-		updateFaceDir(roundAng(angleDist * 0.3f + mFaceDir));
+		updateFaceDir(roundAng(angleDist * turnRate + mFaceDir));
 	}
 
 	return false;
@@ -1211,16 +1215,16 @@ bool Obj::checkRestOff()
 	Sys::Sphere collSphere;
 	Vector3f enemyPos = mSpawningEnemy->getPosition();
 	static_cast<CollPart*>(mSpawningEnemy->mCollTree->mPart->mChild)->getSphere(collSphere);
-	f32 rad            = 2.0f * SQUARE(collSphere.mRadius);
-	Vector3f pos1      = mPosition;
-	Vector3f spherePos = collSphere.mPosition;
-	Vector3f sep       = pos1;
-	sep.sub(spherePos);
-	f32 dist = sep.sqrMagnitude();
+	f32 rad       = 2.0f * SQUARE(collSphere.mRadius);
+	Vector3f pos1 = mPosition;
+	Vector3f spherePos(collSphere.mPosition.x, collSphere.mPosition.y, collSphere.mPosition.z);
+	Vector3f sep = mPosition - spherePos;
+	f32 dist     = sep.sqrMagnitude();
 
 	if (dist > rad) {
-		mPitchRate   = 0.0f;
-		Vector3f pos = mPosition;
+		Vector3f pos;
+		mPitchRate = 0.0f;
+		pos        = mPosition;
 		collSphere.mPosition -= mPosition;
 		collSphere.mPosition.normalise();
 		collSphere.mPosition *= 100.0f;
@@ -1229,8 +1233,7 @@ bool Obj::checkRestOff()
 		return true;
 	}
 
-	collSphere.mPosition = spherePos;
-	collSphere.mPosition.sub(pos1);
+	collSphere.mPosition = spherePos - pos1;
 	collSphere.mPosition.normalise();
 	collSphere.mPosition *= 2.0f;
 	mPosition -= collSphere.mPosition;
@@ -1471,7 +1474,7 @@ void Obj::leave()
 		}
 
 		f32 val = mPitchAmp;
-		if (mPitchAmp < 0.0f) {
+		if (val < 0.0f) {
 			riseFactor = -1.0f;
 			mPitchRate += 0.05f;
 		} else {

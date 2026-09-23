@@ -128,6 +128,15 @@ struct TBoidParamMgr : public CNode {
 
 	void update();
 
+	f32 getWalkSpeed() const { return mCurrWalkSpeed; }
+	f32 getMaxTurnSpeed() const { return mCurrMaxTurnSpeed; }
+	f32 getTurnMag() const { return mCurrTurnMag; }
+	f32 getBoidCenter() const { return mCurrBoidCenter; }
+	f32 getBoidSpeedMatch() const { return mCurrBoidSpeedMatch; }
+	f32 getBoidColl() const { return mCurrBoidColl; }
+	f32 getGroupCenter() const { return mCurrGroupCenter; }
+	f32 getBoidNeighbor() const { return mCurrBoidNeighbor; }
+
 	// _00     = VTBL
 	// _00-_18 = CNode
 	u32 mCurrentState;       // _18

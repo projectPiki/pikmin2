@@ -46,6 +46,12 @@ inline f32 log(f32& a, f64 b)
 	return dividend / divisor;
 }
 
+template <typename T>
+inline T minVal(T a, T b)
+{
+	return (a < b) ? a : b;
+}
+
 inline f32 absVal(f32 val)
 {
 	return (val > 0.0f) ? val : -val;

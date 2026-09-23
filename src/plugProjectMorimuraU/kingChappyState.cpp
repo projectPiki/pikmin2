@@ -146,6 +146,7 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateAttack::exec(EnemyBase* enemy)
 {
+	PSM::EnemyBoss* soundObj;
 	if (mDoCheckEat) {
 		int bombVal = OBJ(enemy)->eatBomb();
 		if (bombVal > mEatenBombs) {
@@ -214,7 +215,7 @@ void StateAttack::exec(EnemyBase* enemy)
 
 		case KEYEVENT_2:
 			// this bit needs fixing
-			PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(enemy->mSoundObj);
+			soundObj = static_cast<PSM::EnemyBoss*>(enemy->mSoundObj);
 			PSM::assertIsBoss(soundObj);
 			if (soundObj) {
 				soundObj->jumpRequest(PSM::EnemyMidBoss::BossBgm_Attack);
@@ -863,10 +864,11 @@ void StateFlick::exec(EnemyBase* enemy)
 			break;
 
 		case KEYEVENT_3:
-			f32 yMax         = 25.0f + OBJ(enemy)->mFootPosition.y;                                     // f31
-			f32 yMin         = yMax - 30.0f;                                                            // f30
-			Vector3f footPos = OBJ(enemy)->mFootPosition;                                               // f28, na, f27
-			f32 trampleRange = SQUARE(CG_PROPERPARMS(enemy).mTramplingRange() * enemy->mScaleModifier); // f29
+			f32 yMax         = 25.0f + OBJ(enemy)->mFootPosition.y;                                  // f31
+			f32 yMin         = yMax - 30.0f;                                                         // f30
+			Vector3f footPos = OBJ(enemy)->mFootPosition;                                            // f28, na, f27
+			f32 trampleRange = CG_PROPERPARMS(enemy).mTramplingRange.mValue * enemy->mScaleModifier; // f29
+			trampleRange *= trampleRange;
 
 			Iterator<Piki> iterPiki(pikiMgr);
 

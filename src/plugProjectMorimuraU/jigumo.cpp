@@ -662,10 +662,11 @@ void Obj::walkFunc()
 
 	// if we're carrying and not attacking (assuming a flag is not set, which is the default)
 	if (stateID == JIGUMO_Carry || (!C_PARMS->_8FC && (stateID == JIGUMO_Return || stateID == JIGUMO_Miss))) {
-		Vector3f seperation = mGoalPosition;
-		seperation -= mPosition;
+		f32 x = mGoalPosition.x - mPosition.x;
+		f32 y = mGoalPosition.y - mPosition.y;
+		f32 z = mGoalPosition.z - mPosition.z;
 
-		f32 distance = sqrtfClamped(SQUARE(seperation.x) + SQUARE(seperation.y) + SQUARE(seperation.z));
+		f32 distance = sqrtfClamped(SQUARE(x) + SQUARE(y) + SQUARE(z));
 		// f32 dist = mGoalPosition.distance(mPosition);
 		if (distance < 0.0f) {
 			distance = 0.0f;
@@ -673,16 +674,16 @@ void Obj::walkFunc()
 
 		// Calculate the pre-turn angle based on the distance and territory radius
 		// mTurnModifier is 0.05f by default (5% every frame)
-		f32 preTurnAngle = (C_PARMS->mTurnModifier * (distance * (360.0f * (1.0f / territoryRadius))));
-		preTurnAngle += 180.0f;
-		f32 degreeAngle = turningFactor * (f32)sin(preTurnAngle); // f2
+		f32 preTurnAngle = (distance * (360.0f * (1.0f / territoryRadius)));
+		preTurnAngle     = C_PARMS->mTurnModifier * preTurnAngle;
+		f32 degreeAngle  = turningFactor * (f32)sin(180.0f + preTurnAngle); // f2
 
 		if (!C_PARMS->mIsGradualTurnActive) { // does not run by default, but forces angle to 0
 			degreeAngle = 0.0f;
 		}
 
-		degreeAngle *= mCarryAngleSpeed;        // angle goes from 0 to whatever the degAngle factor is over time
-		f32 turnAngle = TORADIANS(degreeAngle); // f30
+		f32 turnAngle = degreeAngle * mCarryAngleSpeed; // angle goes from 0 to whatever the degAngle factor is over time
+		turnAngle     = TORADIANS(turnAngle);           // f30
 
 		mCarryAngleSpeed += 0.1f;
 

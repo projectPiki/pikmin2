@@ -75,6 +75,9 @@ struct THiScore : public TScrollList {
 	void changeColorBlock(J2DColorBlock*, J2DColorBlock*);
 	void updateLayout();
 
+	// seems annoyingly necessary, does not work replacing this with interpolate
+	static int blendColorValue(f32 t, f32 tInv, f32 from, f32 to) { return tInv * from + t * to; }
+
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_B4 = TScrollList

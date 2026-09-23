@@ -199,7 +199,7 @@ void MapUnitGenerator::memMapListSorting()
 void MapUnitGenerator::createMapPartsList()
 {
 	for (int i = 0; i < UNITKIND_Count; i++) {
-		CNode* memTile      = getStartNode();
+		CNode* memTile      = getFirstMemMapNode();
 		CNode* currKindList = getMapNodeKind(i);
 
 		MapNode* currMapKind = static_cast<MapNode*>(currKindList);

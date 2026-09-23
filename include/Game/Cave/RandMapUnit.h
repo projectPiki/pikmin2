@@ -50,11 +50,10 @@ struct MapUnitGenerator {
 	void createCaveLevel();
 
 	inline MapNode* getPlacedNodes() { return mPlacedMapNodes; }
-	inline MapNode* getVisitedNodes() { return mVisitedMapNodes; }
 	inline MapNode* getMapNodeKinds() { return mMapNodeKinds; }
 	inline FloorInfo* getFloorInfo() { return mFloorInfo; }
 
-	inline MapNode* getStartNode() { return mMemMapList->getChild(); }
+	inline MapNode* getFirstMemMapNode() { return mMemMapList->getChild(); }
 
 	inline MapNode* getMapNodeKind(int kind) { return &mMapNodeKinds[kind]; }
 	inline MapNode* getMemMapList() { return mMemMapList; }

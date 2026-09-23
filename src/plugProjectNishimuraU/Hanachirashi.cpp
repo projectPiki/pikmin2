@@ -565,7 +565,8 @@ bool Obj::windTarget()
 	Vector3f attackNormal = Vector3f(-faceDirection.z, 0.0f, faceDirection.x);
 	attackNormal.normalise();
 
-	Vector3f crossDir = attackNormal.cross(faceDirection);
+	Vector3f crossDir = attackNormal;
+	crossDir.CP(faceDirection);
 	crossDir.normalise();
 
 	Vector3f attackDirection2D = faceDirection;

@@ -159,7 +159,7 @@ MapNode* RandGateUnit::getRoomMinScoreDoor(int& idx)
 		if (node->mUnitInfo->getUnitKind() == UNITKIND_Room && node != mMapScore->getFixObjNode(FIXNODE_Pod)) {
 			int minScore = 128000;
 			for (int i = 0; i < node->getNumDoors(); i++) {
-				int doorScore = node->mAdjustInfo[i].mDoorScore;
+				int doorScore = node->getDoorScore(i);
 				if (doorScore < minScore) {
 					minScore = doorScore;
 					idx      = i;
@@ -187,8 +187,8 @@ Game::Cave::MapNode* Game::Cave::RandGateUnit::getRoomLowScoreDoor(int& idx)
 	for (MapNode* node = placedNodes->getChild(); node != nullptr; node = node->getNext()) {
 		if (node->mUnitInfo->getUnitKind() == UNITKIND_Room) {
 			for (int i = 0; i < node->getNumDoors(); i++) {
-				if ((node->mAdjustInfo[i].mDoorScore > score) && !node->isGateSetDoor(i)) {
-					score = node->mAdjustInfo[i].mDoorScore;
+				if ((node->getDoorScore(i) > score) && !node->isGateSetDoor(i)) {
+					score = node->getDoorScore(i);
 				}
 			}
 		}
@@ -200,7 +200,7 @@ Game::Cave::MapNode* Game::Cave::RandGateUnit::getRoomLowScoreDoor(int& idx)
 				if (!node->isGateSetDoor(i)) {
 					nodeArray[total]  = node;
 					idxArray[total]   = i;
-					scoreArray[total] = (score + 1) - node->mAdjustInfo[i].mDoorScore;
+					scoreArray[total] = (score + 1) - node->getDoorScore(i);
 					scoreSum += scoreArray[total];
 					total++;
 				}

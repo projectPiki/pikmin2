@@ -453,26 +453,25 @@ void TChallengePanel::update(int index, bool flag)
 
 	int id = mIndex;
 	// this is wrong, I hate it here
-	int a2 = (index / 5);
 	int a1 = (index % 5);
-	int a4 = (id / 5);
+	int a2 = (index / 5);
 	int a3 = (id % 5);
+	int a4 = (id / 5);
 
 	if (index != id) {
 		if (a1 == a3) {
 			f32 dir = 1.0f;
 			if (a2 < a4)
 				dir = -1.0f;
-			f32 s = FABS(sinf(mTimer));
-			mYOffset += (TChallengeSelect::mPanelMoveVal * dir * s - mYOffset) * 0.2f;
+			f32 s = sinf(mTimer);
+			mYOffset += (TChallengeSelect::mPanelMoveVal * dir * absF(s) - mYOffset) * 0.2f;
 			mXOffset *= 0.9f;
 		} else if (a2 == a4) {
 			f32 dir = 1.0f;
 			if (a1 < a3)
 				dir = -1.0f;
-			f32 s = FABS(sinf(mTimer));
-
-			mXOffset += (TChallengeSelect::mPanelMoveVal * dir * s - mXOffset) * 0.2f;
+			f32 s = sinf(mTimer);
+			mXOffset += (TChallengeSelect::mPanelMoveVal * dir * absF(s) - mXOffset) * 0.2f;
 			mYOffset *= 0.9f;
 		} else {
 			mXOffset *= 0.9f;
@@ -1309,27 +1308,22 @@ void TChallengePlayModeScreen::draw(Graphics& gfx, J2DPerspGraph* persp)
 		TScreenBase::draw(gfx, persp);
 		gfx.mOrthoGraph.setPort();
 
-		J2DPicture* pic;
-		J2DPane* pic2;
-		f32 width;
-		pic  = mSphereTex;
-		pic2 = mPaneOlimarP1;
-		GXSetScissor(TChallengeSelect::mMetOffset._00 + pic2->mGlobalMtx[0][3],
-		             (1.0f - mAlphaTimer) * (mSphereTex->getHeight() * pic2->getScaleY() * 1.1f)
-		                 + (TChallengeSelect::mMetOffset._04 + pic2->mGlobalMtx[1][3]),
-		             pic->getWidth() * pic2->getScaleX() * 1.1f, pic->getHeight() * pic2->getScaleY() * 1.1f);
+		GXSetScissor(TChallengeSelect::mMetOffset._00 + mPaneOlimarP1->mGlobalMtx[0][3],
+		             (1.0f - mAlphaTimer) * (mSphereTex->getHeight() * mPaneOlimarP1->getScaleY() * 1.1f)
+		                 + (TChallengeSelect::mMetOffset._04 + mPaneOlimarP1->mGlobalMtx[1][3]),
+		             mSphereTex->getWidth() * mPaneOlimarP1->getScaleX() * 1.1f,
+		             mSphereTex->getHeight() * mPaneOlimarP1->getScaleY() * 1.1f);
 		mSphereTex->draw(TChallengeSelect::mMetOffset._00 + mPaneOlimarP1->mGlobalMtx[0][3],
 		                 TChallengeSelect::mMetOffset._04 + mPaneOlimarP1->mGlobalMtx[1][3],
 		                 mSphereTex->getWidth() * mPaneOlimarP1->getScaleX() * 1.1f,
 		                 mSphereTex->getHeight() * mPaneOlimarP1->getScaleY() * 1.1f, false, false, false);
 		mSphereTex->calcMtx();
 
-		pic  = mSphereTex;
-		pic2 = mPaneLouie;
-		GXSetScissor(TChallengeSelect::mMetOffset._00 + pic2->mGlobalMtx[0][3],
-		             (1.0f - mScale) * (mSphereTex->getHeight() * pic2->getScaleY() * 1.1f)
-		                 + (TChallengeSelect::mMetOffset._04 + pic2->mGlobalMtx[1][3]),
-		             (pic->getWidth() * pic2->getScaleX() * 1.1f) * 2.0f, pic->getHeight() * pic2->getScaleY() * 1.1f);
+		GXSetScissor(TChallengeSelect::mMetOffset._00 + mPaneLouie->mGlobalMtx[0][3],
+		             (1.0f - mScale) * (mSphereTex->getHeight() * mPaneLouie->getScaleY() * 1.1f)
+		                 + (TChallengeSelect::mMetOffset._04 + mPaneLouie->mGlobalMtx[1][3]),
+		             (mSphereTex->getWidth() * mPaneLouie->getScaleX() * 1.1f) * 2.0f,
+		             mSphereTex->getHeight() * mPaneLouie->getScaleY() * 1.1f);
 		mSphereTex->draw(TChallengeSelect::mMetOffset._00 + mPaneLouie->mGlobalMtx[0][3],
 		                 TChallengeSelect::mMetOffset._04 + mPaneLouie->mGlobalMtx[1][3],
 		                 mSphereTex->getWidth() * mPaneLouie->getScaleX() * 1.1f, mSphereTex->getHeight() * mPaneLouie->getScaleY() * 1.1f,
@@ -1340,33 +1334,29 @@ void TChallengePlayModeScreen::draw(Graphics& gfx, J2DPerspGraph* persp)
 
 		J2DPicture* pane = static_cast<J2DPicture*>(mScreenObj->search('P2orimaF'));
 		pane->setAlpha(mPaneList0[1]->mAlpha);
-		width = pane->getWidth();
-		pane->draw(pane->getGlbVtx(GLBVTX_BtmLeft).x + width, pane->getGlbVtx(GLBVTX_BtmRight).y, -width, pane->getHeight(), false, false,
-		           false);
+		pane->draw(pane->getGlbVtx(GLBVTX_BtmLeft).x + pane->getWidth(), pane->getGlbVtx(GLBVTX_BtmRight).y, -pane->getWidth(),
+		           pane->getHeight(), false, false, false);
 		pane->calcMtx();
 		pane->setAlpha(0);
 
 		pane = static_cast<J2DPicture*>(mPaneOlimarP2);
 		pane->setAlpha(mPaneList0[1]->mAlpha);
-		width = pane->getWidth();
-		pane->draw(pane->getGlbVtx(GLBVTX_BtmLeft).x + width, pane->getGlbVtx(GLBVTX_BtmRight).y, -width, pane->getHeight(), false, false,
-		           false);
+		pane->draw(pane->getGlbVtx(GLBVTX_BtmLeft).x + pane->getWidth(), pane->getGlbVtx(GLBVTX_BtmRight).y, -pane->getWidth(),
+		           pane->getHeight(), false, false, false);
 		pane->calcMtx();
 		pane->setAlpha(0);
 
 		pane = static_cast<J2DPicture*>(mPaneList1[1]);
 		pane->setAlpha(mPaneList1[1]->mAlpha);
-		width = pane->getWidth();
-		pane->draw(pane->getGlbVtx(GLBVTX_BtmLeft).x + width, pane->getGlbVtx(GLBVTX_BtmRight).y, -width, pane->getHeight(), false, false,
-		           false);
+		pane->draw(pane->getGlbVtx(GLBVTX_BtmLeft).x + pane->getWidth(), pane->getGlbVtx(GLBVTX_BtmRight).y, -pane->getWidth(),
+		           pane->getHeight(), false, false, false);
 		pane->calcMtx();
 
-		pic  = mSphereTex;
-		pic2 = mPaneLouie;
-		GXSetScissor(TChallengeSelect::mMetOffset._00 + pic2->mGlobalMtx[0][3],
-		             (1.0f - mScale) * (mSphereTex->getHeight() * pic2->getScaleY() * 1.1f)
-		                 + (TChallengeSelect::mMetOffset._04 + pic2->mGlobalMtx[1][3]),
-		             (pic->getWidth() * pic2->getScaleX() * 1.1f) * 2.0f, pic->getHeight() * pic2->getScaleY() * 1.1f);
+		GXSetScissor(TChallengeSelect::mMetOffset._00 + mPaneLouie->mGlobalMtx[0][3],
+		             (1.0f - mScale) * (mSphereTex->getHeight() * mPaneLouie->getScaleY() * 1.1f)
+		                 + (TChallengeSelect::mMetOffset._04 + mPaneLouie->mGlobalMtx[1][3]),
+		             (mSphereTex->getWidth() * mPaneLouie->getScaleX() * 1.1f) * 2.0f,
+		             mSphereTex->getHeight() * mPaneLouie->getScaleY() * 1.1f);
 		mSphereTex->draw(TChallengeSelect::mMetOffset._00 + mPaneOlimarP2->mGlobalMtx[0][3],
 		                 TChallengeSelect::mMetOffset._04 + mPaneOlimarP2->mGlobalMtx[1][3],
 		                 mSphereTex->getWidth() * mPaneOlimarP2->getScaleX() * 1.1f,
@@ -2257,6 +2247,7 @@ void TChallengeSelect::doCreate(JKRArchive* arc)
  */
 bool TChallengeSelect::doUpdate()
 {
+	TChallengePlayModeScreen* screen;
 	if (mPlayModeScreen->isState(TChallengePlayModeScreen::PlayModeScreen_Active) != 0) {
 		// Check that player 2s controller is plugged in
 #if defined(VERSION_US_DEMO1) || defined(VERSION_PAL)
@@ -2283,8 +2274,7 @@ bool TChallengeSelect::doUpdate()
 
 	if (mCanInput && mDisp->mStatus == Screen::Game2DMgr::CHECK2D_ChallengeSelect_Default
 	    && !static_cast<TChallengeSelectScene*>(getOwner())->mConfirmEndWindow->mHasDrawn) {
-		Controller* input = mControls;
-		if (input->getButtonDown() & Controller::PRESS_Z && mPlayModeScreen->mState == 0) {
+		if (mControls->getButtonDown() & Controller::PRESS_Z && mPlayModeScreen->mState == 0) {
 			if (mRulesScreen->mScaleGrowRate <= 0.0f) {
 				openWindow();
 				PSSystem::spSysIF->playSystemSe(PSSE_SY_MESSAGE_EXIT, 0);
@@ -2292,11 +2282,11 @@ bool TChallengeSelect::doUpdate()
 				closeWindow();
 				PSSystem::spSysIF->playSystemSe(PSSE_SY_MESSAGE_EXIT, 0);
 			}
-		} else if (input->getButtonDown() & (Controller::PRESS_A | Controller::PRESS_START) && rulesClosed) {
-			TChallengePlayModeScreen* screen = mPlayModeScreen;
-			int state                        = screen->mState;
-			if ((bool)state != false) {
-				if (state == 2) {
+		} else if (mControls->getButtonDown() & (Controller::PRESS_A | Controller::PRESS_START) && rulesClosed) {
+			screen      = mPlayModeScreen;
+			bool isOpen = screen->isOpen();
+			if (isOpen) {
+				if (screen->isState(2)) {
 					if (mSelected1p || (mConnect2p && !mSelected1p)) {
 						screen->setState(TChallengePlayModeScreen::PlayModeScreen_Close);
 						if (!mIsSection) {
@@ -2327,11 +2317,11 @@ bool TChallengeSelect::doUpdate()
 				mPlayModeScreen->setState(TChallengePlayModeScreen::PlayModeScreen_Open);
 				PSSystem::spSysIF->playSystemSe(PSSE_SY_MESSAGE_EXIT, 0);
 			}
-		} else if (input->getButtonDown() & Controller::PRESS_B) {
-			TChallengePlayModeScreen* screen = mPlayModeScreen;
-			int state                        = screen->mState;
-			if ((u8)state != false) {
-				if (state == 2) {
+		} else if (mControls->getButtonDown() & Controller::PRESS_B) {
+			screen      = mPlayModeScreen;
+			bool isOpen = screen->isOpen();
+			if (isOpen) {
+				if (screen->isState(2)) {
 					screen->setState(TChallengePlayModeScreen::PlayModeScreen_Close);
 					PSSystem::spSysIF->playSystemSe(PSSE_SY_MESSAGE_EXIT, 0);
 				}
@@ -2345,10 +2335,10 @@ bool TChallengeSelect::doUpdate()
 				}
 			}
 		} else {
-			TChallengePlayModeScreen* screen = mPlayModeScreen;
-			if (screen->isState(0)) {
+			bool isOpen = mPlayModeScreen->isOpen();
+			if (!isOpen) {
 				if (rulesClosed) {
-					u32 button = input->getButton();
+					u32 button = mControls->getButton();
 					if ((button & Controller::ANALOG_DOWN) || (button & Controller::PRESS_DPAD_DOWN)) {
 						if (mStageChangeCounter == 0) {
 							if (mLevelNameMoveState < 0)
@@ -2385,14 +2375,14 @@ bool TChallengeSelect::doUpdate()
 						if (mStageChangeCounter == 0) {
 							if (mLevelNameMoveState < 0) {
 								mLevelNameMoveState = 3;
+							}
 
-								if (mRightOffset < 4 && mRightOffset + mDownOffset * 5 < mMaxStages) {
-									mRightOffset++;
-									updatePanel = true;
-								} else {
-									mRightOffset = 0;
-									updatePanel  = true;
-								}
+							if (mRightOffset < 4 && mRightOffset + mDownOffset * 5 < mMaxStages) {
+								mRightOffset++;
+								updatePanel = true;
+							} else {
+								mRightOffset = 0;
+								updatePanel  = true;
 							}
 						}
 						mStageChangeCounter++;
@@ -2423,16 +2413,16 @@ bool TChallengeSelect::doUpdate()
 					}
 				}
 			} else {
-				u32 button = input->getButton();
+				u32 button = mControls->getButton();
 				if ((button & Controller::ANALOG_DOWN) || (button & Controller::PRESS_DPAD_DOWN)) {
 					if (mSelected1p) {
-						screen->setBlink(mTextFlashVal);
+						mPlayModeScreen->setBlink(mTextFlashVal);
 						PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CURSOR, 0);
 					}
 					mSelected1p = false;
 				} else if ((button & Controller::ANALOG_UP) || (button & Controller::PRESS_DPAD_UP)) {
 					if (!mSelected1p) {
-						screen->setBlink(mTextFlashVal);
+						mPlayModeScreen->setBlink(mTextFlashVal);
 						PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CURSOR, 0);
 					}
 					mSelected1p                          = true;
@@ -2587,10 +2577,9 @@ bool TChallengeSelect::doUpdate()
 #endif
 			break;
 		}
-		J2DPane* namePane   = mPaneLevelName[i];
-		namePane->mOffset.x = calc * (XGoal * namePane->getWidth()) + namePane->mOffset.x;
-		namePane->mOffset.y = calc * (YGoal * namePane->getHeight()) + namePane->mOffset.y;
-		namePane->calcMtx();
+		J2DPane* namePane = mPaneLevelName[i];
+		namePane->setOffset(calc * (XGoal * namePane->getWidth()) + namePane->mOffset.x,
+		                    calc * (YGoal * namePane->getHeight()) + namePane->mOffset.y);
 	}
 
 	// when in the entering demo, rotate the circular selection effect in the X axis
@@ -4276,10 +4265,9 @@ void TChallengeSelect::doDraw(Graphics& gfx)
 				}
 			}
 		} else {
-			rulestate = mPlayModeScreen->mState;
-			if (mPlayModeScreen->isState(0) >> 0 == 0) {
+			if (mPlayModeScreen->isState(0) == false) {
 				drawBg = true;
-				if (rulestate == 3) {
+				if (mPlayModeScreen->isState(3)) {
 					if (mBgAlpha > 30) {
 						mBgAlpha -= 30;
 					} else {
@@ -4304,10 +4292,8 @@ void TChallengeSelect::doDraw(Graphics& gfx)
 		color1.a = mBgAlpha;
 		graf->setColor(color1);
 		GXSetAlphaUpdate(GX_FALSE);
-		u32 y    = System::getRenderModeObj()->efbHeight;
-		u32 x    = System::getRenderModeObj()->fbWidth;
-		f32 zero = 0.0f;
-		JGeometry::TBox2f box(0.0f, 0.0f, zero + x, zero + y);
+		JGeometry::TVec2f size(System::getRenderModeObj()->fbWidth, System::getRenderModeObj()->efbHeight);
+		JGeometry::TBox2f box(0.0f, 0.0f, size);
 		graf->fillBox(box);
 		GXSetAlphaUpdate(GX_TRUE);
 	}
@@ -4319,10 +4305,8 @@ void TChallengeSelect::doDraw(Graphics& gfx)
 	color1.set(0, 0, 0, 255 - mFadeAlpha);
 	graf->setColor(color1);
 	GXSetAlphaUpdate(GX_FALSE);
-	u32 y    = System::getRenderModeObj()->efbHeight;
-	u32 x    = System::getRenderModeObj()->fbWidth;
-	f32 zero = 0.0f;
-	JGeometry::TBox2f box(0.0f, 0.0f, zero + x, zero + y);
+	JGeometry::TVec2f size(System::getRenderModeObj()->fbWidth, System::getRenderModeObj()->efbHeight);
+	JGeometry::TBox2f box(0.0f, 0.0f, size);
 	graf->fillBox(box);
 	GXSetAlphaUpdate(GX_TRUE);
 

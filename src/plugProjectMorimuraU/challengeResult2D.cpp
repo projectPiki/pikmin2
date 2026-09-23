@@ -621,10 +621,10 @@ void TChallengeResultCounter::start()
 
 	int test = *mDisplayValue;
 	for (; digits > 1; digits--) {
-		int calc        = (int)pow(10.0f, f64(digits - 1));
-		int test2       = test / calc;
-		_24[digits - 1] = test2;
+		int calc  = (int)pow(10.0f, f64(digits - 1));
+		int test2 = test / calc;
 		test -= test2 * calc;
+		_24[digits - 1] = test2;
 	}
 	_24[0] = test;
 	// UNUSED FUNCTION
@@ -1570,10 +1570,11 @@ void TChallengeResult::updateDemo()
 					mOnyonMovePane[i]->mState = 1;
 					PSSystem::spSysIF->playSystemSe(PSSE_SY_CHALLENGE_SCORE_L, 0);
 					PSSystem::spSysIF->playSystemSe(PSSE_SY_PIKI_INCREMENT, 0);
-					mOnyonMovePane[i]->mOffset.x = mVecUnit[3]._00.x;
-					mOnyonMovePane[i]->mOffset.y = mVecUnit[3]._00.y;
-					mOnyonMovePane[i]->mCounter  = 1;
-					mOnyonMovePane[i]->_48       = 3;
+					TMovePane* mpane            = mOnyonMovePane[i];
+					mpane->mOffset.x            = mVecUnit[3]._00.x;
+					mpane->mOffset.y            = mVecUnit[3]._00.y;
+					mOnyonMovePane[i]->mCounter = 1;
+					mOnyonMovePane[i]->_48      = 3;
 				}
 			}
 		}
@@ -1586,8 +1587,10 @@ void TChallengeResult::updateDemo()
 					if (test >= 5) {
 						test = 5;
 					}
-					int id = cRandArray[test * 3];
-					mOnyonMovePane[id]->mOffset.set(mVecUnit[3]._00.x, mVecUnit[3]._00.y);
+					int id                       = cRandArray[test * 3];
+					TMovePane* mpane             = mOnyonMovePane[id];
+					mpane->mOffset.x             = mVecUnit[3]._00.x;
+					mpane->mOffset.y             = mVecUnit[3]._00.y;
 					mOnyonMovePane[id]->mState   = 1;
 					mOnyonMovePane[id]->mCounter = 1;
 

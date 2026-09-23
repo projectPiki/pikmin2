@@ -103,7 +103,6 @@ ObjContena::~ObjContena()
  */
 void ObjContena::doCreate(JKRArchive* arc)
 {
-	/* NON-MATCHING */
 	mController = getGamePad();
 
 	og::Screen::DispMemberContena* disp = static_cast<og::Screen::DispMemberContena*>(getDispMember());
@@ -170,7 +169,6 @@ void ObjContena::doCreate(JKRArchive* arc)
 		mAnimList[i] = nullptr;
 	}
 
-	// !!! this needs to load r3/r4/r5/r6 in different orders
 	if (mContena->search('sh_color')) {
 		og::Screen::setCallBackMessage(mContena);
 	}

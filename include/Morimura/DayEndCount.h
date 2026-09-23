@@ -51,6 +51,13 @@ struct TDayEndCount : public TTestBase {
 
 	void reset();
 
+	// calc value on line through (1, startVal) and (endTime, endVal), at time
+	static inline f32 calcLineValue(f32 time, f32 endTime, f32 endVal, f32 startVal)
+	{
+		f32 slope = (endVal - startVal) / (endTime - 1.0f);
+		return slope * time + (startVal - slope);
+	}
+
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_78 = TTestBase

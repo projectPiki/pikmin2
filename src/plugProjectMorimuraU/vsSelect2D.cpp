@@ -264,22 +264,23 @@ void TVsPiki::draw()
 	f32 y2 = mPikminLeft->getGlbVtx(GLBVTX_TopLeft).y - y1;
 	f32 x2 = (xoffs * 12.0f + x1) - x1;
 	GXSetScissor(x1, y1, x2, y2);
-	Vector2f* offs = &mPikiOffset;
 
 	for (int i = 0; i < 10; i++) {
+		Vector2f* offs  = &mPikiOffset;
 		J2DPicture* pic = mPikminLeft;
 		f32 calc        = TVsSelect::mDemoScale;
-		f32 y           = mPosInfos[i].mPosition.y * calc + pic->getGlbVtx(GLBVTX_BtmLeft).y;
-		f32 x           = mPosInfos[i].mPosition.x * calc + pic->getGlbVtx(GLBVTX_BtmLeft).x;
-		pic->draw(x, y, calc * pic->getWidth(), calc * pic->getHeight(), false, false, false);
+		Vector2f pos(mPosInfos[i].mPosition.x * calc + pic->getGlbVtx(GLBVTX_BtmLeft).x,
+		             mPosInfos[i].mPosition.y * calc + pic->getGlbVtx(GLBVTX_BtmLeft).y);
+		pic->draw(pos.x, pos.y, calc * pic->getWidth(), calc * pic->getHeight(), false, false, false);
 		pic->calcMtx();
 
 		pic = mPikminRight;
-		pic->draw(x - mBounds[0].x, y - mBounds[0].y, calc * -pic->getWidth(), calc * pic->getHeight(), false, false, false);
+		pic->draw(pos.x - mBounds[0].x, pos.y - mBounds[0].y, calc * -pic->getWidth(), calc * pic->getHeight(), false, false, false);
 		pic->calcMtx();
 
 		pic = mPikminFlower;
-		pic->draw(offs->y + (x + mBounds[1].x), y - mBounds[1].y, calc * pic->getWidth(), calc * pic->getHeight(), false, false, false);
+		pic->draw(offs->y + (pos.x + mBounds[1].x), pos.y - mBounds[1].y, calc * pic->getWidth(), calc * pic->getHeight(), false, false,
+		          false);
 		pic->calcMtx();
 	}
 
@@ -472,7 +473,7 @@ void TVsSelectOnyon::reset()
 {
 	mCurrentPosition = Vector2f(-100.0f, 0.0f);
 	int test         = randInt(20);
-	mCounter         = -(test + int(TVsSelect::mTestVal));
+	mCounter         = -(int(TVsSelect::mTestVal) + test);
 	_30              = 0.0f;
 	_3C              = true;
 	mOnyonPane->hide();
@@ -577,7 +578,8 @@ void TVsSelectOnyon::draw()
 {
 	if (0.4f == mOnyonPane->mScale.x) {
 		mNaviPane->setBasePosition(J2DPOS_Center);
-		mNaviPane->draw(mCurrentPosition.x + -30.0f, mCurrentPosition.y + -30.0f, false, false, false);
+		f32 offs = -30.0f;
+		mNaviPane->draw(mCurrentPosition.x + offs, mCurrentPosition.y + offs, false, false, false);
 		mNaviPane->calcMtx();
 		_30 += 0.05f;
 		mOnyonPane->hide();
@@ -4011,6 +4013,7 @@ bool TVsSelect::doUpdate()
 		mZoomLevel += 1.0f;
 		if (mIsUpdatedScore && mZoomLevel == 35.0f) {
 			mIsUpdatedScore = false;
+			Vector2f pos;
 
 			if (mDispMember->mVsWinner == 0) {
 
@@ -4026,8 +4029,8 @@ bool TVsSelect::doUpdate()
 				mEfxCountKira->mScale = calc;
 				J2DPane* pane         = mMainScreen->mScreenObj->search('Pori_c');
 				pane->setBasePosition(J2DPOS_Center);
-				Vector2f pos(pane->getGlbVtx(GLBVTX_BtmLeft).x + pane->getWidth() / 2,
-				             pane->getGlbVtx(GLBVTX_BtmLeft).y + pane->getHeight() / 2);
+				pos.x = pane->getGlbVtx(GLBVTX_BtmLeft).x + pane->getWidth() * 0.5f;
+				pos.y = pane->getGlbVtx(GLBVTX_BtmLeft).y + pane->getHeight() * 0.5f;
 				efx2d::Arg arg(pos);
 				mEfxCountKira->create(&arg);
 				PSSystem::spSysIF->playSystemSe(PSSE_SY_2P_WIN_COUNT, 0);
@@ -4044,8 +4047,8 @@ bool TVsSelect::doUpdate()
 				mEfxCountKira->mScale = calc;
 				J2DPane* pane         = mMainScreen->mScreenObj->search('Plui_c');
 				pane->setBasePosition(J2DPOS_Center);
-				Vector2f pos(pane->getGlbVtx(GLBVTX_BtmLeft).x + pane->getWidth() / 2,
-				             pane->getGlbVtx(GLBVTX_BtmLeft).y + pane->getHeight() / 2);
+				pos.x = pane->getGlbVtx(GLBVTX_BtmLeft).x + pane->getWidth() * 0.5f;
+				pos.y = pane->getGlbVtx(GLBVTX_BtmLeft).y + pane->getHeight() * 0.5f;
 				efx2d::Arg arg(pos);
 				mEfxCountKira->create(&arg);
 				PSSystem::spSysIF->playSystemSe(PSSE_SY_2P_WIN_COUNT, 0);
@@ -4067,16 +4070,19 @@ bool TVsSelect::doUpdate()
 	mListScreen->mScreenObj->scaleScreen(mDemoScale);
 	mFireScreen->mScreenObj->scaleScreen(mDemoScale);
 
+	f32 x1, y1, x2, y2;
 	f32 spotOffsetX = -mScreenXPos / mDemoScale;
-	mPaneSpot->updateScale(1.0f / mDemoScale);
+	f32 scale       = 1.0f / mDemoScale;
+	mPaneSpot->updateScale(scale);
 	f32 x = 1.1f * spotOffsetX + 324.0f;
 	f32 y = 243.0f - 40.0f * (1.0f - 1.0f / mDemoScale);
 	mPaneSpot->setOffset(x, y);
 
 	f32 dist = 0.0f;
-	if (mIndexGroup->mStateID == TIndexGroup::IDGroup_Down) {
+	if (mIndexGroup->isState(TIndexGroup::IDGroup_Down) != false) {
 		dist = 30.0f;
-	} else if (mIndexGroup->mStateID == TIndexGroup::IDGroup_Up) {
+	}
+	if (mIndexGroup->mStateID == TIndexGroup::IDGroup_Up) {
 		dist = -30.0f;
 	}
 	mLevelNameYPos += (dist - mLevelNameYPos) * 0.3f;
@@ -4128,14 +4134,25 @@ bool TVsSelect::doUpdate()
 	}
 	mPaneRulesInfo->setOffset(mRulesPanePos.x + mRulesMoveXPos, mRulesPanePos.y);
 
-	JGeometry::TVec3f vec1 = mPaneStageNameBg->getGlbVtx(GLBVTX_BtmLeft);
-	JGeometry::TVec3f vec2 = mPaneStageNameBg->getGlbVtx(GLBVTX_TopRight);
-	TVsSelectScreen* scrn  = static_cast<TVsSelectScreen*>(mMainScreen);
-	scrn->mCallbackScissor->mBounds.set(vec1.x, vec1.y, vec2.x, vec2.y);
+	const JGeometry::TVec3f& bottomLeft1 = mPaneStageNameBg->getGlbVtx(GLBVTX_BtmLeft);
+	x1                                   = bottomLeft1.x;
+	y1                                   = bottomLeft1.y;
+	const JGeometry::TVec3f& topRight1   = mPaneStageNameBg->getGlbVtx(GLBVTX_TopRight);
+	TVsSelectScreen* scrn                = static_cast<TVsSelectScreen*>(mMainScreen);
+	JGeometry::TBox2f box;
+	box.i.x                         = x1;
+	box.i.y                         = y1;
+	box.f.y                         = topRight1.y;
+	box.f.x                         = topRight1.x;
+	scrn->mCallbackScissor->mBounds = box;
 
-	vec1 = mPaneStageList->getGlbVtx(GLBVTX_BtmLeft);
-	vec2 = mPaneStageList->getGlbVtx(GLBVTX_TopRight);
-	mScissorBounds.set(vec1.x, vec1.y, vec2.x, vec2.y);
+	const JGeometry::TVec3f& bottomLeft2 = mPaneStageList->getGlbVtx(GLBVTX_BtmLeft);
+	x2                                   = bottomLeft2.x;
+	y2                                   = bottomLeft2.y;
+	const JGeometry::TVec3f& topRight2   = mPaneStageList->getGlbVtx(GLBVTX_TopRight);
+	f32 right                            = topRight2.x;
+	f32 top                              = topRight2.y;
+	mScissorBounds.set(x2, y2, right, top);
 
 	for (int i = 0; i < 2; i++) {
 		mVsPiki[i]->update(mHandicapSel[i]);
@@ -5547,8 +5564,7 @@ void TVsSelect::doDraw(Graphics& gfx)
 		GXSetNumIndStages(0);
 		GXSetNumChans(1);
 
-		JUtility::TColor color(0, 0, 0, 255);
-		GXSetChanMatColor(GX_COLOR0A0, color);
+		GXSetChanMatColor(GX_COLOR0A0, JUtility::TColor(0, 0, 0, 255));
 
 		GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_REG, GX_SRC_REG, GX_LIGHT_NULL, GX_DF_NONE, GX_AF_NONE);
 		GXSetCullMode(GX_CULL_NONE);
@@ -5591,9 +5607,10 @@ void TVsSelect::doDraw(Graphics& gfx)
 			if (mOnyonObj[i]->_30 > 0.0f) {
 				mIsOnyonHitGoal       = true;
 				TVsSelectOnyon* onyon = mOnyonObj[i];
-				f32 x                 = (mOnyonGoalOffset.x + (onyon->mCurrentPosition.x - _290)) / (_298 - _290);
-				f32 y                 = 240.0f * ((mOnyonGoalOffset.y + (onyon->mCurrentPosition.y - _294)) / (_29C - _294));
-				f32 scale             = onyon->_30 * 25.0f;
+				f32 y, scale, x;
+				scale = onyon->_30 * 25.0f;
+				x     = (mOnyonGoalOffset.x + (onyon->mCurrentPosition.x - _290)) / (_298 - _290);
+				y     = 240.0f * ((mOnyonGoalOffset.y + (onyon->mCurrentPosition.y - _294)) / (_29C - _294));
 				pics[i].setBasePosition(J2DPOS_Center);
 				f32 drawX = x * 336.0f;
 				pics[i].draw(drawX - (scale * 0.5f), (y) - (scale * 0.5f), scale, scale, false, false, false);
@@ -5692,12 +5709,12 @@ void TVsSelect::doDraw(Graphics& gfx)
 			if (mCurrentRulesPage == 0) {
 				baseID = 6;
 			}
-			J2DPictureEx* pane = (J2DPictureEx*)mPowerIconPanes[baseID + i];
+			J2DPictureEx* pane = (J2DPictureEx*)mPowerIconPanes[i + baseID];
 			f32 width          = pane->getWidth();
 			f32 height         = pane->getHeight();
-			pane->draw(mPowerIconOffset.x + (mPaneRulesIcons[i]->mGlobalMtx[0][3] - width / 2),
-			           mPowerIconOffset.y + (mPaneRulesIcons[i]->mGlobalMtx[1][3] - height / 2), width, height, false, false, false);
-			mPowerIconPanes[baseID + i]->calcMtx();
+			pane->draw(mPowerIconOffset.x + (mPaneRulesIcons[i]->mGlobalMtx[0][3] - width * 0.5f),
+			           mPowerIconOffset.y + (mPaneRulesIcons[i]->mGlobalMtx[1][3] - height * 0.5f), width, height, false, false, false);
+			mPowerIconPanes[i + baseID]->calcMtx();
 		}
 		gfx.mPerspGraph.setPort();
 	}
@@ -6642,7 +6659,15 @@ int TVsSelect::getCourseID(int id)
  */
 void TVsSelect::reset()
 {
-	// UNUSED FUNCTION
+	mDemoScale  = 1.0f;
+	mScreenXPos = 0.0f;
+	mZoomState  = 0;
+	mZoomLevel  = 0.0f;
+	for (int i = 0; i < 2; i++) {
+		mOnyonObj[i]->reset();
+	}
+	mIsZoomActive   = 0;
+	mIsOnyonHitGoal = 0;
 }
 
 /**
@@ -6760,6 +6785,7 @@ void TVsSelect::doScreenEffect()
  */
 void TVsSelect::onyonDemoInit()
 {
+	f32 goalX, goalY, x, y;
 	f32 test;
 	if (randFloat() > 0.5f) {
 		test = 1.0f;
@@ -6768,16 +6794,14 @@ void TVsSelect::onyonDemoInit()
 	}
 
 	for (int i = 0; i < 2; i++) {
-		f32 xsize = 0.5f * (_290 + _298);
-		f32 ysize = 0.5f * (_294 + _29C);
+		goalX = 0.5f * (_290 + _298);
+		goalY = 0.5f * (_294 + _29C);
 
 		mOnyonObj[i]->reset();
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_CHALLENGE_ONY_MOVE, 0);
-		f32 x                       = sinf(TAU * randFloat());
-		x                           = test * (25.0f * x + 20.0f) + xsize;
-		f32 y                       = sinf(TAU * randFloat());
-		y                           = test * (10.0f * y + 10.0f) + ysize;
-		mOnyonObj[i]->mGoalPosition = Vector2f(x, y);
+		goalX += test * (25.0f * sinf(TAU * randFloat()) + 20.0f);
+		goalY += test * (10.0f * sinf(TAU * randFloat()) + 10.0f);
+		mOnyonObj[i]->mGoalPosition = Vector2f(goalX, goalY);
 
 		if (randFloat() < 0.5f) {
 			if (test > 0.0f) {
@@ -6796,7 +6820,7 @@ void TVsSelect::onyonDemoInit()
 		}
 		mOnyonObj[i]->mCurrentPosition = Vector2f(x, y);
 		mOnyonObj[i]->_00              = test;
-		test                           = test * -1.0f;
+		test *= -1.0f;
 	}
 	mZoomLevel = 0.0f;
 	/*
@@ -7156,20 +7180,9 @@ lbl_803A0384:
  */
 void TVsSelect::demoStart()
 {
-	mDemoScale  = 1.0f;
-	mScreenXPos = 0.0f;
-	int i       = 0;
-	mZoomState  = 0;
-	mZoomLevel  = 0.0f;
-
-	for (; i < 2; i++) {
-		mOnyonObj[i]->reset();
-	}
-
-	mIsZoomActive   = 0;
-	mIsOnyonHitGoal = 0;
-	mZoomState      = 1;
-	mCanCancel      = true;
+	reset();
+	mZoomState = 1;
+	mCanCancel = true;
 	mEfxCountKira->fade();
 	mIsZoomActive = 1;
 	onyonDemoInit();

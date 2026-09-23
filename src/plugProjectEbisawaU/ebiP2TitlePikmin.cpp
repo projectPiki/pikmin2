@@ -432,7 +432,7 @@ void Pikmin::TMgr::updateCalcBoid_()
 		int counter = 0;
 		for (int i = 0; i < TITLE_PIKI_TOTAL; i++) {
 			if (mUnits[i].isCalc()) {
-				mGroupAvgPosition = mGroupAvgPosition + Vector2f(mUnits[i].mPosition.x, mUnits[i].mPosition.y);
+				mGroupAvgPosition = mGroupAvgPosition + mUnits[i].getPosition();
 				counter++;
 			}
 		}
@@ -443,16 +443,21 @@ void Pikmin::TMgr::updateCalcBoid_()
 		}
 	}
 
-	int max   = (boidCalcTimer * TITLE_PIKI_TOTAL) / 10;
-	int limit = (boidCalcTimer == 9) ? TITLE_PIKI_TOTAL : (((boidCalcTimer + 1) * TITLE_PIKI_TOTAL) / 10);
+	int start = (boidCalcTimer * TITLE_PIKI_TOTAL) / 10;
+	int end;
+	if (boidCalcTimer == 9) {
+		end = TITLE_PIKI_TOTAL;
+	} else {
+		end = ((boidCalcTimer + 1) * TITLE_PIKI_TOTAL) / 10;
+	}
 
-	for (int i = max; i < limit; i++) {
+	for (int i = start; i < end; i++) {
 		TUnit* unit = &mUnits[i];
 		if (!unit->isWalk()) {
 			continue;
 		}
 
-		f32 factor1 = mBoidParamMgr.mCurrGroupCenter;
+		f32 factor1 = mBoidParamMgr.getGroupCenter();
 		f32 factor2 = 1.0f - factor1;
 
 		Vector2f goalPos = mGroupAvgPosition * factor1 + unit->mDestPos * factor2; // f31, f30
@@ -462,9 +467,11 @@ void Pikmin::TMgr::updateCalcBoid_()
 		for (int j = 0; j < TITLE_PIKI_TOTAL; j++) {
 			TUnit* curUnit = &mUnits[j];
 			if (curUnit->isCalc()) {
-				Vector2f sep = unit->mPosition - curUnit->mPosition;
-				f32 dist     = sep.length();
-				if (dist < mBoidParamMgr.mCurrBoidNeighbor) {
+				Vector2f sep;
+				sep.x    = unit->mPosition.x - curUnit->mPosition.x;
+				sep.y    = unit->mPosition.y - curUnit->mPosition.y;
+				f32 dist = sep.length();
+				if (dist < mBoidParamMgr.getBoidNeighbor()) {
 					vec2 += curUnit->mAngle * curUnit->mParms[0];
 					if (dist < 1.0f) {
 						dist = 1.0f;
@@ -484,8 +491,8 @@ void Pikmin::TMgr::updateCalcBoid_()
 			vec4 = Vector2f(0.0f);
 			vec5 = Vector2f(0.0f);
 		} else {
-			vec4 = vec2 * (1.0f / (f32)counter);
 			vec5 = vec3 * (1.0f / (f32)counter);
+			vec4 = vec2 * (1.0f / (f32)counter);
 		}
 		unit->mTargetPos          = goalPos;
 		unit->mVelocity           = vec4;
@@ -699,9 +706,9 @@ void Pikmin::TUnit::update()
 		startState(STATE_Hidden);
 	}
 
-	f32 val1        = mManager->mBoidParamMgr.mCurrBoidCenter;     // f7
-	f32 val2        = mManager->mBoidParamMgr.mCurrBoidSpeedMatch; // f9
-	f32 chaseFactor = mManager->mBoidParamMgr.mCurrBoidColl;       // f31
+	f32 val1        = mManager->mBoidParamMgr.getBoidCenter();     // f7
+	f32 val2        = mManager->mBoidParamMgr.getBoidSpeedMatch(); // f9
+	f32 chaseFactor = mManager->mBoidParamMgr.getBoidColl();       // f31
 
 	switch (mCurrentState) {
 	case STATE_Unk3: {
@@ -751,7 +758,7 @@ void Pikmin::TUnit::update()
 					sep.normalise();
 
 					Vector2f vel = mAngle * mParms[0] + sep * mManager->mParams.mKogane();
-					vel += mGroupPosDifference * chaseFactor;
+					vel          = vel + mGroupPosDifference * chaseFactor;
 					updateSmoothWalk_(vel);
 				} break;
 
@@ -760,7 +767,7 @@ void Pikmin::TUnit::update()
 					sep.normalise();
 
 					Vector2f vel = mAngle * mParms[0] + sep * mManager->mParams.mChappyRun();
-					vel += mGroupPosDifference * chaseFactor;
+					vel          = vel + mGroupPosDifference * chaseFactor;
 					updateSmoothWalk_(vel);
 				} break;
 
@@ -779,7 +786,7 @@ void Pikmin::TUnit::update()
 
 	case STATE_Unk4: {
 		Vector2f sep = mTargetPos - mPosition;
-		Vector2f vel = sep * val1 + mVelocity * val2 + mGroupPosDifference * chaseFactor + mAngle * mParms[0];
+		Vector2f vel = mAngle * mParms[0] + (sep * val1 + mVelocity * val2 + mGroupPosDifference * chaseFactor);
 		updateSmoothWalk_(vel);
 	} break;
 	}
@@ -795,30 +802,30 @@ void Pikmin::TUnit::update()
 		mFrameControlB.update();
 		mFrameControlA.update();
 		f32 factor1 = 1.0f - ((mCounter2 != 0) ? (f32)mCounter / (f32)mCounter2 : 0.0f);
-		f32 factor2 = 1.0f; // f27
-		if (factor1 <= 0.2f) {
-			factor2 = factor1 / 0.2f;
-		} else if (factor1 <= 0.5f) {
-			factor2 = 1.0f;
-		} else {
-			factor2 = -2.0f * factor1 + -(-2.0f);
-		}
+		f32 slope   = -2.0f;
+		f32 factor2 = (factor1 <= 0.2f) ? factor1 / 0.2f : (factor1 <= 0.5f) ? 1.0f : slope * factor1 + -slope;
 		mManager->mAnimator->setAnmWave(mModel, factor2, mFrameControlA.mFrame, mFrameControlB.mFrame);
 
 		break;
 
-	case STATE_Unk1:
+	case STATE_Unk1: {
 		mFrameControlA.update();
-		mManager->mAnimator->setAnmWait(mModel, mFrameControlA.mFrame);
-		break;
+		TAnimator* animator = mManager->mAnimator;
+		animator->setAnmWait(mModel, mFrameControlA.mFrame);
+	} break;
 
 	case STATE_Unk2:
 	case STATE_Unk4:
 	case STATE_Unk5:
-		mFrameControlA.mRate = (mRandAnimSpeeds.y * (mParms[0] * mManager->mParams.mAnimSpeedWalk())) * ((sys->mDeltaTime * 60.0f) * 0.5f);
+		f32 speed            = mRandAnimSpeeds.y * (mParms[0] * mManager->mParams.mAnimSpeedWalk());
+		mFrameControlA.mRate = speed * ((sys->mDeltaTime * 60.0f) * 0.5f);
 		mFrameControlA.update();
-		mManager->mAnimator->setAnmWait(mModel, mFrameControlA.mFrame);
+		TAnimator* animator = mManager->mAnimator;
+		animator->setAnmWait(mModel, mFrameControlA.mFrame);
 
+		break;
+
+	case STATE_Hidden:
 		break;
 	}
 
@@ -830,1040 +837,6 @@ void Pikmin::TUnit::update()
 	worldMat->mMatrix.structView.tz += mManager->mParams.mShadowZ();
 	mModel->entry();
 	mModel->viewCalc();
-
-	/*
-stwu     r1, -0xa0(r1)
-mflr     r0
-stw      r0, 0xa4(r1)
-stfd     f31, 0x90(r1)
-psq_st   f31, 152(r1), 0, qr0
-stfd     f30, 0x80(r1)
-psq_st   f30, 136(r1), 0, qr0
-stfd     f29, 0x70(r1)
-psq_st   f29, 120(r1), 0, qr0
-stfd     f28, 0x60(r1)
-psq_st   f28, 104(r1), 0, qr0
-stfd     f27, 0x50(r1)
-psq_st   f27, 88(r1), 0, qr0
-stw      r31, 0x4c(r1)
-stw      r30, 0x48(r1)
-stw      r29, 0x44(r1)
-mr       r31, r3
-lwz      r3, titleMgr__Q23ebi5title@sda21(r13)
-mr       r4, r31
-bl       isOutViewField__Q33ebi5title9TTitleMgrFPQ33ebi5title8TObjBase
-clrlwi.  r0, r3, 0x18
-beq      lbl_803E5A54
-lwz      r3, titleMgr__Q23ebi5title@sda21(r13)
-addi     r4, r31, 0x2c
-lfs      f1, lbl_8051FC60@sda21(r2)
-bl       "isOutViewField__Q33ebi5title9TTitleMgrFR10Vector2<f>f"
-clrlwi.  r0, r3, 0x18
-beq      lbl_803E5A54
-lwz      r3, 0x84(r31)
-cmpwi    r3, 0
-beq      lbl_803E5A54
-lbz      r0, 0x94(r31)
-cmplwi   r0, 1
-bne      lbl_803E594C
-li       r0, 0
-stw      r0, 0x84(r31)
-b        lbl_803E5958
-
-lbl_803E594C:
-stw      r3, 0x88(r31)
-li       r0, 0
-stw      r0, 0x84(r31)
-
-lbl_803E5958:
-lwz      r0, 0x84(r31)
-cmpwi    r0, 2
-beq      lbl_803E5A54
-bge      lbl_803E5978
-cmpwi    r0, 0
-beq      lbl_803E5984
-bge      lbl_803E5A28
-b        lbl_803E5A54
-
-lbl_803E5978:
-cmpwi    r0, 4
-bge      lbl_803E5A54
-b        lbl_803E5998
-
-lbl_803E5984:
-lfs      f0, 0x2c(r31)
-stfs     f0, 4(r31)
-lfs      f0, 0x30(r31)
-stfs     f0, 8(r31)
-b        lbl_803E5A54
-
-lbl_803E5998:
-lfs      f1, lbl_8051FC90@sda21(r2)
-lfs      f0, lbl_8051FC60@sda21(r2)
-stfs     f1, 0xc(r31)
-stfs     f0, 0x10(r31)
-lwz      r4, 0x34(r31)
-lwz      r3, sys@sda21(r13)
-lfs      f1, 0x270(r4)
-lfs      f0, 0x54(r3)
-fdivs    f1, f1, f0
-bl       __cvt_fp2unsigned
-stw      r3, 0x8c(r31)
-stw      r3, 0x90(r31)
-bl       rand
-xoris    r3, r3, 0x8000
-lis      r0, 0x4330
-stw      r3, 0x2c(r1)
-lfd      f2, lbl_8051FCD8@sda21(r2)
-stw      r0, 0x28(r1)
-lfs      f3, lbl_8051FCE0@sda21(r2)
-lfd      f1, 0x28(r1)
-lfs      f0, lbl_8051FCB4@sda21(r2)
-fsubs    f4, f1, f2
-lfs      f1, lbl_8051FCEC@sda21(r2)
-lfs      f2, lbl_8051FCC0@sda21(r2)
-fdivs    f3, f4, f3
-fmuls    f0, f0, f3
-stfs     f0, 0x5c(r31)
-lwz      r3, sys@sda21(r13)
-lwz      r4, 0x34(r31)
-lfs      f0, 0x54(r3)
-lfs      f3, 0x180(r4)
-fmuls    f0, f1, f0
-fmuls    f0, f2, f0
-fmuls    f0, f3, f0
-stfs     f0, 0x58(r31)
-b        lbl_803E5A54
-
-lbl_803E5A28:
-lfs      f0, lbl_8051FC60@sda21(r2)
-lfs      f1, lbl_8051FCEC@sda21(r2)
-stfs     f0, 0x14(r31)
-lfs      f2, lbl_8051FCC0@sda21(r2)
-lwz      r3, sys@sda21(r13)
-lfs      f3, 0x60(r31)
-lfs      f0, 0x54(r3)
-fmuls    f0, f1, f0
-fmuls    f0, f2, f0
-fmuls    f0, f3, f0
-stfs     f0, 0x44(r31)
-
-lbl_803E5A54:
-lwz      r0, 0x84(r31)
-lwz      r3, 0x34(r31)
-cmpwi    r0, 3
-lfs      f7, 0x96c(r3)
-lfs      f9, 0x970(r3)
-lfs      f31, 0x974(r3)
-beq      lbl_803E5A94
-bge      lbl_803E5A84
-cmpwi    r0, 1
-beq      lbl_803E5BE4
-bge      lbl_803E5CA8
-b        lbl_803E63C8
-
-lbl_803E5A84:
-cmpwi    r0, 5
-beq      lbl_803E5FD4
-bge      lbl_803E63C8
-b        lbl_803E6348
-
-lbl_803E5A94:
-lwz      r3, 0x8c(r31)
-cmplwi   r3, 0
-beq      lbl_803E5AA8
-addi     r0, r3, -1
-stw      r0, 0x8c(r31)
-
-lbl_803E5AA8:
-lwz      r0, 0x8c(r31)
-cmplwi   r0, 0
-bne      lbl_803E63C8
-lwz      r3, 0x84(r31)
-cmpwi    r3, 1
-beq      lbl_803E63C8
-lbz      r0, 0x94(r31)
-cmplwi   r0, 1
-bne      lbl_803E5AD8
-li       r0, 0
-stw      r0, 0x84(r31)
-b        lbl_803E5AE4
-
-lbl_803E5AD8:
-stw      r3, 0x88(r31)
-li       r0, 1
-stw      r0, 0x84(r31)
-
-lbl_803E5AE4:
-lwz      r0, 0x84(r31)
-cmpwi    r0, 2
-beq      lbl_803E63C8
-bge      lbl_803E5B04
-cmpwi    r0, 0
-beq      lbl_803E5B10
-bge      lbl_803E5BB4
-b        lbl_803E63C8
-
-lbl_803E5B04:
-cmpwi    r0, 4
-bge      lbl_803E63C8
-b        lbl_803E5B24
-
-lbl_803E5B10:
-lfs      f0, 0x2c(r31)
-stfs     f0, 4(r31)
-lfs      f0, 0x30(r31)
-stfs     f0, 8(r31)
-b        lbl_803E63C8
-
-lbl_803E5B24:
-lfs      f1, lbl_8051FC90@sda21(r2)
-lfs      f0, lbl_8051FC60@sda21(r2)
-stfs     f1, 0xc(r31)
-stfs     f0, 0x10(r31)
-lwz      r4, 0x34(r31)
-lwz      r3, sys@sda21(r13)
-lfs      f1, 0x270(r4)
-lfs      f0, 0x54(r3)
-fdivs    f1, f1, f0
-bl       __cvt_fp2unsigned
-stw      r3, 0x8c(r31)
-stw      r3, 0x90(r31)
-bl       rand
-xoris    r3, r3, 0x8000
-lis      r0, 0x4330
-stw      r3, 0x2c(r1)
-lfd      f2, lbl_8051FCD8@sda21(r2)
-stw      r0, 0x28(r1)
-lfs      f3, lbl_8051FCE0@sda21(r2)
-lfd      f1, 0x28(r1)
-lfs      f0, lbl_8051FCB4@sda21(r2)
-fsubs    f4, f1, f2
-lfs      f1, lbl_8051FCEC@sda21(r2)
-lfs      f2, lbl_8051FCC0@sda21(r2)
-fdivs    f3, f4, f3
-fmuls    f0, f0, f3
-stfs     f0, 0x5c(r31)
-lwz      r3, sys@sda21(r13)
-lwz      r4, 0x34(r31)
-lfs      f0, 0x54(r3)
-lfs      f3, 0x180(r4)
-fmuls    f0, f1, f0
-fmuls    f0, f2, f0
-fmuls    f0, f3, f0
-stfs     f0, 0x58(r31)
-b        lbl_803E63C8
-
-lbl_803E5BB4:
-lfs      f0, lbl_8051FC60@sda21(r2)
-lfs      f1, lbl_8051FCEC@sda21(r2)
-stfs     f0, 0x14(r31)
-lfs      f2, lbl_8051FCC0@sda21(r2)
-lwz      r3, sys@sda21(r13)
-lfs      f3, 0x60(r31)
-lfs      f0, 0x54(r3)
-fmuls    f0, f1, f0
-fmuls    f0, f2, f0
-fmuls    f0, f3, f0
-stfs     f0, 0x44(r31)
-b        lbl_803E63C8
-
-lbl_803E5BE4:
-lfs      f1, 0xc(r31)
-lfs      f0, lbl_8051FC64@sda21(r2)
-lfs      f2, 0x10(r31)
-fadds    f0, f1, f0
-lfs      f1, lbl_8051FC60@sda21(r2)
-fadds    f2, f2, f1
-stfs     f0, 0xc(r31)
-stfs     f2, 0x10(r31)
-lfs      f3, 0xc(r31)
-lfs      f2, 0x10(r31)
-fmuls    f0, f3, f3
-fmuls    f2, f2, f2
-fadds    f0, f0, f2
-fcmpo    cr0, f0, f1
-ble      lbl_803E5C38
-fmadds   f2, f3, f3, f2
-fcmpo    cr0, f2, f1
-ble      lbl_803E5C3C
-frsqrte  f0, f2
-fmuls    f2, f0, f2
-b        lbl_803E5C3C
-
-lbl_803E5C38:
-fmr      f2, f1
-
-lbl_803E5C3C:
-lfs      f0, lbl_8051FC60@sda21(r2)
-fcmpu    cr0, f0, f2
-beq      lbl_803E5C68
-lfs      f1, lbl_8051FC90@sda21(r2)
-lfs      f0, 0xc(r31)
-fdivs    f1, f1, f2
-fmuls    f0, f0, f1
-stfs     f0, 0xc(r31)
-lfs      f0, 0x10(r31)
-fmuls    f0, f0, f1
-stfs     f0, 0x10(r31)
-
-lbl_803E5C68:
-lfs      f0, 0x2c(r31)
-mr       r3, r31
-lfs      f5, 4(r31)
-lfs      f1, 0x30(r31)
-lfs      f4, 8(r31)
-fsubs    f2, f0, f5
-lfs      f0, lbl_8051FCF0@sda21(r2)
-fsubs    f3, f1, f4
-fmuls    f1, f2, f0
-fmuls    f0, f3, f0
-fadds    f1, f5, f1
-fadds    f0, f4, f0
-stfs     f1, 4(r31)
-stfs     f0, 8(r31)
-bl       updateEnemyReaction___Q43ebi5title6Pikmin5TUnitFv
-b        lbl_803E63C8
-
-lbl_803E5CA8:
-lfs      f2, 0x30(r31)
-lfs      f0, 8(r31)
-lfs      f1, 0x2c(r31)
-fsubs    f29, f2, f0
-lfs      f0, 4(r31)
-lfs      f31, lbl_8051FC60@sda21(r2)
-fsubs    f30, f1, f0
-fmuls    f28, f29, f29
-fmadds   f27, f30, f30, f28
-fcmpo    cr0, f27, f31
-ble      lbl_803E5CE8
-ble      lbl_803E5CE4
-frsqrte  f0, f27
-fmuls    f31, f0, f27
-b        lbl_803E5CE8
-
-lbl_803E5CE4:
-fmr      f31, f27
-
-lbl_803E5CE8:
-lfs      f0, 0xb8(r3)
-fcmpo    cr0, f31, f0
-bge      lbl_803E5E24
-cmpwi    r0, 1
-beq      lbl_803E5F5C
-lbz      r0, 0x94(r31)
-cmplwi   r0, 1
-bne      lbl_803E5D14
-li       r0, 0
-stw      r0, 0x84(r31)
-b        lbl_803E5D24
-
-lbl_803E5D14:
-lwz      r3, 0x84(r31)
-li       r0, 1
-stw      r3, 0x88(r31)
-stw      r0, 0x84(r31)
-
-lbl_803E5D24:
-lwz      r0, 0x84(r31)
-cmpwi    r0, 2
-beq      lbl_803E5F5C
-bge      lbl_803E5D44
-cmpwi    r0, 0
-beq      lbl_803E5D50
-bge      lbl_803E5DF4
-b        lbl_803E5F5C
-
-lbl_803E5D44:
-cmpwi    r0, 4
-bge      lbl_803E5F5C
-b        lbl_803E5D64
-
-lbl_803E5D50:
-lfs      f0, 0x2c(r31)
-stfs     f0, 4(r31)
-lfs      f0, 0x30(r31)
-stfs     f0, 8(r31)
-b        lbl_803E5F5C
-
-lbl_803E5D64:
-lfs      f1, lbl_8051FC90@sda21(r2)
-lfs      f0, lbl_8051FC60@sda21(r2)
-stfs     f1, 0xc(r31)
-stfs     f0, 0x10(r31)
-lwz      r4, 0x34(r31)
-lwz      r3, sys@sda21(r13)
-lfs      f1, 0x270(r4)
-lfs      f0, 0x54(r3)
-fdivs    f1, f1, f0
-bl       __cvt_fp2unsigned
-stw      r3, 0x8c(r31)
-stw      r3, 0x90(r31)
-bl       rand
-xoris    r3, r3, 0x8000
-lis      r0, 0x4330
-stw      r3, 0x2c(r1)
-lfd      f2, lbl_8051FCD8@sda21(r2)
-stw      r0, 0x28(r1)
-lfs      f3, lbl_8051FCE0@sda21(r2)
-lfd      f1, 0x28(r1)
-lfs      f0, lbl_8051FCB4@sda21(r2)
-fsubs    f4, f1, f2
-lfs      f1, lbl_8051FCEC@sda21(r2)
-lfs      f2, lbl_8051FCC0@sda21(r2)
-fdivs    f3, f4, f3
-fmuls    f0, f0, f3
-stfs     f0, 0x5c(r31)
-lwz      r3, sys@sda21(r13)
-lwz      r4, 0x34(r31)
-lfs      f0, 0x54(r3)
-lfs      f3, 0x180(r4)
-fmuls    f0, f1, f0
-fmuls    f0, f2, f0
-fmuls    f0, f3, f0
-stfs     f0, 0x58(r31)
-b        lbl_803E5F5C
-
-lbl_803E5DF4:
-lfs      f0, lbl_8051FC60@sda21(r2)
-lfs      f1, lbl_8051FCEC@sda21(r2)
-stfs     f0, 0x14(r31)
-lfs      f2, lbl_8051FCC0@sda21(r2)
-lwz      r3, sys@sda21(r13)
-lfs      f3, 0x60(r31)
-lfs      f0, 0x54(r3)
-fmuls    f0, f1, f0
-fmuls    f0, f2, f0
-fmuls    f0, f3, f0
-stfs     f0, 0x44(r31)
-b        lbl_803E5F5C
-
-lbl_803E5E24:
-lfs      f0, 0xe0(r3)
-fcmpo    cr0, f31, f0
-bge      lbl_803E5F5C
-cmpwi    r0, 2
-beq      lbl_803E5F5C
-lbz      r0, 0x94(r31)
-cmplwi   r0, 1
-bne      lbl_803E5E50
-li       r0, 0
-stw      r0, 0x84(r31)
-b        lbl_803E5E60
-
-lbl_803E5E50:
-lwz      r3, 0x84(r31)
-li       r0, 2
-stw      r3, 0x88(r31)
-stw      r0, 0x84(r31)
-
-lbl_803E5E60:
-lwz      r0, 0x84(r31)
-cmpwi    r0, 2
-beq      lbl_803E5F5C
-bge      lbl_803E5E80
-cmpwi    r0, 0
-beq      lbl_803E5E8C
-bge      lbl_803E5F30
-b        lbl_803E5F5C
-
-lbl_803E5E80:
-cmpwi    r0, 4
-bge      lbl_803E5F5C
-b        lbl_803E5EA0
-
-lbl_803E5E8C:
-lfs      f0, 0x2c(r31)
-stfs     f0, 4(r31)
-lfs      f0, 0x30(r31)
-stfs     f0, 8(r31)
-b        lbl_803E5F5C
-
-lbl_803E5EA0:
-lfs      f1, lbl_8051FC90@sda21(r2)
-lfs      f0, lbl_8051FC60@sda21(r2)
-stfs     f1, 0xc(r31)
-stfs     f0, 0x10(r31)
-lwz      r4, 0x34(r31)
-lwz      r3, sys@sda21(r13)
-lfs      f1, 0x270(r4)
-lfs      f0, 0x54(r3)
-fdivs    f1, f1, f0
-bl       __cvt_fp2unsigned
-stw      r3, 0x8c(r31)
-stw      r3, 0x90(r31)
-bl       rand
-xoris    r3, r3, 0x8000
-lis      r0, 0x4330
-stw      r3, 0x2c(r1)
-lfd      f2, lbl_8051FCD8@sda21(r2)
-stw      r0, 0x28(r1)
-lfs      f3, lbl_8051FCE0@sda21(r2)
-lfd      f1, 0x28(r1)
-lfs      f0, lbl_8051FCB4@sda21(r2)
-fsubs    f4, f1, f2
-lfs      f1, lbl_8051FCEC@sda21(r2)
-lfs      f2, lbl_8051FCC0@sda21(r2)
-fdivs    f3, f4, f3
-fmuls    f0, f0, f3
-stfs     f0, 0x5c(r31)
-lwz      r3, sys@sda21(r13)
-lwz      r4, 0x34(r31)
-lfs      f0, 0x54(r3)
-lfs      f3, 0x180(r4)
-fmuls    f0, f1, f0
-fmuls    f0, f2, f0
-fmuls    f0, f3, f0
-stfs     f0, 0x58(r31)
-b        lbl_803E5F5C
-
-lbl_803E5F30:
-lfs      f0, lbl_8051FC60@sda21(r2)
-lfs      f1, lbl_8051FCEC@sda21(r2)
-stfs     f0, 0x14(r31)
-lfs      f2, lbl_8051FCC0@sda21(r2)
-lwz      r3, sys@sda21(r13)
-lfs      f3, 0x60(r31)
-lfs      f0, 0x54(r3)
-fmuls    f0, f1, f0
-fmuls    f0, f2, f0
-fmuls    f0, f3, f0
-stfs     f0, 0x44(r31)
-
-lbl_803E5F5C:
-lwz      r3, 0x34(r31)
-lfs      f0, lbl_8051FC60@sda21(r2)
-lfs      f1, 0x298(r3)
-fcmpo    cr0, f27, f0
-fmuls    f2, f31, f1
-ble      lbl_803E5F8C
-fmadds   f1, f30, f30, f28
-fcmpo    cr0, f1, f0
-ble      lbl_803E5F90
-frsqrte  f0, f1
-fmuls    f1, f0, f1
-b        lbl_803E5F90
-
-lbl_803E5F8C:
-fmr      f1, f0
-
-lbl_803E5F90:
-lfs      f0, lbl_8051FC60@sda21(r2)
-fcmpu    cr0, f0, f1
-beq      lbl_803E5FAC
-lfs      f0, lbl_8051FC90@sda21(r2)
-fdivs    f0, f0, f1
-fmuls    f30, f30, f0
-fmuls    f29, f29, f0
-
-lbl_803E5FAC:
-fmuls    f1, f30, f2
-mr       r3, r31
-fmuls    f0, f29, f2
-addi     r4, r1, 0x20
-stfs     f1, 0x20(r1)
-stfs     f0, 0x24(r1)
-bl       "updateSmoothWalk___Q43ebi5title6Pikmin5TUnitFR10Vector2<f>"
-mr       r3, r31
-bl       updateEnemyReaction___Q43ebi5title6Pikmin5TUnitFv
-b        lbl_803E63C8
-
-lbl_803E5FD4:
-lfs      f1, 0x30(r31)
-lfs      f0, 8(r31)
-lfs      f2, 0x2c(r31)
-fsubs    f3, f1, f0
-lfs      f1, 4(r31)
-lfs      f0, lbl_8051FC60@sda21(r2)
-fsubs    f1, f2, f1
-fmuls    f2, f3, f3
-fmadds   f1, f1, f1, f2
-fcmpo    cr0, f1, f0
-ble      lbl_803E6010
-ble      lbl_803E6014
-frsqrte  f0, f1
-fmuls    f1, f0, f1
-b        lbl_803E6014
-
-lbl_803E6010:
-fmr      f1, f0
-
-lbl_803E6014:
-lfs      f0, 0x248(r3)
-fcmpo    cr0, f1, f0
-ble      lbl_803E6028
-li       r0, 0
-stw      r0, 0x68(r31)
-
-lbl_803E6028:
-lwz      r3, 0x68(r31)
-cmplwi   r3, 0
-beq      lbl_803E6218
-lwz      r12, 0(r3)
-lwz      r12, 0xc(r12)
-mtctr    r12
-bctrl
-clrlwi.  r0, r3, 0x18
-beq      lbl_803E620C
-lwz      r3, 0x68(r31)
-lwz      r12, 0(r3)
-lwz      r12, 8(r12)
-mtctr    r12
-bctrl
-cmpwi    r3, 5
-beq      lbl_803E6084
-bge      lbl_803E6078
-cmpwi    r3, -1
-beq      lbl_803E63C8
-b        lbl_803E63C8
-
-lbl_803E6078:
-cmpwi    r3, 7
-bge      lbl_803E63C8
-b        lbl_803E6148
-
-lbl_803E6084:
-lwz      r3, 0x68(r31)
-lfs      f0, 8(r31)
-lfs      f1, 8(r3)
-lfs      f2, 4(r3)
-fsubs    f3, f1, f0
-lfs      f1, 4(r31)
-lfs      f0, lbl_8051FC60@sda21(r2)
-fsubs    f6, f2, f1
-fmuls    f1, f3, f3
-fmadds   f1, f6, f6, f1
-fcmpo    cr0, f1, f0
-ble      lbl_803E60C4
-ble      lbl_803E60C8
-frsqrte  f0, f1
-fmuls    f1, f0, f1
-b        lbl_803E60C8
-
-lbl_803E60C4:
-fmr      f1, f0
-
-lbl_803E60C8:
-lfs      f0, lbl_8051FC60@sda21(r2)
-fcmpu    cr0, f0, f1
-beq      lbl_803E60E4
-lfs      f0, lbl_8051FC90@sda21(r2)
-fdivs    f0, f0, f1
-fmuls    f6, f6, f0
-fmuls    f3, f3, f0
-
-lbl_803E60E4:
-lwz      r5, 0x34(r31)
-mr       r3, r31
-lfs      f5, 0x14(r31)
-addi     r4, r1, 0x18
-lfs      f4, 0x1f8(r5)
-lfs      f1, 0x10(r31)
-lfs      f0, 0xc(r31)
-fmuls    f2, f3, f4
-fmuls    f3, f1, f5
-fmuls    f1, f0, f5
-fmuls    f0, f6, f4
-fadds    f3, f3, f2
-fadds    f2, f1, f0
-stfs     f3, 0x1c(r1)
-stfs     f2, 0x18(r1)
-lfs      f1, 0x80(r31)
-lfs      f0, 0x7c(r31)
-fmuls    f1, f1, f31
-fmuls    f0, f0, f31
-fadds    f1, f3, f1
-fadds    f0, f2, f0
-stfs     f1, 0x1c(r1)
-stfs     f0, 0x18(r1)
-bl       "updateSmoothWalk___Q43ebi5title6Pikmin5TUnitFR10Vector2<f>"
-b        lbl_803E63C8
-
-lbl_803E6148:
-lwz      r3, 0x68(r31)
-lfs      f0, 8(r31)
-lfs      f1, 8(r3)
-lfs      f2, 4(r3)
-fsubs    f3, f1, f0
-lfs      f1, 4(r31)
-lfs      f0, lbl_8051FC60@sda21(r2)
-fsubs    f6, f2, f1
-fmuls    f1, f3, f3
-fmadds   f1, f6, f6, f1
-fcmpo    cr0, f1, f0
-ble      lbl_803E6188
-ble      lbl_803E618C
-frsqrte  f0, f1
-fmuls    f1, f0, f1
-b        lbl_803E618C
-
-lbl_803E6188:
-fmr      f1, f0
-
-lbl_803E618C:
-lfs      f0, lbl_8051FC60@sda21(r2)
-fcmpu    cr0, f0, f1
-beq      lbl_803E61A8
-lfs      f0, lbl_8051FC90@sda21(r2)
-fdivs    f0, f0, f1
-fmuls    f6, f6, f0
-fmuls    f3, f3, f0
-
-lbl_803E61A8:
-lwz      r5, 0x34(r31)
-mr       r3, r31
-lfs      f5, 0x14(r31)
-addi     r4, r1, 0x10
-lfs      f4, 0x220(r5)
-lfs      f1, 0x10(r31)
-lfs      f0, 0xc(r31)
-fmuls    f2, f3, f4
-fmuls    f3, f1, f5
-fmuls    f1, f0, f5
-fmuls    f0, f6, f4
-fadds    f3, f3, f2
-fadds    f2, f1, f0
-stfs     f3, 0x14(r1)
-stfs     f2, 0x10(r1)
-lfs      f1, 0x80(r31)
-lfs      f0, 0x7c(r31)
-fmuls    f1, f1, f31
-fmuls    f0, f0, f31
-fadds    f1, f3, f1
-fadds    f0, f2, f0
-stfs     f1, 0x14(r1)
-stfs     f0, 0x10(r1)
-bl       "updateSmoothWalk___Q43ebi5title6Pikmin5TUnitFR10Vector2<f>"
-b        lbl_803E63C8
-
-lbl_803E620C:
-li       r0, 0
-stw      r0, 0x68(r31)
-b        lbl_803E63C8
-
-lbl_803E6218:
-lwz      r3, 0x84(r31)
-cmpwi    r3, 2
-beq      lbl_803E63C8
-lbz      r0, 0x94(r31)
-cmplwi   r0, 1
-bne      lbl_803E623C
-li       r0, 0
-stw      r0, 0x84(r31)
-b        lbl_803E6248
-
-lbl_803E623C:
-stw      r3, 0x88(r31)
-li       r0, 2
-stw      r0, 0x84(r31)
-
-lbl_803E6248:
-lwz      r0, 0x84(r31)
-cmpwi    r0, 2
-beq      lbl_803E63C8
-bge      lbl_803E6268
-cmpwi    r0, 0
-beq      lbl_803E6274
-bge      lbl_803E6318
-b        lbl_803E63C8
-
-lbl_803E6268:
-cmpwi    r0, 4
-bge      lbl_803E63C8
-b        lbl_803E6288
-
-lbl_803E6274:
-lfs      f0, 0x2c(r31)
-stfs     f0, 4(r31)
-lfs      f0, 0x30(r31)
-stfs     f0, 8(r31)
-b        lbl_803E63C8
-
-lbl_803E6288:
-lfs      f1, lbl_8051FC90@sda21(r2)
-lfs      f0, lbl_8051FC60@sda21(r2)
-stfs     f1, 0xc(r31)
-stfs     f0, 0x10(r31)
-lwz      r4, 0x34(r31)
-lwz      r3, sys@sda21(r13)
-lfs      f1, 0x270(r4)
-lfs      f0, 0x54(r3)
-fdivs    f1, f1, f0
-bl       __cvt_fp2unsigned
-stw      r3, 0x8c(r31)
-stw      r3, 0x90(r31)
-bl       rand
-xoris    r3, r3, 0x8000
-lis      r0, 0x4330
-stw      r3, 0x2c(r1)
-lfd      f2, lbl_8051FCD8@sda21(r2)
-stw      r0, 0x28(r1)
-lfs      f3, lbl_8051FCE0@sda21(r2)
-lfd      f1, 0x28(r1)
-lfs      f0, lbl_8051FCB4@sda21(r2)
-fsubs    f4, f1, f2
-lfs      f1, lbl_8051FCEC@sda21(r2)
-lfs      f2, lbl_8051FCC0@sda21(r2)
-fdivs    f3, f4, f3
-fmuls    f0, f0, f3
-stfs     f0, 0x5c(r31)
-lwz      r3, sys@sda21(r13)
-lwz      r4, 0x34(r31)
-lfs      f0, 0x54(r3)
-lfs      f3, 0x180(r4)
-fmuls    f0, f1, f0
-fmuls    f0, f2, f0
-fmuls    f0, f3, f0
-stfs     f0, 0x58(r31)
-b        lbl_803E63C8
-
-lbl_803E6318:
-lfs      f0, lbl_8051FC60@sda21(r2)
-lfs      f1, lbl_8051FCEC@sda21(r2)
-stfs     f0, 0x14(r31)
-lfs      f2, lbl_8051FCC0@sda21(r2)
-lwz      r3, sys@sda21(r13)
-lfs      f3, 0x60(r31)
-lfs      f0, 0x54(r3)
-fmuls    f0, f1, f0
-fmuls    f0, f2, f0
-fmuls    f0, f3, f0
-stfs     f0, 0x44(r31)
-b        lbl_803E63C8
-
-lbl_803E6348:
-lfs      f3, 0x70(r31)
-mr       r3, r31
-lfs      f2, 8(r31)
-addi     r4, r1, 8
-lfs      f1, 0x6c(r31)
-lfs      f0, 4(r31)
-fsubs    f5, f3, f2
-lfs      f3, 0x78(r31)
-fsubs    f2, f1, f0
-lfs      f1, 0x74(r31)
-lfs      f4, 0x80(r31)
-fmuls    f6, f5, f7
-fmuls    f5, f3, f9
-lfs      f0, 0x7c(r31)
-fmuls    f2, f2, f7
-lfs      f8, 0x14(r31)
-fmuls    f1, f1, f9
-lfs      f7, 0x10(r31)
-lfs      f3, 0xc(r31)
-fadds    f5, f6, f5
-fmuls    f4, f4, f31
-fadds    f1, f2, f1
-fmuls    f0, f0, f31
-fmuls    f6, f7, f8
-fadds    f4, f5, f4
-fmuls    f2, f3, f8
-fadds    f0, f1, f0
-fadds    f1, f6, f4
-fadds    f0, f2, f0
-stfs     f1, 0xc(r1)
-stfs     f0, 8(r1)
-bl       "updateSmoothWalk___Q43ebi5title6Pikmin5TUnitFR10Vector2<f>"
-
-lbl_803E63C8:
-lwz      r0, 0x84(r31)
-cmpwi    r0, 0
-beq      lbl_803E6648
-mr       r3, r31
-bl       calcModelBaseMtx___Q33ebi5title8TObjBaseFv
-lwz      r0, 0x84(r31)
-cmpwi    r0, 2
-beq      lbl_803E6550
-bge      lbl_803E63FC
-cmpwi    r0, 0
-beq      lbl_803E65BC
-bge      lbl_803E6518
-b        lbl_803E65BC
-
-lbl_803E63FC:
-cmpwi    r0, 6
-bge      lbl_803E65BC
-cmpwi    r0, 4
-bge      lbl_803E6550
-addi     r3, r31, 0x4c
-bl       update__12J3DFrameCtrlFv
-addi     r3, r31, 0x38
-bl       update__12J3DFrameCtrlFv
-lwz      r4, 0x90(r31)
-cmplwi   r4, 0
-beq      lbl_803E645C
-lwz      r3, 0x8c(r31)
-lis      r0, 0x4330
-stw      r0, 0x28(r1)
-lfd      f2, lbl_8051FC98@sda21(r2)
-stw      r3, 0x2c(r1)
-lfd      f0, 0x28(r1)
-stw      r4, 0x34(r1)
-fsubs    f1, f0, f2
-stw      r0, 0x30(r1)
-lfd      f0, 0x30(r1)
-fsubs    f0, f0, f2
-fdivs    f1, f1, f0
-b        lbl_803E6460
-
-lbl_803E645C:
-lfs      f1, lbl_8051FC60@sda21(r2)
-
-lbl_803E6460:
-lfs      f27, lbl_8051FC90@sda21(r2)
-lfs      f0, lbl_8051FC64@sda21(r2)
-fsubs    f2, f27, f1
-fcmpo    cr0, f2, f0
-cror     2, 0, 2
-bne      lbl_803E6480
-fdivs    f27, f2, f0
-b        lbl_803E64A0
-
-lbl_803E6480:
-lfs      f0, lbl_8051FCC0@sda21(r2)
-fcmpo    cr0, f2, f0
-cror     2, 0, 2
-bne      lbl_803E6494
-b        lbl_803E64A0
-
-lbl_803E6494:
-lfs      f1, lbl_8051FCF4@sda21(r2)
-fneg     f0, f1
-fmadds   f27, f1, f2, f0
-
-lbl_803E64A0:
-lwz      r3, 0x34(r31)
-li       r4, 0
-lfs      f0, lbl_8051FC90@sda21(r2)
-lwz      r5, 0x18(r3)
-lfs      f2, 0x48(r31)
-fsubs    f1, f0, f27
-lwz      r29, 0x28(r31)
-lfs      f0, 0x5c(r31)
-lwz      r3, 0x18(r5)
-stfs     f0, 8(r3)
-lwz      r3, 0x14(r5)
-stfs     f2, 8(r3)
-lwz      r30, 0x20(r5)
-mr       r3, r30
-lwz      r12, 0(r30)
-lwz      r12, 0x1c(r12)
-mtctr    r12
-bctrl
-mr       r3, r30
-fmr      f1, f27
-lwz      r12, 0(r30)
-li       r4, 1
-lwz      r12, 0x1c(r12)
-mtctr    r12
-bctrl
-lwz      r3, 4(r29)
-lwz      r3, 0x28(r3)
-lwz      r3, 0(r3)
-stw      r30, 0x54(r3)
-b        lbl_803E65BC
-
-lbl_803E6518:
-addi     r3, r31, 0x38
-bl       update__12J3DFrameCtrlFv
-lwz      r3, 0x34(r31)
-lwz      r4, 0x28(r31)
-lwz      r5, 0x18(r3)
-lfs      f0, 0x48(r31)
-lwz      r3, 0x14(r5)
-stfs     f0, 8(r3)
-lwz      r3, 4(r4)
-lwz      r0, 0x1c(r5)
-lwz      r3, 0x28(r3)
-lwz      r3, 0(r3)
-stw      r0, 0x54(r3)
-b        lbl_803E65BC
-
-lbl_803E6550:
-lwz      r5, 0x34(r31)
-addi     r3, r31, 0x38
-lwz      r4, sys@sda21(r13)
-lfs      f3, 0x14(r31)
-lfs      f2, 0x158(r5)
-lfs      f1, lbl_8051FCEC@sda21(r2)
-lfs      f0, 0x54(r4)
-fmuls    f2, f3, f2
-lfs      f3, 0x64(r31)
-fmuls    f0, f1, f0
-lfs      f1, lbl_8051FCC0@sda21(r2)
-fmuls    f2, f3, f2
-fmuls    f0, f1, f0
-fmuls    f0, f2, f0
-stfs     f0, 0x44(r31)
-bl       update__12J3DFrameCtrlFv
-lwz      r3, 0x34(r31)
-lwz      r4, 0x28(r31)
-lwz      r5, 0x18(r3)
-lfs      f0, 0x48(r31)
-lwz      r3, 0x14(r5)
-stfs     f0, 8(r3)
-lwz      r3, 4(r4)
-lwz      r0, 0x1c(r5)
-lwz      r3, 0x28(r3)
-lwz      r3, 0(r3)
-stw      r0, 0x54(r3)
-
-lbl_803E65BC:
-lwz      r3, 0x28(r31)
-lwz      r12, 0(r3)
-lwz      r12, 0x10(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x28(r31)
-addi     r4, r2, lbl_8051FCF8@sda21
-lwz      r3, 4(r3)
-lwz      r3, 0x54(r3)
-bl       getIndex__10JUTNameTabCFPCc
-lwz      r4, 0x28(r31)
-mulli    r0, r3, 0x30
-lwz      r3, 0x34(r31)
-lwz      r4, 0x84(r4)
-lfs      f0, 0x108(r3)
-lwz      r3, 0xc(r4)
-add      r4, r3, r0
-lfs      f1, 0xc(r4)
-fadds    f0, f1, f0
-stfs     f0, 0xc(r4)
-lwz      r3, 0x34(r31)
-lfs      f1, 0x2c(r4)
-lfs      f0, 0x130(r3)
-fadds    f0, f1, f0
-stfs     f0, 0x2c(r4)
-lwz      r3, 0x28(r31)
-lwz      r12, 0(r3)
-lwz      r12, 0xc(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x28(r31)
-lwz      r12, 0(r3)
-lwz      r12, 0x1c(r12)
-mtctr    r12
-bctrl
-
-lbl_803E6648:
-psq_l    f31, 152(r1), 0, qr0
-lfd      f31, 0x90(r1)
-psq_l    f30, 136(r1), 0, qr0
-lfd      f30, 0x80(r1)
-psq_l    f29, 120(r1), 0, qr0
-lfd      f29, 0x70(r1)
-psq_l    f28, 104(r1), 0, qr0
-lfd      f28, 0x60(r1)
-psq_l    f27, 88(r1), 0, qr0
-lfd      f27, 0x50(r1)
-lwz      r31, 0x4c(r1)
-lwz      r30, 0x48(r1)
-lwz      r0, 0xa4(r1)
-lwz      r29, 0x44(r1)
-mtlr     r0
-addi     r1, r1, 0xa0
-blr
-	*/
 }
 
 } // namespace title
@@ -1878,9 +851,9 @@ namespace title {
 void Pikmin::TUnit::updateSmoothWalk_(Vector2f& arg)
 {
 	// Still needs to be matched
-	f32 _964  = mManager->mBoidParamMgr.mCurrMaxTurnSpeed;
-	f32 _968  = mManager->mBoidParamMgr.mCurrTurnMag;
-	f32 _960  = mManager->mBoidParamMgr.mCurrWalkSpeed;
+	f32 _964  = mManager->mBoidParamMgr.getMaxTurnSpeed();
+	f32 _968  = mManager->mBoidParamMgr.getTurnMag();
+	f32 _960  = mManager->mBoidParamMgr.getWalkSpeed();
 	f32 param = arg.length();
 	if (param > _960) {
 		param = _960;
@@ -1890,15 +863,16 @@ void Pikmin::TUnit::updateSmoothWalk_(Vector2f& arg)
 	mParms[0] = param;
 	Vector2f pos(arg);
 	pos.normalise();
-	pos     = pos * _964;
-	f32 len = pos.length();
+	pos = pos * _964;
 	Vector2f newpos(pos);
+	f32 len = pos.length();
 	if (len > _968) {
-		pos.normalise();
-		newpos = pos * _968;
+		newpos.normalise();
+		newpos *= _968;
+		pos = newpos;
 	}
 
-	mAngle = mAngle + newpos;
+	mAngle = mAngle + pos;
 	mAngle.normalise();
 	mPosition = mPosition + mAngle * mParms[0];
 }

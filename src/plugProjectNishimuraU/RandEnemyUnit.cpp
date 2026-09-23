@@ -59,13 +59,13 @@ void RandEnemyUnit::setEnemySlot()
  */
 void RandEnemyUnit::setEnemyTypeWeight()
 {
+	EnemyNode* mainNode = mGenerator->mMainEnemies;
+
 	int enemyTypes[4] = { BaseGen::CGT_EnemyEasy, BaseGen::CGT_EnemyHard, BaseGen::CGT_DoorSeam, BaseGen::CGT_EnemySpecial };
 
 	int weightList[4];
 	int countList[4];
 	int totalWeights = 0;
-
-	EnemyNode* currEnemy = static_cast<EnemyNode*>(mGenerator->mMainEnemies->mChild);
 
 	for (int i = 0; i < 4; i++) {
 		mTypeCount[i] = 0;
@@ -77,7 +77,8 @@ void RandEnemyUnit::setEnemyTypeWeight()
 		countList[i]  = 0;
 	}
 
-	for (; currEnemy; currEnemy = static_cast<EnemyNode*>(currEnemy->mNext)) {
+	FOREACH_NODE(EnemyNode, mainNode->mChild, currEnemy)
+	{
 		TekiInfo* tekiInfo = currEnemy->getTekiInfo();
 		if (tekiInfo) {
 			for (int i = 0; i < 4; i++) {
@@ -99,204 +100,23 @@ void RandEnemyUnit::setEnemyTypeWeight()
 
 	int tallyWeights[4];
 
-	tallyWeights[0] = weightList[0];
-	int totalNum    = countList[0];
-	for (int i = 1; i < 4; i++) {
-		tallyWeights[i] = tallyWeights[i - 1] + weightList[i];
+	int tally    = 0;
+	int totalNum = 0;
+	for (int i = 0; i < 4; i++) {
 		totalNum += countList[i];
+		tally += weightList[i];
+		tallyWeights[i] = tally;
 	}
 
-	for (; totalNum < mMaxEnemies; totalNum++) {
+	for (int i = totalNum; i < mMaxEnemies; i++) {
 		int randEnemy = randInt(totalWeights);
-		for (int i = 0; i < 4; i++) {
-			if (randEnemy < tallyWeights[i]) {
-				mTypeMax[i]++;
+		for (int j = 0; j < 4; j++) {
+			if (randEnemy < tallyWeights[j]) {
+				mTypeMax[j]++;
 				break;
 			}
 		}
 	}
-	/*
-	stwu     r1, -0xa0(r1)
-	mflr     r0
-	stw      r0, 0xa4(r1)
-	stfd     f31, 0x90(r1)
-	psq_st   f31, 152(r1), 0, qr0
-	stfd     f30, 0x80(r1)
-	psq_st   f30, 136(r1), 0, qr0
-	stmw     r27, 0x6c(r1)
-	mr       r30, r3
-	li       r3, 0
-	lwz      r10, 0(r30)
-	lis      r4, lbl_804840C0@ha
-	lwzu     r7, lbl_804840C0@l(r4)
-	addi     r0, r1, 0x28
-	lwz      r10, 0x14(r10)
-	addi     r8, r1, 0x18
-	lwz      r6, 4(r4)
-	li       r9, 0
-	lwz      r5, 8(r4)
-	lwz      r4, 0xc(r4)
-	stw      r3, 0x28(r1)
-	stw      r3, 0x10(r30)
-	stw      r3, 0x20(r30)
-	stw      r3, 0x14(r30)
-	stw      r3, 0x24(r30)
-	stw      r3, 0x18(r30)
-	stw      r3, 0x28(r30)
-	stw      r3, 0x1c(r30)
-	stw      r3, 0x2c(r30)
-	stw      r7, 0x38(r1)
-	lwz      r10, 0x10(r10)
-	stw      r6, 0x3c(r1)
-	stw      r5, 0x40(r1)
-	stw      r4, 0x44(r1)
-	stw      r3, 0x18(r1)
-	stw      r3, 0x2c(r1)
-	stw      r3, 0x1c(r1)
-	stw      r3, 0x30(r1)
-	stw      r3, 0x20(r1)
-	stw      r3, 0x34(r1)
-	stw      r3, 0x24(r1)
-	b        lbl_80248B74
-
-lbl_80248AC0:
-	lwz      r3, 0x18(r10)
-	lwz      r3, 0(r3)
-	cmplwi   r3, 0
-	beq      lbl_80248B70
-	li       r11, 4
-	mr       r5, r0
-	mr       r6, r30
-	mr       r7, r8
-	addi     r4, r1, 0x38
-	mtctr    r11
-
-lbl_80248AE8:
-	lwz      r12, 0x20(r3)
-	lwz      r11, 0(r4)
-	cmpw     r12, r11
-	bne      lbl_80248B5C
-	lis      r11, 0x66666667@ha
-	lwz      r29, 0x1c(r3)
-	addi     r11, r11, 0x66666667@l
-	mulhw    r11, r11, r29
-	srawi    r12, r11, 2
-	srwi     r28, r12, 0x1f
-	srawi    r11, r11, 2
-	add      r12, r12, r28
-	mulli    r28, r12, 0xa
-	srwi     r12, r11, 0x1f
-	add      r31, r11, r12
-	subf.    r12, r28, r29
-	beq      lbl_80248B3C
-	lwz      r11, 0(r5)
-	add      r9, r9, r12
-	add      r11, r11, r12
-	stw      r11, 0(r5)
-
-lbl_80248B3C:
-	cmpwi    r31, 0
-	beq      lbl_80248B5C
-	lwz      r12, 0x20(r6)
-	lwz      r11, 0(r7)
-	add      r12, r12, r31
-	add      r11, r11, r31
-	stw      r12, 0x20(r6)
-	stw      r11, 0(r7)
-
-lbl_80248B5C:
-	addi     r4, r4, 4
-	addi     r5, r5, 4
-	addi     r6, r6, 4
-	addi     r7, r7, 4
-	bdnz     lbl_80248AE8
-
-lbl_80248B70:
-	lwz      r10, 4(r10)
-
-lbl_80248B74:
-	cmplwi   r10, 0
-	bne      lbl_80248AC0
-	lwz      r4, 0x28(r1)
-	addi     r31, r1, 8
-	lwz      r0, 0x2c(r1)
-	xoris    r29, r9, 0x8000
-	lwz      r5, 0x18(r1)
-	lis      r28, 0x4330
-	lwz      r3, 0x1c(r1)
-	add      r6, r4, r0
-	lwz      r0, 0x30(r1)
-	stw      r6, 0xc(r1)
-	add      r5, r5, r3
-	lwz      r3, 0x20(r1)
-	add      r6, r6, r0
-	lwz      r0, 0x34(r1)
-	stw      r6, 0x10(r1)
-	add      r5, r5, r3
-	lwz      r3, 0x24(r1)
-	add      r6, r6, r0
-	stw      r4, 8(r1)
-	add      r5, r5, r3
-	lfd      f30, lbl_8051A790@sda21(r2)
-	stw      r6, 0x14(r1)
-	mr       r27, r5
-	lfs      f31, lbl_8051A788@sda21(r2)
-	b        lbl_80248C60
-
-lbl_80248BE0:
-	bl       rand
-	xoris    r3, r3, 0x8000
-	stw      r28, 0x48(r1)
-	li       r0, 4
-	mr       r4, r31
-	stw      r3, 0x4c(r1)
-	li       r5, 0
-	lfd      f0, 0x48(r1)
-	stw      r29, 0x54(r1)
-	fsubs    f0, f0, f30
-	stw      r28, 0x50(r1)
-	fdivs    f1, f0, f31
-	lfd      f0, 0x50(r1)
-	fsubs    f0, f0, f30
-	fmuls    f0, f0, f1
-	fctiwz   f0, f0
-	stfd     f0, 0x58(r1)
-	lwz      r3, 0x5c(r1)
-	mtctr    r0
-
-lbl_80248C2C:
-	lwz      r0, 0(r4)
-	cmpw     r3, r0
-	bge      lbl_80248C50
-	slwi     r3, r5, 2
-	addi     r4, r3, 0x20
-	lwzx     r3, r30, r4
-	addi     r0, r3, 1
-	stwx     r0, r30, r4
-	b        lbl_80248C5C
-
-lbl_80248C50:
-	addi     r4, r4, 4
-	addi     r5, r5, 1
-	bdnz     lbl_80248C2C
-
-lbl_80248C5C:
-	addi     r27, r27, 1
-
-lbl_80248C60:
-	lwz      r0, 0xc(r30)
-	cmpw     r27, r0
-	blt      lbl_80248BE0
-	psq_l    f31, 152(r1), 0, qr0
-	lfd      f31, 0x90(r1)
-	psq_l    f30, 136(r1), 0, qr0
-	lfd      f30, 0x80(r1)
-	lmw      r27, 0x6c(r1)
-	lwz      r0, 0xa4(r1)
-	mtlr     r0
-	addi     r1, r1, 0xa0
-	blr
-	*/
 }
 
 /**
@@ -523,8 +343,8 @@ void RandEnemyUnit::setSlotEnemyTypeC(int& doorIdx, int vsColor)
 				sign    = 1;
 			}
 		}
-		MapNode* node;
-		for (node = static_cast<MapNode*>(placedNodes->mChild); node; node = static_cast<MapNode*>(node->mNext)) {
+		for (CNode* child = placedNodes->mChild; child; child = child->mNext) {
+			MapNode* node = static_cast<MapNode*>(child);
 			// caps are always connected to not-caps, so don't need to worry about them
 			if (node->mUnitInfo->getUnitKind() == UNITKIND_Room || node->mUnitInfo->getUnitKind() == UNITKIND_Corridor) {
 				int numDoors = node->getNumDoors();
@@ -544,8 +364,8 @@ void RandEnemyUnit::setSlotEnemyTypeC(int& doorIdx, int vsColor)
 		}
 
 	} else { // story mode
-		MapNode* node;
-		for (node = static_cast<MapNode*>(placedNodes->mChild); node; node = static_cast<MapNode*>(node->mNext)) {
+		for (CNode* child = placedNodes->mChild; child; child = child->mNext) {
+			MapNode* node = static_cast<MapNode*>(child);
 			// caps are always connected to not-caps, so don't need to worry about them
 			if (node->mUnitInfo->getUnitKind() == UNITKIND_Room || node->mUnitInfo->getUnitKind() == UNITKIND_Corridor) {
 				int numDoors = node->getNumDoors();
@@ -576,7 +396,7 @@ void RandEnemyUnit::setSlotEnemyTypeC(int& doorIdx, int vsColor)
 		return;
 	}
 
-	int randScoreThreshold = (f32)scoreTally * randFloat();
+	int randScoreThreshold = randInt(scoreTally);
 	int scoreCounter       = 0;
 	for (int i = 0; i < counter; i++) {
 		scoreCounter += doorScores[i];
@@ -1694,7 +1514,7 @@ void RandEnemyUnit::setVersusEnemyTypeA()
 					int min = 0;
 					setSlotEnemyTypeA(max, min, vsColor);
 
-					max = (max < count - mTypeCount[TEKITYPE_A]) ? max : count - mTypeCount[TEKITYPE_A];
+					max = minVal(max, count - mTypeCount[TEKITYPE_A]);
 
 					int enemiesToMake;
 					if (max <= min) {

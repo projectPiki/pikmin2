@@ -637,7 +637,19 @@ void PlayCamera::updateParms(int flag)
 
 	CameraParms* parms = mCameraParms;
 
-	f32 targetAngle = _normaliseAngle(mCameraAngleCurrent, mCameraAngleTarget); // this needs fixing
+	f32 targetAngle = mCameraAngleTarget;
+	f32 delta;
+	if (targetAngle >= mCameraAngleCurrent) {
+		delta = targetAngle - mCameraAngleCurrent;
+		if (TAU - delta < delta) {
+			targetAngle -= TAU;
+		}
+	} else {
+		delta = mCameraAngleCurrent - targetAngle;
+		if (TAU - delta < delta) {
+			targetAngle += TAU;
+		}
+	}
 
 	mCameraAngleCurrent += parms->mRotSpeed.mValue * (targetAngle - mCameraAngleCurrent);
 
@@ -851,17 +863,7 @@ void PlayCamera::setCollisionCameraTargetPhi(int flag)
 			break;
 		}
 
-		f32 vertAngle;
-		f32 interpSpeed = mCameraParms->mCollInterpSpeed();
-		if (absVal(mGoalVerticalAngle - phi) < interpSpeed) {
-			vertAngle = phi;
-		} else if (mGoalVerticalAngle < phi) {
-			vertAngle = mGoalVerticalAngle + interpSpeed;
-		} else {
-			vertAngle = mGoalVerticalAngle - interpSpeed;
-		}
-
-		mGoalVerticalAngle = vertAngle;
+		mGoalVerticalAngle = approach(mGoalVerticalAngle, phi, mCameraParms->mCollInterpSpeed());
 		return;
 	}
 

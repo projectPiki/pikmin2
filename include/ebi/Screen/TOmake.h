@@ -44,10 +44,10 @@ struct TOmake : public TScreenBase {
 
 	void setMsgColor(J2DTextBox* pane)
 	{
-		pane->setCharColor(mColor8);
-		pane->setGradColor(mColor9);
-		pane->setWhite(mColor10);
-		pane->setBlack(mColor11);
+		pane->setCharColor(mFontColorInactive.mCol1);
+		pane->setGradColor(mFontColorInactive.mCol2);
+		pane->setWhite(mFontColorInactive.mWhite);
+		pane->setBlack(mFontColorInactive.mBlack);
 	}
 
 	// _00     = VTBL
@@ -77,18 +77,9 @@ struct TOmake : public TScreenBase {
 	E2DCallBack_WindowCursor mCursor;     // _178
 	E2DCallBack_BlinkFontColor mFonts[7]; // _1E4
 	u64 mMesgTags[7];                     // _3F8
-	JUtility::TColor mColor0;             // _430, cant be an array of colors for ctor to work
-	JUtility::TColor mColor1;             // _430
-	JUtility::TColor mColor2;             // _430
-	JUtility::TColor mColor3;             // _430
-	JUtility::TColor mColor4;             // _430
-	JUtility::TColor mColor5;             // _430
-	JUtility::TColor mColor6;             // _430
-	JUtility::TColor mColor7;             // _430
-	JUtility::TColor mColor8;             // _430
-	JUtility::TColor mColor9;             // _430
-	JUtility::TColor mColor10;            // _430
-	JUtility::TColor mColor11;            // _430
+	E2DFullFontColor mFontColorSelect;    // _430
+	E2DFullFontColor mFontColorDefault;   // _440
+	E2DFullFontColor mFontColorInactive;  // _450
 };
 struct TOmakeCardE : public TScreenBase {
 	TOmakeCardE();

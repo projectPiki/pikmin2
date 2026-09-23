@@ -301,9 +301,15 @@ struct J2DPane {
 		calcMtx();
 	}
 
-	inline void setOffset(f32 x, f32 y) // called translate in TP
+	inline void setOffset(f32 x, f32 y)
 	{
 		mOffset = JGeometry::TVec2f(x, y);
+		calcMtx();
+	}
+
+	inline void translate(f32 x, f32 y)
+	{
+		mOffset.set(x, y);
 		calcMtx();
 	}
 
@@ -359,7 +365,7 @@ struct J2DPane {
 
 	bool isConnectParent() const { return mIsConnected; }
 
-	u8 getAlpha() const { return mAlpha; }
+	u8 getAlpha() { return mAlpha; }
 	f32 getScaleX() const { return mScale.x; }
 	f32 getScaleY() const { return mScale.y; }
 	f32 getTranslateX() const { return mOffset.x; }

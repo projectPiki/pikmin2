@@ -69,7 +69,7 @@ bool TIndexGroup::downIndex()
 void TIndexGroup::speedUpdate(bool check)
 {
 	if (mRollSpeed > mInitialRollSpeed && !mIsActiveSpeedUp) {
-		if (FABS(mScrollOffset) < 0.7f * mHeight) {
+		if (absF(mScrollOffset) < 0.7f * mHeight) {
 			mRollSpeed *= mSpeedSpeedupFactor;
 		} else {
 			mRollSpeed *= mSpeedSlowdownFactor;
@@ -93,10 +93,9 @@ bool TIndexGroup::offsetUpdate(f32 offset)
 			return true;
 		}
 
-		val = -offset;
-		if (mScrollOffset < val) {
+		if (mScrollOffset < -offset) {
 			mOffsetDifference = mScrollOffset + offset;
-			mScrollOffset     = val;
+			mScrollOffset     = -offset;
 			return true;
 		}
 	}
@@ -532,21 +531,25 @@ bool TScrollList::updateList()
 		val += 0.5f;
 	}
 
+	TIndexPane* nextPane;
+	TIndexPane* prevPane;
 	TIndexGroup* group = mIndexGroup;
 
-	if (mIndexGroup->isState(1) != false) {
-		int idx = mCurrActiveRowSel + 1;
-		if (idx >= mNumActiveRows) {
+	bool isDown = group->isState(TIndexGroup::IDGroup_Down);
+	if (isDown) {
+		int rows = mNumActiveRows;
+		int idx  = mCurrActiveRowSel + 1;
+		if (idx >= rows) {
 			idx = 0;
 		}
 
-		TIndexPane* nextPane = mIndexPaneList[idx];
+		nextPane = mIndexPaneList[idx];
 		if (nextPane->mSizeType != TIndexPane::Size_Small) {
 			val += 0.5f;
 			if (indexPane->mIndex == nextPane->mIndex) {
 				idx++;
 				val -= 0.5f;
-				if (idx >= mNumActiveRows) {
+				if (idx >= rows) {
 					idx = 0;
 				}
 
@@ -555,13 +558,13 @@ bool TScrollList::updateList()
 				}
 			}
 		}
-	} else if (mIndexGroup->mStateID != TIndexGroup::IDGroup_Idle) {
+	} else if (group->mStateID != TIndexGroup::IDGroup_Idle) {
 		int idx = mCurrActiveRowSel - 1;
 		if (idx < 0) {
 			idx = mNumActiveRows - 1;
 		}
 
-		TIndexPane* prevPane = mIndexPaneList[idx];
+		prevPane = mIndexPaneList[idx];
 		if (prevPane->mSizeType != TIndexPane::Size_Small) {
 			val += 0.5f;
 			if (indexPane->mIndex == prevPane->mIndex) {
@@ -608,283 +611,6 @@ bool TScrollList::updateList()
 	mIndexGroup->mIsActiveSpeedUp = 0;
 
 	return result;
-
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stfd     f31, 0x20(r1)
-	psq_st   f31, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	stw      r28, 0x10(r1)
-	mr       r31, r3
-	lwz      r3, 0x84(r3)
-	lwz      r0, 0x20(r3)
-	cntlzw   r0, r0
-	rlwinm.  r0, r0, 0x1b, 0x18, 0x1f
-	beq      lbl_803A3290
-	lfs      f0, 0x10(r3)
-	stfs     f0, 0x1c(r3)
-
-lbl_803A3290:
-	lwz      r3, 0x84(r31)
-	lfs      f2, 0x1c(r3)
-	lfs      f0, 0x10(r3)
-	fcmpo    cr0, f2, f0
-	ble      lbl_803A32EC
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	bne      lbl_803A32EC
-	lfs      f0, 0x14(r3)
-	lfs      f1, lbl_8051F318@sda21(r2)
-	fabs     f3, f0
-	lfs      f0, 0x18(r3)
-	fmuls    f0, f1, f0
-	frsp     f1, f3
-	fcmpo    cr0, f1, f0
-	bge      lbl_803A32E0
-	lfs      f0, 0xc(r3)
-	fmuls    f0, f2, f0
-	stfs     f0, 0x1c(r3)
-	b        lbl_803A32EC
-
-lbl_803A32E0:
-	lfs      f0, 4(r3)
-	fmuls    f0, f2, f0
-	stfs     f0, 0x1c(r3)
-
-lbl_803A32EC:
-	lwz      r4, 0x94(r31)
-	lwz      r5, 0x88(r31)
-	slwi     r0, r4, 2
-	lfs      f1, lbl_8051F310@sda21(r2)
-	lwzx     r7, r5, r0
-	lwz      r0, 0xc(r7)
-	cmpwi    r0, 0
-	beq      lbl_803A3314
-	lfs      f0, lbl_8051F350@sda21(r2)
-	fadds    f1, f1, f0
-
-lbl_803A3314:
-	lwz      r3, 0x84(r31)
-	lwz      r6, 0x20(r3)
-	subfic   r0, r6, 1
-	cntlzw   r0, r0
-	rlwinm.  r0, r0, 0x1b, 0x18, 0x1f
-	beq      lbl_803A33A0
-	lha      r8, 0x8e(r31)
-	addi     r9, r4, 1
-	cmpw     r9, r8
-	blt      lbl_803A3340
-	li       r9, 0
-
-lbl_803A3340:
-	slwi     r0, r9, 2
-	lwzx     r6, r5, r0
-	lwz      r0, 0xc(r6)
-	cmpwi    r0, 0
-	beq      lbl_803A3414
-	lfs      f0, lbl_8051F350@sda21(r2)
-	lwz      r4, 0(r7)
-	lwz      r0, 0(r6)
-	fadds    f1, f1, f0
-	cmpw     r4, r0
-	bne      lbl_803A3414
-	addi     r9, r9, 1
-	fsubs    f1, f1, f0
-	cmpw     r9, r8
-	blt      lbl_803A3380
-	li       r9, 0
-
-lbl_803A3380:
-	slwi     r0, r9, 2
-	lwzx     r4, r5, r0
-	lwz      r0, 0xc(r4)
-	cmpwi    r0, 0
-	beq      lbl_803A3414
-	lfs      f0, lbl_8051F350@sda21(r2)
-	fadds    f1, f1, f0
-	b        lbl_803A3414
-
-lbl_803A33A0:
-	cmpwi    r6, 0
-	beq      lbl_803A3414
-	addic.   r8, r4, -1
-	bge      lbl_803A33B8
-	lha      r4, 0x8e(r31)
-	addi     r8, r4, -1
-
-lbl_803A33B8:
-	slwi     r0, r8, 2
-	lwzx     r6, r5, r0
-	lwz      r0, 0xc(r6)
-	cmpwi    r0, 0
-	beq      lbl_803A3414
-	lfs      f0, lbl_8051F350@sda21(r2)
-	lwz      r4, 0(r7)
-	lwz      r0, 0(r6)
-	fadds    f1, f1, f0
-	cmpw     r4, r0
-	bne      lbl_803A3414
-	fsubs    f1, f1, f0
-	addic.   r8, r8, -1
-	bge      lbl_803A33F8
-	lha      r4, 0x8e(r31)
-	addi     r8, r4, -1
-
-lbl_803A33F8:
-	slwi     r0, r8, 2
-	lwzx     r4, r5, r0
-	lwz      r0, 0xc(r4)
-	cmpwi    r0, 0
-	beq      lbl_803A3414
-	lfs      f0, lbl_8051F350@sda21(r2)
-	fadds    f1, f1, f0
-
-lbl_803A3414:
-	lfs      f0, lbl_8051F2F8@sda21(r2)
-	stfs     f0, 0x2c(r3)
-	lfs      f0, 0x18(r3)
-	lwz      r0, 0x20(r3)
-	fmuls    f1, f0, f1
-	cmpwi    r0, 0
-	beq      lbl_803A3494
-	cmpwi    r0, 2
-	bne      lbl_803A3440
-	lfs      f2, 0x1c(r3)
-	b        lbl_803A3448
-
-lbl_803A3440:
-	lfs      f0, 0x1c(r3)
-	fneg     f2, f0
-
-lbl_803A3448:
-	lfs      f0, 0x14(r3)
-	fadds    f0, f0, f2
-	stfs     f0, 0x14(r3)
-	lfs      f0, 0x14(r3)
-	fcmpo    cr0, f0, f1
-	ble      lbl_803A3474
-	fsubs    f0, f0, f1
-	li       r30, 1
-	stfs     f0, 0x2c(r3)
-	stfs     f1, 0x14(r3)
-	b        lbl_803A3498
-
-lbl_803A3474:
-	fneg     f2, f1
-	fcmpo    cr0, f0, f2
-	bge      lbl_803A3494
-	fadds    f0, f0, f1
-	li       r30, 1
-	stfs     f0, 0x2c(r3)
-	stfs     f2, 0x14(r3)
-	b        lbl_803A3498
-
-lbl_803A3494:
-	li       r30, 0
-
-lbl_803A3498:
-	lwz      r3, 0x84(r31)
-	li       r28, 0
-	li       r29, 0
-	lfs      f31, 0x14(r3)
-	b        lbl_803A34F4
-
-lbl_803A34AC:
-	lwz      r3, 0x88(r31)
-	lwzx     r4, r3, r29
-	lfs      f0, 0x1c(r4)
-	lwz      r3, 4(r4)
-	fadds    f0, f0, f31
-	stfs     f0, 0xd8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	mr       r4, r28
-	lwz      r12, 0(r31)
-	lwz      r12, 0xa0(r12)
-	mtctr    r12
-	bctrl
-	addi     r29, r29, 4
-	addi     r28, r28, 1
-
-lbl_803A34F4:
-	lha      r0, 0x8e(r31)
-	cmpw     r28, r0
-	blt      lbl_803A34AC
-	clrlwi.  r0, r30, 0x18
-	beq      lbl_803A3530
-	lwz      r3, 0x84(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_803A3520
-	lfs      f31, 0x2c(r3)
-	b        lbl_803A3524
-
-lbl_803A3520:
-	lfs      f31, lbl_8051F2F8@sda21(r2)
-
-lbl_803A3524:
-	mr       r3, r31
-	bl       changeIndex__Q28Morimura11TScrollListFv
-	b        lbl_803A3554
-
-lbl_803A3530:
-	lwz      r3, 0x84(r31)
-	lwz      r0, 0x20(r3)
-	cntlzw   r0, r0
-	rlwinm.  r0, r0, 0x1b, 0x18, 0x1f
-	beq      lbl_803A3554
-	lfs      f1, 0x14(r3)
-	lfs      f0, lbl_8051F354@sda21(r2)
-	fmuls    f0, f0, f1
-	fadds    f31, f1, f0
-
-lbl_803A3554:
-	lwz      r3, 0x84(r31)
-	li       r28, 0
-	li       r29, 0
-	stfs     f31, 0x14(r3)
-	b        lbl_803A3598
-
-lbl_803A3568:
-	lwz      r3, 0x88(r31)
-	lwzx     r4, r3, r29
-	lfs      f0, 0x1c(r4)
-	lwz      r3, 4(r4)
-	fadds    f0, f0, f31
-	stfs     f0, 0xd8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	addi     r29, r29, 4
-	addi     r28, r28, 1
-
-lbl_803A3598:
-	lha      r0, 0x8e(r31)
-	cmpw     r28, r0
-	blt      lbl_803A3568
-	lwz      r4, 0x84(r31)
-	li       r0, 0
-	mr       r3, r30
-	stb      r0, 0x24(r4)
-	psq_l    f31, 40(r1), 0, qr0
-	lwz      r0, 0x34(r1)
-	lfd      f31, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /**

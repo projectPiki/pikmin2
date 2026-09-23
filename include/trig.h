@@ -104,51 +104,22 @@ inline f32 scaledSin(f32 theta)
 	return sinf(theta * TAU);
 }
 
-inline f32 boundVal(f32 val, f32 limit)
+inline f32 getNearestZeroAngle(const f32& angle)
 {
-	return (val > 0.0f) ? limit : -limit;
-}
-
-inline f32 _normaliseAngle(f32 angle)
-{
-	f32 normalisedAngle = 0.0f;
-	if (normalisedAngle >= angle) {
-		f32 delta = normalisedAngle - angle;
+	f32 zeroAngle = 0.0f;
+	if (zeroAngle >= angle) {
+		f32 delta = zeroAngle - angle;
 		if (TAU - delta < delta) {
-			normalisedAngle -= TAU;
+			zeroAngle -= TAU;
 		}
 	} else {
-		f32 delta = angle - normalisedAngle;
+		f32 delta = angle - zeroAngle;
 		if (TAU - delta < delta) {
-			normalisedAngle += TAU;
+			zeroAngle += TAU;
 		}
 	}
 
-	return normalisedAngle;
-}
-
-inline f32 _normaliseAngle(f32 angle, f32 start)
-{
-	f32 normalisedAngle = start;
-	if (normalisedAngle >= angle) {
-		f32 delta = normalisedAngle - angle;
-		if (TAU - delta < delta) {
-			normalisedAngle -= TAU;
-		}
-	} else {
-		f32 delta = angle - normalisedAngle;
-		if (TAU - delta < delta) {
-			normalisedAngle += TAU;
-		}
-	}
-
-	return normalisedAngle;
-}
-
-inline f32 _clampAngle(f32 angle, f32 difference, f32 limit)
-{
-	f32 angDistance = absVal(angle - difference);
-	return angDistance < limit ? difference : (angle < difference) ? angle + limit : angle - limit;
+	return zeroAngle;
 }
 
 inline Vector3f getRotationOffset(f32 scale, f32 y, f32 angle)
@@ -200,12 +171,6 @@ inline Vector3f getDirectionP2(f32 angle, f32 rad)
 inline Vector3f getPerpDirection(f32 angle)
 {
 	return Vector3f(cosf(angle), 0.0f, -sinf(angle));
-}
-
-inline Vector3f getDirectionMori(f32 angle)
-{
-	Vector3f vec = Vector3f(cosf(angle), 0.0f, sinf(angle));
-	return vec;
 }
 
 inline f32 boundAboveBelow(f32 angle, f32 limit)

@@ -15,6 +15,14 @@ struct E2DFullFontColor {
 	{
 	}
 
+	inline void set(JUtility::TColor col1, JUtility::TColor col2, JUtility::TColor white, JUtility::TColor black)
+	{
+		mCol1  = col1;
+		mCol2  = col2;
+		mWhite = white;
+		mBlack = black;
+	}
+
 	inline void setColors(J2DTextBox* pane)
 	{
 		mCol1.set(pane->mCharColor);
