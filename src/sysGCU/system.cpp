@@ -317,6 +317,14 @@ void System::setLanguage(int language)
 }
 #endif
 
+#if defined(VERSION_PAL)
+static char* cMapFileName = "/pikmin2PP.map";
+#elif defined(VERSION_JP)
+static char* cMapFileName = "/pikmin2JP.map";
+#else
+static char* cMapFileName = "/pikmin2UP.map";
+#endif // !!
+
 /**
  * @note Address: 0x804223E8
  * @note Size: 0x11C
@@ -402,14 +410,6 @@ System::~System()
 {
 	// UNUSED FUNCTION
 }
-
-#if defined(VERSION_PAL)
-static char* cMapFileName = "/pikmin2PP.map";
-#elif defined(VERSION_JP)
-static char* cMapFileName = "/pikmin2JP.map";
-#else
-static char* cMapFileName = "/pikmin2UP.map";
-#endif // !!
 
 /**
  * @note Address: 0x80422504

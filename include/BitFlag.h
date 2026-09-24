@@ -21,8 +21,9 @@ struct BitFlag {
 	 */
 	BitFlag()
 	{
+		u8* p = byteView;
 		for (int i = 0; i < sizeof(T); i++) {
-			byteView[i] = 0;
+			p[i] = 0;
 		}
 	}
 

@@ -1362,7 +1362,7 @@ void BootSection::drawSelectTVMode(Graphics& gfx)
 		mTVModeMessage->drawMessageID(gfx, resultID);
 
 		proc->initFlagsA();
-		proc->mTextBoxWidth = System::getRenderModeObj()->fbWidth / 2;
+		proc->mTextBoxWidth = (u16)System::getRenderModeObj()->fbWidth / 2;
 		if (mTVModeSelection == 0) {
 			proc->setDefaultCharColor(selectedColor);
 			proc->setDefaultGradColor(selectedColor);
@@ -1375,7 +1375,7 @@ void BootSection::drawSelectTVMode(Graphics& gfx)
 		mTVModeMessage->drawMessageID(gfx, "8306_00");
 
 		proc->initFlagsA();
-		proc->mTextBoxWidth = System::getRenderModeObj()->fbWidth / 2;
+		proc->mTextBoxWidth = (u16)System::getRenderModeObj()->fbWidth / 2;
 		if (mTVModeSelection == 1) {
 			proc->setDefaultCharColor(selectedColor);
 			proc->setDefaultGradColor(selectedColor);
@@ -1383,7 +1383,7 @@ void BootSection::drawSelectTVMode(Graphics& gfx)
 			proc->setDefaultCharColor(unselectedColor);
 			proc->setDefaultGradColor(unselectedColor);
 		}
-		proc->mXOffset = System::getRenderModeObj()->fbWidth / 2;
+		proc->mXOffset = (u16)System::getRenderModeObj()->fbWidth / 2;
 		mTVModeMessage->locate(0, 350);
 		mTVModeMessage->drawMessageID(gfx, "8307_00");
 
@@ -1396,7 +1396,7 @@ void BootSection::drawSelectTVMode(Graphics& gfx)
 		int secondCount = ROUND_F32_TO_U8(remaining);
 		u16 width       = System::getRenderModeObj()->fbWidth;
 		f32 textWidth   = print.getWidth("%d", secondCount);
-		print.print((width - textWidth) * 0.5f, 350.0f, "%d", countdown);
+		print.print((width - textWidth) / 2, 350.0f, "%d", countdown);
 	}
 }
 #endif
