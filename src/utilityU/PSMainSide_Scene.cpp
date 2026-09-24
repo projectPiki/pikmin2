@@ -332,154 +332,6 @@ void Scene_Objects::exec()
 	if (mObjMgr) {
 		mObjMgr->frameEnd_onPlaySe();
 	}
-	/*
-	stwu     r1, -0x80(r1)
-	mflr     r0
-	stw      r0, 0x84(r1)
-	stw      r31, 0x7c(r1)
-	stw      r30, 0x78(r1)
-	mr       r30, r3
-	stw      r29, 0x74(r1)
-	lwz      r3, 0x34(r3)
-	addis    r0, r3, 0x1000
-	cmplwi   r0, 0
-	beq      lbl_80467F4C
-	addi     r0, r3, 1
-	stw      r0, 0x34(r30)
-
-lbl_80467F4C:
-	lwz      r0, cameraMgr__4Game@sda21(r13)
-	li       r3, 0
-	stb      r3, sDopedPikminNum__Q23PSM4Piki@sda21(r13)
-	cmplwi   r0, 0
-	beq      lbl_804680F4
-	li       r31, 0
-	b        lbl_804680E0
-
-lbl_80467F68:
-	lwz      r3, cameraMgr__4Game@sda21(r13)
-	rlwinm   r0, r31, 2, 0x16, 0x1d
-	lwz      r3, 0x24(r3)
-	lwzx     r29, r3, r0
-	cmplwi   r29, 0
-	beq      lbl_804680DC
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	lwz      r12, 0x68(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 0(r3)
-	mr       r4, r29
-	lfs      f1, 4(r3)
-	lfs      f0, 8(r3)
-	addi     r3, r1, 0x50
-	stfs     f2, 0x2c(r1)
-	stfs     f1, 0x30(r1)
-	lwz      r6, 0x2c(r1)
-	stfs     f0, 0x34(r1)
-	lwz      r5, 0x30(r1)
-	lwz      r0, 0x34(r1)
-	stw      r6, 0x44(r1)
-	stw      r5, 0x48(r1)
-	stw      r0, 0x4c(r1)
-	bl       getLookAtPosition__6CameraFv
-	lfs      f0, 0x50(r1)
-	lfs      f1, 0x54(r1)
-	stfs     f0, 0x38(r1)
-	lfs      f0, 0x58(r1)
-	stfs     f1, 0x3c(r1)
-	lwz      r0, 0x38(r1)
-	lwz      r3, 0x3c(r1)
-	stfs     f0, 0x40(r1)
-	lfs      f0, 0x44(r1)
-	stw      r0, 0x5c(r1)
-	lwz      r0, 0x40(r1)
-	stw      r3, 0x60(r1)
-	lfs      f1, 0x5c(r1)
-	stw      r0, 0x64(r1)
-	fsubs    f3, f1, f0
-	lfs      f2, 0x60(r1)
-	lfs      f0, 0x48(r1)
-	lfs      f1, 0x64(r1)
-	fsubs    f2, f2, f0
-	lfs      f0, 0x4c(r1)
-	stfs     f3, 0x20(r1)
-	fsubs    f1, f1, f0
-	lfs      f0, lbl_80520C9C@sda21(r2)
-	stfs     f2, 0x24(r1)
-	lwz      r0, 0x20(r1)
-	lwz      r3, 0x24(r1)
-	stfs     f1, 0x28(r1)
-	stw      r0, 8(r1)
-	lwz      r0, 0x28(r1)
-	stw      r3, 0xc(r1)
-	lfs      f2, 8(r1)
-	lfs      f1, 0xc(r1)
-	stw      r0, 0x10(r1)
-	fmuls    f3, f2, f2
-	fmuls    f2, f1, f1
-	lfs      f1, 0x10(r1)
-	stfs     f3, 8(r1)
-	fmuls    f1, f1, f1
-	stfs     f2, 0xc(r1)
-	lwz      r0, 8(r1)
-	lwz      r3, 0xc(r1)
-	stfs     f1, 0x10(r1)
-	stw      r0, 0x14(r1)
-	lwz      r0, 0x10(r1)
-	stw      r3, 0x18(r1)
-	lfs      f2, 0x14(r1)
-	lfs      f1, 0x18(r1)
-	stw      r0, 0x1c(r1)
-	fadds    f1, f2, f1
-	lfs      f2, 0x1c(r1)
-	fadds    f1, f2, f1
-	fcmpo    cr0, f1, f0
-	ble      lbl_804680AC
-	frsqrte  f0, f1
-	fmuls    f1, f0, f1
-
-lbl_804680AC:
-	lwz      r3, 0x28(r30)
-	mr       r4, r31
-	bl       update__Q26PSGame9CameraMgrFUcf
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	lwz      r12, 0x70(r12)
-	mtctr    r12
-	bctrl
-	clrlwi   r4, r31, 0x18
-	lwz      r5, 0x28(r30)
-	addi     r0, r4, 0x4c
-	stbx     r3, r5, r0
-
-lbl_804680DC:
-	addi     r31, r31, 1
-
-lbl_804680E0:
-	lwz      r3, 0x24(r30)
-	clrlwi   r4, r31, 0x18
-	lbz      r0, 7(r3)
-	cmplw    r4, r0
-	blt      lbl_80467F68
-
-lbl_804680F4:
-	mr       r3, r30
-	bl       exec__Q28PSSystem5SceneFv
-	lwz      r3, 0x2c(r30)
-	cmplwi   r3, 0
-	beq      lbl_8046810C
-	bl       frameEnd_onPlaySe__Q23PSM6ObjMgrFv
-
-lbl_8046810C:
-	lwz      r0, 0x84(r1)
-	lwz      r31, 0x7c(r1)
-	lwz      r30, 0x78(r1)
-	lwz      r29, 0x74(r1)
-	mtlr     r0
-	addi     r1, r1, 0x80
-	blr
-	*/
 }
 
 /**
@@ -541,164 +393,22 @@ void Scene_Game::bossKilled(PSM::EnemyBoss* obj)
 {
 	PSM::MiddleBossSeq* seq = PSMGetMiddleBossSeq();
 
-	PSM::BossBgmFader::Mgr* mgr = PSSystem::SingletonBase<PSM::BossBgmFader::Mgr>::getInstance();
-	if (mgr->checkBossActive() && seq) {
+	bool isNoBossActive = true;
+	FOREACH_NODE(JSULink<EnemyBoss>, PSSystem::SingletonBase<BossBgmFader::Mgr>::getInstance()->mTypedProc.getFirst(), link)
+	{
+		EnemyBoss* boss = link->getObject();
+		if (boss->_FE) {
+			isNoBossActive = false;
+		}
+	}
+	if (!isNoBossActive && seq) {
 		seq = PSMGetMiddleBossSeq();
 		if (seq
-		    && (seq->mJumpPort.mCurrentTrackId == EnemyMidBoss::BossBgm_AttackPrep
-		        || seq->mJumpPort.mCurrentTrackId == EnemyMidBoss::BossBgm_AttackLong)) {
+		    && (seq->mJumpPort.getCurrentTrack() == EnemyMidBoss::BossBgm_AttackPrep
+		        || seq->mJumpPort.getCurrentTrack() == EnemyMidBoss::BossBgm_AttackLong)) {
 			obj->jumpRequest(PSM::EnemyMidBoss::BossBgm_MainLoop);
 		}
 	}
-
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r3, lbl_8049D908@ha
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	addi     r29, r3, lbl_8049D908@l
-	stw      r28, 0x10(r1)
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_804684F4
-	addi     r3, r29, 0x3c
-	addi     r5, r29, 0x24
-	li       r4, 0x1d3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804684F4:
-	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r30, 0
-	bne      lbl_80468514
-	addi     r3, r29, 0x3c
-	addi     r5, r29, 0x24
-	li       r4, 0x1dc
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80468514:
-	lwz      r0, 4(r30)
-	cmplwi   r0, 0
-	bne      lbl_80468534
-	addi     r3, r29, 0x48
-	addi     r5, r29, 0x24
-	li       r4, 0xc7
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80468534:
-	lwz      r3, 4(r30)
-	lwz      r3, 4(r3)
-	cmplwi   r3, 0
-	bne      lbl_8046854C
-	li       r30, 0
-	b        lbl_80468554
-
-lbl_8046854C:
-	bl       getMiddleBossBgm__Q26PSGame8PikSceneFv
-	mr       r30, r3
-
-lbl_80468554:
-	lwz      r0,
-"sInstance__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>"@sda21(r13) li
-r28, 1 cmplwi   r0, 0 bne      lbl_80468578 addi     r3, r29, 0x30 addi     r5,
-r29, 0x24 li       r4, 0x89 crclr    6 bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80468578:
-	lwz      r3,
-"sInstance__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>"@sda21(r13) lwz
-r4, 4(r3) b        lbl_8046859C
-
-lbl_80468584:
-	lwz      r3, 0(r4)
-	lbz      r0, 0xfe(r3)
-	cmplwi   r0, 0
-	beq      lbl_80468598
-	li       r28, 0
-
-lbl_80468598:
-	lwz      r4, 0xc(r4)
-
-lbl_8046859C:
-	cmplwi   r4, 0
-	bne      lbl_80468584
-	clrlwi.  r0, r28, 0x18
-	bne      lbl_80468668
-	cmplwi   r30, 0
-	beq      lbl_80468668
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_804685D4
-	addi     r3, r29, 0x3c
-	addi     r5, r29, 0x24
-	li       r4, 0x1d3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804685D4:
-	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r30, 0
-	bne      lbl_804685F4
-	addi     r3, r29, 0x3c
-	addi     r5, r29, 0x24
-	li       r4, 0x1dc
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804685F4:
-	lwz      r0, 4(r30)
-	cmplwi   r0, 0
-	bne      lbl_80468614
-	addi     r3, r29, 0x48
-	addi     r5, r29, 0x24
-	li       r4, 0xc7
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80468614:
-	lwz      r3, 4(r30)
-	lwz      r3, 4(r3)
-	cmplwi   r3, 0
-	bne      lbl_8046862C
-	li       r3, 0
-	b        lbl_80468630
-
-lbl_8046862C:
-	bl       getMiddleBossBgm__Q26PSGame8PikSceneFv
-
-lbl_80468630:
-	cmplwi   r3, 0
-	beq      lbl_80468668
-	lhz      r0, 0x130(r3)
-	cmplwi   r0, 2
-	beq      lbl_80468650
-	clrlwi   r0, r0, 0x10
-	cmplwi   r0, 8
-	bne      lbl_80468668
-
-lbl_80468650:
-	mr       r3, r31
-	li       r4, 1
-	lwz      r12, 0x28(r31)
-	lwz      r12, 0xd4(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80468668:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
@@ -708,12 +418,11 @@ lbl_80468668:
 void Scene_Game::startMainSeq()
 {
 	if (mBossFaderMgr) {
-		JSULink<PSSystem::SeqBase>* seq = mSeqMgr.getFirst();
-		u8 i                            = 0;
-		for (; seq != nullptr; seq = static_cast<JSULink<PSSystem::SeqBase>*>(seq->mNext)) {
-			seq->getObject()->startSeq();
+		u8 i = 0;
+		for (JSUListIterator<PSSystem::SeqBase> it(&mSeqMgr); it != mSeqMgr.getEnd(); ++it) {
+			it->startSeq();
 			if (i) {
-				JAISound* se = *seq->getObject()->getHandleP();
+				JAISound* se = *it->getHandleP();
 				if (se) {
 					se->setVolume(0.0f, 0, SOUNDPARAM_Unk0);
 				}
@@ -1143,9 +852,8 @@ void Scene_Game::pauseOn_2D(u8 a1, u8 a2)
 
 	P2ASSERTLINE(657, mObjMgr);
 
-	FOREACH_NODE(JSULink<Navi>, mObjMgr->mHead, link)
-	{
-		Navi* navi = link->getObject();
+	for (JSUListIterator<ObjBase> it(mObjMgr); it != mObjMgr->getEnd(); ++it) {
+		Navi* navi = static_cast<Navi*>(it.getObject());
 		if (navi->getCastType() == CCT_Navi) {
 			navi->stopSound(PSSE_PK_HAPPA_THROW_WAIT, 0);
 			navi->stopSound(PSSE_PK_VC_THROW_WAIT, 0);
@@ -1188,9 +896,8 @@ void Scene_Game::pauseOn_Demo()
 {
 	P2ASSERTLINE(706, mObjMgr);
 
-	FOREACH_NODE(JSULink<Navi>, mObjMgr->mHead, link)
-	{
-		Navi* navi = link->getObject();
+	for (JSUListIterator<ObjBase> it(mObjMgr); it != mObjMgr->getEnd(); ++it) {
+		Navi* navi = static_cast<Navi*>(it.getObject());
 		if (navi->getCastType() == CCT_Navi) {
 			navi->stopSound(PSSE_PK_HAPPA_THROW_WAIT, 0);
 			navi->stopSound(PSSE_PK_VC_THROW_WAIT, 0);
@@ -1324,149 +1031,22 @@ void Scene_Ground::jumpMainBgm(u8 time)
 	seq->requestJumpBgmOnBeat(time);
 
 	if (mEnvSeMgr) {
-		FOREACH_NODE(JSULink<PSSystem::EnvSeBase>, mEnvSeMgr->mEnvList.getFirst(), link)
-		{
-			PSSystem::EnvSeBase* se = link->getObject();
-			u32 id                  = se->mSoundID;
-			if (id == PSSE_MP_BIRD_SP_HIBARI || id == PSSE_MP_BIRD_SP_UGUISU || id == PSSE_MP_BIRD_FA_KAMO
-			    || id == PSSE_MP_BIRD_FA_TSUGUMI) {
-				se->mSoundID = PSSE_MP_BIRD_NIGHT01_MIX;
-			} else if (id == PSSE_MP_BIRD_SP_SUZUME || id == PSSE_MP_BIRD_FA_MOZU) {
-				se->mSoundID = PSSE_MP_BIRD_NIGHT02_MIX;
-			} else if (id == PSSE_MP_SEMI_KUMA01 || id == PSSE_MP_SEMI_MINMIN01 || id == PSSE_MP_SEMI_NIINII01) {
-				se->mSoundID = PSSE_MP_SEMI_HIGURASHI01;
-			} else if (id == PSSE_MP_SEMI_KUMA02 || id == PSSE_MP_SEMI_MINMIN02 || id == PSSE_MP_SEMI_NIINII02) {
-				se->mSoundID = PSSE_MP_SEMI_HIGURASHI02;
+		for (JSUListIterator<PSSystem::EnvSeBase> it(&mEnvSeMgr->mEnvList); it != mEnvSeMgr->mEnvList.getEnd(); ++it) {
+			if (it->getSoundID() == PSSE_MP_BIRD_SP_HIBARI || it->getSoundID() == PSSE_MP_BIRD_SP_UGUISU
+			    || it->getSoundID() == PSSE_MP_BIRD_FA_KAMO || it->getSoundID() == PSSE_MP_BIRD_FA_TSUGUMI) {
+				it->mSoundID = PSSE_MP_BIRD_NIGHT01_MIX;
+			} else if (it->getSoundID() == PSSE_MP_BIRD_SP_SUZUME || it->getSoundID() == PSSE_MP_BIRD_FA_MOZU) {
+				it->mSoundID = PSSE_MP_BIRD_NIGHT02_MIX;
+			} else if (it->getSoundID() == PSSE_MP_SEMI_KUMA01 || it->getSoundID() == PSSE_MP_SEMI_MINMIN01
+			           || it->getSoundID() == PSSE_MP_SEMI_NIINII01) {
+				it->mSoundID = PSSE_MP_SEMI_HIGURASHI01;
+			} else if (it->getSoundID() == PSSE_MP_SEMI_KUMA02 || it->getSoundID() == PSSE_MP_SEMI_MINMIN02
+			           || it->getSoundID() == PSSE_MP_SEMI_NIINII02) {
+				it->mSoundID = PSSE_MP_SEMI_HIGURASHI02;
 			}
 		}
 		mEnvSeMgr->setVolumeRequest(0.0f, 0, 2);
 	}
-
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	lwz      r3, 0x10(r3)
-	lwz      r30, 0(r3)
-	cmplwi   r30, 0
-	bne      lbl_80469D0C
-	lis      r3, lbl_8049D914@ha
-	lis      r5, lbl_8049D92C@ha
-	addi     r3, r3, lbl_8049D914@l
-	li       r4, 0x34e
-	addi     r5, r5, lbl_8049D92C@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80469D0C:
-	mr       r3, r30
-	lwz      r12, 0x10(r30)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	clrlwi   r0, r3, 0x18
-	cmplwi   r0, 4
-	beq      lbl_80469D48
-	lis      r3, lbl_8049D914@ha
-	lis      r5, lbl_8049D92C@ha
-	addi     r3, r3, lbl_8049D914@l
-	li       r4, 0x34f
-	addi     r5, r5, lbl_8049D92C@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80469D48:
-	mr       r3, r30
-	clrlwi   r4, r29, 0x18
-	lwz      r12, 0x10(r30)
-	lwz      r12, 0x54(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x44(r31)
-	cmplwi   r3, 0
-	beq      lbl_80469E28
-	lwz      r3, 0(r3)
-	b        lbl_80469E0C
-
-lbl_80469D74:
-	lwz      r4, 0(r3)
-	lwz      r0, 0x24(r4)
-	cmplwi   r0, 0x4039
-	beq      lbl_80469D9C
-	cmplwi   r0, 0x4038
-	beq      lbl_80469D9C
-	cmplwi   r0, 0x403a
-	beq      lbl_80469D9C
-	cmplwi   r0, 0x403c
-	bne      lbl_80469DA8
-
-lbl_80469D9C:
-	li       r0, 0x4014
-	stw      r0, 0x24(r4)
-	b        lbl_80469E08
-
-lbl_80469DA8:
-	cmplwi   r0, 0x4037
-	beq      lbl_80469DB8
-	cmplwi   r0, 0x403b
-	bne      lbl_80469DC4
-
-lbl_80469DB8:
-	li       r0, 0x4015
-	stw      r0, 0x24(r4)
-	b        lbl_80469E08
-
-lbl_80469DC4:
-	cmplwi   r0, 0x402f
-	beq      lbl_80469DDC
-	cmplwi   r0, 0x4033
-	beq      lbl_80469DDC
-	cmplwi   r0, 0x4035
-	bne      lbl_80469DE8
-
-lbl_80469DDC:
-	li       r0, 0x4031
-	stw      r0, 0x24(r4)
-	b        lbl_80469E08
-
-lbl_80469DE8:
-	cmplwi   r0, 0x4030
-	beq      lbl_80469E00
-	cmplwi   r0, 0x4034
-	beq      lbl_80469E00
-	cmplwi   r0, 0x4036
-	bne      lbl_80469E08
-
-lbl_80469E00:
-	li       r0, 0x4032
-	stw      r0, 0x24(r4)
-
-lbl_80469E08:
-	lwz      r3, 0xc(r3)
-
-lbl_80469E0C:
-	cmplwi   r3, 0
-	bne      lbl_80469D74
-	lwz      r3, 0x44(r31)
-	li       r4, 0
-	lfs      f1, lbl_80520C9C@sda21(r2)
-	li       r5, 2
-	bl       setVolumeRequest__Q28PSSystem8EnvSeMgrFfUlUc
-
-lbl_80469E28:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
@@ -1478,46 +1058,13 @@ void Scene_Ground::changeEnvSE_Noon()
 	if (mEnvSeMgr == nullptr) {
 		return;
 	}
-	FOREACH_NODE(JSULink<PSSystem::EnvSeBase>, mEnvSeMgr->mEnvList.getFirst(), link)
-	{
-		PSSystem::EnvSeBase* se = link->getObject();
-		u32 id                  = se->mSoundID;
-		if (id == PSSE_MP_SEMI_KUMA01) {
-			se->mSoundID = PSSE_MP_SEMI_MINMIN01;
-		} else if (id == PSSE_MP_SEMI_NIINII01) {
-			se->mSoundID = PSSE_MP_SEMI_MINMIN02;
+	for (JSUListIterator<PSSystem::EnvSeBase> it(&mEnvSeMgr->mEnvList); it != mEnvSeMgr->mEnvList.getEnd(); ++it) {
+		if (it->getSoundID() == PSSE_MP_SEMI_KUMA01) {
+			it->mSoundID = PSSE_MP_SEMI_MINMIN01;
+		} else if (it->getSoundID() == PSSE_MP_SEMI_NIINII01) {
+			it->mSoundID = PSSE_MP_SEMI_MINMIN02;
 		}
 	}
-	/*
-	lwz      r3, 0x44(r3)
-	cmplwi   r3, 0
-	beqlr
-	lwz      r5, 0(r3)
-	li       r3, 0x4033
-	li       r0, 0x4034
-	b        lbl_80469E88
-
-	lbl_80469E60:
-	lwz      r6, 0(r5)
-	lwz      r4, 0x24(r6)
-	cmplwi   r4, 0x402f
-	bne      lbl_80469E78
-	stw      r3, 0x24(r6)
-	b        lbl_80469E84
-
-	lbl_80469E78:
-	cmplwi   r4, 0x4035
-	bne      lbl_80469E84
-	stw      r0, 0x24(r6)
-
-	lbl_80469E84:
-	lwz      r5, 0xc(r5)
-
-	lbl_80469E88:
-	cmplwi   r5, 0
-	bne      lbl_80469E60
-	blr
-	*/
 }
 
 /**
@@ -1584,47 +1131,13 @@ void Scene_Cave::exec()
 void Scene_Cave::stopPollutionSe()
 {
 	if (mEnvSeMgr) {
-		FOREACH_NODE(JSULink<PSSystem::EnvSeBase>, mEnvSeMgr->mEnvList.getFirst(), link)
-		{
-			PSSystem::EnvSeBase* se = link->getObject();
-			u32 id                  = se->mSoundID;
-			if (id == PSSE_EV_POLUTION_MIX01 || id == PSSE_EV_POLUTION_MIX02) {
-				se->mIsOn = false;
+		for (JSUListIterator<PSSystem::EnvSeBase> it(&mEnvSeMgr->mEnvList); it != mEnvSeMgr->mEnvList.getEnd(); ++it) {
+			if (it->getSoundID() == PSSE_EV_POLUTION_MIX01 || it->getSoundID() == PSSE_EV_POLUTION_MIX02) {
+				it->mIsOn = false;
 			}
 		}
 	}
 	mPollutUpTimer = 0;
-	/*
-	lwz      r4, 0x44(r3)
-	cmplwi   r4, 0
-	beq      lbl_8046A134
-	lwz      r5, 0(r4)
-	li       r0, 0
-	b        lbl_8046A12C
-
-lbl_8046A10C:
-	lwz      r6, 0(r5)
-	lwz      r4, 0x24(r6)
-	cmplwi   r4, 0x3079
-	beq      lbl_8046A124
-	cmplwi   r4, 0x307a
-	bne      lbl_8046A128
-
-lbl_8046A124:
-	stb      r0, 0x39(r6)
-
-lbl_8046A128:
-	lwz      r5, 0xc(r5)
-
-lbl_8046A12C:
-	cmplwi   r5, 0
-	bne      lbl_8046A10C
-
-lbl_8046A134:
-	li       r0, 0
-	stw      r0, 0x64(r3)
-	blr
-	*/
 }
 
 /**
@@ -1711,20 +1224,20 @@ void Scene_Cave::bossAppear(PSM::EnemyBoss* obj, u16 flag)
 void Scene_Cave::bossKilled(PSM::EnemyBoss* obj)
 {
 	if (isBossFloor()) {
-		bool check         = PSSystem::SingletonBase<BossBgmFader::Mgr>::getInstance()->checkBossActive();
+		bool isBossActive  = BossBgmFader::Mgr::checkBossActive();
 		MiddleBossSeq* seq = PSMGetMiddleBossSeq();
 		if (seq) {
-			if (!check) {
+			if (!isBossActive) {
 				seq->stopSeq(40);
-			} else if (seq->mJumpPort.mCurrentTrackId == EnemyMidBoss::BossBgm_AttackPrep
-			           || seq->mJumpPort.mCurrentTrackId == EnemyMidBoss::BossBgm_AttackLong) {
+			} else if (seq->mJumpPort.getCurrentTrack() == EnemyMidBoss::BossBgm_AttackPrep
+			           || seq->mJumpPort.getCurrentTrack() == EnemyMidBoss::BossBgm_AttackLong) {
 				obj->jumpRequest(PSM::EnemyMidBoss::BossBgm_MainLoop);
 			}
 		}
 	} else {
-		MiddleBossSeq* seq = PSMGetMiddleBossSeq();
-		bool check         = PSSystem::SingletonBase<BossBgmFader::Mgr>::getInstance()->checkBossActive();
-		if (check && seq) {
+		MiddleBossSeq* seq  = PSMGetMiddleBossSeq();
+		bool isNoBossActive = BossBgmFader::Mgr::checkAllBossInactive();
+		if (!isNoBossActive && seq) {
 			seq = PSMGetMiddleBossSeq();
 			if (seq
 			    && (seq->mJumpPort.mCurrentTrackId == EnemyMidBoss::BossBgm_AttackPrep

@@ -488,14 +488,13 @@ Vector3f Item::getBridgeXVec()
 void Item::getBridgePos(Vector3f& pos, f32& p1, f32& p2)
 {
 	Vector3f bridgePos = mPosition;
-	bridgePos          = bridgePos - getBridgeZVec() * 20.0f;
-	bridgePos          = pos - bridgePos;
-	bridgePos.y        = 0.0f;
-	Vector3f perpDir   = getPerpDirection(mFaceDir);
-	Vector3f dir       = getDirection(mFaceDir);
+	bridgePos -= getBridgeZVec() * 20.0f;
+	Vector3f diff(pos.x - bridgePos.x, 0.0f, pos.z - bridgePos.z);
+	Vector3f perpDir = getPerpDirection(mFaceDir);
+	Vector3f dir     = getDirection(mFaceDir);
 
-	p1 = bridgePos.dot(perpDir);
-	p2 = bridgePos.dot(dir);
+	p1 = diff.dot(perpDir);
+	p2 = diff.dot(dir);
 
 	/*
 	stwu     r1, -0x80(r1)

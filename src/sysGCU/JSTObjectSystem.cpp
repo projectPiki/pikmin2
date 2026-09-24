@@ -177,84 +177,20 @@ void ObjectSystem::update()
 	while (iterStart != iterEnd) {
 		JStage::TObject* obj = static_cast<JStage::TObject*>(*iterStart);
 		switch (obj->JSGFGetType()) {
-		default:
-			// probably some DEBUG thing to make this spawn
-			break;
 		case JStage::TEO_Actor:
 			static_cast<ObjectActor*>(obj)->update();
 			break;
 		case JStage::TEO_Camera:
 			static_cast<ObjectCamera*>(obj)->update();
 			break;
+		case JStage::TEO_AmbientLight:
+		case JStage::TEO_Light:
+		case JStage::TEO_Fog:
+			break;
 		}
 
 		++iterStart;
 	}
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	addi     r31, r3, 0x28
-	stw      r30, 0x28(r1)
-	lwz      r0, 0x28(r3)
-	stw      r31, 0xc(r1)
-	stw      r0, 0x14(r1)
-	stw      r0, 0x10(r1)
-	stw      r0, 0x24(r1)
-	stw      r31, 8(r1)
-	stw      r31, 0x20(r1)
-	stw      r31, 0x1c(r1)
-	b        lbl_80430D6C
-
-lbl_80430CFC:
-	lwz      r3, 0x24(r1)
-	lwz      r30, 8(r3)
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 3
-	beq      lbl_80430D4C
-	bge      lbl_80430D60
-	cmpwi    r3, 2
-	bge      lbl_80430D34
-	b        lbl_80430D60
-	b        lbl_80430D60
-
-lbl_80430D34:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0xac(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80430D60
-
-lbl_80430D4C:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0xc4(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80430D60:
-	lwz      r3, 0x24(r1)
-	lwz      r0, 0(r3)
-	stw      r0, 0x24(r1)
-
-lbl_80430D6C:
-	lwz      r0, 0x24(r1)
-	cmplw    r0, r31
-	stw      r0, 0x18(r1)
-	bne      lbl_80430CFC
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /**
@@ -268,84 +204,20 @@ void ObjectSystem::start()
 	while (iterStart != iterEnd) {
 		JStage::TObject* obj = static_cast<JStage::TObject*>(*iterStart);
 		switch (obj->JSGFGetType()) {
-		default:
-			// probably some DEBUG thing to make this spawn
-			break;
 		case JStage::TEO_Actor:
 			static_cast<ObjectActor*>(obj)->start();
 			break;
 		case JStage::TEO_Camera:
 			static_cast<ObjectCamera*>(obj)->start();
 			break;
+		case JStage::TEO_AmbientLight:
+		case JStage::TEO_Light:
+		case JStage::TEO_Fog:
+			break;
 		}
 
 		++iterStart;
 	}
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	addi     r31, r3, 0x28
-	stw      r30, 0x28(r1)
-	lwz      r0, 0x28(r3)
-	stw      r31, 0xc(r1)
-	stw      r0, 0x14(r1)
-	stw      r0, 0x10(r1)
-	stw      r0, 0x24(r1)
-	stw      r31, 8(r1)
-	stw      r31, 0x20(r1)
-	stw      r31, 0x1c(r1)
-	b        lbl_80430E40
-
-lbl_80430DD0:
-	lwz      r3, 0x24(r1)
-	lwz      r30, 8(r3)
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 3
-	beq      lbl_80430E20
-	bge      lbl_80430E34
-	cmpwi    r3, 2
-	bge      lbl_80430E08
-	b        lbl_80430E34
-	b        lbl_80430E34
-
-lbl_80430E08:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0xb4(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80430E34
-
-lbl_80430E20:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0xc8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80430E34:
-	lwz      r3, 0x24(r1)
-	lwz      r0, 0(r3)
-	stw      r0, 0x24(r1)
-
-lbl_80430E40:
-	lwz      r0, 0x24(r1)
-	cmplw    r0, r31
-	stw      r0, 0x18(r1)
-	bne      lbl_80430DD0
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /**
@@ -359,84 +231,20 @@ void ObjectSystem::stop()
 	while (iterStart != iterEnd) {
 		JStage::TObject* obj = static_cast<JStage::TObject*>(*iterStart);
 		switch (obj->JSGFGetType()) {
-		default:
-			// probably some DEBUG thing to make this spawn
-			break;
 		case JStage::TEO_Actor:
 			static_cast<ObjectActor*>(obj)->stop();
 			break;
 		case JStage::TEO_Camera:
 			static_cast<ObjectCamera*>(obj)->stop();
 			break;
+		case JStage::TEO_AmbientLight:
+		case JStage::TEO_Light:
+		case JStage::TEO_Fog:
+			break;
 		}
 
 		++iterStart;
 	}
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	addi     r31, r3, 0x28
-	stw      r30, 0x28(r1)
-	lwz      r0, 0x28(r3)
-	stw      r31, 0xc(r1)
-	stw      r0, 0x14(r1)
-	stw      r0, 0x10(r1)
-	stw      r0, 0x24(r1)
-	stw      r31, 8(r1)
-	stw      r31, 0x20(r1)
-	stw      r31, 0x1c(r1)
-	b        lbl_80430F14
-
-lbl_80430EA4:
-	lwz      r3, 0x24(r1)
-	lwz      r30, 8(r3)
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 3
-	beq      lbl_80430EF4
-	bge      lbl_80430F08
-	cmpwi    r3, 2
-	bge      lbl_80430EDC
-	b        lbl_80430F08
-	b        lbl_80430F08
-
-lbl_80430EDC:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0xb8(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80430F08
-
-lbl_80430EF4:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0xcc(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80430F08:
-	lwz      r3, 0x24(r1)
-	lwz      r0, 0(r3)
-	stw      r0, 0x24(r1)
-
-lbl_80430F14:
-	lwz      r0, 0x24(r1)
-	cmplw    r0, r31
-	stw      r0, 0x18(r1)
-	bne      lbl_80430EA4
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /**
@@ -582,11 +390,13 @@ int ObjectSystem::JSGFindObject(JStage::TObject** outObject, const char* name, J
 	}
 
 	if (newObj) {
-		JGadget::TList_pointer<JStage::TObject*>& objects = const_cast<JGadget::TList_pointer<JStage::TObject*>&>(mObjListPointer);
-		objects.insert(objects.end(), newObj);
+		const_cast<JGadget::TList_pointer<JStage::TObject*>&>(mObjListPointer).push_back(newObj);
 	}
 	*outObject = newObj;
-	return newObj ? 0 : 2;
+	if (newObj == nullptr) {
+		return 2;
+	}
+	return 0;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0xB0(r1)

@@ -329,6 +329,7 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	char* getConfigName();
 	int getPelletConfigMin();
 	int getPelletConfigMax();
+	f32 getCarryPower() const { return mCarryPower; }
 	void setupParticles();
 	void setupParticles_simple();
 	void setupParticles_tall();

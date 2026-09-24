@@ -122,7 +122,11 @@ struct BootSection : public Game::BaseHIOSection {
 	void waitSystemDvdLoad();
 	StateID getModeEpilepsy();
 
-	inline int getFadeSpeed() { return ROUND_F32_TO_U8(0.5f / sys->getDeltaTime()); }
+	inline int getFadeSpeed()
+	{
+		f32 rate = 0.5f / sys->getDeltaTime();
+		return ROUND_F32_TO_U8(rate);
+	}
 
 	StateID mStateID;                       // _48
 	StateID mChangeStateID;                 // _4C

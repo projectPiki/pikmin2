@@ -715,11 +715,14 @@ void Item::doAI()
  */
 void Item::changeMaterial()
 {
-	// J3DMaterial* mat = mModel->mJ3dModel->getModelData()->getMaterialNodePointer(0);
 	if (mModel->mJ3dModel->getModelData()->getMaterialNodePointer(0)) {
-		Color4 pikiColor = Piki::pikiColors[mColor];
-		mModel->mJ3dModel->getModelData()->getMaterialNodePointer(0)->getTevBlock()->setTevColor(
-		    0, J2DGXColorS10(pikiColor.r, pikiColor.g, pikiColor.b, pikiColor.a));
+		Color4& pikiColor = Piki::pikiColors[mColor];
+		J3DGXColorS10 color;
+		color.r = pikiColor.r;
+		color.g = pikiColor.g;
+		color.b = pikiColor.b;
+		color.a = pikiColor.a;
+		mModel->mJ3dModel->getModelData()->getMaterialNodePointer(0)->getTevBlock()->setTevColor(0, color);
 	}
 
 	mModel->mJ3dModel->calcMaterial();
@@ -732,99 +735,6 @@ void Item::changeMaterial()
 			packet->endDiff();
 		}
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	stw      r29, 0x14(r1)
-	stw      r28, 0x10(r1)
-	lwz      r3, 0x174(r3)
-	lwz      r3, 8(r3)
-	lwz      r3, 4(r3)
-	lwz      r3, 0x60(r3)
-	lwz      r6, 0(r3)
-	cmplwi   r6, 0
-	beq      lbl_801DA2C8
-	lhz      r4, 0x1f4(r30)
-	lis      r3, pikiColors__Q24Game4Piki@ha
-	addi     r0, r3, pikiColors__Q24Game4Piki@l
-	addi     r5, r1, 8
-	slwi     r3, r4, 2
-	li       r4, 0
-	add      r9, r0, r3
-	lbz      r3, 1(r9)
-	lbz      r7, 2(r9)
-	lbz      r8, 3(r9)
-	lbz      r0, 0(r9)
-	sth      r3, 0xa(r1)
-	sth      r0, 8(r1)
-	sth      r7, 0xc(r1)
-	sth      r8, 0xe(r1)
-	lwz      r3, 0x2c(r6)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-
-lbl_801DA2C8:
-	lwz      r3, 0x174(r30)
-	lwz      r3, 8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	li       r31, 0
-	b        lbl_801DA34C
-
-lbl_801DA2E8:
-	lwz      r3, 0xc0(r5)
-	rlwinm   r0, r31, 6, 0xa, 0x19
-	clrlwi   r28, r31, 0x10
-	add      r29, r3, r0
-	lwz      r3, 0x28(r29)
-	lwz      r0, 0x20(r3)
-	cmplwi   r0, 0
-	beq      lbl_801DA348
-	mr       r3, r29
-	bl       beginDiff__12J3DMatPacketFv
-	lwz      r3, 0x174(r30)
-	slwi     r0, r28, 2
-	lis      r4, 0x100
-	lwz      r3, 8(r3)
-	lwz      r3, 4(r3)
-	lwz      r3, 0x60(r3)
-	lwzx     r3, r3, r0
-	lwz      r3, 0x2c(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r29
-	bl       endDiff__12J3DMatPacketFv
-
-lbl_801DA348:
-	addi     r31, r31, 1
-
-lbl_801DA34C:
-	lwz      r4, 0x174(r30)
-	clrlwi   r3, r31, 0x10
-	lwz      r5, 8(r4)
-	lwz      r4, 4(r5)
-	lhz      r0, 0x5c(r4)
-	cmplw    r3, r0
-	blt      lbl_801DA2E8
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**

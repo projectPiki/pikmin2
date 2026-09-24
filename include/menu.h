@@ -4,6 +4,7 @@
 #include "types.h"
 #include "JSystem/JSupport/JSUList.h"
 #include "IDelegate.h"
+#include "Vector2.h"
 
 struct Menu {
 	enum State {
@@ -139,6 +140,12 @@ struct Menu {
 	{
 		mPositionX = x;
 		mPositionY = y;
+	}
+
+	inline void setPosition(Vector2i pos)
+	{
+		mPositionX = pos.x;
+		mPositionY = pos.y;
 	}
 
 	// unused/inlined:

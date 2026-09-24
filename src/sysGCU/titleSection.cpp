@@ -33,16 +33,16 @@ static u8 sMovieIndex[7] = { 0, 2, 4, 1, 3, 11, 11 };
 static s8 sSeasonIndex   = 255;
 #if defined(VERSION_PAL)
 static u16 sBuildInfoButtons[11] = { Controller::PRESS_A,
-	                                 Controller::PRESS_B,
-	                                 Controller::PRESS_X,
-	                                 Controller::PRESS_R,
-	                                 Controller::PRESS_L,
-	                                 Controller::PRESS_DPAD_LEFT,
-	                                 Controller::PRESS_DPAD_DOWN,
-	                                 Controller::PRESS_DPAD_UP,
-	                                 Controller::PRESS_DPAD_RIGHT,
-	                                 Controller::PRESS_Z,
-	                                 0 };
+                                     Controller::PRESS_B,
+                                     Controller::PRESS_X,
+                                     Controller::PRESS_R,
+                                     Controller::PRESS_L,
+                                     Controller::PRESS_DPAD_LEFT,
+                                     Controller::PRESS_DPAD_DOWN,
+                                     Controller::PRESS_DPAD_UP,
+                                     Controller::PRESS_DPAD_RIGHT,
+                                     Controller::PRESS_Z,
+                                     0 };
 #endif
 } // namespace
 
@@ -208,7 +208,7 @@ void Section::init()
 	JUTFont* font = JFWSystem::systemFont;
 	int x         = 300;
 	int y         = sys->getRenderModeObj()->efbHeight - (sects * font->getHeight() + 60);
-	mMenu->setPosition(x, y);
+	mMenu->setPosition(Vector2i(x, y));
 
 	sys->heapStatusEnd("TitleSection::init");
 

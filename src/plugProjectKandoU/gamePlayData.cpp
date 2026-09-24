@@ -1237,10 +1237,10 @@ int PlayData::getOtakaraMax_Course_CaveID(int courseIndex, ID32& caveID)
  */
 void PlayData::initCaveOtakaras()
 {
-	/* NON-MATCHING */
-	u16 max = stageList->mCourseCount;
+	int max = stageList->getCourseCount();
 	for (int i = 0; i < max; i++) {
-		mCaveOtakara[i].clear();
+		CaveOtakara* ota = &mCaveOtakara[i];
+		ota->clear();
 	}
 
 	for (int i = 0; i < max; i++) {
@@ -1607,8 +1607,7 @@ bool PlayData::isCaveFirstTime_Old(int courseIndex, ID32& caveID)
  */
 void PlayData::read_CaveOtakara_Old(Stream& ram)
 {
-	/* NON-MATCHING */
-	u16 max = stageList->mCourseCount;
+	int max = stageList->getCourseCount();
 	for (int i = 0; i < max; i++) {
 		CaveOtakara* ota = &mCaveOtakaraOld[i];
 		ota->read(ram);
@@ -1621,9 +1620,8 @@ void PlayData::read_CaveOtakara_Old(Stream& ram)
  */
 void PlayData::write_CaveOtakara_Old(Stream& ram)
 {
-	/* NON-MATCHING */
 	ram.textBeginGroup("＊洞窟情報(Old)＊");
-	u16 max = stageList->mCourseCount;
+	int max = stageList->getCourseCount();
 	for (int i = 0; i < max; i++) {
 		CaveOtakara* ota = &mCaveOtakaraOld[i];
 		ota->write(ram);

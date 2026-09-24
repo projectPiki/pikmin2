@@ -564,7 +564,7 @@ void Demo::onDemoEnd()
 		PSSystem::checkGameScene(childScene);
 	}
 
-	SceneBase* scene = (SceneBase*)childScene;
+	SceneBase* scene = childScene->toSceneBase();
 
 	const char* name          = mCurrentDemoName;
 	PSSystem::EnvSeMgr* envse = scene->getEnvSe();

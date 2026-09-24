@@ -297,6 +297,8 @@ struct JumpBgmPort {
 	void requestEveryBeat(u16);
 	u16 output();
 
+	inline u16 getCurrentTrack() const { return mCurrentTrackId; }
+
 	OSMutex mMutex1;     // _00
 	u16 _18;             // _18
 	OSMutex mMutex2;     // _1C
@@ -334,7 +336,6 @@ struct JumpBgmSeq : public DirectedBgm {
 	// _10      = VTABLE
 	// _14-_68  = SeqBase
 	// _6C-_B8  = DirectedBgm
-
 	JumpBgmPort mJumpPort; // _BC
 };
 

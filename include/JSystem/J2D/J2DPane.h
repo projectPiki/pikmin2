@@ -366,6 +366,7 @@ struct J2DPane {
 	bool isConnectParent() const { return mIsConnected; }
 
 	u8 getAlpha() { return mAlpha; }
+	u8 getColorAlpha() const { return mColorAlpha; }
 	f32 getScaleX() const { return mScale.x; }
 	f32 getScaleY() const { return mScale.y; }
 	f32 getTranslateX() const { return mOffset.x; }

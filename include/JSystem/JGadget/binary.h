@@ -177,6 +177,8 @@ struct TValueIterator_misaligned : public TValueIterator<TParseValue_misaligned<
 	{
 	}
 
+	T operator[](s32 n) const { return *(TValueIterator<TParseValue_misaligned<T>, sizeof(T)>(*this) + n); }
+
 	friend std::ptrdiff_t operator-(TValueIterator<TParseValue_misaligned<T>, sizeof(T)> a,
 	                                TValueIterator<TParseValue_misaligned<T>, sizeof(T)> b)
 	{

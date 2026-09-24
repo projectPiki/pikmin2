@@ -61,7 +61,7 @@ enum VSPlayerColor {
 
 struct TekiNode : public CNode {
 	inline TekiNode() { }
-	virtual ~TekiNode() {}; // _08 (weak)
+	virtual ~TekiNode() { }; // _08 (weak)
 
 	// _00 		= VTBL
 	// _00-_18	= CNode
@@ -204,7 +204,7 @@ struct CardMgr {
 	void drawSlot(Graphics&, Vector3f&, SlotMachine&);
 
 	Vector3f getSlotOrigin(int);
-	Vector2f getLampPos(int, int);
+	Vector3f getLampPos(int, int);
 	Vector3f getPlayerCard(int);
 	void clearPlayerCard();
 

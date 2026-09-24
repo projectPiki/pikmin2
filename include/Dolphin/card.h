@@ -53,7 +53,7 @@ struct CARDFileInfo {
 	u16 iBlock; // _10
 };
 
-// Struct for managing CARD status (size 0x70).
+// Struct for managing CARD status (size 0x6C).
 struct CARDStat {
 	char fileName[CARD_FILENAME_MAX]; // _00
 	u32 length;                       // _20
@@ -70,7 +70,6 @@ struct CARDStat {
 	u32 offsetIcon[CARD_ICON_MAX];    // _44
 	u32 offsetIconTlut;               // _64
 	u32 offsetData;                   // _68
-	u32 reserved_6C;                  // _6C
 };
 
 // CARD directory entry information (size 0x40).

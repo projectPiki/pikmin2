@@ -66,6 +66,11 @@ struct SeMgr : public PSSystem::SingletonBase<SeMgr> {
 		}
 	}
 
+	inline JAISound* startSetSe(SetSeId id, JAInter::Object* obj, u32 soundID, u32 flag)
+	{
+		return mSetSeList[id]->startSound(obj, soundID, flag);
+	}
+
 	// _00 VTBL
 	SetSe* mSetSeList[8]; // _04
 	RandId mRandid;       // _24

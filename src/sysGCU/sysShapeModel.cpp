@@ -101,19 +101,19 @@ f32 Model::getRoughBoundingRadius()
 		}
 	}
 
+	f32 radius = maxlen;
 	f32 minlen = 0.0f;
 
 	for (int i = 0; i < mJointCount; i++) {
-		f32 rad = mJoints[i].mJ3d->mBoundingSphereRadius;
-		if (rad > minlen) {
-			minlen = rad;
+		if (mJoints[i].mJ3d->mBoundingSphereRadius > minlen) {
+			minlen = mJoints[i].mJ3d->mBoundingSphereRadius;
 		}
 	}
 
 	if (minlen < maxlen) {
-		maxlen = minlen;
+		radius = minlen;
 	}
-	return maxlen;
+	return radius;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0

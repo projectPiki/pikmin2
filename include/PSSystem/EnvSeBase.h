@@ -37,7 +37,7 @@ struct EnvSeBase : public JSULink<EnvSeBase> {
 	void doMoveParamRequest();
 	void setPauseFlag(u8);
 
-	inline SoundID getSoundID() const { return mSoundID; }
+	inline u32 getSoundID() const { return mSoundID; }
 
 	// _00-_10 = JSULink
 	// _10     = VTBL

@@ -182,8 +182,8 @@ void TRenderingProcessor::setDrawLocateY()
 	}
 
 	if (mFlags.isSet(TProcFlag_Unk9)) {
+		LineWidthInfo* lineWidthPtr = &mLineWidthInfos[mPageInfoNum];
 		u8 pageInfoNum              = mPageInfoNum;
-		LineWidthInfo* lineWidthPtr = &mLineWidthInfos[pageInfoNum];
 		f32 totalFontHeight         = 0.0f;
 
 		for (int i = lineWidthPtr->mStartIndex; i <= lineWidthPtr->mEndIndex; i++) {
@@ -577,14 +577,12 @@ void TRenderingProcessor::drawRuby()
 	f32 val31 = mRubyWidthModifier;
 	f32 val30 = val31 * f32(mRubyFont->getWidth());
 	int msgBuffer[33];
-	int* msgBuffPtr  = msgBuffer;
-	int* msgBuffPtr2 = msgBuffPtr;
-	f32 val28        = 0.0f;
-	f32 val27        = (mLocate.i.x - mCharacterWidth) - mRubyCurrentXPos;
+	f32 val28 = 0.0f;
+	f32 val27 = (mLocate.i.x - mCharacterWidth) - mRubyCurrentXPos;
 
-	int i      = 0;
-	int msgLen = 0;
-	for (; i < mRubyBufferCurrentSize; msgLen++, i++) {
+	int i;
+	int msgLen;
+	for (msgLen = 0, i = 0; i < mRubyBufferCurrentSize; msgLen++, i++) {
 		u8 c     = (u8)mRubyBuffer[i];
 		int byte = c;
 		if (mRubyFont->isLeadByte(c)) {
@@ -596,8 +594,7 @@ void TRenderingProcessor::drawRuby()
 		}
 
 		val28 += calcWidth(mRubyFont, byte, val30, true);
-		*msgBuffPtr = byte;
-		msgBuffPtr++;
+		msgBuffer[msgLen] = byte;
 	}
 
 	f32 len   = f32(msgLen + 1);
@@ -608,12 +605,11 @@ void TRenderingProcessor::drawRuby()
 
 	mRubyCurrentXPos = val29 + (0.5f * (val27 - (val29 * len + val28)) + mRubyCurrentXPos);
 
-	for (int i = 0; i < msgLen; i++) {
+	for (i = 0; i < msgLen; i++) {
 		mRubyCurrentXPos += doDrawRuby(mRubyCurrentXPos + mXOffset, mRubyCurrentYPos + mYOffset, val30, val31 * f32(mRubyFont->getHeight()),
-		                               *msgBuffPtr2, true);
+		                               msgBuffer[i], true);
 		mRubyCurrentXPos += val29;
 		mInfoIndex++;
-		msgBuffPtr2++;
 	}
 	mDoDrawRuby = false;
 
@@ -1329,7 +1325,7 @@ void TRenderingProcessor::setTextBoxInfo(J2DPane* pane)
 	black = text->getBlack();
 	white = text->getWhite();
 
-	mBaseAlphaModifier = (f32)text->mColorAlpha / 255.0f;
+	mBaseAlphaModifier = text->getColorAlpha() / 255.0f;
 	setImageColorB(white);
 	setImageColorA(black);
 	setDefaultCharColor(color[0]);
@@ -1375,305 +1371,6 @@ void TRenderingProcessor::setTextBoxInfo(J2DPane* pane)
 		mFlags.typeView |= 0x100;
 		break;
 	}
-	/*
-stwu     r1, -0x90(r1)
-mflr     r0
-stw      r0, 0x94(r1)
-stfd     f31, 0x80(r1)
-psq_st   f31, 136(r1), 0, qr0
-stfd     f30, 0x70(r1)
-psq_st   f30, 120(r1), 0, qr0
-stw      r31, 0x6c(r1)
-stw      r30, 0x68(r1)
-stw      r29, 0x64(r1)
-stw      r28, 0x60(r1)
-mr       r31, r4
-mr       r30, r3
-mr       r3, r31
-lwz      r12, 0(r31)
-lwz      r12, 0xc(r12)
-mtctr    r12
-bctrl
-clrlwi   r0, r3, 0x10
-cmplwi   r0, 0x13
-beq      lbl_8043CEDC
-lis      r3, lbl_8049ABE8@ha
-lis      r5, lbl_8049AC00@ha
-addi     r3, r3, lbl_8049ABE8@l
-li       r4, 0x697
-addi     r5, r5, lbl_8049AC00@l
-crclr    6
-bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8043CEDC:
-mr       r3, r31
-lwz      r12, 0(r31)
-lwz      r12, 0xc(r12)
-mtctr    r12
-bctrl
-clrlwi   r0, r3, 0x10
-cmplwi   r0, 0x13
-bne      lbl_8043D288
-mr       r4, r31
-li       r28, -1
-lwz      r12, 0(r31)
-addi     r3, r1, 0x34
-stw      r28, 0x40(r1)
-lbz      r11, 0x104(r31)
-lbz      r10, 0x105(r31)
-lbz      r9, 0x106(r31)
-lbz      r8, 0x107(r31)
-stw      r28, 0x44(r1)
-lbz      r7, 0x108(r31)
-lbz      r6, 0x109(r31)
-lbz      r5, 0x10a(r31)
-lbz      r0, 0x10b(r31)
-lwz      r12, 0xb0(r12)
-stb      r11, 0x40(r1)
-stb      r10, 0x41(r1)
-stb      r9, 0x42(r1)
-stb      r8, 0x43(r1)
-stb      r7, 0x44(r1)
-stb      r6, 0x45(r1)
-stb      r5, 0x46(r1)
-stb      r0, 0x47(r1)
-stw      r28, 0x3c(r1)
-stw      r28, 0x38(r1)
-mtctr    r12
-bctrl
-mr       r4, r31
-lbz      r7, 0x34(r1)
-lwz      r12, 0(r31)
-addi     r3, r1, 0x30
-lbz      r6, 0x35(r1)
-lbz      r5, 0x36(r1)
-lbz      r0, 0x37(r1)
-lwz      r12, 0xb4(r12)
-stb      r7, 0x38(r1)
-stb      r6, 0x39(r1)
-stb      r5, 0x3a(r1)
-stb      r0, 0x3b(r1)
-mtctr    r12
-bctrl
-lbz      r3, 0xb3(r31)
-lis      r0, 0x4330
-lwz      r28, 0x38(r1)
-stw      r3, 0x4c(r1)
-lwz      r29, 0x40(r1)
-stw      r0, 0x48(r1)
-lfd      f2, lbl_805208D8@sda21(r2)
-lfd      f1, 0x48(r1)
-lfs      f0, lbl_805208E4@sda21(r2)
-fsubs    f1, f1, f2
-stw      r28, 0x18(r1)
-lwz      r12, 0x44(r1)
-stw      r29, 0x14(r1)
-fdivs    f0, f1, f0
-lbz      r5, 0x30(r1)
-stw      r12, 0x10(r1)
-lbz      r4, 0x31(r1)
-stw      r28, 0xc(r1)
-lbz      r3, 0x32(r1)
-lbz      r0, 0x33(r1)
-stb      r5, 0x3c(r1)
-lbz      r5, 0x18(r1)
-stb      r4, 0x3d(r1)
-lbz      r4, 0x19(r1)
-stb      r3, 0x3e(r1)
-lbz      r3, 0x1a(r1)
-stb      r0, 0x3f(r1)
-lbz      r10, 0x1b(r1)
-lwz      r0, 0x3c(r1)
-stfs     f0, 0x78(r30)
-lbz      r9, 0x14(r1)
-stw      r0, 0x1c(r1)
-lbz      r8, 0x15(r1)
-lbz      r7, 0x1c(r1)
-lbz      r6, 0x1d(r1)
-stb      r7, 0x60(r30)
-lbz      r7, 0x1e(r1)
-stb      r6, 0x61(r30)
-lbz      r6, 0x1f(r1)
-stb      r7, 0x62(r30)
-lbz      r7, 0x16(r1)
-stb      r6, 0x63(r30)
-lbz      r6, 0x17(r1)
-stb      r5, 0x5c(r30)
-lbz      r5, 0x10(r1)
-stb      r4, 0x5d(r30)
-lbz      r4, 0x11(r1)
-stb      r3, 0x5e(r30)
-lbz      r3, 0x12(r1)
-stb      r10, 0x5f(r30)
-lbz      r11, 0x13(r1)
-stb      r9, 0xd4(r30)
-lbz      r10, 0xc(r1)
-stb      r8, 0xd5(r30)
-lbz      r9, 0xd(r1)
-stw      r0, 8(r1)
-lbz      r8, 0xe(r1)
-stb      r7, 0xd6(r30)
-lbz      r7, 0xf(r1)
-stb      r6, 0xd7(r30)
-lbz      r6, 8(r1)
-stb      r5, 0xd8(r30)
-lbz      r5, 9(r1)
-stb      r4, 0xd9(r30)
-lbz      r4, 0xa(r1)
-stb      r3, 0xda(r30)
-lbz      r3, 0xb(r1)
-stb      r11, 0xdb(r30)
-stb      r10, 0xcc(r30)
-stb      r9, 0xcd(r30)
-stb      r8, 0xce(r30)
-stb      r7, 0xcf(r30)
-stb      r6, 0xd0(r30)
-stb      r5, 0xd1(r30)
-stb      r4, 0xd2(r30)
-stb      r3, 0xd3(r30)
-lfs      f0, 0x114(r31)
-stw      r29, 0x2c(r1)
-stfs     f0, 0xbc(r30)
-stfs     f0, 0xc4(r30)
-lfs      f0, 0x118(r31)
-stw      r12, 0x28(r1)
-stfs     f0, 0xc0(r30)
-stfs     f0, 0xc8(r30)
-lfs      f1, 0x28(r31)
-lfs      f0, 0x20(r31)
-stw      r28, 0x24(r1)
-fsubs    f0, f1, f0
-stw      r0, 0x20(r1)
-stfs     f0, 0x38(r30)
-lfs      f1, 0x2c(r31)
-lfs      f0, 0x24(r31)
-fsubs    f0, f1, f0
-stfs     f0, 0x3c(r30)
-lwz      r3, 0x4c(r30)
-lfs      f31, 0x11c(r31)
-lwz      r12, 0(r3)
-lfs      f30, 0x120(r31)
-lwz      r12, 0x28(r12)
-mtctr    r12
-bctrl
-xoris    r3, r3, 0x8000
-lis      r0, 0x4330
-stw      r3, 0x54(r1)
-lfd      f1, lbl_805208D0@sda21(r2)
-stw      r0, 0x50(r1)
-lfd      f0, 0x50(r1)
-fsubs    f0, f0, f1
-fdivs    f0, f31, f0
-stfs     f0, 0xe8(r30)
-lwz      r3, 0x4c(r30)
-lwz      r12, 0(r3)
-lwz      r12, 0x24(r12)
-mtctr    r12
-bctrl
-xoris    r3, r3, 0x8000
-lis      r0, 0x4330
-stw      r3, 0x5c(r1)
-lfd      f1, lbl_805208D0@sda21(r2)
-stw      r0, 0x58(r1)
-lfd      f0, 0x58(r1)
-fsubs    f0, f0, f1
-fdivs    f0, f30, f0
-stfs     f0, 0xec(r30)
-lbz      r0, 0x130(r31)
-rlwinm   r0, r0, 0x1e, 0x1e, 0x1f
-cmpwi    r0, 1
-beq      lbl_8043D1F4
-bge      lbl_8043D1B0
-cmpwi    r0, 0
-bge      lbl_8043D1BC
-b        lbl_8043D20C
-
-lbl_8043D1B0:
-cmpwi    r0, 3
-bge      lbl_8043D20C
-b        lbl_8043D1D8
-
-lbl_8043D1BC:
-lwz      r0, 0x8c(r30)
-rlwinm   r0, r0, 0, 0x1c, 0x18
-stw      r0, 0x8c(r30)
-lwz      r0, 0x8c(r30)
-ori      r0, r0, 0x20
-stw      r0, 0x8c(r30)
-b        lbl_8043D20C
-
-lbl_8043D1D8:
-lwz      r0, 0x8c(r30)
-rlwinm   r0, r0, 0, 0x1c, 0x18
-stw      r0, 0x8c(r30)
-lwz      r0, 0x8c(r30)
-ori      r0, r0, 0x10
-stw      r0, 0x8c(r30)
-b        lbl_8043D20C
-
-lbl_8043D1F4:
-lwz      r0, 0x8c(r30)
-rlwinm   r0, r0, 0, 0x1c, 0x18
-stw      r0, 0x8c(r30)
-lwz      r0, 0x8c(r30)
-ori      r0, r0, 0x40
-stw      r0, 0x8c(r30)
-
-lbl_8043D20C:
-lbz      r0, 0x130(r31)
-clrlwi   r0, r0, 0x1e
-cmpwi    r0, 1
-beq      lbl_8043D254
-bge      lbl_8043D22C
-cmpwi    r0, 0
-bge      lbl_8043D238
-b        lbl_8043D288
-
-lbl_8043D22C:
-cmpwi    r0, 3
-bge      lbl_8043D288
-b        lbl_8043D270
-
-lbl_8043D238:
-lwz      r0, 0x8c(r30)
-rlwinm   r0, r0, 0, 0x18, 0x14
-stw      r0, 0x8c(r30)
-lwz      r0, 0x8c(r30)
-ori      r0, r0, 0x200
-stw      r0, 0x8c(r30)
-b        lbl_8043D288
-
-lbl_8043D254:
-lwz      r0, 0x8c(r30)
-rlwinm   r0, r0, 0, 0x18, 0x14
-stw      r0, 0x8c(r30)
-lwz      r0, 0x8c(r30)
-ori      r0, r0, 0x400
-stw      r0, 0x8c(r30)
-b        lbl_8043D288
-
-lbl_8043D270:
-lwz      r0, 0x8c(r30)
-rlwinm   r0, r0, 0, 0x18, 0x14
-stw      r0, 0x8c(r30)
-lwz      r0, 0x8c(r30)
-ori      r0, r0, 0x100
-stw      r0, 0x8c(r30)
-
-lbl_8043D288:
-psq_l    f31, 136(r1), 0, qr0
-lfd      f31, 0x80(r1)
-psq_l    f30, 120(r1), 0, qr0
-lfd      f30, 0x70(r1)
-lwz      r31, 0x6c(r1)
-lwz      r30, 0x68(r1)
-lwz      r29, 0x64(r1)
-lwz      r0, 0x94(r1)
-lwz      r28, 0x60(r1)
-mtlr     r0
-addi     r1, r1, 0x90
-blr
-*/
 }
 
 #if defined(VERSION_PAL)

@@ -148,28 +148,32 @@ void DynCreature::computeForces(f32 friction)
 				continue;
 			}
 
+			Vector3f crossVec = mRigid.mConfigs[0].mRotatedMomentum;
 			Vector3f sep;
-			sep.x             = particle->mPosition.x - mTransformedPosition.x;
-			sep.y             = particle->mPosition.y - mTransformedPosition.y;
-			sep.z             = particle->mPosition.z - mTransformedPosition.z;
-			Vector3f crossVec = mRigid.mConfigs[0].mRotatedMomentum.cross(sep) + mRigid.mConfigs[0].mVelocity;
+			sep.x = particle->mPosition.x - mTransformedPosition.x;
+			sep.y = particle->mPosition.y - mTransformedPosition.y;
+			sep.z = particle->mPosition.z - mTransformedPosition.z;
+			crossVec.cross(crossVec, sep);
+			crossVec = crossVec + mRigid.mConfigs[0].mVelocity;
 
-			f32 dotProd  = crossVec.dot(particle->mCollisionNormal); // f13
-			f32 dotProd2 = mRigid.mConfigs[0].mForce.dot(particle->mCollisionNormal);
-
-			Vector3f sep2 = crossVec - particle->mCollisionNormal * dotProd;
+			Vector3f sep2 = particle->mCollisionNormal * crossVec.dot(particle->mCollisionNormal);
+			f32 dotProd2  = mRigid.mConfigs[0].mForce.dot(particle->mCollisionNormal);
+			sep2          = crossVec - sep2;
 			sep2.normalise();
 
 			mRigid.mConfigs[0].mForce += particle->mCollisionNormal * dotProd2;
 
-			// f32 dotProd3 = sep2.dot(crossVec);
-			if (absF(sep2.dot(crossVec)) < DynamicsParms::mInstance->mStatic()) {
+			f32 staticLimit = DynamicsParms::mInstance->mStatic();
+			if (absF(sep2.dot(crossVec)) < staticLimit) {
 				sep2.normalise();
-				mRigid.mConfigs[0].mForce -= sep2 * DynamicsParms::mInstance->mStaParm();
+				sep2 = sep2 * DynamicsParms::mInstance->mStaParm();
+				mRigid.mConfigs[0].mForce -= sep2;
 			} else {
-				Vector3f sep3 = crossVec - particle->mCollisionNormal * crossVec.dot(particle->mCollisionNormal);
+				Vector3f sep3 = particle->mCollisionNormal * crossVec.dot(particle->mCollisionNormal);
+				sep3          = crossVec - sep3;
 				sep3.normalise();
-				mRigid.mConfigs[0].mForce += sep3 * -DynamicsParms::mInstance->mFixedFrictionValue();
+				f32 fixedFriction = DynamicsParms::mInstance->mFixedFrictionValue();
+				mRigid.mConfigs[0].mForce += sep3 * -fixedFriction;
 			}
 		}
 		return;
@@ -203,10 +207,15 @@ void DynCreature::computeForces(f32 friction)
 		if (!particle->mIsTouching) {
 			continue;
 		}
-		Vector3f sep      = particle->mPosition - mTransformedPosition;
-		Vector3f crossVec = mRigid.mConfigs[0].mRotatedMomentum.cross(sep) + mRigid.mConfigs[0].mVelocity;
-		Vector3f vec      = particle->mCollisionNormal * crossVec.dot(particle->mCollisionNormal);
-		vec               = crossVec - vec;
+		Vector3f crossVec = mRigid.mConfigs[0].mRotatedMomentum;
+		Vector3f sep;
+		sep.x = particle->mPosition.x - mTransformedPosition.x;
+		sep.y = particle->mPosition.y - mTransformedPosition.y;
+		sep.z = particle->mPosition.z - mTransformedPosition.z;
+		crossVec.cross(crossVec, sep);
+		crossVec     = crossVec + mRigid.mConfigs[0].mVelocity;
+		Vector3f vec = particle->mCollisionNormal * crossVec.dot(particle->mCollisionNormal);
+		vec          = crossVec - vec;
 		if (DynamicsParms::mInstance->mFrictionTangentVelocity()) {
 			vec.normalise();
 		}
@@ -672,7 +681,7 @@ void DynCreature::simulate(f32 rate)
 	mCanBounce   = mHasCollided;
 	mHasCollided = 0;
 
-	RigidBodyCallback delegate(this, &DynCreature::tracemoveCallback);
+	RigidBodyCallback delegate = RigidBodyCallback(this, &DynCreature::tracemoveCallback);
 
 	mTransformedPosition = mBaseTrMatrix.mtxMult(mRotation);
 	mRigid.integrate(rate, 0);
@@ -682,8 +691,11 @@ void DynCreature::simulate(f32 rate)
 	for (DynParticle* particle = mDynParticle; particle; particle = particle->mNext) {
 		particle->mPosition = mBaseTrMatrix.mtxMult(particle->mRotation);
 
-		velocity     = mRigid.mConfigs[0].mRotatedMomentum;
-		Vector3f sep = particle->mPosition - mTransformedPosition;
+		velocity = mRigid.mConfigs[0].mRotatedMomentum;
+		Vector3f sep;
+		sep.x = particle->mPosition.x - mTransformedPosition.x;
+		sep.y = particle->mPosition.y - mTransformedPosition.y;
+		sep.z = particle->mPosition.z - mTransformedPosition.z;
 		velocity.cross(velocity, sep);
 		velocity = velocity + mRigid.mConfigs[0].mVelocity;
 

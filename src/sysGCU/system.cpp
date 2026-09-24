@@ -116,20 +116,17 @@ static void Pikmin2DefaultMemoryErrorRoutine(void* address, u32 size, int alignm
 }
 
 /**
- * @note Address: 0x80421F64
- * @note Size: 0x188
+ * @note Address: N/A
+ * @note Size: 0x128
  */
-static void kando_panic_f(bool r3, const char* file, int line, const char* format, ...)
+static void kando_panic_f_va(bool r3, const char* file, int line, const char* format, va_list* args)
 {
-	va_list list;
-	va_start(list, format);
-
 	JUTConsole* console      = JUTException::getConsole();
 	JUTExceptionHandler func = preUserCallback;
 	JUTException* except     = JUTException::getManager();
 
 	char buffer[260];
-	vsnprintf(buffer, 255, format, list);
+	vsnprintf(buffer, 255, format, *args);
 	if (!except) {
 		OSPanic(file, line, buffer);
 	}
@@ -155,118 +152,18 @@ static void kando_panic_f(bool r3, const char* file, int line, const char* forma
 
 	OSSendMessage(&JUTException::sMessageQueue, (OSMessage*)&exCallbackObject, true);
 	OSSuspendThread(OSGetCurrentThread());
+}
 
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x460(r1)
-	  mflr      r0
-	  stw       r0, 0x464(r1)
-	  stmw      r26, 0x448(r1)
-	  mr        r29, r4
-	  mr        r30, r5
-	  bne-      cr1, .loc_0x3C
-	  stfd      f1, 0x28(r1)
-	  stfd      f2, 0x30(r1)
-	  stfd      f3, 0x38(r1)
-	  stfd      f4, 0x40(r1)
-	  stfd      f5, 0x48(r1)
-	  stfd      f6, 0x50(r1)
-	  stfd      f7, 0x58(r1)
-	  stfd      f8, 0x60(r1)
-
-	.loc_0x3C:
-	  addi      r11, r1, 0x468
-	  addi      r0, r1, 0x8
-	  lis       r12, 0x400
-	  stw       r3, 0x8(r1)
-	  lis       r3, 0x8042
-	  lwz       r31, -0x775C(r13)
-	  stw       r4, 0xC(r1)
-	  addi      r28, r3, 0x20EC
-	  addi      r27, r1, 0x68
-	  lwz       r26, -0x7770(r13)
-	  stw       r5, 0x10(r1)
-	  addi      r3, r1, 0x74
-	  mr        r5, r6
-	  li        r4, 0xFF
-	  stw       r6, 0x14(r1)
-	  mr        r6, r27
-	  stw       r7, 0x18(r1)
-	  stw       r8, 0x1C(r1)
-	  stw       r9, 0x20(r1)
-	  stw       r10, 0x24(r1)
-	  stw       r12, 0x68(r1)
-	  stw       r11, 0x6C(r1)
-	  stw       r0, 0x70(r1)
-	  bl        -0x35A998
-	  cmplwi    r26, 0
-	  bne-      .loc_0xB8
-	  mr        r3, r29
-	  mr        r4, r30
-	  addi      r5, r1, 0x74
-	  crclr     6, 0x6
-	  bl        -0x3348AC
-
-	.loc_0xB8:
-	  lwz       r4, -0x7630(r13)
-	  addi      r3, r1, 0x178
-	  li        r5, 0x2C8
-	  lwz       r27, 0x2C(r4)
-	  mr        r4, r27
-	  bl        -0x41CE94
-	  lwz       r0, 0x17C(r1)
-	  lis       r4, 0x804F
-	  cmplwi    r31, 0
-	  li        r3, 0xFF
-	  stw       r0, 0xA0(r26)
-	  li        r0, 0
-	  stwu      r28, 0x7C20(r4)
-	  sth       r3, 0x4(r4)
-	  stw       r27, 0x8(r4)
-	  stw       r0, 0xC(r4)
-	  stw       r0, 0x10(r4)
-	  beq-      .loc_0x110
-	  beq-      .loc_0x12C
-	  lwz       r0, 0x58(r31)
-	  rlwinm.   r0,r0,0,30,30
-	  bne-      .loc_0x12C
-
-	.loc_0x110:
-	  lis       r3, 0x804A
-	  mr        r5, r29
-	  subi      r3, r3, 0x67E4
-	  mr        r6, r30
-	  addi      r4, r1, 0x74
-	  crclr     6, 0x6
-	  bl        -0x3349A0
-
-	.loc_0x12C:
-	  cmplwi    r31, 0
-	  beq-      .loc_0x154
-	  lis       r4, 0x804A
-	  mr        r3, r31
-	  subi      r4, r4, 0x67CC
-	  mr        r6, r29
-	  mr        r7, r30
-	  addi      r5, r1, 0x74
-	  crclr     6, 0x6
-	  bl        -0x3F9714
-
-	.loc_0x154:
-	  lis       r3, 0x804A
-	  lis       r4, 0x804F
-	  addi      r3, r3, 0x3A8
-	  li        r5, 0x1
-	  addi      r4, r4, 0x7C20
-	  bl        -0x332BB0
-	  bl        -0x33070C
-	  bl        -0x32F958
-	  lmw       r26, 0x448(r1)
-	  lwz       r0, 0x464(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x460
-	  blr
-	  */
+/**
+ * @note Address: 0x80421F64
+ * @note Size: 0x188
+ */
+static void kando_panic_f(bool r3, const char* file, int line, const char* format, ...)
+{
+	va_list list;
+	va_start(list, format);
+	kando_panic_f_va(r3, file, line, format, &list);
+	va_end(list);
 }
 
 /**
@@ -716,8 +613,9 @@ void System::loadSoundResource()
 	JKRSolidHeap* newheap = makeSolidHeap(old->getFreeSize(), old, true);
 	newheap->becomeCurrentHeap();
 
-	// something in these inlines is doing bad regalloc things. or not enough bad regalloc things. not sure.
-	PSSystem::Scene* scene = PSMGetPikSceneMgrCheck()->getScene();
+	PSGame::PikSceneMgr* mgr = static_cast<PSGame::PikSceneMgr*>(PSSystem::getSceneMgr());
+	PSSystem::validateSceneMgr(mgr);
+	PSSystem::Scene* scene = mgr->getScene();
 #if defined(VERSION_PAL)
 	P2ASSERTLINE(1284, scene);
 #else
@@ -727,72 +625,6 @@ void System::loadSoundResource()
 
 	newheap->adjustSize();
 	old->becomeCurrentHeap();
-	/*
-	    stwu     r1, -0x20(r1)
-	    mflr     r0
-	    lis      r3, gStrSystem_CPP@ha
-	    stw      r0, 0x24(r1)
-	    stw      r31, 0x1c(r1)
-	    addi     r31, r3, gStrSystem_CPP@l
-	    stw      r30, 0x18(r1)
-	    stw      r29, 0x14(r1)
-	    stw      r28, 0x10(r1)
-	    lwz      r28, sCurrentHeap__7JKRHeap@sda21(r13)
-	    mr       r3, r28
-	    bl       getFreeSize__7JKRHeapFv
-	    mr       r4, r28
-	    li       r5, 1
-	    bl       create__12JKRSolidHeapFUlP7JKRHeapb
-	    mr       r30, r3
-	    bl       becomeCurrentHeap__7JKRHeapFv
-	    lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	    cmplwi   r0, 0
-	    bne      lbl_80422BE0
-	    addi     r3, r31, 0x1f8
-	    addi     r5, r31, 0x174
-	    li       r4, 0x1d3
-	    crclr    6
-	    bl       panic_f__12JUTExceptionFPCciPCce
-
-	lbl_80422BE0:
-	    lwz      r29, spSceneMgr__8PSSystem@sda21(r13)
-	    cmplwi   r29, 0
-	    bne      lbl_80422C00
-	    addi     r3, r31, 0x1f8
-	    addi     r5, r31, 0x174
-	    li       r4, 0x1dc
-	    crclr    6
-	    bl       panic_f__12JUTExceptionFPCciPCce
-
-	lbl_80422C00:
-	    lwz      r29, 4(r29)
-	    cmplwi   r29, 0
-	    bne      lbl_80422C20
-	    addi     r3, r31, 0
-	    addi     r5, r31, 0x174
-	    li       r4, 0x4dd
-	    crclr    6
-	    bl       panic_f__12JUTExceptionFPCciPCce
-
-	lbl_80422C20:
-	    mr       r3, r29
-	    lwz      r12, 0(r29)
-	    lwz      r12, 0x14(r12)
-	    mtctr    r12
-	    bctrl
-	    mr       r3, r30
-	    bl       adjustSize__12JKRSolidHeapFv
-	    mr       r3, r28
-	    bl       becomeCurrentHeap__7JKRHeapFv
-	    lwz      r0, 0x24(r1)
-	    lwz      r31, 0x1c(r1)
-	    lwz      r30, 0x18(r1)
-	    lwz      r29, 0x14(r1)
-	    lwz      r28, 0x10(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x20
-	    blr
-	*/
 }
 
 /**

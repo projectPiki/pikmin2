@@ -63,6 +63,35 @@ struct GameLightEventArg {
 		mBlueScale  = 1.25f;
 	}
 
+	inline void setFog(f32 nearZ, f32 farZ)
+	{
+		setLightType(LIGHTTYPE_Fog);
+		mNearZ = nearZ;
+		mFarZ  = farZ;
+	}
+
+	inline void setTime(f32 growTime, f32 fadeTime)
+	{
+		resetEvent(LIGHTEVENT_Unk1);
+		mGrowTime = growTime;
+		mFadeTime = fadeTime;
+	}
+
+	inline void setColorScale(f32 red, f32 green, f32 blue)
+	{
+		resetEvent(LIGHTEVENT_Unk2);
+		mRedScale   = red;
+		mGreenScale = green;
+		mBlueScale  = blue;
+	}
+
+	inline void setPosition(Vector3f* position, f32 range)
+	{
+		setEvent(LIGHTEVENT_Unk3 | LIGHTEVENT_Unk4);
+		mPosition = position;
+		mRange    = range;
+	}
+
 	inline void setEvent(u32 flag) { mEventFlag.set(flag); }
 	inline void resetEvent(u32 flag) { mEventFlag.unset(flag); }
 	inline bool isEvent(u32 flag) const { return mEventFlag.typeView & flag; }

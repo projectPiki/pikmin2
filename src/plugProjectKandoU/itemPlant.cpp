@@ -926,13 +926,13 @@ void ProcAnimator::force(f32)
  */
 void ProcAnimator::update(f32 faceDir, f32 p2)
 {
-	// regswaps with this mess
-	f32 idk       = 80.0f;           // f0
-	f32 temp      = 1.0f;            // f4
-	f32 p3        = p2 * idk;        // f5
-	f32 frameRate = sys->mDeltaTime; // f6
-	f32 idk2      = -((f32)temp * idk);
-	_28 += ((idk2 * _24 - _28 * 1.6f) + p3) * frameRate;
+	f32 stiffness   = 80.0f;
+	f32 springScale = 1.0f;
+	f32 drive       = p2 * stiffness;
+	f32 frameRate   = sys->mDeltaTime;
+	springScale *= stiffness;
+	f32 spring = -springScale;
+	_28 += ((spring * _24 - _28 * 1.6f) + drive) * frameRate;
 	_24 += frameRate * _28;
 
 	if (_24 > TORADIANS(40.0f)) {
@@ -960,14 +960,15 @@ void ProcAnimator::update(f32 faceDir, f32 p2)
 		} else {
 			angleFactor = 1.0f;
 		}
-		f32 angleOffset = _24 * angleFactor;
+		f32 ydist;
+		f32 angleOffset = angleFactor * _24;
 
-		Matrixf mat;                         // 0x8C
-		Vector3f newPos;                     // 0x68
-		f32 theta = mAngle[i] + angleOffset; // f29
-		Vector3f rot;                        // 0x5C
-		f32 angle = mXRot[i] + angleOffset;  // f0
-		f32 ydist = mYDist[i];
+		Matrixf mat;
+		Vector3f newPos;
+		f32 theta = mAngle[i] + angleOffset;
+		Vector3f rot;
+		f32 angle = mXRot[i] + angleOffset;
+		ydist     = mYDist[i];
 
 		newPos.x = 0.0f;
 		newPos.y = ydist;

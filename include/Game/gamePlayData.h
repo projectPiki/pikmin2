@@ -420,40 +420,6 @@ struct PlayData : public CNode {
 
 	inline PelletFirstMemory* getZukanStat() { return mZukanStat; }
 
-	inline void writeSprayCounts(Stream& output, char* textBuffer)
-	{
-		for (int i = 0; i < 2; i++) {
-			output.textWriteTab(output.mTabCount);
-			output.writeInt(mSprayCount[i]);
-			sprintf(textBuffer, "\t# dope[%d]\r\n", i);
-			output.textWriteText(textBuffer);
-		}
-	}
-
-	inline void writeBerryCounts(Stream& output, char* textBuffer)
-	{
-		for (int i = 0; i < 2; i++) {
-			output.textWriteTab(output.mTabCount);
-			output.writeInt(mBerryCount[i]);
-			sprintf(textBuffer, "\t# dope-実[%d]\r\n", i); // 'dope-berry'
-			output.textWriteText(textBuffer);
-		}
-	}
-
-	inline void readSprayCounts(Stream& input)
-	{
-		for (int i = 0; i < 2; i++) {
-			mSprayCount[i] = input.readInt();
-		}
-	}
-
-	inline void readBerryCounts(Stream& input)
-	{
-		for (int i = 0; i < 2; i++) {
-			mBerryCount[i] = input.readInt();
-		}
-	}
-
 	inline int getDataSize(Stream& stream, int streamStartPos)
 	{
 		return stream.getStreamDistance(streamStartPos) + generatorCache->getHeapUsedSize();

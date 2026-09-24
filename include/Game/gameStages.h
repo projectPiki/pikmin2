@@ -110,7 +110,7 @@ struct Stages {
 
 	static void createMapMgr(CourseInfo*, RouteMgr*);
 
-	inline u16 getCourseCount() const { return mCourseCount; }
+	inline int getCourseCount() const { return mCourseCount; }
 
 	CourseInfo mCourseInfo; // _00
 	u16 mCourseCount;       // _100

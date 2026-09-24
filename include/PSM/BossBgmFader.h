@@ -77,17 +77,30 @@ struct Mgr : ::PSSystem::SingletonBase<Mgr> {
 	void appendTarget(JSULink<EnemyBoss>*);
 	void exec();
 
-	inline bool checkBossActive()
+	static inline bool checkBossActive()
 	{
-		bool ret = false;
-		FOREACH_NODE(JSULink<EnemyBoss>, mTypedProc.getFirst(), link)
+		bool isActive = false;
+		FOREACH_NODE(JSULink<EnemyBoss>, getInstance()->mTypedProc.getFirst(), link)
 		{
 			EnemyBoss* obj = link->getObject();
 			if (obj->_FE) {
-				ret = true;
+				isActive = true;
 			}
 		}
-		return ret;
+		return isActive;
+	}
+
+	static inline bool checkAllBossInactive()
+	{
+		bool isInactive = true;
+		FOREACH_NODE(JSULink<EnemyBoss>, getInstance()->mTypedProc.getFirst(), link)
+		{
+			EnemyBoss* obj = link->getObject();
+			if (obj->_FE) {
+				isInactive = false;
+			}
+		}
+		return isInactive;
 	}
 
 	// _00 VTBL

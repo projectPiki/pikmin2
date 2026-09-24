@@ -209,160 +209,23 @@ void NaviWhistle::update(Vector3f& stick, bool active)
 		stickVec.normalise();
 		stickVec = stickVec * mNavi->getParms()->mNaviParms.mCursorMovementSpeed();
 
-		f32 time = sys->getDeltaTime();
-		offset   = stickVec * time;
-		offset   = offset + mNaviOffsetVec;
+		f32 time           = sys->getDeltaTime();
+		Vector3f newOffset = stickVec * time;
+		newOffset          = newOffset + mNaviOffsetVec;
 
-		if (offset.magnitude() >= mNavi->getParms()->mNaviParms.mMaxCursorMoveRadius()) {
-			offset.normalise();
+		if (newOffset.magnitude() >= mNavi->getParms()->mNaviParms.mMaxCursorMoveRadius()) {
+			newOffset.normalise();
 
-			offset = (stickVec - offset * offset.dot(stickVec)) * time + mNaviOffsetVec;
+			Vector3f tangent = stickVec;
+			tangent -= newOffset * newOffset.dot(stickVec);
+			newOffset = tangent * time + mNaviOffsetVec;
 		}
+		offset = newOffset;
 	}
 
 	mNaviOffsetVec = offset;
 
 	updatePosition();
 	updateWhistle();
-
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stfd     f31, 0x10(r1)
-	psq_st   f31, 24(r1), 0, qr0
-	stw      r31, 0xc(r1)
-	clrlwi.  r0, r5, 0x18
-	mr       r31, r3
-	beq      lbl_8016574C
-	lfs      f1, lbl_805188E4@sda21(r2)
-	fmr      f2, f1
-	fmr      f3, f1
-	b        lbl_801658B4
-
-lbl_8016574C:
-	lfs      f3, 4(r4)
-	lfs      f9, 8(r4)
-	fmuls    f1, f3, f3
-	lfs      f2, 0(r4)
-	fmuls    f4, f9, f9
-	lfs      f0, lbl_805188E4@sda21(r2)
-	fmadds   f1, f2, f2, f1
-	fadds    f1, f4, f1
-	fcmpo    cr0, f1, f0
-	ble      lbl_80165784
-	ble      lbl_80165788
-	frsqrte  f0, f1
-	fmuls    f1, f0, f1
-	b        lbl_80165788
-
-lbl_80165784:
-	fmr      f1, f0
-
-lbl_80165788:
-	lfs      f0, lbl_805188E4@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_801657A8
-	lfs      f0, lbl_805188FC@sda21(r2)
-	fdivs    f0, f0, f1
-	fmuls    f2, f2, f0
-	fmuls    f3, f3, f0
-	fmuls    f9, f9, f0
-
-lbl_801657A8:
-	lwz      r4, 0x34(r31)
-	lwz      r3, sys@sda21(r13)
-	lwz      r4, 0xc0(r4)
-	lfs      f0, 0x54(r3)
-	lfs      f1, 0x9a8(r4)
-	lfs      f5, 4(r31)
-	fmuls    f8, f3, f1
-	lfs      f4, 8(r31)
-	fmuls    f7, f2, f1
-	lfs      f6, 0(r31)
-	fmuls    f9, f9, f1
-	lfs      f11, lbl_805188E4@sda21(r2)
-	fmuls    f2, f8, f0
-	fmuls    f3, f9, f0
-	fmuls    f1, f7, f0
-	fadds    f2, f2, f5
-	fadds    f3, f3, f4
-	fadds    f1, f1, f6
-	fmuls    f12, f2, f2
-	fmuls    f13, f3, f3
-	fmadds   f10, f1, f1, f12
-	fadds    f31, f13, f10
-	fcmpo    cr0, f31, f11
-	ble      lbl_8016581C
-	ble      lbl_80165818
-	frsqrte  f10, f31
-	fmuls    f11, f10, f31
-	b        lbl_8016581C
-
-lbl_80165818:
-	fmr      f11, f31
-
-lbl_8016581C:
-	lfs      f10, 0x980(r4)
-	fcmpo    cr0, f11, f10
-	cror     2, 1, 2
-	bne      lbl_801658B4
-	lfs      f11, lbl_805188E4@sda21(r2)
-	fcmpo    cr0, f31, f11
-	ble      lbl_80165854
-	fmadds   f10, f1, f1, f12
-	fadds    f12, f13, f10
-	fcmpo    cr0, f12, f11
-	ble      lbl_80165858
-	frsqrte  f10, f12
-	fmuls    f12, f10, f12
-	b        lbl_80165858
-
-lbl_80165854:
-	fmr      f12, f11
-
-lbl_80165858:
-	lfs      f10, lbl_805188E4@sda21(r2)
-	fcmpo    cr0, f12, f10
-	ble      lbl_80165878
-	lfs      f10, lbl_805188FC@sda21(r2)
-	fdivs    f10, f10, f12
-	fmuls    f1, f1, f10
-	fmuls    f2, f2, f10
-	fmuls    f3, f3, f10
-
-lbl_80165878:
-	fmuls    f10, f2, f8
-	fmadds   f10, f1, f7, f10
-	fmadds   f11, f3, f9, f10
-	fmuls    f10, f1, f11
-	fmuls    f2, f2, f11
-	fmuls    f1, f3, f11
-	fsubs    f3, f7, f10
-	fsubs    f2, f8, f2
-	fsubs    f7, f9, f1
-	fmuls    f1, f3, f0
-	fmuls    f2, f2, f0
-	fmuls    f0, f7, f0
-	fadds    f1, f1, f6
-	fadds    f2, f2, f5
-	fadds    f3, f0, f4
-
-lbl_801658B4:
-	stfs     f1, 0(r31)
-	mr       r3, r31
-	stfs     f2, 4(r31)
-	stfs     f3, 8(r31)
-	bl       updatePosition__Q24Game11NaviWhistleFv
-	mr       r3, r31
-	bl       updateWhistle__Q24Game11NaviWhistleFv
-	psq_l    f31, 24(r1), 0, qr0
-	lwz      r0, 0x24(r1)
-	lfd      f31, 0x10(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 } // namespace Game

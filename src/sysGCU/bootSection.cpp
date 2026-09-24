@@ -236,13 +236,13 @@ void TinyPikmin::draw()
 		f32 xScale;
 		f32 yScale;
 		if (mPositionY < 0.0f) {
-			yScale = absF(mPositionY / 10.0f);
-			if (yScale > 1.0f) {
-				yScale = 1.0f;
+			f32 t = absF(mPositionY / 10.0f);
+			if (t > 1.0f) {
+				t = 1.0f;
 			}
 
-			xScale = (1.0f - yScale) * 0.2f + 0.8f;
-			yScale = yScale * 0.2f + 1.0f;
+			xScale = (1.0f - t) * 0.2f + 0.8f;
+			yScale = t * 0.2f + 1.0f;
 		} else {
 			yScale = xScale = 1.0f;
 		}
@@ -315,10 +315,11 @@ void TinyPikminMgr::loadResource(JKRArchive* arc)
 {
 	char* pikipaths[5]
 	    = { "title_red_5a3.bti", "title_yellow_5a3.bti", "title_blue_5a3.bti", "title_white_5a3.bti", "title_violet_5a3.bti" };
+	ResTIMG* file;
 	for (int i = 0; i < 5; i++) {
 		char buf[PATH_MAX];
 		sprintf(buf, "timg/%s", pikipaths[i]);
-		ResTIMG* file = static_cast<ResTIMG*>(arc->getResource(buf));
+		file = static_cast<ResTIMG*>(arc->getResource(buf));
 #if defined(VERSION_PAL)
 		JUT_ASSERTLINE(803, file, buf);
 #elif defined(VERSION_JP)
@@ -326,9 +327,9 @@ void TinyPikminMgr::loadResource(JKRArchive* arc)
 #else
 		JUT_ASSERTLINE(786, file, buf);
 #endif
-		JUTTexture* tex              = new JUTTexture(file);
-		TinyPikminMgr::sPikminTex[i] = new J2DPicture(tex);
-		TinyPikminMgr::sPikminTex[i]->setBasePosition(J2DPOS_BottomCenter);
+		JUTTexture* tex = new JUTTexture(file);
+		sPikminTex[i]   = new J2DPicture(tex);
+		sPikminTex[i]->setBasePosition(J2DPOS_BottomCenter);
 	}
 }
 
@@ -556,7 +557,6 @@ void BootSection::loadBootResource()
 	mWarningPressStartTexture = new JUTTexture(file);
 #endif
 
-	// the iterator in here is causing a regswap
 	sTinyPikminMgr->loadResource(arc);
 }
 
@@ -900,7 +900,7 @@ bool BootSection::doUpdate()
 			setMode(SID_NintendoLogo);
 			mPikiMgr->appear();
 
-			PSM::Scene_Global* scene = static_cast<PSM::Scene_Global*>(PSMGetSceneMgrCheck()->mScenes);
+			PSM::Scene_Global* scene = static_cast<PSM::Scene_Global*>(PSMGetPikSceneMgrCheck()->mScenes);
 			P2ASSERTLINE(1638, scene);
 			scene->startGlobalStream(P2_STREAM_SOUND_ID(PSSTR_PIKMIN_GREET));
 		}

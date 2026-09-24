@@ -802,7 +802,8 @@ void Graphics::drawCone(Vector3f& start, Vector3f& end, f32 inAngle, int limit)
 		xVec = cross(yAxis, sep);
 		xVec.normalise();
 
-		yVec = cross(xVec, sep);
+		yVec = xVec;
+		yVec.CP(sep);
 		yVec.normalise();
 	} else {
 		yVec = cross(xAxis, sep);

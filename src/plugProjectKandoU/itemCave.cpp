@@ -246,116 +246,12 @@ void Item::createLightEvent()
 {
 	if (!mLightEventNode) {
 		GameLightEventArg arg;
-		f32 nearZ = mFogParm.mStartZ.mValue;
-		f32 farZ  = mFogParm.mEndZ.mValue;
-		arg.setLightType(LIGHTTYPE_Fog);
-		arg.mNearZ = nearZ;
-		arg.mFarZ  = farZ;
-		f32 grow   = mFogParm.mStartTime.mValue;
-		f32 fade   = mFogParm.mEndTime.mValue;
-		arg.resetEvent(LIGHTEVENT_Unk1);
-		arg.mGrowTime = grow;
-		arg.mFadeTime = fade;
-		u8 blue       = mFogParm.mBlue.mValue;
-		u8 green      = mFogParm.mGreen.mValue;
-		u8 red        = mFogParm.mRed.mValue;
-		arg.resetEvent(LIGHTEVENT_Unk2);
-		arg.mBlueScale  = blue;
-		arg.mGreenScale = green;
-		arg.mRedScale   = red;
-		f32 range       = mFogParm.mDistance.mValue;
-		arg.setEvent(LIGHTEVENT_Unk3 | LIGHTEVENT_Unk4);
-		arg.mPosition   = &mPosition;
-		arg.mRange      = range;
+		arg.setFog(mFogParm.mStartZ.mValue, mFogParm.mEndZ.mValue);
+		arg.setTime(mFogParm.mStartTime.mValue, mFogParm.mEndTime.mValue);
+		arg.setColorScale(mFogParm.mRed.mValue, mFogParm.mGreen.mValue, mFogParm.mBlue.mValue);
+		arg.setPosition(&mPosition, mFogParm.mDistance.mValue);
 		mLightEventNode = gameSystem->getLightMgr()->createEventLight(arg);
 	}
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stw      r31, 0x4c(r1)
-	mr       r31, r3
-	lwz      r0, 0x200(r3)
-	cmplwi   r0, 0
-	bne      lbl_801EACC8
-	li       r10, 0
-	lfs      f6, lbl_80519A58@sda21(r2)
-	stb      r10, 8(r1)
-	lis      r8, 0x4330
-	ori      r9, r10, 3
-	lfs      f5, lbl_80519A5C@sda21(r2)
-	stb      r10, 9(r1)
-	ori      r3, r10, 1
-	lfs      f4, lbl_80519A08@sda21(r2)
-	clrlwi   r0, r3, 0x18
-	stb      r10, 8(r1)
-	ori      r7, r0, 0x10
-	lfs      f3, lbl_80519A0C@sda21(r2)
-	rlwinm   r5, r9, 0, 0x18, 0x1d
-	stb      r10, 9(r1)
-	rlwinm   r6, r9, 0, 0x18, 0x1e
-	lfs      f1, lbl_80519A60@sda21(r2)
-	ori      r4, r5, 0xc
-	lfs      f0, lbl_80519A64@sda21(r2)
-	addi     r0, r31, 0x19c
-	stb      r3, 9(r1)
-	lfd      f2, lbl_80519A68@sda21(r2)
-	stb      r9, 8(r1)
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	stfs     f6, 0xc(r1)
-	stfs     f6, 0x10(r1)
-	stfs     f6, 0x14(r1)
-	stfs     f5, 0x18(r1)
-	stfs     f4, 0x1c(r1)
-	stfs     f3, 0x20(r1)
-	stfs     f1, 0x24(r1)
-	stw      r10, 0x28(r1)
-	stfs     f0, 0x2c(r1)
-	lfs      f1, 0x250(r31)
-	lfs      f0, 0x228(r31)
-	stw      r8, 0x30(r1)
-	stb      r7, 9(r1)
-	stfs     f0, 0x20(r1)
-	stfs     f1, 0x24(r1)
-	lfs      f1, 0x2a0(r31)
-	lfs      f0, 0x278(r31)
-	stw      r8, 0x38(r1)
-	stb      r6, 8(r1)
-	stfs     f0, 0x18(r1)
-	stfs     f1, 0x1c(r1)
-	lbz      r9, 0x300(r31)
-	lbz      r7, 0x2e4(r31)
-	lbz      r6, 0x2c8(r31)
-	stw      r9, 0x34(r1)
-	stw      r7, 0x3c(r1)
-	lfd      f1, 0x30(r1)
-	lfd      f0, 0x38(r1)
-	fsubs    f3, f1, f2
-	stw      r6, 0x44(r1)
-	fsubs    f1, f0, f2
-	stw      r8, 0x40(r1)
-	lfd      f0, 0x40(r1)
-	stb      r5, 8(r1)
-	fsubs    f0, f0, f2
-	stfs     f1, 0x10(r1)
-	stfs     f0, 0xc(r1)
-	stfs     f3, 0x14(r1)
-	lfs      f0, 0x31c(r31)
-	stb      r4, 8(r1)
-	stw      r0, 0x28(r1)
-	stfs     f0, 0x2c(r1)
-	bl       getLightMgr__Q24Game10GameSystemFv
-	addi     r4, r1, 8
-	bl       createEventLight__Q24Game12GameLightMgrFRQ24Game17GameLightEventArg
-	stw      r3, 0x200(r31)
-
-lbl_801EACC8:
-	lwz      r0, 0x54(r1)
-	lwz      r31, 0x4c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
 }
 #pragma auto_inline reset
 
@@ -390,9 +286,9 @@ void Item::doAI()
 		Navi* navi = naviMgr->getActiveNavi();
 		if (navi) {
 			PSPlayCaveHoleSound(mSoundObj);
-			Vector3f naviPos = navi->getPosition();
-			Vector3f sep     = naviPos - mPosition;
-			f32 dist         = sep.length();
+			Vector3f sep = navi->getPosition();
+			sep          = sep - mPosition;
+			f32 dist     = sep.length();
 			if (gameSystem->isFlag(GAMESYS_IsPlaying) && dist < mFogParm.mEnterDistance.mValue) {
 				startSound(PSSE_EV_POLUTION_MIX_HOLE);
 				createLightEvent();
@@ -409,153 +305,6 @@ void Item::doAI()
 			}
 		}
 	}
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	li       r5, 0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	mr       r31, r3
-	stw      r30, 0x28(r1)
-	lbz      r0, 0xd8(r3)
-	lwz      r3, 0x1f8(r3)
-	clrlwi   r4, r0, 0x1e
-	bl       setRateLOD__Q23efx8WarpZoneFib
-	lwz      r3, 0x1d8(r31)
-	mr       r4, r31
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x1f4(r31)
-	cmplwi   r3, 0
-	beq      lbl_801EADC8
-	lwz      r12, 0(r3)
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801EADC8
-	li       r0, 0
-	mr       r3, r31
-	stw      r0, 0x1f4(r31)
-	bl       complete__Q34Game8ItemCave4ItemFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801EADC8
-	lis      r3, "zero__10Vector3<f>"@ha
-	lfsu     f2, "zero__10Vector3<f>"@l(r3)
-	lis      r5, __vt__Q23efx3Arg@ha
-	addi     r4, r1, 0x14
-	lfs      f1, 4(r3)
-	addi     r0, r5, __vt__Q23efx3Arg@l
-	lfs      f0, 8(r3)
-	stw      r0, 0x14(r1)
-	stfs     f2, 0x18(r1)
-	stfs     f1, 0x1c(r1)
-	stfs     f0, 0x20(r1)
-	lfs      f0, 0x19c(r31)
-	stfs     f0, 0x18(r1)
-	lfs      f0, 0x1a0(r31)
-	stfs     f0, 0x1c(r1)
-	lfs      f0, 0x1a4(r31)
-	stfs     f0, 0x20(r1)
-	lwz      r3, 0x1f8(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_801EADC8:
-	mr       r3, r31
-	bl       complete__Q34Game8ItemCave4ItemFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801EAEEC
-	lwz      r3, naviMgr__4Game@sda21(r13)
-	bl       getActiveNavi__Q24Game7NaviMgrFv
-	or.      r30, r3, r3
-	beq      lbl_801EAECC
-	lwz      r3, 0x17c(r31)
-	bl       PSPlayCaveHoleSound__FPQ23PSM8Creature
-	mr       r4, r30
-	addi     r3, r1, 8
-	lwz      r12, 0(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f1, 0xc(r1)
-	lfs      f0, 0x1a0(r31)
-	lfs      f3, 0x10(r1)
-	fsubs    f4, f1, f0
-	lfs      f0, 0x1a4(r31)
-	lfs      f2, 8(r1)
-	lfs      f1, 0x19c(r31)
-	fsubs    f5, f3, f0
-	fmuls    f3, f4, f4
-	fsubs    f1, f2, f1
-	lfs      f0, lbl_80519A0C@sda21(r2)
-	fmuls    f2, f5, f5
-	fmadds   f1, f1, f1, f3
-	fadds    f1, f2, f1
-	fcmpo    cr0, f1, f0
-	ble      lbl_801EAE58
-	ble      lbl_801EAE5C
-	frsqrte  f0, f1
-	fmuls    f1, f0, f1
-	b        lbl_801EAE5C
-
-lbl_801EAE58:
-	fmr      f1, f0
-
-lbl_801EAE5C:
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	lbz      r0, 0x3c(r3)
-	rlwinm.  r0, r0, 0, 0x1e, 0x1e
-	beq      lbl_801EAE9C
-	lfs      f0, 0x344(r31)
-	fcmpo    cr0, f1, f0
-	bge      lbl_801EAE9C
-	mr       r3, r31
-	li       r4, 0x307b
-	lwz      r12, 0(r31)
-	lwz      r12, 0x1c0(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	bl       createLightEvent__Q34Game8ItemCave4ItemFv
-	b        lbl_801EAEEC
-
-lbl_801EAE9C:
-	lfs      f0, 0x36c(r31)
-	fcmpo    cr0, f1, f0
-	ble      lbl_801EAEEC
-	lwz      r4, 0x200(r31)
-	cmplwi   r4, 0
-	beq      lbl_801EAEEC
-	lbz      r3, 0x18(r4)
-	li       r0, 0
-	ori      r3, r3, 1
-	stb      r3, 0x18(r4)
-	stw      r0, 0x200(r31)
-	b        lbl_801EAEEC
-
-lbl_801EAECC:
-	lwz      r4, 0x200(r31)
-	cmplwi   r4, 0
-	beq      lbl_801EAEEC
-	lbz      r3, 0x18(r4)
-	li       r0, 0
-	ori      r3, r3, 1
-	stb      r3, 0x18(r4)
-	stw      r0, 0x200(r31)
-
-lbl_801EAEEC:
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /**
@@ -606,8 +355,9 @@ void Item::doDirectDraw(Graphics& gfx)
 	gfx.initPrimDraw(nullptr);
 	Matrixf mtx;
 	PSMTXCopy(mBaseTrMatrix.mMatrix.mtxView, mtx.mMatrix.mtxView);
-	mtx.mMatrix.structView.tx += 0.0f;
-	mtx.mMatrix.structView.ty += 10.0f;
+	Vector3f trans = mtx.getTranslation();
+	trans.y += 10.0f;
+	mtx.setTranslation(trans);
 	GXSetLineWidth(40, GX_TO_ZERO);
 	gfx.drawAxis(50.0f, &mtx);
 	PerspPrintfInfo info;

@@ -271,11 +271,13 @@ void ObjectCamera::setParms(Camera* cam)
 {
 	// this might not be right since its not using the camera input, but the size is right and it does get setCamera a bit closer
 
-	Vector3f pos = mCameraObj->getPosition();
+	Vector3f vec;
+	vec          = mCameraObj->getPosition();
+	Vector3f pos = vec;
 	JSGSetViewPosition(*(Vec*)&pos);
-	Vector3f view = mCameraObj->getViewVector();
-	view *= 200.0f;
-	pos += view;
+	vec = mCameraObj->getViewVector();
+	vec *= 200.0f;
+	pos += vec;
 	JSGSetViewTargetPosition(*(Vec*)&pos);
 
 	JSGSetViewRoll(0.0f);

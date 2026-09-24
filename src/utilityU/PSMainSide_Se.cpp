@@ -258,16 +258,17 @@ PikiHummingMgr::PikiHummingMgr()
 
 void PikiHumming::exec(HumType type, bool doPlay)
 {
-	bool test = true;
-	if ((type != mHumType) || !doPlay) {
+	u8 shouldPlay = true;
+	u8 sameType   = (mHumType == type);
+	if (sameType == false || doPlay == false) {
 		if (mCounter == -1) {
 			_00 = 0;
 		}
-		test = false;
+		shouldPlay = false;
 	}
 	mIsActive = false;
-	if (test) {
-		if (_00 - (_00 / mCounterMax) * mCounterMax == 0) {
+	if (shouldPlay) {
+		if (_00 % mCounterMax == 0) {
 			mIsActive = true;
 			_00       = 0;
 		}
@@ -811,8 +812,8 @@ void PikiHumming::play(PSM::Piki* piki)
 {
 	u32 id = static_cast<Game::Piki*>(piki->mGameObj)->getFormationSlotID();
 
-	u32 test = mSoundID + (id - (id / _0C) * _0C);
-	piki->startPikiSound(piki, test, 0);
+	u32 soundID = mSoundID + id % _0C;
+	piki->startPikiSound(piki, soundID, 0);
 	mCounter = 0;
 }
 
@@ -828,61 +829,6 @@ void PikiHummingMgr::play(PSM::Piki* piki)
 			mHummingArray[mCurrentType].play(piki);
 		}
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	lbz      r0, 0x10(r3)
-	cmplwi   r0, 0
-	beq      lbl_8046E09C
-	lwz      r4, 0x74(r31)
-	lwz      r0, 0(r3)
-	cmplw    r4, r0
-	blt      lbl_8046E09C
-	lwz      r4, 8(r3)
-	addi     r0, r4, 1
-	stw      r0, 8(r3)
-	lwz      r0, 8(r3)
-	cmpwi    r0, 4
-	bge      lbl_8046E09C
-	lwz      r0, 4(r3)
-	lwz      r3, 0xc(r3)
-	mulli    r0, r0, 0x1c
-	add      r30, r3, r0
-	lbz      r0, 0x18(r30)
-	cmplwi   r0, 0
-	beq      lbl_8046E09C
-	lwz      r3, 0x2c(r31)
-	bl       getFormationSlotID__Q24Game4PikiFv
-	lwz      r5, 0xc(r30)
-	cmplwi   r31, 0
-	lwz      r6, 4(r30)
-	mr       r4, r31
-	divwu    r0, r3, r5
-	mullw    r0, r0, r5
-	subf     r0, r0, r3
-	add      r5, r6, r0
-	beq      lbl_8046E088
-	addi     r4, r31, 0x30
-
-lbl_8046E088:
-	mr       r3, r31
-	li       r6, 0
-	bl       startPikiSound__Q23PSM4PikiFPQ27JAInter6ObjectUlUl
-	li       r0, 0
-	stw      r0, 0x10(r30)
-
-lbl_8046E09C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 } // namespace PSM
@@ -1023,7 +969,7 @@ JAISound* PSStartEnemyGhostSE(Game::EnemyBase* enemy, f32)
  */
 JAISound* PSStartEnemyFatalHitSE(Game::EnemyBase* enemy, f32 p2)
 {
-	JAISound* sound = PSStartSoundVec(PSSE_EN_ENEMY_FATAL_HIT, reinterpret_cast<Vec*>(enemy->getSound_PosPtr()));
+	PSM::SeSound* sound = PSStartSoundVec(PSSE_EN_ENEMY_FATAL_HIT, reinterpret_cast<Vec*>(enemy->getSound_PosPtr()));
 	if (sound) {
 		Sys::Sphere sphere;
 		enemy->getBoundingSphere(sphere);
@@ -1091,16 +1037,12 @@ JAISound* PSStartEnemyDownWatSE(Game::EnemyBase* enemy, f32 p2)
 		return nullptr;
 	}
 	if (p2 < 0.3f) {
-		JAIAnimeSound* soundObj = enemy->mSoundObj;
-		PSGame::SeMgr* mgr      = PSSystem::getSeMgrInstance();
-		sound                   = mgr->mSetSeList[6]->startSound(soundObj, PSSE_EV_ITEM_LAND_WATER1_S, 0);
+		sound = PSSystem::getSeMgrInstance()->startSetSe(PSGame::SeMgr::SETSE_PikiLanding, enemy->mSoundObj, PSSE_EV_ITEM_LAND_WATER1_S, 0);
 		if (sound) {
 			sound->setPitch(JALCalc::linearTransform(p2, 0.0f, 0.3f, 1.0f, 0.8f, false), 0, SOUNDPARAM_Unk0);
 		}
 	} else if (p2 < 0.7f) {
-		JAIAnimeSound* soundObj = enemy->mSoundObj;
-		PSGame::SeMgr* mgr      = PSSystem::getSeMgrInstance();
-		sound                   = mgr->mSetSeList[6]->startSound(soundObj, PSSE_EV_ITEM_LAND_WATER1_M, 0);
+		sound = PSSystem::getSeMgrInstance()->startSetSe(PSGame::SeMgr::SETSE_PikiLanding, enemy->mSoundObj, PSSE_EV_ITEM_LAND_WATER1_M, 0);
 		if (sound) {
 			sound->setPitch(JALCalc::linearTransform(p2, 0.3f, 0.7f, 1.5f, 0.6f, false), 0, SOUNDPARAM_Unk0);
 		}
@@ -1111,128 +1053,6 @@ JAISound* PSStartEnemyDownWatSE(Game::EnemyBase* enemy, f32 p2)
 		}
 	}
 	return sound;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stfd     f31, 0x10(r1)
-	psq_st   f31, 24(r1), 0, qr0
-	stw      r31, 0xc(r1)
-	fmr      f31, f1
-	lfs      f0, lbl_80520CE0@sda21(r2)
-	fcmpu    cr0, f0, f31
-	beq      lbl_8046E870
-	fcmpo    cr0, f31, f0
-	bge      lbl_8046E878
-
-lbl_8046E870:
-	li       r3, 0
-	b        lbl_8046EA24
-
-lbl_8046E878:
-	lfs      f0, lbl_80520D10@sda21(r2)
-	fcmpo    cr0, f31, f0
-	bge      lbl_8046E918
-	lwz      r31, 0x28c(r3)
-	cmplwi   r31, 0
-	beq      lbl_8046E894
-	addi     r31, r31, 0x30
-
-lbl_8046E894:
-	lwz      r0,
-"sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13) cmplwi   r0,
-0 bne      lbl_8046E8BC lis      r3, lbl_8049DA34@ha lis      r5,
-lbl_8049DA1C@ha addi     r3, r3, lbl_8049DA34@l li       r4, 0x237 addi     r5,
-r5, lbl_8049DA1C@l crclr    6 bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8046E8BC:
-	lwz      r3,
-"sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13) mr       r4,
-r31 li       r5, 0x380b li       r6, 0 lwz      r3, 0x1c(r3) bl
-startSound__Q26PSGame5SetSeFPQ27JAInter6ObjectUlUl or.      r31, r3, r3 beq
-lbl_8046EA20 fmr      f1, f31 lfs      f2, lbl_80520CE0@sda21(r2) lfs      f3,
-lbl_80520D10@sda21(r2) li       r3, 0 lfs      f4, lbl_80520CF4@sda21(r2) lfs
-f5, lbl_80520D18@sda21(r2) bl       linearTransform__7JALCalcFfffffb mr r3, r31
-	li       r4, 0
-	lwz      r12, 0x10(r31)
-	li       r5, 0
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8046EA20
-
-lbl_8046E918:
-	lfs      f0, lbl_80520D30@sda21(r2)
-	fcmpo    cr0, f31, f0
-	bge      lbl_8046E9B8
-	lwz      r31, 0x28c(r3)
-	cmplwi   r31, 0
-	beq      lbl_8046E934
-	addi     r31, r31, 0x30
-
-lbl_8046E934:
-	lwz      r0,
-"sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13) cmplwi   r0,
-0 bne      lbl_8046E95C lis      r3, lbl_8049DA34@ha lis      r5,
-lbl_8049DA1C@ha addi     r3, r3, lbl_8049DA34@l li       r4, 0x237 addi     r5,
-r5, lbl_8049DA1C@l crclr    6 bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8046E95C:
-	lwz      r3,
-"sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13) mr       r4,
-r31 li       r5, 0x380c li       r6, 0 lwz      r3, 0x1c(r3) bl
-startSound__Q26PSGame5SetSeFPQ27JAInter6ObjectUlUl or.      r31, r3, r3 beq
-lbl_8046EA20 fmr      f1, f31 lfs      f2, lbl_80520D10@sda21(r2) lfs      f3,
-lbl_80520D30@sda21(r2) li       r3, 0 lfs      f4, lbl_80520D0C@sda21(r2) lfs
-f5, lbl_80520D34@sda21(r2) bl       linearTransform__7JALCalcFfffffb mr r3, r31
-	li       r4, 0
-	lwz      r12, 0x10(r31)
-	li       r5, 0
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8046EA20
-
-lbl_8046E9B8:
-	lwz      r12, 0(r3)
-	lwz      r12, 0xf4(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	li       r4, 0x380d
-	li       r5, 0
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	or.      r31, r3, r3
-	beq      lbl_8046EA20
-	fmr      f1, f31
-	lfs      f2, lbl_80520D30@sda21(r2)
-	lfs      f3, lbl_80520D0C@sda21(r2)
-	li       r3, 0
-	lfs      f4, lbl_80520D40@sda21(r2)
-	lfs      f5, lbl_80520D18@sda21(r2)
-	bl       linearTransform__7JALCalcFfffffb
-	mr       r3, r31
-	li       r4, 0
-	lwz      r12, 0x10(r31)
-	li       r5, 0
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8046EA20:
-	mr       r3, r31
-
-lbl_8046EA24:
-	psq_l    f31, 24(r1), 0, qr0
-	lwz      r0, 0x24(r1)
-	lfd      f31, 0x10(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
@@ -1283,12 +1103,12 @@ JAISe* PSStartTresureLaderNoiseSE(u8 state, f32 a1, f32)
 		if (sLaderNoiseTimer > sLaderNoiseWait) {
 			sound            = PSSystem::spSysIF->playSystemSe(PSSE_SY_LADER_NOISE_SINGLE, 0);
 			f32 delay        = JALCalc::getRandom(sLaderNoiseFuefukiTimerRandam, JALCalc::cEqualCSlope, JALCalc::cEqualPSlope);
-			sLaderNoiseTimer = 0;
 			sLaderNoiseWait  = sLaderNoiseFuefukiTimerCenter + delay;
+			sLaderNoiseTimer = 0;
 		}
 		if (sound) {
-			f32 calc                = JALCalc::getParamByExp(a1, sLaderNoiseFuefukiSensMin, sLaderNoiseFuefukiSensMax, sLaderNoiseVolumeExp,
-			                                                 sLaderNoiseFuefukiVolumeMin, sLaderNoiseFuefukiVolumeMax, JALCalc::CS_POSITIVE_CURVE);
+			f32 calc = JALCalc::getParamByExp(a1, sLaderNoiseFuefukiSensMin, sLaderNoiseFuefukiSensMax, sLaderNoiseVolumeExp,
+			                                  sLaderNoiseFuefukiVolumeMin, sLaderNoiseFuefukiVolumeMax, JALCalc::CS_POSITIVE_CURVE);
 			PSM::MiddleBossSeq* seq = PSMGetMiddleBossSeq();
 			if (seq && *seq->getHandleP()) {
 				f32 vol = (*seq->getHandleP())->getVolume(SOUNDPARAM_Unk0);
@@ -1305,8 +1125,8 @@ JAISe* PSStartTresureLaderNoiseSE(u8 state, f32 a1, f32)
 		if (sLaderNoiseTimer > sLaderNoiseWait) {
 			sound            = PSSystem::spSysIF->playSystemSe(PSSE_SY_LADER_NOISE_SINGLE, 0);
 			f32 delay        = JALCalc::getRandom(sLaderNoiseFuefukiTimerRandam / 6, JALCalc::cEqualCSlope, JALCalc::cEqualPSlope);
-			sLaderNoiseTimer = 0;
 			sLaderNoiseWait  = sLaderNoiseFuefukiTimerCenter / 6 + delay;
+			sLaderNoiseTimer = 0;
 		}
 		if (sound) {
 			PSM::MiddleBossSeq* seq = PSMGetMiddleBossSeq();
@@ -1324,318 +1144,6 @@ JAISe* PSStartTresureLaderNoiseSE(u8 state, f32 a1, f32)
 		break;
 	}
 	return sound;
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stfd     f31, 0x30(r1)
-	psq_st   f31, 56(r1), 0, qr0
-	stw      r31, 0x2c(r1)
-	stw      r30, 0x28(r1)
-	stw      r29, 0x24(r1)
-	clrlwi   r0, r3, 0x18
-	lis      r3, lbl_8049DA08@ha
-	fmr      f31, f1
-	cmpwi    r0, 4
-	addi     r31, r3, lbl_8049DA08@l
-	li       r30, 0
-	beq      lbl_8046EED0
-	bge      lbl_8046F0C8
-	cmpwi    r0, 3
-	bge      lbl_8046ECF0
-	b        lbl_8046F0C8
-	b        lbl_8046F0C8
-
-lbl_8046ECF0:
-	lhz      r3, sLaderNoiseTimer@sda21(r13)
-	lha      r0, sLaderNoiseWait@sda21(r13)
-	addi     r4, r3, 1
-	clrlwi   r3, r4, 0x10
-	sth      r4, sLaderNoiseTimer@sda21(r13)
-	cmpw     r3, r0
-	ble      lbl_8046ED88
-	lwz      r3, spSysIF__8PSSystem@sda21(r13)
-	li       r4, 0x1887
-	li       r5, 0
-	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-	lha      r4, sLaderNoiseFuefukiTimerRandam@sda21(r13)
-	lis      r0, 0x4330
-	stw      r0, 8(r1)
-	mr       r30, r3
-	xoris    r0, r4, 0x8000
-	lfd      f1, lbl_80520D58@sda21(r2)
-	stw      r0, 0xc(r1)
-	lfs      f2, cEqualCSlope__7JALCalc@sda21(r2)
-	lfd      f0, 8(r1)
-	lfs      f3, cEqualPSlope__7JALCalc@sda21(r2)
-	fsubs    f1, f0, f1
-	bl       getRandom__7JALCalcFfff
-	lha      r4, sLaderNoiseFuefukiTimerCenter@sda21(r13)
-	lis      r3, 0x4330
-	li       r0, 0
-	stw      r3, 0x10(r1)
-	xoris    r3, r4, 0x8000
-	lfd      f2, lbl_80520D58@sda21(r2)
-	stw      r3, 0x14(r1)
-	lfd      f0, 0x10(r1)
-	sth      r0, sLaderNoiseTimer@sda21(r13)
-	fsubs    f0, f0, f2
-	fadds    f0, f0, f1
-	fctiwz   f0, f0
-	stfd     f0, 0x18(r1)
-	lwz      r0, 0x1c(r1)
-	sth      r0, sLaderNoiseWait@sda21(r13)
-
-lbl_8046ED88:
-	cmplwi   r30, 0
-	beq      lbl_8046F0C8
-	fmr      f1, f31
-	lfs      f2, sLaderNoiseFuefukiSensMin@sda21(r13)
-	lfs      f3, sLaderNoiseFuefukiSensMax@sda21(r13)
-	li       r3, 1
-	lfs      f4, sLaderNoiseVolumeExp@sda21(r13)
-	lfs      f5, sLaderNoiseFuefukiVolumeMin@sda21(r13)
-	lfs      f6, sLaderNoiseFuefukiVolumeMax@sda21(r13)
-	bl       getParamByExp__7JALCalcFffffffQ27JALCalc9CurveSign
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	fmr      f31, f1
-	cmplwi   r0, 0
-	bne      lbl_8046EDD4
-	addi     r3, r31, 0x2c
-	addi     r5, r31, 0x14
-	li       r4, 0x1d3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8046EDD4:
-	lwz      r29, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r29, 0
-	bne      lbl_8046EDF4
-	addi     r3, r31, 0x2c
-	addi     r5, r31, 0x14
-	li       r4, 0x1dc
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8046EDF4:
-	lwz      r0, 4(r29)
-	cmplwi   r0, 0
-	bne      lbl_8046EE14
-	addi     r3, r31, 0x38
-	addi     r5, r31, 0x14
-	li       r4, 0xc7
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8046EE14:
-	lwz      r3, 4(r29)
-	lwz      r3, 4(r3)
-	cmplwi   r3, 0
-	bne      lbl_8046EE2C
-	li       r31, 0
-	b        lbl_8046EE34
-
-lbl_8046EE2C:
-	bl       getMiddleBossBgm__Q26PSGame8PikSceneFv
-	mr       r31, r3
-
-lbl_8046EE34:
-	cmplwi   r31, 0
-	beq      lbl_8046EEAC
-	mr       r3, r31
-	lwz      r12, 0x10(r31)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0(r3)
-	cmplwi   r0, 0
-	beq      lbl_8046EEAC
-	mr       r3, r31
-	lwz      r12, 0x10(r31)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0(r3)
-	li       r4, 0
-	lwz      r12, 0x10(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, lbl_80520CE0@sda21(r2)
-	fcmpo    cr0, f1, f2
-	ble      lbl_8046EEAC
-	lfs      f3, lbl_80520CF4@sda21(r2)
-	li       r3, 1
-	lfs      f5, lbl_80520D54@sda21(r2)
-	fmr      f4, f3
-	bl       linearTransform__7JALCalcFfffffb
-	fmuls    f31, f31, f1
-
-lbl_8046EEAC:
-	mr       r3, r30
-	fmr      f1, f31
-	lwz      r12, 0x10(r30)
-	li       r4, 0
-	li       r5, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8046F0C8
-
-lbl_8046EED0:
-	lhz      r3, sLaderNoiseTimer@sda21(r13)
-	lha      r0, sLaderNoiseWait@sda21(r13)
-	addi     r4, r3, 1
-	clrlwi   r3, r4, 0x10
-	sth      r4, sLaderNoiseTimer@sda21(r13)
-	cmpw     r3, r0
-	ble      lbl_8046EF90
-	lwz      r3, spSysIF__8PSSystem@sda21(r13)
-	li       r4, 0x1887
-	li       r5, 0
-	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-	lis      r4, 0x2AAAAAAB@ha
-	lha      r5, sLaderNoiseFuefukiTimerRandam@sda21(r13)
-	addi     r4, r4, 0x2AAAAAAB@l
-	lis      r0, 0x4330
-	mulhw    r4, r4, r5
-	stw      r0, 0x18(r1)
-	lfd      f1, lbl_80520D58@sda21(r2)
-	mr       r30, r3
-	lfs      f2, cEqualCSlope__7JALCalc@sda21(r2)
-	lfs      f3, cEqualPSlope__7JALCalc@sda21(r2)
-	srwi     r0, r4, 0x1f
-	add      r0, r4, r0
-	xoris    r0, r0, 0x8000
-	stw      r0, 0x1c(r1)
-	lfd      f0, 0x18(r1)
-	fsubs    f1, f0, f1
-	bl       getRandom__7JALCalcFfff
-	lis      r3, 0x2AAAAAAB@ha
-	lha      r0, sLaderNoiseFuefukiTimerCenter@sda21(r13)
-	addi     r4, r3, 0x2AAAAAAB@l
-	lis      r3, 0x4330
-	mulhw    r4, r4, r0
-	li       r0, 0
-	stw      r3, 0x10(r1)
-	lfd      f2, lbl_80520D58@sda21(r2)
-	sth      r0, sLaderNoiseTimer@sda21(r13)
-	srwi     r0, r4, 0x1f
-	add      r0, r4, r0
-	xoris    r0, r0, 0x8000
-	stw      r0, 0x14(r1)
-	lfd      f0, 0x10(r1)
-	fsubs    f0, f0, f2
-	fadds    f0, f0, f1
-	fctiwz   f0, f0
-	stfd     f0, 8(r1)
-	lwz      r0, 0xc(r1)
-	sth      r0, sLaderNoiseWait@sda21(r13)
-
-lbl_8046EF90:
-	cmplwi   r30, 0
-	beq      lbl_8046F0C8
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_8046EFB8
-	addi     r3, r31, 0x2c
-	addi     r5, r31, 0x14
-	li       r4, 0x1d3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8046EFB8:
-	lwz      r29, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r29, 0
-	bne      lbl_8046EFD8
-	addi     r3, r31, 0x2c
-	addi     r5, r31, 0x14
-	li       r4, 0x1dc
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8046EFD8:
-	lwz      r0, 4(r29)
-	cmplwi   r0, 0
-	bne      lbl_8046EFF8
-	addi     r3, r31, 0x38
-	addi     r5, r31, 0x14
-	li       r4, 0xc7
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8046EFF8:
-	lwz      r3, 4(r29)
-	lwz      r3, 4(r3)
-	cmplwi   r3, 0
-	bne      lbl_8046F010
-	li       r31, 0
-	b        lbl_8046F018
-
-lbl_8046F010:
-	bl       getMiddleBossBgm__Q26PSGame8PikSceneFv
-	mr       r31, r3
-
-lbl_8046F018:
-	cmplwi   r31, 0
-	beq      lbl_8046F0A8
-	mr       r3, r31
-	lwz      r12, 0x10(r31)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0(r3)
-	cmplwi   r0, 0
-	beq      lbl_8046F0A8
-	mr       r3, r31
-	lwz      r12, 0x10(r31)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0(r3)
-	li       r4, 0
-	lwz      r12, 0x10(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, lbl_80520CE0@sda21(r2)
-	fcmpo    cr0, f1, f2
-	ble      lbl_8046F0A8
-	lfs      f3, lbl_80520CF4@sda21(r2)
-	li       r3, 1
-	lfs      f5, lbl_80520D54@sda21(r2)
-	fmr      f4, f3
-	bl       linearTransform__7JALCalcFfffffb
-	mr       r3, r30
-	li       r4, 0
-	lwz      r12, 0x10(r30)
-	li       r5, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8046F0A8:
-	mr       r3, r30
-	lfs      f1, lbl_80520D24@sda21(r2)
-	lwz      r12, 0x10(r30)
-	li       r4, 0
-	li       r5, 0
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8046F0C8:
-	mr       r3, r30
-	psq_l    f31, 56(r1), 0, qr0
-	lwz      r0, 0x44(r1)
-	lfd      f31, 0x30(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
 }
 
 /**

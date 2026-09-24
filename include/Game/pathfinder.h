@@ -90,9 +90,6 @@ struct AStarContext {
 
 	bool checkContext() { return mHandleIdx != 0 && mState == PATHFIND_Busy; }
 
-	// fabricated
-	bool isExhausted() volatile { return mActiveList.mRootNode == nullptr; }
-
 	inline bool isFlag(PathFindFlags flag) { return mRequestFlag & flag; }
 
 	s16 mStartWPID;         // _00

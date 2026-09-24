@@ -10,12 +10,31 @@
 
 namespace PSMath {
 
-static inline Vec squareComponents(Vec vector)
+inline f32 abs(f32 value)
 {
-	vector.x *= vector.x;
-	vector.y *= vector.y;
-	vector.z *= vector.z;
-	return vector;
+	return (value >= 0.0f) ? value : -value;
+}
+
+inline Vec squareComponents(const Vec& vector)
+{
+	Vec squares = vector;
+	squares.x *= squares.x;
+	squares.y *= squares.y;
+	squares.z *= squares.z;
+	return squares;
+}
+
+inline f32 calcSquareMagnitude(const Vec& vector)
+{
+	Vec squares = squareComponents(vector);
+	return squares.z + (squares.x + squares.y);
+}
+
+inline f32 calcLength(const Vec& vector)
+{
+	Vec squares  = squareComponents(vector);
+	f32 distance = squares.z + (squares.x + squares.y);
+	return sqrtfInPlace(distance);
 }
 
 template <typename A, typename B>
@@ -31,8 +50,7 @@ inline f32 calcSquareDistance(const A& a, const B& b)
 	deltaGeometry.y = a.y - position.y;
 	deltaGeometry.z = a.z - position.z;
 	Vec delta       = deltaGeometry;
-	Vec squares     = squareComponents(delta);
-	return squares.z + (squares.x + squares.y);
+	return calcSquareMagnitude(delta);
 }
 
 inline JGeometry::TVec3f toVec(const Vector3f& position)
@@ -46,12 +64,10 @@ template <typename A, typename B>
 inline f32 calcDistance(A from, B to)
 {
 	Vec delta;
-	delta.x      = from.x - to.x;
-	delta.y      = from.y - to.y;
-	delta.z      = from.z - to.z;
-	Vec squares  = squareComponents(delta);
-	f32 distance = squares.z + (squares.x + squares.y);
-	return sqrtfInPlace(distance);
+	delta.x = from.x - to.x;
+	delta.y = from.y - to.y;
+	delta.z = from.z - to.z;
+	return calcLength(delta);
 }
 
 inline f32 calcMagnitude(const Vec& vector)
@@ -60,7 +76,7 @@ inline f32 calcMagnitude(const Vec& vector)
 }
 
 template <typename A, typename B>
-inline f32 calcDistanceXZ(const A& a, B b)
+inline f32 calcDistanceXZ(const A& a, const B& b)
 {
 	f32 x = a.x - b.x;
 	x *= x;

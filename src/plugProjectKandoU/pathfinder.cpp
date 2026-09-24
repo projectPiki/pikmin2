@@ -592,8 +592,8 @@ int AStarPathfinder::search(Game::AStarContext* context, int maxIterations, Game
 		mContext->mInactiveList.add(targetNode);
 	}
 
-	// Today I learned you can make volatile functions to do shit like this T-T
-	if (mContext->isExhausted()) {
+	const PathNode& activeList = mContext->mActiveList;
+	if (activeList.mRootNode == nullptr) {
 		return 1;
 	}
 
