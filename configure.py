@@ -1203,7 +1203,7 @@ config.libs = [
             Object(Equivalent, "plugProjectKandoU/routeMgr.cpp"),
             Object(Matching, "plugProjectKandoU/onyonMgr.cpp"),
             Object(Matching, "plugProjectKandoU/objectTypes.cpp"),
-            Object(Equivalent, "plugProjectKandoU/naviState.cpp"),
+            Object(Matching, "plugProjectKandoU/naviState.cpp"),
             Object(Matching, "plugProjectKandoU/pikiState.cpp"),
             Object(Matching, "plugProjectKandoU/interactPiki.cpp"),
             Object(Equivalent, "plugProjectKandoU/gameCPlate.cpp"),
