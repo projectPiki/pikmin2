@@ -488,152 +488,15 @@ Vector3f Item::getBridgeXVec()
 void Item::getBridgePos(Vector3f& pos, f32& p1, f32& p2)
 {
 	Vector3f bridgePos = mPosition;
-	bridgePos -= getBridgeZVec() * 20.0f;
-	Vector3f diff(pos.x - bridgePos.x, 0.0f, pos.z - bridgePos.z);
+	Vector3f zVec      = getBridgeZVec() * 20.0f;
+	Vector3f startPos  = bridgePos;
+	startPos -= zVec;
+	Vector3f diff(pos.x - startPos.x, 0.0f, pos.z - startPos.z);
 	Vector3f perpDir = getPerpDirection(mFaceDir);
 	Vector3f dir     = getDirection(mFaceDir);
 
 	p1 = diff.dot(perpDir);
 	p2 = diff.dot(dir);
-
-	/*
-	stwu     r1, -0x80(r1)
-	mflr     r0
-	stw      r0, 0x84(r1)
-	stfd     f31, 0x70(r1)
-	psq_st   f31, 120(r1), 0, qr0
-	stfd     f30, 0x60(r1)
-	psq_st   f30, 104(r1), 0, qr0
-	stw      r31, 0x5c(r1)
-	stw      r30, 0x58(r1)
-	stw      r29, 0x54(r1)
-	stw      r28, 0x50(r1)
-	mr       r28, r3
-	mr       r29, r4
-	lfs      f31, 0x19c(r3)
-	mr       r30, r5
-	lfs      f30, 0x1a4(r3)
-	mr       r31, r6
-	mr       r4, r28
-	addi     r3, r1, 8
-	bl       getBridgeZVec__Q34Game10ItemBridge4ItemFv
-	lfs      f0, 8(r1)
-	lfs      f2, lbl_80519B48@sda21(r2)
-	lfs      f1, 0x10(r1)
-	fmuls    f4, f0, f2
-	lfs      f0, 0x1f4(r28)
-	fmuls    f2, f1, f2
-	lfs      f1, lbl_80519B10@sda21(r2)
-	lfs      f3, 8(r29)
-	fsubs    f4, f31, f4
-	fsubs    f5, f30, f2
-	lfs      f2, 0(r29)
-	fcmpo    cr0, f0, f1
-	fsubs    f4, f2, f4
-	fsubs    f5, f3, f5
-	bge      lbl_801EF24C
-	lfs      f1, lbl_80519B58@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fmuls    f1, f0, f1
-	fctiwz   f1, f1
-	stfd     f1, 0x18(r1)
-	lwz      r0, 0x1c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f1, r3, r0
-	fneg     f2, f1
-	b        lbl_801EF270
-
-lbl_801EF24C:
-	lfs      f1, lbl_80519B54@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fmuls    f1, f0, f1
-	fctiwz   f1, f1
-	stfd     f1, 0x20(r1)
-	lwz      r0, 0x24(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f2, r3, r0
-
-lbl_801EF270:
-	lfs      f1, lbl_80519B10@sda21(r2)
-	fmr      f3, f0
-	fneg     f6, f2
-	fcmpo    cr0, f0, f1
-	bge      lbl_801EF288
-	fneg     f3, f0
-
-lbl_801EF288:
-	lfs      f2, lbl_80519B54@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	lfs      f1, lbl_80519B10@sda21(r2)
-	addi     r3, r3, sincosTable___5JMath@l
-	fmuls    f2, f3, f2
-	addi     r3, r3, 4
-	fcmpo    cr0, f0, f1
-	fmr      f8, f0
-	fctiwz   f1, f2
-	stfd     f1, 0x28(r1)
-	lwz      r0, 0x2c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f7, r3, r0
-	bge      lbl_801EF2C4
-	fneg     f8, f0
-
-lbl_801EF2C4:
-	lfs      f3, lbl_80519B54@sda21(r2)
-	lfs      f1, lbl_80519B10@sda21(r2)
-	fmuls    f2, f8, f3
-	fcmpo    cr0, f0, f1
-	fctiwz   f1, f2
-	stfd     f1, 0x30(r1)
-	lwz      r0, 0x34(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f2, r3, r0
-	bge      lbl_801EF318
-	lfs      f1, lbl_80519B58@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fmuls    f0, f0, f1
-	fctiwz   f0, f0
-	stfd     f0, 0x38(r1)
-	lwz      r0, 0x3c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r3, r0
-	fneg     f3, f0
-	b        lbl_801EF338
-
-lbl_801EF318:
-	fmuls    f0, f0, f3
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fctiwz   f0, f0
-	stfd     f0, 0x40(r1)
-	lwz      r0, 0x44(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f3, r3, r0
-
-lbl_801EF338:
-	lfs      f0, lbl_80519B10@sda21(r2)
-	fmadds   f1, f4, f7, f0
-	fmadds   f0, f4, f3, f0
-	fmadds   f1, f5, f6, f1
-	fmadds   f0, f5, f2, f0
-	stfs     f1, 0(r30)
-	stfs     f0, 0(r31)
-	psq_l    f31, 120(r1), 0, qr0
-	lfd      f31, 0x70(r1)
-	psq_l    f30, 104(r1), 0, qr0
-	lfd      f30, 0x60(r1)
-	lwz      r31, 0x5c(r1)
-	lwz      r30, 0x58(r1)
-	lwz      r29, 0x54(r1)
-	lwz      r0, 0x84(r1)
-	lwz      r28, 0x50(r1)
-	mtlr     r0
-	addi     r1, r1, 0x80
-	blr
-	*/
 }
 
 /**

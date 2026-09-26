@@ -345,7 +345,7 @@ struct J3DZModeInfo {
 	u8 _03;            // _03, padding
 };
 
-inline u16 calcZModeID(u32 param_0, u32 param_1, u32 param_2)
+inline u32 calcZModeID(u32 param_0, int param_1, u32 param_2)
 {
 	return (param_1 * 2) + (param_0 * 0x10) + param_2;
 }

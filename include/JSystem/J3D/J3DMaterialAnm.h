@@ -94,6 +94,9 @@ struct J3DTexMtxAnm {
 
 	~J3DTexMtxAnm() { }
 
+	void setIndex(u16 index) { mIndex = index; }
+	void setAnm(J3DAnmTextureSRTKey* anm) { mAnm = anm; }
+
 	void operator=(J3DTexMtxAnm const& other)
 	{
 		mAnm     = other.mAnm;
@@ -127,6 +130,9 @@ struct J3DTevColorAnm {
 
 	~J3DTevColorAnm() { }
 
+	void setIndex(u16 index) { mIndex = index; }
+	void setAnm(J3DAnmTevRegKey* anm) { mAnm = anm; }
+
 	void operator=(J3DTevColorAnm const& other)
 	{
 		mAnm     = other.mAnm;
@@ -159,6 +165,9 @@ struct J3DTevKColorAnm {
 	}
 
 	~J3DTevKColorAnm() { }
+
+	void setIndex(u16 index) { mIndex = index; }
+	void setAnm(J3DAnmTevRegKey* anm) { mAnm = anm; }
 
 	void operator=(J3DTevKColorAnm const& other)
 	{

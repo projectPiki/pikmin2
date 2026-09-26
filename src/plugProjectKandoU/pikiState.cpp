@@ -2430,8 +2430,10 @@ void PikiFlyingState::exec(Piki* piki)
 		mDirectionalSpeed     = speed;
 		mHalfDirectionalSpeed = 0.5f * speed;
 
-		piki->mVelocity.scale2D(throwMagnitude);
-		piki->mTargetVelocity.set2D(piki->mVelocity);
+		piki->mVelocity.x *= throwMagnitude;
+		piki->mVelocity.z *= throwMagnitude;
+		piki->mTargetVelocity.x = piki->mVelocity.x;
+		piki->mTargetVelocity.z = piki->mVelocity.z;
 
 		piki->mVelocity.y       = 0.0f;
 		piki->mTargetVelocity.y = 0.0f;

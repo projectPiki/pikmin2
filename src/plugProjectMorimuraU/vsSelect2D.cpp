@@ -6691,7 +6691,7 @@ void TVsSelect::doZoom()
 			for (int i = 0; i < 2; i++) {
 				Vector2f diff = mOnyonObj[i]->mCurrentPosition;
 				diff -= offset;
-				if (diff.sqrMagnitude() < 160000.0f) {
+				if (diff.sqrLength() < 160000.0f) {
 					finish = false;
 				}
 			}

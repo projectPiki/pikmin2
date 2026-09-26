@@ -59,9 +59,9 @@ void calcJointPos(const Vector3f& topPosition, const Vector3f& bottomPosition, f
 {
 	Vector3f topToTargetVector = bottomPosition - topPosition;
 
-	f32 distanceTopMiddle    = SQUARE(topToMiddleDistance);      // f5
-	f32 distanceMiddleBottom = SQUARE(middleToBottomDistance);   // f4
-	f32 distanceTopToTarget  = topToTargetVector.sqrMagnitude(); // f11
+	f32 distanceTopMiddle    = SQUARE(topToMiddleDistance);    // f5
+	f32 distanceMiddleBottom = SQUARE(middleToBottomDistance); // f4
+	f32 distanceTopToTarget  = topToTargetVector.sqrLength();  // f11
 
 	if (!(distanceTopToTarget < 0.000001f)) {
 		f32 scale = (0.5f / distanceTopToTarget) * (distanceTopToTarget + (distanceTopMiddle - distanceMiddleBottom));
@@ -76,7 +76,7 @@ void calcJointPos(const Vector3f& topPosition, const Vector3f& bottomPosition, f
 			translation          = translation.cross(topToTargetVector);
 			middleJointPos       = topToTargetVector.cross(translation);
 
-			f32 outSqr = middleJointPos.sqrMagnitude();
+			f32 outSqr = middleJointPos.sqrLength();
 			if (outSqr != 0.0f) {
 				f32 scale             = sqrtfClamped(distance / outSqr);
 				bottomJointPosition.x = scale * middleJointPos.x + scaledTopToTarget.x;

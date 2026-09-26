@@ -1635,7 +1635,7 @@ void StateWarCry::exec(EnemyBase* enemy)
 						f32 angDist    = enemy->getAngDist(piki);
 						bool distCheck = false;
 						Vector3f sep   = enemy->getTargetSeparation(piki);
-						if ((sep.sqrMagnitude() < SQUARE(roarDist)) && FABS(angDist) <= PI * (DEG2RAD * roarAngle)) {
+						if ((sep.sqrLength() < SQUARE(roarDist)) && FABS(angDist) <= PI * (DEG2RAD * roarAngle)) {
 							distCheck = true;
 						}
 						if (distCheck) {

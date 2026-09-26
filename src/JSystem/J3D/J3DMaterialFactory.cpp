@@ -165,17 +165,15 @@ J3DMaterial* J3DMaterialFactory::createNormalMaterial(J3DMaterial* material, int
 	}
 
 	u32 stageNum    = countStages(matID);
-	u32 tevStageNum = (u32)getMdlDataFlag_TevStageNum(flags);
-
-	if (stageNum > tevStageNum)
-		tevStageNum = stageNum;
-	u32 texNum = tevStageNum > 8 ? 8 : tevStageNum;
+	u32 tevFlag     = getMdlDataFlag_TevStageNum(flags);
+	u32 tevStageNum = stageNum > tevFlag ? stageNum : tevFlag;
+	u32 texNum      = tevStageNum > 8 ? 8 : tevStageNum;
 
 	u32 texGenNum  = countTexGens(matID);
+	u32 texGenFlag = texGenNum > 4 ? 0 : getMdlDataFlag_TexGenFlag(flags);
 	u32 colorFlag  = getMdlDataFlag_ColorFlag(flags);
 	u32 peFlag     = getMdlDataFlag_PEFlag(flags);
-	bool indFlag   = (flags & 0x01000000);
-	u32 texGenFlag = texGenNum > 4 ? 0 : getMdlDataFlag_TexGenFlag(flags);
+	u32 indFlag    = (flags & J3DMLF_Material_UseIndirect) ? 1 : 0;
 
 	if (!material) {
 		material = new J3DMaterial();
@@ -1970,16 +1968,14 @@ size_t J3DMaterialFactory::calcSizeNormalMaterial(J3DMaterial* material, int mat
 		return calcSizeLockedMaterial(material, matID, flags);
 	}
 
-	u32 stages        = countStages(matID);
-	u32 tev_stage_num = (u32)getMdlDataFlag_TevStageNum(flags);
-	if (stages > tev_stage_num) {
-		tev_stage_num = stages;
-	}
+	u32 stages           = countStages(matID);
+	u32 tev_flag         = getMdlDataFlag_TevStageNum(flags);
+	u32 tev_stage_num    = stages > tev_flag ? stages : tev_flag;
 	u32 tex_gens         = countTexGens(matID);
-	u32 pe_flag          = getMdlDataFlag_PEFlag(flags);
-	u32 color_block_flag = getMdlDataFlag_ColorFlag(flags);
-	u32 ind_flag         = (flags >> 0x18) & 1;
 	u32 tex_gen_flag     = tex_gens > 4 ? 0 : getMdlDataFlag_TexGenFlag(flags);
+	u32 color_block_flag = getMdlDataFlag_ColorFlag(flags);
+	u32 pe_flag          = getMdlDataFlag_PEFlag(flags);
+	u32 ind_flag         = (flags & J3DMLF_Material_UseIndirect) ? 1 : 0;
 	if (material == nullptr) {
 		size = sizeof(J3DMaterial);
 	}
@@ -1995,209 +1991,6 @@ size_t J3DMaterialFactory::calcSizeNormalMaterial(J3DMaterial* material, int mat
 		}
 	}
 	return size;
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  lwz       r0, 0x78(r3)
-	  stmw      r25, 0x14(r1)
-	  mr        r29, r3
-	  cmplwi    r0, 0
-	  li        r30, 0
-	  beq-      .loc_0x2C
-	  bl        0x370
-	  b         .loc_0x244
-
-	.loc_0x2C:
-	  lwz       r3, 0x8(r29)
-	  rlwinm    r31,r5,1,0,30
-	  li        r7, 0
-	  lwz       r5, 0x4(r29)
-	  lhzx      r0, r3, r31
-	  mr        r3, r7
-	  mulli     r0, r0, 0x14C
-	  add       r5, r5, r0
-	  lbz       r0, 0x4(r5)
-	  cmplwi    r0, 0xFF
-	  beq-      .loc_0x60
-	  lwz       r3, 0x4C(r29)
-	  lbzx      r3, r3, r0
-
-	.loc_0x60:
-	  lhz       r0, 0x84(r5)
-	  cmplwi    r0, 0xFFFF
-	  beq-      .loc_0x70
-	  li        r7, 0x1
-
-	.loc_0x70:
-	  lhz       r0, 0x86(r5)
-	  cmplwi    r0, 0xFFFF
-	  beq-      .loc_0x80
-	  addi      r7, r7, 0x1
-
-	.loc_0x80:
-	  lhz       r0, 0x88(r5)
-	  cmplwi    r0, 0xFFFF
-	  beq-      .loc_0x90
-	  addi      r7, r7, 0x1
-
-	.loc_0x90:
-	  lhz       r0, 0x8A(r5)
-	  cmplwi    r0, 0xFFFF
-	  beq-      .loc_0xA0
-	  addi      r7, r7, 0x1
-
-	.loc_0xA0:
-	  lhz       r0, 0x8C(r5)
-	  cmplwi    r0, 0xFFFF
-	  beq-      .loc_0xB0
-	  addi      r7, r7, 0x1
-
-	.loc_0xB0:
-	  lhz       r0, 0x8E(r5)
-	  cmplwi    r0, 0xFFFF
-	  beq-      .loc_0xC0
-	  addi      r7, r7, 0x1
-
-	.loc_0xC0:
-	  lhz       r0, 0x90(r5)
-	  cmplwi    r0, 0xFFFF
-	  beq-      .loc_0xD0
-	  addi      r7, r7, 0x1
-
-	.loc_0xD0:
-	  lhz       r0, 0x92(r5)
-	  cmplwi    r0, 0xFFFF
-	  beq-      .loc_0xE0
-	  addi      r7, r7, 0x1
-
-	.loc_0xE0:
-	  cmplw     r3, r7
-	  beq-      .loc_0x100
-	  cmplwi    r7, 0
-	  beq-      .loc_0x100
-	  cmplw     r3, r7
-	  ble-      .loc_0x104
-	  mr        r7, r3
-	  b         .loc_0x104
-
-	.loc_0x100:
-	  mr        r7, r3
-
-	.loc_0x104:
-	  rlwinm    r28,r6,16,27,31
-	  cmplw     r7, r28
-	  ble-      .loc_0x114
-	  mr        r28, r7
-
-	.loc_0x114:
-	  lbz       r0, 0x3(r5)
-	  cmplwi    r0, 0xFF
-	  beq-      .loc_0x12C
-	  lwz       r3, 0x24(r29)
-	  lbzx      r3, r3, r0
-	  b         .loc_0x130
-
-	.loc_0x12C:
-	  li        r3, 0
-
-	.loc_0x130:
-	  li        r0, 0x4
-	  cmplwi    r4, 0
-	  subc      r3, r0, r3
-	  rlwinm    r26,r6,0,2,3
-	  subfe     r4, r3, r3
-	  rlwinm    r0,r6,0,4,5
-	  rlwinm    r3,r6,0,0,1
-	  rlwinm    r25,r6,8,31,31
-	  andc      r27, r0, r4
-	  bne-      .loc_0x15C
-	  li        r30, 0x4C
-
-	.loc_0x15C:
-	  bl        -0xBAC8
-	  add       r30, r30, r3
-	  mr        r3, r27
-	  bl        -0xBA84
-	  rlwinm    r0,r28,0,16,31
-	  add       r30, r30, r3
-	  mr        r3, r0
-	  bl        -0xBA68
-	  add       r30, r30, r3
-	  mr        r3, r25
-	  bl        -0xBA2C
-	  lwz       r4, 0x8(r29)
-	  add       r30, r30, r3
-	  lwz       r5, 0x4(r29)
-	  mr        r3, r26
-	  lhzx      r0, r4, r31
-	  mulli     r0, r0, 0x14C
-	  lbzx      r4, r5, r0
-	  bl        -0xBA38
-	  lwz       r4, 0x8(r29)
-	  add       r30, r30, r3
-	  lwz       r3, 0x4(r29)
-	  lhzx      r0, r4, r31
-	  mulli     r0, r0, 0x14C
-	  add       r3, r3, r0
-	  lhz       r0, 0x48(r3)
-	  cmplwi    r0, 0xFFFF
-	  beq-      .loc_0x1D0
-	  addi      r30, r30, 0x94
-
-	.loc_0x1D0:
-	  lhz       r0, 0x4A(r3)
-	  cmplwi    r0, 0xFFFF
-	  beq-      .loc_0x1E0
-	  addi      r30, r30, 0x94
-
-	.loc_0x1E0:
-	  lhz       r0, 0x4C(r3)
-	  cmplwi    r0, 0xFFFF
-	  beq-      .loc_0x1F0
-	  addi      r30, r30, 0x94
-
-	.loc_0x1F0:
-	  lhz       r0, 0x4E(r3)
-	  cmplwi    r0, 0xFFFF
-	  beq-      .loc_0x200
-	  addi      r30, r30, 0x94
-
-	.loc_0x200:
-	  lhz       r0, 0x50(r3)
-	  cmplwi    r0, 0xFFFF
-	  beq-      .loc_0x210
-	  addi      r30, r30, 0x94
-
-	.loc_0x210:
-	  lhz       r0, 0x52(r3)
-	  cmplwi    r0, 0xFFFF
-	  beq-      .loc_0x220
-	  addi      r30, r30, 0x94
-
-	.loc_0x220:
-	  lhz       r0, 0x54(r3)
-	  cmplwi    r0, 0xFFFF
-	  beq-      .loc_0x230
-	  addi      r30, r30, 0x94
-
-	.loc_0x230:
-	  lhz       r0, 0x56(r3)
-	  cmplwi    r0, 0xFFFF
-	  beq-      .loc_0x240
-	  addi      r30, r30, 0x94
-
-	.loc_0x240:
-	  mr        r3, r30
-
-	.loc_0x244:
-	  lmw       r25, 0x14(r1)
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
-	*/
 }
 
 /**

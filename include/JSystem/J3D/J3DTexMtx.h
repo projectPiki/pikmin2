@@ -3,10 +3,11 @@
 
 #include "Dolphin/mtx.h"
 #include "Dolphin/vec.h"
-#include "JSystem/J3D/J3DPacket.h"
 #include "JSystem/J3D/J3DTexGenBlock.h"
 #include "JSystem/J3D/J3DTypes.h"
 #include "types.h"
+
+struct J3DTexMtxObj;
 
 enum J3DTEXMTX {
 	J3DTEXMTX_None,               // 0

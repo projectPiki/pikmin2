@@ -366,7 +366,7 @@ void Navi::setupNukuAdjustArg(ItemPikihead::Item* item, NaviNukuAdjustStateArg& 
 	Vector3f direction = item->getPosition() - getPosition();
 	arg.mAngleToItem   = angDist(roundAng(pikmin2_atan2f(direction.x, direction.z)), mFaceDir) / 10.0f;
 
-	f32 distance = pikmin2_sqrtf(direction.sqrMagnitude());
+	f32 distance = pikmin2_sqrtf(direction.sqrLength());
 	f32 norm     = 1.0f / distance;
 
 	// These two lines are unused
@@ -2108,7 +2108,7 @@ void Navi::makeCStick(bool disable)
 	}
 
 	mCStickPosition  = 0.0f;
-	f32 moveStrength = transformedMotion.sqrMagnitude();
+	f32 moveStrength = transformedMotion.sqrLength();
 	mCommandOn2      = false;
 
 	// If the C-Stick is being used

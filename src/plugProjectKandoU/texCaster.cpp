@@ -249,10 +249,9 @@ Caster* Mgr::create(Sys::Sphere& sphere, f32 rotationAngle)
 		triArg.mVertices = new Vector3f[6];
 
 		Vector3f spherePos = sphere.mPosition;
-		f32 sphereRad      = sphere.mRadius;
 
-		Vector3f axisX(sphereRad, 0.0f, 0.0f);
-		Vector3f axisZ(0.0f, 0.0f, sphereRad);
+		Vector3f axisX(sphere.mRadius, 0.0f, 0.0f);
+		Vector3f axisZ(0.0f, 0.0f, sphere.mRadius);
 		triArg.mVertices[0] = spherePos - axisX - axisZ;
 		triArg.mVertices[1] = spherePos - axisX + axisZ;
 		triArg.mVertices[2] = spherePos + axisX + axisZ;

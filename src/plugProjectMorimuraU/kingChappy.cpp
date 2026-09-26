@@ -2443,7 +2443,7 @@ void Obj::checkFlick(bool check)
 		if (navi->isAlive()) {
 			f32 range    = C_PROPERPARMS.mInvisibleRange();
 			Vector3f sep = navi->getTargetSeparation(this);
-			if (sep.sqrMagnitude() < SQUARE(range)) {
+			if (sep.sqrLength() < SQUARE(range)) {
 				mFlickTimer += 0.1f;
 			}
 		}

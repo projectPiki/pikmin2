@@ -584,7 +584,7 @@ void Obj::windTarget()
 				f32 attackRadius = dotProduct * slope;
 
 				Vector2f dots = Vector2f(attackNormal.dot(separationVector), crossVec.dot(separationVector));
-				if (dots.sqrMagnitude() < SQUARE(attackRadius)) {
+				if (dots.sqrLength() < SQUARE(attackRadius)) {
 					f32 slideFactor  = dots.length() / attackRadius;
 					f32 windStrength = (1.0f - slideFactor) * 10.0f + slideFactor;
 
@@ -611,7 +611,7 @@ void Obj::windTarget()
 				f32 attackRadius = dotProduct * slope;
 
 				Vector2f dots = Vector2f(attackNormal.dot(separationVector), crossVec.dot(separationVector));
-				if (dots.sqrMagnitude() < SQUARE(attackRadius)) {
+				if (dots.sqrLength() < SQUARE(attackRadius)) {
 					f32 slideFactor = dots.length() / attackRadius;
 
 					f32 windStrength = (1.0f - slideFactor) * 15.0f + slideFactor * 1.5f;

@@ -841,7 +841,7 @@ bool Obj::isReachToGoal(f32 radius)
 		radius *= 2.0f;
 	}
 
-	if (inRadius2D(radius, mPosition, mNextWayPointPosition)) {
+	if (insideRadius2D(radius, mPosition, mNextWayPointPosition)) {
 		if (getStateID() == PANMODOKI_Walk && mTargetCreature) {
 			if (isCreatureIn2DRadius(radius, mPosition)) {
 				mFsm->transit(this, PANMODOKI_Stick, nullptr);

@@ -590,7 +590,7 @@ void StateStick::exec(EnemyBase* enemy)
 	// this needs fixing
 	Vector3f targetPos = target->getPosition();
 	Vector2f sep(targetPos.x - enemy->getPosition().x, targetPos.z - enemy->getPosition().z);
-	f32 dist        = sep.sqrMagnitude();
+	f32 dist        = sep.sqrLength();
 	f32 stickRadius = target->getStickRadius();
 	stickRadius += 1.2f * OBJ(enemy)->mCarrySizeDiff;
 	stickRadius *= stickRadius;

@@ -3188,7 +3188,7 @@ bool RoomMapMgr::findRayIntersection(Sys::RayIntersectInfo& info)
 					if (tri->intersect(newRay, info.mRadius, intersectionPoint)) {
 						result                   = true;
 						Vector3f directionVector = intersectionPoint - transformedStartPos;
-						f32 dist                 = directionVector.sqrMagnitude();
+						f32 dist                 = directionVector.sqrLength();
 						if (dist < minDist) {
 							intersectPos  = room->mRoomSpaceMtx.mtxMult(intersectionPoint);
 							minDist       = dist;

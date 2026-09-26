@@ -500,7 +500,7 @@ int PikiAI::ActFormation::exec()
 
 		Vector3f naviPikiSep = mParent->getPosition() - mParent->mNavi->getPosition(); // f30, f29, f28
 		Vector3f plateSep    = mParent->mNavi->getPosition() - mCPlate->mMaxPositionOffset;
-		plateSep.normalise();
+		plateSep.normalize();
 
 		if (plateSep.dot(naviPikiSep) > 0.0f) {
 			Vector3f impulse = Vector3f(-naviPikiSep.z, 0.0f, naviPikiSep.x); // f29, f27, f30

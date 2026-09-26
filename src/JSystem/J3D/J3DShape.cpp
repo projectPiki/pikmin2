@@ -248,9 +248,8 @@ void J3DShape::drawFast() const
 		// LOD flag shenanigans
 		if (J3DShapeMtx::getLODFlag() != 0)
 			J3DShapeMtx::resetMtxLoadCache();
-		u16 i = 0;
-		u32 n = getMtxGroupNum();
-		for (; i < n; i++) {
+		u32 n = mMtxGroupNum;
+		for (u16 i = 0; i < n; i++) {
 			if (getShapeMtx(i) != nullptr)
 				getShapeMtx(i)->load();
 			if (getShapeDraw(i) != nullptr)
@@ -259,9 +258,8 @@ void J3DShape::drawFast() const
 	} else {
 		J3DFifoLoadPosMtxImm(*j3dSys.getShapePacket()->getBaseMtxPtr(), GX_PNMTX0);
 		J3DFifoLoadNrmMtxImm(*j3dSys.getShapePacket()->getBaseMtxPtr(), GX_PNMTX0);
-		u16 i = 0;
-		u32 n = getMtxGroupNum();
-		for (i; i < n; i++)
+		u32 n = mMtxGroupNum;
+		for (u16 i = 0; i < n; i++)
 			if (getShapeDraw(i) != nullptr)
 				getShapeDraw(i)->draw();
 	}

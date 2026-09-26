@@ -243,7 +243,7 @@ J3DErrType J3DMaterialTable::allocTevRegAnimator(J3DAnmTevRegKey* tevRegKey, J3D
 {
 	u16 tevColorAnmCount  = tevRegKey->mCRegUpdateMaterialNum;
 	u16 tevKColorAnmCount = tevRegKey->mKRegUpdateMaterialNum;
-	*tevColorAnms         = new J3DTevColorAnm[tevColorAnmCount];
+	*tevColorAnms         = new J3DTevColorAnm[tevRegKey->mCRegUpdateMaterialNum];
 
 	if (*tevColorAnms == nullptr) {
 		return JET_OutOfMemory;
@@ -258,238 +258,6 @@ J3DErrType J3DMaterialTable::allocTevRegAnimator(J3DAnmTevRegKey* tevRegKey, J3D
 	initTevKColorAnms(tevRegKey, tevKColorAnms, tevKColorAnmCount);
 
 	return JET_Success;
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x50(r1)
-	  mflr      r0
-	  stw       r0, 0x54(r1)
-	  stmw      r17, 0x14(r1)
-	  mr        r27, r4
-	  mr        r28, r5
-	  mr        r29, r6
-	  lhz       r31, 0xC(r4)
-	  lhz       r30, 0xE(r4)
-	  rlwinm    r3,r31,3,13,28
-	  addi      r3, r3, 0x10
-	  bl        -0x5FF88
-	  lis       r4, 0x8008
-	  lis       r5, 0x8007
-	  addi      r4, r4, 0x424C
-	  mr        r7, r31
-	  subi      r5, r5, 0x5ADC
-	  li        r6, 0x8
-	  bl        0x3DAA0
-	  stw       r3, 0x0(r28)
-	  lwz       r0, 0x0(r28)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x64
-	  li        r3, 0x4
-	  b         .loc_0x318
-
-	.loc_0x64:
-	  cmplwi    r31, 0
-	  li        r3, 0
-	  ble-      .loc_0x19C
-	  cmplwi    r31, 0x8
-	  subi      r0, r31, 0x8
-	  ble-      .loc_0x190
-	  rlwinm    r0,r0,0,16,31
-	  b         .loc_0x164
-
-	.loc_0x84:
-	  lwz       r4, 0x0(r28)
-	  rlwinm    r7,r3,3,13,28
-	  addi      r26, r7, 0x10
-	  addi      r9, r3, 0x1
-	  sthx      r3, r4, r7
-	  addi      r23, r7, 0x18
-	  addi      r20, r7, 0x20
-	  addi      r4, r7, 0x4
-	  lwz       r5, 0x0(r28)
-	  addi      r6, r7, 0x8
-	  addi      r11, r7, 0x28
-	  addi      r8, r7, 0x30
-	  stwx      r27, r5, r4
-	  addi      r5, r7, 0x38
-	  addi      r4, r6, 0x4
-	  addi      r17, r3, 0x2
-	  lwz       r7, 0x0(r28)
-	  addi      r24, r26, 0x4
-	  addi      r25, r3, 0x3
-	  addi      r21, r23, 0x4
-	  sthx      r9, r7, r6
-	  addi      r22, r3, 0x4
-	  addi      r12, r20, 0x4
-	  addi      r19, r3, 0x5
-	  lwz       r7, 0x0(r28)
-	  addi      r9, r11, 0x4
-	  addi      r10, r3, 0x6
-	  addi      r6, r8, 0x4
-	  stwx      r27, r7, r4
-	  addi      r7, r3, 0x7
-	  addi      r4, r5, 0x4
-	  addi      r3, r3, 0x8
-	  lwz       r18, 0x0(r28)
-	  sthx      r17, r18, r26
-	  lwz       r26, 0x0(r28)
-	  stwx      r27, r26, r24
-	  lwz       r24, 0x0(r28)
-	  sthx      r25, r24, r23
-	  lwz       r23, 0x0(r28)
-	  stwx      r27, r23, r21
-	  lwz       r21, 0x0(r28)
-	  sthx      r22, r21, r20
-	  lwz       r20, 0x0(r28)
-	  stwx      r27, r20, r12
-	  lwz       r12, 0x0(r28)
-	  sthx      r19, r12, r11
-	  lwz       r11, 0x0(r28)
-	  stwx      r27, r11, r9
-	  lwz       r9, 0x0(r28)
-	  sthx      r10, r9, r8
-	  lwz       r8, 0x0(r28)
-	  stwx      r27, r8, r6
-	  lwz       r6, 0x0(r28)
-	  sthx      r7, r6, r5
-	  lwz       r5, 0x0(r28)
-	  stwx      r27, r5, r4
-
-	.loc_0x164:
-	  rlwinm    r4,r3,0,16,31
-	  cmplw     r4, r0
-	  blt+      .loc_0x84
-	  b         .loc_0x190
-
-	.loc_0x174:
-	  lwz       r4, 0x0(r28)
-	  rlwinm    r5,r3,3,13,28
-	  addi      r0, r5, 0x4
-	  sthx      r3, r4, r5
-	  addi      r3, r3, 0x1
-	  lwz       r4, 0x0(r28)
-	  stwx      r27, r4, r0
-
-	.loc_0x190:
-	  rlwinm    r0,r3,0,16,31
-	  cmplw     r0, r31
-	  blt+      .loc_0x174
-
-	.loc_0x19C:
-	  rlwinm    r3,r30,3,13,28
-	  addi      r3, r3, 0x10
-	  bl        -0x60100
-	  lis       r4, 0x8008
-	  lis       r5, 0x8007
-	  addi      r4, r4, 0x4234
-	  mr        r7, r30
-	  subi      r5, r5, 0x5AA0
-	  li        r6, 0x8
-	  bl        0x3D928
-	  stw       r3, 0x0(r29)
-	  lwz       r0, 0x0(r29)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x1DC
-	  li        r3, 0x4
-	  b         .loc_0x318
-
-	.loc_0x1DC:
-	  cmplwi    r30, 0
-	  li        r3, 0
-	  ble-      .loc_0x314
-	  cmplwi    r30, 0x8
-	  subi      r0, r30, 0x8
-	  ble-      .loc_0x308
-	  rlwinm    r0,r0,0,16,31
-	  b         .loc_0x2DC
-
-	.loc_0x1FC:
-	  lwz       r4, 0x0(r29)
-	  rlwinm    r7,r3,3,13,28
-	  addi      r21, r7, 0x10
-	  addi      r9, r3, 0x1
-	  sthx      r3, r4, r7
-	  addi      r24, r7, 0x18
-	  addi      r31, r7, 0x20
-	  addi      r4, r7, 0x4
-	  lwz       r5, 0x0(r29)
-	  addi      r6, r7, 0x8
-	  addi      r11, r7, 0x28
-	  addi      r8, r7, 0x30
-	  stwx      r27, r5, r4
-	  addi      r5, r7, 0x38
-	  addi      r4, r6, 0x4
-	  addi      r19, r3, 0x2
-	  lwz       r7, 0x0(r29)
-	  addi      r23, r21, 0x4
-	  addi      r22, r3, 0x3
-	  addi      r26, r24, 0x4
-	  sthx      r9, r7, r6
-	  addi      r25, r3, 0x4
-	  addi      r12, r31, 0x4
-	  addi      r28, r3, 0x5
-	  lwz       r7, 0x0(r29)
-	  addi      r9, r11, 0x4
-	  addi      r10, r3, 0x6
-	  addi      r6, r8, 0x4
-	  stwx      r27, r7, r4
-	  addi      r7, r3, 0x7
-	  addi      r4, r5, 0x4
-	  addi      r3, r3, 0x8
-	  lwz       r20, 0x0(r29)
-	  sthx      r19, r20, r21
-	  lwz       r21, 0x0(r29)
-	  stwx      r27, r21, r23
-	  lwz       r23, 0x0(r29)
-	  sthx      r22, r23, r24
-	  lwz       r24, 0x0(r29)
-	  stwx      r27, r24, r26
-	  lwz       r26, 0x0(r29)
-	  sthx      r25, r26, r31
-	  lwz       r31, 0x0(r29)
-	  stwx      r27, r31, r12
-	  lwz       r12, 0x0(r29)
-	  sthx      r28, r12, r11
-	  lwz       r11, 0x0(r29)
-	  stwx      r27, r11, r9
-	  lwz       r9, 0x0(r29)
-	  sthx      r10, r9, r8
-	  lwz       r8, 0x0(r29)
-	  stwx      r27, r8, r6
-	  lwz       r6, 0x0(r29)
-	  sthx      r7, r6, r5
-	  lwz       r5, 0x0(r29)
-	  stwx      r27, r5, r4
-
-	.loc_0x2DC:
-	  rlwinm    r4,r3,0,16,31
-	  cmplw     r4, r0
-	  blt+      .loc_0x1FC
-	  b         .loc_0x308
-
-	.loc_0x2EC:
-	  lwz       r4, 0x0(r29)
-	  rlwinm    r5,r3,3,13,28
-	  addi      r0, r5, 0x4
-	  sthx      r3, r4, r5
-	  addi      r3, r3, 0x1
-	  lwz       r4, 0x0(r29)
-	  stwx      r27, r4, r0
-
-	.loc_0x308:
-	  rlwinm    r0,r3,0,16,31
-	  cmplw     r0, r30
-	  blt+      .loc_0x2EC
-
-	.loc_0x314:
-	  li        r3, 0
-
-	.loc_0x318:
-	  lmw       r17, 0x14(r1)
-	  lwz       r0, 0x54(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x50
-	  blr
-	*/
 }
 
 /**
@@ -525,7 +293,7 @@ bool J3DMaterialTable::removeTexMtxAnimator(J3DAnmTextureSRTKey* anm)
  */
 bool J3DMaterialTable::removeTevRegAnimator(J3DAnmTevRegKey* anm)
 {
-	u16 count  = anm->mCRegUpdateMaterialNum;
+	u32 count  = anm->getCRegUpdateMaterialNum();
 	u16 kcount = anm->mKRegUpdateMaterialNum;
 	bool found = false;
 
@@ -693,34 +461,8 @@ J3DErrType J3DMaterialTable::entryMatColorAnimator(J3DAnmColor* anm)
  */
 J3DErrType J3DMaterialTable::entryTexMtxAnimator(J3DAnmTextureSRTKey* anm)
 {
-	J3DErrType allocationResult = JET_Success;
-	u16 count                   = anm->getUpdateMaterialNum();
-
-	if (isLocked()) {
-		allocationResult = JET_LockedModelData;
-	} else {
-		for (u16 i = 0; i < count; i++) {
-			u16 matID = anm->getUpdateMaterialID(i);
-			if (matID != 0xffff) {
-				J3DMaterial* mat       = mMaterials[matID];
-				u8 texmtxid            = anm->mUpdateTexMtxID[i];
-				J3DMaterialAnm* matanm = mat->getMaterialAnm();
-
-				if (!matanm) {
-					allocationResult = JET_NoMatAnm;
-					continue;
-				}
-
-				if (texmtxid != 255 && mat->mTexGenBlock->getTexMtx(texmtxid) == nullptr) {
-					J3DTexMtx* mtx   = new J3DTexMtx(j3dDefaultTexMtxInfo);
-					allocationResult = JET_OutOfMemory;
-					mat->mTexGenBlock->setTexMtx(texmtxid, mtx);
-				}
-			}
-		}
-	}
-
-	J3DErrType result = allocationResult;
+	u16 count         = anm->getUpdateMaterialNum();
+	J3DErrType result = createTexMtxForAnimator(anm);
 	if (result != JET_Success) {
 		return result;
 	}
@@ -1033,7 +775,7 @@ lbl_80084854:
  */
 J3DErrType J3DMaterialTable::entryTevRegAnimator(J3DAnmTevRegKey* anm)
 {
-	u16 count        = anm->mCRegUpdateMaterialNum;
+	u32 count        = anm->getCRegUpdateMaterialNum();
 	u16 kcount       = anm->mKRegUpdateMaterialNum;
 	J3DErrType found = JET_Success;
 

@@ -95,7 +95,7 @@ Footmark* Footmarks::findNearest2(Vector3f& position, int minFlagValue)
 			Footmark* mark = &mMarks[adjIndex];
 
 			Vector3f diff = position - mark->mPosition;
-			f32 dist      = diff.sqrMagnitude();
+			f32 dist      = diff.sqrLength();
 			if (dist < minDist) {
 				minDist  = dist;
 				minIndex = adjIndex;

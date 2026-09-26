@@ -614,7 +614,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 		Vector3f targetCreaturePos;
 		targetCreaturePos.z = mTargetCreature->getPosition().z;
 		targetCreaturePos.x = mTargetCreature->getPosition().x;
-		return inRadius2D(rad, pos, targetCreaturePos);
+		return insideRadius2D(rad, pos, targetCreaturePos);
 	}
 
 	inline bool isAlertLife() { return bool(mHealth < static_cast<EnemyParmsBase*>(mParms)->mGeneral.mLifeBeforeAlert); }

@@ -811,8 +811,7 @@ void CPlate::refreshSlot(f32 p1)
 		f32 radiusSquared = radius * radius;
 		f32 baseSquared   = mBaseRadius * mBaseRadius;
 		if (baseSquared - radiusSquared > 0.0f) {
-			f32 areaDifference = radii.x * radii.x - radii.y * radii.y;
-			radiusDifference   = sqrtfInPlace(areaDifference);
+			radiusDifference = sqrtf(radii.x * radii.x - radii.y * radii.y);
 		} else {
 			radiusDifference = 0.0f;
 		}

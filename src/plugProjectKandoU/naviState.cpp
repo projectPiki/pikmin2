@@ -1936,9 +1936,10 @@ void NaviNukuAdjustState::exec(Navi* navi)
 
 	diff                 = mCollidedPikiPosition;
 	f32 heightDifference = diff.y - naviPos.y;
-	diff.set2D(diff - naviPos);
-	diff.y                 = heightDifference;
-	f32 distancePikiToNavi = diff.normalize();
+	diff                 = diff - naviPos;
+	diff.y               = heightDifference;
+
+	f32 distancePikiToNavi = diff.normalise();
 
 	// If the distance is 0, return
 	if (!(distancePikiToNavi > 0.0f)) {
@@ -1948,12 +1949,11 @@ void NaviNukuAdjustState::exec(Navi* navi)
 	f32 velocityDifference = diff.z * currentVel.x - diff.x * currentVel.z;
 	Vector3f newVel(-diff.z, 0.0f, diff.x);
 
-	f32 verticalVelocity = newVel.y;
-	f32 simSpeed         = currentVel.length();
+	f32 simSpeed = currentVel.length();
 
-	newVel.x *= simSpeed;
-	newVel.z *= simSpeed;
-	newVel.y = verticalVelocity * simSpeed;
+	newVel.x = newVel.x * simSpeed;
+	newVel.y = newVel.y * simSpeed;
+	newVel.z = newVel.z * simSpeed;
 	if (!(velocityDifference < 0.0f)) {
 		newVel *= -1.0f;
 	}
@@ -3109,7 +3109,7 @@ void NaviThrowWaitState::init(Navi* navi, StateArg* stateArg)
 		Vector3f diff        = piki->getPosition() - navi->getPosition();
 		f32 faceDir          = navi->mFaceDir;
 		Vector3f naviFaceDir = getDirection(faceDir);
-		f32 sqrDist          = sqrLength(diff);
+		f32 sqrDist          = diff.sqrMagnitude();
 		f32 dist             = sqrtfClamped(sqrDist);
 		if (!(absF(diff.y) > 15.0f)) {
 			if (diff.dot(naviFaceDir) > -0.1f) {
@@ -3145,8 +3145,8 @@ void NaviThrowWaitState::init(Navi* navi, StateArg* stateArg)
 		mHeldPiki->mFsm->transit(mHeldPiki, PIKISTATE_Hanged, nullptr);
 		mHasHeldPiki = true;
 	}
-	navi->mHoldPikiCharge = mHoldChargeLevel / 3.0f * (CG_NAVIPARMS(navi).mThrowDistanceMax() - CG_NAVIPARMS(navi).mThrowDistanceMin())
-	                      + CG_NAVIPARMS(navi).mThrowDistanceMin();
+	navi->mHoldPikiCharge  = mHoldChargeLevel / 3.0f * (CG_NAVIPARMS(navi).mThrowDistanceMax() - CG_NAVIPARMS(navi).mThrowDistanceMin())
+	                       + CG_NAVIPARMS(navi).mThrowDistanceMin();
 	navi->mHoldPikiCharge2 = mHoldChargeLevel / 3.0f * (CG_NAVIPARMS(navi).mThrowHeightMax() - CG_NAVIPARMS(navi).mThrowHeightMin())
 	                       + CG_NAVIPARMS(navi).mThrowHeightMin();
 	mNextPikiTimeLimit     = 3.0f;
@@ -3253,8 +3253,8 @@ void NaviThrowWaitState::exec(Navi* navi)
 
 	navi->mNextThrowPiki = mHeldPiki;
 
-	navi->mHoldPikiCharge = mHoldChargeLevel / 3.0f * (CG_NAVIPARMS(navi).mThrowDistanceMax() - CG_NAVIPARMS(navi).mThrowDistanceMin())
-	                      + CG_NAVIPARMS(navi).mThrowDistanceMin();
+	navi->mHoldPikiCharge  = mHoldChargeLevel / 3.0f * (CG_NAVIPARMS(navi).mThrowDistanceMax() - CG_NAVIPARMS(navi).mThrowDistanceMin())
+	                       + CG_NAVIPARMS(navi).mThrowDistanceMin();
 	navi->mHoldPikiCharge2 = mHoldChargeLevel / 3.0f * (CG_NAVIPARMS(navi).mThrowHeightMax() - CG_NAVIPARMS(navi).mThrowHeightMin())
 	                       + CG_NAVIPARMS(navi).mThrowHeightMin();
 

@@ -86,7 +86,7 @@ int J3DModel::createMatPacket(J3DModelData* data, u32 flags)
 	if (data->mMaterialTable.mMaterialNum != 0) {
 		mMatPackets = new J3DMatPacket[data->mMaterialTable.mMaterialNum];
 	}
-	u16 count = data->mMaterialTable.mMaterialNum;
+	u32 count = data->getMaterialNum();
 	for (u16 i = 0; i < count; i++) {
 		J3DMaterial* material       = data->getMaterialNodePointer(i);
 		J3DMatPacket* matPacket     = &mMatPackets[i];
@@ -347,8 +347,6 @@ void J3DModel::makeDL()
  */
 void J3DModel::calcMaterial()
 {
-	u16 i;
-
 	j3dSys.setModel(this);
 
 	if (checkFlag(J3DMODEL_SkinPosCpu)) {
@@ -366,8 +364,8 @@ void J3DModel::calcMaterial()
 	getModelData()->syncJ3DSysFlags();
 	j3dSys.setTexture(getModelData()->getTexture());
 
-	u32 matNum = getModelData()->getMaterialNum();
-	for (i = 0; i < matNum; i++) {
+	u16 matNum = getModelData()->mMaterialTable.mMaterialNum;
+	for (u16 i = 0; i < matNum; i++) {
 		j3dSys.mMatPacket = (getMatPacket(i));
 
 		J3DMaterial* material = getModelData()->getMaterialNodePointer(i);
@@ -710,7 +708,8 @@ void J3DModel::calcNrmMtx()
  */
 void J3DModel::calcBumpMtx()
 {
-	u32 bumpMtxIdx, materialNum;
+	int bumpMtxIdx;
+	u32 materialNum;
 	if (!getModelData()->checkBumpFlag()) {
 		return;
 	}

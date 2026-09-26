@@ -312,7 +312,7 @@ bool Sphere::intersect(Sphere& ball)
 {
 
 	Vector3f diff = ball.mPosition - mPosition;
-	f32 sepSqr    = diff.sqrMagnitude();
+	f32 sepSqr    = diff.sqrLength();
 
 	f32 sumRadii = ball.mRadius + mRadius;
 

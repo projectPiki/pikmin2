@@ -1,5 +1,6 @@
 #include "JSystem/J3D/J3DMaterialFactory.h"
 #include "JSystem/J3D/J3DColorBlock.h"
+#include "JSystem/J3D/J3DModelLoader.h"
 #include "JSystem/JSupport/JSU.h"
 
 /**
@@ -83,15 +84,10 @@ u32 J3DMaterialFactory_v21::countStages(int index) const
 J3DMaterial* J3DMaterialFactory_v21::create(J3DMaterial* mat, int index, u32 flags) const
 {
 	u32 stageCount = countStages(index);
-	u32 tevNum     = (flags >> 0x10) & 0x1F;
-	if (stageCount > tevNum) {
-		tevNum = stageCount;
-	}
+	u32 tevFlag    = getMdlDataFlag_TevStageNum(flags);
+	u32 tevNum     = stageCount > tevFlag ? stageCount : tevFlag;
 
-	u32 texNo = 8;
-	if (tevNum <= 8) {
-		texNo = tevNum;
-	}
+	u32 texNo = tevNum > 8 ? 8 : tevNum;
 
 	J3DMaterialInitData_v21* data = &mInitData[mMatRemapTable[index]];
 	u32 texNum2;
@@ -101,10 +97,10 @@ J3DMaterial* J3DMaterialFactory_v21::create(J3DMaterial* mat, int index, u32 fla
 		texNum2 = 0;
 	}
 
-	u32 PEFlag     = flags & (J3DMLF_Material_PE_Full | J3DMLF_Material_PE_FogOff);
-	u32 colorFlag  = flags & (J3DMLF_Material_Color_LightOn | J3DMLF_Material_Color_AmbientOn);
-	u32 texGenFlag = texNum2 > 4 ? 0 : flags & (J3DMLF_27 | J3DMLF_Material_TexGen_Block4);
-	u32 IndFlag    = (flags >> 0x18) & 1;
+	u32 texGenFlag = texNum2 > 4 ? 0 : getMdlDataFlag_TexGenFlag(flags);
+	u32 colorFlag  = getMdlDataFlag_ColorFlag(flags);
+	u32 PEFlag     = getMdlDataFlag_PEFlag(flags);
+	u32 IndFlag    = (flags & J3DMLF_Material_UseIndirect) ? 1 : 0;
 
 	if (mat == nullptr) {
 		mat = new J3DMaterial();

@@ -677,7 +677,7 @@ CollPart* CollTree::findCollPart(FindCollPartArg& findArg)
 			if ((!findArg.mCondition || findArg.mCondition->satisfy(currPart)) && currPart->isSphere()) {
 				Vector3f diff = findArg.getHitPosition();
 				diff          = Vector3f::sub2(diff, currPart->mPosition);
-				f32 distance  = diff.sqrMagnitude() - currPart->getSqrRadius();
+				f32 distance  = diff.sqrLength() - currPart->getSqrRadius();
 
 				if (distance < minDist) {
 					foundPart = currPart;

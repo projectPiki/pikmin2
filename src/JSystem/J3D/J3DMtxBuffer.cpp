@@ -183,8 +183,8 @@ int J3DMtxBuffer::createBumpMtxArray(J3DModelData* data, u32 viewNum)
 			}
 		}
 		for (int i = 0; i < 2; i++) {
-			u32 materialCount = data->getMaterialNum();
-			int j             = 0;
+			materialCount = data->getMaterialTable().mMaterialNum;
+			int j         = 0;
 			for (u16 matIndex = 0; matIndex < materialCount; matIndex++) {
 				J3DMaterial* material = data->getMaterialNodePointer(matIndex);
 				if (material->getNBTScale()->mHasScale == 1) {
@@ -654,8 +654,10 @@ void J3DMtxBuffer::calcDrawMtx(u32 p1, const Vec& vec, const Mtx& mtx)
 {
 	switch (p1) {
 	case 0: {
-		Mtx* viewMtx = j3dSys.getViewMtx();
-		u32 mtxNum   = mJointTree->getDrawFullWgtMtxNum();
+		u32 mtxNum;
+		Mtx* viewMtx;
+		viewMtx = j3dSys.getViewMtx();
+		mtxNum  = mJointTree->mMtxData.mDrawMtxCount;
 		for (u16 i = 0; i < mtxNum; i++) {
 			PSMTXConcat(*viewMtx, *(Mtx*)getAnmMtx(mJointTree->getDrawMtxIndex(i)), *getDrawMtx(i));
 		}

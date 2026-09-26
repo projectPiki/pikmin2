@@ -69,7 +69,7 @@ struct Vector2 {
 
 	operator JGeometry::TVec2f() { return JGeometry::TVec2f(x, y); }
 
-	inline f32 sqrMagnitude() const { return x * x + y * y; }
+	inline f32 sqrLength() const { return x * x + y * y; }
 
 	inline f32 length() const;
 	inline f32 normalise();
@@ -106,7 +106,7 @@ inline Vector2f operator-(const Vector2f& a, const Vector2f& b)
 template <>
 inline f32 Vector2f::length() const
 {
-	if (sqrMagnitude() > 0.0f) {
+	if (sqrLength() > 0.0f) {
 		Vector2f vec = Vector2f(x, y);
 		f32 sqrLen   = SQUARE(vec.x) + SQUARE(y);
 		return sqrtf(sqrLen);

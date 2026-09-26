@@ -186,7 +186,7 @@ void ActEnter::initSuck()
 	mSuckDir               = mSuckGoalPos - pikiPos;
 	mSuckDir.y             = 0.0f;
 
-	mHorizSuckDist = mSuckDir.normalise();
+	mHorizSuckDist = mSuckDir.normalize();
 	mVertSuckDist  = absF(mSuckGoalPos.y - pikiPos.y);
 
 	mSuckGoalPos.y = pikiPos.y;
@@ -197,120 +197,6 @@ void ActEnter::initSuck()
 
 	mParent->startSound(PSSE_PK_VC_JUMP_INTO_UFO, true);
 	mParent->startMotion(Game::IPikiAnims::ROLLJUMP, Game::IPikiAnims::ROLLJUMP, nullptr, nullptr);
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	mr       r31, r3
-	addi     r3, r1, 0x14
-	lwz      r4, 0x24(r31)
-	bl       getInEnd_UFO__Q24Game5OnyonFv
-	lfs      f1, 0x14(r1)
-	addi     r3, r1, 8
-	lfs      f0, lbl_80519134@sda21(r2)
-	stfs     f1, 0x28(r31)
-	lfs      f1, 0x18(r1)
-	stfs     f1, 0x2c(r31)
-	lfs      f1, 0x1c(r1)
-	stfs     f1, 0x30(r31)
-	lfs      f1, 0x2c(r31)
-	fsubs    f0, f1, f0
-	stfs     f0, 0x2c(r31)
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 0x28(r31)
-	lfs      f1, 8(r1)
-	lfs      f0, 0xc(r1)
-	lfs      f3, 0x2c(r31)
-	fsubs    f1, f2, f1
-	lfs      f5, 0x30(r31)
-	lfs      f4, 0x10(r1)
-	fsubs    f3, f3, f0
-	lfs      f2, lbl_80519118@sda21(r2)
-	stfs     f1, 0x34(r31)
-	fsubs    f1, f5, f4
-	stfs     f3, 0x38(r31)
-	stfs     f1, 0x3c(r31)
-	stfs     f2, 0x38(r31)
-	lfs      f4, 0x34(r31)
-	lfs      f3, 0x38(r31)
-	lfs      f5, 0x3c(r31)
-	fmuls    f1, f4, f4
-	fmuls    f3, f3, f3
-	fmuls    f5, f5, f5
-	fadds    f1, f1, f3
-	fadds    f1, f5, f1
-	fcmpo    cr0, f1, f2
-	ble      lbl_801A2F8C
-	fmadds   f1, f4, f4, f3
-	fadds    f3, f5, f1
-	fcmpo    cr0, f3, f2
-	ble      lbl_801A2F90
-	frsqrte  f1, f3
-	fmuls    f3, f1, f3
-	b        lbl_801A2F90
-
-lbl_801A2F8C:
-	fmr      f3, f2
-
-lbl_801A2F90:
-	lfs      f1, lbl_80519118@sda21(r2)
-	fcmpo    cr0, f3, f1
-	ble      lbl_801A2FCC
-	lfs      f2, lbl_80519154@sda21(r2)
-	lfs      f1, 0x34(r31)
-	fdivs    f2, f2, f3
-	fmuls    f1, f1, f2
-	stfs     f1, 0x34(r31)
-	lfs      f1, 0x38(r31)
-	fmuls    f1, f1, f2
-	stfs     f1, 0x38(r31)
-	lfs      f1, 0x3c(r31)
-	fmuls    f1, f1, f2
-	stfs     f1, 0x3c(r31)
-	b        lbl_801A2FD0
-
-lbl_801A2FCC:
-	fmr      f3, f1
-
-lbl_801A2FD0:
-	stfs     f3, 0x48(r31)
-	li       r0, 0
-	lfs      f1, lbl_80519154@sda21(r2)
-	li       r4, 0x281f
-	lfs      f2, 0x2c(r31)
-	li       r5, 1
-	fsubs    f2, f2, f0
-	fabs     f2, f2
-	frsp     f2, f2
-	stfs     f2, 0x44(r31)
-	stfs     f0, 0x2c(r31)
-	lfs      f0, 0x48(r31)
-	fneg     f0, f0
-	stfs     f0, 0x40(r31)
-	stb      r0, 0x4c(r31)
-	stfs     f1, 0x5c(r31)
-	lwz      r3, 4(r31)
-	bl       startSound__Q24Game4PikiFUlb
-	lwz      r3, 4(r31)
-	li       r4, 0x23
-	li       r5, 0x23
-	li       r6, 0
-	lwz      r12, 0(r3)
-	li       r7, 0
-	lwz      r12, 0x208(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /**

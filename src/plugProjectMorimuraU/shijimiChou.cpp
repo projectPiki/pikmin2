@@ -1219,7 +1219,7 @@ bool Obj::checkRestOff()
 	Vector3f pos1 = mPosition;
 	Vector3f spherePos(collSphere.mPosition.x, collSphere.mPosition.y, collSphere.mPosition.z);
 	Vector3f sep = mPosition - spherePos;
-	f32 dist     = sep.sqrMagnitude();
+	f32 dist     = sep.sqrLength();
 
 	if (dist > rad) {
 		Vector3f pos;

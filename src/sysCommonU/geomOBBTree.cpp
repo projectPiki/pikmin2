@@ -983,8 +983,8 @@ void OBB::getCurrTri(Game::CurrTriInfo& info)
 	} else {
 		Vector3f vec = info.mPosition;
 		vec.y        = (mDivPlane.mOffset - (mDivPlane.mNormal.x * info.mPosition.x) - (mDivPlane.mNormal.z * info.mPosition.z))
-		      / mDivPlane.mNormal.y;
-		dist = mDivPlane.calcDist(vec);
+		             / mDivPlane.mNormal.y;
+		dist         = mDivPlane.calcDist(vec);
 	}
 
 	if (dist > 0.01f) {
@@ -1452,7 +1452,7 @@ bool OBB::findRayIntersectionTriList(Sys::RayIntersectInfo& rayInfo, Matrixf& tr
 		if (rayInfo.condition(*currTri) && currTri->intersect(rayInfo.mIntersectEdge, rayInfo.mRadius, intersectVec)) {
 			isIntersect     = true;
 			Vector3f sepVec = intersectVec - rayInfo.mIntersectEdge.mStartPos;
-			f32 sqSep       = sepVec.sqrMagnitude();
+			f32 sqSep       = sepVec.sqrLength();
 			if (sqSep < rayInfo.mDistance) {
 				rayInfo.mDistance          = sqSep;
 				rayInfo.mIntersectPosition = transformMtx.mtxMult(intersectVec);

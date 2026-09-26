@@ -1386,11 +1386,11 @@ void VsGameSection::calcVsScores()
 			Vector3f marblePosition   = marble->getPosition();
 			Vector3f redOnyonPosition = onyons[0]->getPosition();
 			Vector2f expDistRedOffset(marblePosition.x - redOnyonPosition.x, marblePosition.z - redOnyonPosition.z);
-			f32 expDistRed = sqrtfClamped(expDistRedOffset.sqrMagnitude());
+			f32 expDistRed = sqrtfClamped(expDistRedOffset.sqrLength());
 
 			Vector3f blueOnyonPosition = onyons[1]->getPosition();
 			Vector2f expDistBlueOffset(marblePosition.x - blueOnyonPosition.x, marblePosition.z - blueOnyonPosition.z);
-			f32 expDistBlue = sqrtfClamped(expDistBlueOffset.sqrMagnitude());
+			f32 expDistBlue = sqrtfClamped(expDistBlueOffset.sqrLength());
 
 			f32 score  = 1.0f / ((f32)exp((expDistBlue / (expDistRed + expDistBlue) - 0.5f) * -10.0f) + 1.0f);
 			bool check = false;
@@ -1447,11 +1447,11 @@ void VsGameSection::calcVsScores()
 			Vector3f marblePosition = marble->getPosition();
 			Vector3f onyonPosition  = onyon->getPosition();
 			Vector2f expDistRedOffset(marblePosition.x - onyonPosition.x, marblePosition.z - onyonPosition.z);
-			f32 expDistRed = sqrtfClamped(expDistRedOffset.sqrMagnitude());
+			f32 expDistRed = sqrtfClamped(expDistRedOffset.sqrLength());
 
 			Vector3f otherOnyonPosition = onyons[(1 - i)]->getPosition();
 			Vector2f expDistBlueOffset(marblePosition.x - otherOnyonPosition.x, marblePosition.z - otherOnyonPosition.z);
-			f32 expDistBlue  = sqrtfClamped(expDistBlueOffset.sqrMagnitude());
+			f32 expDistBlue  = sqrtfClamped(expDistBlueOffset.sqrLength());
 			redBlueScore[i]  = 1.0f / ((f32)exp((expDistRed / (expDistRed + expDistBlue) - 0.5f) * -10.0f) + 1.0f);
 			mRedBlueScore[i] = redBlueScore[i];
 		}
@@ -1480,11 +1480,11 @@ void VsGameSection::calcVsScores()
 			Vector3f cherryPosition   = cherry->getPosition();
 			Vector3f redOnyonPosition = onyons[0]->getPosition();
 			Vector2f expDistRedOffset(cherryPosition.x - redOnyonPosition.x, cherryPosition.z - redOnyonPosition.z);
-			f32 expDistRed = sqrtfClamped(expDistRedOffset.sqrMagnitude());
+			f32 expDistRed = sqrtfClamped(expDistRedOffset.sqrLength());
 
 			Vector3f blueOnyonPosition = onyons[1]->getPosition();
 			Vector2f expDistBlueOffset(cherryPosition.x - blueOnyonPosition.x, cherryPosition.z - blueOnyonPosition.z);
-			f32 expDistBlue = sqrtfClamped(expDistBlueOffset.sqrMagnitude());
+			f32 expDistBlue = sqrtfClamped(expDistBlueOffset.sqrLength());
 			f32 score       = 1.0f / ((f32)exp((expDistBlue / (expDistRed + expDistBlue) - 0.5f) * -10.0f) + 1.0f);
 
 			bool check = false;

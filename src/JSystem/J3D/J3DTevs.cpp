@@ -614,16 +614,15 @@ void makeAlphaCmpTable()
  */
 void makeZModeTable()
 {
-	u32 idx;
-	u32 iOffset = 0;
+	u8* table = j3dZModeTable;
 
-	for (int i = 0; i < 2; i++, iOffset += 16) {
+	for (int i = 0; i < 2; i++) {
 		for (int j = 0; j < 8; j++) {
 			for (int k = 0; k < 2; k++) {
-				idx                        = k + j * 2 + iOffset;
-				j3dZModeTable[idx * 3]     = i;
-				j3dZModeTable[idx * 3 + 1] = j;
-				j3dZModeTable[idx * 3 + 2] = k;
+				u32 idx            = calcZModeID(i, j, k);
+				table[idx * 3]     = i;
+				table[idx * 3 + 1] = j;
+				table[idx * 3 + 2] = k;
 			}
 		}
 	}

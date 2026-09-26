@@ -6,6 +6,7 @@
 #include "JSystem/J3D/J3DTypes.h"
 #include "JSystem/J3D/J3DTexture.h"
 #include "JSystem/J3D/J3DTexGenBlock.h"
+#include "JSystem/J3D/J3DTexMtx.h"
 #include "types.h"
 
 struct J3DAnmColor;
@@ -228,12 +229,43 @@ struct J3DMaterialTable {
 	J3DErrType allocTexMtxAnimator(J3DAnmTextureSRTKey*, J3DTexMtxAnm**);
 	J3DErrType entryTexMtxAnimator(J3DAnmTextureSRTKey*);
 	bool removeTexMtxAnimator(J3DAnmTextureSRTKey*);
+	J3DErrType createTexMtxForAnimator(J3DAnmTextureSRTKey* anm)
+	{
+		J3DErrType result = JET_Success;
+		u16 count         = anm->getUpdateMaterialNum();
+
+		if (isLocked()) {
+			return JET_LockedModelData;
+		}
+
+		for (u16 i = 0; i < count; i++) {
+			u16 matID = anm->getUpdateMaterialID(i);
+			if (matID != 0xffff) {
+				J3DMaterial* mat       = getMaterialNodePointer(matID);
+				u32 texmtxid           = anm->mUpdateTexMtxID[i];
+				J3DMaterialAnm* matanm = mat->getMaterialAnm();
+
+				if (!matanm) {
+					result = JET_NoMatAnm;
+					continue;
+				}
+
+				if (texmtxid != 255 && mat->mTexGenBlock->getTexMtx(texmtxid) == nullptr) {
+					J3DTexMtx* mtx = new J3DTexMtx(j3dDefaultTexMtxInfo);
+					result         = JET_OutOfMemory;
+					mat->mTexGenBlock->setTexMtx(texmtxid, mtx);
+				}
+			}
+		}
+
+		return result;
+	}
 
 	void initTexMtxAnms(J3DAnmTextureSRTKey* key, J3DTexMtxAnm** anms, u16 count)
 	{
 		for (u16 i = 0; i < count; i++) {
-			(*anms)[i].mIndex = i;
-			(*anms)[i].mAnm   = key;
+			(*anms)[i].setIndex(i);
+			(*anms)[i].setAnm(key);
 		}
 	}
 
@@ -244,16 +276,16 @@ struct J3DMaterialTable {
 	void initTevColorAnms(J3DAnmTevRegKey* key, J3DTevColorAnm** anms, u16 count)
 	{
 		for (u16 i = 0; i < count; i++) {
-			(*anms)[i].mIndex = i;
-			(*anms)[i].mAnm   = key;
+			(*anms)[i].setIndex(i);
+			(*anms)[i].setAnm(key);
 		}
 	}
 
 	void initTevKColorAnms(J3DAnmTevRegKey* key, J3DTevKColorAnm** anms, u16 count)
 	{
 		for (u16 i = 0; i < count; i++) {
-			(*anms)[i].mIndex = i;
-			(*anms)[i].mAnm   = key;
+			(*anms)[i].setIndex(i);
+			(*anms)[i].setAnm(key);
 		}
 	}
 
