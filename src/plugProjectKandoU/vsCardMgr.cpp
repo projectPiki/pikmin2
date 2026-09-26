@@ -885,8 +885,8 @@ void VsGame::CardMgr::initDraw()
 	mVertices   = new Vector3f[mPointCount];
 	mNormals    = new Vector3f[mPointCount];
 	f32 phi     = TAU / countA;
-	phi *= 0.5f;
-	f32 s = sinf(phi);
+	f32 halfPhi = phi * 0.5f;
+	f32 s       = sinf(halfPhi);
 	f32 x, y, z;
 
 	x = 20.0f;
@@ -911,7 +911,8 @@ void VsGame::CardMgr::initDraw()
  */
 void VsGame::CardMgr::vert(int id)
 {
-	GXPosition3f32(mVertices[id].x, mVertices[id].y, mVertices[id].z);
+	Vector3f& vtx = mVertices[id];
+	GXPosition3f32(vtx.x, vtx.y, vtx.z);
 }
 
 /**
@@ -920,7 +921,8 @@ void VsGame::CardMgr::vert(int id)
  */
 void VsGame::CardMgr::norm(int id)
 {
-	GXPosition3f32(mNormals[id].x, mNormals[id].y, mNormals[id].z);
+	Vector3f& nrm = mNormals[id];
+	GXNormal3f32(nrm.x, nrm.y, nrm.z);
 }
 
 /**
@@ -940,7 +942,8 @@ void VsGame::CardMgr::drawSlot(Graphics& gfx, Vector3f& place, SlotMachine& mach
 	Matrixf* matrix = (Matrixf*)&gfx.mOrthoGraph.mPosMtx;
 	Matrixf drawMtx;
 	Matrixf modelMtx;
-	Vector3f vec = Vector3f(spinAngle + PI / CARD_ID_COUNT, 0.0f, 0.0f);
+	f32 angleOffset = PI / CARD_ID_COUNT;
+	Vector3f vec    = Vector3f(spinAngle + angleOffset, 0.0f, 0.0f);
 	modelMtx.makeTR(pos, vec);
 	PSMTXConcat(*(Mtx*)matrix, *(Mtx*)&modelMtx, *(Mtx*)&drawMtx);
 	GXLoadPosMtxImm(*(Mtx*)&drawMtx, 0);
@@ -966,8 +969,8 @@ void VsGame::CardMgr::drawSlot(Graphics& gfx, Vector3f& place, SlotMachine& mach
 	GXSetVtxDesc(GX_VA_NRM, GX_DIRECT);
 	GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
 	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
-	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_NRM, GX_POS_XY, GX_F32, 0);
-	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_POS_XYZ, GX_F32, 0);
+	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_NRM, GX_NRM_XYZ, GX_F32, 0);
+	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_TEX_ST, GX_F32, 0);
 	GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_SET);
 	GXSetColorUpdate(1);
 	GXSetZMode(0, GX_LESS, 0);
@@ -977,13 +980,14 @@ void VsGame::CardMgr::drawSlot(Graphics& gfx, Vector3f& place, SlotMachine& mach
 	GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX3X4, GX_TG_TEXCOORD0, 0x3c, 0, 0x7d);
 	GXSetCullMode(GX_CULL_BACK);
 
-	f32 u0 = 0.0f;
-	f32 u1 = 1.0f;
+	f32 u0   = 0.0f;
+	f32 u1   = 1.0f;
+	f32 step = 1.0f / 32.0f;
 	for (int i = 0; i < CARD_ID_COUNT; i++) {
 		mSlotTextures[i]->load(GX_TEXMAP0);
 		for (int j = 0; j < 32; j++) {
 			int index = i * 64 + j * 2;
-			f32 t0    = (j + 1) / 32.0f;
+			f32 t0    = (j + 1) * step;
 
 			GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 4);
 
@@ -997,11 +1001,11 @@ void VsGame::CardMgr::drawSlot(Graphics& gfx, Vector3f& place, SlotMachine& mach
 
 			vert((index + 2) % mPointCount);
 			norm((index + 2) % mPointCount);
-			GXTexCoord2f32(u0, t0 + (1.0f / 32.0f));
+			GXTexCoord2f32(u0, t0 + step);
 
 			vert((index + 3) % mPointCount);
 			norm((index + 3) % mPointCount);
-			GXTexCoord2f32(u1, t0 + (1.0f / 32.0f));
+			GXTexCoord2f32(u1, t0 + step);
 		}
 	}
 
@@ -1012,6 +1016,7 @@ void VsGame::CardMgr::drawSlot(Graphics& gfx, Vector3f& place, SlotMachine& mach
 	}
 
 	Vector3f newvec;
+	Vector3f offset;
 
 	if (machine._38 != 0 && machine._51) {
 		newvec = pos;
@@ -1044,9 +1049,9 @@ void VsGame::CardMgr::drawSlot(Graphics& gfx, Vector3f& place, SlotMachine& mach
 		GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
 		GXSetVtxDesc(GX_VA_TEX1, GX_DIRECT);
 		GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
-		GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_NRM, GX_POS_XY, GX_F32, 0);
-		GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_POS_XYZ, GX_F32, 0);
-		GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX1, GX_POS_XYZ, GX_F32, 0);
+		GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_NRM, GX_NRM_XYZ, GX_F32, 0);
+		GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_TEX_ST, GX_F32, 0);
+		GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX1, GX_TEX_ST, GX_F32, 0);
 		GXSetTevColorIn(GX_TEVSTAGE1, GX_CC_ZERO, GX_CC_TEXC, GX_CC_C0, GX_CC_CPREV);
 		GXSetTevColorOp(GX_TEVSTAGE1, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
 		GXSetTevAlphaIn(GX_TEVSTAGE1, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO, GX_CA_APREV);
@@ -1054,7 +1059,8 @@ void VsGame::CardMgr::drawSlot(Graphics& gfx, Vector3f& place, SlotMachine& mach
 
 		f32 highlightValue = (1.0f - cosf(machine._6C * TAU)) * 127.5;
 		u8 highlight       = highlightValue;
-		JUtility::TColor color(highlight, highlight, highlight, highlight);
+		GXColor color;
+		color.r = color.b = color.g = color.a = highlight;
 		GXSetTevColor(GX_TEVREG0, color);
 
 		if (machine._68 > 1.0f) {
@@ -1066,9 +1072,9 @@ void VsGame::CardMgr::drawSlot(Graphics& gfx, Vector3f& place, SlotMachine& mach
 		machine._68 += sys->mDeltaTime;
 		machine._6C += sys->mDeltaTime * 0.5f;
 
-		// this bunch seems good
+		f32 neg;
 		f32 pos = machine._44;
-		f32 neg = -machine._44;
+		neg     = -pos;
 
 		GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 0x4);
 
@@ -1076,24 +1082,24 @@ void VsGame::CardMgr::drawSlot(Graphics& gfx, Vector3f& place, SlotMachine& mach
 		f32 o = 1.0f;
 		// --------------------------
 		GXPosition3f32(neg, neg, z);
-		GXPosition2f32(z, z);
-		GXPosition3f32(o, z, z);
-		GXPosition2f32(machine._68, z);
+		GXNormal3f32(z, z, o);
+		GXTexCoord2f32(z, z);
+		GXTexCoord2f32(machine._68, z);
 
 		GXPosition3f32(pos, neg, z);
-		GXPosition2f32(z, z);
-		GXPosition3f32(o, o, z);
-		GXPosition2f32(o + machine._68, z);
+		GXNormal3f32(z, z, o);
+		GXTexCoord2f32(o, z);
+		GXTexCoord2f32(o + machine._68, z);
 
 		GXPosition3f32(neg, pos, z);
-		GXPosition2f32(z, z);
-		GXPosition3f32(o, z, o);
-		GXPosition2f32(machine._68, o);
+		GXNormal3f32(z, z, o);
+		GXTexCoord2f32(z, o);
+		GXTexCoord2f32(machine._68, o);
 
 		GXPosition3f32(pos, pos, z);
-		GXPosition2f32(z, z);
-		GXPosition3f32(o, o, o);
-		GXPosition2f32(o + machine._68, o);
+		GXNormal3f32(z, z, o);
+		GXTexCoord2f32(o, o);
+		GXTexCoord2f32(o + machine._68, o);
 		// --------------------------
 
 		GXSetNumTevStages(1);
@@ -1103,23 +1109,24 @@ void VsGame::CardMgr::drawSlot(Graphics& gfx, Vector3f& place, SlotMachine& mach
 		GXSetVtxDesc(GX_VA_NRM, GX_DIRECT);
 		GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
 		GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
-		GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_NRM, GX_POS_XY, GX_F32, 0);
-		GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_POS_XYZ, GX_F32, 0);
+		GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_NRM, GX_NRM_XYZ, GX_F32, 0);
+		GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_TEX_ST, GX_F32, 0);
 
 		if (gGameConfig.mParms.mVsY.mData == 0 && machine._38 != 0 && machine._51) {
 			f32 zero = 0.0f;
 			f32 one  = 1.0f;
 			mYButtonTexture->load(GX_TEXMAP0);
-			f32 extent    = machine._48 * 2.0f;
-			f32 height    = 0.35f * extent;
-			f32 negHeight = -height;
-			Vector3f topLeft(-extent, negHeight + -15.0f, 0.0f);
-			Vector3f topRight(extent, negHeight + -15.0f, 0.0f);
+			f32 extent  = machine._48 * 2.0f;
+			f32 height  = 0.35f * extent;
+			f32 yOffset = -15.0f;
+			f32 top     = -height + yOffset;
+			Vector3f topLeft(-extent, top, 0.0f);
+			Vector3f topRight(extent, top, 0.0f);
 			Vector3f bottomLeft(-extent, height, 0.0f);
 			Vector3f bottomRight(extent, height, 0.0f);
-			bottomLeft.y += -15.0f;
-			bottomRight.y += -15.0f;
-			Vector3f offset(-7.0f, -24.0f, 0.0f);
+			bottomLeft.y += yOffset;
+			bottomRight.y += yOffset;
+			offset.set(-7.0f, -24.0f, 0.0f);
 			topLeft += offset;
 			topRight += offset;
 			bottomLeft += offset;
@@ -1145,9 +1152,9 @@ void VsGame::CardMgr::drawSlot(Graphics& gfx, Vector3f& place, SlotMachine& mach
 	GXLoadPosMtxImm(*(Mtx*)matrix, 0);
 	GXLoadNrmMtxImm(*(Mtx*)matrix, 0);
 
-	Vector3f lampPos = getLampPos(machine.mPlayerIndex, 0);
-	f32 zero         = 0.0f;
-	f32 one          = 1.0f;
+	offset   = getLampPos(machine.mPlayerIndex, 0);
+	f32 zero = 0.0f;
+	f32 one  = 1.0f;
 	for (int i = 0; i < 4; i++) {
 		JUTTexture* texture = mLampOffTexture;
 		if (i < machine.mCherryStock) {
@@ -1159,10 +1166,10 @@ void VsGame::CardMgr::drawSlot(Graphics& gfx, Vector3f& place, SlotMachine& mach
 		Vector3f topRight(halfSize, -halfSize, 0.0f);
 		Vector3f bottomLeft(-halfSize, halfSize, 0.0f);
 		Vector3f bottomRight(halfSize, halfSize, 0.0f);
-		topLeft += lampPos;
-		topRight += lampPos;
-		bottomLeft += lampPos;
-		bottomRight += lampPos;
+		topLeft += offset;
+		topRight += offset;
+		bottomLeft += offset;
+		bottomRight += offset;
 		GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 4);
 		GXPosition3f32(topLeft.x, topLeft.y, topLeft.z);
 		GXNormal3f32(zero, zero, one);
@@ -1176,7 +1183,7 @@ void VsGame::CardMgr::drawSlot(Graphics& gfx, Vector3f& place, SlotMachine& mach
 		GXPosition3f32(bottomRight.x, bottomRight.y, bottomRight.z);
 		GXNormal3f32(zero, zero, one);
 		GXTexCoord2f32(one, one);
-		lampPos.x += 16.0f;
+		offset.x += 16.0f;
 	}
 }
 
