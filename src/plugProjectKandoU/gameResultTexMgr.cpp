@@ -51,6 +51,7 @@ void ResultTexMgr::Mgr::create(ResultTexMgr::Arg& arg)
 	mHeap->becomeCurrentHeap();
 
 	if (arg.mRegionMode == REGIONID_Null) {
+		// PAL removed support for loading based on the system language
 #if defined(VERSION_PAL)
 		sprintf(pathBuffer, "/user/Matoba/resulttex/%s/arc.szs", "pal");
 #else
@@ -64,6 +65,7 @@ void ResultTexMgr::Mgr::create(ResultTexMgr::Arg& arg)
 		}
 #endif
 	} else {
+		// this arg.mRegionMode code is never used by the normal game
 		switch (arg.mRegionMode) {
 		case REGIONID_JPN:
 			sprintf(pathBuffer, "/user/Matoba/resulttex/%s/arc.szs", "jpn");
@@ -90,6 +92,7 @@ void ResultTexMgr::Mgr::create(ResultTexMgr::Arg& arg)
 	int otakaraCount = mOtakaraConfigList->getConfigCount();
 	int itemCount    = mItemConfigList->getConfigCount();
 
+	// enemy carcass only needs a single texture
 	mCarcassTextures.alloc(1);
 	ResTIMG* carcassTexture = static_cast<ResTIMG*>(archive->getResource("teki_carcass/texture.bti"));
 	if (carcassTexture == nullptr) {
@@ -104,6 +107,7 @@ void ResultTexMgr::Mgr::create(ResultTexMgr::Arg& arg)
 		sprintf(otakaraTexturePath, "%s/texture.bti", mOtakaraConfigList->getPelletConfig(i)->mParams.mName.mData);
 
 		ResTIMG* otakaraTexture = static_cast<ResTIMG*>(archive->getResource(otakaraTexturePath));
+		// default to the rubber ugly icon if no texture was found
 		if (!otakaraTexture) {
 			sprintf(otakaraTexturePath, "ahiru/texture.bti");
 			otakaraTexture = static_cast<ResTIMG*>(archive->getResource(otakaraTexturePath));
@@ -120,6 +124,7 @@ void ResultTexMgr::Mgr::create(ResultTexMgr::Arg& arg)
 		sprintf(itemTexturePath, "%s/texture.bti", mItemConfigList->getPelletConfig(i)->mParams.mName.mData);
 
 		ResTIMG* itemTexture = static_cast<ResTIMG*>(archive->getResource(itemTexturePath));
+		// default to the rubber ugly icon if no texture was found
 		if (!itemTexture) {
 			sprintf(itemTexturePath, "ahiru/texture.bti");
 			itemTexture = static_cast<ResTIMG*>(archive->getResource(itemTexturePath));
@@ -139,18 +144,18 @@ void ResultTexMgr::Mgr::create(ResultTexMgr::Arg& arg)
  */
 int ResultTexMgr::Mgr::getOtakaraNum()
 {
-	// UNUSED FUNCTION
 	P2ASSERTLINE(273, mOtakaraConfigList != nullptr);
 	return mOtakaraConfigList->mConfigCnt;
 }
 
-// /**
-//  * @note Address: N/A
-//  * @note Size: 0x58
-//  */
+/**
+ * @note Address: N/A
+ * @note Size: 0x58
+ */
 int ResultTexMgr::Mgr::getItemNum()
 {
-	// UNUSED FUNCTION
+	P2ASSERTLINE(278, mItemConfigList != nullptr);
+	return mItemConfigList->mConfigCnt;
 }
 
 /**
@@ -160,6 +165,7 @@ int ResultTexMgr::Mgr::getItemNum()
 JUTTexture* ResultTexMgr::Mgr::getOtakaraItemTexture(int index)
 {
 	JUTTexture* texture;
+	// If the index is too high to be a normal treasure, subtract the treasure count to treat this an index for the EK items list
 	if (index >= getOtakaraNum()) {
 		index -= getOtakaraNum();
 		texture = getItemTexture(index);
@@ -194,6 +200,7 @@ JUTTexture* ResultTexMgr::Mgr::getItemTexture(int itemIndex)
  */
 JUTTexture* ResultTexMgr::Mgr::getCarcassTexture()
 {
+	// Don't need an index for this one since theres only one texture
 	return mCarcassTextures.getTexture(0);
 }
 

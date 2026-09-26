@@ -56,7 +56,7 @@ void PlayData::write(Stream& output)
 	output.textEndGroup();
 
 	output.textBeginGroup("* クリアフラグ *"); // 'clear flag'
-	output.writeBytes(&mStoryFlags, 1);
+	mStoryFlags.writeBytes(output);
 	output.textEndGroup();
 
 	output.textBeginGroup("* セーブフラグ/オニョンフラグ *"); // 'save flag/onyon flag'
@@ -173,7 +173,7 @@ void PlayData::write(Stream& output)
 
 	output.textBeginGroup("* オリマー死亡フラグ *"); // 'olimar death flag'
 	output.textWriteTab(output.mTabCount);
-	output.writeBytes(&mDeadNaviID.typeView, 1);
+	mDeadNaviID.writeBytes(output);
 	output.textWriteText("\r\n");
 	output.textWriteTab(output.mTabCount);
 	output.writeFloat(mNaviLifeMax[0]);
@@ -243,7 +243,7 @@ void PlayData::read(Stream& input)
 		getDebtProgressFlags().readBytes(input);
 	}
 
-	mStoryFlags            = input.readByte();
+	mStoryFlags.readBytes(input);
 	mLoadType              = input.readByte();
 	mHasContainerFlags     = input.readByte();
 	mHasBootContainerFlags = input.readByte();
@@ -290,7 +290,7 @@ void PlayData::read(Stream& input)
 
 	BirthMgr::read(input);
 	DeathMgr::read(input);
-	mDeadNaviID.typeView = input.readByte();
+	mDeadNaviID.readBytes(input);
 
 	if (versionID >= 'j006') {
 		mNaviLifeMax[0] = input.readFloat();
@@ -590,7 +590,7 @@ void CaveSaveData::write(Stream& output)
 	mCavePikis.write(output);
 
 	output.textWriteTab(output.mTabCount);
-	output.writeFloat(mTime);
+	output.writeFloat(mDayTime);
 	output.textWriteText("\t# time\r\n");
 
 	output.textWriteTab(output.mTabCount);
@@ -625,7 +625,7 @@ void CaveSaveData::write(Stream& output)
 void CaveSaveData::read(Stream& input, u32 size)
 {
 	mCavePikis.read(input);
-	mTime      = input.readFloat();
+	mDayTime   = input.readFloat();
 	mCourseIdx = (s8)input.readByte();
 	mCurrentCaveID.read(input);
 	mCurrentFloor       = (s8)input.readByte();

@@ -673,7 +673,7 @@ void SingleGameSection::saveMainMapSituation(bool isSubmergedCastle)
 	}
 	pikiMgr->caveSaveFormationPikmins(false);
 	pikiMgr->forceEnterPikmins(1);
-	playData->mCaveSaveData.mTime = gameSystem->mTimeMgr->mCurrentTimeOfDay;
+	playData->mCaveSaveData.mDayTime = gameSystem->mTimeMgr->mCurrentTimeOfDay;
 	saveToGeneratorCache(mCurrentCourseInfo);
 }
 
@@ -683,7 +683,7 @@ void SingleGameSection::saveMainMapSituation(bool isSubmergedCastle)
  */
 void SingleGameSection::loadMainMapSituation()
 {
-	gameSystem->mTimeMgr->setTime(playData->mCaveSaveData.mTime);
+	gameSystem->mTimeMgr->setTime(playData->mCaveSaveData.mDayTime);
 }
 
 /**

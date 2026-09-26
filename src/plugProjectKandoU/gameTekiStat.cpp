@@ -120,7 +120,7 @@ void TekiStat::Info::write(Stream& stream)
 {
 	stream.writeInt(mKilledTekiCount);
 	stream.writeInt(mKilledPikminCount);
-	stream.writeBytes(&mState.typeView, 1);
+	mState.writeBytes(stream);
 }
 
 /**
@@ -131,7 +131,7 @@ void TekiStat::Info::read(Stream& stream)
 {
 	mKilledTekiCount   = stream.readInt();
 	mKilledPikminCount = stream.readInt();
-	mState.typeView    = stream.readByte();
+	mState.readBytes(stream);
 }
 
 /**

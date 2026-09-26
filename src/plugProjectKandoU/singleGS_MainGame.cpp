@@ -168,7 +168,7 @@ void GameState::init(SingleGameSection* game, StateArg* arg)
 		}
 #endif
 		if (startType == MapEnter_CaveGeyser) {
-			gameSystem->mTimeMgr->setTime(playData->mCaveSaveData.mTime);
+			gameSystem->mTimeMgr->setTime(playData->mCaveSaveData.mDayTime);
 		}
 	} break;
 	default:

@@ -5,6 +5,7 @@
 #include "Game/GameConfig.h"
 #include "efx2d/T2DChangesmoke.h"
 #include "JSystem/JKernel/JKRDvdRipper.h"
+#include "Game/Data.h"
 #include "PSSystem/PSSystemIF.h"
 #include "Controller.h"
 #include "Screen/Game2DMgr.h"
@@ -4912,11 +4913,11 @@ int TChallengeSelect::getAfterState(int id)
 		return TChallengePanel::ChallengePanel_Perfect;
 	} else {
 		Game::Challenge2D_TitleInfo::Info* info = (*mDisp->mTitleInfo)(id);
-		if (info->mDisplayFlag.isSet(4)) {
+		if (info->mDisplayFlag.isSet(Game::PlayChallengeGameData::CourseState::CSF_IsKunsho)) {
 			return TChallengePanel::ChallengePanel_Perfect;
-		} else if (info->mDisplayFlag.isSet(2)) {
+		} else if (info->mDisplayFlag.isSet(Game::PlayChallengeGameData::CourseState::CSF_IsOpen)) {
 			return TChallengePanel::ChallengePanel_Cleared;
-		} else if (info->mDisplayFlag.isSet(1)) {
+		} else if (info->mDisplayFlag.isSet(Game::PlayChallengeGameData::CourseState::CSF_IsClear)) {
 			return TChallengePanel::ChallengePanel_Unbeaten;
 		}
 		return TChallengePanel::ChallengePanel_NotOpen;

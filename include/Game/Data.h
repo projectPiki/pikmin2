@@ -69,9 +69,9 @@ struct PlayChallengeGameData {
 	void read(Stream&);
 	CourseState* getState(int);
 
-	int mCourseCount;      // _00
-	CourseState* mCourses; // _04
-	BitFlag<u8> mFlags;    // _08
+	int mCourseCount;         // _00
+	CourseState* mCourses;    // _04
+	BitFlag<u8> mGlobalFlags; // _08, flags related to challenge mode itself and not a specific stage
 };
 
 struct PlayCommonData {

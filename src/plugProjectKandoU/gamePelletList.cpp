@@ -36,10 +36,6 @@ int Mgr::getCount(cKind kind)
  */
 PelletConfig* Mgr::getConfigAndKind(char* config, cKind& kind)
 {
-	// Need to pre-define these variables due to register ordering issues
-	bool isValid;
-	cKind kindCopy;
-
 	for (int i = 0; i < PLK_Size; i++) {
 		kind               = (cKind)i;
 		PelletConfig* list = getConfigList(kind)->getPelletConfig(config);
@@ -80,6 +76,8 @@ void Mgr::loadResource()
 	JKRArchive* archive;
 	char pathBuffer[512];
 
+	// PAL removed support for loading the US and JP pellet list folders via the game region
+	// (yet they bothered to keep support for the Kando pelletlist file that doesnt even exist in any region)
 #if defined(VERSION_PAL)
 	if (gGameConfig.mParms.mPelletMultiLang.mData) {
 		sprintf(pathBuffer, "/user/Abe/Pellet/%s/pelletlist_%s.szs", "pal", "pal");
@@ -126,8 +124,6 @@ void Mgr::loadResource()
 }
 
 /**
- * This relies on a fabricated function (PelletConfigList::getConfigCount) to preserve ordering.
- *
  * @note Address: 0x80228148
  * @note Size: 0x18
  */

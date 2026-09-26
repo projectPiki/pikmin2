@@ -21,7 +21,7 @@ struct Arg {
 		mHeap              = nullptr;
 		mItemConfigList    = nullptr;
 		mOtakaraConfigList = nullptr;
-		mRegionMode        = -1;
+		mRegionMode        = REGIONID_Null;
 	}
 
 	PelletConfigList* mOtakaraConfigList; // _00

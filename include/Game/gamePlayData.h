@@ -84,6 +84,7 @@ enum DemoFlags {
 	DEMO_RADAR_ENABLED           = 54, // these arent even for cutscenes, they're specifically for hud stuff
 	DEMO_SPICY_ENABLED           = 55,
 	DEMO_BITTER_ENABLED          = 56,
+	DEMO_COUNT // number of DemoFlag values to track
 };
 
 // What to load into after file select, i.e. where did we last save?
@@ -104,15 +105,15 @@ struct CaveSaveData {
 	void read(Stream&, u32);
 
 	bool mIsInCave;           // _00
-	int mCourseIdx;           // _04
+	int mCourseIdx;           // _04, index of the current course, gets used for non-cave related things
 	ID32 mCurrentCaveID;      // _08
 	PikiContainer mCavePikis; // _14
-	f32 mTime;                // _1C
-	u8 mIsWaterwraithAlive;   // _20
-	f32 mWaterwraithTimer;    // _24
+	f32 mDayTime;             // _1C, time of day when entering the cave, to be returned to on exit
+	u8 mIsWaterwraithAlive;   // _20, set false when a leaving a floor with the waterwraith dead, effectively unused in the normal game
+	f32 mWaterwraithTimer;    // _24, gets set to remaining time for waterwraith to fall, never read for anything
 	int mCurrentFloor;        // _28
 	u8 mActiveNaviID;         // _2C
-	PikiContainer _30;        // _30
+	PikiContainer _30;        // _30, unused extra container
 };
 
 struct KindCounter {
@@ -412,8 +413,8 @@ struct PlayData : public CNode {
 	bool isCaveFirstReturn(int, ID32&);
 	bool closeCourse(int);
 
-	inline void setStoryFlag(StoryFlags flag) { mStoryFlags |= flag; }
-	inline bool isStoryFlag(StoryFlags flag) { return mStoryFlags & flag; }
+	inline void setStoryFlag(StoryFlags flag) { mStoryFlags.set(flag); }
+	inline bool isStoryFlag(StoryFlags flag) { return mStoryFlags.isSet(flag); }
 
 	inline bool hasGotWhites() { return !isDemoFlag(DEMO_White_Candypop); }
 	inline bool hasGotPurples() { return !isDemoFlag(DEMO_Purple_Candypop); }
@@ -450,11 +451,11 @@ struct PlayData : public CNode {
 	u8 mHasContainerFlags;                  // _2C
 	u8 mHasBootContainerFlags;              // _2D
 	u8 mMeetPikminFlags;                    // _2E
-	u8 mStoryFlags;                         // _2F, see StoryFlags enum
+	BitFlag<u8> mStoryFlags;                // _2F, see StoryFlags enum
 	BitFlags mDemoFlags;                    // _30, see DemoFlags enum
 	BitFlags mFindItemFlags;                // _38
 	TekiStat::Mgr mTekiStatMgr;             // _40
-	OlimarData mOlimarData[2];              // _48 // TODO: This really packs into 4 bytes?
+	OlimarData mOlimarData[2];              // _48, two probably for Olimar/Louie, but the second set doesn't seem to be used for anything
 	CaveSaveData mCaveSaveData;             // _4C
 	kh::Screen::MailSaveData mMailSaveData; // _84
 	PikiContainer mPikiContainer;           // _A8

@@ -16,10 +16,11 @@ PlayCommonData::PlayCommonData()
 {
 	mHiScoreClear    = new Highscore*[GAME_HIGHSCORE_COUNT];
 	mHiScoreComplete = new Highscore*[GAME_HIGHSCORE_COUNT];
+
 	for (int i = 0; i < GAME_HIGHSCORE_COUNT; i++) {
-		mHiScoreClear[i]    = new Lowscore();
+		mHiScoreClear[i]    = new Lowscore(); // Lowscore means lower value gets a higher rank
 		mHiScoreComplete[i] = new Lowscore();
-		mHiScoreClear[i]->allocate(GAME_HIGHSCORE_RANK_NUM);
+		mHiScoreClear[i]->allocate(GAME_HIGHSCORE_RANK_NUM); // allocate 3 ranks for every score
 		mHiScoreComplete[i]->allocate(GAME_HIGHSCORE_RANK_NUM);
 	}
 	reset();
@@ -46,10 +47,14 @@ void PlayCommonData::reset()
  */
 void PlayChallengeGameData::reset()
 {
-	mFlags.clear();
+	mGlobalFlags.clear();
+
+	// clear flags for all challenge mode levels
 	for (int i = 0; i < mCourseCount; i++) {
 		mCourses[i].clear();
 	}
+
+	// after resetting, make sure the first 5 challenge mode levels are still open
 	for (int i = 0; i < 5; i++) {
 		mCourses[i].mFlags.set(CourseState::CSF_IsOpen);
 	}
@@ -62,8 +67,10 @@ void PlayChallengeGameData::reset()
  */
 void PlayCommonData::write(Stream& output)
 {
+	// save version is 2, see PlayCommonData::read for more
 	output.writeInt(2);
-	output.writeBytes(&mCommonStoryFlags.typeView, 1);
+
+	mCommonStoryFlags.writeBytes(output);
 	for (int i = 0; i < GAME_HIGHSCORE_COUNT; i++) {
 		mHiScoreClear[i]->write(output);
 		mHiScoreComplete[i]->write(output);
@@ -78,22 +85,23 @@ void PlayCommonData::write(Stream& output)
  */
 void PlayCommonData::read(Stream& stream)
 {
-	u32 fileInt                = stream.readInt();
-	u8 fileByte                = stream.readByte();
-	mCommonStoryFlags.typeView = fileByte;
-	if (fileInt >= 2) {
+	u32 version = stream.readInt();
+	mCommonStoryFlags.readBytes(stream);
+
+	if (version >= 2) {
+		// version 2 added one extra score
 		for (int i = 0; i < GAME_HIGHSCORE_COUNT; i++) {
 			mHiScoreClear[i]->read(stream);
 			mHiScoreComplete[i]->read(stream);
 		}
-	} else {
-		if (fileInt <= 1) {
-			for (int i = 0; i < (GAME_HIGHSCORE_COUNT - 1); i++) {
-				mHiScoreClear[i]->read(stream);
-				mHiScoreComplete[i]->read(stream);
-			}
+	} else if (version <= 1) {
+		// version 0 and 1 use this, has one less score tracked
+		for (int i = 0; i < (GAME_HIGHSCORE_COUNT - 1); i++) {
+			mHiScoreClear[i]->read(stream);
+			mHiScoreComplete[i]->read(stream);
 		}
 	}
+
 	mChallengeData.read(stream);
 }
 
@@ -121,35 +129,41 @@ Highscore* PlayCommonData::getHighscore_complete(int index)
  * @note Address: 0x802345BC
  * @note Size: 0x38
  */
-void PlayCommonData::entryHighscores_clear(int newTotal, int* totals, int* scores)
+void PlayCommonData::entryHighscores_clear(int day, int* totals, int* scores)
 {
-	entryHighscores_common(mHiScoreClear, newTotal, totals, scores);
+	// high scores set when repaying debt
+	entryHighscores_common(mHiScoreClear, day, totals, scores);
 }
 
 /**
  * @note Address: 0x802345F4
  * @note Size: 0x38
  */
-void PlayCommonData::entryHighscores_complete(int newTotal, int* totals, int* scores)
+void PlayCommonData::entryHighscores_complete(int day, int* totals, int* scores)
 {
-	entryHighscores_common(mHiScoreComplete, newTotal, totals, scores);
+	// high scores set when collecting all treasures
+	entryHighscores_common(mHiScoreComplete, day, totals, scores);
 }
 
 /**
  * @note Address: 0x8023462C
  * @note Size: 0xE0
  */
-void PlayCommonData::entryHighscores_common(Game::Highscore** highscores, int newTotal, int* totals, int* scores)
+void PlayCommonData::entryHighscores_common(Game::Highscore** highscores, int day, int* totals, int* scores)
 {
+	// high score for days taken to complete, passed into the function instead of being determined here
 	Highscore* startHighScore = highscores[0];
-	totals[0]                 = newTotal;
-	scores[0]                 = startHighScore->entryScore(newTotal);
+	totals[0]                 = day;
+	scores[0]                 = startHighScore->entryScore(day);
+
+	// pikmin lost records (all sources)
 	for (int i = 0; i < DeathCounter::COD_SourceCount + 1; i++) {
 		int j                    = i + 1;
 		Highscore* currHighScore = highscores[j];
 		totals[j]                = DeathMgr::get_total(i);
 		scores[j]                = currHighScore->entryScore(totals[j]);
 	}
+	// pikmin born records (five types + all)
 	for (int i = 0; i < 6; i++) {
 		int j                    = i + 9;
 		Highscore* currHighScore = highscores[j];
@@ -157,6 +171,7 @@ void PlayCommonData::entryHighscores_common(Game::Highscore** highscores, int ne
 		scores[j]                = currHighScore->entryScore(totals[j]);
 	}
 
+	// total play time is calculated as the time last ready from the memory card plus the current time
 	Highscore* timeScore                = highscores[15];
 	CommonSaveData::Mgr* playCommonData = sys->getCommonDataMgr();
 	int timeTotal                       = playData->calcPlayMinutes();
@@ -171,7 +186,7 @@ void PlayCommonData::entryHighscores_common(Game::Highscore** highscores, int ne
  */
 bool PlayCommonData::isChallengeGamePlayable()
 {
-	return mChallengeData.mFlags.isSet(PlayChallengeGameData::PCGDF_IsPlayable);
+	return mChallengeData.mGlobalFlags.isSet(PlayChallengeGameData::PCGDF_IsPlayable);
 }
 
 /**
@@ -180,7 +195,7 @@ bool PlayCommonData::isChallengeGamePlayable()
  */
 bool PlayCommonData::isLouieRescued()
 {
-	return mChallengeData.mFlags.isSet(PlayChallengeGameData::PCGDF_IsLouieRescued);
+	return mChallengeData.mGlobalFlags.isSet(PlayChallengeGameData::PCGDF_IsLouieRescued);
 }
 
 /**
@@ -189,15 +204,20 @@ bool PlayCommonData::isLouieRescued()
  */
 bool PlayCommonData::isPerfectChallenge()
 {
-	if ((mCommonStoryFlags.isSet(CommonData_LouieDarkSecret))) {
+	// if the Louie's Dark Secret flag is already set, don't bother running this function
+	if (mCommonStoryFlags.isSet(CommonData_LouieDarkSecret)) {
 		return true;
 	}
+
+	// if any stage doesnt have the perfect flag set, return false
 	for (int i = 0; i < mChallengeData.mCourseCount; i++) {
-		u16* state = (u16*)mChallengeData.getState(i);
-		if ((*state & 4) == 0) {
+		PlayChallengeGameData::CourseState* state = mChallengeData.getState(i);
+		if (!state->mFlags.isSet(PlayChallengeGameData::CourseState::CSF_IsKunsho)) {
 			return false;
 		}
 	}
+
+	// Unlock Louie's Dark Secret
 	mCommonStoryFlags.set(CommonData_LouieDarkSecret);
 	return true;
 }
@@ -208,7 +228,7 @@ bool PlayCommonData::isPerfectChallenge()
  */
 void PlayCommonData::enableChallengeGame()
 {
-	mChallengeData.mFlags.set(PlayChallengeGameData::PCGDF_IsPlayable);
+	mChallengeData.mGlobalFlags.set(PlayChallengeGameData::PCGDF_IsPlayable);
 	sys->setOptionBlockSaveFlag();
 }
 
@@ -218,7 +238,7 @@ void PlayCommonData::enableChallengeGame()
  */
 void PlayCommonData::enableLouieRescue()
 {
-	mChallengeData.mFlags.set(PlayChallengeGameData::PCGDF_IsLouieRescued);
+	mChallengeData.mGlobalFlags.set(PlayChallengeGameData::PCGDF_IsLouieRescued);
 	sys->setOptionBlockSaveFlag();
 }
 
@@ -228,8 +248,8 @@ void PlayCommonData::enableLouieRescue()
  */
 bool PlayCommonData::challenge_is_virgin()
 {
-	bool result = !mChallengeData.mFlags.isSet(PlayChallengeGameData::PCGDF_IsNotVirgin);
-	mChallengeData.mFlags.set(PlayChallengeGameData::PCGDF_IsNotVirgin);
+	bool result = !mChallengeData.mGlobalFlags.isSet(PlayChallengeGameData::PCGDF_IsNotVirgin);
+	mChallengeData.mGlobalFlags.set(PlayChallengeGameData::PCGDF_IsNotVirgin);
 	return result;
 }
 
@@ -239,7 +259,7 @@ bool PlayCommonData::challenge_is_virgin()
  */
 bool PlayCommonData::challenge_is_virgin_check_only()
 {
-	return !mChallengeData.mFlags.isSet(PlayChallengeGameData::PCGDF_IsNotVirgin);
+	return !mChallengeData.mGlobalFlags.isSet(PlayChallengeGameData::PCGDF_IsNotVirgin);
 }
 
 /**
@@ -257,7 +277,6 @@ PlayChallengeGameData::CourseState* PlayCommonData::challenge_get_CourseState(in
  */
 int PlayCommonData::challenge_get_coursenum()
 {
-	// UNUSED FUNCTION
 	return mChallengeData.mCourseCount;
 }
 
@@ -296,9 +315,12 @@ bool PlayCommonData::challenge_checkJustOpen(int index)
 {
 	PlayChallengeGameData::CourseState* state = challenge_get_CourseState(index);
 	u16 flags                                 = state->mFlags.typeView;
-	if (IS_FLAG(flags, PlayChallengeGameData::CourseState::CSF_IsOpen)) {
-		SET_FLAG(state->mFlags.typeView, PlayChallengeGameData::CourseState::CSF_WasOpen);
-		return !(IS_FLAG(flags, PlayChallengeGameData::CourseState::CSF_WasOpen));
+	// if a stage is opened, set a flag saying that the opened status is no longer new
+	if (state->mFlags.isSet(PlayChallengeGameData::CourseState::CSF_IsOpen)) {
+		state->mFlags.set(PlayChallengeGameData::CourseState::CSF_WasOpen);
+
+		// check if the flag we just set was already set beforehand
+		return !(flags & PlayChallengeGameData::CourseState::CSF_WasOpen);
 	}
 	return false;
 }
@@ -311,9 +333,12 @@ bool PlayCommonData::challenge_checkJustClear(int index)
 {
 	PlayChallengeGameData::CourseState* state = challenge_get_CourseState(index);
 	u16 flags                                 = state->mFlags.typeView;
-	if (IS_FLAG(flags, PlayChallengeGameData::CourseState::CSF_IsClear)) {
-		SET_FLAG(state->mFlags.typeView, PlayChallengeGameData::CourseState::CSF_WasClear);
-		return !(IS_FLAG(flags, PlayChallengeGameData::CourseState::CSF_WasClear));
+	// if a stage is cleared, set a flag saying that the cleared status is no longer new
+	if (state->mFlags.isSet(PlayChallengeGameData::CourseState::CSF_IsClear)) {
+		state->mFlags.set(PlayChallengeGameData::CourseState::CSF_WasClear);
+
+		// check if the flag we just set was already set beforehand
+		return !(flags & PlayChallengeGameData::CourseState::CSF_WasClear);
 	}
 	return false;
 }
@@ -326,9 +351,12 @@ bool PlayCommonData::challenge_checkJustKunsho(int index)
 {
 	PlayChallengeGameData::CourseState* state = challenge_get_CourseState(index);
 	u16 flags                                 = state->mFlags.typeView;
-	if (IS_FLAG(flags, PlayChallengeGameData::CourseState::CSF_IsKunsho)) {
-		SET_FLAG(state->mFlags.typeView, PlayChallengeGameData::CourseState::CSF_WasKunsho);
-		return !(IS_FLAG(flags, PlayChallengeGameData::CourseState::CSF_WasKunsho));
+	// if a stage is perfect, set a flag saying that the perfect status is no longer new
+	if (state->mFlags.isSet(PlayChallengeGameData::CourseState::CSF_IsKunsho)) {
+		state->mFlags.set(PlayChallengeGameData::CourseState::CSF_WasKunsho);
+
+		// check if the flag we just set was already set beforehand
+		return !(flags & PlayChallengeGameData::CourseState::CSF_WasKunsho);
 	}
 	return false;
 }
@@ -340,10 +368,14 @@ bool PlayCommonData::challenge_checkJustKunsho(int index)
  */
 int PlayCommonData::challenge_openNewCourse()
 {
+	// dont unlock additional stages in KFes mode
 	if (gGameConfig.mParms.mKFesVersion.mData != 0) {
 		return -1;
 	}
-	for (int i = 0; i < mChallengeData.mCourseCount; i++) {
+
+	// find the first stage to not be unlocked and unlock it
+	// abort after that, returning the index of the unlocked stage
+	for (int i = 0; i < challenge_get_coursenum(); i++) {
 		if (!challenge_checkOpen(i)) {
 			challenge_setOpen(i);
 			return i;
@@ -358,7 +390,7 @@ int PlayCommonData::challenge_openNewCourse()
  */
 void PlayCommonData::challenge_setClear(int index)
 {
-	SET_FLAG(mChallengeData.getState(index)->mFlags.typeView, PlayChallengeGameData::CourseState::CSF_IsClear);
+	challenge_get_CourseState(index)->mFlags.set(PlayChallengeGameData::CourseState::CSF_IsClear);
 }
 
 /**
@@ -367,7 +399,7 @@ void PlayCommonData::challenge_setClear(int index)
  */
 void PlayCommonData::challenge_setOpen(int index)
 {
-	SET_FLAG(mChallengeData.getState(index)->mFlags.typeView, PlayChallengeGameData::CourseState::CSF_IsOpen);
+	challenge_get_CourseState(index)->mFlags.set(PlayChallengeGameData::CourseState::CSF_IsOpen);
 }
 
 /**
@@ -376,12 +408,17 @@ void PlayCommonData::challenge_setOpen(int index)
  */
 void PlayCommonData::challenge_setKunsho(int index)
 {
-	SET_FLAG(challenge_get_CourseState(index)->mFlags.typeView, PlayChallengeGameData::CourseState::CSF_IsKunsho);
-	for (int idx = 0; idx < mChallengeData.mCourseCount; idx++) {
-		if (!(IS_FLAG(challenge_get_CourseState(idx)->mFlags.typeView, PlayChallengeGameData::CourseState::CSF_IsKunsho))) {
+	// mark the stage as perfect
+	challenge_get_CourseState(index)->mFlags.set(PlayChallengeGameData::CourseState::CSF_IsKunsho);
+
+	// run through all courses and check if all are perfect
+	for (int idx = 0; idx < challenge_get_coursenum(); idx++) {
+		if (!challenge_get_CourseState(idx)->mFlags.isSet(PlayChallengeGameData::CourseState::CSF_IsKunsho)) {
 			return;
 		}
 	}
+
+	// if we got here, all stages are perfect, so unlock Louie's Dark Secret
 	mCommonStoryFlags.set(CommonData_LouieDarkSecret);
 }
 
@@ -391,7 +428,7 @@ void PlayCommonData::challenge_setKunsho(int index)
  */
 Highscore* PlayCommonData::challenge_getHighscore(int courseIndex, int scoreType)
 {
-	PlayChallengeGameData::CourseState* state = mChallengeData.getState(courseIndex);
+	PlayChallengeGameData::CourseState* state = challenge_get_CourseState(courseIndex);
 	P2ASSERTBOUNDSINCLUSIVELINE(401, 0, scoreType, 1);
 	return &state->mHighscores[scoreType];
 }
@@ -402,14 +439,16 @@ Highscore* PlayCommonData::challenge_getHighscore(int courseIndex, int scoreType
  * @note Size: 0xC8
  */
 PlayChallengeGameData::PlayChallengeGameData()
-    : mFlags()
+    : mGlobalFlags()
 {
 	mCourseCount = CHALLENGE_COURSE_COUNT;
 	mCourses     = new CourseState[mCourseCount];
+
+	// set the first 5 challenge mode stages to be unlocked by default
 	for (int i = 0; i < 5; i++) {
-		mCourses[i].mFlags.typeView |= PlayChallengeGameData::CourseState::CSF_IsOpen;
+		mCourses[i].mFlags.set(PlayChallengeGameData::CourseState::CSF_IsOpen);
 	}
-	mFlags.clear();
+	mGlobalFlags.clear();
 }
 
 /**
@@ -418,11 +457,7 @@ PlayChallengeGameData::PlayChallengeGameData()
  */
 PlayChallengeGameData::CourseState* PlayChallengeGameData::getState(int index)
 {
-	bool isValidIndex = false;
-	if (0 <= index && index < mCourseCount) {
-		isValidIndex = true;
-	}
-	P2ASSERTLINE(427, isValidIndex);
+	P2ASSERTBOUNDSLINE(427, 0, index, mCourseCount);
 	P2ASSERTLINE(428, mCourses != nullptr);
 	return &mCourses[index];
 }
@@ -434,7 +469,7 @@ PlayChallengeGameData::CourseState* PlayChallengeGameData::getState(int index)
  */
 void PlayChallengeGameData::write(Stream& output)
 {
-	output.writeByte(mFlags.typeView);
+	mGlobalFlags.writeBytes(output);
 	for (int i = 0; i < mCourseCount; i++) {
 		mCourses[i].write(output);
 	}
@@ -447,7 +482,7 @@ void PlayChallengeGameData::write(Stream& output)
  */
 void PlayChallengeGameData::read(Stream& input)
 {
-	mFlags.typeView = input.readByte();
+	mGlobalFlags.readBytes(input);
 	for (int i = 0; i < mCourseCount; i++) {
 		mCourses[i].read(input);
 	}
