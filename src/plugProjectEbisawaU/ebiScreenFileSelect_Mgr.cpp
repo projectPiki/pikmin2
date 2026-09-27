@@ -306,7 +306,7 @@ void FSMState_CardTask::init(TMgr* mgr, Game::StateArg* arg)
 void FSMState_CardTask::exec(TMgr* mgr)
 {
 	if (isSaveError()) {
-		mCardStat = Game::MemoryCard::Mgr::MCS_Ready;
+		mCardStat = Game::MemoryCard::Mgr::MCS_NoCard;
 		mStatus   = CardTaskState_finish;
 		mgr->mMainScreen.closeMSG();
 	}
@@ -334,19 +334,19 @@ void FSMState_CardTask::exec(TMgr* mgr)
 		break;
 	case CardTaskState_finish:
 		if (mgr->mMainScreen.isFinishCloseMSG()) {
-			if (mCardStat != Game::MemoryCard::Mgr::MCS_IOError) {
+			if (mCardStat != Game::MemoryCard::Mgr::MCS_Ready) {
 				PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_ERROR, 0);
 			}
 			switch (mCardStat) {
-			case Game::MemoryCard::Mgr::MCS_IOError:
+			case Game::MemoryCard::Mgr::MCS_Ready:
 				mgr->mInSeq = true;
 				do_transitCardReady(mgr);
 				break;
-			case Game::MemoryCard::Mgr::MCS_13:
+			case Game::MemoryCard::Mgr::MCS_PlayerDataBroken:
 				mgr->mInSeq = true;
 				do_transitCardPlayerDataBroken(mgr);
 				break;
-			case Game::MemoryCard::Mgr::MCS_Ready:
+			case Game::MemoryCard::Mgr::MCS_NoCard:
 				mgr->mInSeq = false;
 				do_transitCardNoCard(mgr);
 				break;
@@ -647,10 +647,10 @@ void FSMState00b_CheckData::do_exec(TMgr* mgr)
 	case CheckDataState_Finish:
 		if (mgr->mMainScreen.isFinishCloseMSG() && mgr->mMainScreen.isFinishOutDataBall(mgr->mCurrSelection)) {
 			switch (mCardState) {
-			case Game::MemoryCard::Mgr::MCS_IOError:
+			case Game::MemoryCard::Mgr::MCS_Ready:
 				transit(mgr, FSState_DecideData, nullptr);
 				break;
-			case Game::MemoryCard::Mgr::MCS_13:
+			case Game::MemoryCard::Mgr::MCS_PlayerDataBroken:
 				mgr->mMainScreen.inDataBall(mgr->mCurrSelection);
 				transit(mgr, FSSTATE_DataBroken, nullptr);
 				break;

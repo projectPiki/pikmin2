@@ -145,7 +145,7 @@ void FSMState_CardRequest::do_exec(TMgr* mgr)
 	switch (mState) {
 	case 0:
 		bool check = false;
-		if (!sys->mCardMgr->mIsCard && sys->mCardMgr->checkStatus() != MemoryCardMgr::INSIDESTATUS_Unk11) {
+		if (!sys->mCardMgr->mIsCard && sys->mCardMgr->checkStatus() != MemoryCardMgr::MCS_Invalid) {
 			check = true;
 		}
 		if (check) {
@@ -155,7 +155,7 @@ void FSMState_CardRequest::do_exec(TMgr* mgr)
 		break;
 	case 1:
 		check = false;
-		if (!sys->mCardMgr->mIsCard && sys->mCardMgr->checkStatus() != MemoryCardMgr::INSIDESTATUS_Unk11) {
+		if (!sys->mCardMgr->mIsCard && sys->mCardMgr->checkStatus() != MemoryCardMgr::MCS_Invalid) {
 			check = true;
 		}
 		if (check) {
@@ -166,40 +166,40 @@ void FSMState_CardRequest::do_exec(TMgr* mgr)
 		break;
 	case 2: {
 		switch (mCardStatus) {
-		case 2:
+		case MemoryCardMgr::MCS_Ready:
 			do_transitCardReady(mgr);
 			break;
-		case 0:
+		case MemoryCardMgr::MCS_NoCard:
 			do_transitCardNoCard(mgr);
 			break;
-		case 5:
+		case MemoryCardMgr::MCS_IOError:
 			do_transitCardIOError(mgr);
 			break;
-		case 6:
+		case MemoryCardMgr::MCS_WrongDevice:
 			do_transitCardWrongDevice(mgr);
 			break;
-		case 7:
+		case MemoryCardMgr::MCS_WrongSector:
 			do_transitCardWrongSector(mgr);
 			break;
-		case 3:
+		case MemoryCardMgr::MCS_Broken:
 			do_transitCardBroken(mgr);
 			break;
-		case 4:
+		case MemoryCardMgr::MCS_Encoding:
 			do_transitCardEncoding(mgr);
 			break;
-		case 8:
+		case MemoryCardMgr::MCS_NoFileSpace:
 			do_transitCardNoFileSpace(mgr);
 			break;
-		case 9:
+		case MemoryCardMgr::MCS_NoFileEntry:
 			do_transitCardNoFileEntry(mgr);
 			break;
-		case 1:
+		case MemoryCardMgr::MCS_FileOpenError:
 			do_transitCardFileOpenError(mgr);
 			break;
-		case 14:
+		case MemoryCardMgr::MCS_SerialNoError:
 			do_transitCardSerialNoError(mgr);
 			break;
-		case 13:
+		case MemoryCardMgr::MCS_PlayerDataBroken:
 			do_transitCardPlayerDataBroken(mgr);
 			break;
 		default:
@@ -456,14 +456,14 @@ void FSMState_NowSave::do_exec(TMgr* mgr)
 			mCardStatus = sys->mCardMgr->getCardStatus();
 			sys->mCardMgr->getCardStatus();
 			switch (mCardStatus) {
-			case 2:
+			case MemoryCardMgr::MCS_Ready:
 				if (!mgr->mIsStoryGameSave) {
 					mState = 4;
 				} else {
 					mState = 2;
 				}
 				break;
-			case 14:
+			case MemoryCardMgr::MCS_SerialNoError:
 				mState = 4;
 				break;
 			default:
@@ -496,14 +496,14 @@ void FSMState_NowSave::do_exec(TMgr* mgr)
 
 		if (mgr->mSaveMenu.isFinishMsg()) {
 			switch (mCardStatus) {
-			case 2:
+			case MemoryCardMgr::MCS_Ready:
 				transit(mgr, AfterSave, nullptr);
 				break;
-			case 0:
+			case MemoryCardMgr::MCS_NoCard:
 				CardErrorArg arg1(CardError::TMgr::Start_FailToSave_NoCard);
 				transit(mgr, CardError, &arg1);
 				break;
-			case 14:
+			case MemoryCardMgr::MCS_SerialNoError:
 				CardErrorArg arg2(CardError::TMgr::Start_SerialNoError);
 				transit(mgr, CardError, &arg2);
 				break;
