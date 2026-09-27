@@ -39,24 +39,62 @@ struct MemoryCardMgrCommand : public MemoryCardMgrCommandBase {
 
 struct MemoryCardMgr {
 	enum ECardSlot {
-		CARDSLOT_Unk0 = 0,
-		CARDSLOT_Unk1 = 1,
-		CARDSLOT_UnkF = 0xf,
+		CARDSLOT_SlotA   = 0,
+		CARDSLOT_SlotB   = 1,
+		CARDSLOT_INVALID = 0xf,
 	};
 
 	enum EInsideStatusFlag {
-		INSIDESTATUS_Unk   = 0,
-		INSIDESTATUS_Unk1  = 1,
-		INSIDESTATUS_Unk2  = 2,
-		INSIDESTATUS_Unk3  = 3,
-		INSIDESTATUS_Unk4  = 4,
-		INSIDESTATUS_Unk5  = 5,
-		INSIDESTATUS_Unk6  = 6,
-		INSIDESTATUS_Unk7  = 7,
-		INSIDESTATUS_Unk8  = 8,
-		INSIDESTATUS_Unk9  = 9,
-		INSIDESTATUS_Unk10 = 10,
-		INSIDESTATUS_Unk11 = 11,
+		INSIDESTATUS_NoCard        = 0,
+		INSIDESTATUS_Ready         = 1,
+		INSIDESTATUS_Mounted       = 2,
+		INSIDESTATUS_FileOpenError = 3,
+		INSIDESTATUS_Encoding      = 4,
+		INSIDESTATUS_Broken        = 5,
+		INSIDESTATUS_NoFileSpace   = 6,
+		INSIDESTATUS_NoFileEntry   = 7,
+		INSIDESTATUS_WrongDevice   = 8,
+		INSIDESTATUS_WrongSector   = 9,
+		INSIDESTATUS_ErrorOccurred = 10,
+		INSIDESTATUS_Default       = 11,
+	};
+
+	enum EMemoryCardStatus {
+		MCS_NoCard           = 0,
+		MCS_FileOpenError    = 1,
+		MCS_Ready            = 2,
+		MCS_Broken           = 3,
+		MCS_Encoding         = 4,
+		MCS_IOError          = 5,
+		MCS_WrongDevice      = 6,
+		MCS_WrongSector      = 7,
+		MCS_NoFileSpace      = 8,
+		MCS_NoFileEntry      = 9,
+		MCS_10               = 10,
+		MCS_Invalid          = 11,
+		MCS_GameOptionsBroken               = 12,
+		MCS_PlayerDataBroken = 13,
+		MCS_SerialNoError    = 14,
+	};
+
+	enum EMgrCommand {
+		COMMAND_Default               = 0,
+		COMMAND_FormatSlotA           = 1,
+		COMMAND_FormatSlotB           = 2,
+		COMMAND_MountSlotA            = 3,
+		COMMAND_UnmountSlotA          = 4,
+		COMMAND_SaveGameOption        = 5,
+		COMMAND_LoadGameOption        = 6,
+		COMMAND_CreateNewFile         = 7,
+		COMMAND_SavePlayer            = 8,
+		COMMAND_SavePlayerNoSerialNum = 9,
+		COMMAND_LoadPlayer            = 10,
+		COMMAND_DeletePlayer          = 11,
+		COMMAND_CopyPlayer            = 12,
+		COMMAND_UpdatePlayerHeader    = 13,
+		COMMAND_CheckSerialNum        = 14,
+		COMMAND_CheckBeforeSave       = 15,
+		COMMAND_CheckError            = 16,
 	};
 
 	MemoryCardMgr();
@@ -71,9 +109,9 @@ struct MemoryCardMgr {
 	virtual bool doCheckCardStat(CARDStat*);                               // _24
 	virtual bool isErrorOccured();                                         // _28
 
-	inline bool isSaveValid() { return mIsCard || checkStatus() != INSIDESTATUS_Unk11; }
-	inline bool isSaveInvalid() { return !mIsCard && checkStatus() != INSIDESTATUS_Unk11; }
-	inline bool isErrorNotOccured() { return (checkStatus() == 2); }
+	inline bool isSaveValid() { return mIsCard || checkStatus() != MCS_Invalid; }
+	inline bool isSaveInvalid() { return !mIsCard && checkStatus() != MCS_Invalid; }
+	inline bool isErrorNotOccured() { return (checkStatus() == MCS_Ready); }
 	inline MemoryCardMgrCommand* getCommandQueue() { return mCommands; }
 
 	void cardProc(void*);

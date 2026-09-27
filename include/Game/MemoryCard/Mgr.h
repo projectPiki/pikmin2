@@ -7,6 +7,27 @@
 #include "types.h"
 #include "Game/MemoryCard/Player.h"
 
+#define GET_CARD_OFFSET(i, size, offset) (i * size + offset)
+
+// block size of save header
+#define HEADER_BLOCK_SIZE (0x2000)
+// header section offset at save index i
+#define GET_HEADER_OFFSET(i) GET_CARD_OFFSET(i, HEADER_BLOCK_SIZE, 0)
+
+// block size of save game options
+#define OPTION_BLOCK_SIZE (0x2000)
+// file buffer size of game options
+#define OPTION_FILE_SIZE (0x1C00)
+// game option section offset at save index i
+#define GET_OPTION_OFFSET(i) GET_CARD_OFFSET(i, OPTION_BLOCK_SIZE, HEADER_BLOCK_SIZE)
+
+// block size of save player options
+#define PLAYER_BLOCK_SIZE (0xC000)
+// file buffer size of save player options
+#define PLAYER_FILE_SIZE (0xBF80)
+// player option section offset at save index i
+#define GET_PLAYER_OFFSET(i) GET_CARD_OFFSET(i, PLAYER_BLOCK_SIZE, GET_OPTION_OFFSET(2))
+
 struct Stream;
 
 namespace Game {
@@ -16,16 +37,16 @@ struct PlayerInfoHeader;
 
 struct PlayerInfo : PlayerInfoHeader {
 	// _0000-_0040 = PlayerInfoHeader
-	u8 _0040[0xBFBC]; // _0040
-	u32 mChecksum;    // _BFFC
+	u8 mFileBuffer[0xBFBC]; // _0040
+	u32 mChecksum;          // _BFFC
 };
 
 struct OptionInfo {
-	u32 mMagic;         // _0000
-	u32 mVersionType;   // _0004
-	u32 mSaveSlotIndex; // _0008
-	u8 _000C[0x1FF0];   // _000C
-	u32 mChecksum;      // _1FFC
+	u32 mMagic;             // _0000
+	u32 mVersionType;       // _0004
+	u32 mSaveSlotIndex;     // _0008
+	u8 mFileBuffer[0x1FF0]; // _000C
+	u32 mChecksum;          // _1FFC
 };
 
 enum MemoryCardMgrFlags {
@@ -33,34 +54,23 @@ enum MemoryCardMgrFlags {
 };
 
 struct Mgr : public MemoryCardMgr {
+	enum ECardErrorCode {
+		ERRORCODE_None          = 0,
+		ERRORCODE_OptionBroken  = 1,
+		ERRORCODE_PlayerBroken  = 2,
+		ERRORCODE_SerialNoUnset = 3,
+	};
+
 	Mgr();
 
-	virtual ~Mgr() { }                                     // _08 (weak)
-	virtual void update();                                 // _0C
-	virtual bool doCardProc(void*, MemoryCardMgrCommand*); // _14
-	virtual u32 getHeaderSize() { return 0x2000; }         // _18 (weak)
-	virtual void doMakeHeader(u8*);                        // _1C
-	virtual void doSetCardStat(CARDStat*);                 // _20
-	virtual bool doCheckCardStat(CARDStat*);               // _24
-	virtual bool isErrorOccured();                         // _28
-
-	enum MemoryCardStatus {
-		MCS_Ready            = 0,
-		MCS_NoCard           = 1,
-		MCS_IOError          = 2,
-		MCS_WrongDevice      = 3,
-		MCS_WrongSector      = 4,
-		MCS_Broken           = 5,
-		MCS_Encoding         = 6,
-		MCS_NoFileSpace      = 7,
-		MCS_NoFileEntry      = 8,
-		MCS_FileOpenError    = 9,
-		MCS_SerialNoError    = 10,
-		MCS_11               = 11,
-		MCS_12               = 12,
-		MCS_13               = 13,
-		MCS_PlayerDataBroken = 14,
-	};
+	virtual ~Mgr() { }                                        // _08 (weak)
+	virtual void update();                                    // _0C
+	virtual bool doCardProc(void*, MemoryCardMgrCommand*);    // _14
+	virtual u32 getHeaderSize() { return HEADER_BLOCK_SIZE; } // _18 (weak)
+	virtual void doMakeHeader(u8*);                           // _1C
+	virtual void doSetCardStat(CARDStat*);                    // _20
+	virtual bool doCheckCardStat(CARDStat*);                  // _24
+	virtual bool isErrorOccured();                            // _28
 
 	void loadResource(JKRHeap*);
 	void destroyResource();
@@ -128,16 +138,16 @@ struct Mgr : public MemoryCardMgr {
 	inline void resetFlag(u32 flag) { mFlags.typeView &= ~flag; }
 	inline bool isFlag(u32 flag) const { return mFlags.typeView & flag; }
 
-	inline bool checkCheckSum(u32* buffer);
-	inline bool checkPlVa(u32* buffer);
-	inline bool checkInfoBody(u32* buffer);
-	inline bool checkInfo(u32* buffer);
+	inline bool checkCheckSum(PlayerInfo* buffer);
+	inline bool checkPlVa(PlayerInfo* buffer);
+	inline bool checkInfoBody(PlayerInfo* buffer);
+	inline bool checkInfo(PlayerInfo* buffer);
 
-	inline bool isCardReady() { return (int)getCardStatus() == MCS_Ready; }
+	inline bool isCardReady() { return (int)getCardStatus() == MCS_NoCard; }
 
-	inline bool isCardNotReady() { return (int)getCardStatus() != MCS_Ready; }
+	inline bool isCardNotReady() { return (int)getCardStatus() != MCS_NoCard; }
 
-	inline bool isCardInvalid() { return !mIsCard && checkStatus() != MCS_11; }
+	inline bool isCardInvalid() { return !mIsCard && checkStatus() != MCS_Invalid; }
 
 	// _00-_E8 = MemoryCardMgr
 	u32 mErrorCode;         // _D8

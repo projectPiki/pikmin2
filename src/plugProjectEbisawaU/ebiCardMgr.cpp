@@ -180,7 +180,7 @@ void FSMState_CardRequest::do_exec(TMgr* mgr)
 	case 1:
 		if (sys->mCardMgr->isCardInvalid()) {
 			mCardStatus = (int)sys->mCardMgr->getCardStatus();
-			if (mCardStatus != CARDERROR_NoCard) {
+			if (mCardStatus != MemoryCardMgr::MCS_Ready) {
 				sys->mCardMgr->getCardStatus();
 			}
 
@@ -199,37 +199,37 @@ void FSMState_CardRequest::do_exec(TMgr* mgr)
 		mgr->mScreen.mCanExit = true;
 
 		switch (mCardStatus) {
-		case Game::MemoryCard::Mgr::MCS_IOError:
+		case MemoryCardMgr::MCS_Ready:
 			do_transitCardReady(mgr);
 			break;
-		case Game::MemoryCard::Mgr::MCS_Ready:
+		case MemoryCardMgr::MCS_NoCard:
 			do_transitCardNoCard(mgr);
 			break;
-		case Game::MemoryCard::Mgr::MCS_Broken:
+		case MemoryCardMgr::MCS_IOError:
 			do_transitCardIOError(mgr);
 			break;
-		case Game::MemoryCard::Mgr::MCS_Encoding:
+		case MemoryCardMgr::MCS_WrongDevice:
 			do_transitCardWrongDevice(mgr);
 			break;
-		case Game::MemoryCard::Mgr::MCS_NoFileSpace:
+		case MemoryCardMgr::MCS_WrongSector:
 			do_transitCardWrongSector(mgr);
 			break;
-		case Game::MemoryCard::Mgr::MCS_WrongDevice:
+		case MemoryCardMgr::MCS_Broken:
 			do_transitCardBroken(mgr);
 			break;
-		case Game::MemoryCard::Mgr::MCS_WrongSector:
+		case MemoryCardMgr::MCS_Encoding:
 			do_transitCardEncoding(mgr);
 			break;
-		case Game::MemoryCard::Mgr::MCS_NoFileEntry:
+		case MemoryCardMgr::MCS_NoFileSpace:
 			do_transitCardNoFileSpace(mgr);
 			break;
-		case Game::MemoryCard::Mgr::MCS_FileOpenError:
+		case MemoryCardMgr::MCS_NoFileEntry:
 			do_transitCardNoFileEntry(mgr);
 			break;
-		case Game::MemoryCard::Mgr::MCS_NoCard:
+		case MemoryCardMgr::MCS_FileOpenError:
 			do_transitCardFileOpenError(mgr);
 			break;
-		case Game::MemoryCard::Mgr::MCS_PlayerDataBroken:
+		case MemoryCardMgr::MCS_SerialNoError:
 			do_transitCardSerialNoError(mgr);
 			break;
 		default:

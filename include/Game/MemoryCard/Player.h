@@ -11,7 +11,7 @@ struct Player {
 	u8 mFlag;         // _00
 	u8 _01;           // _01
 	u16 _02;          // _02
-	u32 _04;          // _04
+	u32 mSaveCount;   // _04, number of times this player has been saved
 	u32 mDay;         // _08
 	u32 mRedPikis;    // _0C
 	u32 mBluePikis;   // _10
@@ -26,10 +26,10 @@ struct Player {
 };
 
 struct PlayerInfoHeader {
-	u32 mMagic;       // _00
-	u32 mVersionType; // _04
-	u8 _08;           // _08
-	Player mPlayer;   // _0C
+	u32 mMagic;        // _00
+	u32 mVersionType;  // _04
+	s8 mSaveSlotIndex; // _08
+	Player mPlayer;    // _0C
 };
 } // namespace MemoryCard
 } // namespace Game
