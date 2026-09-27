@@ -107,9 +107,9 @@ struct Vector3 {
 
 	// 3D Normalise Functions
 	T normalise();
-	T normalize();     // only used in a couple places, but seems necessary
-	T normaliseCopy(); // only used in ItemTreasure but also seems necessary
+	T normalize(); // only used in a couple places, but seems necessary
 	T qNormalise();
+	static inline T normalise(Vector3<T>& vec);
 
 	// 2D Normalise Functions
 	T normalise2D();
@@ -644,16 +644,16 @@ inline f32 Vector3f::normalize()
 }
 
 template <>
-inline f32 Vector3f::normaliseCopy()
+inline f32 Vector3f::normalise(Vector3f& vec)
 {
-	Vector3f vec = *this;
-	vec.y *= vec.y;
-	vec.z *= vec.z;
-	f32 dist = vec.y + vec.x * vec.x + vec.z;
+	Vector3f tmp = vec;
+	tmp.y *= tmp.y;
+	tmp.z *= tmp.z;
+	f32 dist = tmp.y + tmp.x * tmp.x + tmp.z;
 	dist     = (dist > 0.0f) ? sqrtfInPlace(dist) : 0.0f;
 	if (dist > 0.0f) {
 		f32 norm = 1.0f / dist;
-		*this    = *this * norm;
+		vec      = vec * norm;
 		return dist;
 	}
 	return 0.0f;

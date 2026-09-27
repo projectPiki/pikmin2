@@ -4915,9 +4915,9 @@ int TChallengeSelect::getAfterState(int id)
 		Game::Challenge2D_TitleInfo::Info* info = (*mDisp->mTitleInfo)(id);
 		if (info->mDisplayFlag.isSet(Game::PlayChallengeGameData::CourseState::CSF_IsKunsho)) {
 			return TChallengePanel::ChallengePanel_Perfect;
-		} else if (info->mDisplayFlag.isSet(Game::PlayChallengeGameData::CourseState::CSF_IsOpen)) {
-			return TChallengePanel::ChallengePanel_Cleared;
 		} else if (info->mDisplayFlag.isSet(Game::PlayChallengeGameData::CourseState::CSF_IsClear)) {
+			return TChallengePanel::ChallengePanel_Cleared;
+		} else if (info->mDisplayFlag.isSet(Game::PlayChallengeGameData::CourseState::CSF_IsOpen)) {
 			return TChallengePanel::ChallengePanel_Unbeaten;
 		}
 		return TChallengePanel::ChallengePanel_NotOpen;
