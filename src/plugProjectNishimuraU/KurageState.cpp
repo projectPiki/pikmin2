@@ -3,7 +3,7 @@
 #include "Game/EnemyFunc.h"
 #include "Game/CameraMgr.h"
 #include "Game/rumble.h"
-#include "efx/TNewkurage.h"
+#include "efx/efxEnemy.h"
 #include "PS.h"
 #include "nans.h"
 

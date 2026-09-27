@@ -8,8 +8,8 @@
 #include "Game/JointFuncs.h"
 #include "Game/EnemyBase.h"
 #include "Game/WalkSmokeEffect.h"
-#include "efx/TKch.h"
-#include "efx/TEnemyHamon.h"
+#include "efx/efxEnemyBoss.h"
+#include "efx/efxEnemyGeneral.h"
 #include "SysShape/Joint.h"
 #include "Collinfo.h"
 

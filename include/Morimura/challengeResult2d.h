@@ -4,7 +4,7 @@
 #include "Morimura/DayEndCount.h"
 #include "ebi/Save.h"
 #include "Game/ChallengeGame.h"
-#include "efx2d/T2DCavecomp.h"
+#include "efx2d/efx2dEffect.h"
 #include "Morimura/mrUtil.h"
 
 namespace Game {

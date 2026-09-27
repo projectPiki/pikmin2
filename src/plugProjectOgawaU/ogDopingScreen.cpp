@@ -3,7 +3,7 @@
 #include "og/Screen/callbackNodes.h"
 #include "og/Sound.h"
 #include "og/newScreen/ogUtil.h"
-#include "efx2d/T2DSprayset.h"
+#include "efx2d/efx2dEffect.h"
 #include "trig.h"
 
 namespace og {

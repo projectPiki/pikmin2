@@ -6,8 +6,8 @@
 #include "Game/EnemyParmsBase.h"
 #include "Game/EnemyMgrBase.h"
 #include "Game/EnemyBase.h"
-#include "efx/TFuebugOnpa.h"
-#include "efx/TCursor.h"
+#include "efx/efxEnemy.h"
+#include "efx/efxPikmin.h"
 
 /**
  * --Header for Antenna Beetle (Fuefuki)--

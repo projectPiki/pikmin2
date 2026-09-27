@@ -1,7 +1,7 @@
 #include "Game/Entities/GasHiba.h"
 #include "Game/Entities/ItemBridge.h"
 #include "Game/Entities/ItemGate.h"
-#include "efx/TGasuHiba.h"
+#include "efx/efxEnemy.h"
 #include "Dolphin/rand.h"
 
 namespace Game {

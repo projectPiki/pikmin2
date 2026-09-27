@@ -27,7 +27,7 @@
 #include "TParticle2dMgr.h"
 #include "PSGame/Global.h"
 #include "PSM/BossBgmFader.h"
-#include "efx/OnyonSpot.h"
+#include "efx/efxObject.h"
 #include "Dolphin/rand.h"
 #include "LifeGaugeMgr.h"
 #include "og/ogLib2D.h"

@@ -1,11 +1,9 @@
-#include "types.h"
 #include "Game/WalkSmokeEffect.h"
 #include "JSystem/JUtility/JUTException.h"
 #include "Game/EnemyBase.h"
 #include "Game/MapMgr.h"
 #include "SysShape/Model.h"
 #include "SysShape/Joint.h"
-#include "efx/TEnemyWalkSmoke.h"
 
 const char filename[] = "walkSmoke";
 

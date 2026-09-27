@@ -3,7 +3,7 @@
 #include "Game/gameChallenge2D.h"
 #include "trig.h"
 #include "Game/GameConfig.h"
-#include "efx2d/T2DChangesmoke.h"
+#include "efx2d/efx2dEffect.h"
 #include "JSystem/JKernel/JKRDvdRipper.h"
 #include "Game/Data.h"
 #include "PSSystem/PSSystemIF.h"

@@ -1,6 +1,5 @@
-#include "efx/PikiDamage.h"
-#include "efx/TPk.h"
-#include "efx/TWeedPull.h"
+#include "efx/efxPikmin.h"
+#include "efx/efxObject.h"
 #include "Game/Entities/ItemWeed.h"
 #include "Game/Piki.h"
 #include "nans.h"

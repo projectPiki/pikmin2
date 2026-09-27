@@ -4,7 +4,7 @@
 #include "Game/generalEnemyMgr.h"
 #include "Game/Entities/ShijimiChou.h"
 #include "Game/GameSystem.h"
-#include "efx/TWatage.h"
+#include "efx/efxEnemy.h"
 #include "PSSystem/PSMainSide_ObjSound.h"
 #include "nans.h"
 

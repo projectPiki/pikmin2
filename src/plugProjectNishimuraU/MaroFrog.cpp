@@ -1,6 +1,6 @@
 #include "Game/Entities/MaroFrog.h"
 #include "Game/Navi.h"
-#include "efx/TFrog.h"
+#include "efx/efxEnemy.h"
 
 namespace Game {
 namespace MaroFrog {

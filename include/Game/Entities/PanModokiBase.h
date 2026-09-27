@@ -7,7 +7,7 @@
 #include "Game/EnemyMgrBase.h"
 #include "Game/EnemyBase.h"
 #include "Game/WalkSmokeEffect.h"
-#include "efx/TPan.h"
+#include "efx/efxEnemy.h"
 #include "SysShape/Joint.h"
 #include "Collinfo.h"
 

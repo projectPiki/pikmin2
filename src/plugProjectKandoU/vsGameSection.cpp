@@ -1,5 +1,5 @@
 #include "Dolphin/rand.h"
-#include "efx/TEnemyApsmoke.h"
+#include "efx/efxEnemyGeneral.h"
 #include "Game/Cave/RandMapMgr.h"
 #include "Game/Entities/ItemOnyon.h"
 #include "Game/Entities/PelletOtakara.h"

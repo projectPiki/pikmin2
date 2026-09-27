@@ -7,7 +7,7 @@
 #include "Game/PikiState.h"
 #include "Game/Navi.h"
 #include "Game/MoviePlayer.h"
-#include "efx/TEnemyDive.h"
+#include "efx/efxEnemyGeneral.h"
 #include "nans.h"
 #include "Radar.h"
 #include "SoundID.h"

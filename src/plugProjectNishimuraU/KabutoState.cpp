@@ -1,7 +1,7 @@
 #include "Game/Entities/Kabuto.h"
 #include "Game/EnemyAnimKeyEvent.h"
 #include "Game/EnemyFunc.h"
-#include "efx/THebi.h"
+#include "efx/efxEnemyBoss.h"
 
 namespace Game {
 namespace Kabuto {

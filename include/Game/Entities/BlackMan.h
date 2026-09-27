@@ -11,7 +11,7 @@
 #include "SysShape/Animator.h"
 #include "Sys/MatBaseAnimation.h"
 #include "Sys/MatBaseAnimator.h"
-#include "efx/TKage.h"
+#include "efx/efxEnemyBoss.h"
 
 /**
  * --Header for Waterwraith (BlackMan)--

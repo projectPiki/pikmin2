@@ -1,7 +1,7 @@
 #include "og/newScreen/TitleMsg.h"
 #include "og/Screen/ogScreen.h"
 #include "P2JME/Analyzer.h"
-#include "efx2d/T2DCvname.h"
+#include "efx2d/efx2dEffect.h"
 #include "Dolphin/rand.h"
 #include "og/ogLib2D.h"
 #include "og/Sound.h"

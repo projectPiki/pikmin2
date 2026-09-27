@@ -4,7 +4,7 @@
 #include "Dolphin/rand.h"
 #include "trig.h"
 #include "Game/EnemyFunc.h"
-#include "efx/TBaby.h"
+#include "efx/efxEnemy.h"
 
 namespace Game {
 namespace Baby {

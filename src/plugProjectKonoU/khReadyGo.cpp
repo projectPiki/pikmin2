@@ -5,7 +5,7 @@
 #include "nans.h"
 #include "SoundID.h"
 #include "utilityU.h"
-#include "efx2d/T2DGo.h"
+#include "efx2d/efx2dEffect.h"
 #include "Game/GameSystem.h"
 #include "JSystem/J2D/J2DAnmLoader.h"
 #include "Screen/Game2DMgr.h"

@@ -4,7 +4,7 @@
 #include "kh/khUtil.h"
 #include "Game/Result.h"
 #include "ebi/Save.h"
-#include "efx2d/T2DCavecomp.h"
+#include "efx2d/efx2dEffect.h"
 #include "og/Screen/DispMember.h"
 #include "og/Screen/callbackNodes.h"
 #include "Screen/screenObj.h"

@@ -8,7 +8,7 @@
 #include "Game/GameSystem.h"
 #include "Game/gamePlayData.h"
 #include "Game/gameStat.h"
-#include "efx/TNaviEffect.h"
+#include "efx/efxPikmin.h"
 #include "Dolphin/mtx.h"
 #include "JSystem/J2D/J2DGrafContext.h"
 #include "JSystem/J3D/J3DModel.h"

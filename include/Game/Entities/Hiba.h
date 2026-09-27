@@ -6,8 +6,8 @@
 #include "Game/EnemyParmsBase.h"
 #include "Game/EnemyMgrBase.h"
 #include "Game/EnemyBase.h"
-#include "efx/TEnemyBomb.h"
-#include "efx/THibaFire.h"
+#include "efx/efxEnemyGeneral.h"
+#include "efx/efxEnemy.h"
 #include "PS.h"
 
 /**

@@ -6,7 +6,7 @@
 #include "Game/EnemyParmsBase.h"
 #include "Game/EnemyMgrBase.h"
 #include "Game/EnemyBase.h"
-#include "efx/TBombrock.h"
+#include "efx/efxEnemy.h"
 #include "Collinfo.h"
 
 /**

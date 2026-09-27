@@ -5,7 +5,7 @@
 #include "Game/Piki.h"
 #include "Game/PikiMgr.h"
 #include "Game/MapMgr.h"
-#include "efx/TFuebugOnpa.h"
+#include "efx/efxEnemy.h"
 #include "Dolphin/rand.h"
 #include "Radar.h"
 

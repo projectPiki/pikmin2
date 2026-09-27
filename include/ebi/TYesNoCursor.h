@@ -1,7 +1,7 @@
 #ifndef _EBI_TYESNOCURSOR_H
 #define _EBI_TYESNOCURSOR_H
 
-#include "efx2d/T2DCursor.h"
+#include "efx2d/efx2dEffect.h"
 #include "ebi/E2DGraph.h"
 #include "System.h"
 

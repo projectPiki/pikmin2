@@ -6,7 +6,7 @@
 #include "Game/EnemyParmsBase.h"
 #include "Game/EnemyMgrBase.h"
 #include "Game/EnemyBase.h"
-#include "efx/TFusen.h"
+#include "efx/efxEnemy.h"
 #include "Sys/MatBaseAnimation.h"
 #include "Sys/MatBaseAnimator.h"
 

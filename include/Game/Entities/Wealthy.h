@@ -2,7 +2,7 @@
 #define _GAME_ENTITIES_WEALTHY_H
 
 #include "Game/Entities/Kogane.h"
-#include "efx/TOoganeKira.h"
+#include "efx/efxEnemy.h"
 
 /**
  * --Header for Iridescent Glint Beetle (Wealthy)--

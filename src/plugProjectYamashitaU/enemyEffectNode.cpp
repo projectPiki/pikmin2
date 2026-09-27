@@ -1,6 +1,6 @@
 #include "Game/EnemyEffectNode.h"
 #include "Game/EnemyBase.h"
-#include "efx/TEnemyHamon.h"
+#include "efx/efxEnemyGeneral.h"
 
 namespace Game {
 

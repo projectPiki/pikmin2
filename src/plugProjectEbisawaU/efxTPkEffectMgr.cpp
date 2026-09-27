@@ -1,4 +1,4 @@
-#include "efx/TPk.h"
+#include "efx/efxPikmin.h"
 #include "Game/Piki.h"
 
 efx::TPkEffectMgr* pkEffectMgr;

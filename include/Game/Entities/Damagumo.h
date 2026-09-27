@@ -7,7 +7,7 @@
 #include "Game/EnemyMgrBase.h"
 #include "Game/EnemyBase.h"
 #include "Game/JointFuncs.h"
-#include "efx/TDama.h"
+#include "efx/efxEnemyBoss.h"
 #include "Sys/MatBaseAnimation.h"
 #include "Sys/MatBaseAnimator.h"
 

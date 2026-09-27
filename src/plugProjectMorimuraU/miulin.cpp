@@ -5,7 +5,7 @@
 #include "Game/PikiMgr.h"
 #include "Game/EnemyFunc.h"
 #include "Game/Navi.h"
-#include "efx/TMiuAttack.h"
+#include "efx/efxEnemy.h"
 #include "Dolphin/rand.h"
 
 namespace Game {

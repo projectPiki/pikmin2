@@ -1,7 +1,7 @@
 #include "Game/Entities/Tobi.h"
 #include "Game/Entities/ItemBridge.h"
 #include "Game/MapMgr.h"
-#include "efx/TUjinko.h"
+#include "efx/efxEnemy.h"
 #include "Dolphin/rand.h"
 
 namespace Game {
