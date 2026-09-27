@@ -47,14 +47,17 @@ struct NotOff : public Game::WPCondition {
 			return false;
 		}
 
-		Vector3f wpPos(wp->mPosition.x, wp->mPosition.y, wp->mPosition.z);
+		Vector3f wpPos = wp->mPosition;
 		if (Game::ItemHole::mgr) {
 			Iterator<Game::BaseItem> iterHole(Game::ItemHole::mgr);
 			CI_LOOP(iterHole)
 			{
 				Game::BaseItem* item = *iterHole;
 				Vector3f holePos     = item->getPosition();
-				if (holePos.distance2D(wpPos) < 70.0f) {
+				f32 dx               = holePos.x - wpPos.x;
+				f32 dy               = holePos.y - wpPos.y;
+				f32 dz               = holePos.z - wpPos.z;
+				if (Vector3f(dx, dy, dz).length2D() < 70.0f) {
 					return false;
 				}
 			}
@@ -66,7 +69,10 @@ struct NotOff : public Game::WPCondition {
 			{
 				Game::BaseItem* item = *iterGeyser;
 				Vector3f geyserPos   = item->getPosition();
-				if (geyserPos.distance2D(wpPos) < 70.0f) {
+				f32 dx               = geyserPos.x - wpPos.x;
+				f32 dy               = geyserPos.y - wpPos.y;
+				f32 dz               = geyserPos.z - wpPos.z;
+				if (Vector3f(dx, dy, dz).length2D() < 70.0f) {
 					return false;
 				}
 			}
@@ -180,8 +186,6 @@ PelletViewArg::PelletViewArg()
  * @note Address: 0x80165B80
  * @note Size: 0x220
  */
-// WIP: https://decomp.me/scratch/a4K8T
-// regswaps
 Pellet* PelletView::becomePellet(PelletViewArg* viewArg)
 {
 	PelletInitArg initArg;
@@ -198,20 +202,19 @@ Pellet* PelletView::becomePellet(PelletViewArg* viewArg)
 
 		Vector3f offset = newPellet->getOffset();
 
-		Vector3f resultVec;
-		Vector3f& vecPtr = resultVec;
-		vecPtr           = offset;
+		Vector3f& rotOffset = offset;
+		Vector3f vec        = rotOffset;
 
 		Vector3f row1 = viewArg->mMatrix->getRow(0);
-		resultVec.x   = offset.dot(row1);
+		rotOffset.x   = vec.dot(row1);
 
 		Vector3f row2 = viewArg->mMatrix->getRow(1);
-		resultVec.y   = offset.dot(row2);
+		rotOffset.y   = vec.dot(row2);
 
 		Vector3f row3 = viewArg->mMatrix->getRow(2);
-		resultVec.z   = offset.dot(row3);
+		rotOffset.z   = vec.dot(row3);
 
-		position = position + resultVec;
+		position = position + rotOffset;
 
 		newPellet->setPosition(position, false);
 		mPellet = newPellet;
@@ -231,148 +234,6 @@ Pellet* PelletView::becomePellet(PelletViewArg* viewArg)
 	}
 
 	return mPellet;
-	/*
-	stwu     r1, -0x60(r1)
-	mflr     r0
-	lis      r6, __vt__Q24Game13PelletInitArg@ha
-	lis      r5, __vt__Q24Game15CreatureInitArg@ha
-	stw      r0, 0x64(r1)
-	addi     r0, r5, __vt__Q24Game15CreatureInitArg@l
-	addi     r8, r6, __vt__Q24Game13PelletInitArg@l
-	li       r7, 0
-	stw      r31, 0x5c(r1)
-	li       r5, -1
-	li       r6, 1
-	mr       r31, r3
-	stw      r30, 0x58(r1)
-	stw      r29, 0x54(r1)
-	mr       r29, r4
-	addi     r4, r1, 0x20
-	stw      r0, 0x20(r1)
-	li       r0, 0xff
-	lwz      r3, pelletMgr__4Game@sda21(r13)
-	stw      r8, 0x20(r1)
-	stb      r7, 0x3c(r1)
-	sth      r7, 0x34(r1)
-	stb      r0, 0x36(r1)
-	stw      r7, 0x38(r1)
-	stb      r7, 0x37(r1)
-	stb      r6, 0x24(r1)
-	stb      r7, 0x3d(r1)
-	stw      r5, 0x44(r1)
-	stw      r5, 0x40(r1)
-	stb      r7, 0x3e(r1)
-	stb      r7, 0x3f(r1)
-	lwz      r0, 0(r29)
-	stw      r0, 0x28(r1)
-	stw      r7, 0x2c(r1)
-	stw      r5, 0x30(r1)
-	stb      r6, 0x36(r1)
-	stw      r31, 0x38(r1)
-	bl       birth__Q24Game9PelletMgrFPQ24Game13PelletInitArg
-	or.      r30, r3, r3
-	beq      lbl_80165D74
-	lfs      f0, 4(r29)
-	stfs     f0, 0x14(r1)
-	lfs      f0, 8(r29)
-	stfs     f0, 0x18(r1)
-	lfs      f0, 0xc(r29)
-	stfs     f0, 0x1c(r1)
-	bl       getCylinderHeight__Q24Game6PelletFv
-	lfs      f3, lbl_80518918@sda21(r2)
-	mr       r3, r30
-	lfs      f0, 0x18(r1)
-	addi     r4, r1, 0x14
-	lfs      f2, 0x1c(r1)
-	li       r5, 0
-	fmadds   f9, f3, f1, f0
-	lfs      f0, 0x14(r1)
-	stfs     f9, 0x18(r1)
-	lwz      r7, 0x10(r29)
-	lwz      r6, 0x35c(r30)
-	lfs      f4, 4(r7)
-	lfs      f10, 0x214(r6)
-	lfs      f3, 0x14(r7)
-	lfs      f1, 0x24(r7)
-	fmuls    f6, f10, f4
-	lfs      f8, 0x210(r6)
-	fmuls    f4, f10, f3
-	lfs      f7, 0(r7)
-	fmuls    f1, f10, f1
-	lfs      f5, 0x10(r7)
-	lfs      f3, 0x20(r7)
-	fmadds   f6, f8, f7, f6
-	lfs      f11, 0x218(r6)
-	fmadds   f4, f8, f5, f4
-	lfs      f7, 8(r7)
-	fmadds   f1, f8, f3, f1
-	lfs      f5, 0x18(r7)
-	lfs      f3, 0x28(r7)
-	fmadds   f6, f11, f7, f6
-	fmadds   f4, f11, f5, f4
-	stfs     f8, 8(r1)
-	fmadds   f1, f11, f3, f1
-	fadds    f0, f0, f6
-	stfs     f10, 0xc(r1)
-	fadds    f3, f9, f4
-	fadds    f2, f2, f1
-	stfs     f11, 0x10(r1)
-	stfs     f6, 8(r1)
-	stfs     f4, 0xc(r1)
-	stfs     f1, 0x10(r1)
-	stfs     f0, 0x14(r1)
-	stfs     f3, 0x18(r1)
-	stfs     f2, 0x1c(r1)
-	bl       "setPosition__Q24Game8CreatureFR10Vector3<f>b"
-	stw      r30, 4(r31)
-	li       r0, 1
-	mr       r3, r30
-	stb      r0, 0x324(r30)
-	lwz      r4, 0x10(r29)
-	bl       setOrientation__Q24Game6PelletFR7Matrixf
-	lfs      f0, 0x18(r29)
-	mr       r3, r31
-	stfs     f0, 0x168(r30)
-	lfs      f0, 0x1c(r29)
-	stfs     f0, 0x16c(r30)
-	lfs      f0, 0x20(r29)
-	stfs     f0, 0x170(r30)
-	lbz      r0, 0xd8(r30)
-	ori      r0, r0, 0x34
-	stb      r0, 0xd8(r30)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r29)
-	stw      r0, 8(r31)
-	lwz      r0, 8(r31)
-	cmplwi   r0, 0
-	bne      lbl_80165D80
-	lis      r3, lbl_8047E344@ha
-	lis      r5, lbl_8047E354@ha
-	addi     r3, r3, lbl_8047E344@l
-	li       r4, 0x37f
-	addi     r5, r5, lbl_8047E354@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-	b        lbl_80165D80
-
-lbl_80165D74:
-	li       r0, 0
-	stw      r0, 4(r31)
-	stw      r0, 8(r31)
-
-lbl_80165D80:
-	lwz      r0, 0x64(r1)
-	lwz      r3, 4(r31)
-	lwz      r31, 0x5c(r1)
-	lwz      r30, 0x58(r1)
-	lwz      r29, 0x54(r1)
-	mtlr     r0
-	addi     r1, r1, 0x60
-	blr
-	*/
 }
 
 /**
@@ -992,7 +853,6 @@ int Pellet::getPelletConfigMax()
  * @note Address: 0x801675D0
  * @note Size: 0x354
  */
-// WIP: https://decomp.me/scratch/SWcqK
 void Pellet::setupParticles()
 {
 	f32 radius = getStickRadius();
@@ -1021,258 +881,17 @@ void Pellet::setupParticles()
 				f32 theta     = (TAU / (f32)particleCount) * (f32)i;
 				f32 mid       = mConfig->mParams.mHeight.mData * 0.5f;
 				f32 midRadius = radius - mid;
-				rotation      = Vector3f(midRadius * sinf(theta), 0.0f, midRadius * cosf(theta));
-				// _2F4                        = _2F4 + rotation;
+				rotation.set(midRadius * sinf(theta), 0.0f, midRadius * cosf(theta));
 				setupDynParticle(i, mid, rotation);
-				// mDynParticle->getAt(i)->_00 = rotation;
-				// mDynParticle->getAt(i)->_18 = mid;
 			}
 
-			rotation       = Vector3f(0.0f);
-			f32 halfHeight = mConfig->mParams.mHeight.mData * 0.5f;
-			setupDynParticle(particleCount, halfHeight, rotation);
-			// _2F4               = _2F4 + Vector3f(0.0f, 0.0f, 0.0f);
-			// f32 height = configHeight / 2;
-			// mDynParticle->getAt(particleCount)->_00 = Vector3f(0.0f, 0.0f, 0.0f);
-			// mDynParticle->getAt(particleCount)->_18 = configHeight;
+			rotation = Vector3f(0.0f);
+			setupDynParticle(particleCount, mConfig->mParams.mHeight.mData, 0.5f, rotation);
 		}
 
 		f32 inverse = 1.0f / mMaxCollParticle;
 		mRotation   = mRotation * inverse;
 	}
-	/*
-	stwu     r1, -0xe0(r1)
-	mflr     r0
-	stw      r0, 0xe4(r1)
-	stfd     f31, 0xd0(r1)
-	psq_st   f31, 216(r1), 0, qr0
-	stfd     f30, 0xc0(r1)
-	psq_st   f30, 200(r1), 0, qr0
-	stfd     f29, 0xb0(r1)
-	psq_st   f29, 184(r1), 0, qr0
-	stfd     f28, 0xa0(r1)
-	psq_st   f28, 168(r1), 0, qr0
-	stfd     f27, 0x90(r1)
-	psq_st   f27, 152(r1), 0, qr0
-	stfd     f26, 0x80(r1)
-	psq_st   f26, 136(r1), 0, qr0
-	stfd     f25, 0x70(r1)
-	psq_st   f25, 120(r1), 0, qr0
-	stfd     f24, 0x60(r1)
-	psq_st   f24, 104(r1), 0, qr0
-	stfd     f23, 0x50(r1)
-	psq_st   f23, 88(r1), 0, qr0
-	stmw     r26, 0x38(r1)
-	mr       r27, r3
-	lfs      f0, lbl_80518914@sda21(r2)
-	lwz      r3, 0x35c(r3)
-	lfs      f25, 0xa0(r3)
-	stfs     f0, 0x2f4(r27)
-	stfs     f0, 0x2f8(r27)
-	stfs     f0, 0x2fc(r27)
-	lwz      r3, 0x35c(r27)
-	lwz      r0, 0xf0(r3)
-	stw      r0, 0x360(r27)
-	lwz      r0, 0x360(r27)
-	cmpwi    r0, 0
-	beq      lbl_801678C8
-	lwz      r4, 0x35c(r27)
-	addi     r3, r2, lbl_80518980@sda21
-	lwz      r4, 0xe0(r4)
-	bl       strcmp
-	cmpwi    r3, 0
-	bne      lbl_801676AC
-	lwz      r3, 0x35c(r27)
-	lfs      f1, lbl_80518918@sda21(r2)
-	lfs      f0, 0xc0(r3)
-	lfs      f2, lbl_80518970@sda21(r2)
-	fmuls    f0, f1, f0
-	fmuls    f0, f2, f0
-	fcmpo    cr0, f0, f25
-	ble      lbl_801676A0
-	mr       r3, r27
-	bl       setupParticles_tall__Q24Game6PelletFv
-	b        lbl_8016787C
-
-lbl_801676A0:
-	mr       r3, r27
-	bl       setupParticles_simple__Q24Game6PelletFv
-	b        lbl_8016787C
-
-lbl_801676AC:
-	li       r3, 0
-	li       r0, 1
-	stb      r3, 0x364(r27)
-	mr       r3, r27
-	stb      r0, 0x39c(r27)
-	lwz      r29, 0x360(r27)
-	addi     r0, r29, 1
-	stw      r0, 0x360(r27)
-	lwz      r4, 0x360(r27)
-	bl       createParticles__Q24Game11DynCreatureFi
-	lis      r3, sincosTable___5JMath@ha
-	lfs      f27, lbl_80518988@sda21(r2)
-	lfd      f28, lbl_80518930@sda21(r2)
-	xoris    r30, r29, 0x8000
-	lfs      f29, lbl_80518918@sda21(r2)
-	addi     r26, r3, sincosTable___5JMath@l
-	lfs      f30, lbl_80518914@sda21(r2)
-	li       r28, 0
-	lfs      f31, lbl_8051898C@sda21(r2)
-	lis      r31, 0x4330
-	b        lbl_80167814
-
-lbl_80167700:
-	stw      r30, 0xc(r1)
-	xoris    r0, r28, 0x8000
-	lwz      r3, 0x35c(r27)
-	stw      r31, 8(r1)
-	lfs      f0, 0xc0(r3)
-	lfd      f1, 8(r1)
-	fmuls    f24, f29, f0
-	stw      r0, 0x14(r1)
-	fsubs    f0, f1, f28
-	stw      r31, 0x10(r1)
-	fsubs    f2, f25, f24
-	fdivs    f1, f27, f0
-	lfd      f0, 0x10(r1)
-	fsubs    f0, f0, f28
-	fmuls    f1, f1, f0
-	fmr      f0, f1
-	fcmpo    cr0, f1, f30
-	bge      lbl_8016774C
-	fneg     f0, f1
-
-lbl_8016774C:
-	fmuls    f0, f0, f31
-	fcmpo    cr0, f1, f30
-	fctiwz   f0, f0
-	stfd     f0, 0x18(r1)
-	lwz      r0, 0x1c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	add      r3, r26, r0
-	lfs      f0, 4(r3)
-	fmuls    f26, f2, f0
-	bge      lbl_801677A0
-	lfs      f0, lbl_80518990@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fmuls    f0, f1, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x20(r1)
-	lwz      r0, 0x24(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r3, r0
-	fneg     f0, f0
-	b        lbl_801677C0
-
-lbl_801677A0:
-	fmuls    f0, f1, f31
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fctiwz   f0, f0
-	stfd     f0, 0x28(r1)
-	lwz      r0, 0x2c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r3, r0
-
-lbl_801677C0:
-	fmuls    f23, f2, f0
-	lfs      f0, 0x2f4(r27)
-	lfs      f1, 0x2f8(r27)
-	mr       r4, r28
-	lfs      f2, 0x2fc(r27)
-	fadds    f0, f0, f23
-	fadds    f1, f1, f30
-	fadds    f2, f2, f26
-	stfs     f0, 0x2f4(r27)
-	stfs     f1, 0x2f8(r27)
-	stfs     f2, 0x2fc(r27)
-	lwz      r3, 0x178(r27)
-	bl       getAt__Q24Game11DynParticleFi
-	stfs     f23, 0(r3)
-	mr       r4, r28
-	stfs     f30, 4(r3)
-	stfs     f26, 8(r3)
-	lwz      r3, 0x178(r27)
-	bl       getAt__Q24Game11DynParticleFi
-	stfs     f24, 0x18(r3)
-	addi     r28, r28, 1
-
-lbl_80167814:
-	cmpw     r28, r29
-	blt      lbl_80167700
-	lfs      f25, lbl_80518914@sda21(r2)
-	mr       r4, r29
-	lfs      f0, 0x2f4(r27)
-	lwz      r3, 0x35c(r27)
-	lfs      f1, 0x2f8(r27)
-	fadds    f0, f0, f25
-	lfs      f2, 0x2fc(r27)
-	lfs      f23, 0xc0(r3)
-	fadds    f1, f1, f25
-	fadds    f2, f2, f25
-	lfs      f24, lbl_80518918@sda21(r2)
-	stfs     f0, 0x2f4(r27)
-	stfs     f1, 0x2f8(r27)
-	stfs     f2, 0x2fc(r27)
-	lwz      r3, 0x178(r27)
-	bl       getAt__Q24Game11DynParticleFi
-	stfs     f25, 0(r3)
-	fmuls    f24, f24, f23
-	mr       r4, r29
-	stfs     f25, 4(r3)
-	stfs     f25, 8(r3)
-	lwz      r3, 0x178(r27)
-	bl       getAt__Q24Game11DynParticleFi
-	stfs     f24, 0x18(r3)
-
-lbl_8016787C:
-	lwz      r3, 0x360(r27)
-	lis      r0, 0x4330
-	stw      r0, 0x28(r1)
-	xoris    r0, r3, 0x8000
-	lfd      f2, lbl_80518930@sda21(r2)
-	stw      r0, 0x2c(r1)
-	lfs      f4, lbl_80518910@sda21(r2)
-	lfd      f1, 0x28(r1)
-	lfs      f0, 0x2f4(r27)
-	fsubs    f3, f1, f2
-	lfs      f1, 0x2f8(r27)
-	lfs      f2, 0x2fc(r27)
-	fdivs    f3, f4, f3
-	fmuls    f0, f0, f3
-	fmuls    f1, f1, f3
-	fmuls    f2, f2, f3
-	stfs     f0, 0x2f4(r27)
-	stfs     f1, 0x2f8(r27)
-	stfs     f2, 0x2fc(r27)
-
-lbl_801678C8:
-	psq_l    f31, 216(r1), 0, qr0
-	lfd      f31, 0xd0(r1)
-	psq_l    f30, 200(r1), 0, qr0
-	lfd      f30, 0xc0(r1)
-	psq_l    f29, 184(r1), 0, qr0
-	lfd      f29, 0xb0(r1)
-	psq_l    f28, 168(r1), 0, qr0
-	lfd      f28, 0xa0(r1)
-	psq_l    f27, 152(r1), 0, qr0
-	lfd      f27, 0x90(r1)
-	psq_l    f26, 136(r1), 0, qr0
-	lfd      f26, 0x80(r1)
-	psq_l    f25, 120(r1), 0, qr0
-	lfd      f25, 0x70(r1)
-	psq_l    f24, 104(r1), 0, qr0
-	lfd      f24, 0x60(r1)
-	psq_l    f23, 88(r1), 0, qr0
-	lfd      f23, 0x50(r1)
-	lmw      r26, 0x38(r1)
-	lwz      r0, 0xe4(r1)
-	mtlr     r0
-	addi     r1, r1, 0xe0
-	blr
-	*/
 }
 
 /**
@@ -2973,7 +2592,6 @@ void BasePelletMgr::load()
  * @note Address: 0x8016C0CC
  * @note Size: 0x3E4
  */
-// WIP: https://decomp.me/scratch/Ltrad
 void BasePelletMgr::load_texArc(char* filename)
 {
 	char buffer[512];

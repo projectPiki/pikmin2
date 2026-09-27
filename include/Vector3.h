@@ -717,15 +717,12 @@ inline f32 Vector3f::sqrDistance2D(Vector3f& them)
 template <>
 inline f32 Vector3f::distance(JGeometry::TVec3f& them)
 {
-	f32 diffX = them.x - this->x;
-	f32 diffY = them.y - this->y;
-	f32 diffZ = them.z - this->z;
+	f32 X   = SQUARE(them.x - x);
+	f32 Y   = SQUARE(them.y - y);
+	f32 Z   = SQUARE(them.z - z);
+	f32 sum = X + Y + Z;
 
-	f32 X = diffX * diffX;
-	f32 Y = diffY * diffY;
-	f32 Z = diffZ * diffZ;
-
-	return JGeometry::TUtil<f32>::sqrt(X + Y + Z);
+	return JGeometry::TUtil<f32>::sqrt(sum);
 }
 
 inline f32 qdist3(const Vector3f& a, const Vector3f& b)

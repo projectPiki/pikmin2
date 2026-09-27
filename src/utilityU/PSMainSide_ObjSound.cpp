@@ -1916,6 +1916,19 @@ void WorkItem::eventFinish()
 }
 
 /**
+ * @note Address: N/A
+ * @note Size: 0x184
+ */
+Otakara::Otakara(Game::Creature* gameObj)
+    : EventBase(gameObj, 2)
+    , mBedamaType(PSMBedama_None)
+    , mOnyon(nullptr)
+    , mEventLink(gameObj)
+    , mOtaEvent(nullptr)
+{
+}
+
+/**
  * @note Address: 0x80461850
  * @note Size: 0x1A0
  */
@@ -2012,11 +2025,6 @@ void Otakara::otakaraEventFinish()
 		mEventLink.eventFinish();
 	}
 	mOtaEvent->eventFinish();
-}
-
-// this is here for now, since putting it in a header causes the sym on ordering to go weird and wrong
-inline Otakara::~Otakara()
-{
 }
 
 /**

@@ -423,7 +423,6 @@ void Pikmin::TMgr::enemyPushOut(ebi::title::TObjBase* obj)
  */
 void Pikmin::TMgr::updateCalcBoid_()
 {
-	// non-matching
 	static int boidCalcTimer = 0;
 	if (++boidCalcTimer >= 10) {
 		boidCalcTimer     = 0;
@@ -467,9 +466,9 @@ void Pikmin::TMgr::updateCalcBoid_()
 		for (int j = 0; j < TITLE_PIKI_TOTAL; j++) {
 			TUnit* curUnit = &mUnits[j];
 			if (curUnit->isCalc()) {
-				Vector2f sep;
-				sep.x    = unit->mPosition.x - curUnit->mPosition.x;
+				Vector2f sep(0.0f);
 				sep.y    = unit->mPosition.y - curUnit->mPosition.y;
+				sep.x    = unit->mPosition.x - curUnit->mPosition.x;
 				f32 dist = sep.length();
 				if (dist < mBoidParamMgr.getBoidNeighbor()) {
 					vec2 += curUnit->mAngle * curUnit->mParms[0];
@@ -485,18 +484,16 @@ void Pikmin::TMgr::updateCalcBoid_()
 			}
 		}
 
-		Vector2f vec4;
-		Vector2f vec5;
 		if (counter == 0) {
-			vec4 = Vector2f(0.0f);
-			vec5 = Vector2f(0.0f);
+			vec3 = Vector2f(0.0f);
+			vec2 = Vector2f(0.0f);
 		} else {
-			vec5 = vec3 * (1.0f / (f32)counter);
-			vec4 = vec2 * (1.0f / (f32)counter);
+			vec3 = vec3 * (1.0f / (f32)counter);
+			vec2 = vec2 * (1.0f / (f32)counter);
 		}
 		unit->mTargetPos          = goalPos;
-		unit->mVelocity           = vec4;
-		unit->mGroupPosDifference = vec5;
+		unit->mVelocity           = vec2;
+		unit->mGroupPosDifference = vec3;
 	}
 }
 
@@ -850,7 +847,6 @@ namespace title {
  */
 void Pikmin::TUnit::updateSmoothWalk_(Vector2f& arg)
 {
-	// Still needs to be matched
 	f32 _964  = mManager->mBoidParamMgr.getMaxTurnSpeed();
 	f32 _968  = mManager->mBoidParamMgr.getTurnMag();
 	f32 _960  = mManager->mBoidParamMgr.getWalkSpeed();
@@ -862,12 +858,20 @@ void Pikmin::TUnit::updateSmoothWalk_(Vector2f& arg)
 	}
 	mParms[0] = param;
 	Vector2f pos(arg);
-	pos.normalise();
+	// these seem to need to be spelled out, rather than using normalise
+	f32 dirLen = pos.length();
+	if (dirLen != 0.0f) {
+		pos *= 1.0f / dirLen;
+	}
 	pos = pos * _964;
+
 	Vector2f newpos(pos);
 	f32 len = pos.length();
 	if (len > _968) {
-		newpos.normalise();
+		f32 newLen = newpos.length();
+		if (newLen != 0.0f) {
+			newpos *= 1.0f / newLen;
+		}
 		newpos *= _968;
 		pos = newpos;
 	}
