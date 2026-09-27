@@ -190,31 +190,28 @@ void RandMapScore::clearRoomAndDoorScore()
  */
 void RandMapScore::setUnitAndDoorScore()
 {
-
 	MapNode* minScoreNode = nullptr;
-	int minScore          = 12800000;
 	int minScoreDoor      = -1;
+	int minScore          = 12800000;
 
 	FOREACH_NODE(MapNode, mGenerator->getPlacedNodes()->mChild, currNode)
 	{
 		currNode->getNodeScore();
 		int numDoors = currNode->getNumDoors();
 		for (int i = 0; i < numDoors; i++) {
-			if (currNode->isDoorScoreSetDone(i)) {
-				FOREACH_NODE(AdjustNode, currNode->getAdjustNode(i)->mChild, adjNode)
-				{
-					int doorID = adjNode->mAdjust->mDoorID;
-					if (!currNode->isDoorScoreSetDone(doorID)) {
-						Adjust* adj       = adjNode->mAdjust;
-						int enemyScore    = adj->mTekiFlags * currNode->getEnemyScore();
-						int distanceScore = adj->mDistance;
-						int tempScore     = enemyScore + currNode->getDoorScore(i);
-						int currScore     = currNode->getGateScore(doorID) + tempScore + distanceScore;
-						if (minScore > currScore) {
-							minScore     = currScore;
-							minScoreNode = currNode;
-							minScoreDoor = doorID;
-						}
+			if (!currNode->isDoorScoreSetDone(i)) {
+				continue;
+			}
+			FOREACH_NODE(AdjustNode, currNode->getAdjustNode(i)->mChild, adjNode)
+			{
+				int doorID = adjNode->mAdjust->mDoorID;
+				if (!currNode->isDoorScoreSetDone(doorID)) {
+					int currScore = adjNode->mAdjust->mTekiFlags * currNode->getEnemyScore()
+					              + (currNode->mAdjustInfo[i].mDoorScore + adjNode->mAdjust->mDistance) + currNode->getGateScore(doorID);
+					if (minScore > currScore) {
+						minScore     = currScore;
+						minScoreNode = currNode;
+						minScoreDoor = doorID;
 					}
 				}
 			}
@@ -223,113 +220,9 @@ void RandMapScore::setUnitAndDoorScore()
 
 	if (minScoreNode) {
 		minScoreNode->setDoorScore(minScoreDoor, minScore);
-		setMapNodeScore(minScoreNode->getConnectedNode(minScoreDoor), minScore);
+		MapNode* connectedNode = minScoreNode->getConnectedNode(minScoreDoor);
+		setMapNodeScore(connectedNode, minScore);
 	}
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	lis      r4, 0x00C35000@ha
-	stw      r0, 0x44(r1)
-	stmw     r20, 0x10(r1)
-	mr       r22, r3
-	addi     r27, r4, 0x00C35000@l
-	li       r29, 0
-	li       r28, -1
-	lwz      r3, 0(r3)
-	lwz      r3, 0x28(r3)
-	lwz      r26, 0x10(r3)
-	b        lbl_8024CE8C
-
-lbl_8024CDB8:
-	mr       r3, r26
-	bl       getNodeScore__Q34Game4Cave7MapNodeFv
-	mr       r3, r26
-	bl       getNumDoors__Q34Game4Cave7MapNodeFv
-	mr       r31, r3
-	li       r25, 0
-	li       r30, 0
-	b        lbl_8024CE80
-
-lbl_8024CDD8:
-	mr       r3, r26
-	mr       r4, r25
-	bl       isDoorScoreSetDone__Q34Game4Cave7MapNodeFi
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8024CE78
-	mr       r3, r26
-	mr       r4, r25
-	bl       getAdjustNode__Q34Game4Cave7MapNodeFi
-	lwz      r24, 0x10(r3)
-	b        lbl_8024CE70
-
-lbl_8024CE00:
-	lwz      r4, 0x18(r24)
-	mr       r3, r26
-	lwz      r23, 0(r4)
-	mr       r4, r23
-	bl       isDoorScoreSetDone__Q34Game4Cave7MapNodeFi
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8024CE6C
-	lwz      r20, 0x18(r24)
-	mr       r3, r26
-	bl       getEnemyScore__Q34Game4Cave7MapNodeFv
-	lwz      r0, 8(r20)
-	mr       r4, r23
-	lwz      r5, 0x28(r26)
-	mullw    r6, r0, r3
-	lwz      r20, 4(r20)
-	addi     r0, r5, 8
-	lwzx     r0, r30, r0
-	mr       r3, r26
-	add      r21, r0, r6
-	bl       getGateScore__Q34Game4Cave7MapNodeFi
-	add      r0, r21, r3
-	add      r0, r20, r0
-	cmpw     r27, r0
-	ble      lbl_8024CE6C
-	mr       r27, r0
-	mr       r29, r26
-	mr       r28, r23
-
-lbl_8024CE6C:
-	lwz      r24, 4(r24)
-
-lbl_8024CE70:
-	cmplwi   r24, 0
-	bne      lbl_8024CE00
-
-lbl_8024CE78:
-	addi     r30, r30, 0xc
-	addi     r25, r25, 1
-
-lbl_8024CE80:
-	cmpw     r25, r31
-	blt      lbl_8024CDD8
-	lwz      r26, 4(r26)
-
-lbl_8024CE8C:
-	cmplwi   r26, 0
-	bne      lbl_8024CDB8
-	cmplwi   r29, 0
-	beq      lbl_8024CEC4
-	mr       r3, r29
-	mr       r4, r28
-	mr       r5, r27
-	bl       setDoorScore__Q34Game4Cave7MapNodeFii
-	mulli    r0, r28, 0xc
-	lwz      r4, 0x28(r29)
-	mr       r3, r22
-	mr       r5, r27
-	lwzx     r4, r4, r0
-	bl       setMapNodeScore__Q34Game4Cave12RandMapScoreFPQ34Game4Cave7MapNodei
-
-lbl_8024CEC4:
-	lmw      r20, 0x10(r1)
-	lwz      r0, 0x44(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
 }
 
 /**

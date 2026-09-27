@@ -94,6 +94,7 @@ struct EnemyBase : public CreatureAnime, public BattleLink, public KehaiLink {
 	virtual void updateBattle(); // _D0
 
 	bool calcKehai();
+	bool isBoss() { return getCastType() == CCT_Unknown5 || getCastType() == CCT_EnemyMidBoss || getCastType() == CCT_EnemyBigBoss; }
 
 	// _00-_10 	= JSUPtrLink (+ vtable 1)
 	// _10-_28	= JKRDisposer
@@ -567,12 +568,7 @@ struct Tsuyukusa : public CreatureObj {
 namespace PSM {
 inline void assertIsBoss(PSM::EnemyBase* soundObj)
 {
-	bool isBoss = false;
-	if (soundObj->getCastType() == CCT_Unknown5 || soundObj->getCastType() == CCT_EnemyMidBoss
-	    || soundObj->getCastType() == CCT_EnemyBigBoss) {
-		isBoss = true;
-	}
-
+	bool isBoss = soundObj->isBoss();
 	P2ASSERTLINE(1108, isBoss);
 }
 
