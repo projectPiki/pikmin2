@@ -1200,7 +1200,7 @@ config.libs = [
             Object(Matching, "plugProjectKandoU/baseHIOSection.cpp"),
             Object(Matching, "plugProjectKandoU/naviWhistle.cpp"),
             Object(Matching, "plugProjectKandoU/pelletMgr.cpp"),
-            Object(Equivalent, "plugProjectKandoU/routeMgr.cpp"),
+            Object(Matching, "plugProjectKandoU/routeMgr.cpp"),
             Object(Matching, "plugProjectKandoU/onyonMgr.cpp"),
             Object(Matching, "plugProjectKandoU/objectTypes.cpp"),
             Object(Matching, "plugProjectKandoU/naviState.cpp"),
