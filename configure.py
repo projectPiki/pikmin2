@@ -1193,7 +1193,7 @@ config.libs = [
             Object(Matching, "plugProjectKandoU/piki.cpp"),
             Object(Matching, "plugProjectKandoU/baseGameSection.cpp"),
             Object(Matching, "plugProjectKandoU/singleGameSection.cpp"),
-            Object(Equivalent, "plugProjectKandoU/cellPyramid.cpp"),
+            Object(Matching, "plugProjectKandoU/cellPyramid.cpp"),
             Object(Matching, "plugProjectKandoU/naviMgr.cpp"),
             Object(Matching, "plugProjectKandoU/pikiMgr.cpp"),
             Object(Matching, "plugProjectKandoU/mapMgr.cpp"),

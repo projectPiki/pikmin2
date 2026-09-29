@@ -574,18 +574,11 @@ void Cell::rec_resolveColl()
  */
 void Cell::clearAllCollBuffer()
 {
-	// UNUSED FUNCTION
-	// if (mLeg ) {
 	for (CellLeg* leg = mLeg; leg != nullptr; leg = leg->mNext) {
 		if (leg->mObject) {
 			leg->mObject->mCollisionBuffer.clear();
 		}
-		// CellObject* object = leg->mObject;
-		// if (object ) {
-		// 	object->mCollisionBuffer.clear();
-		// }
 	}
-	// }
 }
 
 /**
@@ -595,7 +588,6 @@ void Cell::clearAllCollBuffer()
  */
 void CellLayer::clearAllCollBuffer()
 {
-	// UNUSED FUNCTION
 	for (int i = 0; i < mSizeX * mSizeY; i++) {
 		if (mCells[i].mLeg) {
 			mCells[i].clearAllCollBuffer();
@@ -765,7 +757,6 @@ void Cell::entry(CellLeg* leg, bool isPikiOrNavi)
  */
 void CellLayer::clear()
 {
-	// UNUSED FUNCTION
 	mCurrCell.mNextCell = nullptr;
 	mCurrCell.mPrevCell = nullptr;
 	for (int i = 0; i < mSizeX * mSizeY; i++) {
@@ -780,18 +771,12 @@ void CellLayer::clear()
  */
 void CellLayer::createBottom(int sizeX, int sizeY)
 {
-	mSizeX              = sizeX;
-	mSizeY              = sizeY;
-	mLayerSize          = 1;
-	mLayerIdx           = 0;
-	mCells              = new Cell[mSizeX * mSizeY];
-	mCurrCell.mNextCell = nullptr;
-	mCurrCell.mPrevCell = nullptr;
-
-	for (int i = 0; i < mSizeX * mSizeY; i++) {
-		mCells[i].clear();
-		mCells[i].mLayerIdx = mLayerIdx;
-	}
+	mSizeX     = sizeX;
+	mSizeY     = sizeY;
+	mLayerSize = 1;
+	mLayerIdx  = 0;
+	mCells     = new Cell[mSizeX * mSizeY];
+	clear();
 }
 
 /**
@@ -1013,7 +998,7 @@ void CellPyramid::entry(CellObject* object, Sys::Sphere& sphere, int& layerIndex
  */
 void CellPyramid::create(BoundBox2d& box, f32 scale)
 {
-	mFreeMemory = JKRHeap::sCurrentHeap->getFreeSize();
+	mFreeMemory = JKRGetCurrentHeap()->getFreeSize();
 	int layerCount;
 
 	mBounds.set(box.mMin.y, box.mMin.x);
@@ -1039,16 +1024,15 @@ void CellPyramid::create(BoundBox2d& box, f32 scale)
 	layerCount = (f32)ceil((f32)log10((f32)maxDimension) / log2);
 	pow(2.0, (f64)layerCount);
 
-	mLayerCount       = layerCount + 1;
-	mLayers           = new CellLayer[mLayerCount];
-	CellLayer* layer0 = getLayer(0);
-	layer0->createBottom(pixelWidth, pixelHeight);
+	mLayerCount = layerCount + 1;
+	mLayers     = new CellLayer[mLayerCount];
+	mLayers[0].createBottom(pixelWidth, pixelHeight);
 
 	for (int i = 1; i < mLayerCount; i++) {
 		getLayer(i)->pileup(mLayers[i - 1]);
 	}
 
-	mFreeMemory = mFreeMemory - JKRHeap::sCurrentHeap->getFreeSize();
+	mFreeMemory -= JKRGetCurrentHeap()->getFreeSize();
 }
 
 /**
