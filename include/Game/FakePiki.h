@@ -233,6 +233,7 @@ struct FakePiki : public Creature, public SysShape::MotionListener {
 	bool debugShapeDL(char*);
 
 	inline void setCurrVelocity(Vector3f& vel) { mTargetVelocity = vel; }
+	inline f32 getTargetSpeed() { return mTargetVelocity.length(); }
 
 	// _000      = VTBL
 	// _000-_178 = Creature

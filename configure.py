@@ -1267,7 +1267,7 @@ config.libs = [
             Object(Matching, "plugProjectKandoU/pelletItem.cpp"),
             Object(Matching, "plugProjectKandoU/mapMgrTraceMove.cpp"),
             Object(Matching, "plugProjectKandoU/efxModelObjects.cpp"),
-            Object(Equivalent, "plugProjectKandoU/itemUjamushi.cpp"),
+            Object(Matching, "plugProjectKandoU/itemUjamushi.cpp"),
             Object(Matching, "plugProjectKandoU/aiWeed.cpp"),
             Object(Matching, "plugProjectKandoU/flockMgr.cpp"),
             Object(Matching, "plugProjectKandoU/itemWeed.cpp"),

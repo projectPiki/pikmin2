@@ -380,12 +380,16 @@ int PikiAI::ActFormation::exec()
 			CI_LOOP(iter)
 			{
 				Game::Creature* creature = *iter;
-				// ?
 			}
 
 			slotPos               = mParent->mNavi->getPosition(); // 0x138
 			mHasLostNumbness      = false;
 			Vector3f pikiPosition = mParent->getPosition();
+
+			// problem: I think some part of slotPos needs to exist longer/get called on here, in order for the rest of these
+			// registers to work
+			// gut solution: maybe some nonsense stripped PRINT around slotPos??
+			// I haven't been able to work one out that gets things correct :( -HP
 			Vector3f naviPikiDir; // 0xf8
 			naviPikiDir.sub(slotPos, pikiPosition);
 			naviPikiDir.normalise();
@@ -472,34 +476,9 @@ int PikiAI::ActFormation::exec()
 			mParent->setSpeed(1.0f, sep);
 		}
 
-		Vector3f naviPikiSep = mParent->getPosition() - mParent->mNavi->getPosition(); // f30, f29, f28
-		Vector3f plateSep    = mParent->mNavi->getPosition() - mCPlate->mMaxPositionOffset;
-		plateSep.normalise();
-
-		if (plateSep.dot(naviPikiSep) > 0.0f) {
-			Vector3f impulse = Vector3f(-naviPikiSep.z, 0.0f, naviPikiSep.x); // f29, f27, f30
-			if (!(mSlotID & 1)) {
-				impulse.negate();
-			}
-
-			impulse.normalise();
-
-			if (newVer && !isCStickNeutral) {
-				impulse = Vector3f(0.0f);
-			}
-
-			f32 currSpeed = mParent->mTargetVelocity.length(); // f28
-
-			mParent->mTargetVelocity = mParent->mTargetVelocity + impulse * mParent->getSpeed(0.5f);
-			mParent->mTargetVelocity.normalise();
-			mParent->mTargetVelocity = mParent->mTargetVelocity * currSpeed;
-		}
-	} else {
-		mDistanceType = 4;
-		mParent->setSpeed(1.0f, sep);
-
-		Vector3f naviPikiSep = mParent->getPosition() - mParent->mNavi->getPosition(); // f30, f29, f28
-		Vector3f plateSep    = mParent->mNavi->getPosition() - mCPlate->mMaxPositionOffset;
+		Vector3f naviPikiSep;
+		naviPikiSep.sub(mParent->getPosition(), mParent->mNavi->getPosition());
+		Vector3f plateSep = mParent->mNavi->getPosition() - mCPlate->mMaxPositionOffset;
 		plateSep.normalize();
 
 		if (plateSep.dot(naviPikiSep) > 0.0f) {
@@ -514,7 +493,34 @@ int PikiAI::ActFormation::exec()
 				impulse = Vector3f(0.0f);
 			}
 
-			f32 currSpeed = mParent->mTargetVelocity.length(); // f28
+			f32 currSpeed = mParent->getTargetSpeed();
+
+			mParent->mTargetVelocity = mParent->mTargetVelocity + impulse * mParent->getSpeed(0.5f);
+			mParent->mTargetVelocity.normalise();
+			mParent->mTargetVelocity = mParent->mTargetVelocity * currSpeed;
+		}
+	} else {
+		mDistanceType = 4;
+		mParent->setSpeed(1.0f, sep);
+
+		Vector3f naviPikiSep;
+		naviPikiSep.sub(mParent->getPosition(), mParent->mNavi->getPosition());
+		Vector3f plateSep = mParent->mNavi->getPosition() - mCPlate->mMaxPositionOffset;
+		plateSep.normalize();
+
+		if (plateSep.dot(naviPikiSep) > 0.0f) {
+			Vector3f impulse = Vector3f(-naviPikiSep.z, 0.0f, naviPikiSep.x); // f29, f27, f30
+			if (!(mSlotID & 1)) {
+				impulse.negate();
+			}
+
+			impulse.normalise();
+
+			if (newVer && !isCStickNeutral) {
+				impulse = Vector3f(0.0f);
+			}
+
+			f32 currSpeed = mParent->getTargetSpeed();
 
 			mParent->mTargetVelocity = mParent->mTargetVelocity + impulse * mParent->getSpeed(0.5f);
 			mParent->mTargetVelocity.normalise();
