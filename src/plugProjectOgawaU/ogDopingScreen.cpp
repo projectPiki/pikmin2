@@ -74,8 +74,8 @@ void DopingScreen::setCallBack(JKRArchive* arc)
 	mPaneSpicySpray->setBasePosition(J2DPOS_Center);
 	mPaneBitterSpray->setBasePosition(J2DPOS_Center);
 	mPaneCenterDpad->setBasePosition(J2DPOS_Center);
-	mRootPosition.x = mPaneAll->mOffset.x;
-	mRootPosition.y = mPaneAll->mOffset.y;
+	mRootPosition.x = mPaneAll->mTranslateX;
+	mRootPosition.y = mPaneAll->mTranslateY;
 }
 
 /**

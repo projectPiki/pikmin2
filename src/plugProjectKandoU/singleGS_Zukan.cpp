@@ -1177,34 +1177,44 @@ static const char* const modeNames[9]
  * @note Address: N/A
  * @note Size: 0xE4
  */
-void ZukanState::startTekiMode(bool)
+bool ZukanState::startTekiMode(bool force)
 {
-	setMode(ModeChangeToTeki);
-	Morimura::DispMemberZukanEnemy disp;
-	disp.mDebugExpHeap  = mExtraHeapFor2D;
-	disp.mTexture       = mTexture2;
-	disp.mEnemyTexMgr   = mEnemyTexMgr;
-	disp.mResultTexMgr  = mResultTexture;
-	disp.mPrevSelection = &_110;
-	Screen::gGame2DMgr->open_ZukanEnemy(disp);
-	startWipe(0.0f);
+	bool result = false;
+	if (force || Screen::gGame2DMgr->isZukanItem()) {
+		setMode(ModeChangeToTeki);
+		Morimura::DispMemberZukanEnemy disp;
+		disp.mDebugExpHeap  = mExtraHeapFor2D;
+		disp.mTexture       = mTexture2;
+		disp.mEnemyTexMgr   = mEnemyTexMgr;
+		disp.mResultTexMgr  = mResultTexture;
+		disp.mPrevSelection = &_110;
+		Screen::gGame2DMgr->open_ZukanEnemy(disp);
+		startWipe(0.0f);
+		result = true;
+	}
+	return result;
 }
 
 /**
  * @note Address: N/A
  * @note Size: 0xE4
  */
-void ZukanState::startPelletMode(bool)
+bool ZukanState::startPelletMode(bool force)
 {
-	setMode(ModeChangeToPellet);
-	Morimura::DispMemberZukanItem disp;
-	disp.mDebugExpHeap  = mExtraHeapFor2D;
-	disp.mTexture       = mTexture2;
-	disp.mEnemyTexMgr   = mEnemyTexMgr;
-	disp.mResultTexMgr  = mResultTexture;
-	disp.mPrevSelection = &_114;
-	Screen::gGame2DMgr->open_ZukanItem(disp);
-	startWipe(0.0f);
+	bool result = false;
+	if (force || Screen::gGame2DMgr->isZukanEnemy()) {
+		setMode(ModeChangeToPellet);
+		Morimura::DispMemberZukanItem disp;
+		disp.mDebugExpHeap  = mExtraHeapFor2D;
+		disp.mTexture       = mTexture2;
+		disp.mEnemyTexMgr   = mEnemyTexMgr;
+		disp.mResultTexMgr  = mResultTexture;
+		disp.mPrevSelection = &_114;
+		Screen::gGame2DMgr->open_ZukanItem(disp);
+		startWipe(0.0f);
+		result = true;
+	}
+	return result;
 }
 
 /**
@@ -1259,12 +1269,7 @@ void ZukanState::exec(SingleGameSection* game)
 		switch (mCurrMode) {
 		case ModeTeki:
 		case ModeChangeTeki:
-			bool test = false;
-			if (Screen::gGame2DMgr->isZukanEnemy()) {
-				startPelletMode(true);
-				test = true;
-			}
-			if (test) {
+			if (startPelletMode(false)) {
 				PSSystem::spSysIF->playSystemSe(PSSE_SY_PLAYER_CHANGE, 0);
 			} else {
 				PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_ERROR, 0);
@@ -1273,12 +1278,7 @@ void ZukanState::exec(SingleGameSection* game)
 
 		case ModePellet:
 		case ModeChangePellet:
-			test = false;
-			if (Screen::gGame2DMgr->isZukanItem()) {
-				startTekiMode(true);
-				test = true;
-			}
-			if (test) {
+			if (startTekiMode(false)) {
 				PSSystem::spSysIF->playSystemSe(PSSE_SY_PLAYER_CHANGE, 0);
 			} else {
 				PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_ERROR, 0);
@@ -1299,14 +1299,11 @@ void ZukanState::exec(SingleGameSection* game)
 				return;
 			}
 
-			// start teki
 			if (mCurrMode == ModeStartTeki) {
 				startTekiMode(true);
-				return;
+			} else {
+				startPelletMode(true);
 			}
-
-			// start pellet
-			startPelletMode(true);
 			return;
 		}
 
@@ -1356,549 +1353,6 @@ void ZukanState::exec(SingleGameSection* game)
 	}
 
 	mParms->mColorSetting.update();
-	/*
-	stwu     r1, -0xa0(r1)
-	mflr     r0
-	lis      r6, lbl_80482E60@ha
-	stw      r0, 0xa4(r1)
-	stw      r31, 0x9c(r1)
-	addi     r31, r6, lbl_80482E60@l
-	stw      r30, 0x98(r1)
-	mr       r30, r4
-	stw      r29, 0x94(r1)
-	mr       r29, r3
-	stw      r28, 0x90(r1)
-	lwz      r5, gameSystem__4Game@sda21(r13)
-	lwz      r3, 0x40(r5)
-	bl       isDayTime__Q24Game7TimeMgrFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802229AC
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	lfs      f0, lbl_8051A1DC@sda21(r2)
-	lwz      r3, 0x40(r3)
-	stfs     f0, 0x21c(r3)
-	b        lbl_802229BC
-
-lbl_802229AC:
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	lfs      f0, lbl_8051A1E0@sda21(r2)
-	lwz      r3, 0x40(r3)
-	stfs     f0, 0x21c(r3)
-
-lbl_802229BC:
-	lwz      r3, 0x104(r29)
-	lhz      r0, 0x34(r3)
-	rlwinm.  r0, r0, 0, 0x1e, 0x1e
-	bne      lbl_80222A8C
-	lwz      r0, 0x9c(r29)
-	cmpwi    r0, 3
-	bne      lbl_80222A24
-	lwz      r0, 0xa0(r29)
-	cmpwi    r0, 0
-	blt      lbl_80222A18
-	cmpwi    r0, 0x66
-	bge      lbl_80222A18
-	lbz      r0, 0x88(r29)
-	cmplwi   r0, 0
-	beq      lbl_80222A18
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	bl       getZukanEnemyCurrSelectId__Q26Screen9Game2DMgrFv
-	lwz      r0, 0xa0(r29)
-	cmpw     r0, r3
-	bne      lbl_80222A18
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	bl       requireZukanEffectOff__Q26Screen9Game2DMgrFv
-	b        lbl_80222A94
-
-lbl_80222A18:
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	bl       requireZukanRequest__Q26Screen9Game2DMgrFv
-	b        lbl_80222A94
-
-lbl_80222A24:
-	cmpwi    r0, 6
-	bne      lbl_80222A80
-	lwz      r0, 0xa8(r29)
-	cmpwi    r0, 0
-	blt      lbl_80222A74
-	bl       getMaxPelletID__Q34Game10SingleGame10ZukanStateFv
-	lwz      r0, 0xa8(r29)
-	cmplw    r0, r3
-	bge      lbl_80222A74
-	lbz      r0, 0x88(r29)
-	cmplwi   r0, 0
-	beq      lbl_80222A74
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	bl       getZukanItemCurrSelectId__Q26Screen9Game2DMgrFv
-	lwz      r0, 0xa8(r29)
-	cmpw     r0, r3
-	bne      lbl_80222A74
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	bl       requireZukanEffectOff__Q26Screen9Game2DMgrFv
-	b        lbl_80222A94
-
-lbl_80222A74:
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	bl       requireZukanRequest__Q26Screen9Game2DMgrFv
-	b        lbl_80222A94
-
-lbl_80222A80:
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	bl       requireZukanRequest__Q26Screen9Game2DMgrFv
-	b        lbl_80222A94
-
-lbl_80222A8C:
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	bl       requireZukanEffectOff__Q26Screen9Game2DMgrFv
-
-lbl_80222A94:
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	bl       isAppearConfirmWindow__Q26Screen9Game2DMgrFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80222CCC
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	bl       isZukanEnlargedWindow__Q26Screen9Game2DMgrFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80222CCC
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	bl       isZukanMemoWindow__Q26Screen9Game2DMgrFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80222CCC
-	lwz      r3, 0x90(r29)
-	lwz      r0, 0x1c(r3)
-	rlwinm.  r0, r0, 0, 0x19, 0x1a
-	beq      lbl_80222CCC
-	lwz      r0, 0x9c(r29)
-	cmpwi    r0, 5
-	beq      lbl_80222CBC
-	bge      lbl_80222AF0
-	cmpwi    r0, 3
-	bge      lbl_80222AFC
-	b        lbl_80222CBC
-
-lbl_80222AF0:
-	cmpwi    r0, 8
-	bge      lbl_80222CBC
-	b        lbl_80222BDC
-
-lbl_80222AFC:
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	li       r28, 0
-	bl       isZukanEnemy__Q26Screen9Game2DMgrFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80222BAC
-	lwz      r0, 0x9c(r29)
-	cmpwi    r0, 5
-	beq      lbl_80222B24
-	li       r0, 5
-	stw      r0, 0x9c(r29)
-
-lbl_80222B24:
-	lis      r3, __vt__Q32og6Screen14DispMemberBase@ha
-	li       r6, 0
-	addi     r0, r3, __vt__Q32og6Screen14DispMemberBase@l
-	lis      r3, __vt__Q28Morimura19DispMemberZukanBase@ha
-	stw      r0, 0x6c(r1)
-	addi     r4, r3, __vt__Q28Morimura19DispMemberZukanBase@l
-	lis      r3, __vt__Q28Morimura19DispMemberZukanItem@ha
-	addi     r0, r29, 0x114
-	stw      r4, 0x6c(r1)
-	addi     r5, r3, __vt__Q28Morimura19DispMemberZukanItem@l
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	addi     r4, r1, 0x6c
-	stw      r6, 0x70(r1)
-	stw      r6, 0x74(r1)
-	stw      r6, 0x78(r1)
-	stw      r6, 0x7c(r1)
-	stw      r6, 0x80(r1)
-	stw      r6, 0x84(r1)
-	stw      r6, 0x88(r1)
-	stw      r5, 0x6c(r1)
-	lwz      r5, 0xf0(r29)
-	stw      r5, 0x74(r1)
-	lwz      r5, 0xcc(r29)
-	stw      r5, 0x78(r1)
-	lwz      r5, 0xec(r29)
-	stw      r5, 0x80(r1)
-	lwz      r5, 0xe8(r29)
-	stw      r5, 0x7c(r1)
-	stw      r0, 0x88(r1)
-	bl open_ZukanItem__Q26Screen9Game2DMgrFRQ28Morimura19DispMemberZukanItem lfs
-f1, lbl_8051A128@sda21(r2) mr       r3, r29 bl
-startWipe__Q34Game10SingleGame10ZukanStateFf li       r28, 1
-
-lbl_80222BAC:
-	clrlwi.  r0, r28, 0x18
-	beq      lbl_80222BC8
-	lwz      r3, spSysIF__8PSSystem@sda21(r13)
-	li       r4, 0x181f
-	li       r5, 0
-	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-	b        lbl_80222CCC
-
-lbl_80222BC8:
-	lwz      r3, spSysIF__8PSSystem@sda21(r13)
-	li       r4, 0x1807
-	li       r5, 0
-	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-	b        lbl_80222CCC
-
-lbl_80222BDC:
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	li       r28, 0
-	bl       isZukanItem__Q26Screen9Game2DMgrFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80222C8C
-	lwz      r0, 0x9c(r29)
-	cmpwi    r0, 2
-	beq      lbl_80222C04
-	li       r0, 2
-	stw      r0, 0x9c(r29)
-
-lbl_80222C04:
-	lis      r3, __vt__Q32og6Screen14DispMemberBase@ha
-	li       r6, 0
-	addi     r0, r3, __vt__Q32og6Screen14DispMemberBase@l
-	lis      r3, __vt__Q28Morimura19DispMemberZukanBase@ha
-	stw      r0, 0x4c(r1)
-	addi     r4, r3, __vt__Q28Morimura19DispMemberZukanBase@l
-	lis      r3, __vt__Q28Morimura20DispMemberZukanEnemy@ha
-	addi     r0, r29, 0x110
-	stw      r4, 0x4c(r1)
-	addi     r5, r3, __vt__Q28Morimura20DispMemberZukanEnemy@l
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	addi     r4, r1, 0x4c
-	stw      r6, 0x50(r1)
-	stw      r6, 0x54(r1)
-	stw      r6, 0x58(r1)
-	stw      r6, 0x5c(r1)
-	stw      r6, 0x60(r1)
-	stw      r6, 0x64(r1)
-	stw      r6, 0x68(r1)
-	stw      r5, 0x4c(r1)
-	lwz      r5, 0xf0(r29)
-	stw      r5, 0x54(r1)
-	lwz      r5, 0xcc(r29)
-	stw      r5, 0x58(r1)
-	lwz      r5, 0xec(r29)
-	stw      r5, 0x60(r1)
-	lwz      r5, 0xe8(r29)
-	stw      r5, 0x5c(r1)
-	stw      r0, 0x68(r1)
-	bl open_ZukanEnemy__Q26Screen9Game2DMgrFRQ28Morimura20DispMemberZukanEnemy
-	lfs      f1, lbl_8051A128@sda21(r2)
-	mr       r3, r29
-	bl       startWipe__Q34Game10SingleGame10ZukanStateFf
-	li       r28, 1
-
-lbl_80222C8C:
-	clrlwi.  r0, r28, 0x18
-	beq      lbl_80222CA8
-	lwz      r3, spSysIF__8PSSystem@sda21(r13)
-	li       r4, 0x181f
-	li       r5, 0
-	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-	b        lbl_80222CCC
-
-lbl_80222CA8:
-	lwz      r3, spSysIF__8PSSystem@sda21(r13)
-	li       r4, 0x1807
-	li       r5, 0
-	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-	b        lbl_80222CCC
-
-lbl_80222CBC:
-	lwz      r3, spSysIF__8PSSystem@sda21(r13)
-	li       r4, 0x1807
-	li       r5, 0
-	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-
-lbl_80222CCC:
-	lbz      r0, 0x88(r29)
-	cmplwi   r0, 0
-	bne      lbl_80222F04
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	lwz      r3, 0x40(r3)
-	lwz      r0, 0x240(r3)
-	ori      r0, r0, 1
-	stw      r0, 0x240(r3)
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	bl       update__Q26Screen9Game2DMgrFv
-	lwz      r3, 0x9c(r29)
-	cmpwi    r3, 0
-	beq      lbl_80222D08
-	cmpwi    r3, 1
-	bne      lbl_80222E4C
-
-lbl_80222D08:
-	lwz      r0, 0x34(r29)
-	cmpwi    r0, 2
-	bne      lbl_80223064
-	cmpwi    r3, 0
-	bne      lbl_80222DB4
-	cmpwi    r3, 2
-	beq      lbl_80222D2C
-	li       r0, 2
-	stw      r0, 0x9c(r29)
-
-lbl_80222D2C:
-	lis      r3, __vt__Q32og6Screen14DispMemberBase@ha
-	li       r6, 0
-	addi     r0, r3, __vt__Q32og6Screen14DispMemberBase@l
-	lis      r3, __vt__Q28Morimura19DispMemberZukanBase@ha
-	stw      r0, 0x2c(r1)
-	addi     r4, r3, __vt__Q28Morimura19DispMemberZukanBase@l
-	lis      r3, __vt__Q28Morimura20DispMemberZukanEnemy@ha
-	addi     r0, r29, 0x110
-	stw      r4, 0x2c(r1)
-	addi     r5, r3, __vt__Q28Morimura20DispMemberZukanEnemy@l
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	addi     r4, r1, 0x2c
-	stw      r6, 0x30(r1)
-	stw      r6, 0x34(r1)
-	stw      r6, 0x38(r1)
-	stw      r6, 0x3c(r1)
-	stw      r6, 0x40(r1)
-	stw      r6, 0x44(r1)
-	stw      r6, 0x48(r1)
-	stw      r5, 0x2c(r1)
-	lwz      r5, 0xf0(r29)
-	stw      r5, 0x34(r1)
-	lwz      r5, 0xcc(r29)
-	stw      r5, 0x38(r1)
-	lwz      r5, 0xec(r29)
-	stw      r5, 0x40(r1)
-	lwz      r5, 0xe8(r29)
-	stw      r5, 0x3c(r1)
-	stw      r0, 0x48(r1)
-	bl open_ZukanEnemy__Q26Screen9Game2DMgrFRQ28Morimura20DispMemberZukanEnemy
-	lfs      f1, lbl_8051A128@sda21(r2)
-	mr       r3, r29
-	bl       startWipe__Q34Game10SingleGame10ZukanStateFf
-	b        lbl_80223064
-
-lbl_80222DB4:
-	cmpwi    r3, 5
-	beq      lbl_80222DC4
-	li       r0, 5
-	stw      r0, 0x9c(r29)
-
-lbl_80222DC4:
-	lis      r3, __vt__Q32og6Screen14DispMemberBase@ha
-	li       r6, 0
-	addi     r0, r3, __vt__Q32og6Screen14DispMemberBase@l
-	lis      r3, __vt__Q28Morimura19DispMemberZukanBase@ha
-	stw      r0, 0xc(r1)
-	addi     r4, r3, __vt__Q28Morimura19DispMemberZukanBase@l
-	lis      r3, __vt__Q28Morimura19DispMemberZukanItem@ha
-	addi     r0, r29, 0x114
-	stw      r4, 0xc(r1)
-	addi     r5, r3, __vt__Q28Morimura19DispMemberZukanItem@l
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	addi     r4, r1, 0xc
-	stw      r6, 0x10(r1)
-	stw      r6, 0x14(r1)
-	stw      r6, 0x18(r1)
-	stw      r6, 0x1c(r1)
-	stw      r6, 0x20(r1)
-	stw      r6, 0x24(r1)
-	stw      r6, 0x28(r1)
-	stw      r5, 0xc(r1)
-	lwz      r5, 0xf0(r29)
-	stw      r5, 0x14(r1)
-	lwz      r5, 0xcc(r29)
-	stw      r5, 0x18(r1)
-	lwz      r5, 0xec(r29)
-	stw      r5, 0x20(r1)
-	lwz      r5, 0xe8(r29)
-	stw      r5, 0x1c(r1)
-	stw      r0, 0x28(r1)
-	bl open_ZukanItem__Q26Screen9Game2DMgrFRQ28Morimura19DispMemberZukanItem lfs
-f1, lbl_8051A128@sda21(r2) mr       r3, r29 bl
-startWipe__Q34Game10SingleGame10ZukanStateFf b        lbl_80223064
-
-lbl_80222E4C:
-	lwz      r0, 0x34(r29)
-	cmpwi    r0, 2
-	bne      lbl_80223064
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_80222E78
-	addi     r3, r31, 0x190
-	addi     r5, r31, 0x90
-	li       r4, 0x1d3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80222E78:
-	lwz      r28, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r28, 0
-	bne      lbl_80222E98
-	addi     r3, r31, 0x190
-	addi     r5, r31, 0x90
-	li       r4, 0x1dc
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80222E98:
-	lwz      r0, 4(r28)
-	cmplwi   r0, 0
-	bne      lbl_80222EB8
-	addi     r3, r31, 0x19c
-	addi     r5, r31, 0x90
-	li       r4, 0xcf
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80222EB8:
-	lwz      r3, 4(r28)
-	lwz      r28, 4(r3)
-	cmplwi   r28, 0
-	bne      lbl_80222EDC
-	addi     r3, r31, 0x19c
-	addi     r5, r31, 0x1a8
-	li       r4, 0xd1
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80222EDC:
-	mr       r3, r28
-	bl       adaptObjMgr__Q23PSM13Scene_ObjectsFv
-	li       r0, 1
-	stb      r0, 0x88(r29)
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	lwz      r3, 0x40(r3)
-	lwz      r0, 0x240(r3)
-	rlwinm   r0, r0, 0, 0, 0x1e
-	stw      r0, 0x240(r3)
-	b        lbl_80223064
-
-lbl_80222F04:
-	lwz      r6, 0x9c(r29)
-	cmpwi    r6, 5
-	beq      lbl_80222F50
-	bge      lbl_80222F2C
-	cmpwi    r6, 3
-	beq      lbl_80222F64
-	bge      lbl_80223024
-	cmpwi    r6, 2
-	bge      lbl_80222F3C
-	b        lbl_80223044
-
-lbl_80222F2C:
-	cmpwi    r6, 7
-	beq      lbl_80223034
-	bge      lbl_80223044
-	b        lbl_80222FC4
-
-lbl_80222F3C:
-	mr       r3, r29
-	mr       r4, r30
-	li       r5, 3
-	bl
-execModeChange__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSectionQ44Game10SingleGame10ZukanState5CMode
-	b        lbl_80223058
-
-lbl_80222F50:
-	mr       r3, r29
-	mr       r4, r30
-	li       r5, 6
-	bl
-execModeChange__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSectionQ44Game10SingleGame10ZukanState5CMode
-	b        lbl_80223058
-
-lbl_80222F64:
-	lwz      r3, sys@sda21(r13)
-	bl       dvdLoadSyncAllNoBlock__6SystemFv
-	cmpwi    r3, 0
-	bne      lbl_80222FB4
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	addi     r4, r1, 8
-	bl       check_ZukanEnemyRequest__Q26Screen9Game2DMgrFRi
-	cmpwi    r3, 3
-	bne      lbl_80222FB4
-	mr       r3, r29
-	bl       clearHeaps__Q34Game10SingleGame10ZukanStateFv
-	mr       r3, r29
-	mr       r4, r30
-	lwz      r12, 0(r29)
-	li       r5, 1
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80223058
-
-lbl_80222FB4:
-	mr       r3, r29
-	mr       r4, r30
-	bl execTeki__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSection b
-lbl_80223058
-
-lbl_80222FC4:
-	lwz      r3, sys@sda21(r13)
-	bl       dvdLoadSyncAllNoBlock__6SystemFv
-	cmpwi    r3, 0
-	bne      lbl_80223014
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	addi     r4, r1, 8
-	bl       check_ZukanItemRequest__Q26Screen9Game2DMgrFRi
-	cmpwi    r3, 3
-	bne      lbl_80223014
-	mr       r3, r29
-	bl       clearHeaps__Q34Game10SingleGame10ZukanStateFv
-	mr       r3, r29
-	mr       r4, r30
-	lwz      r12, 0(r29)
-	li       r5, 1
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80223058
-
-lbl_80223014:
-	mr       r3, r29
-	mr       r4, r30
-	bl execPellet__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSection
-	b        lbl_80223058
-
-lbl_80223024:
-	mr       r3, r29
-	mr       r4, r30
-	bl
-execChangeTeki__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSection b
-lbl_80223058
-
-lbl_80223034:
-	mr       r3, r29
-	mr       r4, r30
-	bl
-execChangePellet__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSection b
-lbl_80223058
-
-lbl_80223044:
-	addi     r3, r31, 0x7c
-	addi     r5, r31, 0x1cc
-	li       r4, 0x579
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80223058:
-	lwz      r3, 0x100(r29)
-	addi     r3, r3, 0x18
-	bl       update__Q34Game15IllustratedBook12ColorSettingFv
-
-lbl_80223064:
-	lwz      r0, 0xa4(r1)
-	lwz      r31, 0x9c(r1)
-	lwz      r30, 0x98(r1)
-	lwz      r29, 0x94(r1)
-	lwz      r28, 0x90(r1)
-	mtlr     r0
-	addi     r1, r1, 0xa0
-	blr
-	*/
 }
 
 /**

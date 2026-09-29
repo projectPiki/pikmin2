@@ -35,6 +35,14 @@ struct TTestBase : public Screen::ObjBase {
 	virtual bool doUpdateFadeout();                              // _60
 	virtual og::Screen::DispMemberBase* getDispMemberBase() = 0; // _78
 
+	static inline void drawFillScreen(J2DGrafContext* graf, JUtility::TColor& color)
+	{
+		graf->setColor(color);
+		GXSetAlphaUpdate(GX_FALSE);
+		graf->fillBox(sys->getFullScreenBox());
+		GXSetAlphaUpdate(GX_TRUE);
+	}
+
 	static bool mIsSection;
 
 	// _00     = VTBL1

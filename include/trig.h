@@ -55,6 +55,22 @@ inline f32 cosfc(const f32 x)
 	return JMath::sincosTable_.mTable[(GetTableIdxPos(angle) & 0x7ffU)].second;
 }
 
+inline void sincosf(f32 angle, f32& sine, f32& cosine)
+{
+	// this is the only thing I've been able to find that flips the registers right in drawCone
+	// if someone finds a better solution for that, please get rid of this lol -HP
+	if (angle < 0.0f) {
+		sine = -JMath::sincosTable_.mTable[GetTableIdxNeg(angle) & 0x7ffU].first;
+	} else {
+		sine = JMath::sincosTable_.mTable[GetTableIdxPos(angle) & 0x7ffU].first;
+	}
+	f32 x = angle;
+	if (x < 0.0f) {
+		x = -x;
+	}
+	cosine = JMath::sincosTable_.mTable[(GetTableIdxPos(x) & 0x7ffU)].second;
+}
+
 inline f32 acosf(f32 x)
 {
 	if (x >= 1.0f) {

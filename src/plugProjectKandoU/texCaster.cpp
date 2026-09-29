@@ -85,19 +85,19 @@ void Caster::makeDL()
 
 	u8* displayList    = mDisplayList;
 	u8* displayListEnd = displayList + mDisplayListSize;
-
-	u32 index      = 0;
+	u32 index;
 	displayList[0] = 0x90;
 	displayList[1] = (mTriangleCount * 3) >> 8;
 	displayList[2] = mTriangleCount * 3;
-
-	u8* out = displayList + 3;
-	for (int i = 0; i < mTriangleCount; ++i) {
+	u8* out        = displayList + 3;
+	int i;
+	for (i = 0, index = 0; i < mTriangleCount; ++i) {
 		u16 index1 = index + 1;
 		u16 index2 = index + 2;
-		out[0]     = index >> 8;
+		u8 hi      = index >> 8;
+		out[0]     = hi;
 		out[1]     = index;
-		out[2]     = index >> 8;
+		out[2]     = hi;
 		out[3]     = index;
 		out[4]     = index1 >> 8;
 		out[5]     = index1;
@@ -276,13 +276,14 @@ Caster* Mgr::create(Sys::Sphere& sphere, f32 rotationAngle)
 		for (int vertexIndex = 0; vertexIndex < 3; vertexIndex++) {
 			int index              = triangleIndex * 3 + vertexIndex;
 			Vector3f currentVertex = caster->mVertices[index];
-			f32 deltaX             = currentVertex.x - center.x;
-			f32 deltaZ             = currentVertex.z - center.z;
+			f32 sin1, cos1, cos2, sin2;
+			f32 deltaX = currentVertex.x - center.x;
+			f32 deltaZ = currentVertex.z - center.z;
 
-			f32 sin1 = sin(rotationAngle);
-			f32 cos1 = cos(rotationAngle);
-			f32 cos2 = cos(rotationAngle);
-			f32 sin2 = sin(rotationAngle);
+			sin1 = sin(rotationAngle);
+			cos1 = cos(rotationAngle);
+			cos2 = cos(rotationAngle);
+			sin2 = sin(rotationAngle);
 			Vector3f texturePosition(deltaZ * sin2 + deltaX * cos2, 0.0f, deltaZ * cos1 - deltaX * sin1);
 			texturePosition *= scaleFactor;
 			caster->mTexturePositions[index * 2]     = 0.5f + texturePosition.x;

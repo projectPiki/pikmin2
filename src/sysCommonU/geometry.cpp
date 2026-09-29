@@ -777,7 +777,7 @@ bool Triangle::intersect(Sys::VertexTable& vertTable, Sys::Sphere& ball, Vector3
 	f32 triPlaneDist = triPlaneNormal.dot(ball.mPosition) - mTrianglePlane.mOffset;
 
 	Vector3f triPlaneOffset = triPlaneNormal * triPlaneDist;
-	Vector3f sepVec = ball.mPosition - triPlaneOffset;
+	Vector3f sepVec         = ball.mPosition - triPlaneOffset;
 
 	f32 ballDists[3];
 	for (int i = 0; i < 3; i++) {
@@ -1201,64 +1201,53 @@ bool RayIntersectInfo::condition(Sys::Triangle& triangle)
  */
 void GridDivider::createTriangles(Sys::CreateTriangleArg& triArg)
 {
-
 	triArg.mVertices = nullptr;
 	triArg.mCount    = 0;
 
-	Triangle* trianglesBuffer[128];
-	Vector3f verticesBuffer[128 * 3];
-	int triangleIndex;
-	int totalVertices;
-	int triangleCount = 0;
+	Triangle* triangles[128];
+	Vector3f vertices[128 * 3];
+	int count = 0;
 
-	Vector2f position(triArg.mBoundingSphere.mPosition.x, triArg.mBoundingSphere.mPosition.z);
-	position -= Vector2f(mBoundingBox.mMin.x, mBoundingBox.mMin.z);
-	int gridXIndex = (int)(position.x / mScaleX);
-	int gridZIndex = (int)(position.y / mScaleZ);
+	Vector2f diff(triArg.mBoundingSphere.mPosition.x, triArg.mBoundingSphere.mPosition.z);
+	diff -= Vector2f(mBoundingBox.mMin.x, mBoundingBox.mMin.z);
+	int x = diff.x / mScaleX;
+	int z = diff.y / mScaleZ;
 
-	bool indicesInBounds = (gridXIndex >= 0) && (gridZIndex >= 0) && (gridXIndex < mMaxX) && (gridZIndex < mMaxZ);
+	bool inside = (x >= 0) && (z >= 0) && (x < mMaxX) && (z < mMaxZ);
+	if (inside) {
+		TriIndexList* list = getTriIndexList(x, z);
+		for (int i = 0; i < list->getNum(); i++) {
+			Triangle* tri  = mTriangleTable->getTriangle(list->mObjects[i]);
+			Vector3f vertA = *mVertexTable->getVertex(tri->mVertices[0]);
+			Vector3f vertB = *mVertexTable->getVertex(tri->mVertices[1]);
+			Vector3f vertC = *mVertexTable->getVertex(tri->mVertices[2]);
 
-	bool isDuplicate;
-	if (indicesInBounds) {
-		Triangle* currentTriangle;
-
-		TriIndexList* cell = &mTriIndexLists[gridZIndex + (gridXIndex * mMaxZ)];
-
-		for (triangleIndex = 0; triangleIndex < cell->getNum(); ++triangleIndex) {
-			currentTriangle  = mTriangleTable->getTriangle(cell->mObjects[triangleIndex]);
-			Vector3f vertexA = *mVertexTable->getVertex(currentTriangle->mVertices[0]);
-			Vector3f vertexB = *mVertexTable->getVertex(currentTriangle->mVertices[1]);
-			Vector3f vertexC = *mVertexTable->getVertex(currentTriangle->mVertices[2]);
-
-			isDuplicate = false;
-			for (int j = 0; j < triangleCount; ++j) {
-				if (currentTriangle == trianglesBuffer[j]) {
+			bool isDuplicate = false;
+			for (int j = 0; j < count; j++) {
+				if (tri == triangles[j]) {
 					isDuplicate = true;
 				}
 			}
 
-			if (!isDuplicate && triangleCount < 128) {
-				Vector3f normal = currentTriangle->mTrianglePlane.mNormal;
-
+			if (!isDuplicate && count < 128) {
+				Vector3f normal = tri->mTrianglePlane.mNormal;
 				if (normal.y > triArg.mScaleLimit) {
-					float scaleFactor              = triArg.mScale;
-					trianglesBuffer[triangleCount] = currentTriangle;
+					f32 scale        = triArg.mScale;
+					triangles[count] = tri;
 
-					verticesBuffer[triangleCount * 3]     = vertexA + normal * scaleFactor;
-					verticesBuffer[triangleCount * 3 + 1] = vertexB + normal * scaleFactor;
-					verticesBuffer[triangleCount * 3 + 2] = vertexC + normal * scaleFactor;
-
-					++triangleCount;
+					vertices[count * 3]     = vertA + normal * scale;
+					vertices[count * 3 + 1] = vertB + normal * scale;
+					vertices[count * 3 + 2] = vertC + normal * scale;
+					count++;
 				}
 			}
 		}
 
-		totalVertices    = triangleCount * 3;
-		triArg.mVertices = new Vector3f[totalVertices];
-		for (int i = 0; i < (triangleCount * 3); ++i) {
-			triArg.mVertices[i] = verticesBuffer[i];
+		triArg.mVertices = new Vector3f[count * 3];
+		for (int i = 0; i < count * 3; i++) {
+			triArg.mVertices[i] = vertices[i];
 		}
-		triArg.mCount = triangleCount;
+		triArg.mCount = count;
 	}
 }
 

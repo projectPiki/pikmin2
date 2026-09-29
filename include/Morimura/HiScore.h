@@ -75,8 +75,8 @@ struct THiScore : public TScrollList {
 	void changeColorBlock(J2DColorBlock*, J2DColorBlock*);
 	void updateLayout();
 
-	// seems annoyingly necessary, does not work replacing this with interpolate
-	static int blendColorValue(f32 t, f32 tInv, f32 from, f32 to) { return tInv * from + t * to; }
+	// yes, this is just interpolate with an s16 cast. yes it seems necessary.
+	static s16 blendColorValue(f32 t, f32 tInv, f32 from, f32 to) { return tInv * from + t * to; }
 
 	// _00     = VTBL1
 	// _18     = VTBL2

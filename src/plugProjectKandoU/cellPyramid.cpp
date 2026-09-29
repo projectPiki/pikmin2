@@ -905,8 +905,10 @@ char* CellPyramid::sCellBugName = "none";
 // void calcExtent__Q24Game11CellPyramidFRQ23Sys6SphereRiR7Rect<i>()
 void CellPyramid::calcExtent(Sys::Sphere& sphere, int& layerIdx, Recti& outRect)
 {
-	f32 exponent = 2.0f * sphere.mRadius * mInverseScale;
-	f32 log2     = (f32)log10(exponent) / (f32)log10(2.0); // change to log base 2
+	f32 log2, base, exponent;
+	exponent = 2.0f * sphere.mRadius * mInverseScale;
+	base     = (f32)log10(2.0);
+	log2     = (f32)log10(exponent) / base; // change to log base 2
 	if (log2 < 0.0f) {
 		log2 = 0.0f;
 	}
@@ -919,18 +921,10 @@ void CellPyramid::calcExtent(Sys::Sphere& sphere, int& layerIdx, Recti& outRect)
 	u16 layerSize = getLayer(layer)->mLayerSize;
 	f32 mult      = (f32)layerSize * mScale;
 
-	f32 xLow = sphere.mPosition.x - sphere.mRadius;
-	f32 xHi  = sphere.mPosition.x + sphere.mRadius;
-	f32 yLow = sphere.mPosition.z - sphere.mRadius;
-	f32 yHi  = sphere.mPosition.z + sphere.mRadius;
-
-	f32 left  = mBounds.x;
-	f32 right = mBounds.y;
-
-	f32 xLowDiff = xLow - right;
-	f32 yLowDiff = yLow - left;
-	f32 xHiDiff  = xHi - right;
-	f32 yHiDiff  = yHi - left;
+	f32 xLowDiff = sphere.mPosition.x - sphere.mRadius - mBounds.y;
+	f32 yLowDiff = sphere.mPosition.z - sphere.mRadius - mBounds.x;
+	f32 xHiDiff  = sphere.mPosition.x + sphere.mRadius - mBounds.y;
+	f32 yHiDiff  = sphere.mPosition.z + sphere.mRadius - mBounds.x;
 
 	f32 scale = 1.0f / mult;
 
@@ -973,18 +967,12 @@ void CellPyramid::entry(CellObject* object, Sys::Sphere& sphere, int& layerIndex
 		return;
 	}
 
-	u8 pikiOrNavi    = 0;
 	CellLayer* layer = &mLayers[layerIndex];
-	bool isPiki      = object->isPiki();
-	if ((isPiki != false) || (isPiki = object->isNavi(), isPiki != false)) {
-		pikiOrNavi = 1;
-	}
-	bool isPikiOrNavi = pikiOrNavi != 0;
+	bool pikiOrNavi  = object->isPikiOrNavi();
 
 	for (int i = 0; i < 4; i++) {
-		Cell* cell = object->mCellLegs[i].mCell;
-		if (cell) {
-			cell->exit(&object->mCellLegs[i], isPikiOrNavi);
+		if (object->mCellLegs[i].mCell) {
+			object->mCellLegs[i].mCell->exit(&object->mCellLegs[i], pikiOrNavi);
 			object->mCellLegs[i].mCell = nullptr;
 		}
 	}
@@ -1004,7 +992,7 @@ void CellPyramid::entry(CellObject* object, Sys::Sphere& sphere, int& layerIndex
 					return;
 				}
 
-				cell->entry(&object->mCellLegs[legIndex], isPikiOrNavi);
+				cell->entry(&object->mCellLegs[legIndex], pikiOrNavi);
 
 				bool legCheck = cell->mLeg->findLeg(&object->mCellLegs[legIndex]);
 				if (!legCheck) {

@@ -22,6 +22,9 @@ struct Track;
 } // namespace PSAutoBgm
 
 namespace PSM {
+
+struct Otakara;
+
 struct OneShotDirector : public ::PSSystem::OneShotDirector {
 	inline OneShotDirector()
 	    : ::PSSystem::OneShotDirector()
@@ -307,6 +310,24 @@ struct ActorDirector_Kehai : public ActorDirector_Enemy {
 
 	// _00     = VTBL
 	// _00-_6C = ActorDirector_Enemy
+};
+
+/**
+ * @size{0x68}
+ *
+ * @note Completely stripped, but needed for vtable ordering and whatnot.
+ */
+struct ActorDirector_IchouNBeedama : public TrackOnDirector_Scaled {
+	ActorDirector_IchouNBeedama(const char* name, int trackCount, f32 endDistance, f32 startDistance, s32 fadeIn, s32 fadeOut,
+	                            u32 fadeDuration);
+
+	virtual void execInner();         // _1C
+	virtual f32 getNearestDistance(); // _38
+
+	Otakara* getPSOtakara(Game::Creature*);
+
+	// _00     = VTBL
+	// _00-_68 = TrackOnDirector_Scaled
 };
 
 /**

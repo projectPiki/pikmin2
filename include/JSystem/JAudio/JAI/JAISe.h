@@ -97,6 +97,16 @@ struct JAISe : public JAISound {
 
 	JAInter::SeParameter* getSeParameter() { return &mSeParam; }
 
+	static inline bool checkDummyHandle(JAISe** handle)
+	{
+		bool result = false;
+		if (handle && *handle == (JAISe*)1) {
+			result  = true;
+			*handle = nullptr;
+		}
+		return result;
+	}
+
 	// _00      = VTABLE
 	// _04-_48  = JAISound
 	JAInter::SeParameter mSeParam; // _48

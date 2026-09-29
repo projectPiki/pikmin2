@@ -75,7 +75,7 @@ struct TCounterRV : public og::Screen::CallBack_CounterRV {
 	virtual void update();             // _10
 	virtual void setValue(bool, bool); // _28
 
-	// unused functions
+	// Unused/inlined:
 	void createKiraEffect(f32, int);
 	void fadeKiraEffect();
 	void startScaleAnim();
@@ -186,6 +186,9 @@ struct TMovePane {
 		mOffset  = mPanePosition;
 		mCounter = 0;
 	}
+
+	inline int getID() { return _48; }
+	inline int getState() { return mState; }
 
 	J2DPane* mPane;                    // _00
 	J2DPane* mStickPane;               // _04

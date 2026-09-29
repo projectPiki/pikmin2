@@ -169,7 +169,7 @@ struct J2DPane {
 	virtual void calcMtx()
 	{
 		if (mTree.getList()) {
-			makeMatrix(mOffset.x, mOffset.y);
+			makeMatrix(mTranslateX, mTranslateY);
 		}
 	} // _2C (weak)
 	virtual void update() { }                                                                     // _30 (weak)
@@ -261,20 +261,22 @@ struct J2DPane {
 	void centerWithScale(f32 width, f32 height)
 	{
 		setBasePosition(J2DPOS_Center);
-		mScale.x = width;
-		mScale.y = height;
+		mScaleX = width;
+		mScaleY = height;
 		calcMtx();
 	}
 
 	inline void updateScale(f32 scale)
 	{
-		mScale = JGeometry::TVec2f(scale, scale);
+		mScaleX = scale;
+		mScaleY = scale;
 		calcMtx();
 	}
 
 	inline void updateScale(f32 scaleX, f32 scaleY) // called scale in TP
 	{
-		mScale = JGeometry::TVec2f(scaleX, scaleY);
+		mScaleX = scaleX;
+		mScaleY = scaleY;
 		calcMtx();
 	}
 
@@ -297,42 +299,48 @@ struct J2DPane {
 
 	inline void setOffset(f32 x1, f32 x2, f32 y1, f32 y2)
 	{
-		mOffset = JGeometry::TVec2f(x1 + x2, y1 + y2);
+		f32 x       = x1 + x2;
+		f32 y       = y1 + y2;
+		mTranslateX = x;
+		mTranslateY = y;
 		calcMtx();
 	}
 
 	inline void setOffset(f32 x, f32 y)
 	{
-		mOffset = JGeometry::TVec2f(x, y);
+		mTranslateX = x;
+		mTranslateY = y;
 		calcMtx();
 	}
 
 	inline void translate(f32 x, f32 y)
 	{
-		mOffset.set(x, y);
+		mTranslateX = x;
+		mTranslateY = y;
 		calcMtx();
 	}
 
 	inline void addOffset(f32 x, f32 y)
 	{
-		mOffset += JGeometry::TVec2f(x, y);
+		mTranslateX += x;
+		mTranslateY += y;
 		calcMtx();
 	}
 
 	inline void addOffsetY(f32 y)
 	{
-		mOffset.y += y;
+		mTranslateY += y;
 		calcMtx();
 	}
 
 	inline void setOffsetY(f32 y)
 	{
-		mOffset.y = y;
+		mTranslateY = y;
 		calcMtx();
 	}
 
-	inline f32 getOffsetX() { return mOffset.x; }
-	inline f32 getOffsetY() { return mOffset.y; }
+	inline f32 getOffsetX() { return mTranslateX; }
+	inline f32 getOffsetY() { return mTranslateY; }
 
 	inline void setAngleY(f32 a)
 	{
@@ -367,17 +375,17 @@ struct J2DPane {
 
 	u8 getAlpha() { return mAlpha; }
 	u8 getColorAlpha() const { return mColorAlpha; }
-	f32 getScaleX() const { return mScale.x; }
-	f32 getScaleY() const { return mScale.y; }
-	f32 getTranslateX() const { return mOffset.x; }
-	f32 getTranslateY() const { return mOffset.y; }
-	JGeometry::TVec2f getTranslate() const { return mOffset; }
+	f32 getScaleX() const { return mScaleX; }
+	f32 getScaleY() const { return mScaleY; }
+	f32 getTranslateX() const { return mTranslateX; }
+	f32 getTranslateY() const { return mTranslateY; }
+	JGeometry::TVec2f getTranslate() const { return JGeometry::TVec2f(mTranslateX, mTranslateY); }
 	int getKind() const { return mBloBlockType; }
 	f32 getRotateX() const { return mAngleX; }
 	f32 getRotateY() const { return mAngleY; }
 	f32 getRotateZ() const { return mAngleZ; }
-	f32 getRotOffsetX() const { return mAnchorPoint.x; }
-	f32 getRotOffsetY() const { return mAnchorPoint.y; }
+	f32 getRotOffsetX() const { return mRotateOffsetX; }
+	f32 getRotOffsetY() const { return mRotateOffsetY; }
 	Mtx* getGlobalMtx() { return &mGlobalMtx; }
 	f32 getHeight() const { return mBounds.getHeight(); }
 	f32 getWidth() const { return mBounds.getWidth(); }
@@ -389,40 +397,6 @@ struct J2DPane {
 		if (getParentPane()) {
 			getParentPane()->removeChild(this);
 		}
-	}
-
-	void operator=(const J2DPane& other)
-	{
-		mAnimPaneIndex = other.mAnimPaneIndex;
-		mBloBlockType  = other.mBloBlockType;
-		mTag           = other.mTag;
-		mMessageID     = other.mMessageID;
-		mBounds        = other.mBounds;
-		mGlobalBounds  = other.mGlobalBounds;
-		mClipRect      = other.mClipRect;
-
-		struct PaneMtx {
-			Mtx mtx;
-		};
-		*(PaneMtx*)mPositionMtx = *(const PaneMtx*)other.mPositionMtx;
-		*(PaneMtx*)mGlobalMtx   = *(const PaneMtx*)other.mGlobalMtx;
-
-		mIsVisible         = other.mIsVisible;
-		mCullMode          = other.mCullMode;
-		mAlpha             = other.mAlpha;
-		mColorAlpha        = other.mColorAlpha;
-		mIsInfluencedAlpha = other.mIsInfluencedAlpha;
-		mIsConnected       = other.mIsConnected;
-		mRotationAxis      = other.mRotationAxis;
-		mBasePosition      = other.mBasePosition;
-		mAngleX            = other.mAngleX;
-		mAngleY            = other.mAngleY;
-		mAngleZ            = other.mAngleZ;
-		mAnchorPoint       = other.mAnchorPoint;
-		mScale             = other.mScale;
-		mOffset            = other.mOffset;
-		mTree              = other.mTree;
-		mTransform         = other.mTransform;
 	}
 
 	bool appendChild(J2DPane* child);
@@ -459,12 +433,14 @@ struct J2DPane {
 	f32 mAngleX;                     // _0B8
 	f32 mAngleY;                     // _0BC
 	f32 mAngleZ;                     // _0C0
-	JGeometry::TVec2f mAnchorPoint;  // _0C4
-	JGeometry::TVec2f mScale;        // _0CC
-	JGeometry::TVec2f mOffset;       // _0D4
+	f32 mRotateOffsetX;              // _0C4, NB: I think these have to be six individual floats, not TVec2fs
+	f32 mRotateOffsetY;              // _0C8, otherwise the default J2DPane::operator= goes wack :(
+	f32 mScaleX;                     // _0CC, (TP also has them as individual floats)
+	f32 mScaleY;                     // _0D0
+	f32 mTranslateX;                 // _0D4
+	f32 mTranslateY;                 // _0D8
 	JSUTree<J2DPane> mTree;          // _0DC
 	J2DAnmTransform* mTransform;     // _0F8
-	u8 _0FC[4];                      // _0FC
 };
 
 #endif

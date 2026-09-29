@@ -145,8 +145,8 @@ void THurryUp2D::doCreate(JKRArchive* arc)
 	mWhitePane->setAlpha(0);
 	mWhitePane->mAlpha = 0;
 	mPaneSunL->appendChild(mWhitePane);
-	mPane1Pos = JGeometry::TVec2f(mPaneHurry->mOffset);
-	mPane2Pos = JGeometry::TVec2f(mPaneSundown->mOffset);
+	mPane1Pos = JGeometry::TVec2f(mPaneHurry->mTranslateX, mPaneHurry->mTranslateY);
+	mPane2Pos = JGeometry::TVec2f(mPaneSundown->mTranslateX, mPaneSundown->mTranslateY);
 }
 
 /**
@@ -387,12 +387,12 @@ void THurryUp2D::move()
 	mPaneHurry->setAlpha(alpha);
 	mPaneSundown->setAlpha(alpha);
 
-	if (mPaneHurry->mOffset.x < mPane1Pos.x) {
+	if (mPaneHurry->mTranslateX < mPane1Pos.x) {
 		mPaneHurry2->show();
 		mPaneSundown2->show();
 		f32 scale     = mParams[mState].mScale;
 		f32 gscale    = mParams[mState].mGoalScale;
-		int i         = FABS(mPane1Pos.x - mPaneHurry->mOffset.x) / time;
+		int i         = FABS(mPane1Pos.x - mPaneHurry->mTranslateX) / time;
 		const f32 mod = mScaleRate;
 		for (i; i > 0; i--) {
 			if (scale < gscale) {
@@ -412,7 +412,7 @@ void THurryUp2D::move()
 		mPaneSundown2->updateScale(scale);
 	}
 
-	if (mPaneHurry->mOffset.x < mPane1Pos.x - mInitPosX && (mPaneHurry2->mScale.x >= mParams[mState].mGoalScale)) {
+	if (mPaneHurry->mTranslateX < mPane1Pos.x - mInitPosX && (mPaneHurry2->mScaleX >= mParams[mState].mGoalScale)) {
 		changeState(StateScaleUp1, 0.0f);
 	}
 }
@@ -426,7 +426,7 @@ void THurryUp2D::scaleUp1()
 	J2DPane* pane = mPaneSunL;
 	f32 goal      = mParams[mState].mGoalScale;
 	f32 scale;
-	if (pane->mScale.x < goal) {
+	if (pane->mScaleX < goal) {
 		f32 factor = mTimer * mScaleSp1 * 60.0f;
 		scale      = factor * sys->mDeltaTime + mParams[mState].mScale;
 		if (scale >= goal) {
@@ -477,7 +477,7 @@ void THurryUp2D::colorUp()
 void THurryUp2D::scaleUp2()
 {
 	f32 goal = mParams[mState].mGoalScale;
-	if (mPaneSunL->mScale.x < goal) {
+	if (mPaneSunL->mScaleX < goal) {
 		f32 factor = mTimer * mScaleSp2 * 60.0f;
 		f32 scale  = factor * sys->mDeltaTime + mParams[mState].mScale;
 		if (scale > goal) {

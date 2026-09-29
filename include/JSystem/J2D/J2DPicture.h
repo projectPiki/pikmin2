@@ -156,40 +156,6 @@ struct J2DPicture : public J2DPane {
 	void setTexCoord(JGeometry::TVec2s* texCoord, const JUTTexture* texture, J2DBinding binding, J2DMirror mirror, bool doRotate90);
 	GXTlut getTlutID(const ResTIMG* img, u8 id);
 
-	J2DPicture& operator=(const J2DPicture& other)
-	{
-		J2DPane::operator=(other);
-
-		mTextures[0] = other.mTextures[0];
-		mTextures[1] = other.mTextures[1];
-		mTextures[2] = other.mTextures[2];
-		mTextures[3] = other.mTextures[3];
-
-		mTextureCount     = other.mTextureCount;
-		mUsedTextureFlags = other.mUsedTextureFlags;
-
-		struct TexCoordBlock {
-			JGeometry::TVec2s coords[4];
-		};
-		struct RatioBlock {
-			f32 ratios[4];
-		};
-		*(TexCoordBlock*)mTexCoords    = *(const TexCoordBlock*)other.mTexCoords;
-		*(RatioBlock*)mBlendColorRatio = *(const RatioBlock*)other.mBlendColorRatio;
-		*(RatioBlock*)mBlendAlphaRatio = *(const RatioBlock*)other.mBlendAlphaRatio;
-
-		mPalette         = other.mPalette;
-		mWhite           = other.mWhite;
-		mBlack           = other.mBlack;
-		mCornerColors[0] = other.mCornerColors[0];
-		mCornerColors[1] = other.mCornerColors[1];
-		mCornerColors[2] = other.mCornerColors[2];
-		mCornerColors[3] = other.mCornerColors[3];
-		mBlendColor      = other.mBlendColor;
-		mBlendAlpha      = other.mBlendAlpha;
-		return *this;
-	}
-
 	inline void setCornerColor(TCornerColor colors)
 	{
 		mCornerColors[0].set(colors.mColor0);
@@ -206,8 +172,7 @@ struct J2DPicture : public J2DPane {
 		mCornerColors[3].set(color);
 	}
 
-	inline void setCornerColorRef(JUtility::TColor& color0, JUtility::TColor& color1, JUtility::TColor& color2,
-	                              JUtility::TColor& color3)
+	inline void setCornerColorRef(JUtility::TColor& color0, JUtility::TColor& color1, JUtility::TColor& color2, JUtility::TColor& color3)
 	{
 		mCornerColors[0] = (color0);
 		mCornerColors[1] = (color1);

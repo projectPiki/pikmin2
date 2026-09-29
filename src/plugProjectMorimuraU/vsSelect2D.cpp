@@ -576,7 +576,7 @@ f32 TVsSelectOnyon::getAngDist()
  */
 void TVsSelectOnyon::draw()
 {
-	if (0.4f == mOnyonPane->mScale.x) {
+	if (0.4f == mOnyonPane->mScaleX) {
 		mNaviPane->setBasePosition(J2DPOS_Center);
 		f32 offs = -30.0f;
 		mNaviPane->draw(mCurrentPosition.x + offs, mCurrentPosition.y + offs, false, false, false);
@@ -802,9 +802,10 @@ TVsSelect::~TVsSelect()
  * @note Address: N/A
  * @note Size: 0x44
  */
-void TVsSelect::setDebugHeapParent(JKRHeap*)
+void TVsSelect::setDebugHeapParent(JKRHeap* heap)
 {
-	// UNUSED FUNCTION
+	mDebugHeapParent = heap;
+	P2ASSERTLINE(769, mDebugHeapParent);
 }
 
 /**
@@ -979,13 +980,13 @@ void TVsSelect::doCreate(JKRArchive* arc)
 
 	mCharacterMainIcons[0] = screen->search('Norima');
 	P2ASSERTLINE(1027, mCharacterMainIcons[0]);
-	mPlayerMainIconPos[0].x = mCharacterMainIcons[0]->mOffset.x;
-	mPlayerMainIconPos[0].y = mCharacterMainIcons[0]->mOffset.y;
+	mPlayerMainIconPos[0].x = mCharacterMainIcons[0]->mTranslateX;
+	mPlayerMainIconPos[0].y = mCharacterMainIcons[0]->mTranslateY;
 
 	mCharacterMainIcons[1] = screen->search('Nluie');
 	P2ASSERTLINE(1032, mCharacterMainIcons[1]);
-	mPlayerMainIconPos[1].x = mCharacterMainIcons[1]->mOffset.x;
-	mPlayerMainIconPos[1].y = mCharacterMainIcons[1]->mOffset.y;
+	mPlayerMainIconPos[1].x = mCharacterMainIcons[1]->mTranslateX;
+	mPlayerMainIconPos[1].y = mCharacterMainIcons[1]->mTranslateY;
 
 	J2DPane* light = screen->search('Ploligh2');
 	P2ASSERTLINE(1039, light);
@@ -1075,7 +1076,7 @@ void TVsSelect::doCreate(JKRArchive* arc)
 
 	mPaneRulesInfo = mRulesWindow->mScreenObj->search('Nmg0');
 	P2ASSERTLINE(1142, mPaneRulesInfo);
-	JGeometry::TVec2f test = mPaneRulesInfo->mOffset;
+	JGeometry::TVec2f test = mPaneRulesInfo->getTranslate();
 	mRulesPanePos          = test;
 
 	mPaneRulesLR[0] = mRulesWindow->mScreenObj->search('Nyaji00');
@@ -1148,10 +1149,10 @@ void TVsSelect::doCreate(JKRArchive* arc)
 	u64 stageTags[5] = { 'Tmenu00', 'Tmenu01', 'Tmenu02', 'Tmenu03', 'Tmenu04' };
 	J2DPane* icon    = screen->search(stageTags[mCurrMinActiveRow]);
 	P2ASSERTLINE(1227, icon);
-	mMinSelYOffset = icon->mOffset.y;
+	mMinSelYOffset = icon->mTranslateY;
 	icon           = screen->search(stageTags[mCurrMaxActiveRow]);
 	P2ASSERTLINE(1231, icon);
-	mMaxSelYOffset = icon->mOffset.y;
+	mMaxSelYOffset = icon->mTranslateY;
 	mIndexPaneList = new TIndexPane*[mNumActiveRows];
 	for (int i = 0; i < mNumActiveRows; i++) {
 		mIndexPaneList[i] = new TIndexPane(nullptr, screen, stageTags[i]);
@@ -5635,7 +5636,7 @@ void TVsSelect::doDraw(Graphics& gfx)
 		gfx.mPerspGraph.setPort();
 	}
 
-	J2DPerspGraph* graf = &gfx.mPerspGraph;
+	J2DPerspGraph* graf = gfx.getPerspGraph();
 	graf->setPort();
 	mBackgroundScreen->draw(gfx, graf);
 
@@ -5692,14 +5693,7 @@ void TVsSelect::doDraw(Graphics& gfx)
 		JUtility::TColor c;
 		c.set(0, 0, 0, 0);
 		c.a = mDrawAlpha;
-		graf->setColor(c);
-		GXSetAlphaUpdate(GX_FALSE);
-		u32 y    = System::getRenderModeObj()->efbHeight;
-		u32 x    = System::getRenderModeObj()->fbWidth;
-		f32 zero = 0.0f;
-		JGeometry::TBox2f box(0.0f, 0.0f, zero + x, zero + y);
-		graf->fillBox(box);
-		GXSetAlphaUpdate(GX_TRUE);
+		drawFillScreen(graf, c);
 	}
 
 	if (mRulesWindow->mState) {
@@ -5710,10 +5704,11 @@ void TVsSelect::doDraw(Graphics& gfx)
 				baseID = 6;
 			}
 			J2DPictureEx* pane = (J2DPictureEx*)mPowerIconPanes[i + baseID];
-			f32 width          = pane->getWidth();
-			f32 height         = pane->getHeight();
-			pane->draw(mPowerIconOffset.x + (mPaneRulesIcons[i]->mGlobalMtx[0][3] - width * 0.5f),
-			           mPowerIconOffset.y + (mPaneRulesIcons[i]->mGlobalMtx[1][3] - height * 0.5f), width, height, false, false, false);
+			Vector2f pos(mPaneRulesIcons[i]->mGlobalMtx[0][3], mPaneRulesIcons[i]->mGlobalMtx[1][3]);
+			f32 width  = pane->getWidth();
+			f32 height = pane->getHeight();
+			pane->draw(mPowerIconOffset.x + (pos.x - width * 0.5f), mPowerIconOffset.y + (pos.y - height * 0.5f), width, height, false,
+			           false, false);
 			mPowerIconPanes[i + baseID]->calcMtx();
 		}
 		gfx.mPerspGraph.setPort();
@@ -5721,14 +5716,7 @@ void TVsSelect::doDraw(Graphics& gfx)
 
 	JUtility::TColor c;
 	c.set(0, 0, 0, 255 - mFadeAlpha);
-	graf->setColor(c);
-	GXSetAlphaUpdate(GX_FALSE);
-	u32 y    = System::getRenderModeObj()->efbHeight;
-	u32 x    = System::getRenderModeObj()->fbWidth;
-	f32 zero = 0.0f;
-	JGeometry::TBox2f box(0.0f, 0.0f, zero + x, zero + y);
-	graf->fillBox(box);
-	GXSetAlphaUpdate(GX_TRUE);
+	drawFillScreen(graf, c);
 
 	/*
 	stwu     r1, -0x6e0(r1)

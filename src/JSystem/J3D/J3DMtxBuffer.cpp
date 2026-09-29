@@ -668,7 +668,7 @@ void J3DMtxBuffer::calcDrawMtx(u32 p1, const Vec& vec, const Mtx& mtx)
 	} break;
 
 	case 1: {
-		u32 mtxNum = mJointTree->getDrawFullWgtMtxNum();
+		u16 mtxNum = mJointTree->getDrawFullWgtMtxNum();
 		for (u16 i = 0; i < mtxNum; i++) {
 			PSMTXCopy(*(Mtx*)getAnmMtx(mJointTree->getDrawMtxIndex(i)), *getDrawMtx(i));
 		}

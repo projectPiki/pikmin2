@@ -507,10 +507,13 @@ void Item::makeTrMatrix()
 		yVec = yVec * -1.0f;
 
 		Vector3f zAxis(0.0f, 0.0f, 1.0f);
+		Vector3f zVec;
 		Vector3f xVec = yVec.cross(zAxis);
 		xVec.normalise();
 
-		Vector3f zVec = xVec.cross(yVec);
+		zVec = xVec.cross(yVec);
+		// sigh. this is the only thing I've found that fixes these fucking registers
+		zVec = zVec;
 		zVec.normalise();
 
 		mBaseTrMatrix.setColumn(0, xVec);
@@ -520,163 +523,6 @@ void Item::makeTrMatrix()
 	} else {
 		BaseItem::makeTrMatrix();
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl
-"getStateID__Q24Game89FSMItem<Q34Game12ItemPikihead4Item,Q34Game12ItemPikihead3FSM,Q34Game12ItemPikihead5State>Fv"
-	cmpwi    r3, 0
-	bne      lbl_801DA0E0
-	lfs      f7, 0x190(r31)
-	lfs      f3, 0x194(r31)
-	fmuls    f0, f7, f7
-	lfs      f4, 0x198(r31)
-	fmuls    f2, f3, f3
-	lfs      f1, lbl_805197CC@sda21(r2)
-	fmuls    f5, f4, f4
-	fadds    f0, f0, f2
-	fadds    f0, f5, f0
-	fcmpo    cr0, f0, f1
-	ble      lbl_801D9F64
-	fmadds   f0, f7, f7, f2
-	fadds    f0, f5, f0
-	fcmpo    cr0, f0, f1
-	ble      lbl_801D9F68
-	frsqrte  f1, f0
-	fmuls    f0, f1, f0
-	b        lbl_801D9F68
-
-lbl_801D9F64:
-	fmr      f0, f1
-
-lbl_801D9F68:
-	lfs      f1, lbl_805197CC@sda21(r2)
-	fcmpo    cr0, f0, f1
-	ble      lbl_801DA0E0
-	fmuls    f0, f3, f3
-	fmuls    f2, f4, f4
-	fmadds   f0, f7, f7, f0
-	fadds    f2, f2, f0
-	fcmpo    cr0, f2, f1
-	ble      lbl_801D9F9C
-	ble      lbl_801D9FA0
-	frsqrte  f0, f2
-	fmuls    f2, f0, f2
-	b        lbl_801D9FA0
-
-lbl_801D9F9C:
-	fmr      f2, f1
-
-lbl_801D9FA0:
-	lfs      f0, lbl_805197CC@sda21(r2)
-	fcmpo    cr0, f2, f0
-	ble      lbl_801D9FC0
-	lfs      f0, lbl_805197E4@sda21(r2)
-	fdivs    f0, f0, f2
-	fmuls    f7, f7, f0
-	fmuls    f3, f3, f0
-	fmuls    f4, f4, f0
-
-lbl_801D9FC0:
-	lfs      f0, lbl_805197E0@sda21(r2)
-	lfs      f6, lbl_805197CC@sda21(r2)
-	fmuls    f4, f4, f0
-	lfs      f5, lbl_805197E4@sda21(r2)
-	fmuls    f3, f3, f0
-	fmuls    f2, f7, f0
-	fmuls    f7, f4, f6
-	fmuls    f1, f3, f6
-	fnmsubs  f0, f2, f5, f7
-	fmsubs   f9, f3, f5, f7
-	fmsubs   f1, f2, f6, f1
-	fmuls    f5, f0, f0
-	fmuls    f7, f1, f1
-	fmadds   f5, f9, f9, f5
-	fadds    f7, f7, f5
-	fcmpo    cr0, f7, f6
-	ble      lbl_801DA014
-	ble      lbl_801DA018
-	frsqrte  f5, f7
-	fmuls    f7, f5, f7
-	b        lbl_801DA018
-
-lbl_801DA014:
-	fmr      f7, f6
-
-lbl_801DA018:
-	lfs      f5, lbl_805197CC@sda21(r2)
-	fcmpo    cr0, f7, f5
-	ble      lbl_801DA038
-	lfs      f5, lbl_805197E4@sda21(r2)
-	fdivs    f5, f5, f7
-	fmuls    f9, f9, f5
-	fmuls    f0, f0, f5
-	fmuls    f1, f1, f5
-
-lbl_801DA038:
-	fmuls    f7, f9, f4
-	lfs      f5, lbl_805197CC@sda21(r2)
-	fmuls    f8, f1, f3
-	fmuls    f6, f0, f2
-	fmsubs   f10, f1, f2, f7
-	fmsubs   f8, f0, f4, f8
-	fmsubs   f11, f9, f3, f6
-	fmuls    f6, f10, f10
-	fmuls    f7, f11, f11
-	fmadds   f6, f8, f8, f6
-	fadds    f6, f7, f6
-	fcmpo    cr0, f6, f5
-	ble      lbl_801DA07C
-	ble      lbl_801DA080
-	frsqrte  f5, f6
-	fmuls    f6, f5, f6
-	b        lbl_801DA080
-
-lbl_801DA07C:
-	fmr      f6, f5
-
-lbl_801DA080:
-	lfs      f5, lbl_805197CC@sda21(r2)
-	fcmpo    cr0, f6, f5
-	ble      lbl_801DA0A0
-	lfs      f5, lbl_805197E4@sda21(r2)
-	fdivs    f5, f5, f6
-	fmuls    f8, f8, f5
-	fmuls    f10, f10, f5
-	fmuls    f11, f11, f5
-
-lbl_801DA0A0:
-	stfs     f9, 0x138(r31)
-	stfs     f0, 0x148(r31)
-	stfs     f1, 0x158(r31)
-	stfs     f2, 0x13c(r31)
-	stfs     f3, 0x14c(r31)
-	stfs     f4, 0x15c(r31)
-	stfs     f8, 0x140(r31)
-	stfs     f10, 0x150(r31)
-	stfs     f11, 0x160(r31)
-	lfs      f0, 0x19c(r31)
-	stfs     f0, 0x144(r31)
-	lfs      f0, 0x1a0(r31)
-	stfs     f0, 0x154(r31)
-	lfs      f0, 0x1a4(r31)
-	stfs     f0, 0x164(r31)
-	b        lbl_801DA0E8
-
-lbl_801DA0E0:
-	mr       r3, r31
-	bl       makeTrMatrix__Q24Game8BaseItemFv
-
-lbl_801DA0E8:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /**

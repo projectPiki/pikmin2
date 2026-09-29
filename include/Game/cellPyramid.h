@@ -143,6 +143,15 @@ struct CellObject : public TPositionObject, public SweepPrune::Object {
 		}
 	}
 
+	inline bool isPikiOrNavi()
+	{
+		bool res = false;
+		if (isPiki() || isNavi()) {
+			res = true;
+		}
+		return res != false;
+	}
+
 	// _00 		= VTABLE
 	// _04-_54 	= mSweepPruneObject
 	CellLeg mCellLegs[4];             // _54

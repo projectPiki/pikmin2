@@ -127,17 +127,22 @@ void checkNextFrameSe()
 	}
 
 	SeHelper helpers[16];
+	bool check;
+	JSULink<JAISound>* link;
+	JAISe* sound;
+	SeHelper* helper;
+	u8 j;
+	u8 max;
+	u8 catMax;
+	u8 idx;
+	u8 val;
 
 	for (u32 i = 0; i < JAIGlobalParameter::getParamSeCategoryMax(); i++) {
-		bool check;
-		JSULink<JAISound>* link;
-		JAISe* sound;
-		u8 val;
 
-		for (u8 j = 0; j < categoryInfoTable[seScene][i * 2]; j++) {
-			helpers[j]._04    = 0x7FFFFFFF;
-			helpers[j].mState = 0xFF;
-			helpers[j].mSound = nullptr;
+		for (u8 k = 0; k < categoryInfoTable[seScene][i * 2]; k++) {
+			helpers[k]._04    = 0x7FFFFFFF;
+			helpers[k].mState = 0xFF;
+			helpers[k].mSound = nullptr;
 		}
 
 		val  = 0;
@@ -217,9 +222,9 @@ void checkNextFrameSe()
 						releaseSeBuffer(sound, 0);
 					}
 				} else {
-					u8 max = categoryInfoTable[seScene][sound->getSeCategoryNumber() * 2];
-					for (u8 j = 0; j < max; j++) {
-						SeHelper* helper = &helpers[j];
+					max = categoryInfoTable[seScene][sound->getSeCategoryNumber() * 2];
+					for (j = 0; j < max; j++) {
+						helper = &helpers[j];
 						if (sound->_24 < helper->_04 || (helper->_04 == sound->_24 && helper->mState >= sound->mState)) {
 							if (val < max) {
 								val++;
@@ -242,7 +247,7 @@ void checkNextFrameSe()
 			}
 		}
 
-		for (u8 j = 0; j < val; j++) {
+		for (j = 0; j < val; j++) {
 			JAISound* helperSound = helpers[j].mSound;
 			if (helperSound->mState == SOUNDSTATE_Stored) {
 				helperSound->mState = SOUNDSTATE_Loaded;
@@ -251,12 +256,16 @@ void checkNextFrameSe()
 			}
 		}
 
-		u8 max = categoryInfoTable[seScene][i * 2];
-		for (u8 j = 0; j < max; j++) {
-			bool check       = false;
-			JAISe* playSound = static_cast<JAISe*>(sePlaySound[i][j]);
+		catMax = categoryInfoTable[seScene][i * 2];
+		for (idx = 0; idx < catMax; idx++) {
+			bool refill      = false;
+			JAISe* playSound = static_cast<JAISe*>(sePlaySound[i][idx]);
+			JAISe* se;
+			JAISe* playSe;
+			u8 m;
+			u8 k;
 			if (!playSound) {
-				check = true;
+				refill = true;
 			} else if (playSound->mState == SOUNDSTATE_Playing) {
 				if (playSound->mSoundID & 0xC00) {
 					releaseSeRegist(playSound);
@@ -264,26 +273,25 @@ void checkNextFrameSe()
 					playSound->mState = SOUNDSTATE_Stored;
 					playSound->_14    = 255;
 				}
-				check = true;
+				refill = true;
 			} else if (playSound->mState == SOUNDSTATE_Inactive || playSound->mState == SOUNDSTATE_Fadeout) {
-				sePlaySound[i][j] = nullptr;
-				check             = true;
+				sePlaySound[i][idx] = nullptr;
+				refill              = true;
 			} else {
-				for (u8 k = 0; k < max; k++) {
-					if (sePlaySound[i][j] == helpers[k].mSound) {
-						helpers[k].mSound = nullptr;
-						k                 = max;
+				for (j = 0; j < catMax; j++) {
+					if (sePlaySound[i][idx] == helpers[j].mSound) {
+						helpers[j].mSound = nullptr;
+						j                 = catMax;
 					}
 				}
 			}
 
-			if (check != true) {
+			if (refill != true) {
 				continue;
 			}
 
-			u8 k = 0;
-			for (k; k < max; k++) {
-				JAISe* se = helpers[k].mSound;
+			for (k = 0; k < catMax; k++) {
+				se = helpers[k].getSound();
 				if (!se) {
 					continue;
 				}
@@ -292,662 +300,26 @@ void checkNextFrameSe()
 					continue;
 				}
 
-				for (u8 m = 0; m < max; m++) { // THIS IS TOO MANY LOOPS JFC
-					JAISe* playSe = static_cast<JAISe*>(sePlaySound[i][m]);
+				for (m = 0; m < catMax; m++) { // THIS IS TOO MANY LOOPS JFC
+					playSe = static_cast<JAISe*>(sePlaySound[i][m]);
 					if (playSe && helpers[k].mSound == playSe) {
-						check = false;
-						m     = max;
+						refill = false;
+						m      = catMax;
 					}
 				}
 
-				if (check == true) {
-					helpers[k].mSound = nullptr;
-					sePlaySound[i][j] = se;
-					k                 = max + 1;
+				if (refill == true) {
+					helpers[k].mSound   = nullptr;
+					sePlaySound[i][idx] = se;
+					k                   = catMax + 1;
 				}
 			}
 
-			if (k == max) {
-				sePlaySound[i][j] = nullptr;
+			if (k == catMax) {
+				sePlaySound[i][idx] = nullptr;
 			}
 		}
 	}
-
-	/*
-	stwu     r1, -0x140(r1)
-	mflr     r0
-	stw      r0, 0x144(r1)
-	stfd     f31, 0x130(r1)
-	psq_st   f31, 312(r1), 0, qr0
-	stfd     f30, 0x120(r1)
-	psq_st   f30, 296(r1), 0, qr0
-	stfd     f29, 0x110(r1)
-	psq_st   f29, 280(r1), 0, qr0
-	stmw     r19, 0xdc(r1)
-	lwz      r3, seHandle__Q27JAInter5SeMgr@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_800AEDB8
-	lbz      r0, 0x15(r3)
-	cmplwi   r0, 4
-	bge      lbl_800AE644
-	b        lbl_800AEDB8
-
-lbl_800AE644:
-	bl       getParamDistanceMax__18JAIGlobalParameterFv
-	fmr      f31, f1
-	bl       getParamDistanceMax__18JAIGlobalParameterFv
-	lfs      f2, lbl_80516F54@sda21(r2)
-	lfs      f0, lbl_80516F4C@sda21(r2)
-	fdivs    f30, f1, f2
-	fcmpu    cr0, f0, f30
-	bne      lbl_800AE668
-	lfs      f30, lbl_80516F48@sda21(r2)
-
-lbl_800AE668:
-	li       r26, 0
-	lis      r4, dummyZeroVec__Q27JAInter5Const@ha
-	lis      r3, 0x7FFFFFFF@ha
-	addi     r30, r1, 0xc
-	mr       r25, r26
-	mr       r24, r26
-	addi     r28, r4, dummyZeroVec__Q27JAInter5Const@l
-	addi     r29, r3, 0x7FFFFFFF@l
-	li       r31, 0
-	b        lbl_800AEDAC
-
-lbl_800AE690:
-	lbz      r0, seScene__Q27JAInter5SeMgr@sda21(r13)
-	li       r8, 0
-	lwz      r7, categoryInfoTable__Q27JAInter5SeMgr@sda21(r13)
-	li       r5, 0xff
-	slwi     r6, r0, 2
-	li       r4, 0
-	b        lbl_800AE6CC
-
-lbl_800AE6AC:
-	clrlwi   r0, r8, 0x18
-	addi     r3, r1, 0xc
-	mulli    r0, r0, 0xc
-	addi     r8, r8, 1
-	add      r3, r3, r0
-	stw      r29, 4(r3)
-	stb      r5, 0(r3)
-	stw      r4, 8(r3)
-
-lbl_800AE6CC:
-	lwzx     r0, r7, r6
-	clrlwi   r3, r8, 0x18
-	lbzx     r0, r26, r0
-	cmplw    r3, r0
-	blt      lbl_800AE6AC
-	lwz      r3, seRegist__Q27JAInter5SeMgr@sda21(r13)
-	addi     r0, r25, 4
-	li       r20, 0
-	lwzx     r3, r3, r0
-	lwz      r22, 0(r3)
-	b        lbl_800AEB88
-
-lbl_800AE6F8:
-	lwz      r21, 0(r22)
-	li       r23, 0
-	lbz      r3, 0x15(r21)
-	cmplwi   r3, 1
-	bne      lbl_800AE728
-	lwz      r0, 0x20(r21)
-	rlwinm.  r0, r0, 0, 0x14, 0x15
-	beq      lbl_800AE728
-	lbz      r3, 0x16(r21)
-	addi     r0, r3, -1
-	stb      r0, 0x16(r21)
-	b        lbl_800AE74C
-
-lbl_800AE728:
-	lwz      r0, 0x20(r21)
-	rlwinm.  r0, r0, 0, 0x14, 0x15
-	bne      lbl_800AE74C
-	cmplwi   r3, 5
-	bne      lbl_800AE74C
-	lwz      r22, 0xc(r22)
-	mr       r3, r21
-	li       r23, 1
-	bl       releaseSeRegist__Q27JAInter5SeMgrFP5JAISe
-
-lbl_800AE74C:
-	lbz      r0, 0x16(r21)
-	cmplwi   r0, 0
-	bne      lbl_800AE76C
-	lwz      r22, 0xc(r22)
-	mr       r3, r21
-	li       r23, 1
-	bl       releaseSeRegist__Q27JAInter5SeMgrFP5JAISe
-	b        lbl_800AEB74
-
-lbl_800AE76C:
-	lbz      r0, 0x15(r21)
-	cmplwi   r0, 0
-	beq      lbl_800AEB74
-	lwz      r0, 0x3c(r21)
-	lfs      f29, lbl_80516F58@sda21(r2)
-	cmplwi   r0, 0
-	lwz      r27, 0x34(r21)
-	bne      lbl_800AE7CC
-	lis      r3, dummyZeroVec__Q27JAInter5Const@ha
-	lfs      f0, lbl_80516F4C@sda21(r2)
-	lfs      f1, dummyZeroVec__Q27JAInter5Const@l(r3)
-	stfs     f1, 0(r27)
-	lfs      f1, 4(r28)
-	stfs     f1, 4(r27)
-	lfs      f1, 8(r28)
-	stfs     f1, 8(r27)
-	lfs      f1, 0(r27)
-	stfs     f1, 0xc(r27)
-	lfs      f1, 4(r27)
-	stfs     f1, 0x10(r27)
-	lfs      f1, 8(r27)
-	stfs     f1, 0x14(r27)
-	stfs     f0, 0x18(r27)
-	b        lbl_800AE920
-
-lbl_800AE7CC:
-	lbz      r0, 0x1a(r21)
-	cmplwi   r0, 0
-	bne      lbl_800AE920
-	lfs      f0, 0(r27)
-	stfs     f0, 0xc(r27)
-	lfs      f0, 4(r27)
-	stfs     f0, 0x10(r27)
-	lfs      f0, 8(r27)
-	stfs     f0, 0x14(r27)
-	lbz      r0, 0x18(r21)
-	cmplwi   r0, 4
-	bne      lbl_800AE800
-	li       r0, 0
-
-lbl_800AE800:
-	clrlwi   r0, r0, 0x18
-	lwz      r5, msBasic__8JAIBasic@sda21(r13)
-	mulli    r3, r0, 0xc
-	lwz      r4, 0x3c(r21)
-	lwz      r6, 4(r5)
-	mr       r5, r27
-	addi     r0, r3, 8
-	lwzx     r3, r6, r0
-	bl       PSMTXMultVec
-	lfs      f1, 0(r27)
-	lfs      f0, 4(r27)
-	fmuls    f2, f1, f1
-	lfs      f3, 8(r27)
-	fmuls    f1, f0, f0
-	lfs      f0, lbl_80516F4C@sda21(r2)
-	fmuls    f3, f3, f3
-	fadds    f1, f2, f1
-	fadds    f4, f3, f1
-	fcmpo    cr0, f4, f0
-	ble      lbl_800AE898
-	frsqrte  f1, f4
-	lfd      f3, lbl_80516F60@sda21(r2)
-	lfd      f2, lbl_80516F68@sda21(r2)
-	fmul     f0, f1, f1
-	fmul     f1, f3, f1
-	fnmsub   f0, f4, f0, f2
-	fmul     f1, f1, f0
-	fmul     f0, f1, f1
-	fmul     f1, f3, f1
-	fnmsub   f0, f4, f0, f2
-	fmul     f1, f1, f0
-	fmul     f0, f1, f1
-	fmul     f1, f3, f1
-	fnmsub   f0, f4, f0, f2
-	fmul     f0, f1, f0
-	fmul     f4, f4, f0
-	frsp     f4, f4
-	b        lbl_800AE91C
-
-lbl_800AE898:
-	lfd      f0, lbl_80516F70@sda21(r2)
-	fcmpo    cr0, f4, f0
-	bge      lbl_800AE8B0
-	lis      r3, __float_nan@ha
-	lfs      f4, __float_nan@l(r3)
-	b        lbl_800AE91C
-
-lbl_800AE8B0:
-	stfs     f4, 8(r1)
-	lis      r0, 0x7f80
-	lwz      r4, 8(r1)
-	rlwinm   r3, r4, 0, 1, 8
-	cmpw     r3, r0
-	beq      lbl_800AE8D8
-	bge      lbl_800AE908
-	cmpwi    r3, 0
-	beq      lbl_800AE8F0
-	b        lbl_800AE908
-
-lbl_800AE8D8:
-	clrlwi.  r0, r4, 9
-	beq      lbl_800AE8E8
-	li       r0, 1
-	b        lbl_800AE90C
-
-lbl_800AE8E8:
-	li       r0, 2
-	b        lbl_800AE90C
-
-lbl_800AE8F0:
-	clrlwi.  r0, r4, 9
-	beq      lbl_800AE900
-	li       r0, 5
-	b        lbl_800AE90C
-
-lbl_800AE900:
-	li       r0, 3
-	b        lbl_800AE90C
-
-lbl_800AE908:
-	li       r0, 4
-
-lbl_800AE90C:
-	cmpwi    r0, 1
-	bne      lbl_800AE91C
-	lis      r3, __float_nan@ha
-	lfs      f4, __float_nan@l(r3)
-
-lbl_800AE91C:
-	stfs     f4, 0x18(r27)
-
-lbl_800AE920:
-	mr       r3, r21
-	bl       getInfoPriority__8JAISoundFv
-	lha      r4, 0x1c(r21)
-	clrlwi   r3, r3, 0x18
-	extsh.   r0, r4
-	beq      lbl_800AE95C
-	add      r3, r3, r4
-	extsh.   r0, r3
-	bge      lbl_800AE94C
-	li       r3, 0
-	b        lbl_800AE95C
-
-lbl_800AE94C:
-	extsh    r0, r3
-	cmpwi    r0, 0xff
-	ble      lbl_800AE95C
-	li       r3, 0xff
-
-lbl_800AE95C:
-	extsh    r3, r3
-	lis      r0, 0x4330
-	subfic   r3, r3, 0xff
-	stw      r0, 0xd0(r1)
-	mulli    r0, r3, 0x4c
-	lfd      f1, lbl_80516F80@sda21(r2)
-	xoris    r0, r0, 0x8000
-	stw      r0, 0xd4(r1)
-	lfd      f0, 0xd0(r1)
-	fsubs    f0, f0, f1
-	fdivs    f1, f0, f30
-	bl       __cvt_fp2unsigned
-	lfs      f0, 0x18(r27)
-	mr       r19, r3
-	fdivs    f1, f0, f30
-	bl       __cvt_fp2unsigned
-	add      r0, r3, r19
-	lfs      f0, lbl_80516F4C@sda21(r2)
-	stw      r0, 0x24(r21)
-	lfs      f1, 8(r27)
-	fcmpo    cr0, f1, f0
-	ble      lbl_800AE9D0
-	lfs      f0, lbl_80516F78@sda21(r2)
-	fmuls    f0, f0, f1
-	fdivs    f1, f0, f30
-	bl       __cvt_fp2unsigned
-	lwz      r0, 0x24(r21)
-	add      r0, r3, r0
-	stw      r0, 0x24(r21)
-
-lbl_800AE9D0:
-	lfs      f1, 0x18(r27)
-	lfs      f0, lbl_80516F58@sda21(r2)
-	fcmpo    cr0, f1, f0
-	bge      lbl_800AE9E4
-	fmr      f29, f1
-
-lbl_800AE9E4:
-	mr       r3, r21
-	bl       getSwBit__8JAISoundFv
-	rlwinm.  r0, r3, 0, 0x1a, 0x1a
-	beq      lbl_800AE9FC
-	fmr      f0, f31
-	b        lbl_800AEA00
-
-lbl_800AE9FC:
-	lfs      f0, lbl_80516F7C@sda21(r2)
-
-lbl_800AEA00:
-	fcmpo    cr0, f29, f0
-	ble      lbl_800AEA88
-	lwz      r0, 0x20(r21)
-	rlwinm.  r0, r0, 0, 0x14, 0x15
-	bne      lbl_800AEA70
-	lbz      r0, 0x15(r21)
-	cmplwi   r0, 1
-	beq      lbl_800AEA5C
-	lbz      r0, 0x14(r21)
-	cmplwi   r0, 0xff
-	beq      lbl_800AEA5C
-	rlwinm   r3, r0, 0x1c, 0x1c, 0x1f
-	lwz      r5, seHandle__Q27JAInter5SeMgr@sda21(r13)
-	addis    r4, r3, 0x2000
-	rlwinm   r0, r0, 4, 0x18, 0x1b
-	addi     r3, r5, 0x30c
-	li       r5, 0
-	add      r4, r4, r0
-	bl       writePortApp__8JASTrackFUlUs
-	lwz      r3, seHandle__Q27JAInter5SeMgr@sda21(r13)
-	li       r5, 1
-	lbz      r4, 0x14(r21)
-	bl       setTrackInterruptSwitch__11JAISequenceFUcUc
-
-lbl_800AEA5C:
-	li       r3, 5
-	li       r0, 0xff
-	stb      r3, 0x15(r21)
-	stb      r0, 0x14(r21)
-	b        lbl_800AEB74
-
-lbl_800AEA70:
-	lwz      r22, 0xc(r22)
-	mr       r3, r21
-	li       r23, 1
-	li       r4, 0
-	bl       releaseSeBuffer__Q27JAInter5SeMgrFP5JAISeUl
-	b        lbl_800AEB74
-
-lbl_800AEA88:
-	mr       r3, r21
-	bl       getSeCategoryNumber__5JAISeFv
-	lbz      r0, seScene__Q27JAInter5SeMgr@sda21(r13)
-	rlwinm   r5, r3, 1, 0x17, 0x1e
-	lwz      r3, categoryInfoTable__Q27JAInter5SeMgr@sda21(r13)
-	li       r4, 0
-	slwi     r0, r0, 2
-	lwzx     r3, r3, r0
-	lbzx     r5, r3, r5
-	addi     r0, r5, -1
-	b        lbl_800AEB68
-
-lbl_800AEAB4:
-	clrlwi   r6, r4, 0x18
-	addi     r3, r1, 0xc
-	mulli    r6, r6, 0xc
-	lwz      r7, 0x24(r21)
-	add      r3, r3, r6
-	lwz      r6, 4(r3)
-	cmplw    r7, r6
-	blt      lbl_800AEAEC
-	cmplw    r6, r7
-	bne      lbl_800AEB64
-	lbz      r7, 0(r3)
-	lbz      r6, 0x15(r21)
-	cmplw    r7, r6
-	blt      lbl_800AEB64
-
-lbl_800AEAEC:
-	clrlwi   r6, r20, 0x18
-	cmplw    r6, r5
-	bge      lbl_800AEB00
-	addi     r6, r6, 1
-	clrlwi   r20, r6, 0x18
-
-lbl_800AEB00:
-	clrlwi   r10, r0, 0x18
-	clrlwi   r4, r4, 0x18
-	b        lbl_800AEB40
-
-lbl_800AEB0C:
-	clrlwi   r6, r10, 0x18
-	addi     r8, r1, 0xc
-	mulli    r7, r6, 0xc
-	addi     r10, r10, -1
-	mr       r9, r8
-	add      r8, r8, r7
-	lwz      r6, -8(r8)
-	add      r9, r9, r7
-	stw      r6, 4(r9)
-	lwz      r6, -4(r8)
-	stw      r6, 8(r9)
-	lbz      r6, -0xc(r8)
-	stb      r6, 0(r9)
-
-lbl_800AEB40:
-	clrlwi   r6, r10, 0x18
-	cmplw    r6, r4
-	bgt      lbl_800AEB0C
-	lwz      r7, 0x24(r21)
-	mr       r4, r5
-	lbz      r6, 0x15(r21)
-	stw      r7, 4(r3)
-	stw      r21, 8(r3)
-	stb      r6, 0(r3)
-
-lbl_800AEB64:
-	addi     r4, r4, 1
-
-lbl_800AEB68:
-	clrlwi   r3, r4, 0x18
-	cmplw    r3, r5
-	blt      lbl_800AEAB4
-
-lbl_800AEB74:
-	cmplwi   r22, 0
-	beq      lbl_800AEB88
-	clrlwi.  r0, r23, 0x18
-	bne      lbl_800AEB88
-	lwz      r22, 0xc(r22)
-
-lbl_800AEB88:
-	cmplwi   r22, 0
-	bne      lbl_800AE6F8
-	clrlwi   r0, r20, 0x18
-	li       r6, 0
-	li       r5, 2
-	li       r4, 3
-	b        lbl_800AEBD8
-
-lbl_800AEBA4:
-	clrlwi   r3, r6, 0x18
-	mulli    r3, r3, 0xc
-	addi     r3, r3, 8
-	lwzx     r7, r30, r3
-	lbz      r3, 0x15(r7)
-	cmplwi   r3, 1
-	bne      lbl_800AEBC8
-	stb      r5, 0x15(r7)
-	b        lbl_800AEBD4
-
-lbl_800AEBC8:
-	cmplwi   r3, 4
-	bne      lbl_800AEBD4
-	stb      r4, 0x15(r7)
-
-lbl_800AEBD4:
-	addi     r6, r6, 1
-
-lbl_800AEBD8:
-	clrlwi   r3, r6, 0x18
-	cmplw    r3, r0
-	blt      lbl_800AEBA4
-	lbz      r0, seScene__Q27JAInter5SeMgr@sda21(r13)
-	li       r22, 0
-	lwz      r3, categoryInfoTable__Q27JAInter5SeMgr@sda21(r13)
-	slwi     r0, r0, 2
-	lwzx     r3, r3, r0
-	lbzx     r21, r3, r26
-	addi     r27, r21, 1
-	b        lbl_800AED90
-
-lbl_800AEC04:
-	lwz      r7, sePlaySound__Q27JAInter5SeMgr@sda21(r13)
-	rlwinm   r23, r22, 2, 0x16, 0x1d
-	li       r0, 0
-	lwzx     r4, r24, r7
-	lwzx     r3, r4, r23
-	cmplwi   r3, 0
-	bne      lbl_800AEC28
-	li       r0, 1
-	b        lbl_800AECC8
-
-lbl_800AEC28:
-	lbz      r5, 0x15(r3)
-	cmplwi   r5, 4
-	bne      lbl_800AEC60
-	lwz      r0, 0x20(r3)
-	rlwinm.  r0, r0, 0, 0x14, 0x15
-	beq      lbl_800AEC48
-	bl       releaseSeRegist__Q27JAInter5SeMgrFP5JAISe
-	b        lbl_800AEC58
-
-lbl_800AEC48:
-	li       r4, 1
-	li       r0, 0xff
-	stb      r4, 0x15(r3)
-	stb      r0, 0x14(r3)
-
-lbl_800AEC58:
-	li       r0, 1
-	b        lbl_800AECC8
-
-lbl_800AEC60:
-	cmplwi   r5, 0
-	beq      lbl_800AEC70
-	cmplwi   r5, 5
-	bne      lbl_800AEC80
-
-lbl_800AEC70:
-	li       r3, 0
-	li       r0, 1
-	stwx     r3, r4, r23
-	b        lbl_800AECC8
-
-lbl_800AEC80:
-	li       r9, 0
-	addi     r5, r1, 0xc
-	mr       r4, r9
-	b        lbl_800AECBC
-
-lbl_800AEC90:
-	clrlwi   r3, r9, 0x18
-	lwzx     r6, r7, r24
-	mulli    r3, r3, 0xc
-	lwzx     r6, r23, r6
-	addi     r8, r3, 8
-	lwzx     r3, r5, r8
-	cmplw    r6, r3
-	bne      lbl_800AECB8
-	stwx     r4, r5, r8
-	mr       r9, r21
-
-lbl_800AECB8:
-	addi     r9, r9, 1
-
-lbl_800AECBC:
-	clrlwi   r3, r9, 0x18
-	cmplw    r3, r21
-	blt      lbl_800AEC90
-
-lbl_800AECC8:
-	clrlwi   r3, r0, 0x18
-	cmplwi   r3, 1
-	bne      lbl_800AED8C
-	addi     r6, r1, 0xc
-	li       r3, 0
-	b        lbl_800AED6C
-
-lbl_800AECE0:
-	clrlwi   r4, r3, 0x18
-	mulli    r4, r4, 0xc
-	addi     r8, r4, 8
-	lwzx     r7, r6, r8
-	cmplwi   r7, 0
-	beq      lbl_800AED68
-	lbz      r4, 0x15(r7)
-	cmplwi   r4, 3
-	beq      lbl_800AED68
-	lwz      r9, sePlaySound__Q27JAInter5SeMgr@sda21(r13)
-	li       r10, 0
-	b        lbl_800AED3C
-
-lbl_800AED10:
-	lwzx     r5, r9, r24
-	rlwinm   r4, r10, 2, 0x16, 0x1d
-	lwzx     r5, r5, r4
-	cmplwi   r5, 0
-	beq      lbl_800AED38
-	lwzx     r4, r6, r8
-	cmplw    r4, r5
-	bne      lbl_800AED38
-	li       r0, 0
-	mr       r10, r21
-
-lbl_800AED38:
-	addi     r10, r10, 1
-
-lbl_800AED3C:
-	clrlwi   r4, r10, 0x18
-	cmplw    r4, r21
-	blt      lbl_800AED10
-	clrlwi   r4, r0, 0x18
-	cmplwi   r4, 1
-	bne      lbl_800AED68
-	lwzx     r4, r24, r9
-	li       r3, 0
-	stwx     r3, r6, r8
-	clrlwi   r3, r27, 0x18
-	stwx     r7, r23, r4
-
-lbl_800AED68:
-	addi     r3, r3, 1
-
-lbl_800AED6C:
-	clrlwi   r4, r3, 0x18
-	cmplw    r4, r21
-	blt      lbl_800AECE0
-	bne      lbl_800AED8C
-	lwz      r0, sePlaySound__Q27JAInter5SeMgr@sda21(r13)
-	li       r4, 0
-	lwzx     r3, r24, r0
-	stwx     r4, r3, r23
-
-lbl_800AED8C:
-	addi     r22, r22, 1
-
-lbl_800AED90:
-	clrlwi   r0, r22, 0x18
-	cmplw    r0, r21
-	blt      lbl_800AEC04
-	addi     r26, r26, 2
-	addi     r25, r25, 8
-	addi     r24, r24, 4
-	addi     r31, r31, 1
-
-lbl_800AEDAC:
-	bl       getParamSeCategoryMax__18JAIGlobalParameterFv
-	cmplw    r31, r3
-	blt      lbl_800AE690
-
-lbl_800AEDB8:
-	psq_l    f31, 312(r1), 0, qr0
-	lfd      f31, 0x130(r1)
-	psq_l    f30, 296(r1), 0, qr0
-	lfd      f30, 0x120(r1)
-	psq_l    f29, 280(r1), 0, qr0
-	lfd      f29, 0x110(r1)
-	lmw      r19, 0xdc(r1)
-	lwz      r0, 0x144(r1)
-	mtlr     r0
-	addi     r1, r1, 0x140
-	blr
-	*/
 }
 
 /**
@@ -1267,11 +639,7 @@ void releaseSeRegist(JAISe* se)
  */
 void storeSeBuffer(JAISe** soundHandlePtr, JAInter::Actor* actor, u32 soundID, u32 fadeTime, u8 camId, JAInter::SoundInfo* soundInfo)
 {
-	bool check = false;
-	if (soundHandlePtr && *soundHandlePtr == (JAISe*)1) {
-		*soundHandlePtr = nullptr;
-		check           = true;
-	}
+	bool check = JAISe::checkDummyHandle(soundHandlePtr);
 	if (soundHandlePtr && *soundHandlePtr
 	    && (soundID != (*soundHandlePtr)->mSoundID || (soundID == (*soundHandlePtr)->mSoundID && (soundID & 0xC00) == 0x800))) {
 		if ((*soundHandlePtr)->checkSoundHandle(soundID, soundInfo)) {
@@ -1279,11 +647,8 @@ void storeSeBuffer(JAISe** soundHandlePtr, JAInter::Actor* actor, u32 soundID, u
 		}
 	}
 
-	u8 idx                      = soundID >> 12;
-	JAInter::Actor* usableActor = actor;
-	if (!actor) {
-		usableActor = &JAInter::Const::nullActor;
-	}
+	u32 category = (soundID >> 12) & 0xFF;
+	u8 idx       = category;
 
 	u32 isFree;
 	JSULink<JAISound>* link;
@@ -1291,10 +656,14 @@ void storeSeBuffer(JAISe** soundHandlePtr, JAInter::Actor* actor, u32 soundID, u
 	u8 bufferCount;
 	u8 max;
 	JAISe* seBuffer[16];
+	JAInter::Actor* usableActor = actor;
+	if (!actor) {
+		usableActor = &JAInter::Const::nullActor;
+	}
 
 	obj         = usableActor->mObj;
 	isFree      = soundID & 0x800;
-	max         = categoryInfoTable[seScene][(idx << 1) + 1];
+	max         = categoryInfoTable[seScene][category * 2 + 1];
 	bufferCount = 0;
 	link        = seRegist[idx].mUsedList->getFirst();
 	while (link) {
@@ -1403,526 +772,6 @@ void storeSeBuffer(JAISe** soundHandlePtr, JAInter::Actor* actor, u32 soundID, u
 	if (soundHandlePtr) {
 		*soundHandlePtr = se;
 	}
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x90(r1)
-	  mflr      r0
-	  stw       r0, 0x94(r1)
-	  stmw      r17, 0x54(r1)
-	  mr.       r26, r3
-	  mr        r17, r4
-	  mr        r27, r5
-	  mr        r28, r6
-	  mr        r29, r7
-	  mr        r30, r8
-	  li        r25, 0
-	  beq-      .loc_0x48
-	  lwz       r0, 0x0(r26)
-	  cmplwi    r0, 0x1
-	  bne-      .loc_0x48
-	  li        r0, 0
-	  li        r25, 0x1
-	  stw       r0, 0x0(r26)
-
-	.loc_0x48:
-	  cmplwi    r26, 0
-	  beq-      .loc_0x8C
-	  lwz       r3, 0x0(r26)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x8C
-	  lwz       r0, 0x20(r3)
-	  cmplw     r27, r0
-	  bne-      .loc_0x78
-	  bne-      .loc_0x8C
-	  rlwinm    r0,r27,0,20,21
-	  cmplwi    r0, 0x800
-	  bne-      .loc_0x8C
-
-	.loc_0x78:
-	  mr        r4, r27
-	  mr        r5, r30
-	  bl        0x5A6C
-	  cmplwi    r3, 0
-	  bne-      .loc_0x6D8
-
-	.loc_0x8C:
-	  cmplwi    r17, 0
-	  mr        r31, r17
-	  rlwinm    r4,r27,20,24,31
-	  bne-      .loc_0xA8
-	  lis       r3, 0x8051
-	  addi      r0, r3, 0x2218
-	  mr        r31, r0
-
-	.loc_0xA8:
-	  lbz       r3, -0x741C(r13)
-	  rlwinm    r23,r4,3,21,28
-	  lwz       r0, -0x7424(r13)
-	  rlwinm    r4,r4,1,0,30
-	  rlwinm    r5,r3,2,0,29
-	  lwz       r6, -0x742C(r13)
-	  add       r3, r0, r23
-	  lwz       r21, 0x0(r31)
-	  lwzx      r0, r6, r5
-	  rlwinm    r24,r27,0,20,20
-	  lwz       r3, 0x4(r3)
-	  li        r20, 0
-	  add       r4, r0, r4
-	  lwz       r22, 0x0(r3)
-	  lbz       r19, 0x1(r4)
-	  b         .loc_0x2AC
-
-	.loc_0xE8:
-	  lwz       r18, 0x0(r22)
-	  lwz       r0, 0x38(r18)
-	  cmplw     r0, r21
-	  bne-      .loc_0x2A8
-	  lwz       r0, 0x20(r18)
-	  cmplw     r27, r0
-	  bne-      .loc_0x1A8
-	  lwz       r0, 0x0(r30)
-	  rlwinm.   r0,r0,0,12,12
-	  bne-      .loc_0x1A8
-	  rlwinm    r0,r25,0,24,31
-	  cmplwi    r0, 0x1
-	  beq-      .loc_0x128
-	  lwz       r0, 0x40(r18)
-	  cmplw     r0, r26
-	  bne-      .loc_0x1A8
-
-	.loc_0x128:
-	  cmplwi    r24, 0
-	  bne-      .loc_0x184
-	  lbz       r0, 0x14(r18)
-	  cmplwi    r0, 0xFF
-	  beq-      .loc_0x148
-	  li        r0, 0x4
-	  stb       r0, 0x15(r18)
-	  b         .loc_0x150
-
-	.loc_0x148:
-	  li        r0, 0x1
-	  stb       r0, 0x15(r18)
-
-	.loc_0x150:
-	  cmplwi    r26, 0
-	  beq-      .loc_0x6D8
-	  lwz       r0, 0x0(r26)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x6D8
-	  lwz       r3, 0x40(r18)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x178
-	  li        r0, 0
-	  stw       r0, 0x0(r3)
-
-	.loc_0x178:
-	  stw       r26, 0x40(r18)
-	  stw       r18, 0x0(r26)
-	  b         .loc_0x6D8
-
-	.loc_0x184:
-	  mr        r3, r18
-	  li        r4, 0
-	  lwz       r12, 0x10(r18)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r22, 0
-	  li        r20, 0xFF
-	  b         .loc_0x2AC
-
-	.loc_0x1A8:
-	  rlwinm.   r0,r20,0,24,31
-	  bne-      .loc_0x1C0
-	  rlwinm    r0,r20,2,22,29
-	  addi      r3, r1, 0x8
-	  stwx      r18, r3, r0
-	  b         .loc_0x29C
-
-	.loc_0x1C0:
-	  mr        r3, r18
-	  bl        0x3F7C
-	  rlwinm    r17,r3,0,24,31
-	  lwz       r3, 0x8(r1)
-	  bl        0x3F70
-	  rlwinm    r0,r3,0,24,31
-	  cmplw     r0, r17
-	  bge-      .loc_0x1F0
-	  rlwinm    r0,r20,2,22,29
-	  addi      r3, r1, 0x8
-	  stwx      r18, r3, r0
-	  b         .loc_0x29C
-
-	.loc_0x1F0:
-	  rlwinm    r3,r20,0,24,31
-	  li        r4, 0
-	  cmplwi    r3, 0
-	  ble-      .loc_0x298
-	  cmplwi    r3, 0x8
-	  subi      r5, r3, 0x8
-	  ble-      .loc_0x26C
-	  addi      r0, r5, 0x7
-	  addi      r6, r1, 0x8
-	  rlwinm    r0,r0,29,3,31
-	  mtctr     r0
-	  cmplwi    r5, 0
-	  ble-      .loc_0x26C
-
-	.loc_0x224:
-	  lwz       r0, 0x0(r6)
-	  addi      r4, r4, 0x8
-	  stw       r0, 0x4(r6)
-	  lwz       r0, 0x4(r6)
-	  stw       r0, 0x8(r6)
-	  lwz       r0, 0x8(r6)
-	  stw       r0, 0xC(r6)
-	  lwz       r0, 0xC(r6)
-	  stw       r0, 0x10(r6)
-	  lwz       r0, 0x10(r6)
-	  stw       r0, 0x14(r6)
-	  lwz       r0, 0x14(r6)
-	  stw       r0, 0x18(r6)
-	  lwz       r0, 0x18(r6)
-	  stw       r0, 0x1C(r6)
-	  lwz       r0, 0x1C(r6)
-	  stwu      r0, 0x20(r6)
-	  bdnz+     .loc_0x224
-
-	.loc_0x26C:
-	  rlwinm    r5,r4,2,0,29
-	  addi      r6, r1, 0x8
-	  sub       r0, r3, r4
-	  add       r6, r6, r5
-	  mtctr     r0
-	  cmplw     r4, r3
-	  bge-      .loc_0x298
-
-	.loc_0x288:
-	  lwz       r0, 0x0(r6)
-	  addi      r4, r4, 0x1
-	  stwu      r0, 0x4(r6)
-	  bdnz+     .loc_0x288
-
-	.loc_0x298:
-	  stw       r18, 0x8(r1)
-
-	.loc_0x29C:
-	  lwz       r22, 0xC(r22)
-	  addi      r20, r20, 0x1
-	  b         .loc_0x2AC
-
-	.loc_0x2A8:
-	  lwz       r22, 0xC(r22)
-
-	.loc_0x2AC:
-	  cmplwi    r22, 0
-	  bne+      .loc_0xE8
-	  rlwinm    r0,r20,0,24,31
-	  cmplw     r0, r19
-	  bne-      .loc_0x4A8
-	  lwz       r3, 0x8(r1)
-	  bl        0x3E7C
-	  lbz       r0, 0x4(r30)
-	  rlwinm    r3,r3,0,24,31
-	  cmplw     r3, r0
-	  bgt-      .loc_0x6D8
-	  lwz       r3, 0x8(r1)
-	  bl        0x3E64
-	  lbz       r0, 0x4(r30)
-	  rlwinm    r3,r3,0,24,31
-	  cmplw     r0, r3
-	  bne-      .loc_0x300
-	  lwz       r3, 0x8(r1)
-	  lbz       r0, 0x15(r3)
-	  cmplwi    r0, 0x5
-	  beq-      .loc_0x6D8
-
-	.loc_0x300:
-	  lwz       r5, -0x7420(r13)
-	  cmplwi    r5, 0
-	  beq-      .loc_0x40C
-	  lwz       r3, 0x8(r1)
-	  lbz       r0, 0x15(r3)
-	  cmplwi    r0, 0x1
-	  beq-      .loc_0x358
-	  lbz       r0, 0x14(r3)
-	  cmplwi    r0, 0xFF
-	  beq-      .loc_0x358
-	  rlwinm    r3,r0,28,28,31
-	  rlwinm    r0,r0,4,24,27
-	  addis     r4, r3, 0x2000
-	  addi      r3, r5, 0x30C
-	  li        r5, 0
-	  add       r4, r4, r0
-	  bl        -0xDBD8
-	  lwz       r4, 0x8(r1)
-	  li        r5, 0x1
-	  lwz       r3, -0x7420(r13)
-	  lbz       r4, 0x14(r4)
-	  bl        0x473C
-
-	.loc_0x358:
-	  lwz       r0, -0x7418(r13)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x40C
-	  lwz       r3, 0x8(r1)
-	  bl        0x3DBC
-	  rlwinm.   r0,r3,0,28,28
-	  beq-      .loc_0x40C
-	  li        r24, 0
-	  b         .loc_0x400
-
-	.loc_0x37C:
-	  mr        r3, r24
-	  bl        0x3A84
-	  lwz       r4, -0x7420(r13)
-	  lwz       r25, 0x48(r3)
-	  lbz       r0, 0x14(r4)
-	  cmplw     r24, r0
-	  beq-      .loc_0x3FC
-	  cmplwi    r25, 0
-	  beq-      .loc_0x3FC
-	  mr        r3, r25
-	  bl        0x3D80
-	  rlwinm.   r0,r3,0,28,28
-	  bne-      .loc_0x3FC
-	  lwz       r3, 0x8(r1)
-	  li        r4, 0x1
-	  lwz       r5, -0x7418(r13)
-	  li        r0, -0x1
-	  lbz       r3, 0x14(r3)
-	  slw       r3, r4, r3
-	  xor       r0, r3, r0
-	  and.      r0, r5, r0
-	  stw       r0, -0x7418(r13)
-	  bne-      .loc_0x3FC
-	  bl        -0x2280
-	  lwz       r12, 0x10(r25)
-	  mr        r4, r3
-	  mr        r3, r25
-	  lfs       f1, -0x7418(r2)
-	  lwz       r12, 0x1C(r12)
-	  li        r5, 0x9
-	  mtctr     r12
-	  bctrl
-
-	.loc_0x3FC:
-	  addi      r24, r24, 0x1
-
-	.loc_0x400:
-	  bl        -0x2358
-	  cmplw     r24, r3
-	  blt+      .loc_0x37C
-
-	.loc_0x40C:
-	  lwz       r3, 0x8(r1)
-	  bl        0x3CF0
-	  lbz       r0, -0x741C(r13)
-	  rlwinm    r5,r3,1,23,30
-	  lwz       r4, -0x742C(r13)
-	  rlwinm    r0,r0,2,0,29
-	  lwz       r3, 0x8(r1)
-	  lwzx      r4, r4, r0
-	  lbzx      r17, r4, r5
-	  bl        0x3CD0
-	  li        r7, 0
-	  lwz       r5, 0x8(r1)
-	  mr        r4, r7
-	  rlwinm    r24,r3,0,24,31
-	  rlwinm    r8,r3,2,22,29
-	  b         .loc_0x470
-
-	.loc_0x44C:
-	  lwz       r0, -0x7428(r13)
-	  rlwinm    r3,r7,2,22,29
-	  lwzx      r6, r8, r0
-	  lwzx      r0, r6, r3
-	  cmplw     r0, r5
-	  bne-      .loc_0x46C
-	  stwx      r4, r6, r3
-	  mr        r7, r17
-
-	.loc_0x46C:
-	  addi      r7, r7, 0x1
-
-	.loc_0x470:
-	  rlwinm    r0,r7,0,24,31
-	  cmplw     r0, r17
-	  blt+      .loc_0x44C
-	  lwz       r3, 0x8(r1)
-	  bl        0x3CCC
-	  lwz       r4, 0x8(r1)
-	  li        r5, 0
-	  li        r3, 0xFF
-	  rlwinm    r0,r24,3,0,28
-	  stb       r5, 0x15(r4)
-	  stb       r3, 0x14(r4)
-	  lwz       r3, -0x7424(r13)
-	  add       r3, r3, r0
-	  bl        0x5924
-
-	.loc_0x4A8:
-	  lwz       r0, -0x7424(r13)
-	  add       r3, r0, r23
-	  bl        0x5898
-	  mr.       r18, r3
-	  bne-      .loc_0x564
-	  lwz       r0, -0x7424(r13)
-	  li        r17, 0
-	  lfs       f0, -0x7414(r2)
-	  add       r3, r0, r23
-	  lwz       r3, 0x4(r3)
-	  lwz       r4, 0x0(r3)
-	  b         .loc_0x4FC
-
-	.loc_0x4D8:
-	  lwz       r5, 0x0(r4)
-	  lwz       r3, 0x34(r5)
-	  lfs       f1, 0x18(r3)
-	  fcmpo     cr0, f0, f1
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x4F8
-	  fmr       f0, f1
-	  mr        r17, r5
-
-	.loc_0x4F8:
-	  lwz       r4, 0xC(r4)
-
-	.loc_0x4FC:
-	  cmplwi    r4, 0
-	  bne+      .loc_0x4D8
-	  cmplwi    r17, 0
-	  beq-      .loc_0x550
-	  mr        r3, r17
-	  bl        0x3C30
-	  lbz       r0, 0x4(r30)
-	  rlwinm    r3,r3,0,24,31
-	  cmplw     r3, r0
-	  bgt-      .loc_0x550
-	  mr        r3, r17
-	  li        r4, 0
-	  lwz       r12, 0x10(r17)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, -0x7424(r13)
-	  add       r3, r0, r23
-	  bl        0x5804
-	  mr        r18, r3
-	  b         .loc_0x564
-
-	.loc_0x550:
-	  cmplwi    r26, 0
-	  beq-      .loc_0x6D8
-	  li        r0, 0
-	  stw       r0, 0x0(r26)
-	  b         .loc_0x6D8
-
-	.loc_0x564:
-	  addi      r17, r18, 0x48
-	  bl        -0x2470
-	  lfs       f0, -0x73D4(r2)
-	  li        r0, 0x4
-	  mr        r3, r17
-	  lfs       f2, -0x7418(r2)
-	  fdivs     f3, f1, f0
-	  lfs       f1, -0x7410(r2)
-	  lfs       f0, -0x7414(r2)
-	  mtctr     r0
-
-	.loc_0x58C:
-	  stfs      f2, 0x128(r3)
-	  li        r11, 0
-	  stfs      f2, 0x124(r3)
-	  stw       r11, 0x130(r3)
-	  stfs      f1, 0x1A8(r3)
-	  stfs      f1, 0x1A4(r3)
-	  stw       r11, 0x1B0(r3)
-	  stfs      f2, 0x228(r3)
-	  stfs      f2, 0x224(r3)
-	  stw       r11, 0x230(r3)
-	  stfs      f0, 0x2A8(r3)
-	  stfs      f0, 0x2A4(r3)
-	  stw       r11, 0x2B0(r3)
-	  stfs      f0, 0x328(r3)
-	  stfs      f0, 0x324(r3)
-	  stw       r11, 0x330(r3)
-	  stfs      f3, 0x3A8(r3)
-	  stfs      f3, 0x3A4(r3)
-	  stw       r11, 0x3B0(r3)
-	  stfs      f2, 0x138(r3)
-	  stfs      f2, 0x134(r3)
-	  stw       r11, 0x140(r3)
-	  stfs      f1, 0x1B8(r3)
-	  stfs      f1, 0x1B4(r3)
-	  stw       r11, 0x1C0(r3)
-	  stfs      f2, 0x238(r3)
-	  stfs      f2, 0x234(r3)
-	  stw       r11, 0x240(r3)
-	  stfs      f0, 0x2B8(r3)
-	  stfs      f0, 0x2B4(r3)
-	  stw       r11, 0x2C0(r3)
-	  stfs      f0, 0x338(r3)
-	  stfs      f0, 0x334(r3)
-	  stw       r11, 0x340(r3)
-	  stfs      f3, 0x3B8(r3)
-	  stfs      f3, 0x3B4(r3)
-	  stw       r11, 0x3C0(r3)
-	  addi      r3, r3, 0x20
-	  bdnz+     .loc_0x58C
-	  lfs       f0, -0x73C8(r2)
-	  li        r10, 0x1
-	  li        r0, 0xFF
-	  mr        r3, r18
-	  stfs      f0, 0x198(r17)
-	  mr        r4, r26
-	  mr        r5, r31
-	  mr        r6, r27
-	  stfs      f0, 0x194(r17)
-	  mr        r7, r28
-	  mr        r8, r29
-	  mr        r9, r30
-	  stw       r11, 0x1A0(r17)
-	  stfs      f0, 0x218(r17)
-	  stfs      f0, 0x214(r17)
-	  stw       r11, 0x220(r17)
-	  stfs      f0, 0x298(r17)
-	  stfs      f0, 0x294(r17)
-	  stw       r11, 0x2A0(r17)
-	  stfs      f0, 0x318(r17)
-	  stfs      f0, 0x314(r17)
-	  stw       r11, 0x320(r17)
-	  stfs      f0, 0x398(r17)
-	  stfs      f0, 0x394(r17)
-	  stw       r11, 0x3A0(r17)
-	  stfs      f0, 0x418(r17)
-	  stfs      f0, 0x414(r17)
-	  stw       r11, 0x420(r17)
-	  stw       r11, 0x424(r17)
-	  stw       r11, 0x428(r17)
-	  stw       r11, 0x42C(r17)
-	  stw       r11, 0x430(r17)
-	  stw       r11, 0x434(r17)
-	  stw       r11, 0x438(r17)
-	  sth       r11, 0x20(r17)
-	  stb       r10, 0x15(r18)
-	  stb       r0, 0x14(r18)
-	  lwz       r12, 0x10(r18)
-	  lwz       r12, 0xC8(r12)
-	  mtctr     r12
-	  bctrl
-	  cmplwi    r26, 0
-	  beq-      .loc_0x6D8
-	  stw       r18, 0x0(r26)
-
-	.loc_0x6D8:
-	  lmw       r17, 0x54(r1)
-	  lwz       r0, 0x94(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x90
-	  blr
-	*/
 }
 
 /**

@@ -222,7 +222,8 @@ struct TList_pointer : public TList_pointer_void {
 	T& back() { return *--end(); }
 	void pop_back()
 	{
-		Base::iterator it = Base::end();
+		Base::iterator it;
+		it = Base::end();
 		--it;
 		Base::erase(it);
 	}

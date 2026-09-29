@@ -55,7 +55,7 @@ struct Vector3 {
 	inline void negate();
 	inline void setZero();
 	inline void add(const Vector3& other);
-	inline void add(Vector3& a, Vector3& b);
+	inline void add(const Vector3& a, const Vector3& b);
 	inline void sub(const Vector3& other);
 	inline void sub(Vector3& a, Vector3& b);
 	inline void setMiddle(Vector3& a, Vector3& b);
@@ -424,7 +424,7 @@ inline void Vector3<T>::add(const Vector3& other)
 }
 
 template <typename T>
-inline void Vector3<T>::add(Vector3& a, Vector3& b)
+inline void Vector3<T>::add(const Vector3& a, const Vector3& b)
 {
 	set(a.x + b.x, a.y + b.y, a.z + b.z);
 }

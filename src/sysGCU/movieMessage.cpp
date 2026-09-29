@@ -33,7 +33,7 @@ WindowPane::WindowPane()
  */
 void WindowPane::doInit()
 {
-	mInitialPosition = Vector3f(mPane->mOffset.x, mPane->mOffset.y, 0.0f);
+	mInitialPosition = Vector3f(mPane->mTranslateX, mPane->mTranslateY, 0.0f);
 }
 
 /**
@@ -325,10 +325,11 @@ void PodIconScreen::update()
 			Vector3f newDiff;
 			newDiff = diff * norm;
 
-			f32 factor        = (newDiff.dot(mMomentum) + 1.0f) * 0.5f;
-			f32 momentumScale = ((1.0f - factor) + 1.0f) * 0.2f;
-
-			factor = 0.35f * (length * (factor * factor));
+			f32 alignmentWeight = newDiff.dot(mMomentum);
+			alignmentWeight     = 1.0f + alignmentWeight;
+			alignmentWeight *= 0.5f;
+			f32 movementDistance = 0.35f * (length * (alignmentWeight * alignmentWeight));
+			f32 momentumScale    = ((1.0f - alignmentWeight) + 1.0f) * 0.2f;
 
 			newDiff.x *= momentumScale;
 			newDiff.y *= momentumScale;
@@ -338,9 +339,9 @@ void PodIconScreen::update()
 
 			mMomentum.normalise();
 
-			mInitialPos.x += mMomentum.x * factor;
-			mInitialPos.y += mMomentum.y * factor;
-			mInitialPos.z += mMomentum.z * factor;
+			mInitialPos.x += mMomentum.x * movementDistance;
+			mInitialPos.y += mMomentum.y * movementDistance;
+			mInitialPos.z += mMomentum.z * movementDistance;
 		}
 
 		f32 scale = mInitialPos.z / 20.0f;

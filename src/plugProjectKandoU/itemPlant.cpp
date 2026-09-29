@@ -965,10 +965,12 @@ void ProcAnimator::update(f32 faceDir, f32 p2)
 
 		Matrixf mat;
 		Vector3f newPos;
-		f32 theta = mAngle[i] + angleOffset;
+		f32 baseAngle = mAngle[i];
+		f32 theta     = baseAngle + angleOffset;
 		Vector3f rot;
-		f32 angle = mXRot[i] + angleOffset;
-		ydist     = mYDist[i];
+		f32 baseRot = mXRot[i];
+		f32 angle   = baseRot + angleOffset;
+		ydist       = mYDist[i];
 
 		newPos.x = 0.0f;
 		newPos.y = ydist;

@@ -34,6 +34,8 @@ struct SeHelper {
 		mState = other.mState;
 	}
 
+	JAISe* getSound() { return mSound; }
+
 	u8 mState;     // _00
 	u32 _04;       // _04
 	JAISe* mSound; // _08

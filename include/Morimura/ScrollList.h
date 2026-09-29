@@ -79,7 +79,7 @@ struct TIndexPane {
 		mPaneSize     = 0.0f;
 		mIconInfos    = nullptr;
 		mOwner        = owner;
-		mYOffset      = mPane->mOffset.y;
+		mYOffset      = mPane->mTranslateY;
 	}
 
 	void setIndex(int index);
@@ -90,7 +90,7 @@ struct TIndexPane {
 
 	void doIconOffsetY();
 
-	inline void setOffset(f32 y) { mPane->setOffset(mPane->mOffset.x, mYOffset + y); }
+	inline void setOffset(f32 y) { mPane->setOffset(mPane->getTranslateX(), mYOffset + y); }
 
 	inline f32 getPaneYOffset() const { return mYOffset; }
 

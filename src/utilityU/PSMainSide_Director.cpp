@@ -9,6 +9,7 @@
 #include "Game/Navi.h"
 #include "utilityU.h"
 #include "PSM/BossSeq.h"
+#include "Game/Entities/ItemOnyon.h"
 
 namespace PSM {
 
@@ -345,6 +346,7 @@ f32 ActorDirector_Scaled::getNearestDistance()
 {
 	bool is1P   = PSSystem::SingletonBase<PSM::ObjCalcBase>::getInstance()->is1PGame();
 	f32 minDist = 1000000.0f;
+	JSULink<Game::Creature>* link;
 	if (!is1P) {
 		Game::Navi* olimar = Game::naviMgr->getAt(NAVIID_Olimar);
 		Game::Navi* louie  = Game::naviMgr->getAt(NAVIID_Louie);
@@ -354,8 +356,7 @@ f32 ActorDirector_Scaled::getNearestDistance()
 		Vector3f lPos = louie->getPosition();
 
 		JSUList<Game::Creature>* actors = mActor;
-		FOREACH_NODE(JSULink<Game::Creature>, actors->getFirst(), link)
-		{
+		for (link = actors->getFirst(); link; link = link->getNext()) {
 			Vector3f objpos = link->getObject()->getPosition();
 			f32 p1Dist      = PSMath::calcDistance(PSMath::toVec(objpos), PSMath::toVec(oPos));
 			f32 p2Dist      = PSMath::calcDistance(PSMath::toVec(objpos), PSMath::toVec(lPos));
@@ -381,10 +382,9 @@ f32 ActorDirector_Scaled::getNearestDistance()
 			naviPos = navi->getPosition();
 		}
 
-		FOREACH_NODE(JSULink<Game::Creature>, mActor->getFirst(), link)
-		{
-			Vector3f objpos = link->getObject()->getPosition();
-			f32 dist        = PSMath::calcDistance(PSMath::toVec(objpos), PSMath::toVec(naviPos));
+		for (link = mActor->getFirst(); link; link = link->getNext()) {
+			const Vector3f objpos = link->getObject()->getPosition();
+			f32 dist              = PSMath::calcDistance(PSMath::toVec(objpos), PSMath::toVec(naviPos));
 			if (dist < minDist) {
 				minDist = dist;
 				onSetMinDistObj(link->getObject());
@@ -392,419 +392,6 @@ f32 ActorDirector_Scaled::getNearestDistance()
 		}
 	}
 	return minDist;
-	/*
-	stwu     r1, -0x1d0(r1)
-	mflr     r0
-	stw      r0, 0x1d4(r1)
-	stfd     f31, 0x1c0(r1)
-	psq_st   f31, 456(r1), 0, qr0
-	stfd     f30, 0x1b0(r1)
-	psq_st   f30, 440(r1), 0, qr0
-	stfd     f29, 0x1a0(r1)
-	psq_st   f29, 424(r1), 0, qr0
-	stfd     f28, 0x190(r1)
-	psq_st   f28, 408(r1), 0, qr0
-	stfd     f27, 0x180(r1)
-	psq_st   f27, 392(r1), 0, qr0
-	stfd     f26, 0x170(r1)
-	psq_st   f26, 376(r1), 0, qr0
-	stfd     f25, 0x160(r1)
-	psq_st   f25, 360(r1), 0, qr0
-	stfd     f24, 0x150(r1)
-	psq_st   f24, 344(r1), 0, qr0
-	stw      r31, 0x14c(r1)
-	stw      r30, 0x148(r1)
-	stw      r29, 0x144(r1)
-	stw      r28, 0x140(r1)
-	lwz      r0,
-"sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13) lis r4,
-lbl_8049CD98@ha mr       r30, r3 cmplwi   r0, 0 addi     r31, r4, lbl_8049CD98@l
-	bne      lbl_804579B0
-	addi     r3, r31, 0x58
-	addi     r5, r31, 0x3c
-	li       r4, 0x89
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804579B0:
-	lwz      r3,
-"sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13) lwz r12,
-0(r3) lwz      r12, 0x18(r12) mtctr    r12 bctrl clrlwi.  r0, r3, 0x18 lfs f24,
-lbl_80520C18@sda21(r2) bne      lbl_80457D14 lwz      r3,
-naviMgr__4Game@sda21(r13) li       r4, 0 lwz      r12, 0(r3) lwz      r12,
-0x24(r12) mtctr    r12 bctrl mr       r0, r3 lwz      r3,
-naviMgr__4Game@sda21(r13) mr       r29, r0 li       r4, 1 lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	cmplwi   r29, 0
-	mr       r28, r3
-	li       r0, 0
-	beq      lbl_80457A24
-	cmplwi   r28, 0
-	beq      lbl_80457A24
-	li       r0, 1
-
-lbl_80457A24:
-	clrlwi.  r0, r0, 0x18
-	bne      lbl_80457A40
-	addi     r3, r31, 0x24
-	addi     r5, r31, 0x3c
-	li       r4, 0x18a
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80457A40:
-	mr       r4, r29
-	addi     r3, r1, 0x134
-	lwz      r12, 0(r29)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r28
-	addi     r3, r1, 0x128
-	lwz      r12, 0(r28)
-	lfs      f30, 0x134(r1)
-	lwz      r12, 8(r12)
-	lfs      f29, 0x138(r1)
-	lfs      f28, 0x13c(r1)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x64(r30)
-	lfs      f27, 0x128(r1)
-	cmplwi   r3, 0
-	lfs      f26, 0x12c(r1)
-	lfs      f25, 0x130(r1)
-	beq      lbl_80457A98
-	addi     r3, r3, 0xc
-
-lbl_80457A98:
-	lwz      r31, 0(r3)
-	lfs      f31, lbl_80520C10@sda21(r2)
-	b        lbl_80457D08
-
-lbl_80457AA4:
-	lwz      r4, 0(r31)
-	addi     r3, r1, 0x11c
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f1, 0x120(r1)
-	lfs      f0, 0x11c(r1)
-	stfs     f30, 0xa4(r1)
-	lfs      f2, 0x124(r1)
-	stfs     f29, 0xa8(r1)
-	lwz      r0, 0xa4(r1)
-	stfs     f0, 0xb0(r1)
-	lwz      r6, 0xa8(r1)
-	stfs     f1, 0xb4(r1)
-	lwz      r4, 0xb0(r1)
-	lwz      r3, 0xb4(r1)
-	stfs     f28, 0xac(r1)
-	lfs      f0, 0x11c(r1)
-	stfs     f2, 0xb8(r1)
-	lwz      r5, 0xac(r1)
-	stw      r0, 0x104(r1)
-	lwz      r0, 0xb8(r1)
-	stw      r6, 0x108(r1)
-	lfs      f5, 0x104(r1)
-	stw      r4, 0x110(r1)
-	lfs      f3, 0x108(r1)
-	stw      r3, 0x114(r1)
-	lfs      f6, 0x110(r1)
-	lfs      f4, 0x114(r1)
-	stw      r5, 0x10c(r1)
-	fsubs    f6, f6, f5
-	fsubs    f5, f4, f3
-	stw      r0, 0x118(r1)
-	lfs      f3, 0x10c(r1)
-	lfs      f4, 0x118(r1)
-	stfs     f6, 0x68(r1)
-	fsubs    f3, f4, f3
-	stfs     f5, 0x6c(r1)
-	lwz      r0, 0x68(r1)
-	lwz      r3, 0x6c(r1)
-	stfs     f3, 0x70(r1)
-	stw      r0, 0x50(r1)
-	lwz      r0, 0x70(r1)
-	stw      r3, 0x54(r1)
-	lfs      f4, 0x50(r1)
-	lfs      f3, 0x54(r1)
-	stw      r0, 0x58(r1)
-	fmuls    f5, f4, f4
-	fmuls    f4, f3, f3
-	lfs      f3, 0x58(r1)
-	stfs     f5, 0x50(r1)
-	fmuls    f3, f3, f3
-	stfs     f4, 0x54(r1)
-	lwz      r0, 0x50(r1)
-	lwz      r3, 0x54(r1)
-	stfs     f3, 0x58(r1)
-	stw      r0, 0x5c(r1)
-	lwz      r0, 0x58(r1)
-	stw      r3, 0x60(r1)
-	lfs      f4, 0x5c(r1)
-	lfs      f3, 0x60(r1)
-	stw      r0, 0x64(r1)
-	fadds    f3, f4, f3
-	lfs      f4, 0x64(r1)
-	fadds    f4, f4, f3
-	fcmpo    cr0, f4, f31
-	ble      lbl_80457BBC
-	frsqrte  f3, f4
-	fmuls    f4, f3, f4
-
-lbl_80457BBC:
-	stfs     f27, 0x8c(r1)
-	stfs     f26, 0x90(r1)
-	lwz      r0, 0x8c(r1)
-	stfs     f0, 0x98(r1)
-	lwz      r6, 0x90(r1)
-	stfs     f1, 0x9c(r1)
-	lwz      r4, 0x98(r1)
-	lwz      r3, 0x9c(r1)
-	stfs     f25, 0x94(r1)
-	stfs     f2, 0xa0(r1)
-	lwz      r5, 0x94(r1)
-	stw      r0, 0xec(r1)
-	lwz      r0, 0xa0(r1)
-	stw      r6, 0xf0(r1)
-	lfs      f2, 0xec(r1)
-	stw      r4, 0xf8(r1)
-	lfs      f0, 0xf0(r1)
-	stw      r3, 0xfc(r1)
-	lfs      f3, 0xf8(r1)
-	lfs      f1, 0xfc(r1)
-	stw      r5, 0xf4(r1)
-	fsubs    f3, f3, f2
-	fsubs    f2, f1, f0
-	stw      r0, 0x100(r1)
-	lfs      f0, 0xf4(r1)
-	lfs      f1, 0x100(r1)
-	stfs     f3, 0x44(r1)
-	fsubs    f0, f1, f0
-	stfs     f2, 0x48(r1)
-	lwz      r0, 0x44(r1)
-	lwz      r3, 0x48(r1)
-	stfs     f0, 0x4c(r1)
-	stw      r0, 0x2c(r1)
-	lwz      r0, 0x4c(r1)
-	stw      r3, 0x30(r1)
-	lfs      f1, 0x2c(r1)
-	lfs      f0, 0x30(r1)
-	stw      r0, 0x34(r1)
-	fmuls    f2, f1, f1
-	fmuls    f1, f0, f0
-	lfs      f0, 0x34(r1)
-	stfs     f2, 0x2c(r1)
-	fmuls    f0, f0, f0
-	stfs     f1, 0x30(r1)
-	lwz      r0, 0x2c(r1)
-	lwz      r3, 0x30(r1)
-	stfs     f0, 0x34(r1)
-	stw      r0, 0x38(r1)
-	lwz      r0, 0x34(r1)
-	stw      r3, 0x3c(r1)
-	lfs      f1, 0x38(r1)
-	lfs      f0, 0x3c(r1)
-	stw      r0, 0x40(r1)
-	fadds    f0, f1, f0
-	lfs      f1, 0x40(r1)
-	fadds    f0, f1, f0
-	fcmpo    cr0, f0, f31
-	ble      lbl_80457CAC
-	frsqrte  f1, f0
-	fmuls    f0, f1, f0
-
-lbl_80457CAC:
-	fcmpo    cr0, f4, f0
-	cror     2, 0, 2
-	bne      lbl_80457CE0
-	fcmpo    cr0, f4, f24
-	bge      lbl_80457D04
-	mr       r3, r30
-	fmr      f24, f4
-	lwz      r12, 0(r30)
-	lwz      r4, 0(r31)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80457D04
-
-lbl_80457CE0:
-	fcmpo    cr0, f0, f24
-	bge      lbl_80457D04
-	mr       r3, r30
-	fmr      f24, f0
-	lwz      r12, 0(r30)
-	lwz      r4, 0(r31)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80457D04:
-	lwz      r31, 0xc(r31)
-
-lbl_80457D08:
-	cmplwi   r31, 0
-	bne      lbl_80457AA4
-	b        lbl_80457ED8
-
-lbl_80457D14:
-	lwz      r3, naviMgr__4Game@sda21(r13)
-	bl       getActiveNavi__Q24Game7NaviMgrFv
-	cmplwi   r3, 0
-	bne      lbl_80457D60
-	lwz      r3,
-"sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13) li r4, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	clrlwi   r0, r3, 0x18
-	lwz      r3, msBasic__8JAIBasic@sda21(r13)
-	mulli    r0, r0, 0xc
-	lwz      r3, 4(r3)
-	lwzx     r3, r3, r0
-	lfs      f25, 0(r3)
-	lfs      f26, 4(r3)
-	lfs      f27, 8(r3)
-	b        lbl_80457D84
-
-lbl_80457D60:
-	mr       r4, r3
-	addi     r3, r1, 0xe0
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f25, 0xe0(r1)
-	lfs      f26, 0xe4(r1)
-	lfs      f27, 0xe8(r1)
-
-lbl_80457D84:
-	lwz      r3, 0x64(r30)
-	lfs      f28, lbl_80520C10@sda21(r2)
-	lwz      r31, 0xc(r3)
-	b        lbl_80457ED0
-
-lbl_80457D94:
-	lwz      r4, 0(r31)
-	addi     r3, r1, 0xd4
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 0xd4(r1)
-	lfs      f1, 0xd8(r1)
-	stfs     f25, 0x74(r1)
-	lfs      f0, 0xdc(r1)
-	stfs     f26, 0x78(r1)
-	lwz      r0, 0x74(r1)
-	stfs     f2, 0x80(r1)
-	lwz      r6, 0x78(r1)
-	stfs     f1, 0x84(r1)
-	lwz      r4, 0x80(r1)
-	lwz      r3, 0x84(r1)
-	stfs     f27, 0x7c(r1)
-	stfs     f0, 0x88(r1)
-	lwz      r5, 0x7c(r1)
-	stw      r0, 0xbc(r1)
-	lwz      r0, 0x88(r1)
-	stw      r6, 0xc0(r1)
-	lfs      f2, 0xbc(r1)
-	stw      r4, 0xc8(r1)
-	lfs      f0, 0xc0(r1)
-	stw      r3, 0xcc(r1)
-	lfs      f3, 0xc8(r1)
-	lfs      f1, 0xcc(r1)
-	stw      r5, 0xc4(r1)
-	fsubs    f3, f3, f2
-	fsubs    f2, f1, f0
-	stw      r0, 0xd0(r1)
-	lfs      f0, 0xc4(r1)
-	lfs      f1, 0xd0(r1)
-	stfs     f3, 0x20(r1)
-	fsubs    f0, f1, f0
-	stfs     f2, 0x24(r1)
-	lwz      r0, 0x20(r1)
-	lwz      r3, 0x24(r1)
-	stfs     f0, 0x28(r1)
-	stw      r0, 8(r1)
-	lwz      r0, 0x28(r1)
-	stw      r3, 0xc(r1)
-	lfs      f1, 8(r1)
-	lfs      f0, 0xc(r1)
-	stw      r0, 0x10(r1)
-	fmuls    f2, f1, f1
-	fmuls    f1, f0, f0
-	lfs      f0, 0x10(r1)
-	stfs     f2, 8(r1)
-	fmuls    f0, f0, f0
-	stfs     f1, 0xc(r1)
-	lwz      r0, 8(r1)
-	lwz      r3, 0xc(r1)
-	stfs     f0, 0x10(r1)
-	stw      r0, 0x14(r1)
-	lwz      r0, 0x10(r1)
-	stw      r3, 0x18(r1)
-	lfs      f1, 0x14(r1)
-	lfs      f0, 0x18(r1)
-	stw      r0, 0x1c(r1)
-	fadds    f0, f1, f0
-	lfs      f1, 0x1c(r1)
-	fadds    f0, f1, f0
-	fcmpo    cr0, f0, f28
-	ble      lbl_80457EA8
-	frsqrte  f1, f0
-	fmuls    f0, f1, f0
-
-lbl_80457EA8:
-	fcmpo    cr0, f0, f24
-	bge      lbl_80457ECC
-	mr       r3, r30
-	fmr      f24, f0
-	lwz      r12, 0(r30)
-	lwz      r4, 0(r31)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80457ECC:
-	lwz      r31, 0xc(r31)
-
-lbl_80457ED0:
-	cmplwi   r31, 0
-	bne      lbl_80457D94
-
-lbl_80457ED8:
-	fmr      f1, f24
-	psq_l    f31, 456(r1), 0, qr0
-	lfd      f31, 0x1c0(r1)
-	psq_l    f30, 440(r1), 0, qr0
-	lfd      f30, 0x1b0(r1)
-	psq_l    f29, 424(r1), 0, qr0
-	lfd      f29, 0x1a0(r1)
-	psq_l    f28, 408(r1), 0, qr0
-	lfd      f28, 0x190(r1)
-	psq_l    f27, 392(r1), 0, qr0
-	lfd      f27, 0x180(r1)
-	psq_l    f26, 376(r1), 0, qr0
-	lfd      f26, 0x170(r1)
-	psq_l    f25, 360(r1), 0, qr0
-	lfd      f25, 0x160(r1)
-	psq_l    f24, 344(r1), 0, qr0
-	lfd      f24, 0x150(r1)
-	lwz      r31, 0x14c(r1)
-	lwz      r30, 0x148(r1)
-	lwz      r29, 0x144(r1)
-	lwz      r0, 0x1d4(r1)
-	lwz      r28, 0x140(r1)
-	mtlr     r0
-	addi     r1, r1, 0x1d0
-	blr
-	*/
 }
 
 /**
@@ -889,8 +476,71 @@ f32 ActorDirector_Kehai::getVolMaxDist(Game::EnemyBase* enemy)
 	return CreaturePrm::cVolMaxDist_Kehai[id];
 }
 
-// exists here but doesnt seem to be used by any panics
-static const char* unusedpath = "PSMainSide_ObjSound.h";
+/**
+ * @note Address: N/A
+ * @note Size: 0xF4
+ */
+ActorDirector_IchouNBeedama::ActorDirector_IchouNBeedama(const char* name, int trackCount, f32 endDistance, f32 startDistance, s32 fadeIn,
+                                                         s32 fadeOut, u32 fadeDuration)
+    : TrackOnDirector_Scaled(name, trackCount, endDistance, startDistance, fadeIn, fadeOut, fadeDuration)
+{
+}
+
+/**
+ * @note Address: N/A
+ * @note Size: 0x3C
+ */
+void ActorDirector_IchouNBeedama::execInner()
+{
+	if (mActor) {
+		mActor->exec(this);
+	}
+}
+
+/**
+ * @note Address: N/A
+ * @note Size: 0xF8
+ * @note This is me coding out of my ass that this is what it should be - very much a guess.
+ */
+Otakara* ActorDirector_IchouNBeedama::getPSOtakara(Game::Creature* obj)
+{
+	if (!obj) {
+		return nullptr;
+	}
+
+	Otakara* ota = static_cast<Otakara*>(obj->getPSCreature());
+	P2ASSERTLINE(__LINE__, ota);
+
+	P2ASSERTLINE(__LINE__, ota->isTreasure());
+
+	return ota;
+}
+
+/**
+ * @note Address: N/A
+ * @note Size: 0x37C
+ * @note Again, coding out of my ass - this seems pretty reasonable though.
+ */
+f32 ActorDirector_IchouNBeedama::getNearestDistance()
+{
+	f32 minDist = 1000000.0f;
+	for (JSULink<Game::Creature>* link = mActor->getFirst(); link; link = link->getNext()) {
+		Otakara* ota = getPSOtakara(link->getObject());
+		otakaraCheckEvent(ota);
+		if (ota->is2PBattle()) {
+			Game::Creature* onyon = ota->mOnyon;
+			if (onyon) {
+				Vector3f objPos  = link->getObject()->getPosition();
+				Vector3f goalPos = onyon->getPosition();
+				f32 dist         = PSMath::calcDistance(PSMath::toVec(objPos), PSMath::toVec(goalPos));
+				if (dist < minDist) {
+					minDist = dist;
+				}
+			}
+		}
+	}
+	return minDist;
+}
 
 /**
  * @note Address: 0x804583B8
@@ -1020,10 +670,7 @@ PSSystem::DirectorBase* PSMGetBattleDirector(u8 directorID)
  */
 bool PSIs2PBattleStage()
 {
-	// is2PBattle needs to spawn as a weak function.
-	// this is absolutely not the code that should be here but i'm lazy. -HP
-	PSM::Otakara ota(nullptr);
-	return ota.is2PBattle();
+	return PSGameGetSceneInfo()->mSceneType == PSGame::SceneInfo::TWO_PLAYER_BATTLE;
 }
 
 /**

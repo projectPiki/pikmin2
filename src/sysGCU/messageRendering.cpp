@@ -204,9 +204,11 @@ void TRenderingProcessor::setDrawLocateY()
 
 	if (mFlags.isSet(TProcFlag_Unk10)) {
 		// equivalent but regswaps
+		f32 pageY;
 		f32 descent = -mMainFont->getDescent();
-		mLocate.i.y = (mFontHeight * descent + (mTextBoxHeight * (1.0f + mPageInfoNum)))
-		            - (mLineHeight * (mOnePageLines[mCurrLine] - (mParagraphNum + 1)));
+		pageY       = mTextBoxHeight * (1.0f + mPageInfoNum);
+		pageY += mFontHeight * descent;
+		mLocate.i.y = pageY - (mLineHeight * (mOnePageLines[mCurrLine] - (mParagraphNum + 1)));
 
 		return;
 	}

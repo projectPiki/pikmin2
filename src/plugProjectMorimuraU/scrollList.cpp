@@ -238,13 +238,13 @@ void TIndexPane::doIconOffsetY()
 {
 	if (mIconInfos) {
 		J2DPane* pane = mIconInfos[1]->mPane;
-		pane->setOffset(pane->mOffset.x, mPaneSize + mIconInfos[0]->mPane->mOffset.y);
+		pane->setOffset(pane->mTranslateX, mPaneSize + mIconInfos[0]->mPane->mTranslateY);
 		pane->updateScale(1.0f);
 		if (mPaneSize != 0.0f) {
 			pane->updateScale(2.0f);
 		}
 		if (mIconInfos[1]->mPic) {
-			mIconInfos[1]->mPic->setOffset(mIconInfos[1]->mPic->mOffset.x, mPaneSize - 13.5f);
+			mIconInfos[1]->mPic->setOffset(mIconInfos[1]->mPic->mTranslateX, mPaneSize - 13.5f);
 		}
 	}
 }
@@ -292,12 +292,12 @@ void TIconInfo::update(f32 base)
 			if (base == 2.0f) {
 				mPane->updateScale(calc * 3.0f, base * calc);
 				mPane2->updateScale(0.66666667f, 1.0f);
-				mCounter->getMotherPane()->setOffset(-30.5f, mCounter->getMotherPane()->mOffset.y);
+				mCounter->getMotherPane()->setOffset(-30.5f, mCounter->getMotherPane()->mTranslateY);
 				mCounter->setScale(0.66666667f, 1.0f);
 			} else {
 				mPane->updateScale(base * calc, base * calc);
 				mPane2->updateScale(1.0f, 1.0f);
-				mCounter->getMotherPane()->setOffset(-28.0f, mCounter->getMotherPane()->mOffset.y);
+				mCounter->getMotherPane()->setOffset(-28.0f, mCounter->getMotherPane()->mTranslateY);
 				mCounter->setScale(1.0f, 1.0f);
 			}
 		} else {
@@ -435,7 +435,7 @@ void TScrollList::updateIndex(bool doScrollDown)
 			check2 = true;
 		}
 		if (doScrollDown) {
-			mIndexPaneList[mCurrMinActiveRow]->mYOffset = mIndexPaneList[mCurrMaxActiveRow]->mPane->mOffset.y + mIndexGroup->getHeight();
+			mIndexPaneList[mCurrMinActiveRow]->mYOffset = mIndexPaneList[mCurrMaxActiveRow]->mPane->mTranslateY + mIndexGroup->getHeight();
 			if (mIndexPaneList[mCurrMinActiveRow]->mYOffset >= mMaxSelYOffset) {
 				check2 = true;
 			}
@@ -462,7 +462,7 @@ void TScrollList::updateIndex(bool doScrollDown)
 				break;
 			}
 		} else {
-			mIndexPaneList[mCurrMaxActiveRow]->mYOffset = mIndexPaneList[mCurrMinActiveRow]->mPane->mOffset.y - mIndexGroup->getHeight();
+			mIndexPaneList[mCurrMaxActiveRow]->mYOffset = mIndexPaneList[mCurrMinActiveRow]->mPane->mTranslateY - mIndexGroup->getHeight();
 			if (mIndexPaneList[mCurrMinActiveRow]->getPaneYOffset() - 1.25 * mIndexGroup->getHeight() <= mMinSelYOffset) {
 				check2 = true;
 			}

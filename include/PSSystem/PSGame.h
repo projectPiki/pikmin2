@@ -42,6 +42,12 @@ inline SeqBase* getSeqData(SceneMgr* mgr, int id)
 	return getSeqFromScene(getChildScene(mgr), id);
 }
 
+inline Scene* getChildSceneCheck(SceneMgr* mgr)
+{
+	mgr->checkScene();
+	return getChildScene(mgr);
+}
+
 inline SeqBase* getSeqDataCheck(SceneMgr* mgr, int id)
 {
 	mgr->checkScene();

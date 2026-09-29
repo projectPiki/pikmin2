@@ -7,6 +7,7 @@
 #include "sqrt.h"
 #include "sysMath.h"
 #include "Vector3.h"
+#include "JSystem/JMath.h"
 
 namespace PSMath {
 
@@ -53,6 +54,15 @@ inline f32 calcSquareDistance(const A& a, const B& b)
 	return calcSquareMagnitude(delta);
 }
 
+// I am mad that this AND the below both seem necessary for ActorDirector_Scaled::getNearestDistance
+// if someone can find a better solution, please do -HP
+inline JGeometry::TVec3f toVec(Vector3f& position)
+{
+	JGeometry::TVec3f geometry;
+	geometry.set(position.x, position.y, position.z);
+	return geometry;
+}
+
 inline JGeometry::TVec3f toVec(const Vector3f& position)
 {
 	JGeometry::TVec3f geometry;
@@ -63,11 +73,9 @@ inline JGeometry::TVec3f toVec(const Vector3f& position)
 template <typename A, typename B>
 inline f32 calcDistance(A from, B to)
 {
-	Vec delta;
-	delta.x = from.x - to.x;
-	delta.y = from.y - to.y;
-	delta.z = from.z - to.z;
-	return calcLength(delta);
+	JGeometry::TVec3f delta;
+	delta.sub(from, to);
+	return JMAFastSqrt(calcSquareMagnitude(delta));
 }
 
 inline f32 calcMagnitude(const Vec& vector)

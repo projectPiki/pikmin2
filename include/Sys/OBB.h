@@ -66,26 +66,32 @@ struct OBB : public CNode {
 
 	inline void setMaxPlane(Vec* axisVec, int i)
 	{
-		f32 max    = mMaxXYZ[i];
-		axisVec->x = mAxes[i].x;
-		axisVec->y = mAxes[i].y;
-		axisVec->z = mAxes[i].z;
-		Vector3f scaledVec(axisVec->x * max, axisVec->y * max, axisVec->z * max);
-
-		mSidePlanes[i].updatePlane(mPosition + scaledVec, *axisVec);
+		axisVec->x         = mAxes[i].x;
+		axisVec->y         = mAxes[i].y;
+		axisVec->z         = mAxes[i].z;
+		Vector3f scaledVec = Vector3f(*axisVec) * mMaxXYZ[i];
+		Vector3f point;
+		point.x = mPosition.x + scaledVec.x;
+		point.y = mPosition.y + scaledVec.y;
+		point.z = mPosition.z + scaledVec.z;
+		mSidePlanes[i].updatePlane(point, *axisVec);
 	}
 
 	inline void setMinPlane(Vec* axisVec, int i)
 	{
-		axisVec->x = mAxes[i].x;
-		axisVec->y = mAxes[i].y;
-		axisVec->z = mAxes[i].z;
+		axisVec->x         = mAxes[i].x;
+		axisVec->y         = mAxes[i].y;
+		axisVec->z         = mAxes[i].z;
+		Vector3f scaledVec = Vector3f(*axisVec) * mMinXYZ[i];
+		Vector3f point;
+		point.x = mPosition.x + scaledVec.x;
+		point.y = mPosition.y + scaledVec.y;
+		point.z = mPosition.z + scaledVec.z;
 		Vec normal;
 		normal.x = -axisVec->x;
 		normal.y = -axisVec->y;
 		normal.z = -axisVec->z;
-		Vector3f scaledVec(axisVec->x * mMinXYZ[i], axisVec->y * mMinXYZ[i], axisVec->z * mMinXYZ[i]);
-		mSidePlanes[i + 3].updatePlane(mPosition + scaledVec, normal);
+		mSidePlanes[i + 3].updatePlane(point, normal);
 	}
 
 	Plane mSidePlanes[6];       // _18

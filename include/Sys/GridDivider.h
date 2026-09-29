@@ -60,6 +60,8 @@ struct GridDivider : public TriDivider {
 	// Unused/inlined:
 	void write(Stream&);
 
+	inline TriIndexList* getTriIndexList(int x, int z) { return &mTriIndexLists[z + x * mMaxZ]; }
+
 	inline void readIndexList(Stream& stream)
 	{
 		for (int i = 0; i < (mMaxX * mMaxZ); i++) {

@@ -290,7 +290,6 @@ void Obj::onKill(CreatureKillArg* killArg)
  */
 void Obj::doAnimationCullingOff()
 {
-	Matrixf* mat;
 	if (C_PARMS->mDoUseFootCallback) {
 		if (getStateID() == KINGCHAPPY_Walk || mLFootHeightRatio != 0.0f || mRFootHeightRatio != 0.0f) {
 			curK = this;
@@ -325,10 +324,9 @@ void Obj::doAnimationCullingOff()
 
 	// this is a really complicated way to adjust the world matrices when eating pikmin
 	for (int i = 0; i < mMouthSlots.mMax; i++) {
-		// this loop has regswaps, but not from the math for once!
-		Creature* stuckCreature = mMouthSlots.getStuckCreature(i);
+		Creature* stuckCreature = mMouthSlots.getSlot(i)->mStuckCreature;
 		if (stuckCreature) {
-			mat             = (Matrixf*)mModel->mJ3dModel->mMtxBuffer->mWorldMatrices[mMouthJointIndices[i]];
+			Matrixf* mat    = mModel->mJ3dModel->mMtxBuffer->getWorldMatrix(mMouthJointIndices[i]);
 			Vector3f xBasis = mat->getColumn(0);
 			Vector3f yBasis = mat->getColumn(1);
 			Vector3f zBasis = mat->getColumn(2);

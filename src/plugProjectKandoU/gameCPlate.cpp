@@ -801,7 +801,8 @@ void CPlate::refreshSlot(f32 p1)
 	Vector3f vec(0.0f);
 	mUnused = rotationMtx.mtxMult(vec);
 
-	int direction = 1; // r30
+	int i;
+	int direction = 1;
 	int row       = 0; // r26
 
 	while (slotCount < mActiveGroupSize) {
@@ -831,10 +832,11 @@ void CPlate::refreshSlot(f32 p1)
 		}
 
 		f32 maxSizeScaled = val * maxSize * 2.0f;
-		f32 fCounter      = (f32)direction * maxSizeScaled; // f22
-		f32 stepDistance  = direction * maxSize * 2.0f;     // f23
+		f32 stepDistance, fCounter;
+		fCounter     = (f32)direction * maxSizeScaled;
+		stepDistance = direction * maxSize * 2.0f;
 
-		int i = val * 2 + 1;
+		i = val * 2 + 1;
 		while (i > 0) {
 			if (slotCount < mActiveGroupSize) {
 				mSlots[row].mRelativePosition = Vector3f(fCounter, 0.0f, radius);

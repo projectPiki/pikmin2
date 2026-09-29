@@ -383,8 +383,8 @@ void TZukanBase::doCreate(JKRArchive* archive)
 	P2ASSERTLINE(294, mPaneCursorCorners[3]);
 #endif
 
-	mSelectIconPos.x = mPaneSelectIcon->mOffset.x;
-	mSelectIconPos.y = mPaneSelectIcon->mOffset.y;
+	mSelectIconPos.x = mPaneSelectIcon->mTranslateX;
+	mSelectIconPos.y = mPaneSelectIcon->mTranslateY;
 
 	J2DPane* list = mMainScreen->mScreenObj->search('Nlist');
 #if defined(VERSION_JP)
@@ -475,7 +475,7 @@ void TZukanBase::doCreate(JKRArchive* archive)
 	mRequestTimer = 0xffffffce;
 	indexPaneInit(screen);
 	J2DPane* idpane = mIndexPaneList[0]->mPane;
-	f32 diff        = mIndexPaneList[1]->mPane->mOffset.y - idpane->mOffset.y;
+	f32 diff        = mIndexPaneList[1]->mPane->mTranslateY - idpane->mTranslateY;
 	idpane->show();
 
 	mIndexGroup                 = new TIndexGroup;
@@ -972,14 +972,7 @@ void TZukanBase::doDraw(Graphics& gfx)
 		JUtility::TColor c;
 		c.set(0, 0, 0, 0);
 		c.a = mMessageBoxBGAlpha;
-		graf->setColor(c);
-		GXSetAlphaUpdate(GX_FALSE);
-		u16 y    = System::getRenderModeObj()->efbHeight;
-		u16 x    = System::getRenderModeObj()->fbWidth;
-		f32 zero = 0.0f;
-		JGeometry::TBox2f box(0.0f, 0.0f, zero + x, zero + y);
-		graf->fillBox(box);
-		GXSetAlphaUpdate(GX_TRUE);
+		drawFillScreen(graf, c);
 		mPaneEnemyName->setAlpha(mMessageBoxBGAlpha);
 		mMessageCallback3->draw(gfx, *graf); // this makes the enemy name appear over the background fade
 	}
@@ -1010,25 +1003,11 @@ void TZukanBase::doDraw(Graphics& gfx)
 			}
 		}
 		color.a = mMessageBoxBGAlpha;
-		graf->setColor(color);
-		GXSetAlphaUpdate(GX_FALSE);
-		u32 y    = System::getRenderModeObj()->efbHeight;
-		u32 x    = System::getRenderModeObj()->fbWidth;
-		f32 zero = 0.0f;
-		JGeometry::TBox2f box(0.0f, 0.0f, zero + x, zero + y);
-		graf->fillBox(box);
-		GXSetAlphaUpdate(GX_TRUE);
+		drawFillScreen(graf, color);
 	}
 
 	color.a = 255 - mFadeAlpha;
-	graf->setColor(color);
-	GXSetAlphaUpdate(GX_FALSE);
-	u32 y    = System::getRenderModeObj()->efbHeight;
-	u32 x    = System::getRenderModeObj()->fbWidth;
-	f32 zero = 0.0f;
-	JGeometry::TBox2f box(0.0f, 0.0f, zero + x, zero + y);
-	graf->fillBox(box);
-	GXSetAlphaUpdate(GX_TRUE);
+	drawFillScreen(graf, color);
 }
 
 /**
@@ -1060,7 +1039,7 @@ void TZukanBase::indexPaneInit(J2DScreen* screen)
 #else
 	P2ASSERTLINE(1083, pane);
 #endif
-	mMinSelYOffset = pane->mOffset.y;
+	mMinSelYOffset = pane->mTranslateY;
 
 	J2DPane* pane2 = screen->search(tags[mCurrMaxActiveRow]);
 #if defined(VERSION_JP)
@@ -1068,7 +1047,7 @@ void TZukanBase::indexPaneInit(J2DScreen* screen)
 #else
 	P2ASSERTLINE(1086, pane2);
 #endif
-	mMaxSelYOffset = pane2->mOffset.y;
+	mMaxSelYOffset = pane2->mTranslateY;
 
 	// clang-format off
 	u64 panetags[10][4][3] = {
@@ -2287,7 +2266,7 @@ void TEnemyZukan::indexPaneInit(J2DScreen* screen)
 #else
 	P2ASSERTLINE(2650, pane);
 #endif
-	mMinSelYOffset = pane->mOffset.y;
+	mMinSelYOffset = pane->mTranslateY;
 
 	J2DPane* pane2 = screen->search(tags[mCurrMaxActiveRow]);
 #if defined(VERSION_JP)
@@ -2295,7 +2274,7 @@ void TEnemyZukan::indexPaneInit(J2DScreen* screen)
 #else
 	P2ASSERTLINE(2653, pane2);
 #endif
-	mMaxSelYOffset = pane2->mOffset.y;
+	mMaxSelYOffset = pane2->mTranslateY;
 
 	// clang-format off
 	u64 panetags[14][4][3] = {
@@ -4543,7 +4522,7 @@ void TZukanWindow::update()
 		f32 y = FABS(mScrollPosition);
 		y     = ((15.0f - y) / 15.0f);
 		if (TZukanBase::mIconMove) {
-			mPaneIcon->setOffset(mCharacterIconXOffset + mPaneIcon->mOffset.x,
+			mPaneIcon->setOffset(mCharacterIconXOffset + mPaneIcon->mTranslateX,
 			                     y * sinf(mIconYHeightSin) + (mScrollPosition + mPaneIcon->getOffsetY()));
 		}
 	}

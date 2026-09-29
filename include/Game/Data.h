@@ -163,26 +163,26 @@ struct Mgr : public PlayCommonData {
 	void setLanguage(int language);
 #endif
 
-	int mSaveCount;      // _18, how many times the game has been saved, doesn't seem to have a purpose
-	u32 mTime;           // _1C
-	char mFileIndex;     // _20
-	char padding;        // _21
-	u16 _22;             // _22
-	u32 _24;             // _24
-	u32 mSaveSlotIndex;  // _28
-	u32 _2C;             // _2C
-	u64 mCardSerialNo;   // _30
-	u8 mSoundMode;       // _38, TODO: Replace with Soundmode enum
-	u8 mMusicVol;        // _39
-	u8 mSeVol;           // _3A
-	u8 mIsRumble;        // _3B
-	u8 mIsRubyFont;      // _3C, japanese version leftover, mini font in cutscenes
-	u8 mUseDeflicker;    // _3D
-	u8 mLanguage;        // _3E
-	char _3F;            // _3F
-	BitFlag<u16> mFlags; // _40
-	bool mDoSaveOptions; // _42
-	u32 _44;             // _44
+	int mSaveCount;        // _18, how many times the game has been saved, doesn't seem to have a purpose
+	u32 mTime;             // _1C
+	char mFileIndex;       // _20
+	char padding;          // _21
+	u16 _22;               // _22
+	u32 _24;               // _24
+	u32 mSaveSlotIndex;    // _28
+	u32 _2C;               // _2C
+	u64 mCardSerialNo;     // _30
+	u8 mSoundMode;         // _38, TODO: Replace with Soundmode enum
+	u8 mMusicVol;          // _39
+	u8 mSeVol;             // _3A
+	u8 mIsRumble;          // _3B
+	u8 mIsRubyFont;        // _3C, japanese version leftover, mini font in cutscenes
+	u8 mUseDeflicker;      // _3D
+	volatile u8 mLanguage; // _3E, needs to be volatile in PAL at the very least, for titleSection
+	char _3F;              // _3F
+	BitFlag<u16> mFlags;   // _40
+	bool mDoSaveOptions;   // _42
+	u32 _44;               // _44
 };
 } // namespace CommonSaveData
 } // namespace Game

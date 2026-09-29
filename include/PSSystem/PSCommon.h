@@ -73,6 +73,14 @@ struct IdList : public JSUList<IdLink> {
 		}
 	}
 
+	void append(IdLink* link)
+	{
+		if (!getFirst()) {
+			mNextLink = link;
+		}
+		JSUList<IdLink>::append(link);
+	}
+
 	inline IdLink* setNextLink()
 	{
 		JUT_ASSERTLINE(210, mNextLink, "リンクがありません"); // No link

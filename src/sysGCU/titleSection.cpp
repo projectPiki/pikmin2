@@ -1,16 +1,11 @@
-#include "PSSystem/PSCommon.h"
 #include "Title.h"
 #include "ebi/title/TTitle.h"
 #include "og/ogLib2D.h"
 #include "Pikmin2ARAM.h"
 #include "Game/THPPlayer.h"
 #include "Screen/Game2DMgr.h"
-#include "PSSystem/PSGame.h"
-#include "PSSystem/PSSystemIF.h"
 #include "JSystem/JFramework/JFWDisplay.h"
-#include "PSM/ObjMgr.h"
 #include "GameFlow.h"
-#include "PSSystem/PSCommon.h"
 #include "Game/Data.h"
 #include "Game/GameConfig.h"
 #include "Game/MemoryCard/Mgr.h"
@@ -32,17 +27,10 @@ namespace {
 static u8 sMovieIndex[7] = { 0, 2, 4, 1, 3, 11, 11 };
 static s8 sSeasonIndex   = 255;
 #if defined(VERSION_PAL)
-static u16 sBuildInfoButtons[11] = { Controller::PRESS_A,
-                                     Controller::PRESS_B,
-                                     Controller::PRESS_X,
-                                     Controller::PRESS_R,
-                                     Controller::PRESS_L,
-                                     Controller::PRESS_DPAD_LEFT,
-                                     Controller::PRESS_DPAD_DOWN,
-                                     Controller::PRESS_DPAD_UP,
-                                     Controller::PRESS_DPAD_RIGHT,
-                                     Controller::PRESS_Z,
-                                     0 };
+static u16 sBuildInfoButtons[10]
+    = { Controller::PRESS_A,          Controller::PRESS_B,         Controller::PRESS_X,         Controller::PRESS_R,
+        Controller::PRESS_L,          Controller::PRESS_DPAD_LEFT, Controller::PRESS_DPAD_DOWN, Controller::PRESS_DPAD_UP,
+        Controller::PRESS_DPAD_RIGHT, Controller::PRESS_Z };
 #endif
 } // namespace
 
@@ -189,6 +177,7 @@ void Section::init()
 	mMenu->addKeyEvent(Menu::KeyEvent::INVOKE_ACTION_ON_BUTTON_PRESS, Controller::PRESS_A,
 	                   new Delegate1<Section, Menu&>(this, &menuSelect));
 
+	JUTFont* font;
 	int i     = 0;
 	int sects = 0;
 	for (i = 0; i < GameFlow::SN_SECTION_COUNT; i++) {
@@ -205,9 +194,10 @@ void Section::init()
 		}
 	}
 
-	JUTFont* font = JFWSystem::systemFont;
-	int x         = 300;
-	int y         = sys->getRenderModeObj()->efbHeight - (sects * font->getHeight() + 60);
+	font       = JFWSystem::systemFont;
+	int x      = 300;
+	int height = sys->getRenderModeObj()->efbHeight;
+	int y      = height - (sects * font->getHeight() + 60);
 	mMenu->setPosition(Vector2i(x, y));
 
 	sys->heapStatusEnd("TitleSection::init");
@@ -304,8 +294,12 @@ void Section::drawShortCuts(Graphics& gfx)
  */
 void Section::drawShortCut(Graphics&, int p2, int, int, char*)
 {
-	// only here for sdata2
+	// these are just here for JP data ordering - no clue what this used to be though.
+#if defined(VERSION_JP)
+	mTimeStep = 40.0f + p2;
+#else
 	mTimeStep = p2;
+#endif
 
 	// UNUSED FUNCTION
 }
@@ -317,7 +311,6 @@ void Section::drawShortCut(Graphics&, int p2, int, int, char*)
 void Section::drawDebugInfo(Graphics& gfx)
 {
 	// size indicates this function was entired stubbed out before release
-	// UNUSED FUNCTION
 }
 
 /**
@@ -470,10 +463,7 @@ void Section::doUpdateHiScore()
 
 		PSSystem::SeqBase* seq = PSSystemGetSeqCheck(BGM_HiScore);
 		seq->stopSeq(0);
-		mState = State_MainTitle;
-		int idk;
-		mMainTitleMgr.startMenuSet(idk, ebi::TMainTitleMgr::Select_HiScore);
-		PSSystemGetSeqCheck(BGM_MainTheme)->startSeq();
+		returnToMainTitle(ebi::TMainTitleMgr::Select_HiScore);
 		Screen::gGame2DMgr->mScreenMgr->reset();
 	}
 }
@@ -538,14 +528,7 @@ void Section::doUpdateOmake()
 	}
 
 	if (mOmakeMgr.isFinish()) {
-		mState = State_MainTitle;
-		int idk;
-		mMainTitleMgr.startMenuSet(idk, ebi::TMainTitleMgr::Select_Bonus);
-		mgr = PSSystem::getSceneMgr();
-		PSSystem::validateSceneMgr(mgr);
-		mgr->checkScene();
-		seq = PSSystem::getSeqData(mgr, BGM_MainTheme);
-		seq->startSeq();
+		returnToMainTitle(ebi::TMainTitleMgr::Select_Bonus);
 	}
 }
 
@@ -571,16 +554,14 @@ void Section::doUpdateOption()
 	if (mOptionMgr.isFinish()) {
 #if defined(VERSION_PAL)
 		sys->mPlayData->mFlags.unset(Game::CommonSaveData::Mgr::SaveFlag_Language);
-		if (mLanguageID != sys->mPlayData->mLanguage) {
+		u8 lang = sys->mPlayData->mLanguage;
+		if (mLanguageID != lang) {
 			mState = State_ReloadMessages;
 			gPikmin2AramMgr->freeAll();
 			sys->dvdLoadUseCallBack(&mThreadCommand, mReloadMessageCallback);
 		} else {
 #endif
-			mState = State_MainTitle;
-			int idk;
-			mMainTitleMgr.startMenuSet(idk, ebi::TMainTitleMgr::Select_Options);
-			PSSystemGetSeqCheck(BGM_MainTheme)->startSeq();
+			returnToMainTitle(ebi::TMainTitleMgr::Select_Options);
 #if defined(VERSION_PAL)
 		}
 #endif
@@ -654,10 +635,7 @@ bool Section::doUpdate()
 			mIsMainActive                = false;
 			GameFlow::mActiveSectionFlag = GameFlow::SN_MainTitle;
 #else
-			mState = State_MainTitle;
-			int idk;
-			mMainTitleMgr.startMenuSet(idk, ebi::TMainTitleMgr::Select_Options);
-			PSSystemGetSeqCheck(BGM_MainTheme)->startSeq();
+			returnToMainTitle(ebi::TMainTitleMgr::Select_Options);
 #endif
 		}
 		break;
@@ -666,9 +644,9 @@ bool Section::doUpdate()
 	BaseHIOSection::doUpdate();
 	particle2dMgr->update();
 #if defined(VERSION_PAL)
-	// ??
-	if (mController2->getButtonDown() & Controller::PRESS_ANY) {
-		if (mController2->getButtonDown() & sBuildInfoButtons[mDebugKeyIndex]) {
+	// build info button sequence??
+	if (mController2->isButtonDown(Controller::PRESS_ANY)) {
+		if (mController2->isButtonDown(sBuildInfoButtons[mDebugKeyIndex])) {
 			if (++mDebugKeyIndex == 10) {
 				mShowBuildInfo ^= 1;
 			}

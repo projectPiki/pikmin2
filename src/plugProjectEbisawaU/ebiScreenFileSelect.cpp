@@ -599,8 +599,8 @@ bool TMainScreen::doUpdateStateWait()
 	for (int i = 0; i < 3; i++) {
 		mCursorSelPos[i]  = E2DPane_getGlbCenter(mPaneSel[0][i]);
 		mCursorSelPosM[i] = E2DPane_getGlbCenter(mPaneSel[1][i]);
-		mEfxFileSel[i]->setGlobalScale(mPaneND[i]->mScale.x / 1.2f);
-		mEfxFileSelM[i]->setGlobalScale(mPaneND[i]->mScale.x / 1.2f);
+		mEfxFileSel[i]->setGlobalScale(mPaneND[i]->mScaleX / 1.2f);
+		mEfxFileSelM[i]->setGlobalScale(mPaneND[i]->mScaleX / 1.2f);
 	}
 	if (mIsCardSeActive) {
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_ACCESS, 0);

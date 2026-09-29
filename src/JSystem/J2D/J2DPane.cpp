@@ -29,14 +29,16 @@ J2DPane::J2DPane()
  */
 void J2DPane::initiate()
 {
-	mAnimPaneIndex = -1;
-	mAngleX        = 0.0f;
-	mAngleY        = 0.0f;
-	mAngleZ        = 0.0f;
-	mAnchorPoint.set(0.0f, 0.0f);
+	mAnimPaneIndex     = -1;
+	mAngleX            = 0.0f;
+	mAngleY            = 0.0f;
+	mAngleZ            = 0.0f;
+	mRotateOffsetX     = 0.0f;
+	mRotateOffsetY     = 0.0f;
 	mBasePosition      = J2DPOS_TopLeft;
 	mRotationAxis      = J2DROTATE_Z;
-	mScale             = JGeometry::TVec2f(1.0f);
+	mScaleX            = 1.0f;
+	mScaleY            = 1.0f;
 	mCullMode          = GX_CULL_NONE;
 	mAlpha             = 255;
 	mIsInfluencedAlpha = true;
@@ -181,8 +183,8 @@ void J2DPane::makePaneStream(J2DPane* parent, JSURandomInputStream* input)
 	mColorAlpha    = 255;
 	mIsConnected   = 0;
 	mAnimPaneIndex = -1;
-	mScale.x       = 1.0f;
-	mScale.y       = 1.0f;
+	mScaleX        = 1.0f;
+	mScaleY        = 1.0f;
 	mMessageID     = 0;
 	changeUseTrans(parent);
 	calcMtx();
@@ -207,11 +209,12 @@ void J2DPane::changeUseTrans(J2DPane* parent)
 		v1.y = mBounds.getHeight();
 	}
 
-	mOffset.x = mBounds.i.x + v1.x;
-	mOffset.y = mBounds.i.y + v1.y;
+	mTranslateX = mBounds.i.x + v1.x;
+	mTranslateY = mBounds.i.y + v1.y;
 
-	mAnchorPoint = v1;
-	v1.set(-mOffset.x, -mOffset.y);
+	mRotateOffsetX = v1.x;
+	mRotateOffsetY = v1.y;
+	v1.set(-mTranslateX, -mTranslateY);
 	mBounds.addPos(v1);
 
 	if (parent) {
@@ -221,15 +224,15 @@ void J2DPane::changeUseTrans(J2DPane* parent)
 		v1.set(parent->getWidth(), parent->getHeight());
 
 		if (parentBasePos % 3 == 1) {
-			mOffset.x -= width / 2;
+			mTranslateX -= width / 2;
 		} else if (parentBasePos % 3 == 2) {
-			mOffset.x -= width;
+			mTranslateX -= width;
 		}
 
 		if (parentBasePos / 3 == 1) {
-			mOffset.y -= height / 2;
+			mTranslateY -= height / 2;
 		} else if (parentBasePos / 3 == 2) {
-			mOffset.y -= height;
+			mTranslateY -= height;
 		}
 	}
 }
@@ -341,7 +344,7 @@ void J2DPane::draw(f32 x, f32 y, const J2DGrafContext* grafContext, bool isOrtho
 	if (mBounds.isValid()) {
 		mGlobalBounds = mBounds;
 
-		mGlobalBounds.addPos(mOffset.x, mOffset.y);
+		mGlobalBounds.addPos(mTranslateX, mTranslateY);
 
 		if (unkBool) {
 			mClipRect = mBounds;
@@ -367,7 +370,7 @@ void J2DPane::draw(f32 x, f32 y, const J2DGrafContext* grafContext, bool isOrtho
 			}
 		} else {
 			mGlobalBounds.addPos(x, y);
-			makeMatrix(mOffset.x + x, mOffset.y + y);
+			makeMatrix(mTranslateX + x, mTranslateY + y);
 			PSMTXCopy(mPositionMtx, mGlobalMtx);
 			mClipRect   = mGlobalBounds;
 			mColorAlpha = mAlpha;
@@ -404,38 +407,38 @@ void J2DPane::place(const JGeometry::TBox2f& box)
 	JGeometry::TBox2f tmpBox;
 
 	if (mBounds.i.x == 0.0f) {
-		tmpBox.i.x = 0.0f;
-		tmpBox.f.x = box.getWidth();
-		mOffset.x  = box.i.x;
+		tmpBox.i.x  = 0.0f;
+		tmpBox.f.x  = box.getWidth();
+		mTranslateX = box.i.x;
 	} else if (mBounds.f.x == 0.0f) {
-		tmpBox.i.x = -box.getWidth();
-		tmpBox.f.x = 0.0f;
-		mOffset.x  = box.f.x;
+		tmpBox.i.x  = -box.getWidth();
+		tmpBox.f.x  = 0.0f;
+		mTranslateX = box.f.x;
 	} else {
-		tmpBox.i.x = -(box.getWidth() / 2);
-		tmpBox.f.x = box.getWidth() / 2;
-		mOffset.x  = (box.i.x + box.f.x) / 2;
+		tmpBox.i.x  = -(box.getWidth() / 2);
+		tmpBox.f.x  = box.getWidth() / 2;
+		mTranslateX = (box.i.x + box.f.x) / 2;
 	}
 
 	if (mBounds.i.y == 0.0f) {
-		tmpBox.i.y = 0.0f;
-		tmpBox.f.y = box.getHeight();
-		mOffset.y  = box.i.y;
+		tmpBox.i.y  = 0.0f;
+		tmpBox.f.y  = box.getHeight();
+		mTranslateY = box.i.y;
 	} else if (mBounds.f.y == 0.0f) {
-		tmpBox.i.y = -box.getHeight();
-		tmpBox.f.y = 0.0f;
-		mOffset.y  = box.f.y;
+		tmpBox.i.y  = -box.getHeight();
+		tmpBox.f.y  = 0.0f;
+		mTranslateY = box.f.y;
 	} else {
-		tmpBox.i.y = -(box.getHeight() / 2);
-		tmpBox.f.y = box.getHeight() / 2;
-		mOffset.y  = (box.i.y + box.f.y) / 2;
+		tmpBox.i.y  = -(box.getHeight() / 2);
+		tmpBox.f.y  = box.getHeight() / 2;
+		mTranslateY = (box.i.y + box.f.y) / 2;
 	}
 
 	f32 xOff = tmpBox.i.x - mBounds.i.x;
 	f32 yOff = tmpBox.i.y - mBounds.i.y;
 	for (J2DPane* child = getFirstChildPane(); child; child = child->getNextChildPane()) {
-		child->mOffset.x += xOff;
-		child->mOffset.y += yOff;
+		child->mTranslateX += xOff;
+		child->mTranslateY += yOff;
 		if (xOff != 0.0f || yOff != 0.0f) {
 			child->calcMtx();
 		}
@@ -444,8 +447,8 @@ void J2DPane::place(const JGeometry::TBox2f& box)
 
 	J2DPane* parent = getParentPane();
 	if (parent) {
-		mOffset.x += parent->mBounds.i.x;
-		mOffset.y += parent->mBounds.i.y;
+		mTranslateX += parent->mBounds.i.x;
+		mTranslateY += parent->mBounds.i.y;
 	}
 	calcMtx();
 }
@@ -467,7 +470,8 @@ void J2DPane::move(f32 x, f32 y)
  */
 void J2DPane::add(f32 x, f32 y)
 {
-	mOffset.add(JGeometry::TVec2f(x, y));
+	mTranslateX += x;
+	mTranslateY += y;
 	calcMtx();
 }
 
@@ -479,7 +483,7 @@ void J2DPane::resize(f32 x, f32 y)
 {
 	JGeometry::TBox2<f32> box = mBounds;
 
-	box.addPos(mOffset.x, mOffset.y);
+	box.addPos(mTranslateX, mTranslateY);
 
 	const J2DPane* parent = getParentPane();
 	if (parent) {
@@ -498,7 +502,7 @@ void J2DPane::resize(f32 x, f32 y)
 JGeometry::TBox2f* J2DPane::getBounds()
 {
 	static_mBounds = mBounds;
-	static_mBounds.addPos(mOffset.x, mOffset.y);
+	static_mBounds.addPos(mTranslateX, mTranslateY);
 	J2DPane* parent = getParentPane();
 	if (parent != nullptr) {
 		static_mBounds.addPos(-parent->mBounds.i.x, -parent->mBounds.i.y);
@@ -512,8 +516,8 @@ JGeometry::TBox2f* J2DPane::getBounds()
  */
 void J2DPane::rotate(f32 anchorX, f32 anchorY, J2DRotateAxis axis, f32 angle)
 {
-	mAnchorPoint.x = anchorX;
-	mAnchorPoint.y = anchorY;
+	mRotateOffsetX = anchorX;
+	mRotateOffsetY = anchorY;
 	mRotationAxis  = (u8)axis;
 	rotate(angle);
 }
@@ -656,8 +660,8 @@ bool J2DPane::isUsed(const ResFONT* resource)
  */
 void J2DPane::makeMatrix(f32 x, f32 y, f32 xAngOff, f32 yAngOff)
 {
-	f32 tmpX = mAnchorPoint.x - xAngOff;
-	f32 tmpY = mAnchorPoint.y - yAngOff;
+	f32 tmpX = mRotateOffsetX - xAngOff;
+	f32 tmpY = mRotateOffsetY - yAngOff;
 	Mtx rotX, rotY, rotZ, rotMtx, mtx, tmp;
 	PSMTXTrans(mtx, -tmpX, -tmpY, 0);
 	PSMTXRotRad(rotX, J2DROTATE_X, MTXDegToRad(mAngleX));
@@ -665,7 +669,7 @@ void J2DPane::makeMatrix(f32 x, f32 y, f32 xAngOff, f32 yAngOff)
 	PSMTXRotRad(rotZ, J2DROTATE_Z, MTXDegToRad(-mAngleZ));
 	PSMTXConcat(rotZ, rotX, tmp);
 	PSMTXConcat(rotY, tmp, rotMtx);
-	PSMTXScaleApply(mtx, mPositionMtx, mScale.x, mScale.y, 1.0f);
+	PSMTXScaleApply(mtx, mPositionMtx, mScaleX, mScaleY, 1.0f);
 	PSMTXConcat(rotMtx, mPositionMtx, tmp);
 	PSMTXTransApply(tmp, mPositionMtx, x + tmpX, y + tmpY, 0.0f);
 }
@@ -690,20 +694,20 @@ void J2DPane::setBasePosition(J2DBasePosition base)
 {
 	mBasePosition  = base;
 	mRotationAxis  = J2DROTATE_Z; // 0x7A
-	mAnchorPoint.x = 0.0f;
+	mRotateOffsetX = 0.0f;
 	if (base % 3 == 1) {
-		mAnchorPoint.x = getWidth() / 2;
+		mRotateOffsetX = getWidth() / 2;
 	} else {
 		if (base % 3 == 2) {
-			mAnchorPoint.x = getWidth();
+			mRotateOffsetX = getWidth();
 		}
 	}
-	mAnchorPoint.y = 0.0f;
+	mRotateOffsetY = 0.0f;
 	if (base / 3 == 1) {
-		mAnchorPoint.y = getHeight() / 2;
+		mRotateOffsetY = getHeight() / 2;
 	} else {
 		if (base / 3 == 2) {
-			mAnchorPoint.y = getHeight();
+			mRotateOffsetY = getHeight();
 		}
 	}
 	calcMtx();
@@ -833,34 +837,34 @@ void J2DPane::makePaneExStream(J2DPane* parent, JSURandomInputStream* input)
 	mTag           = data.mTag;
 	mMessageID     = data.mMessageID;
 
-	mScale.x = data.mWidthScale;
-	mScale.y = data.mHeightScale;
+	mScaleX = data.mWidthScale;
+	mScaleY = data.mHeightScale;
 
 	mAngleX = data.mAngleX;
 	mAngleY = data.mAngleY;
 	mAngleZ = data.mAngleZ;
 
-	mOffset.x     = data.mOffsetX;
-	mOffset.y     = data.mOffsetY;
+	mTranslateX   = data.mOffsetX;
+	mTranslateY   = data.mOffsetY;
 	mRotationAxis = J2DROTATE_Z;
 
 	if (data.mBasePosition % 3 == 0) {
-		mAnchorPoint.x = 0;
+		mRotateOffsetX = 0;
 	} else if (data.mBasePosition % 3 == 1) {
-		mAnchorPoint.x = data.mWidth / 2;
+		mRotateOffsetX = data.mWidth / 2;
 	} else {
-		mAnchorPoint.x = data.mWidth;
+		mRotateOffsetX = data.mWidth;
 	}
 
 	if (data.mBasePosition / 3 == 0) {
-		mAnchorPoint.y = 0;
+		mRotateOffsetY = 0;
 	} else if (data.mBasePosition / 3 == 1) {
-		mAnchorPoint.y = data.mHeight / 2;
+		mRotateOffsetY = data.mHeight / 2;
 	} else {
-		mAnchorPoint.y = data.mHeight;
+		mRotateOffsetY = data.mHeight;
 	}
 
-	mBounds.set(-mAnchorPoint.x, -mAnchorPoint.y, data.mWidth - mAnchorPoint.x, data.mHeight - mAnchorPoint.y);
+	mBounds.set(-mRotateOffsetX, -mRotateOffsetY, data.mWidth - mRotateOffsetX, data.mHeight - mRotateOffsetY);
 	mBasePosition = data.mBasePosition;
 
 	mAlpha             = 255;
@@ -1078,13 +1082,13 @@ void J2DPane::updateTransform(const J2DAnmTransform* transform)
 	if (mAnimPaneIndex != 0xFFFF && transform) {
 		J3DTransformInfo info;
 		transform->getTransform(mAnimPaneIndex, &info);
-		mScale.x  = info.mScale.x;
-		mScale.y  = info.mScale.z;
-		mAngleX   = (u16)info.mRotation.x * 360.0f / 65535.0f;
-		mAngleY   = (u16)info.mRotation.z * 360.0f / 65535.0f;
-		mAngleZ   = (u16)info.mRotation.y * 360.0f / 65535.0f;
-		mOffset.x = info.mTranslation.x;
-		mOffset.y = info.mTranslation.z;
+		mScaleX     = info.mScale.x;
+		mScaleY     = info.mScale.z;
+		mAngleX     = (u16)info.mRotation.x * 360.0f / 65535.0f;
+		mAngleY     = (u16)info.mRotation.z * 360.0f / 65535.0f;
+		mAngleZ     = (u16)info.mRotation.y * 360.0f / 65535.0f;
+		mTranslateX = info.mTranslation.x;
+		mTranslateY = info.mTranslation.z;
 		calcMtx();
 	}
 }
