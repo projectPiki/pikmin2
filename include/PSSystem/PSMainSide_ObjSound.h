@@ -558,10 +558,11 @@ struct Tsuyukusa : public CreatureObj {
 } // namespace PSM
 
 namespace PSM {
-inline void assertIsBoss(PSM::EnemyBase* soundObj)
+inline PSM::EnemyBase* assertIsBoss(PSM::EnemyBase* soundObj)
 {
 	bool isBoss = soundObj->isBoss();
 	P2ASSERTLINE(1108, isBoss);
+	return soundObj;
 }
 
 inline void checkMidBoss(PSM::EnemyBase* soundObj)

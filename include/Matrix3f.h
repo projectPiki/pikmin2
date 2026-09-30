@@ -61,7 +61,7 @@ struct Matrix3f {
 	inline f32 calcJacobi(int row, int col)
 	{
 		f32 x = (2.0f * mMatrix[row][col]);
-		f32 y = (mMatrix[col][col] - mMatrix[row][row]) / x;
+		f32 y = (getAt(col, col) - getAt(row, row)) / x;
 		return y;
 	}
 
@@ -93,7 +93,11 @@ struct Matrix3f {
 	 */
 	inline Vector3f getRow(int i) { return Vector3f(mMatrix[i][0], mMatrix[i][1], mMatrix[i][2]); }
 
-	inline f32& getAt(int row, int col) { return mMatrix[row][col]; }
+	inline f32& getAt(int row, int col)
+	{
+		f32* values = mMatrix[row];
+		return values[col];
+	}
 
 	/**
 	 * @brief Multiplies this matrix with another matrix.

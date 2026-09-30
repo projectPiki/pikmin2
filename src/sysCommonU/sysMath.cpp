@@ -328,12 +328,10 @@ void Matrix3f::calcEigenMatrix(Matrix3f& diagMtx, Matrix3f& eigenMtx)
 				f32 sinTheta = tangentTheta * cosTheta;
 
 				jacobiMtx.makeIdentity();
-				f32* rowValues = rotation.mMatrix[row];
-				f32* colValues = rotation.mMatrix[col];
-				rowValues[row] = cosTheta;
-				colValues[col] = cosTheta;
-				rowValues[col] = sinTheta;
-				colValues[row] = -sinTheta;
+				rotation.getAt(row, row) = cosTheta;
+				rotation.getAt(col, col) = cosTheta;
+				rotation.getAt(row, col) = sinTheta;
+				rotation.getAt(col, row) = -sinTheta;
 
 				intermediateMtx = eigenMtx * jacobiMtx;
 				eigenMtx        = intermediateMtx;
