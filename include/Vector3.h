@@ -367,11 +367,10 @@ inline T Vector3<T>::dot(const Vector3& other) const
 template <typename T>
 inline Vector3<T> Vector3<T>::cross(const Vector3& other)
 {
-	Vector3 outVec;
-	outVec.x = y * other.z - z * other.y;
-	outVec.y = z * other.x - x * other.z;
-	outVec.z = x * other.y - y * other.x;
-	return outVec;
+	T dx = y * other.z - z * other.y;
+	T dy = z * other.x - x * other.z;
+	T dz = x * other.y - y * other.x;
+	return Vector3(dx, dy, dz);
 }
 
 template <typename T>

@@ -614,20 +614,21 @@ void TChallengeResultCounter::start()
 		_24[i] = 0;
 	}
 
+	int value;
 	int digits = 1;
-	for (int i = *mDisplayValue; i >= 10; i /= 10) {
+	for (value = *mDisplayValue; value >= 10; value /= 10) {
 		digits++;
 	}
 	mDigits = digits;
 
-	int test = *mDisplayValue;
+	value = *mDisplayValue;
 	for (int i = digits; i > 1; i--) {
 		int calc  = (int)pow(10.0f, f64(i - 1));
-		int test2 = test / calc;
-		test -= test2 * calc;
+		int test2 = value / calc;
+		value -= test2 * calc;
 		_24[i - 1] = test2;
 	}
-	_24[0] = test;
+	_24[0] = value;
 	// UNUSED FUNCTION
 }
 
@@ -3219,121 +3220,6 @@ void TChallengeResult::startDemo()
 		}
 	}
 	mCounter = 0;
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stfd     f31, 0x40(r1)
-	psq_st   f31, 72(r1), 0, qr0
-	stmw     r24, 0x20(r1)
-	mr       r27, r3
-	lfs      f0, 0x1f0(r3)
-	stfs     f0, mDemoSpeedUpRate__Q28Morimura16TChallengeResult@sda21(r13)
-	lwz      r0, 0x1c8(r3)
-	cmpwi    r0, 0
-	bne      lbl_803994AC
-	li       r0, 1
-	mr       r29, r27
-	stw      r0, 0x1c8(r27)
-	li       r28, 0
-
-lbl_80399394:
-	lwz      r30, 0x17c(r29)
-	lwz      r0, 8(r30)
-	cmpwi    r0, 1
-	beq      lbl_8039949C
-	lwz      r3, 0(r30)
-	li       r4, 0
-	li       r0, 1
-	lwz      r3, 0(r3)
-	mr       r5, r4
-	mr       r6, r4
-	stw      r3, 4(r30)
-	stw      r4, 0xc(r30)
-	stw      r4, 0x20(r30)
-	stw      r4, 0x1c(r30)
-	stw      r0, 8(r30)
-	b        lbl_803993E4
-
-lbl_803993D4:
-	lwz      r3, 0x24(r30)
-	addi     r5, r5, 1
-	stwx     r4, r3, r6
-	addi     r6, r6, 4
-
-lbl_803993E4:
-	lwz      r0, 0x14(r30)
-	cmpw     r5, r0
-	blt      lbl_803993D4
-	lwz      r5, 0(r30)
-	lis      r3, 0x66666667@ha
-	addi     r4, r3, 0x66666667@l
-	li       r31, 1
-	lwz      r0, 0(r5)
-	b        lbl_8039941C
-
-lbl_80399408:
-	mulhw    r0, r4, r0
-	addi     r31, r31, 1
-	srawi    r0, r0, 2
-	srwi     r3, r0, 0x1f
-	add      r0, r0, r3
-
-lbl_8039941C:
-	cmpwi    r0, 0xa
-	bge      lbl_80399408
-	stw      r31, 0x10(r30)
-	slwi     r25, r31, 2
-	lfd      f31, lbl_8051F0D0@sda21(r2)
-	lis      r26, 0x4330
-	lwz      r3, 0(r30)
-	lwz      r24, 0(r3)
-	b        lbl_8039948C
-
-lbl_80399440:
-	addi     r0, r31, -1
-	stw      r26, 8(r1)
-	xoris    r0, r0, 0x8000
-	lfd      f1, lbl_8051F0D8@sda21(r2)
-	stw      r0, 0xc(r1)
-	lfd      f0, 8(r1)
-	fsub     f2, f0, f31
-	bl       pow
-	fctiwz   f0, f1
-	addi     r0, r25, -4
-	lwz      r3, 0x24(r30)
-	addi     r25, r25, -4
-	addi     r31, r31, -1
-	stfd     f0, 0x10(r1)
-	lwz      r4, 0x14(r1)
-	divw     r5, r24, r4
-	mullw    r4, r5, r4
-	stwx     r5, r3, r0
-	subf     r24, r4, r24
-
-lbl_8039948C:
-	cmpwi    r31, 1
-	bgt      lbl_80399440
-	lwz      r3, 0x24(r30)
-	stw      r24, 0(r3)
-
-lbl_8039949C:
-	addi     r28, r28, 1
-	addi     r29, r29, 4
-	cmpwi    r28, 4
-	blt      lbl_80399394
-
-lbl_803994AC:
-	li       r0, 0
-	stw      r0, 0x1d0(r27)
-	psq_l    f31, 72(r1), 0, qr0
-	lfd      f31, 0x40(r1)
-	lmw      r24, 0x20(r1)
-	lwz      r0, 0x54(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
 }
 
 /**

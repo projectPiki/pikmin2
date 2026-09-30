@@ -242,7 +242,7 @@ struct J3DMaterialTable {
 			u16 matID = anm->getUpdateMaterialID(i);
 			if (matID != 0xffff) {
 				J3DMaterial* mat       = getMaterialNodePointer(matID);
-				u32 texmtxid           = anm->mUpdateTexMtxID[i];
+				u8 texmtxid            = anm->getUpdateTexMtxID(i);
 				J3DMaterialAnm* matanm = mat->getMaterialAnm();
 
 				if (!matanm) {
