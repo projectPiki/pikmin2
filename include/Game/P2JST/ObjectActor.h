@@ -68,6 +68,21 @@ struct ObjectActor : public JStage::TActor, public ObjectBase {
 	virtual void mountArchive();                           // _C4
 	virtual void parseUserData_(u32, const void*);         // _C8 (weak)
 
+	// this level of inline depth seems required for JSTObjectActor, but unsure where they should go
+	// there's no evidence from TP or anything that they should be in JStudio or JGadget, but feels weird for the
+	// P2 devs to have written them like this otherwise :c
+	template <typename Iterator>
+	static inline int getDistance(const Iterator& first, const Iterator& last)
+	{
+		return last - first;
+	}
+
+	template <typename Iterator>
+	static inline int getIndex(const Iterator& begin, const Iterator& it)
+	{
+		return getDistance(begin, it);
+	}
+
 	// _00 = VTABLE (JStage::TActor)
 	// _04 = VTABLE2 (ObjectBase)
 	J3DModelData* mModelData;       // _20

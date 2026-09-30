@@ -79,6 +79,19 @@ void TChallengeResultScreen::updateBckPane()
 }
 
 /**
+ * @note Address: N/A
+ * @note Size: 0x50
+ */
+TChallengeResultDemoScreen::TChallengeResultDemoScreen(JKRArchive* arc, int anims)
+    : TScreenBase(arc, anims)
+{
+	mAnimPane1 = nullptr;
+	mAnimPane2 = nullptr;
+	mAnimPane3 = nullptr;
+	mIsActive  = false;
+}
+
+/**
  * @note Address: 0x803934D4
  * @note Size: 0xF8
  */
@@ -148,15 +161,15 @@ void TChallengeResultDemoScreen::setComplete(bool isComplete)
 {
 	mIsActive                   = false;
 	TChallengeResult::mComplete = isComplete;
-	const u64 tags[3]           = { 'Tribon00', 'Tribon01', 'Tribon02' };
+	u64 msgID                   = '4871_00'; // "Complete!"
+	if (isComplete) {
+		msgID = '4872_00'; // "Perfect!"
+	}
+	const u64 tags[3] = { 'Tribon00', 'Tribon01', 'Tribon02' };
 	for (int i = 0; i < 3; i++) {
 		J2DPane* pane = mScreenObj->search(tags[i]);
 		P2ASSERTLINE(224, pane);
-		if (isComplete) {
-			pane->setMsgID('4872_00'); // "Perfect!"
-		} else {
-			pane->setMsgID('4871_00'); // "Complete!"
-		}
+		pane->setMsgID(msgID);
 	}
 }
 
@@ -171,6 +184,21 @@ void TChallengeResultDemoScreen::reset()
 	}
 	update();
 	mIsActive = false;
+}
+
+/**
+ * @note Address: N/A
+ * @note Size: 0x28
+ */
+TMovePane::TMovePane()
+{
+	mPane      = nullptr;
+	mStickPane = nullptr;
+	mAngle     = 0.0f;
+	mState     = 0;
+	mCounter   = 0;
+	_44        = 0;
+	_48        = 0;
 }
 
 /**
@@ -598,6 +626,23 @@ void TCounterRV::reset()
 
 /**
  * @note Address: N/A
+ * @note Size: 0x60
+ */
+TChallengeResultCounter::TChallengeResultCounter(u32* val, int a1, int a2)
+{
+	mDisplayValue = val;
+	mCurrentValue = *val;
+	mState        = 0;
+	_0C           = 0;
+	_1C           = 0;
+	_20           = 0;
+	_14           = a1;
+	_18           = a2;
+	_24           = new int[a1];
+}
+
+/**
+ * @note Address: N/A
  * @note Size: 0x138
  */
 void TChallengeResultCounter::start()
@@ -856,9 +901,10 @@ TChallengeResult::~TChallengeResult()
  * @note Address: N/A
  * @note Size: 0x44
  */
-void TChallengeResult::setDebugHeapParent(JKRHeap*)
+void TChallengeResult::setDebugHeapParent(JKRHeap* heap)
 {
-	// UNUSED FUNCTION
+	mDebugHeapParent = heap;
+	P2ASSERTLINE(784, mDebugHeapParent); // line number is a guess
 }
 
 /**

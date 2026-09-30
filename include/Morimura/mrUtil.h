@@ -156,16 +156,7 @@ struct TGXSetPane : public J2DPictureEx {
 };
 
 struct TMovePane {
-	TMovePane()
-	{
-		mPane      = nullptr;
-		mStickPane = nullptr;
-		mAngle     = 0.0f;
-		mState     = 0;
-		mCounter   = 0;
-		_44        = 0;
-		_48        = 0;
-	}
+	TMovePane();
 
 	void setPane(J2DPane*);
 	void update();

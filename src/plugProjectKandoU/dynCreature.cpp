@@ -49,23 +49,29 @@ DynParticle* DynParticle::getAt(int idx)
 	return particle;
 }
 
-// /**
-//  * @note Address: N/A
-//  * @note Size: 0x58
-//  */
-// void DynParticle::release()
-// {
-// 	// UNUSED FUNCTION
-// }
+/**
+ * @note Address: N/A
+ * @note Size: 0x58
+ */
+void DynParticle::release()
+{
+	DynParticle* particle = this;
+	while (particle) {
+		dynParticleMgr->kill(particle);
+		DynParticle* nextParticle = particle->mNext;
+		particle->mNext           = nullptr;
+		particle                  = nextParticle;
+	}
+}
 
-// /**
-//  * @note Address: N/A
-//  * @note Size: 0x50
-//  */
-// void DynParticle::updateGlobal(Matrixf&)
-// {
-// 	// UNUSED FUNCTION
-// }
+/**
+ * @note Address: N/A
+ * @note Size: 0x50
+ */
+void DynParticle::updateGlobal(Matrixf& mtx)
+{
+	mPosition = mtx.mtxMult(mRotation);
+}
 
 /**
  * @note Address: 0x801A80E0
@@ -113,14 +119,8 @@ bool DynCreature::createParticles(int count)
  */
 void DynCreature::releaseParticles()
 {
-	DynParticle* particle = mDynParticle;
-	if (particle) {
-		while (particle) {
-			dynParticleMgr->kill(particle);
-			DynParticle* nextParticle = particle->mNext;
-			particle->mNext           = nullptr;
-			particle                  = nextParticle;
-		}
+	if (mDynParticle) {
+		mDynParticle->release();
 		mDynParticle = nullptr;
 	}
 }
@@ -132,7 +132,7 @@ void DynCreature::releaseParticles()
 void DynCreature::updateParticlePositions()
 {
 	for (DynParticle* particle = mDynParticle; particle; particle = particle->mNext) {
-		particle->mPosition = mBaseTrMatrix.mtxMult(particle->mRotation);
+		particle->updateGlobal(mBaseTrMatrix);
 	}
 }
 
@@ -156,9 +156,10 @@ void DynCreature::computeForces(f32 friction)
 			crossVec.cross(crossVec, sep);
 			crossVec = crossVec + mRigid.mConfigs[0].mVelocity;
 
-			Vector3f sep2 = particle->mCollisionNormal * crossVec.dot(particle->mCollisionNormal);
-			f32 dotProd2  = mRigid.mConfigs[0].mForce.dot(particle->mCollisionNormal);
-			sep2          = crossVec - sep2;
+			Vector3f& normal = particle->mCollisionNormal;
+			f32 dotProd2     = mRigid.mConfigs[0].mForce.dot(particle->mCollisionNormal);
+			Vector3f sep2    = normal * crossVec.dot(normal);
+			sep2             = crossVec - sep2;
 			sep2.normalise();
 
 			mRigid.mConfigs[0].mForce += particle->mCollisionNormal * dotProd2;
@@ -169,11 +170,10 @@ void DynCreature::computeForces(f32 friction)
 				sep2 = sep2 * DynamicsParms::mInstance->mStaParm();
 				mRigid.mConfigs[0].mForce -= sep2;
 			} else {
-				Vector3f sep3 = particle->mCollisionNormal * crossVec.dot(particle->mCollisionNormal);
-				sep3          = crossVec - sep3;
-				sep3.normalise();
+				sep2 = crossVec - normal * crossVec.dot(normal);
+				sep2.normalise();
 				f32 fixedFriction = DynamicsParms::mInstance->mFixedFrictionValue();
-				mRigid.mConfigs[0].mForce += sep3 * -fixedFriction;
+				mRigid.mConfigs[0].mForce += sep2 * -fixedFriction;
 			}
 		}
 		return;
@@ -229,376 +229,6 @@ void DynCreature::computeForces(f32 friction)
 			mRigid.mConfigs[0].mTorque = vec3 + sep.cross(coeffVec);
 		}
 	}
-
-	/*
-	stwu     r1, -0x20(r1)
-	lwz      r6, mInstance__13DynamicsParms@sda21(r13)
-	lbz      r0, 0x3c(r6)
-	cmplwi   r0, 0
-	beq      lbl_801A85B0
-	lwz      r5, 0x178(r3)
-	b        lbl_801A85A4
-
-lbl_801A8300:
-	lbz      r0, 0x2c(r5)
-	cmplwi   r0, 0
-	beq      lbl_801A85A0
-	lfs      f1, 0x14(r5)
-	lfs      f0, 0x308(r3)
-	lfs      f5, 0x1d4(r3)
-	fsubs    f9, f1, f0
-	lfs      f3, 0xc(r5)
-	lfs      f1, 0x300(r3)
-	lfs      f2, 0x10(r5)
-	lfs      f0, 0x304(r3)
-	fsubs    f6, f3, f1
-	fmuls    f1, f5, f9
-	lfs      f4, 0x1dc(r3)
-	fsubs    f8, f2, f0
-	lfs      f7, 0x1d8(r3)
-	lfs      f0, 0x1c0(r3)
-	fmsubs   f3, f4, f6, f1
-	fmuls    f2, f4, f8
-	lfs      f1, 0x1bc(r3)
-	fmuls    f4, f7, f6
-	lfs      f6, 0x24(r5)
-	fadds    f0, f3, f0
-	fmsubs   f3, f7, f9, f2
-	fmsubs   f5, f5, f8, f4
-	lfs      f4, 0x1c4(r3)
-	fmuls    f2, f0, f6
-	lfs      f7, 0x20(r5)
-	fadds    f8, f3, f1
-	fadds    f1, f5, f4
-	lfs      f5, 0x28(r5)
-	fmadds   f2, f8, f7, f2
-	lfs      f3, 0x1cc(r3)
-	lfs      f4, 0x1c8(r3)
-	fmuls    f3, f3, f6
-	lfs      f12, 0x1d0(r3)
-	fmadds   f13, f1, f5, f2
-	lfs      f9, lbl_80519238@sda21(r2)
-	fmadds   f11, f4, f7, f3
-	fmuls    f2, f6, f13
-	fmuls    f10, f7, f13
-	fmuls    f4, f5, f13
-	fsubs    f3, f0, f2
-	fsubs    f2, f8, f10
-	fsubs    f4, f1, f4
-	fmuls    f10, f3, f3
-	fmadds   f12, f12, f5, f11
-	fmuls    f11, f4, f4
-	fmadds   f10, f2, f2, f10
-	fadds    f10, f11, f10
-	fcmpo    cr0, f10, f9
-	ble      lbl_801A83E0
-	ble      lbl_801A83E4
-	frsqrte  f9, f10
-	fmuls    f10, f9, f10
-	b        lbl_801A83E4
-
-lbl_801A83E0:
-	fmr      f10, f9
-
-lbl_801A83E4:
-	lfs      f9, lbl_80519238@sda21(r2)
-	fcmpo    cr0, f10, f9
-	ble      lbl_801A8404
-	lfs      f9, lbl_8051923C@sda21(r2)
-	fdivs    f9, f9, f10
-	fmuls    f2, f2, f9
-	fmuls    f3, f3, f9
-	fmuls    f4, f4, f9
-
-lbl_801A8404:
-	fmuls    f10, f7, f12
-	lfs      f11, 0x1c8(r3)
-	fmuls    f7, f3, f0
-	fmuls    f9, f6, f12
-	fadds    f10, f11, f10
-	fmadds   f6, f2, f8, f7
-	fmuls    f7, f5, f12
-	stfs     f10, 0x1c8(r3)
-	fmadds   f5, f4, f1, f6
-	lfs      f6, 0x1cc(r3)
-	fadds    f6, f6, f9
-	fabs     f5, f5
-	stfs     f6, 0x1cc(r3)
-	frsp     f5, f5
-	lfs      f6, 0x1d0(r3)
-	fadds    f6, f6, f7
-	stfs     f6, 0x1d0(r3)
-	lwz      r4, mInstance__13DynamicsParms@sda21(r13)
-	lfs      f6, 0x80(r4)
-	fcmpo    cr0, f5, f6
-	bge      lbl_801A84E4
-	fmuls    f1, f3, f3
-	lfs      f0, lbl_80519238@sda21(r2)
-	fmuls    f5, f4, f4
-	fmadds   f1, f2, f2, f1
-	fadds    f1, f5, f1
-	fcmpo    cr0, f1, f0
-	ble      lbl_801A8484
-	ble      lbl_801A8488
-	frsqrte  f0, f1
-	fmuls    f1, f0, f1
-	b        lbl_801A8488
-
-lbl_801A8484:
-	fmr      f1, f0
-
-lbl_801A8488:
-	lfs      f0, lbl_80519238@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_801A84A8
-	lfs      f0, lbl_8051923C@sda21(r2)
-	fdivs    f0, f0, f1
-	fmuls    f2, f2, f0
-	fmuls    f3, f3, f0
-	fmuls    f4, f4, f0
-
-lbl_801A84A8:
-	lwz      r4, mInstance__13DynamicsParms@sda21(r13)
-	lfs      f0, 0x1c8(r3)
-	lfs      f1, 0x58(r4)
-	fmuls    f2, f2, f1
-	fmuls    f3, f3, f1
-	fmuls    f1, f4, f1
-	fsubs    f0, f0, f2
-	stfs     f0, 0x1c8(r3)
-	lfs      f0, 0x1cc(r3)
-	fsubs    f0, f0, f3
-	stfs     f0, 0x1cc(r3)
-	lfs      f0, 0x1d0(r3)
-	fsubs    f0, f0, f1
-	stfs     f0, 0x1d0(r3)
-	b        lbl_801A85A0
-
-lbl_801A84E4:
-	lfs      f4, 0x24(r5)
-	lfs      f5, 0x20(r5)
-	fmuls    f3, f0, f4
-	lfs      f6, 0x28(r5)
-	lfs      f2, lbl_80519238@sda21(r2)
-	fmadds   f3, f8, f5, f3
-	fmadds   f3, f1, f6, f3
-	fmuls    f4, f4, f3
-	fmuls    f5, f5, f3
-	fmuls    f3, f6, f3
-	fsubs    f6, f0, f4
-	fsubs    f4, f8, f5
-	fsubs    f5, f1, f3
-	fmuls    f0, f6, f6
-	fmuls    f1, f5, f5
-	fmadds   f0, f4, f4, f0
-	fadds    f1, f1, f0
-	fcmpo    cr0, f1, f2
-	ble      lbl_801A8540
-	ble      lbl_801A8544
-	frsqrte  f0, f1
-	fmuls    f1, f0, f1
-	b        lbl_801A8544
-
-lbl_801A8540:
-	fmr      f1, f2
-
-lbl_801A8544:
-	lfs      f0, lbl_80519238@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_801A8564
-	lfs      f0, lbl_8051923C@sda21(r2)
-	fdivs    f0, f0, f1
-	fmuls    f4, f4, f0
-	fmuls    f6, f6, f0
-	fmuls    f5, f5, f0
-
-lbl_801A8564:
-	lwz      r4, mInstance__13DynamicsParms@sda21(r13)
-	lfs      f2, 0x1c8(r3)
-	lfs      f0, 0x168(r4)
-	fneg     f3, f0
-	fmuls    f1, f4, f3
-	fmuls    f0, f6, f3
-	fmuls    f3, f5, f3
-	fadds    f1, f2, f1
-	stfs     f1, 0x1c8(r3)
-	lfs      f1, 0x1cc(r3)
-	fadds    f0, f1, f0
-	stfs     f0, 0x1cc(r3)
-	lfs      f0, 0x1d0(r3)
-	fadds    f0, f0, f3
-	stfs     f0, 0x1d0(r3)
-
-lbl_801A85A0:
-	lwz      r5, 0x1c(r5)
-
-lbl_801A85A4:
-	cmplwi   r5, 0
-	bne      lbl_801A8300
-	b        lbl_801A87D0
-
-lbl_801A85B0:
-	lwz      r7, 0x178(r3)
-	li       r4, 0
-	li       r8, 0
-	mr       r5, r7
-	b        lbl_801A85DC
-
-lbl_801A85C4:
-	lbz      r0, 0x2c(r5)
-	cmplwi   r0, 0
-	beq      lbl_801A85D4
-	addi     r4, r4, 1
-
-lbl_801A85D4:
-	lwz      r5, 0x1c(r5)
-	addi     r8, r8, 1
-
-lbl_801A85DC:
-	cmplwi   r5, 0
-	bne      lbl_801A85C4
-	cmpwi    r4, 0
-	beq      lbl_801A87D0
-	lbz      r0, 0x114(r6)
-	cmplwi   r0, 0
-	beq      lbl_801A87D0
-	lis      r5, 0x4330
-	xoris    r0, r4, 0x8000
-	xoris    r4, r8, 0x8000
-	stw      r0, 0xc(r1)
-	lbz      r0, 0x14c(r6)
-	stw      r5, 8(r1)
-	lfd      f3, lbl_80519240@sda21(r2)
-	cmplwi   r0, 0
-	lfd      f0, 8(r1)
-	stw      r4, 0x14(r1)
-	fsubs    f2, f0, f3
-	stw      r5, 0x10(r1)
-	lfd      f0, 0x10(r1)
-	fsubs    f0, f0, f3
-	fdivs    f2, f2, f0
-	beq      lbl_801A863C
-	lfs      f1, 0x168(r6)
-
-lbl_801A863C:
-	fneg     f0, f1
-	mr       r5, r7
-	fmuls    f3, f0, f2
-	b        lbl_801A87C8
-
-lbl_801A864C:
-	lbz      r0, 0x2c(r5)
-	cmplwi   r0, 0
-	beq      lbl_801A87C4
-	lfs      f1, 0x14(r5)
-	lfs      f0, 0x308(r3)
-	lwz      r4, mInstance__13DynamicsParms@sda21(r13)
-	fsubs    f2, f1, f0
-	lfs      f10, 0x1d4(r3)
-	lfs      f6, 0xc(r5)
-	lfs      f0, 0x300(r3)
-	lfs      f5, 0x10(r5)
-	fmuls    f4, f10, f2
-	lfs      f1, 0x304(r3)
-	fsubs    f0, f6, f0
-	lfs      f9, 0x1dc(r3)
-	fsubs    f1, f5, f1
-	lfs      f11, 0x1d8(r3)
-	fmsubs   f7, f9, f0, f4
-	lfs      f6, 0x1c0(r3)
-	fmuls    f8, f11, f0
-	lbz      r0, 0x130(r4)
-	fmuls    f4, f9, f1
-	lfs      f5, 0x1bc(r3)
-	fadds    f9, f7, f6
-	lfs      f12, 0x24(r5)
-	fmsubs   f8, f10, f1, f8
-	lfs      f7, 0x1c4(r3)
-	fmsubs   f6, f11, f2, f4
-	lfs      f11, 0x20(r5)
-	fmuls    f4, f9, f12
-	lfs      f10, 0x28(r5)
-	fadds    f7, f8, f7
-	cmplwi   r0, 0
-	fadds    f8, f6, f5
-	fmadds   f4, f8, f11, f4
-	fmadds   f4, f7, f10, f4
-	fmuls    f6, f11, f4
-	fmuls    f5, f12, f4
-	fmuls    f4, f10, f4
-	fsubs    f6, f8, f6
-	fsubs    f8, f9, f5
-	fsubs    f7, f7, f4
-	beq      lbl_801A8748
-	fmuls    f5, f8, f8
-	lfs      f4, lbl_80519238@sda21(r2)
-	fmuls    f9, f7, f7
-	fmadds   f5, f6, f6, f5
-	fadds    f5, f9, f5
-	fcmpo    cr0, f5, f4
-	ble      lbl_801A8724
-	ble      lbl_801A8728
-	frsqrte  f4, f5
-	fmuls    f5, f4, f5
-	b        lbl_801A8728
-
-lbl_801A8724:
-	fmr      f5, f4
-
-lbl_801A8728:
-	lfs      f4, lbl_80519238@sda21(r2)
-	fcmpo    cr0, f5, f4
-	ble      lbl_801A8748
-	lfs      f4, lbl_8051923C@sda21(r2)
-	fdivs    f4, f4, f5
-	fmuls    f6, f6, f4
-	fmuls    f8, f8, f4
-	fmuls    f7, f7, f4
-
-lbl_801A8748:
-	fmuls    f10, f6, f3
-	lfs      f4, 0x1c8(r3)
-	fmuls    f11, f8, f3
-	lfs      f5, 0x1cc(r3)
-	fmuls    f12, f7, f3
-	lfs      f6, 0x1d0(r3)
-	fadds    f4, f4, f10
-	fadds    f5, f5, f11
-	fadds    f6, f6, f12
-	stfs     f4, 0x1c8(r3)
-	stfs     f5, 0x1cc(r3)
-	stfs     f6, 0x1d0(r3)
-	lwz      r4, mInstance__13DynamicsParms@sda21(r13)
-	lbz      r0, 0x190(r4)
-	cmplwi   r0, 0
-	bne      lbl_801A87C4
-	fmuls    f4, f2, f11
-	lfs      f5, 0x1ec(r3)
-	fmuls    f6, f0, f12
-	lfs      f7, 0x1f0(r3)
-	fmuls    f8, f1, f10
-	lfs      f9, 0x1f4(r3)
-	fmsubs   f1, f1, f12, f4
-	fmsubs   f2, f2, f10, f6
-	fmsubs   f4, f0, f11, f8
-	fadds    f0, f5, f1
-	fadds    f1, f7, f2
-	fadds    f2, f9, f4
-	stfs     f0, 0x1ec(r3)
-	stfs     f1, 0x1f0(r3)
-	stfs     f2, 0x1f4(r3)
-
-lbl_801A87C4:
-	lwz      r5, 0x1c(r5)
-
-lbl_801A87C8:
-	cmplwi   r5, 0
-	bne      lbl_801A864C
-
-lbl_801A87D0:
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
@@ -649,9 +279,9 @@ namespace Game {
  * @note Address: N/A
  * @note Size: 0x80
  */
-void DynCreature::getContactParticeRatio()
+f32 DynCreature::getContactParticeRatio()
 {
-	// UNUSED FUNCTION
+	return (f32)getContactParticleNum() / (f32)getParticleNum();
 }
 
 /**
@@ -660,7 +290,13 @@ void DynCreature::getContactParticeRatio()
  */
 int DynCreature::getContactParticleNum()
 {
-	// UNUSED FUNCTION
+	int count = 0;
+	for (DynParticle* particle = mDynParticle; particle; particle = particle->mNext) {
+		if (particle->mIsTouching) {
+			count++;
+		}
+	}
+	return count;
 }
 
 /**
@@ -669,7 +305,11 @@ int DynCreature::getContactParticleNum()
  */
 int DynCreature::getParticleNum()
 {
-	// UNUSED FUNCTION
+	int count = 0;
+	for (DynParticle* particle = mDynParticle; particle; particle = particle->mNext) {
+		count++;
+	}
+	return count;
 }
 
 /**
@@ -689,7 +329,7 @@ void DynCreature::simulate(f32 rate)
 	Vector3f velocity;
 	Sys::Sphere moveSphere;
 	for (DynParticle* particle = mDynParticle; particle; particle = particle->mNext) {
-		particle->mPosition = mBaseTrMatrix.mtxMult(particle->mRotation);
+		particle->updateGlobal(mBaseTrMatrix);
 
 		velocity = mRigid.mConfigs[0].mRotatedMomentum;
 		Vector3f sep;

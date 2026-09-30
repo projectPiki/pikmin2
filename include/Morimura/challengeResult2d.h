@@ -35,14 +35,7 @@ struct DispMemberChallengeResult : public og::Screen::DispMemberBase {
 };
 
 struct TChallengeResultDemoScreen : public TScreenBase {
-	TChallengeResultDemoScreen(JKRArchive* arc, int anims)
-	    : TScreenBase(arc, anims)
-	{
-		mAnimPane1 = nullptr;
-		mAnimPane2 = nullptr;
-		mAnimPane3 = nullptr;
-		mIsActive  = false;
-	}
+	TChallengeResultDemoScreen(JKRArchive* arc, int anims);
 
 	virtual void create(const char*, u32);        // _08
 	virtual void update();                        // _0C
@@ -76,18 +69,7 @@ struct TChallengeResultScreen : public TChallengeScreen {
 };
 
 struct TChallengeResultCounter {
-	TChallengeResultCounter(u32* val, int a1, int a2)
-	{
-		mDisplayValue = val;
-		mCurrentValue = *val;
-		mState        = 0;
-		_0C           = 0;
-		_1C           = 0;
-		_20           = 0;
-		_14           = a1;
-		_18           = a2;
-		_24           = new int[a1];
-	}
+	TChallengeResultCounter(u32* val, int a1, int a2);
 
 	void start();
 	void stop();

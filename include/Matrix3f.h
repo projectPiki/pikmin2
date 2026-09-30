@@ -20,36 +20,7 @@ struct Matrix3f {
 	 * @param thresh The threshold value for determining diagonal elements.
 	 * @return True if the matrix is diagonal, false otherwise.
 	 */
-	inline bool isDiagonal(f32 thresh)
-	{
-		// Sum off-diagonal terms of matrix
-		f32 sumOffDiag = 0.0f;
-		for (int row_idx = 0; row_idx < 3; row_idx++) {
-			for (int col_idx = 0; col_idx < 3; col_idx++) {
-				if (row_idx != col_idx) {
-					sumOffDiag += mMatrix[row_idx][col_idx];
-				}
-			}
-		}
-
-		// Check for convergence, i.e. if off-diagonals are sufficiently small yet
-		if (FABS(sumOffDiag) < thresh) {
-			// If sum of off-diags is not exactly zero but IS small enough, we put zero into all the off diagonals
-			if (sumOffDiag != 0.0f) {
-				for (int row_idx = 0; row_idx < 3; row_idx++) {
-					for (int col_idx = 0; col_idx < 3; col_idx++) {
-						if (row_idx != col_idx) {
-							mMatrix[row_idx][col_idx] = 0.0f;
-						}
-					}
-				}
-			}
-
-			return true; // The matrix is diagonal enough
-		}
-
-		return false; // The matrix is not diagonal enough
-	}
+	bool isDiagonal(f32 thresh);
 
 	/**
 	 * @brief Calculates the Jacobi value at the specified row and column.

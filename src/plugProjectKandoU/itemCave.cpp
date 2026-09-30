@@ -256,6 +256,18 @@ void Item::createLightEvent()
 #pragma auto_inline reset
 
 /**
+ * @note Address: N/A
+ * @note Size: 0x24
+ */
+void Item::killLightEvent()
+{
+	if (mLightEventNode) {
+		mLightEventNode->setEvent(LIGHTEVENT_Unk1);
+		mLightEventNode = nullptr;
+	}
+}
+
+/**
  * @note Address: 0x801EACDC
  * @note Size: 0x14
  */
@@ -293,16 +305,10 @@ void Item::doAI()
 				startSound(PSSE_EV_POLUTION_MIX_HOLE);
 				createLightEvent();
 			} else if (dist > mFogParm.mExitDistance.mValue) {
-				if (mLightEventNode) {
-					mLightEventNode->setEvent(LIGHTEVENT_Unk1);
-					mLightEventNode = nullptr;
-				}
+				killLightEvent();
 			}
 		} else {
-			if (mLightEventNode) {
-				mLightEventNode->setEvent(LIGHTEVENT_Unk1);
-				mLightEventNode = nullptr;
-			}
+			killLightEvent();
 		}
 	}
 }

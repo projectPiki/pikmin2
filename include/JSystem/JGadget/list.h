@@ -215,7 +215,11 @@ struct TList_pointer : public TList_pointer_void {
 	~TList_pointer() { }
 	iterator begin() { return iterator(Base::begin()); }
 	iterator end() { return iterator(Base::end()); }
-	const_iterator begin() const { return const_iterator(Base::const_iterator(this->mNode.mNext)); }
+	const_iterator begin() const
+	{
+		const_iterator it(Base::const_iterator(&this->mNode));
+		return ++it;
+	}
 	const_iterator end() const { return const_iterator(Base::const_iterator(&this->mNode)); }
 	iterator insert(iterator where, const T& value) { return iterator(Base::insert(where, (void* const&)value)); }
 	void push_back(const T& value) { insert(end(), value); }
@@ -225,9 +229,9 @@ struct TList_pointer : public TList_pointer_void {
 		Base::iterator it;
 		it = Base::end();
 		--it;
-		Base::erase(it);
+		erase(it);
 	}
-	iterator erase(iterator where) { return iterator(Base::erase(where)); }
+	iterator erase(const Base::iterator& where) { return iterator(Base::erase(where)); }
 };
 
 } // namespace JGadget

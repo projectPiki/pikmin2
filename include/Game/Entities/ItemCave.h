@@ -102,6 +102,7 @@ struct Item : public FSMItem<Item, FSM, State> {
 	virtual void onSetPosition();                      // _21C
 
 	void createLightEvent();
+	void killLightEvent();
 	u32 getCaveOtakaraNum();
 	u32 getCaveOtakaraMax();
 	bool complete();
@@ -132,7 +133,7 @@ struct Mgr : public TNodeItemMgr {
 	virtual void generatorRead(Stream&, GenItemParm*, u32);               // _64
 	virtual u32 generatorLocalVersion() { return '0002'; }                // _68 (weak)
 	virtual GenItemParm* generatorNewItemParm();                          // _70
-	//virtual ~Mgr() { }                                                    // _B8 (weak)
+	// virtual ~Mgr() { }                                                    // _B8 (weak)
 
 	// _00     = VTBL
 	// _00-_88 = TNodeItemMgr

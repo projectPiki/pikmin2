@@ -58,7 +58,7 @@ ObjectSystem::~ObjectSystem()
 void ObjectSystem::destroyObjectAll()
 {
 	while (!mObjListPointer.empty()) {
-		JStage::TObject*& object = mObjListPointer.back();
+		JStage::TObject*& object = getLastObject();
 		delete object;
 		object = nullptr;
 		mObjListPointer.pop_back();

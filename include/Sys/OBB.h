@@ -64,29 +64,10 @@ struct OBB : public CNode {
 
 	bool isLeaf() { return (!mHalfA && !mHalfB); }
 
-	inline void setMaxPlane(Vec* axisVec, int i)
-	{
-		axisVec->x         = mAxes[i].x;
-		axisVec->y         = mAxes[i].y;
-		axisVec->z         = mAxes[i].z;
-		Vector3f scaledVec = Vector3f(*axisVec) * mMaxXYZ[i];
-		Vector3f point;
-		point.x = mPosition.x + scaledVec.x;
-		point.y = mPosition.y + scaledVec.y;
-		point.z = mPosition.z + scaledVec.z;
-		mSidePlanes[i].updatePlane(point, *axisVec);
-	}
+	inline void setMaxPlane(Vec* axisVec, int i, const Vector3f& point) { mSidePlanes[i].updatePlane(point, *axisVec); }
 
-	inline void setMinPlane(Vec* axisVec, int i)
+	inline void setMinPlane(Vec* axisVec, int i, const Vector3f& point)
 	{
-		axisVec->x         = mAxes[i].x;
-		axisVec->y         = mAxes[i].y;
-		axisVec->z         = mAxes[i].z;
-		Vector3f scaledVec = Vector3f(*axisVec) * mMinXYZ[i];
-		Vector3f point;
-		point.x = mPosition.x + scaledVec.x;
-		point.y = mPosition.y + scaledVec.y;
-		point.z = mPosition.z + scaledVec.z;
 		Vec normal;
 		normal.x = -axisVec->x;
 		normal.y = -axisVec->y;

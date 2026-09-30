@@ -425,6 +425,42 @@ lbl_80084418:
 }
 
 /**
+ * @note Address: N/A
+ * @note Size: 0x204
+ */
+J3DErrType J3DMaterialTable::createTexMtxForAnimator(J3DAnmTextureSRTKey* anm)
+{
+	J3DErrType result = JET_Success;
+	u16 count         = anm->getUpdateMaterialNum();
+
+	if (isLocked()) {
+		return JET_LockedModelData;
+	}
+
+	for (u16 i = 0; i < count; i++) {
+		u16 matID = anm->getUpdateMaterialID(i);
+		if (matID != 0xffff) {
+			J3DMaterial* mat       = getMaterialNodePointer(matID);
+			u8 texmtxid            = anm->getUpdateTexMtxID(i);
+			J3DMaterialAnm* matanm = mat->getMaterialAnm();
+
+			if (!matanm) {
+				result = JET_NoMatAnm;
+				continue;
+			}
+
+			if (texmtxid != 255 && mat->mTexGenBlock->getTexMtx(texmtxid) == nullptr) {
+				J3DTexMtx* mtx = new J3DTexMtx(j3dDefaultTexMtxInfo);
+				result         = JET_OutOfMemory;
+				mat->mTexGenBlock->setTexMtx(texmtxid, mtx);
+			}
+		}
+	}
+
+	return result;
+}
+
+/**
  * @note Address: 0x8008442C
  * @note Size: 0xBC
  */
