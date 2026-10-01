@@ -304,6 +304,15 @@ void PodIconScreen::set(JKRArchive* arc)
 }
 
 /**
+ * Scales vec by 1/len, i.e. normalises it given its precomputed length.
+ */
+inline Vector3f scaleByInverse(const Vector3f& vec, f32 len)
+{
+	f32 norm = 1.0f / len;
+	return vec * norm;
+}
+
+/**
  * @note Address: 0x80435564
  * @note Size: 0x438
  */
@@ -334,9 +343,8 @@ void PodIconScreen::update()
 		f32 length    = diff.length();
 
 		if (length > 1.0E-4f) {
-			f32 norm = 1.0f / length;
 			Vector3f newDiff;
-			newDiff = diff * norm;
+			newDiff = scaleByInverse(diff, length);
 
 			f32 alignmentWeight = newDiff.dot(mMomentum);
 			alignmentWeight     = 1.0f + alignmentWeight;
@@ -365,8 +373,6 @@ void PodIconScreen::update()
 		scale += 1.0f;
 		setTrans();
 		scaleScreen(scale);
-		// mScreenScaleX = (test) * 0.95f;
-		// mScreenScaleY = (test) * 0.95f;
 
 		if (length < 10.0f) {
 			switch (mState) {
@@ -384,314 +390,6 @@ void PodIconScreen::update()
 		}
 	}
 	P2DScreen::Mgr::update();
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	lwz      r0, 0x148(r3)
-	cmpwi    r0, -1
-	beq      lbl_80435980
-	lfs      f1, 0x160(r31)
-	lis      r0, 0x4330
-	lfs      f0, lbl_805207C8@sda21(r2)
-	stw      r0, 8(r1)
-	fadds    f0, f1, f0
-	lfd      f1, lbl_80520820@sda21(r2)
-	stfs     f0, 0x160(r31)
-	lwz      r3, 0x15c(r31)
-	lfs      f2, 0x160(r31)
-	lha      r3, 6(r3)
-	xoris    r3, r3, 0x8000
-	stw      r3, 0xc(r1)
-	lfd      f0, 8(r1)
-	fsubs    f0, f0, f1
-	fcmpo    cr0, f2, f0
-	cror     2, 1, 2
-	bne      lbl_804355E0
-	stw      r3, 0xc(r1)
-	stw      r0, 8(r1)
-	lfd      f0, 8(r1)
-	fsubs    f0, f0, f1
-	fsubs    f0, f2, f0
-	stfs     f0, 0x160(r31)
-
-lbl_804355E0:
-	lfs      f1, 0x160(r31)
-	lis      r0, 0x4330
-	lwz      r3, 0x15c(r31)
-	lfs      f0, lbl_805207C8@sda21(r2)
-	stfs     f1, 8(r3)
-	lfd      f1, lbl_80520820@sda21(r2)
-	lfs      f2, 0x158(r31)
-	stw      r0, 8(r1)
-	fadds    f0, f2, f0
-	stfs     f0, 0x158(r31)
-	lwz      r3, 0x154(r31)
-	lfs      f2, 0x158(r31)
-	lha      r3, 6(r3)
-	xoris    r3, r3, 0x8000
-	stw      r3, 0xc(r1)
-	lfd      f0, 8(r1)
-	fsubs    f0, f0, f1
-	fcmpo    cr0, f2, f0
-	cror     2, 1, 2
-	bne      lbl_80435648
-	stw      r3, 0xc(r1)
-	stw      r0, 8(r1)
-	lfd      f0, 8(r1)
-	fsubs    f0, f0, f1
-	fsubs    f0, f2, f0
-	stfs     f0, 0x158(r31)
-
-lbl_80435648:
-	lfs      f1, 0x158(r31)
-	lis      r0, 0x4330
-	lwz      r3, 0x154(r31)
-	lfs      f0, lbl_805207C8@sda21(r2)
-	stfs     f1, 8(r3)
-	lfd      f1, lbl_80520820@sda21(r2)
-	lfs      f2, 0x150(r31)
-	stw      r0, 8(r1)
-	fadds    f0, f2, f0
-	stfs     f0, 0x150(r31)
-	lwz      r3, 0x14c(r31)
-	lfs      f2, 0x150(r31)
-	lha      r3, 6(r3)
-	xoris    r3, r3, 0x8000
-	stw      r3, 0xc(r1)
-	lfd      f0, 8(r1)
-	fsubs    f0, f0, f1
-	fcmpo    cr0, f2, f0
-	cror     2, 1, 2
-	bne      lbl_804356B0
-	stw      r3, 0xc(r1)
-	stw      r0, 8(r1)
-	lfd      f0, 8(r1)
-	fsubs    f0, f0, f1
-	fsubs    f0, f2, f0
-	stfs     f0, 0x150(r31)
-
-lbl_804356B0:
-	lfs      f0, 0x150(r31)
-	mr       r3, r31
-	lwz      r4, 0x14c(r31)
-	stfs     f0, 8(r4)
-	bl       animation__9J2DScreenFv
-	lfs      f1, 0x174(r31)
-	lfs      f0, 0x168(r31)
-	lfs      f3, 0x178(r31)
-	fsubs    f6, f1, f0
-	lfs      f2, 0x16c(r31)
-	lfs      f1, 0x170(r31)
-	lfs      f0, 0x164(r31)
-	fsubs    f11, f3, f2
-	fmuls    f2, f6, f6
-	fsubs    f3, f1, f0
-	lfs      f1, lbl_805207B8@sda21(r2)
-	fmuls    f4, f11, f11
-	fmadds   f0, f3, f3, f2
-	fadds    f0, f4, f0
-	fcmpo    cr0, f0, f1
-	ble      lbl_80435714
-	ble      lbl_80435718
-	frsqrte  f1, f0
-	fmuls    f0, f1, f0
-	b        lbl_80435718
-
-lbl_80435714:
-	fmr      f0, f1
-
-lbl_80435718:
-	lfs      f1, lbl_8052083C@sda21(r2)
-	fcmpo    cr0, f0, f1
-	ble      lbl_80435860
-	lfs      f9, lbl_805207C8@sda21(r2)
-	lfs      f5, 0x180(r31)
-	fdivs    f10, f9, f0
-	lfs      f7, 0x17c(r31)
-	lfs      f8, 0x184(r31)
-	lfs      f1, lbl_80520804@sda21(r2)
-	lfs      f4, lbl_805207E0@sda21(r2)
-	lfs      f2, 0x17c(r31)
-	fmuls    f13, f6, f10
-	lfs      f6, lbl_80520840@sda21(r2)
-	fmuls    f12, f3, f10
-	lfs      f3, lbl_805207B8@sda21(r2)
-	fmuls    f10, f11, f10
-	fmuls    f5, f13, f5
-	fmadds   f5, f12, f7, f5
-	fmadds   f5, f10, f8, f5
-	fadds    f5, f9, f5
-	fmuls    f5, f5, f1
-	fsubs    f1, f9, f5
-	fmuls    f5, f5, f5
-	fadds    f1, f9, f1
-	fmuls    f5, f0, f5
-	fmuls    f4, f4, f1
-	fmuls    f1, f6, f5
-	fmuls    f12, f12, f4
-	fmuls    f13, f13, f4
-	fmuls    f10, f10, f4
-	fadds    f2, f2, f12
-	stfs     f2, 0x17c(r31)
-	lfs      f2, 0x180(r31)
-	fadds    f2, f2, f13
-	stfs     f2, 0x180(r31)
-	lfs      f2, 0x184(r31)
-	fadds    f2, f2, f10
-	stfs     f2, 0x184(r31)
-	lfs      f5, 0x17c(r31)
-	lfs      f4, 0x180(r31)
-	lfs      f6, 0x184(r31)
-	fmuls    f2, f5, f5
-	fmuls    f4, f4, f4
-	fmuls    f6, f6, f6
-	fadds    f2, f2, f4
-	fadds    f2, f6, f2
-	fcmpo    cr0, f2, f3
-	ble      lbl_804357F4
-	fmadds   f2, f5, f5, f4
-	fadds    f4, f6, f2
-	fcmpo    cr0, f4, f3
-	ble      lbl_804357F8
-	frsqrte  f2, f4
-	fmuls    f4, f2, f4
-	b        lbl_804357F8
-
-lbl_804357F4:
-	fmr      f4, f3
-
-lbl_804357F8:
-	lfs      f2, lbl_805207B8@sda21(r2)
-	fcmpo    cr0, f4, f2
-	ble      lbl_80435830
-	lfs      f3, lbl_805207C8@sda21(r2)
-	lfs      f2, 0x17c(r31)
-	fdivs    f3, f3, f4
-	fmuls    f2, f2, f3
-	stfs     f2, 0x17c(r31)
-	lfs      f2, 0x180(r31)
-	fmuls    f2, f2, f3
-	stfs     f2, 0x180(r31)
-	lfs      f2, 0x184(r31)
-	fmuls    f2, f2, f3
-	stfs     f2, 0x184(r31)
-
-lbl_80435830:
-	lfs      f3, 0x17c(r31)
-	lfs      f2, 0x164(r31)
-	fmadds   f2, f3, f1, f2
-	stfs     f2, 0x164(r31)
-	lfs      f3, 0x180(r31)
-	lfs      f2, 0x168(r31)
-	fmadds   f2, f3, f1, f2
-	stfs     f2, 0x168(r31)
-	lfs      f3, 0x184(r31)
-	lfs      f2, 0x16c(r31)
-	fmadds   f1, f3, f1, f2
-	stfs     f1, 0x16c(r31)
-
-lbl_80435860:
-	lfs      f3, 0x16c(r31)
-	lfs      f2, lbl_80520844@sda21(r2)
-	lfs      f1, lbl_80520804@sda21(r2)
-	fdivs    f2, f3, f2
-	fmr      f6, f2
-	fcmpo    cr0, f2, f1
-	bge      lbl_80435880
-	fmr      f6, f1
-
-lbl_80435880:
-	lwz      r3, playData__4Game@sda21(r13)
-	lfs      f1, lbl_805207C8@sda21(r2)
-	lbz      r0, 0x2f(r3)
-	fadds    f6, f6, f1
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_804358CC
-	lfs      f2, 0x164(r31)
-	lfs      f1, lbl_80520818@sda21(r2)
-	lfs      f5, 0x168(r31)
-	lfs      f4, lbl_80520814@sda21(r2)
-	fsubs    f3, f2, f1
-	lfs      f2, mstTuningTransX__Q29P2DScreen10Mgr_tuning@sda21(r2)
-	fsubs    f4, f5, f4
-	lfs      f1, mstTuningTransY__Q29P2DScreen10Mgr_tuning@sda21(r2)
-	fadds    f2, f3, f2
-	fadds    f1, f4, f1
-	stfs     f2, 0x140(r31)
-	stfs     f1, 0x144(r31)
-	b        lbl_804358FC
-
-lbl_804358CC:
-	lfs      f2, 0x164(r31)
-	lfs      f1, lbl_80520818@sda21(r2)
-	lfs      f5, 0x168(r31)
-	lfs      f4, lbl_805207BC@sda21(r2)
-	fsubs    f3, f2, f1
-	lfs      f2, mstTuningTransX__Q29P2DScreen10Mgr_tuning@sda21(r2)
-	fsubs    f4, f5, f4
-	lfs      f1, mstTuningTransY__Q29P2DScreen10Mgr_tuning@sda21(r2)
-	fadds    f2, f3, f2
-	fadds    f1, f4, f1
-	stfs     f2, 0x140(r31)
-	stfs     f1, 0x144(r31)
-
-lbl_804358FC:
-	lfs      f1, mstTuningScaleX__Q29P2DScreen10Mgr_tuning@sda21(r2)
-	lfs      f2, mstTuningScaleY__Q29P2DScreen10Mgr_tuning@sda21(r2)
-	fmuls    f3, f6, f1
-	lfs      f1, lbl_805207BC@sda21(r2)
-	fmuls    f2, f6, f2
-	fcmpo    cr0, f0, f1
-	stfs     f3, 0x138(r31)
-	stfs     f2, 0x13c(r31)
-	bge      lbl_8043595C
-	lwz      r0, 0x148(r31)
-	cmpwi    r0, 1
-	beq      lbl_8043595C
-	bge      lbl_8043593C
-	cmpwi    r0, 0
-	bge      lbl_80435948
-	b        lbl_8043595C
-
-lbl_8043593C:
-	cmpwi    r0, 3
-	bge      lbl_8043595C
-	b        lbl_80435954
-
-lbl_80435948:
-	li       r0, 1
-	stw      r0, 0x148(r31)
-	b        lbl_8043595C
-
-lbl_80435954:
-	li       r0, 3
-	stw      r0, 0x148(r31)
-
-lbl_8043595C:
-	lwz      r0, 0x148(r31)
-	cmpwi    r0, 0
-	beq      lbl_80435970
-	cmpwi    r0, 1
-	bne      lbl_80435980
-
-lbl_80435970:
-	lwz      r3, spSysIF__8PSSystem@sda21(r13)
-	li       r4, 0x4007
-	li       r5, 0
-	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-
-lbl_80435980:
-	mr       r3, r31
-	bl       update__Q29P2DScreen3MgrFv
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
