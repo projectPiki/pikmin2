@@ -98,7 +98,8 @@ u32 J3DMaterialFactory::countUniqueMaterials()
  */
 u32 J3DMaterialFactory::countTexGens(int matID) const
 {
-	u8 id = getMaterialInitData(matID).mNumTexGensIndex;
+	J3DMaterialInitData& data = mInitData[mMatRemapTable[matID]];
+	u8 id                     = data.mNumTexGensIndex;
 	if (id != 0xFF) {
 		return mTexGenNums[id];
 	}
@@ -111,7 +112,7 @@ u32 J3DMaterialFactory::countTexGens(int matID) const
  */
 u32 J3DMaterialFactory::countStages(int matID) const
 {
-	J3DMaterialInitData& initData = getMaterialInitData(matID);
+	J3DMaterialInitData& initData = mInitData[mMatRemapTable[matID]];
 
 	u32 texGenNum   = 0;
 	u32 tevStageNum = 0;
@@ -203,7 +204,7 @@ J3DMaterial* J3DMaterialFactory::createNormalMaterial(J3DMaterial* material, int
 	for (u8 i = 0; i < tevStageNum; i++)
 		material->mTevBlock->setTevOrder(i, newTevOrder(matID, i));
 	for (u8 i = 0; i < tevStageNum; i++) {
-		J3DMaterialInitData& initData = getMaterialInitData(matID);
+		J3DMaterialInitData& initData = mInitData[mMatRemapTable[matID]];
 		material->mTevBlock->setTevStage(i, newTevStage(matID, i));
 		if (initData.mTevSwapModeInfoIndex[i] != 0xFFFF) {
 			material->mTevBlock->getTevStage(i)->setTexSel(mTevSwapModeInfo[initData.mTevSwapModeInfoIndex[i]].mTexSel);
@@ -231,7 +232,7 @@ J3DMaterial* J3DMaterialFactory::createNormalMaterial(J3DMaterial* material, int
 	for (u8 i = 0; i < 8; i++) {
 		material->mTexGenBlock->setTexMtx(i, newTexMtx(matID, i));
 	}
-	J3DMaterialInitData& initData = getMaterialInitData(matID);
+	J3DMaterialInitData& initData = mInitData[mMatRemapTable[matID]];
 	for (u8 i = 0; i < tevStageNum; i++) {
 		if (initData.mTevKColorSels[i] != 0xff) {
 			material->mTevBlock->setTevKColorSel(i, initData.mTevKColorSels[i]);
@@ -1062,14 +1063,14 @@ J3DPatchedMaterial* J3DMaterialFactory::createPatchedMaterial(J3DMaterial* mater
 	for (u8 i = 0; i < 4; i++)
 		material->mTevBlock->setTevColor(i, newTevColor(matID, i));
 	for (u8 i = 0; i < tevStageNum; i++) {
-		J3DMaterialInitData& initData = getMaterialInitData(matID);
+		J3DMaterialInitData& initData = mInitData[mMatRemapTable[matID]];
 		material->mTevBlock->setTevStage(i, newTevStage(matID, i));
 		if (initData.mTevSwapModeInfoIndex[i] != 0xFFFF) {
 			material->mTevBlock->getTevStage(i)->setTexSel(mTevSwapModeInfo[initData.mTevSwapModeInfoIndex[i]].mTexSel);
 			material->mTevBlock->getTevStage(i)->setRasSel(mTevSwapModeInfo[initData.mTevSwapModeInfoIndex[i]].mRasSel);
 		}
 	}
-	J3DMaterialInitData& initData = getMaterialInitData(matID);
+	J3DMaterialInitData& initData = mInitData[mMatRemapTable[matID]];
 	for (u8 i = 0; i < tevStageNum; i++) {
 		if (initData.mTevKColorSels[i] != 0xff) {
 			material->mTevBlock->setTevKColorSel(i, initData.mTevKColorSels[i]);
@@ -1105,670 +1106,6 @@ J3DPatchedMaterial* J3DMaterialFactory::createPatchedMaterial(J3DMaterial* mater
 			material->mTevBlock->setIndTevStage(i, newIndTevStage(matID, i));
 	}
 	return (J3DPatchedMaterial*)material;
-	/*
-	.loc_0x0:
-	  stwu      r1, -0xF0(r1)
-	  mflr      r0
-	  stw       r0, 0xF4(r1)
-	  stmw      r18, 0xB8(r1)
-	  mr.       r31, r4
-	  mr        r30, r3
-	  mr        r29, r5
-	  mr        r18, r6
-	  bne-      .loc_0x74
-	  li        r3, 0x4C
-	  bl        -0x492F4
-	  mr.       r19, r3
-	  beq-      .loc_0x70
-	  lis       r4, 0x804A
-	  lis       r5, 0x3CF4
-	  addi      r0, r4, 0x15D8
-	  stw       r0, 0x0(r19)
-	  subi      r5, r5, 0x3100
-	  lis       r4, 0xF4
-	  stw       r5, 0x40(r19)
-	  subi      r0, r4, 0x30C4
-	  stw       r0, 0x44(r19)
-	  bl        -0xAA30
-	  lis       r4, 0x804A
-	  mr        r3, r19
-	  addi      r0, r4, 0x15A8
-	  stw       r0, 0x0(r19)
-	  bl        -0x99FC
-
-	.loc_0x70:
-	  mr        r31, r19
-
-	.loc_0x74:
-	  rlwinm    r4,r18,0,6,7
-	  lis       r3, 0x4000
-	  neg       r0, r4
-	  or        r0, r0, r4
-	  rlwinm    r28,r0,1,31,31
-	  bl        -0xBD18
-	  stw       r3, 0x24(r31)
-	  li        r3, 0x5C
-	  bl        -0x49360
-	  mr.       r19, r3
-	  beq-      .loc_0xE0
-	  lis       r4, 0x804A
-	  lis       r3, 0x804A
-	  addi      r0, r4, 0x171C
-	  mr        r18, r19
-	  stw       r0, 0x0(r19)
-	  addi      r0, r3, 0x27CC
-	  lis       r4, 0x8006
-	  addi      r3, r18, 0x8
-	  stw       r0, 0x0(r19)
-	  addi      r4, r4, 0x19FC
-	  li        r5, 0
-	  li        r6, 0x6
-	  li        r7, 0x8
-	  bl        0x545F8
-	  mr        r3, r18
-	  bl        0xA0D4
-
-	.loc_0xE0:
-	  stw       r19, 0x28(r31)
-	  li        r3, 0xD8
-	  bl        -0x493B4
-	  mr.       r25, r3
-	  beq-      .loc_0x1A4
-	  lis       r4, 0x804A
-	  lis       r3, 0x804A
-	  addi      r0, r4, 0x2B08
-	  mr        r20, r25
-	  stw       r0, 0x0(r25)
-	  addi      r0, r3, 0x2618
-	  lis       r4, 0x8006
-	  addi      r3, r20, 0x18
-	  stw       r0, 0x0(r25)
-	  addi      r4, r4, 0x2114
-	  li        r5, 0
-	  li        r6, 0x4
-	  li        r7, 0x8
-	  bl        0x545A4
-	  lis       r4, 0x8006
-	  addi      r3, r20, 0x38
-	  addi      r4, r4, 0x1ED4
-	  li        r5, 0
-	  li        r6, 0x8
-	  li        r7, 0x8
-	  bl        0x54588
-	  lis       r4, 0x8006
-	  addi      r3, r20, 0x78
-	  addi      r4, r4, 0x1DF0
-	  li        r5, 0
-	  li        r6, 0x4
-	  li        r7, 0x8
-	  bl        0x5456C
-	  lis       r4, 0x8006
-	  addi      r3, r20, 0x98
-	  addi      r4, r4, 0x1DEC
-	  li        r5, 0
-	  li        r6, 0x8
-	  li        r7, 0x4
-	  bl        0x54550
-	  lis       r4, 0x8006
-	  addi      r3, r20, 0xB8
-	  addi      r4, r4, 0x17F0
-	  li        r5, 0
-	  li        r6, 0x4
-	  li        r7, 0x4
-	  bl        0x54534
-	  mr        r3, r20
-	  bl        0xA09C
-
-	.loc_0x1A4:
-	  stw       r25, 0x2C(r31)
-	  mr        r3, r28
-	  bl        -0xB1A0
-	  stw       r3, 0x30(r31)
-	  rlwinm    r24,r29,1,0,30
-	  lwz       r4, 0x8(r30)
-	  lis       r3, 0x1000
-	  lwz       r5, 0x4(r30)
-	  lhzx      r0, r4, r24
-	  mulli     r0, r0, 0x14C
-	  lbzx      r4, r5, r0
-	  bl        -0xAFAC
-	  stw       r3, 0x34(r31)
-	  mr        r3, r30
-	  lwz       r5, 0x8(r30)
-	  mr        r4, r29
-	  sth       r29, 0x14(r31)
-	  lwz       r6, 0x4(r30)
-	  lhzx      r0, r5, r24
-	  mulli     r0, r0, 0x14C
-	  lbzx      r0, r6, r0
-	  stw       r0, 0x10(r31)
-	  bl        0x1728
-	  mr        r4, r3
-	  lwz       r3, 0x2C(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x94(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r30
-	  mr        r4, r29
-	  bl        0x1070
-	  mr        r4, r3
-	  lwz       r3, 0x24(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x48(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r30
-	  mr        r4, r29
-	  bl        0x14BC
-	  mr        r4, r3
-	  lwz       r3, 0x24(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x6C(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r30
-	  mr        r5, r29
-	  addi      r3, r1, 0x88
-	  bl        0x1BA8
-	  lwz       r3, 0x34(r31)
-	  addi      r4, r1, 0x88
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x28(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r30
-	  mr        r5, r29
-	  addi      r3, r1, 0x40
-	  bl        0x1DCC
-	  lwz       r3, 0x34(r31)
-	  addi      r4, r1, 0x40
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x38(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r30
-	  mr        r5, r29
-	  addi      r3, r1, 0x3C
-	  bl        0x1E24
-	  lwz       r3, 0x34(r31)
-	  addi      r4, r1, 0x3C
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x44(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r30
-	  mr        r5, r29
-	  addi      r3, r1, 0xC
-	  bl        0x1E78
-	  lhz       r0, 0xC(r1)
-	  addi      r4, r1, 0x10
-	  sth       r0, 0x10(r1)
-	  lwz       r3, 0x34(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x50(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r30
-	  mr        r4, r29
-	  bl        0x1EAC
-	  mr        r4, r3
-	  lwz       r3, 0x34(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x5C(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r30
-	  mr        r4, r29
-	  bl        0x1EC0
-	  mr        r4, r3
-	  lwz       r3, 0x34(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x68(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x2C(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x98(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r25, r3
-	  li        r18, 0
-	  b         .loc_0x3A0
-
-	.loc_0x370:
-	  mr        r3, r30
-	  mr        r4, r29
-	  rlwinm    r5,r18,0,24,31
-	  bl        0x13C4
-	  mr        r5, r3
-	  lwz       r3, 0x2C(r31)
-	  rlwinm    r4,r18,0,24,31
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x4C(r12)
-	  mtctr     r12
-	  bctrl
-	  addi      r18, r18, 0x1
-
-	.loc_0x3A0:
-	  rlwinm    r0,r18,0,24,31
-	  cmplwi    r0, 0x8
-	  blt+      .loc_0x370
-	  rlwinm    r19,r25,0,24,31
-	  li        r18, 0
-	  b         .loc_0x3F4
-
-	.loc_0x3B8:
-	  mr        r4, r30
-	  mr        r5, r29
-	  addi      r3, r1, 0x34
-	  rlwinm    r6,r18,0,24,31
-	  bl        0x13C0
-	  lwz       r0, 0x34(r1)
-	  rlwinm    r4,r18,0,24,31
-	  addi      r5, r1, 0x38
-	  stw       r0, 0x38(r1)
-	  lwz       r3, 0x2C(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x58(r12)
-	  mtctr     r12
-	  bctrl
-	  addi      r18, r18, 0x1
-
-	.loc_0x3F4:
-	  rlwinm    r0,r18,0,24,31
-	  cmplw     r0, r19
-	  blt+      .loc_0x3B8
-	  li        r18, 0
-	  b         .loc_0x43C
-
-	.loc_0x408:
-	  mr        r4, r30
-	  mr        r5, r29
-	  addi      r3, r1, 0x30
-	  rlwinm    r6,r18,0,24,31
-	  bl        0x147C
-	  lwz       r3, 0x2C(r31)
-	  rlwinm    r4,r18,0,24,31
-	  addi      r5, r1, 0x30
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x70(r12)
-	  mtctr     r12
-	  bctrl
-	  addi      r18, r18, 0x1
-
-	.loc_0x43C:
-	  rlwinm    r0,r18,0,24,31
-	  cmplwi    r0, 0x4
-	  blt+      .loc_0x408
-	  li        r18, 0
-	  b         .loc_0x484
-
-	.loc_0x450:
-	  mr        r4, r30
-	  mr        r5, r29
-	  addi      r3, r1, 0x5C
-	  rlwinm    r6,r18,0,24,31
-	  bl        0x139C
-	  lwz       r3, 0x2C(r31)
-	  rlwinm    r4,r18,0,24,31
-	  addi      r5, r1, 0x5C
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x64(r12)
-	  mtctr     r12
-	  bctrl
-	  addi      r18, r18, 0x1
-
-	.loc_0x484:
-	  rlwinm    r0,r18,0,24,31
-	  cmplwi    r0, 0x4
-	  blt+      .loc_0x450
-	  lwz       r26, 0x4(r30)
-	  rlwinm    r19,r25,0,24,31
-	  lwz       r27, 0x8(r30)
-	  li        r21, 0
-	  b         .loc_0x580
-
-	.loc_0x4A4:
-	  lhzx      r0, r24, r27
-	  mr        r4, r30
-	  mr        r5, r29
-	  addi      r3, r1, 0x4C
-	  mulli     r0, r0, 0x14C
-	  rlwinm    r6,r21,0,24,31
-	  add       r20, r26, r0
-	  bl        0x149C
-	  lwz       r3, 0x4C(r1)
-	  rlwinm    r23,r21,0,24,31
-	  lwz       r0, 0x50(r1)
-	  mr        r4, r23
-	  stw       r3, 0x54(r1)
-	  addi      r5, r1, 0x54
-	  stw       r0, 0x58(r1)
-	  lwz       r3, 0x2C(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xA0(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm    r3,r23,1,0,30
-	  addi      r22, r3, 0x104
-	  lhzx      r0, r20, r22
-	  cmplwi    r0, 0xFFFF
-	  beq-      .loc_0x57C
-	  lwz       r3, 0x2C(r31)
-	  rlwinm    r4,r0,2,14,29
-	  lwz       r5, 0x54(r30)
-	  addi      r0, r4, 0x1
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r23
-	  lbzx      r18, r5, r0
-	  lwz       r12, 0xA4(r12)
-	  mtctr     r12
-	  bctrl
-	  lbz       r6, 0x7(r3)
-	  rlwinm    r0,r18,2,22,29
-	  lwz       r5, 0x54(r30)
-	  mr        r4, r23
-	  rlwinm    r6,r6,0,30,27
-	  or        r0, r6, r0
-	  stb       r0, 0x7(r3)
-	  lwz       r3, 0x2C(r31)
-	  lhzx      r0, r20, r22
-	  lwz       r12, 0x0(r3)
-	  rlwinm    r0,r0,2,0,29
-	  lwz       r12, 0xA4(r12)
-	  lbzx      r18, r5, r0
-	  mtctr     r12
-	  bctrl
-	  lbz       r0, 0x7(r3)
-	  rlwinm    r0,r0,0,0,29
-	  or        r0, r0, r18
-	  stb       r0, 0x7(r3)
-
-	.loc_0x57C:
-	  addi      r21, r21, 0x1
-
-	.loc_0x580:
-	  rlwinm    r0,r21,0,24,31
-	  cmplw     r0, r19
-	  blt+      .loc_0x4A4
-	  lwz       r3, 0x8(r30)
-	  rlwinm    r20,r25,0,24,31
-	  lwz       r4, 0x4(r30)
-	  li        r19, 0
-	  lhzx      r0, r3, r24
-	  mulli     r0, r0, 0x14C
-	  add       r18, r4, r0
-	  b         .loc_0x5F4
-
-	.loc_0x5AC:
-	  rlwinm    r4,r19,0,24,31
-	  addi      r0, r4, 0x9C
-	  lbzx      r5, r18, r0
-	  cmplwi    r5, 0xFF
-	  beq-      .loc_0x5D8
-	  lwz       r3, 0x2C(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x7C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x5F0
-
-	.loc_0x5D8:
-	  lwz       r3, 0x2C(r31)
-	  li        r5, 0xC
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x7C(r12)
-	  mtctr     r12
-	  bctrl
-
-	.loc_0x5F0:
-	  addi      r19, r19, 0x1
-
-	.loc_0x5F4:
-	  rlwinm    r0,r19,0,24,31
-	  cmplw     r0, r20
-	  blt+      .loc_0x5AC
-	  li        r18, 0
-	  b         .loc_0x63C
-
-	.loc_0x608:
-	  mr        r4, r30
-	  mr        r5, r29
-	  addi      r3, r1, 0x2C
-	  rlwinm    r6,r18,0,24,31
-	  bl        0xBE8
-	  lwz       r3, 0x24(r31)
-	  rlwinm    r4,r18,0,24,31
-	  addi      r5, r1, 0x2C
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x34(r12)
-	  mtctr     r12
-	  bctrl
-	  addi      r18, r18, 0x1
-
-	.loc_0x63C:
-	  rlwinm    r0,r18,0,24,31
-	  cmplwi    r0, 0x2
-	  blt+      .loc_0x608
-	  li        r18, 0
-	  b         .loc_0x68C
-
-	.loc_0x650:
-	  mr        r4, r30
-	  mr        r5, r29
-	  addi      r3, r1, 0x8
-	  rlwinm    r6,r18,0,24,31
-	  bl        0xC68
-	  lhz       r0, 0x8(r1)
-	  rlwinm    r4,r18,0,24,31
-	  addi      r5, r1, 0x14
-	  sth       r0, 0x14(r1)
-	  lwz       r3, 0x24(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x54(r12)
-	  mtctr     r12
-	  bctrl
-	  addi      r18, r18, 0x1
-
-	.loc_0x68C:
-	  rlwinm    r0,r18,0,24,31
-	  cmplwi    r0, 0x4
-	  blt+      .loc_0x650
-	  lwz       r3, 0x8(r30)
-	  lwz       r4, 0x4(r30)
-	  lhzx      r0, r3, r24
-	  mulli     r3, r0, 0x14C
-	  addi      r0, r3, 0x3
-	  lbzx      r0, r4, r0
-	  cmplwi    r0, 0xFF
-	  beq-      .loc_0x6C4
-	  lwz       r3, 0x24(r30)
-	  lbzx      r18, r3, r0
-	  b         .loc_0x6C8
-
-	.loc_0x6C4:
-	  li        r18, 0
-
-	.loc_0x6C8:
-	  mr        r3, r30
-	  mr        r4, r29
-	  bl        0xE1C
-	  mr        r4, r3
-	  lwz       r3, 0x28(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x3C(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r19, 0
-	  b         .loc_0x724
-
-	.loc_0x6F4:
-	  mr        r3, r30
-	  mr        r4, r29
-	  rlwinm    r5,r19,0,24,31
-	  bl        0xEA8
-	  mr        r5, r3
-	  lwz       r3, 0x28(r31)
-	  rlwinm    r4,r19,0,24,31
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x4C(r12)
-	  mtctr     r12
-	  bctrl
-	  addi      r19, r19, 0x1
-
-	.loc_0x724:
-	  rlwinm    r0,r19,0,24,31
-	  cmplwi    r0, 0x8
-	  blt+      .loc_0x6F4
-	  li        r19, 0
-	  b         .loc_0x778
-
-	.loc_0x738:
-	  mr        r4, r30
-	  mr        r5, r29
-	  addi      r3, r1, 0x44
-	  bl        0xDE0
-	  lwz       r3, 0x44(r1)
-	  rlwinm    r4,r19,0,24,31
-	  lhz       r0, 0x48(r1)
-	  addi      r5, r1, 0x64
-	  stw       r3, 0x64(r1)
-	  sth       r0, 0x68(r1)
-	  lwz       r3, 0x28(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x44(r12)
-	  mtctr     r12
-	  bctrl
-	  addi      r19, r19, 0x1
-
-	.loc_0x778:
-	  rlwinm    r6,r19,0,24,31
-	  cmplw     r6, r18
-	  blt+      .loc_0x738
-	  cmplwi    r28, 0
-	  beq-      .loc_0x90C
-	  lwz       r0, 0xC(r30)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x90C
-	  mr        r3, r30
-	  mr        r4, r29
-	  bl        0x1318
-	  mr        r21, r3
-	  mr        r3, r30
-	  mr        r4, r29
-	  bl        0x1308
-	  mr        r4, r3
-	  lwz       r3, 0x30(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm    r20,r21,0,24,31
-	  li        r18, 0
-	  b         .loc_0x80C
-
-	.loc_0x7D8:
-	  mr        r4, r30
-	  mr        r5, r29
-	  addi      r3, r1, 0x6C
-	  rlwinm    r6,r18,0,24,31
-	  bl        0x1358
-	  lwz       r3, 0x30(r31)
-	  rlwinm    r4,r18,0,24,31
-	  addi      r5, r1, 0x6C
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x34(r12)
-	  mtctr     r12
-	  bctrl
-	  addi      r18, r18, 0x1
-
-	.loc_0x80C:
-	  rlwinm    r0,r18,0,24,31
-	  cmplw     r0, r20
-	  blt+      .loc_0x7D8
-	  rlwinm    r20,r21,0,24,31
-	  li        r18, 0
-	  b         .loc_0x860
-
-	.loc_0x824:
-	  mr        r4, r30
-	  mr        r5, r29
-	  addi      r3, r1, 0x24
-	  rlwinm    r6,r18,0,24,31
-	  bl        0x12AC
-	  lwz       r0, 0x24(r1)
-	  rlwinm    r4,r18,0,24,31
-	  addi      r5, r1, 0x28
-	  stw       r0, 0x28(r1)
-	  lwz       r3, 0x30(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  addi      r18, r18, 0x1
-
-	.loc_0x860:
-	  rlwinm    r0,r18,0,24,31
-	  cmplw     r0, r20
-	  blt+      .loc_0x824
-	  rlwinm    r20,r21,0,24,31
-	  li        r18, 0
-	  b         .loc_0x8AC
-
-	.loc_0x878:
-	  mr        r4, r30
-	  mr        r5, r29
-	  addi      r3, r1, 0x20
-	  rlwinm    r6,r18,0,24,31
-	  bl        0x152C
-	  lwz       r3, 0x30(r31)
-	  rlwinm    r4,r18,0,24,31
-	  addi      r5, r1, 0x20
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x40(r12)
-	  mtctr     r12
-	  bctrl
-	  addi      r18, r18, 0x1
-
-	.loc_0x8AC:
-	  rlwinm    r0,r18,0,24,31
-	  cmplw     r0, r20
-	  blt+      .loc_0x878
-	  rlwinm    r20,r25,0,24,31
-	  li        r18, 0
-	  b         .loc_0x900
-
-	.loc_0x8C4:
-	  mr        r4, r30
-	  mr        r5, r29
-	  addi      r3, r1, 0x18
-	  rlwinm    r6,r18,0,24,31
-	  bl        0x134C
-	  lwz       r0, 0x18(r1)
-	  rlwinm    r4,r18,0,24,31
-	  addi      r5, r1, 0x1C
-	  stw       r0, 0x1C(r1)
-	  lwz       r3, 0x2C(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC0(r12)
-	  mtctr     r12
-	  bctrl
-	  addi      r18, r18, 0x1
-
-	.loc_0x900:
-	  rlwinm    r0,r18,0,24,31
-	  cmplw     r0, r20
-	  blt+      .loc_0x8C4
-
-	.loc_0x90C:
-	  mr        r3, r31
-	  lmw       r18, 0xB8(r1)
-	  lwz       r0, 0xF4(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0xF0
-	  blr
-	*/
 }
 
 /**
@@ -1984,7 +1321,7 @@ size_t J3DMaterialFactory::calcSizeNormalMaterial(J3DMaterial* material, int mat
 	size += J3DMaterial::calcSizeTevBlock((u16)tev_stage_num);
 	size += J3DMaterial::calcSizeIndBlock(ind_flag);
 	size += J3DMaterial::calcSizePEBlock(pe_flag, getMaterialMode(matID));
-	J3DMaterialInitData& initData = getMaterialInitData(matID);
+	J3DMaterialInitData& initData = mInitData[mMatRemapTable[matID]];
 	for (int i = 0; i < 8; i++) {
 		if (initData.mTexMatrixIndex[i] != 0xffff) {
 			size += sizeof(J3DTexMtx);
@@ -2009,7 +1346,7 @@ size_t J3DMaterialFactory::calcSizePatchedMaterial(J3DMaterial* material, int ma
 	size += sizeof(J3DTevBlockPatched);
 	size += J3DMaterial::calcSizeIndBlock(ind_flag);
 	size += J3DMaterial::calcSizePEBlock(0x10000000, getMaterialMode(matID));
-	J3DMaterialInitData& initData = getMaterialInitData(matID);
+	J3DMaterialInitData& initData = mInitData[mMatRemapTable[matID]];
 	for (int i = 0; i < 8; i++) {
 		if (initData.mTexMatrixIndex[i] != 0xffff) {
 			size += sizeof(J3DTexMtx);
@@ -2040,11 +1377,12 @@ J3DGXColor J3DMaterialFactory::newMatColor(int matID, int colID) const
 {
 	GXColor gxColor = { 0xFF, 0xFF, 0xFF, 0xFF };
 	J3DGXColor j3dColor;
-	j3dColor.r = gxColor.r;
-	j3dColor.g = gxColor.g;
-	j3dColor.b = gxColor.b;
-	j3dColor.a = gxColor.a;
-	u16 id     = getMaterialInitData(matID).mMatColorIndex[colID];
+	j3dColor.r                = gxColor.r;
+	j3dColor.g                = gxColor.g;
+	j3dColor.b                = gxColor.b;
+	j3dColor.a                = gxColor.a;
+	J3DMaterialInitData& data = mInitData[mMatRemapTable[matID]];
+	u16 id                    = data.mMatColorIndex[colID];
 	if (id != 0xFFFF) {
 		return mMaterialColors[id];
 	}
@@ -2057,8 +1395,9 @@ J3DGXColor J3DMaterialFactory::newMatColor(int matID, int colID) const
  */
 u8 J3DMaterialFactory::newColorChanNum(int matID) const
 {
-	if (getMaterialInitData(matID).mNumberColorChanControls != 0xFF) {
-		return mNumColorChans[getMaterialInitData(matID).mNumberColorChanControls];
+	J3DMaterialInitData& data = mInitData[mMatRemapTable[matID]];
+	if (data.mNumberColorChanControls != 0xFF) {
+		return mNumColorChans[data.mNumberColorChanControls];
 	}
 	return 0;
 }
@@ -2069,7 +1408,8 @@ u8 J3DMaterialFactory::newColorChanNum(int matID) const
  */
 J3DColorChan J3DMaterialFactory::newColorChan(int matID, int colID) const
 {
-	u16 id = getMaterialInitData(matID).mColorChanControlIndex[colID];
+	J3DMaterialInitData& data = mInitData[mMatRemapTable[matID]];
+	u16 id                    = data.mColorChanControlIndex[colID];
 	if (id != 0xFFFF) {
 		return J3DColorChan(mColorChanInfo[id]);
 	}
@@ -2084,11 +1424,12 @@ J3DGXColor J3DMaterialFactory::newAmbColor(int matID, int colID) const
 {
 	GXColor gxColor = { 50, 50, 50, 50 };
 	J3DGXColor j3dColor;
-	j3dColor.r = gxColor.r;
-	j3dColor.g = gxColor.g;
-	j3dColor.b = gxColor.b;
-	j3dColor.a = gxColor.a;
-	u16 id     = getMaterialInitData(matID).mAmbColorIndex[colID];
+	j3dColor.r                = gxColor.r;
+	j3dColor.g                = gxColor.g;
+	j3dColor.b                = gxColor.b;
+	j3dColor.a                = gxColor.a;
+	J3DMaterialInitData& data = mInitData[mMatRemapTable[matID]];
+	u16 id                    = data.mAmbColorIndex[colID];
 	if (id != 0xFFFF) {
 		return mAmbientColors[id];
 	}
@@ -2101,8 +1442,9 @@ J3DGXColor J3DMaterialFactory::newAmbColor(int matID, int colID) const
  */
 u32 J3DMaterialFactory::newTexGenNum(int index) const
 {
-	if (getMaterialInitData(index).mNumTexGensIndex != 0xFF) {
-		return mTexGenNums[getMaterialInitData(index).mNumTexGensIndex];
+	J3DMaterialInitData& data = mInitData[mMatRemapTable[index]];
+	if (data.mNumTexGensIndex != 0xFF) {
+		return mTexGenNums[data.mNumTexGensIndex];
 	}
 	return 0;
 }
@@ -2113,7 +1455,8 @@ u32 J3DMaterialFactory::newTexGenNum(int index) const
  */
 J3DTexCoord J3DMaterialFactory::newTexCoord(int matID, int texID) const
 {
-	u16 id = getMaterialInitData(matID).mTexGenInfoIndex[texID];
+	J3DMaterialInitData& data = mInitData[mMatRemapTable[matID]];
+	u16 id                    = data.mTexGenInfoIndex[texID];
 	if (id != 0xffff) {
 		return J3DTexCoord(mTexCoordInfo[id]);
 	}
@@ -2128,7 +1471,7 @@ J3DTexCoord J3DMaterialFactory::newTexCoord(int matID, int texID) const
 J3DTexMtx* J3DMaterialFactory::newTexMtx(int matID, int texID) const
 {
 	J3DTexMtx* texMtx             = nullptr;
-	J3DMaterialInitData& initData = getMaterialInitData(matID);
+	J3DMaterialInitData& initData = mInitData[mMatRemapTable[matID]];
 	if (initData.mTexMatrixIndex[texID] != 0xFFFF) {
 		texMtx = new J3DTexMtx(mTexMtxInfo[initData.mTexMatrixIndex[texID]]);
 	}
@@ -2141,8 +1484,9 @@ J3DTexMtx* J3DMaterialFactory::newTexMtx(int matID, int texID) const
  */
 u8 J3DMaterialFactory::newCullMode(int matID) const
 {
-	if (getMaterialInitData(matID).mCullModeIndex != 0xFF) {
-		return (GXCullMode)(mCullModeInfo[getMaterialInitData(matID).mCullModeIndex] & 0xFF);
+	J3DMaterialInitData& data = mInitData[mMatRemapTable[matID]];
+	if (data.mCullModeIndex != 0xFF) {
+		return (GXCullMode)(mCullModeInfo[data.mCullModeIndex] & 0xFF);
 	}
 	return (GXCullMode)0xFF;
 }
@@ -2153,8 +1497,9 @@ u8 J3DMaterialFactory::newCullMode(int matID) const
  */
 u16 J3DMaterialFactory::newTexNo(int matID, int texID) const
 {
-	if (getMaterialInitData(matID).mTextureIndex[texID] != 0xFFFF) {
-		return mTextureRemapTable[getMaterialInitData(matID).mTextureIndex[texID]];
+	J3DMaterialInitData& data = mInitData[mMatRemapTable[matID]];
+	if (data.mTextureIndex[texID] != 0xFFFF) {
+		return mTextureRemapTable[data.mTextureIndex[texID]];
 	}
 	return 0xFFFF;
 }
@@ -2165,7 +1510,8 @@ u16 J3DMaterialFactory::newTexNo(int matID, int texID) const
  */
 J3DTevOrder J3DMaterialFactory::newTevOrder(int matID, int tevID) const
 {
-	u16 id = getMaterialInitData(matID).mTevOrderInfoIndex[tevID];
+	J3DMaterialInitData& data = mInitData[mMatRemapTable[matID]];
+	u16 id                    = data.mTevOrderInfoIndex[tevID];
 	if (id != 0xFFFF) {
 		return mTevOrderInfo[id];
 	}
@@ -2180,11 +1526,12 @@ J3DGXColorS10 J3DMaterialFactory::newTevColor(int matID, int colID) const
 {
 	GXColorS10 defaultTevColor = { 0, 0, 0, 0 };
 	J3DGXColorS10 j3dColor;
-	j3dColor.r = defaultTevColor.r;
-	j3dColor.g = defaultTevColor.g;
-	j3dColor.b = defaultTevColor.b;
-	j3dColor.a = defaultTevColor.a;
-	u16 id     = getMaterialInitData(matID).mTevColorIndex[colID];
+	j3dColor.r                = defaultTevColor.r;
+	j3dColor.g                = defaultTevColor.g;
+	j3dColor.b                = defaultTevColor.b;
+	j3dColor.a                = defaultTevColor.a;
+	J3DMaterialInitData& data = mInitData[mMatRemapTable[matID]];
+	u16 id                    = data.mTevColorIndex[colID];
 	if (id != 0xFFFF) {
 		return mTevColors[id];
 	}
@@ -2199,11 +1546,12 @@ J3DGXColor J3DMaterialFactory::newTevKColor(int matID, int colID) const
 {
 	GXColor defaultTevColor = { 255, 255, 255, 255 };
 	J3DGXColor j3dColor;
-	j3dColor.r = defaultTevColor.r;
-	j3dColor.g = defaultTevColor.g;
-	j3dColor.b = defaultTevColor.b;
-	j3dColor.a = defaultTevColor.a;
-	u16 id     = getMaterialInitData(matID).mTevKColorIndex[colID];
+	j3dColor.r                = defaultTevColor.r;
+	j3dColor.g                = defaultTevColor.g;
+	j3dColor.b                = defaultTevColor.b;
+	j3dColor.a                = defaultTevColor.a;
+	J3DMaterialInitData& data = mInitData[mMatRemapTable[matID]];
+	u16 id                    = data.mTevKColorIndex[colID];
 	if (id != 0xFFFF) {
 		return mTevKColors[id];
 	}
@@ -2216,8 +1564,9 @@ J3DGXColor J3DMaterialFactory::newTevKColor(int matID, int colID) const
  */
 u8 J3DMaterialFactory::newTevStageNum(int matID) const
 {
-	if (getMaterialInitData(matID).mNumTevStagesIndex != 0xFF) {
-		return mTevStageNums[getMaterialInitData(matID).mNumTevStagesIndex];
+	J3DMaterialInitData& data = mInitData[mMatRemapTable[matID]];
+	if (data.mNumTevStagesIndex != 0xFF) {
+		return mTevStageNums[data.mNumTevStagesIndex];
 	}
 	return 0xFF;
 }
@@ -2229,7 +1578,8 @@ u8 J3DMaterialFactory::newTevStageNum(int matID) const
  */
 J3DTevStage J3DMaterialFactory::newTevStage(int matID, int tevID) const
 {
-	u16 id = getMaterialInitData(matID).mTevStageInfoIndex[tevID];
+	J3DMaterialInitData& data = mInitData[mMatRemapTable[matID]];
+	u16 id                    = data.mTevStageInfoIndex[tevID];
 	if (id != 0xFFFF) {
 		return J3DTevStage(mTevStageInfo[id]);
 	}
@@ -2242,7 +1592,8 @@ J3DTevStage J3DMaterialFactory::newTevStage(int matID, int tevID) const
  */
 J3DTevSwapModeTable J3DMaterialFactory::newTevSwapModeTable(int matID, int tevID) const
 {
-	u16 id = getMaterialInitData(matID).mTevSwapModeTableIndex[tevID];
+	J3DMaterialInitData& data = mInitData[mMatRemapTable[matID]];
+	u16 id                    = data.mTevSwapModeTableIndex[tevID];
 	if (id != 0xFFFF) {
 		return J3DTevSwapModeTable(mTevSwapModeTableInfo[id]);
 	}
@@ -2268,8 +1619,8 @@ u8 J3DMaterialFactory::newIndTexStageNum(int matID) const
 J3DIndTexOrder J3DMaterialFactory::newIndTexOrder(int matID, int texID) const
 {
 	J3DIndTexOrder order = j3dDefaultIndTexOrderNull;
-	if (getIndInitData(matID).mEnabled == true) {
-		return J3DIndTexOrder(getIndInitData(matID).mIndTexOrderInfo[texID]);
+	if (mIndInitData[matID].mEnabled == true) {
+		return J3DIndTexOrder(mIndInitData[matID].mIndTexOrderInfo[texID]);
 	}
 	return order;
 }
@@ -2335,7 +1686,8 @@ J3DFog J3DMaterialFactory::newFog(int matID) const
  */
 J3DAlphaComp J3DMaterialFactory::newAlphaComp(int matID) const
 {
-	u16 v1 = getMaterialInitData(matID).mAlphaCompareIndex;
+	J3DMaterialInitData& data = mInitData[mMatRemapTable[matID]];
+	u16 v1                    = data.mAlphaCompareIndex;
 	if (v1 != 0xFFFF) {
 		return J3DAlphaComp(mAlphaCompInfo[v1]);
 	}
@@ -2348,7 +1700,8 @@ J3DAlphaComp J3DMaterialFactory::newAlphaComp(int matID) const
  */
 J3DBlend J3DMaterialFactory::newBlend(int matID) const
 {
-	u16 v1 = getMaterialInitData(matID).mBlendModeIndex;
+	J3DMaterialInitData& data = mInitData[mMatRemapTable[matID]];
+	u16 v1                    = data.mBlendModeIndex;
 	if (v1 != 0xFFFF) {
 		return J3DBlend(mBlendInfo[v1]);
 	}
@@ -2361,7 +1714,8 @@ J3DBlend J3DMaterialFactory::newBlend(int matID) const
  */
 J3DZMode J3DMaterialFactory::newZMode(int matID) const
 {
-	u8 v1 = getMaterialInitData(matID).mZModeIndex;
+	J3DMaterialInitData& data = mInitData[mMatRemapTable[matID]];
+	u8 v1                     = data.mZModeIndex;
 	if (v1 != 0xFF) {
 		return J3DZMode(mZModeInfo[v1]);
 	}
@@ -2374,7 +1728,8 @@ J3DZMode J3DMaterialFactory::newZMode(int matID) const
  */
 u8 J3DMaterialFactory::newZCompLoc(int matID) const
 {
-	u8 v1 = getMaterialInitData(matID).mZCompLocIndex;
+	J3DMaterialInitData& data = mInitData[mMatRemapTable[matID]];
+	u8 v1                     = data.mZCompLocIndex;
 	if (v1 != 0xFF) {
 		return mZCompareInfo[v1];
 	}
@@ -2387,7 +1742,8 @@ u8 J3DMaterialFactory::newZCompLoc(int matID) const
  */
 u8 J3DMaterialFactory::newDither(int matID) const
 {
-	u8 v1 = getMaterialInitData(matID).mDitherIndex;
+	J3DMaterialInitData& data = mInitData[mMatRemapTable[matID]];
+	u8 v1                     = data.mDitherIndex;
 	if (v1 != 0xFF) {
 		return mDitherInfo[v1];
 	}
@@ -2401,7 +1757,8 @@ u8 J3DMaterialFactory::newDither(int matID) const
 J3DNBTScale J3DMaterialFactory::newNBTScale(int matID) const
 {
 	J3DNBTScale ret;
-	u16 no = getMaterialInitData(matID).mNBTScaleIndex;
+	J3DMaterialInitData& data = mInitData[mMatRemapTable[matID]];
+	u16 no                    = data.mNBTScaleIndex;
 	if (no != 0xFFFF) {
 		return J3DNBTScale(mNBTScaleInfo[no]);
 	}

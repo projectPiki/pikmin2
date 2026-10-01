@@ -37,7 +37,7 @@ struct J3DMtxBuffer {
 	u8 getEnvScaleFlag(int idx) const { return mEnvelopeScaleFlags[idx]; }
 	Mtx** getDrawMtxPtrPtr() const { return mDrawMatrices[1]; }
 	Mtx* getDrawMtxPtr() const { return mDrawMatrices[1][mCurrentViewNumber]; }
-	Mtx* getDrawMtx(u16 idx) const { return &mDrawMatrices[1][mCurrentViewNumber][idx]; }
+	Mtx* getDrawMtx(u32 idx) const { return &mDrawMatrices[1][mCurrentViewNumber][idx]; }
 	Mtx33** getNrmMtxPtrPtr() const { return mNormMatrices[1]; }
 	Mtx33* getNrmMtxPtr() const { return mNormMatrices[1][mCurrentViewNumber]; }
 	Mtx33* getNrmMtx(u16 idx) const { return &mNormMatrices[1][mCurrentViewNumber][idx]; }
