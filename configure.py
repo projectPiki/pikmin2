@@ -1959,7 +1959,7 @@ config.libs = [
             Object(Matching, "sysGCU/resourceMgr2D.cpp"),
             Object(Matching, "sysGCU/sysMaterialAnim.cpp"),
             Object(Matching, "sysGCU/P2DScreen.cpp"),
-            Object(Equivalent, "sysGCU/movieMessage.cpp"),
+            Object(Matching, "sysGCU/movieMessage.cpp"),
             Object(Matching, "sysGCU/moviePlayerPauseAndDraw.cpp"),
             Object(Matching, "sysGCU/JSTObjectSpecialActor.cpp"),
             Object(Matching, "sysGCU/messageSequence.cpp"),
