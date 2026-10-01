@@ -179,7 +179,7 @@ struct TList_pointer : public TList_pointer_void {
 		    : Base::iterator(it)
 		{
 		}
-		T& operator*() const { return *(T*)&this->mNode->getElement(); }
+		T& operator*() const { return *(T*)(this->mNode + 1); }
 		iterator& operator++()
 		{
 			Base::iterator::operator++();

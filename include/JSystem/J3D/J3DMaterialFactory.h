@@ -127,13 +127,8 @@ struct J3DMaterialFactory {
 	J3DZMode newZMode(int) const;
 	void modifyPatchedCurrentMtx(J3DMaterial*, int) const;
 
-	/** @fabricated */
 	u16 getMaterialID(int idx) const { return mMatRemapTable[idx]; }
-	inline J3DMaterialInitData& getMaterialInitData(s32 index) const { return mInitData[mMatRemapTable[index]]; }
-	u8 getMaterialMode(int idx) const { return getMaterialInitData(idx).mPixelEngineMode; }
-
-	/** @fabricated */
-	inline J3DIndInitData& getIndInitData(s32 index) const { return mIndInitData[index]; }
+	u8 getMaterialMode(int idx) const { return mInitData[mMatRemapTable[idx]].mPixelEngineMode; }
 
 	// unused/inlined:
 	u32 countTexGens(int matID) const;
