@@ -93,7 +93,7 @@ struct JPABaseShape {
 	u32 getTilingS() const { return (mData->mFlags >> 25) & 0x01; }
 	u32 getTilingT() const { return (mData->mFlags >> 26) & 0x01; }
 	BOOL isGlblClrAnm() const { return mData->mFlags & 0x00001000; }
-	BOOL isGlblTexAnm() const { return mData->mFlags & 0x00004000; }
+	u32 isGlblTexAnm() const { return mData->mFlags & 0x00004000; }
 	BOOL isPrjTex() const { return mData->mFlags & 0x00100000; }
 	BOOL isDrawFwdAhead() const { return mData->mFlags & 0x00200000; }
 	BOOL isDrawPrntAhead() const { return mData->mFlags & 0x00400000; }
