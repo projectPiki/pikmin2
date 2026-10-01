@@ -1,5 +1,5 @@
 #include "Game/Entities/FireChappy.h"
-#include "efx/THanacho.h"
+#include "efx/efxEnemy.h"
 
 namespace Game {
 namespace FireChappy {

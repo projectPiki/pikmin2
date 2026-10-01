@@ -1,9 +1,4 @@
-#include "efx/TDango.h"
-#include "efx/TKage.h"
-#include "efx/TOoota.h"
-#include "efx/TKch.h"
-#include "efx/THdama.h"
-#include "efx/TOdama.h"
+#include "efx/efxEnemyBoss.h"
 #include "JSystem/JParticle/JPAMath.h"
 #include "Game/MapMgr.h"
 

@@ -2,7 +2,7 @@
 #define _KH_KHUTIL_H
 
 #include "P2DScreen.h"
-#include "efx2d/T2DCountKira.h"
+#include "efx2d/efx2dEffect.h"
 #include "og/Screen/callbackNodes.h"
 
 struct Graphics;

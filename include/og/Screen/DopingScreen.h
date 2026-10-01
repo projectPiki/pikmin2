@@ -5,7 +5,7 @@
 #include "P2DScreen.h"
 #include "og/Screen/Data.h"
 #include "Vector2.h"
-#include "efx2d/T2DExtractUp.h"
+#include "efx2d/efx2dEffect.h"
 #include "types.h"
 
 namespace og {

@@ -1,7 +1,7 @@
 #include "types.h"
 #include "Game/Entities/GasHiba.h"
 #include "Game/EnemyAnimKeyEvent.h"
-#include "efx/TEnemyBomb.h"
+#include "efx/efxEnemyGeneral.h"
 #include "PS.h"
 
 namespace Game {

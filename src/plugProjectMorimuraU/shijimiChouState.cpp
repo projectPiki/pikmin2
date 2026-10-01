@@ -1,7 +1,7 @@
 #include "Game/Entities/ShijimiChou.h"
 #include "Game/EnemyAnimKeyEvent.h"
 #include "Game/EnemyFunc.h"
-#include "efx/TEnemyDead.h"
+#include "efx/efxEnemyGeneral.h"
 #include "Dolphin/rand.h"
 #include "PS.h"
 

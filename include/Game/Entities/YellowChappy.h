@@ -4,7 +4,7 @@
 #include "Game/EnemyMgrBase.h"
 #include "Game/EnemyBase.h"
 #include "Game/Entities/ChappyBase.h"
-#include "efx/TKechappy.h"
+#include "efx/efxEnemy.h"
 #include "EffectAnimator.h"
 
 /**

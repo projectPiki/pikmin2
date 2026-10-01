@@ -1,7 +1,7 @@
 #include "Game/Entities/ItemBridge.h"
 #include "Game/routeMgr.h"
 #include "Game/MapMgr.h"
-#include "efx/TBridge.h"
+#include "efx/efxPikmin.h"
 #include "JSystem/JKernel/JKRDvdRipper.h"
 #include "PSSystem/PSMainSide_ObjSound.h"
 #include "PSSystem/PSSystemIF.h"

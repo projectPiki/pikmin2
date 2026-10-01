@@ -4,7 +4,7 @@
 #include "types.h"
 #include "Game/pelletMgr.h"
 #include "Game/BasePelletMgr.h"
-#include "efx/TPelkira.h"
+#include "efx/efxObject.h"
 
 namespace Game {
 namespace PelletNumber {

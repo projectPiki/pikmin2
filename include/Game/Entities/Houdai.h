@@ -7,8 +7,7 @@
 #include "Game/EnemyMgrBase.h"
 #include "Game/JointFuncs.h"
 #include "Game/EnemyBase.h"
-#include "efx/TDama.h"
-#include "efx/THdama.h"
+#include "efx/efxEnemyBoss.h"
 #include "Collinfo.h"
 #include "Sys/MatBaseAnimation.h"
 #include "Sys/MatBaseAnimator.h"
@@ -45,7 +44,7 @@ struct Obj : public EnemyBase {
 	virtual void onKill(CreatureKillArg* settings);                            // _34
 	virtual void doDirectDraw(Graphics& gfx);                                  // _50
 	virtual void getShadowParam(ShadowParam& settings);                        // _134
-	virtual ~Obj() {};                                                         // _1BC (weak)
+	virtual ~Obj() { };                                                        // _1BC (weak)
 	virtual void setInitialSetting(EnemyInitialParamBase* params);             // _1C4
 	virtual void doUpdate();                                                   // _1CC
 	virtual void doUpdateCommon();                                             // _1D0
@@ -228,7 +227,7 @@ struct Parms : public EnemyParmsBase {
 		Parm<f32> mLastToTerritory;     // _994
 	};
 
-	Parms() {};
+	Parms() { };
 
 	virtual void read(Stream& stream) // _08 (weak)
 	{
@@ -251,7 +250,7 @@ enum AnimID {
 };
 
 struct ProperAnimator : public EnemyAnimatorBase {
-	virtual ~ProperAnimator() {};                                    // _08 (weak)
+	virtual ~ProperAnimator() { };                                   // _08 (weak)
 	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                 // _0C
 	virtual SysShape::Animator& getAnimator() { return mAnimator; }; // _10 (weak)
 	virtual SysShape::Animator& getAnimator(int idx);                // _14

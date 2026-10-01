@@ -2,7 +2,7 @@
 #include "Game/MapMgr.h"
 #include "Game/rumble.h"
 #include "Game/CameraMgr.h"
-#include "efx/THdama.h"
+#include "efx/efxEnemyBoss.h"
 #include "Dolphin/rand.h"
 #include "PS.h"
 #include "nans.h"

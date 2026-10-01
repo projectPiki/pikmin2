@@ -1,5 +1,5 @@
 #include "Game/Entities/Hiba.h"
-#include "efx/THibaFire.h"
+#include "efx/efxEnemy.h"
 #include "Dolphin/rand.h"
 
 namespace Game {

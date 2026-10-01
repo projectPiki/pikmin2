@@ -13,8 +13,7 @@
 #include "Game/Navi.h"
 #include "Game/PikiMgr.h"
 #include "Game/MoviePlayer.h"
-#include "efx/TNaviEffect.h"
-#include "efx/TPk.h"
+#include "efx/efxPikmin.h"
 
 #define CH_SCORE_POKO_MULTIPLIER   10
 #define CH_SCORE_PIKMIN_MULTIPLIER 10

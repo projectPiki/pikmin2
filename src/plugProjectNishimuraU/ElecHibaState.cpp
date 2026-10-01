@@ -1,6 +1,6 @@
 #include "Game/Entities/ElecHiba.h"
 #include "Game/EnemyAnimKeyEvent.h"
-#include "efx/TEnemyBomb.h"
+#include "efx/efxEnemyGeneral.h"
 #include "PS.h"
 
 namespace Game {

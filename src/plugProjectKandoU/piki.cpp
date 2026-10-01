@@ -14,7 +14,7 @@
 #include "Game/NaviParms.h"
 #include "Game/MapMgr.h"
 #include "Game/MoviePlayer.h"
-#include "efx/TPk.h"
+#include "efx/efxPikmin.h"
 #include "Dolphin/rand.h"
 #include "PikiAI.h"
 #include "System.h"

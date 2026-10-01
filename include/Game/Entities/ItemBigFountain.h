@@ -5,7 +5,7 @@
 #include "Game/BaseItem.h"
 #include "Game/itemMgr.h"
 #include "Game/PlatInstance.h"
-#include "efx/TGeyser.h"
+#include "efx/efxObject.h"
 #include "Condition.h"
 
 struct PikiCond_ExceptChappyPikmin : public Condition<Game::Piki> {

@@ -1,7 +1,7 @@
 #include "ParticleMgr.h"
 #include "System.h"
 #include "JSystem/JKernel/JKRDvdRipper.h"
-#include "efx/TPk.h"
+#include "efx/efxPikmin.h"
 #include "Camera.h"
 #include "JSystem/JParticle/JPABlock.h"
 #include "Light.h"

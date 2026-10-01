@@ -6,7 +6,7 @@
 #include "Game/Entities/ItemHoney.h"
 #include "Game/EnemyFunc.h"
 #include "Game/Navi.h"
-#include "efx/TChou.h"
+#include "efx/efxEnemy.h"
 #include "PSM/Cluster.h"
 #include "Dolphin/rand.h"
 

@@ -3,7 +3,7 @@
 #include "Game/EnemyFunc.h"
 #include "Game/generalEnemyMgr.h"
 #include "Game/ConditionNotStick.h"
-#include "efx/TOta.h"
+#include "efx/efxEnemy.h"
 
 namespace Game {
 namespace OtakaraBase {

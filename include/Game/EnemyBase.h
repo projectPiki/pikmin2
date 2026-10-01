@@ -13,7 +13,6 @@
 #include "SysShape/MotionListener.h"
 
 #include "PSSystem/PSMainSide_ObjSound.h"
-#include "efx/TEnemyPiyo.h"
 
 #include "trig.h"
 

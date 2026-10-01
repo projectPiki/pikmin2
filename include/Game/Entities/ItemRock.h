@@ -6,7 +6,7 @@
 #include "Game/itemMgr.h"
 #include "Game/PlatInstance.h"
 #include "Game/Farm.h"
-#include "efx/TKouhai.h"
+#include "efx/efxObject.h"
 
 namespace Game {
 namespace ItemRock {

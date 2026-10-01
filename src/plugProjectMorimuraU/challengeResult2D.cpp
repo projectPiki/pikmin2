@@ -9,7 +9,7 @@
 #include "PSSystem/PSSystemIF.h"
 #include "Dolphin/rand.h"
 #include "Game/gameChallenge2D.h"
-#include "efx2d/T2DChangesmoke.h"
+#include "efx2d/efx2dEffect.h"
 
 static const char name[] = "challengeResult2D";
 

@@ -1,7 +1,6 @@
 #include "Game/EnemyStone.h"
 #include "Game/EnemyBase.h"
 #include "PSSystem/PSGame.h"
-#include "efx/TSekika.h"
 #include "System.h"
 #include "types.h"
 

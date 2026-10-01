@@ -8,7 +8,7 @@
 #include "Game/WalkSmokeEffect.h"
 #include "JSystem/J3D/J3DModel.h"
 #include "JSystem/J3D/J3DModelLoader.h"
-#include "efx/TKkabuto.h"
+#include "efx/efxEnemy.h"
 
 /**
  * --Header for Cannon Beetles--

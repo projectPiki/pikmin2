@@ -14,7 +14,7 @@
 #include "Game/Entities/PelletOtakara.h"
 #include "Game/Navi.h"
 #include "Game/MapMgr.h"
-#include "efx/TNaviEffect.h"
+#include "efx/efxPikmin.h"
 #include "Screen/Game2DMgr.h"
 #include "Dolphin/rand.h"
 #include "PikiAI.h"

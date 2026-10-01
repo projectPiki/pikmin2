@@ -8,7 +8,7 @@
 #include "Game/EnemyBase.h"
 #include "Game/WalkSmokeEffect.h"
 #include "SysShape/Joint.h"
-#include "efx/TTank.h"
+#include "efx/efxEnemy.h"
 #include "types.h"
 
 /**

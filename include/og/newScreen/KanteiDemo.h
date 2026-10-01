@@ -4,7 +4,7 @@
 #include "Screen/screenObj.h"
 #include "JSystem/J2D/J2DPane.h"
 #include "P2JME/Movie.h"
-#include "efx2d/T2DOtakantei.h"
+#include "efx2d/efx2dEffect.h"
 
 enum KanteiState {
 	Kantei_Begin            = 1,

@@ -2,7 +2,7 @@
 #define _GAME_ENTITIES_FART_H
 
 #include "Game/Entities/Kogane.h"
-#include "efx/TBaba.h"
+#include "efx/efxEnemy.h"
 
 /**
  * --Header for Doodlebug (Fart)--

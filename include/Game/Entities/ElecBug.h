@@ -6,7 +6,7 @@
 #include "Game/EnemyParmsBase.h"
 #include "Game/EnemyMgrBase.h"
 #include "Game/EnemyBase.h"
-#include "efx/TDnkms.h"
+#include "efx/efxEnemy.h"
 
 /**
  * --Header for Anode Beetle (ElecBug)--

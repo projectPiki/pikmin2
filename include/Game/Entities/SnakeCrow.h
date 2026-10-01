@@ -8,7 +8,7 @@
 #include "Game/JointFuncs.h"
 #include "Game/EnemyBase.h"
 #include "Game/SnakeJointMgr.h"
-#include "efx/THebi.h"
+#include "efx/efxEnemyBoss.h"
 #include "SysShape/Joint.h"
 #include "Collinfo.h"
 

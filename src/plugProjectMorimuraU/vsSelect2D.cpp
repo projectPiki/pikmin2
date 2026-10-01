@@ -3,7 +3,7 @@
 #include "og/Screen/ArrowAlphaBlink.h"
 #include "JSystem/JKernel/JKRArchive.h"
 #include "Game/gameChallenge2D.h"
-#include "efx2d/T2DBattleDive.h"
+#include "efx2d/efx2dEffect.h"
 #include "Dolphin/rand.h"
 #include "Screen/Game2DMgr.h"
 #include "Controller.h"

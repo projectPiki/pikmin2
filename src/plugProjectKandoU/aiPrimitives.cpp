@@ -1,7 +1,6 @@
 #include "Dolphin/rand.h"
 #include "Game/Interaction.h"
-#include "efx/PikiDamage.h"
-#include "efx/TPk.h"
+#include "efx/efxPikmin.h"
 #include "types.h"
 #include "P2Macros.h"
 #include "Vector3.h"

@@ -2,7 +2,7 @@
 #include "Dolphin/rand.h"
 #include "Game/VsGame.h"
 #include "efx2d/Arg.h"
-#include "efx2d/T2DSprayset.h"
+#include "efx2d/efx2dEffect.h"
 #include "Light.h"
 #include "JSystem/JKernel/JKRArchive.h"
 #include "PSSystem/PSSystemIF.h"

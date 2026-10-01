@@ -1,6 +1,5 @@
 #include "Game/Entities/Tadpole.h"
-#include "efx/TEnemyDive.h"
-#include "efx/TPk.h"
+#include "efx/efxEnemyGeneral.h"
 #include "Dolphin/rand.h"
 #include "PS.h"
 

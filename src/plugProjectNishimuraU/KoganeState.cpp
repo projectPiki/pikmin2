@@ -1,7 +1,7 @@
 #include "Game/Entities/Kogane.h"
 #include "Game/EnemyAnimKeyEvent.h"
 #include "Game/EnemyFunc.h"
-#include "efx/TKogane.h"
+#include "efx/efxEnemy.h"
 
 namespace Game {
 namespace Kogane {

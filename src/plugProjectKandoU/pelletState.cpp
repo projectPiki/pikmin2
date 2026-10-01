@@ -14,8 +14,8 @@
 #include "PSSystem/PSMainSide_Scene.h"
 #include "PSM/EventBase.h"
 #include "Dolphin/rand.h"
-#include "efx/TTsuyuGrow.h"
-#include "efx/TEnemyDownSmoke.h"
+#include "efx/efxObject.h"
+#include "efx/efxEnemyGeneral.h"
 #include "Radar.h"
 #include "nans.h"
 

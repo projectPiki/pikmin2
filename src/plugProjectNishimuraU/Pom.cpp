@@ -3,10 +3,9 @@
 #include "Game/gamePlayData.h"
 #include "Game/Stickers.h"
 #include "Game/BirthMgr.h"
-#include "efx/TOnyon.h"
-#include "efx/TPonDead.h"
-#include "efx/TEnemyDownSmoke.h"
-#include "efx/TEnemyDownWat.h"
+#include "efx/efxObject.h"
+#include "efx/efxEnemy.h"
+#include "efx/efxEnemyGeneral.h"
 #include "Iterator.h"
 #include "Dolphin/rand.h"
 

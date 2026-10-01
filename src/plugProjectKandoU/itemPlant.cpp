@@ -2,8 +2,7 @@
 #include "Game/Farm.h"
 #include "Game/Stickers.h"
 
-#include "efx/TTsuyuGrow.h"
-#include "efx/TFruitsDown.h"
+#include "efx/efxObject.h"
 
 #include "PSM/EventBase.h"
 #include "PSSystem/PSMainSide_ObjSound.h"

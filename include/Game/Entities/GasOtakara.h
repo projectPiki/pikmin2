@@ -2,7 +2,7 @@
 #define _GAME_ENTITIES_GASOTAKARA_H
 
 #include "Game/Entities/OtakaraBase.h"
-#include "efx/TOta.h"
+#include "efx/efxEnemy.h"
 
 /**
  * --Header for Munge Dweevil (GasOtakara)--

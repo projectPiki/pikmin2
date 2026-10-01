@@ -3,7 +3,7 @@
 
 #include "types.h"
 #include "CNode.h"
-#include "efx/TEnemyHamon.h"
+#include "efx/efxEnemyGeneral.h"
 
 namespace Game {
 struct EnemyBase;

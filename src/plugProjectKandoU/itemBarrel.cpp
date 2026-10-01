@@ -5,7 +5,7 @@
 #include "Game/MapMgr.h"
 #include "Game/MoviePlayer.h"
 #include "Game/itemMgr.h"
-#include "efx/TBarrel.h"
+#include "efx/efxObject.h"
 #include "JSystem/JKernel/JKRArchive.h"
 #include "JSystem/JKernel/JKRDvdRipper.h"
 #include "P2Macros.h"

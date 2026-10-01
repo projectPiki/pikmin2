@@ -6,7 +6,7 @@
 #include "MonoObjectMgr.h"
 #include "Game/BaseItem.h"
 #include "Game/itemMgr.h"
-#include "efx/TPk.h"
+#include "efx/efxPikmin.h"
 
 namespace Game {
 namespace ItemPikihead {

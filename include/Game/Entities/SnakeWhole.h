@@ -9,7 +9,7 @@
 #include "Game/EnemyBase.h"
 #include "Game/SnakeJointMgr.h"
 #include "SysShape/Joint.h"
-#include "efx/TCphebi.h"
+#include "efx/efxEnemyBoss.h"
 #include "Collinfo.h"
 
 /**

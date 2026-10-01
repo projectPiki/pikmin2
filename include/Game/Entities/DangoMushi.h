@@ -10,7 +10,7 @@
 #include "Game/EnemyBase.h"
 #include "Sys/MatBaseAnimation.h"
 #include "Sys/MatBaseAnimator.h"
-#include "efx/TDango.h"
+#include "efx/efxEnemyBoss.h"
 
 /**
  * --Header for Segmented Crawbster (DangoMushi)--
