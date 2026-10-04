@@ -597,8 +597,8 @@ struct DispMemberSMenuAll : public DispMemberBase {
 
 	enum OpenType {
 		Open_StoryMode, // start on map
-		Open_ChallengeMode,
-		Open_Versus
+		Open_Versus,
+		Open_ChallengeMode
 	};
 
 	virtual u32 getSize() { return sizeof(DispMemberSMenuAll); } // _08 (weak)

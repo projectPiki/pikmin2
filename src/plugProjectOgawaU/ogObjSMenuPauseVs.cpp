@@ -50,7 +50,7 @@ void ObjSMenuPauseVS::doCreate(JKRArchive* arc)
 	}
 
 	if (newdisp->isID(OWNER_OGA, MEMBER_START_MENU_ALL)) {
-		if (static_cast<og::Screen::DispMemberSMenuAll*>(newdisp)->mOpenMode == og::Screen::DispMemberSMenuAll::Open_Versus) {
+		if (static_cast<og::Screen::DispMemberSMenuAll*>(newdisp)->mOpenMode == og::Screen::DispMemberSMenuAll::Open_ChallengeMode) {
 			mType = 1;
 		}
 	}

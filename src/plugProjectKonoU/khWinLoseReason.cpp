@@ -76,7 +76,7 @@ void SceneWinLoseReason::doCreateObj(JKRArchive* arc)
 	DispWinLoseReason* disp = static_cast<DispWinLoseReason*>(mDispMember);
 	mOutcome[0]             = disp->mOutcomeP1;
 	switch (disp->mOutcomeP1) {
-	case 1: // captain down
+	case CaptainDown:
 	{
 		mScreenObj[0] = new Morimura::TOrimaDown2D;
 		registObj(mScreenObj[0], arc);
@@ -87,7 +87,7 @@ void SceneWinLoseReason::doCreateObj(JKRArchive* arc)
 		screen->mTimeSpeed = ObjWinLoseReason::msVal.mTimeSpeed;
 		break;
 	}
-	case 2: // piki extinct
+	case PikminExtinction:
 	{
 		mScreenObj[0] = new Morimura::TPikminDown2D;
 		registObj(mScreenObj[0], arc);
@@ -98,7 +98,7 @@ void SceneWinLoseReason::doCreateObj(JKRArchive* arc)
 		screen->mTimeSpeed = ObjWinLoseReason::msVal.mTimeSpeed;
 		break;
 	}
-	case 3: {
+	case MarbleCapture: {
 		mScreenObj[0] = new ObjWinLoseReason(0);
 		registObj(mScreenObj[0], arc);
 		mDone[0] = true;
@@ -111,7 +111,7 @@ void SceneWinLoseReason::doCreateObj(JKRArchive* arc)
 
 	mOutcome[1] = disp->mOutcomeP2;
 	switch (disp->mOutcomeP2) {
-	case 1: // captain down
+	case CaptainDown:
 	{
 		mScreenObj[1] = new Morimura::TLujiDown2D;
 		registObj(mScreenObj[1], arc);
@@ -122,7 +122,7 @@ void SceneWinLoseReason::doCreateObj(JKRArchive* arc)
 		screen->mTimeSpeed = ObjWinLoseReason::msVal.mTimeSpeed;
 		break;
 	}
-	case 2: // piki extinct
+	case PikminExtinction:
 	{
 		mScreenObj[1] = new Morimura::TPikminDown2D;
 		registObj(mScreenObj[1], arc);
@@ -133,7 +133,7 @@ void SceneWinLoseReason::doCreateObj(JKRArchive* arc)
 		screen->mTimeSpeed = ObjWinLoseReason::msVal.mTimeSpeed;
 		break;
 	}
-	case 3: // default (marble?)
+	case MarbleCapture:
 	{
 		mScreenObj[1] = new ObjWinLoseReason(1);
 		registObj(mScreenObj[1], arc);
@@ -149,39 +149,39 @@ void SceneWinLoseReason::doCreateObj(JKRArchive* arc)
 
 	int flag = 0;
 	switch (mOutcome[0]) {
-	case 2:
-		flag |= 1;
+	case PikminExtinction:
+		flag |= PikminExtinction_F;
 		break;
-	case 1:
-		flag |= 2;
+	case CaptainDown:
+		flag |= CaptainDown_F;
 		break;
-	case 3:
-		flag |= 4;
+	case MarbleCapture:
+		flag |= MarbleCapture_F;
 		break;
 	}
 
 	switch (mOutcome[1]) {
-	case 2:
-		flag |= 0x10;
+	case PikminExtinction:
+		flag |= PikminExtinction_F << 4;
 		break;
-	case 1:
-		flag |= 0x20;
+	case CaptainDown:
+		flag |= CaptainDown_F << 4;
 		break;
-	case 3:
-		flag |= 0x40;
+	case MarbleCapture:
+		flag |= MarbleCapture_F << 4;
 		break;
 	}
 
-	if (!(flag & 0x44)) {
+	if (!(flag & ((MarbleCapture_F << 4) | MarbleCapture_F))) {
 		int streamID;
-		if (!(flag & 3)) {
-			if (flag & 0x20) {
+		if (!(flag & (PikminExtinction_F | CaptainDown_F))) {
+			if (flag & (CaptainDown_F << 4)) {
 				streamID = P2_STREAM_SOUND_ID(PSSTR_VS_PDOWN_WIN_ORI); // olimar win via louie dies
 			} else {
 				streamID = P2_STREAM_SOUND_ID(PSSTR_VS_PIK_WIN_ORI); // olimar wins via extinct
 			}
-		} else if (!(flag & 0x30)) {
-			if (flag & 0x2) {
+		} else if (!(flag & ((PikminExtinction_F | CaptainDown_F) << 4))) {
+			if (flag & CaptainDown_F) {
 				streamID = P2_STREAM_SOUND_ID(PSSTR_VS_PDOWN_WIN_LUI); // louie win via olimar dies
 			} else {
 				streamID = P2_STREAM_SOUND_ID(PSSTR_VS_PIK_WIN_LUI); // louie win via extinct
@@ -208,8 +208,8 @@ void SceneWinLoseReason::doUpdateActive()
 	mCounter++;
 	for (int i = 0; i < 2; i++) {
 		switch (mOutcome[i]) {
-		case 1:
-		case 2:
+		case CaptainDown:
+		case PikminExtinction:
 			if (mCounter == ObjWinLoseReason::msVal.mProgressFrame) {
 				Morimura::TGameOverBase* obj = static_cast<Morimura::TGameOverBase*>(mScreenObj[i]);
 				P2ASSERTLINE(272, obj);

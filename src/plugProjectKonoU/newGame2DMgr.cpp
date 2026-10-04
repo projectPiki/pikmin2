@@ -392,8 +392,8 @@ bool Game2DMgr::open_SMenu_Sub(og::Screen::DispMemberSMenuAll& disp)
 		set = mScreenMgr->setScene(arg);
 		break;
 	}
-	case og::Screen::DispMemberSMenuAll::Open_ChallengeMode:
-	case og::Screen::DispMemberSMenuAll::Open_Versus: {
+	case og::Screen::DispMemberSMenuAll::Open_Versus:
+	case og::Screen::DispMemberSMenuAll::Open_ChallengeMode: {
 		SetSceneArg arg(SCENE_PAUSE_MENU_VS, &disp);
 		set = mScreenMgr->setScene(arg);
 		break;
