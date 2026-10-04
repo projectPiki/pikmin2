@@ -209,7 +209,7 @@ bool Game2DMgr::open_GameVs(og::Screen::DispMemberVs& disp, int type)
 		if (mScreenMgr->setScene(arg)) {
 			mScreenMgr->startScene(nullptr);
 		}
-	} else if (type & 1) {
+	} else if (type & CAVEOPEN_ReadyGo) {
 		SetSceneArg arg(SCENE_VS, &disp);
 		if (mScreenMgr->setScene(arg)) {
 			kh::Screen::DispReadyGo disp2;
@@ -260,7 +260,7 @@ void Game2DMgr::open_GameChallenge2P(og::Screen::DispMemberChallenge2P& disp, in
 		if (mScreenMgr->setScene(arg)) {
 			mScreenMgr->startScene(&sarg);
 		}
-	} else if ((type & 3) == 3) {
+	} else if ((type & 0b11) == (CAVEOPEN_ReadyGo | CAVEOPEN_FinalFloor)) {
 		if (mScreenMgr->setScene(arg)) {
 			kh::Screen::DispReadyGo disp2;
 			disp2.mIs2Player    = true;
@@ -271,7 +271,7 @@ void Game2DMgr::open_GameChallenge2P(og::Screen::DispMemberChallenge2P& disp, in
 				mScreenMgr->startScene(nullptr);
 			}
 		}
-	} else if (type & 1) {
+	} else if (type & CAVEOPEN_ReadyGo) {
 		if (mScreenMgr->setScene(arg)) {
 			kh::Screen::DispReadyGo disp2;
 			disp2.mIs2Player = true;
@@ -281,7 +281,7 @@ void Game2DMgr::open_GameChallenge2P(og::Screen::DispMemberChallenge2P& disp, in
 				mScreenMgr->startScene(nullptr);
 			}
 		}
-	} else if (type & 2) {
+	} else if (type & CAVEOPEN_FinalFloor) {
 		if (mScreenMgr->setScene(arg)) {
 			kh::Screen::DispFinalFloor disp2;
 			disp2.mIs2Player = true;
@@ -306,7 +306,7 @@ void Game2DMgr::open_GameChallenge1P(og::Screen::DispMemberChallenge1P& disp, in
 		if (mScreenMgr->setScene(arg)) {
 			mScreenMgr->startScene(&sarg);
 		}
-	} else if ((type & 3) == 3) {
+	} else if ((type & 0b11) == (CAVEOPEN_ReadyGo | CAVEOPEN_FinalFloor)) {
 		if (mScreenMgr->setScene(arg)) {
 			kh::Screen::DispReadyGo disp2;
 			disp2.mIsFinalFloor = true;
@@ -316,7 +316,7 @@ void Game2DMgr::open_GameChallenge1P(og::Screen::DispMemberChallenge1P& disp, in
 				mScreenMgr->startScene(nullptr);
 			}
 		}
-	} else if (type == 1) {
+	} else if (type == CAVEOPEN_ReadyGo) {
 		if (mScreenMgr->setScene(arg)) {
 			kh::Screen::DispReadyGo disp2;
 			disp2.mGameType = kh::Screen::DispReadyGo::TYPE_Challenge;
@@ -325,7 +325,7 @@ void Game2DMgr::open_GameChallenge1P(og::Screen::DispMemberChallenge1P& disp, in
 				mScreenMgr->startScene(nullptr);
 			}
 		}
-	} else if (type == 2) {
+	} else if (type == CAVEOPEN_FinalFloor) {
 		if (mScreenMgr->setScene(arg)) {
 			kh::Screen::DispFinalFloor disp2;
 			SetSceneArg arg2(SCENE_FINAL_FLOOR, &disp2);

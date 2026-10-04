@@ -117,7 +117,7 @@ void GameState::do_init(VsGameSection* section)
 		Screen::gGame2DMgr->startCount_Floor();
 
 	} else {
-		open_GameChallenge(section, 1);
+		open_GameChallenge(section, Screen::Game2DMgr::CAVEOPEN_ReadyGo);
 		gameSystem->setPause(false, "vs-readygo", 3);
 		gameSystem->setPause(true, "vs readygo", 6);
 		gameSystem->setMoviePause(true, "vs readygo");
@@ -727,9 +727,9 @@ void GameState::onMovieDone(VsGameSection* section, MovieConfig* config, u32 unu
 		section->setCamController();
 
 		if (isFinalFloor) {
-			open_GameChallenge(section, 3);
+			open_GameChallenge(section, Screen::Game2DMgr::CAVEOPEN_ReadyGo | Screen::Game2DMgr::CAVEOPEN_FinalFloor);
 		} else {
-			open_GameChallenge(section, 1);
+			open_GameChallenge(section, Screen::Game2DMgr::CAVEOPEN_ReadyGo);
 		}
 
 		gameSystem->setPause(true, "readygo", 6);
@@ -778,9 +778,9 @@ void GameState::onMovieDone(VsGameSection* section, MovieConfig* config, u32 unu
 		gameSystem->setFlag(GAMESYS_IsPlaying);
 		if (currFloor == 0) {
 			if (isFinalFloor) {
-				open_GameChallenge(section, 3);
+				open_GameChallenge(section, Screen::Game2DMgr::CAVEOPEN_ReadyGo | Screen::Game2DMgr::CAVEOPEN_FinalFloor);
 			} else {
-				open_GameChallenge(section, 1);
+				open_GameChallenge(section, Screen::Game2DMgr::CAVEOPEN_ReadyGo);
 			}
 
 			gameSystem->setPause(true, "readygo2", 6);
@@ -788,7 +788,7 @@ void GameState::onMovieDone(VsGameSection* section, MovieConfig* config, u32 unu
 			setFlag(VSGS_ReadyGoOpen);
 
 		} else if (isFinalFloor) {
-			open_GameChallenge(section, 2);
+			open_GameChallenge(section, Screen::Game2DMgr::CAVEOPEN_FinalFloor);
 
 		} else {
 			open_GameChallenge(section, 0);
