@@ -1405,7 +1405,7 @@ _Read4:
 		register u32 tmp2;
 
 #ifdef __MWERKS__ // clang-format off
-	asm {
+		asm {
 			li      cnt, sizeof(s32)*5;
 			add     maxcodebase, maxcodebase, cnt;
 
@@ -1422,7 +1422,7 @@ _Read4:
 			cmpw    code, tmp2
 			addi    cnt, cnt, 1
 			bgt     __DR4_WHILE_START;
-	}
+		}
 #endif // clang-format on
 	}
 
@@ -1476,7 +1476,7 @@ _FailedCheckNoBits1:
 		mask = (u32) & (h->maxCode);
 
 #ifdef __MWERKS__ // clang-format off
-	asm {
+		asm {
 			lwz     tmp, info->file;
 			subfic  tmp2, cnt, 33;
 			addi    cnt, tmp2, 1;
@@ -1503,7 +1503,7 @@ _FailedCheckNoBits1:
 			cmpw    code, tmp2;
 			rlwnm   increment, cb, tmp, 31, 31;
 			bgt     __FCNB1_WHILE_START;
-	}
+		}
 #endif // clang-format on
 	}
 
@@ -1905,24 +1905,24 @@ static void __THPHuffDecodeDCTCompY(register THPFileInfo* info, THPCoeff* block)
 				register u32 tmp2;
 
 #ifdef __MWERKS__ // clang-format off
-			asm {
-				li  cnt, sizeof(s32)*5;
-				add     maxcodebase, maxcodebase, cnt;
+				asm {
+					li  cnt, sizeof(s32)*5;
+					add     maxcodebase, maxcodebase, cnt;
 
-				slwi    tmp, code, 32-5;
-				li      cnt,5;
-				rlwimi  tmp, cb, 32-1, 1,31;
+					slwi    tmp, code, 32-5;
+					li      cnt,5;
+					rlwimi  tmp, cb, 32-1, 1,31;
 
-			__DR4_WHILE_START:
+				__DR4_WHILE_START:
 
-				subfic  ssss, cnt, 31;
-				lwzu    tmp2, 4(maxcodebase);
-				srw     code, tmp, ssss;
-			__DR4_WHILE_CHECK:
-				cmpw    code, tmp2
-				addi    cnt, cnt, 1
-				bgt     __DR4_WHILE_START;
-			}
+					subfic  ssss, cnt, 31;
+					lwzu    tmp2, 4(maxcodebase);
+					srw     code, tmp, ssss;
+				__DR4_WHILE_CHECK:
+					cmpw    code, tmp2
+					addi    cnt, cnt, 1
+					bgt     __DR4_WHILE_START;
+				}
 #endif // clang-format on
 			}
 			ssss = (h->Vij[(s32)(code + h->valPtr[cnt])]);
@@ -1939,33 +1939,33 @@ static void __THPHuffDecodeDCTCompY(register THPFileInfo* info, THPCoeff* block)
 				mask = (u32) & (h->maxCode);
 
 #ifdef __MWERKS__ // clang-format off
-			asm {
-				lwz     tmp, info->file;
-				subfic  tmp2, cnt, 33;
-				addi    tmp3, tmp2, 1;
-				slwi    tmp2, tmp2, 2;
-				lwzu    cb, 4(tmp);
-				add     mask,mask, tmp2;
-				stw     tmp, info->file;
-				slwi    code, code, 1;
-				rlwimi  code, cb, 1, 31, 31;
-				lwzu    tmp2, 4(mask);
-				li      cnt, 2;
-				b       __FCNB1_WHILE_CHECK;
+				asm {
+					lwz     tmp, info->file;
+					subfic  tmp2, cnt, 33;
+					addi    tmp3, tmp2, 1;
+					slwi    tmp2, tmp2, 2;
+					lwzu    cb, 4(tmp);
+					add     mask,mask, tmp2;
+					stw     tmp, info->file;
+					slwi    code, code, 1;
+					rlwimi  code, cb, 1, 31, 31;
+					lwzu    tmp2, 4(mask);
+					li      cnt, 2;
+					b       __FCNB1_WHILE_CHECK;
 
-			__FCNB1_WHILE_START:
-				slwi    code, code, 1;
+				__FCNB1_WHILE_START:
+					slwi    code, code, 1;
 
-				addi    tmp3, tmp3, 1;
-				lwzu    tmp2, 4(mask);
-				add     code, code, rrrr;
-				addi    cnt, cnt, 1;
+					addi    tmp3, tmp3, 1;
+					lwzu    tmp2, 4(mask);
+					add     code, code, rrrr;
+					addi    cnt, cnt, 1;
 
-			__FCNB1_WHILE_CHECK:
-				cmpw    code, tmp2;
-				rlwnm   rrrr, cb, cnt, 31, 31;
-				bgt     __FCNB1_WHILE_START;
-			}
+				__FCNB1_WHILE_CHECK:
+					cmpw    code, tmp2;
+					rlwnm   rrrr, cb, cnt, 31, 31;
+					bgt     __FCNB1_WHILE_START;
+				}
 #endif // clang-format on
 				ssss = (h->Vij[(s32)(code + h->valPtr[tmp3])]);
 			}

@@ -494,10 +494,7 @@ bool TControl::forward(u32 time)
 	u32 statusAnd = 0x0f;
 	u32 statusOr  = 0;
 
-	// clang-format off
 	for (JGadget::TContainerEnumerator_<JGadget::TObjectList> it(mObjectContainer); it.enumerator;) {
-		// clang-format on
-
 		// this sucks, ideally `*it` should return a `TObject&` or `TObject*`, but idk how to set that up
 		p = &**it.enumerator;
 		TObject::TEStatus s;

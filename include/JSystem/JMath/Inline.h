@@ -47,7 +47,6 @@ inline void PSVECScale(register const Vec* src, register Vec* dst, register f32 
 	register f32 vxy, vz, rxy, rz;
 #ifdef __MWERKS__ // clang-format off
 	asm {
-
 		psq_l       vxy, 0(src), 0, 0
 		psq_l       vz,  8(src), 1, 0
 		ps_muls0    rxy, vxy, scalar
