@@ -180,7 +180,7 @@ struct JSULinkIterator {
 	}
 
 	inline bool operator==(JSULink<T>* other) { return mLink == other; }
-	inline bool operator!=(const JSULink<T>* other) const { return mLink != other; };
+	inline bool operator!=(const JSULink<T>* other) const { return mLink != other; }
 
 	inline JSULinkIterator<T> operator++(int)
 	{
@@ -223,7 +223,9 @@ template <typename T>
 struct JSUTree : public JSUList<T>, public JSULink<T> {
 	inline JSUTree(T* owner)
 	    : JSUList<T>()
-	    , JSULink<T>(owner) {};
+	    , JSULink<T>(owner)
+	{
+	}
 
 	bool appendChild(JSUTree<T>* child) { return this->append(child); }
 	bool prependChild(JSUTree<T>* child) { return this->prepend(child); }
@@ -259,7 +261,7 @@ struct JSUTreeIterator {
 	}
 
 	bool operator==(JSUTree<T>* other) { return mTree == other; }
-	bool operator!=(const JSUTree<T>* other) const { return mTree != other; };
+	bool operator!=(const JSUTree<T>* other) const { return mTree != other; }
 
 	inline JSUTreeIterator<T> operator++(int)
 	{

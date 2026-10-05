@@ -443,7 +443,6 @@ void StateAttack::exec(EnemyBase* enemy)
 	if (enemy->mHealth <= 0.0f) {
 		transit(enemy, KOCHAPPY_Dead, nullptr);
 	}
-
 }
 
 /**
@@ -591,7 +590,8 @@ void StateTurnToHome::exec(EnemyBase* enemy)
 		                                                     CG_GENERALPARMS(enemy).mSearchDistance(), nullptr, nullptr, nullptr);
 		if (target) {
 			enemy->mTargetCreature = target;
-			if (enemy->isTargetAttackable(enemy->mTargetCreature, CG_GENERALPARMS(enemy).mMaxAttackRange(), CG_GENERALPARMS(enemy).mMaxAttackAngle())) {
+			if (enemy->isTargetAttackable(enemy->mTargetCreature, CG_GENERALPARMS(enemy).mMaxAttackRange(),
+			                              CG_GENERALPARMS(enemy).mMaxAttackAngle())) {
 				transit(enemy, KOCHAPPY_Attack, nullptr);
 			}
 		}
@@ -656,7 +656,8 @@ void StateGoHome::exec(EnemyBase* enemy)
 		                                                     CG_GENERALPARMS(enemy).mSearchDistance(), nullptr, nullptr, nullptr);
 		if (target) {
 			enemy->mTargetCreature = target;
-			if (enemy->isTargetAttackable(enemy->mTargetCreature, CG_GENERALPARMS(enemy).mMaxAttackRange(), CG_GENERALPARMS(enemy).mMaxAttackAngle())) {
+			if (enemy->isTargetAttackable(enemy->mTargetCreature, CG_GENERALPARMS(enemy).mMaxAttackRange(),
+			                              CG_GENERALPARMS(enemy).mMaxAttackAngle())) {
 				enemy->finishMotion();
 				OBJ(enemy)->setAnimationSpeed(60.0f);
 				mNextState = KOCHAPPY_Attack;

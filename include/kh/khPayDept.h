@@ -12,9 +12,9 @@ struct DispPayDept : public og::Screen::DispMemberBase {
 
 	DispPayDept(PayDeptType, int);
 
-	virtual u32 getSize() { return sizeof(DispPayDept); }  // _08 (weak)
-	virtual u32 getOwnerID() { return OWNER_KH; }          // _0C (weak)
-	virtual u64 getMemberID() { return MEMBER_PAY_DEBT; }; // _10 (weak)
+	virtual u32 getSize() { return sizeof(DispPayDept); } // _08 (weak)
+	virtual u32 getOwnerID() { return OWNER_KH; }         // _0C (weak)
+	virtual u64 getMemberID() { return MEMBER_PAY_DEBT; } // _10 (weak)
 
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase
@@ -25,7 +25,7 @@ struct DispPayDept : public og::Screen::DispMemberBase {
 struct ObjPayDept : public ::Screen::ObjBase {
 	ObjPayDept();
 
-	virtual ~ObjPayDept() {};             // _08 (weak)
+	virtual ~ObjPayDept() { }             // _08 (weak)
 	virtual void doCreate(JKRArchive*);   // _4C
 	virtual bool doUpdateFadein();        // _50
 	virtual bool doUpdate();              // _58

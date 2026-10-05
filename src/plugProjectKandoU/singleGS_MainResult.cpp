@@ -46,8 +46,8 @@ void MainResultState::init(SingleGameSection* game, StateArg* arg)
 	accountEarnings(game, playData->mMainCropMemory, false);
 	playData->mPokoCount = money;
 	sys->dvdLoadUseCallBack(&mDvdThread, mLoadDelegate);
-	mStatus               = Result_LoadData;
-	mMainHeap             = nullptr;
+	mStatus                        = Result_LoadData;
+	mMainHeap                      = nullptr;
 	playData->mDeadNaviID.typeView = 0;
 	naviMgr->clearDeadCount();
 	theTekiHeap = generalEnemyMgr->useHeap();

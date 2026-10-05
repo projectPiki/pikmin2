@@ -187,7 +187,7 @@ JKRAramStreamCommand* JKRAramStream::write_StreamToAram_Async(JSUFileInputStream
  * Weak function, should live in JSUStream.h
  */
 
-// int JSURandomInputStream::getAvailable() const { return getLength() - getPosition(); };
+// int JSURandomInputStream::getAvailable() const { return getLength() - getPosition(); }
 
 /**
  * @note Address: 0x8001A300

@@ -32,7 +32,7 @@ struct SingletonBase {
 		return SingletonBase<T>::sInstance;
 	}
 
-	virtual ~SingletonBase() { sInstance = nullptr; }; // _00
+	virtual ~SingletonBase() { sInstance = nullptr; } // _00
 
 	static inline T* getInstance()
 	{

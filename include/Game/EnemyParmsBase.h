@@ -37,7 +37,7 @@ struct CreatureProperty {
 };
 
 struct CreatureParms {
-	CreatureParms() {};
+	CreatureParms() { }
 
 	// _D8 = VTBL (i.e. after mCreatureProps)
 	CreatureProperty mCreatureProps; // _00
@@ -58,7 +58,7 @@ struct EnemyParmsBase : public CreatureParms {
 		    , mLifeBeforeAlert(this, 'fp30', "警戒ライフ", 30.0f, 0.0f, 99999.0f)         // 'vigilant life'
 		    , mHeightOffsetFromFloor(this, 'fp01', "マップとの当り", 40.0f, 0.0f, 100.0f) // 'match with the map'
 		    , mCellRadius(this, 'fp33', "マップとのあたりポリゴンの選定", 40.0f, 0.0f,
-		                  500.0f)                                                          // 'selection of map-related polygons'
+			              500.0f)                                                          // 'selection of map-related polygons'
 		    , mPikminDamageRadius(this, 'fp34', "ピクミンとのあたり", 40.0f, 0.0f, 500.0f) // 'about pikmin'
 		    , mOffCameraRadius(this, 'fp32', "LOD半径", 40.0f, 0.0f, 500.0f)               // LOD radius
 		    , mHorizontalDamageScale(this, 'fp02', "ダメージスケールXZ", 0.2f, 0.0f, 1.0f) // damage scale XZ
@@ -83,7 +83,7 @@ struct EnemyParmsBase : public CreatureParms {
 		    , mShakeChance(this, 'fp16', "振り払い率", 1.0f, 0.0f, 1.0f)                   // shake off rate
 		    , mMaxAttackRange(this, 'fp20', "攻撃可能\範囲", 70.0f, 0.0f, 1000.0f)         // attack range - SHIFT-JIS IS WRONG
 		    , mMaxAttackAngle(this, 'fp21', "攻撃可能\角度", 15.0f, 0.0f,
-		                      180.0f)                                              // 'possible attack angle' - SHIFT-JIS IS WRONG
+			                  180.0f)                                              // 'possible attack angle' - SHIFT-JIS IS WRONG
 		    , mAttackRadius(this, 'fp22', "攻撃ヒット範囲", 70.0f, 0.0f, 1000.0f)  // attack hit range
 		    , mAttackHitAngle(this, 'fp23', "攻撃ヒット角度", 15.0f, 0.0f, 180.0f) // attack hit angle
 		    , mAttackDamage(this, 'fp24', "攻撃力", 10.0f, 0.0f, 1000.0f)          // attack power

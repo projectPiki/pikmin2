@@ -8,8 +8,8 @@ namespace JStudio_JStage {
 
 TAdaptor_light::TVVOutput_direction_ TAdaptor_light::saoVVOutput_direction_[6]
     = { TAdaptor_light::TVVOutput_direction_(10, 1), TAdaptor_light::TVVOutput_direction_(11, 1),
-	    TAdaptor_light::TVVOutput_direction_(7, 2),  TAdaptor_light::TVVOutput_direction_(8, 2),
-	    TAdaptor_light::TVVOutput_direction_(9, 2),  TAdaptor_light::TVVOutput_direction_(-1, 0) };
+        TAdaptor_light::TVVOutput_direction_(7, 2),  TAdaptor_light::TVVOutput_direction_(8, 2),
+        TAdaptor_light::TVVOutput_direction_(9, 2),  TAdaptor_light::TVVOutput_direction_(-1, 0) };
 
 /**
  * @note Address: 0x800113C8

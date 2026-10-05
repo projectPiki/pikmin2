@@ -97,7 +97,7 @@ void Mgr::createObj(int count)
 	mObj = new Obj[count];
 
 	EnemyTypeID::EEnemyTypeID ids[] = { EnemyTypeID::EnemyID_BluePom,  EnemyTypeID::EnemyID_RedPom,   EnemyTypeID::EnemyID_YellowPom,
-		                                EnemyTypeID::EnemyID_BlackPom, EnemyTypeID::EnemyID_WhitePom, EnemyTypeID::EnemyID_RandPom };
+	                                    EnemyTypeID::EnemyID_BlackPom, EnemyTypeID::EnemyID_WhitePom, EnemyTypeID::EnemyID_RandPom };
 	int id_count                    = sizeof(ids) / sizeof(EnemyTypeID::EEnemyTypeID);
 	int counter                     = 0;
 	for (int i = 0; i < id_count; i++) {

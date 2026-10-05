@@ -41,7 +41,7 @@ TAdaptor_sound::~TAdaptor_sound()
 void TAdaptor_sound::adaptor_do_prepare(const JStudio::TObject* p1)
 {
 	static TSetVariableValue_immediate aoData[4] = { TSetVariableValue_immediate(0, 0.0f), TSetVariableValue_immediate(1, 0.0f),
-		                                             TSetVariableValue_immediate(2, 0.0f), TSetVariableValue_immediate(-1, NAN) };
+	                                                 TSetVariableValue_immediate(2, 0.0f), TSetVariableValue_immediate(-1, NAN) };
 	adaptor_setVariableValue_immediate(aoData);
 
 	for (const JStudio_JAudio::TAdaptor_sound::TVVOSetValue_* output = saoVVOSetValue_; output->mValueIndex != -1; output++) {

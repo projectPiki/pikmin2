@@ -521,7 +521,7 @@ void ShadowCylinder2::setupTextureFilterGX()
 	GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX3X4, GX_TG_TEX0, 0x3c, GX_FALSE, 0x7d);
 	GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR0A0);
 
-	GXColor color = {};
+	GXColor color = { };
 	GXSetTevColor(GX_TEVREG0, color);
 	GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_TEXA, GX_CC_A0, GX_CC_RASC, GX_CC_ZERO);
 	GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_COMP_R8_GT, GX_TB_ZERO, GX_CS_SCALE_1, GX_FALSE, GX_TEVPREV);

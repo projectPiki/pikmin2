@@ -160,13 +160,13 @@ struct SceneWinLose : public ::Screen::SceneBase {
 struct SceneWinLoseReason : public ::Screen::SceneBase {
 	SceneWinLoseReason();
 
-	virtual const char* getResName() const { return "win_lose_reason.szs"; }; // _1C (weak)
-	virtual SceneType getSceneType() { return SCENE_WIN_LOSE_REASON; }        // _08 (weak)
-	virtual ScreenOwnerID getOwnerID() { return OWNER_KH; }                   // _0C (weak)
-	virtual ScreenMemberID getMemberID() { return MEMBER_WIN_LOSE_REASON; }   // _10 (weak)
-	virtual void doCreateObj(JKRArchive*);                                    // _20
-	virtual void doUpdateActive();                                            // _2C
-	virtual bool doEnd(::Screen::EndSceneArg*);                               // _40
+	virtual const char* getResName() const { return "win_lose_reason.szs"; } // _1C (weak)
+	virtual SceneType getSceneType() { return SCENE_WIN_LOSE_REASON; }       // _08 (weak)
+	virtual ScreenOwnerID getOwnerID() { return OWNER_KH; }                  // _0C (weak)
+	virtual ScreenMemberID getMemberID() { return MEMBER_WIN_LOSE_REASON; }  // _10 (weak)
+	virtual void doCreateObj(JKRArchive*);                                   // _20
+	virtual void doUpdateActive();                                           // _2C
+	virtual bool doEnd(::Screen::EndSceneArg*);                              // _40
 
 	// _00      = VTBL
 	// _00-_220 = Screen::SceneBase

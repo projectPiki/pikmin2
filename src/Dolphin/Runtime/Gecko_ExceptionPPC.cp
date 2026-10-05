@@ -386,7 +386,10 @@ static char* ExPPC_PopStackFrame(ThrowContext* context, MWExceptionInfo* info)
  * @note Address: N/A
  * @note Size: 0x3C
  */
-static void ExPPC_DestroyLocal(ThrowContext* context, const ex_destroylocal* ex) { DTORCALL_COMPLETE(ex->dtor, context->FP + ex->local); }
+static void ExPPC_DestroyLocal(ThrowContext* context, const ex_destroylocal* ex)
+{
+	DTORCALL_COMPLETE(ex->dtor, context->FP + ex->local);
+}
 
 /**
  * @note Address: N/A
@@ -421,8 +424,8 @@ static void ExPPC_DestroyLocalPointer(ThrowContext* context, const ex_destroyloc
 static void ExPPC_DestroyLocalArray(ThrowContext* context, const ex_destroylocalarray* ex)
 {
 	char* ptr = context->FP + ex->localarray;
-	s32 n    = ex->elements;
-	s32 size = ex->element_size;
+	s32 n     = ex->elements;
+	s32 size  = ex->element_size;
 
 	for (ptr = ptr + size * n; n > 0; n--) {
 		ptr -= size;

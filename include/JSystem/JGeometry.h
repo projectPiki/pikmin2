@@ -274,7 +274,7 @@ struct TVec3 {
 	// inline TVec3(T inX, T inY, T inZ)
 	//     : x(inX)
 	//     , y(inY)
-	//     , z(inZ) {};
+	//     , z(inZ) { }
 
 	// // TODO: Determine if this could've actually existed, or if I'm just making it up.
 	// inline TVec3(const TVec3<T>& other)

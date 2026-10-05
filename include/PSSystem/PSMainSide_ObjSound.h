@@ -458,7 +458,7 @@ struct WorkItem : public EventBase {
 	 * @reifiedAddress{804638E8}
 	 * @reifiedFile{utilityU/PSMainSide_ObjSound.cpp}
 	 */
-	virtual CreatureCastType getCastType() { return CCT_WorkItem; }; // _0C
+	virtual CreatureCastType getCastType() { return CCT_WorkItem; } // _0C
 
 	// vtable 3
 	virtual void eventStart();   // _40

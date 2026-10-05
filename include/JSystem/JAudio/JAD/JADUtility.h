@@ -194,7 +194,7 @@ struct PrmSetRc : public PrmSetBase {
 		if (getPrmObjHeap() != nullptr) {
 			getPrmObjHeap()->becomeCurrentHeap();
 		}
-		u16 count = getChildNum();
+		u16 count       = getChildNum();
 		T* childObjects = new T[count];
 		PrmSetBase* object;
 		for (u8 i = 0; i < getChildNum(); i++) {

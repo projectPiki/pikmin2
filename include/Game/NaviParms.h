@@ -36,7 +36,7 @@ struct NaviParms : public FakePikiParms {
 		    , mLoopCountToPluck(this, 'p042', "抜くループ回数", 0, 0, 10)                // 'number of loops to pluck' (?)
 		    , mPikiWaitRange(this, 'p039', "ピキが待つ範囲", 15.0f, 0.0f, 200.0f)        // 'piki wait range'
 		    , mPikiChangeFormationRange(this, 'p040', "ピキがフォーメーションを変える範囲", 40.0f, 0.0f,
-		                                200.0f)                                                  // 'range where piki changes formation'
+			                            200.0f)                                                  // 'range where piki changes formation'
 		    , mHitSize(this, 'p021', "当たりサイズ", 8.0f, 0.0f, 100.0f)                         // 'hit size'
 		    , mGroundSize(this, 'p041', "地面当たりサイズ", 8.5f, 0.0f, 100.0f)                  // 'ground size'
 		    , mInverseWeight(this, 'p022', "重さの逆数", 1.0f, 0.0f, 2000.0f)                    // 'inverse weight'

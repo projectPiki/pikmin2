@@ -51,7 +51,7 @@ void ObjWinLose::doCreate(JKRArchive* arc)
 	    = { "win.blo", "win.bck", "win.bpk", "lose.blo", "lose.bck", "lose.bpk", "time_up.blo", "time_up.bck", "time_up.bpk" };
 
 	char* drawList[4][3] = { "win_wait.blo",     "win_wait.bck",     "win_wait.bpk",     "lose_wait.blo", "lose_wait.bck", "lose_wait.bpk",
-		                     "time_up_wait.blo", "time_up_wait.bck", "time_up_wait.bpk", "draw.blo",      "draw.bck",      "draw.bpk" };
+	                         "time_up_wait.blo", "time_up_wait.bck", "time_up_wait.bpk", "draw.blo",      "draw.bck",      "draw.bpk" };
 
 	int arg[2] = { 0, 0 };
 

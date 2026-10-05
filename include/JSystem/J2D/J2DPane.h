@@ -142,7 +142,7 @@ struct J2DPane {
 	J2DPane();
 	J2DPane(J2DPane* parent, bool isVisible, u64 tag, const JGeometry::TBox2f& box);
 	// inline J2DPane(J2DPane* parent, bool isVisible, u64 tag, f32 x0, f32 y0, f32 x1, f32 y1)
-	//     : J2DPane(parent, isVisible, tag, JGeometry::TBox2f(x0, y0, x1, y1)) {};
+	//     : J2DPane(parent, isVisible, tag, JGeometry::TBox2f(x0, y0, x1, y1)) { }
 	J2DPane(u64 tag, const JGeometry::TBox2f& box);
 	J2DPane(J2DPane* parent, JSURandomInputStream* input, u8 version);
 
@@ -250,7 +250,7 @@ struct J2DPane {
 	 * @reifiedAddress{803CA910}
 	 * @reifiedFile{plugProjectEbisawaU/ebi2DGraph.cpp}
 	 */
-	inline void hide() { mIsVisible = false; };
+	inline void hide() { mIsVisible = false; }
 
 	void setBasePosition(J2DBasePosition);
 	void setInfluencedAlpha(bool, bool);

@@ -55,7 +55,7 @@ public:
 	struct CParamSet {
 		CParamSet() { }
 
-		void setBarHeight(int w) { mBarHeight = w; };
+		void setBarHeight(int w) { mBarHeight = w; }
 		void setWidth(int w) { mWidth = w; }
 		void setUserPosition(int pos) { mUserPosition = pos; }
 		void setPosition(int x, int y)

@@ -9,20 +9,20 @@ extern void OSResetSystem(BOOL reset, u32 resetCode, BOOL forceMenu);
 static u32 lc_base;
 
 static u32 TRK_ISR_OFFSETS[15] = { PPC_SystemReset,
-	                               PPC_MachineCheck,
-	                               PPC_DataStorage,
-	                               PPC_InstructionStorage,
-	                               PPC_ExternalInterrupt,
-	                               PPC_Alignment,
-	                               PPC_Program,
-	                               PPC_FloatingPointUnavaiable,
-	                               PPC_Decrementer,
-	                               PPC_SystemCall,
-	                               PPC_Trace,
-	                               PPC_PerformanceMonitor,
-	                               PPC_InstructionAddressBreakpoint,
-	                               PPC_SystemManagementInterrupt,
-	                               PPC_ThermalManagementInterrupt };
+                                   PPC_MachineCheck,
+                                   PPC_DataStorage,
+                                   PPC_InstructionStorage,
+                                   PPC_ExternalInterrupt,
+                                   PPC_Alignment,
+                                   PPC_Program,
+                                   PPC_FloatingPointUnavaiable,
+                                   PPC_Decrementer,
+                                   PPC_SystemCall,
+                                   PPC_Trace,
+                                   PPC_PerformanceMonitor,
+                                   PPC_InstructionAddressBreakpoint,
+                                   PPC_SystemManagementInterrupt,
+                                   PPC_ThermalManagementInterrupt };
 
 DECL_SECT(".init") void __TRK_reset()
 {

@@ -17,7 +17,9 @@ struct pair<f32, f32> {
 	 */
 	pair()
 	    : first(0.0f)
-	    , second(0.0f) {};
+	    , second(0.0f)
+	{
+	}
 	f32 first;
 	f32 second;
 };

@@ -80,7 +80,7 @@ struct Parms : public EnemyParmsBase {
 		    , mRotateSpeed(this, 'fp06', "サーチ回転速度率", 0.1f, 0.0f, 1.0f)        // 'search rotation speed rate'
 		    , mRotateSpeedMax(this, 'fp07', "サーチ回転最大速度", 5.0f, 0.0f, 360.0f) // 'search rotation max speed'
 		    , mPurpleDamageRate(this, 'fp09', "黒ピクミンダメージレート", 0.0f, 0.0f,
-		                        1.0f)                                              // 'black pikmin damage rate'
+			                    1.0f)                                              // 'black pikmin damage rate'
 		    , mCaveTerritory(this, 'fp10', "地下テリトリー", 200.0f, 0.0f, 500.0f) // 'underground territory'
 		    , mWhiteDamage(this, 'fp11', "白ピクミン", 300.0f, 0.0f, 1000.0f)      // 'white pikmin'
 		    , mBlindHealth(this, 'fp12', "めくらライフ", 1000.0f, 0.0f, 2000.0f)   // 'blind life'
@@ -188,7 +188,7 @@ struct Obj : public EnemyBase {
 		return EnemyBase::eatWhitePikminCallBack(creature, C_PROPERPARMS.mWhiteDamage);
 	} // _298 (weak)
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() { return mBloysterType; } // _258 (weak)
-	virtual MouthSlots* getMouthSlots() { return &mMouthSlots; }                // _25C (weak)
+	virtual MouthSlots* getMouthSlots() { return &mMouthSlots; }                 // _25C (weak)
 	//////////////// VTABLE END
 
 	bool isReachToGoal(f32);
@@ -312,10 +312,10 @@ enum AnimID {
 };
 
 struct ProperAnimator : public EnemyAnimatorBase {
-	virtual ~ProperAnimator() { }                                    // _08 (weak)
-	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                 // _0C
-	virtual SysShape::Animator& getAnimator() { return mAnimator; }; // _10 (weak)
-	virtual SysShape::Animator& getAnimator(int idx);                // _14
+	virtual ~ProperAnimator() { }                                   // _08 (weak)
+	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                // _0C
+	virtual SysShape::Animator& getAnimator() { return mAnimator; } // _10 (weak)
+	virtual SysShape::Animator& getAnimator(int idx);               // _14
 
 	// _00 		= VTBL
 	// _00-_10	= EnemyAnimatorBase

@@ -412,13 +412,13 @@ void TAdaptor_actor::TVVOutput_ANIMATION_FRAME_::operator()(f32 p1, JStudio::TAd
 
 const TAdaptor_actor::TVVOutputObject TAdaptor_actor::saoVVOutput_[2]
     = { TVVOutputObject(1, &JStage::TActor::JSGSetAnimationTransition, &JStage::TActor::JSGGetAnimationTransition),
-	    TVVOutputObject(-1, nullptr, nullptr) };
+        TVVOutputObject(-1, nullptr, nullptr) };
 
 const TAdaptor_actor::TVVOutput_ANIMATION_FRAME_ TAdaptor_actor::saoVVOutput_ANIMATION_FRAME_[3]
     = { TVVOutput_ANIMATION_FRAME_(0, 301, &JStage::TActor::JSGSetAnimationFrame, &JStage::TActor::JSGGetAnimationFrame,
-	                               &JStage::TActor::JSGGetAnimationFrameMax),
-	    TVVOutput_ANIMATION_FRAME_(2, 305, &JStage::TActor::JSGSetTextureAnimationFrame, &JStage::TActor::JSGGetTextureAnimationFrame,
+                                   &JStage::TActor::JSGGetAnimationFrameMax),
+        TVVOutput_ANIMATION_FRAME_(2, 305, &JStage::TActor::JSGSetTextureAnimationFrame, &JStage::TActor::JSGGetTextureAnimationFrame,
 	                               &JStage::TActor::JSGGetTextureAnimationFrameMax),
-	    TVVOutput_ANIMATION_FRAME_(-1, 0, nullptr, nullptr, nullptr) };
+        TVVOutput_ANIMATION_FRAME_(-1, 0, nullptr, nullptr, nullptr) };
 
 } // namespace JStudio_JStage

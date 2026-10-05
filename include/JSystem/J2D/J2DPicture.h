@@ -40,7 +40,7 @@ struct J2DPicture : public J2DPane {
 	J2DPicture(u64 id, const JGeometry::TBox2f& bounds);
 
 	virtual ~J2DPicture();                                                                                               // _08
-	virtual u16 getTypeID() const { return PANETYPE_Picture; };                                                          // _0C (weak)
+	virtual u16 getTypeID() const { return PANETYPE_Picture; }                                                           // _0C (weak)
 	virtual void drawSelf(f32 x, f32 y);                                                                                 // _34
 	virtual void drawSelf(f32 x, f32 y, Mtx* texMtx);                                                                    // _38
 	virtual void initiate(const ResTIMG* img, const ResTLUT* lut);                                                       // _94

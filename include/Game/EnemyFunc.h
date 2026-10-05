@@ -27,8 +27,8 @@ struct ConditionPikminNearby : public Condition<Creature> {
 	virtual bool satisfy(Creature* creature) // 08 (weak)
 	{
 		if (creature->mSticker != mCreature) {
-			if (sqrDistance(mCreature->getPosition().x, mCreature->getPosition().y, mCreature->getPosition().z,
-			                creature->getPosition().x, creature->getPosition().y, creature->getPosition().z)
+			if (sqrDistance(mCreature->getPosition().x, mCreature->getPosition().y, mCreature->getPosition().z, creature->getPosition().x,
+			                creature->getPosition().y, creature->getPosition().z)
 			    < mSearchDist) {
 				return true;
 			}
