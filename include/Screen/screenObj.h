@@ -123,9 +123,6 @@ struct SceneBase {
 		SB_Unknown2            = 2,
 		SB_Started             = 3,
 		SB_Unknown4            = 4,
-		SB_Unknown5            = 5,
-		SB_Unknown6            = 6,
-		SB_Unknown7            = 7,
 	};
 
 	SceneBase();

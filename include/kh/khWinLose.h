@@ -9,6 +9,10 @@ struct JAISound;
 
 enum WinLoseCondition { WinPlayer1 = 1, WinPlayer2 = 2, Draw = 3, Timeup1P = 4, Timeup2P = 5 };
 
+enum WinLoseReasonCondition { CaptainDown = 1, PikminExtinction = 2, MarbleCapture = 3 };
+
+enum WinLoseReasonFlag { PikminExtinction_F = 1, CaptainDown_F = 2, MarbleCapture_F = 4 };
+
 namespace kh {
 namespace Screen {
 struct DispWinLose : public og::Screen::DispMemberBase {
@@ -24,7 +28,7 @@ struct DispWinLose : public og::Screen::DispMemberBase {
 
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase
-	int mOutcome; // _08
+	int mOutcome; // _08 (use WinLoseCondition)
 	int mStatus;  // _0C
 };
 
@@ -36,8 +40,8 @@ struct DispWinLoseReason : public og::Screen::DispMemberBase {
 
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase
-	int mOutcomeP1; // _08
-	int mOutcomeP2; // _0C
+	int mOutcomeP1; // _08 (use WinLoseReasonCondition)
+	int mOutcomeP2; // _0C (use WinLoseReasonCondition)
 };
 
 struct ObjWinLose : public ::Screen::ObjBase {
