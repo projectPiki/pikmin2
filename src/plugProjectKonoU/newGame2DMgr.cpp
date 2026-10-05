@@ -430,36 +430,36 @@ int Game2DMgr::check_SMenu()
 		if (mScreenMgr->isSceneFinish()) {
 			int scene = mScreenMgr->getSceneFinishState();
 			switch (scene) {
-			case SceneBase::SB_WaitForResourceSync:
+			case og::Screen::MENUFINISH_GetFromSubMember:
 				exit = CHECK2D_SMenu_Opened;
 				break;
 
-			case SceneBase::SB_Unknown2:
+			case og::Screen::MENUFINISH_ContinueGround:
 				PSPause_StartMenuOff();
 				exit = CHECK2D_SMenu_Cancel;
 				break;
 
-			case SceneBase::SB_Started:
+			case og::Screen::MENUFINISH_GoToSunset:
 				PSPause_StartMenuOff();
 				exit = CHECK2D_SMenu_GoToSunset;
 				break;
 
-			case SceneBase::SB_Unknown4:
+			case og::Screen::MENUFINISH_ReturnToLastSave:
 				PSPause_StartMenuOff();
 				exit = CHECK2D_SMenu_ReturnToFileSelect;
 				break;
 
-			case SceneBase::SB_Unknown5:
+			case og::Screen::MENUFINISH_ContinueCave:
 				PSPause_StartMenuOff();
 				exit = CHECK2D_SMenu_Cancel;
 				break;
 
-			case SceneBase::SB_Unknown6:
+			case og::Screen::MENUFINISH_GiveUpEscape:
 				PSPause_StartMenuOff();
 				exit = CHECK2D_SMenu_EscapeCave;
 				break;
 
-			case SceneBase::SB_Unknown7:
+			case og::Screen::MENUFINISH_QuitChallenge:
 				PSPause_StartMenuOff();
 				exit = CHECK2D_SMenu_QuitChallenge;
 				break;

@@ -367,7 +367,7 @@ void ObjSMenuPause::doUpdateRAction()
  */
 void ObjSMenuPause::doUpdateCancelAction()
 {
-	mDisp->mExitStatus = 2;
+	mDisp->mExitStatus = og::Screen::MENUFINISH_ContinueGround;
 }
 
 /**
@@ -474,17 +474,17 @@ void ObjSMenuPause::doUpdateFadeoutFinish()
 	switch (mCancelToState) {
 	case MENUCLOSE_Finish:
 		startBackupScene();
-		setFinishState(2);
+		setFinishState(og::Screen::MENUFINISH_ContinueGround);
 		break;
 
 	case MENUCLOSE_R:
 		doUpdateRAction();
-		setFinishState(1);
+		setFinishState(og::Screen::MENUFINISH_GetFromSubMember);
 		break;
 
 	case MENUCLOSE_L:
 		doUpdateLAction();
-		setFinishState(1);
+		setFinishState(og::Screen::MENUFINISH_GetFromSubMember);
 		break;
 
 	case MENUCLOSE_None:

@@ -26,6 +26,7 @@ enum MenuFinishState {
 	MENUFINISH_ReturnToLastSave = 4,
 	MENUFINISH_ContinueCave     = 5,
 	MENUFINISH_GiveUpEscape     = 6,
+	MENUFINISH_QuitChallenge    = 7,
 };
 
 // size 0x8
@@ -576,7 +577,7 @@ struct DispMemberSMenuPauseDoukutu : public DispMemberBase {
 // size 0xC
 struct DispMemberSMenuPauseVS : public DispMemberBase {
 
-	inline DispMemberSMenuPauseVS() { mState = 1; }
+	inline DispMemberSMenuPauseVS() { mState = og::Screen::MENUFINISH_GetFromSubMember; }
 
 	virtual u32 getSize() { return sizeof(DispMemberSMenuPauseVS); } // _08 (weak)
 	virtual u32 getOwnerID() { return OWNER_OGA; }                   // _0C (weak)

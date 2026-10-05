@@ -57,7 +57,7 @@ enum CurrSelReturn {
 
 struct SceneSMenuBase : public ::Screen::SceneBase {
 	inline SceneSMenuBase()
-	    : mFinishState(1)
+	    : mFinishState(og::Screen::MENUFINISH_GetFromSubMember)
 	{
 	}
 
