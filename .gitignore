@@ -9,7 +9,6 @@
 *.dump
 *.elf
 *.exe
-*.exe
 *.filters
 *.id0
 *.id1
@@ -55,6 +54,5 @@ tools/mwcc_compiler/
 tools/powerpc/
 compile_commands.json
 
-!aoi.exe
 !clang-format.exe
 !orig/*/.gitkeep
