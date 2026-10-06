@@ -426,36 +426,6 @@ J2DTevStage J2DMaterialFactory::newTevStage(int idx, int p2) const
 		return J2DTevStage(mTevStageInfo[initData->mTevStageInfoIdx[p2]]); // this needs fixing
 	}
 	return J2DTevStage();
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lwz      r7, 8(r4)
-	slwi     r5, r5, 1
-	stw      r0, 0x14(r1)
-	slwi     r0, r6, 1
-	lwz      r6, 4(r4)
-	lhzx     r5, r7, r5
-	mulli    r5, r5, 0xe8
-	addi     r5, r5, 0x9a
-	add      r0, r5, r0
-	lhzx     r0, r6, r0
-	cmplwi   r0, 0xFFFF
-	beq      lbl_80054428
-	mulli    r0, r0, 0x14
-	lwz      r4, 0x44(r4)
-	add      r4, r4, r0
-	bl       __ct__11J2DTevStageFRC15J2DTevStageInfo
-	b        lbl_8005442C
-
-lbl_80054428:
-	bl       __ct__11J2DTevStageFv
-
-lbl_8005442C:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /**
