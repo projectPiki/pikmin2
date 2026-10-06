@@ -143,7 +143,6 @@ J3DAnmKeyLoader_v15::~J3DAnmKeyLoader_v15()
  * @note Address: 0x80072F9C
  * @note Size: 0x128
  * load__20J3DAnmFullLoader_v15FPCv
- * TODO: Regswap.
  */
 J3DAnmBase* J3DAnmFullLoader_v15::load(const void* stream)
 {
@@ -180,7 +179,6 @@ J3DAnmBase* J3DAnmFullLoader_v15::load(const void* stream)
 /**
  * @note Address: 0x800730C4
  * @note Size: 0x140
- * TODO: Regswap
  * setResource__20J3DAnmFullLoader_v15FP10J3DAnmBasePCv
  */
 void J3DAnmFullLoader_v15::setResource(J3DAnmBase* resource, const void* stream)

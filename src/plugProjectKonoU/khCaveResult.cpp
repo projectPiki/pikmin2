@@ -437,7 +437,6 @@ void ObjCaveResult::doDraw(Graphics& gfx)
 	u32 i = 0;
 	FOREACH_NODE(Game::Result::TNode, mResultNode->mChild, cNode)
 	{
-		// regswaps are probably mostly from these values
 		int isOdd = i % 2;
 		u32 next;
 

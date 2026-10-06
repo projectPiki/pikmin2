@@ -451,7 +451,6 @@ u8 JKRExpHeap::do_changeGroupID(u8 groupID)
 /**
  * @note Address: 0x80020A2C
  * @note Size: 0x1BC
- * Regswaps
  */
 int JKRExpHeap::do_resize(void* ptr, u32 size)
 {

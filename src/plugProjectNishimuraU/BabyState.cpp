@@ -149,7 +149,6 @@ void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
  * @note Address: 0x8028CA68
  * @note Size: 0x468
  */
-// NON-MATCHING
 void StateMove::exec(EnemyBase* enemy)
 {
 	Obj* baby = OBJ(enemy);

@@ -68,7 +68,6 @@ void __OSInitAudioSystem(void)
 
 	r3 = __DSPRegs[2];
 
-	// the nonmatching part
 	while (!(r3 & 0x8000))
 		r3 = __DSPRegs[2];
 

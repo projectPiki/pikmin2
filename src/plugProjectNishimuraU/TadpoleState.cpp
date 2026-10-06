@@ -331,7 +331,6 @@ void StateLeap::exec(EnemyBase* enemy)
 		f32 adjustedDir = angle + tadpole->getFaceDir();
 		clampAngle(adjustedDir);
 
-		// f1-f2 regswap. smfh.
 		tadpole->mFaceDir    = adjustedDir;
 		tadpole->mRotation.y = tadpole->mFaceDir;
 
