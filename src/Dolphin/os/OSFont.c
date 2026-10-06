@@ -553,7 +553,7 @@ char* OSGetFontTexture(const char* string, void** image, s32* x, s32* y, s32* wi
 	// Number of succeeding textures on the sheet
 	numRestTex = code - (sheet * CharsInSheet);
 
-	// Sheet row on which the texure resides
+	// Sheet row on which the texture resides
 	row = numRestTex / FontData->sheetColumn;
 
 	// Sheet column on which the texture resides

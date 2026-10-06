@@ -41,8 +41,8 @@ enum DemoFlags {
 	DEMO_First_Bitter_Use        = 11, // enemy hit with bitter spray
 	DEMO_Eat_White_Pikmin        = 12, // enemy gets poisoned by eating white pikmin
 	DEMO_Purples_In_Ship         = 13, // purple in ship after another cutscene plays
-	DEMO_Whites_In_Ship          = 14, // white in ship after another cutscene plays (superceded by purple)
-	DEMO_Reds_In_Onion           = 15, // red in onion after another cutscene plays (superceded by white or purple)
+	DEMO_Whites_In_Ship          = 14, // white in ship after another cutscene plays (superseded by purple)
+	DEMO_Reds_In_Onion           = 15, // red in onion after another cutscene plays (superseded by white or purple)
 	DEMO_Find_Spicy_Drop         = 16, // captain within 40u of spicy drop
 	DEMO_Find_Bitter_Drop        = 17, // captain within 40u of bitter drop
 	DEMO_First_Globe_Day_End     = 18, // find first globe + return from cave
@@ -81,7 +81,7 @@ enum DemoFlags {
 	DEMO_Pikmin_In_Danger_Water  = 51, // set if a Pikmin is in a bubble for 2 seconds
 	DEMO_Pikmin_In_Danger_Poison = 52, // set if a Pikmin is poisoned for 2 seconds
 	DEMO_UNK_53                  = 53, // unused
-	DEMO_RADAR_ENABLED           = 54, // these arent even for cutscenes, they're specifically for hud stuff
+	DEMO_RADAR_ENABLED           = 54, // these aren't even for cutscenes, they're specifically for hud stuff
 	DEMO_SPICY_ENABLED           = 55,
 	DEMO_BITTER_ENABLED          = 56,
 	DEMO_COUNT // number of DemoFlag values to track

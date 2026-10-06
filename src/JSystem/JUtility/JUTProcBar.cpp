@@ -93,11 +93,11 @@ void JUTProcBar::clear()
  * @note Size: 0x18C
  */
 void JUTProcBar::bar_subroutine(int startX, int startY, int height, int totalUnits, int maxHighlightedUnits, int filledUnits,
-                                int highlitedUnits, JUtility::TColor fillColor, JUtility::TColor highlightedColor)
+                                int highlightedUnits, JUtility::TColor fillColor, JUtility::TColor highlightedColor)
 {
 	// Calculate width of the filled and highlighted parts of the bar
 	int filledWidth      = filledUnits * totalUnits / maxHighlightedUnits;
-	int highlightedWidth = highlitedUnits * totalUnits / maxHighlightedUnits;
+	int highlightedWidth = highlightedUnits * totalUnits / maxHighlightedUnits;
 
 	// Draw filled part of the bar
 	J2DFillBox(startX, startY, filledWidth, height, fillColor);

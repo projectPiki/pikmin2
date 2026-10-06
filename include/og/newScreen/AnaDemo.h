@@ -85,7 +85,7 @@ struct ObjAnaDemo : public ::Screen::ObjBase {
 	void setBlinkMenu();
 	void commonUpdate();
 
-	// unused/inined
+	// unused/inlined
 	inline void setWindowMsg(u64, u64, u64);
 
 	// _00     = VTBL1

@@ -279,7 +279,7 @@ namespace Game {
  * @note Address: N/A
  * @note Size: 0x80
  */
-f32 DynCreature::getContactParticeRatio()
+f32 DynCreature::getContactParticleRatio()
 {
 	return (f32)getContactParticleNum() / (f32)getParticleNum();
 }

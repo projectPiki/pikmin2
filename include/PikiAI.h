@@ -111,7 +111,7 @@ enum PikiBrainAction {
 
 enum ActionExitCode {
 	ACTEXEC_Success  = 0, // action is finished and completed successfully
-	ACTEXEC_Continue = 1, // action is unfinshed
+	ACTEXEC_Continue = 1, // action is unfinished
 	ACTEXEC_Fail     = 2, // action is finished and failed
 };
 
@@ -281,7 +281,7 @@ struct ActBattleArg : public ActionArg {
 	bool mIsAttackStart;    // _08
 };
 
-// Pikmin hitting eachother, like in VS mode
+// Pikmin hitting each other, like in VS mode
 struct ActBattle : public Action, virtual SysShape::MotionListener {
 	enum StateID {
 		BATTLE_Approach = 0,

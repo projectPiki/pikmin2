@@ -56,7 +56,7 @@ enum PikiStateID {
 	// no 29?
 	PIKISTATE_Koke   = 30,
 	PIKISTATE_Escape = 31,
-	PIKISTATE_Carrot = 32, // pikipedia carrot
+	PIKISTATE_Carrot = 32, // piklopedia carrot
 	PIKISTATE_Count,
 };
 

@@ -42,7 +42,7 @@ struct SetSe {
 
 struct SeMgr : public PSSystem::SingletonBase<SeMgr> {
 
-	// these enum names are based on translated japanese text and probably arent accurate
+	// these enum names are based on translated japanese text and probably aren't accurate
 	enum SetSeId {
 		SETSE_Unk0             = 0,
 		SETSE_PikiCarry        = 1,

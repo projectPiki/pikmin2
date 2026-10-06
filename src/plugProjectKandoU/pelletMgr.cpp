@@ -801,7 +801,7 @@ void Pellet::onInit(CreatureInitArg* initArg)
 		mSlotCount = 128;
 	}
 
-	// For Doomsday Apparatus (because it couldnt just have 1000 in the config... apparently)
+	// For Doomsday Apparatus (because it couldn't just have 1000 in the config... apparently)
 	if (mConfig->mParams.mMin.mData == 128) {
 		mMinCarriers = 1000;
 		mMaxCarriers = 1000;

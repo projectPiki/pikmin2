@@ -780,7 +780,7 @@ void THiScore::changePaneInfo()
 
 	for (int i = 0; i < 6; i++) {
 		int score = getRecord(i, id);
-		// use compeltely different counters for the play time versus the other scores
+		// use completely different counters for the play time versus the other scores
 		if (isTime) {
 			mScaleCounter2[i]->getMotherPane()->show();
 			mScaleCounter3[i]->getMotherPane()->show();

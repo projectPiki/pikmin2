@@ -48,7 +48,7 @@ struct TAtanTable {
 			mTable[i] = atan(i / (f64)LENGTH);
 		}
 		mTable[0] = 0.0f;
-		// seems to be a remenent of older debug code, is unused elsewhere
+		// seems to be a remnant of older debug code, is unused elsewhere
 		mDebugUnitCircle[0] = TAngleConstant_<T>::RADIAN_DEG180() / 4;
 	}
 

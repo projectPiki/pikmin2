@@ -692,7 +692,7 @@ recoverable:
 	// r4 - pointer to context
 	// r5 - garbage
 	// srr0 - exception handler
-	// srr1 - address translation enalbed, not yet recoverable
+	// srr1 - address translation enabled, not yet recoverable
 
 	rfi
 	// NOT REACHED HERE

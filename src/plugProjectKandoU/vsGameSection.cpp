@@ -230,7 +230,7 @@ void VsGameSection::onInit()
 
 	Radar::mgr = new Radar::Mgr;
 
-	for (int i = 0; i < VS_YELLOW_MARLBE_NUM; i++) {
+	for (int i = 0; i < VS_YELLOW_MARBLE_NUM; i++) {
 		mMarbleYellow[i] = nullptr;
 	}
 }
@@ -404,11 +404,11 @@ void VsGameSection::postSetupFloatMemory()
 		Vector3f position      = Vector3f(0.0f);
 		createRedBlueBedamas(position);
 
-		for (int i = 0; i < VS_YELLOW_MARLBE_NUM; i++) {
+		for (int i = 0; i < VS_YELLOW_MARBLE_NUM; i++) {
 			mMarbleYellow[i] = nullptr;
 		}
 
-		createYellowBedamas(VS_YELLOW_MARLBE_NUM);
+		createYellowBedamas(VS_YELLOW_MARBLE_NUM);
 		initCardPellets();
 	}
 
@@ -494,7 +494,7 @@ void VsGameSection::goNextFloor(ItemHole::Item* hole)
 
 /**
  * This function attempts to open the "Do you want to delve deeper?" message box upon interacting with a Hole object.
- * If it opens succesfully, gameplay will be paused, and the active Hole object will be set.
+ * If it opens successfully, gameplay will be paused, and the active Hole object will be set.
  *
  * @note Address: 0x801C1C9C
  * @note Size: 0x1D8
@@ -908,12 +908,12 @@ bool GameMessageVsAddEnemy::actVs(VsGameSection* section)
 bool GameMessagePelletBorn::actVs(VsGameSection* section)
 {
 	if (mPellet->mPelletFlag == Pellet::FLAG_VS_BEDAMA_YELLOW) { // is yellow bedama
-		for (int i = 0; i < VS_YELLOW_MARLBE_NUM; i++) {
+		for (int i = 0; i < VS_YELLOW_MARBLE_NUM; i++) {
 			if (section->mMarbleYellow[i] == mPellet) {
 				return false;
 			}
 		}
-		for (int i = 0; i < VS_YELLOW_MARLBE_NUM; i++) {
+		for (int i = 0; i < VS_YELLOW_MARBLE_NUM; i++) {
 			if (!section->mMarbleYellow[i]) {
 				section->mMarbleYellow[i] = mPellet;
 				return true;
@@ -935,7 +935,7 @@ bool GameMessagePelletBorn::actVs(VsGameSection* section)
 bool GameMessagePelletDead::actVs(VsGameSection* section)
 {
 	if (mPellet->mPelletFlag == Pellet::FLAG_VS_BEDAMA_YELLOW) { // is yellow bedama
-		for (int i = 0; i < VS_YELLOW_MARLBE_NUM; i++) {
+		for (int i = 0; i < VS_YELLOW_MARBLE_NUM; i++) {
 			if (section->mMarbleYellow[i] == mPellet) {
 				section->mMarbleYellow[i] = nullptr;
 				return true;
@@ -957,7 +957,7 @@ bool GameMessagePelletDead::actVs(VsGameSection* section)
  */
 bool GameMessageVsBirthTekiTreasure::actVs(VsGameSection* section)
 {
-	// This function spawns the shearwigs (suprise maggots)
+	// This function spawns the shearwigs (surprise maggots)
 	Sys::Sphere sphere(mPosition, VS_SHEARWIG_SPAWN_RADIUS);
 	int target            = 0;
 	int redPikis          = 0;
@@ -1290,8 +1290,8 @@ void VsGameSection::createYellowBedamas(int bedamas)
 		if (bedamas == 0) {
 			return;
 		}
-		if (bedamas >= VS_YELLOW_MARLBE_NUM) {
-			bedamas = VS_YELLOW_MARLBE_NUM;
+		if (bedamas >= VS_YELLOW_MARBLE_NUM) {
+			bedamas = VS_YELLOW_MARBLE_NUM;
 		}
 	}
 
@@ -1361,13 +1361,13 @@ void VsGameSection::createRedBlueBedamas(Vector3f& pos)
  */
 void VsGameSection::calcVsScores()
 {
-	f32 yellowMarbleRedDist[VS_YELLOW_MARLBE_NUM];
-	f32 yellowMarbleBlueDist[VS_YELLOW_MARLBE_NUM];
+	f32 yellowMarbleRedDist[VS_YELLOW_MARBLE_NUM];
+	f32 yellowMarbleBlueDist[VS_YELLOW_MARBLE_NUM];
 	Onyon* onyons[2];
 	onyons[0] = ItemOnyon::mgr->getOnyon(ONYON_TYPE_RED);
 	onyons[1] = ItemOnyon::mgr->getOnyon(ONYON_TYPE_BLUE);
 
-	for (int i = 0; i < VS_YELLOW_MARLBE_NUM; i++) {
+	for (int i = 0; i < VS_YELLOW_MARBLE_NUM; i++) {
 		Pellet* marble = mMarbleYellow[i];
 
 		if (marble && marble->isAlive() && marble->getStateID() == 0) {
@@ -1422,7 +1422,7 @@ void VsGameSection::calcVsScores()
 	f32 yellowScore[2];
 	for (int i = 0; i < 2; i++) {
 		f32 count = mYellowMarbleCounts[i];
-		for (int j = 0; j < VS_YELLOW_MARLBE_NUM; j++) {
+		for (int j = 0; j < VS_YELLOW_MARBLE_NUM; j++) {
 			if (i == 0 && yellowMarbleRedDist[j] >= 0.0f) {
 				count += yellowMarbleRedDist[j];
 			}
