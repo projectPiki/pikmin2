@@ -36,7 +36,7 @@ struct DynCreature : public Creature {
 	void simulate(f32);
 
 	// Unused/inlined:
-	f32 getContactParticleRatio();
+	f32 getContactParticeRatio();
 	int getContactParticleNum();
 	int getParticleNum();
 	void simulateCylinder(Sys::Cylinder&, f32);
