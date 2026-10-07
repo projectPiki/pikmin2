@@ -246,7 +246,6 @@ void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateMove::exec(EnemyBase* enemy)
 {
-	// NON-MATCHING //
 	Obj* tobi        = OBJ(enemy);
 	Creature* target = EnemyFunc::getNearestPikminOrNavi(tobi, CG_GENERALPARMS(tobi).mViewAngle(), CG_GENERALPARMS(tobi).mSightRadius(),
 	                                                     nullptr, nullptr, nullptr);

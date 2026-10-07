@@ -249,7 +249,6 @@ void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateMove::exec(EnemyBase* enemy)
 {
-	// NON-MATCHING //
 	Obj* uji = OBJ(enemy);
 	if (uji->isBreakBridge()) {
 		uji->mNextState = (StateID)uji->checkBreakOrMove();

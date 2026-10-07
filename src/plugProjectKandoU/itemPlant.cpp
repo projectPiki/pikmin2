@@ -878,9 +878,7 @@ void ProcAnimator::calcAngles()
 /**
  * Updates `mYDist` based on current matrices (probably needs better name).
  * Stripped, but educated guess says it's used in `update` and `Plant::onInit`.
- * Has regswaps currently.
  *
- * @note NON-MATCHING
  * @note Address: N/A
  * @note Size: 0x9C
  */
