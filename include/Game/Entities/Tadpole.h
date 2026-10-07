@@ -85,7 +85,7 @@ struct Parms : public EnemyParmsBase {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
 		    , mPitterPatterMoveSpeed(this, 'fp01', "ピチピチ移動速度", 20.0f, 0.0f,
-		                             1000.0f) // 'pichipichi movement speed'
+			                         1000.0f) // 'pichipichi movement speed'
 		{
 		}
 
@@ -116,10 +116,10 @@ enum AnimID {
 };
 
 struct ProperAnimator : public EnemyAnimatorBase {
-	virtual ~ProperAnimator() { }                                    // _08 (weak)
-	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                 // _0C
-	virtual SysShape::Animator& getAnimator() { return mAnimator; }; // _10 (weak)
-	virtual SysShape::Animator& getAnimator(int idx);                // _14
+	virtual ~ProperAnimator() { }                                   // _08 (weak)
+	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                // _0C
+	virtual SysShape::Animator& getAnimator() { return mAnimator; } // _10 (weak)
+	virtual SysShape::Animator& getAnimator(int idx);               // _14
 
 	// _00 		= VTBL
 	// _00-_10	= EnemyAnimatorBase

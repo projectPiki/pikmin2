@@ -43,7 +43,7 @@ struct J3DTevBlock {
 	virtual u8 getTevKAlphaSel(u32 index) { return 0; }                               // _8C (weak)
 	virtual void setTevStageNum(const u8* stageNum) { }                               // _90 (weak)
 	virtual void setTevStageNum(u8 stageNum) { }                                      // _94 (weak)
-	virtual u8 getTevStageNum() const { return 1; };                                  // _98 (weak)
+	virtual u8 getTevStageNum() const { return 1; }                                   // _98 (weak)
 	virtual void setTevStage(u32 index, const J3DTevStage* stage) { }                 // _9C (weak)
 	virtual void setTevStage(u32 index, J3DTevStage stage) { }                        // _A0 (weak)
 	virtual J3DTevStage* getTevStage(u32 index) { return nullptr; }                   // _A4 (weak)

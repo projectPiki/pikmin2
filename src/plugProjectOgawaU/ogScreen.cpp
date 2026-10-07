@@ -220,14 +220,16 @@ u64 maskTag(u64 tag, u16 num, u16 mask)
 	return (maskedChar << shift) | (tag & extractChar);
 }
 
+// clang-format off
 const char* PikiIconTextureName[]
-    = { "toumei_piki.bti",
+	= { "toumei_piki.bti",
 	    "bp_l64.bti",  "bp_b64.bti",  "bp_f64.bti",
 	    "rp_l64.bti",  "rp_b64.bti",  "rp_f64.bti",
 	    "yp_l64.bti",  "yp_b64.bti",  "yp_f64.bti",
 	    "blp_l64.bti", "blp_b64.bti", "blp_f64.bti",
 	    "wp_l64.bti",  "wp_b64.bti",  "wp_f64.bti",
 	    "cha_l.bti",   "cha_b.bti",   "cha_f.bti" };
+// clang-format on
 
 /**
  * @note Address: 0x803029C0

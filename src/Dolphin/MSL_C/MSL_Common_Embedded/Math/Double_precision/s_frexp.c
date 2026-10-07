@@ -28,8 +28,7 @@ static const f64
 #else
 static f64
 #endif
-    two54
-    = 1.80143985094819840000e+16; /* 0x43500000, 0x00000000 */
+    two54 = 1.80143985094819840000e+16; /* 0x43500000, 0x00000000 */
 
 #ifdef __STDC__
 f64 frexp(f64 x, int* eptr)

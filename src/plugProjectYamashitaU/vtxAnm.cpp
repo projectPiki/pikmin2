@@ -378,6 +378,5 @@ void FieldVtxColorMgr::setupFieldVtxColorControl(Game::FieldVtxColorControl* con
 			control->addControlInfo(ctrlInfo);
 		}
 	}
-
 }
 } // namespace Game

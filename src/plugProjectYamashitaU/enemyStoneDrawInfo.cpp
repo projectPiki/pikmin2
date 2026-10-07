@@ -265,7 +265,7 @@ void FSMStateShake::cleanup(DrawInfo* drawInfo)
 void FSMStateShake::makeMatrix(DrawInfo* drawInfo, Matrixf* mtx)
 {
 	f32 theta2;
-	f32 theta = drawInfo->mDrawTimer / drawInfo->mDrawTimeLimit;
+	f32 theta          = drawInfo->mDrawTimer / drawInfo->mDrawTimeLimit;
 	const f32 minRatio = 0.0f;
 	f32 p1             = 0.0f;
 	if (theta < minRatio) {
@@ -310,7 +310,6 @@ void FSMStateShake::makeMatrix(DrawInfo* drawInfo, Matrixf* mtx)
 	f32 sinTheta         = (f32)sin(p2 * theta);
 	Vector3f rotation    = Vector3f(TORADIANS((p3 * sinTheta)), 0.0f, 0.0f);
 	mtx->makeTR(translation, rotation);
-
 }
 
 /**
@@ -522,9 +521,9 @@ bool DrawInfo::getPosAndScale(Vector3f* pos, f32* scale)
 		f32* rowZ = mtx.mMatrix.mtxView[2];
 		for (int i = 0; i < 3; i++, rowY++, rowZ++) {
 			Vector3f result;
-			result.x = rowX[i];
-			result.y = *rowY;
-			result.z = *rowZ;
+			result.x   = rowX[i];
+			result.y   = *rowY;
+			result.z   = *rowZ;
 			f32 length = result.length();
 			*scale += length;
 		}

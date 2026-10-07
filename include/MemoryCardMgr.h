@@ -60,21 +60,21 @@ struct MemoryCardMgr {
 	};
 
 	enum EMemoryCardStatus {
-		MCS_NoCard           = 0,
-		MCS_FileOpenError    = 1,
-		MCS_Ready            = 2,
-		MCS_Broken           = 3,
-		MCS_Encoding         = 4,
-		MCS_IOError          = 5,
-		MCS_WrongDevice      = 6,
-		MCS_WrongSector      = 7,
-		MCS_NoFileSpace      = 8,
-		MCS_NoFileEntry      = 9,
-		MCS_10               = 10,
-		MCS_Invalid          = 11,
-		MCS_GameOptionsBroken               = 12,
-		MCS_PlayerDataBroken = 13,
-		MCS_SerialNoError    = 14,
+		MCS_NoCard            = 0,
+		MCS_FileOpenError     = 1,
+		MCS_Ready             = 2,
+		MCS_Broken            = 3,
+		MCS_Encoding          = 4,
+		MCS_IOError           = 5,
+		MCS_WrongDevice       = 6,
+		MCS_WrongSector       = 7,
+		MCS_NoFileSpace       = 8,
+		MCS_NoFileEntry       = 9,
+		MCS_10                = 10,
+		MCS_Invalid           = 11,
+		MCS_GameOptionsBroken = 12,
+		MCS_PlayerDataBroken  = 13,
+		MCS_SerialNoError     = 14,
 	};
 
 	enum EMgrCommand {

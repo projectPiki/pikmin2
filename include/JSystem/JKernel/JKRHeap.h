@@ -55,8 +55,8 @@ struct JKRHeap : public JKRDisposer {
 
 		~TState();
 		void dump() const { mArgument.mHeap->state_dump(*this); }
-		static inline bool isVerbose() { return bVerbose_; };
-		bool isCompareOnDestructed() const { return mArgument.mIsCompareOnDestructed; };
+		static inline bool isVerbose() { return bVerbose_; }
+		bool isCompareOnDestructed() const { return mArgument.mIsCompareOnDestructed; }
 		u32 getUsedSize() const { return mUsedSize; }
 		u32 getCheckCode() const { return mCheckCode; }
 		const JKRHeap* getHeap() const { return mArgument.mHeap; }

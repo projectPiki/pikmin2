@@ -76,8 +76,7 @@ void SceneWinLoseReason::doCreateObj(JKRArchive* arc)
 	DispWinLoseReason* disp = static_cast<DispWinLoseReason*>(mDispMember);
 	mOutcome[0]             = disp->mOutcomeP1;
 	switch (disp->mOutcomeP1) {
-	case CaptainDown:
-	{
+	case CaptainDown: {
 		mScreenObj[0] = new Morimura::TOrimaDown2D;
 		registObj(mScreenObj[0], arc);
 		Morimura::TOrimaDown2D* screen = static_cast<Morimura::TOrimaDown2D*>(mScreenObj[0]);
@@ -87,8 +86,7 @@ void SceneWinLoseReason::doCreateObj(JKRArchive* arc)
 		screen->mTimeSpeed = ObjWinLoseReason::msVal.mTimeSpeed;
 		break;
 	}
-	case PikminExtinction:
-	{
+	case PikminExtinction: {
 		mScreenObj[0] = new Morimura::TPikminDown2D;
 		registObj(mScreenObj[0], arc);
 		Morimura::TPikminDown2D* screen = static_cast<Morimura::TPikminDown2D*>(mScreenObj[0]);
@@ -111,8 +109,7 @@ void SceneWinLoseReason::doCreateObj(JKRArchive* arc)
 
 	mOutcome[1] = disp->mOutcomeP2;
 	switch (disp->mOutcomeP2) {
-	case CaptainDown:
-	{
+	case CaptainDown: {
 		mScreenObj[1] = new Morimura::TLujiDown2D;
 		registObj(mScreenObj[1], arc);
 		Morimura::TOrimaDown2D* screen = static_cast<Morimura::TOrimaDown2D*>(mScreenObj[1]);
@@ -122,8 +119,7 @@ void SceneWinLoseReason::doCreateObj(JKRArchive* arc)
 		screen->mTimeSpeed = ObjWinLoseReason::msVal.mTimeSpeed;
 		break;
 	}
-	case PikminExtinction:
-	{
+	case PikminExtinction: {
 		mScreenObj[1] = new Morimura::TPikminDown2D;
 		registObj(mScreenObj[1], arc);
 		Morimura::TPikminDown2D* screen = static_cast<Morimura::TPikminDown2D*>(mScreenObj[1]);
@@ -133,8 +129,7 @@ void SceneWinLoseReason::doCreateObj(JKRArchive* arc)
 		screen->mTimeSpeed = ObjWinLoseReason::msVal.mTimeSpeed;
 		break;
 	}
-	case MarbleCapture:
-	{
+	case MarbleCapture: {
 		mScreenObj[1] = new ObjWinLoseReason(1);
 		registObj(mScreenObj[1], arc);
 		mDone[1] = 1;

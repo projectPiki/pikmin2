@@ -274,7 +274,7 @@ struct TVec3 {
 	// inline TVec3(T inX, T inY, T inZ)
 	//     : x(inX)
 	//     , y(inY)
-	//     , z(inZ) {};
+	//     , z(inZ) { }
 
 	// // TODO: Determine if this could've actually existed, or if I'm just making it up.
 	// inline TVec3(const TVec3<T>& other)
@@ -563,23 +563,27 @@ struct TBox {
 	T i, f;
 };
 
+template <>
 // clang-format off
-template<> struct TBox<TVec2<f32> > {
+struct TBox<TVec2<f32> > {
+	// clang-format on
 	inline f32 getWidth() const { return f.x - i.x; }
 	inline f32 getHeight() const { return f.y - i.y; }
 
 	bool isValid() const { return f.isAbove(i); }
 
-	void addPos(f32 x, f32 y) {
-		addPos(TVec2<f32>(x, y));
-	}
+	void addPos(f32 x, f32 y) { addPos(TVec2<f32>(x, y)); }
 
-	void addPos(const TVec2<f32>& pos) {
+	void addPos(const TVec2<f32>& pos)
+	{
 		i.add(pos);
 		f.add(pos);
 	}
 
-	bool intersect(const TBox<TVec2<f32> >& other) {
+	// clang-format off
+	bool intersect(const TBox<TVec2<f32> >& other)
+	// clang-format on
+	{
 		i.setMax(other.i);
 		f.setMin(other.f);
 		return isValid();
@@ -589,24 +593,26 @@ template<> struct TBox<TVec2<f32> > {
 };
 
 template <typename T>
+// clang-format off
 struct TBox2 : TBox<TVec2<T> > {
-	TBox2() {}
+	// clang-format on
+	TBox2() { }
 	// TBox2(const TBox2& other) { set(other); }
 	TBox2(const TVec2<T>& i_, const TVec2<T>& f_)
-	{ 
+	{
 		i.set(i_);
-		f.set(f_); 
+		f.set(f_);
 	}
 
-	TBox2(const TVec3<T>& i_, const TVec3<T>& f_) 
-	{ 
+	TBox2(const TVec3<T>& i_, const TVec3<T>& f_)
+	{
 		i.set(i_.x, i_.y);
-		f.set(f_.x, f_.y); 
+		f.set(f_.x, f_.y);
 	}
 	// TBox2(const TVec2<T>& i, T x1, T y1) { set(i, x1, y1); }
 	// TBox2(T x0, T y0, const TVec2<T>& f) { set(x0, y0, f); }
 	TBox2(f32 x0, f32 y0, f32 x1, f32 y1) { set(x0, y0, x1, y1); }
-	TBox2(f32 x0, f32 y0, TVec2<f32>& f) { set(x0, y0, x0 + f.x, y0 + f.y);	}
+	TBox2(f32 x0, f32 y0, TVec2<f32>& f) { set(x0, y0, x0 + f.x, y0 + f.y); }
 	TBox2(f32 val)
 	{
 		f.y = val;
@@ -633,7 +639,8 @@ struct TBox2 : TBox<TVec2<T> > {
 		f.y = in.y;
 	}
 
-	void absolute() {
+	void absolute()
+	{
 		if (!this->isValid()) {
 			TBox2<T> box(*this);
 			this->i.setMin(box.i);
@@ -643,13 +650,9 @@ struct TBox2 : TBox<TVec2<T> > {
 		}
 	}
 
-	inline void setX(const T& x) {
-		this->f.x = this->i.x = x;
-	}
+	inline void setX(const T& x) { this->f.x = this->i.x = x; }
 
-	inline void setY(const T& y) {
-		this->f.y = this->i.y  = y;
-	}
+	inline void setY(const T& y) { this->f.y = this->i.y = y; }
 
 	// /** @fabricated */
 	// TBox2<T>& addingPos(TBox2<T>& result, const TVec2<T>& pos) {
@@ -660,12 +663,15 @@ struct TBox2 : TBox<TVec2<T> > {
 	void set(const TVec2<T>& i, const TVec2<T>& f) { this->i.set(i), this->f.set(f); }
 	// void set(const TVec2<T>& i, T x1, T y1) { this->i.set(i), this->f.set(x1, y1); }
 	// void set(T x0, T y0, const TVec2<T>& f) { this->i.set(x0, y0), this->f.set(f); }
-	void set(T x0, T y0, T x1, T y1) { this->i.set(x0, y0); this->f.set(x1, y1); }
+	void set(T x0, T y0, T x1, T y1)
+	{
+		this->i.set(x0, y0);
+		this->f.set(x1, y1);
+	}
 
 	// void setOrigin(const TVec2<T>& other) { this->i.set(other); }
 	// void setSize(T width, T height) { this->f.x = this->i.x + width; this->f.y = this->i.y + height; }
 };
-// clang-format on
 
 template <typename T>
 struct TBox3 : TBox<TVec3<T> /**/> {

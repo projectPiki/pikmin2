@@ -1022,7 +1022,8 @@ asm void __TRK_set_MSR(register u32 v)
  * @note Size: 0x3C
  */
 #ifdef __MWERKS__ // clang-format off
-static asm void TRK_ppc_memcpy(register void* dest, register const void* src, register int n, register u32 param_4, register u32 param_5){
+static asm void TRK_ppc_memcpy(register void* dest, register const void* src, register int n, register u32 param_4, register u32 param_5)
+{
 	#define msr		r8
 	#define byte	r9
 	#define count	r10
@@ -1030,7 +1031,7 @@ static asm void TRK_ppc_memcpy(register void* dest, register const void* src, re
 
 		mfmsr msr
 		li count, 0
-	
+
 	top_loop:
 		cmpw count, n
 		beq out_loop
@@ -1064,7 +1065,8 @@ static asm void TRK_ppc_memcpy(register void* dest, register const void* src, re
  * @note Size: 0x194
  */
 #ifdef __MWERKS__ // clang-format off
-asm void TRKInterruptHandler() {
+asm void TRKInterruptHandler()
+{
 	nofralloc
 	mtsrr0 r2
 	mtsrr1 r4
@@ -1177,7 +1179,8 @@ L_802CF694:
  * @note Size: 0x9C
  */
 #ifdef __MWERKS__ // clang-format off
-static asm void TRKExceptionHandler(u16 r3){ 
+static asm void TRKExceptionHandler(u16 r3)
+{
 	nofralloc
 	lis r2, gTRKExceptionStatus@h
 	ori r2, r2, gTRKExceptionStatus@l
@@ -1228,7 +1231,8 @@ LAB_00010bb0:
  * @note Size: 0xC4
  */
 #ifdef __MWERKS__ // clang-format off
-asm void TRKSwapAndGo(){
+asm void TRKSwapAndGo()
+{
 	nofralloc
 	lis r3, gTRKState@h
 	ori r3, r3, gTRKState@l
@@ -1332,7 +1336,6 @@ asm void ReadFPSCR(register f64*)
 	lfd		f31, 0x10(r1)
 	addi	r1, r1, 0x40
 	blr
-	
 }
 #endif // clang-format on
 
@@ -1341,7 +1344,8 @@ asm void ReadFPSCR(register f64*)
  * @note Size: 0x24
  */
 #ifdef __MWERKS__ // clang-format off
-asm void WriteFPSCR(register f64*){
+asm void WriteFPSCR(register f64*)
+{
 	nofralloc
 	stwu	r1, -0x40(r1)
 	stfd	f31, 0x10(r1)

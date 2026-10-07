@@ -280,13 +280,13 @@ struct FakePikiParms : public CreatureParms {
 		    , mEscapeStartSpeed(this, 'fp04', "ESCAPE 開始スピード", 95.0f, 0.0f, 500.0f)               // 'ESCAPE start speed'
 		    , mWalkPlaybackFrameCountMin(this, 'fp04', "WALK 再生フレーム数(min)", 60.0f, 0.0f, 300.0f) // 'WALK playback frame count (min)'
 		    , mWalkPlaybackFrameCountMax(this, 'fp05', "WALK 再生フレーム数(max)", 90.0f, 0.0f,
-		                                 300.0f)                                                      // 'WALK  playback frame count (max)'
+			                             300.0f)                                                      // 'WALK  playback frame count (max)'
 		    , mRunPlaybackFrameCountMin(this, 'fp06', "RUN 再生フレーム数(min)", 40.0f, 0.0f, 300.0f) // 'RUN playback frame count (min)'
 		    , mRunPlaybackFrameCountMax(this, 'fp07', "RUN 再生フレーム数(max)", 60.0f, 0.0f, 300.0f) // 'RUN playback frame count (max)'
 		    , mEscapePlaybackFrameCountMin(this, 'fp08', "ESCAPE 再生フレーム数(min)", 60.0f, 0.0f,
-		                                   300.0f) // 'ESCAPE playback frame count (min)'
+			                               300.0f) // 'ESCAPE playback frame count (min)'
 		    , mEscapePlaybackFrameCountMax(this, 'fp09', "ESCAPE 再生フレーム数(max)", 90.0f, 0.0f,
-		                                   300.0f) // 'ESCAPE playback frame count (max)'
+			                               300.0f) // 'ESCAPE playback frame count (max)'
 		{
 		}
 

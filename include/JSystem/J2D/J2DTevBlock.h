@@ -436,11 +436,11 @@ struct J2DTevBlock16 : J2DTevBlock {
 		}
 		return mPalettes[index];
 	}
-	virtual JUTFont* getFont() { return mFont; }                      // _A8 (weak)
-	virtual void shiftDeleteFlag(u8, bool);                           // _AC
-	virtual void setUndeleteFlag(u8 flag) { mUndeleteFlag &= flag; }; // _B0 (weak)
-	virtual void setFontUndeleteFlag() { mFontUndeleteFlag = 0; }     // _B4 (weak)
-	virtual ~J2DTevBlock16();                                         // _B8
+	virtual JUTFont* getFont() { return mFont; }                     // _A8 (weak)
+	virtual void shiftDeleteFlag(u8, bool);                          // _AC
+	virtual void setUndeleteFlag(u8 flag) { mUndeleteFlag &= flag; } // _B0 (weak)
+	virtual void setFontUndeleteFlag() { mFontUndeleteFlag = 0; }    // _B4 (weak)
+	virtual ~J2DTevBlock16();                                        // _B8
 
 	// _00 = VTBL
 	u16 mTexIndices[8];                     // _04

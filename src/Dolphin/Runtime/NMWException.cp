@@ -12,7 +12,10 @@ namespace std {
  * @note Address: N/A
  * @note Size: 0x20
  */
-static void dthandler() { abort(); }
+static void dthandler()
+{
+	abort();
+}
 
 static terminate_handler thandler = dthandler;
 
@@ -20,7 +23,10 @@ static terminate_handler thandler = dthandler;
  * @note Address: N/A
  * @note Size: 0x28
  */
-static void duhandler() { terminate(); }
+static void duhandler()
+{
+	terminate();
+}
 
 static unexpected_handler uhandler = duhandler;
 
@@ -39,7 +45,10 @@ extern terminate_handler set_terminate(terminate_handler handler)
  * @note Address: N/A
  * @note Size: 0x28
  */
-extern void terminate() { thandler(); }
+extern void terminate()
+{
+	thandler();
+}
 
 /**
  * @note Address: N/A
@@ -56,7 +65,10 @@ extern unexpected_handler set_unexpected(unexpected_handler handler)
  * @note Address: N/A
  * @note Size: 0x28
  */
-extern void unexpected() { uhandler(); }
+extern void unexpected()
+{
+	uhandler();
+}
 } // namespace std
 
 /**

@@ -37,11 +37,11 @@ void J3DCalcBBoardMtx(register Mtx mtx)
 
 // zero out gaps of zeroes
 #ifdef __MWERKS__ // clang-format off
-    asm {
-        psq_st zero, 0x04(mtx), 0, 0
-      
-        psq_st zero, 0x20(mtx), 0, 0
-    }
+	asm {
+		psq_st zero, 0x04(mtx), 0, 0
+
+		psq_st zero, 0x20(mtx), 0, 0
+	}
 #endif // clang-format on
 
 	mtx[0][0] = x;
@@ -492,10 +492,10 @@ asm void J3DPSMtxArrayConcat(register Mtx mA, register Mtx mB, register Mtx mAB,
 #define FP15 fp15
 #define FP31 fp31
 #define UNIT_R r7
-    
+
     // this is just PSMtxConcat???
     nofralloc
-    
+
 	stwu      sp, -0x40(sp)
 	stfd    FP14,  0x08(sp)
 	addis UNIT_R, 0, Unit01@ha

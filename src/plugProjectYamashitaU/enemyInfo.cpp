@@ -86,11 +86,11 @@ EnemyInfo gEnemyInfo[] = {
 	{"Zenmai",             EnemyTypeID::EnemyID_Zenmai,         -1,                                1,      (EFlag_CanBeSpawned | 2 | EFlag_UseOwnID),											    "",             "",             "",             "",         "",         "",             "",             -1,                               0,                       BDT_Empty},
 	{"KingChappy",         EnemyTypeID::EnemyID_KingChappy,     -1,                                1,      (EFlag_CanBeSpawned | 2 | EFlag_UseOwnID),											    "",             "",             "",             "",         "",         "",             "",             -1,                               0,                       BDT_Boss},
 	{"Miulin",             EnemyTypeID::EnemyID_Miulin,         -1,                                1,      (EFlag_CanBeSpawned | 2 | EFlag_UseOwnID),											    "",             "",             "",             "",         "",         "",             "",             -1,                               0,                       BDT_Strong},
-	#if BUGFIX                   
+	#if BUGFIX
 	{"Damagumo",           EnemyTypeID::EnemyID_Damagumo,       -1,                                1,      (EFlag_CanBeSpawned | 2 | EFlag_UseOwnID),											    "",             "",             "",             "",         "",         "",             "",             EnemyTypeID::EnemyID_ShijimiChou, SHIJIMICHOU_GROUP_COUNT, BDT_Boss},
-	#else                   
+	#else
 	{"Damagumo",           EnemyTypeID::EnemyID_Damagumo,       -1,                                1,      (EFlag_CanBeSpawned | 2 | EFlag_UseOwnID),											    "",             "",             "",             "",         "",         "",             "",             -1,                               0,                       BDT_Boss},
-	#endif                   
+	#endif
 	{"BigFoot",            EnemyTypeID::EnemyID_BigFoot,        -1,                                1,      (EFlag_CanBeSpawned | 2 | EFlag_UseOwnID),											    "",             "",             "",             "",         "",         "",             "",             EnemyTypeID::EnemyID_TamagoMushi, TAMAGOMUSHI_GROUP_COUNT, BDT_Boss},
 	{"Houdai",             EnemyTypeID::EnemyID_Houdai,         -1,                                1,      (EFlag_CanBeSpawned | 2 | EFlag_UseOwnID),											    "",             "",             "",             "",         "",         "",             "",             -1,                               0,                       BDT_Boss},
 	{"FireOtakara",        EnemyTypeID::EnemyID_FireOtakara,    -1,                                1,      (EFlag_CanBeSpawned | 2 | EFlag_UseOwnID),											    "",             "",             "Otakara",      "",         "",         "Otakara",      "Otakara",      -1,                               0,                       BDT_Normal},
