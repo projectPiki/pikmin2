@@ -145,7 +145,6 @@ void Mgr::dump()
 /**
  * @note Address: 0x80455D34
  * @note Size: 0x1A4
- * Just regswaps left.
  */
 void Mgr::loadEnemy()
 {

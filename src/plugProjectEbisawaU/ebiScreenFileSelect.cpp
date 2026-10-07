@@ -1337,7 +1337,6 @@ void TMainScreen::initDataBalls_()
 /**
  * @note Address: 0x803D8EC8
  * @note Size: 0x550
- * @note TODO: Finish matching
  */
 void TMainScreen::setColorTimgDataBall_(s32 fileID)
 {
