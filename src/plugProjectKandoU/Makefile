@@ -1,40 +1,40 @@
 KANDO_FILES:=\
 	$(BUILD_DIR)/src/plugProjectKandoU/pikiAnimator.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/collinfo.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/gameDynamics.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/collinfo.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/gameDynamics.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/creature.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/fakePiki.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/navi.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/piki.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/baseGameSection.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/fakePiki.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/navi.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/piki.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/baseGameSection.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/singleGameSection.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/cellPyramid.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/cellPyramid.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/naviMgr.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/pikiMgr.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/mapMgr.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/baseHIOSection.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/naviWhistle.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/pelletMgr.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/routeMgr.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/naviWhistle.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/pelletMgr.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/routeMgr.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/onyonMgr.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/objectTypes.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/naviState.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/pikiState.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/naviState.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/pikiState.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/interactPiki.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/gameCPlate.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/gameCPlate.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/updateMgr.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/aiAction.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/aiPrimitives.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/aiFormation.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/aiPrimitives.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/aiFormation.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/creatureStick.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/interactBattle.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/aiFree.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/aiAttack.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/aiTransport.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/aiEnter.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/pathfinder.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/pelletState.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/dynCreature.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/aiEnter.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/pathfinder.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/pelletState.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/dynCreature.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/gameGenerator.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/genPiki.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/genNavi.o\
@@ -46,28 +46,28 @@ KANDO_FILES:=\
 	$(BUILD_DIR)/src/plugProjectKandoU/gameFootmark.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/gameSystem.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/aiConstants.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/gameMapParts.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/gameMapParts.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/vsGameSection.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/gamePlatMgr.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/itemGate.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/itemGate.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/itemMgr.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/aiBreakGate.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/aiBreakGate.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/gameStat.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/itemHole.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/itemHoney.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/gameCaveInfo.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/creatureLOD.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/itemHoney.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/gameCaveInfo.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/creatureLOD.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/interactNavi.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/itemPikihead.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/itemPlant.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/itemPikihead.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/itemPlant.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/itemRock.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/aiBreakRock.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/aiCrop.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/registItem.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/gamePlayData.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/gamePlayData.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/itemCave.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/itemBigFountain.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/itemBridge.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/itemBridge.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/pikiContainer.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/gameGeneratorCache.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/itemTreasure.o\
@@ -82,24 +82,24 @@ KANDO_FILES:=\
 	$(BUILD_DIR)/src/plugProjectKandoU/pelletItem.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/mapMgrTraceMove.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/efxModelObjects.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/itemUjamushi.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/itemUjamushi.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/aiWeed.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/flockMgr.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/itemWeed.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/flockMgr.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/itemWeed.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/aiBridge.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/aiTeki.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/singleGS_MainGame.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/singleGS_CaveGame.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/singleGS_MainResult.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/singleGS_CaveResult.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/singleGS_CaveResult.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/singleGS_WorldMap.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/singleGS_FileSelect.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/gamePlayDataMemCard.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/gamePlayDataMemCard.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/baseHIOparms.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/radarInfo.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/singleGS_Movie.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/navi_demoCheck.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/singleGS_Zukan.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/singleGS_Zukan.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/gameResultTexMgr.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/gamePelletList.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/vsGS_Title.o\
@@ -108,7 +108,7 @@ KANDO_FILES:=\
 	$(BUILD_DIR)/src/plugProjectKandoU/vsGS_Load.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/vsStageData.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/cellMgrParms.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/cellIterator.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/cellIterator.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/vsGS_VSGame.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/gameSoundEvent.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/aiBattle.o\
@@ -123,14 +123,14 @@ KANDO_FILES:=\
 	$(BUILD_DIR)/src/plugProjectKandoU/pelletCarry.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/gameChallenge2D.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/vsTekiMgr.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/vsCardMgr.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/vsCardMgr.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/aiRescue.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/baseGameSectionDraw.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/singleGS_Load.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/singleGS_DayEnd.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/baseGameSectionKantei.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/sweepPrune.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/texCaster.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/texCaster.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/vsCoinOtakaraName.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/pelletBirthBuffer.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/vsFifo.o\

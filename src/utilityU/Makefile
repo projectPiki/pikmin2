@@ -1,17 +1,17 @@
 UTILITY_FILES:=\
 	$(BUILD_DIR)/src/utilityU/menu.o\
-	$(BUILD_DIR)/asm/utilityU/PSMainSide_Director.o\
-	$(BUILD_DIR)/asm/utilityU/PSMainSide_Factory.o\
-	$(BUILD_DIR)/asm/utilityU/PSMainSide_ObjSound.o\
+	$(BUILD_DIR)/src/utilityU/PSMainSide_Director.o\
+	$(BUILD_DIR)/src/utilityU/PSMainSide_Factory.o\
+	$(BUILD_DIR)/src/utilityU/PSMainSide_ObjSound.o\
 	$(BUILD_DIR)/src/utilityU/PSMainSide_Demo.o\
-	$(BUILD_DIR)/asm/utilityU/PSMainSide_Scene.o\
+	$(BUILD_DIR)/src/utilityU/PSMainSide_Scene.o\
 	$(BUILD_DIR)/src/utilityU/PSMainSide_BossMgr.o\
-	$(BUILD_DIR)/asm/utilityU/PSMainSide_Se.o\
+	$(BUILD_DIR)/src/utilityU/PSMainSide_Se.o\
 	$(BUILD_DIR)/src/utilityU/PSMainSide_DirectorMgr.o\
-	$(BUILD_DIR)/asm/utilityU/PSMainSide_Sound.o\
+	$(BUILD_DIR)/src/utilityU/PSMainSide_Sound.o\
 	$(BUILD_DIR)/src/utilityU/PSMainSide_TrackMap.o\
-	$(BUILD_DIR)/asm/utilityU/PSMainSide_CreaturePrm.o\
-	$(BUILD_DIR)/asm/utilityU/PSMainSide_ObjCalc.o\
+	$(BUILD_DIR)/src/utilityU/PSMainSide_CreaturePrm.o\
+	$(BUILD_DIR)/src/utilityU/PSMainSide_ObjCalc.o\
 
 $(UTILITY_FILES): CFLAGS += -sym on
 
