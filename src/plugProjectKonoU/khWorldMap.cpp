@@ -11,7 +11,7 @@
 #include "utilityU.h"
 #include "Screen/Game2DMgr.h"
 #include "PSSystem/PSSystemIF.h"
-#include "efx2d/T2DChangesmoke.h"
+#include "efx2d/efx2dEffect.h"
 #include "Controller.h"
 
 static void _Print(char* format, ...)

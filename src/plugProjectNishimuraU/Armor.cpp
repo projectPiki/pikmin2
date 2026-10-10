@@ -5,7 +5,7 @@
 #include "Game/PikiMgr.h"
 #include "Game/Stickers.h"
 #include "Dolphin/rand.h"
-#include "efx/TYoroi.h"
+#include "efx/efxEnemy.h"
 
 namespace Game {
 namespace Armor {

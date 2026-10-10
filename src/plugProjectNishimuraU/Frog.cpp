@@ -3,7 +3,7 @@
 #include "Game/rumble.h"
 #include "Game/AIConstants.h"
 #include "Game/EnemyFunc.h"
-#include "efx/TFrog.h"
+#include "efx/efxEnemy.h"
 #include "PS.h"
 #include "nans.h"
 

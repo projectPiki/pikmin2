@@ -6,7 +6,7 @@
 #include "Game/EnemyParmsBase.h"
 #include "Game/EnemyMgrBase.h"
 #include "Game/EnemyBase.h"
-#include "efx/TNewkurage.h"
+#include "efx/efxEnemy.h"
 
 /**
  * --Header for Lesser Spotted Jellyfloat (Kurage)--

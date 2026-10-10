@@ -4,8 +4,7 @@
 #include "og/Screen/ogScreen.h"
 #include "Morimura/mrUtil.h"
 #include "Morimura/Window.h"
-#include "efx2d/T2DCursor.h"
-#include "efx2d/T2DChalDive.h"
+#include "efx2d/efx2dEffect.h"
 #include "Game/ChallengeGame.h"
 #include "Screen/Game2DMgr.h"
 

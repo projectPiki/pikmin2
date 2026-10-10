@@ -7,7 +7,7 @@
 #include "Game/PelletList.h"
 #include "PSSystem/PSSystemIF.h"
 #include "Dolphin/rand.h"
-#include "efx2d/T2DChangesmoke.h"
+#include "efx2d/efx2dEffect.h"
 #include "Screen/Game2DMgr.h"
 
 static const int unusedArray[] = { 0, 0, 0 };

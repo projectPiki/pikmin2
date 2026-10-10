@@ -1,5 +1,5 @@
 #include "types.h"
-#include "efx/OnyonSpot.h"
+#include "efx/efxObject.h"
 #include "Sys/Sphere.h"
 #include "Sys/Cylinder.h"
 #include "Game/GameSystem.h"

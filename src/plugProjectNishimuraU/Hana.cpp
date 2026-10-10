@@ -1,6 +1,6 @@
 #include "Game/Entities/Hana.h"
 #include "Game/EnemyFunc.h"
-#include "efx/THanaMiss.h"
+#include "efx/efxEnemy.h"
 #include "Game/CameraMgr.h"
 #include "Game/rumble.h"
 #include "Game/ConditionNotStick.h"

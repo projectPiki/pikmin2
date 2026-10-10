@@ -1,5 +1,5 @@
 #include "EffectAnimator.h"
-#include "efx/TKechappy.h"
+#include "efx/efxEnemy.h"
 #include "P2Macros.h"
 
 namespace EffectAnimator {

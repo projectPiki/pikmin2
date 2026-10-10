@@ -1,7 +1,7 @@
 #include "Game/Entities/PelletFruit.h"
 #include "Game/Entities/ItemPlant.h"
 #include "PSM/EventBase.h"
-#include "efx/TFruitsDown.h"
+#include "efx/efxObject.h"
 #include "nans.h"
 
 namespace Game {

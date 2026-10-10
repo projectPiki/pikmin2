@@ -1,5 +1,5 @@
 #define ITEM_HONEY_WEAK_ORDER
-#include "efx/THoneydown.h"
+#include "efx/efxObject.h"
 #include "Game/Entities/ItemHoney.h"
 #include "Game/Navi.h"
 #include "Game/AIConstants.h"

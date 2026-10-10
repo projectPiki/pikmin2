@@ -1,14 +1,4 @@
-#include "efx/TEnemyPiyo.h"
-#include "efx/TEnemyPoison.h"
-#include "efx/TSekika.h"
-#include "efx/TEnemyDead.h"
-#include "efx/TEnemyWalkSmoke.h"
-#include "efx/TEnemyDownSmoke.h"
-#include "efx/TEnemyDownWat.h"
-#include "efx/TEnemyDive.h"
-#include "efx/TEnemyBomb.h"
-#include "efx/TEnemyApsmoke.h"
-#include "efx/TEnemyHamon.h"
+#include "efx/efxEnemyGeneral.h"
 
 namespace efx {
 

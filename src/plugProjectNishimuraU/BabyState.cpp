@@ -1,7 +1,7 @@
 #include "Game/Entities/Baby.h"
 #include "Game/EnemyAnimKeyEvent.h"
 #include "Game/EnemyFunc.h"
-#include "efx/TBaby.h"
+#include "efx/efxEnemy.h"
 
 namespace Game {
 namespace Baby {

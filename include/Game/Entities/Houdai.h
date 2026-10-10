@@ -7,8 +7,7 @@
 #include "Game/EnemyMgrBase.h"
 #include "Game/JointFuncs.h"
 #include "Game/EnemyBase.h"
-#include "efx/TDama.h"
-#include "efx/THdama.h"
+#include "efx/efxEnemyBoss.h"
 #include "Collinfo.h"
 #include "Sys/MatBaseAnimation.h"
 #include "Sys/MatBaseAnimator.h"
@@ -228,7 +227,7 @@ struct Parms : public EnemyParmsBase {
 		Parm<f32> mLastToTerritory;     // _994
 	};
 
-	Parms() { }
+	Parms() {};
 
 	virtual void read(Stream& stream) // _08 (weak)
 	{
@@ -251,10 +250,10 @@ enum AnimID {
 };
 
 struct ProperAnimator : public EnemyAnimatorBase {
-	virtual ~ProperAnimator() { }                                   // _08 (weak)
-	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                // _0C
-	virtual SysShape::Animator& getAnimator() { return mAnimator; } // _10 (weak)
-	virtual SysShape::Animator& getAnimator(int idx);               // _14
+	virtual ~ProperAnimator() {};                                    // _08 (weak)
+	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                 // _0C
+	virtual SysShape::Animator& getAnimator() { return mAnimator; }; // _10 (weak)
+	virtual SysShape::Animator& getAnimator(int idx);                // _14
 
 	// _00 		= VTBL
 	// _00-_10	= EnemyAnimatorBase

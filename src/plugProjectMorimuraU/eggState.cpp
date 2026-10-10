@@ -1,8 +1,7 @@
-#include "types.h"
 #include "Game/EnemyAnimKeyEvent.h"
 #include "Game/Entities/Egg.h"
-#include "efx/TEggdown.h"
-#include "efx/TEnemyBomb.h"
+#include "efx/efxEnemy.h"
+#include "efx/efxEnemyGeneral.h"
 #include "PSSystem/PSMainSide_ObjSound.h"
 
 namespace Game {

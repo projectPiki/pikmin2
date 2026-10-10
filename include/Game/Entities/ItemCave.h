@@ -7,7 +7,7 @@
 #include "Game/itemMgr.h"
 #include "Game/PlatInstance.h"
 #include "Game/GameLight.h"
-#include "efx/WarpZone.h"
+#include "efx/efxObject.h"
 
 namespace Game {
 namespace ItemBarrel {

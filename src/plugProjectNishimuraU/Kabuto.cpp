@@ -2,7 +2,7 @@
 #include "Game/EnemyFunc.h"
 #include "Game/generalEnemyMgr.h"
 #include "Game/Entities/Rock.h"
-#include "efx/TKabutoAttack.h"
+#include "efx/efxEnemy.h"
 #include "Dolphin/rand.h"
 
 namespace Game {

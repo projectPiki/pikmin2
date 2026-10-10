@@ -6,7 +6,7 @@
 #include "Game/PikiMgr.h"
 #include "Game/Navi.h"
 #include "Game/Interaction.h"
-#include "efx/THebi.h"
+#include "efx/efxEnemyBoss.h"
 #include "Iterator.h"
 #include "Dolphin/rand.h"
 #include "nans.h"

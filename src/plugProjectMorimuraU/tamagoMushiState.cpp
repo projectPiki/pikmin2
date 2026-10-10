@@ -1,7 +1,6 @@
 #include "Game/Entities/TamagoMushi.h"
 #include "Game/EnemyAnimKeyEvent.h"
-#include "efx/TEnemyBomb.h"
-#include "efx/TEnemyDead.h"
+#include "efx/efxEnemyGeneral.h"
 #include "Dolphin/rand.h"
 #include "PS.h"
 

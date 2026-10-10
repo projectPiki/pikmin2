@@ -3,7 +3,7 @@
 #include "og/Screen/ogScreen.h"
 #include "og/Sound.h"
 #include "Vector3.h"
-#include "efx2d/T2DCursor.h"
+#include "efx2d/efx2dEffect.h"
 #include "System.h"
 
 namespace og {

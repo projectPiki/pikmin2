@@ -3,7 +3,7 @@
 
 #include "og/Screen/callbackNodes.h"
 #include "Screen/screenObj.h"
-#include "efx2d/T2DCountKira.h"
+#include "efx2d/efx2dEffect.h"
 #include "Morimura/Bases.h"
 
 struct J2DPane;

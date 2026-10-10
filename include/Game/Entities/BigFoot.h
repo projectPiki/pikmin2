@@ -9,8 +9,7 @@
 #include "Game/EnemyBase.h"
 #include "Sys/MatBaseAnimation.h"
 #include "Sys/MatBaseAnimator.h"
-#include "efx/TOdama.h"
-#include "efx/TDama.h"
+#include "efx/efxEnemyBoss.h"
 #include "Collinfo.h"
 
 /**

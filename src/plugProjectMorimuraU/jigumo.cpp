@@ -6,7 +6,7 @@
 #include "Game/Navi.h"
 #include "Game/MapMgr.h"
 #include "Game/AIConstants.h"
-#include "efx/TEnemyDive.h"
+#include "efx/efxEnemyGeneral.h"
 #include "Dolphin/rand.h"
 
 namespace Game {

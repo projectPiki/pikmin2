@@ -7,7 +7,7 @@
 
 #include "Dolphin/rand.h"
 
-#include "efx/TPplGrow.h"
+#include "efx/efxEnemy.h"
 
 #include "System.h"
 

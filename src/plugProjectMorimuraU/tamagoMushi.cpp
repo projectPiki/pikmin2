@@ -4,8 +4,7 @@
 #include "Game/PikiMgr.h"
 #include "Game/PikiState.h"
 #include "Game/Entities/ItemHoney.h"
-#include "efx/TUjinko.h"
-#include "efx/TTamagoAp.h"
+#include "efx/efxEnemy.h"
 #include "Dolphin/rand.h"
 
 namespace Game {

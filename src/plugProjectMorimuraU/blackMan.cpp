@@ -1,7 +1,7 @@
 #include "types.h"
 #include "Game/Entities/BlackMan.h"
 #include "Game/generalEnemyMgr.h"
-#include "efx/TKage.h"
+#include "efx/efxEnemyBoss.h"
 #include "PSSystem/PSMainSide_ObjSound.h"
 #include "Game/MapMgr.h"
 #include "Game/pathfinder.h"

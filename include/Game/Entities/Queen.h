@@ -8,7 +8,7 @@
 #include "Game/JointFuncs.h"
 #include "Game/EnemyBase.h"
 #include "Game/WalkSmokeEffect.h"
-#include "efx/TQueen.h"
+#include "efx/efxEnemyBoss.h"
 #include "SysShape/Joint.h"
 #include "Sys/MatBaseAnimation.h"
 #include "Sys/MatBaseAnimator.h"

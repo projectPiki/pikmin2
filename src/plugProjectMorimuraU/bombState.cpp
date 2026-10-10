@@ -4,7 +4,6 @@
 #include "Game/EnemyAnimKeyEvent.h"
 #include "Game/CameraMgr.h"
 #include "Game/rumble.h"
-#include "efx/TBombrock.h"
 #include "nans.h"
 
 namespace Game {

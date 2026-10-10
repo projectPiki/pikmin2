@@ -1,7 +1,6 @@
 #include "Game/Entities/ItemGate.h"
 #include "Game/Entities/ItemDengekiGate.h"
-#include "efx/TGate.h"
-#include "efx/TEgate.h"
+#include "efx/efxObject.h"
 #include "PSSystem/PSMainSide_ObjSound.h"
 #include "Dolphin/rand.h"
 #include "Sys/MatBaseAnimator.h"

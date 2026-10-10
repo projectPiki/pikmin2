@@ -3,7 +3,7 @@
 #include "Game/gamePlayData.h"
 #include "Game/MoviePlayer.h"
 #include "Game/PikiMgr.h"
-#include "efx/TOtakara.h"
+#include "efx/efxObject.h"
 #include "Dolphin/rand.h"
 #include "PSSystem/PSMainSide_ObjSound.h"
 #include "VsOtakaraName.h"

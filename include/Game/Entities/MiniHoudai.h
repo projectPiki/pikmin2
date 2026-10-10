@@ -7,7 +7,7 @@
 #include "Game/EnemyMgrBase.h"
 #include "Game/EnemyBase.h"
 #include "Game/WalkSmokeEffect.h"
-#include "efx/TChibi.h"
+#include "efx/efxEnemy.h"
 
 /**
  * --Header for Gatling Groinks (MiniHoudai)--

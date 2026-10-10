@@ -1,6 +1,6 @@
 #include "Game/Entities/Imomushi.h"
 #include "Game/Entities/ItemPlant.h"
-#include "efx/TUjinko.h"
+#include "efx/efxEnemy.h"
 #include "Dolphin/rand.h"
 
 namespace Game {

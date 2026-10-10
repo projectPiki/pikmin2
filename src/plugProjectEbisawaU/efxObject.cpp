@@ -1,10 +1,4 @@
-#include "efx/TOtakara.h"
-#include "efx/TTsuyuGrow.h"
-#include "efx/Container.h"
-#include "efx/TEgate.h"
-#include "efx/TKouhai.h"
-#include "efx/TPelkira.h"
-#include "efx/WarpZone.h"
+#include "efx/efxObject.h"
 #include "JSystem/JParticle/JPAMath.h"
 #include "Game/Entities/ItemOnyon.h"
 

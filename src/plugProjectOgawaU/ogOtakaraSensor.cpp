@@ -4,7 +4,7 @@
 #include "og/Screen/ogScreen.h"
 #include "og/Screen/ScaleMgr.h"
 #include "og/Screen/AngleMgr.h"
-#include "efx2d/T2DSensor.h"
+#include "efx2d/efx2dEffect.h"
 #include "og/Sound.h"
 #include "Dolphin/rand.h"
 #include "trig.h"

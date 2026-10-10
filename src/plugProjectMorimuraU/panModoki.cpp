@@ -10,7 +10,7 @@
 #include "Game/Stickers.h"
 #include "Game/pathfinder.h"
 #include "Dolphin/rand.h"
-#include "efx/TPan.h"
+#include "efx/efxEnemy.h"
 #include "nans.h"
 
 namespace Game {
