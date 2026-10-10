@@ -175,9 +175,7 @@ void FSMState_Warning::do_init(TMgr* mgr, Game::StateArg*)
 	do_open(mgr);
 	mCounterFinished = false;
 	mForceFinish     = false;
-	u32 time         = 3.0f / sys->mDeltaTime;
-	mCounter         = time;
-	mCounterMax      = time;
+	mCounter.setValue(3.0f);
 }
 
 /**
@@ -186,12 +184,10 @@ void FSMState_Warning::do_init(TMgr* mgr, Game::StateArg*)
  */
 void FSMState_Warning::do_exec(TMgr* mgr)
 {
-	if (mCounter) {
-		mCounter--;
-	}
+	mCounter.update();
 
 	if (!mCounterFinished) {
-		if (!mCounter) {
+		if (mCounter.isZero()) {
 			mgr->mMainScreen.closeMSG();
 			mCounterFinished = true;
 		}
@@ -292,11 +288,9 @@ void FSMState10_FinishCopy::do_transit(TMgr* mgr)
 void FSMState_CardTask::init(TMgr* mgr, Game::StateArg* arg)
 {
 	do_init(mgr, arg);
-	u32 time         = 3.0f / sys->mDeltaTime;
-	mgr->mCounter    = time;
-	mgr->mCounterMax = time;
-	mStatus          = CardTaskState_doRequest;
-	mgr->mInSeq      = false;
+	mgr->mCounter.setValue(3.0f);
+	mStatus     = CardTaskState_doRequest;
+	mgr->mInSeq = false;
 }
 
 /**
@@ -326,7 +320,7 @@ void FSMState_CardTask::exec(TMgr* mgr)
 		}
 		break;
 	case CardTaskState_waitCloseMsg:
-		if (!mgr->mCounter) {
+		if (mgr->mCounter.isZero()) {
 			mgr->mMainScreen.closeMSG();
 			mStatus = CardTaskState_finish;
 			do_close(mgr);
@@ -538,9 +532,7 @@ void FSMState00_SelectData::do_init(TMgr* mgr, Game::StateArg*)
 	}
 
 	mIsChangeSel = false;
-	u32 time     = 0.5f / sys->mDeltaTime;
-	mCounter     = time;
-	mCounterMax  = time;
+	mCounter.setValue(0.5f);
 }
 
 /**
@@ -550,9 +542,7 @@ void FSMState00_SelectData::do_init(TMgr* mgr, Game::StateArg*)
 void FSMState00_SelectData::do_exec(TMgr* mgr)
 {
 	if (mgr->mMainScreen.isWaitScreen()) {
-		if (mCounter) {
-			mCounter--;
-		}
+		mCounter.update();
 		Controller* control = mgr->mController;
 		int prev            = mgr->mCurrSelection;
 		mgr->mCountNumInterface.update();
@@ -583,7 +573,7 @@ void FSMState00_SelectData::do_exec(TMgr* mgr)
 			mgr->mMainScreen.openDataWindow(mgr->mCurrSelection);
 		}
 
-		if (!mCounter) {
+		if (mCounter.isZero()) {
 			u32 input = control->getButtonDown();
 			if (input & Controller::PRESS_A) {
 				transit(mgr, FSSTATE_CheckData, nullptr);
@@ -812,8 +802,6 @@ void FSMState04_WhichDataDoYouCopyTo::do_exec(TMgr* mgr)
  * @note Size: 0xA4
  */
 TMgr::TMgr()
-    : mCounter(0)
-    , mCounterMax(0)
 {
 	mStateMachine.init(this);
 	mStateMachine.start(this, 0, nullptr);
@@ -859,9 +847,7 @@ void TMgr::update()
 		sys->mCardMgr->update();
 		checkAndTransitNoCard_();
 		mMainScreen.update();
-		if (mCounter) {
-			mCounter--;
-		}
+		mCounter.update();
 	}
 }
 

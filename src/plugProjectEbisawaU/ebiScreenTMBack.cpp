@@ -31,9 +31,7 @@ void TTMBack::doSetArchive(JKRArchive* archive)
 void TTMBack::doOpenScreen(ArgOpen* arg)
 {
 	P2ASSERTLINE(33, arg != nullptr);
-	u32 duration         = (u32)(static_cast<ArgOpenTMBack*>(arg)->_04 / sys->mDeltaTime);
-	mOpenCloseCounter    = duration;
-	mOpenCloseCounterMax = duration;
+	mOpenCloseCounter.setValue(static_cast<ArgOpenTMBack*>(arg)->_04);
 }
 
 /**
@@ -42,9 +40,7 @@ void TTMBack::doOpenScreen(ArgOpen* arg)
  */
 void TTMBack::doCloseScreen(ArgClose* arg)
 {
-	u32 duration         = (u32)(0.5f / sys->mDeltaTime);
-	mOpenCloseCounter    = duration;
-	mOpenCloseCounterMax = duration;
+	mOpenCloseCounter.setValue(0.5f);
 }
 
 /**
@@ -53,21 +49,12 @@ void TTMBack::doCloseScreen(ArgClose* arg)
  */
 bool TTMBack::doUpdateStateOpen()
 {
-	if (mOpenCloseCounter > 0) {
-		mOpenCloseCounter -= 1;
-	}
+	mOpenCloseCounter.update();
 
-	f32 factor;
-	if (mOpenCloseCounterMax != 0) {
-		factor = (f32)mOpenCloseCounter / mOpenCloseCounterMax;
-	} else {
-		factor = 0.0f;
-	}
-
-	mScreenObj->setAlpha(128.0f * (1.0f - factor));
+	mScreenObj->setAlpha(128.0f * (1.0f - mOpenCloseCounter.getRatio()));
 	mScreenObj->update();
 
-	if (mOpenCloseCounter == 0) {
+	if (mOpenCloseCounter.isZero()) {
 		return true;
 	}
 	return false;
@@ -89,21 +76,13 @@ bool TTMBack::doUpdateStateWait()
  */
 bool TTMBack::doUpdateStateClose()
 {
-	if (mOpenCloseCounter > 0) {
-		mOpenCloseCounter -= 1;
-	}
+	mOpenCloseCounter.update();
 
-	f32 factor;
-	if (mOpenCloseCounterMax != 0) {
-		factor = (f32)mOpenCloseCounter / mOpenCloseCounterMax;
-	} else {
-		factor = 0.0f;
-	}
+	mScreenObj->setAlpha(128.0f * mOpenCloseCounter.getRatio());
 
-	mScreenObj->setAlpha(128.0f * factor);
 	mScreenObj->update();
 
-	if (mOpenCloseCounter == 0) {
+	if (mOpenCloseCounter.isZero()) {
 		return true;
 	}
 	return false;

@@ -117,12 +117,12 @@ void Chappy::TUnit::init(TMgr* mgr)
 	mModel   = mManager->mAnimator->newJ3DModel();
 	mAnim.setAnimFolder(&mManager->mAnimator->mAnimFolder);
 
-	mPosition = titleMgr->getPosOutOfViewField();
-	mParms[0] = mManager->mParams.mWalkSpeed.mValue;
-	mParms[1] = mManager->mParams.mScale.mValue;
-	mParms[4] = mManager->mParams.mCullRadius.mValue;
-	mParms[2] = mManager->mParams.mCollRadius.mValue;
-	mParms[3] = mManager->mParams.mPikiReactRadius.mValue;
+	mPosition        = titleMgr->getPosOutOfViewField();
+	mMoveSpeed       = mManager->mParams.mWalkSpeed.mValue;
+	mScale           = mManager->mParams.mScale.mValue;
+	mCullRadius      = mManager->mParams.mCullRadius.mValue;
+	mCollRadius      = mManager->mParams.mCollRadius.mValue;
+	mPikiReactRadius = mManager->mParams.mPikiReactRadius.mValue;
 }
 
 /**
@@ -186,9 +186,7 @@ void Chappy::TUnit::startAIState_(enumAIState state)
 {
 	if (mStateID == state) {
 		if (mStateID == CHAPPYAI_Controlled) {
-			u32 length = mManager->mParams.mControlledTime.mValue / sys->mDeltaTime;
-			mCounter   = length;
-			mCounter2  = length;
+			mCounter.setValue(mManager->mParams.mControlledTime.mValue);
 		} else {
 			return;
 		}
@@ -202,10 +200,7 @@ void Chappy::TUnit::startAIState_(enumAIState state)
 	}
 
 	case CHAPPYAI_Controlled: {
-		u32 time = mManager->mParams.mControlledTime.mValue / sys->mDeltaTime;
-
-		mCounter  = time;
-		mCounter2 = time;
+		mCounter.setValue(mManager->mParams.mControlledTime.mValue);
 		break;
 	}
 
@@ -213,11 +208,7 @@ void Chappy::TUnit::startAIState_(enumAIState state)
 		f32 max, min;
 		min = mManager->mParams.mMinWaitTime.mValue;
 		max = mManager->mParams.mMaxWaitTime.mValue;
-
-		u32 time = ((max - min) * randEbisawaFloat() + min) / sys->mDeltaTime;
-
-		mCounter  = time;
-		mCounter2 = time;
+		mCounter.setValue(((max - min) * randEbisawaFloat() + min));
 		break;
 	}
 
@@ -231,23 +222,15 @@ void Chappy::TUnit::startAIState_(enumAIState state)
 
 	case CHAPPYAI_Walk: {
 		f32 max, min;
-		max = mManager->mParams.mMaxWalkTime.mValue;
-		min = mManager->mParams.mMinWalkTime.mValue;
-
-		u32 time  = ((max - min) * randEbisawaFloat() + min) / sys->mDeltaTime;
-		mCounter  = time;
-		mCounter2 = time;
+		max = mManager->mParams.mMaxWalkTime();
+		min = mManager->mParams.mMinWalkTime();
+		mCounter.setValue(((max - min) * randEbisawaFloat() + min));
 		break;
 	}
 
 	case CHAPPYAI_EscapeScreen: {
 		Vector2f negPos(-mPosition.x, -mPosition.y);
-		f32 len = sqrtfClamped(negPos.x * negPos.x + negPos.y * negPos.y);
-		if (len != 0.0f) {
-			f32 norm = 1.0f / len;
-			negPos.x *= norm;
-			negPos.y *= norm;
-		}
+		negPos.normalise();
 		mAngle = negPos;
 		break;
 	}
@@ -262,29 +245,29 @@ void Chappy::TUnit::startAction_(Chappy::TUnit::enumAction actionID)
 {
 	mActionID = actionID;
 	switch (mActionID) {
-	case CHAPPYACT_0:
+	case CHAPPYACT_Wait:
 		mAnim.init(1, 1.0f);
 		mAnim.mTimeStep = 0.1f;
 		mAnim.play();
 		break;
 
-	case CHAPPYACT_1:
+	case CHAPPYACT_Turn:
 		mAnim.init(1, 1.0f);
 		mAnim.play();
 		break;
 
-	case CHAPPYACT_4:
+	case CHAPPYACT_Walk:
 		mAnim.init(0, 1.0f);
 		mAnim.play();
 		break;
 
-	case CHAPPYACT_2:
+	case CHAPPYACT_Attack:
 		mAnim.init(2, 1.0f);
 		mAnim.play();
 		mAttacks = 0;
 		break;
 
-	case CHAPPYACT_3:
+	case CHAPPYACT_AttackMiss:
 		mAnim.init(3, 1.0f);
 		mAnim.play();
 		break;
@@ -320,9 +303,7 @@ void Chappy::TUnit::update()
 	f32 stickX        = 0.0f;
 	f32 stickY        = stickX;
 
-	if (mCounter) {
-		mCounter--;
-	}
+	mCounter.update();
 
 	switch (mStateID) {
 	case CHAPPYAI_Controlled: {
@@ -333,7 +314,7 @@ void Chappy::TUnit::update()
 			isButtonDown = (control->getButtonDown() & Controller::PRESS_Z) == Controller::PRESS_Z;
 		}
 
-		if (mCounter == 0) {
+		if (mCounter.isZero()) {
 			startAIState_(CHAPPYAI_GoHome);
 		}
 		break;
@@ -343,7 +324,7 @@ void Chappy::TUnit::update()
 		stickX       = 0.0f;
 		isButtonDown = false;
 		stickY       = stickX;
-		if (mCounter == 0) {
+		if (mCounter.isZero()) {
 			startAIState_(CHAPPYAI_Turn);
 		}
 		break;
@@ -373,7 +354,7 @@ void Chappy::TUnit::update()
 		break;
 
 	case CHAPPYAI_Walk:
-		if (mCounter != 0) {
+		if (!mCounter.isZero()) {
 			stickX       = 0.0f;
 			isButtonDown = false;
 			stickY       = 1.0f;
@@ -383,10 +364,10 @@ void Chappy::TUnit::update()
 			isButtonDown = 0;
 			if (mAnim.mState == 3) {
 				bool check = false;
-				for (int i = 0; i < 500; i++) {
+				for (int i = 0; i < TITLE_PIKI_TOTAL; i++) {
 					EGECircle2f circle;
-					circle.mRadius = mManager->mParams.mHitRadius.mValue;
-					f32 factor     = mManager->mParams.mHitOffset.mValue;
+					circle.mRadius = mManager->mParams.mHitRadius();
+					f32 factor     = mManager->mParams.mHitOffset();
 					circle.mCenter = mPosition + (mAngle * factor);
 					Vector2f pos   = Vector2f(titleMgr->mPikminMgr.getUnit(i)->mPosition);
 					if (!circle.isOut(pos)) {
@@ -428,36 +409,36 @@ void Chappy::TUnit::update()
 
 	enumAction actionID;
 	if (mIsAiControlled) {
-		actionID = CHAPPYACT_0;
+		actionID = CHAPPYACT_Wait;
 	} else {
-		actionID = CHAPPYACT_0;
+		actionID = CHAPPYACT_Wait;
 		if (FABS(stickX) > 0.7f) {
-			actionID = CHAPPYACT_1;
+			actionID = CHAPPYACT_Turn;
 		}
 		if (stickY > 0.7f) {
-			actionID = CHAPPYACT_4;
+			actionID = CHAPPYACT_Walk;
 		}
 		if (isButtonDown == 1) {
-			actionID = CHAPPYACT_2;
+			actionID = CHAPPYACT_Attack;
 		}
 	}
 
 	if (mActionID != actionID) {
 		switch (mActionID) {
-		case CHAPPYACT_1:
-		case CHAPPYACT_2:
-		case CHAPPYACT_3:
-		case CHAPPYACT_4: {
+		case CHAPPYACT_Turn:
+		case CHAPPYACT_Attack:
+		case CHAPPYACT_AttackMiss:
+		case CHAPPYACT_Walk: {
 			mAnim.playStopEnd();
 			mIsAiControlled = true;
 			if (mAnim.mState == 3) {
 				mIsAiControlled = false;
-				if (mActionID != 0) {
-					startAction_(CHAPPYACT_0);
+				if (mActionID != CHAPPYACT_Wait) {
+					startAction_(CHAPPYACT_Wait);
 				}
 			}
 		} break;
-		case CHAPPYACT_0:
+		case CHAPPYACT_Wait:
 		case CHAPPYACT_NULL:
 		default:
 			if (actionID != mActionID) {
@@ -468,29 +449,29 @@ void Chappy::TUnit::update()
 	}
 
 	switch (mActionID) {
-	case CHAPPYACT_1: {
+	case CHAPPYACT_Turn: {
 		f32 constant = (FABS(stickX) > 0.7f) ? stickX : 0.0f;
 		Vector2f newAng(mAngle.y, -mAngle.x);
-		mAngle = mAngle + newAng * (constant * mManager->mParams.mTurnSpeed.mValue);
+		mAngle = mAngle + newAng * (constant * mManager->mParams.mTurnSpeed());
 		mAngle.normalise();
 	} break;
-	case CHAPPYACT_4: {
+	case CHAPPYACT_Walk: {
 		f32 constant = (stickY > 0.7f) ? stickY : 0.3f;
 		if (mIsAiControlled != 0) {
 			constant = 0.3f;
 		}
-		f32 cParm = constant * mParms[0];
+		f32 cParm = constant * mMoveSpeed;
 		mPosition = mPosition + Vector2f(mAngle.x, mAngle.y) * cParm;
 	} break;
-	case CHAPPYACT_2: {
+	case CHAPPYACT_Attack: {
 		f32 anim00 = mAnim.mAnimStartTime;
 		if (8.0f < anim00 && anim00 < 10.f) {
 			int idx = 0;
 			EGECircle2f circle;
-			circle.mRadius = mManager->mParams.mHitRadius.mValue;
-			f32 factor     = mManager->mParams.mHitOffset.mValue;
+			circle.mRadius = mManager->mParams.mHitRadius();
+			f32 factor     = mManager->mParams.mHitOffset();
 			circle.mCenter = mPosition + (mAngle * factor);
-			for (int i = 0; i < 500; i++) {
+			for (int i = 0; i < TITLE_PIKI_TOTAL; i++) {
 				Pikmin::TUnit* pikUnit = titleMgr->mPikminMgr.getUnit(i);
 				Vector2f pos           = Vector2f(pikUnit->mPosition);
 				if (!circle.isOut(pos)) {
@@ -501,12 +482,12 @@ void Chappy::TUnit::update()
 			}
 		}
 		if ((s32)anim00 == 10 && mAttacks == 0 && mActionID != 3) {
-			startAction_(CHAPPYACT_3);
+			startAction_(CHAPPYACT_AttackMiss);
 		}
 
 	} break;
-	case CHAPPYACT_0:
-	case CHAPPYACT_3:
+	case CHAPPYACT_Wait:
+	case CHAPPYACT_AttackMiss:
 		break;
 	}
 
@@ -554,8 +535,8 @@ void Chappy::TUnit::update()
 
 	J3DModel* model = mModel;
 	if (mAnim.mAnimRes != nullptr) {
-		mAnim.mAnimRes->mAnimTransform->mCurrentFrame      = mAnim.mAnimStartTime;
-		model->mModelData->mJointTree.mJoints[0]->mMtxCalc = mAnim.mAnimRes->mAnmCalcMtx;
+		mAnim.mAnimRes->mAnimTransform->setFrame(mAnim.mAnimStartTime);
+		model->mModelData->getJointNodePointer(0)->mMtxCalc = mAnim.mAnimRes->mAnmCalcMtx;
 	}
 	mModel->calc();
 	mModel->entry();

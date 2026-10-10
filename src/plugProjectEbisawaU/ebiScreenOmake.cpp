@@ -18,8 +18,6 @@ TOmake::TOmake()
     , mColorBase(0, 0, 0, 255)
     , mAlpha(255)
     , mState(0)
-    , mCounter(0)
-    , mCounterMax(0)
     , mScreenMain(nullptr)
 {
 }
@@ -145,10 +143,8 @@ void TOmake::doOpenScreen(ArgOpen* arg)
 	}
 
 	mAnims1.play(sys->mDeltaTime * 60.0f, J3DAA_UNKNOWN_0, true);
-	u32 count   = E2DFader::kFadeTime / sys->mDeltaTime;
-	mCounter    = count;
-	mCounterMax = count;
-	mState      = 1;
+	mCounter.setValue(E2DFader::kFadeTime);
+	mState = 1;
 	showPanes_();
 	mPaneTitle->setAlpha(255);
 	mPaneAButton->setAlpha(255);
@@ -159,9 +155,7 @@ void TOmake::doOpenScreen(ArgOpen* arg)
 	JGeometry::TBox2f bounds;
 	bounds = *mPaneList2[mCurrSel]->getBounds();
 
-	count               = (0.1f / sys->mDeltaTime);
-	mCursor.mCounter    = count;
-	mCursor.mCounterMax = count;
+	mCursor.mCounter.setValue(0.1f);
 
 	mCursor.mBounds1    = bounds;
 	mCursor.mBounds2    = bounds;
@@ -175,10 +169,8 @@ void TOmake::doOpenScreen(ArgOpen* arg)
  */
 void TOmake::doCloseScreen(ArgClose* arg)
 {
-	u32 count   = E2DFader::kFadeTime / sys->mDeltaTime;
-	mCounter    = count;
-	mCounterMax = count;
-	mState      = 2;
+	mCounter.setValue(E2DFader::kFadeTime);
+	mState = 2;
 }
 
 /**
@@ -203,11 +195,11 @@ void TOmake::doInitWaitState()
 bool TOmake::doUpdateStateOpen()
 {
 	mScreenMain->update();
-	if (mState && mCounter) {
-		mCounter--;
+	if (mState) {
+		mCounter.update();
 	}
 
-	if (mAnims1.isFinish() && !mCounter) {
+	if (mAnims1.isFinish() && mCounter.isZero()) {
 		return true;
 	} else {
 		return false;
@@ -221,8 +213,8 @@ bool TOmake::doUpdateStateOpen()
 bool TOmake::doUpdateStateWait()
 {
 	mScreenMain->update();
-	if (mState != 0 && mCounter) {
-		mCounter--;
+	if (mState != 0) {
+		mCounter.update();
 	}
 
 	switch (mState2) {
@@ -251,10 +243,10 @@ bool TOmake::doUpdateStateWait()
 
 			if (mCurrSel != id) {
 				JGeometry::TBox2f bounds;
-				bounds           = *mPaneList2[mCurrSel]->getBounds();
-				mCursor.mBounds1 = mCursor.mBounds2;
-				mCursor.mBounds2 = bounds;
-				mCursor.mCounter = mCursor.mCounterMax;
+				bounds                         = *mPaneList2[mCurrSel]->getBounds();
+				mCursor.mBounds1               = mCursor.mBounds2;
+				mCursor.mBounds2               = bounds;
+				mCursor.mCounter.mCurrentValue = mCursor.mCounter.mMaxValue;
 				mCursor.mScaleMgr.up(0.1f, 30.0f, 0.6f, 0.0f);
 				mCursor.mWindowPane = mPaneList1[mCurrSel];
 				mFonts[id].disable();
@@ -262,7 +254,7 @@ bool TOmake::doUpdateStateWait()
 				PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CURSOR, 0);
 			}
 		}
-		if (!mCursor.mCounter) {
+		if (mCursor.mCounter.isZero()) {
 			u32 input = mController->getButtonDown();
 			if (input & Controller::PRESS_A) {
 				PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_DECIDE, 0);
@@ -272,11 +264,9 @@ bool TOmake::doUpdateStateWait()
 					mState2 = 2;
 					break;
 				default:
-					u32 count   = ebi::E2DFader::kFadeTime / sys->mDeltaTime;
-					mCounter    = count;
-					mCounterMax = count;
-					mState      = 2;
-					mState2     = 5;
+					mCounter.setValue(E2DFader::kFadeTime);
+					mState  = 2;
+					mState2 = 5;
 					break;
 				}
 			} else if (input & Controller::PRESS_B) {
@@ -307,12 +297,12 @@ bool TOmake::doUpdateStateWait()
 		}
 		break;
 	case 5:
-		if (mCounter == 0) {
+		if (mCounter.isZero()) {
 			mState2 = 4;
 		}
 		break;
 	case 6:
-		if (mCounter == 0) {
+		if (mCounter.isZero()) {
 			mState2 = 0;
 		}
 		break;
@@ -327,11 +317,11 @@ bool TOmake::doUpdateStateWait()
 bool TOmake::doUpdateStateClose()
 {
 	mScreenMain->update();
-	if (mState && mCounter) {
-		mCounter--;
+	if (mState) {
+		mCounter.update();
 	}
 
-	if (isFadeoutFinished())
+	if (mCounter.isZero())
 		return true;
 	else
 		return false;
@@ -352,26 +342,15 @@ void TOmake::doDraw()
 		return;
 	}
 
-	f32 factor;
 	graf = sys->getGfx()->getPerspGraph();
 	graf->setPort();
 	JUtility::TColor color(mColorBase);
 	switch (mState) {
 	case 1:
-		if (mCounterMax) {
-			factor = mCounter / (f32)mCounterMax;
-		} else {
-			factor = 0.0f;
-		}
-		color.a = mAlpha * factor;
+		color.a = mAlpha * mCounter.getRatio();
 		break;
 	case 2:
-		if (mCounterMax) {
-			factor = mCounter / (f32)mCounterMax;
-		} else {
-			factor = 0.0f;
-		}
-		color.a = mAlpha * (1.0f - factor);
+		color.a = mAlpha * (1.0f - mCounter.getRatio());
 		break;
 	}
 	graf->setColor(color);
@@ -425,11 +404,9 @@ void TOmake::hidePanes_()
  */
 void TOmake::openFromMovie_()
 {
-	u32 count   = E2DFader::kFadeTime / sys->mDeltaTime;
-	mCounter    = count;
-	mCounterMax = count;
-	mState      = 1;
-	mState2     = 6;
+	mCounter.setValue(E2DFader::kFadeTime);
+	mState  = 1;
+	mState2 = 6;
 }
 
 /**

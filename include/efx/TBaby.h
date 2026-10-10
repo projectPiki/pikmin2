@@ -7,7 +7,7 @@
 namespace efx {
 struct TBabyBecha : public TSimple1 {
 	inline TBabyBecha()
-	    : TSimple1(3)
+	    : TSimple1(PID_BabyBecha)
 	{
 	}
 

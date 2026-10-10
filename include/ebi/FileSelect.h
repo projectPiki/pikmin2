@@ -69,8 +69,6 @@ struct FSMState_EmptyUpdate : public FSMState {
 	inline FSMState_EmptyUpdate()
 	    : FSMState(FSSTATE_EmptyUpdate, "EnptyUpdate") // nice devs
 	{
-		mCounter    = 0;
-		mCounterMax = 0;
 	}
 
 	virtual void do_init(TMgr*, Game::StateArg*); // _20
@@ -78,8 +76,7 @@ struct FSMState_EmptyUpdate : public FSMState {
 
 	// _00     = VTBL
 	// _00-_0C = FSMState
-	u32 mCounter;    // _10
-	u32 mCounterMax; // _14, unused
+	EUTCounter mCounter; // _10
 };
 
 struct FSMState_ScreenFileSelect : public FSMState {
@@ -200,8 +197,7 @@ struct TMgr : public JKRDisposer {
 	// _00-_18 = JKRDisposer
 	FS::TMgr mMgrFS;                          // _18
 	CardError::TMgr mCardErrorMgr;            // _C78
-	u32 mCounter;                             // _F40
-	int mCounterMax;                          // _F44
+	EUTCounter mCounter;                      // _F40
 	Game::MemoryCard::PlayerFileInfo mPlayer; // _F48
 	int mEndState;                            // _FE4
 	bool _FE8;                                // _FE8

@@ -116,8 +116,6 @@ struct FSMState_Warning : public FSMState {
 	inline FSMState_Warning(int stateID, char* name)
 	    : FSMState(stateID, name)
 	{
-		mCounter    = 0;
-		mCounterMax = 0;
 	}
 
 	virtual void do_init(TMgr* mgr, Game::StateArg*); // _20
@@ -129,16 +127,13 @@ struct FSMState_Warning : public FSMState {
 	// _00-_0C = FSMState
 	bool mForceFinish;     // _10
 	bool mCounterFinished; // _11
-	u32 mCounter;          // _14
-	u32 mCounterMax;       // _18
+	EUTCounter mCounter;   // _14
 };
 
 struct FSMState00_SelectData : public FSMState {
 	inline FSMState00_SelectData()
 	    : FSMState(FSSTATE_SelectData, "SelectData")
 	{
-		mCounter    = 0;
-		mCounterMax = 0;
 	}
 
 	virtual void do_init(TMgr* mgr, Game::StateArg*); // _20
@@ -147,8 +142,7 @@ struct FSMState00_SelectData : public FSMState {
 	// _00     = VTBL
 	// _00-_0C = FSMState
 	bool mIsChangeSel;
-	u32 mCounter;
-	u32 mCounterMax;
+	EUTCounter mCounter;
 };
 
 struct FSMState00a_OpenScene : public FSMState {
@@ -367,8 +361,7 @@ struct TMgr {
 	inline StateType* getCurrState() { return mCurrentState; }
 
 	Screen::FileSelect::TMainScreen mMainScreen; // _00
-	u32 mCounter;                                // _BF8
-	u32 mCounterMax;                             // _BFC
+	EUTCounter mCounter;                         // _BF8
 	Controller* mController;                     // _C00
 	EUTPadInterface_countNum mCountNumInterface; // _C04
 	s32 mCurrSelection;                          // _C30 (Current actively selected save file)

@@ -7,6 +7,7 @@
 #include "ebi/E3DGraph.h"
 #include "ebi/title/TObjects.h"
 #include "ebi/title/TCoordMgr.h"
+#include "ebi/Utility.h"
 #include "Parameters.h"
 #include "BaseParm.h"
 #include "JSystem/J3D/J3DFrameCtrl.h"
@@ -150,25 +151,22 @@ struct TBoidParamMgr : public CNode {
 	f32 mCurrBoidColl;       // _6C4
 	f32 mCurrGroupCenter;    // _6C8
 	f32 mCurrBoidNeighbor;   // _6CC
-	u32 mCounter;            // _6D0
-	u32 mCounter2;           // _6D4
+	EUTCounter mCounter;     // _6D0
 };
 
 // @size{0x98}
 struct TUnit : public TObjBase {
 	enum enumState {
-		STATE_Hidden = 0, // dead/off-screen
-		STATE_Unk1   = 1, // wait?
-		STATE_Unk2   = 2, // walk?
-		STATE_Unk3   = 3, // wind blow?
-		STATE_Unk4   = 4, // boid?
-		STATE_Unk5   = 5,
+		STATE_Hidden     = 0, // dead/off-screen
+		STATE_Standing   = 1, //
+		STATE_Converging = 2, //
+		STATE_WindBlow   = 3, //
+		STATE_BoidMove   = 4, //
+		STATE_EnemyMove  = 5,
 	};
 
 	TUnit()
 	{
-		mCounter            = 0;
-		mCounter2           = 0;
 		mDestPos            = Vector2f(0.0f, 0.0f);
 		mManager            = nullptr;
 		mRandAnimSpeeds     = Vector2f(1.0f, 1.0f);
@@ -200,13 +198,14 @@ struct TUnit : public TObjBase {
 	void update();
 	void updateSmoothWalk_(Vector2f&);
 	void updateEnemyReaction_();
+	bool isBoid();
 
 	// _00     = VTBL
 	// _00-_2C = TObjBase
 	Vector2f mDestPos;            // _2C
 	TMgr* mManager;               // _34
 	J3DFrameCtrl mFrameControlA;  // _38
-	J3DFrameCtrl mFrameControlB;  // _4C
+	J3DFrameCtrl mFrameControlB;  // _4C, for wind blow animation
 	Vector2f mRandAnimSpeeds;     // _60, probably not an actual Vector2 but idk
 	TObjBase* mEnemyObj;          // _68
 	Vector2f mTargetPos;          // _6C
@@ -214,8 +213,7 @@ struct TUnit : public TObjBase {
 	Vector2f mGroupPosDifference; // _7C
 	enumState mCurrentState;      // _84
 	enumState mPreviousState;     // _88
-	u32 mCounter;                 // _8C
-	u32 mCounter2;                // _90
+	EUTCounter mWindCounter;      // _8C
 	bool mIsDead;                 // _94
 };
 

@@ -5,6 +5,7 @@
 #include "P2DScreen.h"
 #include "ebi/E2DCallBack.h"
 #include "ebi/TYesNoCursor.h"
+#include "ebi/Utility.h"
 
 struct JKRArchive;
 struct Controller;
@@ -16,10 +17,6 @@ struct TScreenProgre {
 
 	TScreenProgre()
 	    : mSelect(1)
-	    , mCounterFadein(0)
-	    , mCounterFadeinMax(0)
-	    , mCounterFadeout(0)
-	    , mCounterFadeoutMax(0)
 	    , mState(Progre_NULL)
 	    , mPaneMg00(nullptr)
 	    , mPaneMg01(nullptr)
@@ -47,10 +44,8 @@ struct TScreenProgre {
 	Controller* mController;                  // _04
 	u8 mSelect;                               // _08, (currently selected option)
 	bool mSelected;                           // _09, (has picked an option)
-	u32 mCounterFadein;                       // _0C
-	u32 mCounterFadeinMax;                    // _10
-	u32 mCounterFadeout;                      // _14
-	u32 mCounterFadeoutMax;                   // _18
+	EUTCounter mCounterFadein;                // _0C
+	EUTCounter mCounterFadeout;               // _14
 	int mState;                               // _1C
 	int mStateScreen;                         // _20
 	P2DScreen::Mgr_tuning* mScreenObj;        // _24

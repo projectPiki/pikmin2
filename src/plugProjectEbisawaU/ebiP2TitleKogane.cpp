@@ -71,7 +71,7 @@ TAnimator::TAnimator()
 void TAnimator::setArchive(JKRArchive* arc)
 {
 	void* file = arc->getResource("kogane/kogane_title.bmd");
-	P2ASSERTLINE(0x75, file);
+	P2ASSERTLINE(117, file);
 	mModelData = J3DModelLoaderDataBase::load(file, J3DMLF_UseUniqueMaterials | J3DMLF_UseSingleSharedDL | J3DMLF_UsePostTexMtx
 	                                                    | J3DMLF_UseImmediateMtx);
 
@@ -112,12 +112,12 @@ void TUnit::init(TMgr* mgr)
 	mModel   = mManager->mAnimator->newJ3DModel();
 	mAnim.setAnimFolder(&mManager->mAnimator->mAnimFolder);
 
-	mPosition = titleMgr->getPosOutOfViewField();
-	mParms[0] = mManager->mParams.mWalkSpeed();
-	mParms[1] = mManager->mParams.mScale();
-	mParms[4] = mManager->mParams.mCullRadius();
-	mParms[2] = mManager->mParams.mCollRadius();
-	mParms[3] = mManager->mParams.mPikiReactRadius();
+	mPosition        = titleMgr->getPosOutOfViewField();
+	mMoveSpeed       = mManager->mParams.mWalkSpeed.mValue;
+	mScale           = mManager->mParams.mScale.mValue;
+	mCullRadius      = mManager->mParams.mCullRadius.mValue;
+	mCollRadius      = mManager->mParams.mCollRadius.mValue;
+	mPikiReactRadius = mManager->mParams.mPikiReactRadius.mValue;
 }
 
 /**
@@ -183,17 +183,13 @@ void TUnit::startState(enumState state)
 		mPosition = title::titleMgr->getPosOutOfViewField();
 
 	case KSTATE_Controlled:
-		u32 time  = mManager->mParams.mControlStateTime.mValue / sys->mDeltaTime;
-		mCounter  = time;
-		mCounter2 = time;
+		mCounter.setValue(mManager->mParams.mControlStateTime.mValue);
 		break;
 	case KSTATE_Wait:
 		f32 max, min;
-		min       = mManager->mParams.mMinWaitTime.mValue;
-		max       = mManager->mParams.mMaxWaitTime.mValue;
-		u32 time2 = ((max - min) * randEbisawaFloat() + min) / sys->mDeltaTime;
-		mCounter  = time2;
-		mCounter2 = time2;
+		min = mManager->mParams.mMinWaitTime.mValue;
+		max = mManager->mParams.mMaxWaitTime.mValue;
+		mCounter.setValue(((max - min) * randEbisawaFloat() + min));
 		break;
 	case KSTATE_Turn:
 		f32 angle    = mManager->mParams.mWalkRandomAngle.mValue;
@@ -205,20 +201,12 @@ void TUnit::startState(enumState state)
 		f32 max2, min2;
 		max2 = mManager->mParams.mMaxMoveTime.mValue;
 		min2 = mManager->mParams.mMinMoveTime.mValue;
-
-		u32 time3 = ((max2 - min2) * randEbisawaFloat() + min2) / sys->mDeltaTime;
-		mCounter  = time3;
-		mCounter2 = time3;
+		mCounter.setValue(((max2 - min2) * randEbisawaFloat() + min2));
 		break;
 
 	case KSTATE_ZigZagWalk:
 		Vector2f negPos(-mPosition.x, -mPosition.y);
-		f32 len = sqrtfClamped(negPos.x * negPos.x + negPos.y * negPos.y);
-		if (len != 0.0f) {
-			f32 norm = 1.0f / len;
-			negPos.x *= norm;
-			negPos.y *= norm;
-		}
+		negPos.normalise();
 		mAngle = negPos;
 		break;
 	}
@@ -242,81 +230,72 @@ void TUnit::update()
 	int actionId = mActionID;
 	switch (mStateID) {
 	case KSTATE_Controlled: {
-		if (mCounter != 0) {
-			mCounter--;
-		}
-		mActionID = KOGANEACT_0;
+		mCounter.update();
+		mActionID = KOGANEACT_Wait;
 		if (mControl != nullptr) {
 			f32 stickX = mControl->mSStick.mXPos;
 			if (FABS(stickX) > 0.7f) {
 				Vector2f newAng(mAngle.y, -mAngle.x);
 				mAngle = mAngle + newAng * (stickX * mManager->mParams.mTurnRate.mValue);
-
 				mAngle.normalise();
-				mActionID = KOGANEACT_1;
+				mActionID = KOGANEACT_Turn;
 			}
 
 			f32 stickY = mControl->mSStick.mYPos;
 			if (stickY > 0.7f) {
-				f32 paramProd = stickY * mParms[0];
+				f32 paramProd = stickY * mMoveSpeed;
 				mPosition     = mPosition + mAngle * paramProd;
-				mActionID     = KOGANEACT_2;
+				mActionID     = KOGANEACT_Move;
 			}
 		}
-		if (mCounter == 0) {
+		if (mCounter.isZero()) {
 			startState(KSTATE_GoHome);
 		}
 
 	} break;
 
 	case KSTATE_Wait: {
-		mActionID = KOGANEACT_0;
-		if (mCounter != 0) {
-			mCounter--;
-		}
-		if (mCounter == 0) {
+		mActionID = KOGANEACT_Wait;
+		mCounter.update();
+		if (mCounter.isZero()) {
 			startState(KSTATE_Turn);
 		}
 	} break;
 
 	case KSTATE_Turn: {
-		mActionID   = KOGANEACT_1;
+		mActionID   = KOGANEACT_Turn;
 		f32 product = 60.0f * sys->mDeltaTime * 0.5f * 0.1f;
 		mAngle      = mAngle + mTargetAngle * product;
 		mAngle.normalise();
 
 		Vector2f diff = mAngle - mTargetAngle;
-		f32 len       = diff.length();
-
-		if (len < 0.1f) {
+		if (diff.length() < 0.1f) {
 			startState(KSTATE_Walk);
 		}
 	} break;
 
 	case KSTATE_Walk: {
-		mActionID = KOGANEACT_2;
-		if (mCounter != 0) {
-			mCounter--;
-		}
-		if (mCounter == 0) {
+		mActionID = KOGANEACT_Move;
+		mCounter.update();
+		if (mCounter.isZero()) {
 			startState(KSTATE_Wait);
 		} else {
-			mPosition = mPosition + mAngle * mParms[0];
+			mPosition = mPosition + mAngle * mMoveSpeed;
 		}
 
 	} break;
 
 	case KSTATE_ZigZagWalk: {
-		mActionID = KOGANEACT_2;
+		mActionID = KOGANEACT_Move;
 		mAngle.normalise();
 
-		mPosition = mPosition + mAngle * mParms[0];
+		mPosition = mPosition + mAngle * mMoveSpeed;
 	} break;
 
 	case KSTATE_GoHome: {
-		mActionID = KOGANEACT_2;
+		mActionID = KOGANEACT_Move;
 		mAngle.normalise();
-		mPosition = mPosition + mAngle * mParms[0];
+		mPosition = mPosition + mAngle * mMoveSpeed;
 	} break;
 	}
 
@@ -344,17 +323,17 @@ void TUnit::update()
 	if (mActionID != actionId) // Check if action has changed since begining of function call
 	{
 		switch (mActionID) {
-		case KOGANEACT_1: {
+		case KOGANEACT_Turn: {
 			mAnim.init(0, 1.0);
 			mAnim.play();
 		} break;
 
-		case KOGANEACT_2: {
+		case KOGANEACT_Move: {
 			mAnim.init(0, 1.0);
 			mAnim.play();
 		} break;
 
-		case KOGANEACT_0: {
+		case KOGANEACT_Wait: {
 			mAnim.init(1, 1.0);
 			mAnim.play();
 		} break;
@@ -388,8 +367,8 @@ void TUnit::update()
 
 	J3DModel* model = mModel;
 	if (mAnim.mAnimRes != nullptr) {
-		mAnim.mAnimRes->mAnimTransform->mCurrentFrame      = mAnim.mAnimStartTime;
-		model->mModelData->mJointTree.mJoints[0]->mMtxCalc = mAnim.mAnimRes->mAnmCalcMtx;
+		mAnim.mAnimRes->mAnimTransform->setFrame(mAnim.mAnimStartTime);
+		model->mModelData->getJointNodePointer(0)->mMtxCalc = mAnim.mAnimRes->mAnmCalcMtx;
 	}
 
 	mModel->calc();

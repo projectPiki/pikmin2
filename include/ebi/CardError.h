@@ -4,6 +4,7 @@
 #include "types.h"
 #include "ebi/Screen/TScreenBase.h"
 #include "ebi/Screen/TMemoryCard.h"
+#include "ebi/Utility.h"
 #include "Game/StateMachine.h"
 
 struct Controller;
@@ -545,8 +546,7 @@ struct TMgr {
 	~TMgr();
 
 	Screen::TMemoryCard mScreen;   // _000
-	u32 mCounter;                  // _298
-	u32 mCounterMax;               // _29C, isnt used for anything
+	EUTCounter mCounter;           // _298
 	enumEnd mEndStat;              // _2A0
 	int mParentMenuType;           // _2A4, 0 = file select, 1 = save
 	FSMStateMachine mStateMachine; // _2A8

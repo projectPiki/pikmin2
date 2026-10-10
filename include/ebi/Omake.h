@@ -71,8 +71,6 @@ struct FSMState_SelectGame : public FSMState {
 	inline FSMState_SelectGame()
 	    : FSMState(SelectGame, "FSMState_SelectGame")
 	{
-		mTimer    = 0;
-		mTimerMax = 0;
 	}
 
 	virtual void do_init(TMgr*, Game::StateArg*); // _20
@@ -80,9 +78,8 @@ struct FSMState_SelectGame : public FSMState {
 
 	// _00     = VTBL
 	// _00-_10 = FSMState
-	int mStatus;
-	u32 mTimer;
-	u32 mTimerMax;
+	int mStatus;       // _10
+	EUTCounter mTimer; // _14
 };
 
 struct TMgr {
@@ -120,8 +117,7 @@ struct TMgr {
 	ebi::Screen::TOmakeCardE mOmakeCardE; // _468
 	ebi::Screen::TOmakeGame mOmakeGame;   // _5DC
 	bool mIsFinished;                     // _890
-	u32 _894;                             // _894, both unused values?
-	u32 _898;                             // _898
+	EUTCounter _894;                      // _894, unused
 	FSMStateMachine mStateMachine;        // _89C
 	FSMState* mCurrentState;              // _8B8
 };

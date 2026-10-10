@@ -18,11 +18,7 @@ struct TSaveMenu : public TScreenBase {
 	    : mBGColor(0, 0, 0, 255)
 	    , mAlpha(255)
 	    , mDrawState(0)
-	    , mOpenCloseCounter(0)
-	    , mOpenCloseCounterMax(0)
 	    , mStateID(0)
-	    , mTextCounter(0)
-	    , mTextCounterMax(0)
 	    , mCursor1()
 	    , mCursor2()
 	{
@@ -73,13 +69,11 @@ struct TSaveMenu : public TScreenBase {
 	JUtility::TColor mBGColor;                   // _14
 	u8 mAlpha;                                   // _18
 	int mDrawState;                              // _1C
-	u32 mOpenCloseCounter;                       // _20
-	u32 mOpenCloseCounterMax;                    // _24
+	EUTCounter mOpenCloseCounter;                // _20
 	int mStateID;                                // _28
 	int mMesgState;                              // _2C
 	int mSelectState;                            // _30
-	u32 mTextCounter;                            // _34
-	u32 mTextCounterMax;                         // _38
+	EUTCounter mTextCounter;                     // _34
 	bool mSelectedOption;                        // _3C
 	bool mPressedA;                              // _3D
 	P2DScreen::Mgr_tuning* mScreenObj;           // _40

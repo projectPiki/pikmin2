@@ -263,22 +263,6 @@ struct TTitleMgr : public CNode, JKRDisposer {
 
 	TTitleMgr();
 
-	inline bool controllerOK()
-	{
-		if (mCounterControl == 0) {
-			return true;
-		}
-		return false;
-	}
-
-	inline bool pressStartOK()
-	{
-		if (mCounterPressStart == 0) {
-			return true;
-		}
-		return false;
-	}
-
 	virtual ~TTitleMgr(); // _08 (weak)
 
 	static void globalInstance();
@@ -342,35 +326,31 @@ struct TTitleMgr : public CNode, JKRDisposer {
 	// _00     = VTBL
 	// _00-_18 = CNode
 	// JKRDisposer mDisposer;        // _18
-	TMapBase mMapBase;            // _30
-	TBGEnemyBase mBgEnemyBase;    // _A4
-	TBlackPlane mBlackPlane;      // _F0
-	Pikmin::TMgr mPikminMgr;      // _154
-	Kogane::TMgr mKoganeMgr;      // _AE4
-	Chappy::TMgr mChappyMgr;      // _CF4
-	u8 _F54;                      // _F54
-	int mState;                   // _F58, see enumState enum
-	int mLevelSetting;            // _F5C, see levelSetting enum
-	u32 mCounterCommon;           // _F60
-	u32 mCounterCommonMax;        // _F64
-	u32 mCounter2;                // _F68
-	u32 mCounter2Max;             // _F6C
-	u8 mIsWindActive;             // _F70
-	u8 mCanInput;                 // _F71
-	u32 mCounterControl;          // _F74
-	u32 mCounterControlMax;       // _F78
-	u32 mCounterPressStart;       // _F7C
-	u32 mCounterPressStartMax;    // _F80
-	Vector2f mPikiPosList[500];   // _F84
-	TCoordMgr mCoordMgr[2];       // _1F24, see CoordType enum
-	Controller* mController;      // _401C
-	Viewport mViewport;           // _4020
-	TTitleCameraMgr mCameraMgr;   // _4078
-	TTitleLightMgr mLightMgr;     // _4270
-	TTitleFogMgr mFogMgr;         // _4788
-	J3DDrawBuffer* mDrawBufferA;  // _48CC
-	J3DDrawBuffer* mDrawBufferB;  // _48D0
-	TTitleParameters mTitleParms; // _48D4
+	TMapBase mMapBase;                       // _30
+	TBGEnemyBase mBgEnemyBase;               // _A4
+	TBlackPlane mBlackPlane;                 // _F0
+	Pikmin::TMgr mPikminMgr;                 // _154
+	Kogane::TMgr mKoganeMgr;                 // _AE4
+	Chappy::TMgr mChappyMgr;                 // _CF4
+	u8 _F54;                                 // _F54, unused
+	int mState;                              // _F58, see enumState enum
+	int mLevelSetting;                       // _F5C, see levelSetting enum
+	EUTCounter mCounterCommon;               // _F60
+	EUTCounter mCounter2;                    // _F68
+	u8 mIsWindActive;                        // _F70
+	u8 mCanInput;                            // _F71
+	EUTCounter mCounterControl;              // _F74
+	EUTCounter mCounterPressStart;           // _F7C
+	Vector2f mPikiPosList[TITLE_PIKI_TOTAL]; // _F84
+	TCoordMgr mCoordMgr[2];                  // _1F24, see CoordType enum
+	Controller* mController;                 // _401C
+	Viewport mViewport;                      // _4020
+	TTitleCameraMgr mCameraMgr;              // _4078
+	TTitleLightMgr mLightMgr;                // _4270
+	TTitleFogMgr mFogMgr;                    // _4788
+	J3DDrawBuffer* mDrawBufferA;             // _48CC
+	J3DDrawBuffer* mDrawBufferB;             // _48D0
+	TTitleParameters mTitleParms;            // _48D4
 
 	static TTitleMgr* _instance;
 };

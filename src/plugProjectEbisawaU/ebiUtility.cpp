@@ -16,8 +16,7 @@ void EUTPadInterface_countNum::init(Controller* controller, s32 min, s32 max, s3
 	mMode        = mode;
 	mTimeFactor1 = timeFactor1;
 	mTimeFactor2 = timeFactor2;
-	mCounter     = 0;
-	mCounterMax  = 0;
+	mCounter.setValue((u32)0);
 
 	if (*mSelIndex < min) {
 		*mSelIndex = min;
@@ -34,9 +33,7 @@ void EUTPadInterface_countNum::init(Controller* controller, s32 min, s32 max, s3
  */
 void EUTPadInterface_countNum::update()
 {
-	if (mCounter) {
-		mCounter--;
-	}
+	mCounter.update();
 	mSelectionChanged = 0;
 
 	bool isForwards;
@@ -63,45 +60,36 @@ void EUTPadInterface_countNum::update()
 	}
 
 	if (isForwards) {
-		if (!mCounter) {
+		if (mCounter.isZero()) {
 			if (*mSelIndex < mMaxSel) {
 				mLastIndex = *mSelIndex;
 				*mSelIndex += 1;
 				mSelectionChanged = 1;
 				if (!mIsChanging) {
 					mIsChanging = true;
-					f32 time    = (mTimeFactor1 / sys->mDeltaTime);
-					mCounter    = time;
-					mCounterMax = time;
+					mCounter.setValue(mTimeFactor1);
 					return;
 				}
-				f32 time    = (mTimeFactor2 / sys->mDeltaTime);
-				mCounter    = time;
-				mCounterMax = time;
+				mCounter.setValue(mTimeFactor2);
 			}
 		}
 	} else if (isBackwards) {
-		if (mCounter == 0) {
+		if (mCounter.isZero()) {
 			if (*mSelIndex > mMinSel) {
 				mLastIndex = *mSelIndex;
 				*mSelIndex -= 1;
 				mSelectionChanged = 1;
 				if (!mIsChanging) {
 					mIsChanging = true;
-					f32 time    = (mTimeFactor1 / sys->mDeltaTime);
-					mCounter    = time;
-					mCounterMax = time;
+					mCounter.setValue(mTimeFactor1);
 					return;
 				}
-				f32 time    = (mTimeFactor2 / sys->mDeltaTime);
-				mCounter    = time;
-				mCounterMax = time;
+				mCounter.setValue(mTimeFactor2);
 			}
 		}
 	} else {
 		mIsChanging = false;
-		mCounter    = 0;
-		mCounterMax = 0;
+		mCounter.setValue((u32)0);
 	}
 }
 
