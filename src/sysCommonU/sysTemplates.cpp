@@ -51,7 +51,7 @@ void BitFlags::create(u16 totalSize, u8* flags)
 {
 	mTotalValueAmount = totalSize;
 
-	// Divides by 8 and rounds up (to accomodate anything non-divisible by 8), as each u8 contains 8 bits
+	// Divides by 8 and rounds up (to accommodate anything non-divisible by 8), as each u8 contains 8 bits
 	mFlagListSize = (totalSize >> 3) + 1;
 
 	if (flags) {

@@ -80,7 +80,7 @@ struct Stream {
 		}
 	}
 
-	// the second argument really shouldnt have to exist, except for ONE call in itemMgr.cpp that uses -1
+	// the second argument really shouldn't have to exist, except for ONE call in itemMgr.cpp that uses -1
 	inline void setMode(bool mode, int a2)
 	{
 		mMode = mode;

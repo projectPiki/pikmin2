@@ -3586,7 +3586,7 @@ void TItemZukan::doCreate(JKRArchive* arc)
 			}
 		}
 
-		// if the set is complete, and you havent checked the hoard yet, add it to categories to be unlocked in the cutscene
+		// if the set is complete, and you haven't checked the hoard yet, add it to categories to be unlocked in the cutscene
 		if (setComplete) {
 			if (mIsSection || ((int)(*mDispItem->mPrevSelection) < 0 && mDispItem->getMemberID() == MEMBER_ZUKAN_ITEM)) {
 				mCategoryShowUnlock[i] = true;

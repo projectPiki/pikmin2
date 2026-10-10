@@ -24,7 +24,7 @@ enum PathFindFlags {
 	PATHFLAG_VsRed                     = 0x10,
 	PATHFLAG_VsBlue                    = 0x20,
 	PATHFLAG_AllowUnvisited            = 0x40,
-	PATHFLAG_TwoWayPathing             = 0x80 // used for Panmodoki and BlackMan
+	PATHFLAG_TwoWayPathing             = 0x80 // used for PanModoki and BlackMan
 };
 
 namespace PathfindContext {

@@ -250,7 +250,7 @@ void Obj::setElecHibaPosition(InitialParam* param, f32 p1)
 {
 	Vector3f initPos = mBirthPosition;
 	f32 theta        = HALF_PI + getFaceDir();
-	f32 distance     = param->mSeperation / 2;
+	f32 distance     = param->mSeparation / 2;
 
 	Vector3f finalPos = Vector3f((p1 * distance) * sinf(theta) + initPos.x, initPos.y, (p1 * distance) * cosf(theta) + initPos.z);
 	finalPos.y        = mapMgr->getMinY(finalPos);

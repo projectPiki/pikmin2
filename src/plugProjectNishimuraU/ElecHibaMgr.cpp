@@ -111,7 +111,7 @@ EnemyBase* Mgr::birth(EnemyBirthArg& birthArg)
 {
 	TeamList* teamList;
 	InitialParam param;
-	param.mSeperation = 100.0f;
+	param.mSeparation = 100.0f;
 	Obj* elecHiba     = static_cast<Obj*>(EnemyMgrBase::birth(birthArg));
 	if (elecHiba) {
 		elecHiba->mBirthPosition = birthArg.mPosition;

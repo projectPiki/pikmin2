@@ -1027,7 +1027,7 @@ def generate_build_ninja(
             # Add MWCC build rule
             lib_name = obj.options["lib"]
             build_rule = "mwcc"
-            build_implcit = mwcc_implicit
+            build_implicit = mwcc_implicit
             variables = {
                 "mw_version": Path(obj.options["mw_version"]),
                 "cflags": cflags_str,
@@ -1037,16 +1037,16 @@ def generate_build_ninja(
 
             if obj.options["shift_jis"] and obj.options["extab_padding"] is not None:
                 build_rule = "mwcc_sjis_extab"
-                build_implcit = mwcc_sjis_extab_implicit
+                build_implicit = mwcc_sjis_extab_implicit
                 variables["extab_padding"] = "".join(
                     f"{i:02x}" for i in obj.options["extab_padding"]
                 )
             elif obj.options["shift_jis"]:
                 build_rule = "mwcc_sjis"
-                build_implcit = mwcc_sjis_implicit
+                build_implicit = mwcc_sjis_implicit
             elif obj.options["extab_padding"] is not None:
                 build_rule = "mwcc_extab"
-                build_implcit = mwcc_extab_implicit
+                build_implicit = mwcc_extab_implicit
                 variables["extab_padding"] = "".join(
                     f"{i:02x}" for i in obj.options["extab_padding"]
                 )
@@ -1056,7 +1056,7 @@ def generate_build_ninja(
                 rule=build_rule,
                 inputs=src_path,
                 variables=variables,
-                implicit=build_implcit,
+                implicit=build_implicit,
                 order_only="pre-compile",
             )
 
