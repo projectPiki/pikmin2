@@ -1,14 +1,14 @@
 HIKINO_FILES:=\
-	$(BUILD_DIR)/asm/plugProjectHikinoU/PSSeq.o\
-	$(BUILD_DIR)/asm/plugProjectHikinoU/PSGame.o\
+	$(BUILD_DIR)/src/plugProjectHikinoU/PSSeq.o\
+	$(BUILD_DIR)/src/plugProjectHikinoU/PSGame.o\
 	$(BUILD_DIR)/src/plugProjectHikinoU/PSSystemIF.o\
-	$(BUILD_DIR)/asm/plugProjectHikinoU/PSAutoBgm.o\
-	$(BUILD_DIR)/asm/plugProjectHikinoU/PSBnkMgr.o\
+	$(BUILD_DIR)/src/plugProjectHikinoU/PSAutoBgm.o\
+	$(BUILD_DIR)/src/plugProjectHikinoU/PSBnkMgr.o\
 	$(BUILD_DIR)/src/plugProjectHikinoU/PSTaskBase.o\
 	$(BUILD_DIR)/src/plugProjectHikinoU/PSBgmTask.o\
 	$(BUILD_DIR)/src/plugProjectHikinoU/PSCreatureMgr.o\
 	$(BUILD_DIR)/src/plugProjectHikinoU/PSAutoBgm_MeloArranger.o\
-	$(BUILD_DIR)/asm/plugProjectHikinoU/PSSe.o\
+	$(BUILD_DIR)/src/plugProjectHikinoU/PSSe.o\
 	$(BUILD_DIR)/src/plugProjectHikinoU/PSSeBase.o\
 	$(BUILD_DIR)/src/plugProjectHikinoU/PSScene.o\
 	$(BUILD_DIR)/src/plugProjectHikinoU/PSBgmTrack.o\

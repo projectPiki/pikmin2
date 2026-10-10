@@ -55,9 +55,9 @@ struct Vector3 {
 	inline void negate();
 	inline void setZero();
 	inline void add(const Vector3& other);
-	inline void add(Vector3& a, Vector3& b);
+	inline void add(const Vector3& a, const Vector3& b);
 	inline void sub(const Vector3& other);
-	inline void sub(Vector3& a, Vector3& b);
+	inline void sub(const Vector3& a, const Vector3& b);
 	inline void setMiddle(Vector3& a, Vector3& b);
 	static inline Vector3<T> add2(const Vector3& a, const Vector3& b);
 	static inline Vector3<T> sub2(const Vector3& a, const Vector3& b);
@@ -367,11 +367,10 @@ inline T Vector3<T>::dot(const Vector3& other) const
 template <typename T>
 inline Vector3<T> Vector3<T>::cross(const Vector3& other)
 {
-	Vector3 outVec;
-	outVec.x = y * other.z - z * other.y;
-	outVec.y = z * other.x - x * other.z;
-	outVec.z = x * other.y - y * other.x;
-	return outVec;
+	T dx = y * other.z - z * other.y;
+	T dy = z * other.x - x * other.z;
+	T dz = x * other.y - y * other.x;
+	return Vector3(dx, dy, dz);
 }
 
 template <typename T>
@@ -424,7 +423,7 @@ inline void Vector3<T>::add(const Vector3& other)
 }
 
 template <typename T>
-inline void Vector3<T>::add(Vector3& a, Vector3& b)
+inline void Vector3<T>::add(const Vector3& a, const Vector3& b)
 {
 	set(a.x + b.x, a.y + b.y, a.z + b.z);
 }
@@ -438,7 +437,7 @@ inline void Vector3<T>::sub(const Vector3& other)
 }
 
 template <typename T>
-inline void Vector3<T>::sub(Vector3& a, Vector3& b)
+inline void Vector3<T>::sub(const Vector3& a, const Vector3& b)
 {
 	set(a.x - b.x, a.y - b.y, a.z - b.z);
 }
@@ -717,15 +716,12 @@ inline f32 Vector3f::sqrDistance2D(Vector3f& them)
 template <>
 inline f32 Vector3f::distance(JGeometry::TVec3f& them)
 {
-	f32 diffX = them.x - this->x;
-	f32 diffY = them.y - this->y;
-	f32 diffZ = them.z - this->z;
+	f32 X   = SQUARE(them.x - x);
+	f32 Y   = SQUARE(them.y - y);
+	f32 Z   = SQUARE(them.z - z);
+	f32 sum = X + Y + Z;
 
-	f32 X = diffX * diffX;
-	f32 Y = diffY * diffY;
-	f32 Z = diffZ * diffZ;
-
-	return JGeometry::TUtil<f32>::sqrt(X + Y + Z);
+	return JGeometry::TUtil<f32>::sqrt(sum);
 }
 
 inline f32 qdist3(const Vector3f& a, const Vector3f& b)

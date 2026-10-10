@@ -119,7 +119,7 @@ void TinyPikmin::appear()
 void TinyPikmin::disappear()
 {
 	// this is just guessing for sdata2 to be correct, The code prior to the TinyPikmin::init in
-	// TinyPikminMgr::init seems to belong here, but how exactly, I havent figured out
+	// TinyPikminMgr::init seems to belong here, but how exactly, I haven't figured out
 
 	int color = 4.0f * randFloat();
 	mColor    = color;

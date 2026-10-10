@@ -27,6 +27,7 @@ struct ObjectSystem : public JStage::TSystem, public ObjectBase {
 	virtual void stop();                                                               // _7C (weak)
 
 	void destroyObjectAll();
+	JStage::TObject*& getLastObject() { return mObjListPointer.back(); }
 	JStage::TObject* findObject(const char*, JStage::TEObject) const;
 	Creature* findCreature(const char*) const;
 
@@ -38,7 +39,7 @@ struct ObjectSystem : public JStage::TSystem, public ObjectBase {
 	// _00     = VTABLE (JStage::TSystem)
 	// _04     = VTABLE2 (ObjectBase)
 	// _04-_20 = ObjectBase
-	JGadget::TList_pointer<JStage::TObject*> mObjListPointer; // _20
+	mutable JGadget::TList_pointer<JStage::TObject*> mObjListPointer; // _20
 };
 
 } // namespace P2JST

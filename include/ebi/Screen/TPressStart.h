@@ -3,6 +3,7 @@
 
 #include "ebi/Screen/TScreenBase.h"
 #include "ebi/E2DCallBack.h"
+#include "ebi/Utility.h"
 
 struct Controller;
 struct J2DScreen;
@@ -13,8 +14,6 @@ struct TPressStart : public TScreenBase {
 	TPressStart()
 	    : mControl(nullptr)
 	    , mCurrentScreen(0)
-	    , mAlpha(0)
-	    , mAlphaMax(0)
 	{
 	}
 
@@ -34,8 +33,7 @@ struct TPressStart : public TScreenBase {
 	bool mIsOpen;                         // _10
 	int mCurrentScreen;                   // _14
 	P2DScreen::Mgr_tuning* mScreens[4];   // _18
-	u32 mAlpha;                           // _28
-	u32 mAlphaMax;                        // _2C
+	EUTCounter mAlphaCounter;             // _28
 	E2DCallBack_AnmBase mAnims1[4];       // _30
 	E2DCallBack_AnmBase mAnims2[4];       // _34
 	E2DCallBack_CalcAnimation mAnims3[4]; // _38

@@ -91,11 +91,11 @@ void ObjSMenuBase::doCreateAfter(JKRArchive* arc, P2DScreen::Mgr* scrn)
 	og::Screen::setAlphaScreen(mScreenLR);
 
 	mNyaji_l    = og::Screen::TagSearch(mScreenLR, 'Nyaji_l'); // overall L button pane
-	mYajiLpos.x = mNyaji_l->mOffset.x;
-	mYajiLpos.y = mNyaji_l->mOffset.y;
+	mYajiLpos.x = mNyaji_l->mTranslateX;
+	mYajiLpos.y = mNyaji_l->mTranslateY;
 	mNyaji_r    = og::Screen::TagSearch(mScreenLR, 'Nyaji_r'); // overall R button pane
-	mYajiRpos.x = mNyaji_r->mOffset.x;
-	mYajiRpos.y = mNyaji_r->mOffset.y;
+	mYajiRpos.x = mNyaji_r->mTranslateX;
+	mYajiRpos.y = mNyaji_r->mTranslateY;
 
 	mTyaji_l = static_cast<J2DTextBoxEx*>(og::Screen::TagSearch(mScreenLR, 'Tyaji_l')); // L button textbox (items, etc)
 	mTyaji_r = static_cast<J2DTextBoxEx*>(og::Screen::TagSearch(mScreenLR, 'Tyaji_r')); // R button textbox (menu, etc)
@@ -499,21 +499,21 @@ void ObjSMenuBase::doUpdateFadeoutFinish()
 	switch (mCancelToState) {
 	case MENUCLOSE_Finish:
 		startBackupScene();
-		setFinishState(2);
+		setFinishState(og::Screen::MENUFINISH_ContinueGround);
 		break;
 
 	case MENUCLOSE_R:
 		doUpdateRAction();
-		setFinishState(1);
+		setFinishState(og::Screen::MENUFINISH_GetFromSubMember);
 		break;
 
 	case MENUCLOSE_L:
 		doUpdateLAction();
-		setFinishState(1);
+		setFinishState(og::Screen::MENUFINISH_GetFromSubMember);
 		break;
 
 	case MENUCLOSE_None:
-		setFinishState(1);
+		setFinishState(og::Screen::MENUFINISH_GetFromSubMember);
 		break;
 
 	default:

@@ -1,18 +1,18 @@
 COMMON_FILES:=\
 	$(BUILD_DIR)/src/sysCommonU/node.o\
-	$(BUILD_DIR)/asm/sysCommonU/sysMath.o\
+	$(BUILD_DIR)/src/sysCommonU/sysMath.o\
 	$(BUILD_DIR)/src/sysCommonU/id32.o\
 	$(BUILD_DIR)/src/sysCommonU/parameters.o\
 	$(BUILD_DIR)/src/sysCommonU/stream.o\
-	$(BUILD_DIR)/asm/sysCommonU/geometry.o\
+	$(BUILD_DIR)/src/sysCommonU/geometry.o\
 	$(BUILD_DIR)/src/sysCommonU/mapCollision.o\
-	$(BUILD_DIR)/asm/sysCommonU/camera.o\
+	$(BUILD_DIR)/src/sysCommonU/camera.o\
 	$(BUILD_DIR)/src/sysCommonU/tagparams.o\
 	$(BUILD_DIR)/src/sysCommonU/sysTemplates.o\
 	$(BUILD_DIR)/src/sysCommonU/mapCode.o\
-	$(BUILD_DIR)/asm/sysCommonU/geomIntersection.o\
-	$(BUILD_DIR)/asm/sysCommonU/geomOBBTree.o\
-	$(BUILD_DIR)/asm/sysCommonU/geomTraceMove.o\
+	$(BUILD_DIR)/src/sysCommonU/geomIntersection.o\
+	$(BUILD_DIR)/src/sysCommonU/geomOBBTree.o\
+	$(BUILD_DIR)/src/sysCommonU/geomTraceMove.o\
 	$(BUILD_DIR)/src/sysCommonU/geomCylinder.o\
 	$(BUILD_DIR)/src/sysCommonU/geomClone.o\
 

@@ -104,8 +104,8 @@ void PikminCounterCave::setCallBack(JKRArchive* arc)
 	setCallBackCommon(arc, false);
 	mPaneSublevel = search('Ndayicon');
 	if (mPaneSublevel) {
-		mStandardPos.x = mPaneSublevel->mOffset.x;
-		mStandardPos.y = mPaneSublevel->mOffset.y;
+		mStandardPos.x = mPaneSublevel->mTranslateX;
+		mStandardPos.y = mPaneSublevel->mTranslateY;
 		mCurrPos       = mStandardPos;
 		mPaneSublevel->setOffset(mCurrPos.x, mCurrPos.y);
 		mScaleMgr = new ScaleMgr;
@@ -129,8 +129,8 @@ void PikminCounterChallenge1P::setCallBack(JKRArchive* arc)
 	setCallBackCommon(arc, false);
 	mPaneSublevel = search('Ndayicon');
 	if (mPaneSublevel) {
-		mStandardPos.x = mPaneSublevel->mOffset.x;
-		mStandardPos.y = mPaneSublevel->mOffset.y;
+		mStandardPos.x = mPaneSublevel->mTranslateX;
+		mStandardPos.y = mPaneSublevel->mTranslateY;
 		mCurrPos       = mStandardPos;
 		mPaneSublevel->setOffset(mCurrPos.x, mCurrPos.y);
 		mScaleMgr = new ScaleMgr;

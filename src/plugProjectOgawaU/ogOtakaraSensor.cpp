@@ -76,8 +76,8 @@ void OtakaraSensor::init(J2DPane* pane1, J2DPane* pane2, int state)
 		mPane2             = pane2;
 		mCurrReactionLevel = 0.0f;
 		mAngle             = 0.0f;
-		mPanePos.x         = mPane2->mOffset.x;
-		mPanePos.y         = mPane2->mOffset.y;
+		mPanePos.x         = mPane2->mTranslateX;
+		mPanePos.y         = mPane2->mTranslateY;
 		mState             = state;
 		mIsInit            = false;
 		mTreeColor         = og::Screen::capturePictureTreeColor(pane2, 30);

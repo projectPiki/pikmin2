@@ -327,7 +327,6 @@ bool Obj::isBreakBridge()
  */
 bool Obj::moveBridgeSide()
 {
-	// NON-MATCHING //
 	Vector3f startPos = mBridge->getStartPos();
 	Vector3f xVec     = mBridge->getBridgeXVec();
 	Vector3f zVec     = mBridge->getBridgeZVec();
@@ -358,7 +357,6 @@ bool Obj::moveBridgeSide()
  */
 bool Obj::moveBridgeCentre()
 {
-	// NON-MATCHING //
 	Vector3f startPos = mBridge->getStartPos();
 	Vector3f xVec     = mBridge->getBridgeXVec();
 

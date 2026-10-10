@@ -80,9 +80,7 @@ bool MemoryCardMgr::setCommand(MemoryCardMgrCommandBase* command)
 			break;
 		}
 
-		i++;
-
-		if (i == 5) {
+		if (++i == 5) {
 			check = false;
 			JUT_PANICLINE(240, "command Queue is full.");
 		}
@@ -93,7 +91,12 @@ bool MemoryCardMgr::setCommand(MemoryCardMgrCommandBase* command)
 		while (true) {
 			MemoryCardMgrCommand* cmd = getCommandQueue();
 			if (cmd[j].mFlag == COMMAND_Default) {
-				memcpy(&getCommandQueue()[j], (void*)command, sizeof(MemoryCardMgrCommand));
+				// I have tried SO HARD to find another match here
+				// but nothing works. this is so stupid but it fixes the registers here and where
+				// it's inlined. please fix this if you find a better solution -HP
+				u8* base = (u8*)this + j * sizeof(MemoryCardMgrCommand);
+				memcpy(base++ + 4, (void*)command, sizeof(MemoryCardMgrCommand));
+
 				mIsCard++;
 				P2ASSERTLINE(254, (u32)mIsCard <= 5);
 				break;
@@ -109,99 +112,6 @@ bool MemoryCardMgr::setCommand(MemoryCardMgrCommandBase* command)
 	OSUnlockMutex(&mOsMutex);
 	OSSignalCond(&mCond);
 	return check;
-
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r26, 8(r1)
-	mr       r27, r4
-	lis      r4, lbl_8049AD08@ha
-	mr       r26, r3
-	mr       r3, r27
-	li       r29, 1
-	addi     r31, r4, lbl_8049AD08@l
-	lwz      r12, 4(r27)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	cmplwi   r3, 0x20
-	ble      lbl_80440748
-	addi     r3, r31, 0
-	addi     r5, r31, 0x38
-	li       r4, 0xe1
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80440748:
-	addi     r3, r26, 0xac
-	bl       OSLockMutex
-	li       r28, 0
-	mr       r30, r26
-
-lbl_80440758:
-	lwz      r0, 4(r30)
-	cmpwi    r0, 0
-	beq      lbl_80440790
-	addi     r28, r28, 1
-	addi     r30, r30, 0x20
-	cmplwi   r28, 5
-	bne      lbl_80440758
-	addi     r3, r31, 0
-	addi     r5, r31, 0x44
-	li       r29, 0
-	li       r4, 0xf0
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-	b        lbl_80440758
-
-lbl_80440790:
-	clrlwi.  r0, r29, 0x18
-	beq      lbl_80440804
-	lwz      r4, 0xa4(r26)
-
-lbl_8044079C:
-	slwi     r0, r4, 5
-	add      r3, r26, r0
-	lwz      r0, 4(r3)
-	cmpwi    r0, 0
-	bne      lbl_804407F0
-	mr       r4, r27
-	addi     r3, r3, 4
-	li       r5, 0x20
-	bl       memcpy
-	lwz      r3, 0xa8(r26)
-	addi     r0, r3, 1
-	stw      r0, 0xa8(r26)
-	lwz      r0, 0xa8(r26)
-	cmplwi   r0, 5
-	ble      lbl_80440804
-	addi     r3, r31, 0
-	addi     r5, r31, 0x38
-	li       r4, 0xfe
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-	b        lbl_80440804
-
-lbl_804407F0:
-	addi     r4, r4, 1
-	cmplwi   r4, 5
-	bne      lbl_8044079C
-	li       r4, 0
-	b        lbl_8044079C
-
-lbl_80440804:
-	addi     r3, r26, 0xac
-	bl       OSUnlockMutex
-	addi     r3, r26, 0xc4
-	bl       OSSignalCond
-	mr       r3, r29
-	lmw      r26, 8(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**

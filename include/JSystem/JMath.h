@@ -48,7 +48,7 @@ struct TAtanTable {
 			mTable[i] = atan(i / (f64)LENGTH);
 		}
 		mTable[0] = 0.0f;
-		// seems to be a remenent of older debug code, is unused elsewhere
+		// seems to be a remnant of older debug code, is unused elsewhere
 		mDebugUnitCircle[0] = TAngleConstant_<T>::RADIAN_DEG180() / 4;
 	}
 
@@ -249,8 +249,8 @@ struct TSinCosTable {
 		// return (x < 0.0f) ? mTable[(int)-(x * 325.9493f) % 2048].second : mTable[(int)(x * 325.9493f) % 2048].second;
 	}
 
-	T sinShort(s16 v) const { return mTable[static_cast<u16>(v * LENGTH / (USHORT_MAX))].first; };
-	T cosShort(s16 v) const { return mTable[static_cast<u16>(v * LENGTH / (USHORT_MAX))].second; };
+	T sinShort(s16 v) const { return mTable[static_cast<u16>(v * LENGTH / (USHORT_MAX))].first; }
+	T cosShort(s16 v) const { return mTable[static_cast<u16>(v * LENGTH / (USHORT_MAX))].second; }
 
 	// used in JASChannel::updateMixer
 	// some questionable differences here compared to the TP version, but it works

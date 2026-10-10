@@ -21,10 +21,6 @@ TMainTitleMgr::TMainTitleMgr()
     : mDrawColor(0, 0, 0, -1)
     , mDrawAlpha(-1)
     , mDrawState(0)
-    , mOpenMenuCounter(0)
-    , mOpenMenuCounterMax(0)
-    , mExitMenuCounter(0)
-    , mExitMenuCounterMax(0)
 {
 	title::TTitleMgr::globalInstance();
 	title::titleMgr->init();
@@ -184,12 +180,10 @@ void TMainTitleMgr::startMenuSet(s32, s32 select)
 
 	title::titleMgr->start();
 	title::titleMgr->setLogo();
-	mState              = MainMenu;
-	mIsForceSelect      = false;
-	u32 count           = E2DFader::kFadeTime / sys->mDeltaTime;
-	mOpenMenuCounter    = count;
-	mOpenMenuCounterMax = count;
-	mDrawState          = 1;
+	mState         = MainMenu;
+	mIsForceSelect = false;
+	mOpenMenuCounter.setValue(E2DFader::kFadeTime);
+	mDrawState = 1;
 }
 
 /**
@@ -255,25 +249,17 @@ void TMainTitleMgr::update()
 			if (Game::gGameConfig.mParms.mKFesVersion.mData) {
 				mSelectedMenuOption = Select_Challenge;
 				mDoEndBGM           = true;
-				u32 count           = 1.0f / sys->mDeltaTime;
-				mExitMenuCounter    = count;
-				mExitMenuCounterMax = count;
-				u32 count2          = 1.0f / sys->mDeltaTime;
-				mOpenMenuCounter    = count2;
-				mOpenMenuCounterMax = count2;
-				mDrawState          = 2;
-				mState              = Exiting;
+				mExitMenuCounter.setValue(1.0f);
+				mOpenMenuCounter.setValue(1.0f);
+				mDrawState = 2;
+				mState     = Exiting;
 			} else if (Game::gGameConfig.mParms.mNintendoVersion.mData) {
 				mSelectedMenuOption = Select_Challenge;
 				mDoEndBGM           = true;
-				u32 count           = 1.0f / sys->mDeltaTime;
-				mExitMenuCounter    = count;
-				mExitMenuCounterMax = count;
-				u32 count2          = 1.0f / sys->mDeltaTime;
-				mOpenMenuCounter    = count2;
-				mOpenMenuCounterMax = count2;
-				mDrawState          = 2;
-				mState              = Exiting;
+				mExitMenuCounter.setValue(1.0f);
+				mOpenMenuCounter.setValue(1.0f);
+				mDrawState = 2;
+				mState     = Exiting;
 
 #if defined(VERSION_JP)
 			} else {
@@ -353,11 +339,9 @@ void TMainTitleMgr::update()
 			Screen::ArgCloseTMBack arg(1.0f);
 			mTMBack.closeScreen(&arg);
 			if (!mTitleMenu.isCancel()) {
-				u32 count           = 1.0f / sys->mDeltaTime;
-				mOpenMenuCounter    = count;
-				mOpenMenuCounterMax = count;
-				mDrawState          = 2;
-				mDoEndBGM           = true;
+				mOpenMenuCounter.setValue(1.0f);
+				mDrawState = 2;
+				mDoEndBGM  = true;
 			}
 		}
 #if defined(VERSION_JP)
@@ -379,17 +363,15 @@ void TMainTitleMgr::update()
 				mPressStart.openScreen(nullptr);
 				mState = PressStart;
 			} else {
-				if (!mOpenMenuCounter) {
+				if (mOpenMenuCounter.isZero()) {
 					mState = Standby;
 				}
 			}
 		}
 		break;
 	case Exiting:
-		if (mExitMenuCounter) {
-			mExitMenuCounter--;
-		}
-		if (!mExitMenuCounter) {
+		mExitMenuCounter.update();
+		if (mExitMenuCounter.isZero()) {
 			mState = Standby;
 		}
 		break;
@@ -407,8 +389,8 @@ void TMainTitleMgr::update()
 	mTMBack.update();
 	mLogo.update();
 	title::titleMgr->update();
-	if (mDrawState && mOpenMenuCounter) {
-		mOpenMenuCounter--;
+	if (mDrawState) {
+		mOpenMenuCounter.update();
 	}
 }
 
@@ -439,23 +421,11 @@ void TMainTitleMgr::draw()
 			JUtility::TColor color(mDrawColor);
 			switch (mDrawState) {
 			case 1: {
-				f32 calc;
-				if (mOpenMenuCounterMax) {
-					calc = (f32)mOpenMenuCounter / (f32)mOpenMenuCounterMax;
-				} else {
-					calc = 0.0f;
-				}
-				color.a = (f32)mDrawAlpha * calc;
+				color.a = (f32)mDrawAlpha * mOpenMenuCounter.getRatio();
 				break;
 			}
 			case 2: {
-				f32 calc;
-				if (mOpenMenuCounterMax) {
-					calc = (f32)mOpenMenuCounter / (f32)mOpenMenuCounterMax;
-				} else {
-					calc = 0.0f;
-				}
-				f32 alpha = 1.0f - calc;
+				f32 alpha = 1.0f - mOpenMenuCounter.getRatio();
 				color.a   = (f32)mDrawAlpha * alpha;
 				break;
 			}

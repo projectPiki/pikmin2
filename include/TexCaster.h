@@ -23,7 +23,7 @@ struct Caster : public CNode {
 	// unused/inlined:
 	void show();
 	void fadeout(f32);
-	inline void makeDL();
+	void makeDL();
 	void update();
 	void draw(Graphics&);
 	void drawLine(Graphics&);
@@ -55,7 +55,7 @@ struct Mgr {
 	void loadResource();
 
 	// unused/inlined:
-	void getTexture(int);
+	JUTTexture* getTexture(int);
 	void drawInit(Graphics&);
 
 	static Mgr* sInstance;

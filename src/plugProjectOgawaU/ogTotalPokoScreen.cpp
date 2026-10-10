@@ -99,8 +99,8 @@ void TotalPokoScreen::setCallBack(JKRArchive* archive, f32 x, f32 y, f32 scaleX,
 	mCallBackCounterRV = setCallBack_CounterRV(this, 'Ppoko01', &mDisplayPokoCount, 10, false, true, archive);
 	mPane              = search('Npoko');
 	mUnusedVal         = 0.0f;
-	mStandardPos.x     = x + mPane->mOffset.x;
-	mStandardPos.y     = y + mPane->mOffset.y;
+	mStandardPos.x     = x + mPane->mTranslateX;
+	mStandardPos.y     = y + mPane->mTranslateY;
 	mCurrPos.x         = mStandardPos.x;
 	mCurrPos.y         = mStandardPos.y;
 

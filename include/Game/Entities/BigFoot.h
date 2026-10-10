@@ -46,7 +46,7 @@ struct Obj : public EnemyBase {
 	virtual void collisionCallback(CollEvent& event);                          // _EC
 	virtual void getShadowParam(ShadowParam& settings);                        // _134
 	virtual bool needShadow();                                                 // _138
-	virtual ~Obj() {};                                                         // _1BC (weak)
+	virtual ~Obj() { }                                                         // _1BC (weak)
 	virtual void setInitialSetting(EnemyInitialParamBase* params);             // _1C4
 	virtual void doUpdate();                                                   // _1CC
 	virtual void doUpdateCommon();                                             // _1D0
@@ -156,7 +156,7 @@ struct Mgr : public EnemyMgrBase {
 	Mgr(int objLimit, u8 modelType);
 
 	//////////////// VTABLE
-	// virtual ~Mgr() {};                              // _58 (weak)
+	// virtual ~Mgr() { }                              // _58 (weak)
 	virtual void createObj(int count);                 // _A0
 	virtual EnemyBase* getEnemy(int idx);              // _A4
 	virtual void doAlloc();                            // _A8
@@ -187,17 +187,17 @@ struct Parms : public EnemyParmsBase {
 		    , mRaiseSlowdownFactor(this, 'fp02', "上げ減速係数", -0.2f, -5.0f, 5.0f) // 'raising deceleration factor'
 		    , mDownwardAccelFactor(this, 'fp03', "下げ加速係数", 0.5f, -5.0f, 5.0f)  // 'downward acceleration factor'
 		    , mMinDecelFactor(this, 'fp04', "最低減加速係数", -2.5f, -10.0f,
-		                      10.0f) // 'minimum deceleration acceleration factor'
+			                  10.0f) // 'minimum deceleration acceleration factor'
 		    , mMaxDecelFactor(this, 'fp05', "最高減加速係数", 10.0f, -10.0f,
-		                      10.0f)                                                           // 'maximum deceleration acceleration factor'
+			                  10.0f)                                                           // 'maximum deceleration acceleration factor'
 		    , mLegSwing(this, 'fp06', "足の振り上げ", 120.0f, 0.0f, 200.0f)                    // 'leg swing'
 		    , mEnragedBaseCoefficient(this, 'fp11', "ベース係数(s)", 3.0f, 0.0f, 10.0f)        // 'base factor(s)'
 		    , mEnragedRaiseSlowdownFactor(this, 'fp12', "上げ減速係数(s)", -0.2f, -5.0f, 5.0f) // 'raising deceleration factor(s)'
 		    , mEnragedDownwardAccelFactor(this, 'fp13', "下げ加速係数(s)", 0.5f, -5.0f, 5.0f)  // 'downward acceleration factor(s)'
 		    , mEnragedMinDecelFactor(this, 'fp14', "最低減加速係数(s)", -2.0f, -10.0f,
-		                             10.0f) // 'minimum deceleration acceleration factor(s)'
+			                         10.0f) // 'minimum deceleration acceleration factor(s)'
 		    , mEnragedMaxDecelFactor(this, 'fp15', "最高減加速係数(s)", 10.0f, -10.0f,
-		                             10.0f)                                            // 'maximum deceleration acceleration factor(s)'
+			                         10.0f)                                            // 'maximum deceleration acceleration factor(s)'
 		    , mEnragedLegSwing(this, 'fp16', "足の振り上げ(s)", 120.0f, 0.0f, 200.0f)  // 'leg swing(s)'
 		    , mMovementOffset(this, 'fp17', "移動オフセット(s)", 50.0f, 0.0f, 200.0f)  // 'movement offset(s)'
 		    , mNormalTravelTime(this, 'fp20', "通常移動時間", 10.0f, 0.0f, 100.0f)     // 'normal travel time'
@@ -244,10 +244,10 @@ enum AnimID {
 };
 
 struct ProperAnimator : public EnemyAnimatorBase {
-	virtual ~ProperAnimator() {};                                    // _08 (weak)
-	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                 // _0C
-	virtual SysShape::Animator& getAnimator() { return mAnimator; }; // _10 (weak)
-	virtual SysShape::Animator& getAnimator(int idx);                // _14
+	virtual ~ProperAnimator() { }                                   // _08 (weak)
+	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                // _0C
+	virtual SysShape::Animator& getAnimator() { return mAnimator; } // _10 (weak)
+	virtual SysShape::Animator& getAnimator(int idx);               // _14
 
 	// _00 		= VTBL
 	// _00-_10	= EnemyAnimatorBase

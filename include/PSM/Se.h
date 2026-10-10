@@ -7,17 +7,6 @@
 #include "PSGame/EnvSe.h"
 
 namespace PSM {
-// using an inline makes it stop inlining in initEnvironmentSe, so here's a macro for now
-#define APPEND_SE_LINK(builder, id)                                                  \
-	{                                                                                \
-		PSSystem::IdLink* link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(id); \
-		PSSystem::IdList* list = &builder.mList;                                     \
-		if (!list->getFirst()) {                                                     \
-			builder.mList.mNextLink = link;                                          \
-		}                                                                            \
-		list->append(link);                                                          \
-	}
-
 struct EnvSe_Perspective_AvoidY;
 
 /**

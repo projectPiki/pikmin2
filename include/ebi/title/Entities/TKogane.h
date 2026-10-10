@@ -84,11 +84,9 @@ struct TMgr : public CNode {
 struct TUnit : public TObjBase {
 	enum enumAction {
 		KOGANEACT_NULL = -1,
-		KOGANEACT_0    = 0,
-		KOGANEACT_1    = 1,
-		KOGANEACT_2    = 2,
-		KOGANEACT_3    = 3,
-		KOGANEACT_4    = 4,
+		KOGANEACT_Wait = 0,
+		KOGANEACT_Turn = 1,
+		KOGANEACT_Move = 2,
 	};
 
 	enum enumState {
@@ -104,19 +102,15 @@ struct TUnit : public TObjBase {
 
 	inline TUnit()
 	{
-		mCounter          = 0;
-		mCounter2         = 0;
 		mAnim.mAnimRes    = nullptr;
 		mAnim.mAnimFolder = nullptr;
 		mTargetPos        = Vector2f(0.0f);
 		mTargetAngle      = Vector2f(1.0f, 0.0f);
-		u32 time          = 0.0f / sys->mDeltaTime;
-		mCounter          = time;
-		mCounter2         = time;
-		mControl          = nullptr;
-		mManager          = nullptr;
-		mStateID          = KSTATE_Inactive;
-		mActionID         = KOGANEACT_NULL;
+		mCounter.setValue(0.0f);
+		mControl  = nullptr;
+		mManager  = nullptr;
+		mStateID  = KSTATE_Inactive;
+		mActionID = KOGANEACT_NULL;
 	}
 
 	virtual u32 getCreatureType() { return TITLECREATURE_Kogane; } // _08 (weak)
@@ -135,8 +129,7 @@ struct TUnit : public TObjBase {
 	// _00-_2C = TObjBase
 	Vector2f mTargetPos;   // _2C
 	Vector2f mTargetAngle; // _34
-	u32 mCounter;          // _3C
-	u32 mCounter2;         // _40
+	EUTCounter mCounter;   // _3C
 	Controller* mControl;  // _44
 	TMgr* mManager;        // _48
 	E3DAnimCtrl mAnim;     // _4C

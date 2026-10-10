@@ -124,11 +124,11 @@ struct JPAList {
 			mNum--;
 		} else if (node->mNext != nullptr) {
 			node->mNext->mPrev = nullptr;
-			mFirst              = node->mNext;
+			mFirst             = node->mNext;
 			mNum--;
 		} else if (node->mPrev != nullptr) {
 			node->mPrev->mNext = nullptr;
-			mLast               = node->mPrev;
+			mLast              = node->mPrev;
 			mNum--;
 		} else {
 			mLast  = nullptr;

@@ -75,8 +75,8 @@ void TDayEndCount::doCreate(JKRArchive* arc)
 	mScreenObj->set("count.blo", 0x20000, arc);
 	mTextPane = static_cast<J2DPicture*>(mScreenObj->search('gath'));
 	P2ASSERTLINE(90, mTextPane);
-	mTextPanePos.x = mTextPane->mOffset.x;
-	mTextPanePos.y = mTextPane->mOffset.y;
+	mTextPanePos.x = mTextPane->mTranslateX;
+	mTextPanePos.y = mTextPane->mTranslateY;
 
 	mNumberPaneList = new J2DPane*[COUNTDOWN_NUMBERS];
 	for (int i = 0; i < COUNTDOWN_NUMBERS; i++) {
@@ -88,8 +88,8 @@ void TDayEndCount::doCreate(JKRArchive* arc)
 	J2DPicture* pane = static_cast<J2DPicture*>(mScreenObj->search('cd10'));
 	P2ASSERTLINE(105, pane);
 	pane->setBasePosition(J2DPOS_Center);
-	mNumberPanePos.x = pane->mOffset.x;
-	mNumberPanePos.y = pane->mOffset.y + 25.0f;
+	mNumberPanePos.x = pane->mTranslateX;
+	mNumberPanePos.y = pane->mTranslateY + 25.0f;
 
 	for (u8 i = 0; i < ARRAY_SIZE(mTexCoords1); i++) {
 		mTexCoords1[i] = mTexCoords2[i] = *pane->getTexCoord(i);
@@ -168,15 +168,15 @@ bool TDayEndCount::doUpdate()
 		}
 
 		f32 newScale     = calc3 * (scale / start);
-		f32 currentScale = mCurrNumberPane->mScale.x;
+		f32 currentScale = mCurrNumberPane->mScaleX;
 		scale            = currentScale;
 		if (newScale > currentScale) {
 			scale = newScale;
 		}
 
 		if (mMode) {
-			f32 xOffset = mNumberPanePos.x - mCurrNumberPane->mOffset.x;
-			f32 yOffset = mNumberPanePos.y - mCurrNumberPane->mOffset.y;
+			f32 xOffset = mNumberPanePos.x - mCurrNumberPane->mTranslateX;
+			f32 yOffset = mNumberPanePos.y - mCurrNumberPane->mTranslateY;
 			mCurrNumberPane->add(xOffset * scale, yOffset * scale + mOffsetY);
 		} else {
 			mCurrNumberPane->setOffset(mNumberPanePos.x, mNumberPanePos.y + mOffsetY);

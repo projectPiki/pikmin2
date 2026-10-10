@@ -92,7 +92,7 @@
 #define PID_BombrockABCD_1 (0x008) // bomb rock explosion fragments
 #define PID_BombrockABCD_2 (0x009) // bomb rock explosion boom
 #define PID_BombrockABCD_3 (0x00A) // bomb rock explosion cloud
-#define PID_BombrockABCD_4 (0x00B) // bomb rock explosiion sparks
+#define PID_BombrockABCD_4 (0x00B) // bomb rock explosion sparks
 #define PID_BombrockEFGH_1 (0x00C) // bomb rock explosion cloud circle
 #define PID_BombrockEFGH_2 (0x00D) // bomb rock explosion dust
 #define PID_BombrockEFGH_3 (0x00E) // bomb rock explosion shockwave 1
@@ -885,18 +885,18 @@
 #define PID_KageTyreSmoke  (0x2A0) // waterwraith roller smoke
 #define PID_KageTyreUp     (0x2A1) // waterwraith roller up
 
-#define PID_DangoAttack2   (0x2A2) // segmented crabster attack
-#define PID_DangoCrash_1   (0x2A3) // segmented crabster crash 1
-#define PID_DangoCrash_2   (0x2A4) // segmented crabster crash 2
-#define PID_DangoDamage    (0x2A5) // segmented crabster damage
-#define PID_DangoDead_1    (0x2A6) // segmented crabster dead 1
-#define PID_DangoDead_2    (0x2A7) // segmented crabster dead 2
-#define PID_DangoDeadSmoke (0x2A8) // segmented crabster dead smoke
-#define PID_DangoRun_1     (0x2A9) // segmented crabster run 1?
-#define PID_DangoRun_2     (0x2AA) // segmented crabster run 2?
-#define PID_DangoTurn_1    (0x2AB) // segmented crabster turn 1?
-#define PID_DangoTurn_2    (0x2AC) // segmented crabster turn 2?
-#define PID_DangoWallBreak (0x2AD) // segmented crabster wall break?
+#define PID_DangoAttack2   (0x2A2) // segmented crawbster attack
+#define PID_DangoCrash_1   (0x2A3) // segmented crawbster crash 1
+#define PID_DangoCrash_2   (0x2A4) // segmented crawbster crash 2
+#define PID_DangoDamage    (0x2A5) // segmented crawbster damage
+#define PID_DangoDead_1    (0x2A6) // segmented crawbster dead 1
+#define PID_DangoDead_2    (0x2A7) // segmented crawbster dead 2
+#define PID_DangoDeadSmoke (0x2A8) // segmented crawbster dead smoke
+#define PID_DangoRun_1     (0x2A9) // segmented crawbster run 1?
+#define PID_DangoRun_2     (0x2AA) // segmented crawbster run 2?
+#define PID_DangoTurn_1    (0x2AB) // segmented crawbster turn 1?
+#define PID_DangoTurn_2    (0x2AC) // segmented crawbster turn 2?
+#define PID_DangoWallBreak (0x2AD) // segmented crawbster wall break?
 
 #define PID_KageFlick (0x2AE) // waterwraith flick
 

@@ -243,11 +243,9 @@ bool E2DCallBack_AnmBase::isFinish()
 void E2DCallBack_WindowCursor::do_update()
 {
 	if (mPane) {
-		if (mCounter) {
-			mCounter--;
-		}
+		mCounter.update();
 
-		f32 val = (mCounterMax) ? (f32)mCounter / (f32)mCounterMax : 0.0f;
+		f32 val = mCounter.getRatio();
 
 		JGeometry::TBox2f box;
 		box.i.x = (1.0f - val) * (mBounds2.i.x - mBounds1.i.x) + mBounds1.i.x;

@@ -69,6 +69,12 @@ struct CPlate : public Container<Creature> {
 	void updateShrink();
 	bool validSlot(int);
 
+	static inline int getHappaPriority(int* happaSlots, Piki* piki)
+	{
+		happaSlots += piki->getHappa();
+		return *happaSlots;
+	}
+
 	// _00     = VTBL
 	// _00-_1C = Container
 	Parms mParms;                                // _1C

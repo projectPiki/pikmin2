@@ -164,60 +164,6 @@ void JAIBasic::initResourcePath()
 	buffer = (char*)JASDram->alloc(strlen(JAIGlobalParameter::audioResPath) + strlen(JAIGlobalParameter::streamPath) + 1, 0);
 	sprintf(buffer, "%s%s%c", JAIGlobalParameter::audioResPath, JAIGlobalParameter::streamPath, 0);
 	JAIGlobalParameter::streamPath = buffer;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	lwz      r0, audioResPath__18JAIGlobalParameter@sda21(r13)
-	cmplwi   r0, 0
-	beq      lbl_800AC430
-	lwz      r3, wavePath__18JAIGlobalParameter@sda21(r13)
-	bl       strlen
-	mr       r31, r3
-	lwz      r3, audioResPath__18JAIGlobalParameter@sda21(r13)
-	bl       strlen
-	mr       r4, r3
-	addi     r0, r31, 1
-	lwz      r3, JASDram@sda21(r13)
-	add      r4, r4, r0
-	li       r5, 0
-	bl       alloc__7JKRHeapFUli
-	lwz      r5, audioResPath__18JAIGlobalParameter@sda21(r13)
-	mr       r31, r3
-	lwz      r6, wavePath__18JAIGlobalParameter@sda21(r13)
-	addi     r4, r2, lbl_80516F08@sda21
-	li       r7, 0
-	crclr    6
-	bl       sprintf
-	stw      r31, wavePath__18JAIGlobalParameter@sda21(r13)
-	lwz      r3, streamPath__18JAIGlobalParameter@sda21(r13)
-	bl       strlen
-	mr       r31, r3
-	lwz      r3, audioResPath__18JAIGlobalParameter@sda21(r13)
-	bl       strlen
-	mr       r4, r3
-	addi     r0, r31, 1
-	lwz      r3, JASDram@sda21(r13)
-	add      r4, r4, r0
-	li       r5, 0
-	bl       alloc__7JKRHeapFUli
-	lwz      r5, audioResPath__18JAIGlobalParameter@sda21(r13)
-	mr       r31, r3
-	lwz      r6, streamPath__18JAIGlobalParameter@sda21(r13)
-	addi     r4, r2, lbl_80516F08@sda21
-	li       r7, 0
-	crclr    6
-	bl       sprintf
-	stw      r31, streamPath__18JAIGlobalParameter@sda21(r13)
-
-lbl_800AC430:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /**
@@ -838,67 +784,6 @@ void JAIBasic::stopAudio(u32 p1, bool p2)
 	msDspDif        = msDspLevel / ((p1 - 8) * JASDriver::getSubFrames());
 	msAutoDif       = msAutoLevel / ((p1 - 8) * JASDriver::getSubFrames());
 	JASDriver::registerDspSyncCallback(&stopCallBack, nullptr);
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	lbz      r0, msStopStatus__8JAIBasic@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_800AD014
-	cmplwi   r31, 5
-	bge      lbl_800ACF78
-	li       r31, 5
-
-lbl_800ACF78:
-	lwz      r3, msBasic__8JAIBasic@sda21(r13)
-	li       r0, 1
-	lwz      r3, 0x10(r3)
-	add      r3, r3, r31
-	stb      r4, msStopMode__8JAIBasic@sda21(r13)
-	stw      r3, msAudioStopTime__8JAIBasic@sda21(r13)
-	stb      r0, msStopStatus__8JAIBasic@sda21(r13)
-	bl       getDSPLevel_f32__9JASDriverFv
-	stfs     f1, msDspLevel__8JAIBasic@sda21(r13)
-	bl       getAutoLevel_f32__9JASDriverFv
-	stfs     f1, msAutoLevel__8JAIBasic@sda21(r13)
-	bl       getSubFrames__9JASDriverFv
-	addi     r4, r31, -8
-	lis      r0, 0x4330
-	mullw    r3, r4, r3
-	stw      r0, 8(r1)
-	lfd      f2, lbl_80516F20@sda21(r2)
-	lfs      f0, msDspLevel__8JAIBasic@sda21(r13)
-	stw      r3, 0xc(r1)
-	lfd      f1, 8(r1)
-	fsubs    f1, f1, f2
-	fdivs    f0, f0, f1
-	stfs     f0, msDspDif__8JAIBasic@sda21(r13)
-	bl       getSubFrames__9JASDriverFv
-	addi     r4, r31, -8
-	lis      r0, 0x4330
-	mullw    r5, r4, r3
-	lis      r3, stopCallBack__8JAIBasicFPv@ha
-	stw      r0, 0x10(r1)
-	li       r4, 0
-	lfd      f2, lbl_80516F20@sda21(r2)
-	addi     r3, r3, stopCallBack__8JAIBasicFPv@l
-	stw      r5, 0x14(r1)
-	lfs      f0, msAutoLevel__8JAIBasic@sda21(r13)
-	lfd      f1, 0x10(r1)
-	fsubs    f1, f1, f2
-	fdivs    f0, f0, f1
-	stfs     f0, msAutoDif__8JAIBasic@sda21(r13)
-	bl       registerDspSyncCallback__9JASDriverFPFPv_lPv
-
-lbl_800AD014:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**

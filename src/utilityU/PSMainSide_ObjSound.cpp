@@ -144,7 +144,7 @@ void Creature::loopCalc(FrameCalcArg& arg)
 	f32& dist            = *arg.mDist;
 	P2ASSERTLINE(170, jai->_24);
 
-	u8 players = PSSystem::SingletonBase<ObjCalcBase>::sInstance->getPlayerNo(this);
+	u8 players = PSMGetPlayerNo(this);
 	PSMTXMultVec(*JAIBasic::msBasic->mCameras[players].mMtx, jai->_24, &pos);
 	dist = PSMath::calcMagnitude(pos);
 
@@ -195,7 +195,7 @@ JAISound* Creature::startSoundInner(PSM::StartSoundArg& arg)
 
 	if (temp) {
 		JAInter::Actor actor(obj, jai->_24);
-		JAIBasic::msBasic->startSoundActorT(sound, temp, &actor, unk, PSSystem::SingletonBase<ObjCalcBase>::sInstance->getPlayerNo(this));
+		JAIBasic::msBasic->startSoundActorT(sound, temp, &actor, unk, PSMGetPlayerNo(this));
 		onPlayingSe(sound, *temp);
 		if (*temp) {
 			(*temp)->mIsPlayingWithActor = true;
@@ -206,8 +206,8 @@ JAISound* Creature::startSoundInner(PSM::StartSoundArg& arg)
 		u8 id   = 255;
 		for (u8 i = 0; i < jai->mHandleCount; i++) {
 			if (!((1 << i) & jai->mUseHandleFlag) && jai->mSounds[i]->mSoundInfo->mPriority <= prio) {
-				id   = i;
 				prio = jai->mSounds[i]->mSoundInfo->mPriority;
+				id   = i;
 			}
 		}
 
@@ -215,8 +215,7 @@ JAISound* Creature::startSoundInner(PSM::StartSoundArg& arg)
 			jai->handleStop(id, 0);
 
 			JAInter::Actor actor(obj, jai->_24);
-			JAIBasic::msBasic->startSoundActorT(sound, getHandleArea(id), &actor, unk,
-			                                    PSSystem::SingletonBase<ObjCalcBase>::sInstance->getPlayerNo(this));
+			JAIBasic::msBasic->startSoundActorT(sound, getHandleArea(id), &actor, unk, PSMGetPlayerNo(this));
 			onPlayingSe(sound, *getHandleArea(id));
 			JAISound* se = jai->mSounds[id];
 			if (se) {
@@ -226,223 +225,6 @@ JAISound* Creature::startSoundInner(PSM::StartSoundArg& arg)
 		}
 	}
 	return nullptr;
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	lis      r5, lbl_8049CFA0@ha
-	stw      r0, 0x54(r1)
-	stmw     r25, 0x34(r1)
-	mr       r25, r3
-	mr       r28, r4
-	addi     r26, r5, lbl_8049CFA0@l
-	lwz      r3, 0x2c(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x104(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8045D464
-	li       r3, 0
-	b        lbl_8045D78C
-
-lbl_8045D464:
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_8045D484
-	addi     r3, r26, 0x30
-	addi     r5, r26, 0x18
-	li       r4, 0x1d3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8045D484:
-	lwz      r27, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r27, 0
-	bne      lbl_8045D4A4
-	addi     r3, r26, 0x30
-	addi     r5, r26, 0x18
-	li       r4, 0x1dc
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8045D4A4:
-	lwz      r0, 8(r27)
-	cmplwi   r0, 0
-	bne      lbl_8045D4C4
-	addi     r3, r26, 0x3c
-	addi     r5, r26, 0x18
-	li       r4, 0xa1
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8045D4C4:
-	lwz      r3, 8(r27)
-	mr       r4, r25
-	lwz      r5, 4(r28)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x38(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8045D4F0
-	li       r3, 0
-	b        lbl_8045D78C
-
-lbl_8045D4F0:
-	lwz      r29, 0(r28)
-	lwz      r31, 4(r28)
-	mr       r3, r29
-	lwz      r30, 8(r28)
-	lwz      r12, 0x28(r29)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	rlwinm.  r0, r31, 0, 0x14, 0x14
-	li       r26, 0
-	mr       r28, r3
-	bne      lbl_8045D538
-	lwz      r12, 0(r3)
-	mr       r4, r31
-	lwz      r12, 0x30(r12)
-	mtctr    r12
-	bctrl
-	mr       r26, r3
-
-lbl_8045D538:
-	cmplwi   r26, 0
-	bne      lbl_8045D558
-	mr       r3, r28
-	lwz      r12, 0(r28)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	mr       r26, r3
-
-lbl_8045D558:
-	cmplwi   r26, 0
-	beq      lbl_8045D604
-	cmplwi   r29, 0
-	lwz      r7, 0x24(r28)
-	bne      lbl_8045D574
-	mr       r3, r7
-	b        lbl_8045D578
-
-lbl_8045D574:
-	mr       r3, r29
-
-lbl_8045D578:
-	li       r6, -1
-	li       r5, 0
-	li       r0, 1
-	stw      r3, 0x1c(r1)
-	lwz      r3,
-"sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13) mr r4,
-r25 stw      r7, 0x20(r1) stw      r6, 0x24(r1) stw      r5, 0x28(r1) stb r0,
-0x2c(r1) lwz      r12, 0(r3) lwz      r12, 0xc(r12) mtctr    r12 bctrl mr r8, r3
-	lwz      r3, msBasic__8JAIBasic@sda21(r13)
-	mr       r4, r31
-	mr       r5, r26
-	mr       r7, r30
-	addi     r6, r1, 0x1c
-	bl
-"startSoundActorT<8JAISound>__8JAIBasicFUlPP8JAISoundPQ27JAInter5ActorUlUc" mr
-r3, r25 mr       r4, r31 lwz      r12, 0x28(r25) lwz      r5, 0(r26) lwz r12,
-0x38(r12) mtctr    r12 bctrl lwz      r3, 0(r26) cmplwi   r3, 0 beq lbl_8045D5FC
-	li       r0, 1
-	stb      r0, 0x1a(r3)
-
-lbl_8045D5FC:
-	lwz      r3, 0(r26)
-	b        lbl_8045D78C
-
-lbl_8045D604:
-	lbz      r6, 0x19(r28)
-	li       r27, 0xff
-	li       r26, 0xff
-	li       r7, 0
-	li       r5, 1
-	b        lbl_8045D65C
-
-lbl_8045D61C:
-	clrlwi   r3, r7, 0x18
-	lwz      r0, 0x20(r28)
-	slw      r3, r5, r3
-	and.     r0, r3, r0
-	bne      lbl_8045D658
-	lwz      r4, 0x1c(r28)
-	rlwinm   r3, r7, 2, 0x16, 0x1d
-	clrlwi   r0, r27, 0x18
-	lwzx     r3, r4, r3
-	lwz      r3, 0x44(r3)
-	lbz      r3, 4(r3)
-	cmplw    r3, r0
-	bgt      lbl_8045D658
-	mr       r27, r3
-	mr       r26, r7
-
-lbl_8045D658:
-	addi     r7, r7, 1
-
-lbl_8045D65C:
-	clrlwi   r0, r7, 0x18
-	cmplw    r0, r6
-	blt      lbl_8045D61C
-	clrlwi   r0, r26, 0x18
-	cmplwi   r0, 0xff
-	beq      lbl_8045D788
-	mr       r3, r31
-	bl       getInfoPointer__Q27JAInter10SoundTableFUl
-	lbz      r3, 4(r3)
-	clrlwi   r0, r27, 0x18
-	cmplw    r3, r0
-	blt      lbl_8045D788
-	mr       r3, r28
-	mr       r4, r26
-	lwz      r12, 0(r28)
-	li       r5, 0
-	lwz      r12, 0x34(r12)
-	mtctr    r12
-	bctrl
-	cmplwi   r29, 0
-	lwz      r7, 0x24(r28)
-	bne      lbl_8045D6BC
-	mr       r3, r7
-	b        lbl_8045D6C0
-
-lbl_8045D6BC:
-	mr       r3, r29
-
-lbl_8045D6C0:
-	li       r6, -1
-	li       r5, 0
-	li       r0, 1
-	stw      r3, 8(r1)
-	lwz      r3,
-"sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13) mr r4,
-r25 stw      r7, 0xc(r1) stw      r6, 0x10(r1) stw      r5, 0x14(r1) stb r0,
-0x18(r1) lwz      r12, 0(r3) lwz      r12, 0xc(r12) mtctr    r12 bctrl lwz r12,
-0x28(r25) mr       r27, r3 mr       r3, r25 mr       r4, r26 lwz      r12,
-0x3c(r12) mtctr    r12 bctrl mr       r5, r3 lwz      r3,
-msBasic__8JAIBasic@sda21(r13) mr       r4, r31 mr       r7, r30 mr       r8, r27
-	addi     r6, r1, 8
-	bl
-"startSoundActorT<8JAISound>__8JAIBasicFUlPP8JAISoundPQ27JAInter5ActorUlUc" mr
-r3, r25 mr       r4, r26 lwz      r12, 0x28(r25) lwz      r12, 0x3c(r12) mtctr
-r12 bctrl mr       r5, r3 mr       r3, r25 lwz      r12, 0x28(r25) mr       r4,
-r31 lwz      r5, 0(r5) lwz      r12, 0x38(r12) mtctr    r12 bctrl lwz      r3,
-0x1c(r28) rlwinm   r0, r26, 2, 0x16, 0x1d lwzx     r3, r3, r0 cmplwi   r3, 0 beq
-lbl_8045D78C li       r0, 1 stb      r0, 0x1a(r3) b        lbl_8045D78C
-
-lbl_8045D788:
-	li       r3, 0
-
-lbl_8045D78C:
-	lmw      r25, 0x34(r1)
-	lwz      r0, 0x54(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
 }
 
 /**
@@ -479,7 +261,7 @@ JAISound* CreatureObj::startSound(u32 soundID, u32 a2)
  */
 void CreatureObj::startSound(u8 id, u32 soundID, u32 a3)
 {
-	u8 players = PSSystem::SingletonBase<ObjCalcBase>::sInstance->getPlayerNo(this);
+	u8 players = PSMGetPlayerNo(this);
 	JAIBasic::msBasic->startSoundVecT(soundID, &mSounds[id], _24, a3, 0, players);
 }
 
@@ -491,7 +273,7 @@ void CreatureObj::startSound(JAISound** se, u32 soundID, u32 a3)
 {
 	JUT_PANICLINE(395, "使用禁止再生関数"); // "Disabled playback functions"
 
-	JAIBasic::msBasic->startSoundVecT(soundID, se, _24, a3, 0, PSSystem::SingletonBase<ObjCalcBase>::sInstance->getPlayerNo(this));
+	JAIBasic::msBasic->startSoundVecT(soundID, se, _24, a3, 0, PSMGetPlayerNo(this));
 }
 
 /**
@@ -530,7 +312,7 @@ void CreatureAnime::startAnimSound(u32 soundID, JAISound** se, JAInter::Actor* a
 	if (static_cast<SceneBase*>(PSMGetSceneMgrCheck()->getEndScene())->getSeSceneGate(this, soundID)) {
 		actor->mObj = this;
 
-		u8 players = PSSystem::SingletonBase<ObjCalcBase>::sInstance->getPlayerNo(this);
+		u8 players = PSMGetPlayerNo(this);
 		JAIAnimeSound::startAnimSound(soundID, se, actor, players);
 		P2ASSERTLINE(441, se);
 		onPlayingSe(soundID, *se);
@@ -555,8 +337,7 @@ void CreatureAnime::startSound(u8 id, u32 soundID, u32 a3)
 {
 	JUT_PANICLINE(466, "使用禁止再生関数"); // "Disabled playback functions"
 
-	JAIBasic::msBasic->startSoundVecT(soundID, &mSounds[id], _24, a3, 0,
-	                                  PSSystem::SingletonBase<ObjCalcBase>::sInstance->getPlayerNo(this));
+	JAIBasic::msBasic->startSoundVecT(soundID, &mSounds[id], _24, a3, 0, PSMGetPlayerNo(this));
 }
 
 /**
@@ -567,7 +348,7 @@ void CreatureAnime::startSound(JAISound** se, u32 soundID, u32 a3)
 {
 	JUT_PANICLINE(482, "使用禁止再生関数"); // "Disabled playback functions"
 
-	JAIBasic::msBasic->startSoundVecT(soundID, se, _24, a3, 0, PSSystem::SingletonBase<ObjCalcBase>::sInstance->getPlayerNo(this));
+	JAIBasic::msBasic->startSoundVecT(soundID, se, _24, a3, 0, PSMGetPlayerNo(this));
 }
 
 /**
@@ -594,8 +375,8 @@ void CreatureAnime::playActorAnimSound(JAInter::Actor* actor, f32 pitchmod, u8 a
 	JAIAnimeFrameSoundData* data;
 	u8 i = 0;
 	JUT_ASSERTLINE(549, mAnimID < mSoundData->mEntryNum, "JAIAnimeSound::playActorAnimSound  dataCounterが異常です。\n");
-	data    = &mSoundData->mSndEntries[mAnimID];
-	u32 max = mHandleCount;
+	data   = &mSoundData->mSndEntries[mAnimID];
+	u8 max = mHandleCount;
 	while (i < max) {
 		u8* handle = mSoundStatus;
 		if (handle[i]) {
@@ -650,235 +431,6 @@ void CreatureAnime::playActorAnimSound(JAInter::Actor* actor, f32 pitchmod, u8 a
 		}
 	}
 	mAnimID += mSoundFlags;
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stfd     f31, 0x40(r1)
-	psq_st   f31, 72(r1), 0, qr0
-	stmw     r24, 0x20(r1)
-	mr       r26, r3
-	fmr      f31, f1
-	lwz      r3, 0xa8(r3)
-	mr       r27, r4
-	lwz      r4, 0x98(r26)
-	mr       r28, r5
-	lhz      r0, 0(r3)
-	li       r30, 0
-	cmplw    r4, r0
-	blt      lbl_8045DE7C
-	lis      r3, lbl_8049CFA0@ha
-	lis      r5, lbl_8049CFFC@ha
-	addi     r3, r3, lbl_8049CFA0@l
-	li       r4, 0x225
-	addi     r5, r5, lbl_8049CFFC@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8045DE7C:
-	lwz      r0, 0x98(r26)
-	lwz      r5, 0xa8(r26)
-	slwi     r4, r0, 5
-	lbz      r3, 0x49(r26)
-	addi     r31, r4, 8
-	add      r31, r5, r31
-	b        lbl_8045DF88
-
-lbl_8045DE98:
-	lwz      r6, 0x70(r26)
-	clrlwi   r5, r30, 0x18
-	lbzx     r0, r6, r5
-	cmplwi   r0, 0
-	beq      lbl_8045DEF4
-	lwz      r4, 0x4c(r26)
-	slwi     r0, r5, 2
-	lwzx     r5, r4, r0
-	cmplwi   r5, 0
-	beq      lbl_8045DF94
-	lwz      r4, 0(r31)
-	lwz      r0, 0x20(r5)
-	cmplw    r4, r0
-	beq      lbl_8045DED8
-	addi     r30, r30, 1
-	b        lbl_8045DF88
-
-lbl_8045DED8:
-	rlwinm.  r0, r4, 0, 0x14, 0x15
-	bne      lbl_8045DF94
-	lwz      r3, 0x98(r26)
-	lwz      r0, 0x8c(r26)
-	add      r0, r3, r0
-	stw      r0, 0x98(r26)
-	b        lbl_8045E108
-
-lbl_8045DEF4:
-	li       r0, 1
-	lwz      r4, 0x50(r26)
-	slw      r0, r0, r5
-	and.     r0, r4, r0
-	beq      lbl_8045DF10
-	addi     r30, r30, 1
-	b        lbl_8045DF88
-
-lbl_8045DF10:
-	lwz      r7, 0x4c(r26)
-	slwi     r0, r5, 2
-	lwzx     r0, r7, r0
-	cmplwi   r0, 0
-	beq      lbl_8045DF94
-	addi     r0, r3, -1
-	cmpw     r5, r0
-	bne      lbl_8045DF84
-	li       r5, 0
-	li       r8, 0
-	li       r9, 0
-	b        lbl_8045DF70
-
-lbl_8045DF40:
-	clrlwi   r4, r9, 0x18
-	lbzx     r0, r6, r4
-	cmplwi   r0, 0
-	bne      lbl_8045DF6C
-	slwi     r0, r4, 2
-	lwzx     r4, r7, r0
-	lwz      r0, 0x2c(r4)
-	cmplw    r5, r0
-	bge      lbl_8045DF6C
-	mr       r5, r0
-	mr       r8, r9
-
-lbl_8045DF6C:
-	addi     r9, r9, 1
-
-lbl_8045DF70:
-	clrlwi   r0, r9, 0x18
-	cmplw    r0, r3
-	blt      lbl_8045DF40
-	mr       r30, r8
-	b        lbl_8045DF94
-
-lbl_8045DF84:
-	addi     r30, r30, 1
-
-lbl_8045DF88:
-	clrlwi   r0, r30, 0x18
-	cmplw    r0, r3
-	blt      lbl_8045DE98
-
-lbl_8045DF94:
-	clrlwi   r0, r30, 0x18
-	cmplw    r0, r3
-	beq      lbl_8045E0F8
-	lwz      r4, 0x10(r31)
-	rlwinm.  r0, r4, 0, 0x1c, 0x1c
-	beq      lbl_8045DFBC
-	lwz      r3, 0x9c(r26)
-	lbz      r0, 0x16(r31)
-	cmplw    r3, r0
-	bne      lbl_8045E0F8
-
-lbl_8045DFBC:
-	lwz      r3, 0x8c(r26)
-	cmplwi   r3, 1
-	bne      lbl_8045DFD0
-	rlwinm.  r0, r4, 0, 0x1e, 0x1e
-	beq      lbl_8045DFE4
-
-lbl_8045DFD0:
-	addis    r0, r3, 1
-	cmplwi   r0, 0xffff
-	bne      lbl_8045E0F8
-	clrlwi.  r0, r4, 0x1f
-	bne      lbl_8045E0F8
-
-lbl_8045DFE4:
-	lwz      r0, 0x4c(r26)
-	rlwinm   r25, r30, 2, 0x16, 0x1d
-	clrlwi   r24, r30, 0x18
-	add      r29, r0, r25
-	lwz      r0, 0(r29)
-	cmplwi   r0, 0
-	beq      lbl_8045E01C
-	addi     r3, r26, 0x30
-	mr       r4, r30
-	lwz      r12, 0x30(r26)
-	li       r5, 0
-	lwz      r12, 0x34(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8045E01C:
-	mr       r3, r26
-	mr       r5, r29
-	lwz      r12, 0x28(r26)
-	mr       r6, r27
-	mr       r7, r28
-	lwz      r4, 0(r31)
-	lwz      r12, 0x94(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0(r29)
-	cmplwi   r0, 0
-	beq      lbl_8045E0F8
-	lwz      r3, 0x74(r26)
-	lis      r0, 0x4330
-	li       r6, 1
-	stw      r0, 8(r1)
-	lfd      f2, lbl_80520C68@sda21(r2)
-	li       r4, 0
-	stwx     r31, r3, r25
-	li       r5, 5
-	lfs      f0, lbl_80520C58@sda21(r2)
-	lwz      r3, 0x70(r26)
-	stbx     r6, r3, r24
-	lbz      r0, 0x14(r31)
-	lwz      r3, 0(r29)
-	stw      r0, 0xc(r1)
-	lwz      r12, 0x10(r3)
-	lfd      f1, 8(r1)
-	lwz      r12, 0x1c(r12)
-	fsubs    f1, f1, f2
-	fdivs    f1, f1, f0
-	mtctr    r12
-	bctrl
-	lbz      r3, 0x15(r31)
-	lis      r0, 0x4330
-	lfs      f0, lbl_80520C5C@sda21(r2)
-	li       r4, 0
-	extsb    r5, r3
-	lwz      r3, 0(r29)
-	xoris    r5, r5, 0x8000
-	stw      r0, 0x10(r1)
-	lwz      r12, 0x10(r3)
-	fsubs    f2, f31, f0
-	stw      r5, 0x14(r1)
-	li       r5, 5
-	lfd      f3, lbl_80520C70@sda21(r2)
-	lfd      f0, 0x10(r1)
-	lfs      f1, lbl_80520C60@sda21(r2)
-	fsubs    f3, f0, f3
-	lfs      f0, 0xc(r31)
-	lwz      r12, 0x2c(r12)
-	fmuls    f2, f3, f2
-	fmadds   f1, f2, f1, f0
-	mtctr    r12
-	bctrl
-
-lbl_8045E0F8:
-	lwz      r3, 0x98(r26)
-	lwz      r0, 0x8c(r26)
-	add      r0, r3, r0
-	stw      r0, 0x98(r26)
-
-lbl_8045E108:
-	psq_l    f31, 72(r1), 0, qr0
-	lfd      f31, 0x40(r1)
-	lmw      r24, 0x20(r1)
-	lwz      r0, 0x54(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
 }
 
 /**
@@ -906,56 +458,9 @@ void CreatureAnime::exec()
 void CreatureAnime::onCalcOn()
 {
 	JAInter::Actor actor(this, _24);
+	ObjCalcBase* objCalc = PSSystem::SingletonBase<ObjCalcBase>::sInstance;
 
-	setAnimSoundActor(&actor, mGameObj->getSound_CurrAnimFrame(), mGameObj->getSound_CurrAnimSpeed(),
-	                  PSSystem::SingletonBase<ObjCalcBase>::sInstance->getPlayerNo(this));
-
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stfd     f31, 0x28(r1)
-	stw      r31, 0x24(r1)
-	stw      r30, 0x20(r1)
-	or.      r30, r3, r3
-	lwz      r7, 0x54(r3)
-	bne      lbl_8045E204
-	mr       r4, r7
-	b        lbl_8045E208
-
-lbl_8045E204:
-	mr       r4, r30
-
-lbl_8045E208:
-	li       r6, -1
-	li       r5, 0
-	li       r0, 1
-	stw      r4, 8(r1)
-	lwz      r3,
-"sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13) mr r4,
-r30 stw      r7, 0xc(r1) stw      r6, 0x10(r1) stw      r5, 0x14(r1) stb r0,
-0x18(r1) lwz      r12, 0(r3) lwz      r12, 0xc(r12) mtctr    r12 bctrl mr r31,
-r3 lwz      r3, 0x2c(r30) lwz      r12, 0(r3) lwz      r12, 0x10c(r12) mtctr r12
-	bctrl
-	lwz      r3, 0x2c(r30)
-	fmr      f31, f1
-	lwz      r12, 0(r3)
-	lwz      r12, 0x108(r12)
-	mtctr    r12
-	bctrl
-	fmr      f2, f31
-	mr       r5, r31
-	addi     r3, r30, 0x30
-	addi     r4, r1, 8
-	bl       setAnimSoundActor__13JAIAnimeSoundFPQ27JAInter5ActorffUc
-	lwz      r0, 0x34(r1)
-	lfd      f31, 0x28(r1)
-	lwz      r31, 0x24(r1)
-	lwz      r30, 0x20(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	setAnimSoundActor(&actor, mGameObj->getSound_CurrAnimFrame(), mGameObj->getSound_CurrAnimSpeed(), objCalc->getPlayerNo(this));
 }
 
 /**
@@ -1141,7 +646,7 @@ void EnemyBase::updateBattle()
 		Game::EnemyBase* obj = static_cast<Game::EnemyBase*>(mGameObj);
 		if (obj->mSfxEmotion == 2 && !BattleLink::mList) {
 			battleOn();
-		} else if (obj->mSfxEmotion != 2 && BattleLink::mList) {
+		} else if (static_cast<const Game::EnemyBase*>(obj)->mSfxEmotion != 2 && BattleLink::mList) {
 			battleOff();
 		}
 	} else {
@@ -1149,64 +654,6 @@ void EnemyBase::updateBattle()
 			battleOff();
 		}
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 0x2c(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8045EB6C
-	lwz      r3, 0x2c(r31)
-	lbz      r0, 0x1f0(r3)
-	cmplwi   r0, 2
-	bne      lbl_8045EB3C
-	lwz      r0, 0xbc(r31)
-	cmplwi   r0, 0
-	bne      lbl_8045EB3C
-	addi     r3, r31, 0xb8
-	lwz      r12, 0xc8(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8045EB8C
-
-lbl_8045EB3C:
-	lbz      r0, 0x1f0(r3)
-	cmplwi   r0, 2
-	beq      lbl_8045EB8C
-	lwz      r0, 0xbc(r31)
-	cmplwi   r0, 0
-	beq      lbl_8045EB8C
-	mr       r3, r31
-	lwz      r12, 0x28(r31)
-	lwz      r12, 0xc4(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8045EB8C
-
-lbl_8045EB6C:
-	lwz      r0, 0xbc(r31)
-	cmplwi   r0, 0
-	beq      lbl_8045EB8C
-	mr       r3, r31
-	lwz      r12, 0x28(r31)
-	lwz      r12, 0xc4(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8045EB8C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /**
@@ -1916,6 +1363,19 @@ void WorkItem::eventFinish()
 }
 
 /**
+ * @note Address: N/A
+ * @note Size: 0x184
+ */
+Otakara::Otakara(Game::Creature* gameObj)
+    : EventBase(gameObj, 2)
+    , mBedamaType(PSMBedama_None)
+    , mOnyon(nullptr)
+    , mEventLink(gameObj)
+    , mOtaEvent(nullptr)
+{
+}
+
+/**
  * @note Address: 0x80461850
  * @note Size: 0x1A0
  */
@@ -2012,11 +1472,6 @@ void Otakara::otakaraEventFinish()
 		mEventLink.eventFinish();
 	}
 	mOtaEvent->eventFinish();
-}
-
-// this is here for now, since putting it in a header causes the sym on ordering to go weird and wrong
-inline Otakara::~Otakara()
-{
 }
 
 /**

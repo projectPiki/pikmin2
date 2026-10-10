@@ -476,8 +476,9 @@ void StateAttack::exec(EnemyBase* enemy)
 			switch (enemy->mCurAnim->mType) {
 			case KEYEVENT_2:
 				int attackCheck = 0;
-				attackCheck += EnemyFunc::attackNavi(enemy, CG_GENERALPARMS(enemy).mAttackRadius(), CG_GENERALPARMS(enemy).mAttackHitAngle(),
-				                                     CG_GENERALPARMS(enemy).mAttackDamage(), nullptr, nullptr);
+				attackCheck
+				    += EnemyFunc::attackNavi(enemy, CG_GENERALPARMS(enemy).mAttackRadius(), CG_GENERALPARMS(enemy).mAttackHitAngle(),
+				                             CG_GENERALPARMS(enemy).mAttackDamage(), nullptr, nullptr);
 				attackCheck += OBJ(enemy)->eatAttackPikmin();
 				if (attackCheck == 0) {
 					enemy->startMotion(CHAPPYANIM_WaitAct2, nullptr);
@@ -680,7 +681,8 @@ void StateTurnToHome::exec(EnemyBase* enemy)
 			if (target) {
 				enemy->mTargetCreature = target;
 
-				if (enemy->isTargetAttackable(enemy->mTargetCreature, CG_GENERALPARMS(enemy).mMaxAttackRange(), CG_GENERALPARMS(enemy).mMaxAttackAngle())) {
+				if (enemy->isTargetAttackable(enemy->mTargetCreature, CG_GENERALPARMS(enemy).mMaxAttackRange(),
+				                              CG_GENERALPARMS(enemy).mMaxAttackAngle())) {
 					enemy->finishMotion();
 					OBJ(enemy)->setAnimationSpeed(60.0f);
 					mNextState = CHAPPY_Attack;
@@ -762,7 +764,8 @@ void StateGoHome::exec(EnemyBase* enemy)
 		if (target) {
 			enemy->mTargetCreature = target;
 
-			if (enemy->isTargetAttackable(enemy->mTargetCreature, CG_GENERALPARMS(enemy).mMaxAttackRange(), CG_GENERALPARMS(enemy).mMaxAttackAngle())) {
+			if (enemy->isTargetAttackable(enemy->mTargetCreature, CG_GENERALPARMS(enemy).mMaxAttackRange(),
+			                              CG_GENERALPARMS(enemy).mMaxAttackAngle())) {
 				enemy->finishMotion();
 				enemy->mTargetVelocity = Vector3f(0.0f);
 				OBJ(enemy)->setAnimationSpeed(60.0f);

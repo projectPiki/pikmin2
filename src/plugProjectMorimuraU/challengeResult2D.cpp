@@ -79,6 +79,19 @@ void TChallengeResultScreen::updateBckPane()
 }
 
 /**
+ * @note Address: N/A
+ * @note Size: 0x50
+ */
+TChallengeResultDemoScreen::TChallengeResultDemoScreen(JKRArchive* arc, int anims)
+    : TScreenBase(arc, anims)
+{
+	mAnimPane1 = nullptr;
+	mAnimPane2 = nullptr;
+	mAnimPane3 = nullptr;
+	mIsActive  = false;
+}
+
+/**
  * @note Address: 0x803934D4
  * @note Size: 0xF8
  */
@@ -134,7 +147,10 @@ void TChallengeResultDemoScreen::draw(Graphics& gfx, J2DPerspGraph* graf)
  */
 void TChallengeResultDemoScreen::startDemo()
 {
-	setComplete(false);
+	mIsActive = true;
+	for (int i = 0; i < mAnimScreenCountMax; i++) {
+		mAnimScreens[i]->mCurrentFrame = 0.0f;
+	}
 }
 
 /**
@@ -145,15 +161,15 @@ void TChallengeResultDemoScreen::setComplete(bool isComplete)
 {
 	mIsActive                   = false;
 	TChallengeResult::mComplete = isComplete;
-	const u64 tags[3]           = { 'Tribon00', 'Tribon01', 'Tribon02' };
+	u64 msgID                   = '4871_00'; // "Complete!"
+	if (isComplete) {
+		msgID = '4872_00'; // "Perfect!"
+	}
+	const u64 tags[3] = { 'Tribon00', 'Tribon01', 'Tribon02' };
 	for (int i = 0; i < 3; i++) {
 		J2DPane* pane = mScreenObj->search(tags[i]);
 		P2ASSERTLINE(224, pane);
-		if (isComplete) {
-			pane->setMsgID('4872_00'); // "Perfect!"
-		} else {
-			pane->setMsgID('4871_00'); // "Complete!"
-		}
+		pane->setMsgID(msgID);
 	}
 }
 
@@ -171,6 +187,21 @@ void TChallengeResultDemoScreen::reset()
 }
 
 /**
+ * @note Address: N/A
+ * @note Size: 0x28
+ */
+TMovePane::TMovePane()
+{
+	mPane      = nullptr;
+	mStickPane = nullptr;
+	mAngle     = 0.0f;
+	mState     = 0;
+	mCounter   = 0;
+	_44        = 0;
+	_48        = 0;
+}
+
+/**
  * @note Address: 0x803936DC
  * @note Size: 0x7C
  */
@@ -179,7 +210,7 @@ void TMovePane::setPane(J2DPane* pane)
 	P2ASSERTLINE(271, pane);
 	mPane = pane;
 	mPane->setBasePosition(J2DPOS_Center);
-	mPanePosition = JGeometry::TVec2f(pane->mOffset);
+	mPanePosition = JGeometry::TVec2f(pane->mTranslateX, pane->mTranslateY);
 	reset();
 }
 
@@ -430,7 +461,7 @@ void TMovePane::stick()
  */
 void TMovePane::forceTurn()
 {
-	// UNUSED FUNCTION
+	mAngle = roundAng(mAngle + getAngDist());
 }
 
 /**
@@ -578,8 +609,7 @@ void TCounterRV::fadeKiraEffect()
  */
 void TCounterRV::startScaleAnim()
 {
-	mEnabled = false;
-	// UNUSED FUNCTION
+	mEnabled = true;
 }
 
 /**
@@ -592,6 +622,23 @@ void TCounterRV::reset()
 	_B1      = false;
 	setPuyoAnim(false);
 	fadeKiraEffect();
+}
+
+/**
+ * @note Address: N/A
+ * @note Size: 0x60
+ */
+TChallengeResultCounter::TChallengeResultCounter(u32* val, int a1, int a2)
+{
+	mDisplayValue = val;
+	mCurrentValue = *val;
+	mState        = 0;
+	_0C           = 0;
+	_1C           = 0;
+	_20           = 0;
+	_14           = a1;
+	_18           = a2;
+	_24           = new int[a1];
 }
 
 /**
@@ -612,21 +659,21 @@ void TChallengeResultCounter::start()
 		_24[i] = 0;
 	}
 
+	int value;
 	int digits = 1;
-	for (int i = *mDisplayValue; i >= 10; i) {
+	for (value = *mDisplayValue; value >= 10; value /= 10) {
 		digits++;
-		i /= 10;
 	}
 	mDigits = digits;
 
-	int test = *mDisplayValue;
-	for (; digits > 1; digits--) {
-		int calc  = (int)pow(10.0f, f64(digits - 1));
-		int test2 = test / calc;
-		test -= test2 * calc;
-		_24[digits - 1] = test2;
+	value = *mDisplayValue;
+	for (int i = digits; i > 1; i--) {
+		int calc  = (int)pow(10.0f, f64(i - 1));
+		int test2 = value / calc;
+		value -= test2 * calc;
+		_24[i - 1] = test2;
 	}
-	_24[0] = test;
+	_24[0] = value;
 	// UNUSED FUNCTION
 }
 
@@ -643,9 +690,17 @@ void TChallengeResultCounter::stop()
  * @note Address: N/A
  * @note Size: 0x70
  */
-void TChallengeResultCounter::getFillRate()
+f32 TChallengeResultCounter::getFillRate()
 {
-	// UNUSED FUNCTION
+	f32 rate = (f32)mDigits / (f32)_18;
+	if (mDigits == 1) {
+		rate += 0.05f;
+	}
+	rate += 0.1f;
+	if (rate > 1.0f) {
+		rate = 1.0f;
+	}
+	return rate;
 }
 
 /**
@@ -724,7 +779,8 @@ void TClearTexture::getPosition(Vector2f& pos)
  */
 void TClearTexture::getEffectPosition(Vector2f& pos)
 {
-	pos.set(mPane1->getGlbVtx(GLBVTX_BtmLeft).x + mPane1->getWidth() / 2, mPane1->getGlbVtx(GLBVTX_BtmLeft).y + mPane1->getHeight() / 2);
+	pos.set(mPane1->getGlbVtx(GLBVTX_BtmLeft).x + mPane1->getWidth() * 0.5f,
+	        mPane1->getGlbVtx(GLBVTX_BtmLeft).y + mPane1->getHeight() * 0.5f);
 }
 
 /**
@@ -845,9 +901,10 @@ TChallengeResult::~TChallengeResult()
  * @note Address: N/A
  * @note Size: 0x44
  */
-void TChallengeResult::setDebugHeapParent(JKRHeap*)
+void TChallengeResult::setDebugHeapParent(JKRHeap* heap)
 {
-	// UNUSED FUNCTION
+	mDebugHeapParent = heap;
+	P2ASSERTLINE(784, mDebugHeapParent); // line number is a guess
 }
 
 /**
@@ -1097,8 +1154,8 @@ void TChallengeResult::doCreate(JKRArchive* arc)
 	for (int i = 0; i < 3; i++) {
 		J2DPane* pane = mCounters1[i]->getMotherPane();
 		P2ASSERTLINE(1263, pane);
-		mPosList1[i].x = pane->mOffset.x;
-		mPosList1[i].y = pane->mOffset.y;
+		mPosList1[i].x = pane->mTranslateX;
+		mPosList1[i].y = pane->mTranslateY;
 	}
 
 	mPaneAButton = screen->search('Nabtn');
@@ -1512,8 +1569,8 @@ void TChallengeResult::updateDemo()
 
 		bool check = true;
 		for (int i = 0; i < 3; i++) {
-			int id1 = mOnyonMovePane[i]->_48;
-			int id2 = mOnyonMovePane[i]->mState;
+			int id1 = mOnyonMovePane[i]->getID();
+			int id2 = mOnyonMovePane[i]->getState();
 			{
 				// yes this really cant be a macro since the order of checks is inverted for some reason
 				// unless you want to add a whole new macro for this alone of course :)
@@ -1527,17 +1584,9 @@ void TChallengeResult::updateDemo()
 				if (mOnyonMovePane[i]->mCounter > 0) {
 					if (id2 == 0) {
 						mOnyonMovePane[i]->mState = 2;
-						id2                       = mResultCounters[id1]->mDigits;
 						f32 x                     = mVecUnit[id1]._00.x;
 						f32 xSpan                 = x - mVecUnit[id1]._08.x;
-						f32 y                     = (f32)id2 / (f32)mResultCounters[id1]->_18;
-						if (id2 == 1) {
-							y += 0.05f;
-						}
-						y += 0.1f;
-						if (y > 1.0f) {
-							y = 1.0f;
-						}
+						f32 y                     = mResultCounters[id1]->getFillRate();
 						mOnyonMovePane[i]->mOffset.set(-(xSpan * y - x), mVecUnit[id1]._08.y);
 						mOnyonMovePane[i]->mCounter = 1;
 					} else if (id2 == 2) {
@@ -1594,17 +1643,9 @@ void TChallengeResult::updateDemo()
 					mOnyonMovePane[id]->mState   = 1;
 					mOnyonMovePane[id]->mCounter = 1;
 
-					int id2   = mResultCounters[3]->mDigits;
 					f32 x     = mVecUnit[3]._00.x;
 					f32 xSpan = x - mVecUnit[3]._08.x;
-					f32 y     = (f32)id2 / (f32)mResultCounters[3]->_18;
-					if (id2 == 1) {
-						y += 0.05f;
-					}
-					y += 0.1f;
-					if (y > 1.0f) {
-						y = 1.0f;
-					}
+					f32 y     = mResultCounters[3]->getFillRate();
 					mOnyonMovePane[cRandArray[test * 3 + 1]]->mOffset.set(-(xSpan * y - x), mVecUnit[3]._08.y);
 					mOnyonMovePane[cRandArray[test * 3 + 1]]->mState   = 1;
 					mOnyonMovePane[cRandArray[test * 3 + 1]]->mCounter = 1;
@@ -1626,25 +1667,30 @@ void TChallengeResult::updateDemo()
 				check = false;
 			}
 		}
+		bool panesReady = check;
 		if (check) {
 			for (int i = 0; i < 3; i++) {
 				if (mOnyonMovePane[i]->mCounter) {
 					int state = mOnyonMovePane[i]->mState;
 					if (state == 0) {
 						mOnyonMovePane[i]->mState = 2;
-						mOnyonMovePane[i]->mOffset.set(mVecUnit[3]._00.x + 300.0f, mVecUnit[3]._00.y);
+						Vector2f goal             = mVecUnit[3]._00;
+						goal.x += 300.0f;
+						mOnyonMovePane[i]->mOffset = goal;
 					}
 					// what even man (this is never going to be true, surely a typo?)
 					if ((state == 0) == 2 || FABS(mOnyonMovePane[i]->getAngDist()) > 0.01f) {
-						check = false;
+						panesReady = false;
 					}
 				}
 			}
 		}
-		if (check) {
+		if (panesReady) {
 			for (int i = 0; i < 3; i++) {
-				if (mOnyonMovePane[i]->mCounter > 0)
-					mOnyonMovePane[i]->startStick(mCounter2->mCounterDigits[0]->mPicture);
+				if (mOnyonMovePane[i]->mCounter > 0) {
+					J2DPicture* pic = mCounter2->getKetaPicture(0);
+					mOnyonMovePane[i]->startStick(pic);
+				}
 			}
 			PSSystem::spSysIF->playSystemSe(PSSE_SY_CHALLENGE_ONY_MOVE, 0);
 			mDemoState = 3;
@@ -1658,10 +1704,9 @@ void TChallengeResult::updateDemo()
 			int id   = 0;
 			for (int i = 0; i < 3; i++) {
 				if (mOnyonMovePane[i]->mCounter > 0) {
-					f32 test2 = mOnyonMovePane[i]->mPaneGoal.x;
-					if (test < test2) {
+					if (test < mOnyonMovePane[i]->mPaneGoal.x) {
 						id   = i;
-						test = test2;
+						test = mOnyonMovePane[i]->mPaneGoal.x;
 					}
 				}
 			}
@@ -1669,24 +1714,16 @@ void TChallengeResult::updateDemo()
 				if (mOnyonMovePane[i]->mCounter > 0) {
 					P2ASSERTLINE(1977, mRankInSlot >= 0);
 
-					J2DPicture* pic = mHighScoreCounter[mRankInSlot]->mCounterDigits[0]->mPicture;
+					J2DPicture* pic = mHighScoreCounter[mRankInSlot]->getKetaPicture(0);
 
 					TMovePane* mpane = mOnyonMovePane[i];
 					f32 x            = _168._00.y + pic->mGlobalMtx[1][3];
 					mpane->mOffset.set(pic->mGlobalMtx[0][3] - 1000.0f, x);
-					mpane->mAngle = roundAng(mpane->mAngle + mOnyonMovePane[i]->getAngDist());
+					mOnyonMovePane[i]->forceTurn();
 					if (i == id) {
 						mOnyonMovePane[i]->mPaneGoal.set(_168._00.x + pic->mGlobalMtx[0][3], x);
 					} else {
-						int id2 = mResultCounters[3]->mDigits;
-						f32 y   = (f32)id2 / (f32)mResultCounters[3]->_18;
-						if (id2 == 1) {
-							y += 0.05f;
-						}
-						y += 0.1f;
-						if (y > 1.0f) {
-							y = 1.0f;
-						}
+						f32 y = mResultCounters[3]->getFillRate();
 						mOnyonMovePane[i]->mPaneGoal.set(_168._08.x * y + pic->mGlobalMtx[0][3], x);
 					}
 					mOnyonMovePane[i]->startStick(pic);
@@ -1724,19 +1761,17 @@ void TChallengeResult::updateDemo()
 					efx2d::Arg arg(pos);
 					efx2d::T2DChangesmoke efx;
 					efx.create(&arg);
-					TClearTexture* tex = mClearTexture[3];
-					if (tex->_00 == 0) {
+					if (mClearTexture[3]->_00 == 0) {
 						Vector2f test;
-						tex->getPosition(test);
+						mClearTexture[3]->getPosition(test);
 						mClearTexture[3]->_00      = 1;
 						mOnyonMovePane[i]->mOffset = test;
 						mOnyonMovePane[i]->_44     = 3;
 						mOnyonMovePane[i]->mState  = 1;
 					} else {
-						tex = mClearTexture[4];
-						if (tex->_00 == 0) {
+						if (mClearTexture[4]->_00 == 0) {
 							Vector2f test;
-							tex->getPosition(test);
+							mClearTexture[4]->getPosition(test);
 							mClearTexture[4]->_00      = 1;
 							mOnyonMovePane[i]->mOffset = test;
 							mOnyonMovePane[i]->_44     = 4;
@@ -1788,8 +1823,8 @@ void TChallengeResult::updateDemo()
 	}
 	case 6: {
 		if (mRankInSlot >= 0 && mResultScreen->isRandAnimStart()) {
-			mCounter1->mEnabled                      = true;
-			mHighScoreCounter[mRankInSlot]->mEnabled = true;
+			mCounter1->startScaleAnim();
+			mHighScoreCounter[mRankInSlot]->startScaleAnim();
 		}
 		break;
 	}
@@ -3137,8 +3172,8 @@ void TChallengeResult::changeAnimDemo()
 		mDemoState = 4;
 		if (mComplete) {
 			PSSystem::spSysIF->playSystemSe(PSSE_CHALLENGE_PERFECTCLEAR, 0);
-			u16 y = sys->getRenderModeObj()->efbHeight;
-			u16 x = sys->getRenderModeObj()->fbWidth;
+			u16 y = sys->getRenderModeHeight();
+			u16 x = sys->getRenderModeWidth();
 			efx2d::Arg arg(Vector2f(0.5f * (f32)x, 0.5f * (f32)y));
 			mEfxCompLoop->create(&arg);
 
@@ -3150,29 +3185,27 @@ void TChallengeResult::changeAnimDemo()
 		} else {
 			PSSystem::spSysIF->playSystemSe(PSSE_CHALLENGE_COURSECLEAR, 0);
 		}
-		mResultDemoScreen->reset2();
+		mResultDemoScreen->startDemo();
 		int test = randInt(6);
 		if (test >= 5) {
 			test = 5;
 		}
 		const int* data = &cRandArray[test * 3];
-		for (int i = 0; i < 3; i++, data++) {
+		for (int i = 0; i < 3; i++) {
 			Vector2f pos;
-			mClearTexture[*data]->getPosition(pos);
-			mClearTexture[*data]->_00 = 1;
+			mClearTexture[data[i]]->getPosition(pos);
+			mClearTexture[data[i]]->_00 = 1;
 
-			mOnyonMovePane[i]->_44    = *data;
-			TMovePane* pane           = mOnyonMovePane[i];
-			pane->mOffset.x           = pos.x;
-			pane->mOffset.y           = pos.y;
-			mOnyonMovePane[i]->mState = 1;
+			mOnyonMovePane[i]->_44     = data[i];
+			mOnyonMovePane[i]->mOffset = pos;
+			mOnyonMovePane[i]->mState  = 1;
 		}
 	} else {
 		if (mFlags[2]) {
 			if (mComplete) {
 				PSSystem::spSysIF->playSystemSe(PSSE_CHALLENGE_PERFECTCLEAR, 0);
-				u16 y = sys->getRenderModeObj()->efbHeight;
-				u16 x = sys->getRenderModeObj()->fbWidth;
+				u16 y = sys->getRenderModeHeight();
+				u16 x = sys->getRenderModeWidth();
 				efx2d::Arg arg(Vector2f(0.5f * (f32)x, 0.5f * (f32)y));
 				mEfxCompLoop->create(&arg);
 
@@ -3185,7 +3218,7 @@ void TChallengeResult::changeAnimDemo()
 			} else {
 				PSSystem::spSysIF->playSystemSe(PSSE_CHALLENGE_COURSECLEAR, 0);
 			}
-			mResultDemoScreen->reset2();
+			mResultDemoScreen->startDemo();
 		}
 		mDemoState = 6;
 
@@ -3193,370 +3226,6 @@ void TChallengeResult::changeAnimDemo()
 			mOnyonMovePane[i]->start();
 		}
 	}
-	/*
-	stwu     r1, -0xf0(r1)
-	mflr     r0
-	stw      r0, 0xf4(r1)
-	stfd     f31, 0xe0(r1)
-	psq_st   f31, 232(r1), 0, qr0
-	stmw     r26, 0xc8(r1)
-	mr       r29, r3
-	lbz      r0, 0x1c5(r3)
-	cmplwi   r0, 0
-	beq      lbl_80398EEC
-	li       r0, 4
-	stw      r0, 0x1c8(r29)
-	lbz      r0, mComplete__Q28Morimura16TChallengeResult@sda21(r13)
-	cmplwi   r0, 0
-	beq      lbl_80398D94
-	lwz      r3, spSysIF__8PSSystem@sda21(r13)
-	li       r4, 0x1835
-	li       r5, 0
-	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-	bl       getRenderModeObj__6SystemFv
-	lhz      r28, 6(r3)
-	bl       getRenderModeObj__6SystemFv
-	lhz      r4, 4(r3)
-	lis      r5, 0x4330
-	lis      r3, __vt__Q25efx2d3Arg@ha
-	stw      r5, 0xb8(r1)
-	addi     r0, r3, __vt__Q25efx2d3Arg@l
-	lfd      f2, lbl_8051F0E8@sda21(r2)
-	stw      r4, 0xbc(r1)
-	addi     r4, r1, 0x84
-	lfs      f3, lbl_8051F0B4@sda21(r2)
-	lfd      f0, 0xb8(r1)
-	stw      r28, 0xc4(r1)
-	fsubs    f1, f0, f2
-	stw      r5, 0xc0(r1)
-	lfd      f0, 0xc0(r1)
-	fmuls    f1, f3, f1
-	stw      r0, 0x8c(r1)
-	fsubs    f0, f0, f2
-	stfs     f1, 0x38(r1)
-	fmuls    f0, f3, f0
-	lwz      r0, 0x38(r1)
-	stw      r0, 0x40(r1)
-	stfs     f0, 0x3c(r1)
-	lfs      f0, 0x40(r1)
-	lwz      r0, 0x3c(r1)
-	stfs     f0, 0x84(r1)
-	stw      r0, 0x44(r1)
-	lfs      f0, 0x44(r1)
-	stfs     f0, 0x88(r1)
-	lwz      r3, 0x1a4(r29)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x80(r29)
-	lis      r3, 0x69626F6E@ha
-	addi     r6, r3, 0x69626F6E@l
-	li       r5, 0x4e72
-	lwz      r3, 8(r4)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	lfs      f1, lbl_8051F160@sda21(r2)
-	li       r8, 0
-	lfs      f0, lbl_8051F0AC@sda21(r2)
-	lis      r3, __vt__Q25efx2d7TBaseIF@ha
-	stfs     f1, 0x28(r1)
-	addi     r0, r3, __vt__Q25efx2d7TBaseIF@l
-	lis      r3, __vt__Q25efx2d5TBase@ha
-	lis      r4, __vt__Q25efx2d8TSimple2@ha
-	stfs     f0, 0x2c(r1)
-	lis      r5, __vt__Q25efx2d3Arg@ha
-	lwz      r6, 0x28(r1)
-	addi     r9, r3, __vt__Q25efx2d5TBase@l
-	stw      r0, 0xa4(r1)
-	lis      r3, __vt__Q25efx2d11T2DCavecomp@ha
-	lwz      r0, 0x2c(r1)
-	addi     r7, r4, __vt__Q25efx2d8TSimple2@l
-	stw      r6, 0x30(r1)
-	addi     r10, r5, __vt__Q25efx2d3Arg@l
-	li       r6, 0xa
-	li       r5, 0xb
-	stw      r0, 0x34(r1)
-	addi     r0, r3, __vt__Q25efx2d11T2DCavecomp@l
-	lfs      f1, 0x30(r1)
-	addi     r3, r1, 0xa4
-	stw      r9, 0xa4(r1)
-	addi     r4, r1, 0x78
-	lfs      f0, 0x34(r1)
-	stw      r7, 0xa4(r1)
-	stw      r10, 0x80(r1)
-	stfs     f1, 0x78(r1)
-	stfs     f0, 0x7c(r1)
-	stb      r8, 0xa8(r1)
-	stb      r8, 0xa9(r1)
-	sth      r6, 0xac(r1)
-	sth      r5, 0xae(r1)
-	stw      r8, 0xb0(r1)
-	stw      r8, 0xb4(r1)
-	stw      r0, 0xa4(r1)
-	bl       create__Q25efx2d8TSimple2FPQ25efx2d3Arg
-	b        lbl_80398DA4
-
-lbl_80398D94:
-	lwz      r3, spSysIF__8PSSystem@sda21(r13)
-	li       r4, 0x1834
-	li       r5, 0
-	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-
-lbl_80398DA4:
-	lwz      r5, 0x80(r29)
-	li       r0, 1
-	li       r4, 0
-	lfs      f0, lbl_8051F084@sda21(r2)
-	stb      r0, 0x24(r5)
-	mr       r6, r4
-	b        lbl_80398DD4
-
-lbl_80398DC0:
-	lwz      r3, 4(r5)
-	addi     r4, r4, 1
-	lwzx     r3, r3, r6
-	addi     r6, r6, 4
-	stfs     f0, 0x18(r3)
-
-lbl_80398DD4:
-	lwz      r0, 0x10(r5)
-	cmpw     r4, r0
-	blt      lbl_80398DC0
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0xc4(r1)
-	lfd      f3, lbl_8051F0D0@sda21(r2)
-	stw      r0, 0xc0(r1)
-	lfs      f1, lbl_8051F0E0@sda21(r2)
-	lfd      f2, 0xc0(r1)
-	lfs      f0, lbl_8051F134@sda21(r2)
-	fsubs    f2, f2, f3
-	fdivs    f1, f2, f1
-	fmuls    f0, f0, f1
-	fctiwz   f0, f0
-	stfd     f0, 0xb8(r1)
-	lwz      r0, 0xbc(r1)
-	cmpwi    r0, 5
-	blt      lbl_80398E28
-	li       r0, 5
-
-lbl_80398E28:
-	mulli    r4, r0, 0xc
-	lis      r3, cRandArray__8Morimura@ha
-	mr       r31, r29
-	addi     r0, r3, cRandArray__8Morimura@l
-	add      r27, r0, r4
-	li       r30, 0
-
-lbl_80398E40:
-	lwz      r0, 0(r27)
-	addi     r3, r1, 0x54
-	li       r5, 0
-	slwi     r4, r0, 2
-	addi     r0, r4, 0x18c
-	lwzx     r28, r29, r0
-	lwz      r26, 8(r28)
-	mr       r4, r26
-	bl       getGlbVtx__7J2DPaneCFUc
-	lfs      f1, 0x2c(r26)
-	addi     r3, r1, 0x48
-	lfs      f0, 0x24(r26)
-	li       r5, 0
-	lwz      r26, 8(r28)
-	fsubs    f0, f1, f0
-	lfs      f1, 0x58(r1)
-	mr       r4, r26
-	fadds    f31, f1, f0
-	bl       getGlbVtx__7J2DPaneCFUc
-	lwz      r4, 0(r27)
-	addi     r30, r30, 1
-	lfs      f2, 0x48(r1)
-	li       r5, 1
-	slwi     r3, r4, 2
-	lfs      f1, 0x28(r26)
-	addi     r0, r3, 0x18c
-	lfs      f0, 0x20(r26)
-	lwzx     r3, r29, r0
-	cmpwi    r30, 3
-	fsubs    f0, f1, f0
-	addi     r27, r27, 4
-	stb      r5, 0(r3)
-	lwz      r3, 0xd8(r31)
-	fadds    f0, f2, f0
-	stw      r4, 0x44(r3)
-	lwz      r3, 0xd8(r31)
-	stfs     f0, 8(r3)
-	stfs     f31, 0xc(r3)
-	lwz      r3, 0xd8(r31)
-	addi     r31, r31, 4
-	stw      r5, 0x3c(r3)
-	blt      lbl_80398E40
-	b        lbl_80399118
-
-lbl_80398EEC:
-	lbz      r0, 0x1c6(r29)
-	cmplwi   r0, 0
-	beq      lbl_803990B4
-	lbz      r0, mComplete__Q28Morimura16TChallengeResult@sda21(r13)
-	cmplwi   r0, 0
-	beq      lbl_80399068
-	lwz      r3, spSysIF__8PSSystem@sda21(r13)
-	li       r4, 0x1835
-	li       r5, 0
-	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-	bl       getRenderModeObj__6SystemFv
-	lhz      r28, 6(r3)
-	bl       getRenderModeObj__6SystemFv
-	lhz      r4, 4(r3)
-	lis      r5, 0x4330
-	lis      r3, __vt__Q25efx2d3Arg@ha
-	stw      r5, 0xc0(r1)
-	addi     r0, r3, __vt__Q25efx2d3Arg@l
-	lfd      f2, lbl_8051F0E8@sda21(r2)
-	stw      r4, 0xc4(r1)
-	addi     r4, r1, 0x6c
-	lfs      f3, lbl_8051F0B4@sda21(r2)
-	lfd      f0, 0xc0(r1)
-	stw      r28, 0xbc(r1)
-	fsubs    f1, f0, f2
-	stw      r5, 0xb8(r1)
-	lfd      f0, 0xb8(r1)
-	fmuls    f1, f3, f1
-	stw      r0, 0x74(r1)
-	fsubs    f0, f0, f2
-	stfs     f1, 0x18(r1)
-	fmuls    f0, f3, f0
-	lwz      r0, 0x18(r1)
-	stw      r0, 0x20(r1)
-	stfs     f0, 0x1c(r1)
-	lfs      f0, 0x20(r1)
-	lwz      r0, 0x1c(r1)
-	stfs     f0, 0x6c(r1)
-	stw      r0, 0x24(r1)
-	lfs      f0, 0x24(r1)
-	stfs     f0, 0x70(r1)
-	lwz      r3, 0x1a4(r29)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x80(r29)
-	lis      r3, 0x69626F6E@ha
-	addi     r6, r3, 0x69626F6E@l
-	li       r5, 0x4e72
-	lwz      r3, 8(r4)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	lfs      f1, lbl_8051F160@sda21(r2)
-	li       r8, 0
-	lfs      f0, lbl_8051F0AC@sda21(r2)
-	lis      r3, __vt__Q25efx2d7TBaseIF@ha
-	stfs     f1, 8(r1)
-	addi     r0, r3, __vt__Q25efx2d7TBaseIF@l
-	lis      r3, __vt__Q25efx2d5TBase@ha
-	lis      r4, __vt__Q25efx2d8TSimple2@ha
-	stfs     f0, 0xc(r1)
-	lis      r5, __vt__Q25efx2d3Arg@ha
-	lwz      r6, 8(r1)
-	addi     r9, r3, __vt__Q25efx2d5TBase@l
-	stw      r0, 0x90(r1)
-	lis      r3, __vt__Q25efx2d11T2DCavecomp@ha
-	lwz      r0, 0xc(r1)
-	addi     r7, r4, __vt__Q25efx2d8TSimple2@l
-	stw      r6, 0x10(r1)
-	addi     r10, r5, __vt__Q25efx2d3Arg@l
-	li       r6, 0xa
-	li       r5, 0xb
-	stw      r0, 0x14(r1)
-	addi     r0, r3, __vt__Q25efx2d11T2DCavecomp@l
-	lfs      f1, 0x10(r1)
-	addi     r3, r1, 0x90
-	stw      r9, 0x90(r1)
-	addi     r4, r1, 0x60
-	lfs      f0, 0x14(r1)
-	stw      r7, 0x90(r1)
-	stw      r10, 0x68(r1)
-	stfs     f1, 0x60(r1)
-	stfs     f0, 0x64(r1)
-	stb      r8, 0x94(r1)
-	stb      r8, 0x95(r1)
-	sth      r6, 0x98(r1)
-	sth      r5, 0x9a(r1)
-	stw      r8, 0x9c(r1)
-	stw      r8, 0xa0(r1)
-	stw      r0, 0x90(r1)
-	bl       create__Q25efx2d8TSimple2FPQ25efx2d3Arg
-	b        lbl_80399078
-
-lbl_80399068:
-	lwz      r3, spSysIF__8PSSystem@sda21(r13)
-	li       r4, 0x1834
-	li       r5, 0
-	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-
-lbl_80399078:
-	lwz      r5, 0x80(r29)
-	li       r0, 1
-	li       r4, 0
-	lfs      f0, lbl_8051F084@sda21(r2)
-	stb      r0, 0x24(r5)
-	mr       r6, r4
-	b        lbl_803990A8
-
-lbl_80399094:
-	lwz      r3, 4(r5)
-	addi     r4, r4, 1
-	lwzx     r3, r3, r6
-	addi     r6, r6, 4
-	stfs     f0, 0x18(r3)
-
-lbl_803990A8:
-	lwz      r0, 0x10(r5)
-	cmpw     r4, r0
-	blt      lbl_80399094
-
-lbl_803990B4:
-	li       r0, 6
-	li       r3, 1
-	stw      r0, 0x1c8(r29)
-	li       r0, 0
-	lwz      r4, 0xd8(r29)
-	stw      r3, 0x3c(r4)
-	lfs      f0, 0x10(r4)
-	stfs     f0, 8(r4)
-	lfs      f0, 0x14(r4)
-	stfs     f0, 0xc(r4)
-	stw      r0, 0x40(r4)
-	lwz      r4, 0xdc(r29)
-	stw      r3, 0x3c(r4)
-	lfs      f0, 0x10(r4)
-	stfs     f0, 8(r4)
-	lfs      f0, 0x14(r4)
-	stfs     f0, 0xc(r4)
-	stw      r0, 0x40(r4)
-	lwz      r4, 0xe0(r29)
-	stw      r3, 0x3c(r4)
-	lfs      f0, 0x10(r4)
-	stfs     f0, 8(r4)
-	lfs      f0, 0x14(r4)
-	stfs     f0, 0xc(r4)
-	stw      r0, 0x40(r4)
-
-lbl_80399118:
-	psq_l    f31, 232(r1), 0, qr0
-	lfd      f31, 0xe0(r1)
-	lmw      r26, 0xc8(r1)
-	lwz      r0, 0xf4(r1)
-	mtlr     r0
-	addi     r1, r1, 0xf0
-	blr
-	*/
 }
 
 /**
@@ -3597,121 +3266,6 @@ void TChallengeResult::startDemo()
 		}
 	}
 	mCounter = 0;
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stfd     f31, 0x40(r1)
-	psq_st   f31, 72(r1), 0, qr0
-	stmw     r24, 0x20(r1)
-	mr       r27, r3
-	lfs      f0, 0x1f0(r3)
-	stfs     f0, mDemoSpeedUpRate__Q28Morimura16TChallengeResult@sda21(r13)
-	lwz      r0, 0x1c8(r3)
-	cmpwi    r0, 0
-	bne      lbl_803994AC
-	li       r0, 1
-	mr       r29, r27
-	stw      r0, 0x1c8(r27)
-	li       r28, 0
-
-lbl_80399394:
-	lwz      r30, 0x17c(r29)
-	lwz      r0, 8(r30)
-	cmpwi    r0, 1
-	beq      lbl_8039949C
-	lwz      r3, 0(r30)
-	li       r4, 0
-	li       r0, 1
-	lwz      r3, 0(r3)
-	mr       r5, r4
-	mr       r6, r4
-	stw      r3, 4(r30)
-	stw      r4, 0xc(r30)
-	stw      r4, 0x20(r30)
-	stw      r4, 0x1c(r30)
-	stw      r0, 8(r30)
-	b        lbl_803993E4
-
-lbl_803993D4:
-	lwz      r3, 0x24(r30)
-	addi     r5, r5, 1
-	stwx     r4, r3, r6
-	addi     r6, r6, 4
-
-lbl_803993E4:
-	lwz      r0, 0x14(r30)
-	cmpw     r5, r0
-	blt      lbl_803993D4
-	lwz      r5, 0(r30)
-	lis      r3, 0x66666667@ha
-	addi     r4, r3, 0x66666667@l
-	li       r31, 1
-	lwz      r0, 0(r5)
-	b        lbl_8039941C
-
-lbl_80399408:
-	mulhw    r0, r4, r0
-	addi     r31, r31, 1
-	srawi    r0, r0, 2
-	srwi     r3, r0, 0x1f
-	add      r0, r0, r3
-
-lbl_8039941C:
-	cmpwi    r0, 0xa
-	bge      lbl_80399408
-	stw      r31, 0x10(r30)
-	slwi     r25, r31, 2
-	lfd      f31, lbl_8051F0D0@sda21(r2)
-	lis      r26, 0x4330
-	lwz      r3, 0(r30)
-	lwz      r24, 0(r3)
-	b        lbl_8039948C
-
-lbl_80399440:
-	addi     r0, r31, -1
-	stw      r26, 8(r1)
-	xoris    r0, r0, 0x8000
-	lfd      f1, lbl_8051F0D8@sda21(r2)
-	stw      r0, 0xc(r1)
-	lfd      f0, 8(r1)
-	fsub     f2, f0, f31
-	bl       pow
-	fctiwz   f0, f1
-	addi     r0, r25, -4
-	lwz      r3, 0x24(r30)
-	addi     r25, r25, -4
-	addi     r31, r31, -1
-	stfd     f0, 0x10(r1)
-	lwz      r4, 0x14(r1)
-	divw     r5, r24, r4
-	mullw    r4, r5, r4
-	stwx     r5, r3, r0
-	subf     r24, r4, r24
-
-lbl_8039948C:
-	cmpwi    r31, 1
-	bgt      lbl_80399440
-	lwz      r3, 0x24(r30)
-	stw      r24, 0(r3)
-
-lbl_8039949C:
-	addi     r28, r28, 1
-	addi     r29, r29, 4
-	cmpwi    r28, 4
-	blt      lbl_80399394
-
-lbl_803994AC:
-	li       r0, 0
-	stw      r0, 0x1d0(r27)
-	psq_l    f31, 72(r1), 0, qr0
-	lfd      f31, 0x40(r1)
-	lmw      r24, 0x20(r1)
-	lwz      r0, 0x54(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
 }
 
 /**

@@ -51,7 +51,7 @@ void LoadState::init(Game::VsGameSection* section, StateArg* args)
 	mIsGameStarting = 0;
 	mAutoStartTime  = 15.0f;
 
-	for (int i = 0; i < VS_YELLOW_MARLBE_NUM; i++) {
+	for (int i = 0; i < VS_YELLOW_MARBLE_NUM; i++) {
 		section->mMarbleYellow[i] = nullptr;
 	}
 }

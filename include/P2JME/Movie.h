@@ -55,7 +55,7 @@ struct AbtnPane : public P2DScreen::CallBackNode {
 };
 
 struct MessageWindowScreen : P2DScreen::Mgr_tuning {
-	MessageWindowScreen() { }
+	MessageWindowScreen();
 
 	virtual ~MessageWindowScreen() { } // _08 (weak)
 
@@ -81,12 +81,7 @@ struct PodIconScreen : P2DScreen::Mgr_tuning {
 
 	void reset();
 
-	void appear()
-	{
-		reset();
-		show();
-		mState = 0;
-	}
+	void appear();
 
 	void disappear();
 	void set(JKRArchive*);

@@ -188,13 +188,9 @@ void TScreenTitleMenu::setState(s32 state)
 
 	case STATE_Closing: {
 		if (mCancelled) {
-			u32 count        = 0.2f / sys->mDeltaTime;
-			mCloseCounter    = count;
-			mCloseCounterMax = count;
+			mCloseCounter.setValue(0.2f);
 		} else {
-			u32 count        = 1.0f / sys->mDeltaTime;
-			mCloseCounter    = count;
-			mCloseCounterMax = count;
+			mCloseCounter.setValue(1.0f);
 		}
 		break;
 	}
@@ -259,17 +255,9 @@ void TScreenTitleMenu::update()
 	}
 	case STATE_Closing: {
 		mScreen->update();
-		if (mCloseCounter) {
-			mCloseCounter--;
-		}
-		f32 alpha;
-		if (mCloseCounterMax) {
-			alpha = (f32)mCloseCounter / (f32)mCloseCounterMax;
-		} else {
-			alpha = 0.0f;
-		}
-		mScreen->setAlpha(alpha * 255.0f);
-		if (!mCloseCounter) {
+		mCloseCounter.update();
+		mScreen->setAlpha(mCloseCounter.getRatio() * 255.0f);
+		if (mCloseCounter.isZero()) {
 			setState(STATE_Inactive);
 		}
 		break;

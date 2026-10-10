@@ -29,7 +29,7 @@ struct Plane {
 
 	inline void updatePlane(const Vector3f& position, Vector3f newPoint)
 	{
-		mNormal = newPoint;
+		mNormal.set(newPoint);
 		mOffset = mNormal.dot(position);
 	}
 

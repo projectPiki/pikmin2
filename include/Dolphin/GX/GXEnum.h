@@ -149,7 +149,7 @@ typedef enum _GXAttr {
 #define GX_MAX_VTXARRAY 16
 
 // Type of vertex attribute reference.
-// NB: havent confirmed the GX docs match pikmin 2 here
+// NB: haven't confirmed the GX docs match pikmin 2 here
 typedef enum _GXAttrType {
 	GX_NONE    = 0, // No data to be sent.
 	GX_DIRECT  = 1, // Value sent is value of data.
@@ -158,7 +158,7 @@ typedef enum _GXAttrType {
 } GXAttrType;
 
 // Vertex format IDs.
-// NB: havent confirmed the GX docs match pikmin 2 here
+// NB: haven't confirmed the GX docs match pikmin 2 here
 typedef enum _GXVtxFmt {
 	GX_VTXFMT0 = 0, // Vertex attribute format ID 0.
 	GX_VTXFMT1 = 1, // Vertex attribute format ID 1.
@@ -173,7 +173,7 @@ typedef enum _GXVtxFmt {
 } GXVtxFmt;
 
 // Number of components in an attribute.
-// NB: havent confirmed the GX docs match pikmin 2 here
+// NB: haven't confirmed the GX docs match pikmin 2 here
 typedef enum _GXCompCnt {
 	GX_POS_XY  = 0, // Position X, Y (two components).
 	GX_POS_XYZ = 1, // Position X, Y, Z (three components).
@@ -193,7 +193,7 @@ typedef enum _GXCompCnt {
 } GXCompCnt;
 
 // Type of components in an attribute.
-// NB: havent confirmed the GX docs match pikmin 2 here
+// NB: haven't confirmed the GX docs match pikmin 2 here
 typedef enum _GXCompType {
 	GX_U8  = 0, // Unsigned 8-bit.
 	GX_S8  = 1, // Signed 8-bit.
@@ -263,7 +263,7 @@ typedef enum _GXSpotFn {
 	GX_SP_RING2 = 6,
 } GXSpotFn;
 
-// Distance attentuation functions.
+// Distance attenuation functions.
 typedef enum _GXDistAttnFn {
 	GX_DA_OFF    = 0,
 	GX_DA_GENTLE = 1,
@@ -451,7 +451,7 @@ typedef enum _GXTexGenSrc {
 } GXTexGenSrc;
 
 // Texture map names.
-// NB: havent confirmed the GX docs match pikmin 2 here
+// NB: haven't confirmed the GX docs match pikmin 2 here
 typedef enum _GXTexMapID {
 	GX_TEXMAP0 = 0, // Texture map ID 0.
 	GX_TEXMAP1 = 1, // Texture map ID 1.
@@ -1169,8 +1169,8 @@ typedef enum _GXDirtyFlag {
 
 	GX_AMB_MAT_MASK = GX_DIRTY_AMB_COLOR0 | GX_DIRTY_AMB_COLOR1 | GX_DIRTY_MAT_COLOR0 | GX_DIRTY_MAT_COLOR1, // 0xF00
 
-	GX_LIGHT_CHAN_MASK
-	= GX_DIRTY_CHAN_COLOR0 | GX_DIRTY_CHAN_COLOR1 | GX_DIRTY_CHAN_ALPHA0 | GX_DIRTY_CHAN_ALPHA1 | GX_DIRTY_NUM_COLORS, // 0x100F000
+	GX_LIGHT_CHAN_MASK = GX_DIRTY_CHAN_COLOR0 | GX_DIRTY_CHAN_COLOR1 | GX_DIRTY_CHAN_ALPHA0 | GX_DIRTY_CHAN_ALPHA1
+	    | GX_DIRTY_NUM_COLORS, // 0x100F000
 
 	GX_TEX_GEN_MASK = 0x2FF0000, // all GX_DIRTY_TEXs | GX_DIRTY_NUM_TEX
 } GXDirtyFlag;
@@ -1636,7 +1636,7 @@ typedef enum _GXBPIndTevStage {
 	GX_BP_INDTEV_UNMODTEXCOORD_ST  = 12,
 	GX_BP_INDTEV_UNMODTEXCOORD_END = 12,
 
-	// Indiret texture add previous results setting [11-11]
+	// Indirect texture add previous results setting [11-11]
 	GX_BP_INDTEV_ADDPREV_ST  = 11,
 	GX_BP_INDTEV_ADDPREV_END = 11,
 } GXBPIndTevStage;
@@ -2312,11 +2312,11 @@ typedef enum _GXXFClr0Ctrl {
 	GX_XF_CLR0CTRL_DIFATTN_ST  = 23,
 	GX_XF_CLR0CTRL_DIFATTN_END = 24,
 
-	// Enable attentuation [22-22]
+	// Enable attenuation [22-22]
 	GX_XF_CLR0CTRL_ATTNENABLE_ST  = 22,
 	GX_XF_CLR0CTRL_ATTNENABLE_END = 22,
 
-	// Select attentuation [21-21]
+	// Select attenuation [21-21]
 	GX_XF_CLR0CTRL_ATTNSEL_ST  = 21,
 	GX_XF_CLR0CTRL_ATTNSEL_END = 21,
 

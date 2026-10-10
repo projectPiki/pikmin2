@@ -14,6 +14,7 @@
 #include "IDelegate.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "ObjectMgr.h"
+#include "Screen/Game2DMgr.h"
 #include "ebi/FileSelect.h"
 
 namespace kh {
@@ -614,8 +615,8 @@ struct ZukanState : public State {
 	static PelletConfig* getCurrentPelletConfig(int id);
 
 	// Unused/inlined:
-	void startTekiMode(bool);
-	void startPelletMode(bool);
+	bool startTekiMode(bool force);
+	bool startPelletMode(bool force);
 	void createItem(int);
 	void debugDraw(Graphics&);
 	void dvdloadB_common();

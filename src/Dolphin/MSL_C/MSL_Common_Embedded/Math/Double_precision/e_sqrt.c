@@ -43,7 +43,7 @@
  *	If (2) is false, then q   = q ; otherwise q   = q  + 2      .
  *		 	       i+1   i             i+1   i
  *
- *	With some algebric manipulation, it is not difficult to see
+ *	With some algebraic manipulation, it is not difficult to see
  *	that (2) is equivalent to
  *                             -(i+1)
  *			s  +  2       <= y			(3)
@@ -341,7 +341,7 @@ B.  sqrt(x) by Reciproot Iteration
 
     Let x0 and x1 be the leading and the trailing 32-bit words of
     a floating point number x (in IEEE double format) respectively
-    (see section A). By performing shifs and subtracts on x0 and y0,
+    (see section A). By performing shifts and subtracts on x0 and y0,
     we obtain a 7.8-bit approximation of 1/sqrt(x) as follows.
 
         k := 0x5fe80000 - (x0>>1);

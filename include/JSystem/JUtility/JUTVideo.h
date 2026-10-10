@@ -35,7 +35,7 @@ struct JUTVideo {
 	u32 isAntiAliasing() const { return mRenderModeObj->aa; }
 	Pattern getSamplePattern() const { return mRenderModeObj->sample_pattern; }
 	u8* getVFilter() const { return mRenderModeObj->vfilter; }
-	OSMessageQueue* getMessageQueue() { return &mMessageQueue; };
+	OSMessageQueue* getMessageQueue() { return &mMessageQueue; }
 	void getBounds(u16& width, u16& height) const
 	{
 		width  = (u16)getFbWidth();

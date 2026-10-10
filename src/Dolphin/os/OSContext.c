@@ -100,7 +100,7 @@ _return:
  */
 ASM static void __OSSaveFPUContext(register u32, register u32, register OSContext* fpuContext) {
 #ifdef __MWERKS__ // clang-format off
-  	nofralloc
+	nofralloc
 
 	lhz     r3,   fpuContext->state
 	ori     r3,   r3, 1

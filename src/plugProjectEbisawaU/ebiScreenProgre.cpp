@@ -69,10 +69,8 @@ void TScreenProgre::setArchive(JKRArchive* arc)
 	mPane_ir00->setAlpha(0);
 	mPane_il01->setAlpha(0);
 	mPane_ir01->setAlpha(0);
-	mCounterFadein     = 0;
-	mCounterFadeinMax  = 0;
-	mCounterFadeout    = 0;
-	mCounterFadeoutMax = 0;
+	mCounterFadein.setValue((u32)0);
+	mCounterFadeout.setValue((u32)0);
 	mCursor1.setPanes(mPane_il00, mPane_il01);
 	mCursor2.setPanes(mPane_ir00, mPane_ir01);
 
@@ -150,7 +148,7 @@ bool TScreenProgre::fadeout(u32 timer)
  */
 bool TScreenProgre::isFinish()
 {
-	if (mState == Progre_Fadeout && mCounterFadeout == 0) {
+	if (mState == Progre_Fadeout && mCounterFadeout.isZero()) {
 		return true;
 	}
 	return false;
@@ -178,12 +176,10 @@ void TScreenProgre::startState(enumState state, u32 timer)
 		mCursor2.mCursor.fade();
 		break;
 	case Progre_Fadein:
-		mCounterFadein    = timer;
-		mCounterFadeinMax = timer;
+		mCounterFadein.setValue(timer);
 		break;
 	case Progre_Fadeout:
-		mCounterFadeout    = timer;
-		mCounterFadeoutMax = timer;
+		mCounterFadeout.setValue(timer);
 		mCursor1.mCursor.fade();
 		mCursor2.mCursor.fade();
 		break;
@@ -200,44 +196,25 @@ void TScreenProgre::update()
 	case Progre_NULL:
 		break;
 	case Progre_Fadein:
-		if (mCounterFadein)
-			mCounterFadein--;
+		mCounterFadein.update();
 		switch (mStateScreen) {
 		case ProgreScreen_Msg00:
-			f32 calc;
-			if (mCounterFadeinMax) {
-				calc = (f32)mCounterFadein / (f32)mCounterFadeinMax;
-			} else {
-				calc = 0.0f;
-			}
-			u8 alpha = (1.0f - calc) * 255.0f;
+			u8 alpha = (1.0f - mCounterFadein.getRatio()) * 255.0f;
 			mPaneMg00->setAlpha(alpha);
 			mPaneWin00->setAlpha(alpha);
 			mCursor1.update();
 			mCursor2.update();
 			break;
 		case ProgreScreen_Msg01:
-			f32 calc2;
-			if (mCounterFadeinMax) {
-				calc2 = (f32)mCounterFadein / (f32)mCounterFadeinMax;
-			} else {
-				calc2 = 0.0f;
-			}
-			calc2 = (1.0f - calc2) * 255.0f;
+			f32 calc2 = (1.0f - mCounterFadein.getRatio()) * 255.0f;
 			mPaneMg01->setAlpha(calc2);
 			break;
 		case ProgreScreen_Msg02:
-			f32 calc3;
-			if (mCounterFadeinMax) {
-				calc3 = (f32)mCounterFadein / (f32)mCounterFadeinMax;
-			} else {
-				calc3 = 0.0f;
-			}
-			calc3 = (1.0f - calc3) * 255.0f;
+			f32 calc3 = (1.0f - mCounterFadein.getRatio()) * 255.0f;
 			mPaneMg02->setAlpha(calc3);
 			break;
 		}
-		if (mCounterFadein == 0) {
+		if (mCounterFadein.isZero()) {
 			startState(Progre_Select, 0);
 		}
 		break;
@@ -246,7 +223,7 @@ void TScreenProgre::update()
 		mScreenObj->update();
 		switch (mStateScreen) {
 		case ProgreScreen_Msg00:
-			if (mCounterFadein == 0 && !mSelected) {
+			if (mCounterFadein.isZero() && !mSelected) {
 				if (mController->isMoveRight()) {
 					if (mSelect == 1) {
 						mSelect = 0;
@@ -279,16 +256,8 @@ void TScreenProgre::update()
 		break;
 
 	case Progre_Fadeout:
-		if (mCounterFadeout)
-			mCounterFadeout--;
-
-		f32 calc;
-		if (mCounterFadeoutMax) {
-			calc = (f32)mCounterFadeout / (f32)mCounterFadeoutMax;
-		} else {
-			calc = 0.0f;
-		}
-		u8 alpha = calc * 255.0f;
+		mCounterFadeout.update();
+		u8 alpha = mCounterFadeout.getRatio() * 255.0f;
 		switch (mStateScreen) {
 		case ProgreScreen_Msg00:
 			mPaneMg00->setAlpha(alpha);

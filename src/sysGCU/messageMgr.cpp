@@ -15,14 +15,14 @@ namespace P2JME {
 
 static const char* sFontResName[]
     = { "/message/font_foreign.szs", "/message/font_foreign.szs", "/message/font_foreign.szs", "/message/font_foreign.szs",
-	    "/message/font_foreign.szs", "/message/font_jpn.szs",     "/message/font_foreign.szs" };
+        "/message/font_foreign.szs", "/message/font_jpn.szs",     "/message/font_foreign.szs" };
 
 static const char* sMesResName[]
     = { "/message/mesRes_eng.szs", "/message/mesRes_fra.szs", "/message/mesRes_ger.szs", "/message/mesRes_hol.szs",
-	    "/message/mesRes_ita.szs", "/message/mesRes_jpn.szs", "/message/mesRes_spa.szs" };
+        "/message/mesRes_ita.szs", "/message/mesRes_jpn.szs", "/message/mesRes_spa.szs" };
 
 static const char* cBtnTexName[] = { "a_btn.bti", "b_btn.bti", "c_btn.bti",  "x_btn.bti",  "y_btn.bti", "z_btn.bti",
-	                                 "l_btn.bti", "r_btn.bti", "3d_btn.bti", "st_btn.bti", "t_btn.bti" };
+                                     "l_btn.bti", "r_btn.bti", "3d_btn.bti", "st_btn.bti", "t_btn.bti" };
 
 /**
  * @note Address: N/A

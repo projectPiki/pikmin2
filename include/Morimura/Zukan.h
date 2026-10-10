@@ -118,12 +118,12 @@ struct TDEnemyScene : public THIOScene {
 struct TDItemScene : public THIOScene {
 	TDItemScene();
 
-	virtual const char* getResName() const { return "res_itemZukan.szs"; }; // _1C (weak)
-	virtual SceneType getSceneType() { return SCENE_ZUKAN_ITEM; }           // _08 (weak)
-	virtual ScreenOwnerID getOwnerID() { return OWNER_MRMR; }               // _0C (weak)
-	virtual ScreenMemberID getMemberID() { return MEMBER_ZUKAN_ITEM; }      // _10 (weak)
-	virtual void doCreateObj(JKRArchive*);                                  // _20
-	virtual bool doStart(Screen::StartSceneArg*);                           // _3C
+	virtual const char* getResName() const { return "res_itemZukan.szs"; } // _1C (weak)
+	virtual SceneType getSceneType() { return SCENE_ZUKAN_ITEM; }          // _08 (weak)
+	virtual ScreenOwnerID getOwnerID() { return OWNER_MRMR; }              // _0C (weak)
+	virtual ScreenMemberID getMemberID() { return MEMBER_ZUKAN_ITEM; }     // _10 (weak)
+	virtual void doCreateObj(JKRArchive*);                                 // _20
+	virtual bool doStart(Screen::StartSceneArg*);                          // _3C
 
 	bool isAppearConfirmWindow();
 

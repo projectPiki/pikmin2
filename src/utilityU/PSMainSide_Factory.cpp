@@ -42,11 +42,7 @@ struct PersEnvInfo {
 };
 
 struct EnvSe_Perspective_AvoidY : public PSGame::EnvSe_Perspective {
-	EnvSe_Perspective_AvoidY(u32 soundID, f32 volume, Vec pos)
-	    : PSGame::EnvSe_Perspective(soundID, volume, pos)
-	{
-		mYOffset = 400.0f;
-	}
+	EnvSe_Perspective_AvoidY(u32 soundID, f32 volume, Vec pos, f32 yOffset = 400.0f);
 
 	virtual JAISound* play();                    // _0C
 	virtual u32 getCastType() { return 'pers'; } // _10 (weak)
@@ -57,7 +53,13 @@ struct EnvSe_Perspective_AvoidY : public PSGame::EnvSe_Perspective {
 	PersEnvInfo mInfo; // _4C
 };
 
-struct Env_Pollutin : public PSGame::EnvSe_AutoPan {
+// FUN FACT: the Env_Pollutin ctor refuses to behave unless it has an empty default thing it inherits from
+// this is completely fabricated - no clue what it was called or what it was, but it seems Hard Required
+struct FakePollutinParent {
+	~FakePollutinParent() { }
+};
+
+struct Env_Pollutin : public FakePollutinParent, public PSGame::EnvSe_AutoPan {
 	Env_Pollutin(u32 soundID, f32 pan = 0.0f, f32 dolby = 1.0f)
 	    : EnvSe_AutoPan(soundID, pan, dolby, 1.0f, 0.0018554f, 0.0008554f)
 	    , mVolumeModifier(1.0f)
@@ -83,15 +85,7 @@ struct EnvSeObjBuilder : public PSGame::Builder_EvnSe_Perspective {
 
 	void setInfo(PersEnvInfo info) { mPersEnvInfo = info; }
 
-	inline void appendNewSELink(u32 id)
-	{
-		PSSystem::IdLink* link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(id);
-		PSSystem::IdList* list = &mList;
-		if (!list->getFirst()) {
-			mList.mNextLink = link;
-		}
-		list->append(link);
-	}
+	void appendLink(PSSystem::IdLink* link) { mList.append(link); }
 
 	// _00     = VTBL
 	// _00-_50 = PSGame::Builder_EvnSe_Perspective
@@ -149,6 +143,16 @@ JAISound* Env_Pollutin::play()
 }
 
 /**
+ * @note Address: N/A
+ * @note Size: 0x68
+ */
+EnvSe_Perspective_AvoidY::EnvSe_Perspective_AvoidY(u32 soundID, f32 volume, Vec pos, f32 yOffset)
+    : PSGame::EnvSe_Perspective(soundID, volume, pos)
+{
+	mYOffset = yOffset;
+}
+
+/**
  * @note Address: 0x80459E48
  * @note Size: 0x280
  */
@@ -164,7 +168,7 @@ JAISound* EnvSe_Perspective_AvoidY::play()
 		mPosition.y = mYOffset + navi->getPosition().y;
 
 		JGeometry::TVec3f naviPos = PSMath::toVec(navi->getPosition());
-		f32 dist         = PSMath::calcDistanceXZ(mPosition, naviPos);
+		f32 dist                  = PSMath::calcDistanceXZ(mPosition, naviPos);
 
 		PSSystem::spSysIF->startSoundVecT(mSoundID, &mSound, &mPosition, 0, 0,
 		                                  PSSystem::SingletonBase<ObjCalcBase>::getInstance()->getPlayerNo(mPosition));
@@ -339,25 +343,27 @@ void SceneMgr::initEnvironmentSe(PSM::Scene_Game* scene)
 		scene->mPersEnvMgr      = persMgr;
 
 		// use all 10 INSECT sounds in challenge mode (the amount that actually play depends on the map size)
-		APPEND_SE_LINK(builder, PSSE_MP_INSECT01_MIX1);
-		APPEND_SE_LINK(builder, PSSE_MP_INSECT02_MIX1);
-		APPEND_SE_LINK(builder, PSSE_MP_INSECT03_MIX1);
-		APPEND_SE_LINK(builder, PSSE_MP_INSECT04_MIX1);
-		APPEND_SE_LINK(builder, PSSE_MP_INSECT05_MIX1);
+		builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT01_MIX1));
+		builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT02_MIX1));
+		builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT03_MIX1));
+		builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT04_MIX1));
+		builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT05_MIX1));
 
-		APPEND_SE_LINK(builder, PSSE_MP_INSECT01_MIX2);
-		APPEND_SE_LINK(builder, PSSE_MP_INSECT02_MIX2);
-		APPEND_SE_LINK(builder, PSSE_MP_INSECT03_MIX2);
-		APPEND_SE_LINK(builder, PSSE_MP_INSECT04_MIX2);
-		APPEND_SE_LINK(builder, PSSE_MP_INSECT05_MIX2);
+		builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT01_MIX2));
+		builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT02_MIX2));
+		builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT03_MIX2));
+		builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT04_MIX2));
+		builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT05_MIX2));
 
 		PSM::PersEnvInfo envInfo = { 1500.0f, 479.0f, 707.0f, 808.0f, 1.0f };
 		persMgr->_10             = 479.0f;
 		builder.setInfo(envInfo);
 		builder.build(1.0f, mgr);
 		PSM::SetNoYOfset(mgr);
-		mgr->mEnvList.append(new Env_Pollutin(PSSE_EV_POLUTION_MIX01));
-		mgr->mEnvList.append(new Env_Pollutin(PSSE_EV_POLUTION_MIX02, 1.0f, 0.0f));
+		Env_Pollutin* pollutin1 = new Env_Pollutin(PSSE_EV_POLUTION_MIX01);
+		mgr->mEnvList.append(pollutin1);
+		Env_Pollutin* pollutin2 = new Env_Pollutin(PSSE_EV_POLUTION_MIX02, 1.0f, 0.0f);
+		mgr->mEnvList.append(pollutin2);
 		break;
 
 	case PSGame::SceneInfo::TWO_PLAYER_BATTLE:
@@ -374,92 +380,92 @@ void SceneMgr::initEnvironmentSe(PSM::Scene_Game* scene)
 			// In story mode caves, use different ambient noises based on the sublevel (from 1 - 15)
 			switch (static_cast<PSGame::CaveFloorInfo*>(info)->mFloorNum) {
 			case 0: {
-				APPEND_SE_LINK(builder, PSSE_MP_INSECT02_MIX1);
-				APPEND_SE_LINK(builder, PSSE_MP_INSECT03_MIX1);
+				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT02_MIX1));
+				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT03_MIX1));
 			} break;
 
 			case 1: {
-				APPEND_SE_LINK(builder, PSSE_MP_INSECT02_MIX2);
-				APPEND_SE_LINK(builder, PSSE_MP_INSECT03_MIX2);
+				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT02_MIX2));
+				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT03_MIX2));
 			} break;
 
 			case 2: {
-				APPEND_SE_LINK(builder, PSSE_MP_INSECT02_MIX1);
-				APPEND_SE_LINK(builder, PSSE_MP_INSECT03_MIX2);
-				APPEND_SE_LINK(builder, PSSE_MP_INSECT04_MIX1);
+				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT02_MIX1));
+				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT03_MIX2));
+				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT04_MIX1));
 			} break;
 
 			case 3: {
-				APPEND_SE_LINK(builder, PSSE_MP_INSECT03_MIX1);
-				APPEND_SE_LINK(builder, PSSE_MP_INSECT04_MIX2);
-				APPEND_SE_LINK(builder, PSSE_MP_INSECT01_MIX1);
+				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT03_MIX1));
+				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT04_MIX2));
+				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT01_MIX1));
 			} break;
 
 			case 4: {
-				APPEND_SE_LINK(builder, PSSE_MP_INSECT04_MIX1);
-				APPEND_SE_LINK(builder, PSSE_MP_INSECT01_MIX2);
-				APPEND_SE_LINK(builder, PSSE_MP_INSECT05_MIX1);
+				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT04_MIX1));
+				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT01_MIX2));
+				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT05_MIX1));
 			} break;
 
 			case 5: {
-				APPEND_SE_LINK(builder, PSSE_MP_INSECT01_MIX1);
-				APPEND_SE_LINK(builder, PSSE_MP_INSECT05_MIX2);
-				APPEND_SE_LINK(builder, PSSE_MP_INSECTDEEP01_MIX1);
+				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT01_MIX1));
+				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT05_MIX2));
+				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP01_MIX1));
 			} break;
 
 			case 6: {
-				APPEND_SE_LINK(builder, PSSE_MP_INSECT05_MIX1);
-				APPEND_SE_LINK(builder, PSSE_MP_INSECTDEEP01_MIX2);
-				APPEND_SE_LINK(builder, PSSE_MP_INSECTDEEP06_MIX1);
+				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT05_MIX1));
+				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP01_MIX2));
+				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP06_MIX1));
 			} break;
 
 			case 7: {
-				APPEND_SE_LINK(builder, PSSE_MP_INSECTDEEP01_MIX1);
-				APPEND_SE_LINK(builder, PSSE_MP_INSECTDEEP06_MIX2);
-				APPEND_SE_LINK(builder, PSSE_MP_INSECTDEEP02_MIX1);
+				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP01_MIX1));
+				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP06_MIX2));
+				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP02_MIX1));
 			} break;
 
 			case 8: {
-				APPEND_SE_LINK(builder, PSSE_MP_INSECTDEEP06_MIX1);
-				APPEND_SE_LINK(builder, PSSE_MP_INSECTDEEP02_MIX2);
-				APPEND_SE_LINK(builder, PSSE_MP_INSECTDEEP05_MIX1);
+				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP06_MIX1));
+				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP02_MIX2));
+				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP05_MIX1));
 			} break;
 
 			case 9: {
-				APPEND_SE_LINK(builder, PSSE_MP_INSECTDEEP02_MIX1);
-				APPEND_SE_LINK(builder, PSSE_MP_INSECTDEEP05_MIX2);
-				APPEND_SE_LINK(builder, PSSE_MP_INSECTDEEP04_MIX1);
+				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP02_MIX1));
+				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP05_MIX2));
+				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP04_MIX1));
 			} break;
 
 			case 10: {
-				APPEND_SE_LINK(builder, PSSE_MP_INSECTDEEP05_MIX2);
-				APPEND_SE_LINK(builder, PSSE_MP_INSECTDEEP04_MIX2);
-				APPEND_SE_LINK(builder, PSSE_MP_INSECTDEEP03_MIX1);
+				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP05_MIX2));
+				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP04_MIX2));
+				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP03_MIX1));
 			} break;
 
 			case 11: {
-				APPEND_SE_LINK(builder, PSSE_MP_INSECTDEEP05_MIX2);
-				APPEND_SE_LINK(builder, PSSE_MP_INSECTDEEP04_MIX2);
-				APPEND_SE_LINK(builder, PSSE_MP_INSECTDEEP03_MIX2);
+				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP05_MIX2));
+				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP04_MIX2));
+				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP03_MIX2));
 			} break;
 
 			case 12: {
-				APPEND_SE_LINK(builder, PSSE_MP_INSECTDEEP05_MIX2);
-				APPEND_SE_LINK(builder, PSSE_MP_INSECTDEEP04_MIX2);
-				APPEND_SE_LINK(builder, PSSE_MP_INSECTDEEP03_MIX2);
+				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP05_MIX2));
+				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP04_MIX2));
+				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP03_MIX2));
 			} break;
 
 			case 13: {
-				APPEND_SE_LINK(builder, PSSE_MP_INSECTDEEP05_MIX2);
-				APPEND_SE_LINK(builder, PSSE_MP_INSECTDEEP04_MIX2);
-				APPEND_SE_LINK(builder, PSSE_MP_INSECTDEEP03_MIX2);
+				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP05_MIX2));
+				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP04_MIX2));
+				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP03_MIX2));
 			} break;
 
 			case 14:
 			default: {
-				APPEND_SE_LINK(builder, PSSE_MP_INSECTDEEP05_MIX2);
-				APPEND_SE_LINK(builder, PSSE_MP_INSECTDEEP04_MIX2);
-				APPEND_SE_LINK(builder, PSSE_MP_INSECTDEEP03_MIX2);
+				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP05_MIX2));
+				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP04_MIX2));
+				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP03_MIX2));
 			} break;
 			}
 
@@ -468,8 +474,10 @@ void SceneMgr::initEnvironmentSe(PSM::Scene_Game* scene)
 			builder.setInfo(envInfo);
 			builder.build(1.0f, mgr);
 			SetNoYOfset(mgr);
-			mgr->mEnvList.append(new Env_Pollutin(PSSE_EV_POLUTION_MIX01));
-			mgr->mEnvList.append(new Env_Pollutin(PSSE_EV_POLUTION_MIX02, 1.0f, 0.0f));
+			Env_Pollutin* pollutin1 = new Env_Pollutin(PSSE_EV_POLUTION_MIX01);
+			mgr->mEnvList.append(pollutin1);
+			Env_Pollutin* pollutin2 = new Env_Pollutin(PSSE_EV_POLUTION_MIX02, 1.0f, 0.0f);
+			mgr->mEnvList.append(pollutin2);
 
 		} else {
 			switch (type) {
@@ -494,9 +502,9 @@ void SceneMgr::initEnvironmentSe(PSM::Scene_Game* scene)
 				PersEnvManager* persMgr = new PersEnvManager(mgr);
 				scene->mPersEnvMgr      = persMgr;
 
-				APPEND_SE_LINK(builder, PSSE_MP_BIRD_SP_SUZUME); // 'sparrow'
-				APPEND_SE_LINK(builder, PSSE_MP_BIRD_SP_UGUISU); // 'japanese warbler'
-				APPEND_SE_LINK(builder, PSSE_MP_BIRD_SP_HIBARI); // 'lark'
+				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_BIRD_SP_SUZUME)); // 'sparrow'
+				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_BIRD_SP_UGUISU)); // 'japanese warbler'
+				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_BIRD_SP_HIBARI)); // 'lark'
 
 				PSM::PersEnvInfo envInfo = { 1500.0f, 379.0f, 579.0f, 1031.0f, 0.9f };
 				persMgr->_10             = 379.0f;
@@ -509,12 +517,12 @@ void SceneMgr::initEnvironmentSe(PSM::Scene_Game* scene)
 				PersEnvManager* persMgr = new PersEnvManager(mgr);
 				scene->mPersEnvMgr      = persMgr;
 
-				APPEND_SE_LINK(builder, PSSE_MP_SEMI_KUMA01);   // 'bear cicada'
-				APPEND_SE_LINK(builder, PSSE_MP_SEMI_MINMIN01); // 'minmin cicada'
-				APPEND_SE_LINK(builder, PSSE_MP_SEMI_NIINII01); // 'niinii cicada'
-				APPEND_SE_LINK(builder, PSSE_MP_SEMI_KUMA02);   // 'bear cicada'
-				APPEND_SE_LINK(builder, PSSE_MP_SEMI_MINMIN02); // 'minmin cicada'
-				APPEND_SE_LINK(builder, PSSE_MP_SEMI_NIINII02); // 'niinii cicada'
+				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_SEMI_KUMA01));   // 'bear cicada'
+				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_SEMI_MINMIN01)); // 'minmin cicada'
+				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_SEMI_NIINII01)); // 'niinii cicada'
+				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_SEMI_KUMA02));   // 'bear cicada'
+				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_SEMI_MINMIN02)); // 'minmin cicada'
+				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_SEMI_NIINII02)); // 'niinii cicada'
 
 				PSM::PersEnvInfo envInfo = { 1500.0f, 479.0f, 707.0f, 808.0f, 1.0f };
 				persMgr->_10             = 479.0f;
@@ -527,10 +535,10 @@ void SceneMgr::initEnvironmentSe(PSM::Scene_Game* scene)
 				PersEnvManager* persMgr = new PersEnvManager(mgr);
 				scene->mPersEnvMgr      = persMgr;
 
-				APPEND_SE_LINK(builder, PSSE_MP_BIRD_FA_KAMO);    // 'duck'
-				APPEND_SE_LINK(builder, PSSE_MP_BIRD_FA_MOZU);    // 'shrike'
-				APPEND_SE_LINK(builder, PSSE_MP_BIRD_FA_KAMO);    // 'duck'
-				APPEND_SE_LINK(builder, PSSE_MP_BIRD_FA_TSUGUMI); // 'thrush'
+				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_BIRD_FA_KAMO));    // 'duck'
+				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_BIRD_FA_MOZU));    // 'shrike'
+				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_BIRD_FA_KAMO));    // 'duck'
+				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_BIRD_FA_TSUGUMI)); // 'thrush'
 
 				PSM::PersEnvInfo envInfo = { 1500.0f, 379.0f, 479.0f, 1131.0f, 1.0f };
 				persMgr->_10             = 379.0f;
@@ -546,1945 +554,6 @@ void SceneMgr::initEnvironmentSe(PSM::Scene_Game* scene)
 		SetBossBgmMuteVol(mgr, PSSE_EV_POLUTION_MIX02, 0.28f);
 		scene->adaptEnvSe(mgr);
 	}
-	/*
-	stwu     r1, -0x170(r1)
-	mflr     r0
-	stw      r0, 0x174(r1)
-	stmw     r24, 0x150(r1)
-	mr       r27, r4
-	lis      r4, lbl_8049CE68@ha
-	mr       r3, r27
-	addi     r31, r4, lbl_8049CE68@l
-	bl       getSceneInfoA__Q23PSM9SceneBaseFv
-	mr       r0, r3
-	addi     r3, r1, 0x6c
-	mr       r28, r0
-	li       r29, 0
-	lbz      r25, 6(r28)
-	addi     r4, r28, 0x20
-	bl       "__ct__Q29JGeometry8TBox3<f>FRCQ29JGeometry8TBox3<f>"
-	mr       r4, r3
-	addi     r3, r1, 0xe8
-	bl       "__ct__Q23PSM15EnvSeObjBuilderFQ29JGeometry8TBox3<f>"
-	clrlwi   r30, r25, 0x18
-	cmpwi    r30, 7
-	beq      lbl_8045AAF4
-	bge      lbl_8045AAF4
-	cmpwi    r30, 6
-	bge      lbl_8045A708
-	b        lbl_8045AAF4
-
-lbl_8045A708:
-	li       r3, 0x18
-	bl       __nw__FUl
-	or.      r29, r3, r3
-	beq      lbl_8045A720
-	bl       __ct__Q28PSSystem8EnvSeMgrFv
-	mr       r29, r3
-
-lbl_8045A720:
-	li       r3, 0x14
-	bl       __nw__FUl
-	or.      r26, r3, r3
-	beq      lbl_8045A73C
-	mr       r4, r29
-	bl       __ct__Q23PSM14PersEnvManagerFPQ28PSSystem8EnvSeMgr
-	mr       r26, r3
-
-lbl_8045A73C:
-	stw      r26, 0x58(r27)
-	li       r3, 0x14
-	li       r5, -4
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045A768
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x4016
-	stw      r0, 0x10(r24)
-
-lbl_8045A768:
-	lwz      r0, 0x128(r1)
-	addi     r25, r1, 0x128
-	cmplwi   r0, 0
-	bne      lbl_8045A77C
-	stw      r24, 0x134(r1)
-
-lbl_8045A77C:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r3, 0x14
-	li       r5, -4
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045A7B0
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x4018
-	stw      r0, 0x10(r24)
-
-lbl_8045A7B0:
-	lwz      r0, 0x128(r1)
-	cmplwi   r0, 0
-	bne      lbl_8045A7C0
-	stw      r24, 0x134(r1)
-
-lbl_8045A7C0:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r3, 0x14
-	li       r5, -4
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045A7F4
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x401a
-	stw      r0, 0x10(r24)
-
-lbl_8045A7F4:
-	lwz      r0, 0x128(r1)
-	cmplwi   r0, 0
-	bne      lbl_8045A804
-	stw      r24, 0x134(r1)
-
-lbl_8045A804:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r3, 0x14
-	li       r5, -4
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045A838
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x401c
-	stw      r0, 0x10(r24)
-
-lbl_8045A838:
-	lwz      r0, 0x128(r1)
-	cmplwi   r0, 0
-	bne      lbl_8045A848
-	stw      r24, 0x134(r1)
-
-lbl_8045A848:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r3, 0x14
-	li       r5, -4
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045A87C
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x401e
-	stw      r0, 0x10(r24)
-
-lbl_8045A87C:
-	lwz      r0, 0x128(r1)
-	cmplwi   r0, 0
-	bne      lbl_8045A88C
-	stw      r24, 0x134(r1)
-
-lbl_8045A88C:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r3, 0x14
-	li       r5, -4
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045A8C0
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x4017
-	stw      r0, 0x10(r24)
-
-lbl_8045A8C0:
-	lwz      r0, 0x128(r1)
-	cmplwi   r0, 0
-	bne      lbl_8045A8D0
-	stw      r24, 0x134(r1)
-
-lbl_8045A8D0:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r3, 0x14
-	li       r5, -4
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045A904
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x4019
-	stw      r0, 0x10(r24)
-
-lbl_8045A904:
-	lwz      r0, 0x128(r1)
-	cmplwi   r0, 0
-	bne      lbl_8045A914
-	stw      r24, 0x134(r1)
-
-lbl_8045A914:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r3, 0x14
-	li       r5, -4
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045A948
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x401b
-	stw      r0, 0x10(r24)
-
-lbl_8045A948:
-	lwz      r0, 0x128(r1)
-	cmplwi   r0, 0
-	bne      lbl_8045A958
-	stw      r24, 0x134(r1)
-
-lbl_8045A958:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r3, 0x14
-	li       r5, -4
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045A98C
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x401d
-	stw      r0, 0x10(r24)
-
-lbl_8045A98C:
-	lwz      r0, 0x128(r1)
-	cmplwi   r0, 0
-	bne      lbl_8045A99C
-	stw      r24, 0x134(r1)
-
-lbl_8045A99C:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r3, 0x14
-	li       r5, -4
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045A9D0
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x401f
-	stw      r0, 0x10(r24)
-
-lbl_8045A9D0:
-	lwz      r0, 0x128(r1)
-	cmplwi   r0, 0
-	bne      lbl_8045A9E0
-	stw      r24, 0x134(r1)
-
-lbl_8045A9E0:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r8, 0xc4(r31)
-	addi     r3, r1, 0xe8
-	lwz      r7, 0xc8(r31)
-	addi     r4, r1, 0x58
-	lwz      r6, 0xcc(r31)
-	lwz      r5, 0xd0(r31)
-	lwz      r0, 0xd4(r31)
-	lfs      f0, lbl_80520C2C@sda21(r2)
-	stw      r8, 0xd4(r1)
-	stfs     f0, 0x10(r26)
-	stw      r7, 0xd8(r1)
-	stw      r6, 0xdc(r1)
-	stw      r5, 0xe0(r1)
-	stw      r0, 0xe4(r1)
-	stw      r8, 0x58(r1)
-	stw      r7, 0x5c(r1)
-	stw      r6, 0x60(r1)
-	stw      r5, 0x64(r1)
-	stw      r0, 0x68(r1)
-	bl       setInfo__Q23PSM15EnvSeObjBuilderFQ23PSM11PersEnvInfo
-	lfs      f1, lbl_80520C20@sda21(r2)
-	mr       r4, r29
-	addi     r3, r1, 0xe8
-	bl       build__Q26PSGame25Builder_EvnSe_PerspectiveFfPQ28PSSystem8EnvSeMgr
-	mr       r3, r29
-	bl       SetNoYOfset__3PSMFPQ28PSSystem8EnvSeMgr
-	li       r3, 0x54
-	bl       __nw__FUl
-	or.      r25, r3, r3
-	beq      lbl_8045AA98
-	lfs      f2, lbl_80520C20@sda21(r2)
-	mr       r24, r25
-	lfs      f1, lbl_80520C24@sda21(r2)
-	li       r4, 0x3079
-	fmr      f3, f2
-	lfs      f4, lbl_80520C30@sda21(r2)
-	lfs      f5, lbl_80520C34@sda21(r2)
-	bl       __ct__Q26PSGame13EnvSe_AutoPanFUlfffff
-	lis      r3, __vt__Q23PSM12Env_Pollutin@ha
-	lfs      f0, lbl_80520C20@sda21(r2)
-	addi     r0, r3, __vt__Q23PSM12Env_Pollutin@l
-	stw      r0, 0x10(r24)
-	stfs     f0, 0x50(r24)
-
-lbl_8045AA98:
-	mr       r3, r29
-	mr       r4, r25
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	li       r3, 0x54
-	bl       __nw__FUl
-	or.      r25, r3, r3
-	beq      lbl_8045AAE8
-	lfs      f1, lbl_80520C20@sda21(r2)
-	mr       r24, r25
-	lfs      f2, lbl_80520C24@sda21(r2)
-	li       r4, 0x307a
-	fmr      f3, f1
-	lfs      f4, lbl_80520C30@sda21(r2)
-	lfs      f5, lbl_80520C34@sda21(r2)
-	bl       __ct__Q26PSGame13EnvSe_AutoPanFUlfffff
-	lis      r3, __vt__Q23PSM12Env_Pollutin@ha
-	lfs      f0, lbl_80520C20@sda21(r2)
-	addi     r0, r3, __vt__Q23PSM12Env_Pollutin@l
-	stw      r0, 0x10(r24)
-	stfs     f0, 0x50(r24)
-
-lbl_8045AAE8:
-	mr       r3, r29
-	mr       r4, r25
-	bl       append__10JSUPtrListFP10JSUPtrLink
-
-lbl_8045AAF4:
-	cmplwi   r29, 0
-	bne      lbl_8045BEFC
-	mr       r3, r28
-	li       r4, 1
-	bl       getFlag__Q26PSGame9SceneInfoCFQ36PSGame9SceneInfo12FlagBitShift
-	clrlwi   r0, r3, 0x18
-	subfic   r0, r0, 1
-	cntlzw   r0, r0
-	rlwinm.  r0, r0, 0x1b, 0x18, 0x1f
-	bne      lbl_8045BEFC
-	mr       r3, r28
-	lwz      r12, 0(r28)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8045B880
-	li       r3, 0x18
-	bl       __nw__FUl
-	or.      r29, r3, r3
-	beq      lbl_8045AB50
-	bl       __ct__Q28PSSystem8EnvSeMgrFv
-	mr       r29, r3
-
-lbl_8045AB50:
-	li       r3, 0x14
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_8045AB6C
-	mr       r4, r29
-	bl       __ct__Q23PSM14PersEnvManagerFPQ28PSSystem8EnvSeMgr
-	mr       r30, r3
-
-lbl_8045AB6C:
-	stw      r30, 0x58(r27)
-	lbz      r0, 0x40(r28)
-	cmplwi   r0, 0xe
-	bgt      lbl_8045B6A4
-	lis      r3, lbl_804EE1B8@ha
-	slwi     r0, r0, 2
-	addi     r3, r3, lbl_804EE1B8@l
-	lwzx     r0, r3, r0
-	mtctr    r0
-	bctr
-
-lbl_8045AB94:
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r3, 0x14
-	li       r5, -4
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045ABBC
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x4018
-	stw      r0, 0x10(r24)
-
-lbl_8045ABBC:
-	lwz      r0, 0x128(r1)
-	addi     r25, r1, 0x128
-	cmplwi   r0, 0
-	bne      lbl_8045ABD0
-	stw      r24, 0x134(r1)
-
-lbl_8045ABD0:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r3, 0x14
-	li       r5, -4
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045AC04
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x401a
-	stw      r0, 0x10(r24)
-
-lbl_8045AC04:
-	lwz      r0, 0x128(r1)
-	cmplwi   r0, 0
-	bne      lbl_8045AC14
-	stw      r24, 0x134(r1)
-
-lbl_8045AC14:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	b        lbl_8045B774
-
-lbl_8045AC24:
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r3, 0x14
-	li       r5, -4
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045AC4C
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x4019
-	stw      r0, 0x10(r24)
-
-lbl_8045AC4C:
-	lwz      r0, 0x128(r1)
-	addi     r25, r1, 0x128
-	cmplwi   r0, 0
-	bne      lbl_8045AC60
-	stw      r24, 0x134(r1)
-
-lbl_8045AC60:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r3, 0x14
-	li       r5, -4
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045AC94
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x401b
-	stw      r0, 0x10(r24)
-
-lbl_8045AC94:
-	lwz      r0, 0x128(r1)
-	cmplwi   r0, 0
-	bne      lbl_8045ACA4
-	stw      r24, 0x134(r1)
-
-lbl_8045ACA4:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	b        lbl_8045B774
-
-lbl_8045ACB4:
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r3, 0x14
-	li       r5, -4
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045ACDC
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x4018
-	stw      r0, 0x10(r24)
-
-lbl_8045ACDC:
-	lwz      r0, 0x128(r1)
-	addi     r25, r1, 0x128
-	cmplwi   r0, 0
-	bne      lbl_8045ACF0
-	stw      r24, 0x134(r1)
-
-lbl_8045ACF0:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r3, 0x14
-	li       r5, -4
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045AD24
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x401b
-	stw      r0, 0x10(r24)
-
-lbl_8045AD24:
-	lwz      r0, 0x128(r1)
-	cmplwi   r0, 0
-	bne      lbl_8045AD34
-	stw      r24, 0x134(r1)
-
-lbl_8045AD34:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r3, 0x14
-	li       r5, -4
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045AD68
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x401c
-	stw      r0, 0x10(r24)
-
-lbl_8045AD68:
-	lwz      r0, 0x128(r1)
-	cmplwi   r0, 0
-	bne      lbl_8045AD78
-	stw      r24, 0x134(r1)
-
-lbl_8045AD78:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	b        lbl_8045B774
-
-lbl_8045AD88:
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r3, 0x14
-	li       r5, -4
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045ADB0
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x401a
-	stw      r0, 0x10(r24)
-
-lbl_8045ADB0:
-	lwz      r0, 0x128(r1)
-	addi     r25, r1, 0x128
-	cmplwi   r0, 0
-	bne      lbl_8045ADC4
-	stw      r24, 0x134(r1)
-
-lbl_8045ADC4:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r3, 0x14
-	li       r5, -4
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045ADF8
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x401d
-	stw      r0, 0x10(r24)
-
-lbl_8045ADF8:
-	lwz      r0, 0x128(r1)
-	cmplwi   r0, 0
-	bne      lbl_8045AE08
-	stw      r24, 0x134(r1)
-
-lbl_8045AE08:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r3, 0x14
-	li       r5, -4
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045AE3C
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x4016
-	stw      r0, 0x10(r24)
-
-lbl_8045AE3C:
-	lwz      r0, 0x128(r1)
-	cmplwi   r0, 0
-	bne      lbl_8045AE4C
-	stw      r24, 0x134(r1)
-
-lbl_8045AE4C:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	b        lbl_8045B774
-
-lbl_8045AE5C:
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r3, 0x14
-	li       r5, -4
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045AE84
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x401c
-	stw      r0, 0x10(r24)
-
-lbl_8045AE84:
-	lwz      r0, 0x128(r1)
-	addi     r25, r1, 0x128
-	cmplwi   r0, 0
-	bne      lbl_8045AE98
-	stw      r24, 0x134(r1)
-
-lbl_8045AE98:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r3, 0x14
-	li       r5, -4
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045AECC
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x4017
-	stw      r0, 0x10(r24)
-
-lbl_8045AECC:
-	lwz      r0, 0x128(r1)
-	cmplwi   r0, 0
-	bne      lbl_8045AEDC
-	stw      r24, 0x134(r1)
-
-lbl_8045AEDC:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r3, 0x14
-	li       r5, -4
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045AF10
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x401e
-	stw      r0, 0x10(r24)
-
-lbl_8045AF10:
-	lwz      r0, 0x128(r1)
-	cmplwi   r0, 0
-	bne      lbl_8045AF20
-	stw      r24, 0x134(r1)
-
-lbl_8045AF20:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	b        lbl_8045B774
-
-lbl_8045AF30:
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r3, 0x14
-	li       r5, -4
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045AF58
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x4016
-	stw      r0, 0x10(r24)
-
-lbl_8045AF58:
-	lwz      r0, 0x128(r1)
-	addi     r25, r1, 0x128
-	cmplwi   r0, 0
-	bne      lbl_8045AF6C
-	stw      r24, 0x134(r1)
-
-lbl_8045AF6C:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r3, 0x14
-	li       r5, -4
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045AFA0
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x401f
-	stw      r0, 0x10(r24)
-
-lbl_8045AFA0:
-	lwz      r0, 0x128(r1)
-	cmplwi   r0, 0
-	bne      lbl_8045AFB0
-	stw      r24, 0x134(r1)
-
-lbl_8045AFB0:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r3, 0x14
-	li       r5, -4
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045AFE4
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x4020
-	stw      r0, 0x10(r24)
-
-lbl_8045AFE4:
-	lwz      r0, 0x128(r1)
-	cmplwi   r0, 0
-	bne      lbl_8045AFF4
-	stw      r24, 0x134(r1)
-
-lbl_8045AFF4:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	b        lbl_8045B774
-
-lbl_8045B004:
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r3, 0x14
-	li       r5, -4
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045B02C
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x401e
-	stw      r0, 0x10(r24)
-
-lbl_8045B02C:
-	lwz      r0, 0x128(r1)
-	addi     r25, r1, 0x128
-	cmplwi   r0, 0
-	bne      lbl_8045B040
-	stw      r24, 0x134(r1)
-
-lbl_8045B040:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r3, 0x14
-	li       r5, -4
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045B074
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x4021
-	stw      r0, 0x10(r24)
-
-lbl_8045B074:
-	lwz      r0, 0x128(r1)
-	cmplwi   r0, 0
-	bne      lbl_8045B084
-	stw      r24, 0x134(r1)
-
-lbl_8045B084:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r3, 0x14
-	li       r5, -4
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045B0B8
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x402a
-	stw      r0, 0x10(r24)
-
-lbl_8045B0B8:
-	lwz      r0, 0x128(r1)
-	cmplwi   r0, 0
-	bne      lbl_8045B0C8
-	stw      r24, 0x134(r1)
-
-lbl_8045B0C8:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	b        lbl_8045B774
-
-lbl_8045B0D8:
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r3, 0x14
-	li       r5, -4
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045B100
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x4020
-	stw      r0, 0x10(r24)
-
-lbl_8045B100:
-	lwz      r0, 0x128(r1)
-	addi     r25, r1, 0x128
-	cmplwi   r0, 0
-	bne      lbl_8045B114
-	stw      r24, 0x134(r1)
-
-lbl_8045B114:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r3, 0x14
-	li       r5, -4
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045B148
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x402b
-	stw      r0, 0x10(r24)
-
-lbl_8045B148:
-	lwz      r0, 0x128(r1)
-	cmplwi   r0, 0
-	bne      lbl_8045B158
-	stw      r24, 0x134(r1)
-
-lbl_8045B158:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r3, 0x14
-	li       r5, -4
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045B18C
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x4022
-	stw      r0, 0x10(r24)
-
-lbl_8045B18C:
-	lwz      r0, 0x128(r1)
-	cmplwi   r0, 0
-	bne      lbl_8045B19C
-	stw      r24, 0x134(r1)
-
-lbl_8045B19C:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	b        lbl_8045B774
-
-lbl_8045B1AC:
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r3, 0x14
-	li       r5, -4
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045B1D4
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x402a
-	stw      r0, 0x10(r24)
-
-lbl_8045B1D4:
-	lwz      r0, 0x128(r1)
-	addi     r25, r1, 0x128
-	cmplwi   r0, 0
-	bne      lbl_8045B1E8
-	stw      r24, 0x134(r1)
-
-lbl_8045B1E8:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r3, 0x14
-	li       r5, -4
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045B21C
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x4023
-	stw      r0, 0x10(r24)
-
-lbl_8045B21C:
-	lwz      r0, 0x128(r1)
-	cmplwi   r0, 0
-	bne      lbl_8045B22C
-	stw      r24, 0x134(r1)
-
-lbl_8045B22C:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r3, 0x14
-	li       r5, -4
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045B260
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x4028
-	stw      r0, 0x10(r24)
-
-lbl_8045B260:
-	lwz      r0, 0x128(r1)
-	cmplwi   r0, 0
-	bne      lbl_8045B270
-	stw      r24, 0x134(r1)
-
-lbl_8045B270:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	b        lbl_8045B774
-
-lbl_8045B280:
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r3, 0x14
-	li       r5, -4
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045B2A8
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x4022
-	stw      r0, 0x10(r24)
-
-lbl_8045B2A8:
-	lwz      r0, 0x128(r1)
-	addi     r25, r1, 0x128
-	cmplwi   r0, 0
-	bne      lbl_8045B2BC
-	stw      r24, 0x134(r1)
-
-lbl_8045B2BC:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r3, 0x14
-	li       r5, -4
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045B2F0
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x4029
-	stw      r0, 0x10(r24)
-
-lbl_8045B2F0:
-	lwz      r0, 0x128(r1)
-	cmplwi   r0, 0
-	bne      lbl_8045B300
-	stw      r24, 0x134(r1)
-
-lbl_8045B300:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r3, 0x14
-	li       r5, -4
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045B334
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x4026
-	stw      r0, 0x10(r24)
-
-lbl_8045B334:
-	lwz      r0, 0x128(r1)
-	cmplwi   r0, 0
-	bne      lbl_8045B344
-	stw      r24, 0x134(r1)
-
-lbl_8045B344:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	b        lbl_8045B774
-
-lbl_8045B354:
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r3, 0x14
-	li       r5, -4
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045B37C
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x4029
-	stw      r0, 0x10(r24)
-
-lbl_8045B37C:
-	lwz      r0, 0x128(r1)
-	addi     r25, r1, 0x128
-	cmplwi   r0, 0
-	bne      lbl_8045B390
-	stw      r24, 0x134(r1)
-
-lbl_8045B390:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r3, 0x14
-	li       r5, -4
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045B3C4
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x4027
-	stw      r0, 0x10(r24)
-
-lbl_8045B3C4:
-	lwz      r0, 0x128(r1)
-	cmplwi   r0, 0
-	bne      lbl_8045B3D4
-	stw      r24, 0x134(r1)
-
-lbl_8045B3D4:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r3, 0x14
-	li       r5, -4
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045B408
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x4024
-	stw      r0, 0x10(r24)
-
-lbl_8045B408:
-	lwz      r0, 0x128(r1)
-	cmplwi   r0, 0
-	bne      lbl_8045B418
-	stw      r24, 0x134(r1)
-
-lbl_8045B418:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	b        lbl_8045B774
-
-lbl_8045B428:
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r3, 0x14
-	li       r5, -4
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045B450
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x4029
-	stw      r0, 0x10(r24)
-
-lbl_8045B450:
-	lwz      r0, 0x128(r1)
-	addi     r25, r1, 0x128
-	cmplwi   r0, 0
-	bne      lbl_8045B464
-	stw      r24, 0x134(r1)
-
-lbl_8045B464:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r3, 0x14
-	li       r5, -4
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045B498
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x4027
-	stw      r0, 0x10(r24)
-
-lbl_8045B498:
-	lwz      r0, 0x128(r1)
-	cmplwi   r0, 0
-	bne      lbl_8045B4A8
-	stw      r24, 0x134(r1)
-
-lbl_8045B4A8:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r3, 0x14
-	li       r5, -4
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045B4DC
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x4025
-	stw      r0, 0x10(r24)
-
-lbl_8045B4DC:
-	lwz      r0, 0x128(r1)
-	cmplwi   r0, 0
-	bne      lbl_8045B4EC
-	stw      r24, 0x134(r1)
-
-lbl_8045B4EC:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	b        lbl_8045B774
-
-lbl_8045B4FC:
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r3, 0x14
-	li       r5, -4
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045B524
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x4029
-	stw      r0, 0x10(r24)
-
-lbl_8045B524:
-	lwz      r0, 0x128(r1)
-	addi     r25, r1, 0x128
-	cmplwi   r0, 0
-	bne      lbl_8045B538
-	stw      r24, 0x134(r1)
-
-lbl_8045B538:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r3, 0x14
-	li       r5, -4
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045B56C
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x4027
-	stw      r0, 0x10(r24)
-
-lbl_8045B56C:
-	lwz      r0, 0x128(r1)
-	cmplwi   r0, 0
-	bne      lbl_8045B57C
-	stw      r24, 0x134(r1)
-
-lbl_8045B57C:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r3, 0x14
-	li       r5, -4
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045B5B0
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x4025
-	stw      r0, 0x10(r24)
-
-lbl_8045B5B0:
-	lwz      r0, 0x128(r1)
-	cmplwi   r0, 0
-	bne      lbl_8045B5C0
-	stw      r24, 0x134(r1)
-
-lbl_8045B5C0:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	b        lbl_8045B774
-
-lbl_8045B5D0:
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r3, 0x14
-	li       r5, -4
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045B5F8
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x4029
-	stw      r0, 0x10(r24)
-
-lbl_8045B5F8:
-	lwz      r0, 0x128(r1)
-	addi     r25, r1, 0x128
-	cmplwi   r0, 0
-	bne      lbl_8045B60C
-	stw      r24, 0x134(r1)
-
-lbl_8045B60C:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r3, 0x14
-	li       r5, -4
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045B640
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x4027
-	stw      r0, 0x10(r24)
-
-lbl_8045B640:
-	lwz      r0, 0x128(r1)
-	cmplwi   r0, 0
-	bne      lbl_8045B650
-	stw      r24, 0x134(r1)
-
-lbl_8045B650:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r3, 0x14
-	li       r5, -4
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045B684
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x4025
-	stw      r0, 0x10(r24)
-
-lbl_8045B684:
-	lwz      r0, 0x128(r1)
-	cmplwi   r0, 0
-	bne      lbl_8045B694
-	stw      r24, 0x134(r1)
-
-lbl_8045B694:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	b        lbl_8045B774
-
-lbl_8045B6A4:
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r3, 0x14
-	li       r5, -4
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045B6CC
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x4029
-	stw      r0, 0x10(r24)
-
-lbl_8045B6CC:
-	lwz      r0, 0x128(r1)
-	addi     r25, r1, 0x128
-	cmplwi   r0, 0
-	bne      lbl_8045B6E0
-	stw      r24, 0x134(r1)
-
-lbl_8045B6E0:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r3, 0x14
-	li       r5, -4
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045B714
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x4027
-	stw      r0, 0x10(r24)
-
-lbl_8045B714:
-	lwz      r0, 0x128(r1)
-	cmplwi   r0, 0
-	bne      lbl_8045B724
-	stw      r24, 0x134(r1)
-
-lbl_8045B724:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r3, 0x14
-	li       r5, -4
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045B758
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x4025
-	stw      r0, 0x10(r24)
-
-lbl_8045B758:
-	lwz      r0, 0x128(r1)
-	cmplwi   r0, 0
-	bne      lbl_8045B768
-	stw      r24, 0x134(r1)
-
-lbl_8045B768:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-
-lbl_8045B774:
-	lwz      r8, 0xd8(r31)
-	addi     r3, r1, 0xe8
-	lwz      r7, 0xdc(r31)
-	addi     r4, r1, 0x44
-	lwz      r6, 0xe0(r31)
-	lwz      r5, 0xe4(r31)
-	lwz      r0, 0xe8(r31)
-	lfs      f0, lbl_80520C2C@sda21(r2)
-	stw      r8, 0xc0(r1)
-	stfs     f0, 0x10(r30)
-	stw      r7, 0xc4(r1)
-	stw      r6, 0xc8(r1)
-	stw      r5, 0xcc(r1)
-	stw      r0, 0xd0(r1)
-	stw      r8, 0x44(r1)
-	stw      r7, 0x48(r1)
-	stw      r6, 0x4c(r1)
-	stw      r5, 0x50(r1)
-	stw      r0, 0x54(r1)
-	bl       setInfo__Q23PSM15EnvSeObjBuilderFQ23PSM11PersEnvInfo
-	lfs      f1, lbl_80520C20@sda21(r2)
-	mr       r4, r29
-	addi     r3, r1, 0xe8
-	bl       build__Q26PSGame25Builder_EvnSe_PerspectiveFfPQ28PSSystem8EnvSeMgr
-	mr       r3, r29
-	bl       SetNoYOfset__3PSMFPQ28PSSystem8EnvSeMgr
-	li       r3, 0x54
-	bl       __nw__FUl
-	or.      r25, r3, r3
-	beq      lbl_8045B820
-	lfs      f2, lbl_80520C20@sda21(r2)
-	mr       r24, r25
-	lfs      f1, lbl_80520C24@sda21(r2)
-	li       r4, 0x3079
-	fmr      f3, f2
-	lfs      f4, lbl_80520C30@sda21(r2)
-	lfs      f5, lbl_80520C34@sda21(r2)
-	bl       __ct__Q26PSGame13EnvSe_AutoPanFUlfffff
-	lis      r3, __vt__Q23PSM12Env_Pollutin@ha
-	lfs      f0, lbl_80520C20@sda21(r2)
-	addi     r0, r3, __vt__Q23PSM12Env_Pollutin@l
-	stw      r0, 0x10(r24)
-	stfs     f0, 0x50(r24)
-
-lbl_8045B820:
-	mr       r3, r29
-	mr       r4, r25
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	li       r3, 0x54
-	bl       __nw__FUl
-	or.      r25, r3, r3
-	beq      lbl_8045B870
-	lfs      f1, lbl_80520C20@sda21(r2)
-	mr       r24, r25
-	lfs      f2, lbl_80520C24@sda21(r2)
-	li       r4, 0x307a
-	fmr      f3, f1
-	lfs      f4, lbl_80520C30@sda21(r2)
-	lfs      f5, lbl_80520C34@sda21(r2)
-	bl       __ct__Q26PSGame13EnvSe_AutoPanFUlfffff
-	lis      r3, __vt__Q23PSM12Env_Pollutin@ha
-	lfs      f0, lbl_80520C20@sda21(r2)
-	addi     r0, r3, __vt__Q23PSM12Env_Pollutin@l
-	stw      r0, 0x10(r24)
-	stfs     f0, 0x50(r24)
-
-lbl_8045B870:
-	mr       r3, r29
-	mr       r4, r25
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	b        lbl_8045BEFC
-
-lbl_8045B880:
-	cmpwi    r30, 4
-	beq      lbl_8045BD4C
-	bge      lbl_8045B8A4
-	cmpwi    r30, 2
-	beq      lbl_8045B9A0
-	bge      lbl_8045BB10
-	cmpwi    r30, 1
-	bge      lbl_8045B8B0
-	b        lbl_8045BEFC
-
-lbl_8045B8A4:
-	cmpwi    r30, 0x14
-	beq      lbl_8045B8B0
-	b        lbl_8045BEFC
-
-lbl_8045B8B0:
-	li       r3, 0x18
-	bl       __nw__FUl
-	or.      r24, r3, r3
-	beq      lbl_8045B8C8
-	bl       __ct__Q28PSSystem8EnvSeMgrFv
-	mr       r24, r3
-
-lbl_8045B8C8:
-	mr       r29, r24
-	li       r3, 0x50
-	bl       __nw__FUl
-	or.      r25, r3, r3
-	beq      lbl_8045B8FC
-	lfs      f1, lbl_80520C24@sda21(r2)
-	li       r4, 0x402d
-	lfs      f2, lbl_80520C38@sda21(r2)
-	lfs      f3, lbl_80520C20@sda21(r2)
-	lfs      f4, lbl_80520C30@sda21(r2)
-	lfs      f5, lbl_80520C34@sda21(r2)
-	bl       __ct__Q26PSGame13EnvSe_AutoPanFUlfffff
-	mr       r25, r3
-
-lbl_8045B8FC:
-	cmplwi   r25, 0
-	bne      lbl_8045B918
-	addi     r3, r31, 0xc
-	addi     r5, r31, 0x24
-	li       r4, 0x30a
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8045B918:
-	mr       r3, r25
-	li       r4, 1
-	li       r5, 0
-	bl       setDirection__Q26PSGame13EnvSe_AutoPanFbb
-	mr       r3, r24
-	mr       r4, r25
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	li       r3, 0x50
-	bl       __nw__FUl
-	or.      r25, r3, r3
-	beq      lbl_8045B964
-	lfs      f1, lbl_80520C20@sda21(r2)
-	li       r4, 0x402d
-	lfs      f2, lbl_80520C38@sda21(r2)
-	fmr      f3, f1
-	lfs      f4, lbl_80520C30@sda21(r2)
-	lfs      f5, lbl_80520C34@sda21(r2)
-	bl       __ct__Q26PSGame13EnvSe_AutoPanFUlfffff
-	mr       r25, r3
-
-lbl_8045B964:
-	cmplwi   r25, 0
-	bne      lbl_8045B980
-	addi     r3, r31, 0xc
-	addi     r5, r31, 0x24
-	li       r4, 0x311
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8045B980:
-	mr       r3, r25
-	li       r4, 0
-	li       r5, 1
-	bl       setDirection__Q26PSGame13EnvSe_AutoPanFbb
-	mr       r3, r24
-	mr       r4, r25
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	b        lbl_8045BEFC
-
-lbl_8045B9A0:
-	li       r3, 0x18
-	bl       __nw__FUl
-	or.      r26, r3, r3
-	beq      lbl_8045B9B8
-	bl       __ct__Q28PSSystem8EnvSeMgrFv
-	mr       r26, r3
-
-lbl_8045B9B8:
-	mr       r29, r26
-	li       r3, 0x14
-	bl       __nw__FUl
-	or.      r28, r3, r3
-	beq      lbl_8045B9D8
-	mr       r4, r26
-	bl       __ct__Q23PSM14PersEnvManagerFPQ28PSSystem8EnvSeMgr
-	mr       r28, r3
-
-lbl_8045B9D8:
-	stw      r28, 0x58(r27)
-	li       r3, 0x14
-	li       r5, -4
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045BA04
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x4037
-	stw      r0, 0x10(r24)
-
-lbl_8045BA04:
-	lwz      r0, 0x128(r1)
-	addi     r25, r1, 0x128
-	cmplwi   r0, 0
-	bne      lbl_8045BA18
-	stw      r24, 0x134(r1)
-
-lbl_8045BA18:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r3, 0x14
-	li       r5, -4
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045BA4C
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x4038
-	stw      r0, 0x10(r24)
-
-lbl_8045BA4C:
-	lwz      r0, 0x128(r1)
-	cmplwi   r0, 0
-	bne      lbl_8045BA5C
-	stw      r24, 0x134(r1)
-
-lbl_8045BA5C:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r3, 0x14
-	li       r5, -4
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045BA90
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x4039
-	stw      r0, 0x10(r24)
-
-lbl_8045BA90:
-	lwz      r0, 0x128(r1)
-	cmplwi   r0, 0
-	bne      lbl_8045BAA0
-	stw      r24, 0x134(r1)
-
-lbl_8045BAA0:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r8, 0xec(r31)
-	addi     r3, r1, 0xe8
-	lwz      r7, 0xf0(r31)
-	addi     r4, r1, 0x30
-	lwz      r6, 0xf4(r31)
-	lwz      r5, 0xf8(r31)
-	lwz      r0, 0xfc(r31)
-	lfs      f0, lbl_80520C3C@sda21(r2)
-	stw      r8, 0xac(r1)
-	stfs     f0, 0x10(r28)
-	stw      r7, 0xb0(r1)
-	stw      r6, 0xb4(r1)
-	stw      r5, 0xb8(r1)
-	stw      r0, 0xbc(r1)
-	stw      r8, 0x30(r1)
-	stw      r7, 0x34(r1)
-	stw      r6, 0x38(r1)
-	stw      r5, 0x3c(r1)
-	stw      r0, 0x40(r1)
-	bl       setInfo__Q23PSM15EnvSeObjBuilderFQ23PSM11PersEnvInfo
-	lfs      f1, lbl_80520C20@sda21(r2)
-	mr       r4, r26
-	addi     r3, r1, 0xe8
-	bl       build__Q26PSGame25Builder_EvnSe_PerspectiveFfPQ28PSSystem8EnvSeMgr
-	b        lbl_8045BEFC
-
-lbl_8045BB10:
-	li       r3, 0x18
-	bl       __nw__FUl
-	or.      r26, r3, r3
-	beq      lbl_8045BB28
-	bl       __ct__Q28PSSystem8EnvSeMgrFv
-	mr       r26, r3
-
-lbl_8045BB28:
-	mr       r29, r26
-	li       r3, 0x14
-	bl       __nw__FUl
-	or.      r28, r3, r3
-	beq      lbl_8045BB48
-	mr       r4, r26
-	bl       __ct__Q23PSM14PersEnvManagerFPQ28PSSystem8EnvSeMgr
-	mr       r28, r3
-
-lbl_8045BB48:
-	stw      r28, 0x58(r27)
-	li       r3, 0x14
-	li       r5, -4
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045BB74
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x402f
-	stw      r0, 0x10(r24)
-
-lbl_8045BB74:
-	lwz      r0, 0x128(r1)
-	addi     r25, r1, 0x128
-	cmplwi   r0, 0
-	bne      lbl_8045BB88
-	stw      r24, 0x134(r1)
-
-lbl_8045BB88:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r3, 0x14
-	li       r5, -4
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045BBBC
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x4033
-	stw      r0, 0x10(r24)
-
-lbl_8045BBBC:
-	lwz      r0, 0x128(r1)
-	cmplwi   r0, 0
-	bne      lbl_8045BBCC
-	stw      r24, 0x134(r1)
-
-lbl_8045BBCC:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r3, 0x14
-	li       r5, -4
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045BC00
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x4035
-	stw      r0, 0x10(r24)
-
-lbl_8045BC00:
-	lwz      r0, 0x128(r1)
-	cmplwi   r0, 0
-	bne      lbl_8045BC10
-	stw      r24, 0x134(r1)
-
-lbl_8045BC10:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r3, 0x14
-	li       r5, -4
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045BC44
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x4030
-	stw      r0, 0x10(r24)
-
-lbl_8045BC44:
-	lwz      r0, 0x128(r1)
-	cmplwi   r0, 0
-	bne      lbl_8045BC54
-	stw      r24, 0x134(r1)
-
-lbl_8045BC54:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r3, 0x14
-	li       r5, -4
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045BC88
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x4034
-	stw      r0, 0x10(r24)
-
-lbl_8045BC88:
-	lwz      r0, 0x128(r1)
-	cmplwi   r0, 0
-	bne      lbl_8045BC98
-	stw      r24, 0x134(r1)
-
-lbl_8045BC98:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r3, 0x14
-	li       r5, -4
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045BCCC
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x4036
-	stw      r0, 0x10(r24)
-
-lbl_8045BCCC:
-	lwz      r0, 0x128(r1)
-	cmplwi   r0, 0
-	bne      lbl_8045BCDC
-	stw      r24, 0x134(r1)
-
-lbl_8045BCDC:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r8, 0x100(r31)
-	addi     r3, r1, 0xe8
-	lwz      r7, 0x104(r31)
-	addi     r4, r1, 0x1c
-	lwz      r6, 0x108(r31)
-	lwz      r5, 0x10c(r31)
-	lwz      r0, 0x110(r31)
-	lfs      f0, lbl_80520C2C@sda21(r2)
-	stw      r8, 0x98(r1)
-	stfs     f0, 0x10(r28)
-	stw      r7, 0x9c(r1)
-	stw      r6, 0xa0(r1)
-	stw      r5, 0xa4(r1)
-	stw      r0, 0xa8(r1)
-	stw      r8, 0x1c(r1)
-	stw      r7, 0x20(r1)
-	stw      r6, 0x24(r1)
-	stw      r5, 0x28(r1)
-	stw      r0, 0x2c(r1)
-	bl       setInfo__Q23PSM15EnvSeObjBuilderFQ23PSM11PersEnvInfo
-	lfs      f1, lbl_80520C20@sda21(r2)
-	mr       r4, r26
-	addi     r3, r1, 0xe8
-	bl       build__Q26PSGame25Builder_EvnSe_PerspectiveFfPQ28PSSystem8EnvSeMgr
-	b        lbl_8045BEFC
-
-lbl_8045BD4C:
-	li       r3, 0x18
-	bl       __nw__FUl
-	or.      r26, r3, r3
-	beq      lbl_8045BD64
-	bl       __ct__Q28PSSystem8EnvSeMgrFv
-	mr       r26, r3
-
-lbl_8045BD64:
-	mr       r29, r26
-	li       r3, 0x14
-	bl       __nw__FUl
-	or.      r28, r3, r3
-	beq      lbl_8045BD84
-	mr       r4, r26
-	bl       __ct__Q23PSM14PersEnvManagerFPQ28PSSystem8EnvSeMgr
-	mr       r28, r3
-
-lbl_8045BD84:
-	stw      r28, 0x58(r27)
-	li       r3, 0x14
-	li       r5, -4
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045BDB0
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x403a
-	stw      r0, 0x10(r24)
-
-lbl_8045BDB0:
-	lwz      r0, 0x128(r1)
-	addi     r25, r1, 0x128
-	cmplwi   r0, 0
-	bne      lbl_8045BDC4
-	stw      r24, 0x134(r1)
-
-lbl_8045BDC4:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r3, 0x14
-	li       r5, -4
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045BDF8
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x403b
-	stw      r0, 0x10(r24)
-
-lbl_8045BDF8:
-	lwz      r0, 0x128(r1)
-	cmplwi   r0, 0
-	bne      lbl_8045BE08
-	stw      r24, 0x134(r1)
-
-lbl_8045BE08:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r3, 0x14
-	li       r5, -4
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045BE3C
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x403a
-	stw      r0, 0x10(r24)
-
-lbl_8045BE3C:
-	lwz      r0, 0x128(r1)
-	cmplwi   r0, 0
-	bne      lbl_8045BE4C
-	stw      r24, 0x134(r1)
-
-lbl_8045BE4C:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r3, 0x14
-	li       r5, -4
-	bl       __nw__FUlP7JKRHeapi
-	or.      r24, r3, r3
-	beq      lbl_8045BE80
-	mr       r4, r24
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0x403c
-	stw      r0, 0x10(r24)
-
-lbl_8045BE80:
-	lwz      r0, 0x128(r1)
-	cmplwi   r0, 0
-	bne      lbl_8045BE90
-	stw      r24, 0x134(r1)
-
-lbl_8045BE90:
-	mr       r3, r25
-	mr       r4, r24
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r8, 0x114(r31)
-	addi     r3, r1, 0xe8
-	lwz      r7, 0x118(r31)
-	addi     r4, r1, 8
-	lwz      r6, 0x11c(r31)
-	lwz      r5, 0x120(r31)
-	lwz      r0, 0x124(r31)
-	lfs      f0, lbl_80520C3C@sda21(r2)
-	stw      r8, 0x84(r1)
-	stfs     f0, 0x10(r28)
-	stw      r7, 0x88(r1)
-	stw      r6, 0x8c(r1)
-	stw      r5, 0x90(r1)
-	stw      r0, 0x94(r1)
-	stw      r8, 8(r1)
-	stw      r7, 0xc(r1)
-	stw      r6, 0x10(r1)
-	stw      r5, 0x14(r1)
-	stw      r0, 0x18(r1)
-	bl       setInfo__Q23PSM15EnvSeObjBuilderFQ23PSM11PersEnvInfo
-	lfs      f1, lbl_80520C20@sda21(r2)
-	mr       r4, r26
-	addi     r3, r1, 0xe8
-	bl       build__Q26PSGame25Builder_EvnSe_PerspectiveFfPQ28PSSystem8EnvSeMgr
-
-lbl_8045BEFC:
-	cmplwi   r29, 0
-	beq      lbl_8045BF30
-	lfs      f1, lbl_80520C40@sda21(r2)
-	mr       r3, r29
-	li       r4, 0x3079
-	bl       SetBossBgmMuteVol__3PSMFPQ28PSSystem8EnvSeMgrUlf
-	lfs      f1, lbl_80520C40@sda21(r2)
-	mr       r3, r29
-	li       r4, 0x307a
-	bl       SetBossBgmMuteVol__3PSMFPQ28PSSystem8EnvSeMgrUlf
-	mr       r3, r27
-	mr       r4, r29
-	bl       adaptEnvSe__Q23PSM10Scene_GameFPQ28PSSystem8EnvSeMgr
-
-lbl_8045BF30:
-	lis      r4, __vt__Q23PSM15EnvSeObjBuilder@ha
-	addi     r3, r1, 0xe8
-	addi     r0, r4, __vt__Q23PSM15EnvSeObjBuilder@l
-	li       r4, 0
-	stw      r0, 0xe8(r1)
-	bl       __dt__Q26PSGame25Builder_EvnSe_PerspectiveFv
-	lmw      r24, 0x150(r1)
-	lwz      r0, 0x174(r1)
-	mtlr     r0
-	addi     r1, r1, 0x170
-	blr
-	*/
 }
 
 /**
@@ -2824,9 +893,9 @@ void PersEnvManager::exec()
 				continue;
 			}
 
-			Vec soundDist    = se->mPosition;
+			Vec soundDist             = se->mPosition;
 			JGeometry::TVec3f naviPos = PSMath::toVec(navi->getPosition());
-			f32 dist         = PSMath::calcDistanceXZ(soundDist, naviPos);
+			f32 dist                  = PSMath::calcDistanceXZ(soundDist, naviPos);
 			if (mSeDistances[i] > dist) {
 				mSeDistances[i]   = dist;
 				mPersEnvSounds[i] = se;

@@ -142,16 +142,20 @@ void OBB::create2(Sys::VertexTable& vertTable, Sys::TriangleTable& triTable, Mat
 	mAxes[2] = col3;
 
 	// get coordinates of "max" corner and "min" corner of box
-	Vector3f maxVec = mPosition + mAxes[0] * mMaxXYZ[0] + mAxes[1] * mMaxXYZ[1] + mAxes[2] * mMaxXYZ[2];
-	Vector3f minVec = mPosition + mAxes[0] * mMinXYZ[0] + mAxes[1] * mMinXYZ[1] + mAxes[2] * mMinXYZ[2];
+	Vector3f maxVec;
+	Vector3f minVec;
+	maxVec = Vector3f::add2(mPosition, mAxes[0] * mMaxXYZ[0]) + mAxes[1] * mMaxXYZ[1] + mAxes[2] * mMaxXYZ[2];
+	minVec = Vector3f::add2(mPosition, mAxes[0] * mMinXYZ[0]) + mAxes[1] * mMinXYZ[1] + mAxes[2] * mMinXYZ[2];
 
 	// set bounding sphere center to midpoint between diagonal corners
 	mSphere.mPosition = (maxVec + minVec) * 0.5f;
 
-	Vector3f maxSep = maxVec - mSphere.mPosition;
-	f32 maxDist     = maxSep.qLength();
+	Vector3f maxSep;
+	maxSep      = maxVec - mSphere.mPosition;
+	f32 maxDist = maxSep.qLength();
 
-	Vector3f minSep = minVec - mSphere.mPosition;
+	Vector3f minSep;
+	minSep = minVec - mSphere.mPosition;
 
 	f32 maxRadius = maxDist;
 	if (maxDist < minSep.qLength()) {
@@ -160,476 +164,75 @@ void OBB::create2(Sys::VertexTable& vertTable, Sys::TriangleTable& triTable, Mat
 
 	mSphere.mRadius = maxRadius;
 
-	// for (int i = 0; i < 3; i++) {
-	//     m_sidePlanes[i].a = m_axes[i].x;
-	//     m_sidePlanes[i].b = m_axes[i].y;
-	//     m_sidePlanes[i].c = m_axes[i].z;
-	//     m_sidePlanes[i].d = m_sidePlanes[i].a * (m_position.x + (m_axes[i].x * m_maxXYZ[i])) + m_sidePlanes[i].b * (m_position.y +
-	//     (m_axes[i].y * m_maxXYZ[i])) + m_sidePlanes[i].c * (m_position.z + (m_axes[i].z * m_maxXYZ[i]));
-	// }
-
+	// fun fact! these seem to have to be in separate blocks/scopes to make registers work
+	// how fun is that! so fun! ha ha!
+	// this sure looks like an inline! or a loop! but guess what!
+	// the last block has flipped registers as if it uses operator+ instead of element-wise addition
+	// this is all just pain.
 	Vec tempVec;
-	setMaxPlane(&tempVec, 0);
-	setMaxPlane(&tempVec, 1);
-	setMaxPlane(&tempVec, 2);
-
-	setMinPlane(&tempVec, 0);
-	setMinPlane(&tempVec, 1);
-	setMinPlane(&tempVec, 2);
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x150(r1)
-	  mflr      r0
-	  stw       r0, 0x154(r1)
-	  stfd      f31, 0x140(r1)
-	  psq_st    f31,0x148(r1),0,0
-	  stfd      f30, 0x130(r1)
-	  psq_st    f30,0x138(r1),0,0
-	  stfd      f29, 0x120(r1)
-	  psq_st    f29,0x128(r1),0,0
-	  stfd      f28, 0x110(r1)
-	  psq_st    f28,0x118(r1),0,0
-	  stfd      f27, 0x100(r1)
-	  psq_st    f27,0x108(r1),0,0
-	  stfd      f26, 0xF0(r1)
-	  psq_st    f26,0xF8(r1),0,0
-	  stfd      f25, 0xE0(r1)
-	  psq_st    f25,0xE8(r1),0,0
-	  stfd      f24, 0xD0(r1)
-	  psq_st    f24,0xD8(r1),0,0
-	  stfd      f23, 0xC0(r1)
-	  psq_st    f23,0xC8(r1),0,0
-	  stw       r31, 0xBC(r1)
-	  stw       r30, 0xB8(r1)
-	  stw       r29, 0xB4(r1)
-	  lfs       f0, 0x0(r8)
-	  mr        r31, r3
-	  mr        r29, r4
-	  mr        r30, r5
-	  stfs      f0, 0x78(r3)
-	  addi      r3, r31, 0xD8
-	  addi      r6, r1, 0xA0
-	  addi      r9, r1, 0x8
-	  lfs       f0, 0x4(r8)
-	  stfs      f0, 0x7C(r31)
-	  lfs       f0, 0x8(r8)
-	  addi      r8, r1, 0xC
-	  stfs      f0, 0x80(r31)
-	  lfs       f0, 0x0(r7)
-	  stfs      f0, 0xA0(r1)
-	  lfs       f0, 0xC(r7)
-	  stfs      f0, 0xA4(r1)
-	  lfs       f0, 0x18(r7)
-	  stfs      f0, 0xA8(r1)
-	  lfs       f0, 0x4(r7)
-	  stfs      f0, 0x94(r1)
-	  lfs       f0, 0x10(r7)
-	  stfs      f0, 0x98(r1)
-	  lfs       f0, 0x1C(r7)
-	  stfs      f0, 0x9C(r1)
-	  lfs       f0, 0x8(r7)
-	  stfs      f0, 0x88(r1)
-	  lfs       f0, 0x14(r7)
-	  stfs      f0, 0x8C(r1)
-	  lfs       f0, 0x20(r7)
-	  addi      r7, r31, 0x78
-	  stfs      f0, 0x90(r1)
-	  bl        -0x3B78
-	  lfs       f0, 0xC(r1)
-	  mr        r4, r29
-	  mr        r5, r30
-	  addi      r3, r31, 0xD8
-	  stfs      f0, 0xA8(r31)
-	  addi      r6, r1, 0x94
-	  addi      r7, r31, 0x78
-	  addi      r8, r1, 0xC
-	  lfs       f0, 0x8(r1)
-	  addi      r9, r1, 0x8
-	  stfs      f0, 0xB4(r31)
-	  bl        -0x3BA8
-	  lfs       f0, 0xC(r1)
-	  mr        r4, r29
-	  mr        r5, r30
-	  addi      r3, r31, 0xD8
-	  stfs      f0, 0xAC(r31)
-	  addi      r6, r1, 0x88
-	  addi      r7, r31, 0x78
-	  addi      r8, r1, 0xC
-	  lfs       f0, 0x8(r1)
-	  addi      r9, r1, 0x8
-	  stfs      f0, 0xB8(r31)
-	  bl        -0x3BD8
-	  lfs       f0, 0xC(r1)
-	  lfs       f2, 0x206C(r2)
-	  stfs      f0, 0xB0(r31)
-	  lfs       f0, 0x8(r1)
-	  stfs      f0, 0xBC(r31)
-	  lfs       f0, 0xA0(r1)
-	  stfs      f0, 0x84(r31)
-	  lfs       f0, 0xA4(r1)
-	  stfs      f0, 0x88(r31)
-	  lfs       f0, 0xA8(r1)
-	  stfs      f0, 0x8C(r31)
-	  lfs       f0, 0x94(r1)
-	  stfs      f0, 0x90(r31)
-	  lfs       f0, 0x98(r1)
-	  stfs      f0, 0x94(r31)
-	  lfs       f0, 0x9C(r1)
-	  stfs      f0, 0x98(r31)
-	  lfs       f0, 0x88(r1)
-	  stfs      f0, 0x9C(r31)
-	  lfs       f0, 0x8C(r1)
-	  stfs      f0, 0xA0(r31)
-	  lfs       f0, 0x90(r1)
-	  stfs      f0, 0xA4(r31)
-	  lfs       f5, 0xB4(r31)
-	  lfs       f1, 0x84(r31)
-	  lfs       f6, 0xA8(r31)
-	  lfs       f0, 0x88(r31)
-	  fmuls     f3, f1, f5
-	  lfs       f12, 0x8C(r31)
-	  fmuls     f1, f1, f6
-	  lfs       f4, 0x78(r31)
-	  fmuls     f10, f0, f5
-	  lfs       f23, 0x7C(r31)
-	  fmuls     f0, f0, f6
-	  lfs       f9, 0xB8(r31)
-	  lfs       f11, 0x90(r31)
-	  fadds     f8, f4, f3
-	  lfs       f29, 0xAC(r31)
-	  fadds     f4, f4, f1
-	  lfs       f13, 0x94(r31)
-	  fmuls     f7, f11, f9
-	  lfs       f25, 0x98(r31)
-	  fmuls     f3, f11, f29
-	  fmuls     f27, f12, f5
-	  lfs       f24, 0x80(r31)
-	  fmuls     f1, f12, f6
-	  lfs       f11, 0xBC(r31)
-	  fmuls     f30, f13, f9
-	  lfs       f28, 0x9C(r31)
-	  lfs       f12, 0xB0(r31)
-	  fadds     f31, f23, f10
-	  lfs       f26, 0xA0(r31)
-	  fadds     f6, f23, f0
-	  lfs       f0, 0xA4(r31)
-	  fmuls     f5, f13, f29
-	  fmuls     f13, f28, f11
-	  fadds     f10, f8, f7
-	  fadds     f8, f4, f3
-	  fmuls     f7, f28, f12
-	  fmuls     f28, f25, f9
-	  fadds     f27, f24, f27
-	  fadds     f4, f24, f1
-	  fmuls     f3, f25, f29
-	  fmuls     f29, f26, f11
-	  fadds     f9, f31, f30
-	  fadds     f6, f6, f5
-	  fmuls     f5, f26, f12
-	  fadds     f10, f10, f13
-	  fadds     f31, f8, f7
-	  fmuls     f8, f0, f11
-	  fadds     f7, f27, f28
-	  fadds     f1, f10, f31
-	  fadds     f4, f4, f3
-	  fmuls     f3, f0, f12
-	  fmuls     f0, f1, f2
-	  fadds     f9, f9, f29
-	  fadds     f30, f6, f5
-	  fadds     f5, f7, f8
-	  stfs      f0, 0x100(r31)
-	  fadds     f29, f4, f3
-	  fadds     f1, f9, f30
-	  fadds     f0, f5, f29
-	  fmuls     f1, f1, f2
-	  fmuls     f0, f0, f2
-	  stfs      f1, 0x104(r31)
-	  stfs      f0, 0x108(r31)
-	  lfs       f0, 0x104(r31)
-	  lfs       f1, 0x100(r31)
-	  fsubs     f2, f9, f0
-	  lfs       f0, 0x108(r31)
-	  fsubs     f1, f10, f1
-	  fsubs     f3, f5, f0
-	  fmuls     f0, f2, f2
-	  fmadds    f0, f1, f1, f0
-	  fmadds    f1, f3, f3, f0
-	  bl        -0xBAE8
-	  lfs       f0, 0x104(r31)
-	  fmr       f27, f1
-	  lfs       f3, 0x100(r31)
-	  fsubs     f0, f30, f0
-	  lfs       f2, 0x108(r31)
-	  fsubs     f1, f31, f3
-	  fsubs     f2, f29, f2
-	  fmuls     f0, f0, f0
-	  fmr       f24, f27
-	  fmadds    f0, f1, f1, f0
-	  fmadds    f23, f2, f2, f0
-	  fmr       f1, f23
-	  bl        -0xBB1C
-	  fcmpo     cr0, f27, f1
-	  bge-      .loc_0x30C
-	  fmr       f1, f23
-	  bl        -0xBB2C
-	  fmr       f24, f1
-
-	.loc_0x30C:
-	  stfs      f24, 0x10C(r31)
-	  lfs       f2, 0x84(r31)
-	  lfs       f0, 0x88(r31)
-	  stfs      f2, 0x7C(r1)
-	  lfs       f3, 0xB4(r31)
-	  lfs       f1, 0x8C(r31)
-	  stfs      f0, 0x80(r1)
-	  fmuls     f0, f0, f3
-	  lwz       r3, 0x7C(r1)
-	  fmuls     f2, f2, f3
-	  stfs      f1, 0x84(r1)
-	  fmuls     f1, f1, f3
-	  lwz       r0, 0x80(r1)
-	  stw       r3, 0x70(r1)
-	  lfs       f4, 0x78(r31)
-	  stw       r0, 0x74(r1)
-	  lfs       f3, 0x7C(r31)
-	  fadds     f4, f4, f2
-	  lfs       f2, 0x80(r31)
-	  lwz       r0, 0x84(r1)
-	  fadds     f3, f3, f0
-	  lfs       f0, 0x70(r1)
-	  fadds     f5, f2, f1
-	  stw       r0, 0x78(r1)
-	  lfs       f1, 0x74(r1)
-	  stfs      f0, 0x18(r31)
-	  lfs       f0, 0x78(r1)
-	  stfs      f1, 0x1C(r31)
-	  stfs      f0, 0x20(r31)
-	  lfs       f0, 0x1C(r31)
-	  lfs       f1, 0x18(r31)
-	  fmuls     f0, f0, f3
-	  lfs       f2, 0x20(r31)
-	  fmadds    f0, f1, f4, f0
-	  fmadds    f0, f2, f5, f0
-	  stfs      f0, 0x24(r31)
-	  lfs       f3, 0x90(r31)
-	  lfs       f1, 0x94(r31)
-	  lfs       f5, 0xB8(r31)
-	  lfs       f4, 0x98(r31)
-	  stfs      f3, 0x7C(r1)
-	  fmuls     f0, f1, f5
-	  lfs       f2, 0x7C(r31)
-	  fmuls     f3, f3, f5
-	  stfs      f1, 0x80(r1)
-	  fmuls     f1, f4, f5
-	  lwz       r3, 0x7C(r1)
-	  stfs      f4, 0x84(r1)
-	  fadds     f4, f2, f0
-	  lwz       r0, 0x80(r1)
-	  stw       r3, 0x64(r1)
-	  lfs       f0, 0x78(r31)
-	  stw       r0, 0x68(r1)
-	  lfs       f2, 0x80(r31)
-	  fadds     f3, f0, f3
-	  lwz       r0, 0x84(r1)
-	  lfs       f0, 0x64(r1)
-	  fadds     f5, f2, f1
-	  stw       r0, 0x6C(r1)
-	  lfs       f1, 0x68(r1)
-	  stfs      f0, 0x28(r31)
-	  lfs       f0, 0x6C(r1)
-	  stfs      f1, 0x2C(r31)
-	  stfs      f0, 0x30(r31)
-	  lfs       f0, 0x2C(r31)
-	  lfs       f1, 0x28(r31)
-	  fmuls     f0, f0, f4
-	  lfs       f2, 0x30(r31)
-	  fmadds    f0, f1, f3, f0
-	  fmadds    f0, f2, f5, f0
-	  stfs      f0, 0x34(r31)
-	  lfs       f1, 0x9C(r31)
-	  lfs       f0, 0xA0(r31)
-	  lfs       f3, 0xBC(r31)
-	  lfs       f5, 0xA4(r31)
-	  stfs      f1, 0x7C(r1)
-	  fmuls     f1, f1, f3
-	  lfs       f4, 0x78(r31)
-	  fmuls     f2, f0, f3
-	  stfs      f0, 0x80(r1)
-	  fmuls     f0, f5, f3
-	  lfs       f3, 0x7C(r31)
-	  stfs      f5, 0x84(r1)
-	  fadds     f4, f4, f1
-	  lfs       f1, 0x80(r31)
-	  fadds     f2, f3, f2
-	  lwz       r4, 0x7C(r1)
-	  lwz       r3, 0x80(r1)
-	  fadds     f3, f1, f0
-	  lwz       r0, 0x84(r1)
-	  stw       r4, 0x58(r1)
-	  stw       r3, 0x5C(r1)
-	  stw       r0, 0x60(r1)
-	  lfs       f0, 0x58(r1)
-	  lfs       f1, 0x5C(r1)
-	  stfs      f0, 0x38(r31)
-	  lfs       f0, 0x60(r1)
-	  stfs      f1, 0x3C(r31)
-	  stfs      f0, 0x40(r31)
-	  lfs       f0, 0x3C(r31)
-	  lfs       f1, 0x38(r31)
-	  fmuls     f0, f0, f2
-	  lfs       f2, 0x40(r31)
-	  fmadds    f0, f1, f4, f0
-	  fmadds    f0, f2, f3, f0
-	  stfs      f0, 0x44(r31)
-	  lfs       f7, 0x84(r31)
-	  lfs       f6, 0x88(r31)
-	  fneg      f2, f7
-	  lfs       f5, 0x8C(r31)
-	  lfs       f8, 0xA8(r31)
-	  fneg      f1, f6
-	  fneg      f0, f5
-	  lfs       f4, 0x78(r31)
-	  stfs      f2, 0x40(r1)
-	  fmuls     f3, f7, f8
-	  lfs       f2, 0x7C(r31)
-	  fmuls     f9, f6, f8
-	  stfs      f1, 0x44(r1)
-	  fmuls     f1, f5, f8
-	  lwz       r3, 0x40(r1)
-	  stfs      f0, 0x48(r1)
-	  fadds     f2, f2, f9
-	  lwz       r0, 0x44(r1)
-	  fadds     f3, f4, f3
-	  stw       r3, 0x4C(r1)
-	  lfs       f0, 0x80(r31)
-	  stw       r0, 0x50(r1)
-	  lwz       r0, 0x48(r1)
-	  fadds     f4, f0, f1
-	  lfs       f0, 0x4C(r1)
-	  stw       r0, 0x54(r1)
-	  lfs       f1, 0x50(r1)
-	  stfs      f0, 0x48(r31)
-	  lfs       f0, 0x54(r1)
-	  stfs      f1, 0x4C(r31)
-	  stfs      f0, 0x50(r31)
-	  lfs       f0, 0x4C(r31)
-	  lfs       f1, 0x48(r31)
-	  fmuls     f0, f0, f2
-	  lfs       f2, 0x50(r31)
-	  stfs      f7, 0x7C(r1)
-	  fmadds    f0, f1, f3, f0
-	  stfs      f6, 0x80(r1)
-	  stfs      f5, 0x84(r1)
-	  fmadds    f0, f2, f4, f0
-	  stfs      f0, 0x54(r31)
-	  lfs       f6, 0x90(r31)
-	  lfs       f5, 0x94(r31)
-	  lfs       f4, 0x98(r31)
-	  fneg      f2, f6
-	  fneg      f1, f5
-	  lfs       f7, 0xAC(r31)
-	  fneg      f0, f4
-	  lfs       f3, 0x78(r31)
-	  stfs      f2, 0x28(r1)
-	  lfs       f2, 0x7C(r31)
-	  stfs      f1, 0x2C(r1)
-	  fmuls     f8, f5, f7
-	  lwz       r3, 0x28(r1)
-	  fmuls     f1, f6, f7
-	  stfs      f0, 0x30(r1)
-	  fmuls     f7, f4, f7
-	  lwz       r0, 0x2C(r1)
-	  stw       r3, 0x34(r1)
-	  fadds     f2, f2, f8
-	  lfs       f0, 0x80(r31)
-	  fadds     f3, f3, f1
-	  stw       r0, 0x38(r1)
-	  lwz       r0, 0x30(r1)
-	  fadds     f7, f0, f7
-	  lfs       f0, 0x34(r1)
-	  stw       r0, 0x3C(r1)
-	  lfs       f1, 0x38(r1)
-	  stfs      f0, 0x58(r31)
-	  lfs       f0, 0x3C(r1)
-	  stfs      f1, 0x5C(r31)
-	  stfs      f0, 0x60(r31)
-	  lfs       f0, 0x5C(r31)
-	  lfs       f1, 0x58(r31)
-	  fmuls     f0, f0, f2
-	  lfs       f2, 0x60(r31)
-	  stfs      f6, 0x7C(r1)
-	  fmadds    f0, f1, f3, f0
-	  stfs      f5, 0x80(r1)
-	  stfs      f4, 0x84(r1)
-	  fmadds    f0, f2, f7, f0
-	  stfs      f0, 0x64(r31)
-	  lfs       f6, 0x9C(r31)
-	  lfs       f5, 0xA0(r31)
-	  fneg      f2, f6
-	  lfs       f4, 0xA4(r31)
-	  lfs       f7, 0xB0(r31)
-	  fneg      f1, f5
-	  fneg      f0, f4
-	  lfs       f3, 0x80(r31)
-	  stfs      f2, 0x10(r1)
-	  fmuls     f9, f4, f7
-	  lfs       f2, 0x7C(r31)
-	  fmuls     f8, f5, f7
-	  stfs      f1, 0x14(r1)
-	  fmuls     f1, f6, f7
-	  lwz       r3, 0x10(r1)
-	  stfs      f0, 0x18(r1)
-	  fadds     f2, f2, f8
-	  lwz       r0, 0x14(r1)
-	  fadds     f7, f3, f9
-	  stw       r3, 0x1C(r1)
-	  lfs       f0, 0x78(r31)
-	  stw       r0, 0x20(r1)
-	  lwz       r0, 0x18(r1)
-	  fadds     f3, f0, f1
-	  lfs       f0, 0x1C(r1)
-	  stw       r0, 0x24(r1)
-	  lfs       f1, 0x20(r1)
-	  stfs      f0, 0x68(r31)
-	  lfs       f0, 0x24(r1)
-	  stfs      f1, 0x6C(r31)
-	  stfs      f0, 0x70(r31)
-	  lfs       f0, 0x6C(r31)
-	  lfs       f1, 0x68(r31)
-	  fmuls     f0, f0, f2
-	  lfs       f2, 0x70(r31)
-	  stfs      f6, 0x7C(r1)
-	  fmadds    f0, f1, f3, f0
-	  stfs      f5, 0x80(r1)
-	  stfs      f4, 0x84(r1)
-	  fmadds    f0, f2, f7, f0
-	  stfs      f0, 0x74(r31)
-	  psq_l     f31,0x148(r1),0,0
-	  lfd       f31, 0x140(r1)
-	  psq_l     f30,0x138(r1),0,0
-	  lfd       f30, 0x130(r1)
-	  psq_l     f29,0x128(r1),0,0
-	  lfd       f29, 0x120(r1)
-	  psq_l     f28,0x118(r1),0,0
-	  lfd       f28, 0x110(r1)
-	  psq_l     f27,0x108(r1),0,0
-	  lfd       f27, 0x100(r1)
-	  psq_l     f26,0xF8(r1),0,0
-	  lfd       f26, 0xF0(r1)
-	  psq_l     f25,0xE8(r1),0,0
-	  lfd       f25, 0xE0(r1)
-	  psq_l     f24,0xD8(r1),0,0
-	  lfd       f24, 0xD0(r1)
-	  psq_l     f23,0xC8(r1),0,0
-	  lfd       f23, 0xC0(r1)
-	  lwz       r31, 0xBC(r1)
-	  lwz       r30, 0xB8(r1)
-	  lwz       r0, 0x154(r1)
-	  lwz       r29, 0xB4(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x150
-	  blr
-	*/
+	{
+		tempVec.x          = mAxes[0].x;
+		tempVec.y          = mAxes[0].y;
+		tempVec.z          = mAxes[0].z;
+		Vector3f scaledVec = Vector3f(tempVec) * mMaxXYZ[0];
+		Vector3f point;
+		point.x = mPosition.x + scaledVec.x;
+		point.y = mPosition.y + scaledVec.y;
+		point.z = mPosition.z + scaledVec.z;
+		setMaxPlane(&tempVec, 0, point);
+	}
+	{
+		tempVec.x          = mAxes[1].x;
+		tempVec.y          = mAxes[1].y;
+		tempVec.z          = mAxes[1].z;
+		Vector3f scaledVec = Vector3f(tempVec) * mMaxXYZ[1];
+		Vector3f point;
+		point.x = mPosition.x + scaledVec.x;
+		point.y = mPosition.y + scaledVec.y;
+		point.z = mPosition.z + scaledVec.z;
+		setMaxPlane(&tempVec, 1, point);
+	}
+	{
+		tempVec.x          = mAxes[2].x;
+		tempVec.y          = mAxes[2].y;
+		tempVec.z          = mAxes[2].z;
+		Vector3f scaledVec = Vector3f(tempVec) * mMaxXYZ[2];
+		Vector3f point;
+		point.x = mPosition.x + scaledVec.x;
+		point.y = mPosition.y + scaledVec.y;
+		point.z = mPosition.z + scaledVec.z;
+		setMaxPlane(&tempVec, 2, point);
+	}
+	{
+		tempVec.x          = mAxes[0].x;
+		tempVec.y          = mAxes[0].y;
+		tempVec.z          = mAxes[0].z;
+		Vector3f scaledVec = Vector3f(tempVec) * mMinXYZ[0];
+		Vector3f point;
+		point.x = mPosition.x + scaledVec.x;
+		point.y = mPosition.y + scaledVec.y;
+		point.z = mPosition.z + scaledVec.z;
+		setMinPlane(&tempVec, 0, point);
+	}
+	{
+		tempVec.x          = mAxes[1].x;
+		tempVec.y          = mAxes[1].y;
+		tempVec.z          = mAxes[1].z;
+		Vector3f scaledVec = Vector3f(tempVec) * mMinXYZ[1];
+		Vector3f point;
+		point.x = mPosition.x + scaledVec.x;
+		point.y = mPosition.y + scaledVec.y;
+		point.z = mPosition.z + scaledVec.z;
+		setMinPlane(&tempVec, 1, point);
+	}
+	{
+		tempVec.x          = mAxes[2].x;
+		tempVec.y          = mAxes[2].y;
+		tempVec.z          = mAxes[2].z;
+		Vector3f scaledVec = Vector3f(tempVec) * mMinXYZ[2];
+		Vector3f point     = mPosition + scaledVec;
+		setMinPlane(&tempVec, 2, point);
+	}
 }
 
 /**
@@ -673,25 +276,30 @@ void OBB::autoDivide(Sys::VertexTable& vertTable, Sys::TriangleTable& triTable, 
  * @note Address: N/A
  * @note Size: 0x128
  */
-void OBB::countDivResult(Sys::VertexTable& vertTable, Sys::TriangleTable& triTable, int count, int& numAbove, int& numBelow)
+void OBB::countDivResult(Sys::VertexTable& vertTable, Sys::TriangleTable& triTable, int axis, int& aboveCount, int& belowCount)
 {
-	mHalfA->mTriIndexList.alloc(numAbove);
-	mHalfB->mTriIndexList.alloc(numBelow);
+	Plane plane;
+	int numAbove = 0;
+	int numBelow = 0;
 
-	for (int i = 0; i < mTriIndexList.getNum(); i++) {
-		int currIndex     = mTriIndexList.mObjects[i];
-		Triangle* currTri = triTable.getTriangle(currIndex);
-		f32 triDist       = currTri->calcDist(mDivPlane, vertTable);
-		if (triDist > 0.0f) {
-			mHalfA->mTriIndexList.addOne(currIndex);
-		} else if (triDist < 0.0f) {
-			mHalfB->mTriIndexList.addOne(currIndex);
-		} else {
-			mHalfA->mTriIndexList.addOne(currIndex);
-			mHalfB->mTriIndexList.addOne(currIndex);
+	plane.updatePlane(mPosition, mAxes[axis]);
+
+	// loop through all triangles
+	for (int j = 0; j < mTriIndexList.mCount; j++) {
+		Triangle* currTri = &triTable.mObjects[mTriIndexList.mObjects[j]];
+		f32 triDist       = currTri->calcDist(plane, vertTable);
+		if (triDist > 0.0f) { // triangle above plane
+			numAbove += 1;
+		} else if (triDist < 0.0f) { // triangle below plane
+			numBelow += 1;
+		} else { // triangle 'in' plane
+			numAbove += 1;
+			numBelow += 1;
 		}
 	}
-	// UNUSED FUNCTION
+
+	aboveCount = numAbove;
+	belowCount = numBelow;
 }
 
 /**
@@ -700,30 +308,14 @@ void OBB::countDivResult(Sys::VertexTable& vertTable, Sys::TriangleTable& triTab
  */
 void OBB::determineDivPlane(Sys::VertexTable& vertTable, Sys::TriangleTable& triTable)
 {
-	int min    = 100000000; // 100 million
 	int axisID = 0;
+	int min    = 100000000; // 100 million
 
 	// loop through axes of box
 	for (int i = 0; i < 3; i++) {
-		Plane currPlane = Plane();
-		int numAbove    = 0;
-		int numBelow    = 0;
-
-		currPlane.updatePlane(mPosition, mAxes[i]);
-
-		// loop through all triangles
-		for (int j = 0; j < mTriIndexList.mCount; j++) {
-			Triangle* currTri = &triTable.mObjects[mTriIndexList.mObjects[j]];
-			f32 triDist       = currTri->calcDist(currPlane, vertTable);
-			if (triDist > 0.0f) { // triangle above plane
-				numAbove += 1;
-			} else if (triDist < 0.0f) { // triangle below plane
-				numBelow += 1;
-			} else { // triangle 'in' plane
-				numAbove += 1;
-				numBelow += 1;
-			}
-		}
+		int numAbove;
+		int numBelow;
+		countDivResult(vertTable, triTable, i, numAbove, numBelow);
 
 		int numCuts = numAbove + numBelow;
 		if (numAbove == mTriIndexList.mCount) {
@@ -738,144 +330,10 @@ void OBB::determineDivPlane(Sys::VertexTable& vertTable, Sys::TriangleTable& tri
 		}
 	}
 
-	Vector3f correctAxis = mAxes[axisID];
 	// divPlane has normal = axis with min cuts, and goes through center/position of box
-	f32 d             = correctAxis.dot(mPosition);
-	mDivPlane.mNormal = correctAxis;
-	mDivPlane.mOffset = d;
-	/*
-	stwu     r1, -0x80(r1)
-	mflr     r0
-	stw      r0, 0x84(r1)
-	stfd     f31, 0x70(r1)
-	psq_st   f31, 120(r1), 0, qr0
-	stfd     f30, 0x60(r1)
-	psq_st   f30, 104(r1), 0, qr0
-	stmw     r21, 0x34(r1)
-	mr       r21, r3
-	lis      r3, 0x05F5E100@ha
-	lfs      f31, lbl_805203C0@sda21(r2)
-	mr       r22, r4
-	lfs      f30, lbl_805203C4@sda21(r2)
-	mr       r23, r5
-	mr       r27, r21
-	addi     r25, r3, 0x05F5E100@l
-	li       r26, 0
-	li       r24, 0
-
-lbl_8041DA58:
-	stfs     f31, 8(r1)
-	li       r29, 0
-	mr       r30, r29
-	stfs     f30, 0xc(r1)
-	mr       r31, r29
-	mr       r28, r29
-	stfs     f31, 0x10(r1)
-	stfs     f31, 0x14(r1)
-	lwz      r4, 0x84(r27)
-	lwz      r3, 0x88(r27)
-	lwz      r0, 0x8c(r27)
-	stw      r4, 0x18(r1)
-	stw      r3, 0x1c(r1)
-	lfs      f4, 0x18(r1)
-	stw      r0, 0x20(r1)
-	lfs      f2, 0x1c(r1)
-	lfs      f3, 0x20(r1)
-	stfs     f4, 8(r1)
-	stfs     f2, 0xc(r1)
-	stfs     f3, 0x10(r1)
-	lfs      f0, 0x7c(r21)
-	lfs      f1, 0x78(r21)
-	fmuls    f0, f2, f0
-	lfs      f2, 0x80(r21)
-	fmadds   f0, f4, f1, f0
-	fmadds   f0, f3, f2, f0
-	stfs     f0, 0x14(r1)
-	b        lbl_8041DB14
-
-lbl_8041DAC8:
-	lwz      r3, 0xfc(r21)
-	mr       r5, r22
-	lwz      r6, 0x24(r23)
-	addi     r4, r1, 8
-	lwzx     r0, r3, r28
-	mulli    r0, r0, 0x60
-	add      r3, r6, r0
-	bl       calcDist__Q23Sys8TriangleFR5PlaneRQ23Sys11VertexTable
-	fcmpo    cr0, f1, f31
-	ble      lbl_8041DAF8
-	addi     r29, r29, 1
-	b        lbl_8041DB0C
-
-lbl_8041DAF8:
-	bge      lbl_8041DB04
-	addi     r30, r30, 1
-	b        lbl_8041DB0C
-
-lbl_8041DB04:
-	addi     r29, r29, 1
-	addi     r30, r30, 1
-
-lbl_8041DB0C:
-	addi     r28, r28, 4
-	addi     r31, r31, 1
-
-lbl_8041DB14:
-	lwz      r0, 0xf4(r21)
-	cmpw     r31, r0
-	blt      lbl_8041DAC8
-	cmpw     r29, r0
-	add      r3, r29, r30
-	bne      lbl_8041DB30
-	add      r3, r3, r29
-
-lbl_8041DB30:
-	cmpw     r30, r0
-	bne      lbl_8041DB3C
-	add      r3, r3, r30
-
-lbl_8041DB3C:
-	cmpw     r3, r25
-	bge      lbl_8041DB4C
-	mr       r25, r3
-	mr       r26, r24
-
-lbl_8041DB4C:
-	addi     r24, r24, 1
-	addi     r27, r27, 0xc
-	cmpwi    r24, 3
-	blt      lbl_8041DA58
-	mulli    r0, r26, 0xc
-	lfs      f0, 0x7c(r21)
-	lfs      f2, 0x80(r21)
-	lfs      f1, 0x78(r21)
-	add      r4, r21, r0
-	lwz      r0, 0x88(r4)
-	lwz      r3, 0x84(r4)
-	stw      r0, 0x28(r1)
-	lwz      r0, 0x8c(r4)
-	lfs      f4, 0x28(r1)
-	stw      r3, 0x24(r1)
-	fmuls    f0, f4, f0
-	lfs      f3, 0x24(r1)
-	stw      r0, 0x2c(r1)
-	fmadds   f0, f3, f1, f0
-	stfs     f3, 0xc8(r21)
-	lfs      f1, 0x2c(r1)
-	stfs     f4, 0xcc(r21)
-	fmadds   f0, f1, f2, f0
-	stfs     f1, 0xd0(r21)
-	stfs     f0, 0xd4(r21)
-	psq_l    f31, 120(r1), 0, qr0
-	lfd      f31, 0x70(r1)
-	psq_l    f30, 104(r1), 0, qr0
-	lfd      f30, 0x60(r1)
-	lmw      r21, 0x34(r1)
-	lwz      r0, 0x84(r1)
-	mtlr     r0
-	addi     r1, r1, 0x80
-	blr
-	*/
+	Plane plane;
+	plane.updatePlane(mPosition, mAxes[axisID]);
+	mDivPlane = plane;
 }
 
 /**
@@ -1045,60 +503,17 @@ void OBB::getCurrTriTriList(Game::CurrTriInfo& info)
  */
 void OBBTree::construct(Sys::VertexTable* vertTable, Sys::TriangleTable* triTable, int arg2, int arg3)
 {
+	VertexTable* verts;
+	TriangleTable* tris;
+
 	mVertexTable   = vertTable;
 	mTriangleTable = triTable;
 	getOBB()->mTriIndexList.constructClone(*triTable);
-	getOBB()->constructOBB2(*mVertexTable, *mTriangleTable);
+
+	tris  = mTriangleTable;
+	verts = mVertexTable;
+	getOBB()->constructOBB2(*verts, *tris);
 	getOBB()->autoDivide(*mVertexTable, *mTriangleTable, arg2, arg3);
-	/*
-	stwu     r1, -0xa0(r1)
-	mflr     r0
-	stw      r0, 0xa4(r1)
-	stmw     r26, 0x88(r1)
-	mr       r26, r3
-	mr       r27, r6
-	mr       r28, r7
-	stw      r4, 0x18(r3)
-	mr       r4, r5
-	stw      r5, 0x1c(r3)
-	addi     r3, r26, 0xf8
-	bl       constructClone__Q23Sys12TriIndexListFRQ23Sys13TriangleTable
-	lwz      r29, 0x1c(r26)
-	addi     r31, r26, 0x20
-	lwz      r30, 0x18(r26)
-	addi     r3, r31, 0xd8
-	mr       r5, r29
-	addi     r6, r1, 0x14
-	mr       r4, r30
-	addi     r7, r1, 8
-	bl
-	"makeCovarianceMatrix__Q23Sys12TriIndexListFRQ23Sys11VertexTableRQ23Sys13TriangleTableR8Matrix3fR10Vector3<f>"
-	addi     r3, r1, 0x38
-	bl       makeIdentity__8Matrix3fFv
-	addi     r3, r1, 0x14
-	addi     r4, r1, 0x5c
-	addi     r5, r1, 0x38
-	bl       calcEigenMatrix__8Matrix3fFR8Matrix3fR8Matrix3f
-	mr       r3, r31
-	mr       r4, r30
-	mr       r5, r29
-	addi     r6, r1, 0x5c
-	addi     r7, r1, 0x38
-	addi     r8, r1, 8
-	bl
-	"create2__Q23Sys3OBBFRQ23Sys11VertexTableRQ23Sys13TriangleTableR8Matrix3fR8Matrix3fR10Vector3<f>"
-	lwz      r4, 0x18(r26)
-	mr       r6, r27
-	lwz      r5, 0x1c(r26)
-	mr       r7, r28
-	mr       r3, r31
-	bl       autoDivide__Q23Sys3OBBFRQ23Sys11VertexTableRQ23Sys13TriangleTableii
-	lmw      r26, 0x88(r1)
-	lwz      r0, 0xa4(r1)
-	mtlr     r0
-	addi     r1, r1, 0xa0
-	blr
-	*/
 }
 
 /**
@@ -1114,9 +529,11 @@ void OBBTree::draw(Graphics&)
  * @note Address: N/A
  * @note Size: 0x6C
  */
-void OBBTree::write(Stream&)
+void OBBTree::write(Stream& output)
 {
-	// UNUSED FUNCTION
+	mVertexTable->write(output);
+	mTriangleTable->write(output);
+	getOBB()->write(output);
 }
 
 /**
@@ -1136,18 +553,19 @@ void OBBTree::read(Stream& input)
  * @note Address: N/A
  * @note Size: 0x30
  */
-void OBBTree::writeVertsOnly(Stream&)
+void OBBTree::writeVertsOnly(Stream& output)
 {
-	// UNUSED FUNCTION
+	mVertexTable->write(output);
 }
 
 /**
  * @note Address: N/A
  * @note Size: 0x54
  */
-void OBBTree::writeWithoutVerts(Stream&)
+void OBBTree::writeWithoutVerts(Stream& output)
 {
-	// UNUSED FUNCTION
+	mTriangleTable->write(output);
+	getOBB()->write(output);
 }
 
 /**
@@ -1201,11 +619,9 @@ bool OBBTree::findRayIntersection(Sys::RayIntersectInfo& info, Matrixf& transfor
 	Vector3f intersectEdgeStart = edgeTransformationMtx.mtxMult(edgeStart);
 	Vector3f intersectEdgeEnd   = edgeTransformationMtx.mtxMult(edgeEnd);
 
-	Vector3f edgeVec = info.mIntersectEdge.mStartPos - info.mIntersectEdge.mEndPos;
-
-	Sphere ball;
-	ball.mRadius   = edgeVec.qLength();
-	ball.mPosition = (intersectEdgeStart + intersectEdgeEnd) * 0.5f;
+	Vector3f mid = (intersectEdgeStart + intersectEdgeEnd) * 0.5f;
+	f32 radius   = info.mIntersectEdge.mStartPos.qDistance(info.mIntersectEdge.mEndPos);
+	Sphere ball(mid, radius);
 	if (!getOBB()->mSphere.intersect(ball)) {
 		return false;
 	}
@@ -1220,137 +636,6 @@ bool OBBTree::findRayIntersection(Sys::RayIntersectInfo& info, Matrixf& transfor
 	info.mIntersectEdge.mStartPos = edgeStart;
 	info.mIntersectEdge.mEndPos   = edgeEnd;
 	return rayIntersect;
-	/*
-	stwu     r1, -0xc0(r1)
-	mflr     r0
-	stw      r0, 0xc4(r1)
-	stfd     f31, 0xb0(r1)
-	psq_st   f31, 184(r1), 0, qr0
-	stfd     f30, 0xa0(r1)
-	psq_st   f30, 168(r1), 0, qr0
-	stfd     f29, 0x90(r1)
-	psq_st   f29, 152(r1), 0, qr0
-	stfd     f28, 0x80(r1)
-	psq_st   f28, 136(r1), 0, qr0
-	stfd     f27, 0x70(r1)
-	psq_st   f27, 120(r1), 0, qr0
-	stfd     f26, 0x60(r1)
-	psq_st   f26, 104(r1), 0, qr0
-	stw      r31, 0x5c(r1)
-	stw      r30, 0x58(r1)
-	stw      r29, 0x54(r1)
-	stw      r28, 0x50(r1)
-	mr       r29, r4
-	mr       r30, r5
-	lfs      f0, 0(r4)
-	mr       r31, r6
-	mr       r28, r3
-	addi     r4, r1, 0x3c
-	stfs     f0, 0x3c(r1)
-	mr       r3, r31
-	addi     r5, r1, 0x14
-	lfs      f0, 4(r29)
-	stfs     f0, 0x40(r1)
-	lfs      f0, 8(r29)
-	stfs     f0, 0x44(r1)
-	lfs      f0, 0xc(r29)
-	stfs     f0, 0x30(r1)
-	lfs      f0, 0x10(r29)
-	stfs     f0, 0x34(r1)
-	lfs      f0, 0x14(r29)
-	stfs     f0, 0x38(r1)
-	bl       PSMTXMultVec
-	lfs      f31, 0x14(r1)
-	mr       r3, r31
-	lfs      f30, 0x18(r1)
-	addi     r4, r1, 0x30
-	lfs      f29, 0x1c(r1)
-	addi     r5, r1, 8
-	bl       PSMTXMultVec
-	lfs      f1, 4(r29)
-	lfs      f0, 0x10(r29)
-	lfs      f3, 0(r29)
-	fsubs    f4, f1, f0
-	lfs      f0, 0xc(r29)
-	lfs      f2, 8(r29)
-	fsubs    f3, f3, f0
-	lfs      f1, 0x14(r29)
-	fmuls    f0, f4, f4
-	fsubs    f1, f2, f1
-	lfs      f26, 8(r1)
-	lfs      f28, 0xc(r1)
-	fmadds   f0, f3, f3, f0
-	lfs      f27, 0x10(r1)
-	fmadds   f1, f1, f1, f0
-	bl       pikmin2_sqrtf__Ff
-	fadds    f3, f31, f26
-	lfs      f4, lbl_805203CC@sda21(r2)
-	fadds    f2, f30, f28
-	stfs     f1, 0x2c(r1)
-	fadds    f0, f29, f27
-	addi     r3, r28, 0x120
-	fmuls    f3, f3, f4
-	addi     r4, r1, 0x20
-	fmuls    f1, f2, f4
-	fmuls    f0, f0, f4
-	stfs     f3, 0x20(r1)
-	stfs     f1, 0x24(r1)
-	stfs     f0, 0x28(r1)
-	bl       intersect__Q23Sys6SphereFRQ23Sys6Sphere
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8041EB98
-	li       r3, 0
-	b        lbl_8041EC1C
-
-lbl_8041EB98:
-	lwz      r0, 0x1c(r28)
-	mr       r4, r29
-	mr       r5, r30
-	mr       r6, r31
-	stw      r0, 0x30(r29)
-	addi     r3, r28, 0x20
-	stfs     f31, 0(r29)
-	stfs     f30, 4(r29)
-	stfs     f29, 8(r29)
-	stfs     f26, 0xc(r29)
-	stfs     f28, 0x10(r29)
-	stfs     f27, 0x14(r29)
-	lfs      f0, 0x20(r1)
-	stfs     f0, 0x20(r29)
-	lfs      f0, 0x24(r1)
-	stfs     f0, 0x24(r29)
-	lfs      f0, 0x28(r1)
-	stfs     f0, 0x28(r29)
-	lfs      f0, 0x2c(r1)
-	stfs     f0, 0x2c(r29)
-	bl
-findRayIntersection__Q23Sys3OBBFRQ23Sys16RayIntersectInfoR7MatrixfR7Matrixf lfs
-f0, 0x3c(r1) stfs     f0, 0(r29) lfs      f0, 0x40(r1) stfs     f0, 4(r29) lfs
-f0, 0x44(r1) stfs     f0, 8(r29) lfs      f0, 0x30(r1) stfs     f0, 0xc(r29) lfs
-f0, 0x34(r1) stfs     f0, 0x10(r29) lfs      f0, 0x38(r1) stfs     f0, 0x14(r29)
-
-lbl_8041EC1C:
-	psq_l    f31, 184(r1), 0, qr0
-	lfd      f31, 0xb0(r1)
-	psq_l    f30, 168(r1), 0, qr0
-	lfd      f30, 0xa0(r1)
-	psq_l    f29, 152(r1), 0, qr0
-	lfd      f29, 0x90(r1)
-	psq_l    f28, 136(r1), 0, qr0
-	lfd      f28, 0x80(r1)
-	psq_l    f27, 120(r1), 0, qr0
-	lfd      f27, 0x70(r1)
-	psq_l    f26, 104(r1), 0, qr0
-	lfd      f26, 0x60(r1)
-	lwz      r31, 0x5c(r1)
-	lwz      r30, 0x58(r1)
-	lwz      r29, 0x54(r1)
-	lwz      r0, 0xc4(r1)
-	lwz      r28, 0x50(r1)
-	mtlr     r0
-	addi     r1, r1, 0xc0
-	blr
-	*/
 }
 
 /**
@@ -1540,7 +825,6 @@ f32 OBBTree::getMinY(Vector3f& pos)
 f32 OBB::getMinY(Vector3f& pos, Sys::TriangleTable& triTable, f32 inputMin)
 {
 	f32 divDist;
-	f32 minY = inputMin;
 
 	if (isLeaf()) {
 		return getMinYTriList(pos, triTable);
@@ -1565,566 +849,20 @@ f32 OBB::getMinY(Vector3f& pos, Sys::TriangleTable& triTable, f32 inputMin)
 			return minY2 > inputMin ? minY2 : inputMin;
 		}
 	} else {
-		f32 minY2 = mHalfA->getMinY(pos, triTable, minY);
-		if (minY2 > minY) {
-			minY = minY2;
+		f32 minY2 = mHalfA->getMinY(pos, triTable, inputMin);
+		if (minY2 > inputMin) {
+			inputMin = minY2;
 		}
 
-		minY2 = mHalfB->getMinY(pos, triTable, minY);
-		if (minY2 > minY) {
-			minY = minY2;
+		minY2 = mHalfB->getMinY(pos, triTable, inputMin);
+		if (minY2 > inputMin) {
+			inputMin = minY2;
 		}
 
-		return minY;
+		return inputMin;
 	}
 
 	return inputMin;
-	/*
-	stwu     r1, -0x70(r1)
-	mflr     r0
-	stw      r0, 0x74(r1)
-	stfd     f31, 0x60(r1)
-	psq_st   f31, 104(r1), 0, qr0
-	stfd     f30, 0x50(r1)
-	psq_st   f30, 88(r1), 0, qr0
-	stw      r31, 0x4c(r1)
-	stw      r30, 0x48(r1)
-	stw      r29, 0x44(r1)
-	stw      r28, 0x40(r1)
-	mr       r28, r3
-	fmr      f31, f1
-	lwz      r29, 0xc0(r3)
-	mr       r30, r4
-	mr       r31, r5
-	li       r3, 0
-	cmplwi   r29, 0
-	bne      lbl_8041F540
-	lwz      r0, 0xc4(r28)
-	cmplwi   r0, 0
-	bne      lbl_8041F540
-	li       r3, 1
-
-lbl_8041F540:
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8041F55C
-	mr       r3, r28
-	mr       r4, r30
-	mr       r5, r31
-	bl       "getMinYTriList__Q23Sys3OBBFR10Vector3<f>RQ23Sys13TriangleTable"
-	b        lbl_8041FB74
-
-lbl_8041F55C:
-	lfs      f0, lbl_805203C0@sda21(r2)
-	lfs      f1, 0xcc(r28)
-	fcmpu    cr0, f0, f1
-	bne      lbl_8041F598
-	lfs      f0, 4(r30)
-	lfs      f2, 0(r30)
-	fmuls    f0, f0, f1
-	lfs      f1, 0xc8(r28)
-	lfs      f4, 8(r30)
-	lfs      f3, 0xd0(r28)
-	fmadds   f1, f2, f1, f0
-	lfs      f0, 0xd4(r28)
-	fmadds   f1, f4, f3, f1
-	fsubs    f1, f1, f0
-	b        lbl_8041F5C8
-
-lbl_8041F598:
-	lfs      f6, 0xd4(r28)
-	lfs      f2, 0xc8(r28)
-	lfs      f3, 0(r30)
-	lfs      f4, 0xd0(r28)
-	fnmsubs  f0, f2, f3, f6
-	lfs      f5, 8(r30)
-	fnmsubs  f0, f4, f5, f0
-	fdivs    f0, f0, f1
-	fmuls    f0, f0, f1
-	fmadds   f0, f3, f2, f0
-	fmadds   f0, f5, f4, f0
-	fsubs    f1, f0, f6
-
-lbl_8041F5C8:
-	lfs      f0, lbl_805203D0@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_8041F73C
-	cmplwi   r29, 0
-	beq      lbl_8041FB70
-	fmr      f30, f31
-	mr       r3, r29
-	bl       isLeaf__Q23Sys3OBBFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8041F604
-	mr       r3, r29
-	mr       r4, r30
-	mr       r5, r31
-	bl       "getMinYTriList__Q23Sys3OBBFR10Vector3<f>RQ23Sys13TriangleTable"
-	b        lbl_8041F728
-
-lbl_8041F604:
-	lfs      f1, lbl_805203C0@sda21(r2)
-	lfs      f0, 0xcc(r29)
-	fcmpu    cr0, f1, f0
-	bne      lbl_8041F624
-	mr       r4, r30
-	addi     r3, r29, 0xc8
-	bl       "calcDist__5PlaneCFRC10Vector3<f>"
-	b        lbl_8041F664
-
-lbl_8041F624:
-	mr       r4, r30
-	addi     r3, r1, 0x2c
-	bl       "__ct__10Vector3<f>FRC10Vector3<f>"
-	lfs      f2, 0xc8(r29)
-	addi     r3, r29, 0xc8
-	lfs      f1, 0(r30)
-	addi     r4, r1, 0x2c
-	lfs      f0, 0xd4(r29)
-	lfs      f3, 0xd0(r29)
-	fnmsubs  f1, f2, f1, f0
-	lfs      f2, 8(r30)
-	lfs      f0, 0xcc(r29)
-	fnmsubs  f1, f3, f2, f1
-	fdivs    f0, f1, f0
-	stfs     f0, 0x30(r1)
-	bl       "calcDist__5PlaneCFRC10Vector3<f>"
-
-lbl_8041F664:
-	lfs      f0, lbl_805203D0@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_8041F6A0
-	lwz      r3, 0xc0(r29)
-	cmplwi   r3, 0
-	beq      lbl_8041F724
-	fmr      f1, f31
-	mr       r4, r30
-	mr       r5, r31
-	bl       "getMinY__Q23Sys3OBBFR10Vector3<f>RQ23Sys13TriangleTablef"
-	fcmpo    cr0, f1, f31
-	ble      lbl_8041F698
-	b        lbl_8041F728
-
-lbl_8041F698:
-	fmr      f1, f31
-	b        lbl_8041F728
-
-lbl_8041F6A0:
-	lfs      f0, lbl_805203D4@sda21(r2)
-	fcmpo    cr0, f1, f0
-	bge      lbl_8041F6DC
-	lwz      r3, 0xc4(r29)
-	cmplwi   r3, 0
-	beq      lbl_8041F724
-	fmr      f1, f31
-	mr       r4, r30
-	mr       r5, r31
-	bl       "getMinY__Q23Sys3OBBFR10Vector3<f>RQ23Sys13TriangleTablef"
-	fcmpo    cr0, f1, f31
-	ble      lbl_8041F6D4
-	b        lbl_8041F728
-
-lbl_8041F6D4:
-	fmr      f1, f31
-	b        lbl_8041F728
-
-lbl_8041F6DC:
-	fmr      f1, f31
-	lwz      r3, 0xc0(r29)
-	mr       r4, r30
-	mr       r5, r31
-	bl       "getMinY__Q23Sys3OBBFR10Vector3<f>RQ23Sys13TriangleTablef"
-	fcmpo    cr0, f1, f31
-	ble      lbl_8041F6FC
-	fmr      f30, f1
-
-lbl_8041F6FC:
-	fmr      f1, f30
-	lwz      r3, 0xc4(r29)
-	mr       r4, r30
-	mr       r5, r31
-	bl       "getMinY__Q23Sys3OBBFR10Vector3<f>RQ23Sys13TriangleTablef"
-	fcmpo    cr0, f1, f30
-	ble      lbl_8041F71C
-	fmr      f30, f1
-
-lbl_8041F71C:
-	fmr      f1, f30
-	b        lbl_8041F728
-
-lbl_8041F724:
-	fmr      f1, f31
-
-lbl_8041F728:
-	fcmpo    cr0, f1, f31
-	ble      lbl_8041F734
-	b        lbl_8041FB74
-
-lbl_8041F734:
-	fmr      f1, f31
-	b        lbl_8041FB74
-
-lbl_8041F73C:
-	lfs      f0, lbl_805203D4@sda21(r2)
-	fcmpo    cr0, f1, f0
-	bge      lbl_8041F8B4
-	lwz      r29, 0xc4(r28)
-	cmplwi   r29, 0
-	beq      lbl_8041FB70
-	fmr      f30, f31
-	mr       r3, r29
-	bl       isLeaf__Q23Sys3OBBFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8041F77C
-	mr       r3, r29
-	mr       r4, r30
-	mr       r5, r31
-	bl       "getMinYTriList__Q23Sys3OBBFR10Vector3<f>RQ23Sys13TriangleTable"
-	b        lbl_8041F8A0
-
-lbl_8041F77C:
-	lfs      f1, lbl_805203C0@sda21(r2)
-	lfs      f0, 0xcc(r29)
-	fcmpu    cr0, f1, f0
-	bne      lbl_8041F79C
-	mr       r4, r30
-	addi     r3, r29, 0xc8
-	bl       "calcDist__5PlaneCFRC10Vector3<f>"
-	b        lbl_8041F7DC
-
-lbl_8041F79C:
-	mr       r4, r30
-	addi     r3, r1, 0x20
-	bl       "__ct__10Vector3<f>FRC10Vector3<f>"
-	lfs      f2, 0xc8(r29)
-	addi     r3, r29, 0xc8
-	lfs      f1, 0(r30)
-	addi     r4, r1, 0x20
-	lfs      f0, 0xd4(r29)
-	lfs      f3, 0xd0(r29)
-	fnmsubs  f1, f2, f1, f0
-	lfs      f2, 8(r30)
-	lfs      f0, 0xcc(r29)
-	fnmsubs  f1, f3, f2, f1
-	fdivs    f0, f1, f0
-	stfs     f0, 0x24(r1)
-	bl       "calcDist__5PlaneCFRC10Vector3<f>"
-
-lbl_8041F7DC:
-	lfs      f0, lbl_805203D0@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_8041F818
-	lwz      r3, 0xc0(r29)
-	cmplwi   r3, 0
-	beq      lbl_8041F89C
-	fmr      f1, f31
-	mr       r4, r30
-	mr       r5, r31
-	bl       "getMinY__Q23Sys3OBBFR10Vector3<f>RQ23Sys13TriangleTablef"
-	fcmpo    cr0, f1, f31
-	ble      lbl_8041F810
-	b        lbl_8041F8A0
-
-lbl_8041F810:
-	fmr      f1, f31
-	b        lbl_8041F8A0
-
-lbl_8041F818:
-	lfs      f0, lbl_805203D4@sda21(r2)
-	fcmpo    cr0, f1, f0
-	bge      lbl_8041F854
-	lwz      r3, 0xc4(r29)
-	cmplwi   r3, 0
-	beq      lbl_8041F89C
-	fmr      f1, f31
-	mr       r4, r30
-	mr       r5, r31
-	bl       "getMinY__Q23Sys3OBBFR10Vector3<f>RQ23Sys13TriangleTablef"
-	fcmpo    cr0, f1, f31
-	ble      lbl_8041F84C
-	b        lbl_8041F8A0
-
-lbl_8041F84C:
-	fmr      f1, f31
-	b        lbl_8041F8A0
-
-lbl_8041F854:
-	fmr      f1, f31
-	lwz      r3, 0xc0(r29)
-	mr       r4, r30
-	mr       r5, r31
-	bl       "getMinY__Q23Sys3OBBFR10Vector3<f>RQ23Sys13TriangleTablef"
-	fcmpo    cr0, f1, f31
-	ble      lbl_8041F874
-	fmr      f30, f1
-
-lbl_8041F874:
-	fmr      f1, f30
-	lwz      r3, 0xc4(r29)
-	mr       r4, r30
-	mr       r5, r31
-	bl       "getMinY__Q23Sys3OBBFR10Vector3<f>RQ23Sys13TriangleTablef"
-	fcmpo    cr0, f1, f30
-	ble      lbl_8041F894
-	fmr      f30, f1
-
-lbl_8041F894:
-	fmr      f1, f30
-	b        lbl_8041F8A0
-
-lbl_8041F89C:
-	fmr      f1, f31
-
-lbl_8041F8A0:
-	fcmpo    cr0, f1, f31
-	ble      lbl_8041F8AC
-	b        lbl_8041FB74
-
-lbl_8041F8AC:
-	fmr      f1, f31
-	b        lbl_8041FB74
-
-lbl_8041F8B4:
-	fmr      f30, f31
-	mr       r3, r29
-	bl       isLeaf__Q23Sys3OBBFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8041F8DC
-	mr       r3, r29
-	mr       r4, r30
-	mr       r5, r31
-	bl       "getMinYTriList__Q23Sys3OBBFR10Vector3<f>RQ23Sys13TriangleTable"
-	b        lbl_8041FA00
-
-lbl_8041F8DC:
-	lfs      f1, lbl_805203C0@sda21(r2)
-	lfs      f0, 0xcc(r29)
-	fcmpu    cr0, f1, f0
-	bne      lbl_8041F8FC
-	mr       r4, r30
-	addi     r3, r29, 0xc8
-	bl       "calcDist__5PlaneCFRC10Vector3<f>"
-	b        lbl_8041F93C
-
-lbl_8041F8FC:
-	mr       r4, r30
-	addi     r3, r1, 0x14
-	bl       "__ct__10Vector3<f>FRC10Vector3<f>"
-	lfs      f2, 0xc8(r29)
-	addi     r3, r29, 0xc8
-	lfs      f1, 0(r30)
-	addi     r4, r1, 0x14
-	lfs      f0, 0xd4(r29)
-	lfs      f3, 0xd0(r29)
-	fnmsubs  f1, f2, f1, f0
-	lfs      f2, 8(r30)
-	lfs      f0, 0xcc(r29)
-	fnmsubs  f1, f3, f2, f1
-	fdivs    f0, f1, f0
-	stfs     f0, 0x18(r1)
-	bl       "calcDist__5PlaneCFRC10Vector3<f>"
-
-lbl_8041F93C:
-	lfs      f0, lbl_805203D0@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_8041F978
-	lwz      r3, 0xc0(r29)
-	cmplwi   r3, 0
-	beq      lbl_8041F9FC
-	fmr      f1, f31
-	mr       r4, r30
-	mr       r5, r31
-	bl       "getMinY__Q23Sys3OBBFR10Vector3<f>RQ23Sys13TriangleTablef"
-	fcmpo    cr0, f1, f31
-	ble      lbl_8041F970
-	b        lbl_8041FA00
-
-lbl_8041F970:
-	fmr      f1, f31
-	b        lbl_8041FA00
-
-lbl_8041F978:
-	lfs      f0, lbl_805203D4@sda21(r2)
-	fcmpo    cr0, f1, f0
-	bge      lbl_8041F9B4
-	lwz      r3, 0xc4(r29)
-	cmplwi   r3, 0
-	beq      lbl_8041F9FC
-	fmr      f1, f31
-	mr       r4, r30
-	mr       r5, r31
-	bl       "getMinY__Q23Sys3OBBFR10Vector3<f>RQ23Sys13TriangleTablef"
-	fcmpo    cr0, f1, f31
-	ble      lbl_8041F9AC
-	b        lbl_8041FA00
-
-lbl_8041F9AC:
-	fmr      f1, f31
-	b        lbl_8041FA00
-
-lbl_8041F9B4:
-	fmr      f1, f31
-	lwz      r3, 0xc0(r29)
-	mr       r4, r30
-	mr       r5, r31
-	bl       "getMinY__Q23Sys3OBBFR10Vector3<f>RQ23Sys13TriangleTablef"
-	fcmpo    cr0, f1, f31
-	ble      lbl_8041F9D4
-	fmr      f30, f1
-
-lbl_8041F9D4:
-	fmr      f1, f30
-	lwz      r3, 0xc4(r29)
-	mr       r4, r30
-	mr       r5, r31
-	bl       "getMinY__Q23Sys3OBBFR10Vector3<f>RQ23Sys13TriangleTablef"
-	fcmpo    cr0, f1, f30
-	ble      lbl_8041F9F4
-	fmr      f30, f1
-
-lbl_8041F9F4:
-	fmr      f1, f30
-	b        lbl_8041FA00
-
-lbl_8041F9FC:
-	fmr      f1, f31
-
-lbl_8041FA00:
-	fcmpo    cr0, f1, f31
-	ble      lbl_8041FA0C
-	fmr      f31, f1
-
-lbl_8041FA0C:
-	lwz      r29, 0xc4(r28)
-	fmr      f30, f31
-	mr       r3, r29
-	bl       isLeaf__Q23Sys3OBBFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8041FA38
-	mr       r3, r29
-	mr       r4, r30
-	mr       r5, r31
-	bl       "getMinYTriList__Q23Sys3OBBFR10Vector3<f>RQ23Sys13TriangleTable"
-	b        lbl_8041FB5C
-
-lbl_8041FA38:
-	lfs      f1, lbl_805203C0@sda21(r2)
-	lfs      f0, 0xcc(r29)
-	fcmpu    cr0, f1, f0
-	bne      lbl_8041FA58
-	mr       r4, r30
-	addi     r3, r29, 0xc8
-	bl       "calcDist__5PlaneCFRC10Vector3<f>"
-	b        lbl_8041FA98
-
-lbl_8041FA58:
-	mr       r4, r30
-	addi     r3, r1, 8
-	bl       "__ct__10Vector3<f>FRC10Vector3<f>"
-	lfs      f2, 0xc8(r29)
-	addi     r3, r29, 0xc8
-	lfs      f1, 0(r30)
-	addi     r4, r1, 8
-	lfs      f0, 0xd4(r29)
-	lfs      f3, 0xd0(r29)
-	fnmsubs  f1, f2, f1, f0
-	lfs      f2, 8(r30)
-	lfs      f0, 0xcc(r29)
-	fnmsubs  f1, f3, f2, f1
-	fdivs    f0, f1, f0
-	stfs     f0, 0xc(r1)
-	bl       "calcDist__5PlaneCFRC10Vector3<f>"
-
-lbl_8041FA98:
-	lfs      f0, lbl_805203D0@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_8041FAD4
-	lwz      r3, 0xc0(r29)
-	cmplwi   r3, 0
-	beq      lbl_8041FB58
-	fmr      f1, f31
-	mr       r4, r30
-	mr       r5, r31
-	bl       "getMinY__Q23Sys3OBBFR10Vector3<f>RQ23Sys13TriangleTablef"
-	fcmpo    cr0, f1, f31
-	ble      lbl_8041FACC
-	b        lbl_8041FB5C
-
-lbl_8041FACC:
-	fmr      f1, f31
-	b        lbl_8041FB5C
-
-lbl_8041FAD4:
-	lfs      f0, lbl_805203D4@sda21(r2)
-	fcmpo    cr0, f1, f0
-	bge      lbl_8041FB10
-	lwz      r3, 0xc4(r29)
-	cmplwi   r3, 0
-	beq      lbl_8041FB58
-	fmr      f1, f31
-	mr       r4, r30
-	mr       r5, r31
-	bl       "getMinY__Q23Sys3OBBFR10Vector3<f>RQ23Sys13TriangleTablef"
-	fcmpo    cr0, f1, f31
-	ble      lbl_8041FB08
-	b        lbl_8041FB5C
-
-lbl_8041FB08:
-	fmr      f1, f31
-	b        lbl_8041FB5C
-
-lbl_8041FB10:
-	fmr      f1, f31
-	lwz      r3, 0xc0(r29)
-	mr       r4, r30
-	mr       r5, r31
-	bl       "getMinY__Q23Sys3OBBFR10Vector3<f>RQ23Sys13TriangleTablef"
-	fcmpo    cr0, f1, f31
-	ble      lbl_8041FB30
-	fmr      f30, f1
-
-lbl_8041FB30:
-	fmr      f1, f30
-	lwz      r3, 0xc4(r29)
-	mr       r4, r30
-	mr       r5, r31
-	bl       "getMinY__Q23Sys3OBBFR10Vector3<f>RQ23Sys13TriangleTablef"
-	fcmpo    cr0, f1, f30
-	ble      lbl_8041FB50
-	fmr      f30, f1
-
-lbl_8041FB50:
-	fmr      f1, f30
-	b        lbl_8041FB5C
-
-lbl_8041FB58:
-	fmr      f1, f31
-
-lbl_8041FB5C:
-	fcmpo    cr0, f1, f31
-	ble      lbl_8041FB68
-	fmr      f31, f1
-
-lbl_8041FB68:
-	fmr      f1, f31
-	b        lbl_8041FB74
-
-lbl_8041FB70:
-	fmr      f1, f31
-
-lbl_8041FB74:
-	psq_l    f31, 104(r1), 0, qr0
-	lfd      f31, 0x60(r1)
-	psq_l    f30, 88(r1), 0, qr0
-	lfd      f30, 0x50(r1)
-	lwz      r31, 0x4c(r1)
-	lwz      r30, 0x48(r1)
-	lwz      r29, 0x44(r1)
-	lwz      r0, 0x74(r1)
-	lwz      r28, 0x40(r1)
-	mtlr     r0
-	addi     r1, r1, 0x70
-	blr
-	*/
 }
 
 /**

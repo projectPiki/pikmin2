@@ -20,6 +20,20 @@ struct J2DWindowData {
 	u32 mContentColors[4]; // _30
 };
 
+enum J2DTextureBase {
+	TEXTUREBASE_0 = 0,
+	TEXTUREBASE_1 = 1,
+	TEXTUREBASE_2 = 2,
+	TEXTUREBASE_3 = 3,
+};
+
+enum J2DWindowMirror {
+	WINDOWMIRROR_39  = 39,
+	WINDOWMIRROR_114 = 114,
+	WINDOWMIRROR_141 = 141,
+	WINDOWMIRROR_216 = 216,
+};
+
 // Size: 0x148
 struct J2DWindow : public J2DPane {
 	struct TMaterial {
@@ -42,6 +56,12 @@ struct J2DWindow : public J2DPane {
 	J2DWindow();
 	J2DWindow(J2DPane* parent, JSURandomInputStream* input, JKRArchive* archive);
 	J2DWindow(J2DPane* parent, JSURandomInputStream* input, J2DMaterial* materials);
+	J2DWindow(u64 tag, const JGeometry::TBox2f& box);
+	J2DWindow(J2DPane* parent, JSURandomInputStream* input);
+	J2DWindow(u64 tag, const JGeometry::TBox2f& box, const ResTIMG*, const ResTIMG*, const ResTIMG*, const ResTIMG*, const ResTLUT*);
+	J2DWindow(u64 tag, const JGeometry::TBox2f& box, const char*, const char*, const char*, const char*, const ResTLUT*);
+	J2DWindow(u64 tag, const JGeometry::TBox2f& box, const ResTIMG*, J2DTextureBase, const ResTLUT*);
+	J2DWindow(u64 tag, const JGeometry::TBox2f& box, const char*, J2DTextureBase, const ResTLUT*);
 
 	virtual ~J2DWindow();                                                  // _08
 	virtual u16 getTypeID() const { return PANETYPE_Window; }              // _0C (weak)
@@ -92,8 +112,12 @@ struct J2DWindow : public J2DPane {
 	virtual bool isUsed(const ResFONT* resource) { return J2DPane::isUsed(resource); } // _50 (weak)
 	virtual void rewriteAlpha() { }                                                    // _58 (weak)
 
+	void initiate(const ResTIMG*, const ResTIMG*, const ResTIMG*, const ResTIMG*, const ResTLUT*, J2DWindowMirror,
+	              const JGeometry::TBox2f&);
 	void private_readStream(J2DPane*, JSURandomInputStream*, JKRArchive*);
+	void initinfo();
 	void initinfo2();
+	static J2DWindowMirror convertMirror(J2DTextureBase);
 	void draw_private(const JGeometry::TBox2f&, const JGeometry::TBox2f&);
 	void setContentsColor(JUtility::TColor, JUtility::TColor, JUtility::TColor, JUtility::TColor);
 	void drawFrameTexture(JUTTexture*, f32, f32, f32, f32, u16, u16, u16, u16, bool);

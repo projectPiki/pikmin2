@@ -145,12 +145,6 @@ TMainScreen::TMainScreen()
     : mDrawColor(0, 0, 0, 255)
     , mDrawAlpha(255)
     , mState(0)
-    , mCounter(0)
-    , mCounterMax(0)
-    , mOpenCounter(0)
-    , mOpenCounterMax(0)
-    , mMesgCounter(0)
-    , mMesgCounterMax(0)
 {
 	mMainScreen = nullptr;
 	for (int i = 0; i < 3; i++) {
@@ -456,10 +450,8 @@ void TMainScreen::doOpenScreen(ArgOpen*)
 	mAnimOpenScreenG.play(sys->mDeltaTime * 60.0f, J3DAA_UNKNOWN_2, true);
 	mAnimOpenScreenH.play(sys->mDeltaTime * 60.0f, J3DAA_UNKNOWN_2, true);
 
-	u32 count   = E2DFader::kFadeTime / sys->mDeltaTime;
-	mCounter    = count;
-	mCounterMax = count;
-	mState      = 1;
+	mCounter.setValue(E2DFader::kFadeTime);
+	mState = 1;
 
 	for (int i = 0; i < 3; i++) {
 		mPaneSel[0][i]->setAlpha(255);
@@ -490,9 +482,7 @@ void TMainScreen::doInitWaitState()
 		mPaneSel[1][i]->setAlpha(255);
 	}
 
-	u32 count       = 0.5f / sys->mDeltaTime;
-	mOpenCounter    = count;
-	mOpenCounterMax = count;
+	mOpenCounter.setValue(0.5f);
 
 	for (int i = 0; i < 3; i++) {
 		JUtility::TColor color = getDataBallColor_(i);
@@ -512,10 +502,8 @@ void TMainScreen::doInitWaitState()
  */
 void TMainScreen::doCloseScreen(ArgClose*)
 {
-	u32 count   = E2DFader::kFadeTime / sys->mDeltaTime;
-	mCounter    = count;
-	mCounterMax = count;
-	mState      = 2;
+	mCounter.setValue(E2DFader::kFadeTime);
+	mState = 2;
 	for (int i = 0; i < 3; i++) {
 		mPaneSel[0][i]->setAlpha(0);
 		mPaneSel[1][i]->setAlpha(0);
@@ -530,9 +518,7 @@ bool TMainScreen::doUpdateStateOpen()
 {
 	mMainScreen->update();
 	if (mState) {
-		if (mCounter) {
-			mCounter--;
-		}
+		mCounter.update();
 	}
 
 	if (mAnimOpenScreenA.isFinish() && mAnimOpenScreenB.isFinish()) {
@@ -550,12 +536,10 @@ bool TMainScreen::doUpdateStateWait()
 	mMainScreen->update();
 	mCursorA.update();
 	mCursorB.update();
-	if (mState && mCounter) {
-		mCounter--;
+	if (mState) {
+		mCounter.update();
 	}
-	if (mOpenCounter) {
-		mOpenCounter--;
-	}
+	mOpenCounter.update();
 
 	Matrixf* mtx    = (Matrixf*)&mPaneDataWindow->mGlobalMtx;
 	TFileData* data = &mFileData[mCurrFileInfoId];
@@ -578,29 +562,16 @@ bool TMainScreen::doUpdateStateWait()
 	}
 
 	for (int i = 0; i < 3; i++) {
-		f32 factor;
-		if (mOpenCounterMax) {
-			factor = (f32)mOpenCounter / (f32)mOpenCounterMax;
-		} else {
-			factor = 0.0f;
-		}
-		u8 alpha = factor * 255.0f;
-		mPaneSel[0][i]->setAlpha(alpha);
-		if (mOpenCounterMax) {
-			factor = (f32)mOpenCounter / (f32)mOpenCounterMax;
-		} else {
-			factor = 0.0f;
-		}
-		alpha = factor * 255.0f;
-		mPaneSel[1][i]->setAlpha(alpha);
+		mPaneSel[0][i]->setAlpha(mOpenCounter.getRatio() * 255.0f);
+		mPaneSel[1][i]->setAlpha(mOpenCounter.getRatio() * 255.0f);
 	}
 
 	updateMsg_();
 	for (int i = 0; i < 3; i++) {
 		mCursorSelPos[i]  = E2DPane_getGlbCenter(mPaneSel[0][i]);
 		mCursorSelPosM[i] = E2DPane_getGlbCenter(mPaneSel[1][i]);
-		mEfxFileSel[i]->setGlobalScale(mPaneND[i]->mScale.x / 1.2f);
-		mEfxFileSelM[i]->setGlobalScale(mPaneND[i]->mScale.x / 1.2f);
+		mEfxFileSel[i]->setGlobalScale(mPaneND[i]->mScaleX / 1.2f);
+		mEfxFileSelM[i]->setGlobalScale(mPaneND[i]->mScaleX / 1.2f);
 	}
 	if (mIsCardSeActive) {
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_ACCESS, 0);
@@ -616,9 +587,7 @@ bool TMainScreen::doUpdateStateClose()
 {
 	mMainScreen->update();
 	if (mState) {
-		if (mCounter) {
-			mCounter--;
-		}
+		mCounter.update();
 	}
 
 	for (int i = 0; i < 3; i++) {
@@ -626,7 +595,7 @@ bool TMainScreen::doUpdateStateClose()
 		mPaneSel[1][i]->setAlpha(0);
 	}
 
-	if (checkClose()) {
+	if (mCounter.isZero()) {
 		return true;
 	}
 	return false;
@@ -670,25 +639,12 @@ void TMainScreen::doDraw()
 		graf->setPort();
 
 		JUtility::TColor screenColor(mDrawColor);
-		f32 screenOpacity;
 		switch (mState) {
 		case State_FadeIn:
-			if (mCounterMax) {
-				screenOpacity = (f32)mCounter / (f32)mCounterMax;
-			} else {
-				screenOpacity = 0.0f;
-			}
-
-			screenColor.a = mDrawAlpha * screenOpacity;
+			screenColor.a = mDrawAlpha * mCounter.getRatio();
 			break;
 		case State_FadeOut:
-			if (mCounterMax) {
-				screenOpacity = (f32)mCounter / (f32)mCounterMax;
-			} else {
-				screenOpacity = 0.0f;
-			}
-
-			screenColor.a = mDrawAlpha * (1.0f - screenOpacity);
+			screenColor.a = mDrawAlpha * (1.0f - mCounter.getRatio());
 			break;
 		}
 
@@ -1005,9 +961,7 @@ bool TMainScreen::isFinishCloseDataWindow()
 void TMainScreen::openMSG(s32 mesgID)
 {
 	mFlags.set(FileSelectScreen_MsgOpen);
-	u32 time        = 0.2f / sys->mDeltaTime;
-	mMesgCounter    = time;
-	mMesgCounterMax = time;
+	mMesgCounter.setValue(0.2f);
 
 	switch (mesgID) {
 	case MessageType_SelectAFile:
@@ -1100,9 +1054,7 @@ void TMainScreen::closeMSG()
 {
 	if (mFlags.isSet(FileSelectScreen_MsgOpen)) {
 		mFlags.unset(FileSelectScreen_MsgOpen);
-		u32 time        = 0.2f / sys->mDeltaTime;
-		mMesgCounter    = time;
-		mMesgCounterMax = time;
+		mMesgCounter.setValue(0.2f);
 	}
 	outYesNo_();
 }
@@ -1113,7 +1065,7 @@ void TMainScreen::closeMSG()
  */
 bool TMainScreen::isFinishCloseMSG()
 {
-	if (!mFlags.isSet(FileSelectScreen_MsgOpen) && mMesgCounter == 0) {
+	if (!mFlags.isSet(FileSelectScreen_MsgOpen) && mMesgCounter.isZero()) {
 		return true;
 	}
 	return false;
@@ -1142,26 +1094,13 @@ void TMainScreen::setYesNo(bool isYes)
  */
 void TMainScreen::updateMsg_()
 {
-	if (mMesgCounter) {
-		mMesgCounter--;
-	}
+	mMesgCounter.update();
 
-	f32 calc;
 	u8 alpha;
 	if (mFlags.isSet(FileSelectScreen_MsgOpen)) {
-		if (mMesgCounterMax) {
-			calc = (f32)mMesgCounter / (f32)mMesgCounterMax;
-		} else {
-			calc = 0.0f;
-		}
-		alpha = (1.0f - calc) * 255.0f;
+		alpha = (1.0f - mMesgCounter.getRatio()) * 255.0f;
 	} else {
-		if (mMesgCounterMax) {
-			calc = (f32)mMesgCounter / (f32)mMesgCounterMax;
-		} else {
-			calc = 0.0f;
-		}
-		alpha = calc * 255.0f;
+		alpha = mMesgCounter.getRatio() * 255.0f;
 	}
 	J2DPane* mesg = E2DScreen_searchAssert(mMainScreen, 'NmainMG');
 	E2DPane_setTreeInfluencedAlpha(mesg, true);
@@ -1337,7 +1276,6 @@ void TMainScreen::initDataBalls_()
 /**
  * @note Address: 0x803D8EC8
  * @note Size: 0x550
- * @note TODO: Finish matching
  */
 void TMainScreen::setColorTimgDataBall_(s32 fileID)
 {

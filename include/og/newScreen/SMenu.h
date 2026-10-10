@@ -57,7 +57,7 @@ enum CurrSelReturn {
 
 struct SceneSMenuBase : public ::Screen::SceneBase {
 	inline SceneSMenuBase()
-	    : mFinishState(1)
+	    : mFinishState(og::Screen::MENUFINISH_GetFromSubMember)
 	{
 	}
 
@@ -501,37 +501,37 @@ struct ObjSMenuMap : public ObjSMenuBase {
 			mMapTexOffset.y         = 12.0f;
 			mMapScreenScale.x       = 1.0f;
 			mMapScreenScale.y       = 0.92f;
-			mTempPikiColorWhite.r = 0;
-			mTempPikiColorWhite.g = 128;
-			mTempPikiColorWhite.b = 255;
-			mTempPikiColorWhite.a = 255;
-			mTempPikiColorBlack.r = 0;
-			mTempPikiColorBlack.g = 255;
-			mTempPikiColorBlack.b = 255;
-			mTempPikiColorBlack.a = 0;
+			mTempPikiColorWhite.r   = 0;
+			mTempPikiColorWhite.g   = 128;
+			mTempPikiColorWhite.b   = 255;
+			mTempPikiColorWhite.a   = 255;
+			mTempPikiColorBlack.r   = 0;
+			mTempPikiColorBlack.g   = 255;
+			mTempPikiColorBlack.b   = 255;
+			mTempPikiColorBlack.a   = 0;
 		}
 
-		f32 mMinZoom;                           // _00
-		f32 mMaxZoom;                           // _04
-		u8 _08;                                 // _08
-		u8 _09;                                 // _09
-		u8 _0A;                                 // _0A
-		GXColor mMapTexColorWhite;              // _0B
-		GXColor mMapTexColorBlack;              // _0F
-		GXColor mItemPelletWhiteColor;          // _13
-		GXColor mItemPelletBlackColor;          // _17
-		u8 _1B;                                 // _1B
-		f32 mMapMoveRate;                       // _1C
-		f32 mMapMoveRate2;                      // _20
-		f32 mMapIconScaleBase;                  // _24
-		f32 mMapNaviArrowScaleMod;              // _28
-		f32 mGroundZoom;                        // _2C
-		f32 mCaveZoom;                          // _30
-		Vector2f mMapTexOffset;                 // _34
-		f32 mMapMoveInputReduction;             // _3C
-		Vector2f mMapScreenScale;               // _40
-		JUtility::TColor mTempPikiColorWhite;   // _48
-		JUtility::TColor mTempPikiColorBlack;   // _4C
+		f32 mMinZoom;                         // _00
+		f32 mMaxZoom;                         // _04
+		u8 _08;                               // _08
+		u8 _09;                               // _09
+		u8 _0A;                               // _0A
+		GXColor mMapTexColorWhite;            // _0B
+		GXColor mMapTexColorBlack;            // _0F
+		GXColor mItemPelletWhiteColor;        // _13
+		GXColor mItemPelletBlackColor;        // _17
+		u8 _1B;                               // _1B
+		f32 mMapMoveRate;                     // _1C
+		f32 mMapMoveRate2;                    // _20
+		f32 mMapIconScaleBase;                // _24
+		f32 mMapNaviArrowScaleMod;            // _28
+		f32 mGroundZoom;                      // _2C
+		f32 mCaveZoom;                        // _30
+		Vector2f mMapTexOffset;               // _34
+		f32 mMapMoveInputReduction;           // _3C
+		Vector2f mMapScreenScale;             // _40
+		JUtility::TColor mTempPikiColorWhite; // _48
+		JUtility::TColor mTempPikiColorBlack; // _4C
 	} msVal;
 };
 

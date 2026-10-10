@@ -102,28 +102,23 @@ struct TUnit : public TObjBase {
 	};
 
 	enum enumAction {
-		CHAPPYACT_NULL = -1,
-		CHAPPYACT_0    = 0,
-		CHAPPYACT_1    = 1,
-		CHAPPYACT_2    = 2,
-		CHAPPYACT_3    = 3,
-		CHAPPYACT_4    = 4,
+		CHAPPYACT_NULL       = -1,
+		CHAPPYACT_Wait       = 0,
+		CHAPPYACT_Turn       = 1,
+		CHAPPYACT_Attack     = 2,
+		CHAPPYACT_AttackMiss = 3,
+		CHAPPYACT_Walk       = 4,
 	};
 
 	inline TUnit()
 	{
-		mCounter  = 0;
-		mCounter2 = 0;
-
 		mAnim.mAnimRes    = 0;
 		mAnim.mAnimFolder = 0;
 
 		mTargetPos   = Vector2f(0.0f);
 		mTargetAngle = Vector2f(1.0f, 0.0f);
 
-		u32 time  = 0.0f / sys->mDeltaTime;
-		mCounter  = time;
-		mCounter2 = time;
+		mCounter.setValue(0.0f);
 
 		mController     = nullptr;
 		mIsAiControlled = false;
@@ -152,8 +147,7 @@ struct TUnit : public TObjBase {
 	// _00-_2C = TObjBase
 	Vector2f mTargetPos;     // _2C
 	Vector2f mTargetAngle;   // _34
-	u32 mCounter;            // _3C
-	u32 mCounter2;           // _40
+	EUTCounter mCounter;     // _3C
 	Controller* mController; // _44
 	bool mIsAiControlled;    // _48
 	TMgr* mManager;          // _4C

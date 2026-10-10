@@ -149,6 +149,26 @@ struct JAIStream : public JAISound {
 		mStreamParameter.mChannelDolbys  = new (JAIBasic::msCurrentHeap, 0x20) JAInter::MoveParaSet[JAInter::StreamMgr::sChannelMax];
 	}
 
+	static inline void initLineParameters(JAInter::StreamParameter* para)
+	{
+		for (u32 i = 0; i < JAIGlobalParameter::getParamStreamParameterLines(); i++) {
+			para->mPitches[i] = JAInter::MoveParaSet();
+			para->mPans[i]    = JAInter::MoveParaSetInitHalf();
+			para->mFxmixes[i] = JAInter::MoveParaSetInitZero();
+			para->mDolbys[i]  = JAInter::MoveParaSetInitZero();
+		}
+	}
+
+	static inline void initChannelParameters(JAInter::StreamParameter* para)
+	{
+		for (u32 i = 0; i < JAInter::StreamMgr::getChannelMax(); i++) {
+			para->mChannelVolumes[i] = JAInter::MoveParaSet();
+			para->mChannelPans[i]    = JAInter::MoveParaSetInitHalf();
+			para->mChannelFxmixes[i] = JAInter::MoveParaSetInitZero();
+			para->mChannelDolbys[i]  = JAInter::MoveParaSetInitZero();
+		}
+	}
+
 	JAInter::StreamParameter* getStreamParameter() { return &mStreamParameter; }
 
 	// _00-_10  = JSULink

@@ -55,7 +55,7 @@ public:
 	struct CParamSet {
 		CParamSet() { }
 
-		void setBarHeight(int w) { mBarHeight = w; };
+		void setBarHeight(int w) { mBarHeight = w; }
 		void setWidth(int w) { mWidth = w; }
 		void setUserPosition(int pos) { mUserPosition = pos; }
 		void setPosition(int x, int y)
@@ -82,7 +82,7 @@ public:
 	void drawHeapBar();
 
 	// unused/inlined:
-	void bar_subroutine(int startX, int startY, int height, int totalUnits, int maxHighlightedUnits, int filledUnits, int highlitedUnits,
+	void bar_subroutine(int startX, int startY, int height, int totalUnits, int maxHighlightedUnits, int filledUnits, int highlightedUnits,
 	                    JUtility::TColor fillColor, JUtility::TColor highlightedColor);
 	void adjustMeterLength(u32 totalUnits, f32* currentLength, f32 maxLength, f32 minLength, int* adjustmentFactor);
 	void getUnuseUserBar();

@@ -32,7 +32,7 @@ struct SingletonBase {
 		return SingletonBase<T>::sInstance;
 	}
 
-	virtual ~SingletonBase() { sInstance = nullptr; }; // _00
+	virtual ~SingletonBase() { sInstance = nullptr; } // _00
 
 	static inline T* getInstance()
 	{
@@ -71,6 +71,14 @@ struct IdList : public JSUList<IdLink> {
 			remove(link);
 			delete (IdLink*)link->getObjectPtr();
 		}
+	}
+
+	void append(IdLink* link)
+	{
+		if (!getFirst()) {
+			mNextLink = link;
+		}
+		JSUList<IdLink>::append(link);
 	}
 
 	inline IdLink* setNextLink()

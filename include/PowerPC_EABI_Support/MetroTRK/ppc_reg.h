@@ -205,15 +205,15 @@ typedef ProcessorState_PPC_6xx_7xx ProcessorState_PPC;
 
 // PPC exceptions
 // 0x000 is reserved
-#define PPC_SystemReset             0x100
-#define PPC_MachineCheck            0x200
-#define PPC_DataStorage             0x300
-#define PPC_InstructionStorage      0x400
-#define PPC_ExternalInterrupt       0x500
-#define PPC_Alignment               0x600
-#define PPC_Program                 0x700
-#define PPC_FloatingPointUnavaiable 0x800
-#define PPC_Decrementer             0x900
+#define PPC_SystemReset              0x100
+#define PPC_MachineCheck             0x200
+#define PPC_DataStorage              0x300
+#define PPC_InstructionStorage       0x400
+#define PPC_ExternalInterrupt        0x500
+#define PPC_Alignment                0x600
+#define PPC_Program                  0x700
+#define PPC_FloatingPointUnavailable 0x800
+#define PPC_Decrementer              0x900
 // 0xA00-0xB00 are reserved
 #define PPC_SystemCall          0xC00
 #define PPC_Trace               0xD00

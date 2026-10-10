@@ -31,29 +31,34 @@ void TCoordMgr::getDestPos(s32)
  */
 void TCoordMgr::copyCoordinate(Vector2f* coord)
 {
+	// red pikmin
 	for (int i = 0; i < mPikiCounts[1]; i++) {
-		coord[100 + i].x = mCoords[100 + i].x;
-		coord[100 + i].y = mCoords[100 + i].y;
+		coord[(TITLE_PIKI_TYPE_MAX * 1) + i].x = mCoords[(TITLE_PIKI_TYPE_MAX * 1) + i].x;
+		coord[(TITLE_PIKI_TYPE_MAX * 1) + i].y = mCoords[(TITLE_PIKI_TYPE_MAX * 1) + i].y;
 	}
 
+	// yellow pikmin
 	for (int i = 0; i < mPikiCounts[2]; i++) {
-		coord[200 + i].x = mCoords[200 + i].x;
-		coord[200 + i].y = mCoords[200 + i].y;
+		coord[(TITLE_PIKI_TYPE_MAX * 2) + i].x = mCoords[(TITLE_PIKI_TYPE_MAX * 2) + i].x;
+		coord[(TITLE_PIKI_TYPE_MAX * 2) + i].y = mCoords[(TITLE_PIKI_TYPE_MAX * 2) + i].y;
 	}
 
+	// blue pikmin
 	for (int i = 0; i < mPikiCounts[0]; i++) {
-		coord[i].x = mCoords[i].x;
-		coord[i].y = mCoords[i].y;
+		coord[(TITLE_PIKI_TYPE_MAX * 0) + i].x = mCoords[(TITLE_PIKI_TYPE_MAX * 0) + i].x;
+		coord[(TITLE_PIKI_TYPE_MAX * 0) + i].y = mCoords[(TITLE_PIKI_TYPE_MAX * 0) + i].y;
 	}
 
+	// purple pikmin
 	for (int i = 0; i < mPikiCounts[3]; i++) {
-		coord[300 + i].x = mCoords[300 + i].x;
-		coord[300 + i].y = mCoords[300 + i].y;
+		coord[(TITLE_PIKI_TYPE_MAX * 3) + i].x = mCoords[(TITLE_PIKI_TYPE_MAX * 3) + i].x;
+		coord[(TITLE_PIKI_TYPE_MAX * 3) + i].y = mCoords[(TITLE_PIKI_TYPE_MAX * 3) + i].y;
 	}
 
+	// white pikmin
 	for (int i = 0; i < mPikiCounts[4]; i++) {
-		coord[400 + i].x = mCoords[400 + i].x;
-		coord[400 + i].y = mCoords[400 + i].y;
+		coord[(TITLE_PIKI_TYPE_MAX * 4) + i].x = mCoords[(TITLE_PIKI_TYPE_MAX * 4) + i].x;
+		coord[(TITLE_PIKI_TYPE_MAX * 4) + i].y = mCoords[(TITLE_PIKI_TYPE_MAX * 4) + i].y;
 	}
 }
 

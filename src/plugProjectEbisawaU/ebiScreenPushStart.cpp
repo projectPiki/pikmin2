@@ -83,9 +83,7 @@ void TPressStart::doOpenScreen(ArgOpen*)
  */
 void TPressStart::doCloseScreen(ArgClose*)
 {
-	u32 time  = 0.2f / sys->mDeltaTime;
-	mAlpha    = time;
-	mAlphaMax = time;
+	mAlphaCounter.setValue(0.2f);
 }
 
 /**
@@ -113,19 +111,10 @@ bool TPressStart::doUpdateStateWait()
 bool TPressStart::doUpdateStateClose()
 {
 	mScreens[mCurrentScreen]->update();
-	if (mAlpha) {
-		mAlpha--;
-	}
-	f32 alpha;
-	if (mAlphaMax) {
-		alpha = (f32)mAlpha / (f32)mAlphaMax;
-	} else {
-		alpha = 0.0f;
-	}
+	mAlphaCounter.update();
+	mScreens[mCurrentScreen]->setAlpha(mAlphaCounter.getRatio() * 255.0f);
 
-	mScreens[mCurrentScreen]->setAlpha(alpha * 255.0f);
-
-	if (!mAlpha || mAnims1[mCurrentScreen].isFinish()) {
+	if (mAlphaCounter.isZero() || mAnims1[mCurrentScreen].isFinish()) {
 		return true;
 	} else {
 		return false;

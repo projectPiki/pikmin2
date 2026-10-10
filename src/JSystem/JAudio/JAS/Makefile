@@ -1,10 +1,10 @@
 JAUDIO_JAS_FILES:=\
-	$(BUILD_DIR)/asm/JSystem/JAudio/JAS/JASWSParser.o\
+	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JASWSParser.o\
 	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JASBankMgr.o\
 	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JASBasicBank.o\
 	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JASBasicInst.o\
 	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JASBasicWaveBank.o\
-	$(BUILD_DIR)/asm/JSystem/JAudio/JAS/JASBNKParser.o\
+	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JASBNKParser.o\
 	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JASDrumSet.o\
 	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JASInstEffect.o\
 	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JASInstRand.o\
@@ -20,10 +20,10 @@ JAUDIO_JAS_FILES:=\
 	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JASRegisterParam.o\
 	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JASSeqCtrl.o\
 	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JASSeqParser.o\
-	$(BUILD_DIR)/asm/JSystem/JAudio/JAS/JASTrack.o\
+	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JASTrack.o\
 	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JASTrackInterrupt.o\
 	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JASOscillator.o\
-	$(BUILD_DIR)/asm/JSystem/JAudio/JAS/JASChannel.o\
+	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JASChannel.o\
 	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JASDriverIF.o\
 	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JASDSPChannel.o\
 	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JASDSPInterface.o\
@@ -38,8 +38,8 @@ JAUDIO_JAS_FILES:=\
 	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JASReport.o\
 	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JASAiCtrl.o\
 	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JASChannelUpdater.o\
-	$(BUILD_DIR)/asm/JSystem/JAudio/JAS/JASTaskThread.o\
-	$(BUILD_DIR)/asm/JSystem/JAudio/JAS/JASAramStream.o\
+	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JASTaskThread.o\
+	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JASAramStream.o\
 
 DEPENDS += $(JAUDIO_JAS_FILES:.o=.d)
 

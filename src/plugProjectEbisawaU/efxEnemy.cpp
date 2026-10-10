@@ -609,7 +609,8 @@ void TParticleCallBack_TankFire::init(JPABaseEmitter*, JPABaseParticle*)
 void TParticleCallBack_TankFire::execute(JPABaseEmitter* emit, JPABaseParticle* particle)
 {
 	// shame on whoever for not knowing the funcs get called in right to left order -Drought
-	Vector3f tgt = particle->getCalcCurrentPosition(emit);
+	Vector3f tgt;
+	tgt = particle->getCalcCurrentPosition(emit);
 
 	if (tgt.distance(emit->mGlobalTrs) > mMaxDistance) {
 		particle->mFlags |= 2;
@@ -621,95 +622,6 @@ void TParticleCallBack_TankFire::execute(JPABaseEmitter* emit, JPABaseParticle* 
 			hit->mCurrPosIndex++;
 		}
 	}
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stfd     f31, 0x30(r1)
-	psq_st   f31, 56(r1), 0, qr0
-	stfd     f30, 0x20(r1)
-	psq_st   f30, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r31, r5
-	mr       r29, r3
-	mr       r30, r4
-	mr       r3, r31
-	bl       getCalcCurrentPositionZ__15JPABaseParticleCFPC14JPABaseEmitter
-	fmr      f30, f1
-	mr       r3, r31
-	mr       r4, r30
-	bl       getCalcCurrentPositionY__15JPABaseParticleCFPC14JPABaseEmitter
-	fmr      f31, f1
-	mr       r3, r31
-	mr       r4, r30
-	bl       getCalcCurrentPositionX__15JPABaseParticleCFPC14JPABaseEmitter
-	lfs      f0, 0xa4(r30)
-	lfs      f2, 0xa8(r30)
-	fsubs    f4, f0, f1
-	lfs      f3, 0xac(r30)
-	fsubs    f2, f2, f31
-	lfs      f0, lbl_8051F638@sda21(r2)
-	fsubs    f5, f3, f30
-	fmuls    f3, f4, f4
-	fmuls    f2, f2, f2
-	fmuls    f4, f5, f5
-	fadds    f2, f3, f2
-	fadds    f4, f4, f2
-	fcmpo    cr0, f4, f0
-	cror     2, 0, 2
-	bne      lbl_803B4448
-	b        lbl_803B446C
-
-lbl_803B4448:
-	frsqrte  f5, f4
-	lfs      f3, lbl_8051F63C@sda21(r2)
-	lfs      f0, lbl_8051F640@sda21(r2)
-	frsp     f5, f5
-	fmuls    f2, f5, f5
-	fmuls    f3, f3, f5
-	fnmsubs  f0, f4, f2, f0
-	fmuls    f0, f3, f0
-	fmuls    f4, f4, f0
-
-lbl_803B446C:
-	lfs      f0, 4(r29)
-	fcmpo    cr0, f4, f0
-	ble      lbl_803B44C4
-	lwz      r0, 0x7c(r31)
-	ori      r0, r0, 2
-	stw      r0, 0x7c(r31)
-	lwz      r4, 8(r29)
-	cmplwi   r4, 0
-	beq      lbl_803B44C4
-	lwz      r3, 0x14(r4)
-	lwz      r0, 0x18(r4)
-	cmpw     r3, r0
-	bge      lbl_803B44C4
-	mulli    r0, r3, 0xc
-	lwz      r3, 0x10(r4)
-	add      r3, r3, r0
-	stfs     f1, 0(r3)
-	stfs     f31, 4(r3)
-	stfs     f30, 8(r3)
-	lwz      r3, 0x14(r4)
-	addi     r0, r3, 1
-	stw      r0, 0x14(r4)
-
-lbl_803B44C4:
-	psq_l    f31, 56(r1), 0, qr0
-	lfd      f31, 0x30(r1)
-	psq_l    f30, 40(r1), 0, qr0
-	lfd      f30, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r0, 0x44(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
 }
 
 /**

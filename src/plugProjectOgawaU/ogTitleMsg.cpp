@@ -259,8 +259,8 @@ void TitleMsgDrop::init()
 	for (int i = 0; i < mStringLength; i++) {
 		motion->mRandTime = randFloat() * mod;
 		motion->mYOffset  = yoffs;
-		motion->mPos.x    = mPanes1[i]->mOffset.x;
-		motion->mPos.y    = mPanes1[i]->mOffset.y;
+		motion->mPos.x    = mPanes1[i]->mTranslateX;
+		motion->mPos.y    = mPanes1[i]->mTranslateY;
 		motion->mTimer    = i / (f32)mStringLength;
 		motion++;
 	}

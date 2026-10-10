@@ -1814,7 +1814,7 @@ Vector2f WorldMap::OnyonDynamics::move(WorldMap* wmap, const JGeometry::TVec2f& 
  */
 void WorldMap::OnyonDynamics::update(WorldMap* map)
 {
-	f32 scale = map->mScreenRocket->search('NROCKET')->mScale.x;
+	f32 scale = map->mScreenRocket->search('NROCKET')->mScaleX;
 	mOnyonPane->setOffset((50.0f * JMASinShort(mRotateAngle)) * scale + mOffset.x, mOffset.y);
 	f32 angle = JMAAtan2Radian(-mAngle.x, -mAngle.y);
 	angle *= 57.295776f;

@@ -65,8 +65,7 @@ void FSMState::do_exec(TMgr*)
  */
 void FSMState_EmptyUpdate::do_init(TMgr* mgr, Game::StateArg* arg)
 {
-	mCounter    = 2;
-	mCounterMax = 2;
+	mCounter.setValue((u32)2);
 }
 
 /**
@@ -75,10 +74,8 @@ void FSMState_EmptyUpdate::do_init(TMgr* mgr, Game::StateArg* arg)
  */
 void FSMState_EmptyUpdate::do_exec(TMgr* mgr)
 {
-	if (mCounter) {
-		mCounter--;
-	}
-	if (!mCounter) {
+	mCounter.update();
+	if (mCounter.isZero()) {
 		transit(mgr, FSSTATE_MountCheck, nullptr);
 	}
 }
@@ -395,8 +392,6 @@ void FSMState_CardError::do_exec(TMgr* mgr)
  * @note Size: 0xC0
  */
 TMgr::TMgr()
-    : mCounter(0)
-    , mCounterMax(0)
 {
 	mFsm.init(this);
 	mFsm.start(this, FSSTATE_Standby, 0);
@@ -508,9 +503,7 @@ void TMgr::update()
 		sys->mCardMgr->update();
 		mCardErrorMgr.update();
 		mMgrFS.update();
-		if (mCounter) {
-			mCounter--;
-		}
+		mCounter.update();
 	}
 }
 

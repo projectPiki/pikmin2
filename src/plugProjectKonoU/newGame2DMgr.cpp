@@ -209,7 +209,7 @@ bool Game2DMgr::open_GameVs(og::Screen::DispMemberVs& disp, int type)
 		if (mScreenMgr->setScene(arg)) {
 			mScreenMgr->startScene(nullptr);
 		}
-	} else if (type & 1) {
+	} else if (type & CAVEOPEN_ReadyGo) {
 		SetSceneArg arg(SCENE_VS, &disp);
 		if (mScreenMgr->setScene(arg)) {
 			kh::Screen::DispReadyGo disp2;
@@ -260,7 +260,7 @@ void Game2DMgr::open_GameChallenge2P(og::Screen::DispMemberChallenge2P& disp, in
 		if (mScreenMgr->setScene(arg)) {
 			mScreenMgr->startScene(&sarg);
 		}
-	} else if ((type & 3) == 3) {
+	} else if ((type & 0b11) == (CAVEOPEN_ReadyGo | CAVEOPEN_FinalFloor)) {
 		if (mScreenMgr->setScene(arg)) {
 			kh::Screen::DispReadyGo disp2;
 			disp2.mIs2Player    = true;
@@ -271,7 +271,7 @@ void Game2DMgr::open_GameChallenge2P(og::Screen::DispMemberChallenge2P& disp, in
 				mScreenMgr->startScene(nullptr);
 			}
 		}
-	} else if (type & 1) {
+	} else if (type & CAVEOPEN_ReadyGo) {
 		if (mScreenMgr->setScene(arg)) {
 			kh::Screen::DispReadyGo disp2;
 			disp2.mIs2Player = true;
@@ -281,7 +281,7 @@ void Game2DMgr::open_GameChallenge2P(og::Screen::DispMemberChallenge2P& disp, in
 				mScreenMgr->startScene(nullptr);
 			}
 		}
-	} else if (type & 2) {
+	} else if (type & CAVEOPEN_FinalFloor) {
 		if (mScreenMgr->setScene(arg)) {
 			kh::Screen::DispFinalFloor disp2;
 			disp2.mIs2Player = true;
@@ -306,7 +306,7 @@ void Game2DMgr::open_GameChallenge1P(og::Screen::DispMemberChallenge1P& disp, in
 		if (mScreenMgr->setScene(arg)) {
 			mScreenMgr->startScene(&sarg);
 		}
-	} else if ((type & 3) == 3) {
+	} else if ((type & 0b11) == (CAVEOPEN_ReadyGo | CAVEOPEN_FinalFloor)) {
 		if (mScreenMgr->setScene(arg)) {
 			kh::Screen::DispReadyGo disp2;
 			disp2.mIsFinalFloor = true;
@@ -316,7 +316,7 @@ void Game2DMgr::open_GameChallenge1P(og::Screen::DispMemberChallenge1P& disp, in
 				mScreenMgr->startScene(nullptr);
 			}
 		}
-	} else if (type == 1) {
+	} else if (type == CAVEOPEN_ReadyGo) {
 		if (mScreenMgr->setScene(arg)) {
 			kh::Screen::DispReadyGo disp2;
 			disp2.mGameType = kh::Screen::DispReadyGo::TYPE_Challenge;
@@ -325,7 +325,7 @@ void Game2DMgr::open_GameChallenge1P(og::Screen::DispMemberChallenge1P& disp, in
 				mScreenMgr->startScene(nullptr);
 			}
 		}
-	} else if (type == 2) {
+	} else if (type == CAVEOPEN_FinalFloor) {
 		if (mScreenMgr->setScene(arg)) {
 			kh::Screen::DispFinalFloor disp2;
 			SetSceneArg arg2(SCENE_FINAL_FLOOR, &disp2);
@@ -392,8 +392,8 @@ bool Game2DMgr::open_SMenu_Sub(og::Screen::DispMemberSMenuAll& disp)
 		set = mScreenMgr->setScene(arg);
 		break;
 	}
-	case og::Screen::DispMemberSMenuAll::Open_ChallengeMode:
-	case og::Screen::DispMemberSMenuAll::Open_Versus: {
+	case og::Screen::DispMemberSMenuAll::Open_Versus:
+	case og::Screen::DispMemberSMenuAll::Open_ChallengeMode: {
 		SetSceneArg arg(SCENE_PAUSE_MENU_VS, &disp);
 		set = mScreenMgr->setScene(arg);
 		break;
@@ -430,36 +430,36 @@ int Game2DMgr::check_SMenu()
 		if (mScreenMgr->isSceneFinish()) {
 			int scene = mScreenMgr->getSceneFinishState();
 			switch (scene) {
-			case SceneBase::SB_WaitForResourceSync:
+			case og::Screen::MENUFINISH_GetFromSubMember:
 				exit = CHECK2D_SMenu_Opened;
 				break;
 
-			case SceneBase::SB_Unknown2:
+			case og::Screen::MENUFINISH_ContinueGround:
 				PSPause_StartMenuOff();
 				exit = CHECK2D_SMenu_Cancel;
 				break;
 
-			case SceneBase::SB_Started:
+			case og::Screen::MENUFINISH_GoToSunset:
 				PSPause_StartMenuOff();
 				exit = CHECK2D_SMenu_GoToSunset;
 				break;
 
-			case SceneBase::SB_Unknown4:
+			case og::Screen::MENUFINISH_ReturnToLastSave:
 				PSPause_StartMenuOff();
 				exit = CHECK2D_SMenu_ReturnToFileSelect;
 				break;
 
-			case SceneBase::SB_Unknown5:
+			case og::Screen::MENUFINISH_ContinueCave:
 				PSPause_StartMenuOff();
 				exit = CHECK2D_SMenu_Cancel;
 				break;
 
-			case SceneBase::SB_Unknown6:
+			case og::Screen::MENUFINISH_GiveUpEscape:
 				PSPause_StartMenuOff();
 				exit = CHECK2D_SMenu_EscapeCave;
 				break;
 
-			case SceneBase::SB_Unknown7:
+			case og::Screen::MENUFINISH_QuitChallenge:
 				PSPause_StartMenuOff();
 				exit = CHECK2D_SMenu_QuitChallenge;
 				break;

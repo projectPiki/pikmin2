@@ -468,8 +468,8 @@ void Item::constructor()
  * @note Address:	........
  * @note Size: 0xD0 (should be 0xD4 but inlines correctly).
  */
-Item::Item(int objType)
-    : FSMItem(objType)
+Item::Item()
+    : FSMItem(OBJTYPE_Plant)
 {
 	mGrowTimer = 0.0f;
 	mDamage    = 0.0f;
@@ -771,11 +771,12 @@ void ProcAnimator::create(int count)
  * @throws Panics if index provided is >= `mMaxCount` (outside array size).
  *
  * @note Address: N/A
- * @note Size: 0x74 (should be 0x88 but matches when inlined)
+ * @note Size: 0x88
  */
 void ProcAnimator::setMatrix(int idx, Matrixf* mtx)
 {
-	P2ASSERTLINE(663, mMaxCount > idx);
+	bool check = 0 <= idx && idx < mMaxCount;
+	P2ASSERTLINE(663, check);
 	mMatrices[idx] = mtx;
 }
 
@@ -789,11 +790,12 @@ void ProcAnimator::setMatrix(int idx, Matrixf* mtx)
  *
  * @note UNUSED
  * @note Address: N/A
- * @note Size: 0x74 (should be 0x88)
+ * @note Size: 0x88
  */
 void ProcAnimator::setAngle(int idx, f32 angle)
 {
-	P2ASSERTLINE(670, mMaxCount > idx); // line number is a guess
+	bool check = 0 <= idx && idx < mMaxCount; // line number is a guess
+	P2ASSERTLINE(670, check);
 	mAngle[idx] = angle;
 }
 
@@ -808,11 +810,12 @@ void ProcAnimator::setAngle(int idx, f32 angle)
  *
  * @note UNUSED
  * @note Address: N/A
- * @note Size: 0x68 (should be 0x7C)
+ * @note Size: 0x7C
  */
 f32 ProcAnimator::getAngle(int idx)
 {
-	P2ASSERTLINE(680, mMaxCount > idx);
+	bool check = 0 <= idx && idx < mMaxCount;
+	P2ASSERTLINE(680, check);
 	return mAngle[idx];
 }
 
@@ -874,9 +877,7 @@ void ProcAnimator::calcAngles()
 /**
  * Updates `mYDist` based on current matrices (probably needs better name).
  * Stripped, but educated guess says it's used in `update` and `Plant::onInit`.
- * Has regswaps currently.
  *
- * @note NON-MATCHING
  * @note Address: N/A
  * @note Size: 0x9C
  */
@@ -919,7 +920,6 @@ void ProcAnimator::force(f32)
  * @param faceDir Direction parent plant is facing.
  * @param p2 Unknown, seems to increase rate at which angles advance.
  *
- * @note NON-MATCHING
  * @note Address: 0x801DE040
  * @note Size: 0x4E4
  */
@@ -964,10 +964,12 @@ void ProcAnimator::update(f32 faceDir, f32 p2)
 
 		Matrixf mat;
 		Vector3f newPos;
-		f32 theta = mAngle[i] + angleOffset;
+		f32 baseAngle = mAngle[i];
+		f32 theta     = baseAngle + angleOffset;
 		Vector3f rot;
-		f32 angle = mXRot[i] + angleOffset;
-		ydist     = mYDist[i];
+		f32 baseRot = mXRot[i];
+		f32 angle   = baseRot + angleOffset;
+		ydist       = mYDist[i];
 
 		newPos.x = 0.0f;
 		newPos.y = ydist;
@@ -983,7 +985,7 @@ void ProcAnimator::update(f32 faceDir, f32 p2)
 		currMat->setTranslation(newPos); // 0x68 -> 0x74
 
 		Vector3f posX = currMat->getColumn(0);
-		f32 scale     = posX.length(); // f2
+		f32 scale     = getBasisScale(posX);
 
 		Vector3f xVec = Vector3f(0.0f, scale * cosf(theta), scale * sinf(theta));  // 0x50
 		Vector3f yVec = Vector3f(0.0f, scale * -sinf(theta), scale * cosf(theta)); // 0x44
@@ -997,359 +999,6 @@ void ProcAnimator::update(f32 faceDir, f32 p2)
 		currMat->setColumn(1, yVec); // 0x44
 		currMat->setColumn(2, zVec); // 0x38
 	}
-	/*
-	stwu     r1, -0x180(r1)
-	mflr     r0
-	stw      r0, 0x184(r1)
-	stfd     f31, 0x170(r1)
-	psq_st   f31, 376(r1), 0, qr0
-	stfd     f30, 0x160(r1)
-	psq_st   f30, 360(r1), 0, qr0
-	stfd     f29, 0x150(r1)
-	psq_st   f29, 344(r1), 0, qr0
-	stfd     f28, 0x140(r1)
-	psq_st   f28, 328(r1), 0, qr0
-	stmw     r27, 0x12c(r1)
-	lfs      f0, lbl_80519824@sda21(r2)
-	mr       r27, r3
-	lfs      f4, lbl_80519804@sda21(r2)
-	fmr      f28, f1
-	lwz      r3, sys@sda21(r13)
-	fmuls    f5, f2, f0
-	fmuls    f4, f4, f0
-	lfs      f0, lbl_80519828@sda21(r2)
-	lfs      f2, 0x28(r27)
-	lfs      f3, 0x24(r27)
-	fneg     f4, f4
-	lfs      f6, 0x54(r3)
-	fmuls    f1, f0, f2
-	lfs      f0, lbl_8051982C@sda21(r2)
-	fmsubs   f1, f4, f3, f1
-	fadds    f1, f5, f1
-	fmadds   f1, f6, f1, f2
-	stfs     f1, 0x28(r27)
-	lfs      f2, 0x28(r27)
-	lfs      f1, 0x24(r27)
-	fmadds   f1, f6, f2, f1
-	stfs     f1, 0x24(r27)
-	lfs      f1, 0x24(r27)
-	fcmpo    cr0, f1, f0
-	ble      lbl_801DE0DC
-	stfs     f0, 0x24(r27)
-	b        lbl_801DE0EC
-
-lbl_801DE0DC:
-	lfs      f0, lbl_80519830@sda21(r2)
-	fcmpo    cr0, f1, f0
-	bge      lbl_801DE0EC
-	stfs     f0, 0x24(r27)
-
-lbl_801DE0EC:
-	lfs      f0, lbl_80519800@sda21(r2)
-	lis      r3, "zero__10Vector3<f>"@ha
-	addi     r4, r3, "zero__10Vector3<f>"@l
-	stfs     f28, 0x84(r1)
-	addi     r3, r1, 0xbc
-	addi     r5, r1, 0x80
-	stfs     f0, 0x80(r1)
-	stfs     f0, 0x88(r1)
-	bl       "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
-	mr       r3, r27
-	bl       calcAngles__Q34Game9ItemPlant12ProcAnimatorFv
-	lwz      r3, 0xc(r27)
-	li       r4, 1
-	lfs      f0, lbl_80519800@sda21(r2)
-	li       r5, 4
-	lwz      r3, 0(r3)
-	lfs      f3, 0xc(r3)
-	lfs      f4, 0x1c(r3)
-	lfs      f5, 0x2c(r3)
-	b        lbl_801DE1A4
-
-lbl_801DE13C:
-	lwz      r3, 0xc(r27)
-	lwzx     r3, r3, r5
-	lfs      f2, 0x1c(r3)
-	lfs      f1, 0xc(r3)
-	fsubs    f7, f2, f4
-	lfs      f6, 0x2c(r3)
-	fsubs    f4, f1, f3
-	fsubs    f5, f6, f5
-	fmuls    f7, f7, f7
-	fmr      f3, f1
-	fmuls    f8, f5, f5
-	fmadds   f1, f4, f4, f7
-	fmr      f4, f2
-	fmr      f5, f6
-	fadds    f1, f8, f1
-	fcmpo    cr0, f1, f0
-	ble      lbl_801DE190
-	ble      lbl_801DE194
-	frsqrte  f2, f1
-	fmuls    f1, f2, f1
-	b        lbl_801DE194
-
-lbl_801DE190:
-	fmr      f1, f0
-
-lbl_801DE194:
-	lwz      r3, 0x1c(r27)
-	addi     r4, r4, 1
-	stfsx    f1, r3, r5
-	addi     r5, r5, 4
-
-lbl_801DE1A4:
-	lwz      r0, 0x20(r27)
-	cmpw     r4, r0
-	blt      lbl_801DE13C
-	lfs      f0, 0(r27)
-	lis      r3, sincosTable___5JMath@ha
-	lfs      f30, lbl_80519800@sda21(r2)
-	addi     r31, r3, sincosTable___5JMath@l
-	stfs     f0, 0x74(r1)
-	li       r29, 1
-	lfs      f31, lbl_80519840@sda21(r2)
-	li       r30, 4
-	lfs      f0, 4(r27)
-	stfs     f0, 0x78(r1)
-	lfs      f0, 8(r27)
-	stfs     f0, 0x7c(r1)
-	b        lbl_801DE4E4
-
-lbl_801DE1E4:
-	lwz      r3, 0xc(r27)
-	cmpwi    r29, 1
-	lwzx     r28, r3, r30
-	bne      lbl_801DE1FC
-	lfs      f1, lbl_80519834@sda21(r2)
-	b        lbl_801DE210
-
-lbl_801DE1FC:
-	cmpwi    r29, 2
-	bne      lbl_801DE20C
-	lfs      f1, lbl_80519838@sda21(r2)
-	b        lbl_801DE210
-
-lbl_801DE20C:
-	lfs      f1, lbl_80519804@sda21(r2)
-
-lbl_801DE210:
-	lfs      f0, 0x24(r27)
-	addi     r3, r1, 0x8c
-	lwz      r5, 0x18(r27)
-	addi     r4, r1, 0x74
-	fmuls    f3, f1, f0
-	lwz      r7, 0x14(r27)
-	lfsx     f0, r5, r30
-	addi     r5, r1, 0x5c
-	lwz      r6, 0x1c(r27)
-	lfsx     f1, r7, r30
-	lfsx     f2, r6, r30
-	fadds    f0, f0, f3
-	fadds    f29, f1, f3
-	stfs     f30, 0x68(r1)
-	stfs     f2, 0x6c(r1)
-	stfs     f30, 0x70(r1)
-	stfs     f0, 0x5c(r1)
-	stfs     f28, 0x60(r1)
-	stfs     f30, 0x64(r1)
-	bl       "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
-	addi     r3, r1, 0x8c
-	addi     r4, r1, 0x68
-	addi     r5, r1, 0x2c
-	bl       PSMTXMultVec
-	lfs      f2, 0x2c(r1)
-	lfs      f1, 0x30(r1)
-	lfs      f0, 0x34(r1)
-	stfs     f2, 0x68(r1)
-	stfs     f1, 0x6c(r1)
-	stfs     f0, 0x70(r1)
-	stfs     f2, 0x74(r1)
-	stfs     f1, 0x78(r1)
-	stfs     f0, 0x7c(r1)
-	stfs     f2, 0xc(r28)
-	lfs      f0, 0x6c(r1)
-	stfs     f0, 0x1c(r28)
-	lfs      f0, 0x70(r1)
-	stfs     f0, 0x2c(r28)
-	lfs      f0, 0x10(r28)
-	lfs      f1, 0x20(r28)
-	fmuls    f2, f0, f0
-	lfs      f0, 0(r28)
-	fmuls    f1, f1, f1
-	fmadds   f0, f0, f0, f2
-	fadds    f2, f1, f0
-	fcmpo    cr0, f2, f30
-	ble      lbl_801DE2DC
-	ble      lbl_801DE2E0
-	frsqrte  f0, f2
-	fmuls    f2, f0, f2
-	b        lbl_801DE2E0
-
-lbl_801DE2DC:
-	fmr      f2, f30
-
-lbl_801DE2E0:
-	fcmpo    cr0, f29, f30
-	bge      lbl_801DE314
-	lfs      f0, lbl_8051983C@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fmuls    f0, f29, f0
-	fctiwz   f0, f0
-	stfd     f0, 0xf0(r1)
-	lwz      r0, 0xf4(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r3, r0
-	fneg     f0, f0
-	b        lbl_801DE338
-
-lbl_801DE314:
-	lfs      f0, lbl_80519840@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fmuls    f0, f29, f0
-	fctiwz   f0, f0
-	stfd     f0, 0xf8(r1)
-	lwz      r0, 0xfc(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r3, r0
-
-lbl_801DE338:
-	fmr      f3, f29
-	fcmpo    cr0, f29, f30
-	fmuls    f1, f2, f0
-	bge      lbl_801DE34C
-	fneg     f3, f29
-
-lbl_801DE34C:
-	fmuls    f0, f3, f31
-	stfs     f30, 0x50(r1)
-	fmr      f3, f29
-	fcmpo    cr0, f29, f30
-	stfs     f1, 0x58(r1)
-	fctiwz   f0, f0
-	stfd     f0, 0x100(r1)
-	lwz      r0, 0x104(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	add      r3, r31, r0
-	lfs      f0, 4(r3)
-	fmuls    f0, f2, f0
-	stfs     f0, 0x54(r1)
-	bge      lbl_801DE388
-	fneg     f3, f29
-
-lbl_801DE388:
-	fmuls    f0, f3, f31
-	fcmpo    cr0, f29, f30
-	fctiwz   f0, f0
-	stfd     f0, 0x108(r1)
-	lwz      r0, 0x10c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	add      r3, r31, r0
-	lfs      f0, 4(r3)
-	fmuls    f1, f2, f0
-	bge      lbl_801DE3DC
-	lfs      f0, lbl_8051983C@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fmuls    f0, f29, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x110(r1)
-	lwz      r0, 0x114(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r3, r0
-	fneg     f0, f0
-	b        lbl_801DE3FC
-
-lbl_801DE3DC:
-	fmuls    f0, f29, f31
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fctiwz   f0, f0
-	stfd     f0, 0x118(r1)
-	lwz      r0, 0x11c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r3, r0
-
-lbl_801DE3FC:
-	fneg     f0, f0
-	stfs     f30, 0x44(r1)
-	addi     r3, r1, 0xbc
-	addi     r4, r1, 0x50
-	stfs     f1, 0x4c(r1)
-	addi     r5, r1, 0x20
-	fmuls    f0, f2, f0
-	stfs     f2, 0x38(r1)
-	stfs     f30, 0x3c(r1)
-	stfs     f0, 0x48(r1)
-	stfs     f30, 0x40(r1)
-	bl       PSMTXMultVec
-	lfs      f2, 0x20(r1)
-	addi     r3, r1, 0xbc
-	lfs      f1, 0x24(r1)
-	addi     r4, r1, 0x44
-	lfs      f0, 0x28(r1)
-	addi     r5, r1, 0x14
-	stfs     f2, 0x50(r1)
-	stfs     f1, 0x54(r1)
-	stfs     f0, 0x58(r1)
-	bl       PSMTXMultVec
-	lfs      f2, 0x14(r1)
-	addi     r3, r1, 0xbc
-	lfs      f1, 0x18(r1)
-	addi     r4, r1, 0x38
-	lfs      f0, 0x1c(r1)
-	addi     r5, r1, 8
-	stfs     f2, 0x44(r1)
-	stfs     f1, 0x48(r1)
-	stfs     f0, 0x4c(r1)
-	bl       PSMTXMultVec
-	lfs      f0, 8(r1)
-	addi     r30, r30, 4
-	lfs      f2, 0xc(r1)
-	addi     r29, r29, 1
-	lfs      f1, 0x10(r1)
-	stfs     f0, 0x38(r1)
-	lfs      f0, 0x50(r1)
-	stfs     f2, 0x3c(r1)
-	stfs     f1, 0x40(r1)
-	stfs     f0, 0(r28)
-	lfs      f0, 0x54(r1)
-	stfs     f0, 0x10(r28)
-	lfs      f0, 0x58(r1)
-	stfs     f0, 0x20(r28)
-	lfs      f0, 0x44(r1)
-	stfs     f0, 4(r28)
-	lfs      f0, 0x48(r1)
-	stfs     f0, 0x14(r28)
-	lfs      f0, 0x4c(r1)
-	stfs     f0, 0x24(r28)
-	lfs      f0, 0x38(r1)
-	stfs     f0, 8(r28)
-	lfs      f0, 0x3c(r1)
-	stfs     f0, 0x18(r28)
-	lfs      f0, 0x40(r1)
-	stfs     f0, 0x28(r28)
-
-lbl_801DE4E4:
-	lwz      r0, 0x20(r27)
-	cmpw     r29, r0
-	blt      lbl_801DE1E4
-	psq_l    f31, 376(r1), 0, qr0
-	lfd      f31, 0x170(r1)
-	psq_l    f30, 360(r1), 0, qr0
-	lfd      f30, 0x160(r1)
-	psq_l    f29, 344(r1), 0, qr0
-	lfd      f29, 0x150(r1)
-	psq_l    f28, 328(r1), 0, qr0
-	lfd      f28, 0x140(r1)
-	lmw      r27, 0x12c(r1)
-	lwz      r0, 0x184(r1)
-	mtlr     r0
-	addi     r1, r1, 0x180
-	blr
-	*/
 }
 
 /**
@@ -1376,7 +1025,7 @@ void ProcAnimator::draw(Graphics& gfx)
  * @note Size: 0x10C
  */
 Plant::Plant()
-    : Item(OBJTYPE_Plant)
+    : Item()
 {
 	mMass = 0.0f;
 }

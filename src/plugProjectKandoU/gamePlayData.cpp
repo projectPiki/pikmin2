@@ -953,7 +953,7 @@ bool PlayData::isPelletZukanVisible(int dictionaryID)
 bool PlayData::isPelletZukanWhatsNew(int id)
 {
 	// Check if any collected treasures are still new, specifically that their ZukanStat flag is set to KCF_Earned but without KCF_IsOld set
-	// this is done seperately for normal treasures and explorer kit items
+	// this is done separately for normal treasures and explorer kit items
 	PelletConfigList* list = PelletList::Mgr::getConfigList(PelletList::PLK_Otakara);
 	PelletConfig* config   = list->getPelletConfig_ByDictionaryNo(id);
 	if (config) {

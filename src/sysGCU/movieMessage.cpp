@@ -33,7 +33,7 @@ WindowPane::WindowPane()
  */
 void WindowPane::doInit()
 {
-	mInitialPosition = Vector3f(mPane->mOffset.x, mPane->mOffset.y, 0.0f);
+	mInitialPosition = Vector3f(mPane->mTranslateX, mPane->mTranslateY, 0.0f);
 }
 
 /**
@@ -204,6 +204,8 @@ PodIconScreen::PodIconScreen()
 	u16 y = sys->getRenderModeHeight();
 	u16 x = sys->getRenderModeWidth();
 	mInitialPos.set(x * 0.75f, y, 100.0f);
+	reset();
+	hide();
 }
 
 /**
@@ -229,6 +231,17 @@ void PodIconScreen::reset()
 	mMomentum.normalise();
 	mPosition.set(0.0f, 0.0f, 0.0f);
 	setTrans();
+}
+
+/**
+ * @note Address: N/A
+ * @note Size: 0x178
+ */
+void PodIconScreen::appear()
+{
+	reset();
+	show();
+	mState = 0;
 }
 
 /**
@@ -325,10 +338,11 @@ void PodIconScreen::update()
 			Vector3f newDiff;
 			newDiff = diff * norm;
 
-			f32 factor        = (newDiff.dot(mMomentum) + 1.0f) * 0.5f;
-			f32 momentumScale = ((1.0f - factor) + 1.0f) * 0.2f;
-
-			factor = 0.35f * (length * (factor * factor));
+			f32 alignmentWeight = newDiff.dot(mMomentum);
+			alignmentWeight     = 1.0f + alignmentWeight;
+			alignmentWeight *= 0.5f;
+			f32 movementDistance = 0.35f * (length * (alignmentWeight * alignmentWeight));
+			f32 momentumScale    = ((1.0f - alignmentWeight) + 1.0f) * 0.2f;
 
 			newDiff.x *= momentumScale;
 			newDiff.y *= momentumScale;
@@ -338,9 +352,9 @@ void PodIconScreen::update()
 
 			mMomentum.normalise();
 
-			mInitialPos.x += mMomentum.x * factor;
-			mInitialPos.y += mMomentum.y * factor;
-			mInitialPos.z += mMomentum.z * factor;
+			mInitialPos.x += mMomentum.x * movementDistance;
+			mInitialPos.y += mMomentum.y * movementDistance;
+			mInitialPos.z += mMomentum.z * movementDistance;
 		}
 
 		f32 scale = mInitialPos.z / 20.0f;
@@ -682,6 +696,14 @@ lbl_80435980:
 
 /**
  * @note Address: N/A
+ * @note Size: 0x3C
+ */
+MessageWindowScreen::MessageWindowScreen()
+{
+}
+
+/**
+ * @note Address: N/A
  * @note Size: 0x26C
  */
 void MessageWindowScreen::set(JKRArchive* arc)
@@ -713,6 +735,10 @@ TControl::TControl()
 	mFlags.set(ControlFlag_UnsuspendOnFinish);
 }
 
+// I genuinely can't see a way to reduce the inline burden here and still make it match
+// this seems very artificial but idk how else to get this working :(
+#pragma push
+#pragma inline_max_size(1024)
 /**
  * @note Address: 0x80435A8C
  * @note Size: 0x7B0
@@ -748,12 +774,7 @@ bool TControl::onInit()
 	}
 	arc = JKRMountArchive(path, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
 	if (arc) {
-		PodIconScreen* podIcon = new PodIconScreen;
-		if (podIcon) {
-			podIcon->reset();
-			podIcon->hide();
-		}
-		mPodIcon = podIcon;
+		mPodIcon = new PodIconScreen;
 		mPodIcon->set(arc);
 	} else {
 		JUT_PANICLINE(658, "%s is not found.\n", path);
@@ -766,553 +787,8 @@ bool TControl::onInit()
 	sys->heapStatusEnd("PMT_onInit_initRenderingProcessor");
 	sys->heapStatusEnd("P2JME::Movie::TControl::onInit");
 	return 1;
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	lis      r4, lbl_8049A6E0@ha
-	li       r5, 0
-	stw      r0, 0x44(r1)
-	stmw     r27, 0x2c(r1)
-	mr       r29, r3
-	addi     r31, r4, lbl_8049A6E0@l
-	addi     r4, r31, 0x7c
-	lwz      r3, sys@sda21(r13)
-	bl       heapStatusStart__6SystemFPcP7JKRHeap
-	lwz      r3, gP2JMEMgr@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_80435AE0
-	lwz      r4, 0x18(r3)
-	mr       r3, r29
-	bl       setFont__Q25P2JME8TControlFP7JUTFont
-	lwz      r4, gP2JMEMgr@sda21(r13)
-	mr       r3, r29
-	lwz      r4, 0x18(r4)
-	bl       setRubyFont__Q25P2JME8TControlFP7JUTFont
-
-lbl_80435AE0:
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r31, 0x9c
-	li       r5, 0
-	bl       heapStatusStart__6SystemFPcP7JKRHeap
-	addi     r3, r31, 0xac
-	li       r4, 1
-	li       r5, 0
-	li       r6, 1
-	bl
-mount__10JKRArchiveFPCcQ210JKRArchive10EMountModeP7JKRHeapQ210JKRArchive15EMountDirection
-	or.      r27, r3, r3
-	beq      lbl_80435DF0
-	li       r3, 0x158
-	bl       __nw__FUl
-	or.      r28, r3, r3
-	beq      lbl_80435B2C
-	bl       __ct__Q29P2DScreen10Mgr_tuningFv
-	lis      r3, __vt__Q35P2JME5Movie19MessageWindowScreen@ha
-	addi     r0, r3, __vt__Q35P2JME5Movie19MessageWindowScreen@l
-	stw      r0, 0(r28)
-
-lbl_80435B2C:
-	stw      r28, 0x5c(r29)
-	mr       r6, r27
-	addi     r4, r31, 0x6c
-	li       r5, 0
-	lwz      r30, 0x5c(r29)
-	mr       r3, r30
-	bl       set__9J2DScreenFPCcUlP10JKRArchive
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80435B64
-	addi     r3, r31, 0x1c
-	addi     r5, r31, 0x30
-	li       r4, 0x22a
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80435B64:
-	li       r3, 0x50
-	bl       __nw__FUl
-	or.      r28, r3, r3
-	beq      lbl_80435BFC
-	bl       __ct__5CNodeFv
-	lis      r3, __vt__Q29P2DScreen4Node@ha
-	lis      r5, __vt__Q29P2DScreen12CallBackNode@ha
-	addi     r0, r3, __vt__Q29P2DScreen4Node@l
-	li       r6, 0
-	stw      r0, 0(r28)
-	lis      r4, __vt__Q35P2JME5Movie10WindowPane@ha
-	addi     r5, r5, __vt__Q29P2DScreen12CallBackNode@l
-	lfs      f0, lbl_805207B8@sda21(r2)
-	stw      r6, 0x18(r28)
-	addi     r0, r4, __vt__Q35P2JME5Movie10WindowPane@l
-	lis      r3, "zero__10Vector3<f>"@ha
-	stw      r5, 0(r28)
-	stw      r0, 0(r28)
-	stw      r6, 0x1c(r28)
-	stfs     f0, 0x20(r28)
-	lfsu     f0, "zero__10Vector3<f>"@l(r3)
-	stfs     f0, 0x28(r28)
-	lfs      f0, 4(r3)
-	stfs     f0, 0x2c(r28)
-	lfs      f0, 8(r3)
-	stfs     f0, 0x30(r28)
-	lfs      f0, 0(r3)
-	stfs     f0, 0x38(r28)
-	lfs      f0, 4(r3)
-	stfs     f0, 0x3c(r28)
-	lfs      f0, 8(r3)
-	stfs     f0, 0x40(r28)
-	lfs      f0, 0(r3)
-	stfs     f0, 0x44(r28)
-	lfs      f0, 4(r3)
-	stfs     f0, 0x48(r28)
-	lfs      f0, 8(r3)
-	stfs     f0, 0x4c(r28)
-
-lbl_80435BFC:
-	stw      r28, 0x148(r30)
-	lis      r5, 0x6C6C3030@ha
-	lis      r4, 0x6D676E75@ha
-	mr       r3, r30
-	lwz      r7, 0x148(r30)
-	addi     r6, r5, 0x6C6C3030@l
-	addi     r5, r4, 0x6D676E75@l
-	bl       addCallBack__Q29P2DScreen3MgrFUxPQ29P2DScreen4Node
-	li       r3, 0x28
-	bl       __nw__FUl
-	or.      r28, r3, r3
-	beq      lbl_80435C74
-	bl       __ct__5CNodeFv
-	lis      r3, __vt__Q29P2DScreen4Node@ha
-	lis      r4, __vt__Q29P2DScreen12CallBackNode@ha
-	addi     r0, r3, __vt__Q29P2DScreen4Node@l
-	lis      r3, __vt__Q35P2JME5Movie8AbtnPane@ha
-	stw      r0, 0(r28)
-	li       r5, 0
-	addi     r4, r4, __vt__Q29P2DScreen12CallBackNode@l
-	addi     r0, r3, __vt__Q35P2JME5Movie8AbtnPane@l
-	stw      r5, 0x18(r28)
-	lfs      f1, lbl_805207B8@sda21(r2)
-	stw      r4, 0(r28)
-	lfs      f0, lbl_80520848@sda21(r2)
-	stw      r0, 0(r28)
-	stw      r5, 0x1c(r28)
-	stfs     f1, 0x20(r28)
-	stfs     f1, 0x24(r28)
-	stfs     f0, 0x20(r28)
-
-lbl_80435C74:
-	stw      r28, 0x14c(r30)
-	lis      r5, 0x62746E5F@ha
-	lis      r4, 0x6D675F61@ha
-	mr       r3, r30
-	lwz      r7, 0x14c(r30)
-	addi     r6, r5, 0x62746E5F@l
-	addi     r5, r4, 0x6D675F61@l
-	bl       addCallBack__Q29P2DScreen3MgrFUxPQ29P2DScreen4Node
-	li       r3, 0x28
-	bl       __nw__FUl
-	or.      r28, r3, r3
-	beq      lbl_80435CEC
-	bl       __ct__5CNodeFv
-	lis      r3, __vt__Q29P2DScreen4Node@ha
-	lis      r4, __vt__Q29P2DScreen12CallBackNode@ha
-	addi     r0, r3, __vt__Q29P2DScreen4Node@l
-	lis      r3, __vt__Q35P2JME5Movie8AbtnPane@ha
-	stw      r0, 0(r28)
-	li       r5, 0
-	addi     r4, r4, __vt__Q29P2DScreen12CallBackNode@l
-	addi     r0, r3, __vt__Q35P2JME5Movie8AbtnPane@l
-	stw      r5, 0x18(r28)
-	lfs      f1, lbl_805207B8@sda21(r2)
-	stw      r4, 0(r28)
-	lfs      f0, lbl_80520848@sda21(r2)
-	stw      r0, 0(r28)
-	stw      r5, 0x1c(r28)
-	stfs     f1, 0x20(r28)
-	stfs     f1, 0x24(r28)
-	stfs     f0, 0x20(r28)
-
-lbl_80435CEC:
-	stw      r28, 0x150(r30)
-	lis      r5, 0x79616A69@ha
-	lis      r4, 0x006D675F@ha
-	mr       r3, r30
-	lwz      r7, 0x150(r30)
-	addi     r6, r5, 0x79616A69@l
-	addi     r5, r4, 0x006D675F@l
-	bl       addCallBack__Q29P2DScreen3MgrFUxPQ29P2DScreen4Node
-	mr       r3, r30
-	lis      r5, 0x616A6931@ha
-	lwz      r12, 0(r30)
-	lis      r4, 0x6D675F79@ha
-	addi     r6, r5, 0x616A6931@l
-	lwz      r12, 0x3c(r12)
-	addi     r5, r4, 0x6D675F79@l
-	mtctr    r12
-	bctrl
-	li       r4, 1
-	li       r5, 0
-	bl       setInfluencedAlpha__7J2DPaneFbb
-	mr       r3, r30
-	lis      r5, 0x5F303031@ha
-	lwz      r12, 0(r30)
-	lis      r4, 0x50494354@ha
-	addi     r6, r5, 0x5F303031@l
-	lwz      r12, 0x3c(r12)
-	addi     r5, r4, 0x50494354@l
-	mtctr    r12
-	bctrl
-	li       r4, 1
-	li       r5, 0
-	bl       setInfluencedAlpha__7J2DPaneFbb
-	lwz      r3, 0x5c(r29)
-	lis      r5, 0x656D6F5F@ha
-	lis      r4, 0x6D675F64@ha
-	lwz      r12, 0(r3)
-	addi     r6, r5, 0x656D6F5F@l
-	addi     r5, r4, 0x6D675F64@l
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	or.      r27, r3, r3
-	bne      lbl_80435DAC
-	addi     r3, r31, 0x1c
-	addi     r5, r31, 0x30
-	li       r4, 0x278
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80435DAC:
-	mr       r3, r27
-	lwz      r12, 0(r27)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	clrlwi   r0, r3, 0x10
-	cmplwi   r0, 0x13
-	beq      lbl_80435DE0
-	addi     r3, r31, 0x1c
-	addi     r5, r31, 0x30
-	li       r4, 0x279
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80435DE0:
-	stw      r27, 0x64(r29)
-	lwz      r3, 0x40(r29)
-	lwz      r4, 0x64(r29)
-	bl       setTextBoxInfo__Q25P2JME19TRenderingProcessorFP7J2DPane
-
-lbl_80435DF0:
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r2, lbl_8052084C@sda21
-	li       r5, 0
-	bl       heapStatusStart__6SystemFPcP7JKRHeap
-	lwz      r3, playData__4Game@sda21(r13)
-	addi     r28, r31, 0x100
-	lbz      r0, 0x2f(r3)
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_80435E18
-	addi     r28, r31, 0xd0
-
-lbl_80435E18:
-	mr       r3, r28
-	li       r4, 1
-	li       r5, 0
-	li       r6, 1
-	bl
-mount__10JKRArchiveFPCcQ210JKRArchive10EMountModeP7JKRHeapQ210JKRArchive15EMountDirection
-	or.      r30, r3, r3
-	beq      lbl_804361C0
-	li       r3, 0x188
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_8043601C
-	mr       r28, r4
-	bl       __ct__Q29P2DScreen10Mgr_tuningFv
-	lis      r4, __vt__Q35P2JME5Movie13PodIconScreen@ha
-	li       r3, -1
-	addi     r4, r4, __vt__Q35P2JME5Movie13PodIconScreen@l
-	li       r0, 0
-	stw      r4, 0(r28)
-	lfs      f0, lbl_805207B8@sda21(r2)
-	stw      r3, 0x148(r28)
-	stw      r0, 0x14c(r28)
-	stfs     f0, 0x150(r28)
-	stw      r0, 0x154(r28)
-	stfs     f0, 0x158(r28)
-	stw      r0, 0x15c(r28)
-	stfs     f0, 0x160(r28)
-	bl       getRenderModeObj__6SystemFv
-	lhz      r27, 6(r3)
-	bl       getRenderModeObj__6SystemFv
-	lhz      r3, 4(r3)
-	lis      r0, 0x4330
-	stw      r0, 8(r1)
-	lfd      f3, lbl_805207F8@sda21(r2)
-	stw      r3, 0xc(r1)
-	lfs      f2, lbl_8052080C@sda21(r2)
-	lfd      f0, 8(r1)
-	stw      r27, 0x14(r1)
-	fsubs    f1, f0, f3
-	lfs      f0, lbl_80520810@sda21(r2)
-	stw      r0, 0x10(r1)
-	fmuls    f2, f2, f1
-	lfd      f1, 0x10(r1)
-	fsubs    f1, f1, f3
-	stfs     f2, 0x164(r28)
-	stfs     f1, 0x168(r28)
-	stfs     f0, 0x16c(r28)
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x1c(r1)
-	lfs      f0, lbl_805207C8@sda21(r2)
-	stw      r0, 0x18(r1)
-	lfd      f3, lbl_80520820@sda21(r2)
-	lfd      f1, 0x18(r1)
-	lfs      f2, lbl_8052081C@sda21(r2)
-	fsubs    f3, f1, f3
-	stfs     f0, 0x17c(r28)
-	lfs      f1, lbl_805207B8@sda21(r2)
-	fdivs    f0, f3, f2
-	stfs     f0, 0x180(r28)
-	stfs     f1, 0x184(r28)
-	lfs      f3, 0x17c(r28)
-	lfs      f2, 0x180(r28)
-	lfs      f4, 0x184(r28)
-	fmuls    f0, f3, f3
-	fmuls    f2, f2, f2
-	fmuls    f4, f4, f4
-	fadds    f0, f0, f2
-	fadds    f0, f4, f0
-	fcmpo    cr0, f0, f1
-	ble      lbl_80435F50
-	fmadds   f0, f3, f3, f2
-	fadds    f2, f4, f0
-	fcmpo    cr0, f2, f1
-	ble      lbl_80435F54
-	frsqrte  f0, f2
-	fmuls    f2, f0, f2
-	b        lbl_80435F54
-
-lbl_80435F50:
-	fmr      f2, f1
-
-lbl_80435F54:
-	lfs      f0, lbl_805207B8@sda21(r2)
-	fcmpo    cr0, f2, f0
-	ble      lbl_80435F8C
-	lfs      f1, lbl_805207C8@sda21(r2)
-	lfs      f0, 0x17c(r28)
-	fdivs    f1, f1, f2
-	fmuls    f0, f0, f1
-	stfs     f0, 0x17c(r28)
-	lfs      f0, 0x180(r28)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x180(r28)
-	lfs      f0, 0x184(r28)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x184(r28)
-
-lbl_80435F8C:
-	lfs      f0, lbl_805207B8@sda21(r2)
-	stfs     f0, 0x170(r28)
-	stfs     f0, 0x174(r28)
-	stfs     f0, 0x178(r28)
-	lwz      r3, playData__4Game@sda21(r13)
-	lbz      r0, 0x2f(r3)
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_80435FE0
-	lfs      f1, 0x164(r28)
-	lfs      f0, lbl_80520818@sda21(r2)
-	lfs      f4, 0x168(r28)
-	lfs      f3, lbl_80520814@sda21(r2)
-	fsubs    f2, f1, f0
-	lfs      f1, mstTuningTransX__Q29P2DScreen10Mgr_tuning@sda21(r2)
-	fsubs    f3, f4, f3
-	lfs      f0, mstTuningTransY__Q29P2DScreen10Mgr_tuning@sda21(r2)
-	fadds    f1, f2, f1
-	fadds    f0, f3, f0
-	stfs     f1, 0x140(r28)
-	stfs     f0, 0x144(r28)
-	b        lbl_80436010
-
-lbl_80435FE0:
-	lfs      f1, 0x164(r28)
-	lfs      f0, lbl_80520818@sda21(r2)
-	lfs      f4, 0x168(r28)
-	lfs      f3, lbl_805207BC@sda21(r2)
-	fsubs    f2, f1, f0
-	lfs      f1, mstTuningTransX__Q29P2DScreen10Mgr_tuning@sda21(r2)
-	fsubs    f3, f4, f3
-	lfs      f0, mstTuningTransY__Q29P2DScreen10Mgr_tuning@sda21(r2)
-	fadds    f1, f2, f1
-	fadds    f0, f3, f0
-	stfs     f1, 0x140(r28)
-	stfs     f0, 0x144(r28)
-
-lbl_80436010:
-	li       r0, 0
-	mr       r4, r28
-	stb      r0, 0xb0(r28)
-
-lbl_8043601C:
-	stw      r4, 0x60(r29)
-	mr       r6, r30
-	addi     r4, r2, lbl_80520834@sda21
-	lis      r5, 4
-	lwz      r27, 0x60(r29)
-	mr       r3, r27
-	bl       set__9J2DScreenFPCcUlP10JKRArchive
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80436054
-	addi     r3, r31, 0x1c
-	addi     r5, r31, 0x30
-	li       r4, 0x1ac
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80436054:
-	mr       r3, r30
-	addi     r4, r31, 0x3c
-	lwz      r12, 0(r30)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	or.      r28, r3, r3
-	bne      lbl_80436088
-	addi     r3, r31, 0x1c
-	addi     r5, r31, 0x30
-	li       r4, 0x1b1
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80436088:
-	mr       r3, r28
-	bl       load__20J2DAnmLoaderDataBaseFPCv
-	stw      r3, 0x15c(r27)
-	lwz      r0, 0x15c(r27)
-	cmplwi   r0, 0
-	bne      lbl_804360B4
-	addi     r3, r31, 0x1c
-	addi     r5, r31, 0x30
-	li       r4, 0x1b3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804360B4:
-	mr       r3, r27
-	lwz      r4, 0x15c(r27)
-	lwz      r12, 0(r27)
-	lwz      r12, 0x68(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r30
-	addi     r4, r31, 0x4c
-	lwz      r12, 0(r30)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	or.      r28, r3, r3
-	bne      lbl_80436100
-	addi     r3, r31, 0x1c
-	addi     r5, r31, 0x30
-	li       r4, 0x1b8
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80436100:
-	mr       r3, r28
-	bl       load__20J2DAnmLoaderDataBaseFPCv
-	stw      r3, 0x154(r27)
-	lwz      r0, 0x154(r27)
-	cmplwi   r0, 0
-	bne      lbl_8043612C
-	addi     r3, r31, 0x1c
-	addi     r5, r31, 0x30
-	li       r4, 0x1ba
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8043612C:
-	mr       r3, r27
-	lwz      r4, 0x154(r27)
-	lwz      r12, 0(r27)
-	lwz      r12, 0x60(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r30
-	addi     r4, r31, 0x5c
-	lwz      r12, 0(r30)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	or.      r28, r3, r3
-	bne      lbl_80436178
-	addi     r3, r31, 0x1c
-	addi     r5, r31, 0x30
-	li       r4, 0x1bf
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80436178:
-	mr       r3, r28
-	bl       load__20J2DAnmLoaderDataBaseFPCv
-	stw      r3, 0x14c(r27)
-	lwz      r0, 0x14c(r27)
-	cmplwi   r0, 0
-	bne      lbl_804361A4
-	addi     r3, r31, 0x1c
-	addi     r5, r31, 0x30
-	li       r4, 0x1c1
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804361A4:
-	mr       r3, r27
-	lwz      r4, 0x14c(r27)
-	lwz      r12, 0(r27)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_804361D8
-
-lbl_804361C0:
-	mr       r6, r28
-	addi     r3, r31, 0x1c
-	addi     r5, r31, 0x12c
-	li       r4, 0x292
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804361D8:
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r2, lbl_8052084C@sda21
-	bl       heapStatusEnd__6SystemFPc
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r31, 0x9c
-	bl       heapStatusEnd__6SystemFPc
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r31, 0x140
-	li       r5, 0
-	bl       heapStatusStart__6SystemFPcP7JKRHeap
-	mr       r3, r29
-	li       r4, 0x400
-	bl       initRenderingProcessor__Q35P2JME6Window8TControlFUl
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r31, 0x140
-	bl       heapStatusEnd__6SystemFPc
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r31, 0x7c
-	bl       heapStatusEnd__6SystemFPc
-	lmw      r27, 0x2c(r1)
-	li       r3, 1
-	lwz      r0, 0x44(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
 }
+#pragma pop
 
 /**
  * @note Address: 0x8043623C

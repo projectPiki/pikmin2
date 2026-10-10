@@ -161,8 +161,8 @@ void ObjContena::doCreate(JKRArchive* arc)
 	mScreenSpot->set("spot.blo", 0x1040000, arc);
 	mPaneSpot = mScreenSpot->search('Pspot');
 	mPaneSpot->setBasePosition(J2DPOS_Center);
-	mSpotX = mPaneSpot->mOffset.x;
-	mSpotY = mPaneSpot->mOffset.y;
+	mSpotX = mPaneSpot->mTranslateX;
+	mSpotY = mPaneSpot->mTranslateY;
 	og::Screen::setCallBackMessage(mContena);
 
 	for (int i = 0; i < 10; i++) {
@@ -193,12 +193,12 @@ void ObjContena::doCreate(JKRArchive* arc)
 	mStickAnimMgr->stickUpDown();
 
 	mPaneArrowUp      = og::Screen::TagSearch(mContena, 'Nya_u');
-	mPaneArrowUpPos.x = mPaneArrowUp->mOffset.x;
-	mPaneArrowUpPos.y = mPaneArrowUp->mOffset.y;
+	mPaneArrowUpPos.x = mPaneArrowUp->mTranslateX;
+	mPaneArrowUpPos.y = mPaneArrowUp->mTranslateY;
 	mPaneArrowUp->setBasePosition(J2DPOS_Center);
 	mPaneArrowDown      = og::Screen::TagSearch(mContena, 'Nya_l');
-	mPaneArrowDownPos.x = mPaneArrowDown->mOffset.x;
-	mPaneArrowDownPos.y = mPaneArrowDown->mOffset.y;
+	mPaneArrowDownPos.x = mPaneArrowDown->mTranslateX;
+	mPaneArrowDownPos.y = mPaneArrowDown->mTranslateY;
 	mPaneArrowDown->setBasePosition(J2DPOS_Center);
 	mAlphaArrow1 = new og::Screen::AlphaMgr;
 	mAlphaArrow2 = new og::Screen::AlphaMgr;

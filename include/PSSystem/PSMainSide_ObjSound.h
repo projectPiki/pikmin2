@@ -94,6 +94,7 @@ struct EnemyBase : public CreatureAnime, public BattleLink, public KehaiLink {
 	virtual void updateBattle(); // _D0
 
 	bool calcKehai();
+	bool isBoss() { return getCastType() == CCT_Unknown5 || getCastType() == CCT_EnemyMidBoss || getCastType() == CCT_EnemyBigBoss; }
 
 	// _00-_10 	= JSUPtrLink (+ vtable 1)
 	// _10-_28	= JKRDisposer
@@ -357,14 +358,7 @@ struct Onyon;
 
 namespace PSM {
 struct Otakara : public EventBase {
-	inline Otakara(Game::Creature* gameObj)
-	    : EventBase(gameObj, 2)
-	    , mBedamaType(PSMBedama_None)
-	    , mOnyon(nullptr)
-	    , mEventLink(gameObj)
-	    , mOtaEvent(nullptr)
-	{
-	}
+	Otakara(Game::Creature* gameObj);
 
 	enum BedamaType {
 		PSMBedama_None   = 0,
@@ -376,7 +370,6 @@ struct Otakara : public EventBase {
 
 	// vtable 1 (JSUPtrLink, _10)
 	// vtable 2 (JKRDisposer -> ObjBase -> Creature, _28)
-	virtual ~Otakara();                                            // _14 (thunks at _10 and _48)
 	virtual CreatureCastType getCastType() { return CCT_Otakara; } // _1C (weak)
 
 	// vtable 3 (JAInter::ObjectBase -> JAInter::Object + self, _28)
@@ -465,7 +458,7 @@ struct WorkItem : public EventBase {
 	 * @reifiedAddress{804638E8}
 	 * @reifiedFile{utilityU/PSMainSide_ObjSound.cpp}
 	 */
-	virtual CreatureCastType getCastType() { return CCT_WorkItem; }; // _0C
+	virtual CreatureCastType getCastType() { return CCT_WorkItem; } // _0C
 
 	// vtable 3
 	virtual void eventStart();   // _40
@@ -565,15 +558,11 @@ struct Tsuyukusa : public CreatureObj {
 } // namespace PSM
 
 namespace PSM {
-inline void assertIsBoss(PSM::EnemyBase* soundObj)
+inline PSM::EnemyBase* assertIsBoss(PSM::EnemyBase* soundObj)
 {
-	bool isBoss = false;
-	if (soundObj->getCastType() == CCT_Unknown5 || soundObj->getCastType() == CCT_EnemyMidBoss
-	    || soundObj->getCastType() == CCT_EnemyBigBoss) {
-		isBoss = true;
-	}
-
+	bool isBoss = soundObj->isBoss();
 	P2ASSERTLINE(1108, isBoss);
+	return soundObj;
 }
 
 inline void checkMidBoss(PSM::EnemyBase* soundObj)

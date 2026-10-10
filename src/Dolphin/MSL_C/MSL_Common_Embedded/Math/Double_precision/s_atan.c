@@ -79,8 +79,7 @@ static const f64
 #else
 static f64
 #endif
-    one
-    = 1.0,
+    one  = 1.0,
     huge = 1.0e300;
 
 #ifdef __STDC__

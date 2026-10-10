@@ -55,8 +55,6 @@ struct TTitleMenu_Object_Icon {
 struct TTitleMenu : public TScreenBase {
 	TTitleMenu()
 	    : mDecidedMenuOption(false)
-	    , mMenuCloseCounter(0)
-	    , mMenuCloseCounterMax(0)
 	    , mState(0)
 	{
 	}
@@ -85,8 +83,7 @@ struct TTitleMenu : public TScreenBase {
 	s32 mSelectID;                       // _3C
 	bool mDecidedMenuOption;             // _40
 	bool mDoCloseMenu;                   // _41
-	u32 mMenuCloseCounter;               // _44
-	u32 mMenuCloseCounterMax;            // _48
+	EUTCounter mMenuCloseCounter;        // _44
 	TTitleMenu_Object_Icon mObjIcon[6];  // _4C
 	TTitleMenu_Object_Icon mObjIcon2[6]; // _94
 	int mState;                          // _DC (0 means no challenge mode, 1 means challenge mode)

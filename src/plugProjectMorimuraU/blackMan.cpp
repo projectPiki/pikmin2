@@ -752,8 +752,6 @@ void Obj::doEntry()
  */
 void Obj::changeMaterial()
 {
-	// not matching due to regswaps
-
 	Mtx44 copyMatrix;
 	PSMTX44Copy(sys->mGfx->mCurrentViewport->mCamera->mProjectionMtx, copyMatrix);
 

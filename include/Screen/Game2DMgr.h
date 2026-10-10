@@ -71,6 +71,11 @@ struct Game2DMgr : public JKRDisposer {
 		GOTITLE_PikminZero    = 4,
 	};
 
+	enum CaveOpenFlags {
+		CAVEOPEN_ReadyGo    = 0x1,
+		CAVEOPEN_FinalFloor = 0x2,
+	};
+
 	// represents return values of "check" functions for all screens
 	enum CheckStatus {
 		CHECK2D_WorldMapInfoWin0_Cancel  = 0,

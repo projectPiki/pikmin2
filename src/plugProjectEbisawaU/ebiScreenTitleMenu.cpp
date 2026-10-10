@@ -233,9 +233,7 @@ void TTitleMenu::doInitWaitState()
 	mObjIcon[mSelectID].start();
 	mObjIcon2[mSelectID].start();
 
-	u32 count            = 30.0f / sys->mDeltaTime;
-	mMenuCloseCounter    = count;
-	mMenuCloseCounterMax = count;
+	mMenuCloseCounter.setValue(30.0f);
 }
 
 /**
@@ -245,13 +243,9 @@ void TTitleMenu::doInitWaitState()
 void TTitleMenu::doCloseScreen(ArgClose*)
 {
 	if (mDoCloseMenu) {
-		u32 count            = 0.2f / sys->mDeltaTime;
-		mMenuCloseCounter    = count;
-		mMenuCloseCounterMax = count;
+		mMenuCloseCounter.setValue(0.2f);
 	} else {
-		u32 count            = 1.0f / sys->mDeltaTime;
-		mMenuCloseCounter    = count;
-		mMenuCloseCounterMax = count;
+		mMenuCloseCounter.setValue(1.0f);
 	}
 }
 
@@ -280,9 +274,7 @@ bool TTitleMenu::doUpdateStateOpen()
  */
 bool TTitleMenu::doUpdateStateWait()
 {
-	if (mMenuCloseCounter) {
-		mMenuCloseCounter--;
-	}
+	mMenuCloseCounter.update();
 	mMainScreen->update();
 
 	for (int i = 0; i < 6; i++) {
@@ -310,9 +302,7 @@ bool TTitleMenu::doUpdateStateWait()
 		mObjIcon[id].stop();
 		mObjIcon2[id].stop();
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CURSOR, 0);
-		u32 count            = 30.0f / sys->mDeltaTime;
-		mMenuCloseCounter    = count;
-		mMenuCloseCounterMax = count;
+		mMenuCloseCounter.setValue(30.0f);
 	}
 	if (mAnims1[mState][mSelectID].isFinish()) {
 		if (randEbisawaFloat() < 0.2f) {
@@ -333,7 +323,7 @@ bool TTitleMenu::doUpdateStateWait()
 		return true;
 	} else {
 		// force close menu after 30 seconds
-		if (!mMenuCloseCounter) {
+		if (mMenuCloseCounter.isZero()) {
 			mDoCloseMenu = true;
 			PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CANCEL, 0);
 			return true;
@@ -350,21 +340,10 @@ bool TTitleMenu::doUpdateStateWait()
 bool TTitleMenu::doUpdateStateClose()
 {
 	mMainScreen->update();
+	mMenuCloseCounter.update();
+	mMainScreen->setAlpha(mMenuCloseCounter.getRatio() * 255.0f);
 
-	if (mMenuCloseCounter) {
-		mMenuCloseCounter--;
-	}
-
-	f32 alpha;
-	if (mMenuCloseCounterMax) {
-		alpha = (f32)mMenuCloseCounter / (f32)mMenuCloseCounterMax;
-	} else {
-		alpha = 0.0f;
-	}
-
-	mMainScreen->setAlpha(alpha * 255.0f);
-
-	if (!mMenuCloseCounter) {
+	if (mMenuCloseCounter.isZero()) {
 		return true;
 	}
 	return false;

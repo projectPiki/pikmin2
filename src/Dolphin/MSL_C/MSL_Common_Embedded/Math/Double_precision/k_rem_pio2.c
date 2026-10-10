@@ -51,7 +51,7 @@
  *			64-bit  precision	2
  *			113-bit precision	3
  *		The actual value is the sum of them. Thus for 113-bit
- *		precison, one may have to do something like:
+ *		precision, one may have to do something like:
  *
  *		f128 t,w,r_head, r_tail;
  *		t = (f128)y[2] + (f128)y[1];
@@ -157,8 +157,7 @@ static const f64
 #else
 static f64
 #endif
-    zero
-    = 0.0,
+    zero = 0.0,
     one = 1.0, two24 = 1.67772160000000000000e+07, /* 0x41700000, 0x00000000 */
     twon24 = 5.96046447753906250000e-08;           /* 0x3E700000, 0x00000000 */
 

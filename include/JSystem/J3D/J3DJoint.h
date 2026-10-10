@@ -44,7 +44,7 @@ struct J3DJoint {
 	J3DTransformInfo& getTransformInfo() { return mTransformInfo; }
 	J3DJointCallBack getCallBack() { return mFunction; }
 	J3DMtxCalc* getMtxCalc() { return mMtxCalc; }
-	J3DMtxCalc* getCurrentMtxCalc() { return mCurrentMtxCalc; };
+	J3DMtxCalc* getCurrentMtxCalc() { return mCurrentMtxCalc; }
 	J3DJoint* getChild() { return mChild; }
 	u8 getMtxType() const { return (u8)mKind >> 4; }
 

@@ -1,14 +1,14 @@
 #include "types.h"
-extern "C"{
+extern "C" {
 
 /**
  * @note Address: 0x800C1718
  * @note Size: 0x30
  */
 
-void* __copy(char *dest, char *src, size_t size)
+void* __copy(char* dest, char* src, size_t size)
 {
-	char *p;
+	char* p;
 
 	if (dest && size) {
 		p = dest;
@@ -20,7 +20,7 @@ void* __copy(char *dest, char *src, size_t size)
 		} while (size);
 	}
 
-	return(dest);
+	return (dest);
 }
 
 /**
@@ -58,5 +58,4 @@ void __dc_arr(void)
 {
 	// UNUSED FUNCTION
 }
-
 }

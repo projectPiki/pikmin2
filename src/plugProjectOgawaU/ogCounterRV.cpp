@@ -191,18 +191,18 @@ void CallBack_CounterRV::init(J2DScreen* screen, u64 tag1, u64 tag2, u64 tag3, u
 	mCountPtr            = countPtr;
 	mInitialDisplayValue = *countPtr;
 	mCurrDisplayValue    = mInitialDisplayValue;
-	mPaneScale.x         = mPic1->mScale.x;
-	mPaneScale.y         = mPic1->mScale.y;
-	mPanePosition.x      = mPic1->mOffset.x;
-	mPanePosition.y      = mPic1->mOffset.y;
+	mPaneScale.x         = mPic1->mScaleX;
+	mPaneScale.y         = mPic1->mScaleY;
+	mPanePosition.x      = mPic1->mTranslateX;
+	mPanePosition.y      = mPic1->mTranslateY;
 	mPaneSize.x          = mPic1->getWidth();
 	mPaneSize.y          = mPic1->getHeight();
 	mBasePosition        = mPic1->mBasePosition;
 	mPaneAlpha           = mPic1->mAlpha;
 	bool alphatype       = mPic1->mIsInfluencedAlpha;
 
-	mPane12DistX = absF(mPanePosition.x - mPic2->mOffset.x);
-	mPane13DistX = mPaneSize.x + absF(mPanePosition.x - mPic3->mOffset.x);
+	mPane12DistX = absF(mPanePosition.x - mPic2->mTranslateX);
+	mPane13DistX = mPaneSize.x + absF(mPanePosition.x - mPic3->mTranslateX);
 	mKetaScaleX  = 1.0f;
 	mPic1->hide();
 	mPic2->hide();

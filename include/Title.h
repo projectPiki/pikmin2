@@ -7,6 +7,10 @@
 #include "ebi/Option.h"
 #include "ebi/Omake.h"
 #include "ebi/TMainTitleMgr.h"
+#include "PSSystem/PSSystemIF.h"
+#include "PSSystem/PSGame.h"
+#include "PSSystem/PSCommon.h"
+#include "PSM/ObjMgr.h"
 
 template <typename T>
 struct IDelegate1;
@@ -75,6 +79,20 @@ struct Section : public Game::BaseHIOSection {
 	void doUpdateHiScore();
 	void doUpdateOption();
 
+	inline void startMainMenu(s32 selection)
+	{
+		int unused; // no clue what this used to even be, but it has to pass *something*
+		mMainTitleMgr.startMenuSet(unused, selection);
+	}
+
+	inline void returnToMainTitle(s32 selection)
+	{
+		mState = State_MainTitle;
+		startMainMenu(selection);
+		PSSystem::Scene* scene = PSSystem::getChildSceneCheck(PSMGetSceneMgrCheck());
+		PSSystem::getSeqFromScene(scene, BGM_MainTheme)->startSeq();
+	}
+
 	// _00		= VTBL
 	// _00-_48	= Game::BaseHIOSection
 	int mState;                                // _0048
@@ -94,7 +112,7 @@ struct Section : public Game::BaseHIOSection {
 	int mMovieIndex;                           // _2F3C
 	JKRArchive* mHiScoreTex;                   // _2F40
 	bool mDoCheckShortCut;                     // _2F44
-	u32 mLanguageID;                           // _2F48
+	int mLanguageID;                           // _2F48
 	u8 _2F4C[32];                              // _2F4C, unknown (PAL: _30D4)
 #if defined(VERSION_PAL)                       //
 	u32 mDebugKeyIndex;                        // _30F4

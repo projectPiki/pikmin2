@@ -111,7 +111,7 @@ struct State : CItemState {
 	{
 	}
 
-	virtual bool canRide() { return false; }; // _34
+	virtual bool canRide() { return false; } // _34
 
 	// _00     = VTBL
 	// _00-_0C = CItemState
@@ -148,7 +148,7 @@ struct NormalState : State {
 	virtual void init(CFSMItem*, StateArg*); // _08
 	virtual void exec(CFSMItem*);            // _0C
 	virtual void cleanup(CFSMItem*);         // _10
-	virtual bool canRide() { return true; }; // _34
+	virtual bool canRide() { return true; }  // _34
 
 	// _00     = VTBL
 	// _00-_10 = State

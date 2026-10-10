@@ -15,12 +15,12 @@
 
 u8 __ctype_map[256]
     = { octrl, octrl, octrl, octrl, octrl, octrl, octrl, octrl, octrl, omotn, omotn, omotn, omotn, omotn, octrl, octrl, octrl, octrl, octrl,
-	    octrl, octrl, octrl, octrl, octrl, octrl, octrl, octrl, octrl, octrl, octrl, octrl, octrl, ospac, opunc, opunc, opunc, opunc, opunc,
-	    opunc, opunc, opunc, opunc, opunc, opunc, opunc, opunc, opunc, opunc, odhex, odhex, odhex, odhex, odhex, odhex, odhex, odhex, odhex,
-	    odhex, opunc, opunc, opunc, opunc, opunc, opunc, opunc, ouhex, ouhex, ouhex, ouhex, ouhex, ouhex, ouppc, ouppc, ouppc, ouppc, ouppc,
-	    ouppc, ouppc, ouppc, ouppc, ouppc, ouppc, ouppc, ouppc, ouppc, ouppc, ouppc, ouppc, ouppc, ouppc, ouppc, opunc, opunc, opunc, opunc,
-	    opunc, opunc, olhex, olhex, olhex, olhex, olhex, olhex, olowc, olowc, olowc, olowc, olowc, olowc, olowc, olowc, olowc, olowc, olowc,
-	    olowc, olowc, olowc, olowc, olowc, olowc, olowc, olowc, olowc, opunc, opunc, opunc, opunc, octrl };
+        octrl, octrl, octrl, octrl, octrl, octrl, octrl, octrl, octrl, octrl, octrl, octrl, octrl, ospac, opunc, opunc, opunc, opunc, opunc,
+        opunc, opunc, opunc, opunc, opunc, opunc, opunc, opunc, opunc, opunc, odhex, odhex, odhex, odhex, odhex, odhex, odhex, odhex, odhex,
+        odhex, opunc, opunc, opunc, opunc, opunc, opunc, opunc, ouhex, ouhex, ouhex, ouhex, ouhex, ouhex, ouppc, ouppc, ouppc, ouppc, ouppc,
+        ouppc, ouppc, ouppc, ouppc, ouppc, ouppc, ouppc, ouppc, ouppc, ouppc, ouppc, ouppc, ouppc, ouppc, ouppc, opunc, opunc, opunc, opunc,
+        opunc, opunc, olhex, olhex, olhex, olhex, olhex, olhex, olowc, olowc, olowc, olowc, olowc, olowc, olowc, olowc, olowc, olowc, olowc,
+        olowc, olowc, olowc, olowc, olowc, olowc, olowc, olowc, olowc, opunc, opunc, opunc, opunc, octrl };
 
 u8 __lower_map[256] = {
 	0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F, 0x10, 0x11, 0x12, 0x13, 0x14, 0x15,

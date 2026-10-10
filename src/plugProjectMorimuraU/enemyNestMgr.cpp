@@ -82,7 +82,6 @@ J3DModelData* Mgr::loadModelData(JKRArchive* archive)
  * @note Address: 0x8036C398
  * @note Size: 0x320
  */
-// regswaps
 void Mgr::doSimpleDraw(Viewport* viewport)
 {
 	Mtx matMtx = { { 1.0f, 0.0f, 0.0f, 0.0f }, { 0.0f, 1.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 1.0f, 0.0f } };

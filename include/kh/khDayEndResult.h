@@ -23,7 +23,7 @@ namespace Screen {
 // DATA STRUCTS
 
 enum MailCategory {
-	// Acutal checking for these conditions are done in singlleGS_MainResult
+	// Actual checking for these conditions are done in singleGS_MainResult
 	PokoUnder3000  = 0x31,
 	PokoUnder5000  = 0x32,
 	PokoUnder8000  = 0x33,

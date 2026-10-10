@@ -46,16 +46,14 @@ struct TMainTitleMgr {
 	JUtility::TColor mDrawColor;           // _1634
 	u8 mDrawAlpha;                         // _1638
 	int mDrawState;                        // _163C
-	u32 mOpenMenuCounter;                  // _1640
-	u32 mOpenMenuCounterMax;               // _1644
+	EUTCounter mOpenMenuCounter;           // _1640
 	Controller* mController;               // _1648
-	int _164C;                             // _164C
+	int _164C;                             // _164C, unused
 	int mState;                            // _1650
 	bool mDoEndBGM;                        // _1654
 	bool mIsForceSelect;                   // _1655
 	int mSelectedMenuOption;               // _1658
-	u32 mExitMenuCounter;                  // _165C
-	u32 mExitMenuCounterMax;               // _1660
+	EUTCounter mExitMenuCounter;           // _165C
 
 	static const f32 kFadeOutTime; // 1.0f
 };

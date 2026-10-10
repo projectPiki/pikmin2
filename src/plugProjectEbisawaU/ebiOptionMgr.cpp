@@ -161,9 +161,7 @@ void FSMState_ScreenClose::do_exec(TMgr* obj)
  */
 void FSMState_WaitCloseForNoCard::do_init(TMgr* obj, Game::StateArg* arg)
 {
-	u32 inverseDeltaTime = 1.0f / sys->mDeltaTime;
-	mWaitTimer           = inverseDeltaTime;
-	mWaitTimerMax        = inverseDeltaTime;
+	mWaitTimer.setValue(1.0f);
 }
 
 /**
@@ -172,10 +170,8 @@ void FSMState_WaitCloseForNoCard::do_init(TMgr* obj, Game::StateArg* arg)
  */
 void FSMState_WaitCloseForNoCard::do_exec(TMgr* obj)
 {
-	if (mWaitTimer) {
-		mWaitTimer--;
-	}
-	if (mWaitTimer == 0) {
+	mWaitTimer.update();
+	if (mWaitTimer.isZero()) {
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_OK, 0);
 		transit(obj, ScreenClose, nullptr);
 	}
@@ -189,7 +185,7 @@ void FSMState_WorldMapInfoWindow::do_init(TMgr* obj, Game::StateArg* arg)
 {
 	::Screen::gGame2DMgr->mScreenMgr->reset();
 	og::Screen::DispMemberWorldMapInfoWin0 disp;
-	disp.mMsgIDNo        = '6017_00';
+	disp.mMsgIDNo        = '6017_00'; // "Don't Save Changes"
 	disp.mStartSelection = 1;
 	::Screen::gGame2DMgr->open_WorldMapInfoWin0(disp);
 }

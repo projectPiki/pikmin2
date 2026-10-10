@@ -86,11 +86,11 @@ struct EnemyMgrBase : public IEnemyMgrBase {
 	// vtable 2 (GenericContainer + IEnemyMgrBase + self, _00, _40-_E0)
 	// GenericContainer thunks _40-_58
 	// virtual ~EnemyMgrBase() { } // _58 (weak)
-	virtual void* getObject(void* index) { return get(index); }; // _5C (weak)
-	virtual void* getNext(void* index);                          // _60
-	virtual void* getStart() { return getNext((void*)-1); }      // _64 (weak)
-	virtual void* getEnd() { return (void*)mObjLimit; }          // _68 (weak)
-	virtual EnemyBase* get(void* index)                          // _98 (weak)
+	virtual void* getObject(void* index) { return get(index); } // _5C (weak)
+	virtual void* getNext(void* index);                         // _60
+	virtual void* getStart() { return getNext((void*)-1); }     // _64 (weak)
+	virtual void* getEnd() { return (void*)mObjLimit; }         // _68 (weak)
+	virtual EnemyBase* get(void* index)                         // _98 (weak)
 	{
 		return getEnemy((int)index);
 	}

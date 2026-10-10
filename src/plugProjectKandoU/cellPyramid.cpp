@@ -574,18 +574,11 @@ void Cell::rec_resolveColl()
  */
 void Cell::clearAllCollBuffer()
 {
-	// UNUSED FUNCTION
-	// if (mLeg ) {
 	for (CellLeg* leg = mLeg; leg != nullptr; leg = leg->mNext) {
 		if (leg->mObject) {
 			leg->mObject->mCollisionBuffer.clear();
 		}
-		// CellObject* object = leg->mObject;
-		// if (object ) {
-		// 	object->mCollisionBuffer.clear();
-		// }
 	}
-	// }
 }
 
 /**
@@ -595,7 +588,6 @@ void Cell::clearAllCollBuffer()
  */
 void CellLayer::clearAllCollBuffer()
 {
-	// UNUSED FUNCTION
 	for (int i = 0; i < mSizeX * mSizeY; i++) {
 		if (mCells[i].mLeg) {
 			mCells[i].clearAllCollBuffer();
@@ -765,7 +757,6 @@ void Cell::entry(CellLeg* leg, bool isPikiOrNavi)
  */
 void CellLayer::clear()
 {
-	// UNUSED FUNCTION
 	mCurrCell.mNextCell = nullptr;
 	mCurrCell.mPrevCell = nullptr;
 	for (int i = 0; i < mSizeX * mSizeY; i++) {
@@ -780,18 +771,12 @@ void CellLayer::clear()
  */
 void CellLayer::createBottom(int sizeX, int sizeY)
 {
-	mSizeX              = sizeX;
-	mSizeY              = sizeY;
-	mLayerSize          = 1;
-	mLayerIdx           = 0;
-	mCells              = new Cell[mSizeX * mSizeY];
-	mCurrCell.mNextCell = nullptr;
-	mCurrCell.mPrevCell = nullptr;
-
-	for (int i = 0; i < mSizeX * mSizeY; i++) {
-		mCells[i].clear();
-		mCells[i].mLayerIdx = mLayerIdx;
-	}
+	mSizeX     = sizeX;
+	mSizeY     = sizeY;
+	mLayerSize = 1;
+	mLayerIdx  = 0;
+	mCells     = new Cell[mSizeX * mSizeY];
+	clear();
 }
 
 /**
@@ -905,8 +890,10 @@ char* CellPyramid::sCellBugName = "none";
 // void calcExtent__Q24Game11CellPyramidFRQ23Sys6SphereRiR7Rect<i>()
 void CellPyramid::calcExtent(Sys::Sphere& sphere, int& layerIdx, Recti& outRect)
 {
-	f32 exponent = 2.0f * sphere.mRadius * mInverseScale;
-	f32 log2     = (f32)log10(exponent) / (f32)log10(2.0); // change to log base 2
+	f32 log2, base, exponent;
+	exponent = 2.0f * sphere.mRadius * mInverseScale;
+	base     = (f32)log10(2.0);
+	log2     = (f32)log10(exponent) / base; // change to log base 2
 	if (log2 < 0.0f) {
 		log2 = 0.0f;
 	}
@@ -919,18 +906,10 @@ void CellPyramid::calcExtent(Sys::Sphere& sphere, int& layerIdx, Recti& outRect)
 	u16 layerSize = getLayer(layer)->mLayerSize;
 	f32 mult      = (f32)layerSize * mScale;
 
-	f32 xLow = sphere.mPosition.x - sphere.mRadius;
-	f32 xHi  = sphere.mPosition.x + sphere.mRadius;
-	f32 yLow = sphere.mPosition.z - sphere.mRadius;
-	f32 yHi  = sphere.mPosition.z + sphere.mRadius;
-
-	f32 left  = mBounds.x;
-	f32 right = mBounds.y;
-
-	f32 xLowDiff = xLow - right;
-	f32 yLowDiff = yLow - left;
-	f32 xHiDiff  = xHi - right;
-	f32 yHiDiff  = yHi - left;
+	f32 xLowDiff = sphere.mPosition.x - sphere.mRadius - mBounds.y;
+	f32 yLowDiff = sphere.mPosition.z - sphere.mRadius - mBounds.x;
+	f32 xHiDiff  = sphere.mPosition.x + sphere.mRadius - mBounds.y;
+	f32 yHiDiff  = sphere.mPosition.z + sphere.mRadius - mBounds.x;
 
 	f32 scale = 1.0f / mult;
 
@@ -973,18 +952,12 @@ void CellPyramid::entry(CellObject* object, Sys::Sphere& sphere, int& layerIndex
 		return;
 	}
 
-	u8 pikiOrNavi    = 0;
 	CellLayer* layer = &mLayers[layerIndex];
-	bool isPiki      = object->isPiki();
-	if ((isPiki != false) || (isPiki = object->isNavi(), isPiki != false)) {
-		pikiOrNavi = 1;
-	}
-	bool isPikiOrNavi = pikiOrNavi != 0;
+	bool pikiOrNavi  = object->isPikiOrNavi();
 
 	for (int i = 0; i < 4; i++) {
-		Cell* cell = object->mCellLegs[i].mCell;
-		if (cell) {
-			cell->exit(&object->mCellLegs[i], isPikiOrNavi);
+		if (object->mCellLegs[i].mCell) {
+			object->mCellLegs[i].mCell->exit(&object->mCellLegs[i], pikiOrNavi);
 			object->mCellLegs[i].mCell = nullptr;
 		}
 	}
@@ -1004,7 +977,7 @@ void CellPyramid::entry(CellObject* object, Sys::Sphere& sphere, int& layerIndex
 					return;
 				}
 
-				cell->entry(&object->mCellLegs[legIndex], isPikiOrNavi);
+				cell->entry(&object->mCellLegs[legIndex], pikiOrNavi);
 
 				bool legCheck = cell->mLeg->findLeg(&object->mCellLegs[legIndex]);
 				if (!legCheck) {
@@ -1025,7 +998,7 @@ void CellPyramid::entry(CellObject* object, Sys::Sphere& sphere, int& layerIndex
  */
 void CellPyramid::create(BoundBox2d& box, f32 scale)
 {
-	mFreeMemory = JKRHeap::sCurrentHeap->getFreeSize();
+	mFreeMemory = JKRGetCurrentHeap()->getFreeSize();
 	int layerCount;
 
 	mBounds.set(box.mMin.y, box.mMin.x);
@@ -1051,16 +1024,15 @@ void CellPyramid::create(BoundBox2d& box, f32 scale)
 	layerCount = (f32)ceil((f32)log10((f32)maxDimension) / log2);
 	pow(2.0, (f64)layerCount);
 
-	mLayerCount       = layerCount + 1;
-	mLayers           = new CellLayer[mLayerCount];
-	CellLayer* layer0 = getLayer(0);
-	layer0->createBottom(pixelWidth, pixelHeight);
+	mLayerCount = layerCount + 1;
+	mLayers     = new CellLayer[mLayerCount];
+	mLayers[0].createBottom(pixelWidth, pixelHeight);
 
 	for (int i = 1; i < mLayerCount; i++) {
 		getLayer(i)->pileup(mLayers[i - 1]);
 	}
 
-	mFreeMemory = mFreeMemory - JKRHeap::sCurrentHeap->getFreeSize();
+	mFreeMemory -= JKRGetCurrentHeap()->getFreeSize();
 }
 
 /**

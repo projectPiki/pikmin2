@@ -330,161 +330,45 @@ void TFueactBiriBase::doExecuteEmitterOperation(JPABaseEmitter* emit)
 	P2ASSERTLINE(579, mMtx);
 	P2ASSERTLINE(580, mPos);
 
-	Vector3f pos(mPos->x, mPos->y, mPos->z);
-	Vector3f mtxPos = mMtx->getTranslation();
-	Vector3f angle  = pos - mtxPos;
-	f32 scale       = angle.length();
+	Matrixf* ownerMtx;
+	Vector3f* pos;
+	pos      = mPos;
+	ownerMtx = mMtx;
+
+	Vector3f angle(pos->x - (*ownerMtx)(0, 3), pos->y - (*ownerMtx)(1, 3), pos->z - (*ownerMtx)(2, 3));
+	f32 scale = angle.magnitude();
 	angle.normalise();
+
+	Vector3f mtxPos((*ownerMtx)(0, 3), (*ownerMtx)(1, 3), (*ownerMtx)(2, 3));
 
 	Matrixf mtx;
 	Vector3f up(0.0f, 1.0f, 0.0f);
-	Vector3f cross(up.y * angle.z - up.z * angle.y, up.z * angle.x - up.x * angle.z, up.x * angle.y - up.y * angle.x);
-	Vector3f cross2(angle.y * cross.z - angle.z * cross.y, angle.z * cross.x - angle.x * cross.z, angle.x * cross.y - angle.y * cross.x);
-	mtx.setColumn(0, cross);
-	mtx.setColumn(1, cross2);
-	mtx.setColumn(2, angle);
-	mtx.setColumn(3, mtxPos);
+	Vector3f side;
+	side = cross(up, angle);
+	Vector3f up2;
+	up2 = cross(angle, side);
+
+	// making these setter inlines screws everything up
+	mtx(0, 0) = side.x;
+	mtx(0, 1) = up2.x;
+	mtx(0, 2) = angle.x;
+	mtx(0, 3) = mtxPos.x;
+
+	mtx(1, 0) = side.y;
+	mtx(1, 1) = up2.y;
+	mtx(1, 2) = angle.y;
+	mtx(1, 3) = mtxPos.y;
+
+	mtx(2, 0) = side.z;
+	mtx(2, 1) = up2.z;
+	mtx(2, 2) = angle.z;
+	mtx(2, 3) = mtxPos.z;
 
 	JPASetRMtxTVecfromMtx(mtx.mMatrix.mtxView, emit->mGlobalRot, &emit->mGlobalTrs);
 	if (scale > 175.0f) {
 		scale = 175.0f;
 	}
 	emit->setScaleOnly(scale / 100.0f);
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stfd     f31, 0x40(r1)
-	psq_st   f31, 72(r1), 0, qr0
-	stw      r31, 0x3c(r1)
-	stw      r30, 0x38(r1)
-	mr       r30, r3
-	mr       r31, r4
-	lwz      r0, 0x10(r3)
-	cmplwi   r0, 0
-	bne      lbl_803B733C
-	lis      r3, lbl_80495A28@ha
-	lis      r5, lbl_80495A38@ha
-	addi     r3, r3, lbl_80495A28@l
-	li       r4, 0x243
-	addi     r5, r5, lbl_80495A38@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B733C:
-	lwz      r0, 0x14(r30)
-	cmplwi   r0, 0
-	bne      lbl_803B7364
-	lis      r3, lbl_80495A28@ha
-	lis      r5, lbl_80495A38@ha
-	addi     r3, r3, lbl_80495A28@l
-	li       r4, 0x244
-	addi     r5, r5, lbl_80495A38@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B7364:
-	lwz      r4, 0x14(r30)
-	lwz      r3, 0x10(r30)
-	lfs      f0, 4(r4)
-	lfs      f3, 0x1c(r3)
-	lfs      f1, 8(r4)
-	fsubs    f0, f0, f3
-	lfs      f2, 0x2c(r3)
-	lfs      f4, 0(r4)
-	lfs      f10, 0xc(r3)
-	fsubs    f1, f1, f2
-	fmuls    f6, f0, f0
-	fsubs    f8, f4, f10
-	lfs      f31, lbl_8051F670@sda21(r2)
-	fmuls    f7, f1, f1
-	fmadds   f4, f8, f8, f6
-	fadds    f9, f7, f4
-	fcmpo    cr0, f9, f31
-	ble      lbl_803B73C0
-	ble      lbl_803B73BC
-	frsqrte  f4, f9
-	fmuls    f31, f4, f9
-	b        lbl_803B73C0
-
-lbl_803B73BC:
-	fmr      f31, f9
-
-lbl_803B73C0:
-	lfs      f5, lbl_8051F670@sda21(r2)
-	fcmpo    cr0, f9, f5
-	ble      lbl_803B73E8
-	fmadds   f4, f8, f8, f6
-	fadds    f6, f7, f4
-	fcmpo    cr0, f6, f5
-	ble      lbl_803B73EC
-	frsqrte  f4, f6
-	fmuls    f6, f4, f6
-	b        lbl_803B73EC
-
-lbl_803B73E8:
-	fmr      f6, f5
-
-lbl_803B73EC:
-	lfs      f4, lbl_8051F670@sda21(r2)
-	fcmpo    cr0, f6, f4
-	ble      lbl_803B740C
-	lfs      f4, lbl_8051F67C@sda21(r2)
-	fdivs    f4, f4, f6
-	fmuls    f8, f8, f4
-	fmuls    f0, f0, f4
-	fmuls    f1, f1, f4
-
-lbl_803B740C:
-	lfs      f5, lbl_8051F670@sda21(r2)
-	addi     r3, r1, 8
-	lfs      f6, lbl_8051F67C@sda21(r2)
-	addi     r4, r31, 0x68
-	fmuls    f9, f5, f0
-	stfs     f8, 0x10(r1)
-	fmuls    f4, f5, f1
-	addi     r5, r31, 0xa4
-	stfs     f10, 0x14(r1)
-	fnmsubs  f7, f6, f8, f9
-	fmsubs   f6, f6, f1, f9
-	stfs     f0, 0x20(r1)
-	fmsubs   f9, f5, f8, f4
-	fmuls    f4, f8, f7
-	stfs     f3, 0x24(r1)
-	fmuls    f3, f0, f6
-	fmuls    f5, f1, f9
-	stfs     f6, 8(r1)
-	fmsubs   f4, f1, f6, f4
-	fmsubs   f3, f8, f9, f3
-	stfs     f9, 0x18(r1)
-	fmsubs   f0, f0, f7, f5
-	stfs     f4, 0x1c(r1)
-	stfs     f0, 0xc(r1)
-	stfs     f7, 0x28(r1)
-	stfs     f3, 0x2c(r1)
-	stfs     f1, 0x30(r1)
-	stfs     f2, 0x34(r1)
-	bl       "JPASetRMtxTVecfromMtx__FPA4_CfPA4_fPQ29JGeometry8TVec3<f>"
-	lfs      f0, lbl_8051F6AC@sda21(r2)
-	fcmpo    cr0, f31, f0
-	ble      lbl_803B7490
-	fmr      f31, f0
-
-lbl_803B7490:
-	lfs      f0, lbl_8051F6B0@sda21(r2)
-	fdivs    f0, f31, f0
-	stfs     f0, 0x98(r31)
-	stfs     f0, 0x9c(r31)
-	stfs     f0, 0xa0(r31)
-	psq_l    f31, 72(r1), 0, qr0
-	lwz      r0, 0x54(r1)
-	lfd      f31, 0x40(r1)
-	lwz      r31, 0x3c(r1)
-	lwz      r30, 0x38(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
 }
 
 /**

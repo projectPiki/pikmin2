@@ -65,10 +65,10 @@ void ObjChallenge2P::doCreate(JKRArchive* arc)
 
 	J2DPane* pane         = mPokoScreen->search('Nmenu01');
 	msVal.mMenu01         = pane;
-	msVal.mTimerXPos      = pane->mOffset.x;
-	msVal.mTimerYPos      = pane->mOffset.y;
-	msVal.mTimerXScale    = pane->mScale.x;
-	msVal.mTimerYScale    = pane->mScale.y;
+	msVal.mTimerXPos      = pane->mTranslateX;
+	msVal.mTimerYPos      = pane->mTranslateY;
+	msVal.mTimerXScale    = pane->mScaleX;
+	msVal.mTimerYScale    = pane->mScaleY;
 	msVal.mTimerXOffset   = 0.0f;
 	msVal.mTimerYOffset   = 0.0f;
 	msVal.mTimerXScaleMod = 1.0f;
@@ -80,10 +80,10 @@ void ObjChallenge2P::doCreate(JKRArchive* arc)
 
 	J2DPane* pane2       = mPokoScreen->search('Nmenu00');
 	msVal.mMenu00        = pane2;
-	msVal.mPokoXPos      = pane2->mOffset.x;
-	msVal.mPokoYPos      = pane2->mOffset.y;
-	msVal.mPokoXScale    = pane2->mScale.x;
-	msVal.mPokoYScale    = pane2->mScale.y;
+	msVal.mPokoXPos      = pane2->mTranslateX;
+	msVal.mPokoYPos      = pane2->mTranslateY;
+	msVal.mPokoXScale    = pane2->mScaleX;
+	msVal.mPokoYScale    = pane2->mScaleY;
 	msVal.mPokoXOffset   = 0.0f;
 	msVal.mPokoYOffset   = 0.0f;
 	msVal.mPokoXScaleMod = 1.0f;
@@ -95,10 +95,10 @@ void ObjChallenge2P::doCreate(JKRArchive* arc)
 
 	J2DPane* pane3        = mPokoScreen->search('Nmenu02');
 	msVal.mMenu02         = pane3;
-	msVal.mPikisXPos      = pane3->mOffset.x;
-	msVal.mPikisYPos      = pane3->mOffset.y;
-	msVal.mPikisXScale    = pane3->mScale.x;
-	msVal.mPikisYScale    = pane3->mScale.y;
+	msVal.mPikisXPos      = pane3->mTranslateX;
+	msVal.mPikisYPos      = pane3->mTranslateY;
+	msVal.mPikisXScale    = pane3->mScaleX;
+	msVal.mPikisYScale    = pane3->mScaleY;
 	msVal.mPikisXOffset   = 0.0f;
 	msVal.mPikisYOffset   = 0.0f;
 	msVal.mPikisXScaleMod = 1.0f;

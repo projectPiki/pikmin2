@@ -66,7 +66,7 @@ struct Quat {
 	 * @param w The scalar component of the quaternion.
 	 * @param xyz The vector component of the quaternion.
 	 */
-	inline void set(f32 w, Vector3f& xyz);
+	void set(f32 w, Vector3f& xyz);
 
 	/**
 	 * @brief Sets the quaternion using roll, pitch, and yaw angles.

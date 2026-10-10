@@ -20,36 +20,7 @@ struct Matrix3f {
 	 * @param thresh The threshold value for determining diagonal elements.
 	 * @return True if the matrix is diagonal, false otherwise.
 	 */
-	inline bool isDiagonal(f32 thresh)
-	{
-		// Sum off-diagonal terms of matrix
-		f32 sumOffDiag = 0.0f;
-		for (int row_idx = 0; row_idx < 3; row_idx++) {
-			for (int col_idx = 0; col_idx < 3; col_idx++) {
-				if (row_idx != col_idx) {
-					sumOffDiag += mMatrix[row_idx][col_idx];
-				}
-			}
-		}
-
-		// Check for convergence, i.e. if off-diagonals are sufficiently small yet
-		if (FABS(sumOffDiag) < thresh) {
-			// If sum of off-diags is not exactly zero but IS small enough, we put zero into all the off diagonals
-			if (sumOffDiag != 0.0f) {
-				for (int row_idx = 0; row_idx < 3; row_idx++) {
-					for (int col_idx = 0; col_idx < 3; col_idx++) {
-						if (row_idx != col_idx) {
-							mMatrix[row_idx][col_idx] = 0.0f;
-						}
-					}
-				}
-			}
-
-			return true; // The matrix is diagonal enough
-		}
-
-		return false; // The matrix is not diagonal enough
-	}
+	bool isDiagonal(f32 thresh);
 
 	/**
 	 * @brief Calculates the Jacobi value at the specified row and column.
@@ -61,7 +32,7 @@ struct Matrix3f {
 	inline f32 calcJacobi(int row, int col)
 	{
 		f32 x = (2.0f * mMatrix[row][col]);
-		f32 y = (mMatrix[col][col] - mMatrix[row][row]) / x;
+		f32 y = (getAt(col, col) - getAt(row, row)) / x;
 		return y;
 	}
 
@@ -93,7 +64,11 @@ struct Matrix3f {
 	 */
 	inline Vector3f getRow(int i) { return Vector3f(mMatrix[i][0], mMatrix[i][1], mMatrix[i][2]); }
 
-	inline f32& getAt(int row, int col) { return mMatrix[row][col]; }
+	inline f32& getAt(int row, int col)
+	{
+		f32* values = mMatrix[row];
+		return values[col];
+	}
 
 	/**
 	 * @brief Multiplies this matrix with another matrix.

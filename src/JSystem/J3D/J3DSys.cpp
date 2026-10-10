@@ -384,12 +384,12 @@ void J3DSys::reinitPixelProc()
 static void fakeFunc()
 {
 	char* msgs[] = { "Success\n",
-		             "J3DErrType : Material has No Material Animation\n",
-		             "J3DErrType : Model Data is Locked\n",
-		             "J3DErrType : Binary Resource is Null\n",
-		             "J3DErrType : Out Of Memory\n",
-		             "J3DErrType : Argument is Invalid\n",
-		             "J3DErrType : Data is Invalid\n" };
+	                 "J3DErrType : Material has No Material Animation\n",
+	                 "J3DErrType : Model Data is Locked\n",
+	                 "J3DErrType : Binary Resource is Null\n",
+	                 "J3DErrType : Out Of Memory\n",
+	                 "J3DErrType : Argument is Invalid\n",
+	                 "J3DErrType : Data is Invalid\n" };
 }
 
 /**

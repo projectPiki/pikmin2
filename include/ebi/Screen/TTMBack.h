@@ -2,18 +2,16 @@
 #define _EBI_SCREEN_TTMBACK_H
 
 #include "ebi/Screen/TScreenBase.h"
+#include "ebi/Utility.h"
 #include "P2DScreen.h"
 
 namespace ebi {
 namespace Screen {
 struct TTMBack : public TScreenBase {
 	TTMBack()
+	    : mScreenObj(nullptr)
 	{
-		mScreenObj           = nullptr;
-		mOpenCloseCounter    = 0;
-		mOpenCloseCounterMax = 0;
-		mOpenCloseCounter    = 0; // Yes it sets them twice, just to be sure
-		mOpenCloseCounterMax = 0;
+		mOpenCloseCounter.setValue((u32)0); // even though the ctor already does this, smh
 	}
 
 	virtual void doSetArchive(JKRArchive*);             // _24
@@ -28,8 +26,7 @@ struct TTMBack : public TScreenBase {
 	// _00     = VTBL
 	// _00-_08 = TScreenBase
 	P2DScreen::Mgr_tuning* mScreenObj; // _0C
-	u32 mOpenCloseCounter;             // _10
-	u32 mOpenCloseCounterMax;          // _14
+	EUTCounter mOpenCloseCounter;      // _10
 };
 } // namespace Screen
 } // namespace ebi

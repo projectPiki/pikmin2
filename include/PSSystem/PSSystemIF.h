@@ -193,8 +193,7 @@ inline PSSystem::SysIF* PSGetSystemIFA()
 
 inline u32 isValidSeType(u32 soundID)
 {
-	u32 ass = (soundID >> 12) & 0xF;
-	// problem here
+	u32 ass = (soundID & 0xF000) >> 12;
 	if ((soundID >> 30) == 0) {
 		return ass;
 	}

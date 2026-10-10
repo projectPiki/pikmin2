@@ -436,7 +436,6 @@ void ObjCaveResult::doDraw(Graphics& gfx)
 	u32 i = 0;
 	FOREACH_NODE(Game::Result::TNode, mResultNode->mChild, cNode)
 	{
-		// regswaps are probably mostly from these values
 		int isOdd = i % 2;
 		u32 next;
 
@@ -1051,8 +1050,8 @@ void LostItemMgr::init(const JGeometry::TVec2f& pos, bool isOdd)
 	}
 
 	f32 xoffs[5] = { kh::Screen::ObjCaveResult::msVal.mLostItemSmokeOffsetX1, kh::Screen::ObjCaveResult::msVal.mLostItemSmokeOffsetX2,
-		             kh::Screen::ObjCaveResult::msVal.mLostItemSmokeOffsetX3, kh::Screen::ObjCaveResult::msVal.mLostItemSmokeOffsetX4,
-		             kh::Screen::ObjCaveResult::msVal.mLostItemSmokeOffsetX5 };
+	                 kh::Screen::ObjCaveResult::msVal.mLostItemSmokeOffsetX3, kh::Screen::ObjCaveResult::msVal.mLostItemSmokeOffsetX4,
+	                 kh::Screen::ObjCaveResult::msVal.mLostItemSmokeOffsetX5 };
 
 	if (isOdd) {
 		xoffs[0] += 60.0f;
@@ -1100,8 +1099,7 @@ void LostItemMgr::draw(P2DScreen::Mgr_tuning* screen, u64 tag, const ResTIMG* ti
 		kh::Screen::setTex(screen, tag, timg);
 		J2DPane* pane = screen->search(tag);
 		for (int i = 0; i < mMaxPanes; i++) {
-			pane->mOffset = JGeometry::TVec2f(mItemList[i].mRect.p1.x, mItemList[i].mRect.p1.y);
-			pane->calcMtx();
+			pane->setOffset(mItemList[i].mRect.p1.x, mItemList[i].mRect.p1.y);
 
 			pane->setAlpha(mItemList[i].mAlpha);
 			pane->setAngle(360.0f * (f32)mItemList[i].mAngle / 65536.0f);

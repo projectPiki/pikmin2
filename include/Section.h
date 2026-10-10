@@ -67,7 +67,7 @@ struct Section : public ISection {
 	JUTFader* mFader;             // _28
 	Graphics* mGraphics;          // _2C
 	f32 mTimeStep;                // _30
-	bool mIsMainActive;           // _34
+	volatile bool mIsMainActive;  // _34, needs to be volatile in PAL at least, for titleSection
 	bool mIsDisplayNew;           // _35
 	u8 _36;                       // _36
 	bool mIsLoadingDVD;           // _37

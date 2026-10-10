@@ -421,6 +421,16 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 		mDynParticle->getAt(idx)->mRadius   = height;
 	}
 
+	inline void setupDynParticle(int idx, f32 height, f32 rate, Vector3f& rotation)
+	{
+		mRotation                           = mRotation + rotation;
+		mDynParticle->getAt(idx)->mRotation = rotation;
+		// having THIS SPECIFICALLY in an inline seems like, hard-required as far as I can tell
+		// as much as I hate having this and the inline above both >:(
+		rate *= height;
+		mDynParticle->getAt(idx)->mRadius = rate;
+	}
+
 	inline bool checkBedamaColor(int color)
 	{
 		int bedamaColor = getBedamaColor();

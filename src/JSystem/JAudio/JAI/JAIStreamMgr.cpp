@@ -94,9 +94,8 @@ void storeStreamBuffer(JAIStream** soundHandlePtr, JAInter::Actor* actor, u32 so
 
 	JAIStream* stream     = streamSound;
 	StreamParameter* para = &stream->mStreamParameter;
-	u32 i;
-	para->mPauseMode = SOUNDPAUSE_Unk0;
-	para->_04        = 0;
+	para->mPauseMode      = SOUNDPAUSE_Unk0;
+	para->_04             = 0;
 
 	para->mVolumeFlags = 0;
 	para->mPitchFlags  = 0;
@@ -104,22 +103,11 @@ void storeStreamBuffer(JAIStream** soundHandlePtr, JAInter::Actor* actor, u32 so
 	para->mFxmixFlags  = 0;
 	para->mDolbyFlags  = 0;
 
-	for (i = 0; i < 20; i++) {
+	for (u32 i = 0; i < 20; i++) {
 		para->mVolumes[i] = MoveParaSet();
 	}
-	for (i = 0; i < JAIGlobalParameter::getParamStreamParameterLines(); i++) {
-		para->mPitches[i] = MoveParaSet();
-		para->mPans[i]    = MoveParaSetInitHalf();
-		para->mFxmixes[i] = MoveParaSetInitZero();
-		para->mDolbys[i]  = MoveParaSetInitZero();
-	}
-
-	for (i = 0; i < getChannelMax(); i++) {
-		para->mChannelVolumes[i] = MoveParaSet();
-		para->mChannelPans[i]    = MoveParaSetInitHalf();
-		para->mChannelFxmixes[i] = MoveParaSetInitZero();
-		para->mChannelDolbys[i]  = MoveParaSetInitZero();
-	}
+	JAIStream::initLineParameters(para);
+	JAIStream::initChannelParameters(para);
 
 	stream->mStreamParameter.mChannelVolumeFlags = 0;
 	stream->mStreamParameter.mChannelPanFlags    = 0;
@@ -134,237 +122,6 @@ void storeStreamBuffer(JAIStream** soundHandlePtr, JAInter::Actor* actor, u32 so
 	if (soundHandlePtr) {
 		*soundHandlePtr = stream;
 	}
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x60(r1)
-	  mflr      r0
-	  stw       r0, 0x64(r1)
-	  stfd      f31, 0x50(r1)
-	  psq_st    f31,0x58(r1),0,0
-	  stfd      f30, 0x40(r1)
-	  psq_st    f30,0x48(r1),0,0
-	  stfd      f29, 0x30(r1)
-	  psq_st    f29,0x38(r1),0,0
-	  stmw      r23, 0xC(r1)
-	  mr.       r24, r3
-	  mr        r25, r4
-	  mr        r26, r5
-	  mr        r27, r6
-	  mr        r28, r7
-	  mr        r29, r8
-	  beq-      .loc_0x64
-	  lwz       r3, 0x0(r24)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x64
-	  mr        r4, r26
-	  mr        r5, r29
-	  bl        -0x24B0
-	  cmplwi    r3, 0
-	  bne-      .loc_0x32C
-
-	.loc_0x64:
-	  lwz       r3, -0x73B0(r13)
-	  lbz       r0, 0x15(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xA8
-	  bl        -0x3E78
-	  lbz       r0, 0x4(r29)
-	  rlwinm    r3,r3,0,24,31
-	  cmplw     r3, r0
-	  bgt-      .loc_0x32C
-	  lwz       r3, -0x73B0(r13)
-	  li        r4, 0
-	  lwz       r12, 0x10(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0xA8
-	  b         .loc_0x32C
-
-	.loc_0xA8:
-	  lwz       r30, -0x73B0(r13)
-	  li        r23, 0
-	  lfs       f31, -0x7320(r2)
-	  mr        r31, r23
-	  stb       r23, 0x48(r30)
-	  lfs       f30, -0x731C(r2)
-	  stw       r23, 0x4C(r30)
-	  lfs       f29, -0x7318(r2)
-	  stw       r23, 0x50(r30)
-	  stw       r23, 0x54(r30)
-	  stw       r23, 0x58(r30)
-	  stw       r23, 0x5C(r30)
-	  stw       r23, 0x60(r30)
-	  stfs      f31, 0x68(r30)
-	  stfs      f31, 0x64(r30)
-	  stw       r23, 0x70(r30)
-	  stfs      f31, 0x78(r30)
-	  stfs      f31, 0x74(r30)
-	  stw       r23, 0x80(r30)
-	  stfs      f31, 0x88(r30)
-	  stfs      f31, 0x84(r30)
-	  stw       r23, 0x90(r30)
-	  stfs      f31, 0x98(r30)
-	  stfs      f31, 0x94(r30)
-	  stw       r23, 0xA0(r30)
-	  stfs      f31, 0xA8(r30)
-	  stfs      f31, 0xA4(r30)
-	  stw       r23, 0xB0(r30)
-	  stfs      f31, 0xB8(r30)
-	  stfs      f31, 0xB4(r30)
-	  stw       r23, 0xC0(r30)
-	  stfs      f31, 0xC8(r30)
-	  stfs      f31, 0xC4(r30)
-	  stw       r23, 0xD0(r30)
-	  stfs      f31, 0xD8(r30)
-	  stfs      f31, 0xD4(r30)
-	  stw       r23, 0xE0(r30)
-	  stfs      f31, 0xE8(r30)
-	  stfs      f31, 0xE4(r30)
-	  stw       r23, 0xF0(r30)
-	  stfs      f31, 0xF8(r30)
-	  stfs      f31, 0xF4(r30)
-	  stw       r23, 0x100(r30)
-	  stfs      f31, 0x108(r30)
-	  stfs      f31, 0x104(r30)
-	  stw       r23, 0x110(r30)
-	  stfs      f31, 0x118(r30)
-	  stfs      f31, 0x114(r30)
-	  stw       r23, 0x120(r30)
-	  stfs      f31, 0x128(r30)
-	  stfs      f31, 0x124(r30)
-	  stw       r23, 0x130(r30)
-	  stfs      f31, 0x138(r30)
-	  stfs      f31, 0x134(r30)
-	  stw       r23, 0x140(r30)
-	  stfs      f31, 0x148(r30)
-	  stfs      f31, 0x144(r30)
-	  stw       r23, 0x150(r30)
-	  stfs      f31, 0x158(r30)
-	  stfs      f31, 0x154(r30)
-	  stw       r23, 0x160(r30)
-	  stfs      f31, 0x168(r30)
-	  stfs      f31, 0x164(r30)
-	  stw       r23, 0x170(r30)
-	  stfs      f31, 0x178(r30)
-	  stfs      f31, 0x174(r30)
-	  stw       r23, 0x180(r30)
-	  stfs      f31, 0x188(r30)
-	  stfs      f31, 0x184(r30)
-	  stw       r23, 0x190(r30)
-	  stfs      f31, 0x198(r30)
-	  stfs      f31, 0x194(r30)
-	  stw       r23, 0x1A0(r30)
-	  b         .loc_0x22C
-
-	.loc_0x1D0:
-	  lwz       r0, 0x1A4(r30)
-	  li        r3, 0
-	  addi      r23, r23, 0x1
-	  add       r4, r0, r31
-	  stfs      f31, 0x4(r4)
-	  stfs      f31, 0x0(r4)
-	  stw       r3, 0xC(r4)
-	  lwz       r0, 0x1A8(r30)
-	  add       r4, r0, r31
-	  stfs      f30, 0x4(r4)
-	  stfs      f30, 0x0(r4)
-	  stw       r3, 0xC(r4)
-	  lwz       r0, 0x1AC(r30)
-	  add       r4, r0, r31
-	  stfs      f29, 0x4(r4)
-	  stfs      f29, 0x0(r4)
-	  stw       r3, 0xC(r4)
-	  lwz       r0, 0x1B0(r30)
-	  add       r4, r0, r31
-	  addi      r31, r31, 0x10
-	  stfs      f29, 0x4(r4)
-	  stfs      f29, 0x0(r4)
-	  stw       r3, 0xC(r4)
-
-	.loc_0x22C:
-	  bl        -0xA000
-	  rlwinm    r0,r3,0,24,31
-	  cmplw     r23, r0
-	  blt+      .loc_0x1D0
-	  li        r23, 0
-	  lfs       f29, -0x7320(r2)
-	  lfs       f30, -0x731C(r2)
-	  mr        r31, r23
-	  lfs       f31, -0x7318(r2)
-	  b         .loc_0x2B0
-
-	.loc_0x254:
-	  lwz       r0, 0x1C8(r30)
-	  li        r3, 0
-	  addi      r23, r23, 0x1
-	  add       r4, r0, r31
-	  stfs      f29, 0x4(r4)
-	  stfs      f29, 0x0(r4)
-	  stw       r3, 0xC(r4)
-	  lwz       r0, 0x1CC(r30)
-	  add       r4, r0, r31
-	  stfs      f30, 0x4(r4)
-	  stfs      f30, 0x0(r4)
-	  stw       r3, 0xC(r4)
-	  lwz       r0, 0x1D0(r30)
-	  add       r4, r0, r31
-	  stfs      f31, 0x4(r4)
-	  stfs      f31, 0x0(r4)
-	  stw       r3, 0xC(r4)
-	  lwz       r0, 0x1D4(r30)
-	  add       r4, r0, r31
-	  addi      r31, r31, 0x10
-	  stfs      f31, 0x4(r4)
-	  stfs      f31, 0x0(r4)
-	  stw       r3, 0xC(r4)
-
-	.loc_0x2B0:
-	  bl        0x12C4
-	  cmplw     r23, r3
-	  blt+      .loc_0x254
-	  li        r11, 0
-	  li        r10, 0x1
-	  stw       r11, 0x1B8(r30)
-	  li        r0, 0xA
-	  mr        r3, r30
-	  mr        r4, r24
-	  stw       r11, 0x1BC(r30)
-	  mr        r5, r25
-	  mr        r6, r26
-	  mr        r7, r27
-	  stw       r11, 0x1C0(r30)
-	  mr        r8, r28
-	  mr        r9, r29
-	  stw       r11, 0x1C4(r30)
-	  stb       r10, 0x15(r30)
-	  stb       r0, 0x16(r30)
-	  lwz       r10, -0x73B8(r13)
-	  stb       r11, 0x2(r10)
-	  lwz       r0, -0x73B8(r13)
-	  lwz       r10, -0x73B0(r13)
-	  stw       r0, 0x1B4(r10)
-	  lwz       r12, 0x10(r30)
-	  lwz       r12, 0xC8(r12)
-	  mtctr     r12
-	  bctrl
-	  cmplwi    r24, 0
-	  beq-      .loc_0x32C
-	  stw       r30, 0x0(r24)
-
-	.loc_0x32C:
-	  psq_l     f31,0x58(r1),0,0
-	  lfd       f31, 0x50(r1)
-	  psq_l     f30,0x48(r1),0,0
-	  lfd       f30, 0x40(r1)
-	  psq_l     f29,0x38(r1),0,0
-	  lfd       f29, 0x30(r1)
-	  lmw       r23, 0xC(r1)
-	  lwz       r0, 0x64(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x60
-	  blr
-	*/
 }
 
 /**

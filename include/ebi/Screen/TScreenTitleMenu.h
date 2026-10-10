@@ -66,8 +66,6 @@ struct TScreenTitleMenu {
 
 	TScreenTitleMenu()
 	    : mDecided(false)
-	    , mCloseCounter(0)
-	    , mCloseCounterMax(0)
 	    , mState(0)
 	{
 	}
@@ -89,8 +87,7 @@ struct TScreenTitleMenu {
 	EUTPadInterface_countNum mPad;               // _004
 	bool mDecided;                               // _030
 	bool mCancelled;                             // _031
-	u32 mCloseCounter;                           // _034
-	u32 mCloseCounterMax;                        // _038
+	EUTCounter mCloseCounter;                    // _034
 	s32 mSelectedMenu;                           // _03C
 	TScreenTitleMenu_Object_Icon mLeftIcons[2];  // _040
 	TScreenTitleMenu_Object_Icon mRightIcons[2]; // _058
