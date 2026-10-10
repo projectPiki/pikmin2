@@ -1,14 +1,14 @@
 KONO_FILES:=\
-	$(BUILD_DIR)/asm/plugProjectKonoU/khWorldMap.o\
+	$(BUILD_DIR)/src/plugProjectKonoU/khWorldMap.o\
 	$(BUILD_DIR)/src/plugProjectKonoU/khCaveResult.o\
 	$(BUILD_DIR)/src/plugProjectKonoU/khSceneLoader.o\
 	$(BUILD_DIR)/src/plugProjectKonoU/newGame2DMgr.o\
 	$(BUILD_DIR)/src/plugProjectKonoU/newScreenMgr.o\
 	$(BUILD_DIR)/src/plugProjectKonoU/khReadyGo.o\
 	$(BUILD_DIR)/src/plugProjectKonoU/khFinalFloor.o\
-	$(BUILD_DIR)/asm/plugProjectKonoU/khDayEndResult.o\
+	$(BUILD_DIR)/src/plugProjectKonoU/khDayEndResult.o\
 	$(BUILD_DIR)/src/plugProjectKonoU/khUtil.o\
-	$(BUILD_DIR)/asm/plugProjectKonoU/khFinalResult.o\
+	$(BUILD_DIR)/src/plugProjectKonoU/khFinalResult.o\
 	$(BUILD_DIR)/src/plugProjectKonoU/khPayDept.o\
 	$(BUILD_DIR)/src/plugProjectKonoU/khWinLose.o\
 	$(BUILD_DIR)/src/plugProjectKonoU/khWinLoseReason.o\

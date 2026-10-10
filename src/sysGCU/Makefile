@@ -1,13 +1,13 @@
 GC_FILES:=\
-	$(BUILD_DIR)/asm/sysGCU/system.o\
-	$(BUILD_DIR)/asm/sysGCU/section.o\
+	$(BUILD_DIR)/src/sysGCU/system.o\
+	$(BUILD_DIR)/src/sysGCU/section.o\
 	$(BUILD_DIR)/src/sysGCU/gameflow.o\
 	$(BUILD_DIR)/src/sysGCU/menuSection.o\
 	$(BUILD_DIR)/src/sysGCU/dvdThread.o\
 	$(BUILD_DIR)/src/sysGCU/appThread.o\
 	$(BUILD_DIR)/src/sysGCU/controller.o\
-	$(BUILD_DIR)/asm/sysGCU/graphics.o\
-	$(BUILD_DIR)/asm/sysGCU/matMath.o\
+	$(BUILD_DIR)/src/sysGCU/graphics.o\
+	$(BUILD_DIR)/src/sysGCU/matMath.o\
 	$(BUILD_DIR)/src/sysGCU/sysShape.o\
 	$(BUILD_DIR)/src/sysGCU/reset.o\
 	$(BUILD_DIR)/src/sysGCU/dvdStatus.o\
@@ -16,16 +16,16 @@ GC_FILES:=\
 	$(BUILD_DIR)/src/sysGCU/heapStatus.o\
 	$(BUILD_DIR)/src/sysGCU/light.o\
 	$(BUILD_DIR)/src/sysGCU/wipe.o\
-	$(BUILD_DIR)/asm/sysGCU/moviePlayer.o\
-	$(BUILD_DIR)/asm/sysGCU/JSTObjectActor.o\
-	$(BUILD_DIR)/asm/sysGCU/JSTObjectCamera.o\
-	$(BUILD_DIR)/asm/sysGCU/JSTObjectGameActor.o\
-	$(BUILD_DIR)/asm/sysGCU/JSTObjectSystem.o\
+	$(BUILD_DIR)/src/sysGCU/moviePlayer.o\
+	$(BUILD_DIR)/src/sysGCU/JSTObjectActor.o\
+	$(BUILD_DIR)/src/sysGCU/JSTObjectCamera.o\
+	$(BUILD_DIR)/src/sysGCU/JSTObjectGameActor.o\
+	$(BUILD_DIR)/src/sysGCU/JSTObjectSystem.o\
 	$(BUILD_DIR)/src/sysGCU/JSTFindCreature.o\
 	$(BUILD_DIR)/src/sysGCU/movieConfig.o\
 	$(BUILD_DIR)/src/sysGCU/gameConfig.o\
 	$(BUILD_DIR)/src/sysGCU/fogMgr.o\
-	$(BUILD_DIR)/asm/sysGCU/aramMgr.o\
+	$(BUILD_DIR)/src/sysGCU/aramMgr.o\
 	$(BUILD_DIR)/src/sysGCU/resourceMgr.o\
 	$(BUILD_DIR)/src/sysGCU/resourceMgr2D.o\
 	$(BUILD_DIR)/src/sysGCU/sysMaterialAnim.o\
@@ -36,19 +36,19 @@ GC_FILES:=\
 	$(BUILD_DIR)/src/sysGCU/messageSequence.o\
 	$(BUILD_DIR)/src/sysGCU/messageMgr.o\
 	$(BUILD_DIR)/src/sysGCU/messageObj.o\
-	$(BUILD_DIR)/asm/sysGCU/messageRendering.o\
+	$(BUILD_DIR)/src/sysGCU/messageRendering.o\
 	$(BUILD_DIR)/src/sysGCU/message.o\
 	$(BUILD_DIR)/src/sysGCU/modelEffect.o\
 	$(BUILD_DIR)/src/sysGCU/messageReference.o\
 	$(BUILD_DIR)/src/sysGCU/simpleMessage.o\
 	$(BUILD_DIR)/src/sysGCU/sysShapeAnimation.o\
-	$(BUILD_DIR)/asm/sysGCU/sysShapeModel.o\
-	$(BUILD_DIR)/asm/sysGCU/windowMessage.o\
-	$(BUILD_DIR)/asm/sysGCU/memoryCard.o\
-	$(BUILD_DIR)/asm/sysGCU/pikmin2MemoryCardMgr.o\
+	$(BUILD_DIR)/src/sysGCU/sysShapeModel.o\
+	$(BUILD_DIR)/src/sysGCU/windowMessage.o\
+	$(BUILD_DIR)/src/sysGCU/memoryCard.o\
+	$(BUILD_DIR)/src/sysGCU/pikmin2MemoryCardMgr.o\
 	$(BUILD_DIR)/src/sysGCU/commonSaveData.o\
-	$(BUILD_DIR)/asm/sysGCU/bootSection.o\
-	$(BUILD_DIR)/asm/sysGCU/titleSection.o\
+	$(BUILD_DIR)/src/sysGCU/bootSection.o\
+	$(BUILD_DIR)/src/sysGCU/titleSection.o\
 	$(BUILD_DIR)/src/sysGCU/loadResource.o\
 	$(BUILD_DIR)/src/sysGCU/rootMenuSection.o\
 	$(BUILD_DIR)/src/sysGCU/demoSection.o\

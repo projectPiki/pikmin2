@@ -1,8 +1,8 @@
 EBISAWA_FILES:=\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/efxBase.o\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/efxEnemy.o\
+	$(BUILD_DIR)/src/plugProjectEbisawaU/efxBase.o\
+	$(BUILD_DIR)/src/plugProjectEbisawaU/efxEnemy.o\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/efxObject.o\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/efxPikmin.o\
+	$(BUILD_DIR)/src/plugProjectEbisawaU/efxPikmin.o\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/particle2dMgr.o\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/efx2dBase.o\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/efx2dEffect.o\
@@ -21,11 +21,11 @@ EBISAWA_FILES:=\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiScreenOption.o\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiScreenProgre.o\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiOptionMgr.o\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebi2DCallBack.o\
+	$(BUILD_DIR)/src/plugProjectEbisawaU/ebi2DCallBack.o\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiCardMgr.o\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiScreenFramework.o\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiScreenPushStart.o\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenFileSelect.o\
+	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiScreenFileSelect.o\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiScreenTitleMenu.o\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiSaveMgr.o\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiScreenSaveMenu.o\
@@ -33,16 +33,16 @@ EBISAWA_FILES:=\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiFileSelectMgr.o\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiCardMgr_Load.o\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiP2TitleCoordMgr.o\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiP2TitlePikmin.o\
+	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiP2TitlePikmin.o\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiP2TitleKogane.o\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiP2TitleChappy.o\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiScreenTMBack.o\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiMainTitleMgr.o\
+	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiMainTitleMgr.o\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiP2TitleFog.o\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/efxEnemyBoss.o\
+	$(BUILD_DIR)/src/plugProjectEbisawaU/efxEnemyBoss.o\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiCardEReader.o\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenOmake.o\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiOmakeMgr.o\
+	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiScreenOmake.o\
+	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiOmakeMgr.o\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiScreenOmakeCardE.o\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiScreenOmakeGame.o\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiScreenInfoWindow.o\

@@ -6,17 +6,17 @@ YAMASHITA_FILES:=\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/generalEnemyMgr.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/kochappyAnimator.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/kochappy.o\
-	$(BUILD_DIR)/asm/plugProjectYamashitaU/kochappyState.o\
+	$(BUILD_DIR)/src/plugProjectYamashitaU/kochappyState.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/kochappyMgr.o\
-	$(BUILD_DIR)/asm/plugProjectYamashitaU/enemyAction.o\
+	$(BUILD_DIR)/src/plugProjectYamashitaU/enemyAction.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/chappy.o\
-	$(BUILD_DIR)/asm/plugProjectYamashitaU/chappyState.o\
+	$(BUILD_DIR)/src/plugProjectYamashitaU/chappyState.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/chappyAnimator.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/chappyMgr.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/lifeGaugeMgr.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/carryInfoMgr.o\
-	$(BUILD_DIR)/asm/plugProjectYamashitaU/gameLightMgr.o\
-	$(BUILD_DIR)/asm/plugProjectYamashitaU/vtxAnm.o\
+	$(BUILD_DIR)/src/plugProjectYamashitaU/gameLightMgr.o\
+	$(BUILD_DIR)/src/plugProjectYamashitaU/vtxAnm.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/enemyInfo.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/farm.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/farmMgr.o\
@@ -27,7 +27,7 @@ YAMASHITA_FILES:=\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/enemyAnimatorBase.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/enemyStoneMgr.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/enemyStoenInfo.o\
-	$(BUILD_DIR)/asm/plugProjectYamashitaU/enemyStoneDrawInfo.o\
+	$(BUILD_DIR)/src/plugProjectYamashitaU/enemyStoneDrawInfo.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/enemyStoneObj.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/enemyParmsBase.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/walkSmokeEffect.o\
@@ -48,7 +48,7 @@ YAMASHITA_FILES:=\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/enemyEffectNode.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/enemyMgrBase.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/enemyFSM.o\
-	$(BUILD_DIR)/asm/plugProjectYamashitaU/singleGS_ZukanParms.o\
+	$(BUILD_DIR)/src/plugProjectYamashitaU/singleGS_ZukanParms.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/treasureLightMgr.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/effectAnimator.o\
 

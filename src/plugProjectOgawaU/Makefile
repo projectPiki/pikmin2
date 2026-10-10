@@ -11,7 +11,7 @@ OGAWA_FILES:=\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogMapCounter.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogAnimTextScreen.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogCallBackMessage.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/ogMenuMgr.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogMenuMgr.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogCallBackScreen.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogCounterRV.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSE.o\
@@ -20,11 +20,11 @@ OGAWA_FILES:=\
 	$(BUILD_DIR)/src/plugProjectOgawaU/testObj.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneGround.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogObjGround.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/ogCopyPane.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogCopyPane.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogBloGroup.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/DispMemberBase.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogLib2D.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjSMenuMap.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogObjSMenuMap.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneSMenuMap.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogObjSMenuItem.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneSMenuItem.o\
@@ -46,7 +46,7 @@ OGAWA_FILES:=\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneAnaDemo.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogObjChallenge2P.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneChallenge2P.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjContena.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogObjContena.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneContena.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogObjSMenuPauseDoukutu.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneSMenuPauseDoukutu.o\
@@ -56,7 +56,7 @@ OGAWA_FILES:=\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneSave.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogObjFinalMsg.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneFinalMsg.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjVs.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogObjVs.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneVs.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogObjChallenge1P.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneChallenge1P.o\
@@ -64,7 +64,7 @@ OGAWA_FILES:=\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogObjSMenuPauseVs.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneSMenuPauseVs.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogFuriko.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/ogCounterSlot.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogCounterSlot.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogObjWorldMapInfoWindow0.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneWorldMapInfoWindow0.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogObjWorldMapInfoWindow1.o\
