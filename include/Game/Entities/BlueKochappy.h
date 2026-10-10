@@ -52,7 +52,7 @@ struct Mgr : public KochappyBase::Mgr {
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
-	ResTIMG* mChangeTexture; // _44, probbaly
+	ResTIMG* mChangeTexture; // _44, probably
 	Obj* mObj;               // _48, array of Objs, probably
 };
 

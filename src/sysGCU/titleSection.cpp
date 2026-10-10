@@ -310,7 +310,7 @@ void Section::drawShortCut(Graphics&, int p2, int, int, char*)
  */
 void Section::drawDebugInfo(Graphics& gfx)
 {
-	// size indicates this function was entired stubbed out before release
+	// size indicates this function was entirely stubbed out before release
 }
 
 /**

@@ -10,7 +10,7 @@
 #include "Game/Entities/ItemBigFountain.h"
 #include "Game/Entities/ItemHole.h"
 
-#define VS_YELLOW_MARLBE_NUM 7
+#define VS_YELLOW_MARBLE_NUM 7
 
 #define VS_CHERRY_MAX_COUNT 10
 
@@ -158,7 +158,7 @@ struct VsGameSection : public BaseGameSection {
 	f32 mYellowScore[2];                           // _370
 	f32 mRedBlueScore[2];                          // _378
 	Pellet* mMarbleRedBlue[2];                     // _380
-	Pellet* mMarbleYellow[VS_YELLOW_MARLBE_NUM];   // _388
+	Pellet* mMarbleYellow[VS_YELLOW_MARBLE_NUM];   // _388
 	int mDopeCounts[2][2];                         // _3A4
 	int mPlayer2Cherries;                          // _3B4
 	int mPlayer1Cherries;                          // _3B8

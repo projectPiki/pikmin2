@@ -52,7 +52,7 @@ ObjectActor::~ObjectActor()
  */
 void ObjectActor::reset()
 {
-	// this probably shouldnt be needed but it matches here (not in the ctor above)
+	// this probably shouldn't be needed but it matches here (not in the ctor above)
 	u32 test = gu32NAN_;
 
 	mTranslation     = govNAN_;

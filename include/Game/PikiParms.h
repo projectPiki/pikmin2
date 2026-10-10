@@ -194,14 +194,14 @@ struct PikiParms : public FakePikiParms {
 		Parm<f32> mPlatformLaunchDistance;    // _DF0, p061
 		Parm<int> mMaxDrowningFrames;         // _E18, p062
 		Parm<int> mDrowningFramesRange;       // _E40, p063
-		Parm<f32> mWallPushAbandonTime;       // _E68, p064, leftover from pik1, presummably time to abandon a wall push?
+		Parm<f32> mWallPushAbandonTime;       // _E68, p064, leftover from pik1, presumably time to abandon a wall push?
 		Parm<f32> mBombSearchRange;           // _E90, p066, leftover from pik1, range for pikmin to search for a bomb
 		Parm<f32> mMinBombThrowDistance;      // _EB8, p067, min speed for thrown bombs
 		Parm<f32> mMaxBombThrowDistance;      // _EE0, p068, max speed for thrown bombs
-		Parm<f32> mBombDropTime;              // _F08, p069, leftover from pik1, presummably time for pikmin to drop bombs on their own?
+		Parm<f32> mBombDropTime;              // _F08, p069, leftover from pik1, presumably time for pikmin to drop bombs on their own?
 		Parm<f32> mBombThrowSpeed;            // _F30, p070, pik1 bomb throw speed
-		Parm<f32> mBombAttackRange;           // _F58, p071, related to pik1 bombs, pressumably range to attack with bombs?
-		Parm<f32> mBombTime;                  // _F80, p072, unknown, more pik1 bomb stufff
+		Parm<f32> mBombAttackRange;           // _F58, p071, related to pik1 bombs, presumably range to attack with bombs?
+		Parm<f32> mBombTime;                  // _F80, p072, unknown, more pik1 bomb stuff
 		Parm<f32> mBombDropDistance;          // _FA8, p073, related to pik1 bombs, range to drop bombs?
 		Parm<f32> mNewColorScale;             // _FD0, P000, unknown
 		Parm<f32> mWhiteRunSpeedMultiplier;   // _FF8, P001, multiplier to speed values for white pikmin

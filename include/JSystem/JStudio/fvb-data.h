@@ -33,7 +33,7 @@ struct TBlock {
 struct THeader {
 	char mSignature[4]; // _00
 	u16 mByteOrder;     // _04, must be 0xFEFF
-	u16 mVersion;       // _06, 0-1 = obselete, 2-7 = OK
+	u16 mVersion;       // _06, 0-1 = obsolete, 2-7 = OK
 	u32 _08;            // _08
 	u32 mBlockNumber;   // _0C
 	u8 mContent[0];     // _10

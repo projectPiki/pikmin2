@@ -51,7 +51,7 @@
  *			64-bit  precision	2
  *			113-bit precision	3
  *		The actual value is the sum of them. Thus for 113-bit
- *		precison, one may have to do something like:
+ *		precision, one may have to do something like:
  *
  *		f128 t,w,r_head, r_tail;
  *		t = (f128)y[2] + (f128)y[1];
