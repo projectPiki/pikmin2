@@ -46,7 +46,7 @@ struct TBabaHe : public TSimple2 {
 
 struct TBabyBecha : public TSimple1 {
 	inline TBabyBecha()
-	    : TSimple1(3)
+	    : TSimple1(PID_BabyBecha)
 	{
 	}
 
@@ -870,7 +870,7 @@ struct TOoganeKira : public TChaseMtx {
 	{
 	}
 
-	virtual ~TOoganeKira() { }; // _48 (weak)
+	virtual ~TOoganeKira() { } // _48 (weak)
 
 	// _00     = VTBL
 	// _00-_14 = TChaseMtx

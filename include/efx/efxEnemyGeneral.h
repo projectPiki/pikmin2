@@ -45,7 +45,7 @@ struct TEnemyPiyo : public TChasePos {
 
 struct TEnemyPoisonS : public TSimple1 {
 	TEnemyPoisonS()
-	    : TSimple1(0x22F)
+	    : TSimple1(PID_EnemyPoisonS)
 	{
 	}
 
@@ -54,7 +54,7 @@ struct TEnemyPoisonS : public TSimple1 {
 
 struct TEnemyPoisonL : public TSimple1 {
 	TEnemyPoisonL()
-	    : TSimple1(0x22E)
+	    : TSimple1(PID_EnemyPoisonL)
 	{
 	}
 	virtual bool create(Arg*); // _08
