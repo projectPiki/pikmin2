@@ -218,9 +218,9 @@ void THPPlayer::prepare()
 	data = new (0x20) u8[THPPlayerCalcNeedMemory()];
 	if (!data) {
 #if defined(VERSION_PAL) || defined(VERSION_US_DEMO1)
-		OSPanic("pikmin2THPPlayer.cpp", 373, "Can\'t allocate the memory");
+		OSPanic("pikmin2THPPlayer.cpp", 373, "Can't allocate the memory");
 #else
-		OSPanic("pikmin2THPPlayer.cpp", 367, "Can\'t allocate the memory");
+		OSPanic("pikmin2THPPlayer.cpp", 367, "Can't allocate the memory");
 #endif
 	}
 	THPPlayerSetBuffer(data);

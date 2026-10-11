@@ -311,7 +311,7 @@ bool ObjectActor::setAnim()
  */
 void ObjectActor::mountArchive()
 {
-	JUT_PANICLINE(359, "DON\'T CALL THIS !\n");
+	JUT_PANICLINE(359, "DON'T CALL THIS !\n");
 }
 
 /**

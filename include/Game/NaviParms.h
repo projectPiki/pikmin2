@@ -17,7 +17,7 @@ struct NaviParms : public FakePikiParms {
 		    , mCircleDisappearTime(this, 'p003', "サークル消え時間", 1.0f, 0.0f, 500.0f)         // 'circle disappearing time'
 		    , mMoveSpeed(this, 'p004', "移動速度", 160.0f, 0.0f, 500.0f)                         // 'movement speed'
 		    , mRunSpeed(this, 'p056', "走る速さ（好調時）", 160.0f, 0.0f, 500.0f) // 'running speed (in good condition)' (lol)
-		    , mDisplayScale(this, 'p038', "表\示スケール", 1.2f, 0.1f, 10.0f)     // 'display scale'
+		    , mDisplayScale(this, 'p038', "表示スケール", 1.2f, 0.1f, 10.0f)      // 'display scale'
 		    , mStick0(this, 'p005', "Stick 0", 0.001f, 0.0f, 1.0f)
 		    , mStick01(this, 'p020', "Stick 01", 0.1f, 0.0f, 1.0f)
 		    , mStick1(this, 'p006', "Stick 1", 0.8f, 0.0f, 1.0f)

@@ -83,7 +83,7 @@ void Mgr::loadResource()
 		sprintf(pathBuffer, "/user/Abe/Pellet/%s/pelletlist_%s.szs", "pal", "pal");
 		archive = JKRMountArchive(pathBuffer, JKRArchive::EMM_Mem, JKRHeap::getCurrentHeap(), JKRArchive::EMD_Tail);
 	} else {
-		JUT_PANICLINE(145, "don\'t use this !\n");
+		JUT_PANICLINE(145, "don't use this !\n");
 		archive = JKRMountArchive("/user/Kando/pelletlist.szs", JKRArchive::EMM_Mem, JKRHeap::getCurrentHeap(), JKRArchive::EMD_Tail);
 	}
 #else
@@ -104,7 +104,7 @@ void Mgr::loadResource()
 		}
 		archive = JKRMountArchive(pathBuffer, JKRArchive::EMM_Mem, JKRHeap::getCurrentHeap(), JKRArchive::EMD_Tail);
 	} else {
-		JUT_PANICLINE(145, "don\'t use this !\n");
+		JUT_PANICLINE(145, "don't use this !\n");
 		archive = JKRMountArchive("/user/Kando/pelletlist.szs", JKRArchive::EMM_Mem, JKRHeap::getCurrentHeap(), JKRArchive::EMD_Tail);
 	}
 #endif

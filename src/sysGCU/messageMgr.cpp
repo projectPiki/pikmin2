@@ -234,7 +234,7 @@ void Mgr::setupFont(char const* path, JKRExpHeap* heap)
 #endif
 		static_cast<JUTCacheFont*>(mFont)->mPagingType = JUTCacheFont::CFPAGETYPE_Unk1;
 		static_cast<JUTCacheFont*>(mFont)->loadCache_string("\tあいうえおかきくけこさしすせそたちすてとなにぬねのはひすへほまみむめもやゆよ"
-		                                                    "わん\tアイウエオカキクケコサシスセソ\タチツテトナ"
+		                                                    "わん\tアイウエオカキクケコサシスセソタチツテトナ"
 		                                                    "ニヌネノハヒフヘホマミムメモヤユヨワン\t",
 		                                                    true); // this is just all the characters in the japanese font sheet lol
 		delete file;

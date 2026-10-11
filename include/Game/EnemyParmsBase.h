@@ -58,37 +58,36 @@ struct EnemyParmsBase : public CreatureParms {
 		    , mLifeBeforeAlert(this, 'fp30', "警戒ライフ", 30.0f, 0.0f, 99999.0f)         // 'vigilant life'
 		    , mHeightOffsetFromFloor(this, 'fp01', "マップとの当り", 40.0f, 0.0f, 100.0f) // 'match with the map'
 		    , mCellRadius(this, 'fp33', "マップとのあたりポリゴンの選定", 40.0f, 0.0f,
-			              500.0f)                                                          // 'selection of map-related polygons'
-		    , mPikminDamageRadius(this, 'fp34', "ピクミンとのあたり", 40.0f, 0.0f, 500.0f) // 'about pikmin'
-		    , mOffCameraRadius(this, 'fp32', "LOD半径", 40.0f, 0.0f, 500.0f)               // LOD radius
-		    , mHorizontalDamageScale(this, 'fp02', "ダメージスケールXZ", 0.2f, 0.0f, 1.0f) // damage scale XZ
-		    , mVerticalDamageScale(this, 'fp03', "ダメージスケールY", 0.25f, 0.0f, 1.0f)   // damage scale Y
-		    , mDamageScaleDuration(this, 'fp04', "ダメージフレーム", 0.35f, 0.0f, 1.0f)    // 'damage frame'
-		    , mMass(this, 'fp05', "質量", 1.0f, 0.0f, 100.0f)                              // mass
-		    , mMoveSpeed(this, 'fp06', "速度", 80.0f, 0.0f, 1000.0f)                       // speed
-		    , mTurnSpeed(this, 'fp08', "回転速度率", 0.1f, 0.0f, 1.0f)                     // rotation speed rate
-		    , mMaxTurnAngle(this, 'fp28', "回転最大速度", 10.0f, 0.0f, 360.0f)             // maximum rotation speed
-		    , mTerritoryRadius(this, 'fp09', "テリトリー", 200.0f, 1.0f, 1000.0f)          // territory
-		    , mHomeRadius(this, 'fp10', "ホーム範囲", 15.0f, 1.0f, 1000.0f)                // home range
-		    , mPrivateRadius(this, 'fp11', "プライベート距離", 70.0f, 0.0f, 1000.0f)       // private distance
-		    , mSightRadius(this, 'fp12', "視界距離", 200.0f, 0.0f, 1000.0f)                // sight distance
-		    , mFov(this, 'fp25', "視界高", 50.0f, 0.0f, 1000.0f)                           // visibility height
-		    , mViewAngle(this, 'fp13', "視界角度", 90.0f, 0.0f, 180.0f)                    // view angle
-		    , mSearchDistance(this, 'fp14', "探索距離", 200.0f, 0.0f, 1000.0f)             // search distance
-		    , mSearchHeight(this, 'fp26', "探索高", 50.0f, 0.0f, 1000.0f)                  // search height
-		    , mSearchAngle(this, 'fp15', "探索角度", 120.0f, 0.0f, 180.0f)                 // search angle
-		    , mShakeKnockback(this, 'fp17', "振り払い力", 300.0f, 0.0f, 1000.0f)           // shake off power
-		    , mShakeDamage(this, 'fp18', "振り払いダメージ", 0.0f, 0.0f, 1000.0f)          // shake off damage
-		    , mShakeRange(this, 'fp19', "振り払い範囲", 120.0f, 0.0f, 1000.0f)             // shake off range
-		    , mShakeChance(this, 'fp16', "振り払い率", 1.0f, 0.0f, 1.0f)                   // shake off rate
-		    , mMaxAttackRange(this, 'fp20', "攻撃可能\範囲", 70.0f, 0.0f, 1000.0f)         // attack range - SHIFT-JIS IS WRONG
-		    , mMaxAttackAngle(this, 'fp21', "攻撃可能\角度", 15.0f, 0.0f,
-			                  180.0f)                                              // 'possible attack angle' - SHIFT-JIS IS WRONG
-		    , mAttackRadius(this, 'fp22', "攻撃ヒット範囲", 70.0f, 0.0f, 1000.0f)  // attack hit range
-		    , mAttackHitAngle(this, 'fp23', "攻撃ヒット角度", 15.0f, 0.0f, 180.0f) // attack hit angle
-		    , mAttackDamage(this, 'fp24', "攻撃力", 10.0f, 0.0f, 1000.0f)          // attack power
-		    , mAlertDuration(this, 'fp29', "警戒時間", 15.0f, 0.0f, 99.0f)         // alert time
-		    , mBitterDuration(this, 'fp35', "石化時間", 1.0f, 0.0f, 60.0f)         // stone time
+			              500.0f)                                                                 // 'selection of map-related polygons'
+		    , mPikminDamageRadius(this, 'fp34', "ピクミンとのあたり", 40.0f, 0.0f, 500.0f)        // 'about pikmin'
+		    , mOffCameraRadius(this, 'fp32', "LOD半径", 40.0f, 0.0f, 500.0f)                      // LOD radius
+		    , mHorizontalDamageScale(this, 'fp02', "ダメージスケールXZ", 0.2f, 0.0f, 1.0f)        // damage scale XZ
+		    , mVerticalDamageScale(this, 'fp03', "ダメージスケールY", 0.25f, 0.0f, 1.0f)          // damage scale Y
+		    , mDamageScaleDuration(this, 'fp04', "ダメージフレーム", 0.35f, 0.0f, 1.0f)           // 'damage frame'
+		    , mMass(this, 'fp05', "質量", 1.0f, 0.0f, 100.0f)                                     // mass
+		    , mMoveSpeed(this, 'fp06', "速度", 80.0f, 0.0f, 1000.0f)                              // speed
+		    , mTurnSpeed(this, 'fp08', "回転速度率", 0.1f, 0.0f, 1.0f)                            // rotation speed rate
+		    , mMaxTurnAngle(this, 'fp28', "回転最大速度", 10.0f, 0.0f, 360.0f)                    // maximum rotation speed
+		    , mTerritoryRadius(this, 'fp09', "テリトリー", 200.0f, 1.0f, 1000.0f)                 // territory
+		    , mHomeRadius(this, 'fp10', "ホーム範囲", 15.0f, 1.0f, 1000.0f)                       // home range
+		    , mPrivateRadius(this, 'fp11', "プライベート距離", 70.0f, 0.0f, 1000.0f)              // private distance
+		    , mSightRadius(this, 'fp12', "視界距離", 200.0f, 0.0f, 1000.0f)                       // sight distance
+		    , mFov(this, 'fp25', "視界高", 50.0f, 0.0f, 1000.0f)                                  // visibility height
+		    , mViewAngle(this, 'fp13', "視界角度", 90.0f, 0.0f, 180.0f)                           // view angle
+		    , mSearchDistance(this, 'fp14', "探索距離", 200.0f, 0.0f, 1000.0f)                    // search distance
+		    , mSearchHeight(this, 'fp26', "探索高", 50.0f, 0.0f, 1000.0f)                         // search height
+		    , mSearchAngle(this, 'fp15', "探索角度", 120.0f, 0.0f, 180.0f)                        // search angle
+		    , mShakeKnockback(this, 'fp17', "振り払い力", 300.0f, 0.0f, 1000.0f)                  // shake off power
+		    , mShakeDamage(this, 'fp18', "振り払いダメージ", 0.0f, 0.0f, 1000.0f)                 // shake off damage
+		    , mShakeRange(this, 'fp19', "振り払い範囲", 120.0f, 0.0f, 1000.0f)                    // shake off range
+		    , mShakeChance(this, 'fp16', "振り払い率", 1.0f, 0.0f, 1.0f)                          // shake off rate
+		    , mMaxAttackRange(this, 'fp20', "攻撃可能範囲", 70.0f, 0.0f, 1000.0f)                 // attack range
+		    , mMaxAttackAngle(this, 'fp21', "攻撃可能角度", 15.0f, 0.0f, 180.0f)                  // 'possible attack angle'
+		    , mAttackRadius(this, 'fp22', "攻撃ヒット範囲", 70.0f, 0.0f, 1000.0f)                 // attack hit range
+		    , mAttackHitAngle(this, 'fp23', "攻撃ヒット角度", 15.0f, 0.0f, 180.0f)                // attack hit angle
+		    , mAttackDamage(this, 'fp24', "攻撃力", 10.0f, 0.0f, 1000.0f)                         // attack power
+		    , mAlertDuration(this, 'fp29', "警戒時間", 15.0f, 0.0f, 99.0f)                        // alert time
+		    , mBitterDuration(this, 'fp35', "石化時間", 1.0f, 0.0f, 60.0f)                        // stone time
 		    , mPurplePikiStunDamage(this, 'fp36', "ヒップドロップダメージ", 10.0f, 0.0f, 1000.0f) // hip drop damage
 		    , mPurplePikiStunChance(this, 'fp37', "地震気絶確立", 0.05f, 0.0f, 1.0f)              // earthquake faint probability
 		    , mPurplePikiStunDuration(this, 'fp38', "地震気絶時間", 10.0f, 0.0f, 60.0f)           // earthquake faint time
