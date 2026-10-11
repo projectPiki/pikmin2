@@ -62,7 +62,7 @@ void Floor::doUserCallBackFunc(Resource::MgrCommand*)
 		setColorBG(0, 0, 0, 0);
 
 	} else {
-		JUT_PANICLINE(111, "DispMember is not \'FLOOR\'!");
+		JUT_PANICLINE(111, "DispMember is not 'FLOOR'!");
 	}
 }
 

@@ -1044,9 +1044,9 @@ void Onyon::initTube()
 
 	part = mCollTree->getCollPart('fot1');
 #if defined(VERSION_JP)
-	JUT_ASSERTLINE(1680, part, "I\'am bikkuri-ed\n");
+	JUT_ASSERTLINE(1680, part, "I'am bikkuri-ed\n");
 #else
-	JUT_ASSERTLINE(1690, part, "I\'am bikkuri-ed\n");
+	JUT_ASSERTLINE(1690, part, "I'am bikkuri-ed\n");
 #endif
 }
 

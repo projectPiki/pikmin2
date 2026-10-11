@@ -67,7 +67,7 @@ struct Parms : public EnemyParmsBase {
 		    , mBigSpeed(this, 'fp17', "big速度", 80.0f, 0.0f, 1000.0f)                           // 'big speed'
 		    , mBigRotationSpeedRate(this, 'fp18', "big回転速度率", 0.1f, 0.0f, 1.0f)             // 'big rotation speed rate'
 		    , mBigRotationMaxSpeed(this, 'fp19', "big回転最大速度", 10.0f, 0.0f, 360.0f)         // 'big rotation maximum speed'
-		    , mBigAttackAngle(this, 'fp20', "big攻撃可能\角度", 15.0f, 0.0f, 180.0f)             // 'big attack angle'
+		    , mBigAttackAngle(this, 'fp20', "big攻撃可能角度", 15.0f, 0.0f, 180.0f)              // 'big attack angle'
 		    , mBigAttackHitRange(this, 'fp21', "big攻撃ヒット範囲", 70.0f, 0.0f, 1000.0f)        // 'big attack hit range'
 		    , mPeriodOfIncubation(this, 'ip01', "潜伏までの期間", 500, 0, 2000)                  // 'period of incubation'
 		    , mTimeToAppearance(this, 'ip02', "出現までの期間", 200, 0, 1000)                    // 'time to appearance'

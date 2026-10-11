@@ -60,7 +60,7 @@ TimerInf::~TimerInf()
  */
 void SysTimers::reset()
 {
-	JUT_PANICLINE(136, "有りえないー　有りえない―\ ザマシメック！！\n");
+	JUT_PANICLINE(136, "有りえないー　有りえない― ザマシメック！！\n");
 }
 
 /**

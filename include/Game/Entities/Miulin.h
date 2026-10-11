@@ -224,7 +224,7 @@ struct Parms : public EnemyParmsBase {
 		    , mDashSpeedMultiplier(this, 'fp04', "ダッシュ速度倍率", 2.0f, 0.0f, 10.0f)  // 'dash speed multiplier'
 		    , mDashAnimationScale(this, 'fp05', "ダッシュアニメ倍率", 2.0f, 0.0f, 10.0f) // 'dash animation scale'
 		    , mMaxTurnAngle(this, 'fp06', "旋回終了角度", 10.0f, 0.0f, 180.0f)           // 'turning end angle'
-		    , mDashableAngle(this, 'fp07', "ダッシュ可能\角度", 30.0f, 0.0f, 180.0f)     // 'possible dash angle'
+		    , mDashableAngle(this, 'fp07', "ダッシュ可能角度", 30.0f, 0.0f, 180.0f)      // 'possible dash angle'
 		    , mMinAttackRange(this, 'fp08', "攻撃範囲最小", 25.0f, 0.0f, 100.0f)         // 'minimum attack range'
 		{
 		}

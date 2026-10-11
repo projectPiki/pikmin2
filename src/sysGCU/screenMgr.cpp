@@ -240,7 +240,7 @@ bool Mgr::reset()
 		char buf2[12];
 		og::Screen::TagToName(member, buf2);
 		// This is the "lockout skip crash" that can happen randomly when you lockout skip
-		JUT_PANICLINE(427, "can\'t reset. owner[%s]  member[%s]\n", buf, buf2);
+		JUT_PANICLINE(427, "can't reset. owner[%s]  member[%s]\n", buf, buf2);
 	} else {
 		gResMgr2D->destroyAll();
 		mFlags.clear();
@@ -298,7 +298,7 @@ bool Mgr::startScene(StartSceneArg* arg)
 		char memberIdStr[12];
 		og::Screen::TagToName(mBackupScene->getMemberID(), memberIdStr);
 
-		JUT_PANICLINE(530, "can\'t startScene.\n owner[%s] member[%s]\n", ownerStr, memberIdStr);
+		JUT_PANICLINE(530, "can't startScene.\n owner[%s] member[%s]\n", ownerStr, memberIdStr);
 		result = false;
 	}
 
@@ -552,7 +552,7 @@ void Mgr::changeScene(SetSceneArg& arg, u8* dispBuf)
 			P2ASSERTLINE(855, scene);
 			SceneInfoList* info = getFirstList();
 			if (!info) {
-				JUT_PANICLINE(872, "can\'t create New SceneInfoList.\n");
+				JUT_PANICLINE(872, "can't create New SceneInfoList.\n");
 			} else {
 				info->del();
 				og::Screen::DispMemberBase* disp = scene->mDispMember;

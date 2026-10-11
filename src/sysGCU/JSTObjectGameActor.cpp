@@ -128,7 +128,7 @@ void ObjectGameActor::update()
 		mDoExtraSetTranslate = true;
 		break;
 	case 4:
-		JUT_PANICLINE(365, "DON\'T USE [SRT_COMMAND_GOTO]\n");
+		JUT_PANICLINE(365, "DON'T USE [SRT_COMMAND_GOTO]\n");
 		if (mapMgr) {
 			mTranslation2.y = mapMgr->getMinY(mTranslation2);
 		}
