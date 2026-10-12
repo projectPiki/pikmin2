@@ -450,9 +450,7 @@ const char* TProcessor::process_onSelect_limited_(TProcessor* processor)
 	TProcess::TProcessData& pdata = processor->mProcess.mData;
 
 	u16* puOffset = (u16*)pdata.mOffset;
-	// clang-format off
 	u16 uData     = JGadget::binary::TParseValue<JGadget::binary::TParseValue_endian_big_<u16> >::parse(puOffset);
-	// clang-format on
 
 	pdata.mOffset = (void*)(puOffset + 1);
 	return &pdata.mBase[uData];
@@ -468,9 +466,7 @@ const char* TProcessor::process_onSelect_(TProcessor* processor)
 	TProcess::TProcessData& pdata = processor->mProcess.mData;
 
 	u32* puOffset = (u32*)pdata.mOffset;
-	// clang-format off
 	u32 uData     = JGadget::binary::TParseValue<JGadget::binary::TParseValue_endian_big_<u32> >::parse(puOffset);
-	// clang-format on
 
 	pdata.mOffset = (void*)(puOffset + 1);
 	return &pdata.mBase[uData];

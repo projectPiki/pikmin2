@@ -211,9 +211,7 @@ struct TVector {
 	vector::ExtendFunc mExtend; // _14
 };
 
-// clang-format off
 struct TVector_pointer_void : public TVector<void*, TAllocator<void*> > {
-	// clang-format on
 	TVector_pointer_void(const JGadget::TAllocator<void*>& allocator);
 	TVector_pointer_void(u32, void* const&, const JGadget::TAllocator<void*>& allocator); // unused/inlined
 
@@ -258,9 +256,7 @@ struct TVector_pointer : public TVector_pointer_void {
 	// _00-_18 = TVector_pointer_void
 };
 
-// clang-format off
 typedef JGadget::TVector<void*, JGadget::TAllocator<void*> > TVPVBase;
-// clang-format on
 
 // template <>
 // void TVPVBase::insert(void** values, u32 count, void* const& defaultValue)

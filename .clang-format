@@ -1,4 +1,5 @@
 Language: Cpp
+Standard: Cpp03
 
 BasedOnStyle: WebKit
 ColumnLimit: 140
