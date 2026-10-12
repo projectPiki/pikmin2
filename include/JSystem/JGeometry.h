@@ -564,9 +564,7 @@ struct TBox {
 };
 
 template <>
-// clang-format off
 struct TBox<TVec2<f32> > {
-	// clang-format on
 	inline f32 getWidth() const { return f.x - i.x; }
 	inline f32 getHeight() const { return f.y - i.y; }
 
@@ -580,9 +578,7 @@ struct TBox<TVec2<f32> > {
 		f.add(pos);
 	}
 
-	// clang-format off
 	bool intersect(const TBox<TVec2<f32> >& other)
-	// clang-format on
 	{
 		i.setMax(other.i);
 		f.setMin(other.f);
@@ -593,9 +589,7 @@ struct TBox<TVec2<f32> > {
 };
 
 template <typename T>
-// clang-format off
 struct TBox2 : TBox<TVec2<T> > {
-	// clang-format on
 	TBox2() { }
 	// TBox2(const TBox2& other) { set(other); }
 	TBox2(const TVec2<T>& i_, const TVec2<T>& f_)
@@ -727,9 +721,7 @@ template <typename T>
 struct TRotation3 { };
 
 template <typename T>
-// clang-format off
 class TRotation3<SMatrix33C<T> > {
-	// clang-format on
 public:
 	inline void getEulerXYZ(TVec3<T>& vec) const
 	{
@@ -749,9 +741,7 @@ public:
 	SMatrix33C<T> mtx;
 };
 
-// clang-format off
 typedef TRotation3<SMatrix33C<f64> > TRotation3D;
-// clang-format on
 
 } // namespace JGeometry
 
