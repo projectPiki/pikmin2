@@ -11,9 +11,6 @@ VERBOSE ?= 0
 # If MAPGENFLAG set to 1, tells LDFLAGS to generate a mapfile, which makes linking take several minutes.
 MAPGENFLAG ?= 0
 
-# Use the all-in-one updater after successful build? (Fails on non-windows platforms)
-USE_AOI ?= 0
-
 ifeq ($(VERBOSE),0)
   QUIET := @
 endif
@@ -39,18 +36,6 @@ else
     $(error Unsupported VERSION: $(VERSION))
 endif
 
-# Use the all-in-one updater after successful build? (Fails on non-windows platforms)
-ifeq ($(USE_AOI), 1)
-  ifeq ($(WINDOWS), 1)
-  USE_AOI = 1
-  else
-  @echo "aoi.exe fails on non-windows platforms."
-  USE_AOI = 0
-  endif
-else
-USE_AOI = 0
-endif
-
 BUILD_DIR := build/$(NAME).$(VERSION)
 
 # Inputs
@@ -59,7 +44,6 @@ C_FILES := $(wildcard src/*.c)
 CPP_FILES := $(wildcard src/*.cpp)
 CPP_FILES += $(wildcard src/*.cp)
 LDSCRIPT := $(BUILD_DIR)/ldscript.lcf
-AOI := aoi.exe
 
 # Outputs
 DOL     := $(BUILD_DIR)/main.dol
@@ -161,9 +145,6 @@ $(DOL): $(ELF) | $(DTK)
 	$(QUIET) $(DTK) shasum -c sha1/$(NAME).$(VERSION).sha1
 ifneq ($(findstring -map,$(LDFLAGS)),)
 	$(QUIET) $(PYTHON) tools/calcprogress.py $(DOL) $(MAP)
-endif
-ifeq ($(USE_AOI),1)
-	./aoi.exe
 endif
 
 clean:
