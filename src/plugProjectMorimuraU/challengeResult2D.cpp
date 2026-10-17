@@ -261,115 +261,13 @@ void TMovePane::move()
 	JGeometry::TVec2f difference(mTargetVelocity.x - mVelocity.x, mTargetVelocity.y - mVelocity.y);
 	JGeometry::TVec2f acceleration;
 	acceleration.scale(difference, TChallengeResult::mAccel);
-	JGeometry::TVec2f velocity;
-	velocity.add(mVelocity, acceleration * TChallengeResult::mDemoSpeedUpRate);
-	mVelocity = velocity;
+	JGeometry::TVec2f velocity = mVelocity;
+	mVelocity.add(velocity, acceleration * TChallengeResult::mDemoSpeedUpRate);
 
 	mPaneGoal += mVelocity;
 	if (isReachToGoal()) {
 		mState = 3;
 	}
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	mr       r31, r3
-	bl       turn__Q28Morimura9TMovePaneFv
-	lfs      f3, 0x38(r31)
-	lfs      f0, lbl_8051F084@sda21(r2)
-	lfs      f2, mDemoSpeedUpRate__Q28Morimura16TChallengeResult@sda21(r13)
-	fcmpo    cr0, f3, f0
-	lfs      f1, mMoveSpeed__Q28Morimura16TChallengeResult@sda21(r13)
-	bge      lbl_803938B0
-	lfs      f0, lbl_8051F094@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fmuls    f0, f3, f0
-	fctiwz   f0, f0
-	stfd     f0, 8(r1)
-	lwz      r0, 0xc(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r3, r0
-	fneg     f0, f0
-	b        lbl_803938D4
-
-lbl_803938B0:
-	lfs      f0, lbl_8051F098@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fmuls    f0, f3, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x10(r1)
-	lwz      r0, 0x14(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r3, r0
-
-lbl_803938D4:
-	fmuls    f1, f1, f0
-	lfs      f0, lbl_8051F084@sda21(r2)
-	fmuls    f1, f2, f1
-	stfs     f1, 0x28(r31)
-	lfs      f2, 0x38(r31)
-	fcmpo    cr0, f2, f0
-	bge      lbl_803938F4
-	fneg     f2, f2
-
-lbl_803938F4:
-	lfs      f0, lbl_8051F098@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r4, r3, sincosTable___5JMath@l
-	lfs      f1, mMoveSpeed__Q28Morimura16TChallengeResult@sda21(r13)
-	fmuls    f0, f2, f0
-	lfs      f2, mDemoSpeedUpRate__Q28Morimura16TChallengeResult@sda21(r13)
-	mr       r3, r31
-	fctiwz   f0, f0
-	stfd     f0, 0x18(r1)
-	lwz      r0, 0x1c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	add      r4, r4, r0
-	lfs      f0, 4(r4)
-	fneg     f0, f0
-	fmuls    f0, f1, f0
-	fmuls    f0, f2, f0
-	stfs     f0, 0x2c(r31)
-	lfs      f0, 0x28(r31)
-	lfs      f5, 0x20(r31)
-	lfs      f1, 0x2c(r31)
-	lfs      f3, 0x24(r31)
-	fsubs    f0, f0, f5
-	lfs      f2, mAccel__Q28Morimura16TChallengeResult@sda21(r13)
-	fsubs    f1, f1, f3
-	lfs      f4, mDemoSpeedUpRate__Q28Morimura16TChallengeResult@sda21(r13)
-	fmuls    f0, f0, f2
-	fmuls    f1, f1, f2
-	fmuls    f0, f0, f4
-	fmuls    f2, f1, f4
-	fadds    f1, f5, f0
-	fadds    f0, f3, f2
-	stfs     f1, 0x20(r31)
-	stfs     f0, 0x24(r31)
-	lfs      f1, 0x18(r31)
-	lfs      f0, 0x20(r31)
-	fadds    f0, f1, f0
-	stfs     f0, 0x18(r31)
-	lfs      f1, 0x1c(r31)
-	lfs      f0, 0x24(r31)
-	fadds    f0, f1, f0
-	stfs     f0, 0x1c(r31)
-	bl       isReachToGoal__Q28Morimura9TMovePaneFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803939AC
-	li       r0, 3
-	stw      r0, 0x3c(r31)
-
-lbl_803939AC:
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /**
