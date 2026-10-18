@@ -742,151 +742,42 @@ void J2DWindow::drawFrameTexture(JUTTexture* texture, f32 x0, f32 y0, f32 width,
  */
 void J2DWindow::drawFrameTexture(JUTTexture* texture, f32 x0, f32 y0, bool doInvertU, bool doInvertV, bool doLoad)
 {
-	drawFrameTexture(texture, x0, y0, texture->getSizeX(), texture->getSizeY(), (int)doInvertU ? 0 : 0x8000, (int)doInvertV ? 0 : 0x8000,
-	                 (int)doInvertU ? 0x8000 : 0, (int)doInvertV ? 0x8000 : 0, doLoad);
-	/*
-	stwu     r1, -0x80(r1)
-	mflr     r0
-	stw      r0, 0x84(r1)
-	stfd     f31, 0x70(r1)
-	psq_st   f31, 120(r1), 0, qr0
-	stfd     f30, 0x60(r1)
-	psq_st   f30, 104(r1), 0, qr0
-	stfd     f29, 0x50(r1)
-	psq_st   f29, 88(r1), 0, qr0
-	stfd     f28, 0x40(r1)
-	psq_st   f28, 72(r1), 0, qr0
-	stw      r31, 0x3c(r1)
-	stw      r30, 0x38(r1)
-	stw      r29, 0x34(r1)
-	stw      r28, 0x30(r1)
-	mr       r31, r4
-	lwz      r4, 0x20(r4)
-	lis      r8, 0x4330
-	clrlwi.  r0, r7, 0x18
-	lhz      r7, 2(r4)
-	fmr      f29, f2
-	lhz      r4, 4(r4)
-	fmr      f28, f1
-	xoris    r7, r7, 0x8000
-	stw      r8, 0x18(r1)
-	xoris    r0, r4, 0x8000
-	stw      r7, 0x1c(r1)
-	mr       r28, r3
-	lfd      f2, lbl_80516880@sda21(r2)
-	mr       r30, r5
-	lfd      f0, 0x18(r1)
-	mr       r29, r6
-	stw      r0, 0x24(r1)
-	fsubs    f1, f0, f2
-	stw      r8, 0x20(r1)
-	lfd      f0, 0x20(r1)
-	fadds    f30, f28, f1
-	fsubs    f0, f0, f2
-	fadds    f31, f29, f0
-	beq      lbl_80044404
-	mr       r3, r31
-	li       r4, 0
-	bl       load__10JUTTextureF11_GXTexMapID
-	lwz      r0, 0x138(r28)
-	mr       r3, r28
-	mr       r4, r31
-	addi     r5, r1, 0xc
-	stw      r0, 0x10(r1)
-	addi     r6, r1, 0x10
-	lwz      r0, 0x13c(r28)
-	stw      r0, 0xc(r1)
-	bl setTevMode__9J2DWindowFP10JUTTextureQ28JUtility6TColorQ28JUtility6TColor
+	f32 y1, x1;
+	x1 = x0 + texture->getSizeX();
+	y1 = y0 + texture->getSizeY();
+	if (doLoad) {
+		texture->load(GX_TEXMAP0), setTevMode(texture, mBlack, mWhite);
+	}
 
-lbl_80044404:
-	lbz      r5, 0xb3(r28)
-	li       r0, -256
-	li       r3, 0
-	li       r4, 9
-	or       r0, r5, r0
-	li       r5, 1
-	stw      r0, 8(r1)
-	li       r6, 4
-	li       r7, 0
-	bl       GXSetVtxAttrFmt
-	li       r3, 0x80
-	li       r4, 0
-	li       r5, 4
-	bl       GXBegin
-	lis      r31, 0xCC008000@ha
-	clrlwi   r3, r30, 0x18
-	stfs     f28, 0xCC008000@l(r31)
-	neg      r0, r3
-	or       r11, r0, r3
-	clrlwi   r3, r29, 0x18
-	stfs     f29, -0x8000(r31)
-	lis      r4, 0x00008000@ha
-	lfs      f0, lbl_80516890@sda21(r2)
-	neg      r0, r3
-	lwz      r12, 8(r1)
-	srawi    r5, r11, 0x1f
-	stfs     f0, -0x8000(r31)
-	addi     r10, r4, 0x00008000@l
-	or       r9, r0, r3
-	li       r3, 0
-	stw      r12, -0x8000(r31)
-	and      r5, r10, r5
-	srawi    r0, r9, 0x1f
-	li       r4, 9
-	sth      r5, -0x8000(r31)
-	and      r0, r10, r0
-	srawi    r6, r11, 0x1f
-	li       r5, 1
-	sth      r0, -0x8000(r31)
-	srawi    r0, r9, 0x1f
-	srawi    r8, r11, 0x1f
-	andc     r30, r10, r6
-	stfs     f30, -0x8000(r31)
-	srawi    r7, r9, 0x1f
-	srawi    r6, r11, 0x1f
-	and      r11, r10, r0
-	stfs     f29, -0x8000(r31)
-	srawi    r0, r9, 0x1f
-	andc     r8, r10, r8
-	andc     r9, r10, r7
-	stfs     f0, -0x8000(r31)
-	and      r29, r10, r6
-	andc     r0, r10, r0
-	li       r6, 3
-	stw      r12, -0x8000(r31)
-	li       r7, 0
-	sth      r30, -0x8000(r31)
-	sth      r11, -0x8000(r31)
-	stfs     f30, -0x8000(r31)
-	stfs     f31, -0x8000(r31)
-	stfs     f0, -0x8000(r31)
-	stw      r12, -0x8000(r31)
-	sth      r8, -0x8000(r31)
-	sth      r9, -0x8000(r31)
-	stfs     f28, -0x8000(r31)
-	stfs     f31, -0x8000(r31)
-	stfs     f0, -0x8000(r31)
-	stw      r12, -0x8000(r31)
-	sth      r29, -0x8000(r31)
-	sth      r0, -0x8000(r31)
-	bl       GXSetVtxAttrFmt
-	psq_l    f31, 120(r1), 0, qr0
-	lfd      f31, 0x70(r1)
-	psq_l    f30, 104(r1), 0, qr0
-	lfd      f30, 0x60(r1)
-	psq_l    f29, 88(r1), 0, qr0
-	lfd      f29, 0x50(r1)
-	psq_l    f28, 72(r1), 0, qr0
-	lfd      f28, 0x40(r1)
-	lwz      r31, 0x3c(r1)
-	lwz      r30, 0x38(r1)
-	lwz      r29, 0x34(r1)
-	lwz      r0, 0x84(r1)
-	lwz      r28, 0x30(r1)
-	mtlr     r0
-	addi     r1, r1, 0x80
-	blr
-	*/
+	const JUtility::TColor& color = JUtility::TColor(mColorAlpha | 0xFFFFFF00);
+	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
+
+	f32 z = 0.0f;
+
+	const u16 texMin = 0;
+	const u16 texMax = 0x8000;
+	GXBegin(GX_QUADS, GX_VTXFMT0, 4);
+	GXPosition3f32(x0, y0, z);
+	GXColor1u32(color);
+	GX_WRITE_U16(doInvertU ? texMax : texMin);
+	GX_WRITE_U16(doInvertV ? texMax : texMin);
+
+	GXPosition3f32(x1, y0, z);
+	GXColor1u32(color);
+	GX_WRITE_U16(doInvertU ? texMin : texMax);
+	GX_WRITE_U16(doInvertV ? texMax : texMin);
+
+	GXPosition3f32(x1, y1, z);
+	GXColor1u32(color);
+	GX_WRITE_U16(doInvertU ? texMin : texMax);
+	GX_WRITE_U16(doInvertV ? texMin : texMax);
+
+	GXPosition3f32(x0, y1, z);
+	GXColor1u32(color);
+	GX_WRITE_U16(doInvertU ? texMax : texMin);
+	GX_WRITE_U16(doInvertV ? texMin : texMax);
+
+	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_S16, 0);
 }
 
 /**
