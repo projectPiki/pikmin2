@@ -349,7 +349,6 @@ J3DPatchedMaterial* J3DMaterialFactory::createPatchedMaterial(J3DMaterial* mater
 /**
  * @note Address: 0x8006DADC
  * @note Size: 0x1A4
- * TODO: texGenNumIndex is probably from a const function. bit shifts need fixing.
  */
 void J3DMaterialFactory::modifyPatchedCurrentMtx(J3DMaterial* material, int matID) const
 {
@@ -361,121 +360,6 @@ void J3DMaterialFactory::modifyPatchedCurrentMtx(J3DMaterial* material, int matI
 	material->mCurrentMtx.setCurrentTexMtx(coords[0].getTexGenMtx(), coords[1].getTexGenMtx(), coords[2].getTexGenMtx(),
 	                                       coords[3].getTexGenMtx(), coords[4].getTexGenMtx(), coords[5].getTexGenMtx(),
 	                                       coords[6].getTexGenMtx(), coords[7].getTexGenMtx());
-	/*
-	stwu     r1, -0x60(r1)
-	mflr     r0
-	lis      r6, j3dDefaultTexCoordInfo@ha
-	stw      r0, 0x64(r1)
-	slwi     r0, r5, 1
-	addi     r6, r6, j3dDefaultTexCoordInfo@l
-	stmw     r27, 0x4c(r1)
-	mr       r29, r3
-	lwz      r3, 8(r3)
-	mr       r31, r5
-	mr       r30, r4
-	lwz      r5, 4(r29)
-	lhzx     r0, r3, r0
-	lbz      r7, 2(r6)
-	mulli    r3, r0, 0x14c
-	lbz      r4, 0(r6)
-	lbz      r6, 1(r6)
-	stb      r4, 0x10(r1)
-	addi     r0, r3, 3
-	lbzx     r0, r5, r0
-	stb      r6, 0x11(r1)
-	cmplwi   r0, 0xff
-	stb      r7, 0x12(r1)
-	sth      r7, 0x14(r1)
-	stb      r4, 0x16(r1)
-	stb      r6, 0x17(r1)
-	stb      r7, 0x18(r1)
-	sth      r7, 0x1a(r1)
-	stb      r4, 0x1c(r1)
-	stb      r6, 0x1d(r1)
-	stb      r7, 0x1e(r1)
-	sth      r7, 0x20(r1)
-	stb      r4, 0x22(r1)
-	stb      r6, 0x23(r1)
-	stb      r7, 0x24(r1)
-	sth      r7, 0x26(r1)
-	stb      r4, 0x28(r1)
-	stb      r6, 0x29(r1)
-	stb      r7, 0x2a(r1)
-	sth      r7, 0x2c(r1)
-	stb      r4, 0x2e(r1)
-	stb      r6, 0x2f(r1)
-	stb      r7, 0x30(r1)
-	sth      r7, 0x32(r1)
-	stb      r4, 0x34(r1)
-	stb      r6, 0x35(r1)
-	stb      r7, 0x36(r1)
-	sth      r7, 0x38(r1)
-	stb      r4, 0x3a(r1)
-	stb      r6, 0x3b(r1)
-	stb      r7, 0x3c(r1)
-	sth      r7, 0x3e(r1)
-	beq      lbl_8006DBBC
-	lwz      r3, 0x24(r29)
-	lbzx     r28, r3, r0
-	b        lbl_8006DBC0
-
-lbl_8006DBBC:
-	li       r28, 0
-
-lbl_8006DBC0:
-	li       r27, 0
-	b        lbl_8006DC04
-
-lbl_8006DBC8:
-	mr       r4, r29
-	mr       r5, r31
-	addi     r3, r1, 8
-	bl       newTexCoord__18J3DMaterialFactoryCFii
-	clrlwi   r0, r27, 0x18
-	addi     r6, r1, 0x10
-	mulli    r4, r0, 6
-	lbz      r5, 8(r1)
-	lbz      r3, 9(r1)
-	addi     r27, r27, 1
-	lbz      r0, 0xa(r1)
-	add      r6, r6, r4
-	stb      r5, 0(r6)
-	stb      r3, 1(r6)
-	stb      r0, 2(r6)
-
-lbl_8006DC04:
-	clrlwi   r6, r27, 0x18
-	cmplw    r6, r28
-	blt      lbl_8006DBC8
-	lbz      r3, 0x12(r1)
-	lbz      r0, 0x18(r1)
-	lbz      r4, 0x1e(r1)
-	slwi     r3, r3, 6
-	slwi     r0, r0, 0xc
-	lbz      r7, 0x30(r1)
-	lbz      r5, 0x24(r1)
-	slwi     r4, r4, 0x12
-	or       r0, r3, r0
-	lbz      r3, 0x36(r1)
-	lbz      r6, 0x3c(r1)
-	slwi     r5, r5, 0x18
-	or       r4, r4, r0
-	lbz      r8, 0x2a(r1)
-	rlwinm   r0, r7, 6, 0x12, 0x19
-	rlwinm   r3, r3, 0xc, 0xc, 0x13
-	or       r5, r5, r4
-	rlwinm   r4, r6, 0x12, 6, 0xd
-	or       r0, r8, r0
-	stw      r5, 0x40(r30)
-	or       r0, r3, r0
-	or       r0, r4, r0
-	stw      r0, 0x44(r30)
-	lmw      r27, 0x4c(r1)
-	lwz      r0, 0x64(r1)
-	mtlr     r0
-	addi     r1, r1, 0x60
-	blr
-	*/
 }
 
 /**
