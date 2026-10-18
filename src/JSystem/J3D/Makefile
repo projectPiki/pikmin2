@@ -5,14 +5,14 @@ J3D_FILES:=\
 	$(BUILD_DIR)/src/JSystem/J3D/J3DPacket.o\
 	$(BUILD_DIR)/src/JSystem/J3D/J3DShape.o\
 	$(BUILD_DIR)/src/JSystem/J3D/J3DMaterial.o\
-	$(BUILD_DIR)/asm/JSystem/J3D/J3DTevs.o\
+	$(BUILD_DIR)/src/JSystem/J3D/J3DTevs.o\
 	$(BUILD_DIR)/src/JSystem/J3D/J3DDrawBuffer.o\
 	$(BUILD_DIR)/src/JSystem/J3D/J3DModel.o\
 	$(BUILD_DIR)/src/JSystem/J3D/J3DAnimation.o\
 	$(BUILD_DIR)/src/JSystem/J3D/J3DMaterialAnm.o\
 	$(BUILD_DIR)/src/JSystem/J3D/J3DCluster.o\
 	$(BUILD_DIR)/src/JSystem/J3D/J3DJoint.o\
-	$(BUILD_DIR)/asm/JSystem/J3D/J3DMaterialFactory.o\
+	$(BUILD_DIR)/src/JSystem/J3D/J3DMaterialFactory.o\
 	$(BUILD_DIR)/src/JSystem/J3D/J3DBinaryFormat.o\
 	$(BUILD_DIR)/src/JSystem/J3D/J3DModelLoader.o\
 	$(BUILD_DIR)/src/JSystem/J3D/J3DJointFactory.o\
@@ -29,7 +29,7 @@ J3D_FILES:=\
 	$(BUILD_DIR)/src/JSystem/J3D/J3DJointTree.o\
 	$(BUILD_DIR)/src/JSystem/J3D/J3DSkinDeform.o\
 	$(BUILD_DIR)/src/JSystem/J3D/J3DShapeDraw.o\
-	$(BUILD_DIR)/asm/JSystem/J3D/J3DMtxBuffer.o\
+	$(BUILD_DIR)/src/JSystem/J3D/J3DMtxBuffer.o\
 	$(BUILD_DIR)/src/JSystem/J3D/J3DShapeTable.o\
 
 DEPENDS += $(J3D_FILES:.o=.d)

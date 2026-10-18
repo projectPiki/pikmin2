@@ -46,7 +46,7 @@ MORIMURA_FILES:=\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/shijimiChouMgr.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/shijimiChou.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/challengeSelect2D.o\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/challengeResult2D.o\
+	$(BUILD_DIR)/src/plugProjectMorimuraU/challengeResult2D.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/vsSelect2D.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/mrUtil.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/scrollList.o\

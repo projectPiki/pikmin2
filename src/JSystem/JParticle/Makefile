@@ -10,7 +10,7 @@ JPARTICLE_FILES:=\
 	$(BUILD_DIR)/src/JSystem/JParticle/JPAKeyBlock.o\
 	$(BUILD_DIR)/src/JSystem/JParticle/JPAMath.o\
 	$(BUILD_DIR)/src/JSystem/JParticle/JPAParticle.o\
-	$(BUILD_DIR)/asm/JSystem/JParticle/JPAResource.o\
+	$(BUILD_DIR)/src/JSystem/JParticle/JPAResource.o\
 	$(BUILD_DIR)/src/JSystem/JParticle/JPAResourceLoader.o\
 	$(BUILD_DIR)/src/JSystem/JParticle/JPAResourceManager.o\
 	$(BUILD_DIR)/src/JSystem/JParticle/JPATexture.o\
