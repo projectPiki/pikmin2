@@ -759,7 +759,13 @@ extern const J3DTexCoordInfo j3dDefaultTexCoordInfo[8];
 struct J3DTexCoord : public J3DTexCoordInfo {
 	J3DTexCoord()
 	{
-		*(J3DTexCoordInfo*)this = j3dDefaultTexCoordInfo[0];
+		const J3DTexCoordInfo& info = j3dDefaultTexCoordInfo[0];
+		u32 type                    = info.mTexGenType;
+		mTexGenType                 = type;
+		u32 source                  = info.mTexGenSrc;
+		mTexGenSrc                  = source;
+		u32 matrix                  = info.mTexGenMtx;
+		mTexGenMtx                  = matrix;
 		resetTexMtxReg();
 	}
 	J3DTexCoord(const J3DTexCoordInfo& info)

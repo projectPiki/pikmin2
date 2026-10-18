@@ -239,7 +239,7 @@ void J3DModel::calcDiffTexMtx()
 {
 	u16 i;
 	j3dSys.mModel = this;
-	u32 count     = getModelData()->getMaterialNum();
+	u32 count     = getModelData()->getMaterialTable().getMaterialNum();
 	for (i = 0; i < count; i++) {
 		j3dSys.mMatPacket     = getMatPacket(i);
 		J3DMaterial* material = mModelData->getMaterialNodePointer(i);
