@@ -470,7 +470,7 @@ config.libs = [
             Object(Matching, "JSystem/J2D/J2DPrint.cpp"),
             Object(Matching, "JSystem/J2D/J2DScreen.cpp"),
             Object(Matching, "JSystem/J2D/J2DTextBox.cpp"),
-            Object(Equivalent, "JSystem/J2D/J2DWindow.cpp"),
+            Object(Matching, "JSystem/J2D/J2DWindow.cpp"),
             Object(Matching, "JSystem/J2D/J2DWindowEx.cpp"),
             Object(Matching, "JSystem/J2D/J2DAnmLoader.cpp"),
             Object(Matching, "JSystem/J2D/J2DBloSaver.cpp"),
