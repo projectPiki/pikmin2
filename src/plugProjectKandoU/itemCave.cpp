@@ -321,7 +321,8 @@ u32 Item::getCaveOtakaraNum()
 {
 	CourseInfo* info = gameSystem->mSection->getCurrentCourseInfo();
 	if (info) {
-		return playData->getOtakaraNum_Course_CaveID(info->mCourseIndex, mCaveID);
+		int otakaraNum = playData->getOtakaraNum_Course_CaveID(info->mCourseIndex, mCaveID);
+		return otakaraNum;
 	} else {
 		return -1;
 	}
@@ -374,144 +375,9 @@ void Item::doDirectDraw(Graphics& gfx)
 	Vector3f pos = getPosition();
 	pos.y += 60.0f;
 
-	int otaNum = getCaveOtakaraNum();
-	int otaMax = getCaveOtakaraMax();
+	u32 otaNum = getCaveOtakaraNum();
+	u32 otaMax = getCaveOtakaraMax();
 	gfx.perspPrintf(info, pos, "%s %d/%d", mCaveID.getStr(), otaNum, otaMax);
-
-	/*
-	stwu     r1, -0x80(r1)
-	mflr     r0
-	stw      r0, 0x84(r1)
-	stw      r31, 0x7c(r1)
-	mr       r31, r4
-	li       r4, 0
-	stw      r30, 0x78(r1)
-	mr       r30, r3
-	mr       r3, r31
-	stw      r29, 0x74(r1)
-	bl       initPrimDraw__8GraphicsFP7Matrixf
-	addi     r3, r30, 0x138
-	addi     r4, r1, 0x3c
-	bl       PSMTXCopy
-	lfs      f1, 0x58(r1)
-	li       r3, 0x28
-	lfs      f0, lbl_80519A78@sda21(r2)
-	li       r4, 0
-	fadds    f1, f1, f0
-	lfs      f0, 0x48(r1)
-	stfs     f0, 0x48(r1)
-	stfs     f1, 0x58(r1)
-	bl       GXSetLineWidth
-	lfs      f1, lbl_80519A3C@sda21(r2)
-	mr       r3, r31
-	addi     r4, r1, 0x3c
-	bl       drawAxis__8GraphicsFfP7Matrixf
-	lwz      r3, systemFont__9JFWSystem@sda21(r13)
-	li       r6, 0
-	li       r0, 0xff
-	li       r5, 0x66
-	lfs      f0, lbl_805199F4@sda21(r2)
-	li       r4, 0x99
-	stw      r3, 0x20(r1)
-	mr       r3, r31
-	stw      r6, 0x24(r1)
-	stw      r6, 0x28(r1)
-	stw      r6, 0x2c(r1)
-	stfs     f0, 0x30(r1)
-	stb      r5, 0x34(r1)
-	stb      r4, 0x35(r1)
-	stb      r0, 0x36(r1)
-	stb      r0, 0x37(r1)
-	stb      r6, 0x38(r1)
-	stb      r5, 0x39(r1)
-	stb      r0, 0x3a(r1)
-	stb      r0, 0x3b(r1)
-	lwz      r4, 0x25c(r31)
-	bl       initPerspPrintf__8GraphicsFP8Viewport
-	lfs      f0, lbl_805199F4@sda21(r2)
-	li       r7, 0xa
-	li       r6, 0xc8
-	li       r5, 0xff
-	li       r0, 0
-	stb      r7, 0x34(r1)
-	mr       r4, r30
-	addi     r3, r1, 8
-	stb      r6, 0x35(r1)
-	stb      r7, 0x36(r1)
-	stb      r5, 0x37(r1)
-	stb      r0, 0x38(r1)
-	stb      r6, 0x39(r1)
-	stb      r0, 0x3a(r1)
-	stb      r5, 0x3b(r1)
-	stfs     f0, 0x30(r1)
-	lwz      r12, 0(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 0xc(r1)
-	lfs      f0, lbl_80519A7C@sda21(r2)
-	lfs      f3, 8(r1)
-	lfs      f1, 0x10(r1)
-	fadds    f0, f2, f0
-	stfs     f2, 0x18(r1)
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	stfs     f3, 0x14(r1)
-	stfs     f1, 0x1c(r1)
-	stfs     f0, 0x18(r1)
-	lwz      r3, 0x58(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x7c(r12)
-	mtctr    r12
-	bctrl
-	or.      r4, r3, r3
-	beq      lbl_801EB1E8
-	lwz      r3, playData__4Game@sda21(r13)
-	addi     r5, r30, 0x1e8
-	lwz      r4, 0x48(r4)
-	bl       getOtakaraNum_Course_CaveID__Q24Game8PlayDataFiR4ID32
-	mr       r29, r3
-	b        lbl_801EB1EC
-
-lbl_801EB1E8:
-	li       r29, -1
-
-lbl_801EB1EC:
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	lwz      r3, 0x58(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x7c(r12)
-	mtctr    r12
-	bctrl
-	or.      r4, r3, r3
-	beq      lbl_801EB224
-	lwz      r3, playData__4Game@sda21(r13)
-	addi     r5, r30, 0x1e8
-	lwz      r4, 0x48(r4)
-	bl       getOtakaraMax_Course_CaveID__Q24Game8PlayDataFiR4ID32
-	mr       r9, r3
-	b        lbl_801EB228
-
-lbl_801EB224:
-	li       r9, -1
-
-lbl_801EB228:
-	lis      r4, lbl_80480FF4@ha
-	mr       r3, r31
-	addi     r6, r4, lbl_80480FF4@l
-	mr       r8, r29
-	addi     r4, r1, 0x20
-	addi     r5, r1, 0x14
-	addi     r7, r30, 0x1e8
-	crclr    6
-	bl       "perspPrintf__8GraphicsFR15PerspPrintfInfoR10Vector3<f>Pce"
-	lwz      r0, 0x84(r1)
-	lwz      r31, 0x7c(r1)
-	lwz      r30, 0x78(r1)
-	lwz      r29, 0x74(r1)
-	mtlr     r0
-	addi     r1, r1, 0x80
-	blr
-	*/
 }
 
 /**

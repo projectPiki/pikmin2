@@ -200,173 +200,6 @@ int J3DMtxBuffer::createBumpMtxArray(J3DModelData* data, u32 viewNum)
 		}
 	}
 	return JET_Success;
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stmw     r20, 0x10(r1)
-	mr       r26, r4
-	mr       r25, r3
-	mr       r27, r5
-	lwz      r0, 0x1c(r4)
-	cmplwi   r0, 0
-	bne      lbl_80088DF4
-	lhz      r28, 0x5c(r26)
-	li       r20, 0
-	li       r31, 0
-	li       r21, 0
-	b        lbl_80088C74
-
-lbl_80088C34:
-	lwz      r3, 0x60(r26)
-	rlwinm   r0, r21, 2, 0xe, 0x1d
-	lwzx     r29, r3, r0
-	lwz      r3, 0x28(r29)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x5c(r12)
-	mtctr    r12
-	bctrl
-	lbz      r0, 0(r3)
-	cmplwi   r0, 1
-	bne      lbl_80088C70
-	lwz      r3, 8(r29)
-	bl       countBumpMtxNum__8J3DShapeCFv
-	add      r20, r20, r3
-	addi     r31, r31, 1
-
-lbl_80088C70:
-	addi     r21, r21, 1
-
-lbl_80088C74:
-	clrlwi   r0, r21, 0x10
-	cmplw    r0, r28
-	blt      lbl_80088C34
-	clrlwi.  r0, r20, 0x10
-	beq      lbl_80088CB8
-	cmplwi   r27, 0
-	beq      lbl_80088CB8
-	mr       r23, r25
-	rlwinm   r24, r31, 2, 0xe, 0x1d
-	li       r20, 0
-
-lbl_80088C9C:
-	mr       r3, r24
-	bl       __nwa__FUl
-	addi     r20, r20, 1
-	stw      r3, 0x24(r23)
-	cmpwi    r20, 2
-	addi     r23, r23, 4
-	blt      lbl_80088C9C
-
-lbl_80088CB8:
-	slwi     r20, r27, 2
-	mr       r21, r25
-	li       r30, 0
-
-lbl_80088CC4:
-	lhz      r24, 0x5c(r26)
-	li       r29, 0
-	li       r28, 0
-	li       r22, 0
-	b        lbl_80088D28
-
-lbl_80088CD8:
-	lwz      r3, 0x60(r26)
-	rlwinm   r0, r28, 2, 0xe, 0x1d
-	lwzx     r23, r3, r0
-	lwz      r3, 0x28(r23)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x5c(r12)
-	mtctr    r12
-	bctrl
-	lbz      r0, 0(r3)
-	cmplwi   r0, 1
-	bne      lbl_80088D24
-	mr       r3, r20
-	bl       __nwa__FUl
-	lwz      r4, 0x24(r21)
-	stwx     r3, r4, r22
-	addi     r22, r22, 4
-	lwz      r3, 8(r23)
-	stw      r29, 0x64(r3)
-	addi     r29, r29, 1
-
-lbl_80088D24:
-	addi     r28, r28, 1
-
-lbl_80088D28:
-	clrlwi   r0, r28, 0x10
-	cmplw    r0, r24
-	blt      lbl_80088CD8
-	addi     r30, r30, 1
-	addi     r21, r21, 4
-	cmpwi    r30, 2
-	blt      lbl_80088CC4
-	li       r24, 0
-	mr       r22, r25
-
-lbl_80088D4C:
-	lhz      r23, 0x5c(r26)
-	li       r25, 0
-	li       r21, 0
-	b        lbl_80088DC8
-
-lbl_80088D5C:
-	lwz      r3, 0x60(r26)
-	rlwinm   r0, r25, 2, 0xe, 0x1d
-	lwzx     r3, r3, r0
-	lwz      r3, 0x28(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x5c(r12)
-	mtctr    r12
-	bctrl
-	lbz      r0, 0(r3)
-	cmplwi   r0, 1
-	bne      lbl_80088DC4
-	li       r28, 0
-	li       r20, 0
-	b        lbl_80088DB8
-
-lbl_80088D94:
-	lhz      r0, 0x44(r26)
-	li       r4, 0x20
-	mulli    r3, r0, 0x24
-	bl       __nwa__FUli
-	lwz      r0, 0x24(r22)
-	addi     r28, r28, 1
-	lwzx     r4, r21, r0
-	stwx     r3, r4, r20
-	addi     r20, r20, 4
-
-lbl_80088DB8:
-	cmplw    r28, r27
-	blt      lbl_80088D94
-	addi     r21, r21, 4
-
-lbl_80088DC4:
-	addi     r25, r25, 1
-
-lbl_80088DC8:
-	clrlwi   r0, r25, 0x10
-	cmplw    r0, r23
-	blt      lbl_80088D5C
-	addi     r24, r24, 1
-	addi     r22, r22, 4
-	cmpwi    r24, 2
-	blt      lbl_80088D4C
-	clrlwi.  r0, r31, 0x10
-	beq      lbl_80088DF4
-	li       r0, 1
-	sth      r0, 0xc(r26)
-
-lbl_80088DF4:
-	lmw      r20, 0x10(r1)
-	li       r3, 0
-	lwz      r0, 0x44(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
 }
 
 /**
@@ -379,14 +212,14 @@ void J3DMtxBuffer::calcWeightEnvelopeMtx()
 	register Mtx* worldMtx;
 	register Mtx* invMtx;
 	register f32 weight;
+	int jointIdx;
 	int mixIdx;
 	int mixCount;
 	int envelopeIdx;
 	int envelopeCount;
 	u16* indices;
-	f32* weights;
+	register f32* weights;
 	u8* scaleFlags;
-	int jointIdx;
 	register f32 world0XY;
 	register f32 scratch0;
 	register f32 world1XY;
@@ -408,6 +241,7 @@ void J3DMtxBuffer::calcWeightEnvelopeMtx()
 	register f32 product1ZW;
 	register f32 product2XY;
 	register f32 unit01;
+	register f32 inverseRow2ZW;
 	register f32* unitData = J3DUnit01;
 	envelopeIdx            = -1;
 	envelopeCount          = mJointTree->getWEvlpMtxNum();
@@ -440,9 +274,9 @@ void J3DMtxBuffer::calcWeightEnvelopeMtx()
 			jointIdx = *++indices;
 			invMtx   = &mJointTree->getInvJointMtx((u16)jointIdx);
 			worldMtx = &mWorldMatrices[jointIdx];
-			weight   = *++weights;
 #ifdef __MWERKS__ // clang-format off
 			asm {
+				lfsu     weight, 4(weights)
 				psq_l    scratch0, 0(invMtx), 0, 0
 				psq_l    world0XY, 0(worldMtx), 0, 0
 				psq_l    world1XY, 16(worldMtx), 0, 0
@@ -465,7 +299,7 @@ void J3DMtxBuffer::calcWeightEnvelopeMtx()
 				ps_muls0 product0ZW, scratch1, world0XY
 				ps_muls0 product1ZW, scratch1, world1XY
 				ps_madds0 product2XY, inverseRow2, world2ZW, product2XY
-				psq_l    inverseRow2, 40(invMtx), 0, 0
+				psq_l    inverseRow2ZW, 40(invMtx), 0, 0
 				ps_madds0 sum0XY, product0XY, weight, sum0XY
 				ps_muls0 scratch1, scratch1, world2XY
 				ps_madds1 product0ZW, inverseRow1, world0XY, product0ZW
@@ -473,11 +307,11 @@ void J3DMtxBuffer::calcWeightEnvelopeMtx()
 				psq_st   sum0XY, 0(weightAnmMtx), 0, 0
 				ps_madds0 sum1XY, product1XY, weight, sum1XY
 				ps_madds1 scratch1, inverseRow1, world2XY, scratch1
-				ps_madds0 product0ZW, inverseRow2, scratch0, product0ZW
-				ps_madds0 product1ZW, inverseRow2, world1ZW, product1ZW
+				ps_madds0 product0ZW, inverseRow2ZW, scratch0, product0ZW
+				ps_madds0 product1ZW, inverseRow2ZW, world1ZW, product1ZW
 				psq_st   sum1XY, 16(weightAnmMtx), 0, 0
 				ps_madds0 sum2XY, product2XY, weight, sum2XY
-				ps_madds0 scratch1, inverseRow2, world2ZW, scratch1
+				ps_madds0 scratch1, inverseRow2ZW, world2ZW, scratch1
 				ps_madd  product0ZW, unit01, scratch0, product0ZW
 				psq_st   sum2XY, 32(weightAnmMtx), 0, 0
 				ps_madd  product1ZW, unit01, world1ZW, product1ZW
@@ -500,150 +334,6 @@ void J3DMtxBuffer::calcWeightEnvelopeMtx()
 		}
 #endif // clang-format on
 	}
-	/*
-	stwu     r1, -0xa0(r1)
-	stfd     f31, 0x90(r1)
-	psq_st   f31, 152(r1), 0, qr0
-	stfd     f30, 0x80(r1)
-	psq_st   f30, 136(r1), 0, qr0
-	stfd     f29, 0x70(r1)
-	psq_st   f29, 120(r1), 0, qr0
-	stfd     f28, 0x60(r1)
-	psq_st   f28, 104(r1), 0, qr0
-	stfd     f27, 0x50(r1)
-	psq_st   f27, 88(r1), 0, qr0
-	stfd     f26, 0x40(r1)
-	psq_st   f26, 72(r1), 0, qr0
-	stfd     f25, 0x30(r1)
-	psq_st   f25, 56(r1), 0, qr0
-	stfd     f24, 0x20(r1)
-	psq_st   f24, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	addi     r4, r13, J3DUnit01@sda21
-	lwz      r6, 0(r3)
-	psq_l    f24, 0(r4), 0, qr0
-	li       r31, -1
-	lwz      r5, 0x24(r6)
-	li       r8, -48
-	lwz      r4, 0x28(r6)
-	ps_merge00 f11, f24, f24
-	ps_merge00 f13, f24, f24
-	lhz      r7, 0x1e(r6)
-	ps_merge00 f30, f24, f24
-	addi     r30, r5, -2
-	addi     r29, r4, -4
-	b        lbl_80088FC8
-
-lbl_80088E94:
-	lwz      r6, 8(r3)
-	li       r4, 1
-	ps_merge00 f10, f24, f24
-	clrlwi   r0, r31, 0x10
-	stbx     r4, r6, r31
-	ps_merge00 f12, f24, f24
-	ps_merge00 f31, f24, f24
-	li       r11, 0
-	lwz      r4, 0(r3)
-	lwz      r5, 0x10(r3)
-	lwz      r4, 0x20(r4)
-	add      r9, r5, r8
-	lbzx     r12, r4, r0
-
-lbl_80088EC8:
-	lhzu     r10, 2(r30)
-	addi     r11, r11, 1
-	lwz      r5, 0(r3)
-	cmpw     r11, r12
-	mulli    r4, r10, 0x30
-	lwz      r0, 0xc(r3)
-	lwz      r5, 0x2c(r5)
-	lfsu     f0, 4(r29)
-	add      r5, r5, r4
-	add      r4, r0, r4
-	psq_l    f2, 0(r5), 0, qr0
-	psq_l    f1, 0(r4), 0, qr0
-	psq_l    f3, 16(r4), 0, qr0
-	ps_muls0 f29, f2, f1
-	psq_l    f8, 16(r5), 0, qr0
-	ps_muls0 f27, f2, f3
-	psq_l    f5, 32(r4), 0, qr0
-	psq_l    f7, 8(r5), 0, qr0
-	ps_muls0 f25, f2, f5
-	ps_madds1 f29, f8, f1, f29
-	psq_l    f9, 32(r5), 0, qr0
-	psq_l    f2, 8(r4), 0, qr0
-	ps_madds1 f27, f8, f3, f27
-	psq_l    f4, 24(r4), 0, qr0
-	ps_madds0 f29, f9, f2, f29
-	ps_madds1 f25, f8, f5, f25
-	psq_l    f6, 40(r4), 0, qr0
-	ps_madds0 f27, f9, f4, f27
-	psq_l    f8, 24(r5), 0, qr0
-	ps_muls0 f28, f7, f1
-	ps_muls0 f26, f7, f3
-	ps_madds0 f25, f9, f6, f25
-	psq_l    f9, 40(r5), 0, qr0
-	ps_madds0 f10, f29, f0, f10
-	ps_muls0 f7, f7, f5
-	ps_madds1 f28, f8, f1, f28
-	ps_madds1 f26, f8, f3, f26
-	psq_st   f10, 0(r9), 0, qr0
-	ps_madds0 f12, f27, f0, f12
-	ps_madds1 f7, f8, f5, f7
-	ps_madds0 f28, f9, f2, f28
-	ps_madds0 f26, f9, f4, f26
-	psq_st   f12, 16(r9), 0, qr0
-	ps_madds0 f31, f25, f0, f31
-	ps_madds0 f7, f9, f6, f7
-	ps_madd  f28, f24, f2, f28
-	psq_st   f31, 32(r9), 0, qr0
-	ps_madd  f26, f24, f4, f26
-	ps_madd  f7, f24, f6, f7
-	lwz      r4, 4(r3)
-	ps_madds0 f11, f28, f0, f11
-	lbzx     r5, r6, r31
-	ps_madds0 f13, f26, f0, f13
-	lbzx     r0, r4, r10
-	ps_madds0 f30, f7, f0, f30
-	and      r0, r5, r0
-	stbx     r0, r6, r31
-	blt      lbl_80088EC8
-	psq_st   f11, 8(r9), 0, qr0
-	ps_merge00 f11, f24, f24
-	psq_st   f13, 24(r9), 0, qr0
-	ps_merge00 f13, f24, f24
-	psq_st   f30, 40(r9), 0, qr0
-	ps_merge00 f30, f24, f24
-
-lbl_80088FC8:
-	addi     r31, r31, 1
-	addi     r8, r8, 0x30
-	cmpw     r31, r7
-	blt      lbl_80088E94
-	psq_l    f31, 152(r1), 0, qr0
-	lfd      f31, 0x90(r1)
-	psq_l    f30, 136(r1), 0, qr0
-	lfd      f30, 0x80(r1)
-	psq_l    f29, 120(r1), 0, qr0
-	lfd      f29, 0x70(r1)
-	psq_l    f28, 104(r1), 0, qr0
-	lfd      f28, 0x60(r1)
-	psq_l    f27, 88(r1), 0, qr0
-	lfd      f27, 0x50(r1)
-	psq_l    f26, 72(r1), 0, qr0
-	lfd      f26, 0x40(r1)
-	psq_l    f25, 56(r1), 0, qr0
-	lfd      f25, 0x30(r1)
-	psq_l    f24, 40(r1), 0, qr0
-	lfd      f24, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	addi     r1, r1, 0xa0
-	blr
-	*/
 }
 
 /**

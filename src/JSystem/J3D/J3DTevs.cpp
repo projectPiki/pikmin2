@@ -467,14 +467,15 @@ void makeTexCoordTable()
 	};
 
 	size_t idx;
+	int i;
 	int j;
 	int k;
 
-	for (u32 i = 0; i < 11; i++) {
+	for (i = 0; i < 11u; i++) {
 		for (j = 0; j < 21u; j++) {
 			// 21u makes me think there's some sizeof() shenanigans
 			for (k = 0; k < 11; k++) {
-				idx = j * 11 + i * (11 * 21) + k;
+				idx = j * 11 + i * (11 * 21u) + k;
 
 				table[idx * 3 + 0] = i;
 				table[idx * 3 + 1] = j;
@@ -482,106 +483,6 @@ void makeTexCoordTable()
 			}
 		}
 	}
-	/*
-	stwu     r1, -0x40(r1)
-	lis      r3, lbl_804789A4@ha
-	addi     r8, r3, lbl_804789A4@l
-	lis      r4, j3dTexCoordTable@ha
-	stmw     r24, 0x20(r1)
-	addi     r29, r4, j3dTexCoordTable@l
-	li       r3, 0
-	li       r7, 0
-	lwz      r6, 0(r8)
-	lwz      r5, 4(r8)
-	lhz      r4, 8(r8)
-	lbz      r0, 0xa(r8)
-	stw      r6, 8(r1)
-	stw      r5, 0xc(r1)
-	sth      r4, 0x10(r1)
-	stb      r0, 0x12(r1)
-
-lbl_800655D8:
-	li       r4, 0
-	li       r27, 0
-
-lbl_800655E0:
-	li       r6, 2
-	addi     r28, r1, 8
-	add      r0, r27, r7
-	li       r5, 0
-	mtctr    r6
-
-lbl_800655F4:
-	add      r24, r5, r0
-	lbz      r30, 0(r28)
-	mulli    r6, r24, 3
-	lbz      r31, 1(r28)
-	addi     r8, r24, 1
-	lbz      r11, 2(r28)
-	addi     r12, r24, 2
-	lbz      r9, 3(r28)
-	add      r26, r29, r6
-	lbz      r6, 4(r28)
-	stb      r3, 0(r26)
-	mulli    r10, r8, 3
-	addi     r8, r24, 4
-	stb      r4, 1(r26)
-	addi     r25, r24, 3
-	mulli    r12, r12, 3
-	addi     r28, r28, 5
-	stb      r30, 2(r26)
-	add      r26, r29, r10
-	addi     r5, r5, 5
-	stb      r3, 0(r26)
-	mulli    r10, r25, 3
-	add      r12, r29, r12
-	stb      r4, 1(r26)
-	stb      r31, 2(r26)
-	mulli    r8, r8, 3
-	add      r10, r29, r10
-	stb      r3, 0(r12)
-	add      r8, r29, r8
-	stb      r4, 1(r12)
-	stb      r11, 2(r12)
-	stb      r3, 0(r10)
-	stb      r4, 1(r10)
-	stb      r9, 2(r10)
-	stb      r3, 0(r8)
-	stb      r4, 1(r8)
-	stb      r6, 2(r8)
-	bdnz     lbl_800655F4
-	addi     r9, r1, 8
-	subfic   r6, r5, 0xb
-	add      r9, r9, r5
-	mtctr    r6
-	cmpwi    r5, 0xb
-	bge      lbl_800656CC
-
-lbl_800656A4:
-	add      r8, r5, r0
-	lbz      r6, 0(r9)
-	mulli    r8, r8, 3
-	addi     r9, r9, 1
-	addi     r5, r5, 1
-	add      r8, r29, r8
-	stb      r3, 0(r8)
-	stb      r4, 1(r8)
-	stb      r6, 2(r8)
-	bdnz     lbl_800656A4
-
-lbl_800656CC:
-	addi     r4, r4, 1
-	addi     r27, r27, 0xb
-	cmplwi   r4, 0x15
-	blt      lbl_800655E0
-	addi     r3, r3, 1
-	addi     r7, r7, 0xe7
-	cmplwi   r3, 0xb
-	blt      lbl_800655D8
-	lmw      r24, 0x20(r1)
-	addi     r1, r1, 0x40
-	blr
-	*/
 }
 
 /**
