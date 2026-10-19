@@ -60,6 +60,9 @@ struct TVector {
 
 		// it's assumed the pointer is to something already in the vector, or pointing to the end
 
+		// TODO: what is this macro from and where else do these exist?
+		// JUT_DEBUG_ASSERT((mBegin<=pItFirst_)&&(pItFirst_<=mEnd), 0x1be);
+
 		if (count == 0) {
 			return position;
 		}

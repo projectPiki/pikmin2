@@ -359,8 +359,9 @@ struct HoudaiShotGunMgr {
 	HoudaiShotGunNode* mInactiveNodes; // _38
 };
 
-static bool levelRotationCallBack(J3DJoint*, int);
-static bool verticalRotationCallBack(J3DJoint*, int);
+// static, defined implicitly in Houdai.cpp
+//static bool levelRotationCallBack(J3DJoint*, int);
+//static bool verticalRotationCallBack(J3DJoint*, int);
 
 /////////////////////////////////////////////////////////////////
 // STATE MACHINE DEFINITIONS

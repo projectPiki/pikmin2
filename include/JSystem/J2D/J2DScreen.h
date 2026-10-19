@@ -42,7 +42,7 @@ struct J2DScreen : public J2DPane {
 	J2DResReference* getResReference(JSURandomInputStream*, u32);
 	bool getScreenInformation(JSURandomInputStream* input);
 	inline s32 makeHierarchyPanes(J2DPane*, JSURandomInputStream*, u32, JKRArchive*); // needs to be marked as inline for recursion to work
-	bool set(const char*, u32, JKRArchive*);
+	bool set(const char* path, u32 flags, JKRArchive* arc);                           // TODO: make enum for the flags here
 	bool set(JSURandomInputStream*, u32);
 	bool private_set(JSURandomInputStream* stream, u32 flags, JKRArchive* archive);
 
