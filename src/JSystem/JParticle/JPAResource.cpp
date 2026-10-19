@@ -67,7 +67,7 @@ JPAResource::JPAResource()
 void JPAResource::init(JKRHeap* heap)
 {
 	BOOL is_glbl_clr_anm       = mBaseShape->isGlblClrAnm();
-	BOOL is_glbl_tex_anm       = mBaseShape->mData->mFlags & 0x4000;
+	BOOL is_glbl_tex_anm       = (u32)mBaseShape->isGlblTexAnm(); // u32 cast is neccessary for matching
 	BOOL is_prm_anm            = mBaseShape->isPrmAnm();
 	BOOL is_env_anm            = mBaseShape->isEnvAnm();
 	BOOL is_tex_anm            = mBaseShape->isTexAnm();
