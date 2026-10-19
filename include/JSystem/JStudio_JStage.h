@@ -106,7 +106,6 @@ struct TAdaptor_actor : public JStudio::TAdaptor_actor {
 	virtual void adaptor_do_TEXTURE_ANIMATION_MODE(JStudio::data::TEOperationData, const void*, u32); // _4C
 
 	void setJSG_ID_(IDFunction, JStudio::data::TEOperationData, const void*, u32);
-	// void setJSG_ID_(JStage::TActor, void(const void*, void*, u32), JStudio::data::TEOperationData, const void*, u32);
 	void setJSG_SRT_(const JStudio::TControl*);
 	void getJSG_SRT_(const JStudio::TControl*);
 

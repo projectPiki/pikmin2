@@ -60,7 +60,6 @@ struct JSUList : public JSUPtrList {
 	{
 	}
 
-	/** @fabricated */
 	inline JSUList<T>(bool initiate)
 	    : JSUPtrList(initiate)
 	{
@@ -152,20 +151,12 @@ struct JSULink : public JSUPtrLink {
 	}
 
 	inline T* getObject() const { return (T*)getObjectPtr(); }
-	inline JSUList<T>* getList() const { return (JSUList<T>*)JSUPtrLink::getList(); } // fabricated
+	inline JSUList<T>* getList() const { return (JSUList<T>*)JSUPtrLink::getList(); }
 	inline JSULink<T>* getNext() const { return (JSULink<T>*)JSUPtrLink::getNext(); }
 	inline JSULink<T>* getPrev() const { return (JSULink<T>*)JSUPtrLink::getPrev(); }
-
-	// inline JSULink<T>* free() const
-	// {
-	// 	JSULink<T>* next = getNext();
-	// 	delete getObject();
-	// 	return next;
-	// }
 };
 
 /**
- * @fabricated
  * @size{0x4}
  */
 template <typename T>

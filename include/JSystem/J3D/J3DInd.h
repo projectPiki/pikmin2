@@ -69,7 +69,6 @@ struct J3DIndTexMtx : public J3DIndTexMtxInfo {
 	// _00-_1C = J3DIndTexMtxInfo
 };
 
-/** @fabricated */
 struct J3DIndTexOrderInfo {
 	void operator=(const J3DIndTexOrderInfo& other)
 	{

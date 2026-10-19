@@ -57,10 +57,6 @@ struct OSModuleHeader {
 	u32 prolog;           // _34, prolog offset
 	u32 epilog;           // 38, epilog offset
 	u32 unresolved;       // _3C, unresolved offset
-
-	// may have 0x8 more here? check if needed for P2.
-	// u32 align;    // _40
-	// u32 bssAlign; // _44
 };
 
 // Section information struct.

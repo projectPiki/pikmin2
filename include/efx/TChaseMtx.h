@@ -12,7 +12,7 @@ struct TChaseMtx : public TSync {
 	{
 	}
 
-	inline TChaseMtx(u16 effectID, Matrixf* mtx) // probably
+	inline TChaseMtx(u16 effectID, Matrixf* mtx)
 	    : TSync()
 	    , mMtx(mtx)
 	{

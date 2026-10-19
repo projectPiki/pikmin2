@@ -622,7 +622,7 @@ bool TRenderingProcessor::tagImage(u16 p1, const void* p2, u32 p3)
 	P2ASSERTLINE(1114, p3 == 1);
 #endif
 	int type;
-	u8 firstByte = ((u8*)p2)[0]; // r29
+	u8 firstByte = ((u8*)p2)[0];
 	f32 width;
 	f32 height;
 	switch (p1) {

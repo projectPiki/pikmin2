@@ -8,10 +8,9 @@ namespace efx {
 struct TForever : public TSync {
 	TForever() { }
 
-	inline TForever(u16 effectID) // probably
+	inline TForever(u16 effectID)
 	    : TSync(effectID)
 	{
-		// mEffectID = effectID;
 	}
 
 	virtual ~TForever() { }                                     // _48 (weak, thunk at _1C)

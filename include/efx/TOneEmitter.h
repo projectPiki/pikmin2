@@ -95,7 +95,7 @@ struct TOneEmitterChasePos : public TBase, public JPAEmitterCallBack {
 };
 
 struct TOneEmitterSimple : public TBase, public JPAEmitterCallBack {
-	inline TOneEmitterSimple(u16 effectID) // something like this, may need reordering
+	inline TOneEmitterSimple(u16 effectID)
 	    : mEmitter(nullptr)
 	    , mEffectID(effectID)
 	    , mCurrPosIndex(0)

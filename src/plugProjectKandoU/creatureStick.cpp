@@ -1,5 +1,5 @@
 #include "Game/Stickers.h"
-#include "Game/Navi.h" // specifically for the navi scale defines. no other reason to include --EpochFlame
+#include "Game/Navi.h"
 #include "CollInfo.h"
 
 static const char className[] = "creatureStick";

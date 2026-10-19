@@ -308,18 +308,18 @@ void Uja::update(BoidParms& parms)
 		return;
 	}
 
-	Vector2f avoidanceVector(0.0f); // f24, f25 (f23?)
+	Vector2f avoidanceVector(0.0f);
 
-	f32 scale = 10.0f * mFlockMgr->mUjaParms->mDisplayScale(); // f29
+	f32 scale = 10.0f * mFlockMgr->mUjaParms->mDisplayScale();
 	speed     = parms.mMaxSpeed();
 
-	Vector3f moveDir(0.0f); // 0x2f4, 0x2f0
+	Vector3f moveDir(0.0f);
 
 	sys->mTimers->_start("AI PIKI", true);
 	updateBuffer();
 	sys->mTimers->_stop("AI PIKI");
 
-	Vector3f separationVec; // 0x2B4
+	Vector3f separationVec;
 	separationVec = mFlockMgr->mFlockCentre - *this;
 	separationVec.normalise();
 
@@ -330,18 +330,18 @@ void Uja::update(BoidParms& parms)
 	// AI Alignment
 	sys->mTimers->_start("AI ALN", true);
 
-	Vector3f alignmentVec; // f22, f21, f20
+	Vector3f alignmentVec;
 	if (!mUpdateContext.updatable()) {
 		alignmentVec  = mPreviousAlignmentDir;
 		separationVec = mPreviousMoveDir;
 	} else {
-		alignmentThreshold = scale + scale; // f28
+		alignmentThreshold = scale + scale;
 
-		int visibleUjaCount = 0; // r28
+		int visibleUjaCount = 0;
 		alignmentVec        = Vector3f(0.0f);
 		separationVec       = Vector3f(0.0f);
 
-		f32 distanceThreshold = scale + parms.mDistance(); // f14
+		f32 distanceThreshold = scale + parms.mDistance();
 
 		Iterator<Uja> flockList(mFlockMgr);
 
@@ -350,10 +350,10 @@ void Uja::update(BoidParms& parms)
 			Uja* i = *flockList;
 
 			if (i != this && i->mState != STATE_2) {
-				Vector3f directionFromUjaToThis = *this - *i; // 0x298
+				Vector3f directionFromUjaToThis = *this - *i;
 
-				f32 dist = directionFromUjaToThis.normalise(); // f16
-				f32 fov  = parms.mFov();                       // f17
+				f32 dist = directionFromUjaToThis.normalise();
+				f32 fov  = parms.mFov();
 
 				if (dist < distanceThreshold) {
 					if (dist > 0.0f) {
@@ -402,14 +402,14 @@ void Uja::update(BoidParms& parms)
 	sys->mTimers->_stop("AI ALN");
 
 	// UNUSED
-	Vector3f directionTo_44(0.0f); // 0x280
+	Vector3f directionTo_44(0.0f);
 	directionTo_44 = _44 - *this;
 	directionTo_44.normalise();
 
-	Vector3f closestUjaDirection(0.0f); // f31, f19, f18
+	Vector3f closestUjaDirection(0.0f);
 
 	if (mUpdateContext.updatable()) {
-		f32 minDist = 2.0f * scale; // f14
+		f32 minDist = 2.0f * scale;
 
 		Iterator<Uja> iter(mFlockMgr);
 		CI_LOOP(iter)
@@ -757,8 +757,8 @@ void UjaMgr::do_update()
 
 	mUpdateMgr->update();
 
-	int ujaCount       = 0; // r31
-	int movingUjaCount = 0; // r30
+	int ujaCount       = 0;
+	int movingUjaCount = 0;
 
 	mFlockCentre     = Vector3f(0.0f);
 	mAverageVelocity = Vector3f(0.0f);

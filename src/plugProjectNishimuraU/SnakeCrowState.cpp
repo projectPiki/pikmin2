@@ -374,7 +374,6 @@ void StateAppear2::cleanup(EnemyBase* enemy)
  */
 void StateDisappear::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	// Obj* snagret = OBJ(enemy);
 	Vector3f position = enemy->getPosition();
 	efx::Arg fxArg(position);
 	efx::THebiAphd_dive diveFx;

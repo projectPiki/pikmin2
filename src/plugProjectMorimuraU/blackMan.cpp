@@ -844,7 +844,7 @@ void Obj::walkFunc()
 		}
 	}
 
-	f32 moveSpeed, rotationSpeed, turnSpeed; // f31, f30, f29
+	f32 moveSpeed, rotationSpeed, turnSpeed;
 	moveSpeed     = C_GENERALPARMS.mMoveSpeed();
 	rotationSpeed = C_GENERALPARMS.mMaxTurnAngle();
 	turnSpeed     = C_GENERALPARMS.mTurnSpeed();
@@ -1011,8 +1011,6 @@ void Obj::walkFunc()
 		isInTurn = true;
 	}
 	if (!isInTurn) {
-		// f32 turnSpeed2 = clamp(angleDist - prevFaceDir, 0.25f);
-
 		if (absF(prevFaceDir - mFaceDir) > 0.05f) {
 			isInTurn = true;
 		}
@@ -1146,10 +1144,10 @@ void Obj::findNextRoutePoint()
 	}
 
 	if (counter) {
-		int val     = -1;                                       // r28
-		bool check  = false;                                    // r27
-		f32 minDist = SQUARE(C_GENERALPARMS.mSearchDistance()); // f31
-		int targetWPIdx;                                        // r26
+		int val     = -1;
+		bool check  = false;
+		f32 minDist = SQUARE(C_GENERALPARMS.mSearchDistance());
+		int targetWPIdx;
 		switch (mEscapePhase) {
 		case 0: {
 			targetWPIdx = randInt(counter);
@@ -1473,13 +1471,13 @@ void Obj::jointMtxCalc(int jointIdx)
 		return;
 	}
 
-	char* tyreJoints[4]     = { "tyreFL", "TyreFR", "TyreBL", "tyreBR" };         // 0x48; the capitalisation here annoys me so much
-	char* handJoints[4]     = { "handLend", "handRend", "footL", "footR" };       // 0x38
-	char* wristJoints[4]    = { "handL", "handR", "legBL", "legBR" };             // 0x28
-	char* armJoints[4]      = { "armBL", "armBR", "legTL", "legTR" };             // 0x18
-	char* shoulderJoints[4] = { "shoulderL", "shoulderR", "clouchL", "clouchR" }; // 0x8
+	char* tyreJoints[4]     = { "tyreFL", "TyreFR", "TyreBL", "tyreBR" }; // the capitalisation here annoys me so much
+	char* handJoints[4]     = { "handLend", "handRend", "footL", "footR" };
+	char* wristJoints[4]    = { "handL", "handR", "legBL", "legBR" };
+	char* armJoints[4]      = { "armBL", "armBR", "legTL", "legTR" };
+	char* shoulderJoints[4] = { "shoulderL", "shoulderR", "clouchL", "clouchR" };
 
-	Matrixf* tyreMat = tyre->mModel->getJoint(tyreJoints[jointIdx])->getWorldMatrix(); // r29
+	Matrixf* tyreMat = tyre->mModel->getJoint(tyreJoints[jointIdx])->getWorldMatrix();
 	Matrixf* handMat = mModel->getJoint(handJoints[jointIdx])->getWorldMatrix();
 
 	f32 val = 15.0f; // f7
@@ -1498,29 +1496,29 @@ void Obj::jointMtxCalc(int jointIdx)
 	Vector2f yScale(0.0f, val);
 	Vector3f newPos  = tyreMat->getScaledTranslation(yScale);
 	Vector3f handPos = handMat->getColumn(3);
-	Vector3f diff    = newPos - handPos; // f31, f30, f29
+	Vector3f diff    = newPos - handPos;
 	handMat->setTranslation(newPos);
 
 	PSMTXCopy(handMat->mMatrix.mtxView, J3DSys::mCurrentMtx);
 
-	Matrixf* wristMat = mModel->getJoint(wristJoints[jointIdx])->getWorldMatrix(); // r30
-	Matrixf* armMat   = mModel->getJoint(armJoints[jointIdx])->getWorldMatrix();   // r31
+	Matrixf* wristMat = mModel->getJoint(wristJoints[jointIdx])->getWorldMatrix();
+	Matrixf* armMat   = mModel->getJoint(armJoints[jointIdx])->getWorldMatrix();
 
 	f32 scale1 = C_PARMS->mWristScale;
 	f32 scale2 = C_PARMS->mArmScale;
 
-	Vector3f vec1 = diff; // f28, f27, f26
+	Vector3f vec1 = diff;
 	vec1 *= scale1;
 	if (jointIdx < 2) {
 		scale2 = 0.1f;
 	}
 
-	Vector3f vec2 = diff * scale2;   // f25, f24, f23
-	Vector3f vec3(0.0f, 0.0f, 0.0f); // f22, f21, f20
+	Vector3f vec2 = diff * scale2;
+	Vector3f vec3(0.0f, 0.0f, 0.0f);
 
 	if (jointIdx < 2 && C_PARMS->mUseTyreForJointCalc) {
-		f32 sinVal1 = C_PARMS->mArmRotationA * absF(sinf(mTyre->mCurrentRotation2)); // f23
-		f32 sinVal2 = C_PARMS->mArmRotationB * absF(sinf(mTyre->mCurrentRotation2)); // f24
+		f32 sinVal1 = C_PARMS->mArmRotationA * absF(sinf(mTyre->mCurrentRotation2));
+		f32 sinVal2 = C_PARMS->mArmRotationB * absF(sinf(mTyre->mCurrentRotation2));
 		vec2.y      = sinVal2;
 		getStateID(); // unused
 
@@ -1579,9 +1577,9 @@ void Obj::bodyMtxCalc()
 		return;
 	}
 
-	Matrixf* chestMtx = mModel->mJoints[mChestJointIndex].getWorldMatrix(); // r31
+	Matrixf* chestMtx = mModel->mJoints[mChestJointIndex].getWorldMatrix();
 
-	Vector3f pos; // f4, f5, f0
+	Vector3f pos;
 
 	char* tyreJoints[2] = { "tyreFL", "TyreFR" };
 	if (mTyre->mCurrentRotation2 > 0.0f) {
@@ -1599,7 +1597,7 @@ void Obj::bodyMtxCalc()
 
 	PSMTXCopy(chestMtx->mMatrix.mtxView, J3DSys::mCurrentMtx);
 
-	Vector3f translation(0.0f, 0.0f, 0.0f); // 0x1c
+	Vector3f translation(0.0f, 0.0f, 0.0f);
 	f32 yRot = -C_PARMS->mBodyRotationSpeed * sinf(mTyre->mCurrentRotation2);
 	Vector3f rotation(0.0f, yRot, 0.0f);
 

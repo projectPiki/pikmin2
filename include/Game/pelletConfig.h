@@ -75,9 +75,6 @@ struct PelletConfigList : public CNode {
 	PelletConfig* getPelletConfig_ByDictionaryNo(int dictionaryNumber);
 	void read(Stream&);
 
-	/**
-	 * @fabricated
-	 */
 	int getConfigCount() { return mConfigCnt; }
 
 	int mConfigCnt;         // _18

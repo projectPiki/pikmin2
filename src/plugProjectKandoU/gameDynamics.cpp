@@ -141,15 +141,15 @@ static f32 getYDegree(Quat& quat, Vector3f& vec)
  */
 void Game::Rigid::integrate(f32 timeStep, int configIdx)
 {
-	RigidConfig* thisConfig  = &mConfigs[configIdx]; // r31
+	RigidConfig* thisConfig  = &mConfigs[configIdx];
 	RigidConfig* otherConfig = &mConfigs[1 - configIdx];
 
 	otherConfig->mPosition        = thisConfig->mPosition;
 	otherConfig->mPrimaryRotation = thisConfig->mPrimaryRotation;
 
-	Matrixf rotationMtx;  // 0x1d0
-	Matrixf concatMtx;    // 0x1a0
-	Matrixf transposeMtx; // 0x170
+	Matrixf rotationMtx;
+	Matrixf concatMtx;
+	Matrixf transposeMtx;
 
 	rotationMtx.makeQ(thisConfig->mPrimaryRotation);
 	PSMTXTranspose(rotationMtx.mMatrix.mtxView, transposeMtx.mMatrix.mtxView);
@@ -162,22 +162,22 @@ void Game::Rigid::integrate(f32 timeStep, int configIdx)
 
 	thisConfig->mRotatedMomentum = thisConfig->mRotatedTransform.mtxMult(thisConfig->mMomentum);
 
-	Quat primaryQ;                                             // 0x160
-	Quat rotatedMomentumQ(0.0f, thisConfig->mRotatedMomentum); // 0x150
+	Quat primaryQ;
+	Quat rotatedMomentumQ(0.0f, thisConfig->mRotatedMomentum);
 
 	primaryQ = rotatedMomentumQ * thisConfig->mPrimaryRotation;
 
 	if (mFlags.typeView & 1) {
-		Quat halfTimeQ; // 0x140
+		Quat halfTimeQ;
 		halfTimeQ = primaryQ * (0.5f * timeStep);
 
-		Quat primaryRotatedQ; // 0x130
+		Quat primaryRotatedQ;
 		primaryRotatedQ = thisConfig->mPrimaryRotation + halfTimeQ;
 
-		Vector3f vec1; // 0x124
+		Vector3f vec1;
 		f32 yDeg48 = getYDegree(thisConfig->mPrimaryRotation, vec1);
 
-		Vector3f vec2; // 0x118
+		Vector3f vec2;
 		f32 yDeg4 = getYDegree(primaryRotatedQ, vec2);
 
 		f32 sinValue8192 = JMASSin(8192);
@@ -203,7 +203,7 @@ void Game::Rigid::integrate(f32 timeStep, int configIdx)
 			thisConfig->mPrimaryRotation = thisConfig->mPrimaryRotation + halfTimeQ;
 		}
 	} else {
-		Quat q5; // 0x108
+		Quat q5;
 		q5                           = primaryQ * (0.5f * timeStep);
 		thisConfig->mPrimaryRotation = thisConfig->mPrimaryRotation + q5;
 	}

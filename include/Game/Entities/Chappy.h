@@ -29,7 +29,6 @@ struct Mgr : public ChappyBase::Mgr {
 	Mgr(int objLimit, u8 modelType);
 
 	//////////////// VTABLE
-	// virtual ~Mgr() { }                                 // _58 (weak)
 	virtual void doAlloc();                            // _A8
 	virtual void loadTexData();                        // _D0
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
@@ -58,7 +57,7 @@ struct Mgr : public ChappyBase::Mgr {
 	// _00-_44	= EnemyMgrBase
 	ResTIMG* mChangeTexture0; // _44
 	ResTIMG* mChangeTexture1; // _48
-	Obj* mObj;                // _4C, an array of Objs
+	Obj* mObj;                // _4C, array of Objs
 };
 
 } // namespace Chappy

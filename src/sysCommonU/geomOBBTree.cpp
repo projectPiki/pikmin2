@@ -110,14 +110,12 @@ void OBB::create2(Sys::VertexTable& vertTable, Sys::TriangleTable& triTable, Mat
 	col1.x = mat2.mMatrix[0][0];
 	col1.y = mat2.mMatrix[1][0];
 	col1.z = mat2.mMatrix[2][0];
-	// Vector3f col2 = Vector3f(mat2.m_matrix[0][1], mat2.m_matrix[1][1], mat2.m_matrix[2][1]);
 
 	Vector3f col2;
 	col2.x = mat2.mMatrix[0][1];
 	col2.y = mat2.mMatrix[1][1];
 	col2.z = mat2.mMatrix[2][1];
 
-	// Vector3f col3 = Vector3f(mat2.m_matrix[0][2], mat2.m_matrix[1][2], mat2.m_matrix[2][2]);
 	Vector3f col3;
 	col3.x = mat2.mMatrix[0][2];
 	col3.y = mat2.mMatrix[1][2];

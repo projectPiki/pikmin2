@@ -74,10 +74,6 @@ struct StateMachine {
 	int mCurrentID;        // _18, ID of current/active state
 };
 
-// template <typename T>
-// void StateMachine<T>::init(T*)
-// {
-// }
 template <typename T>
 void StateMachine<T>::create(int limit)
 {

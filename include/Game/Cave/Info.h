@@ -172,8 +172,6 @@ struct FloorInfo : public CNode {
 		Parm<int> mVersion;           // _268  /* f015 */
 		Parm<f32> mWaterwraithTimer;  // _290  /* f016 */
 		Parm<int> mGlitchySeesaw;     // _2B8  /* f017 */
-
-		// void* mEnd;                  // _2E0
 	};
 
 	FloorInfo();

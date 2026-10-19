@@ -102,5 +102,4 @@ u8 JASRegisterParam::getBankNumber() const
 u8 JASRegisterParam::getProgramNumber() const
 {
 	return JSULoByte(_0C);
-	// return *JSULoByte(&_0C);
 }

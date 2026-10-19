@@ -235,12 +235,6 @@ void JAIBasic::initCamera()
 }
 
 /**
- * @note Address: 0x800AC690
- * @note Size: 0x14
- */
-// void JAInter::Camera::__defctor() { }
-
-/**
  * @note Address: 0x800AC6A4
  * @note Size: 0x8
  */

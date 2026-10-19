@@ -13,9 +13,6 @@ namespace Game {
 namespace ItemBarrel {
 struct Item;
 
-/**
- * @fabricated
- */
 enum StateID {
 	BARREL_Normal  = 0,
 	BARREL_Damaged = 1,
@@ -82,7 +79,7 @@ struct DamagedState : public State {
 
 	// _00     = VTBL
 	// _00-_10 = State
-	u8 mBuffer; // _10, seemingly unused, just for size
+	u8 mBuffer; // _10, unused
 };
 
 /**
@@ -102,7 +99,7 @@ struct DeadState : public State {
 
 	// _00     = VTBL
 	// _00-_10 = State
-	u8 mBuffer; // _10, seemingly unused, just for size
+	u8 mBuffer; // _10, unused
 };
 
 struct BarrelParms : public CreatureParms {

@@ -42,12 +42,6 @@ void Pathfinder::create(int contextCount, Game::RouteMgr* routeMgr)
 }
 
 /**
- * @note Address: 0x801A3710
- * @note Size: 0x20
- */
-// AStarContext::AStarContext() { }
-
-/**
  * @note Address: 0x801A3730
  * @note Size: 0x124
  */

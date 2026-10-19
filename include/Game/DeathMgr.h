@@ -8,9 +8,6 @@
 namespace Game {
 // DeathCounter is entirely inlined. The data members are used statically.
 struct DeathCounter {
-	/**
-	 * @fabricated
-	 */
 	enum CauseOfDeath {
 		COD_Battle = 0,  // 0, death by combat
 		COD_Sunset,      // 1, death by being left behind :(

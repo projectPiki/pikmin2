@@ -1,7 +1,5 @@
 #include "Dolphin/os.h"
 
-// TODO: this matches, but breaks JKRAramStream with types etc, need to fix both together
-
 /**
  * @note Address: 0x800EF4BC
  * @note Size: 0x60

@@ -15,7 +15,6 @@
 /**
  * @note Address: 0x8006C3A4
  * @note Size: 0x248
- * TODO: Rename _SDK_GX*
  */
 J3DMaterialFactory::J3DMaterialFactory(const J3DMaterialBlock& block)
 {

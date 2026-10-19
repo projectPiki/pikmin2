@@ -26,9 +26,6 @@ struct MoveInfo;
 struct RouteMgr;
 struct SeaMgr;
 struct WaterBox;
-// struct GenericObjectMgrReference {
-// 	GenericObjectMgr* mGenericObjectMgrPtr;
-// };
 
 struct MapMgr : virtual public GenericObjectMgr {
 #define BEAM_RADIUS (10.0f)

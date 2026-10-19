@@ -1225,7 +1225,6 @@ TriIndexList* GridDivider::findTriLists(Sys::Sphere& ball)
 			bool withinBounds = ((x_ctr >= 0) && (z_ctr >= 0) && (x_ctr < mMaxX) && (z_ctr < mMaxZ));
 			if (withinBounds) {
 				if (outTriList) {
-					// temp_r4_2 = m_triIndexLists + ((z_ctr + (x_ctr * m_maxZ)) * 0x28);
 					triList = &mTriIndexLists[(int)(z_ctr + (x_ctr * mMaxZ))];
 					triList->clearRelations();
 					outTriList->concat(triList);

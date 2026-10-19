@@ -9,6 +9,7 @@
 #include "PSSystem/PSSystemIF.h"
 #include "og/Screen/ogScreen.h"
 #include "JSystem/JKernel/JKRDvdRipper.h"
+#include "Game/gamePlayData.h"
 
 namespace ebi {
 namespace Screen {
@@ -108,7 +109,7 @@ void TScreenDataWindow_data::setData(s32 fileID, u32 pokos, u32 treasures, u32 c
 	mPokos     = pokos;
 	mTreasures = treasures;
 
-	if (mPokos < 10000) {
+	if (mPokos < DEBT_AMOUNT) {
 		E2DScreen_searchAssert(mScreenObj, 'Ptrsla')->hide();
 		mCounterB->hide();
 		mCounterA->getMotherPane()->move(50.0f, 0.0f);
@@ -787,14 +788,15 @@ void TMainScreen::fadeCopyCursor()
 	mCursorB.mCursor.fade();
 }
 
-// /**
-//  * @note Address: N/A
-//  * @note Size: 0x50
-//  */
-// void TMainScreen::killCopyCursor()
-// {
-// 	// UNUSED FUNCTION
-// }
+/**
+ * @note Address: N/A
+ * @note Size: 0x50
+ */
+void TMainScreen::killCopyCursor()
+{
+	mCursorA.mCursor.kill();
+	mCursorB.mCursor.kill();
+}
 
 /**
  * @note Address: 0x803D7A4C
@@ -878,14 +880,23 @@ void TMainScreen::fadeFiledeletingEffect()
 	mIsCardSeActive = false;
 }
 
-// /**
-//  * @note Address: N/A
-//  * @note Size: 0xF0
-//  */
-// void TMainScreen::killAllEffect()
-// {
-// 	// UNUSED FUNCTION
-// }
+/**
+ * @note Address: N/A
+ * @note Size: 0xF0
+ */
+void TMainScreen::killAllEffect()
+{
+	killCopyCursor();
+	mEfxFileCopy.kill();
+	mEfxFileCopyM.kill();
+	mEfxDelete.kill();
+	mEfxDeleteM.kill();
+	for (int i = 0; i < 3; i++) {
+		mEfxFileSel[i]->kill();
+		mEfxFileSelM[i]->kill();
+	}
+	// UNUSED FUNCTION
+}
 
 /**
  * @note Address: 0x803D7E14

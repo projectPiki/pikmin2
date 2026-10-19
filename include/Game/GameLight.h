@@ -141,8 +141,6 @@ struct GameLightEventNode : public CNode {
 		mRange      = 500.0f;
 	}
 
-	// virtual ~GameLightEventNode() { } // _08 (weak)
-
 	bool update(GameLightMgr*);
 	void updateCommon(GameLightMgr*, bool);
 	void calcColor(Color4*);
@@ -207,8 +205,6 @@ struct GameLightSpotSetting : public CNode {
 struct GameLightTimeSetting : public CNode {
 	GameLightTimeSetting();
 
-	// virtual ~GameLightTimeSetting() { } // _08 (weak)
-
 	// unused/inlined but required
 	void read(Stream& stream);
 
@@ -237,8 +233,6 @@ struct GameLightSunSetting : public CNode {
 
 	GameLightSunSetting(char* labels);
 
-	// virtual ~GameLightSunSetting() { } // _08 (weak)
-
 	// unused/inlined but required
 	void read(Stream& stream);
 
@@ -251,7 +245,6 @@ struct GameLightSunSetting : public CNode {
 struct GameLightMgrSetting : public CNode {
 	GameLightMgrSetting();
 
-	// virtual ~GameLightMgrSetting() { } // _08 (weak)
 	virtual void read(Stream&); // _10
 
 	void updateNode();
@@ -277,7 +270,6 @@ struct GameLightMgr : public LightMgr {
 
 	GameLightMgr(char* name);
 
-	// virtual ~GameLightMgr() { }  // _08 (weak)
 	virtual void update();       // _10
 	virtual void set(Graphics&); // _14
 

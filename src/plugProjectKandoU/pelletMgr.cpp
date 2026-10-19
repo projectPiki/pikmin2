@@ -1264,7 +1264,7 @@ void Pellet::update()
 		}
 	}
 
-	Vector3f frameworkVec; // A4
+	Vector3f frameworkVec;
 	if (mPelletCarry->frameWork(frameworkVec) != 0) {
 		if (mSticked == nullptr) {
 			mPelletCarry->reset();
@@ -2101,7 +2101,7 @@ void Pellet::onSlotStickEnd(Creature* creature, s16 slot)
  */
 void Pellet::calcStickSlotGlobal(s16 slot, Vector3f& stickPosition)
 {
-	Vector3f pos; // sp14
+	Vector3f pos;
 	if (slot == 9999) {
 		pos = Vector3f(0.0f);
 	} else {

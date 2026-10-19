@@ -33,8 +33,6 @@ struct JAIBasic {
 	virtual void setSeExtParameter(JAISound*); // _20
 	virtual void setRegisterTrackCallback();   // _24
 
-	// void startSoundVecT<JAISound>(u32, JAISound**, Vec*, u32, u32, u8);
-	// void startSoundActorT<JAISound>(u32, JAISound**, JAInter::Actor*, u32, u8);
 	void initDriver(JKRSolidHeap*, u32, u8);
 	void initInterface(u8);
 	void initInterfaceMain();

@@ -18,7 +18,6 @@ namespace Game {
 /**
  * @note Address: 0x801ACAC0
  * @note Size: 0x8C
- * Matches
  */
 void GenObjectNavi::initialise()
 {
@@ -51,7 +50,6 @@ void GenObjectNavi::ramLoadParameters(Stream&)
 /**
  * @note Address: 0x801ACB54
  * @note Size: 0x78
- * Matches
  */
 Creature* GenObjectNavi::generate(Generator* gen)
 {

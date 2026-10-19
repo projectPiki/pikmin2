@@ -935,15 +935,6 @@ SeqTrackRoot* JumpBgmSeq::newSeqTrackRoot()
 }
 
 /**
- * @note Address: N/A
- * @note Size: 0x420
- */
-// SeqTrackRoot::~SeqTrackRoot()
-// {
-// 	// UNUSED FUNCTION
-// }
-
-/**
  * @note Address: 0x80333440
  * @note Size: 0x170
  */
@@ -1176,7 +1167,6 @@ SeqBase* SeqMgr::findSeq(JASTrack* track)
 				if (temp == track) {
 					return link->getObject();
 				}
-				// needs to not unroll
 				for (u8 i = 0; i < 16; i++) {
 					if (temp->mChildList[i] == track) {
 						return link->getObject();

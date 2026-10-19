@@ -11,7 +11,6 @@ struct JSUFileInputStream;
 struct JKRAramBlock;
 struct JKRDvdFile;
 
-// fabricated
 struct JKRDVDFileInfo : public DVDFileInfo {
 	// _00-_3C = DVDFileInfo
 	JKRDvdFile* mFile; // _3C

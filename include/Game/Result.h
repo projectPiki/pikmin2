@@ -23,16 +23,6 @@ struct TNode : public DNode {
 
 	static u64 convertByMorimun(int);
 
-	inline int getNextIndex(int a, int b)
-	{
-		// this whole thing is wrong and may or may not need to exist
-		if (mPokoValue < 0) {
-			return mLostNum;
-		} else {
-			return (a + b);
-		}
-	}
-
 	inline u64 getTag() const { return mMesgTag; }
 
 	// _00     = VTBL

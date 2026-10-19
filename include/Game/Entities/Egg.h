@@ -35,7 +35,7 @@ struct FSM : public EnemyStateMachine {
 struct Obj : public EnemyBase {
 	Obj();
 
-	//////////////// VTABLE - Note: order necessary for weak function ordering
+	//////////////// VTABLE
 	virtual void onInit(CreatureInitArg* settings);                      // _30
 	virtual void doSimulation(f32);                                      // _4C
 	virtual void doDirectDraw(Graphics& gfx);                            // _50
@@ -79,7 +79,6 @@ struct Obj : public EnemyBase {
 struct Mgr : public EnemyMgrBase {
 	Mgr(int objLimit, u8 modelType);
 
-	// virtual ~Mgr();                                     // _58 (weak)
 	virtual EnemyBase* birth(EnemyBirthArg&);          // _70
 	virtual void doAlloc();                            // _A8
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)

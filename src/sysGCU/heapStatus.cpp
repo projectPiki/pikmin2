@@ -99,7 +99,7 @@ HeapInfo::~HeapInfo()
 		if (search(info1)) {
 			mCurrentNode->mParent = this;
 			HeapInfo* info3       = mCurrentNode->mParent;
-			HeapInfo* info2       = mCurrentNode; // _r29
+			HeapInfo* info2       = mCurrentNode;
 			if (info3->mTree.getParent()) {
 				info2->mParent  = static_cast<HeapInfo*>(info3->mTree.getParent()->getObject());
 				HeapInfo* info4 = info2->mParent;

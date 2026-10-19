@@ -940,14 +940,14 @@ void ProcAnimator::update(f32 faceDir, f32 p2)
 		_24 = TORADIANS(-30.0f);
 	}
 
-	Matrixf originMat;                  // 0xBC
-	Vector3f rot1(0.0f, faceDir, 0.0f); // 0x80
+	Matrixf originMat;
+	Vector3f rot1(0.0f, faceDir, 0.0f);
 	originMat.makeTR(Vector3f::zero, rot1);
 
 	calcAngles();
 	calcDists();
 
-	Vector3f pos = mPosition; // 0x74
+	Vector3f pos = mPosition;
 
 	for (int i = 1; i < mMaxCount; i++) {
 		Matrixf* currMat = mMatrices[i];
@@ -977,27 +977,27 @@ void ProcAnimator::update(f32 faceDir, f32 p2)
 		rot.x    = angle;
 		rot.y    = faceDir;
 		rot.z    = 0.0f;
-		mat.makeTR(pos, rot); // 0x8C, 0x74, 0x5C
+		mat.makeTR(pos, rot);
 
-		newPos = mat.mtxMult(newPos); // 0x8C, 0x68, (0x2C) -> 0x68
-		pos    = newPos;              // 0x68 -> 0x74
+		newPos = mat.mtxMult(newPos);
+		pos    = newPos;
 
-		currMat->setTranslation(newPos); // 0x68 -> 0x74
+		currMat->setTranslation(newPos);
 
 		Vector3f posX = currMat->getColumn(0);
 		f32 scale     = getBasisScale(posX);
 
-		Vector3f xVec = Vector3f(0.0f, scale * cosf(theta), scale * sinf(theta));  // 0x50
-		Vector3f yVec = Vector3f(0.0f, scale * -sinf(theta), scale * cosf(theta)); // 0x44
-		Vector3f zVec = Vector3f(scale, 0.0f, 0.0f);                               // 0x38
+		Vector3f xVec = Vector3f(0.0f, scale * cosf(theta), scale * sinf(theta));
+		Vector3f yVec = Vector3f(0.0f, scale * -sinf(theta), scale * cosf(theta));
+		Vector3f zVec = Vector3f(scale, 0.0f, 0.0f);
 
-		xVec = originMat.mtxMult(xVec); // 0xBC, 0x50, (0x20) -> (0x50)
-		yVec = originMat.mtxMult(yVec); // 0xBC, 0x44, (0x14) -> (0x44)
-		zVec = originMat.mtxMult(zVec); // 0xBC, 0x38, (0x8)  -> (0x38)
+		xVec = originMat.mtxMult(xVec);
+		yVec = originMat.mtxMult(yVec);
+		zVec = originMat.mtxMult(zVec);
 
-		currMat->setColumn(0, xVec); // 0x50
-		currMat->setColumn(1, yVec); // 0x44
-		currMat->setColumn(2, zVec); // 0x38
+		currMat->setColumn(0, xVec);
+		currMat->setColumn(1, yVec);
+		currMat->setColumn(2, zVec);
 	}
 }
 
@@ -1118,27 +1118,27 @@ void Plant::onInit(CreatureInitArg* initArg)
 	mModel              = new SysShape::Model(mgr->getModelData(0), 0, 2);
 	setAlive(true);
 
-	CollPart* root    = new CollPart(mModel); // r29
+	CollPart* root    = new CollPart(mModel);
 	root->mJointIndex = 0;
 	root->mRadius     = 150.0f;
 
-	CollPart* part1    = new CollPart(mModel); // r28
+	CollPart* part1    = new CollPart(mModel);
 	part1->mJointIndex = mModel->getJointIndex("kuki_jnt1");
 	part1->mRadius     = 12.0f;
 
-	CollPart* part2    = new CollPart(mModel); // r27
+	CollPart* part2    = new CollPart(mModel);
 	part2->mJointIndex = mModel->getJointIndex("kuki_jnt2");
 	part2->mRadius     = 12.0f;
 
-	CollPart* part3    = new CollPart(mModel); // r26
+	CollPart* part3    = new CollPart(mModel);
 	part3->mJointIndex = mModel->getJointIndex("kuki_jnt3");
 	part3->mRadius     = 12.0f;
 
-	CollPart* part4    = new CollPart(mModel); // r25
+	CollPart* part4    = new CollPart(mModel);
 	part4->mJointIndex = mModel->getJointIndex("kuki_jnt4");
 	part4->mRadius     = 12.0f;
 
-	CollPart* tops    = new CollPart(mModel); // r24
+	CollPart* tops    = new CollPart(mModel);
 	tops->mJointIndex = mModel->getJointIndex("kuki_jnt4");
 	tops->mOffset     = Vector3f(24.0f, 0.0f, 0.0f);
 	tops->mRadius     = 8.0f;

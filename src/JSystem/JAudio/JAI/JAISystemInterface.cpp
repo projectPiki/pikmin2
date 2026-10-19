@@ -143,7 +143,6 @@ void JAInter::SystemInterface::outerInit(JAInter::SeqUpdateData* updateData, JAS
 	if (seqP == nullptr) {
 		return;
 	}
-	// PlayerParameter* playerParameter = &updateData->_4C[p3];
 	JASPortArgs* portArgs                     = &updateData->mPlayerParams[trackNo].mPortArgs.asStruct;
 	updateData->mPlayerParams[trackNo].mTrack = seqP;
 	portArgs->mTrack                          = track;

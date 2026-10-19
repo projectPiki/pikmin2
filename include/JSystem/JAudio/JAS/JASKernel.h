@@ -34,7 +34,6 @@ void getProbeMax(s32);
 }; // namespace JASKernel
 
 /**
- * @fabricated
  * @size{0x1C}
  * Not really a heap, but it's the object pointed to by JASKernel::sCommandHeap, so... :shrug:
  * It's more like a stack...
@@ -50,10 +49,9 @@ struct JASCmdHeap {
 	typedef void (*Command)(void*);
 	struct Header {
 		Command mCommand; // _00
-		int mMsgLength;   // _04 - I don't think this is right?
+		int mMsgLength;   // _04
 	};
 	/**
-	 * @fabricated
 	 * @size{0x40C}
 	 */
 	struct Block {

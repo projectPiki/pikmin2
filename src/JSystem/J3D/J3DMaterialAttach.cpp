@@ -84,26 +84,11 @@ J3DErrType J3DMaterialTable::allocTexMtxAnimator(J3DAnmTextureSRTKey* p1, J3DTex
 {
 	u16 elementCount = p1->getUpdateMaterialNum();
 	*p2              = new J3DTexMtxAnm[elementCount];
-	// J3DTexMtxAnm* v1 = new J3DTexMtxAnm[elementCount];
-	// *p2 = v1;
 	if (*p2 == nullptr) {
 		return JET_OutOfMemory;
 	}
 	initTexMtxAnms(p1, p2, elementCount);
 	return JET_Success;
-	// const u16 elementCount = p1->_14 / 3;
-	// *p2 = new J3DTexMtxAnm[elementCount];
-	// u16 result;
-	// if (*p2 == nullptr) {
-	// 	result = 4;
-	// } else {
-	// 	for (u16 i = 0; i < elementCount; i++) {
-	// 		(*p2)[i].mIndex = i;
-	// 		(*p2)[i].mAnm = p1;
-	// 	}
-	// 	result = 0;
-	// }
-	// return result;
 }
 
 /**

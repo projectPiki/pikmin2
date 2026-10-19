@@ -1180,7 +1180,7 @@ void ObjDayEndResultIncP::doCreate(JKRArchive* arc)
 	for (int i = 0; i < mCounterNum; i++) {
 		mPikiCountersList[i]->setPuyoParam(2.5f, 35.0f, 0.3f);
 	}
-	// unrolled loop?
+
 	int counters2                   = 0;
 	mDeathCountersList              = new og::Screen::CallBack_CounterSlot*[14];
 	mDeathCountersList[counters2++] = og::Screen::setCallBack_CounterSlot(mScreenMain, 'Ptakyo1', &mTodayDeaths[0], 4, true, false, arc);
@@ -2219,7 +2219,7 @@ inline u64 J2DPane::getTagName() const
  */
 void ObjDayEndResultMail::setCallBackMessage(P2DScreen::Mgr* mgr, J2DPane* pane)
 {
-	if (pane->getTypeID() == 19 && pane->getUserInfo()) {
+	if (pane->getTypeID() == PANETYPE_TextBox && pane->getUserInfo()) {
 		og::Screen::CallBack_Message* mesg = new og::Screen::CallBack_Message;
 		u64 tag                            = pane->getTagName();
 		mgr->addCallBack(tag, mesg);

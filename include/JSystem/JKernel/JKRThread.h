@@ -172,7 +172,6 @@ struct JKRThread : public JKRDisposer {
 struct JKRTask : public JKRThread {
 	typedef void (*RequestCallback)(void*);
 	/**
-	 * @fabricated
 	 * @size{0xC}
 	 */
 	struct Message {

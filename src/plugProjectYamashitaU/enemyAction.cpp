@@ -200,8 +200,6 @@ void flickNearbyPikmin(Creature* creature, f32 searchRadius, f32 knockback, f32 
 void flickNearbyNavi(Creature* creature, f32 searchRadius, f32 knockback, f32 damage, f32 angle, Condition<Navi>* condition)
 {
 	searchRadius *= searchRadius;
-
-	// ConditionPikminNearby nearbyCondition (creature, searchRadius);
 	Iterator<Navi> iter(naviMgr, nullptr, condition);
 	angle += PI;
 

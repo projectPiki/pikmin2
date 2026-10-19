@@ -71,7 +71,6 @@ struct J3DMtxCalcNoAnm : public J3DMtxCalcNoAnmBase {
 };
 
 struct J3DMtxCalcAnmBase : public J3DMtxCalc {
-	/** @fabricated */
 	inline J3DMtxCalcAnmBase(J3DAnmTransform* animation)
 	    : mBaseAnim(animation)
 	{
@@ -89,7 +88,6 @@ struct J3DMtxCalcAnmBase : public J3DMtxCalc {
 
 template <typename Adaptor, typename Init>
 struct J3DMtxCalcAnimation : public J3DMtxCalcAnmBase {
-	/** @fabricated */
 	inline J3DMtxCalcAnimation(J3DAnmTransform* animation)
 	    : J3DMtxCalcAnmBase(animation)
 	{
@@ -101,15 +99,6 @@ struct J3DMtxCalcAnimation : public J3DMtxCalcAnmBase {
 	virtual void calc()                                                             // _28
 	{
 		Adaptor::calc(this);
-		// J3DTransformInfo* pInfo;
-		// if (getAnmTransform() == nullptr) {
-		// 	pInfo = &mJoint->mTransformInfo;
-		// } else {
-		// 	J3DTransformInfo v1;
-		// 	getAnmTransform()->getTransform(mJoint->getJntNo(), &v1);
-		// 	pInfo = &v1;
-		// }
-		// Calc::calcTransform(pInfo);
 	}
 
 	// _00 = VTBL
@@ -119,7 +108,6 @@ struct J3DMtxCalcAnimation : public J3DMtxCalcAnmBase {
 
 template <typename Calc>
 struct J3DMtxCalcAnimationAdaptorDefault {
-	/** @fabricated */
 	static void calc(J3DMtxCalcAnmBase* p1)
 	{
 		J3DTransformInfo* pInfo;

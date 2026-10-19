@@ -169,8 +169,8 @@ void FieldVtxColorMgr::initVtxColor()
 void FieldVtxColorMgr::calc(J3DVertexBuffer* buffer)
 {
 	if (isFlag(1)) {
-		GXColor* colorList = *buffer->mVtxColor; // r31
-		bool check         = true;               // r30
+		GXColor* colorList = *buffer->mVtxColor;
+		bool check         = true;
 
 		for (int i = 0; i < mInfoCount; i++) {
 			mInfo[i].mAlpha = 0;

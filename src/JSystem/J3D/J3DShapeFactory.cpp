@@ -177,8 +177,6 @@ int J3DShapeFactory::calcSizeShapeMtx(u32 flag, int shapeNo, int mtxGroupNo) con
 		case J3DShapeMtx_Multi:
 			ret = 0x10;
 			break;
-			// default:
-			//	OSReport("WRONG SHAPE MATRIX TYPE (J3DModelInit.cpp)\n");
 		}
 		break;
 
@@ -193,8 +191,6 @@ int J3DShapeFactory::calcSizeShapeMtx(u32 flag, int shapeNo, int mtxGroupNo) con
 		case J3DShapeMtx_Multi:
 			ret = 0x10;
 			break;
-			// default:
-			//	OSReport("WRONG SHAPE MATRIX TYPE (J3DModelInit.cpp)\n");
 		}
 		break;
 	}

@@ -51,7 +51,6 @@ struct DirectorMgr_Scene_AutoBgm : public DirectorMgr_Scene {
 	{
 	}
 
-	// virtual ~DirectorMgr_Scene_AutoBgm() { }                                                  // _08 (weak)
 	virtual PikminNumberDirector* newPikminNumberDirector(int, u8, ::PSSystem::DirectedBgm&); // _20
 
 	// _00     = VTBL 1
@@ -69,7 +68,6 @@ struct DirectorMgr_Battle : public ::PSSystem::DirectorMgrBase, public JKRDispos
 
 	DirectorMgr_Battle();
 
-	// virtual ~DirectorMgr_Battle() { }                                            // _08 (weak)
 	virtual ::PSSystem::DirectorBase* newDirector(u8, ::PSSystem::DirectedBgm&); // _0C
 
 	// _00     = VTBL 1 (DirectorMgrBase)
@@ -94,7 +92,6 @@ struct DirectorMgr_2PBattle : public ::PSSystem::DirectorMgrBase, public JKRDisp
 
 	DirectorMgr_2PBattle();
 
-	// virtual ~DirectorMgr_2PBattle() { }                                          // _08 (weak)
 	virtual ::PSSystem::DirectorBase* newDirector(u8, ::PSSystem::DirectedBgm&); // _0C
 
 	// _00     = VTBL 1 (DirectorMgrBase)

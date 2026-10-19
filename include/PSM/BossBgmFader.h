@@ -72,8 +72,6 @@ struct TypedProc_MidBoss : public TypedProc {
 struct Mgr : ::PSSystem::SingletonBase<Mgr> {
 	Mgr();
 
-	// virtual ~Mgr() { } // _08 (weak)
-
 	void appendTarget(JSULink<EnemyBoss>*);
 	void exec();
 

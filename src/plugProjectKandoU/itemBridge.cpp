@@ -459,7 +459,6 @@ f32 Item::getStageWidth()
 	return 150.0f;
 }
 
-// need to increase the inline depth enough that this doesn't auto-inline anymore
 /**
  * @note Address: 0x801EF038
  * @note Size: 0xA4

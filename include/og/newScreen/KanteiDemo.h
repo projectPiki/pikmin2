@@ -21,13 +21,11 @@ enum KanteiNameState { KanteiName_StartDelay, KanteiName_Growing, KanteiName_Vis
 enum KanteiType { KanteiType_PreDebt, KanteiType_PostDebt };
 
 namespace P2DScreen {
-// this is just a temp dec until the header is made
 struct Mgr_tuning;
 } // namespace P2DScreen
 
 namespace og {
 namespace Screen {
-// these are temp decs until these headers are made
 struct DispMemberKantei;
 struct CallBack_CounterSlot;
 struct CallBack_CounterRV;

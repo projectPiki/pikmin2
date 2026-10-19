@@ -132,7 +132,7 @@ struct Obj : public EnemyBase {
 	inline Parms* getParms() { return C_PARMS; }
 
 	inline bool isOnTyres()
-	{ // unsure of name
+	{
 		if (!mTyre || mEscapePhase == 2) {
 			return false;
 		}
@@ -203,7 +203,6 @@ struct Mgr : public EnemyMgrBase {
 	Mgr(int objLimit, u8 modelType);
 
 	//////////////// VTABLE
-	// virtual ~Mgr();                                     // _58 (weak)
 	virtual EnemyBase* birth(EnemyBirthArg&);          // _70
 	virtual void doAlloc();                            // _A8
 	virtual SysShape::Model* createModel();            // _B0
@@ -227,7 +226,7 @@ struct Mgr : public EnemyMgrBase {
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
 	Sys::MatTexAnimation* mTexAnimation; // _44
-	Obj* mObj;                           // _48
+	Obj* mObj;                           // _48, array of Objs
 };
 
 struct Parms : public EnemyParmsBase {

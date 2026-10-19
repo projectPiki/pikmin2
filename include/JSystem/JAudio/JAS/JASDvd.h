@@ -9,9 +9,6 @@ namespace JASDvd {
 
 typedef void (*JASDvdCallback)(u32);
 
-/**
- * @fabricated
- */
 struct DVDThreadCheckBackArgs {
 	u32 _00;            // _00
 	u32* _04;           // _04

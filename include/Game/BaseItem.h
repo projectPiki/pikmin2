@@ -253,11 +253,6 @@ int FSMItem<ItemClass, FSMClass, StateClass>::getStateID()
 	return -1;
 }
 
-// template <typename ItemClass, typename FSMClass, typename StateClass>
-// void FSMItem<ItemClass, FSMClass, StateClass>::doAI()
-// {
-
-// }
 template <typename ItemClass, typename FSMClass, typename StateClass>
 void FSMItem<ItemClass, FSMClass, StateClass>::bounceCallback(Sys::Triangle* tri)
 {

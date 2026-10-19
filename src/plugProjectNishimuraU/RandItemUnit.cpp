@@ -578,11 +578,11 @@ void RandItemUnit::getItemDropList(MapNode* targetTile, MapNode** nodeList, Base
  */
 Vector3f RandItemUnit::getItemBaseGenPosition(MapNode** candidates, BaseGen** spawnerList, int nodeCount, int minScore, int idx)
 {
-	MapNode* redOnyonNode  = mMapScore->getFixObjNode(FIXNODE_VsRedOnyon);  // r27
-	MapNode* blueOnyonNode = mMapScore->getFixObjNode(FIXNODE_VsBlueOnyon); // r28
+	MapNode* redOnyonNode  = mMapScore->getFixObjNode(FIXNODE_VsRedOnyon);
+	MapNode* blueOnyonNode = mMapScore->getFixObjNode(FIXNODE_VsBlueOnyon);
 
-	BaseGen* redOnyonGen  = mMapScore->getFixObjGen(FIXNODE_VsRedOnyon);  // r29
-	BaseGen* blueOnyonGen = mMapScore->getFixObjGen(FIXNODE_VsBlueOnyon); // r30
+	BaseGen* redOnyonGen  = mMapScore->getFixObjGen(FIXNODE_VsRedOnyon);
+	BaseGen* blueOnyonGen = mMapScore->getFixObjGen(FIXNODE_VsBlueOnyon);
 
 	f32 maxDist = 400.0f;
 	int distScores[128];

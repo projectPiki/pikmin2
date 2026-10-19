@@ -13,7 +13,6 @@ enum ResArcMessage {
 	RESARCMSG_Success = 0,
 };
 
-/** @fabricated */
 struct CallbackArgs {
 	inline CallbackArgs(u16 id, u8* buf, u32 size, JKRArchive* archive)
 	    : mArchive(archive)

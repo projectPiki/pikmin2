@@ -68,10 +68,8 @@ void* JKRDecomp::run()
 			command->mCallback(command);
 		}
 		if (command->_1C) {
-			// outMessage = 1;
 			OSSendMessage(command->_1C, (void*)1, OS_MESSAGE_NOBLOCK);
 		} else {
-			// outMessage = 1;
 			OSSendMessage(&command->mMessageQueue, (void*)1, OS_MESSAGE_NOBLOCK);
 		}
 	}
@@ -124,7 +122,6 @@ void JKRDecomp::decode(u8* p1, u8* p2, u32 p3, u32 p4)
  */
 void JKRDecomp::decodeSZP(u8* src, u8* dst, u32 srcLength, u32 dstLength)
 {
-	// s32 decodedSize;
 	s32 srcChunkOffset;
 	u32 count;
 	s32 dstOffset;

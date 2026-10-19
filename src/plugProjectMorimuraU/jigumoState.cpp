@@ -708,9 +708,9 @@ void StateSearch::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateSearch::exec(EnemyBase* enemy)
 {
-	int animIdx = enemy->getCurrAnimIndex(); // r29
+	int animIdx = enemy->getCurrAnimIndex();
 	FakePiki* target
-	    = OBJ(enemy)->getNearestPikiOrNavi(CG_GENERALPARMS(enemy).mSearchAngle(), CG_GENERALPARMS(enemy).mSearchDistance()); // r28
+	    = OBJ(enemy)->getNearestPikiOrNavi(CG_GENERALPARMS(enemy).mSearchAngle(), CG_GENERALPARMS(enemy).mSearchDistance());
 	enemy->mTargetCreature = target;
 	if (target) {
 		f32 angleDist = enemy->getAngDist(target);

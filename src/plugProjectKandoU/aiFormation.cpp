@@ -479,7 +479,7 @@ int PikiAI::ActFormation::exec()
 		plateSep.normalize();
 
 		if (plateSep.dot(naviPikiSep) > 0.0f) {
-			Vector3f impulse = Vector3f(-naviPikiSep.z, 0.0f, naviPikiSep.x); // f29, f27, f30
+			Vector3f impulse = Vector3f(-naviPikiSep.z, 0.0f, naviPikiSep.x);
 			if (!(mSlotID & 1)) {
 				impulse.negate();
 			}
@@ -506,7 +506,7 @@ int PikiAI::ActFormation::exec()
 		plateSep.normalize();
 
 		if (plateSep.dot(naviPikiSep) > 0.0f) {
-			Vector3f impulse = Vector3f(-naviPikiSep.z, 0.0f, naviPikiSep.x); // f29, f27, f30
+			Vector3f impulse = Vector3f(-naviPikiSep.z, 0.0f, naviPikiSep.x);
 			if (!(mSlotID & 1)) {
 				impulse.negate();
 			}

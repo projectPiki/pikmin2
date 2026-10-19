@@ -19,17 +19,8 @@ struct TColor : public GXColor {
 
 	TColor(u32 u32Color) { set(u32Color); }
 
-	// inline TColor(u64 u64Color) { setU64(u64Color); }
-
 	TColor(GXColor color) { set(color); }
 
-	// TColor& operator=(const TColor& other)
-	// {
-	// 	((GXColor*)this)->operator=(other);
-	// 	return *this;
-	// }
-
-	/** @fabricated */
 	TColor& operator=(const GXColorS10& other)
 	{
 		r = other.r;
@@ -39,7 +30,6 @@ struct TColor : public GXColor {
 		return *this;
 	}
 
-	/** @fabricated */
 	void read(JSUInputStream* input)
 	{
 		TColor temp;

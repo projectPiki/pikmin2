@@ -232,7 +232,6 @@ struct J3DMaterialFactory_v21 {
 	u8 newDither(int) const;
 	J3DNBTScale newNBTScale(int) const;
 
-	/** @fabricated */
 	u16 getMaterialID(int idx) const { return mMatRemapTable[idx]; }
 	inline J3DMaterialInitData_v21& getMaterialInitData(s32 index) const { return mInitData[mMatRemapTable[index]]; }
 

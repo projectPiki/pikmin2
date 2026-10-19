@@ -597,7 +597,6 @@ struct NaviNukuState : public NaviState {
 	bool mIsFollower; // _18
 };
 
-/** @fabricated */
 struct NaviPathMoveStateArg : StateArg {
 	Vector3f mPosition; // _00
 };
@@ -623,7 +622,6 @@ struct NaviPathMoveState : public NaviState {
 	int execMove(Navi*);
 	int execMoveGoal(Navi*);
 
-	/** @fabricated */
 	inline void releasePathfinder()
 	{
 		if (mPathfinderContextID != 0) {

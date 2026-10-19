@@ -56,7 +56,6 @@ struct J3DGXColor : public GXColor {
 		return *this;
 	}
 
-	/** @fabricated */
 	const u8* asBytes() const { return (u8*)this; }
 };
 

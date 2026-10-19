@@ -120,7 +120,6 @@ inline void DemoInitiator::setDefault(const char* comp, u32 id, bool extraCondit
 		mSongChosen = true;
 		mASTid      = id;
 		*mByte      = -1;
-		// OSReport("demo_arg is value: %lu\n", demo_arg);
 	}
 }
 

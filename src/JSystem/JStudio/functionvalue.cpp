@@ -370,7 +370,6 @@ f64 TFunctionValue_composite::composite_raw(const JGadget::TVector_pointer<JStud
 	}
 
 	TFunctionValue** iter = (TFunctionValue**)p1.begin();
-	// std::advance_pointer(local_18, index);
 	iter += index;
 	TFunctionValue* fval = *iter;
 	return fval->getValue(p3);

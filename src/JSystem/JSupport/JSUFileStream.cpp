@@ -7,7 +7,6 @@
  *
  * @note Address: 0x80026EE4
  * @note Size: 0x44
- * Matches
  */
 JSUFileInputStream::JSUFileInputStream(JKRFile* file)
 {
@@ -18,7 +17,6 @@ JSUFileInputStream::JSUFileInputStream(JKRFile* file)
 /**
  * @note Address: 0x80026F28
  * @note Size: 0xE0
- * Matches
  */
 int JSUFileInputStream::readData(void* buffer, s32 byteCount)
 {
@@ -42,7 +40,6 @@ int JSUFileInputStream::readData(void* buffer, s32 byteCount)
 /**
  * @note Address: 0x80027008
  * @note Size: 0xE8
- * Matches
  */
 int JSUFileInputStream::seekPos(s32 offset, JSUStreamSeekFrom mode)
 {
@@ -68,19 +65,3 @@ int JSUFileInputStream::seekPos(s32 offset, JSUStreamSeekFrom mode)
 	}
 	return mLength - originalLength;
 }
-
-/**
- * @note Address: 0x800270F0
- * @note Size: 0x30
- * Weak function. Found in JSUStream.h
- * Matches
- */
-// int JSUFileInputStream::getLength() const { return ((JKRFile*)mObject)->getFileSize(); }
-
-/**
- * @note Address: 0x80027120
- * @note Size: 0x8
- * Weak function. Found in JSUStream.h
- * Matches
- */
-// int JSUFileInputStream::getPosition() const { return mLength; }

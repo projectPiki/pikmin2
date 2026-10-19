@@ -140,8 +140,6 @@ int J3DModel::createMatPacket(J3DModelData* data, u32 flags)
 int J3DModel::newDifferedDisplayList(u32 displayListFlag)
 {
 	mDiffFlag = displayListFlag;
-	// It sure is wild what pre-fetching the limit will do.
-	// for (u16 i = 0; i < mModelData->mShapeTable.mCount; i++) {
 	u16 count = mModelData->mShapeTable.mCount;
 	for (u16 i = 0; i < count; i++) {
 		int result = mShapePackets[i].newDifferedDisplayList(displayListFlag);

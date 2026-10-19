@@ -14,7 +14,6 @@ struct MonoObjectMgr : public ObjectMgr<T> {
 	void kill(T* item);
 	void alloc(int count);
 
-	// virtual ~MonoObjectMgr() { }     // _08 (weak)
 	virtual void* getNext(void* idx); // _14 (weak)
 	virtual void* getStart();         // _18 (weak)
 	virtual void* getEnd()            // _1C (weak)
@@ -217,23 +216,5 @@ void* MonoObjectMgr<T>::getStart() // _18 (weak)
 {
 	return getNext((void*)-1);
 }
-
-// template <typename T>
-// void* MonoObjectMgr<T>::getEnd()
-// {
-// 	return (void*)mMax;
-// }
-
-// template <typename T>
-// T* MonoObjectMgr<T>::get(void* idx)
-// {
-// 	return &mArray[(int)idx];
-// }
-
-// template <typename T>
-// T* MonoObjectMgr<T>::getAt(int index)
-// {
-// 	return &mArray[index];
-// }
 
 #endif

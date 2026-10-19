@@ -15,7 +15,6 @@ struct BirthCounter {
 	void read(Stream&);
 	void write(Stream&);
 
-	// u32 mCounts[PikiColorCount]; // _00
 	int mCounts[PikiColorCount - 1];
 	int mTotal;
 };
@@ -41,11 +40,7 @@ struct BirthMgr {
 	static int get_cave(int);
 	static int get_today(int);
 
-	// static u32 mToday[PikiColorCount];
-	// static u32 mCave[PikiColorCount];
-	// static u32 mTotal[PikiColorCount];
 	static BirthCounter mToday;
-	// static BirthCounter mToday;
 	static BirthCounter mCave;
 	static BirthCounter mTotal;
 };

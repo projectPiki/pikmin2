@@ -433,11 +433,11 @@ void __GXInsaneWatermark(void)
 void __GXCleanGPFifo(void)
 {
 	BOOL interrupts;
-	GXFifoObjPriv tempObj;  // 0x14
-	u32 i, j, k;            // stack alloc
-	GXFifoObjPriv* gpFifo;  // r31
-	GXFifoObjPriv* cpuFifo; // r30
-	void* tempPtr;          // r29
+	GXFifoObjPriv tempObj;
+	u32 i, j, k; // stack alloc
+	GXFifoObjPriv* gpFifo;
+	GXFifoObjPriv* cpuFifo;
+	void* tempPtr;
 
 	gpFifo = (GXFifoObjPriv*)GXGetGPFifo();
 	if (!gpFifo) {

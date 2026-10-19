@@ -309,7 +309,6 @@ bool MemoryCardMgr::fileOpen(CARDFileInfo* fileInfo, ECardSlot cardSlot, const c
 	P2ASSERTLINE(536, check);
 	bool result = false;
 	if (checkStatus() == MCS_Ready) {
-		// int cardRes = CARDOpen(cardSlot, (char*)fileName, fileInfo);
 		switch (CARDOpen(cardSlot, (char*)fileName, fileInfo)) {
 		case CARD_RESULT_READY:
 			setInsideStatusFlag(INSIDESTATUS_Ready);

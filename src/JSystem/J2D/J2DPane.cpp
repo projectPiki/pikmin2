@@ -693,7 +693,7 @@ void J2DPane::setCullBack(GXCullMode cullMode)
 void J2DPane::setBasePosition(J2DBasePosition base)
 {
 	mBasePosition  = base;
-	mRotationAxis  = J2DROTATE_Z; // 0x7A
+	mRotationAxis  = J2DROTATE_Z;
 	mRotateOffsetX = 0.0f;
 	if (base % 3 == 1) {
 		mRotateOffsetX = getWidth() / 2;

@@ -80,7 +80,6 @@ struct Mgr : public EnemyMgrBase {
 	Mgr(int objLimit, u8 modelType);
 
 	//////////////// VTABLE
-	// virtual ~Mgr() { }                                  // _58 (weak)
 	virtual void createObj(int count);                 // _A0
 	virtual EnemyBase* getEnemy(int idx);              // _A4
 	virtual void doAlloc();                            // _A8
@@ -100,8 +99,8 @@ struct Mgr : public EnemyMgrBase {
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
 	Obj* mObj;                                 // _44, an array of Objs
-	Sys::MatTexAnimation* mTexAnimation;       // _48, unknown
-	Sys::MatTevRegAnimation* mTevRegAnimation; // _4C, unknown
+	Sys::MatTexAnimation* mTexAnimation;       // _48
+	Sys::MatTevRegAnimation* mTevRegAnimation; // _4C
 };
 
 } // namespace FireChappy

@@ -32,9 +32,7 @@ struct Obj : public Kogane::Obj {
 	virtual void createPressSESpecial(); // _31C
 	//////////////// VTABLE END
 
-	/**
-	 * @fabricated
-	 */
+	// todo: this should definitely not exist
 	inline void getFartDistance2D(Vector3f& point, Vector2f& sep)
 	{
 		sep.x = mFartPosition.x - point.x;
@@ -55,7 +53,6 @@ struct Obj : public Kogane::Obj {
 struct Mgr : public Kogane::Mgr {
 	Mgr(int objLimit, u8 modelType);
 
-	// virtual ~Mgr();                                     // _58 (weak)
 	virtual void createObj(int count);                 // _A0
 	virtual EnemyBase* getEnemy(int idx);              // _A4
 	virtual void doAlloc();                            // _A8

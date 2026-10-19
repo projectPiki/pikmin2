@@ -269,7 +269,7 @@ f32 ObjectCamera::JSGGetProjectionAspect() const
  */
 void ObjectCamera::setParms(Camera* cam)
 {
-	// this might not be right since its not using the camera input, but the size is right and it does get setCamera a bit closer
+	// this might not be right since its not using the camera input
 
 	Vector3f vec;
 	vec          = mCameraObj->getPosition();

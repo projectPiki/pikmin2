@@ -6,9 +6,7 @@
 
 namespace JAInter {
 namespace Fx {
-/**
- * @fabricated
- */
+
 struct Init {
 	u32 mSceneMax;             // _00
 	u32 mBufferMax1;           // _04

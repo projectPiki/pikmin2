@@ -6,14 +6,6 @@
 #include "types.h"
 #include "Dolphin/gx.h"
 
-struct J3DAnmKeyTableBase;
-
-// template <typename T>
-// f32 J3DGetKeyFrameInterpolation(f32, J3DAnmKeyTableBase*, T*);
-
-/**
- * @fabricated
- */
 enum J3DAnmKind {
 	J3DAnmKind_Cluster        = 3,
 	J3DAnmKind_ClusterFull    = 12,
@@ -68,9 +60,6 @@ struct J3DAnmBase {
 	f32 mCurrentFrame;    // _08
 };
 
-/**
- * @fabricated
- */
 struct J3DAnmFullData : public J3DFileBlockBase {
 	u8 mAttribute;        // _08
 	u8 mRotationScale;    // _09

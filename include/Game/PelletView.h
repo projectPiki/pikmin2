@@ -24,7 +24,6 @@ struct PelletViewArg {
 	Vector3f mScale;    // _18
 };
 
-// @trait
 struct PelletView {
 	inline PelletView()
 	    : mPellet(nullptr)

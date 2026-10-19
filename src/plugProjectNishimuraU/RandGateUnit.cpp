@@ -182,7 +182,6 @@ Game::Cave::MapNode* Game::Cave::RandGateUnit::getRoomLowScoreDoor(int& idx)
 	MapNode* nodeArray[512];
 	int idxArray[512], scoreArray[512];
 	int total = 0, scoreSum = 0, score = 0;
-	// score = scoreSum = total = 0;
 	MapNode* placedNodes = mGenerator->getPlacedNodes();
 	for (MapNode* node = placedNodes->getChild(); node != nullptr; node = node->getNext()) {
 		if (node->mUnitInfo->getUnitKind() == UNITKIND_Room) {

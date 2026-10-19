@@ -208,9 +208,7 @@ struct TAsinAcosTable {
 	T mDebugUnitCircle[8];
 };
 
-/**
- * @fabricatedName
- */
+
 template <int LENGTH, typename T>
 struct TSinCosTable {
 
@@ -228,25 +226,13 @@ struct TSinCosTable {
 
 	inline T radsToLUTInv() const { return (-(T)LENGTH) / TAngleConstant_<T>::RADIAN_DEG360(); }
 
-	// inline int radsToLUT(f32 theta) {
-	//     return theta < 0.0f ? theta *
-	// }
-
 	inline T sin(T x) const
 	{
 		return (x < 0.0f) ? -mTable[(u32)(x * -radsToLUT()) % LENGTH].first : mTable[(u32)(x * radsToLUT()) % LENGTH].first;
-		// return (x < 0.0f) ? -mTable[(int)-(x * (((T)length)/TAU)) & 0x7FF].first : mTable[(int)(x * ((T)length)/TAU) & 0x7FF].first;
-		// return (x < 0.0f) ? -mTable[(int)-(x * kRadsToLUT) & 0x7FF].first : mTable[(int)(x * kRadsToLUT) & 0x7FF].first;
 	}
 	inline T cos(T x) const
 	{
-		// x = (x < 0.0f) ? -(int)(x * 325.9493f) % 2048 : (int)(x * 325.9493f) % 2048;
-		// x = (x < 0.0f) ? -(x * kRadsToLUT) : (x * kRadsToLUT);
-		// x = (x < 0.0f) ? -(x * radsToLUT()) : (x * radsToLUT());
-		// return mTable[(int)x & 0x7FF].second;
-		// x = (x < 0.0f) ? -x : x;
 		return mTable[(u32)(((x < 0.0f) ? -x : x) * radsToLUT()) % LENGTH].second;
-		// return (x < 0.0f) ? mTable[(int)-(x * 325.9493f) % 2048].second : mTable[(int)(x * 325.9493f) % 2048].second;
 	}
 
 	T sinShort(s16 v) const { return mTable[static_cast<u16>(v * LENGTH / (USHORT_MAX))].first; }
@@ -296,15 +282,10 @@ f32 TSinCosTable<1024, f32>::cosShort(s16 v) const
 
 #define JMASINE(x)
 
-// extern const f32 sincosTable_[1024];
-// extern const std::pair<f32, f32> sincosTable_[2048];
 extern const TSinCosTable<2048, f32> sincosTable_ ATTRIBUTE_ALIGN(32);
 extern const TAtanTable<1024, f32> atanTable_ ATTRIBUTE_ALIGN(32);
 extern const TAsinAcosTable<1024, f32> asinAcosTable_ ATTRIBUTE_ALIGN(32);
 
-/**
- * @fabricated
- */
 inline const TSinCosTable<2048, f32>* getSinCosTable()
 {
 	return &sincosTable_;
@@ -320,18 +301,12 @@ struct TRandom_fast_ {
 
 	inline u32 next() { return value = value * 0x19660d + 0x3c6ef35f; }
 
-	/**
-	 * @fabricated
-	 */
 	inline f32 nextFloat_0_1()
 	{
 		u32 nextValue = (next() >> 9) | 0x3F800000;
 		return *(f32*)(void*)&nextValue - 1.0f;
 	}
 
-	/**
-	 * @fabricated
-	 */
 	inline f32 idkanymore()
 	{
 		f32 nextValue = nextFloat_0_1();
@@ -339,13 +314,9 @@ struct TRandom_fast_ {
 		return 1.0f - ((*(u32*)(void*)&nextValue) & 0xF ^ 0x80000000) / 192.0f;
 	}
 
-	/**
-	 * @fabricated
-	 */
 	inline f32 currentFloat_0_1() { return *(f32*)(void*)((value >> 9) | 0x3F800000) - 1.0f; }
 
 	/**
-	 * @fabricated
 	 * Needs work. See JAISe::setSeInterVolume.
 	 * IDK if min is really min.
 	 */
@@ -354,8 +325,7 @@ struct TRandom_fast_ {
 		next();
 		uint v3 = (p2 * 1000) / 0x7F;
 		v3      = (p2 * 1000 - v3 >> 1) + (v3 >> 6);
-		u32 v2  = currentFloat_0_1(); // * 0x4F800000;
-		// u32 v1   = v3 * 2;
+		u32 v2  = currentFloat_0_1();
 		f32 v7 = (f32)((v2 - (v2 / (v3 * 2)) * (v3 * 2)) + 1) - ((f32)(v3) / 1000.0f);
 		if (min + v7 > 1.0f) {
 			return 1.0f;

@@ -149,7 +149,6 @@ typedef enum _GXAttr {
 #define GX_MAX_VTXARRAY 16
 
 // Type of vertex attribute reference.
-// NB: haven't confirmed the GX docs match pikmin 2 here
 typedef enum _GXAttrType {
 	GX_NONE    = 0, // No data to be sent.
 	GX_DIRECT  = 1, // Value sent is value of data.
@@ -158,7 +157,6 @@ typedef enum _GXAttrType {
 } GXAttrType;
 
 // Vertex format IDs.
-// NB: haven't confirmed the GX docs match pikmin 2 here
 typedef enum _GXVtxFmt {
 	GX_VTXFMT0 = 0, // Vertex attribute format ID 0.
 	GX_VTXFMT1 = 1, // Vertex attribute format ID 1.
@@ -173,7 +171,6 @@ typedef enum _GXVtxFmt {
 } GXVtxFmt;
 
 // Number of components in an attribute.
-// NB: haven't confirmed the GX docs match pikmin 2 here
 typedef enum _GXCompCnt {
 	GX_POS_XY  = 0, // Position X, Y (two components).
 	GX_POS_XYZ = 1, // Position X, Y, Z (three components).
@@ -193,7 +190,6 @@ typedef enum _GXCompCnt {
 } GXCompCnt;
 
 // Type of components in an attribute.
-// NB: haven't confirmed the GX docs match pikmin 2 here
 typedef enum _GXCompType {
 	GX_U8  = 0, // Unsigned 8-bit.
 	GX_S8  = 1, // Signed 8-bit.
@@ -451,7 +447,6 @@ typedef enum _GXTexGenSrc {
 } GXTexGenSrc;
 
 // Texture map names.
-// NB: haven't confirmed the GX docs match pikmin 2 here
 typedef enum _GXTexMapID {
 	GX_TEXMAP0 = 0, // Texture map ID 0.
 	GX_TEXMAP1 = 1, // Texture map ID 1.

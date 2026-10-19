@@ -414,12 +414,12 @@ Piki* Obj::getAttackPiki(int animIdx)
 	Vector3f dir(sinf(mFaceDir), 0.0f, cosf(mFaceDir));
 	Vector3f orthoDir(-dir.z, 0.0f, dir.x);
 
-	f32 maxDotDirs[]     = { 120.0f, 180.0f, 260.0f, 160.0f, 160.0f }; // 0x94
-	f32 minDotDirs[]     = { 0.0f, 120.0f, 180.0f, 80.0f, 80.0f };     // 0x80
-	f32 maxDotPerpDirs[] = { 30.0f, 30.0f, 30.0f, 110.0f, -50.0f };    // 0x6C
-	f32 minDotPerpDirs[] = { -30.0f, -30.0f, -30.0f, 50.0f, -110.0f }; // 0x58
-	f32 maxYs[]          = { 40.0f, 40.0f, 40.0f, 40.0f, 40.0f };      // 0x44
-	f32 minYs[]          = { -40.0f, -40.0f, -40.0f, -40.0f, -40.0f }; // 0x30
+	f32 maxDotDirs[]     = { 120.0f, 180.0f, 260.0f, 160.0f, 160.0f };
+	f32 minDotDirs[]     = { 0.0f, 120.0f, 180.0f, 80.0f, 80.0f };
+	f32 maxDotPerpDirs[] = { 30.0f, 30.0f, 30.0f, 110.0f, -50.0f };
+	f32 minDotPerpDirs[] = { -30.0f, -30.0f, -30.0f, 50.0f, -110.0f };
+	f32 maxYs[]          = { 40.0f, 40.0f, 40.0f, 40.0f, 40.0f };
+	f32 minYs[]          = { -40.0f, -40.0f, -40.0f, -40.0f, -40.0f };
 
 	for (int i = 0; i < 5; i++) {
 		f32 height = mAttackPositions[i].y - snakePos.y;
@@ -466,12 +466,12 @@ Navi* Obj::getAttackNavi(int animIdx)
 	Vector3f dir(sinf(mFaceDir), 0.0f, cosf(mFaceDir));
 	Vector3f orthoDir(-dir.z, 0.0f, dir.x);
 
-	f32 maxDotDirs[]     = { 120.0f, 180.0f, 260.0f, 160.0f, 160.0f }; // 0x94
-	f32 minDotDirs[]     = { 0.0f, 120.0f, 180.0f, 80.0f, 80.0f };     // 0x80
-	f32 maxDotPerpDirs[] = { 30.0f, 30.0f, 30.0f, 110.0f, -50.0f };    // 0x6C
-	f32 minDotPerpDirs[] = { -30.0f, -30.0f, -30.0f, 50.0f, -110.0f }; // 0x58
-	f32 maxYs[]          = { 40.0f, 40.0f, 40.0f, 40.0f, 40.0f };      // 0x44
-	f32 minYs[]          = { -40.0f, -40.0f, -40.0f, -40.0f, -40.0f }; // 0x30
+	f32 maxDotDirs[]     = { 120.0f, 180.0f, 260.0f, 160.0f, 160.0f };
+	f32 minDotDirs[]     = { 0.0f, 120.0f, 180.0f, 80.0f, 80.0f };
+	f32 maxDotPerpDirs[] = { 30.0f, 30.0f, 30.0f, 110.0f, -50.0f };
+	f32 minDotPerpDirs[] = { -30.0f, -30.0f, -30.0f, 50.0f, -110.0f };
+	f32 maxYs[]          = { 40.0f, 40.0f, 40.0f, 40.0f, 40.0f };
+	f32 minYs[]          = { -40.0f, -40.0f, -40.0f, -40.0f, -40.0f };
 
 	for (int i = 0; i < 5; i++) {
 		f32 height = mAttackPositions[i].y - snakePos.y;

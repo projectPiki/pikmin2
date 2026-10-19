@@ -287,11 +287,6 @@ struct Item : public FSMItem<Item, FSM, State> {
 
 	Item();
 
-	// inline Item(int objTypeID) // probably
-	//     : FSMItem(objTypeID)
-	// {
-	// }
-
 	virtual void onInit(CreatureInitArg* initArg);                                        // _30
 	virtual BaseFlockMgr* getFlockMgr() { return static_cast<BaseFlockMgr*>(mFlockMgr); } // _90 (weak)
 	virtual bool isCollisionFlick() { return false; }                                     // _B0 (weak)

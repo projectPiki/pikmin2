@@ -287,7 +287,6 @@ bool JKRSolidHeap::dump()
 /**
  * @note Address: 0x80025570
  * @note Size: 0x5C
- * Matches on 1.3.2
  */
 void JKRSolidHeap::state_register(JKRHeap::TState* state, u32 id) const
 {

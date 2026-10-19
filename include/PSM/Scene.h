@@ -79,7 +79,7 @@ struct Scene_Global : public SceneBase {
 	virtual f32 getCamDistVol(u8); // _28
 	virtual bool getSeSceneGate(ObjBase*, u32)
 	{
-		// this needs to go in PSMainSide_Scene.h
+		// todo: this should go in PSMainSide_Scene.h so it doesn't have to cheat the file name
 		JUTException::panic_f("PSMainSide_Scene.h", 63, "P2Assert");
 		return false;
 	} // _38 (weak)

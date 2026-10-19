@@ -113,7 +113,7 @@ struct EnemyTexMgr : public IconTexture::Mgr {
 	IconTexture::Loader mLoader;
 
 	// Unused/inlined:
-	void create(); // might be static?
+	void create();
 };
 
 struct CameraParms {

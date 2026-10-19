@@ -592,7 +592,6 @@ void System::createSoundSystem()
 	JKRSolidHeap* newheap2 = makeSolidHeap(old->getFreeSize(), old, true);
 	newheap2->becomeCurrentHeap();
 
-	// something in these inlines is doing bad regalloc things. or not enough bad regalloc things. not sure.
 	static_cast<PSGame::PikSceneMgr*>(PSSystem::getSceneMgr())->newAndSetGlobalScene();
 	newheap2->adjustSize();
 

@@ -55,7 +55,6 @@ struct JPABaseParticle {
 	}
 
 	// unused/inlined:
-	//~JPABaseParticle();
 	f32 getWidth(const JPABaseEmitter*) const;
 	f32 getHeight(const JPABaseEmitter*) const;
 
@@ -412,9 +411,6 @@ struct JPAEmitterCallBack {
 	virtual void executeAfter(JPABaseEmitter*) { } // _10 (weak)
 	virtual void draw(JPABaseEmitter*) { }         // _14 (weak)
 	virtual void drawAfter(JPABaseEmitter*) { }    // _18 (weak)
-
-	// not sure how this works with the pure virtual dtor
-	// ~JPAEmitterCallBack();
 
 	// _00 = VTBL
 };

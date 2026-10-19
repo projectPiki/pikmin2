@@ -151,8 +151,7 @@ JASChannel* noteOn(int bankIndex, int instIndex, u8 p3, u8 p4, u16 p5, void (*p6
 	if (wavePtr == nullptr) {
 		return nullptr;
 	}
-	// JASMemPool<JASChannel, JASThreadingModel::SingleThreaded>* channelMemPool = JASSingletonHolder<JASMemPool<JASChannel,
-	// JASThreadingModel::SingleThreaded>, JASCreationPolicy::NewFromRootHeap>::getInstance(); channelMemPool->alloc(sizeof(JASChannel));
+
 	JASChannel* channel
 	    = new (JASPoolAllocObject<JASChannel, JASCreationPolicy::NewFromRootHeap, JASThreadingModel::SingleThreaded>::alloc())
 	        JASChannel(p6, p7);

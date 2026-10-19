@@ -629,8 +629,6 @@ f32 Navi::viewGetBaseScale()
 /**
  * @note Address: 0x80141760
  * @note Size: 0x1F8
- * ////////////////////////FIX//SOME//WEIRD//STUFF//GOING//ON//HERE////////////////////////
- * 86%
  */
 void Navi::doEntry()
 {

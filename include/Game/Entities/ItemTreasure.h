@@ -135,7 +135,6 @@ struct Mgr : public TNodeItemMgr {
 	virtual BaseItem* generatorBirth(Vector3f&, Vector3f&, GenItemParm*); // _5C
 	virtual BaseItem* doNew() { return new Item; }                        // _A0 (weak)
 	virtual u32 generatorGetID() { return 'trsr'; }                       // _58 (weak)
-	// virtual ~Mgr();                                                    // _B8 (weak)
 	virtual BaseItem* birth(); // _BC
 
 	// _00      = VTBL

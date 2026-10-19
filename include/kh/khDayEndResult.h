@@ -624,7 +624,6 @@ struct SceneDayEndResultIncP : public ::Screen::SceneBase {
 
 	// _00      = VTBL
 	// _00-_220 = Screen::SceneBase
-	// TODO: work out if this has extra members
 };
 
 struct SceneDayEndResultItem : public ::Screen::SceneBase {
@@ -639,7 +638,6 @@ struct SceneDayEndResultItem : public ::Screen::SceneBase {
 
 	// _00      = VTBL
 	// _00-_220 = Screen::SceneBase
-	// TODO: work out if this has extra members
 };
 
 // mail is 4-byte aligned, despite this struct wanting to go to 8-byte aligned
@@ -691,9 +689,9 @@ struct SceneDayEndResultMail : public ::Screen::SceneBase {
 
 	// _00      = VTBL
 	// _00-_220 = Screen::SceneBase
-	MailTableData** mTableData;  // _220, unknown
+	MailTableData** mTableData;  // _220
 	JKRMemArchive* mIconArchive; // _224
-	MailHistoryFlags mMailFlags; // _228, unknown
+	MailHistoryFlags mMailFlags; // _228
 };
 
 struct SceneDayEndResultTitl : public ::Screen::SceneBase {
@@ -708,7 +706,6 @@ struct SceneDayEndResultTitl : public ::Screen::SceneBase {
 
 	// _00      = VTBL
 	// _00-_220 = Screen::SceneBase
-	// TODO: work out if this has extra members
 };
 
 } // namespace Screen

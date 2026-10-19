@@ -199,52 +199,9 @@ u32 CellPyramid::getCheckCount()
  * @note Address: N/A
  * @note Size: 0x2C
  */
-// void Cell::hasLeg(CellLeg*)
 // bool Cell::hasLeg(CellLeg&)
 // {
 // 	// UNUSED FUNCTION
-// }
-
-// inline f32 temp(f32 input) {
-// 	if (input > 0.0f) {
-// 		return (f32)__frsqrte(input) * input;
-// 	}
-// 	return 0.0f;
-// }
-
-// inline f32 fakepikmin2_sqrtf(f32 x)
-// {
-// 	if (!(x > 0.0f)) { // if x <= 0
-// 		return x;
-// 	}
-
-// 	register f32 reg1 = x;
-// 	register f32 reg2 = 0.0f;
-// 	register f32 result;
-
-// #ifdef __MWERKS__ // clang-format off
-// 	asm {
-//       frsqrte reg2, reg1
-//       fmuls result, reg2, reg1
-// 	}
-// #endif // clang-format on
-
-// 	return result;
-// }
-
-// f32 qdist32(f32 x1, f32 y1, f32 z1, f32 x2, f32 y2, f32 z2)
-// {
-// 	f32 xdiff = (x2 - x1);
-// 	f32 ydiff = (y2 - y1);
-// 	f32 zdiff = (z2 - z1);
-
-// 	f32 dist = (SQUARE(xdiff) + SQUARE(ydiff) + SQUARE(zdiff));
-// 	if (dist > 0.0f) {
-// 		dist *= (__frsqrte(dist));
-// 	} else {
-// 		dist = 0.0f;
-// 	}
-// 	return dist;
 // }
 
 /**
@@ -381,8 +338,6 @@ void CollisionBuffer::pikiInsertPiki(CellObject* object, f32 distance)
 		// Find the index the object should be inserted at,
 		// and shift objects after that index along the way.
 		for (; (nodeIndex >= 0); nodeIndex--) {
-			// for (; nodeIndex >= 0 && mCollNodes[nodeIndex]._04 > distance && mCollNodes->mCellObject->isPiki();
-			// nodeIndex--) {
 			if (!(mCollNodes[nodeIndex].mObjDistance > distance && mCollNodes[nodeIndex].mCellObject->isPiki())) {
 				break;
 			}
@@ -413,8 +368,6 @@ void CollisionBuffer::pikiInsertOther(CellObject* object, f32 distance)
 		// Find the index the object should be inserted at,
 		// and shift objects after that index along the way.
 		for (; (nodeIndex >= 0); nodeIndex--) {
-			// for (; nodeIndex >= 0 && mCollNodes[nodeIndex]._04 > distance && mCollNodes->mCellObject->isPiki();
-			// nodeIndex--) {
 			if (!(mCollNodes[nodeIndex].mObjDistance > distance || mCollNodes[nodeIndex].mCellObject->isPiki())) {
 				break;
 			}
@@ -498,9 +451,6 @@ void CellLayer::resolveCollision()
  */
 void CellPyramid::resolveCollision()
 {
-	// if (0x3ffffff < ++mPassID) {
-	// 	mPassID = 0;
-	// }
 	mPassID += 1;
 	if (0x4000000 <= mPassID) {
 		mPassID = 0;
@@ -596,7 +546,6 @@ void CellLayer::clearAllCollBuffer()
 }
 
 /**
- * This probably calls (CellLayer|Cell)::clearAllCollBuffer.
  * clearAllCollBuffer__Q24Game11CellPyramidFv
  *
  * @note Address: 0x801577DC

@@ -918,15 +918,6 @@ void JUTException::appendMapFile(const char* fileName)
 }
 
 /**
- * @note Address: N/A
- * @note Size: 0x54
- */
-// void JSULink<JUTException::JUTExMapFile>::~JSULink()
-// {
-// 	// UNUSED FUNCTION
-// }
-
-/**
  * @note Address: 0x8002C844
  * @note Size: 0xE0
  */

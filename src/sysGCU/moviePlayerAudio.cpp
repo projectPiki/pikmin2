@@ -3,16 +3,6 @@
 #include "nans.h"
 
 /**
- * @note Address: N/A
- * @note Size: 0xCC
- */
-/* void @unnamed @moviePlayerAudio_cpp
-    @ ::createObject_SOUND_JAI_(const JStudio::stb::data::TParse_TBlock_object&, JAIBasic*, const JStage::TSystem*)
-{
-    // UNUSED FUNCTION
-} */
-
-/**
  * @note Address: 0x80454D30
  * @note Size: 0x3C
  */

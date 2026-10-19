@@ -6,9 +6,7 @@
 struct BaseParm;
 struct Stream;
 
-// @fabricatedName
 struct IParameters {
-	// void* mEndAddress; // _00
 };
 
 struct Parameters : virtual IParameters {

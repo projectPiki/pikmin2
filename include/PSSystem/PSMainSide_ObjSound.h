@@ -72,7 +72,6 @@ struct EnemyBase : public CreatureAnime, public BattleLink, public KehaiLink {
 	EnemyBase(Game::EnemyBase*, u8);
 
 	// vtable 2 (CreatureAnime, _28)
-	// virtual ~EnemyBase() { }               // _14 (weak)
 	virtual CreatureCastType getCastType() // _1C (weak)
 	{
 		return CCT_Enemy;
@@ -134,7 +133,6 @@ struct EnemyBig : public EnemyBase {
 	{
 	}
 
-	// virtual ~EnemyBig() { }                 // _14 (weak)
 	virtual CreatureCastType getCastType() { return CCT_EnemyBig; } // _1C (weak)
 	virtual bool judgeNearWithPlayer(const Vec&, const Vec&, f32,
 	                                 f32); // _34
@@ -149,7 +147,6 @@ struct EnemyHekoi : public EnemyBase {
 	{
 	}
 
-	// virtual ~EnemyHekoi() { }              // _04
 	virtual CreatureCastType getCastType() // _0C
 	{
 		return CCT_EnemyHekoi;
@@ -165,7 +162,6 @@ struct Enemy_SpecialChappy : public EnemyBig {
 	{
 	}
 
-	// virtual ~Enemy_SpecialChappy();           // _14 (weak)
 	virtual void onPlayingSe(u32, JAISound*); // _38
 };
 
@@ -178,7 +174,6 @@ namespace PSM {
 struct EnemyBoss : public EnemyBase {
 	EnemyBoss(Game::EnemyBase* gameObj);
 
-	// virtual ~EnemyBoss();                                         // _14 (weak)
 	virtual CreatureCastType getCastType() { return CCT_EnemyBoss; } // _1C (weak)
 	virtual void exec();                                             // _20
 	virtual void onCalcOn();                                         // _28
@@ -235,7 +230,6 @@ struct EnemyMidBoss : public EnemyBoss {
 
 	EnemyMidBoss(Game::EnemyBase*);
 
-	// virtual ~EnemyMidBoss();                                         // _14 (weak)
 	virtual CreatureCastType getCastType() { return CCT_EnemyMidBoss; } // _1C (weak)
 	virtual void onCalcOn();                                            // _28
 	virtual void jumpRequest(u16);                                      // _D4
@@ -454,10 +448,6 @@ namespace PSM {
 struct WorkItem : public EventBase {
 	WorkItem(Game::BaseItem*);
 	// vtable 2
-	/**
-	 * @reifiedAddress{804638E8}
-	 * @reifiedFile{utilityU/PSMainSide_ObjSound.cpp}
-	 */
 	virtual CreatureCastType getCastType() { return CCT_WorkItem; } // _0C
 
 	// vtable 3

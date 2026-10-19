@@ -312,7 +312,6 @@ size_t J3DModelLoader_v26::calcSizeMaterialTable(const J3DMaterialBlock* block, 
 	if (block->mStringTableOffset) {
 		size = 0x10;
 	}
-	// return calcSizeForCount(factory, count, flags, padding);
 	size += (count * sizeof(J3DMaterial*));
 	for (u16 i = 0; (u16)i < (u16)count; i++) {
 		size += factory.calcSize(nullptr, J3DMaterialFactory::NORMAL, (u16)i, flags);
@@ -346,7 +345,6 @@ int J3DModelLoader::calcSizePatchedMaterial(const J3DMaterialBlock* block, u32 f
 	if (block->mStringTableOffset) {
 		padding = 0x10;
 	}
-	// return calcSizeForCount(factory, count, flags, padding);
 	u32 size = padding + (count * sizeof(J3DMaterial*));
 	for (u16 i = 0; (u16)i < (u16)count; i++) {
 		size += factory.calcSize(nullptr, J3DMaterialFactory::PATCHED, (u16)i, flags);

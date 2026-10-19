@@ -151,7 +151,7 @@ void J3DDeformer::deform_VtxNrmF32(J3DVertexBuffer* vtxBuffer, J3DCluster* clust
 
 	for (u16 i = 0; i < clusterUnk; i++) {
 		J3DClusterKey* key = &cluster->mKeys[i];
-		f32 vec[3]; // 0x8
+		f32 vec[3];
 		vec[0]  = 0.0f;
 		vec[1]  = 0.0f;
 		vec[2]  = 0.0f;
@@ -173,7 +173,7 @@ void J3DDeformer::deform_VtxNrmF32(J3DVertexBuffer* vtxBuffer, J3DCluster* clust
 
 			idx2        = key->_04[j];
 			currVec     = &vecBuffer[(int)(idx2 * 3)];
-			int idx3    = idx * 3; // r21
+			int idx3    = idx * 3;
 			f32 dotProd = vec[0] * currVec[0] + vec[1] * currVec[1] + vec[2] * currVec[2];
 			if (dotProd >= 1.0f) {
 				dotProd = 0.0f;

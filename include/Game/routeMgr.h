@@ -53,8 +53,6 @@ enum WayPointFlags {
 	WPF_VersusRed  = 0x20, // unused
 	WPF_Unknown7   = 0x40,
 	WPF_Unvisited  = 0x80
-	// There is an additional value for "visited", and probably values for vs
-	// color
 };
 
 struct WayPoint : public JKRDisposer {

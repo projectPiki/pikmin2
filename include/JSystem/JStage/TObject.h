@@ -21,9 +21,7 @@ struct TObject {
 	virtual int JSGFindNodeID(const char*) const;          // _34
 	virtual bool JSGGetNodeTransformation(u32, Mtx) const; // _38
 
-	/** @fabricated */
 	inline void setFlagOff(u32 flag) { JSGSetFlag(JSGGetFlag() & ~flag); }
-	/** @fabricated */
 	inline void setFlagOn(u32 flag) { JSGSetFlag(JSGGetFlag() | flag); }
 
 	// _00 = VTBL

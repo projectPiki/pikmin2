@@ -422,12 +422,12 @@ void IKSystemMgr::calcFaceDir()
 void IKSystemMgr::calcCentrePosition()
 {
 	if (mIsIKActive) {
-		Vector3f positions[4]; // 0x64
+		Vector3f positions[4];
 
-		positions[0] = mIKSystems[0].getBottomJointPosition(); // 0x64
-		positions[1] = mIKSystems[1].getBottomJointPosition(); // 0x70
-		positions[2] = mIKSystems[2].getBottomJointPosition(); // 0x7C
-		positions[3] = mIKSystems[3].getBottomJointPosition(); // 0x88
+		positions[0] = mIKSystems[0].getBottomJointPosition();
+		positions[1] = mIKSystems[1].getBottomJointPosition();
+		positions[2] = mIKSystems[2].getBottomJointPosition();
+		positions[3] = mIKSystems[3].getBottomJointPosition();
 
 		mCentrePosition.x = mCentrePosition.y = mCentrePosition.z = 0.0f;
 
@@ -439,11 +439,11 @@ void IKSystemMgr::calcCentrePosition()
 		mCentrePosition.x *= 0.25f;
 		mCentrePosition.z *= 0.25f;
 
-		f32 heights[4];              // 0x54
-		heights[0] = positions[0].y; // 0x54
-		heights[1] = positions[1].y; // 0x58
-		heights[2] = positions[2].y; // 0x5C
-		heights[3] = positions[3].y; // 0x60
+		f32 heights[4];
+		heights[0] = positions[0].y;
+		heights[1] = positions[1].y;
+		heights[2] = positions[2].y;
+		heights[3] = positions[3].y;
 
 		for (int i = 0; i < 3; i++) {
 			for (int j = i + 1; j < 4; j++) {

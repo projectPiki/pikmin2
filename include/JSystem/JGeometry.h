@@ -139,13 +139,8 @@ struct TVec2 {
 		y = a.y + b.y;
 	}
 
-	/** @fabricated */
-	// TVec2<T> adding(const TVec2<T>& other) { return TVec2<T>(x + other.x, y + other.y); }
-
-	/** @fabricated */
 	TVec2<T> adding(T xDelta, T yDelta) { return TVec2<T>(x + xDelta, y + yDelta); }
 
-	/** @fabricated */
 	void add(T xDelta, T yDelta)
 	{
 		x += xDelta;
@@ -264,28 +259,7 @@ struct TVec2 {
 
 template <typename T>
 struct TVec3 {
-	// inline TVec3() { }
-	// inline TVec3(T value)
-	//     : x(value)
-	//     , y(value)
-	//     , z(value)
-	// {
-	// }
-	// inline TVec3(T inX, T inY, T inZ)
-	//     : x(inX)
-	//     , y(inY)
-	//     , z(inZ) { }
 
-	// // TODO: Determine if this could've actually existed, or if I'm just making it up.
-	// inline TVec3(const TVec3<T>& other)
-	// {
-	// 	x = other.x;
-	// 	y = other.y;
-	// 	z = other.z;
-	// }
-
-	// TODO: Determine if this could've actually existed, or if I'm just making
-	// it up.
 	inline TVec3& operator=(const TVec3& other)
 	{
 		x = other.x;
@@ -343,7 +317,6 @@ struct TVec3 {
 			z = max.z;
 	}
 
-	// inline operator Vec() const { return *this; }
 	inline operator Vec() const
 	{
 		Vec other;
@@ -352,13 +325,6 @@ struct TVec3 {
 		other.z = z;
 		return other;
 	}
-
-	// inline TVec3(Vec& vec)
-	// {
-	// 	x = vec.x;
-	// 	y = vec.y;
-	// 	z = vec.z;
-	// }
 
 	void add(const TVec3<f32>& b)
 	{
@@ -591,7 +557,6 @@ struct TBox<TVec2<f32> > {
 template <typename T>
 struct TBox2 : TBox<TVec2<T> > {
 	TBox2() { }
-	// TBox2(const TBox2& other) { set(other); }
 	TBox2(const TVec2<T>& i_, const TVec2<T>& f_)
 	{
 		i.set(i_);
@@ -603,8 +568,7 @@ struct TBox2 : TBox<TVec2<T> > {
 		i.set(i_.x, i_.y);
 		f.set(f_.x, f_.y);
 	}
-	// TBox2(const TVec2<T>& i, T x1, T y1) { set(i, x1, y1); }
-	// TBox2(T x0, T y0, const TVec2<T>& f) { set(x0, y0, f); }
+
 	TBox2(f32 x0, f32 y0, f32 x1, f32 y1) { set(x0, y0, x1, y1); }
 	TBox2(f32 x0, f32 y0, TVec2<f32>& f) { set(x0, y0, x0 + f.x, y0 + f.y); }
 	TBox2(f32 val)
@@ -614,12 +578,6 @@ struct TBox2 : TBox<TVec2<T> > {
 		i.y = val;
 		i.x = val;
 	}
-
-	// inline TBox2& operator=(const TBox2& other)
-	// {
-	// 	set(other);
-	// 	return *this;
-	// }
 
 	void setI(TVec2<T>& in)
 	{
@@ -648,45 +606,19 @@ struct TBox2 : TBox<TVec2<T> > {
 
 	inline void setY(const T& y) { this->f.y = this->i.y = y; }
 
-	// /** @fabricated */
-	// TBox2<T>& addingPos(TBox2<T>& result, const TVec2<T>& pos) {
-	// 	return TBox2<T>(i.adding(pos), f.adding(pos));
-	// }
-
 	void set(const TBox2& other) { set(other.i, other.f); }
 	void set(const TVec2<T>& i, const TVec2<T>& f) { this->i.set(i), this->f.set(f); }
-	// void set(const TVec2<T>& i, T x1, T y1) { this->i.set(i), this->f.set(x1, y1); }
-	// void set(T x0, T y0, const TVec2<T>& f) { this->i.set(x0, y0), this->f.set(f); }
 	void set(T x0, T y0, T x1, T y1)
 	{
 		this->i.set(x0, y0);
 		this->f.set(x1, y1);
 	}
-
-	// void setOrigin(const TVec2<T>& other) { this->i.set(other); }
-	// void setSize(T width, T height) { this->f.x = this->i.x + width; this->f.y = this->i.y + height; }
 };
 
 template <typename T>
 struct TBox3 : TBox<TVec3<T> /**/> {
 	TBox3() { }
 	TBox3(const TVec3<T>& i, const TVec3<T>& f) { set(i, f); }
-	// // TBox2(const TVec2<T>& i, T x1, T y1) { set(i, x1, y1); }
-	// // TBox2(T x0, T y0, const TVec2<T>& f) { set(x0, y0, f); }
-	// TBox3(T x0, T y0, T z0, T x1, T y1, T z1) { set(x0, y0, z0, x1, y1, z1); }
-	// TBox3(T x0, T y0, TVec3<T>& f) { set(x0, y0, z0, x0 + f.x, y0 + f.y, z0 + f.z);	}
-	// TBox3(T val)
-	// {
-	// 	f.x = f.y = f.z = val;
-	// 	i.x = i.y = i.z = val;
-	// }
-
-	// inline TBox3& operator=(const TBox3& other)
-	// {
-	// 	mMin = other.mMin;
-	// 	mMax = other.mMax;
-	// 	return *this;
-	// }
 
 	inline bool isValid() { return this->f.isAbove(this->i); }
 

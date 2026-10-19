@@ -47,7 +47,6 @@ GenBase::GenBase(u32 typeID, char* labelData, char* objTypeName)
 }
 
 /**
- * @matchedSize
  * @note Address: N/A
  * @note Size: 0x54
  */

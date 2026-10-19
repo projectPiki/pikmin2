@@ -134,8 +134,6 @@ struct TList {
 	iterator begin() { return iterator(mNode.mNext); }
 	iterator end() { return iterator(&mNode); }
 
-	// const_iterator begin() const { return const_iterator(mNode.mNext); }
-	// const_iterator end() const { return const_iterator(mNode.mPrev); }
 	bool empty() const { return size() == 0; }
 	u32 size() const { return mSize; }
 	iterator clear() { return erase(begin(), end()); }

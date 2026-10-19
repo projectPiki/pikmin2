@@ -13,10 +13,8 @@ struct JASCallbackMgr {
 		{
 		}
 
-		/** @fabricated */
 		inline bool isMatch(JASCallback* function, void* argument) { return (mFunction == function && mArgument == argument); }
 
-		/** @fabricated */
 		inline void clear()
 		{
 			mFunction = nullptr;

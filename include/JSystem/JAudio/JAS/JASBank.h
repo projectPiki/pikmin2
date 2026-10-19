@@ -16,10 +16,6 @@ struct JASBank {
 	{
 	}
 
-	/**
-	 * @reifiedAddress{80099728}
-	 * @reifiedFile{JSystem/JAS/JASBasicBank.cpp}
-	 */
 	virtual ~JASBank() { }                   // _08 (weak)
 	virtual JASInst* getInst(int) const = 0; // _0C
 	virtual u32 getType() const         = 0; // _10
@@ -37,10 +33,6 @@ struct JASBasicBank : public JASBank {
 
 	virtual ~JASBasicBank();             // _08
 	virtual JASInst* getInst(int) const; // _0C
-	/**
-	 * @reifiedAddress{8009987C}
-	 * @reifiedFile{JSystem/JAS/JASBasicBank.cpp}
-	 */
 	virtual u32 getType() const { return 'BSIC'; } // _10 (weak)
 
 	void setInstCount(u32);

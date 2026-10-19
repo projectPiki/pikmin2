@@ -425,7 +425,7 @@ bool InteractSuckDone::actOnyon(Onyon* item)
 			Vector3f pos = item->getPosition();
 			int money    = pellet->mConfig->mParams.mMoney.mData;
 
-			// carcass (1), ?? (3) or item (4)
+			// carcass (1), treasure (3) or item (4)
 			if (money > 0
 			    && (pellet->getKind() == PelletType::Carcass || pellet->getKind() == PelletType::Treasure
 			        || pellet->getKind() == PelletType::Upgrade)) {

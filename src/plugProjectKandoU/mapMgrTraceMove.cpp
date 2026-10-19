@@ -68,10 +68,10 @@ Sys::TriIndexList* MapMgr::traceMove(MapCollision& coll, Game::MoveInfo& info, f
  */
 Sys::TriIndexList* MapMgr::traceMove_test1203_cylinder(MapCollision& coll, Game::MoveInfo& info, f32 deltaTime)
 {
-	Sys::Sphere* moveSphere = info.mMoveSphere; // r26
-	Vector3f* velocity      = info.mVelocity;   // r25
+	Sys::Sphere* moveSphere = info.mMoveSphere;
+	Vector3f* velocity      = info.mVelocity; 
 
-	Sys::VertexTable* vertTable = coll.mDivider->mVertexTable; // r24
+	Sys::VertexTable* vertTable = coll.mDivider->mVertexTable;
 
 	// some debug printing
 	if (MapMgr::traceMoveDebug) {
@@ -83,16 +83,16 @@ Sys::TriIndexList* MapMgr::traceMove_test1203_cylinder(MapCollision& coll, Game:
 	// update position one step
 	moveSphere->mPosition = moveSphere->mPosition + (*velocity) * deltaTime;
 
-	Sys::TriangleTable* triTable = coll.mDivider->mTriangleTable;            // r19
-	Sys::TriIndexList* triList   = coll.mDivider->findTriLists(*moveSphere); // r23
+	Sys::TriangleTable* triTable = coll.mDivider->mTriangleTable;
+	Sys::TriIndexList* triList   = coll.mDivider->findTriLists(*moveSphere);
 
 	// loop through all triangles in all lists to see what we're interacting with
 	for (triList; triList; triList = static_cast<Sys::TriIndexList*>(triList->mNext)) {
 		mTotalTriCount += triList->getNum();
 
 		for (int i = 0; i < triList->getNum(); i++) {
-			int idx            = triList->getIndex(i);       // r21
-			Sys::Triangle* tri = triTable->getTriangle(idx); // r29
+			int idx            = triList->getIndex(i);
+			Sys::Triangle* tri = triTable->getTriangle(idx);
 
 			// if optimisation level is high enough, get rid of things we're not even barely touching
 			// (NB: opt level is 1 in vanilla)

@@ -39,21 +39,21 @@ void JPABaseParticle::init_p(JPAEmitterWorkData* workData)
 	              mOffsetPosition.y + mLocalPosition.y * workData->mPublicScale.y,
 	              mOffsetPosition.z + mLocalPosition.z * workData->mPublicScale.z);
 
-	JGeometry::TVec3f vec1; // 0x38
+	JGeometry::TVec3f vec1;
 	if (emitter->mAwayFromCenterSpeed) {
 		vec1.setLength(workData->mVelOmni, emitter->mAwayFromCenterSpeed);
 	} else {
 		vec1.zero();
 	}
 
-	JGeometry::TVec3f vec2; // 0x2C
+	JGeometry::TVec3f vec2;
 	if (emitter->mAwayFromAxisSpeed) {
 		vec2.setLength(workData->mVelAxis, emitter->mAwayFromAxisSpeed);
 	} else {
 		vec2.zero();
 	}
 
-	JGeometry::TVec3f vec3; // 0x20
+	JGeometry::TVec3f vec3;
 	if (emitter->mDirSpeed) {
 		Mtx yzRotMtx;
 		JPAGetYZRotateMtx(emitter->mSpread * (SHORT_FLOAT_MAX * emitter->getRandZP()), emitter->getRandS16(), yzRotMtx);

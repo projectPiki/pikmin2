@@ -797,7 +797,6 @@ bool TZukanBase::doUpdate()
 		} else {
 			alpha = 1.0f;
 		}
-		// alpha = 255.0f * alpha;
 		mWindow->mScreenObj->search('mg_yaji')->setAlpha(alpha * 255.0f);
 		mWindow->mScreenObj->search('Pbtn_cu1')->setAlpha(alpha * 255.0f);
 		mPaneMesgWindowStickCap->setAlpha(alpha * 255.0f);
@@ -1638,7 +1637,6 @@ const ResTIMG* TZukanBase::getTexInfo(int id)
  */
 void TZukanBase::resetDebugShow()
 {
-	// mDebugUnlockedList        = new bool[getIdMax()];
 	for (int i = 0; i < getIdMax(); i++) {
 		mDebugUnlockedList[i] = false;
 		if (randFloat() < mRandShowRate) {
@@ -1784,7 +1782,6 @@ void TEnemyZukan::doCreate(JKRArchive* arc)
 			int max   = getIdMax();
 			int test  = randInt(50) + 1;
 			int test2 = 85 - randInt(10);
-			// test2     = 85 - test2;
 			for (int i = 0; i < max; i++) {
 				if (i < test || i > test2) {
 					mMaxPane++;
@@ -2401,7 +2398,6 @@ void TEnemyZukan::indexPaneInit(J2DScreen* screen)
 			bool test     = true;
 			switch (mIndexPaneList[i - 1]->mSizeType) {
 			case TIndexPane::Size_Small:
-				// index = prevIndex;
 				if (prevIndex == _234) {
 					index = prevIndex;
 				} else {
@@ -2483,7 +2479,6 @@ void TEnemyZukan::getUpdateIndex(int& id, bool flag)
 #endif
 
 			if (mIsBigIconList[mViewablePanelIDList[id]]) {
-				// int test = mIndexPaneList[mCurrMinActiveRow]->mSizeType;
 				switch (mIndexPaneList[mCurrMinActiveRow]->mSizeType) {
 				case TIndexPane::Size_Small2:
 					id++;
@@ -2507,8 +2502,8 @@ void TEnemyZukan::getUpdateIndex(int& id, bool flag)
 			id = mIndexPaneList[mCurrMinActiveRow]->getListIndex();
 			return;
 		}
-		bool flag2 = false; // r31
-		bool flag3 = false; // r30
+		bool flag2 = false;
+		bool flag3 = false;
 
 		mIndexPaneList[mCurrMinActiveRow]->mSizeType = TIndexPane::Size_Small;
 		if (id == mIndexPaneList[mCurrMaxActiveRow]->getListIndex()) {
@@ -3209,7 +3204,6 @@ void TItemZukan::setShortenIndex(int paneID, int index, bool flag)
 	if (pane) {
 		int id2 = -1;
 		for (int i = 0; i < id; i++) {
-			// TIconInfo* icon = pane->mIconInfos[i];
 			if (pane->mIconInfos[i]->mParentIndex) {
 				id2 = pane->mIconInfos[i]->mCategoryID;
 			}

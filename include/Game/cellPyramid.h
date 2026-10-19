@@ -48,7 +48,6 @@ struct CollisionBuffer {
 	CellObject* mCellObject; // _0C
 };
 
-// TODO: Ensure this is aligned.
 struct CellLeg {
 	CellLeg()
 	{
@@ -121,7 +120,7 @@ struct CellObject : public TPositionObject, public SweepPrune::Object {
 		mCellLegs[3].mObject = this;
 		mPassID              = 0;
 	}
-	//	virtual Vector3f getPosition() 				= 0;	// _08
+
 	virtual void checkCollision(CellObject*) { }        // _0C (weak)
 	virtual void getBoundingSphere(Sys::Sphere&) = 0;   // _10
 	virtual bool collisionUpdatable()            = 0;   // _14
@@ -207,11 +206,9 @@ struct CellPyramid : public SweepPrune::World {
 	f32 mScale;         // _34
 	f32 mInverseScale;  // _38
 	Vector2f mBounds;   // _3C
-	/**
-	 * Incremented at the start of every resolve/search pass.
-	 * Passed on to CellObjects to prevent evaluating multiple times per pass.
-	 */
-	u32 mPassID; // _44
+
+	u32 mPassID; // _44, Incremented at the start of every resolve/search pass.
+	             // Passed on to CellObjects to prevent evaluating multiple times per pass.
 
 	static char* sCellBugName;
 	static int sCellBugID;
@@ -220,7 +217,6 @@ struct CellPyramid : public SweepPrune::World {
 	static bool disableAICulling;
 };
 
-// fabricated
 struct CellIteratorCondition {
 	virtual bool satisfy(CellObject* obj) { return true; } // _08
 };

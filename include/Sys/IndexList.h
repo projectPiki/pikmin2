@@ -6,7 +6,6 @@
 
 namespace Sys {
 struct IndexList : public ArrayContainer<int> {
-	// virtual ~IndexList() { }                          // _08 (weak)
 	virtual void readObject(Stream& stream, int& p1) // _30 (weak)
 	{
 		p1 = stream.readInt();

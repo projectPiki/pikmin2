@@ -8,8 +8,6 @@ namespace PSM {
 struct CreaturePrm : public PSSystem::SingletonBase<CreaturePrm> {
 	CreaturePrm();
 
-	// virtual ~CreaturePrm() { } // _08 (weak)
-
 	static const f32 cSeFxMix;
 	static const f32 cSeFxMix_cave;
 	static const f32 cNoukouDistance;

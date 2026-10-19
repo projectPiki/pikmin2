@@ -1322,7 +1322,6 @@ bool TVsSelect::doUpdate()
 		mPaneRulesLR[0]->hide();
 		mPaneRulesLR[1]->hide();
 	} else {
-		// mRuleChangeTimer += mRulePageChangeSpeed;
 		f32 alpha = mArrowBlink->calc() * 255.0f;
 		for (int i = 0; i < 2; i++) {
 			mPaneRulesLR[i]->setAlpha(alpha);

@@ -220,7 +220,7 @@ f32 JAISound::setDistanceVolumeCommon(f32 p1, u8 p2)
 	f32 dist;
 	if (mCameraIndex != 4) {
 		dist = mSoundObj[mCameraIndex].mDistance;
-	} else { // _18 == 4
+	} else {
 		dist = mSoundObj[0].mDistance;
 		for (u8 i = 1; i < JAIGlobalParameter::audioCameraMax; i++) {
 			if (mSoundObj[i].mDistance < dist) {

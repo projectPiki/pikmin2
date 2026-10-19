@@ -73,7 +73,7 @@ bool Triangle::intersect(Sys::VertexTable& vtxTable, Sys::Triangle::SphereSweep&
 
 	Sphere ball(sweep.mSphere.mPosition, sweep.mSphere.mRadius);
 	Edge edge_in;
-	f32 t; // sp8
+	f32 t;
 
 	int vertA = mVertices[0];
 	int vertB = mVertices[1];

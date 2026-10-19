@@ -324,7 +324,6 @@ struct J2DPictureEx : public J2DPicture {
 	bool getBlackWhite(JUtility::TColor* outBlack, JUtility::TColor* outWhite) const;
 	bool isSetBlackWhite(JUtility::TColor black, JUtility::TColor white) const;
 
-	/** @fabricated */
 	inline void setAnmVtxColorHelper(J2DAnmVtxColor* animation, u16 p2, u8 p3)
 	{
 		for (u16 b = 0; b < p2; b++) {

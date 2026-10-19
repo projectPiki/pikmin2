@@ -423,7 +423,7 @@ J2DTevStage J2DMaterialFactory::newTevStage(int idx, int p2) const
 {
 	J2DMaterialInitData* initData = &mMaterialInitData[mMatIndexTable[idx]];
 	if (initData->mTevStageInfoIdx[p2] != 0xFFFF) {
-		return J2DTevStage(mTevStageInfo[initData->mTevStageInfoIdx[p2]]); // this needs fixing
+		return J2DTevStage(mTevStageInfo[initData->mTevStageInfoIdx[p2]]);
 	}
 	return J2DTevStage();
 }

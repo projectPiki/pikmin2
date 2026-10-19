@@ -29,9 +29,6 @@ struct BoundBox {
 	inline void getMin(Vector3f& min) const { min = mMin; }
 	inline void getMax(Vector3f& max) const { max = mMax; }
 
-	/**
-	 * @fabricated
-	 */
 	inline void include(Vector3f& point)
 	{
 		if (point.x < mMin.x) {

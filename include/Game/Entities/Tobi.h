@@ -112,7 +112,6 @@ struct Obj : public EnemyBase {
 struct Mgr : public EnemyMgrBase {
 	Mgr(int objLimit, u8 modelType);
 
-	// virtual ~Mgr();                                     // _58 (weak)
 	virtual void doAlloc();                            // _A8
 	virtual void createObj(int count);                 // _A0
 	virtual EnemyBase* getEnemy(int idx);              // _A4
@@ -123,7 +122,7 @@ struct Mgr : public EnemyMgrBase {
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
-	Obj* mObj; // _44, likely an array of Objs
+	Obj* mObj; // _44, array of Objs
 };
 
 struct Parms : public EnemyParmsBase {

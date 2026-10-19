@@ -333,7 +333,7 @@ void GrowState::onKeyEvent(Item* item, const SysShape::KeyEvent& keyEvent)
 {
 	if (keyEvent.mType == KEYEVENT_2) {
 		item->mHeadType = (item->mHeadType + 1) % 3;
-		efx::createSimpleGlow2(*item->mEfxTane->mEfxPos); // TODO: not declared yet
+		efx::createSimpleGlow2(*item->mEfxTane->mEfxPos);
 		if (item->mHeadType == Bud) {
 			item->startSound(PSSE_PK_SE_ONY_TSUBOMI);
 		} else if (item->mHeadType == Flower) {

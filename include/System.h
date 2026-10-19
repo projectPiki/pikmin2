@@ -92,7 +92,7 @@ struct System : public OSMutex {
 		LANG_English = 0,
 		LANG_French,
 		LANG_German,
-		LANG_Unused, // Hol?
+		LANG_Unused, // scrapped dutch language
 		LANG_Italian,
 		LANG_Japanese,
 		LANG_Spanish,
@@ -114,7 +114,6 @@ struct System : public OSMutex {
 		char* mName; // _04
 	};
 
-	// unused struct?
 	struct GXVerifyArg {
 		GXVerifyArg();
 

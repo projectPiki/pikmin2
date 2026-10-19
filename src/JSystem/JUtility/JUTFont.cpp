@@ -5,7 +5,6 @@
 /**
  * @note Address: 0x8002D144
  * @note Size: 0x2C
- * Matches
  */
 JUTFont::JUTFont()
 {
@@ -15,7 +14,6 @@ JUTFont::JUTFont()
 /**
  * @note Address: 0x8002D170
  * @note Size: 0x4C
- * Matches
  */
 void JUTFont::initialize_state()
 {
@@ -28,7 +26,6 @@ void JUTFont::initialize_state()
 /**
  * @note Address: 0x8002D1BC
  * @note Size: 0x54
- * Matches
  */
 void JUTFont::setCharColor(JUtility::TColor color)
 {
@@ -41,7 +38,6 @@ void JUTFont::setCharColor(JUtility::TColor color)
 /**
  * @note Address: 0x8002D210
  * @note Size: 0x64
- * Matches
  */
 void JUTFont::setGradColor(JUtility::TColor bottomColor, JUtility::TColor topColor)
 {
@@ -54,7 +50,6 @@ void JUTFont::setGradColor(JUtility::TColor bottomColor, JUtility::TColor topCol
 /**
  * @note Address: 0x8002D274
  * @note Size: 0x118
- * Matches
  */
 f32 JUTFont::drawString_size_scale(f32 posX, f32 posY, f32 scaleX, f32 scaleY, const char* string, u32 length, bool unused)
 {

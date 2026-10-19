@@ -253,9 +253,6 @@ struct TSequenceProcessor : public TProcessor {
 	TControl* mControl; // _38
 	int mStatus;        // _3C
 	TProcess_ mProc;    // _40
-	                    // ProcessOnJumpCallBack* _40; // _40 - processorCallBack(void*, ulong) pointer?
-	                    // u32 _44;                    // _44
-	                    // u32 _48;                    // _48
 };
 
 struct TRenderingProcessor : public TProcessor {

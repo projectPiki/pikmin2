@@ -555,7 +555,6 @@ void RandMapScore::setChallengeFixObjHard()
 		if (fixObjEnabled[i] && !getFixObjNode(fixObjIdx[i])) {
 			MapNode* mapList[512];
 			BaseGen* genList[512];
-			// int scoreList[512];
 
 			int roomTypes[UNITKIND_Count] = { UNITKIND_Room, UNITKIND_Cap, UNITKIND_Corridor };
 			int counter                   = 0;

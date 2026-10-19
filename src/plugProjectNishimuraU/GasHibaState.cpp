@@ -147,8 +147,7 @@ void StateAttack::exec(EnemyBase* enemy)
 
 	hiba->getJAIObject()->startSound(PSSE_EN_GAS_HIBA_VOMIT, 0);
 
-	if (hiba->mCurAnim->mIsPlaying
-	    && ((u32)hiba->mCurAnim->mType == KEYEVENT_END) /* Epoch: wtf is this, needs cleanup. Surely an enum (+1 from INTNS)? */) {
+	if (hiba->mCurAnim->mIsPlaying && (u32)hiba->mCurAnim->mType == KEYEVENT_END) {
 		if (hiba->mHealth <= 0.0f) {
 			transit(hiba, GASHIBA_Dead, nullptr);
 			return;

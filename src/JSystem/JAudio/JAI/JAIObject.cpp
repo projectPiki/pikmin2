@@ -348,7 +348,7 @@ void JAInter::Object::loop()
 
 		if (!check && _24) {
 			PSMTXMultVec(*JAIBasic::msBasic->mCameras->mMtx, _24, &_28);
-			mDistance = dolsqrtfull(_28.x * _28.x + _28.y * _28.y + _28.z * _28.z); // needs to be a more elaborate sqrt
+			mDistance = dolsqrtfull(_28.x * _28.x + _28.y * _28.y + _28.z * _28.z);
 		}
 
 		JAISound_0x34* v1 = mSounds[i]->mSoundObj;

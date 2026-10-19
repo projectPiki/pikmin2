@@ -224,7 +224,6 @@ struct J3DModel {
 	MtxP getAnmMtx(int p1) { return mMtxBuffer->getAnmMtx(p1); }
 	J3DMtxBuffer* getMtxBuffer() const { return mMtxBuffer; }
 
-	// void setBaseScale(const Vec& scale) { mModelScale = scale; }
 	Vec* getBaseScale() { return &mModelScale; }
 
 	// _00 VTBL

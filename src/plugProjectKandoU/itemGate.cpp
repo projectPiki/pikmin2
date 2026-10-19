@@ -664,8 +664,6 @@ void GateWaitState::onKeyEvent(Game::ItemGate*, const SysShape::KeyEvent&)
 void GateDamagedState::init(Game::ItemGate* item, Game::StateArg* arg)
 {
 	item->startDamageMotion();
-	// item->mAnimator.startAnim(item->mSegmentsDown, item);
-	// item->mAnimSpeed = 30.0f;
 	mNotInAnim = false;
 }
 

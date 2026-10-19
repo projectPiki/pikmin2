@@ -31,16 +31,8 @@ struct JASDrumSet : public JASInst {
 		TVeloRegion* mVeloRegions; // _1C
 	};
 
-	/**
-	 * @reifiedAddress{8009B450}
-	 * @reifiedFile{JSystem/JAS/JASDrumSet.cpp}
-	 */
 	virtual ~JASDrumSet() { }                             // _08 (weak)
 	virtual bool getParam(int, int, JASInstParam*) const; // _0C
-	/**
-	 * @reifiedAddress{8009B4D4}
-	 * @reifiedFile{JSystem/JAS/JASDrumSet.cpp}
-	 */
 	virtual u32 getType() const { return 'PERC'; } // _10 (weak)
 
 	TPerc* getPerc(int index);

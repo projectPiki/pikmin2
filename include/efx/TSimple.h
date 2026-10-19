@@ -84,23 +84,18 @@ struct TSimple4 : public TBase {
 	virtual void forceKill() { } // _0C (weak)
 	virtual void fade() { }      // _10 (weak)
 
-	/**
-	 * @fabricated
-	 */
-	bool _create(Arg& arg)
-	{
-		// Vector3f& position = arg.mPosition;
-		for (int i = 0; i < 4; i++) {
-			mEmitters[i] = particleMgr->create(mEffectIDs[i], arg.mPosition, 0);
-			// mEmitters[i] = particleMgr->create(mEffectIDs[i], position, 0);
-			if (mEmitters[i]) {
-				mEmitters[i]->mEmitterCallback = &mCallBack_StaticClipping;
-			} else {
-				return false;
-			}
-		}
-		return true;
-	}
+	// bool _create(Arg& arg)
+	// {
+	// 	for (int i = 0; i < 4; i++) {
+	// 		mEmitters[i] = particleMgr->create(mEffectIDs[i], arg.mPosition, 0);
+	// 		if (mEmitters[i]) {
+	// 			mEmitters[i]->mEmitterCallback = &mCallBack_StaticClipping;
+	// 		} else {
+	// 			return false;
+	// 		}
+	// 	}
+	// 	return true;
+	// }
 
 	// _00 VTBL
 	u16 mEffectIDs[4];            // _04

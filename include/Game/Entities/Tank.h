@@ -106,8 +106,6 @@ struct Obj : public EnemyBase {
 struct Mgr : public EnemyMgrBase {
 	Mgr(int objLimit, u8 modelType);
 
-	// virtual ~Mgr();                                     // _58 (weak)
-
 	virtual SysShape::Model* createModel();            // _B0
 	virtual void loadModelData();                      // _C8
 	virtual void loadAnimData();                       // _CC
@@ -135,8 +133,6 @@ struct Parms : public EnemyParmsBase {
 	}
 
 	// _00-_7F8	= EnemyParmsBase
-	// this might be a sub-struct like other enemies
-	// but doesn't have any Parms in it, so...
 	Parameters mParameters; // _7F8
 };
 
@@ -310,7 +306,6 @@ struct Obj : public Tank::Obj {
 struct Mgr : public Tank::Mgr {
 	Mgr(int objLimit, u8 modelType);
 
-	// virtual ~Mgr();                                     // _58 (weak)
 	virtual void createObj(int count);                 // _A0
 	virtual EnemyBase* getEnemy(int idx);              // _A4
 	virtual void doAlloc();                            // _A8
@@ -326,8 +321,8 @@ struct Mgr : public Tank::Mgr {
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
-	ResTIMG* mChangeTexture; // _44, probably
-	Obj* mObj;               // _48, array of Objs, probably
+	ResTIMG* mChangeTexture; // _44
+	Obj* mObj;               // _48, array of Objs
 };
 } // namespace Ftank
 
@@ -365,7 +360,6 @@ struct Obj : public Tank::Obj {
 struct Mgr : public Tank::Mgr {
 	Mgr(int objLimit, u8 modelType);
 
-	// virtual ~Mgr();                                     // _58 (weak)
 	virtual void createObj(int count);                 // _A0
 	virtual EnemyBase* getEnemy(int idx);              // _A4
 	virtual void doAlloc();                            // _A8
@@ -381,8 +375,8 @@ struct Mgr : public Tank::Mgr {
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
-	ResTIMG* mChangeTexture; // _44, probably
-	Obj* mObj;               // _48, array of Objs, probably
+	ResTIMG* mChangeTexture; // _44
+	Obj* mObj;               // _48, array of Objs
 };
 } // namespace Wtank
 } // namespace Game

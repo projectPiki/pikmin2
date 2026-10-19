@@ -608,7 +608,6 @@ void TParticleCallBack_TankFire::init(JPABaseEmitter*, JPABaseParticle*)
  */
 void TParticleCallBack_TankFire::execute(JPABaseEmitter* emit, JPABaseParticle* particle)
 {
-	// shame on whoever for not knowing the funcs get called in right to left order -Drought
 	Vector3f tgt;
 	tgt = particle->getCalcCurrentPosition(emit);
 
@@ -718,8 +717,6 @@ void TDnkmsThunderB::doExecuteEmitterOperation(JPABaseEmitter* emit)
 {
 	P2ASSERTLINE(666, mPosition);
 	P2ASSERTLINE(667, mPartnerPosition);
-
-	// This function is a 2-for-1 deal, solve above solve below
 
 	Vector3f pos1 = *mPosition;
 	Vector3f pos2 = *mPartnerPosition;

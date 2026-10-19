@@ -83,9 +83,6 @@ struct JPADynamicsBlock {
 	void init();
 	void create(JPAEmitterWorkData*);
 
-	/**
-	 * @fabricated
-	 */
 	inline const JPADynamicsBlockData* castData() const { return reinterpret_cast<const JPADynamicsBlockData*>(mData); }
 
 	void calc(JPAEmitterWorkData* work) { mVolumeFunction(work); }
@@ -127,7 +124,6 @@ struct JPADynamicsBlock {
  * @size{0x2C}
  */
 struct JPAFieldBlock {
-	/** @fabricated */
 	struct Data {
 		// Representation of the contents in a .jpc file
 		u8 mMagic[4];                // _00

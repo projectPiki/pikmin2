@@ -39,64 +39,6 @@ JGadget::TList_pointer_void::TList_pointer_void(const JGadget::TVoidAllocator& a
  */
 JGadget::TList_pointer_void::~TList_pointer_void()
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stw      r31, 0x3c(r1)
-	stw      r30, 0x38(r1)
-	stw      r29, 0x34(r1)
-	mr       r29, r4
-	stw      r28, 0x30(r1)
-	or.      r28, r3, r3
-	beq      lbl_80027540
-	beq      lbl_80027530
-	lwz      r0, 8(r28)
-	addi     r31, r28, 8
-	stw      r31, 0x20(r1)
-	stw      r31, 0x1c(r1)
-	stw      r0, 0x18(r1)
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	b        lbl_80027520
-
-lbl_800274F0:
-	lwz      r3, 0x14(r1)
-	lwz      r30, 0(r3)
-	lwz      r4, 4(r3)
-	stw      r3, 0x10(r1)
-	stw      r30, 0(r4)
-	lwz      r0, 4(r3)
-	stw      r0, 4(r30)
-	bl       __dl__FPv
-	lwz      r3, 4(r28)
-	stw      r30, 0x14(r1)
-	addi     r0, r3, -1
-	stw      r0, 4(r28)
-
-lbl_80027520:
-	lwz      r0, 0x14(r1)
-	cmplw    r0, r31
-	stw      r0, 8(r1)
-	bne      lbl_800274F0
-
-lbl_80027530:
-	extsh.   r0, r29
-	ble      lbl_80027540
-	mr       r3, r28
-	bl       __dl__FPv
-
-lbl_80027540:
-	lwz      r0, 0x44(r1)
-	mr       r3, r28
-	lwz      r31, 0x3c(r1)
-	lwz      r30, 0x38(r1)
-	lwz      r29, 0x34(r1)
-	lwz      r28, 0x30(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
 }
 
 /**
@@ -208,7 +150,6 @@ JGadget::TList_pointer_void& JGadget::TList_pointer_void::operator=(JGadget::TLi
 template <>
 JGadget::TList<void*, JGadget::TVoidAllocator>&
 JGadget::TList<void*, JGadget::TVoidAllocator>::operator=(const TList<void*, JGadget::TVoidAllocator>& other)
-// void __as__Q27JGadget36TList<void*, JGadget::TAllocator<void*>> FRCQ27JGadget36TList<void*, JGadget::TAllocator<void*>>()
 {
 	// UNUSED FUNCTION
 }

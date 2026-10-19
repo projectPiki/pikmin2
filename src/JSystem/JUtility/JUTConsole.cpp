@@ -429,15 +429,6 @@ JUTConsoleManager::JUTConsoleManager()
 
 /**
  * @note Address: N/A
- * @note Size: 0x54
- */
-// void __dt__Q27JGadget27TLinkList<JUTConsole, -24> Fv()
-// {
-// 	// UNUSED FUNCTION
-// }
-
-/**
- * @note Address: N/A
  * @note Size: 0x58
  */
 JUTConsoleManager::~JUTConsoleManager()

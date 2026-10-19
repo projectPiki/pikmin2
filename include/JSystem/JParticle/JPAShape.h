@@ -19,9 +19,6 @@ struct JPAClrAnmKeyData {
 	GXColor color; // _02
 };
 
-/**
- * @fabricated
- */
 struct JPABaseShapeData {
 	// Representation of contents of .jpc file
 	u8 mMagic[4];         // _00

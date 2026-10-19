@@ -15,7 +15,6 @@ struct J3DTexture {
 	u16 _02;
 	ResTIMG* mRes; // _04
 
-	/** @fabricated */
 	inline J3DTexture(u16 count, ResTIMG* res)
 	{
 		mNum = count;

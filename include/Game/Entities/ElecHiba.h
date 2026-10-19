@@ -107,7 +107,6 @@ struct Obj : public EnemyBase {
 struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	Mgr(int objLimit, u8 modelType);
 
-	// virtual ~Mgr();                                     // _58 (weak)
 	virtual EnemyBase* birth(EnemyBirthArg&);          // _70
 	virtual void createObj(int count);                 // _A0
 	virtual EnemyBase* getEnemy(int idx);              // _A4

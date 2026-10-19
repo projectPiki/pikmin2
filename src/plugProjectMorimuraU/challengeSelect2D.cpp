@@ -452,7 +452,6 @@ void TChallengePanel::update(int index, bool flag)
 	}
 
 	int id = mIndex;
-	// this is wrong, I hate it here
 	int a1 = (index % 5);
 	int a2 = (index / 5);
 	int a3 = (id % 5);

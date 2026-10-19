@@ -188,7 +188,7 @@ f32 MapMgr::getBestAngle(Vector3f& position, f32 distance, f32 divisor)
 	Vector3f adjustedPos = position;
 	adjustedPos.y        = 15.0f + getMinY(adjustedPos);
 
-	f32 angles[16]; // 0x7C
+	f32 angles[16];
 	for (int i = 0; i < 16; i++) {
 		angles[i] = 0.0f;
 	}

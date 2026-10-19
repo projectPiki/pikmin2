@@ -59,7 +59,6 @@ struct J2DTextBox : public J2DPane {
 	void getStringPtr() const;
 	void setString(s16, const char*, ...);
 
-	/** @fabricated */
 	inline void copyString(const char* str, s16 maxLength)
 	{
 		size_t length   = strlen(str);
@@ -106,7 +105,6 @@ struct J2DTextBox : public J2DPane {
 
 	inline J2DTextBoxHBinding getHBinding() const { return (J2DTextBoxHBinding)((mFlags >> 2) & 3); }
 
-	// not quite right
 	inline void setCharColor(JUtility::TColor color) { mCharColor.set(color); }
 	inline void setGradColor(JUtility::TColor color) { mGradientColor.set(color); }
 
@@ -115,8 +113,6 @@ struct J2DTextBox : public J2DPane {
 		mCharColor     = charColor;
 		mGradientColor = gradColor;
 	}
-
-	// inline void setDefaultColors
 
 	// _000      = VTBL
 	// _000-_100 = J2DPane

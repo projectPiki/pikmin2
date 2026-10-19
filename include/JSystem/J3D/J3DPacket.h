@@ -33,7 +33,6 @@ struct J3DTexMtxObj {
 	u16 mTexGenNum;    // _08
 };
 
-// TODO: Could this use TLinkList?
 struct J3DPacket {
 	inline J3DPacket()
 	    : mNextPacket(nullptr)

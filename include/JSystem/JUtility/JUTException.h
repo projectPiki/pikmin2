@@ -48,7 +48,6 @@ struct JUTException : public JKRThread {
 		JSULink<JUTExMapFile> mLink; // _04
 	};
 
-	/** @fabricated */
 	struct ExCallbackObject {
 		JUTExceptionHandler mErrorHandler; // _00
 		OSError mError;                    // _04

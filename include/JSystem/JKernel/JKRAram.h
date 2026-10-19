@@ -182,7 +182,7 @@ struct JKRAMCommand : public ARQRequest {
 
 	~JKRAMCommand();
 
-	// ARQRequest _00;            // _00
+	// _00-_20     = ARQRequest
 	JSULink<JKRAMCommand> _20;        // _20
 	JSULink<JKRAMCommand> _30;        // _30
 	s32 mDirection;                   // _40

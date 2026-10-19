@@ -7,8 +7,6 @@
 extern "C" {
 #endif // ifdef __cplusplus
 
-// TODO: rest of header
-
 typedef void (*AISCallback)(u32 count);
 typedef void (*AIDCallback)();
 

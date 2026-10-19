@@ -27,11 +27,9 @@ struct Mgr : public FixedSizePelletMgr<Object> {
 	virtual SysShape::Model* createShape(int, int) { return nullptr; } // _6C (weak)
 	virtual char* getMgrName() { return "carcass"; }                   // _58 (weak)
 	virtual u8 getMgrID() { return PelletType::Carcass; }              // _5C (weak)
-	// virtual ~Mgr() { }                                                 // _C8 (weak)
 
 	// _00      = VTABLE
 	// _00-_A0  = FixedSizePelletMgr
-	// u8 _A0[0x4]; // _A0, unknown
 };
 
 extern Mgr* mgr;

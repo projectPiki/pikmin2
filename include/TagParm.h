@@ -34,25 +34,9 @@ struct TagParameters : public CNode {
 struct TagParm {
 	TagParm(TagParameters*, char*);
 
-	/**
-	 * @reifiedAddress{8041BD30}
-	 * @reifiedFile{sysCommonU/tagparams.cpp}
-	 */
 	virtual void doWrite(Stream&) { } // _00
-	/**
-	 * @reifiedAddress{8041BD2C}
-	 * @reifiedFile{sysCommonU/tagparams.cpp}
-	 */
 	virtual void doRead(Stream&) { } // _04
-	/**
-	 * @reifiedAddress{801B4730}
-	 * @reifiedFile{plugProjectKandoU/pelletConfig.cpp}
-	 */
 	virtual void flushValue() { } // _08
-	/**
-	 * @reifiedAddress{8041BD34}
-	 * @reifiedFile{sysCommonU/tagparams.cpp}
-	 */
 	virtual void doDump() { } // _0C
 
 	// Unused/inlined:

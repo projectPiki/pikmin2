@@ -539,7 +539,6 @@ void J3DModelLoader_v26::readMaterialTable(const J3DMaterialBlock* block, u32 fl
 {
 	J3DMaterialFactory factory(*block);
 	mMaterialTable->mMaterialNum = block->mNumMaterials;
-	// TODO: I wonder if the rest of this is an inline from somewhere...
 	if (block->mStringTableOffset) {
 		mMaterialTable->mMaterialNames = new JUTNameTab(JSUConvertOffsetToPtr<ResNTAB>(block, block->mStringTableOffset));
 	} else {

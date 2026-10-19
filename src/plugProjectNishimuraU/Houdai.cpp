@@ -61,7 +61,6 @@ void Obj::setInitialSetting(EnemyInitialParamBase*)
  */
 void Obj::onInit(CreatureInitArg* initArg)
 {
-	// TODO: Finish
 	EnemyBase::onInit(initArg);
 	EnemyBase::hardConstraintOn();
 	disableEvent(0, EB_Cullable);

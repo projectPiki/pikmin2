@@ -164,7 +164,6 @@ void StateMove::exec(EnemyBase* enemy)
 	Obj* hanachirashi = OBJ(enemy);
 	hanachirashi->setHeightVelocity();
 
-	// this bit is being weird
 	Vector3f pos       = Vector3f(hanachirashi->getPosition());
 	Vector3f targetPos = Vector3f(hanachirashi->mTargetPosition);
 	f32 sqrDist        = pos.sqrDistance2D(targetPos);
@@ -227,7 +226,7 @@ void StateChase::exec(EnemyBase* enemy)
 		if (target) {
 			Vector3f homePos         = hanachirashi->mHomePosition;
 			Vector3f hanachirashiPos = hanachirashi->getPosition();
-			Vector3f targetPos       = target->getPosition(); //
+			Vector3f targetPos       = target->getPosition();
 
 			Vector3f sep(hanachirashiPos.x - targetPos.x, 0.0f, hanachirashiPos.z - targetPos.z);
 			sep.normalise();

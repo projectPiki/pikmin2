@@ -127,7 +127,6 @@ struct JKRHeap : public JKRDisposer {
 	void dispose();
 
 	// Inlined/fabricated
-	// inline void* JKRAllocFromHeap(u32 size, int alignment) { return JKRHeap::alloc(size, alignment, this); }
 	void setDebugFill(bool debugFill) { mFillFlag = debugFill; }
 	bool getDebugFill() const { return mFillFlag; }
 
@@ -284,11 +283,7 @@ struct JKRExpHeap : public JKRHeap {
 	CMemBlock* getHeadUsedList() const { return mHeadUsedList; }
 	void setAllocationMode(EAllocMode mode) { mCurrentAllocMode = mode; }
 
-	static s32 getUsedSize_(JKRExpHeap* expHeap)
-	{
-		// s32 totalFreeSize = expHeap->getTotalFreeSize();
-		return expHeap->mHeapSize - expHeap->getTotalFreeSize();
-	}
+	static s32 getUsedSize_(JKRExpHeap* expHeap) { return expHeap->mHeapSize - expHeap->getTotalFreeSize(); }
 	static u32 getState_(TState* state) { return getState_buf_(state); } // might instead be a pointer to a next state?
 
 	// _00     = VTBL
@@ -344,11 +339,7 @@ struct JKRSolidHeap : public JKRHeap {
 	void* allocFromHead(u32, int);
 	void* allocFromTail(u32, int);
 
-	static u32 getUsedSize(JKRSolidHeap* sldHeap)
-	{
-		// u32 totalFreeSize = sldHeap->getTotalFreeSize();
-		return sldHeap->mHeapSize - sldHeap->getTotalFreeSize();
-	}
+	static u32 getUsedSize(JKRSolidHeap* sldHeap) { return sldHeap->mHeapSize - sldHeap->getTotalFreeSize(); }
 
 	static JKRSolidHeap* create(u32, JKRHeap*, bool);
 
@@ -365,7 +356,7 @@ struct JKRSolidHeap : public JKRHeap {
 inline void* operator new(size_t size, void* mem)
 {
 	return mem;
-} // fabricated?
+}
 void* operator new(size_t, JKRHeap*, int);
 void* operator new(size_t byteCount, int p2);
 void* operator new[](size_t, JKRHeap*, int);

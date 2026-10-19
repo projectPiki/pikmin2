@@ -33,7 +33,7 @@ struct ArgOpenOmake : public ArgOpen {
 	u8 mIsDebtComplete;      // _04
 	u8 mIsAllTreasures;      // _05
 	bool mIsLouieDarkSecret; // _06
-	int mUnusedVal;          // related to e-reader screen?
+	int mUnusedVal;          // _08 related to e-reader screen?
 };
 
 struct ArgOpenTitleMenu : public ArgOpen {
@@ -99,7 +99,7 @@ struct TScreenBase : public TScreenBaseInterface {
 	virtual void doInitWaitState() { }                 // _34 (weak)
 	virtual bool doUpdateStateOpen() { return true; }  // _38 (weak)
 	virtual bool doUpdateStateWait() { return true; }  // _3C (weak)
-	virtual bool doUpdateStateClose() { return true; } // _40 (weak) (weak)
+	virtual bool doUpdateStateClose() { return true; } // _40 (weak)
 	virtual void doDraw() { }                          // _44 (weak)
 	virtual char* getName() { return "NoNameScreen"; } // _48 (weak)
 

@@ -25,8 +25,6 @@ struct TAllocator {
 
 	void destroy(T* p) { p->~T(); }
 
-	// inline TAllocator() { }
-
 	u8 _00; // _00
 };
 

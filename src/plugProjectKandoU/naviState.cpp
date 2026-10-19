@@ -1991,8 +1991,8 @@ void NaviDopeState::init(Navi* navi, StateArg* stateArg)
 	P2ASSERTLINE(3006, stateArg);
 #endif
 	mDopeType         = static_cast<NaviDopeArg*>(stateArg)->mType;
-	Vector3f naviPos  = navi->getPosition(); // f31, f30, f29
-	Vector3f squadPos = Vector3f(0.0f);      // f28, f27, f26
+	Vector3f naviPos  = navi->getPosition();
+	Vector3f squadPos = Vector3f(0.0f);
 	mUsedDope         = false;
 	int pikis         = 0;
 	Iterator<Creature> iterator(navi->mCPlateMgr);

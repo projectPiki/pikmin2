@@ -12,7 +12,6 @@ struct SeqTrackBase;
 struct DirectorBase : public JADHioNode {
 	DirectorBase(int numTracks, const char* name);
 
-	// virtual ~DirectorBase() { }                     // _08 (weak)
 	virtual void exec();                            // _0C
 	virtual void directOn();                        // _10
 	virtual void directOff();                       // _14
@@ -77,7 +76,6 @@ struct OneShotDirector : public DirectorBase {
 	{
 	}
 
-	// virtual ~OneShotDirector() { }                 // _08 (weak)
 	virtual void exec();                           // _0C
 	virtual void directOnTrack(SeqTrackBase&) = 0; // _20
 	virtual void directOffTrack(SeqTrackBase&) { } // _24 (weak)
@@ -92,7 +90,6 @@ struct SwitcherDirector : public DirectorBase {
 	{
 	}
 
-	// virtual ~SwitcherDirector() { }                 // _08 (weak)
 	virtual void directOnTrack(SeqTrackBase&)  = 0; // _20
 	virtual void directOffTrack(SeqTrackBase&) = 0; // _24
 	virtual void doUpdateRequest();                 // _28
@@ -122,7 +119,6 @@ struct DirectorCopyActor : public DirectorActorBase {
 struct DirectorMgrBase : public JADHioNode {
 	DirectorMgrBase(u8 count);
 
-	// virtual ~DirectorMgrBase() { }                           // _08 (weak)
 	virtual DirectorBase* newDirector(u8, DirectedBgm&) = 0; // _0C
 
 	void initAndAdaptToBgm(DirectedBgm&);

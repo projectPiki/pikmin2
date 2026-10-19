@@ -124,7 +124,6 @@ struct Obj : public Plants::Obj {
 struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	Mgr(int objLimit, u8 modelType);
 
-	// virtual ~Mgr() { }                        // _58 (weak)
 	virtual EnemyBase* birth(EnemyBirthArg&);          // _70
 	virtual void doAlloc();                            // _A8
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
@@ -170,7 +169,6 @@ struct Obj : public Plants::Obj {
 struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	Mgr(int objLimit, u8 modelType);
 
-	// virtual ~Mgr() { }                        // _58 (weak)
 	virtual EnemyBase* birth(EnemyBirthArg&);          // _70
 	virtual void doAlloc();                            // _A8
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
@@ -235,7 +233,6 @@ struct Obj : public Plants::Obj {
 struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	Mgr(int objLimit, u8 modelType);
 
-	// virtual ~Mgr() { }                        // _58 (weak)
 	virtual EnemyBase* birth(EnemyBirthArg&);          // _70
 	virtual void doAlloc();                            // _A8
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
@@ -311,7 +308,6 @@ struct Obj : public Plants::Obj {
 struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	Mgr(int objLimit, u8 modelType);
 
-	// virtual ~Mgr() { }                        // _58 (weak)
 	virtual EnemyBase* birth(EnemyBirthArg&);          // _70
 	virtual void doAlloc();                            // _A8
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
@@ -386,7 +382,6 @@ struct Obj : public Plants::Obj {
 struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	Mgr(int objLimit, u8 modelType);
 
-	// virtual ~Mgr() { }                        // _58 (weak)
 	virtual EnemyBase* birth(EnemyBirthArg&);          // _70
 	virtual void doAlloc();                            // _A8
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
@@ -435,7 +430,6 @@ struct Obj : public Plants::Obj {
 struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	Mgr(int objLimit, u8 modelType);
 
-	// virtual ~Mgr() { }                        // _58 (weak)
 	virtual EnemyBase* birth(EnemyBirthArg&);          // _70
 	virtual void doAlloc();                            // _A8
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
@@ -479,7 +473,6 @@ struct Obj : public Plants::Obj {
 struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	Mgr(int objLimit, u8 modelType);
 
-	// virtual ~Mgr() { }                        // _58 (weak)
 	virtual EnemyBase* birth(EnemyBirthArg&);          // _70
 	virtual void doAlloc();                            // _A8
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
@@ -525,7 +518,6 @@ struct Obj : public Plants::Obj {
 struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	Mgr(int objLimit, u8 modelType);
 
-	// virtual ~Mgr() { }                        // _58 (weak)
 	virtual EnemyBase* birth(EnemyBirthArg&);          // _70
 	virtual void doAlloc();                            // _A8
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
@@ -593,7 +585,6 @@ struct Obj : public Plants::Obj {
 struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	Mgr(int objLimit, u8 modelType);
 
-	// virtual ~Mgr() { }                        // _58 (weak)
 	virtual EnemyBase* birth(EnemyBirthArg&);          // _70
 	virtual void doAlloc();                            // _A8
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
@@ -642,7 +633,6 @@ struct Obj : public Plants::Obj {
 struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	Mgr(int objLimit, u8 modelType);
 
-	// virtual ~Mgr() { }                        // _58 (weak)
 	virtual EnemyBase* birth(EnemyBirthArg&);          // _70
 	virtual void doAlloc();                            // _A8
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
@@ -686,7 +676,6 @@ struct Obj : public Plants::Obj {
 struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	Mgr(int objLimit, u8 modelType);
 
-	// virtual ~Mgr() { }                        // _58 (weak)
 	virtual EnemyBase* birth(EnemyBirthArg&);          // _70
 	virtual void doAlloc();                            // _A8
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
@@ -732,7 +721,6 @@ struct Obj : public Plants::Obj {
 struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	Mgr(int objLimit, u8 modelType);
 
-	// virtual ~Mgr() { }                        // _58 (weak)
 	virtual EnemyBase* birth(EnemyBirthArg&);          // _70
 	virtual void doAlloc();                            // _A8
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
@@ -792,7 +780,6 @@ struct Obj : public Plants::Obj {
 struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	Mgr(int objLimit, u8 modelType);
 
-	// virtual ~Mgr() { }                        // _58 (weak)
 	virtual EnemyBase* birth(EnemyBirthArg&);          // _70
 	virtual void doAlloc();                            // _A8
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
@@ -855,7 +842,6 @@ struct Obj : public Plants::Obj {
 struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	Mgr(int objLimit, u8 modelType);
 
-	// virtual ~Mgr() { }                        // _58 (weak)
 	virtual EnemyBase* birth(EnemyBirthArg&);          // _70
 	virtual void doAlloc();                            // _A8
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
@@ -913,7 +899,6 @@ struct Obj : public Plants::Obj {
 struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	Mgr(int objLimit, u8 modelType);
 
-	// virtual ~Mgr() { }                        // _58 (weak)
 	virtual EnemyBase* birth(EnemyBirthArg&);          // _70
 	virtual void doAlloc();                            // _A8
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
@@ -961,7 +946,6 @@ struct Obj : public Plants::Obj {
 struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	Mgr(int objLimit, u8 modelType);
 
-	// virtual ~Mgr() { }                        // _58 (weak)
 	virtual EnemyBase* birth(EnemyBirthArg&);          // _70
 	virtual void doAlloc();                            // _A8
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
@@ -1021,7 +1005,6 @@ struct Obj : public Plants::Obj {
 struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	Mgr(int objLimit, u8 modelType);
 
-	// virtual ~Mgr() { }                        // _58 (weak)
 	virtual EnemyBase* birth(EnemyBirthArg&);          // _70
 	virtual void doAlloc();                            // _A8
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)

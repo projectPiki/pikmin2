@@ -57,7 +57,6 @@ void Node::becomeCurrentHeap()
 }
 
 /**
- * @matchedSize
  * @note Address: N/A
  * @note Size: 0x30
  */
@@ -83,16 +82,6 @@ MgrCommand::MgrCommand(char* name)
 {
 	setModeInvalid();
 }
-
-/**
- * Generated?
- * @note Address: N/A
- * @note Size: 0x64
- */
-// void __dt__Q38Resource10MgrCommand26 @class$2436resourceMgr_cppFv()
-// {
-// 	// UNUSED FUNCTION
-// }
 
 /**
  * @note Address: 0x804332EC

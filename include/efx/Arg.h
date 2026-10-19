@@ -32,10 +32,7 @@ struct Arg {
 	inline Arg(Game::EnemyBase*); // defined in Game/EnemyBase.h header to avoid include loops
 	inline Arg(Game::BaseItem*);  // defined in Game/BaseItem.h header to avoid include loops
 
-	/**
-	 * @reifiedAddress{80108200}
-	 * @reifiedFile{plugProjectYamashitaU/enemyBase.cpp}
-	 */
+
 	virtual const char* getName() // _08 (weak)
 	{
 		return "Arg";
@@ -56,10 +53,6 @@ struct ArgEnemyType : public Arg {
 	{
 	}
 
-	/**
-	 * @reifiedAddress{801081F4}
-	 * @reifiedFile{plugProjectYamashitaU/enemyBase.cpp}
-	 */
 	virtual const char* getName() // _08 (weak)
 	{
 		return "ArgEnemyType";
@@ -75,10 +68,7 @@ struct ArgScale : public Arg {
 	{
 		mScale = scale;
 	}
-	/**
-	 * @reifiedAddress{80107C44}
-	 * @reifiedFile{plugProjectYamashitaU/enemyBase.cpp}
-	 */
+
 	virtual const char* getName() // _08 (weak)
 	{
 		return "ArgScale";

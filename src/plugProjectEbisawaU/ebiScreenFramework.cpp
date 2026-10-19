@@ -67,7 +67,6 @@ u8 TScreenBase::isFinishScreen()
  * @note Address: N/A
  * @note Size: 0x14
  */
-// unused function
 u8 TScreenBase::isOpenScreen()
 {
 	return mState == TSB_US_Open;

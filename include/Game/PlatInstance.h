@@ -113,7 +113,6 @@ struct PlatInstanceAttacher {
 struct PlatMgr : public NodeObjectMgr<PlatInstance> {
 	PlatMgr();
 
-	// virtual ~PlatMgr();                                       // _08 (weak)
 	virtual void doDirectDraw(Graphics& gfx);                 // _78 (weak)
 	virtual bool findRayIntersection(Sys::RayIntersectInfo&); // _80
 

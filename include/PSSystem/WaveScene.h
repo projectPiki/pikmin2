@@ -89,8 +89,6 @@ struct WaveScene : public JKRDisposer {
 		int mWaveType;         // _10
 	};
 
-	// virtual ~WaveScene() { } // _08 (weak)
-
 	void load(u16, u16, AreaArg, TaskChecker*);
 
 	// _00     = VTBL
