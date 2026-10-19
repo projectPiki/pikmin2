@@ -219,7 +219,7 @@ void StateChase::exec(EnemyBase* enemy)
 		if (target) {
 			Vector3f homePos   = mar->mHomePosition;
 			Vector3f marPos    = mar->getPosition();
-			Vector3f targetPos = target->getPosition(); //
+			Vector3f targetPos = target->getPosition();
 
 			Vector3f sep(marPos.x - targetPos.x, 0.0f, marPos.z - targetPos.z);
 			sep.normalise();

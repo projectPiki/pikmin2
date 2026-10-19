@@ -40,7 +40,7 @@ struct TimeMgrParms {
 		    , mSundownAlertTime(this, 'fp09', "夜警告時刻", 18.0f, 0.0f, 24.0f)          // 'night warning time'
 		    , mCountdownTime(this, 'fp10', "カウントダウン", 18.5f, 0.0f, 24.0f)         // 'countdown'
 		{
-		} // WEAK - from timeMgr.cpp
+		}
 
 		Parm<f32> mDayStartTime;        // _00C, "fp00"
 		Parm<f32> mDayEndTime;          // _034, "fp01"
@@ -56,7 +56,7 @@ struct TimeMgrParms {
 		Parm<f32> mCountdownTime;       // _1C4, "fp10"
 	};
 
-	TimeMgrParms() { } // WEAK - from timeMgr.cpp
+	TimeMgrParms() { }
 
 	Parms mParms; // _00
 };

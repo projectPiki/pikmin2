@@ -9,8 +9,8 @@ struct TKechappyTest;
 
 namespace EffectAnimator {
 struct KeyData {
-	f32 mFrame; // _00, probably
-	f32 mScale; // _04, probably
+	f32 mFrame; // _00
+	f32 mScale; // _04
 };
 
 struct Obj : public CNode {

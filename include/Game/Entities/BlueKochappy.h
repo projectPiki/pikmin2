@@ -29,7 +29,6 @@ struct Mgr : public KochappyBase::Mgr {
 	Mgr(int objLimit, u8 modelType);
 
 	//////////////// VTABLE
-	// virtual ~Mgr() { }                                  // _58 (weak)
 	virtual void doAlloc();             // _A8
 	virtual void loadTexData();         // _D0
 	virtual ResTIMG* getChangeTexture() // _E0 (weak)
@@ -52,8 +51,8 @@ struct Mgr : public KochappyBase::Mgr {
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
-	ResTIMG* mChangeTexture; // _44, probably
-	Obj* mObj;               // _48, array of Objs, probably
+	ResTIMG* mChangeTexture; // _44
+	Obj* mObj;               // _48, array of Objs
 };
 
 } // namespace BlueKochappy

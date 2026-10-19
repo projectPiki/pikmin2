@@ -48,7 +48,6 @@ struct J2DPrint {
 	void getSize(TSize&, const char*, ...);
 	void getHeight(const char*, ...);
 
-	/** @fabricated */
 	inline void setFontSize(f32 width, f32 height)
 	{
 		mGlyphWidth  = (width > 0.0f) ? width : 0.0f;

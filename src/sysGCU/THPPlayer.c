@@ -449,9 +449,6 @@ BOOL THPPlayerPrepare(int frame, u8 flag, int audioTrack)
 			JUT_ASSERTLINE(812, CreateReadThread(8), "CreateReadThread failure.\n");
 		}
 
-		// ActivePlayer.mCurVideoNumber = -1;
-		// ActivePlayer.mCurAudioNumber = 0;
-
 		InitAllMessageQueue();
 		VideoDecodeThreadStart();
 

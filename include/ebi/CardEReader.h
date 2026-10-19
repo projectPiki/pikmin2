@@ -46,15 +46,15 @@ struct TMgr : public JKRDisposer {
 
 	// _00 VTBL
 	void* mGameDatas[EREADER_GAMES]; // _18
-	u32 mSizes[EREADER_GAMES];
-	int mGameID;      // _30
-	int mState;       // _34
-	int mIsUploading; // _38
-	enumErr mEndStat; // _3C
-	int mGbaPort;     // _40
-	int mCounter;     // _44
-	OSMutex mMutex;   // _48
-	OSCond mCond;
+	u32 mSizes[EREADER_GAMES];       // _24
+	int mGameID;                     // _30
+	int mState;                      // _34
+	int mIsUploading;                // _38
+	enumErr mEndStat;                // _3C
+	int mGbaPort;                    // _40
+	int mCounter;                    // _44
+	OSMutex mMutex;                  // _48
+	OSCond mCond;                    // _60
 };
 } // namespace CardEReader
 extern CardEReader::TMgr* gCardEMgr;

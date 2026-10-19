@@ -105,7 +105,6 @@ struct TParse_TParagraph_data : public TParseData_aligned<4> {
 		const void* mData;         // _0C
 		const void* mDataBlockEnd; // _10
 
-		// Is this name accurate? are any of these member names accurate? are these developers sane?
 		inline bool isLoaded()
 		{
 			bool stop = false;

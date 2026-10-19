@@ -387,8 +387,8 @@ void Obj::createCrashFallRock()
 		if (section && section->getCaveID() == 'l_02') {
 			// only cause falling rocks in Hole of Heroes (not HoB or FC)
 			const f32 angle  = mFaceDir;
-			Vector3f faceVec = getDirection(angle);            // f23, f24
-			Vector3f flipFaceVec(-faceVec.x, 0.0f, faceVec.z); // f27
+			Vector3f faceVec = getDirection(angle);
+			Vector3f flipFaceVec(-faceVec.x, 0.0f, faceVec.z);
 			Vector3f originPoint(225.0f * faceVec.x + mHomePosition.x, 0.0f, 225.0f * faceVec.z + mHomePosition.z);
 
 			Rock::Mgr* rockMgr = static_cast<Rock::Mgr*>(generalEnemyMgr->getEnemyMgr(EnemyTypeID::EnemyID_Rock));

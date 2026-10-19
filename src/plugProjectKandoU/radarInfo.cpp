@@ -19,12 +19,6 @@ Vector2f Radar::Point::getPosition()
 }
 
 /**
- * @note Address: N/A
- * @note Size: 0x28
- */
-// void Radar::Point::clear() {  }
-
-/**
  * @note Address: 0x8021E2F4
  * @note Size: 0xF4
  */

@@ -10,7 +10,6 @@ JUTFont::IsLeadByte const JUTResFont::saoAboutEncoding_[3]
 /**
  * @note Address: 0x80031180
  * @note Size: 0x4C
- * Matches
  */
 JUTResFont::JUTResFont()
 {
@@ -21,7 +20,6 @@ JUTResFont::JUTResFont()
 /**
  * @note Address: 0x800311CC
  * @note Size: 0x74
- * Matches
  */
 JUTResFont::JUTResFont(const ResFONT* resource, JKRHeap* heap)
 {
@@ -33,7 +31,6 @@ JUTResFont::JUTResFont(const ResFONT* resource, JKRHeap* heap)
 /**
  * @note Address: 0x80031240
  * @note Size: 0x8C
- * Matches
  */
 JUTResFont::~JUTResFont()
 {
@@ -47,7 +44,6 @@ JUTResFont::~JUTResFont()
 /**
  * @note Address: 0x800312CC
  * @note Size: 0x24
- * Matches
  */
 void JUTResFont::deleteMemBlocks_ResFont()
 {
@@ -57,7 +53,6 @@ void JUTResFont::deleteMemBlocks_ResFont()
 /**
  * @note Address: 0x800312F0
  * @note Size: 0x2C
- * Matches
  */
 void JUTResFont::initialize_state()
 {
@@ -74,7 +69,6 @@ void JUTResFont::initialize_state()
 /**
  * @note Address: 0x8003131C
  * @note Size: 0x80
- * Matches
  */
 bool JUTResFont::initiate(const ResFONT* resource, JKRHeap* heap)
 {
@@ -138,7 +132,6 @@ bool JUTResFont::protected_initiate(const ResFONT* resource, JKRHeap* heap)
 /**
  * @note Address: 0x800314D4
  * @note Size: 0x10C
- * Matches
  */
 void JUTResFont::countBlock()
 {
@@ -163,7 +156,6 @@ void JUTResFont::countBlock()
 			break;
 
 		case 'INF1':
-			// mInfoBlock;
 			break;
 
 		default:
@@ -219,7 +211,6 @@ void JUTResFont::setBlock()
 /**
  * @note Address: 0x8003171C
  * @note Size: 0xF8
- * Matches
  */
 void JUTResFont::setGX()
 {

@@ -68,7 +68,6 @@ u32 THPPlayerCalcNeedMemory();
 
 BOOL THPPlayerGetVideoInfo(void* dst);
 BOOL THPPlayerGetAudioInfo(void* dst);
-// f32 THPPlayerGetFrameRate();
 BOOL THPPlayerSetVolume(int vol, int duration);
 
 int THPPlayerDrawCurrentFrame(GXRenderModeObj* obj, int x, int y, int polyWidth, int polyHeight);

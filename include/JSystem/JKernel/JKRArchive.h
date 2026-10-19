@@ -207,7 +207,6 @@ inline ResTIMG* JKRGetArchiveImageResource(JKRArchive* arc, char const* name)
 enum JKRMemBreakFlag { MBF_0 = 0, MBF_1 = 1 };
 
 struct JKRMemArchive : public JKRArchive {
-	// NB: Fabricated name - need to check size
 	struct SArcHeader {
 		u32 mSignature;      // _00
 		u32 mFileLength;     // _04

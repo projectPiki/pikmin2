@@ -209,11 +209,11 @@ void BaseGameSection::ZoomCamera::makeLookAt()
  */
 void BaseGameSection::ZoomCamera::doUpdate()
 {
-	bool xPassThreshold = false; // r4
-	bool yPassThreshold = false; // r5
+	bool xPassThreshold = false;
+	bool yPassThreshold = false;
 
 	f32 x   = mController->mMStick.mXPos;
-	f32 val = x; // f3
+	f32 val = x;
 
 	f64 absX = fabs(x);
 	if ((f32)absX < 0.2f) {
@@ -232,7 +232,7 @@ void BaseGameSection::ZoomCamera::doUpdate()
 	}
 
 	f32 y    = mController->mMStick.mYPos;
-	f32 val2 = y; // f3
+	f32 val2 = y;
 
 	f64 absY = fabs(y);
 	if ((f32)absY < 0.2f) {

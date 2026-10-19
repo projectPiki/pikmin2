@@ -330,7 +330,6 @@ void Obj::doAnimationCullingOff()
 			Vector3f vec0(worldMtx[0][0], worldMtx[1][0], worldMtx[2][0]);
 			Vector3f vec1(worldMtx[0][1], worldMtx[1][1], worldMtx[2][1]);
 			Vector3f vec2(worldMtx[0][2], worldMtx[1][2], worldMtx[2][2]);
-			// Vector3f vec3 (worldMtx[0][3], worldMtx[1][3], worldMtx[2][3]);
 
 			f32 mtxFactor = vec1.normalise();
 			mtxFactor *= 2.0f;
@@ -705,11 +704,11 @@ void Obj::setNextGoal()
  */
 void Obj::changeColor()
 {
-	f32 frame = getMotionFrame() - 1.0f; // f31
+	f32 frame = getMotionFrame() - 1.0f;
 
 	if (getStateID() == UMIMUSHI_Find) {
-		f32 weight2 = 0.0f; // f30
-		f32 weight1 = 1.0f; // f29
+		f32 weight2 = 0.0f;
+		f32 weight1 = 1.0f;
 		if (getCurrAnimIndex() == 10) {
 			frame /= (getMotionFrameMax() - 1.0f);
 			if (mCurAnim->mType == KEYEVENT_END) {
@@ -789,7 +788,7 @@ void Obj::changeColor()
  */
 void Obj::resetColor()
 {
-	f32 frame = getMotionFrame() - 1.0f; // f31
+	f32 frame = getMotionFrame() - 1.0f;
 	frame /= (getMotionFrameMax() - 1.0f);
 	if (mCurAnim->mType == KEYEVENT_END) {
 		frame = 1.0f;
@@ -934,8 +933,8 @@ bool Obj::isFindTarget()
  */
 bool Obj::isAttackStart()
 {
-	f32 attackDist  = SQUARE(C_GENERALPARMS.mAttackRadius());      // f31
-	f32 attackAngle = TORADIANS(C_GENERALPARMS.mAttackHitAngle()); // f30
+	f32 attackDist  = SQUARE(C_GENERALPARMS.mAttackRadius());
+	f32 attackAngle = TORADIANS(C_GENERALPARMS.mAttackHitAngle());
 
 	if (mTargetNavi && mTargetNavi->isAlive()) {
 		f32 angle = getAngDist(mTargetNavi);
@@ -1043,17 +1042,17 @@ bool Obj::canMove()
 bool Obj::outMove()
 {
 	if (mTargetNavi) {
-		Vector3f naviPos = mTargetNavi->getPosition(); // f29, f31
+		Vector3f naviPos = mTargetNavi->getPosition();
 		Vector3f dir     = naviPos - mHomePosition;
 		dir.y            = 0.0f;
-		dir.normalise(); // f2, f3, f4
+		dir.normalise();
 
 		f32 rad = C_GENERALPARMS.mTerritoryRadius();
 		if (gameSystem && gameSystem->mIsInCave) {
 			rad = C_PROPERPARMS.mCaveTerritory();
 		}
 
-		f32 moveSpeed   = 0.5f * C_PROPERPARMS.mMoveSpeed(); // f28
+		f32 moveSpeed   = 0.5f * C_PROPERPARMS.mMoveSpeed();
 		mTargetPosition = mHomePosition + (dir * (1.5f * rad));
 
 		f32 angle1 = angXZ(mTargetPosition.x - mPosition.x, mTargetPosition.z - mPosition.z);
@@ -1256,11 +1255,11 @@ void Obj::eyeScaleMtxCalc()
 	mtx->setColumn(1, newYVec);
 	mtx->setColumn(2, newZVec);
 
-	f32 y = mtx->mMatrix.structView.ty; // f30
+	f32 y = mtx->mMatrix.structView.ty;
 
 	u16 mouthJointIdx      = mModel->getJointIndex("kuti_joint1");
 	Matrixf* mouthWorldMtx = (Matrixf*)mModel->mJ3dModel->mMtxBuffer->mWorldMatrices[mouthJointIdx];
-	f32 y2                 = mouthWorldMtx->mMatrix.structView.ty; // f29
+	f32 y2                 = mouthWorldMtx->mMatrix.structView.ty;
 
 	Matrixf* mtx2 = mModel->mJ3dModel->mMtxBuffer->getWorldMatrix(mModel->getJointIndex("kuti_joint1"));
 

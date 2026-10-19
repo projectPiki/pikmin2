@@ -184,13 +184,6 @@ Camera::Camera()
 }
 
 /**
- * @note Address: 0x8041A7A0
- * @note Size: 0xA0
- */
-// WEAK - in header
-// CullFrustum::~CullFrustum() { }
-
-/**
  * @note Address: 0x8041A840
  * @note Size: 0x18
  */
@@ -343,7 +336,6 @@ void Camera::update()
 	PSMTX44Copy(mProjectionMtx, mBackupMtx);
 	Matrixf* viewMatrix = getViewMatrix(0);
 	PSMTXCopy(viewMatrix->mMatrix.mtxView, mCurViewMatrix.mMatrix.mtxView);
-	// temp_r3 = this->unk140;
 	if (isRunning()) {
 		mJstObject->updateCamera();
 		updateSoundCamera(0.7f * (PI * PSM::sCamFov));
@@ -470,13 +462,6 @@ LookAtCamera::LookAtCamera()
 	PSMTXIdentity(mLookMatrix.mMatrix.mtxView);
 	mViewMatrix = &mLookMatrix;
 }
-
-/**
- * @note Address: 0x8041B644
- * @note Size: 0xB0
- */
-// WEAK - in header
-// Camera::~Camera() { }
 
 /**
  * @note Address: 0x8041B6F4

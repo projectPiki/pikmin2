@@ -329,11 +329,11 @@ PSSystem::Scene* SceneMgr::newGameScene(u8 wscene, PSGame::SceneInfo* info)
  */
 void SceneMgr::initEnvironmentSe(PSM::Scene_Game* scene)
 {
-	PSGame::SceneInfo* info = scene->getSceneInfoA(); // r28
-	PSSystem::EnvSeMgr* mgr = nullptr;                // r29
-	u8 type                 = info->getSceneType();   // r25
+	PSGame::SceneInfo* info = scene->getSceneInfoA();
+	PSSystem::EnvSeMgr* mgr = nullptr;
+	u8 type                 = info->getSceneType();
 
-	EnvSeObjBuilder builder(JGeometry::TBox3f(info->mBounds)); // 0xE8
+	EnvSeObjBuilder builder(JGeometry::TBox3f(info->mBounds));
 
 	switch (type) {
 	case PSGame::SceneInfo::CHALLENGE_MODE:
@@ -374,7 +374,7 @@ void SceneMgr::initEnvironmentSe(PSM::Scene_Game* scene)
 		if (info->isCaveFloor()) {
 			mgr = new PSSystem::EnvSeMgr;
 
-			PersEnvManager* persMgr = new PersEnvManager(mgr); // r30
+			PersEnvManager* persMgr = new PersEnvManager(mgr);
 			scene->mPersEnvMgr      = persMgr;
 
 			// In story mode caves, use different ambient noises based on the sublevel (from 1 - 15)

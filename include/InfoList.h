@@ -137,7 +137,6 @@ List* InfoMgr<Owner, List>::search(List* list, Owner* owner)
 template <typename Owner, typename List>
 List* InfoMgr<Owner, List>::regist(Owner* owner)
 {
-	// SHOULD be using search, but wont inline (it needs to not inline in scratch so idk)
 	List* list = mActiveList.find(owner);
 
 	if (list == nullptr) {

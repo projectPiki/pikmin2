@@ -161,8 +161,6 @@ void StateMove::exec(EnemyBase* enemy)
 	                                                       CG_GENERALPARMS(baby).mSightRadius.mValue, nullptr, nullptr, nullptr);
 
 	if (creature) {
-
-		// Vector3f targetPos = creature->getPosition();
 		f32 angleDist = baby->turnToTarget(creature, CG_GENERALPARMS(baby).mTurnSpeed(), CG_GENERALPARMS(baby).mMaxTurnAngle());
 
 		if (isAngleWithin(angleDist, CG_GENERALPARMS(baby).mMaxAttackAngle())) {

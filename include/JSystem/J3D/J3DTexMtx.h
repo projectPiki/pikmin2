@@ -61,8 +61,6 @@ struct J3DTexMtxInfo {
 		mEffectMtx[3][3]                                       = 1.0f;
 	}
 
-	// void setEffectMtx(Mtx);
-
 	u8 mProjection;         // _00
 	u8 mInfo;               // _01
 	u16 _02;                // _02
@@ -96,7 +94,6 @@ struct J3DTexMtx {
 	J3DTexMtxInfo& getTexMtxInfo() { return mTexMtxInfo; }
 	Mtx& getMtx() { return mMtx; }
 	void setMtx(const Mtx mtx) { PSMTXCopy(mtx, mMtx); }
-	// void setEffectMtx(Mtx effectMtx) { mTexMtxInfo.setEffectMtx(effectMtx); }
 
 	J3DTexMtxInfo mTexMtxInfo; // _00
 	Mtx mMtx;                  // _64

@@ -1,8 +1,6 @@
 #ifndef _DEMO_H
 #define _DEMO_H
 
-// Header for entire Demo namespace.
-
 #include "DvdThreadCommand.h"
 #include "Game/BaseHIO.h"
 #include "Game/THPPlayer.h"

@@ -103,7 +103,6 @@ struct TTitleFogMgr : public FogMgr {
 		{
 		}
 
-		// fabricated
 		// offsets relative to TTitleFogMgr
 		Parm<bool> mIsFogActive; // _34
 		Parm<f32> mStartDist;    // _50
@@ -325,7 +324,7 @@ struct TTitleMgr : public CNode, JKRDisposer {
 
 	// _00     = VTBL
 	// _00-_18 = CNode
-	// JKRDisposer mDisposer;        // _18
+	// _18 = JKRDisposer
 	TMapBase mMapBase;                       // _30
 	TBGEnemyBase mBgEnemyBase;               // _A4
 	TBlackPlane mBlackPlane;                 // _F0

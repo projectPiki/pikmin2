@@ -194,7 +194,6 @@ struct Obj : public EnemyBase {
 struct Mgr : public EnemyMgrBase {
 	Mgr(int objLimit, u8 modelType);
 
-	// virtual ~Mgr();                                     // _58 (weak)
 	virtual EnemyBase* birth(EnemyBirthArg&);          // _70
 	virtual void doAlloc();                            // _A8
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)

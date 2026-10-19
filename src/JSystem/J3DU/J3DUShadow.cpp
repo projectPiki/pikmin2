@@ -15,17 +15,6 @@ inline J3DUMultiTexture::J3DUMultiTexture(u32 count, u8)
 	mTextures = new JUTTexture[mCount];
 }
 
-// /**
-//  * @note Address: 0x800177D0
-//  * @note Size: 0x1C
-//  */
-// JUTTexture::JUTTexture()
-// {
-// 	mFlags &= 2;
-// 	_28 = 0;
-// 	_20 = 0;
-// }
-
 /**
  * @note Address: N/A
  * @note Size: 0x74

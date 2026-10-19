@@ -126,7 +126,6 @@ void ObjectParticleActor::parseUserData_(u32 p1, void const* rawData)
 		return;
 	}
 
-	// "file count" here is really the name of the joint, the actual purpose of this member seems to depend on the use
 	char* idx        = (char*)data.mData;
 	mModelJointIndex = -1;
 	for (u32 i = 0; i < data.mFileCount; i++, idx = strchr(idx, 0) + 1) {

@@ -61,9 +61,7 @@ struct JUTTexture : public GXTexObj {
 	void storeTIMG(const ResTIMG*, JUTPalette*);
 	void storeTIMG(const ResTIMG*, JUTPalette*, _GXTlut);
 
-	/** @fabricated */
 	inline int getSizeX() const { return mTexInfo->mSizeX; }
-	/** @fabricated */
 	inline int getSizeY() const { return mTexInfo->mSizeY; }
 
 	const ResTIMG* getTexInfo() const { return mTexInfo; }

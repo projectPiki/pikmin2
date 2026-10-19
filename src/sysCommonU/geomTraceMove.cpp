@@ -63,11 +63,11 @@ void OBB::traceMoveTriList_new(Game::MoveInfo& moveInfo, Sys::VertexTable& verte
                                Matrixf& startMatrix, Matrixf& endMatrix, int& hitCount, Sys::Triangle** resultTris, f32* hitDists,
                                Vector3f* hitPositions)
 {
-	Sphere* moveSphere     = moveInfo.mMoveSphere; // r27
-	Vector3f* moveVelocity = moveInfo.mVelocity;   // r26
+	Sphere* moveSphere     = moveInfo.mMoveSphere;
+	Vector3f* moveVelocity = moveInfo.mVelocity;
 
 	for (int i = 0; i < mTriIndexList.getNum(); i++) {
-		Triangle* tri = triangleTable.getTriangle(mTriIndexList.getIndex(i)); // r31
+		Triangle* tri = triangleTable.getTriangle(mTriIndexList.getIndex(i));
 		Triangle::SphereSweep sweep;
 		sweep.mStartPos         = moveSphere->mPosition;
 		sweep.mSphere.mPosition = moveSphere->mPosition;
@@ -184,11 +184,11 @@ void OBBTree::traceMove_new_global(Game::MoveInfo& moveInfo, f32 step)
 void OBB::traceMoveTriList_new_global(Game::MoveInfo& moveInfo, Sys::VertexTable& vertexTable, Sys::TriangleTable& triangleTable,
                                       int& hitCount, Sys::Triangle** resultTris, f32* hitDists, Vector3f* hitPositions)
 {
-	Sphere* moveSphere     = moveInfo.mMoveSphere; // r28
-	Vector3f* moveVelocity = moveInfo.mVelocity;   // r27
+	Sphere* moveSphere     = moveInfo.mMoveSphere;
+	Vector3f* moveVelocity = moveInfo.mVelocity;
 
 	for (int i = 0; i < mTriIndexList.getNum(); i++) {
-		Triangle* tri = triangleTable.getTriangle(mTriIndexList.mObjects[i]); // r31
+		Triangle* tri = triangleTable.getTriangle(mTriIndexList.mObjects[i]);
 		Triangle::SphereSweep sweep;
 		sweep.mStartPos         = moveSphere->mPosition;
 		sweep.mSphere.mPosition = moveSphere->mPosition;

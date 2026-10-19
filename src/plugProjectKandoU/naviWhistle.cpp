@@ -22,7 +22,6 @@ NaviWhistle::NaviWhistle(Game::Navi* navi)
 /**
  * @note Address: 0x801650BC
  * @note Size: 0x128
- * TODO: Needs NaviParms
  */
 void NaviWhistle::init()
 {
@@ -197,7 +196,6 @@ void NaviWhistle::updateWhistle()
 /**
  * @note Address: 0x80165718
  * @note Size: 0x1D4
- * TODO: Decomp this properly and then comment on it
  */
 void NaviWhistle::update(Vector3f& stick, bool active)
 {

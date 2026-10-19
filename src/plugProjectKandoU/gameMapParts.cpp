@@ -237,7 +237,6 @@ void MapUnitMgr::loadShape(char*)
 /**
  * @note Address: 0x801B69EC
  * @note Size: 0x440
- * TODO
  */
 void MapUnitMgr::makeUnit(MapUnit* unit, char* folder)
 {
@@ -1415,8 +1414,8 @@ void RoomMapMgr::createGlobalCollision()
 	{
 		MapRoom* room            = *iterCreate;
 		Matrixf& mtx             = room->mRoomSpaceMtx;
-		Sys::VertexTable* verts  = room->mUnit->mCollision.mDivider->mVertexTable;   // r26
-		Sys::TriangleTable* tris = room->mUnit->mCollision.mDivider->mTriangleTable; // r19
+		Sys::VertexTable* verts  = room->mUnit->mCollision.mDivider->mVertexTable;
+		Sys::TriangleTable* tris = room->mUnit->mCollision.mDivider->mTriangleTable;
 		for (int i = 0; i < verts->mLimit; i++) {
 			Vector3f preVert = *verts->getVertex(i);
 			Vector3f vert    = mtx.mtxMult(preVert);
@@ -1477,7 +1476,7 @@ Sys::TriIndexList* RoomMapMgr::traceMove_new(MoveInfo& info, f32 step)
 	moveSphere->mPosition      = newPos;
 	Sys::TriIndexList* triList = mMapCollision->mDivider->findTriLists(*moveSphere);
 
-	Sys::VertexTable* vertTable = mMapCollision->mDivider->mVertexTable; // r23
+	Sys::VertexTable* vertTable = mMapCollision->mDivider->mVertexTable;
 
 	for (triList; triList; triList = static_cast<Sys::TriIndexList*>(triList->mNext)) {
 		for (int i = 0; i < triList->getNum(); i++) {
@@ -1530,17 +1529,17 @@ Sys::TriIndexList* RoomMapMgr::traceMove_original(MoveInfo& info, f32 step)
 	Iterator<MapRoom> iterRoom(&mRoomMgr);
 	int count               = 0;
 	Vector3f* velocity      = info.mVelocity;
-	Sys::Sphere* moveSphere = info.mMoveSphere; // r19
+	Sys::Sphere* moveSphere = info.mMoveSphere;
 	Vector3f startPos       = moveSphere->mPosition;
 	moveSphere->mPosition   = moveSphere->mPosition + *velocity * step;
 
-	Vector3f vecArray[8];       // 0x88, 0xFC, r22/r24/r27
-	Sys::Triangle* triArray[8]; // 0x68, 0xF8, r14/r25/r28
-	f32 floatArray[8];          // 0x48, 0x100, r21/r23/r26
+	Vector3f vecArray[8];
+	Sys::Triangle* triArray[8];
+	f32 floatArray[8];
 
 	CI_LOOP(iterRoom)
 	{
-		MapRoom* room = *iterRoom; // r31
+		MapRoom* room = *iterRoom;
 		Vector3f sep  = room->mBoundingSphere.mPosition - moveSphere->mPosition;
 		f32 radius    = room->mBoundingSphere.mRadius + moveSphere->mRadius;
 		if (sep.x * sep.x + sep.z * sep.z > SQUARE(radius)) {
@@ -1640,7 +1639,7 @@ bool RoomMapMgr::findRayIntersection(Sys::RayIntersectInfo& info)
 	Vector3f midPos   = Vector3f((startPos.x + endPos.x) / 2, 0.0f, (startPos.z + endPos.z) / 2);
 
 	f32 rayLen  = info.mIntersectEdge.mStartPos.distance(info.mIntersectEdge.mEndPos);
-	bool result = false; // r31
+	bool result = false;
 	f32 minDist = 12800000.0f;
 
 	CI_LOOP(iterRoom)
@@ -1719,9 +1718,9 @@ f32 RoomMapMgr::getMinY(Vector3f& pos)
 void RoomMapMgr::createTriangles(Sys::CreateTriangleArg& createArg)
 {
 	f32 rad = createArg.mBoundingSphere.mRadius;
-	Vector3f vecs[768];           // 0x864
-	Sys::Triangle* triArray[256]; // 0x464
-	MapRoom* roomArray[256];      // 0x64
+	Vector3f vecs[768];
+	Sys::Triangle* triArray[256];
+	MapRoom* roomArray[256];
 	Iterator<MapRoom> iter(&mRoomMgr);
 	int count = 0;
 	int n     = 0; // is this just count? yes. is it necessary to get the registers to work? also yes.
@@ -1746,7 +1745,7 @@ void RoomMapMgr::createTriangles(Sys::CreateTriangleArg& createArg)
 				if (!tri->intersect(*vertTable, boundSphere)) {
 					continue;
 				}
-				Vector3f vertices[3]; // 0x40
+				Vector3f vertices[3];
 				for (int j = 0; j < 3; j++) {
 					vertices[j] = *vertTable->getVertex(tri->mVertices[j]);
 					vertices[j] = room->mRoomSpaceMtx.mtxMult(vertices[j]);
@@ -1864,8 +1863,8 @@ void RoomMapMgr::getCurrTri(CurrTriInfo& info)
 void RoomMapMgr::makeOneRoom(f32 centreX, f32 centreY, f32 direction, char* unitName, s16 roomIdx, RoomLink* link,
                              ObjectLayoutInfo* layoutInfo)
 {
-	f32 faceAngle           = TORADIANS(direction); // f31
-	MapRoom* room           = mRoomMgr.birth();     // r31
+	f32 faceAngle           = TORADIANS(direction);
+	MapRoom* room           = mRoomMgr.birth();
 	room->mIndex            = roomIdx;
 	room->mLink             = link;
 	room->mObjectLayoutInfo = static_cast<Cave::ObjectLayout*>(layoutInfo);
@@ -1879,16 +1878,16 @@ void RoomMapMgr::makeOneRoom(f32 centreX, f32 centreY, f32 direction, char* unit
 	room->countItems();
 
 	f32 cellSize = 170.0f;
-	Vector3f translation(centreX * cellSize, 0.0f, centreY * cellSize); // 0xD0
-	Vector3f rotation1(0.0f, faceAngle, 0.0f);                          // 0xC4
+	Vector3f translation(centreX * cellSize, 0.0f, centreY * cellSize);
+	Vector3f rotation1(0.0f, faceAngle, 0.0f);
 	mtx1.makeTR(translation, rotation1);
 
-	MapUnit* unit = mMapUnitMgr->findMapUnit(unitName); // r22
+	MapUnit* unit = mMapUnitMgr->findMapUnit(unitName);
 
 	room->create(unit, mtx1);
 
-	BoundBox bBox(unit->mBoundingBox);         // 0xF4
-	Vector3f rotation2(0.0f, faceAngle, 0.0f); // 0xB8
+	BoundBox bBox(unit->mBoundingBox);
+	Vector3f rotation2(0.0f, faceAngle, 0.0f);
 	boundMtx.makeTR(translation, rotation2);
 
 	bBox.transform(boundMtx);
@@ -1902,7 +1901,7 @@ void RoomMapMgr::makeOneRoom(f32 centreX, f32 centreY, f32 direction, char* unit
 	bBox2.mMax.y = 0.0f;
 	bBox2.makeBoundSphere(room->_190);
 
-	Vector3f modelCenter = room->mModel->getRoughCenter(); // f30, f29, f28
+	Vector3f modelCenter = room->mModel->getRoughCenter();
 
 	f32 val = 0.0f;
 	for (int i = 0; i < room->mModel->mJointCount; i++) {
@@ -1928,7 +1927,7 @@ void RoomMapMgr::makeOneRoom(f32 centreX, f32 centreY, f32 direction, char* unit
 	room->mRoomVisibilityCylinder.set(startCyl, endCyl, cylinderRadius);
 
 	mSeaMgr->addSeaMgr(&unit->mSeaMgr, mtx1);
-	MapUnitInterface* mui = getMUI(unit); // r27
+	MapUnitInterface* mui = getMUI(unit);
 
 	room->mUnitKind  = mui->mUnitKind;
 	room->mInterface = mui;
@@ -1960,9 +1959,9 @@ void RoomMapMgr::makeOneRoom(f32 centreX, f32 centreY, f32 direction, char* unit
 
 	CI_LOOP(iterWP)
 	{
-		WayPoint* wp = *iterWP; // r25
+		WayPoint* wp = *iterWP;
 		if (wp->mDoFloorSnap) {
-			RoomLink* targetLink = nullptr; // r23
+			RoomLink* targetLink = nullptr;
 			FOREACH_NODE(RoomLink, link->mChild, linkNode)
 			{
 				if (linkNode->mLinkIndex == wp->mDoorIndex) {
@@ -1972,9 +1971,9 @@ void RoomMapMgr::makeOneRoom(f32 centreX, f32 centreY, f32 direction, char* unit
 			}
 
 			P2ASSERTLINE(3459, targetLink);
-			MapRoom* aliveRoom = getMapRoom(targetLink->mAliveMapIndex); // r21
+			MapRoom* aliveRoom = getMapRoom(targetLink->mAliveMapIndex);
 
-			Door* door = mui->getDoor(wp->mDoorIndex); // r22
+			Door* door = mui->getDoor(wp->mDoorIndex);
 
 			doorDirs[0] = (Vector3f) { 0.0f, 0.0f, 1.0f };
 			doorDirs[1] = (Vector3f) { 1.0f, 0.0f, 0.0f };
@@ -2002,7 +2001,7 @@ void RoomMapMgr::makeOneRoom(f32 centreX, f32 centreY, f32 direction, char* unit
 				wp = newWP;
 
 			} else {
-				WayPoint* newWP = aliveRoom->mUnit->mRouteMgr.getWayPoint(targetLink->mBirthDoorIndex); // r23
+				WayPoint* newWP = aliveRoom->mUnit->mRouteMgr.getWayPoint(targetLink->mBirthDoorIndex);
 				P2ASSERTLINE(3504, aliveRoom->mWpIndices);
 
 				room->mWpIndices[wp->mIndex] = aliveRoom->mWpIndices[newWP->mIndex];
@@ -2050,8 +2049,8 @@ void RoomMapMgr::makeOneRoom(f32 centreX, f32 centreY, f32 direction, char* unit
 
 	CI_LOOP(iterWP)
 	{
-		WayPoint* wp1 = *iterWP;                                               // r22
-		WayPoint* wp2 = mRouteMgr->getWayPoint(room->mWpIndices[wp1->mIndex]); // r24
+		WayPoint* wp1 = *iterWP;
+		WayPoint* wp2 = mRouteMgr->getWayPoint(room->mWpIndices[wp1->mIndex]);
 
 		if (wp1->mDoFloorSnap) {
 			int numFromLinks = wp2->mNumFromLinks;

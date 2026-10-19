@@ -504,11 +504,11 @@ void Graphics::drawBox(Vector3f&, Vector3f&, Vector3f&, Vector3f&)
  */
 void Graphics::drawSphere(Vector3f& position, f32 radius)
 {
-	Matrixf concatMtx; // 0x98
+	Matrixf concatMtx;
 	for (int i = 0; i < 16; i++) {
-		Matrixf srtMtx;                           // 0x68
-		Vector3f scale(1.0f);                     // 0x2C
-		Vector3f rot(0.0f, 0.3926991f * i, 0.0f); // 0x20
+		Matrixf srtMtx;
+		Vector3f scale(1.0f);
+		Vector3f rot(0.0f, 0.3926991f * i, 0.0f);
 
 		srtMtx.makeSRT(scale, rot, position);
 
@@ -525,9 +525,9 @@ void Graphics::drawSphere(Vector3f& position, f32 radius)
 	}
 
 	for (int i = 0; i < 16; i++) {
-		Matrixf srtMtx;                           // 0x68
-		Vector3f scale(1.0f);                     // 0x2C
-		Vector3f rot(0.3926991f * i, 0.0f, 0.0f); // 0x20
+		Matrixf srtMtx;
+		Vector3f scale(1.0f);
+		Vector3f rot(0.3926991f * i, 0.0f, 0.0f);
 
 		srtMtx.makeSRT(scale, rot, position);
 
@@ -550,11 +550,11 @@ void Graphics::drawSphere(Vector3f& position, f32 radius)
  */
 void Graphics::drawSphere(f32 radius, Matrixf* gfxMtx)
 {
-	Matrixf concatMtx; // 0x98
+	Matrixf concatMtx;
 	for (int i = 0; i < 16; i++) {
-		Matrixf srtMtx;                           // 0x68
-		Vector3f scale(1.0f);                     // 0x2C
-		Vector3f rot(0.0f, 0.3926991f * i, 0.0f); // 0x20
+		Matrixf srtMtx;
+		Vector3f scale(1.0f);
+		Vector3f rot(0.0f, 0.3926991f * i, 0.0f);
 
 		srtMtx.makeSRT(scale, rot, Vector3f::zero);
 
@@ -572,9 +572,9 @@ void Graphics::drawSphere(f32 radius, Matrixf* gfxMtx)
 	}
 
 	for (int i = 0; i < 16; i++) {
-		Matrixf srtMtx;                           // 0x68
-		Vector3f scale(1.0f);                     // 0x2C
-		Vector3f rot(0.3926991f * i, 0.0f, 0.0f); // 0x20
+		Matrixf srtMtx;
+		Vector3f scale(1.0f);
+		Vector3f rot(0.3926991f * i, 0.0f, 0.0f);
 
 		srtMtx.makeSRT(scale, rot, Vector3f::zero);
 

@@ -58,7 +58,7 @@ struct ObjFinalMsg : public ::Screen::ObjBase {
 	// _18     = VTBL2
 	// _00-_38 = Screen::ObjBase
 	og::Screen::DispMemberFinalMessage* mDisp; // _38
-	int mCurrSel;                              // _3C, unknown
+	int mCurrSel;                              // _3C
 	P2DScreen::Mgr_tuning* mScreen;            // _40
 	og::Screen::MenuMgr* mMenuMgr;             // _44
 	og::Screen::AnimText_Screen* mAnimTextQ;   // _48

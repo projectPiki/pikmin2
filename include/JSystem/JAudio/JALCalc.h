@@ -30,11 +30,6 @@ f32 linearTransform(f32 x, f32 xStart, f32 xEnd, f32 yStart, f32 yEnd, bool unbo
 f32 getParamByExp(f32 x, f32 xStart, f32 xEnd, f32 y, f32 yStart, f32 yEnd, CurveSign curve);
 f32 getRandom(f32, f32, f32);
 f32 getRandom_0_1();
-// {
-// 	static JMath::TRandom_fast_ oRandom(0);
-// 	u32 next = (oRandom.next() >> 9) | 0x3F800000;
-// 	return *(f32*)(void*)&next - 1.0f;
-// }
 
 // Unused/inlined:
 f32 getParamByExp_0_1(f32, f32, f32, f32, CurveSign);

@@ -29,7 +29,6 @@ struct CPlate : public Container<Creature> {
 		SlotChangeListener* mListener; // _1C
 	};
 
-	// @fabricatedName
 	struct Parms : public Parameters {
 		inline Parms()
 		    : Parameters(nullptr, "Navi::Parms")

@@ -31,7 +31,6 @@ struct DemoArg {
 	DemoArg(char* name)
 	    : mCameraName(nullptr)
 	    , mName(name)
-	// , mBgmID(id)
 	{
 	}
 

@@ -4,7 +4,6 @@
 #include "Container.h"
 #include "Condition.h"
 
-// TODO: Verify virtual functions
 namespace Game {
 template <typename T>
 struct EnemyIterator {

@@ -66,7 +66,7 @@ Section::Section(JFWDisplay* display, JKRHeap* heap, bool b)
 		} else {
 			mDisplay = JFWDisplay::createManager(nullptr, mDisplayHeap, JUTXfb::DoubleBuffer, false);
 			mFader   = new JUTFader(0, 0, JUTVideo::sManager->mRenderModeObj->fbWidth, JUTVideo::sManager->mRenderModeObj->efbHeight,
-			                        JUtility::TColor(0, 0, 0, 0)); // TODO: HELP
+			                        JUtility::TColor(0, 0, 0, 0));
 			mDisplay->mFader = mFader;
 			mIsDisplayNew    = true;
 
@@ -352,34 +352,3 @@ void Section::draw(Graphics& gfx)
 		doDraw(gfx);
 	}
 }
-
-/**
- * @note Address: 0x80424150
- * @note Size: 0x54
- */
-// void __sinit_section_cpp()
-// {
-// 	/*
-// 	lis      r3, 0x800000F8@ha
-// 	lis      r4, __float_nan@ha
-// 	lwz      r0, 0x800000F8@l(r3)
-// 	li       r7, -1
-// 	lfs      f0, __float_nan@l(r4)
-// 	lis      r6, lbl_804EBB80@ha
-// 	srwi     r5, r0, 2
-// 	li       r3, 0x12c
-// 	li       r4, 0
-// 	stfsu    f0, lbl_804EBB80@l(r6)
-// 	mulhwu   r0, r5, r3
-// 	stw      r7, lbl_80516178@sda21(r13)
-// 	stfs     f0, lbl_8051617C@sda21(r13)
-// 	mullw    r3, r4, r3
-// 	stfs     f0, 4(r6)
-// 	stfs     f0, 8(r6)
-// 	mulli    r4, r5, 0x12c
-// 	add      r0, r0, r3
-// 	stw      r0, sPlayTime@sda21(r13)
-// 	stw      r4, lbl_80516184@sda21(r13)
-// 	blr
-// 	*/
-// }

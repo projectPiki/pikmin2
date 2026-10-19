@@ -84,8 +84,6 @@ struct THurryUp2D : public TTestBase {
 struct THurryUpScene : public THIOScene {
 	THurryUpScene() { }
 
-	// ~THurryUpScene(); // unused/inlined
-
 	virtual const char* getResName() const { return "res_ground.szs"; } // _1C (weak)
 	virtual void doCreateObj(JKRArchive* arc)
 	{

@@ -259,7 +259,6 @@ void RandMapUnit::changeCapToRootLoopMapUnit()
 {
 	char* unitNames[16];
 
-	// MapNode* placedNodes;
 	MapNode* nodeArray   = mGenerator->mMapNodeKinds;
 	MapNode* placedNodes = mGenerator->getPlacedNodes();
 	int nameCount        = 0;

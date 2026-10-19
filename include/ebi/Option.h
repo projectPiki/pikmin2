@@ -32,7 +32,6 @@ struct FSMStateMachine : public Game::StateMachine<TMgr> {
 	// _00-_1C = Game::StateMachine
 };
 
-// TODO: Additional state data members, if any.
 struct FSMState : public Game::FSMState<TMgr> {
 	inline FSMState(int id, const char* name)
 	    : Game::FSMState<TMgr>(id)

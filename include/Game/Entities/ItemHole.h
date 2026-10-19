@@ -20,9 +20,6 @@ namespace ItemHole {
 struct State;
 struct FSM;
 
-/**
- * @fabricated
- */
 enum StateID {
 	Hole_Normal = 0,
 	Hole_Appear = 1,

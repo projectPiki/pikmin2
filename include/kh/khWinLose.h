@@ -172,8 +172,8 @@ struct SceneWinLoseReason : public ::Screen::SceneBase {
 	// _00-_220 = Screen::SceneBase
 	::Screen::ObjBase* mScreenObj[2]; // _220
 	int mOutcome[2];                  // _228
-	bool mDone[2];
-	int mCounter; // _234
+	bool mDone[2];                    // _230
+	int mCounter;                     // _234
 };
 } // namespace Screen
 } // namespace kh

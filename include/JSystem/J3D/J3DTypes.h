@@ -9,10 +9,6 @@
 #include "JSystem/JMath.h"
 #include "types.h"
 
-// TODO: Make a bitmask enum
-/**
- * @fabricatedName
- */
 typedef u32 J3DModelLoaderFlags;
 enum J3DModelLoaderFlagTypes {
 	J3DMLF_None = 0x00000000,
@@ -465,7 +461,6 @@ struct J3DColorChan {
 	u16 mChanCtrl; // _00
 };
 
-// IDK what the structure of this is meant to be
 struct J3DIndTevStageInfo {
 	u8 mIndStage;  // _00
 	u8 mIndFormat; // _01
@@ -562,7 +557,6 @@ extern const J3DTevOrderInfo j3dDefaultTevOrderInfoNull;
 struct J3DTevOrder : public J3DTevOrderInfo {
 	J3DTevOrder() { *(J3DTevOrderInfo*)this = j3dDefaultTevOrderInfoNull; }
 
-	/** @fabricated */
 	inline J3DTevOrder(const J3DTevOrderInfo& info) { *(J3DTevOrderInfo*)this = info; }
 
 	inline void setTexCoordID(GXTexCoordID id) { mTexCoordID = id; }
@@ -888,8 +882,6 @@ enum J3DDeformAttachFlag {
 extern const GXColor j3dDefaultColInfo;
 extern const GXColor j3dDefaultAmbInfo;
 extern const u8 j3dDefaultColorChanNum;
-// extern const J3DGXColor j3dDefaultTevColor;
-// extern const J3DGXColorS10 j3dDefaultTevKColor;
 extern const GXColorS10 j3dDefaultTevColor;
 extern const GXColor j3dDefaultTevKColor;
 

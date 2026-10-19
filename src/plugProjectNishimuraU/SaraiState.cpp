@@ -438,10 +438,10 @@ void StateAttack::exec(EnemyBase* enemy)
 
 			if (sarai->mGeneralTimer < 30.0f) {
 				f32 targetHeight = target->getPosition().y;
-				targetHeight += 17.5f;                    // f28
-				f32 saraiHeight = sarai->getPosition().y; // f29
+				targetHeight += 17.5f;
+				f32 saraiHeight = sarai->getPosition().y;
 
-				Vector3f vel = sarai->getVelocity(); // 0x80
+				Vector3f vel = sarai->getVelocity();
 				f32 factor   = ((targetHeight - saraiHeight) / sys->mDeltaTime) * CG_PROPERPARMS(sarai).mHuntDescentFactor();
 
 				f32 vertSpeed;
@@ -472,10 +472,10 @@ void StateAttack::exec(EnemyBase* enemy)
 	if (sarai->mCurAnim->mIsPlaying) {
 		if (sarai->mCurAnim->mType == KEYEVENT_2) {
 			if (sarai->mTargetCreature) {
-				Vector3f targetPos = sarai->mTargetCreature->getPosition(); // f28, f29, f30
-				Vector3f saraiPos  = sarai->getPosition();                  // f1, f0, f2
+				Vector3f targetPos = sarai->mTargetCreature->getPosition();
+				Vector3f saraiPos  = sarai->getPosition();
 
-				Vector3f sep = targetPos - saraiPos; // 0x74
+				Vector3f sep = targetPos - saraiPos;
 				Vector3f dir = sep;
 				dir.normalise();
 				dir *= 25.0f;

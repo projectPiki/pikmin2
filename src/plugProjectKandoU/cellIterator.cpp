@@ -4,7 +4,6 @@ namespace Game {
 /**
  * @note Address: 0x8022E36C
  * @note Size: 0x34
- * Matches
  */
 CellIteratorArg::CellIteratorArg()
 {
@@ -23,7 +22,6 @@ CellIteratorArg::CellIteratorArg()
 /**
  * @note Address: 0x8022E3A0
  * @note Size: 0x40
- * Matches
  */
 CellIteratorArg::CellIteratorArg(Sys::Sphere& sphere)
 {
@@ -38,7 +36,6 @@ CellIteratorArg::CellIteratorArg(Sys::Sphere& sphere)
 /**
  * @note Address: 0x8022E3E0
  * @note Size: 0x7C
- * Matches
  */
 CellIterator::CellIterator(Game::CellIteratorArg& arg)
 {
@@ -74,7 +71,6 @@ void CellIterator::first()
 /**
  * @note Address: 0x8022E500
  * @note Size: 0x34
- * Matches
  */
 bool CellIterator::next()
 {
@@ -85,7 +81,6 @@ bool CellIterator::next()
 /**
  * @note Address: 0x8022E534
  * @note Size: 0x10
- * Matches
  */
 bool CellIterator::isDone()
 {

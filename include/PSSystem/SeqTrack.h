@@ -20,7 +20,8 @@ struct BeatMgr {
 
 	void proc();
 
-	u8 mFlags; // _00 - unknown, but size 0x1 (or 0x2?)
+	// todo: flag documentation
+	u8 mFlags; // _00
 };
 
 /**

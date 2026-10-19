@@ -1046,15 +1046,11 @@ bool Obj::carryTarget(f32 param)
 		Creature* target   = mTargetCreature;
 		Vector3f targetVel = mTargetVelocity;
 		targetVel.y        = 0.0f;
-		// maxTurnAngle         = mTargetVelocity.x;
-		// speed             = mTargetVelocity.z;
-		// Pellet* newPelt  = getCarryTarget();
 		Vector3f peltVel = getCarryTarget()->getVelocity();
 		peltVel          = peltVel + (targetVel - peltVel) * (sys->mDeltaTime / 0.15f);
 		peltVel.y += targetVel.y;
 		peltVel.x = targetVel.x;
 		peltVel.z = targetVel.z;
-		// Vector3f resultVec(targetVel.x, peltVel.y + (0.0f - peltVel.y) * (sys->mFpsFactor / 0.15f) + 0.0f, targetVel.z);
 		if (CG_PARMS(this)->_99A && pelt) {
 			if (!mIsCarryStuck) {
 				mMoveToWpTimer++;

@@ -34,42 +34,6 @@ JPAEmitterManager::JPAEmitterManager(u32 ptclNum, u32 emtrNum, JKRHeap* heap, u8
 }
 
 /**
- * @note Address: N/A
- * @note Size: 0x3C
- */
-// JPARandom::~JPARandom()
-//{
-// UNUSED FUNCTION
-//}
-
-/**
- * @note Address: N/A
- * @note Size: 0x3C
- */
-// JPABaseParticle::~JPABaseParticle()
-//{
-// UNUSED FUNCTION
-//}
-
-/**
- * @note Address: N/A
- * @note Size: 0x54
- */
-// JSULink<JPABaseEmitter>::~JSULink()
-//{
-// UNUSED FUNCTION
-//}
-
-/**
- * @note Address: N/A
- * @note Size: 0x3C
- */
-// JPAList<JPABaseParticle>::~JPAList()
-//{
-// UNUSED FUNCTION
-//}
-
-/**
  * @note Address: 0x800908BC
  * @note Size: 0xDC
  */

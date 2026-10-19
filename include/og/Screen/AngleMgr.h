@@ -13,11 +13,11 @@ struct AngleMgr {
 	void chase(f32 target, f32 step);
 	f32 calc();
 
-	f32 mCurrentAngle; // _00, guessed name
-	f32 mAngleStep;    // _04, guessed name
-	f32 mTargetAngle;  // _08, guessed name
-	f32 mInterpRate;   // _0C, guessed name
-	f32 mScale;        // _10, guessed name
+	f32 mCurrentAngle; // _00
+	f32 mAngleStep;    // _04
+	f32 mTargetAngle;  // _08
+	f32 mInterpRate;   // _0C
+	f32 mScale;        // _10
 	s32 mState;        // _14
 };
 } // namespace Screen

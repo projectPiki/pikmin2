@@ -152,7 +152,6 @@ struct JUTFont {
 };
 
 struct JUTRomFont : public JUTFont {
-	// @fabricatedName
 	struct AboutEncoding {
 		u32 mFontType;                  // _00
 		u32 mDataSize;                  // _04

@@ -15,7 +15,6 @@ struct MoveParaSet;
 struct SeqUpdateData;
 
 namespace SeMgr {
-/** @fabricatedName */
 struct TrackUpdate {
 	u8 _00;             // _00
 	f32 mPlayingVolume; // _04

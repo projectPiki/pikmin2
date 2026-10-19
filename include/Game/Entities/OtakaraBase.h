@@ -130,8 +130,6 @@ struct Obj : public EnemyBase {
 struct Mgr : public EnemyMgrBase {
 	Mgr(int objLimit, u8 modelType);
 
-	// virtual ~Mgr();                                     // _58 (weak)
-
 	virtual SysShape::Model* createModel();            // _B0
 	virtual void loadModelData();                      // _C8
 	virtual void loadAnimData();                       // _CC
@@ -225,7 +223,7 @@ struct State : public EnemyFSMState {
 
 struct StateBombMove : public State {
 	inline StateBombMove()
-	    : State(OTA_BombMove, "bombflick") // wrong name by devs?
+	    : State(OTA_BombMove, "bombflick") // wrong name by devs
 	{
 	}
 
@@ -239,7 +237,7 @@ struct StateBombMove : public State {
 
 struct StateBombTurn : public State {
 	inline StateBombTurn()
-	    : State(OTA_BombTurn, "bombdrop") // wrong name by devs?
+	    : State(OTA_BombTurn, "bombdrop") // wrong name by devs
 	{
 	}
 
@@ -253,7 +251,7 @@ struct StateBombTurn : public State {
 
 struct StateBombWait : public State {
 	inline StateBombWait()
-	    : State(OTA_BombWait, "bombturn") // wrong name by devs?
+	    : State(OTA_BombWait, "bombturn") // wrong name by devs
 	{
 	}
 

@@ -182,7 +182,6 @@ bool TDayEndCount::doUpdate()
 			mCurrNumberPane->setOffset(mNumberPanePos.x, mNumberPanePos.y + mOffsetY);
 		}
 	} else if (calc3 > end) {
-		// f32 duration   = 1.0f - end;
 		f32 alphaSlope = (f32)(u8)alpha / (1.0f - end);
 		alpha          = -alphaSlope * calc3 + alphaSlope;
 		scale          = calcLineValue(calc3, end, scale, scaleMax);

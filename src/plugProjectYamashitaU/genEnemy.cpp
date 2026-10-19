@@ -128,8 +128,6 @@ Creature* GenObjectEnemy::generate(Game::Generator* gen)
 	}
 
 	// Default enemy territory size is 35 units, unless overwritten by mEnemySize
-	// f32 enemy_territory = 35.0f;
-	// f32 dz, dx, dy;
 	f32 dx, dy, dz;
 	f32 enemy_territory = 35.0f;
 	if (mEnemySize > 0.0f) {
@@ -621,7 +619,6 @@ void GenObjectEnemy::updateUseList(Game::Generator* gen, int listIdx)
 /**
  * @note Address: 0x8012683C
  * @note Size: 0x31C
- * TODO
  */
 void GenObjectEnemy::render(Graphics& gfx, Game::Generator* gen)
 {

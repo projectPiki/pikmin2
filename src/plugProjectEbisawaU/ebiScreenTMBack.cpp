@@ -16,7 +16,7 @@ void TTMBack::doSetArchive(JKRArchive* archive)
 	sys->heapStatusStart("TScreenTMBack::setArchive", nullptr);
 
 	mScreenObj = new P2DScreen::Mgr_tuning();
-	mScreenObj->set("tm_back.blo", 0x01100000, archive); /* TODO: Obviously flags and not a hex literal. */
+	mScreenObj->set("tm_back.blo", 0x01100000, archive);
 
 	E2DPane_setTreeInfluencedAlpha(mScreenObj, true);
 	mScreenObj->setAlpha(0);
@@ -111,7 +111,7 @@ void TNintendoLogo::doSetArchive(JKRArchive* archive)
 	sys->heapStatusStart("TScreenNintendoLogo::setArchive", nullptr);
 
 	mScreenObj = new P2DScreen::Mgr_tuning();
-	mScreenObj->set("tm_2003nintendo.blo", 0x01100000, archive); /* TODO: Obviously flags and not a hex literal. */
+	mScreenObj->set("tm_2003nintendo.blo", 0x01100000, archive);
 
 	sys->heapStatusEnd("TScreenNintendoLogo::setArchive");
 }

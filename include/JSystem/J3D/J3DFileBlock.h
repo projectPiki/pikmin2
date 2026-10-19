@@ -6,7 +6,6 @@
 struct J3DFileBlockBase;
 
 /**
- * @fabricated
  * @size{0x20}
  */
 struct J3DFileHeader {
@@ -20,7 +19,6 @@ struct J3DFileHeader {
 };
 
 /**
- * @fabricated
  * @size{0x8}
  */
 struct J3DFileBlockBase {
@@ -33,9 +31,6 @@ struct J3DFileBlockBase {
 	}
 };
 
-/**
- * @fabricated
- */
 enum J3DFileBlockType {
 	J3DFBT_Draw        = 'DRW1',
 	J3DFBT_Envelope    = 'EVP1',

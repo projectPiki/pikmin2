@@ -40,8 +40,6 @@ struct TMainScreen : public TScreenBase {
 		State_FadeOut = 2,
 	};
 
-	// ~TMainScreen() { }
-
 	virtual void doSetArchive(JKRArchive*);           // _24
 	virtual void doOpenScreen(ArgOpen*);              // _28
 	virtual void doCloseScreen(ArgClose*);            // _2C
@@ -62,6 +60,8 @@ struct TMainScreen : public TScreenBase {
 	bool isFinishDecideDataBall(s32);
 	void createCopyCursor(s32);
 	void fadeCopyCursor();
+	void killCopyCursor();
+	void killAllEffect();
 	void moveLeftCopyCursor();
 	void moveRightCopyCursor();
 	void createFilecopyEffect(s32, s32);

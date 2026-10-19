@@ -463,8 +463,8 @@ Creature* Obj::getSearchedTarget(f32 offset)
 bool Obj::isSuck(f32 offset, Creature* target)
 {
 
-	f32 currY    = mPosition.y;            // f30
-	f32 minY     = currY - offset - 50.0f; // f29
+	f32 currY    = mPosition.y;
+	f32 minY     = currY - offset - 50.0f;
 	f32 maxRange = SQUARE(C_GENERALPARMS.mMaxAttackRange());
 
 	if (target) {

@@ -6,7 +6,6 @@
 #include "JSystem/JAudio/JAS/JASMutexLock.h"
 #include "types.h"
 
-// fabricated
 struct JASGenericMem { };
 
 struct JASGenericMemPool {
@@ -26,15 +25,12 @@ struct JASGenericMemPool {
 
 namespace JASCreationPolicy {
 struct NewFromRootHeap { };
-
-/** @fabricated */
 struct NewFromSystemHeap { };
 } // namespace JASCreationPolicy
 
 namespace JASThreadingModel {
 struct SingleThreaded { };
 
-/** @fabricated */
 struct MultiThreaded { };
 }; // namespace JASThreadingModel
 
@@ -51,9 +47,7 @@ struct JASSingletonHolder {
 		}
 		return sInstance;
 	}
-	/**
-	 * @fabricated
-	 */
+
 	static T* getInstance()
 	{
 		T* instance;
@@ -68,31 +62,20 @@ struct JASSingletonHolder {
 };
 
 template <typename T, typename CreationPolicy, typename ThreadingModel>
-struct JASPoolAllocObject { //: public JASSingletonHolder<JASMemPool<T, ThreadingModel>, CreationPolicy> {
+struct JASPoolAllocObject {
 	typedef JASMemPool<T, ThreadingModel> Pool;
 	typedef JASSingletonHolder<Pool, CreationPolicy> SingletonHolder;
 
-	/**
-	 * @fabricated
-	 */
-	// void* operator new(size_t size) { return ::new (SingletonHolder::getInstance()->alloc(size)) T(); }
 	void operator delete(void* ptr, size_t size) { SingletonHolder::getInstance()->free(ptr, size); }
-
-	// static inline T* alloc() { return ::new (SingletonHolder::getInstance()->alloc(sizeof(T))) T(); }
 	static inline void* alloc() { return (SingletonHolder::getInstance()->alloc(sizeof(T))); }
 
 	virtual ~JASPoolAllocObject<T, CreationPolicy, ThreadingModel>() // _08
 	{
 	}
 
-	/**
-	 * @fabricated
-	 */
 protected:
 	inline JASPoolAllocObject<T, CreationPolicy, ThreadingModel>()
 	{
-		// TODO: This probably isn't quite right...
-		// this = SingletonHolder::getInstance()->alloc(sizeof(T));
 	}
 };
 

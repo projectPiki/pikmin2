@@ -313,8 +313,8 @@ u16 Module::seqCpuSync_AutoBgm_Module(JASTrack* track1, u16 cmd, u32 p3, JASTrac
 		PSSystem::setObject(track1, this, 20);
 		track1->writePortAppDirect(3, _154.mValue | (_124.mValue << 8));
 
-		f32 vol = (mVolumeParam.mValue > 127) ? 127.0f : mVolumeParam.mValue; // f2
-		f32 pan = (mPanParam.mValue > 127) ? 127.0f : mPanParam.mValue;       // f31
+		f32 vol = (mVolumeParam.mValue > 127) ? 127.0f : mVolumeParam.mValue;
+		f32 pan = (mPanParam.mValue > 127) ? 127.0f : mPanParam.mValue;
 		track1->setParam(JASTrack::JASParam_Volume, vol / 127.0f, -1);
 		track1->setParam(JASTrack::JASParam_Pan, pan / 127.0f, -1);
 

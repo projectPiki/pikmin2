@@ -8,7 +8,6 @@ struct JASWaveInfo;
 
 namespace JASDsp {
 // typedef s16 Fxline[0x10];
-/** @fabricated */
 struct Fxline {
 	u16 mBufferStatus; // _00
 	u16 _02;           // _02
@@ -18,17 +17,8 @@ struct Fxline {
 	u16 _0C;           // _0C
 	u16 _0E;           // _0E
 	u16 _10[8];        // _10
-
-	// u16 _12;  // _12
-	// u16 _14;  // _14
-	// u16 _16;  // _16
-	// u16 _18;  // _18
-	// u16 _1A;  // _1A
-	// u16 _1C;  // _1C
-	// u16 _1E;  // _1E
 };
 struct TChannel {
-	// fabricated
 	struct TMixer {
 		u16 mBusConnect; // _00
 		s16 mMixVolume;  // _02
@@ -192,7 +182,7 @@ struct JASDSPChannel {
 
 	s32 mStatus;
 	s16 mPriority;
-	u32 mFlags; // some kind of bitflag?
+	u32 mFlags;
 	u32 _0C;
 	Callback mCallback;  // _10
 	void* mCallbackArgs; // _14

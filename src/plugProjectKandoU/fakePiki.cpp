@@ -316,10 +316,10 @@ bool FakePiki::sNeckCallback(J3DJoint* joint, int jointIdx)
 		f32 phi   = sCurrNeckPhi;
 		f32 theta = sCurrNeckTheta;
 
-		f32 sinPhi   = sinfc(-phi);  // f6
-		f32 cosPhi   = cosfc(-phi);  // f7
-		f32 sinTheta = sinfc(theta); // f8
-		f32 cosTheta = cosfc(theta); // f4
+		f32 sinPhi   = sinfc(-phi);
+		f32 cosPhi   = cosfc(-phi);
+		f32 sinTheta = sinfc(theta);
+		f32 cosTheta = cosfc(theta);
 
 		Matrixf rotMtx;
 		rotMtx.mMatrix.structView.xx = cosPhi;

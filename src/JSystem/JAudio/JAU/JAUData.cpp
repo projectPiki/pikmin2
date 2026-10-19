@@ -100,18 +100,6 @@ void JADUtility::PrmSetBase::load(JSUMemoryInputStream& input)
 // }
 
 /**
- * @note Address: 0x800BA6E8
- * @note Size: 0xE8
- */
-// JADUtility::PrmSetBase::~PrmSetBase()
-// {
-// 	JSULink<PrmBase>* link;
-// 	while ((link = _1C.getFirst()) != nullptr) {
-// 		_1C.remove(link);
-// 	}
-// }
-
-/**
  * @note Address: 0x800BA7D0
  * @note Size: 0x4
  */

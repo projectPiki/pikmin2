@@ -147,8 +147,6 @@ J3DAnmKeyLoader_v15::~J3DAnmKeyLoader_v15()
 J3DAnmBase* J3DAnmFullLoader_v15::load(const void* stream)
 {
 	const J3DFileHeader* header = reinterpret_cast<const J3DFileHeader*>(stream);
-	// int blockCount              = header->mBlockCount;
-	// const J3DFileBlockBase* nextBlock = reinterpret_cast<const J3DFileBlockBase*>(reinterpret_cast<const J3DFileHeader*>(stream) + 1);
 	const J3DFileBlockBase* nextBlock = header->getFirstBlock();
 	for (u32 i = 0; i < header->mBlockCount; i++) {
 		switch (nextBlock->mBlockType) {
@@ -352,7 +350,6 @@ void J3DAnmFullLoader_v15::readAnmVtxColor(const J3DAnmVtxColorFullData* data)
 /**
  * @note Address: 0x800735E0
  * @note Size: 0x170
- * TODO: Type of J3DAnmVtxColorIndexData::_04 is wrong? It might be u16*...
  * setAnmVtxColor__20J3DAnmFullLoader_v15FP18J3DAnmVtxColorFullPC22J3DAnmVtxColorFullData
  */
 void J3DAnmFullLoader_v15::setAnmVtxColor(J3DAnmVtxColorFull* animation, const J3DAnmVtxColorFullData* data)
@@ -391,8 +388,6 @@ void J3DAnmFullLoader_v15::setAnmVtxColor(J3DAnmVtxColorFull* animation, const J
 J3DAnmBase* J3DAnmKeyLoader_v15::load(const void* stream)
 {
 	const J3DFileHeader* header = reinterpret_cast<const J3DFileHeader*>(stream);
-	// int blockCount              = header->mBlockCount;
-	// const J3DFileBlockBase* nextBlock = reinterpret_cast<const J3DFileBlockBase*>(reinterpret_cast<const J3DFileHeader*>(stream) + 1);
 	const J3DFileBlockBase* nextBlock = header->getFirstBlock();
 	for (u32 i = 0; i < header->mBlockCount; i++) {
 		switch (nextBlock->mBlockType) {

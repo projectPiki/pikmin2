@@ -33,7 +33,7 @@ struct DataMgrBase : public JKRDisposer {
 };
 
 /**
- * @size = 0x234 - could be wrong, inheritance is confusing
+ * @size = 0x234
  */
 struct DataLoadMgrNode : virtual public DataMgrBase {
 	enum ObjStatus { };
@@ -56,7 +56,6 @@ struct DataLoadMgrNode : virtual public DataMgrBase {
 	bool initInstanceExt(void*, s32);
 	void setFlagsAsExternal(void*);
 
-	// unused/inlined:
 	void setLoadPath(char const* path)
 	{
 		if (strlen(path) <= 0xFF) {
@@ -65,10 +64,7 @@ struct DataLoadMgrNode : virtual public DataMgrBase {
 	}
 
 	void load(JADUtility::DataLoadMgrNode::ObjStatus, bool);
-	// bool initInstanceExt();
-	// void loadDvd(u32*);
 
-	/** @fabricated */
 	inline void setPath(char const* path)
 	{
 		if (strlen(path) <= 0xFF) {
@@ -93,7 +89,6 @@ struct DataLoadMgrNode : virtual public DataMgrBase {
 struct DataMgrNode : public DataLoadMgrNode {
 	DataMgrNode();
 
-	// virtual ~DataMgrNode() { }                                           // _08 (weak)
 	virtual void init() { DataLoadMgrNode::init(); }                     // _10 (weak)
 	virtual JKRHeap* getObjHeap()         = 0;                           // _14
 	virtual JKRHeap* getDataHeap()        = 0;                           // _18
@@ -124,7 +119,6 @@ struct PrmDataMgrNode : public DataMgrNode {
 	{
 		if (initInstance()) {
 			JSUMemoryInputStream input(buffer, bufferLength);
-			// input.setBuffer(buffer, bufferLength);
 			mPrmSetRc->load(input);
 			return true;
 		}

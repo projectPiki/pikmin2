@@ -156,7 +156,6 @@ void BigTreasureShadowMgr::update()
 	f32 p1 = 5.0f * mObj->mShadowScale;
 	f32 p2 = 2.5f * mObj->mShadowScale;
 
-	// this section needs fixing
 	const f32 theta = mObj->getFaceDir();
 
 	Vector3f pos1 = getDirection(theta);

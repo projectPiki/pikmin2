@@ -8,7 +8,6 @@ namespace JStudio {
 struct TObject;
 
 struct TCreateObject {
-	// ~TCreateObject();
 
 	virtual ~TCreateObject()                                                              = 0; // _08
 	virtual bool create(TObject** newObject, const stb::data::TParse_TBlock_object& data) = 0; // _0C

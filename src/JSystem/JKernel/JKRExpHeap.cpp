@@ -105,7 +105,6 @@ JKRExpHeap::~JKRExpHeap()
 /**
  * @note Address: 0x80020130
  * @note Size: 0x11C
- * TODO: Needs JUTWarningConsole_f, probably changes to conditions
  */
 void* JKRExpHeap::do_alloc(u32 byteCount, int padding)
 {
@@ -149,7 +148,6 @@ static JKRExpHeap::CMemBlock* DBnewUsedBlock;
  */
 void* JKRExpHeap::allocFromHead(u32 size, int align)
 {
-	// TODO: cleaner declares(if possible)
 	u32 foundOffset;
 	int foundSize;
 	CMemBlock* newFreeBlock;
@@ -688,7 +686,6 @@ void JKRExpHeap::recycleFreeBlock(JKRExpHeap::CMemBlock* block)
 	int size                        = block->mAllocatedSpace;
 	void* blockEnd                  = (u8*)block + size;
 	block->mUsageHeader             = 0;
-	// int offset = block->mFlags & 0x7f;
 
 	if ((block->mFlags & 0x7f) != 0) {
 		newBlock = (CMemBlock*)((u8*)block - (block->mFlags & 0x7f));

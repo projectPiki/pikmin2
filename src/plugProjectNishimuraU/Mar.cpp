@@ -560,7 +560,6 @@ void Obj::windTarget()
 	Vector3f attackDirection     = mAttackDirection;
 	f32 slope                    = tan(TORADIANS(C_GENERALPARMS.mAttackHitAngle()));
 
-	// this is probably a new vector
 	Vector3f attackNormal(-attackDirection.z, 0.0f, attackDirection.x);
 	attackNormal.normalise();
 

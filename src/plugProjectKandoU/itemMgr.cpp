@@ -643,7 +643,6 @@ PlatAttacher* BaseItemMgr::loadPlatAttacher(JKRFileLoader* loader, char* path)
 	// Why does PlatAttacher not have a ::load? Ah well.
 	// It clearly doesn't, given the assertion was written in this file....
 	void* data = JKRFileLoader::getGlbResource(path, loader);
-	// Line 0x404: platAttacher not found. :-)
 	if (data == nullptr) {
 		JUT_PANICLINE(1028, "platAttacher %s not found !\n", path);
 	} else {

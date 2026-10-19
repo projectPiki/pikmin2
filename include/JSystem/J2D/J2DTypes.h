@@ -67,65 +67,6 @@ struct J2DAlphaComp {
 	u8 mRef1;      // _03
 };
 
-// struct J2DBlendInfo {
-// 	u8 mType;       // _00
-// 	u8 mSrcFactor;  // _01
-// 	u8 mDestFactor; // _02
-// };
-
-// extern J2DBlendInfo j2dDefaultBlendInfo;
-
-// struct J2DBlend {
-// 	J2DBlend()
-// 	{
-// 		mType       = j2dDefaultBlendInfo.mType;
-// 		mSrcFactor  = j2dDefaultBlendInfo.mSrcFactor;
-// 		mDestFactor = j2dDefaultBlendInfo.mDestFactor;
-// 	}
-
-// 	J2DBlend(u8 type, u8 srcFactor, u8 destFactor, u8 op)
-// 	{
-// 		mType       = type;
-// 		mSrcFactor  = srcFactor;
-// 		mDestFactor = destFactor;
-// 		mOp         = op;
-// 	}
-
-// 	void operator=(J2DBlend const& other)
-// 	{
-// 		mType       = other.mType;
-// 		mSrcFactor  = other.mSrcFactor;
-// 		mDestFactor = other.mDestFactor;
-// 		mOp         = other.mOp;
-// 	}
-
-// 	inline void set(J2DBlend blend)
-// 	{
-// 		mType       = blend.mType;
-// 		mSrcFactor  = blend.mSrcFactor;
-// 		mDestFactor = blend.mDestFactor;
-// 		mOp         = blend.mOp;
-// 	}
-
-// 	inline void set(J2DBlendInfo info)
-// 	{
-// 		mType = info.mType;
-// 		mSrcFactor = info.mSrcFactor;
-// 		mDestFactor = info.mDestFactor;
-// 		mOp = 0;
-// 	}
-
-//     u8 getType() { return mBlendInfo.mType; }
-//     u8 getSrcFactor() { return mBlendInfo.mSrcFactor; }
-//     u8 getDstFactor() { return mBlendInfo.mDestFactor; }
-//     u8 getOp() { return mBlendInfo.mOp; }
-
-// 	u8 mType;       // _00
-// 	u8 mSrcFactor;  // _01
-// 	u8 mDestFactor; // _02
-// 	u8 mOp;         // _03
-// };
-
 struct J2DGrafBlend {
 	u8 mType;       // _00
 	u8 mSrcFactor;  // _01
@@ -142,14 +83,6 @@ struct J2DBlendInfo {
 		mDestFactor = other.mDestFactor;
 		mOp         = other.mOp;
 	}
-
-	// J2DBlendInfo(u8 type, u8 src, u8 dst, u8 op)
-	// {
-	// 	mType       = type;
-	// 	mSrcFactor  = src;
-	// 	mDestFactor = dst;
-	// 	mOp         = op;
-	// }
 
 	u8 mType;       // _00 GXBlendMode
 	u8 mSrcFactor;  // _01 GXBlendFactor
@@ -242,7 +175,6 @@ struct J2DTevOrder {
 
 	J2DTevOrder(const J2DTevOrderInfo& info) { *(J2DTevOrderInfo*)this = info; }
 
-	/** @fabricated */
 	inline J2DTevOrder(u8 texCoord, u8 texMap, u8 color)
 	{
 		mTevOrderInfo.mTexCoord = texCoord;
@@ -250,14 +182,12 @@ struct J2DTevOrder {
 		mTevOrderInfo.mColor    = color;
 	}
 
-	/** @fabricated */
 	inline J2DTevOrder& operator=(const J2DTevOrderInfo& other)
 	{
 		mTevOrderInfo = other;
 		return *this;
 	}
 
-	/** @fabricated */
 	inline J2DTevOrder& operator=(const J2DTevOrder& other)
 	{
 		mTevOrderInfo = other.mTevOrderInfo;
@@ -570,7 +500,6 @@ extern const J2DTexCoordInfo j2dDefaultTexCoordInfo[8];
 
 struct J2DTexCoord {
 	J2DTexCoord() { mTexCoordInfo = j2dDefaultTexCoordInfo[0]; }
-	// J2DTexCoordInfo _00;
 
 	J2DTexCoord(const J2DTexCoordInfo& info) { mTexCoordInfo = info; }
 
@@ -609,7 +538,5 @@ enum J2DTextBoxVBinding {
 	J2DVBIND_Bottom = 1,
 	J2DVBIND_Top    = 2,
 };
-
-// extern const J2DTexCoordInfo j2dDefaultTexCoordInfo[8];
 
 #endif

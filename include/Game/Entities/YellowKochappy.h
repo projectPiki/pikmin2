@@ -29,7 +29,6 @@ struct Mgr : public KochappyBase::Mgr {
 	Mgr(int objLimit, u8 modelType);
 
 	//////////////// VTABLE
-	// virtual ~Mgr() { }                                 // _58 (weak)
 	virtual void doAlloc();             // _A8
 	virtual void loadTexData();         // _D0
 	virtual ResTIMG* getChangeTexture() // _E0 (weak)

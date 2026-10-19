@@ -95,14 +95,6 @@ void PelletGoalWaitState::exec(Pellet* pelt)
 }
 
 /**
- * @note Address: 0x801A46A4
- * @note Size: 0x30
- */
-// void FSMState<Game::Pellet>::transit(Pellet*, int, StateArg*)
-//{
-//}
-
-/**
  * @note Address: 0x801A46D4
  * @note Size: 0x4
  */

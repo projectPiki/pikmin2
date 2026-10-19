@@ -433,10 +433,9 @@ struct J2DAnmTexPattern : public J2DAnmBase {
 };
 
 // Size: 0x88
-// NB: this has a different size to the one in the Twilight Princess repo.
 struct J2DAnmTextureSRTKey : public J2DAnmBase {
 	J2DAnmTextureSRTKey()
-	{ // taken from TP - may need tweaking for P2 given different sized struct?
+	{
 		mRotationScale     = 0;
 		_20                = 0;
 		_1E                = 0;

@@ -171,10 +171,6 @@ struct PelletInitArg : public CreatureInitArg {
 		mFromEnemy            = 0;
 	}
 
-	/**
-	 * @reifiedAddress{80107C2C}
-	 * @reifiedFile{plugProjectYamashitaU/enemyBase.cpp}
-	 */
 	virtual const char* getName() // _00
 	{
 		return "PelletInitArg";

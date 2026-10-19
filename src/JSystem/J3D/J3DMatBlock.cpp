@@ -1048,7 +1048,6 @@ void J3DTevBlockPatched::patch()
 /**
  * @note Address: 0x8007BEDC
  * @note Size: 0x6C
- * TODO: needs loadTexNo
  * patchTexNo__12J3DTevBlock1Fv
  */
 void J3DTevBlock1::patchTexNo()

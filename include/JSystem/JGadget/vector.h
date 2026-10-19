@@ -14,7 +14,7 @@ typedef u32 (*ExtendFunc)(u32, u32, u32);
 
 } // namespace vector
 
-template <typename T, class Allocator = JGadget::TAllocator<T> /***/>
+template <typename T, class Allocator = JGadget::TAllocator<T> >
 struct TVector {
 	struct TDestructed_deallocate_ {
 		TDestructed_deallocate_(JGadget::TAllocator<T>& alloc, T* pointer)
@@ -33,7 +33,6 @@ struct TVector {
 
 	~TVector();
 
-	// void insert(T*, u32, const T&);
 	void insert(T* position, u32 count, T const& value)
 	{
 		if (!count) {
@@ -59,9 +58,10 @@ struct TVector {
 
 		T* const pFirst = position;
 
-		// JUT_DEBUG_ASSERT((mBegin<=pItFirst_)&&(pItFirst_<=mEnd), 0x1be);
-
 		// it's assumed the pointer is to something already in the vector, or pointing to the end
+
+		// TODO: what is this macro from and where else do these exist?
+		// JUT_DEBUG_ASSERT((mBegin<=pItFirst_)&&(pItFirst_<=mEnd), 0x1be);
 
 		if (count == 0) {
 			return position;
@@ -257,25 +257,6 @@ struct TVector_pointer : public TVector_pointer_void {
 };
 
 typedef JGadget::TVector<void*, JGadget::TAllocator<void*> > TVPVBase;
-
-// template <>
-// void TVPVBase::insert(void** values, u32 count, void* const& defaultValue)
-// {
-// 	if (!count) {
-// 		return;
-// 	}
-
-// 	void** v = Insert_raw(values, count);
-
-// 	if (v != this->mEnd) {
-// 		for (int i = 0; i != count; i++) {
-// 			if (v) {
-// 				*v = defaultValue;
-// 			}
-// 			v++;
-// 		}
-// 	}
-// }
 
 /**
  * @note Address: 0x80027718

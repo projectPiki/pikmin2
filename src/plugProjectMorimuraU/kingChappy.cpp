@@ -726,7 +726,7 @@ void Obj::searchTarget()
 		return;
 	}
 
-	f32 searchAngle = TORADIANS(C_GENERALPARMS.mSearchAngle()); // f31
+	f32 searchAngle = TORADIANS(C_GENERALPARMS.mSearchAngle());
 	f32 searchDist  = C_GENERALPARMS.mSearchDistance();
 	searchDist *= searchDist;
 
@@ -909,7 +909,7 @@ void Obj::checkAttack(bool check)
 		}
 	}
 
-	f32 attackRange, attackAngle; // f27, f26
+	f32 attackRange, attackAngle;
 	Bomb::Obj* bomb;
 	if (mIsBig) {
 		attackRange = C_PROPERPARMS.mBigAttackHitRange();

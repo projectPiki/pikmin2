@@ -90,10 +90,10 @@ void MenuMgr::killCursor()
 	}
 }
 
-// /**
-//  * @note Address: N/A
-//  * @note Size: 0x4C
-//  */
+/**
+ * @note Address: N/A
+ * @note Size: 0x4C
+ */
 void MenuMgr::initCommon()
 {
 	mTimer            = 0.0f;
@@ -163,10 +163,10 @@ void MenuMgr::init2takuTitle(J2DScreen* screen, u64 tag1, u64 tag2, u64 tag3, u6
 	init2taku(screen, tag1, tag2, tag3, tag4, tag5, tag6, tag7, tag8);
 }
 
-// /**
-//  * @note Address: N/A
-//  * @note Size: 0x2F0
-//  */
+/**
+ * @note Address: N/A
+ * @note Size: 0x2F0
+ */
 void MenuMgr::init(J2DScreen* screen, u16 numOptions, u64 tag1, u64 tag2, u64 tag3)
 {
 	mMainPanes        = new J2DPane*[numOptions];

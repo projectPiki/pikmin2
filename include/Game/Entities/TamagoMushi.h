@@ -165,7 +165,6 @@ struct Mgr : public EnemyMgrBase {
 	Mgr(int objLimit, u8 modelType);
 
 	//////////////// VTABLE
-	// virtual ~Mgr();                                     // _58 (weak)
 	virtual EnemyBase* birth(EnemyBirthArg&); // _70
 	virtual void doAlloc();                   // _A8
 	virtual EnemyBase* getEnemy(int index)    // _A4 (weak)
@@ -210,7 +209,7 @@ struct Mgr : public EnemyMgrBase {
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
 	J3DUMtxCacheRef<J3DUMtxAnmCacheTable>* mMtxCacheRef; // _44
-	Obj* mObj;                                           // _48, likely an array of Objs
+	Obj* mObj;                                           // _48, array of Objs
 };
 
 enum AnimID {

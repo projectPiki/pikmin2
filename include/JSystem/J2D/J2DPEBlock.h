@@ -5,7 +5,6 @@
 #include "types.h"
 
 struct J2DPEBlock {
-	/** @fabricated */
 	inline J2DPEBlock()
 	    : mAlphaComp()
 	    , mBlendInfo()

@@ -4,7 +4,7 @@
 #include "Dolphin/gx.h"
 
 /**
- * @size{0x5C} (proven by virtue of being last member of J3DModelData)
+ * @size{0x5C}
  */
 struct J3DVertexData {
 	J3DVertexData();

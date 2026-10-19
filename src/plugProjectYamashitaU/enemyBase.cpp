@@ -3377,13 +3377,6 @@ void EnemyBase::endMovie()
 }
 
 /**
- * @note Address: 0x801078C8
- * @note Size: 0x4
- */
-// WEAK - in header
-// void EnemyBase::doEndMovie() { }
-
-/**
  * @note Address: 0x801078CC
  * @note Size: 0x94
  */

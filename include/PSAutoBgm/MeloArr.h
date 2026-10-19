@@ -8,7 +8,6 @@
 
 namespace PSAutoBgm {
 
-// not sure of size of this, just based off PSAutoBgm_MeloArranger.cpp
 struct MeloArrArg {
 	MeloArrArg()
 	    : mTrackIndex(0xFF)
@@ -22,7 +21,6 @@ struct MeloArrArg {
 	u8 mCycleNum;   // _01
 };
 
-// this has some funky inheritance going on I think?
 struct MeloArrBase : public JSULink<MeloArrBase>, JADHioNode {
 	MeloArrBase(char* name)
 	    : JSULink<MeloArrBase>(this)
@@ -31,11 +29,6 @@ struct MeloArrBase : public JSULink<MeloArrBase>, JADHioNode {
 		mDoDirectSubTracks = 1;
 		mIsEnabled         = false;
 	}
-	// JADHioNode vtable:
-	// virtual void ~MeloArrBase() = 0;     // _08
-	// virtual void _0C() = 0;              // _0C - might just be gap
-	// _10 is a thunk of ~MeloArrBase()
-
 	// MeloArrBase vtable:
 	virtual void directOn(Track*) { mIsEnabled = true; }   // _14 (weak)
 	virtual void directOff(Track*) { mIsEnabled = false; } // _18 (weak)
@@ -80,10 +73,6 @@ struct MeloArr_RandomAvoid : public MeloArrBase {
 	{
 		mChance = 0.6f;
 	}
-	// JADHioNode vtable:
-	// virtual void ~MeloArr_RandomAvoid() = 0; // _08
-	// virtual void _0C() = 0;                  // _0C - might just be gap
-	// _10 is a thunk of ~MeloArr_RandomAvoid()
 
 	// MeloArrBase vtable:
 	virtual bool avoidChk(MeloArrArg&); // _24

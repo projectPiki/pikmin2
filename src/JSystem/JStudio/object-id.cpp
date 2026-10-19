@@ -18,7 +18,7 @@ bool object::TIDData::isEqual(JStudio::object::TIDData const& a, JStudio::object
 	const void* bStr   = b.getID();
 	u32* aStr32        = (u32*)aStr;
 	u32* bStr32        = (u32*)bStr;
-	if (aStr == bStr) { // mismatch here
+	if (aStr == bStr) {
 		// they point to the same id
 		return true;
 	}

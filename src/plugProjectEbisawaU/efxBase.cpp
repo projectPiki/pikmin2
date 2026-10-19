@@ -38,7 +38,6 @@ void TOneEmitter::add(Context* context)
 }
 
 /**
- * @matchedSize
  * @note Address: N/A
  * @note Size: 0x24
  */
@@ -357,8 +356,6 @@ bool TSimple5::create(Arg* arg)
 }
 
 /**
- * TODO: This and other TSimpleMtx* creates use a fabricated inlined method.
- *       Said method is incompatible with their respective parent classes' create().
  * create__Q23efx11TSimpleMtx1FPQ23efx3Arg
  * @note Address: 0x803AF2B4
  * @note Size: 0xE4
@@ -733,7 +730,6 @@ TChasePos3::TChasePos3(Vector3f* position, u16 effectID1, u16 effectID2, u16 eff
 
 /**
  * setPosptr__Q23efx10TChasePos3FP10Vector3<f>
- * @matchedSize
  * @note Address: N/A
  * @note Size: 0x10
  */
@@ -763,7 +759,6 @@ TChasePos4::TChasePos4(Vector3f* position, u16 effectID1, u16 effectID2, u16 eff
 }
 
 /**
- * @matchedSize
  * setPosptr__Q23efx10TChasePos4FP10Vector3<f>
  * @note Address: N/A
  * @note Size: 0x14
@@ -857,7 +852,6 @@ void TChaseMtx4::setMtxptr(Mtx mtx)
 }
 
 /**
- * @matchedSize
  * __ct__Q23efx10TChaseMtx5FPA4_fUsUsUsUsUs
  * @note Address: N/A
  * @note Size: 0xB8
@@ -878,7 +872,6 @@ TChaseMtx5::TChaseMtx5(Mtx mtx, u16 effectID1, u16 effectID2, u16 effectID3, u16
 }
 
 /**
- * @matchedSize
  * setMtxptr__Q23efx10TChaseMtx5FPA4_f
  * @note Address: N/A
  * @note Size: 0x18
@@ -954,7 +947,6 @@ void TChaseMtxT2::setMtxptr(Mtx mtx)
 }
 
 /**
- * @matchedSize
  * __ct__Q23efx11TChaseMtxT3FPA4_fUsUsUs
  * @note Address: N/A
  * @note Size: 0xA0
@@ -971,7 +963,6 @@ TChaseMtxT3::TChaseMtxT3(Mtx mtx, u16 effectID1, u16 effectID2, u16 effectID3)
 }
 
 /**
- * @matchedSize
  * setMtxptr__Q23efx11TChaseMtxT3FPA4_f
  * @note Address: N/A
  * @note Size: 0x10
@@ -1030,7 +1021,6 @@ TChasePosYRot2::TChasePosYRot2(Vector3f* p1, f32* p2, u16 effectID1, u16 effectI
 }
 
 /**
- * @matchedSize
  * setPosptr__Q23efx14TChasePosYRot2FP10Vector3<f>
  * @note Address: N/A
  * @note Size: 0xC
@@ -1043,7 +1033,6 @@ void TChasePosYRot2::setPosptr(Vector3f* position)
 }
 
 /**
- * @matchedSize
  * setYRot__Q23efx14TChasePosYRot2FPf
  * @note Address: N/A
  * @note Size: 0xC
@@ -1074,7 +1063,6 @@ TChasePosYRot3::TChasePosYRot3(Vector3f* p1, f32* p2, u16 effectID1, u16 effectI
 }
 
 /**
- * @matchedSize
  * setPosptr__Q23efx14TChasePosYRot3FP10Vector3<f>
  * @note Address: N/A
  * @note Size: 0x10
@@ -1088,7 +1076,6 @@ void TChasePosYRot3::setPosptr(Vector3f* position)
 }
 
 /**
- * @matchedSize
  * setYRot__Q23efx14TChasePosYRot3FPf
  * @note Address: N/A
  * @note Size: 0x10
@@ -1102,7 +1089,6 @@ void TChasePosYRot3::setYRot(f32* rotation)
 }
 
 /**
- * @matchedSize
  * __ct__Q23efx24TChasePosPosLocalYScale2FP10Vector3<f>P10Vector3<f>fUsUs
  * @note Address: N/A
  * @note Size: 0xB4
@@ -1121,7 +1107,6 @@ TChasePosPosLocalYScale2::TChasePosPosLocalYScale2(Vector3f* p1, Vector3f* p2, f
 }
 
 /**
- * @matchedSize
  * setPosptr__Q23efx24TChasePosPosLocalYScale2FP10Vector3<f>P10Vector3<f>
  * @note Address: N/A
  * @note Size: 0x14
@@ -1172,7 +1157,6 @@ void TChasePosPosLocalYScale3::setPosptr(Vector3f* p1, Vector3f* p2)
 }
 
 /**
- * @matchedSize
  * __ct__Q23efx24TChasePosPosLocalZScale2FP10Vector3<f>P10Vector3<f>fUsUs
  * @note Address: N/A
  * @note Size: 0xB4
@@ -1191,7 +1175,6 @@ TChasePosPosLocalZScale2::TChasePosPosLocalZScale2(Vector3f* p1, Vector3f* p2, f
 }
 
 /**
- * @matchedSize
  * setPosptr__Q23efx24TChasePosPosLocalZScale2FP10Vector3<f>P10Vector3<f>
  * @note Address: N/A
  * @note Size: 0x14

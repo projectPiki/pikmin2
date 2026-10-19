@@ -139,7 +139,6 @@ void StateSleep::exec(EnemyBase* enemy)
 		}
 
 		if (enemy->mCurAnim->mIsPlaying) {
-			// WTF?
 			if (enemy->mCurAnim->mType == KEYEVENT_LOOP_START) {
 				OBJ(enemy)->startSleepEffect();
 

@@ -118,7 +118,6 @@ struct JPAResourceLoader {
 	void load_jpc(const u8*, JPAResourceManager*);
 
 	// unused/inlined:
-	// ~JPAResourceLoader();
 	void load_jpa(const u8*, JPAResourceManager*, u16);
 };
 

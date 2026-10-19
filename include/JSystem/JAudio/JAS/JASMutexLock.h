@@ -21,7 +21,6 @@ struct JASMutexLock {
  * Nearly the entirety of this class is conjecture, solely based on the existence of the dtor in the linker map.
  */
 struct JASCriticalSection {
-	/** @fabricated */
 	inline JASCriticalSection() { mInterrupts = OSDisableInterrupts(); }
 
 	~JASCriticalSection() // unused/inlined

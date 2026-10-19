@@ -33,7 +33,6 @@ struct FieldVtxColorInfo {
 	u8 mAlpha;     // _04
 };
 
-// fabricated, probably some other existing struct
 struct FieldVtxColorControlInfo {
 	/**
 	 * @brief Constructor for FieldVtxColorControlInfo class.

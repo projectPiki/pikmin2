@@ -7,9 +7,6 @@
 #include "JSystem/JUtility/TColor.h"
 #include "Dolphin/mtx.h"
 
-/**
- * @fabricated
- */
 enum J2DGrafType {
 	J2DGraf_Base  = 0,
 	J2DGraf_Ortho = 1,

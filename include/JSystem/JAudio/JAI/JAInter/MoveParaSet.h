@@ -24,7 +24,6 @@ struct MoveParaSet {
 	int set(f32 value, u32 steps); // set current value by supplying steps = 0; otherwise, sets base value
 	BOOL move();                   // if mMoveCounter != 0, moves mCurrentValue closer to mTargetValue by mMoveAmount
 
-	/** @fabricated */
 	inline MoveParaSet& operator=(const MoveParaSet& other)
 	{
 		mCurrentValue = other.mCurrentValue;

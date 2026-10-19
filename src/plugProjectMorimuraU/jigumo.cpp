@@ -938,11 +938,11 @@ void Obj::calcBaseTrMatrix()
 		mClimbingTimer = 0;
 	}
 
-	Vector3f direction = Vector3f((f32)sin(mFaceDir), 0.0f, (f32)cos(mFaceDir)); // 0x3c
+	Vector3f direction = Vector3f((f32)sin(mFaceDir), 0.0f, (f32)cos(mFaceDir));
 	direction.normalise();
 
-	Vector3f angle = mCurrentFaceNormal; // 0x30
-	Vector3f translation;                // 0x24
+	Vector3f angle = mCurrentFaceNormal;
+	Vector3f translation;
 
 	PSVECCrossProduct((Vec*)&angle, (Vec*)&direction, (Vec*)&translation);
 	translation.normalise();

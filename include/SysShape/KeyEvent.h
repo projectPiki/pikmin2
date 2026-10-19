@@ -20,7 +20,7 @@ namespace SysShape {
 #define KEYEVENT_200        200
 #define KEYEVENT_201        201
 #define KEYEVENT_END        1000 // End of animation
-#define KEYEVENT_END_BLEND  2000 // Finish blend animation (?)
+#define KEYEVENT_END_BLEND  2000 // Finish blend animation
 
 /**
  * @size{0x20}

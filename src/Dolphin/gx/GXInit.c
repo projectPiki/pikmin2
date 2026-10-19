@@ -94,8 +94,8 @@ static void DisableWriteGatherPipe()
  */
 static GXTexRegion* __GXDefaultTexRegionCallback(const GXTexObj* obj, GXTexMapID id)
 {
-	GXTexFmt format; // r31
-	GXBool isMipMap; // r3
+	GXTexFmt format;
+	GXBool isMipMap;
 
 	format   = GXGetTexObjFmt(obj);
 	isMipMap = GXGetTexObjMipMap(obj);

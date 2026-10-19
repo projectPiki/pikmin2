@@ -45,7 +45,6 @@ struct JKRFileLoader : public JKRDisposer {
 	u32 mMountCount;                        // _34
 };
 
-// is the built-in ResTIMG cast right? either way, it makes CarryInfoMgr::loadResource() match
 inline void* JKRGetResource(char const* name)
 {
 	return JKRFileLoader::getGlbResource(name);

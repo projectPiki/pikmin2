@@ -114,7 +114,6 @@ struct NodeObjectMgr : public ObjectMgr<T> {
 	}
 
 	// first VTBL:
-	// virtual ~NodeObjectMgr() { }      // _08
 	virtual T* get(void* node) // _20
 	{
 		return ((TObjectNode<T>*)node)->mContents;

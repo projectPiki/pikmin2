@@ -125,12 +125,3 @@ void JUTFader::setStatus(JUTFader::EStatus, int)
 {
 	// UNUSED FUNCTION
 }
-
-/**
- * @note Address: 0x8002D0FC
- * @note Size: 0x48
- * __dt__8JUTFaderFv
- */
-// JUTFader::~JUTFader()
-// {
-// }

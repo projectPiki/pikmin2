@@ -19,10 +19,7 @@ struct J3DJointTree {
 	J3DJointTree();
 
 	virtual void calc(J3DMtxBuffer*, const Vec&, const Mtx&); // _08
-	/**
-	 * @reifiedAddress{80083874}
-	 * @reifiedFile{JSystem/J3D/J3DModelData.cpp}
-	 */
+
 	virtual ~J3DJointTree() { } // _0C (weak)
 
 	void findImportantMtxIndex();

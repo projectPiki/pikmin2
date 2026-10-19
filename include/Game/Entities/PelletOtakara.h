@@ -47,7 +47,6 @@ struct Mgr : public FixedSizePelletMgr<Object> {
 	virtual void generatorRead(Stream&, GenPelletParm*, u32);             // _78
 	virtual u32 generatorLocalVersion() { return '0000'; }                // _7C (weak)
 	virtual GenPelletParm* generatorNewPelletParm();                      // _84
-	// virtual ~Mgr() { }                                                    // _C8 (weak)
 
 	// _00      = VTABLE
 	// _00-_A0  = FixedSizePelletMgr

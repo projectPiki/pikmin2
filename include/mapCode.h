@@ -8,7 +8,6 @@ namespace Sys {
 struct TriangleTable;
 }
 namespace MapCode {
-// typedef u8 Code;
 struct Code {
 #pragma enumsalwaysint off
 	enum Attribute {
@@ -37,8 +36,6 @@ struct Code {
 	void write(Stream&);
 
 	inline char* getContents() { return (char*)mContents; }
-
-	// u8 mAttribute;
 	union {
 		u8 mContents;
 		u8 mAttribute : 4, mSlipCode : 2, mIsBald : 1;

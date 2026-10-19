@@ -12,7 +12,6 @@ static struct DummyPlayer {
 	{
 		mMsgs  = ptr;
 		mCount = 0;
-		// for (mCount = 0; ptr[mCount] != nullptr; mCount++) {}
 		while (true) {
 			if (ptr[mCount] == nullptr) {
 				break;

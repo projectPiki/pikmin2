@@ -18,8 +18,6 @@ struct J2DColorBlock {
 	void setColorChanNum(u8 num) { mChannelCount = num; }
 	void setMatColor(u32 i, JUtility::TColor color) { mColors[i] = color; }
 	void setColorChan(u32 i, const J2DColorChan& color) { mChannels[i] = color; }
-
-	/** @fabricated */
 	inline J2DColorBlock() { initialize(); }
 
 	void initialize();

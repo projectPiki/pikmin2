@@ -55,8 +55,8 @@ struct Mgr {
 	Node* mountArchive(Arg&);
 	Node* search(char const*);
 
-	CNode mAramRoot;
-	CNode mDvdRoot;
+	CNode mAramRoot; // _00
+	CNode mDvdRoot;  // _18
 };
 } // namespace LoadResource
 

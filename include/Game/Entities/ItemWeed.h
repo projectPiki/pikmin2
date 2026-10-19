@@ -103,7 +103,6 @@ struct WeedMgr : public TFlockMgr<Weed> {
 
 	virtual void do_update();             // _1C
 	virtual void do_update_boundSphere(); // _20
-	// virtual ~WeedMgr();                   // _6C (weak)
 
 	// unused/inlined:
 	void init(Sys::Sphere&, cWeedType);
@@ -123,7 +122,7 @@ struct Item : public FSMItem<Item, FSM, State> {
 
 	Item(); // unused/inlined
 
-	inline Item(int objTypeID) // probably
+	inline Item(int objTypeID)
 	    : FSMItem(objTypeID)
 	{
 	}
@@ -159,12 +158,11 @@ struct Mgr : public TNodeItemMgr {
 	virtual void generatorWrite(Stream& output, GenItemParm* genItemParm);            // _60
 	virtual void generatorRead(Stream& input, GenItemParm* genItemParm, u32 version); // _64
 	virtual GenItemParm* generatorNewItemParm();                                      // _70
-	// virtual ~Mgr();                                                                   // _B8 (weak)
-	virtual char* getCaveName(int);                        // _BC
-	virtual int getCaveID(char*);                          // _C0
-	virtual BaseItem* doNew() { return new Item; }         // _A0 (weak)
-	virtual u32 generatorGetID() { return 'weed'; }        // _58 (weak)
-	virtual u32 generatorLocalVersion() { return '0001'; } // _68 (weak)
+	virtual char* getCaveName(int);                                                   // _BC
+	virtual int getCaveID(char*);                                                     // _C0
+	virtual BaseItem* doNew() { return new Item; }                                    // _A0 (weak)
+	virtual u32 generatorGetID() { return 'weed'; }                                   // _58 (weak)
+	virtual u32 generatorLocalVersion() { return '0001'; }                            // _68 (weak)
 
 	// unused/inlined:
 	Item* birth();

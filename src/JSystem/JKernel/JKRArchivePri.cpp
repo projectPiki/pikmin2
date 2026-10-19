@@ -108,64 +108,13 @@ JKRArchive::SDIDirEntry* JKRArchive::findDirectory(const char* path, u32 index) 
 }
 
 /**
- * @note Address: 0x8001A92C
- * @note Size: 0x44
- * __ct__Q210JKRArchive8CArcNameFPPCcc
- */
-// JKRArchive::CArcName::CArcName(const char** p1, char p2)
-// {
-// 	p1[0] = store(p1[0], p2);
-// }
-
-/**
- * @note Address: 0x8001A970
- * @note Size: 0x8
- */
-// const char* JKRArchive::CArcName::getString() const
-// {
-// 	return mString;
-// 	/*
-// 	addi     r3, r3, 4
-// 	blr
-// 	*/
-// }
-
-/**
- * @note Address: 0x8001A978
- * @note Size: 0x8
- */
-// u16 JKRArchive::CArcName::getHash() const
-// {
-// 	return mHash;
-// }
-
-/**
  * @note Address: N/A
  * @note Size: 0x98
  * findTypeResource__10JKRArchiveCFUlUl
  */
 JKRArchive::SDIFileEntry* JKRArchive::findTypeResource(u32 p1, u32 p2) const
 {
-	// // UNUSED FUNCTION
-	// SDirEntry* dirEntry = _48 + p2;
-	// if (p1 != 0) {
-	// 	CArcName arcName;
-	// 	arcName.store(p2);
-	// 	SDirEntry* entry = _48;
-	// 	for (int i = _44->_00; i > 0; i++, entry++) {
-	// 		findTypeResource(p1, entry->_0C);
-	// 		if (isSameName(arcName, entry->_04 & 0xFFFFFF, entry->mHash)) {
-	// 			if ((entry->_04 >> 0x18 & 2) != 0) {
-	// 				return findFsResource(path, entry->_08);
-	// 			}
-	// 			if (path == 0) {
-	// 				return entry;
-	// 			}
-	// 			return nullptr;
-	// 		}
-	// 	}
-	// }
-	// return nullptr;
+	// UNUSED FUNCTION
 }
 
 /**
@@ -285,15 +234,6 @@ JKRArchive::SDIFileEntry* JKRArchive::findIdResource(u16 id) const
 	}
 	return nullptr;
 }
-
-/**
- * @note Address: N/A
- * @note Size: 0x14
- * __ct__Q210JKRArchive8CArcNameFv
- */
-// JKRArchive::CArcName::CArcName() {
-// 	// UNUSED FUNCTION
-// }
 
 /**
  * @note Address: 0x8001AF34

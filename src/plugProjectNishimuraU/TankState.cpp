@@ -309,7 +309,7 @@ void StateChaseTurn::init(EnemyBase* enemy, StateArg* stateArg)
 void StateChaseTurn::exec(EnemyBase* enemy)
 {
 	Obj* tank     = OBJ(enemy);
-	f32 viewAngle = tank->getViewAngle(); // f31
+	f32 viewAngle = tank->getViewAngle();
 
 	if (tank->mHealth <= 0.0f) {
 		transit(tank, TANK_Dead, nullptr);

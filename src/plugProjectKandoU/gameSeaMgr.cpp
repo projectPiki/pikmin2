@@ -461,11 +461,9 @@ SeaMgr::SeaMgr()
 /**
  * @note Address: N/A
  * @note Size: 0x90
- * @matchedSize
  */
 void SeaMgr::addWaterBox(WaterBox* wb)
 {
-	// INLINED FUNCTION
 	TObjectNode<Game::WaterBox>* node = new TObjectNode<Game::WaterBox>;
 	node->mContents                   = wb;
 	wb->attachModel(*mModelData, mAnimations, 100.0f);

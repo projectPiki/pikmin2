@@ -725,7 +725,7 @@ void BaseGameSection::initGenerators()
 					nonloopTxt.setMode(STREAM_MODE_TEXT, 1);
 
 					GeneratorMgr* currentNonloopMgr = new GeneratorMgr;
-					currentNonloopMgr->mUnusedFlag  = true; // is nonrepeating?
+					currentNonloopMgr->mUnusedFlag  = true;
 
 					currentNonloopMgr->read(nonloopTxt, false);
 					currentNonloopMgr->setDayLimit(currentGen->mDayLimit);
@@ -744,7 +744,6 @@ void BaseGameSection::initGenerators()
 		{ // loop
 
 			int day = gameSystem->mTimeMgr->mDayCount;
-			// int loopGenCount = courseInfo->mLoopGenInfo.mCount;
 
 			today %= 30;
 
@@ -778,7 +777,7 @@ void BaseGameSection::initGenerators()
 						loopTxt.setMode(STREAM_MODE_TEXT, 1);
 
 						GeneratorMgr* currentLoopMgr = new GeneratorMgr;
-						currentLoopMgr->mUnusedFlag  = true; // is nonrepeating?
+						currentLoopMgr->mUnusedFlag  = true;
 
 						currentLoopMgr->read(loopTxt, false);
 						u32 dayLimit = currentGen->mDayLimit - 30;
@@ -797,7 +796,7 @@ void BaseGameSection::initGenerators()
 			}
 
 		} // end loop
-		{ // weird day ujim thing
+		{ // weird day ujidani thing
 			int today = gameSystem->mTimeMgr->mDayCount;
 			sprintf(filenameCharArr, "%s/day/%d.txt", courseInfo->mAbeFolder, today % 30);
 			int fileNum = DVDConvertPathToEntrynum(filenameCharArr);

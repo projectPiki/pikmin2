@@ -26,10 +26,4 @@ AIConstants::AIConstants()
 	loadFromFile(this, fileName);
 }
 
-/**
- * @note Address: 0x801B63F8
- * @note Size: 0x70
- * AIConstants::~AIConstants() { }
- */
-
 } // namespace Game

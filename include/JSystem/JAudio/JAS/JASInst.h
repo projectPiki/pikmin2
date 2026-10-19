@@ -109,7 +109,6 @@ struct JASInstParam {
  */
 struct JASInst {
 	/**
-	 * @fabricated
 	 * @size{0x10}
 	 */
 	struct TVeloRegion {
@@ -119,10 +118,6 @@ struct JASInst {
 		f32 mPitch;    // _0C
 	};
 
-	/**
-	 * @reifiedAddress{800998CC}
-	 * @reifiedFile{JSystem/JAS/JASBasicInst.cpp}
-	 */
 	virtual ~JASInst() { }                                    // _08 (weak)
 	virtual bool getParam(int, int, JASInstParam*) const = 0; // _0C
 	virtual u32 getType() const                          = 0; // _10
@@ -146,12 +141,8 @@ struct JASBasicInst : public JASInst {
 
 	virtual ~JASBasicInst();                              // _08
 	virtual bool getParam(int, int, JASInstParam*) const; // _0C
-	/**
-	 * @reifiedAddress{80099E54}
-	 * @reifiedFile{JSystem/JAS/JASBasicInst.cpp}
-	 */
-	virtual u32 getType() const { return 'BSIC'; } // _10 (weak)
-	virtual int getKeymapIndex(int) const;         // _14
+	virtual u32 getType() const { return 'BSIC'; }        // _10 (weak)
+	virtual int getKeymapIndex(int) const;                // _14
 
 	void setKeyRegionCount(u32);
 	void setEffectCount(u32);

@@ -15,7 +15,6 @@ struct JPATextureData {
 
 struct JPATexture {
 	JPATexture(const u8*);
-	// JPATexture(const u8*, JKRHeap*);
 
 	virtual ~JPATexture(); // _00
 

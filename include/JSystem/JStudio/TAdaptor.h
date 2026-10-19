@@ -31,8 +31,6 @@ struct TAdaptor {
 	{
 	}
 
-	// ~TAdaptor();
-
 	virtual ~TAdaptor() = 0;                                                          // _08
 	virtual void adaptor_do_prepare(const TObject*);                                  // _0C
 	virtual void adaptor_do_begin(const TObject*);                                    // _10
@@ -77,8 +75,6 @@ struct TAdaptor_actor : public TAdaptor {
 	{
 	}
 
-	// ~TAdaptor_actor();
-
 	virtual ~TAdaptor_actor()                                                                        = 0; // _08
 	virtual void adaptor_do_PARENT(JStudio::data::TEOperationData, const void*, u32)                 = 0; // _20
 	virtual void adaptor_do_PARENT_NODE(JStudio::data::TEOperationData, const void*, u32)            = 0; // _24
@@ -109,8 +105,6 @@ struct TAdaptor_ambientLight : public TAdaptor {
 	{
 	}
 
-	// ~TAdaptor_ambientLight();
-
 	virtual ~TAdaptor_ambientLight() = 0; // _08
 
 	JStudio::TVariableValue _0C[4]; // _0C
@@ -125,8 +119,6 @@ struct TAdaptor_camera : public TAdaptor {
 	    , _0C()
 	{
 	}
-
-	// ~TAdaptor_camera();
 
 	virtual ~TAdaptor_camera()                                                                     = 0; // _08
 	virtual void adaptor_do_PARENT(JStudio::data::TEOperationData, const void*, u32)               = 0; // _20
@@ -151,8 +143,6 @@ struct TAdaptor_fog : public TAdaptor {
 	{
 	}
 
-	// ~TAdaptor_fog();
-
 	virtual ~TAdaptor_fog() = 0; // _08
 
 	JStudio::TVariableValue _0C[6];
@@ -167,7 +157,6 @@ struct TAdaptor_light : public TAdaptor {
 	    : TAdaptor(_0C, 13)
 	{
 	}
-	// ~TAdaptor_light();
 
 	virtual ~TAdaptor_light()                                                         = 0; // _08
 	virtual void adaptor_do_ENABLE(JStudio::data::TEOperationData, const void*, u32)  = 0; // _20
@@ -189,8 +178,6 @@ struct TAdaptor_message : public TAdaptor {
 	    : TAdaptor(nullptr, 0)
 	{
 	}
-
-	// ~TAdaptor_message();
 
 	virtual ~TAdaptor_message()                                              = 0; // _08
 	virtual void adaptor_do_MESSAGE(data::TEOperationData, const void*, u32) = 0; // _20
@@ -220,8 +207,6 @@ struct TAdaptor_particle : public TAdaptor {
 
 		JPABaseEmitter* mEmitter; // _00
 	};
-
-	// ~TAdaptor_particle();
 
 	virtual ~TAdaptor_particle()                                                            = 0; // _08
 	virtual void adaptor_do_PARTICLE(JStudio::data::TEOperationData, const void*, u32)      = 0; // _20

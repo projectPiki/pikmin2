@@ -141,8 +141,6 @@ struct J2DScreenInfoBlock : public J2DScrnBlockHeader {
 struct J2DPane {
 	J2DPane();
 	J2DPane(J2DPane* parent, bool isVisible, u64 tag, const JGeometry::TBox2f& box);
-	// inline J2DPane(J2DPane* parent, bool isVisible, u64 tag, f32 x0, f32 y0, f32 x1, f32 y1)
-	//     : J2DPane(parent, isVisible, tag, JGeometry::TBox2f(x0, y0, x1, y1)) { }
 	J2DPane(u64 tag, const JGeometry::TBox2f& box);
 	J2DPane(J2DPane* parent, JSURandomInputStream* input, u8 version);
 
@@ -211,10 +209,6 @@ struct J2DPane {
 	// Supposed to be weak but refuses to work
 	u64 getTagName() const; // { return mTag; }
 
-	/**
-	 * @reifiedAddress{80309D98}
-	 * @reifiedFile{plugProjectOgawaU/ogCallBackMessage.cpp}
-	 */
 	u64 getUserInfo() const { return mMessageID; }
 
 	J2DPane* getFirstChildPane();
@@ -234,30 +228,13 @@ struct J2DPane {
 	void rotate(f32);
 	void updateTransform(const J2DAnmTransform*);
 
-	/**
-	 * @reifiedAddress{80309A74}
-	 * @reifiedFile{plugProjectOgawaU/ogCallBackMessage.cpp}
-	 */
 	bool isVisible() const { return mIsVisible; }
-
-	/**
-	 * @reifiedAddress{803CA760}
-	 * @reifiedFile{plugProjectEbisawaU/ebi2DGraph.cpp}
-	 */
 	inline void show() { mIsVisible = true; }
-
-	/**
-	 * @reifiedAddress{803CA910}
-	 * @reifiedFile{plugProjectEbisawaU/ebi2DGraph.cpp}
-	 */
 	inline void hide() { mIsVisible = false; }
 
 	void setBasePosition(J2DBasePosition);
 	void setInfluencedAlpha(bool, bool);
 
-	/**
-	 * @fabricated
-	 */
 	void centerWithScale(f32 width, f32 height)
 	{
 		setBasePosition(J2DPOS_Center);

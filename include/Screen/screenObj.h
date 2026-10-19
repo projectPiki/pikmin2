@@ -84,7 +84,7 @@ struct StartSceneArgTemplate : public StartSceneArg {
 	// _00     = VTBL
 	// _00-_04 = StartSceneArg
 	SceneType mSceneType; // _04
-	bool mFlag;           // _08, unknown
+	bool mFlag;           // _08
 };
 
 struct SetSceneArg : public SceneArgBase {

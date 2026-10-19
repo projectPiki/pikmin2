@@ -1153,7 +1153,7 @@ void ZukanState::drawLightEffect(SingleGameSection* game, Graphics& gfx)
 	Vector3f sep = mCamera->mLookAtPosition - mCamera->mPosition;
 	sep.normalise();
 
-	Color4 color; // r30, r29, r28, r27
+	Color4 color;
 	if (mCurrMode == ModePellet) {
 		sep.y += JMath::sincosTable_.mTable[113].first;
 		sep.y /= JMath::sincosTable_.mTable[56].first;
@@ -1174,8 +1174,8 @@ void ZukanState::drawLightEffect(SingleGameSection* game, Graphics& gfx)
 	_108 += mDebugParms->_1C[0] * (sep.y - _108);
 
 	if (_108 > 0.0f) {
-		f32 x = mWindowBounds.getWidth();  // f27
-		f32 y = mWindowBounds.getHeight(); // f26
+		f32 x = mWindowBounds.getWidth();
+		f32 y = mWindowBounds.getHeight();
 
 		mTexture->load(GX_TEXMAP0);
 		GXSetNumChans(1);
@@ -1202,7 +1202,7 @@ void ZukanState::drawLightEffect(SingleGameSection* game, Graphics& gfx)
 		for (int i = 0; i < 4; i++) {
 			f32 thisFactor = (f32)i / 4;
 			f32 nextFactor = (f32)(i + 1) / 4;
-			f32 factor     = (_108 - thisFactor) / (nextFactor); // f2
+			f32 factor     = (_108 - thisFactor) / (nextFactor);
 			if (factor > 1.0f) {
 				factor = 1.0f;
 			}
@@ -1311,7 +1311,7 @@ void ZukanState::dvdloadA()
 {
 	mMainHeap = JKRExpHeap::create(mParentHeap->getFreeSize(), mParentHeap, true);
 	mMainHeap->becomeCurrentHeap();
-	char path[PATH_MAX]; // 0x160
+	char path[PATH_MAX];
 #if defined(VERSION_JP)
 	const char* region = "jpn";
 #elif defined(VERSION_PAL)
@@ -1512,11 +1512,11 @@ void ZukanState::dvdloadB_teki()
 		} else {
 			parms->mGroupID = 0;
 		}
-		f32 range                                = parms->mParms.mAppearRange(); // f31
+		f32 range                                = parms->mParms.mAppearRange();
 		IllustratedBook::PositionParms* posParms = &mParms->mPosParmsList.mParms[id];
-		u8 count                                 = parms->mParms.mAppearNum(); // r25
+		u8 count                                 = parms->mParms.mAppearNum();
 		Vector3f posOffset;
-		posOffset.set(posParms->mParms.mAppearPosX(), posParms->mParms.mAppearPosY(), posParms->mParms.mAppearPosZ()); // f30, f29, f28
+		posOffset.set(posParms->mParms.mAppearPosX(), posParms->mParms.mAppearPosY(), posParms->mParms.mAppearPosZ());
 
 		OSReport("敵をアロック %d匹　free:%d \n", count, JKRGetCurrentHeap()->getFreeSize());
 		bool makeSpectralids = false;
@@ -1539,13 +1539,13 @@ void ZukanState::dvdloadB_teki()
 		generalEnemyMgr->allocateEnemys(1, ENEMY_HEAP_SIZE_ZUKAN);
 		generalEnemyMgr->setupSoundViewerAndBas();
 
-		f32 size = 35.0f; // f27
+		f32 size = 35.0f;
 		if (parms->mParms.mSize()) {
 			size = parms->mParms.mSize();
 		}
 
-		Vector3f* spawnPositions = new Vector3f[count]; // r29
-		Vector3f* tempPositions  = new Vector3f[count]; // r28
+		Vector3f* spawnPositions = new Vector3f[count];
+		Vector3f* tempPositions  = new Vector3f[count];
 		for (int i = 0; i < count; i++) {
 			// first enemy, set position to zero
 			if (i == 0) {
@@ -1553,7 +1553,7 @@ void ZukanState::dvdloadB_teki()
 				continue;
 			}
 			// other enemies, randomly distribute in circle of radius `range`
-			f32 randAngle = TAU * randFloat(); // f26
+			f32 randAngle = TAU * randFloat();
 			f32 radius    = range * randFloat();
 
 			spawnPositions[i] = Vector3f(radius * sinf(randAngle), 0.0f, radius * cosf(randAngle));

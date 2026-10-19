@@ -683,7 +683,7 @@ void Obj::createSuckEffect()
  */
 void Obj::startWindEffect()
 {
-	mAttackPosition = getAttackPosition(); // inlines rn, will match when it doesn't
+	mAttackPosition = getAttackPosition(); 
 	mEfxSui->fade();
 	mEfxAir->create(nullptr);
 	mEfxAirhit->create(nullptr);

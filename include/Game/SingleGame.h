@@ -30,9 +30,6 @@ namespace Game {
 namespace SingleGame {
 struct State;
 
-/**
- * @fabricated
- */
 enum StateID {
 	SGS_File       = 0,
 	SGS_Select     = 1,
@@ -344,9 +341,7 @@ struct GameArg : public StateArg {
  * @size{0x24}
  */
 struct GameState : public State {
-	/**
-	 * @fabricated
-	 */
+
 	enum RepayDemoState {
 		RDS_Inactive     = 0,
 		RDS_Started      = 1,
@@ -560,9 +555,7 @@ struct ZukanStateArg : public StateArg {
  * @size{0x118}
  */
 struct ZukanState : public State {
-	/**
-	 * @real
-	 */
+
 	enum CMode {
 		ModeStartTeki      = 0,
 		ModeStartPellet    = 1,
@@ -575,9 +568,6 @@ struct ZukanState : public State {
 		ModeNone           = 8,
 	};
 
-	/**
-	 * @fabricated
-	 */
 	struct Arg : public StateArg {
 		u8 mStartMode;    // _00
 		int mCourseIndex; // _04

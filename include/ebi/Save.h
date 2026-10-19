@@ -145,7 +145,7 @@ struct FSMState_NowSave : public FSMState {
 
 	// _00     = VTBL
 	// _00-_10 = FSMState
-	int mState;
+	int mState;         // _10
 	int mCardStatus;    // _14
 	bool mIsErrorState; // _18
 };

@@ -38,8 +38,6 @@ struct TObject : public stb::TObject {
 	TAdaptor* getAdaptor() const { return mAdaptor; }
 
 	// VTBL _04
-	// JGadget::TLinkListNode _0C; // _0C
-	// TControl* mControl;        // _14
 	TAdaptor* mAdaptor; // _34
 };
 

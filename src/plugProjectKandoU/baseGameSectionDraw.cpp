@@ -20,7 +20,6 @@ namespace Game {
 /**
  * @note Address: 0x802398D8
  * @note Size: 0x1F4
- * Matches
  */
 void BaseGameSection::newdraw_draw3D_all(Graphics& gfx)
 {

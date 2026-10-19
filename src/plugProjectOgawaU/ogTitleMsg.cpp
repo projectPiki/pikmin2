@@ -177,7 +177,7 @@ void TitleMsg::setCentering(EnumCentering center)
 	}
 
 #if defined(VERSION_US_DEMO1) || defined(VERSION_PAL)
-	f32 currX = 0.0f; // f25
+	f32 currX = 0.0f;
 	for (int i = 0; i < mStringLength; i++) {
 		J2DPane* pane = mPanes1[i];
 		f32 paneWidth = pane->getWidth();
@@ -237,15 +237,6 @@ TitleMsgDrop::TitleMsgDrop(J2DScreen* screen, J2DPane* pane, char* str)
 		mEffects[i] = new efx2d::T2DCvnameCave;
 	}
 }
-
-/**
- * @note Address: N/A
- * @note Size: 0xA0
- */
-// TitleMsg::~TitleMsg()
-//{
-// UNUSED FUNCTION
-//}
 
 /**
  * @note Address: 0x8032F4CC

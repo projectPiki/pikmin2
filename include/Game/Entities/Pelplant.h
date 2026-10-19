@@ -55,10 +55,8 @@ struct State : public EnemyFSMState {
 	{
 	}
 
-	// _00 VTBL
-	// _04 int stateID
-	// _08 EnemyStateMachine* mStateMachine
-	// _0C const char* mName
+	// _00		= VTBL
+	// _00-_10 	= EnemyFSMState
 };
 
 struct StateBlendAnim : public State {
@@ -67,10 +65,8 @@ struct StateBlendAnim : public State {
 	virtual void init(EnemyBase* enemy, StateArg* settings); // _08
 	virtual void exec(EnemyBase* enemy);                     // _0C
 
-	// _00 VTBL
-	// _04 int stateID
-	// _08 EnemyStateMachine* mStateMachine
-	// _0C const char* mName
+	// _00		= VTBL
+	// _00-_10 	= State
 	int mNextState;    // _10
 	int mStartAnimIdx; // _14
 	int mEndAnimIdx;   // _18
@@ -83,10 +79,8 @@ struct StateDamage : public State {
 	virtual void exec(EnemyBase* enemy);                     // _0C
 	virtual void cleanup(EnemyBase* enemy);                  // _10
 
-	// _00 VTBL
-	// _04 int stateID
-	// _08 EnemyStateMachine* mStateMachine
-	// _0C const char* mName
+	// _00		= VTBL
+	// _00-_10 	= State
 	int mAnimIdx; // _10
 };
 
@@ -97,10 +91,8 @@ struct StateDead : public State {
 	virtual void exec(EnemyBase* enemy);                     // _0C
 	virtual void cleanup(EnemyBase* enemy);                  // _10
 
-	// _00 VTBL
-	// _04 int stateID
-	// _08 EnemyStateMachine* mStateMachine
-	// _0C const char* mName
+	// _00		= VTBL
+	// _00-_10 	= State
 	int mAnimIdx; // _10
 };
 
@@ -111,10 +103,8 @@ struct StateGrow : public State {
 	virtual void exec(EnemyBase* enemy);                     // _0C
 	virtual void cleanup(EnemyBase* enemy);                  // _10
 
-	// _00 VTBL
-	// _04 int stateID
-	// _08 EnemyStateMachine* mStateMachine
-	// _0C const char* mName
+	// _00		= VTBL
+	// _00-_10 	= State
 	int mAnimIdx;   // _10
 	int mNextState; // _14
 };
@@ -126,10 +116,8 @@ struct StateWait : public State {
 	virtual void exec(EnemyBase* enemy);                     // _0C
 	virtual void cleanup(EnemyBase* enemy);                  // _10
 
-	// _00 VTBL
-	// _04 int stateID
-	// _08 EnemyStateMachine* mStateMachine
-	// _0C const char* mName
+	// _00		= VTBL
+	// _00-_10 	= State
 	int mPelSize; // _10
 };
 
@@ -140,10 +128,8 @@ struct StateWither : public StateBlendAnim {
 	virtual void exec(EnemyBase* enemy);                     // _0C
 	virtual void cleanup(EnemyBase* enemy);                  // _10
 
-	// _00 VTBL
-	// _04 int stateID
-	// _08 EnemyStateMachine* mStateMachine
-	// _0C const char* mName
+	// _00		= VTBL
+	// _00-_10 	= State
 };
 /////////////////////////////////////////////////////////////////
 
@@ -251,7 +237,6 @@ struct Mgr : public EnemyMgrBase {
 	// vtable 1 (GenericObjectMgr, _00, _08-_38)
 	// vtable 2 (GenericContainer + IEnemyMgrBase + self, _00, _40-_E0)
 	// GenericContainer thunks _40-_58
-	// virtual ~Mgr() { }                        // _58 (weak)
 	virtual EnemyBase* birth(EnemyBirthArg&);          // _70
 	virtual void doAlloc();                            // _A8
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
@@ -271,7 +256,7 @@ struct Mgr : public EnemyMgrBase {
 
 	// _00		= VTABLE
 	// _04-_44	= EnemyMgrBase
-	Obj* mObjects; // _44
+	Obj* mObjects; // _44, array of Objs
 };
 
 /**

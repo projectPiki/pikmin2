@@ -98,7 +98,7 @@ void LoadState::exec(VsGameSection* section)
 		}
 		Screen::gGame2DMgr->update();
 		if (gameSystem->isVersusMode() && (mAutoStartTime > 0.0f)) {
-			if (mDvdThreadCommand.mMode == DvdThreadCommand::CM_Completed) { // probably an enum
+			if (mDvdThreadCommand.mMode == DvdThreadCommand::CM_Completed) {
 				Screen::gGame2DMgr->set_FloorVS_LoadEnd();
 				if (mController->isButtonDown(JUTGamePad::PRESS_A | JUTGamePad::PRESS_START)) {
 					PSSystem::spSysIF->playSystemSe(PSSE_SY_FLOOR_COMPLETE, nullptr);
@@ -128,7 +128,7 @@ void LoadState::exec(VsGameSection* section)
 void LoadState::draw(VsGameSection* section, Graphics& graphic)
 {
 	graphic.mPerspGraph.setPort();
-	particle2dMgr->draw(1, 0); // I bet these are booleans
+	particle2dMgr->draw(1, 0);
 	Screen::gGame2DMgr->draw(graphic);
 	graphic.mPerspGraph.setPort();
 	particle2dMgr->draw(0, 0);

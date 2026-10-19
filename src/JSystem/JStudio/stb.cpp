@@ -368,13 +368,6 @@ TControl::TControl()
 }
 
 /**
- * @note Address: 0x800108F0
- * @note Size: 0x5C
- * __dt__Q37JStudio3stb15TObject_controlFv
- */
-// TObject_control::~TObject_control() { }
-
-/**
  * @note Address: 0x8001094C
  * @note Size: 0x9C
  * __dt__Q37JStudio3stb8TControlFv

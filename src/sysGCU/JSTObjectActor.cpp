@@ -52,18 +52,15 @@ ObjectActor::~ObjectActor()
  */
 void ObjectActor::reset()
 {
-	// this probably shouldn't be needed but it matches here (not in the ctor above)
-	u32 test = gu32NAN_;
-
 	mTranslation     = govNAN_;
 	mRotation        = govNAN_;
 	mScaling         = govNAN_;
-	mShape           = test;
-	mAnimation       = test;
+	mShape           = gu32NAN_;
+	mAnimation       = gu32NAN_;
 	mAnimFrame       = gfNAN_;
 	mAnimFrameMax    = gfNAN_;
-	mModelFileId     = test;
-	mAnimationFileId = test;
+	mModelFileId     = gu32NAN_;
+	mAnimationFileId = gu32NAN_;
 	mScaling.z       = 1.0f;
 	mScaling.y       = 1.0f;
 	mScaling.x       = 1.0f;

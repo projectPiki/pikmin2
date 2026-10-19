@@ -195,8 +195,8 @@ void JPAFieldVortex::calc(JPAEmitterWorkData* workData, JPAFieldBlock* block, JP
  */
 void JPAFieldConvection::prepare(JPAEmitterWorkData* workData, JPAFieldBlock* block)
 {
-	JGeometry::TVec3f vec1; // 0x14
-	JGeometry::TVec3f vec2; // 0x8
+	JGeometry::TVec3f vec1;
+	JGeometry::TVec3f vec2;
 
 	vec2.cross(block->getPos(), block->getDir());
 	vec1.cross(block->getDir(), vec2);
@@ -214,9 +214,9 @@ void JPAFieldConvection::prepare(JPAEmitterWorkData* workData, JPAFieldBlock* bl
  */
 void JPAFieldConvection::calc(JPAEmitterWorkData* workData, JPAFieldBlock* block, JPABaseParticle* particle)
 {
-	JGeometry::TVec3f vec1; // 0x20
-	JGeometry::TVec3f vec2; // 0x14
-	JGeometry::TVec3f vec3; // 0x8
+	JGeometry::TVec3f vec1;
+	JGeometry::TVec3f vec2;
+	JGeometry::TVec3f vec3;
 
 	vec1.scale(_10.dot(particle->mLocalPosition), _10);
 	vec3.scale(_28.dot(particle->mLocalPosition), _28);

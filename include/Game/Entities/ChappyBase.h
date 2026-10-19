@@ -20,7 +20,6 @@
  */
 
 namespace efx {
-// TODO: make this header
 struct THanachoN;
 } // namespace efx
 
@@ -36,7 +35,7 @@ struct FSM : public EnemyStateMachine {
 struct Obj : public EnemyBase {
 	Obj();
 
-	//////////////// VTABLE - Note: this order is needed for correct weak function ordering
+	//////////////// VTABLE
 	virtual void onInit(CreatureInitArg* settings);                // _30
 	virtual void doDirectDraw(Graphics& gfx);                      // _50
 	virtual void collisionCallback(CollEvent& event);              // _EC
@@ -103,7 +102,6 @@ struct Obj : public EnemyBase {
 struct Mgr : public EnemyMgrBase {
 	Mgr(int objLimit, u8 modelType);
 
-	// virtual ~Mgr() { }                                 // _58 (weak)
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
 	{
 		return EnemyTypeID::EnemyID_Chappy;

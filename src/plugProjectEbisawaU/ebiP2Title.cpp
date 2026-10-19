@@ -547,7 +547,6 @@ bool TTitleMgr::startKogane()
 	} else {
 		f32 angle = randEbisawaFloat() * TAU;
 		f32 x     = mTitleParms.mMaxPikminScatterRadius.mValue;
-		// this and startChappy refuse to not inline in update
 		Vector2f pos1(x * cosf(angle), mTitleParms.mMaxPikminScatterRadius.mValue * sinf(angle));
 		Vector2f pos2;
 		pos2.x = 0.0f;

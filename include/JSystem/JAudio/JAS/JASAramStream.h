@@ -15,14 +15,12 @@
 struct JASAramStream {
 	typedef void (*JASAramStreamCallback)(u32, JASAramStream*, void*);
 
-	/** @fabricated */
 	struct HeaderLoadTaskArgs {
 		JASAramStream* mStream; // _00
 		u32 mDataLength;        // _04
 		int mIndex;             // _08
 	};
 
-	/** @fabricated */
 	struct FirstLoadTaskArgs {
 		JASAramStream* mStream; // _00
 		u32 mTotalLoadCount;    // _04

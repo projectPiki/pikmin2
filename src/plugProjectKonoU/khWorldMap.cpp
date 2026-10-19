@@ -889,7 +889,6 @@ void WorldMap::update(Game::WorldMap::UpdateArg& arg)
 					mScreenInfo->search('Nrwin')->show();
 
 					if (!mInitArg.mDoNewEntriesEfx) {
-						// Vector2f efxPos2(getPaneCenterX(target) + msVal._50[0].x, getPaneCenterY(target) + msVal._50[0].y);
 						efx2d::Arg arg(Vector2f(getPaneCenterX(target) + msVal._50[1].x, getPaneCenterY(target) + msVal._50[1].y));
 						efx2d::T2DChangesmoke efx;
 						efx.create(&arg);
@@ -1017,8 +1016,6 @@ void WorldMap::update(Game::WorldMap::UpdateArg& arg)
 	::Screen::gGame2DMgr->update();
 }
 
-// const static int testdata[6] = { 0 };
-
 /**
  * @note Address: 0x803F53F4
  * @note Size: 0x198
@@ -1115,9 +1112,9 @@ f32 WorldMap::rocketMove(J2DPane* pane, bool flag)
 	pos.normalize();
 
 	f32 val1, val2, val3;
-	val1 = pikmin2_atan2f(mRocketAngle.x, -mRocketAngle.y); // f30
-	val2 = pikmin2_atan2f(pos.x, -pos.y);                   // f31
-	val3 = pikmin2_atan2f(_B4.x, -_B4.y);                   // f1
+	val1 = pikmin2_atan2f(mRocketAngle.x, -mRocketAngle.y);
+	val2 = pikmin2_atan2f(pos.x, -pos.y);
+	val3 = pikmin2_atan2f(_B4.x, -_B4.y);
 
 	if (val1 < 0.0f) {
 		val1 += TAU;
@@ -1166,7 +1163,7 @@ f32 WorldMap::rocketMove(J2DPane* pane, bool flag)
  */
 void WorldMap::rocketUpdate(J2DPane* pane)
 {
-	J2DPane* shipPane = mScreenRocket->search('NROCKET'); // r30
+	J2DPane* shipPane = mScreenRocket->search('NROCKET');
 	shipPane->setOffset(mRocketPosition.x, mRocketPosition.y);
 	shipPane->setAngle(JMAAtan2Radian(-mRocketAngle.x, -mRocketAngle.y) * JMath::TAngleConstant_<f32>::RADIAN_TO_DEGREE_FACTOR());
 
@@ -1780,8 +1777,8 @@ Vector2f WorldMap::OnyonDynamics::move(WorldMap* wmap, const JGeometry::TVec2f& 
 		}
 	} else {
 		posDiff.normalize();
-		f32 calc  = pikmin2_atan2f(mAngle.x, -mAngle.y);   // f30
-		f32 calc2 = pikmin2_atan2f(posDiff.x, -posDiff.y); // f1
+		f32 calc  = pikmin2_atan2f(mAngle.x, -mAngle.y);
+		f32 calc2 = pikmin2_atan2f(posDiff.x, -posDiff.y);
 		if (calc < 0.0f) {
 			calc += TAU;
 		}

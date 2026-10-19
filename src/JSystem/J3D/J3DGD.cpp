@@ -15,7 +15,6 @@ void J3DGDSetGenMode(u8 texGenNum, u8 colorChanNum, u8 tevNum, u8 indTevNum, GXC
 	J3DGDWriteBPCmd(texGenNum << 0 | colorChanNum << 4 | (tevNum - 1) << 10 | cm2hw[cullMode] << 14 | indTevNum << 16 | 0x00 << 24);
 }
 
-// static u8 cm2hw$576[4]; // unused... not to be confused with the used version, cm2hw$551
 static u8 J3DGDTexMode0Ids[8]  = { 0x80, 0x81, 0x82, 0x83, 0xA0, 0xA1, 0xA2, 0xA3 };
 static u8 J3DGDTexMode1Ids[8]  = { 0x84, 0x85, 0x86, 0x87, 0xA4, 0xA5, 0xA6, 0xA7 };
 static u8 J3DGDTexImage0Ids[8] = { 0x88, 0x89, 0x8A, 0x8B, 0xA8, 0xA9, 0xAA, 0xAB };
@@ -159,7 +158,6 @@ void J3DGDSetVtxAttrFmtv(GXVtxFmt fmt, const GXVtxAttrFmtList* vtxAttr, bool for
 				nbt3     = true;
 			} else {
 				// possible fakematch? need to cast vtxAttr->mCount to int to put value in r0 temporarily
-				// nrmCount = forceNBT ? GX_NRM_NBT : vtxAttr->mCount;
 				nrmCount = (GXCompCnt)(forceNBT ? GX_NRM_NBT : (int)(vtxAttr->mCount));
 				nbt3     = false;
 			}

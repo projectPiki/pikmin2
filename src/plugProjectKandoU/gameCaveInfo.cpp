@@ -447,7 +447,6 @@ bool FloorInfo::useKaidanBarrel()
 /**
  * @note Address: 0x801D70D8
  * @note Size: 0x224
- * TODO: inline here
  */
 void FloorInfo::read(Stream& input)
 {

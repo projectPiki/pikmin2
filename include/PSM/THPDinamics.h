@@ -32,13 +32,11 @@ struct THPDemoDinamics {
 		f32 volume;
 		BOOL isNegative = (input < 0.0f) ? TRUE : FALSE;
 
-		// f32 calc = input;
 		if (isNegative) {
 			input *= -1.0f;
 		}
 
 		if (input < _04) {
-			// f32 val = mDemoInfo->_08;
 			volume = input * (_08 / _04);
 			if (volume > _08) {
 				volume = _08;

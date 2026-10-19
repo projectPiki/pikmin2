@@ -8,7 +8,6 @@ namespace Cave {
 /**
  * @note Address: 0x80245664
  * @note Size: 0x8
- * Matches!
  */
 RandMapChecker::RandMapChecker(MapNode* mapnode)
 {
@@ -18,7 +17,6 @@ RandMapChecker::RandMapChecker(MapNode* mapnode)
 /**
  * @note Address: 0x8024566C
  * @note Size: 0x7C
- * Matches!
  */
 bool RandMapChecker::isPutOnMap(MapNode* mapnode)
 {
@@ -35,7 +33,6 @@ bool RandMapChecker::isPutOnMap(MapNode* mapnode)
  * @note Address: 0x802456E8
  * @note Size: 0xF0
  * Description: Appears to check if map parts would overlap
- * Matches!
  */
 bool RandMapChecker::isPartsOnParts(MapNode* mapnode)
 {
@@ -64,7 +61,6 @@ bool RandMapChecker::isPartsOnParts(MapNode* mapnode)
 /**
  * @note Address: 0x802457D8
  * @note Size: 0x220
- * Matches!
  */
 bool RandMapChecker::isDoorOnParts(MapNode* mapnode)
 {
@@ -129,7 +125,6 @@ bool RandMapChecker::isDoorOnParts(MapNode* mapnode)
 /**
  * @note Address: 0x802459F8
  * @note Size: 0x1E8
- * Matches!
  */
 bool RandMapChecker::isPartsOnDoor(MapNode* mapnode)
 {

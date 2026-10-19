@@ -72,7 +72,6 @@ void WindowPane::update()
 /**
  * @note Address: 0x804350E0
  * @note Size: 0x278
- * TODO: match!!!
  */
 void WindowPane::moveWindow(bool flag)
 {
@@ -375,8 +374,6 @@ void PodIconScreen::update()
 		scale += 1.0f;
 		setTrans();
 		scaleScreen(scale);
-		// mScreenScaleX = (test) * 0.95f;
-		// mScreenScaleY = (test) * 0.95f;
 
 		if (length < 10.0f) {
 			switch (mState) {
@@ -577,7 +574,7 @@ void MessageWindowScreen::open(f32 duration)
  */
 bool TControl::update(Controller* pad1, Controller* pad2)
 {
-	bool ret = Window::TControl::update(pad1, pad2); // matching bs when this is bool
+	bool ret = Window::TControl::update(pad1, pad2);
 	if (mFlags.isSet(ControlFlag_UnsuspendOnFinish) && Game::moviePlayer && Game::moviePlayer->isFlag(Game::MVP_IsFinished)) {
 		if (mIsActive) {
 			reset();

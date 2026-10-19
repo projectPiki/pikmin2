@@ -145,7 +145,7 @@ Menu* Menu::doUpdate(bool flag)
 			mIsUpdated = true;
 		}
 
-		u32 input = mControl->mButton.mRepeat; // WHY
+		u32 input = mControl->mButton.mRepeat;
 		if (input & Controller::PRESS_DOWN) {
 			mCurrentItem->checkEvents(this, KeyEvent::U2);
 			mCurrentItem = mCurrentItem->getNext();

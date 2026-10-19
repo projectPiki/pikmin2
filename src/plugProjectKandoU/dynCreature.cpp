@@ -201,7 +201,7 @@ void DynCreature::computeForces(f32 friction)
 		friction = DynamicsParms::mInstance->mFixedFrictionValue();
 	}
 
-	f32 coeff = -friction * prop; // f3
+	f32 coeff = -friction * prop;
 
 	for (DynParticle* particle = mDynParticle; particle; particle = particle->mNext) {
 		if (!particle->mIsTouching) {

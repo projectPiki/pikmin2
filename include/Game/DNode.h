@@ -21,14 +21,8 @@ struct DNode : public JKRDisposer {
 	void concat(DNode*);
 	DNode* getChildAt(int);
 
-	/**
-	 * @fabricated
-	 */
 	void setName(char* name) { mName = name; }
 
-	/**
-	 * @fabricated
-	 */
 	inline void clearRelations()
 	{
 		mChild  = nullptr;
@@ -37,9 +31,6 @@ struct DNode : public JKRDisposer {
 		mNext   = nullptr;
 	}
 
-	/**
-	 * @fabricated
-	 */
 	inline void reset(char* name)
 	{
 		clearRelations();

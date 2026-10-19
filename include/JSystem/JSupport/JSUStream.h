@@ -31,7 +31,6 @@ struct JSUInputStream : public JSUIosBase {
 	inline s32 read(u8& val) { return read(&val, sizeof(val)); }
 	inline s32 read(s16& val) { return read(&val, sizeof(val)); }
 
-	/** @fabricated */
 	inline bool readBool()
 	{
 		bool temp;
@@ -46,7 +45,6 @@ struct JSUInputStream : public JSUIosBase {
 		return byte;
 	}
 
-	/** @fabricated */
 	inline s16 readS16()
 	{
 		s16 temp;
@@ -54,7 +52,6 @@ struct JSUInputStream : public JSUIosBase {
 		return temp;
 	}
 
-	/** @fabricated */
 	inline f32 readS16ToFloat()
 	{
 		s16 temp;
@@ -62,7 +59,6 @@ struct JSUInputStream : public JSUIosBase {
 		return temp;
 	}
 
-	/** @fabricated */
 	inline u16 readU16()
 	{
 		u16 temp;
@@ -70,7 +66,6 @@ struct JSUInputStream : public JSUIosBase {
 		return temp;
 	}
 
-	/** @fabricated */
 	inline f32 readU16ToFloat()
 	{
 		u16 temp;
@@ -78,7 +73,6 @@ struct JSUInputStream : public JSUIosBase {
 		return temp;
 	}
 
-	/** @fabricated */
 	inline u32 readU32()
 	{
 		u32 temp;
@@ -92,13 +86,6 @@ struct JSUInputStream : public JSUIosBase {
 		this->read(&val, sizeof(val));
 		return val;
 	}
-
-	/** @fabricated */
-	// template <typename T>
-	// inline s32 readT(T& obj)
-	// {
-	// 	return read(obj, sizeof(T));
-	// }
 
 	// _00		= VTBL
 	// _00-_08	= JSUIosBase
@@ -169,18 +156,10 @@ struct JSUOutputStream : public JSUIosBase {
 	int write(s16 val) { return write(&val, sizeof(val)); }
 	int write(u8 val) { return write(&val, sizeof(val)); }
 
-	/** @fabricated */
-	// template <typename T>
-	// inline int writeT(T obj)
-	// {
-	// 	return write(obj, sizeof(T));
-	// }
-
 	// _00		= VTBL
 	// _00-_08	= JSUIosBase
 };
 
-// TODO: this.
 struct JSUMemoryOutputStream : public JSUOutputStream {
 	// Unused/inlined:
 	virtual ~JSUMemoryOutputStream();            // _08

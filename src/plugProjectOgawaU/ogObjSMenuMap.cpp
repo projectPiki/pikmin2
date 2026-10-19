@@ -610,7 +610,6 @@ void ObjSMenuMap::doCreate(JKRArchive* arc)
 
 	// set starting map orientation/rotation
 	if (mDisp->mActiveNavi) {
-		// Game::Navi* navi = Game::naviMgr->getActiveNavi();
 		Vector3f naviViewVec = Game::cameraMgr->mCameraObjList[Game::naviMgr->getActiveNavi()->mNaviIndex]->getViewVector();
 		mMapAngle            = 180.0f * (JMAAtan2Radian(naviViewVec.x, -naviViewVec.z) / PI); // in degrees
 	}

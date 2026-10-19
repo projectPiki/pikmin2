@@ -376,8 +376,7 @@ bool Game2DMgr::open_SMenu_Sub(og::Screen::DispMemberSMenuAll& disp)
 		disp.mSMenuMap.mInCave = false;
 	}
 
-	// probably want define for poko count
-	if (disp.mSMenuPauseDoukutu.mPreCavePokos < 10000) {
+	if (disp.mSMenuPauseDoukutu.mPreCavePokos < DEBT_AMOUNT) {
 		disp.mSMenuPauseDoukutu.mPayDebt = true;
 	} else {
 		disp.mSMenuPauseDoukutu.mPayDebt = false;

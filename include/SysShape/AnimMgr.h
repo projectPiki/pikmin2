@@ -35,7 +35,6 @@ struct AnimMgr : public CNode {
 	// unused/inlined:
 	static AnimMgr* load(Stream&, SysShape::Model*, JKRFileLoader*, char*);
 
-	// fabricated:
 	AnimInfo* getAnimByID(int animID)
 	{
 		FOREACH_NODE(AnimInfo, mAnimInfo.mChild, info)

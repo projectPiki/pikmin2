@@ -519,7 +519,7 @@ void GameState::exec(SingleGameSection* game)
 	switch (menustate) {
 	case Screen::Game2DMgr::CHECK2D_SMenu_Opened:
 		break;
-	case Screen::Game2DMgr::CHECK2D_SMenu_Cancel: // cancel menu
+	case Screen::Game2DMgr::CHECK2D_SMenu_Cancel:
 		gameSystem->setMoviePause(false, "sm-canc");
 		gameSystem->setPause(false, "sm-canc", 3);
 		break;

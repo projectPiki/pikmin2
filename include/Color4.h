@@ -5,10 +5,7 @@
 #include "Dolphin/gx.h"
 #include "JSystem/JUtility/TColor.h"
 
-// TODO: See if this inherits GXColor
 struct Color4 {
-	// TODO: Remove inline def when linking singleGS_ZukanParms.cpp!
-	// Is the above TODO still relevant? -EpochFlame
 	inline Color4() { }
 	inline Color4(u8 red, u8 green, u8 blue, u8 alpha)
 	    : r(red)

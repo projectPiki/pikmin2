@@ -47,18 +47,12 @@ struct EnemyBlendAnimatorBase : public EnemyAnimatorBase {
 	virtual SysShape::Animator& getAnimator();        // _10
 	virtual SysShape::Animator& getAnimator(int idx); // _14
 	virtual void animate(f32 speed);                  // _18
-	/**
-	 * @reifiedAddress{8010AA4C}
-	 * @reifiedFile{plugProjectYamashitaU/pelplant.cpp}
-	 */
+
 	virtual void animate(int animatorIndex, f32 speed) // _1C (weak)
 	{
 		EnemyAnimatorBase::animate(animatorIndex, speed);
 	}
-	/**
-	 * @reifiedAddress{8010AA6C}
-	 * @reifiedFile{plugProjectYamashitaU/pelplant.cpp}
-	 */
+
 	virtual u32 getTypeID() { return 'blnd'; } // _24 (weak)
 
 	void startBlend(int startAnim, int endAnim, SysShape::BlendFunction* function, f32 framerate, SysShape::MotionListener* listener);

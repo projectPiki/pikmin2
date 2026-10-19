@@ -181,15 +181,6 @@ JKRAramStreamCommand* JKRAramStream::write_StreamToAram_Async(JSUFileInputStream
 }
 
 /**
- * @note Address: 0x8001A2A4
- * @note Size: 0x5C
- * int JSURandomInputStream::getAvailable() const
- * Weak function, should live in JSUStream.h
- */
-
-// int JSURandomInputStream::getAvailable() const { return getLength() - getPosition(); }
-
-/**
  * @note Address: 0x8001A300
  * @note Size: 0xC8
  */
@@ -273,6 +264,5 @@ void JKRAramStream::setTransBuffer(u8* buffer, u32 bufferSize, JKRHeap* heap)
  */
 JKRAramStreamCommand::JKRAramStreamCommand()
 {
-	// Generated from stb r0, 0x28(r3)
 	mAllocatedTransferBuffer = false;
 }

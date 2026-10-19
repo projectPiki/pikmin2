@@ -161,7 +161,6 @@ struct Mgr : public EnemyMgrBase {
 	Mgr(int objLimit, u8 modelType);
 
 	//////////////// VTABLE
-	// virtual ~Mgr();                                     // _58 (weak)
 	virtual void doAnimation();               // _08
 	virtual EnemyBase* birth(EnemyBirthArg&); // _70
 	virtual void doAlloc();                   // _A8

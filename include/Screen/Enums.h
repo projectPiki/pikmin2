@@ -67,8 +67,6 @@ enum ScreenOwnerID { OWNER_KH = 'KH', OWNER_OGA = 'OGA', OWNER_MRMR = 'MRMR' };
 #pragma enumsalwaysint off
 #pragma longlong_enums on
 enum ScreenMemberID {
-	// MEMBER_FLOOR = (u64)0xFFFFFFFFFFFFFFFE,
-	// MEMBER_DUMMY = 0xFFFFFFFFFFFFFFFF
 	_MEMBER_EMPTY_STRING            = 0x0,
 	MEMBER_VS                       = 'VS',
 	MEMBER_CAVE                     = 'CAVE',

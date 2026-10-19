@@ -63,7 +63,6 @@ struct Mgr : public EnemyMgrBase {
 
 	//////////////// VTABLE
 	virtual void doSimpleDraw(Viewport*); // _20
-	// virtual ~Mgr();                                     // _58 (weak)
 	virtual EnemyBase* birth(EnemyBirthArg&);          // _70
 	virtual void doAlloc();                            // _A8
 	virtual void initObjects();                        // _BC

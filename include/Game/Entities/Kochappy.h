@@ -28,8 +28,7 @@ struct Obj : public KochappyBase::Obj {
 struct Mgr : public KochappyBase::Mgr {
 	Mgr(int objLimit, u8 modelType);
 
-	//////////////// VTABLE - Note: order required for correct weak function ordering
-	// virtual ~Mgr() { }                              // _58 (weak)
+	//////////////// VTABLE
 	virtual void loadTexData();                        // _D0
 	virtual void doAlloc();                            // _A8
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)

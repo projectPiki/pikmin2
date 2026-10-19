@@ -351,7 +351,6 @@ void CallBack_CounterRV::setValue(bool isUp, bool isDown)
 		mPaneOffsetY  = 0.0f;
 		if (mCenteringMode == ECM_Unknown1) {
 			if (mCurrentDigitNum < mMinDisplayDigitNum) {
-				// f32 x        = f32(mMinDisplayDigitNum - mCurrentDigitNum);
 				mPaneOffsetY = -(mKetaScaleX * (mPane12DistX * f32(mMinDisplayDigitNum - mCurrentDigitNum))) / 2;
 			}
 

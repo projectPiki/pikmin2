@@ -65,7 +65,6 @@ void init()
 		trackUpdate->_00            = 0xFF;
 		trackUpdate->mPlayingDolby  = 0.0f;
 	}
-	// TODO: ???
 	new (JAIBasic::getCurrentJAIHeap(), 0x20)
 	    SeParameter[JAIGlobalParameter::getParamSeCategoryMax() * JAIGlobalParameter::getParamSeRegistMax()];
 	u8** v1 = JAIBasic::getInterface()->_1C;

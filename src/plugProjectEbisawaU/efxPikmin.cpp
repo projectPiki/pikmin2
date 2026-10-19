@@ -277,9 +277,6 @@ void TFueactCircle::execute(JPABaseEmitter* emit)
 	P2ASSERTLINE(530, mMtx);
 	P2ASSERTLINE(531, mPos);
 
-	// Vector3f probably doesnt belong in these functions
-	// the JGeometry Util stuff seems to be what was used
-
 	JGeometry::TVec3f sep2;
 	sep2.x = mPos->x - (*mMtx)(0, 3);
 	sep2.y = mPos->y - (*mMtx)(1, 3);
@@ -1195,12 +1192,6 @@ void TPkEffectTane::killGlow1_()
 void TFueactCircle::executeAfter(JPABaseEmitter*)
 {
 }
-
-/**
- * @note Address: 0x803B9000
- * @note Size: 0x2C
- */
-// void TCursor::forceKill() { mOneEmitter.forceKill(); }
 
 /**
  * @note Address: N/A

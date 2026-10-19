@@ -70,9 +70,6 @@ void TOmake::doSetArchive(JKRArchive* arc)
 	mScreenMain->addCallBack('Wselctw', &mCursor);
 
 	for (int i = 0; i < 7; i++) {
-
-		// J2DTextBox* pane1 = static_cast<J2DTextBox*>(E2DScreen_searchAssert(mScreenMain, 'Tscolor'));
-		// J2DTextBox* pane2 = static_cast<J2DTextBox*>(E2DScreen_searchAssert(mScreenMain, 'Tt00'));
 		mFonts[i].set(static_cast<J2DTextBox*>(E2DScreen_searchAssert(mScreenMain, 'Tt00')),
 		              static_cast<J2DTextBox*>(E2DScreen_searchAssert(mScreenMain, 'Tscolor')));
 		mScreenMain->addCallBackPane(mPaneListMesg[i], &mFonts[i]);

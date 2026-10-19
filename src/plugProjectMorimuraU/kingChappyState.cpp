@@ -386,10 +386,10 @@ void StateFlick::exec(EnemyBase* enemy)
 			break;
 
 		case KEYEVENT_3:
-			f32 yMax         = 25.0f + OBJ(enemy)->mFootPosition.y;                                  // f31
-			f32 yMin         = yMax - 30.0f;                                                         // f30
-			Vector3f footPos = OBJ(enemy)->mFootPosition;                                            // f28, na, f27
-			f32 trampleRange = CG_PROPERPARMS(enemy).mTramplingRange.mValue * enemy->mScaleModifier; // f29
+			f32 yMax         = 25.0f + OBJ(enemy)->mFootPosition.y;
+			f32 yMin         = yMax - 30.0f;
+			Vector3f footPos = OBJ(enemy)->mFootPosition;
+			f32 trampleRange = CG_PROPERPARMS(enemy).mTramplingRange.mValue * enemy->mScaleModifier;
 			trampleRange *= trampleRange;
 
 			Iterator<Piki> iterPiki(pikiMgr);
@@ -509,8 +509,8 @@ void StateWarCry::exec(EnemyBase* enemy)
 			Vector3f kingPos = enemy->getPosition();
 			f32 roarDist;
 			f32 roarAngle;
-			f32 yMin = kingPos.y - 20.0f; // f29
-			f32 yMax = 30.0f + yMin;      // f28
+			f32 yMin = kingPos.y - 20.0f;
+			f32 yMax = 30.0f + yMin;
 			Iterator<Piki> iterPiki(pikiMgr);
 			CI_LOOP(iterPiki)
 			{

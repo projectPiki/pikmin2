@@ -20,14 +20,10 @@ struct TRenderingProcessor : public P2JME::Window::TRenderingProcessor {
 
 	// _00      = VTBL
 	// _00-_144 = P2JME::Window::TRenderingProcessor
-	// f32 _144; // _144
 };
 
 struct TSequenceProcessor : public P2JME::TSeqProcNoSeq {
 	TSequenceProcessor(JMessage::TReference* ref, JMessage::TControl* owner);
-	//     : TSeqProcNoSeq(ref, owner)
-	// {
-	// }
 
 	virtual ~TSequenceProcessor() { } // _08 (weak)
 

@@ -557,8 +557,8 @@ void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 void StateWalk::exec(EnemyBase* enemy)
 {
 	Obj* chappy      = OBJ(enemy);
-	f32 turnSpeed    = CG_GENERALPARMS(chappy).mTurnSpeed();    // f30
-	f32 maxTurnAngle = CG_GENERALPARMS(chappy).mMaxTurnAngle(); // f29
+	f32 turnSpeed    = CG_GENERALPARMS(chappy).mTurnSpeed();
+	f32 maxTurnAngle = CG_GENERALPARMS(chappy).mMaxTurnAngle();
 	if (chappy->isFinishMotion()) {
 		turnSpeed    = 0.01f;
 		maxTurnAngle = 1.0f;
@@ -643,8 +643,8 @@ void StateWalkPath::exec(EnemyBase* enemy)
 {
 	Obj* chappy = OBJ(enemy);
 	chappy->updateHomePosition();
-	f32 turnSpeed    = CG_GENERALPARMS(chappy).mTurnSpeed();    // f30
-	f32 maxTurnAngle = CG_GENERALPARMS(chappy).mMaxTurnAngle(); // f29
+	f32 turnSpeed    = CG_GENERALPARMS(chappy).mTurnSpeed();
+	f32 maxTurnAngle = CG_GENERALPARMS(chappy).mMaxTurnAngle();
 	if (chappy->isFinishMotion()) {
 		turnSpeed    = 0.01f;
 		maxTurnAngle = 1.0f;

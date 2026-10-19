@@ -21,13 +21,10 @@ u32 seTrackMax               = 32;
 u32 seqTrackMax              = 32;
 u32 seqPlayTrackMax          = 8;
 u32 seqControlBufferMax      = 8;
-// u32 streamControlBufferMax     = 0xFFFFFFFF; // unused/inlined
-// u32 streamParameterBufferMax   = 0xFFFFFFFF; // unused/inlined
 u32 autoHeapMax      = 2;
 u32 stayHeapMax      = 2;
 u32 autoHeapRoomSize = 0xC000;
 u32 stayHeapSize     = 0x10000;
-// char* soundTableFileName       = ""; // unused/inlined
 char* initDataFileName         = "JaiInit.aaf";
 char* wavePath                 = "Banks/";
 char* sequenceArchivesPath     = "Seqs/";
@@ -154,7 +151,7 @@ void setParamSeqTrackMax(u32 value)
 void setParamSeqPlayTrackMax(u32 value)
 {
 	seqPlayTrackMax     = value;
-	seqControlBufferMax = value << 1; // * sizeof(u16);
+	seqControlBufferMax = value << 1;
 }
 
 /**
