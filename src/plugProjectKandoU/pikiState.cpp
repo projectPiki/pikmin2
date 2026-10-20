@@ -3622,7 +3622,6 @@ void PikiEscapeState::exec(Piki* piki)
 			axis.y = -1.0f;
 		}
 
-		// cross product needs fixing.
 		Vector3f vec = cross(diff, axis);
 		vec.normalise();
 

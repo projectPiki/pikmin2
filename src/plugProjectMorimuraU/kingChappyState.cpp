@@ -214,7 +214,6 @@ void StateAttack::exec(EnemyBase* enemy)
 			break;
 
 		case KEYEVENT_2:
-			// this bit needs fixing
 			soundObj = static_cast<PSM::EnemyBoss*>(enemy->mSoundObj);
 			PSM::assertIsBoss(soundObj);
 			if (soundObj) {

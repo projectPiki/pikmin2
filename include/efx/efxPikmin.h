@@ -900,7 +900,7 @@ struct TOrimaLightAct : public TChaseMtx2 {
 
 	// _00      = VTBL
 	// _00-_2C  = TChaseMtx2
-	u32 mNaviType; // _2C, unknown
+	u32 mNaviType; // _2C
 };
 
 struct TOrimadamage : public TChaseMtxT2 {

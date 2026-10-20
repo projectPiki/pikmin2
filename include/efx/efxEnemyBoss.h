@@ -776,7 +776,7 @@ struct THdamaHahen : public TChasePosPos {
 };
 
 struct THdamaHit1 : public TSimple5 {
-	inline THdamaHit1() // needs fixing
+	inline THdamaHit1()
 	    : TSimple5(PID_HDamaHit1_1, PID_HDamaHit1_2, PID_HDamaHit1_3, PID_HDamaHit1_4, PID_HDamaShootA)
 	{
 	}
@@ -786,7 +786,7 @@ struct THdamaHit1 : public TSimple5 {
 };
 
 struct THdamaHit2 : public TSimple4 {
-	inline THdamaHit2() // needs fixing
+	inline THdamaHit2()
 	    : TSimple4(PID_HDamaHit2_1, PID_HDamaHit2_2, PID_HDamaHit2_3, PID_HDamaShootA)
 	{
 	}
@@ -808,7 +808,7 @@ struct THdamaHit2W : public TSimple3 {
 };
 
 struct THdamaHit3 : public TSimple4 {
-	inline THdamaHit3() // needs fixing
+	inline THdamaHit3()
 	    : TSimple4(PID_HDamaHit3_1, PID_HDamaHit3_2, PID_HDamaHit3_3, PID_HDamaHit3_4)
 	{
 	}

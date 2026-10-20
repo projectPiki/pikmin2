@@ -587,7 +587,6 @@ void StateStick::exec(EnemyBase* enemy)
 		return;
 	}
 
-	// this needs fixing
 	Vector3f targetPos = target->getPosition();
 	Vector2f sep(targetPos.x - enemy->getPosition().x, targetPos.z - enemy->getPosition().z);
 	f32 dist        = sep.sqrLength();

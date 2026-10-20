@@ -116,8 +116,6 @@ struct TEnemyWalkSmoke : public TBase {
 	virtual void fade() { }      // _10 (weak)
 
 	// _00      = VTABLE
-	// Vector3f* _04;  // _04 - unknown
-	// Vector3f _10; // _10
 };
 
 struct TEnemyWalkSmokeS : public TSimple1 {

@@ -450,7 +450,7 @@ Demo::~Demo()
  */
 void Demo::becomeDemoCamera()
 {
-	// not quite right but needs the checkGameScene inline for rodata purposes
+	// Size isnt right but we need the checkGameScene inline for rodata purposes
 	PSM::Scene_Game* scene = static_cast<PSM::Scene_Game*>(PSMGetChildScene());
 	PSSystem::checkGameScene(scene);
 	scene->becomeSceneCamera();
